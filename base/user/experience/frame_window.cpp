@@ -2579,6 +2579,13 @@ namespace experience
    bool frame_window::is_window_resizing()
    {
 
+      if(!size_manager())
+      {
+
+         return false;
+
+      }
+
       return size_manager()->window_is_sizing();
 
    }
@@ -2587,6 +2594,13 @@ namespace experience
    bool frame_window::is_window_repositioning()
    {
 
+      if(!move_manager())
+      {
+
+         return false;
+
+      }
+
       return move_manager()->window_is_moving();
 
    }
@@ -2594,6 +2608,13 @@ namespace experience
 
    bool frame_window::is_window_docking()
    {
+
+      if(!dock_manager())
+      {
+
+         return false;
+
+      }
 
       return dock_manager()->window_is_docking();
 

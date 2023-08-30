@@ -131,9 +131,9 @@ namespace windowing
 
       void on_destroy() override;
 
-      virtual void show_window(const ::e_display & edisplay, const ::e_activation & eactivation);
+      //virtual void show_window(const ::e_display & edisplay, const ::e_activation & eactivation);
 
-      virtual void _show_window_unlocked(const ::e_display & edisplay, const ::e_activation & eactivation);
+      //virtual void _show_window_unlocked(const ::e_display & edisplay, const ::e_activation & eactivation);
 
       virtual void set_user_interaction(::user::interaction *pinteraction);
 

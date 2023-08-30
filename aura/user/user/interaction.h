@@ -1281,10 +1281,10 @@ namespace user
       
       virtual void on_drag_scroll_layout(::draw2d::graphics_pointer & pgraphics);
 
-      virtual void _window_show_change_visibility_locked();
-      virtual void _window_show_change_visibility_unlocked();
-      virtual void _window_request_presentation_locked();
-      virtual void _window_request_presentation_unlocked();
+      //virtual void _window_show_change_visibility_locked();
+      //virtual void _window_show_change_visibility_unlocked();
+      //virtual void _window_request_presentation_locked();
+      //virtual void _window_request_presentation_unlocked();
       virtual void on_visual_applied();
       virtual void _on_visual_changed_unlocked();
 

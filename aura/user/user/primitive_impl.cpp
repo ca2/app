@@ -355,6 +355,20 @@ namespace user
    }
 
 
+   void primitive_impl::on_reposition(const ::point_i32 & point)
+   {
+
+
+   }
+
+
+   void primitive_impl::on_resize(const ::size_i32 & size)
+   {
+
+
+   }
+
+
    //void primitive_impl::main_async(const promise::procedure & routine, enum_priority epriority)
    //{
 
@@ -2705,28 +2719,28 @@ namespace user
    // }
 
 
-   void primitive_impl::_window_show_change_visibility_unlocked(::e_display edisplay, ::e_activation eactivation)
-   {
-
-   }
-
-
-   void primitive_impl::_window_show_change_visibility_locked()
-   {
-
-   }
-
-
-   void primitive_impl::_window_request_presentation_locked()
-   {
-
-   }
-
-
-   void primitive_impl::_window_request_presentation_unlocked()
-   {
-
-   }
+//   void primitive_impl::_window_show_change_visibility_unlocked(::e_display edisplay, ::e_activation eactivation)
+//   {
+//
+//   }
+//
+//
+//   void primitive_impl::_window_show_change_visibility_locked()
+//   {
+//
+//   }
+//
+//
+//   void primitive_impl::_window_request_presentation_locked()
+//   {
+//
+//   }
+//
+//
+//   void primitive_impl::_window_request_presentation_unlocked()
+//   {
+//
+//   }
 
 
    void primitive_impl::enable_window(bool bEnable)

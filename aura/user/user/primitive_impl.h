@@ -101,10 +101,10 @@ namespace user
 
       void destroy() override;
 
-      virtual void _window_show_change_visibility_locked();
-      virtual void _window_show_change_visibility_unlocked(::e_display edisplay, ::e_activation eactivation);
-      virtual void _window_request_presentation_locked();
-      virtual void _window_request_presentation_unlocked();
+      //virtual void _window_show_change_visibility_locked();
+      //virtual void _window_show_change_visibility_unlocked(::e_display edisplay, ::e_activation eactivation);
+      //virtual void _window_request_presentation_locked();
+      //virtual void _window_request_presentation_unlocked();
 
       virtual void create_message_queue(::user::interaction * pinteraction, const ::string & lpszName);
       
@@ -113,6 +113,10 @@ namespace user
       //virtual void RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::atom nIdLeftOver, ::u32 nFlag = reposDefault, ::rectangle_i32 * prectParam = nullptr, const ::rectangle_i32 & rectangleX = nullptr, bool bStretch = true);
 
       virtual void window_move(i32 x, i32 y);
+
+
+      virtual void on_reposition(const ::point_i32 & point);
+      virtual void on_resize(const ::size_i32 & size);
 
 
       virtual void post(::message::message* pusermessage);

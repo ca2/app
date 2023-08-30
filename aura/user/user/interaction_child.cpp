@@ -623,38 +623,38 @@ namespace user
    }
 
 
-   void interaction_child::_window_show_change_visibility_unlocked(::e_display edisplay, ::e_activation eactivation)
-   {
-
-      try
-      {
-
-         if (::is_visible(edisplay))
-         {
-
-            //ModifyStyle(0, WS_VISIBLE);
-
-            m_puserinteraction->send_message(e_message_show_window, 1);
-
-         }
-         else
-         {
-
-            ///ModifyStyle(WS_VISIBLE, 0);
-
-            m_puserinteraction->send_message(e_message_show_window, 0);
-
-         }
-
-      }
-      catch (...)
-      {
-
-      }
-      
-      m_puserinteraction->layout().m_statea[e_layout_window].m_edisplay = edisplay;
-
-   }
+//   void interaction_child::_window_show_change_visibility_unlocked(::e_display edisplay, ::e_activation eactivation)
+//   {
+//
+//      try
+//      {
+//
+//         if (::is_visible(edisplay))
+//         {
+//
+//            //ModifyStyle(0, WS_VISIBLE);
+//
+//            m_puserinteraction->send_message(e_message_show_window, 1);
+//
+//         }
+//         else
+//         {
+//
+//            ///ModifyStyle(WS_VISIBLE, 0);
+//
+//            m_puserinteraction->send_message(e_message_show_window, 0);
+//
+//         }
+//
+//      }
+//      catch (...)
+//      {
+//
+//      }
+//
+//      m_puserinteraction->layout().m_statea[e_layout_window].m_edisplay = edisplay;
+//
+//   }
 
 
    bool interaction_child::_is_window()
@@ -873,51 +873,51 @@ namespace user
    }
 
 
-   void interaction_child::_window_request_presentation_locked()
-   {
+//   void interaction_child::_window_request_presentation_locked()
+//   {
+//
+//      _window_request_presentation_unlocked();
+//
+//   }
 
-      _window_request_presentation_unlocked();
 
-   }
-
-
-   void interaction_child::_window_request_presentation_unlocked()
-   {
-
-      if (!m_puserinteraction)
-      {
-
-         return;
-
-      }
-
-      if (m_puserinteraction->const_layout().window().visual() == m_puserinteraction->const_layout().sketch().visual())
-      {
-
-         return;
-
-      }
-
-      auto& edisplayOld = m_puserinteraction->const_layout().window().m_edisplay;
-
-      bool bWasVisible = m_puserinteraction->const_layout().window().is_visible();
-
-      auto& edisplayNew = m_puserinteraction->const_layout().sketch().m_edisplay;
-
-      bool bNewVisible = m_puserinteraction->const_layout().sketch().is_visible();
-
-      bool bChangeVisibility = is_different(bWasVisible, bNewVisible);
-
-      if (bChangeVisibility)
-      {
-
-         m_puserinteraction->_on_show_window();
-
-      }
-
-      //return true;
-
-   }
+//   void interaction_child::_window_request_presentation_unlocked()
+//   {
+//
+//      if (!m_puserinteraction)
+//      {
+//
+//         return;
+//
+//      }
+//
+//      if (m_puserinteraction->const_layout().window().visual() == m_puserinteraction->const_layout().sketch().visual())
+//      {
+//
+//         return;
+//
+//      }
+//
+//      auto& edisplayOld = m_puserinteraction->const_layout().window().m_edisplay;
+//
+//      bool bWasVisible = m_puserinteraction->const_layout().window().is_visible();
+//
+//      auto& edisplayNew = m_puserinteraction->const_layout().sketch().m_edisplay;
+//
+//      bool bNewVisible = m_puserinteraction->const_layout().sketch().is_visible();
+//
+//      bool bChangeVisibility = is_different(bWasVisible, bNewVisible);
+//
+//      if (bChangeVisibility)
+//      {
+//
+//         m_puserinteraction->_on_show_window();
+//
+//      }
+//
+//      //return true;
+//
+//   }
 
 
 } // namespace user

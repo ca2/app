@@ -7363,570 +7363,570 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
    }
 
 
-   void interaction_impl::_window_request_presentation_locked()
-   {
-
-      m_pwindow->_window_request_presentation_locked();
-
-   }
-
-
-   void interaction_impl::_window_request_presentation_unlocked()
-   {
-
-      if (::is_null(m_puserinteraction))
-      {
-
-         return;
-
-      }
-
-      // Request / Incoming changes / Prepare Internal Buffer
-      auto & stateOutput = m_puserinteraction->const_layout().design();
-
-      // Current/Previous Window State
-      auto & stateWindow = m_puserinteraction->const_layout().window();
-
-      if (stateOutput == stateWindow)
-      {
-
-         return;
-
-      }
-
-      //information() << "Design.state != Window.state";
-
-      auto eactivationOutput = stateOutput.activation();
-
-      auto eactivationWindow = stateWindow.activation();
-
-      ::string_stream stringstreamUnchanged;
-
-      if (eactivationOutput != eactivationWindow)
-      {
-
-         //information() << "Design.activation != Window.activation " << (iptr) eactivationOutput.m_eenum << ", " << (iptr) eactivationWindow.m_eenum;
-
-      }
-      else
-      {
-
-         stringstreamUnchanged << ".activation:" << eactivationOutput;
-
-      }
-
-      auto edisplayOutput = stateOutput.display();
-
-      auto edisplayWindow = stateWindow.display();
-
-      if (edisplayOutput != edisplayWindow)
-      {
-
-         //information() << "Design.display != Window.display " << edisplayOutput << ", " << edisplayWindow;
-
-      }
-      else
-      {
-
-         stringstreamUnchanged << ".display:" << edisplayOutput;
-
-      }
-
-      auto pointOutput = stateOutput.origin();
-
-      auto pointWindow = stateWindow.origin();
-
-      if (pointOutput != pointWindow)
-      {
-
-         //information() << "Design.point != Window.point " << pointOutput << ", " << pointWindow;
-
-      }
-      else
-      {
-
-         stringstreamUnchanged << ".origin:" << pointOutput;
-
-      }
-
-      auto sizeOutput = stateOutput.size();
-
-      auto sizeWindow = stateWindow.size();
-
-      if (sizeOutput != sizeWindow)
-      {
-
-         //information() << "Design.size != Window.size " << sizeOutput << ", " << sizeWindow;
-
-      }
-      else
-      {
-
-         stringstreamUnchanged << ".size:" << sizeOutput;
-
-      }
-
-      auto zOutput = stateOutput.zorder();
-
-      auto zWindow = stateWindow.zorder();
-
-      if (zOutput != zWindow)
-      {
-
-         //information() << "Design.zorder != Window.zorder " << zOutput << ", " << zWindow;
-
-      }
-      else
-      {
-
-         stringstreamUnchanged << ".zorder:" << zOutput;
-
-      }
-
-      if (stringstreamUnchanged.as_string().has_char())
-      {
-
-         //information() << "==" << stringstreamUnchanged.as_string();
-
-      }
-
-      bool shouldGetVisible = ::is_screen_visible(edisplayOutput);
-
-      if (sizeOutput.is_empty())
-      {
-
-         information() << "window_show rectangleUi isEmpty";
-
-         return;
-
-      }
-
-      bool bWindowVisible = m_pwindow->is_window_visible();
-
-      __keep_flag_on(m_puserinteraction->layout().m_eflag, ::user::interaction_layout::flag_apply_visual);
-
-      //::u32 uFlags = 0;
-
-      //bool bLayered = GetExStyle() & WS_EX_LAYERED;
-
-      //if (bLayered)
-      {
-
-         //uFlags |= SWP_ASYNCWINDOWPOS | SWP_NOREDRAW | SWP_NOCOPYBITS | SWP_DEFERERASE;
-
-      }
-      //else
-      //{
-
-      //   uFlags |= SWP_ASYNCWINDOWPOS  | SWP_NOREDRAW | SWP_NOCOPYBITS | SWP_DEFERERASE;
-
-      //}
-
-      //if (eactivationOutput & e_activation_no_activate)
-      //{
-
-      //   uFlags |= SWP_NOACTIVATE;
-
-      //}
-
-      // if GNOME
-      // if Xorg
-      // if Wayland
-
-   //#if !defined(LINUX)
-
-         //if(m_sizeDrawn != sizeOutput)
-         //{
-
-         //   information("blank borders (1), drawing extrapoation (1) or cut border (1)??\n");
-
-         //}
-
-         //sizeOutput = m_sizeDrawn;
-
-      bool bSize = true;
-
-      if (sizeWindow == sizeOutput)
-      {
-
-         bSize = false;
-
-         //uFlags |= SWP_NOSIZE;
-
-      }
-      else
-      {
-
-         //uFlags |= SWP_ASYNCWINDOWPOS | SWP_FRAMECHANGED | SWP_NOREDRAW | SWP_NOCOPYBITS | SWP_DEFERERASE;
-         ////uFlags |= SWP_ASYNCWINDOWPOS | SWP_NOSENDCHANGING | SWP_NOREDRAW | SWP_NOCOPYBITS | SWP_DEFERERASE;
-         ////uFlags |= SWP_ASYNCWINDOWPOS | SWP_NOSENDCHANGING | SWP_NOREDRAW | SWP_NOCOPYBITS;
-
-      }
-
-      bool bMove = true;
-
-      if (pointWindow == pointOutput)
-      {
-
-         bMove = false;
-
-         //uFlags |= SWP_NOMOVE;
-
-      }
-
-      //#endif
-
-      bool bVisibilityChange = is_different(bWindowVisible, shouldGetVisible);
-
-      bool bShow = false;
-
-      bool bHide = false;
-
-      if (bVisibilityChange)
-      {
-
-         if (shouldGetVisible)
-         {
-
-            bShow = true;
-
-         }
-         else
-         {
-
-            bHide = true;
-
-         }
-
-      }
-      else
-      {
-
-         if (shouldGetVisible)
-         {
-
-            bShow = true;
-
-         }
-
-      }
-
-      //if (eactivationOutput & e_activation_no_activate)
-      //{
-
-      //   uFlags |= SWP_NOACTIVATE;
-
-      //}
-
-      bool bZ = zOutput.is_change_request();
-
-
-
-      //if (!bZ)
-      //{
-
-      //   uFlags |= SWP_NOZORDER;
-
-      //}
-
-      string strType = __type_name(m_puserinteraction);
-
-      if (strType.contains("font_format"))
-      {
-
-         information() << "font_format going to gather Z-Ordering information";
-
-      }
-
-      if (!m_puserinteraction)
-      {
-
-         return;
-
-      }
-
-      ::zorder zorderNew = (bZ ? zOutput : ::zorder());
-
-      //      if (edisplayWindow == e_display_zoomed)
-      //      {
-      //
-      //         if (edisplayOutput != e_display_zoomed)
-      //         {
-      //
-      //            auto puserinteraction = m_puserinteraction;
-      //
-      //            if (puserinteraction)
-      //            {
-      //
-      //               puserinteraction->_001OnExitZoomed();
-      //
-      //            }
-      //
-      //         }
-      //
-      //      }
-
-            //int iVisibilityChageBefore = (is_ubunt() && edisplayOutput == e_display_zoomed);
-
-      int iVisibilityChageBefore = true;
-
-      if (iVisibilityChageBefore) {
-         if (edisplayOutput != edisplayWindow)
-            //&& !::conditional(bLayered, bHasSetWindowPosition)
-            //)
-         {
-
-            //#ifdef WINDOWS
-            //
-            //         bool bShowOutput = windows_show_window(edisplayOutput, eactivationOutput);
-            //
-            //         bool bShowWindow = windows_show_window(edisplayWindow, eactivationWindow);
-            //
-            //         if (is_different(bShowOutput, bShowWindow))
-            //#endif
-            //         {
-
-            m_puserinteraction->_window_show_change_visibility_unlocked();
-
-            //}
-
-         }
-      }
-
-      //if(is_ubunt())
-      {
-
-         if (edisplayOutput == e_display_zoomed)
-         {
-
-            bMove = true;
-            bSize = true;
-
-         }
-
-      }
-
-      //#endif
-            //m_puserinteraction->_on_show_window();
-      //
-      //               if (is_different(m_puserinteraction->m_ewindowflag & e_window_flag_on_show_window_visible,
-      //            m_puserinteraction->is_this_visible())
-      //            || is_different(m_puserinteraction->m_ewindowflag & e_window_flag_on_show_window_screen_visible,
-      //               m_puserinteraction->is_window_screen_visible()))
-      //         {
-      //
-      //            m_puserinteraction->m_ewindowflag.set(e_window_flag_on_show_window_visible, m_puserinteraction->is_this_visible());
-      //
-      //            m_puserinteraction->m_ewindowflag.set(e_window_flag_on_show_window_screen_visible, m_puserinteraction->is_window_screen_visible());
-      //
-      //            m_puserinteraction->_on_show_window();
-      //
-      //         }
-
-
-      //bool bHasSetWindowPosition = false;
-
-      if (shouldGetVisible
-         //#ifdef WINDOWS_DESKTOP
-           //    && !bLayered
-         //#endif
-         && (
-            //#ifdef WINDOWS_DESKTOP
-            //               !bLayered
-            //#else
-                           //(uFlags & (SWP_NOMOVE | SWP_NOSIZE)) != (SWP_NOMOVE | SWP_NOSIZE)
-            //#endif
-            bMove
-            || bSize
-            || bVisibilityChange
-            || bZ
-            )
-         )
-      {
-
-         string strType = __type_name(m_puserinteraction);
-
-         if (strType.contains("font_format"))
-         {
-
-            information() << "font_format going to SetWindowPos";
-
-         }
-         else if (strType.contains("textformat"))
-         {
-
-            information() << "text_format going to SetWindowPos";
-
-         }
-
-         // Commented on Windows
-         //if(m_puserinteraction->m_ewindowflag & e_window_flag_postpone_visual_update)
-         //{
-
-         //   m_bEatMoveEvent = !(uFlags & SWP_NOMOVE) || !(uFlags & SWP_NOSIZE);
-
-         //   m_bEatSizeEvent = !(uFlags & SWP_NOSIZE);
-
-         //}
-
-         //if(m_puserinteraction->m_ewindowflag & e_window_flag_postpone_visual_update)
-         //{
-
-         //   m_bPendingRedraw = true;
-
-         //}
-         // END Commented on Windows
-
-         ::point_i32 pointBottomRight = pointOutput + sizeOutput;
-
-         //information("SetWindowPos bottom_right " + as_string(pointBottomRight.x()) + ", " + as_string(pointBottomRight.y()) + "\n");
-
-   //#if !defined(UNIVERSAL_WINDOWS) && !defined(ANDROID)
-
-            //if (sizeOutput.cx() > m_sizeDrawn.cx() || sizeOutput.cy() > m_sizeDrawn.cy())
-            // if (sizeOutput != m_sizeDrawn)
-            // {
-
-            //    m_puserinteraction->set_need_layout();
-
-            //    //m_puserinteraction->set_need_redraw();
-
-            //    m_puserinteraction->post_redraw();
-
-            // }
-            // else
-         {
-               m_pwindow->_set_window_position_unlocked(
-               zorderNew,
-               pointOutput.x(),
-               pointOutput.y(),
-               sizeOutput.cx(),
-               sizeOutput.cy(),
-               eactivationOutput, !bZ, !bMove, !bSize, edisplayOutput);
-
-            m_sizeSetWindowSizeRequest = sizeOutput;
-
-         }
-
-         //::SetWindowPos(get_handle(), oswindowInsertAfter,
-         //   pointOutput.x(), pointOutput.y(),
-         //   sizeOutput.cx(), sizeOutput.cy(),
-         //   uFlags);
-
-   //#endif
-
-         if (g_pointLastBottomRight != pointBottomRight)
-         {
-
-            //sinformation() << "::user::interaction_impl::do_graphics Different Bottom Right design size" << m_puserinteraction->const_layout().design().size();
-
-            g_pointLastBottomRight = pointBottomRight;
-
-         }
-
-         zOutput.clear_request();
-
-         m_bOkToUpdateScreen = true;
-
-      }
-
-      if (!iVisibilityChageBefore) {
-
-         if (edisplayOutput != edisplayWindow)
-            //&& !::conditional(bLayered, bHasSetWindowPosition)
-            //)
-         {
-
-            //#ifdef WINDOWS
-            //
-            //         bool bShowOutput = windows_show_window(edisplayOutput, eactivationOutput);
-            //
-            //         bool bShowWindow = windows_show_window(edisplayWindow, eactivationWindow);
-            //
-            //         if (is_different(bShowOutput, bShowWindow))
-            //#endif
-            //         {
-
-            m_puserinteraction->_window_show_change_visibility_unlocked();
-
-            //}
-
-         }
-
-      }
-
-      if (eactivationOutput & e_activation_set_foreground)
-      {
-
-         //throw ::exception(todo);
-         //m_puserinteraction->set();
-
-         m_pwindow->_set_foreground_window_unlocked();
-
-      }
-
-      if (eactivationOutput & e_activation_set_active)
-      {
-
-         //throw ::exception(todo);
-         ///m_puserinteraction->XXXSetActiveWindow();
-
-         m_pwindow->_set_active_window_unlocked();
-
-      }
-
-      if (!m_puserinteraction)
-      {
-
-         return;
-
-      }
-
-      m_puserinteraction->set_display(m_puserinteraction->const_layout().design().display(), e_layout_window);
-
-      m_puserinteraction->reset_pending(e_layout_design);
-
-      m_puserinteraction->set_display(edisplayOutput, e_layout_design);
-
-      ::windowing::window * pwindowFocus = nullptr;
-
-      ::windowing::window * pwindowImpl = nullptr;
-
-      ::user::interaction_impl * pimplFocus = nullptr;
-
-      if (has_pending_focus() && m_puserinteraction != nullptr && m_puserinteraction->is_window_visible())
-      {
-
-         auto psession = get_session();
-
-         auto pimplFocus = psession->m_pimplPendingFocus2;
-
-         psession->m_pimplPendingFocus2 = nullptr;
-
-         auto pwindowing = windowing();
-
-         ::oswindow oswindow = pimplFocus->oswindow();
-
-         if (pimplFocus == this)
-         {
-
-            information("optimized out a set_keyboard_focus");
-
-         }
-         else
-         {
-
-            m_puserinteraction->set_keyboard_focus();
-
-         }
-
-      }
-
-      m_puserinteraction->m_bVisualChanged = true;
-
-      m_puserinteraction->check_transparent_mouse_events();
-
-   }
+//   void interaction_impl::_window_request_presentation_locked()
+//   {
+//
+//      m_pwindow->_window_request_presentation_locked();
+//
+//   }
+//
+//
+//   void interaction_impl::_window_request_presentation_unlocked()
+//   {
+//
+//      if (::is_null(m_puserinteraction))
+//      {
+//
+//         return;
+//
+//      }
+//
+//      // Request / Incoming changes / Prepare Internal Buffer
+//      auto & stateOutput = m_puserinteraction->const_layout().design();
+//
+//      // Current/Previous Window State
+//      auto & stateWindow = m_puserinteraction->const_layout().window();
+//
+//      if (stateOutput == stateWindow)
+//      {
+//
+//         return;
+//
+//      }
+//
+//      //information() << "Design.state != Window.state";
+//
+//      auto eactivationOutput = stateOutput.activation();
+//
+//      auto eactivationWindow = stateWindow.activation();
+//
+//      ::string_stream stringstreamUnchanged;
+//
+//      if (eactivationOutput != eactivationWindow)
+//      {
+//
+//         //information() << "Design.activation != Window.activation " << (iptr) eactivationOutput.m_eenum << ", " << (iptr) eactivationWindow.m_eenum;
+//
+//      }
+//      else
+//      {
+//
+//         stringstreamUnchanged << ".activation:" << eactivationOutput;
+//
+//      }
+//
+//      auto edisplayOutput = stateOutput.display();
+//
+//      auto edisplayWindow = stateWindow.display();
+//
+//      if (edisplayOutput != edisplayWindow)
+//      {
+//
+//         //information() << "Design.display != Window.display " << edisplayOutput << ", " << edisplayWindow;
+//
+//      }
+//      else
+//      {
+//
+//         stringstreamUnchanged << ".display:" << edisplayOutput;
+//
+//      }
+//
+//      auto pointOutput = stateOutput.origin();
+//
+//      auto pointWindow = stateWindow.origin();
+//
+//      if (pointOutput != pointWindow)
+//      {
+//
+//         //information() << "Design.point != Window.point " << pointOutput << ", " << pointWindow;
+//
+//      }
+//      else
+//      {
+//
+//         stringstreamUnchanged << ".origin:" << pointOutput;
+//
+//      }
+//
+//      auto sizeOutput = stateOutput.size();
+//
+//      auto sizeWindow = stateWindow.size();
+//
+//      if (sizeOutput != sizeWindow)
+//      {
+//
+//         //information() << "Design.size != Window.size " << sizeOutput << ", " << sizeWindow;
+//
+//      }
+//      else
+//      {
+//
+//         stringstreamUnchanged << ".size:" << sizeOutput;
+//
+//      }
+//
+//      auto zOutput = stateOutput.zorder();
+//
+//      auto zWindow = stateWindow.zorder();
+//
+//      if (zOutput != zWindow)
+//      {
+//
+//         //information() << "Design.zorder != Window.zorder " << zOutput << ", " << zWindow;
+//
+//      }
+//      else
+//      {
+//
+//         stringstreamUnchanged << ".zorder:" << zOutput;
+//
+//      }
+//
+//      if (stringstreamUnchanged.as_string().has_char())
+//      {
+//
+//         //information() << "==" << stringstreamUnchanged.as_string();
+//
+//      }
+//
+//      bool shouldGetVisible = ::is_screen_visible(edisplayOutput);
+//
+//      if (sizeOutput.is_empty())
+//      {
+//
+//         information() << "window_show rectangleUi isEmpty";
+//
+//         return;
+//
+//      }
+//
+//      bool bWindowVisible = m_pwindow->is_window_visible();
+//
+//      __keep_flag_on(m_puserinteraction->layout().m_eflag, ::user::interaction_layout::flag_apply_visual);
+//
+//      //::u32 uFlags = 0;
+//
+//      //bool bLayered = GetExStyle() & WS_EX_LAYERED;
+//
+//      //if (bLayered)
+//      {
+//
+//         //uFlags |= SWP_ASYNCWINDOWPOS | SWP_NOREDRAW | SWP_NOCOPYBITS | SWP_DEFERERASE;
+//
+//      }
+//      //else
+//      //{
+//
+//      //   uFlags |= SWP_ASYNCWINDOWPOS  | SWP_NOREDRAW | SWP_NOCOPYBITS | SWP_DEFERERASE;
+//
+//      //}
+//
+//      //if (eactivationOutput & e_activation_no_activate)
+//      //{
+//
+//      //   uFlags |= SWP_NOACTIVATE;
+//
+//      //}
+//
+//      // if GNOME
+//      // if Xorg
+//      // if Wayland
+//
+//   //#if !defined(LINUX)
+//
+//         //if(m_sizeDrawn != sizeOutput)
+//         //{
+//
+//         //   information("blank borders (1), drawing extrapoation (1) or cut border (1)??\n");
+//
+//         //}
+//
+//         //sizeOutput = m_sizeDrawn;
+//
+//      bool bSize = true;
+//
+//      if (sizeWindow == sizeOutput)
+//      {
+//
+//         bSize = false;
+//
+//         //uFlags |= SWP_NOSIZE;
+//
+//      }
+//      else
+//      {
+//
+//         //uFlags |= SWP_ASYNCWINDOWPOS | SWP_FRAMECHANGED | SWP_NOREDRAW | SWP_NOCOPYBITS | SWP_DEFERERASE;
+//         ////uFlags |= SWP_ASYNCWINDOWPOS | SWP_NOSENDCHANGING | SWP_NOREDRAW | SWP_NOCOPYBITS | SWP_DEFERERASE;
+//         ////uFlags |= SWP_ASYNCWINDOWPOS | SWP_NOSENDCHANGING | SWP_NOREDRAW | SWP_NOCOPYBITS;
+//
+//      }
+//
+//      bool bMove = true;
+//
+//      if (pointWindow == pointOutput)
+//      {
+//
+//         bMove = false;
+//
+//         //uFlags |= SWP_NOMOVE;
+//
+//      }
+//
+//      //#endif
+//
+//      bool bVisibilityChange = is_different(bWindowVisible, shouldGetVisible);
+//
+//      bool bShow = false;
+//
+//      bool bHide = false;
+//
+//      if (bVisibilityChange)
+//      {
+//
+//         if (shouldGetVisible)
+//         {
+//
+//            bShow = true;
+//
+//         }
+//         else
+//         {
+//
+//            bHide = true;
+//
+//         }
+//
+//      }
+//      else
+//      {
+//
+//         if (shouldGetVisible)
+//         {
+//
+//            bShow = true;
+//
+//         }
+//
+//      }
+//
+//      //if (eactivationOutput & e_activation_no_activate)
+//      //{
+//
+//      //   uFlags |= SWP_NOACTIVATE;
+//
+//      //}
+//
+//      bool bZ = zOutput.is_change_request();
+//
+//
+//
+//      //if (!bZ)
+//      //{
+//
+//      //   uFlags |= SWP_NOZORDER;
+//
+//      //}
+//
+//      string strType = __type_name(m_puserinteraction);
+//
+//      if (strType.contains("font_format"))
+//      {
+//
+//         information() << "font_format going to gather Z-Ordering information";
+//
+//      }
+//
+//      if (!m_puserinteraction)
+//      {
+//
+//         return;
+//
+//      }
+//
+//      ::zorder zorderNew = (bZ ? zOutput : ::zorder());
+//
+//      //      if (edisplayWindow == e_display_zoomed)
+//      //      {
+//      //
+//      //         if (edisplayOutput != e_display_zoomed)
+//      //         {
+//      //
+//      //            auto puserinteraction = m_puserinteraction;
+//      //
+//      //            if (puserinteraction)
+//      //            {
+//      //
+//      //               puserinteraction->_001OnExitZoomed();
+//      //
+//      //            }
+//      //
+//      //         }
+//      //
+//      //      }
+//
+//            //int iVisibilityChageBefore = (is_ubunt() && edisplayOutput == e_display_zoomed);
+//
+//      int iVisibilityChageBefore = true;
+//
+//      if (iVisibilityChageBefore) {
+//         if (edisplayOutput != edisplayWindow)
+//            //&& !::conditional(bLayered, bHasSetWindowPosition)
+//            //)
+//         {
+//
+//            //#ifdef WINDOWS
+//            //
+//            //         bool bShowOutput = windows_show_window(edisplayOutput, eactivationOutput);
+//            //
+//            //         bool bShowWindow = windows_show_window(edisplayWindow, eactivationWindow);
+//            //
+//            //         if (is_different(bShowOutput, bShowWindow))
+//            //#endif
+//            //         {
+//
+//            m_puserinteraction->_window_show_change_visibility_unlocked();
+//
+//            //}
+//
+//         }
+//      }
+//
+//      //if(is_ubunt())
+//      {
+//
+//         if (edisplayOutput == e_display_zoomed)
+//         {
+//
+//            bMove = true;
+//            bSize = true;
+//
+//         }
+//
+//      }
+//
+//      //#endif
+//            //m_puserinteraction->_on_show_window();
+//      //
+//      //               if (is_different(m_puserinteraction->m_ewindowflag & e_window_flag_on_show_window_visible,
+//      //            m_puserinteraction->is_this_visible())
+//      //            || is_different(m_puserinteraction->m_ewindowflag & e_window_flag_on_show_window_screen_visible,
+//      //               m_puserinteraction->is_window_screen_visible()))
+//      //         {
+//      //
+//      //            m_puserinteraction->m_ewindowflag.set(e_window_flag_on_show_window_visible, m_puserinteraction->is_this_visible());
+//      //
+//      //            m_puserinteraction->m_ewindowflag.set(e_window_flag_on_show_window_screen_visible, m_puserinteraction->is_window_screen_visible());
+//      //
+//      //            m_puserinteraction->_on_show_window();
+//      //
+//      //         }
+//
+//
+//      //bool bHasSetWindowPosition = false;
+//
+//      if (shouldGetVisible
+//         //#ifdef WINDOWS_DESKTOP
+//           //    && !bLayered
+//         //#endif
+//         && (
+//            //#ifdef WINDOWS_DESKTOP
+//            //               !bLayered
+//            //#else
+//                           //(uFlags & (SWP_NOMOVE | SWP_NOSIZE)) != (SWP_NOMOVE | SWP_NOSIZE)
+//            //#endif
+//            bMove
+//            || bSize
+//            || bVisibilityChange
+//            || bZ
+//            )
+//         )
+//      {
+//
+//         string strType = __type_name(m_puserinteraction);
+//
+//         if (strType.contains("font_format"))
+//         {
+//
+//            information() << "font_format going to SetWindowPos";
+//
+//         }
+//         else if (strType.contains("textformat"))
+//         {
+//
+//            information() << "text_format going to SetWindowPos";
+//
+//         }
+//
+//         // Commented on Windows
+//         //if(m_puserinteraction->m_ewindowflag & e_window_flag_postpone_visual_update)
+//         //{
+//
+//         //   m_bEatMoveEvent = !(uFlags & SWP_NOMOVE) || !(uFlags & SWP_NOSIZE);
+//
+//         //   m_bEatSizeEvent = !(uFlags & SWP_NOSIZE);
+//
+//         //}
+//
+//         //if(m_puserinteraction->m_ewindowflag & e_window_flag_postpone_visual_update)
+//         //{
+//
+//         //   m_bPendingRedraw = true;
+//
+//         //}
+//         // END Commented on Windows
+//
+//         ::point_i32 pointBottomRight = pointOutput + sizeOutput;
+//
+//         //information("SetWindowPos bottom_right " + as_string(pointBottomRight.x()) + ", " + as_string(pointBottomRight.y()) + "\n");
+//
+//   //#if !defined(UNIVERSAL_WINDOWS) && !defined(ANDROID)
+//
+//            //if (sizeOutput.cx() > m_sizeDrawn.cx() || sizeOutput.cy() > m_sizeDrawn.cy())
+//            // if (sizeOutput != m_sizeDrawn)
+//            // {
+//
+//            //    m_puserinteraction->set_need_layout();
+//
+//            //    //m_puserinteraction->set_need_redraw();
+//
+//            //    m_puserinteraction->post_redraw();
+//
+//            // }
+//            // else
+//         {
+//               m_pwindow->_set_window_position_unlocked(
+//               zorderNew,
+//               pointOutput.x(),
+//               pointOutput.y(),
+//               sizeOutput.cx(),
+//               sizeOutput.cy(),
+//               eactivationOutput, !bZ, !bMove, !bSize, edisplayOutput);
+//
+//            m_sizeSetWindowSizeRequest = sizeOutput;
+//
+//         }
+//
+//         //::SetWindowPos(get_handle(), oswindowInsertAfter,
+//         //   pointOutput.x(), pointOutput.y(),
+//         //   sizeOutput.cx(), sizeOutput.cy(),
+//         //   uFlags);
+//
+//   //#endif
+//
+//         if (g_pointLastBottomRight != pointBottomRight)
+//         {
+//
+//            //sinformation() << "::user::interaction_impl::do_graphics Different Bottom Right design size" << m_puserinteraction->const_layout().design().size();
+//
+//            g_pointLastBottomRight = pointBottomRight;
+//
+//         }
+//
+//         zOutput.clear_request();
+//
+//         m_bOkToUpdateScreen = true;
+//
+//      }
+//
+//      if (!iVisibilityChageBefore) {
+//
+//         if (edisplayOutput != edisplayWindow)
+//            //&& !::conditional(bLayered, bHasSetWindowPosition)
+//            //)
+//         {
+//
+//            //#ifdef WINDOWS
+//            //
+//            //         bool bShowOutput = windows_show_window(edisplayOutput, eactivationOutput);
+//            //
+//            //         bool bShowWindow = windows_show_window(edisplayWindow, eactivationWindow);
+//            //
+//            //         if (is_different(bShowOutput, bShowWindow))
+//            //#endif
+//            //         {
+//
+//            m_puserinteraction->_window_show_change_visibility_unlocked();
+//
+//            //}
+//
+//         }
+//
+//      }
+//
+//      if (eactivationOutput & e_activation_set_foreground)
+//      {
+//
+//         //throw ::exception(todo);
+//         //m_puserinteraction->set();
+//
+//         m_pwindow->_set_foreground_window_unlocked();
+//
+//      }
+//
+//      if (eactivationOutput & e_activation_set_active)
+//      {
+//
+//         //throw ::exception(todo);
+//         ///m_puserinteraction->XXXSetActiveWindow();
+//
+//         m_pwindow->_set_active_window_unlocked();
+//
+//      }
+//
+//      if (!m_puserinteraction)
+//      {
+//
+//         return;
+//
+//      }
+//
+//      m_puserinteraction->set_display(m_puserinteraction->const_layout().design().display(), e_layout_window);
+//
+//      m_puserinteraction->reset_pending(e_layout_design);
+//
+//      m_puserinteraction->set_display(edisplayOutput, e_layout_design);
+//
+//      ::windowing::window * pwindowFocus = nullptr;
+//
+//      ::windowing::window * pwindowImpl = nullptr;
+//
+//      ::user::interaction_impl * pimplFocus = nullptr;
+//
+//      if (has_pending_focus() && m_puserinteraction != nullptr && m_puserinteraction->is_window_visible())
+//      {
+//
+//         auto psession = get_session();
+//
+//         auto pimplFocus = psession->m_pimplPendingFocus2;
+//
+//         psession->m_pimplPendingFocus2 = nullptr;
+//
+//         auto pwindowing = windowing();
+//
+//         ::oswindow oswindow = pimplFocus->oswindow();
+//
+//         if (pimplFocus == this)
+//         {
+//
+//            information("optimized out a set_keyboard_focus");
+//
+//         }
+//         else
+//         {
+//
+//            m_puserinteraction->set_keyboard_focus();
+//
+//         }
+//
+//      }
+//
+//      m_puserinteraction->m_bVisualChanged = true;
+//
+//      m_puserinteraction->check_transparent_mouse_events();
+//
+//   }
 
 
    void interaction_impl::on_visual_applied()
@@ -7983,55 +7983,55 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
    }
 
 
-   void interaction_impl::_window_show_change_visibility_unlocked(::e_display edisplay, ::e_activation eactivation)
-   {
-
-      //m_puserinteraction->m_pthreadUserInteraction->post_procedure([this, edisplay, eactivation]()
-        // {
-
-      if (!m_puserinteraction)
-      {
-
-         return;
-
-      }
-
-      __keep_flag_on(m_puserinteraction->layout().m_eflag, ::user::interaction_layout::flag_show_window);
-
-      if (edisplay == e_display_iconic)
-      {
-
-         if (eactivation == e_activation_no_activate)
-         {
-
-            m_pwindow->_show_window_unlocked(edisplay, eactivation);
-
-         }
-         else
-         {
-
-            m_pwindow->_show_window_unlocked(edisplay, eactivation);
-
-         }
-
-      }
-      else
-      {
-
-         m_pwindow->_show_window_unlocked(edisplay, eactivation);
-
-      }
-
-      if (m_puserinteraction)
-      {
-
-         m_puserinteraction->set_activation(e_activation_default, e_layout_design);
-
-      }
-
-         //});
-
-   }
+//   void interaction_impl::_window_show_change_visibility_unlocked(::e_display edisplay, ::e_activation eactivation)
+//   {
+//
+//      //m_puserinteraction->m_pthreadUserInteraction->post_procedure([this, edisplay, eactivation]()
+//        // {
+//
+//      if (!m_puserinteraction)
+//      {
+//
+//         return;
+//
+//      }
+//
+//      __keep_flag_on(m_puserinteraction->layout().m_eflag, ::user::interaction_layout::flag_show_window);
+//
+//      if (edisplay == e_display_iconic)
+//      {
+//
+//         if (eactivation == e_activation_no_activate)
+//         {
+//
+//            m_pwindow->_show_window_unlocked(edisplay, eactivation);
+//
+//         }
+//         else
+//         {
+//
+//            m_pwindow->_show_window_unlocked(edisplay, eactivation);
+//
+//         }
+//
+//      }
+//      else
+//      {
+//
+//         m_pwindow->_show_window_unlocked(edisplay, eactivation);
+//
+//      }
+//
+//      if (m_puserinteraction)
+//      {
+//
+//         m_puserinteraction->set_activation(e_activation_default, e_layout_design);
+//
+//      }
+//
+//         //});
+//
+//   }
 
 
    //void interaction_impl::_001OnRedraw(::message::message * pmessage)
@@ -8084,6 +8084,85 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 //      }
 //
 //   }
+
+
+   void interaction_impl::on_reposition(const ::point_i32 & point)
+   {
+
+      if (m_puserinteraction->const_layout().sketch().display() != e_display_iconic)
+      {
+
+         //if (!m_pwindow->placement_log()->has_recent(point)
+         if(!m_puserinteraction->is_window_resizing()
+             && !m_puserinteraction->is_window_repositioning()
+             && !m_puserinteraction->is_window_docking())
+         {
+
+            m_puserinteraction->post_procedure([this, point]()
+                                               {
+
+
+                                                  information() << "interaction_impl::on_reposition " << point;
+
+                                                  m_puserinteraction->set_position(point, e_layout_window);
+
+                                                  m_puserinteraction->set_position(point, e_layout_sketch);
+
+                                                  m_puserinteraction->set_reposition();
+
+                                                  m_puserinteraction->set_need_redraw();
+
+                                                  m_puserinteraction->post_redraw();
+
+                                               });
+
+         }
+
+      }
+
+   }
+
+
+   void interaction_impl::on_resize(const ::size_i32 & size)
+   {
+
+      if (m_puserinteraction->const_layout().sketch().display() != e_display_iconic)
+      {
+
+         //if (!m_pwindow->placement_log()->has_recent(size)
+         if(!m_puserinteraction->is_window_resizing()
+             && !m_puserinteraction->is_window_repositioning()
+             && !m_puserinteraction->is_window_docking())
+         {
+
+            m_puserinteraction->post_procedure([this, size]()
+                                               {
+
+            information() << "interaction_impl::on_resize " << size;
+
+            m_puserinteraction->set_size(size, e_layout_window);
+
+            m_puserinteraction->set_size(size, e_layout_sketch);
+
+            int cx = m_puserinteraction->const_layout().sketch().size().width();
+
+            int cy = m_puserinteraction->const_layout().sketch().size().height();
+            //         m_puserinteraction->layout().design().size() = m_puserinteraction->layout().window().size();
+
+
+            m_puserinteraction->set_need_layout();
+
+            m_puserinteraction->set_need_redraw();
+
+            m_puserinteraction->post_redraw();
+
+                                               });
+
+         }
+
+      }
+
+   }
 
 
    void interaction_impl::on_message_reposition(::message::message * pmessage)
@@ -8171,6 +8250,8 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
          && !m_puserinteraction->is_window_repositioning()
             && !m_puserinteraction->is_window_docking())
          {
+
+            information() << "interaction_impl::on_message_reposition " << preposition->m_point;
 
             m_puserinteraction->set_position(preposition->m_point, e_layout_sketch);
 
@@ -8281,12 +8362,15 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 
       m_sizeSetWindowSizeRequest = psize->m_size;
 
-      if (!m_pwindow->placement_log()->has_recent(psize->m_size)         && !m_puserinteraction->is_window_resizing()
-          && !m_puserinteraction->is_window_repositioning()
-          && !m_puserinteraction->is_window_docking())
+      if (!m_pwindow->placement_log()->has_recent(psize->m_size)
+      && !m_puserinteraction->is_window_resizing()
+      && !m_puserinteraction->is_window_repositioning()
+      && !m_puserinteraction->is_window_docking())
       {
 
-         m_puserinteraction->set_size(m_puserinteraction->const_layout().window().size(), e_layout_sketch);
+         information() << "interaction_impl::on_message_size " << psize->m_size;
+
+         m_puserinteraction->set_size(psize->m_size, e_layout_sketch);
 
          int cx = m_puserinteraction->const_layout().sketch().size().width();
 

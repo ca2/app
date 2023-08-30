@@ -331,6 +331,12 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_prio_message_set_focus);
       DECLARE_MESSAGE_HANDLER(on_message_show_window);
       //DECLARE_MESSAGE_HANDLER(_001OnApplyVisual);
+
+
+      void on_reposition(const ::point_i32 & point) override;
+      void on_resize(const ::size_i32 & size) override;
+
+
       DECLARE_MESSAGE_HANDLER(on_message_reposition);
       DECLARE_MESSAGE_HANDLER(on_message_size);
       DECLARE_MESSAGE_HANDLER(_001OnDestroyWindow);
@@ -803,10 +809,10 @@ namespace user
 
       virtual bool is_this_visible(enum_layout elayout) override;
 
-      void _window_show_change_visibility_unlocked(::e_display edisplay, ::e_activation eactivation) override;
+      //void _window_show_change_visibility_unlocked(::e_display edisplay, ::e_activation eactivation) override;
       
-      void _window_request_presentation_locked() override;
-      void _window_request_presentation_unlocked() override;
+      //void _window_request_presentation_locked() override;
+      //void _window_request_presentation_unlocked() override;
 
 
 

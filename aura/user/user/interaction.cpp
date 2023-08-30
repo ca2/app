@@ -6372,9 +6372,47 @@ namespace user
    void interaction::design_to_window()
    {
 
+      ::string strType = ::type(this).name();
+
+      //information() << "type : " << strType << " design_to_window";
+
+      auto edisplayOld = layout().window().display();
+
+      auto edisplayNew = layout().design().display();
+
       layout().window() = layout().design();
 
       layout().design().reset_pending();
+
+      try
+      {
+
+         if (windowing()->is_screen_visible(edisplayNew)
+         && !windowing()->is_screen_visible(edisplayOld))
+         {
+
+            //ModifyStyle(0, WS_VISIBLE);
+
+            m_puserinteraction->send_message(e_message_show_window, 1);
+
+         }
+         else if (!windowing()->is_screen_visible(edisplayNew)
+             && windowing()->is_screen_visible(edisplayOld))
+         {
+
+            ///ModifyStyle(WS_VISIBLE, 0);
+
+            m_puserinteraction->send_message(e_message_show_window, 0);
+
+         }
+
+      }
+      catch (...)
+      {
+
+      }
+
+      //m_puserinteraction->layout().m_statea[e_layout_window].m_edisplay = edisplay;
 
    }
 
@@ -12349,22 +12387,22 @@ namespace user
    }
 
 
-   void interaction::_window_request_presentation_locked()
-   {
-
-      m_pinteractionimpl->_window_request_presentation_locked();
-
-   }
-
-
-   void interaction::_window_request_presentation_unlocked()
-   {
-
-      m_pinteractionimpl->_window_request_presentation_unlocked();
-
-      m_pinteractionimpl->m_pwindow->_on_visual_changed_unlocked();
-
-   }
+//   void interaction::_window_request_presentation_locked()
+//   {
+//
+//      m_pinteractionimpl->_window_request_presentation_locked();
+//
+//   }
+//
+//
+//   void interaction::_window_request_presentation_unlocked()
+//   {
+//
+//      m_pinteractionimpl->_window_request_presentation_unlocked();
+//
+//      m_pinteractionimpl->m_pwindow->_on_visual_changed_unlocked();
+//
+//   }
 
 
    void interaction::_on_visual_changed_unlocked()
@@ -12509,108 +12547,108 @@ namespace user
    }
 
 
-   void interaction::_window_show_change_visibility_locked()
-   {
-
-      m_pprimitiveimpl->_window_show_change_visibility_locked();
-
-   }
-
-
-   void interaction::_window_show_change_visibility_unlocked()
-   {
-
-      //::enum_display edisplayOutput = layout().output().display();
-      ::enum_display edisplayOutput = layout().layout().display();
-
-      ::enum_display edisplayWindow = layout().window().display();
-
-      if (equivalence_sink(edisplayOutput) == e_display_normal)
-      {
-
-         edisplayOutput = e_display_normal;
-
-      }
-
-      if (equivalence_sink(edisplayWindow) == e_display_normal)
-      {
-
-         edisplayWindow = e_display_normal;
-
-      }
-
-      ::enum_display edisplayOutputForOsShowWindow = edisplayOutput;
-
-      ::enum_display edisplayWindowForOsShowWindow = edisplayWindow;
-
-      if (::is_docking_appearance(edisplayOutputForOsShowWindow))
-      {
-
-         edisplayOutputForOsShowWindow = e_display_normal;
-
-      }
-
-      if (::is_docking_appearance(edisplayWindowForOsShowWindow))
-      {
-
-         edisplayWindowForOsShowWindow = e_display_normal;
-
-      }
-
-#ifdef WINDOWS_DESKTOP
-      if (
-//((GetExStyle() & WS_EX_LAYERED) &&
-//(::is_different(
-// ::is_screen_visible(edisplayOutputForOsShowWindow),
-// ::is_screen_visible(edisplayWindowForOsShowWindow))))
-//||
-//(!(GetExStyle() & WS_EX_LAYERED) &&
-(edisplayOutputForOsShowWindow != edisplayWindowForOsShowWindow)
+//   void interaction::_window_show_change_visibility_locked()
+//   {
+//
+//      m_pprimitiveimpl->_window_show_change_visibility_locked();
+//
+//   }
+//
+//
+//   void interaction::_window_show_change_visibility_unlocked()
+//   {
+//
+//      //::enum_display edisplayOutput = layout().output().display();
+//      ::enum_display edisplayOutput = layout().layout().display();
+//
+//      ::enum_display edisplayWindow = layout().window().display();
+//
+//      if (equivalence_sink(edisplayOutput) == e_display_normal)
+//      {
+//
+//         edisplayOutput = e_display_normal;
+//
+//      }
+//
+//      if (equivalence_sink(edisplayWindow) == e_display_normal)
+//      {
+//
+//         edisplayWindow = e_display_normal;
+//
+//      }
+//
+//      ::enum_display edisplayOutputForOsShowWindow = edisplayOutput;
+//
+//      ::enum_display edisplayWindowForOsShowWindow = edisplayWindow;
+//
+//      if (::is_docking_appearance(edisplayOutputForOsShowWindow))
+//      {
+//
+//         edisplayOutputForOsShowWindow = e_display_normal;
+//
+//      }
+//
+//      if (::is_docking_appearance(edisplayWindowForOsShowWindow))
+//      {
+//
+//         edisplayWindowForOsShowWindow = e_display_normal;
+//
+//      }
+//
+//#ifdef WINDOWS_DESKTOP
+//      if (
+////((GetExStyle() & WS_EX_LAYERED) &&
+////(::is_different(
+//// ::is_screen_visible(edisplayOutputForOsShowWindow),
+//// ::is_screen_visible(edisplayWindowForOsShowWindow))))
+////||
+////(!(GetExStyle() & WS_EX_LAYERED) &&
+//(edisplayOutputForOsShowWindow != edisplayWindowForOsShowWindow)
+////)
 //)
-)
-#else
-      if (edisplayOutputForOsShowWindow != edisplayWindowForOsShowWindow)
-#endif
-      {
-
-         if (m_pprimitiveimpl.is_set())
-         {
-
-            //auto eactivation = layout().output().activation();
-
-            auto eactivation = layout().layout().activation();
-
-            m_pprimitiveimpl->_window_show_change_visibility_unlocked(edisplayOutputForOsShowWindow, eactivation);
-
-         }
-
-      }
-
-      //      if (edisplayOutput == e_display_iconic)
-      //      {
-      //
-      //         //#ifdef WINDOWS_DESKTOP
-      //         //
-      //         //         if (GetExStyle() & WS_EX_LAYERED)
-      //         //         {
-      //         //
-      //         //            layout().window() = edisplayOutput;
-      //         //
-      //         //         }
-      //         //
-      //         //#endif
-      //         //
-      //         information("blocking setting window state to iconic (1)");
-      //
-      //      }
-      //      else
-      //      {
-
-      layout().window() = edisplayOutput;
-
-      //      }
-      //
-   }
+//#else
+//      if (edisplayOutputForOsShowWindow != edisplayWindowForOsShowWindow)
+//#endif
+//      {
+//
+//         if (m_pprimitiveimpl.is_set())
+//         {
+//
+//            //auto eactivation = layout().output().activation();
+//
+//            auto eactivation = layout().layout().activation();
+//
+//            m_pprimitiveimpl->_window_show_change_visibility_unlocked(edisplayOutputForOsShowWindow, eactivation);
+//
+//         }
+//
+//      }
+//
+//      //      if (edisplayOutput == e_display_iconic)
+//      //      {
+//      //
+//      //         //#ifdef WINDOWS_DESKTOP
+//      //         //
+//      //         //         if (GetExStyle() & WS_EX_LAYERED)
+//      //         //         {
+//      //         //
+//      //         //            layout().window() = edisplayOutput;
+//      //         //
+//      //         //         }
+//      //         //
+//      //         //#endif
+//      //         //
+//      //         information("blocking setting window state to iconic (1)");
+//      //
+//      //      }
+//      //      else
+//      //      {
+//
+//      layout().window() = edisplayOutput;
+//
+//      //      }
+//      //
+//   }
 
 
    void interaction::defer_save_window_placement()
@@ -13997,7 +14035,7 @@ namespace user
                   if (m_pprimitiveimpl)
                   {
 
-                     m_pprimitiveimpl->_window_request_presentation_locked();
+                     //m_pprimitiveimpl->_window_request_presentation_locked();
 
                   }
 
@@ -17770,6 +17808,9 @@ namespace user
                set_display(edisplay);
 
                set_activation(eactivation);
+
+               information() << "interaction::good_restore : " << rectangleNew;
+               information() << "interaction::good_restore : " << edisplay;
 
             }
             else

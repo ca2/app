@@ -24,6 +24,7 @@
 #include "aura/user/user/alpha_source.h"
 #include "aura/user/user/primitive_impl.h"
 #include "aura/windowing/icon.h"
+#include "aura/windowing/windowing.h"
 #include "base/user/user/user.h"
 #include "base/platform/application.h"
 #include "aura/user/user/notify_icon.h"
@@ -409,7 +410,12 @@ void simple_frame_window::task_intensive_save_window_placement()
 
          m_bPendingSaveWindowRect = false;
 
+         windowing()->windowing_post([this]()
+                                     {
+
          WindowDataSaveWindowRectangle();
+
+                                     });
 
          break;
 

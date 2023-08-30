@@ -182,14 +182,14 @@ namespace user
    }
 
 
-   void box::_window_show_change_visibility_unlocked()
-   {
-
-      ::user::interaction::_window_show_change_visibility_unlocked();
-
-      m_windowrectangle.m_edisplay = const_layout().window().display();
-
-   }
+//   void box::_window_show_change_visibility_unlocked()
+//   {
+//
+//      ::user::interaction::_window_show_change_visibility_unlocked();
+//
+//      m_windowrectangle.m_edisplay = const_layout().window().display();
+//
+//   }
 
 
    bool box::should_save_window_rectangle()

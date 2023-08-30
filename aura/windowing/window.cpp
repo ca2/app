@@ -1058,20 +1058,20 @@ namespace windowing
    }
 
 
-   /// this function should be called in user/main thread
-   void window::show_window(const ::e_display & edisplay, const ::e_activation & eactivation)
-   {
-
-      windowing_output_debug_string("\n::window::show_window 1");
-
-   }
-
-
-   void window::_show_window_unlocked(const ::e_display & edisplay, const ::e_activation & eactivation)
-   {
-
-
-   }
+//   /// this function should be called in user/main thread
+//   void window::show_window(const ::e_display & edisplay, const ::e_activation & eactivation)
+//   {
+//
+//      windowing_output_debug_string("\n::window::show_window 1");
+//
+//   }
+//
+//
+//   void window::_show_window_unlocked(const ::e_display & edisplay, const ::e_activation & eactivation)
+//   {
+//
+//
+//   }
 
 
    void window::full_screen(const ::rectangle_i32 & rectangle)
@@ -1491,7 +1491,7 @@ namespace windowing
             !bZ,
             edisplayOutput);
 
-         stateWindow = stateOutput;
+         //stateWindow = stateOutput;
 
          stateOutput.m_eactivation.clear();
 
@@ -1563,6 +1563,16 @@ namespace windowing
       auto pointDesign = stateDesign.origin();
 
       auto pointWindow = stateWindow.origin();
+
+      bool bMove = pointWindow != pointDesign;
+
+      if (bMove)
+      {
+
+         information() << "Design.point != Window.point " << pointDesign << ", " << pointWindow;
+
+      }
+
 //
 //      if (pointDesign != pointWindow)
 //      {
@@ -1580,13 +1590,16 @@ namespace windowing
       auto sizeOutput = stateDesign.size();
 
       auto sizeWindow = stateWindow.size();
-//
-//      if (sizeOutput != sizeWindow)
-//      {
-//
-//         //information() << "Design.size != Window.size " << sizeOutput << ", " << sizeWindow;
-//
-//      }
+
+      bool bSize = sizeWindow != sizeOutput;
+
+      if(bSize)
+      {
+
+         information() << "Design.size != Window.size " << sizeOutput << ", " << sizeWindow;
+
+      }
+
 //      else
 //      {
 //
@@ -1631,7 +1644,7 @@ namespace windowing
 //
 //      //bool bWindowVisible = is_window_visible();
 //
-      bool bSize = sizeWindow != sizeOutput;
+
 //      {
 //
 //         bSize = false;
@@ -1648,7 +1661,7 @@ namespace windowing
 //
 //      }
 //
-      bool bMove = pointWindow != pointDesign;
+
 //      {
 //
 //         bMove = false;
@@ -1703,9 +1716,9 @@ namespace windowing
 
          ::rectangle_i32 r(pointDesign, sizeOutput);
 
-//         information() << "::windowing::window::_set_window_position_unlocked " << r.top_left() << ", " << r.top_right() << "\n"
-//                       << "  ::windowing::window::_set_window_position_unlocked " << r.bottom_left() << ", " << r.bottom_right() << "\n"
-//                       << "  thread_id : " << ::as_string(::task_index());
+         information() << "::windowing::window::_set_window_position_unlocked " << r.top_left() << ", " << r.top_right() << "\n"
+                       << "  ::windowing::window::_set_window_position_unlocked " << r.bottom_left() << ", " << r.bottom_right() << "\n"
+                       << "  thread_id : " << ::as_string(::task_index());
 
          static ::point_i32 s_pointInitialTopRight;
 
@@ -2030,7 +2043,7 @@ namespace windowing
          //if (bStartWindowVisual)
          //{
 
-         puserinteraction->_window_request_presentation_locked();
+         //puserinteraction->_window_request_presentation_locked();
 
          //m_pimpl->window_show();
 
@@ -2126,7 +2139,7 @@ namespace windowing
          //if (bStartWindowVisual)
          //{
 
-         puserinteraction->_window_request_presentation_locked();
+         //puserinteraction->_window_request_presentation_locked();
 
          //m_pimpl->m_pwindow->window_show();
          //m_puserinteraction->post_procedure(m_procedureWindowShow);

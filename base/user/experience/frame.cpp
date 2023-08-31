@@ -1178,12 +1178,14 @@ namespace experience
    }
 
 
-   bool frame::calculate_client_rectangle2(::rectangle_i32 * prectangle)
+   bool frame::calculate_client_rectangle2(::rectangle_i32 * prectangle, ::draw2d::graphics_pointer & pgraphics)
    {
 
       ::rectangle_i32 rectangleX(*prectangle);
 
       auto eappearance = m_pframewindow->const_layout().state(::user::e_layout_lading).appearance();
+
+      calculate_caption_height(pgraphics);
 
       if (!m_pframewindow->layout().is_full_screen() &&
          !(eappearance & ::e_appearance_transparent_frame))
@@ -1274,7 +1276,9 @@ namespace experience
 
       ::rectangle_i32 rectangleInner(rectangle);
 
-      calculate_client_rectangle2(&rectangleInner);
+      ::draw2d::graphics_pointer pgraphics;
+
+      calculate_client_rectangle2(&rectangleInner, pgraphics);
 
       auto rectangleaBorders = get_borders(rectangle, rectangleInner);
 

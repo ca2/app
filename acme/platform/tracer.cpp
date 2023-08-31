@@ -166,7 +166,7 @@ void tracer::flush(trace_statement & tracestatement)
    if (::is_set(plogger))
    {
 
-      plogger->print(tracestatement);
+      plogger->print(tracestatement, true);
 
    }
 

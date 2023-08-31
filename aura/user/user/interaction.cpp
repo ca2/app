@@ -3066,15 +3066,31 @@ namespace user
    void interaction::display_notify_icon()
    {
 
-      information("\ne_display_notify_icon\n");
+      auto edisplayDesign = layout().design().display();
+
+      information() << "interaction_layout::display e_display_notify_icon edisplayDesign : " << edisplayDesign;
 
 #ifdef INFO_LAYOUT_DISPLAY
 
-      information() << "interaction_layout::display e_display_notify_icon";
+      //information() << "interaction_layout::display e_display_notify_icon edisplayDesign : " << edisplayDesign;
 
 #endif
 
-      layout().sketch().display() = e_display_notify_icon;
+      if (edisplayDesign == e_display_notify_icon
+          || edisplayDesign == e_display_iconic
+          || !windowing()->is_screen_visible(edisplayDesign))
+      {
+
+         display_previous();
+
+      }
+      else
+      {
+
+         layout().sketch().display() = e_display_notify_icon;
+
+      }
+
 
    }
 
@@ -5974,6 +5990,13 @@ namespace user
 
       if (pgraphics->m_bInheritDraw && !this->is_this_visible())
       {
+
+         if(!get_parent())
+         {
+
+            information() << "interaction::_000OnDraw no parent this is not visible";
+
+         }
 
          pgraphics->m_bInheritDraw = false;
 
@@ -10887,9 +10910,9 @@ namespace user
    void interaction::layout_display()
    {
 
-      auto type = __object_type(*this);
+      ::string strType = ::type(this).name();
 
-      if (type.name_contains("page_home"))
+      if (strType.case_insensitive_contains("page_home"))
       {
 
          information() << "page_home";
@@ -10899,6 +10922,13 @@ namespace user
       auto edisplayPrevious = layout().layout().display();
 
       auto edisplayLading = layout().lading().display();
+
+      if(!get_parent())
+      {
+
+         information() << "interaction::layout_display type: " << strType << ", edisplayLading : " << edisplayLading;
+
+      }
 
       // This check prevents saving a previous state that is the same as
       // the current one or that is equivalent (through the equivalence_sink function)
@@ -12017,13 +12047,6 @@ namespace user
 
    void interaction::_extend_on_parent_client_area(::draw2d::graphics_pointer & pgraphics)
    {
-
-      //if (::string(typeid(*this).name()).contains("impact"))
-      //{
-
-      //   information() << "interaction::on_perform_top_down_layout impact";
-
-      //}
 
       auto pparent = get_parent();
 

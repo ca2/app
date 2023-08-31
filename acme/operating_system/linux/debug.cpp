@@ -240,6 +240,19 @@ void output_debug_string(const ::scoped_string & scopedstr)
 }
 
 
+void output_debug_string_flush()
+{
+
+   if (::acme::acme::g_pacme->m_bOutputDebugString)
+   {
+
+      fflush(stdout);
+
+   }
+
+}
+
+
 //void output_debug_string(const ::wide_character * pOutputString)
 //{
 //

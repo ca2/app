@@ -1716,9 +1716,8 @@ namespace windowing
 
          ::rectangle_i32 r(pointDesign, sizeOutput);
 
-         information() << "::windowing::window::_set_window_position_unlocked " << r.top_left() << ", " << r.top_right() << "\n"
-                       << "  ::windowing::window::_set_window_position_unlocked " << r.bottom_left() << ", " << r.bottom_right() << "\n"
-                       << "  thread_id : " << ::as_string(::task_index());
+         information() << "::windowing::window::_set_window_position_unlocked l:" << r.left << ", t:" << r.top
+                       << ", r:" << r.right << ", b:" << r.bottom << ", thrd:" << ::task_index();
 
          static ::point_i32 s_pointInitialTopRight;
 

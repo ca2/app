@@ -122,7 +122,7 @@ namespace experience
       
       //virtual bool calculate_client_rectangle(::rectangle_i32 * prectangle, ::user::enum_layout elayout = ::user::e_layout_design);
 
-      virtual bool calculate_client_rectangle2(::rectangle_i32 * prectangle);
+      virtual bool calculate_client_rectangle2(::rectangle_i32 * prectangle, ::draw2d::graphics_pointer & pgraphics);
 
       virtual ::rectangle_i32 client_rectangle2();
 

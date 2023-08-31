@@ -18,7 +18,7 @@ public:
    static void t_release();
 
 
-   virtual void print(trace_statement & tracestatement) = 0;
+   virtual void print(trace_statement & tracestatement, bool bFlush) = 0;
 
 
 };

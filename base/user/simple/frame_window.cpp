@@ -8,6 +8,8 @@
 #include "acme/handler/request.h"
 #include "acme/platform/system.h"
 #include "acme/platform/system.h"
+#include "acme/primitive/geometry2d/_text_stream.h"
+#include "acme/user/user/_text_stream.h"
 #include "apex/database/_binary_stream.h"
 #include "apex/database/change_event.h"
 #include "acme/filesystem/filesystem/file_context.h"
@@ -2059,8 +2061,8 @@ bool simple_frame_window::LoadFrame(const ::string& pszMatter, u32 dwDefaultStyl
 
          rectangleFrame = const_layout().state(::user::e_layout_sketch).parent_raw_rectangle();
 
-         information("simple_frame_window::LoadFrame rectangleFrame (l=%d, t=%d) (w=%d, h=%d)", rectangleFrame.left, rectangleFrame.top, rectangleFrame.width(), rectangleFrame.height());
-         information("simple_frame_window::LoadFrame edisplay=%s", ::string(::as_string((int)const_layout().sketch().display().eflag())).c_str());
+         information() << "simple_frame_window::LoadFrame rectangleFrame : " << rectangleFrame;
+         information() << "simple_frame_window::LoadFrame edisplay : " << const_layout().sketch().display();
 
          if (wfi_has_up_down())
          {

@@ -26,7 +26,7 @@ public:
    ~simple_log() override;
 
 
-   void print(trace_statement & tracestatement) override;
+   void print(trace_statement & tracestatement, bool bFlush) override;
 
 
 };

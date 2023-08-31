@@ -8099,22 +8099,26 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
          {
 
             m_puserinteraction->post_procedure([this, point]()
-                                               {
+            {
 
+               if(point != m_puserinteraction->const_layout().design().origin())
+               {
 
-                                                  information() << "interaction_impl::on_reposition " << point;
+                  information() << "on reposition; setting to window position : " << point;
 
-                                                  m_puserinteraction->set_position(point, e_layout_window);
+                  m_puserinteraction->set_position(point, e_layout_window);
 
-                                                  m_puserinteraction->set_position(point, e_layout_sketch);
+                  m_puserinteraction->set_position(point, e_layout_sketch);
 
-                                                  m_puserinteraction->set_reposition();
+                  m_puserinteraction->set_reposition();
 
-                                                  m_puserinteraction->set_need_redraw();
+                  m_puserinteraction->set_need_redraw();
 
-                                                  m_puserinteraction->post_redraw();
+                  m_puserinteraction->post_redraw();
 
-                                               });
+               }
+
+            });
 
          }
 
@@ -8136,27 +8140,32 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
          {
 
             m_puserinteraction->post_procedure([this, size]()
-                                               {
+            {
 
-            information() << "interaction_impl::on_resize " << size;
+               if(size != m_puserinteraction->const_layout().design().size())
+               {
 
-            m_puserinteraction->set_size(size, e_layout_window);
+                  information() << "on resize; setting to window size : " << size;
 
-            m_puserinteraction->set_size(size, e_layout_sketch);
+                  m_puserinteraction->set_size(size, e_layout_window);
 
-            int cx = m_puserinteraction->const_layout().sketch().size().width();
+                  m_puserinteraction->set_size(size, e_layout_sketch);
 
-            int cy = m_puserinteraction->const_layout().sketch().size().height();
-            //         m_puserinteraction->layout().design().size() = m_puserinteraction->layout().window().size();
+                  int cx = m_puserinteraction->const_layout().sketch().size().width();
+
+                  int cy = m_puserinteraction->const_layout().sketch().size().height();
+                  //         m_puserinteraction->layout().design().size() = m_puserinteraction->layout().window().size();
 
 
-            m_puserinteraction->set_need_layout();
+                  m_puserinteraction->set_need_layout();
 
-            m_puserinteraction->set_need_redraw();
+                  m_puserinteraction->set_need_redraw();
 
-            m_puserinteraction->post_redraw();
+                  m_puserinteraction->post_redraw();
 
-                                               });
+               }
+
+            });
 
          }
 

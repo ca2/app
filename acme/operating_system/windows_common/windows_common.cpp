@@ -62,7 +62,7 @@ CLASS_DECL_ACME ::i64 i64_nanosecond()
 //}
 //
 
-void output_debug_string(const ::scoped_string & str)
+void output_debug_string(const ::scoped_string & str, bool bFlush)
 {
 
    ::wstring wstr(str);

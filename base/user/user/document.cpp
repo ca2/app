@@ -1580,7 +1580,7 @@ namespace user
             if (iBad != -1)
             {
 
-               newName = newName.as_string().left()(iBad);
+               newName = newName.as_string().left(iBad);
 
             }
 

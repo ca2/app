@@ -34,7 +34,7 @@ public:
 
    template < primitive_number LEFT, primitive_number TOP, primitive_number RIGHT, primitive_number BOTTOM >
    rectangle_type(LEFT left, TOP top, RIGHT right, BOTTOM bottom)  :
-      sequence_type(left, top, right, bottom)
+      sequence_type < NUMBER, 4 >(left, top, right, bottom)
    { 
       //this->left = (UNIT_TYPE)left;
       //this->top = (UNIT_TYPE)top;
@@ -65,13 +65,14 @@ public:
    template < primitive_point POINT1, primitive_point POINT2 >
    rectangle_type(const POINT1 & point1, const POINT2 & point2) { top_left() = point1; bottom_right() = point2; }
    template < primitive_rectangle RECTANGLE >
-   rectangle_type(const RECTANGLE & t) 
+   rectangle_type(const RECTANGLE & t) :
+   sequence_type < NUMBER, 4 >(t)
    {
       
-      this->left() = (UNIT_TYPE) t.left();
-      this->top() = (UNIT_TYPE) t.top();
-      this->right() = (UNIT_TYPE) t.right();
-      this->bottom() = (UNIT_TYPE) t.bottom();
+//      this->left() = (UNIT_TYPE) t.left();
+//      this->top() = (UNIT_TYPE) t.top();
+//      this->right() = (UNIT_TYPE) t.right();
+//      this->bottom() = (UNIT_TYPE) t.bottom();
       
    }
    // template < primitive_rectangle RECTANGLE >
@@ -107,10 +108,10 @@ public:
    }
 
 
-   constexpr const UNIT_TYPE & x() const {return this->a();}
-   UNIT_TYPE & x() {return this->a();}
-   constexpr const UNIT_TYPE & y() const {return this->b();}
-   UNIT_TYPE & y() {return this->b();}
+//   constexpr const UNIT_TYPE & x() const {return this->a();}
+//   UNIT_TYPE & x() {return this->a();}
+//   constexpr const UNIT_TYPE & y() const {return this->b();}
+//   UNIT_TYPE & y() {return this->b();}
 
 
    constexpr const UNIT_TYPE & left() const {return this->a();}

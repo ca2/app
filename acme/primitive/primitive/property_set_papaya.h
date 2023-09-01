@@ -232,7 +232,7 @@ namespace acme
       //         if (get_string(strEval, set, strKey))
       //         {
 
-      //            str = str.left()(iPos) + strEval + str.substr(iEnd + 1);
+      //            str = str.left(iPos) + strEval + str.substr(iEnd + 1);
 
       //            iPos += strEval.length() - 1;
 
@@ -283,7 +283,7 @@ namespace acme
       //         if (get_evaluation(strEval, set, strExpression))
       //         {
 
-      //            str = str.left()(iPos) + strEval + str.substr(iEnd);
+      //            str = str.left(iPos) + strEval + str.substr(iEnd);
 
       //            iPos += strEval.length() - 1;
 

@@ -613,7 +613,7 @@ namespace user
 
                }
 
-               pspanBeg->m_str = pspanBeg->m_str.left()(iSelBeg - pspanBeg->m_iPosBeg) + pspanBeg->m_str.substr(iSelEnd - pspanBeg->m_iPosBeg);
+               pspanBeg->m_str = pspanBeg->m_str.left(iSelBeg - pspanBeg->m_iPosBeg) + pspanBeg->m_str.substr(iSelEnd - pspanBeg->m_iPosBeg);
 
                if (pspanBeg->m_str.is_empty())
                {
@@ -633,7 +633,7 @@ namespace user
             if (iSelBeg > pspanBeg->m_iPosBeg)
             {
 
-               pspanBeg->m_str = pspanBeg->m_str.left()(iSelBeg - pspanBeg->m_iPosBeg);
+               pspanBeg->m_str = pspanBeg->m_str.left(iSelBeg - pspanBeg->m_iPosBeg);
 
                pspanBeg->m_iPosEnd = (int) iSelBeg;
 
@@ -796,7 +796,7 @@ namespace user
                if (iLine >= straLines.get_upper_bound())
                {
 
-                  pspan->m_str = pspan->m_str.left()(iMid) + strLine + pspan->m_str.substr(iMid);
+                  pspan->m_str = pspan->m_str.left(iMid) + strLine + pspan->m_str.substr(iMid);
 
                }
                else
@@ -816,7 +816,7 @@ namespace user
 
                   }
 
-                  pspan->m_str = pspan->m_str.left()(iMid) + strLine;
+                  pspan->m_str = pspan->m_str.left(iMid) + strLine;
 
                }
 
@@ -883,7 +883,7 @@ namespace user
 
                   str = pspanBeg->m_str;
 
-                  pspanBeg->m_str = str.left()(iSelBeg - pspanBeg->m_iPosBeg);
+                  pspanBeg->m_str = str.left(iSelBeg - pspanBeg->m_iPosBeg);
 
                   auto pspan2 = pspanBeg->fork(pformat, eattribute);
                   pspan2->m_str = str.substr(iSelBeg - pspanBeg->m_iPosBeg, iSelEnd - iSelBeg + 1);
@@ -911,7 +911,7 @@ namespace user
                      pspan2->m_str = str.substr(iSelEnd - pspanBeg->m_iPosBeg + 1);
                      m_spana.insert_at(iBeg + 1, pspan2);
 
-                     pspanBeg->m_str = str.left()(iSelEnd - pspanBeg->m_iPosBeg + 1);
+                     pspanBeg->m_str = str.left(iSelEnd - pspanBeg->m_iPosBeg + 1);
 
                   }
 
@@ -930,7 +930,7 @@ namespace user
 
                   str = pspanBeg->m_str;
 
-                  pspanBeg->m_str = str.left()(iSelBeg - pspanBeg->m_iPosBeg);
+                  pspanBeg->m_str = str.left(iSelBeg - pspanBeg->m_iPosBeg);
 
                   auto pspan2 = pspanBeg->fork(pformat, eattribute);
                   pspan2->m_str = str.substr(iSelBeg - pspanBeg->m_iPosBeg);
@@ -951,7 +951,7 @@ namespace user
                   str = pspanEnd->m_str;
 
                   auto pspan3 = pspanEnd->fork(pformat, eattribute);
-                  pspan3->m_str = str.left()(iSelEnd - iEndBeg + 1);
+                  pspan3->m_str = str.left(iSelEnd - iEndBeg + 1);
 
                   m_spana.insert_at(iEnd, pspan3);
 
@@ -1091,7 +1091,7 @@ namespace user
 
          }
 
-         strSlice = strWord.left()(m);
+         strSlice = strWord.left(m);
 
          dPosition = pdaPosition[m - 1];
 

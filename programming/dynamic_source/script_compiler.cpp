@@ -1269,7 +1269,7 @@ namespace dynamic_source
          strId += "static ::atom lscript_id" + ::as_string(i) + "(\"" + straId[i] + "\");\r\n";
       }
 
-      strDest = strDest.left()(iPosId) + strId + strDest.substr(iPosId);
+      strDest = strDest.left(iPosId) + strId + strDest.substr(iPosId);
 
 
       string strCppPath =  pscript->m_strCppPath;
@@ -1902,7 +1902,7 @@ auto tickStart = ::time::now();
          strId += "static ::atom lscript_id" + ::as_string(i) + "(\"" + straId[i] + "\");\r\n";
       }
 
-      strDest = strDest.left()(iPosId) + strId + strDest.substr(iPosId);
+      strDest = strDest.left(iPosId) + strId + strDest.substr(iPosId);
 
       //file()->put_text_utf8(lpcszDest, strDest);
       file()->put_text(lpcszDest, strDest);
@@ -1924,7 +1924,7 @@ auto tickStart = ::time::now();
          straId.add(strKey);
          iFind = straId.get_upper_bound();
       }
-      strResult = strResult.left()(iArroba) + " lscript_id" + as_string(iFind);
+      strResult = strResult.left(iArroba) + " lscript_id" + as_string(iFind);
       iArroba = -1;
    }
 
@@ -2865,7 +2865,7 @@ ch_else:
             if(strSource[iLen] == '\n')
                iLen++;
          }
-         string str = strSource.left()(iLen);
+         string str = strSource.left(iLen);
          //strDest += "   ds_print(unitext(\"";
          strDest += "\r\n   ds_print(\"";
          strDest += escape(str);

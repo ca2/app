@@ -19,7 +19,7 @@ void trim001(string & str)
       uch = str[str.length() - 1];
       if (character_isdigit(uch) || character_isalpha(uch))
          break;
-      str = str.left()(str.length() - 1);
+      str = str.left(str.length() - 1);
    }
 }
 

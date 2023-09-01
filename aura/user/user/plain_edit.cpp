@@ -112,7 +112,7 @@ namespace aura
 
             string strPack = "%pack" + ::as_string(iPack + 1) + "%";
 
-            str = str.left()(iEncoding + 1) + strPack + str.substr(iBase64);
+            str = str.left(iEncoding + 1) + strPack + str.substr(iBase64);
 
             base64map[strPack] = strBase64;
 
@@ -797,7 +797,7 @@ namespace user
             {
 
                // Draw Normal Text - not selected - before selection
-               auto strLeft = strLineGraphics.left()(iCurLineSelBeg);
+               auto strLeft = strLineGraphics.left(iCurLineSelBeg);
                pgraphics->text_out(left, y, strLeft);
 
             }
@@ -6684,7 +6684,7 @@ namespace user
             //      if (iNewCursorPosition < 0)
             //      {
 
-            //         wd16_string wstrFull(strFull.left()(iAfterComposingCursorPosition));
+            //         wd16_string wstrFull(strFull.left(iAfterComposingCursorPosition));
 
             //         iOffset = wd16_to_ansi_len(wstrFull, wstrFull.get_length() + iNewCursorPosition);
 
@@ -6733,7 +6733,7 @@ namespace user
                   if (iNewCursorPosition < 0)
                   {
 
-                     wd16_string wstrFull(strFull.left()(iAfterComposingCursorPosition));
+                     wd16_string wstrFull(strFull.left(iAfterComposingCursorPosition));
 
                      iOffset = wd16_to_ansi_len(wstrFull, wstrFull.length() + iNewCursorPosition);
 
@@ -8265,7 +8265,7 @@ namespace user
    void plain_edit::plain_edit_insert_text(::draw2d::graphics_pointer & pgraphics, string strText, bool bForceNewStep)
    {
 
-      ::information("plain_edit::insert_text: \"" + strText.left()(64) + "\" \n");
+      ::information("plain_edit::insert_text: \"" + strText.left(64) + "\" \n");
 
       synchronous_lock synchronouslock(this->synchronization());
 

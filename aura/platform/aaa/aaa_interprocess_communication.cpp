@@ -629,7 +629,7 @@ pacmedirectory->system() / "inteprocess_channel" / strApp / as_string(idPid);
 
       }
 
-      strObject = str1.left()(iFind2);
+      strObject = str1.left(iFind2);
 
       strMember = str1.substr(iFind2 + 1);
 

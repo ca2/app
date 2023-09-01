@@ -612,7 +612,7 @@ try1:;
          string strDir = psz.folder();
 
          string str;
-         str = strDir.left()(2);
+         str = strDir.left(2);
          str += "\\trash_that_is_not_trash\\";
          string strFormat;
          ::earth::time time;

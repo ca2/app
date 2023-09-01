@@ -546,7 +546,7 @@ namespace browser
 
          strsize iLeft = iFind > 0 ? iFind - 1 : iFind;
 
-         str = str.left()(iLeft) + str.substr(iFindEnd);
+         str = str.left(iLeft) + str.substr(iFindEnd);
 
       }
 

@@ -470,7 +470,7 @@ namespace html
                else if (iLastSpace > 0)
                {
 
-                  sizeText = pgraphics->get_text_extent(strLine.left()(iLastSpace));
+                  sizeText = pgraphics->get_text_extent(strLine.left(iLastSpace));
 
                   ::write_text::text_metric textmetric;
 
@@ -478,7 +478,7 @@ namespace html
 
                   sizeText.cy() = (float) textmetric.get_line_spacing();
 
-                  m_straLines.add(strLine.left()(iLastSpace));
+                  m_straLines.add(strLine.left(iLastSpace));
 
                   strLine = strLine.substr(iLastSpace);
 

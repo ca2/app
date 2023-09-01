@@ -220,7 +220,7 @@ namespace universal_windows
    void impact::ReplaceText(CoreTextRange  modifiedRange, String ^ text)
    {
       // Modify the internal text store.
-      m_strText = m_strText.left()(modifiedRange.StartCaretPosition) +
+      m_strText = m_strText.left(modifiedRange.StartCaretPosition) +
          text->Begin() +
          m_strText.substr(modifiedRange.EndCaretPosition);
 
@@ -292,7 +292,7 @@ namespace universal_windows
       auto pwsz= newText.c_str();
       m_strNewText = newText;
       // Modify the internal text store.
-      m_strText = m_strText.left()( range.StartCaretPosition) +
+      m_strText = m_strText.left( range.StartCaretPosition) +
          newText +
          m_strText.substr(minimum(m_strText.length(), range.EndCaretPosition));
 

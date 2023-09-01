@@ -119,7 +119,7 @@ namespace sockets
                   if (m_chunk_line.get_length() > 1 && m_chunk_line.substr(m_chunk_line.get_length() - 2) == "\r\n")
                   {
                      
-                     m_chunk_line = m_chunk_line.left()(m_chunk_line.get_length() - 2);
+                     m_chunk_line = m_chunk_line.left(m_chunk_line.get_length() - 2);
                      
                      ::parse pa(m_chunk_line, ";");
 

@@ -465,10 +465,10 @@ template < primitive_rectangle RECTANGLE_TYPE >
 bool is_null(const RECTANGLE_TYPE & rectangle)
 {
 
-   return rectangle.left() == (decltype(RECTANGLE_TYPE::left))0
-      && rectangle.top() == (decltype(RECTANGLE_TYPE::top))0
-      && rectangle.right() == (decltype(RECTANGLE_TYPE::right))0
-      && rectangle.bottom() == (decltype(RECTANGLE_TYPE::bottom))0;
+   return rectangle.left() == (decltype(rectangle.left()))0
+      && rectangle.top() == (decltype(rectangle.top()))0
+      && rectangle.right() == (decltype(rectangle.right()))0
+      && rectangle.bottom() == (decltype(rectangle.bottom()))0;
 
 }
 
@@ -507,9 +507,9 @@ template < primitive_rectangle RECTANGLE_TYPE, typename X >
 inline RECTANGLE_TYPE & x_offset(RECTANGLE_TYPE & rectangle, X x)
 {
 
-   rectangle.left() = (decltype(RECTANGLE_TYPE::left))(rectangle.left() + x);
+   rectangle.left() = (decay<decltype(rectangle.left())>)(rectangle.left() + x);
 
-   rectangle.right() = (decltype(RECTANGLE_TYPE::right))(rectangle.right() + x);
+   rectangle.right() = (decay<decltype(rectangle.right())>)(rectangle.right() + x);
 
    return rectangle;
 
@@ -520,9 +520,9 @@ template < primitive_rectangle RECTANGLE_TYPE, typename Y >
 inline RECTANGLE_TYPE & y_offset(RECTANGLE_TYPE & rectangle, Y y)
 {
 
-   rectangle.top() = (decltype(RECTANGLE_TYPE::top))(rectangle.top() + y);
+   rectangle.top() = (decay<decltype(rectangle.top())>)(rectangle.top() + y);
 
-   rectangle.bottom() = (decltype(RECTANGLE_TYPE::bottom))(rectangle.bottom() + y);
+   rectangle.bottom() = (decay<decltype(rectangle.bottom())>)(rectangle.bottom() + y);
 
    return rectangle;
 
@@ -547,9 +547,9 @@ template < primitive_rectangle RECTANGLE_TYPE, primitive_number Y >
 inline RECTANGLE_TYPE & y_subtract(RECTANGLE_TYPE & rectangle, Y y)
 {
 
-   rectangle.top() = (::decay<decltype(RECTANGLE_TYPE::top)>)(rectangle.top() - y);
+   rectangle.top() = (::decay<decltype(rectangle.top())>)(rectangle.top() - y);
 
-   rectangle.bottom() = (::decay<decltype(RECTANGLE_TYPE::bottom)>)(rectangle.bottom() - y);
+   rectangle.bottom() = (::decay<decltype(rectangle.bottom())>)(rectangle.bottom() - y);
 
    return rectangle;
 
@@ -985,10 +985,10 @@ template < primitive_rectangle RECTANGLE_TYPE, primitive_number L, primitive_num
 RECTANGLE_TYPE & assign(RECTANGLE_TYPE & rectangle, L l, T t, R r, B b)
 {
 
-   rectangle.left() = (decltype(RECTANGLE_TYPE::left))l;
-   rectangle.top() = (decltype(RECTANGLE_TYPE::top))t;
-   rectangle.right() = (decltype(RECTANGLE_TYPE::right))r;
-   rectangle.bottom() = (decltype(RECTANGLE_TYPE::bottom))b;
+   rectangle.left() = (decltype(rectangle.left()))l;
+   rectangle.top() = (decltype(rectangle.top()))t;
+   rectangle.right() = (decltype(rectangle.right()))r;
+   rectangle.bottom() = (decltype(rectangle.bottom()))b;
 
    return rectangle;
 
@@ -999,10 +999,10 @@ template < primitive_rectangle RECTANGLE, primitive_number L, primitive_number T
 RECTANGLE & set_dimension(RECTANGLE & rectangle, L l, T t, W w, H h)
 {
 
-   rectangle.left() = (decltype(RECTANGLE::left))l;
-   rectangle.top() = (decltype(RECTANGLE::top))t;
-   rectangle.right() = (decltype(RECTANGLE::right))(l + w);
-   rectangle.bottom() = (decltype(RECTANGLE::bottom))(t + h);
+   rectangle.left() = (decltype(rectangle.left()))l;
+   rectangle.top() = (decltype(rectangle.top()))t;
+   rectangle.right() = (decltype(rectangle.right()))(l + w);
+   rectangle.bottom() = (decltype(rectangle.bottom()))(t + h);
 
    return rectangle;
 
@@ -1022,8 +1022,8 @@ template < primitive_rectangle RECTANGLE, primitive_point POINT, primitive_size 
 RECTANGLE & set_bottom_right(RECTANGLE & rectangle, const SIZE & size)
 {
 
-   rectangle.right() = (decltype(RECTANGLE::right))(rectangle.left() + size.cx());
-   rectangle.bottom() = (decltype(RECTANGLE::bottom))(rectangle.top() + size.cy());
+   rectangle.right() = (decltype(rectangle.right()))(rectangle.left() + size.cx());
+   rectangle.bottom() = (decltype(rectangle.bottom()))(rectangle.top() + size.cy());
 
    return rectangle;
 
@@ -1034,10 +1034,10 @@ template < primitive_rectangle RECTANGLE, primitive_point POINT, primitive_size 
 RECTANGLE & assign(RECTANGLE & rectangle, const POINT & point, const SIZE & size)
 {
 
-   rectangle.left() = (decltype(RECTANGLE::left))point.x();
-   rectangle.top() = (decltype(RECTANGLE::top))point.y();
-   rectangle.right() = (decltype(RECTANGLE::right))(point.x() + size.cx());
-   rectangle.bottom() = (decltype(RECTANGLE::bottom))(point.y() + size.cy());
+   rectangle.left() = (decay<decltype(rectangle.left())>)point.x();
+   rectangle.top() = (decay<decltype(rectangle.top())>)point.y();
+   rectangle.right() = (decay<decltype(rectangle.right())>)(point.x() + size.cx());
+   rectangle.bottom() = (decay<decltype(rectangle.bottom())>)(point.y() + size.cy());
 
    return rectangle;
 
@@ -1085,10 +1085,10 @@ template < primitive_rectangle RECTANGLE_TYPE, primitive_number L, primitive_num
 inline RECTANGLE_TYPE & inflate(RECTANGLE_TYPE & rectangle, L l, T t, R r, B b)
 {
 
-   rectangle.left() = (decltype(RECTANGLE_TYPE::left))(rectangle.left() - l);
-   rectangle.top() = (decltype(RECTANGLE_TYPE::top))(rectangle.top() - t);
-   rectangle.right() = (decltype(RECTANGLE_TYPE::right))(rectangle.right() + r);
-   rectangle.bottom() = (decltype(RECTANGLE_TYPE::bottom))(rectangle.bottom() + b);
+   rectangle.left() = (decltype(rectangle.left()))(rectangle.left() - l);
+   rectangle.top() = (decltype(rectangle.top()))(rectangle.top() - t);
+   rectangle.right() = (decltype(rectangle.right()))(rectangle.right() + r);
+   rectangle.bottom() = (decltype(rectangle.bottom()))(rectangle.bottom() + b);
 
    return rectangle;
 
@@ -1122,10 +1122,10 @@ template < primitive_rectangle RECTANGLE_TYPE, primitive_number L, primitive_num
 inline RECTANGLE_TYPE & deflate(RECTANGLE_TYPE & rectangle, L l, T t, R r, B b)
 {
 
-   rectangle.left() = (decltype(RECTANGLE_TYPE::left))(rectangle.left() + l);
-   rectangle.top() = (decltype(RECTANGLE_TYPE::top))(rectangle.top() + t);
-   rectangle.right() = (decltype(RECTANGLE_TYPE::right))(rectangle.right() - r);
-   rectangle.bottom() = (decltype(RECTANGLE_TYPE::bottom))(rectangle.bottom() - b);
+   rectangle.left() = (decltype(rectangle.left()))(rectangle.left() + l);
+   rectangle.top() = (decltype(rectangle.top()))(rectangle.top() + t);
+   rectangle.right() = (decltype(rectangle.right()))(rectangle.right() - r);
+   rectangle.bottom() = (decltype(rectangle.bottom()))(rectangle.bottom() - b);
 
    return rectangle;
 

@@ -2183,7 +2183,7 @@ namespace sockets_bsd
       //         if (strTitle.case_insensitive_find(".") >= 0)
       //         {
 
-      //            strTitle = strTitle.left()(strTitle.rear_find("."));
+      //            strTitle = strTitle.left(strTitle.rear_find("."));
 
       //         }
 

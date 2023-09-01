@@ -509,7 +509,7 @@ bool str::begins_ci_iws(const ::string & str, const ::string & strPrefix)
 //
 //      strsize iLen = strPrefix.length();
 //
-//      if(str.left()(iLen) == pcszPrefix)
+//      if(str.left(iLen) == pcszPrefix)
 //
 //      {
 //         str = str.substr(iLen);
@@ -533,7 +533,7 @@ bool str::begins_ci_iws(const ::string & str, const ::string & strPrefix)
 //
 //      strsize iLen = strPrefix.length();
 //
-//      if(str.left()(iLen).case_insensitive_order(pcszPrefix) == 0)
+//      if(str.left(iLen).case_insensitive_order(pcszPrefix) == 0)
 //
 //      {
 //         str = str.substr(iLen);
@@ -611,7 +611,7 @@ bool str::begins_ci_iws(const ::string & str, const ::string & strPrefix)
    //   string strSuffix(pcszSuffix);
 
    //   i32 iLen = strSuffix.length();
-   //   if(str.right()(iLen) == pcszSuffix)
+   //   if(str.right(iLen) == pcszSuffix)
 
    //   {
    //   return true;
@@ -730,11 +730,11 @@ bool str::begins_ci_iws(const ::string & str, const ::string & strPrefix)
 //
 //      strsize iLen = strSuffix.length();
 //
-//      if(str.right()(iLen).case_insensitive_order(pcszSuffix) == 0)
+//      if(str.right(iLen).case_insensitive_order(pcszSuffix) == 0)
 //
 //      {
 //
-//         str = str.left()(str.length() - iLen);
+//         str = str.left(str.length() - iLen);
 //         return true;
 //
 //      }
@@ -870,7 +870,7 @@ string str::random_replace(::particle * pparticle, const string_array & straNew,
 
       }
 
-      str = str.left()(iPos) + strNew + str.substr(iPos + iFindLen);
+      str = str.left(iPos) + strNew + str.substr(iPos + iFindLen);
 
       iPos += iReplaceLen;
 
@@ -920,7 +920,7 @@ string str::utf8_replace_with(const ::string & strNew, const ::string & strOld, 
 
       }
 
-      str = str.left()(iPos) + strNew + str.substr(iPos + iFindLen);
+      str = str.left(iPos) + strNew + str.substr(iPos + iFindLen);
 
       iPos += iReplaceLen;
 
@@ -967,7 +967,7 @@ string str::case_insensitive_replace_with(const ::string & strNew, const ::strin
 
       }
 
-      str = str.left()(iPos) + strNew + str.substr(iPos + iFindLen);
+      str = str.left(iPos) + strNew + str.substr(iPos + iFindLen);
 
       iPos += iReplaceLen;
 
@@ -1016,7 +1016,7 @@ string str::case_insensitive_replace_with(const ::string & strNew, const ::strin
 
       }
 
-      str = str.left()(iPos) + strNew + str.substr(iPos + iFindLen);
+      str = str.left(iPos) + strNew + str.substr(iPos + iFindLen);
 
       iPos += iReplaceLen;
 
@@ -2924,7 +2924,7 @@ string str::line(string & str, bool bNewLine)
       if (bNewLine)
       {
 
-         strToken = str.left()(iEnd);
+         strToken = str.left(iEnd);
 
       }
       else
@@ -3216,22 +3216,22 @@ void str::increment_digit_letter(string & str)
 
       if (str[i] >= '0' && str[i] <= '8')
       {
-         str = str.left()(i) + string((char)(str[i] + 1)) + str.right()(str.length() - i - 1);
+         str = str.left(i) + string((char)(str[i] + 1)) + str.right(str.length() - i - 1);
          break;
       }
       else if (str[i] == '9')
       {
-         str = str.left()(i) + string((char)('a')) + str.right()(str.length() - i - 1);
+         str = str.left(i) + string((char)('a')) + str.right(str.length() - i - 1);
          break;
       }
       else if (str[i] >= 'a' && str[i] <= 'y')
       {
-         str = str.left()(i) + string((char)(str[i] + 1)) + str.right()(str.length() - i - 1);
+         str = str.left(i) + string((char)(str[i] + 1)) + str.right(str.length() - i - 1);
          break;
       }
       else if (str[i] == 'z')
       {
-         str = str.left()(i) + string((char)('0')) + str.right()(str.length() - i - 1);
+         str = str.left(i) + string((char)('0')) + str.right(str.length() - i - 1);
          i--;
       }
    }

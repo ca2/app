@@ -355,13 +355,13 @@ bool tokenizer::get_next_token_ex(string &strToken, const ::scoped_string & scop
       if (bWithSeparator)
       {
 
-         strToken = strMid.left()(i + 1);
+         strToken = strMid.left(i + 1);
 
       }
       else
       {
 
-         strToken = strMid.left()(i);
+         strToken = strMid.left(i);
 
       }
 
@@ -427,7 +427,7 @@ bool tokenizer::ExtractFolderPath(const ::scoped_string & scopedstrFilePath)
 
    }
 
-   operator=(strFilePath.left()(i));
+   operator=(strFilePath.left(i));
 
    return b;
 

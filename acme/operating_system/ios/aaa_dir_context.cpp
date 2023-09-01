@@ -361,7 +361,7 @@ pacmedirectory->is(stra[i]))
    //               break;
    //            iLast--;
    //         }
-   //         return str.left()(iLast + 1);
+   //         return str.left(iLast + 1);
    //      }
    //      else
    //      {
@@ -386,7 +386,7 @@ pacmedirectory->is(stra[i]))
 //      {
 //         string strDir = name(psz);
 //         string str;
-//         str = strDir.left()(2);
+//         str = strDir.left(2);
 //         str += "\\trash_that_is_not_trash\\";
 //         string strFormat;
 //         ::earth::time time;
@@ -533,7 +533,7 @@ pacmedirectory->is(stra[i]))
 //               break;
 //            iLast--;
 //         }
-//         return str.left()(iLast + 1);
+//         return str.left(iLast + 1);
 //      }
 //      else
 //      {

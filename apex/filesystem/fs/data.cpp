@@ -60,7 +60,7 @@ namespace fs
    //string data::dir_path(const ::file::path & psz1, const ::file::path & psz2)
    //{
    //   string str(psz1);
-   //   if(str.right()(1) != '/')
+   //   if(str.right(1) != '/')
    //      str += "/";
    //   return str + psz2;
    //}

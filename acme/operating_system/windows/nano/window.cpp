@@ -874,7 +874,7 @@ namespace windows
       {
          //auto pmessagebox = m_pinterface.cast<nano::me
          /// @brief ////////123456789012345
-         //strAbbreviation = "msgbx:" + pmessagebox->m_strMessage.left()(20);
+         //strAbbreviation = "msgbx:" + pmessagebox->m_strMessage.left(20);
 
          strAbbreviation = "msgbx:" + pmessagebox->m_strMessage;
 

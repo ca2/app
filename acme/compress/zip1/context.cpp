@@ -90,7 +90,7 @@ namespace str
 
          strRemain = strZip.substr(strZip.rear_find(".zip:") + strlen(".zip:"));
 
-         strLastZip = strZip.left()(strZip.rear_find(".zip:") + strlen(".zip"));
+         strLastZip = strZip.left(strZip.rear_find(".zip:") + strlen(".zip"));
 
       }
       else
@@ -250,7 +250,7 @@ namespace str
 
          strRemain = strZip.substr(strZip.rear_find(".zip:") + strlen(".zip:"));
 
-         strLastZip = strZip.left()(strZip.rear_find(".zip:") + strlen(".zip"));
+         strLastZip = strZip.left(strZip.rear_find(".zip:") + strlen(".zip"));
 
       }
       else
@@ -441,7 +441,7 @@ namespace str
          
       }
       
-      if(str.right()(4) != ".zip")
+      if(str.right(4) != ".zip")
       {
          
          return false;

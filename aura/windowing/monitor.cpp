@@ -16,10 +16,10 @@ namespace windowing
    monitor::monitor()
    {
 
-      m_rectangleFixedWorkspace.left = I32_MINIMUM;
-      m_rectangleFixedWorkspace.top = I32_MINIMUM;
-      m_rectangleFixedWorkspace.right = I32_MINIMUM;
-      m_rectangleFixedWorkspace.bottom = I32_MINIMUM;
+      m_rectangleFixedWorkspace.left() = I32_MINIMUM;
+      m_rectangleFixedWorkspace.top() = I32_MINIMUM;
+      m_rectangleFixedWorkspace.right() = I32_MINIMUM;
+      m_rectangleFixedWorkspace.bottom() = I32_MINIMUM;
 
    }
 
@@ -72,10 +72,10 @@ namespace windowing
    ::rectangle_i32 monitor::workspace_rectangle()
    {
 
-      if(m_rectangleFixedWorkspace.left != I32_MINIMUM
-      && m_rectangleFixedWorkspace.top != I32_MINIMUM
-      && m_rectangleFixedWorkspace.right != I32_MINIMUM
-      && m_rectangleFixedWorkspace.bottom != I32_MINIMUM)
+      if(m_rectangleFixedWorkspace.left() != I32_MINIMUM
+      && m_rectangleFixedWorkspace.top() != I32_MINIMUM
+      && m_rectangleFixedWorkspace.right() != I32_MINIMUM
+      && m_rectangleFixedWorkspace.bottom() != I32_MINIMUM)
       {
 
          return m_rectangleFixedWorkspace;
@@ -87,10 +87,10 @@ namespace windowing
       for(auto i = 0; i < 4; i++)
       {
 
-         if (m_rectangleFixedWorkspace.ordinate(i) != I32_MINIMUM)
+         if (m_rectangleFixedWorkspace.coordinate(i) != I32_MINIMUM)
          {
 
-            rectangleWorkspace.ordinate(i) = m_rectangleFixedWorkspace.ordinate(i);
+            rectangleWorkspace.coordinate(i) = m_rectangleFixedWorkspace.coordinate(i);
 
          }
 

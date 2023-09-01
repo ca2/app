@@ -6578,11 +6578,11 @@ bool is_return_ok(para_return eret)
 
    strsize iLen = strSuffix.length();
 
-   if(str.right()(iLen) == pcszSuffix)
+   if(str.right(iLen) == pcszSuffix)
 
    {
 
-      return str.left()(str.length() - iLen);
+      return str.left(str.length() - iLen);
 
    }
 

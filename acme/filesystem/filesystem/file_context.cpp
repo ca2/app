@@ -2482,7 +2482,7 @@ void file_context::set_extension(::file::path & path, const ::scoped_string & sc
 
    }
 
-   path = path.left()(iEnd) + ::str::has_char(scopedstrExtension, ".");
+   path = path.left(iEnd) + ::str::has_char(scopedstrExtension, ".");
 
 }
 
@@ -2498,11 +2498,11 @@ void file_context::normalize(string &str)
    }
 
    while (str.has_char() &&
-          (str.right()(1) == "\\" ||
-           str.right()(1) == "/"))
+          (str.right(1) == "\\" ||
+           str.right(1) == "/"))
    {
 
-      str = str.left()(str.length() - 1);
+      str = str.left(str.length() - 1);
 
    }
 
@@ -3074,7 +3074,7 @@ file_pointer file_context::data_get_file(string strData, ::file::e_open eopen)
 
    ASSERT(strData.case_insensitive_begins("data:"));
 
-   string strSample = strData.left()(4096);
+   string strSample = strData.left(4096);
 
    auto iFind = strSample.find_index(";", 5);
 

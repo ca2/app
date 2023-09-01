@@ -75,10 +75,10 @@
 
 //    }
 
-//    lprect->left      = 0;
-//    lprect->top       = 0;
-//    lprect->right     = lprect->left    + attrs.width;
-//    lprect->bottom    = lprect->top     + attrs.height;
+//    lprect->left()      = 0;
+//    lprect->top()       = 0;
+//    lprect->right()     = lprect->left()    + attrs.width;
+//    lprect->bottom()    = lprect->top()     + attrs.height;
 
 //    return true;
 
@@ -125,10 +125,10 @@
 //       return false;
 //    }
 
-//    lprect->left      = x;
-//    lprect->top       = y;
-//    lprect->right     = x    + attrs.width;
-//    lprect->bottom    = y    + attrs.height;
+//    lprect->left()      = x;
+//    lprect->top()       = y;
+//    lprect->right()     = x    + attrs.width;
+//    lprect->bottom()    = y    + attrs.height;
 
 //    return true;
 
@@ -142,7 +142,7 @@
 //    mutex_lock synchronouslock(user_synchronization(), true);
 
 
-//    XFillRectangle(hdc->m_display, hdc->m_d, hdc->m_gc, lprc->left, lprc->top, lprc->right - lprc->left, lprc->bottom - lprc->top);
+//    XFillRectangle(hdc->m_display, hdc->m_d, hdc->m_gc, lprc->left(), lprc->top(), lprc->right() - lprc->left(), lprc->bottom() - lprc->top());
 //    return 1;
 // }
 

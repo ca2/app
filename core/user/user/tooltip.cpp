@@ -101,20 +101,20 @@ namespace user
 
       auto ppath = __create < ::draw2d::path > ();
 
-      ppath->set_current_point(rectangleX.left, rectangleX.bottom);
+      ppath->set_current_point(rectangleX.left(), rectangleX.bottom());
 
       ::rectangle_i32 rectangleBody;
 
       rectangleBody = rectangleX;
 
-      rectangleBody.left += 16;
-      rectangleBody.bottom -= 16;
+      rectangleBody.left() += 16;
+      rectangleBody.bottom() -= 16;
 
-      ppath->add_line(rectangleBody.left, rectangleBody.top + rectangleBody.height()/2);
-      ppath->add_line(rectangleBody.left,rectangleBody.top);
-      ppath->add_line(rectangleBody.right,rectangleBody.top);
-      ppath->add_line(rectangleBody.right,rectangleBody.bottom);
-      ppath->add_line(rectangleBody.left + rectangleBody.height() / 2,rectangleBody.bottom);
+      ppath->add_line(rectangleBody.left(), rectangleBody.top() + rectangleBody.height()/2);
+      ppath->add_line(rectangleBody.left(),rectangleBody.top());
+      ppath->add_line(rectangleBody.right(),rectangleBody.top());
+      ppath->add_line(rectangleBody.right(),rectangleBody.bottom());
+      ppath->add_line(rectangleBody.left() + rectangleBody.height() / 2,rectangleBody.bottom());
       ppath->close_figure();
 
       ::draw2d::brush_pointer b(e_create, this);
@@ -137,13 +137,13 @@ namespace user
 
       //::rectangle_i32 rectangle;
 
-      //rectangleText.left = 0;
+      //rectangleText.left() = 0;
 
-      //rectangleText.top = 0;
+      //rectangleText.top() = 0;
 
-      //rectangleText.right = m_size.cx();
+      //rectangleText.right() = m_size.cx();
 
-      //rectangleText.bottom = m_size.cy();
+      //rectangleText.bottom() = m_size.cy();
 
       pgraphics->set(m_pfont);
 

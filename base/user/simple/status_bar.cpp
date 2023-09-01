@@ -44,8 +44,8 @@ void simple_status_bar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 //#ifdef WINDOWS_DESKTOP
 //   imaging.color_blend(
 //      pgraphics,
-//      rectangleX.left,
-//      rectangleX.top,
+//      rectangleX.left(),
+//      rectangleX.top(),
 //      rectangleX.width(),
 //      rectangleX.height(),
 //      psession->get_default_color(COLOR_3DFACE),
@@ -53,8 +53,8 @@ void simple_status_bar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 //#else
 //   imaging.color_blend(
 //      pgraphics,
-//      rectangleX.left,
-//      rectangleX.top,
+//      rectangleX.left(),
+//      rectangleX.top(),
 //      rectangleX.width(),
 //      rectangleX.height(),
 //      argb(255, 190, 184, 177),

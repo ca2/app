@@ -33,10 +33,10 @@ public:
    template < primitive_number LEFT, primitive_number TOP, primitive_number RIGHT, primitive_number BOTTOM >
    rectangle_type(LEFT left, TOP top, RIGHT right, BOTTOM bottom) 
    { 
-      this->left = (UNIT_TYPE)left; 
-      this->top = (UNIT_TYPE)top;
-      this->right = (UNIT_TYPE)right; 
-      this->bottom = (UNIT_TYPE)bottom; 
+      this->left() = (UNIT_TYPE)left; 
+      this->top() = (UNIT_TYPE)top;
+      this->right() = (UNIT_TYPE)right; 
+      this->bottom() = (UNIT_TYPE)bottom; 
    }
 
    template < primitive_number A, primitive_number B >
@@ -65,10 +65,10 @@ public:
    rectangle_type(const RECTANGLE & t) 
    {
       
-      this->left = (UNIT_TYPE) t.left;
-      this->top = (UNIT_TYPE) t.top;
-      this->right = (UNIT_TYPE) t.right;
-      this->bottom = (UNIT_TYPE) t.bottom;
+      this->left() = (UNIT_TYPE) t.left();
+      this->top() = (UNIT_TYPE) t.top();
+      this->right() = (UNIT_TYPE) t.right();
+      this->bottom() = (UNIT_TYPE) t.bottom();
       
    }
    // template < primitive_rectangle RECTANGLE >
@@ -78,10 +78,10 @@ public:
    //    if((void *) this != (void *) &rectangle)
    //    {
       
-   //       this->left = (UNIT_TYPE) rectangle.left;
-   //       this->top = (UNIT_TYPE) rectangle.top;
-   //       this->right = (UNIT_TYPE) rectangle.right;
-   //       this->bottom = (UNIT_TYPE) rectangle.bottom;
+   //       this->left() = (UNIT_TYPE) rectangle.left();
+   //       this->top() = (UNIT_TYPE) rectangle.top();
+   //       this->right() = (UNIT_TYPE) rectangle.right();
+   //       this->bottom() = (UNIT_TYPE) rectangle.bottom();
       
    //    }
       
@@ -94,10 +94,10 @@ public:
    rectangle_type(const ORIGIN_SIZE & originsize) 
    {
       
-      this->left = (UNIT_TYPE) originsize.origin.x;
-      this->top = (UNIT_TYPE) originsize.origin.y;
-      this->right = (UNIT_TYPE) (originsize.origin.x + originsize.size.width);
-      this->bottom = (UNIT_TYPE) (originsize.origin.y + originsize.size.height);
+      this->left() = (UNIT_TYPE) originsize.origin.x;
+      this->top() = (UNIT_TYPE) originsize.origin.y;
+      this->right() = (UNIT_TYPE) (originsize.origin.x + originsize.size.width);
+      this->bottom() = (UNIT_TYPE) (originsize.origin.y + originsize.size.height);
       
       //return *this;
       
@@ -108,8 +108,8 @@ public:
    const auto & origin() const  { return top_left(); }
    const auto & bottom_right() const  { return ((rectangle_type *)this)->bottom_right(); }
    const auto & top_left() const  { return ((rectangle_type *)this)->top_left(); }
-   UNIT_TYPE center_x() const { return (this->left + this->right) / (UNIT_TYPE)2; }
-   UNIT_TYPE center_y() const { return (this->top + this->bottom) / (UNIT_TYPE)2; }
+   UNIT_TYPE center_x() const { return (this->left() + this->right()) / (UNIT_TYPE)2; }
+   UNIT_TYPE center_y() const { return (this->top() + this->bottom()) / (UNIT_TYPE)2; }
    POINT_TYPE center() const  { return POINT_TYPE(center_x(), center_y()); }
 
 
@@ -126,8 +126,8 @@ public:
    rectangle_type & ensure_at_least(const SIZE & size)
    {
 
-      this->right = (UNIT_TYPE)::maximum(this->right, this->left + size.cx());
-      this->bottom = (UNIT_TYPE)::maximum(this->bottom, this->top + size.cy());
+      this->right() = (UNIT_TYPE)::maximum(this->right(), this->left() + size.cx());
+      this->bottom() = (UNIT_TYPE)::maximum(this->bottom(), this->top() + size.cy());
 
       return *this;
 
@@ -138,22 +138,22 @@ public:
    inline ::point_f64 to_point_rate(const POINT & point) const
    {
 
-      return { ((double)point.x() - (double)this->left) / (double)width(),
-         ((double)point.y() - (double)this->top) / (double)height() };
+      return { ((double)point.x() - (double)this->left()) / (double)width(),
+         ((double)point.y() - (double)this->top()) / (double)height() };
 
    }
 
    inline POINT_TYPE from_point_rate(const ::point_f64 & point) const
    {
 
-      return POINT_TYPE((UNIT_TYPE)(point.x() * (double)width() + (double)this->left),
-         (UNIT_TYPE)(point.y() * (double)height() + (double)this->top));
+      return POINT_TYPE((UNIT_TYPE)(point.x() * (double)width() + (double)this->left()),
+         (UNIT_TYPE)(point.y() * (double)height() + (double)this->top()));
 
    }
 
    //void align_outsize_rate(double x, double y, const rectangle_type& rectangle_type);
-   inline POINT_TYPE top_right() const { return POINT_TYPE(this->right, this->top); }
-   inline POINT_TYPE bottom_left() const { return POINT_TYPE(this->left, this->bottom); }
+   inline POINT_TYPE top_right() const { return POINT_TYPE(this->right(), this->top()); }
+   inline POINT_TYPE bottom_left() const { return POINT_TYPE(this->left(), this->bottom()); }
 
    // void assign(const rectangle_type& rectangle_type, enum_orientation eorientation) ;
     //void assign_normal(const rectangle_type& rectangle_type, enum_orientation eorientation) ;
@@ -161,7 +161,7 @@ public:
    UNIT_TYPE minimum_dimension() const  { return ::minimum(width(), height()); }
    UNIT_TYPE maximum_dimension() const  { return ::maximum(width(), height()); }
 
-   UNIT_TYPE max_border() const  { return ::maximum(::maximum(this->top, this->left), ::maximum(this->bottom, this->right)); }
+   UNIT_TYPE max_border() const  { return ::maximum(::maximum(this->top(), this->left()), ::maximum(this->bottom(), this->right())); }
 
    UNIT_TYPE minimum_natural_dimension() const  { return ::minimum(::maximum((UNIT_TYPE)0, width()), ::maximum((UNIT_TYPE)0, height())); }
    UNIT_TYPE maximum_natural_dimension() const  { return ::maximum(::maximum((UNIT_TYPE)0, width()), ::maximum((UNIT_TYPE)0, height())); }
@@ -245,20 +245,20 @@ public:
    }
 
 
-   UNIT_TYPE width() const  { return this->right - this->left; }
-   UNIT_TYPE height() const  { return this->bottom - this->top; }
+   UNIT_TYPE width() const  { return this->right() - this->left(); }
+   UNIT_TYPE height() const  { return this->bottom() - this->top(); }
    SIZE_TYPE size() const  { return SIZE_TYPE(width(), height()); }
 
-   void set_width(UNIT_TYPE cx)  { this->right = this->left + cx; }
-   void set_height(UNIT_TYPE cy)  { this->bottom = this->top + cy; }
+   void set_width(UNIT_TYPE cx)  { this->right() = this->left() + cx; }
+   void set_height(UNIT_TYPE cy)  { this->bottom() = this->top() + cy; }
    void set_size(UNIT_TYPE cx, UNIT_TYPE cy)  { set_width(cx); set_height(cy); }
    void set_size(const SIZE_TYPE & size)  { set_size(size.cx(), size.cy()); }
 
-   rectangle_type & move_top_to(UNIT_TYPE top)  { this->bottom = height() + top; this->top = top; return *this; }
-   rectangle_type & move_left_to(UNIT_TYPE left)  { this->right = width() + left; this->left = left; return *this; }
+   rectangle_type & move_top_to(UNIT_TYPE top)  { this->bottom() = height() + top; this->top() = top; return *this; }
+   rectangle_type & move_left_to(UNIT_TYPE left)  { this->right() = width() + left; this->left() = left; return *this; }
 
-   rectangle_type & move_right_to(UNIT_TYPE right)  { this->left = right - width(); this->right = right; return *this; }
-   rectangle_type & move_bottom_to(UNIT_TYPE bottom)  { this->top = bottom - height(); this->bottom = bottom; return *this; }
+   rectangle_type & move_right_to(UNIT_TYPE right)  { this->left() = right - width(); this->right() = right; return *this; }
+   rectangle_type & move_bottom_to(UNIT_TYPE bottom)  { this->top() = bottom - height(); this->bottom() = bottom; return *this; }
 
    rectangle_type & move_to(UNIT_TYPE left, UNIT_TYPE top)  { move_left_to(left); return move_top_to(top); return *this; }
    rectangle_type & move_to(const POINT_TYPE & point)  { return move_to(point.x(), point.y()); }
@@ -287,10 +287,10 @@ public:
 
    rectangle_type & set_dimension(UNIT_TYPE l, UNIT_TYPE t, UNIT_TYPE w, UNIT_TYPE h) 
    { 
-      this->left = (UNIT_TYPE) l;
-      this->top = (UNIT_TYPE) t;
-      this->right = (UNIT_TYPE) (l + w);
-      this->bottom = (UNIT_TYPE) (t + h);
+      this->left() = (UNIT_TYPE) l;
+      this->top() = (UNIT_TYPE) t;
+      this->right() = (UNIT_TYPE) (l + w);
+      this->bottom() = (UNIT_TYPE) (t + h);
       return *this;
    }
 
@@ -298,21 +298,21 @@ public:
 
    bool is_equal(const rectangle_type & rectangle) const  
    { 
-      return this->left == rectangle.left
-         && this->top == rectangle.top
-         && this->right == rectangle.right
-         && this->bottom == rectangle.bottom;
+      return this->left() == rectangle.left()
+         && this->top() == rectangle.top()
+         && this->right() == rectangle.right()
+         && this->bottom() == rectangle.bottom();
    
    }
 
-   rectangle_type & inflate(UNIT_TYPE x, UNIT_TYPE y)  { this->left -= x; this->right += y; this->top -= x; this->bottom += y; return *this; }
-   rectangle_type & inflate(const SIZE_TYPE & size)  { this->left -= size.cx(); this->right += size.cy(); this->top -= size.cx(); this->bottom += size.cy(); return *this; }
-   rectangle_type & deflate(UNIT_TYPE x, UNIT_TYPE y)  { this->left += x; this->right -= y; this->top += x; this->bottom -= y; return *this; }
-   rectangle_type & deflate(const SIZE_TYPE & size)  { this->left += size.cx(); this->right -= size.cy(); this->top += size.cx(); this->bottom -= size.cy(); return *this; }
+   rectangle_type & inflate(UNIT_TYPE x, UNIT_TYPE y)  { this->left() -= x; this->right() += y; this->top() -= x; this->bottom() += y; return *this; }
+   rectangle_type & inflate(const SIZE_TYPE & size)  { this->left() -= size.cx(); this->right() += size.cy(); this->top() -= size.cx(); this->bottom() += size.cy(); return *this; }
+   rectangle_type & deflate(UNIT_TYPE x, UNIT_TYPE y)  { this->left() += x; this->right() -= y; this->top() += x; this->bottom() -= y; return *this; }
+   rectangle_type & deflate(const SIZE_TYPE & size)  { this->left() += size.cx(); this->right() -= size.cy(); this->top() += size.cx(); this->bottom() -= size.cy(); return *this; }
 
    rectangle_type & offset(UNIT_TYPE x, UNIT_TYPE y)  { return offset_x(x).offset_y(y); }
-   rectangle_type & offset_x(UNIT_TYPE x)  { this->left += x; this->right += x; return *this; }
-   rectangle_type & offset_y(UNIT_TYPE y)  { this->top += y; this->bottom += y; return *this; }
+   rectangle_type & offset_x(UNIT_TYPE x)  { this->left() += x; this->right() += x; return *this; }
+   rectangle_type & offset_y(UNIT_TYPE y)  { this->top() += y; this->bottom() += y; return *this; }
    rectangle_type & inflate(UNIT_TYPE u)  { return inflate(u, u); }
    rectangle_type & deflate(UNIT_TYPE u)  { return deflate(u, u); }
 
@@ -341,17 +341,17 @@ public:
    inline rectangle_type & constrain(rectangle_type & rectangle) const
    {
 
-      if (rectangle.left < this->left)
-         rectangle.left = this->left;
+      if (rectangle.left() < this->left())
+         rectangle.left() = this->left();
 
-      if (rectangle.right < this->right)
-         rectangle.right = this->right;
+      if (rectangle.right() < this->right())
+         rectangle.right() = this->right();
 
-      if (rectangle.top < this->top)
-         rectangle.top = this->top;
+      if (rectangle.top() < this->top())
+         rectangle.top() = this->top();
 
-      if (rectangle.bottom < this->bottom)
-         rectangle.bottom = this->bottom;
+      if (rectangle.bottom() < this->bottom())
+         rectangle.bottom() = this->bottom();
 
       return rectangle;
 
@@ -446,15 +446,15 @@ public:
 
    rectangle_type get_union(const rectangle_type & rect1) const  { rectangle_type rectangle(*this); rectangle.unite(rect1); return *this; }
 
-   rectangle_type left_difference(const rectangle_type& rectangle) const { return { this->left, ::maximum(this->top, rectangle.top), rectangle.left, ::minimum(this->bottom, rectangle.bottom) }; }
-   rectangle_type top_difference(const rectangle_type& rectangle) const { return { ::maximum(this->left, rectangle.left), this->top, ::minimum(this->right, rectangle.right), rectangle.top }; }
-   rectangle_type right_difference(const rectangle_type& rectangle) const { return { this->right, ::maximum(this->top, rectangle.top), rectangle.right, ::minimum(this->bottom, rectangle.bottom) }; }
-   rectangle_type bottom_difference(const rectangle_type& rectangle) const { return { ::maximum(this->left, rectangle.left), this->bottom, ::minimum(this->right, rectangle.right), rectangle.bottom }; }
+   rectangle_type left_difference(const rectangle_type& rectangle) const { return { this->left(), ::maximum(this->top(), rectangle.top()), rectangle.left(), ::minimum(this->bottom(), rectangle.bottom()) }; }
+   rectangle_type top_difference(const rectangle_type& rectangle) const { return { ::maximum(this->left(), rectangle.left()), this->top(), ::minimum(this->right(), rectangle.right()), rectangle.top() }; }
+   rectangle_type right_difference(const rectangle_type& rectangle) const { return { this->right(), ::maximum(this->top(), rectangle.top()), rectangle.right(), ::minimum(this->bottom(), rectangle.bottom()) }; }
+   rectangle_type bottom_difference(const rectangle_type& rectangle) const { return { ::maximum(this->left(), rectangle.left()), this->bottom(), ::minimum(this->right(), rectangle.right()), rectangle.bottom() }; }
 
-   rectangle_type left_plus_difference(const rectangle_type& rectangle) const { return { this->left, ::minimum(this->top, rectangle.top), rectangle.left,::maximum(this->bottom, rectangle.bottom) }; }
-   rectangle_type top_plus_difference(const rectangle_type& rectangle) const { return { ::minimum(this->left, rectangle.left), this->top, ::maximum(this->right, rectangle.right), rectangle.top }; }
-   rectangle_type right_plus_difference(const rectangle_type& rectangle) const { return { this->right, ::minimum(this->top, rectangle.top), rectangle.right, ::maximum(this->bottom, rectangle.bottom) }; }
-   rectangle_type bottom_plus_difference(const rectangle_type& rectangle) const { return { ::minimum(this->left, rectangle.left), this->bottom, ::maximum(this->right, rectangle.right), rectangle.bottom }; }
+   rectangle_type left_plus_difference(const rectangle_type& rectangle) const { return { this->left(), ::minimum(this->top(), rectangle.top()), rectangle.left(),::maximum(this->bottom(), rectangle.bottom()) }; }
+   rectangle_type top_plus_difference(const rectangle_type& rectangle) const { return { ::minimum(this->left(), rectangle.left()), this->top(), ::maximum(this->right(), rectangle.right()), rectangle.top() }; }
+   rectangle_type right_plus_difference(const rectangle_type& rectangle) const { return { this->right(), ::minimum(this->top(), rectangle.top()), rectangle.right(), ::maximum(this->bottom(), rectangle.bottom()) }; }
+   rectangle_type bottom_plus_difference(const rectangle_type& rectangle) const { return { ::minimum(this->left(), rectangle.left()), this->bottom(), ::maximum(this->right(), rectangle.right()), rectangle.bottom() }; }
 
    rectangle_type & operator =(const rectangle_type & rectangle)  = default;
 
@@ -465,10 +465,10 @@ public:
    //    if((void *) this != (void *) &rectangle)
    //    {
       
-   //       this->left = (UNIT_TYPE) rectangle.left;
-   //       this->top = (UNIT_TYPE) rectangle.top;
-   //       this->right = (UNIT_TYPE) rectangle.right;
-   //       this->bottom = (UNIT_TYPE) rectangle.bottom;
+   //       this->left() = (UNIT_TYPE) rectangle.left();
+   //       this->top() = (UNIT_TYPE) rectangle.top();
+   //       this->right() = (UNIT_TYPE) rectangle.right();
+   //       this->bottom() = (UNIT_TYPE) rectangle.bottom();
       
    //    }
       
@@ -481,10 +481,10 @@ public:
    // rectangle_type & operator =(const ORIGIN_SIZE & originsize) 
    // {
       
-   //    this->left = (UNIT_TYPE) originsize.origin.x;
-   //    this->top = (UNIT_TYPE) originsize.origin.y;
-   //    this->right = (UNIT_TYPE) originsize.origin.x + originsize.size.width;
-   //    this->bottom = (UNIT_TYPE) originsize.origin.y + originsize.size.height;
+   //    this->left() = (UNIT_TYPE) originsize.origin.x;
+   //    this->top() = (UNIT_TYPE) originsize.origin.y;
+   //    this->right() = (UNIT_TYPE) originsize.origin.x + originsize.size.width;
+   //    this->bottom() = (UNIT_TYPE) originsize.origin.y + originsize.size.height;
       
    //    return *this;
       
@@ -512,25 +512,25 @@ public:
    rectangle_type & operator*=(NUMBER2 n) 
    {
       
-      this->left = (UNIT_TYPE) (this->left * n);
-      this->top = (UNIT_TYPE)(this->top * n);
-      this->right = (UNIT_TYPE)(this->right * n);
-      this->bottom = (UNIT_TYPE)(this->bottom * n);
+      this->left() = (UNIT_TYPE) (this->left() * n);
+      this->top() = (UNIT_TYPE)(this->top() * n);
+      this->right() = (UNIT_TYPE)(this->right() * n);
+      this->bottom() = (UNIT_TYPE)(this->bottom() * n);
 
       return *this;
       
    }
 
 
-//   inline rectangle_type & operator+=(const SHIFT_I32 & shift)  { this->left = (UNIT_TYPE)(this->left + shift.Δx); this->top = (UNIT_TYPE)(this->top + shift.Δy); this->right = (UNIT_TYPE)(this->right + shift.Δx); this->bottom = (UNIT_TYPE)(this->bottom + shift.Δy); return *this; }
-//   inline rectangle_type & operator-=(const SHIFT_I32 & shift)  { this->left = (UNIT_TYPE)(this->left - shift.Δx); this->top = (UNIT_TYPE)(this->top - shift.Δy); this->right = (UNIT_TYPE)(this->right + shift.Δx); this->bottom = (UNIT_TYPE)(this->bottom + shift.Δy); return *this; }
+//   inline rectangle_type & operator+=(const SHIFT_I32 & shift)  { this->left() = (UNIT_TYPE)(this->left() + shift.Δx); this->top() = (UNIT_TYPE)(this->top() + shift.Δy); this->right() = (UNIT_TYPE)(this->right() + shift.Δx); this->bottom() = (UNIT_TYPE)(this->bottom() + shift.Δy); return *this; }
+//   inline rectangle_type & operator-=(const SHIFT_I32 & shift)  { this->left() = (UNIT_TYPE)(this->left() - shift.Δx); this->top() = (UNIT_TYPE)(this->top() - shift.Δy); this->right() = (UNIT_TYPE)(this->right() + shift.Δx); this->bottom() = (UNIT_TYPE)(this->bottom() + shift.Δy); return *this; }
 //
 //
 //   inline rectangle_type & operator()(const SHIFT_I32 & shift)  { return operator +=(shift); }
 //
 //
-//   inline rectangle_type operator+(const SHIFT_I32 & shift)  { return { (UNIT_TYPE)(this->left + shift.Δx), (UNIT_TYPE)(this->top + shift.Δy), (UNIT_TYPE)(this->right + shift.Δx), (UNIT_TYPE)(this->bottom + shift.Δy) }; }
-//   inline rectangle_type operator-(const SHIFT_I32 & shift)  { return { (UNIT_TYPE)(this->left - shift.Δx), (UNIT_TYPE)(this->top - shift.Δy), (UNIT_TYPE)(this->right - shift.Δx), (UNIT_TYPE)(this->bottom - shift.Δy) }; }
+//   inline rectangle_type operator+(const SHIFT_I32 & shift)  { return { (UNIT_TYPE)(this->left() + shift.Δx), (UNIT_TYPE)(this->top() + shift.Δy), (UNIT_TYPE)(this->right() + shift.Δx), (UNIT_TYPE)(this->bottom() + shift.Δy) }; }
+//   inline rectangle_type operator-(const SHIFT_I32 & shift)  { return { (UNIT_TYPE)(this->left() - shift.Δx), (UNIT_TYPE)(this->top() - shift.Δy), (UNIT_TYPE)(this->right() - shift.Δx), (UNIT_TYPE)(this->bottom() - shift.Δy) }; }
 
 
    template < primitive_point POINT >
@@ -603,18 +603,18 @@ public:
    void inflate(const RECTANGLE & rectangle) 
    {
 
-      this->left = (UNIT_TYPE)(this->left - rectangle.left);
-      this->top = (UNIT_TYPE)(this->top - rectangle.top);
-      this->right = (UNIT_TYPE)(this->right + rectangle.right);
-      this->bottom = (UNIT_TYPE)(this->bottom + rectangle.bottom);
+      this->left() = (UNIT_TYPE)(this->left() - rectangle.left());
+      this->top() = (UNIT_TYPE)(this->top() - rectangle.top());
+      this->right() = (UNIT_TYPE)(this->right() + rectangle.right());
+      this->bottom() = (UNIT_TYPE)(this->bottom() + rectangle.bottom());
 
    }
 
    void inflate(UNIT_TYPE l, UNIT_TYPE t, UNIT_TYPE r, UNIT_TYPE b)  {
-      this->left = (UNIT_TYPE)(this->left - l);
-      this->top = (UNIT_TYPE)(this->top - t);
-      this->right = (UNIT_TYPE)(this->right + r);
-      this->bottom = (UNIT_TYPE)(this->bottom + b);
+      this->left() = (UNIT_TYPE)(this->left() - l);
+      this->top() = (UNIT_TYPE)(this->top() - t);
+      this->right() = (UNIT_TYPE)(this->right() + r);
+      this->bottom() = (UNIT_TYPE)(this->bottom() + b);
    }
 
 
@@ -622,19 +622,19 @@ public:
    void deflate(const RECTANGLE & rectangle) 
    {
 
-      this->left = (UNIT_TYPE)(this->left + rectangle.left);
-      this->top = (UNIT_TYPE)(this->top + rectangle.top);
-      this->right = (UNIT_TYPE)(this->right - rectangle.right);
-      this->bottom = (UNIT_TYPE)(this->bottom - rectangle.bottom);
+      this->left() = (UNIT_TYPE)(this->left() + rectangle.left());
+      this->top() = (UNIT_TYPE)(this->top() + rectangle.top());
+      this->right() = (UNIT_TYPE)(this->right() - rectangle.right());
+      this->bottom() = (UNIT_TYPE)(this->bottom() - rectangle.bottom());
 
    }
 
    void deflate(UNIT_TYPE l, UNIT_TYPE t, UNIT_TYPE r, UNIT_TYPE b) 
    {
-      this->left = (UNIT_TYPE)(this->left + l);
-      this->top = (UNIT_TYPE)(this->top + t);
-      this->right = (UNIT_TYPE)(this->right - r);
-      this->bottom = (UNIT_TYPE)(this->bottom - b);
+      this->left() = (UNIT_TYPE)(this->left() + l);
+      this->top() = (UNIT_TYPE)(this->top() + t);
+      this->right() = (UNIT_TYPE)(this->right() - r);
+      this->bottom() = (UNIT_TYPE)(this->bottom() - b);
    }
 
 
@@ -660,13 +660,13 @@ public:
 
       UNIT_TYPE h = (UNIT_TYPE)(d * height());
 
-      this->left = point.x() - w / 2;
+      this->left() = point.x() - w / 2;
 
-      this->right = this->left + w;
+      this->right() = this->left() + w;
 
-      this->top = point.y() - h / 2;
+      this->top() = point.y() - h / 2;
 
-      this->bottom = this->top + h;
+      this->bottom() = this->top() + h;
 
    }
 
@@ -675,10 +675,10 @@ public:
    {
 
       return rectangle_type(
-         (UNIT_TYPE)(this->left * d),
-         (UNIT_TYPE)(this->top * d),
-         (UNIT_TYPE)(this->right * d),
-         (UNIT_TYPE)(this->bottom * d));
+         (UNIT_TYPE)(this->left() * d),
+         (UNIT_TYPE)(this->top() * d),
+         (UNIT_TYPE)(this->right() * d),
+         (UNIT_TYPE)(this->bottom() * d));
 
    }
 
@@ -691,14 +691,14 @@ public:
       double dyNew = Δy / dRate;
       Δx = Δx - dxNew;
       Δy = Δy - dyNew;
-      this->right -= (long)Δx;
-      this->bottom -= (long)Δy;
+      this->right() -= (long)Δx;
+      this->bottom() -= (long)Δy;
    }
 
    void SetBottomRightSize(UNIT_TYPE iWidth, UNIT_TYPE iHeight)
    {
-      this->right = this->left + iWidth;
-      this->bottom = this->top + iHeight;
+      this->right() = this->left() + iWidth;
+      this->bottom() = this->top() + iHeight;
    }
 
 
@@ -720,10 +720,10 @@ public:
       UNIT_TYPE cw = (UNIT_TYPE)(cx * dr);
       UNIT_TYPE ch = (UNIT_TYPE)(cy * dr);
 
-      this->left = (UNIT_TYPE)((Δx - cw) / 2.0);
-      this->top = (UNIT_TYPE)((Δy - ch) / 2.0);
-      this->right = this->left + cw;
-      this->bottom = this->top + ch;
+      this->left() = (UNIT_TYPE)((Δx - cw) / 2.0);
+      this->top() = (UNIT_TYPE)((Δy - ch) / 2.0);
+      this->right() = this->left() + cw;
+      this->bottom() = this->top() + ch;
 
    }
 
@@ -740,10 +740,10 @@ public:
       UNIT_TYPE cw = cx == 0 ? (UNIT_TYPE)Δx : ((UNIT_TYPE)(cx * dr));
       UNIT_TYPE ch = cy == 0 ? (UNIT_TYPE)Δy : ((UNIT_TYPE)(cy * dr));
 
-      this->left = (UNIT_TYPE)((rectangle.left) + (Δx - cw) / 2.0);
-      this->top = (UNIT_TYPE)((rectangle.top) + (Δy - ch) / 2.0);
-      this->right = this->left + cw;
-      this->bottom = this->top + ch;
+      this->left() = (UNIT_TYPE)((rectangle.left()) + (Δx - cw) / 2.0);
+      this->top() = (UNIT_TYPE)((rectangle.top()) + (Δy - ch) / 2.0);
+      this->right() = this->left() + cw;
+      this->bottom() = this->top() + ch;
 
    }
 
@@ -763,10 +763,10 @@ public:
       UNIT_TYPE Δx = ::width(rectangle);
       UNIT_TYPE Δy = ::height(rectangle);
 
-      this->left = rectangle.left + (Δx - cx) / 2;
-      this->top = rectangle.top + (Δy - cy) / 2;
-      this->right = this->left + cx;
-      this->bottom = this->top + cy;
+      this->left() = rectangle.left() + (Δx - cx) / 2;
+      this->top() = rectangle.top() + (Δy - cy) / 2;
+      this->right() = this->left() + cx;
+      this->bottom() = this->top() + cy;
 
    }
 
@@ -781,10 +781,10 @@ public:
    void ScaleRect(double Δx, double Δy, UNIT_TYPE ix, UNIT_TYPE iy)
    {
 
-      this->left = (UNIT_TYPE)(((this->left - ix) * Δx) + ix);
-      this->top = (UNIT_TYPE)(((this->top - iy) * Δy) + iy);
-      this->right = (UNIT_TYPE)(((this->right - ix) * Δx) + ix);
-      this->bottom = (UNIT_TYPE)(((this->bottom - iy) * Δy) + iy);
+      this->left() = (UNIT_TYPE)(((this->left() - ix) * Δx) + ix);
+      this->top() = (UNIT_TYPE)(((this->top() - iy) * Δy) + iy);
+      this->right() = (UNIT_TYPE)(((this->right() - ix) * Δx) + ix);
+      this->bottom() = (UNIT_TYPE)(((this->bottom() - iy) * Δy) + iy);
 
    }
 
@@ -809,38 +809,38 @@ public:
       if ((ealign & e_align_horizontal) == e_align_horizontal_center)
       {
 
-         point.x() = rectangle.left + (rectangle.right - rectangle.left) / 2 - width() / 2 - this->left;
+         point.x() = rectangle.left() + (rectangle.right() - rectangle.left()) / 2 - width() / 2 - this->left();
 
       }
       else if ((ealign & e_align_horizontal) == e_align_left)
       {
 
-         point.x() = rectangle.left - this->left;
+         point.x() = rectangle.left() - this->left();
 
       }
       else if ((ealign & e_align_horizontal) == e_align_right)
       {
 
-         point.x() = rectangle.right - this->right;
+         point.x() = rectangle.right() - this->right();
 
       }
 
       if ((ealign & e_align_vertical) == e_align_vertical_center)
       {
 
-         point.y() = rectangle.top + (rectangle.bottom - rectangle.top) / 2 - height() / 2 - this->top;
+         point.y() = rectangle.top() + (rectangle.bottom() - rectangle.top()) / 2 - height() / 2 - this->top();
 
       }
       else if ((ealign & e_align_vertical) == e_align_top)
       {
 
-         point.y() = rectangle.top - this->top;
+         point.y() = rectangle.top() - this->top();
 
       }
       else if ((ealign & e_align_vertical) == e_align_bottom)
       {
 
-         point.y() = rectangle.bottom - this->bottom;
+         point.y() = rectangle.bottom() - this->bottom();
 
       }
 
@@ -873,7 +873,7 @@ public:
 
          dRate -= 1000.0;
 
-         double x = rectangle.right + width() * dRate;
+         double x = rectangle.right() + width() * dRate;
 
          move_left_to((UNIT_TYPE)x);
 
@@ -883,7 +883,7 @@ public:
 
          dRate += 1000.0;
 
-         double x = rectangle.left + width() * dRate;
+         double x = rectangle.left() + width() * dRate;
 
          move_left_to((UNIT_TYPE)(x - width()));
 
@@ -906,7 +906,7 @@ public:
 
          dRate -= 1000.0;
 
-         double y = rectangle.bottom + height() * dRate;
+         double y = rectangle.bottom() + height() * dRate;
 
          move_top_to((UNIT_TYPE)y);
 
@@ -917,7 +917,7 @@ public:
 
          dRate += 1000.0;
 
-         double y = rectangle.top + height() * dRate;
+         double y = rectangle.top() + height() * dRate;
 
          move_top_to((UNIT_TYPE)(y - height()));
 
@@ -978,7 +978,7 @@ public:
 
       UNIT_TYPE x;
 
-      x = (UNIT_TYPE)(rectangle.left + (rectangle.right - rectangle.left - width()) * ((dRate + 1.0) / 2.0));
+      x = (UNIT_TYPE)(rectangle.left() + (rectangle.right() - rectangle.left() - width()) * ((dRate + 1.0) / 2.0));
 
       move_left_to(x);
 
@@ -990,7 +990,7 @@ public:
 
       UNIT_TYPE y;
 
-      y = (UNIT_TYPE)(rectangle.top + (rectangle.bottom - rectangle.top - height()) * ((dRate + 1.0) / 2.0));
+      y = (UNIT_TYPE)(rectangle.top() + (rectangle.bottom() - rectangle.top() - height()) * ((dRate + 1.0) / 2.0));
 
       move_top_to(y);
 
@@ -999,19 +999,19 @@ public:
 
    void _005Constrain(const rectangle_type & rectangle, const SIZE_TYPE & sizeMin)
    {
-      if (this->left < rectangle.left)
-         this->left = rectangle.left;
-      if (this->right > rectangle.right)
-         this->right = rectangle.right;
-      if (this->top < rectangle.top)
-         this->top = rectangle.top;
-      if (this->bottom > rectangle.bottom)
-         this->bottom = rectangle.bottom;
+      if (this->left() < rectangle.left())
+         this->left() = rectangle.left();
+      if (this->right() > rectangle.right())
+         this->right() = rectangle.right();
+      if (this->top() < rectangle.top())
+         this->top() = rectangle.top();
+      if (this->bottom() > rectangle.bottom())
+         this->bottom() = rectangle.bottom();
 
       if (width() < sizeMin.cx())
-         this->right = this->left + sizeMin.cx();
+         this->right() = this->left() + sizeMin.cx();
       if (height() < sizeMin.cy())
-         this->bottom = this->top + sizeMin.cy();
+         this->bottom() = this->top() + sizeMin.cy();
 
    }
 
@@ -1029,16 +1029,16 @@ public:
       else if (intersect_x(*this, rectangle))
       {
 
-         if (this->left == rectangle.left)
+         if (this->left() == rectangle.left())
          {
 
-            this->right = this->left + size.cx();
+            this->right() = this->left() + size.cx();
 
          }
          else
          {
 
-            this->left = this->right - size.cx();
+            this->left() = this->right() - size.cx();
 
          }
 
@@ -1053,16 +1053,16 @@ public:
       else if (intersect_y(*this, rectangle))
       {
 
-         if (this->top == rectangle.top)
+         if (this->top() == rectangle.top())
          {
 
-            this->bottom = this->top + size.cy();
+            this->bottom() = this->top() + size.cy();
 
          }
          else
          {
 
-            this->top = this->bottom - size.cy();
+            this->top() = this->bottom() - size.cy();
 
          }
 
@@ -1084,17 +1084,17 @@ public:
    void _001ConstrainX(const rectangle_type & rectangle)
    {
 
-      if (this->right > rectangle.right)
+      if (this->right() > rectangle.right())
       {
 
-         offset_x(rectangle.right - this->right);
+         offset_x(rectangle.right() - this->right());
 
       }
 
-      if (this->left < rectangle.left)
+      if (this->left() < rectangle.left())
       {
 
-         offset_x(rectangle.left - this->left);
+         offset_x(rectangle.left() - this->left());
 
       }
 
@@ -1104,17 +1104,17 @@ public:
    void _001ConstrainY(const rectangle_type & rectangle)
    {
 
-      if (this->bottom > rectangle.bottom)
+      if (this->bottom() > rectangle.bottom())
       {
 
-         offset_y(rectangle.bottom - this->bottom);
+         offset_y(rectangle.bottom() - this->bottom());
 
       }
 
-      if (this->top < rectangle.top)
+      if (this->top() < rectangle.top())
       {
 
-         offset_y(rectangle.top - this->top);
+         offset_y(rectangle.top() - this->top());
 
       }
 
@@ -1136,10 +1136,10 @@ public:
    void _001ConstrainX(const rectangle_type & rectangle, RECTANGLE & rectangleBounding)
    {
 
-      if (rectangleBounding.right > rectangle.right)
+      if (rectangleBounding.right() > rectangle.right())
       {
 
-         auto xOffset = rectangle.right - rectangleBounding.right;
+         auto xOffset = rectangle.right() - rectangleBounding.right();
 
          ::x_offset(rectangleBounding, xOffset);
 
@@ -1147,10 +1147,10 @@ public:
 
       }
 
-      if (rectangleBounding.left < rectangle.left)
+      if (rectangleBounding.left() < rectangle.left())
       {
 
-         auto xOffset = rectangle.left - rectangleBounding.left;
+         auto xOffset = rectangle.left() - rectangleBounding.left();
 
          ::x_offset(rectangleBounding, xOffset);
 
@@ -1165,10 +1165,10 @@ public:
    void _001ConstrainY(const rectangle_type & rectangle, RECTANGLE & rectangleBounding)
    {
 
-      if (rectangleBounding.bottom > rectangle.bottom)
+      if (rectangleBounding.bottom() > rectangle.bottom())
       {
 
-         auto yOffset = rectangle.bottom - rectangleBounding.bottom;
+         auto yOffset = rectangle.bottom() - rectangleBounding.bottom();
 
          ::y_offset(rectangleBounding, yOffset);
 
@@ -1176,10 +1176,10 @@ public:
 
       }
 
-      if (rectangleBounding.top < rectangle.top)
+      if (rectangleBounding.top() < rectangle.top())
       {
 
-         auto yOffset = rectangle.top - rectangleBounding.top;
+         auto yOffset = rectangle.top() - rectangleBounding.top();
 
          ::y_offset(rectangleBounding, yOffset);
 
@@ -1192,10 +1192,10 @@ public:
    template < primitive_rectangle RECTANGLE >
    bool contains(const RECTANGLE & rectangle) const
    {
-      return rectangle.left >= this->left
-         && rectangle.right <= this->right
-         && rectangle.top >= this->top
-         && rectangle.bottom <= this->bottom;
+      return rectangle.left() >= this->left()
+         && rectangle.right() <= this->right()
+         && rectangle.top() >= this->top()
+         && rectangle.bottom() <= this->bottom();
    }
 
    // Subtract minor from major and return the greatest box around.
@@ -1220,28 +1220,28 @@ public:
          else
          {
 
-            if (rectangleIntersect.left == rectangleMajor.left
-               && rectangleIntersect.right == rectangleMajor.right)
+            if (rectangleIntersect.left() == rectangleMajor.left()
+               && rectangleIntersect.right() == rectangleMajor.right())
             {
 
-               if (rectangleIntersect.top == rectangleMajor.top)
+               if (rectangleIntersect.top() == rectangleMajor.top())
                {
 
                   ::assign(rectangleRet,
-                     rectangleMajor.left,
-                     rectangleIntersect.top,
-                     rectangleMajor.right,
-                     rectangleMajor.bottom);
+                     rectangleMajor.left(),
+                     rectangleIntersect.top(),
+                     rectangleMajor.right(),
+                     rectangleMajor.bottom());
 
                }
-               else if (rectangleIntersect.bottom == rectangleMajor.bottom)
+               else if (rectangleIntersect.bottom() == rectangleMajor.bottom())
                {
 
                   ::assign(rectangleRet,
-                     rectangleMajor.left,
-                     rectangleMajor.top,
-                     rectangleMajor.right,
-                     rectangleIntersect.bottom);
+                     rectangleMajor.left(),
+                     rectangleMajor.top(),
+                     rectangleMajor.right(),
+                     rectangleIntersect.bottom());
 
                }
                else
@@ -1252,28 +1252,28 @@ public:
                }
 
             }
-            else if (rectangleIntersect.top == rectangleMajor.top
-               && rectangleIntersect.bottom == rectangleMajor.bottom)
+            else if (rectangleIntersect.top() == rectangleMajor.top()
+               && rectangleIntersect.bottom() == rectangleMajor.bottom())
             {
 
-               if (rectangleIntersect.left == rectangleMajor.left)
+               if (rectangleIntersect.left() == rectangleMajor.left())
                {
 
                   rectangleRet.set(
-                     rectangleIntersect.left,
-                     rectangleMajor.top,
-                     rectangleMajor.right,
-                     rectangleMajor.bottom);
+                     rectangleIntersect.left(),
+                     rectangleMajor.top(),
+                     rectangleMajor.right(),
+                     rectangleMajor.bottom());
 
                }
-               else if (rectangleIntersect.right == rectangleMajor.right)
+               else if (rectangleIntersect.right() == rectangleMajor.right())
                {
 
                   rectangleRet.set(
-                     rectangleMajor.left,
-                     rectangleMajor.top,
-                     rectangleIntersect.right,
-                     rectangleMajor.bottom);
+                     rectangleMajor.left(),
+                     rectangleMajor.top(),
+                     rectangleIntersect.right(),
+                     rectangleMajor.bottom());
 
                }
                else
@@ -1391,15 +1391,15 @@ public:
       if (eorientation == e_orientation_horizontal)
       {
 
-         this->left = rectangle.left;
-         this->right = rectangle.right;
+         this->left() = rectangle.left();
+         this->right() = rectangle.right();
 
       }
       else if (eorientation == e_orientation_vertical)
       {
 
-         this->top = rectangle.top;
-         this->bottom = rectangle.bottom;
+         this->top() = rectangle.top();
+         this->bottom() = rectangle.bottom();
 
       }
 
@@ -1412,15 +1412,15 @@ public:
       if (eorientation == e_orientation_horizontal)
       {
 
-         this->top = rectangle.top;
-         this->bottom = rectangle.bottom;
+         this->top() = rectangle.top();
+         this->bottom() = rectangle.bottom();
 
       }
       else if (eorientation == e_orientation_vertical)
       {
 
-         this->left = rectangle.left;
-         this->right = rectangle.right;
+         this->left() = rectangle.left();
+         this->right() = rectangle.right();
 
       }
 
@@ -1463,10 +1463,10 @@ public:
    void maximum_minimum()
    {
 
-      ::maximum(this->left);
-      ::maximum(this->top);
-      ::minimum(this->right);
-      ::minimum(this->bottom);
+      ::maximum(this->left());
+      ::maximum(this->top());
+      ::minimum(this->right());
+      ::minimum(this->bottom());
 
    }
    
@@ -1474,10 +1474,10 @@ public:
    void expand_bounding_box(POINT_TYPE & top_left, POINT_TYPE & bottom_right) const
    {
       
-      expand_minimum_maximum(top_left.x(), bottom_right.x(), this->left);
-      expand_minimum_maximum(top_left.y(), bottom_right.y(), this->top);
-      expand_minimum_maximum(top_left.x(), bottom_right.x(), this->right);
-      expand_minimum_maximum(top_left.y(), bottom_right.y(), this->bottom);
+      expand_minimum_maximum(top_left.x(), bottom_right.x(), this->left());
+      expand_minimum_maximum(top_left.y(), bottom_right.y(), this->top());
+      expand_minimum_maximum(top_left.x(), bottom_right.x(), this->right());
+      expand_minimum_maximum(top_left.y(), bottom_right.y(), this->bottom());
 
    }
 
@@ -1503,9 +1503,9 @@ template < primitive_number NUMBER >
 inline void rectangle_type < NUMBER >::normalize() 
 {
 
-   __sort(this->left, this->right);
+   __sort(this->left(), this->right());
 
-   __sort(this->top, this->bottom);
+   __sort(this->top(), this->bottom());
 
 }
 
@@ -1570,10 +1570,10 @@ inline rectangle_f64 rectangle_f64_dimension(X x, Y y, W w, H h)
 //rectangle_type muldiv(NUMERATOR numerator, DENOMINATOR denominator) const 
 //{
 //   return rectangle_type(
-//      ::muldiv(this->left, numerator, denominator),
-//      ::muldiv(this->top, numerator, denominator),
-//      ::muldiv(this->right, numerator, denominator),
-//      ::muldiv(this->bottom, numerator, denominator)
+//      ::muldiv(this->left(), numerator, denominator),
+//      ::muldiv(this->top(), numerator, denominator),
+//      ::muldiv(this->right(), numerator, denominator),
+//      ::muldiv(this->bottom(), numerator, denominator)
 //   );
 //}
 //

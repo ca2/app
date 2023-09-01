@@ -64,7 +64,7 @@ namespace html
 
          auto pstyle = __create_new < class style >();
 
-         string strStyle = str.left(range.m_begin - pszStart);
+         string strStyle = str.left()(range.m_begin - pszStart);
 
          if(*range.m_begin == '.')
          {
@@ -102,7 +102,7 @@ namespace html
             {
                range.m_begin++;
             }
-            pstyle->m_strName = str.left(range.m_begin - pszStart);
+            pstyle->m_strName = str.left()(range.m_begin - pszStart);
             if(*range.m_begin == ':')
             {
                str = str.substr(range.m_begin - pszStart + 1);

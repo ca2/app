@@ -54,10 +54,10 @@ template < primitive_rectangle RECTANGLE >
 inline binary_stream & operator << (binary_stream & s, const RECTANGLE & rectangle)
 {
 
-   s << rectangle.left;
-   s << rectangle.top;
-   s << rectangle.right;
-   s << rectangle.bottom;
+   s << rectangle.left();
+   s << rectangle.top();
+   s << rectangle.right();
+   s << rectangle.bottom();
 
    return s;
 
@@ -68,10 +68,10 @@ template < primitive_rectangle RECTANGLE >
 inline binary_stream & operator >> (binary_stream & s, RECTANGLE & rectangle)
 {
 
-   s >> rectangle.left;
-   s >> rectangle.top;
-   s >> rectangle.right;
-   s >> rectangle.bottom;
+   s >> rectangle.left();
+   s >> rectangle.top();
+   s >> rectangle.right();
+   s >> rectangle.bottom();
 
    return s;
 

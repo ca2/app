@@ -189,9 +189,9 @@ namespace user
 
             //pgraphics->draw_text(strText, rectangleX, ealign, edrawtext);
 
-            //m_rectangleTextBoundingBox.left = 0;
+            //m_rectangleTextBoundingBox.left() = 0;
 
-            //m_rectangleTextBoundingBox.top = 0;
+            //m_rectangleTextBoundingBox.top() = 0;
 
             //m_rectangleTextBoundingBox.set_size(pgraphics->get_text_extent(strText));
 
@@ -501,8 +501,8 @@ namespace user
 
          ::rectangle_i32 rectangle(0, 0, 0, 0);
 
-         rectangle.right = ::i32(size.cx() * 1.6);
-         rectangle.bottom = ::i32(size.cy() * 1.4);
+         rectangle.right() = ::i32(size.cx() * 1.6);
+         rectangle.bottom() = ::i32(size.cy() * 1.4);
 
          const_layout().sketch().size() = rectangle.size();
 
@@ -746,13 +746,13 @@ namespace user
 
          //::rectangle_i32 rectangle;
 
-         //rectangle.left = (::i32)(rectangleX.left + (rectangleX.width() - sizeText.cx()) / 2);
+         //rectangle.left() = (::i32)(rectangleX.left() + (rectangleX.width() - sizeText.cx()) / 2);
 
-         //rectangle.top = (::i32)(rectangleX.top + (rectangleX.height() - sizeText.cy()) / 2);
+         //rectangle.top() = (::i32)(rectangleX.top() + (rectangleX.height() - sizeText.cy()) / 2);
 
-         //rectangle.right = (::i32)(rectangle.left + sizeText.cx());
+         //rectangle.right() = (::i32)(rectangle.left() + sizeText.cx());
 
-         //rectangle.bottom = (::i32)(rectangle.top + sizeText.cy());
+         //rectangle.bottom() = (::i32)(rectangle.top() + sizeText.cy());
 
          //m_rectangleText = rectangle;
 
@@ -887,9 +887,9 @@ namespace user
 
       }
 
-//      rectangleX.left += 3;
+//      rectangleX.left() += 3;
 //
-//      rectangleX.top += 3;
+//      rectangleX.top() += 3;
 
       //::rectangle_i32 rectangleText = m_rectangleText;
 
@@ -903,8 +903,8 @@ namespace user
          ::rectangle_i32 rectangleDib;
 
          rectangleDib = rectangleText;
-         rectangleDib.bottom = minimum(rectangleText.top + m_pimage->height(), rectangleText.bottom);
-         rectangleDib.right = minimum(rectangleText.left + m_pimage->width(), rectangleText.right);
+         rectangleDib.bottom() = minimum(rectangleText.top() + m_pimage->height(), rectangleText.bottom());
+         rectangleDib.right() = minimum(rectangleText.left() + m_pimage->width(), rectangleText.right());
          //m_pimage->to(pgraphics, rectangleDib);
 
          {
@@ -921,7 +921,7 @@ namespace user
 
          }
 
-         rectangleText.left += m_pimage->width();
+         rectangleText.left() += m_pimage->width();
 
       }
 
@@ -1086,9 +1086,9 @@ namespace user
 
          ::rectangle_i32 rectangleAspect;
 
-         rectangleAspect.left = 0;
+         rectangleAspect.left() = 0;
 
-         rectangleAspect.top = 0;
+         rectangleAspect.top() = 0;
 
          double dW = (double)rectangleX.width() / (double)pimage->width();
 
@@ -1096,9 +1096,9 @@ namespace user
 
          double dMin = maximum(minimum(dW, dH), 1.0);
 
-         rectangleAspect.right = (::i32) (pimage->width() * dMin);
+         rectangleAspect.right() = (::i32) (pimage->width() * dMin);
 
-         rectangleAspect.bottom = (::i32) (pimage->height() * dMin);
+         rectangleAspect.bottom() = (::i32) (pimage->height() * dMin);
 
          rectangleAspect.Align(e_align_center, rectangleX);
 

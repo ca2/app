@@ -140,7 +140,7 @@ namespace simple_ui
       //client_to_screen(rectangleX);
       rgn->create_rect(rectangleX);
 
-      double left = rectangleX.left;
+      double left = rectangleX.left();
 
       //   pgraphics->SelectClipRgn(&rgn);
 
@@ -166,15 +166,15 @@ namespace simple_ui
       ppenCaret->create_solid(1.0,argb(255,0,0,0));
 
 
-      /*   rectangleX.top = m_point.y();
-      rectangleX.left = m_point.x();
-      rectangleX.bottom = rectangleX.top + m_size.cy();
-      rectangleX.right = rectangleX.left + m_size.cx();*/
+      /*   rectangleX.top() = m_point.y();
+      rectangleX.left() = m_point.x();
+      rectangleX.bottom() = rectangleX.top() + m_size.cy();
+      rectangleX.right() = rectangleX.left() + m_size.cx();*/
       //      pgraphics->fill_rectangle(rectangleX, crBk);
 
 //
 
-      double y = rectangleX.top;
+      double y = rectangleX.top();
       _001GetImpactSel(iSelStart,iSelEnd);
       strsize iCursor = iSelEnd;
       __sort(iSelStart,iSelEnd);

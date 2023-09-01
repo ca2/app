@@ -1977,7 +1977,7 @@ end:
       if (find < 0)
          return find;
 
-      str = element_at(find).left(element_at(find).length() - strlen(pcsz));
+      str = element_at(find).left()(element_at(find).length() - strlen(pcsz));
 
       return find;
 
@@ -2285,7 +2285,7 @@ end:
       if (find < 0)
          return find;
 
-      str = element_at(find).left(element_at(find).length() - strlen(pcsz));
+      str = element_at(find).left()(element_at(find).length() - strlen(pcsz));
 
       return find;
 
@@ -2302,7 +2302,7 @@ end:
       if (find < 0)
          return find;
 
-      str = element_at(find).left(element_at(find).length() - strlen(pcsz));
+      str = element_at(find).left()(element_at(find).length() - strlen(pcsz));
 
       return find;
 

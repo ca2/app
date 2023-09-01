@@ -65,7 +65,7 @@ namespace draw2d
 //         if(pglyph != nullptr)
 
 //         {
-//            pointOffset.x() = ::i32(pgraphics->get_text_extent(str.left(i)).cx());
+//            pointOffset.x() = ::i32(pgraphics->get_text_extent(str.left()(i)).cx());
 //            pglyph->DrawGlyph(
 
 //               pgraphics,
@@ -394,7 +394,7 @@ namespace draw2d
       switch(iEffect)
       {
       case EffectSimple:
-         simple_text_out(pgraphics, rectangle.left, rectangle.top, str, piCharsPositions, iCharsPositions);
+         simple_text_out(pgraphics, rectangle.left(), rectangle.top(), str, piCharsPositions, iCharsPositions);
 
          break;
       case EffectEmbossed:

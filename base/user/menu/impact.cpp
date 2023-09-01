@@ -303,13 +303,13 @@ namespace user
          iSep++;
       }
 
-      rectangleMenuItem.top = (::i32)( y + (iMenuItemIndex + iSep) * iHeight);
+      rectangleMenuItem.top() = (::i32)( y + (iMenuItemIndex + iSep) * iHeight);
 
-      rectangleMenuItem.bottom = rectangleMenuItem.top + iHeight;
+      rectangleMenuItem.bottom() = rectangleMenuItem.top() + iHeight;
 
-      rectangleMenuItem.left = x;
+      rectangleMenuItem.left() = x;
 
-      rectangleMenuItem.right = x + w;
+      rectangleMenuItem.right() = x + w;
 
       rectangleMenuItem.m_estatus = ::success;
 
@@ -462,7 +462,7 @@ namespace user
 
       //   pgraphics->set_text_color(argb(255, 0, 0, 0));
 
-      //   pgraphics->text_out(statusrectangleMenu.left + 10, statusrectangleMenu.top + 5, strTitle);
+      //   pgraphics->text_out(statusrectangleMenu.left() + 10, statusrectangleMenu.top() + 5, strTitle);
 
       //   iPos++;
 
@@ -539,7 +539,7 @@ namespace user
 
       //         }
 
-      //         pgraphics->text_out(rectangle.left + 10, rectangle.top + 5, strItem);
+      //         pgraphics->text_out(rectangle.left() + 10, rectangle.top() + 5, strItem);
 
       //         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
@@ -550,8 +550,8 @@ namespace user
 
       //            pgraphics->set(m_ppenBkSel);
 
-      //            pgraphics->set_current_point(rectangle.left + 1, rectangle.top);
-      //            pgraphics->line_to(rectangle.left + 1, rectangle.bottom - 1);
+      //            pgraphics->set_current_point(rectangle.left() + 1, rectangle.top());
+      //            pgraphics->line_to(rectangle.left() + 1, rectangle.bottom() - 1);
 
       //            pimage1 = m_pimageMap[strId];
 
@@ -568,8 +568,8 @@ namespace user
 
       //            ::rectangle_i32 rectangleDib;
 
-      //            rectangleDib.left = rectangle.right - pimage1->width() - 10;
-      //            rectangleDib.top = rectangle.top + (rectangle.height() - pimage1->height()) / 2;
+      //            rectangleDib.left() = rectangle.right() - pimage1->width() - 10;
+      //            rectangleDib.top() = rectangle.top() + (rectangle.height() - pimage1->height()) / 2;
       //            rectangleDib.set_size(pimage1->width(), pimage1->height());
 
       //            image_source imagesource(pimage1);
@@ -791,13 +791,13 @@ namespace user
    void menu_impact::draw_border_rectangle(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle)
    {
 
-      pgraphics->set_current_point(rectangle.left, rectangle.top);
+      pgraphics->set_current_point(rectangle.left(), rectangle.top());
 
-      pgraphics->line_to(rectangle.right, rectangle.top);
+      pgraphics->line_to(rectangle.right(), rectangle.top());
 
-      pgraphics->set_current_point(rectangle.left, rectangle.bottom);
+      pgraphics->set_current_point(rectangle.left(), rectangle.bottom());
 
-      pgraphics->line_to(rectangle.right, rectangle.bottom);
+      pgraphics->line_to(rectangle.right(), rectangle.bottom());
 
    }
 
@@ -816,13 +816,13 @@ namespace user
 
       pgraphics->fill_rectangle(rectangle, argb(255, 240, 240, 240));
 
-      pgraphics->set_current_point(rectangle.left, rectangle.top);
+      pgraphics->set_current_point(rectangle.left(), rectangle.top());
 
-      pgraphics->line_to(rectangle.left, rectangle.bottom);
+      pgraphics->line_to(rectangle.left(), rectangle.bottom());
 
-      pgraphics->set_current_point(rectangle.right, rectangle.top);
+      pgraphics->set_current_point(rectangle.right(), rectangle.top());
 
-      pgraphics->line_to(rectangle.right, rectangle.bottom);
+      pgraphics->line_to(rectangle.right(), rectangle.bottom());
 
 
 
@@ -833,13 +833,13 @@ namespace user
    void menu_impact::draw_item_rectangle(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle)
    {
 
-      pgraphics->set_current_point(rectangle.left, rectangle.top);
+      pgraphics->set_current_point(rectangle.left(), rectangle.top());
 
-      pgraphics->line_to(rectangle.left, rectangle.bottom);
+      pgraphics->line_to(rectangle.left(), rectangle.bottom());
 
-      pgraphics->set_current_point(rectangle.right, rectangle.top);
+      pgraphics->set_current_point(rectangle.right(), rectangle.top());
 
-      pgraphics->line_to(rectangle.right, rectangle.bottom);
+      pgraphics->line_to(rectangle.right(), rectangle.bottom());
 
 
    }
@@ -851,15 +851,15 @@ namespace user
       pgraphics->fill_rectangle(rectangle);
 
 
-      pgraphics->set_current_point(rectangle.left, rectangle.top);
+      pgraphics->set_current_point(rectangle.left(), rectangle.top());
 
-      pgraphics->line_to(rectangle.left, rectangle.bottom);
+      pgraphics->line_to(rectangle.left(), rectangle.bottom());
 
 
 
-      pgraphics->set_current_point(rectangle.right, rectangle.top);
+      pgraphics->set_current_point(rectangle.right(), rectangle.top());
 
-      pgraphics->line_to(rectangle.right, rectangle.bottom);
+      pgraphics->line_to(rectangle.right(), rectangle.bottom());
 
 
    }
@@ -870,29 +870,29 @@ namespace user
 
       pgraphics->fill_rectangle(rectangle);
 
-      pgraphics->set_current_point(rectangle.left, rectangle.top);
+      pgraphics->set_current_point(rectangle.left(), rectangle.top());
 
-      pgraphics->line_to(rectangle.left, rectangle.bottom);
+      pgraphics->line_to(rectangle.left(), rectangle.bottom());
 
-      pgraphics->set_current_point(rectangle.right, rectangle.bottom - 1);
+      pgraphics->set_current_point(rectangle.right(), rectangle.bottom() - 1);
 
       int h = ::height(rectangle);
 
       point_f64_array pta;
-      pta.add(rectangle.right, rectangle.bottom - h / 3 - 2);
+      pta.add(rectangle.right(), rectangle.bottom() - h / 3 - 2);
 
-      pta.add(rectangle.right + h * 3 / 16, rectangle.bottom - h / 2 - 2);
+      pta.add(rectangle.right() + h * 3 / 16, rectangle.bottom() - h / 2 - 2);
 
-      pta.add(rectangle.right, rectangle.bottom - h * 2 / 3 - 2);
+      pta.add(rectangle.right(), rectangle.bottom() - h * 2 / 3 - 2);
 
       pgraphics->fill_polygon(pta);
-      pgraphics->line_to(rectangle.right, rectangle.bottom - h / 3 - 2);
+      pgraphics->line_to(rectangle.right(), rectangle.bottom() - h / 3 - 2);
 
-      pgraphics->line_to(rectangle.right + h * 3 / 16, rectangle.bottom - h / 2 - 2);
+      pgraphics->line_to(rectangle.right() + h * 3 / 16, rectangle.bottom() - h / 2 - 2);
 
-      pgraphics->line_to(rectangle.right, rectangle.bottom - h * 2 / 3 - 2);
+      pgraphics->line_to(rectangle.right(), rectangle.bottom() - h * 2 / 3 - 2);
 
-      pgraphics->line_to(rectangle.right, rectangle.top);
+      pgraphics->line_to(rectangle.right(), rectangle.top());
 
    }
 
@@ -901,30 +901,30 @@ namespace user
 
       pgraphics->fill_rectangle(rectangle);
 
-      pgraphics->set_current_point(rectangle.left, rectangle.top);
+      pgraphics->set_current_point(rectangle.left(), rectangle.top());
 
-      pgraphics->line_to(rectangle.left, rectangle.bottom);
+      pgraphics->line_to(rectangle.left(), rectangle.bottom());
 
-      pgraphics->set_current_point(rectangle.right, rectangle.bottom - 1);
+      pgraphics->set_current_point(rectangle.right(), rectangle.bottom() - 1);
 
       int h = ::height(rectangle);
 
       point_f64_array pta;
-      pta.add(rectangle.right, rectangle.bottom - h / 3 - 2);
+      pta.add(rectangle.right(), rectangle.bottom() - h / 3 - 2);
 
-      pta.add(rectangle.right + h * 3 / 16, rectangle.bottom - h / 2 - 2);
+      pta.add(rectangle.right() + h * 3 / 16, rectangle.bottom() - h / 2 - 2);
 
-      pta.add(rectangle.right, rectangle.bottom - h * 2 / 3 - 2);
+      pta.add(rectangle.right(), rectangle.bottom() - h * 2 / 3 - 2);
 
       pgraphics->fill_polygon(pta);
-      pgraphics->line_to(rectangle.right, rectangle.bottom - h / 3 - 2);
+      pgraphics->line_to(rectangle.right(), rectangle.bottom() - h / 3 - 2);
 
-      pgraphics->line_to(rectangle.right + h * 3 / 16, rectangle.bottom - h / 2 - 2);
+      pgraphics->line_to(rectangle.right() + h * 3 / 16, rectangle.bottom() - h / 2 - 2);
 
-      pgraphics->line_to(rectangle.right, rectangle.bottom - h * 2 / 3 - 2);
+      pgraphics->line_to(rectangle.right(), rectangle.bottom() - h * 2 / 3 - 2);
 
 
-      pgraphics->line_to(rectangle.right, rectangle.top);
+      pgraphics->line_to(rectangle.right(), rectangle.top());
 
 
    }

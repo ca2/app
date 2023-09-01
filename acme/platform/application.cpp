@@ -532,7 +532,7 @@ namespace acme
 
       }
 
-      return m_strAppId.left(iFind);
+      return m_strAppId.left()(iFind);
 
    }
 

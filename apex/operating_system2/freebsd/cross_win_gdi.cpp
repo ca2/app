@@ -87,7 +87,7 @@
 ////    //single_lock synchronouslock(&user_synchronization(), true);
 //
 //
-////    XFillRectangle(hdc->m_pdisplay, hdc->m_drawable, hdc->m_gc, prc->left, lprc->top, lprc->right - lprc->left, lprc->bottom - lprc->top);
+////    XFillRectangle(hdc->m_pdisplay, hdc->m_drawable, hdc->m_gc, prc->left(), lprc->top(), lprc->right() - lprc->left(), lprc->bottom() - lprc->top());
 //
 ////    return 1;
 //// }

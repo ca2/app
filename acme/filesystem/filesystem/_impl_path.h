@@ -663,7 +663,7 @@ namespace file
 //
 //      string str = path;
 //
-//      if (strPath.right(3) == "://")
+//      if (strPath.right()(3) == "://")
 //      {
 //
 //         return operator = (::file::path(strPath + str, m_epath));

@@ -1702,7 +1702,7 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 
    }
 
-   strFoundAndEaten = element_at(iFind).right(strSuffix.size());
+   strFoundAndEaten = element_at(iFind).right()(strSuffix.size());
 
    return iFind;
 
@@ -1722,7 +1722,7 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 
    }
 
-   strFoundAndEaten = element_at(iFind).right(strSuffix.size());
+   strFoundAndEaten = element_at(iFind).right()(strSuffix.size());
 
    return iFind;
 
@@ -2322,7 +2322,7 @@ else
 ::index iLen = str.length();
 for(::index i = 0; i < this->get_size(); i++)
 {
-Type & strLeft = this->element_at(i).left(iLen);
+Type & strLeft = this->element_at(i).left()(iLen);
 if(strLeft.length() == iLen)
 {
 if(case_insensitive_order(strLeft, str) == 0)
@@ -2353,7 +2353,7 @@ if(str.is_empty())
 {
 for(::index i = 0; i < stra.get_size(); i++)
 {
-Type & strMid = stra[i].left(iLength);
+Type & strMid = stra[i].left()(iLength);
 if(strMid.length() >= iMinLength)
 {
 if(FindFirstNoSortNoCase(strMid) < 0)
@@ -2368,10 +2368,10 @@ else
 ::index iLen = maximum(str.length(), iMinLength);
 for(::index i = 0; i < stra.get_size(); i++)
 {
-Type & strMid = stra[i].left(iLength);
+Type & strMid = stra[i].left()(iLength);
 if(strMid.length() >= iLen)
 {
-if(case_insensitive_order(strMid.left(iLen), str) == 0)
+if(case_insensitive_order(strMid.left()(iLen), str) == 0)
 {
 if(FindFirstNoSortNoCase(strMid) < 0)
 {

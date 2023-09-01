@@ -276,13 +276,13 @@ namespace user
 
    //      }
 
-   //      item.m_rectangle.left = x;
+   //      item.m_rectangle.left() = x;
 
-   //      item.m_rectangle.right = x + w;
+   //      item.m_rectangle.right() = x + w;
 
-   //      item.m_rectangle.top = y;
+   //      item.m_rectangle.top() = y;
 
-   //      item.m_rectangle.bottom = y + h + text_height;
+   //      item.m_rectangle.bottom() = y + h + text_height;
 
    //      return true;
 
@@ -306,7 +306,7 @@ namespace user
    //      if (!m_bNoName)
    //      {
 
-   //         item.m_rectangle.bottom -= m_iTextHeight;
+   //         item.m_rectangle.bottom() -= m_iTextHeight;
 
    //      }
 
@@ -336,7 +336,7 @@ namespace user
 
    //      }
 
-   //      item.m_rectangle.top += m_size.cy();
+   //      item.m_rectangle.top() += m_size.cy();
 
    //      return true;
 
@@ -499,20 +499,20 @@ namespace user
 
                ::rectangle_i32 rectangleImage;
 
-               rectangleImage.left = rectangle.left + (rectangle.width() - pimage->width()) / 2;
+               rectangleImage.left() = rectangle.left() + (rectangle.width() - pimage->width()) / 2;
 
-               rectangleImage.top = rectangle.top + (rectangle.height() - pimage->height()) / 2;
+               rectangleImage.top() = rectangle.top() + (rectangle.height() - pimage->height()) / 2;
 
-               rectangleImage.right = rectangleImage.left + pimage->width();
+               rectangleImage.right() = rectangleImage.left() + pimage->width();
 
-               rectangleImage.bottom = rectangleImage.top + pimage->height();
+               rectangleImage.bottom() = rectangleImage.top() + pimage->height();
 
                rectangleSel = rectangleImage;
 
                if (!m_bNoName)
                {
 
-                  rectangleSel.bottom = rectangleText.bottom;
+                  rectangleSel.bottom() = rectangleText.bottom();
 
                }
 
@@ -692,12 +692,12 @@ namespace user
 
          }
 
-         puseritem->m_rectangle.left = x;
-         puseritem->m_rectangle.right = x + m_size.cx();
-         puseritem->m_rectangle.top = y;
-         puseritem->m_rectangle.bottom = y + m_size.cy();
+         puseritem->m_rectangle.left() = x;
+         puseritem->m_rectangle.right() = x + m_size.cx();
+         puseritem->m_rectangle.top() = y;
+         puseritem->m_rectangle.bottom() = y + m_size.cy();
 
-         x = puseritem->m_rectangle.right + m_iPad;
+         x = puseritem->m_rectangle.right() + m_iPad;
 
          rectangleTotal.unite(rectangleTotal, puseritem->m_rectangle);
 
@@ -714,11 +714,11 @@ namespace user
 
       //}
 
-      rectangleTotal.left = 0;
+      rectangleTotal.left() = 0;
 
-      rectangleTotal.top = 0;
+      rectangleTotal.top() = 0;
 
-      rectangleTotal.bottom += m_iPad;
+      rectangleTotal.bottom() += m_iPad;
 
       //m_sizeTotal = rectangleTotal.size();
 

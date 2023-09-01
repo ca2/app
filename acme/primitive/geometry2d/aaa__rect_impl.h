@@ -100,7 +100,7 @@
 //void WINAPI rectangle_i64::swap_left_right(::rectangle_i64 * RECT_TEMPLATE) noexcept
 //
 //{
-//   i64 temp = RECT_TEMPLATE.left; RECT_TEMPLATE.left = RECT_TEMPLATE.right; RECT_TEMPLATE.right = temp;
+//   i64 temp = RECT_TEMPLATE.left(); RECT_TEMPLATE.left() = RECT_TEMPLATE.right(); RECT_TEMPLATE.right() = temp;
 //}
 //
 //rectangle_i64::operator ::rectangle_i64* () noexcept
@@ -326,9 +326,9 @@
 //TEMPLATE void rectangle_i64::inflate(const ::rectangle_i64 * RECT_TEMPLATE) noexcept
 //
 //{
-//   left -= RECT_TEMPLATE.left;      top -= RECT_TEMPLATE.top;
+//   left -= RECT_TEMPLATE.left();      top -= RECT_TEMPLATE.top();
 //
-//   right += RECT_TEMPLATE.right;      bottom += RECT_TEMPLATE.bottom;
+//   right += RECT_TEMPLATE.right();      bottom += RECT_TEMPLATE.bottom();
 //
 //}
 //
@@ -341,9 +341,9 @@
 //TEMPLATE void rectangle_i64::deflate(const ::rectangle_i64 * RECT_TEMPLATE) noexcept
 //
 //{
-//   left += RECT_TEMPLATE.left;   top += RECT_TEMPLATE.top;
+//   left += RECT_TEMPLATE.left();   top += RECT_TEMPLATE.top();
 //
-//   right -= RECT_TEMPLATE.right;   bottom -= RECT_TEMPLATE.bottom;
+//   right -= RECT_TEMPLATE.right();   bottom -= RECT_TEMPLATE.bottom();
 //
 //}
 //
@@ -668,9 +668,9 @@
 //  TEMPLATE void rectangle_f64::inflate(const rectangle_f64 & RECT_TEMPLATE) noexcept
 //
 //   {
-//      left -= RECT_TEMPLATE.left;      top -= RECT_TEMPLATE.top;
+//      left -= RECT_TEMPLATE.left();      top -= RECT_TEMPLATE.top();
 //
-//      right += RECT_TEMPLATE.right;      bottom += RECT_TEMPLATE.bottom;
+//      right += RECT_TEMPLATE.right();      bottom += RECT_TEMPLATE.bottom();
 //
 //   }
 //
@@ -683,9 +683,9 @@
 //  TEMPLATE void rectangle_f64::deflate(const rectangle_f64 & RECT_TEMPLATE) noexcept
 //
 //   {
-//      left += RECT_TEMPLATE.left;   top += RECT_TEMPLATE.top;
+//      left += RECT_TEMPLATE.left();   top += RECT_TEMPLATE.top();
 //
-//      right -= RECT_TEMPLATE.right;   bottom -= RECT_TEMPLATE.bottom;
+//      right -= RECT_TEMPLATE.right();   bottom -= RECT_TEMPLATE.bottom();
 //
 //   }
 //
@@ -742,9 +742,9 @@
 //      double Δy = ::height(RECT_TEMPLATE);
 //
 //
-//      left = RECT_TEMPLATE.left + (Δx - cx) / 2;
+//      left = RECT_TEMPLATE.left() + (Δx - cx) / 2;
 //
-//      top = RECT_TEMPLATE.top + (Δy - cy) / 2;
+//      top = RECT_TEMPLATE.top() + (Δy - cy) / 2;
 //
 //      right = left + cx;
 //      bottom = top + cy;
@@ -944,7 +944,7 @@
 //
 //      UNIT_TYPE x;
 //
-//      x = (UNIT_TYPE)(RECT_TEMPLATE.left + (RECT_TEMPLATE.right - RECT_TEMPLATE.left - width()) * ((dRate + 1.0) / 2.0));
+//      x = (UNIT_TYPE)(RECT_TEMPLATE.left() + (RECT_TEMPLATE.right() - RECT_TEMPLATE.left() - width()) * ((dRate + 1.0) / 2.0));
 //
 //      move_to_x(x);
 //
@@ -956,7 +956,7 @@
 //
 //      UNIT_TYPE y;
 //
-//      y = (UNIT_TYPE)(RECT_TEMPLATE.top + (RECT_TEMPLATE.bottom - RECT_TEMPLATE.top - height()) * ((dRate + 1.0) / 2.0));
+//      y = (UNIT_TYPE)(RECT_TEMPLATE.top() + (RECT_TEMPLATE.bottom() - RECT_TEMPLATE.top() - height()) * ((dRate + 1.0) / 2.0));
 //
 //      move_to_y(y);
 //
@@ -976,26 +976,26 @@
 //  TEMPLATETEMPLATE bool rectangle_f64::intersects_x(const rectangle_f64 & RECT_TEMPLATE) const noexcept
 //
 //   {
-//      return (left >= RECT_TEMPLATE.left && left <= RECT_TEMPLATE.right) ||
+//      return (left >= RECT_TEMPLATE.left() && left <= RECT_TEMPLATE.right()) ||
 //
-//         (right >= RECT_TEMPLATE.left && right <= RECT_TEMPLATE.right) ||
+//         (right >= RECT_TEMPLATE.left() && right <= RECT_TEMPLATE.right()) ||
 //
-//         (RECT_TEMPLATE.left >= left && RECT_TEMPLATE.left <= right) ||
+//         (RECT_TEMPLATE.left() >= left && RECT_TEMPLATE.left() <= right) ||
 //
-//         (RECT_TEMPLATE.right >= left && RECT_TEMPLATE.right <= right);
+//         (RECT_TEMPLATE.right() >= left && RECT_TEMPLATE.right() <= right);
 //
 //   }
 //
 //  TEMPLATETEMPLATE bool rectangle_f64::intersects_y(const rectangle_f64 & RECT_TEMPLATE) const noexcept
 //
 //   {
-//      return (top >= RECT_TEMPLATE.top && top <= RECT_TEMPLATE.bottom) ||
+//      return (top >= RECT_TEMPLATE.top() && top <= RECT_TEMPLATE.bottom()) ||
 //
-//         (bottom >= RECT_TEMPLATE.top && bottom <= RECT_TEMPLATE.bottom) ||
+//         (bottom >= RECT_TEMPLATE.top() && bottom <= RECT_TEMPLATE.bottom()) ||
 //
-//         (RECT_TEMPLATE.top >= top && RECT_TEMPLATE.top <= bottom) ||
+//         (RECT_TEMPLATE.top() >= top && RECT_TEMPLATE.top() <= bottom) ||
 //
-//         (RECT_TEMPLATE.bottom >= top && RECT_TEMPLATE.bottom <= bottom);
+//         (RECT_TEMPLATE.bottom() >= top && RECT_TEMPLATE.bottom() <= bottom);
 //
 //   }
 //

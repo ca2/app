@@ -427,7 +427,7 @@ namespace user
          if (!rectangleImpact.contains(rectangle))
          {
 
-            m_pointScroll.y() = (rectangle.top + rectangle.bottom - rectangleImpact.height()) / 2;
+            m_pointScroll.y() = (rectangle.top() + rectangle.bottom() - rectangleImpact.height()) / 2;
 
          }
 
@@ -466,11 +466,11 @@ namespace user
       //if (m_pfontlist->get_font_list_type() != ::write_text::e_font_list_wide)
       //{
 
-         rectangleFontList.right -= iScrollBarWidth;
+         rectangleFontList.right() -= iScrollBarWidth;
 
       //}
 
-      rectangleFontList.bottom -= iScrollBarWidth;
+      rectangleFontList.bottom() -= iScrollBarWidth;
 
       if (m_pfontlist->m_strFontFamily.has_char()
          && !::is_item_set(main_content().m_pitemCurrent)
@@ -731,7 +731,7 @@ namespace user
 
          ::pointer < ::write_text::font_list_item > pfontlistitem = m_pfontlist->m_pfontlistdata->item_at(iItem);
 
-         m_pointScroll.y() = pfontlistitem->m_box[0].m_rectangle.top;
+         m_pointScroll.y() = pfontlistitem->m_box[0].m_rectangle.top();
 
       }
       else

@@ -933,10 +933,10 @@ namespace nano2d
       
       ::ellipse_f64 ellipse;
       
-      ellipse.left = cx - rx;
-      ellipse.top = cy - ry;
-      ellipse.right = cx + rx;
-      ellipse.bottom = cy + ry;
+      ellipse.left() = cx - rx;
+      ellipse.top() = cy - ry;
+      ellipse.right() = cx + rx;
+      ellipse.bottom() = cy + ry;
 
       if (m_pstate->m_ppath)
       {

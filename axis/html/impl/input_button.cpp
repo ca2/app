@@ -133,7 +133,7 @@ namespace html
          //m_pbutton->window_rectangle(rectangleWindow);
          //m_pbutton->GetWindow()->screen_to_client(rectangleWindow);
          //auto pointPreviousContextOrg = pgraphics->get_origin();
-         //pgraphics->offset_origin((i32) m_box.left, (i32) m_box.top);
+         //pgraphics->offset_origin((i32) m_box.left(), (i32) m_box.top());
          m_pbutton->_000CallOnDraw(pgraphics);
          //pgraphics->set_origin(pointPreviousContextOrg);
 

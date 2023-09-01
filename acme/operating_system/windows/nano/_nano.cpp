@@ -21,10 +21,10 @@ void operating_system_initialize_nano(::factory::factory * pfactory)
 
    //::rectangle_i32 rectangleMainScreen;
 
-   //rectangleMainScreen.left = 0;
-   //rectangleMainScreen.top = 0; 
-   //rectangleMainScreen.right = GetSystemMetrics(SM_CXSCREEN);
-   //rectangleMainScreen.bottom = GetSystemMetrics(SM_CYSCREEN); 
+   //rectangleMainScreen.left() = 0;
+   //rectangleMainScreen.top() = 0; 
+   //rectangleMainScreen.right() = GetSystemMetrics(SM_CXSCREEN);
+   //rectangleMainScreen.bottom() = GetSystemMetrics(SM_CYSCREEN); 
 
    //operating_system_set_main_screen_rectangle(rectangleMainScreen);
 

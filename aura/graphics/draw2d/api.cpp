@@ -134,8 +134,8 @@ namespace draw2d
 
       //      VERIFY(::OffsetContextOrgEx(
       //         pgraphics->m_hDC,
-      //         rectangle.left,
-      //         rectangle.top,
+      //         rectangle.left(),
+      //         rectangle.top(),
       //         nullptr));
       //      VERIFY(::SetMapMode(pgraphics->m_hDC, MM_ANISOTROPIC));
       //      if(floatRateX == 0.0)
@@ -144,9 +144,9 @@ namespace draw2d
 
       //      VERIFY(::SelectObject(pgraphics->m_hDC, pfont->m_hObject));
 
-      pgraphics->text_out(rectangle.left, rectangle.top, psz);
+      pgraphics->text_out(rectangle.left(), rectangle.top(), psz);
       pgraphics->begin_path();
-      pgraphics->text_out(rectangle.left, rectangle.top, psz);
+      pgraphics->text_out(rectangle.left(), rectangle.top(), psz);
       pgraphics->end_path();
       pgraphics->stroke_path();
 
@@ -180,8 +180,8 @@ namespace draw2d
 
       //      VERIFY(::OffsetContextOrgEx(
       //         pgraphics->m_hDC,
-      //         rectangle.left,
-      //         rectangle.top,
+      //         rectangle.left(),
+      //         rectangle.top(),
       //         nullptr));
       //      VERIFY(::SetMapMode(pgraphics->m_hDC, MM_ANISOTROPIC));
       //      if(floatRateX == 0.0)
@@ -204,11 +204,11 @@ namespace draw2d
 //      ::TextOutU((HDC)pgraphics->get_os_data(), iLeft, iTop, str, iLen);
 //#endif
 
-      //pgraphics->text_out(rectangle.left, rectangle.top, str);
+      //pgraphics->text_out(rectangle.left(), rectangle.top(), str);
 //      pgraphics->BeginPath();
-//      ::TextOutW((HDC)pgraphics->get_os_data(), rectangle.left, rectangle.top, pcsz, iLen);
+//      ::TextOutW((HDC)pgraphics->get_os_data(), rectangle.left(), rectangle.top(), pcsz, iLen);
 
-      //pgraphics->text_out(rectangle.left, rectangle.top, str);
+      //pgraphics->text_out(rectangle.left(), rectangle.top(), str);
 //      pgraphics->EndPath();
 //      pgraphics->StrokePath();
 
@@ -238,13 +238,13 @@ namespace draw2d
       UNREFERENCED_PARAMETER(piCharsPositions);
 
 
-      pgraphics->text_out(pcrect.left, pcrect.top, psz);
+      pgraphics->text_out(pcrect.left(), pcrect.top(), psz);
 
       return;
 
 //      string str;
 //      str = utf8_to_unicode(psz);
-//      ::TextOutU((HDC)pgraphics->get_os_data(), pcrect.left, pcrect.top, str, (i32)str.length());
+//      ::TextOutU((HDC)pgraphics->get_os_data(), pcrect.left(), pcrect.top(), str, (i32)str.length());
 
    }
 
@@ -252,9 +252,9 @@ namespace draw2d
    void api::embossed_text_out(::draw2d::graphics_pointer & pgraphics, const ::rectangle_f64 & rectangle, double dHeight, double dRateX, const ::string & psz)
    {
 
-      pgraphics->text_out(rectangle.left, rectangle.top, psz);
+      pgraphics->text_out(rectangle.left(), rectangle.top(), psz);
       pgraphics->begin_path();
-      pgraphics->text_out(rectangle.left, rectangle.top, psz);
+      pgraphics->text_out(rectangle.left(), rectangle.top(), psz);
       pgraphics->end_path();
       pgraphics->stroke_path();
 

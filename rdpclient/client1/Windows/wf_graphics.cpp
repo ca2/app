@@ -138,13 +138,13 @@ void wf_Bitmap_Free(wfContext* wfc, rdpBitmap* bitmap)
 //	int width, height;
 //	wfBitmap* wf_bitmap = (wfBitmap*) bitmap;
 //
-//	width = bitmap->right - bitmap->left + 1;
-//	height = bitmap->bottom - bitmap->top + 1;
+//	width = bitmap->right() - bitmap->left() + 1;
+//	height = bitmap->bottom() - bitmap->top() + 1;
 //
-//	BitBlt(wfc->primary->hdc, bitmap->left, bitmap->top,
+//	BitBlt(wfc->primary->hdc, bitmap->left(), bitmap->top(),
 //		width, height, wf_bitmap->hdc, 0, 0);
 //
-//	wf_invalidate_region(wfc, bitmap->left, bitmap->top, width, height);
+//	wf_invalidate_region(wfc, bitmap->left(), bitmap->top(), width, height);
 //}
 //
 //void wf_Bitmap_Decompress(wfContext* wfc, rdpBitmap* bitmap,

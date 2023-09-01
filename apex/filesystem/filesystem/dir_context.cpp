@@ -2685,7 +2685,7 @@ ret:
 
       auto pStart = maximum(pFind1 + 1, pFind2 + 1);
 
-      strRelative = strRelative.left(pFind - 1) + "_" + strRelative.substr(pStart, pFind - pStart) + strRelative(pFind + 1);
+      strRelative = strRelative.left()(pFind - 1) + "_" + strRelative.substr(pStart, pFind - pStart) + strRelative(pFind + 1);
 
    }
 

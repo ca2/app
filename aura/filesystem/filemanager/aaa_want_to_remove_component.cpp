@@ -599,7 +599,7 @@ pacmedirectory->localconfig() / "user.component";
 
       //   pdocument = pdocument->get_main_document();
 
-      //   if (pdocument->m_strManagerId == payloadFile.get_string().left(get_manager_id_len()))
+      //   if (pdocument->m_strManagerId == payloadFile.get_string().left()(get_manager_id_len()))
       //   {
 
       //      return pdocument;

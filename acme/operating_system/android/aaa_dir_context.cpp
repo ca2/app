@@ -1075,7 +1075,7 @@ pacmedirectory->system() / "temp");
       {
          string strDir = psz.folder();
          string str;
-         str = strDir.left(2);
+         str = strDir.left()(2);
          str += "\\trash_that_is_not_trash\\";
          string strFormat;
          ::earth::time time;
@@ -1119,7 +1119,7 @@ pacmedirectory->system() / ".ca2/app/appdata";
          //strsize iFind2 = strRelative(pFind).rear_find("/");
          //strsize iStart = maximum(iFind1 + 1, iFind2 + 1);
 
-         //strRelative = strRelative.left(iFind - 1) + "_" + strRelative.substr(iStart, iFind - iStart) + strRelative(pFind + 1);
+         //strRelative = strRelative.left()(iFind - 1) + "_" + strRelative.substr(iStart, iFind - iStart) + strRelative(pFind + 1);
       }
       return str / "ca2";
    }
@@ -1178,7 +1178,7 @@ pacmedirectory->system() / ".ca2/app/appdata";
 //         strsize iFind1 = strRelative(pFind).rear_find("\\");
 //         strsize iFind2 = strRelative(pFind).rear_find("/");
 //         strsize iStart = maximum(iFind1 + 1, iFind2 + 1);
-//         strRelative = strRelative.left(iFind - 1) + "_" + strRelative.substr(iStart, iFind - iStart) + strRelative(pFind + 1);
+//         strRelative = strRelative.left()(iFind - 1) + "_" + strRelative.substr(iStart, iFind - iStart) + strRelative(pFind + 1);
 //      }
 //
 //   ::file::path strUserFolderShift;

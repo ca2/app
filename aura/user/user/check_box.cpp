@@ -23,9 +23,9 @@ void scroll_x(::rectangle_i32 & rectangleTarget, double dRateX, const ::rectangl
 
    ::i32 w = ::width(rectangle);
 
-   rectangleTarget.left = (::i32) (rectangle.left + (rectangle.width() - w) * dRateX);
+   rectangleTarget.left() = (::i32) (rectangle.left() + (rectangle.width() - w) * dRateX);
 
-   rectangleTarget.right = rectangleTarget.left + w;
+   rectangleTarget.right() = rectangleTarget.left() + w;
 
 }
 
@@ -189,7 +189,7 @@ namespace user
 
       ::draw2d::save_context savecontext(pgraphics);
 
-      pgraphics->offset_origin(rectangleX.left, rectangleX.top);
+      pgraphics->offset_origin(rectangleX.left(), rectangleX.top());
 
       ::rectangle_i32 rectangleCheckBox;
 
@@ -199,14 +199,14 @@ namespace user
 
          int iSize = minimum(15 * w / 15, 15 * h / 15);
 
-         rectangleCheckBox.left = 0;
-         rectangleCheckBox.top = 0;
-         rectangleCheckBox.right = iSize;
-         rectangleCheckBox.bottom = iSize;
+         rectangleCheckBox.left() = 0;
+         rectangleCheckBox.top() = 0;
+         rectangleCheckBox.right() = iSize;
+         rectangleCheckBox.bottom() = iSize;
 
          rectangleText = rectangleX;
 
-         rectangleText.left = rectangleCheckBox.right + 4;
+         rectangleText.left() = rectangleCheckBox.right() + 4;
 
          auto colorBackground = get_color(pstyle, e_element_background);
 
@@ -376,15 +376,15 @@ namespace user
 
       ppath->add_arc(rectangleL, -90_degree, -180_degree);
 
-      ppath->add_line((rectangleL.left + rectangleL.right) / 2, rectangleL.bottom);
+      ppath->add_line((rectangleL.left() + rectangleL.right()) / 2, rectangleL.bottom());
 
-      ppath->add_line((rectangleR.left + rectangleR.right) / 2, rectangleR.bottom);
+      ppath->add_line((rectangleR.left() + rectangleR.right()) / 2, rectangleR.bottom());
 
       ppath->add_arc(rectangleR, 90_degree, -180_degree);
 
-      ppath->add_line((rectangleR.left + rectangleR.right) / 2, rectangleR.top);
+      ppath->add_line((rectangleR.left() + rectangleR.right()) / 2, rectangleR.top());
 
-      ppath->add_line((rectangleL.left + rectangleL.right) / 2, rectangleL.top);
+      ppath->add_line((rectangleL.left() + rectangleL.right()) / 2, rectangleL.top());
 
       ppath->close_figure();
 
@@ -542,10 +542,10 @@ namespace user
       int iMinimumDimension = maximum(rectangleX.minimum_dimension() -1, 1);
 
       ::rectangle_i32 rectangleCheckBox;
-      rectangleCheckBox.left = 1;
-      rectangleCheckBox.top = 1;
-      rectangleCheckBox.right = iMinimumDimension + 1;
-      rectangleCheckBox.bottom = iMinimumDimension + 1;
+      rectangleCheckBox.left() = 1;
+      rectangleCheckBox.top() = 1;
+      rectangleCheckBox.right() = iMinimumDimension + 1;
+      rectangleCheckBox.bottom() = iMinimumDimension + 1;
 
       ::color::color crPen = argb(255, 0, 0, 0);
       ::color::color crBrush;
@@ -597,7 +597,7 @@ namespace user
       //      pgraphics->line_to(13, 6);
       //   }
       //}
-      //pgraphics->offset_origin(-rectangleX.left, -rectangleX.top);
+      //pgraphics->offset_origin(-rectangleX.left(), -rectangleX.top());
 
    }
 

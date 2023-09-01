@@ -879,7 +879,7 @@ namespace turboc
 
          rectangleImage.FitOnCenterOf(rectangleWork);
 
-/*         pimage->g()->StretchBlt(rectangleImage.left,rectangleImage.top,rectangleImage.width(),rectangleImage.height(),m_pimagepimage->g(),0,0,m_pimageImage->width(),m_pimageImage->height());
+/*         pimage->g()->StretchBlt(rectangleImage.left(),rectangleImage.top(),rectangleImage.width(),rectangleImage.height(),m_pimagepimage->g(),0,0,m_pimageImage->width(),m_pimageImage->height());
 
 
       }

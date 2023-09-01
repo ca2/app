@@ -267,7 +267,7 @@ namespace user
    //   i32 nAdjust = ::windows_definition::Data.cxVScroll;
    //   if (uStyle & WS_BORDER)
    //   nAdjust -= CX_BORDER;
-   //   pClientRect->right += nAdjust;
+   //   pClientRect->right() += nAdjust;
 
    //   }
    //   if (uStyle & WS_HSCROLL)
@@ -275,7 +275,7 @@ namespace user
    //   i32 nAdjust = ::windows_definition::Data.cyHScroll;
    //   if (uStyle & WS_BORDER)
    //   nAdjust -= CY_BORDER;
-   //   pClientRect->bottom += nAdjust;
+   //   pClientRect->bottom() += nAdjust;
 
    //   }
    //   return;

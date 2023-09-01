@@ -441,7 +441,7 @@ bool interprocess_intercommunication::on_interprocess_receive(::inteprocess::han
 //
 //   }
 //
-//   strObject = str1.left(iFind2);
+//   strObject = str1.left()(iFind2);
 //
 //   strMember = str1.substr(iFind2 + 1);
 //

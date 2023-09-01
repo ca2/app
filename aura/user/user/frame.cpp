@@ -378,7 +378,7 @@ namespace user
    //   if((m_ewindowflag & e_window_flag_top_level) && window())
    //   {
    //   
-   //      lprect->top += window()->get_top_margin();
+   //      lprect->top() += window()->get_top_margin();
    //      
    //   }
    //   

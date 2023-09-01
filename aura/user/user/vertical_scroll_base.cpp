@@ -75,11 +75,11 @@ namespace user
 
             int iScrollBarWidth = get_int(pstyle, e_int_scroll_bar_width);
 
-            rectangleNewPos.left = rectangleX.right - iScrollBarWidth;
-            rectangleNewPos.top = rectangleX.top;
-            rectangleNewPos.right = rectangleX.right;
-            //rectangleNewPos.bottom = rectangleNewPos.top + rectangleX.height() - get_final_x_scroll_bar_width();
-            rectangleNewPos.bottom = rectangleNewPos.top + rectangleX.height() - iScrollBarWidth;
+            rectangleNewPos.left() = rectangleX.right() - iScrollBarWidth;
+            rectangleNewPos.top() = rectangleX.top();
+            rectangleNewPos.right() = rectangleX.right();
+            //rectangleNewPos.bottom() = rectangleNewPos.top() + rectangleX.height() - get_final_x_scroll_bar_width();
+            rectangleNewPos.bottom() = rectangleNewPos.top() + rectangleX.height() - iScrollBarWidth;
 
             m_pscrollbarVertical->order(e_zorder_top);
 

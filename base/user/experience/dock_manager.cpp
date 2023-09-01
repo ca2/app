@@ -90,6 +90,8 @@ namespace experience
 
       pdisplay->get_workspace_rectangle(iMonitor, rectangleWorkspace);
 
+      information() << "dock_manager::dock_window rectangleWorkspace : " << rectangleWorkspace;
+
       if (rectangleWorkspace.is_empty())
       {
 

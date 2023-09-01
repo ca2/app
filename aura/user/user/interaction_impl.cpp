@@ -2085,7 +2085,7 @@ namespace user
 
          //g_iMouseMove++;
 
-         information("linux::interaction_impl::message_handler e_message_mouse_move");
+         //information("linux::interaction_impl::message_handler e_message_mouse_move");
          //printf("g_iMouseMove = %d\n", g_iMouseMove);
 
       }

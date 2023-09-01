@@ -16,6 +16,10 @@ namespace windowing
    monitor::monitor()
    {
 
+      m_rectangleFixedWorkspace.left = I32_MINIMUM;
+      m_rectangleFixedWorkspace.top = I32_MINIMUM;
+      m_rectangleFixedWorkspace.right = I32_MINIMUM;
+      m_rectangleFixedWorkspace.bottom = I32_MINIMUM;
 
    }
 
@@ -68,6 +72,38 @@ namespace windowing
    ::rectangle_i32 monitor::workspace_rectangle()
    {
 
+      if(m_rectangleFixedWorkspace.left != I32_MINIMUM
+      && m_rectangleFixedWorkspace.top != I32_MINIMUM
+      && m_rectangleFixedWorkspace.right != I32_MINIMUM
+      && m_rectangleFixedWorkspace.bottom != I32_MINIMUM)
+      {
+
+         return m_rectangleFixedWorkspace;
+
+      }
+
+      ::rectangle_i32 rectangleWorkspace = _workspace_rectangle();
+
+      for(auto i = 0; i < 4; i++)
+      {
+
+         if (m_rectangleFixedWorkspace.ordinate(i) != I32_MINIMUM)
+         {
+
+            rectangleWorkspace.ordinate(i) = m_rectangleFixedWorkspace.ordinate(i);
+
+         }
+
+      }
+
+      return rectangleWorkspace;
+
+   }
+
+
+   ::rectangle_i32 monitor::_workspace_rectangle()
+   {
+
       auto psession = acmesession()->m_paurasession;
 
       auto pdesktopenvironment = psession->user()->m_pdesktopenvironment;
@@ -77,7 +113,6 @@ namespace windowing
       return m_rectangleWorkspace;
 
    }
-
 
 } // namespace windowing
 

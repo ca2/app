@@ -9,15 +9,17 @@
 
 //template < primitive_number NUMBER >
 template < primitive_number NUMBER >
-class rectangle_type
+class rectangle_type :
+   public sequence_type < NUMBER, 4 >
+
 {
 public:
 
 
-   NUMBER left;
-   NUMBER top;
-   NUMBER right;
-   NUMBER bottom;
+   //NUMBER left;
+   //NUMBER top;
+   //NUMBER right;
+   //NUMBER bottom;
 
 
    //using RECTANGLE_BASE_TYPE = BASE_TYPE;
@@ -26,17 +28,18 @@ public:
    using SIZE_TYPE = size_type < NUMBER >;
    //using POINT_ARRAY_TYPE = point_array_base < POINT_TYPE >;
 
-   rectangle_type() : left{}, top{}, right{}, bottom{} { }
+   rectangle_type() { }
    rectangle_type(no_initialize_t) { }
    //rectangle_type(::std::nullptr_t)  : rectangle_type(0, 0, 0, 0) {}
 
    template < primitive_number LEFT, primitive_number TOP, primitive_number RIGHT, primitive_number BOTTOM >
-   rectangle_type(LEFT left, TOP top, RIGHT right, BOTTOM bottom) 
+   rectangle_type(LEFT left, TOP top, RIGHT right, BOTTOM bottom)  :
+      sequence_type(left, top, right, bottom)
    { 
-      this->left = (UNIT_TYPE)left; 
-      this->top = (UNIT_TYPE)top;
-      this->right = (UNIT_TYPE)right; 
-      this->bottom = (UNIT_TYPE)bottom; 
+      //this->left = (UNIT_TYPE)left;
+      //this->top = (UNIT_TYPE)top;
+      //this->right = (UNIT_TYPE)right;
+      //this->bottom = (UNIT_TYPE)bottom;
    }
 
    template < primitive_number A, primitive_number B >
@@ -103,6 +106,22 @@ public:
       
    }
 
+
+   constexpr const UNIT_TYPE & x() const {return this->a();}
+   UNIT_TYPE & x() {return this->a();}
+   constexpr const UNIT_TYPE & y() const {return this->b();}
+   UNIT_TYPE & y() {return this->b();}
+
+
+   constexpr const UNIT_TYPE & left() const {return this->a();}
+   UNIT_TYPE & left() {return this->a();}
+   constexpr const UNIT_TYPE & top() const {return this->b();}
+   UNIT_TYPE & top() {return this->b();}
+
+   constexpr const UNIT_TYPE & right() const {return this->c();}
+   UNIT_TYPE & right() {return this->c();}
+   constexpr const UNIT_TYPE & bottom() const {return this->d();}
+   UNIT_TYPE & bottom() {return this->d();}
 
    auto & origin()  { return top_left(); }
    const auto & origin() const  { return top_left(); }

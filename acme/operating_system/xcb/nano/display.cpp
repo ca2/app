@@ -1422,7 +1422,9 @@ namespace xcb
    {
 
       auto estatus1 = _erase_net_wm_state_hidden(window);
+
       auto estatus2 = _add_net_wm_state(window,::x11::e_atom_net_wm_state_above);
+
       auto estatus3 = _erase_net_wm_state_hidden(window);
 
       if (!estatus1 || !estatus2 || estatus3)
@@ -1442,7 +1444,9 @@ namespace xcb
    {
 
       auto estatus1 = _add_net_wm_state(window, ::x11::e_atom_net_wm_state_hidden);
+
       auto estatus2 = _erase_net_wm_state_above(window);
+
       auto estatus3 = _erase_net_wm_state_below(window);
 
       if (!estatus1 || !estatus2 || estatus3)
@@ -1675,8 +1679,8 @@ namespace xcb
       return
          estatus;
 
-
    }
+
 
    ::e_status display::_destroy_window(xcb_window_t window)
    {
@@ -1831,7 +1835,7 @@ namespace xcb
       if (!preply)
       {
 
-         information() << "freebsd::interaction_impl::_native_create_window_ex XGetWindowAttributes failed.";
+         information() << "xcb::display::_get_window_geometry xcb_get_geometry_reply failed.";
 
          return
             error_failed;
@@ -1902,7 +1906,6 @@ namespace xcb
       return { width, height };
 
    }
-
 
 
 } // namespace xcb

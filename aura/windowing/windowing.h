@@ -82,7 +82,7 @@ namespace windowing
 
       void destroy() override;
 
-      virtual void windowing_main();
+      //virtual void windowing_main();
 
       virtual void windowing_post_quit();
 

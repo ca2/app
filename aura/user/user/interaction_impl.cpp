@@ -2056,6 +2056,8 @@ namespace user
       if (m_puserinteraction->pre_message_handler(pkey, bKeyMessage, pmessage))
       {
 
+         information() << "returning on pre_message_handler";
+
          return;
 
       }
@@ -2069,13 +2071,13 @@ namespace user
       else if (pmessage->m_atom == e_message_left_button_down)
       {
 
-         information("linux::interaction_impl::e_message_left_button_down\n");
+         information("linux::interaction_impl::e_message_left_button_down");
 
       }
       else if (pmessage->m_atom == e_message_left_button_up)
       {
 
-         information("linux::interaction_impl::e_message_left_button_up\n");
+         information("linux::interaction_impl::e_message_left_button_up");
 
       }
       else if (pmessage->m_atom == e_message_mouse_move)
@@ -2083,7 +2085,7 @@ namespace user
 
          //g_iMouseMove++;
 
-         //information("linux::interaction_impl::message_handler e_message_mouse_move");
+         information("linux::interaction_impl::message_handler e_message_mouse_move");
          //printf("g_iMouseMove = %d\n", g_iMouseMove);
 
       }

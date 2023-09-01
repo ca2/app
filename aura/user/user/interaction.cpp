@@ -20980,6 +20980,12 @@ namespace user
          information() << "interaction::on_message_parent_mouse_move simple_scroll_bar";
 
       }
+      else if (strType.contains("simple_application::main_frame"))
+      {
+
+         information() << "simple_application::main_frame on_message_parent_mouse_move";
+
+      }
 
       //if (m_bBarDragScrollLeftButtonDown)
       //{

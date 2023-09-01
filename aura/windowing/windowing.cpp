@@ -143,11 +143,11 @@ namespace windowing
 //   }
 //
 
-   void windowing::windowing_main()
-   {
-
-
-   }
+//   void windowing::windowing_main()
+//   {
+//
+//
+//   }
 
 
    void windowing::windowing_post_quit()

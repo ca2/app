@@ -542,13 +542,13 @@ namespace write_text
 
 //#ifdef WINDOWS_DESKTOP
 //
-//      prectangle->left      = x - m_gm.gmptGlyphOrigin.x();
+//      prectangle->left()      = x - m_gm.gmptGlyphOrigin.x();
 //
-//      prectangle->top       = y - m_gm.gmptGlyphOrigin.y();
+//      prectangle->top()       = y - m_gm.gmptGlyphOrigin.y();
 //
-//      prectangle->right     = x + m_gm.gmBlackBoxX;
+//      prectangle->right()     = x + m_gm.gmBlackBoxX;
 //
-//      prectangle->bottom    = y + m_gm.gmBlackBoxY;
+//      prectangle->bottom()    = y + m_gm.gmBlackBoxY;
 //
 //
 //#else

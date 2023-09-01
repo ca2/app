@@ -111,11 +111,11 @@ namespace lite
 
       int iTabHeight = ptab->get_data()->m_iTabHeight;
 
-      //int iB = rcClient.top;
+      //int iB = rcClient.top();
 
-      rcTabs.bottom = rcTabs.top + iTabHeight - ptab->get_data()->m_rectangleBorder.bottom;
+      rcTabs.bottom() = rcTabs.top() + iTabHeight - ptab->get_data()->m_rectangleBorder.bottom();
 
-      rcClient.top = rcTabs.bottom;
+      rcClient.top() = rcTabs.bottom();
 
       color32_t crbk = ptab->_001GetColor(::user::color_tab_layout_background);
 
@@ -169,11 +169,11 @@ namespace lite
 
                   //ppath->start_figure();
 
-                  ppath->add_line(rectangleBorder.right,rectangleBorder.bottom,rectangleBorder.left + 1,rectangleBorder.bottom);
-                  //ppath->add_line(rectangleX.right, rectangleBorder.top);
-                  ppath->add_line(rectangleBorder.left,rectangleBorder.top - (rectangleBorder.left - rectangleX.left));
-                  ppath->add_line(rectangleX.left,rectangleBorder.top);
-                  ppath->add_line(rectangleBorder.right,rectangleBorder.top);
+                  ppath->add_line(rectangleBorder.right(),rectangleBorder.bottom(),rectangleBorder.left() + 1,rectangleBorder.bottom());
+                  //ppath->add_line(rectangleX.right(), rectangleBorder.top());
+                  ppath->add_line(rectangleBorder.left(),rectangleBorder.top() - (rectangleBorder.left() - rectangleX.left()));
+                  ppath->add_line(rectangleX.left(),rectangleBorder.top());
+                  ppath->add_line(rectangleBorder.right(),rectangleBorder.top());
 
                   ppath->end_figure(false);
 
@@ -208,11 +208,11 @@ namespace lite
 
                   //ppath->start_figure();
 
-                  ppath->add_line(rectangleBorder.right,rectangleBorder.bottom,rectangleBorder.left + 1,rectangleBorder.bottom);
-                  ppath->add_line(rectangleBorder.left,rectangleBorder.top - (rectangleBorder.left - rectangleX.left));
-                  ppath->add_line(rectangleText.left,rectangleBorder.top);
-                  ppath->add_line(rectangleBorder.right,rectangleBorder.top);
-                  ppath->add_line(rectangleBorder.right,rectangleBorder.bottom);
+                  ppath->add_line(rectangleBorder.right(),rectangleBorder.bottom(),rectangleBorder.left() + 1,rectangleBorder.bottom());
+                  ppath->add_line(rectangleBorder.left(),rectangleBorder.top() - (rectangleBorder.left() - rectangleX.left()));
+                  ppath->add_line(rectangleText.left(),rectangleBorder.top());
+                  ppath->add_line(rectangleBorder.right(),rectangleBorder.top());
+                  ppath->add_line(rectangleBorder.right(),rectangleBorder.bottom());
 
                   ppath->end_figure(true);
 
@@ -272,12 +272,12 @@ namespace lite
             if (iPane == 0)
             {
 
-               if (rcTab.left < rectangleBorder.left)
+               if (rcTab.left() < rectangleBorder.left())
                {
 
                   pgraphics->SelectObject(ptab->get_data()->m_ppenBorder);
 
-                  pgraphics->draw_line(rcTab.left, rectangleX.bottom, rectangleBorder.left, rectangleX.bottom);
+                  pgraphics->draw_line(rcTab.left(), rectangleX.bottom(), rectangleBorder.left(), rectangleX.bottom());
 
                }
 
@@ -294,17 +294,17 @@ namespace lite
                   if (iPane > 0)
                   {
 
-                     ppath->add_line(rectangle.left, rectangleX.bottom, rectangleBorder.left, rectangleX.bottom);
+                     ppath->add_line(rectangle.left(), rectangleX.bottom(), rectangleBorder.left(), rectangleX.bottom());
 
                   }
 
-                  ppath->add_line(rectangleBorder.left,rectangleX.bottom,rectangleBorder.left,rectangleBorder.top);
+                  ppath->add_line(rectangleBorder.left(),rectangleX.bottom(),rectangleBorder.left(),rectangleBorder.top());
 
-                  ppath->add_line(rectangleX.right,rectangleBorder.top);
+                  ppath->add_line(rectangleX.right(),rectangleBorder.top());
 
-                  ppath->add_line(rectangleBorder.right,rectangleBorder.top + (rectangleBorder.right - rectangleX.right));
+                  ppath->add_line(rectangleBorder.right(),rectangleBorder.top() + (rectangleBorder.right() - rectangleX.right()));
 
-                  ppath->add_line(rectangleBorder.right - 1,rectangleX.bottom);
+                  ppath->add_line(rectangleBorder.right() - 1,rectangleX.bottom());
 
                   ppath->end_figure(false);
 
@@ -346,17 +346,17 @@ namespace lite
                   if (iPane > 0)
                   {
 
-                     ppath->add_line(rectangle.left, rectangleX.bottom, rectangleBorder.left, rectangleX.bottom);
+                     ppath->add_line(rectangle.left(), rectangleX.bottom(), rectangleBorder.left(), rectangleX.bottom());
 
                   }
 
-                  ppath->add_line(rectangleBorder.left,rectangleX.bottom,rectangleBorder.left,rectangleBorder.top);
+                  ppath->add_line(rectangleBorder.left(),rectangleX.bottom(),rectangleBorder.left(),rectangleBorder.top());
 
-                  ppath->add_line(rectangleX.right,rectangleBorder.top);
+                  ppath->add_line(rectangleX.right(),rectangleBorder.top());
 
-                  ppath->add_line(rectangleBorder.right,rectangleBorder.top + (rectangleBorder.right - rectangleX.right));
+                  ppath->add_line(rectangleBorder.right(),rectangleBorder.top() + (rectangleBorder.right() - rectangleX.right()));
 
-                  ppath->add_line(rectangleBorder.right - 1,rectangleX.bottom);
+                  ppath->add_line(rectangleBorder.right() - 1,rectangleX.bottom());
 
                   ppath->end_figure(true);
 
@@ -404,12 +404,12 @@ namespace lite
             if (iPane == ptab->get_data()->m_panea.get_upper_bound())
             {
 
-               if (rectangleBorder.right - 1 < rcTab.right)
+               if (rectangleBorder.right() - 1 < rcTab.right())
                {
 
                   pgraphics->SelectObject(ptab->get_data()->m_ppenBorder);
 
-                  pgraphics->draw_line(rectangleBorder.right - 1, rectangleX.bottom, rcTab.right, rectangleX.bottom);
+                  pgraphics->draw_line(rectangleBorder.right() - 1, rectangleX.bottom(), rcTab.right(), rectangleX.bottom());
 
                }
 
@@ -492,12 +492,12 @@ namespace lite
          {
             string str = straTitle[i];
             size_i32 s = pane.m_sizeaText[i];
-            rectangleText.right =rectangleText.left + s.cx();
+            rectangleText.right() =rectangleText.left() + s.cx();
             pgraphics->_DrawText(str,rectangleText,e_align_bottom_left, e_draw_text_no_prefix);
-            rectangleText.left += s.cx();
+            rectangleText.left() += s.cx();
             if(i < straTitle.get_upper_bound())
             {
-               rectangleText.right = rectangleText.left + sSep.cx();
+               rectangleText.right() = rectangleText.left() + sSep.cx();
                rectangleEmp = rectangleText;
                rectangleEmp.deflate(1,1);
                ::draw2d::enum_alpha_mode emode = pgraphics->m_ealphamode;
@@ -515,7 +515,7 @@ namespace lite
                pgraphics->set_font(ptab->_001GetFont(::user::font_tab_big_bold));
                pgraphics->set_alpha_mode(emode);
                pgraphics->_DrawText(MAGIC_PALACE_TAB_TEXT,rectangleText, e align_center, e_draw_text_no_prefix);
-               rectangleText.left += sSep.cx();
+               rectangleText.left() += sSep.cx();
                pgraphics->selectFont(font);
                pgraphics->SelectObject(pbrushText);
             }
@@ -562,21 +562,21 @@ namespace lite
       if (pdata->m_bVertical)
       {
 
-         pdata->m_iTabHeight += pdata->m_rectangleBorder.top + pdata.m_rectangleBorder.bottom +
-                                pdata->m_rectangleMargin.top + pdata.m_rectangleMargin.bottom;
+         pdata->m_iTabHeight += pdata->m_rectangleBorder.top() + pdata.m_rectangleBorder.bottom() +
+                                pdata->m_rectangleMargin.top() + pdata.m_rectangleMargin.bottom();
 
-         pdata->m_iTabWidth += pdata->m_rectangleBorder.left + pdata.m_rectangleBorder.right +
-                               pdata->m_rectangleMargin.left + pdata.m_rectangleMargin.right;
+         pdata->m_iTabWidth += pdata->m_rectangleBorder.left() + pdata.m_rectangleBorder.right() +
+                               pdata->m_rectangleMargin.left() + pdata.m_rectangleMargin.right();
 
       }
       else
       {
 
-         pdata->m_iTabHeight += pdata->m_rectangleBorder.top + pdata.m_rectangleBorder.bottom +
-                                pdata->m_rectangleMargin.top + pdata.m_rectangleMargin.bottom;
+         pdata->m_iTabHeight += pdata->m_rectangleBorder.top() + pdata.m_rectangleBorder.bottom() +
+                                pdata->m_rectangleMargin.top() + pdata.m_rectangleMargin.bottom();
 
-         pdata->m_iTabWidth += pdata->m_rectangleBorder.left + pdata.m_rectangleBorder.right +
-                               pdata->m_rectangleMargin.left + pdata.m_rectangleMargin.right;
+         pdata->m_iTabWidth += pdata->m_rectangleBorder.left() + pdata.m_rectangleBorder.right() +
+                               pdata->m_rectangleMargin.left() + pdata.m_rectangleMargin.right();
 
       }
 
@@ -639,38 +639,38 @@ namespace lite
             iTabHeight = cy;
          }
 
-         iTabWidth += ptab->get_data()->m_rectangleBorder.left + ptab->get_data().m_rectangleBorder.right +
-                      ptab->get_data()->m_rectangleMargin.left + ptab->get_data().m_rectangleMargin.right +
-                      ptab->get_data()->m_rectangleTextMargin.left + ptab->get_data().m_rectangleTextMargin.right;
+         iTabWidth += ptab->get_data()->m_rectangleBorder.left() + ptab->get_data().m_rectangleBorder.right() +
+                      ptab->get_data()->m_rectangleMargin.left() + ptab->get_data().m_rectangleMargin.right() +
+                      ptab->get_data()->m_rectangleTextMargin.left() + ptab->get_data().m_rectangleTextMargin.right();
 
          ptab->get_data()->m_iTabWidth = iTabWidth;
 
-         iTabHeight += ptab->get_data()->m_rectangleBorder.top + ptab->get_data().m_rectangleBorder.bottom +
-                       ptab->get_data()->m_rectangleMargin.top + ptab->get_data().m_rectangleMargin.bottom +
-                       ptab->get_data()->m_rectangleTextMargin.top + ptab->get_data().m_rectangleTextMargin.bottom;
+         iTabHeight += ptab->get_data()->m_rectangleBorder.top() + ptab->get_data().m_rectangleBorder.bottom() +
+                       ptab->get_data()->m_rectangleMargin.top() + ptab->get_data().m_rectangleMargin.bottom() +
+                       ptab->get_data()->m_rectangleTextMargin.top() + ptab->get_data().m_rectangleTextMargin.bottom();
 
          ptab->get_data()->m_iTabHeight = iTabHeight;
 
          ::rectangle_i32 rectangleX;
          ptab->rectangle(rectangleX);
 
-         ptab->get_data()->m_rectangleTab.left       = rectangleX.left;
-         ptab->get_data()->m_rectangleTab.top        = rectangleX.top;
-         ptab->get_data()->m_rectangleTab.right      = ptab->get_data()->m_rectangleTab.left + ptab->get_data().m_iTabWidth;
-         ptab->get_data()->m_rectangleTab.bottom     = rectangleX.bottom;
+         ptab->get_data()->m_rectangleTab.left()       = rectangleX.left();
+         ptab->get_data()->m_rectangleTab.top()        = rectangleX.top();
+         ptab->get_data()->m_rectangleTab.right()      = ptab->get_data()->m_rectangleTab.left() + ptab->get_data().m_iTabWidth;
+         ptab->get_data()->m_rectangleTab.bottom()     = rectangleX.bottom();
 
          /*      m_puserinteraction->set_window_position(
          e_zorder_top,
-         m_rectangleTab.left,
-         m_rectangleTab.top,
+         m_rectangleTab.left(),
+         m_rectangleTab.top(),
          m_rectangleTab.width(),
          m_rectangleTab.height(),
          0);*/
 
-         ptab->get_data()->m_rectangleTabClient.left       = ptab->m_bShowTabs ? ptab->get_data().m_rectangleTab.right : rectangleX.left;
-         ptab->get_data()->m_rectangleTabClient.top        = ptab->get_data().m_rectangleTab.top;
-         ptab->get_data()->m_rectangleTabClient.right      = rectangleX.right;
-         ptab->get_data()->m_rectangleTabClient.bottom     = ptab->get_data().m_rectangleTab.bottom;
+         ptab->get_data()->m_rectangleTabClient.left()       = ptab->m_bShowTabs ? ptab->get_data().m_rectangleTab.right() : rectangleX.left();
+         ptab->get_data()->m_rectangleTabClient.top()        = ptab->get_data().m_rectangleTab.top();
+         ptab->get_data()->m_rectangleTabClient.right()      = rectangleX.right();
+         ptab->get_data()->m_rectangleTabClient.bottom()     = ptab->get_data().m_rectangleTab.bottom();
 
       }
       else
@@ -685,7 +685,7 @@ namespace lite
 
          ::rectangle_i32 rectangleX;
          ptab->rectangle(rectangleX);
-         int x = rectangleX.left;
+         int x = rectangleX.left();
 
          i32 ixAdd;
          for(i32 iPane = 0; iPane < ptab->get_data()->m_panea.get_size(); iPane++)
@@ -719,7 +719,7 @@ namespace lite
             }
 
             tab_pane.m_point.x() = x;
-            tab_pane.m_point.y() = rectangleX.top;
+            tab_pane.m_point.y() = rectangleX.top();
 
 
             //            string str = tab_pane.get_title();
@@ -743,9 +743,9 @@ namespace lite
 
 
             tab_pane.m_size.cx() = size.cx() + ixAdd
-                                 + ptab->get_data()->m_rectangleBorder.left + ptab->get_data().m_rectangleBorder.right
-                                 + ptab->get_data()->m_rectangleMargin.left + ptab->get_data().m_rectangleMargin.right
-                                 + ptab->get_data()->m_rectangleTextMargin.left + ptab->get_data().m_rectangleTextMargin.right;
+                                 + ptab->get_data()->m_rectangleBorder.left() + ptab->get_data().m_rectangleBorder.right()
+                                 + ptab->get_data()->m_rectangleMargin.left() + ptab->get_data().m_rectangleMargin.right()
+                                 + ptab->get_data()->m_rectangleTextMargin.left() + ptab->get_data().m_rectangleTextMargin.right();
 
             x += tab_pane.m_size.cx();
          }
@@ -757,8 +757,8 @@ namespace lite
             iTabHeight = cy;
          }
 
-         iTabHeight += ptab->get_data()->m_rectangleBorder.top + ptab->get_data().m_rectangleBorder.bottom +
-                       ptab->get_data()->m_rectangleMargin.top + ptab->get_data()->m_rectangleMargin.bottom + ptab->get_data().m_iHeightAddUp;
+         iTabHeight += ptab->get_data()->m_rectangleBorder.top() + ptab->get_data().m_rectangleBorder.bottom() +
+                       ptab->get_data()->m_rectangleMargin.top() + ptab->get_data()->m_rectangleMargin.bottom() + ptab->get_data().m_iHeightAddUp;
 
          ptab->get_data()->m_iTabHeight = iTabHeight;
 
@@ -774,25 +774,25 @@ namespace lite
 
 
 
-         ptab->get_data()->m_rectangleTab.left       = rectangleX.left;
-         ptab->get_data()->m_rectangleTab.top        = rectangleX.top;
-         ptab->get_data()->m_rectangleTab.right      = rectangleX.right;
-         ptab->get_data()->m_rectangleTab.bottom     = ptab->get_data()->m_rectangleTab.top + ptab->get_data().m_iTabHeight;
+         ptab->get_data()->m_rectangleTab.left()       = rectangleX.left();
+         ptab->get_data()->m_rectangleTab.top()        = rectangleX.top();
+         ptab->get_data()->m_rectangleTab.right()      = rectangleX.right();
+         ptab->get_data()->m_rectangleTab.bottom()     = ptab->get_data()->m_rectangleTab.top() + ptab->get_data().m_iTabHeight;
 
          /*      set_window_position(
          e_zorder_top,
-         m_rectangleTab.left,
-         m_rectangleTab.top,
+         m_rectangleTab.left(),
+         m_rectangleTab.top(),
          m_rectangleTab.width(),
          m_rectangleTab.height(),
          0);*/
 
          rectangle_i32 & rectangleTabClient = ptab->get_data()->m_rectangleTabClient;
 
-         rectangleTabClient.left       = ptab->get_data()->m_rectangleTab.left;
-         rectangleTabClient.top        = ptab->m_bShowTabs ? ptab->get_data()->m_rectangleTab.bottom : rectangleX.top;
-         rectangleTabClient.right      = ptab->get_data()->m_rectangleTab.right;
-         rectangleTabClient.bottom     = rectangleX.bottom;
+         rectangleTabClient.left()       = ptab->get_data()->m_rectangleTab.left();
+         rectangleTabClient.top()        = ptab->m_bShowTabs ? ptab->get_data()->m_rectangleTab.bottom() : rectangleX.top();
+         rectangleTabClient.right()      = ptab->get_data()->m_rectangleTab.right();
+         rectangleTabClient.bottom()     = rectangleX.bottom();
 
          //TRACE0("rectangleTabClient");
 
@@ -924,10 +924,10 @@ namespace lite
       if ((nStyle & e_tool_item_style_separator) != 0)
       {
          ::rectangle_i32 rectangleSeparator;
-         rectangleSeparator.left = (rectangleImage.left + rectangleImage.right) / 2 - 1;
-         rectangleSeparator.right = rectangleSeparator.left + 2;
-         rectangleSeparator.top = rectangleImage.top;
-         rectangleSeparator.bottom = rectangleImage.bottom;
+         rectangleSeparator.left() = (rectangleImage.left() + rectangleImage.right()) / 2 - 1;
+         rectangleSeparator.right() = rectangleSeparator.left() + 2;
+         rectangleSeparator.top() = rectangleImage.top();
+         rectangleSeparator.bottom() = rectangleImage.bottom();
          pgraphics->draw_inset_3d_rectangle(rectangleSeparator, argb(255, 92, 92, 92), argb(255, 255, 255, 255));
       }
       else
@@ -945,8 +945,8 @@ namespace lite
                {
                   psystem->imaging().color_blend(
                   pgraphics,
-                  rectangleItem.left,
-                  rectangleItem.top,
+                  rectangleItem.left(),
+                  rectangleItem.top(),
                   rectangleItem.width(),
                   rectangleItem.height(),
                   rgb(255, 255, 250), 208);
@@ -1137,7 +1137,7 @@ namespace lite
 
          pgraphics->SelectObject(pbrushText);
 
-         if (ptoolbar->index_element_rectangle(iItem, rectangleText, eelementText) && rectangleText.right > 0)
+         if (ptoolbar->index_element_rectangle(iItem, rectangleText, eelementText) && rectangleText.right() > 0)
          {
 
             pgraphics->_DrawText(item.m_str, item.m_str.length(), rectangleText, e_align_bottom_left, e_draw_text_no_prefix);
@@ -1231,10 +1231,10 @@ namespace lite
       if (item.m_atom.case_insensitive_order("separator") == 0)
       {
          /*::rectangle_i32 rectangleSeparator;
-         rectangleSeparator.left = (rectangleImage.left + rectangleImage.right) / 2 - 1;
-         rectangleSeparator.right = rectangleSeparator.left + 2;
-         rectangleSeparator.top = rectangleImage.top;
-         rectangleSeparator.bottom = rectangleImage.bottom;*/
+         rectangleSeparator.left() = (rectangleImage.left() + rectangleImage.right()) / 2 - 1;
+         rectangleSeparator.right() = rectangleSeparator.left() + 2;
+         rectangleSeparator.top() = rectangleImage.top();
+         rectangleSeparator.bottom() = rectangleImage.bottom();*/
          //pgraphics->Draw3dRect(rectangleSeparator, argb(255, 92, 92, 92), argb(255, 255, 255, 255));
       }
       else
@@ -1252,8 +1252,8 @@ namespace lite
                {
                   psystem->imaging().color_blend(
                   pgraphics,
-                  rectangleItem.left,
-                  rectangleItem.top,
+                  rectangleItem.left(),
+                  rectangleItem.top(),
                   rectangleItem.width(),
                   rectangleItem.height(),
                   rgb(255, 255, 250), 208);
@@ -1473,7 +1473,7 @@ namespace lite
 
          }
 
-         if (ptoolbar->index_element_rectangle(iItem, rectangleText, eelementText) && rectangleText.right > 0)
+         if (ptoolbar->index_element_rectangle(iItem, rectangleText, eelementText) && rectangleText.right() > 0)
          {
 
             pgraphics->SelectObject(pbrushText);

@@ -118,8 +118,8 @@ namespace experience
 //
 //            this->rectangle(rectangleX);
 //
-//            rectangleX.bottom++;
-//            rectangleX.right++;
+//            rectangleX.bottom()++;
+//            rectangleX.right()++;
 //
 //            rectangleClip = rectangleX;
 //

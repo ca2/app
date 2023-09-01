@@ -188,8 +188,8 @@ namespace windows
          _T(NANO_WINDOW_CLASS),
          wstrTitle,
          WS_POPUP,
-         m_pinterface->m_rectangle.left,
-         m_pinterface->m_rectangle.top,
+         m_pinterface->m_rectangle.left(),
+         m_pinterface->m_rectangle.top(),
          m_pinterface->m_rectangle.width(),
          m_pinterface->m_rectangle.height(),
          NULL, NULL, hinstanceWndProc, this);
@@ -874,7 +874,7 @@ namespace windows
       {
          //auto pmessagebox = m_pinterface.cast<nano::me
          /// @brief ////////123456789012345
-         //strAbbreviation = "msgbx:" + pmessagebox->m_strMessage.left(20);
+         //strAbbreviation = "msgbx:" + pmessagebox->m_strMessage.left()(20);
 
          strAbbreviation = "msgbx:" + pmessagebox->m_strMessage;
 
@@ -1092,7 +1092,7 @@ namespace windows
 
       ::GetWindowRect(hwndDesktop, &r);
 
-      return { r.right -r.left, r.bottom - r.top };
+      return { r.right() -r.left(), r.bottom() - r.top() };
 
 
    }

@@ -529,20 +529,20 @@ namespace user
       command & cmdInfo = psystem->handler();
       command.m_nShellCommand = command_line::FileDDE;
 
-      if (strCommand.left(7) == _T("[open(\""))
+      if (strCommand.left()(7) == _T("[open(\""))
       {
       cmdInfo.m_nShellCommand = command_line::FileOpen;
-      strCommand = strCommand.right(strCommand.length() - 7);
+      strCommand = strCommand.right()(strCommand.length() - 7);
       }
-      else if (strCommand.left(8) == _T("[print(\""))
+      else if (strCommand.left()(8) == _T("[print(\""))
       {
       cmdInfo.m_nShellCommand = command_line::FilePrint;
-      strCommand = strCommand.right(strCommand.length() - 8);
+      strCommand = strCommand.right()(strCommand.length() - 8);
       }
-      else if (strCommand.left(10) == _T("[printto(\""))
+      else if (strCommand.left()(10) == _T("[printto(\""))
       {
       cmdInfo.m_nShellCommand = command_line::FilePrintTo;\
-      strCommand = strCommand.right(strCommand.length() - 10);
+      strCommand = strCommand.right()(strCommand.length() - 10);
       }
       else
       return false; // not a command we handle
@@ -551,8 +551,8 @@ namespace user
       if (i == -1)
       return false; // illegally terminated
 
-      cmdInfo.m_payloadFile = strCommand.left(i);
-      strCommand = strCommand.right(strCommand.length() - i);
+      cmdInfo.m_payloadFile = strCommand.left()(i);
+      strCommand = strCommand.right()(strCommand.length() - i);
 
       //command_line* pOldInfo = nullptr;
       bool bRetVal = true;
@@ -587,14 +587,14 @@ namespace user
 
       if (cmdInfo.m_nShellCommand == command_line::FilePrintTo)
       {
-      if (strCommand.left(3) != _T("\",\""))
+      if (strCommand.left()(3) != _T("\",\""))
       {
       bRetVal = false;
       goto RestoreAndReturn;
       }
       else
       {
-      strCommand = strCommand.right(strCommand.length() - 3);
+      strCommand = strCommand.right()(strCommand.length() - 3);
       i = strCommand.find('"');
       if (i == -1)
       {
@@ -603,19 +603,19 @@ namespace user
       }
       else
       {
-      cmdInfo.m_strPrinterName = strCommand.left(i);
-      strCommand = strCommand.right(strCommand.length() - i);
+      cmdInfo.m_strPrinterName = strCommand.left()(i);
+      strCommand = strCommand.right()(strCommand.length() - i);
       }
       }
 
-      if (strCommand.left(3) != _T("\",\""))
+      if (strCommand.left()(3) != _T("\",\""))
       {
       bRetVal = false;
       goto RestoreAndReturn;
       }
       else
       {
-      strCommand = strCommand.right(strCommand.length() - 3);
+      strCommand = strCommand.right()(strCommand.length() - 3);
       i = strCommand.find('"');
       if (i == -1)
       {
@@ -624,19 +624,19 @@ namespace user
       }
       else
       {
-      cmdInfo.m_strDriverName = strCommand.left(i);
-      strCommand = strCommand.right(strCommand.length() - i);
+      cmdInfo.m_strDriverName = strCommand.left()(i);
+      strCommand = strCommand.right()(strCommand.length() - i);
       }
       }
 
-      if (strCommand.left(3) != _T("\",\""))
+      if (strCommand.left()(3) != _T("\",\""))
       {
       bRetVal = false;
       goto RestoreAndReturn;
       }
       else
       {
-      strCommand = strCommand.right(strCommand.length() - 3);
+      strCommand = strCommand.right()(strCommand.length() - 3);
       i = strCommand.find('"');
       if (i == -1)
       {
@@ -645,8 +645,8 @@ namespace user
       }
       else
       {
-      cmdInfo.m_strPortName = strCommand.left(i);
-      strCommand = strCommand.right(strCommand.length() - i);
+      cmdInfo.m_strPortName = strCommand.left()(i);
+      strCommand = strCommand.right()(strCommand.length() - i);
       }
       }
       }

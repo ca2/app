@@ -231,7 +231,7 @@ void PrintRailWindowState(WINDOW_ORDER_INFO* orderInfo, WINDOW_STATE_ORDER* wind
 			rectangle = &windowState->windowRects[index];
 
 			WLog_INFO(TAG, "\twindowRect[%d]: left: %d top: %d right: %d bottom: %d",
-				index, rectangle_i32->left, rectangle_i32->top, rectangle_i32->right, rectangle_i32->bottom);
+				index, rectangle_i32->left(), rectangle_i32->top(), rectangle_i32->right(), rectangle_i32->bottom());
 		}
 	}
 
@@ -253,7 +253,7 @@ void PrintRailWindowState(WINDOW_ORDER_INFO* orderInfo, WINDOW_STATE_ORDER* wind
 			rectangle = &windowState->visibilityRects[index];
 
 			WLog_INFO(TAG, "\tvisibilityRect[%d]: left: %d top: %d right: %d bottom: %d",
-				index, rectangle_i32->left, rectangle_i32->top, rectangle_i32->right, rectangle_i32->bottom);
+				index, rectangle_i32->left(), rectangle_i32->top(), rectangle_i32->right(), rectangle_i32->bottom());
 		}
 	}
 
@@ -316,10 +316,10 @@ static void PrintRailIconInfo(WINDOW_ORDER_INFO* orderInfo, ICON_INFO* iconInfo)
 //
 //				hDC = BeginPaint(hWnd, &ps);
 //
-//				x = ps.rcPaint.left;
-//				y = ps.rcPaint.top;
-//				width = ps.rcPaint.right - ps.rcPaint.left + 1;
-//				height = ps.rcPaint.bottom - ps.rcPaint.top + 1;
+//				x = ps.rcPaint.left();
+//				y = ps.rcPaint.top();
+//				width = ps.rcPaint.right() - ps.rcPaint.left() + 1;
+//				height = ps.rcPaint.bottom() - ps.rcPaint.top() + 1;
 //
 //				BitBlt(hDC, x, y, width, height, wfc->primary->hdc,
 //					railWindow->x + x, railWindow->y + y);
@@ -617,12 +617,12 @@ static void PrintRailIconInfo(WINDOW_ORDER_INFO* orderInfo, ICON_INFO* iconInfo)
 //		if (windowState->numWindowRects > 0)
 //		{
 //			rectangle = &(windowState->windowRects[0]);
-//			hWndRects = CreateRectRgn(rectangle_i32->left, rectangle_i32->top, rectangle_i32->right, rectangle_i32->bottom);
+//			hWndRects = CreateRectRgn(rectangle_i32->left(), rectangle_i32->top(), rectangle_i32->right(), rectangle_i32->bottom());
 //
 //			for (index = 1; index < windowState->numWindowRects; index++)
 //			{
 //				rectangle = &(windowState->windowRects[index]);
-//				hWndRect = CreateRectRgn(rectangle_i32->left, rectangle_i32->top, rectangle_i32->right, rectangle_i32->bottom);
+//				hWndRect = CreateRectRgn(rectangle_i32->left(), rectangle_i32->top(), rectangle_i32->right(), rectangle_i32->bottom());
 //				CombineRgn(hWndRects, hWndRects, hWndRect, RGN_OR);
 //				DeleteObject(hWndRect);
 //			}
@@ -916,10 +916,10 @@ static int wf_rail_server_handshake(RailClientContext* context, RAIL_HANDSHAKE_O
 	sysparam.keyboardCues = false;
 
 	sysparam.params |= SPI_MASK_SET_WORK_AREA;
-	sysparam.workArea.left = 0;
-	sysparam.workArea.top = 0;
-	sysparam.workArea.right = settings->DesktopWidth;
-	sysparam.workArea.bottom = settings->DesktopHeight;
+	sysparam.workArea.left() = 0;
+	sysparam.workArea.top() = 0;
+	sysparam.workArea.right() = settings->DesktopWidth;
+	sysparam.workArea.bottom() = settings->DesktopHeight;
 
 	sysparam.dragFullWindows = false;
 
@@ -982,10 +982,10 @@ void wf_rail_invalidate_region(wfContext* wfc, REGION16* invalidRegion)
 
 		if (railWindow)
 		{
-			windowRect.left = railWindow->x;
-			windowRect.top = railWindow->y;
-			windowRect.right = railWindow->x + railWindow->width;
-			windowRect.bottom = railWindow->y + railWindow->height;
+			windowRect.left() = railWindow->x;
+			windowRect.top() = railWindow->y;
+			windowRect.right() = railWindow->x + railWindow->width;
+			windowRect.bottom() = railWindow->y + railWindow->height;
 
 			region16_clear(&windowInvalidRegion);
 			region16_intersect_rect(&windowInvalidRegion, invalidRegion, &windowRect);
@@ -994,10 +994,10 @@ void wf_rail_invalidate_region(wfContext* wfc, REGION16* invalidRegion)
 			{
 				extents = region16_extents(&windowInvalidRegion);
 
-				updateRect.left = extents->left - railWindow->x;
-				updateRect.top = extents->top - railWindow->y;
-				updateRect.right = extents->right - railWindow->x;
-				updateRect.bottom = extents->bottom - railWindow->y;
+				updateRect.left() = extents->left() - railWindow->x;
+				updateRect.top() = extents->top() - railWindow->y;
+				updateRect.right() = extents->right() - railWindow->x;
+				updateRect.bottom() = extents->bottom() - railWindow->y;
 
 				InvalidateRect(railWindow->hWnd, &updateRect, false);
 			}

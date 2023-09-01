@@ -112,7 +112,7 @@ namespace aura
 
             string strPack = "%pack" + ::as_string(iPack + 1) + "%";
 
-            str = str.left(iEncoding + 1) + strPack + str.substr(iBase64);
+            str = str.left()(iEncoding + 1) + strPack + str.substr(iBase64);
 
             base64map[strPack] = strBase64;
 
@@ -490,7 +490,7 @@ namespace user
 
       rectangleX.deflate(rectanglePadding);
 
-      double left = rectangleX.left;
+      double left = rectangleX.left();
 
       strsize iSelBeg;
       strsize iSelEnd;
@@ -524,7 +524,7 @@ namespace user
 
       //pgraphics->offset_origin(-pointOffset.x(), 0);
 
-      double y = rectangleX.top + m_iCurrentPageLineStart * m_dLineHeight;
+      double y = rectangleX.top() + m_iCurrentPageLineStart * m_dLineHeight;
 
       _001_get_impact_sel(iSelBegOriginal, iSelEndOriginal);
 
@@ -749,8 +749,8 @@ namespace user
                pgraphics->fill_rectangle(
                   ::rectangle_f64_dimension((double)((double)left + x1),
                      (double)y,
-                     (double)minimum(x2 - x1, (double)rectangleX.right - ((double)left + x1)),
-                     (double)minimum((double)m_dLineHeight, (double)rectangleX.bottom - y)),
+                     (double)minimum(x2 - x1, (double)rectangleX.right() - ((double)left + x1)),
+                     (double)minimum((double)m_dLineHeight, (double)rectangleX.bottom() - y)),
                   crBkSel);
 
                pgraphics->set(pbrushTextSel);
@@ -778,14 +778,14 @@ namespace user
                //pgraphics->fill_rectangle(
                //   ::rectangle_f64_dimension((double)((double)left + compose1),
                //      (double)y,
-               //      (double)minimum(compose2 - compose1, (double)rectangleX.right - ((double)left + compose1)),
-               //      (double)minimum((double)m_dLineHeight, (double)rectangleX.bottom - y)),
+               //      (double)minimum(compose2 - compose1, (double)rectangleX.right() - ((double)left + compose1)),
+               //      (double)minimum((double)m_dLineHeight, (double)rectangleX.bottom() - y)),
                //   colorComposeBk);
 
                pgraphics->fill_rectangle(
                   ::rectangle_f64_dimension((double)((double)left + compose1),
-                     ((double)minimum((double)m_dLineHeight, (double)rectangleX.bottom)) - 1.0,
-                     (double)minimum(compose2 - compose1, (double)rectangleX.right - ((double)left + compose1)),
+                     ((double)minimum((double)m_dLineHeight, (double)rectangleX.bottom())) - 1.0,
+                     (double)minimum(compose2 - compose1, (double)rectangleX.right() - ((double)left + compose1)),
                      1.0));
 
                //pgraphics->set(pbrushTextSel);
@@ -797,7 +797,7 @@ namespace user
             {
 
                // Draw Normal Text - not selected - before selection
-               auto strLeft = strLineGraphics.left(iCurLineSelBeg);
+               auto strLeft = strLineGraphics.left()(iCurLineSelBeg);
                pgraphics->text_out(left, y, strLeft);
 
             }
@@ -1132,26 +1132,26 @@ namespace user
 
             GetActiveClientRect(rectangleActiveClient);
 
-            if (pointCursor.x() < rectangleActiveClient.left)
+            if (pointCursor.x() < rectangleActiveClient.left())
             {
 
                scroll_left_line();
 
             }
-            else if (pointCursor.x() > rectangleActiveClient.right)
+            else if (pointCursor.x() > rectangleActiveClient.right())
             {
 
                scroll_right_line();
 
             }
 
-            if (pointCursor.y() < rectangleActiveClient.top)
+            if (pointCursor.y() < rectangleActiveClient.top())
             {
 
                scroll_up_line();
 
             }
-            else if (pointCursor.y() > rectangleActiveClient.bottom)
+            else if (pointCursor.y() > rectangleActiveClient.bottom())
             {
 
                scroll_down_line();
@@ -1874,7 +1874,7 @@ namespace user
 
                window_rectangle(rectangleWindow);
 
-               if (pmouse->m_point.x() < rectangleWindow.left - 30)
+               if (pmouse->m_point.x() < rectangleWindow.left() - 30)
                {
 
                   information("test06");
@@ -3697,9 +3697,9 @@ namespace user
 
       }
 
-      lprect->left = x;
+      lprect->left() = x;
 
-      lprect->right = x + 1;
+      lprect->right() = x + 1;
 
       return true;
 
@@ -3726,9 +3726,9 @@ namespace user
 
       }
 
-      lprect->top = (::i32)(iLine * m_dItemHeight);
+      lprect->top() = (::i32)(iLine * m_dItemHeight);
 
-      lprect->bottom = (::i32)(lprect->top + m_dItemHeight);
+      lprect->bottom() = (::i32)(lprect->top() + m_dItemHeight);
 
       return true;
 
@@ -3826,7 +3826,7 @@ namespace user
 
       }
 
-      x = rectangleX.left;
+      x = rectangleX.left();
 
       return m_iaLineLength.get_upper_bound();
 
@@ -3963,7 +3963,7 @@ namespace user
 
             xCharacter = (int)(plain_edit_get_line_extent(pgraphics, iLine, iRel));
 
-            xCharacter = rectangleX.left + xCharacter;
+            xCharacter = rectangleX.left() + xCharacter;
 
             x = xCharacter;
 
@@ -4019,7 +4019,7 @@ namespace user
 
       GetFocusRect(rectangleX);
 
-      point.y() -= rectangleX.top;
+      point.y() -= rectangleX.top();
 
       auto pointOffset = get_context_offset();
 
@@ -4097,7 +4097,7 @@ namespace user
 
       auto pointOffset = get_context_offset();
 
-      px -= (rectangleX.left - pointOffset.x());
+      px -= (rectangleX.left() - pointOffset.x());
 
 
       if (px <= 0)
@@ -6347,11 +6347,11 @@ namespace user
 
       rectangle = this->rectangle();
 
-      rectangle.left = (::i32)x;
+      rectangle.left() = (::i32)x;
 
-      rectangle.top = (::i32)y;
+      rectangle.top() = (::i32)y;
 
-      rectangle.bottom = (::i32)y2;
+      rectangle.bottom() = (::i32)y2;
 
       client_to_screen()(rectangle);
 
@@ -6684,7 +6684,7 @@ namespace user
             //      if (iNewCursorPosition < 0)
             //      {
 
-            //         wd16_string wstrFull(strFull.left(iAfterComposingCursorPosition));
+            //         wd16_string wstrFull(strFull.left()(iAfterComposingCursorPosition));
 
             //         iOffset = wd16_to_ansi_len(wstrFull, wstrFull.get_length() + iNewCursorPosition);
 
@@ -6733,7 +6733,7 @@ namespace user
                   if (iNewCursorPosition < 0)
                   {
 
-                     wd16_string wstrFull(strFull.left(iAfterComposingCursorPosition));
+                     wd16_string wstrFull(strFull.left()(iAfterComposingCursorPosition));
 
                      iOffset = wd16_to_ansi_len(wstrFull, wstrFull.length() + iNewCursorPosition);
 
@@ -8265,7 +8265,7 @@ namespace user
    void plain_edit::plain_edit_insert_text(::draw2d::graphics_pointer & pgraphics, string strText, bool bForceNewStep)
    {
 
-      ::information("plain_edit::insert_text: \"" + strText.left(64) + "\" \n");
+      ::information("plain_edit::insert_text: \"" + strText.left()(64) + "\" \n");
 
       synchronous_lock synchronouslock(this->synchronization());
 

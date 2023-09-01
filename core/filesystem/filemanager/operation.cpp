@@ -103,7 +103,7 @@ namespace filemanager
                if(strCompare[j] != strBase[j])
                {
                   
-                  strBase = ::file::path(strCompare.left(j)).folder();
+                  strBase = ::file::path(strCompare.left()(j)).folder();
 
                   break;
 

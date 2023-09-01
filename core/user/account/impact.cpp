@@ -177,10 +177,10 @@ namespace account
 
       }
 
-      rectangleX.left = (rectangleX.width() - w) / 2;
-      rectangleX.top = (rectangleX.height() - h) / 3;
-      rectangleX.right = rectangleX.left + w;
-      rectangleX.bottom = rectangleX.top + h;
+      rectangleX.left() = (rectangleX.width() - w) / 2;
+      rectangleX.top() = (rectangleX.height() - h) / 3;
+      rectangleX.right() = rectangleX.left() + w;
+      rectangleX.bottom() = rectangleX.top() + h;
 
       SetPlacement(rectangleX);
 

@@ -636,12 +636,12 @@ namespace crypto
 
          string strSalt(scopedstrSalt);
 
-         strSalt = strSalt.left(CA4_CRYPT_V5_SALT_BYTES);
+         strSalt = strSalt.left()(CA4_CRYPT_V5_SALT_BYTES);
 
          for (i32 i = iOrder; i < CA4_CRYPT_V5_FINAL_HASH_BYTES - CA4_BASE_HASH_DIGEST_LENGTH; i++)
          {
 
-            string strStepSalt = strSalt.substr(i) + strSalt.left(i);
+            string strStepSalt = strSalt.substr(i) + strSalt.left()(i);
 
             strHash = nessie(strStepSalt + strHash).lowered();
 
@@ -659,12 +659,12 @@ namespace crypto
 
          string strSalt(scopedstrSalt);
 
-         strSalt = strSalt.left(CA4_CRYPT_V5_SALT_BYTES);
+         strSalt = strSalt.left()(CA4_CRYPT_V5_SALT_BYTES);
 
          for (i32 i = 0; i < iMaxOrder; i++)
          {
 
-            string strStepSalt = strSalt.substr(i) + strSalt.left(i);
+            string strStepSalt = strSalt.substr(i) + strSalt.left()(i);
 
             strHash = nessie(strStepSalt + strHash).lowered();
 
@@ -680,7 +680,7 @@ namespace crypto
 
          string strHash(scopedstrHash);
 
-         string strSalt = strHash.left(CA4_CRYPT_V5_SALT_BYTES);
+         string strSalt = strHash.left()(CA4_CRYPT_V5_SALT_BYTES);
 
          return strHash == v5_get_password_hash(strSalt, scopedstrPassword, iOrder);
 

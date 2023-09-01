@@ -1157,8 +1157,8 @@ namespace user
 ////#endif
 //
 //      //pusersystem->m_createstruct.style = uStyle | WS_CHILD;
-//      //pusersystem->m_createstruct.x() = rectangle.left;
-//      //pusersystem->m_createstruct.y() = rectangle.top;
+//      //pusersystem->m_createstruct.x() = rectangle.left();
+//      //pusersystem->m_createstruct.y() = rectangle.top();
 //      //pusersystem->m_createstruct.cx() = rectangle.width();
 //      //pusersystem->m_createstruct.cy() = rectangle.height();
 //      //pusersystem->m_createstruct.hwndParent = puiParent->get_safe_handle();
@@ -2323,18 +2323,18 @@ namespace user
 
       //      //   pdisplay->get_monitor_rectangle(0, rcMonitor);
 
-      //      //   if (rectWindow.left >= rcMonitor.left)
+      //      //   if (rectWindow.left() >= rcMonitor.left())
       //      //   {
 
-      //      //      pmouse->m_point.x() += (::i32)rcMonitor.left;
+      //      //      pmouse->m_point.x() += (::i32)rcMonitor.left();
 
       //      //   }
 
-      //      //   if (rectWindow.top >= rcMonitor.top)
+      //      //   if (rectWindow.top() >= rcMonitor.top())
       //      //   {
 
-      //      //      //pmouse->m_point.y() += (::i32)rectWindow.top;
-      //      //      pmouse->m_point.y() += (::i32)rcMonitor.top;
+      //      //      //pmouse->m_point.y() += (::i32)rectWindow.top();
+      //      //      pmouse->m_point.y() += (::i32)rcMonitor.top();
 
       //      //   }
 
@@ -2342,17 +2342,17 @@ namespace user
       //      //else
       //      {
 
-      //         if (rectWindow.left >= 0)
+      //         if (rectWindow.left() >= 0)
       //         {
 
-      //            pmouse->m_point.x() += (::i32)rectWindow.left;
+      //            pmouse->m_point.x() += (::i32)rectWindow.left();
 
       //         }
 
-      //         if (rectWindow.top >= 0)
+      //         if (rectWindow.top() >= 0)
       //         {
 
-      //            pmouse->m_point.y() += (::i32)rectWindow.top;
+      //            pmouse->m_point.y() += (::i32)rectWindow.top();
 
       //         }
 
@@ -5809,7 +5809,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 
                //m_rectangleUpdateBuffer = r;
 
-               //information("PrintBuffer (%d, %d)",  r.right, r.bottom);
+               //information("PrintBuffer (%d, %d)",  r.right(), r.bottom());
 
                //if (!m_pgraphics)
                //{
@@ -6078,7 +6078,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 
                //m_rectangleUpdateBuffer = r;
 
-               //information("PrintBuffer (%d, %d)",  r.right, r.bottom);
+               //information("PrintBuffer (%d, %d)",  r.right(), r.bottom());
 
                if (!m_pgraphics)
                {

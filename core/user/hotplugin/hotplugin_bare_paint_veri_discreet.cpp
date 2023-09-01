@@ -24,8 +24,8 @@ namespace hotplugin
 
       ::rectangle_i32 rectangleWindow;
       window_rectangle(&rectangleWindow);
-      //  i32 cx = rectangleWindow.right - rectangleWindow.left;
-      //i32 cy = rectangleWindow.bottom - rectangleWindow.top;
+      //  i32 cx = rectangleWindow.right() - rectangleWindow.left();
+      //i32 cy = rectangleWindow.bottom() - rectangleWindow.top();
 
 
 
@@ -41,25 +41,25 @@ namespace hotplugin
 
       if(::height(rectangle) < h)
       {
-         top = rectangle.top;
-         bottom = rectangle.bottom;
+         top = rectangle.top();
+         bottom = rectangle.bottom();
       }
       else
       {
-         top = rectangle.top + ::height(rectangle) / 2 - h / 2;
-         bottom = rectangle.top + ::height(rectangle) / 2 + h / 2;
+         top = rectangle.top() + ::height(rectangle) / 2 - h / 2;
+         bottom = rectangle.top() + ::height(rectangle) / 2 + h / 2;
       }
 
       if(::width(rectangle) < m)
       {
-         left = rectangle.left;
-         right = rectangle.right;
+         left = rectangle.left();
+         right = rectangle.right();
       }
       else
       {
 
-         left = rectangle.left + minimum(m / 2,::width(rectangle) / 2);
-         right = rectangle.right - minimum(m / 2,::width(rectangle) / 2);
+         left = rectangle.left() + minimum(m / 2,::width(rectangle) / 2);
+         right = rectangle.right() - minimum(m / 2,::width(rectangle) / 2);
 
       }
 
@@ -85,11 +85,11 @@ namespace hotplugin
 
       ::rectangle_i32 rectangleProgress(rectangleBar);
 
-      rectangleProgress.right = (::i32) (rectangleProgress.left + rectangleBar.width() * minimum(1.0, maximum(0.0, dRate)));
+      rectangleProgress.right() = (::i32) (rectangleProgress.left() + rectangleBar.width() * minimum(1.0, maximum(0.0, dRate)));
 
       ::rectangle_i32 rectangleProgressComplement(rectangleBar);
 
-      rectangleProgressComplement.left = rectangleProgress.right;
+      rectangleProgressComplement.left() = rectangleProgress.right();
 
       pgraphics->rectangle(rectangleProgressComplement);
 
@@ -117,15 +117,15 @@ namespace hotplugin
 
       strProgress.format("%0.3f%%",dRate * 100.0);
 
-      rectangleBar.left +=4;
+      rectangleBar.left() +=4;
 
-      rectangleBar.top += 5;
+      rectangleBar.top() += 5;
 
       pgraphics->set_text_color(argb(255, 255, 255, 255));
 
       pgraphics->set_text_rendering_hint(::write_text::e_rendering_clear_type_grid_fit);
 
-      pgraphics->text_out(rectangleBar.left, rectangleBar.top, m_strStatus + " : " + strProgress + " : " + m_strStatus2);
+      pgraphics->text_out(rectangleBar.left(), rectangleBar.top(), m_strStatus + " : " + strProgress + " : " + m_strStatus2);
 
    }
 

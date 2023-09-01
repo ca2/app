@@ -310,13 +310,13 @@ namespace experience_nanoui
 
          }
 
-         rect.left = m_pointWindowIcon.x();
-         rect.top = m_pointWindowIcon.y();
-         rect.right = rect.left + m_sizeIcon.cx();
-         rect.bottom = rect.top + m_sizeIcon.cy();
+         rect.left() = m_pointWindowIcon.x();
+         rect.top() = m_pointWindowIcon.y();
+         rect.right() = rect.left() + m_sizeIcon.cx();
+         rect.bottom() = rect.top() + m_sizeIcon.cy();
 
-         //lprect->right = lprect->left + pdrawicon->get_size().cx();
-         //lprect->bottom = lprect->top + pdrawicon->get_size().cy();
+         //lprect->right() = lprect->left() + pdrawicon->get_size().cx();
+         //lprect->bottom() = lprect->top() + pdrawicon->get_size().cy();
 
          return true;
 
@@ -331,10 +331,10 @@ namespace experience_nanoui
 
          }
 
-         //lprect->left = m_pointMoveGripMinimal.x() + 2;
-         //lprect->top = m_pointMoveGripMinimal.y() + 2;
-         rect.right = rect.left + m_iCaptionHeight - 4;
-         rect.bottom = rect.top + m_iCaptionHeight - 4;
+         //lprect->left() = m_pointMoveGripMinimal.x() + 2;
+         //lprect->top() = m_pointMoveGripMinimal.y() + 2;
+         rect.right() = rect.left() + m_iCaptionHeight - 4;
+         rect.bottom() = rect.top() + m_iCaptionHeight - 4;
 
          return true;
 
@@ -551,8 +551,8 @@ namespace experience_nanoui
 
       ::rectangle_i32 rectangle(rectangleParam);
 
-      i32 x = rectangle.left;
-      i32 y = rectangle.top;
+      i32 x = rectangle.left();
+      i32 y = rectangle.top();
       i32 cx = rectangle.width();
       i32 cy = rectangle.height();
 
@@ -689,7 +689,7 @@ namespace experience_nanoui
             while(i < rectangleGrip.width() - 5 + 1)
             {
 
-               ::rectangle_f64 rectangle(rectangleGrip.left + i, rectangleGrip.top, 3, rectangleGrip.height());
+               ::rectangle_f64 rectangle(rectangleGrip.left() + i, rectangleGrip.top(), 3, rectangleGrip.height());
 
                pgraphics->draw_inset_3d_rectangle(rectangle, argb(110,230,230,230),argb(110,130,130,130), 1.0);
 

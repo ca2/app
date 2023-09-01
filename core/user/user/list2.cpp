@@ -953,10 +953,10 @@ namespace user
 
          auto puseritem = user_item(pitem);
 
-         puseritem->m_rectangle.left = 0;
-         puseritem->m_rectangle.right = rectangleX.width();
-         puseritem->m_rectangle.top = y;
-         puseritem->m_rectangle.bottom = y + iLineHeight;
+         puseritem->m_rectangle.left() = 0;
+         puseritem->m_rectangle.right() = rectangleX.width();
+         puseritem->m_rectangle.top() = y;
+         puseritem->m_rectangle.bottom() = y + iLineHeight;
 
          ::user::enum_state estate = ::user::e_state_none;
 

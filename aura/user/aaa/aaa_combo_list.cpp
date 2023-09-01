@@ -121,12 +121,12 @@ namespace user
 
       rectangleItem = rectangleX;
 
-      rectangleItem.bottom = rectangleX.top;
+      rectangleItem.bottom() = rectangleX.top();
 
       if (m_pcombo->m_bEdit)
       {
 
-         rectangleItem.bottom += _001GetItemHeight();
+         rectangleItem.bottom() += _001GetItemHeight();
 
       }
 
@@ -145,9 +145,9 @@ namespace user
       for (index iItem = 0; iItem < iListItemCount; iItem++)
       {
 
-         rectangleItem.top = rectangleItem.bottom;
+         rectangleItem.top() = rectangleItem.bottom();
 
-         rectangleItem.bottom = rectangleItem.top + _001GetItemHeight();
+         rectangleItem.bottom() = rectangleItem.top() + _001GetItemHeight();
 
          color32_t crBk;
 
@@ -936,9 +936,9 @@ namespace user
       for (::index iItem = 0; iItem < iItemCount; iItem++)
       {
 
-         rectangleItem.top = rectangleX.top + (_001GetItemHeight() * (int) (iAddUp + iItem));
+         rectangleItem.top() = rectangleX.top() + (_001GetItemHeight() * (int) (iAddUp + iItem));
 
-         rectangleItem.bottom = rectangleItem.top + _001GetItemHeight();
+         rectangleItem.bottom() = rectangleItem.top() + _001GetItemHeight();
 
          if (rectangleItem.contains(item.m_pointHitTest))
          {
@@ -952,9 +952,9 @@ namespace user
 
       }
 
-      rectangleItem.top = rectangleX.top;
+      rectangleItem.top() = rectangleX.top();
 
-      rectangleItem.bottom = rectangleItem.top + _001GetItemHeight();
+      rectangleItem.bottom() = rectangleItem.top() + _001GetItemHeight();
 
       if (rectangleItem.contains(item.m_pointHitTest))
       {
@@ -987,27 +987,27 @@ namespace user
 
       ::rectangle_f64 rectangleList;
 
-      rectangleList.left = rectangleWindow.left;
-      rectangleList.right = rectangleWindow.left + maximum(rectangleWindow.width(), sizeFull.cx());
-      rectangleList.top = rectangleWindow.bottom;
-      rectangleList.bottom = rectangleWindow.bottom + sizeFull.cy();
+      rectangleList.left() = rectangleWindow.left();
+      rectangleList.right() = rectangleWindow.left() + maximum(rectangleWindow.width(), sizeFull.cx());
+      rectangleList.top() = rectangleWindow.bottom();
+      rectangleList.bottom() = rectangleWindow.bottom() + sizeFull.cy();
 
-      if (rectangleList.bottom > rectangleMonitor.bottom -m_iBorder)
+      if (rectangleList.bottom() > rectangleMonitor.bottom() -m_iBorder)
       {
 
-         rectangleList.bottom = rectangleMonitor.bottom - m_iBorder;
+         rectangleList.bottom() = rectangleMonitor.bottom() - m_iBorder;
 
          ::rectangle_f64 rectangleListOver;
 
-         rectangleListOver.left = rectangleWindow.left;
-         rectangleListOver.right = rectangleWindow.left + sizeFull.cx();
-         rectangleListOver.bottom = rectangleWindow.top;
-         rectangleListOver.top = rectangleWindow.top - sizeFull.cy();
+         rectangleListOver.left() = rectangleWindow.left();
+         rectangleListOver.right() = rectangleWindow.left() + sizeFull.cx();
+         rectangleListOver.bottom() = rectangleWindow.top();
+         rectangleListOver.top() = rectangleWindow.top() - sizeFull.cy();
 
-         if (rectangleListOver.top < rectangleMonitor.top + m_iBorder)
+         if (rectangleListOver.top() < rectangleMonitor.top() + m_iBorder)
          {
 
-            rectangleListOver.top = rectangleMonitor.top + m_iBorder;
+            rectangleListOver.top() = rectangleMonitor.top() + m_iBorder;
 
             if (rectangleListOver.height() > rectangleList.height())
             {
@@ -1020,14 +1020,14 @@ namespace user
 
       }
 
-      if (rectangleList.right > rectangleMonitor.right - m_iBorder)
+      if (rectangleList.right() > rectangleMonitor.right() - m_iBorder)
       {
 
-         rectangleList.offset(rectangleMonitor.right - (rectangleList.right-m_iBorder), 0);
+         rectangleList.offset(rectangleMonitor.right() - (rectangleList.right()-m_iBorder), 0);
 
       }
 
-      if (rectangleList.left < rectangleMonitor.left)
+      if (rectangleList.left() < rectangleMonitor.left())
       {
 
          rectangleList.move_left_to(0);

@@ -612,10 +612,10 @@ void nano_window::redraw()
 void nano_window::get_client_rectangle(::rectangle_i32 & rectangle)
 {
 
-   rectangle.left = 0;
-   rectangle.top = 0;
-   rectangle.right = m_rectangle.width();
-   rectangle.bottom = m_rectangle.height();
+   rectangle.left() = 0;
+   rectangle.top() = 0;
+   rectangle.right() = m_rectangle.width();
+   rectangle.bottom() = m_rectangle.height();
 
 }
 

@@ -492,7 +492,7 @@ namespace xml
 
       memory_copy(m_memoryData.data() + iPos, strValue, strValue.length_in_bytes());
 
-      //m_strData = m_strData.left(iPos) + strValue + m_strData.substr(iPos + strName.length() + 2);
+      //m_strData = m_strData.left()(iPos) + strValue + m_strData.substr(iPos + strName.length() + 2);
 
       return pszRight + iDiff;
 

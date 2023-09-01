@@ -828,10 +828,10 @@ namespace helloaxis
 
 //      ::rectangle_i32 rectangleX;
 //
-//      rectangleX.left = 0;
-//      rectangleX.top = 0;
-//      rectangleX.right = m_rectangleX.width();
-//      rectangleX.bottom = m_rectangleX.height();
+//      rectangleX.left() = 0;
+//      rectangleX.top() = 0;
+//      rectangleX.right() = m_rectangleX.width();
+//      rectangleX.bottom() = m_rectangleX.height();
 //
 //      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 //      int period = 5000;

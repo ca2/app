@@ -481,8 +481,8 @@ namespace user
 
          ::rectangle_f64 rectangle(0, 0, 0, 0);
 
-         rectangle.right = ::i32(size.cx() * 1.6);
-         rectangle.bottom = ::i32(size.cy() * 1.4);
+         rectangle.right() = ::i32(size.cx() * 1.6);
+         rectangle.bottom() = ::i32(size.cy() * 1.4);
 
          layout().sketch() = rectangle.size();
 
@@ -581,13 +581,13 @@ namespace user
 
       ::rectangle_f64 rectangle;
 
-      rectangle.left = rectangleX.left + (rectangleX.width() - sizeText.cx()) / 2;
+      rectangle.left() = rectangleX.left() + (rectangleX.width() - sizeText.cx()) / 2;
 
-      rectangle.top = rectangleX.top + (rectangleX.height() - sizeText.cy()) / 2;
+      rectangle.top() = rectangleX.top() + (rectangleX.height() - sizeText.cy()) / 2;
 
-      rectangle.right = rectangle.left + sizeText.cx();
+      rectangle.right() = rectangle.left() + sizeText.cx();
 
-      rectangle.bottom = rectangle.top + sizeText.cy();
+      rectangle.bottom() = rectangle.top() + sizeText.cy();
 
       m_rectangleText = rectangle;
 
@@ -712,19 +712,19 @@ namespace user
 
       //      pgraphics->SetBkMode(TRANSPARENT);
 
-      rectangleX.left += 3;
-      rectangleX.top += 3;
+      rectangleX.left() += 3;
+      rectangleX.top() += 3;
       ::rectangle_f64 rectangleText = m_rectangleText;
       //      string str = utf8_to_unicode(str);
       if (m_pimage->is_ok())
       {
          ::rectangle_f64 rectangleDib;
          rectangleDib = m_rectangleText;
-         rectangleDib.bottom = minimum(rectangleText.top + m_pimage->height(), rectangleText.bottom);
-         rectangleDib.right = minimum(rectangleText.left + m_pimage->width(), rectangleText.right);
+         rectangleDib.bottom() = minimum(rectangleText.top() + m_pimage->height(), rectangleText.bottom());
+         rectangleDib.right() = minimum(rectangleText.left() + m_pimage->width(), rectangleText.right());
          //m_pimage->to(pgraphics, rectangleDib);
          m_pimage->bitmap_blend(pgraphics, rectangleDib);
-         rectangleText.left += m_pimage->width();
+         rectangleText.left() += m_pimage->width();
       }
 
 
@@ -874,9 +874,9 @@ namespace user
 
          ::rectangle_f64 rectangleAspect;
 
-         rectangleAspect.left = 0;
+         rectangleAspect.left() = 0;
 
-         rectangleAspect.top = 0;
+         rectangleAspect.top() = 0;
 
          double dW = (double)rectangleX.width() / (double)pimage->width();
 
@@ -884,9 +884,9 @@ namespace user
 
          double dMin = maximum(minimum(dW, dH), 1.0);
 
-         rectangleAspect.right = (::i32) (pimage->width() * dMin);
+         rectangleAspect.right() = (::i32) (pimage->width() * dMin);
 
-         rectangleAspect.bottom = (::i32) (pimage->height() * dMin);
+         rectangleAspect.bottom() = (::i32) (pimage->height() * dMin);
 
          rectangleAspect.Align(e_align_center, rectangleX);
 

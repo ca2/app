@@ -96,12 +96,12 @@ void popup_button::initialize_popup_button(const ::string & strText, int x, int 
 
       auto pbutton = m_buttona[iButton];
 
-      pbutton->m_rectangle.bottom = iBottom;
-      pbutton->m_rectangle.top = pbutton->m_rectangle.bottom - hButton;
-      pbutton->m_rectangle.right = iRight;
-      pbutton->m_rectangle.left = pbutton->m_rectangle.right - wButton;
+      pbutton->m_rectangle.bottom() = iBottom;
+      pbutton->m_rectangle.top() = pbutton->m_rectangle.bottom() - hButton;
+      pbutton->m_rectangle.right() = iRight;
+      pbutton->m_rectangle.left() = pbutton->m_rectangle.right() - wButton;
 
-      iBottom = pbutton->m_rectangle.top;
+      iBottom = pbutton->m_rectangle.top();
 
    }
 
@@ -126,7 +126,7 @@ void popup_button::on_draw(nano_device * pnanodevice)
 
    get_client_rectangle(rectangleText);
 
-   rectangleText.bottom = rectangleText.top + rectangleText.height() * 3 / 4;
+   rectangleText.bottom() = rectangleText.top() + rectangleText.height() * 3 / 4;
 
    rectangleText.deflate(25);
 

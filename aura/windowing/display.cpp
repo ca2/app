@@ -612,7 +612,7 @@ namespace windowing
 
       double dMargin = psystem->m_paurasystem->m_dDpi;
 
-      if (ZONEING_COMPARE::is_equal(rectangle.top, rectangleWorkspace.top, dMargin, !(edisplayPrevious & e_display_top)))
+      if (ZONEING_COMPARE::is_equal(rectangle.top(), rectangleWorkspace.top(), dMargin, !(edisplayPrevious & e_display_top)))
       {
 
          edisplay |= e_display_top;
@@ -620,18 +620,18 @@ namespace windowing
          if (bPreserveSize)
          {
 
-            rectangle.move_top_to(rectangleWorkspace.top);
+            rectangle.move_top_to(rectangleWorkspace.top());
 
          }
          else
          {
 
-            rectangle.top = rectangleWorkspace.top;
+            rectangle.top() = rectangleWorkspace.top();
 
          }
 
       }
-      else if (ZONEING_COMPARE::is_equal(rectangle.bottom, rectangleWorkspace.bottom, dMargin, !(edisplayPrevious & e_display_bottom)))
+      else if (ZONEING_COMPARE::is_equal(rectangle.bottom(), rectangleWorkspace.bottom(), dMargin, !(edisplayPrevious & e_display_bottom)))
       {
 
          edisplay |= e_display_bottom;
@@ -639,19 +639,19 @@ namespace windowing
          if (bPreserveSize)
          {
 
-            rectangle.move_bottom_to(rectangleWorkspace.bottom);
+            rectangle.move_bottom_to(rectangleWorkspace.bottom());
 
          }
          else
          {
 
-            rectangle.bottom = rectangleWorkspace.bottom;
+            rectangle.bottom() = rectangleWorkspace.bottom();
 
          }
 
       }
 
-      if (ZONEING_COMPARE::is_equal(rectangleRequest.left, rectangleWorkspace.left, dMargin, !(edisplayPrevious & e_display_left)))
+      if (ZONEING_COMPARE::is_equal(rectangleRequest.left(), rectangleWorkspace.left(), dMargin, !(edisplayPrevious & e_display_left)))
       {
 
          edisplay |= e_display_left;
@@ -659,18 +659,18 @@ namespace windowing
          if (bPreserveSize)
          {
 
-            rectangle.move_left_to(rectangleWorkspace.left);
+            rectangle.move_left_to(rectangleWorkspace.left());
 
          }
          else
          {
 
-            rectangle.left = rectangleWorkspace.left;
+            rectangle.left() = rectangleWorkspace.left();
 
          }
 
       }
-      else if (ZONEING_COMPARE::is_equal(rectangleRequest.right, rectangleWorkspace.right, dMargin, !(edisplayPrevious & e_display_right)))
+      else if (ZONEING_COMPARE::is_equal(rectangleRequest.right(), rectangleWorkspace.right(), dMargin, !(edisplayPrevious & e_display_right)))
       {
 
          edisplay |= e_display_right;
@@ -678,13 +678,13 @@ namespace windowing
          if (bPreserveSize)
          {
 
-            rectangle.move_right_to(rectangleWorkspace.right);
+            rectangle.move_right_to(rectangleWorkspace.right());
 
          }
          else
          {
 
-            rectangle.right = rectangleWorkspace.right;
+            rectangle.right() = rectangleWorkspace.right();
 
          }
 
@@ -694,16 +694,16 @@ namespace windowing
          && is_different(edisplay & e_display_left, edisplay & e_display_right))
       {
 
-         if (ZONEING_COMPARE::is_centered(rectangleWorkspace.top, rectangle.top, rectangle.bottom, rectangleWorkspace.bottom))
+         if (ZONEING_COMPARE::is_centered(rectangleWorkspace.top(), rectangle.top(), rectangle.bottom(), rectangleWorkspace.bottom()))
          {
 
             edisplay |= e_display_bottom;
 
             edisplay |= e_display_top;
 
-            rectangle.bottom = rectangleWorkspace.bottom;
+            rectangle.bottom() = rectangleWorkspace.bottom();
 
-            rectangle.top = rectangleWorkspace.top;
+            rectangle.top() = rectangleWorkspace.top();
 
          }
 
@@ -713,16 +713,16 @@ namespace windowing
          && is_different(edisplay & e_display_top, edisplay & e_display_bottom))
       {
 
-         if (ZONEING_COMPARE::is_centered(rectangleWorkspace.left, rectangle.left, rectangle.right, rectangleWorkspace.right))
+         if (ZONEING_COMPARE::is_centered(rectangleWorkspace.left(), rectangle.left(), rectangle.right(), rectangleWorkspace.right()))
          {
 
             edisplay |= e_display_left;
 
             edisplay |= e_display_right;
 
-            rectangle.left = rectangleWorkspace.left;
+            rectangle.left() = rectangleWorkspace.left();
 
-            rectangle.right = rectangleWorkspace.right;
+            rectangle.right() = rectangleWorkspace.right();
 
          }
 
@@ -840,14 +840,14 @@ namespace windowing
       //      strP += "B";
 
       //   ::information(
-      //      "w" + as_string(rectangleWorkspace.left) + ","
-      //      + as_string(rectangleWorkspace.top) + ","
-      //      + as_string(rectangleWorkspace.right) + ","
-      //      + as_string(rectangleWorkspace.bottom) + " " +
-      //      "r" + as_string(prectangle->left) + ","
-      //      + as_string(prectangle->top) + ","
-      //      + as_string(prectangle->right) + ","
-      //      + as_string(prectangle->bottom) + " " +
+      //      "w" + as_string(rectangleWorkspace.left()) + ","
+      //      + as_string(rectangleWorkspace.top()) + ","
+      //      + as_string(rectangleWorkspace.right()) + ","
+      //      + as_string(rectangleWorkspace.bottom()) + " " +
+      //      "r" + as_string(prectangle->left()) + ","
+      //      + as_string(prectangle->top()) + ","
+      //      + as_string(prectangle->right()) + ","
+      //      + as_string(prectangle->bottom()) + " " +
       //      strE + " " + strP + "\n");
 
       //}
@@ -855,10 +855,10 @@ namespace windowing
 
       //g_i_get_best_zoneing++;
 
-      //   rectangleWorkspace.left,
-      //   rectangleWorkspace.top,
-      //   rectangleWorkspace.right,
-      //   rectangleWorkspace.bottom,
+      //   rectangleWorkspace.left(),
+      //   rectangleWorkspace.top(),
+      //   rectangleWorkspace.right(),
+      //   rectangleWorkspace.bottom(),
       //   (edisplay & e_display_left)?'L':' ',
       //   (edisplay & e_display_top) ? 'T':' ',
       //   (edisplay & e_display_right) ? 'R':' ',
@@ -1052,13 +1052,13 @@ namespace windowing
 
       index iMatchingMonitor = get_best_monitor(&rectangleMonitor, rectangleParam);
 
-      prectangle->left = rectangleMonitor.left;
+      prectangle->left() = rectangleMonitor.left();
 
-      prectangle->top = rectangleMonitor.top;
+      prectangle->top() = rectangleMonitor.top();
 
-      prectangle->right = rectangleMonitor.left;
+      prectangle->right() = rectangleMonitor.left();
 
-      prectangle->bottom = rectangleMonitor.top;
+      prectangle->bottom() = rectangleMonitor.top();
 
       return iMatchingMonitor;
 
@@ -1126,25 +1126,25 @@ namespace windowing
          else
          {
 
-            rectangleRestore.left = rectangleMonitor.left + rectangleMonitor.width() / 7;
+            rectangleRestore.left() = rectangleMonitor.left() + rectangleMonitor.width() / 7;
 
-            rectangleRestore.top = rectangleMonitor.top + rectangleMonitor.height() / 7;
+            rectangleRestore.top() = rectangleMonitor.top() + rectangleMonitor.height() / 7;
 
-            rectangleRestore.right = rectangleRestore.left + maximum(sizeMin.cx(), rectangleMonitor.width() * 2 / 5);
+            rectangleRestore.right() = rectangleRestore.left() + maximum(sizeMin.cx(), rectangleMonitor.width() * 2 / 5);
 
-            rectangleRestore.bottom = rectangleRestore.top + maximum(sizeMin.cy(), rectangleMonitor.height() * 2 / 5);
+            rectangleRestore.bottom() = rectangleRestore.top() + maximum(sizeMin.cy(), rectangleMonitor.height() * 2 / 5);
 
-            if (rectangleRestore.right > rectangleMonitor.right - rectangleMonitor.width() / 7)
+            if (rectangleRestore.right() > rectangleMonitor.right() - rectangleMonitor.width() / 7)
             {
 
-               rectangleRestore.offset(rectangleMonitor.right - rectangleMonitor.width() / 7 - rectangleRestore.right, 0);
+               rectangleRestore.offset(rectangleMonitor.right() - rectangleMonitor.width() / 7 - rectangleRestore.right(), 0);
 
             }
 
-            if (rectangleRestore.bottom > rectangleMonitor.bottom - rectangleMonitor.height() / 7)
+            if (rectangleRestore.bottom() > rectangleMonitor.bottom() - rectangleMonitor.height() / 7)
             {
 
-               rectangleRestore.offset(0, rectangleMonitor.bottom - rectangleMonitor.height() / 7 - rectangleRestore.bottom);
+               rectangleRestore.offset(0, rectangleMonitor.bottom() - rectangleMonitor.height() / 7 - rectangleRestore.bottom());
 
             }
 
@@ -1222,17 +1222,17 @@ namespace windowing
 
          }
          
-         if (rectangleHint.left < rectangleWorkspace.left)
+         if (rectangleHint.left() < rectangleWorkspace.left())
          {
 
-            rectangleHint.left = rectangleWorkspace.left + 5;
+            rectangleHint.left() = rectangleWorkspace.left() + 5;
 
          }
 
-         if(rectangleHint.top < rectangleWorkspace.top)
+         if(rectangleHint.top() < rectangleWorkspace.top())
          {
             
-            rectangleHint.top = rectangleWorkspace.top + 5;
+            rectangleHint.top() = rectangleWorkspace.top() + 5;
             
          }
 
@@ -1259,13 +1259,13 @@ namespace windowing
 
          iMatchingWorkspace = get_best_workspace(&rectangleWorkspace, rectangleHint);
          
-         if(rectangleHint.left < (rectangleWorkspace.left + rectangleWorkspace.width() / 48)
-            || rectangleHint.top < (rectangleWorkspace.top + rectangleWorkspace.height() / 48))
+         if(rectangleHint.left() < (rectangleWorkspace.left() + rectangleWorkspace.width() / 48)
+            || rectangleHint.top() < (rectangleWorkspace.top() + rectangleWorkspace.height() / 48))
          {
             
-            rectangleHint.left = rectangleWorkspace.left + rectangleWorkspace.width() / 12;
+            rectangleHint.left() = rectangleWorkspace.left() + rectangleWorkspace.width() / 12;
             
-            rectangleHint.top = rectangleWorkspace.top + rectangleWorkspace.height() / 12;
+            rectangleHint.top() = rectangleWorkspace.top() + rectangleWorkspace.height() / 12;
             
          }
 
@@ -1328,41 +1328,41 @@ namespace windowing
 
       //rectangleWorkspaceBitSmaller.deflate(5);
 
-      if (rectanglePlacement.left < rectangleWorkspace.left
-         || rectanglePlacement.right > rectangleWorkspace.right
-         || rectanglePlacement.top < rectangleWorkspace.top
-         || rectanglePlacement.bottom > rectangleWorkspace.bottom)
+      if (rectanglePlacement.left() < rectangleWorkspace.left()
+         || rectanglePlacement.right() > rectangleWorkspace.right()
+         || rectanglePlacement.top() < rectangleWorkspace.top()
+         || rectanglePlacement.bottom() > rectangleWorkspace.bottom())
       {
 
          rectanglePlacement.move_to(rectangleNormal.top_left());
 
       }
 
-      if (rectanglePlacement.right > rectangleWorkspace.right)
+      if (rectanglePlacement.right() > rectangleWorkspace.right())
       {
 
-         rectanglePlacement.move_right_to(rectangleWorkspace.right - 5);
+         rectanglePlacement.move_right_to(rectangleWorkspace.right() - 5);
 
       }
       
-      if (rectanglePlacement.left < rectangleWorkspace.left)
+      if (rectanglePlacement.left() < rectangleWorkspace.left())
       {
 
-         rectanglePlacement.move_left_to(rectangleWorkspace.left + 5);
+         rectanglePlacement.move_left_to(rectangleWorkspace.left() + 5);
 
       }
       
-      if(rectanglePlacement.bottom > rectangleWorkspace.bottom)
+      if(rectanglePlacement.bottom() > rectangleWorkspace.bottom())
       {
 
-         rectanglePlacement.move_bottom_to(rectangleWorkspace.bottom - 5);
+         rectanglePlacement.move_bottom_to(rectangleWorkspace.bottom() - 5);
 
       }
       
-      if (rectanglePlacement.top < rectangleWorkspace.top)
+      if (rectanglePlacement.top() < rectangleWorkspace.top())
       {
 
-         rectanglePlacement.move_top_to(rectangleWorkspace.top + 5);
+         rectanglePlacement.move_top_to(rectangleWorkspace.top() + 5);
 
       }
 
@@ -1626,32 +1626,32 @@ namespace windowing
    bool display::would_be_docked_in_monitor(const ::rectangle_i32 & rectangleWouldBeSnapped, const ::rectangle_i32 & rectangleMonitor)
    {
 
-      if (rectangleWouldBeSnapped.left < rectangleMonitor.left
-         || rectangleWouldBeSnapped.left > rectangleMonitor.right)
+      if (rectangleWouldBeSnapped.left() < rectangleMonitor.left()
+         || rectangleWouldBeSnapped.left() > rectangleMonitor.right())
       {
 
          return false;
 
       }
 
-      if (rectangleWouldBeSnapped.right < rectangleMonitor.left
-         || rectangleWouldBeSnapped.right > rectangleMonitor.right)
+      if (rectangleWouldBeSnapped.right() < rectangleMonitor.left()
+         || rectangleWouldBeSnapped.right() > rectangleMonitor.right())
       {
 
          return false;
 
       }
 
-      if (rectangleWouldBeSnapped.top < rectangleMonitor.top
-         || rectangleWouldBeSnapped.top > rectangleMonitor.bottom)
+      if (rectangleWouldBeSnapped.top() < rectangleMonitor.top()
+         || rectangleWouldBeSnapped.top() > rectangleMonitor.bottom())
       {
 
          return false;
 
       }
 
-      if (rectangleWouldBeSnapped.bottom < rectangleMonitor.top
-         || rectangleWouldBeSnapped.bottom > rectangleMonitor.top)
+      if (rectangleWouldBeSnapped.bottom() < rectangleMonitor.top()
+         || rectangleWouldBeSnapped.bottom() > rectangleMonitor.top())
       {
 
          return false;
@@ -1667,37 +1667,37 @@ namespace windowing
 
       }
 
-      if (rectangleWouldBeSnapped.left == rectangleMonitor.left)
+      if (rectangleWouldBeSnapped.left() == rectangleMonitor.left())
       {
 
-         if (rectangleWouldBeSnapped.top == rectangleMonitor.top)
+         if (rectangleWouldBeSnapped.top() == rectangleMonitor.top())
          {
 
-            if (rectangleWouldBeSnapped.bottom == rectangleMonitor.bottom)
+            if (rectangleWouldBeSnapped.bottom() == rectangleMonitor.bottom())
             {
 
                // left snapping
 
-               return rectangleWouldBeSnapped.right < rectangleMonitor.right - sizeMinimum.cx();
+               return rectangleWouldBeSnapped.right() < rectangleMonitor.right() - sizeMinimum.cx();
 
             }
-            else if (rectangleWouldBeSnapped.right == rectangleMonitor.right
-               || rectangleWouldBeSnapped.right < rectangleMonitor.right - sizeMinimum.cx())
+            else if (rectangleWouldBeSnapped.right() == rectangleMonitor.right()
+               || rectangleWouldBeSnapped.right() < rectangleMonitor.right() - sizeMinimum.cx())
             {
 
                // top snapping, or;
                // top left snapping
 
-               return rectangleWouldBeSnapped.bottom < rectangleMonitor.bottom - sizeMinimum.cy();
+               return rectangleWouldBeSnapped.bottom() < rectangleMonitor.bottom() - sizeMinimum.cy();
 
             }
 
          }
-         else if (rectangleWouldBeSnapped.top > rectangleMonitor.top + sizeMinimum.cy())
+         else if (rectangleWouldBeSnapped.top() > rectangleMonitor.top() + sizeMinimum.cy())
          {
 
-            if (rectangleWouldBeSnapped.right == rectangleMonitor.right
-               || rectangleWouldBeSnapped.right < rectangleMonitor.right - sizeMinimum.cx())
+            if (rectangleWouldBeSnapped.right() == rectangleMonitor.right()
+               || rectangleWouldBeSnapped.right() < rectangleMonitor.right() - sizeMinimum.cx())
             {
 
                // bottom snapping, or;
@@ -1710,34 +1710,34 @@ namespace windowing
          }
 
       }
-      else if (rectangleWouldBeSnapped.right == rectangleMonitor.right)
+      else if (rectangleWouldBeSnapped.right() == rectangleMonitor.right())
       {
 
-         if (rectangleWouldBeSnapped.top == rectangleMonitor.top)
+         if (rectangleWouldBeSnapped.top() == rectangleMonitor.top())
          {
 
-            if (rectangleWouldBeSnapped.bottom == rectangleMonitor.bottom)
+            if (rectangleWouldBeSnapped.bottom() == rectangleMonitor.bottom())
             {
 
                // right snapping
 
-               return rectangleWouldBeSnapped.left > rectangleMonitor.left + sizeMinimum.cx();
+               return rectangleWouldBeSnapped.left() > rectangleMonitor.left() + sizeMinimum.cx();
 
             }
-            else if (rectangleWouldBeSnapped.left > rectangleMonitor.left + sizeMinimum.cx())
+            else if (rectangleWouldBeSnapped.left() > rectangleMonitor.left() + sizeMinimum.cx())
             {
 
                // top right snapping
 
-               return rectangleWouldBeSnapped.bottom < rectangleMonitor.bottom - sizeMinimum.cy();
+               return rectangleWouldBeSnapped.bottom() < rectangleMonitor.bottom() - sizeMinimum.cy();
 
             }
 
          }
-         else if (rectangleWouldBeSnapped.top > rectangleMonitor.top + sizeMinimum.cy())
+         else if (rectangleWouldBeSnapped.top() > rectangleMonitor.top() + sizeMinimum.cy())
          {
 
-            if (rectangleWouldBeSnapped.left > rectangleMonitor.left + sizeMinimum.cx())
+            if (rectangleWouldBeSnapped.left() > rectangleMonitor.left() + sizeMinimum.cx())
             {
 
                // bottom right snapping
@@ -1800,32 +1800,32 @@ namespace windowing
    bool display::would_be_restored_in_monitor(const ::rectangle_i32 & rectangleWouldBeRestored, const ::rectangle_i32 & rectangleMonitor)
    {
 
-      if (rectangleWouldBeRestored.left < rectangleMonitor.left
-         || rectangleWouldBeRestored.left > rectangleMonitor.right)
+      if (rectangleWouldBeRestored.left() < rectangleMonitor.left()
+         || rectangleWouldBeRestored.left() > rectangleMonitor.right())
       {
 
          return false;
 
       }
 
-      if (rectangleWouldBeRestored.right < rectangleMonitor.left
-         || rectangleWouldBeRestored.right > rectangleMonitor.right)
+      if (rectangleWouldBeRestored.right() < rectangleMonitor.left()
+         || rectangleWouldBeRestored.right() > rectangleMonitor.right())
       {
 
          return false;
 
       }
 
-      if (rectangleWouldBeRestored.top < rectangleMonitor.top
-         || rectangleWouldBeRestored.top > rectangleMonitor.bottom)
+      if (rectangleWouldBeRestored.top() < rectangleMonitor.top()
+         || rectangleWouldBeRestored.top() > rectangleMonitor.bottom())
       {
 
          return false;
 
       }
 
-      if (rectangleWouldBeRestored.bottom < rectangleMonitor.top
-         || rectangleWouldBeRestored.bottom > rectangleMonitor.bottom)
+      if (rectangleWouldBeRestored.bottom() < rectangleMonitor.top()
+         || rectangleWouldBeRestored.bottom() > rectangleMonitor.bottom())
       {
 
          return false;

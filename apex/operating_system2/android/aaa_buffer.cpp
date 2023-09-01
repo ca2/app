@@ -68,10 +68,10 @@ namespace android
 
       //ARect r;
 
-      //rectangle.left = 0;
-      //rectangle.top = 0;
-      //rectangle.right = pimage->width();
-      //rectangle.bottom = pimage->height();
+      //rectangle.left() = 0;
+      //rectangle.top() = 0;
+      //rectangle.right() = pimage->width();
+      //rectangle.bottom() = pimage->height();
 
       //zero(buffer);
 

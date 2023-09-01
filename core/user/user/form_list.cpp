@@ -1320,10 +1320,10 @@ namespace user
 //      rectangle_i64 rectangleForm;
 //      window_rectangle(rectangleForm);
 //      rectangle_i64 rectangleX;
-//      rectangleX.top = rectangleForm.top;
-//      rectangleX.bottom = rectangleForm.bottom;
-//      rectangleX.left = rectangleControl.left;
-//      rectangleX.right = rectangleControl.right;
+//      rectangleX.top() = rectangleForm.top();
+//      rectangleX.bottom() = rectangleForm.bottom();
+//      rectangleX.left() = rectangleControl.left();
+//      rectangleX.right() = rectangleControl.right();
 //      return rectangleX.contains(point) != false;
    }
 
@@ -2302,10 +2302,10 @@ namespace user
 
       //   //            rectangle_i32 r;
 
-      //   //            rectangle.left = 0;
-      //   //            rectangle.top = 0;
-      //   //            rectangle.right = 15;
-      //   //            rectangle.bottom = 15;
+      //   //            rectangle.left() = 0;
+      //   //            rectangle.top() = 0;
+      //   //            rectangle.right() = 15;
+      //   //            rectangle.bottom() = 15;
 
       //   //            rectangle.Align(::e_align_center, pdrawitem->m_rectangleSubItem);
 

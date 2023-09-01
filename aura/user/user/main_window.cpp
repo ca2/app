@@ -117,7 +117,7 @@ namespace user
       if(is_top_level() && ::is_set(m_pwindow))
       {
          
-         rectangle.top += (::i32) m_pwindow->get_top_margin();
+         rectangle.top() += (::i32) m_pwindow->get_top_margin();
          
       }
       

@@ -374,13 +374,13 @@ namespace user
       if (m_eorientationSplit == e_orientation_horizontal)
       {
 
-         return rectangleX.top;
+         return rectangleX.top();
 
       }
       else
       {
 
-         return rectangleX.left;
+         return rectangleX.left();
 
       }
 
@@ -397,13 +397,13 @@ namespace user
       if (m_eorientationSplit == e_orientation_horizontal)
       {
 
-         return rectangleX.bottom;
+         return rectangleX.bottom();
 
       }
       else
       {
 
-         return rectangleX.right;
+         return rectangleX.right();
 
       }
 
@@ -747,20 +747,20 @@ namespace user
       if(m_eorientationSplit == e_orientation_horizontal)
       {
 
-         prect->top      = nMinPos;
+         prect->top()      = nMinPos;
 
 
-         prect->bottom   = nMaxPos;
+         prect->bottom()   = nMaxPos;
 
 
       }
       else
       {
 
-         prect->left   = nMinPos;
+         prect->left()   = nMinPos;
 
 
-         prect->right   = nMaxPos;
+         prect->right()   = nMaxPos;
 
 
       }
@@ -854,32 +854,32 @@ namespace user
       if(m_eorientationSplit == e_orientation_horizontal)
       {
 
-         nPos = maximum(nPos, prect->top + m_iMarging / 2);
+         nPos = maximum(nPos, prect->top() + m_iMarging / 2);
 
 
-         nPos = minimum(nPos, prect->bottom - m_iMarging / 2);
+         nPos = minimum(nPos, prect->bottom() - m_iMarging / 2);
 
 
-         prect->top      = nPos - m_iMarging / 2;
+         prect->top()      = nPos - m_iMarging / 2;
 
 
-         prect->bottom   = nPos + m_iMarging / 2;
+         prect->bottom()   = nPos + m_iMarging / 2;
 
 
       }
       else
       {
 
-         nPos = maximum(nPos, prect->left + m_iMarging / 2);
+         nPos = maximum(nPos, prect->left() + m_iMarging / 2);
 
 
-         nPos = minimum(nPos, prect->right - m_iMarging / 2);
+         nPos = minimum(nPos, prect->right() - m_iMarging / 2);
 
 
-         prect->left   = nPos - m_iMarging / 2;
+         prect->left()   = nPos - m_iMarging / 2;
 
 
-         prect->right   = nPos + m_iMarging / 2;
+         prect->right()   = nPos + m_iMarging / 2;
 
 
       }
@@ -1079,13 +1079,13 @@ namespace user
          if(m_eorientationSplit == e_orientation_horizontal)
          {
 
-            return rectangle.bottom;
+            return rectangle.bottom();
 
          }
          else
          {
 
-            return rectangle.right;
+            return rectangle.right();
 
          }
 
@@ -1112,13 +1112,13 @@ namespace user
          if(m_eorientationSplit == e_orientation_horizontal)
          {
 
-            return rectangle.top;
+            return rectangle.top();
 
          }
          else
          {
 
-            return rectangle.left;
+            return rectangle.left();
 
          }
 
@@ -1150,8 +1150,8 @@ namespace user
       {
 
          i32   fwKeys = (i32) wParam;        // key flags
-//         i32 xPos = splitRect.left + (i16) LOWORD(lParam);  // horizontal position of cursor
-//         i32 yPos = splitRect.top + (i16) HIWORD(lParam);  // vertical position of cursor
+//         i32 xPos = splitRect.left() + (i16) LOWORD(lParam);  // horizontal position of cursor
+//         i32 yPos = splitRect.top() + (i16) HIWORD(lParam);  // vertical position of cursor
          if((fwKeys & MK_LBUTTON) > 0)
          {
             ::user::split_bar * pSplitBar = m_splitbara.element_at(iSplitBar);
@@ -1163,8 +1163,8 @@ namespace user
       else if(emessage == e_message_left_button_up)
       {
 //         i32   fwKeys = wParam;        // key flags
-//         i32 xPos = splitRect.left + (i16) LOWORD(lParam);  // horizontal position of cursor
-//         i32 yPos = splitRect.top + (i16) HIWORD(lParam);  // vertical position of cursor
+//         i32 xPos = splitRect.left() + (i16) LOWORD(lParam);  // horizontal position of cursor
+//         i32 yPos = splitRect.top() + (i16) HIWORD(lParam);  // vertical position of cursor
          if(m_iState != stateInitial)
          {
             psession->ReleaseCapture();
@@ -1177,8 +1177,8 @@ namespace user
       else if(emessage == e_message_mouse_move)
       {
          i32   fwKeys = (i32) wParam;        // key flags
-         i32 xPos = splitRect.left + (i16) LOWORD(lParam);  // horizontal position of cursor
-         i32 yPos = splitRect.top + (i16) HIWORD(lParam);  // vertical position of cursor
+         i32 xPos = splitRect.left() + (i16) LOWORD(lParam);  // horizontal position of cursor
+         i32 yPos = splitRect.top() + (i16) HIWORD(lParam);  // vertical position of cursor
          if((fwKeys & MK_LBUTTON) > 0 && (m_iState == stateDragging) && (iSplitBar == m_iIndex))
          {
             //cslock lock(m_pmutex);

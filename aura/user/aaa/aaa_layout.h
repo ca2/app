@@ -385,7 +385,7 @@ namespace user
       inline void ClientToParent(POINT32* ppoint) { ::point_add(ppoint, top_left()); }
 
 
-      inline void this->rectangle(RECT32* prect) const { prect->left = 0; prect->top = 0; *(SIZE32*)&prect->right = ui_state().m_size; }
+      inline void this->rectangle(RECT32* prect) const { prect->left() = 0; prect->top() = 0; *(SIZE32*)&prect->right() = ui_state().m_size; }
       virtual void window_rectangle(RECT32* prect) const;
       inline void window_request_rect(RECT32 * prect) const { ::set_rect_point_size(prect, request_state().m_point, request_state().m_size); }
       inline void parent_client_rectangle(RECT32* prect) const { ::set_rect_point_size(prect, ui_state().m_point, ui_state().m_size); }

@@ -385,8 +385,8 @@ namespace app_shader
       ::rectangle_i32 rectangle;
 
 
-      //rectangle.left = rectangle.right - 48;
-      //rectangle.top = rectangle.bottom - 48;
+      //rectangle.left() = rectangle.right() - 48;
+      //rectangle.top() = rectangle.bottom() - 48;
 
       //pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 

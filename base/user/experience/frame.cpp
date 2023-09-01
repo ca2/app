@@ -24,7 +24,7 @@ CLASS_DECL_BASE ::rectangle_i32_array get_borders(const ::rectangle_i32 & rectan
    
    // Top
    rectangle = rectangleOuter;
-   rectangle.bottom = rectangleInner.top + 1;
+   rectangle.bottom() = rectangleInner.top() + 1;
 
    if (rectangle.is_set())
    {
@@ -35,7 +35,7 @@ CLASS_DECL_BASE ::rectangle_i32_array get_borders(const ::rectangle_i32 & rectan
 
    // Bottom
    rectangle = rectangleOuter;
-   rectangle.top = rectangleInner.bottom - 1;
+   rectangle.top() = rectangleInner.bottom() - 1;
    
    if (rectangle.is_set())
    {
@@ -46,9 +46,9 @@ CLASS_DECL_BASE ::rectangle_i32_array get_borders(const ::rectangle_i32 & rectan
 
    // Left
    rectangle = rectangleOuter;
-   rectangle.top = rectangleInner.top;
-   rectangle.bottom = rectangleInner.bottom;
-   rectangle.right = rectangleInner.left + 1;
+   rectangle.top() = rectangleInner.top();
+   rectangle.bottom() = rectangleInner.bottom();
+   rectangle.right() = rectangleInner.left() + 1;
 
    if (rectangle.is_set())
    {
@@ -59,9 +59,9 @@ CLASS_DECL_BASE ::rectangle_i32_array get_borders(const ::rectangle_i32 & rectan
 
    // Right
    rectangle = rectangleOuter;
-   rectangle.top = rectangleInner.top;
-   rectangle.bottom = rectangleInner.bottom;
-   rectangle.left = rectangleInner.right - 1;
+   rectangle.top() = rectangleInner.top();
+   rectangle.bottom() = rectangleInner.bottom();
+   rectangle.left() = rectangleInner.right() - 1;
 
    if (rectangle.is_set())
    {
@@ -87,10 +87,10 @@ namespace experience
       m_bHollow = true;
       m_bFirstLayoutDone = false;
 
-      m_rectangleCaptionTextPadding.left = 4;
-      m_rectangleCaptionTextPadding.right = 4;
-      m_rectangleCaptionTextPadding.top = 0;
-      m_rectangleCaptionTextPadding.bottom = 0;
+      m_rectangleCaptionTextPadding.left() = 4;
+      m_rectangleCaptionTextPadding.right() = 4;
+      m_rectangleCaptionTextPadding.top() = 0;
+      m_rectangleCaptionTextPadding.bottom() = 0;
 
 
       m_rectangleMarginFullScreen.set(0, 0, 0, 0);
@@ -906,7 +906,7 @@ namespace experience
 
       auto iButtonSize = get_control_box()->calculate_button_size(pgraphics);
 
-      auto iCaptionHeight = rectangleMargin.top + iButtonSize + rectangleMargin.bottom;
+      auto iCaptionHeight = rectangleMargin.top() + iButtonSize + rectangleMargin.bottom();
 
       m_iCaptionHeight = iCaptionHeight;
 
@@ -982,12 +982,12 @@ namespace experience
 
       //i32 iCaptionHeight = m_iCap;
 
-      m_rectangleCaption.left = rectangleRaw.left + rectangleMargin.left;
-      m_rectangleCaption.top = rectangleRaw.top + rectangleMargin.top;
-      m_rectangleCaption.right = rectangleRaw.right - rectangleMargin.right;
-      m_rectangleCaption.bottom = m_rectangleCaption.top + m_iCaptionHeight;
+      m_rectangleCaption.left() = rectangleRaw.left() + rectangleMargin.left();
+      m_rectangleCaption.top() = rectangleRaw.top() + rectangleMargin.top();
+      m_rectangleCaption.right() = rectangleRaw.right() - rectangleMargin.right();
+      m_rectangleCaption.bottom() = m_rectangleCaption.top() + m_iCaptionHeight;
 
-      m_iTitleBottom = m_rectangleCaption.bottom;
+      m_iTitleBottom = m_rectangleCaption.bottom();
 
       rectangleRaw.deflate(rectangleMargin);
 
@@ -997,24 +997,24 @@ namespace experience
          !(eappearance & ::e_appearance_transparent_frame))
       {
 
-         rectangleRaw.top = m_rectangleCaption.bottom - 1;
+         rectangleRaw.top() = m_rectangleCaption.bottom() - 1;
 
       }
 
       ///m_rectangleX = rectangleX;
 
-      m_iControlBoxPosition = rectangleRaw.right;
+      m_iControlBoxPosition = rectangleRaw.right();
 
-      if (m_iControlBoxPosition < rectangleRaw.left)
+      if (m_iControlBoxPosition < rectangleRaw.left())
       {
 
-         m_iControlBoxPosition = rectangleRaw.left;
+         m_iControlBoxPosition = rectangleRaw.left();
 
       }
-      else if (m_iControlBoxPosition > rectangleRaw.right - iControlBoxWidth)
+      else if (m_iControlBoxPosition > rectangleRaw.right() - iControlBoxWidth)
       {
 
-         m_iControlBoxPosition = rectangleRaw.right - iControlBoxWidth;
+         m_iControlBoxPosition = rectangleRaw.right() - iControlBoxWidth;
 
       }
 
@@ -1022,10 +1022,10 @@ namespace experience
 
       ::rectangle_i32 rectangleControlBox;
 
-      rectangleControlBox.left = m_iControlBoxPosition;
-      rectangleControlBox.right = rectangleControlBox.left + iControlBoxWidth;
-      rectangleControlBox.top = m_rectangleCaption.top;
-      rectangleControlBox.bottom = m_rectangleCaption.bottom;
+      rectangleControlBox.left() = m_iControlBoxPosition;
+      rectangleControlBox.right() = rectangleControlBox.left() + iControlBoxWidth;
+      rectangleControlBox.top() = m_rectangleCaption.top();
+      rectangleControlBox.bottom() = m_rectangleCaption.bottom();
 
       if (m_pframewindow->const_layout().is_this_screen_visible(::user::e_layout_lading) && !is_iconic(m_pframewindow->const_layout().lading().display()))
       {
@@ -1042,24 +1042,24 @@ namespace experience
 
       bool bIcon = get_element_rectangle(rectangleIcon, ::e_element_top_left_icon);
 
-      m_pointWindowIcon.y() = rectangleMargin.top + ((m_iCaptionHeight - rectangleIcon.height()) / 2);
+      m_pointWindowIcon.y() = rectangleMargin.top() + ((m_iCaptionHeight - rectangleIcon.height()) / 2);
 
       if (bIcon)
       {
 
-         m_rectangleWindowText.left = rectangleIcon.right + rectangleCaptionTextPadding.left;
+         m_rectangleWindowText.left() = rectangleIcon.right() + rectangleCaptionTextPadding.left();
 
       }
       else
       {
 
-         m_rectangleWindowText.left = m_rectangleCaption.left + rectangleCaptionTextPadding.left;
+         m_rectangleWindowText.left() = m_rectangleCaption.left() + rectangleCaptionTextPadding.left();
 
       }
 
-      m_rectangleWindowText.top = m_rectangleCaption.top + rectangleCaptionTextPadding.top;
-      m_rectangleWindowText.right = m_rectangleCaption.right - rectangleCaptionTextPadding.right;
-      m_rectangleWindowText.bottom = m_iTitleBottom;
+      m_rectangleWindowText.top() = m_rectangleCaption.top() + rectangleCaptionTextPadding.top();
+      m_rectangleWindowText.right() = m_rectangleCaption.right() - rectangleCaptionTextPadding.right();
+      m_rectangleWindowText.bottom() = m_iTitleBottom;
 
       if (bVisibleControlBox)
       {
@@ -1191,7 +1191,7 @@ namespace experience
          !(eappearance & ::e_appearance_transparent_frame))
       {
 
-         rectangleX.top += m_iCaptionHeight;
+         rectangleX.top() += m_iCaptionHeight;
 
       }
 
@@ -1663,28 +1663,28 @@ namespace experience
          if (edisplay & e_display_top)
          {
 
-            rectangleMargin.top = 0;
+            rectangleMargin.top() = 0;
 
          }
 
          if (edisplay & e_display_bottom)
          {
 
-            rectangleMargin.bottom = 0;
+            rectangleMargin.bottom() = 0;
 
          }
 
          if (edisplay & e_display_right)
          {
 
-            rectangleMargin.right = 0;
+            rectangleMargin.right() = 0;
 
          }
 
          if (edisplay & e_display_left)
          {
 
-            rectangleMargin.left = 0;
+            rectangleMargin.left() = 0;
 
          }
 

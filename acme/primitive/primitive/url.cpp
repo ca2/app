@@ -92,7 +92,7 @@ namespace url
 
       }
 
-      return strRoot.left(pPos);
+      return strRoot.left()(pPos);
 
    }
 
@@ -316,17 +316,17 @@ namespace url
 
       string str2(str2Param);
 
-      if (str1.right(1) == "/")
+      if (str1.right()(1) == "/")
       {
 
-         str1 = str1.left(str1.length() - 1);
+         str1 = str1.left()(str1.length() - 1);
 
       }
 
-      if (str2.left(1) == "/")
+      if (str2.left()(1) == "/")
       {
 
-         str2 = str2.right(str2.length() - 1);
+         str2 = str2.right()(str2.length() - 1);
 
       }
 
@@ -357,7 +357,7 @@ namespace url
 
       }
 
-      str = str.left(pQueryStart);
+      str = str.left()(pQueryStart);
 
       auto pLastSlash = str.rear_find('/');
 
@@ -368,7 +368,7 @@ namespace url
 
       }
 
-      return str.left(pLastSlash);
+      return str.left()(pLastSlash);
 
    }
 
@@ -532,7 +532,7 @@ namespace url
 
       }
 
-      return strUrl.left(pPos)
+      return strUrl.left()(pPos)
              + "?" +
              query_set(strUrl.substr(pPos + 1), strKeyParam, payload);
 
@@ -553,7 +553,7 @@ namespace url
 
       }
 
-      strUrl = strUrl.left(pPos) + "?" + query_set(strUrl.substr(pPos + 1), strKeyParam, payload);
+      strUrl = strUrl.left()(pPos) + "?" + query_set(strUrl.substr(pPos + 1), strKeyParam, payload);
 
    }
 
@@ -713,7 +713,7 @@ namespace url
       if(not_found(pPos))
          return strUrl;
 
-      return strUrl.left(pPos) + ::str::has_char(query_erase(strUrl.substr(pPos + 1), strKeyParam), "?");
+      return strUrl.left()(pPos) + ::str::has_char(query_erase(strUrl.substr(pPos + 1), strKeyParam), "?");
 
    }
 
@@ -796,7 +796,7 @@ namespace url
          if(!query_has_param_replace(strQuery, strKeyParam, strValueParam))
             return false;
 
-         strUrl = strUrl.left(pPos + 1) + strQuery;
+         strUrl = strUrl.left()(pPos + 1) + strQuery;
 
          return true;
 
@@ -878,7 +878,7 @@ namespace url
             }
             else
             {
-               strQuery = strQuery.left(pPos) + strAndKeyEqual2 + strValue + __query_erase(strQuery.substr(pPos), strAndKeyEqual);
+               strQuery = strQuery.left()(pPos) + strAndKeyEqual2 + strValue + __query_erase(strQuery.substr(pPos), strAndKeyEqual);
             }
          }
       }
@@ -1410,13 +1410,13 @@ namespace url
             if(pFind2 > strQuery.begin())
             {
                
-               strQuery = strQuery.left(strKey.length() + 1) + strValue + strQuery.substr(pFind2);
+               strQuery = strQuery.left()(strKey.length() + 1) + strValue + strQuery.substr(pFind2);
                
             }
             else
             {
                
-               strQuery = strQuery.left(strKey.length() + 1) + strValue;
+               strQuery = strQuery.left()(strKey.length() + 1) + strValue;
                
             }
             
@@ -1452,13 +1452,13 @@ namespace url
                if(pFind2 > strQuery.begin())
                {
                   
-                  strQuery = strQuery.left(pFind + strKey.length() + 1) + strValue + strQuery.substr(pFind2);
+                  strQuery = strQuery.left()(pFind + strKey.length() + 1) + strValue + strQuery.substr(pFind2);
                   
                }
                else
                {
                   
-                  strQuery = strQuery.left(pFind + strKey.length() + 1) + strValue;
+                  strQuery = strQuery.left()(pFind + strKey.length() + 1) + strValue;
                   
                }
                
@@ -2409,7 +2409,7 @@ namespace url
 //   else
 //   {
 //      strChar.format("%02X", *psz);
-//      str += "%" + strChar.right(2);
+//      str += "%" + strChar.right()(2);
 //   }
 //
 //   psz++;
@@ -2964,7 +2964,7 @@ CLASS_DECL_ACME string url::encode(const ::scoped_string & scopedstr)
 //   else
 //   {
 //      strChar.format("%02X", *psz);
-//      str += "%" + strChar.right(2);
+//      str += "%" + strChar.right()(2);
 //   }
 //
 //   psz++;

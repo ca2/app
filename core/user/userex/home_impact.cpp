@@ -255,8 +255,8 @@ namespace userex
       //if (!m_bCompact)
       //{
 
-      //   rectangleColors.left = rectangleX.center().x();
-      //   rectangleColors.bottom = rectangleX.center().y();
+      //   rectangleColors.left() = rectangleX.center().x();
+      //   rectangleColors.bottom() = rectangleX.center().y();
 
       //   rectangleColors.deflate(rectangleX.width() / 16, rectangleX.height() / 16);
 

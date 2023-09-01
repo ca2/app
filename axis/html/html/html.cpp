@@ -701,7 +701,7 @@ namespace html
 
       strHtml = payload.as_string();
 
-      if (strHtml.left(2048).trimmed().case_insensitive_contains("<html"))
+      if (strHtml.left()(2048).trimmed().case_insensitive_contains("<html"))
       {
 
          bHtml = true;

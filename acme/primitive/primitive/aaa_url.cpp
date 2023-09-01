@@ -465,7 +465,7 @@ namespace url
 //   else
 //   {
 //      strChar.format("%02X", *psz);
-//      str += "%" + strChar.right(2);
+//      str += "%" + strChar.right()(2);
 //   }
 //
 //   psz++;
@@ -1016,7 +1016,7 @@ void openURL(const string& url_str)
 //   else
 //   {
 //      strChar.format("%02X", *psz);
-//      str += "%" + strChar.right(2);
+//      str += "%" + strChar.right()(2);
 //   }
 //
 //   psz++;

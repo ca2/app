@@ -589,9 +589,9 @@ void operating_system_get_main_screen_size(int& cx, int& cy)
 
    GetWindowRect(hwndDesktop, &rectDesktop);
 
-   cx = rectDesktop.right - rectDesktop.left;
+   cx = rectDesktop.right() - rectDesktop.left();
 
-   cy = rectDesktop.bottom - rectDesktop.top;
+   cy = rectDesktop.bottom() - rectDesktop.top();
 
 }
 

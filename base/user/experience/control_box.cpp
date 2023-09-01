@@ -151,19 +151,19 @@ namespace experience
 
       //get_parent()->screen_to_client(rectangleWindow);
 
-      //m_pframewindow->m_pframe->m_iControlBoxRight = rectangleParent.right - x - rectangleWindow.width();
+      //m_pframewindow->m_pframe->m_iControlBoxRight = rectangleParent.right() - x - rectangleWindow.width();
 
       //m_pframewindow->m_pframe->get_control_box_rect()->move_left_to(x);
 
       //x = m_pframewindow->m_pframe->calc_control_box_left(true);
 
-      //::point_i32 point(x, rectangleWindow.top);
+      //::point_i32 point(x, rectangleWindow.top());
 
       //::point_i32 pointScreen(point);
 
       //get_parent()->client_to_screen(pointScreen);
 
-      //m_pframewindow->m_pframe->m_iControlBoxRight = rectangleParent.right - point.x() - rectangleWindow.width();
+      //m_pframewindow->m_pframe->m_iControlBoxRight = rectangleParent.right() - point.x() - rectangleWindow.width();
 
       //int iControlBoxRight = m_pframewindow->m_pframe->m_iControlBoxRight;
 
@@ -284,11 +284,11 @@ namespace experience
 
                      window_rectangle(rectangleWindow);
 
-                     rectangleWindow.left = minimum(rectangleWindow.left, rectangleWindow.right);
-                     rectangleWindow.bottom = minimum(rectangleWindow.top, rectangleWindow.bottom);
+                     rectangleWindow.left() = minimum(rectangleWindow.left(), rectangleWindow.right());
+                     rectangleWindow.bottom() = minimum(rectangleWindow.top(), rectangleWindow.bottom());
 
 
-                     if (pointCursor.x() >= rectangleWindow.left && pointCursor.y() <= rectangleWindow.right &&
+                     if (pointCursor.x() >= rectangleWindow.left() && pointCursor.y() <= rectangleWindow.right() &&
                          pointCursor.y() == 0)
                      {
 
@@ -315,8 +315,8 @@ namespace experience
 
                window_rectangle(rectangleWindow);
 
-               rectangleWindow.left = minimum(rectangleWindow.left, rectangleWindow.right);
-               rectangleWindow.bottom = minimum(rectangleWindow.top, rectangleWindow.bottom);
+               rectangleWindow.left() = minimum(rectangleWindow.left(), rectangleWindow.right());
+               rectangleWindow.bottom() = minimum(rectangleWindow.top(), rectangleWindow.bottom());
 
                ::point_i32 pointCursor;
 
@@ -331,7 +331,7 @@ namespace experience
 
                }
 
-               if (pointCursor.x() >= rectangleWindow.left && pointCursor.x() <= rectangleWindow.right &&
+               if (pointCursor.x() >= rectangleWindow.left() && pointCursor.x() <= rectangleWindow.right() &&
                    pointCursor.y() == 0)
                {
 
@@ -525,23 +525,23 @@ namespace experience
 
          auto rectangleMargin = get_button_margin(ebutton);
 
-         rectangle.right = rectangle.left - rectangleMargin.right;
+         rectangle.right() = rectangle.left() - rectangleMargin.right();
 
-         rectangle.left = rectangle.right - sizeButton.cx();
+         rectangle.left() = rectangle.right() - sizeButton.cx();
 
-         if (rectangle.left > 400)
+         if (rectangle.left() > 400)
          {
 
-            information("rectangle.left > 400");
+            information("rectangle.left() > 400");
 
          }
 
          if (pbutton)
          {
 
-            rectangle.top = rectangleMargin.top;
+            rectangle.top() = rectangleMargin.top();
 
-            rectangle.bottom = rectangle.top + sizeButton.cy();
+            rectangle.bottom() = rectangle.top() + sizeButton.cy();
 
             pbutton->order(e_zorder_top);
 
@@ -555,7 +555,7 @@ namespace experience
 
          }
 
-         rectangle.left -= rectangleMargin.left;
+         rectangle.left() -= rectangleMargin.left();
 
       }
       else
@@ -594,7 +594,7 @@ namespace experience
 
 //      int iWidth = rectangleX.width();
 //
-      rectangle.left = rectangle.right;
+      rectangle.left() = rectangle.right();
 
       _layout_button(e_button_close, rectangle);
 
@@ -965,10 +965,10 @@ namespace experience
 
       ::rectangle_i32 rectangleMargin;
 
-      rectangleMargin.left = 0;
-      rectangleMargin.top = m_iDefaultButtonMargin;
-      rectangleMargin.right = m_iDefaultButtonMargin;
-      rectangleMargin.bottom = m_iDefaultButtonMargin;
+      rectangleMargin.left() = 0;
+      rectangleMargin.top() = m_iDefaultButtonMargin;
+      rectangleMargin.right() = m_iDefaultButtonMargin;
+      rectangleMargin.bottom() = m_iDefaultButtonMargin;
 
       return rectangleMargin;
 
@@ -1171,8 +1171,8 @@ namespace experience
 //
 //            this->rectangle(rectangleX);
 //
-//            rectangleX.bottom++;
-//            rectangleX.right++;
+//            rectangleX.bottom()++;
+//            rectangleX.right()++;
 //
 //            rectangleClip = rectangleX;
 //

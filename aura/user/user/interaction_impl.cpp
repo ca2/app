@@ -8119,6 +8119,14 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
                   m_puserinteraction->post_redraw();
 
                }
+               else if(point != m_puserinteraction->const_layout().window().origin())
+               {
+
+                  information() << "on reposition; setting to window position (2) : " << point;
+
+                  m_puserinteraction->set_position(point, e_layout_window);
+
+               }
 
             });
 
@@ -8166,6 +8174,15 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
                   m_puserinteraction->post_redraw();
 
                }
+               else if(size != m_puserinteraction->const_layout().window().size())
+               {
+
+                  information() << "on reposition; setting to window size (2) : " << size;
+
+                  m_puserinteraction->set_size(size, e_layout_window);
+
+               }
+
 
             });
 

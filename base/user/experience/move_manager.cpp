@@ -164,13 +164,13 @@ namespace experience
 
          auto edisplay = pframewindow->const_layout().sketch().display();
 
-         if (::is_docking_appearance(edisplay))
-         {
-
-            pframewindow->m_pframe->defer_frame_placement_snapping();
-
-         }
-         else
+//         if (::is_docking_appearance(edisplay))
+//         {
+//
+//            //pframewindow->m_pframe->defer_frame_placement_snapping();
+//
+//         }
+//         else
          {
 
             pframewindow->set_position(pointMove);

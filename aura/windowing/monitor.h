@@ -42,6 +42,11 @@ namespace windowing
 
       virtual void set_workspace_rectangle(const ::rectangle_i32 & rectangle);
 
+      virtual void set_workspace_rectangle_left(::i32 left);
+      virtual void set_workspace_rectangle_top(::i32 top);
+      virtual void set_workspace_rectangle_right(::i32 right);
+      virtual void set_workspace_rectangle_bottom(::i32 bottom);
+
 
    };
 

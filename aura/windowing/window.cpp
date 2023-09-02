@@ -1293,197 +1293,31 @@ namespace windowing
 
       }
 
-//      //information() << "Design.state != Window.state";
-//
       auto eactivationOutput = stateOutput.activation();
 
       auto eactivationWindow = stateWindow.activation();
 
-//      ::string_stream stringstreamUnchanged;
-//
-//      if (eactivationOutput != eactivationWindow)
-//      {
-//
-//         //information() << "Design.activation != Window.activation " << (iptr) eactivationOutput.m_eenum << ", " << (iptr) eactivationWindow.m_eenum;
-//
-//      }
-//      else
-//      {
-//
-//         stringstreamUnchanged << ".activation:" << eactivationOutput;
-//
-//      }
-//
       auto edisplayOutput = stateOutput.display();
 
       auto edisplayWindow = stateWindow.display();
-//
-//      if (edisplayOutput != edisplayWindow)
-//      {
-//
-//         //information() << "Design.display != Window.display " << edisplayOutput << ", " << edisplayWindow;
-//
-//      }
-//      else
-//      {
-//
-//         stringstreamUnchanged << ".display:" << edisplayOutput;
-//
-//      }
-//
-//      auto pointDesign = stateOutput.origin();
-//
-//      auto pointWindow = stateWindow.origin();
-//
-//      if (pointDesign != pointWindow)
-//      {
-//
-//         //information() << "Design.point != Window.point " << pointDesign << ", " << pointWindow;
-//
-//      }
-//      else
-//      {
-//
-//         stringstreamUnchanged << ".origin:" << pointDesign;
-//
-//      }
-//
-//      auto sizeOutput = stateOutput.size();
-//
-//      auto sizeWindow = stateWindow.size();
-//
-//      if (sizeOutput != sizeWindow)
-//      {
-//
-//         //information() << "Design.size != Window.size " << sizeOutput << ", " << sizeWindow;
-//
-//      }
-//      else
-//      {
-//
-//         stringstreamUnchanged << ".size:" << sizeOutput;
-//
-//      }
-//
+
       auto zOutput = stateOutput.zorder();
 
       auto zWindow = stateWindow.zorder();
-//
-//      if (zOutput != zWindow)
-//      {
-//
-//         //information() << "Design.zorder != Window.zorder " << zOutput << ", " << zWindow;
-//
-//      }
-//      else
-//      {
-//
-//         stringstreamUnchanged << ".zorder:" << zOutput;
-//
-//      }
-//
-//      if (stringstreamUnchanged.as_string().has_char())
-//      {
-//
-//         //information() << "==" << stringstreamUnchanged.as_string();
-//
-//      }
-//
-      //bool shouldGetVisible = windowing()->is_screen_visible(edisplay);
-//
-//      if (sizeOutput.is_empty())
-//      {
-//
-//         information() << "window_show rectangleUi isEmpty";
-//
-//         return false;
-//
-//      }
-//
-      //bool bWindowVisible = _is_window_visible_unlocked();
-//
-//      bool bSize = true;
-//
-//      if (sizeWindow == sizeOutput)
-//      {
-//
-//         bSize = false;
-//
-//         //uFlags |= SWP_NOSIZE;
-//
-//      }
-//      else
-//      {
-//
-//         //uFlags |= SWP_ASYNCWINDOWPOS | SWP_FRAMECHANGED | SWP_NOREDRAW | SWP_NOCOPYBITS | SWP_DEFERERASE;
-//         ////uFlags |= SWP_ASYNCWINDOWPOS | SWP_NOSENDCHANGING | SWP_NOREDRAW | SWP_NOCOPYBITS | SWP_DEFERERASE;
-//         ////uFlags |= SWP_ASYNCWINDOWPOS | SWP_NOSENDCHANGING | SWP_NOREDRAW | SWP_NOCOPYBITS;
-//
-//      }
-//
-//      bool bMove = true;
-//
-//      if (pointWindow == pointDesign)
-//      {
-//
-//         bMove = false;
-//
-//      }
-
-      //bool bVisibilityChange = is_different(bWindowVisible, shouldGetVisible);
 
       bool bVisibilityChange = edisplayOutput != edisplayWindow;
 
-//      bool bShow = false;
-//
-//      bool bHide = false;
-//
-//      if (bVisibilityChange)
-//      {
-//
-//         if (shouldGetVisible)
-//         {
-//
-//            bShow = true;
-//
-//         } else
-//         {
-//
-//            bHide = true;
-//
-//         }
-//
-//      } else
-//      {
-//
-//         if (shouldGetVisible)
-//         {
-//
-//            bShow = true;
-//
-//         }
-//
-//      }
-
       bool bZ = zOutput.is_change_request();
-//
-//      ::zorder zorderNew = (bZ ? zOutput : ::zorder());
-//
-      if (bVisibilityChange
-          || bZ
-          || eactivationOutput != e_activation_default)
+
+      if (bVisibilityChange || bZ || eactivationOutput != e_activation_default)
       {
 
-         //::pointer < ::windowing_x11::window > pwindow = m_pwindow;
+         information("::windowing::window::configure_window_unlocked bVisibilityChange(%d) bZ(%d) bActivation(%d)",
+                     (int)bVisibilityChange,
+                     (int)bZ,
+                     (int) (eactivationOutput != e_activation_default));
 
-         information() << "::windowing::window::configure_window_unlocked";
-
-//      ::rectangle_i32 r(pointDesign, sizeOutput);
-//
-//      information() << "_set_window_position_unlocked " << r.top_left() << ", " << r.top_right() << "\n"
-//                    << "_set_window_position_unlocked " << r.bottom_left() << ", " << r.bottom_right() << "\n"
-//                    << " thread_id : " << ::as_string(::task_index());
-
+         information() << "::windowing::window::configure_window_unlocked displayRequest : " << edisplayOutput;
 
          _configure_window_unlocked(
             zOutput,
@@ -1491,7 +1325,7 @@ namespace windowing
             !bZ,
             edisplayOutput);
 
-         //stateWindow = stateOutput;
+         stateWindow.display() = stateOutput.display();
 
          stateOutput.m_eactivation.clear();
 
@@ -1507,217 +1341,41 @@ namespace windowing
    bool window::strict_set_window_position_unlocked()
    {
 
-      // Request / Incoming changes / Prepare Internal Buffer
       auto & stateDesign = m_puserinteractionimpl->m_puserinteraction->layout().m_statea[::user::e_layout_design];
 
-      // Current/Previous Window State
-      auto & stateWindow = m_puserinteractionimpl->m_puserinteraction->layout().m_statea[::user::e_layout_window];
-
-//      bool bSetWindowPosition = true;
-//
-//      if (stateDesign == stateWindow)
-//      {
-//
-//         bSetWindowPosition = false;
-//
-//      }
-
-//      //information() << "Design.state != Window.state";
-//
-//      auto eactivationOutput = stateDesign.activation();
-//
-//      auto eactivationWindow = stateWindow.activation();
-//
-//      ::string_stream stringstreamUnchanged;
-//
-//      if (eactivationOutput != eactivationWindow)
-//      {
-//
-//         //information() << "Design.activation != Window.activation " << (iptr) eactivationOutput.m_eenum << ", " << (iptr) eactivationWindow.m_eenum;
-//
-//      }
-//      else
-//      {
-//
-//         stringstreamUnchanged << ".activation:" << eactivationOutput;
-//
-//      }
-//
-//      auto edisplayOutput = stateDesign.display();
-//
-//      auto edisplayWindow = stateWindow.display();
-//
-//      if (edisplayOutput != edisplayWindow)
-//      {
-//
-//         //information() << "Design.display != Window.display " << edisplayOutput << ", " << edisplayWindow;
-//
-//      }
-//      else
-//      {
-//
-//         stringstreamUnchanged << ".display:" << edisplayOutput;
-//
-//      }
-//
       auto pointDesign = stateDesign.origin();
 
-      auto pointWindow = stateWindow.origin();
+      auto pointWindow = m_pointWindow;
 
       bool bMove = pointWindow != pointDesign;
 
       if (bMove)
       {
 
-         information() << "Design.point != Window.point " << pointDesign << ", " << pointWindow;
+         //information() << "Design.point != Window.point " << pointDesign << ", " << pointWindow;
 
       }
 
-//
-//      if (pointDesign != pointWindow)
-//      {
-//
-//         //information() << "Design.point != Window.point " << pointDesign << ", " << pointWindow;
-//
-//      }
-//      else
-//      {
-//
-//         stringstreamUnchanged << ".origin:" << pointDesign;
-//
-//      }
-//
       auto sizeOutput = stateDesign.size();
 
-      auto sizeWindow = stateWindow.size();
+      auto sizeWindow = m_sizeWindow;
 
       bool bSize = sizeWindow != sizeOutput;
 
       if(bSize)
       {
 
-         information() << "Design.size != Window.size " << sizeOutput << ", " << sizeWindow;
+         //information() << "Design.size != Window.size " << sizeOutput << ", " << sizeWindow;
 
       }
 
-//      else
-//      {
-//
-//         stringstreamUnchanged << ".size:" << sizeOutput;
-//
-//      }
-//
-//      auto zOutput = stateDesign.zorder();
-//
-//      auto zWindow = stateWindow.zorder();
-//
-//      if (zOutput != zWindow)
-//      {
-//
-//         //information() << "Design.zorder != Window.zorder " << zOutput << ", " << zWindow;
-//
-//      }
-//      else
-//      {
-//
-//         stringstreamUnchanged << ".zorder:" << zOutput;
-//
-//      }
-//
-//      if (stringstreamUnchanged.as_string().has_char())
-//      {
-//
-//         //information() << "==" << stringstreamUnchanged.as_string();
-//
-//      }
-//
-//      bool shouldGetVisible = ::is_screen_visible(edisplayOutput);
-//
-//      if (sizeOutput.is_empty())
-//      {
-//
-//         information() << "window_show rectangleUi isEmpty";
-//
-//         return false;
-//
-//      }
-//
-//      //bool bWindowVisible = is_window_visible();
-//
-
-//      {
-//
-//         bSize = false;
-//
-////         //uFlags |= SWP_NOSIZE;
-////
-//      }
-//      else
-//      {
-//
-//         //uFlags |= SWP_ASYNCWINDOWPOS | SWP_FRAMECHANGED | SWP_NOREDRAW | SWP_NOCOPYBITS | SWP_DEFERERASE;
-//         ////uFlags |= SWP_ASYNCWINDOWPOS | SWP_NOSENDCHANGING | SWP_NOREDRAW | SWP_NOCOPYBITS | SWP_DEFERERASE;
-//         ////uFlags |= SWP_ASYNCWINDOWPOS | SWP_NOSENDCHANGING | SWP_NOREDRAW | SWP_NOCOPYBITS;
-//
-//      }
-//
-
-//      {
-//
-//         bMove = false;
-//
-//      }
-//
-//      //bool bVisibilityChange = is_different(bWindowVisible, shouldGetVisible);
-//
-////      bool bShow = false;
-////
-////      bool bHide = false;
-////
-////      if (bVisibilityChange)
-////      {
-////
-////         if (shouldGetVisible)
-////         {
-////
-////            bShow = true;
-////
-////         }
-////         else
-////         {
-////
-////            bHide = true;
-////
-////         }
-////
-////      }
-////      else
-////      {
-////
-////         if (shouldGetVisible)
-////         {
-////
-////            bShow = true;
-////
-////         }
-////
-////      }
-//
-//      bool bZ = zOutput.is_change_request();
-//
-//      ::zorder zorderNew = (bZ ? zOutput : ::zorder());
-//
       if (bMove || bSize)
       {
-//
-         //::pointer < ::windowing_x11::window > pwindow = m_pwindow;
-
-         //information() << "_set_window_position_unlocked " << pointDesign << ", " << sizeOutput;
 
          ::rectangle_i32 r(pointDesign, sizeOutput);
 
-         information() << "::windowing::window::_set_window_position_unlocked l:" << r.left() << ", t:" << r.top()
-                       << ", r:" << r.right() << ", b:" << r.bottom() << ", thrd:" << ::task_index();
+         //information() << "::windowing::window::_set_window_position_unlocked l:" << r.left() << ", t:" << r.top()
+         //              << ", r:" << r.right() << ", b:" << r.bottom() << ", thrd:" << ::task_index();
 
          static ::point_i32 s_pointInitialTopRight;
 

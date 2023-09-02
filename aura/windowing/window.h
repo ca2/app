@@ -32,8 +32,8 @@ namespace windowing
       ::pointer<::message_queue>                m_pmessagequeue;
       class ::time                              m_timeLastMouseMove;
       ::pointer<::windowing::window>            m_pwindowParent;
-      ::point_i32                               m_point;
-      ::size_i32                                m_size;
+      ::point_i32                               m_pointWindow;
+      ::size_i32                                m_sizeWindow;
       ::pointer<::windowing::icon>              m_picon;
       ::pointer<::windowing::windowing>         m_pwindowing;
       ::pointer<::user::copydesk>               m_pcopydesk;

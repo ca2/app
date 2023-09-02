@@ -109,7 +109,7 @@ namespace experience
       //virtual void update_window();
       //virtual void update_window_style();
 
-      virtual void defer_frame_placement_snapping();
+      virtual void __defer_frame_placement_snapping();
 
 
       virtual string get_default_user_style() const;

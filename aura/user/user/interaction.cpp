@@ -11165,7 +11165,7 @@ namespace user
    void interaction::layout_children_zorder()
    {
 
-      information() << "interaction::layout_children_zorder";
+      //information() << "interaction::layout_children_zorder";
 
       auto puiptraChildNew = __new(::user::interaction_array(*m_puserinteractionpointeraChild));
 
@@ -14974,6 +14974,8 @@ namespace user
 
    void interaction::release_mouse_capture()
    {
+
+      information() << "interaction::release_mouse_capture";
 
       auto pwindowing = windowing();
 

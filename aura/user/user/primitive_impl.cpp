@@ -355,18 +355,18 @@ namespace user
    }
 
 
-   void primitive_impl::on_reposition(const ::point_i32 & point)
+   void primitive_impl::on_configure(const ::rectangle_i32 & rectangle)
    {
 
 
    }
 
 
-   void primitive_impl::on_resize(const ::size_i32 & size)
-   {
-
-
-   }
+//   void primitive_impl::on_resize(const ::size_i32 & size)
+//   {
+//
+//
+//   }
 
 
    //void primitive_impl::main_async(const promise::procedure & routine, enum_priority epriority)

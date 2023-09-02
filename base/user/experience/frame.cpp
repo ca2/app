@@ -10,6 +10,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/system.h"
 #include "acme/primitive/geometry2d/_text_stream.h"
+#include "acme/user/user/_text_stream.h"
 #include "aura/message/user.h"
 #include "aura/user/user/style.h"
 #include "base/platform/session.h"
@@ -1384,23 +1385,27 @@ namespace experience
       if (m_pframewindow->layout().is_this_screen_visible(::user::e_layout_lading))
       {
 
-         if (m_pframewindow->get_parent() == nullptr)
-         {
-
-            if (!(m_pframewindow->m_ewindowflag & e_window_flag_disable_window_placement_snapping)
-               //&& !m_pframewindow->layout().is_moving()
-               //&& !m_pframewindow->layout().is_sizing()
-               && !m_pframewindow->layout().is_docking()
-               //&& !::is_docking_appearance(m_pframewindow->layout().sketch().display())
-               && m_pframewindow->const_layout().sketch().display() != e_display_zoomed
-               && m_pframewindow->const_layout().sketch().display() != e_display_full_screen)
-            {
-
-               defer_frame_placement_snapping();
-
-            }
-
-         }
+//         if (m_pframewindow->get_parent() == nullptr)
+//         {
+//
+//            if (!(m_pframewindow->m_ewindowflag & e_window_flag_disable_window_placement_snapping)
+//               // Move manager may have its own snapping algorithm.
+//               && !m_pframewindow->layout().is_moving()
+//               // Sizing manager may do snapping sensible to what vertice/side is being dragged-resized.
+//               // Here where every layout of the window happens isn't proper place to deal with this particular case.
+//               && !m_pframewindow->layout().is_sizing()
+//               // Docking manager really does its own snapping.
+//               && !m_pframewindow->layout().is_docking()
+//               //&& !::is_docking_appearance(m_pframewindow->layout().sketch().display())
+//               && m_pframewindow->const_layout().sketch().display() != e_display_zoomed
+//               && m_pframewindow->const_layout().sketch().display() != e_display_full_screen)
+//            {
+//
+//               defer_frame_placement_snapping();
+//
+//            }
+//
+//         }
 
          sync_dock_grip_border();
 
@@ -1409,7 +1414,7 @@ namespace experience
    }
 
 
-   void frame::defer_frame_placement_snapping()
+   void frame::__defer_frame_placement_snapping()
    {
 
       string strType;
@@ -1473,7 +1478,13 @@ namespace experience
 
       auto iWorkspace = m_pframewindow->get_best_zoneing(edisplay, &rectangle, rectangleRequest, bPreserveSize);
 
-      if (edisplay != m_pframewindow->const_layout().sketch().display() ||
+      auto edisplaySketch = m_pframewindow->const_layout().sketch().display();
+
+      information() << "frame::defer_frame_placement_snapping edisplaySketch : " << edisplaySketch;
+
+      information() << "get_best_zoneing returned : " << iWorkspace << ", edisplay : " << edisplay;
+
+      if (edisplay != edisplaySketch ||
          (::is_docking_appearance(edisplay) && iWorkspace != m_pframewindow->m_windowrectangle.m_iWorkspace))
       {
 

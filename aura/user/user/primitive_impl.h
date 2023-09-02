@@ -115,8 +115,8 @@ namespace user
       virtual void window_move(i32 x, i32 y);
 
 
-      virtual void on_reposition(const ::point_i32 & point);
-      virtual void on_resize(const ::size_i32 & size);
+      virtual void on_configure(const ::rectangle_i32 & rectangle);
+      //\virtual void on_resize(const ::size_i32 & size);
 
 
       virtual void post(::message::message* pusermessage);

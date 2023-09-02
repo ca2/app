@@ -2,6 +2,7 @@
 // recreated by Camilo 2021-01-28 22:20
 #include "framework.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/primitive/geometry2d/_text_stream.h"
 #include "acme/primitive/geometry2d/rectangle_array.h"
 #include "aura/windowing/display.h"
 #include "aura/windowing/windowing.h"
@@ -270,7 +271,7 @@ namespace windowing
       if(!pmonitor)
       {
 
-         __construct(pmonitor);
+         ((display*)this)->__construct(pmonitor);
 
          pmonitor->m_iIndex = iMonitor;
 
@@ -553,6 +554,32 @@ namespace windowing
    }
 
 
+   monitor * display::monitor_hit_test(const ::point_i32 & point)
+   {
+
+      synchronous_lock synchronouslock(this->synchronization());
+
+      for(auto pmonitor : m_monitora)
+      {
+
+         auto rectangleMonitor = pmonitor->monitor_rectangle();
+
+         if(rectangleMonitor.contains(point))
+         {
+
+            return pmonitor;
+
+         }
+
+
+
+      }
+
+      return nullptr;
+
+   }
+
+
 
    void display::get_monitor(rectangle_i32_array & rectaMonitor, rectangle_i32_array & rectaIntersect, const rectangle_i32 & rectangleParam)
    {
@@ -602,7 +629,9 @@ namespace windowing
 
       ::rectangle_i32 rectangleWorkspace;
 
-      index iBestWorkspace = get_best_workspace(& rectangleWorkspace, rectangle);
+      index iBestWorkspace = get_best_workspace(&rectangleWorkspace, rectangle);
+
+      information() << "display::_get_best_zoneing rectangleWorkspace : " << rectangleWorkspace;
 
       ::e_display edisplay;
 
@@ -1041,6 +1070,62 @@ namespace windowing
       iMatchingWorkspace = get_main_workspace(*prectangle);
 
       return iMatchingWorkspace;
+
+   }
+
+
+
+   monitor * display::get_best_monitor(const ::rectangle_i32 & rectangle)
+   {
+
+      index iMatchingMonitor = -1;
+
+      i64 iBestArea = -1;
+
+      for (index iMonitor = 0; iMonitor < get_monitor_count(); iMonitor++)
+      {
+
+         ::rectangle_i32 rectangleIntersect;
+
+         ::rectangle_i32 rectangleMonitor;
+
+         if (get_monitor_rectangle(iMonitor, rectangleMonitor))
+         {
+
+            if (rectangleMonitor.contains(rectangle))
+            {
+
+               iMatchingMonitor = iMonitor;
+
+               break;
+
+            }
+            else if (rectangleIntersect.top_left_null_intersect(rectangle, rectangleMonitor))
+            {
+
+               if (rectangleIntersect.area() > iBestArea)
+               {
+
+                  iMatchingMonitor = iMonitor;
+
+                  iBestArea = rectangleIntersect.area();
+
+               }
+
+            }
+
+         }
+
+      }
+
+      if(iMatchingMonitor < 0)
+      {
+
+         return nullptr;
+
+      }
+
+      return m_monitora[iMatchingMonitor];
 
    }
 

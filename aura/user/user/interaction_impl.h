@@ -333,8 +333,8 @@ namespace user
       //DECLARE_MESSAGE_HANDLER(_001OnApplyVisual);
 
 
-      void on_reposition(const ::point_i32 & point) override;
-      void on_resize(const ::size_i32 & size) override;
+      void on_configure(const ::rectangle_i32 & rectangle) override;
+      virtual void _on_configure(const ::rectangle_i32 & rectangle);
 
 
       DECLARE_MESSAGE_HANDLER(on_message_reposition);

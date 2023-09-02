@@ -1270,12 +1270,12 @@ namespace experience
       //::rectangle_i32 frame_window::rectangle(::user::enum_layout elayout)
       //{
 
-         information() << "experience::frame_experience::on_perform_top_down_layout (2)";
+         //information() << "experience::frame_experience::on_perform_top_down_layout (2)";
 
          if (::is_set(m_pframe))
          {
 
-            information() << "experience::frame_experience::on_perform_top_down_layout m_pframe is_set";
+            //information() << "experience::frame_experience::on_perform_top_down_layout m_pframe is_set";
 
             auto rectangleClient2 = this->rectangle(::user::e_layout_lading);
 

@@ -1157,8 +1157,8 @@ namespace user
 ////#endif
 //
 //      //pusersystem->m_createstruct.style = uStyle | WS_CHILD;
-//      //pusersystem->m_createstruct.x() = rectangle.left;
-//      //pusersystem->m_createstruct.y() = rectangle.top;
+//      //pusersystem->m_createstruct.x() = rectangle.left();
+//      //pusersystem->m_createstruct.y() = rectangle.top();
 //      //pusersystem->m_createstruct.cx() = rectangle.width();
 //      //pusersystem->m_createstruct.cy() = rectangle.height();
 //      //pusersystem->m_createstruct.hwndParent = puiParent->get_safe_handle();
@@ -2056,6 +2056,8 @@ namespace user
       if (m_puserinteraction->pre_message_handler(pkey, bKeyMessage, pmessage))
       {
 
+         information() << "returning on pre_message_handler";
+
          return;
 
       }
@@ -2069,13 +2071,13 @@ namespace user
       else if (pmessage->m_atom == e_message_left_button_down)
       {
 
-         information("linux::interaction_impl::e_message_left_button_down\n");
+         information("linux::interaction_impl::e_message_left_button_down");
 
       }
       else if (pmessage->m_atom == e_message_left_button_up)
       {
 
-         information("linux::interaction_impl::e_message_left_button_up\n");
+         information("linux::interaction_impl::e_message_left_button_up");
 
       }
       else if (pmessage->m_atom == e_message_mouse_move)
@@ -2321,18 +2323,18 @@ namespace user
 
       //      //   pdisplay->get_monitor_rectangle(0, rcMonitor);
 
-      //      //   if (rectWindow.left >= rcMonitor.left)
+      //      //   if (rectWindow.left() >= rcMonitor.left())
       //      //   {
 
-      //      //      pmouse->m_point.x() += (::i32)rcMonitor.left;
+      //      //      pmouse->m_point.x() += (::i32)rcMonitor.left();
 
       //      //   }
 
-      //      //   if (rectWindow.top >= rcMonitor.top)
+      //      //   if (rectWindow.top() >= rcMonitor.top())
       //      //   {
 
-      //      //      //pmouse->m_point.y() += (::i32)rectWindow.top;
-      //      //      pmouse->m_point.y() += (::i32)rcMonitor.top;
+      //      //      //pmouse->m_point.y() += (::i32)rectWindow.top();
+      //      //      pmouse->m_point.y() += (::i32)rcMonitor.top();
 
       //      //   }
 
@@ -2340,17 +2342,17 @@ namespace user
       //      //else
       //      {
 
-      //         if (rectWindow.left >= 0)
+      //         if (rectWindow.left() >= 0)
       //         {
 
-      //            pmouse->m_point.x() += (::i32)rectWindow.left;
+      //            pmouse->m_point.x() += (::i32)rectWindow.left();
 
       //         }
 
-      //         if (rectWindow.top >= 0)
+      //         if (rectWindow.top() >= 0)
       //         {
 
-      //            pmouse->m_point.y() += (::i32)rectWindow.top;
+      //            pmouse->m_point.y() += (::i32)rectWindow.top();
 
       //         }
 
@@ -5807,7 +5809,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 
                //m_rectangleUpdateBuffer = r;
 
-               //information("PrintBuffer (%d, %d)",  r.right, r.bottom);
+               //information("PrintBuffer (%d, %d)",  r.right(), r.bottom());
 
                //if (!m_pgraphics)
                //{
@@ -6076,7 +6078,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 
                //m_rectangleUpdateBuffer = r;
 
-               //information("PrintBuffer (%d, %d)",  r.right, r.bottom);
+               //information("PrintBuffer (%d, %d)",  r.right(), r.bottom());
 
                if (!m_pgraphics)
                {
@@ -8117,6 +8119,14 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
                   m_puserinteraction->post_redraw();
 
                }
+               else if(point != m_puserinteraction->const_layout().window().origin())
+               {
+
+                  information() << "on reposition; setting to window position (2) : " << point;
+
+                  m_puserinteraction->set_position(point, e_layout_window);
+
+               }
 
             });
 
@@ -8164,6 +8174,15 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
                   m_puserinteraction->post_redraw();
 
                }
+               else if(size != m_puserinteraction->const_layout().window().size())
+               {
+
+                  information() << "on reposition; setting to window size (2) : " << size;
+
+                  m_puserinteraction->set_size(size, e_layout_window);
+
+               }
+
 
             });
 

@@ -11,10 +11,10 @@
 //inline bool expand_bounding_box(RECTANGLE & rectangleBounding, const ::arc_type < NUMBER > & arc)
 //{
 //
-//   rectangleBounding.left = (decltype(rectangleBounding.left)) (arc.m_pointCenter.x() - arc.m_sizeRadius.cx());
-//   rectangleBounding.right = (decltype(rectangleBounding.right))(arc.m_pointCenter.x() + arc.m_sizeRadius.cx());
-//   rectangleBounding.top = (decltype(rectangleBounding.top))(arc.m_pointCenter.y() - arc.m_sizeRadius.cy());
-//   rectangleBounding.bottom = (decltype(rectangleBounding.bottom))(arc.m_pointCenter.y() + arc.m_sizeRadius.cy());
+//   rectangleBounding.left() = (decltype(rectangleBounding.left())) (arc.m_pointCenter.x() - arc.m_sizeRadius.cx());
+//   rectangleBounding.right() = (decltype(rectangleBounding.right()))(arc.m_pointCenter.x() + arc.m_sizeRadius.cx());
+//   rectangleBounding.top() = (decltype(rectangleBounding.top()))(arc.m_pointCenter.y() - arc.m_sizeRadius.cy());
+//   rectangleBounding.bottom() = (decltype(rectangleBounding.bottom()))(arc.m_pointCenter.y() + arc.m_sizeRadius.cy());
 //
 //   return true;
 //
@@ -41,10 +41,10 @@
 //inline bool get_bounding_box(::rectangle_f64 * prectangleBounding, const ::arc * parc)
 //{
 //
-//   rectangleBounding.left = arc.m_pointCenter.x() - arc.m_sizeRadius.cx();
-//   rectangleBounding.right = arc.m_pointCenter.x() + arc.m_sizeRadius.cx();
-//   rectangleBounding.top = arc.m_pointCenter.y() - arc.m_sizeRadius.cy();
-//   rectangleBounding.bottom = arc.m_pointCenter.y() + arc.m_sizeRadius.cy();
+//   rectangleBounding.left() = arc.m_pointCenter.x() - arc.m_sizeRadius.cx();
+//   rectangleBounding.right() = arc.m_pointCenter.x() + arc.m_sizeRadius.cx();
+//   rectangleBounding.top() = arc.m_pointCenter.y() - arc.m_sizeRadius.cy();
+//   rectangleBounding.bottom() = arc.m_pointCenter.y() + arc.m_sizeRadius.cy();
 //
 //   return true;
 //
@@ -55,10 +55,10 @@
 //inline bool get_bounding_box(::rectangle_f64* prectangleBounding, const line* pline)
 //{
 //
-//   rectangleBounding.left = minimum(line.m_p1.x(), line.m_p2.x());
-//   rectangleBounding.top = minimum(line.m_p1.y(), line.m_p2.y());
-//   rectangleBounding.right = maximum(line.m_p1.x(), line.m_p2.x());
-//   rectangleBounding.bottom = maximum(line.m_p1.y(), line.m_p2.y());
+//   rectangleBounding.left() = minimum(line.m_p1.x(), line.m_p2.x());
+//   rectangleBounding.top() = minimum(line.m_p1.y(), line.m_p2.y());
+//   rectangleBounding.right() = maximum(line.m_p1.x(), line.m_p2.x());
+//   rectangleBounding.bottom() = maximum(line.m_p1.y(), line.m_p2.y());
 //
 //   return true;
 //
@@ -68,10 +68,10 @@
 //inline bool get_bounding_box(::rectangle_i32* prectangleBounding, const line * pline)
 //{
 //
-//   rectangleBounding.left = (::i32)minimum(line.m_p1.x(), line.m_p2.x());
-//   rectangleBounding.top = (::i32)minimum(line.m_p1.y(), line.m_p2.y());
-//   rectangleBounding.right = (::i32)maximum(line.m_p1.x(), line.m_p2.x());
-//   rectangleBounding.bottom = (::i32)maximum(line.m_p1.y(), line.m_p2.y());
+//   rectangleBounding.left() = (::i32)minimum(line.m_p1.x(), line.m_p2.x());
+//   rectangleBounding.top() = (::i32)minimum(line.m_p1.y(), line.m_p2.y());
+//   rectangleBounding.right() = (::i32)maximum(line.m_p1.x(), line.m_p2.x());
+//   rectangleBounding.bottom() = (::i32)maximum(line.m_p1.y(), line.m_p2.y());
 //
 //   return true;
 //
@@ -81,10 +81,10 @@
 //inline bool get_bounding_box(::rectangle_f64* prectangleBounding, const line * pline)
 //{
 //
-//   rectangleBounding.left = minimum(line.m_p1.x(), line.m_p2.x());
-//   rectangleBounding.top = minimum(line.m_p1.y(), line.m_p2.y());
-//   rectangleBounding.right = maximum(line.m_p1.x(), line.m_p2.x());
-//   rectangleBounding.bottom = maximum(line.m_p1.y(), line.m_p2.y());
+//   rectangleBounding.left() = minimum(line.m_p1.x(), line.m_p2.x());
+//   rectangleBounding.top() = minimum(line.m_p1.y(), line.m_p2.y());
+//   rectangleBounding.right() = maximum(line.m_p1.x(), line.m_p2.x());
+//   rectangleBounding.bottom() = maximum(line.m_p1.y(), line.m_p2.y());
 //
 //   return true;
 //
@@ -149,29 +149,29 @@
 //void expand_bounding_box(::rectangle_type < NUMBER1 > & rectangle, ::point_type < NUMBER2 > & point)
 //{
 //
-//   if (point.x < (NUMBER1) rectangle.left)
+//   if (point.x < (NUMBER1) rectangle.left())
 //   {
 //
-//      rectangle.left = (NUMBER1) point.x;
+//      rectangle.left() = (NUMBER1) point.x;
 //
 //   }
-//   else if (pointVertex.x > (NUMBER1) rectangle.right)
+//   else if (pointVertex.x > (NUMBER1) rectangle.right())
 //   {
 //
-//      rectangle.right = (NUMBER1) point.x;
+//      rectangle.right() = (NUMBER1) point.x;
 //
 //   }
 //
-//   if (point.y < (NUMBER1)rectangle.top)
+//   if (point.y < (NUMBER1)rectangle.top())
 //   {
 //
-//      rectangle.top = (NUMBER1)point.y;
+//      rectangle.top() = (NUMBER1)point.y;
 //
 //   }
-//   else if (point.y > (NUMBER1) rectangle.bottom)
+//   else if (point.y > (NUMBER1) rectangle.bottom())
 //   {
 //
-//      rectangle.bottom = (NUMBER1)point.y;
+//      rectangle.bottom() = (NUMBER1)point.y;
 //
 //   }
 //
@@ -182,16 +182,16 @@
 //inline void expand_bounding_box_x(::rectangle_type < NUMBER1 > & rectangle, NUMBER2 x)
 //{
 //
-//   if ((NUMBER1) x < rectangle.left)
+//   if ((NUMBER1) x < rectangle.left())
 //   {
 //
-//      rectangle.left = (NUMBER1)x;
+//      rectangle.left() = (NUMBER1)x;
 //
 //   }
-//   else if ((NUMBER1) x > rectangle.right)
+//   else if ((NUMBER1) x > rectangle.right())
 //   {
 //
-//      rectangle.right = (NUMBER1)x;
+//      rectangle.right() = (NUMBER1)x;
 //
 //   }
 //
@@ -202,16 +202,16 @@
 //inline void expand_bounding_box_y(::rectangle_type < NUMBER1 > & rectangle, NUMBER2 y)
 //{
 //
-//   if ((NUMBER1)y < rectangle.top)
+//   if ((NUMBER1)y < rectangle.top())
 //   {
 //
-//      rectangle.top = (NUMBER1)y;
+//      rectangle.top() = (NUMBER1)y;
 //
 //   }
-//   else if ((NUMBER1)y > rectangle.bottom)
+//   else if ((NUMBER1)y > rectangle.bottom())
 //   {
 //
-//      rectangle.bottom = (NUMBER1)y;
+//      rectangle.bottom() = (NUMBER1)y;
 //
 //   }
 //
@@ -233,13 +233,13 @@
 //void expand_bounding_box(::rectangle_type < NUMBER1 > & rectangle, const ::rectangle_type < NUMBER2 > & rectangle2)
 //{
 //
-//   expand_bounding_box_x(rectangle, rectangle2.left);
+//   expand_bounding_box_x(rectangle, rectangle2.left());
 //
-//   expand_bounding_box_y(rectangle, rectangle2.top);
+//   expand_bounding_box_y(rectangle, rectangle2.top());
 //
-//   expand_bounding_box_x(rectangle, rectangle2.right);
+//   expand_bounding_box_x(rectangle, rectangle2.right());
 //
-//   expand_bounding_box_y(rectangle, rectangle2.bottom);
+//   expand_bounding_box_y(rectangle, rectangle2.bottom());
 //
 //}
 //
@@ -248,13 +248,13 @@
 //void expand_bounding_box(::rectangle_type < NUMBER1 > & rectangle, const ::ellipse_type < NUMBER2 > & ellipse2)
 //{
 //
-//   expand_bounding_box_x(rectangle, ellipse2.left);
+//   expand_bounding_box_x(rectangle, ellipse2.left());
 //
-//   expand_bounding_box_y(rectangle, ellipse2.top);
+//   expand_bounding_box_y(rectangle, ellipse2.top());
 //
-//   expand_bounding_box_x(rectangle, ellipse2.right);
+//   expand_bounding_box_x(rectangle, ellipse2.right());
 //
-//   expand_bounding_box_y(rectangle, ellipse2.bottom);
+//   expand_bounding_box_y(rectangle, ellipse2.bottom());
 //
 //}
 //
@@ -281,10 +281,10 @@ inline bool get_bounding_box(RECTANGLE & rectangleBounding, const TYPE & t)
 
    t.expand_bounding_box(rectangleBounding.top_left(), rectangleBounding.bottom_right());
 
-   //rectangleBounding.left = (decltype(rectangleBounding.left))minimum(line.m_p1.x(), line.m_p2.x());
-   //rectangleBounding.top = (decltype(rectangleBounding.top))minimum(line.m_p1.y(), line.m_p2.y());
-   //rectangleBounding.right = (decltype(rectangleBounding.right))maximum(line.m_p1.x(), line.m_p2.x());
-   //rectangleBounding.bottom = (decltype(rectangleBounding.bottom))maximum(line.m_p1.y(), line.m_p2.y());
+   //rectangleBounding.left() = (decltype(rectangleBounding.left()))minimum(line.m_p1.x(), line.m_p2.x());
+   //rectangleBounding.top() = (decltype(rectangleBounding.top()))minimum(line.m_p1.y(), line.m_p2.y());
+   //rectangleBounding.right() = (decltype(rectangleBounding.right()))maximum(line.m_p1.x(), line.m_p2.x());
+   //rectangleBounding.bottom() = (decltype(rectangleBounding.bottom()))maximum(line.m_p1.y(), line.m_p2.y());
 
    return rectangleBounding.is_set();
 
@@ -299,10 +299,10 @@ inline bool get_bounding_box(RECTANGLE & rectangleBounding, const POINT * ppoint
 
    POINT::expand_bounding_box(rectangleBounding.top_left(), rectangleBounding.bottom_right(), ppoint, iPointCount);
 
-   //rectangleBounding.left = (decltype(rectangleBounding.left))minimum(line.m_p1.x(), line.m_p2.x());
-   //rectangleBounding.top = (decltype(rectangleBounding.top))minimum(line.m_p1.y(), line.m_p2.y());
-   //rectangleBounding.right = (decltype(rectangleBounding.right))maximum(line.m_p1.x(), line.m_p2.x());
-   //rectangleBounding.bottom = (decltype(rectangleBounding.bottom))maximum(line.m_p1.y(), line.m_p2.y());
+   //rectangleBounding.left() = (decltype(rectangleBounding.left()))minimum(line.m_p1.x(), line.m_p2.x());
+   //rectangleBounding.top() = (decltype(rectangleBounding.top()))minimum(line.m_p1.y(), line.m_p2.y());
+   //rectangleBounding.right() = (decltype(rectangleBounding.right()))maximum(line.m_p1.x(), line.m_p2.x());
+   //rectangleBounding.bottom() = (decltype(rectangleBounding.bottom()))maximum(line.m_p1.y(), line.m_p2.y());
 
    return rectangleBounding.is_set();
 

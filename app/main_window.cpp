@@ -217,9 +217,9 @@ namespace app_app
 
             pitemClose->m_rectangle = this->rectangle();
 
-            pitemClose->m_rectangle.left = pitemClose->m_rectangle.right - iSize;
+            pitemClose->m_rectangle.left() = pitemClose->m_rectangle.right() - iSize;
 
-            pitemClose->m_rectangle.bottom = pitemClose->m_rectangle.top + iSize;
+            pitemClose->m_rectangle.bottom() = pitemClose->m_rectangle.top() + iSize;
 
             auto pointCursor = get_cursor_position();
 
@@ -234,22 +234,22 @@ namespace app_app
 
                pitemZoom->m_rectangle = this->rectangle();
 
-               pitemZoom->m_rectangle.right = pitemClose->m_rectangle.left;
+               pitemZoom->m_rectangle.right() = pitemClose->m_rectangle.left();
 
-               pitemZoom->m_rectangle.bottom = pitemClose->m_rectangle.bottom;
+               pitemZoom->m_rectangle.bottom() = pitemClose->m_rectangle.bottom();
 
-               pitemZoom->m_rectangle.left = pitemZoom->m_rectangle.right - iSize;
+               pitemZoom->m_rectangle.left() = pitemZoom->m_rectangle.right() - iSize;
 
                if (::is_set(pitemIcon))
                {
 
                   pitemIcon->m_rectangle = this->rectangle();
 
-                  pitemIcon->m_rectangle.right = pitemZoom->m_rectangle.left;
+                  pitemIcon->m_rectangle.right() = pitemZoom->m_rectangle.left();
 
-                  pitemIcon->m_rectangle.bottom = pitemClose->m_rectangle.bottom;
+                  pitemIcon->m_rectangle.bottom() = pitemClose->m_rectangle.bottom();
 
-                  pitemIcon->m_rectangle.left = pitemIcon->m_rectangle.right - iSize;
+                  pitemIcon->m_rectangle.left() = pitemIcon->m_rectangle.right() - iSize;
 
                }
 

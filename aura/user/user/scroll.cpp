@@ -182,9 +182,9 @@ namespace user
 
       auto pointOffset = get_context_offset();
 
-      rectangle.right = (::i32) (rectangle.left + minimum(::width(rectangle), sizeTotal.cx() - m_pscrolldataHorizontal->m_iPage - pointOffset.x()));
+      rectangle.right() = (::i32) (rectangle.left() + minimum(::width(rectangle), sizeTotal.cx() - m_pscrolldataHorizontal->m_iPage - pointOffset.x()));
 
-      rectangle.bottom = (::i32) (rectangle.top + minimum(::height(rectangle), sizeTotal.cy() - m_pscrolldataVertical->m_iPage - pointOffset.y()));
+      rectangle.bottom() = (::i32) (rectangle.top() + minimum(::height(rectangle), sizeTotal.cy() - m_pscrolldataVertical->m_iPage - pointOffset.y()));
 
       return true;
 
@@ -196,9 +196,9 @@ namespace user
 
    //   ::user::interaction::this->rectangle(prectangle);
 
-   //   prectangle->right -= get_final_y_scroll_bar_width();
+   //   prectangle->right() -= get_final_y_scroll_bar_width();
 
-   //   prectangle->bottom -= get_final_x_scroll_bar_width();
+   //   prectangle->bottom() -= get_final_x_scroll_bar_width();
 
    //   return true;
 
@@ -208,10 +208,10 @@ namespace user
    bool scroll_base::GetFocusRect(::rectangle_i32 & rectangle)
    {
 
-      rectangle.left = 0;
-      rectangle.top = 0;
-      rectangle.right = const_layout().sketch().size().cx();
-      rectangle.bottom = const_layout().sketch().size().cy();
+      rectangle.left() = 0;
+      rectangle.top() = 0;
+      rectangle.right() = const_layout().sketch().size().cx();
+      rectangle.bottom() = const_layout().sketch().size().cy();
 
       return true;
 
@@ -259,10 +259,10 @@ namespace user
 
          ::rectangle_i32 rectangle;
 
-         rectangle.top = rectangleX.bottom;
-         rectangle.left = rectangleX.right;
-         rectangle.right = (::i32) (rectangle.left + m_pscrollbarVertical->const_layout().design().size().cx());
-         rectangle.bottom = (::i32) (rectangle.top + m_pscrollbarHorizontal->const_layout().design().size().cy());
+         rectangle.top() = rectangleX.bottom();
+         rectangle.left() = rectangleX.right();
+         rectangle.right() = (::i32) (rectangle.left() + m_pscrollbarVertical->const_layout().design().size().cx());
+         rectangle.bottom() = (::i32) (rectangle.top() + m_pscrollbarHorizontal->const_layout().design().size().cy());
 
          pgraphics->fill_rectangle(rectangle, argb(127, 127, 127, 127));
 
@@ -305,14 +305,14 @@ namespace user
          if (horizontal_scrollbar_visible())
          {
 
-            rectangle.bottom -= m_pscrollbarHorizontal->scrollbar_width();
+            rectangle.bottom() -= m_pscrollbarHorizontal->scrollbar_width();
 
          }
 
          if (vertical_scrollbar_visible())
          {
 
-            rectangle.right -= m_pscrollbarVertical->scrollbar_width();
+            rectangle.right() -= m_pscrollbarVertical->scrollbar_width();
 
          }
 

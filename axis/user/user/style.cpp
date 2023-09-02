@@ -199,9 +199,9 @@ namespace axis
 
       //i32 iStyle = 1;
 
-      ////rectangleX.left--;
+      ////rectangleX.left()--;
 
-      ////rectangleX.top--;
+      ////rectangleX.top()--;
 
       //if (get_app() != nullptr && (pinteraction->hover_item().is_set() || pinteraction->has_keyboard_focus()))
       //{
@@ -275,10 +275,10 @@ namespace axis
       //      if (pinteraction->has_keyboard_focus())
       //      {
 
-      //         rectangleX.left--;
-      //         rectangleX.right++;
-      //         rectangleX.top--;
-      //         rectangleX.bottom++;
+      //         rectangleX.left()--;
+      //         rectangleX.right()++;
+      //         rectangleX.top()--;
+      //         rectangleX.bottom()++;
 
       //         {
 
@@ -297,10 +297,10 @@ namespace axis
 
       //         }
 
-      //         rectangleX.left--;
-      //         rectangleX.right++;
-      //         rectangleX.top--;
-      //         rectangleX.bottom++;
+      //         rectangleX.left()--;
+      //         rectangleX.right()++;
+      //         rectangleX.top()--;
+      //         rectangleX.bottom()++;
 
       //         {
 
@@ -321,10 +321,10 @@ namespace axis
 
       //         }
 
-      //         rectangleX.left--;
-      //         rectangleX.right++;
-      //         rectangleX.top--;
-      //         rectangleX.bottom++;
+      //         rectangleX.left()--;
+      //         rectangleX.right()++;
+      //         rectangleX.top()--;
+      //         rectangleX.bottom()++;
 
       //         {
 
@@ -360,10 +360,10 @@ namespace axis
 
       //         }
 
-      //         rectangleX.left--;
-      //         rectangleX.right++;
-      //         rectangleX.top--;
-      //         rectangleX.bottom++;
+      //         rectangleX.left()--;
+      //         rectangleX.right()++;
+      //         rectangleX.top()--;
+      //         rectangleX.bottom()++;
 
       //         {
 
@@ -394,10 +394,10 @@ namespace axis
       //         }
 
 
-      //         rectangleX.left--;
-      //         rectangleX.right++;
-      //         rectangleX.top--;
-      //         rectangleX.bottom++;
+      //         rectangleX.left()--;
+      //         rectangleX.right()++;
+      //         rectangleX.top()--;
+      //         rectangleX.bottom()++;
 
       //         {
 
@@ -429,10 +429,10 @@ namespace axis
 
 
 
-      //         rectangleX.left--;
-      //         rectangleX.right++;
-      //         rectangleX.top--;
-      //         rectangleX.bottom++;
+      //         rectangleX.left()--;
+      //         rectangleX.right()++;
+      //         rectangleX.top()--;
+      //         rectangleX.bottom()++;
 
       //         {
 
@@ -838,7 +838,7 @@ namespace axis
    //bool style::create_rect(e_rect erect, ::rectangle_f64 rectangle, ::draw2d::enum_unit eunit)
    //{
 
-   //   return create_rect_coord(erect, rectangle.left, rectangle.top, rectangle.right, rectangle.bottom, eunit);
+   //   return create_rect_coord(erect, rectangle.left(), rectangle.top(), rectangle.right(), rectangle.bottom(), eunit);
 
    //}
 
@@ -1442,7 +1442,7 @@ namespace axis
    //bool style::create_rect(e_rect erect, ::rectangle_f64 rectangle, ::draw2d::enum_unit eunit)
    //{
 
-   //   return create_rect_coord(erect, rectangle.left, rectangle.top, rectangle.right, rectangle.bottom, eunit);
+   //   return create_rect_coord(erect, rectangle.left(), rectangle.top(), rectangle.right(), rectangle.bottom(), eunit);
 
    //}
 

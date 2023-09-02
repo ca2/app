@@ -40,10 +40,10 @@ namespace opengl
    inline void vertex2f(const ::rectangle_f64 & rectangle)
    {
 
-      glVertex2f((GLfloat)rectangle.left, (GLfloat)rectangle.top);
-      glVertex2f((GLfloat)rectangle.right, (GLfloat)rectangle.top);
-      glVertex2f((GLfloat)rectangle.right, (GLfloat)rectangle.bottom);
-      glVertex2f((GLfloat)rectangle.left, (GLfloat)rectangle.bottom);
+      glVertex2f((GLfloat)rectangle.left(), (GLfloat)rectangle.top());
+      glVertex2f((GLfloat)rectangle.right(), (GLfloat)rectangle.top());
+      glVertex2f((GLfloat)rectangle.right(), (GLfloat)rectangle.bottom());
+      glVertex2f((GLfloat)rectangle.left(), (GLfloat)rectangle.bottom());
 
    }
 

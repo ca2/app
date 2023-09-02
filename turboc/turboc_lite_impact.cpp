@@ -107,13 +107,13 @@ namespace turboc
 
       ::rectangle_i32 rectangleX;
 
-      rectangleX.left = 0;
+      rectangleX.left() = 0;
 
-      rectangleX.top = 0;
+      rectangleX.top() = 0;
 
-      rectangleX.right = m_cx;
+      rectangleX.right() = m_cx;
 
-      rectangleX.bottom = m_cy;
+      rectangleX.bottom() = m_cy;
 
       //pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
 

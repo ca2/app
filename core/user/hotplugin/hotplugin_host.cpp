@@ -495,7 +495,7 @@ namespace hotplugin
 
          //g->create_from_bitmap(b);
 
-         //g.bit_blt(0, 0, m_sizeBitmap.cx(), m_sizeBitmap.cy(), pgraphics, prectangle.left, prectangle.top);
+         //g.bit_blt(0, 0, m_sizeBitmap.cx(), m_sizeBitmap.cy(), pgraphics, prectangle.left(), prectangle.top());
 
 
       }
@@ -534,7 +534,7 @@ namespace hotplugin
 
          //g.create_from_bitmap(b);
 
-         //pgraphics.bit_blt(prectangle.left, prectangle.top, m_sizeBitmap.cx(), m_sizeBitmap.cy(), g, 0, 0);
+         //pgraphics.bit_blt(prectangle.left(), prectangle.top(), m_sizeBitmap.cx(), m_sizeBitmap.cy(), g, 0, 0);
 
 
       }

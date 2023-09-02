@@ -140,7 +140,7 @@ struct sequence_type
    }
 
 
-   constexpr COORDINATE get_coordinate(::index i) const
+   constexpr COORDINATE coordinate(::index i) const
    {
 
       return m_coordinatea[i];
@@ -148,7 +148,7 @@ struct sequence_type
    }
 
    
-   constexpr COORDINATE & get_coordinate(::index i)
+   constexpr COORDINATE & coordinate(::index i)
    {
 
       return m_coordinatea[i];
@@ -1149,7 +1149,7 @@ auto transform(const SEQUENCE & sequence, COORDINATE_TRANSFORM coordinatetransfo
    for (::count i = 0; i < sequence.get_size(); ++i)
    {
 
-      sequenceResult.set_coordinate(i, coordinatetransform(sequence.get_coordinate(i)));
+      sequenceResult.set_coordinate(i, coordinatetransform(sequence.coordinate(i)));
 
    }
 

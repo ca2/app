@@ -295,11 +295,11 @@ namespace user
    //      else
    //      {
 
-   //         prectParam->left = prectParam->top = 0;
+   //         prectParam->left() = prectParam->top() = 0;
 
-   //         prectParam->right = sizeparentparams.sizeTotal.cx();
+   //         prectParam->right() = sizeparentparams.sizeTotal.cx();
 
-   //         prectParam->bottom = sizeparentparams.sizeTotal.cy();
+   //         prectParam->bottom() = sizeparentparams.sizeTotal.cy();
 
 
    //      }
@@ -318,13 +318,13 @@ namespace user
    //         ASSERT(prectParam != nullptr);
 
 
-   //         sizeparentparams.rectangle.left += prectParam->left;
+   //         sizeparentparams.rectangle.left() += prectParam->left();
 
-   //         sizeparentparams.rectangle.top += prectParam->top;
+   //         sizeparentparams.rectangle.top() += prectParam->top();
 
-   //         sizeparentparams.rectangle.right -= prectParam->right;
+   //         sizeparentparams.rectangle.right() -= prectParam->right();
 
-   //         sizeparentparams.rectangle.bottom -= prectParam->bottom;
+   //         sizeparentparams.rectangle.bottom() -= prectParam->bottom();
 
 
    //      }
@@ -520,8 +520,8 @@ namespace user
    void primitive_impl::viewport_client_to_screen(::rectangle_i32 & rectangle)
    {
 
-      viewport_client_to_screen((::point_i32 &)rectangle.left);
-      viewport_client_to_screen((::point_i32 &)rectangle.right);
+      viewport_client_to_screen((::point_i32 &)rectangle.left());
+      viewport_client_to_screen((::point_i32 &)rectangle.right());
 
    }
 
@@ -529,8 +529,8 @@ namespace user
    void primitive_impl::viewport_screen_to_client(::rectangle_i32 & rectangle)
    {
 
-      viewport_screen_to_client((::point_i32 &)rectangle.left);
-      viewport_screen_to_client((::point_i32 &)rectangle.right);
+      viewport_screen_to_client((::point_i32 &)rectangle.left());
+      viewport_screen_to_client((::point_i32 &)rectangle.right());
 
    }
 

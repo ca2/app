@@ -338,13 +338,13 @@ HBRUSH CreateSolidBrush(color32_t color32)
 //{
 //   CGColorRef color = cg_create_color(clr);
 //   CGRect rectangle;
-//   rectangle.origin.x() = prect->left;
+//   rectangle.origin.x() = prect->left();
 
-//   rectangle.origin.y() = prect->top;
+//   rectangle.origin.y() = prect->top();
 
-//   rectangle.size.width = prect->right - prect->left;
+//   rectangle.size.width = prect->right() - prect->left();
 
-//   rectangle.size.height = prect->bottom - prect->top;
+//   rectangle.size.height = prect->bottom() - prect->top();
 
 //   CGContextFillRect(hdc->m_cgcontext, rectangle);
 //   cg_release_color(color);
@@ -704,26 +704,26 @@ int_bool this->rectangle(oswindow hwnd, RECT32 * prect)
     {
     return false;
     }
-    prect->left      = 0;
+    prect->left()      = 0;
 
-    prect->top       = 0;
+    prect->top()       = 0;
 
-    prect->right     = prect->left    + attrs.width;
+    prect->right()     = prect->left()    + attrs.width;
 
-    prect->bottom    = prect->top     + attrs.height;*/
+    prect->bottom()    = prect->top()     + attrs.height;*/
 
 
    if(!window_rectangle(hwnd, prect))
 
       return false;
 
-   prect->right   -=  prect->left;
+   prect->right()   -=  prect->left();
 
-   prect->bottom  -=  prect->top;
+   prect->bottom()  -=  prect->top();
 
-   prect->left    =   0;
+   prect->left()    =   0;
 
-   prect->top     =   0;
+   prect->top()     =   0;
 
 
    return true;
@@ -740,13 +740,13 @@ int_bool this->rectangle(oswindow hwnd, RECT32 * prect)
 //    {
 //    return false;
 //    }
-//    prect->left      = attrs.x();
+//    prect->left()      = attrs.x();
 //
-//    prect->top       = attrs.y();
+//    prect->top()       = attrs.y();
 //
-//    prect->right     = prect->left    + attrs.width;
+//    prect->right()     = prect->left()    + attrs.width;
 //
-//    prect->bottom    = prect->top     + attrs.height;*/
+//    prect->bottom()    = prect->top()     + attrs.height;*/
 //
 //
 //   //if(!hwnd->m_bNsWindowRect)
@@ -779,13 +779,13 @@ int_bool this->rectangle(oswindow hwnd, RECT32 * prect)
 
  CGRect rectangle;
 
- rectangle.origin.x()     = prc->left;
+ rectangle.origin.x()     = prc->left();
 
- rectangle.origin.y()     = prc->top;
+ rectangle.origin.y()     = prc->top();
 
- rectangle.size.width   = prc->right - lprc->left;
+ rectangle.size.width   = prc->right() - lprc->left();
 
- rectangle.size.height  = prc->bottom - lprc->top;
+ rectangle.size.height  = prc->bottom() - lprc->top();
 
 
  CGContextSetRGBFillColor(hdc->m_cgcontext, color32_u8_red(hbr->lbColor), color32_u8_green(hbr->lbColor), color32_u8_blue(hbr->lbColor), color32_u8_opacity(hbr->lbColor));
@@ -1093,13 +1093,13 @@ int_bool this->rectangle(oswindow hwnd, RECT32 * prect)
 // {
 //    CGColorRef color = cg_create_color(clr);
 //    CGRect rectangle;
-//    rectangle.origin.x() = prect->left;
+//    rectangle.origin.x() = prect->left();
 
-//    rectangle.origin.y() = prect->top;
+//    rectangle.origin.y() = prect->top();
 
-//    rectangle.size.width = prect->right - prect->left;
+//    rectangle.size.width = prect->right() - prect->left();
 
-//    rectangle.size.height = prect->bottom - prect->top;
+//    rectangle.size.height = prect->bottom() - prect->top();
 
 //    CGContextFillRect(hdc->m_cgcontext, rectangle);
 //    cg_release_color(color);
@@ -1210,13 +1210,13 @@ int_bool window_rectangle(oswindow hwnd, RECT32 * prect)
     {
     return false;
     }
-    prect->left      = attrs.x();
+    prect->left()      = attrs.x();
     
-    prect->top       = attrs.y();
+    prect->top()       = attrs.y();
     
-    prect->right     = prect->left    + attrs.width;
+    prect->right()     = prect->left()    + attrs.width;
     
-    prect->bottom    = prect->top     + attrs.height;*/
+    prect->bottom()    = prect->top()     + attrs.height;*/
    
    
    //if(!hwnd->m_bNsWindowRect)

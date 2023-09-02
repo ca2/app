@@ -251,10 +251,10 @@
 //
 //   ::rectangle_f64 rectangle;
 //
-//   rectangle.left = 0;
-//   rectangle.top = 0;
-//   rectangle.right = g_posremote->getWidth();
-//   rectangle.bottom = g_posremote->getHeight();
+//   rectangle.left() = 0;
+//   rectangle.top() = 0;
+//   rectangle.right() = g_posremote->getWidth();
+//   rectangle.bottom() = g_posremote->getHeight();
 //
 //   SetMainScreenRect(rectangle);
 //

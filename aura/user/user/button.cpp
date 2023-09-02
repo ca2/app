@@ -323,13 +323,13 @@ namespace user
 
          //::rectangle_i32 rectangle;
 
-         //rectangle.left = (::i32)(rectangleX.left + (rectangleX.width() - sizeFitting.cx()) / 2);
+         //rectangle.left() = (::i32)(rectangleX.left() + (rectangleX.width() - sizeFitting.cx()) / 2);
 
-         //rectangle.top = (::i32)(rectangleX.top + (rectangleX.height() - sizeFitting.cy()) / 2);
+         //rectangle.top() = (::i32)(rectangleX.top() + (rectangleX.height() - sizeFitting.cy()) / 2);
 
-         //rectangle.right = (::i32)(rectangle.left + sizeFitting.cx());
+         //rectangle.right() = (::i32)(rectangle.left() + sizeFitting.cx());
 
-         //rectangle.bottom = (::i32)(rectangle.top + sizeFitting.cy());
+         //rectangle.bottom() = (::i32)(rectangle.top() + sizeFitting.cy());
 
          //if (rectangle != m_rectangleText)
          //{
@@ -437,8 +437,8 @@ namespace user
 
       //      pgraphics->SetBkMode(TRANSPARENT);
 
-      rectangleX.left += 3;
-      rectangleX.top += 3;
+      rectangleX.left() += 3;
+      rectangleX.top() += 3;
 
       ::rectangle_i32 rectangleText;
 
@@ -448,13 +448,13 @@ namespace user
 
       auto sizeFitting = _001CalculateFittingSize(pgraphics);
 
-      rectangleText.left = (::i32)(rectangleX.left + (rectangleX.width() - sizeFitting.cx()) / 2);
+      rectangleText.left() = (::i32)(rectangleX.left() + (rectangleX.width() - sizeFitting.cx()) / 2);
 
-      rectangleText.top = (::i32)(rectangleX.top + (rectangleX.height() - sizeFitting.cy()) / 2);
+      rectangleText.top() = (::i32)(rectangleX.top() + (rectangleX.height() - sizeFitting.cy()) / 2);
 
-      rectangleText.right = (::i32)(rectangleText.left + sizeFitting.cx());
+      rectangleText.right() = (::i32)(rectangleText.left() + sizeFitting.cx());
 
-      rectangleText.bottom = (::i32)(rectangleText.top + sizeFitting.cy());
+      rectangleText.bottom() = (::i32)(rectangleText.top() + sizeFitting.cy());
 
       //::rectangle_i32 rectangleText = m_rectangleText;
       //      string str = utf8_to_unicode(str);
@@ -464,8 +464,8 @@ namespace user
          {
             ::rectangle_i32 rectangleDib;
             rectangleDib = rectangleText;
-            rectangleDib.bottom = minimum(rectangleText.top + m_pbitmap->m_pimage->width(), rectangleText.bottom);
-            rectangleDib.right = minimum(rectangleText.left + m_pbitmap->m_pimage->height(), rectangleText.right);
+            rectangleDib.bottom() = minimum(rectangleText.top() + m_pbitmap->m_pimage->width(), rectangleText.bottom());
+            rectangleDib.right() = minimum(rectangleText.left() + m_pbitmap->m_pimage->height(), rectangleText.right());
             //m_pimage->to(pgraphics, rectangleDib);
 
             {
@@ -482,7 +482,7 @@ namespace user
 
             }
 
-            rectangleText.left += m_pbitmap->m_pimage->width();
+            rectangleText.left() += m_pbitmap->m_pimage->width();
 
          }
 
@@ -926,9 +926,9 @@ namespace user
 
          ::rectangle_i32 rectangleAspect;
 
-         rectangleAspect.left = 0;
+         rectangleAspect.left() = 0;
 
-         rectangleAspect.top = 0;
+         rectangleAspect.top() = 0;
 
          double dW = (double) rectangleX.width() / (double)pimage->width();
 
@@ -936,9 +936,9 @@ namespace user
 
          double dMin = minimum(minimum(dW, dH), 1.0);
 
-         rectangleAspect.right = (::i32) (pimage->width() * dMin);
+         rectangleAspect.right() = (::i32) (pimage->width() * dMin);
 
-         rectangleAspect.bottom = (::i32) (pimage->height() * dMin);
+         rectangleAspect.bottom() = (::i32) (pimage->height() * dMin);
 
          rectangleAspect.Align(e_align_center, rectangleX);
 
@@ -1009,9 +1009,9 @@ namespace user
             if (pimage->area() > 0 && rectangleX.area() > 0)
             {
 
-               rectangleAspect.left = 0;
+               rectangleAspect.left() = 0;
 
-               rectangleAspect.top = 0;
+               rectangleAspect.top() = 0;
 
                double dW = (double)rectanglePadded.width() / (double)pimage->width();
 
@@ -1019,9 +1019,9 @@ namespace user
 
                double dMin = minimum(minimum(dW, dH), 1.0);
 
-               rectangleAspect.right = (::i32)(pimage->width() * dMin);
+               rectangleAspect.right() = (::i32)(pimage->width() * dMin);
 
-               rectangleAspect.bottom = (::i32)(pimage->height() * dMin);
+               rectangleAspect.bottom() = (::i32)(pimage->height() * dMin);
 
                rectangleAspect.Align(e_align_bottom_left, rectanglePadded);
 
@@ -1043,10 +1043,10 @@ namespace user
 
                }
 
-               rectangleAspect.left = rectangleAspect.right + iPadding;
-               rectangleAspect.right = rectanglePadded.right;
-               rectangleAspect.top = rectanglePadded.top;
-               rectangleAspect.bottom = rectanglePadded.bottom;
+               rectangleAspect.left() = rectangleAspect.right() + iPadding;
+               rectangleAspect.right() = rectanglePadded.right();
+               rectangleAspect.top() = rectanglePadded.top();
+               rectangleAspect.bottom() = rectanglePadded.bottom();
 
             }
 
@@ -1129,12 +1129,12 @@ namespace user
       pgraphics->fill_rectangle(rectangle,color32 & ::opacity(200));
       rectangle.deflate(1,1,1,1);
 
-      i32 x1 = rectangle.left;
+      i32 x1 = rectangle.left();
       i32 x2 = x1 + rectangle.width() / 3;
 
-      rectangle.left = x1;
-      rectangle.right = x2;
-      rectangle.bottom = rectangle.top + 5;
+      rectangle.left() = x1;
+      rectangle.right() = x2;
+      rectangle.bottom() = rectangle.top() + 5;
 
       auto ppen = __create < ::draw2d::pen > ();
 

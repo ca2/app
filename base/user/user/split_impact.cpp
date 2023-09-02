@@ -181,32 +181,32 @@ namespace user
 
       //   // Top
       //   pgraphics->fill_rectangle(
-      //      rectangle.left,
-      //      rectangle.top,
+      //      rectangle.left(),
+      //      rectangle.top(),
       //      rectangle.width(),
       //      m_cyBorder,
       //      color32);
 
       //   // Right
       //   pgraphics->fill_rectangle(
-      //      rectangle.right - m_cxBorder,
-      //      rectangle.top,
+      //      rectangle.right() - m_cxBorder,
+      //      rectangle.top(),
       //      m_cxBorder,
       //      rectangle.height(),
       //      color32);
 
       //   // Bottom
       //   pgraphics->fill_rectangle(
-      //      rectangle.left,
-      //      rectangle.bottom - m_cyBorder,
+      //      rectangle.left(),
+      //      rectangle.bottom() - m_cyBorder,
       //      rectangle.width(),
       //      m_cyBorder,
       //      color32);
 
       //   // Left
       //   pgraphics->fill_rectangle(
-      //      rectangle.left,
-      //      rectangle.top,
+      //      rectangle.left(),
+      //      rectangle.top(),
       //      m_cxBorder,
       //      rectangle.height(),
       //      color32);

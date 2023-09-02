@@ -458,10 +458,10 @@ namespace user
 //      rectangle_i64 rectangleForm;
 //      window_rectangle(rectangleForm);
 //      rectangle_i64 rectangleX;
-//      rectangleX.top = rectangleForm.top;
-//      rectangleX.bottom = rectangleForm.bottom;
-//      rectangleX.left = rectangleControl.left;
-//      rectangleX.right = rectangleControl.right;
+//      rectangleX.top() = rectangleForm.top();
+//      rectangleX.bottom() = rectangleForm.bottom();
+//      rectangleX.left() = rectangleControl.left();
+//      rectangleX.right() = rectangleControl.right();
 //      return rectangleX.contains(point) != false;
    }
 

@@ -856,6 +856,8 @@ namespace user
 
       m_puserinteraction->m_bUpdateWindow = false;
 
+      //m_puserinteraction->m_pinteractionimpl->m_pwindow->_on
+
       m_puserinteraction->m_pinteractionimpl->do_graphics();
 
       //m_puserinteraction->m_pinteractionimpl->do_graphics(e_graphics_draw);

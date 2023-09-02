@@ -949,17 +949,17 @@ void oswindow_data::full_screen(const ::rectangle_i32 & rectangle)
 
    ::rectangle_i32 rWindow;
 
-   rWindow.left      = attr.x();
-   rWindow.top       = attr.y();
-   rWindow.right     = attr.x()    + attr.width;
-   rWindow.bottom    = attr.y()    + attr.height;
+   rWindow.left()      = attr.x();
+   rWindow.top()       = attr.y();
+   rWindow.right()     = attr.x()    + attr.width;
+   rWindow.bottom()    = attr.y()    + attr.height;
 
    if(rBest != rWindow)
    {
 
       m_pimpl->m_puserinteraction->place(rBest);
 
-      XMoveResizeWindow(d, m_window, rBest.left, rBest.top, rBest.width(), rBest.height());
+      XMoveResizeWindow(d, m_window, rBest.left(), rBest.top(), rBest.width(), rBest.height());
 
    }
 

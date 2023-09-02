@@ -752,10 +752,10 @@ namespace user
 
       ::rectangle_i32 rectangleRequest;
 
-      rectangleRequest.left = rectangle.left - 32;
-      rectangleRequest.top = rectangle.top - 32;
-      rectangleRequest.right = rectangleRequest.left + 400;
-      rectangleRequest.bottom = rectangleRequest.top + 32;
+      rectangleRequest.left() = rectangle.left() - 32;
+      rectangleRequest.top() = rectangle.top() - 32;
+      rectangleRequest.right() = rectangleRequest.left() + 400;
+      rectangleRequest.bottom() = rectangleRequest.top() + 32;
 
       enable_window();
 

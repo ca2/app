@@ -2111,7 +2111,7 @@ bool simple_frame_window::LoadFrame(const ::string& pszMatter, u32 dwDefaultStyl
 
       //pusersystem->set_rect(rectangleFrame);
 
-      information("(2) simple_frame_window::LoadFrame rectangleFrame (l=%d, t=%d) (w=%d, h=%d)", rectangleFrame.left, rectangleFrame.top, rectangleFrame.width(), rectangleFrame.height());
+      information("(2) simple_frame_window::LoadFrame rectangleFrame (l=%d, t=%d) (w=%d, h=%d)", rectangleFrame.left(), rectangleFrame.top(), rectangleFrame.width(), rectangleFrame.height());
       information("(2) simple_frame_window::LoadFrame edisplay=%s", ::string(::as_string((int)const_layout().sketch().display().eflag())).c_str());
 
 

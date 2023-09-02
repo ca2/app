@@ -177,15 +177,15 @@ namespace user
       if((iMax - iMin) == 0)
          return;
 
-      prectangle->top = rectangleX.top;
+      prectangle->top() = rectangleX.top();
 
-      prectangle->bottom = rectangleX.bottom;
+      prectangle->bottom() = rectangleX.bottom();
 
       double dWidth = ((double)rectangleX.width()) / (iMax - iMin);
 
-      prectangle->left = (::i32) (dWidth * (iStep - iMin));
+      prectangle->left() = (::i32) (dWidth * (iStep - iMin));
 
-      prectangle->right = (::i32) (dWidth * (iStep - iMin + 1));
+      prectangle->right() = (::i32) (dWidth * (iStep - iMin + 1));
 
 
 
@@ -200,11 +200,11 @@ namespace user
 
       GetStepHoverRect(prectangle, iStep, iMin, iMax, rectangleX);
 
-      i32 halfm = (prectangle->right - prectangle->left - 2) / 2;
+      i32 halfm = (prectangle->right() - prectangle->left() - 2) / 2;
 
-      prectangle->left +=  halfm;
+      prectangle->left() +=  halfm;
 
-      prectangle->right -=  halfm;
+      prectangle->right() -=  halfm;
 
 
    }
@@ -230,7 +230,7 @@ namespace user
 
       iMax = m_scalar.maximum().get_i64();
 
-      return __new(::item((index) (iMin + (((point.x() - rectangleX.left) * (iMax - iMin)) / rectangleX.width()))));
+      return __new(::item((index) (iMin + (((point.x() - rectangleX.left()) * (iMax - iMin)) / rectangleX.width()))));
 
    }
 

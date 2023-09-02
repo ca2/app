@@ -68,10 +68,10 @@ namespace experience_tranquillum
 //               
 //               ::point_i32 pointHitTest = point;
 //
-////               if(rectangleEvent.left < 0)
-////                  pointHitTest.x() -= rectangleEvent.left;
-////               if(rectangleEvent.top < 0)
-////                  pointHitTest.y() -= rectangleEvent.top;
+////               if(rectangleEvent.left() < 0)
+////                  pointHitTest.x() -= rectangleEvent.left();
+////               if(rectangleEvent.top() < 0)
+////                  pointHitTest.y() -= rectangleEvent.top();
 //
 //               if(egrip & e_grip_top_left)
 //               {
@@ -85,10 +85,10 @@ namespace experience_tranquillum
 //               }
 //               if(egrip & e_grip_top_right)
 //               {
-//                  rectangle.top = rectangleOuter.top;
-//                  rectangle.left = rectangleInner.right;
-//                  rectangle.bottom = rectangleInner.top;
-//                  rectangle.right = rectangleOuter.right;
+//                  rectangle.top() = rectangleOuter.top();
+//                  rectangle.left() = rectangleInner.right();
+//                  rectangle.bottom() = rectangleInner.top();
+//                  rectangle.right() = rectangleOuter.right();
 //                  if(rectangle.contains(pointHitTest))
 //                  {
 //                     etest =  ::experience::e_frame_sizing_top_right;
@@ -107,10 +107,10 @@ namespace experience_tranquillum
 //               }
 //               if(egrip & e_grip_bottom_left)
 //               {
-//                  rectangle.top = rectangleInner.bottom;
-//                  rectangle.left = rectangleOuter.left;
-//                  rectangle.bottom = rectangleOuter.bottom;
-//                  rectangle.right = rectangleInner.left;
+//                  rectangle.top() = rectangleInner.bottom();
+//                  rectangle.left() = rectangleOuter.left();
+//                  rectangle.bottom() = rectangleOuter.bottom();
+//                  rectangle.right() = rectangleInner.left();
 //                  if(rectangle.contains(pointHitTest))
 //                  {
 //                     etest =  ::experience::e_frame_sizing_bottom_left;
@@ -119,10 +119,10 @@ namespace experience_tranquillum
 //               }
 //               if(egrip & e_grip_top)
 //               {
-//                  rectangle.top = rectangleOuter.top;
-//                  rectangle.left = rectangleInner.left;
-//                  rectangle.right = rectangleInner.right;
-//                  rectangle.bottom = rectangleInner.top;
+//                  rectangle.top() = rectangleOuter.top();
+//                  rectangle.left() = rectangleInner.left();
+//                  rectangle.right() = rectangleInner.right();
+//                  rectangle.bottom() = rectangleInner.top();
 //                  if(rectangle.contains(pointHitTest))
 //                  {
 //                     etest =  ::experience::e_frame_sizing_top;
@@ -131,10 +131,10 @@ namespace experience_tranquillum
 //               }
 //               if(egrip & e_grip_bottom)
 //               {
-//                  rectangle.top = rectangleInner.bottom;
-//                  rectangle.left = rectangleInner.left;
-//                  rectangle.right = rectangleInner.right;
-//                  rectangle.bottom = rectangleOuter.bottom;
+//                  rectangle.top() = rectangleInner.bottom();
+//                  rectangle.left() = rectangleInner.left();
+//                  rectangle.right() = rectangleInner.right();
+//                  rectangle.bottom() = rectangleOuter.bottom();
 //                  if(rectangle.contains(pointHitTest))
 //                  {
 //                     etest =  ::experience::e_frame_sizing_bottom;
@@ -143,10 +143,10 @@ namespace experience_tranquillum
 //               }
 //               if(egrip & e_grip_left)
 //               {
-//                  rectangle.top = rectangleInner.top;
-//                  rectangle.left = rectangleOuter.left;
-//                  rectangle.right = rectangleInner.left;
-//                  rectangle.bottom = rectangleInner.bottom;
+//                  rectangle.top() = rectangleInner.top();
+//                  rectangle.left() = rectangleOuter.left();
+//                  rectangle.right() = rectangleInner.left();
+//                  rectangle.bottom() = rectangleInner.bottom();
 //                  if(rectangle.contains(pointHitTest))
 //                  {
 //                     etest =  ::experience::e_frame_sizing_left;
@@ -155,10 +155,10 @@ namespace experience_tranquillum
 //               }
 //               if(egrip & e_grip_right)
 //               {
-//                  rectangle.top = rectangleInner.top;
-//                  rectangle.left = rectangleInner.right;
-//                  rectangle.right = rectangleOuter.right;
-//                  rectangle.bottom = rectangleInner.bottom;
+//                  rectangle.top() = rectangleInner.top();
+//                  rectangle.left() = rectangleInner.right();
+//                  rectangle.right() = rectangleOuter.right();
+//                  rectangle.bottom() = rectangleInner.bottom();
 //                  if(rectangle.contains(pointHitTest))
 //                  {
 //                     etest =  ::experience::e_frame_sizing_right;
@@ -262,28 +262,28 @@ namespace experience_tranquillum
 
                ::rectangle_i32 rectangleXB = rectangleA;
 
-               rectangleXB.bottom--;
-               rectangleXB.right--;
+               rectangleXB.bottom()--;
+               rectangleXB.right()--;
 
-               rectangleA.top++;
-               rectangleA.bottom--;
-               rectangleA.left++;
-               rectangleA.right--;
+               rectangleA.top()++;
+               rectangleA.bottom()--;
+               rectangleA.left()++;
+               rectangleA.right()--;
                if(edock == e_dock_none)
                {
                   Draw3dRectSide(pgraphics, rectangleA, eside, m_colorDkShadow, m_colorDkShadow);
                }
 
-               rectangleA.top++;
-               rectangleA.bottom--;
-               rectangleA.left++;
-               rectangleA.right--;
+               rectangleA.top()++;
+               rectangleA.bottom()--;
+               rectangleA.left()++;
+               rectangleA.right()--;
                Draw3dRectSide(pgraphics, rectangleA, eside, m_colorDkShadow, m_colorDkShadow);
 
-               rectangleA.top++;
-               rectangleA.bottom--;
-               rectangleA.left++;
-               rectangleA.right--;
+               rectangleA.top()++;
+               rectangleA.bottom()--;
+               rectangleA.left()++;
+               rectangleA.right()--;
                if(edock == e_dock_none)
                {
                   Draw3dRectSide(pgraphics, rectangleA, eside, m_colorDkShadow, m_colorDkShadow);
@@ -368,31 +368,31 @@ namespace experience_tranquillum
             ::rectangle_i32 rectangle;
             if(eside == e_border_top)
             {
-               rectangle.left = rectangleBig.left;
-               rectangle.right = rectangleBig.right;
-               rectangle.top = rectangleBig.top;
-               rectangle.bottom = rectangleSmall.top;
+               rectangle.left() = rectangleBig.left();
+               rectangle.right() = rectangleBig.right();
+               rectangle.top() = rectangleBig.top();
+               rectangle.bottom() = rectangleSmall.top();
             }
             else if(eside == e_border_left)
             {
-               rectangle.left = rectangleBig.left;
-               rectangle.right = rectangleSmall.left;
-               rectangle.top = rectangleSmall.top;
-               rectangle.bottom = rectangleSmall.bottom;
+               rectangle.left() = rectangleBig.left();
+               rectangle.right() = rectangleSmall.left();
+               rectangle.top() = rectangleSmall.top();
+               rectangle.bottom() = rectangleSmall.bottom();
             }
             else if(eside == e_border_right)
             {
-               rectangle.left = rectangleSmall.right;
-               rectangle.right = rectangleBig.right;
-               rectangle.top = rectangleSmall.top;
-               rectangle.bottom = rectangleSmall.bottom;
+               rectangle.left() = rectangleSmall.right();
+               rectangle.right() = rectangleBig.right();
+               rectangle.top() = rectangleSmall.top();
+               rectangle.bottom() = rectangleSmall.bottom();
             }
             else if(eside == e_border_bottom)
             {
-               rectangle.left = rectangleBig.left;
-               rectangle.right = rectangleBig.right;
-               rectangle.top = rectangleSmall.bottom;
-               rectangle.bottom = rectangleBig.bottom;
+               rectangle.left() = rectangleBig.left();
+               rectangle.right() = rectangleBig.right();
+               rectangle.top() = rectangleSmall.bottom();
+               rectangle.bottom() = rectangleBig.bottom();
             }
             *prectangle = rectangle;
 

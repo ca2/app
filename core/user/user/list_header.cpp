@@ -56,16 +56,16 @@ namespace user
 
          ::rectangle_i32 rectangle;
 
-         rectangle.left = 0;
-         rectangle.top = 0;
-         rectangle.right = plist->m_pcolumna->get_visible(iColumn)->m_pimageHeader->width();
-         rectangle.bottom = plist->m_pcolumna->get_visible(iColumn)->m_pimageHeader->height();
+         rectangle.left() = 0;
+         rectangle.top() = 0;
+         rectangle.right() = plist->m_pcolumna->get_visible(iColumn)->m_pimageHeader->width();
+         rectangle.bottom() = plist->m_pcolumna->get_visible(iColumn)->m_pimageHeader->height();
 
          ::rectangle_i32 rC;
 
          rC = rectangleColumn;
 
-         rC.left += 2;
+         rC.left() += 2;
 
          rectangle.Align(::e_align_left_center, rC);
 
@@ -77,7 +77,7 @@ namespace user
 
          pgraphics->draw(imagedrawing);
 
-         rectangleColumn.left = rectangle.right + m_iImageSpacing;
+         rectangleColumn.left() = rectangle.right() + m_iImageSpacing;
 
       }
 
@@ -108,7 +108,7 @@ namespace user
          
          ::e_draw_text edrawtext = plist->get_draw_text_flags(plist->m_eview);
 
-         //rectangleColumn.bottom += rectangleColumn.height() * 2;
+         //rectangleColumn.bottom() += rectangleColumn.height() * 2;
 
          pgraphics->draw_text(str, rectangleColumn, ealign, edrawtext);
 
@@ -198,9 +198,9 @@ namespace user
 
       rectangle = this->rectangle();
 
-      rectangle.left = xLast;
+      rectangle.left() = xLast;
 
-      rectangle.right = x;
+      rectangle.right() = x;
 
       if(eelement == e_element_item)
       {
@@ -214,7 +214,7 @@ namespace user
       if(eelement == element_item_Box)
       {
 
-         rectangle.right -= GetDividerWidth();
+         rectangle.right() -= GetDividerWidth();
 
          *prectangle = rectangle;
 
@@ -225,7 +225,7 @@ namespace user
       if(eelement == ElementDivider)
       {
 
-         rectangle.left = rectangle.right - GetDividerWidth();
+         rectangle.left() = rectangle.right() - GetDividerWidth();
 
          *prectangle = rectangle;
 
@@ -285,9 +285,9 @@ namespace user
 
             }
 
-            rectangle.left = rectangleA.left + rectangleA.width() / 2;
+            rectangle.left() = rectangleA.left() + rectangleA.width() / 2;
 
-            rectangle.right = rectangleB.left + rectangleB.width() / 2;
+            rectangle.right() = rectangleB.left() + rectangleB.width() / 2;
 
             *prectangle = rectangle;
 
@@ -310,9 +310,9 @@ namespace user
 
             GetItemRect(&rectangle, element_item_Box, iItem);
 
-            rectangle.left = rectangleA.left + rectangleA.width() / 2;
+            rectangle.left() = rectangleA.left() + rectangleA.width() / 2;
 
-            rectangle.right = rectangle.left + rectangle.width() / 2;
+            rectangle.right() = rectangle.left() + rectangle.width() / 2;
 
             *prectangle = rectangle;
 
@@ -335,9 +335,9 @@ namespace user
 
             GetItemRect(&rectangle, element_item_Box, iItem);
 
-            rectangle.left = rectangle.left + rectangle.width() / 2;
+            rectangle.left() = rectangle.left() + rectangle.width() / 2;
 
-            rectangle.right = rectangleB.left + rectangleB.width() / 2;
+            rectangle.right() = rectangleB.left() + rectangleB.width() / 2;
 
             *prectangle = rectangle;
 
@@ -584,7 +584,7 @@ namespace user
                
                GetItemRect(&rectangle, e_element_item, m_iItemLButtonDown);
                
-               rectangle.right = pointCursor.x();
+               rectangle.right() = pointCursor.x();
                
                i32 iNewWidth = rectangle.width();
                
@@ -661,7 +661,7 @@ namespace user
             
             GetItemRect(&rectangle, e_element_item, m_iItemLButtonDown);
             
-            rectangle.right = pointCursor.x();
+            rectangle.right() = pointCursor.x();
             
             i32 iNewWidth = rectangle.width();
             
@@ -764,8 +764,8 @@ namespace user
 
       //      screen_to_client(rectangleX, e_layout_design);
 
-      //      rectangleX.bottom++;
-      //      rectangleX.right++;
+      //      rectangleX.bottom()++;
+      //      rectangleX.right()++;
 
       //      rectangleClip = rectangleX;
 
@@ -825,8 +825,8 @@ namespace user
 
       ////      screen_to_client(rectangleX);
 
-      ////      rectangleX.bottom++;
-      ////      rectangleX.right++;
+      ////      rectangleX.bottom()++;
+      ////      rectangleX.right()++;
 
       ////      rectangleClip = rectangleX;
 
@@ -867,9 +867,9 @@ namespace user
 
       ////         screen_to_client(rectangleFocus);
 
-      ////         rectangleFocus.bottom++;
+      ////         rectangleFocus.bottom()++;
 
-      ////         rectangleFocus.right++;
+      ////         rectangleFocus.right()++;
 
       ////         m_pshapeaClip->add_item(__new(rectangle_shape(rectangleIntersect)));
 
@@ -910,7 +910,7 @@ namespace user
 
       pgraphics->get_clip_box(rectangleClipBox);
 
-      rectangleClipBox.right--;
+      rectangleClipBox.right()--;
 
       if(rectangleClipBox.is_empty())
       {
@@ -950,9 +950,9 @@ namespace user
 
          pgraphics->set(ppen);
 
-         pgraphics->set_current_point(rectangleDivider.left, rectangleDivider.top);
+         pgraphics->set_current_point(rectangleDivider.left(), rectangleDivider.top());
 
-         pgraphics->line_to(rectangleDivider.left, rectangleDivider.bottom);
+         pgraphics->line_to(rectangleDivider.left(), rectangleDivider.bottom());
 
          //pgraphics->draw_inset_3d_rectangle(rectangleDivider, crButtonShadow, psession->get_default_color(COLOR_BTNHIGHLIGHT));
 

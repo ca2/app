@@ -60,24 +60,24 @@ namespace experience_nanoui
 
          ::point_i32 pointHitTest = point;
 
-//                  if(rectangleEvent.left < 0)
-//                     pointHitTest.x() -= rectangleEvent.left;
-//                  if(rectangleEvent.top < 0)
-//                     pointHitTest.y() -= rectangleEvent.top;
+//                  if(rectangleEvent.left() < 0)
+//                     pointHitTest.x() -= rectangleEvent.left();
+//                  if(rectangleEvent.top() < 0)
+//                     pointHitTest.y() -= rectangleEvent.top();
 
          if(egrip & e_grip_top_left)
          {
             rectangle = rectangleEvent;
-            rectangle.right = rectangle.left + 16;
-            rectangle.bottom = rectangle.top + 5;
+            rectangle.right() = rectangle.left() + 16;
+            rectangle.bottom() = rectangle.top() + 5;
             if(rectangle.contains(pointHitTest))
             {
                etest = ::experience::e_frame_sizing_top_left;
                goto SizingSuccess;
             }
             rectangle = rectangleEvent;
-            rectangle.right = rectangle.left + 5;
-            rectangle.bottom = rectangle.top + 16;
+            rectangle.right() = rectangle.left() + 5;
+            rectangle.bottom() = rectangle.top() + 16;
             if(rectangle.contains(pointHitTest))
             {
                etest = ::experience::e_frame_sizing_top_left;
@@ -87,16 +87,16 @@ namespace experience_nanoui
          if(egrip & e_grip_top_right)
          {
             rectangle = rectangleEvent;
-            rectangle.left = rectangle.right - 16;
-            rectangle.bottom = rectangle.top + 5;
+            rectangle.left() = rectangle.right() - 16;
+            rectangle.bottom() = rectangle.top() + 5;
             if(rectangle.contains(pointHitTest))
             {
                etest = ::experience::e_frame_sizing_top_right;
                goto SizingSuccess;
             }
             rectangle = rectangleEvent;
-            rectangle.left = rectangle.right - 5;
-            rectangle.bottom = rectangle.top + 16;
+            rectangle.left() = rectangle.right() - 5;
+            rectangle.bottom() = rectangle.top() + 16;
             if(rectangle.contains(pointHitTest))
             {
                etest = ::experience::e_frame_sizing_top_right;
@@ -106,16 +106,16 @@ namespace experience_nanoui
          if(egrip & e_grip_bottom_right)
          {
             rectangle = rectangleEvent;
-            rectangle.left = rectangle.right - 16;
-            rectangle.top = rectangle.bottom - 5;
+            rectangle.left() = rectangle.right() - 16;
+            rectangle.top() = rectangle.bottom() - 5;
             if(rectangle.contains(pointHitTest))
             {
                etest = ::experience::e_frame_sizing_bottom_right;
                goto SizingSuccess;
             }
             rectangle = rectangleEvent;
-            rectangle.left = rectangle.right - 5;
-            rectangle.top = rectangle.bottom - 16;
+            rectangle.left() = rectangle.right() - 5;
+            rectangle.top() = rectangle.bottom() - 16;
             if(rectangle.contains(pointHitTest))
             {
                etest = ::experience::e_frame_sizing_bottom_right;
@@ -125,16 +125,16 @@ namespace experience_nanoui
          if(egrip & e_grip_bottom_left)
          {
             rectangle = rectangleEvent;
-            rectangle.right = rectangle.left + 16;
-            rectangle.top = rectangle.bottom - 5;
+            rectangle.right() = rectangle.left() + 16;
+            rectangle.top() = rectangle.bottom() - 5;
             if(rectangle.contains(pointHitTest))
             {
                etest = ::experience::e_frame_sizing_bottom_left;
                goto SizingSuccess;
             }
             rectangle = rectangleEvent;
-            rectangle.right = rectangle.left + 5;
-            rectangle.top = rectangle.bottom - 16;
+            rectangle.right() = rectangle.left() + 5;
+            rectangle.top() = rectangle.bottom() - 16;
             if(rectangle.contains(pointHitTest))
             {
                etest = ::experience::e_frame_sizing_bottom_left;
@@ -143,10 +143,10 @@ namespace experience_nanoui
          }
          if(egrip & e_grip_top)
          {
-            rectangle.top = rectangleEvent.top;
-            rectangle.left = pointCenter.x() - 8;
-            rectangle.right = pointCenter.x() + 8;
-            rectangle.bottom = rectangleEvent.top + 5;
+            rectangle.top() = rectangleEvent.top();
+            rectangle.left() = pointCenter.x() - 8;
+            rectangle.right() = pointCenter.x() + 8;
+            rectangle.bottom() = rectangleEvent.top() + 5;
             if(rectangle.contains(pointHitTest))
             {
                etest = ::experience::e_frame_sizing_top;
@@ -155,10 +155,10 @@ namespace experience_nanoui
          }
          if(egrip & e_grip_bottom)
          {
-            rectangle.top = rectangleEvent.bottom - 5;
-            rectangle.left = pointCenter.x() - 8;
-            rectangle.right = pointCenter.x() + 8;
-            rectangle.bottom = rectangleEvent.bottom;
+            rectangle.top() = rectangleEvent.bottom() - 5;
+            rectangle.left() = pointCenter.x() - 8;
+            rectangle.right() = pointCenter.x() + 8;
+            rectangle.bottom() = rectangleEvent.bottom();
             if(rectangle.contains(pointHitTest))
             {
                etest = ::experience::e_frame_sizing_bottom;
@@ -167,10 +167,10 @@ namespace experience_nanoui
          }
          if(egrip & e_grip_left)
          {
-            rectangle.top = pointCenter.y() - 8;
-            rectangle.left = rectangleEvent.left;
-            rectangle.right = rectangleEvent.left + 5;
-            rectangle.bottom = pointCenter.y() + 8;
+            rectangle.top() = pointCenter.y() - 8;
+            rectangle.left() = rectangleEvent.left();
+            rectangle.right() = rectangleEvent.left() + 5;
+            rectangle.bottom() = pointCenter.y() + 8;
             if(rectangle.contains(pointHitTest))
             {
                etest = ::experience::e_frame_sizing_left;
@@ -179,10 +179,10 @@ namespace experience_nanoui
          }
          if(egrip & e_grip_right)
          {
-            rectangle.top = pointCenter.y() - 8;
-            rectangle.left = rectangleEvent.right - 5;
-            rectangle.right = rectangleEvent.right;
-            rectangle.bottom = pointCenter.y() + 8;
+            rectangle.top() = pointCenter.y() - 8;
+            rectangle.left() = rectangleEvent.right() - 5;
+            rectangle.right() = rectangleEvent.right();
+            rectangle.bottom() = pointCenter.y() + 8;
             if(rectangle.contains(pointHitTest))
             {
                etest = ::experience::e_frame_sizing_right;
@@ -288,13 +288,13 @@ SizingNone:;
 
          ::rectangle_i32 rectangleXB = rectangleA;
 
-         rectangleXB.bottom--;
-         rectangleXB.right--;
+         rectangleXB.bottom()--;
+         rectangleXB.right()--;
 
-         rectangleA.top++;
-         rectangleA.bottom--;
-         rectangleA.left++;
-         rectangleA.right--;
+         rectangleA.top()++;
+         rectangleA.bottom()--;
+         rectangleA.left()++;
+         rectangleA.right()--;
             
          if(edock == e_dock_none)
          {
@@ -303,16 +303,16 @@ SizingNone:;
                
          }
 
-         rectangleA.top++;
-         rectangleA.bottom--;
-         rectangleA.left++;
-         rectangleA.right--;
+         rectangleA.top()++;
+         rectangleA.bottom()--;
+         rectangleA.left()++;
+         rectangleA.right()--;
          Draw3dRectSide(pgraphics,rectangleA,eside,m_colorDkShadow,m_colorDkShadow);
 
-         rectangleA.top++;
-         rectangleA.bottom--;
-         rectangleA.left++;
-         rectangleA.right--;
+         rectangleA.top()++;
+         rectangleA.bottom()--;
+         rectangleA.left()++;
+         rectangleA.right()--;
          if(edock == e_dock_none)
          {
             Draw3dRectSide(pgraphics,rectangleA,eside,m_colorDkShadow,m_colorDkShadow);
@@ -430,31 +430,31 @@ SizingNone:;
       ::rectangle_i32 rectangle;
       if(eside == e_border_top)
       {
-         rectangle.left = rectangleBig.left;
-         rectangle.right = rectangleBig.right;
-         rectangle.top = rectangleBig.top;
-         rectangle.bottom = rectangleSmall.top;
+         rectangle.left() = rectangleBig.left();
+         rectangle.right() = rectangleBig.right();
+         rectangle.top() = rectangleBig.top();
+         rectangle.bottom() = rectangleSmall.top();
       }
       else if(eside == e_border_left)
       {
-         rectangle.left = rectangleBig.left;
-         rectangle.right = rectangleSmall.left;
-         rectangle.top = rectangleSmall.top;
-         rectangle.bottom = rectangleSmall.bottom;
+         rectangle.left() = rectangleBig.left();
+         rectangle.right() = rectangleSmall.left();
+         rectangle.top() = rectangleSmall.top();
+         rectangle.bottom() = rectangleSmall.bottom();
       }
       else if(eside == e_border_right)
       {
-         rectangle.left = rectangleSmall.right;
-         rectangle.right = rectangleBig.right;
-         rectangle.top = rectangleSmall.top;
-         rectangle.bottom = rectangleSmall.bottom;
+         rectangle.left() = rectangleSmall.right();
+         rectangle.right() = rectangleBig.right();
+         rectangle.top() = rectangleSmall.top();
+         rectangle.bottom() = rectangleSmall.bottom();
       }
       else if(eside == e_border_bottom)
       {
-         rectangle.left = rectangleBig.left;
-         rectangle.right = rectangleBig.right;
-         rectangle.top = rectangleSmall.bottom;
-         rectangle.bottom = rectangleBig.bottom;
+         rectangle.left() = rectangleBig.left();
+         rectangle.right() = rectangleBig.right();
+         rectangle.top() = rectangleSmall.bottom();
+         rectangle.bottom() = rectangleBig.bottom();
       }
       *lprect = rectangle;
    }
@@ -494,13 +494,13 @@ SizingNone:;
 
          rectangleA = rectangleX;
 
-         rectangleA.right = 4;
-         rectangleA.bottom = size;
+         rectangleA.right() = 4;
+         rectangleA.bottom() = size;
 
          pgraphics->fill_rectangle(rectangleA,rgb(0x60,0x65,0x55));
 
-         rectangleA.right = size;
-         rectangleA.bottom = 4;
+         rectangleA.right() = size;
+         rectangleA.bottom() = 4;
 
          pgraphics->fill_rectangle(rectangleA,rgb(0x60,0x65,0x55));
 
@@ -510,13 +510,13 @@ SizingNone:;
       {
          rectangleA = rectangleX;
 
-         rectangleA.left = rectangleA.right - 4;
-         rectangleA.bottom = size;
+         rectangleA.left() = rectangleA.right() - 4;
+         rectangleA.bottom() = size;
 
          pgraphics->fill_rectangle(rectangleA,rgb(0x60,0x65,0x55));
 
-         rectangleA.left = rectangleA.right - size;
-         rectangleA.bottom = 4;
+         rectangleA.left() = rectangleA.right() - size;
+         rectangleA.bottom() = 4;
 
          pgraphics->fill_rectangle(rectangleA,rgb(0x60,0x65,0x55));
       }
@@ -525,13 +525,13 @@ SizingNone:;
       {
          rectangleA = rectangleX;
 
-         rectangleA.right = 4;
-         rectangleA.top = rectangleA.bottom - size;
+         rectangleA.right() = 4;
+         rectangleA.top() = rectangleA.bottom() - size;
 
          pgraphics->fill_rectangle(rectangleA,rgb(0x60,0x65,0x55));
 
-         rectangleA.right = size;
-         rectangleA.top = rectangleA.bottom - 4;
+         rectangleA.right() = size;
+         rectangleA.top() = rectangleA.bottom() - 4;
 
          pgraphics->fill_rectangle(rectangleA,rgb(0x60,0x65,0x55));
       }
@@ -540,13 +540,13 @@ SizingNone:;
       {
          rectangleA = rectangleX;
 
-         rectangleA.left = rectangleA.right - 4;
-         rectangleA.top = rectangleA.bottom - size;
+         rectangleA.left() = rectangleA.right() - 4;
+         rectangleA.top() = rectangleA.bottom() - size;
 
          pgraphics->fill_rectangle(rectangleA,rgb(0x60,0x65,0x55));
 
-         rectangleA.left = rectangleA.right - size;
-         rectangleA.top = rectangleA.bottom - 4;
+         rectangleA.left() = rectangleA.right() - size;
+         rectangleA.top() = rectangleA.bottom() - 4;
 
          pgraphics->fill_rectangle(rectangleA,rgb(0x60,0x65,0x55));
       }
@@ -555,9 +555,9 @@ SizingNone:;
       {
          rectangleA = rectangleX;
 
-         rectangleA.left = rectangleA.left + rectangleA.width() / 2 - size / 2;
-         rectangleA.right = rectangleA.left + size;
-         rectangleA.bottom = 4;
+         rectangleA.left() = rectangleA.left() + rectangleA.width() / 2 - size / 2;
+         rectangleA.right() = rectangleA.left() + size;
+         rectangleA.bottom() = 4;
 
          pgraphics->fill_rectangle(rectangleA,rgb(0x60,0x65,0x55));
 
@@ -567,9 +567,9 @@ SizingNone:;
       {
          rectangleA = rectangleX;
 
-         rectangleA.left = rectangleA.left + rectangleA.width() / 2 - size / 2;
-         rectangleA.right = rectangleA.left + size;
-         rectangleA.top = rectangleA.bottom - 4;
+         rectangleA.left() = rectangleA.left() + rectangleA.width() / 2 - size / 2;
+         rectangleA.right() = rectangleA.left() + size;
+         rectangleA.top() = rectangleA.bottom() - 4;
 
          pgraphics->fill_rectangle(rectangleA,rgb(0x60,0x65,0x55));
       }
@@ -578,9 +578,9 @@ SizingNone:;
       {
          rectangleA = rectangleX;
 
-         rectangleA.right = 4;
-         rectangleA.top = rectangleA.top + rectangleA.height() / 2 - size / 2;
-         rectangleA.bottom = rectangleA.top + size;
+         rectangleA.right() = 4;
+         rectangleA.top() = rectangleA.top() + rectangleA.height() / 2 - size / 2;
+         rectangleA.bottom() = rectangleA.top() + size;
 
          pgraphics->fill_rectangle(rectangleA,rgb(0x60,0x65,0x55));
       }
@@ -589,9 +589,9 @@ SizingNone:;
       {
          rectangleA = rectangleX;
 
-         rectangleA.left = rectangleA.right - 4;
-         rectangleA.top = rectangleA.top + rectangleA.height() / 2 - size / 2;
-         rectangleA.bottom = rectangleA.top + size;
+         rectangleA.left() = rectangleA.right() - 4;
+         rectangleA.top() = rectangleA.top() + rectangleA.height() / 2 - size / 2;
+         rectangleA.bottom() = rectangleA.top() + size;
 
          pgraphics->fill_rectangle(rectangleA,rgb(0x60,0x65,0x55));
       }
@@ -624,17 +624,17 @@ SizingNone:;
 
       pgraphics->draw_inset_3d_rectangle(rectangle,crButtonFace,crButtonDarkShadow, 1.0);
 
-      rectangle.top++;
-      rectangle.bottom--;
-      rectangle.left++;
-      rectangle.right--;
+      rectangle.top()++;
+      rectangle.bottom()--;
+      rectangle.left()++;
+      rectangle.right()--;
 
       pgraphics->draw_inset_3d_rectangle(rectangle,crButtonHilite,crButtonShadow, 1.0);
 
-      rectangle.top++;
-      rectangle.bottom--;
-      rectangle.left++;
-      rectangle.right--;
+      rectangle.top()++;
+      rectangle.bottom()--;
+      rectangle.left()++;
+      rectangle.right()--;
 
       pgraphics->fill_rectangle(rectangle,crButtonFace);
 

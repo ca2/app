@@ -150,13 +150,13 @@
 //   inline ::rectangle_i32 * ::rectangle_f32::get(::rectangle_i32 * prectangle) const
 //
 //   {
-//      prectangle->left      = (i32) left;
+//      prectangle->left()      = (i32) left;
 //
-//      prectangle->right     = (i32) right;
+//      prectangle->right()     = (i32) right;
 //
-//      prectangle->top       = (i32) top;
+//      prectangle->top()       = (i32) top;
 //
-//      prectangle->bottom    = (i32) bottom;
+//      prectangle->bottom()    = (i32) bottom;
 //
 //      return prectangle;
 //
@@ -211,17 +211,17 @@
 //   inline ::rectangle_f32 & rectangle::constrain(::rectangle_f32 & rectangle) const
 //   {
 //
-//      if(::rectangle_f32.left < left)
-//         ::rectangle_f32.left = left;
+//      if(::rectangle_f32.left() < left)
+//         ::rectangle_f32.left() = left;
 //
-//      if(::rectangle_f32.right < right)
-//         ::rectangle_f32.right = right;
+//      if(::rectangle_f32.right() < right)
+//         ::rectangle_f32.right() = right;
 //
-//      if(::rectangle_f32.top < top)
-//         ::rectangle_f32.top = top;
+//      if(::rectangle_f32.top() < top)
+//         ::rectangle_f32.top() = top;
 //
-//      if(::rectangle_f32.bottom < bottom)
-//         ::rectangle_f32.bottom = bottom;
+//      if(::rectangle_f32.bottom() < bottom)
+//         ::rectangle_f32.bottom() = bottom;
 //
 //      return ::rectangle_f32;
 //
@@ -241,10 +241,10 @@
 //   inline ::rectangle_f32 & rectangle::operator = (const ::rectangle_i32 & rectangle)
 //   {
 //
-//      left     = (float) rectangle.left;
-//      top      = (float) rectangle.top;
-//      right    = (float) rectangle.right;
-//      bottom   = (float) rectangle.bottom;
+//      left     = (float) rectangle.left();
+//      top      = (float) rectangle.top();
+//      right    = (float) rectangle.right();
+//      bottom   = (float) rectangle.bottom();
 //
 //      return *this;
 //

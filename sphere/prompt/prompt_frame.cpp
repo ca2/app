@@ -277,15 +277,15 @@ namespace prompt
          ::rectangle_i32 rectangleWindow;
          window_rectangle(rectangleWindow);
          double a = (double) rectangleDesktop.height() / (double) rectangleDesktop.width();
-         if(rectangleWindow.left < (rectangleDesktop.width() / 2))
+         if(rectangleWindow.left() < (rectangleDesktop.width() / 2))
          {
             // to the left
-            if(rectangleWindow.top < rectangleWindow.left * a)
+            if(rectangleWindow.top() < rectangleWindow.left() * a)
             {
                // top
                m_eposition = e_position_top;
             }
-            else if(rectangleWindow.top > (rectangleDesktop.height() - rectangleWindow.left * a))
+            else if(rectangleWindow.top() > (rectangleDesktop.height() - rectangleWindow.left() * a))
             {
                // bottom
                m_eposition = e_position_bottom;
@@ -300,12 +300,12 @@ namespace prompt
          {
             // to the right
             // to the left
-            if(rectangleWindow.top > rectangleWindow.left * a)
+            if(rectangleWindow.top() > rectangleWindow.left() * a)
             {
                // bottom
                m_eposition = e_position_bottom;
             }
-            else if(rectangleWindow.top < (rectangleDesktop.height() - rectangleWindow.left * a))
+            else if(rectangleWindow.top() < (rectangleDesktop.height() - rectangleWindow.left() * a))
             {
                // top
                m_eposition = e_position_top;
@@ -344,12 +344,12 @@ namespace prompt
       bool bChanged = false;
       if(rectangleWindow.width() < 400)
       {
-         rectangleWindow.right = rectangleWindow.left + 400;
+         rectangleWindow.right() = rectangleWindow.left() + 400;
          bChanged = true;
       }
       if(rectangleWindow.height() < 200)
       {
-         rectangleWindow.bottom = rectangleWindow.top + 200;
+         rectangleWindow.bottom() = rectangleWindow.top() + 200;
          bChanged = true;
       }
       set_window_position(      e_zorder_top_most,      rectangleWindow,      SWP_SHOWWINDOW);

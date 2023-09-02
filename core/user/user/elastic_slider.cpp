@@ -271,13 +271,13 @@ namespace user
 
       i32 iWidth = 16;
       
-      rectangle.top = rectangleX.top;
+      rectangle.top() = rectangleX.top();
       
-      rectangle.bottom = rectangleX.bottom;
+      rectangle.bottom() = rectangleX.bottom();
       
-      rectangle.left = (::i32) minimum(rectangleX.right, m_dPosition * (rectangleX.width() - iWidth));
+      rectangle.left() = (::i32) minimum(rectangleX.right(), m_dPosition * (rectangleX.width() - iWidth));
       
-      rectangle.right = (::i32) minimum(rectangleX.right, m_dPosition * ((rectangleX.width() - iWidth)) + iWidth);
+      rectangle.right() = (::i32) minimum(rectangleX.right(), m_dPosition * ((rectangleX.width() - iWidth)) + iWidth);
       
    }
 

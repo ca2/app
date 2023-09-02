@@ -329,7 +329,7 @@ namespace app_integration
       }
       auto rect = this->rectangle();
 
-      int y = rect.bottom - 50;
+      int y = rect.bottom() - 50;
       for (int i = m_straaOutput.get_upper_bound(); i >= 0; i--)
       {
          for (int j = 0; j < minimum(3, m_straaOutput[i]->size()); j++)

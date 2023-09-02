@@ -515,13 +515,13 @@ namespace userex
 
       ::rectangle_i32 rectangleMenu(rectangleX);
 
-      rectangleMenu.bottom = rectangleX.top + 32;
+      rectangleMenu.bottom() = rectangleX.top() + 32;
 
       m_pbuttonMenu->display_child(rectangleMenu);
 
       ::rectangle_i32 rectangleList(rectangleX);
 
-      rectangleList.top = rectangleX.top + 32;
+      rectangleList.top() = rectangleX.top() + 32;
 
       auto * plist = get_current_list();
 

@@ -415,18 +415,18 @@ const ::rectangle_type < NUMBER > & polygon_type < NUMBER >::bounding_rect() con
       
       ((polygon_type *)this)->expand_bounding_box(((polygon_type *)this)->m_rectangleBounding.top_left(), ((polygon_type *)this)->m_rectangleBounding.bottom_right());
 
-//      ((polygon_base *)this)->m_rectangleBounding.left = this->element_at(0).x();
-//      ((polygon_base *)this)->m_rectangleBounding.top = this->element_at(0).y();
-//      ((polygon_base *)this)->m_rectangleBounding.right = this->element_at(0).x();
-//      ((polygon_base *)this)->m_rectangleBounding.bottom = this->element_at(0).y();
+//      ((polygon_base *)this)->m_rectangleBounding.left() = this->element_at(0).x();
+//      ((polygon_base *)this)->m_rectangleBounding.top() = this->element_at(0).y();
+//      ((polygon_base *)this)->m_rectangleBounding.right() = this->element_at(0).x();
+//      ((polygon_base *)this)->m_rectangleBounding.bottom() = this->element_at(0).y();
 //
 //      for (index i = 1; i < this->get_count(); i++)
 //      {
 //
-//         ((polygon_base *)this)->m_rectangleBounding.left = minimum(m_rectangleBounding.left, this->element_at(i).x());
-//         ((polygon_base *)this)->m_rectangleBounding.right = maximum(m_rectangleBounding.right, this->element_at(i).x());
-//         ((polygon_base *)this)->m_rectangleBounding.top = minimum(m_rectangleBounding.top, this->element_at(i).y());
-//         ((polygon_base *)this)->m_rectangleBounding.bottom = maximum(m_rectangleBounding.bottom, this->element_at(i).y());
+//         ((polygon_base *)this)->m_rectangleBounding.left() = minimum(m_rectangleBounding.left(), this->element_at(i).x());
+//         ((polygon_base *)this)->m_rectangleBounding.right() = maximum(m_rectangleBounding.right(), this->element_at(i).x());
+//         ((polygon_base *)this)->m_rectangleBounding.top() = minimum(m_rectangleBounding.top(), this->element_at(i).y());
+//         ((polygon_base *)this)->m_rectangleBounding.bottom() = maximum(m_rectangleBounding.bottom(), this->element_at(i).y());
 
 //      }
 

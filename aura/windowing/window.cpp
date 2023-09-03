@@ -1062,7 +1062,7 @@ namespace windowing
 //   void window::show_window(const ::e_display & edisplay, const ::e_activation & eactivation)
 //   {
 //
-//      windowing_output_debug_string("\n::window::show_window 1");
+//      windowing_output_debug_string("::window::show_window 1");
 //
 //   }
 //
@@ -1187,7 +1187,7 @@ namespace windowing
    bool window::is_window_visible()
    {
 
-      windowing_output_debug_string("\n::window::is_window_visible 1");
+      windowing_output_debug_string("::window::is_window_visible 1");
 
       return false;
 
@@ -1197,7 +1197,7 @@ namespace windowing
    bool window::_is_iconic_unlocked()
    {
 
-      windowing_output_debug_string("\n::window::_is_iconic_unlocked 1");
+      windowing_output_debug_string("::window::_is_iconic_unlocked 1");
 
       return false;
 
@@ -1207,7 +1207,7 @@ namespace windowing
    bool window::_is_window_visible_unlocked()
    {
 
-      windowing_output_debug_string("\n::window::_is_window_visible_unlocked 1");
+      windowing_output_debug_string("::window::_is_window_visible_unlocked 1");
 
       return false;
 

@@ -1278,6 +1278,8 @@ namespace windowing
       if (pinteraction != nullptr)
       {
 
+         information() << "windowing::display get_good_restore interaction is set";
+
          auto iMonitor = pinteraction->get_preferred_restore(*prectangle);
 
          if (iMonitor >= 0)
@@ -1320,6 +1322,8 @@ namespace windowing
             rectangleHint.top() = rectangleWorkspace.top() + 5;
             
          }
+
+         information() << "windowing::display get_good_restore rectangleHint.top_left() : " << rectangleHint.top_left();
 
          rectangleBroad = pinteraction->m_rectangleRestoreBroad;
 
@@ -1374,12 +1378,16 @@ namespace windowing
       {
 
          rectanglePlacement = rectangleBroad;
-         
+
+         information() << "windowing::display get_good_restore e_display_broad rectanglePlacement : " << rectanglePlacement;
+
       }
       else if(edisplay == e_display_compact)
       {
 
          rectanglePlacement = rectangleCompact;
+
+         information() << "windowing::display get_good_restore e_display_compact rectanglePlacement : " << rectanglePlacement;
 
       }
       else
@@ -1397,6 +1405,8 @@ namespace windowing
             rectanglePlacement = rectangleHint;
 
          }
+
+         information() << "windowing::display get_good_restore e_display_* rectanglePlacement : " << rectanglePlacement;
 
       }
 
@@ -1421,6 +1431,8 @@ namespace windowing
 
          rectanglePlacement.move_to(rectangleNormal.top_left());
 
+         information() << "windowing::display get_good_restore fix (2) rectanglePlacement : " << rectanglePlacement;
+
       }
 
       if (rectanglePlacement.right() > rectangleWorkspace.right())
@@ -1434,6 +1446,8 @@ namespace windowing
       {
 
          rectanglePlacement.move_left_to(rectangleWorkspace.left() + 5);
+
+         information() << "windowing::display get_good_restore fix (3) rectanglePlacement : " << rectanglePlacement;
 
       }
       
@@ -1449,9 +1463,13 @@ namespace windowing
 
          rectanglePlacement.move_top_to(rectangleWorkspace.top() + 5);
 
+         information() << "windowing::display get_good_restore fix (4) rectanglePlacement : " << rectanglePlacement;
+
       }
 
       *prectangle = rectanglePlacement;
+
+      information() << "windowing::display get_good_restore final rectanglePlacement : " << rectanglePlacement;
 
       return iMatchingWorkspace;
 

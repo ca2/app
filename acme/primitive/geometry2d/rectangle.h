@@ -196,8 +196,8 @@ public:
    {
 
       return eorientation == e_orientation_horizontal ?
-         (i == 0 ? left : right) :
-         (i == 0 ? top : bottom);
+         (i == 0 ? left() : right()) :
+         (i == 0 ? top() : bottom());
 
    }
 
@@ -205,8 +205,8 @@ public:
    {
 
       return eorientation == e_orientation_vertical ?
-         (i == 0 ? left : right) :
-         (i == 0 ? top : bottom);
+         (i == 0 ? left() : right()) :
+         (i == 0 ? top() : bottom());
 
    }
 
@@ -214,8 +214,8 @@ public:
    {
 
       return eorientation == e_orientation_horizontal ?
-         (left ) :
-         (top);
+         (left()) :
+         (top());
 
    }
 
@@ -223,8 +223,8 @@ public:
    {
 
       return eorientation == e_orientation_vertical ?
-         (right) :
-         (bottom);
+         (right()) :
+         (bottom());
 
    }
 
@@ -232,8 +232,8 @@ public:
    {
 
       return eorientation == e_orientation_horizontal ?
-         (right) :
-         (bottom);
+         (right()) :
+         (bottom());
 
    }
 
@@ -241,8 +241,8 @@ public:
    {
 
       return eorientation == e_orientation_vertical ?
-         (right) :
-         (bottom);
+         (right()) :
+         (bottom());
 
    }
 
@@ -250,8 +250,8 @@ public:
    {
 
       return eorientation == e_orientation_horizontal ?
-         left + right :
-         top + bottom;
+         left() + right() :
+         top() + bottom();
 
    }
 
@@ -259,8 +259,8 @@ public:
    {
 
       return eorientation == e_orientation_vertical ?
-         left + right :
-         top + bottom;
+         left() + right() :
+         top() + bottom();
 
    }
 

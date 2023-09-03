@@ -16913,6 +16913,8 @@ namespace user
 
       auto rectangle = layout().lading().parent_raw_rectangle();
 
+      information() << "design_window_normal rectangle : " << rectangle;
+
       good_restore(nullptr, rectangle, true, layout().lading().activation(), layout().lading().zorder(), edisplay);
 
    }
@@ -17792,11 +17794,15 @@ namespace user
 
          rectangleWindow = rectangle;
 
+         information() << "interaction::good_restore using rectangle parameter : " << rectangleWindow;
+
       }
       else
       {
 
          window_rectangle(rectangleWindow);
+
+         information() << "interaction::good_restore getting window_rectangle : " << rectangleWindow;
 
       }
 

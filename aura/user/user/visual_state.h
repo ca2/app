@@ -60,7 +60,7 @@ namespace user
       }
 
       ::point_i32 origin() const { return m_point2; }
-      //::point_i32 & origin() { return m_point; }
+      ::point_i32 & origin() { return m_point2; }
 
       ::size_i32 size() const { return m_size; }
       ::size_i32 & size() { return m_size; }

@@ -1110,14 +1110,16 @@ namespace user
    ::color::color interaction_impl::screen_pixel(int x, int y) const
    {
 
-      auto origin = m_puserinteraction->const_layout().window().origin();
-
       if (::is_null(m_pgraphics))
       {
 
          return color::transparent;
 
       }
+
+      auto origin = m_puserinteraction->const_layout().window().origin();
+
+      //information() << "screen_pixel window().origin() : " << origin;
 
       return m_pgraphics->get_screen_item()->m_pimage2->pixel(x - origin.x(), y - origin.y());
 
@@ -2085,7 +2087,7 @@ namespace user
 
          //g_iMouseMove++;
 
-         //information("linux::interaction_impl::message_handler e_message_mouse_move");
+         //information("interaction_impl::message_handler e_message_mouse_move");
          //printf("g_iMouseMove = %d\n", g_iMouseMove);
 
       }
@@ -8241,7 +8243,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
          {
 
             information()
-               << "on reposition; setting to window rectangle (2) : "
+               << "on configure; setting to window rectangle (2) : "
                << rectangle;
 
             if (rectangle.origin() != rectangleWindow.origin())

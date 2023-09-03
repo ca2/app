@@ -320,6 +320,20 @@ namespace user
 
       m_oswindow = m_pimpl->m_pwindow->oswindow();
 
+//      if(m_pimpl->m_puserinteraction->const_layout().sketch().is_screen_visible())
+//      {
+//
+//         m_pimpl->m_puserinteraction->set_reposition();
+//
+//         m_pimpl->m_puserinteraction->set_need_layout();
+//
+//         m_pimpl->m_puserinteraction->set_need_redraw();
+//
+//         m_pimpl->m_puserinteraction->post_redraw();
+//
+//
+//      }
+
       //delete m_pusersystem;
 
       //m_pusersystem = nullptr;

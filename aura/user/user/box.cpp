@@ -5,6 +5,7 @@
 #include "acme/parallelization/single_lock.h"
 #include "acme/platform/scoped_restore.h"
 #include "acme/platform/keep.h"
+#include "acme/primitive/geometry2d/_text_stream.h"
 #include "acme/user/user/_text_stream.h"
 #include "apex/database/_binary_stream.h"
 #include "apex/message/simple_command.h"
@@ -573,6 +574,8 @@ namespace user
          auto functionGoodRestore = [this, windowrectangle]()
          {
 
+            information() << "FancyLoadWindowRectangle windowrectangle.m_rectangleNormal " << windowrectangle.m_rectangleNormal;
+
             good_restore(nullptr, windowrectangle.m_rectangleNormal, true, e_activation_default, e_zorder_top, windowrectangle.m_edisplay);
                
          };
@@ -753,6 +756,8 @@ namespace user
             
             auto rectangle = m_windowrectangle.m_rectangleBroad.is_empty() ? rectangleSketch : m_windowrectangle.m_rectangleBroad;
 
+            information() << "display_normal m_windowrectangle.m_rectangleBroad : " << m_windowrectangle.m_rectangleBroad << ", rectangleSketch : " << rectangleSketch;
+
             good_restore(nullptr, rectangle, true, eactivation, e_zorder_top, e_display_broad);
 
          }
@@ -761,6 +766,8 @@ namespace user
 
             auto rectangle = m_windowrectangle.m_rectangleCompact.is_empty() ? rectangleSketch : m_windowrectangle.m_rectangleCompact;
 
+            information() << "display_normal m_windowrectangle.m_rectangleCompact : " << m_windowrectangle.m_rectangleCompact << ", rectangleSketch : " << rectangleSketch;
+
             good_restore(nullptr, rectangle, true, eactivation, e_zorder_top, e_display_compact);
 
          }
@@ -768,6 +775,8 @@ namespace user
          {
 
             auto rectangle = m_windowrectangle.m_rectangleNormal.is_empty() ? rectangleSketch : m_windowrectangle.m_rectangleNormal;
+
+            information() << "display_normal m_windowrectangle.m_rectangleNormal : " << m_windowrectangle.m_rectangleNormal << ", rectangleSketch : " << rectangleSketch;
 
             good_restore(nullptr, rectangle, true, eactivation, e_zorder_top, e_display_normal);
 

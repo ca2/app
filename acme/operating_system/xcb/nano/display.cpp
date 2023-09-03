@@ -1054,7 +1054,7 @@ namespace xcb
 
       auto window = (xcb_window_t) _window_get_long_property(m_windowRoot, intern_atom(::x11::e_atom_net_active_window, false), XCB_ATOM_WINDOW);
 
-      windowing_output_debug_string("\n::_get_active_window 2");
+      windowing_output_debug_string("::_get_active_window 2");
 
       return window;
 
@@ -1064,7 +1064,7 @@ namespace xcb
    ::e_status display::_set_active_window(xcb_window_t window)
    {
 
-      windowing_output_debug_string("\n::set_active_window 1");
+      windowing_output_debug_string("::set_active_window 1");
 
       //display_lock displaylock(xcb_display());
 
@@ -1084,7 +1084,7 @@ namespace xcb
 
       }
 
-      windowing_output_debug_string("\n::set_active_window 2");
+      windowing_output_debug_string("::set_active_window 2");
 
       return estatus;
 
@@ -1880,7 +1880,7 @@ namespace xcb
 
       }
 
-      windowing_output_debug_string("\n::wm_nodecorations 2");
+      windowing_output_debug_string("::wm_nodecorations 2");
 
       if (!estatus)
       {

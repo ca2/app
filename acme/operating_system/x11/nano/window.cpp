@@ -814,7 +814,7 @@ namespace x11
 
       }
 
-      windowing_output_debug_string("\n::wm_nodecorations 2");
+      windowing_output_debug_string("::wm_nodecorations 2");
 
    }
 

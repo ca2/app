@@ -604,10 +604,10 @@ template < primitive_rectangle RECTANGLE1, primitive_rectangle RECTANGLE2 >
 inline RECTANGLE1 & subtract(RECTANGLE1 & rectangle, const RECTANGLE2 & rectangle2)
 {
 
-   rectangle.left() = (decltype(rectangle.left()))(rectangle.left() - rectangle2.left());
-   rectangle.top() = (decltype(rectangle.top()))(rectangle.top() - rectangle2.top());
-   rectangle.right() = (decltype(rectangle.right()))(rectangle.right() - rectangle2.right());
-   rectangle.bottom() = (decltype(rectangle.bottom()))(rectangle.bottom() - rectangle2.bottom());
+   rectangle.left() = (decay<decltype(rectangle.left())>)(rectangle.left() - rectangle2.left());
+   rectangle.top() = (decay<decltype(rectangle.top())>)(rectangle.top() - rectangle2.top());
+   rectangle.right() = (decay<decltype(rectangle.right())>)(rectangle.right() - rectangle2.right());
+   rectangle.bottom() = (decay<decltype(rectangle.bottom())>)(rectangle.bottom() - rectangle2.bottom());
 
    return rectangle;
 
@@ -618,10 +618,10 @@ template < primitive_rectangle RECTANGLE, primitive_rectangle RECTANGLE1, primit
 inline RECTANGLE & subtract(RECTANGLE & rectangle, const RECTANGLE1 & rectangle1, const RECTANGLE2 & rectangle2)
 {
 
-   rectangle.left() = (decltype(rectangle.left()))(rectangle1.left() - rectangle2.left());
-   rectangle.top() = (decltype(rectangle.top()))(rectangle1.top() - rectangle2.top());
-   rectangle.right() = (decltype(rectangle.right()))(rectangle1.right() - rectangle2.right());
-   rectangle.bottom() = (decltype(rectangle.bottom()))(rectangle1.bottom() - rectangle2.bottom());
+   rectangle.left() = (decay<decltype(rectangle.left())>)(rectangle1.left() - rectangle2.left());
+   rectangle.top() = (decay<decltype(rectangle.top())>)(rectangle1.top() - rectangle2.top());
+   rectangle.right() = (decay<decltype(rectangle.right())>)(rectangle1.right() - rectangle2.right());
+   rectangle.bottom() = (decay<decltype(rectangle.bottom())>)(rectangle1.bottom() - rectangle2.bottom());
 
    return rectangle;
 
@@ -636,8 +636,8 @@ template < primitive_point POINT, primitive_number X, primitive_number Y >
 inline POINT & offset(POINT & point, X x, Y y)
 {
 
-   point.x() = (const ::std::decay_t<decltype(point.x()) & >)(point.x() + x);
-   point.y() = (const ::std::decay_t<decltype(point.y()) & >)(point.y() + y);
+   point.x() = (const decay<decltype(point.x()) & >)(point.x() + x);
+   point.y() = (const decay<decltype(point.y()) & >)(point.y() + y);
 
    return point;
 
@@ -661,8 +661,8 @@ template < primitive_point POINT_TYPE, typename X, typename Y >
 inline POINT_TYPE & subtract(POINT_TYPE & point, X x, Y y)
 {
 
-   point.x() = (const ::std::decay_t<decltype(point.x())>&)(point.x() - x);
-   point.y() = (const ::std::decay_t<decltype(point.y())>&)(point.y() - y);
+   point.x() = (const decay<decltype(point.x())>&)(point.x() - x);
+   point.y() = (const decay<decltype(point.y())>&)(point.y() - y);
 
    return point;
 

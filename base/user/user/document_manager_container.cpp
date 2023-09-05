@@ -46,7 +46,9 @@ namespace user
 
       //}
 
-      //estatus = 
+      //estatus =
+
+      printf("base::user::document_manager_container Going to create new document manager\n");
       
       __construct_new(m_pdocmanager);
 

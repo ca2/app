@@ -45,6 +45,8 @@ namespace base
    user::user()
    {
 
+      printf("base::user::user\n");
+
       m_pbaseuser = this;
 
    }
@@ -59,7 +61,9 @@ namespace base
    void user::initialize(::particle * pparticle)
    {
 
-      //auto estatus = 
+      //auto estatus =
+
+      printf("base::user::initialize\n");
       
       ::axis::user::initialize(pparticle);
 

@@ -1809,7 +1809,7 @@ namespace aura
       if (acmeapplication()->m_bUser)
       {
 
-         information() << "aura::session success";
+         information() << "aura::session m_bUser";
 
          //auto psetup = system_setup::get_first(::system_setup::flag_object_user);
 

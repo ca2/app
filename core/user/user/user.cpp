@@ -123,6 +123,8 @@ namespace core
    user::user()
    {
 
+      printf("core::user::user\n");
+
       m_pcoreuser = this;
       m_ptemplateForm = nullptr;
       m_ptemplateChildForm = nullptr;
@@ -168,10 +170,13 @@ namespace core
 
    }
 
+
    void user::initialize(::particle * pparticle)
    {
 
       //auto estatus =
+
+      printf("core::user::initialize\n");
 
       ::base::user::initialize(pparticle);
 

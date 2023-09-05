@@ -40,38 +40,21 @@ namespace windowing
    }
 
 
-   void windowing::_initialize_windowing()
-   {
-
-
-   }
+//   void windowing::_initialize_windowing()
+//   {
+//
+//
+//   }
 
 
    void windowing::initialize_windowing(::user::user * puser)
    {
 
-      //auto estatus = initialize(puser);
+      printf("aura::windowing::initialize_windowing\n");
 
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      //auto estatus = 
-      
       m_puser = puser;
 
-
       factory()->add_factory_item < cursor_manager >();
-
-      //if(!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
 
       m_ecursorDefault = e_cursor_arrow;
 
@@ -79,7 +62,14 @@ namespace windowing
       
       m_bDrawCursor = false;
 
-//      return ::success;
+      printf("aura::windowing::initialize_windowing end\n");
+
+   }
+
+
+   void windowing::terminate_windowing()
+   {
+
 
    }
 

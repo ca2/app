@@ -74,7 +74,9 @@ namespace base
 
       //}
 
-      //estatus = 
+      //estatus =
+
+      printf("base::user::initialize (2)\n");
       
       ::user::document_manager_container::initialize(pparticle);
 

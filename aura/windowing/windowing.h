@@ -70,10 +70,14 @@ namespace windowing
       //::aura::system* acmesystem();
 
 
-      virtual void _initialize_windowing();
+      //virtual void _initialize_windowing();
+
+
 
 
       virtual void initialize_windowing(::user::user * puser);
+
+      virtual void terminate_windowing();
 
       virtual void defer_term_ui();
 

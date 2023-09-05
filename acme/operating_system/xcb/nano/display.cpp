@@ -593,14 +593,14 @@ namespace xcb
    void display::init_task()
    {
 
-      ::information() << "xcb nano display::init_task";
+      information() << "xcb nano display::init_task";
 
       if(acmesystem()->m_ewindowing == e_windowing_none)
       {
 
          set_main_user_thread();
 
-         ::information() << "xcb nano display::init_task setting e_windowing_xcb";
+         information() << "xcb nano display::init_task setting e_windowing_xcb";
 
          acmesystem()->m_ewindowing = e_windowing_xcb;
 
@@ -611,7 +611,7 @@ namespace xcb
 
          m_pX11Display = x11_get_display(this);
 
-         ::information() << "xcb nano display::init_task got new x11_display : " << (::iptr) m_pX11Display ;
+         information() << "xcb nano display::init_task got new x11_display : " << (::iptr) m_pX11Display ;
 
       }
 
@@ -624,7 +624,7 @@ namespace xcb
 
          m_pconnection = x11_display_xcb_connection(m_pX11Display);
 
-         ::information() << "xcb nano display::init_task setting x11_display_xcb_connection : " << (::iptr) m_pconnection;
+         information() << "xcb nano display::init_task setting x11_display_xcb_connection : " << (::iptr) m_pconnection;
 
       }
 
@@ -634,7 +634,7 @@ namespace xcb
 
          m_pconnection = (xcb_connection_t *) acmesystem()->m_pnode->get_os_xcb_connection();
 
-         ::information() << "xcb nano display::init_task setting get_os_xcb_connection : " << (::iptr) m_pconnection;
+         information() << "xcb nano display::init_task setting get_os_xcb_connection : " << (::iptr) m_pconnection;
 
       }
 
@@ -647,13 +647,13 @@ namespace xcb
 
       }
 
-      ::information() << "xcb nano display::init_task setting xcb_render_query_pict_formats";
+      information() << "xcb nano display::init_task setting xcb_render_query_pict_formats";
 
       auto cookie = xcb_render_query_pict_formats(m_pconnection);
 
       ::acme::malloc preply(xcb_render_query_pict_formats_reply(m_pconnection, cookie, nullptr));
 
-      ::information() << "xcb nano display::init_task setting xcb_render_query_pict_formats_reply : " << (::iptr) preply.m_p;
+      information() << "xcb nano display::init_task setting xcb_render_query_pict_formats_reply : " << (::iptr) preply.m_p;
 
       m_prender_query_pict_formats_reply2 = preply;
 
@@ -724,13 +724,15 @@ namespace xcb
 
       const xcb_setup_t * psetup = xcb_get_setup(m_pconnection);
 
-      ::information() << "xcb nano display::init_task setting xcb_setup_roots_iterator";
+      information() << "xcb nano display::init_task setting xcb_setup_roots_iterator";
 
       m_pscreen = xcb_setup_roots_iterator(psetup).data;
 
       m_windowRoot = m_pscreen->root;
 
       xcb_depth_iterator_t depthiterator = xcb_screen_allowed_depths_iterator(m_pscreen);
+
+      information() << "xcb nano display::init_task xcb_screen_allowed_depths_iterator : " << (::iptr) depthiterator.rem;
 
       m_pdepth = nullptr;
 
@@ -765,6 +767,8 @@ namespace xcb
 
       xcb_visualtype_iterator_t visualtypeiterator = xcb_depth_visuals_iterator(m_pdepth);
 
+      information() << "xcb nano display::init_task xcb_depth_visuals_iterator : " << (::iptr) visualtypeiterator.rem;
+
       while (visualtypeiterator.rem)
       {
 
@@ -784,7 +788,7 @@ namespace xcb
       if (!m_pvisualtype)
       {
 
-         output_error_message("ERROR: screen does not support true Color");
+         error("ERROR: screen does not support true Color");
 
          xcb_disconnect(m_pconnection);
 
@@ -796,7 +800,7 @@ namespace xcb
 
       {
 
-         auto cookie = xcb_create_colormap_checked(
+         auto cookie = xcb_create_colormap(
             m_pconnection,
             XCB_COLORMAP_ALLOC_NONE,
             m_colormap,
@@ -808,7 +812,7 @@ namespace xcb
          if (!estatus)
          {
 
-            output_error_message("ERROR: failed to create colormap");
+            error("ERROR: failed to create colormap");
 
             xcb_disconnect(m_pconnection);
 
@@ -816,9 +820,13 @@ namespace xcb
 
          }
 
+         information() << "xcb nano display::init_task colormap : " << (::iptr) m_colormap;
+
       }
 
       _select_input(m_windowRoot, XCB_EVENT_MASK_PROPERTY_CHANGE);
+
+      information() << "xcb nano display::init_task creating internal window";
 
       {
 
@@ -843,6 +851,8 @@ namespace xcb
 
          if (!estatus)
          {
+
+            error() << "xcb nano display::init_task failed to create internal window";
 
             throw exception(error_failed);
 

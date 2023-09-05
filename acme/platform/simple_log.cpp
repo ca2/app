@@ -250,12 +250,13 @@ void simple_log::print(trace_statement & tracestatement, bool bFlush)
       else
       {
 
-
          str.format("%s> %c %s %d %s\n", strTaskName.c_str(), trace_level_char(tracestatement.m_etracelevel), tracestatement.m_pszFunction, tracestatement.m_iLine, tracestatement.as_string().c_str());
 
       }
 
-      if (acmeapplication()->m_bConsole)
+      auto papplication = acmeapplication();
+
+      if (papplication && papplication->m_bConsole)
       {
 
          if (tracestatement.m_etracelevel == e_trace_level_information)

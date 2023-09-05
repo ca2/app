@@ -10,7 +10,7 @@
 tracer::tracer()
 {
 
-   m_plogger = nullptr;
+   //m_plogger = nullptr;
    //m_pprintingformat = &m_printformatting;
 
 }
@@ -161,12 +161,38 @@ tracer::~tracer()
 void tracer::flush(trace_statement & tracestatement)
 {
 
-   auto plogger = ::is_set(m_plogger) ? m_plogger : ::get_task()->acmesystem()->m_plogger;
+   ::logger * plogger = nullptr;
+
+   if(::is_set(m_plogger))
+   {
+
+      plogger = m_plogger;
+
+   }
+   else
+   {
+
+      auto ptask = ::get_task();
+
+      if(ptask)
+      {
+
+         plogger = ::get_task()->acmesystem()->m_plogger;
+
+      }
+
+   }
 
    if (::is_set(plogger))
    {
 
       plogger->print(tracestatement, true);
+
+   }
+   else
+   {
+
+      ::output_debug_string_flush();
 
    }
 

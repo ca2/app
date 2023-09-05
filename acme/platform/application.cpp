@@ -150,7 +150,7 @@ namespace acme
    void application::implement_application()
    {
 
-      output_debug_string("acme::application implement_application");
+      output_debug_string("acme::application implement_application\n");
 
       set_main_user_thread();
 
@@ -191,11 +191,11 @@ namespace acme
 
       psystem->initialize_system();
 
+      information() << "acme implement_application system_construct";
+
       psystem->system_construct(this);
 
-      //psystem->acmeapplication() = pacmeapplication;
-
-      //psystem->m_psubsystem = psubsystem;
+      information() << "acme implement_application create_os_node";
 
       psystem->create_os_node();
 

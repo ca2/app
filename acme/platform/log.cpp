@@ -78,8 +78,6 @@ void log::initialize_log(enum_trace_level etracelevelMin, const ::atom& atom)
 }
 
 
-
-
 void log::process_init()
 {
 

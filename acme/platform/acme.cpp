@@ -214,6 +214,7 @@ namespace acme
       g_pacme = this;
       m_pacmeapplication = nullptr;
       m_pmemorycounter = nullptr;
+      m_bOutputDebugString = true;
 
    }
 

@@ -2069,29 +2069,7 @@ pacmedirectory->create("/ca2core");
    void system::create_os_node()
    {
 
-      //::e_status estatus = ::success;
-
-      //estatus = 
-
       ::acme::system::create_os_node();
-
-      //if(!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-//      estatus = m_pnode->initialize(this);
-//
-//      if(!estatus)
-//      {
-//
-//         return estatus;
-//
-//      }
-
-      //return estatus;
 
    }
 

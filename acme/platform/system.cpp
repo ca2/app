@@ -291,12 +291,14 @@ namespace acme
 
       }
 
+      information() <<"::acme::system create_os_node";
+
       auto & pfactory = node_factory();
 
       if (!pfactory)
       {
 
-         //fatal() <<"node_factory has failed (status=" << (const void &) pfactory << ")";
+         fatal() <<"node_factory has failed";
 
          throw ::exception(error_resource);
 
@@ -317,6 +319,8 @@ namespace acme
 
 #endif
 
+
+      information() << "create_os_node going to create node";
 
       //auto estatus = __construct(m_pnode);
       __construct(m_pnode);

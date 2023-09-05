@@ -150,17 +150,7 @@ namespace acme
    void application::implement_application()
    {
 
-      //on_initialize_application(pmain);
-
-
-      //
-
-
-
-      //void __main(::acme::application * pacmeapplication)
-      //{
-
-
+      information() << "implement_application";
 
       set_main_user_thread();
 
@@ -191,8 +181,6 @@ namespace acme
          m_strProgName = "com." + strPrgName;
 
       }
-
-
 
       //main.m_bAudio = main_hold_base::is_audio_enabled();
 

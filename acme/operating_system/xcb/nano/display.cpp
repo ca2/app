@@ -383,7 +383,7 @@ namespace xcb
 //}
 //
 
-   display * display::get(::particle * pparticle, bool bBranch, void * pX11Display)
+   display * display::get(::particle * pparticle, bool bBranch, void * pX11Display, void * pXcbConnection)
    {
 
       critical_section_lock lock(::acme::acme::g_pacme->globals_critical_section());
@@ -402,6 +402,8 @@ namespace xcb
          ::information() << "xcb nano display::get pX11Display " << (iptr) pX11Display;
 
          p->m_pX11Display = pX11Display;
+
+         p->m_pconnection = (xcb_connection_t *) pXcbConnection;
 
          if (bBranch)
          {
@@ -627,7 +629,6 @@ namespace xcb
          information() << "xcb nano display::init_task setting x11_display_xcb_connection : " << (::iptr) m_pconnection;
 
       }
-
 
       if(!m_pconnection)
       {

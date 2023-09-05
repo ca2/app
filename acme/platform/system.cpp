@@ -319,10 +319,8 @@ namespace acme
 
 #endif
 
-
       information() << "create_os_node going to create node";
 
-      //auto estatus = __construct(m_pnode);
       __construct(m_pnode);
 
       m_pacmenode = m_pnode;

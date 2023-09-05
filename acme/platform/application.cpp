@@ -150,7 +150,7 @@ namespace acme
    void application::implement_application()
    {
 
-      information() << "implement_application";
+      output_debug_string("acme::application implement_application");
 
       set_main_user_thread();
 
@@ -168,7 +168,6 @@ namespace acme
          strAppId = m_strAppId;
 
       }
-
 
       {
 

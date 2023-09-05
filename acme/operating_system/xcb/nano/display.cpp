@@ -826,7 +826,7 @@ namespace xcb
 
       _select_input(m_windowRoot, XCB_EVENT_MASK_PROPERTY_CHANGE);
 
-      information() << "xcb nano display::init_task creating internal window";
+      information() << "xcb nano display::init_task creating helper window";
 
       {
 
@@ -852,13 +852,15 @@ namespace xcb
          if (!estatus)
          {
 
-            error() << "xcb nano display::init_task failed to create internal window";
+            error() << "xcb nano display::init_task failed to create helper window";
 
             throw exception(error_failed);
 
          }
 
          m_windowHelper = window;
+
+         information() << "xcb nano display::init_task created helper window : " << (::iptr) m_windowHelper;
 
       }
 
@@ -890,9 +892,15 @@ namespace xcb
    void display::run()
    {
 
+      information() << "xcb nano display::run";
+
       ::task_set_name("xcb:display:run");
 
+      information() << "xcb nano display::run set task name";
+
       set_main_user_thread();
+
+      information() << "xcb nano display::run set main user thread";
 
       message_loop();
 
@@ -922,11 +930,13 @@ namespace xcb
       event.type = intern_atom("kick_idle", true);
       event.data.data32[0] = 0;
 
-      xcb_send_event(m_pconnection,
+      auto cookie = xcb_send_event(m_pconnection,
                      false,
                      m_windowHelper,
                      XCB_EVENT_MASK_NO_EVENT,
                      reinterpret_cast<const char *>(&event));
+
+      auto estatus = _request_check(cookie);
 
       xcb_flush(m_pconnection);
 
@@ -951,7 +961,6 @@ namespace xcb
                information("kick_idle\n");
 
             }
-
 
             return true;
 

@@ -647,9 +647,13 @@ namespace xcb
 
       }
 
-      auto cookie = xcb_render_query_pict_formats_unchecked(m_pconnection);
+      ::information() << "xcb nano display::init_task setting xcb_render_query_pict_formats";
+
+      auto cookie = xcb_render_query_pict_formats(m_pconnection);
 
       ::acme::malloc preply(xcb_render_query_pict_formats_reply(m_pconnection, cookie, nullptr));
+
+      ::information() << "xcb nano display::init_task setting xcb_render_query_pict_formats_reply : " << (::iptr) preply.m_p;
 
       m_prender_query_pict_formats_reply2 = preply;
 
@@ -719,6 +723,8 @@ namespace xcb
       }
 
       const xcb_setup_t * psetup = xcb_get_setup(m_pconnection);
+
+      ::information() << "xcb nano display::init_task setting xcb_setup_roots_iterator";
 
       m_pscreen = xcb_setup_roots_iterator(psetup).data;
 

@@ -13,6 +13,7 @@
 #include "acme/platform/acme.h"
 
 
+
 struct MWMHints
 {
 
@@ -390,16 +391,22 @@ namespace xcb
       if (g_p == nullptr)
       {
 
+         ::information() << "xcb nano display::get (2)";
+
          auto p = memory_new display;
 
          p->initialize(pparticle);
 
          p->add_listener(p);
 
+         ::information() << "xcb nano display::get pX11Display " << (iptr) pX11Display;
+
          p->m_pX11Display = pX11Display;
 
          if (bBranch)
          {
+
+            ::information() << "xcb nano display::get branch_synchronously";
 
             lock.unlock();
 
@@ -408,6 +415,8 @@ namespace xcb
          }
          else
          {
+
+            ::information() << "xcb nano display::get init_task";
 
             p->init_task();
 
@@ -531,6 +540,8 @@ namespace xcb
    void display::message_loop()
    {
 
+      ::information() << "xcb nano display::message_loop";
+
       bool bHandled1;
 
       bool bHandled2;
@@ -582,10 +593,14 @@ namespace xcb
    void display::init_task()
    {
 
+      ::information() << "xcb nano display::init_task";
+
       if(acmesystem()->m_ewindowing == e_windowing_none)
       {
 
          set_main_user_thread();
+
+         ::information() << "xcb nano display::init_task setting e_windowing_xcb";
 
          acmesystem()->m_ewindowing = e_windowing_xcb;
 
@@ -596,18 +611,30 @@ namespace xcb
 
          m_pX11Display = x11_get_display(this);
 
+         ::information() << "xcb nano display::init_task got new x11_display : " << (::iptr) m_pX11Display ;
+
       }
 
-#if defined(WITH_XCB)
+//#if defined(WITH_XCB) && !defined(WITH_X11)
 
-      m_pconnection = (xcb_connection_t *) acmesystem()->m_pnode->get_os_xcb_connection();
+//#endif
 
-#endif
+      if(!m_pconnection && m_pX11Display)
+      {
+
+         m_pconnection = x11_display_xcb_connection(m_pX11Display);
+
+         ::information() << "xcb nano display::init_task setting x11_display_xcb_connection : " << (::iptr) m_pconnection;
+
+      }
+
 
       if(!m_pconnection)
       {
 
-         m_pconnection = x11_display_xcb_connection(m_pX11Display);
+         m_pconnection = (xcb_connection_t *) acmesystem()->m_pnode->get_os_xcb_connection();
+
+         ::information() << "xcb nano display::init_task setting get_os_xcb_connection : " << (::iptr) m_pconnection;
 
       }
 

@@ -50,7 +50,7 @@ namespace windowing
    void windowing::initialize_windowing(::user::user * puser)
    {
 
-      printf("aura::windowing::initialize_windowing\n");
+      information("aura::windowing::initialize_windowing\n");
 
       m_puser = puser;
 
@@ -62,7 +62,7 @@ namespace windowing
       
       m_bDrawCursor = false;
 
-      printf("aura::windowing::initialize_windowing end\n");
+      information("aura::windowing::initialize_windowing end\n");
 
    }
 

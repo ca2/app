@@ -287,8 +287,8 @@ namespace user
    ////} // namespace geometry2d
    ////
 
-   class CLASS_DECL_ACME item
-//      virtual public ::particle,
+   class CLASS_DECL_ACME item :
+      virtual public ::particle
   //    virtual public ::user::ITEM
    {
    public:
@@ -472,9 +472,9 @@ namespace user
 
       explicit operator bool() const { return is_item_set(); }
 
-      enum_element eelement() const { return is_item_set() ? m_pitem->m_eelement : e_element_none; }
+      enum_element eelement() const { return is_item_set() ? m_pitem->m_item.m_eelement : e_element_none; }
 
-      ::index item_index() const { return is_item_set() ? m_pitem->m_iItem : -1; }
+      ::index item_index() const { return is_item_set() ? m_pitem->m_item.m_iItem : -1; }
 
       template < typename ITEM >
       ::pointer < ITEM > as_item() const { return ((::user::item *)this)->as_item< ITEM >(); }
@@ -488,9 +488,9 @@ namespace user
       //template < primitive_integral INTEGRAL >
       //operator INTEGRAL() const { return (INTEGRAL)m_iItem; }
 
-      bool is_hidden() const;
+      //bool is_hidden() const;
 
-      ::string get_text(::index iSubItem);
+      //::string get_text(::index iSubItem);
 
 
       //item & operator = (const ::particle & particle) { m_atom = if ((PARTICLE *) this != (PARTICLE *)&particle) memcpy((PARTICLE *) this, (PARTICLE *) &particle, sizeof(PARTICLE)); return *this; }
@@ -561,7 +561,7 @@ namespace user
       //bool operator != (const item & item) const { return !operator==(item); }
 
 
-      item & operator = (enum_element eelement);
+      //item & operator = (enum_element eelement);
 
       bool operator == (enum_element eelement)  const { return this->eelement() == e_element_none ? false : this->eelement() == eelement; }
       //bool operator != (enum_element eelement)  const { return !operator==(eelement); }
@@ -601,11 +601,12 @@ namespace user
 
    };
 
+   using item_pointer = ::pointer < item >;
 
    //using item_pointer = ::pointer < ::user::item >;
-   using item_array = ::array < item >;
+   using item_array = ::pointer_array < item >;
 
-   using item_map = map < const ::item *, item >;
+   using item_map = map < item_t, item_pointer >;
 
 } // namespace user
 

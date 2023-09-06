@@ -52,9 +52,6 @@
     <Filter Include="Source Files\user\menu">
       <UniqueIdentifier>{49da306f-8b20-43fd-97bf-70de452e1fba}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\platform">
-      <UniqueIdentifier>{0b3f946e-721f-4f91-8603-c298751c5449}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\constant">
       <UniqueIdentifier>{70ad3e80-24b3-41e4-a0ee-dffee8ed5f8f}</UniqueIdentifier>
     </Filter>
@@ -69,6 +66,9 @@
     </Filter>
     <Filter Include="Source Files\html\user">
       <UniqueIdentifier>{66aa5174-f7b1-462d-9176-e04c24bcd1a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\platform">
+      <UniqueIdentifier>{0b3f946e-721f-4f91-8603-c298751c5449}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -510,6 +510,15 @@
     <ClInclude Include="user\user\statusbar.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
+    <ClInclude Include="user\user\form_handler.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\options_impact.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\options_impact_handler.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="user\user\_impl.h">
@@ -760,8 +769,11 @@
     <ClCompile Include="user\user\tab_graphics.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\form\options.cpp">
-      <Filter>Source Files\user\form</Filter>
+    <ClCompile Include="user\user\form_handler.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\options_impact.cpp">
+      <Filter>Source Files\user\user</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -60,7 +60,7 @@ namespace userex
 
       }
 
-      m_peditimpact->m_ptopview = this;
+      m_peditimpact->m_ptopimpact = this;
 
       m_ptoggleimpact = create_pane_impact < top_toggle_impact >(1, "top_toggle_impact");
 
@@ -71,7 +71,7 @@ namespace userex
 
       }
 
-      m_ptoggleimpact->m_ptopview = this;
+      m_ptoggleimpact->m_ptopimpact = this;
 
    }
 

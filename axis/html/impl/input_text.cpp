@@ -74,7 +74,7 @@ namespace html
 
                auto puser = pdata->m_pcoredata->m_pform->user();
 
-               m_pedit = puser->create_calculator_plain_edit();
+               m_pedit = puser->create_calculator_edit();
 
                m_pedit->set_format(m_strUnit);
 

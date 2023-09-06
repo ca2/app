@@ -180,9 +180,9 @@ namespace draw2d_cairo
 
       cairo_fill(m_pcairo);
 
-      int x = m_rectangleBoundingBoxInternal.left;
+      int x = m_rectangleBoundingBoxInternal.left();
 
-      int y = m_rectangleBoundingBoxInternal.top;
+      int y = m_rectangleBoundingBoxInternal.top();
 
       cairo_push_group(m_pcairo);
 
@@ -202,7 +202,7 @@ namespace draw2d_cairo
 
       cairo_paint(pgraphics);
 
-      cairo_mask_surface(pgraphics, m_psurface, m_rectangleBoundingBoxInternal.left, m_rectangleBoundingBoxInternal.top);
+      cairo_mask_surface(pgraphics, m_psurface, m_rectangleBoundingBoxInternal.left(), m_rectangleBoundingBoxInternal.top());
 
       cairo_destroy(m_pcairo);
 
@@ -375,8 +375,8 @@ namespace draw2d_cairo
 
       cairo_rectangle(
          pgraphics, 
-         pitem->m_item.left,
-         pitem->m_item.top,
+         pitem->m_item.left(),
+         pitem->m_item.top(),
          pitem->m_item.width(),
          pitem->m_item.height());
 
@@ -603,8 +603,8 @@ namespace draw2d_cairo
 
             ::pointer<::geometry2d::rectangle_item> prectangleitem = m_pitem;
 
-            cairorectangleint.x =(int) prectangleitem->m_item.left;
-            cairorectangleint.y = (int)prectangleitem->m_item.top;
+            cairorectangleint.x =(int) prectangleitem->m_item.left();
+            cairorectangleint.y = (int)prectangleitem->m_item.top();
             cairorectangleint.width = (int) prectangleitem->m_item.width();
             cairorectangleint.height = (int) prectangleitem->m_item.height();
 
@@ -744,9 +744,9 @@ namespace draw2d_cairo
 
       cairo_set_antialias(m_pcairo, CAIRO_ANTIALIAS_BEST);
 
-      int x = m_rectangleBoundingBoxInternal.left;
+      int x = m_rectangleBoundingBoxInternal.left();
 
-      int y = m_rectangleBoundingBoxInternal.top;
+      int y = m_rectangleBoundingBoxInternal.top();
 
       cairo_push_group(m_pcairo);
 
@@ -762,9 +762,9 @@ namespace draw2d_cairo
 
       cairo_paint(pgraphics);
 
-      cairo_mask_surface(pgraphics, m_psurface, m_rectangleBoundingBoxInternal.left, m_rectangleBoundingBoxInternal.top);
+      cairo_mask_surface(pgraphics, m_psurface, m_rectangleBoundingBoxInternal.left(), m_rectangleBoundingBoxInternal.top());
 
-      cairo_rectangle(pgraphics, m_rectangleBoundingBoxInternal.left, m_rectangleBoundingBoxInternal.top, m_rectangleBoundingBoxInternal.width(), m_rectangleBoundingBoxInternal.height());
+      cairo_rectangle(pgraphics, m_rectangleBoundingBoxInternal.left(), m_rectangleBoundingBoxInternal.top(), m_rectangleBoundingBoxInternal.width(), m_rectangleBoundingBoxInternal.height());
 
       cairo_clip(pgraphics);
 

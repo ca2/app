@@ -5,7 +5,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/primitive/geometry2d/_collection.h"
 #include "acme/primitive/string/str.h"
-#include "apex/filesystem/filesystem/file_context.h"
+#include "acme/filesystem/filesystem/file_context.h"
 #include "axis/html/html/data.h"
 #include "axis/html/html/core_data.h"
 #include "axis/html/graphics/base.h"
@@ -425,7 +425,7 @@ namespace html
 
             }
 
-            if (m_pimpl->m_margin.left > 1.0f)
+            if (m_pimpl->m_margin.left() > 1.0f)
             {
 
                information("margin-left greater than 1.0f");
@@ -789,12 +789,12 @@ namespace html
 
          phtmldata->m_pcoredata->m_layoutstate3.m_cya.pop_max_last_add_up(0.0f);
 
-         //m_pimpl->m_margin.top
-         //+ m_pimpl->m_border.top
-         //+ m_pimpl->m_padding.top
-         //+ m_pimpl->m_padding.bottom
-         //+ m_pimpl->m_border.bottom
-         //+ m_pimpl->m_margin.bottom);
+         //m_pimpl->m_margin.top()
+         //+ m_pimpl->m_border.top()
+         //+ m_pimpl->m_padding.top()
+         //+ m_pimpl->m_padding.bottom()
+         //+ m_pimpl->m_border.bottom()
+         //+ m_pimpl->m_margin.bottom());
 
          phtmldata->m_pcoredata->m_layoutstate3.m_xParent.pop();
 
@@ -809,7 +809,7 @@ namespace html
                if (prow->m_iRow == prow->get_table()->m_rowptra.get_upper_bound())
                {
 
-                  phtmldata->m_pcoredata->m_layoutstate3.m_y = prow->get_table()->m_box.top;
+                  phtmldata->m_pcoredata->m_layoutstate3.m_y = prow->get_table()->m_box.top();
 
                   phtmldata->m_pcoredata->m_layoutstate3.m_cya.last() = prow->get_table()->m_box.height();
 
@@ -819,7 +819,7 @@ namespace html
                else
                {
 
-                  phtmldata->m_pcoredata->m_layoutstate3.m_y = m_pimpl->m_box.top;
+                  phtmldata->m_pcoredata->m_layoutstate3.m_y = m_pimpl->m_box.top();
 
                   phtmldata->m_pcoredata->m_layoutstate3.m_cya.last() = m_pimpl->m_box.height();
 

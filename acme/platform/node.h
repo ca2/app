@@ -758,6 +758,11 @@ namespace acme
       virtual void load_character_set_default_sample_text();
 
 
+      virtual void play_sound(const ::file::path& path);
+
+      virtual void speak(const ::scoped_string& scopedstr);
+
+
    };
 
 

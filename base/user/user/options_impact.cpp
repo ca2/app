@@ -71,7 +71,7 @@ namespace user
 
       }
 
-      acmeapplication()->m_pbaseapplication->create_options_form(this);
+      //acmeapplication()->m_pbaseapplication->create_options_form(this);
 
       //set_need_layout();
 
@@ -170,6 +170,29 @@ namespace user
       ////         }
       ////
       ////      }
+
+   }
+
+
+   void options_impact::create_options_impact(options_impact_handler * phandler)
+   {
+
+      erase_children();
+
+      if(::is_set(phandler))
+      {
+
+         lock_sketch_to_design locksketchtodesign(this);
+
+         phandler->create_options_impact(this);
+
+      }
+
+      set_need_layout();
+
+      set_need_redraw();
+
+      post_redraw();
 
    }
 

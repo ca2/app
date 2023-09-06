@@ -103,7 +103,7 @@ namespace experience
 
       virtual i32 calculate_control_box_width(::draw2d::graphics_pointer & pgraphics);
 
-      virtual void reset_layout(::draw2d::graphics_pointer & pgraphics);
+      //virtual void reset_layout(::draw2d::graphics_pointer & pgraphics);
 
       virtual void _layout_button(enum_button ebutton, ::rectangle_i32 & rectangle);
       virtual bool should_show_button(enum_button ebutton) const;

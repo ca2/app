@@ -14,7 +14,7 @@ namespace simple_drawing
       place_holder_container(pparticle)
    {
 
-      m_ptopview = NULL;
+      m_ptopimpact = NULL;
       m_pimpact    = NULL;
       m_flagNonClient.add(e_non_client_background);
       m_flagNonClient.add(e_non_client_focus_rect);
@@ -72,16 +72,16 @@ namespace simple_drawing
 
          initialize_split_layout();
 
-         m_ptopview = host_impact < ::userex::top_impact >(0, "top_impact");
+         m_ptopimpact = host_impact < ::userex::top_impact >(0, "top_impact");
 
-         if (m_ptopview == NULL)
+         if (m_ptopimpact == NULL)
          {
 
             message_box(NULL, "Could not create folder edit impact");
 
          }
 
-         SetPane(0, m_ptopview, false);
+         SetPane(0, m_ptopimpact, false);
 
          iPane = 1;
 

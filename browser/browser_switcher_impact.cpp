@@ -14,7 +14,7 @@ namespace browser
 
       m_pimpact = nullptr;
 
-      m_ptopview = nullptr;
+      m_ptopimpact = nullptr;
 
    }
 
@@ -61,16 +61,16 @@ namespace browser
 
       initialize_split_layout();
 
-      m_ptopview = create_impact < ::userex::top_impact >(nullptr, get_pane_holder(0),"top_impact");
+      m_ptopimpact = create_impact < ::userex::top_impact >(nullptr, get_pane_holder(0),"top_impact");
 
-      if(m_ptopview == nullptr)
+      if(m_ptopimpact == nullptr)
       {
 
          message_box(nullptr,"Could not create folder edit impact");
 
       }
 
-      //SetPane(0,m_ptopview,false);
+      //SetPane(0,m_ptopimpact,false);
 
       m_pimpact = create_impact < impact >(nullptr,get_pane_holder(1),"browser_switcher_impact");
 

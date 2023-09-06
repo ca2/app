@@ -40,9 +40,9 @@ namespace experience_core
 
       }
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
-      if (rectangleClient.is_empty())
+      if (rectangleX.is_empty())
       {
 
          return;
@@ -69,7 +69,7 @@ namespace experience_core
 
       }
 
-      pgraphics->fill_rectangle(rectangleClient, crBackground);
+      pgraphics->fill_rectangle(rectangleX, crBackground);
 
    }
 
@@ -120,6 +120,8 @@ namespace experience_core
 
    i32 control_box::calculate_button_size(::draw2d::graphics_pointer & pgraphics)
    {
+
+      m_sizeButtonDefault={26, 26};
 
       return 26;
 

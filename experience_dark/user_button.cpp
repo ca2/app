@@ -43,11 +43,11 @@ namespace user
 
       }
 
-      ::rectangle_i32 rectangleClient;
+      ::rectangle_i32 rectangleX;
 
-      ::user::interaction::client_rectangle(rectangleClient);
+      ::user::interaction::this->rectangle(rectangleX);
 
-      if (rectangleClient.area() <= 0)
+      if (rectangleX.area() <= 0)
          return;
 
       color32_t crText;
@@ -95,7 +95,7 @@ namespace user
 
       }
 
-      ::rectangle_i32 rectangleEllipse(rectangleClient);
+      ::rectangle_i32 rectangleEllipse(rectangleX);
 
       ::rectangle_i32 rW;
 
@@ -105,7 +105,7 @@ namespace user
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      pgraphics->fill_rectangle(rectangleClient, pgraphics->m_pbrush->m_cr);
+      pgraphics->fill_rectangle(rectangleX, pgraphics->m_pbrush->m_cr);
 
       //pgraphics->FillEllipse(rectangleEllipse);
 
@@ -122,7 +122,7 @@ namespace user
 
          pgraphics->set_text_color(crText);
 
-         pgraphics->draw_text(str, rectangleClient, e_align_center | DT_SINGLELINE);
+         pgraphics->draw_text(str, rectangleX, e_align_center | DT_SINGLELINE);
 
       }
       else
@@ -186,9 +186,9 @@ namespace user
    void button::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
-      m_spregion->create_oval(rectangleClient);
+      m_spregion->create_oval(rectangleX);
 
    }
 

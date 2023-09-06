@@ -682,7 +682,7 @@ LRESULT edit_window::_OnEditKillFocus(VOID)
 //                0, 
 //                0, 
 //                LOWORD(lParam), 
-//                HIWORD(lParam) - (rc.bottom - rc.top), 
+//                HIWORD(lParam) - (rc.bottom() - rc.top()), 
 //                true);
 //*/
 //    m_AdviseSink.pTextStoreACPSink->OnLayoutChange(TS_LC_CHANGE, EDIT_VIEW_COOKIE);

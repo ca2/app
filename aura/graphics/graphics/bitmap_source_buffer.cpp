@@ -4,7 +4,7 @@
 #include "acme/parallelization/single_lock.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/node.h"
-#include "apex/filesystem/filesystem/dir_context.h"
+#include "acme/filesystem/filesystem/dir_context.h"
 #include "apex/platform/context.h"
 #include "aura/graphics/image/image.h"
 #include "aura/user/user/interaction_impl.h"

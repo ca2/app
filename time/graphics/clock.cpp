@@ -129,10 +129,10 @@ namespace datetime
       {
          if (eelement == e_element_clock)
          {
-            lprect->left = m_point.x();
-            lprect->right = lprect->left + m_size.cx();
-            lprect->top = m_point.y();
-            lprect->bottom = lprect->top + m_size.cy();
+            lprect->left() = m_point.x();
+            lprect->right() = lprect->left() + m_size.cx();
+            lprect->top() = m_point.y();
+            lprect->bottom() = lprect->top() + m_size.cy();
          }
       }
 

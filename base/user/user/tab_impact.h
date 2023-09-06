@@ -11,11 +11,6 @@ namespace user
 {
 
 
-   class tab_pane;
-   class tab_drop_target_window;
-   class single_document_template;
-
-
    class CLASS_DECL_BASE tab_impact :
       virtual public ::user::impact_host,
       virtual public ::user::tab,
@@ -25,13 +20,15 @@ namespace user
    public:
 
 
-      ::pointer<tab_drop_target_window>        m_pdroptargetwindow;
-      ::user::impact_data *                    m_pimpactdata;
-      ::user::impact_data *                    m_pimpactdataOld;
-      ::user::impact_creator *                 m_pviewcreator;
-      bool                                     m_bCloseDocumentIfNoTabs;
-      ::pointer<::user::impact>                m_pimpactTopic;
-      atom_map < ::pointer<::form_document >>  m_mapformdocument;
+      ::pointer<tab_drop_target_window>         m_pdroptargetwindow;
+      ::user::impact_data *                     m_pimpactdata;
+      ::user::impact_data *                     m_pimpactdataOld;
+      ::user::impact_creator *                  m_pviewcreator;
+      bool                                      m_bCloseDocumentIfNoTabs;
+      ::pointer<::user::impact>                 m_pimpactTopic;
+      atom_map < ::pointer<::form_document >>   m_mapformdocument;
+      ::pointer < options_impact >              m_poptionsimpact;
+      ::pointer < options_impact_handler >      m_poptionsimpacthandlerContext;
 
 
       tab_impact();

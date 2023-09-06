@@ -185,14 +185,14 @@ namespace user
 
    //   if(m_bHeaderCtrl)
    //   {
-   //      ::rectangle_i32 rectangleClient;
+   //      ::rectangle_i32 rectangleX;
 
-   //      client_rectangle(&rectangleClient);
+   //      this->rectangle(&rectangleX);
 
    //      m_pmeshheader->set_window_position(
    //         e_zorder_top,
    //         0,0,
-   //         maximum(m_iItemWidth + 10,rectangleClient.width()),
+   //         maximum(m_iItemWidth + 10,rectangleX.width()),
    //         m_iItemHeight,
    //         SWP_SHOWWINDOW);
    //   }

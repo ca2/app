@@ -22,25 +22,25 @@ namespace hotplugin
 
       if (height(rectangle) < h)
       {
-         top = rectangle.top;
-         bottom = rectangle.bottom;
+         top = rectangle.top();
+         bottom = rectangle.bottom();
       }
       else
       {
-         top = rectangle.top + height(rectangle) / 2 - h / 2;
-         bottom = rectangle.top + height(rectangle) / 2 + h / 2;
+         top = rectangle.top() + height(rectangle) / 2 - h / 2;
+         bottom = rectangle.top() + height(rectangle) / 2 + h / 2;
       }
 
       if (width(rectangle) < m)
       {
-         left = rectangle.left;
-         right = rectangle.right;
+         left = rectangle.left();
+         right = rectangle.right();
       }
       else
       {
 
-         left = rectangle.left + minimum(m / 2, width(rectangle) / 2);
-         right = rectangle.right - minimum(m / 2, width(rectangle) / 2);
+         left = rectangle.left() + minimum(m / 2, width(rectangle) / 2);
+         right = rectangle.right() - minimum(m / 2, width(rectangle) / 2);
 
       }
 
@@ -52,7 +52,7 @@ namespace hotplugin
 
       int x = v % rectangleBar.width();
 
-      ::rectangle_i32 rectangleBrick(left + x, rectangleBar.top, left + x + w, rectangleBar.bottom);
+      ::rectangle_i32 rectangleBrick(left + x, rectangleBar.top(), left + x + w, rectangleBar.bottom());
 
       ::rectangle_i32 rectangleDraw;
 
@@ -128,13 +128,13 @@ namespace hotplugin
 
       f->create_font("Calibri", 18_px);
 
-      rectangleBar.left += 4;
+      rectangleBar.left() += 4;
 
-      rectangleBar.top += 5;
+      rectangleBar.top() += 5;
 
       pgraphics->set_text_color(argb(190, 255, 255, 255));
 
-      pgraphics->text_out(rectangleBar.left, rectangleBar.top, str);
+      pgraphics->text_out(rectangleBar.left(), rectangleBar.top(), str);
 
    }
 

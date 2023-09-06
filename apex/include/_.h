@@ -374,7 +374,7 @@ struct pixmap;
 class machine_event_central;
 
 
-#include "apex/crypto/_.h"
+#include "acme/crypto/_.h"
 
 
 extern "C"
@@ -848,7 +848,7 @@ namespace core
 //#include "apex/platform/library.h"
 
 
-#include "apex/filesystem/filesystem.h"
+#include "acme/filesystem/filesystem.h"
 
 
 //#include "apex/progress/_.h"
@@ -1001,13 +1001,13 @@ namespace file
 } // namespace file
 
 
-//#include "apex/filesystem/filesystem/file_system.h"
+//#include "acme/filesystem/filesystem/file_system.h"
 
-//#include "apex/filesystem/filesystem/dir_system.h"
+//#include "acme/filesystem/filesystem/dir_system.h"
 
-//#include "apex/filesystem/filesystem/file_context.h"
+//#include "acme/filesystem/filesystem/file_context.h"
 
-//#include "apex/filesystem/filesystem/dir_context.h"
+//#include "acme/filesystem/filesystem/dir_context.h"
 
 //#include "apex/filesystem/file/set.h"
 
@@ -1231,7 +1231,7 @@ namespace mathematics
 
 
 
-#include "apex/compress/_.h"
+#include "acme/compress/_.h"
 
 
 //#include "apex/platform/app_consumer.h"
@@ -1266,9 +1266,6 @@ namespace mathematics
 
 
 #include "apex/filesystem/file/_.h"
-
-
-#include "apex/filesystem/filesystem/_impl.h"
 
 
 #include "apex/database/_impl.h"

@@ -200,13 +200,13 @@ namespace user
 
       int wPadding = 10;
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
-      int iM = rectangleClient.center().x();
+      int iM = rectangleX.center().x();
 
-      ::rectangle_i32 rectangleL(rectangleClient);
+      ::rectangle_i32 rectangleL(rectangleX);
 
-      rectangleL.right = iM - wPadding / 2;
+      rectangleL.right() = iM - wPadding / 2;
 
       m_pbuttonMinus->order_top_most();
       
@@ -214,9 +214,9 @@ namespace user
       
       m_pbuttonMinus->display();
 
-      ::rectangle_i32 rectangleR(rectangleClient);
+      ::rectangle_i32 rectangleR(rectangleX);
 
-      rectangleR.left = iM + wPadding / 2;
+      rectangleR.left() = iM + wPadding / 2;
 
       m_pbuttonPlus->order_top();
       

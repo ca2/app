@@ -9,13 +9,13 @@ namespace user
    split_pane::split_pane()
    {
 
-      m_pplaceholder = nullptr;
+      //m_pplaceholder = nullptr;
 
-      m_rectangle.Null();
+      //m_rectangle.Null();
 
-      m_rectangleClient.Null();
+      //m_rectangleX.Null();
 
-      m_sizeFixed = ::size_i32(0, 0);
+      //m_sizeFixed = ::size_i32(0, 0);
 
    }
 

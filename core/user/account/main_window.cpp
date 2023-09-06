@@ -28,7 +28,7 @@ namespace account
 
 #else
 
-      //set_prodevian(false);
+      //set_auto_refresh(false);
 
 #endif
 
@@ -260,10 +260,10 @@ namespace account
 
       }
 
-      rectangleFontopus.left = rectangleDesktop.left + (rectangleDesktop.width() - w) / 2;
-      rectangleFontopus.top = rectangleDesktop.top + (rectangleDesktop.height() - h) / 3;
-      rectangleFontopus.right = rectangleFontopus.left + w;
-      rectangleFontopus.bottom = rectangleFontopus.top + h;
+      rectangleFontopus.left() = rectangleDesktop.left() + (rectangleDesktop.width() - w) / 2;
+      rectangleFontopus.top() = rectangleDesktop.top() + (rectangleDesktop.height() - h) / 3;
+      rectangleFontopus.right() = rectangleFontopus.left() + w;
+      rectangleFontopus.bottom() = rectangleFontopus.top() + h;
 
       if (puiParent != nullptr)
          puiParent->screen_to_client()(rectangleFontopus);
@@ -377,9 +377,9 @@ namespace account
 
          keep < bool > keepLayout(&m_bFontopusSimpleUiLayout,true,false,true);
 
-         ::rectangle_i32 rectangleClient1;
+         ::rectangle_i32 rectangleX1;
 
-         client_rectangle(rectangleClient1);
+         this->rectangle(rectangleX1);
 
          bool bParentChange = false;
 
@@ -400,7 +400,7 @@ namespace account
          }
 
 
-         if(rectangleClient1.area() < 100 * 100 || bParentChange)
+         if(rectangleX1.area() < 100 * 100 || bParentChange)
          {
 
             ::rectangle_i32 rectangleDesktop;
@@ -450,10 +450,10 @@ namespace account
 
             }
 
-            rectangleFontopus.left = rectangleDesktop.left + (width(rectangleDesktop) - w) / 2;
-            rectangleFontopus.top = rectangleDesktop.top + (height(rectangleDesktop) - h) / 3;
-            rectangleFontopus.right = rectangleFontopus.left + w;
-            rectangleFontopus.bottom = rectangleFontopus.top + h;
+            rectangleFontopus.left() = rectangleDesktop.left() + (width(rectangleDesktop) - w) / 2;
+            rectangleFontopus.top() = rectangleDesktop.top() + (height(rectangleDesktop) - h) / 3;
+            rectangleFontopus.right() = rectangleFontopus.left() + w;
+            rectangleFontopus.bottom() = rectangleFontopus.top() + h;
 
 
             if(get_parent() != nullptr)
@@ -468,9 +468,9 @@ namespace account
       */
 
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
-      m_plogin->place(rectangleClient);
+      m_plogin->place(rectangleX);
 
       //m_plogin->on_layout(pgraphics);
 

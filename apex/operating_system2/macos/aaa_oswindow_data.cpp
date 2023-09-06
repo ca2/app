@@ -57,9 +57,9 @@ bool oswindow_data::client_to_screen(POINT32 *lppoint)
    
    get_nswindow_rect(this, &rectangle);
    
-   lppoint->x += rectangle.left;
+   lppoint->x += rectangle.left();
    
-   lppoint->y += rectangle.top;
+   lppoint->y += rectangle.top();
    
    return true;
    
@@ -73,9 +73,9 @@ bool oswindow_data::screen_to_client(POINT32 *lppoint)
    
    get_nswindow_rect(this, &rectangle);
    
-   lppoint->x -= rectangle.left;
+   lppoint->x -= rectangle.left();
    
-   lppoint->y -= rectangle.top;
+   lppoint->y -= rectangle.top();
    
    return true;
    

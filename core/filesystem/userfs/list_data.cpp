@@ -4,8 +4,8 @@
 #include "list_item.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/primitive/data/listener.h"
-#include "apex/filesystem/filesystem/dir_context.h"
-#include "apex/filesystem/filesystem/file_context.h"
+#include "acme/filesystem/filesystem/dir_context.h"
+#include "acme/filesystem/filesystem/file_context.h"
 #include "aura/user/user/shell.h"
 #include "aura/user/user/interaction_array.h"
 #include "base/user/user/user.h"
@@ -199,9 +199,9 @@ namespace userfs
          try
          {
 
-            //::file::path path = pcontext->m_papexcontext->defer_process_path(m_pitema->get_item(pitem->m_iItem)->m_filepathUser);
+            //::file::path path = pcontext->m_papexcontext->defer_process_path(m_pitema->get_item(pitem->m_item.m_iItem)->m_filepathUser);
 
-            //if (!m_pitema->m_parray->contains_index(pitem->m_iItem) || (*m_pitema)[pitem->m_iItem].is_null())
+            //if (!m_pitema->m_parray->contains_index(pitem->m_item.m_iItem) || (*m_pitema)[pitem->m_item.m_iItem].is_null())
             //{
 
             //   pitem->m_bOk = false;

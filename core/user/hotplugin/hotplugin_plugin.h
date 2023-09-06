@@ -96,8 +96,8 @@ namespace hotplugin
       using ::user::interaction::window_rectangle;
       virtual bool window_rectangle(::rectangle_i64 * prectangle) override;
 
-      using ::user::interaction::client_rectangle;
-      virtual bool client_rectangle(::rectangle_i64 * prectangle) override;
+      using ::user::interaction::this->rectangle;
+      virtual bool this->rectangle(::rectangle_i64 * prectangle) override;
       */
 
 

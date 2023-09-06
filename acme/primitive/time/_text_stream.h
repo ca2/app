@@ -116,3 +116,13 @@ struct integral_day;
 //   return textstream;
 //
 //}
+inline ::write_text_stream & operator <<(::write_text_stream & textstream, const class ::time & time)
+{
+
+   ::string strTime;
+
+   strTime.format("%fs", time.floating_second());
+
+   return textstream << strTime;
+
+}

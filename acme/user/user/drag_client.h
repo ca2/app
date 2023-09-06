@@ -12,12 +12,12 @@ namespace user
 
 
    class CLASS_DECL_ACME drag_client :
-      virtual public ::user::container
+      virtual public ::user::acme_container
    {
    public:
 
 
-      map < e_element, ::pointer<::user::drag >>     m_mapDrag;
+      map < ::item_t, ::pointer<::user::drag >>     m_mapDrag;
       ::pointer<::user::drag>                        m_pdragCurrent;
 
 
@@ -28,24 +28,26 @@ namespace user
       void destroy() override;
 
 
-      virtual void enable_drag(::e_element eelement);
-      virtual ::user::drag * drag(::e_element eelement) const;
-      virtual bool has_drag(::e_element eelement) const;
+      virtual void enable_drag(::item * pitem, ::user::e_zorder ezorder);
+      virtual ::user::drag * drag(::item * pitem) const;
+      virtual bool has_drag(::item * pitem) const;
 
 
-      virtual bool drag_on_button_down(::item * pitemButtonDown);
-      virtual void drag_on_button_down(::user::drag * pdrag, ::user::mouse * pmouse);
+      virtual bool drag_on_button_down(::item * pitem);
+      virtual void drag_on_button_down(::item * pitem, ::user::mouse * pmouse);
       virtual bool drag_on_mouse_move(::user::mouse * pmouse);
-      virtual bool drag_on_mouse_hover(::item * pitemButtonHover);
+      virtual bool drag_on_mouse_hover(::item * pitem);
       virtual bool drag_on_button_up(::user::mouse * pmouse);
 
 
       virtual void drag_set_capture() = 0;
-      virtual ::point_i32 on_drag_start(::user::drag * pdrag) = 0;
-      virtual bool drag_shift(::user::drag * pdrag) = 0;
-      virtual bool drag_hover(::user::drag * pdrag) = 0;
+      virtual ::point_i32 on_drag_start(::item * pitem) = 0;
+      virtual bool drag_shift(::item * pitem) = 0;
+      virtual bool drag_hover(::item * pitem) = 0;
       virtual void drag_release_capture() = 0;
-      virtual void drag_set_cursor(::user::drag * pdrag) = 0;
+      virtual void drag_set_cursor(::item * pitem) = 0;
+
+      virtual ::point_i32 drag_point(::item * pitem);
 
 
       //virtual ::user::item & user_item(const ::item * pitem) = 0;

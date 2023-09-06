@@ -188,8 +188,8 @@ namespace windows
          _T(NANO_WINDOW_CLASS),
          wstrTitle,
          WS_POPUP,
-         m_pinterface->m_rectangle.left,
-         m_pinterface->m_rectangle.top,
+         m_pinterface->m_rectangle.left(),
+         m_pinterface->m_rectangle.top(),
          m_pinterface->m_rectangle.width(),
          m_pinterface->m_rectangle.height(),
          NULL, NULL, hinstanceWndProc, this);
@@ -704,18 +704,18 @@ namespace windows
 
                HDC hdc = ::CreateCompatibleDC(hdcWindow);
 
-               ::rectangle_i32 rectangleClient;
+               ::rectangle_i32 rectangleX;
 
-               ::GetClientRect(m_hwnd, (LPRECT) &rectangleClient);
+               ::GetClientRect(m_hwnd, (LPRECT) &rectangleX);
 
-               HBITMAP hbitmap = ::CreateCompatibleBitmap(hdcWindow, rectangleClient.width(), rectangleClient.height());
+               HBITMAP hbitmap = ::CreateCompatibleBitmap(hdcWindow, rectangleX.width(), rectangleX.height());
 
                HGDIOBJ hbitmapOld = ::SelectObject(hdc, hbitmap);
 
                _draw(hdc);
 
 
-               ::BitBlt(hdcWindow, 0, 0, rectangleClient.width(), rectangleClient.height(),
+               ::BitBlt(hdcWindow, 0, 0, rectangleX.width(), rectangleX.height(),
                   hdc, 0, 0, SRCCOPY);
 
                hbitmapOld = ::SelectObject(hdc, hbitmapOld);
@@ -1092,14 +1092,11 @@ namespace windows
 
       ::GetWindowRect(hwndDesktop, &r);
 
-      return { r.right -r.left, r.bottom - r.top };
-
+      return { r.right - r.left, r.bottom - r.top };
 
    }
 
-   
-
-
+ 
 } // namespace windows
 
 

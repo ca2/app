@@ -32,8 +32,8 @@ namespace filemanager
 
 
 
-      auto rectangleClient = client_rectangle();
-      pgraphics->fill_rectangle(rectangleClient, rgb(200, 200, 190));
+      auto rectangleX = this->rectangle();
+      pgraphics->fill_rectangle(rectangleX, rgb(200, 200, 190));
 
       if(filemanager_document() == nullptr)
          return;

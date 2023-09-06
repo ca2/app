@@ -3,11 +3,11 @@
 #include "acme/constant/message.h"
 #include "acme/constant/id.h"
 #include "acme/constant/timer.h"
-////#include "acme/exception/exception.h"
+#include "acme/user/user/content.h"
 #include "acme/user/user/tool_item.h"
 #include "acme/platform/timer.h"
 #include "acme/parallelization/synchronous_lock.h"
-#include "apex/filesystem/filesystem/file_context.h"
+#include "acme/filesystem/filesystem/file_context.h"
 #include "aqua/xml/document.h"
 //#include "aura/operating_system/_user.h"
 #include "aura/graphics/draw2d/graphics.h"
@@ -58,8 +58,8 @@ namespace user
       m_sizeButton.cy() = 22;
 
       // top and bottom borders are 1 larger than default for ease of grabbing
-      m_rectangleBorder.top = 3;
-      m_rectangleBorder.bottom = 3;
+      m_rectangleBorder.top() = 3;
+      m_rectangleBorder.bottom() = 3;
    }
 
    toolbar::~toolbar()
@@ -293,15 +293,15 @@ namespace user
          //cyHeight -= ::windows_definition::Data.cyBorder2;
          cyHeight -= 2;
 
-      m_rectangleBorder.bottom = (::i32)((cyHeight - m_sizeButton.cy()) / 2);
-      // if there is an extra pixel, m_rectangleBorder.top will get it
-      m_rectangleBorder.top = (::i32)(cyHeight - m_sizeButton.cy() - m_rectangleBorder.bottom);
-      if (m_rectangleBorder.top < 0)
+      m_rectangleBorder.bottom() = (::i32)((cyHeight - m_sizeButton.cy()) / 2);
+      // if there is an extra pixel, m_rectangleBorder.top() will get it
+      m_rectangleBorder.top() = (::i32)(cyHeight - m_sizeButton.cy() - m_rectangleBorder.bottom());
+      if (m_rectangleBorder.top() < 0)
       {
          information("Warning: toolbar::SetHeight(%d) is smaller than button.",
             nHeight);
-         m_rectangleBorder.bottom += m_rectangleBorder.top;
-         m_rectangleBorder.top = 0;  // will clip at bottom
+         m_rectangleBorder.bottom() += m_rectangleBorder.top();
+         m_rectangleBorder.top() = 0;  // will clip at bottom
       }
 
       // recalculate the non-client region
@@ -632,7 +632,7 @@ namespace user
    ::user::tool_item * toolbar::tool_item_by_atom(const ::atom & atom)
    {
 
-      auto iIndex = item_index(atom);
+      auto iIndex = main_content().item_index(atom);
 
       return tool_item_at(iIndex);
 
@@ -655,11 +655,11 @@ namespace user
 
          estate.set(e_tool_item_state_enabled, bEnabled);
 
-         bool bPressed = is_item_pressed(atom);
+         bool bPressed = is_item_pressed(pitem);
 
          estate.set(e_tool_item_state_pressed, bPressed);
 
-         bool bHover = is_item_hover(atom);
+         bool bHover = is_item_hover(pitem);
 
          estate.set(e_tool_item_state_hover, bHover);
 
@@ -1438,11 +1438,11 @@ namespace user
 
       NCCALCSIZE_PARAMS * pparams = (NCCALCSIZE_PARAMS *)pnccalcsize->m_pNCCALCSIZE_PARAMS;
       // adjust non-client area for border space
-      pparams->rgrc[0].left += rectangle.left;
-      pparams->rgrc[0].top += rectangle.top;
+      pparams->rgrc[0].left += rectangle.left();
+      pparams->rgrc[0].top += rectangle.top();
       // previous versions of COMCTL32.DLL had a built-in 2 pixel border
-      pparams->rgrc[0].right += rectangle.right;
-      pparams->rgrc[0].bottom += rectangle.bottom;
+      pparams->rgrc[0].right += rectangle.right();
+      pparams->rgrc[0].bottom += rectangle.bottom();
 #else
       throw ::exception(todo);
 #endif
@@ -1552,7 +1552,7 @@ namespace user
 
       auto pwindowimpl = get_window_impl();
 
-      if (::is_set(pwindowimpl->m_pitemLButtonDown) && pwindowimpl->m_pitemLButtonDown->m_iItem >= 0)
+      if (::is_set(pwindowimpl->m_pitemLButtonDown) && pwindowimpl->m_pitemLButtonDown->m_item.m_iItem >= 0)
       {
 
          pmessage->m_bRet = true;
@@ -1850,7 +1850,7 @@ namespace user
    ::count toolbar::tool_item_count()
    {
 
-      return m_pitema->count();
+      return main_content().m_pitema->count();
 
    }
 
@@ -1858,14 +1858,14 @@ namespace user
    ::status < ::rectangle_i32 > toolbar::index_item_rectangle(index iItem)
    {
 
-      if (!m_pitema->is_index_ok(iItem))
+      if (!main_content().m_pitema->is_index_ok(iItem))
       {
 
          return error_failed;
 
       }
 
-      auto puseritem = user_item_at(iItem);
+      auto puseritem = user_item(main_content().item_at(iItem));
 
       ::status < ::rectangle_i32 > statusrectangle = puseritem->m_rectangle;
 
@@ -1887,14 +1887,14 @@ namespace user
    ::user::tool_item * toolbar::tool_item_at(index iItem)
    {
 
-      if (!m_pitema->is_index_ok(iItem))
+      if (!main_content().m_pitema->is_index_ok(iItem))
       {
 
          return nullptr;
 
       }
 
-      return item_at(iItem)->cast < ::user::tool_item>();
+      return main_content().item_at(iItem)->cast < ::user::tool_item>();
 
    }
 
@@ -1919,16 +1919,16 @@ namespace user
 
       synchronous_lock synchronouslock(this->synchronization());
 
-      if (m_pitema)
+      if (main_content().m_pitema)
       {
 
-         m_pitema->erase_all();
+         main_content().m_pitema->erase_all();
 
       }
       else
       {
 
-         __defer_construct_new(m_pitema);
+         __defer_construct_new(main_content().m_pitema);
 
       }
 
@@ -1980,17 +1980,17 @@ namespace user
          if (pchild->get_name() == "button")
          {
 
-            ptoolitem = __new(::user::tool_item);
+            ptoolitem = __create_new < ::user::tool_item >();
 
-            default_set_item_at(iItem, ptoolitem);
+            main_content().indexed_set_item_at(iItem, ptoolitem);
 
-            ptoolitem->m_iItem = m_pitema->get_size();
+            ptoolitem->m_item.m_iItem = main_content().item_count();
 
             auto pattributeId = pchild->find_attribute("id");
 
             ptoolitem->m_atom = pattributeId->as_string();
 
-            auto puseritem = user_item_at(iItem);
+            //auto puseritem = user_item_at(iItem);
 
             ptoolitem->m_str = pchild->get_value();
 
@@ -2025,9 +2025,9 @@ namespace user
          else if (pchild->get_name() == "separator")
          {
 
-            ptoolitem = __new(::user::tool_item);
+            ptoolitem = __create_new < ::user::tool_item >();
 
-            default_set_item_at(iItem, ptoolitem);
+            main_content().indexed_set_item_at(iItem, ptoolitem);
 
             ptoolitem->m_atom = "separator";
 

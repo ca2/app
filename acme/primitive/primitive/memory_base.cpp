@@ -1580,6 +1580,14 @@ void memory_base::append(const memory_base & mem, memsize iStart, memsize iCount
 
    }
 
+   if (iCount < 0)
+   {
+
+      iCount += mem.size() + 1;
+
+   }
+
+
    if (iStart + iCount > mem.size())
    {
 

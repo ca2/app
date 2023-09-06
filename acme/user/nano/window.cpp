@@ -16,6 +16,7 @@
 #include "acme/platform/application.h"
 #include "acme/platform/node.h"
 #include "acme/user/user/drag.h"
+#include "acme/user/user/tool.h"
 #include "acme/platform/sequencer.h"
 #include "acme/platform/system.h"
 #include "acme/exception/interface_only.h"
@@ -31,7 +32,9 @@ nano_window::nano_window()
    
    m_efont = e_font_sans;
 
-   enable_drag(::e_element_client);
+   auto pitemClient = tool().defer_item(e_element_client);
+
+   enable_drag(pitemClient, ::user::e_zorder_back);
 
    m_bNcActive = false;
 
@@ -50,6 +53,14 @@ nano_window::~nano_window()
    acmesystem()->m_pnano->m_nanowindowa.erase_item(this);
 
 }
+
+
+//::pointer < item_container > nano_window::item_form()
+//{
+//
+//   return item_container(id_user_interface);
+//
+//}
 
 
 void nano_window::on_initialize_particle()
@@ -84,11 +95,11 @@ void nano_window::draw(nano_device * pnanodevice)
 
    }
 
-   ::rectangle_i32 rectangleClient;
+   ::rectangle_i32 rectangleX;
 
-   get_client_rectangle(rectangleClient);
+   get_client_rectangle(rectangleX);
 
-   pnanodevice->rectangle(rectangleClient, m_pbrushWindow, pnanopenBorder);
+   pnanodevice->rectangle(rectangleX, m_pbrushWindow, pnanopenBorder);
 
    on_draw(pnanodevice);
 
@@ -300,6 +311,14 @@ void nano_window::update_drawing_objects()
 }
 
 
+::point_i32 nano_window::origin()
+{
+
+   return m_rectangle.origin();
+
+}
+
+
 nano_child * nano_window::on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
 {
 
@@ -431,12 +450,14 @@ void nano_window::on_left_button_down(::user::mouse * pmouse)
 
    }
 
-   auto pdragClient = drag(e_element_client);
+   auto pitemClient = tool().defer_item(e_element_client);
+
+   auto pdragClient = drag(pitemClient);
 
    if (pdragClient && !pchild)
    {
 
-      drag_on_button_down(pdragClient, pmouse);
+      drag_on_button_down(pitemClient, pmouse);
 
       return;
 
@@ -485,6 +506,13 @@ void nano_window::on_left_button_up(::user::mouse * pmouse)
       m_payloadResult = m_atomLeftButtonUp;
 
       m_pimplementation->on_click(m_payloadResult, pmouse);
+
+   }
+   
+   if (drag_on_button_up(pmouse))
+   {
+
+      return;
 
    }
 
@@ -584,10 +612,10 @@ void nano_window::redraw()
 void nano_window::get_client_rectangle(::rectangle_i32 & rectangle)
 {
 
-   rectangle.left = 0;
-   rectangle.top = 0;
-   rectangle.right = m_rectangle.width();
-   rectangle.bottom = m_rectangle.height();
+   rectangle.left() = 0;
+   rectangle.top() = 0;
+   rectangle.right() = m_rectangle.width();
+   rectangle.bottom() = m_rectangle.height();
 
 }
 

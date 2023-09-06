@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "control_box_button.h"
 #include "acme/handler/item.h"
+#include "acme/user/user/tool.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/pen.h"

@@ -42,6 +42,47 @@ CLASS_DECL_ACME void trace_category_static_init(::acme::system * psystem);
 CLASS_DECL_ACME void trace_category_static_term();
 
 
+::file::path _system_config_folder_path()
+{
+
+   ::file::path pathSystemConfigFolder;
+
+#ifdef WINDOWS
+
+   pathSystemConfigFolder = getenv("AppData");
+
+#else // WINDOWS
+
+   pathSystemConfigFolder = getenv("HOME");
+
+#ifdef MACOS
+
+   pathSystemConfigFolder /= "Application Support";
+
+#else // MACOS
+
+   pathSystemConfigFolder /= ".config";
+
+#endif // !MACOS
+
+#endif // !WINDOWS
+
+   return pathSystemConfigFolder;
+
+}
+
+::file::path _ca2_config_system_folder_path()
+{
+
+   auto pathSystemConfigFolder = _system_config_folder_path();
+
+   auto pathCa2ConfigSystemFolder = pathSystemConfigFolder / "ca2/config/system";
+
+   return pathCa2ConfigSystemFolder;
+
+}
+
+
 //static ::acme::system * g_psystem = nullptr;
 
 
@@ -109,12 +150,22 @@ namespace acme
 
       m_psubsystem->initialize(this);
 
+      ::output_debug_string("Going to create simple log\n");
+
       m_plogger = __create_new < ::simple_log >();
 
+      ::output_debug_string("output_debug_string : simple log created\n");
+
+      information() << "information() << output_debug_string : simple log created";
+
 #ifdef PARALLELIZATION_PTHREAD
+
 #if defined(__APPLE__)
+
       m_bJoinable = true;
+
 #endif
+
 #endif
 
       //#ifdef WINDOWS_DESKTOP
@@ -155,6 +206,8 @@ namespace acme
 
       m_plogger->m_etracelevelMinimum = e_trace_level_information;
 
+      information() << "initialize_system trace_category_static_init";
+
       trace_category_static_init(this);
 
 
@@ -175,33 +228,41 @@ namespace acme
       //m_pacmedirectory = nullptr;
       //m_pacmepath = nullptr;
 
+      information() << "initialize_system factory()->initialize";
+
       factory()->initialize(this);
 
-      //#ifdef LINUX
-      //
-      //      m_elinuxdistribution = e_linux_distribution_unknown;
-      //
-      //#endif
+//      //#ifdef LINUX
+//      //
+//      //      m_elinuxdistribution = e_linux_distribution_unknown;
+//      //
+//      //#endif
+//
+//      //m_edesktop = ::user::e_desktop_none;
+//
+//      information() << "initialize_system os_construct";
+//
+//      os_construct();
+//
+//      //acmesystem() = this;
+//
+//      //      if (g_psystem == nullptr)
+//      //      {
+//      //
+//      //         g_psystem = this;
+//      //
+//      //      }
 
-      //m_edesktop = ::user::e_desktop_none;
 
-      os_construct();
-
-      //acmesystem() = this;
-
-      //      if (g_psystem == nullptr)
-      //      {
-      //
-      //         g_psystem = this;
-      //
-      //      }
-
+      information() << "initialize_system create nano";
 
       __construct_new(m_pnano);
 
       //m_psystemimpl = memory_new system_impl;
 
       //set_os_data(LAYERED_ACME, this);
+
+      information() << "acme initialize_system end";
 
    }
 
@@ -245,8 +306,8 @@ namespace acme
          acmeapplication()->main();
 
       }
-      
-      
+
+
 
 
       //if (!estatus)
@@ -285,37 +346,33 @@ namespace acme
       if (m_pnode)
       {
 
-         //return ::success;
-
          return;
 
       }
+
+      information() <<"::acme::system create_os_node";
 
       auto & pfactory = node_factory();
 
       if (!pfactory)
       {
 
-         //fatal() <<"node_factory has failed (status=" << (const void &) pfactory << ")";
+         fatal() <<"node_factory has failed";
 
          throw ::exception(error_resource);
 
       }
 
-
 #if !defined(WINDOWS)
-
 
       __construct(m_pexceptiontranslator);
 
-
       m_pexceptiontranslator->attach();
-
 
 #endif
 
+      information() << "create_os_node going to create node";
 
-      //auto estatus = __construct(m_pnode);
       __construct(m_pnode);
 
       m_pacmenode = m_pnode;
@@ -333,6 +390,9 @@ namespace acme
          m_pacmeapplication->m_pacmenode = m_pnode;
 
       }
+
+      m_pmutexHttpDownload = acmenode()->create_mutex();
+
 
       //if(!estatus)
       //{
@@ -388,7 +448,7 @@ namespace acme
       __construct(m_plogger);
 
       __construct_new(m_pdatetime);
-      
+
       __construct_new(m_purl);
 
 
@@ -1014,26 +1074,58 @@ namespace acme
 
    ::nano::http * system::nano_http()
    {
-      
-      if(!m_pnanohttp)
+
+      if (!m_pnanohttp)
       {
-         
+
          initialize_nano_http();
-         
+
          __construct(m_pnanohttp);
-         
+
       }
 
       return m_pnanohttp;
-      
+
    }
-   
-   
-   ::string system::http_text(const ::scoped_string & scopedstrUrl)
+
+
+   bool system::http_exists(const ::scoped_string & scopedstrUrl, ::property_set & set)
    {
 
-      auto memory  = http_memory(scopedstrUrl);
-      
+      throw ::interface_only();
+
+      return false;
+
+
+   }
+
+
+   ::file::enum_type system::http_get_type(const ::scoped_string & scopedstrUrl, property_set & set)
+   {
+
+      throw ::interface_only();
+
+      return ::file::e_type_unknown;
+
+   }
+
+   
+   ::file::enum_type system::http_get_type(const ::scoped_string & scopedstrUrl, ::payload * pvarQuery, property_set & set)
+   {
+
+      throw ::interface_only();
+
+      return ::file::e_type_unknown;
+
+   }
+
+
+
+   ::string system::http_text(::acme::context * pcontext, const ::scoped_string & scopedstrUrl)
+   {
+
+      auto memory = http_memory(pcontext, scopedstrUrl);
+
       ::string str = memory.as_utf8();
 
       return str;
@@ -1041,38 +1133,40 @@ namespace acme
    }
 
 
-   ::string system::http_text(const ::scoped_string & scopedstrUrl, ::property_set & set)
+   ::string system::http_text(::acme::context* pcontext, const ::scoped_string & scopedstrUrl, ::property_set & set)
    {
-   
-      auto memory  = http_memory(scopedstrUrl, set);
-      
+
+      auto memory = http_memory(pcontext, scopedstrUrl, set);
+
       ::string str = memory.as_utf8();
 
       return str;
-   
+
    }
 
 
-   ::memory system::http_memory(const ::scoped_string & scopedstrUrl)
+   ::memory system::http_memory(::acme::context* pcontext, const ::scoped_string & scopedstrUrl)
    {
-      
+
       property_set set;
 
       set["raw_http"] = true;
 
       set["disable_common_name_cert_check"] = true;
 
-      return http_memory(scopedstrUrl, set);
-      
+      return http_memory(pcontext, scopedstrUrl, set);
+
    }
 
 
-   ::memory system::http_memory(const ::scoped_string & scopedstrUrl, ::property_set & set)
+   ::memory system::http_memory(::acme::context * pcontext, const ::scoped_string & scopedstrUrl, ::property_set & set)
    {
+
+      UNREFERENCED_PARAMETER(pcontext);
 
       try
       {
-         
+
          ::memory memory;
 
          ::nano::http_response httpresponse(set, memory);
@@ -1082,41 +1176,41 @@ namespace acme
          return ::transfer(memory);
 
       }
-      catch(...)
+      catch (...)
       {
-         
+
          set["timeout"] = true;
-         
+
          return {};
-         
+
       }
-      
+
       //return pasynchronousehttpresponse->m_data.m_memory;
-      
+
    }
 
 
-   void system::http_download(const ::payload & payloadFile, const ::scoped_string & scopedstrUrl)
+   void system::http_download(::acme::context* pcontext, const ::payload & payloadFile, const ::scoped_string & scopedstrUrl)
    {
-      
+
       auto pfile = acmefile()->get_writer(payloadFile);
 
-      auto memory = http_memory(scopedstrUrl);
-      
+      auto memory = http_memory(pcontext, scopedstrUrl);
+
       pfile->write(memory.data(), memory.size());
-      
+
    }
 
 
-   void system::http_download(const ::payload & payloadFile, const ::scoped_string & scopedstrUrl, ::property_set & set)
+   void system::http_download(::acme::context* pcontext, const ::payload & payloadFile, const ::scoped_string & scopedstrUrl, ::property_set & set)
    {
-   
+
       auto pfile = acmefile()->get_writer(payloadFile);
 
-      auto memory = http_memory(scopedstrUrl, set);
-      
+      auto memory = http_memory(pcontext, scopedstrUrl, set);
+
       pfile->write(memory.data(), memory.size());
-   
+
    }
 
 
@@ -1142,7 +1236,7 @@ namespace acme
 
       if (acmeapplication()->m_bSession)
       {
-       
+
          //return ::success;
          create_session();
 
@@ -2084,7 +2178,22 @@ namespace acme
 
 #else
 
-      etracelevel = e_trace_level_warning;
+      auto pathCa2ConfigSystemFolder = _ca2_config_system_folder_path();
+
+      auto pathTraceLevelInformation = pathCa2ConfigSystemFolder / "trace_level_information.txt";
+
+      if(file_exists(pathTraceLevelInformation))
+      {
+
+         etracelevel = e_trace_level_information;
+
+      }
+      else
+      {
+
+         etracelevel = e_trace_level_warning;
+
+      }
 
 #endif
 
@@ -2142,11 +2251,11 @@ namespace acme
 
 
 
-   void system::os_construct()
-   {
-
-
-   }
+//   void system::os_construct()
+//   {
+//
+//
+//   }
 
 
 #ifdef _DEBUG
@@ -2761,6 +2870,110 @@ namespace acme
    {
 
       return scopedstrComponent + "_" + scopedstrImplementation;
+
+   }
+
+
+   ::file::path system::local_get_matter_path()
+   {
+
+      return acmedirectory()->ca2roaming() / "appmatter";
+
+   }
+
+
+   ::file::path system::local_get_matter_path(string strMatter)
+   {
+
+#ifdef UNIVERSAL_WINDOWS
+
+      return "";
+
+#else
+
+      return local_get_matter_path() / strMatter;
+
+#endif
+
+   }
+
+
+   ::file::path system::local_get_matter_cache_path()
+   {
+
+      return acmedirectory()->ca2roaming() / "cache/appmatter";
+
+   }
+
+
+   ::file::path system::local_get_matter_cache_path(string strMatter)
+   {
+
+      return local_get_matter_cache_path() / strMatter;
+
+   }
+
+
+   string system::get_system_configuration()
+   {
+
+#ifndef CA2_PLATFORM_VERSION
+
+#error "CA2_PLATFORM_VERSION not defined"
+
+#endif
+
+#ifndef CA2_BASIS
+
+#error "CA2_BASIS not defined"
+
+#endif
+
+#ifndef CA2_STAGE
+
+#error "CA2_STAGE not defined"
+
+#endif
+
+#if CA2_PLATFORM_VERSION == CA2_BASIS
+
+      return "basis";
+
+      //#pragma message "CA2_PLATFORM_VERSION is CA2_BASIS"
+
+#elif CA2_PLATFORM_VERSION == CA2_STAGE
+
+      return "stage";
+
+      //#pragma message "CA2_PLATFORM_VERSION is CA2_STAGE"
+
+#else
+
+#error "CA2_PLATFORM_VERSION has unsupported definition"
+
+#endif
+
+   }
+
+
+   string system::get_system_platform()
+   {
+
+#ifdef X86
+
+      return "x86";
+
+#else
+
+      return "x64";
+
+#endif
+
+   }
+   
+   void system::install_progress_add_up(int iAddUp)
+   {
+
 
    }
 

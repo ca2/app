@@ -251,10 +251,10 @@
 //
 //   ::rectangle_f64 rectangle;
 //
-//   rectangle.left = 0;
-//   rectangle.top = 0;
-//   rectangle.right = g_posremote->getWidth();
-//   rectangle.bottom = g_posremote->getHeight();
+//   rectangle.left() = 0;
+//   rectangle.top() = 0;
+//   rectangle.right() = g_posremote->getWidth();
+//   rectangle.bottom() = g_posremote->getHeight();
 //
 //   SetMainScreenRect(rectangle);
 //
@@ -291,15 +291,15 @@
 //
 //         //   pimpl->m_puserthread->do_events();
 //
-//         //   pimpl->m_pprodevian->do_events();
+//         //   pimpl->m_pgraphicsthread->do_events();
 //
 //         //   pimpl->m_puserthread->do_events();
 //
-//         //   pimpl->m_pprodevian->do_events();
+//         //   pimpl->m_pgraphicsthread->do_events();
 //
 //         //   pimpl->m_puserthread->do_events();
 //
-//         //   pimpl->m_pprodevian->do_events();
+//         //   pimpl->m_pgraphicsthread->do_events();
 //
 //         //}
 //

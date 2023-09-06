@@ -82,6 +82,23 @@ enum enum_message : ::i32
    e_message_mouse_wheel = 522,
    e_message_mouse_last = 526,
 
+   e_message_parent_base = 0x6000,
+
+   e_message_parent_mouse_move = e_message_parent_base + e_message_mouse_move,
+   e_message_parent_mouse_first = e_message_parent_base + e_message_mouse_first,
+   e_message_parent_left_button_down = e_message_parent_base + e_message_left_button_down,
+   e_message_parent_left_button_up = e_message_parent_base + e_message_left_button_up,
+   e_message_parent_left_button_double_click = e_message_parent_base + e_message_left_button_double_click,
+   e_message_parent_right_button_down = e_message_parent_base + e_message_right_button_down,
+   e_message_parent_right_button_up = e_message_parent_base + e_message_right_button_up,
+   e_message_parent_right_button_double_click = e_message_parent_base + e_message_right_button_double_click,
+   e_message_parent_middle_button_down = e_message_parent_base + e_message_middle_button_down,
+   e_message_parent_middle_button_up = e_message_parent_base + e_message_middle_button_up,
+   e_message_parent_middle_button_double_click = e_message_parent_base + e_message_middle_button_double_click,
+   e_message_parent_mouse_wheel = e_message_parent_base + e_message_mouse_wheel,
+   e_message_parent_mouse_last = e_message_parent_base + e_message_mouse_last,
+
+
 
    e_message_capture_changed = 533,
 
@@ -214,6 +231,7 @@ e_message_queue_sentinel =    0x0379,
 
 
 //#define WM_APPEXIT         WM_APP + 1444
+
 
 
    e_message_application = 0x8000,

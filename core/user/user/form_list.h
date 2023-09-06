@@ -63,7 +63,7 @@ namespace user
       virtual void _001OnShowControl(::user::interaction * pinteraction);
       ::user::interaction * _001GetControl(index iItem, index iSubItem) override;
       virtual ::user::interaction * _001GetControl(draw_list_subitem * psubitem);
-      virtual bool on_click(::item * pitem) override;
+      bool on_click(::item * pitem) override;
       bool on_right_click(::item * pitem) override;
       void _001OnTimer(::timer * ptimer) override;
 

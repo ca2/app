@@ -22,7 +22,8 @@ namespace user
 
 
       scroll_bar();
-      virtual ~scroll_bar();
+      ~scroll_bar() override;
+
 
       virtual i32 _001GetScrollPos() = 0;
       virtual i32 _001SetScrollPos(i32 iPos) = 0;
@@ -43,7 +44,9 @@ namespace user
       virtual void _001OnClip(::draw2d::graphics_pointer & pgraphics) override;
 
 
-      virtual ::status < ::rectangle_i32 > get_track_rectangle(::draw2d::graphics_pointer & pgraphics);
+      //virtual ::status < ::rectangle_i32 > get_track_rectangle(::draw2d::graphics_pointer & pgraphics);
+
+      virtual ::status < ::rectangle_i32 > get_track_rectangle();
 
 
       virtual ::color::color scrollbar_color_strong(::user::style* pstyle, ::enum_element eelement);
@@ -51,6 +54,10 @@ namespace user
       virtual ::color::color scrollbar_border_color(::user::style* pstyle, ::enum_element eelement);
       virtual ::color::color scrollbar_lite_border_color(::user::style* pstyle, ::enum_element eelement);
       virtual ::color::color scrollbar_draw_color(::user::style* pstyle, ::enum_element eelement);
+
+
+      virtual ::i32 scrollbar_width();
+
 
    };
 

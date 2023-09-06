@@ -40,8 +40,8 @@ public:
    virtual ::size_i32 get_main_screen_size();
 
    
-   virtual ::payload do_synchronously(const class time & timeWait = ::time::infinity());
-   virtual void do_asynchronously();
+   virtual ::payload do_synchronously(const class time & timeWait = ::time::infinity()) override;
+   virtual void do_asynchronously() override;
    
 
 };

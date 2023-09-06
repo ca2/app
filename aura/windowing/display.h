@@ -34,7 +34,7 @@ namespace windowing
       index                         m_iMainWorkspace;
       double                        m_dpi;
 
-
+      ::rectangle_i32_array         m_rectangleaWorkAreas;
       ::string                      m_strDarkModeAnnotation;
 
 
@@ -76,6 +76,10 @@ namespace windowing
 
       virtual monitor * get_monitor(index iMonitor);
 
+      virtual monitor * monitor_hit_test(const ::point_i32 & point);
+
+      virtual monitor * get_best_monitor(const ::rectangle_i32 & rectangle);
+
       virtual void  get_monitor(rectangle_i32_array & rectaMonitor, rectangle_i32_array & rectaIntersect, const ::rectangle_i32 & rectangle);
 
       virtual index initial_frame_position(::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangle, bool bMove, ::user::interaction * pinteraction);
@@ -102,12 +106,12 @@ namespace windowing
       virtual ::size_i32 get_monitor_union_size();
 
       virtual ::count get_monitor_count();
-      virtual bool  get_monitor_rectangle(index iMonitor, ::rectangle_i32 & rectangle);
+      virtual bool get_monitor_rectangle(index iMonitor, ::rectangle_i32 & rectangle);
 
       virtual ::index  get_main_monitor_of_rectangle(const ::rectangle_i32 &rectangle);
 
       virtual ::count get_desk_monitor_count();
-      virtual bool  get_desk_monitor_rect(index iMonitor, ::rectangle_i32 & rectangle);
+      virtual bool get_desk_monitor_rect(index iMonitor, ::rectangle_i32 & rectangle);
 
 
       virtual index get_main_workspace(::rectangle_i32 & prectangle);

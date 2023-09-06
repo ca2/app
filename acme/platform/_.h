@@ -7,6 +7,7 @@ namespace nano
 
    
    class http;
+   class http_response;
 
 
 } // namespace nano

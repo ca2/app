@@ -63,6 +63,63 @@ namespace x11
    Atom display::intern_atom(const char *pszAtomName, bool bCreate)
    {
 
+      return _intern_atom_unlocked(pszAtomName, bCreate);
+
+//      if (m_pdisplay == nullptr)
+//      {
+//
+//         return 0;
+//
+//      }
+//
+//      auto atom = XInternAtom(m_pdisplay, pszAtomName, bCreate ? True : False);
+//
+//      if (atom == None)
+//      {
+//
+//         windowing_output_debug_string("ERROR: cannot find atom for " + string(pszAtomName) + "\n");
+//
+//         return None;
+//
+//      }
+//
+//      return atom;
+
+   }
+
+
+   Atom display::intern_atom(enum_atom eatom, bool bCreate)
+   {
+
+      return _intern_atom_unlocked(eatom, bCreate);
+
+//      if (eatom < 0 || eatom >= e_atom_count)
+//      {
+//
+//         return None;
+//
+//      }
+//
+//      Atom atom = m_atommap[eatom];
+//
+//      if (atom == None)
+//      {
+//
+//         atom = intern_atom(atom_name(eatom), bCreate);
+//
+//         m_atommap[eatom] = atom;
+//
+//      }
+//
+//      return atom;
+
+   }
+
+
+
+   Atom display::_intern_atom_unlocked(const char *pszAtomName, bool bCreate)
+   {
+
       if (m_pdisplay == nullptr)
       {
 
@@ -86,7 +143,7 @@ namespace x11
    }
 
 
-   Atom display::intern_atom(enum_atom eatom, bool bCreate)
+   Atom display::_intern_atom_unlocked(enum_atom eatom, bool bCreate)
    {
 
       if (eatom < 0 || eatom >= e_atom_count)
@@ -101,7 +158,7 @@ namespace x11
       if (atom == None)
       {
 
-         atom = intern_atom(atom_name(eatom), bCreate);
+         atom = _intern_atom_unlocked(atom_name(eatom), bCreate);
 
          m_atommap[eatom] = atom;
 
@@ -110,7 +167,6 @@ namespace x11
       return atom;
 
    }
-
 
 
    unsigned char* display::_get_string_property(Display * display, Window window, char* property_name)
@@ -493,10 +549,10 @@ namespace x11
       //printf("::x11::display::init_task pscreen=%" PRIxPTR "\n", pscreen);
       //printf("::x11::display::init_task (wScreen,hScreen)=%d,%d\n", wScreen, hScreen);
 
-      //rectangleMainScreen.left = 0;
-      //rectangleMainScreen.top = 0;
-      //rectangleMainScreen.right = wScreen;
-      //rectangleMainScreen.bottom = hScreen;
+      //rectangleMainScreen.left() = 0;
+      //rectangleMainScreen.top() = 0;
+      //rectangleMainScreen.right() = wScreen;
+      //rectangleMainScreen.bottom() = hScreen;
 
       //operating_system_set_main_screen_rectangle(rectangleMainScreen);
 

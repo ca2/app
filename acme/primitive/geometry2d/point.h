@@ -253,16 +253,16 @@ public:
 //   void x_constraint(const RECTANGLE_TYPE& rectangle) noexcept
 //   {
 //
-//      if (this->x() < rectangle.left)
+//      if (this->x() < rectangle.left())
 //      {
 //
-//         this->x() = rectangle.left;
+//         this->x() = rectangle.left();
 //
 //      }
-//      else if (this->x() > rectangle.right)
+//      else if (this->x() > rectangle.right())
 //      {
 //
-//         this->x() = rectangle.right;
+//         this->x() = rectangle.right();
 //
 //      }
 //
@@ -271,16 +271,16 @@ public:
 //   void y_constraint(const RECTANGLE_TYPE& rectangle) noexcept
 //   {
 //
-//      if (this->y() < rectangle.top)
+//      if (this->y() < rectangle.top())
 //      {
 //
-//         this->y() = rectangle.top;
+//         this->y() = rectangle.top();
 //
 //      }
-//      else if (this->y() > rectangle.bottom)
+//      else if (this->y() > rectangle.bottom())
 //      {
 //
-//         this->y() = rectangle.bottom;
+//         this->y() = rectangle.bottom();
 //
 //      }
 //

@@ -60,7 +60,7 @@
     <ClInclude Include="experience\frame_011.h">
       <Filter>Header Files\experience</Filter>
     </ClInclude>
-    <ClInclude Include="experience\frame_013.h">
+    <ClInclude Include="experience\frame_022.h">
       <Filter>Header Files\experience</Filter>
     </ClInclude>
     <ClInclude Include="user\style.h">
@@ -110,7 +110,7 @@
     <ClCompile Include="experience\frame_011.cpp">
       <Filter>Source Files\experience</Filter>
     </ClCompile>
-    <ClCompile Include="experience\frame_013.cpp">
+    <ClCompile Include="experience\frame_022.cpp">
       <Filter>Source Files\experience</Filter>
     </ClCompile>
     <ClCompile Include="experience\frame_Minimal001.cpp">

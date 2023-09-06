@@ -106,16 +106,16 @@ namespace user
 
       }
 
-      //_001CacheHint(pitem->m_plist, pitem->m_iItem, 1);
+      //_001CacheHint(pitem->m_plist, pitem->m_item.m_iItem, 1);
 
       //{
 
-      //   auto passoc = m_map.plookup(pitem->m_iItem);
+      //   auto passoc = m_map.plookup(pitem->m_item.m_iItem);
 
       //   if(passoc != nullptr)
       //   {
 
-      //      auto passoc2 = passoc->element2().plookup(pitem->m_iItem);
+      //      auto passoc2 = passoc->element2().plookup(pitem->m_item.m_iItem);
 
       //      if(passoc2 != nullptr)
       //      {

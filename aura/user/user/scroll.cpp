@@ -72,15 +72,15 @@ namespace user
    void scroll_base::on_change_impact_size(::draw2d::graphics_pointer & pgraphics)
    {
 
-      m_pscrolldataHorizontal->m_bScroll = false;
+      m_pscrolldataHorizontal->m_bHasScroll = false;
 
-      m_pscrolldataVertical->m_bScroll = false;
+      m_pscrolldataVertical->m_bHasScroll = false;
 
       auto sizeTotal = get_total_size();
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
-      if(rectangleClient.area() <= 0)
+      if(rectangleX.area() <= 0)
       {
 
          return;
@@ -93,9 +93,9 @@ namespace user
 
       ::i32 iTotalWidth = (::i32) sizeTotal.cx();
 
-      ::i32 iClientHeight = rectangleClient.height();
+      ::i32 iClientHeight = rectangleX.height();
 
-      ::i32 iClientWidth = rectangleClient.width();
+      ::i32 iClientWidth = rectangleX.width();
 
       ::i32 iScrollHeight = iClientHeight - get_int(pstyle, e_int_scroll_bar_width);;
 
@@ -104,12 +104,12 @@ namespace user
       if (iTotalWidth > iClientWidth)
       {
 
-         m_pscrolldataHorizontal->m_bScroll = true;
+         m_pscrolldataHorizontal->m_bHasScroll = true;
 
          if (iTotalHeight > iScrollHeight)
          {
 
-            m_pscrolldataVertical->m_bScroll = true;
+            m_pscrolldataVertical->m_bHasScroll = true;
 
          }
 
@@ -117,20 +117,20 @@ namespace user
       else if (iTotalHeight > iClientHeight)
       {
 
-         m_pscrolldataVertical->m_bScroll = true;
+         m_pscrolldataVertical->m_bHasScroll = true;
 
          if (iTotalWidth > iscrollWidth)
          {
 
-            m_pscrolldataHorizontal->m_bScroll = true;
+            m_pscrolldataHorizontal->m_bHasScroll = true;
 
          }
 
       }
 
-      m_pscrolldataHorizontal->m_bScroll = m_pscrolldataHorizontal->m_bScrollEnable && m_pscrolldataHorizontal->m_bScroll;
+      //m_pscrolldataHorizontal->m_bShowScroll = m_pscrolldataHorizontal->m_bScrollEnable && m_pscrolldataHorizontal->m_bHasScroll;
 
-      m_pscrolldataVertical->m_bScroll = m_pscrolldataVertical->m_bScrollEnable && m_pscrolldataVertical->m_bScroll;
+      //m_pscrolldataVertical->m_bShowScroll = m_pscrolldataVertical->m_bScrollEnable && m_pscrolldataVertical->m_bHasScroll;
 
       //if (!m_pscrolldataHorizontal->m_bScroll)
       //{
@@ -148,7 +148,7 @@ namespace user
       //}
 
 
-      auto rectangleScroll = client_rectangle();
+      auto rectangleScroll = this->rectangle();
 
       m_pscrolldataHorizontal->m_iPage = rectangleScroll.width();
 
@@ -176,29 +176,29 @@ namespace user
    bool scroll_base::GetActiveClientRect(::rectangle_i32 & rectangle)
    {
 
-      rectangle = client_rectangle();
+      rectangle = this->rectangle();
 
       auto sizeTotal = get_total_size();
 
       auto pointOffset = get_context_offset();
 
-      rectangle.right = (::i32) (rectangle.left + minimum(::width(rectangle), sizeTotal.cx() - m_pscrolldataHorizontal->m_iPage - pointOffset.x()));
+      rectangle.right() = (::i32) (rectangle.left() + minimum(::width(rectangle), sizeTotal.cx() - m_pscrolldataHorizontal->m_iPage - pointOffset.x()));
 
-      rectangle.bottom = (::i32) (rectangle.top + minimum(::height(rectangle), sizeTotal.cy() - m_pscrolldataVertical->m_iPage - pointOffset.y()));
+      rectangle.bottom() = (::i32) (rectangle.top() + minimum(::height(rectangle), sizeTotal.cy() - m_pscrolldataVertical->m_iPage - pointOffset.y()));
 
       return true;
 
    }
 
 
-   //bool scroll_base::client_rectangle(::rectangle_i32 * prectangle)
+   //bool scroll_base::this->rectangle(::rectangle_i32 * prectangle)
    //{
 
-   //   ::user::interaction::client_rectangle(prectangle);
+   //   ::user::interaction::this->rectangle(prectangle);
 
-   //   prectangle->right -= get_final_y_scroll_bar_width();
+   //   prectangle->right() -= get_final_y_scroll_bar_width();
 
-   //   prectangle->bottom -= get_final_x_scroll_bar_width();
+   //   prectangle->bottom() -= get_final_x_scroll_bar_width();
 
    //   return true;
 
@@ -208,10 +208,10 @@ namespace user
    bool scroll_base::GetFocusRect(::rectangle_i32 & rectangle)
    {
 
-      rectangle.left = 0;
-      rectangle.top = 0;
-      rectangle.right = const_layout().sketch().size().cx();
-      rectangle.bottom = const_layout().sketch().size().cy();
+      rectangle.left() = 0;
+      rectangle.top() = 0;
+      rectangle.right() = const_layout().sketch().size().cx();
+      rectangle.bottom() = const_layout().sketch().size().cy();
 
       return true;
 
@@ -249,24 +249,78 @@ namespace user
    void scroll_base::defer_draw_scroll_gap(::draw2d::graphics_pointer & pgraphics)
    {
 
-      if (m_pscrolldataHorizontal->m_bScrollEnable && m_pscrolldataHorizontal->m_bScroll
+      if (m_pscrolldataHorizontal->m_bScrollEnable && m_pscrolldataHorizontal->m_bHasScroll
             && m_pscrollbarHorizontal.is_set() && m_pscrollbarHorizontal->is_ok()
-            && m_pscrolldataVertical->m_bScrollEnable && m_pscrolldataVertical->m_bScroll
+            && m_pscrolldataVertical->m_bScrollEnable && m_pscrolldataVertical->m_bHasScroll
             && m_pscrollbarVertical.is_set() && m_pscrollbarVertical->is_ok())
       {
 
-         auto rectangleClient = client_rectangle();
+         auto rectangleX = this->rectangle();
 
          ::rectangle_i32 rectangle;
 
-         rectangle.top = rectangleClient.bottom;
-         rectangle.left = rectangleClient.right;
-         rectangle.right = (::i32) (rectangle.left + m_pscrollbarVertical->const_layout().design().size().cx());
-         rectangle.bottom = (::i32) (rectangle.top + m_pscrollbarHorizontal->const_layout().design().size().cy());
+         rectangle.top() = rectangleX.bottom();
+         rectangle.left() = rectangleX.right();
+         rectangle.right() = (::i32) (rectangle.left() + m_pscrollbarVertical->const_layout().design().size().cx());
+         rectangle.bottom() = (::i32) (rectangle.top() + m_pscrollbarHorizontal->const_layout().design().size().cy());
 
          pgraphics->fill_rectangle(rectangle, argb(127, 127, 127, 127));
 
       }
+
+   }
+
+
+   bool scroll_base::horizontal_scrollbar_visible()
+   {
+
+      return m_pscrolldataHorizontal->scroll_visible();
+
+   }
+
+
+   bool scroll_base::vertical_scrollbar_visible()
+   {
+
+      return m_pscrolldataVertical->scroll_visible();
+
+   }
+
+
+   bool scroll_base::get_element_rectangle(::rectangle_i32 & rectangle, enum_element eelement)
+   {
+
+      if (eelement == e_element_client_hit_test)
+      {
+
+         //if (!m_bEmptyAreaIsClientArea)
+         //{
+
+         //   return false;
+
+         //}
+
+         rectangle = this->rectangle();
+
+         if (horizontal_scrollbar_visible())
+         {
+
+            rectangle.bottom() -= m_pscrollbarHorizontal->scrollbar_width();
+
+         }
+
+         if (vertical_scrollbar_visible())
+         {
+
+            rectangle.right() -= m_pscrollbarVertical->scrollbar_width();
+
+         }
+
+         return true;
+
+      }
+
+      return ::user::interaction::get_element_rectangle(rectangle, eelement);
 
    }
 

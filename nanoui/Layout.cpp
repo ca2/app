@@ -30,8 +30,8 @@ namespace nanoui
    size_i32 BoxLayout::preferred_size(::nano2d::context* pcontext, Widget* pwidget, bool bRecalcTextSize)
    {
 
-      size_i32 size(m_rectangleMargin.left + m_rectangleMargin.right,
-         m_rectangleMargin.top + m_rectangleMargin.bottom);
+      size_i32 size(m_rectangleMargin.left() + m_rectangleMargin.right(),
+         m_rectangleMargin.top() + m_rectangleMargin.bottom());
 
       int y_offset = 0;
 
@@ -43,7 +43,7 @@ namespace nanoui
          if (m_eorientation == e_orientation_vertical)
          {
 
-            size[1] += pwidget->theme()->m_iWindowHeaderHeight - m_rectangleMargin.top / 2;
+            size[1] += pwidget->theme()->m_iWindowHeaderHeight - m_rectangleMargin.top() / 2;
 
          }
          else
@@ -135,7 +135,7 @@ namespace nanoui
          if (m_eorientation == e_orientation_vertical)
          {
 
-            position += pwidget->theme()->m_iWindowHeaderHeight - m_rectangleMargin.top / 2;
+            position += pwidget->theme()->m_iWindowHeaderHeight - m_rectangleMargin.top() / 2;
 
          }
          else

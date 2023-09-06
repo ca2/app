@@ -139,6 +139,7 @@
     <ClInclude Include="user\simple\_impl.h" />
     <ClInclude Include="user\user\button.h" />
     <ClInclude Include="user\user\combo_box.h" />
+    <ClInclude Include="user\user\form_handler.h" />
     <ClInclude Include="user\user\list_box.h" />
     <ClInclude Include="user\user\composition_imm_client.h" />
     <ClInclude Include="user\user\control.h" />
@@ -183,6 +184,8 @@
     <ClInclude Include="user\user\notify_icon_listener.h" />
     <ClInclude Include="user\user\notify_icon_mm.h" />
     <ClInclude Include="user\user\notify_icon_mm_bridge.h" />
+    <ClInclude Include="user\user\options_impact.h" />
+    <ClInclude Include="user\user\options_impact_handler.h" />
     <ClInclude Include="user\user\picture.h" />
     <ClInclude Include="user\user\picture_interaction.h" />
     <ClInclude Include="user\user\place_holder.h" />
@@ -255,7 +258,6 @@
     <ClCompile Include="user\experience\size_manager.cpp" />
     <ClCompile Include="user\form\document.cpp" />
     <ClCompile Include="user\form\impact.cpp" />
-    <ClCompile Include="user\form\options.cpp" />
     <ClCompile Include="user\menu\button.cpp" />
     <ClCompile Include="user\menu\central.cpp" />
     <ClCompile Include="user\menu\interaction.cpp" />
@@ -278,6 +280,7 @@
     <ClCompile Include="user\user\document.cpp" />
     <ClCompile Include="user\user\document_manager.cpp" />
     <ClCompile Include="user\user\document_manager_container.cpp" />
+    <ClCompile Include="user\user\form_handler.cpp" />
     <ClCompile Include="user\user\frame_window.cpp" />
     <ClCompile Include="user\user\hotplugin.cpp" />
     <ClCompile Include="user\user\image_list.cpp" />
@@ -290,6 +293,7 @@
     <ClCompile Include="user\user\margin.cpp" />
     <ClCompile Include="user\user\multiple_document_template.cpp" />
     <ClCompile Include="user\user\network_configuration.cpp" />
+    <ClCompile Include="user\user\options_impact.cpp" />
     <ClCompile Include="user\user\picture.cpp" />
     <ClCompile Include="user\user\picture_impl.cpp" />
     <ClCompile Include="user\user\picture_interaction.cpp" />

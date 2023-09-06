@@ -114,9 +114,9 @@ namespace user
 
       ::pointer<::data::tree_item>_001HitTest(const ::point_i32 & point, ::user::enum_tree_element & eelement);
 
-      virtual bool on_click(::item * pitem) override;
+      bool on_click(::item * pitem) override;
 
-      virtual bool on_right_click(::item * pitem) override;
+      bool on_right_click(::item * pitem) override;
 
       virtual void perform_click();
 

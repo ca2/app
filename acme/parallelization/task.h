@@ -15,6 +15,10 @@ typedef map < itask_t, ::pointer<task >>task_map;
 typedef map < task *, itask_t > task_id_map;
 
 
+::index task_index(itask_t itask);
+::index task_index();
+
+
 class CLASS_DECL_ACME task :
    virtual public object,
    //virtual public synchronization_object,
@@ -72,6 +76,9 @@ public:
    ::procedure_array                               m_procedurea;
    
    ::pointer < ::locale >                          m_plocale;
+
+   class ::time                                       m_timeHeartBeat;
+
 
 
    task();
@@ -329,3 +336,35 @@ class task_pool;
 
 
 
+
+
+
+
+
+template < typename PRED >
+inline void while_predicateicate_Sleep(int iTime, PRED pred)
+{
+
+   iTime += 99;
+
+   iTime /= 100;
+
+   for (index i = 0; i < iTime; i++)
+   {
+
+      preempt(100_ms);
+
+      if (!pred())
+      {
+
+         return;
+
+      }
+
+      preempt();
+
+   }
+
+   throw ::exception(error_timeout);
+
+}

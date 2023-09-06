@@ -8,6 +8,7 @@
 #include "acme/handler/item.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/primitive/datetime/datetime.h"
+#include "acme/user/user/tool.h"
 #include "aura/graphics/user/control_box_icon.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/save_image.h"
@@ -31,7 +32,7 @@ namespace app_shader
 
       //m_colorBackground = {};
 
-      m_bClickDefaultMouseHandling = true;
+      m_bDefaultClickHandling = true;
 
    }
 
@@ -80,55 +81,62 @@ namespace app_shader
 
       {
 
-         auto pitem = get_user_item(::e_element_close_button);
+         tool().add_item(__new(::item(e_element_close_button, id_close_app)));
 
-         if (pitem)
-         {
-
-            *pitem = ::e_element_close_icon;
-
-         }
-
-      }
-
-      {
-
-         add_user_item(__new(::item(::e_element_switch_button, ::id_switch)));
-
-         auto pitem = get_user_item(::e_element_switch_button);
-
-         *pitem = ::e_element_switch_button;
+//         auto pitem = user_item(::e_element_close_button);
+//
+//         if (pitem)
+//         {
+//
+//            *pitem = ::e_element_close_icon;
+//
+//         }
 
       }
 
       {
 
-         auto pitem = get_user_item(::e_element_maximize_button);
+         tool().add_item(__new(::item(::e_element_switch_button, ::id_switch)));
 
-         if (pitem)
-         {
+//         auto pitem = user_item(::e_element_switch_button);
+//
+//         *pitem = ::e_element_switch_button;
 
-            *pitem = ::e_element_maximize_icon;
+      }
 
-         }
+      {
+
+         tool().add_item(__new(::item(::e_element_maximize_button, ::id_maximize)));
+
+         //auto pitem = user_item(::e_element_maximize_button);
+
+//         if (pitem)
+//         {
+//
+//            *pitem = ::e_element_maximize_icon;
+//
+//         }
 
       }
 
 
       {
 
-         auto pitem = get_user_item(::e_element_minimize_button);
 
-         if (pitem)
-         {
+         tool().add_item(__new(::item(e_element_minimize_button, id_minimize)));
 
-            *pitem = ::e_element_minimize_icon;
-
-         }
+//         auto pitem = user_item(::e_element_minimize_button);
+//
+//         if (pitem)
+//         {
+//
+//            *pitem = ::e_element_minimize_icon;
+//
+//         }
 
       }
 
-      top_level()->set_prodevian();
+      top_level()->set_auto_refresh();
 
       switch_shader();
 
@@ -196,7 +204,7 @@ namespace app_shader
    void main_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
       auto & prender = m_maprender[m_strCurrentShaderPath];
 
@@ -210,7 +218,7 @@ namespace app_shader
 
             m_bSaveFrame = false;
 
-            auto pimage = m_pcontext->m_pauracontext->create_image(rectangleClient.size());
+            auto pimage = m_pcontext->m_pauracontext->create_image(rectangleX.size());
 
             ::draw2d::graphics_pointer pgraphics = pimage->get_graphics();
 
@@ -250,9 +258,9 @@ namespace app_shader
    void main_window::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
-      if(rectangleClient.is_empty())
+      if(rectangleX.is_empty())
       {
 
          return;
@@ -264,7 +272,7 @@ namespace app_shader
       if(::is_set(prender))
       {
 
-         prender->m_rectangle = rectangleClient;
+         prender->m_rectangle = rectangleX;
 
          prender->on_layout(pgraphics);
 
@@ -331,10 +339,10 @@ namespace app_shader
    }
 
 
-   void main_window::_001DrawItem(::draw2d::graphics_pointer& pgraphics, ::item* pitem, const ::user::e_state & estate)
+   void main_window::_001DrawItem(::draw2d::graphics_pointer& pgraphics, ::user::item & useritem, const ::user::e_state & estate)
    {
 
-      ::user::interaction::_001DrawItem(pgraphics, pitem, estate);
+      ::user::interaction::_001DrawItem(pgraphics, useritem, estate);
 
    }
 

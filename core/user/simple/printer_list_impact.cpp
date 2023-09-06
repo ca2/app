@@ -93,7 +93,7 @@ bool simple_printer_list_impact::on_click(::item * pitem)
 
    }
 
-   auto & psubitem = get_subitem(pitem->m_iItem, 0);
+   auto & psubitem = get_subitem(pitem->m_item.m_iItem, 0);
 
    m_psimplemeshdata->_001GetSubItemText(psubitem);
 

@@ -2,9 +2,10 @@
 #include "main_window.h"
 #include "acme/handler/item.h"
 #include "acme/platform/node.h"
-#include "acme/user/user/mouse.h"
+#include "acme/user/user/tool.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/user/control_box_button.h"
+#include "aura/message/user.h"
 #include "acme/primitive/mathematics/mathematics.h"
 #include "aura/platform/application.h"
 
@@ -29,6 +30,8 @@ namespace app_app
 
       m_dPhaseShift = 0.0;
 
+      m_bNeedFullRedrawOnResize = true;
+
    }
 
 
@@ -49,7 +52,7 @@ namespace app_app
       if (!is_sandboxed())
       {
 
-         set_prodevian();
+         set_auto_refresh();
 
       }
 
@@ -65,9 +68,9 @@ namespace app_app
 
       m_dDrawOnlyMainRectangles = false;
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
-      if (rectangleClient.is_empty())
+      if (rectangleX.is_empty())
       {
 
          return;
@@ -81,17 +84,17 @@ namespace app_app
       if (acmenode()->background_color().get_luminance() < 0.5)
       {
 
-         pgraphics->fill_rectangle(rectangleClient, argb(255, 127, 127, 127));
+         pgraphics->fill_rectangle(rectangleX, argb(255, 127, 127, 127));
 
       }
       else
       {
 
-         pgraphics->fill_rectangle(rectangleClient, argb(255, 255, 255, 255));
+         pgraphics->fill_rectangle(rectangleX, argb(255, 255, 255, 255));
 
       }
 
-      auto dMinimumDimension = (double)rectangleClient.minimum_signed_absolute_dimension();
+      auto dMinimumDimension = (double)rectangleX.minimum_signed_absolute_dimension();
 
       double dBase = dMinimumDimension / 17.0;
 
@@ -112,7 +115,7 @@ namespace app_app
 
       }
 
-      rectangleClient.deflate((::i32)dBase);
+      rectangleX.deflate((::i32)dBase);
 
       ::color::color colorInset;
 
@@ -129,7 +132,7 @@ namespace app_app
 
       }
 
-      pgraphics->draw_inset_rectangle(rectangleClient, colorInset, dBase);
+      pgraphics->draw_inset_rectangle(rectangleX, colorInset, dBase);
 
       m_dDrawControlBox = true;
 
@@ -138,9 +141,11 @@ namespace app_app
 
          pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_high);
 
-         auto pitemClose = user_item(::e_element_close_button);
-         auto pitemZoom = user_item(::e_element_maximize_button);
-         auto pitemIcon = user_item(::e_element_minimize_button);
+         auto pitemClose = user_item(tool().item(::e_element_close_button));
+
+         auto pitemZoom = user_item(tool().item(::e_element_maximize_button));
+
+         auto pitemIcon = user_item(tool().item(::e_element_minimize_button));
 
          if (::is_set(pitemClose))
          {
@@ -204,23 +209,21 @@ namespace app_app
 
                m_dPhaseShift = angle - angleNew;
 
-               //auto pmathematics = ::mathematics::mathematics();
-
                m_dPhaseShift = fmod(m_dPhaseShift, 2.0 * pmathematics->get_pi());
 
             }
 
-            int iSize = (int)(::sin(angle) * 20.0 + 64.0);
+            int iSize = (int)(::sin(angle) * 25.0 + 64.0);
 
-            pitemClose->m_rectangle = client_rectangle();
+            pitemClose->m_rectangle = this->rectangle();
 
-            pitemClose->m_rectangle.left = pitemClose->m_rectangle.right - iSize;
+            pitemClose->m_rectangle.left() = pitemClose->m_rectangle.right() - iSize;
 
-            pitemClose->m_rectangle.bottom = pitemClose->m_rectangle.top + iSize;
+            pitemClose->m_rectangle.bottom() = pitemClose->m_rectangle.top() + iSize;
 
             auto pointCursor = get_cursor_position();
 
-            auto pmouse = __create_new < ::user::mouse >();
+            auto pmouse = __create_new < ::message::mouse >();
 
             pmouse->m_point = pointCursor;
 
@@ -229,26 +232,24 @@ namespace app_app
             if (::is_set(pitemZoom))
             {
 
-               pitemZoom->m_rectangle = client_rectangle();
+               pitemZoom->m_rectangle = this->rectangle();
 
-               pitemZoom->m_rectangle.right = pitemClose->m_rectangle.left;
+               pitemZoom->m_rectangle.right() = pitemClose->m_rectangle.left();
 
-               pitemZoom->m_rectangle.bottom = pitemClose->m_rectangle.bottom;
+               pitemZoom->m_rectangle.bottom() = pitemClose->m_rectangle.bottom();
 
-               pitemZoom->m_rectangle.left = pitemZoom->m_rectangle.right - iSize;
-
+               pitemZoom->m_rectangle.left() = pitemZoom->m_rectangle.right() - iSize;
 
                if (::is_set(pitemIcon))
                {
 
-                  pitemIcon->m_rectangle = client_rectangle();
+                  pitemIcon->m_rectangle = this->rectangle();
 
-                  pitemIcon->m_rectangle.right = pitemZoom->m_rectangle.left;
+                  pitemIcon->m_rectangle.right() = pitemZoom->m_rectangle.left();
 
-                  pitemIcon->m_rectangle.bottom = pitemClose->m_rectangle.bottom;
+                  pitemIcon->m_rectangle.bottom() = pitemClose->m_rectangle.bottom();
 
-                  pitemIcon->m_rectangle.left = pitemIcon->m_rectangle.right - iSize;
-
+                  pitemIcon->m_rectangle.left() = pitemIcon->m_rectangle.right() - iSize;
 
                }
 
@@ -275,7 +276,7 @@ namespace app_app
 
       }
 
-      if (pitem->m_eelement == ::e_element_close_button)
+      if (pitem->m_item.m_eelement == ::e_element_close_button)
       {
 
          ::user::draw_close_button(pgraphics, this, useritem, estate);

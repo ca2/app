@@ -40,8 +40,6 @@ namespace apex
       ::pointer < ::mutex >                                m_pmutexUserAppData;
       ::pointer < ::mutex >                                m_pmutexSystemAppData;
 
-      ::pointer < ::mutex >                                m_pmutexMatter;
-
       ::pointer<::operating_system::department>       m_poperatingsystem;
 
       ::pointer<::parallelization::threading>         m_pthreading;
@@ -292,22 +290,13 @@ namespace apex
 
 
 
-      class ::crypto::crypto * crypto();
 
 
-      virtual ::file::path local_get_matter_cache_path();
-      virtual ::file::path local_get_matter_cache_path(string strMatter);
-      virtual ::file::path local_get_matter_path();
-      virtual ::file::path local_get_matter_path(string strMatter);
-
-
-      virtual void install_progress_add_up(int iAddUp = 1);
+      void install_progress_add_up(int iAddUp = 1) override;
 
 
 
 
-      virtual string get_system_platform();
-      virtual string get_system_configuration();
 
 
 
@@ -445,10 +434,13 @@ namespace apex
 
 
       using acme::system::http_text;
-      ::string http_text(const ::scoped_string & scopedstrUrl, ::property_set & set) override;
+      ::string http_text(::acme::context* pcontext, const ::scoped_string & scopedstrUrl, ::property_set & set) override;
 
       using acme::system::http_download;
-      void http_download(const ::payload & payloadFile, const ::scoped_string & scopedstrUrl, ::property_set & set) override;
+      void http_download(::acme::context* pcontext, const ::payload & payloadFile, const ::scoped_string & scopedstrUrl, ::property_set & set) override;
+
+      using acme::system::http_memory;
+      ::memory http_memory(::acme::context* pcontext, const ::scoped_string& scopedstrUrl, ::property_set& set) override;
 
 
    };

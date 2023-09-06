@@ -6,8 +6,8 @@
 #include "acme/constant/message.h"
 #include "acme/platform/keep.h"
 #include "acme/platform/system.h"
-#include "apex/filesystem/filesystem/dir_context.h"
-#include "apex/filesystem/filesystem/file_context.h"
+#include "acme/filesystem/filesystem/dir_context.h"
+#include "acme/filesystem/filesystem/file_context.h"
 #include "acme/handler/request.h"
 #include "aura/message/user.h"
 #include "aura/user/user/interaction_array.h"
@@ -24,6 +24,7 @@
 #include "core/platform/application.h"
 #include "core/platform/session.h"
 #include "core/user/account/impact.h"
+#include "core/user/user/font_list_impact.h"
 
 
 namespace core
@@ -484,6 +485,10 @@ namespace userex
          return false;
 
       }
+
+      ptabpane->m_pplaceholder->m_bExtendOnParentClientArea = true;
+
+      ptabpane->m_pplaceholder->place(this->client_rectangle2());
 
       pimpactdata->m_pimpactdata = (void *)pimpactdata;
 

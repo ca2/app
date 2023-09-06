@@ -733,10 +733,10 @@ rectangle_i32_array cg_get_window_rect_list_above(CGWindowID windowid)
 
          ::rectangle_f64 rectangleCopy;
 
-         rectangleCopy.left = rectangle.origin.x();
-         rectangleCopy.top = rMainScreen.height() - (rectangle.origin.y() + rectangle.size.height);
-         rectangleCopy.bottom = rectangleCopy.top + rectangle.size.height;
-         rectangleCopy.right = rectangle.origin.x() + rectangle.size.width;
+         rectangleCopy.left() = rectangle.origin.x();
+         rectangleCopy.top() = rMainScreen.height() - (rectangle.origin.y() + rectangle.size.height);
+         rectangleCopy.bottom() = rectangleCopy.top() + rectangle.size.height;
+         rectangleCopy.right() = rectangle.origin.x() + rectangle.size.width;
 
          recta.add(rectangleCopy);
 
@@ -1008,10 +1008,10 @@ rectangle_i32_array cg_get_window_rect_list_intersect_above(CGWindowID windowid)
 
                   ::rectangle_f64 rectangleCopy;
 
-                  rectangleCopy.left = rectangle.origin.x();
-                  rectangleCopy.right = rectangle.origin.x() + rectangle.size.width;
-                  rectangleCopy.top = rectangle.origin.y();
-                  rectangleCopy.bottom = rectangle.origin.y() + rectangle.size.height;
+                  rectangleCopy.left() = rectangle.origin.x();
+                  rectangleCopy.right() = rectangle.origin.x() + rectangle.size.width;
+                  rectangleCopy.top() = rectangle.origin.y();
+                  rectangleCopy.bottom() = rectangle.origin.y() + rectangle.size.height;
 
                   recta.add(rectangleCopy);
 
@@ -1217,15 +1217,15 @@ void cg_get_window_rect_list(rectangle_i32_array & recta, array < CGWindowID > &
          
          ::rectangle_f64 rectangleCopy;
          
-         //rectangleCopy.left = rectangle.origin.x();
-         //rectangleCopy.top = rMainScreen.height() - (rectangle.origin.y() + rectangle.size.height);
-         //rectangleCopy.bottom = rectangleCopy.top + rectangle.size.height;
-         //rectangleCopy.right = rectangle.origin.x() + rectangle.size.width;
+         //rectangleCopy.left() = rectangle.origin.x();
+         //rectangleCopy.top() = rMainScreen.height() - (rectangle.origin.y() + rectangle.size.height);
+         //rectangleCopy.bottom() = rectangleCopy.top() + rectangle.size.height;
+         //rectangleCopy.right() = rectangle.origin.x() + rectangle.size.width;
 
-         rectangleCopy.left = rectangle.origin.x();
-         rectangleCopy.right = rectangle.origin.x() + rectangle.size.width;
-         rectangleCopy.top = rectangle.origin.y();
-         rectangleCopy.bottom = rectangle.origin.y() + rectangle.size.height;
+         rectangleCopy.left() = rectangle.origin.x();
+         rectangleCopy.right() = rectangle.origin.x() + rectangle.size.width;
+         rectangleCopy.top() = rectangle.origin.y();
+         rectangleCopy.bottom() = rectangle.origin.y() + rectangle.size.height;
 
          recta.add(rectangleCopy);
          windowida.add(iWindowId);

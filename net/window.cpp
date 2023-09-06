@@ -31,7 +31,7 @@ namespace app_net
 
       main_window::on_create_user_interaction();
 
-      set_prodevian();
+      set_auto_refresh();
 
 #ifdef WINDOWS_DESKTOP
 
@@ -116,7 +116,7 @@ namespace app_net
 
       }
 
-      if (pitem->m_eelement == ::e_element_close_button)
+      if (pitem->m_item.m_eelement == ::e_element_close_button)
       {
 
          ::user::draw_close_button(pgraphics, this, pitem, estate);

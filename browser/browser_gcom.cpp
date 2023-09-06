@@ -96,25 +96,25 @@ namespace browser
    {
 
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
       if (m_pimageBk)
       {
 
-/*         m_pimagePost->g()->draw(rectangleClient->intersect(m_pimage->rectangle()), m_pimage->g());
+/*         m_pimagePost->g()->draw(rectangleX->intersect(m_pimage->rectangle()), m_pimage->g());
 
          return;
 
       }
 
-      if (rectangleClient.area() <= 0)
+      if (rectangleX.area() <= 0)
       {
 
          return;
 
       }
 
-      backimpact::user::impact::backimpact_Render(pgraphics, rectangleClient);
+      backimpact::user::impact::backimpact_Render(pgraphics, rectangleX);
 
    }
 

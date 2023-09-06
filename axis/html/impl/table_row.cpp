@@ -171,9 +171,9 @@ namespace html
 
          }
 
-         cxMax += m_padding.left + m_padding.right + m_border.left + m_border.right + m_margin.left + m_margin.right;
+         cxMax += m_padding.left() + m_padding.right() + m_border.left() + m_border.right() + m_margin.left() + m_margin.right();
 
-         cxMin += m_padding.left + m_padding.right + m_border.left + m_border.right + m_margin.left + m_margin.right;
+         cxMin += m_padding.left() + m_padding.right() + m_border.left() + m_border.right() + m_margin.left() + m_margin.right();
 
 
       }

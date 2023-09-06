@@ -69,9 +69,9 @@ namespace user
       enum_control_type get_control_type() const override;
 
 
-      void add_prodevian(::matter * pmatter) override;
-      void erase_prodevian(::matter * pmatter) override;
-      bool is_prodevian(const ::matter * pmatter) const override;
+      void add_auto_refresh(::matter * pmatter) override;
+      void erase_auto_refresh(::matter * pmatter) override;
+      bool is_auto_refresh(const ::matter * pmatter) const override;
 
       void display(::e_display edisplay = e_display_default, ::e_activation eactivation = e_activation_default) override;
 
@@ -108,7 +108,7 @@ namespace user
 
       //virtual void set_cursor(enum_cursor ecursor);
 
-      virtual void set_mouse_cursor(::windowing::cursor * pcursor);
+      virtual void set_default_mouse_cursor(::windowing::cursor * pcursor);
 
       //virtual ::point_i32 get_cursor_position() const;
 
@@ -181,7 +181,7 @@ namespace user
       void design_down() override;
       void design_up() override;
 
-      void prodevian_stop() override;
+      void auto_refresh_stop() override;
 
       virtual void design_window_minimize(::e_activation eactivation);
       virtual void design_window_maximize();
@@ -190,7 +190,7 @@ namespace user
       virtual void design_window_dock(e_display edisplayDock);
 
 
-      void prodevian_redraw(bool bUpdateBuffer) override;
+      //void graphics_thread_post_redraw(bool bUpdateBuffer) override;
 
       virtual void on_start_layout_experience(enum_layout_experience elayoutexperience);
       virtual void on_end_layout_experience(enum_layout_experience elayoutexperience);
@@ -385,7 +385,7 @@ namespace user
       //virtual bool is_descendant(const ::user::primitive * pinteraction,bool bIncludeSelf = false) const;
        ::user::interaction * get_focusable_descendant() override;
 
-      void RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::atom idLeftOver, ::u32 nFlag = reposDefault, ::rectangle_i32 * prectParam = nullptr, const ::rectangle_i32 & rectangleClient = {
+      void RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::atom idLeftOver, ::u32 nFlag = reposDefault, ::rectangle_i32 * prectParam = nullptr, const ::rectangle_i32 & rectangleX = {
          }, bool bStretch = true) override;
 
       ::user::interaction * ChildWindowFromPoint(const ::point_i32 & point) override;

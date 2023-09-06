@@ -15,7 +15,7 @@ namespace user
 
 
       ::image_pointer                     m_pimageMem;
-      ::pointer<::xml::document>       m_pxmldoc;
+      ::pointer<::xml::document>          m_pxmldoc;
       ::image_pointer                     m_pimageLogo;
       ::write_text::font_pointer          m_pfontTitle;
       ::write_text::font_pointer          m_pfont;
@@ -25,7 +25,8 @@ namespace user
       ::draw2d::pen_pointer               m_ppen;
       string_map < ::image_pointer >      m_pimageMap;
       string_map < ::image_pointer >      m_pimageMapGray;
-      ::i32_array                           m_iaPopup;
+      ::i32_array                         m_iaPopup;
+      ::item_pointer                      m_pitem;
 
 
       menu_impact();
@@ -74,6 +75,7 @@ namespace user
 
 
       bool on_click(::item * pitem) override;
+
 
       virtual void draw_border_rectangle(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle);
       virtual void draw_header_separator(::draw2d::graphics_pointer & pgraphics, const ::point_i32 & point1, const ::point_i32& point2);

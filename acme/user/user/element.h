@@ -148,9 +148,9 @@ namespace user
       virtual enum_control_type get_control_type() const;
 
 
-      virtual void add_prodevian(::matter * pmatter);
-      virtual void erase_prodevian(::matter * pmatter);
-      virtual bool is_prodevian(const ::matter * pmatter) const;
+      virtual void add_auto_refresh(::matter * pmatter);
+      virtual void erase_auto_refresh(::matter * pmatter);
+      virtual bool is_auto_refresh(const ::matter * pmatter) const;
 
       virtual void display(::e_display edisplay = e_display_default, ::e_activation eactivation = e_activation_default);
 
@@ -246,11 +246,11 @@ namespace user
       virtual void design_down();
       virtual void design_up();
 
-      virtual void prodevian_stop();
+      virtual void auto_refresh_stop();
 
 
 
-      virtual void prodevian_redraw(bool bUpdateBuffer);
+      //virtual void graphics_thread_post_redraw(bool bUpdateBuffer);
 
       virtual void on_configuration_change(::user::element * pprimitiveSource);
 
@@ -443,7 +443,7 @@ namespace user
       //virtual bool is_descendant(const ::user::element * pinteraction,bool bIncludeSelf = false) const;
       virtual ::user::interaction * get_focusable_descendant();
 
-      virtual void RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::atom idLeftOver, ::u32 nFlag = reposDefault, ::rectangle_i32 * prectParam = nullptr, const ::rectangle_i32 & rectangleClient = {}, bool bStretch = true);
+      virtual void RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::atom idLeftOver, ::u32 nFlag = reposDefault, ::rectangle_i32 * prectParam = nullptr, const ::rectangle_i32 & rectangleX = {}, bool bStretch = true);
 
       virtual ::user::interaction * ChildWindowFromPoint(const ::point_i32 & point);
       virtual ::user::interaction * ChildWindowFromPoint(const ::point_i32 & point,::u32 nFlags);
@@ -831,6 +831,11 @@ namespace user
       virtual bool on_impact_update();
       virtual bool on_before_impact_update();
       virtual void on_after_impact_update();
+
+
+      virtual bool horizontal_scrollbar_visible();
+      virtual bool vertical_scrollbar_visible();
+
 
    };
 

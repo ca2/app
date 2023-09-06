@@ -6,7 +6,7 @@
 #include "acme/platform/message.h"
 #include "acme/filesystem/filesystem/listing.h"
 #include "apex/database/_binary_stream.h"
-#include "apex/filesystem/filesystem/dir_context.h"
+#include "acme/filesystem/filesystem/dir_context.h"
 #include "aura/graphics/image/context_image.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/image/array.h"

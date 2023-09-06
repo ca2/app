@@ -70,7 +70,7 @@ namespace experience_core
 
       auto pointBottomRight = m_pframewindow->const_layout().layout().raw_rectangle().bottom_right();
 
-      auto pointLastBottomRight = m_pframewindow->const_layout().design().raw_rectangle().bottom_right();
+      auto pointLastBottomRight = m_pframewindow->const_layout().window().raw_rectangle().bottom_right();
 
       if (pointBottomRight != pointLastBottomRight)
       {

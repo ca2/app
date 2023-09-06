@@ -569,7 +569,7 @@ namespace user
    }
 
 
-   void interaction::set_position(const ::point_i32 & point, enum_layout elayout, ::draw2d::graphics * pgraphics)
+   bool interaction::set_position(const ::point_i32 & point, enum_layout elayout, ::draw2d::graphics * pgraphics)
    {
 
       auto pointNew = point;
@@ -590,7 +590,7 @@ namespace user
 //
 //         }
 
-         return;
+         return false;
 
       }
 
@@ -637,10 +637,12 @@ namespace user
 
       }
 
+      return true;
+
    }
 
 
-   void interaction::set_size(const ::size_i32 & size, enum_layout elayout, ::draw2d::graphics * pgraphics)
+   bool interaction::set_size(const ::size_i32 & size, enum_layout elayout, ::draw2d::graphics * pgraphics)
    {
 
       auto sizeNew = size;
@@ -648,7 +650,7 @@ namespace user
       if (!on_set_size(sizeNew, elayout))
       {
 
-         return;
+         return false;
 
       }
 
@@ -695,7 +697,7 @@ namespace user
       {
 
          auto rectangleaCertainlyDamaged = get_top_left_oriented_damaged_areas_by_resizing(rectangleAfter,
-                                                                                           rectangleBefore);
+            rectangleBefore, false);
 
          set_need_redraw(rectangleaCertainlyDamaged, pgraphics);
 
@@ -707,6 +709,8 @@ namespace user
          post_redraw();
 
       }
+
+      return true;
 
    }
 
@@ -5713,9 +5717,12 @@ namespace user
          if (m_bLadingToLayout)
          {
 
-            m_bLadingToLayout = false;
+            if (layout_layout(pgraphics))
+            {
 
-            layout_layout(pgraphics);
+               m_bLadingToLayout = false;
+
+            }
 
          }
 
@@ -11344,7 +11351,7 @@ namespace user
    }
 
 
-   void interaction::layout_layout(::draw2d::graphics_pointer & pgraphics)
+   bool interaction::layout_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
       synchronous_lock synchronouslock(this->synchronization());
@@ -11352,7 +11359,18 @@ namespace user
       if (!m_pprimitiveimpl || !m_pprimitiveimpl->m_puserinteraction)
       {
 
-         return;
+         return false;
+
+      }
+
+      auto rectangleRaw = raw_rectangle();
+
+      if (rectangleRaw.is_empty())
+      {
+
+         information() << "layout_layout raw_rectangle is empty";
+
+         return false;
 
       }
 
@@ -11455,7 +11473,7 @@ namespace user
 
       m_bNeedLayout = false;
 
-      //return true;
+      return true;
 
    }
 
@@ -12207,7 +12225,7 @@ namespace user
 
       }
 
-      bool bParentMayNeedToPerformLayout = false;
+      bool bParentMayNeedToPerformLayout = m_bNeedLayout;
 
       if (bNeedPerformLayoutHere)
       {
@@ -12234,6 +12252,15 @@ namespace user
 
    void interaction::on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics)
    {
+
+      ::string strType = ::type(this).name();
+
+      if (strType == "RedDotLogicsInternal_license_manager::user_form")
+      {
+
+         information() << "RedDotLogicsInternal_license_manager::user_form";
+
+      }
 
       if (m_bExtendOnParent)
       {

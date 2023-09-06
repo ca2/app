@@ -347,12 +347,12 @@ void api::_api_get(::string & strNetworkPayload, const ::scoped_string & scopeds
 
       }
       
-      if(payload.is_empty())
-      {
+      //if(payload.is_empty())
+      //{
 
-         return false;
+      //   return false;
 
-      }
+      //}
 
       int iHttpStatusCode = set["http_status_code"];
 

@@ -461,9 +461,22 @@ namespace user
 
       virtual void set_restored_rectangle(const ::rectangle_i32 & rectangleRestored);
 
-      
-      virtual void set_position(const ::point_i32 & point, enum_layout elayout = e_layout_sketch, ::draw2d::graphics * pgraphics = nullptr);
-      virtual void set_size(const ::size_i32 & size, enum_layout elayout = e_layout_sketch, ::draw2d::graphics * pgraphics = nullptr);
+      /// <summary>
+      ///  
+      /// </summary>
+      /// <param name="point"></param>
+      /// <param name="elayout"></param>
+      /// <param name="pgraphics"></param>
+      /// <returns>true if position has changed</returns>
+      virtual bool set_position(const ::point_i32 & point, enum_layout elayout = e_layout_sketch, ::draw2d::graphics * pgraphics = nullptr);
+      /// <summary>
+   /// 
+   /// </summary>
+   /// <param name="size"></param>
+   /// <param name="elayout"></param>
+   /// <param name="pgraphics"></param>
+   /// <returns>true if size has changed</returns>
+      virtual bool set_size(const ::size_i32 & size, enum_layout elayout = e_layout_sketch, ::draw2d::graphics * pgraphics = nullptr);
       virtual void _set_size(const ::size_i32 & size, enum_layout elayout = e_layout_sketch);
       virtual void set_width(::i32 width, enum_layout elayout = e_layout_sketch, ::draw2d::graphics * pgraphics = nullptr);
       virtual void set_height(::i32 height, enum_layout elayout = e_layout_sketch, ::draw2d::graphics * pgraphics = nullptr);
@@ -763,7 +776,7 @@ namespace user
       virtual void layout_appearance();
       virtual void layout_children_zorder();
       virtual void layout_reposition();
-      virtual void layout_layout(::draw2d::graphics_pointer & pgraphics);
+      virtual bool layout_layout(::draw2d::graphics_pointer & pgraphics);
 
 
       virtual void display_previous();

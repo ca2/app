@@ -216,8 +216,8 @@ namespace opengl
 
       ::GetClientRect(hwnd, &rectClient);
 
-      m_size = { rectClient.right() - rectClient.left(),
-         rectClient.bottom() - rectClient.top() };
+      m_size = { rectClient.right - rectClient.left,
+         rectClient.bottom - rectClient.top };
 
       m_itaskGpu = ::get_current_itask();
 

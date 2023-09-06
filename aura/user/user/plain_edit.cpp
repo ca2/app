@@ -160,44 +160,6 @@ namespace user
    }
 
 
-   //plain_edit::plain_edit(::particle * pparticle) :
-   //   ::object(pparticle),
-   //   ::user::interaction(pparticle),
-   //   m_pmemorygraphics(e_create)
-   //{
-
-   //   plain_edit_common_construct();
-
-   //}
-
-
-   plain_edit::~plain_edit()
-   {
-
-   }
-
-
-   void plain_edit::set_format(const string & strFormat)
-   {
-
-   }
-
-
-   void plain_edit::set_callback(callback * pcallback)
-   {
-
-
-   }
-
-
-   bool plain_edit::is_caret_on() const
-   {
-
-      return m_timeFocusStart.on_off(m_timeCaretPeriod);
-
-   }
-
-
    void plain_edit::plain_edit_common_construct()
    {
 
@@ -241,6 +203,8 @@ namespace user
 
       m_bCalcLayoutHintNoTextChange = false;
 
+      m_bDefaultParentMouseMessageHandling = true;
+
       m_pscrolldataHorizontal->m_bScrollEnable = false;
 
       m_pscrolldataVertical->m_bScrollEnable = false;
@@ -259,6 +223,44 @@ namespace user
       m_iColumnX = -1;
 
    }
+
+   //plain_edit::plain_edit(::particle * pparticle) :
+   //   ::object(pparticle),
+   //   ::user::interaction(pparticle),
+   //   m_pmemorygraphics(e_create)
+   //{
+
+   //   plain_edit_common_construct();
+
+   //}
+
+
+   plain_edit::~plain_edit()
+   {
+
+   }
+
+
+   void plain_edit::set_format(const string & strFormat)
+   {
+
+   }
+
+
+   void plain_edit::set_callback(callback * pcallback)
+   {
+
+
+   }
+
+
+   bool plain_edit::is_caret_on() const
+   {
+
+      return m_timeFocusStart.on_off(m_timeCaretPeriod);
+
+   }
+
 
 
    bool plain_edit::is_plain_edit_modified() const

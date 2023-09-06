@@ -47,7 +47,93 @@ namespace experience_tranquillum
 
          auto econtroltype = pinteraction->get_control_type();
 
-         if (econtroltype == ::user::e_control_type_tab)
+         if (econtroltype == ::user::e_control_type_edit)
+         {
+
+            if (eelement == ::e_element_border)
+            {
+
+               if (estate & ::user::e_state_disabled)
+               {
+
+                  if (is_dark_mode())
+                  {
+
+                     return argb(255, 120, 120, 120);
+
+                  }
+                  else
+                  {
+
+                     return argb(255, 210, 210, 210);
+
+                  }
+
+
+               }
+               else
+               {
+
+                  if (is_dark_mode())
+                  {
+
+                     return argb(255, 205, 205, 205);
+
+                  }
+                  else
+                  {
+
+                     return argb(255, 160, 160, 160);
+
+                  }
+
+               }
+
+            }
+            else if (eelement == ::e_element_text)
+            {
+
+               if (estate & ::user::e_state_disabled)
+               {
+
+                  if (is_dark_mode())
+                  {
+
+                     return argb(255, 120, 120, 120);
+
+                  }
+                  else
+                  {
+
+                     return argb(255, 210, 210, 210);
+
+                  }
+
+
+               }
+               else
+               {
+
+                  if (is_dark_mode())
+                  {
+
+                     return argb(255, 205, 205, 205);
+
+                  }
+                  else
+                  {
+
+                     return argb(255, 160, 160, 160);
+
+                  }
+
+               }
+
+            }
+
+
+         }
+         else if (econtroltype == ::user::e_control_type_tab)
          {
 
 
@@ -708,7 +794,7 @@ namespace experience_tranquillum
                size.cy() = maximum(size.cy(), pane.m_pimage->height());
             }
 
-            cx = (::i32) (size.cx() + 2.0);
+            cx = (::i32)(size.cx() + 2.0);
 
             if (!pane.m_bPermanent)
             {
@@ -719,7 +805,7 @@ namespace experience_tranquillum
             {
                iTabWidth = cx;
             }
-            cy = (::i32) (size.cy() + 2.0);
+            cy = (::i32)(size.cy() + 2.0);
             if (cy > iTabHeight)
             {
                iTabHeight = cy;
@@ -809,7 +895,7 @@ namespace experience_tranquillum
 
             }
 
-            cy = (::i32) (size.cy() + 2.0);
+            cy = (::i32)(size.cy() + 2.0);
 
             if (cy > iTabHeight)
             {
@@ -840,12 +926,12 @@ namespace experience_tranquillum
 
 
 
-            pane.m_size.cx() = (::i32) (size.cx() + ixAdd
+            pane.m_size.cx() = (::i32)(size.cx() + ixAdd
                + ptab->get_data()->m_rectangleBorder.left() + ptab->get_data()->m_rectangleBorder.right()
                + ptab->get_data()->m_rectangleMargin.left() + ptab->get_data()->m_rectangleMargin.right()
                + ptab->get_data()->m_rectangleTextMargin.left() + ptab->get_data()->m_rectangleTextMargin.right());
 
-            x += (::i32) (pane.m_size.cx());
+            x += (::i32)(pane.m_size.cx());
 
          }
 

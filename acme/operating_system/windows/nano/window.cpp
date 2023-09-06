@@ -1092,14 +1092,11 @@ namespace windows
 
       ::GetWindowRect(hwndDesktop, &r);
 
-      return { r.right() -r.left(), r.bottom() - r.top() };
-
+      return { r.right - r.left, r.bottom - r.top };
 
    }
 
-   
-
-
+ 
 } // namespace windows
 
 

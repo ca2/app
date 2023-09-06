@@ -1909,3 +1909,18 @@ using lines_f64 = lines_base < ::f64 >;
 
 
 
+
+
+template < struct_rectangle RECTANGLE1, primitive_rectangle RECTANGLE2 >
+inline void copy(RECTANGLE1 * prectangle1, const RECTANGLE2 * prectangle2)
+{
+
+   prectangle1->left = (decltype(prectangle1->left))prectangle2->left();
+   prectangle1->top = (decltype(prectangle1->top))prectangle2->top();
+   prectangle1->right = (decltype(prectangle1->right))prectangle2->right();
+   prectangle1->bottom = (decltype(prectangle1->bottom))prectangle2->bottom();
+
+}
+
+
+

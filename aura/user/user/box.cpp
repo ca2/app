@@ -137,7 +137,7 @@ namespace user
          m_windowrectangle.m_rectangleSnapped = m_windowrectangle.m_rectangleWindow;
 
       }
-      else if (!layout().is_docking() && is_same_in_equivalence_sink(edisplay, e_display_normal))
+      else if (!layout().is_docking() && is_equivalent_in_equivalence_sink(edisplay, e_display_normal))
       {
 
          calculate_broad_and_compact_restore();

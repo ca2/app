@@ -407,6 +407,16 @@ concept primitive_rectangle = requires(RECTANGLE rectangle)
 
 
 template < typename RECTANGLE >
+concept struct_rectangle = requires(RECTANGLE rectangle)
+{
+   { rectangle.left } -> primitive_number;
+   { rectangle.top } -> primitive_number;
+   { rectangle.right } -> primitive_number;
+   { rectangle.bottom } -> primitive_number;
+};
+
+
+template < typename RECTANGLE >
 concept primitive_XYDim = requires(RECTANGLE rectangle)
 {
    rectangle.X;

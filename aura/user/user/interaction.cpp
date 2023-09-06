@@ -7696,11 +7696,11 @@ namespace user
 
          pdrag->m_ecursor = e_cursor_size_bottom_right;
 
-         auto point = drag_point(pitem);
+         auto pointBottomRight = drag_point(pitem);
 
-         auto Δ = point - pdrag->m_pointLButtonDown;
+         //auto Δ = point - pdrag->m_pointLButtonDown;
 
-         auto pointBottomRight = pdrag->m_pointInitial + Δ;
+         //auto pointBottomRight = pdrag->m_pointInitial + Δ;
 
          auto size = pointBottomRight - layout().window().origin();
 
@@ -10935,7 +10935,7 @@ namespace user
       // to the current e_display (Currently this means that e_display_broad,
       // e_display_compact and e_display_normal are considered the same
       // and not saved as previous state of such equivalent e_displays)
-      if (!::is_same_in_equivalence_sink(edisplayPrevious, edisplayLading)
+      if (!::is_equivalent_in_equivalence_sink(edisplayPrevious, edisplayLading)
           && ::is_screen_visible(edisplayPrevious))
       {
 

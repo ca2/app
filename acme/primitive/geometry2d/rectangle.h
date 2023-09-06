@@ -34,12 +34,8 @@ public:
 
    template < primitive_number LEFT, primitive_number TOP, primitive_number RIGHT, primitive_number BOTTOM >
    rectangle_type(LEFT left, TOP top, RIGHT right, BOTTOM bottom)  :
-      sequence_type < NUMBER, 4 >(left, top, right, bottom)
+      sequence_type < NUMBER, 4 >((NUMBER) left, (NUMBER) top, (NUMBER) right, (NUMBER) bottom)
    { 
-      //this->left = (UNIT_TYPE)left;
-      //this->top = (UNIT_TYPE)top;
-      //this->right = (UNIT_TYPE)right;
-      //this->bottom = (UNIT_TYPE)bottom;
    }
 
    template < primitive_number A, primitive_number B >
@@ -75,7 +71,12 @@ public:
 //      this->bottom() = (UNIT_TYPE) t.bottom();
       
    }
-   // template < primitive_rectangle RECTANGLE >
+   template < struct_rectangle RECTANGLE >
+   rectangle_type(const RECTANGLE & r) :
+      sequence_type < NUMBER, 4 >(r.left, r.top, r.right, r.bottom)
+   {
+   }
+      // template < primitive_rectangle RECTANGLE >
    // rectangle_type & operator =(const RECTANGLE & rectangle) 
    // {
       

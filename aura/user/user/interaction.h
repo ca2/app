@@ -776,7 +776,7 @@ namespace user
       virtual void layout_appearance();
       virtual void layout_children_zorder();
       virtual void layout_reposition();
-      virtual void layout_layout(::draw2d::graphics_pointer & pgraphics);
+      virtual bool layout_layout(::draw2d::graphics_pointer & pgraphics);
 
 
       virtual void display_previous();

@@ -511,21 +511,21 @@ namespace user
 
 
 
-   //bool acme_container::is_item_selected(::item* pitem)
-   //{
+   bool acme_container::is_item_selected(::item* pitem)
+   {
 
-   //   auto pitemSelected = selected_item();
+      auto pitemSelected = selected_item();
 
-   //   if (!pitemSelected)
-   //   {
+      if (!pitemSelected)
+      {
 
-   //      return false;
+         return false;
 
-   //   }
+      }
 
-   //   return pitemSelected.m_p == pitem;
+      return pitemSelected.m_p == pitem;
 
-   //}
+   }
 
 
    //::item_pointer acme_container::selected_item()
@@ -557,30 +557,30 @@ namespace user
 
 
    //}
-   //
-   //
-   //void acme_container::on_item_hover(::item* pitem)
-   //{
+   
+   
+   void acme_container::on_item_hover(::item* pitem)
+   {
 
 
-   //}
+   }
 
 
-   //bool acme_container::is_item_hover(::item* pitem)
-   //{
+   bool acme_container::is_item_hover(::item* pitem)
+   {
 
-   //   auto pitemHover = hover_item();
+      auto pitemHover = hover_item();
 
-   //   if (!pitemHover)
-   //   {
+      if (!pitemHover)
+      {
 
-   //      return false;
+         return false;
 
-   //   }
+      }
 
-   //   return pitemHover.m_p == pitem;
+      return pitemHover.m_p == pitem;
 
-   //}
+   }
 
 
    //::item_pointer acme_container::hover_item()

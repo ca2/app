@@ -92,15 +92,15 @@ namespace user
       //virtual bool is_item_hover_by_index(::index iIndex) const;
 
 
-      //virtual bool is_item_selected(::item * pitem);
+      virtual bool is_item_selected(::item * pitem);
       //virtual ::item_pointer selected_item();
 
-      //virtual bool is_item_hover(::item * pitem);
+      virtual bool is_item_hover(::item * pitem);
       //virtual ::item_pointer hover_item();
 
 
       //virtual void on_item_selected(::item * pitem);
-      //virtual void on_item_hover(::item * pitem);
+      virtual void on_item_hover(::item * pitem);
 
       //virtual ::item_pointer get_child_as_item(::index iIndex);
       //virtual ::count get_child_as_item_count();

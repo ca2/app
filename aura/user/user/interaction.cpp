@@ -5713,9 +5713,12 @@ namespace user
          if (m_bLadingToLayout)
          {
 
-            m_bLadingToLayout = false;
+            if (layout_layout(pgraphics))
+            {
 
-            layout_layout(pgraphics);
+               m_bLadingToLayout = false;
+
+            }
 
          }
 
@@ -11344,7 +11347,7 @@ namespace user
    }
 
 
-   void interaction::layout_layout(::draw2d::graphics_pointer & pgraphics)
+   bool interaction::layout_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
       synchronous_lock synchronouslock(this->synchronization());
@@ -11352,7 +11355,18 @@ namespace user
       if (!m_pprimitiveimpl || !m_pprimitiveimpl->m_puserinteraction)
       {
 
-         return;
+         return false;
+
+      }
+
+      auto rectangleRaw = raw_rectangle();
+
+      if (rectangleRaw.is_empty())
+      {
+
+         information() << "layout_layout raw_rectangle is empty";
+
+         return false;
 
       }
 
@@ -11455,7 +11469,7 @@ namespace user
 
       m_bNeedLayout = false;
 
-      //return true;
+      return true;
 
    }
 

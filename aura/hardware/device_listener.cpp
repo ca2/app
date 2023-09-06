@@ -42,6 +42,12 @@ namespace hardware
    }
 
 
+   void device_listener::on_device_nodes_changed()
+   {
+
+   }
+
+
    void device_listener::on_device_plugged(enum_device edevice)
    {
 

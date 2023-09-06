@@ -155,6 +155,7 @@ namespace user
 
       virtual void _001OnRemoveTab(tab_pane * ptab);
 
+      bool on_click(::item * pitem) override;
 
       virtual void _001OnTabClick(::index iTab);
       virtual void _001OnTabClose(::index iTab);

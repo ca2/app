@@ -17,7 +17,7 @@ namespace userex
 
       m_timeDelayedAfterChange = 1_s;
 
-      m_ptopview = nullptr;
+      m_ptopimpact = nullptr;
 
       m_bEnterKeyPressed = false;
 
@@ -70,7 +70,7 @@ namespace userex
 
       }
 
-      m_ptopview = get_typed_parent < top_impact >();
+      m_ptopimpact = get_typed_parent < top_impact >();
 
    }
 

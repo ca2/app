@@ -217,7 +217,7 @@ namespace filemanager
 
             bool bCheck = puserinteraction->bcheck();
 
-            bool iItem = puserinteraction->m_iItem;
+            bool iItem = puserinteraction->m_item.m_iItem;
 
             m_pfolderlistdata->set_recursive(iItem, bCheck);
 
@@ -237,7 +237,7 @@ namespace filemanager
          if (m_pfolderlistdata)
          {
 
-            auto iItem = puserinteraction->m_iItem;
+            auto iItem = puserinteraction->m_item.m_iItem;
 
             bool bCheck = m_pfolderlistdata->get_recursive(iItem);
 

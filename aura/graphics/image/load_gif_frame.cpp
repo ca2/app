@@ -128,7 +128,7 @@ bool draw2d_gif_draw_frame(::image * pimageCanvas, image_frame_array * pframea, 
 //   //      if (pframe->m_rectangle.size() == pframea.m_size)
 //   //      {
 //
-//   //         if (pixel(0, 0) == pixel(cx - 1, 0)) // && pframe->m_rectangle.left == 0 && pframe->m_rectangle.top == 0 && pframe->m_rectangle.right == pframea.width())
+//   //         if (pixel(0, 0) == pixel(cx - 1, 0)) // && pframe->m_rectangle.left() == 0 && pframe->m_rectangle.top() == 0 && pframe->m_rectangle.right() == pframea.width())
 //   //         {
 //
 //   //            transparentIndex = pixel(0, 0);
@@ -136,7 +136,7 @@ bool draw2d_gif_draw_frame(::image * pimageCanvas, image_frame_array * pframea, 
 //   //            pframea->m_iTransparentIndex = transparentIndex;
 //
 //   //         }
-//   //         else if (pixel(0, cy - 1) == pixel(cx - 1, cy - 1))// && pframe->m_rectangle.left == 0 && pframe->m_rectangle.bottom == pframea->height() && pframe->m_rectangle.right == pframea.width())
+//   //         else if (pixel(0, cy - 1) == pixel(cx - 1, cy - 1))// && pframe->m_rectangle.left() == 0 && pframe->m_rectangle.bottom() == pframea->height() && pframe->m_rectangle.right() == pframea.width())
 //   //         {
 //
 //   //            transparentIndex = pixel(0, cy - 1);

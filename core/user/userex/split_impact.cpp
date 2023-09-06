@@ -40,12 +40,12 @@ namespace userex
 
       }
 
-      auto ppane = m_splitpanecompositea[iPane].get();
+      auto ppane = m_panea[iPane].get();
 
       if (!pimpactdata->m_pplaceholder)
       {
 
-         pimpactdata->m_pplaceholder = get_new_place_holder(ppane->m_rectangle);
+         pimpactdata->m_pplaceholder = get_new_place_holder(ppane->m_rectangleClient);
 
          ppane->m_pplaceholder = pimpactdata->m_pplaceholder;
 
@@ -91,15 +91,15 @@ namespace userex
 
       ASSERT(iPane < get_pane_count());
 
-      auto ppane = m_splitpanecompositea[iPane].get();
+      auto ppane = m_panea[iPane].get();
 
       ppane->m_bFixedSize = bFixedSize;
 
       ppane->m_atom = atom;
 
-      ::rectangle_i32 rectangleClient;
+      ::rectangle_i32 rectangle;
 
-      rectangleClient = ppane->m_pplaceholder->client_rectangle();
+      rectangle = ppane->m_pplaceholder->rectangle();
 
       ::user::impact_data * pdata = create_impact_by_id(atom);
 

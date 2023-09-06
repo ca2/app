@@ -192,7 +192,7 @@ namespace user
 } // namespace user
 
 
-class prodevian;
+class auto_refresh;
 
 
 namespace experience

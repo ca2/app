@@ -169,7 +169,7 @@ namespace acme
       void initialize_system();
 
 
-      void os_construct();
+      //void os_construct();
 
 
 #ifdef _DEBUG

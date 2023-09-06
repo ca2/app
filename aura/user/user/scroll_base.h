@@ -48,6 +48,13 @@ namespace user
       virtual void defer_draw_scroll_gap(::draw2d::graphics_pointer & pgraphics);
 
 
+      bool horizontal_scrollbar_visible() override;
+      bool vertical_scrollbar_visible() override;
+
+
+      bool get_element_rectangle(::rectangle_i32 & rectangle, enum_element eelement) override;
+
+
    };
 
 

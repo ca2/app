@@ -221,8 +221,12 @@ i32 gdb_check()
 void output_debug_string(const ::scoped_string & scopedstr)
 {
 
+   //printf("c.");
+
    if(::acme::acme::g_pacme->m_bOutputDebugString)
    {
+
+      //printf("2.");
 
       if(strstr(scopedstr, "font_list"))
       {
@@ -231,9 +235,22 @@ void output_debug_string(const ::scoped_string & scopedstr)
 
       }
 
-      fwrite(scopedstr.begin(),1,  scopedstr.size(), stdout);
+      fwrite(scopedstr.begin(), 1, scopedstr.size(), stdout);
 
       //fflush(stdout);
+
+   }
+
+}
+
+
+void output_debug_string_flush()
+{
+
+   if (::acme::acme::g_pacme->m_bOutputDebugString)
+   {
+
+      fflush(stdout);
 
    }
 

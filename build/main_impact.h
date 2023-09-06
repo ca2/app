@@ -16,7 +16,7 @@ namespace app_build
    public:
 
 
-      ::userex::top_impact *                      m_ptopview;
+      ::userex::top_impact *                      m_ptopimpact;
       ::app_build::impact *      m_pimpact;
       string                                    m_strImpactId;
 

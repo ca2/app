@@ -127,7 +127,7 @@ namespace draw2d
    }
 
 
-   void bitmap::host_bitmap(::draw2d::graphics * pgraphics, const pixmap * ppixmap)
+   bool bitmap::host_bitmap(::draw2d::graphics * pgraphics, pixmap * ppixmap)
    {
 
       UNREFERENCED_PARAMETER(pgraphics);
@@ -136,7 +136,7 @@ namespace draw2d
       // callers must be prepared to cases when the
       // backend doesn't support "hosting" a portion of RAM as bitmap data
 
-      //return false;
+      return false;
 
    }
 
@@ -153,6 +153,13 @@ namespace draw2d
       //return false;
    }
 
+
+   ::i32 bitmap::stride_for_width(::i32 iWidth)
+   {
+
+      return iWidth * 4;
+
+   }
 
    u32 bitmap::SetBitmapBits(u32 dwCount,const void * pBits)
 

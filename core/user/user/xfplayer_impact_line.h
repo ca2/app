@@ -58,7 +58,7 @@ public:
    ::write_text::font_pointer                    m_pfontLink;
    ::color::color                         m_cr;
    ::color::color                         m_colorOutline;
-   ::rectangle_i32                           m_rectangleClient;
+   ::rectangle_i32                           m_rectangleX;
    double                           m_floatRateX;
    //LOGFONTW                          m_logfont;
 

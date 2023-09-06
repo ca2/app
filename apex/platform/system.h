@@ -292,7 +292,7 @@ namespace apex
 
 
 
-      virtual void install_progress_add_up(int iAddUp = 1);
+      void install_progress_add_up(int iAddUp = 1) override;
 
 
 

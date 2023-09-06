@@ -399,10 +399,20 @@ concept primitive_dimension = requires(DIMENSION dimension)
 template < typename RECTANGLE >
 concept primitive_rectangle = requires(RECTANGLE rectangle)
 {
-   rectangle.left;
-   rectangle.top;
-   rectangle.right;
-   rectangle.bottom;
+   rectangle.left();
+   rectangle.top();
+   rectangle.right();
+   rectangle.bottom();
+};
+
+
+template < typename RECTANGLE >
+concept struct_rectangle = requires(RECTANGLE rectangle)
+{
+   { rectangle.left } -> primitive_number;
+   { rectangle.top } -> primitive_number;
+   { rectangle.right } -> primitive_number;
+   { rectangle.bottom } -> primitive_number;
 };
 
 

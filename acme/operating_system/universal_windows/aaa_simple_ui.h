@@ -64,7 +64,7 @@ namespace os
 
 
       virtual void window_rectangle(::rectangle_i32 * prectangle);
-      virtual void client_rectangle(::rectangle_i32 * prectangle);
+      virtual void this->rectangle(::rectangle_i32 * prectangle);
 
 
       /*

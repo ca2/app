@@ -66,7 +66,7 @@ namespace turboc
 
       }
 
-      m_peditimpact->m_ptopview = this;
+      m_peditimpact->m_ptopimpact = this;
 
       SetPane(0,m_peditimpact,false);
 
@@ -90,7 +90,7 @@ namespace turboc
 
       }
 
-      m_ptoggleimpact->m_ptopview = this;
+      m_ptoggleimpact->m_ptopimpact = this;
 
       SetPane(1,m_ptoggleimpact,false);
 

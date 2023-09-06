@@ -14,9 +14,9 @@ namespace userex
    public:
 
 
-      top_impact *                     m_ptopview;
-      ::user::font_list_impact *       m_pimpact;
-      bool                             m_bSourceFontSel;
+      ::pointer < top_impact >                  m_ptopimpact;
+      ::pointer < ::user::font_list_impact >    m_pimpact;
+      bool                                      m_bSourceFontSel;
 
 
       font_impact();
@@ -35,6 +35,8 @@ namespace userex
       void handle(::topic * ptopic, ::context * pcontext) override;
 
       //void handle(::topic * ptopic, ::context * pcontext) override;
+
+      void defer_do_graphics(::draw2d::graphics_pointer & pgraphics) override;
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 

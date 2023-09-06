@@ -536,7 +536,7 @@ namespace user
    //}
 
 
-   //bool primitive::client_rectangle(::rectangle_i32 * prectangle)
+   //bool primitive::this->rectangle(::rectangle_i32 * prectangle)
    //{
 
    //   throw ::interface_only();
@@ -546,7 +546,7 @@ namespace user
    //}
 
 
-   //bool primitive::client_rectangle(::rectangle_i64 * prectangle)
+   //bool primitive::this->rectangle(::rectangle_i64 * prectangle)
 
    //{
 
@@ -751,7 +751,7 @@ namespace user
    //}
 
 
-   void primitive::add_prodevian(::matter * pmatter)
+   void primitive::add_auto_refresh(::matter * pmatter)
    {
 
       //return false;
@@ -759,7 +759,7 @@ namespace user
    }
 
 
-   void primitive::erase_prodevian(::matter * pmatter)
+   void primitive::erase_auto_refresh(::matter * pmatter)
    {
 
       //return false;
@@ -767,7 +767,7 @@ namespace user
    }
 
 
-   bool primitive::is_prodevian(const ::matter * pmatter) const
+   bool primitive::is_auto_refresh(const ::matter * pmatter) const
    {
 
       return false;
@@ -1905,7 +1905,7 @@ namespace user
    //}
 
 
-   void primitive::RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::atom idLeftOver, ::u32 nFlag, ::rectangle_i32 * prectParam, const ::rectangle_i32 & rectangleClient, bool bStretch)
+   void primitive::RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::atom idLeftOver, ::u32 nFlag, ::rectangle_i32 * prectParam, const ::rectangle_i32 & rectangleX, bool bStretch)
    {
 
       throw ::interface_only();
@@ -2788,9 +2788,9 @@ namespace user
 
    //   ::size_f64 sizePaddedFitting;
 
-   //   sizePaddedFitting.cx() = rectanglePadding.left + sizeFitting.cx() + rectanglePadding.right;
+   //   sizePaddedFitting.cx() = rectanglePadding.left() + sizeFitting.cx() + rectanglePadding.right();
 
-   //   sizePaddedFitting.cy() = rectanglePadding.top + sizeFitting.cy() + rectanglePadding.bottom;
+   //   sizePaddedFitting.cy() = rectanglePadding.top() + sizeFitting.cy() + rectanglePadding.bottom();
 
    //   return sizePaddedFitting;
 
@@ -3652,13 +3652,13 @@ namespace user
    }
 
 
-   void primitive::prodevian_redraw(bool bUpdateBuffer)
-   {
+   //void primitive::graphics_thread_post_redraw(bool bUpdateBuffer)
+   //{
 
-   }
+   //}
 
 
-   void primitive::prodevian_stop()
+   void primitive::auto_refresh_stop()
    {
 
 

@@ -8,6 +8,7 @@
 #include "acme/handler/item.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/primitive/datetime/datetime.h"
+#include "acme/user/user/tool.h"
 #include "aura/graphics/user/control_box_icon.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/save_image.h"
@@ -31,7 +32,7 @@ namespace app_shader
 
       //m_colorBackground = {};
 
-      m_bClickDefaultMouseHandling = true;
+      m_bDefaultClickHandling = true;
 
    }
 
@@ -80,7 +81,7 @@ namespace app_shader
 
       {
 
-         add_item(__new(::item(e_element_close_button, id_close_app)));
+         tool().add_item(__new(::item(e_element_close_button, id_close_app)));
 
 //         auto pitem = user_item(::e_element_close_button);
 //
@@ -95,7 +96,7 @@ namespace app_shader
 
       {
 
-         add_item(__new(::item(::e_element_switch_button, ::id_switch)));
+         tool().add_item(__new(::item(::e_element_switch_button, ::id_switch)));
 
 //         auto pitem = user_item(::e_element_switch_button);
 //
@@ -105,7 +106,7 @@ namespace app_shader
 
       {
 
-         add_item(__new(::item(::e_element_maximize_button, ::id_maximize)));
+         tool().add_item(__new(::item(::e_element_maximize_button, ::id_maximize)));
 
          //auto pitem = user_item(::e_element_maximize_button);
 
@@ -122,7 +123,7 @@ namespace app_shader
       {
 
 
-         add_item(__new(::item(e_element_minimize_button, id_minimize)));
+         tool().add_item(__new(::item(e_element_minimize_button, id_minimize)));
 
 //         auto pitem = user_item(::e_element_minimize_button);
 //
@@ -135,7 +136,7 @@ namespace app_shader
 
       }
 
-      top_level()->set_prodevian();
+      top_level()->set_auto_refresh();
 
       switch_shader();
 
@@ -203,7 +204,7 @@ namespace app_shader
    void main_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
       auto & prender = m_maprender[m_strCurrentShaderPath];
 
@@ -217,7 +218,7 @@ namespace app_shader
 
             m_bSaveFrame = false;
 
-            auto pimage = m_pcontext->m_pauracontext->create_image(rectangleClient.size());
+            auto pimage = m_pcontext->m_pauracontext->create_image(rectangleX.size());
 
             ::draw2d::graphics_pointer pgraphics = pimage->get_graphics();
 
@@ -257,9 +258,9 @@ namespace app_shader
    void main_window::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
-      if(rectangleClient.is_empty())
+      if(rectangleX.is_empty())
       {
 
          return;
@@ -271,7 +272,7 @@ namespace app_shader
       if(::is_set(prender))
       {
 
-         prender->m_rectangle = rectangleClient;
+         prender->m_rectangle = rectangleX;
 
          prender->on_layout(pgraphics);
 

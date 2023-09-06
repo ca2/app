@@ -40,7 +40,9 @@ namespace user
    tab::tab()
    {
 
-      m_bHoverDefaultMouseHandling = true;
+      m_bDefaultClickHandling = true;
+
+      m_bDefaultMouseHoverHandling = true;
 
       m_econtroltype = e_control_type_tab;
 
@@ -568,13 +570,13 @@ namespace user
       //      if(get_data()->m_bVertical)
       //      {
 
-      //         bShowTabs = pointCursor.x() <= rectangleWindow.left;
+      //         bShowTabs = pointCursor.x() <= rectangleWindow.left();
 
       //      }
       //      else
       //      {
 
-      //         bShowTabs = pointCursor.y() <= rectangleWindow.top;
+      //         bShowTabs = pointCursor.y() <= rectangleWindow.top();
 
       //      }
 
@@ -673,6 +675,10 @@ namespace user
       }
 
       pholder->place(rectangleChild);
+
+      pholder->m_rectangleClient2 = rectangleChild;
+
+      pholder->m_rectangleClient2.offset(-pholder->m_rectangleClient2.top_left());
 
       if (bDisplay)
       {
@@ -815,66 +821,66 @@ namespace user
    void tab::on_message_left_button_up(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_union.m_pmouse;
-
-//      if(m_bMouseDown)
+//      auto pmouse = pmessage->m_union.m_pmouse;
+//
+////      if(m_bMouseDown)
+////      {
+////
+////         m_bMouseDown = false;
+////
+////         release_mouse_capture();
+////
+////      }
+//
+//      auto pitem = hit_test(pmouse, ::user::e_zorder_any);
+//
+//      index iClickTab = get_data()->m_iClickTab;
+//
+//      if (m_estate == state_other_tab_button_down)
 //      {
 //
-//         m_bMouseDown = false;
+//         // drag operation was about to start (but ended prematurely)
 //
 //         release_mouse_capture();
 //
-//      }
-
-      auto pitem = hit_test(pmouse, ::user::e_zorder_any);
-
-      index iClickTab = get_data()->m_iClickTab;
-
-      if (m_estate == state_other_tab_button_down)
-      {
-
-         // drag operation was about to start (but ended prematurely)
-
-         release_mouse_capture();
-
-         KillTimer(e_timer_drag_start);
-
-      }
-
-      if (::is_set(pitem))
-      {
-
-         if (pitem->m_item.m_iItem >= 0 && iClickTab == pitem->m_item.m_iItem && ::is_same_item(m_pitemClick, pitem))
-         {
-
-            if (::is_element(pitem, e_element_close_tab_button))
-            {
-
-               _001OnTabClose(pitem->m_item.m_iItem);
-
-            }
-            else
-            {
-
-               _001OnTabClick(pitem->m_item.m_iItem);
-
-            }
-
-//            set_need_redraw();
+//         KillTimer(e_timer_drag_start);
 //
-//            post_redraw();
-
-            pmouse->m_bRet = true;
-
-            pmouse->m_lresult = 1;
-
-         }
-
-      }
-
-      get_data()->m_iClickTab = -1;
-
-      get_data()->m_bDrag = false;
+//      }
+//
+//      if (::is_set(pitem))
+//      {
+//
+//         if (pitem->m_item.m_iItem >= 0 && iClickTab == pitem->m_item.m_iItem && ::is_same_item(m_pitemClick, pitem))
+//         {
+//
+//            if (::is_element(pitem, e_element_close_tab_button))
+//            {
+//
+//               _001OnTabClose(pitem->m_item.m_iItem);
+//
+//            }
+//            else
+//            {
+//
+//               _001OnTabClick(pitem->m_item.m_iItem);
+//
+//            }
+//
+////            set_need_redraw();
+////
+////            post_redraw();
+//
+//            pmouse->m_bRet = true;
+//
+//            pmouse->m_lresult = 1;
+//
+//         }
+//
+//      }
+//
+//      get_data()->m_iClickTab = -1;
+//
+//      get_data()->m_bDrag = false;
 
    }
 
@@ -1009,15 +1015,15 @@ namespace user
 
                   auto & rectangleTab = ptabdata->m_rectangleTab;
 
-                  rectangle.left = rectangleTab.left;
+                  rectangle.left() = rectangleTab.left();
 
-                  rectangle.top = rectangleTab.top;
+                  rectangle.top() = rectangleTab.top();
 
-                  rectangle.right = rectangleTab.right;
+                  rectangle.right() = rectangleTab.right();
 
                   fDensity = get_density_for_window();
 
-                  rectangle.bottom = rectangle.top + (::i32)(8.0f * fDensity);
+                  rectangle.bottom() = rectangle.top() + (::i32)(8.0f * fDensity);
 
                }
                else
@@ -1025,15 +1031,15 @@ namespace user
 
                   auto & rectangleTab = ptabdata->m_rectangleTab;
 
-                  rectangle.left = rectangleTab.left;
+                  rectangle.left() = rectangleTab.left();
 
-                  rectangle.top = rectangleTab.top;
+                  rectangle.top() = rectangleTab.top();
 
                   fDensity = get_density_for_window();
 
-                  rectangle.right = rectangle.left + (::i32)(8.0f * fDensity);
+                  rectangle.right() = rectangle.left() + (::i32)(8.0f * fDensity);
 
-                  rectangle.bottom = rectangle.bottom;
+                  rectangle.bottom() = rectangle.bottom();
 
                }
 
@@ -1048,15 +1054,15 @@ namespace user
 
                   auto & rectangleTab = ptabdata->m_rectangleTab;
 
-                  rectangle.left = rectangleTab.left;
+                  rectangle.left() = rectangleTab.left();
 
                   fDensity = get_density_for_window();
 
-                  rectangle.top = rectangleTab.bottom - (::i32)(8.0f * fDensity);
+                  rectangle.top() = rectangleTab.bottom() - (::i32)(8.0f * fDensity);
 
-                  rectangle.right = rectangleTab.right;
+                  rectangle.right() = rectangleTab.right();
 
-                  rectangle.bottom = rectangleTab.bottom;
+                  rectangle.bottom() = rectangleTab.bottom();
 
                }
                else
@@ -1066,13 +1072,13 @@ namespace user
 
                   fDensity = get_density_for_window();
 
-                  rectangle.left = rectangleTab.right - (::i32)(8.0f * fDensity);
+                  rectangle.left() = rectangleTab.right() - (::i32)(8.0f * fDensity);
 
-                  rectangle.top = rectangleTab.top;
+                  rectangle.top() = rectangleTab.top();
 
-                  rectangle.right = rectangleTab.right;
+                  rectangle.right() = rectangleTab.right();
 
-                  rectangle.bottom = rectangleTab.bottom;
+                  rectangle.bottom() = rectangleTab.bottom();
 
                }
 
@@ -1157,9 +1163,9 @@ namespace user
 
          }
 
-         rectangle.right = rectangle.left + ptabdata->m_tabpanecompositea[iIndex]->m_pimage->width();
+         rectangle.right() = rectangle.left() + ptabdata->m_tabpanecompositea[iIndex]->m_pimage->width();
 
-         rectangle.bottom = rectangle.top + ptabdata->m_tabpanecompositea[iIndex]->m_pimage->height();
+         rectangle.bottom() = rectangle.top() + ptabdata->m_tabpanecompositea[iIndex]->m_pimage->height();
 
          return true;
 
@@ -1177,14 +1183,14 @@ namespace user
          if(ptabdata->m_tabpanecompositea[iIndex]->m_pimage.ok())
          {
 
-            rectangle.left += ptabdata->m_tabpanecompositea[iIndex]->m_pimage->width() + 2;
+            rectangle.left() += ptabdata->m_tabpanecompositea[iIndex]->m_pimage->width() + 2;
 
          }
 
          if(!ptabdata->m_tabpanecompositea[iIndex]->m_bPermanent)
          {
 
-            rectangle.right -= 2 + 16 + 2;
+            rectangle.right() -= 2 + 16 + 2;
 
          }
 
@@ -1224,11 +1230,11 @@ namespace user
 
          }
 
-         rectangle.right  = rectangle.right;
+         rectangle.right()  = rectangle.right();
 
-         rectangle.left   = rectangle.right - 20;
+         rectangle.left()   = rectangle.right() - 20;
 
-         rectangle.top    = rectangle.bottom - 20;
+         rectangle.top()    = rectangle.bottom() - 20;
 
          return true;
 
@@ -1246,13 +1252,13 @@ namespace user
 
          auto & rectangleTab = ptabdata->m_rectangleTab;
 
-         rectangle.left = rectangleTab.left;
+         rectangle.left() = rectangleTab.left();
 
-         rectangle.top = (::i32) (rectangleTab.top +  iIndex * ptabdata->m_iTabHeight);
+         rectangle.top() = (::i32) (rectangleTab.top() +  iIndex * ptabdata->m_iTabHeight);
 
-         rectangle.right  = rectangleTab.right;
+         rectangle.right()  = rectangleTab.right();
 
-         rectangle.bottom = rectangle.top + ptabdata->m_iTabHeight;
+         rectangle.bottom() = rectangle.top() + ptabdata->m_iTabHeight;
 
       }
       else
@@ -1260,13 +1266,13 @@ namespace user
 
          auto ppane = get_data()->m_tabpanecompositea[iIndex].get();
 
-         rectangle.left = ppane->m_point.x();
+         rectangle.left() = ppane->m_point.x();
 
-         rectangle.top = ppane->m_point.y();
+         rectangle.top() = ppane->m_point.y();
 
-         rectangle.right = rectangle.left + ppane->m_size.cx();
+         rectangle.right() = rectangle.left() + ppane->m_size.cx();
 
-         rectangle.bottom = rectangle.top + ppane->m_size.cy();
+         rectangle.bottom() = rectangle.top() + ppane->m_size.cy();
 
       }
 
@@ -1447,9 +1453,9 @@ namespace user
                   for(int iTitle = 0; iTitle < ppane->m_straTitle.get_size(); iTitle++)
                   {
 
-                     rectangleText.left += (::i32) (ppane->m_sizeaText[iTitle].cx());
+                     rectangleText.left() += (::i32) (ppane->m_sizeaText[iTitle].cx());
 
-                     rectangleText.right = (::i32) (rectangleText.left + get_data()->m_sizeSep.cx());
+                     rectangleText.right() = (::i32) (rectangleText.left() + get_data()->m_sizeSep.cx());
 
                      if(rectangleText.contains(point))
                      {
@@ -1458,7 +1464,7 @@ namespace user
 
                      }
 
-                     rectangleText.left += (::i32) (get_data()->m_sizeSep.cx());
+                     rectangleText.left() += (::i32) (get_data()->m_sizeSep.cx());
 
                   }
 
@@ -1685,7 +1691,7 @@ namespace user
    void tab::set_current_tab_by_index(::index iIndex)
    {
       
-      information("tab::set_current_tab_by_index start\n");
+      information() << "tab::set_current_tab_by_index start : " << iIndex;
 
       synchronous_lock lock(get_data()->synchronization());
 
@@ -1697,6 +1703,8 @@ namespace user
       {
 
          get_data()->m_idaSel.add(idTab);
+
+         information() << "tab::set_current_tab_by_index idTab : " << idTab.as_string();
 
       }
 
@@ -1713,7 +1721,7 @@ namespace user
          
       }
       
-      information("tab::set_current_tab_by_index end\n");
+      information() << "tab::set_current_tab_by_index end";
       
    }
 
@@ -1938,6 +1946,34 @@ namespace user
          return false;
 
       }
+
+   }
+
+
+   bool tab::on_click(::item * pitem)
+   {
+
+      if (pitem->m_item.m_eelement != e_element_tab)
+      {
+
+         return false;
+
+      }
+
+      if (::is_element(pitem, e_element_close_tab_button))
+      {
+
+         _001OnTabClose(pitem->m_item.m_iItem);
+
+      }
+      else
+      {
+
+         _001OnTabClick(pitem->m_item.m_iItem);
+
+      }
+
+      return true;
 
    }
 
@@ -2548,49 +2584,49 @@ namespace user
       case e_position_top:
       {
 
-         rectangle.top = get_data()->m_rectangleTabClient.top;
+         rectangle.top() = get_data()->m_rectangleTabClient.top();
 
-         rectangle.left = get_data()->m_rectangleTabClient.left + get_data()->m_rectangleTabClient.width() / 3;
+         rectangle.left() = get_data()->m_rectangleTabClient.left() + get_data()->m_rectangleTabClient.width() / 3;
 
-         rectangle.right = rectangle.left + get_data()->m_rectangleTabClient.width() / 3;
+         rectangle.right() = rectangle.left() + get_data()->m_rectangleTabClient.width() / 3;
 
-         rectangle.bottom = rectangle.top + get_data()->m_rectangleTabClient.height() / 3;
+         rectangle.bottom() = rectangle.top() + get_data()->m_rectangleTabClient.height() / 3;
 
       }
       break;
       case e_position_left:
       {
-         rectangle.top = get_data()->m_rectangleTabClient.top + get_data()->m_rectangleTabClient.height() / 3;
+         rectangle.top() = get_data()->m_rectangleTabClient.top() + get_data()->m_rectangleTabClient.height() / 3;
 
-         rectangle.left = get_data()->m_rectangleTabClient.left;
+         rectangle.left() = get_data()->m_rectangleTabClient.left();
 
-         rectangle.right = rectangle.left + get_data()->m_rectangleTabClient.width() / 3;
+         rectangle.right() = rectangle.left() + get_data()->m_rectangleTabClient.width() / 3;
 
-         rectangle.bottom = rectangle.top + get_data()->m_rectangleTabClient.height() / 3;
+         rectangle.bottom() = rectangle.top() + get_data()->m_rectangleTabClient.height() / 3;
 
       }
       break;
       case e_position_right:
       {
-         rectangle.top = get_data()->m_rectangleTabClient.top + get_data()->m_rectangleTabClient.height() / 3;
+         rectangle.top() = get_data()->m_rectangleTabClient.top() + get_data()->m_rectangleTabClient.height() / 3;
 
-         rectangle.left = get_data()->m_rectangleTabClient.left + get_data()->m_rectangleTabClient.width() * 2 / 3;
+         rectangle.left() = get_data()->m_rectangleTabClient.left() + get_data()->m_rectangleTabClient.width() * 2 / 3;
 
-         rectangle.right = rectangle.left + get_data()->m_rectangleTabClient.width() / 3;
+         rectangle.right() = rectangle.left() + get_data()->m_rectangleTabClient.width() / 3;
 
-         rectangle.bottom = rectangle.top + get_data()->m_rectangleTabClient.height() / 3;
+         rectangle.bottom() = rectangle.top() + get_data()->m_rectangleTabClient.height() / 3;
 
       }
       break;
       case e_position_bottom:
       {
-         rectangle.top = get_data()->m_rectangleTabClient.top + get_data()->m_rectangleTabClient.height() * 2 / 3;
+         rectangle.top() = get_data()->m_rectangleTabClient.top() + get_data()->m_rectangleTabClient.height() * 2 / 3;
 
-         rectangle.left = get_data()->m_rectangleTabClient.left + get_data()->m_rectangleTabClient.width() / 3;
+         rectangle.left() = get_data()->m_rectangleTabClient.left() + get_data()->m_rectangleTabClient.width() / 3;
 
-         rectangle.right = rectangle.left + get_data()->m_rectangleTabClient.width() / 3;
+         rectangle.right() = rectangle.left() + get_data()->m_rectangleTabClient.width() / 3;
 
-         rectangle.bottom = rectangle.top + get_data()->m_rectangleTabClient.height() / 3;
+         rectangle.bottom() = rectangle.top() + get_data()->m_rectangleTabClient.height() / 3;
 
       }
       break;

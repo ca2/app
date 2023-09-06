@@ -70,10 +70,14 @@ namespace windowing
       //::aura::system* acmesystem();
 
 
-      virtual void _initialize_windowing();
+      //virtual void _initialize_windowing();
+
+
 
 
       virtual void initialize_windowing(::user::user * puser);
+
+      virtual void terminate_windowing();
 
       virtual void defer_term_ui();
 
@@ -82,7 +86,7 @@ namespace windowing
 
       void destroy() override;
 
-      virtual void windowing_main();
+      //virtual void windowing_main();
 
       virtual void windowing_post_quit();
 
@@ -143,6 +147,8 @@ namespace windowing
       virtual bool __hook_process_event(class display * pdisplay, void * pevent, void * cookie);
 
 
+
+      virtual bool is_screen_visible(::e_display edisplay);
 
       virtual ::pointer<::windowing::cursor>load_default_cursor(enum_cursor ecursor);
 

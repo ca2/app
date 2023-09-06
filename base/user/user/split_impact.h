@@ -25,10 +25,10 @@ namespace user
 //      // void dump(dump_context & dumpcontext) const override;
 
       void install_message_routing(::channel * pchannel) override;
-      virtual bool pre_create_window(::user::system * pusersystem) override;
+      bool pre_create_window(::user::system * pusersystem) override;
 
-      virtual void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics) override;
-      virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics) override;
+      void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
       void handle(::topic * ptopic, ::context * pcontext) override;
       virtual bool create_split_impact();
@@ -42,7 +42,7 @@ namespace user
       inline ::pointer<VIEW>create_pane_impact(index iPane, atom atom = ::atom(), ::user::interaction * pviewLast = nullptr);
       ::pointer<::user::impact>create_pane_impact(const ::type & type, index iPane, atom atom = ::atom(), ::user::interaction * pviewLast = nullptr);
 
-      virtual bool on_prepare_impact_data(::user::impact_data* pimpactdata) override;
+      bool on_prepare_impact_data(::user::impact_data* pimpactdata) override;
 
 
    };

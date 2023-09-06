@@ -11,7 +11,7 @@ namespace turboc
       ::user::button(pparticle)
    {
 
-      m_ptopview = NULL;
+      m_ptopimpact = NULL;
 
    }
    toggle_impact::~toggle_impact()

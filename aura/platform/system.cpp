@@ -196,7 +196,7 @@ namespace aura
 
       enable_trace_category(e_trace_category_windowing, true);
 
-      enable_trace_category(e_trace_category_prodevian, false);
+      enable_trace_category(e_trace_category_graphics_thread, false);
     
       //__construct(g_pmutexImage);
 
@@ -3404,13 +3404,13 @@ namespace aura
 //
 //      ::winrt::Windows::Foundation::Rect rectangle = pwindow->window_rectangle();
 //
-//      prectangle->left = rectangle.X;
+//      prectangle->left() = rectangle.X;
 //
-//      prectangle->top = rectangle.Y;
+//      prectangle->top() = rectangle.Y;
 //
-//      prectangle->right = prectangle->left + rectangle.Width;
+//      prectangle->right() = prectangle->left() + rectangle.Width;
 //
-//      prectangle->bottom = prectangle->top + rectangle.Height;
+//      prectangle->bottom() = prectangle->top() + rectangle.Height;
 //
 //
 //      return true;
@@ -3714,9 +3714,9 @@ namespace aura
 //      GetWorkspaceRect(prectangle, (int) iWorkspace);
 //
 //
-//      //      prectangle->top += ::mac::get_system_main_menu_bar_height();
+//      //      prectangle->top() += ::mac::get_system_main_menu_bar_height();
 //
-//      //    prectangle->bottom -= ::mac::get_system_dock_height();
+//      //    prectangle->bottom() -= ::mac::get_system_dock_height();
 //
 //#elif defined(LINUX)
 //

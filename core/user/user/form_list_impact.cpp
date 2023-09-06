@@ -314,7 +314,7 @@ namespace user
       if (m_pcontrolEdit.is_set())
       {
 
-         return m_iItem;
+         return m_item.m_iItem;
 
       }
 

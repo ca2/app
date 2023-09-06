@@ -414,7 +414,7 @@ namespace simple_ui
 //
 //      }
 //
-//      rectangle = client_rectangle();
+//      rectangle = this->rectangle();
 //
 //      return true;
 //
@@ -492,17 +492,17 @@ namespace simple_ui
 //
 //      auto pbrush = __create < ::draw2d::brush > ();
 //
-//      pbrush->CreateLinearGradientBrush(rectangle.top_left(), point_i32(rectangle.left, rectangle.top + iBorderH), crOut, crIn);
+//      pbrush->CreateLinearGradientBrush(rectangle.top_left(), point_i32(rectangle.left(), rectangle.top() + iBorderH), crOut, crIn);
 //
-//      pgraphics->fill_rectangle(::rectangle_i32(rectangle.left, rectangle.top, (i32)rectangle.width(), iBorderH), br);
+//      pgraphics->fill_rectangle(::rectangle_i32(rectangle.left(), rectangle.top(), (i32)rectangle.width(), iBorderH), br);
 //
 //      pbrush->create_solid(crIn);
 //
-//      pgraphics->fill_rectangle(::rectangle_i32(rectangle.left, rectangle.top + iBorderH, (i32)rectangle.width(), (i32)rectangle.height() - (iBorderH * 2)), br);
+//      pgraphics->fill_rectangle(::rectangle_i32(rectangle.left(), rectangle.top() + iBorderH, (i32)rectangle.width(), (i32)rectangle.height() - (iBorderH * 2)), br);
 //
-//      pbrush->CreateLinearGradientBrush(point_i32(rectangle.left, rectangle.bottom - iBorderH), rectangle.bottom_left(), crIn, crOut);
+//      pbrush->CreateLinearGradientBrush(point_i32(rectangle.left(), rectangle.bottom() - iBorderH), rectangle.bottom_left(), crIn, crOut);
 //
-//      pgraphics->fill_rectangle(::rectangle_i32(rectangle.left, rectangle.bottom - iBorderH, (i32)rectangle.width(), iBorderH), br);
+//      pgraphics->fill_rectangle(::rectangle_i32(rectangle.left(), rectangle.bottom() - iBorderH, (i32)rectangle.width(), iBorderH), br);
 //
 //   }
 //
@@ -581,11 +581,11 @@ namespace simple_ui
 //   void interaction::simple_ui_draw_frame_window_rect(::draw2d::graphics_pointer & pgraphics)
 //   {
 //
-//      ::rectangle_i32 rectangleClient;
+//      ::rectangle_i32 rectangleX;
 //
-//      client_rectangle(rectangleClient);
+//      this->rectangle(rectangleX);
 //
-//      rectangleClient.deflate(0,0,1,1);
+//      rectangleX.deflate(0,0,1,1);
 //
 //      ::draw2d::brush_pointer b(e_create);
 //
@@ -599,7 +599,7 @@ namespace simple_ui
 //
 //      pgraphics->set(point);
 //
-//      pgraphics->rectangle(rectangleClient);
+//      pgraphics->rectangle(rectangleX);
 //
 //   }
 //
@@ -690,7 +690,7 @@ namespace simple_ui
 //
 //      ::rectangle_i32 rectangleWindow;
 //
-//      client_rectangle(rectangleWindow);
+//      this->rectangle(rectangleWindow);
 //
 //      pgraphics->fill_rectangle(rectangleWindow, argb(90, 127, 127, 127));
 //
@@ -703,7 +703,7 @@ namespace simple_ui
 //
 //      ::rectangle_i32 rectangleWindow;
 //
-//      client_rectangle(rectangleWindow);
+//      this->rectangle(rectangleWindow);
 //
 //      pgraphics->set_alpha_mode(draw2d::e_alpha_mode_blend);
 //
@@ -719,7 +719,7 @@ namespace simple_ui
 //         ::u8 b1 = brate(dRate, 23, 127);
 //         point_i32->create_solid(1.0, argb(a1, r1, g1, b1));
 //         pgraphics->set(point);
-//         pgraphics->draw_line(rectangleWindow.left, i, rectangleWindow.right, i);
+//         pgraphics->draw_line(rectangleWindow.left(), i, rectangleWindow.right(), i);
 //
 //      }
 //
@@ -733,7 +733,7 @@ namespace simple_ui
 //
 //      ::rectangle_i32 rectangle;
 //
-//      client_rectangle(rectangle);
+//      this->rectangle(rectangle);
 //
 //      pgraphics->set_alpha_mode(draw2d::e_alpha_mode_blend);
 //
@@ -752,24 +752,24 @@ namespace simple_ui
 //      point_i32 pc[4];
 //
 //
-//      pa[0].x() = rectangle.left;
-//      pa[0].y() = rectangle.top;
-//      pa[1].x() = rectangle.right - rectangle.width() / 10;
-//      pa[1].y() = rectangle.top + rectangle.height() / 10;
-//      pa[2].x() = rectangle.right - rectangle.width() / 8;
-//      pa[2].y() = rectangle.bottom - rectangle.height() / 10;
-//      pa[3].x() = rectangle.left;
-//      pa[3].y() = rectangle.bottom;
+//      pa[0].x() = rectangle.left();
+//      pa[0].y() = rectangle.top();
+//      pa[1].x() = rectangle.right() - rectangle.width() / 10;
+//      pa[1].y() = rectangle.top() + rectangle.height() / 10;
+//      pa[2].x() = rectangle.right() - rectangle.width() / 8;
+//      pa[2].y() = rectangle.bottom() - rectangle.height() / 10;
+//      pa[3].x() = rectangle.left();
+//      pa[3].y() = rectangle.bottom();
 //
 //
-//      pb[0].x() = rectangle.left + rectangle.width() / 6;
-//      pb[0].y() = rectangle.top + rectangle.height() / 6;
-//      pb[1].x() = rectangle.right - rectangle.width() / 6;
-//      pb[1].y() = rectangle.top + rectangle.height() / 6;
-//      pb[2].x() = rectangle.right - rectangle.width() / 5;
-//      pb[2].y() = rectangle.bottom - rectangle.height() / 4;
-//      pb[3].x() = rectangle.left + rectangle.width() / 5;
-//      pb[3].y() = rectangle.bottom - rectangle.height() / 4;
+//      pb[0].x() = rectangle.left() + rectangle.width() / 6;
+//      pb[0].y() = rectangle.top() + rectangle.height() / 6;
+//      pb[1].x() = rectangle.right() - rectangle.width() / 6;
+//      pb[1].y() = rectangle.top() + rectangle.height() / 6;
+//      pb[2].x() = rectangle.right() - rectangle.width() / 5;
+//      pb[2].y() = rectangle.bottom() - rectangle.height() / 4;
+//      pb[3].x() = rectangle.left() + rectangle.width() / 5;
+//      pb[3].y() = rectangle.bottom() - rectangle.height() / 4;
 //
 //      {
 //
@@ -933,9 +933,9 @@ namespace simple_ui
 //   //::item_pointer interaction::on_hit_test(const ::point_i32 &point, ::user::e_zorder ezorder)
 //   //{
 //
-//   //   auto rectangleClient = client_rectangle();
+//   //   auto rectangleX = this->rectangle();
 //
-//   //   if (!rectangleClient.contains(point))
+//   //   if (!rectangleX.contains(point))
 //   //   {
 //
 //   //      return ::e_element_none;

@@ -75,7 +75,7 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_create);
       DECLARE_MESSAGE_HANDLER(on_message_destroy);
 
-      virtual bool on_click(::item * pitem) override;
+      bool on_click(::item * pitem) override;
 
       ::item_pointer current_item() override;
 

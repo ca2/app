@@ -1804,12 +1804,12 @@ namespace aura
 
       //}
 
-      information() << ".2";
+      information() << "aura::session .2";
 
       if (acmeapplication()->m_bUser)
       {
 
-         information() << "success";
+         information() << "aura::session m_bUser";
 
          //auto psetup = system_setup::get_first(::system_setup::flag_object_user);
 
@@ -1834,12 +1834,14 @@ namespace aura
          
          __construct(m_puser);
 
+         information() << "aura::session user type : " << ::type(m_puser).name().as_string();
+
          //}
 
          if (!m_puser)
          {
 
-            information("\nFailed to __construct_new(m_puser)");
+            warning("Failed to __construct_new(m_puser)");
 
             error() <<".4";
 
@@ -1847,7 +1849,7 @@ namespace aura
 
          }
 
-         information() << "end";
+         information() << "aura::session m_bUser end";
 
          m_puser->init1();
 

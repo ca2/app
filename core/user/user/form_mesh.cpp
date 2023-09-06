@@ -62,7 +62,8 @@ namespace user
 
       }
 
-      ::user::interaction * pinteraction = _001GetControl(pitem->m_item.item_index(), pitem->m_item.subitem_index());
+      ///::user::interaction * pinteraction = _001GetControl(pitem->m_item.m_iItem, pitem->m_item.m_iSubItem);
+      ::user::interaction * pinteraction = _001GetControl(pitem->m_item.m_iItem, pitem->m_item.m_iSubItem);
 
       if(pinteraction != nullptr)
       {
@@ -87,7 +88,7 @@ namespace user
          else
          {
 
-            _001PlaceControl(pinteraction, pitem->m_item.item_index(), true);
+            _001PlaceControl(pinteraction, pitem->m_item.m_iItem, true);
 
          }
 
@@ -115,9 +116,9 @@ namespace user
 
       ::rectangle_i32 rectangle;
 
-      auto psubitem = get_subitem(pinteraction->m_iItem, pinteraction->m_iSubItem);
+      auto psubitem = get_subitem(pinteraction->m_iEditItem, pinteraction->m_iEditSubItem);
 
-      psubitem->m_pitem->m_iDisplayItem = strict_to_display(pinteraction->m_iItem);
+      psubitem->m_pitem->m_iDisplayItem = strict_to_display(pinteraction->m_iEditItem);
       
       psubitem->m_iOrder = sub_item_to_order(psubitem->m_iSubItem);
       
@@ -189,7 +190,7 @@ namespace user
       if(pinteraction != nullptr)
       {
 
-         _001PlaceControl(pinteraction, pinteraction->m_iItem);
+         _001PlaceControl(pinteraction, pinteraction->m_iEditItem);
 
       }
 
@@ -213,7 +214,7 @@ namespace user
       if(pinteraction != nullptr)
       {
 
-         _001PlaceControl(pinteraction, pinteraction->m_iItem);
+         _001PlaceControl(pinteraction, pinteraction->m_iEditItem);
 
       }
 
@@ -377,8 +378,8 @@ namespace user
       //   ::user::interaction * pinteraction = _001GetControlBySubItem(pdrawitem->m_iSubItem);
       //   if(pinteraction != nullptr)
       //   {
-      //      pdrawitem->m_rectangleClient = pdrawitem.m_rectangleSubItem;
-      //      pdrawitem->m_rectangleWindow = pdrawitem.m_rectangleClient;
+      //      pdrawitem->m_rectangleX = pdrawitem.m_rectangleSubItem;
+      //      pdrawitem->m_rectangleWindow = pdrawitem.m_rectangleX;
       //      client_to_screen(pdrawitem->m_rectangleWindow);
       //      control_keep controlkeep(this,pdrawitem->m_iItem,pdrawitem->m_iSubItem);
       //      pinteraction->_003CallCustomDraw(pdrawitem->m_pgraphics,pdrawitem);
@@ -432,8 +433,12 @@ namespace user
 
       item.initialize_mesh_item(this);
 
-      return ::is_set(m_pitemControl)
-         && m_pitemControl->m_item.m_iSubItem == pinteraction->m_iSubItem;
+      throw ::exception(error_failed);
+
+      return false;
+
+      //return ::is_set(m_pitemControl)
+        // && m_pitemControl->m_item.m_iSubItem == pinteraction->m_iEditSubItem;
 
       //i32 iEditItem;
       //i32 iEditSubItem;
@@ -452,12 +457,12 @@ namespace user
 //      client_to_screen(rectangleControl);
 //      rectangle_i64 rectangleForm;
 //      window_rectangle(rectangleForm);
-//      rectangle_i64 rectangleClient;
-//      rectangleClient.top = rectangleForm.top;
-//      rectangleClient.bottom = rectangleForm.bottom;
-//      rectangleClient.left = rectangleControl.left;
-//      rectangleClient.right = rectangleControl.right;
-//      return rectangleClient.contains(point) != false;
+//      rectangle_i64 rectangleX;
+//      rectangleX.top() = rectangleForm.top();
+//      rectangleX.bottom() = rectangleForm.bottom();
+//      rectangleX.left() = rectangleControl.left();
+//      rectangleX.right() = rectangleControl.right();
+//      return rectangleX.contains(point) != false;
    }
 
    //void form_mesh::_001OnColumnChange()
@@ -638,7 +643,11 @@ namespace user
    bool form_mesh::control_001DisplayHitTest(const ::point_i32 & point)
    {
 
-      return _001DisplayHitTest(point, m_pitemControl->m_item.m_iItem, m_pitemControl->m_item.m_iSubItem);
+      //return _001DisplayHitTest(point, m_pitemControl->m_item.m_iItem, m_pitemControl->m_item.m_iSubItem);
+
+      throw ::exception(todo);
+
+      return false;
 
    }
 

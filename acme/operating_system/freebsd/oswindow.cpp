@@ -839,14 +839,14 @@ void oswindow_data::send_client_event(Atom atom, unsigned int numArgs, ...)
 bool oswindow_data::show_window(const ::e_display & edisplay, const ::e_activation & eactivationi)
 {
 
-   windowing_output_debug_string("\n::oswindow_data::show_window 1");
+   windowing_output_debug_string("::oswindow_data::show_window 1");
 
    xdisplay d(display());
 
    if(d.is_null())
    {
 
-      windowing_output_debug_string("\n::oswindow_data::show_window 1.1");
+      windowing_output_debug_string("::oswindow_data::show_window 1.1");
 
       fflush(stdout);
 
@@ -859,7 +859,7 @@ bool oswindow_data::show_window(const ::e_display & edisplay, const ::e_activati
    if(!XGetWindowAttributes(d, m_window, &attr))
    {
 
-      windowing_output_debug_string("\n::oswindow_data::show_window 1.2");
+      windowing_output_debug_string("::oswindow_data::show_window 1.2");
 
       return false;
 
@@ -909,7 +909,7 @@ bool oswindow_data::show_window(const ::e_display & edisplay, const ::e_activati
 
    }
 
-   windowing_output_debug_string("\n::oswindow_data::show_window 2");
+   windowing_output_debug_string("::oswindow_data::show_window 2");
 
    return true;
 
@@ -923,14 +923,14 @@ void oswindow_data::full_screen(const ::rectangle_i32 & rectangle)
 
    int iMonitor = best_xinerama_monitor(m_pimpl->m_puserinteraction, rectangle, rBest);
 
-   windowing_output_debug_string("\n::oswindow_data::full_screen 1");
+   windowing_output_debug_string("::oswindow_data::full_screen 1");
 
    xdisplay d(display());
 
    if(d.is_null())
    {
 
-      windowing_output_debug_string("\n::oswindow_data::full_screen 1.1");
+      windowing_output_debug_string("::oswindow_data::full_screen 1.1");
 
       return;
 
@@ -941,7 +941,7 @@ void oswindow_data::full_screen(const ::rectangle_i32 & rectangle)
    if(!XGetWindowAttributes(display(), window(), &attr))
    {
 
-      windowing_output_debug_string("\n::oswindow_data::full_screen 1.2");
+      windowing_output_debug_string("::oswindow_data::full_screen 1.2");
 
       fflush(stdout);
 
@@ -951,17 +951,17 @@ void oswindow_data::full_screen(const ::rectangle_i32 & rectangle)
 
    ::rectangle_i32 rWindow;
 
-   rWindow.left      = attr.x();
-   rWindow.top       = attr.y();
-   rWindow.right     = attr.x()    + attr.width;
-   rWindow.bottom    = attr.y()    + attr.height;
+   rWindow.left()      = attr.x();
+   rWindow.top()       = attr.y();
+   rWindow.right()     = attr.x()    + attr.width;
+   rWindow.bottom()    = attr.y()    + attr.height;
 
    if(rBest != rWindow)
    {
 
       m_pimpl->m_puserinteraction->place(rBest);
 
-      XMoveResizeWindow(d, m_window, rBest.left, rBest.top, rBest.width(), rBest.height());
+      XMoveResizeWindow(d, m_window, rBest.left(), rBest.top(), rBest.width(), rBest.height());
 
    }
 
@@ -980,7 +980,7 @@ void oswindow_data::full_screen(const ::rectangle_i32 & rectangle)
 
    }
 
-   windowing_output_debug_string("\n::oswindow_data::full_screen 2");
+   windowing_output_debug_string("::oswindow_data::full_screen 2");
 
    ::fflush(stdout);
 
@@ -995,7 +995,7 @@ void oswindow_data::exit_iconify()
    if(d.is_null())
    {
 
-      windowing_output_debug_string("\n::oswindow_data::exit_iconify 1.1");
+      windowing_output_debug_string("::oswindow_data::exit_iconify 1.1");
 
       return;
 
@@ -1006,7 +1006,7 @@ void oswindow_data::exit_iconify()
    if(!XGetWindowAttributes(display(), window(), &attr))
    {
 
-      windowing_output_debug_string("\n::oswindow_data::exit_full_screen 1.2");
+      windowing_output_debug_string("::oswindow_data::exit_full_screen 1.2");
 
       fflush(stdout);
 
@@ -1031,7 +1031,7 @@ void oswindow_data::exit_full_screen()
    if(d.is_null())
    {
 
-      windowing_output_debug_string("\n::oswindow_data::exit_full_screen 1.1");
+      windowing_output_debug_string("::oswindow_data::exit_full_screen 1.1");
 
       return;
 
@@ -1042,7 +1042,7 @@ void oswindow_data::exit_full_screen()
    if(!XGetWindowAttributes(display(), window(), &attr))
    {
 
-      windowing_output_debug_string("\n::oswindow_data::exit_full_screen 1.2");
+      windowing_output_debug_string("::oswindow_data::exit_full_screen 1.2");
 
       fflush(stdout);
 
@@ -1070,7 +1070,7 @@ void oswindow_data::exit_zoomed()
    if(d.is_null())
    {
 
-      windowing_output_debug_string("\n::oswindow_data::exit_zoomed 1.1");
+      windowing_output_debug_string("::oswindow_data::exit_zoomed 1.1");
 
       return;
 
@@ -1081,7 +1081,7 @@ void oswindow_data::exit_zoomed()
    if(!XGetWindowAttributes(display(), window(), &attr))
    {
 
-      windowing_output_debug_string("\n::oswindow_data::exit_zoomed 1.2");
+      windowing_output_debug_string("::oswindow_data::exit_zoomed 1.2");
 
       fflush(stdout);
 
@@ -1155,7 +1155,7 @@ bool oswindow_data::screen_to_client(::point_i32 * ppoint)
 long oswindow_data::get_state()
 {
 
-   windowing_output_debug_string("\n::oswindow_data::get_state 1");
+   windowing_output_debug_string("::oswindow_data::get_state 1");
 
    xdisplay d(display());
 
@@ -1200,13 +1200,13 @@ long oswindow_data::get_state()
 
       XFree(point);
 
-      windowing_output_debug_string("\n::oswindow_data::get_state 1.1");
+      windowing_output_debug_string("::oswindow_data::get_state 1.1");
 
       return lStatus;
 
    }
 
-   windowing_output_debug_string("\n::oswindow_data::get_state 2");
+   windowing_output_debug_string("::oswindow_data::get_state 2");
 
    return -1;
 
@@ -1238,14 +1238,14 @@ bool oswindow_data::is_iconic()
 bool oswindow_data::is_window_visible()
 {
 
-   windowing_output_debug_string("\n::oswindow_data::is_window_visible 1");
+   windowing_output_debug_string("::oswindow_data::is_window_visible 1");
 
    xdisplay d(display());
 
    if(d.is_null())
    {
 
-      windowing_output_debug_string("\n::oswindow_data::is_window_visible 1.1");
+      windowing_output_debug_string("::oswindow_data::is_window_visible 1.1");
 
       return false;
 
@@ -1256,13 +1256,13 @@ bool oswindow_data::is_window_visible()
    if(!XGetWindowAttributes(display(), window(), &attr))
    {
 
-      windowing_output_debug_string("\n::oswindow_data::is_window_visible 1.2");
+      windowing_output_debug_string("::oswindow_data::is_window_visible 1.2");
 
       return false;
 
    }
 
-   windowing_output_debug_string("\n::oswindow_data::is_window_visible 2");
+   windowing_output_debug_string("::oswindow_data::is_window_visible 2");
 
    return attr.map_state == IsViewable;
 
@@ -1321,7 +1321,7 @@ bool oswindow_data::_set_window_pos(class ::zorder zorder, i32 x, i32 y, i32 cx,
 
    synchronous_lock synchronouslock(x11_mutex());
 
-   windowing_output_debug_string("\n::oswindow_data::set_window_position 1");
+   windowing_output_debug_string("::oswindow_data::set_window_position 1");
 
    auto pdisplay = display();
 
@@ -1334,7 +1334,7 @@ bool oswindow_data::_set_window_pos(class ::zorder zorder, i32 x, i32 y, i32 cx,
    if(!XGetWindowAttributes(pdisplay, w, &attrs))
    {
 
-      windowing_output_debug_string("\n::oswindow_data::set_window_position 1.1 xgetwindowattr failed");
+      windowing_output_debug_string("::oswindow_data::set_window_position 1.1 xgetwindowattr failed");
 
       return false;
 
@@ -1346,7 +1346,7 @@ bool oswindow_data::_set_window_pos(class ::zorder zorder, i32 x, i32 y, i32 cx,
       if(attrs.map_state == IsUnmapped)
       {
 
-         windowing_output_debug_string("\n::oswindow_data::set_window_position Mapping Window 1.2");
+         windowing_output_debug_string("::oswindow_data::set_window_position Mapping Window 1.2");
 
          XMapWindow(display(), window());
 
@@ -1355,7 +1355,7 @@ bool oswindow_data::_set_window_pos(class ::zorder zorder, i32 x, i32 y, i32 cx,
       if(!XGetWindowAttributes(display(), window(), &attrs))
       {
 
-         windowing_output_debug_string("\n::oswindow_data::set_window_position 1.3 xgetwindowattr failed");
+         windowing_output_debug_string("::oswindow_data::set_window_position 1.3 xgetwindowattr failed");
 
          return false;
 
@@ -1373,7 +1373,7 @@ bool oswindow_data::_set_window_pos(class ::zorder zorder, i32 x, i32 y, i32 cx,
       if(bSize)
       {
 
-         windowing_output_debug_string("\n::oswindow_data::set_window_position Move Resize Window 1.4");
+         windowing_output_debug_string("::oswindow_data::set_window_position Move Resize Window 1.4");
 
          #ifdef SET_WINDOW_POS_LOG
 
@@ -1402,7 +1402,7 @@ bool oswindow_data::_set_window_pos(class ::zorder zorder, i32 x, i32 y, i32 cx,
       else
       {
 
-         windowing_output_debug_string("\n::oswindow_data::set_window_position Move Window 1.4.1");
+         windowing_output_debug_string("::oswindow_data::set_window_position Move Window 1.4.1");
 
          XMoveWindow(display(), window(), x, y);
 
@@ -1412,7 +1412,7 @@ bool oswindow_data::_set_window_pos(class ::zorder zorder, i32 x, i32 y, i32 cx,
    else if(bSize)
    {
 
-      windowing_output_debug_string("\n::oswindow_data::set_window_position Resize Window 1.4.2");
+      windowing_output_debug_string("::oswindow_data::set_window_position Resize Window 1.4.2");
 
       XResizeWindow(display(), window(), cx, cy);
 
@@ -1451,7 +1451,7 @@ bool oswindow_data::_set_window_pos(class ::zorder zorder, i32 x, i32 y, i32 cx,
       if(attrs.map_state == IsViewable)
       {
 
-         windowing_output_debug_string("\n::oswindow_data::set_window_position Withdraw Window 1.4.3");
+         windowing_output_debug_string("::oswindow_data::set_window_position Withdraw Window 1.4.3");
 
          XWithdrawWindow(display(), window(), m_iScreen);
 
@@ -1462,7 +1462,7 @@ bool oswindow_data::_set_window_pos(class ::zorder zorder, i32 x, i32 y, i32 cx,
    if(!XGetWindowAttributes(display(), window(), &attrs))
    {
 
-      windowing_output_debug_string("\n::oswindow_data::set_window_position xgetwndattr 1.4.4");
+      windowing_output_debug_string("::oswindow_data::set_window_position xgetwndattr 1.4.4");
 
       return false;
 
@@ -1533,7 +1533,7 @@ bool oswindow_data::_set_window_pos(class ::zorder zorder, i32 x, i32 y, i32 cx,
 
    //m_pimpl->on_change_visibility();
 
-   windowing_output_debug_string("\n::oswindow_data::set_window_position 2");
+   windowing_output_debug_string("::oswindow_data::set_window_position 2");
 
    return 1;
 

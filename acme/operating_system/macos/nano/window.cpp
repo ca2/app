@@ -503,13 +503,13 @@ void nano_window_bridge::_on_draw_frame(CGContextRef cg, CGSize sizeFrame)
 void nano_window_bridge::on_layout(int x, int y, int w, int h)
 {
    
-   m_pwindow->m_pinterface->m_rectangle.left = x;
+   m_pwindow->m_pinterface->m_rectangle.left() = x;
    
-   m_pwindow->m_pinterface->m_rectangle.top = y;
+   m_pwindow->m_pinterface->m_rectangle.top() = y;
    
-   m_pwindow->m_pinterface->m_rectangle.right = x + w;
+   m_pwindow->m_pinterface->m_rectangle.right() = x + w;
    
-   m_pwindow->m_pinterface->m_rectangle.bottom = y + h;
+   m_pwindow->m_pinterface->m_rectangle.bottom() = y + h;
    
 }
 

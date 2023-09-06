@@ -813,7 +813,7 @@
     <ClInclude Include="user\user\interaction_layout.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\interaction_prodevian.h">
+    <ClInclude Include="user\user\interaction_graphics_thread.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\interaction_scaler.h">
@@ -852,7 +852,7 @@
     <ClInclude Include="user\user\primitive_impl.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\prodevian.h">
+    <ClInclude Include="user\user\auto_refresh.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\progress.h">
@@ -1001,6 +1001,9 @@
     </ClInclude>
     <ClInclude Include="graphics\gpu\_.h">
       <Filter>Header Files\graphics\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\form_handler.h">
+      <Filter>Header Files\user\user</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1375,7 +1378,7 @@
     <ClCompile Include="user\user\interaction_scaler.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\interaction_prodevian.cpp">
+    <ClCompile Include="user\user\interaction_graphics_thread.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\interaction_layout.cpp">
@@ -1480,7 +1483,7 @@
     <ClCompile Include="user\user\horizontal_scroll_base.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\prodevian.cpp">
+    <ClCompile Include="user\user\auto_refresh.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\run_application.cpp">
@@ -1555,7 +1558,7 @@
     <ClCompile Include="user\user\interaction_array.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\form_designer.cpp">
+    <ClCompile Include="user\user\form_handler.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
   </ItemGroup>

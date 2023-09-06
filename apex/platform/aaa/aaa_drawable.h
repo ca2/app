@@ -81,7 +81,7 @@ namespace apex
    //   //mutable point     m_pointParentWindow;
    //   //mutable point     m_pointParentClient;
 
-   //   //inline auto get_client_rect64() { ::rect64 rectangle; client_rectangle(rectangle); return rectangle; }
+   //   //inline auto get_client_rect64() { ::rect64 rectangle; this->rectangle(rectangle); return rectangle; }
    //   //inline auto get_window_rect64() { ::rect64 rectangle; window_rectangle(rectangle); return rectangle; }
 
 

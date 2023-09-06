@@ -261,13 +261,13 @@
 ////{
 ////   CGColorRef color = cg_create_color(clr);
 ////   CGRect rectangle_i32;
-////   rectangle.origin.x() = prectangle->left;
+////   rectangle.origin.x() = prectangle->left();
 //
-////   rectangle.origin.y() = prectangle->top;
+////   rectangle.origin.y() = prectangle->top();
 //
-////   rectangle.size.width = prectangle->right - prectangle->left;
+////   rectangle.size.width = prectangle->right() - prectangle->left();
 //
-////   rectangle.size.height = prectangle->bottom - prectangle->top;
+////   rectangle.size.height = prectangle->bottom() - prectangle->top();
 //
 ////   CGContextFillRect(hdc->m_cgcontext, rectangle);
 ////   cg_release_color(color);

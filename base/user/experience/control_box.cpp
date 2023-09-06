@@ -31,8 +31,8 @@ namespace experience
       set_control_box_button_id(e_button_maximize, "frame::e_button_maximize");
       set_control_box_button_id(e_button_restore, "frame::e_button_restore");
       set_control_box_button_id(e_button_notify_icon, "frame::e_button_notify_icon");
-      set_control_box_button_id(e_button_transparent_frame,"frame::e_button_transparent_frame");
-      set_control_box_button_id(e_button_dock,"frame::e_button_dock");
+      set_control_box_button_id(e_button_transparent_frame, "frame::e_button_transparent_frame");
+      set_control_box_button_id(e_button_dock, "frame::e_button_dock");
       m_bDrag = false;
       m_iDefaultButtonMargin = 3;
 
@@ -51,8 +51,8 @@ namespace experience
       auto pmouse = pmessage->m_union.m_pmouse;
 
       if (m_pframewindow != nullptr
-            && m_pframewindow->m_pframe != nullptr
-            && m_pframewindow->m_pframe->is_control_box_moveable())
+          && m_pframewindow->m_pframe != nullptr
+          && m_pframewindow->m_pframe->is_control_box_moveable())
       {
 
          m_bDrag = true;
@@ -76,8 +76,8 @@ namespace experience
       auto pmouse = pmessage->m_union.m_pmouse;
 
       if (m_pframewindow != nullptr
-            && m_pframewindow->m_pframe != nullptr
-            && m_pframewindow->m_pframe->is_control_box_moveable())
+          && m_pframewindow->m_pframe != nullptr
+          && m_pframewindow->m_pframe->is_control_box_moveable())
       {
 
          ::point_i32 point = pmouse->m_point;
@@ -103,8 +103,8 @@ namespace experience
       auto pmouse = pmessage->m_union.m_pmouse;
 
       if (m_pframewindow != nullptr
-            && m_pframewindow->m_pframe != nullptr
-            && m_pframewindow->m_pframe->is_control_box_moveable())
+          && m_pframewindow->m_pframe != nullptr
+          && m_pframewindow->m_pframe->is_control_box_moveable())
       {
 
          if (m_bDrag)
@@ -139,11 +139,11 @@ namespace experience
 
       //::rectangle_i32 rectangleParent;
 
-      //get_parent()->client_rectangle(rectangleParent);
+      //get_parent()->rectangle(rectangleParent);
 
-      //::rectangle_i32 rectangleClient;
+      //::rectangle_i32 rectangleX;
 
-      //client_rectangle(rectangleClient);
+      //this->rectangle(rectangleX);
 
       //::rectangle_i32 rectangleWindow;
 
@@ -151,19 +151,19 @@ namespace experience
 
       //get_parent()->screen_to_client(rectangleWindow);
 
-      //m_pframewindow->m_pframe->m_iControlBoxRight = rectangleParent.right - x - rectangleWindow.width();
+      //m_pframewindow->m_pframe->m_iControlBoxRight = rectangleParent.right() - x - rectangleWindow.width();
 
       //m_pframewindow->m_pframe->get_control_box_rect()->move_left_to(x);
 
       //x = m_pframewindow->m_pframe->calc_control_box_left(true);
 
-      //::point_i32 point(x, rectangleWindow.top);
+      //::point_i32 point(x, rectangleWindow.top());
 
       //::point_i32 pointScreen(point);
 
       //get_parent()->client_to_screen(pointScreen);
 
-      //m_pframewindow->m_pframe->m_iControlBoxRight = rectangleParent.right - point.x() - rectangleWindow.width();
+      //m_pframewindow->m_pframe->m_iControlBoxRight = rectangleParent.right() - point.x() - rectangleWindow.width();
 
       //int iControlBoxRight = m_pframewindow->m_pframe->m_iControlBoxRight;
 
@@ -179,7 +179,7 @@ namespace experience
    void control_box::on_message_show_window(::message::message * pmessage)
    {
 
-      ::pointer<::message::show_window>pshow(pmessage);
+      ::pointer<::message::show_window> pshow(pmessage);
 
       m_bDrag = false;
 
@@ -190,8 +190,7 @@ namespace experience
 
          m_timeShow.Now();
 
-      }
-      else
+      } else
       {
 
          information(".");
@@ -214,8 +213,7 @@ namespace experience
 
             return;
 
-         }
-         else if (top_level()->layout().is_sizing())
+         } else if (top_level()->layout().is_sizing())
          {
 
             //information("experience control_box : top level is sizing : ignoring e_message_timer");
@@ -236,8 +234,7 @@ namespace experience
 
                m_timeShow.Now();
 
-            }
-            else
+            } else
             {
 
                if (m_pframewindow != nullptr)
@@ -255,11 +252,10 @@ namespace experience
 
                         m_timeShow.Now();
 
-                     }
-                     else
+                     } else
                      {
 
-                        if(m_timeShow.elapsed() > 1_s)
+                        if (m_timeShow.elapsed() > 1_s)
                         {
 
                            display(e_display_none);
@@ -274,8 +270,7 @@ namespace experience
 
             }
 
-         }
-         else if (m_bShowAttempt)
+         } else if (m_bShowAttempt)
          {
             //if ((m_timeShowTime.elapsed()) > 284)
             {
@@ -289,11 +284,12 @@ namespace experience
 
                      window_rectangle(rectangleWindow);
 
-                     rectangleWindow.left = minimum(rectangleWindow.left, rectangleWindow.right);
-                     rectangleWindow.bottom = minimum(rectangleWindow.top, rectangleWindow.bottom);
+                     rectangleWindow.left() = minimum(rectangleWindow.left(), rectangleWindow.right());
+                     rectangleWindow.bottom() = minimum(rectangleWindow.top(), rectangleWindow.bottom());
 
 
-                     if (pointCursor.x() >= rectangleWindow.left && pointCursor.y() <= rectangleWindow.right && pointCursor.y() == 0)
+                     if (pointCursor.x() >= rectangleWindow.left() && pointCursor.y() <= rectangleWindow.right() &&
+                         pointCursor.y() == 0)
                      {
 
                         order(e_zorder_top);
@@ -309,8 +305,7 @@ namespace experience
                }
 
             }
-         }
-         else
+         } else
          {
 
             if (m_pframewindow->layout().is_full_screen())
@@ -320,8 +315,8 @@ namespace experience
 
                window_rectangle(rectangleWindow);
 
-               rectangleWindow.left = minimum(rectangleWindow.left, rectangleWindow.right);
-               rectangleWindow.bottom = minimum(rectangleWindow.top, rectangleWindow.bottom);
+               rectangleWindow.left() = minimum(rectangleWindow.left(), rectangleWindow.right());
+               rectangleWindow.bottom() = minimum(rectangleWindow.top(), rectangleWindow.bottom());
 
                ::point_i32 pointCursor;
 
@@ -336,7 +331,8 @@ namespace experience
 
                }
 
-               if (pointCursor.x() >= rectangleWindow.left && pointCursor.x() <= rectangleWindow.right && pointCursor.y() == 0)
+               if (pointCursor.x() >= rectangleWindow.left() && pointCursor.x() <= rectangleWindow.right() &&
+                   pointCursor.y() == 0)
                {
 
                   m_bShowAttempt = true;
@@ -390,7 +386,7 @@ namespace experience
    }
 
 
-   void control_box::install_message_routing(::channel *pframewindow)
+   void control_box::install_message_routing(::channel * pframewindow)
    {
 
       ::user::interaction::install_message_routing(pframewindow);
@@ -421,20 +417,17 @@ namespace experience
 
          return true;
 
-      }
-      else if (ebutton == e_button_up)
+      } else if (ebutton == e_button_up)
       {
 
          return m_pframewindow->updown_get_up_enable();
 
-      }
-      else if (ebutton == e_button_down)
+      } else if (ebutton == e_button_down)
       {
 
          return m_pframewindow->updown_get_down_enable();
 
-      }
-      else if (ebutton == e_button_maximize)
+      } else if (ebutton == e_button_maximize)
       {
 
          if (m_pframewindow->updown_get_up_enable())
@@ -446,8 +439,7 @@ namespace experience
 
          return !m_pframewindow->layout().is_zoomed();
 
-      }
-      else if (ebutton == e_button_restore)
+      } else if (ebutton == e_button_restore)
       {
 
          if (m_pframewindow->updown_get_up_enable())
@@ -462,12 +454,11 @@ namespace experience
          //auto edisplay = m_pframewindow->layout().sketch().display();
 
          //return is_iconic(edisplay)
-            // || is_full_screen(edisplay)
-            //|| is_zoomed(edisplay)
-            //|| is_docking_appearance(edisplay);
+         // || is_full_screen(edisplay)
+         //|| is_zoomed(edisplay)
+         //|| is_docking_appearance(edisplay);
 
-      }
-      else if (ebutton == e_button_minimize)
+      } else if (ebutton == e_button_minimize)
       {
 
          if (m_pframewindow->updown_get_up_enable())
@@ -479,8 +470,7 @@ namespace experience
 
          return true;
 
-      }
-      else if (ebutton == e_button_notify_icon)
+      } else if (ebutton == e_button_notify_icon)
       {
 
          if (m_pframewindow->updown_get_up_enable())
@@ -492,8 +482,7 @@ namespace experience
 
          return m_pframewindow->window_is_notify_icon_enabled();
 
-      }
-      else if (ebutton == e_button_transparent_frame)
+      } else if (ebutton == e_button_transparent_frame)
       {
 
          if (m_pframewindow->updown_get_up_enable())
@@ -505,8 +494,7 @@ namespace experience
 
          return true;
 
-      }
-      else if (ebutton == e_button_dock)
+      } else if (ebutton == e_button_dock)
       {
 
          if (m_pframewindow->updown_get_up_enable())
@@ -525,40 +513,49 @@ namespace experience
    }
 
 
-   void control_box::_layout_button(enum_button ebutton, ::rectangle_i32& rectangle)
+   void control_box::_layout_button(enum_button ebutton, ::rectangle_i32 & rectangle)
    {
 
       auto pbutton = get_box_button(ebutton);
 
-      if(should_show_button(ebutton))
+      if (should_show_button(ebutton))
       {
 
          auto sizeButton = get_button_size(ebutton);
 
          auto rectangleMargin = get_button_margin(ebutton);
 
-         rectangle.right = rectangle.left - rectangleMargin.right;
-         rectangle.left = rectangle.right - sizeButton.cx();
-if(rectangle.left > 400)
-{
-   information("rectangle.left > 400");
-   
-}
+         rectangle.right() = rectangle.left() - rectangleMargin.right();
+
+         rectangle.left() = rectangle.right() - sizeButton.cx();
+
+         if (rectangle.left() > 400)
+         {
+
+            information("rectangle.left() > 400");
+
+         }
+
          if (pbutton)
          {
 
-            rectangle.top = rectangleMargin.top;
-            rectangle.bottom = sizeButton.cy() + rectangle.top;
+            rectangle.top() = rectangleMargin.top();
+
+            rectangle.bottom() = rectangle.top() + sizeButton.cy();
 
             pbutton->order(e_zorder_top);
+
             //information() << "experience::control_box::_layout_button" << rectangle;
+
             pbutton->place(rectangle);
+
             pbutton->display();
+
             pbutton->UpdateWndRgn();
 
          }
 
-         rectangle.left -= rectangleMargin.left;
+         rectangle.left() -= rectangleMargin.left();
 
       }
       else
@@ -579,25 +576,25 @@ if(rectangle.left > 400)
    void control_box::on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rectangle_i32 rectangleWindow = m_pframewindow->window_rectangle(::user::e_layout_lading);
+//      ::rectangle_i32 rectangleWindow = m_pframewindow->window_rectangle(::user::e_layout_lading);
+//
+//      ::rectangle_i32 rectangleParent(rectangleWindow);
+//
+//      m_pframewindow->screen_to_client(::user::e_layout_lading)(rectangleParent);
+//
+//      ::rectangle_i32 rectangle;
+//
+//      window_rectangle(rectangle, ::user::e_layout_lading);
+//
+//      m_pframewindow->screen_to_client(::user::e_layout_lading)(rectangle);
 
-      ::rectangle_i32 rectangleParent(rectangleWindow);
+//      reset_layout(pgraphics);
 
-      m_pframewindow->screen_to_client(::user::e_layout_lading)(rectangleParent);
+      auto rectangle = this->rectangle(::user::e_layout_lading);
 
-      ::rectangle_i32 rectangle;
-
-      window_rectangle(rectangle, ::user::e_layout_lading);
-
-      m_pframewindow->screen_to_client(::user::e_layout_lading)(rectangle);
-
-      reset_layout(pgraphics);
-
-      auto rectangleClient = client_rectangle(::user::e_layout_lading);
-
-      int iWidth = rectangleClient.width();
-
-      rectangle.left = iWidth;
+//      int iWidth = rectangleX.width();
+//
+      rectangle.left() = rectangle.right();
 
       _layout_button(e_button_close, rectangle);
 
@@ -679,9 +676,9 @@ if(rectangle.left > 400)
 
       if (!pbutton->is_window())
       {
-         
+
          pbutton->create_child(this);
-      
+
       }
 
       return true;
@@ -740,7 +737,7 @@ if(rectangle.left > 400)
    void control_box::update_control_box_buttons()
    {
 
-      for (auto & ebutton : m_itemmap.items())
+      for (auto & ebutton: m_itemmap.items())
       {
 
          update_control_box_button(ebutton);
@@ -748,7 +745,6 @@ if(rectangle.left > 400)
       }
 
    }
-
 
 
    bool control_box::create_buttons()
@@ -769,43 +765,43 @@ if(rectangle.left > 400)
    }
 
 
-   bool control_box::get_control_box_button_caption(enum_button ebutton, string &strCaption) const
+   bool control_box::get_control_box_button_caption(enum_button ebutton, string & strCaption) const
    {
 
       bool bOk = true;
 
       switch (ebutton)
       {
-      case e_button_close:
-         strCaption = (char)114;
-         break;
-      case e_button_up:
-         strCaption = (char)53;
-         break;
-      case e_button_down:
-         strCaption = (char)54;
-         break;
-      case e_button_minimize:
-         strCaption = (char)48;
-         break;
-      case e_button_maximize:
-         strCaption = (char)49;
-         break;
-      case e_button_restore:
-         strCaption = (char)50;
-         break;
-      case e_button_notify_icon:
-         strCaption = (char)0x69;
-         break;
-      case e_button_transparent_frame:
-         strCaption = (char)' ';
-         break;
-      case e_button_dock:
-         strCaption = (char)0x6E;
-         break;
+         case e_button_close:
+            strCaption = (char) 114;
+            break;
+         case e_button_up:
+            strCaption = (char) 53;
+            break;
+         case e_button_down:
+            strCaption = (char) 54;
+            break;
+         case e_button_minimize:
+            strCaption = (char) 48;
+            break;
+         case e_button_maximize:
+            strCaption = (char) 49;
+            break;
+         case e_button_restore:
+            strCaption = (char) 50;
+            break;
+         case e_button_notify_icon:
+            strCaption = (char) 0x69;
+            break;
+         case e_button_transparent_frame:
+            strCaption = (char) ' ';
+            break;
+         case e_button_dock:
+            strCaption = (char) 0x6E;
+            break;
 
-      default:
-         bOk = false;
+         default:
+            bOk = false;
       }
 
       return bOk;
@@ -816,7 +812,7 @@ if(rectangle.left > 400)
    enum_stock_icon control_box::get_control_box_button_stock_icon(enum_button ebutton)
    {
 
-      return (enum_stock_icon)((int) ebutton - (int)e_button_begin + (int) e_stock_icon_control_box_begin);
+      return (enum_stock_icon) ((int) ebutton - (int) e_button_begin + (int) e_stock_icon_control_box_begin);
 
    }
 
@@ -827,7 +823,7 @@ if(rectangle.left > 400)
       auto & pitem = m_itemmap[ebutton];
 
       //auto estatus =
-      
+
       __defer_construct_new(pitem);
 
       //if (!estatus)
@@ -866,7 +862,7 @@ if(rectangle.left > 400)
    string control_box::get_control_box_button_tag(enum_button ebutton) const
    {
 
-      switch(ebutton)
+      switch (ebutton)
       {
          case e_button_close: // stock_icon_close
             return "button_close";
@@ -940,20 +936,20 @@ if(rectangle.left > 400)
          return false;
 
       }
-         
+
       return pitem->m_bPresent;
 
    }
 
 
-   void control_box::reset_layout(::draw2d::graphics_pointer & pgraphics)
-   {
-
-      int iDefaultButtonSize = calculate_button_size(pgraphics);
-
-      m_sizeButtonDefault = ::size_i32(iDefaultButtonSize, iDefaultButtonSize);
-
-   }
+//   void control_box::reset_layout(::draw2d::graphics_pointer & pgraphics)
+//   {
+//
+//      int iDefaultButtonSize = calculate_button_size(pgraphics);
+//
+//      m_sizeButtonDefault = ::size_i32(iDefaultButtonSize, iDefaultButtonSize);
+//
+//   }
 
 
    size_i32 control_box::get_button_size(enum_button ebutton)
@@ -969,10 +965,10 @@ if(rectangle.left > 400)
 
       ::rectangle_i32 rectangleMargin;
 
-      rectangleMargin.left = 0;
-      rectangleMargin.top = m_iDefaultButtonMargin;
-      rectangleMargin.right = m_iDefaultButtonMargin;
-      rectangleMargin.bottom = m_iDefaultButtonMargin;
+      rectangleMargin.left() = 0;
+      rectangleMargin.top() = m_iDefaultButtonMargin;
+      rectangleMargin.right() = m_iDefaultButtonMargin;
+      rectangleMargin.bottom() = m_iDefaultButtonMargin;
 
       return rectangleMargin;
 
@@ -986,6 +982,8 @@ if(rectangle.left > 400)
 
       i32 iButtonSize = (::i32) (dFontHeight + m_iDefaultButtonMargin * 3);
 
+      m_sizeButtonDefault = ::size_i32(iButtonSize, iButtonSize);
+
       return iButtonSize;
 
    }
@@ -996,11 +994,11 @@ if(rectangle.left > 400)
 
       ::count cVisible = 0;
 
-      for (auto & pair : m_itemmap)
+      for (auto & pair: m_itemmap)
       {
 
          auto & ebutton = pair.m_element1;
-         
+
          if (should_show_button(ebutton))
          {
 
@@ -1022,7 +1020,7 @@ if(rectangle.left > 400)
 
       int iWidth = 0;
 
-      for (auto & pitem : m_itemmap.payloads())
+      for (auto & pitem: m_itemmap.payloads())
       {
 
          auto & pbutton = pitem->m_pbutton;
@@ -1043,7 +1041,7 @@ if(rectangle.left > 400)
    }
 
 
-   ::pointer<button>control_box::get_button(enum_button ebutton)
+   ::pointer<button> control_box::get_button(enum_button ebutton)
    {
 
       auto pitem = get_item(ebutton);
@@ -1060,7 +1058,7 @@ if(rectangle.left > 400)
    }
 
 
-   ::pointer<::experience::button>control_box::get_box_button(enum_button ebutton)
+   ::pointer<::experience::button> control_box::get_box_button(enum_button ebutton)
    {
 
       return get_button(ebutton);
@@ -1128,9 +1126,9 @@ if(rectangle.left > 400)
    void control_box::on_message_size(::message::message * pmessage)
    {
 
-      //auto rectangleClient = client_rectangle();
+      //auto rectangleX = this->rectangle();
 
-      information("rectangleClient");
+      information("rectangleX");
 
    }
 
@@ -1147,9 +1145,9 @@ if(rectangle.left > 400)
 
    void control_box::_001OnClip(::draw2d::graphics_pointer & pgraphics)
    {
-      
-      return ::user::box::_001OnClip(pgraphics);
-      
+
+      //return ::user::box::_001OnClip(pgraphics);
+
 //#ifdef MACOS
 //
 //      // clip
@@ -1164,19 +1162,19 @@ if(rectangle.left > 400)
 //
 //         ::aura::draw_context * pdrawcontext = pgraphics->::aura::simple_chain < ::aura::draw_context >::get_last();
 //
-//         ::rectangle_i32 rectangleClient;
+//         ::rectangle_i32 rectangleX;
 //
 //         bool bFirst = true;
 //
 //         if (pdrawcontext != nullptr)
 //         {
 //
-//            client_rectangle(rectangleClient);
+//            this->rectangle(rectangleX);
 //
-//            rectangleClient.bottom++;
-//            rectangleClient.right++;
+//            rectangleX.bottom()++;
+//            rectangleX.right()++;
 //
-//            rectangleClip = rectangleClient;
+//            rectangleClip = rectangleX;
 //
 //            bFirst = false;
 //

@@ -2,6 +2,7 @@
 #include "bitmap.h"
 #include "acme/exception/interface_only.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "aura/graphics/image/pixmap.h"
 
 
 namespace draw2d_cairo
@@ -44,7 +45,7 @@ namespace draw2d_cairo
 
       destroy();
 
-      i32 iStride = cairo_format_stride_for_width(CAIRO_FORMAT_ARGB32, cx);
+      i32 iStride = stride_for_width(cx);
 
       m_mem.set_size(iStride * cy);
 
@@ -256,6 +257,156 @@ namespace draw2d_cairo
    {
 
       //return false;
+
+   }
+
+
+   bool bitmap::host_bitmap(::draw2d::graphics * pgraphics, ::pixmap * ppixmap)
+   {
+
+
+      //try
+      //{
+
+      synchronous_lock ml(cairo_mutex());
+
+      destroy();
+
+      ::i32 iScanWidth = -1;
+//
+//      if(pstride)
+//      {
+//
+//         iScanWidth = *pstride / sizeof(color32_t);
+//
+//      }
+
+      if(iScanWidth < ppixmap->m_size.cx())
+      {
+
+         iScanWidth = ppixmap->m_size.cx();
+
+      }
+
+      //ppixmap->m_iScan = cairo_format_stride_for_width(CAIRO_FORMAT_ARGB32, iScanWidth);
+
+#if MEMDLEAK
+
+      m_mem.m_strTag = "image_section=" + as_string(cx) + "x" + as_string(size.ccy);
+
+#endif
+
+      //m_mem.m_bAligned = true;
+
+      m_mem.m_begin = (::u8*) ppixmap->m_pimage32Raw;
+      m_mem.m_end = m_mem.m_begin + (ppixmap->m_iScan * ppixmap->m_size.cy());
+      m_mem.m_bOwner = false;
+
+//      if(*ppdata != nullptr)
+//      {
+//
+//         if(size.cx() * 4 != iStride)
+//         {
+//
+//            i32 iW = size.cx() * 4;
+//
+//            for(i32 i = 0; i < size.cy(); i++)
+//            {
+//
+//               ::memory_copy(&m_mem.data()[iStride * i], &((::u8 *) *ppdata)[iW * i], iW);
+//
+//            }
+//
+//         }
+//         else
+//         {
+//
+//            ::memory_copy(m_mem.data(), *ppdata, iStride * size.cy());
+//
+//         }
+//
+//      }
+
+      m_psurface = cairo_image_surface_create_for_data(m_mem.data(), CAIRO_FORMAT_ARGB32, ppixmap->m_sizeRaw.cx(), ppixmap->m_sizeRaw.cy(), ppixmap->m_iScan);
+
+      int iSurfaceStatus = cairo_surface_status(m_psurface);
+
+      if(iSurfaceStatus != CAIRO_STATUS_SUCCESS)
+      {
+
+         cairo_surface_destroy(m_psurface);
+
+         m_psurface = nullptr;
+
+         if(iSurfaceStatus == CAIRO_STATUS_INVALID_STRIDE)
+         {
+
+            ppixmap->m_iScan = cairo_format_stride_for_width(CAIRO_FORMAT_ARGB32, ppixmap->m_sizeRaw.cx());
+
+            m_psurface = cairo_image_surface_create_for_data(m_mem.data(), CAIRO_FORMAT_ARGB32, ppixmap->m_sizeRaw.cx(), ppixmap->m_sizeRaw.cy(), ppixmap->m_iScan);
+
+            iSurfaceStatus = cairo_surface_status(m_psurface);
+
+            if(iSurfaceStatus != CAIRO_STATUS_SUCCESS)
+            {
+
+               cairo_surface_destroy(m_psurface);
+
+               m_psurface = nullptr;
+
+               throw ::exception(error_failed);
+
+            }
+
+         }
+         else
+         {
+
+            throw ::exception(error_failed);
+
+         }
+
+      }
+
+//      if(ppdata != nullptr)
+//      {
+//
+//         *ppdata = (color32_t *) m_mem.data();
+//
+//      }
+//
+//      if(pstride != nullptr)
+//      {
+//
+//         *pstride = iStride;
+//
+//      }
+
+      m_osdata[0] = m_psurface;
+
+      m_size = ppixmap->m_size;
+
+      return true;
+
+      //}
+      //catch(...)
+      //{
+
+      //}
+
+      //destroy();
+
+      //return false;
+
+
+   }
+
+
+
+   ::i32 bitmap::stride_for_width(::i32 iWidth)
+   {
+
+      return cairo_format_stride_for_width(CAIRO_FORMAT_ARGB32, iWidth);
 
    }
 

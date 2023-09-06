@@ -23,6 +23,7 @@ namespace hardware
 
       virtual void register_device_listener(enum_device edevice);
 
+      virtual void on_device_nodes_changed();
 
       virtual void on_device_plugged(enum_device edevice);
 

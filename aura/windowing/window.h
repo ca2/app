@@ -32,8 +32,8 @@ namespace windowing
       ::pointer<::message_queue>                m_pmessagequeue;
       class ::time                              m_timeLastMouseMove;
       ::pointer<::windowing::window>            m_pwindowParent;
-      ::point_i32                               m_point;
-      ::size_i32                                m_size;
+      ::point_i32                               m_pointWindow;
+      ::size_i32                                m_sizeWindow;
       ::pointer<::windowing::icon>              m_picon;
       ::pointer<::windowing::windowing>         m_pwindowing;
       ::pointer<::user::copydesk>               m_pcopydesk;
@@ -45,13 +45,11 @@ namespace windowing
       bool                                      m_bKeyboardFocus;
       ::pointer < class placement_log >         m_pplacementlog;
 
-
       window();
       ~window() override;
 
 
       void user_common_construct();
-
 
       void on_initialize_particle() override;
 
@@ -91,10 +89,9 @@ namespace windowing
       
 
       virtual void set_keyboard_focus();
+      virtual void _set_keyboard_focus_unlocked();
 
       virtual void set_mouse_capture();
-
-      virtual void set_active_window();
 
       virtual void bring_to_front();
 
@@ -134,7 +131,9 @@ namespace windowing
 
       void on_destroy() override;
 
-      virtual void show_window(const ::e_display & edisplay, const ::e_activation & eactivation);
+      //virtual void show_window(const ::e_display & edisplay, const ::e_activation & eactivation);
+
+      //virtual void _show_window_unlocked(const ::e_display & edisplay, const ::e_activation & eactivation);
 
       virtual void set_user_interaction(::user::interaction *pinteraction);
 
@@ -159,6 +158,9 @@ namespace windowing
       virtual bool is_zoomed();
       virtual bool is_window();
       virtual bool is_window_visible();
+
+      virtual bool _is_iconic_unlocked();
+      virtual bool _is_window_visible_unlocked();
       
 
       virtual bool client_to_screen(::point_i32 * ppoint);
@@ -166,13 +168,17 @@ namespace windowing
       virtual bool screen_to_client(::point_i32 * ppoint);
 
 
-      virtual bool on_set_window_position(const class ::zorder& zorder, i32 x, i32 y, i32 cx, i32 cy, const ::e_activation & eactivation, bool bNoZorder, bool bNoMove, bool bNoSize, bool bShow, bool bHide);
+      virtual bool on_set_window_position(const class ::zorder& zorder, i32 x, i32 y, i32 cx, i32 cy, const ::e_activation & eactivation, bool bNoZorder, bool bNoMove, bool bNoSize, ::e_display edisplay);
 
-      virtual bool set_window_position(const class ::zorder& zorder, i32 x, i32 y, i32 cx, i32 cy, const ::e_activation& eactivation, bool bNoZorder, bool bNoMove, bool bNoSize, bool bShow, bool bHide);
-      virtual bool _set_window_pos(const class ::zorder& zorder, i32 x, i32 y, i32 cx, i32 cy, const ::e_activation& eactivation, bool bNoZorder, bool bNoMove, bool bNoSize, bool bShow, bool bHide, ::u32 nOverrideFlags = 0);
+      virtual bool set_window_position(const class ::zorder& zorder, i32 x, i32 y, i32 cx, i32 cy, const ::e_activation& eactivation, bool bNoZorder, bool bNoMove, bool bNoSize, ::e_display edisplay);
+      virtual bool _set_window_position(const class ::zorder& zorder, i32 x, i32 y, i32 cx, i32 cy, const ::e_activation& eactivation, bool bNoZorder, bool bNoMove, bool bNoSize, ::e_display edisplay, ::u32 nOverrideFlags = 0);
 
-      virtual bool set_window_position_unlocked();
-      virtual bool _set_window_position_unlocked(const class ::zorder& zorder, i32 x, i32 y, i32 cx, i32 cy, const ::e_activation& eactivation, bool bNoZorder, bool bNoMove, bool bNoSize, bool bShow, bool bHide);
+      virtual bool configure_window_unlocked();
+      virtual bool strict_set_window_position_unlocked();
+      virtual bool full_set_window_position_unlocked();
+      virtual bool _set_window_position_unlocked(const class ::zorder& zorder, i32 x, i32 y, i32 cx, i32 cy, const ::e_activation& eactivation, bool bNoZorder, bool bNoMove, bool bNoSize, ::e_display edisplay);
+      virtual bool _configure_window_unlocked(const class ::zorder& zorder, const ::e_activation& eactivation, bool bNoZorder, ::e_display edisplay);
+      virtual bool _strict_set_window_position_unlocked(i32 x, i32 y, i32 cx, i32 cy, bool bNoMove, bool bNoSize);
 
       virtual bool is_destroying();
 
@@ -188,7 +194,12 @@ namespace windowing
 
       virtual void present();
 
+      //virtual bool presentation_complete();
+
+
       virtual void on_visual_applied();
+
+      virtual void _on_visual_changed_unlocked();
 
 
       virtual void win_update_graphics();
@@ -242,10 +253,12 @@ namespace windowing
 
       // the active interaction_impl applies only to top-level (frame windows)
       virtual ::user::interaction * get_active_window();
-      //void set_active_window() override;
+      virtual void set_active_window();
+      virtual void _set_active_window_unlocked();
 
       // the foreground interaction_impl applies only to top-level windows (frame windows)
       virtual void set_foreground_window();
+      virtual void _set_foreground_window_unlocked();
       virtual ::user::interaction * get_foreground_window();
 
       virtual bool is_active_window() const;
@@ -325,10 +338,10 @@ namespace windowing
 
 
       virtual void window_update_screen_buffer();
-      virtual void window_request_presentation();
+      //virtual void window_request_presentation();
 
-      virtual void _window_request_presentation();
-      virtual void _window_request_presentation_set_window_position(const class ::zorder& zorder, i32 x, i32 y, i32 cx, i32 cy, const ::e_activation& eactivation, bool bNoZorder, bool bNoMove, bool bNoSize, bool bShow, bool bHide);
+      //virtual void _window_request_presentation_locked();
+      //virtual void _window_request_presentation_set_window_position_unlocked(const class ::zorder& zorder, i32 x, i32 y, i32 cx, i32 cy, const ::e_activation& eactivation, bool bNoZorder, bool bNoMove, bool bNoSize, bool bShow, bool bHide);
       
       virtual void frame_toggle_restore();
 
@@ -366,6 +379,10 @@ namespace windowing
          return !operator == (window);
 
       }
+
+      //virtual void window_do_graphics_thread_step();
+
+      virtual void window_do_update_screen();
 
 
    };

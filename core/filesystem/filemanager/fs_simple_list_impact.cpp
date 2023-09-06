@@ -318,16 +318,16 @@ namespace filemanager
          bool list_impact::on_click(::item * pitem)
          {
 
-            if(m_itema[pitem->m_item.item_index()]->IsFolder())
+            if(m_itema[pitem->m_item.m_iItem]->IsFolder())
             {
 
-               m_pserver->open_folder(m_itema[pitem->m_item.item_index()]->m_iFolder);
+               m_pserver->open_folder(m_itema[pitem->m_item.m_iItem]->m_iFolder);
 
             }
             else
             {
 
-               m_pserver->open_file(m_iParentFolder, m_itema[pitem->m_item.item_index()]->m_strFileName, m_itema[pitem->m_item.item_index()]->m_strExtension);
+               m_pserver->open_file(m_iParentFolder, m_itema[pitem->m_item.m_iItem]->m_strFileName, m_itema[pitem->m_item.m_iItem]->m_strExtension);
 
             }
 

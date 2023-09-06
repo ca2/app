@@ -70,7 +70,7 @@ public:
    void do_asynchronously() override;
 
 
-
+   //virtual ::pointer < item_container > item_form();
 
    void on_initialize_particle() override;
 
@@ -96,6 +96,10 @@ public:
 
    void create_drawing_objects() override;
    void update_drawing_objects() override;
+
+
+   ::point_i32 origin() override;
+
 
    //::nano_child * hit_test(::user::mouse * pmouse, ::user::e_zorder ezorder) override;
    ::nano_child * on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;

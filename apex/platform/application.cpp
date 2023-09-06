@@ -6072,7 +6072,7 @@ namespace apex
 
       ensure_app_interest();
 
-      information() << ".2";
+      information() << "apex::application .2";
 
       if (is_true("install"))
       {

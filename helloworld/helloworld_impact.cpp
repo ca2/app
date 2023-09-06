@@ -247,15 +247,15 @@ namespace helloworld
    void impact::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
-      if(rectangleClient.area() <= 0)
+      if(rectangleX.area() <= 0)
          return;
 
       bool bHover = get_typed_parent < pane_impact >()->m_pimpactLast == this && get_typed_parent < pane_impact >()->get_current_tab_id() == FONTSEL_IMPACT;
 
-      if(m_prender->m_cx == rectangleClient.width()
-            && m_prender->m_cy == rectangleClient.height()
+      if(m_prender->m_cx == rectangleX.width()
+            && m_prender->m_cy == rectangleX.height()
             && !bHover
             && m_strNewFont == m_strFont)
          return;
@@ -275,11 +275,11 @@ namespace helloworld
 
       }
 
-      m_prender->m_cx = rectangleClient.width();
+      m_prender->m_cx = rectangleX.width();
 
-      m_prender->m_cy = rectangleClient.height();
+      m_prender->m_cy = rectangleX.height();
 
-      m_prender->m_rectangleClient = rectangleClient;
+      m_prender->m_rectangleX = rectangleX;
 
       m_prender->m_bNewLayout = true;
 
@@ -487,7 +487,7 @@ namespace helloworld
 
          m_pimagePost->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
-         m_pimagePost->get_graphics()->StretchBlt(rectangleImage.left, rectangleImage->top, rectangleImage->width(), rectangleImage->height(),
+         m_pimagePost->get_graphics()->StretchBlt(rectangleImage.left(), rectangleImage->top(), rectangleImage->width(), rectangleImage->height(),
 /*                                                m_prender->m_pimagepimage->g(), 0, 0,
                                                 m_prender->m_pimageImage->get_size()->cx(),
                                                 m_prender->m_pimageImage->get_size()->cy());

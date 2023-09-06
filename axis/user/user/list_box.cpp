@@ -6,6 +6,7 @@
 #include "acme/constant/message.h"
 #include "acme/constant/timer.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/user/user/content.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/pen.h"
@@ -43,11 +44,11 @@ namespace user
 
       defer_create_synchronization();
 
-      m_bClickDefaultMouseHandling = true;
+      m_bDefaultClickHandling = true;
 
       m_bTransparent = true;
 
-      m_bHoverDefaultMouseHandling = true;
+      m_bDefaultMouseHoverHandling = true;
 
       m_bPendingKillFocusHiding = false;
 
@@ -296,9 +297,9 @@ namespace user
 
       m_straValue.erase_all();
 
-      m_pitemCurrent = nullptr;
+      //m_pitemCurrent = nullptr;
 
-      m_pitemHover = nullptr;
+      //m_pitemHover = nullptr;
 
    }
 
@@ -392,7 +393,7 @@ namespace user
 
       string strItem;
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
       status < ::color::color > colorBackground;
 
@@ -408,18 +409,18 @@ namespace user
 
       pgraphics->set(pbrushBk);
 
-      pgraphics->fill_rectangle(rectangleClient);
+      pgraphics->fill_rectangle(rectangleX);
 
       ::rectangle_i32 rectangleItem;
 
-      rectangleItem = rectangleClient;
+      rectangleItem = rectangleX;
 
-      rectangleItem.bottom = rectangleClient.top;
+      rectangleItem.bottom() = rectangleX.top();
 
       if (m_pcombo && m_pcombo->m_bEdit)
       {
 
-         rectangleItem.bottom += _001GetItemHeight();
+         rectangleItem.bottom() += _001GetItemHeight();
 
       }
 
@@ -438,9 +439,9 @@ namespace user
       for (index iItem = 0; iItem < iListItemCount; iItem++)
       {
 
-         rectangleItem.top = rectangleItem.bottom;
+         rectangleItem.top() = rectangleItem.bottom();
 
-         rectangleItem.bottom = rectangleItem.top + _001GetItemHeight();
+         rectangleItem.bottom() = rectangleItem.top() + _001GetItemHeight();
 
 #if DEBUG_LIST_ITEM_DRAWING
 
@@ -515,9 +516,9 @@ namespace user
 
       pgraphics->set(ppen);
 
-      rectangleClient.deflate(0, 0, 1, 1);
+      rectangleX.deflate(0, 0, 1, 1);
 
-      pgraphics->draw_rectangle(rectangleClient);
+      pgraphics->draw_rectangle(rectangleX);
 
    }
 
@@ -624,7 +625,7 @@ namespace user
 
       psize->cx() += m_iBorder * 2;
 
-      //auto rectangleComboClient = client_rectangle();
+      //auto rectangleComboClient = this->rectangle();
 
       //psize->cx() = maximum(psize->cx(), rectangleComboClient.width());
       //psize->cx() = maximum(psize->cx(), rectangleComboClient.width());
@@ -650,7 +651,7 @@ namespace user
    {
 
       if (m_pscrollbarVertical != nullptr
-         && m_pscrolldataVertical->m_bScroll
+         && m_pscrolldataVertical->m_bHasScroll
          && iItem >= 0 && iItem < m_pcombo->_001GetListCount())
       {
 
@@ -765,7 +766,7 @@ namespace user
       else
       {
 
-         information("list_box hide");
+         //information("list_box hide");
 
       }
 
@@ -840,7 +841,7 @@ namespace user
       if (m_pcombo)
       {
 
-         m_pcombo->m_pitemHover = m_pcombo->m_pitemCurrent;
+         m_pcombo->m_pitemHover = m_pcombo->main_content().m_pitemCurrent;
 
          set_need_redraw();
 
@@ -919,13 +920,13 @@ namespace user
       else if (pkey->m_ekey == ::user::e_key_down)
       {
 
-         m_pcombo->m_pitemHover = __new(::item(e_element_item, minimum(m_pcombo->m_pitemHover->m_item.item_index() + 1, m_pcombo->_001GetListCount() - 1)));
+         m_pcombo->m_pitemHover = __new(::item(e_element_item, minimum(m_pcombo->m_pitemHover->m_item.m_iItem + 1, m_pcombo->_001GetListCount() - 1)));
 
       }
       else if (pkey->m_ekey == ::user::e_key_up)
       {
 
-         m_pcombo->m_pitemHover = __new(::item(e_element_item, maximum(m_pcombo->m_pitemHover->m_item.item_index() - 1, 0)));
+         m_pcombo->m_pitemHover = __new(::item(e_element_item, maximum(m_pcombo->m_pitemHover->m_item.m_iItem - 1, 0)));
 
       }
       else if (pkey->m_ekey == ::user::e_key_return)
@@ -966,9 +967,9 @@ namespace user
 
       screen_to_client(e_layout_sketch)(point);
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
-      if (rectangleClient.contains(point))
+      if (rectangleX.contains(point))
       {
 
       }
@@ -993,9 +994,9 @@ namespace user
 
       screen_to_client(e_layout_sketch)(point);
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
-      if (rectangleClient.contains(point))
+      if (rectangleX.contains(point))
       {
 
       }
@@ -1068,9 +1069,9 @@ namespace user
 
       ::count iItemCount = _001GetListCount();
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
-      ::rectangle_i32 rectangleItem = rectangleClient;
+      ::rectangle_i32 rectangleItem = rectangleX;
 
       int iAddUp = 0;
 
@@ -1084,9 +1085,9 @@ namespace user
       for (::index iItem = 0; iItem < iItemCount; iItem++)
       {
 
-         rectangleItem.top = rectangleClient.top + (_001GetItemHeight() * (int) (iAddUp + iItem));
+         rectangleItem.top() = rectangleX.top() + (_001GetItemHeight() * (int) (iAddUp + iItem));
 
-         rectangleItem.bottom = rectangleItem.top + _001GetItemHeight();
+         rectangleItem.bottom() = rectangleItem.top() + _001GetItemHeight();
 
          if (rectangleItem.contains(point))
          {
@@ -1097,9 +1098,9 @@ namespace user
 
       }
 
-      rectangleItem.top = rectangleClient.top;
+      rectangleItem.top() = rectangleX.top();
 
-      rectangleItem.bottom = rectangleItem.top + _001GetItemHeight();
+      rectangleItem.bottom() = rectangleItem.top() + _001GetItemHeight();
 
       if (rectangleItem.contains(point))
       {
@@ -1136,10 +1137,10 @@ namespace user
 
          ::rectangle_i32 rectangleList;
 
-         rectangleList.left = rectangleWindow.left;
-         rectangleList.right = rectangleWindow.left + maximum(rectangleWindow.width(), sizeFull.cx());
-         rectangleList.top = rectangleWindow.bottom;
-         rectangleList.bottom = rectangleWindow.bottom + sizeFull.cy();
+         rectangleList.left() = rectangleWindow.left();
+         rectangleList.right() = rectangleWindow.left() + maximum(rectangleWindow.width(), sizeFull.cx());
+         rectangleList.top() = rectangleWindow.bottom();
+         rectangleList.bottom() = rectangleWindow.bottom() + sizeFull.cy();
 
          if (i < 0)
          {
@@ -1148,22 +1149,22 @@ namespace user
 
          }
 
-         if (rectangleList.bottom > rectangleMonitor.bottom - m_iBorder)
+         if (rectangleList.bottom() > rectangleMonitor.bottom() - m_iBorder)
          {
 
-            rectangleList.bottom = rectangleMonitor.bottom - m_iBorder;
+            rectangleList.bottom() = rectangleMonitor.bottom() - m_iBorder;
 
             ::rectangle_i32 rectangleListOver;
 
-            rectangleListOver.left = rectangleList.left;
-            rectangleListOver.right = rectangleList.right;
-            rectangleListOver.bottom = rectangleWindow.top;
-            rectangleListOver.top = rectangleWindow.top - sizeFull.cy();
+            rectangleListOver.left() = rectangleList.left();
+            rectangleListOver.right() = rectangleList.right();
+            rectangleListOver.bottom() = rectangleWindow.top();
+            rectangleListOver.top() = rectangleWindow.top() - sizeFull.cy();
 
-            if (rectangleListOver.top < rectangleMonitor.top + m_iBorder)
+            if (rectangleListOver.top() < rectangleMonitor.top() + m_iBorder)
             {
 
-               rectangleListOver.move_to(rectangleListOver.left, rectangleMonitor.top);
+               rectangleListOver.move_to(rectangleListOver.left(), rectangleMonitor.top());
 
             }
 
@@ -1171,14 +1172,14 @@ namespace user
 
          }
 
-         if (rectangleList.right > rectangleMonitor.right - m_iBorder)
+         if (rectangleList.right() > rectangleMonitor.right() - m_iBorder)
          {
 
-            rectangleList.offset(rectangleMonitor.right - (rectangleList.right - m_iBorder), 0);
+            rectangleList.offset(rectangleMonitor.right() - (rectangleList.right() - m_iBorder), 0);
 
          }
 
-         if (rectangleList.left < rectangleMonitor.left)
+         if (rectangleList.left() < rectangleMonitor.left())
          {
 
             rectangleList.move_left_to(0);

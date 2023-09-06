@@ -3,10 +3,10 @@
 #include "list_box.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
-#include "acme/user/user/_constant.h"
-////#include "acme/exception/exception.h"
 #include "acme/handler/item.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/user/user/_constant.h"
+#include "acme/user/user/content.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/draw2d.h"
@@ -31,12 +31,13 @@ namespace user
    void combo_box::user_combo_box_common_construct()
    {
 
-      m_econtroltype          = e_control_type_combo_box;
-      m_typeListBox           = __type(::user::list_box);
-      m_estyle                = style_simply;
-      m_bEdit                 = true;
-      m_edatamode             = data_mode_opaque;
-      m_bMultiLine            = false;
+      m_econtroltype                         = e_control_type_combo_box;
+      m_typeListBox                          = __type(::user::list_box);
+      m_estyle                               = style_simply;
+      m_bEdit                                = true;
+      m_edatamode                            = data_mode_opaque;
+      m_bMultiLine                           = false;
+      m_bDefaultParentMouseMessageHandling   = false;
 
    }
 
@@ -103,11 +104,11 @@ namespace user
       else
       {
 
-         _001GetListText(current_item()->m_item.item_index(), strText);
+         _001GetListText(current_item()->m_item.m_iItem, strText);
 
       }
 
-      auto rectangleClinet = client_rectangle();
+      auto rectangleClinet = this->rectangle();
       //::user::e_::color::color colorText = color_text;
 
       ::color::color colorText = ::color::black;
@@ -216,7 +217,7 @@ namespace user
    void combo_box::_001OnDrawCombo(::draw2d::graphics_pointer & pgraphics)
    {
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
       auto pbrush = __create < ::draw2d::brush > ();
 
@@ -515,9 +516,9 @@ namespace user
 
       }
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
-      if (rectangleClient.contains(point))
+      if (rectangleX.contains(point))
       {
 
          auto pitem = __new(::item(e_element_text));
@@ -655,39 +656,41 @@ namespace user
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      if (is_window_enabled())
+      if (!is_window_enabled())
       {
 
-         auto pitemHit = hit_test(pmouse, e_zorder_any);
+         return;
 
-         if (::is_set(pitemHit) && (!m_bEdit || pitemHit->m_item.m_eelement == e_element_drop_down))
+      }
+
+      auto pitemHit = hit_test(pmouse, e_zorder_any);
+
+      if (::is_set(pitemHit) && (!m_bEdit || pitemHit->m_item.m_eelement == e_element_drop_down))
+      {
+
+         class ::time timeLastVisibilityChangeElapsed;
+
+         if (m_plistbox.is_set())
          {
 
-            class ::time timeLastVisibilityChangeElapsed;
-
-            if (m_plistbox.is_set())
-            {
-
-               timeLastVisibilityChangeElapsed = m_plistbox->m_timeLastVisibilityChange.elapsed();
-
-            }
-
-            if (m_plistbox.is_null() || timeLastVisibilityChangeElapsed > 300_ms)
-            {
-
-               _001ToggleDropDown();
-
-            }
-            else if (!m_plistbox->const_layout().sketch().is_screen_visible())
-            {
-
-               //information("test");
-
-            }
-
-            pmouse->m_bRet = true;
+            timeLastVisibilityChangeElapsed = m_plistbox->m_timeLastVisibilityChange.elapsed();
 
          }
+
+         if (m_plistbox.is_null() || timeLastVisibilityChangeElapsed > 300_ms)
+         {
+
+            _001ToggleDropDown();
+
+         }
+         else if (!m_plistbox->const_layout().sketch().is_screen_visible())
+         {
+
+            //information("test");
+
+         }
+
+         pmouse->m_bRet = true;
 
       }
 
@@ -832,9 +835,9 @@ namespace user
 
       }
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
-      m_plistbox->m_dItemHeight = minimum(24, rectangleClient.height());
+      m_plistbox->m_dItemHeight = minimum(24, rectangleX.height());
 
    }
 
@@ -852,7 +855,7 @@ namespace user
       if (m_plistbox)
       {
 
-         m_plistbox->m_pitemCurrent = pitem;
+         m_plistbox->main_content().m_pitemCurrent = pitem;
 
       }
 
@@ -891,9 +894,9 @@ namespace user
 
       /*      ::write_text::font_pointer fontxyz(e_create);
 
-            auto rectangleClient = client_rectangle();
+            auto rectangleX = this->rectangle();
 
-            fontxyz->m_dFontSize = rectangleClient.height() * 0.4;
+            fontxyz->m_dFontSize = rectangleX.height() * 0.4;
             fontxyz->m_eunitFontSize = ::draw2d::e_unit_pixel;
             fontxyz->m_bUpdated = false;
 

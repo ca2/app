@@ -711,6 +711,12 @@
     <ClInclude Include="html\html\_1.h">
       <Filter>Header Files\html\html</Filter>
     </ClInclude>
+    <ClInclude Include="user\user\form_handler.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\calculator_edit.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -995,10 +1001,13 @@
     <ClCompile Include="html\html\data.cpp">
       <Filter>Source Files\html\html</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\form_designer.cpp">
+    <ClCompile Include="user\user\form_handler.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\line_layout.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\calculator_edit.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
   </ItemGroup>

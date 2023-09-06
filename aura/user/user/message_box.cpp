@@ -33,13 +33,17 @@ namespace user
 
       common_construct();
 
-      enable_drag(::e_element_client, e_zorder_back);
+      auto pitemClient = __new(::item(e_element_client));
 
-      enable_drag(::e_element_resize, e_zorder_back);
+      enable_drag(pitemClient, e_zorder_back);
 
-      m_bClickDefaultMouseHandling = true;
+      auto pitemResize = __new(::item(e_element_resize));
 
-      m_bHoverDefaultMouseHandling = true;
+      enable_drag(pitemResize, e_zorder_back);
+
+      m_bDefaultClickHandling = true;
+
+      m_bDefaultMouseHoverHandling = true;
 
    }
 
@@ -512,7 +516,7 @@ namespace user
 
       ::user::interaction::_001OnDraw(pgraphics);
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
       auto pstyle = get_style(pgraphics);
 
@@ -520,7 +524,7 @@ namespace user
 
       colorBorder.m_u8Opacity = 100;
 
-      pgraphics->draw_inset_rectangle(rectangleClient, colorBorder, 1.0);
+      pgraphics->draw_inset_rectangle(rectangleX, colorBorder, 1.0);
 
    }
 

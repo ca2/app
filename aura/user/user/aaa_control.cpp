@@ -38,13 +38,13 @@ namespace user
    void control::user_control_construct()
    {
 
-      m_bClickDefaultMouseHandling = true;
+      m_bDefaultClickHandling = true;
 
       m_econtroltype = e_control_type_none;
 
       m_bMouseHoverOnCapture = true;
 
-      m_bClickDefaultMouseHandling = true;
+      m_bDefaultClickHandling = true;
 
    }
 

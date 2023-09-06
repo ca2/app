@@ -42,6 +42,47 @@ CLASS_DECL_ACME void trace_category_static_init(::acme::system * psystem);
 CLASS_DECL_ACME void trace_category_static_term();
 
 
+::file::path _system_config_folder_path()
+{
+
+   ::file::path pathSystemConfigFolder;
+
+#ifdef WINDOWS
+
+   pathSystemConfigFolder = getenv("AppData");
+
+#else // WINDOWS
+
+   pathSystemConfigFolder = getenv("HOME");
+
+#ifdef MACOS
+
+   pathSystemConfigFolder /= "Application Support";
+
+#else // MACOS
+
+   pathSystemConfigFolder /= ".config";
+
+#endif // !MACOS
+
+#endif // !WINDOWS
+
+   return pathSystemConfigFolder;
+
+}
+
+::file::path _ca2_config_system_folder_path()
+{
+
+   auto pathSystemConfigFolder = _system_config_folder_path();
+
+   auto pathCa2ConfigSystemFolder = pathSystemConfigFolder / "ca2/config/system";
+
+   return pathCa2ConfigSystemFolder;
+
+}
+
+
 //static ::acme::system * g_psystem = nullptr;
 
 
@@ -109,12 +150,22 @@ namespace acme
 
       m_psubsystem->initialize(this);
 
+      ::output_debug_string("Going to create simple log\n");
+
       m_plogger = __create_new < ::simple_log >();
 
+      ::output_debug_string("output_debug_string : simple log created\n");
+
+      information() << "information() << output_debug_string : simple log created";
+
 #ifdef PARALLELIZATION_PTHREAD
+
 #if defined(__APPLE__)
+
       m_bJoinable = true;
+
 #endif
+
 #endif
 
       //#ifdef WINDOWS_DESKTOP
@@ -155,6 +206,8 @@ namespace acme
 
       m_plogger->m_etracelevelMinimum = e_trace_level_information;
 
+      information() << "initialize_system trace_category_static_init";
+
       trace_category_static_init(this);
 
 
@@ -175,33 +228,41 @@ namespace acme
       //m_pacmedirectory = nullptr;
       //m_pacmepath = nullptr;
 
+      information() << "initialize_system factory()->initialize";
+
       factory()->initialize(this);
 
-      //#ifdef LINUX
-      //
-      //      m_elinuxdistribution = e_linux_distribution_unknown;
-      //
-      //#endif
+//      //#ifdef LINUX
+//      //
+//      //      m_elinuxdistribution = e_linux_distribution_unknown;
+//      //
+//      //#endif
+//
+//      //m_edesktop = ::user::e_desktop_none;
+//
+//      information() << "initialize_system os_construct";
+//
+//      os_construct();
+//
+//      //acmesystem() = this;
+//
+//      //      if (g_psystem == nullptr)
+//      //      {
+//      //
+//      //         g_psystem = this;
+//      //
+//      //      }
 
-      //m_edesktop = ::user::e_desktop_none;
 
-      os_construct();
-
-      //acmesystem() = this;
-
-      //      if (g_psystem == nullptr)
-      //      {
-      //
-      //         g_psystem = this;
-      //
-      //      }
-
+      information() << "initialize_system create nano";
 
       __construct_new(m_pnano);
 
       //m_psystemimpl = memory_new system_impl;
 
       //set_os_data(LAYERED_ACME, this);
+
+      information() << "acme initialize_system end";
 
    }
 
@@ -285,40 +346,33 @@ namespace acme
       if (m_pnode)
       {
 
-         //return ::success;
-
          return;
 
       }
+
+      information() <<"::acme::system create_os_node";
 
       auto & pfactory = node_factory();
 
       if (!pfactory)
       {
 
-         //fatal() <<"node_factory has failed (status=" << (const void &) pfactory << ")";
+         fatal() <<"node_factory has failed";
 
          throw ::exception(error_resource);
 
       }
 
-
-
-
-
 #if !defined(WINDOWS)
-
 
       __construct(m_pexceptiontranslator);
 
-
       m_pexceptiontranslator->attach();
-
 
 #endif
 
+      information() << "create_os_node going to create node";
 
-      //auto estatus = __construct(m_pnode);
       __construct(m_pnode);
 
       m_pacmenode = m_pnode;
@@ -2124,7 +2178,22 @@ namespace acme
 
 #else
 
-      etracelevel = e_trace_level_warning;
+      auto pathCa2ConfigSystemFolder = _ca2_config_system_folder_path();
+
+      auto pathTraceLevelInformation = pathCa2ConfigSystemFolder / "trace_level_information.txt";
+
+      if(file_exists(pathTraceLevelInformation))
+      {
+
+         etracelevel = e_trace_level_information;
+
+      }
+      else
+      {
+
+         etracelevel = e_trace_level_warning;
+
+      }
 
 #endif
 
@@ -2182,11 +2251,11 @@ namespace acme
 
 
 
-   void system::os_construct()
-   {
-
-
-   }
+//   void system::os_construct()
+//   {
+//
+//
+//   }
 
 
 #ifdef _DEBUG

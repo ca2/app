@@ -34,7 +34,7 @@ namespace xcb
 
       manual_reset_event              m_eventEnd;
       //rectangle_i32                 m_rectangle;
-      //rectangle_i32                 m_rectangleClient;
+      //rectangle_i32                 m_rectangleX;
 
       //pointer_array < nano_child >   m_childa;
       //::atom                          m_atomLeftButtonDown;

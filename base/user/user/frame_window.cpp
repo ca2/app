@@ -1073,7 +1073,6 @@ namespace user
    }
 
 
-
    bool frame_window::LoadFrame(const ::string & pszMatter, u32 dwDefaultStyle, ::user::interaction * puiParent, ::user::system * pcreate)
    {
 
@@ -1098,7 +1097,7 @@ namespace user
       if (puiParent != nullptr && (pholder = puiParent).is_set())
       {
 
-         rectangleFrame = pholder->client_rectangle();
+         rectangleFrame = pholder->rectangle();
 
       }
       else
@@ -2259,6 +2258,10 @@ namespace user
    void frame_window::on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
+      ::user::main_window::on_perform_top_down_layout(pgraphics);
+
+      m_rectangleClient2 = this->raw_rectangle(e_layout_layout);
+
       __task_guard(m_bInRecalcLayout);
 
       // clear idle flags for recalc on_layout if called elsewhere
@@ -2799,9 +2802,9 @@ namespace user
 
       auto pstyle = get_style(pgraphics);
 
-//      ::rectangle_i32 rectangleClient;
+//      ::rectangle_i32 rectangleX;
 //
-//      client_rectangle(rectangleClient);
+//      this->rectangle(rectangleX);
 
       if(pstyle)
       {

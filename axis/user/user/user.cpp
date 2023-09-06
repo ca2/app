@@ -15,6 +15,8 @@ namespace axis
    user::user()
    {
 
+      printf("axis::user::user\n");
+
       m_paxisuser = this;
 
    }
@@ -49,19 +51,7 @@ namespace axis
    void user::term()
    {
 
-      //return ::success;
-
    }
-
-
-   //::user::style* user::_user_style()
-   //{
-
-   //   return m_puserstyle;
-
-   //}
-
-
 
 
 } // namespace axis

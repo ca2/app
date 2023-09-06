@@ -92,9 +92,9 @@ namespace user
 
       }
 
-      ::rectangle_f64 rectangleClient;
+      ::rectangle_f64 rectangleX;
 
-      client_rectangle(rectangleClient);
+      this->rectangle(rectangleX);
       //::user::e_::color::color colorText = color_text;
 
       ::color::color colorText(0, 0, 0, 255);
@@ -184,9 +184,9 @@ namespace user
    void combo_box::_001OnDrawCombo(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rectangle_f64 rectangleClient;
+      ::rectangle_f64 rectangleX;
 
-      client_rectangle(rectangleClient);
+      this->rectangle(rectangleX);
 
       auto pbrush = __create < ::draw2d::brush > ();
 
@@ -472,9 +472,9 @@ namespace user
 
       }
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
-      if (rectangleClient.contains(item.m_pointHitTest))
+      if (rectangleX.contains(item.m_pointHitTest))
       {
 
          item = e_element_text;
@@ -794,11 +794,11 @@ namespace user
 
       }
 
-      ::rectangle_f64 rectangleClient;
+      ::rectangle_f64 rectangleX;
 
-      client_rectangle(rectangleClient);
+      this->rectangle(rectangleX);
 
-      m_plist->m_iItemHeight = minimum(24, rectangleClient.height());
+      m_plist->m_iItemHeight = minimum(24, rectangleX.height());
 
    }
 
@@ -877,11 +877,11 @@ namespace user
 
       /*      ::write_text::font_pointer fontxyz(e_create);
 
-            ::rectangle_f64 rectangleClient;
+            ::rectangle_f64 rectangleX;
 
-            client_rectangle(rectangleClient);
+            this->rectangle(rectangleX);
 
-            fontxyz->m_dFontSize = rectangleClient.height() * 0.4;
+            fontxyz->m_dFontSize = rectangleX.height() * 0.4;
             fontxyz->m_eunitFontSize = ::draw2d::e_unit_pixel;
             fontxyz->m_bUpdated = false;
 

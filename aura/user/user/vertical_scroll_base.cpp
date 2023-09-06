@@ -20,7 +20,7 @@ namespace user
 
       m_pscrolldataVertical = __new(scroll_data);
 
-      m_pscrolldataVertical->m_bScroll = false;
+      m_pscrolldataVertical->m_bHasScroll = false;
       m_pscrolldataVertical->m_iPage = 0;
       m_pscrolldataVertical->m_iLine = 60;
       m_pscrolldataVertical->m_bScrollEnable = true;
@@ -53,9 +53,9 @@ namespace user
    void vertical_scroll_base::layout_scroll_bar(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rectangle_i32 rectangleClient = raw_rectangle();
+      ::rectangle_i32 rectangleX = raw_rectangle();
 
-      //scroll_bar_get_client_rect(rectangleClient);
+      //scroll_bar_get_client_rect(rectangleX);
 
 //      i32 ifswp = SWP_SHOWWINDOW | SWP_NOCOPYBITS;
 
@@ -64,7 +64,7 @@ namespace user
       if (m_pscrollbarVertical != nullptr)
       {
 
-         if (m_pscrolldataVertical->m_bScroll)
+         if (vertical_scrollbar_visible())
          {
 
             get_vertical_scroll_info(m_pscrollbarVertical->m_scrollinfo);
@@ -75,11 +75,11 @@ namespace user
 
             int iScrollBarWidth = get_int(pstyle, e_int_scroll_bar_width);
 
-            rectangleNewPos.left = rectangleClient.right - iScrollBarWidth;
-            rectangleNewPos.top = rectangleClient.top;
-            rectangleNewPos.right = rectangleClient.right;
-            //rectangleNewPos.bottom = rectangleNewPos.top + rectangleClient.height() - get_final_x_scroll_bar_width();
-            rectangleNewPos.bottom = rectangleNewPos.top + rectangleClient.height() - iScrollBarWidth;
+            rectangleNewPos.left() = rectangleX.right() - iScrollBarWidth;
+            rectangleNewPos.top() = rectangleX.top();
+            rectangleNewPos.right() = rectangleX.right();
+            //rectangleNewPos.bottom() = rectangleNewPos.top() + rectangleX.height() - get_final_x_scroll_bar_width();
+            rectangleNewPos.bottom() = rectangleNewPos.top() + rectangleX.height() - iScrollBarWidth;
 
             m_pscrollbarVertical->order(e_zorder_top);
 
@@ -250,7 +250,7 @@ namespace user
    void vertical_scroll_base::on_message_mouse_wheel(::message::message * pmessage)
    {
 
-      if (!m_pscrolldataVertical->m_bScroll || !m_pscrolldataVertical->m_bScrollEnable)
+      if (!m_pscrolldataVertical->scroll_visible() || !m_pscrolldataVertical->scroll_visible())
       {
 
          return;
@@ -294,7 +294,7 @@ namespace user
    void vertical_scroll_base::on_message_key_down(::message::message * pmessage)
    {
 
-      if (!m_pscrolldataVertical->m_bScroll || !m_pscrolldataVertical->m_bScrollEnable)
+      if (!m_pscrolldataVertical->scroll_visible() || !m_pscrolldataVertical->scroll_visible())
       {
 
          return;
@@ -429,21 +429,21 @@ namespace user
 
       m_pscrolldataVertical->m_iWidth = get_int(pstyle, e_int_scroll_bar_width);
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
       ::i32 iTotalHeight = (::i32)sizeTotal.cy();
 
       ::i32 iTotalWidth = (::i32)sizeTotal.cx();
 
-      ::i32 iClientHeight = rectangleClient.height();
+      ::i32 iClientHeight = rectangleX.height();
 
-      ::i32 iClientWidth = rectangleClient.width();
+      ::i32 iClientWidth = rectangleX.width();
 
       ::i32 iScrollHeight = iClientHeight - get_int(pstyle, e_int_scroll_bar_width);
 
       //::i32 iscrollWidth = iClientWidth - GetSystemMetrics(SM_CXVSCROLL);
 
-      m_pscrolldataVertical->m_bScroll = false;
+      m_pscrolldataVertical->m_bHasScroll = false;
 
       if (iTotalWidth > iClientWidth)
       {
@@ -451,7 +451,7 @@ namespace user
          if (iTotalHeight > iScrollHeight)
          {
 
-            m_pscrolldataVertical->m_bScroll = true;
+            m_pscrolldataVertical->m_bHasScroll = true;
 
          }
 
@@ -459,13 +459,13 @@ namespace user
       else if (iTotalHeight > iClientHeight)
       {
 
-         m_pscrolldataVertical->m_bScroll = true;
+         m_pscrolldataVertical->m_bHasScroll = true;
 
       }
 
-      m_pscrolldataVertical->m_bScroll = m_pscrolldataVertical->m_bScrollEnable && m_pscrolldataVertical->m_bScroll;
+      //m_pscrolldataVertical->m_bScroll = m_pscrolldataVertical->m_bScrollEnable && m_pscrolldataVertical->m_bScroll;
 
-      auto rectangleScroll = client_rectangle();
+      auto rectangleScroll = this->rectangle();
 
       m_pscrolldataVertical->m_iPage = rectangleScroll.height();
 

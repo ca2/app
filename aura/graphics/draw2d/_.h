@@ -5,6 +5,18 @@ class color_array;
 class image32_array;
 
 
+enum enum_graphics
+{
+
+   e_graphics_none = 0,
+   e_graphics_from_context = 1,
+   e_graphics_layout = 2,
+   e_graphics_draw = 4,
+
+};
+
+DECLARE_ENUMERATION(e_graphics, enum_graphics);
+
 namespace draw2d
 {
 

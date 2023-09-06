@@ -2,6 +2,7 @@
 #pragma once
 
 
+#include "acme/handler/item.h"
 #include "font.h"
 #include "text_box.h"
 
@@ -11,12 +12,12 @@ namespace write_text
 
 
    class CLASS_DECL_AURA font_list_item :
-      virtual public ::matter
+      virtual public ::item
    {
    public:
 
 
-      index                               m_iItem;
+      //index                               m_iItem;
       text_box                            m_box[3];
       string                              m_strName;
       string                              m_strFont;

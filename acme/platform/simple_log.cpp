@@ -218,7 +218,7 @@ simple_log::~simple_log()
 }
 
 
-void simple_log::print(trace_statement & tracestatement)
+void simple_log::print(trace_statement & tracestatement, bool bFlush)
 {
 
    if (!m_bLog)
@@ -250,12 +250,13 @@ void simple_log::print(trace_statement & tracestatement)
       else
       {
 
-
          str.format("%s> %c %s %d %s\n", strTaskName.c_str(), trace_level_char(tracestatement.m_etracelevel), tracestatement.m_pszFunction, tracestatement.m_iLine, tracestatement.as_string().c_str());
 
       }
 
-      if (acmeapplication()->m_bConsole)
+      auto papplication = acmeapplication();
+
+      if (papplication && papplication->m_bConsole)
       {
 
          if (tracestatement.m_etracelevel == e_trace_level_information)
@@ -263,11 +264,25 @@ void simple_log::print(trace_statement & tracestatement)
 
             printf("%s", str.c_str());
 
+            if(bFlush)
+            {
+
+               fflush(stdout);
+
+            }
+
          }
          else
          {
 
             fprintf(stderr, "%s", str.c_str());
+
+            if(bFlush)
+            {
+
+               fflush(stderr);
+
+            }
 
          }
 
@@ -276,6 +291,8 @@ void simple_log::print(trace_statement & tracestatement)
       {
 
          ::output_debug_string(str);
+
+         ::output_debug_string_flush();
 
       }
 

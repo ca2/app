@@ -44,7 +44,7 @@ namespace app_app
       if (!is_sandboxed())
       {
 
-         set_prodevian();
+         set_auto_refresh();
 
       }
 
@@ -62,9 +62,9 @@ namespace app_app
       
       m_iCloseButtonDraw = 0;
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
-      if (rectangleClient.is_empty())
+      if (rectangleX.is_empty())
       {
 
          return;
@@ -75,9 +75,9 @@ namespace app_app
 
       pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_none);
 
-      pgraphics->fill_rectangle(rectangleClient, argb(255, 255, 255, 255));
+      pgraphics->fill_rectangle(rectangleX, argb(255, 255, 255, 255));
       
-      auto dMinimumDimension = (double) rectangleClient.minimum_signed_absolute_dimension();
+      auto dMinimumDimension = (double) rectangleX.minimum_signed_absolute_dimension();
 
       double dBase = dMinimumDimension / 17.0;
 
@@ -91,7 +91,7 @@ namespace app_app
 
       pgraphics->fill_rectangle(::rectangle_f64_dimension(x, y + dBase * 6.0, dBase * 11.0, dBase * 5.0), ::rgba(127, 255, 110, 150));
       
-      rectangleClient.deflate((::i32) dBase);
+      rectangleX.deflate((::i32) dBase);
 
       ::color::color colorInset;
 
@@ -111,9 +111,9 @@ namespace app_app
       for (int i = 0; i < dBase; i++)
       {
 
-         pgraphics->draw_inset_rectangle(rectangleClient, colorInset);
+         pgraphics->draw_inset_rectangle(rectangleX, colorInset);
 
-         rectangleClient.deflate(1, 1);
+         rectangleX.deflate(1, 1);
 
       }
 
@@ -193,11 +193,11 @@ namespace app_app
 
          int iSize = (int) (::sin(angle) * 20.0 + 64.0);
 
-         client_rectangle(pitemClose->m_rectangle);
+         this->rectangle(pitemClose->m_rectangle);
 
-         pitemClose->m_rectangle.left = pitemClose->m_rectangle.right - iSize;
+         pitemClose->m_rectangle.left() = pitemClose->m_rectangle.right() - iSize;
 
-         pitemClose->m_rectangle.bottom = pitemClose->m_rectangle.top + iSize;
+         pitemClose->m_rectangle.bottom() = pitemClose->m_rectangle.top() + iSize;
 
          auto pwindow = window();
 
@@ -212,25 +212,25 @@ namespace app_app
          if (::is_set(pitemZoom))
          {
 
-            client_rectangle(pitemZoom->m_rectangle);
+            this->rectangle(pitemZoom->m_rectangle);
 
-            pitemZoom->m_rectangle.right = pitemClose->m_rectangle.left;
+            pitemZoom->m_rectangle.right() = pitemClose->m_rectangle.left();
 
-            pitemZoom->m_rectangle.bottom = pitemClose->m_rectangle.bottom;
+            pitemZoom->m_rectangle.bottom() = pitemClose->m_rectangle.bottom();
 
-            pitemZoom->m_rectangle.left = pitemZoom->m_rectangle.right - iSize;
+            pitemZoom->m_rectangle.left() = pitemZoom->m_rectangle.right() - iSize;
 
 
             if (::is_set(pitemIcon))
             {
 
-               client_rectangle(pitemIcon->m_rectangle);
+               this->rectangle(pitemIcon->m_rectangle);
 
-               pitemIcon->m_rectangle.right = pitemZoom->m_rectangle.left;
+               pitemIcon->m_rectangle.right() = pitemZoom->m_rectangle.left();
 
-               pitemIcon->m_rectangle.bottom = pitemClose->m_rectangle.bottom;
+               pitemIcon->m_rectangle.bottom() = pitemClose->m_rectangle.bottom();
 
-               pitemIcon->m_rectangle.left = pitemIcon->m_rectangle.right - iSize;
+               pitemIcon->m_rectangle.left() = pitemIcon->m_rectangle.right() - iSize;
 
 
             }

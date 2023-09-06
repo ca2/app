@@ -51,11 +51,11 @@ namespace experience_tranquillum
 
       }
 
-      ::rectangle_i32 rectangleClient;
+      ::rectangle_i32 rectangleX;
 
-      rectangleClient = ::user::interaction::client_rectangle();
+      rectangleX = ::user::interaction::rectangle();
 
-      if (rectangleClient.area() <= 0)
+      if (rectangleX.area() <= 0)
          return;
 
       color32_t crText;
@@ -103,7 +103,7 @@ namespace experience_tranquillum
 
       }
 
-      ::rectangle_i32 rectangleEllipse(rectangleClient);
+      ::rectangle_i32 rectangleEllipse(rectangleX);
 
       //auto rW = window_rectangle();
 
@@ -111,7 +111,7 @@ namespace experience_tranquillum
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      pgraphics->fill_rectangle(rectangleClient, pgraphics->m_pbrush->m_color);
+      pgraphics->fill_rectangle(rectangleX, pgraphics->m_pbrush->m_color);
 
       //pgraphics->FillEllipse(rectangleEllipse);
 
@@ -128,7 +128,7 @@ namespace experience_tranquillum
 
          pgraphics->set_text_color(crText);
 
-         pgraphics->draw_text(strWindowText, rectangleClient, e_align_center, e_draw_text_single_line);
+         pgraphics->draw_text(strWindowText, rectangleX, e_align_center, e_draw_text_single_line);
 
       }
       else
@@ -197,11 +197,11 @@ namespace experience_tranquillum
       __construct(m_ppen);
       __construct(m_pbrush);
          
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
       
       ::ellipse_f64 ellipse;
       
-      ellipse.set(rectangleClient);
+      ellipse.set(rectangleX);
 
       m_spregion->create_ellipse(ellipse);
 

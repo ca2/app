@@ -47,6 +47,9 @@ namespace x11
       virtual Atom intern_atom(const char *pszAtomName, bool bCreate);
       virtual Atom intern_atom(enum_atom eatom, bool bCreate);
 
+      virtual Atom _intern_atom_unlocked(const char *pszAtomName, bool bCreate);
+      virtual Atom _intern_atom_unlocked(enum_atom eatom, bool bCreate);
+
       unsigned char * _get_string_property(Display *display, Window window, char *property_name);
       unsigned long _get_long_property(Display *d, Window w, char *property_name);
 

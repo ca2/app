@@ -21,9 +21,9 @@ item & item::operator = (enum_element eelement)
 
       m_item.m_iItem = -1;
 
-      m_item.m_iSubItem = -1;
+      //m_item.m_iSubItem = -1;
 
-      m_item.m_iListItem = -1;
+      //m_item.m_iListItem = -1;
 
    }
 

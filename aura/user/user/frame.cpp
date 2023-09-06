@@ -370,15 +370,15 @@ namespace user
    }
 
 
-   //void frame::client_rectangle(::rectangle_i32* lprect)
+   //void frame::this->rectangle(::rectangle_i32* lprect)
    //{
    //   
-   //   ::user::interaction::client_rectangle(lprect);
+   //   ::user::interaction::this->rectangle(lprect);
    //   
    //   if((m_ewindowflag & e_window_flag_top_level) && window())
    //   {
    //   
-   //      lprect->top += window()->get_top_margin();
+   //      lprect->top() += window()->get_top_margin();
    //      
    //   }
    //   

@@ -17,11 +17,11 @@ namespace experience
 
       ::experience::frame_window *     m_pframewindow;
       e_border                         m_eborderMask;
-      point_i32                            m_pointCursorOrigin;
-      point_i32                            m_pointWindowOrigin;
-      point_i32                            m_pointMove;
+      point_i32                        m_pointCursorOrigin;
+      point_i32                        m_pointWindowOrigin;
+      point_i32                        m_pointMove;
       bool                             m_bMoving;
-      //::u32                             m_uiSWPFlags;
+      //::u32                          m_uiSWPFlags;
       ::user::layout_state             m_stateBefore;
       int                              m_iConsiderMove;
 
@@ -33,6 +33,7 @@ namespace experience
       virtual void initialize_move_manager(::experience::frame_window* pframewindow);
 
 
+      bool on_message_parent_mouse_move(::message::mouse * pmouse);
       bool on_message_left_button_down(::message::mouse * pmouse);
       bool on_message_mouse_move(::message::mouse * pmouse);
       bool on_message_left_button_up(::message::mouse * pmouse);

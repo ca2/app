@@ -3,14 +3,17 @@
 
 
 #include "font_list_item.h"
+#include "acme/handler/item_container.h"
 
 
 namespace write_text
 {
 
 
+
+   /// @brief  container of font_list_item
    class CLASS_DECL_AURA font_list_data :
-      virtual public pointer_array < font_list_item >
+      virtual public ::item_container
    {
    public:
 
@@ -19,7 +22,7 @@ namespace write_text
       index                   m_iUpdateId;
       int                     m_iBaseSize;
       ::i32_array             m_iaSize;
-      ::rectangle_i32         m_rectangleClient;
+      ::rectangle_i32         m_rectangleX;
       int                     m_iUpdatedCount;
       bool                    m_bLayoutStillIntersect;
 

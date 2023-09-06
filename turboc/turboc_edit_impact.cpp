@@ -14,7 +14,7 @@ namespace turboc
       ::user::edit_plain_text_impact(pparticle)
    {
 
-      m_ptopview = NULL;
+      m_ptopimpact = NULL;
 
    }
 
@@ -38,18 +38,18 @@ namespace turboc
       if(!context.is_user_source())
          return;
 
-      if(m_ptopview == NULL || m_ptopview->m_pimpact == NULL)
+      if(m_ptopimpact == NULL || m_ptopimpact->m_pimpact == NULL)
          return;
 
       {
 
-         synchronous_lock synchronouslock(&m_ptopview->m_pimpact->m_pmutexText);
+         synchronous_lock synchronouslock(&m_ptopimpact->m_pimpact->m_pmutexText);
 
-         _001GetText(m_ptopview->m_pimpact->m_strNewHelloMultiverse);
+         _001GetText(m_ptopimpact->m_pimpact->m_strNewHelloMultiverse);
 
       }
 
-      m_ptopview->m_pimpact->post_message(WM_USER + 2000 + 77 + 2);
+      m_ptopimpact->m_pimpact->post_message(WM_USER + 2000 + 77 + 2);
 
    }
 

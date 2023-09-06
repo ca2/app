@@ -1085,10 +1085,10 @@ template < primitive_rectangle RECTANGLE_TYPE, primitive_number L, primitive_num
 inline RECTANGLE_TYPE & inflate(RECTANGLE_TYPE & rectangle, L l, T t, R r, B b)
 {
 
-   rectangle.left() = (decltype(rectangle.left()))(rectangle.left() - l);
-   rectangle.top() = (decltype(rectangle.top()))(rectangle.top() - t);
-   rectangle.right() = (decltype(rectangle.right()))(rectangle.right() + r);
-   rectangle.bottom() = (decltype(rectangle.bottom()))(rectangle.bottom() + b);
+   rectangle.left() = (decay<decltype(rectangle.left())>)(rectangle.left() - l);
+   rectangle.top() = (decay<decltype(rectangle.top())>)(rectangle.top() - t);
+   rectangle.right() = (decay<decltype(rectangle.right())>)(rectangle.right() + r);
+   rectangle.bottom() = (decay<decltype(rectangle.bottom())>)(rectangle.bottom() + b);
 
    return rectangle;
 

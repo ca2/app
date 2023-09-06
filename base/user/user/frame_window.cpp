@@ -1073,7 +1073,6 @@ namespace user
    }
 
 
-
    bool frame_window::LoadFrame(const ::string & pszMatter, u32 dwDefaultStyle, ::user::interaction * puiParent, ::user::system * pcreate)
    {
 

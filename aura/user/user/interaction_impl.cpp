@@ -4075,6 +4075,24 @@ namespace user
 
       }
 
+      for (auto & rectangle : rectangleaHostNeedRedraw)
+      {
+
+         if (rectangle.is_empty())
+         {
+
+            information() << "interaction_impl::set_need_redraw empty rectangle : " << rectangle;
+
+         }
+         else
+         {
+
+            information() << "interaction_impl::set_need_redraw : " << rectangle;
+
+         }
+
+      }
+
       for (auto & predraw : m_redrawitema)
       {
 

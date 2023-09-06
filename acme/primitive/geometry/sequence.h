@@ -642,7 +642,7 @@ struct sequence_type
    }
 
 
-   COORDINATE squared_normal()  const
+   COORDINATE squared_modulus()  const
    {
 
       return dot(*this);
@@ -650,17 +650,18 @@ struct sequence_type
    }
 
 
-   COORDINATE normal() const
+   COORDINATE modulus() const
    {
       
-      return ::sqrt(squared_normal());
+      return ::sqrt(squared_modulus());
 
    }
 
-   sequence_type normalize() const
+
+   sequence_type make_unitary() const
    {
 
-      return *this / norm(*this);
+      return *this / modulus();
 
    }
 

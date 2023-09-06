@@ -1438,11 +1438,11 @@ namespace user
 
       NCCALCSIZE_PARAMS * pparams = (NCCALCSIZE_PARAMS *)pnccalcsize->m_pNCCALCSIZE_PARAMS;
       // adjust non-client area for border space
-      pparams->rgrc[0].left() += rectangle.left();
-      pparams->rgrc[0].top() += rectangle.top();
+      pparams->rgrc[0].left += rectangle.left();
+      pparams->rgrc[0].top += rectangle.top();
       // previous versions of COMCTL32.DLL had a built-in 2 pixel border
-      pparams->rgrc[0].right() += rectangle.right();
-      pparams->rgrc[0].bottom() += rectangle.bottom();
+      pparams->rgrc[0].right += rectangle.right();
+      pparams->rgrc[0].bottom += rectangle.bottom();
 #else
       throw ::exception(todo);
 #endif

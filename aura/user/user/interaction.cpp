@@ -1725,6 +1725,13 @@ namespace user
 
          auto rectangle = this->rectangle();
 
+         if (rectangle.is_empty())
+         {
+
+            return;
+
+         }
+
          if (m_flagNonClient.has(e_non_client_focus_rect) && keyboard_focus_is_focusable())
          {
 
@@ -3106,6 +3113,12 @@ namespace user
          display_normal(edisplay, eactivation);
 
       }
+      else if (::is_docking_appearance(edisplay))
+      {
+
+         display_docked(edisplay, eactivation);
+
+      }
       else if (edisplay == e_display_hide || edisplay == e_display_none)
       {
 
@@ -4450,8 +4463,7 @@ namespace user
 
 
    void interaction::_001OnNcClip(::draw2d::graphics_pointer & pgraphics)
-   {
-      //return;
+   {  //return;
 
       m_pprimitiveimpl->_001OnNcClip(pgraphics);
 

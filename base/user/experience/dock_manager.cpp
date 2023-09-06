@@ -305,12 +305,12 @@ namespace experience
 
          ///m_pframewindow->good_restore(nullptr, rectangleNew, true, e_activation_default, e_zorder_top, edisplayDock);
 
-         m_pframewindow->display(edisplayDock);
-
          m_pframewindow->place(rectangleWindow);
 
          if (bChanged)
          {
+
+            m_pframewindow->set_display(edisplayDock);
 
             m_pframewindow->set_need_layout();
 
@@ -381,15 +381,15 @@ namespace experience
 
       auto rectangleWindow = m_pframewindow->screen_rectangle();
 
-      auto pointDockOrigin = pointCursor;
-
       m_rectangleOnDockStart = rectangleWindow;
 
-      pbutton->screen_to_client()(pointDockOrigin);
+      auto pointCursorDockOrigin = pointCursor;
+
+      pbutton->screen_to_client()(pointCursorDockOrigin);
+
+      m_pointCursorDockOrigin = pointCursorDockOrigin;
 
       m_sizeDockRightOrigin = dock_button_right_origin();
-
-      m_pointCursorDockOrigin = pointDockOrigin;
 
       m_pointWindowOrigin = rectangleWindow.top_left();
 
@@ -397,7 +397,20 @@ namespace experience
 
       m_sizeOrigin = rectangleWindow.size();
 
-      m_edisplayOrigin = m_pframewindow->const_layout().design().display();
+      auto edisplayOrigin = m_pframewindow->const_layout().design().display();
+
+      if (::is_docking_appearance(edisplayOrigin))
+      {
+
+         m_edisplayOrigin = e_display_normal;
+
+      }
+      else
+      {
+
+         m_edisplayOrigin = edisplayOrigin;
+
+      }
 
       m_pointLastRepositionCursorOrigin = pmouse->m_point;
 

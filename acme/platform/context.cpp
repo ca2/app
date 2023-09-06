@@ -653,7 +653,7 @@ namespace acme
             if (!retry([&]()
                {
 
-                  return acmesystem()->http_download(pfile, path, set);
+                  return acmesystem()->http_download(m_pcontext, pfile, path, set);
 
                }))
             {

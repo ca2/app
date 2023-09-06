@@ -225,16 +225,16 @@ namespace acme
       virtual ::file::enum_type http_get_type(const ::scoped_string & scopedstrUrl, ::payload * pvarQuery, property_set & set);
 
 
-      virtual ::string http_text(const ::scoped_string & scopedstrUrl);
-      virtual ::string http_text(const ::scoped_string & scopedstrUrl, ::property_set & set);
+      virtual ::string http_text(::acme::context* pcontext, const ::scoped_string & scopedstrUrl);
+      virtual ::string http_text(::acme::context* pcontext, const ::scoped_string & scopedstrUrl, ::property_set & set);
 
       
-      virtual ::memory http_memory(const ::scoped_string & scopedstrUrl);
-      virtual ::memory http_memory(const ::scoped_string & scopedstrUrl, ::property_set & set);
+      virtual ::memory http_memory(::acme::context* pcontext, const ::scoped_string & scopedstrUrl);
+      virtual ::memory http_memory(::acme::context* pcontext, const ::scoped_string & scopedstrUrl, ::property_set & set);
 
       
-      virtual void http_download(const ::payload & payloadFile, const ::scoped_string & scopedstrUrl);
-      virtual void http_download(const ::payload & payloadFile, const ::scoped_string & scopedstrUrl, ::property_set & set);
+      virtual void http_download(::acme::context* pcontext, const ::payload & payloadFile, const ::scoped_string & scopedstrUrl);
+      virtual void http_download(::acme::context* pcontext, const ::payload & payloadFile, const ::scoped_string & scopedstrUrl, ::property_set & set);
 
 
       virtual void defer_audio();

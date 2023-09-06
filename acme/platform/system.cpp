@@ -1067,10 +1067,10 @@ namespace acme
 
 
 
-   ::string system::http_text(const ::scoped_string & scopedstrUrl)
+   ::string system::http_text(::acme::context * pcontext, const ::scoped_string & scopedstrUrl)
    {
 
-      auto memory = http_memory(scopedstrUrl);
+      auto memory = http_memory(pcontext, scopedstrUrl);
 
       ::string str = memory.as_utf8();
 
@@ -1079,10 +1079,10 @@ namespace acme
    }
 
 
-   ::string system::http_text(const ::scoped_string & scopedstrUrl, ::property_set & set)
+   ::string system::http_text(::acme::context* pcontext, const ::scoped_string & scopedstrUrl, ::property_set & set)
    {
 
-      auto memory = http_memory(scopedstrUrl, set);
+      auto memory = http_memory(pcontext, scopedstrUrl, set);
 
       ::string str = memory.as_utf8();
 
@@ -1091,7 +1091,7 @@ namespace acme
    }
 
 
-   ::memory system::http_memory(const ::scoped_string & scopedstrUrl)
+   ::memory system::http_memory(::acme::context* pcontext, const ::scoped_string & scopedstrUrl)
    {
 
       property_set set;
@@ -1100,13 +1100,15 @@ namespace acme
 
       set["disable_common_name_cert_check"] = true;
 
-      return http_memory(scopedstrUrl, set);
+      return http_memory(pcontext, scopedstrUrl, set);
 
    }
 
 
-   ::memory system::http_memory(const ::scoped_string & scopedstrUrl, ::property_set & set)
+   ::memory system::http_memory(::acme::context * pcontext, const ::scoped_string & scopedstrUrl, ::property_set & set)
    {
+
+      UNREFERENCED_PARAMETER(pcontext);
 
       try
       {
@@ -1134,24 +1136,24 @@ namespace acme
    }
 
 
-   void system::http_download(const ::payload & payloadFile, const ::scoped_string & scopedstrUrl)
+   void system::http_download(::acme::context* pcontext, const ::payload & payloadFile, const ::scoped_string & scopedstrUrl)
    {
 
       auto pfile = acmefile()->get_writer(payloadFile);
 
-      auto memory = http_memory(scopedstrUrl);
+      auto memory = http_memory(pcontext, scopedstrUrl);
 
       pfile->write(memory.data(), memory.size());
 
    }
 
 
-   void system::http_download(const ::payload & payloadFile, const ::scoped_string & scopedstrUrl, ::property_set & set)
+   void system::http_download(::acme::context* pcontext, const ::payload & payloadFile, const ::scoped_string & scopedstrUrl, ::property_set & set)
    {
 
       auto pfile = acmefile()->get_writer(payloadFile);
 
-      auto memory = http_memory(scopedstrUrl, set);
+      auto memory = http_memory(pcontext, scopedstrUrl, set);
 
       pfile->write(memory.data(), memory.size());
 

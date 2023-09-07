@@ -38,16 +38,16 @@ namespace user
 
 
       template < typename CHECK_BOX >
-      ::pointer < CHECK_BOX >create_check_box(::user::interaction * puserinteractionParent, const ::scoped_string & scopedstrLabel)
+      ::pointer < CHECK_BOX >create_check_box(::user::interaction * puserinteractionParent, const ::atom & atom)
       {
 
          auto pcheckbox = __create_new<CHECK_BOX>();
 
          pcheckbox->m_bAutoResize = true;
 
-         pcheckbox->create_child(puserinteractionParent);
+         pcheckbox->create_control(puserinteractionParent, atom);
 
-         pcheckbox->set_window_text(scopedstrLabel);
+         //pcheckbox->set_window_text(scopedstrLabel);
 
          pcheckbox->display();
 

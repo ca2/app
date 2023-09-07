@@ -24887,6 +24887,8 @@ namespace user
 
          rectangle = this->rectangle();
 
+         rectangle.right() = rectangle.right() - 48;
+
          rectangle.left() = rectangle.right() - 48;
 
          rectangle.top() = rectangle.bottom() - 48;

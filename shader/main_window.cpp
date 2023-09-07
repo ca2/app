@@ -79,20 +79,20 @@ namespace app_shader
 
       }
 
-      {
-
-         tool().add_item(__new(::item(e_element_close_button, id_close_app)));
-
-//         auto pitem = user_item(::e_element_close_button);
+//      {
 //
-//         if (pitem)
-//         {
+//         tool().add_item(__new(::item(e_element_close_button, id_close_app)));
 //
-//            *pitem = ::e_element_close_icon;
+////         auto pitem = user_item(::e_element_close_button);
+////
+////         if (pitem)
+////         {
+////
+////            *pitem = ::e_element_close_icon;
+////
+////         }
 //
-//         }
-
-      }
+//      }
 
       {
 
@@ -104,37 +104,37 @@ namespace app_shader
 
       }
 
-      {
-
-         tool().add_item(__new(::item(::e_element_maximize_button, ::id_maximize)));
-
-         //auto pitem = user_item(::e_element_maximize_button);
-
-//         if (pitem)
-//         {
+//      {
 //
-//            *pitem = ::e_element_maximize_icon;
+//         tool().add_item(__new(::item(::e_element_maximize_button, ::id_maximize)));
 //
-//         }
-
-      }
-
-
-      {
-
-
-         tool().add_item(__new(::item(e_element_minimize_button, id_minimize)));
-
-//         auto pitem = user_item(::e_element_minimize_button);
+//         //auto pitem = user_item(::e_element_maximize_button);
 //
-//         if (pitem)
-//         {
+////         if (pitem)
+////         {
+////
+////            *pitem = ::e_element_maximize_icon;
+////
+////         }
 //
-//            *pitem = ::e_element_minimize_icon;
-//
-//         }
+//      }
 
-      }
+
+//      {
+//
+//
+//         tool().add_item(__new(::item(e_element_minimize_button, id_minimize)));
+//
+////         auto pitem = user_item(::e_element_minimize_button);
+////
+////         if (pitem)
+////         {
+////
+////            *pitem = ::e_element_minimize_icon;
+////
+////         }
+//
+//      }
 
       top_level()->set_auto_refresh();
 

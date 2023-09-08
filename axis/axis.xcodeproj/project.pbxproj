@@ -13,12 +13,12 @@
 		9A00E5F526614F9400517464 /* database_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A00E5EF26614F9400517464 /* database_impl.cpp */; };
 		9A0EF0452A623EE200067390 /* line_layout.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0EF0412A623EE100067390 /* line_layout.cpp */; };
 		9A0EF0462A623EE200067390 /* line_layout.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0EF0412A623EE100067390 /* line_layout.cpp */; };
-		9A0EF0472A623EE200067390 /* form_designer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0EF0432A623EE200067390 /* form_designer.h */; };
-		9A0EF0482A623EE200067390 /* form_designer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0EF0432A623EE200067390 /* form_designer.h */; };
+		9A0EF0472A623EE200067390 /* form_handler.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0EF0432A623EE200067390 /* form_handler.h */; };
+		9A0EF0482A623EE200067390 /* form_handler.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0EF0432A623EE200067390 /* form_handler.h */; };
 		9A0EF0492A623EE200067390 /* line_layout.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0EF0442A623EE200067390 /* line_layout.h */; };
 		9A0EF04A2A623EE200067390 /* line_layout.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0EF0442A623EE200067390 /* line_layout.h */; };
-		9A0EF0952A623F0E00067390 /* form_designer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0EF0942A623F0D00067390 /* form_designer.cpp */; };
-		9A0EF0962A623F0E00067390 /* form_designer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0EF0942A623F0D00067390 /* form_designer.cpp */; };
+		9A0EF0952A623F0E00067390 /* form_handler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0EF0942A623F0D00067390 /* form_handler.cpp */; };
+		9A0EF0962A623F0E00067390 /* form_handler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0EF0942A623F0D00067390 /* form_handler.cpp */; };
 		9A0F542228E9065400025231 /* text.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5ECCC028CCBE040084D354 /* text.cpp */; };
 		9A0F542328E9065400025231 /* table_row.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5ECCBC28CCBE040084D354 /* table_row.cpp */; };
 		9A0F542428E9065400025231 /* input_text.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5ECCBD28CCBE040084D354 /* input_text.cpp */; };
@@ -420,6 +420,10 @@
 		9A979DEC28C835540013DC54 /* control.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A979DDF28C835540013DC54 /* control.cpp */; };
 		9A979DED28C835540013DC54 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A979DE028C835540013DC54 /* _.h */; };
 		9A979DEE28C835540013DC54 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A979DE028C835540013DC54 /* _.h */; };
+		9AA3F9AE2A95E531004283CA /* calculator_edit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AA3F9AB2A95E530004283CA /* calculator_edit.cpp */; };
+		9AA3F9AF2A95E531004283CA /* calculator_edit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AA3F9AB2A95E530004283CA /* calculator_edit.cpp */; };
+		9AA3F9B02A95E531004283CA /* calculator_edit.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AA3F9AD2A95E531004283CA /* calculator_edit.h */; };
+		9AA3F9B12A95E531004283CA /* calculator_edit.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AA3F9AD2A95E531004283CA /* calculator_edit.h */; };
 		9AC01E012748CC4B006BEBCC /* idpool.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC01DDF2748CC4B006BEBCC /* idpool.h */; };
 		9AC01E022748CC4B006BEBCC /* idpool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC01DE02748CC4B006BEBCC /* idpool.cpp */; };
 		9AC01E052748CC4C006BEBCC /* parser_exception.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC01DE52748CC4B006BEBCC /* parser_exception.cpp */; };
@@ -654,9 +658,9 @@
 		9A03B7C12A25BA1E00A0E33E /* _____debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "_____debug.xcconfig"; sourceTree = "<group>"; };
 		9A03B7C32A25BA2F00A0E33E /* _____release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "_____release.xcconfig"; sourceTree = "<group>"; };
 		9A0EF0412A623EE100067390 /* line_layout.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = line_layout.cpp; sourceTree = "<group>"; };
-		9A0EF0432A623EE200067390 /* form_designer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = form_designer.h; sourceTree = "<group>"; };
+		9A0EF0432A623EE200067390 /* form_handler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = form_handler.h; sourceTree = "<group>"; };
 		9A0EF0442A623EE200067390 /* line_layout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = line_layout.h; sourceTree = "<group>"; };
-		9A0EF0942A623F0D00067390 /* form_designer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = form_designer.cpp; sourceTree = "<group>"; };
+		9A0EF0942A623F0D00067390 /* form_handler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = form_handler.cpp; sourceTree = "<group>"; };
 		9A16268926F0041A003D9CB9 /* _impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _impl.h; sourceTree = "<group>"; };
 		9A16268A26F0041A003D9CB9 /* email_department.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = email_department.cpp; sourceTree = "<group>"; };
 		9A16268D26F0041A003D9CB9 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
@@ -785,6 +789,8 @@
 		9A979DDE28C835540013DC54 /* data.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = data.cpp; sourceTree = "<group>"; };
 		9A979DDF28C835540013DC54 /* control.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = control.cpp; sourceTree = "<group>"; };
 		9A979DE028C835540013DC54 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
+		9AA3F9AB2A95E530004283CA /* calculator_edit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = calculator_edit.cpp; sourceTree = "<group>"; };
+		9AA3F9AD2A95E531004283CA /* calculator_edit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = calculator_edit.h; sourceTree = "<group>"; };
 		9AA6526F2A33458D0082D8B3 /* unac.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = unac.xcodeproj; path = ../../../port/base/unac/unac.xcodeproj; sourceTree = "<group>"; };
 		9AC01DDF2748CC4B006BEBCC /* idpool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = idpool.h; sourceTree = "<group>"; };
 		9AC01DE02748CC4B006BEBCC /* idpool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = idpool.cpp; sourceTree = "<group>"; };
@@ -1159,10 +1165,12 @@
 			isa = PBXGroup;
 			children = (
 				9A979DB028C835450013DC54 /* _.h */,
+				9AA3F9AB2A95E530004283CA /* calculator_edit.cpp */,
+				9AA3F9AD2A95E531004283CA /* calculator_edit.h */,
 				9A979D9F28C835450013DC54 /* combo_box.cpp */,
 				9A979DA428C835450013DC54 /* combo_box.h */,
-				9A0EF0942A623F0D00067390 /* form_designer.cpp */,
-				9A0EF0432A623EE200067390 /* form_designer.h */,
+				9A0EF0942A623F0D00067390 /* form_handler.cpp */,
+				9A0EF0432A623EE200067390 /* form_handler.h */,
 				9A0EF0412A623EE100067390 /* line_layout.cpp */,
 				9A0EF0442A623EE200067390 /* line_layout.h */,
 				9A979DA528C835450013DC54 /* list_box.cpp */,
@@ -1723,6 +1731,7 @@
 				9A93B5CE2846EA94005ACD11 /* console.h in Headers */,
 				9A93B5CF2846EA94005ACD11 /* ajp_base_socket.h in Headers */,
 				9A93B5D12846EA94005ACD11 /* _impl.h in Headers */,
+				9AA3F9B12A95E531004283CA /* calculator_edit.h in Headers */,
 				9A93B5D32846EA94005ACD11 /* library.h in Headers */,
 				9A93B5D42846EA94005ACD11 /* _c.h in Headers */,
 				9A979D2F28C81E430013DC54 /* style_sheet.h in Headers */,
@@ -1779,7 +1788,7 @@
 				9A93B60B2846EA94005ACD11 /* socket_id_list.h in Headers */,
 				9A93B60C2846EA94005ACD11 /* _.h in Headers */,
 				9A93B60D2846EA94005ACD11 /* _system_xml_impl.h in Headers */,
-				9A0EF0482A623EE200067390 /* form_designer.h in Headers */,
+				9A0EF0482A623EE200067390 /* form_handler.h in Headers */,
 				9A93B60E2846EA94005ACD11 /* _.h in Headers */,
 				9A93B60F2846EA94005ACD11 /* procedure.h in Headers */,
 				9A93B6102846EA94005ACD11 /* aaa_want_to_removesimpledb_database.h in Headers */,
@@ -1861,6 +1870,7 @@
 				9AE64495252A5BEF00BED5B8 /* file_set.h in Headers */,
 				9AE6446E252A5BEF00BED5B8 /* _.h in Headers */,
 				9A979D4828C81E430013DC54 /* border.h in Headers */,
+				9AA3F9B02A95E531004283CA /* calculator_edit.h in Headers */,
 				9A979D2028C81E430013DC54 /* box.h in Headers */,
 				9A1626DC26F0041A003D9CB9 /* email_department.h in Headers */,
 				9AE6451F252A5BF000BED5B8 /* session.h in Headers */,
@@ -1981,7 +1991,7 @@
 				9A1626D026F0041A003D9CB9 /* socket_id_list.h in Headers */,
 				9AC01E122748CC4C006BEBCC /* _.h in Headers */,
 				9AE6451D252A5BF000BED5B8 /* _system_xml_impl.h in Headers */,
-				9A0EF0472A623EE200067390 /* form_designer.h in Headers */,
+				9A0EF0472A623EE200067390 /* form_handler.h in Headers */,
 				9A1626DD26F0041A003D9CB9 /* _.h in Headers */,
 				9AE64461252A5BEF00BED5B8 /* procedure.h in Headers */,
 				9AE644A1252A5BF000BED5B8 /* aaa_want_to_removesimpledb_database.h in Headers */,
@@ -2186,7 +2196,7 @@
 				9A93B6572846EA94005ACD11 /* session.cpp in Sources */,
 				9A93B6582846EA94005ACD11 /* parser.cpp in Sources */,
 				9A93B65A2846EA94005ACD11 /* html.cpp in Sources */,
-				9A0EF0962A623F0E00067390 /* form_designer.cpp in Sources */,
+				9A0EF0962A623F0E00067390 /* form_handler.cpp in Sources */,
 				9A0F542828E9065400025231 /* input_checkbox.cpp in Sources */,
 				9A93B65B2846EA94005ACD11 /* department.cpp in Sources */,
 				9A93B65C2846EA94005ACD11 /* contact_list.cpp in Sources */,
@@ -2219,6 +2229,7 @@
 				9A93B66E2846EA94005ACD11 /* _.cpp in Sources */,
 				9A93B6712846EA94005ACD11 /* result.cpp in Sources */,
 				9A93B6722846EA94005ACD11 /* fftd.cpp in Sources */,
+				9AA3F9AF2A95E531004283CA /* calculator_edit.cpp in Sources */,
 				9A0F542B28E9065400025231 /* image.cpp in Sources */,
 				9A93B6742846EA94005ACD11 /* smtp_socket.cpp in Sources */,
 				9A93B6752846EA94005ACD11 /* item.cpp in Sources */,
@@ -2293,7 +2304,7 @@
 				9A979D3228C81E430013DC54 /* font.cpp in Sources */,
 				9AE64521252A5BF000BED5B8 /* session.cpp in Sources */,
 				9AC01E112748CC4C006BEBCC /* parser.cpp in Sources */,
-				9A0EF0952A623F0E00067390 /* form_designer.cpp in Sources */,
+				9A0EF0952A623F0E00067390 /* form_handler.cpp in Sources */,
 				9AE64567252A5BF100BED5B8 /* html.cpp in Sources */,
 				9AE6491E252A5BF700BED5B8 /* department.cpp in Sources */,
 				9AE64913252A5BF700BED5B8 /* contact_list.cpp in Sources */,
@@ -2326,6 +2337,7 @@
 				9A979DE928C835540013DC54 /* data.cpp in Sources */,
 				9A5ECCD828CCBE040084D354 /* table_row.cpp in Sources */,
 				9A979D3828C81E430013DC54 /* base.cpp in Sources */,
+				9AA3F9AE2A95E531004283CA /* calculator_edit.cpp in Sources */,
 				9A5ECCD928CCBE040084D354 /* input_text.cpp in Sources */,
 				9AE645C6252A5BF200BED5B8 /* _.cpp in Sources */,
 				9AC01E0E2748CC4C006BEBCC /* result.cpp in Sources */,

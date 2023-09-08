@@ -21,7 +21,7 @@ namespace user
       m_bTabPaneVisible = true;
       m_bPermanent = false;
       m_bNeedLayout = false;
-      m_eelement = e_element_tab;
+      m_item.m_eelement = e_element_tab;
 
    }
 

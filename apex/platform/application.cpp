@@ -36,8 +36,8 @@
 #include "apex/interprocess/target.h"
 #include "apex/interprocess/task.h"
 #include "apex/database/_binary_stream.h"
-#include "apex/filesystem/filesystem/dir_context.h"
-#include "apex/filesystem/filesystem/file_context.h"
+#include "acme/filesystem/filesystem/dir_context.h"
+#include "acme/filesystem/filesystem/file_context.h"
 #include "apex/networking/application/application.h"
 #include "apex/networking/http/context.h"
 #include "apex/user/user/language_map.h"
@@ -1433,96 +1433,96 @@ namespace apex
    }
 
 
-   void application::pre_run()
-   {
+   //void application::pre_run()
+   //{
 
-      information() << "apex::application::pre_run";
+   //   information() << "apex::application::pre_run";
 
-      try
-      {
+   //   try
+   //   {
 
-         m_timeHeartBeat.Now();
+   //      m_timeHeartBeat.Now();
 
-         application_pre_run();
+   //      application_pre_run();
 
-         //{
+   //      //{
 
-         //   m_bReady = true;
+   //      //   m_bReady = true;
 
-         //   return false;
+   //      //   return false;
 
-         //}
+   //      //}
 
-         //    if(!check_install())
-         //    {
+   //      //    if(!check_install())
+   //      //    {
 
-         //       m_bReady = true;
+   //      //       m_bReady = true;
 
-         //       return false;
+   //      //       return false;
 
-         //    }
+   //      //    }
 
-         //         if(!is_system() && !is_session())
-         //         {
-         //
-         //            if(!is_installed())
-         //            {
-         //
-         //
-         //            }
-         //
-         //         }
+   //      //         if(!is_system() && !is_session())
+   //      //         {
+   //      //
+   //      //            if(!is_installed())
+   //      //            {
+   //      //
+   //      //
+   //      //            }
+   //      //
+   //      //         }
 
-         //xxdebug_box("pre_run 1 ok", "pre_run 1 ok", e_message_box_icon_information);
+   //      //xxdebug_box("pre_run 1 ok", "pre_run 1 ok", e_message_box_icon_information);
 
-         //auto estatus = 
-         on_before_launching();
+   //      //auto estatus = 
+   //      on_before_launching();
 
-         //if(!estatus)
-         //{
+   //      //if(!estatus)
+   //      //{
 
-         //   m_bReady = true;
+   //      //   m_bReady = true;
 
-         //   return estatus;
+   //      //   return estatus;
 
-         //}
+   //      //}
 
-         m_timeHeartBeat.Now();
+   //      m_timeHeartBeat.Now();
 
-         os_native_bergedge_start();
-         //{
+   //      os_native_bergedge_start();
+   //      //{
 
-         //   m_bReady = true;
+   //      //   m_bReady = true;
 
-         //   return false;
+   //      //   return false;
 
-         //}
+   //      //}
 
-         information() << "apex::application::pre_run success";
+   //      information() << "apex::application::pre_run success";
 
-         //return true;
+   //      //return true;
 
-      }
-      catch (const ::exception & e)
-      {
+   //   }
+   //   catch (const ::exception & e)
+   //   {
 
-         handle_exception(e);
+   //      handle_exception(e);
 
-         throw e;
+   //      throw e;
 
-      }
-      catch (...)
-      {
+   //   }
+   //   catch (...)
+   //   {
 
-         information() << "apex::application::pre_run exception.4";
+   //      information() << "apex::application::pre_run exception.4";
 
-         throw ::exception(error_exception);
+   //      throw ::exception(error_exception);
 
-      }
+   //   }
 
-      //return false;
+   //   //return false;
 
-   }
+   //}
 
 
    //   void application::on_run()
@@ -2236,218 +2236,218 @@ namespace apex
    //}
 
 
-   void application::application_pre_run()
-   {
-      //
-      //information() << "apex::application::application_pre_run";
-      //
-      //#ifdef WINDOWS_DESKTOP
-      //
-      //MSG msg;
-      //
-      //// Create Windows Message Queue
-      //::PeekMessageA(&msg, nullptr, 0, 0xffff, 0);
-      //
-      //MESSAGE message;
-      //
-      //copy(message, msg);
-      //
-      //auto psystem = acmesystem()->m_papexsystem;
-      //
-      //if (!is_system() && is_true("SessionSynchronizedInput"))
-      //{
-      //
-      //::AttachThreadInput(GetCurrentThreadId(), (u32)psystem->get_itask(), true);
-      //
-      //}
-      //
-      //#endif
+   //void application::application_pre_run()
+   //{
+   //   //
+   //   //information() << "apex::application::application_pre_run";
+   //   //
+   //   //#ifdef WINDOWS_DESKTOP
+   //   //
+   //   //MSG msg;
+   //   //
+   //   //// Create Windows Message Queue
+   //   //::PeekMessageA(&msg, nullptr, 0, 0xffff, 0);
+   //   //
+   //   //MESSAGE message;
+   //   //
+   //   //copy(message, msg);
+   //   //
+   //   //auto psystem = acmesystem()->m_papexsystem;
+   //   //
+   //   //if (!is_system() && is_true("SessionSynchronizedInput"))
+   //   //{
+   //   //
+   //   //::AttachThreadInput(GetCurrentThreadId(), (u32)psystem->get_itask(), true);
+   //   //
+   //   //}
+   //   //
+   //   //#endif
 
-      m_timeHeartBeat.Now();
+   //   m_timeHeartBeat.Now();
 
-      //try
-      //{
-      //
-      //if (!InitApplication())
-      //{
-      //
-      //return false;
-      //
-      //}
-      //
-      //}
-      //catch (::exit_exception * pe)
-      //{
-      //
-      //throw pe;
-      //
-      //}
-      //catch (const ::exception * pe)
-      //{
-      //
-      ////thisexc << 1 << m_iErrorCode;
-      //
-      //::acme::del(pe);
-      //
-      //return false;
-      //
-      //}
-      //catch (...)
-      //{
-      //
-      ////thisexcall << 1 << m_iErrorCode;
-      //
-      //return false;
-      //
-      //}
+   //   //try
+   //   //{
+   //   //
+   //   //if (!InitApplication())
+   //   //{
+   //   //
+   //   //return false;
+   //   //
+   //   //}
+   //   //
+   //   //}
+   //   //catch (::exit_exception * pe)
+   //   //{
+   //   //
+   //   //throw pe;
+   //   //
+   //   //}
+   //   //catch (const ::exception * pe)
+   //   //{
+   //   //
+   //   ////thisexc << 1 << m_iErrorCode;
+   //   //
+   //   //::acme::del(pe);
+   //   //
+   //   //return false;
+   //   //
+   //   //}
+   //   //catch (...)
+   //   //{
+   //   //
+   //   ////thisexcall << 1 << m_iErrorCode;
+   //   //
+   //   //return false;
+   //   //
+   //   //}
 
-      m_timeHeartBeat.Now();
+   //   m_timeHeartBeat.Now();
 
-      //::e_status estatus = ::success;
+   //   //::e_status estatus = ::success;
 
-      try
-      {
+   //   try
+   //   {
 
-         //estatus = 
+   //      //estatus = 
 
-         process_init();
+   //      process_init();
 
-         //if(!estatus)
-         //{
-         //
-         //return false;
-         //
-         //}
+   //      //if(!estatus)
+   //      //{
+   //      //
+   //      //return false;
+   //      //
+   //      //}
 
-      }
-      catch (::exit_exception * pe)
-      {
+   //   }
+   //   catch (::exit_exception * pe)
+   //   {
 
-         throw pe;
+   //      throw pe;
 
-      }
-      catch (const ::exception * pe)
-      {
+   //   }
+   //   catch (const ::exception * pe)
+   //   {
 
-         ::acme::del(pe);
+   //      ::acme::del(pe);
 
-         //return false;
+   //      //return false;
 
-      }
-      catch (...)
-      {
+   //   }
+   //   catch (...)
+   //   {
 
-         //return false;
+   //      //return false;
 
-      }
+   //   }
 
-      //auto psystem = acmesystem()->m_papexsystem;
+   //   //auto psystem = acmesystem()->m_papexsystem;
 
-      //      auto psystem = acmesystem();
-      //
-      //      psystem->install_progress_add_up();
+   //   //      auto psystem = acmesystem();
+   //   //
+   //   //      psystem->install_progress_add_up();
 
-      m_timeHeartBeat.Now();
+   //   m_timeHeartBeat.Now();
 
-      try
-      {
+   //   try
+   //   {
 
-         //if (!init_application())
-         init_application();
-         //{
-         //
-         //return false;
-         //
-         //}
+   //      //if (!init_application())
+   //      init_application();
+   //      //{
+   //      //
+   //      //return false;
+   //      //
+   //      //}
 
-      }
-      catch (const ::exception & e)
-      {
+   //   }
+   //   catch (const ::exception & e)
+   //   {
 
-         handle_exception(e);
+   //      handle_exception(e);
 
-         message_box_synchronous(this, "Application failed to initialize (1).\n\n" + e.m_strMessage, m_strAppName, e_message_box_ok, e.m_strMessage + "\n" + e.m_strDetails);
+   //      message_box_synchronous(this, "Application failed to initialize (1).\n\n" + e.m_strMessage, m_strAppName, e_message_box_ok, e.m_strMessage + "\n" + e.m_strDetails);
 
-         throw e;
+   //      throw e;
 
-      }
-      catch (...)
-      {
+   //   }
+   //   catch (...)
+   //   {
 
-         message_box_synchronous(this, "Application failed to initialize (2). Unknown exception", m_strAppName);
+   //      message_box_synchronous(this, "Application failed to initialize (2). Unknown exception", m_strAppName);
 
-         throw "Unknown exception";
+   //      throw "Unknown exception";
 
-      }
+   //   }
 
-      m_timeHeartBeat.Now();
+   //   m_timeHeartBeat.Now();
 
-      try
-      {
+   //   try
+   //   {
 
-         auto psystem = acmesystem();
+   //      auto psystem = acmesystem();
 
-         //if (!is_system() && !is_session())
-         {
+   //      //if (!is_system() && !is_session())
+   //      {
 
-            if (psystem->is_true("uninstall"))
-            {
+   //         if (psystem->is_true("uninstall"))
+   //         {
 
-               do_uninstall();
+   //            do_uninstall();
 
-               //return false;
+   //            //return false;
 
-            }
-            else if (psystem->is_true("install"))
-            {
+   //         }
+   //         else if (psystem->is_true("install"))
+   //         {
 
-               do_install();
+   //            do_install();
 
-               //return false;
+   //            //return false;
 
-            }
+   //         }
 
-         }
+   //      }
 
-         init_instance();
+   //      init_instance();
 
-         //if (!init_instance())
-         //{
-         //
-         ////return false;
-         //
-         //}
+   //      //if (!init_instance())
+   //      //{
+   //      //
+   //      ////return false;
+   //      //
+   //      //}
 
-         //on_update_matter_locator();
+   //      //on_update_matter_locator();
 
-      }
-      catch (const ::exit_exception & exception)
-      {
+   //   }
+   //   catch (const ::exit_exception & exception)
+   //   {
 
-         throw exception;
+   //      throw exception;
 
-      }
-      catch (const ::exception & exception)
-      {
+   //   }
+   //   catch (const ::exception & exception)
+   //   {
 
-         message_box_synchronous(this, "Application failed to initialize (4). Unknown exception", m_strAppName, e_message_box_ok,
-            exception.m_strMessage + "\n\n" + exception.m_strDetails + "\n\n" + exception.m_strCallstack);
+   //      message_box_synchronous(this, "Application failed to initialize (4). Unknown exception", m_strAppName, e_message_box_ok,
+   //         exception.m_strMessage + "\n\n" + exception.m_strDetails + "\n\n" + exception.m_strCallstack);
 
-         throw exception;
+   //      throw exception;
 
-      }
-      catch (...)
-      {
+   //   }
+   //   catch (...)
+   //   {
 
-         message_box_synchronous(this, "Application failed to initialize (4). Unknown exception", m_strAppName);
+   //      message_box_synchronous(this, "Application failed to initialize (4). Unknown exception", m_strAppName);
 
-         throw "Unknown exception";
+   //      throw "Unknown exception";
 
-      }
+   //   }
 
-      //return true;
+   //   //return true;
 
-   }
+   //}
 
 
    void application::application_pos_run()
@@ -2838,6 +2838,8 @@ namespace apex
    void application::process_init()
    {
 
+      ::acme::application::process_init();
+
       string_array stra;
 
       stra.explode("/", m_strAppId);
@@ -2984,8 +2986,7 @@ namespace apex
 
       //return true;
 
-      initialize_context();
-
+      
 
    }
 
@@ -3059,102 +3060,102 @@ namespace apex
    }
 
 
-   void application::init_application()
-   {
+   //void application::init_application()
+   //{
 
-      auto psystem = acmesystem()->m_papexsystem;
+   //   auto psystem = acmesystem()->m_papexsystem;
 
-      information() << "apex::application::init_application";
+   //   information() << "apex::application::init_application";
 
-      m_timeHeartBeat.Now();
+   //   m_timeHeartBeat.Now();
 
-      init1();
+   //   init1();
 
-      //if (!init1())
-      //{
-      //
-      ////dappy(__type_name(this) + " : init1 failure : " + as_string(m_iErrorCode));
-      //
-      //return false;
-      //
-      //}
+   //   //if (!init1())
+   //   //{
+   //   //
+   //   ////dappy(__type_name(this) + " : init1 failure : " + as_string(m_iErrorCode));
+   //   //
+   //   //return false;
+   //   //
+   //   //}
 
-      psystem->install_progress_add_up(); // 2
+   //   psystem->install_progress_add_up(); // 2
 
-      //xxdebug_box("init1 ok", "init1 ok", e_message_box_icon_information);
+   //   //xxdebug_box("init1 ok", "init1 ok", e_message_box_icon_information);
 
-      m_timeHeartBeat.Now();
+   //   m_timeHeartBeat.Now();
 
-      init2();
+   //   init2();
 
-      //if (!init2())
-      //{
-      //
-      ////dappy(__type_name(this) + " : init2 failure : " + as_string(m_iErrorCode));
-      //
-      //return false;
-      //
-      //}
+   //   //if (!init2())
+   //   //{
+   //   //
+   //   ////dappy(__type_name(this) + " : init2 failure : " + as_string(m_iErrorCode));
+   //   //
+   //   //return false;
+   //   //
+   //   //}
 
-      psystem->install_progress_add_up(); // 3
+   //   psystem->install_progress_add_up(); // 3
 
-      //xxdebug_box("init2 ok", "init2 ok", e_message_box_icon_information);
+   //   //xxdebug_box("init2 ok", "init2 ok", e_message_box_icon_information);
 
-      m_timeHeartBeat.Now();
+   //   m_timeHeartBeat.Now();
 
-      init3();
+   //   init3();
 
-      //if (!init3())
-      //{
-      //
-      ////dappy(__type_name(this) + " : init3 failure : " + as_string(m_iErrorCode));
-      //
-      //return false;
-      //
-      //}
+   //   //if (!init3())
+   //   //{
+   //   //
+   //   ////dappy(__type_name(this) + " : init3 failure : " + as_string(m_iErrorCode));
+   //   //
+   //   //return false;
+   //   //
+   //   //}
 
-      psystem->install_progress_add_up(); // 4
+   //   psystem->install_progress_add_up(); // 4
 
-      //xxdebug_box("init3 ok", "init3 ok", e_message_box_icon_information);
+   //   //xxdebug_box("init3 ok", "init3 ok", e_message_box_icon_information);
 
-      m_timeHeartBeat.Now();
+   //   m_timeHeartBeat.Now();
 
-      //dappy(__type_name(this) + " : init3 ok : " + as_string(m_iErrorCode));
+   //   //dappy(__type_name(this) + " : init3 ok : " + as_string(m_iErrorCode));
 
-      //try
-      //{
+   //   //try
+   //   //{
 
-      init();
-      //{
-      //
-      ////dappy(__type_name(this) + " : initialize failure : " + as_string(m_iErrorCode));
-      //
-      //return false;
-      //
-      //}
-      //
-      //}
-      //catch (const ::string & psz)
-      //{
-      //
-      //if (!strcmp(psz, "You have not logged in! Exiting!"))
-      //{
-      //
-      //return false;
-      //
-      //}
-      //
-      //return false;
+   //   init();
+   //   //{
+   //   //
+   //   ////dappy(__type_name(this) + " : initialize failure : " + as_string(m_iErrorCode));
+   //   //
+   //   //return false;
+   //   //
+   //   //}
+   //   //
+   //   //}
+   //   //catch (const ::string & psz)
+   //   //{
+   //   //
+   //   //if (!strcmp(psz, "You have not logged in! Exiting!"))
+   //   //{
+   //   //
+   //   //return false;
+   //   //
+   //   //}
+   //   //
+   //   //return false;
 
-      //}
+   //   //}
 
-      psystem->install_progress_add_up(); // 5
+   //   psystem->install_progress_add_up(); // 5
 
-      //      m_bAuraInitializeInstanceResult = true;
+   //   //      m_bAuraInitializeInstanceResult = true;
 
-      //return true;
+   //   //return true;
 
-   }
+   //}
 
 
    //::pointer<::interprocess::channel> application::create_interprocess_channel()
@@ -4272,252 +4273,6 @@ namespace apex
 
    }
 
-
-   void application::set_locale(const string & pcsz, const ::action_context & context)
-   {
-
-      string strLocale(pcsz);
-
-
-      strLocale.trim();
-
-      m_strLocale = strLocale;
-
-      on_set_locale(m_strLocale, context);
-
-   }
-
-
-   void application::set_schema(const string & pcsz, const ::action_context & context)
-
-   {
-
-      string strSchema(pcsz);
-
-
-      strSchema.trim();
-
-      m_strSchema = strSchema;
-
-      on_set_schema(m_strSchema, context);
-
-   }
-
-
-   void application::on_set_locale(const string & pcsz, const ::action_context & context)
-
-   {
-      UNREFERENCED_PARAMETER(context);
-      UNREFERENCED_PARAMETER(pcsz);
-
-      //psystem->appa_load_string_table();
-   }
-
-
-   void application::on_set_schema(const string & pcsz, const ::action_context & context)
-
-   {
-      UNREFERENCED_PARAMETER(context);
-      UNREFERENCED_PARAMETER(pcsz);
-
-      //psystem->appa_load_string_table();
-   }
-
-
-
-
-
-   string application::get_locale_schema_dir()
-   {
-
-      return _001Concatenate(get_locale(), "/", get_schema());
-
-   }
-
-
-   string application::get_locale_schema_dir(const ::string & strLocale)
-   {
-
-      return _001Concatenate(strLocale.is_empty() ? get_locale() : strLocale, "/", get_schema());
-
-   }
-
-
-   void application::matter_locator_locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::string & strLocale, const ::string & strSchema)
-   {
-
-      if (strLocale.is_empty() || strSchema.is_empty())
-      {
-
-         return;
-
-      }
-
-      for (auto & strMatterLocator : straMatterLocator)
-      {
-
-         string strLs = get_locale_schema_dir(strLocale, strSchema);
-
-         stra.add_unique(::file::path(strMatterLocator) / strLs);
-
-      }
-
-   }
-
-
-   void application::locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::string & strLocale, const ::string & strSchema)
-   {
-
-      if (straMatterLocator.has_elements())
-      {
-
-         stra.add_unique(::file::path(straMatterLocator.first()) / get_locale_schema_dir("map", "map"));
-
-      }
-
-      matter_locator_locale_schema_matter(stra, straMatterLocator, strLocale, strSchema);
-
-      if (acmeapplication()->m_bSession)
-      {
-
-         auto psession = acmesession();
-
-         auto ptextcontext = psession->text_context();
-
-         for (i32 i = 0; i < ptextcontext->localeschema().m_idaLocale.get_count(); i++)
-         {
-
-            string strLocale = ptextcontext->localeschema().m_idaLocale[i];
-
-            string strSchema = ptextcontext->localeschema().m_idaSchema[i];
-
-            matter_locator_locale_schema_matter(stra, straMatterLocator, strLocale, strSchema);
-
-         }
-
-      }
-
-      matter_locator_locale_schema_matter(stra, straMatterLocator, "en", "en");
-
-      matter_locator_locale_schema_matter(stra, straMatterLocator, "_std", "_std");
-
-      if (straMatterLocator.has_elements())
-      {
-
-         stra.add_unique(::file::path(straMatterLocator.first()) / get_locale_schema_dir("404", "404"));
-
-      }
-
-   }
-
-
-   string application::get_locale_schema_dir(const ::string & strLocale, const ::string & strSchema)
-   {
-
-      return _001Concatenate(strLocale, "/", strSchema);
-
-   }
-
-
-   void application::fill_locale_schema(::text::international::locale_schema & localeschema, const string & pszLocale, const string & pszSchema)
-   {
-
-      localeschema.m_idaLocale.erase_all();
-      localeschema.m_idaSchema.erase_all();
-
-
-      string strLocale(pszLocale);
-      string strSchema(pszSchema);
-
-
-      localeschema.m_atomLocale = pszLocale;
-      localeschema.m_atomSchema = pszSchema;
-
-
-      localeschema.add_locale_variant(strLocale, strSchema);
-      localeschema.add_locale_variant(get_locale(), strSchema);
-      localeschema.add_locale_variant("std", strSchema);
-      localeschema.add_locale_variant("en", strSchema);
-
-      localeschema.destroy();
-
-   }
-
-
-   void application::fill_locale_schema(::text::international::locale_schema & localeschema)
-   {
-
-
-      localeschema.m_idaLocale.erase_all();
-      localeschema.m_idaSchema.erase_all();
-
-
-      //localeschema.m_bAddAlternateStyle = true;
-
-
-      string_array straLocale;
-      string_array straSchema;
-
-      straLocale.add(get_locale());
-      straSchema.add(get_schema());
-
-
-      string_array stra;
-
-      stra = payload("locale").stra();
-
-      stra.erase_ci("_std");
-
-      straLocale.append_unique(payload("locale").stra());
-
-      stra.empty();
-
-      stra = payload("schema").stra();
-
-      stra.erase_ci("_std");
-
-      straSchema.append_unique(payload("schema").stra());
-
-      localeschema.m_atomLocale = straLocale[0];
-      localeschema.m_atomSchema = straSchema[0];
-
-      for (index iLocale = 0; iLocale < straLocale.get_count(); iLocale++)
-      {
-
-         for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
-         {
-
-            localeschema.add_locale_variant(straLocale[iLocale], straSchema[iSchema]);
-
-         }
-
-      }
-
-      for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
-      {
-
-         localeschema.add_locale_variant(get_locale(), straSchema[iSchema]);
-
-      }
-
-      for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
-      {
-
-         localeschema.add_locale_variant("std", straSchema[iSchema]);
-
-      }
-
-
-      for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
-      {
-
-         localeschema.add_locale_variant("en", straSchema[iSchema]);
-
-      }
-
-      localeschema.destroy();
-
-   }
 
 
    bool application::platform_open_by_file_extension(index iEdge, const ::string & pszPathName, ::request * prequest)
@@ -6317,7 +6072,7 @@ namespace apex
 
       ensure_app_interest();
 
-      information() << ".2";
+      information() << "apex::application .2";
 
       if (is_true("install"))
       {

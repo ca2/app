@@ -72,6 +72,12 @@ void output_debug_string(const ::scoped_string & str)
 }
 
 
+void output_debug_string_flush()
+{
+
+}
+
+
 CLASS_DECL_ACME htask_t get_current_htask()
 {
 

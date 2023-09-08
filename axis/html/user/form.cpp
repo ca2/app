@@ -164,12 +164,12 @@ void html_form::_001OnImageLoaded(::message::message * pmessage)
    if(get_html_data() != nullptr)
    {
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
-      if(rectangleClient.area() > 0)
+      if(rectangleX.area() > 0)
       {
 
-         get_html_data()->m_pcoredata->m_box = rectangleClient;
+         get_html_data()->m_pcoredata->m_box = rectangleX;
 
          synchronous_lock lock(get_html_data()->synchronization());
 
@@ -217,11 +217,11 @@ void html_form::install_message_routing(::channel * pchannel)
 void html_form::GetClientBox(::rectangle_f32 & box)
 {
 
-   ::rectangle_i32 rectangleClient;
+   ::rectangle_i32 rectangleX;
 
-   rectangleClient = client_rectangle();
+   rectangleX = this->rectangle();
 
-   box = rectangleClient;
+   box = rectangleX;
 
 }
 
@@ -229,9 +229,9 @@ void html_form::GetClientBox(::rectangle_f32 & box)
 void html_form::on_layout(::draw2d::graphics_pointer & pgraphics)
 {
 
-   auto rectangleClient = client_rectangle();
+   auto rectangleX = this->rectangle();
 
-   if (rectangleClient.is_empty())
+   if (rectangleX.is_empty())
    {
 
       return;

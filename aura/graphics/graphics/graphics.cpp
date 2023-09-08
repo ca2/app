@@ -115,6 +115,14 @@ namespace graphics
    }
 
 
+//   bool graphics::presentation_complete()
+//   {
+//
+//      return true;
+//
+//   }
+
+
    void graphics::buffer_size_and_position(buffer_item * pbufferitem)
    {
 
@@ -125,9 +133,13 @@ namespace graphics
 
       }
 
-      pbufferitem->m_point = m_pimpl->m_puserinteraction->const_layout().layout().origin();
+      pbufferitem->m_point = m_pimpl->m_puserinteraction->const_layout().design().origin();
 
-      pbufferitem->m_size = m_pimpl->m_puserinteraction->const_layout().layout().size();
+      pbufferitem->m_size = m_pimpl->m_puserinteraction->const_layout().design().size();
+
+      //pbufferitem->m_point = m_pimpl->m_puserinteraction->const_layout().layout().origin();
+
+      //pbufferitem->m_size = m_pimpl->m_puserinteraction->const_layout().layout().size();
 
    }
 

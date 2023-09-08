@@ -33,6 +33,18 @@ enum enum_element : ::i64
    e_element_border,
    e_element_lite_border,
    e_element_client,
+   e_element_client_hit_test,
+   //e_element_sizing_left,
+   //e_element_sizing_top,
+   //e_element_sizing_right,
+   //e_element_sizing_bottom,
+   //e_element_sizing_top_left,
+   //e_element_sizing_top_right,
+   //e_element_sizing_bottom_left,
+   //e_element_sizing_bottom_right,
+   //e_frame_client = 16,
+   //e_move = 32,
+
    //e_element_resize,
    e_element_non_client, // but m_bMouseHoverOnCapture ?
    e_element_area,

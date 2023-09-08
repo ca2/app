@@ -102,9 +102,6 @@ namespace apex
 
       //::user::interaction *                      m_puiMainContainer;
 
-      ::pointer < ::mutex >                                      m_pmutexMatterLocator;
-
-      ::pointer < ::mutex >                                      m_pmutexStr;
       string_table                                 m_stringtable;
       string_table                                 m_stringtableStd;
       atom_map < string >                            m_stringmap;
@@ -228,14 +225,14 @@ namespace apex
       virtual bool Ex2OnAppInstall();
       virtual bool Ex2OnAppUninstall();
 
-      virtual void init_application();
+      //virtual void init_application();
 
       void init1() override;
-      virtual void init2();
-      virtual void init3();
+      void init2() override;
+      void init3() override;
 
 
-      virtual void init();
+      void init() override;
 
 
       void init_instance() override;
@@ -249,9 +246,8 @@ namespace apex
 
       void destroy() override;
 
-      virtual void application_pre_run();
       //virtual bool initial_check_directrix() override;
-      virtual void os_native_bergedge_start();
+      void os_native_bergedge_start() override;
 
 
       virtual bool on_application_menu_action(const ::string & pszCommand);
@@ -268,12 +264,12 @@ namespace apex
       //virtual bool InitApplication();
 
 
-      virtual void do_install();
-      virtual void do_uninstall();
+      void do_install() override;
+      void do_uninstall() override;
 
 
-      virtual void on_install();
-      virtual void on_uninstall();
+      void on_install() override;
+      void on_uninstall() override;
 
       virtual void enable_service();
       virtual void disable_service();
@@ -354,7 +350,7 @@ namespace apex
 
 
 
-      virtual void process_init();
+      void process_init() override;
 
 
 
@@ -555,15 +551,17 @@ namespace apex
       //virtual void     main() override;
       //virtual void     on_run();
 
-      virtual void on_before_launching();
+      void on_before_launching() override;
       //virtual void os_native_bergedge_start();
 
-      virtual void pre_run();
+      // virtual void pre_run();
       //virtual void application_pre_run();
 
       virtual void on_pos_run_thread() override;
       virtual void pos_run();
       virtual void application_pos_run();
+
+
 
       //virtual bool InitApplication();
       //virtual void TermApplication();
@@ -674,26 +672,6 @@ namespace apex
       virtual string http_get_locale_schema(const ::string & pszUrl, const ::string & pszLocale, const ::string & pszSchema);
 
       //virtual void on_update_matter_locator() override;
-
-      virtual void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::string & strLocale, const ::string & strSchema) override;
-      virtual void matter_locator_locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::string & strLocale, const ::string & strSchema);
-
-      virtual string get_locale_schema_dir(const ::string & strLocale, const ::string & strSchema);
-      virtual string get_locale_schema_dir(const ::string & strLocale);
-      virtual string get_locale_schema_dir() override;
-
-      virtual void set_locale(const string & pcsz, const ::action_context & action_context);
-
-      virtual void set_schema(const string & pcsz, const ::action_context & action_context);
-
-      virtual void on_set_locale(const string & pcsz, const ::action_context & action_context);
-
-      virtual void on_set_schema(const string & pcsz, const ::action_context & action_context);
-
-
-
-      virtual void fill_locale_schema(::text::international::locale_schema & localeschema);
-      virtual void fill_locale_schema(::text::international::locale_schema & localeschema, const string & strLocale, const string & strSchema);
 
       virtual bool platform_open_by_file_extension(index iEdge, const ::string & pszPathName, ::request * prequest = nullptr);
       virtual bool platform_open_by_file_extension(index iEdge, ::request * prequest);

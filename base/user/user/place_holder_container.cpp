@@ -38,6 +38,8 @@ namespace user
 
       pplaceholder->display(e_display_normal);
 
+      pplaceholder->place(rectangleCreate);
+
       pplaceholder->create_child(this);
 
       //if(!pplaceholder->create_child(this))

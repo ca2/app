@@ -2794,7 +2794,7 @@ return false;
       trace_function tracefunction = [pstring](enum_trace_level eTraceLevel, const scoped_string & str)
       {
 
-         pstring->m_payload += str;
+         pstring->m_payload += str + "\n";
 
       };
 
@@ -3155,6 +3155,23 @@ return false;
       throw interface_only();
 
    }
+
+
+   void node::play_sound(const ::file::path& path)
+   {
+
+      throw interface_only();
+
+   }
+
+
+   void node::speak(const ::scoped_string& scopedstr)
+   {
+
+      throw interface_only();
+
+   }
+
 
 
 } // namespace acme

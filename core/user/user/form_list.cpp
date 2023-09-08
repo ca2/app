@@ -109,7 +109,7 @@ namespace user
 
       }
 
-      auto pinteraction = _001GetControl(pitem->item_index(), pitem->subitem_index());
+      auto pinteraction = _001GetControl(pitem->m_item.m_iItem, pitem->m_item.m_iSubItem);
 
       if (pinteraction)
       {
@@ -131,7 +131,7 @@ namespace user
             }
 
          }
-         else if (m_pcolumna->get_by_subitem(pitem->subitem_index())->m_bEditOnSecondClick)
+         else if (m_pcolumna->get_by_subitem(pitem->m_item.m_iSubItem)->m_bEditOnSecondClick)
          {
 
             if (m_pitemClick == pitem)
@@ -154,7 +154,7 @@ namespace user
 
                m_iClickCount = 0;
 
-               _001PlaceControl(pinteraction, pitem->item_index());
+               _001PlaceControl(pinteraction, pitem->m_item.m_iItem);
 
             }
 
@@ -162,7 +162,7 @@ namespace user
          else
          {
 
-            _001PlaceControl(pinteraction, pitem->item_index(), true);
+            _001PlaceControl(pinteraction, pitem->m_item.m_iItem, true);
 
          }
 
@@ -196,7 +196,7 @@ namespace user
 
       }
 
-      auto pinteraction = _001GetControl(pitem->item_index(), pitem->subitem_index());
+      auto pinteraction = _001GetControl(pitem->m_item.m_iItem, pitem->m_item.m_iSubItem);
 
       if (pinteraction)
       {
@@ -220,7 +220,7 @@ namespace user
             }
 
          }
-         else if (m_pcolumna->get_by_subitem(pitem->subitem_index())->m_bEditOnSecondClick)
+         else if (m_pcolumna->get_by_subitem(pitem->m_item.m_iSubItem)->m_bEditOnSecondClick)
          {
 
             if (m_pitemClick == pitem)
@@ -243,7 +243,7 @@ namespace user
 
                m_iClickCount = 0;
 
-               _001PlaceControl(pinteraction, pitem->item_index());
+               _001PlaceControl(pinteraction, pitem->m_item.m_iItem);
 
             }
 
@@ -251,7 +251,7 @@ namespace user
          else
          {
 
-            _001PlaceControl(pinteraction, pitem->item_index(), true);
+            _001PlaceControl(pinteraction, pitem->m_item.m_iItem, true);
 
          }
 
@@ -263,7 +263,7 @@ namespace user
 
          _001HideEditingControls();
 
-         ::pointer<::user::list_column>pcolumn = m_pcolumna->get_by_subitem(pitem->subitem_index());
+         ::pointer<::user::list_column>pcolumn = m_pcolumna->get_by_subitem(pitem->m_item.m_iSubItem);
 
          if (pcolumn.is_set() && pcolumn->m_atom.is_set())
          {
@@ -276,7 +276,7 @@ namespace user
                if (pinteraction->has_function(::user::e_control_function_check_box))
                {
 
-                  ::enum_check echeck = _001GetSubItemCheck(pitem->item_index(), pitem->subitem_index());
+                  ::enum_check echeck = _001GetSubItemCheck(pitem->m_item.m_iItem, pitem->m_item.m_iSubItem);
 
                   if (echeck == ::e_check_checked)
                   {
@@ -291,7 +291,7 @@ namespace user
 
                   }
 
-                  _001SetSubItemCheck(pitem->item_index(), pitem->subitem_index(), echeck);
+                  _001SetSubItemCheck(pitem->m_item.m_iItem, pitem->m_item.m_iSubItem, echeck);
 
                   if (echeck == ::e_check_checked)
                   {
@@ -302,13 +302,13 @@ namespace user
                         if (pinteraction->has_function(::user::e_control_function_duplicate_on_check_box))
                         {
 
-                           if (pinteraction->m_iSubItemDuplicateCheckBox == pitem->subitem_index())
+                           if (pinteraction->m_iSubItemDuplicateCheckBox == pitem->m_item.m_iSubItem)
                            {
 
                               for (auto iSubItemTarget : pinteraction->m_iaSubItemDuplicate)
                               {
 
-                                 auto psubitem = get_subitem(pitem->item_index(), pinteraction->m_iSubItem);
+                                 auto psubitem = get_subitem(pitem->m_item.m_iItem, pinteraction->m_item.m_iSubItem);
 
                                  //itemSource.initialize_mesh_item(this);
 
@@ -321,7 +321,7 @@ namespace user
                                  if (psubitem->m_bOk)
                                  {
 
-                                    auto psubitemTarget = get_subitem(pitem->item_index(), iSubItemTarget);
+                                    auto psubitemTarget = get_subitem(pitem->m_item.m_iItem, iSubItemTarget);
 
                                     psubitemTarget->m_strText = psubitem->m_strText;
 
@@ -458,7 +458,7 @@ namespace user
       if (_001GetEditControl() != nullptr)
       {
 
-         if (_001GetEditControl()->m_iSubItem != pinteraction->m_iSubItem)
+         if (_001GetEditControl()->m_item.m_iSubItem != pinteraction->m_item.m_iSubItem)
          {
 
             if (!bOnlySizeAndPosition && _001GetEditControl() != nullptr)
@@ -468,7 +468,7 @@ namespace user
 
             }
 
-            if (!bOnlySizeAndPosition && pinteraction->m_iSubItem)
+            if (!bOnlySizeAndPosition && pinteraction->m_item.m_iSubItem)
             {
 
                _001HideEditingControls();
@@ -483,7 +483,7 @@ namespace user
 
             _001SaveEdit(_001GetEditControl());
 
-            if (iEditItem == _001GetEditControl()->m_iItem)
+            if (iEditItem == _001GetEditControl()->m_item.m_iItem)
             {
 
                bSameItemAndSubItem = true;
@@ -496,11 +496,11 @@ namespace user
 
       _001SelectItem(iEditItem);
 
-      auto psubitem = get_subitem(iEditItem, pinteraction->m_iSubItem);
+      auto psubitem = get_subitem(iEditItem, pinteraction->m_item.m_iSubItem);
 
-      m_iItem = iEditItem;
+      m_item.m_iItem = iEditItem;
 
-      pinteraction->m_iItem = iEditItem;
+      pinteraction->m_item.m_iItem = iEditItem;
 
       psubitem->m_pitem->m_iDisplayItem = display_to_strict(iEditItem);
 
@@ -508,7 +508,7 @@ namespace user
 
       //psubitem->m_iColumn = pinteraction->m_iColumn;
 
-      //pitem->m_iSubItem = ;
+      //pitem->m_item.m_iSubItem = ;
 
       psubitem->m_pcolumn = m_pcolumna->get_visible((::index)pinteraction->m_iColumn);
 
@@ -656,7 +656,7 @@ namespace user
                   for (auto iSubItemTarget : pinteraction->m_iaSubItemDuplicate)
                   {
 
-                     auto psubitem = get_subitem(iItem, pinteraction->m_iSubItem);
+                     auto psubitem = get_subitem(iItem, pinteraction->m_item.m_iSubItem);
 
                      _001GetSubItemText(psubitem);
 
@@ -709,7 +709,7 @@ namespace user
       if (pinteraction->has_function(e_control_function_vms_data_edit))
       {
 
-         auto psubitem = get_subitem(pinteraction->m_iItem, pinteraction->m_iSubItem);
+         auto psubitem = get_subitem(pinteraction->m_item.m_iItem, pinteraction->m_item.m_iSubItem);
 
          _001GetSubItemText(psubitem);
 
@@ -783,7 +783,7 @@ namespace user
       if (pinteraction->has_function(e_control_function_data_selection))
       {
 
-         auto psubitem = get_subitem(pinteraction->m_iItem, pinteraction->m_iSubItem);
+         auto psubitem = get_subitem(pinteraction->m_item.m_iItem, pinteraction->m_item.m_iSubItem);
 
          _001GetSubItemText(psubitem);
 
@@ -814,7 +814,7 @@ namespace user
 
          auto echeck = pcheckbox->echeck();
 
-         auto psubitem = get_subitem(pinteraction->m_iItem, pinteraction->m_iSubItem);
+         auto psubitem = get_subitem(pinteraction->m_item.m_iItem, pinteraction->m_item.m_iSubItem);
 
          if (echeck == ::e_check_checked)
          {
@@ -957,7 +957,7 @@ namespace user
          || pinteraction->has_function(e_control_function_data_selection))
       {
 
-         auto psubitem = get_subitem(pinteraction->m_iItem, pinteraction->m_iSubItem);
+         auto psubitem = get_subitem(pinteraction->m_item.m_iItem, pinteraction->m_item.m_iSubItem);
 
          psubitem->m_strText = payload.as_string();
 
@@ -1062,7 +1062,7 @@ namespace user
       if (pinteraction)
       {
 
-         _001PlaceControl(pinteraction, pinteraction->m_iItem, false, true);
+         _001PlaceControl(pinteraction, pinteraction->m_item.m_iItem, false, true);
 
       }
 
@@ -1086,7 +1086,7 @@ namespace user
       if (pinteraction)
       {
 
-         _001PlaceControl(pinteraction, pinteraction->m_iItem, false, true);
+         _001PlaceControl(pinteraction, pinteraction->m_item.m_iItem, false, true);
 
       }
 
@@ -1201,7 +1201,7 @@ namespace user
 
       form_mesh::_001HideEditingControls();
 
-      m_iItem = -1;
+      m_item.m_iItem = -1;
 
       //if(_001GetEditControl() != nullptr)
       //{
@@ -1300,7 +1300,7 @@ namespace user
 
       //auto pitem = __new(draw_list_item(this));
 
-      return ::is_subitem(m_pitemControl, pinteraction->m_iSubItem);
+      return ::is_subitem(m_pitemControl, pinteraction->m_item.m_iSubItem);
 
       //i32 iEditItem;
       //i32 iEditSubItem;
@@ -1313,18 +1313,18 @@ namespace user
 //
 //      pitem->subitem_index() = pinteraction->subitem_index();
 //      pitem->m_iOrder = sub_item_to_order(pitem->subitem_index());
-//      pitem->m_iListItem = -1;
+//      pitem->m_item.m_iListItem = -1;
 //      //index_element_rectangle(&item, ::user::mesh::element_sub_item);
 //      rectangleControl = pitem->m_rectangleSubItem;
 //      client_to_screen(rectangleControl);
 //      rectangle_i64 rectangleForm;
 //      window_rectangle(rectangleForm);
-//      rectangle_i64 rectangleClient;
-//      rectangleClient.top = rectangleForm.top;
-//      rectangleClient.bottom = rectangleForm.bottom;
-//      rectangleClient.left = rectangleControl.left;
-//      rectangleClient.right = rectangleControl.right;
-//      return rectangleClient.contains(point) != false;
+//      rectangle_i64 rectangleX;
+//      rectangleX.top() = rectangleForm.top();
+//      rectangleX.bottom() = rectangleForm.bottom();
+//      rectangleX.left() = rectangleControl.left();
+//      rectangleX.right() = rectangleControl.right();
+//      return rectangleX.contains(point) != false;
    }
 
 
@@ -1349,13 +1349,13 @@ namespace user
                if ((*m_pcolumna)[i]->subitem_index() >= 0)
                {
 
-                  pdescriptor->m_iSubItem = (*m_pcolumna)[i]->subitem_index();
+                  pdescriptor->m_item.m_iSubItem = (*m_pcolumna)[i]->subitem_index();
 
                }
-               else if (pdescriptor->m_iSubItem >= 0)
+               else if (pdescriptor->m_item.m_iSubItem >= 0)
                {
 
-                  (*m_pcolumna)[i]->m_iSubItem = pdescriptor->m_iSubItem;
+                  (*m_pcolumna)[i]->m_iSubItem = pdescriptor->m_item.m_iSubItem;
 
                }
 
@@ -1368,7 +1368,7 @@ namespace user
       if (m_pcontrolEdit != nullptr && m_pcontrolEdit->is_window_visible())
       {
 
-         _001PlaceControl(m_pcontrolEdit, m_pcontrolEdit->m_iItem);
+         _001PlaceControl(m_pcontrolEdit, m_pcontrolEdit->m_item.m_iItem);
 
       }
 
@@ -1611,7 +1611,7 @@ namespace user
 
       //psubitem->m_pitem->m_iDisplayItem = m_iDisplayItemHover;
 
-      ////pitem->m_iItem = 
+      ////pitem->m_item.m_iItem = 
 
       ////if(m_bGroup)
       ////{
@@ -1634,11 +1634,11 @@ namespace user
 
       ////}
 
-      ////pitem->m_iSubItem = pinteraction->m_iSubItem;
+      ////pitem->m_item.m_iSubItem = pinteraction->m_iSubItem;
 
       //psubitem->m_iOrder = sub_item_to_order(psubitem->m_iSubItem);
 
-      ////pitem->m_iListItem = -1;
+      ////pitem->m_item.m_iListItem = -1;
 
       //index_element_rectangle(*psubitem, ::user::mesh::e_element_sub_item);
 
@@ -1660,7 +1660,7 @@ namespace user
    bool form_list::control_001DisplayHitTest(const ::point_i32 & point)
    {
 
-      return _001DisplayHitTest(point, m_pitemControl->m_iItem, m_pitemControl->m_iSubItem);
+      return _001DisplayHitTest(point, m_pitemControl->m_item.m_iItem, m_pitemControl->m_item.m_iSubItem);
 
    }
 
@@ -1937,7 +1937,7 @@ namespace user
 
          auto puserinteraction = ptopic->user_interaction();
 
-         auto iSubItem = puserinteraction->m_iSubItem;
+         auto iSubItem = puserinteraction->m_item.m_iSubItem;
 
          auto pcolumn = m_pcolumna->get_by_subitem(iSubItem);
 
@@ -1992,9 +1992,9 @@ namespace user
          if (m_pcontrolEdit != nullptr)
          {
 
-            iItem = m_pcontrolEdit->m_iItem;
+            iItem = m_pcontrolEdit->m_item.m_iItem;
 
-            iSubItem = m_pcontrolEdit->m_iSubItem;
+            iSubItem = m_pcontrolEdit->m_item.m_iSubItem;
 
             _001SaveEdit(m_pcontrolEdit);
 
@@ -2089,9 +2089,9 @@ namespace user
 
                }
 
-               iItem = m_pcontrolEdit->m_iItem;
+               iItem = m_pcontrolEdit->m_item.m_iItem;
 
-               iSubItem = m_pcontrolEdit->m_iSubItem;
+               iSubItem = m_pcontrolEdit->m_item.m_iSubItem;
 
                _001SaveEdit(m_pcontrolEdit);
                _001HideControl(m_pcontrolEdit);
@@ -2232,9 +2232,9 @@ namespace user
 
       pinteraction->m_atom = pcolumn->m_atom;
 
-      pinteraction->m_iItem = iItem;
+      pinteraction->m_item.m_iItem = iItem;
 
-      pinteraction->m_iSubItem = pcolumn->m_iSubItem;
+      pinteraction->m_item.m_iSubItem = pcolumn->m_iSubItem;
 
       return pinteraction;
 
@@ -2302,10 +2302,10 @@ namespace user
 
       //   //            rectangle_i32 r;
 
-      //   //            rectangle.left = 0;
-      //   //            rectangle.top = 0;
-      //   //            rectangle.right = 15;
-      //   //            rectangle.bottom = 15;
+      //   //            rectangle.left() = 0;
+      //   //            rectangle.top() = 0;
+      //   //            rectangle.right() = 15;
+      //   //            rectangle.bottom() = 15;
 
       //   //            rectangle.Align(::e_align_center, pdrawitem->m_rectangleSubItem);
 
@@ -2356,9 +2356,9 @@ namespace user
          if (pinteraction)
          {
             //
-            //            //pdrawitem->m_rectangleClient = pdrawitem->m_rectangleSubItem;
+            //            //pdrawitem->m_rectangleX = pdrawitem->m_rectangleSubItem;
             //
-            //            //pdrawitem->m_rectangleWindow = pdrawitem->m_rectangleClient;
+            //            //pdrawitem->m_rectangleWindow = pdrawitem->m_rectangleX;
             //
             pinteraction->place(pdrawlistsubitem->m_pdrawmeshsubitem->m_rectangleSubItem);
 
@@ -2373,10 +2373,10 @@ namespace user
 
                         //screen_to_client(rectangleWindow);
 
-                        //if (rectangleWindow != pdrawitem->m_rectangleClient)
+                        //if (rectangleWindow != pdrawitem->m_rectangleX)
             {
 
-               // pinteraction->set_window_position(0, pdrawitem->m_rectangleClient, SWP_HIDEWINDOW | SWP_NOZORDER);
+               // pinteraction->set_window_position(0, pdrawitem->m_rectangleX, SWP_HIDEWINDOW | SWP_NOZORDER);
 
             }
 
@@ -2484,9 +2484,9 @@ namespace user
 
             auto psubitem = get_subitem(iItem, iSubItem);
 
-            //pitem->m_iItem = iItem;
+            //pitem->m_item.m_iItem = iItem;
 
-            //pitem->m_iSubItem = iSubItem;
+            //pitem->m_item.m_iSubItem = iSubItem;
 
             _001GetSubItemText(psubitem);
 
@@ -2537,8 +2537,8 @@ namespace user
 
                auto psubitem = get_subitem(iItem, iSubItem);
 
-               //pitem->m_iItem = iItem;
-               //pitem->m_iSubItem = iSubItem;
+               //pitem->m_item.m_iItem = iItem;
+               //pitem->m_item.m_iSubItem = iSubItem;
                psubitem->m_strText = pinteraction->m_setValue[echeck];
 
                if (!psubitem->m_strText.has_char())

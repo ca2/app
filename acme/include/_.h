@@ -83,6 +83,7 @@
 #include "_template_inline_functions.h"
 
 
+#include "acme/crypto/_.h"
 #include "acme/exception/_.h"
 #include "acme/filesystem/_.h"
 #include "acme/graphics/_.h"

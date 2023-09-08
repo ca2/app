@@ -1,6 +1,9 @@
 // Created by camilo on 2023-07-18 13:46 <3ThomasBorregaardSorensen!!
 #include "framework.h"
+#include "content.h"
 #include "container.h"
+#include "tool.h"
+#include "acme/constant/id.h"
 #include "acme/handler/item.h"
 
 
@@ -8,21 +11,21 @@ namespace user
 {
 
 
-   container::container()
+   acme_container::acme_container()
    {
 
 
    }
 
 
-   container::~container()
+   acme_container::~acme_container()
    {
 
 
    }
 
 
-   bool container::_is_set() const
+   bool acme_container::_is_set() const
    {
 
       return true;
@@ -30,251 +33,485 @@ namespace user
    }
 
 
-   ::count container::item_count() const
+   void acme_container::create_tool()
    {
 
-      if (!m_pitema)
-      {
-
-         return 0;
-
-      }
-
-      return m_pitema->count();
-
-   }
-
-
-   void container::clear_items()
-   {
-
-      if (!m_pitema)
+      if (m_pacmetool)
       {
 
          return;
 
       }
 
-      m_pitema->clear();
+      __construct_new(m_pacmetool);
+
+      m_itemcontainermap[id_tool] = m_pacmetool;
 
    }
 
 
-   ::item * container::item_at(::index iIndex)
+   void acme_container::create_main_content()
    {
 
-      if (iIndex < 0 || iIndex >= m_pitema->size())
+      if (m_pacmecontentMain)
       {
 
-         throw ::exception(::error_index_out_of_bounds);
+         return;
 
       }
 
-      return (*m_pitema)[iIndex];
+      __construct_new(m_pacmecontentMain);
+
+      m_itemcontainermap[id_content] = m_pacmecontentMain;
 
    }
 
 
-   void container::default_set_item_at(::index iIndex, ::item * pitem)
+   //::count acme_container::item_count() const
+   //{
+
+   //   if (!m_pitema)
+   //   {
+
+   //      return 0;
+
+   //   }
+
+   //   return m_pitema->count();
+
+   //}
+
+
+   //void acme_container::clear_items()
+   //{
+
+   //   if (!m_pitema)
+   //   {
+
+   //      return;
+
+   //   }
+
+   //   m_pitema->clear();
+
+   //}
+
+
+   //::item * acme_container::item_at(::index iIndex)
+   //{
+
+   //   if (iIndex < 0 || iIndex >= m_pitema->size())
+   //   {
+
+   //      throw ::exception(::error_index_out_of_bounds);
+
+   //   }
+
+   //   return (*m_pitema)[iIndex];
+
+   //}
+
+
+   //void acme_container::default_set_item_at(::index iIndex, ::item * pitem)
+   //{
+
+   //   if (iIndex < 0)
+   //   {
+
+   //      throw ::exception(error_index_out_of_bounds);
+
+   //   }
+
+   //   pitem->m_item.m_iItem = iIndex;
+
+   //   m_pitema->set_at_grow(iIndex, pitem);
+
+   //}
+
+
+   //void acme_container::default_add_item(::item * pitem)
+   //{
+
+   //   pitem->m_item.m_iItem = add_item(pitem);
+
+   //}
+
+
+   //::index acme_container::add_item(::item * pitem)
+   //{
+
+   //   if (!m_pitema)
+   //   {
+
+   //      __defer_construct_new(m_pitema);
+
+   //   }
+
+   //   return m_pitema->add(pitem);
+
+   //}
+
+
+   //::user::item * acme_container::user_item_at(::index iIndex)
+   //{
+
+   //   auto pitem = item_at(iIndex);
+
+   //   return user_item(pitem);
+
+   //}
+
+
+   //::index acme_container::item_index(const ::item * pitem)
+   //{
+
+   //   return m_pitemaContent->find_first(pitem);
+
+   //}
+
+
+   ::user::item * acme_container::user_item(const ::item * pitem)
    {
 
-      if (iIndex < 0)
+      auto & puseritem = m_useritemmap[pitem];
+
+      if (!puseritem)
       {
 
-         throw ::exception(error_index_out_of_bounds);
+         __construct_new(puseritem);
 
       }
 
-      pitem->m_iItem = iIndex;
-
-      m_pitema->set_at_grow(iIndex, pitem);
-
-   }
-
-
-   void container::default_add_item(::item * pitem)
-   {
-
-      pitem->m_iItem = add_item(pitem);
-
-   }
-
-
-   ::index container::add_item(::item * pitem)
-   {
-
-      if (!m_pitema)
+      if (!puseritem->m_pitem && pitem)
       {
 
-         __defer_construct_new(m_pitema);
+         puseritem->m_pitem = (::item *)pitem;
 
       }
 
-      return m_pitema->add(pitem);
+      return puseritem;
 
    }
 
 
-   ::user::item * container::user_item_at(::index iIndex)
-   {
+   //::user::item * acme_container::user_item(const ::atom & atom)
+   //{
 
-      auto pitem = item_at(iIndex);
+   //   auto pitem = item(atom);
 
-      return user_item(pitem);
+   //   return user_item(pitem);
 
-   }
+   //}
 
 
-   ::index container::item_index(const ::item * pitem)
-   {
+   //::item_pointer acme_container::item(const ::atom & atom)
+   //{
 
-      return m_pitema->find_first(pitem);
+   //   auto iIndex = item_index(atom);
 
-   }
+   //   if (iIndex < 0)
+   //   {
 
+   //      return nullptr;
 
-   ::user::item * container::user_item(const ::item * pitem)
-   {
+   //   }
 
-      auto & useritem = m_useritemmap[pitem];
+   //   return (*m_pitema)[iIndex];
 
-      if (!useritem.m_pitem && pitem)
-      {
+   //}
 
-         useritem.m_pitem = (::item *)pitem;
 
-      }
+   //::item_pointer acme_container::item(const item_t & item)
+   //{
 
-      return &useritem;
+   //   if (!m_pitema)
+   //   {
 
-   }
+   //      return nullptr;
 
+   //   }
 
-   ::user::item * container::user_item(const ::atom & atom)
-   {
+   //   for (auto & pitem : *m_pitema)
+   //   {
 
-      auto pitem = item(atom);
+   //      if (::is_item_equivalent(&pitem->m_item, &item))
+   //      {
 
-      return user_item(pitem);
+   //         return pitem;
 
-   }
+   //      }
 
+   //   }
 
-   ::item_pointer container::item(const ::atom & atom)
-   {
+   //   return nullptr;
 
-      auto iIndex = item_index(atom);
+   //}
 
-      if (iIndex < 0)
-      {
 
-         return nullptr;
+   //::item_pointer acme_container::defer_item(const item_t & item)
+   //{
 
-      }
+   //   auto pitem = this->item(item);
 
-      return (*m_pitema)[iIndex];
+   //   if (!pitem)
+   //   {
 
-   }
+   //      pitem = add_item(item);
 
+   //   }
 
-   ::index container::item_index(const ::atom & atom) const
-   {
+   //   return pitem;
 
-      auto iIndex = atom.as_index();
+   //}
 
-      if (!m_pitema->is_index_ok(iIndex))
-      {
 
-         iIndex = -1;
+   //::item_pointer acme_container::add_item(const ::item_t & item)
+   //{
 
-         for (::index iItem = 0; iItem < m_pitema->size(); iItem++)
-         {
+   //   auto pitem = __new(::item(item));
 
-            auto pitem = (*m_pitema)[iItem];
+   //   pitem->initialize(this);
 
-            if (atom.m_etype == ::atom::e_type_element)
-            {
+   //   add_item(pitem);
 
-               if (pitem->m_eelement == atom.m_eelement)
-               {
+   //   return pitem;
 
-                  iIndex = iItem;
+   //}
 
-                  break;
 
-               }
+   //::index acme_container::item_index() const
+   //{
+   //
+   //   return m_item.item_index();
+   //
+   //}
 
-            }
-            else
-            {
 
-               if (pitem->m_atom == atom)
-               {
+   //::index acme_container::item_index(const ::atom & atom) const
+   //{
 
-                  iIndex = iItem;
+   //   auto iIndex = atom.as_index();
 
-                  break;
+   //   if (!m_pitema->is_index_ok(iIndex))
+   //   {
 
-               }
+   //      iIndex = -1;
 
-            }
+   //      for (::index iItem = 0; iItem < m_pitema->size(); iItem++)
+   //      {
 
-         }
+   //         auto pitem = (*m_pitema)[iItem];
 
-         if (iIndex < 0)
-         {
+   //         if (atom.m_etype == ::atom::e_type_element)
+   //         {
 
-            // still not ok? couldn't find then, right?!...;
+   //            if (pitem->m_item.m_eelement == atom.m_eelement)
+   //            {
 
-            return -1;
+   //               iIndex = iItem;
 
-         }
+   //               break;
 
-      }
+   //            }
 
-      return iIndex;
+   //         }
+   //         else
+   //         {
 
-   }
+   //            if (pitem->m_atom == atom)
+   //            {
 
+   //               iIndex = iItem;
 
-   bool container::is_item_pressed_by_index(::index iIndex) const
-   {
+   //               break;
 
-      return ::is_item_index(m_pitemPressed, iIndex);
+   //            }
 
-   }
+   //         }
 
+   //      }
 
-   bool container::is_item_hover_by_index(::index iIndex) const
-   {
+   //      if (iIndex < 0)
+   //      {
 
-      return ::is_item_index(m_pitemHover, iIndex);
+   //         // still not ok? couldn't find then, right?!...;
 
-   }
+   //         return -1;
 
+   //      }
 
-   bool container::is_item_pressed(const ::atom & atom) const
-   {
+   //   }
 
-      auto iIndex = item_index(atom);
+   //   return iIndex;
 
-      return is_item_pressed_by_index(iIndex);
+   //}
 
-   }
 
+   //::index acme_container::item_index(::item_array * pitema, const ::atom & atom)
+   //{
 
-   bool container::is_item_hover(const ::atom & atom) const
-   {
+   //   if (::is_null(pitema))
+   //   {
 
-      auto iIndex = item_index(atom);
+   //      return -1;
 
-      return is_item_hover_by_index(iIndex);
+   //   }
 
-   }
+   //   auto iIndex = atom.as_index();
 
+   //   if (!pitema->is_index_ok(iIndex))
+   //   {
 
+   //      iIndex = -1;
 
-   bool container::is_item_selected(::item* pitem)
+   //      for (::index iItem = 0; iItem < pitema->size(); iItem++)
+   //      {
+
+   //         auto pitem = (*pitema)[iItem];
+
+   //         if (atom.m_etype == ::atom::e_type_element)
+   //         {
+
+   //            if (pitem->m_item.m_eelement == atom.m_eelement)
+   //            {
+
+   //               iIndex = iItem;
+
+   //               break;
+
+   //            }
+
+   //         }
+   //         else
+   //         {
+
+   //            if (pitem->m_atom == atom)
+   //            {
+
+   //               iIndex = iItem;
+
+   //               break;
+
+   //            }
+
+   //         }
+
+   //      }
+
+   //      if (iIndex < 0)
+   //      {
+
+   //         // still not ok? couldn't find then, right?!...;
+
+   //         return -1;
+
+   //      }
+
+   //   }
+
+   //   return iIndex;
+
+   //}
+
+
+   //::index acme_container::item_index(const ::atom & atom) const
+   //{
+
+   //   auto iIndex = atom.as_index();
+
+   //   if (!m_pitema->is_index_ok(iIndex))
+   //   {
+
+   //      iIndex = -1;
+
+   //      for (::index iItem = 0; iItem < m_pitema->size(); iItem++)
+   //      {
+
+   //         auto pitem = (*m_pitema)[iItem];
+
+   //         if (atom.m_etype == ::atom::e_type_element)
+   //         {
+
+   //            if (pitem->m_item.m_eelement == atom.m_eelement)
+   //            {
+
+   //               iIndex = iItem;
+
+   //               break;
+
+   //            }
+
+   //         }
+   //         else
+   //         {
+
+   //            if (pitem->m_atom == atom)
+   //            {
+
+   //               iIndex = iItem;
+
+   //               break;
+
+   //            }
+
+   //         }
+
+   //      }
+
+   //      if (iIndex < 0)
+   //      {
+
+   //         // still not ok? couldn't find then, right?!...;
+
+   //         return -1;
+
+   //      }
+
+   //   }
+
+   //   return iIndex;
+
+   //}
+
+
+   //bool acme_container::is_item_pressed_by_index(::index iIndex) const
+   //{
+
+   //   return ::is_item_index(m_pitemPressed, iIndex);
+
+   //}
+
+
+   //bool acme_container::is_item_hover_by_index(::index iIndex) const
+   //{
+
+   //   return ::is_item_index(m_pitemHover, iIndex);
+
+   //}
+
+
+   //bool acme_container::is_item_pressed(const ::atom & atom) const
+   //{
+
+   //   auto iIndex = item_index(atom);
+
+   //   return is_item_pressed_by_index(iIndex);
+
+   //}
+
+
+   //bool acme_container::is_item_hover(const ::atom & atom) const
+   //{
+
+   //   auto iIndex = item_index(atom);
+
+   //   return is_item_hover_by_index(iIndex);
+
+   //}
+
+
+
+   bool acme_container::is_item_selected(::item* pitem)
    {
 
       auto pitemSelected = selected_item();
@@ -291,45 +528,45 @@ namespace user
    }
 
 
-   item_pointer container::selected_item()
-   {
+   //::item_pointer acme_container::selected_item()
+   //{
 
-      auto iCount = get_child_as_item_count();
+   //   auto iCount = get_child_as_item_count();
 
-      for (decltype(iCount) iIndex = 0; iIndex < iCount; iIndex++)
-      {
+   //   for (decltype(iCount) iIndex = 0; iIndex < iCount; iIndex++)
+   //   {
 
-         auto pitem = get_child_as_item(iIndex);
+   //      auto pitem = get_child_as_item(iIndex);
 
-         if (is_item_selected(pitem))
-         {
+   //      if (is_item_selected(pitem))
+   //      {
 
-            return pitem;
+   //         return pitem;
 
-         }
+   //      }
 
-      }
+   //   }
 
-      return nullptr;
+   //   return nullptr;
 
-   }
-
-
-   void container::on_item_selected(::item* pitem)
-   {
+   //}
 
 
-   }
+   //void acme_container::on_item_selected(::item* pitem)
+   //{
+
+
+   //}
    
    
-   void container::on_item_hover(::item* pitem)
+   void acme_container::on_item_hover(::item* pitem)
    {
 
 
    }
 
 
-   bool container::is_item_hover(::item* pitem)
+   bool acme_container::is_item_hover(::item* pitem)
    {
 
       auto pitemHover = hover_item();
@@ -346,44 +583,100 @@ namespace user
    }
 
 
-   item_pointer container::hover_item()
+   //::item_pointer acme_container::hover_item()
+   //{
+
+   //   auto iCount = get_child_as_item_count();
+
+   //   for (decltype(iCount) iIndex = 0; iIndex < iCount; iIndex++)
+   //   {
+
+   //      auto pitem = get_child_as_item(iIndex);
+
+   //      if (is_item_hover(pitem))
+   //      {
+
+   //         return pitem;
+
+   //      }
+
+   //   }
+
+   //   return nullptr;
+
+   //}
+
+
+   //::item_pointer acme_container::get_child_as_item(::index iIndex)
+   //{
+
+   //   return nullptr;
+
+   //}
+
+
+   //::count acme_container::get_child_as_item_count()
+   //{
+
+   //   return 0;
+
+   //}
+
+
+   bool acme_container::is_item_pressed(const ::item_t & item) const
    {
 
-      auto iCount = get_child_as_item_count();
-
-      for (decltype(iCount) iIndex = 0; iIndex < iCount; iIndex++)
+      if (!::is_item_set(m_pitemPressed))
       {
 
-         auto pitem = get_child_as_item(iIndex);
-
-         if (is_item_hover(pitem))
-         {
-
-            return pitem;
-
-         }
+         return false;
 
       }
 
-      return nullptr;
+      return m_pitemPressed->m_item == item;
 
    }
 
 
-   item_pointer container::get_child_as_item(::index iIndex)
+   bool acme_container::is_item_hover(const ::item_t & item) const
    {
 
-      return nullptr;
+      if (!::is_item_set(m_pitemHover))
+      {
+
+         return false;
+
+      }
+
+      return m_pitemHover->m_item == item;
 
    }
 
 
-   ::count container::get_child_as_item_count()
+   ::item_pointer acme_container::pressed_item()
    {
 
-      return 0;
+      return m_pitemPressed;
 
    }
+
+
+   ::item_pointer acme_container::hover_item()
+   {
+
+      return m_pitemHover;
+
+   }
+
+
+   ::item_pointer acme_container::selected_item()
+   {
+
+      return main_content().selected_item();
+
+   }
+
+
 
 
 

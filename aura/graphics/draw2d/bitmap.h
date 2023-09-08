@@ -60,8 +60,10 @@ namespace draw2d
       virtual void CreateDiscardableBitmap(::draw2d::graphics * pgraphics, i32 nWidth, i32 nHeight);
 
       virtual void create_bitmap(::draw2d::graphics * pgraphics, const ::size_i32& size, void** ppcolorref, int* piScan);
-      virtual void host_bitmap(::draw2d::graphics* pgraphics, const pixmap* ppximap);
+      virtual bool host_bitmap(::draw2d::graphics* pgraphics, pixmap* ppximap);
       virtual void CreateDIBitmap(::draw2d::graphics * pgraphics, int cx, int cy, u32 flInit, const void *pjBits, ::u32 iUsage);
+
+      virtual ::i32 stride_for_width(::i32 iWidth);
 
       virtual void attach(void * posdata);
       virtual void * detach();

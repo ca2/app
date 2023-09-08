@@ -321,13 +321,13 @@ namespace console
 
       bool bCaretOn = m_timeCaretStart.on_off(m_timeCaretPeriod);
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
       m_sizeChar = pgraphics.get_text_extent("M");
       
       m_sizeChar = m_sizeChar.maximum(pgraphics.get_text_extent("p"));
 
-      pgraphics->fill_rectangle(rectangleClient,argb(dwAlpha,0,0,0));
+      pgraphics->fill_rectangle(rectangleX,argb(dwAlpha,0,0,0));
 
       pgraphics->set_text_color(crTopic);
 
@@ -347,10 +347,10 @@ namespace console
 
          ::rectangle_i32 rectangleCaret;
 
-         rectangleCaret.left = (::i32) (iLeftMargin+m_sizeChar.cx() * m_iCursor);
-         rectangleCaret.right = rectangleCaret.left + m_sizeChar.cx();
-         rectangleCaret.top = m_sizeChar.cy() - 3;
-         rectangleCaret.bottom = m_sizeChar.cy();
+         rectangleCaret.left() = (::i32) (iLeftMargin+m_sizeChar.cx() * m_iCursor);
+         rectangleCaret.right() = rectangleCaret.left() + m_sizeChar.cx();
+         rectangleCaret.top() = m_sizeChar.cy() - 3;
+         rectangleCaret.bottom() = m_sizeChar.cy();
 
 
 

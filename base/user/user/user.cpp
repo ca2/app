@@ -18,6 +18,7 @@
 #include "aura/graphics/image/image.h"
 #include "aura/message/user.h"
 #include "aura/windowing/window.h"
+#include "axis/user/user/calculator_edit.h"
 #include "base/platform/application.h"
 #include "base/platform/session.h"
 #include "base/platform/system.h"
@@ -44,6 +45,8 @@ namespace base
    user::user()
    {
 
+      printf("base::user::user\n");
+
       m_pbaseuser = this;
 
    }
@@ -58,7 +61,9 @@ namespace base
    void user::initialize(::particle * pparticle)
    {
 
-      //auto estatus = 
+      //auto estatus =
+
+      printf("base::user::initialize\n");
       
       ::axis::user::initialize(pparticle);
 
@@ -69,7 +74,9 @@ namespace base
 
       //}
 
-      //estatus = 
+      //estatus =
+
+      printf("base::user::initialize (2)\n");
       
       ::user::document_manager_container::initialize(pparticle);
 
@@ -1728,6 +1735,12 @@ namespace base
 
    //__namespace_object_factory(user, ::system_setup::flag_object_user);
 
+   ::pointer<::user::plain_edit>user::create_calculator_edit()
+   {
+
+      return __new(::user::show < ::calculator::edit >());
+
+   }
 
 } // namespace base
 

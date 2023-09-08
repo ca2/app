@@ -70,7 +70,7 @@ namespace opengl
 
       }
 
-      memset(m_pimage->m_pimage32Raw, 127, cx * cy * 4 / 8);
+      //memset(m_pimage->m_pimage32Raw, 127, cx * cy * 4 / 8);
 
 #endif
       

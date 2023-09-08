@@ -149,7 +149,7 @@ namespace user
 
       virtual bool runnable_step();
 
-      virtual ::pointer<::user::plain_edit>create_calculator_plain_edit();
+      virtual ::pointer<::user::plain_edit>create_calculator_edit();
 
 
 

@@ -102,6 +102,9 @@ namespace experience_anthill
       virtual void GetFrameRect(rectangle_i32 & rect) override;
 
 
+      ::experience::enum_frame experience_frame_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;
+
+
    };
 
 

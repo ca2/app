@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "base/user/simple/toolbar.h"
+
+
 namespace user
 {
 
@@ -63,7 +66,7 @@ protected:
 
    //virtual index _001GetHoverItem() override;
    //virtual void OnUpdateHover() override;
-   virtual bool on_click(::item * pitem) override;
+   bool on_click(::item * pitem) override;
    void _001OnDropDown(index iItem);
    //index _001GetHoverItem();
    //void _001Hover(const ::point_i32 & point);

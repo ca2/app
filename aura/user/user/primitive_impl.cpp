@@ -118,7 +118,7 @@ namespace user
    }
 
 
-   void primitive_impl::defer_draw(::draw2d::graphics_pointer & pgraphics)
+   void primitive_impl::defer_do_graphics(::draw2d::graphics_pointer & pgraphics)
    {
 
       m_puserinteraction->_000CallOnDraw(pgraphics);
@@ -207,7 +207,7 @@ namespace user
    //}
 
 
-//   void primitive_impl::prodevian_update_screen()
+//   void primitive_impl::graphics_thread_update_screen()
 //   {
 //
 //      //return true;
@@ -215,7 +215,7 @@ namespace user
 //   }
 
 
-   //void primitive_impl::RepositionBars(::u32 nIDFirst, ::u32 nIDLast, atom idLeft, ::u32 nFlags, ::rectangle_i32 * prectParam, const rectangle_i32 & rectangleClient, bool bStretch)
+   //void primitive_impl::RepositionBars(::u32 nIDFirst, ::u32 nIDLast, atom idLeft, ::u32 nFlags, ::rectangle_i32 * prectParam, const rectangle_i32 & rectangleX, bool bStretch)
    //{
 
    //   if (!_is_window())
@@ -239,16 +239,16 @@ namespace user
 
    //   sizeparentparams.sizeTotal.cx() = sizeparentparams.sizeTotal.cy() = 0;
 
-   //   if (rectangleClient != nullptr)
+   //   if (rectangleX != nullptr)
    //   {
 
-   //      sizeparentparams.rectangle = rectangleClient;
+   //      sizeparentparams.rectangle = rectangleX;
 
    //   }
    //   else
    //   {
 
-   //      m_puserinteraction->client_rectangle(&sizeparentparams.rectangle);
+   //      m_puserinteraction->rectangle(&sizeparentparams.rectangle);
 
    //   }
 
@@ -295,11 +295,11 @@ namespace user
    //      else
    //      {
 
-   //         prectParam->left = prectParam->top = 0;
+   //         prectParam->left() = prectParam->top() = 0;
 
-   //         prectParam->right = sizeparentparams.sizeTotal.cx();
+   //         prectParam->right() = sizeparentparams.sizeTotal.cx();
 
-   //         prectParam->bottom = sizeparentparams.sizeTotal.cy();
+   //         prectParam->bottom() = sizeparentparams.sizeTotal.cy();
 
 
    //      }
@@ -318,13 +318,13 @@ namespace user
    //         ASSERT(prectParam != nullptr);
 
 
-   //         sizeparentparams.rectangle.left += prectParam->left;
+   //         sizeparentparams.rectangle.left() += prectParam->left();
 
-   //         sizeparentparams.rectangle.top += prectParam->top;
+   //         sizeparentparams.rectangle.top() += prectParam->top();
 
-   //         sizeparentparams.rectangle.right -= prectParam->right;
+   //         sizeparentparams.rectangle.right() -= prectParam->right();
 
-   //         sizeparentparams.rectangle.bottom -= prectParam->bottom;
+   //         sizeparentparams.rectangle.bottom() -= prectParam->bottom();
 
 
    //      }
@@ -353,6 +353,20 @@ namespace user
       //return true;
 
    }
+
+
+   void primitive_impl::on_configure(const ::rectangle_i32 & rectangle)
+   {
+
+
+   }
+
+
+//   void primitive_impl::on_resize(const ::size_i32 & size)
+//   {
+//
+//
+//   }
 
 
    //void primitive_impl::main_async(const promise::procedure & routine, enum_priority epriority)
@@ -506,8 +520,8 @@ namespace user
    void primitive_impl::viewport_client_to_screen(::rectangle_i32 & rectangle)
    {
 
-      viewport_client_to_screen((::point_i32 &)rectangle.left);
-      viewport_client_to_screen((::point_i32 &)rectangle.right);
+      viewport_client_to_screen((::point_i32 &)rectangle.left());
+      viewport_client_to_screen((::point_i32 &)rectangle.right());
 
    }
 
@@ -515,8 +529,8 @@ namespace user
    void primitive_impl::viewport_screen_to_client(::rectangle_i32 & rectangle)
    {
 
-      viewport_screen_to_client((::point_i32 &)rectangle.left);
-      viewport_screen_to_client((::point_i32 &)rectangle.right);
+      viewport_screen_to_client((::point_i32 &)rectangle.left());
+      viewport_screen_to_client((::point_i32 &)rectangle.right());
 
    }
 
@@ -585,21 +599,21 @@ namespace user
    }
 
 
-   void primitive_impl::add_prodevian(::matter* pmatter)
+   void primitive_impl::add_auto_refresh(::matter* pmatter)
    {
 
 
    }
 
 
-   void primitive_impl::erase_prodevian(::matter* pmatter)
+   void primitive_impl::erase_auto_refresh(::matter* pmatter)
    {
 
 
    }
 
 
-   bool primitive_impl::is_prodevian(const ::matter* pmatter) const
+   bool primitive_impl::is_auto_refresh(const ::matter* pmatter) const
    {
 
       return false;
@@ -607,7 +621,7 @@ namespace user
    }
 
 
-//   void primitive_impl::prodevian_stop()
+//   void primitive_impl::auto_refresh_stop()
 //   {
 //
 //
@@ -1047,7 +1061,7 @@ namespace user
    //}
 
 
-//   void primitive_impl::prodevian_redraw(bool bUpdateBuffer)
+//   void primitive_impl::graphics_thread_redraw(bool bUpdateBuffer)
 //   {
 //
 //
@@ -2038,15 +2052,15 @@ namespace user
    }
 
 
-   //void primitive_impl::defer_start_prodevian()
+   //void primitive_impl::defer_start_auto_refresh()
    //{
 
-   //   m_puserinteraction->post_simple_command(e_simple_command_defer_start_prodevian);
+   //   m_puserinteraction->post_simple_command(e_simple_command_defer_start_auto_refresh);
 
    //}
 
 
-   //void primitive_impl::_defer_start_prodevian()
+   //void primitive_impl::_defer_start_auto_refresh()
    //{
 
    //}
@@ -2705,18 +2719,28 @@ namespace user
    // }
 
 
-   void primitive_impl::_window_show_change_visibility(::e_display edisplay, ::e_activation eactivation)
-   {
-
-   }
-
-
-   void primitive_impl::_window_request_presentation()
-   {
-
-      //return true;
-
-   }
+//   void primitive_impl::_window_show_change_visibility_unlocked(::e_display edisplay, ::e_activation eactivation)
+//   {
+//
+//   }
+//
+//
+//   void primitive_impl::_window_show_change_visibility_locked()
+//   {
+//
+//   }
+//
+//
+//   void primitive_impl::_window_request_presentation_locked()
+//   {
+//
+//   }
+//
+//
+//   void primitive_impl::_window_request_presentation_unlocked()
+//   {
+//
+//   }
 
 
    void primitive_impl::enable_window(bool bEnable)

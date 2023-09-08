@@ -74,6 +74,11 @@ namespace acme
       ::text::text                                    m_textAppTitle;
 
 
+      ::pointer < ::mutex >                                      m_pmutexMatterLocator;
+
+      ::pointer < ::mutex >                                      m_pmutexStr;
+
+
       application();
       ~application() override;
 
@@ -95,8 +100,8 @@ namespace acme
 
       virtual bool is_application() const;
 
-      virtual bool is_system() const;
-      virtual bool is_session() const;
+      bool is_system() const override;
+      bool is_session() const override;
 
       virtual bool is_service() const;
       virtual bool is_user_service() const;
@@ -130,9 +135,24 @@ namespace acme
 
       virtual int main_loop();
 
-
+      
+      virtual void on_before_launching();
+      virtual void os_native_bergedge_start();
 
       virtual void init1();
+      virtual void init2();
+      virtual void init3();
+
+
+      virtual void init();
+
+
+      virtual void do_install();
+      virtual void do_uninstall();
+
+
+      virtual void on_install();
+      virtual void on_uninstall();
 
 
       virtual void init_instance();
@@ -154,8 +174,36 @@ namespace acme
 
 
       virtual ::string get_application_name();
-      
-      
+
+
+      void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::string & strLocale, const ::string & strSchema) override;
+      virtual void matter_locator_locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::string & strLocale, const ::string & strSchema);
+
+      virtual string get_locale_schema_dir(const ::string & strLocale, const ::string & strSchema);
+      virtual string get_locale_schema_dir(const ::string & strLocale);
+      string get_locale_schema_dir() override;
+
+      virtual void set_locale(const string & pcsz, const ::action_context & action_context);
+
+      virtual void set_schema(const string & pcsz, const ::action_context & action_context);
+
+      virtual void on_set_locale(const string & pcsz, const ::action_context & action_context);
+
+      virtual void on_set_schema(const string & pcsz, const ::action_context & action_context);
+
+
+
+      virtual void fill_locale_schema(::text::international::locale_schema & localeschema);
+      virtual void fill_locale_schema(::text::international::locale_schema & localeschema, const string & strLocale, const string & strSchema);
+
+
+      virtual void process_init();
+
+      virtual void pre_run();
+      virtual void application_pre_run();
+
+      virtual void init_application();
+
    };
 
 

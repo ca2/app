@@ -46,9 +46,9 @@ namespace simple_ui
 
       }
 
-      ::rectangle_i32 rectangleClient;
+      ::rectangle_i32 rectangleX;
 
-      client_rectangle(rectangleClient);
+      this->rectangle(rectangleX);
 
       ::draw2d::brush_pointer b(e_create);
 
@@ -56,11 +56,11 @@ namespace simple_ui
 
       ::write_text::font_pointer f(e_create);
 
-      /*f->create_pixel_font(pnode->font_name(e_font_sans_ex), (i32)rectangleClient.height() * 0.7);
+      /*f->create_pixel_font(pnode->font_name(e_font_sans_ex), (i32)rectangleX.height() * 0.7);
 
-      float fMargin = (rectangleClient.height() * ((1.0f - 0.7f) / 2.0f));*/
+      float fMargin = (rectangleX.height() * ((1.0f - 0.7f) / 2.0f));*/
 
-      f->create_pixel_font(pnode->font_name(e_font_sans), (i32)rectangleClient.height() * .84);
+      f->create_pixel_font(pnode->font_name(e_font_sans), (i32)rectangleX.height() * .84);
 
       float fMargin = 0.0;
 
@@ -72,7 +72,7 @@ namespace simple_ui
 
       get_window_text(strText);
 
-      pgraphics->text_out(rectangleClient.left, (i32)(rectangleClient.top + fMargin), strText);
+      pgraphics->text_out(rectangleX.left(), (i32)(rectangleX.top() + fMargin), strText);
 
    }
 

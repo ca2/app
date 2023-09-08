@@ -244,6 +244,7 @@
     <ClInclude Include="platform\application.h" />
     <ClInclude Include="platform\session.h" />
     <ClInclude Include="platform\system.h" />
+    <ClInclude Include="user\user\list2.h" />
     <ClInclude Include="version\version.h" />
     <None Include="filesystem\_impl.h" />
     <ClInclude Include="framework.h" />
@@ -319,7 +320,6 @@
     <ClInclude Include="user\simple_ui\_.h" />
     <ClInclude Include="user\simple_ui\_simple_ui.h" />
     <ClInclude Include="user\userex\aaa_want_to_erase_form_update_hint.h" />
-    <ClInclude Include="user\userex\calculator_edit_impact.h" />
     <ClInclude Include="user\userex\color_impact.h" />
     <ClInclude Include="user\userex\const.h" />
     <ClInclude Include="user\userex\dialog.h" />
@@ -522,7 +522,6 @@
     <ClCompile Include="user\simple\tab_control.cpp" />
     <ClCompile Include="user\simple\tab_impact.cpp" />
     <ClCompile Include="user\simple\tree_impact.cpp" />
-    <ClCompile Include="user\userex\calculator_edit_impact.cpp" />
     <ClCompile Include="user\userex\color_impact.cpp" />
     <ClCompile Include="user\userex\dialog.cpp" />
     <ClCompile Include="user\userex\dialog_frame.cpp" />
@@ -556,6 +555,7 @@
     <ClCompile Include="user\user\form_mesh.cpp" />
     <ClCompile Include="user\user\image_manager.cpp" />
     <ClCompile Include="user\user\list.cpp" />
+    <ClCompile Include="user\user\list2.cpp" />
     <ClCompile Include="user\user\list_cache.cpp" />
     <ClCompile Include="user\user\list_column.cpp" />
     <ClCompile Include="user\user\list_data.cpp" />

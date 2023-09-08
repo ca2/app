@@ -77,7 +77,6 @@ public:
    enum_id                                            m_atomContextReference;
 
    bool                                               m_bAuraMessageQueue;
-   class ::time                                       m_timeHeartBeat;
    bool                                               m_bReady;
    ::pointer<::user::primitive>                       m_puserprimitiveMain;           // Main interaction_impl (usually same psystem->m_puiMain)
    ::pointer<::user::primitive>                       m_puserprimitiveActive;         // Active Main interaction_impl (may not be m_puiMain)
@@ -537,34 +536,6 @@ CLASS_DECL_APEX bool thread_pump_sleep(const class time & timeWait, ::particle *
 CLASS_DECL_APEX bool app_sleep(::apex::application * papp, const class time & timeWait);
 
 
-
-template < typename PRED >
-inline void while_predicateicate_Sleep(int iTime, PRED pred)
-{
-
-   iTime += 99;
-
-   iTime /= 100;
-
-   for (index i = 0; i < iTime; i++)
-   {
-
-      preempt(100_ms);
-
-      if (!pred())
-      {
-
-         return;
-
-      }
-
-      preempt();
-
-   }
-
-   throw ::exception(error_timeout);
-
-}
 
 
 CLASS_DECL_APEX void defer_create_thread(::particle * pparticle);

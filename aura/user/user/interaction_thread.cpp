@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "interaction_thread.h"
-#include "interaction_prodevian.h"
+#include "interaction_graphics_thread.h"
 #include "interaction_impl.h"
 #include "interaction.h"
 #include "user.h"
@@ -320,6 +320,20 @@ namespace user
 
       m_oswindow = m_pimpl->m_pwindow->oswindow();
 
+//      if(m_pimpl->m_puserinteraction->const_layout().sketch().is_screen_visible())
+//      {
+//
+//         m_pimpl->m_puserinteraction->set_reposition();
+//
+//         m_pimpl->m_puserinteraction->set_need_layout();
+//
+//         m_pimpl->m_puserinteraction->set_need_redraw();
+//
+//         m_pimpl->m_puserinteraction->post_redraw();
+//
+//
+//      }
+
       //delete m_pusersystem;
 
       //m_pusersystem = nullptr;
@@ -549,16 +563,18 @@ namespace user
                      if (msg.m_atom == ::e_message_redraw)
                      {
 
-                        string strType = __type_name(puserinteraction);
+                        throw ::exception(error_failed, "Please post e_message_redraw directly to the graphics thread");
 
-                        if (strType.case_insensitive_contains("filemanager"))
-                        {
+                        //string strType = __type_name(puserinteraction);
 
-                           //information() << "filemanager";
+                        //if (strType.case_insensitive_contains("filemanager"))
+                        //{
 
-                        }
+                        //   //information() << "filemanager";
 
-                        puserinteraction->prodevian_redraw(msg.wParam & 1);
+                        //}
+
+                        //puserinteraction->prodevian_redraw(msg.wParam & 1);
 
                         return true;
 

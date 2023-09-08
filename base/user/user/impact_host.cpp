@@ -562,9 +562,9 @@ namespace user
 
       }
 
-      auto rectangleClient = get_child_rect();
+      auto rectangleX = get_child_rect();
 
-      return get_impact_data(atom, rectangleClient, bCallOnCreateImpact);
+      return get_impact_data(atom, rectangleX, bCallOnCreateImpact);
 
    }*/
 

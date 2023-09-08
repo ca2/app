@@ -51,11 +51,13 @@ namespace user
    user::user()
    {
 
+      printf("aura::user::initialize\n");
+
       m_paxisuser = nullptr;
       m_pbaseuser = nullptr;
       m_pbreduser = nullptr;
       m_pcoreuser = nullptr;
-      //::initialize_user_mutex();
+      ::initialize_user_mutex();
       //initialize_children_mutex();
 
       m_bOnInitializeWindowObject = false;
@@ -75,8 +77,11 @@ namespace user
    void user::initialize(::particle * pparticle)
    {
 
-      //auto estatus = 
-      
+      //auto estatus =
+
+      printf("aura::user::initialize\n");
+
+
       ::acme::department::initialize(pparticle);
 
       //if (!estatus)
@@ -87,6 +92,8 @@ namespace user
       //}
 
       //estatus =
+
+      printf("base::user::initialize (2)\n");
 
       create_windowing();
 
@@ -1417,7 +1424,9 @@ namespace user
 
       //::e_status estatus = ::success;
 
-      //estatus = 
+      //estatus =
+
+      printf("aura::user::create_windowing (1)\n");
 
       __construct(m_pdesktopenvironment);
 
@@ -1429,97 +1438,27 @@ namespace user
 
       m_pdesktopenvironment->m_bUnhook = pauranode->m_bUnhookX;
 
+      printf("aura::user::create_windowing (2)\n");
+
       __construct(m_pwindowing);
 
       m_pdesktopenvironment->m_pwindowing = m_pwindowing;
 
-      m_pwindowing->_initialize_windowing();
+      printf("aura::user::create_windowing (2.1)\n");
 
-      //if (!estatus)
-      //{
+      //m_pwindowing->_initialize_windowing();
 
-      //   return estatus;
+      //printf("aura::user::create_windowing (2.2)\n");
 
-      //}
-
-//      if (!estatus)
-//      {
-//
-//#ifdef LINUX
-//
-//         auto psystem = acmesystem();
-//
-//         auto edesktop = psystem->get_edesktop();
-//
-//         if (edesktop & ::user::e_desktop_kde)
-//         {
-//
-//            estatus = psystem->([a-z0-9_]+)_factory("windowing", "xcb");
-//
-//         }
-//         else if (edesktop & ::user::e_desktop_gnome)
-//         {
-//
-//            estatus = psystem->([a-z0-9_]+)_factory("windowing", "x11");
-//
-//         }
-//         else
-//         {
-//
-//            estatus = psystem->([a-z0-9_]+)_factory("windowing", "xcb");
-//
-//            //if (!estatus)
-//            {
-//
-//               estatus = psystem->([a-z0-9_]+)_factory("windowing", "x11");
-//
-//            }
-//
-//         }
-//
-//#elif defined(WINDOWS_DESKTOP)
-//
-//         auto psystem = acmesystem()->m_paurasystem;
-//
-//         estatus = psystem->([a-z0-9_]+)_factory("windowing", "win32");
-//
-//#endif
-//
-//         if (!estatus)
-//         {
-//
-//            return estatus;
-//
-//         }
-//
-//         estatus = __construct(m_pwindowing);
-//
-//         if (!estatus)
-//         {
-//
-//            return estatus;
-//
-//         }
-//
-//      }
-
-      //estatus =
       m_pwindowing->initialize_windowing(this);
 
-      //if (!estatus)
-      //{
-
-      //   information("\nFailed to initialize_windowing at ::user::user::create_windowing");
-
-      //   return estatus;
-
-      //}
+      printf("aura::user::create_windowing (2.2)\n");
 
       auto paurasystem = psystem->m_paurasystem;
 
       pauranode->m_pwindowing = m_pwindowing;
 
-      //return estatus;
+      printf("aura::user::create_windowing end\n");
 
    }
 
@@ -1578,7 +1517,7 @@ namespace user
    //}
 
    
-   ::pointer<::user::plain_edit>user::create_calculator_plain_edit()
+   ::pointer<::user::plain_edit>user::create_calculator_edit()
    {
 
       return __new(::user::plain_edit);
@@ -1608,6 +1547,8 @@ CLASS_DECL_AURA void initialize_user_mutex()
 
    }
 
+   g_pmutexUser = ::acme::acme::g_pacme->m_psubsystem->acmesystem()->node()->create_mutex();
+
 }
 
 
@@ -1621,7 +1562,7 @@ CLASS_DECL_AURA void finalize_user_mutex()
 
    }
 
-   delete g_pmutexUser;
+   g_pmutexUser.release();
 
 }
 

@@ -38,9 +38,9 @@ namespace experience_nanoui
 
       }
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
-      if (rectangleClient.is_empty())
+      if (rectangleX.is_empty())
       {
 
          return;
@@ -64,7 +64,7 @@ namespace experience_nanoui
 
       }
 
-      pgraphics->fill_rectangle(rectangleClient, crBackground);
+      pgraphics->fill_rectangle(rectangleX, crBackground);
 
    }
 

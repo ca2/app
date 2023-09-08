@@ -287,8 +287,8 @@ namespace user
    ////} // namespace geometry2d
    ////
 
-   class CLASS_DECL_ACME item
-//      virtual public ::particle,
+   class CLASS_DECL_ACME item :
+      virtual public ::particle
   //    virtual public ::user::ITEM
    {
    public:
@@ -472,9 +472,9 @@ namespace user
 
       explicit operator bool() const { return is_item_set(); }
 
-      enum_element eelement() const { return is_item_set() ? m_pitem->m_eelement : e_element_none; }
+      enum_element eelement() const { return is_item_set() ? m_pitem->m_item.m_eelement : e_element_none; }
 
-      ::index item_index() const { return is_item_set() ? m_pitem->m_iItem : -1; }
+      ::index item_index() const { return is_item_set() ? m_pitem->m_item.m_iItem : -1; }
 
       template < typename ITEM >
       ::pointer < ITEM > as_item() const { return ((::user::item *)this)->as_item< ITEM >(); }
@@ -601,11 +601,12 @@ namespace user
 
    };
 
+   using item_pointer = ::pointer < item >;
 
    //using item_pointer = ::pointer < ::user::item >;
-   using item_array = ::array < item >;
+   using item_array = ::pointer_array < item >;
 
-   using item_map = map < const ::item *, item >;
+   using item_map = map < item_t, item_pointer >;
 
 } // namespace user
 

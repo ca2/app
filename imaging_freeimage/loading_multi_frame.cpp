@@ -128,7 +128,7 @@ namespace imaging_freeimage
 
                      }
 
-                     pframe->m_rectangle.left = 0;
+                     pframe->m_rectangle.left() = 0;
 
                      if (FreeImage_GetMetadata(FIMD_ANIMATION, pfi, "FrameLeft", &ptag))
                      {
@@ -136,15 +136,15 @@ namespace imaging_freeimage
                         if (FreeImage_GetTagType(ptag) == FIDT_SHORT)
                         {
 
-                           pframe->m_rectangle.left = *((short *)FreeImage_GetTagValue(ptag));
+                           pframe->m_rectangle.left() = *((short *)FreeImage_GetTagValue(ptag));
 
                         }
 
                      }
 
-                     pframe->m_rectangle.right = pframe->m_rectangle.left + w;
+                     pframe->m_rectangle.right() = pframe->m_rectangle.left() + w;
 
-                     pframe->m_rectangle.top = 0;
+                     pframe->m_rectangle.top() = 0;
 
                      if (FreeImage_GetMetadata(FIMD_ANIMATION, pfi, "FrameTop", &ptag))
                      {
@@ -152,13 +152,13 @@ namespace imaging_freeimage
                         if (FreeImage_GetTagType(ptag) == FIDT_SHORT)
                         {
 
-                           pframe->m_rectangle.top = *((short *)FreeImage_GetTagValue(ptag));
+                           pframe->m_rectangle.top() = *((short *)FreeImage_GetTagValue(ptag));
 
                         }
 
                      }
 
-                     pframe->m_rectangle.bottom = pframe->m_rectangle.top + h;
+                     pframe->m_rectangle.bottom() = pframe->m_rectangle.top() + h;
 
                      if (FreeImage_GetMetadata(FIMD_ANIMATION, pfi, "NoLocalPalette", &ptag))
                      {

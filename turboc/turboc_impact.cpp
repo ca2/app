@@ -181,11 +181,11 @@ namespace turboc
 /*   void impact::_006OnDraw(::image * pimage)
    {
 
-      ::rectangle_i32 rectangleClient;
+      ::rectangle_i32 rectangleX;
 
-      GetClientRect(rectangleClient);
+      GetClientRect(rectangleX);
 
-/*      pgraphics->BitBlt(rectangleClient,papp->m_pcontext->m_pimage->g());
+/*      pgraphics->BitBlt(rectangleX,papp->m_pcontext->m_pimage->g());
 
 
       if(papp->m_etype == application::type_mili)
@@ -345,11 +345,11 @@ namespace turboc
 
          ::u8 uchAlpha = maximum(0,minimum(255,(m_timeLastOk.elapsed()) * 255 / m_timeAnime));
 
-         ::rectangle_i32 rectangleClient;
+         ::rectangle_i32 rectangleX;
 
-         GetClientRect(rectangleClient);
+         GetClientRect(rectangleX);
 
-         //pgraphics->FillSolidRect(rectangleClient,0);
+         //pgraphics->FillSolidRect(rectangleX,0);
 
 /*         pdraw2d->imaging().bitmap_blend(pgraphics,::point_i32(),pimage->get_size(),pimage->g(),::point_i32(),uchAlpha);
 
@@ -373,14 +373,14 @@ namespace turboc
    void impact::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rectangle_i32 rectangleClient;
+      ::rectangle_i32 rectangleX;
 
-      GetClientRect(rectangleClient);
+      GetClientRect(rectangleX);
 
-      if(rectangleClient.area() <= 0)
+      if(rectangleX.area() <= 0)
          return;
 
-/*      m_pimagePost = create_image(rectangleClient->size());
+/*      m_pimagePost = create_image(rectangleX->size());
 
       m_pimagePost->Fill(0,0,0,0);
 
@@ -744,16 +744,16 @@ namespace turboc
    void impact::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rectangle_i32 rectangleClient;
+      ::rectangle_i32 rectangleX;
 
-      GetClientRect(rectangleClient);
+      GetClientRect(rectangleX);
 
-      if(rectangleClient.area() <= 0)
+      if(rectangleX.area() <= 0)
          return;
 
-      m_cx = rectangleClient.width();
+      m_cx = rectangleX.width();
 
-      m_cy = rectangleClient.height();
+      m_cy = rectangleX.height();
 
       ::draw2d::graphics_pointer g(this_create);
 
@@ -879,7 +879,7 @@ namespace turboc
 
          rectangleImage.FitOnCenterOf(rectangleWork);
 
-/*         pimage->g()->StretchBlt(rectangleImage.left,rectangleImage.top,rectangleImage.width(),rectangleImage.height(),m_pimagepimage->g(),0,0,m_pimageImage->width(),m_pimageImage->height());
+/*         pimage->g()->StretchBlt(rectangleImage.left(),rectangleImage.top(),rectangleImage.width(),rectangleImage.height(),m_pimagepimage->g(),0,0,m_pimageImage->width(),m_pimageImage->height());
 
 
       }

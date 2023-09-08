@@ -24,13 +24,13 @@ namespace hotplugin
 
       ::rectangle_i32 rectangleWindow;
       window_rectangle(&rectangleWindow);
-      i32 cx = rectangleWindow.right - rectangleWindow.left;
-      i32 cy = rectangleWindow.bottom - rectangleWindow.top;
+      i32 cx = rectangleWindow.right() - rectangleWindow.left();
+      i32 cy = rectangleWindow.bottom() - rectangleWindow.top();
       ::rectangle_i32 rectangle;
-      rectangle.left = 0;
-      rectangle.top = 0;
-      rectangle.bottom = cy;
-      rectangle.right = cx;
+      rectangle.left() = 0;
+      rectangle.top() = 0;
+      rectangle.bottom() = cy;
+      rectangle.right() = cx;
 
       auto ppen = __create < ::draw2d::pen > ();
 
@@ -46,9 +46,9 @@ namespace hotplugin
 
       pgraphics->SelectObject(brush);
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
-      pgraphics->rectangle(rectangleClient);
+      pgraphics->rectangle(rectangleX);
 
 
 
@@ -117,12 +117,12 @@ namespace hotplugin
 
       ::rectangle_i32 rectangleClip1;
 
-      rectangleClip1.left = rectangleParam.left + iBorder1;
+      rectangleClip1.left() = rectangleParam.left() + iBorder1;
 
-      rectangleClip1.top = rectangleParam.top + iBorder1;
+      rectangleClip1.top() = rectangleParam.top() + iBorder1;
 
-      rectangleClip1.right = rectangleClip1.left + cx - iBorder1 * 2;
-      rectangleClip1.bottom = rectangleClip1.top + cy - iBorder1 * 2;
+      rectangleClip1.right() = rectangleClip1.left() + cx - iBorder1 * 2;
+      rectangleClip1.bottom() = rectangleClip1.top() + cy - iBorder1 * 2;
 
       ppathClip1->begin_figure(true, ::draw2d::e_fill_mode_winding);
 
@@ -161,12 +161,12 @@ namespace hotplugin
 
       ::rectangle_i32 rectangleClip;
 
-      rectangleClip.left = rectangleParam.left + cx / iRate - iBorder;
+      rectangleClip.left() = rectangleParam.left() + cx / iRate - iBorder;
 
-      rectangleClip.top = rectangleParam.top + (cy - iBarHeight) / 2 - iBorder;
+      rectangleClip.top() = rectangleParam.top() + (cy - iBarHeight) / 2 - iBorder;
 
-      rectangleClip.right = rectangleClip.left + iRowCount + iBorder * 2;
-      rectangleClip.bottom = rectangleClip.top + iBarHeight + iBorder * 2;
+      rectangleClip.right() = rectangleClip.left() + iRowCount + iBorder * 2;
+      rectangleClip.bottom() = rectangleClip.top() + iBarHeight + iBorder * 2;
 
 
       ppathClip->begin_figure(true, ::draw2d::e_fill_mode_winding);
@@ -181,7 +181,7 @@ namespace hotplugin
       ::point_i32 pa[4];
 
       //Gdiplus::SolidBrush * pbr = normal_new Gdiplus::SolidBrush(Gdiplus::Color(49, 177 + iBarHeight, 177 + iBarHeight, 177 + 19));
-      //graphics2.fill_rectangle(pbr, rectangleParam.left , rectangleParam.top, rectangleParam.left + cx, rectangleParam.top + cy);
+      //graphics2.fill_rectangle(pbr, rectangleParam.left() , rectangleParam.top(), rectangleParam.left() + cx, rectangleParam.top() + cy);
 
       //delete pbr;
 
@@ -199,46 +199,46 @@ namespace hotplugin
          for (i32 x = 0; x < (cx + cy); x += 46)
          {
 
-            pa[0].x() = rectangleParam.left + x;
+            pa[0].x() = rectangleParam.left() + x;
 
-            pa[0].y() = rectangleParam.top;
-
-
-            pa[1].x() = rectangleParam.left + x + iBarHeight;
-
-            pa[1].y() = rectangleParam.top;
+            pa[0].y() = rectangleParam.top();
 
 
-            pa[2].x() = rectangleParam.left + x - mcy + iBarHeight;
+            pa[1].x() = rectangleParam.left() + x + iBarHeight;
 
-            pa[2].y() = rectangleParam.top + mcy;
+            pa[1].y() = rectangleParam.top();
 
 
-            pa[3].x() = rectangleParam.left + x - mcy;
+            pa[2].x() = rectangleParam.left() + x - mcy + iBarHeight;
 
-            pa[3].y() = rectangleParam.top + mcy;
+            pa[2].y() = rectangleParam.top() + mcy;
+
+
+            pa[3].x() = rectangleParam.left() + x - mcy;
+
+            pa[3].y() = rectangleParam.top() + mcy;
 
 
             pgraphics->fill_polygon(pa, 4);
 
-            pa[0].x() = rectangleParam.left + x - mcy - iBarHeight;
+            pa[0].x() = rectangleParam.left() + x - mcy - iBarHeight;
 
-            pa[0].y() = rectangleParam.top + mcy;
-
-
-            pa[1].x() = rectangleParam.left + x - mcy;
-
-            pa[1].y() = rectangleParam.top + mcy;
+            pa[0].y() = rectangleParam.top() + mcy;
 
 
-            pa[2].x() = rectangleParam.left + x - cy;
+            pa[1].x() = rectangleParam.left() + x - mcy;
 
-            pa[2].y() = rectangleParam.top + cy;
+            pa[1].y() = rectangleParam.top() + mcy;
 
 
-            pa[3].x() = rectangleParam.left + x - cy - iBarHeight;
+            pa[2].x() = rectangleParam.left() + x - cy;
 
-            pa[3].y() = rectangleParam.top + cy;
+            pa[2].y() = rectangleParam.top() + cy;
+
+
+            pa[3].x() = rectangleParam.left() + x - cy - iBarHeight;
+
+            pa[3].y() = rectangleParam.top() + cy;
 
 
             pgraphics->fill_polygon(pa, 4);
@@ -254,12 +254,12 @@ namespace hotplugin
 
       ::rectangle_i32 rect1;
 
-      rect1.left = rectangleParam.left + cx / iRate - 1;
+      rect1.left() = rectangleParam.left() + cx / iRate - 1;
 
-      rect1.top = rectangleParam.top + (cy - iBarHeight) / 2 - 1;
+      rect1.top() = rectangleParam.top() + (cy - iBarHeight) / 2 - 1;
 
-      rect1.right = rect1.left + iRowCount + 4;
-      rect1.bottom = rect1.top + iBarHeight + 2;
+      rect1.right() = rect1.left() + iRowCount + 4;
+      rect1.bottom() = rect1.top() + iBarHeight + 2;
 
       pgraphics->fill_rectangle(rect1, br);
 
@@ -268,21 +268,21 @@ namespace hotplugin
       {
       get_progress_color(uchR, uchG, uchB, (double) iRow / (double) iRowCount, 0);
       Gdiplus::SolidBrush * pbr = normal_new Gdiplus::SolidBrush(Gdiplus::Color(bA, uchR, uchG, uchB));
-      graphics2.fill_rectangle(pbr, rectangleParam.left + iRow + cx / iRate , rectangleParam.top + (cy - iBarHeight) / 2, 1, 5);
+      graphics2.fill_rectangle(pbr, rectangleParam.left() + iRow + cx / iRate , rectangleParam.top() + (cy - iBarHeight) / 2, 1, 5);
 
       delete pbr;
       }
       {
       get_progress_color(uchR, uchG, uchB, (double) iRow / (double) iRowCount, 1);
       Gdiplus::SolidBrush * pbr = normal_new Gdiplus::SolidBrush(Gdiplus::Color(bA, uchR, uchG, uchB));
-      graphics2.fill_rectangle(pbr, rectangleParam.left + iRow + cx / iRate , rectangleParam.top + (cy - iBarHeight) / 2 + 5, 1, 5);
+      graphics2.fill_rectangle(pbr, rectangleParam.left() + iRow + cx / iRate , rectangleParam.top() + (cy - iBarHeight) / 2 + 5, 1, 5);
 
       delete pbr;
       }
       {
       get_progress_color(uchR, uchG, uchB, (double) iRow / (double) iRowCount, 2);
       Gdiplus::SolidBrush * pbr = normal_new Gdiplus::SolidBrush(Gdiplus::Color(bA, uchR, uchG, uchB));
-      graphics2.fill_rectangle(pbr, rectangleParam.left + iRow + cx / iRate , rectangleParam.top + (cy - iBarHeight) / 2 + 10, 1, 13);
+      graphics2.fill_rectangle(pbr, rectangleParam.left() + iRow + cx / iRate , rectangleParam.top() + (cy - iBarHeight) / 2 + 10, 1, 13);
 
       delete pbr;
       }
@@ -291,21 +291,21 @@ namespace hotplugin
       {
          get_progress_color(uchR, uchG, uchB, dRate, 0);
          pbrush->create_solid(argb(bA, uchR, uchG, uchB));
-         rect2 = rectangle_i32_dimension(rectangleParam.left + cx / iRate, rectangleParam.top + (cy - iBarHeight) / 2, iProgressCount, 5);
+         rect2 = rectangle_i32_dimension(rectangleParam.left() + cx / iRate, rectangleParam.top() + (cy - iBarHeight) / 2, iProgressCount, 5);
 
          pgraphics->fill_rectangle(rect2, br);
       }
       {
          get_progress_color(uchR, uchG, uchB, dRate, 1);
          pbrush->create_solid(argb(bA, uchR, uchG, uchB));
-         rect2 = rectangle_i32_dimension(rectangleParam.left + cx / iRate, rectangleParam.top + (cy - iBarHeight) / 2 + 5, iProgressCount, 5);
+         rect2 = rectangle_i32_dimension(rectangleParam.left() + cx / iRate, rectangleParam.top() + (cy - iBarHeight) / 2 + 5, iProgressCount, 5);
 
          pgraphics->fill_rectangle(rect2, br);
       }
       {
          get_progress_color(uchR, uchG, uchB, dRate, 2);
          pbrush->create_solid(argb(bA, uchR, uchG, uchB));
-         rect2 = rectangle_i32_dimension(rectangleParam.left + cx / iRate, rectangleParam.top + (cy - iBarHeight) / 2 + 10, iProgressCount, 13);
+         rect2 = rectangle_i32_dimension(rectangleParam.left() + cx / iRate, rectangleParam.top() + (cy - iBarHeight) / 2 + 10, iProgressCount, 13);
 
          pgraphics->fill_rectangle(rect2, br);
       }
@@ -313,28 +313,28 @@ namespace hotplugin
       i32 iOffset = 3;
 
       ppen->create_solid(1.0, argb(220, 180, 180, 180));
-      pgraphics->draw_line(rectangleParam.left + cx / iRate - iOffset, rectangleParam.top + (cy - iBarHeight) / 2 - iOffset, rectangleParam.left + cx - cx / iRate + iOffset, rectangleParam.top + (cy - iBarHeight) / 2 - iOffset, ppen);
+      pgraphics->draw_line(rectangleParam.left() + cx / iRate - iOffset, rectangleParam.top() + (cy - iBarHeight) / 2 - iOffset, rectangleParam.left() + cx - cx / iRate + iOffset, rectangleParam.top() + (cy - iBarHeight) / 2 - iOffset, ppen);
 
-      pgraphics->draw_line(rectangleParam.left + cx / iRate - iOffset, rectangleParam.top + (cy - iBarHeight) / 2 - iOffset, rectangleParam.left + cx / iRate - iOffset, rectangleParam.top + (cy + iBarHeight) / 2 + iOffset, ppen);
+      pgraphics->draw_line(rectangleParam.left() + cx / iRate - iOffset, rectangleParam.top() + (cy - iBarHeight) / 2 - iOffset, rectangleParam.left() + cx / iRate - iOffset, rectangleParam.top() + (cy + iBarHeight) / 2 + iOffset, ppen);
 
 
       ppen->create_solid(1.0, argb(220, 80, 80, 80));
-      pgraphics->draw_line(rectangleParam.left + cx / iRate - iOffset, rectangleParam.top + (cy + iBarHeight) / 2 + iOffset, rectangleParam.left + cx - cx / iRate + iOffset, rectangleParam.top + (cy + iBarHeight) / 2 + iOffset, ppen);
+      pgraphics->draw_line(rectangleParam.left() + cx / iRate - iOffset, rectangleParam.top() + (cy + iBarHeight) / 2 + iOffset, rectangleParam.left() + cx - cx / iRate + iOffset, rectangleParam.top() + (cy + iBarHeight) / 2 + iOffset, ppen);
 
-      pgraphics->draw_line(rectangleParam.left + cx - cx / iRate + iOffset, rectangleParam.top + (cy - iBarHeight) / 2 - iOffset, rectangleParam.left + cx - cx / iRate + iOffset, rectangleParam.top + (cy + iBarHeight) / 2 + iOffset, ppen);
+      pgraphics->draw_line(rectangleParam.left() + cx - cx / iRate + iOffset, rectangleParam.top() + (cy - iBarHeight) / 2 - iOffset, rectangleParam.left() + cx - cx / iRate + iOffset, rectangleParam.top() + (cy + iBarHeight) / 2 + iOffset, ppen);
 
 
       iOffset = 2;
       ppen->create_solid(1.0, argb(220, 90, 90, 90));
-      pgraphics->draw_line(rectangleParam.left + cx / iRate - iOffset, rectangleParam.top + (cy - iBarHeight) / 2 - iOffset, rectangleParam.left + cx - cx / iRate + iOffset, rectangleParam.top + (cy - iBarHeight) / 2 - iOffset, ppen);
+      pgraphics->draw_line(rectangleParam.left() + cx / iRate - iOffset, rectangleParam.top() + (cy - iBarHeight) / 2 - iOffset, rectangleParam.left() + cx - cx / iRate + iOffset, rectangleParam.top() + (cy - iBarHeight) / 2 - iOffset, ppen);
 
-      pgraphics->draw_line(rectangleParam.left + cx / iRate - iOffset, rectangleParam.top + (cy - iBarHeight) / 2 - iOffset, rectangleParam.left + cx / iRate - iOffset, rectangleParam.top + (cy + iBarHeight) / 2 + iOffset, ppen);
+      pgraphics->draw_line(rectangleParam.left() + cx / iRate - iOffset, rectangleParam.top() + (cy - iBarHeight) / 2 - iOffset, rectangleParam.left() + cx / iRate - iOffset, rectangleParam.top() + (cy + iBarHeight) / 2 + iOffset, ppen);
 
 
       ppen->create_solid(1.0, argb(220, 170, 170, 170));
-      pgraphics->draw_line(rectangleParam.left + cx / iRate - iOffset, rectangleParam.top + (cy + iBarHeight) / 2 + iOffset, rectangleParam.left + cx - cx / iRate + iOffset, rectangleParam.top + (cy + iBarHeight) / 2 + iOffset, ppen);
+      pgraphics->draw_line(rectangleParam.left() + cx / iRate - iOffset, rectangleParam.top() + (cy + iBarHeight) / 2 + iOffset, rectangleParam.left() + cx - cx / iRate + iOffset, rectangleParam.top() + (cy + iBarHeight) / 2 + iOffset, ppen);
 
-      pgraphics->draw_line(rectangleParam.left + cx - cx / iRate + iOffset, rectangleParam.top + (cy - iBarHeight) / 2 - iOffset, rectangleParam.left + cx - cx / iRate + iOffset, rectangleParam.top + (cy + iBarHeight) / 2 + iOffset, ppen);
+      pgraphics->draw_line(rectangleParam.left() + cx - cx / iRate + iOffset, rectangleParam.top() + (cy - iBarHeight) / 2 - iOffset, rectangleParam.left() + cx - cx / iRate + iOffset, rectangleParam.top() + (cy + iBarHeight) / 2 + iOffset, ppen);
 
 
 
@@ -355,7 +355,7 @@ namespace hotplugin
       wstrStatus = wstrStatus + wstrProgress;
 
 
-      pgraphics->text_out(rectangleParam.left + cx / iRate - 1 + 18, rectangleParam.top + (cy - iBarHeight) / 2 - 1 + 1, string(wstrStatus));
+      pgraphics->text_out(rectangleParam.left() + cx / iRate - 1 + 18, rectangleParam.top() + (cy - iBarHeight) / 2 - 1 + 1, string(wstrStatus));
 
 
    }

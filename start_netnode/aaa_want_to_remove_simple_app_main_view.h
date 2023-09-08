@@ -11,7 +11,7 @@ namespace simple_drawing
    public:
 
 
-      ::userex::top_view *    m_ptopview;
+      ::userex::top_view *    m_ptopimpact;
       impact *                  m_pimpact;
 
 

@@ -1537,7 +1537,7 @@ namespace nanoui
       /*if (m_puserinteraction)
       {
 
-         auto r = m_puserinteraction->client_rectangle();
+         auto r = m_puserinteraction->rectangle();
          m_size.cx() = r.width();
          m_size.cy() = r.height();
       }*/

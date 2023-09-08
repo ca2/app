@@ -458,7 +458,7 @@ namespace user
 //}
 
 
-//bool element::client_rectangle(::rectangle_i32 * prectangle)
+//bool element::this->rectangle(::rectangle_i32 * prectangle)
 //{
 
 //   throw ::interface_only();
@@ -468,7 +468,7 @@ namespace user
 //}
 
 
-//bool element::client_rectangle(::rectangle_i64 * prectangle)
+//bool element::this->rectangle(::rectangle_i64 * prectangle)
 
 //{
 
@@ -646,7 +646,7 @@ namespace user
    //}
 
 
-   void element::add_prodevian(::matter * pmatter)
+   void element::add_auto_refresh(::matter * pmatter)
    {
 
       //return false;
@@ -654,7 +654,7 @@ namespace user
    }
 
 
-   void element::erase_prodevian(::matter * pmatter)
+   void element::erase_auto_refresh(::matter * pmatter)
    {
 
       //return false;
@@ -662,7 +662,7 @@ namespace user
    }
 
 
-   bool element::is_prodevian(const ::matter * pmatter) const
+   bool element::is_auto_refresh(const ::matter * pmatter) const
    {
 
       return false;
@@ -1798,7 +1798,7 @@ namespace user
    //}
 
 
-   void element::RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::atom idLeftOver, ::u32 nFlag, ::rectangle_i32 * prectParam, const ::rectangle_i32 & rectangleClient, bool bStretch)
+   void element::RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::atom idLeftOver, ::u32 nFlag, ::rectangle_i32 * prectParam, const ::rectangle_i32 & rectangleX, bool bStretch)
    {
 
       throw ::interface_only();
@@ -2650,9 +2650,9 @@ namespace user
 
    //   ::size_f64 sizePaddedFitting;
 
-   //   sizePaddedFitting.cx() = rectanglePadding.left + sizeFitting.cx() + rectanglePadding.right;
+   //   sizePaddedFitting.cx() = rectanglePadding.left() + sizeFitting.cx() + rectanglePadding.right();
 
-   //   sizePaddedFitting.cy() = rectanglePadding.top + sizeFitting.cy() + rectanglePadding.bottom;
+   //   sizePaddedFitting.cy() = rectanglePadding.top() + sizeFitting.cy() + rectanglePadding.bottom();
 
    //   return sizePaddedFitting;
 
@@ -3553,13 +3553,13 @@ namespace user
    }
 
 
-   void element::prodevian_redraw(bool bUpdateBuffer)
-   {
+   //void element::graphics_thread_post_redraw(bool bUpdateBuffer)
+   //{
 
-   }
+   //}
 
 
-   void element::prodevian_stop()
+   void element::auto_refresh_stop()
    {
 
 
@@ -4806,6 +4806,22 @@ namespace user
    void element::on_after_impact_update()
    {
 
+
+   }
+
+
+   bool element::horizontal_scrollbar_visible()
+   {
+
+      return false;
+
+   }
+
+
+   bool element::vertical_scrollbar_visible()
+   {
+
+      return false;
 
    }
 

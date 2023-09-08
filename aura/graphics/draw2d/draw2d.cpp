@@ -606,10 +606,10 @@ void draw2d::emboss_predicate(
 
    ::rectangle_i32 rectangleEmboss = rectangle;
 
-   rectangleEmboss.left -= (::i32)(iR * g_dEmboss);
-   rectangleEmboss.top -= (::i32)(iR * g_dEmboss);
-   rectangleEmboss.right += (::i32)(iR * g_dEmboss);
-   rectangleEmboss.bottom += (::i32)(iR * g_dEmboss);
+   rectangleEmboss.left() -= (::i32)(iR * g_dEmboss);
+   rectangleEmboss.top() -= (::i32)(iR * g_dEmboss);
+   rectangleEmboss.right() += (::i32)(iR * g_dEmboss);
+   rectangleEmboss.bottom() += (::i32)(iR * g_dEmboss);
 
    if (bUpdate || !pimageBlur->is_ok())
    {
@@ -626,11 +626,11 @@ void draw2d::emboss_predicate(
 
       ::rectangle_i32 rectangleCache;
 
-      rectangleCache.left = (::i32)(iR * g_dEmboss);
-      rectangleCache.top = (::i32)(iR * g_dEmboss);
-      rectangleCache.right = rectangleCache.left + rectangle.width();
+      rectangleCache.left() = (::i32)(iR * g_dEmboss);
+      rectangleCache.top() = (::i32)(iR * g_dEmboss);
+      rectangleCache.right() = rectangleCache.left() + rectangle.width();
 
-      rectangleCache.bottom = rectangleCache.top + rectangle.height();
+      rectangleCache.bottom() = rectangleCache.top() + rectangle.height();
 
       ::image_pointer pimage;
 
@@ -663,11 +663,11 @@ void draw2d::emboss_predicate(
       pbrushText->create_solid(argb(255, 255, 255, 255));
       pimage->get_graphics()->set(pbrushText);
 
-      pimage->get_graphics()->offset_origin(rectangleCache.left - rectangle.left, rectangleCache.top - rectangle.top);
+      pimage->get_graphics()->offset_origin(rectangleCache.left() - rectangle.left(), rectangleCache.top() - rectangle.top());
 
       functionDraw(pimage->get_graphics());
 
-      pimage->get_graphics()->offset_origin(-rectangleCache.left + rectangle.left, -rectangleCache.top + rectangle.top);
+      pimage->get_graphics()->offset_origin(-rectangleCache.left() + rectangle.left(), -rectangleCache.top() + rectangle.top());
 
       auto psystem = acmesystem()->m_paurasystem;
 

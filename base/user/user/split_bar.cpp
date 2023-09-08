@@ -82,9 +82,9 @@ namespace user
 
       }
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
-      pgraphics->fill_rectangle(rectangleClient, argb(255, 180, 180, 180));
+      pgraphics->fill_rectangle(rectangleX, argb(255, 180, 180, 180));
 
    }
 
@@ -137,7 +137,7 @@ namespace user
       m_pparent->m_iIndex = m_iIndex;
 
       if(m_iIndex >= 0 && m_iIndex < m_pparent->m_splitbara.get_count()
-            && !m_pparent->m_splitpanecompositea[m_iIndex]->m_bFixedSize)
+            && !m_pparent->m_panea[m_iIndex]->m_bFixedSize)
       {
 
          m_pparent->m_iState = split_layout::stateDragging;
@@ -187,7 +187,7 @@ namespace user
       
       m_pparent->screen_to_client()(point);
 
-      if(m_iIndex >= 0 && m_iIndex < m_pparent->m_splitbara.get_count() && !m_pparent->m_splitpanecompositea[m_iIndex]->m_bFixedSize)
+      if(m_iIndex >= 0 && m_iIndex < m_pparent->m_splitbara.get_count() && !m_pparent->m_panea[m_iIndex]->m_bFixedSize)
       {
 
          if(m_pparent->GetSplitOrientation() == e_orientation_horizontal)

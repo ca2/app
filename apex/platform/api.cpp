@@ -3,9 +3,9 @@
 #include "api.h"
 #include "acme/exception/interface_only.h"
 #include "acme/primitive/string/base64.h"
-#include "apex/crypto/crypto.h"
-#include "apex/filesystem/filesystem/dir_context.h"
-#include "apex/filesystem/filesystem/file_context.h"
+#include "acme/crypto/crypto.h"
+#include "acme/filesystem/filesystem/dir_context.h"
+#include "acme/filesystem/filesystem/file_context.h"
 #include "apex/platform/application.h"
 #include "apex/platform/context.h"
 #include "apex/platform/system.h"
@@ -347,12 +347,12 @@ void api::_api_get(::string & strNetworkPayload, const ::scoped_string & scopeds
 
       }
       
-      if(payload.is_empty())
-      {
+      //if(payload.is_empty())
+      //{
 
-         return false;
+      //   return false;
 
-      }
+      //}
 
       int iHttpStatusCode = set["http_status_code"];
 

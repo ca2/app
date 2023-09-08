@@ -26,7 +26,7 @@ namespace user
    form_control::form_control()
    {
 
-      m_bDataUpdateDefaultHandling = true;
+      m_bDefaultDataUpdateHandling = true;
 
       m_bOnEditUpdate         = false;
       m_bOnLanguageChange     = false;
@@ -1647,7 +1647,7 @@ namespace user
    void form_control::control_get_client_rect(::user::interaction * pinteraction, ::rectangle_i32 & rectangle)
    {
 
-      rectangle = pinteraction->client_rectangle();
+      rectangle = pinteraction->rectangle();
 
    }
 

@@ -446,11 +446,11 @@ RECTANGLE1 & unite(RECTANGLE1 & rectangle1, const RECTANGLE2 & rectangle2)
 
 
 template < primitive_rectangle RECTANGLE_TYPE >
-constexpr auto width(RECTANGLE_TYPE & rectangle) { return rectangle.right - rectangle.left; }
+constexpr auto width(RECTANGLE_TYPE & rectangle) { return rectangle.right() - rectangle.left(); }
 
 
 template < primitive_rectangle RECTANGLE_TYPE >
-constexpr auto height(RECTANGLE_TYPE & rectangle) { return rectangle.bottom - rectangle.top; }
+constexpr auto height(RECTANGLE_TYPE & rectangle) { return rectangle.bottom() - rectangle.top(); }
 
 
 template < typename W, typename H >
@@ -465,16 +465,16 @@ template < primitive_rectangle RECTANGLE_TYPE >
 bool is_null(const RECTANGLE_TYPE & rectangle)
 {
 
-   return rectangle.left == (decltype(RECTANGLE_TYPE::left))0
-      && rectangle.top == (decltype(RECTANGLE_TYPE::top))0
-      && rectangle.right == (decltype(RECTANGLE_TYPE::right))0
-      && rectangle.bottom == (decltype(RECTANGLE_TYPE::bottom))0;
+   return rectangle.left() == (decltype(rectangle.left()))0
+      && rectangle.top() == (decltype(rectangle.top()))0
+      && rectangle.right() == (decltype(rectangle.right()))0
+      && rectangle.bottom() == (decltype(rectangle.bottom()))0;
 
 }
 
 
 template < primitive_rectangle RECTANGLE_TYPE >
-constexpr auto is_empty(RECTANGLE_TYPE & rectangle) { return ::is_null(rectangle) || rectangle.right <= rectangle.left || rectangle.bottom <= rectangle.top; }
+constexpr auto is_empty(RECTANGLE_TYPE & rectangle) { return ::is_null(rectangle) || rectangle.right() <= rectangle.left() || rectangle.bottom() <= rectangle.top(); }
 
 
 template < primitive_rectangle RECTANGLE_TYPE >
@@ -507,9 +507,9 @@ template < primitive_rectangle RECTANGLE_TYPE, typename X >
 inline RECTANGLE_TYPE & x_offset(RECTANGLE_TYPE & rectangle, X x)
 {
 
-   rectangle.left = (decltype(RECTANGLE_TYPE::left))(rectangle.left + x);
+   rectangle.left() = (decay<decltype(rectangle.left())>)(rectangle.left() + x);
 
-   rectangle.right = (decltype(RECTANGLE_TYPE::right))(rectangle.right + x);
+   rectangle.right() = (decay<decltype(rectangle.right())>)(rectangle.right() + x);
 
    return rectangle;
 
@@ -520,9 +520,9 @@ template < primitive_rectangle RECTANGLE_TYPE, typename Y >
 inline RECTANGLE_TYPE & y_offset(RECTANGLE_TYPE & rectangle, Y y)
 {
 
-   rectangle.top = (decltype(RECTANGLE_TYPE::top))(rectangle.top + y);
+   rectangle.top() = (decay<decltype(rectangle.top())>)(rectangle.top() + y);
 
-   rectangle.bottom = (decltype(RECTANGLE_TYPE::bottom))(rectangle.bottom + y);
+   rectangle.bottom() = (decay<decltype(rectangle.bottom())>)(rectangle.bottom() + y);
 
    return rectangle;
 
@@ -534,9 +534,9 @@ template < primitive_rectangle RECTANGLE_TYPE, primitive_number X >
 inline RECTANGLE_TYPE & x_subtract(RECTANGLE_TYPE & rectangle, X x)
 {
 
-   rectangle.left = (::decay<decltype(rectangle.left)>)(rectangle.left - x);
+   rectangle.left() = (::decay<decltype(rectangle.left())>)(rectangle.left() - x);
 
-   rectangle.right = (::decay<decltype(rectangle.right)>)(rectangle.right - x);
+   rectangle.right() = (::decay<decltype(rectangle.right())>)(rectangle.right() - x);
 
    return rectangle;
 
@@ -547,9 +547,9 @@ template < primitive_rectangle RECTANGLE_TYPE, primitive_number Y >
 inline RECTANGLE_TYPE & y_subtract(RECTANGLE_TYPE & rectangle, Y y)
 {
 
-   rectangle.top = (::decay<decltype(RECTANGLE_TYPE::top)>)(rectangle.top - y);
+   rectangle.top() = (::decay<decltype(rectangle.top())>)(rectangle.top() - y);
 
-   rectangle.bottom = (::decay<decltype(RECTANGLE_TYPE::bottom)>)(rectangle.bottom - y);
+   rectangle.bottom() = (::decay<decltype(rectangle.bottom())>)(rectangle.bottom() - y);
 
    return rectangle;
 
@@ -604,10 +604,10 @@ template < primitive_rectangle RECTANGLE1, primitive_rectangle RECTANGLE2 >
 inline RECTANGLE1 & subtract(RECTANGLE1 & rectangle, const RECTANGLE2 & rectangle2)
 {
 
-   rectangle.left = (decltype(rectangle.left))(rectangle.left - rectangle2.left);
-   rectangle.top = (decltype(rectangle.top))(rectangle.top - rectangle2.top);
-   rectangle.right = (decltype(rectangle.right))(rectangle.right - rectangle2.right);
-   rectangle.bottom = (decltype(rectangle.bottom))(rectangle.bottom - rectangle2.bottom);
+   rectangle.left() = (decay<decltype(rectangle.left())>)(rectangle.left() - rectangle2.left());
+   rectangle.top() = (decay<decltype(rectangle.top())>)(rectangle.top() - rectangle2.top());
+   rectangle.right() = (decay<decltype(rectangle.right())>)(rectangle.right() - rectangle2.right());
+   rectangle.bottom() = (decay<decltype(rectangle.bottom())>)(rectangle.bottom() - rectangle2.bottom());
 
    return rectangle;
 
@@ -618,10 +618,10 @@ template < primitive_rectangle RECTANGLE, primitive_rectangle RECTANGLE1, primit
 inline RECTANGLE & subtract(RECTANGLE & rectangle, const RECTANGLE1 & rectangle1, const RECTANGLE2 & rectangle2)
 {
 
-   rectangle.left = (decltype(rectangle.left))(rectangle1.left - rectangle2.left);
-   rectangle.top = (decltype(rectangle.top))(rectangle1.top - rectangle2.top);
-   rectangle.right = (decltype(rectangle.right))(rectangle1.right - rectangle2.right);
-   rectangle.bottom = (decltype(rectangle.bottom))(rectangle1.bottom - rectangle2.bottom);
+   rectangle.left() = (decay<decltype(rectangle.left())>)(rectangle1.left() - rectangle2.left());
+   rectangle.top() = (decay<decltype(rectangle.top())>)(rectangle1.top() - rectangle2.top());
+   rectangle.right() = (decay<decltype(rectangle.right())>)(rectangle1.right() - rectangle2.right());
+   rectangle.bottom() = (decay<decltype(rectangle.bottom())>)(rectangle1.bottom() - rectangle2.bottom());
 
    return rectangle;
 
@@ -636,8 +636,8 @@ template < primitive_point POINT, primitive_number X, primitive_number Y >
 inline POINT & offset(POINT & point, X x, Y y)
 {
 
-   point.x() = (const ::std::decay_t<decltype(point.x()) & >)(point.x() + x);
-   point.y() = (const ::std::decay_t<decltype(point.y()) & >)(point.y() + y);
+   point.x() = (const decay<decltype(point.x()) & >)(point.x() + x);
+   point.y() = (const decay<decltype(point.y()) & >)(point.y() + y);
 
    return point;
 
@@ -661,8 +661,8 @@ template < primitive_point POINT_TYPE, typename X, typename Y >
 inline POINT_TYPE & subtract(POINT_TYPE & point, X x, Y y)
 {
 
-   point.x() = (const ::std::decay_t<decltype(point.x())>&)(point.x() - x);
-   point.y() = (const ::std::decay_t<decltype(point.y())>&)(point.y() - y);
+   point.x() = (const decay<decltype(point.x())>&)(point.x() - x);
+   point.y() = (const decay<decltype(point.y())>&)(point.y() - y);
 
    return point;
 
@@ -691,18 +691,18 @@ template < primitive_rectangle RECTANGLE_TYPE, primitive_rectangle RECT_TYPE1, p
 bool x_intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
 {
 
-   auto left = maximum(rect1.left, rect2.left);
+   auto left = maximum(rect1.left(), rect2.left());
 
-   auto right = minimum(rect1.right, rect2.right);
+   auto right = minimum(rect1.right(), rect2.right());
 
    bool bIntersect = right > left;
 
    if (!bIntersect)
    {
 
-      rectangle.left = 0;
+      rectangle.left() = 0;
 
-      rectangle.right = 0;
+      rectangle.right() = 0;
 
    }
    else
@@ -710,9 +710,9 @@ bool x_intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, const REC
    //if (::is_set(rectangle))
    //{
 
-      rectangle.left = left;
+      rectangle.left() = left;
 
-      rectangle.right = right;
+      rectangle.right() = right;
 
    }
 
@@ -726,11 +726,11 @@ bool x_intersects(const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
 {
 
 
-   return rect1.left < rect2.right && rect1.right > rect2.left;
+   return rect1.left() < rect2.right() && rect1.right() > rect2.left();
 
-   //auto left = maximum(rect1.left, rect2.left);
+   //auto left = maximum(rect1.left(), rect2.left());
 
-   //auto right = minimum(rect1.right, rect2.right);
+   //auto right = minimum(rect1.right(), rect2.right());
 
    //return right > left;
 
@@ -741,18 +741,18 @@ template < primitive_rectangle RECTANGLE_TYPE, primitive_rectangle RECT_TYPE1, p
 bool y_intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
 {
 
-   auto top = maximum(rect1.top, rect2.top);
+   auto top = maximum(rect1.top(), rect2.top());
 
-   auto bottom = minimum(rect1.bottom, rect2.bottom);
+   auto bottom = minimum(rect1.bottom(), rect2.bottom());
 
    bool bIntersect = bottom > top;
 
    if (!bIntersect)
    {
 
-      rectangle.top =0;
+      rectangle.top() =0;
 
-      rectangle.bottom = 0;
+      rectangle.bottom() = 0;
 
    }
    else
@@ -760,9 +760,9 @@ bool y_intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, const REC
    //if (::is_set(rectangle))
    //{
 
-      rectangle.top = top;
+      rectangle.top() = top;
 
-      rectangle.bottom = bottom;
+      rectangle.bottom() = bottom;
 
    }
 
@@ -775,13 +775,13 @@ template < primitive_rectangle RECT_TYPE1, primitive_rectangle RECT_TYPE2 >
 bool y_intersects(const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
 {
 
-   //auto top = maximum(rect1.top, rect2.top);
+   //auto top = maximum(rect1.top(), rect2.top());
 
-   //auto bottom = minimum(rect1.bottom, rect2.bottom);
+   //auto bottom = minimum(rect1.bottom(), rect2.bottom());
 
    //return bottom > top;
 
-   return rect1.top < rect2.bottom && rect1.bottom > rect2.top;
+   return rect1.top() < rect2.bottom() && rect1.bottom() > rect2.top();
 
 }
 
@@ -822,9 +822,9 @@ template < primitive_rectangle RECTANGLE_TYPE, primitive_rectangle RECT_TYPE1, p
 bool x_null_intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
 {
 
-   auto left = maximum(rect1.left, rect2.left);
+   auto left = maximum(rect1.left(), rect2.left());
 
-   auto right = minimum(rect1.right, rect2.right);
+   auto right = minimum(rect1.right(), rect2.right());
 
    bool bIntersect = right >= left;
 
@@ -838,9 +838,9 @@ bool x_null_intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, cons
    //if (::is_set(rectangle))
    //{
 
-      rectangle.left = left;
+      rectangle.left() = left;
 
-      rectangle.right = right;
+      rectangle.right() = right;
 
    //}
 
@@ -853,9 +853,9 @@ template < primitive_rectangle RECTANGLE_TYPE, primitive_rectangle RECT_TYPE1, p
 bool y_null_intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
 {
 
-   auto top = maximum(rect1.top, rect2.top);
+   auto top = maximum(rect1.top(), rect2.top());
 
-   auto bottom = minimum(rect1.bottom, rect2.bottom);
+   auto bottom = minimum(rect1.bottom(), rect2.bottom());
 
    bool bIntersect = bottom >= top;
 
@@ -869,9 +869,9 @@ bool y_null_intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, cons
    //if (::is_set(rectangle))
    //{
 
-      rectangle.top = top;
+      rectangle.top() = top;
 
-      rectangle.bottom = bottom;
+      rectangle.bottom() = bottom;
 
    //}
 
@@ -907,11 +907,11 @@ template < primitive_rectangle RECTANGLE_TYPE, primitive_rectangle RECT_TYPE1, p
 bool x_left_null_intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
 {
 
-   rectangle.left = maximum(rect1.left, rect2.left);
+   rectangle.left() = maximum(rect1.left(), rect2.left());
 
-   rectangle.right = minimum(rect1.right, rect2.right);
+   rectangle.right() = minimum(rect1.right(), rect2.right());
 
-   return rectangle.right > rectangle.left || (rectangle.right == rectangle.left && rect1.left == rect2.left);
+   return rectangle.right() > rectangle.left() || (rectangle.right() == rectangle.left() && rect1.left() == rect2.left());
 
 }
 
@@ -920,11 +920,11 @@ template < primitive_rectangle RECTANGLE_TYPE, primitive_rectangle RECT_TYPE1, p
 bool y_top_null_intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
 {
 
-   rectangle.top = maximum(rect1.top, rect2.top);
+   rectangle.top() = maximum(rect1.top(), rect2.top());
 
-   rectangle.bottom = minimum(rect1.bottom, rect2.bottom);
+   rectangle.bottom() = minimum(rect1.bottom(), rect2.bottom());
 
-   return rectangle.top < rectangle.bottom || (rectangle.top == rectangle.bottom && rect1.top == rect2.top);
+   return rectangle.top() < rectangle.bottom() || (rectangle.top() == rectangle.bottom() && rect1.top() == rect2.top());
 
 }
 
@@ -952,13 +952,13 @@ bool top_left_null_intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect
 
 
 template < primitive_rectangle RECTANGLE1, primitive_rectangle RECTANGLE2 >
-bool is_equal(const RECTANGLE1 & rectangle1, const RECTANGLE2 & rectangle2, largest_number < ::decay<decltype(rectangle1.left)>, ::decay<decltype(rectangle2.left) > > epsilon = default_epsilon<largest_number < ::decay<decltype(rectangle1.left)>, ::decay<decltype(rectangle2.left) > >>())
+bool is_equal(const RECTANGLE1 & rectangle1, const RECTANGLE2 & rectangle2, largest_number < ::decay<decltype(rectangle1.left())>, ::decay<decltype(rectangle2.left()) > > epsilon = default_epsilon<largest_number < ::decay<decltype(rectangle1.left())>, ::decay<decltype(rectangle2.left()) > >>())
 {
 
-   return is_equal(rectangle1.left, rectangle2.left, epsilon)
-      && is_equal(rectangle1.top, rectangle2.top, epsilon)
-      && is_equal(rectangle1.right, rectangle2.right, epsilon)
-      && is_equal(rectangle1.bottom, rectangle2.bottom, epsilon);
+   return is_equal(rectangle1.left(), rectangle2.left(), epsilon)
+      && is_equal(rectangle1.top(), rectangle2.top(), epsilon)
+      && is_equal(rectangle1.right(), rectangle2.right(), epsilon)
+      && is_equal(rectangle1.bottom(), rectangle2.bottom(), epsilon);
 
 }
 
@@ -985,10 +985,10 @@ template < primitive_rectangle RECTANGLE_TYPE, primitive_number L, primitive_num
 RECTANGLE_TYPE & assign(RECTANGLE_TYPE & rectangle, L l, T t, R r, B b)
 {
 
-   rectangle.left = (decltype(RECTANGLE_TYPE::left))l;
-   rectangle.top = (decltype(RECTANGLE_TYPE::top))t;
-   rectangle.right = (decltype(RECTANGLE_TYPE::right))r;
-   rectangle.bottom = (decltype(RECTANGLE_TYPE::bottom))b;
+   rectangle.left() = (decltype(rectangle.left()))l;
+   rectangle.top() = (decltype(rectangle.top()))t;
+   rectangle.right() = (decltype(rectangle.right()))r;
+   rectangle.bottom() = (decltype(rectangle.bottom()))b;
 
    return rectangle;
 
@@ -999,10 +999,10 @@ template < primitive_rectangle RECTANGLE, primitive_number L, primitive_number T
 RECTANGLE & set_dimension(RECTANGLE & rectangle, L l, T t, W w, H h)
 {
 
-   rectangle.left = (decltype(RECTANGLE::left))l;
-   rectangle.top = (decltype(RECTANGLE::top))t;
-   rectangle.right = (decltype(RECTANGLE::right))(l + w);
-   rectangle.bottom = (decltype(RECTANGLE::bottom))(t + h);
+   rectangle.left() = (decltype(rectangle.left()))l;
+   rectangle.top() = (decltype(rectangle.top()))t;
+   rectangle.right() = (decltype(rectangle.right()))(l + w);
+   rectangle.bottom() = (decltype(rectangle.bottom()))(t + h);
 
    return rectangle;
 
@@ -1022,8 +1022,8 @@ template < primitive_rectangle RECTANGLE, primitive_point POINT, primitive_size 
 RECTANGLE & set_bottom_right(RECTANGLE & rectangle, const SIZE & size)
 {
 
-   rectangle.right = (decltype(RECTANGLE::right))(rectangle.left + size.cx());
-   rectangle.bottom = (decltype(RECTANGLE::bottom))(rectangle.top + size.cy());
+   rectangle.right() = (decltype(rectangle.right()))(rectangle.left() + size.cx());
+   rectangle.bottom() = (decltype(rectangle.bottom()))(rectangle.top() + size.cy());
 
    return rectangle;
 
@@ -1034,10 +1034,10 @@ template < primitive_rectangle RECTANGLE, primitive_point POINT, primitive_size 
 RECTANGLE & assign(RECTANGLE & rectangle, const POINT & point, const SIZE & size)
 {
 
-   rectangle.left = (decltype(RECTANGLE::left))point.x();
-   rectangle.top = (decltype(RECTANGLE::top))point.y();
-   rectangle.right = (decltype(RECTANGLE::right))(point.x() + size.cx());
-   rectangle.bottom = (decltype(RECTANGLE::bottom))(point.y() + size.cy());
+   rectangle.left() = (decay<decltype(rectangle.left())>)point.x();
+   rectangle.top() = (decay<decltype(rectangle.top())>)point.y();
+   rectangle.right() = (decay<decltype(rectangle.right())>)(point.x() + size.cx());
+   rectangle.bottom() = (decay<decltype(rectangle.bottom())>)(point.y() + size.cy());
 
    return rectangle;
 
@@ -1058,7 +1058,7 @@ template < primitive_rectangle RECTANGLE, primitive_number X >
 inline bool contains_x(const RECTANGLE & rectangle, X x)
 {
 
-   return x >= rectangle.left && x <= rectangle.right;
+   return x >= rectangle.left() && x <= rectangle.right();
 
 }
 
@@ -1067,7 +1067,7 @@ template < primitive_rectangle RECTANGLE, primitive_number Y >
 inline bool contains_y(const RECTANGLE & rectangle, Y y)
 {
 
-   return y >= rectangle.top && y <= rectangle.bottom;
+   return y >= rectangle.top() && y <= rectangle.bottom();
 
 }
 
@@ -1085,10 +1085,10 @@ template < primitive_rectangle RECTANGLE_TYPE, primitive_number L, primitive_num
 inline RECTANGLE_TYPE & inflate(RECTANGLE_TYPE & rectangle, L l, T t, R r, B b)
 {
 
-   rectangle.left = (decltype(RECTANGLE_TYPE::left))(rectangle.left - l);
-   rectangle.top = (decltype(RECTANGLE_TYPE::top))(rectangle.top - t);
-   rectangle.right = (decltype(RECTANGLE_TYPE::right))(rectangle.right + r);
-   rectangle.bottom = (decltype(RECTANGLE_TYPE::bottom))(rectangle.bottom + b);
+   rectangle.left() = (decay<decltype(rectangle.left())>)(rectangle.left() - l);
+   rectangle.top() = (decay<decltype(rectangle.top())>)(rectangle.top() - t);
+   rectangle.right() = (decay<decltype(rectangle.right())>)(rectangle.right() + r);
+   rectangle.bottom() = (decay<decltype(rectangle.bottom())>)(rectangle.bottom() + b);
 
    return rectangle;
 
@@ -1099,7 +1099,7 @@ template < primitive_rectangle RECTANGLE_TYPE, primitive_rectangle RECT_TYPE2 >
 inline RECTANGLE_TYPE & inflate(RECTANGLE_TYPE & rectangle, const RECT_TYPE2 & rect2)
 {
 
-   return inflate(rectangle, rect2.left, rect2.top, rect2.right, rect2.bottom);
+   return inflate(rectangle, rect2.left(), rect2.top(), rect2.right(), rect2.bottom());
 
 }
 
@@ -1108,10 +1108,10 @@ template < primitive_rectangle RECTANGLE_TYPE, primitive_rectangle RECT_TYPE2 >
 inline RECTANGLE_TYPE & multiply_inline(RECTANGLE_TYPE & rectangle, const RECT_TYPE2 & rect2)
 {
 
-   rectangle.left *= rect2.left;
-   rectangle.top *= rect2.top;
-   rectangle.right *= rect2.right;
-   rectangle.bottom *= rect2.bottom;
+   rectangle.left() *= rect2.left();
+   rectangle.top() *= rect2.top();
+   rectangle.right() *= rect2.right();
+   rectangle.bottom() *= rect2.bottom();
 
    return rectangle;
 
@@ -1122,10 +1122,10 @@ template < primitive_rectangle RECTANGLE_TYPE, primitive_number L, primitive_num
 inline RECTANGLE_TYPE & deflate(RECTANGLE_TYPE & rectangle, L l, T t, R r, B b)
 {
 
-   rectangle.left = (decltype(RECTANGLE_TYPE::left))(rectangle.left + l);
-   rectangle.top = (decltype(RECTANGLE_TYPE::top))(rectangle.top + t);
-   rectangle.right = (decltype(RECTANGLE_TYPE::right))(rectangle.right - r);
-   rectangle.bottom = (decltype(RECTANGLE_TYPE::bottom))(rectangle.bottom - b);
+   rectangle.left() = (decay<decltype(rectangle.left())>)(rectangle.left() + l);
+   rectangle.top() = (decay<decltype(rectangle.top())>)(rectangle.top() + t);
+   rectangle.right() = (decay<decltype(rectangle.right())>)(rectangle.right() - r);
+   rectangle.bottom() = (decay<decltype(rectangle.bottom())>)(rectangle.bottom() - b);
 
    return rectangle;
 
@@ -1136,7 +1136,7 @@ template < typename RECTANGLE_TYPE, primitive_rectangle RECT_TYPE2 >
 inline RECTANGLE_TYPE & deflate(RECTANGLE_TYPE & rectangle, const RECT_TYPE2 & rect2)
 {
 
-   return deflate(rectangle, rect2.left, rect2.top, rect2.right, rect2.bottom);
+   return deflate(rectangle, rect2.left(), rect2.top(), rect2.right(), rect2.bottom());
 
 }
 
@@ -1177,7 +1177,7 @@ inline RECTANGLE_TYPE & deflate(RECTANGLE_TYPE & rectangle, UNIT u)
 
 
 template < primitive_rectangle RECTANGLE_TYPE >
-inline RECTANGLE_TYPE & swap_left_right(RECTANGLE_TYPE & rectangle) { __swap(rectangle.left, rectangle.right); return rectangle; }
+inline RECTANGLE_TYPE & swap_left_right(RECTANGLE_TYPE & rectangle) { __swap(rectangle.left(), rectangle.right()); return rectangle; }
 
 
 template < primitive_point POINT1, primitive_point POINT2 >
@@ -1320,10 +1320,10 @@ inline void expand_rect(RECT1& rectangle, const RECT2& r)
    else
    {
 
-      rectangle.left = minimum((decltype(rectangle.left))rectangle.left, (decltype(rectangle.left))r.left);
-      rectangle.right = maximum((decltype(rectangle.right))rectangle.right, (decltype(rectangle.right))r.right);
-      rectangle.top = minimum((decltype(rectangle.top))rectangle.top, (decltype(rectangle.top))r.top);
-      rectangle.bottom = maximum((decltype(rectangle.bottom))rectangle.bottom, (decltype(rectangle.bottom))r.bottom);
+      rectangle.left() = minimum((decltype(rectangle.left()))rectangle.left(), (decltype(rectangle.left()))r.left());
+      rectangle.right() = maximum((decltype(rectangle.right()))rectangle.right(), (decltype(rectangle.right()))r.right());
+      rectangle.top() = minimum((decltype(rectangle.top()))rectangle.top(), (decltype(rectangle.top()))r.top());
+      rectangle.bottom() = maximum((decltype(rectangle.bottom()))rectangle.bottom(), (decltype(rectangle.bottom()))r.bottom());
 
    }
 
@@ -1343,10 +1343,10 @@ inline void collapse_rect(RECT1& rectangle, const RECT2& r)
    else
    {
 
-      rectangle.left = maximum((decltype(rectangle.left))rectangle.left, (decltype(rectangle.left))r.left);
-      rectangle.right = minimum((decltype(rectangle.right))rectangle.right, (decltype(rectangle.right))r.right);
-      rectangle.top = maximum((decltype(rectangle.top))rectangle.top, (decltype(rectangle.top))r.top);
-      rectangle.bottom = minimum((decltype(rectangle.bottom))rectangle.bottom, (decltype(rectangle.bottom))r.bottom);
+      rectangle.left() = maximum((decltype(rectangle.left()))rectangle.left(), (decltype(rectangle.left()))r.left());
+      rectangle.right() = minimum((decltype(rectangle.right()))rectangle.right(), (decltype(rectangle.right()))r.right());
+      rectangle.top() = maximum((decltype(rectangle.top()))rectangle.top(), (decltype(rectangle.top()))r.top());
+      rectangle.bottom() = minimum((decltype(rectangle.bottom()))rectangle.bottom(), (decltype(rectangle.bottom()))r.bottom());
 
       if (::width(rectangle) == 0 || height(rectangle) == 0)
       {
@@ -1373,35 +1373,35 @@ inline constexpr auto __vert(const SIZE& size) { return size.cy(); }
 template < primitive_rectangle RECTANGLE >
 inline auto & top_left(const RECTANGLE & rectangle) { return *(typename RECTANGLE::POINT_TYPE*)&rectangle; }
 template < primitive_rectangle RECTANGLE >
-inline auto & bottom_right(const RECTANGLE& rectangle) { return *(typename RECTANGLE::POINT_TYPE*)&rectangle.right; }
+inline auto & bottom_right(const RECTANGLE& rectangle) { return *(typename RECTANGLE::POINT_TYPE*)&rectangle.right(); }
 
 
 //inline point_i64& top_left(const rectangle_i64& rectangle) { return *(point_i64*)&rectangle; }
-//inline point_i64& bottom_right(const rectangle_i64& rectangle) { return *(point_i64*)&rectangle.right; }
+//inline point_i64& bottom_right(const rectangle_i64& rectangle) { return *(point_i64*)&rectangle.right(); }
 
 
 //inline point_f32& top_left(const rectangle_f32& rectangle) { return *(point_f32*)&rectangle; }
-//inline point_f32& bottom_right(const rectangle_f32& rectangle) { return *(point_f32*)&rectangle.right; }
+//inline point_f32& bottom_right(const rectangle_f32& rectangle) { return *(point_f32*)&rectangle.right(); }
 
 
 //inline point_f64& top_left(const rectangle_f64& rectangle) { return *(point_f64*)&rectangle; }
-//inline point_f64& bottom_right(const rectangle_f64& rectangle) { return *(point_f64*)&rectangle.right; }
+//inline point_f64& bottom_right(const rectangle_f64& rectangle) { return *(point_f64*)&rectangle.right(); }
 
 
 //inline point_i32 & top_left(const ::rectangle_i32 &rectangle) { return *(point_i32 *)&rectangle; }
-//inline point_i32 & bottom_right(const ::rectangle_i32 &rectangle) { return *(point_i32 *)&rectangle.right; }
+//inline point_i32 & bottom_right(const ::rectangle_i32 &rectangle) { return *(point_i32 *)&rectangle.right(); }
 //inline point_i32 & top_left(const ::rectangle_i32 &rectangle) { return top_left(&rectangle); }
 //inline point_i32 & bottom_right(const ::rectangle_i32 &rectangle) { return bottom_right(&rectangle); }
 
 
 //inline point_i64 & top_left(const ::rectangle_i64 & rectangle) { return *(point_i64 *)&rectangle; }
-//inline point_i64 & bottom_right(const ::rectangle_i64 & rectangle) { return *(point_i64 *)&rectangle.right; }
+//inline point_i64 & bottom_right(const ::rectangle_i64 & rectangle) { return *(point_i64 *)&rectangle.right(); }
 //inline point_i64 & top_left(const ::rectangle_i64 & rectangle) { return top_left(&rectangle); }
 //inline point_i64 & bottom_right(const ::rectangle_i64 & rectangle) { return bottom_right(&rectangle); }
 
 
 //inline point_f64 & top_left(const ::rectangle_f64 & rectangle) { return *(point_f64 *)&rectangle; }
-//inline point_f64 & bottom_right(const ::rectangle_f64 & rectangle) { return *(point_f64 *)&rectangle.right; }
+//inline point_f64 & bottom_right(const ::rectangle_f64 & rectangle) { return *(point_f64 *)&rectangle.right(); }
 //inline point_f64 & top_left(const ::rectangle_f64 & rectangle) { return top_left(&rectangle); }
 //inline point_f64 & bottom_right(const ::rectangle_f64 & rectangle) { return bottom_right(&rectangle); }
 
@@ -1521,13 +1521,13 @@ namespace geometry
    inline void deflate(RECTANGLE& rectangle, double dLeftRate, double dRightRate, double dTopRate, double dBottomRate)
    {
 
-      rectangle.left = range_rate(rectangle.left, rectangle.right, dLeftRate);
+      rectangle.left() = range_rate(rectangle.left(), rectangle.right(), dLeftRate);
 
-      rectangle.right = range_rate(rectangle.right, rectangle.left, dRightRate);
+      rectangle.right() = range_rate(rectangle.right(), rectangle.left(), dRightRate);
 
-      rectangle.top = range_rate(rectangle.top, rectangle.bottom, dTopRate);
+      rectangle.top() = range_rate(rectangle.top(), rectangle.bottom(), dTopRate);
 
-      rectangle.bottom = range_rate(rectangle.bottom, rectangle.top, dBottomRate);
+      rectangle.bottom() = range_rate(rectangle.bottom(), rectangle.top(), dBottomRate);
 
    }
 

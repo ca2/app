@@ -587,22 +587,7 @@
     <Lib />
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="compress\is_dir.cpp" />
-    <ClCompile Include="compress\not_dir.cpp" />
     <ClCompile Include="constant\idpool.cpp" />
-    <ClCompile Include="crypto\crypto.cpp" />
-    <ClCompile Include="crypto\initializer.cpp" />
-    <ClCompile Include="crypto\macos\rsa.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="crypto\rsa.cpp" />
     <ClCompile Include="database\client.cpp" />
     <ClCompile Include="database\event_change.cpp" />
     <ClCompile Include="database\key.cpp" />
@@ -610,15 +595,8 @@
     <ClCompile Include="database\selection_item.cpp" />
     <ClCompile Include="database\server.cpp" />
     <ClCompile Include="database\stringhelper.cpp" />
-    <ClCompile Include="filesystem\filesystem\dir_context.cpp" />
-    <ClCompile Include="filesystem\filesystem\dir_system.cpp" />
-    <ClCompile Include="filesystem\filesystem\file_context.cpp" />
-    <ClCompile Include="filesystem\filesystem\file_system.cpp" />
-    <ClCompile Include="filesystem\file\action.cpp" />
     <ClCompile Include="filesystem\file\edit_file.cpp" />
     <ClCompile Include="filesystem\file\html_file.cpp" />
-    <ClCompile Include="filesystem\file\watch.cpp" />
-    <ClCompile Include="filesystem\file\watcher.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">Create</PrecompiledHeader>
@@ -709,13 +687,10 @@
     <ClCompile Include="user\user\primitive.cpp" />
     <ClCompile Include="_.cpp" />
     <ClInclude Include="aaa_application.h" />
-    <ClInclude Include="compress\not_dir.h" />
     <ClInclude Include="constant\idpool.h" />
     <ClInclude Include="crypto\initializer.h" />
     <ClInclude Include="database\stream.h" />
     <ClInclude Include="database\_binary_stream.h" />
-    <ClInclude Include="filesystem\filesystem\file_listener.h" />
-    <ClInclude Include="filesystem\filesystem\_.h" />
     <ClInclude Include="filesystem\file\action.h" />
     <ClInclude Include="filesystem\file\listener.h" />
     <ClInclude Include="filesystem\file\_constant.h" />
@@ -773,9 +748,6 @@
     <ClInclude Include="crypto\rsa.h" />
     <ClInclude Include="crypto\_.h" />
     <ClInclude Include="crypto\_crypto.h" />
-    <ClInclude Include="compress\_.h" />
-    <ClInclude Include="compress\context.h" />
-    <ClInclude Include="compress\is_dir.h" />
     <ClInclude Include="aaa_console.h" />
     <ClInclude Include="aaa_console_slim.h" />
     <ClInclude Include="const\charset.h" />
@@ -821,6 +793,7 @@
     <ClInclude Include="message\const.h" />
     <ClInclude Include="message\cross_windows.h" />
     <ClInclude Include="message\definition.h" />
+    <ClInclude Include="message\dispatcher.h" />
     <ClInclude Include="message\global.h" />
     <ClInclude Include="message\handler.h" />
     <ClInclude Include="message\handler_item.h" />
@@ -976,10 +949,6 @@
     <ClInclude Include="user\user\_.h" />
     <ClInclude Include="version\version.h" />
     <ClInclude Include="const\thread.h" />
-    <ClInclude Include="filesystem\filesystem\dir_context.h" />
-    <ClInclude Include="filesystem\filesystem\dir_system.h" />
-    <ClInclude Include="filesystem\filesystem\file_context.h" />
-    <ClInclude Include="filesystem\filesystem\file_system.h" />
     <ClCompile Include="filesystem\file\set.cpp" />
     <ClCompile Include="filesystem\fs\data.cpp" />
     <ClCompile Include="filesystem\fs\fs.cpp" />
@@ -997,8 +966,6 @@
     <ClInclude Include="const\status_range_authentication.h" />
     <ClInclude Include="const\timer.h" />
     <ClInclude Include="filesystem\filesystem.h" />
-    <ClInclude Include="filesystem\filesystem\file_watcher.h" />
-    <ClInclude Include="filesystem\filesystem\aaa_path.h" />
     <ClInclude Include="filesystem\file\edit_file.h" />
     <ClInclude Include="filesystem\file\_.h" />
     <ClInclude Include="filesystem\file\set.h" />

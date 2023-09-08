@@ -280,7 +280,6 @@ namespace app_shader
          
       }
 
-
       ::gpu::context_lock lock(m_pcontext);
 
       defer_update_shader();
@@ -385,8 +384,8 @@ namespace app_shader
       ::rectangle_i32 rectangle;
 
 
-      //rectangle.left = rectangle.right - 48;
-      //rectangle.top = rectangle.bottom - 48;
+      //rectangle.left() = rectangle.right() - 48;
+      //rectangle.top() = rectangle.bottom() - 48;
 
       //pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
@@ -430,8 +429,6 @@ namespace app_shader
          if (strLabel.has_char())
          {
 
-            //            auto color = m_pinteraction->get_color(pstyle, ::e_element_text);
-
             colorBackground.m_u8Opacity = 128;
 
             ::draw2d::brush_pointer pbrush;
@@ -443,10 +440,6 @@ namespace app_shader
             ::write_text::font_pointer pfont;
 
             pfont.create(this);
-
-            //auto pnode = acmesystem()->m_paurasystem->node();
-
-            //auto strFontName = pnode->font_name(e_font_sans_ui);
 
             pfont->create_font(e_font_sans_ui, 12_pt);
 
@@ -477,10 +470,12 @@ namespace app_shader
 
             pgraphicsLabel->set(pfont);
 
-
             pgraphicsLabel->set_alpha_mode(::draw2d::e_alpha_mode_set);
+
             pgraphicsLabel->set(pbrush);
+
             pgraphicsLabel->fill_rectangle(rect);
+
             pgraphicsLabel->set_text_color({});
 
             pgraphicsLabel->text_out({ 4,4 }, strLabel);

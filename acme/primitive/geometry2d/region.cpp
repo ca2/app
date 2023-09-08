@@ -601,13 +601,13 @@ namespace geometry2d
    //   for(int i = 0; i < m_nCount; i++)
    //   {
 
-   //      prectangle->left = minimum(prectangle->left,m_lppoints[i].x());
+   //      prectangle->left() = minimum(prectangle->left(),m_lppoints[i].x());
 
-   //      prectangle->right = maximum(prectangle->right,m_lppoints[i].x());
+   //      prectangle->right() = maximum(prectangle->right(),m_lppoints[i].x());
 
-   //      prectangle->top = minimum(prectangle->left,m_lppoints[i].y());
+   //      prectangle->top() = minimum(prectangle->left(),m_lppoints[i].y());
 
-   //      prectangle->bottom = maximum(prectangle->right,m_lppoints[i].y());
+   //      prectangle->bottom() = maximum(prectangle->right(),m_lppoints[i].y());
 
    //   }
 
@@ -627,13 +627,13 @@ namespace geometry2d
    //      for(int j = 0; j < iCount; j++,n++)
    //      {
 
-   //         prectangle->left = minimum(prectangle->left,m_lppoints[n].x());
+   //         prectangle->left() = minimum(prectangle->left(),m_lppoints[n].x());
 
-   //         prectangle->right = maximum(prectangle->right,m_lppoints[n].x());
+   //         prectangle->right() = maximum(prectangle->right(),m_lppoints[n].x());
 
-   //         prectangle->top = minimum(prectangle->left,m_lppoints[n].y());
+   //         prectangle->top() = minimum(prectangle->left(),m_lppoints[n].y());
 
-   //         prectangle->bottom = maximum(prectangle->right,m_lppoints[n].y());
+   //         prectangle->bottom() = maximum(prectangle->right(),m_lppoints[n].y());
 
    //      }
 

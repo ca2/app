@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "simple_log.h"
 #include "trace.h"
+#include "acme/platform/application.h"
 #include "acme/platform/debug.h"
 #include "acme/platform/system.h"
 #ifdef WINDOWS
@@ -217,7 +218,7 @@ simple_log::~simple_log()
 }
 
 
-void simple_log::print(trace_statement & tracestatement)
+void simple_log::print(trace_statement & tracestatement, bool bFlush)
 {
 
    if (!m_bLog)
@@ -249,13 +250,51 @@ void simple_log::print(trace_statement & tracestatement)
       else
       {
 
-
-
          str.format("%s> %c %s %d %s\n", strTaskName.c_str(), trace_level_char(tracestatement.m_etracelevel), tracestatement.m_pszFunction, tracestatement.m_iLine, tracestatement.as_string().c_str());
 
       }
 
-      ::output_debug_string(str);
+      auto papplication = acmeapplication();
+
+      if (papplication && papplication->m_bConsole)
+      {
+
+         if (tracestatement.m_etracelevel == e_trace_level_information)
+         {
+
+            printf("%s", str.c_str());
+
+            if(bFlush)
+            {
+
+               fflush(stdout);
+
+            }
+
+         }
+         else
+         {
+
+            fprintf(stderr, "%s", str.c_str());
+
+            if(bFlush)
+            {
+
+               fflush(stderr);
+
+            }
+
+         }
+
+      }
+      else
+      {
+
+         ::output_debug_string(str);
+
+         ::output_debug_string_flush();
+
+      }
 
    }
 

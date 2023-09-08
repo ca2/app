@@ -953,10 +953,10 @@ public:
 //inline binary_stream & operator << (binary_stream & s, const rectangle_type < BASE_TYPE, POINT_BASE_TYPE, SIZE_BASE_TYPE > & rectangle)
 //{
 //   
-//   s << rectangle.left;
-//   s << rectangle.top;
-//   s << rectangle.right;
-//   s << rectangle.bottom;
+//   s << rectangle.left();
+//   s << rectangle.top();
+//   s << rectangle.right();
+//   s << rectangle.bottom();
 //
 //   return s;
 //
@@ -967,10 +967,10 @@ public:
 //inline binary_stream & operator >> (binary_stream & s, rectangle_type < BASE_TYPE, POINT_BASE_TYPE, SIZE_BASE_TYPE > & rectangle)
 //{
 //
-//   s >> rectangle.left;
-//   s >> rectangle.top;
-//   s >> rectangle.right;
-//   s >> rectangle.bottom;
+//   s >> rectangle.left();
+//   s >> rectangle.top();
+//   s >> rectangle.right();
+//   s >> rectangle.bottom();
 //
 //   return s;
 //

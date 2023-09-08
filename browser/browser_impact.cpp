@@ -287,7 +287,7 @@ namespace browser
       if (m_pimageBrowser)
       {
 
-         auto rectangleClient = client_rectangle();
+         auto rectangleX = this->rectangle();
 
          pgraphics->draw(::rectangle_i32(m_pimageBrowser->size()), m_pimageBrowser->g(), m_pimageBrowser->rectangle());
 
@@ -362,13 +362,13 @@ namespace browser
    void impact::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
-      if(rectangleClient.area() <= 0)
+      if(rectangleX.area() <= 0)
          return;
 
 
-      ::rectangle_i32 rectangle = client_rectangle();
+      ::rectangle_i32 rectangle = this->rectangle();
 
       client_to_screen(rectangle);
 
@@ -410,17 +410,17 @@ namespace browser
                m_pbrowser->GetHost()->WasResized();
                //auto hwnd = m_pbrowser->GetHost()->GetWindowHandle();
                //auto rectangle = ::rectangle_i32{ 0 };
-               //client_rectangle(&rectangle);
+               //this->rectangle(&rectangle);
 
                //auto hwnd2 = get_handle();
 
                //m_pbrowser->
 
-               //::SetWindowPos(hwnd, HWND_TOP, rectangle.left, rectangle.top, rectangle.right - rectangle.left, rectangle.bottom - rectangle.top, SWP_NOZORDER);
+               //::SetWindowPos(hwnd, HWND_TOP, rectangle.left(), rectangle.top(), rectangle.right() - rectangle.left(), rectangle.bottom() - rectangle.top(), SWP_NOZORDER);
 
                //::set_window_position(::GetWindow(get_handle(), GW_CHILD), HWND_TOP,
-               //               rectangle.left,
-               //               rectangle.top,
+               //               rectangle.left(),
+               //               rectangle.top(),
                //               rectangle.width(),
                //               rectangle.height(), 0);
 
@@ -434,8 +434,8 @@ namespace browser
                     && get_typed_parent < pane_impact >()->m_pimpactLast == this
                     && get_typed_parent < pane_impact >()->get_current_tab_id() == FONTSEL_IMPACT;
 
-      //if(m_prender->m_cx == rectangleClient.width()
-      //    && m_prender->m_cy == rectangleClient.height()
+      //if(m_prender->m_cx == rectangleX.width()
+      //    && m_prender->m_cy == rectangleX.height()
       //  && !bHover
       //&& m_prender->m_strNewFont == m_prender->m_strFont)
       //return;
@@ -453,11 +453,11 @@ namespace browser
 
       }
 
-      m_prender->m_cx = rectangleClient.width();
+      m_prender->m_cx = rectangleX.width();
 
-      m_prender->m_cy = rectangleClient.height();
+      m_prender->m_cy = rectangleX.height();
 
-      m_prender->m_rectangleClient = rectangleClient;
+      m_prender->m_rectangleX = rectangleX;
 
       m_prender->m_bNewLayout = true;
 
@@ -835,9 +835,9 @@ namespace browser
    //      {
    //         auto hwnd = m_pbrowser->GetHost()->GetWindowHandle();
    //         auto rectangle = ::rectangle_i32{ 0 };
-   //         client_rectangle(&rectangle);
+   //         this->rectangle(&rectangle);
 
-   //         ::set_window_position(hwnd, HWND_TOP, rectangle.left, rectangle.top, rectangle.right - rectangle.left, rectangle.bottom - rectangle.top, SWP_NOZORDER);
+   //         ::set_window_position(hwnd, HWND_TOP, rectangle.left(), rectangle.top(), rectangle.right() - rectangle.left(), rectangle.bottom() - rectangle.top(), SWP_NOZORDER);
    //      }
    //   }
    //}
@@ -861,7 +861,7 @@ namespace browser
 
       auto rectangleWindow = get_top_level()->window_rectangle();
 
-      rectangle.Set(rectangleWindow.left, rectangleWindow.top, rectangleWindow.width(), rectangleWindow.height());
+      rectangle.Set(rectangleWindow.left(), rectangleWindow.top(), rectangleWindow.width(), rectangleWindow.height());
 
       return true;
 
@@ -871,11 +871,11 @@ namespace browser
    bool impact::GetImpactRect(CefRefPtr<CefBrowser> browser, CefRect& rectangle)
    {
 
-      ::rectangle_i32 rectangleClient = client_rectangle();
+      ::rectangle_i32 rectangleX = this->rectangle();
 
-      client_to_screen(rectangleClient);
+      client_to_screen(rectangleX);
 
-      rectangle.Set(rectangleClient.left, rectangleClient.top, rectangleClient.width(), rectangleClient.height());
+      rectangle.Set(rectangleX.left(), rectangleX.top(), rectangleX.width(), rectangleX.height());
 
       return true;
 

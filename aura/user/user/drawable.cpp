@@ -127,7 +127,7 @@ namespace user
    }
 
 
-   item_pointer drawable::hit_test(::user::mouse* pmouse, e_zorder ezorder)
+   ::item_pointer drawable::hit_test(::user::mouse* pmouse, e_zorder ezorder)
    {
 
       return nullptr;

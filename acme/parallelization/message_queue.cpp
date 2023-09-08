@@ -201,7 +201,7 @@ bool message_queue::peek_message(MESSAGE * pMsg, oswindow oswindow,::u32 wMsgFil
    if(wMsgFilterMax == 0)
    {
 
-      wMsgFilterMax = (::u32)-1;
+      wMsgFilterMax = U32_MAXIMUM;
 
    }
 

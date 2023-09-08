@@ -32,9 +32,9 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //inline RECTANGLE_TYPE & x_offset(RECTANGLE_TYPE & rectangle, X x)
 //{
 //
-//   rectangle.left = (decltype(RECTANGLE_TYPE::left))(rectangle.left + x);
+//   rectangle.left() = (decltype(RECTANGLE_TYPE::left))(rectangle.left() + x);
 //
-//   rectangle.right = (decltype(RECTANGLE_TYPE::right))(rectangle.right + x);
+//   rectangle.right() = (decltype(RECTANGLE_TYPE::right))(rectangle.right() + x);
 //
 //   return rectangle;
 //
@@ -45,9 +45,9 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //inline RECTANGLE_TYPE & y_offset(RECTANGLE_TYPE & rectangle, Y y)
 //{
 //
-//   rectangle.top = (decltype(RECTANGLE_TYPE::top))(rectangle.top + y);
+//   rectangle.top() = (decltype(RECTANGLE_TYPE::top))(rectangle.top() + y);
 //
-//   rectangle.bottom = (decltype(RECTANGLE_TYPE::bottom))(rectangle.bottom + y);
+//   rectangle.bottom() = (decltype(RECTANGLE_TYPE::bottom))(rectangle.bottom() + y);
 //
 //   return rectangle;
 //
@@ -59,9 +59,9 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //inline RECTANGLE_TYPE & x_subtract(RECTANGLE_TYPE & rectangle, X x)
 //{
 //
-//   rectangle.left = (decltype(RECTANGLE_TYPE::left))(rectangle.left - x);
+//   rectangle.left() = (decltype(RECTANGLE_TYPE::left))(rectangle.left() - x);
 //
-//   rectangle.right = (decltype(RECTANGLE_TYPE::right))(rectangle.right - x);
+//   rectangle.right() = (decltype(RECTANGLE_TYPE::right))(rectangle.right() - x);
 //
 //   return rectangle;
 //
@@ -72,9 +72,9 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //inline RECTANGLE_TYPE & y_subtract(RECTANGLE_TYPE & rectangle, Y y)
 //{
 //
-//   rectangle.top = (decltype(RECTANGLE_TYPE::top))(rectangle.top - y);
+//   rectangle.top() = (decltype(RECTANGLE_TYPE::top))(rectangle.top() - y);
 //
-//   rectangle.bottom = (decltype(RECTANGLE_TYPE::bottom))(rectangle.bottom - y);
+//   rectangle.bottom() = (decltype(RECTANGLE_TYPE::bottom))(rectangle.bottom() - y);
 //
 //   return rectangle;
 //
@@ -188,9 +188,9 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //bool x_intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
 //{
 //
-//   auto left = maximum(rect1.left, rect2.left);
+//   auto left = maximum(rect1.left(), rect2.left());
 //
-//   auto right = minimum(rect1.right, rect2.right);
+//   auto right = minimum(rect1.right(), rect2.right());
 //
 //   bool bIntersect = right > left;
 //
@@ -204,9 +204,9 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //   if (::is_set(rectangle))
 //   {
 //
-//      rectangle.left = left;
+//      rectangle.left() = left;
 //
-//      rectangle.right = right;
+//      rectangle.right() = right;
 //
 //   }
 //
@@ -219,9 +219,9 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //bool x_intersects(const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
 //{
 //
-//   auto left = maximum(rect1.left, rect2.left);
+//   auto left = maximum(rect1.left(), rect2.left());
 //
-//   auto right = minimum(rect1.right, rect2.right);
+//   auto right = minimum(rect1.right(), rect2.right());
 //
 //   return right > left;
 //
@@ -232,9 +232,9 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //bool y_intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
 //{
 //
-//   auto top = maximum(rect1.top, rect2.top);
+//   auto top = maximum(rect1.top(), rect2.top());
 //
-//   auto bottom = minimum(rect1.bottom, rect2.bottom);
+//   auto bottom = minimum(rect1.bottom(), rect2.bottom());
 //
 //   bool bIntersect = bottom > top;
 //
@@ -248,9 +248,9 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //   if (::is_set(rectangle))
 //   {
 //
-//      rectangle.top = top;
+//      rectangle.top() = top;
 //
-//      rectangle.bottom = bottom;
+//      rectangle.bottom() = bottom;
 //
 //   }
 //
@@ -263,9 +263,9 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //bool y_intersects(const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
 //{
 //
-//   auto top = maximum(rect1.top, rect2.top);
+//   auto top = maximum(rect1.top(), rect2.top());
 //
-//   auto bottom = minimum(rect1.bottom, rect2.bottom);
+//   auto bottom = minimum(rect1.bottom(), rect2.bottom());
 //
 //   return bottom > top;
 //
@@ -308,9 +308,9 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //bool x_null_intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
 //{
 //
-//   auto left = maximum(rect1.left, rect2.left);
+//   auto left = maximum(rect1.left(), rect2.left());
 //
-//   auto right = minimum(rect1.right, rect2.right);
+//   auto right = minimum(rect1.right(), rect2.right());
 //
 //   bool bIntersect = right >= left;
 //
@@ -324,9 +324,9 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //   if (::is_set(rectangle))
 //   {
 //
-//      rectangle.left = left;
+//      rectangle.left() = left;
 //
-//      rectangle.right = right;
+//      rectangle.right() = right;
 //
 //   }
 //
@@ -339,9 +339,9 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //bool y_null_intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
 //{
 //
-//   auto top = maximum(rect1.top, rect2.top);
+//   auto top = maximum(rect1.top(), rect2.top());
 //
-//   auto bottom = minimum(rect1.bottom, rect2.bottom);
+//   auto bottom = minimum(rect1.bottom(), rect2.bottom());
 //
 //   bool bIntersect = bottom >= top;
 //
@@ -355,9 +355,9 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //   if (::is_set(rectangle))
 //   {
 //
-//      rectangle.top = top;
+//      rectangle.top() = top;
 //
-//      rectangle.bottom = bottom;
+//      rectangle.bottom() = bottom;
 //
 //   }
 //
@@ -393,11 +393,11 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //bool x_left_null_intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
 //{
 //
-//   rectangle.left = maximum(rect1.left, rect2.left);
+//   rectangle.left() = maximum(rect1.left(), rect2.left());
 //
-//   rectangle.right = minimum(rect1.right, rect2.right);
+//   rectangle.right() = minimum(rect1.right(), rect2.right());
 //
-//   return rectangle.right > rectangle.left || (rectangle.right == rectangle.left && rect1.left == rect2.left);
+//   return rectangle.right() > rectangle.left() || (rectangle.right() == rectangle.left() && rect1.left() == rect2.left());
 //
 //}
 //
@@ -406,11 +406,11 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //bool y_top_null_intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
 //{
 //
-//   rectangle.top = maximum(rect1.top, rect2.top);
+//   rectangle.top() = maximum(rect1.top(), rect2.top());
 //
-//   rectangle.bottom = minimum(rect1.bottom, rect2.bottom);
+//   rectangle.bottom() = minimum(rect1.bottom(), rect2.bottom());
 //
-//   return rectangle.top < rectangle.bottom || (rectangle.top == rectangle.bottom && rect1.top == rect2.top);
+//   return rectangle.top() < rectangle.bottom() || (rectangle.top() == rectangle.bottom() && rect1.top() == rect2.top());
 //
 //}
 //
@@ -467,10 +467,10 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //   else
 //   {
 //
-//      rectangle.left = (decltype(RECTANGLE_TYPE::left))minimum(rect1.left, rect2.left);
-//      rectangle.top = (decltype(RECTANGLE_TYPE::top))minimum(rect1.top, rect2.top);
-//      rectangle.right = (decltype(RECTANGLE_TYPE::right))maximum(rect1.right, rect2.right);
-//      rectangle.bottom = (decltype(RECTANGLE_TYPE::bottom))maximum(rect1.bottom, rect2.bottom);
+//      rectangle.left() = (decltype(RECTANGLE_TYPE::left))minimum(rect1.left(), rect2.left());
+//      rectangle.top() = (decltype(RECTANGLE_TYPE::top))minimum(rect1.top(), rect2.top());
+//      rectangle.right() = (decltype(RECTANGLE_TYPE::right))maximum(rect1.right(), rect2.right());
+//      rectangle.bottom() = (decltype(RECTANGLE_TYPE::bottom))maximum(rect1.bottom(), rect2.bottom());
 //
 //   }
 //
@@ -503,10 +503,10 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //   else if (!is_empty_rectangle(rect2))
 //   {
 //
-//      rect1.left = (decltype(RECT_TYPE1::left))minimum(rect1.left, rect2.left);
-//      rect1.top = (decltype(RECT_TYPE1::top))minimum(rect1.top, rect2.top);
-//      rect1.right = (decltype(RECT_TYPE1::right))maximum(rect1.right, rect2.right);
-//      rect1.bottom = (decltype(RECT_TYPE1::bottom))maximum(rect1.bottom, rect2.bottom);
+//      rect1.left() = (decltype(RECT_TYPE1::left))minimum(rect1.left(), rect2.left());
+//      rect1.top() = (decltype(RECT_TYPE1::top))minimum(rect1.top(), rect2.top());
+//      rect1.right() = (decltype(RECT_TYPE1::right))maximum(rect1.right(), rect2.right());
+//      rect1.bottom() = (decltype(RECT_TYPE1::bottom))maximum(rect1.bottom(), rect2.bottom());
 //
 //   }
 //
@@ -520,10 +520,10 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //RECT_TYPE1 & copy(RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
 //{
 //
-//   rect1.left = (decltype(RECT_TYPE1::left))rect2.left;
-//   rect1.top = (decltype(RECT_TYPE1::top))rect2.top;
-//   rect1.right = (decltype(RECT_TYPE1::right))rect2.right;
-//   rect1.bottom = (decltype(RECT_TYPE1::bottom))rect2.bottom;
+//   rect1.left() = (decltype(RECT_TYPE1::left))rect2.left();
+//   rect1.top() = (decltype(RECT_TYPE1::top))rect2.top();
+//   rect1.right() = (decltype(RECT_TYPE1::right))rect2.right();
+//   rect1.bottom() = (decltype(RECT_TYPE1::bottom))rect2.bottom();
 //
 //   return rect1;
 //
@@ -534,10 +534,10 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //RECTANGLE & copy(RECTANGLE & rectangle, const XYDim & xydim)
 //{
 //
-//   rectangle.left = (decltype(RECTANGLE::left))xydim.X;
-//   rectangle.top = (decltype(RECTANGLE::top))xydim.Y;
-//   rectangle.right = (decltype(RECTANGLE::right))(xydim.X + xydim.Width);
-//   rectangle.bottom = (decltype(RECTANGLE::bottom))(xydim.Y + xydim.Height);
+//   rectangle.left() = (decltype(RECTANGLE::left))xydim.X;
+//   rectangle.top() = (decltype(RECTANGLE::top))xydim.Y;
+//   rectangle.right() = (decltype(RECTANGLE::right))(xydim.X + xydim.Width);
+//   rectangle.bottom() = (decltype(RECTANGLE::bottom))(xydim.Y + xydim.Height);
 //
 //   return rectangle;
 //
@@ -548,10 +548,10 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //RECTANGLE & copy(RECTANGLE & rect1, const XYDIM & xydim)
 //{
 //
-//   rect1.left = (decltype(RECTANGLE::left))xydim.x();
-//   rect1.top = (decltype(RECTANGLE::top))xydim.y();
-//   rect1.right = (decltype(RECTANGLE::right))(xydim.x() + xydim.width);
-//   rect1.bottom = (decltype(RECTANGLE::bottom))(xydim.y() + xydim.height);
+//   rect1.left() = (decltype(RECTANGLE::left))xydim.x();
+//   rect1.top() = (decltype(RECTANGLE::top))xydim.y();
+//   rect1.right() = (decltype(RECTANGLE::right))(xydim.x() + xydim.width);
+//   rect1.bottom() = (decltype(RECTANGLE::bottom))(xydim.y() + xydim.height);
 //
 //   return rect1;
 //
@@ -586,10 +586,10 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //XYDim & copy(XYDim & xydim, const RECTANGLE & rectangle)
 //{
 //
-//   xydim.X = (decltype(XYDim::X))rectangle.left;
-//   xydim.Y = (decltype(XYDim::Y))rectangle.top;
-//   xydim.Width = (decltype(XYDim::Width))(rectangle.right - rectangle.left);
-//   xydim.Height = (decltype(XYDim::Height))(rectangle.bottom - rectangle.top);
+//   xydim.X = (decltype(XYDim::X))rectangle.left();
+//   xydim.Y = (decltype(XYDim::Y))rectangle.top();
+//   xydim.Width = (decltype(XYDim::Width))(rectangle.right() - rectangle.left());
+//   xydim.Height = (decltype(XYDim::Height))(rectangle.bottom() - rectangle.top());
 //
 //   return xydim;
 //
@@ -600,10 +600,10 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //XYDIM & copy(XYDIM & xydim, const RECTANGLE & rectangle)
 //{
 //
-//   xydim.x() = (decltype(XYDIM::X))rectangle.left;
-//   xydim.y() = (decltype(XYDIM::Y))rectangle.top;
-//   xydim.width = (decltype(XYDIM::Width))(rectangle.right - rectangle.left);
-//   xydim.height = (decltype(XYDIM::Height))(rectangle.bottom - rectangle.top);
+//   xydim.x() = (decltype(XYDIM::X))rectangle.left();
+//   xydim.y() = (decltype(XYDIM::Y))rectangle.top();
+//   xydim.width = (decltype(XYDIM::Width))(rectangle.right() - rectangle.left());
+//   xydim.height = (decltype(XYDIM::Height))(rectangle.bottom() - rectangle.top());
 //
 //   return xydim;
 //
@@ -672,8 +672,8 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //bool is_equal(const RECTANGLE1 & rectangle1, const RECTANGLE2 & rectangle2)
 //{
 //
-//   return rectangle1.left == rectangle2.left && rectangle1.top == rectangle2.top
-//      && rectangle1.right == rectangle2.right && rectangle1.bottom == rectangle2.bottom;
+//   return rectangle1.left() == rectangle2.left() && rectangle1.top() == rectangle2.top()
+//      && rectangle1.right() == rectangle2.right() && rectangle1.bottom() == rectangle2.bottom();
 //
 //}
 //
@@ -700,10 +700,10 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //RECTANGLE_TYPE & set_rectangle(RECTANGLE_TYPE & rectangle, L l, T t, R r, B b)
 //{
 //
-//   rectangle.left = (decltype(RECTANGLE_TYPE::left))l;
-//   rectangle.top = (decltype(RECTANGLE_TYPE::top))t;
-//   rectangle.right = (decltype(RECTANGLE_TYPE::right))r;
-//   rectangle.bottom = (decltype(RECTANGLE_TYPE::bottom))b;
+//   rectangle.left() = (decltype(RECTANGLE_TYPE::left))l;
+//   rectangle.top() = (decltype(RECTANGLE_TYPE::top))t;
+//   rectangle.right() = (decltype(RECTANGLE_TYPE::right))r;
+//   rectangle.bottom() = (decltype(RECTANGLE_TYPE::bottom))b;
 //
 //   return rectangle;
 //
@@ -714,10 +714,10 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //RECTANGLE & set_dim(RECTANGLE & rectangle, L l, T t, W w, H h)
 //{
 //
-//   rectangle.left = (decltype(RECTANGLE::left))l;
-//   rectangle.top = (decltype(RECTANGLE::top))t;
-//   rectangle.right = (decltype(RECTANGLE::right))(l + w);
-//   rectangle.bottom = (decltype(RECTANGLE::bottom))(t + h);
+//   rectangle.left() = (decltype(RECTANGLE::left))l;
+//   rectangle.top() = (decltype(RECTANGLE::top))t;
+//   rectangle.right() = (decltype(RECTANGLE::right))(l + w);
+//   rectangle.bottom() = (decltype(RECTANGLE::bottom))(t + h);
 //
 //   return rectangle;
 //
@@ -737,8 +737,8 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //RECTANGLE & set_bottom_right(RECTANGLE & rectangle, const SIZE & size)
 //{
 //
-//   rectangle.right = (decltype(RECTANGLE::right))(rectangle.left + size.cx());
-//   rectangle.bottom = (decltype(RECTANGLE::bottom))(rectangle.top + size.cy());
+//   rectangle.right() = (decltype(RECTANGLE::right))(rectangle.left() + size.cx());
+//   rectangle.bottom() = (decltype(RECTANGLE::bottom))(rectangle.top() + size.cy());
 //
 //   return rectangle;
 //
@@ -749,10 +749,10 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //RECTANGLE & assign(RECTANGLE & rectangle, const POINT & point, const SIZE & size)
 //{
 //
-//   rectangle.left = (decltype(RECTANGLE::left))point.x();
-//   rectangle.top = (decltype(RECTANGLE::top))point.y();
-//   rectangle.right = (decltype(RECTANGLE::right))(point.x() + size.cx());
-//   rectangle.bottom = (decltype(RECTANGLE::bottom))(point.y() + size.cy());
+//   rectangle.left() = (decltype(RECTANGLE::left))point.x();
+//   rectangle.top() = (decltype(RECTANGLE::top))point.y();
+//   rectangle.right() = (decltype(RECTANGLE::right))(point.x() + size.cx());
+//   rectangle.bottom() = (decltype(RECTANGLE::bottom))(point.y() + size.cy());
 //
 //   return rectangle;
 //
@@ -769,11 +769,11 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //
 //
 //template < primitive_rectangle RECTANGLE_TYPE >
-//constexpr auto width(RECTANGLE_TYPE & rectangle) { return rectangle.right - rectangle.left; }
+//constexpr auto width(RECTANGLE_TYPE & rectangle) { return rectangle.right() - rectangle.left(); }
 //
 //
 //template < primitive_rectangle RECTANGLE_TYPE >
-//constexpr auto height(RECTANGLE_TYPE & rectangle) { return rectangle.bottom - rectangle.top; }
+//constexpr auto height(RECTANGLE_TYPE & rectangle) { return rectangle.bottom() - rectangle.top(); }
 //
 //
 //template < typename W, typename H >
@@ -785,17 +785,17 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //
 //
 //template < primitive_rectangle RECTANGLE_TYPE >
-//constexpr auto is_empty_rectangle(RECTANGLE_TYPE & rectangle) { return ::is_null(rectangle) || rectangle.right <= rectangle.left || rectangle.bottom <= rectangle.top; }
+//constexpr auto is_empty_rectangle(RECTANGLE_TYPE & rectangle) { return ::is_null(rectangle) || rectangle.right() <= rectangle.left() || rectangle.bottom() <= rectangle.top(); }
 //
 //
 //template < primitive_rectangle RECTANGLE_TYPE >
 //bool is_null_rectangle(const RECTANGLE_TYPE & rectangle)
 //{
 //
-//   return rectangle.left == (decltype(RECTANGLE_TYPE::left))0
-//      && rectangle.top == (decltype(RECTANGLE_TYPE::top))0
-//      && rectangle.right == (decltype(RECTANGLE_TYPE::right))0
-//      && rectangle.bottom == (decltype(RECTANGLE_TYPE::bottom))0;
+//   return rectangle.left() == (decltype(RECTANGLE_TYPE::left))0
+//      && rectangle.top() == (decltype(RECTANGLE_TYPE::top))0
+//      && rectangle.right() == (decltype(RECTANGLE_TYPE::right))0
+//      && rectangle.bottom() == (decltype(RECTANGLE_TYPE::bottom))0;
 //
 //}
 //
@@ -823,7 +823,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //inline bool contains_x(const RECTANGLE & rectangle, X x)
 //{
 //
-//   return x >= rectangle.left && x <= rectangle.right;
+//   return x >= rectangle.left() && x <= rectangle.right();
 //
 //}
 //
@@ -832,7 +832,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //inline bool contains_y(const RECTANGLE & rectangle, Y y)
 //{
 //
-//   return y >= rectangle.top && y <= rectangle.bottom;
+//   return y >= rectangle.top() && y <= rectangle.bottom();
 //
 //}
 //
@@ -850,10 +850,10 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //inline RECTANGLE_TYPE & inflate(RECTANGLE_TYPE & rectangle, L l, T t, R r, B b)
 //{
 //
-//   rectangle.left = (decltype(RECTANGLE_TYPE::left))(rectangle.left - l);
-//   rectangle.top = (decltype(RECTANGLE_TYPE::top))(rectangle.top - t);
-//   rectangle.right = (decltype(RECTANGLE_TYPE::right))(rectangle.right + r);
-//   rectangle.bottom = (decltype(RECTANGLE_TYPE::bottom))(rectangle.bottom + b);
+//   rectangle.left() = (decltype(RECTANGLE_TYPE::left))(rectangle.left() - l);
+//   rectangle.top() = (decltype(RECTANGLE_TYPE::top))(rectangle.top() - t);
+//   rectangle.right() = (decltype(RECTANGLE_TYPE::right))(rectangle.right() + r);
+//   rectangle.bottom() = (decltype(RECTANGLE_TYPE::bottom))(rectangle.bottom() + b);
 //
 //   return rectangle;
 //
@@ -864,7 +864,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //inline RECTANGLE_TYPE & inflate(RECTANGLE_TYPE & rectangle, const RECT_TYPE2 & rect2)
 //{
 //
-//   return rect_inflate(rectangle, rect2.left, rect2.top, rect2.right, rect2.bottom);
+//   return rect_inflate(rectangle, rect2.left(), rect2.top(), rect2.right(), rect2.bottom());
 //
 //}
 //
@@ -873,10 +873,10 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //inline RECTANGLE_TYPE & multiply_inline(RECTANGLE_TYPE & rectangle, const RECT_TYPE2 & rect2)
 //{
 //
-//   rectangle.left *= rect2.left;
-//   rectangle.top *= rect2.top;
-//   rectangle.right *= rect2.right;
-//   rectangle.bottom *= rect2.bottom;
+//   rectangle.left() *= rect2.left();
+//   rectangle.top() *= rect2.top();
+//   rectangle.right() *= rect2.right();
+//   rectangle.bottom() *= rect2.bottom();
 //
 //   return rectangle;
 //
@@ -886,10 +886,10 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //inline RECTANGLE_TYPE & deflate(RECTANGLE_TYPE & rectangle, L l, T t, R r, B b)
 //{
 //
-//   rectangle.left = (decltype(RECTANGLE_TYPE::left))(rectangle.left + l);
-//   rectangle.top = (decltype(RECTANGLE_TYPE::top))(rectangle.top + t);
-//   rectangle.right = (decltype(RECTANGLE_TYPE::right))(rectangle.right - r);
-//   rectangle.bottom = (decltype(RECTANGLE_TYPE::bottom))(rectangle.bottom - b);
+//   rectangle.left() = (decltype(RECTANGLE_TYPE::left))(rectangle.left() + l);
+//   rectangle.top() = (decltype(RECTANGLE_TYPE::top))(rectangle.top() + t);
+//   rectangle.right() = (decltype(RECTANGLE_TYPE::right))(rectangle.right() - r);
+//   rectangle.bottom() = (decltype(RECTANGLE_TYPE::bottom))(rectangle.bottom() - b);
 //
 //   return rectangle;
 //
@@ -900,7 +900,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //inline RECTANGLE_TYPE & deflate(RECTANGLE_TYPE & rectangle, const RECT_TYPE2 & rect2)
 //{
 //
-//   return deflate(rectangle, rect2.left, rect2.top, rect2.right, rect2.bottom);
+//   return deflate(rectangle, rect2.left(), rect2.top(), rect2.right(), rect2.bottom());
 //
 //}
 //
@@ -941,7 +941,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //
 //
 //template < primitive_rectangle RECTANGLE_TYPE >
-//inline RECTANGLE_TYPE & swap_left_right(RECTANGLE_TYPE & rectangle) { __swap(rectangle.left, rectangle.right); return rectangle; }
+//inline RECTANGLE_TYPE & swap_left_right(RECTANGLE_TYPE & rectangle) { __swap(rectangle.left(), rectangle.right()); return rectangle; }
 //
 //
 //
@@ -1094,20 +1094,20 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //
 //
 //template < primitive_rectangle RECTANGLE >
-//inline auto width(const RECTANGLE & rectangle) { return rectangle.right - rectangle.left; }
+//inline auto width(const RECTANGLE & rectangle) { return rectangle.right() - rectangle.left(); }
 //
 //template < primitive_rectangle RECTANGLE >
-//inline auto height(const RECTANGLE & rectangle) { return rectangle.bottom - rectangle.top; }
+//inline auto height(const RECTANGLE & rectangle) { return rectangle.bottom() - rectangle.top(); }
 //
 //template < primitive_rectangle RECTANGLE >
 //inline auto area(const RECTANGLE & rectangle) { return maximum(width(rectangle), 0) * maximum(height(rectangle), 0); }
 //
 //
 //template < primitive_rectangle RECTANGLE >
-//inline auto left(const RECTANGLE & rectangle) { return rectangle.left; }
+//inline auto left(const RECTANGLE & rectangle) { return rectangle.left(); }
 //
 //template < primitive_rectangle RECTANGLE >
-//inline auto top(const RECTANGLE & rectangle) { return rectangle.top; }
+//inline auto top(const RECTANGLE & rectangle) { return rectangle.top(); }
 //
 //
 //
@@ -1132,10 +1132,10 @@ DECLARE_ENUMERATION(e_align, enum_align);
 ////inline void copy(RECTANGLE & rectangle, const XYDim & xydim)
 ////{
 ////
-////   rectangle.left = (decltype(rectangle.left)) xydim.X;
-////   rectangle.top = (decltype(rectangle.top)) xydim.Y;
-////   rectangle.right = (decltype(rectangle.right))(xydim.X + xydim.Width);
-////   rectangle.bottom = (decltype(rectangle.bottom))(xydim.Y + xydim.Height);
+////   rectangle.left() = (decltype(rectangle.left())) xydim.X;
+////   rectangle.top() = (decltype(rectangle.top())) xydim.Y;
+////   rectangle.right() = (decltype(rectangle.right()))(xydim.X + xydim.Width);
+////   rectangle.bottom() = (decltype(rectangle.bottom()))(xydim.Y + xydim.Height);
 ////
 ////}
 ////
@@ -1144,10 +1144,10 @@ DECLARE_ENUMERATION(e_align, enum_align);
 ////inline void copy(XYDim & xydim, const RECTANGLE & rectangle)
 ////{
 ////
-////   xydim.X = (decltype(xydim.X)) rectangle.left;
-////   xydim.Y = (decltype(xydim.Y)) rectangle.top;
-////   xydim.Width = (decltype(xydim.Width))(rectangle.right + rectangle.left);
-////   xydim.Height = (decltype(xydim.Height))(rectangle.bottom + rectangle.top);
+////   xydim.X = (decltype(xydim.X)) rectangle.left();
+////   xydim.Y = (decltype(xydim.Y)) rectangle.top();
+////   xydim.Width = (decltype(xydim.Width))(rectangle.right() + rectangle.left());
+////   xydim.Height = (decltype(xydim.Height))(rectangle.bottom() + rectangle.top());
 ////
 ////}
 //
@@ -1165,7 +1165,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 ////inline ::i32 height(const ::rectangle_i32 &rectangle) { return ::rect_height(rectangle); }
 ////inline ::i32 area(const ::rectangle_i32 &rectangle) { return ::rect_area(rectangle); }
 ////inline bool is_empty(const ::rectangle_i32 &rectangle) { return ::is_rect_empty(rectangle); }
-////inline void swap_left_right(::rectangle_i32 & rectangle) noexcept { ::__swap(rectangle.left, rectangle.right); }
+////inline void swap_left_right(::rectangle_i32 & rectangle) noexcept { ::__swap(rectangle.left(), rectangle.right()); }
 //
 ////inline ::i32 width(const ::rectangle_i32 &rectangle) { return ::width(&rectangle); }
 ////inline ::i32 height(const ::rectangle_i32 &rectangle) { return ::height(&rectangle); }
@@ -1199,7 +1199,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 ////inline i64 height(const ::rectangle_i64 & rectangle) { return ::rect_height(rectangle); }
 ////inline i64 area(const ::rectangle_i64 & rectangle) { return ::rect_area(rectangle); }
 ////inline bool is_empty(const ::rectangle_i64 & rectangle) { return ::is_rect_empty(rectangle); }
-////inline void swap_left_right(::rectangle_i64 & rectangle) noexcept { ::__swap(rectangle.left, rectangle.right); }
+////inline void swap_left_right(::rectangle_i64 & rectangle) noexcept { ::__swap(rectangle.left(), rectangle.right()); }
 //
 ////inline i64 width(const ::rectangle_i64 & rectangle) { return ::width(&rectangle); }
 ////inline i64 height(const ::rectangle_i64 & rectangle) { return ::height(&rectangle); }
@@ -1226,7 +1226,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //////inline auto height(const RECTANGLE & rectangle) { return ::height(&rectangle); }
 ////inline float area(const ::rectangle_f32 & rectangle) { return ::rect_area(rectangle); }
 ////inline bool is_empty(const ::rectangle_f32 & rectangle) { return ::is_rect_empty(rectangle); }
-////inline void swap_left_right(::rectangle_f32 & rectangle) noexcept { ::__swap(rectangle.left, rectangle.right); }
+////inline void swap_left_right(::rectangle_f32 & rectangle) noexcept { ::__swap(rectangle.left(), rectangle.right()); }
 //
 ////inline float width(const ::rectangle_f32& rectangle) { return ::width(&rectangle); }
 //////inline float height(const ::rectangle_f32& rectangle) { return ::height(&rectangle); }
@@ -1254,7 +1254,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //////inline double height(const ::rectangle_f64  & rectangle) { return ::rect_height(rectangle); }
 ////inline double area(const ::rectangle_f64 & rectangle) { return ::rect_area(rectangle); }
 ////inline bool is_empty(const ::rectangle_f64 & rectangle) { return ::is_rect_empty(rectangle); }
-////inline void swap_left_right(::rectangle_f64 & rectangle) noexcept { ::__swap(rectangle.left, rectangle.right); }
+////inline void swap_left_right(::rectangle_f64 & rectangle) noexcept { ::__swap(rectangle.left(), rectangle.right()); }
 //
 ////inline double width(const ::rectangle_f64 & rectangle) { return ::width(&rectangle); }
 ////inline double height(const ::rectangle_f64& rectangle) { return ::height(&rectangle); }
@@ -1307,29 +1307,29 @@ DECLARE_ENUMERATION(e_align, enum_align);
 ////   if (count <= 0)
 ////   {
 ////
-////      rect.left = 0;
-////      rect.top = 0;
-////      rect.right = 0;
-////      rect.bottom = 0;
+////      rect.left() = 0;
+////      rect.top() = 0;
+////      rect.right() = 0;
+////      rect.bottom() = 0;
 ////
 ////   }
 ////   else
 ////   {
-////      rect.left = lppoint[0].x();
-////      rect.top = lppoint[0].y();
-////      rect.right = lppoint[0].x();
-////      rect.bottom = lppoint[0].y();
+////      rect.left() = lppoint[0].x();
+////      rect.top() = lppoint[0].y();
+////      rect.right() = lppoint[0].x();
+////      rect.bottom() = lppoint[0].y();
 ////
 ////      for (i32 i = 1; i < count; i++)
 ////      {
-////         if (lppoint[i].x() < rect.left)
-////            rect.left = lppoint[i].x();
-////         else if (lppoint[i].x() > rect.right)
-////            rect.right = lppoint[i].x();
-////         if (lppoint[i].y() < rect.top)
-////            rect.top = lppoint[i].y();
-////         else if (lppoint[i].y() > rect.bottom)
-////            rect.bottom = lppoint[i].y();
+////         if (lppoint[i].x() < rect.left())
+////            rect.left() = lppoint[i].x();
+////         else if (lppoint[i].x() > rect.right())
+////            rect.right() = lppoint[i].x();
+////         if (lppoint[i].y() < rect.top())
+////            rect.top() = lppoint[i].y();
+////         else if (lppoint[i].y() > rect.bottom())
+////            rect.bottom() = lppoint[i].y();
 ////      }
 ////
 ////   }
@@ -1432,16 +1432,16 @@ DECLARE_ENUMERATION(e_align, enum_align);
 ////
 ////inline void copy(rectangle_i32 & rectDst, const ::winrt::Windows::Foundation::Rect * prectSrc)
 ////{
-////   rectDst->left = (::i32) prectSrc->X;
-////   rectDst->top = (::i32)prectSrc->Y;
-////   rectDst->right = (::i32) (prectSrc->X + prectSrc->Width);
-////   rectDst->bottom = (::i32) (prectSrc->Y + prectSrc->Height);
+////   rectDst->left() = (::i32) prectSrc->X;
+////   rectDst->top() = (::i32)prectSrc->Y;
+////   rectDst->right() = (::i32) (prectSrc->X + prectSrc->Width);
+////   rectDst->bottom() = (::i32) (prectSrc->Y + prectSrc->Height);
 ////}
 ////
 ////inline void copy(::winrt::Windows::Foundation::Rect& rectDst, rectangle_i32* prectSrc)
 ////{
-////   rectDst->X = (float) prectSrc->left;
-////   rectDst->Y = (float) prectSrc->top;
+////   rectDst->X = (float) prectSrc->left();
+////   rectDst->Y = (float) prectSrc->top();
 ////   rectDst->Width = (float) prectSrc->width();
 ////   rectDst->Height = (float) prectSrc->height();
 ////}
@@ -1505,10 +1505,10 @@ DECLARE_ENUMERATION(e_align, enum_align);
 ////   else
 ////   {
 ////
-////      rectangle.left = minimum((decltype(rectangle.left))rectangle.left, (decltype(rectangle.left))r.left);
-////      rectangle.right = maximum((decltype(rectangle.right))rectangle.right, (decltype(rectangle.right))r.right);
-////      rectangle.top = minimum((decltype(rectangle.top))rectangle.top, (decltype(rectangle.top))r.top);
-////      rectangle.bottom = maximum((decltype(rectangle.bottom))rectangle.bottom, (decltype(rectangle.bottom))r.bottom);
+////      rectangle.left() = minimum((decltype(rectangle.left()))rectangle.left(), (decltype(rectangle.left()))r.left());
+////      rectangle.right() = maximum((decltype(rectangle.right()))rectangle.right(), (decltype(rectangle.right()))r.right());
+////      rectangle.top() = minimum((decltype(rectangle.top()))rectangle.top(), (decltype(rectangle.top()))r.top());
+////      rectangle.bottom() = maximum((decltype(rectangle.bottom()))rectangle.bottom(), (decltype(rectangle.bottom()))r.bottom());
 ////
 ////   }
 ////
@@ -1528,10 +1528,10 @@ DECLARE_ENUMERATION(e_align, enum_align);
 ////   else
 ////   {
 ////
-////      rectangle.left = maximum((decltype(rectangle.left))rectangle.left, (decltype(rectangle.left))r.left);
-////      rectangle.right = minimum((decltype(rectangle.right))rectangle.right, (decltype(rectangle.right))r.right);
-////      rectangle.top = maximum((decltype(rectangle.top))rectangle.top, (decltype(rectangle.top))r.top);
-////      rectangle.bottom = minimum((decltype(rectangle.bottom))rectangle.bottom, (decltype(rectangle.bottom))r.bottom);
+////      rectangle.left() = maximum((decltype(rectangle.left()))rectangle.left(), (decltype(rectangle.left()))r.left());
+////      rectangle.right() = minimum((decltype(rectangle.right()))rectangle.right(), (decltype(rectangle.right()))r.right());
+////      rectangle.top() = maximum((decltype(rectangle.top()))rectangle.top(), (decltype(rectangle.top()))r.top());
+////      rectangle.bottom() = minimum((decltype(rectangle.bottom()))rectangle.bottom(), (decltype(rectangle.bottom()))r.bottom());
 ////
 ////      if (::width(rectangle) == 0 || height(rectangle) == 0)
 ////      {
@@ -1555,19 +1555,19 @@ DECLARE_ENUMERATION(e_align, enum_align);
 ////inline constexpr auto __vert(const SIZE & size) { return size.cy(); }
 ////
 ////inline point_i32 & top_left(const ::rectangle_i32 &rectangle) { return *(point_i32 *)&rectangle; }
-////inline point_i32 & bottom_right(const ::rectangle_i32 &rectangle) { return *(point_i32 *)&rectangle.right; }
+////inline point_i32 & bottom_right(const ::rectangle_i32 &rectangle) { return *(point_i32 *)&rectangle.right(); }
 //////inline point_i32 & top_left(const ::rectangle_i32 &rectangle) { return top_left(&rectangle); }
 //////inline point_i32 & bottom_right(const ::rectangle_i32 &rectangle) { return bottom_right(&rectangle); }
 ////
 ////
 ////inline point_i64 & top_left(const ::rectangle_i64 & rectangle) { return *(point_i64 *)&rectangle; }
-////inline point_i64 & bottom_right(const ::rectangle_i64 & rectangle) { return *(point_i64 *)&rectangle.right; }
+////inline point_i64 & bottom_right(const ::rectangle_i64 & rectangle) { return *(point_i64 *)&rectangle.right(); }
 //////inline point_i64 & top_left(const ::rectangle_i64 & rectangle) { return top_left(&rectangle); }
 //////inline point_i64 & bottom_right(const ::rectangle_i64 & rectangle) { return bottom_right(&rectangle); }
 ////
 ////
 ////inline point_f64 & top_left(const ::rectangle_f64 & rectangle) { return *(point_f64 *)&rectangle; }
-////inline point_f64 & bottom_right(const ::rectangle_f64 & rectangle) { return *(point_f64 *)&rectangle.right; }
+////inline point_f64 & bottom_right(const ::rectangle_f64 & rectangle) { return *(point_f64 *)&rectangle.right(); }
 //////inline point_f64 & top_left(const ::rectangle_f64 & rectangle) { return top_left(&rectangle); }
 //////inline point_f64 & bottom_right(const ::rectangle_f64 & rectangle) { return bottom_right(&rectangle); }
 //
@@ -1734,13 +1734,13 @@ DECLARE_ENUMERATION(e_align, enum_align);
 ////   inline void deflate(RECTANGLE & rectangle, double dLeftRate, double dRightRate, double dTopRate, double dBottomRate)
 ////   {
 ////
-////      rectangle.left = range_rate(rectangle.left, rectangle.right, dLeftRate);
+////      rectangle.left() = range_rate(rectangle.left(), rectangle.right(), dLeftRate);
 ////
-////      rectangle.right = range_rate(rectangle.right, rectangle.left, dRightRate);
+////      rectangle.right() = range_rate(rectangle.right(), rectangle.left(), dRightRate);
 ////
-////      rectangle.top = range_rate(rectangle.top, rectangle.bottom, dTopRate);
+////      rectangle.top() = range_rate(rectangle.top(), rectangle.bottom(), dTopRate);
 ////
-////      rectangle.bottom = range_rate(rectangle.bottom, rectangle.top, dBottomRate);
+////      rectangle.bottom() = range_rate(rectangle.bottom(), rectangle.top(), dBottomRate);
 ////
 ////   }
 ////
@@ -1906,6 +1906,21 @@ using lines_i32 = lines_base < ::i32 >;
 using lines_i64 = lines_base < ::i64 >;
 using lines_f32 = lines_base < ::f32 >;
 using lines_f64 = lines_base < ::f64 >;
+
+
+
+
+
+template < struct_rectangle RECTANGLE1, primitive_rectangle RECTANGLE2 >
+inline void copy(RECTANGLE1 * prectangle1, const RECTANGLE2 * prectangle2)
+{
+
+   prectangle1->left = (decltype(prectangle1->left))prectangle2->left();
+   prectangle1->top = (decltype(prectangle1->top))prectangle2->top();
+   prectangle1->right = (decltype(prectangle1->right))prectangle2->right();
+   prectangle1->bottom = (decltype(prectangle1->bottom))prectangle2->bottom();
+
+}
 
 
 

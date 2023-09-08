@@ -685,6 +685,7 @@
     <ClCompile Include="user\user\document.cpp" />
     <ClCompile Include="user\user\document_manager.cpp" />
     <ClCompile Include="user\user\document_manager_container.cpp" />
+    <ClCompile Include="user\user\form_handler.cpp" />
     <ClCompile Include="user\user\frame_window.cpp" />
     <ClCompile Include="user\user\hotplugin.cpp" />
     <ClCompile Include="user\user\impact.cpp" />
@@ -799,11 +800,12 @@
     <ClInclude Include="user\simple\_impl.h" />
     <ClInclude Include="user\simple\_component.h" />
     <ClInclude Include="user\user\data_exchange.h" />
-    <ClInclude Include="user\user\form_maker.h" />
+    <ClInclude Include="user\user\form_handler.h" />
     <ClInclude Include="user\user\image_list.h" />
     <ClInclude Include="user\user\impact_data.h" />
     <ClInclude Include="user\user\impact_exception.h" />
     <ClInclude Include="user\user\options_impact.h" />
+    <ClInclude Include="user\user\options_impact_handler.h" />
     <ClInclude Include="user\user\picture_impl.h" />
     <ClInclude Include="user\user\server.h" />
     <ClInclude Include="user\user\show.h" />

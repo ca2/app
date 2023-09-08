@@ -36,6 +36,10 @@ namespace acme
       string                              m_strSchema;
 
 
+      string_array                        m_straMatterLocatorPriority;
+      string_array                        m_straMatterLocator;
+
+
       context();
       ~context() override;
 
@@ -49,7 +53,8 @@ namespace acme
 
       inline ::context_image* context_image() { return m_pcontextimage; }
 
-
+      virtual bool is_system() const;
+      virtual bool is_session() const;
 
       virtual void translate_text_data(::text::data * ptextdata);
       virtual ::text::text __text(const ::atom& atom) override;
@@ -65,8 +70,8 @@ namespace acme
       inline ::os_context* os_context() { return m_poscontext; }
 
 
-      inline ::dir_context * dir() { return m_pdir; }
-      inline ::file_context * file() { return m_pfile; }
+      virtual ::dir_context* dir();
+      virtual ::file_context* file();
       ::dir_system * dirsystem();
       ::file_system * filesystem();
 
@@ -80,6 +85,35 @@ namespace acme
       virtual ::file::path defer_process_path(::file::path path);
 
       virtual void fork_count(::count iCount, const ::function < void(index, index, index, index) > & function, const ::procedure & procedureCompletion, index iStart = 0);
+
+
+
+      virtual string get_locale();
+      virtual string get_schema();
+
+
+      virtual void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const string & strLocale, const string & strSchema);
+      virtual string get_locale_schema_dir();
+
+
+
+      virtual string matter_locator(string strApp);
+      virtual string matter_locator(::acme::application * papp);
+
+
+      virtual void add_matter_locator(string strApp);
+      virtual void add_matter_locator(::acme::application * papp);
+
+
+      virtual ::file::path defer_process_matter_path(::file::path path);
+
+      //virtual ::file::path defer_process_relative_path(const ::file::path & path);
+
+      virtual ::file::path get_matter_path(string strMatter);
+      virtual ::file::path get_matter_cache_path(::file::path path);
+      virtual ::file::path side_get_matter_path(string strMatter);
+
+
 
 
    };

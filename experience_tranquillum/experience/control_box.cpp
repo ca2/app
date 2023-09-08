@@ -43,9 +43,9 @@ namespace experience_tranquillum
 
       }
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
-      if (rectangleClient.area() <= 0)
+      if (rectangleX.area() <= 0)
          return;
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
@@ -68,7 +68,7 @@ namespace experience_tranquillum
       if (m_colorBackground.non_transparent())
       {
 
-         pgraphics->fill_rectangle(rectangleClient, m_colorBackground);
+         pgraphics->fill_rectangle(rectangleX, m_colorBackground);
 
       }
 

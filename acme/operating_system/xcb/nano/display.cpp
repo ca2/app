@@ -13,6 +13,7 @@
 #include "acme/platform/acme.h"
 
 
+
 struct MWMHints
 {
 
@@ -382,7 +383,7 @@ namespace xcb
 //}
 //
 
-   display * display::get(::particle * pparticle, bool bBranch, void * pX11Display)
+   display * display::get(::particle * pparticle, bool bBranch, void * pX11Display, void * pXcbConnection)
    {
 
       critical_section_lock lock(::acme::acme::g_pacme->globals_critical_section());
@@ -390,16 +391,24 @@ namespace xcb
       if (g_p == nullptr)
       {
 
+         ::information() << "xcb nano display::get (2)";
+
          auto p = memory_new display;
 
          p->initialize(pparticle);
 
          p->add_listener(p);
 
+         ::information() << "xcb nano display::get pX11Display " << (iptr) pX11Display;
+
          p->m_pX11Display = pX11Display;
+
+         p->m_pconnection = (xcb_connection_t *) pXcbConnection;
 
          if (bBranch)
          {
+
+            ::information() << "xcb nano display::get branch_synchronously";
 
             lock.unlock();
 
@@ -408,6 +417,8 @@ namespace xcb
          }
          else
          {
+
+            ::information() << "xcb nano display::get init_task";
 
             p->init_task();
 
@@ -531,6 +542,8 @@ namespace xcb
    void display::message_loop()
    {
 
+      ::information() << "xcb nano display::message_loop";
+
       bool bHandled1;
 
       bool bHandled2;
@@ -582,10 +595,14 @@ namespace xcb
    void display::init_task()
    {
 
+      information() << "xcb nano display::init_task";
+
       if(acmesystem()->m_ewindowing == e_windowing_none)
       {
 
          set_main_user_thread();
+
+         information() << "xcb nano display::init_task setting e_windowing_xcb";
 
          acmesystem()->m_ewindowing = e_windowing_xcb;
 
@@ -596,18 +613,29 @@ namespace xcb
 
          m_pX11Display = x11_get_display(this);
 
+         information() << "xcb nano display::init_task got new x11_display : " << (::iptr) m_pX11Display ;
+
       }
 
-#if defined(WITH_XCB)
+//#if defined(WITH_XCB) && !defined(WITH_X11)
 
-      m_pconnection = (xcb_connection_t *) acmesystem()->m_pnode->get_os_xcb_connection();
+//#endif
 
-#endif
+      if(!m_pconnection && m_pX11Display)
+      {
+
+         m_pconnection = x11_display_xcb_connection(m_pX11Display);
+
+         information() << "xcb nano display::init_task setting x11_display_xcb_connection : " << (::iptr) m_pconnection;
+
+      }
 
       if(!m_pconnection)
       {
 
-         m_pconnection = x11_display_xcb_connection(m_pX11Display);
+         m_pconnection = (xcb_connection_t *) acmesystem()->m_pnode->get_os_xcb_connection();
+
+         information() << "xcb nano display::init_task setting get_os_xcb_connection : " << (::iptr) m_pconnection;
 
       }
 
@@ -620,9 +648,13 @@ namespace xcb
 
       }
 
-      auto cookie = xcb_render_query_pict_formats_unchecked(m_pconnection);
+      information() << "xcb nano display::init_task setting xcb_render_query_pict_formats";
+
+      auto cookie = xcb_render_query_pict_formats(m_pconnection);
 
       ::acme::malloc preply(xcb_render_query_pict_formats_reply(m_pconnection, cookie, nullptr));
+
+      information() << "xcb nano display::init_task setting xcb_render_query_pict_formats_reply : " << (::iptr) preply.m_p;
 
       m_prender_query_pict_formats_reply2 = preply;
 
@@ -693,11 +725,15 @@ namespace xcb
 
       const xcb_setup_t * psetup = xcb_get_setup(m_pconnection);
 
+      information() << "xcb nano display::init_task setting xcb_setup_roots_iterator";
+
       m_pscreen = xcb_setup_roots_iterator(psetup).data;
 
       m_windowRoot = m_pscreen->root;
 
       xcb_depth_iterator_t depthiterator = xcb_screen_allowed_depths_iterator(m_pscreen);
+
+      information() << "xcb nano display::init_task xcb_screen_allowed_depths_iterator : " << (::iptr) depthiterator.rem;
 
       m_pdepth = nullptr;
 
@@ -732,6 +768,8 @@ namespace xcb
 
       xcb_visualtype_iterator_t visualtypeiterator = xcb_depth_visuals_iterator(m_pdepth);
 
+      information() << "xcb nano display::init_task xcb_depth_visuals_iterator : " << (::iptr) visualtypeiterator.rem;
+
       while (visualtypeiterator.rem)
       {
 
@@ -751,7 +789,7 @@ namespace xcb
       if (!m_pvisualtype)
       {
 
-         output_error_message("ERROR: screen does not support true Color");
+         error("ERROR: screen does not support true Color");
 
          xcb_disconnect(m_pconnection);
 
@@ -763,7 +801,7 @@ namespace xcb
 
       {
 
-         auto cookie = xcb_create_colormap_checked(
+         auto cookie = xcb_create_colormap(
             m_pconnection,
             XCB_COLORMAP_ALLOC_NONE,
             m_colormap,
@@ -775,7 +813,7 @@ namespace xcb
          if (!estatus)
          {
 
-            output_error_message("ERROR: failed to create colormap");
+            error("ERROR: failed to create colormap");
 
             xcb_disconnect(m_pconnection);
 
@@ -783,9 +821,13 @@ namespace xcb
 
          }
 
+         information() << "xcb nano display::init_task colormap : " << (::iptr) m_colormap;
+
       }
 
       _select_input(m_windowRoot, XCB_EVENT_MASK_PROPERTY_CHANGE);
+
+      information() << "xcb nano display::init_task creating helper window";
 
       {
 
@@ -811,11 +853,15 @@ namespace xcb
          if (!estatus)
          {
 
+            error() << "xcb nano display::init_task failed to create helper window";
+
             throw exception(error_failed);
 
          }
 
          m_windowHelper = window;
+
+         information() << "xcb nano display::init_task created helper window : " << (::iptr) m_windowHelper;
 
       }
 
@@ -847,9 +893,15 @@ namespace xcb
    void display::run()
    {
 
+      information() << "xcb nano display::run";
+
       ::task_set_name("xcb:display:run");
 
+      information() << "xcb nano display::run set task name";
+
       set_main_user_thread();
+
+      information() << "xcb nano display::run set main user thread";
 
       message_loop();
 
@@ -879,11 +931,13 @@ namespace xcb
       event.type = intern_atom("kick_idle", true);
       event.data.data32[0] = 0;
 
-      xcb_send_event(m_pconnection,
+      auto cookie = xcb_send_event(m_pconnection,
                      false,
                      m_windowHelper,
                      XCB_EVENT_MASK_NO_EVENT,
                      reinterpret_cast<const char *>(&event));
+
+      auto estatus = _request_check(cookie);
 
       xcb_flush(m_pconnection);
 
@@ -908,7 +962,6 @@ namespace xcb
                information("kick_idle\n");
 
             }
-
 
             return true;
 
@@ -1054,7 +1107,7 @@ namespace xcb
 
       auto window = (xcb_window_t) _window_get_long_property(m_windowRoot, intern_atom(::x11::e_atom_net_active_window, false), XCB_ATOM_WINDOW);
 
-      windowing_output_debug_string("\n::_get_active_window 2");
+      windowing_output_debug_string("::_get_active_window 2");
 
       return window;
 
@@ -1064,7 +1117,7 @@ namespace xcb
    ::e_status display::_set_active_window(xcb_window_t window)
    {
 
-      windowing_output_debug_string("\n::set_active_window 1");
+      windowing_output_debug_string("::set_active_window 1");
 
       //display_lock displaylock(xcb_display());
 
@@ -1084,7 +1137,7 @@ namespace xcb
 
       }
 
-      windowing_output_debug_string("\n::set_active_window 2");
+      windowing_output_debug_string("::set_active_window 2");
 
       return estatus;
 
@@ -1422,7 +1475,9 @@ namespace xcb
    {
 
       auto estatus1 = _erase_net_wm_state_hidden(window);
+
       auto estatus2 = _add_net_wm_state(window,::x11::e_atom_net_wm_state_above);
+
       auto estatus3 = _erase_net_wm_state_hidden(window);
 
       if (!estatus1 || !estatus2 || estatus3)
@@ -1442,7 +1497,9 @@ namespace xcb
    {
 
       auto estatus1 = _add_net_wm_state(window, ::x11::e_atom_net_wm_state_hidden);
+
       auto estatus2 = _erase_net_wm_state_above(window);
+
       auto estatus3 = _erase_net_wm_state_below(window);
 
       if (!estatus1 || !estatus2 || estatus3)
@@ -1675,8 +1732,8 @@ namespace xcb
       return
          estatus;
 
-
    }
+
 
    ::e_status display::_destroy_window(xcb_window_t window)
    {
@@ -1831,7 +1888,7 @@ namespace xcb
       if (!preply)
       {
 
-         information() << "freebsd::interaction_impl::_native_create_window_ex XGetWindowAttributes failed.";
+         information() << "xcb::display::_get_window_geometry xcb_get_geometry_reply failed.";
 
          return
             error_failed;
@@ -1876,7 +1933,7 @@ namespace xcb
 
       }
 
-      windowing_output_debug_string("\n::wm_nodecorations 2");
+      windowing_output_debug_string("::wm_nodecorations 2");
 
       if (!estatus)
       {
@@ -1902,7 +1959,6 @@ namespace xcb
       return { width, height };
 
    }
-
 
 
 } // namespace xcb

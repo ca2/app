@@ -41,6 +41,7 @@ namespace experience
 
          MESSAGE_LINK(e_message_left_button_down   , pchannel, pdockmanager, &::experience::dock_manager::dock_button_on_message_left_button_down  );
          MESSAGE_LINK(e_message_mouse_move         , pchannel, pdockmanager, &::experience::dock_manager::dock_button_on_message_mouse_move        );
+         MESSAGE_LINK(e_message_parent_mouse_move  , pchannel, pdockmanager, &::experience::dock_manager::dock_button_on_message_mouse_move);
          MESSAGE_LINK(e_message_left_button_up     , pchannel, pdockmanager, &::experience::dock_manager::dock_button_on_message_left_button_up    );
 
       }
@@ -66,7 +67,7 @@ namespace experience
       else
       {
 
-         information("experience::button");
+         //information("experience::button");
 
       }
 
@@ -82,7 +83,7 @@ namespace experience
    void button::_001OnClip(::draw2d::graphics_pointer & pgraphics)
    {
       
-      return ::user::button::_001OnClip(pgraphics);
+      //return ::user::button::_001OnClip(pgraphics);
 //
 //
 //#ifdef MACOS
@@ -108,19 +109,19 @@ namespace experience
 //
 //         ::aura::draw_context * pdrawcontext = pgraphics->::aura::simple_chain < ::aura::draw_context >::get_last();
 //
-//         ::rectangle_i32 rectangleClient;
+//         ::rectangle_i32 rectangleX;
 //
 //         bool bFirst = true;
 //
 //         if (pdrawcontext != nullptr)
 //         {
 //
-//            client_rectangle(rectangleClient);
+//            this->rectangle(rectangleX);
 //
-//            rectangleClient.bottom++;
-//            rectangleClient.right++;
+//            rectangleX.bottom()++;
+//            rectangleX.right()++;
 //
-//            rectangleClip = rectangleClient;
+//            rectangleClip = rectangleX;
 //
 //            bFirst = false;
 //
@@ -142,7 +143,7 @@ namespace experience
 //            while (pinteraction != nullptr)
 //            {
 //
-//               pinteraction->client_rectangle(rectangleFocus);
+//               pinteraction->rectangle(rectangleFocus);
 //
 //               pinteraction->client_to_host(rectangleFocus);
 //
@@ -194,17 +195,17 @@ namespace experience
             }
 
          }
-         else if(m_ebutton == e_button_dock)
-         {
+         //else if(m_ebutton == e_button_dock)
+         //{
 
-            if(m_pcontrolbox->m_pframewindow->dock_manager()->window_is_docking())
-            {
+         //   if(m_pcontrolbox->m_pframewindow->dock_manager()->window_is_docking())
+         //   {
 
-               return __new(::item(::e_element_non_client));
+         //      return __new(::item(::e_element_non_client));
 
-            }
+         //   }
 
-         }
+         //}
 
       }
 

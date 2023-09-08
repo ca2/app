@@ -9,7 +9,7 @@
 #include "frame_005.h"
 #include "frame_008.h"
 #include "frame_011.h"
-#include "frame_013.h"
+#include "frame_022.h"
 #include "frame_Minimal001.h"
 
 
@@ -76,7 +76,7 @@ namespace experience_core
       stra.add("005");
       stra.add("008");
       stra.add("011");
-      stra.add("013");
+      stra.add("022");
       stra.add("Minimal001");
 
    }
@@ -117,10 +117,10 @@ namespace experience_core
          return memory_new ::experience_core::frame_011;
 
       }
-      else if (strSchema == "013")
+      else if (strSchema == "022")
       {
 
-         return memory_new::experience_core::frame_013;
+         return memory_new::experience_core::frame_022;
 
       }
       else if(strSchema == "Minimal001")

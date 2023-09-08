@@ -305,13 +305,13 @@ namespace account
 
       ::rectangle_i32 rectangleFontopus;
 
-      rectangleFontopus.left = rectangleDesktop.left + (rectangleDesktop.width() - w) / 2;
+      rectangleFontopus.left() = rectangleDesktop.left() + (rectangleDesktop.width() - w) / 2;
 
-      rectangleFontopus.top = rectangleDesktop.top + (rectangleDesktop.height() - h) / 3;
+      rectangleFontopus.top() = rectangleDesktop.top() + (rectangleDesktop.height() - h) / 3;
 
-      rectangleFontopus.right = rectangleFontopus.left + w;
+      rectangleFontopus.right() = rectangleFontopus.left() + w;
 
-      rectangleFontopus.bottom = rectangleFontopus.top + h;
+      rectangleFontopus.bottom() = rectangleFontopus.top() + h;
 
       if (puiParent != nullptr)
       {
@@ -502,20 +502,20 @@ namespace account
    void dialog::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
-      if(rectangleClient.is_empty())
+      if(rectangleX.is_empty())
       {
 
          return;
 
       }
 
-      rectangleClient = client_rectangle();
+      rectangleX = this->rectangle();
 
       ::user::interaction::on_layout(pgraphics);
 
-      m_plogin->place(rectangleClient);
+      m_plogin->place(rectangleX);
 
       m_plogin->display(::e_display_normal);
 

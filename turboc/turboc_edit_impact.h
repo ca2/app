@@ -11,7 +11,7 @@ namespace turboc
    public:
 
 
-      top_impact * m_ptopview;
+      top_impact * m_ptopimpact;
 
 
       edit_impact(::particle * pparticle);

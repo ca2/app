@@ -30,7 +30,7 @@ namespace hotplugin
       ::image_pointer               m_pimage;
 
       ::rectangle_i32                        m_rectangle;
-      ::rectangle_i32                        m_rectangleClient;
+      ::rectangle_i32                        m_rectangleX;
       ::rectangle_i32                        m_rectangleWindow;
 
       bool                          m_bHostStarterStart;
@@ -60,8 +60,8 @@ namespace hotplugin
       //using ::hotplugin::plugin::window_rectangle;
       //virtual bool window_rectangle(::rectangle_i64 * prectangle) override;
 
-      //using ::hotplugin::plugin::client_rectangle;
-      //virtual bool client_rectangle(::rectangle_i64 * prectangle) override;
+      //using ::hotplugin::plugin::this->rectangle;
+      //virtual bool this->rectangle(::rectangle_i64 * prectangle) override;
 
       virtual bool hotplugin_host_begin();
       virtual bool hotplugin_host_is_initialized();

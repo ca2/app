@@ -1,15 +1,14 @@
 #pragma once
 
 
-//#include "acme/primitive/geometry2d/_geometry2d.h"
-////#include "acme/primitive/primitive/object.h"
+#include "acme/parallelization/manual_reset_event.h"
 #include "acme/primitive/geometry2d/point.h"
 #include "acme/primitive/geometry2d/size.h"
 
 
-
 namespace graphics
 {
+
 
    class CLASS_DECL_AURA buffer_item :
       virtual public ::particle
@@ -23,6 +22,9 @@ namespace graphics
       ::point_i32                   m_point;
       ::size_i32                    m_size;
       ::pointer < ::particle >      m_pparticleData;
+      manual_reset_event            m_manualresetevent;
+      ::size_i32                    m_sizeInternal;
+      ::i32                         m_iScan;
 
 
       ::draw2d::graphics_pointer g();
@@ -30,28 +32,29 @@ namespace graphics
 
    };
 
+
    class CLASS_DECL_AURA graphics :
       virtual public ::object
    {
    public:
 
 
-      ::pointer<::user::interaction_impl>         m_pimpl;
-      ::pointer<::windowing::window>              m_pwindow;
+      ::pointer<::user::interaction_impl>          m_pimpl;
+      ::pointer<::windowing::window>               m_pwindow;
       bool                                         m_bNewBuffer;
 
       union
       {
 
          ::uptr                                    m_uptrBuffer;
-         ::OPERATING_SYSTEM_NAMESPACE::buffer *            m_pPlatformBuffer;
+         ::OPERATING_SYSTEM_NAMESPACE::buffer *    m_pPlatformBuffer;
          ::windowing_universal_windows::buffer *   m_pWindowingUniversalWindowsBuffer;
          ::windowing_win32::buffer *               m_pWindowingWin32Buffer;
 
       };
 
 
-      ::pointer_array<buffer_item >          m_bufferitema;
+      ::pointer_array<buffer_item >                m_bufferitema;
 
 
       graphics();
@@ -65,7 +68,7 @@ namespace graphics
 
       virtual bool is_single_buffer_mode() const;
 
-
+      //virtual bool presentation_complete();
       virtual void on_after_graphical_update();
 
       virtual bool buffer_lock_round_swap_key_buffers();
@@ -101,8 +104,6 @@ namespace graphics
       virtual buffer_item * get_screen_item();
       //virtual ::image_pointer & get_screen_image();
       //virtual ::particle * get_screen_sync();
-
-
 
    };
 

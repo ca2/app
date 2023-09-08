@@ -198,10 +198,10 @@ void android_apex_main()
 
    ::rectangle_f64 rectangle;
 
-   rectangle.left = 0;
-   rectangle.top = 0;
-   rectangle.right = premote->getWidth();
-   rectangle.bottom = premote->getHeight();
+   rectangle.left() = 0;
+   rectangle.top() = 0;
+   rectangle.right() = premote->getWidth();
+   rectangle.bottom() = premote->getHeight();
 
    ::apexacmesystem()->get_session()->defer_initialize_host_window(rectangle);
 
@@ -356,13 +356,13 @@ void android_exchange()
 
       premote->setEditFocusSet(true);
 
-      premote->setEditFocusLeft(plocal->m_rectangleEditFocus.left);
+      premote->setEditFocusLeft(plocal->m_rectangleEditFocus.left());
 
-      premote->setEditFocusTop(plocal->m_rectangleEditFocus.top);
+      premote->setEditFocusTop(plocal->m_rectangleEditFocus.top());
 
-      premote->setEditFocusRight(plocal->m_rectangleEditFocus.right);
+      premote->setEditFocusRight(plocal->m_rectangleEditFocus.right());
 
-      premote->setEditFocusBottom(plocal->m_rectangleEditFocus.bottom);
+      premote->setEditFocusBottom(plocal->m_rectangleEditFocus.bottom());
 
       premote->setEditFocusText(plocal->m_strEditFocus);
 
@@ -391,10 +391,10 @@ void android_edit_on_set_focus(int l, int t, int r, int b, const ::scoped_string
 
    plocal->m_bEditFocusKill = false;
 
-   plocal->m_rectangleEditFocus.left = l;
-   plocal->m_rectangleEditFocus.top = t;
-   plocal->m_rectangleEditFocus.right = r;
-   plocal->m_rectangleEditFocus.bottom = b;
+   plocal->m_rectangleEditFocus.left() = l;
+   plocal->m_rectangleEditFocus.top() = t;
+   plocal->m_rectangleEditFocus.right() = r;
+   plocal->m_rectangleEditFocus.bottom() = b;
 
    plocal->m_strEditFocus = pszText;
 

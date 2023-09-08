@@ -907,7 +907,7 @@ void task::term_task()
 bool task::do_events()
 {
    
-   throw ::interface_only("tasks don't have message queue, threads do");
+   throw ::interface_only("tasks don't have message queue, threads do (1)");
 
    return true;
 
@@ -917,7 +917,7 @@ bool task::do_events()
 bool task::defer_pump_message()
 {
 
-   throw ::interface_only("tasks don't have message queue, threads do");
+   throw ::interface_only("tasks don't have message queue, threads do (2)");
 
    return false;
 
@@ -927,7 +927,7 @@ bool task::defer_pump_message()
 bool task::has_message() const
 {
 
-   throw ::interface_only("tasks don't have message queue, threads do");
+   throw ::interface_only("tasks don't have message queue, threads do (3)");
 
    return false;
 
@@ -2195,6 +2195,37 @@ task_guard::~task_guard()
 //   return ::acme::get()->m_psubsystem->m_pfactory;
 //
 //}
+
+
+
+::index_array g_iaThreadIndex;
+
+
+::index task_index(itask_t itask)
+{
+
+   synchronous_lock sl(::acme::acme::g_pacme->m_psubsystem->acmesystem()->synchronization());
+
+   auto iThreadIndex = g_iaThreadIndex.find_first(itask);
+
+   if(iThreadIndex < 0)
+   {
+
+      iThreadIndex = g_iaThreadIndex.add(itask);
+
+   }
+
+   return iThreadIndex;
+
+}
+
+
+::index task_index()
+{
+
+   return task_index(::get_current_itask());
+
+}
 
 
 

@@ -49,7 +49,7 @@ namespace user
 
       m_dRate = m_scalar.get_rate();
 
-      auto rectangle = client_rectangle();
+      auto rectangle = this->rectangle();
 
       pgraphics->fill_rectangle(rectangle, argb(255, 235, 235, 235));
 
@@ -57,7 +57,7 @@ namespace user
 
       rectangle.deflate(1, 1);
 
-      rectangle.right = (::i32) (rectangle.width() * m_dRate + rectangle.left);
+      rectangle.right() = (::i32) (rectangle.width() * m_dRate + rectangle.left());
 
       pgraphics->fill_rectangle(rectangle, argb(255, 100, 220,180));
 

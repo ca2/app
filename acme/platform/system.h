@@ -151,6 +151,13 @@ namespace acme
       ::pointer<::file_system>                                          m_pfilesystem;
 
 
+      ::pointer < ::mutex >                                m_pmutexMatter;
+
+      ::pointer < ::mutex >                  m_pmutexHttpDownload;
+      string_array                           m_straHttpDownloading;
+      string_array                           m_straHttpExists;
+
+
 
       system();
       ~system() override;
@@ -162,7 +169,7 @@ namespace acme
       void initialize_system();
 
 
-      void os_construct();
+      //void os_construct();
 
 
 #ifdef _DEBUG
@@ -208,16 +215,26 @@ namespace acme
       inline ::crypto::crypto * crypto() { return m_pcrypto; }
 
 
-      virtual ::string http_text(const ::scoped_string & scopedstrUrl);
-      virtual ::string http_text(const ::scoped_string & scopedstrUrl, ::property_set & set);
+      virtual string get_system_platform();
+      virtual string get_system_configuration();
+
+
+
+      virtual bool http_exists(const ::scoped_string & scopedstrUrl, ::property_set & set);
+      virtual ::file::enum_type http_get_type(const ::scoped_string & scopedstrUrl, property_set & set);
+      virtual ::file::enum_type http_get_type(const ::scoped_string & scopedstrUrl, ::payload * pvarQuery, property_set & set);
+
+
+      virtual ::string http_text(::acme::context* pcontext, const ::scoped_string & scopedstrUrl);
+      virtual ::string http_text(::acme::context* pcontext, const ::scoped_string & scopedstrUrl, ::property_set & set);
 
       
-      virtual ::memory http_memory(const ::scoped_string & scopedstrUrl);
-      virtual ::memory http_memory(const ::scoped_string & scopedstrUrl, ::property_set & set);
+      virtual ::memory http_memory(::acme::context* pcontext, const ::scoped_string & scopedstrUrl);
+      virtual ::memory http_memory(::acme::context* pcontext, const ::scoped_string & scopedstrUrl, ::property_set & set);
 
       
-      virtual void http_download(const ::payload & payloadFile, const ::scoped_string & scopedstrUrl);
-      virtual void http_download(const ::payload & payloadFile, const ::scoped_string & scopedstrUrl, ::property_set & set);
+      virtual void http_download(::acme::context* pcontext, const ::payload & payloadFile, const ::scoped_string & scopedstrUrl);
+      virtual void http_download(::acme::context* pcontext, const ::payload & payloadFile, const ::scoped_string & scopedstrUrl, ::property_set & set);
 
 
       virtual void defer_audio();
@@ -620,6 +637,15 @@ namespace acme
       virtual ::string library_name(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation);
 
 
+      //class ::crypto::crypto * crypto();
+
+
+      virtual ::file::path local_get_matter_cache_path();
+      virtual ::file::path local_get_matter_cache_path(string strMatter);
+      virtual ::file::path local_get_matter_path();
+      virtual ::file::path local_get_matter_path(string strMatter);
+
+      virtual void install_progress_add_up(int iAddUp = 1);
    };
 
 

@@ -84,9 +84,9 @@ namespace cairo
 
       cairo_text_extents_t textextents = {};
 
-      double x = rectangleText.left;
+      double x = rectangleText.left();
 
-      double y = rectangleText.top;
+      double y = rectangleText.top();
 
       cairo_text_extents(m_pdc, str, &textextents);
 
@@ -154,8 +154,8 @@ namespace cairo
       {
 
          cairo_rectangle(m_pdc,
-                         rectangle.left + !!iWidth,
-                         rectangle.top  + !!iWidth,
+                         rectangle.left() + !!iWidth,
+                         rectangle.top()  + !!iWidth,
                          rectangle.width() -  !!iWidth ,
                          rectangle.height() - !!iWidth);
 

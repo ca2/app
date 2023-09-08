@@ -69,11 +69,11 @@ namespace filemanager
       //if ((crBackground & argb(255, 0, 0, 0)) != 0)
       //{
 
-      //   ::rectangle_i32 rectangleClient;
+      //   ::rectangle_i32 rectangleX;
 
-      //   client_rectangle(rectangleClient);
+      //   this->rectangle(rectangleX);
 
-      //   pgraphics->fill_rectangle(rectangleClient, argb(255, 255, 255, 255));
+      //   pgraphics->fill_rectangle(rectangleX, argb(255, 255, 255, 255));
 
       //}
 

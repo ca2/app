@@ -690,7 +690,6 @@ namespace core
 
       virtual ::type controltype_to_typeinfo(::user::enum_control_type econtroltype) override;
 
-      ::pointer<::user::plain_edit>create_calculator_plain_edit() override;
 
 
       

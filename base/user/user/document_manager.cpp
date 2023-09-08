@@ -63,7 +63,11 @@ namespace user
    document_manager::document_manager()
    {
 
+      printf("core::user::document_manager::document_manager\n");
+
       defer_create_synchronization();
+
+      printf("core::user::document_manager::document_manager end\n");
 
    }
 

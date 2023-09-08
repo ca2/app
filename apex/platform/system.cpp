@@ -1144,8 +1144,16 @@ pacmedirectory->create("/ca2core");
 
          if (pfile)
          {
+            
+            information() << "found Thomas Borregaard Sørensen.dedicatory";
 
             bMatterFromResource = true;
+
+         }
+         else
+         {
+
+            information() << "Thomas Borregaard Sørensen.dedicatory not found";
 
          }
 
@@ -5132,35 +5140,6 @@ string get_bundle_app_library_name();
       }
 
    }
-
-
-   ::string system::http_text(::acme::context* pcontext, const ::scoped_string & scopedstrUrl, ::property_set & set)
-   {
-
-      return pcontext->m_papexcontext->http().get(scopedstrUrl, set);
-
-   }
-
-
-   void system::http_download(::particle * pparticleContext, const ::payload & payloadFile, const ::scoped_string & scopedstrUrl, ::property_set & set)
-   {
-
-      pparticleContext->m_pcontext->m_papexcontext->http().download(scopedstrUrl, payloadFile, set);
-
-   }
-
-
-   ::memory system::http_memory(::particle * pparticleContext, const ::scoped_string& scopedstrUrl, ::property_set& set)
-   {
-
-      ::memory memory;
-      
-      pparticleContext->m_pcontext->m_papexcontext->http().get(&memory, scopedstrUrl, set);
-
-      return ::transfer(memory);
-
-   }
-
 
 
 } // namespace apex

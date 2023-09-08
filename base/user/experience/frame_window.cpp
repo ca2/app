@@ -1198,7 +1198,13 @@ namespace experience
 
          m_fActive = fActive;
 
-         if (!fActive)
+         if (fActive)
+         {
+            
+            information("frame_window::SetActiveFlag Active");
+            
+         }
+         else
          {
 
             information("frame_window::SetActiveFlag Not Active");
@@ -1214,7 +1220,7 @@ namespace experience
 
          if (m_puserinteraction->m_ewindowflag & ::e_window_flag_window_created)
          {
-
+            
             set_need_redraw();
 
             post_redraw();

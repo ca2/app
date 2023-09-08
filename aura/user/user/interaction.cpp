@@ -2995,7 +2995,7 @@ namespace user
 
       information() << "interaction_layout::display e_display_iconic";
 
-//      information() << acmenode()->get_callstack();
+      information() << acmenode()->get_callstack();
 
 #endif
 
@@ -14125,31 +14125,42 @@ namespace user
 
       }
 
-      if (!layout().layout().is_screen_visible())
+      if (get_parent() != nullptr)
       {
-
-         if (m_ewindowflag & e_window_flag_on_show_window_visible
-             || m_ewindowflag & e_window_flag_on_show_window_screen_visible)
+         
+         if (!layout().layout().is_screen_visible())
          {
-
-            m_ewindowflag -= e_window_flag_on_show_window_visible;
-
-            m_ewindowflag -= e_window_flag_on_show_window_screen_visible;
-
-            _on_show_window();
-
+            
+            if (m_ewindowflag & e_window_flag_on_show_window_visible
+                || m_ewindowflag & e_window_flag_on_show_window_screen_visible)
+            {
+               
+               m_ewindowflag -= e_window_flag_on_show_window_visible;
+               
+               m_ewindowflag -= e_window_flag_on_show_window_screen_visible;
+               
+               _on_show_window();
+               
+            }
+            
          }
-
-      }
-      else if (get_parent() != nullptr)
-      {
-
-         m_ewindowflag += e_window_flag_on_show_window_visible;
-
-         m_ewindowflag += e_window_flag_on_show_window_screen_visible;
-
-         _on_show_window();
-
+         else
+         {
+            
+            if (!(m_ewindowflag & e_window_flag_on_show_window_visible)
+                && !(m_ewindowflag & e_window_flag_on_show_window_screen_visible))
+            {
+               
+               m_ewindowflag += e_window_flag_on_show_window_visible;
+               
+               m_ewindowflag += e_window_flag_on_show_window_screen_visible;
+               
+               _on_show_window();
+               
+            }
+            
+         }
+         
       }
 
       //      if (m_bUpdateVisual || m_bReposition)
@@ -17008,9 +17019,11 @@ namespace user
 
       //auto estatus =
 
-      bool bDisplayPreviousOnRestore = true;
+      //bool bDisplayPreviousOnRestore = true;
 
-      frame_toggle_restore(bDisplayPreviousOnRestore);
+      //frame_toggle_restore(bDisplayPreviousOnRestore);
+      
+      frame_restore();
 
       //if(!estatus)
       //{

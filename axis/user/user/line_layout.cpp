@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "line_layout.h"
 #include "acme/constant/message.h"
+#include "acme/platform/node.h"
 #include "aura/user/user/interaction_array.h"
 #include "aura/message/user.h"
 
@@ -47,13 +48,13 @@ namespace user
       if (pshowwindow->m_bShow)
       {
 
-         information("Show\n");
+         information() << "Show";
 
       }
       else
       {
 
-         information("Hide\n");
+         information() << "Hide callstack : " << acmenode()->get_callstack();
 
       }
 

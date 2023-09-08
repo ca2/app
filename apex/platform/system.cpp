@@ -5142,20 +5142,20 @@ string get_bundle_app_library_name();
    }
 
 
-   void system::http_download(::acme::context* pcontext, const ::payload & payloadFile, const ::scoped_string & scopedstrUrl, ::property_set & set)
+   void system::http_download(::particle * pparticleContext, const ::payload & payloadFile, const ::scoped_string & scopedstrUrl, ::property_set & set)
    {
 
-      pcontext->m_papexcontext->http().download(scopedstrUrl, payloadFile, set);
+      pparticleContext->m_pcontext->m_papexcontext->http().download(scopedstrUrl, payloadFile, set);
 
    }
 
 
-   ::memory system::http_memory(::acme::context* pcontext, const ::scoped_string& scopedstrUrl, ::property_set& set)
+   ::memory system::http_memory(::particle * pparticleContext, const ::scoped_string& scopedstrUrl, ::property_set& set)
    {
 
       ::memory memory;
       
-      pcontext->m_papexcontext->http().get(&memory, scopedstrUrl, set);
+      pparticleContext->m_pcontext->m_papexcontext->http().get(&memory, scopedstrUrl, set);
 
       return ::transfer(memory);
 

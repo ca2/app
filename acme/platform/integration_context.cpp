@@ -351,7 +351,7 @@ namespace integration
 
             information() << "Downloading \"" << url << "\"...";
 
-            acmesystem()->http_download(m_pcontext, pmemoryFileTarGz, url, set);
+            acmecontext()->http_download(pmemoryFileTarGz, url, set);
 
             //auto pathTar = m_pathFolder / m_path / (m_strName + ".tar");
 

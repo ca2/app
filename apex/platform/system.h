@@ -434,13 +434,13 @@ namespace apex
 
 
       using acme::system::http_text;
-      ::string http_text(::acme::context* pcontext, const ::scoped_string & scopedstrUrl, ::property_set & set) override;
+      ::string http_text(::particle * pparticleContext, const ::scoped_string & scopedstrUrl, ::property_set & set) override;
 
       using acme::system::http_download;
-      void http_download(::acme::context* pcontext, const ::payload & payloadFile, const ::scoped_string & scopedstrUrl, ::property_set & set) override;
+      void http_download(::particle * pparticleContext, const ::payload & payloadFile, const ::scoped_string & scopedstrUrl, ::property_set & set) override;
 
       using acme::system::http_memory;
-      ::memory http_memory(::acme::context* pcontext, const ::scoped_string& scopedstrUrl, ::property_set& set) override;
+      ::memory http_memory(::particle * pparticleContext, const ::scoped_string& scopedstrUrl, ::property_set& set) override;
 
 
    };

@@ -3315,7 +3315,7 @@ file_pointer file_context::http_get_file(const ::payload &payloadFile, ::file::e
 
    auto pmemoryfile = create_memory_file();
 
-   *pmemoryfile->get_primitive_memory() = acmesystem()->http_memory(m_pcontext, path, set);
+   *pmemoryfile->get_primitive_memory() = acmecontext()->http_memory(path, set);
    //{
 
    //   return ::error_failed;

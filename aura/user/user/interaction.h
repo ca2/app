@@ -2432,10 +2432,10 @@ namespace user
 
 
       virtual void on_item_selected(::item* pitem);
-      virtual void on_item_hover(::item* pitem);
+      void on_item_hover(::item* pitem) override;
 
 
-      virtual ::item_pointer hover_item();
+      ::item_pointer hover_item() override;
 
 
       //template < typename OFFSETABLE, typename SOURCE >

@@ -77,3 +77,13 @@ void output_debug_string(const ::scoped_string & scopedstrOutputString)
 //   memory_free(pusz);
 
 }
+
+
+void output_debug_string_flush()
+{
+   
+   fflush(stdout);
+   
+}
+
+

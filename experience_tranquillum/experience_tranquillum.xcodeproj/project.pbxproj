@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		07B6597D190F44A9002DAADE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24E5C1904CFE2001AEFFB /* Foundation.framework */; };
+		9A2D741A2AAB4CF000DFCE25 /* frame_022.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A2D74182AAB4CEF00DFCE25 /* frame_022.cpp */; };
+		9A2D741B2AAB4CF000DFCE25 /* frame_022.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2D74192AAB4CF000DFCE25 /* frame_022.h */; };
 		9A415C3F247393D800EF2BCD /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8F886F240BEBF50097E249 /* framework.cpp */; };
 		9A42D7D2266599BA0011645D /* _factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A42D7D1266599BA0011645D /* _factory.cpp */; };
 		9A42D7E12665A4620011645D /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A42D7E02665A4620011645D /* libacme.dylib */; };
@@ -102,6 +104,8 @@
 /* Begin PBXFileReference section */
 		9A03B82F2A25C08C00A0E33E /* _____debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "_____debug.xcconfig"; sourceTree = "<group>"; };
 		9A03B8302A25C08C00A0E33E /* _____release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "_____release.xcconfig"; sourceTree = "<group>"; };
+		9A2D74182AAB4CEF00DFCE25 /* frame_022.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = frame_022.cpp; sourceTree = "<group>"; };
+		9A2D74192AAB4CF000DFCE25 /* frame_022.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = frame_022.h; sourceTree = "<group>"; };
 		9A389A6924F5414A00185630 /* base.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = base.xcodeproj; path = ../base/base.xcodeproj; sourceTree = "<group>"; };
 		9A42D7D1266599BA0011645D /* _factory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _factory.cpp; sourceTree = "<group>"; };
 		9A42D7E02665A4620011645D /* libacme.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -224,6 +228,8 @@
 				9A927DC927F10EF8002BCA3C /* frame_008.h */,
 				9A927DD427F10EF8002BCA3C /* frame_011.cpp */,
 				9A927DCE27F10EF8002BCA3C /* frame_011.h */,
+				9A2D74182AAB4CEF00DFCE25 /* frame_022.cpp */,
+				9A2D74192AAB4CF000DFCE25 /* frame_022.h */,
 				9A927DBF27F10EF8002BCA3C /* frame_Minimal001.cpp */,
 				9A927DC427F10EF8002BCA3C /* frame_Minimal001.h */,
 				9A927DC127F10EF8002BCA3C /* frame.cpp */,
@@ -299,6 +305,7 @@
 				9A927DEC27F10EFB002BCA3C /* frame_005.h in Headers */,
 				9A8F88B5240BEBF50097E249 /* framework.h in Headers */,
 				9A927DE927F10EFB002BCA3C /* frame_011.h in Headers */,
+				9A2D741B2AAB4CF000DFCE25 /* frame_022.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -465,6 +472,7 @@
 				9A42D7D2266599BA0011645D /* _factory.cpp in Sources */,
 				9A927DDA27F10EFB002BCA3C /* frame_Minimal001.cpp in Sources */,
 				9A927DE127F10EFB002BCA3C /* control_box_button.cpp in Sources */,
+				9A2D741A2AAB4CF000DFCE25 /* frame_022.cpp in Sources */,
 				9A927DDD27F10EFB002BCA3C /* control_box.cpp in Sources */,
 				9A927DDC27F10EFB002BCA3C /* frame.cpp in Sources */,
 				9A927DED27F10EFB002BCA3C /* experience.cpp in Sources */,

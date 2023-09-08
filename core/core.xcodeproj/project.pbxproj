@@ -22,6 +22,8 @@
 		9A24D07E2851452C000C9873 /* objcpp.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A24D06E2851452C000C9873 /* objcpp.h */; };
 		9A24D0802851452C000C9873 /* _setup.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A24D06F2851452C000C9873 /* _setup.h */; };
 		9A24D0822851452C000C9873 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A24D0702851452C000C9873 /* _.h */; };
+		9A2D744B2AAB4F3F00DFCE25 /* font_list_impact.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A2D74492AAB4F3E00DFCE25 /* font_list_impact.cpp */; };
+		9A2D744C2AAB4F3F00DFCE25 /* font_list_impact.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2D744A2AAB4F3F00DFCE25 /* font_list_impact.h */; };
 		9A42DA09266679A30011645D /* list_column.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A42DA08266679A30011645D /* list_column.cpp */; };
 		9A58828528E9331A001543FF /* main_frame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1FB6C4287161910042849A /* main_frame.cpp */; };
 		9A5ECD3028CCC2C20084D354 /* text_format_object.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A5ECD2B28CCC2C00084D354 /* text_format_object.h */; };
@@ -661,6 +663,8 @@
 		9A24D06E2851452C000C9873 /* objcpp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = objcpp.h; sourceTree = "<group>"; };
 		9A24D06F2851452C000C9873 /* _setup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _setup.h; sourceTree = "<group>"; };
 		9A24D0702851452C000C9873 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
+		9A2D74492AAB4F3E00DFCE25 /* font_list_impact.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = font_list_impact.cpp; sourceTree = "<group>"; };
+		9A2D744A2AAB4F3F00DFCE25 /* font_list_impact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = font_list_impact.h; sourceTree = "<group>"; };
 		9A42DA08266679A30011645D /* list_column.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = list_column.cpp; sourceTree = "<group>"; };
 		9A5ECD2B28CCC2C00084D354 /* text_format_object.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = text_format_object.h; sourceTree = "<group>"; };
 		9A5ECD2C28CCC2C00084D354 /* impact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = impact.h; sourceTree = "<group>"; };
@@ -1473,6 +1477,8 @@
 				9AE64B42252A681900BED5B8 /* font_combo_box.h */,
 				9AE64B24252A681900BED5B8 /* font_list.cpp */,
 				9AE64B4B252A681900BED5B8 /* font_list.h */,
+				9A2D74492AAB4F3E00DFCE25 /* font_list_impact.cpp */,
+				9A2D744A2AAB4F3F00DFCE25 /* font_list_impact.h */,
 				9AE64B51252A681900BED5B8 /* form_list_impact.cpp */,
 				9AE64B5C252A681900BED5B8 /* form_list_impact.h */,
 				9AE64B58252A681900BED5B8 /* form_list.cpp */,
@@ -1968,6 +1974,7 @@
 				9A8CF9F42A27FC2C0049B167 /* save_as_button_impact.h in Headers */,
 				9A8CF9F02A27FC2B0049B167 /* save_as_edit_impact.h in Headers */,
 				9A8CF9F52A27FC2C0049B167 /* save_as_impact.h in Headers */,
+				9A2D744C2AAB4F3F00DFCE25 /* font_list_impact.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2355,6 +2362,7 @@
 				9AE6526E252A681C00BED5B8 /* folder_list.cpp in Sources */,
 				9AE65262252A681C00BED5B8 /* _.cpp in Sources */,
 				9AE6516F252A681C00BED5B8 /* pane_document.cpp in Sources */,
+				9A2D744B2AAB4F3F00DFCE25 /* font_list_impact.cpp in Sources */,
 				9AE65259252A681C00BED5B8 /* file_list.cpp in Sources */,
 				9AE6514C252A681C00BED5B8 /* elastic_slider.cpp in Sources */,
 				9AE65238252A681C00BED5B8 /* operation_impact.cpp in Sources */,

@@ -2,6 +2,7 @@
 // recreated by Camilo 2021-01-28 22:20
 #include "framework.h"
 #include "placement_log.h"
+#include "cursor.h"
 #include "acme/constant/message.h"
 #include "acme/exception/interface_only.h"
 #include "acme/parallelization/asynchronous.h"
@@ -891,7 +892,15 @@ namespace windowing
    void window::set_mouse_cursor(::windowing::cursor * pcursor)
    {
 
-      throw ::interface_only();
+      m_pcursor = pcursor;
+
+   }
+
+
+   ::windowing::cursor * window::get_mouse_cursor()
+   {
+
+      return m_pcursor;
 
    }
 

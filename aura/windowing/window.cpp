@@ -1347,26 +1347,26 @@ namespace windowing
    }
 
 
-   bool window::strict_set_window_position_unlocked()
+   bool window::strict_set_window_position_unlocked(bool & bChangedPosition, bool & bChangedSize)
    {
 
       auto rectangle = m_puserinteractionimpl->m_puserinteraction->const_layout().parent_raw_rectangle(::user::e_layout_design);
 
-      return strict_set_window_position_unlocked(rectangle);
+      return strict_set_window_position_unlocked(bChangedPosition, bChangedSize, rectangle);
 
    }
 
 
-   bool window::strict_set_window_position_unlocked(const ::rectangle_i32 & rectangle)
+   bool window::strict_set_window_position_unlocked(bool & bChangedPosition, bool & bChangedSize, const ::rectangle_i32 & rectangle)
    {
 
-      auto pointDesign = rectangle.origin();
+      auto pointOutput= rectangle.origin();
 
       auto pointWindow = m_pointWindow;
 
-      bool bMove = pointWindow != pointDesign;
+      bChangedPosition = pointWindow != pointOutput;
 
-      if (bMove)
+      if (bChangedPosition)
       {
 
          //information() << "Design.point != Window.point " << pointDesign << ", " << pointWindow;
@@ -1377,19 +1377,19 @@ namespace windowing
 
       auto sizeWindow = m_sizeWindow;
 
-      bool bSize = sizeWindow != sizeOutput;
+      bChangedSize = sizeWindow != sizeOutput;
 
-      if(bSize)
+      if(bChangedSize)
       {
 
          //information() << "Design.size != Window.size " << sizeOutput << ", " << sizeWindow;
 
       }
 
-      if (bMove || bSize)
+      if (bChangedPosition || bChangedSize)
       {
 
-         ::rectangle_i32 r(pointDesign, sizeOutput);
+         ::rectangle_i32 rectangleOutput(pointOutput, sizeOutput);
 
          //information() << "::windowing::window::_set_window_position_unlocked l:" << r.left() << ", t:" << r.top()
          //              << ", r:" << r.right() << ", b:" << r.bottom() << ", thrd:" << ::task_index();
@@ -1399,11 +1399,11 @@ namespace windowing
          if(s_pointInitialTopRight.is_null())
          {
 
-            s_pointInitialTopRight = r.top_right();
+            s_pointInitialTopRight = rectangleOutput.top_right();
 
          }
 
-         auto offset = r.top_right() - s_pointInitialTopRight;
+         auto offset = rectangleOutput.top_right() - s_pointInitialTopRight;
 
          information() << "TopRightOffsetFromInitial : " << offset;
 
@@ -1415,11 +1415,11 @@ namespace windowing
          }
 
          _strict_set_window_position_unlocked(
-            pointDesign.x(),
-            pointDesign.y(),
+            pointOutput.x(),
+            pointOutput.y(),
             sizeOutput.cx(),
             sizeOutput.cy(),
-            !bMove, !bSize);
+            !bChangedPosition, !bChangedSize);
 
          //stateWindow = stateDesign;
 

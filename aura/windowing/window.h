@@ -175,8 +175,8 @@ namespace windowing
       virtual bool _set_window_position(const class ::zorder& zorder, i32 x, i32 y, i32 cx, i32 cy, const ::e_activation& eactivation, bool bNoZorder, bool bNoMove, bool bNoSize, ::e_display edisplay, ::u32 nOverrideFlags = 0);
 
       virtual bool configure_window_unlocked();
-      virtual bool strict_set_window_position_unlocked();
-      virtual bool strict_set_window_position_unlocked(const ::rectangle_i32 & rectangle);
+      virtual bool strict_set_window_position_unlocked(bool & bChangedPosition, bool & bChangedSize);
+      virtual bool strict_set_window_position_unlocked(bool & bChangedPosition, bool & bChangedSize, const ::rectangle_i32 & rectangle);
       virtual bool full_set_window_position_unlocked();
       virtual bool _set_window_position_unlocked(const class ::zorder& zorder, i32 x, i32 y, i32 cx, i32 cy, const ::e_activation& eactivation, bool bNoZorder, bool bNoMove, bool bNoSize, ::e_display edisplay);
       virtual bool _configure_window_unlocked(const class ::zorder& zorder, const ::e_activation& eactivation, bool bNoZorder, ::e_display edisplay);

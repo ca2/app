@@ -194,36 +194,53 @@ namespace windowing
    }
 
 
-   ::size_i32 display::get_monitor_union_size()
+   ::rectangle_i32 display::get_monitor_union_rectangle()
    {
 
-      ::size_i32 size;
+      ::rectangle_i32 rectangleUnion;
 
-      size.cx() = 0;
+      rectangleUnion.left() = I32_MAXIMUM;
 
-      size.cy() = 0;
+      rectangleUnion.top() = I32_MAXIMUM;
+
+      rectangleUnion.right() = I32_MINIMUM;
+
+      rectangleUnion.bottom() = I32_MINIMUM;
 
       for(auto & pmonitor : m_monitora)
       {
 
-         if (size.cx() < pmonitor->m_rectangle.width())
+         if (pmonitor->m_rectangle.left() < rectangleUnion.left())
          {
 
-            size.cx() = pmonitor->m_rectangle.width();
+            rectangleUnion.left() = pmonitor->m_rectangle.left();
 
          }
 
-
-         if (size.cy() < pmonitor->m_rectangle.height())
+         if (pmonitor->m_rectangle.top() < rectangleUnion.top())
          {
 
-            size.cy() = pmonitor->m_rectangle.height();
+            rectangleUnion.top() = pmonitor->m_rectangle.top();
+
+         }
+
+         if (pmonitor->m_rectangle.right() > rectangleUnion.right())
+         {
+
+            rectangleUnion.right() = pmonitor->m_rectangle.right();
+
+         }
+
+         if (pmonitor->m_rectangle.bottom() > rectangleUnion.bottom())
+         {
+
+            rectangleUnion.bottom() = pmonitor->m_rectangle.bottom();
 
          }
 
       }
 
-      return size;
+      return rectangleUnion;
 
    }
 

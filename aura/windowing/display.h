@@ -103,7 +103,7 @@ namespace windowing
       virtual ::index get_main_monitor(::rectangle_i32 & rectangle);
       virtual ::size_i32 get_main_monitor_size();
 
-      virtual ::size_i32 get_monitor_union_size();
+      virtual ::rectangle_i32 get_monitor_union_rectangle();
 
       virtual ::count get_monitor_count();
       virtual bool get_monitor_rectangle(index iMonitor, ::rectangle_i32 & rectangle);

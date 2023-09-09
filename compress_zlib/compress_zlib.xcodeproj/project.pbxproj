@@ -16,6 +16,17 @@
 		9A1EAA94284B05B0000F05A8 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A81F4E4275010A4003F38EC /* _.cpp */; };
 		9A1EAA95284B05B0000F05A8 /* uncompress.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A81F4C6275010A4003F38EC /* uncompress.cpp */; };
 		9A1EAA96284B05B0000F05A8 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A81F4C5275010A4003F38EC /* framework.cpp */; };
+		9A2D75AC2AAB780F00DFCE25 /* uncompress.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A81F4EB275010A4003F38EC /* uncompress.h */; };
+		9A2D75AD2AAB780F00DFCE25 /* compress.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A81F4EA275010A4003F38EC /* compress.h */; };
+		9A2D75AE2AAB780F00DFCE25 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A81F508275010A6003F38EC /* _.h */; };
+		9A2D75AF2AAB780F00DFCE25 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A81F4EC275010A4003F38EC /* framework.h */; };
+		9A2D75B12AAB780F00DFCE25 /* compress.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A81F503275010A5003F38EC /* compress.cpp */; };
+		9A2D75B22AAB780F00DFCE25 /* _factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A81F502275010A5003F38EC /* _factory.cpp */; };
+		9A2D75B32AAB780F00DFCE25 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A81F4E4275010A4003F38EC /* _.cpp */; };
+		9A2D75B42AAB780F00DFCE25 /* uncompress.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A81F4C6275010A4003F38EC /* uncompress.cpp */; };
+		9A2D75B52AAB780F00DFCE25 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A81F4C5275010A4003F38EC /* framework.cpp */; };
+		9A2D75B72AAB780F00DFCE25 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A81F5482750142E003F38EC /* libz.tbd */; };
+		9A2D75B82AAB780F00DFCE25 /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A81F53D275010ED003F38EC /* libacme.dylib */; };
 		9A81F513275010A6003F38EC /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A81F4C5275010A4003F38EC /* framework.cpp */; };
 		9A81F514275010A6003F38EC /* uncompress.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A81F4C6275010A4003F38EC /* uncompress.cpp */; };
 		9A81F527275010A6003F38EC /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A81F4E4275010A4003F38EC /* _.cpp */; };
@@ -30,6 +41,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		9A2D75AA2AAB780F00DFCE25 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A81F537275010ED003F38EC /* acme.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A68A41325114352008DABD2;
+			remoteInfo = acme;
+		};
 		9A81F53C275010ED003F38EC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9A81F537275010ED003F38EC /* acme.xcodeproj */;
@@ -55,6 +73,7 @@
 
 /* Begin PBXFileReference section */
 		9A1EAA9D284B05B0000F05A8 /* libios_compress_zlib.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_compress_zlib.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A2D75BC2AAB780F00DFCE25 /* libstatic_compress_zlib.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libstatic_compress_zlib.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A54A6322A2D66460052BAB6 /* _____debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "_____debug.xcconfig"; sourceTree = "<group>"; };
 		9A54A6332A2D66460052BAB6 /* _____release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "_____release.xcconfig"; sourceTree = "<group>"; };
 		9A81F4B227501077003F38EC /* libcompress_zlib.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libcompress_zlib.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -72,6 +91,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		9A2D75B62AAB780F00DFCE25 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9A2D75B72AAB780F00DFCE25 /* libz.tbd in Frameworks */,
+				9A2D75B82AAB780F00DFCE25 /* libacme.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9A81F4B027501077003F38EC /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -99,6 +127,7 @@
 			children = (
 				9A81F4B227501077003F38EC /* libcompress_zlib.dylib */,
 				9A1EAA9D284B05B0000F05A8 /* libios_compress_zlib.a */,
+				9A2D75BC2AAB780F00DFCE25 /* libstatic_compress_zlib.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -152,6 +181,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9A2D75AB2AAB780F00DFCE25 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9A2D75AC2AAB780F00DFCE25 /* uncompress.h in Headers */,
+				9A2D75AD2AAB780F00DFCE25 /* compress.h in Headers */,
+				9A2D75AE2AAB780F00DFCE25 /* _.h in Headers */,
+				9A2D75AF2AAB780F00DFCE25 /* framework.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9A81F4AE27501077003F38EC /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -180,6 +220,24 @@
 			name = ios_compress_zlib;
 			productName = compress_zlib;
 			productReference = 9A1EAA9D284B05B0000F05A8 /* libios_compress_zlib.a */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+		9A2D75A82AAB780F00DFCE25 /* static_compress_zlib */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9A2D75B92AAB780F00DFCE25 /* Build configuration list for PBXNativeTarget "static_compress_zlib" */;
+			buildPhases = (
+				9A2D75AB2AAB780F00DFCE25 /* Headers */,
+				9A2D75B02AAB780F00DFCE25 /* Sources */,
+				9A2D75B62AAB780F00DFCE25 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9A2D75A92AAB780F00DFCE25 /* PBXTargetDependency */,
+			);
+			name = static_compress_zlib;
+			productName = compress_zlib;
+			productReference = 9A2D75BC2AAB780F00DFCE25 /* libstatic_compress_zlib.a */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 		9A81F4B127501077003F38EC /* compress_zlib */ = {
@@ -235,6 +293,7 @@
 			targets = (
 				9A81F4B127501077003F38EC /* compress_zlib */,
 				9A1EAA88284B05B0000F05A8 /* ios_compress_zlib */,
+				9A2D75A82AAB780F00DFCE25 /* static_compress_zlib */,
 			);
 		};
 /* End PBXProject section */
@@ -269,6 +328,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9A2D75B02AAB780F00DFCE25 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9A2D75B12AAB780F00DFCE25 /* compress.cpp in Sources */,
+				9A2D75B22AAB780F00DFCE25 /* _factory.cpp in Sources */,
+				9A2D75B32AAB780F00DFCE25 /* _.cpp in Sources */,
+				9A2D75B42AAB780F00DFCE25 /* uncompress.cpp in Sources */,
+				9A2D75B52AAB780F00DFCE25 /* framework.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9A81F4AF27501077003F38EC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -284,6 +355,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		9A2D75A92AAB780F00DFCE25 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = acme;
+			targetProxy = 9A2D75AA2AAB780F00DFCE25 /* PBXContainerItemProxy */;
+		};
 		9A81F541275010FB003F38EC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = acme;
@@ -324,6 +400,38 @@
 				PLATFORM_MODIFIER = ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		9A2D75BA2AAB780F00DFCE25 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = L8N5V6TZE5;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_EXTENSION = a;
+				EXECUTABLE_PREFIX = lib;
+				MACH_O_TYPE = staticlib;
+				PLATFORM_MODIFIER = macos;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		9A2D75BB2AAB780F00DFCE25 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = L8N5V6TZE5;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_EXTENSION = a;
+				EXECUTABLE_PREFIX = lib;
+				MACH_O_TYPE = staticlib;
+				PLATFORM_MODIFIER = macos;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -552,6 +660,15 @@
 			buildConfigurations = (
 				9A1EAA9B284B05B0000F05A8 /* Debug */,
 				9A1EAA9C284B05B0000F05A8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9A2D75B92AAB780F00DFCE25 /* Build configuration list for PBXNativeTarget "static_compress_zlib" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9A2D75BA2AAB780F00DFCE25 /* Debug */,
+				9A2D75BB2AAB780F00DFCE25 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

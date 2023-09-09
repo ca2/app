@@ -611,7 +611,7 @@
     <ClCompile Include="user\user\drawable.cpp" />
     <ClCompile Include="user\user\form.cpp" />
     <ClCompile Include="user\user\form_callback.cpp" />
-    <ClCompile Include="user\user\form_designer.cpp" />
+    <ClCompile Include="user\user\form_handler.cpp" />
     <ClCompile Include="user\user\frame.cpp" />
     <ClCompile Include="user\user\horizontal_scroll_base.cpp" />
     <ClCompile Include="user\user\interaction.cpp" />
@@ -619,7 +619,7 @@
     <ClCompile Include="user\user\interaction_child.cpp" />
     <ClCompile Include="user\user\interaction_impl.cpp" />
     <ClCompile Include="user\user\interaction_layout.cpp" />
-    <ClCompile Include="user\user\interaction_prodevian.cpp" />
+    <ClCompile Include="user\user\interaction_graphics_thread.cpp" />
     <ClCompile Include="user\user\interaction_scaler.cpp" />
     <ClCompile Include="user\user\interaction_thread.cpp" />
     <ClCompile Include="user\user\key.cpp" />
@@ -633,7 +633,7 @@
     <ClCompile Include="user\user\plain_text_data.cpp" />
     <ClCompile Include="user\user\plain_text_tree.cpp" />
     <ClCompile Include="user\user\primitive_impl.cpp" />
-    <ClCompile Include="user\user\prodevian.cpp" />
+    <ClCompile Include="user\user\auto_refresh.cpp" />
     <ClCompile Include="user\user\progress.cpp" />
     <ClCompile Include="user\user\range.cpp" />
     <ClCompile Include="user\user\redraw.cpp" />

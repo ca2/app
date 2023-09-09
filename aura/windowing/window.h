@@ -37,6 +37,7 @@ namespace windowing
       ::pointer<::windowing::icon>              m_picon;
       ::pointer<::windowing::windowing>         m_pwindowing;
       ::pointer<::user::copydesk>               m_pcopydesk;
+      ::pointer<::windowing::cursor>            m_pcursor;
       ::point_i32                               m_pointCursor;
       ::oswindow                                m_oswindow;
       bool                                      m_bUpdateScreenSynchronously;
@@ -290,6 +291,7 @@ namespace windowing
 
 
       virtual void set_mouse_cursor(::windowing::cursor * pcursor);
+      virtual ::windowing::cursor * get_mouse_cursor();
 
 
       virtual ::point_i32 get_mouse_cursor_position();

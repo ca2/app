@@ -75,7 +75,7 @@ namespace sandbox_windowing
       //virtual long get_state();
       virtual bool is_iconic() override;
       virtual bool is_window_visible() override;
-      void show_window(const ::e_display& edisplay, const ::e_activation& eactivation) override;
+      void _configure_window_unlocked(const ::e_display& edisplay, const ::e_activation& eactivation) override;
       //virtual iptr get_window_long_ptr(i32 nIndex);
       //virtual iptr set_window_long_ptr(i32 nIndex, iptr l);
       virtual bool client_to_screen(::point_i32* ppoint) override;

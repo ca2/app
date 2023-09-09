@@ -1313,7 +1313,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="compress\compress.cpp" />
+    <ClCompile Include="compress\is_dir.cpp" />
+    <ClCompile Include="compress\not_dir.cpp" />
     <ClCompile Include="compress\uncompress.cpp" />
+    <ClCompile Include="crypto\crypto.cpp" />
+    <ClCompile Include="crypto\initializer.cpp" />
+    <ClCompile Include="crypto\rsa.cpp" />
     <ClCompile Include="exception\assert.cpp" />
     <ClCompile Include="exception\bad_file_format.cpp" />
     <ClCompile Include="exception\io.cpp" />
@@ -1335,9 +1340,13 @@
     <ClCompile Include="filesystem\filesystem\acme_directory.cpp" />
     <ClCompile Include="filesystem\filesystem\acme_file.cpp" />
     <ClCompile Include="filesystem\filesystem\acme_path.cpp" />
+    <ClCompile Include="filesystem\filesystem\dir_context.cpp" />
+    <ClCompile Include="filesystem\filesystem\dir_system.cpp" />
     <ClCompile Include="filesystem\filesystem\enumerator.cpp" />
+    <ClCompile Include="filesystem\filesystem\file_context.cpp" />
     <ClCompile Include="filesystem\filesystem\file_dialog.cpp" />
     <ClCompile Include="filesystem\filesystem\file_path.cpp" />
+    <ClCompile Include="filesystem\filesystem\file_system.cpp" />
     <ClCompile Include="filesystem\filesystem\folder_dialog.cpp" />
     <ClCompile Include="filesystem\filesystem\link.cpp" />
     <ClCompile Include="filesystem\filesystem\listing.cpp" />
@@ -1368,6 +1377,9 @@
     <ClCompile Include="filesystem\file\transfer.cpp" />
     <ClCompile Include="filesystem\file\translatable.cpp" />
     <ClCompile Include="filesystem\file\write_text_stream.cpp" />
+    <ClCompile Include="filesystem\watcher\action.cpp" />
+    <ClCompile Include="filesystem\watcher\watch.cpp" />
+    <ClCompile Include="filesystem\watcher\watcher.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">Create</PrecompiledHeader>
@@ -1394,6 +1406,8 @@
     <ClCompile Include="handler\extended_topic.cpp" />
     <ClCompile Include="handler\handler.cpp" />
     <ClCompile Include="handler\item.cpp" />
+    <ClCompile Include="handler\item_container.cpp" />
+    <ClCompile Include="handler\item_container_map.cpp" />
     <ClCompile Include="handler\request.cpp" />
     <ClCompile Include="handler\topic.cpp" />
     <ClCompile Include="memory\allocate_processor_cache_oriented.cpp" />

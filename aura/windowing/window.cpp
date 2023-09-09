@@ -1341,9 +1341,17 @@ namespace windowing
    bool window::strict_set_window_position_unlocked()
    {
 
-      auto & stateDesign = m_puserinteractionimpl->m_puserinteraction->layout().m_statea[::user::e_layout_design];
+      auto rectangle = m_puserinteractionimpl->m_puserinteraction->const_layout().parent_raw_rectangle(::user::e_layout_design);
 
-      auto pointDesign = stateDesign.origin();
+      return strict_set_window_position_unlocked(rectangle);
+
+   }
+
+
+   bool window::strict_set_window_position_unlocked(const ::rectangle_i32 & rectangle)
+   {
+
+      auto pointDesign = rectangle.origin();
 
       auto pointWindow = m_pointWindow;
 
@@ -1356,7 +1364,7 @@ namespace windowing
 
       }
 
-      auto sizeOutput = stateDesign.size();
+      auto sizeOutput = rectangle.size();
 
       auto sizeWindow = m_sizeWindow;
 

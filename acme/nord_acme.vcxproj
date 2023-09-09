@@ -239,6 +239,8 @@
     <ClCompile Include="handler\extended_topic.cpp" />
     <ClCompile Include="handler\handler.cpp" />
     <ClCompile Include="handler\item.cpp" />
+    <ClCompile Include="handler\item_container.cpp" />
+    <ClCompile Include="handler\item_container_map.cpp" />
     <ClCompile Include="handler\request.cpp" />
     <ClCompile Include="handler\topic.cpp" />
     <ClCompile Include="memory\allocate_processor_cache_oriented.cpp" />
@@ -640,6 +642,7 @@
     <ClCompile Include="user\nano\window_interface.cpp" />
     <ClCompile Include="user\nano\_nano.cpp" />
     <ClCompile Include="user\user\check.cpp" />
+    <ClCompile Include="user\user\container.cpp" />
     <ClCompile Include="user\user\drag.cpp" />
     <ClCompile Include="user\user\drag_client.cpp" />
     <ClCompile Include="user\user\element.cpp" />
@@ -803,6 +806,9 @@
     <ClInclude Include="handler\extended_topic.h" />
     <ClInclude Include="handler\handler.h" />
     <ClInclude Include="handler\item.h" />
+    <ClInclude Include="handler\item_container.h" />
+    <ClInclude Include="handler\item_container_map.h" />
+    <ClInclude Include="handler\request.h" />
     <ClInclude Include="handler\topic.h" />
     <ClInclude Include="include\objc.h" />
     <ClInclude Include="include\objcpp.h" />

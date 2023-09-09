@@ -1284,14 +1284,14 @@ namespace windowing
       // Current/Previous Window State
       auto & stateWindow = m_puserinteractionimpl->m_puserinteraction->layout().m_statea[::user::e_layout_window];
 
-      bool bSetWindowPosition = true;
+      //bool bSetWindowPosition = true;
 
-      if (stateOutput == stateWindow)
-      {
+      //if (stateOutput == stateWindow)
+      //{
 
-         bSetWindowPosition = false;
+      //   bSetWindowPosition = false;
 
-      }
+      //}
 
       auto eactivationOutput = stateOutput.activation();
 
@@ -1450,14 +1450,14 @@ namespace windowing
       // Current/Previous Window State
       auto & stateWindow = m_puserinteractionimpl->m_puserinteraction->layout().m_statea[::user::e_layout_window];
 
-      bool bSetWindowPosition = true;
+      //bool bSetWindowPosition = true;
 
-      if (stateOutput == stateWindow)
-      {
+      //if (stateOutput == stateWindow)
+      //{
 
-         bSetWindowPosition = false;
+      //   bSetWindowPosition = false;
 
-      }
+      //}
 
       auto eactivationOutput = stateOutput.activation();
 

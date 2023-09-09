@@ -1308,10 +1308,23 @@ namespace sandbox_windowing
 //   }
 //
 //
-   void window::show_window(const ::e_display& edisplay, const ::e_activation& eactivation)
+
+
+
+   //void window::show_window(const ::e_display& edisplay, const ::e_activation& eactivation)
+   //{
+
+   //}
+
+
+   bool window::_configure_window_unlocked(const class ::zorder & zorder, const ::e_activation & eactivation, bool bNoZorder, ::e_display edisplay)
    {
 
+      return true;
+
    }
+
+
 
    //
    //      x11_windowing()->windowing_post([this, edisplay, eactivation]()
@@ -2060,7 +2073,8 @@ namespace sandbox_windowing
    //}
 
 
-   bool window::set_window_position(const class ::zorder& zorder, i32 x, i32 y, i32 cx, i32 cy, const ::e_activation& eactivation, bool bNoZorder, bool bNoMove, bool bNoSize, bool bShow, bool bHide)
+   //bool window::set_window_position(const class ::zorder& zorder, i32 x, i32 y, i32 cx, i32 cy, const ::e_activation& eactivation, bool bNoZorder, bool bNoMove, bool bNoSize, bool bShow, bool bHide)
+   bool window::_strict_set_window_position_unlocked(i32 x, i32 y, i32 cx, i32 cy, bool bNoMove, bool bNoSize)
    {
 
       //synchronous_lock sl(user_synchronization());

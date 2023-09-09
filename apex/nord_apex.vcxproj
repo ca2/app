@@ -167,12 +167,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="compress\is_dir.cpp" />
-    <ClCompile Include="compress\not_dir.cpp" />
     <ClCompile Include="constant\idpool.cpp" />
-    <ClCompile Include="crypto\crypto.cpp" />
-    <ClCompile Include="crypto\initializer.cpp" />
-    <ClCompile Include="crypto\rsa.cpp" />
     <ClCompile Include="database\client.cpp" />
     <ClCompile Include="database\event_change.cpp" />
     <ClCompile Include="database\key.cpp" />
@@ -180,16 +175,9 @@
     <ClCompile Include="database\selection_item.cpp" />
     <ClCompile Include="database\server.cpp" />
     <ClCompile Include="database\stringhelper.cpp" />
-    <ClCompile Include="filesystem\filesystem\dir_context.cpp" />
-    <ClCompile Include="filesystem\filesystem\dir_system.cpp" />
-    <ClCompile Include="filesystem\filesystem\file_context.cpp" />
-    <ClCompile Include="filesystem\filesystem\file_system.cpp" />
-    <ClCompile Include="filesystem\file\action.cpp" />
     <ClCompile Include="filesystem\file\edit_file.cpp" />
     <ClCompile Include="filesystem\file\html_file.cpp" />
     <ClCompile Include="filesystem\file\set.cpp" />
-    <ClCompile Include="filesystem\file\watch.cpp" />
-    <ClCompile Include="filesystem\file\watcher.cpp" />
     <ClCompile Include="filesystem\fs\data.cpp" />
     <ClCompile Include="filesystem\fs\fs.cpp" />
     <ClCompile Include="filesystem\fs\ifs.cpp" />
@@ -307,7 +295,6 @@
     <ClCompile Include="progress\listener.cpp" />
     <ClCompile Include="progress\progress.cpp" />
     <ClCompile Include="progress\real.cpp" />
-    <ClCompile Include="user\user\container.cpp" />
     <ClCompile Include="user\user\language.cpp" />
     <ClCompile Include="user\user\language_map.cpp" />
     <ClCompile Include="user\user\message.cpp" />

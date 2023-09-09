@@ -104,7 +104,7 @@ namespace std
 
 
    template < typename PAIR >
-   ALIENATED_ANDROID_ANARCHY tuple_size< ::set_node < PAIR > > : integral_constant<size_t, 2> {};
+   ALIENATED_ANDROID_ANARCHY tuple_size< ::set_node < PAIR > > : ::integral_constant<size_t, 2> {};
 
    template < typename PAIR >
    ALIENATED_ANDROID_ANARCHY tuple_element< 0, set_node < PAIR > >

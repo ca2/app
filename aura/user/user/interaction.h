@@ -899,6 +899,7 @@ namespace user
       //virtual void this->rectangle(::rectangle_i32 & rect, enum_layout elayout = e_layout_design);
       virtual ::rectangle_i32 rectangle(enum_layout elayout = e_layout_design);
       virtual ::rectangle_i32 client_rectangle2();
+      virtual ::rectangle_i32 host_rectangle(enum_layout elayout = e_layout_design);
       virtual ::rectangle_i32 screen_rectangle(enum_layout elayout = e_layout_design);
 
 
@@ -1415,9 +1416,11 @@ namespace user
 
 #endif
 
-      virtual void post_message(const ::atom & atom, wparam wParam = 0, lparam lParam = 0) override;
+      void message_handler(const ::atom & atom, wparam wparam = 0, lparam lparam = 0) override;
 
-      virtual void post_object(const ::atom & atom, wparam wParam, lparam lParam);
+      void post_message(const ::atom & atom, wparam wparam = 0, lparam lparam = 0) override;
+
+      virtual void post_object(const ::atom & atom, wparam wparam = 0, lparam lparam = 0);
 
 
       //virtual void user_post(const ::atom& atom, wparam wParam = 0, lparam lParam = 0) override;

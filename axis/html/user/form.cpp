@@ -345,7 +345,7 @@ void html_form::on_message_mouse_move(::message::message * pmessage)
 
    ::point_i32 point(pmouse->m_point);
 
-   screen_to_client()(point);
+   host_to_client()(point);
 
    synchronous_lock synchronouslock(this->synchronization());
 

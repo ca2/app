@@ -159,10 +159,15 @@ namespace user
       virtual bool _is_window();
 
       
-      virtual ::lresult send_message(const ::atom& atom, ::wparam wParam = 0, ::lparam lParam = 0, const ::point_i32 & point = {});
+      virtual ::lresult send_message(const ::atom& atom, ::wparam wparam = 0, ::lparam lparam = 0, const ::point_i32 & point = {});
 
+      
+      using ::channel::message_handler;
 
-      virtual void post_message(const ::atom& atom, wparam wParam = 0, ::lparam lParam = 0);
+      virtual void message_handler(const ::atom & atom, wparam wparam = 0, lparam lparam = 0);
+
+     
+      virtual void post_message(const ::atom& atom, wparam wparam = 0, ::lparam lparam = 0);
 
 
       //virtual void set_window_text(const ::string& pszString);
@@ -368,8 +373,6 @@ namespace user
 
       virtual lresult message_call(const ::atom & atom, wparam wparam, lparam lparam, const ::point_i32 & point = {});
       virtual lresult message_call(::message::message * pmessage);
-
-
 
       virtual void send_message_to_descendants(const ::atom & atom, wparam wParam = 0,lparam lParam = 0,bool bDeep = true,bool bOnlyPerm = false);
 

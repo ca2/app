@@ -276,6 +276,8 @@ namespace user
 
 #endif
 
+      void message_handler(const ::atom & atom, wparam wparam = 0, lparam lparam = 0)override;
+
       void post_message(const ::atom & atom, wparam wparam = 0,lparam lparam = 0)override;
 
       void post_simple_command(const enum_simple_command & ecommand,lparam lParam = 0) override;

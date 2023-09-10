@@ -2453,12 +2453,18 @@ namespace user
    }
 
 
-   void primitive::post_message(const ::atom & atom,wparam wparam,lparam lparam)
+   void primitive::message_handler(const ::atom & atom, wparam wparam, lparam lparam)
    {
 
       throw ::interface_only();
 
-      //return false;
+   }
+
+
+   void primitive::post_message(const ::atom & atom,wparam wparam,lparam lparam)
+   {
+
+      throw ::interface_only();
 
    }
 

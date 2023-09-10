@@ -7463,6 +7463,18 @@ namespace user
    }
 
 
+   rectangle_i32 interaction::host_rectangle(enum_layout elayout)
+   {
+
+      auto rectangle = this->rectangle(elayout);
+
+      client_to_host(elayout)(rectangle);
+
+      return rectangle;
+
+   }
+
+
    rectangle_i32 interaction::screen_rectangle(enum_layout elayout)
    {
 
@@ -7478,7 +7490,7 @@ namespace user
    bool interaction::_001IsPointInsideInline(const ::point_i32 & point)
    {
 
-      return screen_rectangle(e_layout_design).contains(point);
+      return host_rectangle(e_layout_design).contains(point);
 
    }
 
@@ -12981,6 +12993,35 @@ namespace user
          get_wnd()->m_pthreadUserInteraction->kick_thread();
 
       }
+
+   }
+
+
+   void interaction::message_handler(const ::atom & atom, wparam wparam, lparam lparam)
+   {
+
+      // if (::is_null(m_puserinteraction))
+      // {
+
+      //    throw ::exception(error_wrong_state);
+
+      // }
+
+      // m_puserinteraction->interaction_post(__new(call_message_handler_task(m_puserinteraction, atom, wparam, lparam)));
+
+      //auto pmessage
+
+      //get_message()
+
+      ::pointer<::message::message>pmessage;
+
+      pmessage = get_message(atom, wparam, lparam);
+
+      pmessage->m_pchannel = this;
+
+      //return message_call(pmessage);
+
+      message_handler(pmessage);
 
    }
 
@@ -21512,7 +21553,7 @@ namespace user
 
             pointClient = pmouse->m_point;
 
-            screen_to_client()(pointClient);
+            host_to_client()(pointClient);
 
             auto ekeyModifiers = psession->key_modifiers();
 
@@ -21862,7 +21903,7 @@ namespace user
 
          pointClient = pmouse->m_point;
 
-         screen_to_client()(pointClient);
+         host_to_client()(pointClient);
 
          auto psession = m_puserinteraction->get_session();
 
@@ -22100,7 +22141,7 @@ namespace user
 
             pointClient = pmouse->m_point;
 
-            screen_to_client()(pointClient);
+            host_to_client()(pointClient);
 
             bool bRet;
 
@@ -22368,7 +22409,7 @@ namespace user
 
          pointClient = pmouse->m_point;
 
-         screen_to_client()(pointClient);
+         host_to_client()(pointClient);
 
          auto psession = m_puserinteraction->get_session();
 
@@ -22422,7 +22463,7 @@ namespace user
 
             pointClient = pmouse->m_point;
 
-            screen_to_client()(pointClient);
+            host_to_client()(pointClient);
 
             auto psession = m_puserinteraction->get_session();
 
@@ -22481,7 +22522,7 @@ namespace user
 
          pointClient = pmouse->m_point;
 
-         screen_to_client()(pointClient);
+         host_to_client()(pointClient);
 
          auto psession = m_puserinteraction->get_session();
 
@@ -22581,7 +22622,7 @@ namespace user
 
          pointClient = pwheel->m_point;
 
-         screen_to_client()(pointClient);
+         host_to_client()(pointClient);
 
          bool bRet;
 
@@ -22942,7 +22983,9 @@ namespace user
 
       auto * puseritem = user_item(pitem);
 
-      puseritem->m_pointScreen = pmouse->m_point;
+      //puseritem->m_pointScreen = pmouse->m_point;
+
+      puseritem->m_pointHost = pmouse->m_point;
 
       puseritem->m_pmouse = pmouse;
 

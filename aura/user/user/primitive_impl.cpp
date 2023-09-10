@@ -1848,6 +1848,46 @@ namespace user
    //}
 
 
+   void primitive_impl::message_handler(const ::atom & atom, wparam wparam, lparam lparam)
+   {
+
+      // if (::is_null(m_puserinteraction))
+      // {
+
+      //    throw ::exception(error_wrong_state);
+
+      // }
+
+      // m_puserinteraction->interaction_post(__new(call_message_handler_task(m_puserinteraction, atom, wparam, lparam)));
+
+      //auto pmessage
+
+      //get_message()
+
+      ::pointer<::message::message>pmessage;
+
+      if (m_puserinteraction)
+      {
+
+         pmessage = m_puserinteraction->get_message(atom, wparam, lparam);
+
+      }
+      else
+      {
+
+         pmessage = get_message(atom, wparam, lparam);
+
+      }
+
+      pmessage->m_pchannel = this;
+
+      //return message_call(pmessage);
+
+      message_handler(pmessage);
+
+   }
+
+
    lresult primitive_impl::message_call(const ::atom & atom, wparam wparam, lparam lparam, const ::point_i32& point)
    {
 

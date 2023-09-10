@@ -70,6 +70,8 @@ namespace user
 
       m_bDefaultClickHandling = true;
 
+      //m_bDefaultParentMouseMessageHandling = true;
+
    }
 
 

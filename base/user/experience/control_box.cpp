@@ -59,7 +59,7 @@ namespace experience
 
          m_pointDrag = pmouse->m_point;
 
-         screen_to_client()(m_pointDrag);
+         host_to_client()(m_pointDrag);
 
          set_mouse_capture();
 
@@ -82,7 +82,7 @@ namespace experience
 
          ::point_i32 point = pmouse->m_point;
 
-         m_pframewindow->screen_to_client()(point);
+         m_pframewindow->host_to_client()(point);
 
          drag(point);
 
@@ -112,7 +112,7 @@ namespace experience
 
             ::point_i32 point = pmouse->m_point;
 
-            m_pframewindow->screen_to_client()(point);
+            m_pframewindow->host_to_client()(point);
 
             drag(point);
 

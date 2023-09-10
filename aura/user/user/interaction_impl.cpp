@@ -1582,7 +1582,7 @@ namespace user
 
             synchronouslock.unlock();
 
-            pinteraction->post_message(e_message_mouse_leave);
+            pinteraction->message_handler(e_message_mouse_leave);
 
             synchronouslock.lock();
 

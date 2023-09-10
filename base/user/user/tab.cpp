@@ -919,7 +919,7 @@ namespace user
 
       auto pointClient = pmouse->m_point;
 
-      screen_to_client()(pointClient);
+      host_to_client()(pointClient);
 
       auto ptabdata = get_data();
 

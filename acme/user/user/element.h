@@ -332,6 +332,8 @@ namespace user
 
 #endif
 
+      virtual void message_handler(const ::atom & atom, wparam wparam = {}, lparam lparam = 0);
+
       virtual void post_message(const ::atom & atom, wparam wparam = {}, lparam lparam = 0);
 
       virtual void post_simple_command(const enum_simple_command & ecommand,lparam lParam = 0);

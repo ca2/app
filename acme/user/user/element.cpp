@@ -2028,8 +2028,6 @@ namespace user
 
       throw ::interface_only();
 
-      //return false;
-
    }
 
 
@@ -2319,12 +2317,18 @@ namespace user
    }
 
 
-   void element::post_message(const ::atom & atom, wparam wparam, lparam lparam)
+   void element::message_handler(const ::atom & atom, wparam wparam, lparam lparam)
    {
 
       throw ::interface_only();
 
-      //return false;
+   }
+
+
+   void element::post_message(const ::atom & atom, wparam wparam, lparam lparam)
+   {
+
+      throw ::interface_only();
 
    }
 

@@ -6,6 +6,8 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/primitive/geometry2d/_text_stream.h"
 #include "apex/parallelization/thread.h"
+#include "aura/user/user/_text_stream.h"
+#include "aura/windowing/window.h"
 #include "aura/windowing/windowing.h"
 #include "aura/message/user.h"
 
@@ -74,6 +76,28 @@ namespace experience
 
       }
 
+      ::experience::enum_frame eframeCursor = m_eframeCursor;
+
+      if (eframeCursor == e_frame_none)
+      {
+
+         return false;
+
+      }
+
+      auto eframeSizing = eframeCursor;
+
+      if(m_pframewindow->window()->defer_perform_entire_resizing_process(eframeSizing))
+      {
+
+         pmouse->m_lresult = 1;
+
+         pmouse->m_bRet = true;
+
+         return true;
+
+      }
+
       auto pointCursor = pmouse->m_point;
 
       m_pointCursorOrigin = pointCursor;
@@ -89,8 +113,6 @@ namespace experience
       m_pframewindow->window_rectangle(rectangleEvent);
 
       //enum_frame eframe = _001HitTest(pointCursor);
-
-      ::experience::enum_frame eframeCursor = m_eframeCursor;
 
       //auto pitemCursor = m_pitemCursor;
 
@@ -139,12 +161,6 @@ namespace experience
 //         //   return true;
 //      }
 
-      if (eframeCursor == e_frame_none)
-      {
-
-         return false;
-
-      }
 
       pmouse->m_bRet = true;
 
@@ -158,7 +174,7 @@ namespace experience
 
       pmouse->m_pcursor = pcursor;
 
-      m_eframeSizing = eframeCursor;
+      m_eframeSizing = eframeSizing;
 
       m_pframewindow->m_pthreadUserInteraction->m_emessageaGetLast.add(e_message_mouse_move);
 
@@ -188,6 +204,8 @@ namespace experience
 
       if(m_eframeSizing != e_frame_none)
       {
+
+         information() << "size_manager::on_message_mouse_move frameSizing set : " << m_eframeSizing;
 
          size_window(m_eframeSizing, m_pframewindow, pmouse->m_point, true);
 

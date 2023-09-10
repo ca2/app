@@ -23,6 +23,15 @@ inline ::write_text_stream & operator <<(::write_text_stream & textstream, ::enu
 
 }
 
+
+inline ::write_text_stream & operator <<(::write_text_stream & textstream, ::enum_cursor ecursor)
+{
+
+   return textstream << ::as_string(ecursor);
+
+}
+
+
 //
 //
 //template < typename FILE, primitive_rectangle RECTANGLE >

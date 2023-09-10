@@ -11,6 +11,7 @@
 #include "aura/message/user.h"
 #include "aura/user/user/interaction.h"
 #include "aura/user/user/user.h"
+#include "aura/platform/node.h"
 #include "aura/platform/system.h"
 #include "aura/windowing/windowing.h"
 #include "aura/windowing/cursor_manager.h"
@@ -350,6 +351,13 @@ namespace windowing
    }
 
 
+   void windowing::set_mouse_cursor(::windowing::cursor * pcursor)
+   {
+
+
+   }
+
+
    /// pwindowGainingFocusIfAny
    /// handlers of this notification should NOT...
    /// NOT... set focus to pwindowGainingFocusIfAny
@@ -525,7 +533,12 @@ namespace windowing
    void windowing::windowing_post(const ::procedure & procedure)
    {
 
-      throw ::interface_only();
+      if(acmenode()->m_pauranode->defer_windowing_post(procedure))
+      {
+
+         return;
+
+      }
 
    }
 

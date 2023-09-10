@@ -339,38 +339,7 @@ namespace message
 
          auto pwindow = window();
 
-         if (pwindow)
-         {
-
-            auto puserinteractionimpl = pwindow->m_puserinteractionimpl;
-
-            if (puserinteractionimpl)
-            {
-
-               auto puserinteraction = puserinteractionimpl->m_puserinteraction;
-
-               if (puserinteraction)
-               {
-
-                  auto pwindow = puserinteraction->window();
-
-                  if (pwindow)
-                  {
-
-                     if (m_pcursor)
-                     {
-
-                        pwindow->set_mouse_cursor(m_pcursor);
-
-                     }
-
-                  }
-
-               }
-
-            }
-
-         }
+         pwindow->on_destruct_mouse_message(this);
 
       }
       catch(...)

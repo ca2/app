@@ -29,7 +29,9 @@ enum enum_cursor
    e_cursor_size_left,
    e_cursor_size_vertical,
    e_cursor_size_horizontal,
-   e_cursor_move
+   e_cursor_move,
+   e_cursor_wait,
+   e_cursor_wait_arrow,
 
 };
 

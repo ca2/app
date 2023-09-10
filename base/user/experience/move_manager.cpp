@@ -4,6 +4,7 @@
 #include "frame.h"
 #include "acme/constant/message.h"
 #include "apex/parallelization/thread.h"
+#include "aura/windowing/window.h"
 #include "aura/windowing/windowing.h"
 #include "aura/message/user.h"
 
@@ -60,6 +61,21 @@ namespace experience
 
       }
 
+      if(m_pframewindow->window()->defer_perform_entire_reposition_process())
+      {
+
+         pmouse->m_lresult = 1;
+
+         pmouse->m_bRet = true;
+
+         return true;
+
+      }
+
+      m_bMoving = true;
+
+      m_pframewindow->set_mouse_capture();
+
       m_stateBefore = m_pframewindow->const_layout().sketch();
 
       auto pointCursor = pmouse->m_point;
@@ -74,11 +90,7 @@ namespace experience
 
       m_pointMove = m_pointWindowOrigin;
 
-      m_pframewindow->set_mouse_capture();
-
       m_iConsiderMove = 0;
-
-      m_bMoving = true;
 
       m_pframewindow->m_pthreadUserInteraction->m_emessageaGetLast.add(e_message_mouse_move);
 
@@ -134,6 +146,13 @@ namespace experience
 
       }
 
+//      if(m_pframewindow->window()->defer_perform_reposition())
+//      {
+//
+//         return true;
+//
+//      }
+//
       pmouse->payload("flush_similar_messages") = true;
 
       auto pframewindow = m_pframewindow;

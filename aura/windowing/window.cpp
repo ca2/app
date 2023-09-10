@@ -1328,17 +1328,20 @@ namespace windowing
 
          information() << "::windowing::window::configure_window_unlocked displayRequest : " << edisplayOutput;
 
-         _configure_window_unlocked(
+         if(_configure_window_unlocked(
             zOutput,
             eactivationOutput,
             !bZ,
-            edisplayOutput);
+            edisplayOutput))
+         {
 
-         stateWindow.display() = stateOutput.display();
+            stateWindow.display() = stateOutput.display();
 
-         stateOutput.m_eactivation.clear();
+            stateOutput.m_eactivation.clear();
 
-         stateOutput.m_zorder.clear_request();
+            stateOutput.m_zorder.clear_request();
+
+         }
 
       }
 
@@ -1948,6 +1951,92 @@ namespace windowing
          // ENDIF WINDOWS
       }
 
+
+   }
+
+
+   bool window::defer_perform_entire_reposition_process()
+   {
+
+      return false;
+
+   }
+
+
+   bool window::defer_perform_entire_resizing_process(::experience::enum_frame eframeSizing)
+   {
+
+      return false;
+
+   }
+
+
+   void window::on_destruct_mouse_message(::message::mouse * pmouse)
+   {
+
+      if(::is_null(pmouse))
+      {
+
+         return;
+
+      }
+
+      try
+      {
+
+         auto pcursor = pmouse->m_pcursor;
+
+         if(!pcursor)
+         {
+
+            pcursor = get_mouse_cursor();
+
+            if(pcursor)
+            {
+
+               information() << "got window cursor : " << pcursor->m_ecursor;
+
+            }
+
+         }
+         else
+         {
+
+            information() << "got mouse cursor : " << pcursor->m_ecursor;
+
+         }
+
+         if(pcursor)
+         {
+
+            windowing()->set_mouse_cursor(pcursor);
+
+         }
+
+      }
+      catch(...)
+      {
+
+      }
+
+
+//      if(::is_null(pmouse))
+//      {
+//
+//         return;
+//
+//      }
+//
+//      try
+//      {
+//
+//         set_mouse_cursor(pmouse->m_pcursor);
+//
+//      }
+//      catch(...)
+//      {
+//
+//      }
 
    }
 

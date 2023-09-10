@@ -387,6 +387,12 @@ namespace windowing
 
       virtual void window_do_update_screen();
 
+      virtual bool defer_perform_entire_reposition_process();
+
+      virtual bool defer_perform_entire_resizing_process(::experience::enum_frame eframeSizing);
+
+      virtual void on_destruct_mouse_message(::message::mouse * pmouse);
+
 
    };
 

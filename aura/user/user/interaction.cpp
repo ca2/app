@@ -8183,7 +8183,7 @@ namespace user
 
       auto pointClient = point;
 
-      screen_to_client()(pointClient);
+      host_to_client()(pointClient);
 
       for (::index iChild = puserinteractionpointeraChild->interaction_last_index();
            iChild >= 0; iChild--)
@@ -14598,6 +14598,8 @@ namespace user
          ::output_debug_string("e_message_left_button_down");
 
       }
+
+      pmouse->m_pcursor = m_pcursorDefault;
 
       ::user::interaction * pchild = this;
 
@@ -22927,7 +22929,7 @@ namespace user
 
       pointClient = pmouse->m_point;
 
-      screen_to_client()(pointClient);
+      host_to_client()(pointClient);
 
       auto pitem = hit_test(pointClient, ezorder);
 

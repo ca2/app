@@ -10,6 +10,9 @@ CLASS_DECL_ACME ::string as_string(enum_display edisplay);
 CLASS_DECL_ACME ::string as_string(enum_activation eactivation);
 
 
+CLASS_DECL_ACME ::string as_string(enum_cursor ecursor);
+
+
 ////
 ////
 ////template < typename FILE, primitive_rectangle RECTANGLE >

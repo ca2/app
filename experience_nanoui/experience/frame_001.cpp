@@ -49,7 +49,7 @@ namespace experience_nanoui
       {
          //      m_pframewindow->screen_to_client()(point);
          ::rectangle_i32 rectangleEvent;
-         m_pframewindow->window_rectangle(rectangleEvent);
+         m_pframewindow->raw_rectangle(rectangleEvent);
          ::rectangle_i32 rectangle;
          ::point_i32 pointCenter = rectangleEvent.center();
          enum_grip egrip = m_pframewindow->size_manager()->GetGripMask();

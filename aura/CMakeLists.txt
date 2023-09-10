@@ -1325,7 +1325,10 @@ list(APPEND static_library_references ${library_references})
 list(TRANSFORM static_library_references PREPEND static_)
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source})
+add_library(${PROJECT_NAME} SHARED ${library_source}
+   user/user/_string.h
+   user/user/_text_stream.h
+   user/user/_string.cpp)
 add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
 

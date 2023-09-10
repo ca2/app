@@ -151,7 +151,7 @@ namespace windowing
 
       pcursor->set_cursor(ecursor);
 
-      m_cursormap.set_at(ecursor, pcursor);
+      //m_cursormap.set_at(ecursor, pcursor);
 
       return pcursor;
 

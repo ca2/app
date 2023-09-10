@@ -207,7 +207,9 @@ namespace experience
 
          information() << "size_manager::on_message_mouse_move frameSizing set : " << m_eframeSizing;
 
-         size_window(m_eframeSizing, m_pframewindow, pmouse->m_point, true);
+         auto p = pmouse->m_point + m_pframewindow->m_pwindow->m_pointWindow;
+
+         size_window(m_eframeSizing, m_pframewindow, p, true);
 
          auto pwindowing = m_pframewindow->windowing();
 
@@ -408,7 +410,9 @@ namespace experience
          if(bApply)
          {
 
-            size_window(eframeSizing, m_pframewindow, pmouse->m_point, true);
+            auto p = pmouse->m_point + m_pframewindow->m_pwindow->m_pointWindow;
+
+            size_window(eframeSizing, m_pframewindow, p, true);
 
             pmouse->m_lresult = 1;
 

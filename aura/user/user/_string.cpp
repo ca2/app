@@ -23,7 +23,7 @@
 };
 
 
-CLASS_DECL_ACME ::string as_string(::experience::enum_frame eframe)
+::string as_string(::experience::enum_frame eframe)
 {
 
    static ::map<::experience::enum_frame, const char *> s_map(g_eframepszpaira, ARRAY_SIZE(g_eframepszpaira));

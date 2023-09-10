@@ -4,7 +4,7 @@
 #pragma once
 
 
-CLASS_DECL_ACME ::string as_string(::experience::enum_frame eframe);
+CLASS_DECL_AURA ::string as_string(::experience::enum_frame eframe);
 
 
 

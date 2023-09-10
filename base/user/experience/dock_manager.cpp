@@ -60,7 +60,7 @@ namespace experience
    bool dock_manager::dock_window(::message::mouse* pmouse)
    {
 
-      auto pointDock = ::point_i32(pmouse->m_point - m_pointCursorDockOrigin + m_sizeDockRightOrigin);
+      auto pointDock = ::point_i32(pmouse->m_point+ m_pframewindow->m_pwindow->m_pointWindow- m_pointCursorDockOrigin + m_sizeDockRightOrigin);
 
       pointDock.x() -= m_pframewindow->width();
 
@@ -72,7 +72,7 @@ namespace experience
 
       rectangleEvent.move_to(pointDock);
 
-      auto pointCursor = pmouse->m_point;
+      auto pointCursor = pmouse->m_point + m_pframewindow->m_pwindow->m_pointWindow;
 
       ::rectangle_i32 rectangleCursor(pointCursor.x() - 1, pointCursor.y() - 1, pointCursor.x() + 1, pointCursor.y() + 1);
 
@@ -293,7 +293,7 @@ namespace experience
          ::rectangle_i32 rectangleWindow = m_rectangleOnDockStart;
 
          auto pointReposition =
-            pmouse->m_point
+            pmouse->m_point + m_pframewindow->m_pwindow->m_pointWindow
             - m_pointCursorDockOrigin
             + m_sizeDockRightOrigin;
 
@@ -377,9 +377,9 @@ namespace experience
 
       pbutton->set_mouse_capture();
 
-      auto pointCursor = pmouse->m_point;
-
       auto rectangleWindow = m_pframewindow->screen_rectangle();
+
+      auto pointCursor = rectangleWindow.origin() + pmouse->m_point;
 
       m_rectangleOnDockStart = rectangleWindow;
 
@@ -412,7 +412,7 @@ namespace experience
 
       }
 
-      m_pointLastRepositionCursorOrigin = pmouse->m_point;
+      m_pointLastRepositionCursorOrigin = pmouse->m_point + m_pframewindow->m_pwindow->m_pointWindow;
 
       m_pointLastRepositionWindowOrigin = m_pframewindow->const_layout().window().origin();
 

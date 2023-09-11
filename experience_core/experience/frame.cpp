@@ -1172,6 +1172,46 @@ namespace experience_core
 
    }
 
+   void frame::GetBorderRectangle(const ::rectangle_i32 & rectangleOuter, ::rectangle_i32 * lprect, enum_border eside)
+   {
+
+      ::rectangle_i32 rectangleInner;
+
+      rectangleInner = m_pframewindow->client_rectangle();
+
+      ::rectangle_i32 rectangle;
+
+      if (eside == e_border_top)
+      {
+         rectangle.left() = rectangleOuter.left();
+         rectangle.right() = rectangleOuter.right();
+         rectangle.top() = rectangleOuter.top();
+         rectangle.bottom() = rectangleInner.top();
+      }
+      else if (eside == e_border_left)
+      {
+         rectangle.left() = rectangleOuter.left();
+         rectangle.right() = rectangleInner.left();
+         rectangle.top() = rectangleInner.top();
+         rectangle.bottom() = rectangleInner.bottom();
+      }
+      else if (eside == e_border_right)
+      {
+         rectangle.left() = rectangleInner.right();
+         rectangle.right() = rectangleOuter.right();
+         rectangle.top() = rectangleInner.top();
+         rectangle.bottom() = rectangleInner.bottom();
+      }
+      else if (eside == e_border_bottom)
+      {
+         rectangle.left() = rectangleOuter.left();
+         rectangle.right() = rectangleOuter.right();
+         rectangle.top() = rectangleInner.bottom();
+         rectangle.bottom() = rectangleOuter.bottom();
+      }
+      *lprect = rectangle;
+   }
+
 
 } // namespace experience
 

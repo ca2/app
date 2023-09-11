@@ -336,12 +336,12 @@ namespace user
       if (rectangle.is_set())
       {
 
-         if (m_rectangleClient2 != rectangle)
-         {
+         //if (m_rectangleClient2 != rectangle)
+         //{
 
-            m_rectangleClient2 = rectangle;
+         //   m_rectangleClient2 = rectangle;
 
-         }
+         //}
 
          for (auto & puiChild : puserinteractionpointeraChild->interactiona())
          {

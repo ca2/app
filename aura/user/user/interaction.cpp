@@ -7457,10 +7457,10 @@ namespace user
    }
 
 
-   ::rectangle_i32 interaction::client_rectangle2()
+   ::rectangle_i32 interaction::client_rectangle(enum_layout elayout)
    {
 
-      return m_rectangleClient2;
+      return rectangle(elayout);
 
    }
 
@@ -12098,9 +12098,9 @@ namespace user
 
       auto pparent = get_parent();
 
-      auto rectangleClient2 = pparent->client_rectangle2();
+      auto rectangleClient = pparent->client_rectangle(::user::e_layout_layout);
 
-      auto sizeParentClientArea = rectangleClient2.size();
+      auto sizeParentClientArea = rectangleClient.size();
 
       auto sizeThis = size(::user::e_layout_lading);
 
@@ -12111,7 +12111,7 @@ namespace user
 
       }
 
-      auto positionParentClientArea = rectangleClient2.origin();
+      auto positionParentClientArea = rectangleClient.origin();
 
       auto positionThis = position(::user::e_layout_lading);
 
@@ -16872,10 +16872,10 @@ namespace user
    }
 
 
-   void interaction::display_child(const ::rectangle_i32 & rectangle)
+   void interaction::display_child(const ::rectangle_i32 & rectangle, enum_layout elayout, ::draw2d::graphics * pgraphics)
    {
 
-      place(rectangle);
+      place(rectangle, elayout, pgraphics);
 
       display(e_display_normal);
 

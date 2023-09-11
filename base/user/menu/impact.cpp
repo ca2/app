@@ -382,282 +382,282 @@ namespace user
    void menu_impact::_001OnDraw(::draw2d::graphics_pointer & pgraphicsParam)
    {
 
-      //::image_pointer pimage1;
+      ::image_pointer pimage1;
 
-      //__defer_construct(m_pimageMem);
+      __defer_construct(m_pimageMem);
 
-      //pimage1 = m_pimageMem;
+      pimage1 = m_pimageMem;
 
-      //auto rectangleX = this->rectangle();
+      auto rectangleX = this->rectangle();
 
-      //if (rectangleX.area() <= 0)
-      //{
+      if (rectangleX.area() <= 0)
+      {
 
-      //   return;
+         return;
 
-      //}
+      }
 
-      //pimage1->create(rectangleX.size());
+      pimage1->create(rectangleX.size());
 
-      //::draw2d::graphics_pointer pgraphics = pimage1->get_graphics();
+      ::draw2d::graphics_pointer pgraphics = pimage1->get_graphics();
 
-      //if (is_window_enabled())
-      //{
+      if (is_window_enabled())
+      {
 
-      //   pimage1->fill_byte(255);
+         pimage1->fill_byte(255);
 
-      //}
-      //else
-      //{
+      }
+      else
+      {
 
-      //   pimage1->clear_argb(255, 200, 200, 200);
+         pimage1->clear_argb(255, 200, 200, 200);
 
-      //}
+      }
 
-      //pgraphics->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
+      pgraphics->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
-      //image_source imagesource(m_pimageLogo);
+      image_source imagesource(m_pimageLogo);
 
-      //image_drawing_options imagedrawingoptions(m_pimageLogo->rectangle({ 10, 10 }));
+      image_drawing_options imagedrawingoptions(m_pimageLogo->rectangle({ 10, 10 }));
 
-      //image_drawing imagedrawing(imagedrawingoptions, imagesource);
+      image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-      //pgraphics->draw(imagedrawing);
+      pgraphics->draw(imagedrawing);
 
-      ////__construct_new(m_pitema);
+      //__construct_new(m_pitema);
 
-      //::rectangle_i32 rectangle;
+      ::rectangle_i32 rectangle;
 
-      //rectangle_i32_array raMenu;
+      rectangle_i32_array raMenu;
 
-      //int iPos = 0;
+      int iPos = 0;
 
-      //xml::node * pnodeMain = m_pxmldoc->get_child_at("menubar", 0, 1);
+      xml::node * pnodeMain = m_pxmldoc->get_child_at("menubar", 0, 1);
 
-      //if (pnodeMain->get_children_count("menubar") <= 0)
-      //{
+      if (pnodeMain->get_children_count("menubar") <= 0)
+      {
 
-      //   pnodeMain = m_pxmldoc;
+         pnodeMain = m_pxmldoc;
 
-      //}
+      }
 
-      //for (int i = 0; i < pnodeMain->get_children_count("menubar"); i++)
-      //{
+      for (int i = 0; i < pnodeMain->get_children_count("menubar"); i++)
+      {
 
-      //   xml::node * pnode = pnodeMain->get_child_at("menubar", i, 1);
+         xml::node * pnode = pnodeMain->get_child_at("menubar", i, 1);
 
-      //   m_pitema->add(__new(::item(::e_element_item, iPos, iMenu, -1)));
+         ///main_content().add_item(__new(::item(::e_element_item, iPos, iMenu, -1)));
 
-      //   string strTitle;
-      //   
-      //   strTitle = pnode->attribute("title");
+         string strTitle;
+         
+         strTitle = pnode->attribute("title");
 
-      //   pgraphics->set(m_pfontTitle);
+         pgraphics->set(m_pfontTitle);
 
-      //   auto statusrectangleMenu = get_menu_item_rectangle(iPos);
+         auto statusrectangleMenu = get_menu_item_rectangle(iPos);
 
-      //   pgraphics->set(m_ppen);
+         pgraphics->set(m_ppen);
 
-      //   draw_header_rectangle(pgraphics, statusrectangleMenu);
+         draw_header_rectangle(pgraphics, statusrectangleMenu);
 
-      //   pgraphics->set_text_color(argb(255, 0, 0, 0));
+         pgraphics->set_text_color(argb(255, 0, 0, 0));
 
-      //   pgraphics->text_out(statusrectangleMenu.left() + 10, statusrectangleMenu.top() + 5, strTitle);
+         pgraphics->text_out(statusrectangleMenu.left() + 10, statusrectangleMenu.top() + 5, strTitle);
 
-      //   iPos++;
+         iPos++;
 
-      //   for (int j = 0; j < pnode->get_children_count(); j++)
-      //   {
+         for (int j = 0; j < pnode->get_children_count(); j++)
+         {
 
-      //      xml::node * pnodeItem = pnode->child_at(j);
+            xml::node * pnodeItem = pnode->child_at(j);
 
-      //      if (pnodeItem->get_name() == "item")
-      //      {
+            if (pnodeItem->get_name() == "item")
+            {
 
-      //         ::string strId = pnodeItem->attribute("id").as_string();
+               ::string strId = pnodeItem->attribute("id").as_string();
 
-      //         string strItem;
+               string strItem;
 
-      //         strItem = pnodeItem->get_value();
+               strItem = pnodeItem->get_value();
 
-      //         auto statusrectangle = get_menu_item_rectangle(iPos);
+               auto statusrectangle = get_menu_item_rectangle(iPos);
 
-      //         statusrectangleMenu.unite(statusrectangleMenu, statusrectangle);
+               statusrectangleMenu.unite(statusrectangleMenu, statusrectangle);
 
-      //         pgraphics->set(m_ppen);
+               pgraphics->set(m_ppen);
 
-      //         ::item item(::e_element_item, iPos, i, j);
+               ::item item(::e_element_item, iPos, i, j);
 
-      //         if (::is_set(m_pitemHover) && *m_pitemHover == item)
-      //         {
+               if (::is_set(m_pitemHover) && *m_pitemHover == item)
+               {
 
-      //            if (::is_set(main_content().m_pitemCurrent) && *main_content().m_pitemCurrent == item)
-      //            {
+                  if (::is_set(main_content().m_pitemCurrent) && *main_content().m_pitemCurrent == item)
+                  {
 
-      //               pgraphics->set(m_pbrushBkHoverSel);
+                     pgraphics->set(m_pbrushBkHoverSel);
 
-      //               draw_item_rectangle_hover_sel001(pgraphics, rectangle);
+                     draw_item_rectangle_hover_sel001(pgraphics, rectangle);
 
-      //            }
-      //            else
-      //            {
+                  }
+                  else
+                  {
 
-      //               pgraphics->set(m_pbrushBkSel);
+                     pgraphics->set(m_pbrushBkSel);
 
-      //               draw_item_rectangle_hover001(pgraphics, rectangle);
+                     draw_item_rectangle_hover001(pgraphics, rectangle);
 
-      //            }
+                  }
 
-      //         }
-      //         else if (::is_set(main_content().m_pitemCurrent) && *main_content().m_pitemCurrent == item)
-      //         {
+               }
+               else if (::is_set(main_content().m_pitemCurrent) && *main_content().m_pitemCurrent == item)
+               {
 
-      //            pgraphics->set(m_pbrushBkSel);
+                  pgraphics->set(m_pbrushBkSel);
 
-      //            draw_item_rectangle_sel001(pgraphics, rectangle);
+                  draw_item_rectangle_sel001(pgraphics, rectangle);
 
-      //         }
-      //         else
-      //         {
+               }
+               else
+               {
 
-      //            draw_item_rectangle(pgraphics, rectangle);
+                  draw_item_rectangle(pgraphics, rectangle);
 
-      //         }
+               }
 
-      //         pgraphics->set(m_pfont);
+               pgraphics->set(m_pfont);
 
-      //         if (::is_set(main_content().m_pitemCurrent) && *main_content().m_pitemCurrent == item)
-      //         {
+               if (::is_set(main_content().m_pitemCurrent) && *main_content().m_pitemCurrent == item)
+               {
 
-      //            pgraphics->set_text_color(argb(255, 0, 148, 202));
+                  pgraphics->set_text_color(argb(255, 0, 148, 202));
 
-      //         }
-      //         else
-      //         {
+               }
+               else
+               {
 
-      //            pgraphics->set_text_color(argb(255, 60, 60, 60));
+                  pgraphics->set_text_color(argb(255, 60, 60, 60));
 
-      //         }
+               }
 
-      //         pgraphics->text_out(rectangle.left() + 10, rectangle.top() + 5, strItem);
+               pgraphics->text_out(rectangle.left() + 10, rectangle.top() + 5, strItem);
 
-      //         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+               pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      //         ::image_pointer pimage1;
+               ::image_pointer pimage1;
 
-      //         if (::is_set(main_content().m_pitemCurrent) && *main_content().m_pitemCurrent == item)
-      //         {
+               if (::is_set(main_content().m_pitemCurrent) && *main_content().m_pitemCurrent == item)
+               {
 
-      //            pgraphics->set(m_ppenBkSel);
+                  pgraphics->set(m_ppenBkSel);
 
-      //            pgraphics->set_current_point(rectangle.left() + 1, rectangle.top());
-      //            pgraphics->line_to(rectangle.left() + 1, rectangle.bottom() - 1);
+                  pgraphics->set_current_point(rectangle.left() + 1, rectangle.top());
+                  pgraphics->line_to(rectangle.left() + 1, rectangle.bottom() - 1);
 
-      //            pimage1 = m_pimageMap[strId];
+                  pimage1 = m_pimageMap[strId];
 
-      //         }
-      //         else
-      //         {
+               }
+               else
+               {
 
-      //            pimage1 = m_pimageMapGray[strId];
+                  pimage1 = m_pimageMapGray[strId];
 
-      //         }
+               }
 
-      //         if (pimage1->is_set())
-      //         {
+               if (pimage1->is_set())
+               {
 
-      //            ::rectangle_i32 rectangleDib;
+                  ::rectangle_i32 rectangleDib;
 
-      //            rectangleDib.left() = rectangle.right() - pimage1->width() - 10;
-      //            rectangleDib.top() = rectangle.top() + (rectangle.height() - pimage1->height()) / 2;
-      //            rectangleDib.set_size(pimage1->width(), pimage1->height());
+                  rectangleDib.left() = rectangle.right() - pimage1->width() - 10;
+                  rectangleDib.top() = rectangle.top() + (rectangle.height() - pimage1->height()) / 2;
+                  rectangleDib.set_size(pimage1->width(), pimage1->height());
 
-      //            image_source imagesource(pimage1);
+                  image_source imagesource(pimage1);
 
-      //            image_drawing_options imagedrawingoptions(rectangleDib);
+                  image_drawing_options imagedrawingoptions(rectangleDib);
 
-      //            image_drawing imagedrawing(imagedrawingoptions, imagesource);
+                  image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-      //            pgraphics->draw(imagedrawing);
+                  pgraphics->draw(imagedrawing);
 
-      //         }
+               }
 
-      //         iPos++;
+               iPos++;
 
-      //      }
+            }
 
-      //   }
+         }
 
-      //   raMenu.add(statusrectangleMenu);
+         raMenu.add(statusrectangleMenu);
 
-      //}
+      }
 
-      //iPos = 0;
+      iPos = 0;
 
-      //for (int i = 0; i < pnodeMain->get_children_count("menubar"); i++)
-      //{
+      for (int i = 0; i < pnodeMain->get_children_count("menubar"); i++)
+      {
 
-      //   xml::node * pnode = pnodeMain->get_child_at("menubar", i, 1);
+         xml::node * pnode = pnodeMain->get_child_at("menubar", i, 1);
 
-      //   auto statusrectangle = get_menu_item_rectangle(iPos);
+         auto statusrectangle = get_menu_item_rectangle(iPos);
 
-      //   pgraphics->set(m_ppen);
+         pgraphics->set(m_ppen);
 
-      //   draw_header_separator(pgraphics, statusrectangle.bottom_left(), statusrectangle.bottom_right());
+         draw_header_separator(pgraphics, statusrectangle.bottom_left(), statusrectangle.bottom_right());
 
-      //   iPos++;
+         iPos++;
 
-      //   for (int j = 0; j < pnode->get_children_count() - 1; j++)
-      //   {
+         for (int j = 0; j < pnode->get_children_count() - 1; j++)
+         {
 
-      //      xml::node * pnodeItem = pnode->child_at(j);
+            xml::node * pnodeItem = pnode->child_at(j);
 
-      //      if (pnodeItem->get_name() == "item")
-      //      {
+            if (pnodeItem->get_name() == "item")
+            {
 
-      //         string strItem;
+               string strItem;
 
-      //         strItem = pnodeItem->get_value();
+               strItem = pnodeItem->get_value();
 
-      //         statusrectangle = get_menu_item_rectangle(iPos);
+               statusrectangle = get_menu_item_rectangle(iPos);
 
-      //         draw_item_separator(pgraphics, statusrectangle.bottom_left(), statusrectangle.bottom_right());
+               draw_item_separator(pgraphics, statusrectangle.bottom_left(), statusrectangle.bottom_right());
 
-      //         iPos++;
+               iPos++;
 
-      //      }
+            }
 
-      //   }
+         }
 
-      //   iPos++;
+         iPos++;
 
-      //}
+      }
 
-      //for (int i = 0; i < pnodeMain->get_children_count("menubar"); i++)
-      //{
+      for (int i = 0; i < pnodeMain->get_children_count("menubar"); i++)
+      {
 
-      //   draw_border_rectangle(pgraphics, raMenu[i]);
+         draw_border_rectangle(pgraphics, raMenu[i]);
 
-      //}
+      }
 
-      //if (!is_window_enabled())
-      //{
+      if (!is_window_enabled())
+      {
 
-      //   pimage1->saturation(0.0);
+         pimage1->saturation(0.0);
 
-      //}
+      }
 
-      //{
+      {
 
-      //   image_source imagesource(pimage1);
+         image_source imagesource(pimage1);
 
-      //   image_drawing_options imagedrawingoptions(rectangleX);
+         image_drawing_options imagedrawingoptions(rectangleX);
 
-      //   image_drawing imagedrawing(imagedrawingoptions, imagesource);
+         image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-      //   pgraphicsParam->draw(imagedrawing);
+         pgraphicsParam->draw(imagedrawing);
 
-      //}
+      }
 
    }
 

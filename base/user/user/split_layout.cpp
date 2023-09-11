@@ -598,11 +598,11 @@ namespace user
 
          pplaceholder->order(e_zorder_top);
 
-         pplaceholder->place(rectangleClient);
+         pplaceholder->place(rectangleClient, ::user::e_layout_layout, pgraphics);
 
-         pplaceholder->m_rectangleClient2 = rectangleClient;
+         //pplaceholder->m_rectangleClient = rectangleClient;
 
-         pplaceholder->m_rectangleClient2.offset(-pplaceholder->m_rectangleClient2.top_left());
+         //pplaceholder->m_rectangleClient.offset(-pplaceholder->m_rectangleClient.top_left());
 
          if (pplaceholder->const_layout().sketch().is_visible())
          {
@@ -1417,6 +1417,14 @@ namespace user
 
 
    }
+
+   //::rectangle_i32 split_layout::client_rectangle(::user::enum_layout elayout)
+   //{
+
+   //   return m_rectangleClient;
+
+   //}
+
 
 
 } // namespace user

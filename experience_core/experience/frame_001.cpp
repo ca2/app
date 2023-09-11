@@ -378,47 +378,47 @@ namespace experience_core
 
    }
 
-   void frame_001::GetBorderRectangle(const ::rectangle_i32 & rectangleX, ::rectangle_i32 * lprect, enum_border eside)
-   {
+   //void frame_001::GetBorderRectangle(const ::rectangle_i32 & rectangleX, ::rectangle_i32 * lprect, enum_border eside)
+   //{
 
-      ::rectangle_i32 rectangleBig(rectangleX);
+   //   ::rectangle_i32 rectangleBig(rectangleX);
 
-      ::rectangle_i32 rectangleSmall;
+   //   ::rectangle_i32 rectangleSmall;
 
-      rectangleSmall = m_pframewindow->client_rectangle2();
+   //   rectangleSmall = m_pframewindow->client_rectangle();
 
-      ::rectangle_i32 rectangle;
+   //   ::rectangle_i32 rectangle;
 
-      if(eside == e_border_top)
-      {
-         rectangle.left() = rectangleBig.left();
-         rectangle.right() = rectangleBig.right();
-         rectangle.top() = rectangleBig.top();
-         rectangle.bottom() = rectangleSmall.top();
-      }
-      else if(eside == e_border_left)
-      {
-         rectangle.left() = rectangleBig.left();
-         rectangle.right() = rectangleSmall.left();
-         rectangle.top() = rectangleSmall.top();
-         rectangle.bottom() = rectangleSmall.bottom();
-      }
-      else if(eside == e_border_right)
-      {
-         rectangle.left() = rectangleSmall.right();
-         rectangle.right() = rectangleBig.right();
-         rectangle.top() = rectangleSmall.top();
-         rectangle.bottom() = rectangleSmall.bottom();
-      }
-      else if(eside == e_border_bottom)
-      {
-         rectangle.left() = rectangleBig.left();
-         rectangle.right() = rectangleBig.right();
-         rectangle.top() = rectangleSmall.bottom();
-         rectangle.bottom() = rectangleBig.bottom();
-      }
-      *lprect = rectangle;
-   }
+   //   if(eside == e_border_top)
+   //   {
+   //      rectangle.left() = rectangleBig.left();
+   //      rectangle.right() = rectangleBig.right();
+   //      rectangle.top() = rectangleBig.top();
+   //      rectangle.bottom() = rectangleSmall.top();
+   //   }
+   //   else if(eside == e_border_left)
+   //   {
+   //      rectangle.left() = rectangleBig.left();
+   //      rectangle.right() = rectangleSmall.left();
+   //      rectangle.top() = rectangleSmall.top();
+   //      rectangle.bottom() = rectangleSmall.bottom();
+   //   }
+   //   else if(eside == e_border_right)
+   //   {
+   //      rectangle.left() = rectangleSmall.right();
+   //      rectangle.right() = rectangleBig.right();
+   //      rectangle.top() = rectangleSmall.top();
+   //      rectangle.bottom() = rectangleSmall.bottom();
+   //   }
+   //   else if(eside == e_border_bottom)
+   //   {
+   //      rectangle.left() = rectangleBig.left();
+   //      rectangle.right() = rectangleBig.right();
+   //      rectangle.top() = rectangleSmall.bottom();
+   //      rectangle.bottom() = rectangleBig.bottom();
+   //   }
+   //   *lprect = rectangle;
+   //}
 
 
    void frame_001::_on_style_change(::draw2d::graphics_pointer & pgraphics)

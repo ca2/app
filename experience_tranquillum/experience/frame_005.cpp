@@ -458,57 +458,57 @@ namespace experience_tranquillum
 
    }
 
-   void frame_005::GetBorderRectangle(
-   const ::rectangle_i32 & rectangleX,
+   //void frame_005::GetBorderRectangle(
+   //const ::rectangle_i32 & rectangleX,
 
-   ::rectangle_i32 * prectangle,
+   //::rectangle_i32 * prectangle,
 
-   enum_border eside)
-   {
-      ::rectangle_i32 rectangleBig(rectangleX);
+   //enum_border eside)
+   //{
+   //   ::rectangle_i32 rectangleBig(rectangleX);
 
-      ::rectangle_i32 rectangleSmall;
-      rectangleSmall = client_rectangle2();
-      ::rectangle_i32 rectangle;
-      if(eside == e_border_top)
-      {
-         rectangle.left() = rectangleBig.left();
-         rectangle.right() = rectangleBig.right();
-         rectangle.top() = rectangleBig.top();
-         rectangle.bottom() = rectangleSmall.top();
-      }
-      else if(eside == e_border_left)
-      {
+   //   ::rectangle_i32 rectangleSmall;
+   //   rectangleSmall = client_rectangle2();
+   //   ::rectangle_i32 rectangle;
+   //   if(eside == e_border_top)
+   //   {
+   //      rectangle.left() = rectangleBig.left();
+   //      rectangle.right() = rectangleBig.right();
+   //      rectangle.top() = rectangleBig.top();
+   //      rectangle.bottom() = rectangleSmall.top();
+   //   }
+   //   else if(eside == e_border_left)
+   //   {
 
-         rectangle.left() = rectangleBig.left();
-         rectangle.right() = rectangleSmall.left();
-         rectangle.top() = rectangleSmall.top();
-         rectangle.bottom() = rectangleSmall.bottom();
+   //      rectangle.left() = rectangleBig.left();
+   //      rectangle.right() = rectangleSmall.left();
+   //      rectangle.top() = rectangleSmall.top();
+   //      rectangle.bottom() = rectangleSmall.bottom();
 
-      }
-      else if(eside == e_border_right)
-      {
+   //   }
+   //   else if(eside == e_border_right)
+   //   {
 
-         rectangle.left() = rectangleSmall.right();
-         rectangle.right() = rectangleBig.right();
-         rectangle.top() = rectangleSmall.top();
-         rectangle.bottom() = rectangleSmall.bottom();
+   //      rectangle.left() = rectangleSmall.right();
+   //      rectangle.right() = rectangleBig.right();
+   //      rectangle.top() = rectangleSmall.top();
+   //      rectangle.bottom() = rectangleSmall.bottom();
 
-      }
-      else if(eside == e_border_bottom)
-      {
+   //   }
+   //   else if(eside == e_border_bottom)
+   //   {
 
-         rectangle.left() = rectangleBig.left();
-         rectangle.right() = rectangleBig.right();
-         rectangle.top() = rectangleSmall.bottom();
-         rectangle.bottom() = rectangleBig.bottom();
+   //      rectangle.left() = rectangleBig.left();
+   //      rectangle.right() = rectangleBig.right();
+   //      rectangle.top() = rectangleSmall.bottom();
+   //      rectangle.bottom() = rectangleBig.bottom();
 
-      }
+   //   }
 
-      *prectangle = rectangle;
+   //   *prectangle = rectangle;
 
 
-   }
+   //}
 
 
    void frame_005::Draw3dRectSide(::draw2d::graphics_pointer & pgraphics,const rectangle_i32 & rectangleParam,enum_border eborder,color32_t crTopLeft,color32_t crBottomRight)

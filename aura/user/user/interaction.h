@@ -173,8 +173,6 @@ namespace user
       bool                                      m_bCreated;
       bool                                      m_bSubclassed;
       
-      ::rectangle_i32                           m_rectangleClient2;
-
       bool                                      m_bClipRectangle;
       bool                                      m_bLayoutModified;
       bool                                      m_bCustomWindowProc;
@@ -898,7 +896,7 @@ namespace user
 
       //virtual void this->rectangle(::rectangle_i32 & rect, enum_layout elayout = e_layout_design);
       virtual ::rectangle_i32 rectangle(enum_layout elayout = e_layout_design);
-      virtual ::rectangle_i32 client_rectangle2();
+      virtual ::rectangle_i32 client_rectangle(enum_layout elayout = e_layout_design);
       virtual ::rectangle_i32 host_rectangle(enum_layout elayout = e_layout_design);
       virtual ::rectangle_i32 screen_rectangle(enum_layout elayout = e_layout_design);
 
@@ -1944,11 +1942,11 @@ namespace user
       virtual void activation(::e_activation eactivation);
 
 
-      virtual void display_child(const ::rectangle_i32 & rectangle);
-      inline void display_child(::i32 x, ::i32 y, ::i32 cx, ::i32 cy)
+      virtual void display_child(const ::rectangle_i32 & rectangle, enum_layout elayout = e_layout_sketch, ::draw2d::graphics * pgraphics = nullptr);
+      inline void display_child(::i32 x, ::i32 y, ::i32 cx, ::i32 cy, enum_layout elayout = e_layout_sketch, ::draw2d::graphics * pgraphics = nullptr)
       {
 
-         display_child(rectangle_i32_dimension(x, y, cx, cy));
+         display_child(rectangle_i32_dimension(x, y, cx, cy), elayout, pgraphics);
 
       }
 

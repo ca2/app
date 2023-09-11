@@ -66,10 +66,11 @@ namespace user
       ::write_text::font_pointer                   m_pfontTab;
       ::count                                      m_iRestoredTabCount;
       bool                                         m_bDrawTabAtBackground;
-      ::boolean                                   m_bitLastShowTabs;
+      ::boolean                                    m_bitLastShowTabs;
       int                                          m_iTabSize;
       bool                                         m_bCreatedTabs;
       bool                                         m_bAutoCreateTabsOnCreate;
+      ::rectangle_i32                              m_rectangleClient;
 
 
       tab();
@@ -265,6 +266,9 @@ namespace user
       virtual bool full_screen_or_transparent_frame_tab_visibility();
 
       virtual void calculate_tab_visibility();
+
+
+      ::rectangle_i32 client_rectangle(::user::enum_layout elayout = ::user::e_layout_design) override;
 
 
    };

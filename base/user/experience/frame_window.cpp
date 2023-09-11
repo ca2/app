@@ -1285,9 +1285,9 @@ namespace experience
 
             auto rectangleClient2 = this->rectangle(::user::e_layout_lading);
 
-            m_pframe->calculate_client_rectangle2(&rectangleClient2, pgraphics);
+            m_pframe->calculate_client_rectangle(&rectangleClient2, pgraphics);
 
-            m_rectangleClient2 = rectangleClient2;
+            m_rectangleClient = rectangleClient2;
 
            // return ::user::frame_window::rectangle(elayout);
 
@@ -2747,8 +2747,11 @@ namespace experience
       post_redraw();
 
    }
+
+
    void frame_window::place_set_need_redraw(const ::rectangle_i32 & rectangleAfter, const ::rectangle_i32 & rectangleBefore, ::draw2d::graphics * pgraphics)
    {
+
       if (::is_null(m_pframe))
       {
 

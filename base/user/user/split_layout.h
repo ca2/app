@@ -37,7 +37,7 @@ namespace user
       static const i32                       m_iMarging;
       i32                                    m_cxBorder;
       i32                                    m_cyBorder;
-
+      //::rectangle_i32                        m_rectangleClient;
       
       ::count                                m_iPaneCount;
 
@@ -107,6 +107,9 @@ namespace user
       void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
       void _001OnDrawSplitLayout(::draw2d::graphics_pointer & pgraphics);
+
+
+      //::rectangle_i32 client_rectangle(::user::enum_layout elayout = ::user::e_layout_design) override;
 
 
    };

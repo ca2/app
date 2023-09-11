@@ -1234,7 +1234,7 @@ namespace experience_core
          rectangleTabClient.right() = pdata->m_rectangleTab.right();
          rectangleTabClient.bottom() = rectangleX.bottom();
 
-         ptab->m_rectangleClient2 = rectangleTabClient;
+         ptab->m_rectangleClient = rectangleTabClient;
 
          //information() << "rectangleTabClient";
 

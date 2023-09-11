@@ -252,9 +252,7 @@ namespace experience
 
       update_window_client_rect();
 
-      ::rectangle_i32 rectangleX;
-
-      rectangleX = m_pframewindow->client_rectangle2();
+      auto rectangleClient = m_pframewindow->client_rectangle();
 
       if (pframewindow != nullptr)
       {
@@ -266,7 +264,7 @@ namespace experience
 
             pframewindow->RepositionBars(0, 0xffff, FIRST_PANE, pframewindow->reposQuery,
                                  &rectangle, rectangle, false);
-            rectangle.offset(rectangleX.top_left());
+            rectangle.offset(rectangleClient.top_left());
             ::rectangle_i32 rectangleBorder;
             pframewindow->GetBorderRectangle(&rectangleBorder);
             pframewindow->RepositionBars(0, 0xffff, FIRST_PANE, pframewindow->reposExtra,
@@ -290,7 +288,7 @@ namespace experience
 
             pframewindow->GetBorderRectangle(&rectangleBorder);
 
-            pframewindow->RepositionBars(0, 0xffff, FIRST_PANE, pframewindow->reposExtra, &rectangleBorder, rectangleX);
+            pframewindow->RepositionBars(0, 0xffff, FIRST_PANE, pframewindow->reposExtra, &rectangleBorder, rectangleClient);
 
             pframewindow->SetBorderRect(rectangleBorder);
 
@@ -1179,10 +1177,10 @@ namespace experience
    }
 
 
-   bool frame::calculate_client_rectangle2(::rectangle_i32 * prectangle, ::draw2d::graphics_pointer & pgraphics)
+   bool frame::calculate_client_rectangle(::rectangle_i32 * prectangle, ::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rectangle_i32 rectangleX(*prectangle);
+      ::rectangle_i32 rectangleClient(*prectangle);
 
       auto eappearance = m_pframewindow->const_layout().state(::user::e_layout_lading).appearance();
 
@@ -1192,32 +1190,32 @@ namespace experience
          !(eappearance & ::e_appearance_transparent_frame))
       {
 
-         rectangleX.top() += m_iCaptionHeight;
+         rectangleClient.top() += m_iCaptionHeight;
 
       }
 
       rectangle_i32 rectangleMargin = get_margin_rectangle();
 
-      rectangleX.deflate(rectangleMargin);
+      rectangleClient.deflate(rectangleMargin);
 
-      if (rectangleX.is_empty())
+      if (rectangleClient.is_empty())
       {
 
          return false;
 
       }
 
-      *prectangle = rectangleX;
+      *prectangle = rectangleClient;
 
       return true;
 
    }
 
 
-   ::rectangle_i32 frame::client_rectangle2()
+   ::rectangle_i32 frame::client_rectangle()
    {
 
-      return m_pframewindow->client_rectangle2();
+      return m_pframewindow->client_rectangle();
 
    }
 
@@ -1279,7 +1277,7 @@ namespace experience
 
       ::draw2d::graphics_pointer pgraphics;
 
-      calculate_client_rectangle2(&rectangleInner, pgraphics);
+      calculate_client_rectangle(&rectangleInner, pgraphics);
 
       auto rectangleaBorders = get_borders(rectangle, rectangleInner);
 

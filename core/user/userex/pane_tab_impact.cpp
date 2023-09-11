@@ -488,7 +488,7 @@ namespace userex
 
       ptabpane->m_pplaceholder->m_bExtendOnParentClientArea = true;
 
-      ptabpane->m_pplaceholder->place(this->client_rectangle2());
+      ptabpane->m_pplaceholder->place(this->client_rectangle());
 
       pimpactdata->m_pimpactdata = (void *)pimpactdata;
 

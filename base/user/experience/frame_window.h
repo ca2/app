@@ -18,7 +18,6 @@ namespace experience
       bool                                         m_bHoverActive;
       bool                                         m_bEnableMouse;
       ::pointer<::experience::frame>               m_pframe;
-      //::rectangle_i32                              m_rectanglePending;
       bool                                         m_bEnableFrameExperience;
 
       bool                                         m_bFullScreenReturn;

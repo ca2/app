@@ -5,7 +5,7 @@
 #include "frame_window.h"
 #include "split_impact.h"
 #include "document.h"
-#include "options_impact.h"
+#include "handler_impact.h"
 #include "tab_drop_target_window.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
@@ -854,12 +854,21 @@ namespace user
          || pimpactdata->m_atom == CONTEXT_OPTIONS_IMPACT)
       {
 
-         m_poptionsimpact = create_impact < options_impact >(pimpactdata);
+         m_maphandlerimpact[pimpactdata->m_atom] = create_impact < handler_impact >(pimpactdata);
 
          if (pimpactdata->m_atom == APP_OPTIONS_IMPACT)
          {
 
-            m_poptionsimpact->create_options_impact(acmeapplication()->m_pbaseapplication);
+            auto phandlerimpact = m_maphandlerimpact[pimpactdata->m_atom];
+
+            auto functionHandler = [this](auto puserinteraction)
+               {
+
+                  acmeapplication()->m_pbaseapplication->create_options_impact(puserinteraction);
+
+               };
+
+            phandlerimpact->call_handler(functionHandler);
 
          }
 
@@ -936,10 +945,20 @@ namespace user
          return;
          
       }
-      else if (m_pimpactdata->m_atom == CONTEXT_OPTIONS_IMPACT && m_poptionsimpact)
+      else if (m_pimpactdata->m_atom == CONTEXT_OPTIONS_IMPACT && m_maphandlerimpact[m_pimpactdata->m_atom])
       {
 
-         m_poptionsimpact->create_options_impact(m_poptionsimpacthandlerContext);
+         auto poptionsimpacthandler = m_poptionsimpacthandlerContext;
+
+         auto phandlerimpact = m_maphandlerimpact[m_pimpactdata->m_atom];
+
+         phandlerimpact->call_handler(
+            [poptionsimpacthandler](auto puserinteractionParent)
+            {
+
+               poptionsimpacthandler->create_options_impact(puserinteractionParent);
+
+            });
 
       }
 

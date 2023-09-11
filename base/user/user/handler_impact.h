@@ -10,7 +10,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_BASE options_impact :
+   class CLASS_DECL_BASE handler_impact :
       virtual public ::user::impact
    {
    public:
@@ -23,8 +23,11 @@ namespace user
       //::pointer<::user::still>             m_pstillReceiver;
 
 
-      options_impact();
-      ~options_impact() override;
+      //::function < void(::user::interaction *) > m_functionHandler;
+
+
+      handler_impact();
+      ~handler_impact() override;
 
 
       //      // void assert_ok() const override;
@@ -51,7 +54,7 @@ namespace user
       void handle(::topic * ptopic, ::context * pcontext) override;
 
 
-      virtual void create_options_impact(options_impact_handler * phandler);
+      virtual void call_handler(::function < void(::user::interaction *) > handler);
 
 
    };

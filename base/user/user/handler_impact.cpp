@@ -1,6 +1,6 @@
 // From app_simple_form/form_001.coo by camilo on 2023-06-28 05:02 <3ThomasBorregaardSorensen!!
 #include "framework.h"
-#include "options_impact.h"
+#include "handler_impact.h"
 #include "acme/constant/message.h"
 #include "aura/message/user.h"
 #include "base/platform/application.h"
@@ -10,7 +10,7 @@ namespace user
 {
 
 
-   options_impact::options_impact()
+   handler_impact::handler_impact()
    {
 
       m_bExtendOnParent = true;
@@ -18,7 +18,7 @@ namespace user
    }
 
 
-   options_impact::~options_impact()
+   handler_impact::~handler_impact()
    {
 
    }
@@ -27,7 +27,7 @@ namespace user
 #ifdef _DEBUG
 
 
-   int64_t options_impact::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+   int64_t handler_impact::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
    {
 
       return ::object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
@@ -35,7 +35,7 @@ namespace user
    }
 
 
-   int64_t options_impact::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+   int64_t handler_impact::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
    {
 
       return ::object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
@@ -46,18 +46,18 @@ namespace user
 #endif
 
 
-   void options_impact::install_message_routing(::channel * psender)
+   void handler_impact::install_message_routing(::channel * psender)
    {
 
       ::user::impact::install_message_routing(psender);
 
-      MESSAGE_LINK(MESSAGE_CREATE, psender, this, &options_impact::on_message_create);
+      MESSAGE_LINK(MESSAGE_CREATE, psender, this, &handler_impact::on_message_create);
 
 
    }
 
 
-   void options_impact::on_message_create(::message::message * pmessage)
+   void handler_impact::on_message_create(::message::message * pmessage)
    {
 
       ::pointer<::message::create> pcreate(pmessage);
@@ -82,7 +82,7 @@ namespace user
    }
 
 
-   void options_impact::on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics)
+   void handler_impact::on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
       ::user::interaction::on_perform_top_down_layout(pgraphics);
@@ -90,7 +90,7 @@ namespace user
    }
 
 
-   bool options_impact::on_perform_layout(::draw2d::graphics_pointer & pgraphics)
+   bool handler_impact::on_perform_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
       return ::user::impact::on_perform_layout(pgraphics);
@@ -98,7 +98,7 @@ namespace user
    }
 
 
-   void options_impact::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void handler_impact::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
       ::user::impact::on_layout(pgraphics);
@@ -106,7 +106,7 @@ namespace user
    }
 
 
-   void options_impact::handle(::topic * ptopic, ::context * pcontext)
+   void handler_impact::handle(::topic * ptopic, ::context * pcontext)
    {
 
       //if (ptopic->m_atom == ::id_after_change_text)
@@ -174,17 +174,17 @@ namespace user
    }
 
 
-   void options_impact::create_options_impact(options_impact_handler * phandler)
+   void handler_impact::call_handler(::function < void(::user::interaction *) > handler)
    {
 
       erase_children();
 
-      if(::is_set(phandler))
+      //if(m_functionHandler)
       {
 
          lock_sketch_to_design locksketchtodesign(this);
 
-         phandler->create_options_impact(this);
+         handler(this);
 
       }
 
@@ -197,7 +197,7 @@ namespace user
    }
 
 
-   //void options_impact::_001OnClearButton(::message::message * pmessage)
+   //void handler_impact::_001OnClearButton(::message::message * pmessage)
    //{
 
    //   m_pedit->_001SetText("", ::e_source_user);
@@ -207,7 +207,7 @@ namespace user
    //}
 
 
-   //void options_impact::_001OnSendButton(::message::message * pmessage)
+   //void handler_impact::_001OnSendButton(::message::message * pmessage)
    //{
 
    //   string strText;

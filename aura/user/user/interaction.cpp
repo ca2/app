@@ -12562,10 +12562,12 @@ namespace user
    void interaction::_on_show_window()
    {
 
+      ::string strType = ::type(this).name();
+
       if (is_auto_refresh_on_show())
       {
 
-         if (is_this_visible())
+         if (is_this_visible(::user::e_layout_layout))
          {
 
             set_auto_refresh();
@@ -12580,7 +12582,7 @@ namespace user
 
       }
 
-      if (is_window_screen_visible())
+      if (is_window_screen_visible(::user::e_layout_layout))
       {
 
          if (get_parent() == nullptr)

@@ -31,6 +31,8 @@ simple_scroll_bar::simple_scroll_bar()
    m_bDefaultMouseHoverHandling = true;
    m_bDefaultParentMouseMessageHandling = true;
 
+   //m_bDefaultParentMouseMessageHandling = true;
+
    //m_cr = argb(127,180,80,120);
    //m_colorStrong = argb(150, 150, 150, 150);
    //m_colorBorder = argb(190, 180, 180, 180);
@@ -824,7 +826,7 @@ void simple_scroll_bar::_001OnTimer(::timer * ptimer)
 
    auto pointCursor = get_cursor_position();
 
-   screen_to_client()(pointCursor);
+   host_to_client()(pointCursor);
 
    if (ptimer->m_uEvent == (uptr)this)
    {

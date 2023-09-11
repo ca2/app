@@ -1870,8 +1870,12 @@ namespace user
    index list::_001MapColumnToSubItem(index iColumn)
    {
 
-      ASSERT(iColumn >= 0);
-      ASSERT(iColumn < m_pcolumna->get_visible_count());
+      if (iColumn < 0 || iColumn >= m_pcolumna->get_visible_count())
+      {
+
+         return -1;
+
+      }
 
       return m_pcolumna->get_visible(iColumn)->subitem_index();
 
@@ -3527,7 +3531,7 @@ namespace user
 
       auto point = pmouse->m_point;
 
-      screen_to_client()(point);
+      host_to_client()(point);
 
       synchronous_lock synchronouslock(this->synchronization());
 
@@ -3720,7 +3724,7 @@ namespace user
 
       auto point = pmouse->m_point;
 
-      screen_to_client()(point);
+      host_to_client()(point);
 
       synchronous_lock synchronouslock(this->synchronization());
 
@@ -4011,7 +4015,7 @@ namespace user
 
                auto point = pmouse->m_point;
 
-               screen_to_client()(point);
+               host_to_client()(point);
 
                draw_list_item item;
 
@@ -4074,7 +4078,7 @@ namespace user
 
       auto point = pmouse->m_point;
 
-      screen_to_client()(point);
+      host_to_client()(point);
 
       release_mouse_capture();
 
@@ -4289,7 +4293,7 @@ namespace user
 
       auto point = pmouse->m_point;
 
-      screen_to_client()(point);
+      host_to_client()(point);
 
       synchronous_lock synchronouslock(this->synchronization());
 
@@ -4559,7 +4563,7 @@ namespace user
 
       auto point = pmouse->m_point;
 
-      screen_to_client()(point);
+      host_to_client()(point);
 
       index iDisplayItem = -1;
 

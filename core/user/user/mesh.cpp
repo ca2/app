@@ -2888,7 +2888,7 @@ namespace user
 
       ::point_i32 point = pmouse->m_point;
 
-      screen_to_client()(point);
+      host_to_client()(point);
 
       pmouse->previous(); // give chance to child control
 
@@ -3002,7 +3002,7 @@ namespace user
 
       ::point_i32 point = pmouse->m_point;
 
-      screen_to_client()(point);
+      host_to_client()(point);
 
       if(dynamic_cast < list * >(this) == nullptr)
       {
@@ -3217,7 +3217,7 @@ namespace user
 
       ::point_i32 point = pmouse->m_point;
 
-      screen_to_client()(point);
+      host_to_client()(point);
 
       release_mouse_capture();
 
@@ -3326,7 +3326,7 @@ namespace user
 
       ::point_i32 point = pmouse->m_point;
 
-      screen_to_client()(point);
+      host_to_client()(point);
 
       if(!has_keyboard_focus())
       {
@@ -3377,7 +3377,7 @@ namespace user
 
       ::point_i32 point = pmouse->m_point;
 
-      screen_to_client()(point);
+      host_to_client()(point);
 
       if (!has_keyboard_focus())
       {
@@ -3767,7 +3767,7 @@ namespace user
 
       auto pointCursor = get_cursor_position();
 
-      screen_to_client()(pointCursor);
+      host_to_client()(pointCursor);
 
       try
       {

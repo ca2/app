@@ -257,71 +257,71 @@ namespace user
 
          //pgraphics->fill_rectangle(rectangleX, m_colorTreeBackground);
 
-         auto pointCursor = get_cursor_position();
+         //auto pointCursor = get_cursor_position();
 
-         screen_to_client()(pointCursor);
+         //screen_to_client()(pointCursor);
 
          auto dwHoverIn = 300_ms;
 
          auto dwHoverOut = 1200_ms;
 
-         bool bTreeHover = rectangleX.contains(pointCursor);
+         //bool bTreeHover = rectangleX.contains(pointCursor);
 
-         if (bTreeHover)
-         {
-            if (!m_bHoverStart)
-            {
-               m_bHoverStart = true;
-               m_uchHoverAlphaInit = m_uchHoverAlpha;
+         //if (bTreeHover)
+         //{
+         //   if (!m_bHoverStart)
+         //   {
+         //      m_bHoverStart = true;
+         //      m_uchHoverAlphaInit = m_uchHoverAlpha;
 
-               m_timeHoverStart.Now();
+         //      m_timeHoverStart.Now();
 
-            }
-            if (m_timeHoverStart.elapsed() > dwHoverIn)
-            {
-               m_uchHoverAlpha = 255;
-            }
-            else
-            {
-               auto pi = MATH_PI;
-               auto f = 1.0 / dwHoverIn;
-               auto omega = -pi * f; // omega pi
-               auto t = m_timeHoverStart;
-               ::u32 dwCurve = (::u32)(255.0 * (1.0 - exp(omega * t)));
-               if (m_uchHoverAlphaInit + dwCurve > 255)
-                  m_uchHoverAlpha = 255;
-               else
-                  m_uchHoverAlpha = (::u8)(m_uchHoverAlphaInit + dwCurve);
-            }
-         }
-         else
-         {
-            if (m_bHoverStart)
-            {
-               m_bHoverStart = false;
-               m_uchHoverAlphaInit = m_uchHoverAlpha;
+         //   }
+         //   if (m_timeHoverStart.elapsed() > dwHoverIn)
+         //   {
+         //      m_uchHoverAlpha = 255;
+         //   }
+         //   else
+         //   {
+         //      auto pi = MATH_PI;
+         //      auto f = 1.0 / dwHoverIn;
+         //      auto omega = -pi * f; // omega pi
+         //      auto t = m_timeHoverStart;
+         //      ::u32 dwCurve = (::u32)(255.0 * (1.0 - exp(omega * t)));
+         //      if (m_uchHoverAlphaInit + dwCurve > 255)
+         //         m_uchHoverAlpha = 255;
+         //      else
+         //         m_uchHoverAlpha = (::u8)(m_uchHoverAlphaInit + dwCurve);
+         //   }
+         //}
+         //else
+         //{
+         //   if (m_bHoverStart)
+         //   {
+         //      m_bHoverStart = false;
+         //      m_uchHoverAlphaInit = m_uchHoverAlpha;
 
-               m_timeHoverEnd.Now();
+         //      m_timeHoverEnd.Now();
 
-            }
+         //   }
 
-            if (m_timeHoverEnd.elapsed() > dwHoverOut)
-            {
-               m_uchHoverAlpha = 0;
-            }
-            else
-            {
-               auto pi = MATH_PI;
-               auto f = 1.0 / dwHoverOut;
-               auto omega = -pi * f; // omega pi
-               auto t = m_timeHoverStart;
-               ::u32 dwCurve = (::u32)(255.0 * (1.0 - exp(omega * t)));
-               if (m_uchHoverAlphaInit < dwCurve)
-                  m_uchHoverAlpha = 0;
-               else
-                  m_uchHoverAlpha = (::u8)(m_uchHoverAlphaInit - dwCurve);
-            }
-         }
+         //   if (m_timeHoverEnd.elapsed() > dwHoverOut)
+         //   {
+         //      m_uchHoverAlpha = 0;
+         //   }
+         //   else
+         //   {
+         //      auto pi = MATH_PI;
+         //      auto f = 1.0 / dwHoverOut;
+         //      auto omega = -pi * f; // omega pi
+         //      auto t = m_timeHoverStart;
+         //      ::u32 dwCurve = (::u32)(255.0 * (1.0 - exp(omega * t)));
+         //      if (m_uchHoverAlphaInit < dwCurve)
+         //         m_uchHoverAlpha = 0;
+         //      else
+         //         m_uchHoverAlpha = (::u8)(m_uchHoverAlphaInit - dwCurve);
+         //   }
+         //}
 
          ::user::tree_draw_item drawitemdata;
 
@@ -628,7 +628,7 @@ namespace user
 
       auto point = pmouse->m_point;
 
-      screen_to_client()(point);
+      host_to_client()(point);
 
       update_tree_hover(point);
 
@@ -685,7 +685,7 @@ namespace user
 
       ::user::enum_tree_element eelement;
 
-      screen_to_client()(point);
+      host_to_client()(point);
 
       pitem = _001HitTest(point, eelement);
 
@@ -724,7 +724,7 @@ namespace user
 
       ::user::enum_tree_element eelement;
 
-      screen_to_client()(point);
+      host_to_client()(point);
 
       pitem = _001HitTest(point, eelement);
 
@@ -769,7 +769,7 @@ namespace user
 
       ::user::enum_tree_element eelement;
 
-      screen_to_client()(point);
+      host_to_client()(point);
 
       pitem = _001HitTest(point, eelement);
 
@@ -1372,7 +1372,7 @@ namespace user
    void tree::update_tree_hover(point_i32 point)
    {
 
-      //screen_to_client()(point);
+      //host_to_client()(point);
 
       ::user::enum_tree_element eelement;
 

@@ -339,7 +339,12 @@ namespace message
 
          auto pwindow = window();
 
-         pwindow->on_destruct_mouse_message(this);
+         if (::is_set(pwindow))
+         {
+
+            pwindow->on_destruct_mouse_message(this);
+
+         }
 
       }
       catch(...)

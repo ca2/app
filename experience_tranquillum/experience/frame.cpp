@@ -832,8 +832,10 @@ namespace experience_tranquillum
       //::item_pointer pitemHi etest = ::experience::e_frame_client;
       {
          //      m_pframewindow->GetEventWindow()->screen_to_client()(point);
-         ::rectangle_i32 rectangleEvent;
-         m_pframewindow->raw_rectangle(rectangleEvent);
+         //::rectangle_i32 rectangleEvent;
+
+         auto rectangleEvent = m_pframewindow->raw_rectangle();
+
          ::rectangle_i32 rectangle;
          //::point_i32 pointCenter = rectangleEvent.center();
          enum_grip egrip = m_pframewindow->size_manager()->GetGripMask();

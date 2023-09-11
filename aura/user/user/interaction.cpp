@@ -12273,6 +12273,12 @@ namespace user
          information() << "RedDotLogicsInternal_license_manager::user_form";
 
       }
+      else if (strType.contains("scroll_bar"))
+      {
+
+         information() << "on_perform_top_down_layout scroll_bar";
+
+      }
 
       if (m_bExtendOnParent)
       {

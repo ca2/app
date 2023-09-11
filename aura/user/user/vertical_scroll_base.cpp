@@ -83,9 +83,11 @@ namespace user
 
             m_pscrollbarVertical->order(e_zorder_top);
 
-            m_pscrollbarVertical->place(rectangleNewPos);
+            m_pscrollbarVertical->place(rectangleNewPos, ::user::e_layout_layout, pgraphics);
 
             m_pscrollbarVertical->display();
+
+            m_pscrollbarVertical->set_need_layout();
 
          }
          else

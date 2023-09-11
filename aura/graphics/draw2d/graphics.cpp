@@ -4515,7 +4515,13 @@ namespace draw2d
 
       }
 
-      synchronous_lock synchronouslock(acmesystem()->m_paurasystem->draw2d()->write_text()->m_pparticleFontTextMapSynchronization);
+      auto paurasystem = acmesystem()->m_paurasystem;
+
+      auto pdraw2d = paurasystem->draw2d();
+
+      auto pwritetext = pdraw2d->write_text();
+
+      synchronous_lock synchronouslock(pwritetext ? pwritetext->m_pparticleFontTextMapSynchronization : nullptr);
 
       m_pfont->get_os_data(this);
 

@@ -563,7 +563,9 @@ namespace user
 
                   auto pstyle = get_style(pgraphics);
 
-                  pgraphics->set(get_font(pstyle, e_state_hover));
+                  auto pfont = get_font(pstyle, e_state_hover);
+
+                  pgraphics->set(pfont);
 
                   pbrushText->create_solid(get_color(pstyle, ::e_element_item_text, ::user::e_state_hover));
 

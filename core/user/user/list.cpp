@@ -2354,9 +2354,13 @@ namespace user
 
             iItem = (::index) (iy / m_dItemHeight);
 
+#ifdef EXTRA_LOGGING
+
             information() << "impact_report iItem : " << iItem;
 
             information() << "point.y() : " << point.y();
+
+#endif
 
             //information() << "pointOffset.y() : " << pointOffset.y();
 

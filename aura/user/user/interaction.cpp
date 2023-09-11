@@ -85,6 +85,8 @@ inline void make_parent_mouse_message(::enum_message & emessage)
 
 #define DEBUG_LEVEL 1
 
+#undef EXTRA_LOGGING
+
 
 CLASS_DECL_AURA::rectangle_i32 bounding_box(const ::user::item * pitem)
 {
@@ -11380,7 +11382,11 @@ namespace user
       if (rectangleRaw.is_empty())
       {
 
+#ifdef  EXTRA_LOGGING
+
          information() << "layout_layout raw_rectangle is empty";
+
+#endif
 
          return false;
 

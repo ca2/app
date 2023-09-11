@@ -4075,6 +4075,8 @@ namespace user
 
       }
 
+#ifdef EXTRA_LOGGING
+
       for (auto & rectangle : rectangleaHostNeedRedraw)
       {
 
@@ -4092,6 +4094,8 @@ namespace user
          }
 
       }
+
+#endif
 
       for (auto & predraw : m_redrawitema)
       {

@@ -151,7 +151,7 @@ void nano_window_interface::update_drawing_objects()
 ::shift_i32 nano_window_interface::client_to_absolute()
 {
 
-   return client_to_absolute();
+   return client_to_screen();
 
 }
 

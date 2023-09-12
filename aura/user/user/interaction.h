@@ -718,7 +718,6 @@ namespace user
       // end updown
 
 
-
       virtual void child_set_unique_id(::user::interaction* pinteraction);
 
       virtual string default_id_prefix();
@@ -797,6 +796,11 @@ namespace user
 
 
       virtual ::size_i32 preferred_size(::draw2d::graphics_pointer & pgraphics);
+
+
+      virtual bool is_display_like_maximized();
+
+
 
 
       //virtual void graphics_thread_stop() override;
@@ -938,6 +942,11 @@ namespace user
 
       bool is_window_visible(enum_layout elayout = e_layout_design);
       bool is_window_screen_visible(enum_layout elayout = e_layout_design);
+
+      virtual void user_mouse_initialize_cursor(::user::mouse* pmouse, ::windowing::cursor* pcursor);
+      virtual void user_mouse_set_cursor(::user::mouse* pmouse, ::windowing::cursor* pcursor);
+      virtual ::windowing::cursor* user_mouse_get_cursor(::user::mouse* pmouse);
+
 
       virtual void route_as_parent_mouse_message(::message::mouse * pmouse);
       virtual bool on_mouse_message(::message::mouse * pmouse);
@@ -1637,6 +1646,7 @@ namespace user
       // drag_client
       void drag_set_capture() override;
       ::point_i32 on_drag_start(::item * pitem) override;
+      ::point_i32 drag_mouse_cursor_position(::item* pitem, const ::point_i32 & point) override;
       bool drag_shift(::item * pitem) override;
       bool drag_hover(::item * pitem) override;
       void drag_release_capture() override;

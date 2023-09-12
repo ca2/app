@@ -220,7 +220,7 @@ namespace nano2d
    void draw2d_context::translate(float x, float y)
    {
 
-      ::draw2d::matrix matrix;
+      ::geometry2d::matrix matrix;
 
       matrix.translate(x, y);
 
@@ -232,7 +232,7 @@ namespace nano2d
    void draw2d_context::rotate(float angle)
    {
 
-      ::draw2d::matrix matrix;
+      ::geometry2d::matrix matrix;
 
       matrix.rotate(angle);
 

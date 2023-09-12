@@ -2391,7 +2391,7 @@ namespace user
 
          psession->on_ui_mouse_message(pmouse);
 
-         psession->m_pointCursor = pmouse->m_point;
+         psession->m_pointCursor = pmouse->m_pointAbsolute;
 
       }
 
@@ -2491,7 +2491,7 @@ namespace user
          // what forces, at the end of message processing, setting the bergedge cursor to the default cursor, if no other
          // handler has set it to another one.
 
-         m_puserinteraction->m_pinteractionimpl->_on_mouse_move_step(pmouse->m_point);
+         m_puserinteraction->m_pinteractionimpl->_on_mouse_move_step(pmouse->m_pointAbsolute);
 
       }
 
@@ -2545,7 +2545,7 @@ namespace user
 
       }
 
-      pmouse->m_puserinteractionHit = m_puserinteraction->child_from_point(pmouse->m_point);
+      pmouse->m_puserinteractionHit = m_puserinteraction->child_from_point(pmouse->m_pointHost);
 
       if (!puserinteractionMouse)
       {

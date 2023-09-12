@@ -53,7 +53,7 @@ namespace draw2d_cairo
 
 FT_Library __ftlibrary();
 
-inline void copy(::draw2d::matrix * pmatrix, const cairo_matrix_t * pcairomatrix)
+inline void copy(::geometry2d::matrix * pmatrix, const cairo_matrix_t * pcairomatrix)
 {
 
    pmatrix->a1 = pcairomatrix->xx;
@@ -66,7 +66,7 @@ inline void copy(::draw2d::matrix * pmatrix, const cairo_matrix_t * pcairomatrix
 }
 
 
-inline void copy(cairo_matrix_t* pcairomatrix,  const ::draw2d::matrix* pmatrix)
+inline void copy(cairo_matrix_t* pcairomatrix,  const ::geometry2d::matrix* pmatrix)
 {
 
    pcairomatrix->xx = pmatrix->a1;

@@ -57,6 +57,8 @@ namespace nanoui
       size_i32                m_size;
       size_i32                m_fixed_size;
       bool                    m_bHoverCache;
+      ::pointer<::nano2d::text_box>    m_ptextboxTooltip;
+
       //size_i32                m_offsetToApplyOnDraw;
       //size_i32                m_offsetSizeToApplyOnDraw;
       ::pointer<Widget>       m_pwidgetDragDropArena;

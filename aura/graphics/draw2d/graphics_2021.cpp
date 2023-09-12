@@ -2651,10 +2651,10 @@ namespace draw2d
    }
 
 
-   void graphics::get_scaling(::draw2d::matrix & matrix)
+   void graphics::get_scaling(::geometry2d::matrix & matrix)
    {
 
-      matrix = ::draw2d::matrix();
+      matrix = ::geometry2d::matrix();
 
       matrix.a1 = m_matrixContext.a1;
 

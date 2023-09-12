@@ -1886,7 +1886,7 @@ namespace user
 
             }
 
-            ::draw2d::matrix m;
+            ::geometry2d::matrix m;
 
             m.scaling(pgraphics->get_scaling());
 

@@ -3900,7 +3900,7 @@ namespace draw2d_opengl
    //}
 
 
-   void graphics::set(const ::draw2d::matrix & matrix)
+   void graphics::set(const ::geometry2d::matrix & matrix)
    {
 
       thread_select();

@@ -7699,6 +7699,16 @@ namespace user
    }
 
 
+   ::point_i32 interaction::drag_mouse_cursor_position(::item* pitem, const ::point_i32 & point)
+   {
+
+      auto p = windowing()->try_absolute_mouse_position(this, point);
+
+      return p;
+
+   }
+
+
    bool interaction::drag_shift(::item * pitem)
    {
 
@@ -7818,7 +7828,7 @@ namespace user
 
          auto pdrag = drag(pitem);
 
-         pdrag->m_ecursor = e_cursor_hand;
+         pdrag->m_ecursor = e_cursor_arrow;
 
          return true;
 
@@ -7858,7 +7868,7 @@ namespace user
 
       auto pcursor = pwindowing->get_cursor(pdrag->m_ecursor);
 
-      pdrag->m_pmouse->m_pcursor = pcursor;
+      user_mouse_set_cursor(pdrag->m_pmouse, pcursor);
 
    }
 
@@ -11365,6 +11375,35 @@ namespace user
    }
 
 
+   bool interaction::is_display_like_maximized()
+   {
+
+      if (const_layout().design().display() == e_display_zoomed)
+      {
+
+         return true;
+
+      }
+
+      ::rectangle_i32 rectangleWorkspace;
+
+      auto rectangleWindow = const_layout().design().parent_raw_rectangle();
+
+      get_best_workspace(&rectangleWorkspace, rectangleWindow);
+
+      if (rectangleWindow.width() > (rectangleWorkspace.width() * 92 / 100)
+         || rectangleWindow.height() > (rectangleWorkspace.height() * 92 / 100))
+      {
+
+         return true;
+
+      }
+
+      return false;
+
+   }
+
+
    bool interaction::layout_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
@@ -14643,6 +14682,34 @@ namespace user
 
    }
 
+   
+   void interaction::user_mouse_initialize_cursor(::user::mouse* pmouse, ::windowing::cursor* pcursor)
+   {
+
+      pmouse->m_pwindowingcursor = pcursor;
+
+      information() << "user_mouse_initialize_cursor : " << pcursor->m_ecursor;
+
+   }
+
+
+   void interaction::user_mouse_set_cursor(::user::mouse* pmouse, ::windowing::cursor* pcursor)
+   {
+
+      pmouse->m_pwindowingcursor = pcursor;
+
+      information() << "user_mouse_set_cursor : " << pcursor->m_ecursor;
+
+   }
+
+
+   ::windowing::cursor* interaction::user_mouse_get_cursor(::user::mouse* pmouse)
+   {
+
+      return pmouse->m_pwindowingcursor;
+
+   }
+
 
    bool interaction::on_mouse_message(::message::mouse * pmouse)
    {
@@ -14654,7 +14721,7 @@ namespace user
 
       }
 
-      pmouse->m_pcursor = m_pcursorDefault;
+      user_mouse_initialize_cursor(pmouse, m_pcursorDefault);
 
       ::user::interaction * pchild = this;
 
@@ -14662,7 +14729,7 @@ namespace user
          || pmouse->m_atom.m_emessage > e_message_mouse_last)
       {
 
-         pchild = child_from_point(pmouse->m_point);
+         pchild = child_from_point(pmouse->m_pointHost);
 
       }
       else
@@ -14682,7 +14749,7 @@ namespace user
 
             }
 
-            pchild = puserinteraction->_child_from_point(pmouse->m_point);
+            pchild = puserinteraction->_child_from_point(pmouse->m_pointHost);
 
             if (!pchild || pchild == this)
             {
@@ -19770,9 +19837,7 @@ namespace user
                   || pitem->m_item.m_eelement == ::e_element_maximize_icon)
          {
 
-            auto edisplay = layout().layout().display();
-
-            if (edisplay == e_display_zoomed)
+            if (is_display_like_maximized())
             {
 
                auto & sizeWindow = layout().window().m_size;
@@ -21430,7 +21495,7 @@ namespace user
           || (m_bEnableVerticalBarDragScroll && _001HasVerticalBarDragScrolling()))
       {
 
-         m_pointBarDragScrollLeftButtonDown = pmouse->m_point;
+         m_pointBarDragScrollLeftButtonDown = pmouse->m_pointHost;
 
          m_bBarDragScrollLeftButtonDown = true;
 
@@ -21561,11 +21626,11 @@ namespace user
          if (::is_set(pappearance))
          {
 
-            pappearance->m_pointLastCursor = pmouse->m_point;
+            pappearance->m_pointLastCursor = pmouse->m_pointHost;
 
             ::point_i32 pointClient;
 
-            pointClient = pmouse->m_point;
+            pointClient = pmouse->m_pointHost;
 
             host_to_client()(pointClient);
 
@@ -21911,11 +21976,11 @@ namespace user
       if (::is_set(pappearance))
       {
 
-         pappearance->m_pointLastCursor = pmouse->m_point;
+         pappearance->m_pointLastCursor = pmouse->m_pointHost;
 
          ::point_i32 pointClient;
 
-         pointClient = pmouse->m_point;
+         pointClient = pmouse->m_pointHost;
 
          host_to_client()(pointClient);
 
@@ -21968,7 +22033,7 @@ namespace user
 
             m_bHorizontalBarDragScrollingActive = true;
 
-            int iOffset = m_pointBarDragScrollLeftButtonDown.x() - pmouse->m_point.x();
+            int iOffset = m_pointBarDragScrollLeftButtonDown.x() - pmouse->m_pointHost.x();
 
             auto iHorizontalBarDragScroll = minimum_maximum(m_pointBarDragScrollStart.x() + iOffset, 0,
                                                             m_pointBarDragScrollMax.x());
@@ -21995,7 +22060,7 @@ namespace user
 
             m_bVerticalBarDragScrollingActive = true;
 
-            int iOffset = m_pointBarDragScrollLeftButtonDown.y() - pmouse->m_point.y();
+            int iOffset = m_pointBarDragScrollLeftButtonDown.y() - pmouse->m_pointHost.y();
 
             auto iVerticalBarDragScroll = minimum_maximum(m_pointBarDragScrollStart.y() + iOffset, 0,
                                                           m_pointBarDragScrollMax.y());
@@ -22023,12 +22088,12 @@ namespace user
 
          //synchronous_lock synchronouslock(this->synchronization());
 
-         pmouse->m_pcursor = get_mouse_cursor();
+         user_mouse_set_cursor(pmouse, get_mouse_cursor());
 
-         if (pmouse->m_pcursor)
+         if (user_mouse_get_cursor(pmouse))
          {
 
-            if (pmouse->m_pcursor->m_ecursor == e_cursor_size_bottom)
+            if (user_mouse_get_cursor(pmouse)->m_ecursor == e_cursor_size_bottom)
             {
 
                information() << "e_cursor_size_bottom";
@@ -22149,11 +22214,11 @@ namespace user
          if (::is_set(pappearance))
          {
 
-            pappearance->m_pointLastCursor = pmouse->m_point;
+            pappearance->m_pointLastCursor = pmouse->m_pointHost;
 
             ::point_i32 pointClient;
 
-            pointClient = pmouse->m_point;
+            pointClient = pmouse->m_pointHost;
 
             host_to_client()(pointClient);
 
@@ -22417,11 +22482,11 @@ namespace user
       if (::is_set(pappearance))
       {
 
-         pappearance->m_pointLastCursor = pmouse->m_point;
+         pappearance->m_pointLastCursor = pmouse->m_pointHost;
 
          ::point_i32 pointClient;
 
-         pointClient = pmouse->m_point;
+         pointClient = pmouse->m_pointHost;
 
          host_to_client()(pointClient);
 
@@ -22471,11 +22536,11 @@ namespace user
          if (::is_set(pappearance))
          {
 
-            pappearance->m_pointLastCursor = pmouse->m_point;
+            pappearance->m_pointLastCursor = pmouse->m_pointHost;
 
             ::point_i32 pointClient;
 
-            pointClient = pmouse->m_point;
+            pointClient = pmouse->m_pointHost;
 
             host_to_client()(pointClient);
 
@@ -22503,7 +22568,7 @@ namespace user
       pcontextmenu->m_oswindow = oswindow();
       pcontextmenu->m_pwindow = window();
       pcontextmenu->m_atom = e_message_context_menu;
-      pcontextmenu->m_pointMessage = pmouse->m_point;
+      pcontextmenu->m_pointMessage = pmouse->m_pointHost;
 
       //;; pcontextmenu->m_wpar
       //pcontextmenu->set(oswindow(), window(), e_message_context_menu, (wparam)(iptr)oswindow(), pmouse->m_point.lparam());
@@ -22530,11 +22595,11 @@ namespace user
       if (::is_set(pappearance))
       {
 
-         pappearance->m_pointLastCursor = pmouse->m_point;
+         pappearance->m_pointLastCursor = pmouse->m_pointHost;
 
          ::point_i32 pointClient;
 
-         pointClient = pmouse->m_point;
+         pointClient = pmouse->m_pointHost;
 
          host_to_client()(pointClient);
 
@@ -22630,11 +22695,11 @@ namespace user
       if (::is_set(pappearance))
       {
 
-         pappearance->m_pointLastCursor = pwheel->m_point;
+         pappearance->m_pointLastCursor = pwheel->m_pointHost;
 
          ::point_i32 pointClient;
 
-         pointClient = pwheel->m_point;
+         pointClient = pwheel->m_pointHost;
 
          host_to_client()(pointClient);
 
@@ -22697,14 +22762,14 @@ namespace user
       if (::is_item_set(pitemHitTest))
       {
 
-         if (!pmouse->m_pcursor)
+         if (!user_mouse_get_cursor(pmouse))
          {
 
             auto pwindowing = windowing();
 
             auto pcursor = pwindowing->get_cursor(e_cursor_arrow);
 
-            pmouse->m_pcursor = pcursor;
+            user_mouse_set_cursor(pmouse, pcursor);
 
          }
 
@@ -22982,7 +23047,7 @@ namespace user
 
       ::point_i32 pointClient;
 
-      pointClient = pmouse->m_point;
+      pointClient = pmouse->m_pointHost;
 
       host_to_client()(pointClient);
 
@@ -22999,7 +23064,7 @@ namespace user
 
       //puseritem->m_pointScreen = pmouse->m_point;
 
-      puseritem->m_pointHost = pmouse->m_point;
+      puseritem->m_pointHost = pmouse->m_pointHost;
 
       puseritem->m_pmouse = pmouse;
 

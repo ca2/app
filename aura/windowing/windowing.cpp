@@ -42,6 +42,14 @@ namespace windowing
    }
 
 
+   bool windowing::has_absolute_coordinate_system() const
+   {
+
+      return true;
+
+   }
+
+
    void windowing::initialize_windowing(::user::user * puser)
    {
 
@@ -290,6 +298,18 @@ namespace windowing
    }
 
 
+   ::point_i32 windowing::try_absolute_mouse_position(::user::interaction* puserinteraction, const ::point_i32& point)
+   {
+
+      auto p = point;
+
+      //puserinteraction->client_to_screen()(p);
+
+      return p;
+
+   }
+
+
    ::windowing::window * windowing::get_mouse_capture(::thread *)
    {
 
@@ -354,6 +374,9 @@ namespace windowing
 
    void windowing::set_mouse_cursor(::windowing::cursor * pcursor)
    {
+
+      throw ::interface_only();
+
 //      HCURSOR hcursor = nullptr;
 //
 //      if (::is_set(pcursor))

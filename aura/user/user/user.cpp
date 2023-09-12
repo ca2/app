@@ -1354,12 +1354,12 @@ namespace user
    bool user::on_ui_mouse_message(::message::mouse_base * pmouse)
    {
 
-      if (pmouse->m_point == pmouse->m_pointDesired)
+      if (pmouse->m_pointAbsolute == pmouse->m_pointDesired)
       {
 
          auto psession = get_session();
 
-         psession->m_pointCursor = pmouse->m_point;
+         psession->m_pointCursor = pmouse->m_pointAbsolute;
 
       }
 

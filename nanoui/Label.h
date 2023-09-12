@@ -28,6 +28,9 @@ namespace nanoui
  * The font and color can be customized. When \::pointer Widget::set_fixed_width()
  * is used, the text is wrapped when it surpasses the specified width.
  */
+
+#include "nano2d/text_box.h"
+
    class CLASS_DECL_NANOUI Label :
       virtual public Widget
    //, virtual public ::appearance::still
@@ -39,6 +42,7 @@ namespace nanoui
          ::string m_font;
          ::color::color m_color;
          size_i32 m_sizePreferred;
+         ::pointer < ::nano2d::text_box >    m_ptextbox;
 
       Label(Widget * parent, const ::scoped_string & caption,
          const ::scoped_string & font = "sans", int font_size = -1);

@@ -6736,7 +6736,7 @@ namespace draw2d_cairo
 //}
 
 
-   void graphics::_get(::draw2d::matrix & matrix)
+   void graphics::_get(::geometry2d::matrix & matrix)
    {
 
       _synchronous_lock ml(cairo_mutex());
@@ -6752,7 +6752,7 @@ namespace draw2d_cairo
    }
 
 
-   void graphics::_set(const ::draw2d::matrix & matrix)
+   void graphics::_set(const ::geometry2d::matrix & matrix)
    {
 
       _synchronous_lock ml(cairo_mutex());

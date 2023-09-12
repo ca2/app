@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "aura/graphics/draw2d/matrix.h"
+#include "acme/primitive/geometry2d/matrix.h"
 #include "aura/graphics/image/drawing.h"
 #include "acme/primitive/collection/int_map.h"
 #include "context.h"
@@ -131,6 +131,7 @@ namespace nano2d
 
       float text(float x, float y, const ::scoped_string & scopedstr) override;
       int text_glyph_positions(float x, float y, const ::scoped_string & scopedstr, ::nano2d::glyphPosition * positions, int maxPositions) override;
+      ::count character_metric(::f64_array& daLeft, ::f64_array& daRight, const ::string& scopedstr, strsize iStart = 0, strsize iEnd = -1) override;
       float text_bounds(float x, float y, const ::scoped_string & scopedstr, float * bounds) override;
       void text_metrics(float * ascender, float * descender, float * lineh) override;
 
@@ -153,6 +154,8 @@ namespace nano2d
       void update_image(int image, const void * data) override;
       void _draw_image(float x, float y, float w, float h, ::image * pimage) override;
 
+
+      virtual void __set_current_font();
 
    };
 

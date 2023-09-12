@@ -10,7 +10,7 @@
 
 
 CLASS_DECL_ACME string task_get_name();
-CLASS_DECL_ACME void task_set_name(const char * pszName);
+CLASS_DECL_ACME void task_set_name(const char* pszName);
 
 
 class CLASS_DECL_ACME scoped_task_name
@@ -19,7 +19,7 @@ public:
 
    ::string       m_strTask;
 
-   scoped_task_name(const ::string & strTask)
+   scoped_task_name(const ::string& strTask)
    {
 
       m_strTask = ::task_get_name();
@@ -134,14 +134,14 @@ namespace windows
    LRESULT CALLBACK nano_window_procedure(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
    {
 
-      ::windows::nano_window * pwindow = nullptr;
+      ::windows::nano_window* pwindow = nullptr;
 
       if (msg == WM_NCCREATE)
       {
 
-         CREATESTRUCT * pcreatestruct = (CREATESTRUCT *)lParam;
+         CREATESTRUCT* pcreatestruct = (CREATESTRUCT*)lParam;
 
-         pwindow = (::windows::nano_window *)pcreatestruct->lpCreateParams;
+         pwindow = (::windows::nano_window*)pcreatestruct->lpCreateParams;
 
          SetWindowLongPtr(hwnd, GWLP_USERDATA, (LONG_PTR)pwindow);
 
@@ -151,7 +151,7 @@ namespace windows
       else
       {
 
-         pwindow = (::windows::nano_window *)GetWindowLongPtr(hwnd, GWLP_USERDATA);
+         pwindow = (::windows::nano_window*)GetWindowLongPtr(hwnd, GWLP_USERDATA);
 
       }
 
@@ -215,7 +215,7 @@ namespace windows
    void nano_window::_draw(HDC hdc)
    {
 
-      GetWindowRect(m_hwnd, (LPRECT) & m_pinterface->m_rectangle);
+      GetWindowRect(m_hwnd, (LPRECT)&m_pinterface->m_rectangle);
 
       HGDIOBJ hbrushOld = ::GetCurrentObject(hdc, OBJ_BRUSH);
       HGDIOBJ hfontOld = ::GetCurrentObject(hdc, OBJ_FONT);
@@ -350,26 +350,26 @@ namespace windows
    }
 
 
-//::atom nano_window::hit_test(int x, int y)
-//{
-//
-//   for (int i = 0; i < m_iButtonCount; i++)
-//   {
-//      if (m_buttona[i].m_rectangle.contains(point_i32(x, y)))
-//      {
-//
-//         return m_buttona[i].m_edialogresult;
-//
-//      }
-//
-//   }
-//
-//   return e_dialog_result_none;
-//
-//}
-//
+   //::atom nano_window::hit_test(int x, int y)
+   //{
+   //
+   //   for (int i = 0; i < m_iButtonCount; i++)
+   //   {
+   //      if (m_buttona[i].m_rectangle.contains(point_i32(x, y)))
+   //      {
+   //
+   //         return m_buttona[i].m_edialogresult;
+   //
+   //      }
+   //
+   //   }
+   //
+   //   return e_dialog_result_none;
+   //
+   //}
+   //
 
-   void nano_window::on_left_button_down(::user::mouse * pmouse)
+   void nano_window::on_left_button_down(::user::mouse* pmouse)
    {
 
       //SetCapture(m_hwnd);
@@ -400,7 +400,7 @@ namespace windows
    }
 
 
-   void nano_window::on_left_button_up(::user::mouse * pmouse)
+   void nano_window::on_left_button_up(::user::mouse* pmouse)
    {
 
       //ReleaseCapture();
@@ -431,7 +431,7 @@ namespace windows
 
    }
 
-   void nano_window::on_mouse_move(::user::mouse * pmouse)
+   void nano_window::on_mouse_move(::user::mouse* pmouse)
    {
 
       //if (m_pdragmove && m_pdragmove->m_bLButtonDown)
@@ -465,7 +465,7 @@ namespace windows
    }
 
 
-   void nano_window::on_right_button_down(::user::mouse * pmouse)
+   void nano_window::on_right_button_down(::user::mouse* pmouse)
    {
 
       //SetCapture(m_hwnd);
@@ -496,7 +496,7 @@ namespace windows
    }
 
 
-   void nano_window::on_right_button_up(::user::mouse * pmouse)
+   void nano_window::on_right_button_up(::user::mouse* pmouse)
    {
 
       //ReleaseCapture();
@@ -568,7 +568,7 @@ namespace windows
 
 
 
-   bool nano_window::_is_light_theme() 
+   bool nano_window::_is_light_theme()
    {
 
       DWORD dwBuffer;
@@ -584,7 +584,7 @@ namespace windows
          &dwBuffer,
          &dwSize);
 
-      if (res != ERROR_SUCCESS) 
+      if (res != ERROR_SUCCESS)
       {
 
          throw ::exception(error_failed);
@@ -600,190 +600,202 @@ namespace windows
    {
       switch (message)
       {
-         case WM_CLOSE:
-            DestroyWindow(m_hwnd);
-            break;
-         case WM_DESTROY:
-            PostQuitMessage(0);
-            break;
-         case WM_CREATE:
+      case WM_CLOSE:
+         DestroyWindow(m_hwnd);
+         break;
+      case WM_DESTROY:
+         PostQuitMessage(0);
+         break;
+      case WM_CREATE:
+      {
+         update_drawing_objects();
+
+         on_create();
+
+      }
+      break;
+      case WM_CHAR:
+      {
+         on_char((int)wparam);
+         return 0;
+      }
+      break;
+      case WM_LBUTTONDOWN:
+      {
+
+         POINT point{ i32_x(lparam), i32_y(lparam) };
+
+         auto pmouse = __create_new < ::user::mouse >();
+
+         pmouse->m_pointHost = { point.x, point.y };
+
+         ::ClientToScreen(m_hwnd, &point);
+
+         pmouse->m_pointAbsolute = { point.x, point.y };
+
+         on_left_button_down(pmouse);
+
+      }
+      break;
+      case WM_MOUSEMOVE:
+      {
+
+         POINT point{ i32_x(lparam), i32_y(lparam) };
+
+         auto pmouse = __create_new < ::user::mouse >();
+
+         pmouse->m_pointHost = { point.x, point.y };
+
+         ::ClientToScreen(m_hwnd, &point);
+
+         pmouse->m_pointAbsolute = { point.x, point.y };
+
+         on_mouse_move(pmouse);
+
+      }
+      break;
+      case WM_LBUTTONUP:
+      {
+
+         POINT point{ i32_x(lparam), i32_y(lparam) };
+
+         auto pmouse = __create_new < ::user::mouse >();
+
+         pmouse->m_pointHost = { point.x, point.y };
+
+         ::ClientToScreen(m_hwnd, &point);
+
+         pmouse->m_pointAbsolute = { point.x, point.y };
+
+         on_left_button_up(pmouse);
+
+      }
+      break;
+      case WM_RBUTTONDOWN:
+      {
+
+         POINT point{ i32_x(lparam), i32_y(lparam) };
+
+         auto pmouse = __create_new < ::user::mouse >();
+
+         pmouse->m_pointHost = { point.x, point.y };
+
+         ::ClientToScreen(m_hwnd, &point);
+
+         pmouse->m_pointAbsolute = { point.x, point.y };
+
+         on_right_button_down(pmouse);
+
+      }
+      break;
+      case WM_RBUTTONUP:
+      {
+
+         POINT point{ i32_x(lparam), i32_y(lparam) };
+
+         auto pmouse = __create_new < ::user::mouse >();
+
+         pmouse->m_pointHost = { point.x, point.y };
+
+         ::ClientToScreen(m_hwnd, &point);
+
+         pmouse->m_pointAbsolute = { point.x, point.y };
+
+         on_right_button_up(pmouse);
+
+      }
+      break;
+      case WM_ERASEBKGND:
+         return 1;
+      case WM_PAINT:
+      {
+
+         PAINTSTRUCT paintstruct{};
+
+         HDC hdcWindow = BeginPaint(m_hwnd, &paintstruct);
+
+         HDC hdc = ::CreateCompatibleDC(hdcWindow);
+
+         ::rectangle_i32 rectangleX;
+
+         ::GetClientRect(m_hwnd, (LPRECT)&rectangleX);
+
+         HBITMAP hbitmap = ::CreateCompatibleBitmap(hdcWindow, rectangleX.width(), rectangleX.height());
+
+         HGDIOBJ hbitmapOld = ::SelectObject(hdc, hbitmap);
+
+         _draw(hdc);
+
+
+         ::BitBlt(hdcWindow, 0, 0, rectangleX.width(), rectangleX.height(),
+            hdc, 0, 0, SRCCOPY);
+
+         hbitmapOld = ::SelectObject(hdc, hbitmapOld);
+
+         ::DeleteDC(hdc);
+         EndPaint(m_hwnd, &paintstruct);
+      }
+      break;
+      case WM_NCACTIVATE:
+      {
+         LRESULT lresult = DefWindowProc(m_hwnd, message, wparam, lparam);
+         m_pinterface->m_bNcActive = wparam != 0;
+         redraw();
+
+         return lresult;
+
+      }
+      case WM_ACTIVATE:
+      {
+
+         LRESULT lresult = DefWindowProc(m_hwnd, message, wparam, lparam);
+
+         return lresult;
+
+      }
+      case WM_FONTCHANGE:
+      {
+
+         redraw();
+
+      }
+      break;
+      case WM_SETTINGCHANGE:
+      {
+
+         string strLparamString;
+
+         if (wparam == 0)
          {
+
+            strLparamString = (const WCHAR*)(LPARAM(lparam));
+
+         }
+
+         if (strLparamString == "ImmersiveColorSet")
+         {
+
             update_drawing_objects();
 
-            on_create();
-
-         }
-            break;
-         case WM_CHAR:
-         {
-            on_char((int) wparam);
-            return 0;
-         }
-            break;
-         case WM_LBUTTONDOWN:
-         {
-            
-            POINT point{ i32_x(lparam), i32_y(lparam) };
-            
-            ::ClientToScreen(m_hwnd, &point);
-
-            auto pmouse = __create_new < ::user::mouse >();
-
-            pmouse->m_point = { point.x, point.y };
-
-            on_left_button_down(pmouse);
-
-         }
-            break;
-         case WM_MOUSEMOVE:
-         {
-
-            POINT point{ i32_x(lparam), i32_y(lparam) };
-
-            ::ClientToScreen(m_hwnd, &point);
-
-            auto pmouse = __create_new < ::user::mouse >();
-
-            pmouse->m_point = { point.x, point.y };
-
-            on_mouse_move(pmouse);
-
-         }
-            break;
-         case WM_LBUTTONUP:
-         {
-
-            POINT point{ i32_x(lparam), i32_y(lparam) };
-
-            ::ClientToScreen(m_hwnd, &point);
-
-            auto pmouse = __create_new < ::user::mouse >();
-
-            pmouse->m_point = { point.x, point.y };
-
-            on_left_button_up(pmouse);
-
-         }
-            break;
-         case WM_RBUTTONDOWN:
-         {
-
-            POINT point{ i32_x(lparam), i32_y(lparam) };
-
-            ::ClientToScreen(m_hwnd, &point);
-
-            auto pmouse = __create_new < ::user::mouse >();
-
-            pmouse->m_point = { point.x, point.y };
-
-            on_right_button_down(pmouse);
-
-         }
-         break;
-         case WM_RBUTTONUP:
-         {
-
-            POINT point{ i32_x(lparam), i32_y(lparam) };
-
-            ::ClientToScreen(m_hwnd, &point);
-
-            auto pmouse = __create_new < ::user::mouse >();
-
-            pmouse->m_point = { point.x, point.y };
-
-            on_right_button_up(pmouse);
-
-         }
-         break;
-         case WM_ERASEBKGND:
-            return 1;
-         case WM_PAINT:
-            {
-               PAINTSTRUCT paintstruct{};
-               HDC hdcWindow = BeginPaint(m_hwnd, &paintstruct);
-
-               HDC hdc = ::CreateCompatibleDC(hdcWindow);
-
-               ::rectangle_i32 rectangleX;
-
-               ::GetClientRect(m_hwnd, (LPRECT) &rectangleX);
-
-               HBITMAP hbitmap = ::CreateCompatibleBitmap(hdcWindow, rectangleX.width(), rectangleX.height());
-
-               HGDIOBJ hbitmapOld = ::SelectObject(hdc, hbitmap);
-
-               _draw(hdc);
-
-
-               ::BitBlt(hdcWindow, 0, 0, rectangleX.width(), rectangleX.height(),
-                  hdc, 0, 0, SRCCOPY);
-
-               hbitmapOld = ::SelectObject(hdc, hbitmapOld);
-
-               ::DeleteDC(hdc);
-               EndPaint(m_hwnd, &paintstruct);
-            }
-            break;
-         case WM_NCACTIVATE:
-         {
-            LRESULT lresult = DefWindowProc(m_hwnd, message, wparam, lparam);
-            m_pinterface->m_bNcActive = wparam != 0;
             redraw();
 
-            return lresult;
-
          }
-         case WM_ACTIVATE:
-         {
-
-            LRESULT lresult = DefWindowProc(m_hwnd, message, wparam, lparam);
-
-            return lresult;
-
-         }
-         case WM_FONTCHANGE:
+         else if (wparam == SPI_SETWORKAREA)
          {
 
             redraw();
 
          }
-         break;
-         case WM_SETTINGCHANGE:
-         {
 
-            string strLparamString;
+      }
+      break;
 
-            if (wparam == 0)
-            {
+      default:
+      {
 
-               strLparamString = (const WCHAR *)(LPARAM(lparam));
+         return DefWindowProc(m_hwnd, message, wparam, lparam);
 
-            }
-
-            if(strLparamString == "ImmersiveColorSet")
-            {
-
-               update_drawing_objects();
-
-               redraw();
-
-            }
-            else if (wparam == SPI_SETWORKAREA)
-            {
-
-               redraw();
-
-            }
-
-         }
-         break;
-
-         default:
-         {
-
-            return DefWindowProc(m_hwnd, message, wparam, lparam);
-
-         }
+      }
 
       }
 
@@ -791,64 +803,64 @@ namespace windows
 
    }
 
-//
-//
-//HINSTANCE nano_message_box_hinstance()
-//{
-//
-//   HINSTANCE hinstanceWndProc = (HINSTANCE) ::GetModuleHandleA("acme.dll");
-//
-//   if (hinstanceWndProc == nullptr)
-//   {
-//
-//      hinstanceWndProc = (HINSTANCE)::GetModuleHandleA(NULL);
-//
-//   }
-//
-//   return hinstanceWndProc;
-//
-//}
+   //
+   //
+   //HINSTANCE nano_message_box_hinstance()
+   //{
+   //
+   //   HINSTANCE hinstanceWndProc = (HINSTANCE) ::GetModuleHandleA("acme.dll");
+   //
+   //   if (hinstanceWndProc == nullptr)
+   //   {
+   //
+   //      hinstanceWndProc = (HINSTANCE)::GetModuleHandleA(NULL);
+   //
+   //   }
+   //
+   //   return hinstanceWndProc;
+   //
+   //}
 
-//
-//void register_nano_window_class()
-//{
-//
-//   if (g_bNanoWindowClassRegistered)
-//   {
-//
-//      return;
-//
-//   }
-//
-//   auto hinstanceWndProc = nano_message_box_hinstance();
-//
-//   WNDCLASSEX wndclassex;
-//
-//   //Step 1: Registering the Window Class
-//   wndclassex.cbSize = sizeof(WNDCLASSEX);
-//   wndclassex.style = 0;
-//   wndclassex.lpfnWndProc = &message_box_window_procedure;
-//   wndclassex.cbClsExtra = 0;
-//   wndclassex.cbWndExtra = 0;
-//   wndclassex.hInstance = hinstanceWndProc;
-//   wndclassex.hIcon = LoadIcon(NULL, IDI_APPLICATION);
-//   wndclassex.hCursor = LoadCursor(NULL, IDC_ARROW);
-//   wndclassex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
-//   wndclassex.lpszMenuName = NULL;
-//   wndclassex.lpszClassName = _T(NANO_MESSAGE_BOX_WINDOW_CLASS);
-//   wndclassex.hIconSm = LoadIcon(NULL, IDI_APPLICATION);
-//
-//   if (!RegisterClassEx(&wndclassex))
-//   {
-//
-//      throw ::exception(error_failed, "Failed to register nano message box window class.");
-//
-//   }
-//
-//   g_bNanoWindowClassRegistered = true;
-//
-//}
-//
+   //
+   //void register_nano_window_class()
+   //{
+   //
+   //   if (g_bNanoWindowClassRegistered)
+   //   {
+   //
+   //      return;
+   //
+   //   }
+   //
+   //   auto hinstanceWndProc = nano_message_box_hinstance();
+   //
+   //   WNDCLASSEX wndclassex;
+   //
+   //   //Step 1: Registering the Window Class
+   //   wndclassex.cbSize = sizeof(WNDCLASSEX);
+   //   wndclassex.style = 0;
+   //   wndclassex.lpfnWndProc = &message_box_window_procedure;
+   //   wndclassex.cbClsExtra = 0;
+   //   wndclassex.cbWndExtra = 0;
+   //   wndclassex.hInstance = hinstanceWndProc;
+   //   wndclassex.hIcon = LoadIcon(NULL, IDI_APPLICATION);
+   //   wndclassex.hCursor = LoadCursor(NULL, IDC_ARROW);
+   //   wndclassex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
+   //   wndclassex.lpszMenuName = NULL;
+   //   wndclassex.lpszClassName = _T(NANO_MESSAGE_BOX_WINDOW_CLASS);
+   //   wndclassex.hIconSm = LoadIcon(NULL, IDI_APPLICATION);
+   //
+   //   if (!RegisterClassEx(&wndclassex))
+   //   {
+   //
+   //      throw ::exception(error_failed, "Failed to register nano message box window class.");
+   //
+   //   }
+   //
+   //   g_bNanoWindowClassRegistered = true;
+   //
+   //}
+   //
 
    void nano_window::display()
    {
@@ -864,13 +876,13 @@ namespace windows
    {
 
       auto strThreadName = ::task_get_name();
-      
+
       auto pmessagebox = m_pinterface.cast < nano_message_box >();
 
       ::string strAbbreviation("nano_window");
 
       //if (strType.contains("message_box"))
-      if(pmessagebox)
+      if (pmessagebox)
       {
          //auto pmessagebox = m_pinterface.cast<nano::me
          /// @brief ////////123456789012345
@@ -915,7 +927,7 @@ namespace windows
 
    }
 
-   void nano_window::add_child(nano_child * pchild)
+   void nano_window::add_child(nano_child* pchild)
    {
 
       m_pinterface->add_child(pchild);
@@ -941,62 +953,62 @@ namespace windows
    }
 
 
-//
-//LRESULT nano_window::window_procedure(UINT message, WPARAM wparam, LPARAM lparam)
-//{
-//   switch (message)
-//   {
-//   case WM_CLOSE:
-//      DestroyWindow(m_hwnd);
-//      break;
-//   case WM_DESTROY:
-//      PostQuitMessage(0);
-//      break;
-//   case WM_CREATE:
-//   {
-//      update_drawing_objects();
-//   }
-//   break;
-//   case WM_LBUTTONDOWN:
-//      on_left_button_down(i32_x(lparam), i32_y(lparam));
-//      break;
-//   case WM_LBUTTONUP:
-//   {
-//      on_left_button_up(i32_x(lparam), i32_y(lparam));
-//   }
-//
-//   break;
-//   case WM_PAINT:
-//   {
-//      PAINTSTRUCT paintstruct{};
-//      HDC hdc = BeginPaint(m_hwnd, &paintstruct);
-//      draw(hdc);
-//      EndPaint(m_hwnd, &paintstruct);
-//   }
-//   break;
-//   default:
-//      return DefWindowProc(m_hwnd, message, wparam, lparam);
-//   }
-//   return 0;
-//}
+   //
+   //LRESULT nano_window::window_procedure(UINT message, WPARAM wparam, LPARAM lparam)
+   //{
+   //   switch (message)
+   //   {
+   //   case WM_CLOSE:
+   //      DestroyWindow(m_hwnd);
+   //      break;
+   //   case WM_DESTROY:
+   //      PostQuitMessage(0);
+   //      break;
+   //   case WM_CREATE:
+   //   {
+   //      update_drawing_objects();
+   //   }
+   //   break;
+   //   case WM_LBUTTONDOWN:
+   //      on_left_button_down(i32_x(lparam), i32_y(lparam));
+   //      break;
+   //   case WM_LBUTTONUP:
+   //   {
+   //      on_left_button_up(i32_x(lparam), i32_y(lparam));
+   //   }
+   //
+   //   break;
+   //   case WM_PAINT:
+   //   {
+   //      PAINTSTRUCT paintstruct{};
+   //      HDC hdc = BeginPaint(m_hwnd, &paintstruct);
+   //      draw(hdc);
+   //      EndPaint(m_hwnd, &paintstruct);
+   //   }
+   //   break;
+   //   default:
+   //      return DefWindowProc(m_hwnd, message, wparam, lparam);
+   //   }
+   //   return 0;
+   //}
 
 
-   void nano_window::on_click(const ::atom & atomParam, ::user::mouse * pmouse)
+   void nano_window::on_click(const ::atom& atomParam, ::user::mouse* pmouse)
    {
 
       auto atom = atomParam;
 
       //fork([this, atom, pmouse]()
          //{
-         
-            m_pinterface->on_click(atom, pmouse);
 
-         //}, { pmouse });
+      m_pinterface->on_click(atom, pmouse);
+
+      //}, { pmouse });
 
    }
 
 
-   void nano_window::on_right_click(const ::atom & atomParam, ::user::mouse * pmouse)
+   void nano_window::on_right_click(const ::atom& atomParam, ::user::mouse* pmouse)
    {
 
       auto atom = atomParam;
@@ -1004,33 +1016,33 @@ namespace windows
       //fork([this, atom, pmouse]()
         // {
 
-            m_pinterface->on_right_click(atom, pmouse);
+      m_pinterface->on_right_click(atom, pmouse);
 
-         //}, {pmouse});
+      //}, {pmouse});
 
 
    }
 
 
-   void nano_window::move_to(const ::point_i32 & point)
+   void nano_window::move_to(const ::point_i32& point)
    {
 
       ::SetWindowPos(m_hwnd, nullptr, point.x(), point.y(), 0, 0, SWP_NOSIZE | SWP_NOZORDER);
 
-      ::GetWindowRect(m_hwnd, (RECT * ) & m_pinterface->m_rectangle);
+      ::GetWindowRect(m_hwnd, (RECT*)&m_pinterface->m_rectangle);
 
    }
 
 
-   void nano_window::get_client_rectangle(::rectangle_i32 & rectangle)
+   void nano_window::get_client_rectangle(::rectangle_i32& rectangle)
    {
 
-      ::GetClientRect(m_hwnd, (LPRECT) & rectangle);
+      ::GetClientRect(m_hwnd, (LPRECT)&rectangle);
 
    }
 
 
-   void nano_window::get_window_rectangle(::rectangle_i32 & rectangle)
+   void nano_window::get_window_rectangle(::rectangle_i32& rectangle)
    {
 
       ::GetWindowRect(m_hwnd, (LPRECT)&rectangle);
@@ -1065,7 +1077,7 @@ namespace windows
    void nano_window::set_cursor(enum_cursor ecursor)
    {
 
-      if(ecursor == e_cursor_move)
+      if (ecursor == e_cursor_move)
       {
 
          ::SetCursor(::LoadCursor(NULL, IDC_SIZEALL));
@@ -1096,7 +1108,7 @@ namespace windows
 
    }
 
- 
+
 } // namespace windows
 
 

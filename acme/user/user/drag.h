@@ -22,14 +22,14 @@ namespace user
    public:
 
 
-      ::item_pointer             m_pitem;
-      //::e_element                m_eelement;
-      //e_zorder                   m_ezorder;
-      bool                       m_bLButtonDown;
-      ::point_i32                m_pointLButtonDown;
-      ::point_i32                m_pointInitial;
-      //::size_i32                 m_sizeLButtonDownOffset;
-      ::pointer<::user::mouse>   m_pmouse;
+      ::item_pointer                m_pitem;
+      //::e_element                 m_eelement;
+      //e_zorder                    m_ezorder;
+      bool                          m_bLButtonDown;
+      ::point_i32                   m_pointLButtonDown2;
+      ::point_i32                   m_pointInitial;
+      //::size_i32                  m_sizeLButtonDownOffset;
+      ::pointer<::user::mouse>      m_pmouse;
       enum_cursor                   m_ecursor;
 
       bool                          m_bDrag;
@@ -39,8 +39,8 @@ namespace user
       ~drag() override;
 
 
-      void start(::user::mouse * pmouse, const ::point_i32 & pointDrag);
-      void end();
+      void drag_start(::user::mouse * pmouse, ::user::drag_client * pdragclient, ::item * pitem, const ::point_i32 & pointDrag);
+      void drag_end();
 
 
       //::point_i32 point() const;

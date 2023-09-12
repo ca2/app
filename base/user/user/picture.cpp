@@ -2,7 +2,7 @@
 #include "acme/handler/item.h"
 #include "aura/platform/context.h"
 #include <math.h>
-#include "aura/graphics/draw2d/matrix.h"
+#include "acme/primitive/geometry2d/matrix.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/drawing.h"
 #include "picture.h"
@@ -184,7 +184,7 @@ namespace user
 
       }
 
-      ::draw2d::matrix m;
+      ::geometry2d::matrix m;
 
       m.translate(-m_ppictureimpl->m_rectangle.center());
 
@@ -207,7 +207,7 @@ namespace user
 
       }
 
-      ::draw2d::matrix m;
+      ::geometry2d::matrix m;
 
       m.translate(-m_ppictureimpl->m_rectangleDrawing.center());
 
@@ -253,7 +253,7 @@ namespace user
 
       }
 
-      ::draw2d::matrix m;
+      ::geometry2d::matrix m;
 
       m.translate(-m_ppictureimpl->m_rectangle.center());
 
@@ -276,7 +276,7 @@ namespace user
 
       }
 
-      ::draw2d::matrix m;
+      ::geometry2d::matrix m;
 
       m.translate(-m_ppictureimpl->m_rectangleDrawing.center());
 
@@ -323,7 +323,7 @@ namespace user
 
       }
 
-      ::draw2d::matrix m;
+      ::geometry2d::matrix m;
 
       m.translate(-m_ppictureimpl->m_rectangle.center());
 
@@ -348,7 +348,7 @@ namespace user
 
       }
 
-      ::draw2d::matrix m;
+      ::geometry2d::matrix m;
 
       m.translate(-m_ppictureimpl->m_rectangleDrawing.center());
 
@@ -396,7 +396,7 @@ namespace user
 
       }
 
-      ::draw2d::matrix m;
+      ::geometry2d::matrix m;
 
       m.translate(-m_ppictureimpl->m_rectangle.center());
 
@@ -449,7 +449,7 @@ namespace user
 
       }
 
-      ::draw2d::matrix m;
+      ::geometry2d::matrix m;
 
       m.translate(-m_ppictureimpl->m_rectangleDrawing.center());
 
@@ -944,7 +944,7 @@ namespace user
 
       ::draw2d::save_context savecontext(pgraphics);
 
-      ::draw2d::matrix mRot;
+      ::geometry2d::matrix mRot;
 
       ::rectangle_f64 rectangleClip(m_ppictureimpl->m_rectangleDrawing);
 
@@ -959,33 +959,33 @@ namespace user
 
       pgraphics->intersect_clip(polygon_i32);
 
-      mRot.append(::draw2d::matrix::rotation(m_ppictureimpl->m_dRotate));
+      mRot.append(::geometry2d::matrix::rotation(m_ppictureimpl->m_dRotate));
 
-      ::draw2d::matrix mG;
+      ::geometry2d::matrix mG;
 
       mG.scaling(pgraphics->get_scaling());
 
       pgraphics->prepend(mRot);
 
-      pgraphics->prepend(::draw2d::matrix::scaling(m_ppictureimpl->m_dZoom, m_ppictureimpl->m_dZoom));
+      pgraphics->prepend(::geometry2d::matrix::scaling(m_ppictureimpl->m_dZoom, m_ppictureimpl->m_dZoom));
 
-      pgraphics->prepend(::draw2d::matrix::translation(
+      pgraphics->prepend(::geometry2d::matrix::translation(
          -m_ppictureimpl->m_rectangle.width() / 2,
          -m_ppictureimpl->m_rectangle.height() / 2));
 
       auto pointDrag = get_drag_point();
 
-      pgraphics->prepend(::draw2d::matrix::translation(
+      pgraphics->prepend(::geometry2d::matrix::translation(
          pointDrag.x(),
          pointDrag.y()));
 
-      ::draw2d::matrix mTrans;
+      ::geometry2d::matrix mTrans;
 
       auto pointD = m_ppictureimpl->m_rectangleDrawing.center();
 
       mG.transform(pointD);
 
-      mTrans.append(::draw2d::matrix::translation(pointD));
+      mTrans.append(::geometry2d::matrix::translation(pointD));
 
       pgraphics->append(mTrans);
 

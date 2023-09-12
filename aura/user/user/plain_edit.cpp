@@ -1020,9 +1020,9 @@ namespace user
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      ::point_i32 point = pmouse->m_point;
+      ::point_i32 point = pmouse->m_pointHost;
 
-      screen_to_client()(point);
+      host_to_client()(point);
 
       m_bRMouseDown = true;
 
@@ -1064,9 +1064,9 @@ namespace user
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      ::point_i32 point = pmouse->m_point;
+      ::point_i32 point = pmouse->m_pointHost;
 
-      screen_to_client()(point);
+      host_to_client()(point);
 
       //{
 
@@ -1853,16 +1853,16 @@ namespace user
 
          auto pcursor = pwindowing->get_cursor(e_cursor_text_select);
 
-         pmouse->m_pcursor = pcursor;
+         user_mouse_set_cursor(pmouse, pcursor);
 
          set_default_mouse_cursor(pcursor);
 
          if (m_bLMouseDown)
          {
 
-            ::point_i32 point = pmouse->m_point;
+            ::point_i32 point = pmouse->m_pointHost;
 
-            screen_to_client()(point);
+            host_to_client()(point);
 
             if (m_pointLastCursor != point)
             {
@@ -1876,7 +1876,7 @@ namespace user
 
                window_rectangle(rectangleWindow);
 
-               if (pmouse->m_point.x() < rectangleWindow.left() - 30)
+               if (pmouse->m_pointHost.x() < rectangleWindow.left() - 30)
                {
 
                   information("test06");
@@ -1930,7 +1930,7 @@ namespace user
 
          pmouse->previous();
 
-         ::point_i32 point = pmouse->m_point;
+         ::point_i32 point = pmouse->m_pointHost;
 
          screen_to_client()(point);
 
@@ -1998,9 +1998,9 @@ namespace user
       if (m_bLMouseDown)
       {
 
-         ::point_i32 point = pmouse->m_point;
+         ::point_i32 point = pmouse->m_pointHost;
 
-         screen_to_client()(point);
+         host_to_client()(point);
 
          queue_graphics_call([this, point](::draw2d::graphics_pointer & pgraphics)
             {

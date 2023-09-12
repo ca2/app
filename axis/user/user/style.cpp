@@ -177,17 +177,17 @@ namespace axis
       //if (dRotate != 0.)
       //{
 
-      //   ::draw2d::matrix mRot;
+      //   ::geometry2d::matrix mRot;
 
-      //   mRot.append(::draw2d::matrix::rotation(dRotate));
+      //   mRot.append(::geometry2d::matrix::rotation(dRotate));
 
       //   pgraphics->prepend(mRot);
 
-      //   ::draw2d::matrix mTrans;
+      //   ::geometry2d::matrix mTrans;
 
       //   auto offset = rectangleX.center();
 
-      //   mTrans.append(::draw2d::matrix::translation(offset.x(), offset.y()));
+      //   mTrans.append(::geometry2d::matrix::translation(offset.x(), offset.y()));
 
       //   pgraphics->append(mTrans);
 

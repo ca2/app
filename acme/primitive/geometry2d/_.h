@@ -9,6 +9,9 @@ namespace geometry2d
    class item;
 
 
+   class matrix;
+
+
 } // namespace geometry2d
 
 

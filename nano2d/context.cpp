@@ -16,6 +16,7 @@
 // 3. This notice may not be removed or altered from any source distribution.
 //
 #include "framework.h"
+#include "acme/exception/interface_only.h"
 #include "acme/exception/not_implemented.h"
 #include "nano2d/draw2d_context.h"
 #include "aura/graphics/draw2d/graphics.h"
@@ -110,7 +111,7 @@ namespace nano2d
 	//	float letterSpacing;
 	//	float lineHeight;
 	//	float fontBlur;
-	//	int textAlign;
+	//	int m_ealignText;
 	//	int fontId;
 	//};
 	//typedef struct ::nano2d::state ::nano2d::state;
@@ -2408,7 +2409,7 @@ void TransformSkewX(float* t, float a)
 	{
 
 		//::nano2d::state * state = __getState();
-		//state->textAlign = align;
+		//state->m_ealignText = align;
 
 		//text_align(align);
 
@@ -2537,7 +2538,7 @@ void TransformSkewX(float* t, float a)
 		//fonsSetSize(fs, state->fontSize * scale);
 		//fonsSetSpacing(fs, state->letterSpacing * scale);
 		//fonsSetBlur(fs, state->fontBlur * scale);
-		//fonsSetAlign(fs, state->textAlign);
+		//fonsSetAlign(fs, state->m_ealignText);
 		//fonsSetFont(fs, state->fontId);
 
 		//cverts = context::__maxi)(2, (int)(end - string)) * 6; // conservative estimate.
@@ -2667,7 +2668,7 @@ void TransformSkewX(float* t, float a)
 		//fonsSetSize(fs, state->fontSize * scale);
 		//fonsSetSpacing(fs, state->letterSpacing * scale);
 		//fonsSetBlur(fs, state->fontBlur * scale);
-		//fonsSetAlign(fs, state->textAlign);
+		//fonsSetAlign(fs, state->m_ealignText);
 		//fonsSetFont(fs, state->fontId);
 
 		//fonsTextIterInit(fs, &iter, x * scale, y * scale, string, end, FONS_GLYPH_BITMAP_OPTIONAL);
@@ -2723,7 +2724,7 @@ void TransformSkewX(float* t, float a)
       float breakWidth = 0;
       float breakMaxX = 0;
       int type = NANO2D_SPACE, ptype = NANO2D_SPACE;
-      unsigned int pcodepoint = 0;
+      unsigned int codepointPrevious = 0;
 
       //if (maxRows == 0) return 0;
       //if (state->fontId == FONS_INVALID) return 0;
@@ -2736,7 +2737,7 @@ void TransformSkewX(float* t, float a)
 //      fonsSetSize(fs, state->fontSize * scale);
 //      fonsSetSpacing(fs, state->letterSpacing * scale);
 //      fonsSetBlur(fs, state->fontBlur * scale);
-//      fonsSetAlign(fs, state->textAlign);
+//      fonsSetAlign(fs, state->m_ealignText);
 //      fonsSetFont(fs, state->fontId);
 
       // c₢breakRowWidth *= scale;
@@ -2744,11 +2745,17 @@ void TransformSkewX(float* t, float a)
       //fonsTextIterInit(fs, &iter, 0, 0, string, end, FONS_GLYPH_BITMAP_OPTIONAL);
       //prevIter = iter;
       
+		::f64_array daLeft;
+		::f64_array daRight;
+		character_metric(daLeft, daRight, scopedstr);
+
       ::string strChar;
       auto range = scopedstr();
+		strsize pos = 0;
       while (true) {
          
          range.begin() += strChar.length();
+			pos += strChar.length();
          
          strChar = range.get_utf8_char();
          
@@ -2757,7 +2764,10 @@ void TransformSkewX(float* t, float a)
             break;
             
          }
-         auto character_metric = measure_character(range);
+			auto left = daLeft[pos];
+			auto right = daRight[pos + strChar.length() - 1];
+
+			auto next = range.begin() + strChar.length();
          
 //         if (iter.prevGlyphIndex < 0 && context::__allocTextAtlas)(ctx)) { // can not retrieve glyph?
 //            iter = prevIter;
@@ -2774,10 +2784,10 @@ void TransformSkewX(float* t, float a)
             type = NANO2D_SPACE;
             break;
          case 10:      // \n
-            type = pcodepoint == 13 ? NANO2D_SPACE : NANO2D_NEWLINE;
+            type = codepointPrevious == 13 ? NANO2D_SPACE : NANO2D_NEWLINE;
             break;
          case 13:      // \r
-            type = pcodepoint == 10 ? NANO2D_SPACE : NANO2D_NEWLINE;
+            type = codepointPrevious == 10 ? NANO2D_SPACE : NANO2D_NEWLINE;
             break;
          case 0x0085:   // NEL
             type = NANO2D_NEWLINE;
@@ -2825,15 +2835,18 @@ void TransformSkewX(float* t, float a)
                // Skip white space until the beginning of the line
                if (type == NANO2D_CHAR || type == NANO2D_CJK_CHAR) {
                   // The current char is the row so far
-                  rowStartX = iter.x();
-                  rowStart = iter.str;
-                  rowEnd = iter.next;
-                  rowWidth = iter.nextx - rowStartX;
-                  rowMinX = q.x0 - rowStartX;
-                  rowMaxX = q.x1 - rowStartX;
-                  wordStart = iter.str;
-                  wordStartX = iter.x();
-                  wordMinX = q.x0 - rowStartX;
+                  rowStartX = (float)left;
+                  rowStart = range.begin();
+                  rowEnd = next;
+                  rowWidth = (float) (right - left);
+                  //rowMinX = q.x0 - rowStartX;
+                  //rowMaxX = q.x1 - rowStartX;
+						rowMinX = (float) (left - rowStartX);
+						rowMaxX = (float) (right - rowStartX);
+                  wordStart =range.begin();
+                  wordStartX = (float) (left);
+                  //wordMinX = q.x0 - rowStartX;
+						wordMinX = (float) (left - rowStartX);
                   // Set null break point
                   breakEnd = rowStart;
                   breakWidth = 0.0;
@@ -2841,73 +2854,80 @@ void TransformSkewX(float* t, float a)
                }
             }
             else {
-               float nextWidth = iter.nextx - rowStartX;
+               float nextWidth = (float) (right - rowStartX);
 
                // track last non-white space character
-               if (type == NVG_CHAR || type == NVG_CJK_CHAR) {
-                  rowEnd = iter.next;
-                  rowWidth = iter.nextx - rowStartX;
-                  rowMaxX = q.x1 - rowStartX;
+               if (type == NANO2D_CHAR || type == NANO2D_CJK_CHAR) {
+                  rowEnd = next;
+                  rowWidth = (float)( right - rowStartX);
+                  //rowMaxX = q.x1 - rowStartX;
+						rowMaxX = (float) ( right - rowStartX);
                }
                // track last end of a word
-               if (((ptype == NVG_CHAR || ptype == NVG_CJK_CHAR) && type == NVG_SPACE) || type == NVG_CJK_CHAR) {
-                  breakEnd = iter.str;
+               if (((ptype == NANO2D_CHAR || ptype == NANO2D_CJK_CHAR) && type == NANO2D_SPACE) || type == NANO2D_CJK_CHAR) {
+						breakEnd = range.begin();
                   breakWidth = rowWidth;
                   breakMaxX = rowMaxX;
                }
                // track last beginning of a word
-               if ((ptype == NVG_SPACE && (type == NVG_CHAR || type == NVG_CJK_CHAR)) || type == NVG_CJK_CHAR) {
-                  wordStart = iter.str;
-                  wordStartX = iter.x();
-                  wordMinX = q.x0;
+               if ((ptype == NANO2D_SPACE && (type == NANO2D_CHAR || type == NANO2D_CJK_CHAR)) || type == NANO2D_CJK_CHAR) {
+                  wordStart = range.begin();
+                  wordStartX = (float) (left);
+                  //wordMinX = q.x0;
+						wordMinX = (float) (left);
                }
 
                // Break to memory_new line when a character is beyond break width.
-               if ((type == NVG_CHAR || type == NVG_CJK_CHAR) && nextWidth > breakRowWidth) {
+               if ((type == NANO2D_CHAR || type == NANO2D_CJK_CHAR) && nextWidth > breakRowWidth) {
                   // The run length is too long, need to break to memory_new line.
                   if (breakEnd == rowStart) {
                      // The current word is longer than the row length, just break it from here.
                      auto prow = __create_new <::nano2d::text_row >();
-                     prow->start = rowStart;
-                     prow->end = iter.str;
+                     prow->m_str.assign(rowStart, range.begin());
+                     //prow->end = iter.str;
                      prow->width = rowWidth * invscale;
                      prow->minx = rowMinX * invscale;
                      prow->maxx = rowMaxX * invscale;
-                     prow->next = iter.str;
+                     //prow->next = iter.str;
                      ptextbox->m_rowa.add(prow);
                      //nrows++;
                      //if (nrows >= maxRows)
                        // return nrows;
-                     rowStartX = iter.x();
-                     rowStart = iter.str;
-                     rowEnd = iter.next;
-                     rowWidth = iter.nextx - rowStartX;
-                     rowMinX = q.x0 - rowStartX;
-                     rowMaxX = q.x1 - rowStartX;
-                     wordStart = iter.str;
-                     wordStartX = iter.x();
-                     wordMinX = q.x0 - rowStartX;
+                     rowStartX = (float) (left);
+                     rowStart = range.begin();
+                     rowEnd = next;
+                     rowWidth = (float) (right - rowStartX);
+                     //rowMinX = q.x0 - rowStartX;
+                     //rowMaxX = q.x1 - rowStartX;
+							rowMinX = (float) (left - rowStartX);
+							rowMaxX = (float) (right - rowStartX);
+							wordStart = range.begin();
+                     wordStartX = (float) left;
+                     //wordMinX = q.x0 - rowStartX;
+							wordMinX = (float) (left - rowStartX);
                   }
                   else {
                      // Break the line from the end of the last word, and start memory_new line from the beginning of the memory_new.
                      auto prow = __create_new <::nano2d::text_row >();
-                     prow->start = rowStart;
-                     prow->end = breakEnd;
+                     //prow->start = rowStart;
+                     //prow->end = breakEnd;
+							prow->m_str.assign(rowStart, breakEnd);
                      prow->width = breakWidth * invscale;
                      prow->minx = rowMinX * invscale;
                      prow->maxx = breakMaxX * invscale;
-                     prow->next = wordStart;
+                     //prow->next = wordStart;
                      ptextbox->m_rowa.add(prow);
                      //if (nrows >= maxRows)
                        // return nrows;
                      // Update row
                      rowStartX = wordStartX;
                      rowStart = wordStart;
-                     rowEnd = iter.next;
-                     rowWidth = iter.nextx - rowStartX;
+                     rowEnd = next;
+                     rowWidth = (float) (right - rowStartX);
                      rowMinX = wordMinX - rowStartX;
-                     rowMaxX = q.x1 - rowStartX;
-                  }
+                     //rowMaxX = q.x1 - rowStartX;
+							rowMaxX = (float) (right - rowStartX);
+						}
                   // Set null break point
                   breakEnd = rowStart;
                   breakWidth = 0.0;
@@ -2916,7 +2936,7 @@ void TransformSkewX(float* t, float a)
             }
          }
 
-         pcodepoint = iter.codepoint;
+         codepointPrevious = codepoint;
          ptype = type;
       }
 
@@ -2924,18 +2944,19 @@ void TransformSkewX(float* t, float a)
       if (rowStart != NULL) {
          
          auto prow = __create_new <::nano2d::text_row >();
-         prow->start = rowStart;
-         prow->end = rowEnd;
+         //prow->start = rowStart;
+         //prow->end = rowEnd;
+			prow->m_str.assign(rowStart, rowEnd);
          prow->width = rowWidth * invscale;
          prow->minx = rowMinX * invscale;
          prow->maxx = rowMaxX * invscale;
-         prow->next = end;
+         //prow->next = end;
          ptextbox->m_rowa.add(prow);
       }
 
-      return nrows;
+      //return nrows;
 
-      
+		return ptextbox;
       
       
       
@@ -2961,7 +2982,7 @@ void TransformSkewX(float* t, float a)
 		//float breakWidth = 0;
 		//float breakMaxX = 0;
 		//int type = NVG_SPACE, ptype = NVG_SPACE;
-		//unsigned int pcodepoint = 0;
+		//unsigned int codepointPrevious = 0;
 
 		//if (maxRows == 0) return 0;
 		//if (state->fontId == FONS_INVALID) return 0;
@@ -2974,7 +2995,7 @@ void TransformSkewX(float* t, float a)
 		//fonsSetSize(fs, state->fontSize * scale);
 		//fonsSetSpacing(fs, state->letterSpacing * scale);
 		//fonsSetBlur(fs, state->fontBlur * scale);
-		//fonsSetAlign(fs, state->textAlign);
+		//fonsSetAlign(fs, state->m_ealignText);
 		//fonsSetFont(fs, state->fontId);
 
 		//breakRowWidth *= scale;
@@ -2996,10 +3017,10 @@ void TransformSkewX(float* t, float a)
 		//		type = NVG_SPACE;
 		//		break;
 		//	case 10:		// \n
-		//		type = pcodepoint == 13 ? NVG_SPACE : NVG_NEWLINE;
+		//		type = codepointPrevious == 13 ? NVG_SPACE : NVG_NEWLINE;
 		//		break;
 		//	case 13:		// \r
-		//		type = pcodepoint == 10 ? NVG_SPACE : NVG_NEWLINE;
+		//		type = codepointPrevious == 10 ? NVG_SPACE : NVG_NEWLINE;
 		//		break;
 		//	case 0x0085:	// NEL
 		//		type = NVG_NEWLINE;
@@ -3131,7 +3152,7 @@ void TransformSkewX(float* t, float a)
 		//		}
 		//	}
 
-		//	pcodepoint = iter.codepoint;
+		//	codepointPrevious = iter.codepoint;
 		//	ptype = type;
 		//}
 
@@ -3164,7 +3185,7 @@ void TransformSkewX(float* t, float a)
 		//fonsSetSize(fs, state->fontSize * scale);
 		//fonsSetSpacing(fs, state->letterSpacing * scale);
 		//fonsSetBlur(fs, state->fontBlur * scale);
-		//fonsSetAlign(fs, state->textAlign);
+		//fonsSetAlign(fs, state->m_ealignText);
 		//fonsSetFont(fs, state->fontId);
 
 		//width = fonsTextBounds(fs, x * scale, y * scale, string, end, bounds);
@@ -3183,20 +3204,20 @@ void TransformSkewX(float* t, float a)
 	}
 
 
-	void context::text_box_bounds(float x, float y, float breakRowWidth, const ::scoped_string& string, float * bounds)
+	void context::text_box_bounds(float x, float y, ::nano2d::text_box * ptextbox, float * bounds)
 	{
 
 		//text_bounds(x, y, string, end, bounds);
 
 	
 		//::nano2d::state * state = __getState();
-		::nano2d::text_row rows[2];
+		//::nano2d::text_row rows[2];
 		//float scale = __getFontScale() * devicePxRatio;
 		//float invscale = 1.0f / scale;
-		int nrows = 0, i;
-		int oldAlign = m_pstate->m_ealignText;
-		int haling = m_pstate->textAlign & (::e_align_left | ::e_align_center | ::e_align_right);
-		int valign = m_pstate->textAlign & (::e_align_top | ::e_align_middle | ::e_align_bottom | ::e_align_baseline);
+		//int nrows = 0, i;
+		auto oldAlign = m_pstate->m_ealignText;
+		int haling = m_pstate->m_ealignText & (::e_align_left | ::e_align_horizontal_center | ::e_align_right);
+		int valign = m_pstate->m_ealignText & (::e_align_top | ::e_align_vertical_center | ::e_align_bottom | ::e_align_baseline);
 		float lineh = 0, rminy = 0, rmaxy = 0;
 		float minx, miny, maxx, maxy;
 	
@@ -3213,43 +3234,45 @@ void TransformSkewX(float* t, float a)
 	
 		minx = maxx = x;
 		miny = maxy = y;
+
+		rmaxy = lineh;
 	
 //		fonsSetSize(fs, state->fontSize * scale);
 //		fonsSetSpacing(fs, state->letterSpacing * scale);
 //		fonsSetBlur(fs, state->fontBlur * scale);
-//		fonsSetAlign(fs, state->textAlign);
+//		fonsSetAlign(fs, state->m_ealignText);
 //		fonsSetFont(fs, state->fontId);
 //		fonsLineBounds(fs, 0, &rminy, &rmaxy);
 //		rminy *= invscale;
 //		rmaxy *= invscale;
 	
-		while ((nrows = text_break_lines(string, end, breakRowWidth, rows, 2))
+		//while ((nrows = text_break_lines(string, end, breakRowWidth, rows, 2))
       {
-			for (i = 0; i context< nrows; i++)
+			for (auto & prow : ptextbox->m_rowa)
          {
-				::nano2d::text_row * row = &rows[i];
+				//::nano2d::text_row * row = &rows[i];
 				float rminx, rmaxx, Δx = 0;
 				// Horizontal bounds
 				if (haling & ::nano2d::e_align_left)
 					Δx = 0;
 				else if (haling & ::nano2d::e_align_center)
-					Δx = breakRowWidth * 0.5f - row->width * 0.5f;
+					Δx = ptextbox->m_fWidth * 0.5f - prow->width * 0.5f;
 				else if (haling & ::nano2d::e_align_right)
-					Δx = breakRowWidth - row->width;
-				rminx = x + row->minx + Δx;
-				rmaxx = x + row->maxx + Δx;
+					Δx = ptextbox->m_fWidth - prow->width;
+				rminx = x + prow->minx + Δx;
+				rmaxx = x + prow->maxx + Δx;
 				minx = ::minimum(minx, rminx);
 				maxx = ::maximum(maxx, rmaxx);
 				// Vertical bounds.
 				miny = ::minimum(miny, y + rminy);
 				maxy = ::maximum(maxy, y + rmaxy);
 	
-				y += lineh * state->lineHeight;
+				y += lineh * m_pstate->lineHeight;
 			}
-			string = rows[nrows - 1].next;
+			//string = rows[nrows - 1].next;
 		}
 	
-		state->textAlign = oldAlign;
+		m_pstate->m_ealignText = oldAlign;
 	
 		if (bounds != NULL) {
 			bounds[0] = minx;
@@ -3259,6 +3282,17 @@ void TransformSkewX(float* t, float a)
 		}
 	////	throw_todo();
 	}
+
+
+	::count context::character_metric(::f64_array& daLeft, ::f64_array& daRight, const ::string& str, strsize iStart, strsize iEnd)
+	{
+
+		throw ::interface_only();
+
+		return -1;
+
+	}
+
 
 	void context::text_metrics(float * ascender, float * descender, float * lineh)
 	{
@@ -3271,7 +3305,7 @@ void TransformSkewX(float* t, float a)
 		//fonsSetSize(fs, state->fontSize * scale);
 		//fonsSetSpacing(fs, state->letterSpacing * scale);
 		//fonsSetBlur(fs, state->fontBlur * scale);
-		//fonsSetAlign(fs, state->textAlign);
+		//fonsSetAlign(fs, state->m_ealignText);
 		//fonsSetFont(fs, state->fontId);
 
 		//fonsVertMetrics(fs, ascender, descender, lineh);

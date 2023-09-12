@@ -1,15 +1,16 @@
+// From draw2d_matrix by camilo on
+// 2023-09-12 11:54 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
-//#include "acme/primitive/geometry2d/_geometry2d.h"
-#include "acme/primitive/geometry2d/size.h"
+#include "size.h"
 
 
-namespace draw2d
+namespace geometry2d
 {
 
 
-   class CLASS_DECL_AURA matrix
+   class CLASS_DECL_ACME matrix
    {
    public:
 
@@ -21,6 +22,7 @@ namespace draw2d
          mode_prepend,
 
       };
+
 
       union
       {
@@ -47,10 +49,10 @@ namespace draw2d
 
 
       matrix();
-      matrix(const matrix &) = default;
+      matrix(const matrix&) = default;
 
 
-      matrix & operator = (const matrix &) = default;
+      matrix& operator = (const matrix&) = default;
 
       static matrix translation(point_f64 point) { return translation(point.x(), point.y()); }
       static matrix translation(double x, double y);
@@ -60,51 +62,51 @@ namespace draw2d
       static matrix scaling(size_f64 size) { return scaling(size.cx(), size.cy()); }
 
 
-      matrix & translate(point_f64 point, e_mode emode = mode_append) { return translate(point.x(), point.y(), emode); }
-      matrix & translate(double x, double y, e_mode emode = mode_append);
-      matrix & rotate(double dAngleRadians, e_mode emode = mode_append);
-      matrix & scale(double dRateX, double dRateY, e_mode emode = mode_append);
-      matrix & scale(const ::point_i32 & point, e_mode emode = mode_append) { return scale(point.x(), point.y(), emode); }
+      matrix& translate(point_f64 point, e_mode emode = mode_append) { return translate(point.x(), point.y(), emode); }
+      matrix& translate(double x, double y, e_mode emode = mode_append);
+      matrix& rotate(double dAngleRadians, e_mode emode = mode_append);
+      matrix& scale(double dRateX, double dRateY, e_mode emode = mode_append);
+      matrix& scale(const ::point_i32& point, e_mode emode = mode_append) { return scale(point.x(), point.y(), emode); }
 
 
-      matrix & prepend(const matrix & m);
-      matrix & append(const matrix & m);
+      matrix& prepend(const matrix& m);
+      matrix& append(const matrix& m);
 
-      
+
       double determinant() const;
-      
-      static bool invert(matrix & aDst, const matrix & aSrc);
-      
+
+      static bool invert(matrix& aDst, const matrix& aSrc);
+
       bool invert()
       {
-         
+
          matrix m(*this);
-         
-         if(!invert(*this, m))
+
+         if (!invert(*this, m))
          {
-            
+
             return false;
-            
+
          }
-         
+
          return true;
-         
+
       }
-      
-      matrix & operator * (const matrix & m);
+
+      matrix& operator * (const matrix& m);
 
       // 6 (six) elements
-      virtual void SetElements(float * fa);
+      virtual void SetElements(float* fa);
 
 
-      void transform(point_i32 & point);
+      void transform(point_i32& point);
 
-      void transform(point_f64 & point);
+      void transform(point_f64& point);
 
    };
 
 
-   inline matrix multiplication (const matrix & m1, const matrix & m2)
+   inline matrix multiplication(const matrix& m1, const matrix& m2)
    {
 
       matrix m;
@@ -123,9 +125,13 @@ namespace draw2d
 
    }
 
-   inline matrix operator*(const matrix & m1, const matrix & m2)
+   inline matrix operator*(const matrix& m1, const matrix& m2)
    {
       return multiplication(m1, m2);
    }
 
+
 } // namespace draw2d
+
+
+

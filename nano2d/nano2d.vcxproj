@@ -246,6 +246,7 @@
     <ClInclude Include="framework.h" />
     <ClInclude Include="ImageImpact.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="text_box.h" />
     <ClInclude Include="types.h" />
     <ClInclude Include="_.h" />
     <ClInclude Include="_constant.h" />

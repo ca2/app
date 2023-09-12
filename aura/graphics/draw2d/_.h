@@ -68,9 +68,6 @@ namespace draw2d
    class icon;
 
 
-   class matrix;
-
-
    CLASS_DECL_ACME void colora_from_quada(color_array & colora, WINRGBQUAD * prgbquad, int iCount);
 
 

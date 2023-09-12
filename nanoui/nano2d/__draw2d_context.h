@@ -48,7 +48,7 @@ namespace nano2d
 
          ::point_f64                   m_pointCurrent;
 
-         ::draw2d::matrix              m_matrix;
+         ::geometry2d::matrix              m_matrix;
 
          bool                          m_bHasCurrentPoint;
 

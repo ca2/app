@@ -19,15 +19,10 @@
 
 
 #include "_constant.h"
+#include "text_box.h"
 #include "types.h"
 #include "acme/primitive/geometry2d/angle.h"
 
-struct character_metric
-{
-   
-   float width;
-   
-};
 
 namespace nano2d
 {
@@ -53,7 +48,7 @@ namespace nano2d
 //
 //         ::point_f64                   m_pointCurrent;
 //
-//         ::draw2d::matrix              m_matrix;
+//         ::geometry2d::matrix              m_matrix;
 //
 //         bool                          m_bHasCurrentPoint;
 //
@@ -148,8 +143,6 @@ namespace nano2d
 		// A matching Restore)() must be used to restore the state.
 		virtual void save1();
       
-      virtual character_metric(c)
-
 		// Pops and restores current render state.
 		virtual void restore1();
 
@@ -501,6 +494,10 @@ namespace nano2d
 		// Measured values are returned in local coordinate space.
 		//virtual void text_box_bounds(float x, float y, float breakRowWidth, const ::scoped_string& scopedstr, float* bounds);
       virtual void text_box_bounds(float x, float y, ::nano2d::text_box * ptextbox, float* bounds);
+
+
+		virtual ::count character_metric(::f64_array& daLeft, ::f64_array& daRight, const ::string& str, strsize iStart = 0, strsize iEnd = -1);
+
 
 		// Calculates the glyph x positions of the specified text. If end is specified only the sub-string will be used.
 		// Measured values are returned in local coordinate space.

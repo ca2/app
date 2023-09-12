@@ -40,6 +40,15 @@ namespace write_text
 
       }
 
+
+      double get_default_line_height() const
+      {
+
+         return m_dHeight + get_line_spacing();
+
+      }
+
+
    };
 
 

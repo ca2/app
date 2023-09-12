@@ -6091,7 +6091,7 @@ namespace draw2d
    }
 
 
-   void graphics::_get(matrix & matrix)
+   void graphics::_get(::geometry2d::matrix & matrix)
    {
 
       //return false;
@@ -6099,7 +6099,7 @@ namespace draw2d
    }
 
 
-   void graphics::_set(const matrix & matrix)
+   void graphics::_set(const ::geometry2d::matrix & matrix)
    {
 
       //return false;
@@ -6107,7 +6107,7 @@ namespace draw2d
    }
 
 
-   void graphics::get(matrix & matrix)
+   void graphics::get(::geometry2d::matrix & matrix)
    {
 
       matrix = m_matrix;
@@ -6117,7 +6117,7 @@ namespace draw2d
    }
 
 
-   void graphics::set(const matrix & matrix)
+   void graphics::set(const ::geometry2d::matrix & matrix)
    {
 
       m_matrix = matrix;
@@ -6132,9 +6132,9 @@ namespace draw2d
    void graphics::update_matrix()
    {
 
-      matrix matrixScale;
+      ::geometry2d::matrix matrixScale;
 
-      matrix matrixTranslate;
+      ::geometry2d::matrix matrixTranslate;
 
       matrixScale.a1 = m_sizeScaling.cx();
 
@@ -6151,7 +6151,7 @@ namespace draw2d
    }
 
 
-   void graphics::append(const matrix & matrix)
+   void graphics::append(const ::geometry2d::matrix & matrix)
    {
 
       m_matrix.append(matrix);
@@ -6161,7 +6161,7 @@ namespace draw2d
    }
 
 
-   void graphics::prepend(const matrix & matrix)
+   void graphics::prepend(const ::geometry2d::matrix & matrix)
    {
 
       m_matrix.prepend(matrix);

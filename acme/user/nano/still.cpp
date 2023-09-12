@@ -78,7 +78,7 @@ void nano_still::on_mouse_move(::user::mouse * pmouse)
 
          r += m_pnanowindow->m_rectangle.top_left();
 
-         if (!r.contains(pmouse->m_point))
+         if (!r.contains(pmouse->m_pointAbsolute))
          {
 
             m_pnanowindow->m_pchildHover = nullptr;

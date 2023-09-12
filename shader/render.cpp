@@ -350,11 +350,11 @@ namespace app_shader
 
 #if !defined(__APPLE__)
 
-         ::draw2d::matrix matrixOriginal;
+         ::geometry2d::matrix matrixOriginal;
 
          pgraphics->get(matrixOriginal);
 
-         ::draw2d::matrix matrix(matrixOriginal);
+         ::geometry2d::matrix matrix(matrixOriginal);
 
          matrix.scale(1.0, -1.0);
 

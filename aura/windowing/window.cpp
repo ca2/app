@@ -1984,7 +1984,7 @@ namespace windowing
       try
       {
 
-         auto pcursor = pmouse->m_pcursor;
+         auto pcursor = m_puserinteractionimpl->m_puserinteraction->user_mouse_get_cursor(pmouse);
 
          if(!pcursor)
          {

@@ -880,9 +880,11 @@ namespace user
 //
 //         }
 
-         pmessage->m_point = lparam.point();
+         pmessage->m_pointHost = lparam.point();
 
-         //_raw_client_to_screen(pmessage->m_point);
+         pmessage->m_pointAbsolute = lparam.point();
+
+         _raw_client_to_screen(pmessage->m_pointAbsolute);
 
       }
       break;
@@ -909,11 +911,13 @@ namespace user
 
          pmessage->m_ebuttonstate = (::user::enum_button_state) lower_u16(wparam);
 
-         pmessage->m_point = lparam.point();
+         pmessage->m_pointHost = lparam.point();
 
          pmessage->m_Δ = upper_i16(wparam);
 
-         //_raw_client_to_screen(pmessage->m_point);
+         pmessage->m_pointAbsolute = lparam.point();
+
+         _raw_client_to_screen(pmessage->m_pointAbsolute);
 
       }
       break;

@@ -2,8 +2,9 @@
 #include "matrix.h"
 
 
-namespace draw2d
+namespace geometry2d
 {
+
 
    matrix::matrix()
    {
@@ -233,7 +234,7 @@ namespace draw2d
    }
 
 
-} // namespace draw2d
+} // namespace geometry2d
 
 
 

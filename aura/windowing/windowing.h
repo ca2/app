@@ -72,7 +72,7 @@ namespace windowing
 
       //virtual void _initialize_windowing();
 
-
+      bool has_absolute_coordinate_system() const;
 
 
       virtual void initialize_windowing(::user::user * puser);
@@ -118,6 +118,8 @@ namespace windowing
       virtual void clear_active_window(::thread * pthread, ::windowing::window * pwindow);
 
       virtual ::windowing::window * get_keyboard_focus(::thread * pthread);
+
+      virtual ::point_i32 try_absolute_mouse_position(::user::interaction* puserinteraction, const ::point_i32& point);
 
       virtual ::windowing::window * get_mouse_capture(::thread * pthread);
 

@@ -230,7 +230,7 @@ namespace nano2d
    void draw2d_context::translate(float x, float y)
    {
 
-      ::draw2d::matrix matrix;
+      ::geometry2d::matrix matrix;
 
       matrix.translate(x, y);
 
@@ -242,7 +242,7 @@ namespace nano2d
    void draw2d_context::rotate(float angle)
    {
 
-      ::draw2d::matrix matrix;
+      ::geometry2d::matrix matrix;
 
       matrix.rotate(angle);
 
@@ -727,7 +727,7 @@ pstate->m_ppen->m_color = color;
       
       //::string strText(string, end ? end - string : string_safe_length(string));
 
-      m_pgraphics->set(_get_current_font());
+      __set_current_font();
       
       ::pointer < draw2d_state > pstate = m_pstate;
 
@@ -779,7 +779,7 @@ pstate->m_ppen->m_color = color;
       f64_array daLeft;
       f64_array daRight;
 
-      m_pgraphics->set(_get_current_font());
+      __set_current_font();
 
       auto size = m_pgraphics->get_text_extent(scopedstr);
 
@@ -814,7 +814,7 @@ pstate->m_ppen->m_color = color;
       }
 
 
-      m_pgraphics->get_character_extent(daLeft, daRight, scopedstr);
+      character_metric(daLeft, daRight, scopedstr);
 
       auto pszStart = scopedstr.begin();
 
@@ -852,9 +852,7 @@ pstate->m_ppen->m_color = color;
 
       //::string strText(string, end ? end - string : string_safe_length(scopedstr));
       
-      auto pfont = _get_current_font();
-
-      m_pgraphics->set(pfont);
+      __set_current_font();
 
       auto size = m_pgraphics->get_text_extent(scopedstr);
 
@@ -906,9 +904,7 @@ pstate->m_ppen->m_color = color;
 void draw2d_context::text_metrics(float * pfAscender, float * pfDescender, float * pfLineHeight)
 {
    
-   auto pfont = _get_current_font();
-
-   m_pgraphics->set(pfont);
+   __set_current_font();
    
    auto textmetrics = m_pgraphics->get_text_metrics();
    
@@ -927,7 +923,7 @@ void draw2d_context::text_metrics(float * pfAscender, float * pfDescender, float
    if(pfLineHeight)
    {
    
-      *pfLineHeight = (float) textmetrics.m_dHeight + textmetrics.get_line_spacing();
+      *pfLineHeight = (float) textmetrics.get_default_line_height();
       
    }
 
@@ -1151,6 +1147,30 @@ void draw2d_context::text_metrics(float * pfAscender, float * pfDescender, float
 
       m_pgraphics->draw(imagedrawing);
 
+
+   }
+
+
+   ::count draw2d_context::character_metric(::f64_array& daLeft, ::f64_array& daRight, const ::string& scopedstr, strsize iStart, strsize iEnd)
+   {
+
+      __set_current_font();
+
+      auto c = m_pgraphics->get_character_extent(daLeft, daRight, scopedstr, iStart, iEnd);
+
+      return c;
+
+   }
+
+
+   void draw2d_context::__set_current_font()
+   {
+
+      m_pgraphics->set(_get_current_font());
+
+      auto textmetric = m_pgraphics->get_text_metrics();
+
+      m_pstate->lineHeight = 1;
 
    }
 

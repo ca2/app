@@ -2016,9 +2016,9 @@ namespace windowing
 
          if(pcursor)
          {
-
-            windowing()->set_mouse_cursor(pcursor);
-
+            
+            set_mouse_cursor(pcursor);
+            
          }
 
       }

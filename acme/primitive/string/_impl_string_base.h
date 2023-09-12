@@ -4255,7 +4255,7 @@ template < typename ITERATOR_TYPE >
 inline typename const_string_range < ITERATOR_TYPE >::const_iterator const_string_range < ITERATOR_TYPE >::find_first(CHARACTER ch) const RELEASENOTHROW
 {
    
-   return ::string_find_character(this->begin(), ch);
+   return ::string_find_character(this->begin(), this->end(), ch);
 
 }
 

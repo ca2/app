@@ -2750,11 +2750,16 @@ void TransformSkewX(float* t, float a)
 		character_metric(daLeft, daRight, scopedstr);
 
       ::string strChar;
+   
       auto range = scopedstr();
+   
 		strsize pos = 0;
-      while (true) {
+   
+      while (true)
+      {
          
          range.begin() += strChar.length();
+         
 			pos += strChar.length();
          
          strChar = range.get_utf8_char();

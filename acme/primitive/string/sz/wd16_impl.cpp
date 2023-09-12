@@ -66,10 +66,32 @@ CLASS_DECL_ACME const ::wd16_character * string_find_string_ci(const ::wd16_char
 }
 
 
-CLASS_DECL_ACME const ::wd16_character * string_find_chararacter(const ::wd16_character * pszBlock, ::wd16_character chMatch) noexcept
+CLASS_DECL_ACME const ::wd16_character * string_find_character(const ::wd16_character * pszBlock, ::wd16_character chMatch) noexcept
 {
 
    return wd16_chr(pszBlock, (::wd16_character)chMatch);
+
+}
+
+
+CLASS_DECL_ACME const ::wd16_character * string_find_character(const ::wd16_character * psz, const ::wd16_character * pszEnd, ::wd16_character chMatch) noexcept
+{
+   
+   while(psz < pszEnd)
+   {
+      
+      if(*psz == chMatch)
+      {
+       
+         return psz;
+         
+      }
+      
+      psz++;
+      
+   }
+
+   return nullptr;
 
 }
 

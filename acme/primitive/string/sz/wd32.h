@@ -42,6 +42,7 @@ CLASS_DECL_ACME ::wd32_character * string_lowercase(::wd32_character * psz, strs
 
 
 CLASS_DECL_ACME const ::wd32_character * string_find_character(const ::wd32_character * pszBlock, ::wd32_character chMatch) noexcept;
+CLASS_DECL_ACME const ::wd32_character * string_find_character(const ::wd32_character * psz, const ::wd32_character * pszEnd, ::wd32_character chMatch) noexcept;
 CLASS_DECL_ACME const ::wd32_character * string_rear_find_character(const ::wd32_character * pszBlock, ::wd32_character chMatch) noexcept;
 //CLASS_DECL_ACME const ::wd32_character * string_rear_find_character(const ::wd32_character * psz, ::wd32_character ch, strsize iStart) noexcept;
 CLASS_DECL_ACME const ::wd32_character * string_find_string(const ::wd32_character * pszBlock, const ::wd32_character * pszMatch) noexcept;

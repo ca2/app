@@ -846,7 +846,6 @@ pstate->m_ppen->m_color = color;
    }
 
 
-
    float draw2d_context::text_bounds(float x, float y, const ::scoped_string & scopedstr, float * bounds)
    {
 

@@ -338,8 +338,6 @@ namespace user
 
       m_bUserInteractionSetFinish = false;
 
-      m_timeMouseMoveIgnore = 20_ms;
-
       m_bOverdraw = false;
 
       //m_bDefaultEditHandling = false;
@@ -354,13 +352,6 @@ namespace user
 
       m_ewindowflag |= e_window_flag_enable;
 
-      m_iMouseMoveSkipCount = 0;
-
-      int iMouseMoveTriggerDistance = 10;
-
-      m_iMouseMoveSkipSquareDistance = iMouseMoveTriggerDistance * iMouseMoveTriggerDistance;
-
-      m_timeMouseMovePeriod = 5_ms;
 
       m_bOffScreenRender = false;
 

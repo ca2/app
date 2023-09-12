@@ -345,21 +345,11 @@ namespace user
       ::rectangle_i32                           m_rectangleRestoreBroad;
       ::rectangle_i32                           m_rectangleRestoreCompact;
       enumeration < enum_non_client >           m_flagNonClient;
-      int                                       m_iMouseMoveSkipCount;
-      int                                       m_iMouseMoveSkipSquareDistance;
-      class ::time                              m_timeMouseMoveSkip;
-      ::point_i32                               m_pointMouseMoveSkip;
-      class ::time                              m_timeMouseMovePeriod;
-      //::point_i32                               m_pointMouseMove;
       class ::time                              m_timeLastRedraw;
       ::atom                                    m_atomImpact;
       ::status < ::color::color >               m_statuscolorBackground;
       ::status < ::color::color >               m_statuscolorText;
       point_i32                                 m_pointScroll;
-      // if high frequency mouse transfer notification is required
-      // create a fast path/low latency callback system
-      class ::time                              m_timeMouseMove;
-      class ::time                              m_timeMouseMoveIgnore;
       double                                    m_dItemHeight;
       point_i32                                 m_pointMoveCursor;
       class ::time                              m_timeLastFullUpdate;

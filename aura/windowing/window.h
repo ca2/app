@@ -19,6 +19,22 @@ namespace windowing
    {
    public:
 
+      
+      struct mouse_reposition_throttling
+      {
+         
+         // if high frequency mouse transfer notification is required
+         // create a fast path/low latency callback system
+         int                                       m_iMouseMoveSkipCount;
+         int                                       m_iMouseMoveSkipSquareDistance;
+         class ::time                              m_timeMouseMoveSkip;
+         ::point_i32                               m_pointMouseMoveSkip;
+         class ::time                              m_timeMouseMovePeriod;
+         ::point_i32                               m_pointMouseMove;
+         class ::time                              m_timeMouseMove;
+         class ::time                              m_timeMouseMoveIgnore;
+         
+      };
 
       bool                                      m_bMessageOnlyWindow : 1;
 
@@ -34,6 +50,9 @@ namespace windowing
       ::pointer<::windowing::window>            m_pwindowParent;
       ::point_i32                               m_pointWindow;
       ::size_i32                                m_sizeWindow;
+      
+      mouse_reposition_throttling               m_mouserepositionthrottling;
+      
       ::pointer<::windowing::icon>              m_picon;
       ::pointer<::windowing::windowing>         m_pwindowing;
       ::pointer<::user::copydesk>               m_pcopydesk;

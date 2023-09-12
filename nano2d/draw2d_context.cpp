@@ -909,7 +909,9 @@ void draw2d_context::text_metrics(float * pfAscender, float * pfDescender, float
    
    if(pfAscender)
    {
+      
       *pfAscender = (float) textmetrics.m_dAscent;
+      
    }
    
    if(pfDescender)
@@ -922,7 +924,7 @@ void draw2d_context::text_metrics(float * pfAscender, float * pfDescender, float
    if(pfLineHeight)
    {
    
-      *pfLineHeight = (float) textmetrics.get_default_line_height();
+      *pfLineHeight = (float) textmetrics.get_line_height();
       
    }
 

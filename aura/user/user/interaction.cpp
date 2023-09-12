@@ -12036,7 +12036,7 @@ namespace user
 
       setFittingFontHeight.cx() = size.cx();
 
-      setFittingFontHeight.cy() = metric.get_line_spacing();
+      setFittingFontHeight.cy() = metric.get_line_height();
 
       return setFittingFontHeight;
 

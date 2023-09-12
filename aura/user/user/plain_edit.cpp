@@ -2946,7 +2946,7 @@ namespace user
 
       pgraphics->get_text_metrics(&metric);
 
-      m_dLineHeight = metric.get_line_spacing();
+      m_dLineHeight = metric.get_line_height();
 
       if (m_dLineHeight <= 0.0)
       {

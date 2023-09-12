@@ -208,17 +208,17 @@ namespace user
 
       string strText(get_window_text());
 
-      const ::size_i32 & size = pgraphics->get_text_extent(strText);
+      auto size = pgraphics->get_text_extent(strText);
 
       ::write_text::text_metric tm;
 
       pgraphics->get_text_metrics(&tm);
 
-      ::size_i32 sizeTotal;
+      ::size_f64 sizeTotal;
 
-      sizeTotal.cx() = (::i32) size.cx();
+      sizeTotal.cx() = size.cx();
 
-      sizeTotal.cy() = (::i32)tm.get_line_spacing();
+      sizeTotal.cy() = tm.get_line_height();
 
       return sizeTotal;
 

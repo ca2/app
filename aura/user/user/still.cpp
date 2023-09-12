@@ -478,7 +478,7 @@ namespace user
 
       sizeTotal.cx() = size.cx();
 
-      sizeTotal.cy() = tm.get_line_spacing();
+      sizeTotal.cy() = tm.get_line_height();
 
       return sizeTotal;
 

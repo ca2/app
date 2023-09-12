@@ -33,21 +33,12 @@ namespace write_text
       ::u8           m_uchCharSet;
 
 
-      double get_line_spacing() const
+      double get_line_height() const
       {
 
          return m_dInternalLeading + m_dAscent + m_dDescent + m_dExternalLeading;
 
       }
-
-
-      double get_default_line_height() const
-      {
-
-         return m_dHeight + get_line_spacing();
-
-      }
-
 
    };
 

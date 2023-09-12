@@ -354,52 +354,52 @@ namespace windowing
 
    void windowing::set_mouse_cursor(::windowing::cursor * pcursor)
    {
-      HCURSOR hcursor = nullptr;
-
-      if (::is_set(pcursor))
-      {
-
-         hcursor = (HCURSOR)pcursor->get_os_data();
-
-         if (hcursor == nullptr)
-         {
-
-            //auto estatus = 
-
-            pcursor->_create_os_cursor();
-
-            //if (!estatus)
-            //{
-
-            //   return estatus;
-
-            //};
-
-            hcursor = (HCURSOR)pcursor->get_os_data();
-
-            //if (!hcursor)
-            //{
-
-            //   return error_resource;
-
-            //}
-
-         }
-
-      }
-
-      // At windows SetMouseCursor(nullptr) removes the cursor from screen
-      // similar apis in other platforms behave the same?
-
-      if (!::SetCursor(hcursor))
-      {
-
-         throw ::exception(error_failed);
-
-      }
-
-      //return ::success;
-
+//      HCURSOR hcursor = nullptr;
+//
+//      if (::is_set(pcursor))
+//      {
+//
+//         hcursor = (HCURSOR)pcursor->get_os_data();
+//
+//         if (hcursor == nullptr)
+//         {
+//
+//            //auto estatus =
+//
+//            pcursor->_create_os_cursor();
+//
+//            //if (!estatus)
+//            //{
+//
+//            //   return estatus;
+//
+//            //};
+//
+//            hcursor = (HCURSOR)pcursor->get_os_data();
+//
+//            //if (!hcursor)
+//            //{
+//
+//            //   return error_resource;
+//
+//            //}
+//
+//         }
+//
+//      }
+//
+//      // At windows SetMouseCursor(nullptr) removes the cursor from screen
+//      // similar apis in other platforms behave the same?
+//
+//      if (!::SetCursor(hcursor))
+//      {
+//
+//         throw ::exception(error_failed);
+//
+//      }
+//
+//      //return ::success;
+//
 
 
    }

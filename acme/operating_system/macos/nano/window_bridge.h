@@ -43,15 +43,15 @@ public:
    
    void display();
    
-   virtual void on_left_button_up(int x, int y);
+   virtual void on_left_button_up(int xHost, int yHost, int xAbsolute, int yAbsolute);
 
-   virtual void on_left_button_down(int x, int y);
+   virtual void on_left_button_down(int xHost, int yHost, int xAbsolute, int yAbsolute);
 
-   virtual void on_right_button_up(int x, int y);
+   virtual void on_right_button_up(int xHost, int yHost, int xAbsolute, int yAbsolute);
 
-   virtual void on_right_button_down(int x, int y);
+   virtual void on_right_button_down(int xHost, int yHost, int xAbsolute, int yAbsolute);
 
-   virtual void on_mouse_move(int x, int y);
+   virtual void on_mouse_move(int xHost, int yHost, int xAbsolute, int yAbsolute);
    
    virtual void on_char(int iChar);
    

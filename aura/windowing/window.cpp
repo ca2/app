@@ -905,7 +905,15 @@ namespace windowing
    }
 
 
-   ::point_i32 window::get_mouse_cursor_position()
+   ::point_i32 window::get_mouse_cursor_host_position()
+   {
+
+      return ::point_i32(0, 0);
+
+   }
+
+
+   ::point_i32 window::get_mouse_cursor_absolute_position()
    {
 
       return ::point_i32(0, 0);

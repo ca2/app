@@ -17379,7 +17379,7 @@ namespace user
       if (window() && (eactivation & e_activation_under_mouse_cursor || rectangle.is_null()))
       {
 
-         ::point_i32 pointCursor = window()->get_mouse_cursor_position();
+         ::point_i32 pointCursor = window()->get_mouse_cursor_absolute_position();
 
          rectangleSample.set(pointCursor - ::size_i32(5, 5), ::size_i32(10, 10));
 

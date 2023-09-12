@@ -294,7 +294,9 @@ namespace windowing
       virtual ::windowing::cursor * get_mouse_cursor();
 
 
-      virtual ::point_i32 get_mouse_cursor_position();
+      virtual ::point_i32 get_mouse_cursor_host_position();
+      
+      virtual ::point_i32 get_mouse_cursor_absolute_position();
 
 
       virtual void set_tool_window(bool bSet);

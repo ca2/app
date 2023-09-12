@@ -350,7 +350,7 @@ namespace user
       class ::time                              m_timeMouseMoveSkip;
       ::point_i32                               m_pointMouseMoveSkip;
       class ::time                              m_timeMouseMovePeriod;
-      ::point_i32                               m_pointMouseMove;
+      //::point_i32                               m_pointMouseMove;
       class ::time                              m_timeLastRedraw;
       ::atom                                    m_atomImpact;
       ::status < ::color::color >               m_statuscolorBackground;

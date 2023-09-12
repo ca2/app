@@ -3548,7 +3548,7 @@ namespace user
             pmessage->m_lparam = 0;
             //          pmessage->m_time = pevent->time;
 
-            post(pmessage);
+            window()->message_handler(pmessage);
 
          }
 

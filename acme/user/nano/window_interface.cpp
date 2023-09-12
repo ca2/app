@@ -176,17 +176,19 @@ void nano_window_interface::drag_set_capture()
 }
 
 
-::point_i32 nano_window_interface::on_drag_start(::item * pitem)
+bool nano_window_interface::on_drag_start(::point_i32 & point, ::item * pitem)
 {
 
    if (pitem->m_item.m_eelement == e_element_client)
    {
 
-      return origin();
+      point = origin();
+
+      return true;
 
    }
 
-   throw exception(::error_unexpected);
+   return false;
 
 }
 

@@ -96,6 +96,9 @@ namespace windowing
 
       virtual index get_good_move(::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangle, ::user::interaction * pinteraction);
 
+      virtual bool is_like_maximized(const ::rectangle_i32& rectangleWorkspace, const ::rectangle_i32& rectangle);
+
+      virtual bool is_like_full_screen(const ::rectangle_i32& rectangleMonitor, const ::rectangle_i32& rectangle);
 
       virtual void enum_display_monitors();
 

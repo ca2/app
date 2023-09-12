@@ -157,11 +157,16 @@ namespace user
 
          pdrag->m_pmouse = pmouse;
 
-         auto pointDrag = on_drag_start(pitem);
+         ::point_i32 pointDrag;
+         
+         if (on_drag_start(pointDrag, pitem))
+         {
 
-         pdrag->drag_start(pmouse, this, pitem, pointDrag);
+            pdrag->drag_start(pmouse, this, pitem, pointDrag);
 
-         m_pdragCurrent = pdrag;
+            m_pdragCurrent = pdrag;
+
+         }
 
       }
 

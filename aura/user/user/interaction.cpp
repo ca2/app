@@ -7676,7 +7676,7 @@ namespace user
    }
 
 
-   ::point_i32 interaction::on_drag_start(::item * pitem)
+   bool interaction::on_drag_start(::point_i32 & pointDrag, ::item * pitem)
    {
 
       get_wnd()->hide_software_keyboard(this);
@@ -7684,17 +7684,28 @@ namespace user
       if (pitem->m_item.m_eelement == e_element_client)
       {
 
-         return layout().window().origin();
+         if (is_display_like_maximized() || is_display_like_full_screen())
+         {
+
+            return false;
+
+         }
+
+         pointDrag = layout().window().origin();
+
+         return true;
 
       }
       else if (pitem->m_item.m_eelement == e_element_resize)
       {
 
-         return layout().window().origin() + layout().window().size();
+         pointDrag = layout().window().origin() + layout().window().size();
+
+         return true;
 
       }
 
-      throw exception(::error_unexpected);
+      return false;
 
    }
 
@@ -11385,14 +11396,41 @@ namespace user
 
       }
 
-      ::rectangle_i32 rectangleWorkspace;
-
       auto rectangleWindow = const_layout().design().parent_raw_rectangle();
+
+      ::rectangle_i32 rectangleWorkspace;
 
       get_best_workspace(&rectangleWorkspace, rectangleWindow);
 
-      if (rectangleWindow.width() > (rectangleWorkspace.width() * 92 / 100)
-         || rectangleWindow.height() > (rectangleWorkspace.height() * 92 / 100))
+      if (windowing()->display()->is_like_maximized(rectangleWorkspace, rectangleWindow))
+      {
+
+         return true;
+
+      }
+      
+      return false;
+
+   }
+
+
+   bool interaction::is_display_like_full_screen()
+   {
+
+      if (const_layout().design().display() == e_display_full_screen)
+      {
+
+         return true;
+
+      }
+
+      auto rectangleWindow = const_layout().design().parent_raw_rectangle();
+
+      ::rectangle_i32 rectangleMonitor;
+
+      get_best_monitor(&rectangleMonitor, rectangleWindow);
+
+      if (windowing()->display()->is_like_full_screen(rectangleMonitor, rectangleWindow))
       {
 
          return true;

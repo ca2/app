@@ -800,7 +800,7 @@ namespace user
 
       virtual bool is_display_like_maximized();
 
-
+      virtual bool is_display_like_full_screen();
 
 
       //virtual void graphics_thread_stop() override;
@@ -1645,7 +1645,7 @@ namespace user
 
       // drag_client
       void drag_set_capture() override;
-      ::point_i32 on_drag_start(::item * pitem) override;
+      bool on_drag_start(::point_i32 & pointStart, ::item * pitem) override;
       ::point_i32 drag_mouse_cursor_position(::item* pitem, const ::point_i32 & point) override;
       bool drag_shift(::item * pitem) override;
       bool drag_hover(::item * pitem) override;

@@ -1274,7 +1274,6 @@ namespace windowing
    }
 
 
-
    index display::get_good_restore(::rectangle_i32 * prectangle, const rectangle_i32 & rectangleHintParam, ::user::interaction * pinteraction, ::e_display edisplay)
    {
 
@@ -1410,7 +1409,9 @@ namespace windowing
       else
       {
 
-         if (rectangleHint.size() == rectangleBroad.size() || rectangleHint.size() == rectangleCompact.size())
+         if (rectangleHint.size() == rectangleBroad.size() 
+            || rectangleHint.size() == rectangleCompact.size()
+            || is_like_maximized(rectangleWorkspace, rectangleHint))
          {
 
             rectanglePlacement = rectangleNormal;
@@ -1523,6 +1524,34 @@ namespace windowing
    }
 
 
+   bool display::is_like_maximized(const ::rectangle_i32& rectangleWorkspace, const ::rectangle_i32& rectangle)
+   {
+
+      if (rectangle == rectangleWorkspace)
+      {
+
+         return true;
+
+      }
+
+      return false;
+
+   }
+
+
+   bool display::is_like_full_screen(const ::rectangle_i32& rectangleMonitor, const ::rectangle_i32& rectangle)
+   {
+
+      if (rectangle == rectangleMonitor)
+      {
+
+         return true;
+
+      }
+
+      return false;
+
+   }
 
 
    index display::get_ui_workspace(::user::interaction * pinteraction)

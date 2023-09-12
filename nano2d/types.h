@@ -164,13 +164,24 @@ namespace nano2d
 	
 
 	struct text_row {
-		const char* start;	// Pointer to the input text where the row starts.
-		const char* end;	// Pointer to the input text where the row ends (one past the last character).
-		const char* next;	// Pointer to the beginning of the next row.
+      ::string m_str;
+		//const char* start;	// Pointer to the input text where the row starts.
+		//const char* end;	// Pointer to the input text where the row ends (one past the last character).
+		//const char* next;	// Pointer to the beginning of the next row.
 		float width;		// Logical width of the row.
 		float minx, maxx;	// Actual bounds of the row. Logical with and bounds can differ because of kerning and some parts over extending.
 	};
 	typedef struct text_row text_row;
+
+class text_box :
+public ::particle
+{
+public:
+   
+   ::pointer_array < text_row >     m_rowa;
+   ::f32                            m_fWidth;
+   
+};
 
 	//enum imageFlags {
 	//	_IMAGE_GENERATE_MIPMAPS = 1 << 0,     // Generate mipmaps during creation of the image.
@@ -274,7 +285,8 @@ namespace nano2d
 	CLASS_DECL_NANO2D void DeleteInternal(context* pcontext);
 
 
-	struct state {
+	struct state :
+public ::particle{
 		compositeOperationState compositeOperation;
 		int shapeAntiAlias;
 		paint fill;
@@ -286,12 +298,34 @@ namespace nano2d
 		float alpha;
 		float xform[6];
 		scissor m_scissor;
-		float fontSize;
+		//float fontSize;
 		float letterSpacing;
 		float lineHeight;
 		float fontBlur;
-		int textAlign;
+		//int textAlign;
 		int fontId;
+   
+   
+   ::i32                         m_iSavedContext;
+
+   string                        m_strFontFace;
+   float                         m_fFontSize;
+
+   ::e_align                     m_ealignText;
+
+   ::point_f64                   m_pointCurrent;
+
+   ::draw2d::matrix              m_matrix;
+
+   bool                          m_bHasCurrentPoint;
+
+   state()
+   {
+
+      m_fFontSize = 0.f;
+
+   }
+
 	};
 
 

@@ -22,6 +22,12 @@
 #include "types.h"
 #include "acme/primitive/geometry2d/angle.h"
 
+struct character_metric
+{
+   
+   float width;
+   
+};
 
 namespace nano2d
 {
@@ -31,6 +37,35 @@ namespace nano2d
 		virtual public ::particle
 	{
 	public:
+      
+//
+//      class state :
+//         virtual public ::matter
+//      {
+//      public:
+//
+//         ::i32                         m_iSavedContext;
+//
+//         string                        m_strFontFace;
+//         float                         m_fFontSize;
+//
+//         ::e_align                     m_ealignText;
+//
+//         ::point_f64                   m_pointCurrent;
+//
+//         ::draw2d::matrix              m_matrix;
+//
+//         bool                          m_bHasCurrentPoint;
+//
+//         state()
+//         {
+//
+//            m_fFontSize = 0.f;
+//
+//         }
+//
+//      };
+
 
 		params						m_params;
 		float*						m_faCommands;
@@ -38,8 +73,8 @@ namespace nano2d
 		int							m_ncommands;
 		float							m_fCommandX;
 		float							m_fCommandY;
-		state							m_statea[CONTEXT_MAX_STATES];
-		int							m_nStates;
+		//state							m_statea[CONTEXT_MAX_STATES];
+		//int							m_nStates;
 		pathCache*					m_ppathcache;
 		float							m_fTessTol;
 		float							m_fDistTol;
@@ -54,7 +89,11 @@ namespace nano2d
 		int							m_iTextTriCount;
 		//void* p;
 
+      
+      pointer_array < state >          m_statea;
+      ::pointer<state>                 m_pstate;
 
+      
 		virtual ::nano2d::state* __getState();
 
 
@@ -108,6 +147,8 @@ namespace nano2d
 		// Pushes and saves the current render state into a state stack.
 		// A matching Restore)() must be used to restore the state.
 		virtual void save1();
+      
+      virtual character_metric(c)
 
 		// Pops and restores current render state.
 		virtual void restore1();
@@ -446,7 +487,8 @@ namespace nano2d
 		// Draws multi-line text string at specified location wrapped at the specified width. If end is specified only the sub-string up to the end is drawn.
 		// White space is stripped at the beginning of the rows, the text is split at word boundaries or when new-line characters are encountered.
 		// Words longer than the max width are slit at nearest character (i.e. no hyphenation).
-		virtual void text_box(float x, float y, float breakRowWidth, const ::scoped_string& scopedstr);
+		//virtual void text_box(float x, float y, float breakRowWidth, const ::scoped_string& scopedstr);
+      virtual void text_box(float x, float y, ::nano2d::text_box * ptextbox);
 
 		// Measures the specified text string. Parameter bounds should be a pointer to float[4],
 		// if the bounding box of the text should be returned. The bounds value are [xmin,ymin, xmax,ymax]
@@ -457,7 +499,8 @@ namespace nano2d
 		// Measures the specified multi-text string. Parameter bounds should be a pointer to float[4],
 		// if the bounding box of the text should be returned. The bounds value are [xmin,ymin, xmax,ymax]
 		// Measured values are returned in local coordinate space.
-		virtual void text_box_bounds(float x, float y, float breakRowWidth, const ::scoped_string& scopedstr, float* bounds);
+		//virtual void text_box_bounds(float x, float y, float breakRowWidth, const ::scoped_string& scopedstr, float* bounds);
+      virtual void text_box_bounds(float x, float y, ::nano2d::text_box * ptextbox, float* bounds);
 
 		// Calculates the glyph x positions of the specified text. If end is specified only the sub-string will be used.
 		// Measured values are returned in local coordinate space.
@@ -470,7 +513,7 @@ namespace nano2d
 		// Breaks the specified text into lines. If end is specified only the sub-string will be used.
 		// White space is stripped at the beginning of the rows, the text is split at word boundaries or when new-line characters are encountered.
 		// Words longer than the max width are slit at nearest character (i.e. no hyphenation).
-		virtual int text_break_lines(const ::scoped_string& scopedstr, float breakRowWidth, text_row* rows, int maxRows);
+		virtual pointer <::nano2d::text_box > text_box_layout(const ::scoped_string& scopedstr, float breakRowWidth);
 
 		virtual void __append_commands(float* vals, int nvals);
 

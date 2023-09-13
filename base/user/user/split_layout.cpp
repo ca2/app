@@ -298,7 +298,7 @@ namespace user
          if(m_iState != stateInitial)
          {
 
-            release_mouse_capture();
+            defer_release_mouse_capture();
 
             m_iState = stateInitial;
 

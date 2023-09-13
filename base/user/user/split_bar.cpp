@@ -165,7 +165,7 @@ namespace user
 
          m_pparent->m_iState = split_layout::stateInitial;
 
-         release_mouse_capture();
+         defer_release_mouse_capture();
 
          pmouse->m_bRet = true;
 

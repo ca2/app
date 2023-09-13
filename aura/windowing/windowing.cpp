@@ -364,6 +364,16 @@ namespace windowing
    }
 
 
+   void windowing::set_mouse_capture(::thread *, ::windowing::window * pwindow)
+   {
+
+      throw ::interface_only();
+
+   }
+
+
+   ::windowing::window * windowing::get_mouse_capture(::thread *)
+   {
    void windowing::release_mouse_capture()
    {
 
@@ -376,6 +386,36 @@ namespace windowing
    {
 
       throw ::interface_only();
+
+      return nullptr;
+
+   }
+
+
+   void windowing::release_mouse_capture(::thread * pthread)
+   {
+
+      throw ::interface_only();
+
+   }
+
+
+   bool windowing::defer_release_mouse_capture(::thread * pthread, ::windowing::window * pwindow)
+   {
+
+      throw ::interface_only();
+
+      return false;
+
+   }
+
+
+   void windowing::set_mouse_cursor(::windowing::cursor * pcursor)
+   {
+
+//      void * poscursor = nullptr;
+//
+//      if (::is_set(pcursor))
 
 //      HCURSOR hcursor = nullptr;
 //

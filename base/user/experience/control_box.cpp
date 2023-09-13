@@ -88,7 +88,7 @@ namespace experience
 
          m_bDrag = false;
 
-         release_mouse_capture();
+         defer_release_mouse_capture();
 
          pmouse->m_bRet = true;
 

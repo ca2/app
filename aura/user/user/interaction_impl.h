@@ -240,7 +240,8 @@ namespace user
 
       // call these from window
       //virtual void set_keyboard_focus();
-      //virtual void set_capture();
+      virtual void set_mouse_capture(::user::interaction * puserinteraction);
+      virtual bool defer_release_mouse_capture(::user::interaction * puserinteraction);
       //virtual void set_active_window();
       //virtual void set_foreground_window();
 

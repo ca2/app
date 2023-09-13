@@ -2782,7 +2782,7 @@ namespace user
          //auto elapsed = g_tickDragStart.elapsed();
          KillTimer(e_timer_drag_start);
 
-         release_mouse_capture();
+         defer_release_mouse_capture();
 
          auto pointCursor = get_cursor_position();
 

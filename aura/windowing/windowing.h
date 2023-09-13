@@ -32,24 +32,24 @@ namespace windowing
 
       display_map                               m_displaymap;
 
-      ::pointer < ::mutex >                                   m_pmutexDisplay;
-      ::pointer < ::mutex >                                   m_pmutexWindow;
-      ::pointer < ::mutex >                                   m_pmutexMonitor;
+      ::pointer < ::mutex >                     m_pmutexDisplay;
+      ::pointer < ::mutex >                     m_pmutexWindow;
+      ::pointer < ::mutex >                     m_pmutexMonitor;
 
 
       bool                                      m_bSettingCursorMatter;
-      ::pointer<::windowing::cursor_manager>   m_pcursormanager;
-      ::pointer<::windowing::keyboard>       m_pkeyboard;
+      ::pointer<::windowing::cursor_manager>    m_pcursormanager;
+      ::pointer<::windowing::keyboard>          m_pkeyboard;
 
 
 
-      ::pointer<::windowing::cursor>           m_pcursor;
-      ::pointer<::windowing::cursor>           m_pcursorCursor;
+      ::pointer<::windowing::cursor>            m_pcursor;
+      ::pointer<::windowing::cursor>            m_pcursorCursor;
       enum_cursor                               m_ecursorDefault;
       enum_cursor                               m_ecursor;
 
       bool                                      m_bDrawCursor;
-      ::pointer<::user::user>                m_puser;
+      ::pointer<::user::user>                   m_puser;
       
 
 
@@ -120,10 +120,13 @@ namespace windowing
       virtual ::windowing::window * get_keyboard_focus(::thread * pthread);
 
       virtual ::point_i32 try_absolute_mouse_position(::user::interaction* puserinteraction, const ::point_i32& point);
+      virtual void set_mouse_capture(::thread * pthread, ::windowing::window * pwindow);
 
       virtual ::windowing::window * get_mouse_capture(::thread * pthread);
 
-      virtual void release_mouse_capture();
+      virtual void release_mouse_capture(::thread * pthread);
+
+      virtual bool defer_release_mouse_capture(::thread * pthread, ::windowing::window * pwindow);
 
       virtual void set_mouse_cursor(::windowing::cursor * pcursor);
 

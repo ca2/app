@@ -961,15 +961,6 @@ namespace user
       virtual ::frequency get_output_per_second();
 
 
-      virtual ::pointer<::windowing::cursor>get_mouse_cursor(enum_cursor ecursor);
-
-      virtual ::windowing::cursor * get_mouse_cursor() override;
-
-      virtual ::point_i32 get_cursor_position();
-
-      virtual void set_cursor_position(const ::point_i32 & pointCursor);
-
-      virtual void release_mouse_capture();
 
 
       inline void defer_graphics(::draw2d::graphics_pointer & pgraphics)
@@ -1470,8 +1461,17 @@ namespace user
 
       virtual bool is_active_window();
 
+
+      virtual ::pointer<::windowing::cursor>get_mouse_cursor(enum_cursor ecursor);
+      virtual ::windowing::cursor * get_mouse_cursor() override;
+
+      virtual ::point_i32 get_cursor_position();
+      virtual void set_cursor_position(const ::point_i32 & pointCursor);
+
       virtual bool has_mouse_capture();
       virtual void set_mouse_capture();
+      virtual bool defer_release_mouse_capture();
+
 
       virtual bool has_keyboard_focus();
       void set_keyboard_focus() override;

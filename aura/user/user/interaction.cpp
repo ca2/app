@@ -3503,14 +3503,7 @@ namespace user
          if (get_app() != nullptr && get_app()->get_session() != nullptr)
          {
 
-            if (has_mouse_capture())
-            {
-
-               auto pwindowing = windowing();
-
-               pwindowing->release_mouse_capture();
-
-            }
+            defer_release_mouse_capture();
 
          }
 
@@ -7854,9 +7847,7 @@ namespace user
    void interaction::drag_release_capture()
    {
 
-      auto pwindowing = windowing();
-
-      pwindowing->release_mouse_capture();
+      defer_release_mouse_capture();
 
    }
 
@@ -13525,54 +13516,6 @@ namespace user
    }
 
 
-   void interaction::set_mouse_capture()
-   {
-
-      auto pwindowing = windowing();
-
-      if (::is_null(pwindowing))
-      {
-
-         return;
-
-      }
-
-      auto pwindowThis = window();
-
-      if (::is_null(pwindowThis))
-      {
-
-         throw ::exception(error_wrong_state);
-
-      }
-
-      auto pprimitiveimpl = pwindowThis->m_puserinteractionimpl;
-
-      if (::is_null(pprimitiveimpl))
-      {
-
-         throw ::exception(error_wrong_state);
-
-      }
-
-      //auto estatus =
-
-      pwindowThis->set_mouse_capture();
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      pprimitiveimpl->m_puserinteractionMouseCapture = this;
-
-      g_i134++;
-
-      //return true;
-
-   }
 
 
    //::user::interaction * interaction::get_capture()
@@ -15175,22 +15118,60 @@ namespace user
    }
 
 
-   void interaction::release_mouse_capture()
+   void interaction::set_mouse_capture()
    {
 
-      information() << "interaction::release_mouse_capture";
+      auto pwindow = window();
 
-      auto pwindowing = windowing();
-
-      if (::is_null(pwindowing))
+      if (::is_null(pwindow))
       {
 
-         throw ::exception(::error_wrong_state);
+         throw ::exception(error_wrong_state);
 
       }
 
+      auto puserinteractionimpl = pwindow->m_puserinteractionimpl;
 
-      pwindowing->release_mouse_capture();
+      if (::is_null(puserinteractionimpl))
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      puserinteractionimpl->set_mouse_capture(this);
+
+      g_i134++;
+
+      //return true;
+
+   }
+
+
+   bool interaction::defer_release_mouse_capture()
+   {
+
+      information() << "interaction::defer_release_mouse_capture";
+
+      auto pwindow = window();
+
+      if (::is_null(pwindow))
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      auto puserinteractionimpl = pwindow->m_puserinteractionimpl;
+
+      if (::is_null(puserinteractionimpl))
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      return puserinteractionimpl->defer_release_mouse_capture(this);
 
    }
 
@@ -20597,7 +20578,7 @@ namespace user
 
       auto strType = type(this).as_string();
 
-      ::information("interaction::on_message_left_button_down " + strType);
+      ::information() << "interaction::on_message_parent_left_button_down : " << strType;
 
       if (!is_window_enabled())
       {
@@ -20718,6 +20699,8 @@ namespace user
 
          if (::is_item_set(pitemLButtonDown))
          {
+
+            ::information() << "interaction::on_message_parent_left_button_down pitemLButtonDown set : " << strType;
 
             //auto psession = get_session();
 
@@ -20874,14 +20857,15 @@ namespace user
 
    }
 
+
    void interaction::on_message_parent_left_button_up(::message::message * pmessage)
    {
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      auto pszType = typeid(*this).name();
+      ::string strType = ::type(this).name();
 
-      ::information("interaction::on_parent_message_left_button_up " + ::string(pszType));
+      ::information() << "interaction::on_message_parent_left_button_up : " << strType;
 
       if (!is_window_enabled())
       {
@@ -21475,9 +21459,9 @@ namespace user
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      auto pszType = typeid(*this).name();
+      ::string strType = ::type(this).name();
 
-      ::information("interaction::on_message_left_button_down " + ::string(pszType));
+      ::information() << "interaction::on_message_left_button_down : " << strType;
 
       if (!is_window_enabled())
       {
@@ -21755,9 +21739,9 @@ namespace user
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      auto pszType = typeid(*this).name();
+      ::string strType = ::type(this).name();
 
-      ::information("interaction::on_message_left_button_up " + ::string(pszType));
+      ::information() << "interaction::on_message_left_button_up : " << strType;
 
       if (!is_window_enabled())
       {
@@ -21773,7 +21757,7 @@ namespace user
 
          m_bBarDragScrollLeftButtonDown = false;
 
-         release_mouse_capture();
+         defer_release_mouse_capture();
 
       }
 
@@ -21845,14 +21829,39 @@ namespace user
          //if(m_bSimpleUIDefaultMouseHandlingMouseCaptureOnLeftButtonDown)
          //{
 
-         if (has_mouse_capture())
-         {
+         //if (has_mouse_capture())
+         //{
 
-            auto pwindowing = windowing();
+           // ::information() << "interaction::on_message_left_button_up had mouse capture, going to release : " << strType;
 
-            pwindowing->release_mouse_capture();
+            //auto pwindowing = windowing();
 
-         }
+            //pwindowing->release_mouse_capture();
+
+            if(defer_release_mouse_capture())
+            {
+
+               ::information() << "interaction::on_message_left_button_up had mouse capture, released : " << strType;
+
+            }
+            else
+            {
+
+               ::information() << "interaction::on_message_left_button_up hadn't mouse capture, not releasing : " << strType;
+
+            }
+
+
+
+
+
+//         }
+//         else
+//         {
+//
+//            ::information() << "interaction::on_message_left_button_up didn't have mouse capture : " << strType;
+//
+//         }
 
          //}
 
@@ -22323,14 +22332,14 @@ namespace user
 
       }
 
-      if (has_mouse_capture())
-      {
+//      if (has_mouse_capture())
+//      {
+//
+//         auto pwindowing = windowing();
 
-         auto pwindowing = windowing();
+         defer_release_mouse_capture();
 
-         pwindowing->release_mouse_capture();
-
-      }
+//      }
 
       auto pwindowimpl = get_window_impl();
 

@@ -6788,6 +6788,41 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
    }
 
 
+
+   void interaction_impl::set_mouse_capture(::user::interaction * puserinteraction)
+   {
+
+      window()->set_mouse_capture();
+
+      m_puserinteractionMouseCapture = puserinteraction;
+
+   }
+
+
+   bool interaction_impl::defer_release_mouse_capture(::user::interaction * puserinteraction)
+   {
+
+      if(puserinteraction != m_puserinteractionMouseCapture)
+      {
+
+         return false;
+
+      }
+
+      if(!window()->defer_release_mouse_capture())
+      {
+
+         return false;
+
+      }
+
+      m_puserinteractionMouseCapture.release();
+
+      return true;
+
+   }
+
+
    bool interaction_impl::on_keyboard_focus(::user::primitive * pfocus)
    {
 

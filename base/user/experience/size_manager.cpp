@@ -398,9 +398,7 @@ namespace experience
 
       m_eframeSizing = e_frame_none;
 
-      auto pwindowing = m_pframewindow->windowing();
-
-      pwindowing->release_mouse_capture();
+      m_pframewindow->defer_release_mouse_capture();
 
       if(pmouse)
       {
@@ -739,9 +737,7 @@ namespace experience
       
       m_eframeSizing = e_frame_none;
       
-      auto pwindowing = m_pframewindow->windowing();
-
-      pwindowing->release_mouse_capture();
+      m_pframewindow->defer_release_mouse_capture();
 
    }
 

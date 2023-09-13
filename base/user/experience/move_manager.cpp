@@ -334,9 +334,7 @@ namespace experience
 
       m_pframewindow->m_pthreadUserInteraction->m_emessageaGetLast.erase(e_message_mouse_move);
 
-      auto pwindowing = m_pframewindow->windowing();
-
-      pwindowing->release_mouse_capture();
+      m_pframewindow->defer_release_mouse_capture();
 
       if (!consider_move())
       {
@@ -406,9 +404,7 @@ namespace experience
       
       m_bMoving = false;
       
-      auto pwindowing = m_pframewindow->windowing();
-
-      pwindowing->release_mouse_capture();
+      m_pframewindow->defer_release_mouse_capture();
 
    }
 

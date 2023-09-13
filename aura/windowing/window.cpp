@@ -277,7 +277,63 @@ namespace windowing
    void window::set_mouse_capture()
    {
 
-      throw ::interface_only();
+      auto pthread = m_puserinteractionimpl->m_puserinteraction->m_pthreadUserInteraction;
+
+      windowing()->set_mouse_capture(pthread, this);
+
+      //::pointer < ::windowing_wayland::display > pwaylanddisplay = m_pdisplay;
+
+      //pwaylanddisplay->__capture_mouse(this, pwaylanddisplay->m_uLastButtonSerial);
+
+
+//      m_pwindowing->windowing_post([this]()
+//                                   {
+//
+//                                      synchronous_lock synchronouslock(user_synchronization());
+//
+////                                      display_lock displaylock(x11_display()->Display());
+//
+//                                      information() << "XGrabPointer";
+////
+////                                      auto grabStatus = XGrabPointer(Display(), Window(), False,
+////                                                                     ButtonPressMask | ButtonReleaseMask |
+////                                                                     PointerMotionMask,
+////                                                                     GrabModeAsync, GrabModeAsync, None, None,
+////                                                                     CurrentTime);
+//
+////                                      if (grabStatus != GrabSuccess)
+////                                      {
+////
+////                                         windowing_output_debug_string("\noswindow_data::SetCapture 2.1");
+////
+////                                         return;
+////
+////                                      }
+//
+////                                      auto pdisplay = x11_display();
+////
+////                                      if (pdisplay)
+////                                      {
+////
+////                                         pdisplay->_on_capture_changed_to(this);
+////
+////                                      }
+//
+//                                      windowing_output_debug_string("\noswindow_data::SetCapture 2");
+//
+//                                   });
+//
+//      //return ::success;
+
+   }
+
+
+   bool window::defer_release_mouse_capture()
+   {
+
+      auto pthread = m_puserinteractionimpl->m_puserinteraction->m_pthreadUserInteraction;
+
+      return windowing()->defer_release_mouse_capture(pthread, this);
 
    }
 
@@ -1999,20 +2055,20 @@ namespace windowing
 
             pcursor = get_mouse_cursor();
 
-            if(pcursor)
-            {
-
-               information() << "got window cursor : " << pcursor->m_ecursor;
-
-            }
-
-         }
-         else
-         {
-
-            information() << "got mouse cursor : " << pcursor->m_ecursor;
+//            if(pcursor)
+//            {
+//
+//               information() << "got window cursor : " << pcursor->m_ecursor;
+//
+//            }
 
          }
+//         else
+//         {
+//
+//            information() << "got mouse cursor : " << pcursor->m_ecursor;
+//
+//         }
 
          if(pcursor)
          {

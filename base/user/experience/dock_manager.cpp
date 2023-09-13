@@ -486,7 +486,7 @@ namespace experience
 
       auto pbutton = dock_button();
 
-      pbutton->windowing()->release_mouse_capture();
+      pbutton->defer_release_mouse_capture();
 
       dock_window(pmouse);
 
@@ -520,10 +520,10 @@ namespace experience
       
       m_bDocking = false;
 
-      auto pwindowing = m_pframewindow->windowing();
+      auto pbutton = dock_button();
 
-      pwindowing->release_mouse_capture();
-      
+      pbutton->defer_release_mouse_capture();
+
    }
 
 

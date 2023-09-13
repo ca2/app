@@ -2693,19 +2693,17 @@ void TransformSkewX(float* t, float a)
 	}
 
 
+   ::pointer < ::nano2d::text_box > context::text_box_layout(const ::scoped_string& scopedstr, float breakRowWidth)
+   {
 
-::pointer < ::nano2d::text_box > context::text_box_layout(const ::scoped_string& scopedstr, float breakRowWidth)
-
-{
-
-   ::pointer < ::nano2d::text_box > ptextbox = __create_new<::nano2d::text_box >();
+      ::pointer < ::nano2d::text_box > ptextbox = __create_new<::nano2d::text_box >();
    
-   ptextbox->m_fWidth = breakRowWidth;
+      ptextbox->m_fWidth = breakRowWidth;
       
-//      ::nano2d::state * state = __getState();
-  //    float scale = context::__getFontScale)(state) * devicePxRatio;
-    //  float invscale = 1.0f / scale;
-   float invscale = 1.0f;
+      // ::nano2d::state * state = __getState();
+      // float scale = context::__getFontScale)(state) * devicePxRatio;
+      // float invscale = 1.0f / scale;
+      float invscale = 1.0f;
       //FONStextIter iter, prevIter;
       //FONSquad q;
       //int nrows = 0;
@@ -2723,14 +2721,18 @@ void TransformSkewX(float* t, float a)
       const char * breakEnd = NULL;
       float breakWidth = 0;
       float breakMaxX = 0;
-      int type = NANO2D_SPACE, ptype = NANO2D_SPACE;
+      int type = NANO2D_SPACE, typePrevious = NANO2D_SPACE;
       unsigned int codepointPrevious = 0;
 
       //if (maxRows == 0) return 0;
       //if (state->fontId == FONS_INVALID) return 0;
 
       if (end == NULL)
+      {
+         
          end = string + string_get_length(string);
+         
+      }
 
       if (string == end) return 0;
 
@@ -2747,6 +2749,7 @@ void TransformSkewX(float* t, float a)
       
 		::f64_array daLeft;
 		::f64_array daRight;
+      
 		character_metric(daLeft, daRight, scopedstr);
 
       ::string strChar;
@@ -2766,10 +2769,13 @@ void TransformSkewX(float* t, float a)
          
          if(strChar.is_empty())
          {
+            
             break;
             
          }
+         
 			auto left = daLeft[pos];
+         
 			auto right = daRight[pos + strChar.length() - 1];
 
 			auto next = range.begin() + strChar.length();
@@ -2810,7 +2816,9 @@ void TransformSkewX(float* t, float a)
             break;
          }
 
-         if (type == NANO2D_NEWLINE) {
+         if (type == NANO2D_NEWLINE)
+         {
+            
             // Always handle memory_new lines.
             auto prow = __create_new <::nano2d::text_row >();
             auto start = rowStart != NULL ? rowStart : range.m_begin;
@@ -2834,11 +2842,18 @@ void TransformSkewX(float* t, float a)
             rowEnd = NULL;
             rowWidth = 0;
             rowMinX = rowMaxX = 0;
+            
          }
-         else {
-            if (rowStart == NULL) {
+         else
+         {
+            
+            if (rowStart == NULL)
+            {
+               
                // Skip white space until the beginning of the line
-               if (type == NANO2D_CHAR || type == NANO2D_CJK_CHAR) {
+               if (type == NANO2D_CHAR || type == NANO2D_CJK_CHAR)
+               {
+                  
                   // The current char is the row so far
                   rowStartX = (float)left;
                   rowStart = range.begin();
@@ -2856,36 +2871,55 @@ void TransformSkewX(float* t, float a)
                   breakEnd = rowStart;
                   breakWidth = 0.0;
                   breakMaxX = 0.0;
+                  
                }
+               
             }
-            else {
+            else
+            {
+               
                float nextWidth = (float) (right - rowStartX);
 
                // track last non-white space character
-               if (type == NANO2D_CHAR || type == NANO2D_CJK_CHAR) {
+               if (type == NANO2D_CHAR || type == NANO2D_CJK_CHAR)
+               {
+                  
                   rowEnd = next;
                   rowWidth = (float)( right - rowStartX);
                   //rowMaxX = q.x1 - rowStartX;
 						rowMaxX = (float) ( right - rowStartX);
+                  
                }
+               
                // track last end of a word
-               if (((ptype == NANO2D_CHAR || ptype == NANO2D_CJK_CHAR) && type == NANO2D_SPACE) || type == NANO2D_CJK_CHAR) {
+               if (((typePrevious == NANO2D_CHAR || typePrevious == NANO2D_CJK_CHAR) && type == NANO2D_SPACE) || type == NANO2D_CJK_CHAR)
+               {
+                  
 						breakEnd = range.begin();
                   breakWidth = rowWidth;
                   breakMaxX = rowMaxX;
+                  
                }
+               
                // track last beginning of a word
-               if ((ptype == NANO2D_SPACE && (type == NANO2D_CHAR || type == NANO2D_CJK_CHAR)) || type == NANO2D_CJK_CHAR) {
+               if ((typePrevious == NANO2D_SPACE && (type == NANO2D_CHAR || type == NANO2D_CJK_CHAR)) || type == NANO2D_CJK_CHAR)
+               {
+                  
                   wordStart = range.begin();
                   wordStartX = (float) (left);
                   //wordMinX = q.x0;
 						wordMinX = (float) (left);
+                  
                }
 
-               // Break to memory_new line when a character is beyond break width.
-               if ((type == NANO2D_CHAR || type == NANO2D_CJK_CHAR) && nextWidth > breakRowWidth) {
-                  // The run length is too long, need to break to memory_new line.
-                  if (breakEnd == rowStart) {
+               // Break to new line when a character is beyond break width.
+               if ((type == NANO2D_CHAR || type == NANO2D_CJK_CHAR) && nextWidth > breakRowWidth)
+               {
+                  
+                  // The run length is too long, need to break to new line.
+                  if (breakEnd == rowStart)
+                  {
+                     
                      // The current word is longer than the row length, just break it from here.
                      auto prow = __create_new <::nano2d::text_row >();
                      prow->m_str.assign(rowStart, range.begin());
@@ -2910,9 +2944,12 @@ void TransformSkewX(float* t, float a)
                      wordStartX = (float) left;
                      //wordMinX = q.x0 - rowStartX;
 							wordMinX = (float) (left - rowStartX);
+                     
                   }
-                  else {
-                     // Break the line from the end of the last word, and start memory_new line from the beginning of the memory_new.
+                  else
+                  {
+                     
+                     // Break the line from the end of the last word, and start new line from the beginning of the memory_new.
                      auto prow = __create_new <::nano2d::text_row >();
                      //prow->start = rowStart;
                      //prow->end = breakEnd;
@@ -2932,21 +2969,29 @@ void TransformSkewX(float* t, float a)
                      rowMinX = wordMinX - rowStartX;
                      //rowMaxX = q.x1 - rowStartX;
 							rowMaxX = (float) (right - rowStartX);
+                     
 						}
+                  
                   // Set null break point
                   breakEnd = rowStart;
                   breakWidth = 0.0;
                   breakMaxX = 0.0;
+                  
                }
+               
             }
+            
          }
 
          codepointPrevious = codepoint;
-         ptype = type;
+         
+         typePrevious = type;
+         
       }
 
       // Break the line from the end of the last word, and start memory_new line from the beginning of the memory_new.
-      if (rowStart != NULL) {
+      if (rowStart != NULL)
+      {
          
          auto prow = __create_new <::nano2d::text_row >();
          //prow->start = rowStart;
@@ -2957,17 +3002,15 @@ void TransformSkewX(float* t, float a)
          prow->maxx = rowMaxX * invscale;
          //prow->next = end;
          ptextbox->m_rowa.add(prow);
+         
       }
 
       //return nrows;
 
 		return ptextbox;
       
-      
-      
-      
-//		throw_todo();
-	//	return -1;
+      //	throw_todo();
+      //	return -1;
 		//::nano2d::state * state = __getState();
 		//float scale = context::__getFontScale)(state) * devicePxRatio;
 		//float invscale = 1.0f / scale;
@@ -2986,7 +3029,7 @@ void TransformSkewX(float* t, float a)
 		//const char * breakEnd = NULL;
 		//float breakWidth = 0;
 		//float breakMaxX = 0;
-		//int type = NVG_SPACE, ptype = NVG_SPACE;
+		//int type = NVG_SPACE, typePrevious = NVG_SPACE;
 		//unsigned int codepointPrevious = 0;
 
 		//if (maxRows == 0) return 0;
@@ -3094,13 +3137,13 @@ void TransformSkewX(float* t, float a)
 		//				rowMaxX = q.x1 - rowStartX;
 		//			}
 		//			// track last end of a word
-		//			if (((ptype == NVG_CHAR || ptype == NVG_CJK_CHAR) && type == NVG_SPACE) || type == NVG_CJK_CHAR) {
+		//			if (((typePrevious == NVG_CHAR || typePrevious == NVG_CJK_CHAR) && type == NVG_SPACE) || type == NVG_CJK_CHAR) {
 		//				breakEnd = iter.str;
 		//				breakWidth = rowWidth;
 		//				breakMaxX = rowMaxX;
 		//			}
 		//			// track last beginning of a word
-		//			if ((ptype == NVG_SPACE && (type == NVG_CHAR || type == NVG_CJK_CHAR)) || type == NVG_CJK_CHAR) {
+		//			if ((typePrevious == NVG_SPACE && (type == NVG_CHAR || type == NVG_CJK_CHAR)) || type == NVG_CJK_CHAR) {
 		//				wordStart = iter.str;
 		//				wordStartX = iter.x();
 		//				wordMinX = q.x0;
@@ -3158,7 +3201,7 @@ void TransformSkewX(float* t, float a)
 		//	}
 
 		//	codepointPrevious = iter.codepoint;
-		//	ptype = type;
+		//	typePrevious = type;
 		//}
 
 		//// Break the line from the end of the last word, and start memory_new line from the beginning of the memory_new.
@@ -3173,6 +3216,7 @@ void TransformSkewX(float* t, float a)
 		//}
 
 		//return nrows;
+      
 	}
 
 

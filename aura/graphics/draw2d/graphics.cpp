@@ -3758,12 +3758,30 @@ namespace draw2d
          iLen = pszNext - psz;
 
          iAsciiCharCount += iLen;
+         
+         if(iAsciiCharCount > 120)
+         {
+          
+            information() << "iLen > 120";
+            
+         }
+         
+         ::string_array stra;
+         
+         stra.add_lines({ str.begin(), iAsciiCharCount });
+         
+         ::string strLastLine = stra.last();
+         
+         auto dRight = get_text_extent(strLastLine).cx();
 
-         daLeft.add(dLeft);
-
-         dLeft = get_text_extent({ str.begin(), iAsciiCharCount }).cx();
-
-         daRight.add(dLeft);
+         for(int i = 0; i < iLen; i++)
+         {
+            
+            daLeft.add(dLeft);
+            
+            daRight.add(dRight);
+            
+         }
 
          iRange++;
 
@@ -3775,6 +3793,8 @@ namespace draw2d
          }
 
          psz = pszNext;
+         
+         dLeft = dRight;
 
       }
 

@@ -527,7 +527,9 @@ namespace x11
 
             auto pmouse = __create_new < ::user::mouse >();
 
-            pmouse->m_point = {pevent->xbutton.x_root, pevent->xbutton.y_root};
+            pmouse->m_pointHost = {pevent->xbutton.x, pevent->xbutton.y};
+
+            pmouse->m_pointAbsolute = {pevent->xbutton.x_root, pevent->xbutton.y_root};
 
             on_left_button_down(pmouse);
 
@@ -537,7 +539,9 @@ namespace x11
 
             auto pmouse = __create_new < ::user::mouse >();
 
-            pmouse->m_point = {pevent->xbutton.x_root, pevent->xbutton.y_root};
+            pmouse->m_pointHost = {pevent->xbutton.x, pevent->xbutton.y};
+
+            pmouse->m_pointAbsolute = {pevent->xbutton.x_root, pevent->xbutton.y_root};
 
             on_right_button_down(pmouse);
 
@@ -552,7 +556,9 @@ namespace x11
 
             auto pmouse = __create_new < ::user::mouse >();
 
-            pmouse->m_point = {pevent->xbutton.x_root, pevent->xbutton.y_root};
+            pmouse->m_pointHost = {pevent->xbutton.x, pevent->xbutton.y};
+
+            pmouse->m_pointAbsolute = {pevent->xbutton.x_root, pevent->xbutton.y_root};
 
             on_left_button_up(pmouse);
 
@@ -562,7 +568,9 @@ namespace x11
 
             auto pmouse = __create_new < ::user::mouse >();
 
-            pmouse->m_point = {pevent->xbutton.x_root, pevent->xbutton.y_root};
+            pmouse->m_pointHost = {pevent->xbutton.x, pevent->xbutton.y};
+
+            pmouse->m_pointAbsolute = {pevent->xbutton.x_root, pevent->xbutton.y_root};
 
             on_right_button_up(pmouse);
 
@@ -574,7 +582,9 @@ namespace x11
 
          auto pmouse = __create_new < ::user::mouse >();
 
-         pmouse->m_point = {pevent->xmotion.x_root, pevent->xmotion.y_root};
+         pmouse->m_pointHost = {pevent->xmotion.x, pevent->xmotion.y};
+
+         pmouse->m_pointAbsolute = {pevent->xmotion.x_root, pevent->xmotion.y_root};
 
          on_mouse_move(pmouse);
 
@@ -587,7 +597,9 @@ namespace x11
 
             auto pmouse = __create_new < ::user::mouse >();
 
-            pmouse->m_point = {-100'000, -100'000};
+            pmouse->m_pointHost = {I32_MINIMUM, I32_MINIMUM};
+
+            pmouse->m_pointAbsolute = {I32_MINIMUM, I32_MINIMUM};
 
             m_pinterface->m_pchildHover->on_mouse_move(pmouse);
 

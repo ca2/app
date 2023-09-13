@@ -57,7 +57,7 @@ namespace experience
 
          m_bDrag = true;
 
-         m_pointDrag = pmouse->m_point;
+         m_pointDrag = pmouse->m_pointHost;
 
          host_to_client()(m_pointDrag);
 
@@ -80,9 +80,9 @@ namespace experience
           && m_pframewindow->m_pframe->is_control_box_moveable())
       {
 
-         ::point_i32 point = pmouse->m_point;
+         ::point_i32 point = pmouse->m_pointAbsolute;
 
-         m_pframewindow->host_to_client()(point);
+         m_pframewindow->screen_to_client()(point);
 
          drag(point);
 

@@ -98,7 +98,7 @@ namespace experience
 
       }
 
-      auto pointCursor = pmouse->m_point;
+      auto pointCursor = pmouse->m_pointAbsolute;
 
       m_pointCursorOrigin = pointCursor;
 
@@ -172,7 +172,7 @@ namespace experience
 
       auto pcursor = pwindowing->get_cursor(ecursor);
 
-      pmouse->m_pcursor = pcursor;
+      m_pframewindow->user_mouse_set_cursor(pmouse, pcursor);
 
       m_eframeSizing = eframeSizing;
 
@@ -207,7 +207,7 @@ namespace experience
 
          information() << "size_manager::on_message_mouse_move frameSizing set : " << m_eframeSizing;
 
-         auto p = pmouse->m_point + m_pframewindow->m_pwindow->m_pointWindow;
+         auto p = pmouse->m_pointAbsolute;
 
          size_window(m_eframeSizing, m_pframewindow, p, true);
 
@@ -219,7 +219,7 @@ namespace experience
 
          //m_pframewindow->set_mouse_cursor(pcursor);
 
-         pmouse->m_pcursor = pcursor;
+         m_pframewindow->user_mouse_set_cursor(pmouse, pcursor);
 
          pmouse->m_lresult = 1;
 
@@ -229,7 +229,7 @@ namespace experience
 
       }
 
-      auto eframeCursor = experience_frame_hit_test(pmouse->m_point, ::user::e_zorder_any);
+      auto eframeCursor = experience_frame_hit_test(pmouse->m_pointAbsolute, ::user::e_zorder_any);
 
       if (eframeCursor == e_frame_none)
       {
@@ -262,7 +262,7 @@ namespace experience
 
       auto pcursor = pwindowing->get_cursor(ecursor);
 
-      pmouse->m_pcursor = pcursor;
+      m_pframewindow->user_mouse_set_cursor(pmouse, pcursor);
 
       //m_pframewindow->set_mouse_cursor(pcursor);
 
@@ -408,7 +408,7 @@ namespace experience
          if(bApply)
          {
 
-            auto p = pmouse->m_point + m_pframewindow->m_pwindow->m_pointWindow;
+            auto p = pmouse->m_pointAbsolute;
 
             size_window(eframeSizing, m_pframewindow, p, true);
 

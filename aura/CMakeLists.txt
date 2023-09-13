@@ -67,8 +67,8 @@ list(APPEND library_source
    #graphics/draw2d/keep.h
    graphics/draw2d/lock.cpp
    graphics/draw2d/lock.h
-   graphics/draw2d/matrix.cpp
-   graphics/draw2d/matrix.h
+   #graphics/draw2d/matrix.cpp
+   #graphics/draw2d/matrix.h
    graphics/draw2d/nano_svg.cpp
    graphics/draw2d/nano_svg_rasterization.cpp
    graphics/draw2d/object.cpp

@@ -297,9 +297,9 @@ void html_form::on_message_left_button_down(::message::message * pmessage)
 
    ::point_i32 point;
 
-   point = pmouse->m_point;
+   point = pmouse->m_pointHost;
 
-   screen_to_client()(point);
+   host_to_client()(point);
 
    if(get_html_data() != nullptr && get_html_data()->m_pcoredata != nullptr)
    {

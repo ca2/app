@@ -628,7 +628,7 @@ namespace user
 
             auto pcursor = pwindowing->get_cursor(e_cursor_arrow);
 
-            pmouse->m_pcursor = pcursor;
+            user_mouse_set_cursor(pmouse, pcursor);
 
             pmouse->m_bRet = true;
 

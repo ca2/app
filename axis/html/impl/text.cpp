@@ -339,13 +339,13 @@ namespace html
 
                pgraphics->get_text_metrics(&textmetric);
 
-               double dLineSpacing = textmetric.get_line_spacing();
+               double dLineHeight = textmetric.get_line_height();
 
-               pdata->m_pcoredata->m_layoutstate1.m_cy = (float) dLineSpacing;
+               pdata->m_pcoredata->m_layoutstate1.m_cy = (float) dLineHeight;
 
-               pdata->m_pcoredata->m_layoutstate1.m_cya.last() = (float) dLineSpacing;
+               pdata->m_pcoredata->m_layoutstate1.m_cya.last() = (float) dLineHeight;
 
-               m_box.set_height((float) dLineSpacing);
+               m_box.set_height((float) dLineHeight);
 
             }
 
@@ -476,7 +476,7 @@ namespace html
 
                   pgraphics->get_text_metrics(&textmetric);
 
-                  sizeText.cy() = (float) textmetric.get_line_spacing();
+                  sizeText.cy() = (float) textmetric.get_line_height();
 
                   m_straLines.add(strLine.left(iLastSpace));
 
@@ -511,7 +511,7 @@ namespace html
 
             pgraphics->get_text_metrics(&textmetric);
 
-            sizeText.cy() = (float) textmetric.get_line_spacing();
+            sizeText.cy() = (float) textmetric.get_line_height();
 
             m_straLines.add(strLine);
 

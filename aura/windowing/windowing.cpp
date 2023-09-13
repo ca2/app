@@ -372,9 +372,17 @@ namespace windowing
    }
 
 
-   ::windowing::window * windowing::get_mouse_capture(::thread *)
-   {
-   void windowing::release_mouse_capture()
+//   ::windowing::window * windowing::get_mouse_capture(::thread *)
+//   {
+//
+//      throw ::interface_only();
+//
+//      return nullptr;
+//
+//   }
+
+
+   void windowing::release_mouse_capture(::thread *)
    {
 
       throw ::interface_only();
@@ -387,17 +395,17 @@ namespace windowing
 
       throw ::interface_only();
 
-      return nullptr;
+      //return nullptr;
 
    }
 
 
-   void windowing::release_mouse_capture(::thread * pthread)
-   {
-
-      throw ::interface_only();
-
-   }
+//   void windowing::release_mouse_capture(::thread * pthread)
+//   {
+//
+//      throw ::interface_only();
+//
+//   }
 
 
    bool windowing::defer_release_mouse_capture(::thread * pthread, ::windowing::window * pwindow)
@@ -410,62 +418,62 @@ namespace windowing
    }
 
 
-   void windowing::set_mouse_cursor(::windowing::cursor * pcursor)
-   {
-
-//      void * poscursor = nullptr;
+//   void windowing::set_mouse_cursor(::windowing::cursor * pcursor)
+//   {
 //
-//      if (::is_set(pcursor))
-
-//      HCURSOR hcursor = nullptr;
+////      void * poscursor = nullptr;
+////
+////      if (::is_set(pcursor))
 //
-//      if (::is_set(pcursor))
-//      {
+////      HCURSOR hcursor = nullptr;
+////
+////      if (::is_set(pcursor))
+////      {
+////
+////         hcursor = (HCURSOR)pcursor->get_os_data();
+////
+////         if (hcursor == nullptr)
+////         {
+////
+////            //auto estatus =
+////
+////            pcursor->_create_os_cursor();
+////
+////            //if (!estatus)
+////            //{
+////
+////            //   return estatus;
+////
+////            //};
+////
+////            hcursor = (HCURSOR)pcursor->get_os_data();
+////
+////            //if (!hcursor)
+////            //{
+////
+////            //   return error_resource;
+////
+////            //}
+////
+////         }
+////
+////      }
+////
+////      // At windows SetMouseCursor(nullptr) removes the cursor from screen
+////      // similar apis in other platforms behave the same?
+////
+////      if (!::SetCursor(hcursor))
+////      {
+////
+////         throw ::exception(error_failed);
+////
+////      }
+////
+////      //return ::success;
+////
 //
-//         hcursor = (HCURSOR)pcursor->get_os_data();
 //
-//         if (hcursor == nullptr)
-//         {
-//
-//            //auto estatus =
-//
-//            pcursor->_create_os_cursor();
-//
-//            //if (!estatus)
-//            //{
-//
-//            //   return estatus;
-//
-//            //};
-//
-//            hcursor = (HCURSOR)pcursor->get_os_data();
-//
-//            //if (!hcursor)
-//            //{
-//
-//            //   return error_resource;
-//
-//            //}
-//
-//         }
-//
-//      }
-//
-//      // At windows SetMouseCursor(nullptr) removes the cursor from screen
-//      // similar apis in other platforms behave the same?
-//
-//      if (!::SetCursor(hcursor))
-//      {
-//
-//         throw ::exception(error_failed);
-//
-//      }
-//
-//      //return ::success;
-//
-
-
-   }
+//   }
 
 
    /// pwindowGainingFocusIfAny

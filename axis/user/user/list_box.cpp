@@ -963,9 +963,9 @@ namespace user
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      auto point = pmouse->m_point;
+      auto point = pmouse->m_pointHost;
 
-      screen_to_client(e_layout_sketch)(point);
+      host_to_client(e_layout_sketch)(point);
 
       auto rectangleX = this->rectangle();
 

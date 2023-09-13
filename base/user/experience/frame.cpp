@@ -402,7 +402,7 @@ namespace experience
    bool frame::on_message_left_button_double_click(::message::mouse * pmouse)
    {
 
-      auto eframeHittest = experience_frame_hit_test(pmouse->m_point, ::user::e_zorder_any);
+      auto eframeHittest = experience_frame_hit_test(pmouse->m_pointAbsolute, ::user::e_zorder_any);
 
       if (eframeHittest == e_frame_client)
       {
@@ -444,7 +444,7 @@ namespace experience
 
       auto psession = get_session();
 
-      psession->m_pointCursor = pmouse->m_point;
+      psession->m_pointCursor = pmouse->m_pointAbsolute;
 
       if (!m_pframewindow->layout().is_zoomed() && !m_pframewindow->layout().is_full_screen())
       {
@@ -553,7 +553,7 @@ namespace experience
 
       auto psession = get_session();
 
-      psession->m_pointCursor = pmouse->m_point;
+      psession->m_pointCursor = pmouse->m_pointAbsolute;
 
       if (!m_pframewindow->layout().is_zoomed() && !m_pframewindow->layout().is_full_screen())
       {

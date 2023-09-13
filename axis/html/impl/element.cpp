@@ -221,7 +221,9 @@ namespace html
 
             auto pcursor = phtml->m_puserinteraction->get_mouse_cursor(e_cursor_hand);
 
-            pmouse->m_pcursor = pcursor;
+            //pmouse->m_pcursor = pcursor;
+
+            phtml->m_puserinteraction->user_mouse_set_cursor(pmouse, pcursor);
 
          }
 

@@ -78,7 +78,7 @@ namespace experience
 
       m_stateBefore = m_pframewindow->const_layout().sketch();
 
-      auto pointCursor = m_pframewindow->m_pwindow->m_pointWindow + pmouse->m_point;
+      auto pointCursor = pmouse->m_pointAbsolute;
 
       ::rectangle_i32 rectangleWindow;
 
@@ -157,7 +157,7 @@ namespace experience
 
       auto pframewindow = m_pframewindow;
 
-      auto pointMove = m_pointWindowOrigin + (pmouse->m_point + pframewindow->m_pwindow->m_pointWindow - m_pointCursorOrigin);
+      auto pointMove = m_pointWindowOrigin + (pmouse->m_pointAbsolute - m_pointCursorOrigin);
 
       if (pframewindow->get_parent() != nullptr)
       {
@@ -227,7 +227,7 @@ namespace experience
 
       auto pcursor = pwindowing->get_cursor(e_cursor_arrow);
 
-      pmouse->m_pcursor = pcursor;
+      m_pframewindow->user_mouse_set_cursor(pmouse, pcursor);
 
       ////m_pframewindow->set_mouse_cursor(pcursor);
 

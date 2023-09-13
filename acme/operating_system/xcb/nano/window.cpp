@@ -780,7 +780,9 @@ nano_child * nano_window::hit_test(::user::mouse * pmouse, ::user::e_zorder ezor
 
             auto pmouse = __create_new < ::user::mouse >();
 
-            pmouse->m_point = {pbutton->root_x, pbutton->root_y};
+            pmouse->m_pointHost = {pbutton->event_x, pbutton->event_y};
+
+            pmouse->m_pointAbsolute = {pbutton->root_x, pbutton->root_y};
 
             on_left_button_down(pmouse);
 
@@ -790,7 +792,9 @@ nano_child * nano_window::hit_test(::user::mouse * pmouse, ::user::e_zorder ezor
 
             auto pmouse = __create_new < ::user::mouse >();
 
-            pmouse->m_point = {pbutton->root_x, pbutton->root_y};
+            pmouse->m_pointHost = {pbutton->event_x, pbutton->event_y};
+
+            pmouse->m_pointAbsolute = {pbutton->root_x, pbutton->root_y};
 
             on_right_button_down(pmouse);
 
@@ -815,7 +819,9 @@ nano_child * nano_window::hit_test(::user::mouse * pmouse, ::user::e_zorder ezor
 
             auto pmouse = __create_new < ::user::mouse >();
 
-            pmouse->m_point = {pbutton->root_x, pbutton->root_y};
+            pmouse->m_pointHost = {pbutton->event_x, pbutton->event_y};
+
+            pmouse->m_pointAbsolute = {pbutton->root_x, pbutton->root_y};
 
             on_left_button_up(pmouse);
 
@@ -825,7 +831,9 @@ nano_child * nano_window::hit_test(::user::mouse * pmouse, ::user::e_zorder ezor
 
             auto pmouse = __create_new < ::user::mouse >();
 
-            pmouse->m_point = {pbutton->root_x, pbutton->root_y};
+            pmouse->m_pointHost = {pbutton->event_x, pbutton->event_y};
+
+            pmouse->m_pointAbsolute = {pbutton->root_x, pbutton->root_y};
 
             on_right_button_up(pmouse);
 
@@ -846,7 +854,9 @@ nano_child * nano_window::hit_test(::user::mouse * pmouse, ::user::e_zorder ezor
 
          auto pmouse = __create_new < ::user::mouse >();
 
-         pmouse->m_point = {pmotion->root_x, pmotion->root_y};
+         pmouse->m_pointHost = {pmotion->event_x, pmotion->event_y};
+
+         pmouse->m_pointAbsolute = {pmotion->root_x, pmotion->root_y};
 
          on_mouse_move(pmouse);
 
@@ -868,7 +878,9 @@ nano_child * nano_window::hit_test(::user::mouse * pmouse, ::user::e_zorder ezor
 
             auto pmouse = __create_new < ::user::mouse >();
 
-            pmouse->m_point = {-100'000, -100'000};
+            pmouse->m_pointHost = {I32_MINIMUM, I32_MINIMUM};
+
+            pmouse->m_pointAbsolute = {I32_MINIMUM, I32_MINIMUM};
 
             m_pinterface->m_pchildHover->on_mouse_move(pmouse);
 

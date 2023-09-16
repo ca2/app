@@ -33,6 +33,7 @@ namespace integration
    {
 
       m_bMsys = false;
+      m_bBuildDependencies = true;
 
    }
 

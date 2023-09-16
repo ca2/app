@@ -12,7 +12,8 @@ namespace integration
    public:
 
 
-
+      boolean           m_bOnlyInstall;
+      boolean           m_bBuildDependencies;
       bool              m_bMsys;
 
 

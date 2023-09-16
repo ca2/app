@@ -27,7 +27,7 @@
 //class tracer & operator << (class tracer&  tracer, const RECTANGLE& r)
 //{
 //
-//   return tracer << r.left << ","<<r.top << ","<<r.right<< "," << r.bottom;
+//   return tracer << r.left() << ","<<r.top() << ","<<r.right()<< "," << r.bottom();
 //
 //}
 
@@ -124,17 +124,21 @@ namespace write_text
    void font_list::_001OnDrawWide(::draw2d::graphics_pointer & pgraphics)
    {
 
-      information() << "font_list::_001OnDrawWide 1";
-      information() << "font_list::_001OnDrawWide 2";
-      information() << "font_list::_001OnDrawWide 3";
+      //pgraphics->reset_clip();
+
+      //return;
+
+      //information() << "font_list::_001OnDrawWide 1";
+      //information() << "font_list::_001OnDrawWide 2";
+      //information() << "font_list::_001OnDrawWide 3";
 
       synchronous_lock synchronouslock(this->synchronization());
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      ::rectangle_i32 rectangleClient = m_puserinteraction->client_rectangle();
+      ::rectangle_i32 rectangle = m_puserinteraction->rectangle();
 
-      //rectangleClient += m_puserinteraction->get_context_offset();
+      //rectangleX += m_puserinteraction->get_context_offset();
 
       auto pfontlistdata = m_pfontlistdata;
 
@@ -238,19 +242,19 @@ namespace write_text
 
          }
 
-         if (!pbox->m_rectangle.intersects(rectangleClient))
+         if (!pbox->m_rectangle.intersects(rectangle))
          {
 
             if (pbox->m_rectangle.is_empty())
             {
 
-               //information() << "!pitem (pbox->m_rectangle.intersects(rectangleClient(EMPTY)))";
+               //information() << "!pitem (pbox->m_rectangle.intersects(rectangleX(EMPTY)))";
 
             }
-            else if (rectangleClient.area() < 10'000)
+            else if (rectangle.area() < 10'000)
             {
 
-               //information() << "!pitem (pbox->m_rectangle.intersects(rectangleClient(<10'000)))";
+               //information() << "!pitem (pbox->m_rectangle.intersects(rectangleX(<10'000)))";
 
             }
 
@@ -375,9 +379,9 @@ namespace write_text
 
       auto pfontlistdata = m_pfontlistdata;
 
-      rectangle_i32 rectangleClient = m_puserinteraction->client_rectangle();
+      rectangle_i32 rectangleX = m_puserinteraction->rectangle();
 
-      rectangleClient += m_puserinteraction->get_context_offset();
+      rectangleX += m_puserinteraction->get_context_offset();
 
       auto pwindowing = m_puserinteraction->windowing();
 
@@ -413,7 +417,7 @@ namespace write_text
 
          rectangle_i32 rectangle = pbox->m_rectangle;
 
-         rectangle.right = rectangle.left + m_size.cx();
+         rectangle.right() = rectangle.left() + m_size.cx();
 
          if (!pbox->is_drawing_ok(this))
          {
@@ -422,7 +426,7 @@ namespace write_text
 
          }
 
-         if (!rectangleClient.intersects(rectangle))
+         if (!rectangleX.intersects(rectangle))
          {
 
             if (bIntersected)
@@ -681,9 +685,9 @@ namespace write_text
 
          }
 
-         s.cx() += m_rectangleMargin.left + m_rectangleMargin.right;
+         s.cx() += m_rectangleMargin.left() + m_rectangleMargin.right();
 
-         s.cy() += m_rectangleMargin.top + m_rectangleMargin.bottom;
+         s.cy() += m_rectangleMargin.top() + m_rectangleMargin.bottom();
 
          pbox->m_size = s;
 
@@ -866,14 +870,14 @@ namespace write_text
 
          }
 
-         if (m_efontlist != e_font_list_single_column && m_rectangleClient.is_empty())
+         if (m_efontlist != e_font_list_single_column && m_rectangleX.is_empty())
          {
 
             return;
 
          }
 
-         //if (m_rectangleClient.is_empty())
+         //if (m_rectangleX.is_empty())
          //{
 
          //   return;
@@ -883,7 +887,7 @@ namespace write_text
          if (m_efontlist == e_font_list_wide)
          {
 
-            int iBaseHeight = maximum(250, m_rectangleClient.height());
+            int iBaseHeight = maximum(250, m_rectangleX.height());
 
             iBaseHeight = iBaseHeight + 250;
 
@@ -904,7 +908,7 @@ namespace write_text
          if (pfontlistdata.is_set() &&
             pfontlistdata->m_iUpdateId == m_pfontenumeration->m_iUpdateId
             && (m_efontlist == e_font_list_single_column ||
-               pfontlistdata->m_rectangleClient == m_rectangleClient))
+               pfontlistdata->m_rectangleX == m_rectangleX))
          {
 
             auto pfontlist = this;
@@ -1044,7 +1048,7 @@ namespace write_text
 
          }
 
-         pfontlistdata->m_rectangleClient = m_rectangleClient;
+         pfontlistdata->m_rectangleX = m_rectangleX;
 
          pfontlistdata->m_iUpdateId = m_pfontenumeration->m_iUpdateId;
 
@@ -1305,7 +1309,7 @@ namespace write_text
 
       int iMargin = 40;
 
-      int w = m_rectangleClient.width() - iMargin * 2;
+      int w = m_rectangleX.width() - iMargin * 2;
 
       int iPadding = 15;
 
@@ -1319,11 +1323,11 @@ namespace write_text
 
       int nextx;
 
-      sizeTotal.cx() = m_rectangleClient.width();
+      sizeTotal.cx() = m_rectangleX.width();
 
-      rectangle_i32 rectangleClient = m_puserinteraction->raw_rectangle();
+      rectangle_i32 rectangleX = m_puserinteraction->raw_rectangle();
 
-      //rectangleClient += m_puserinteraction->get_context_offset();
+      //rectangleX += m_puserinteraction->get_context_offset();
 
       auto pfontlistdata = m_pfontlistdata;
 
@@ -1416,17 +1420,17 @@ namespace write_text
 
          }
 
-         //pgraphics->text_out(x + m_rectangleMargin.left,y + m_rectangleMargin.top,strText);
+         //pgraphics->text_out(x + m_rectangleMargin.left(),y + m_rectangleMargin.top(),strText);
 
-         rectangle.left = x;
+         rectangle.left() = x;
 
-         rectangle.top = y;
+         rectangle.top() = y;
 
-         rectangle.right = rectangle.left + s.cx();
+         rectangle.right() = rectangle.left() + s.cx();
 
-         rectangle.bottom = rectangle.top + s.cy();
+         rectangle.bottom() = rectangle.top() + s.cy();
 
-         if (rectangle.intersects(rectangleClient))
+         if (rectangle.intersects(rectangleX))
          {
 
             bIntersected = true;
@@ -1472,35 +1476,35 @@ namespace write_text
             int dw = (size2.cx() - s.cx()) / 2;
             int dh = (size2.cy() - s.cy()) / 2;
 
-            int x = m_rectangleClient.center_x() - rectangle.center_x();
+            int x = m_rectangleX.center_x() - rectangle.center_x();
 
             if (x > 0)
             {
 
-               x = m_rectangleClient.center_x() - rectangle.left;
+               x = m_rectangleX.center_x() - rectangle.left();
 
             }
             else
             {
 
-               x = m_rectangleClient.center_x() - rectangle.right;
+               x = m_rectangleX.center_x() - rectangle.right();
 
             }
 
-            x = x * (m_rectangleClient.width() + iPadding * 2) / w;
+            x = x * (m_rectangleX.width() + iPadding * 2) / w;
 
             if (x > 0)
             {
-               rect2.left = m_rectangleClient.center_x() - x;
-               rect2.right = rect2.left + size2.cx();
+               rect2.left() = m_rectangleX.center_x() - x;
+               rect2.right() = rect2.left() + size2.cx();
             }
             else
             {
-               rect2.right = m_rectangleClient.center_x()- x;
-               rect2.left = rect2.right - size2.cx();
+               rect2.right() = m_rectangleX.center_x()- x;
+               rect2.left() = rect2.right() - size2.cx();
             }
-            rect2.top = rectangle.top - dh;
-            rect2.bottom = rect2.top + size2.cy();
+            rect2.top() = rectangle.top() - dh;
+            rect2.bottom() = rect2.top() + size2.cy();
 
             hExtra = maximum(hExtra, size2.cy());
 
@@ -1553,12 +1557,12 @@ namespace write_text
 
          auto & rectangle = pitem->m_box[0].m_rectangle;
 
-         pitem->m_box[0].m_rectangle.left = xSingleColumn;
-         pitem->m_box[0].m_rectangle.top = ySingleColumn;
-         pitem->m_box[0].m_rectangle.right = xSingleColumn + s.cx();
-         pitem->m_box[0].m_rectangle.bottom = ySingleColumn + s.cy();
+         pitem->m_box[0].m_rectangle.left() = xSingleColumn;
+         pitem->m_box[0].m_rectangle.top() = ySingleColumn;
+         pitem->m_box[0].m_rectangle.right() = xSingleColumn + s.cx();
+         pitem->m_box[0].m_rectangle.bottom() = ySingleColumn + s.cy();
 
-         sizeTotal.cx() = maximum(m_size.cx(), pitem->m_box[0].m_rectangle.right + 4);
+         sizeTotal.cx() = maximum(m_size.cx(), pitem->m_box[0].m_rectangle.right() + 4);
 
          ySingleColumn += s.cy();
 
@@ -1685,7 +1689,7 @@ namespace write_text
 
          rectangle_i32 rectangle(pfontlistitem->m_box[BOX].m_rectangle);
 
-         rectangle.right = rectangle.left + m_size.cx();
+         rectangle.right() = rectangle.left() + m_size.cx();
 
          if (rectangle.contains(point))
          {
@@ -1812,7 +1816,7 @@ namespace write_text
 
       *lprect = pfontlistitem->m_box[BOX].m_rectangle;
 
-      lprect->right = lprect->left + m_size.cx();
+      lprect->right() = lprect->left() + m_size.cx();
 
       return true;
 
@@ -1824,14 +1828,14 @@ namespace write_text
 
       ::rectangle_i32 rectangle(rectangleParam);
 
-      if (rectangle != m_rectangleClient)
+      if (rectangle != m_rectangleX)
       {
 
-         ::size_i32 sizeOld(m_rectangleClient.size());
+         ::size_i32 sizeOld(m_rectangleX.size());
 
          ::size_i32 sizeNew(rectangle.size());
 
-         m_rectangleClient = rectangle;
+         m_rectangleX = rectangle;
 
          if (sizeOld != sizeNew)
          {

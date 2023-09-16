@@ -140,6 +140,34 @@ void nano_window_interface::update_drawing_objects()
 }
 
 
+::shift_i32 nano_window_interface::absolute_to_client()
+{
+
+   return screen_to_client();
+
+}
+
+
+::shift_i32 nano_window_interface::client_to_absolute()
+{
+
+   return client_to_screen();
+
+}
+
+
+::point_i32 nano_window_interface::try_absolute_mouse_position(const ::point_i32& point)
+{
+
+   auto p = point;
+
+   client_to_screen()(p);
+   
+   return p;
+
+}
+
+
 void nano_window_interface::drag_set_capture()
 {
 
@@ -148,19 +176,32 @@ void nano_window_interface::drag_set_capture()
 }
 
 
-::point_i32 nano_window_interface::on_drag_start(::item * pitem)
+bool nano_window_interface::on_drag_start(::point_i32 & point, ::item * pitem)
 {
 
    if (pitem->m_item.m_eelement == e_element_client)
    {
 
-      return origin();
+      point = origin();
+
+      return true;
 
    }
 
-   throw exception(::error_unexpected);
+   return false;
 
 }
+
+
+::point_i32 nano_window_interface::drag_mouse_cursor_position(::item* pitem, const ::point_i32 & point)
+{
+
+   auto p = try_absolute_mouse_position(point);
+
+   return p;
+
+}
+
 
 
 bool nano_window_interface::drag_shift(::item * pitem)
@@ -228,7 +269,7 @@ void nano_window_interface::drag_set_cursor(::item * pitem)
 nano_child * nano_window_interface::hit_test(::user::mouse * pmouse, ::user::e_zorder ezorder)
 {
 
-   auto point = pmouse->m_point;
+   auto point = pmouse->m_pointAbsolute;
 
    screen_to_client()(point);
 

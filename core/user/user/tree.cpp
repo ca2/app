@@ -251,77 +251,77 @@ namespace user
 
          auto timeStart = ::time::now();
 
-         auto rectangleClient = client_rectangle();
+         auto rectangleX = this->rectangle();
 
          //pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-         //pgraphics->fill_rectangle(rectangleClient, m_colorTreeBackground);
+         //pgraphics->fill_rectangle(rectangleX, m_colorTreeBackground);
 
-         auto pointCursor = get_cursor_position();
+         //auto pointCursor = get_cursor_position();
 
-         screen_to_client()(pointCursor);
+         //screen_to_client()(pointCursor);
 
          auto dwHoverIn = 300_ms;
 
          auto dwHoverOut = 1200_ms;
 
-         bool bTreeHover = rectangleClient.contains(pointCursor);
+         //bool bTreeHover = rectangleX.contains(pointCursor);
 
-         if (bTreeHover)
-         {
-            if (!m_bHoverStart)
-            {
-               m_bHoverStart = true;
-               m_uchHoverAlphaInit = m_uchHoverAlpha;
+         //if (bTreeHover)
+         //{
+         //   if (!m_bHoverStart)
+         //   {
+         //      m_bHoverStart = true;
+         //      m_uchHoverAlphaInit = m_uchHoverAlpha;
 
-               m_timeHoverStart.Now();
+         //      m_timeHoverStart.Now();
 
-            }
-            if (m_timeHoverStart.elapsed() > dwHoverIn)
-            {
-               m_uchHoverAlpha = 255;
-            }
-            else
-            {
-               auto pi = MATH_PI;
-               auto f = 1.0 / dwHoverIn;
-               auto omega = -pi * f; // omega pi
-               auto t = m_timeHoverStart;
-               ::u32 dwCurve = (::u32)(255.0 * (1.0 - exp(omega * t)));
-               if (m_uchHoverAlphaInit + dwCurve > 255)
-                  m_uchHoverAlpha = 255;
-               else
-                  m_uchHoverAlpha = (::u8)(m_uchHoverAlphaInit + dwCurve);
-            }
-         }
-         else
-         {
-            if (m_bHoverStart)
-            {
-               m_bHoverStart = false;
-               m_uchHoverAlphaInit = m_uchHoverAlpha;
+         //   }
+         //   if (m_timeHoverStart.elapsed() > dwHoverIn)
+         //   {
+         //      m_uchHoverAlpha = 255;
+         //   }
+         //   else
+         //   {
+         //      auto pi = MATH_PI;
+         //      auto f = 1.0 / dwHoverIn;
+         //      auto omega = -pi * f; // omega pi
+         //      auto t = m_timeHoverStart;
+         //      ::u32 dwCurve = (::u32)(255.0 * (1.0 - exp(omega * t)));
+         //      if (m_uchHoverAlphaInit + dwCurve > 255)
+         //         m_uchHoverAlpha = 255;
+         //      else
+         //         m_uchHoverAlpha = (::u8)(m_uchHoverAlphaInit + dwCurve);
+         //   }
+         //}
+         //else
+         //{
+         //   if (m_bHoverStart)
+         //   {
+         //      m_bHoverStart = false;
+         //      m_uchHoverAlphaInit = m_uchHoverAlpha;
 
-               m_timeHoverEnd.Now();
+         //      m_timeHoverEnd.Now();
 
-            }
+         //   }
 
-            if (m_timeHoverEnd.elapsed() > dwHoverOut)
-            {
-               m_uchHoverAlpha = 0;
-            }
-            else
-            {
-               auto pi = MATH_PI;
-               auto f = 1.0 / dwHoverOut;
-               auto omega = -pi * f; // omega pi
-               auto t = m_timeHoverStart;
-               ::u32 dwCurve = (::u32)(255.0 * (1.0 - exp(omega * t)));
-               if (m_uchHoverAlphaInit < dwCurve)
-                  m_uchHoverAlpha = 0;
-               else
-                  m_uchHoverAlpha = (::u8)(m_uchHoverAlphaInit - dwCurve);
-            }
-         }
+         //   if (m_timeHoverEnd.elapsed() > dwHoverOut)
+         //   {
+         //      m_uchHoverAlpha = 0;
+         //   }
+         //   else
+         //   {
+         //      auto pi = MATH_PI;
+         //      auto f = 1.0 / dwHoverOut;
+         //      auto omega = -pi * f; // omega pi
+         //      auto t = m_timeHoverStart;
+         //      ::u32 dwCurve = (::u32)(255.0 * (1.0 - exp(omega * t)));
+         //      if (m_uchHoverAlphaInit < dwCurve)
+         //         m_uchHoverAlpha = 0;
+         //      else
+         //         m_uchHoverAlpha = (::u8)(m_uchHoverAlphaInit - dwCurve);
+         //   }
+         //}
 
          ::user::tree_draw_item drawitemdata;
 
@@ -331,7 +331,7 @@ namespace user
 
          drawitemdata.m_dItemHeight = _001GetItemHeight();
 
-         drawitemdata.m_rectangleClient = client_rectangle();
+         drawitemdata.m_rectangleX = this->rectangle();
 
          auto pitem = m_pitemFirstVisible;
 
@@ -350,15 +350,15 @@ namespace user
 
             drawitemdata.m_iItem = iItem;
 
-            drawitemdata.m_rectangle = drawitemdata.m_rectangleClient;
+            drawitemdata.m_rectangle = drawitemdata.m_rectangleX;
 
-            drawitemdata.m_rectangle.left = (::i32)(drawitemdata.m_iIndentation * pitem->m_iLevel);
+            drawitemdata.m_rectangle.left() = (::i32)(drawitemdata.m_iIndentation * pitem->m_iLevel);
 
-            drawitemdata.m_rectangle.top = (::i32)(iItem * drawitemdata.m_dItemHeight);
+            drawitemdata.m_rectangle.top() = (::i32)(iItem * drawitemdata.m_dItemHeight);
 
-            drawitemdata.m_rectangle.bottom = (::i32)(drawitemdata.m_rectangle.top + drawitemdata.m_dItemHeight);
+            drawitemdata.m_rectangle.bottom() = (::i32)(drawitemdata.m_rectangle.top() + drawitemdata.m_dItemHeight);
 
-            drawitemdata.m_rectangle.right = m_iCurrentImpactWidth;
+            drawitemdata.m_rectangle.right() = m_iCurrentImpactWidth;
 
             {
                
@@ -486,7 +486,7 @@ namespace user
       if (bHover) // selected
       {
 
-         auto rectangleFill = ::rectangle_f64(data.m_rectangleClient.left, data.m_rectangle.top, data.m_rectangleClient.right, data.m_rectangle.bottom);
+         auto rectangleFill = ::rectangle_f64(data.m_rectangleX.left(), data.m_rectangle.top(), data.m_rectangleX.right(), data.m_rectangle.bottom());
 
          data.m_pdc->fill_rectangle(rectangleFill, argb(127, 125, 166, 228));
 
@@ -524,7 +524,7 @@ namespace user
 
          //   ::color::color crTranslucid = rgb(0, 0, 0);
 
-         //   imaging.color_blend(data.m_pdc,    rectangleUnion.left, rectangleUnion.top,
+         //   imaging.color_blend(data.m_pdc,    rectangleUnion.left(), rectangleUnion.top(),
          //   rectangleUnion.width(), rectangleUnion.height(),
          //   crTranslucid, 127);
 
@@ -628,7 +628,7 @@ namespace user
 
       auto point = pmouse->m_point;
 
-      screen_to_client()(point);
+      host_to_client()(point);
 
       update_tree_hover(point);
 
@@ -685,7 +685,7 @@ namespace user
 
       ::user::enum_tree_element eelement;
 
-      screen_to_client()(point);
+      host_to_client()(point);
 
       pitem = _001HitTest(point, eelement);
 
@@ -724,7 +724,7 @@ namespace user
 
       ::user::enum_tree_element eelement;
 
-      screen_to_client()(point);
+      host_to_client()(point);
 
       pitem = _001HitTest(point, eelement);
 
@@ -769,7 +769,7 @@ namespace user
 
       ::user::enum_tree_element eelement;
 
-      screen_to_client()(point);
+      host_to_client()(point);
 
       pitem = _001HitTest(point, eelement);
 
@@ -984,21 +984,21 @@ namespace user
       {
       case e_tree_element_expand_box:
       {
-         prectangle->left = (::i32)(drawitem.m_rectangle.left);
+         prectangle->left() = (::i32)(drawitem.m_rectangle.left());
 
-         prectangle->right = (::i32)minimum(prectangle->left + 16, drawitem.m_rectangle.right);
+         prectangle->right() = (::i32)minimum(prectangle->left() + 16, drawitem.m_rectangle.right());
 
-         prectangle->top = (::i32)(drawitem.m_rectangle.top);
+         prectangle->top() = (::i32)(drawitem.m_rectangle.top());
 
-         prectangle->bottom = (::i32)(drawitem.m_rectangle.bottom);
+         prectangle->bottom() = (::i32)(drawitem.m_rectangle.bottom());
 
       }
       break;
       case e_tree_element_image:
       {
-         prectangle->left = (::i32)(drawitem.m_rectangle.left + 18);
+         prectangle->left() = (::i32)(drawitem.m_rectangle.left() + 18);
 
-         prectangle->right = (::i32)minimum(prectangle->left + 16, drawitem.m_rectangle.right);
+         prectangle->right() = (::i32)minimum(prectangle->left() + 16, drawitem.m_rectangle.right());
 
          int iHDiff = 0;
 
@@ -1009,21 +1009,21 @@ namespace user
 
          }
 
-         prectangle->top = (::i32)(drawitem.m_rectangle.top + iHDiff / 2);
+         prectangle->top() = (::i32)(drawitem.m_rectangle.top() + iHDiff / 2);
 
-         prectangle->bottom = (::i32)(drawitem.m_rectangle.bottom - iHDiff / 2);
+         prectangle->bottom() = (::i32)(drawitem.m_rectangle.bottom() - iHDiff / 2);
 
       }
       break;
       case e_tree_element_text:
       {
-         prectangle->left = (::i32)(drawitem.m_rectangle.left + 38);
+         prectangle->left() = (::i32)(drawitem.m_rectangle.left() + 38);
 
-         prectangle->right = (::i32)(drawitem.m_rectangle.right);
+         prectangle->right() = (::i32)(drawitem.m_rectangle.right());
 
-         prectangle->top = (::i32)(drawitem.m_rectangle.top);
+         prectangle->top() = (::i32)(drawitem.m_rectangle.top());
 
-         prectangle->bottom = (::i32)(drawitem.m_rectangle.bottom);
+         prectangle->bottom() = (::i32)(drawitem.m_rectangle.bottom());
 
       }
       break;
@@ -1275,9 +1275,9 @@ namespace user
 
       ::user::interaction::on_layout(pgraphics);
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
-      if (rectangleClient.area() <= 0)
+      if (rectangleX.area() <= 0)
       {
 
          return;
@@ -1372,7 +1372,7 @@ namespace user
    void tree::update_tree_hover(point_i32 point)
    {
 
-      //screen_to_client()(point);
+      //host_to_client()(point);
 
       ::user::enum_tree_element eelement;
 
@@ -1427,7 +1427,7 @@ namespace user
 
       ::rectangle_i32 rectangle;
 
-      rectangle = client_rectangle();
+      rectangle = this->rectangle();
 
       return (::count)(rectangle.height() / _001GetItemHeight() - 1);
 
@@ -1437,11 +1437,11 @@ namespace user
    i32 tree::_001CalcCurrentImpactWidth()
    {
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
       ::count iCount = _001GetVisibleItemCount();
 
-      i32 iMaxWidth = rectangleClient.width();
+      i32 iMaxWidth = rectangleX.width();
 
       i32 iWidth;
 

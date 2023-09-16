@@ -118,7 +118,7 @@ namespace user
    }
 
 
-   void primitive_impl::defer_draw(::draw2d::graphics_pointer & pgraphics)
+   void primitive_impl::defer_do_graphics(::draw2d::graphics_pointer & pgraphics)
    {
 
       m_puserinteraction->_000CallOnDraw(pgraphics);
@@ -215,7 +215,7 @@ namespace user
 //   }
 
 
-   //void primitive_impl::RepositionBars(::u32 nIDFirst, ::u32 nIDLast, atom idLeft, ::u32 nFlags, ::rectangle_i32 * prectParam, const rectangle_i32 & rectangleClient, bool bStretch)
+   //void primitive_impl::RepositionBars(::u32 nIDFirst, ::u32 nIDLast, atom idLeft, ::u32 nFlags, ::rectangle_i32 * prectParam, const rectangle_i32 & rectangleX, bool bStretch)
    //{
 
    //   if (!_is_window())
@@ -239,16 +239,16 @@ namespace user
 
    //   sizeparentparams.sizeTotal.cx() = sizeparentparams.sizeTotal.cy() = 0;
 
-   //   if (rectangleClient != nullptr)
+   //   if (rectangleX != nullptr)
    //   {
 
-   //      sizeparentparams.rectangle = rectangleClient;
+   //      sizeparentparams.rectangle = rectangleX;
 
    //   }
    //   else
    //   {
 
-   //      m_puserinteraction->client_rectangle(&sizeparentparams.rectangle);
+   //      m_puserinteraction->rectangle(&sizeparentparams.rectangle);
 
    //   }
 
@@ -295,11 +295,11 @@ namespace user
    //      else
    //      {
 
-   //         prectParam->left = prectParam->top = 0;
+   //         prectParam->left() = prectParam->top() = 0;
 
-   //         prectParam->right = sizeparentparams.sizeTotal.cx();
+   //         prectParam->right() = sizeparentparams.sizeTotal.cx();
 
-   //         prectParam->bottom = sizeparentparams.sizeTotal.cy();
+   //         prectParam->bottom() = sizeparentparams.sizeTotal.cy();
 
 
    //      }
@@ -318,13 +318,13 @@ namespace user
    //         ASSERT(prectParam != nullptr);
 
 
-   //         sizeparentparams.rectangle.left += prectParam->left;
+   //         sizeparentparams.rectangle.left() += prectParam->left();
 
-   //         sizeparentparams.rectangle.top += prectParam->top;
+   //         sizeparentparams.rectangle.top() += prectParam->top();
 
-   //         sizeparentparams.rectangle.right -= prectParam->right;
+   //         sizeparentparams.rectangle.right() -= prectParam->right();
 
-   //         sizeparentparams.rectangle.bottom -= prectParam->bottom;
+   //         sizeparentparams.rectangle.bottom() -= prectParam->bottom();
 
 
    //      }
@@ -353,6 +353,20 @@ namespace user
       //return true;
 
    }
+
+
+   void primitive_impl::on_configure(const ::rectangle_i32 & rectangle)
+   {
+
+
+   }
+
+
+//   void primitive_impl::on_resize(const ::size_i32 & size)
+//   {
+//
+//
+//   }
 
 
    //void primitive_impl::main_async(const promise::procedure & routine, enum_priority epriority)
@@ -506,8 +520,8 @@ namespace user
    void primitive_impl::viewport_client_to_screen(::rectangle_i32 & rectangle)
    {
 
-      viewport_client_to_screen((::point_i32 &)rectangle.left);
-      viewport_client_to_screen((::point_i32 &)rectangle.right);
+      viewport_client_to_screen((::point_i32 &)rectangle.left());
+      viewport_client_to_screen((::point_i32 &)rectangle.right());
 
    }
 
@@ -515,8 +529,8 @@ namespace user
    void primitive_impl::viewport_screen_to_client(::rectangle_i32 & rectangle)
    {
 
-      viewport_screen_to_client((::point_i32 &)rectangle.left);
-      viewport_screen_to_client((::point_i32 &)rectangle.right);
+      viewport_screen_to_client((::point_i32 &)rectangle.left());
+      viewport_screen_to_client((::point_i32 &)rectangle.right());
 
    }
 
@@ -866,9 +880,11 @@ namespace user
 //
 //         }
 
-         pmessage->m_point = lparam.point();
+         pmessage->m_pointHost = lparam.point();
 
-         _raw_client_to_screen(pmessage->m_point);
+         pmessage->m_pointAbsolute = lparam.point();
+
+         _raw_client_to_screen(pmessage->m_pointAbsolute);
 
       }
       break;
@@ -895,11 +911,13 @@ namespace user
 
          pmessage->m_ebuttonstate = (::user::enum_button_state) lower_u16(wparam);
 
-         pmessage->m_point = lparam.point();
+         pmessage->m_pointHost = lparam.point();
 
          pmessage->m_Δ = upper_i16(wparam);
 
-         //_raw_client_to_screen(pmessage->m_point);
+         pmessage->m_pointAbsolute = lparam.point();
+
+         _raw_client_to_screen(pmessage->m_pointAbsolute);
 
       }
       break;
@@ -1834,6 +1852,46 @@ namespace user
    //}
 
 
+   void primitive_impl::message_handler(const ::atom & atom, wparam wparam, lparam lparam)
+   {
+
+      // if (::is_null(m_puserinteraction))
+      // {
+
+      //    throw ::exception(error_wrong_state);
+
+      // }
+
+      // m_puserinteraction->interaction_post(__new(call_message_handler_task(m_puserinteraction, atom, wparam, lparam)));
+
+      //auto pmessage
+
+      //get_message()
+
+      ::pointer<::message::message>pmessage;
+
+      if (m_puserinteraction)
+      {
+
+         pmessage = m_puserinteraction->get_message(atom, wparam, lparam);
+
+      }
+      else
+      {
+
+         pmessage = get_message(atom, wparam, lparam);
+
+      }
+
+      pmessage->m_pchannel = this;
+
+      //return message_call(pmessage);
+
+      message_handler(pmessage);
+
+   }
+
+
    lresult primitive_impl::message_call(const ::atom & atom, wparam wparam, lparam lparam, const ::point_i32& point)
    {
 
@@ -2705,18 +2763,28 @@ namespace user
    // }
 
 
-   void primitive_impl::_window_show_change_visibility(::e_display edisplay, ::e_activation eactivation)
-   {
-
-   }
-
-
-   void primitive_impl::_window_request_presentation()
-   {
-
-      //return true;
-
-   }
+//   void primitive_impl::_window_show_change_visibility_unlocked(::e_display edisplay, ::e_activation eactivation)
+//   {
+//
+//   }
+//
+//
+//   void primitive_impl::_window_show_change_visibility_locked()
+//   {
+//
+//   }
+//
+//
+//   void primitive_impl::_window_request_presentation_locked()
+//   {
+//
+//   }
+//
+//
+//   void primitive_impl::_window_request_presentation_unlocked()
+//   {
+//
+//   }
 
 
    void primitive_impl::enable_window(bool bEnable)

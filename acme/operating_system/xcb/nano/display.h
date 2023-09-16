@@ -106,7 +106,7 @@ namespace xcb
 
       //void wait_timer_or_event();
 
-      static display * get(::particle * pparticle, bool bBranch = true, void * pX11Display = nullptr);
+      static display * get(::particle * pparticle, bool bBranch = true, void * pX11Display = nullptr, void * pXcbConnection = nullptr);
 
       bool message_loop_step();
       void message_loop();

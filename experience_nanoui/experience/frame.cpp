@@ -26,7 +26,7 @@ namespace experience_nanoui
 
       m_colorCaptionText = argb(255, 0, 0, 0);
 
-      //m_rectangleClient.set(0, 0, 0, 0);
+      //m_rectangleX.set(0, 0, 0, 0);
 
    }
 
@@ -79,11 +79,11 @@ namespace experience_nanoui
 
       auto imaging = psystem->imaging();
 
-      ::rectangle_i32 rectangleClient(rectangleParam);
+      ::rectangle_i32 rectangleX(rectangleParam);
 
       ::rectangle_i32 rectangleInflate;
 
-      if(rectangleClient.is_empty())
+      if(rectangleX.is_empty())
       {
 
          return;
@@ -93,7 +93,7 @@ namespace experience_nanoui
 
       i32 iInflate = 5; // raio 2 pixels + centro 1 pixel
 
-      rectangleInflate = rectangleClient;
+      rectangleInflate = rectangleX;
 
       rectangleInflate.inflate(iInflate, iInflate);
 
@@ -105,17 +105,17 @@ namespace experience_nanoui
 
       ::image_pointer pimage2;
 
-      pimage1 = m_pcontext->m_pauracontext->create_image({rectangleClient.width() + iInflate * 2,  rectangleClient.height() + iInflate * 2});
+      pimage1 = m_pcontext->m_pauracontext->create_image({rectangleX.width() + iInflate * 2,  rectangleX.height() + iInflate * 2});
 
-      pimage2 = m_pcontext->m_pauracontext->create_image({rectangleClient.width() + iInflate * 2,  rectangleClient.height() + iInflate * 2});
+      pimage2 = m_pcontext->m_pauracontext->create_image({rectangleX.width() + iInflate * 2,  rectangleX.height() + iInflate * 2});
 
-      ::rectangle_i32 rectangleWindow = rectangleClient;
+      ::rectangle_i32 rectangleWindow = rectangleX;
 
       pframewindow->client_to_screen()(rectangleWindow);
 
       ::point_i32 pointInflate(iInflate, iInflate);
 
-      auto point = rectangleClient.top_left();
+      auto point = rectangleX.top_left();
 
       point -= pointInflate;
 
@@ -145,11 +145,11 @@ namespace experience_nanoui
 
       {
 
-         rectangle_f64 rectangleSource(pointInflate, rectangleClient.size());
+         rectangle_f64 rectangleSource(pointInflate, rectangleX.size());
 
          image_source imagesource(pimage2, rectangleSource);
 
-         rectangle_f64 rectangleTarget(rectangleClient);
+         rectangle_f64 rectangleTarget(rectangleX);
 
          image_drawing_options imagedrawingoptions(rectangleTarget);
 
@@ -310,13 +310,13 @@ namespace experience_nanoui
 
          }
 
-         rect.left = m_pointWindowIcon.x();
-         rect.top = m_pointWindowIcon.y();
-         rect.right = rect.left + m_sizeIcon.cx();
-         rect.bottom = rect.top + m_sizeIcon.cy();
+         rect.left() = m_pointWindowIcon.x();
+         rect.top() = m_pointWindowIcon.y();
+         rect.right() = rect.left() + m_sizeIcon.cx();
+         rect.bottom() = rect.top() + m_sizeIcon.cy();
 
-         //lprect->right = lprect->left + pdrawicon->get_size().cx();
-         //lprect->bottom = lprect->top + pdrawicon->get_size().cy();
+         //lprect->right() = lprect->left() + pdrawicon->get_size().cx();
+         //lprect->bottom() = lprect->top() + pdrawicon->get_size().cy();
 
          return true;
 
@@ -331,10 +331,10 @@ namespace experience_nanoui
 
          }
 
-         //lprect->left = m_pointMoveGripMinimal.x() + 2;
-         //lprect->top = m_pointMoveGripMinimal.y() + 2;
-         rect.right = rect.left + m_iCaptionHeight - 4;
-         rect.bottom = rect.top + m_iCaptionHeight - 4;
+         //lprect->left() = m_pointMoveGripMinimal.x() + 2;
+         //lprect->top() = m_pointMoveGripMinimal.y() + 2;
+         rect.right() = rect.left() + m_iCaptionHeight - 4;
+         rect.bottom() = rect.top() + m_iCaptionHeight - 4;
 
          return true;
 
@@ -551,8 +551,8 @@ namespace experience_nanoui
 
       ::rectangle_i32 rectangle(rectangleParam);
 
-      i32 x = rectangle.left;
-      i32 y = rectangle.top;
+      i32 x = rectangle.left();
+      i32 y = rectangle.top();
       i32 cx = rectangle.width();
       i32 cy = rectangle.height();
 
@@ -689,7 +689,7 @@ namespace experience_nanoui
             while(i < rectangleGrip.width() - 5 + 1)
             {
 
-               ::rectangle_f64 rectangle(rectangleGrip.left + i, rectangleGrip.top, 3, rectangleGrip.height());
+               ::rectangle_f64 rectangle(rectangleGrip.left() + i, rectangleGrip.top(), 3, rectangleGrip.height());
 
                pgraphics->draw_inset_3d_rectangle(rectangle, argb(110,230,230,230),argb(110,130,130,130), 1.0);
 
@@ -792,6 +792,49 @@ namespace experience_nanoui
 
       UNREFERENCED_PARAMETER(pgraphics);
 
+   }
+
+
+   void frame::GetBorderRectangle(const ::rectangle_i32 & rectangleX, ::rectangle_i32 * lprect, enum_border eside)
+   {
+
+      ::rectangle_i32 rectangleBig(rectangleX);
+
+      ::rectangle_i32 rectangleSmall;
+
+      rectangleSmall = m_pframewindow->rectangle();
+
+      ::rectangle_i32 rectangle;
+
+      if (eside == e_border_top)
+      {
+         rectangle.left() = rectangleBig.left();
+         rectangle.right() = rectangleBig.right();
+         rectangle.top() = rectangleBig.top();
+         rectangle.bottom() = rectangleSmall.top();
+      }
+      else if (eside == e_border_left)
+      {
+         rectangle.left() = rectangleBig.left();
+         rectangle.right() = rectangleSmall.left();
+         rectangle.top() = rectangleSmall.top();
+         rectangle.bottom() = rectangleSmall.bottom();
+      }
+      else if (eside == e_border_right)
+      {
+         rectangle.left() = rectangleSmall.right();
+         rectangle.right() = rectangleBig.right();
+         rectangle.top() = rectangleSmall.top();
+         rectangle.bottom() = rectangleSmall.bottom();
+      }
+      else if (eside == e_border_bottom)
+      {
+         rectangle.left() = rectangleBig.left();
+         rectangle.right() = rectangleBig.right();
+         rectangle.top() = rectangleSmall.bottom();
+         rectangle.bottom() = rectangleBig.bottom();
+      }
+      *lprect = rectangle;
    }
 
 

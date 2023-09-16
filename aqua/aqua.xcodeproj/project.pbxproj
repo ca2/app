@@ -89,6 +89,12 @@
 		9A281A2A25242870009FA9CB /* application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A281A2325242870009FA9CB /* application.cpp */; };
 		9A281A2B25242870009FA9CB /* _platform.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A281A2425242870009FA9CB /* _platform.h */; };
 		9A281A4325242A09009FA9CB /* libapex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A281A38252428C3009FA9CB /* libapex.dylib */; };
+		9A2D744F2AAB522A00DFCE25 /* sha256.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2D744D2AAB522A00DFCE25 /* sha256.h */; };
+		9A2D74502AAB522A00DFCE25 /* sha256.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2D744D2AAB522A00DFCE25 /* sha256.h */; };
+		9A2D74512AAB522A00DFCE25 /* sha256.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2D744D2AAB522A00DFCE25 /* sha256.h */; };
+		9A2D74522AAB522A00DFCE25 /* sha256.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A2D744E2AAB522A00DFCE25 /* sha256.cpp */; };
+		9A2D74532AAB522A00DFCE25 /* sha256.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A2D744E2AAB522A00DFCE25 /* sha256.cpp */; };
+		9A2D74542AAB522A00DFCE25 /* sha256.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A2D744E2AAB522A00DFCE25 /* sha256.cpp */; };
 		9A2E6254252588430001CC7E /* estamira.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2E624D252588430001CC7E /* estamira.h */; };
 		9A2E6255252588430001CC7E /* estamira.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A2E624E252588430001CC7E /* estamira.cpp */; };
 		9A2E6256252588430001CC7E /* _component.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2E624F252588430001CC7E /* _component.h */; };
@@ -487,6 +493,8 @@
 		9A281A2325242870009FA9CB /* application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = application.cpp; sourceTree = "<group>"; };
 		9A281A2425242870009FA9CB /* _platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _platform.h; sourceTree = "<group>"; };
 		9A281A32252428C3009FA9CB /* apex.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = apex.xcodeproj; path = ../apex/apex.xcodeproj; sourceTree = "<group>"; };
+		9A2D744D2AAB522A00DFCE25 /* sha256.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sha256.h; sourceTree = "<group>"; };
+		9A2D744E2AAB522A00DFCE25 /* sha256.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sha256.cpp; sourceTree = "<group>"; };
 		9A2E624D252588430001CC7E /* estamira.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = estamira.h; sourceTree = "<group>"; };
 		9A2E624E252588430001CC7E /* estamira.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = estamira.cpp; sourceTree = "<group>"; };
 		9A2E624F252588430001CC7E /* _component.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _component.h; sourceTree = "<group>"; };
@@ -717,6 +725,8 @@
 				9A281A1E25242870009FA9CB /* application.h */,
 				9A281A1F25242870009FA9CB /* session.h */,
 				9A281A2025242870009FA9CB /* session.cpp */,
+				9A2D744E2AAB522A00DFCE25 /* sha256.cpp */,
+				9A2D744D2AAB522A00DFCE25 /* sha256.h */,
 				9A281A2125242870009FA9CB /* system.cpp */,
 				9A281A2225242870009FA9CB /* system.h */,
 				9A281A2325242870009FA9CB /* application.cpp */,
@@ -861,6 +871,7 @@
 				9A281A2925242870009FA9CB /* system.h in Headers */,
 				9A94EC4B29E46D4700C8C249 /* _.h in Headers */,
 				9A97C7C028236AFA00755A0A /* idpool.h in Headers */,
+				9A2D744F2AAB522A00DFCE25 /* sha256.h in Headers */,
 				9A2819C725242523009FA9CB /* _constant.h in Headers */,
 				9A2E6254252588430001CC7E /* estamira.h in Headers */,
 				9A94EC3329E46D4700C8C249 /* audio_mixer_user.h in Headers */,
@@ -943,6 +954,7 @@
 				9A8189462A71CC42008F470C /* system.h in Headers */,
 				9A8189472A71CC42008F470C /* _.h in Headers */,
 				9A8189482A71CC42008F470C /* idpool.h in Headers */,
+				9A2D74512AAB522A00DFCE25 /* sha256.h in Headers */,
 				9A8189492A71CC42008F470C /* _constant.h in Headers */,
 				9A81894A2A71CC42008F470C /* estamira.h in Headers */,
 				9A81894B2A71CC42008F470C /* audio_mixer_user.h in Headers */,
@@ -1025,6 +1037,7 @@
 				9A8E9E6A282A3210005FF778 /* system.h in Headers */,
 				9A94EC4C29E46D4700C8C249 /* _.h in Headers */,
 				9A8E9E6B282A3210005FF778 /* idpool.h in Headers */,
+				9A2D74502AAB522A00DFCE25 /* sha256.h in Headers */,
 				9A8E9E6C282A3210005FF778 /* _constant.h in Headers */,
 				9A8E9E6D282A3210005FF778 /* estamira.h in Headers */,
 				9A94EC3429E46D4700C8C249 /* audio_mixer_user.h in Headers */,
@@ -1210,6 +1223,7 @@
 				9A2819E525242523009FA9CB /* importable.cpp in Sources */,
 				9A281A0625242524009FA9CB /* file_application.cpp in Sources */,
 				9A865F9329661498000C82F0 /* exception.cpp in Sources */,
+				9A2D74522AAB522A00DFCE25 /* sha256.cpp in Sources */,
 				9A2819C025242523009FA9CB /* edit.cpp in Sources */,
 				9A94EC2D29E46D4700C8C249 /* sound_track_player.cpp in Sources */,
 				9A94EC2F29E46D4700C8C249 /* text_to_speech_client.cpp in Sources */,
@@ -1256,6 +1270,7 @@
 				9A81897F2A71CC42008F470C /* importable.cpp in Sources */,
 				9A8189802A71CC42008F470C /* file_application.cpp in Sources */,
 				9A8189812A71CC42008F470C /* exception.cpp in Sources */,
+				9A2D74542AAB522A00DFCE25 /* sha256.cpp in Sources */,
 				9A8189822A71CC42008F470C /* edit.cpp in Sources */,
 				9A8189832A71CC42008F470C /* sound_track_player.cpp in Sources */,
 				9A8189842A71CC42008F470C /* text_to_speech_client.cpp in Sources */,
@@ -1302,6 +1317,7 @@
 				9A8E9EAF282A3210005FF778 /* importable.cpp in Sources */,
 				9A8E9EB0282A3210005FF778 /* file_application.cpp in Sources */,
 				9A865F9429661498000C82F0 /* exception.cpp in Sources */,
+				9A2D74532AAB522A00DFCE25 /* sha256.cpp in Sources */,
 				9A8E9EB1282A3210005FF778 /* edit.cpp in Sources */,
 				9A94EC2E29E46D4700C8C249 /* sound_track_player.cpp in Sources */,
 				9A94EC3029E46D4700C8C249 /* text_to_speech_client.cpp in Sources */,

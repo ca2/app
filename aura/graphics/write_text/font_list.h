@@ -22,7 +22,7 @@ namespace write_text
    protected:
 
 
-      ::rectangle_i32                           m_rectangleClient;
+      ::rectangle_i32                           m_rectangleX;
       enum_font_list                            m_efontlist;
 
 

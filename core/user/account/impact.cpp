@@ -138,7 +138,7 @@ namespace account
       int h;
       int w;
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
       /*
       if (m_bSelfLayout)
@@ -147,8 +147,8 @@ namespace account
 
       double dwh = (double)stdw / (double)stdh;
 
-      int availw = (int) (rectangleClient.width() * (1.0 - 0.14));
-      int availh = (int) (rectangleClient.height() * (1.0 - 0.14));
+      int availw = (int) (rectangleX.width() * (1.0 - 0.14));
+      int availh = (int) (rectangleX.height() * (1.0 - 0.14));
 
       double davailwh;
 
@@ -177,24 +177,24 @@ namespace account
 
       }
 
-      rectangleClient.left = (rectangleClient.width() - w) / 2;
-      rectangleClient.top = (rectangleClient.height() - h) / 3;
-      rectangleClient.right = rectangleClient.left + w;
-      rectangleClient.bottom = rectangleClient.top + h;
+      rectangleX.left() = (rectangleX.width() - w) / 2;
+      rectangleX.top() = (rectangleX.height() - h) / 3;
+      rectangleX.right() = rectangleX.left() + w;
+      rectangleX.bottom() = rectangleX.top() + h;
 
-      SetPlacement(rectangleClient);
+      SetPlacement(rectangleX);
 
       }
       else
       {
 
-      client_rectangle(rectangleClient);
+      this->rectangle(rectangleX);
 
       }*/
 
-      w = (int)(rectangleClient.width());
+      w = (int)(rectangleX.width());
 
-      h = (int)(rectangleClient.height());
+      h = (int)(rectangleX.height());
 
       m_dRateX = (double)w / (double)stdw;
 
@@ -205,7 +205,7 @@ namespace account
       double ry = m_dRateY;
 
       i32 x1 = (int)(49 * rx);
-      i32 w2 = (int)((rectangleClient.width() - 49 * 2 * rx));
+      i32 w2 = (int)((rectangleX.width() - 49 * 2 * rx));
       i32 h1 = (int)(23 * ry);
       i32 pad = (int)(5 * ry);
 
@@ -235,7 +235,7 @@ namespace account
 
       //::user::draw draw;
 
-      ::rectangle_i32 r = client_rectangle();
+      ::rectangle_i32 r = this->rectangle();
 
       //draw.simple_ui_draw_frame_window_rect(r, pgraphics);
 
@@ -330,9 +330,9 @@ namespace account
 
          ::write_text::font_pointer f(e_create, this);
 
-         /*f->create_pixel_font(pnode->font_name(e_font_sans_ex), (i32)height(rectangleClient) * 0.7);
+         /*f->create_pixel_font(pnode->font_name(e_font_sans_ex), (i32)height(rectangleX) * 0.7);
 
-         float fMargin = (height(rectangleClient) * ((1.0f - 0.7f) / 2.0f));*/
+         float fMargin = (height(rectangleX) * ((1.0f - 0.7f) / 2.0f));*/
 
          //auto psystem = acmesystem()->m_paurasystem;
 

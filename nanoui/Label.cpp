@@ -54,10 +54,12 @@ size_i32 Label::preferred_size(::nano2d::context * pcontext, bool bRecalcTextSiz
          float bounds[4];
          if (m_fixed_size.cx() > 0) {
             pcontext->text_align(::nano2d::e_align_left | ::nano2d::e_align_top);
-            pcontext->text_box_bounds((float)m_pos.x(), (float)m_pos.y(), (float)m_fixed_size.cx(), m_strCaption, bounds);
+            m_ptextbox = pcontext->text_box_layout(m_strCaption, (float)m_fixed_size.cx());
+            pcontext->text_box_bounds((float)m_pos.x(), (float)m_pos.y(), m_ptextbox, bounds);
             m_sizePreferred = size_i32(m_fixed_size.cx(), (int)(bounds[3] - bounds[1]));
          }
          else {
+            m_ptextbox.release();
             pcontext->text_align(::nano2d::e_align_left | ::nano2d::e_align_middle);
             int iSize = (int) pcontext->text_bounds(0.f, 0.f, m_strCaption, bounds);
             m_sizePreferred = size_i32 (
@@ -77,7 +79,12 @@ void Label::draw(::nano2d::context * pcontext) {
    pcontext->fill_color(m_color);
    if (m_fixed_size.cx() > 0) {
       pcontext->text_align(::nano2d::e_align_left | ::nano2d::e_align_top);
-      pcontext->text_box((float)m_pos.x(), (float)m_pos.y(), (float)m_fixed_size.cx(), m_strCaption);
+      if (!m_ptextbox)
+      {
+         m_ptextbox = pcontext->text_box_layout(m_strCaption, m_fixed_size.cx());
+
+      }
+      pcontext->text_box((float)m_pos.x(), (float)m_pos.y(), m_ptextbox);
    }
    else {
       pcontext->text_align(::nano2d::e_align_left | ::nano2d::e_align_middle);

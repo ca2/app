@@ -283,28 +283,28 @@ namespace user
 
       ::draw2d::save_context savecontext(pgraphics);
 
-      ::rectangle_i32 rectangleClient = pinteraction->::user::interaction::client_rectangle();
+      ::rectangle_i32 rectangleX = pinteraction->::user::interaction::rectangle();
 
       double dRotate = pinteraction->get_rotate();
 
       if (dRotate != 0.)
       {
 
-         ::draw2d::matrix mRot;
+         ::geometry2d::matrix mRot;
 
-         mRot.append(::draw2d::matrix::rotation(dRotate));
+         mRot.append(::geometry2d::matrix::rotation(dRotate));
 
          pgraphics->prepend(mRot);
 
-         ::draw2d::matrix mTrans;
+         ::geometry2d::matrix mTrans;
 
-         auto offset = rectangleClient.center();
+         auto offset = rectangleX.center();
 
-         mTrans.append(::draw2d::matrix::translation(offset.x(), offset.y()));
+         mTrans.append(::geometry2d::matrix::translation(offset.x(), offset.y()));
 
          pgraphics->append(mTrans);
 
-         rectangleClient -= offset;
+         rectangleX -= offset;
 
       }
 
@@ -312,9 +312,9 @@ namespace user
 
       i32 iStyle = 1;
 
-      //rectangleClient.left--;
+      //rectangleX.left()--;
 
-      //rectangleClient.top--;
+      //rectangleX.top()--;
 
       if (get_app() != nullptr && (pinteraction->hover_item().is_set() || pinteraction->has_keyboard_focus()))
       {
@@ -328,7 +328,7 @@ namespace user
 
          //   pgraphics->set(pbrush);
 
-         //   pgraphics->fill_rectangle(rectangleClient);
+         //   pgraphics->fill_rectangle(rectangleX);
 
          //}
 
@@ -351,7 +351,7 @@ namespace user
 
             //   }
 
-            //   pgraphics->draw_rectangle(rectangleClient, ppen);
+            //   pgraphics->draw_rectangle(rectangleX, ppen);
 
             //}
             //else
@@ -368,7 +368,7 @@ namespace user
 
             //   }
 
-            //   pgraphics->draw_rectangle(rectangleClient, ppen);
+            //   pgraphics->draw_rectangle(rectangleX, ppen);
 
             //}
 
@@ -383,7 +383,7 @@ namespace user
             if (pinteraction->has_keyboard_focus())
             {
 
-               rectangleClient.inflate(1);
+               rectangleX.inflate(1);
 
                {
 
@@ -398,14 +398,14 @@ namespace user
 
                   }
 
-                  pgraphics->draw_rectangle(rectangleClient, ppen);
+                  pgraphics->draw_rectangle(rectangleX, ppen);
 
                }
 
-               rectangleClient.left--;
-               rectangleClient.right++;
-               rectangleClient.top--;
-               rectangleClient.bottom++;
+               rectangleX.left()--;
+               rectangleX.right()++;
+               rectangleX.top()--;
+               rectangleX.bottom()++;
 
                {
 
@@ -422,14 +422,14 @@ namespace user
 
                   pgraphics->set(ppen);
 
-                  pgraphics->draw_rectangle(rectangleClient, ppen);
+                  pgraphics->draw_rectangle(rectangleX, ppen);
 
                }
 
-               rectangleClient.left--;
-               rectangleClient.right++;
-               rectangleClient.top--;
-               rectangleClient.bottom++;
+               rectangleX.left()--;
+               rectangleX.right()++;
+               rectangleX.top()--;
+               rectangleX.bottom()++;
 
                {
 
@@ -442,7 +442,7 @@ namespace user
 
                   //   ppathRound->begin_figure(true, ::draw2d::e_fill_mode_winding);
 
-                  //   ppathRound->add_round_rect(rectangleClient, 1 * 2);
+                  //   ppathRound->add_round_rect(rectangleX, 1 * 2);
 
                   //   ppathRound->end_figure(true);
 
@@ -461,14 +461,14 @@ namespace user
 
                   pgraphics->set(ppen);
 
-                  pgraphics->draw_rectangle(rectangleClient, ppen);
+                  pgraphics->draw_rectangle(rectangleX, ppen);
 
                }
 
-               rectangleClient.left--;
-               rectangleClient.right++;
-               rectangleClient.top--;
-               rectangleClient.bottom++;
+               rectangleX.left()--;
+               rectangleX.right()++;
+               rectangleX.top()--;
+               rectangleX.bottom()++;
 
                {
 
@@ -476,7 +476,7 @@ namespace user
 
                   //ppathRound->begin_figure(true, ::draw2d::e_fill_mode_winding);
 
-                  //ppathRound->add_round_rect(rectangleClient, 1 * 2);
+                  //ppathRound->add_round_rect(rectangleX, 1 * 2);
 
                   //ppathRound->end_figure(true);
 
@@ -487,15 +487,15 @@ namespace user
 
                   pgraphics->set(ppen);
 
-                  pgraphics->draw_rectangle(rectangleClient, ppen);
+                  pgraphics->draw_rectangle(rectangleX, ppen);
 
                }
 
 
-               rectangleClient.left--;
-               rectangleClient.right++;
-               rectangleClient.top--;
-               rectangleClient.bottom++;
+               rectangleX.left()--;
+               rectangleX.right()++;
+               rectangleX.top()--;
+               rectangleX.bottom()++;
 
                {
 
@@ -503,7 +503,7 @@ namespace user
 
                   //ppathRound->begin_figure(true, ::draw2d::e_fill_mode_winding);
 
-                  //ppathRound->add_round_rect(rectangleClient, 1 * 2);
+                  //ppathRound->add_round_rect(rectangleX, 1 * 2);
 
                   //ppathRound->end_figure(true);
 
@@ -514,16 +514,16 @@ namespace user
 
                   pgraphics->set(ppen);
 
-                  pgraphics->draw_rectangle(rectangleClient, ppen);
+                  pgraphics->draw_rectangle(rectangleX, ppen);
 
                }
 
 
 
-               rectangleClient.left--;
-               rectangleClient.right++;
-               rectangleClient.top--;
-               rectangleClient.bottom++;
+               rectangleX.left()--;
+               rectangleX.right()++;
+               rectangleX.top()--;
+               rectangleX.bottom()++;
 
                {
 
@@ -531,7 +531,7 @@ namespace user
 
                   //ppathRound->begin_figure(true, ::draw2d::e_fill_mode_winding);
 
-                  //ppathRound->add_round_rect(rectangleClient, 1 * 2);
+                  //ppathRound->add_round_rect(rectangleX, 1 * 2);
 
                   //ppathRound->end_figure(true);
 
@@ -542,7 +542,7 @@ namespace user
 
                   pgraphics->set(ppen);
 
-                  pgraphics->draw_rectangle(rectangleClient, ppen);
+                  pgraphics->draw_rectangle(rectangleX, ppen);
 
                }
 
@@ -559,7 +559,7 @@ namespace user
 
             ppen->create_solid(3.0, argb(255, 90, 80, 255));
 
-            pgraphics->draw_rectangle(rectangleClient, ppen);
+            pgraphics->draw_rectangle(rectangleX, ppen);
 
          }
 
@@ -571,7 +571,7 @@ namespace user
 
          ppen->create_solid(1.0, pinteraction->get_color(this, e_element_border));
 
-         pgraphics->draw_rectangle(rectangleClient, ppen);
+         pgraphics->draw_rectangle(rectangleX, ppen);
 
       }
 
@@ -908,7 +908,7 @@ namespace user
    //bool style::create_rect(e_rect erect, ::rectangle_f64 rectangle, ::draw2d::enum_unit eunit)
    //{
 
-   //   return create_rect_coord(erect, rectangle.left, rectangle.top, rectangle.right, rectangle.bottom, eunit);
+   //   return create_rect_coord(erect, rectangle.left(), rectangle.top(), rectangle.right(), rectangle.bottom(), eunit);
 
    //}
 

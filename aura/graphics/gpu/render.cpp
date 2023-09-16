@@ -4,8 +4,8 @@
 #include "buffer.h"
 #include "context.h"
 #include "render.h"
+#include "acme/primitive/geometry2d/matrix.h"
 #include "aura/graphics/draw2d/graphics.h"
-#include "aura/graphics/draw2d/matrix.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/image/image.h"
 #include "aura/platform/system.h"
@@ -138,9 +138,9 @@ namespace gpu
          }
 
 #if !defined(__APPLE__)
-         ::draw2d::matrix matrixOriginal;
+         ::geometry2d::matrix matrixOriginal;
          pgraphics->get(matrixOriginal);
-         ::draw2d::matrix matrix(matrixOriginal);
+         ::geometry2d::matrix matrix(matrixOriginal);
          matrix.scale(1.0, -1.0);
          matrix.translate(0, m_rectangle.height());
          pgraphics->set(matrix);

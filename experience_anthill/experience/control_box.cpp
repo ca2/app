@@ -121,9 +121,9 @@ namespace experience_anthill
 
       }
 
-      ::rectangle_i32 rectangleClient = client_rectangle();
+      ::rectangle_i32 rectangleX = this->rectangle();
 
-      if (rectangleClient.is_empty())
+      if (rectangleX.is_empty())
       {
 
          return;
@@ -150,7 +150,7 @@ namespace experience_anthill
       if (m_colorBackground.is_ok())
       {
 
-         pgraphics->fill_rectangle(rectangleClient, m_colorBackground);
+         pgraphics->fill_rectangle(rectangleX, m_colorBackground);
 
       }
 

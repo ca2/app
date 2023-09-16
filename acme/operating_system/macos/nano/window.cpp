@@ -421,60 +421,70 @@ void nano_window::handle(::topic* ptopic, ::context* pcontext)
 } // namespace macos
 
 
-void nano_window_bridge::on_left_button_up(int x, int y)
+void nano_window_bridge::on_left_button_up(int xHost, int yHost, int xAbsolute, int yAbsolute)
 {
    
    auto pmouse = m_pwindow->__create_new <::user::mouse>();
    
-   pmouse->m_point = {x, y};
+   pmouse->m_pointHost = {xHost, yHost};
+   
+   pmouse->m_pointAbsolute = {xAbsolute, yAbsolute};
    
    m_pwindow->on_left_button_up(pmouse);
    
 }
 
 
-void nano_window_bridge::on_left_button_down(int x, int y)
+void nano_window_bridge::on_left_button_down(int xHost, int yHost, int xAbsolute, int yAbsolute)
 {
    
    auto pmouse = m_pwindow->__create_new <::user::mouse>();
    
-   pmouse->m_point = {x, y};
+   pmouse->m_pointHost = {xHost, yHost};
+   
+   pmouse->m_pointAbsolute = {xAbsolute, yAbsolute};
 
    m_pwindow->on_left_button_down(pmouse);
    
 }
 
 
-void nano_window_bridge::on_right_button_up(int x, int y)
+void nano_window_bridge::on_right_button_up(int xHost, int yHost, int xAbsolute, int yAbsolute)
 {
    
    auto pmouse = m_pwindow->__create_new <::user::mouse>();
    
-   pmouse->m_point = {x, y};
+   pmouse->m_pointHost = {xHost, yHost};
+   
+   pmouse->m_pointAbsolute = {xAbsolute, yAbsolute};
 
    m_pwindow->on_right_button_up(pmouse);
    
 }
 
 
-void nano_window_bridge::on_right_button_down(int x, int y)
+void nano_window_bridge::on_right_button_down(int xHost, int yHost, int xAbsolute, int yAbsolute)
 {
    
    auto pmouse = m_pwindow->__create_new <::user::mouse>();
    
-   pmouse->m_point = {x, y};
+   pmouse->m_pointHost = {xHost, yHost};
+   
+   pmouse->m_pointAbsolute = {xAbsolute, yAbsolute};
 
    m_pwindow->on_right_button_down(pmouse);
    
 }
 
 
-void nano_window_bridge::on_mouse_move(int x, int y)
+void nano_window_bridge::on_mouse_move(int xHost, int yHost, int xAbsolute, int yAbsolute)
 {
    
    auto pmouse = m_pwindow->__create_new <::user::mouse>();
    
-   pmouse->m_point = {x, y};
+   pmouse->m_pointHost = {xHost, yHost};
+   
+   pmouse->m_pointAbsolute = {xAbsolute, yAbsolute};
 
    m_pwindow->on_mouse_move(pmouse);
    
@@ -503,13 +513,13 @@ void nano_window_bridge::_on_draw_frame(CGContextRef cg, CGSize sizeFrame)
 void nano_window_bridge::on_layout(int x, int y, int w, int h)
 {
    
-   m_pwindow->m_pinterface->m_rectangle.left = x;
+   m_pwindow->m_pinterface->m_rectangle.left() = x;
    
-   m_pwindow->m_pinterface->m_rectangle.top = y;
+   m_pwindow->m_pinterface->m_rectangle.top() = y;
    
-   m_pwindow->m_pinterface->m_rectangle.right = x + w;
+   m_pwindow->m_pinterface->m_rectangle.right() = x + w;
    
-   m_pwindow->m_pinterface->m_rectangle.bottom = y + h;
+   m_pwindow->m_pinterface->m_rectangle.bottom() = y + h;
    
 }
 

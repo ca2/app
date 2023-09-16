@@ -25,15 +25,17 @@ namespace user
       ::pointer<::user::interaction>           m_puserinteraction;
       ::pointer<::user::interaction_impl>      m_pimpl;
 
-      ::pointer<::user::thread>              m_puserthread;
-      nanosecond_timer                          m_nanosecondtimer;
+      ::pointer<::user::thread>                   m_puserthread;
+      nanosecond_timer                            m_nanosecondtimer;
 
-      class ::time                                m_timeNow;
+      class ::time                                m_timeStart;
+      class ::time                                m_timeThisFrame;
 
       class ::time                                m_timePostRedrawProdevian;
       class ::time                                m_timePostRedrawNominal;
 
       //i64                                       m_iFrameId;
+      //class ::time                                m_timeStart;
       class ::time                                m_timeLastFrame;
       //i64                                       m_iLastFrameId;
       class ::time                                m_timeNextFrame;
@@ -68,7 +70,7 @@ namespace user
 
       //bool                                      m_bUpdateBufferUpdateWindowPending;
 
-
+   bool m_bAutoRefresh;
 
       graphics_thread();
       ~graphics_thread() override;
@@ -84,20 +86,25 @@ namespace user
       virtual void defer_create_graphics_thread();
 
 
-
       virtual void initialize_graphics_thread(interaction_impl * pimpl);
 
 
       bool graphics_thread_reset(::user::interaction * pinteraction);
       bool graphics_thread_iteration();
-      bool graphics_thread_update_buffer();
+      void on_graphics_thread_iteration_end();
+      //bool graphics_thread_do_layout();
+      //bool graphics_thread_update_buffer();
       bool graphics_thread_update_screen();
       void graphics_thread_redraw();
       //void update_buffer(bool & bUpdateBuffer, bool & bUpdateScreen, bool & bUpdateWindow, bool bForce = false);
-      void update_buffer();
+      //void do_layout();
+      //void update_buffer();
       //bool exclusive_mode_update_screen();
       void post_redraw();
 
+      virtual bool defer_process_redraw_message();
+
+      virtual bool wait_to_present();
       
       virtual void profiling_on_before_update_screen();
       virtual void profiling_on_after_update_screen();

@@ -168,10 +168,10 @@ namespace userstack
             && m_pdocument->m_pplatformdocument != nullptr
             && m_pdocument->m_pplatformdocument->get_platform_frame() != nullptr)
             {
-               auto rectangleClient = client_rectangle();
+               auto rectangleX = this->rectangle();
                ::point_i32 point = pmouse->m_point;
                screen_to_client()(point);
-               if(rectangleClient.contains(point))
+               if(rectangleX.contains(point))
                {
                   get_wnd()->set_capture();
                   if(!m_bMouseOver)

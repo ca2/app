@@ -23,13 +23,22 @@ inline ::write_text_stream & operator <<(::write_text_stream & textstream, ::enu
 
 }
 
+
+inline ::write_text_stream & operator <<(::write_text_stream & textstream, ::enum_cursor ecursor)
+{
+
+   return textstream << ::as_string(ecursor);
+
+}
+
+
 //
 //
 //template < typename FILE, primitive_rectangle RECTANGLE >
 //inline ::write_text_stream < FILE > & operator <<(::write_text_stream < FILE > & textstream, const RECTANGLE & rectangle)
 //{
 //
-//   return textstream << "xy(" << rectangle.left  << ", " << rectangle.top << ")-wh(" << rectangle.width() << ", " << rectangle.height() << ")";
+//   return textstream << "xy(" << rectangle.left()  << ", " << rectangle.top() << ")-wh(" << rectangle.width() << ", " << rectangle.height() << ")";
 //
 //}
 //

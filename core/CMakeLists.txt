@@ -202,29 +202,29 @@ list(APPEND library_source
    networking/ftp/transfer_notification.h
    networking/_.h
    networking/_impl.h
-   operating_system/dummy/frame_window.cpp
-   operating_system/_.h
-   operating_system/_node.h
-   operating_system/serial.h
-   operating_system/_.h
-   operating_system/_application.h
-   operating_system/_c.h
-   operating_system/_impl.h
-   operating_system/_os.h
-   operating_system/binreloc.h
-   operating_system/chronometer.h
-   operating_system/console.h
-   operating_system/core.h
-   operating_system/cross.h
-   operating_system/file.h
-   operating_system/graphics.h
-   operating_system/os_windowing2.h
-   #   operating_system/process.h
-   operating_system/text.h
-   operating_system/threading.h
-   operating_system/time.h
-   operating_system/windowing.h
-   operating_system/winpr_input.h
+#   operating_system/dummy/frame_window.cpp
+#   operating_system/_.h
+#   operating_system/_node.h
+#   operating_system/serial.h
+#   operating_system/_.h
+#   operating_system/_application.h
+#   operating_system/_c.h
+#   operating_system/_impl.h
+#   operating_system/_os.h
+#   operating_system/binreloc.h
+#   operating_system/chronometer.h
+#   operating_system/console.h
+#   operating_system/core.h
+#   operating_system/cross.h
+#   operating_system/file.h
+#   operating_system/graphics.h
+#   operating_system/os_windowing2.h
+#   #   operating_system/process.h
+#   operating_system/text.h
+#   operating_system/threading.h
+#   operating_system/time.h
+#   operating_system/windowing.h
+#   operating_system/winpr_input.h
    papaya/papaya_zoneing.h
    platform/application.cpp
    platform/application.h
@@ -358,6 +358,8 @@ list(APPEND library_source
    user/user/font_combo_box.h
    user/user/font_list.cpp
    user/user/font_list.h
+   user/user/font_list_impact.cpp
+   user/user/font_list_impact.h
    user/user/form_list.cpp
    user/user/form_list.h
    user/user/form_list_impact.cpp

@@ -112,12 +112,12 @@ namespace user
    void main_window::input_client_rectangle(::rectangle_i32 & rectangle, enum_layout elayout)
    {
       
-      rectangle = client_rectangle(elayout);
+      rectangle = this->rectangle(elayout);
    
       if(is_top_level() && ::is_set(m_pwindow))
       {
          
-         rectangle.top += (::i32) m_pwindow->get_top_margin();
+         rectangle.top() += (::i32) m_pwindow->get_top_margin();
          
       }
       
@@ -157,9 +157,9 @@ namespace user
 
          auto sizeMinimum = frame::get_window_minimum_size();
 
-         auto rectangleClient = const_layout().state(e_layout_sketch).raw_rectangle();
+         auto rectangleX = const_layout().state(e_layout_sketch).raw_rectangle();
 
-         auto sizeFrame = rectangleClient.size();
+         auto sizeFrame = rectangleX.size();
 
          if(sizeFrame.cx() < sizeMinimum.cx() || sizeFrame.cy() < sizeMinimum.cy())
          {

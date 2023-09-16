@@ -32,24 +32,24 @@ namespace windowing
 
       display_map                               m_displaymap;
 
-      ::pointer < ::mutex >                                   m_pmutexDisplay;
-      ::pointer < ::mutex >                                   m_pmutexWindow;
-      ::pointer < ::mutex >                                   m_pmutexMonitor;
+      ::pointer < ::mutex >                     m_pmutexDisplay;
+      ::pointer < ::mutex >                     m_pmutexWindow;
+      ::pointer < ::mutex >                     m_pmutexMonitor;
 
 
       bool                                      m_bSettingCursorMatter;
-      ::pointer<::windowing::cursor_manager>   m_pcursormanager;
-      ::pointer<::windowing::keyboard>       m_pkeyboard;
+      ::pointer<::windowing::cursor_manager>    m_pcursormanager;
+      ::pointer<::windowing::keyboard>          m_pkeyboard;
 
 
 
-      ::pointer<::windowing::cursor>           m_pcursor;
-      ::pointer<::windowing::cursor>           m_pcursorCursor;
+      ::pointer<::windowing::cursor>            m_pcursor;
+      ::pointer<::windowing::cursor>            m_pcursorCursor;
       enum_cursor                               m_ecursorDefault;
       enum_cursor                               m_ecursor;
 
       bool                                      m_bDrawCursor;
-      ::pointer<::user::user>                m_puser;
+      ::pointer<::user::user>                   m_puser;
       
 
 
@@ -70,10 +70,14 @@ namespace windowing
       //::aura::system* acmesystem();
 
 
-      virtual void _initialize_windowing();
+      //virtual void _initialize_windowing();
+
+      bool has_absolute_coordinate_system() const;
 
 
       virtual void initialize_windowing(::user::user * puser);
+
+      virtual void terminate_windowing();
 
       virtual void defer_term_ui();
 
@@ -82,7 +86,7 @@ namespace windowing
 
       void destroy() override;
 
-      virtual void windowing_main();
+      //virtual void windowing_main();
 
       virtual void windowing_post_quit();
 
@@ -115,9 +119,16 @@ namespace windowing
 
       virtual ::windowing::window * get_keyboard_focus(::thread * pthread);
 
+      virtual ::point_i32 try_absolute_mouse_position(::user::interaction* puserinteraction, const ::point_i32& point);
+      virtual void set_mouse_capture(::thread * pthread, ::windowing::window * pwindow);
+
       virtual ::windowing::window * get_mouse_capture(::thread * pthread);
 
-      virtual void release_mouse_capture();
+      virtual void release_mouse_capture(::thread * pthread);
+
+      virtual bool defer_release_mouse_capture(::thread * pthread, ::windowing::window * pwindow);
+
+      virtual void set_mouse_cursor(::windowing::cursor * pcursor);
 
       virtual void clear_keyboard_focus(::user::element * pelementGainingFocusIfAny = nullptr);
 
@@ -143,6 +154,8 @@ namespace windowing
       virtual bool __hook_process_event(class display * pdisplay, void * pevent, void * cookie);
 
 
+
+      virtual bool is_screen_visible(::e_display edisplay);
 
       virtual ::pointer<::windowing::cursor>load_default_cursor(enum_cursor ecursor);
 

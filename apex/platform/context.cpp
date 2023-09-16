@@ -1088,6 +1088,35 @@ namespace apex
    //}
 
 
+   ::string context::http_text(const ::scoped_string & scopedstrUrl, ::property_set & set)
+   {
+
+      return http().get(scopedstrUrl, set);
+
+   }
+
+
+   void context::http_download(const ::payload & payloadFile, const ::scoped_string & scopedstrUrl, ::property_set & set)
+   {
+
+      http().download(scopedstrUrl, payloadFile, set);
+
+   }
+
+
+   ::memory context::http_memory(const ::scoped_string& scopedstrUrl, ::property_set& set)
+   {
+
+      ::memory memory;
+      
+      http().get(&memory, scopedstrUrl, set);
+
+      return ::transfer(memory);
+
+   }
+
+
 } // namespace apex
+
 
 

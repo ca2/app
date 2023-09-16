@@ -251,10 +251,10 @@ JNIEXPORT void JNICALL Java_com_android_1app_impact_apex_1size_1changed(JNIEnv *
 
    ::rectangle_f64 rectangle;
 
-   rectangle.left = 0;
-   rectangle.top = 0;
-   rectangle.right = g_posremote->getWidth();
-   rectangle.bottom = g_posremote->getHeight();
+   rectangle.left() = 0;
+   rectangle.top() = 0;
+   rectangle.right() = g_posremote->getWidth();
+   rectangle.bottom() = g_posremote->getHeight();
 
    SetMainScreenRect(rectangle);
 

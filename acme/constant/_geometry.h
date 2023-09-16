@@ -48,6 +48,7 @@ enum enum_align
    e_align_right = 8,
    e_align_vertical_center = 16,
    e_align_horizontal_center = 32,
+   e_align_baseline = 64,
    e_align_horizontal = e_align_left | e_align_right | e_align_horizontal_center,
    e_align_vertical = e_align_bottom | e_align_top | e_align_vertical_center,
    e_align_top_left = e_align_top | e_align_left,

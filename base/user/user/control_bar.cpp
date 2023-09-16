@@ -31,9 +31,9 @@ namespace user
 
       // set up some default border spacings
       m_rectangleBorder.set(6, 1, 6, 1);
-      //m_rectangleBorder.left = m_rectangleBorder.right = 6;
+      //m_rectangleBorder.left() = m_rectangleBorder.right() = 6;
       m_cxDefaultGap = 2;
-      //m_rectangleBorder.top = m_rectangleBorder.bottom = 1;
+      //m_rectangleBorder.top() = m_rectangleBorder.bottom() = 1;
       m_bAutoDelete = false;
       m_nStateFlags = 0;
       m_pDockBar = nullptr;
@@ -72,10 +72,10 @@ namespace user
       ASSERT(cxRight >= 0);
       ASSERT(cyBottom >= 0);
 
-      m_rectangleBorder.left = cxLeft;
-      m_rectangleBorder.top = cyTop;
-      m_rectangleBorder.right = cxRight;
-      m_rectangleBorder.bottom = cyBottom;
+      m_rectangleBorder.left() = cxLeft;
+      m_rectangleBorder.top() = cyTop;
+      m_rectangleBorder.right() = cxRight;
+      m_rectangleBorder.bottom() = cyBottom;
    }
 
 
@@ -533,15 +533,15 @@ namespace user
    {
       // get interaction_impl DC that is clipped to the non-client area
       /* trans   CWindowDC spgraphics(this);
-         auto rectangleClient = client_rectangle();
+         auto rectangleX = this->rectangle();
          ::rectangle_i32 rectangleWindow;
          window_rectangle(rectangleWindow);
          screen_to_client(rectangleWindow);
-         rectangleClient.offset(-rectangleWindow.left, -rectangleWindow.top);
-         spgraphics->ExcludeClipRect(rectangleClient);
+         rectangleX.offset(-rectangleWindow.left(), -rectangleWindow.top());
+         spgraphics->ExcludeClipRect(rectangleX);
 
          // draw borders in non-client area
-         rectangleWindow.offset(-rectangleWindow.left, -rectangleWindow.top);
+         rectangleWindow.offset(-rectangleWindow.left(), -rectangleWindow.top());
          DrawBorders(&spgraphics, rectangleWindow);
 
          // erase parts not drawn
@@ -556,19 +556,19 @@ namespace user
    {
 
       // get interaction_impl DC that is clipped to the non-client area
-      ::rectangle_i32 rectangleClient;
-      rectangleClient = client_rectangle();
+      ::rectangle_i32 rectangleX;
+      rectangleX = this->rectangle();
       ::rectangle_i32 rectangleWindow;
       window_rectangle(rectangleWindow);
       screen_to_client()(rectangleWindow);
-      rectangleClient.offset(-rectangleWindow.left, -rectangleWindow.top);
+      rectangleX.offset(-rectangleWindow.left(), -rectangleWindow.top());
       
       //pgraphics->exclude_clip();
       
-      //pgraphics->ExcludeClipRect(rectangleClient);
+      //pgraphics->ExcludeClipRect(rectangleX);
 
       // draw borders in non-client area
-      rectangleWindow.offset(-rectangleWindow.left, -rectangleWindow.top);
+      rectangleWindow.offset(-rectangleWindow.left(), -rectangleWindow.top());
       DrawBorders(pgraphics, rectangleWindow);
 
       // erase parts not drawn
@@ -812,15 +812,15 @@ namespace user
             if (uStyle & CBRS_ALIGN_TOP)
             {
 
-               playout->m_rectangle.top += size.cy();
+               playout->m_rectangle.top() += size.cy();
 
             }
             else if (uStyle & CBRS_ALIGN_BOTTOM)
             {
 
-               rectangle.top = rectangle.bottom - size.cy();
+               rectangle.top() = rectangle.bottom() - size.cy();
 
-               playout->m_rectangle.bottom -= size.cy();
+               playout->m_rectangle.bottom() -= size.cy();
 
             }
 
@@ -835,15 +835,15 @@ namespace user
             if (uStyle & CBRS_ALIGN_LEFT)
             {
 
-               playout->m_rectangle.left += size.cx();
+               playout->m_rectangle.left() += size.cx();
 
             }
             else if (uStyle & CBRS_ALIGN_RIGHT)
             {
 
-               rectangle.left = rectangle.right - size.cx();
+               rectangle.left() = rectangle.right() - size.cx();
 
-               playout->m_rectangle.right -= size.cx();
+               playout->m_rectangle.right() -= size.cx();
 
             }
 
@@ -855,9 +855,9 @@ namespace user
 
          }
 
-         rectangle.right = rectangle.left + size.cx();
+         rectangle.right() = rectangle.left() + size.cx();
 
-         rectangle.bottom = rectangle.top + size.cy();
+         rectangle.bottom() = rectangle.top() + size.cy();
 
          // only resize the interaction_impl if doing on_layout and not just rectangle_i32 query
          //if (playout->hDWP != nullptr)
@@ -922,7 +922,7 @@ namespace user
       // paint inside client area
       ::rectangle_i32 rectangle;
 
-      rectangle = client_rectangle();
+      rectangle = this->rectangle();
 
       DrawBorders(pgraphics, rectangle);
 
@@ -943,7 +943,7 @@ namespace user
          return;
 
       // prepare for dark lines
-      ASSERT(rectangle.top == 0 && rectangle.left == 0);
+      ASSERT(rectangle.top() == 0 && rectangle.left() == 0);
       ::rectangle_i32 rect1, rect2;
       rect1 = rectangle;
       rect2 = rectangle;
@@ -961,26 +961,26 @@ namespace user
       // draw dark line one pixel back/up
       if (uStyle & CBRS_BORDER_3D)
       {
-         rect1.right -= CX_BORDER;
-         rect1.bottom -= CY_BORDER;
+         rect1.right() -= CX_BORDER;
+         rect1.bottom() -= CY_BORDER;
       }
       if (uStyle & CBRS_BORDER_TOP)
-         rect2.top += 2;
-      //rect2.top += ::windows_definition::Data.cyBorder2;
+         rect2.top() += 2;
+      //rect2.top() += ::windows_definition::Data.cyBorder2;
       if (uStyle & CBRS_BORDER_BOTTOM)
-         rect2.bottom -= 2;
-      //rect2.bottom -= ::windows_definition::Data.cyBorder2;
+         rect2.bottom() -= 2;
+      //rect2.bottom() -= ::windows_definition::Data.cyBorder2;
 
       // draw left and top
       if (uStyle & CBRS_BORDER_LEFT)
       {
          if(uStyle & CBRS_GRIPPER)
          {
-            pgraphics->fill_rectangle(::rectangle_f64_dimension(0, rectangle.top + 7, CX_BORDER, rectangle.height() - 7), clr);
+            pgraphics->fill_rectangle(::rectangle_f64_dimension(0, rectangle.top() + 7, CX_BORDER, rectangle.height() - 7), clr);
          }
          else
          {
-            pgraphics->fill_rectangle(::rectangle_f64_dimension(0, rect2.top, CX_BORDER, rect2.height()), clr);
+            pgraphics->fill_rectangle(::rectangle_f64_dimension(0, rect2.top(), CX_BORDER, rect2.height()), clr);
          }
       }
       if (uStyle & CBRS_BORDER_TOP)
@@ -988,22 +988,22 @@ namespace user
          if(uStyle & CBRS_GRIPPER)
          {
             pgraphics->fill_rectangle(
-            ::rectangle_f64(rectangle.left + 7,
-            rectangle.top,
-            rectangle.right - 7,
+            ::rectangle_f64(rectangle.left() + 7,
+            rectangle.top(),
+            rectangle.right() - 7,
             1),
             rgb(128, 128, 123));
          }
          else
          {
             pgraphics->fill_rectangle(
-            ::rectangle_f64(rectangle.left,
-            rectangle.top,
-            rectangle.right,
+            ::rectangle_f64(rectangle.left(),
+            rectangle.top(),
+            rectangle.right(),
             1),
             rgb(128, 128, 123));
          }
-         //      pgraphics->fill_rectangle(0, 0, rectangle.right, CY_BORDER, clr);
+         //      pgraphics->fill_rectangle(0, 0, rectangle.right(), CY_BORDER, clr);
       }
       if (uStyle & (CBRS_BORDER_LEFT | CBRS_BORDER_TOP))
       {
@@ -1024,9 +1024,9 @@ namespace user
 
       // draw right and bottom
       if (uStyle & CBRS_BORDER_RIGHT)
-         pgraphics->fill_rectangle(::rectangle_f64(rect1.right, rect2.top, -CX_BORDER, rect2.height()), clr);
+         pgraphics->fill_rectangle(::rectangle_f64(rect1.right(), rect2.top(), -CX_BORDER, rect2.height()), clr);
       if (uStyle & CBRS_BORDER_BOTTOM)
-         pgraphics->fill_rectangle(::rectangle_f64(0, rect1.bottom, rectangle.right, -CY_BORDER), clr);
+         pgraphics->fill_rectangle(::rectangle_f64(0, rect1.bottom(), rectangle.right(), -CY_BORDER), clr);
 
       if (uStyle & CBRS_BORDER_3D)
       {
@@ -1036,35 +1036,35 @@ namespace user
 
          // draw left and top
          if (uStyle & CBRS_BORDER_LEFT)
-            pgraphics->fill_rectangle(::rectangle_f64(1, rect2.top, CX_BORDER, rect2.height()), clr);
+            pgraphics->fill_rectangle(::rectangle_f64(1, rect2.top(), CX_BORDER, rect2.height()), clr);
          if (uStyle & CBRS_BORDER_TOP)
          {
             if(uStyle & CBRS_GRIPPER)
-               pgraphics->fill_rectangle(::rectangle_f64(rectangle.left + 7, rectangle.top + 1, rectangle.width() - 7, 1), clr);
+               pgraphics->fill_rectangle(::rectangle_f64(rectangle.left() + 7, rectangle.top() + 1, rectangle.width() - 7, 1), clr);
             else
-               pgraphics->fill_rectangle(::rectangle_f64(rectangle.left, rectangle.top + 1, rectangle.width(), 1), clr);
-            //pgraphics->fill_rectangle(0, 1, rectangle.right, CY_BORDER, clr);
+               pgraphics->fill_rectangle(::rectangle_f64(rectangle.left(), rectangle.top() + 1, rectangle.width(), 1), clr);
+            //pgraphics->fill_rectangle(0, 1, rectangle.right(), CY_BORDER, clr);
          }
 
          // draw right and bottom
          if (uStyle & CBRS_BORDER_RIGHT)
-            pgraphics->fill_rectangle(::rectangle_f64(rectangle.right, rect2.top, -CX_BORDER, rect2.height()), clr);
+            pgraphics->fill_rectangle(::rectangle_f64(rectangle.right(), rect2.top(), -CX_BORDER, rect2.height()), clr);
          if (uStyle & CBRS_BORDER_BOTTOM)
-            pgraphics->fill_rectangle(::rectangle_f64(0, rectangle.bottom, rectangle.right, -CY_BORDER), clr);
+            pgraphics->fill_rectangle(::rectangle_f64(0, rectangle.bottom(), rectangle.right(), -CY_BORDER), clr);
       }
 
       if (uStyle & CBRS_BORDER_LEFT)
-         //rectangle.left += ::windows_definition::Data.cxBorder2;
-         rectangle.left += 2;
+         //rectangle.left() += ::windows_definition::Data.cxBorder2;
+         rectangle.left() += 2;
       if (uStyle & CBRS_BORDER_TOP)
-         //rectangle.top += ::windows_definition::Data.cyBorder2;
-         rectangle.top += 2;
+         //rectangle.top() += ::windows_definition::Data.cyBorder2;
+         rectangle.top() += 2;
       if (uStyle & CBRS_BORDER_RIGHT)
-         //rectangle.right -= ::windows_definition::Data.cxBorder2;
-         rectangle.right -= 2;
+         //rectangle.right() -= ::windows_definition::Data.cxBorder2;
+         rectangle.right() -= 2;
       if (uStyle & CBRS_BORDER_BOTTOM)
-         //rectangle.bottom -= ::windows_definition::Data.cyBorder2;
-         rectangle.bottom -= 2;
+         //rectangle.bottom() -= ::windows_definition::Data.cyBorder2;
+         rectangle.bottom() -= 2;
 
 #else
 
@@ -1103,15 +1103,15 @@ namespace user
          // draw the gripper in the border
          if (m_dwStyle & CBRS_ORIENT_HORZ)
          {
-            //pgraphics->draw_inset_3d_rectangle(rectangle.left+CX_BORDER_GRIPPER,
-            //   rectangle.top+m_rectangleBorder.top,
-            //   CX_GRIPPER, rectangle.height()-m_rectangleBorder.top-m_rectangleBorder.bottom,
+            //pgraphics->draw_inset_3d_rectangle(rectangle.left()+CX_BORDER_GRIPPER,
+            //   rectangle.top()+m_rectangleBorder.top(),
+            //   CX_GRIPPER, rectangle.height()-m_rectangleBorder.top()-m_rectangleBorder.bottom(),
             //   ::windows_definition::Data.clrBtnHilite, ::windows_definition::Data.clrBtnShadow);
             i32 Δx = CX_GRIPPER / 2;
             i32 Δy = CY_GRIPPER / 2;
-            i32 ix = rectangle.left + CX_BORDER_GRIPPER;
-            i32 iy = rectangle.top + m_rectangleBorder.top + Δy / 2;
-            i32 cy = rectangle.bottom - m_rectangleBorder.top - m_rectangleBorder.bottom - Δy * 3;
+            i32 ix = rectangle.left() + CX_BORDER_GRIPPER;
+            i32 iy = rectangle.top() + m_rectangleBorder.top() + Δy / 2;
+            i32 cy = rectangle.bottom() - m_rectangleBorder.top() - m_rectangleBorder.bottom() - Δy * 3;
 
             for(; iy < cy; iy += Δy)
             {
@@ -1123,15 +1123,15 @@ namespace user
          }
          else
          {
-            //         pgraphics->draw_inset_3d_rectangle(rectangle.left+m_rectangleBorder.top,
-            //            rectangle.top+CY_BORDER_GRIPPER,
-            //            rectangle.width()-m_rectangleBorder.top-m_rectangleBorder.bottom, CY_GRIPPER,
+            //         pgraphics->draw_inset_3d_rectangle(rectangle.left()+m_rectangleBorder.top(),
+            //            rectangle.top()+CY_BORDER_GRIPPER,
+            //            rectangle.width()-m_rectangleBorder.top()-m_rectangleBorder.bottom(), CY_GRIPPER,
             //            ::windows_definition::Data.clrBtnHilite, ::windows_definition::Data.clrBtnShadow);
             i32 Δx = CX_GRIPPER / 2;
             i32 Δy = CY_GRIPPER / 2;
-            i32 ix = rectangle.left + m_rectangleBorder.top + Δx / 2;
-            i32 iy = rectangle.top + CY_BORDER_GRIPPER;
-            i32 cx = rectangle.right - m_rectangleBorder.top - m_rectangleBorder.bottom - Δx * 3;
+            i32 ix = rectangle.left() + m_rectangleBorder.top() + Δx / 2;
+            i32 iy = rectangle.top() + CY_BORDER_GRIPPER;
+            i32 cx = rectangle.right() - m_rectangleBorder.top() - m_rectangleBorder.bottom() - Δx * 3;
 
             for(; ix < cx; ix += Δx)
             {
@@ -1151,36 +1151,36 @@ namespace user
       u32 uStyle = m_dwStyle;
 
       if (uStyle & CBRS_BORDER_LEFT)
-//         rectangle.left += ::windows_definition::Data.cxBorder2;
-         rectangle.left += 2;
+//         rectangle.left() += ::windows_definition::Data.cxBorder2;
+         rectangle.left() += 2;
       if (uStyle & CBRS_BORDER_TOP)
-//         rectangle.top += ::windows_definition::Data.cyBorder2;
-         rectangle.top += 2;
+//         rectangle.top() += ::windows_definition::Data.cyBorder2;
+         rectangle.top() += 2;
       if (uStyle & CBRS_BORDER_RIGHT)
-//         rectangle.right -= ::windows_definition::Data.cxBorder2;
-         rectangle.right -= 2;
+//         rectangle.right() -= ::windows_definition::Data.cxBorder2;
+         rectangle.right() -= 2;
       if (uStyle & CBRS_BORDER_BOTTOM)
-//         rectangle.bottom -= ::windows_definition::Data.cyBorder2;
-         rectangle.bottom -= 2;
+//         rectangle.bottom() -= ::windows_definition::Data.cyBorder2;
+         rectangle.bottom() -= 2;
 
       // insert_at the top and bottom.
       if (bHorz)
       {
-         rectangle.left += m_rectangleBorder.left;
-         rectangle.top += m_rectangleBorder.top;
-         rectangle.right -= m_rectangleBorder.right;
-         rectangle.bottom -= m_rectangleBorder.bottom;
+         rectangle.left() += m_rectangleBorder.left();
+         rectangle.top() += m_rectangleBorder.top();
+         rectangle.right() -= m_rectangleBorder.right();
+         rectangle.bottom() -= m_rectangleBorder.bottom();
          if ((m_dwStyle & (CBRS_GRIPPER|CBRS_FLOATING)) == CBRS_GRIPPER)
-            rectangle.left += CX_BORDER_GRIPPER+CX_GRIPPER+CX_BORDER_GRIPPER;
+            rectangle.left() += CX_BORDER_GRIPPER+CX_GRIPPER+CX_BORDER_GRIPPER;
       }
       else
       {
-         rectangle.left += m_rectangleBorder.top;
-         rectangle.top += m_rectangleBorder.left;
-         rectangle.right -= m_rectangleBorder.bottom;
-         rectangle.bottom -= m_rectangleBorder.right;
+         rectangle.left() += m_rectangleBorder.top();
+         rectangle.top() += m_rectangleBorder.left();
+         rectangle.right() -= m_rectangleBorder.bottom();
+         rectangle.bottom() -= m_rectangleBorder.right();
          if ((m_dwStyle & (CBRS_GRIPPER|CBRS_FLOATING)) == CBRS_GRIPPER)
-            rectangle.top += CY_BORDER_GRIPPER+CY_GRIPPER+CY_BORDER_GRIPPER;
+            rectangle.top() += CY_BORDER_GRIPPER+CY_GRIPPER+CY_BORDER_GRIPPER;
       }
    }
 
@@ -1199,10 +1199,10 @@ namespace user
 //   {
 //      ::user::interaction::dump(dumpcontext);
 //
-//      //dumpcontext << "\nm_cxLeftBorder = " << m_rectangleBorder.left;
-//      //dumpcontext << "\nm_cxRightBorder = " << m_rectangleBorder.right;
-//      //dumpcontext << "\nm_cyTopBorder = " << m_rectangleBorder.top;
-//      //dumpcontext << "\nm_cyBottomBorder = " << m_rectangleBorder.bottom;
+//      //dumpcontext << "\nm_cxLeftBorder = " << m_rectangleBorder.left();
+//      //dumpcontext << "\nm_cxRightBorder = " << m_rectangleBorder.right();
+//      //dumpcontext << "\nm_cyTopBorder = " << m_rectangleBorder.top();
+//      //dumpcontext << "\nm_cyBottomBorder = " << m_rectangleBorder.bottom();
 //      //dumpcontext << "\nm_cxDefaultGap = " << m_cxDefaultGap;
 //      //dumpcontext << "\nm_bAutoDelete = " << m_bAutoDelete;
 //
@@ -1246,7 +1246,7 @@ namespace user
    void control_bar::SetBorders(const ::rectangle_i32 & rectangle)
    {
 
-      SetBorders(rectangle.left, rectangle.top, rectangle.right, rectangle.bottom);
+      SetBorders(rectangle.left(), rectangle.top(), rectangle.right(), rectangle.bottom());
 
    }
 

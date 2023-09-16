@@ -49,7 +49,7 @@ namespace experience_nanoui
       {
          //      m_pframewindow->screen_to_client()(point);
          ::rectangle_i32 rectangleEvent;
-         m_pframewindow->window_rectangle(rectangleEvent);
+         m_pframewindow->raw_rectangle(rectangleEvent);
          ::rectangle_i32 rectangle;
          ::point_i32 pointCenter = rectangleEvent.center();
          enum_grip egrip = m_pframewindow->size_manager()->GetGripMask();
@@ -57,16 +57,16 @@ namespace experience_nanoui
          if (egrip & e_grip_top_left)
          {
             rectangle = rectangleEvent;
-            rectangle.right = rectangle.left + 16;
-            rectangle.bottom = rectangle.top + 5;
+            rectangle.right() = rectangle.left() + 16;
+            rectangle.bottom() = rectangle.top() + 5;
             if (rectangle.contains(point))
             {
                etest = ::experience::e_frame_sizing_top_left;
                goto SizingSuccess;
             }
             rectangle = rectangleEvent;
-            rectangle.right = rectangle.left + 5;
-            rectangle.bottom = rectangle.top + 16;
+            rectangle.right() = rectangle.left() + 5;
+            rectangle.bottom() = rectangle.top() + 16;
             if (rectangle.contains(point))
             {
                etest = ::experience::e_frame_sizing_top_left;
@@ -76,16 +76,16 @@ namespace experience_nanoui
          if (egrip & e_grip_top_right)
          {
             rectangle = rectangleEvent;
-            rectangle.left = rectangle.right - 16;
-            rectangle.bottom = rectangle.top + 5;
+            rectangle.left() = rectangle.right() - 16;
+            rectangle.bottom() = rectangle.top() + 5;
             if (rectangle.contains(point))
             {
                etest = ::experience::e_frame_sizing_top_right;
                goto SizingSuccess;
             }
             rectangle = rectangleEvent;
-            rectangle.left = rectangle.right - 5;
-            rectangle.bottom = rectangle.top + 16;
+            rectangle.left() = rectangle.right() - 5;
+            rectangle.bottom() = rectangle.top() + 16;
             if (rectangle.contains(point))
             {
                etest = ::experience::e_frame_sizing_top_right;
@@ -95,16 +95,16 @@ namespace experience_nanoui
          if (egrip & e_grip_bottom_right)
          {
             rectangle = rectangleEvent;
-            rectangle.left = rectangle.right - 16;
-            rectangle.top = rectangle.bottom - 5;
+            rectangle.left() = rectangle.right() - 16;
+            rectangle.top() = rectangle.bottom() - 5;
             if (rectangle.contains(point))
             {
                etest = ::experience::e_frame_sizing_bottom_right;
                goto SizingSuccess;
             }
             rectangle = rectangleEvent;
-            rectangle.left = rectangle.right - 5;
-            rectangle.top = rectangle.bottom - 16;
+            rectangle.left() = rectangle.right() - 5;
+            rectangle.top() = rectangle.bottom() - 16;
             if (rectangle.contains(point))
             {
                etest = ::experience::e_frame_sizing_bottom_right;
@@ -114,16 +114,16 @@ namespace experience_nanoui
          if (egrip & e_grip_bottom_left)
          {
             rectangle = rectangleEvent;
-            rectangle.right = rectangle.left + 16;
-            rectangle.top = rectangle.bottom - 5;
+            rectangle.right() = rectangle.left() + 16;
+            rectangle.top() = rectangle.bottom() - 5;
             if (rectangle.contains(point))
             {
                etest = ::experience::e_frame_sizing_bottom_left;
                goto SizingSuccess;
             }
             rectangle = rectangleEvent;
-            rectangle.right = rectangle.left + 5;
-            rectangle.top = rectangle.bottom - 16;
+            rectangle.right() = rectangle.left() + 5;
+            rectangle.top() = rectangle.bottom() - 16;
             if (rectangle.contains(point))
             {
                etest = ::experience::e_frame_sizing_bottom_left;
@@ -132,10 +132,10 @@ namespace experience_nanoui
          }
          if (egrip & e_grip_top)
          {
-            rectangle.top = rectangleEvent.top;
-            rectangle.left = pointCenter.x() - 8;
-            rectangle.right = pointCenter.x() + 8;
-            rectangle.bottom = rectangleEvent.top + 5;
+            rectangle.top() = rectangleEvent.top();
+            rectangle.left() = pointCenter.x() - 8;
+            rectangle.right() = pointCenter.x() + 8;
+            rectangle.bottom() = rectangleEvent.top() + 5;
             if (rectangle.contains(point))
             {
                etest = ::experience::e_frame_sizing_top;
@@ -144,10 +144,10 @@ namespace experience_nanoui
          }
          if (egrip & e_grip_bottom)
          {
-            rectangle.top = rectangleEvent.bottom - 5;
-            rectangle.left = pointCenter.x() - 8;
-            rectangle.right = pointCenter.x() + 8;
-            rectangle.bottom = rectangleEvent.bottom;
+            rectangle.top() = rectangleEvent.bottom() - 5;
+            rectangle.left() = pointCenter.x() - 8;
+            rectangle.right() = pointCenter.x() + 8;
+            rectangle.bottom() = rectangleEvent.bottom();
             if (rectangle.contains(point))
             {
                etest = ::experience::e_frame_sizing_bottom;
@@ -156,10 +156,10 @@ namespace experience_nanoui
          }
          if (egrip & e_grip_left)
          {
-            rectangle.top = pointCenter.y() - 8;
-            rectangle.left = rectangleEvent.left;
-            rectangle.right = rectangleEvent.left + 5;
-            rectangle.bottom = pointCenter.y() + 8;
+            rectangle.top() = pointCenter.y() - 8;
+            rectangle.left() = rectangleEvent.left();
+            rectangle.right() = rectangleEvent.left() + 5;
+            rectangle.bottom() = pointCenter.y() + 8;
             if (rectangle.contains(point))
             {
                etest = ::experience::e_frame_sizing_left;
@@ -168,10 +168,10 @@ namespace experience_nanoui
          }
          if (egrip & e_grip_right)
          {
-            rectangle.top = pointCenter.y() - 8;
-            rectangle.left = rectangleEvent.right - 5;
-            rectangle.right = rectangleEvent.right;
-            rectangle.bottom = pointCenter.y() + 8;
+            rectangle.top() = pointCenter.y() - 8;
+            rectangle.left() = rectangleEvent.right() - 5;
+            rectangle.right() = rectangleEvent.right();
+            rectangle.bottom() = pointCenter.y() + 8;
             if (rectangle.contains(point))
             {
                etest = ::experience::e_frame_sizing_right;
@@ -190,10 +190,10 @@ namespace experience_nanoui
 
 
 
-   void frame_001::draw_border_side(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleClientParam, enum_border eside)
+   void frame_001::draw_border_side(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleXParam, enum_border eside)
    {
 
-      auto rectangleClient(rectangleClientParam);
+      auto rectangleX(rectangleXParam);
 
       auto pframewindow = m_pframewindow;
 
@@ -232,14 +232,14 @@ namespace experience_nanoui
 
       //               enum_dock edock = m_pframewindow->dock_manager()->GetDockState();
 
-                     //::rectangle_i32 rectangleA(rectangleClient);
+                     //::rectangle_i32 rectangleA(rectangleX);
 
       if (pframewindow->is_translucid_user_style(m_pframewindow->m_estyle))
       {
 
          ::rectangle_i32 rectangle;
 
-         GetBorderRectangle(rectangleClient, &rectangle, eside);
+         GetBorderRectangle(rectangleX, &rectangle, eside);
 
          //auto psystem = acmesystem()->m_paurasystem;
 
@@ -251,7 +251,7 @@ namespace experience_nanoui
 
          ::rectangle_i32 rectangle;
 
-         GetBorderRectangle(rectangleClient, &rectangle, eside);
+         GetBorderRectangle(rectangleX, &rectangle, eside);
 
 
 
@@ -273,13 +273,13 @@ namespace experience_nanoui
       else
       {
 
-         ::rectangle_i32 rectangleClient(rectangleClientParam);
+         ::rectangle_i32 rectangleX(rectangleXParam);
 
-         rectangleClient.deflate(2, 2, 2, 2);
+         rectangleX.deflate(2, 2, 2, 2);
 
          ::rectangle_i32 rectangle;
 
-         GetBorderRectangle(rectangleClient, &rectangle, eside);
+         GetBorderRectangle(rectangleX, &rectangle, eside);
 
          pgraphics->fill_rectangle(rectangle, crMoveableBorder & 0.5_opacity);
 
@@ -334,7 +334,7 @@ namespace experience_nanoui
    }
 
 
-   void frame_001::DrawBorder(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleClient)
+   void frame_001::DrawBorder(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleX)
    {
 
 
@@ -355,71 +355,71 @@ namespace experience_nanoui
       if (eborder & e_border_top)
       {
 
-         draw_border_side(pgraphics, rectangleClient, e_border_top);
+         draw_border_side(pgraphics, rectangleX, e_border_top);
 
       }
 
       if (eborder & e_border_right)
       {
 
-         draw_border_side(pgraphics, rectangleClient, e_border_right);
+         draw_border_side(pgraphics, rectangleX, e_border_right);
 
       }
 
       if (eborder & e_border_bottom)
       {
 
-         draw_border_side(pgraphics, rectangleClient, e_border_bottom);
+         draw_border_side(pgraphics, rectangleX, e_border_bottom);
 
       }
 
       if (eborder & e_border_left)
       {
 
-         draw_border_side(pgraphics, rectangleClient, e_border_left);
+         draw_border_side(pgraphics, rectangleX, e_border_left);
 
       }
 
    }
 
-   void frame_001::GetBorderRectangle(const ::rectangle_i32 & rectangleClient, ::rectangle_i32 * lprect, enum_border eside)
+   void frame_001::GetBorderRectangle(const ::rectangle_i32 & rectangleX, ::rectangle_i32 * lprect, enum_border eside)
    {
 
-      ::rectangle_i32 rectangleBig(rectangleClient);
+      ::rectangle_i32 rectangleBig(rectangleX);
 
       ::rectangle_i32 rectangleSmall;
 
-      get_window_client_rectangle(&rectangleSmall);
+      rectangleSmall = m_pframewindow->rectangle();
 
       ::rectangle_i32 rectangle;
 
       if (eside == e_border_top)
       {
-         rectangle.left = rectangleBig.left;
-         rectangle.right = rectangleBig.right;
-         rectangle.top = rectangleBig.top;
-         rectangle.bottom = rectangleSmall.top;
+         rectangle.left() = rectangleBig.left();
+         rectangle.right() = rectangleBig.right();
+         rectangle.top() = rectangleBig.top();
+         rectangle.bottom() = rectangleSmall.top();
       }
       else if (eside == e_border_left)
       {
-         rectangle.left = rectangleBig.left;
-         rectangle.right = rectangleSmall.left;
-         rectangle.top = rectangleSmall.top;
-         rectangle.bottom = rectangleSmall.bottom;
+         rectangle.left() = rectangleBig.left();
+         rectangle.right() = rectangleSmall.left();
+         rectangle.top() = rectangleSmall.top();
+         rectangle.bottom() = rectangleSmall.bottom();
       }
       else if (eside == e_border_right)
       {
-         rectangle.left = rectangleSmall.right;
-         rectangle.right = rectangleBig.right;
-         rectangle.top = rectangleSmall.top;
-         rectangle.bottom = rectangleSmall.bottom;
+         rectangle.left() = rectangleSmall.right();
+         rectangle.right() = rectangleBig.right();
+         rectangle.top() = rectangleSmall.top();
+         rectangle.bottom() = rectangleSmall.bottom();
       }
       else if (eside == e_border_bottom)
       {
-         rectangle.left = rectangleBig.left;
-         rectangle.right = rectangleBig.right;
-         rectangle.top = rectangleSmall.bottom;
-         rectangle.bottom = rectangleBig.bottom;
+         rectangle.left() = rectangleBig.left();
+         rectangle.right() = rectangleBig.right();
+         rectangle.top() = rectangleSmall.bottom();
+         rectangle.bottom() = rectangleBig.bottom();
       }
       *lprect = rectangle;
    }
@@ -433,18 +433,18 @@ namespace experience_nanoui
    }
 
 
-   void frame_001::DrawGrip(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleClientParam, enum_grip egrip)
+   void frame_001::DrawGrip(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleXParam, enum_grip egrip)
    {
 
-      ::rectangle_i32 rectangleC(rectangleClientParam);
+      ::rectangle_i32 rectangleC(rectangleXParam);
 
-      ::rectangle_i32 rectangleClient(rectangleClientParam);
+      ::rectangle_i32 rectangleX(rectangleXParam);
 
-      rectangleClient.right--;
+      rectangleX.right()--;
 
-      rectangleClient.bottom--;
+      rectangleX.bottom()--;
 
-      ::rectangle_i32 rectangleClientB(rectangleClient);
+      ::rectangle_i32 rectangleXB(rectangleX);
 
       ::rectangle_i32 rectangleA;
 
@@ -454,7 +454,7 @@ namespace experience_nanoui
 
       ::point_i32 pointC;
 
-      ::rectangle_i32 rectangle(rectangleClient);
+      ::rectangle_i32 rectangle(rectangleX);
 
 
 
@@ -464,12 +464,12 @@ namespace experience_nanoui
       {
          pgraphics->set(m_ppenHilight1);
 
-         rectangleA = rectangleClient;
+         rectangleA = rectangleX;
 
-         rectangleA.top++;
-         rectangleA.left++;
-         rectangleA.bottom--;
-         rectangleA.right--;
+         rectangleA.top()++;
+         rectangleA.left()++;
+         rectangleA.bottom()--;
+         rectangleA.right()--;
 
          pointA = rectangleA.top_left();
          pointA.y() += 14;
@@ -485,7 +485,7 @@ namespace experience_nanoui
 
          // Most external rectangle_i32
 
-         rectangleA = rectangleClient;
+         rectangleA = rectangleX;
 
          pointA = rectangleA.top_left();
          pointA.y() += 15;
@@ -498,12 +498,12 @@ namespace experience_nanoui
 
          // Midle rectangle_i32
 
-         rectangleA = rectangleClient;
+         rectangleA = rectangleX;
 
-         rectangleA.top += 2;
-         rectangleA.left += 2;
-         rectangleA.bottom -= 2;
-         rectangleA.right -= 2;
+         rectangleA.top() += 2;
+         rectangleA.left() += 2;
+         rectangleA.bottom() -= 2;
+         rectangleA.right() -= 2;
 
          pointA = rectangleA.top_left();
          pointA.y() += 13;
@@ -516,17 +516,17 @@ namespace experience_nanoui
 
          pgraphics->set(m_ppenShadow1);
 
-         rectangleA = rectangleClient;
+         rectangleA = rectangleX;
 
-         rectangleA.top++;
-         rectangleA.left++;
-         rectangleA.bottom--;
-         rectangleA.right--;
+         rectangleA.top()++;
+         rectangleA.left()++;
+         rectangleA.bottom()--;
+         rectangleA.right()--;
 
-         rectangleA.top += 2;
-         rectangleA.left += 2;
-         rectangleA.bottom -= 2;
-         rectangleA.right -= 2;
+         rectangleA.top() += 2;
+         rectangleA.left() += 2;
+         rectangleA.bottom() -= 2;
+         rectangleA.right() -= 2;
 
 
          pointA = rectangleA.top_left();
@@ -540,12 +540,12 @@ namespace experience_nanoui
 
          pgraphics->set(m_ppenDkShadow1);
 
-         rectangleA = rectangleClient;
+         rectangleA = rectangleX;
 
-         rectangleA.top += 4;
-         rectangleA.left += 4;
-         rectangleA.bottom -= 4;
-         rectangleA.right -= 4;
+         rectangleA.top() += 4;
+         rectangleA.left() += 4;
+         rectangleA.bottom() -= 4;
+         rectangleA.right() -= 4;
 
          pointA = rectangleA.top_left();
          pointA.y() += 11;
@@ -560,20 +560,20 @@ namespace experience_nanoui
 
          // Details
 
-         pointA.x() = rectangleClientB.left + 14;
-         pointA.y() = rectangleClientB.top + 1;
-         pointB.x() = rectangleClientB.left + 14;
-         pointB.y() = rectangleClientB.top + 3;
+         pointA.x() = rectangleXB.left() + 14;
+         pointA.y() = rectangleXB.top() + 1;
+         pointB.x() = rectangleXB.left() + 14;
+         pointB.y() = rectangleXB.top() + 3;
          pgraphics->set_current_point(pointA);
          pgraphics->line_to(pointB);
 
 
          // Details
 
-         pointA.x() = rectangleClientB.left + 1;
-         pointA.y() = rectangleClientB.top + 14;
-         pointB.x() = rectangleClientB.left + 3;
-         pointB.y() = rectangleClientB.top + 14;
+         pointA.x() = rectangleXB.left() + 1;
+         pointA.y() = rectangleXB.top() + 14;
+         pointB.x() = rectangleXB.left() + 3;
+         pointB.y() = rectangleXB.top() + 14;
          pgraphics->set_current_point(pointA);
          pgraphics->line_to(pointB);
 
@@ -581,19 +581,19 @@ namespace experience_nanoui
 
          // Details
 
-         pointA.x() = rectangleClientB.left + 15;
-         pointA.y() = rectangleClientB.top + 1;
-         pointB.x() = rectangleClientB.left + 15;
-         pointB.y() = rectangleClientB.top + 5;
+         pointA.x() = rectangleXB.left() + 15;
+         pointA.y() = rectangleXB.top() + 1;
+         pointB.x() = rectangleXB.left() + 15;
+         pointB.y() = rectangleXB.top() + 5;
          pgraphics->set_current_point(pointA);
          pgraphics->line_to(pointB);
 
          // Details
 
-         pointA.x() = rectangleClientB.left + 1;
-         pointA.y() = rectangleClientB.top + 15;
-         pointB.x() = rectangleClientB.left + 5;
-         pointB.y() = rectangleClientB.top + 15;
+         pointA.x() = rectangleXB.left() + 1;
+         pointA.y() = rectangleXB.top() + 15;
+         pointB.x() = rectangleXB.left() + 5;
+         pointB.y() = rectangleXB.top() + 15;
          pgraphics->set_current_point(pointA);
          pgraphics->line_to(pointB);
       }
@@ -602,12 +602,12 @@ namespace experience_nanoui
       {
          pgraphics->set(m_ppenHilight1);
 
-         rectangleA = rectangleClient;
+         rectangleA = rectangleX;
 
-         rectangleA.top++;
-         rectangleA.left++;
-         rectangleA.bottom--;
-         rectangleA.right--;
+         rectangleA.top()++;
+         rectangleA.left()++;
+         rectangleA.bottom()--;
+         rectangleA.right()--;
 
          pointA = rectangleA.top_right();
          pointA.x() -= 15;
@@ -615,10 +615,10 @@ namespace experience_nanoui
          pgraphics->set_current_point(pointA);
          pgraphics->line_to(pointB);
 
-         rectangleA.top += 2;
-         rectangleA.left += 2;
-         rectangleA.bottom -= 2;
-         rectangleA.right -= 2;
+         rectangleA.top() += 2;
+         rectangleA.left() += 2;
+         rectangleA.bottom() -= 2;
+         rectangleA.right() -= 2;
 
          pointB = rectangleA.top_right();
          pointC = rectangleA.top_right();
@@ -630,7 +630,7 @@ namespace experience_nanoui
 
          // Most external rectangle_i32
 
-         rectangleA = rectangleClient;
+         rectangleA = rectangleX;
 
          pointA = rectangleA.top_right();
          pointA.x() -= 16;
@@ -641,10 +641,10 @@ namespace experience_nanoui
 
          // Most internal rectangle_i32
 
-         rectangleA.top += 4;
-         rectangleA.left += 4;
-         rectangleA.bottom -= 4;
-         rectangleA.right -= 4;
+         rectangleA.top() += 4;
+         rectangleA.left() += 4;
+         rectangleA.bottom() -= 4;
+         rectangleA.right() -= 4;
 
          pointB = rectangleA.top_right();
          pointC = rectangleA.top_right();
@@ -654,12 +654,12 @@ namespace experience_nanoui
 
          // Midle rectangle_i32
 
-         rectangleA = rectangleClient;
+         rectangleA = rectangleX;
 
-         rectangleA.top += 2;
-         rectangleA.left += 2;
-         rectangleA.bottom -= 2;
-         rectangleA.right -= 2;
+         rectangleA.top() += 2;
+         rectangleA.left() += 2;
+         rectangleA.bottom() -= 2;
+         rectangleA.right() -= 2;
 
          pointA = rectangleA.top_right();
          pointA.x() -= 13;
@@ -672,12 +672,12 @@ namespace experience_nanoui
 
          pgraphics->set(m_ppenShadow1);
 
-         rectangleA = rectangleClient;
+         rectangleA = rectangleX;
 
-         rectangleA.top++;
-         rectangleA.left++;
-         rectangleA.bottom--;
-         rectangleA.right--;
+         rectangleA.top()++;
+         rectangleA.left()++;
+         rectangleA.bottom()--;
+         rectangleA.right()--;
 
          pointB = rectangleA.top_right();
          pointC = rectangleA.top_right();
@@ -685,10 +685,10 @@ namespace experience_nanoui
          pgraphics->set_current_point(pointB);
          pgraphics->line_to(pointC);
 
-         rectangleA.top += 2;
-         rectangleA.left += 2;
-         rectangleA.bottom -= 2;
-         rectangleA.right -= 2;
+         rectangleA.top() += 2;
+         rectangleA.left() += 2;
+         rectangleA.bottom() -= 2;
+         rectangleA.right() -= 2;
 
          pointA = rectangleA.top_right();
          pointA.x() -= 12;
@@ -698,7 +698,7 @@ namespace experience_nanoui
 
          pgraphics->set(m_ppenDkShadow1);
 
-         rectangleA = rectangleClient;
+         rectangleA = rectangleX;
 
          pointB = rectangleA.top_right();
          pointC = rectangleA.top_right();
@@ -706,10 +706,10 @@ namespace experience_nanoui
          pgraphics->set_current_point(pointB);
          pgraphics->line_to(pointC);
 
-         rectangleA.top += 4;
-         rectangleA.left += 4;
-         rectangleA.bottom -= 4;
-         rectangleA.right -= 4;
+         rectangleA.top() += 4;
+         rectangleA.left() += 4;
+         rectangleA.bottom() -= 4;
+         rectangleA.right() -= 4;
 
          pointA = rectangleA.top_right();
          pointA.x() -= 11;
@@ -719,10 +719,10 @@ namespace experience_nanoui
 
          pgraphics->set(m_ppenHilight1);
 
-         pointA.x() = rectangleClientB.right - 14;
-         pointA.y() = rectangleClientB.top + 1;
-         pointB.x() = rectangleClientB.right - 14;
-         pointB.y() = rectangleClientB.top + 4;
+         pointA.x() = rectangleXB.right() - 14;
+         pointA.y() = rectangleXB.top() + 1;
+         pointB.x() = rectangleXB.right() - 14;
+         pointB.y() = rectangleXB.top() + 4;
          pgraphics->set_current_point(pointA);
          pgraphics->line_to(pointB);
 
@@ -730,10 +730,10 @@ namespace experience_nanoui
 
          // Details
 
-         pointA.x() = rectangleClientB.right - 15;
-         pointA.y() = rectangleClientB.top;
-         pointB.x() = rectangleClientB.right - 15;
-         pointB.y() = rectangleClientB.top + 5;
+         pointA.x() = rectangleXB.right() - 15;
+         pointA.y() = rectangleXB.top();
+         pointB.x() = rectangleXB.right() - 15;
+         pointB.y() = rectangleXB.top() + 5;
          pgraphics->set_current_point(pointA);
          pgraphics->line_to(pointB);
 
@@ -741,10 +741,10 @@ namespace experience_nanoui
 
          // Details
 
-         pointA.x() = rectangleClientB.right - 3;
-         pointA.y() = rectangleClientB.top + 14;
-         pointB.x() = rectangleClientB.right - 1;
-         pointB.y() = rectangleClientB.top + 14;
+         pointA.x() = rectangleXB.right() - 3;
+         pointA.y() = rectangleXB.top() + 14;
+         pointB.x() = rectangleXB.right() - 1;
+         pointB.y() = rectangleXB.top() + 14;
          pgraphics->set_current_point(pointA);
          pgraphics->line_to(pointB);
 
@@ -752,10 +752,10 @@ namespace experience_nanoui
 
          // Details
 
-         pointA.x() = rectangleClientB.right - 4;
-         pointA.y() = rectangleClientB.top + 15;
-         pointB.x() = rectangleClientB.right;
-         pointB.y() = rectangleClientB.top + 15;
+         pointA.x() = rectangleXB.right() - 4;
+         pointA.y() = rectangleXB.top() + 15;
+         pointB.x() = rectangleXB.right();
+         pointB.y() = rectangleXB.top() + 15;
          pgraphics->set_current_point(pointB);
          pgraphics->line_to(pointA);
       }
@@ -765,10 +765,10 @@ namespace experience_nanoui
 
          pgraphics->set(m_ppenHilight1);
 
-         rectangleA = rectangleClient;
+         rectangleA = rectangleX;
 
-         rectangleA.left++;
-         rectangleA.bottom--;
+         rectangleA.left()++;
+         rectangleA.bottom()--;
 
          // left 1
          pointA = rectangleA.bottom_left();
@@ -777,10 +777,10 @@ namespace experience_nanoui
          pgraphics->set_current_point(pointB);
          pgraphics->line_to(pointA);
 
-         rectangleA = rectangleClient;
+         rectangleA = rectangleX;
 
-         rectangleA.left += 3;
-         rectangleA.bottom -= 3;
+         rectangleA.left() += 3;
+         rectangleA.bottom() -= 3;
 
          // bottom 2
          pointB = rectangleA.bottom_left();
@@ -793,7 +793,7 @@ namespace experience_nanoui
 
          // Most external rectangle_i32 0
 
-         rectangleA = rectangleClient;
+         rectangleA = rectangleX;
 
          pointA = rectangleA.bottom_left();
          pointA.y() -= 15;
@@ -803,10 +803,10 @@ namespace experience_nanoui
 
          // Most internal rectangle_i32 4
 
-         rectangleA.top += 4;
-         rectangleA.left += 4;
-         rectangleA.bottom -= 4;
-         rectangleA.right -= 4;
+         rectangleA.top() += 4;
+         rectangleA.left() += 4;
+         rectangleA.bottom() -= 4;
+         rectangleA.right() -= 4;
 
          pointB = rectangleA.bottom_left();
          pointC = rectangleA.bottom_left();
@@ -816,12 +816,12 @@ namespace experience_nanoui
 
          // Midle rectangle_i32 2
 
-         rectangleA = rectangleClient;
+         rectangleA = rectangleX;
 
-         rectangleA.top += 2;
-         rectangleA.left += 2;
-         rectangleA.bottom -= 2;
-         rectangleA.right -= 2;
+         rectangleA.top() += 2;
+         rectangleA.left() += 2;
+         rectangleA.bottom() -= 2;
+         rectangleA.right() -= 2;
 
          pointA = rectangleA.bottom_left();
          pointA.y() -= 13;
@@ -834,10 +834,10 @@ namespace experience_nanoui
 
          pgraphics->set(m_ppenShadow1);
 
-         rectangleA = rectangleClient;
+         rectangleA = rectangleX;
 
-         rectangleA.left += 2;
-         rectangleA.bottom--;
+         rectangleA.left() += 2;
+         rectangleA.bottom()--;
 
          pointB = rectangleA.bottom_left();
          pointC = rectangleA.bottom_left();
@@ -845,10 +845,10 @@ namespace experience_nanoui
          pgraphics->set_current_point(pointB);
          pgraphics->line_to(pointC);
 
-         rectangleA = rectangleClient;
+         rectangleA = rectangleX;
 
-         rectangleA.left += 3;
-         rectangleA.bottom -= 2;
+         rectangleA.left() += 3;
+         rectangleA.bottom() -= 2;
 
          pointA = rectangleA.bottom_left();
          pointA.y() -= 12;
@@ -858,7 +858,7 @@ namespace experience_nanoui
 
          pgraphics->set(m_ppenDkShadow1);
 
-         rectangleA = rectangleClient;
+         rectangleA = rectangleX;
 
          pointB = rectangleA.bottom_left();
          pointB.x()++;
@@ -867,8 +867,8 @@ namespace experience_nanoui
          pgraphics->set_current_point(pointB);
          pgraphics->line_to(pointC);
 
-         rectangleA.left += 4;
-         rectangleA.bottom -= 3;
+         rectangleA.left() += 4;
+         rectangleA.bottom() -= 3;
 
          pointA = rectangleA.bottom_left();
          pointA.y() -= 11;
@@ -880,10 +880,10 @@ namespace experience_nanoui
 
          pgraphics->set(m_ppenHilight1);
 
-         pointA.x() = rectangleClientB.left + 1;
-         pointA.y() = rectangleClientB.bottom - 15;
-         pointB.x() = rectangleClientB.left + 4;
-         pointB.y() = rectangleClientB.bottom - 15;
+         pointA.x() = rectangleXB.left() + 1;
+         pointA.y() = rectangleXB.bottom() - 15;
+         pointB.x() = rectangleXB.left() + 4;
+         pointB.y() = rectangleXB.bottom() - 15;
          pgraphics->set_current_point(pointA);
          pgraphics->line_to(pointB);
 
@@ -891,10 +891,10 @@ namespace experience_nanoui
 
          pgraphics->set(m_ppenFace1);
 
-         pointA.x() = rectangleClientB.left;
-         pointA.y() = rectangleClientB.bottom - 15;
-         pointB.x() = rectangleClientB.left + 5;
-         pointB.y() = rectangleClientB.bottom - 15;
+         pointA.x() = rectangleXB.left();
+         pointA.y() = rectangleXB.bottom() - 15;
+         pointB.x() = rectangleXB.left() + 5;
+         pointB.y() = rectangleXB.bottom() - 15;
          pgraphics->set_current_point(pointA);
          pgraphics->line_to(pointB);
 
@@ -902,10 +902,10 @@ namespace experience_nanoui
 
          // Details - right most
 
-         pointA.x() = rectangleClientB.left + 14;
-         pointA.y() = rectangleClientB.bottom - 4;
-         pointB.x() = rectangleClientB.left + 14;
-         pointB.y() = rectangleClientB.bottom - 1;
+         pointA.x() = rectangleXB.left() + 14;
+         pointA.y() = rectangleXB.bottom() - 4;
+         pointB.x() = rectangleXB.left() + 14;
+         pointB.y() = rectangleXB.bottom() - 1;
          pgraphics->set_current_point(pointB);
          pgraphics->line_to(pointA);
 
@@ -913,10 +913,10 @@ namespace experience_nanoui
 
          // Details - right most
 
-         pointA.x() = rectangleClientB.left + 15;
-         pointA.y() = rectangleClientB.bottom - 4;
-         pointB.x() = rectangleClientB.left + 15;
-         pointB.y() = rectangleClientB.bottom;
+         pointA.x() = rectangleXB.left() + 15;
+         pointA.y() = rectangleXB.bottom() - 4;
+         pointB.x() = rectangleXB.left() + 15;
+         pointB.y() = rectangleXB.bottom();
          pgraphics->set_current_point(pointB);
          pgraphics->line_to(pointA);
       }
@@ -925,17 +925,17 @@ namespace experience_nanoui
       {
          pgraphics->set(m_ppenHilight1);
 
-         rectangleA = rectangleClient;
+         rectangleA = rectangleX;
 
-         rectangleA.top++;
-         rectangleA.left++;
-         rectangleA.bottom--;
-         rectangleA.right--;
+         rectangleA.top()++;
+         rectangleA.left()++;
+         rectangleA.bottom()--;
+         rectangleA.right()--;
 
-         rectangleA.top += 2;
-         rectangleA.left += 2;
-         rectangleA.bottom -= 2;
-         rectangleA.right -= 2;
+         rectangleA.top() += 2;
+         rectangleA.left() += 2;
+         rectangleA.bottom() -= 2;
+         rectangleA.right() -= 2;
 
          pointA = rectangleA.bottom_right();
          pointA.y() -= 12;
@@ -948,14 +948,14 @@ namespace experience_nanoui
 
          pgraphics->set(m_ppenFace1);
 
-         rectangleA = rectangleClient;
+         rectangleA = rectangleX;
 
          // Most internal rectangle_i32
 
-         rectangleA.top += 4;
-         rectangleA.left += 4;
-         rectangleA.bottom -= 4;
-         rectangleA.right -= 4;
+         rectangleA.top() += 4;
+         rectangleA.left() += 4;
+         rectangleA.bottom() -= 4;
+         rectangleA.right() -= 4;
 
          pointA = rectangleA.bottom_right();
          pointA.y() -= 11;
@@ -968,12 +968,12 @@ namespace experience_nanoui
 
          // Midle rectangle_i32
 
-         rectangleA = rectangleClient;
+         rectangleA = rectangleX;
 
-         rectangleA.top += 2;
-         rectangleA.left += 2;
-         rectangleA.bottom -= 2;
-         rectangleA.right -= 2;
+         rectangleA.top() += 2;
+         rectangleA.left() += 2;
+         rectangleA.bottom() -= 2;
+         rectangleA.right() -= 2;
 
          pointA = rectangleA.bottom_right();
          pointA.y() -= 13;
@@ -985,12 +985,12 @@ namespace experience_nanoui
          pgraphics->line_to(pointC);
          pgraphics->set(m_ppenShadow1);
 
-         rectangleA = rectangleClient;
+         rectangleA = rectangleX;
 
-         rectangleA.top++;
-         rectangleA.left++;
-         rectangleA.bottom--;
-         rectangleA.right--;
+         rectangleA.top()++;
+         rectangleA.left()++;
+         rectangleA.bottom()--;
+         rectangleA.right()--;
 
          pointA = rectangleA.bottom_right();
          pointA.y() -= 14;
@@ -1003,7 +1003,7 @@ namespace experience_nanoui
 
          pgraphics->set(m_ppenDkShadow1);
 
-         rectangleA = rectangleClient;
+         rectangleA = rectangleX;
 
          pointA = rectangleA.bottom_right();
          pointA.y() -= 15;
@@ -1016,17 +1016,17 @@ namespace experience_nanoui
 
          pgraphics->set(m_ppenHilight1);
 
-         pointA.x() = rectangleClientB.right - 3;
-         pointA.y() = rectangleClientB.bottom - 14;
-         pointB.x() = rectangleClientB.right - 1;
-         pointB.y() = rectangleClientB.bottom - 14;
+         pointA.x() = rectangleXB.right() - 3;
+         pointA.y() = rectangleXB.bottom() - 14;
+         pointB.x() = rectangleXB.right() - 1;
+         pointB.y() = rectangleXB.bottom() - 14;
          pgraphics->set_current_point(pointB);
          pgraphics->line_to(pointA);
 
-         pointA.x() = rectangleClientB.right - 14;
-         pointA.y() = rectangleClientB.bottom - 3;
-         pointB.x() = rectangleClientB.right - 14;
-         pointB.y() = rectangleClientB.bottom - 1;
+         pointA.x() = rectangleXB.right() - 14;
+         pointA.y() = rectangleXB.bottom() - 3;
+         pointB.x() = rectangleXB.right() - 14;
+         pointB.y() = rectangleXB.bottom() - 1;
          pgraphics->set_current_point(pointB);
          pgraphics->line_to(pointA);
 
@@ -1034,17 +1034,17 @@ namespace experience_nanoui
 
          // Details
 
-         pointA.x() = rectangleClientB.right - 5;
-         pointA.y() = rectangleClientB.bottom - 15;
-         pointB.x() = rectangleClientB.right;
-         pointB.y() = rectangleClientB.bottom - 15;
+         pointA.x() = rectangleXB.right() - 5;
+         pointA.y() = rectangleXB.bottom() - 15;
+         pointB.x() = rectangleXB.right();
+         pointB.y() = rectangleXB.bottom() - 15;
          pgraphics->set_current_point(pointB);
          pgraphics->line_to(pointA);
 
-         pointA.x() = rectangleClientB.right - 15;
-         pointA.y() = rectangleClientB.bottom - 5;
-         pointB.x() = rectangleClientB.right - 15;
-         pointB.y() = rectangleClientB.bottom;
+         pointA.x() = rectangleXB.right() - 15;
+         pointA.y() = rectangleXB.bottom() - 5;
+         pointB.x() = rectangleXB.right() - 15;
+         pointB.y() = rectangleXB.bottom();
          pgraphics->set_current_point(pointB);
          pgraphics->line_to(pointA);
       }
@@ -1061,10 +1061,10 @@ namespace experience_nanoui
 
          ::rectangle_i32 rectangleB;
 
-         rectangleB.top = rectangleC.top;
-         rectangleB.left = pointCenter.x() - GRIP_CENTER_LARGE_CX / 2 + iMod;
-         rectangleB.right = pointCenter.x() + GRIP_CENTER_LARGE_CX / 2 + iMod;
-         rectangleB.bottom = rectangleC.top + GRIP_CENTER_SMALL_CY;
+         rectangleB.top() = rectangleC.top();
+         rectangleB.left() = pointCenter.x() - GRIP_CENTER_LARGE_CX / 2 + iMod;
+         rectangleB.right() = pointCenter.x() + GRIP_CENTER_LARGE_CX / 2 + iMod;
+         rectangleB.bottom() = rectangleC.top() + GRIP_CENTER_SMALL_CY;
 
          DrawRectGrip(pgraphics, rectangleB);
       }
@@ -1081,10 +1081,10 @@ namespace experience_nanoui
          else
             iMod = 0;
 
-         rectangleB.bottom = rectangleC.bottom;
-         rectangleB.left = pointCenter.x() - GRIP_CENTER_LARGE_CX / 2 + iMod;
-         rectangleB.right = pointCenter.x() + GRIP_CENTER_LARGE_CX / 2 + iMod;
-         rectangleB.top = rectangleC.bottom - GRIP_CENTER_SMALL_CY;
+         rectangleB.bottom() = rectangleC.bottom();
+         rectangleB.left() = pointCenter.x() - GRIP_CENTER_LARGE_CX / 2 + iMod;
+         rectangleB.right() = pointCenter.x() + GRIP_CENTER_LARGE_CX / 2 + iMod;
+         rectangleB.top() = rectangleC.bottom() - GRIP_CENTER_SMALL_CY;
 
          DrawRectGrip(pgraphics, rectangleB);
       }
@@ -1102,10 +1102,10 @@ namespace experience_nanoui
 
          ::rectangle_i32 rectangleB;
 
-         rectangleB.top = pointCenter.y() - GRIP_CENTER_LARGE_CY / 2 + iMod;
-         rectangleB.left = rectangleC.left;
-         rectangleB.right = rectangleC.left + GRIP_CENTER_SMALL_CX;
-         rectangleB.bottom = pointCenter.y() + GRIP_CENTER_LARGE_CY / 2 + iMod;
+         rectangleB.top() = pointCenter.y() - GRIP_CENTER_LARGE_CY / 2 + iMod;
+         rectangleB.left() = rectangleC.left();
+         rectangleB.right() = rectangleC.left() + GRIP_CENTER_SMALL_CX;
+         rectangleB.bottom() = pointCenter.y() + GRIP_CENTER_LARGE_CY / 2 + iMod;
 
          DrawRectGrip(pgraphics, rectangleB);
       }
@@ -1123,10 +1123,10 @@ namespace experience_nanoui
 
          ::rectangle_i32 rectangleB;
 
-         rectangleB.top = pointCenter.y() - GRIP_CENTER_LARGE_CY / 2 + iMod;
-         rectangleB.right = rectangleC.right;
-         rectangleB.left = rectangleC.right - GRIP_CENTER_SMALL_CX;
-         rectangleB.bottom = pointCenter.y() + GRIP_CENTER_LARGE_CY / 2 + iMod;
+         rectangleB.top() = pointCenter.y() - GRIP_CENTER_LARGE_CY / 2 + iMod;
+         rectangleB.right() = rectangleC.right();
+         rectangleB.left() = rectangleC.right() - GRIP_CENTER_SMALL_CX;
+         rectangleB.bottom() = pointCenter.y() + GRIP_CENTER_LARGE_CY / 2 + iMod;
 
          DrawRectGrip(pgraphics, rectangleB);
       }
@@ -1145,9 +1145,9 @@ namespace experience_nanoui
 
       ::rectangle_i32 rectangle(rectangleParam);
 
-      //rectangle.right++;
+      //rectangle.right()++;
 
-      //rectangle.bottom++;
+      //rectangle.bottom()++;
 
       //auto psession = get_session();
 
@@ -1171,16 +1171,16 @@ namespace experience_nanoui
 
       rectangle.deflate(1, 1);
 
-      //rectangle.right--;
+      //rectangle.right()--;
 
-      //rectangle.bottom--;
+      //rectangle.bottom()--;
 
       pgraphics->fill_rectangle(rectangle, crButtonFace.opaque());
 
    }
 
 
-   void frame_001::DrawGripSet(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleClient)
+   void frame_001::DrawGripSet(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleX)
    {
       auto psizenager = m_pframewindow->size_manager();
 
@@ -1188,35 +1188,35 @@ namespace experience_nanoui
 
       if (egrip & e_grip_top)
       {
-         DrawGrip(pgraphics, rectangleClient, e_grip_top);
+         DrawGrip(pgraphics, rectangleX, e_grip_top);
       }
       if (egrip & e_grip_top_right)
       {
-         DrawGrip(pgraphics, rectangleClient, e_grip_top_right);
+         DrawGrip(pgraphics, rectangleX, e_grip_top_right);
       }
       if (egrip & e_grip_right)
       {
-         DrawGrip(pgraphics, rectangleClient, e_grip_right);
+         DrawGrip(pgraphics, rectangleX, e_grip_right);
       }
       if (egrip & e_grip_bottom_right)
       {
-         DrawGrip(pgraphics, rectangleClient, e_grip_bottom_right);
+         DrawGrip(pgraphics, rectangleX, e_grip_bottom_right);
       }
       if (egrip & e_grip_bottom)
       {
-         DrawGrip(pgraphics, rectangleClient, e_grip_bottom);
+         DrawGrip(pgraphics, rectangleX, e_grip_bottom);
       }
       if (egrip & e_grip_bottom_left)
       {
-         DrawGrip(pgraphics, rectangleClient, e_grip_bottom_left);
+         DrawGrip(pgraphics, rectangleX, e_grip_bottom_left);
       }
       if (egrip & e_grip_left)
       {
-         DrawGrip(pgraphics, rectangleClient, e_grip_left);
+         DrawGrip(pgraphics, rectangleX, e_grip_left);
       }
       if (egrip & e_grip_top_left)
       {
-         DrawGrip(pgraphics, rectangleClient, e_grip_top_left);
+         DrawGrip(pgraphics, rectangleX, e_grip_top_left);
       }
 
    }

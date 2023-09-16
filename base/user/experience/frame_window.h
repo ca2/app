@@ -18,7 +18,6 @@ namespace experience
       bool                                         m_bHoverActive;
       bool                                         m_bEnableMouse;
       ::pointer<::experience::frame>               m_pframe;
-      //::rectangle_i32                              m_rectanglePending;
       bool                                         m_bEnableFrameExperience;
 
       bool                                         m_bFullScreenReturn;
@@ -73,6 +72,10 @@ namespace experience
 
       ::item_pointer hit_test(::user::mouse * pmouse, ::user::e_zorder ezorder) override;
 
+
+      bool is_window_resizing() override;
+      bool is_window_repositioning() override;
+      bool is_window_docking() override;
 
 
       bool sketch_on_display() override;
@@ -172,9 +175,10 @@ namespace experience
       void SetActiveFlag(bool fActive);
       void SetSWPFlags(::u32 uFlags);
 
-      void GetRegionClientRectangle(::rectangle_i32 * prectangle);
+      //void GetRegionClientRectangle(::rectangle_i32 * prectangle);
 
-      void get_draw_client_rectangle(::rectangle_i32 * prectangle, ::user::enum_layout elayout = ::user::e_layout_design);
+      
+      //::rectangle_i32 client_rectangle2(::user::enum_layout elayout = ::user::e_layout_design) override;
 
 
       void relay_event(::message::message * pmessage);
@@ -208,6 +212,8 @@ namespace experience
 
 
       virtual void on_visual_applied() override;
+
+      void place_set_need_redraw(const ::rectangle_i32 & rectangleAfter, const ::rectangle_i32 & rectangleBefore, ::draw2d::graphics * pgraphics) override;
 
 
    };

@@ -1319,12 +1319,12 @@ namespace user
 //      client_to_screen(rectangleControl);
 //      rectangle_i64 rectangleForm;
 //      window_rectangle(rectangleForm);
-//      rectangle_i64 rectangleClient;
-//      rectangleClient.top = rectangleForm.top;
-//      rectangleClient.bottom = rectangleForm.bottom;
-//      rectangleClient.left = rectangleControl.left;
-//      rectangleClient.right = rectangleControl.right;
-//      return rectangleClient.contains(point) != false;
+//      rectangle_i64 rectangleX;
+//      rectangleX.top() = rectangleForm.top();
+//      rectangleX.bottom() = rectangleForm.bottom();
+//      rectangleX.left() = rectangleControl.left();
+//      rectangleX.right() = rectangleControl.right();
+//      return rectangleX.contains(point) != false;
    }
 
 
@@ -2302,10 +2302,10 @@ namespace user
 
       //   //            rectangle_i32 r;
 
-      //   //            rectangle.left = 0;
-      //   //            rectangle.top = 0;
-      //   //            rectangle.right = 15;
-      //   //            rectangle.bottom = 15;
+      //   //            rectangle.left() = 0;
+      //   //            rectangle.top() = 0;
+      //   //            rectangle.right() = 15;
+      //   //            rectangle.bottom() = 15;
 
       //   //            rectangle.Align(::e_align_center, pdrawitem->m_rectangleSubItem);
 
@@ -2356,9 +2356,9 @@ namespace user
          if (pinteraction)
          {
             //
-            //            //pdrawitem->m_rectangleClient = pdrawitem->m_rectangleSubItem;
+            //            //pdrawitem->m_rectangleX = pdrawitem->m_rectangleSubItem;
             //
-            //            //pdrawitem->m_rectangleWindow = pdrawitem->m_rectangleClient;
+            //            //pdrawitem->m_rectangleWindow = pdrawitem->m_rectangleX;
             //
             pinteraction->place(pdrawlistsubitem->m_pdrawmeshsubitem->m_rectangleSubItem);
 
@@ -2373,10 +2373,10 @@ namespace user
 
                         //screen_to_client(rectangleWindow);
 
-                        //if (rectangleWindow != pdrawitem->m_rectangleClient)
+                        //if (rectangleWindow != pdrawitem->m_rectangleX)
             {
 
-               // pinteraction->set_window_position(0, pdrawitem->m_rectangleClient, SWP_HIDEWINDOW | SWP_NOZORDER);
+               // pinteraction->set_window_position(0, pdrawitem->m_rectangleX, SWP_HIDEWINDOW | SWP_NOZORDER);
 
             }
 

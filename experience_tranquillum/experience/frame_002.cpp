@@ -60,16 +60,16 @@ namespace experience_tranquillum
 //         if(egrip & e_grip_top_left)
 //         {
 //            rectangle = rectangleEvent;
-//            rectangle.right = rectangle.left + 16;
-//            rectangle.bottom = rectangle.top + 5;
+//            rectangle.right() = rectangle.left() + 16;
+//            rectangle.bottom() = rectangle.top() + 5;
 //            if(rectangle.contains(point))
 //            {
 //               etest =  ::experience::e_frame_sizing_top_left;
 //               goto SizingSuccess;
 //            }
 //            rectangle = rectangleEvent;
-//            rectangle.right = rectangle.left + 5;
-//            rectangle.bottom = rectangle.top + 16;
+//            rectangle.right() = rectangle.left() + 5;
+//            rectangle.bottom() = rectangle.top() + 16;
 //            if(rectangle.contains(point))
 //            {
 //               etest =  ::experience::e_frame_sizing_top_left;
@@ -79,16 +79,16 @@ namespace experience_tranquillum
 //         if(egrip & e_grip_top_right)
 //         {
 //            rectangle = rectangleEvent;
-//            rectangle.left = rectangle.right - 16;
-//            rectangle.bottom = rectangle.top + 5;
+//            rectangle.left() = rectangle.right() - 16;
+//            rectangle.bottom() = rectangle.top() + 5;
 //            if(rectangle.contains(point))
 //            {
 //               etest =  ::experience::e_frame_sizing_top_right;
 //               goto SizingSuccess;
 //            }
 //            rectangle = rectangleEvent;
-//            rectangle.left = rectangle.right - 5;
-//            rectangle.bottom = rectangle.top + 16;
+//            rectangle.left() = rectangle.right() - 5;
+//            rectangle.bottom() = rectangle.top() + 16;
 //            if(rectangle.contains(point))
 //            {
 //               etest =  ::experience::e_frame_sizing_top_right;
@@ -98,16 +98,16 @@ namespace experience_tranquillum
 //         if(egrip & e_grip_bottom_right)
 //         {
 //            rectangle = rectangleEvent;
-//            rectangle.left = rectangle.right - 16;
-//            rectangle.top = rectangle.bottom - 5;
+//            rectangle.left() = rectangle.right() - 16;
+//            rectangle.top() = rectangle.bottom() - 5;
 //            if(rectangle.contains(point))
 //            {
 //               etest =  ::experience::e_frame_sizing_bottom_right;
 //               goto SizingSuccess;
 //            }
 //            rectangle = rectangleEvent;
-//            rectangle.left = rectangle.right - 5;
-//            rectangle.top = rectangle.bottom - 16;
+//            rectangle.left() = rectangle.right() - 5;
+//            rectangle.top() = rectangle.bottom() - 16;
 //            if(rectangle.contains(point))
 //            {
 //               etest =  ::experience::e_frame_sizing_bottom_right;
@@ -117,16 +117,16 @@ namespace experience_tranquillum
 //         if(egrip & e_grip_bottom_left)
 //         {
 //            rectangle = rectangleEvent;
-//            rectangle.right = rectangle.left + 16;
-//            rectangle.top = rectangle.bottom - 5;
+//            rectangle.right() = rectangle.left() + 16;
+//            rectangle.top() = rectangle.bottom() - 5;
 //            if(rectangle.contains(point))
 //            {
 //               etest =  ::experience::e_frame_sizing_bottom_left;
 //               goto SizingSuccess;
 //            }
 //            rectangle = rectangleEvent;
-//            rectangle.right = rectangle.left + 5;
-//            rectangle.top = rectangle.bottom - 16;
+//            rectangle.right() = rectangle.left() + 5;
+//            rectangle.top() = rectangle.bottom() - 16;
 //            if(rectangle.contains(point))
 //            {
 //               etest =  ::experience::e_frame_sizing_bottom_left;
@@ -135,10 +135,10 @@ namespace experience_tranquillum
 //         }
 //         if(egrip & e_grip_top)
 //         {
-//            rectangle.top = rectangleEvent.top;
-//            rectangle.left = pointCenter.x() - 8;
-//            rectangle.right = pointCenter.x() + 8;
-//            rectangle.bottom = rectangleEvent.top + 5;
+//            rectangle.top() = rectangleEvent.top();
+//            rectangle.left() = pointCenter.x() - 8;
+//            rectangle.right() = pointCenter.x() + 8;
+//            rectangle.bottom() = rectangleEvent.top() + 5;
 //            if(rectangle.contains(point))
 //            {
 //               etest =  ::experience::e_frame_sizing_top;
@@ -147,10 +147,10 @@ namespace experience_tranquillum
 //         }
 //         if(egrip & e_grip_bottom)
 //         {
-//            rectangle.top = rectangleEvent.bottom - 5;
-//            rectangle.left = pointCenter.x() - 8;
-//            rectangle.right = pointCenter.x() + 8;
-//            rectangle.bottom = rectangleEvent.bottom;
+//            rectangle.top() = rectangleEvent.bottom() - 5;
+//            rectangle.left() = pointCenter.x() - 8;
+//            rectangle.right() = pointCenter.x() + 8;
+//            rectangle.bottom() = rectangleEvent.bottom();
 //            if(rectangle.contains(point))
 //            {
 //               etest =  ::experience::e_frame_sizing_bottom;
@@ -159,10 +159,10 @@ namespace experience_tranquillum
 //         }
 //         if(egrip & e_grip_left)
 //         {
-//            rectangle.top = pointCenter.y() - 8;
-//            rectangle.left = rectangleEvent.left;
-//            rectangle.right = rectangleEvent.left + 5;
-//            rectangle.bottom = pointCenter.y() + 8;
+//            rectangle.top() = pointCenter.y() - 8;
+//            rectangle.left() = rectangleEvent.left();
+//            rectangle.right() = rectangleEvent.left() + 5;
+//            rectangle.bottom() = pointCenter.y() + 8;
 //            if(rectangle.contains(point))
 //            {
 //               etest =  ::experience::e_frame_sizing_left;
@@ -171,10 +171,10 @@ namespace experience_tranquillum
 //         }
 //         if(egrip & e_grip_right)
 //         {
-//            rectangle.top = pointCenter.y() - 8;
-//            rectangle.left = rectangleEvent.right - 5;
-//            rectangle.right = rectangleEvent.right;
-//            rectangle.bottom = pointCenter.y() + 8;
+//            rectangle.top() = pointCenter.y() - 8;
+//            rectangle.left() = rectangleEvent.right() - 5;
+//            rectangle.right() = rectangleEvent.right();
+//            rectangle.bottom() = pointCenter.y() + 8;
 //            if(rectangle.contains(point))
 //            {
 //               etest =  ::experience::e_frame_sizing_right;
@@ -192,12 +192,12 @@ namespace experience_tranquillum
 
 
 
-   void frame_002::draw_border_side(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleClientParam, enum_border eside)
+   void frame_002::draw_border_side(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleXParam, enum_border eside)
    {
 
       //auto psession = get_session();
 
-      auto rectangleClient(rectangleClientParam);
+      auto rectangleX(rectangleXParam);
 
       auto pframewindow = m_pframewindow;
 
@@ -227,7 +227,7 @@ namespace experience_tranquillum
       }
 
       enum_dock edock = m_pframewindow->dock_manager()->get_dock_mask();
-      ::rectangle_i32 rectangleA(rectangleClientParam);
+      ::rectangle_i32 rectangleA(rectangleXParam);
 
       auto estyle = pframewindow->m_estyle;
 
@@ -236,7 +236,7 @@ namespace experience_tranquillum
             || estyle == ::user::StyleTranslucidLightGreen)
       {
          ::rectangle_i32 rectangle;
-         GetBorderRectangle(rectangleClient, &rectangle, eside);
+         GetBorderRectangle(rectangleX, &rectangle, eside);
 
 
          pgraphics->fill_rectangle(
@@ -259,7 +259,7 @@ namespace experience_tranquillum
          Draw3dRectSide(pgraphics, rectangleA, eside, crMoveableBorder, crMoveableBorder);
 
          ::rectangle_i32 rectangle;
-         GetBorderRectangle(rectangleClient, &rectangle, eside);
+         GetBorderRectangle(rectangleX, &rectangle, eside);
 
          //class imaging & imaging = psystem->imaging();
          //imaging.color_blend(
@@ -271,10 +271,10 @@ namespace experience_tranquillum
       else
       {
          ::rectangle_i32 rectangle;
-         ::rectangle_i32 rectangleClient = rectangleClientParam;
+         ::rectangle_i32 rectangleX = rectangleXParam;
 
-         rectangleClient.deflate(1, 1);
-         GetBorderRectangle(rectangleClient, &rectangle, eside);
+         rectangleX.deflate(1, 1);
+         GetBorderRectangle(rectangleX, &rectangle, eside);
          //class imaging & imaging = psystem->imaging();
          //imaging.color_blend(
          pgraphics->fill_rectangle(
@@ -282,33 +282,33 @@ namespace experience_tranquillum
                               crMoveableBorder &
                               200_opacity);
 
-         GetBorderRectangle(rectangleClient, &rectangle, eside);
+         GetBorderRectangle(rectangleX, &rectangle, eside);
 
 
-         ::rectangle_i32 rectangleClientB = rectangleA;
+         ::rectangle_i32 rectangleXB = rectangleA;
 
-         rectangleClientB.bottom--;
-         rectangleClientB.right--;
+         rectangleXB.bottom()--;
+         rectangleXB.right()--;
 
-         rectangleA.top++;
-         rectangleA.bottom--;
-         rectangleA.left++;
-         rectangleA.right--;
+         rectangleA.top()++;
+         rectangleA.bottom()--;
+         rectangleA.left()++;
+         rectangleA.right()--;
          if(edock == e_dock_none)
          {
             Draw3dRectSide(pgraphics, rectangleA, eside, m_colorDkShadow.opaque(), m_colorDkShadow.opaque());
          }
 
-         rectangleA.top++;
-         rectangleA.bottom--;
-         rectangleA.left++;
-         rectangleA.right--;
+         rectangleA.top()++;
+         rectangleA.bottom()--;
+         rectangleA.left()++;
+         rectangleA.right()--;
          Draw3dRectSide(pgraphics, rectangleA, eside, m_colorDkShadow.opaque(), m_colorDkShadow.opaque());
 
-         rectangleA.top++;
-         rectangleA.bottom--;
-         rectangleA.left++;
-         rectangleA.right--;
+         rectangleA.top()++;
+         rectangleA.bottom()--;
+         rectangleA.left()++;
+         rectangleA.right()--;
          if(edock == e_dock_none)
          {
             Draw3dRectSide(pgraphics, rectangleA, eside, m_colorDkShadow.opaque(), m_colorDkShadow.opaque());
@@ -335,8 +335,8 @@ namespace experience_tranquillum
       //::aura::savings & savings = psession->m_paurasession->savings();
 
 
-      ::rectangle_i32 rectangleClient;
-      rectangleClient = pframewindow->client_rectangle();
+      ::rectangle_i32 rectangleX;
+      rectangleX = pframewindow->rectangle();
 
       string str;
 
@@ -378,7 +378,7 @@ namespace experience_tranquillum
    }
 
 
-   void frame_002::DrawBorder(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleClient)
+   void frame_002::DrawBorder(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleX)
 
    {
 
@@ -398,70 +398,28 @@ namespace experience_tranquillum
 
       if(eborder & e_border_top)
       {
-         draw_border_side(pgraphics, rectangleClient, e_border_top);
+         draw_border_side(pgraphics, rectangleX, e_border_top);
 
       }
       if(eborder & e_border_right)
       {
-         draw_border_side(pgraphics, rectangleClient, e_border_right);
+         draw_border_side(pgraphics, rectangleX, e_border_right);
 
       }
       if(eborder & e_border_bottom)
       {
-         draw_border_side(pgraphics, rectangleClient, e_border_bottom);
+         draw_border_side(pgraphics, rectangleX, e_border_bottom);
 
       }
       if(eborder & e_border_left)
       {
-         draw_border_side(pgraphics, rectangleClient, e_border_left);
+         draw_border_side(pgraphics, rectangleX, e_border_left);
 
       }
 
    }
 
-   void frame_002::GetBorderRectangle(
-   const ::rectangle_i32 & rectangleClient,
 
-   ::rectangle_i32 * prectangle,
-
-   enum_border eside)
-   {
-      ::rectangle_i32 rectangleBig(rectangleClient);
-
-      ::rectangle_i32 rectangleSmall;
-      get_window_client_rectangle(&rectangleSmall);
-      ::rectangle_i32 rectangle;
-      if(eside == e_border_top)
-      {
-         rectangle.left = rectangleBig.left;
-         rectangle.right = rectangleBig.right;
-         rectangle.top = rectangleBig.top;
-         rectangle.bottom = rectangleSmall.top;
-      }
-      else if(eside == e_border_left)
-      {
-         rectangle.left = rectangleBig.left;
-         rectangle.right = rectangleSmall.left;
-         rectangle.top = rectangleSmall.top;
-         rectangle.bottom = rectangleSmall.bottom;
-      }
-      else if(eside == e_border_right)
-      {
-         rectangle.left = rectangleSmall.right;
-         rectangle.right = rectangleBig.right;
-         rectangle.top = rectangleSmall.top;
-         rectangle.bottom = rectangleSmall.bottom;
-      }
-      else if(eside == e_border_bottom)
-      {
-         rectangle.left = rectangleBig.left;
-         rectangle.right = rectangleBig.right;
-         rectangle.top = rectangleSmall.bottom;
-         rectangle.bottom = rectangleBig.bottom;
-      }
-      *prectangle = rectangle;
-
-   }
 
 
    void frame_002::_on_style_change(::draw2d::graphics_pointer & pgraphics)
@@ -478,21 +436,21 @@ namespace experience_tranquillum
 
    void frame_002::DrawGrip(
    ::draw2d::graphics_pointer & pgraphics,
-   const ::rectangle_i32 & rectangleClientParam,
+   const ::rectangle_i32 & rectangleXParam,
 
    enum_grip egrip)
    {
       //            const i32 size1 = 14;
       //      const i32 size2 = 15;
 
-      ::rectangle_i32 rectangleClient(rectangleClientParam);
+      ::rectangle_i32 rectangleX(rectangleXParam);
 
-      //            ::rectangle_i32 rectangleClientB(rectangleClient);
+      //            ::rectangle_i32 rectangleXB(rectangleX);
       ::rectangle_i32 rectangleA;
       ::point_i32 pointA;
       ::point_i32 pointB;
       ::point_i32 pointC;
-      ::rectangle_i32 rectangle(rectangleClient);
+      ::rectangle_i32 rectangle(rectangleX);
 
 
 
@@ -501,10 +459,10 @@ namespace experience_tranquillum
       case e_grip_top_left:
       {
 
-         rectangleClient.bottom--;
-         rectangleClient.right--;
+         rectangleX.bottom()--;
+         rectangleX.right()--;
 
-         rectangleA = rectangleClient;
+         rectangleA = rectangleX;
 
          pgraphics->set(m_ppenHilight1);
 
@@ -603,10 +561,10 @@ namespace experience_tranquillum
       case e_grip_top_right:
       {
 
-         rectangleClient.bottom--;
-         rectangleClient.right--;
+         rectangleX.bottom()--;
+         rectangleX.right()--;
 
-         rectangleA = rectangleClient;
+         rectangleA = rectangleX;
 
          pgraphics->set(m_ppenHilight1);
 
@@ -705,10 +663,10 @@ namespace experience_tranquillum
       {
          pgraphics->set(m_ppenHilight1);
 
-         rectangleClient.bottom--;
-         rectangleClient.right--;
+         rectangleX.bottom()--;
+         rectangleX.right()--;
 
-         rectangleA = rectangleClient;
+         rectangleA = rectangleX;
 
 
          pointA = rectangleA.bottom_left();
@@ -804,10 +762,10 @@ namespace experience_tranquillum
       break;
       case e_grip_bottom_right:
       {
-         rectangleClient.bottom--;
-         rectangleClient.right--;
+         rectangleX.bottom()--;
+         rectangleX.right()--;
 
-         rectangleA = rectangleClient;
+         rectangleA = rectangleX;
 
 
          pgraphics->set(m_ppenDkShadow1);
@@ -912,10 +870,10 @@ namespace experience_tranquillum
 
          ::rectangle_i32 rectangleB;
 
-         rectangleB.top = rectangleClient.top;
-         rectangleB.left = pointCenter.x() - GRIP_CENTER_LARGE_CX / 2;
-         rectangleB.right = pointCenter.x() + GRIP_CENTER_LARGE_CX / 2;
-         rectangleB.bottom = rectangleB.top + GRIP_CENTER_SMALL_CY;
+         rectangleB.top() = rectangleX.top();
+         rectangleB.left() = pointCenter.x() - GRIP_CENTER_LARGE_CX / 2;
+         rectangleB.right() = pointCenter.x() + GRIP_CENTER_LARGE_CX / 2;
+         rectangleB.bottom() = rectangleB.top() + GRIP_CENTER_SMALL_CY;
 
          DrawRectGrip(pgraphics, rectangleB);
       }
@@ -926,10 +884,10 @@ namespace experience_tranquillum
 
          ::rectangle_i32 rectangleB;
 
-         rectangleB.bottom = rectangleClient.bottom;
-         rectangleB.left = pointCenter.x() - GRIP_CENTER_LARGE_CX / 2;
-         rectangleB.right = pointCenter.x() + GRIP_CENTER_LARGE_CX / 2;
-         rectangleB.top = rectangleB.bottom - GRIP_CENTER_SMALL_CY;
+         rectangleB.bottom() = rectangleX.bottom();
+         rectangleB.left() = pointCenter.x() - GRIP_CENTER_LARGE_CX / 2;
+         rectangleB.right() = pointCenter.x() + GRIP_CENTER_LARGE_CX / 2;
+         rectangleB.top() = rectangleB.bottom() - GRIP_CENTER_SMALL_CY;
 
          DrawRectGrip(pgraphics, rectangleB);
       }
@@ -940,10 +898,10 @@ namespace experience_tranquillum
 
          ::rectangle_i32 rectangleB;
 
-         rectangleB.top = pointCenter.y() - GRIP_CENTER_LARGE_CY / 2;
-         rectangleB.left = rectangleClient.left;
-         rectangleB.right = rectangleClient.left + GRIP_CENTER_SMALL_CX;
-         rectangleB.bottom = pointCenter.y() + GRIP_CENTER_LARGE_CY / 2;
+         rectangleB.top() = pointCenter.y() - GRIP_CENTER_LARGE_CY / 2;
+         rectangleB.left() = rectangleX.left();
+         rectangleB.right() = rectangleX.left() + GRIP_CENTER_SMALL_CX;
+         rectangleB.bottom() = pointCenter.y() + GRIP_CENTER_LARGE_CY / 2;
 
          DrawRectGrip(pgraphics, rectangleB);
       }
@@ -954,10 +912,10 @@ namespace experience_tranquillum
 
          ::rectangle_i32 rectangleB;
 
-         rectangleB.top = pointCenter.y() - GRIP_CENTER_LARGE_CY / 2;
-         rectangleB.right = rectangleClient.right;
-         rectangleB.left = rectangleClient.right - GRIP_CENTER_SMALL_CX;
-         rectangleB.bottom = pointCenter.y() + GRIP_CENTER_LARGE_CY / 2;
+         rectangleB.top() = pointCenter.y() - GRIP_CENTER_LARGE_CY / 2;
+         rectangleB.right() = rectangleX.right();
+         rectangleB.left() = rectangleX.right() - GRIP_CENTER_SMALL_CX;
+         rectangleB.bottom() = pointCenter.y() + GRIP_CENTER_LARGE_CY / 2;
 
          DrawRectGrip(pgraphics, rectangleB);
       }
@@ -990,24 +948,24 @@ namespace experience_tranquillum
 
       pgraphics->draw_inset_3d_rectangle(rectangle, crButtonHilite, crButtonDarkShadow, 1.0);
 
-      rectangle.top++;
-      rectangle.bottom--;
-      rectangle.left++;
-      rectangle.right--;
+      rectangle.top()++;
+      rectangle.bottom()--;
+      rectangle.left()++;
+      rectangle.right()--;
 
       pgraphics->draw_inset_3d_rectangle(rectangle, crButtonFace, crButtonShadow, 1.0);
 
-      rectangle.top++;
-      rectangle.bottom--;
-      rectangle.left++;
-      rectangle.right--;
+      rectangle.top()++;
+      rectangle.bottom()--;
+      rectangle.left()++;
+      rectangle.right()--;
 
       pgraphics->fill_rectangle(rectangle, crButtonFace);
 
    }
 
 
-   void frame_002::DrawGripSet(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleClient)
+   void frame_002::DrawGripSet(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleX)
    {
 
       ::experience::size_manager * psizenager = m_pframewindow->size_manager();
@@ -1016,49 +974,49 @@ namespace experience_tranquillum
 
       if(egrip & e_grip_top)
       {
-         DrawGrip(pgraphics, rectangleClient, e_grip_top);
+         DrawGrip(pgraphics, rectangleX, e_grip_top);
 
       }
 
       if(egrip & e_grip_top_right)
       {
-         DrawGrip(pgraphics, rectangleClient, e_grip_top_right);
+         DrawGrip(pgraphics, rectangleX, e_grip_top_right);
 
       }
 
       if(egrip & e_grip_right)
       {
-         DrawGrip(pgraphics, rectangleClient, e_grip_right);
+         DrawGrip(pgraphics, rectangleX, e_grip_right);
 
       }
 
       if(egrip & e_grip_bottom_right)
       {
-         DrawGrip(pgraphics, rectangleClient, e_grip_bottom_right);
+         DrawGrip(pgraphics, rectangleX, e_grip_bottom_right);
 
       }
 
       if(egrip & e_grip_bottom)
       {
-         DrawGrip(pgraphics, rectangleClient, e_grip_bottom);
+         DrawGrip(pgraphics, rectangleX, e_grip_bottom);
 
       }
 
       if(egrip & e_grip_bottom_left)
       {
-         DrawGrip(pgraphics, rectangleClient, e_grip_bottom_left);
+         DrawGrip(pgraphics, rectangleX, e_grip_bottom_left);
 
       }
 
       if(egrip & e_grip_left)
       {
-         DrawGrip(pgraphics, rectangleClient, e_grip_left);
+         DrawGrip(pgraphics, rectangleX, e_grip_left);
 
       }
 
       if(egrip & e_grip_top_left)
       {
-         DrawGrip(pgraphics, rectangleClient, e_grip_top_left);
+         DrawGrip(pgraphics, rectangleX, e_grip_top_left);
 
       }
 

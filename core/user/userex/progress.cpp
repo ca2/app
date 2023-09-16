@@ -338,23 +338,23 @@ namespace userex
    void progress_impact::on_layout(::draw2d::graphics_pointer& pgraphics)
    {
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
-      if (rectangleClient.is_empty())
+      if (rectangleX.is_empty())
       {
 
          return;
 
       }
 
-      int cxBorder = rectangleClient.width() / 16;
-      int h = rectangleClient.height() / 4;
+      int cxBorder = rectangleX.width() / 16;
+      int h = rectangleX.height() / 4;
 
-      ::rectangle_i32 rectangleIndicator(rectangleClient);
+      ::rectangle_i32 rectangleIndicator(rectangleX);
 
       rectangleIndicator.deflate(cxBorder, h, cxBorder, h * 2);
 
-      m_rectangleStatus = rectangleClient;
+      m_rectangleStatus = rectangleX;
 
       m_rectangleStatus.deflate(cxBorder, h * 2, cxBorder, h);
 

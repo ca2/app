@@ -73,6 +73,27 @@ CLASS_DECL_ACME const ::wd32_character * string_find_character(const ::wd32_char
 }
 
 
+CLASS_DECL_ACME const ::wd32_character * string_find_character(const ::wd32_character * psz, const ::wd32_character * pszEnd, ::wd32_character chMatch) noexcept
+{
+   
+   while(psz < pszEnd)
+   {
+      
+      if(*psz == chMatch)
+      {
+       
+         return psz;
+         
+      }
+      
+      psz++;
+      
+   }
+
+   return nullptr;
+
+}
+
 
 CLASS_DECL_ACME const ::wd32_character * string_rear_find_string(const ::wd32_character * psz, const ::wd32_character * pszFind, strsize iStart) noexcept
 {

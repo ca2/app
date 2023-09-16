@@ -157,11 +157,16 @@ namespace user
 
          pdrag->m_pmouse = pmouse;
 
-         auto pointDrag = on_drag_start(pitem);
+         ::point_i32 pointDrag;
+         
+         if (on_drag_start(pointDrag, pitem))
+         {
 
-         pdrag->start(pmouse, pointDrag);
+            pdrag->drag_start(pmouse, this, pitem, pointDrag);
 
-         m_pdragCurrent = pdrag;
+            m_pdragCurrent = pdrag;
+
+         }
 
       }
 
@@ -285,7 +290,7 @@ namespace user
 
       drag_shift(m_pdragCurrent->m_pitem);
 
-      m_pdragCurrent->end();
+      m_pdragCurrent->drag_end();
 
       m_pdragCurrent.release();
 
@@ -307,9 +312,13 @@ namespace user
 
       auto pdrag = drag(pitem);
 
-      auto Δ = pdrag->m_pointLButtonDown - pdrag->m_pointInitial;
+      //auto pointLButtonDown2 = drag_mouse_cursor_position(pitem, pdrag->m_pointLButtonDown2);
 
-      auto pointDrag = pdrag->m_pmouse->m_point - Δ;
+      auto Δ = pdrag->m_pointLButtonDown2 - pdrag->m_pointInitial;
+
+      auto pointCursor = drag_mouse_cursor_position(pitem, pdrag->m_pmouse->m_pointAbsolute);
+
+      auto pointDrag = pointCursor - Δ;
 
       return pointDrag;
 

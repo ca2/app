@@ -183,6 +183,7 @@
     <ClInclude Include="user\user\notify_icon_listener.h" />
     <ClInclude Include="user\user\notify_icon_mm.h" />
     <ClInclude Include="user\user\notify_icon_mm_bridge.h" />
+    <ClInclude Include="user\user\options_impact.h" />
     <ClInclude Include="user\user\picture.h" />
     <ClInclude Include="user\user\picture_interaction.h" />
     <ClInclude Include="user\user\place_holder.h" />
@@ -255,7 +256,6 @@
     <ClCompile Include="user\experience\size_manager.cpp" />
     <ClCompile Include="user\form\document.cpp" />
     <ClCompile Include="user\form\impact.cpp" />
-    <ClCompile Include="user\form\options.cpp" />
     <ClCompile Include="user\menu\button.cpp" />
     <ClCompile Include="user\menu\central.cpp" />
     <ClCompile Include="user\menu\interaction.cpp" />
@@ -290,6 +290,7 @@
     <ClCompile Include="user\user\margin.cpp" />
     <ClCompile Include="user\user\multiple_document_template.cpp" />
     <ClCompile Include="user\user\network_configuration.cpp" />
+    <ClCompile Include="user\user\options_impact.cpp" />
     <ClCompile Include="user\user\picture.cpp" />
     <ClCompile Include="user\user\picture_impl.cpp" />
     <ClCompile Include="user\user\picture_interaction.cpp" />

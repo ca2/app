@@ -16,9 +16,10 @@ namespace user
          ::particle::operator = (mouse);
 
          m_ebuttonstate          = mouse.m_ebuttonstate;
-         m_point                 = mouse.m_point;
+         m_pointHost             = mouse.m_pointHost;
+         m_pointAbsolute         = mouse.m_pointAbsolute;
          m_pointDesired          = mouse.m_pointDesired;
-         m_pcursor               = mouse.m_pcursor;
+         m_pwindowingcursor      = mouse.m_pwindowingcursor;
          m_puserinteractionHit   = mouse.m_puserinteractionHit;
 
       }
@@ -26,6 +27,35 @@ namespace user
       return *this;
 
    }
+
+
+   //void mouse::initialize_mouse_cursor(::windowing::cursor* pcursor)
+   //{
+
+   //   m_pcursor = pcursor;
+
+   //   ::information() << "mouse::initialize_mouse_cursor : " << pcursor->m_ecursor;
+
+   //}
+
+
+   //void mouse::set_mouse_cursor(::windowing::cursor* pcursor)
+   //{
+
+   //   m_pcursor = pcursor;
+
+   //   ::information() << "mouse::set_mouse_cursor : " << pcursor->m_ecursor;
+
+   //}
+
+
+   //::windowing::cursor* mouse::get_mouse_cursor()
+   //{
+
+   //   return m_pcursor;
+
+   //}
+
 
 
 } // namespace user

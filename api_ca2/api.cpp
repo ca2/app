@@ -204,13 +204,13 @@ namespace api_ca2
       {
 
          strHtml += "<h1>";
-         strHtml += "🌌 🌍 [ ca2/C++/Windows ] api_ca2";
+         strHtml += "Login successful";
          strHtml += "</h1>";
 
       }
 
-      strHtml += "<h4><a href=\"https://ca2.software/camilo\">cs</a><a href=\"https://ca2.io\">&lt;3</a><a href=\"https://thomasbs.com/\">tbs</a>!!</h4>";
-      strHtml += "&lt;3TBS - InfinityUnicodeCharacter - " + pdatetime->international().get_date_time() + "- +InfinityUnicodeCharacter - CA2(THWOASONE)";
+      strHtml += "<h4>The login process has completed successfully.</h4>";
+      strHtml += "<h5>You can return to the application.</h5>";
       strHtml += "</body>";
       strHtml += "</html>";
 
@@ -330,7 +330,7 @@ namespace api_ca2
 
       string strAppLogin;
 
-      strAppLogin.format("http://localhost.ca2.software:%d/%s/", iCurrentPort, strAppId.c_str());
+      strAppLogin.format("http://127.0.0.1:%d/%s/", iCurrentPort, strAppId.c_str());
 
       return strAppLogin;
 

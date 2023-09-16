@@ -66,11 +66,11 @@ namespace experience_anthill
 
       auto pframewindow = m_pframewindow;
 
-      ::rectangle_i32 rectangleClient(rectangleParam);
+      ::rectangle_i32 rectangleX(rectangleParam);
 
       ::rectangle_i32 rectangleInflate;
 
-      if (rectangleClient.is_empty())
+      if (rectangleX.is_empty())
       {
 
          return;
@@ -79,7 +79,7 @@ namespace experience_anthill
 
       i32 iInflate = 5; // raio 2 pixels + centro 1 pixel
 
-      rectangleInflate = rectangleClient;
+      rectangleInflate = rectangleX;
       rectangleInflate.inflate(iInflate, iInflate);
 
       //::pointer<::user::interaction>puserinteractionDesktop = psystem->get_desktop_window();
@@ -92,20 +92,20 @@ namespace experience_anthill
 
       ::image_pointer pimage2;
 
-      pimage1 = m_pcontext->m_pauracontext->create_image({ rectangleClient.width() + iInflate * 2,  rectangleClient.height() + iInflate * 2 });
+      pimage1 = m_pcontext->m_pauracontext->create_image({ rectangleX.width() + iInflate * 2,  rectangleX.height() + iInflate * 2 });
 
-      pimage2 = m_pcontext->m_pauracontext->create_image({ rectangleClient.width() + iInflate * 2,  rectangleClient.height() + iInflate * 2 });
-      ::rectangle_i32 rectangleWindow = rectangleClient;
+      pimage2 = m_pcontext->m_pauracontext->create_image({ rectangleX.width() + iInflate * 2,  rectangleX.height() + iInflate * 2 });
+      ::rectangle_i32 rectangleWindow = rectangleX;
       pframewindow->client_to_screen()(rectangleWindow);
-      //pimage = create_image({rectangleClient.width(),  rectangleClient.height()});
-      //bool b = pimage2->get_graphics()->BitBlt(0, 0, rectangleClient.width() + iInflate * 2, rectangleClient.height() + iInflate * 2, pgraphics, rectangleClient.left - iInflate, rectangleClient.top - iInflate);
+      //pimage = create_image({rectangleX.width(),  rectangleX.height()});
+      //bool b = pimage2->get_graphics()->BitBlt(0, 0, rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2, pgraphics, rectangleX.left() - iInflate, rectangleX.top() - iInflate);
 
       {
 
          image_source imagesource(pgraphics,
-            rectangle_f64(::point_i32(rectangleClient.left - iInflate, rectangleClient.top - iInflate), ::size_f64(rectangleClient.width() + iInflate * 2, rectangleClient.height() + iInflate * 2)));
+            rectangle_f64(::point_i32(rectangleX.left() - iInflate, rectangleX.top() - iInflate), ::size_f64(rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2)));
 
-         auto rectangle = rectangle_f64_dimension(0, 0, rectangleClient.width() + iInflate * 2, rectangleClient.height() + iInflate * 2);
+         auto rectangle = rectangle_f64_dimension(0, 0, rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2);
 
          image_drawing_options imagedrawingoptions(rectangle);
 
@@ -114,14 +114,14 @@ namespace experience_anthill
          pimage2->get_graphics()->draw(imagedrawing);
 
       }
-      //bool b = ::BitBlt(dc2, 0, 0, rectangleClient.width() + iInflate * 2, rectangleClient.height() + iInflate * 2, hdcScreen, rectangleClient.left - iInflate, rectangleClient.top - iInflate);
+      //bool b = ::BitBlt(dc2, 0, 0, rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2, hdcScreen, rectangleX.left() - iInflate, rectangleX.top() - iInflate);
 
-      m_pfastblur->blur(pimage1, ::rectangle_i32(::size_i32(rectangleClient.width() + iInflate * 2, rectangleClient.height() + iInflate * 2)));
+      m_pfastblur->blur(pimage1, ::rectangle_i32(::size_i32(rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2)));
 
-      //spgraphics->Draw3dRect(rectangleClient, 127 << 24, 127 << 24);
-      //rectangleClient.deflate(1, 1);
-      //spgraphics->Draw3dRect(rectangleClient, 64 << 24, 64 << 24);
-      /*b = imaging.bitmap_blend(pgraphics, rectangle.left, rectangle.top,
+      //spgraphics->Draw3dRect(rectangleX, 127 << 24, 127 << 24);
+      //rectangleX.deflate(1, 1);
+      //spgraphics->Draw3dRect(rectangleX, 64 << 24, 64 << 24);
+      /*b = imaging.bitmap_blend(pgraphics, rectangle.left(), rectangle.top(),
       rectangleWindow.width(),
       rectangleWindow.height(),
       &spgraphics,
@@ -132,7 +132,7 @@ namespace experience_anthill
       bf.BlendFlags = 0;
       bf.SourceConstantAlpha = 255;
       ::alpha_blend(pgraphics->get_handle1(),
-      rectangle.left, rectangle.top,
+      rectangle.left(), rectangle.top(),
       rectangleWindow.width(),
       rectangleWindow.height(),
       spgraphics->get_handle1(),
@@ -143,9 +143,9 @@ namespace experience_anthill
 
       {
 
-         image_source imagesource(pimage1, ::rectangle_f64(point_f64(iInflate, iInflate), rectangleClient.size()));
+         image_source imagesource(pimage1, ::rectangle_f64(point_f64(iInflate, iInflate), rectangleX.size()));
 
-         image_drawing_options imagedrawingoptions(rectangleClient);
+         image_drawing_options imagedrawingoptions(rectangleX);
 
          image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
@@ -174,7 +174,7 @@ namespace experience_anthill
       /*Gdiplus::Graphics g((HDC) pgraphics->get_os_data());
       g.SetCompositingMode(Gdiplus::CompositingModeSourceOver);
       Gdiplus::SolidBrush solidBrush(Gdiplus::Color(bAlpha, color32_u8_red(color32), color32_u8_green(color32), color32_u8_blue(color32)));
-      g.FillRectangle(&solidBrush, rectangle.left, rectangle.top, rectangle.right - rectangle.left, rectangle.bottom - rectangle.top);*/
+      g.FillRectangle(&solidBrush, rectangle.left(), rectangle.top(), rectangle.right() - rectangle.left(), rectangle.bottom() - rectangle.top());*/
 
       pgraphics->fill_rectangle(rectangle, color & opacity);
 
@@ -248,12 +248,12 @@ namespace experience_anthill
          if (m_pframewindow == nullptr || m_pframewindow->get_draw_icon() == nullptr)
             return false;
 
-         rectangle.left = m_pointWindowIcon.x();
-         rectangle.top = m_pointWindowIcon.y();
-         //rectangle.right = rectangle.left + m_pframewindow->m_picon->get_size().cx();
-         //rectangle.bottom = rectangle.top + m_pframewindow->m_picon->get_size().cy();
-         rectangle.right = rectangle.left + 24;
-         rectangle.bottom = rectangle.top + 24;
+         rectangle.left() = m_pointWindowIcon.x();
+         rectangle.top() = m_pointWindowIcon.y();
+         //rectangle.right() = rectangle.left() + m_pframewindow->m_picon->get_size().cx();
+         //rectangle.bottom() = rectangle.top() + m_pframewindow->m_picon->get_size().cy();
+         rectangle.right() = rectangle.left() + 24;
+         rectangle.bottom() = rectangle.top() + 24;
 
          return true;
 
@@ -262,10 +262,10 @@ namespace experience_anthill
          if (m_pframewindow == nullptr || m_pframewindow->const_layout().design().display() != ::e_display_minimal)
             return false;
 
-         //rectangle.left = m_pointMoveGripMinimal.x() + 2;
-         //rectangle.top = m_pointMoveGripMinimal.y() + 2;
-         rectangle.right = rectangle.left + get_caption_height() - 4;
-         rectangle.bottom = rectangle.top + get_caption_height() - 4;
+         //rectangle.left() = m_pointMoveGripMinimal.x() + 2;
+         //rectangle.top() = m_pointMoveGripMinimal.y() + 2;
+         rectangle.right() = rectangle.left() + get_caption_height() - 4;
+         rectangle.bottom() = rectangle.top() + get_caption_height() - 4;
 
          return true;
 
@@ -446,8 +446,8 @@ namespace experience_anthill
    {
 
       ::rectangle_i32 rectangle(rectangleParam);
-      i32 x = rectangle.left;
-      i32 y = rectangle.top;
+      i32 x = rectangle.left();
+      i32 y = rectangle.top();
       i32 cx = rectangle.width();
       i32 cy = rectangle.height();
 
@@ -586,13 +586,13 @@ namespace experience_anthill
             while (i < rectangleGrip.width() - 5 + 1)
             {
 
-               pgraphics->draw_inset_3d_rectangle(rectangle_i32_dimension(rectangleGrip.left + i, rectangleGrip.top, 3, rectangleGrip.height()), argb(110, 230, 230, 230), argb(110, 130, 130, 130), 1.0);
+               pgraphics->draw_inset_3d_rectangle(rectangle_i32_dimension(rectangleGrip.left() + i, rectangleGrip.top(), 3, rectangleGrip.height()), argb(110, 230, 230, 230), argb(110, 130, 130, 130), 1.0);
 
                i += 5;
 
             }
 
-            //pgraphics->Draw3dRect(rectangleGrip.left + 12,rectangleGrip.top,3,rectangleGrip.height(),argb(190, 255, 255, 255),argb(190, 90, 90, 90));
+            //pgraphics->Draw3dRect(rectangleGrip.left() + 12,rectangleGrip.top(),3,rectangleGrip.height(),argb(190, 255, 255, 255),argb(190, 90, 90, 90));
 
          }
 
@@ -740,8 +740,8 @@ namespace experience_anthill
       //::experience::enum_frame etest = ::e_element_client;
       //{
          //      m_pframewindow->GetEventWindow()->screen_to_client()(point);
-         ::rectangle_i32 rectangleEvent;
-         m_pframewindow->window_rectangle(rectangleEvent);
+         
+      auto rectangleEvent = m_pframewindow->raw_rectangle();
          ::rectangle_i32 rectangle;
          ::point_i32 pointCenter = rectangleEvent.center();
          enum_grip egrip = m_pframewindow->size_manager()->GetGripMask();
@@ -749,16 +749,16 @@ namespace experience_anthill
          if (egrip & e_grip_top_left)
          {
             rectangle = rectangleEvent;
-            rectangle.right = rectangle.left + 16;
-            rectangle.bottom = rectangle.top + 5;
+            rectangle.right() = rectangle.left() + 16;
+            rectangle.bottom() = rectangle.top() + 5;
             if (rectangle.contains(point))
             {
                return ::experience::e_frame_sizing_top_left;
                // goto SizingSuccess;
             }
             rectangle = rectangleEvent;
-            rectangle.right = rectangle.left + 5;
-            rectangle.bottom = rectangle.top + 16;
+            rectangle.right() = rectangle.left() + 5;
+            rectangle.bottom() = rectangle.top() + 16;
             if (rectangle.contains(point))
             {
                return ::experience::e_frame_sizing_top_left;
@@ -768,16 +768,16 @@ namespace experience_anthill
          if (egrip & e_grip_top_right)
          {
             rectangle = rectangleEvent;
-            rectangle.left = rectangle.right - 16;
-            rectangle.bottom = rectangle.top + 5;
+            rectangle.left() = rectangle.right() - 16;
+            rectangle.bottom() = rectangle.top() + 5;
             if (rectangle.contains(point))
             {
                return ::experience::e_frame_sizing_top_right;
                // goto SizingSuccess;
             }
             rectangle = rectangleEvent;
-            rectangle.left = rectangle.right - 5;
-            rectangle.bottom = rectangle.top + 16;
+            rectangle.left() = rectangle.right() - 5;
+            rectangle.bottom() = rectangle.top() + 16;
             if (rectangle.contains(point))
             {
                return ::experience::e_frame_sizing_top_right;
@@ -787,16 +787,16 @@ namespace experience_anthill
          if (egrip & e_grip_bottom_right)
          {
             rectangle = rectangleEvent;
-            rectangle.left = rectangle.right - 16;
-            rectangle.top = rectangle.bottom - 5;
+            rectangle.left() = rectangle.right() - 16;
+            rectangle.top() = rectangle.bottom() - 5;
             if (rectangle.contains(point))
             {
                return ::experience::e_frame_sizing_bottom_right;
                // goto SizingSuccess;
             }
             rectangle = rectangleEvent;
-            rectangle.left = rectangle.right - 5;
-            rectangle.top = rectangle.bottom - 16;
+            rectangle.left() = rectangle.right() - 5;
+            rectangle.top() = rectangle.bottom() - 16;
             if (rectangle.contains(point))
             {
                return ::experience::e_frame_sizing_bottom_right;
@@ -806,16 +806,16 @@ namespace experience_anthill
          if (egrip & e_grip_bottom_left)
          {
             rectangle = rectangleEvent;
-            rectangle.right = rectangle.left + 16;
-            rectangle.top = rectangle.bottom - 5;
+            rectangle.right() = rectangle.left() + 16;
+            rectangle.top() = rectangle.bottom() - 5;
             if (rectangle.contains(point))
             {
                return ::experience::e_frame_sizing_bottom_left;
                // goto SizingSuccess;
             }
             rectangle = rectangleEvent;
-            rectangle.right = rectangle.left + 5;
-            rectangle.top = rectangle.bottom - 16;
+            rectangle.right() = rectangle.left() + 5;
+            rectangle.top() = rectangle.bottom() - 16;
             if (rectangle.contains(point))
             {
                return ::experience::e_frame_sizing_bottom_left;
@@ -824,10 +824,10 @@ namespace experience_anthill
          }
          if (egrip & e_grip_top)
          {
-            rectangle.top = rectangleEvent.top;
-            rectangle.left = pointCenter.x() - 8;
-            rectangle.right = pointCenter.x() + 8;
-            rectangle.bottom = rectangleEvent.top + 5;
+            rectangle.top() = rectangleEvent.top();
+            rectangle.left() = pointCenter.x() - 8;
+            rectangle.right() = pointCenter.x() + 8;
+            rectangle.bottom() = rectangleEvent.top() + 5;
             if (rectangle.contains(point))
             {
                return ::experience::e_frame_sizing_top;
@@ -836,10 +836,10 @@ namespace experience_anthill
          }
          if (egrip & e_grip_bottom)
          {
-            rectangle.top = rectangleEvent.bottom - 5;
-            rectangle.left = pointCenter.x() - 8;
-            rectangle.right = pointCenter.x() + 8;
-            rectangle.bottom = rectangleEvent.bottom;
+            rectangle.top() = rectangleEvent.bottom() - 5;
+            rectangle.left() = pointCenter.x() - 8;
+            rectangle.right() = pointCenter.x() + 8;
+            rectangle.bottom() = rectangleEvent.bottom();
             if (rectangle.contains(point))
             {
                return ::experience::e_frame_sizing_bottom;
@@ -848,10 +848,10 @@ namespace experience_anthill
          }
          if (egrip & e_grip_left)
          {
-            rectangle.top = pointCenter.y() - 8;
-            rectangle.left = rectangleEvent.left;
-            rectangle.right = rectangleEvent.left + 5;
-            rectangle.bottom = pointCenter.y() + 8;
+            rectangle.top() = pointCenter.y() - 8;
+            rectangle.left() = rectangleEvent.left();
+            rectangle.right() = rectangleEvent.left() + 5;
+            rectangle.bottom() = pointCenter.y() + 8;
             if (rectangle.contains(point))
             {
                return ::experience::e_frame_sizing_left;
@@ -860,10 +860,10 @@ namespace experience_anthill
          }
          if (egrip & e_grip_right)
          {
-            rectangle.top = pointCenter.y() - 8;
-            rectangle.left = rectangleEvent.right - 5;
-            rectangle.right = rectangleEvent.right;
-            rectangle.bottom = pointCenter.y() + 8;
+            rectangle.top() = pointCenter.y() - 8;
+            rectangle.left() = rectangleEvent.right() - 5;
+            rectangle.right() = rectangleEvent.right();
+            rectangle.bottom() = pointCenter.y() + 8;
             if (rectangle.contains(point))
             {
                return ::experience::e_frame_sizing_right;
@@ -878,6 +878,50 @@ namespace experience_anthill
       //}
       //return ::e_element_client;
    }
+
+
+   void frame::GetBorderRectangle(const ::rectangle_i32 & rectangleX, ::rectangle_i32 * lprect, enum_border eside)
+   {
+
+      ::rectangle_i32 rectangleBig(rectangleX);
+
+      ::rectangle_i32 rectangleSmall;
+
+      rectangleSmall = m_pframewindow->rectangle();
+
+      ::rectangle_i32 rectangle;
+
+      if (eside == e_border_top)
+      {
+         rectangle.left() = rectangleBig.left();
+         rectangle.right() = rectangleBig.right();
+         rectangle.top() = rectangleBig.top();
+         rectangle.bottom() = rectangleSmall.top();
+      }
+      else if (eside == e_border_left)
+      {
+         rectangle.left() = rectangleBig.left();
+         rectangle.right() = rectangleSmall.left();
+         rectangle.top() = rectangleSmall.top();
+         rectangle.bottom() = rectangleSmall.bottom();
+      }
+      else if (eside == e_border_right)
+      {
+         rectangle.left() = rectangleSmall.right();
+         rectangle.right() = rectangleBig.right();
+         rectangle.top() = rectangleSmall.top();
+         rectangle.bottom() = rectangleSmall.bottom();
+      }
+      else if (eside == e_border_bottom)
+      {
+         rectangle.left() = rectangleBig.left();
+         rectangle.right() = rectangleBig.right();
+         rectangle.top() = rectangleSmall.bottom();
+         rectangle.bottom() = rectangleBig.bottom();
+      }
+      *lprect = rectangle;
+   }
+
 
 
 } // namespace experience_anthill

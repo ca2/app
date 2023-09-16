@@ -339,13 +339,13 @@ namespace html
 
                pgraphics->get_text_metrics(&textmetric);
 
-               double dLineSpacing = textmetric.get_line_spacing();
+               double dLineHeight = textmetric.get_line_height();
 
-               pdata->m_pcoredata->m_layoutstate1.m_cy = (float) dLineSpacing;
+               pdata->m_pcoredata->m_layoutstate1.m_cy = (float) dLineHeight;
 
-               pdata->m_pcoredata->m_layoutstate1.m_cya.last() = (float) dLineSpacing;
+               pdata->m_pcoredata->m_layoutstate1.m_cya.last() = (float) dLineHeight;
 
-               m_box.set_height((float) dLineSpacing);
+               m_box.set_height((float) dLineHeight);
 
             }
 
@@ -395,15 +395,15 @@ namespace html
 
          auto pointBound = top_left();
 
-         pointBound.x() += m_margin.left + m_border.left + m_padding.left;
+         pointBound.x() += m_margin.left() + m_border.left() + m_padding.left();
 
          float x = pointBound.x();
 
          ::size_f32 sizeContent = ::size_f32(get_bound_size());
 
-         sizeContent.cx() = maximum(0.f, sizeContent.cx() - m_padding.left - m_padding.right - m_border.left - m_border.right - m_margin.left - m_margin.right);
+         sizeContent.cx() = maximum(0.f, sizeContent.cx() - m_padding.left() - m_padding.right() - m_border.left() - m_border.right() - m_margin.left() - m_margin.right());
 
-         sizeContent.cy() = maximum(0.f, sizeContent.cy() - m_padding.top - m_padding.bottom - m_border.top - m_border.bottom - m_margin.top - m_margin.bottom);
+         sizeContent.cy() = maximum(0.f, sizeContent.cy() - m_padding.top() - m_padding.bottom() - m_border.top() - m_border.bottom() - m_margin.top() - m_margin.bottom());
 
          for (i32 i = 0; i < str.length();)
          {
@@ -476,7 +476,7 @@ namespace html
 
                   pgraphics->get_text_metrics(&textmetric);
 
-                  sizeText.cy() = (float) textmetric.get_line_spacing();
+                  sizeText.cy() = (float) textmetric.get_line_height();
 
                   m_straLines.add(strLine.left(iLastSpace));
 
@@ -511,7 +511,7 @@ namespace html
 
             pgraphics->get_text_metrics(&textmetric);
 
-            sizeText.cy() = (float) textmetric.get_line_spacing();
+            sizeText.cy() = (float) textmetric.get_line_height();
 
             m_straLines.add(strLine);
 
@@ -613,7 +613,7 @@ namespace html
          //m_pcheckbox->window_rectangle(rectangleWindow);
          ::point_i32 pointPreviousContextOrg = pgraphics->get_origin();
 
-         pgraphics->offset_origin((i32) m_box.left, (i32) m_box.top);
+         pgraphics->offset_origin((i32) m_box.left(), (i32) m_box.top());
 
          if (::is_set(m_pedit) && m_pedit->is_window() && pdata->m_pcoredata->m_bEdit)
          {
@@ -648,11 +648,11 @@ namespace html
 
                   string str = m_straLines[i];
 
-                  rectangleLine.top = rectangleLine.top;
+                  rectangleLine.top() = rectangleLine.top();
 
                   rectangleLine.set_size(m_sizea[i]);
 
-                  pgraphics->text_out(rectangleLine.left, rectangleLine.top, str);
+                  pgraphics->text_out(rectangleLine.left(), rectangleLine.top(), str);
 
                }
 
@@ -682,7 +682,7 @@ namespace html
 
                pdata->m_pcoredata->m_bDrawFirstBody = true;
 
-               pdata->m_pcoredata->m_pform->client_rectangle(rectangle);
+               pdata->m_pcoredata->m_pform->rectangle(rectangle);
 
             }
             else
@@ -831,9 +831,9 @@ namespace html
          if(m_pelemental->m_pparent != nullptr)
          {
 
-            //x += m_pelemental->m_pparent->m_pimpl->m_border.left + //m_pelemental->m_pparent->m_pimpl->m_padding.left + //m_pelemental->m_pparent->m_pimpl->m_margin.left;
+            //x += m_pelemental->m_pparent->m_pimpl->m_border.left() + //m_pelemental->m_pparent->m_pimpl->m_padding.left() + //m_pelemental->m_pparent->m_pimpl->m_margin.left();
 
-            //y += m_pelemental->m_pparent->m_pimpl->m_border.top + //m_pelemental->m_pparent->m_pimpl->m_padding.top + m_pelemental->m_pparent->m_pimpl->m_margin.top;*/
+            //y += m_pelemental->m_pparent->m_pimpl->m_border.top() + //m_pelemental->m_pparent->m_pimpl->m_padding.top() + m_pelemental->m_pparent->m_pimpl->m_margin.top();*/
 
          /*}
 
@@ -861,7 +861,7 @@ namespace html
             for(i32 i = 0; i < m_straLines.get_size(); i++)
             {
                string strLine = m_straLines[i];
-               float left = i == 0 ? x : m_bound.left;
+               float left = i == 0 ? x : m_bound.left();
                float top = y + cy;
                if(pdata->m_pcoredata->m_bEdit)
                {
@@ -1064,14 +1064,14 @@ namespace html
          for(i32 i = 0; i < m_straLines.get_size(); i++)
          {
 
-            x1 = i == 0 ? x : m_bound.left;
+            x1 = i == 0 ? x : m_bound.left();
 
             x2 = x1 + m_sizea[i].cx();
 
             if(point.x() > x1 && point.x() < x2)
             {
 
-               if(point.y() > m_box.top + cy  && point.y() < m_box.top + cy + m_sizea[i].cy())
+               if(point.y() > m_box.top() + cy  && point.y() < m_box.top() + cy + m_sizea[i].cy())
                {
 
                   return 1;
@@ -1203,7 +1203,7 @@ namespace html
 
             const ::ansi_character * pszEnd = pszStart;
 
-            float cur_x = i == 0 ? x : m_bound.left;
+            float cur_x = i == 0 ? x : m_bound.left();
 //            i32 cur_y = y + cy;
             if(py >= (y + cy) && py < (y + m_sizea[i].cy()))
             {

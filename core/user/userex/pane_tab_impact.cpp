@@ -24,6 +24,7 @@
 #include "core/platform/application.h"
 #include "core/platform/session.h"
 #include "core/user/account/impact.h"
+#include "core/user/user/font_list_impact.h"
 
 
 namespace core
@@ -484,6 +485,10 @@ namespace userex
          return false;
 
       }
+
+      ptabpane->m_pplaceholder->m_bExtendOnParentClientArea = true;
+
+      ptabpane->m_pplaceholder->place(this->client_rectangle());
 
       pimpactdata->m_pimpactdata = (void *)pimpactdata;
 

@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "line_layout.h"
 #include "acme/constant/message.h"
+#include "acme/platform/node.h"
 #include "aura/user/user/interaction_array.h"
 #include "aura/message/user.h"
 
@@ -47,13 +48,13 @@ namespace user
       if (pshowwindow->m_bShow)
       {
 
-         information("Show\n");
+         information() << "Show";
 
       }
       else
       {
 
-         information("Hide\n");
+         information() << "Hide callstack : " << acmenode()->get_callstack();
 
       }
 
@@ -116,7 +117,7 @@ namespace user
       if (m_bExtendOnParent || get_parent()->is_frame_window() || get_parent()->is_impact())
       {
 
-         extend_on_parent(pgraphics);
+         _extend_on_parent(pgraphics);
 
       }
 
@@ -126,17 +127,38 @@ namespace user
    bool line_layout::on_perform_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
+      if (m_atom == "RedDotLogicsInternal_license_manager::user_form::line_layout")
+      {
+
+         information() << "RedDotLogicsInternal_license_manager::user_form::line_layout";
+
+      }
+
       if (m_puserinteractionpointeraChild && m_puserinteractionpointeraChild->has_interaction())
       {
+
+         if (m_atom == "RedDotLogicsInternal_license_manager::user_form::line_layout")
+         {
+
+            information() << "RedDotLogicsInternal_license_manager::user_form::line_layout";
+
+         }
 
          ::point_i32 point;
 
          int iMaximumNormal = 0;
 
+         bool bChanged = false;
+
          for (auto & puserinteraction : m_puserinteractionpointeraChild->interactiona())
          {
 
-            puserinteraction->set_position(point, e_layout_layout, pgraphics);
+            if (puserinteraction->set_position(point, e_layout_layout, pgraphics))
+            {
+
+               bChanged = true;
+
+            }
 
             iMaximumNormal = ::maximum(iMaximumNormal, puserinteraction->size(e_layout_sketch).get_normal_dimension(m_eorientation));
 
@@ -153,9 +175,14 @@ namespace user
 
          size.set_dimension(m_eorientation, point.get_dimension(m_eorientation));
 
-         set_size(size, ::user::e_layout_layout, pgraphics);
+         if (set_size(size, ::user::e_layout_layout, pgraphics))
+         {
 
-         return true;
+            bChanged = true;
+
+         }
+
+         return bChanged;
 
       }
 

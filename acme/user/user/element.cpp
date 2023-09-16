@@ -458,7 +458,7 @@ namespace user
 //}
 
 
-//bool element::client_rectangle(::rectangle_i32 * prectangle)
+//bool element::this->rectangle(::rectangle_i32 * prectangle)
 //{
 
 //   throw ::interface_only();
@@ -468,7 +468,7 @@ namespace user
 //}
 
 
-//bool element::client_rectangle(::rectangle_i64 * prectangle)
+//bool element::this->rectangle(::rectangle_i64 * prectangle)
 
 //{
 
@@ -1798,7 +1798,7 @@ namespace user
    //}
 
 
-   void element::RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::atom idLeftOver, ::u32 nFlag, ::rectangle_i32 * prectParam, const ::rectangle_i32 & rectangleClient, bool bStretch)
+   void element::RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::atom idLeftOver, ::u32 nFlag, ::rectangle_i32 * prectParam, const ::rectangle_i32 & rectangleX, bool bStretch)
    {
 
       throw ::interface_only();
@@ -2027,8 +2027,6 @@ namespace user
    {
 
       throw ::interface_only();
-
-      //return false;
 
    }
 
@@ -2319,12 +2317,18 @@ namespace user
    }
 
 
-   void element::post_message(const ::atom & atom, wparam wparam, lparam lparam)
+   void element::message_handler(const ::atom & atom, wparam wparam, lparam lparam)
    {
 
       throw ::interface_only();
 
-      //return false;
+   }
+
+
+   void element::post_message(const ::atom & atom, wparam wparam, lparam lparam)
+   {
+
+      throw ::interface_only();
 
    }
 
@@ -2650,9 +2654,9 @@ namespace user
 
    //   ::size_f64 sizePaddedFitting;
 
-   //   sizePaddedFitting.cx() = rectanglePadding.left + sizeFitting.cx() + rectanglePadding.right;
+   //   sizePaddedFitting.cx() = rectanglePadding.left() + sizeFitting.cx() + rectanglePadding.right();
 
-   //   sizePaddedFitting.cy() = rectanglePadding.top + sizeFitting.cy() + rectanglePadding.bottom;
+   //   sizePaddedFitting.cy() = rectanglePadding.top() + sizeFitting.cy() + rectanglePadding.bottom();
 
    //   return sizePaddedFitting;
 

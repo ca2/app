@@ -78,9 +78,9 @@ namespace draw2d_cairo
 
 FT_Library __ftlibrary();
 
-//void copy(::draw2d::matrix * pmatrix, const cairo_matrix_t * pcairomatrix);
+//void copy(::geometry2d::matrix * pmatrix, const cairo_matrix_t * pcairomatrix);
 
-//void copy(cairo_matrix_t* pcairomatrix,  const ::draw2d::matrix* pmatrix);
+//void copy(cairo_matrix_t* pcairomatrix,  const ::geometry2d::matrix* pmatrix);
 
 
 
@@ -132,8 +132,8 @@ namespace draw2d_cairo
 
 FT_Library __ftlibrary();
 
-CLASS_DECL_DRAW2D_CAIRO void copy(::draw2d::matrix * pmatrix, const cairo_matrix_t * pcairomatrix);
+CLASS_DECL_DRAW2D_CAIRO void copy(::geometry2d::matrix * pmatrix, const cairo_matrix_t * pcairomatrix);
 
 
-CLASS_DECL_DRAW2D_CAIRO void copy(cairo_matrix_t * pcairomatrix, const ::draw2d::matrix * pmatrix);
+CLASS_DECL_DRAW2D_CAIRO void copy(cairo_matrix_t * pcairomatrix, const ::geometry2d::matrix * pmatrix);
 

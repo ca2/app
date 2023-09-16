@@ -500,13 +500,22 @@ i32 image_list::set(int iItem, const image_drawing & imagedrawing)
 
    }
 
-   m_pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_set);
+   try
+   {
 
-   ::image_drawing imagedrawingTarget(imagedrawing);
+      m_pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
-   imagedrawingTarget.m_rectangleTarget.set(::point_f64(iItem * m_size.cx(), 0), m_size);
+      ::image_drawing imagedrawingTarget(imagedrawing);
 
-   m_pimage->get_graphics()->draw(imagedrawingTarget);
+      imagedrawingTarget.m_rectangleTarget.set(::point_f64(iItem * m_size.cx(), 0), m_size);
+
+      m_pimage->get_graphics()->draw(imagedrawingTarget);
+
+   }
+   catch(...)
+   {
+   
+   }
 
    return iItem;
 
@@ -709,10 +718,10 @@ void image_list::get_image_info(i32 nImage, info * pinfo) const
 
    }
 
-   pinfo->m_rectangle.left       = nImage * m_size.cx();
-   pinfo->m_rectangle.right      = pinfo->m_rectangle.left + m_size.cx();
-   pinfo->m_rectangle.top        = 0;
-   pinfo->m_rectangle.bottom     = m_size.cy();
+   pinfo->m_rectangle.left()       = nImage * m_size.cx();
+   pinfo->m_rectangle.right()      = pinfo->m_rectangle.left() + m_size.cx();
+   pinfo->m_rectangle.top()        = 0;
+   pinfo->m_rectangle.bottom()     = m_size.cy();
 
    pinfo->m_pimage               = m_pimage;
 

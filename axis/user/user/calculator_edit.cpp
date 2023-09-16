@@ -427,10 +427,10 @@ namespace calculator
 
          }
 
-         /*         if(m_ptopview != nullptr)
+         /*         if(m_ptopimpact != nullptr)
                   {
 
-                     m_ptopview->m_pimpact->post_message(message_impact_update);
+                     m_ptopimpact->m_pimpact->post_message(message_impact_update);
 
                   }*/
 

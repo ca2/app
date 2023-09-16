@@ -183,6 +183,8 @@ namespace user
 
       virtual bool CreateHeaderCtrl();
 
+      void _001OnNcClip(::draw2d::graphics_pointer & pgraphics) override;
+
       void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics) override;
 
       void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
@@ -397,7 +399,7 @@ namespace user
 
       virtual void _001OnClip(::draw2d::graphics_pointer & pgraphics) override;
 
-      //virtual bool client_rectangle(::rectangle_i32 * prectangle) override;
+      //virtual bool this->rectangle(::rectangle_i32 * prectangle) override;
 
 
       virtual void update_icon_list_impact_sort();

@@ -101,7 +101,7 @@ namespace user
 
       ::IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)::interaction_impl *  m_pImpl2;
       ::rectangle_i32                           m_rectangleWindowScreen;
-      ::rectangle_i32                           m_rectangleClientScreen;
+      ::rectangle_i32                           m_rectangleXScreen;
       int                                       m_iState1;
       ::u32                                     m_uCodePage;
       int                                       m_iLangId;
@@ -240,7 +240,8 @@ namespace user
 
       // call these from window
       //virtual void set_keyboard_focus();
-      //virtual void set_capture();
+      virtual void set_mouse_capture(::user::interaction * puserinteraction);
+      virtual bool defer_release_mouse_capture(::user::interaction * puserinteraction);
       //virtual void set_active_window();
       //virtual void set_foreground_window();
 
@@ -331,6 +332,12 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_prio_message_set_focus);
       DECLARE_MESSAGE_HANDLER(on_message_show_window);
       //DECLARE_MESSAGE_HANDLER(_001OnApplyVisual);
+
+
+      void on_configure(const ::rectangle_i32 & rectangle) override;
+      virtual void _on_configure(const ::rectangle_i32 & rectangle);
+
+
       DECLARE_MESSAGE_HANDLER(on_message_reposition);
       DECLARE_MESSAGE_HANDLER(on_message_size);
       DECLARE_MESSAGE_HANDLER(_001OnDestroyWindow);
@@ -749,7 +756,7 @@ namespace user
       //virtual void sketch_to_design(::draw2d::graphics_pointer& pgraphics, bool & bUpdateBuffer, bool & bUpdateWindow) override;
       virtual void do_graphics();
       void _001OnNcClip(::draw2d::graphics_pointer & pgraphics) override;
-      void defer_draw(::draw2d::graphics_pointer & pgraphics) override;
+      void defer_do_graphics(::draw2d::graphics_pointer & pgraphics) override;
       //void _000CallOnDraw(::draw2d::graphics_pointer & pgraphics) override;
       // call window window_update_screen_buffer
       //virtual void _001UpdateScreen();
@@ -803,9 +810,10 @@ namespace user
 
       virtual bool is_this_visible(enum_layout elayout) override;
 
-      void _window_show_change_visibility(::e_display edisplay, ::e_activation eactivation) override;
+      //void _window_show_change_visibility_unlocked(::e_display edisplay, ::e_activation eactivation) override;
       
-      void _window_request_presentation() override;
+      //void _window_request_presentation_locked() override;
+      //void _window_request_presentation_unlocked() override;
 
 
 

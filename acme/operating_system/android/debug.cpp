@@ -51,6 +51,13 @@ void output_debug_string(const ::scoped_string & scopedstr)
 }
 
 
+void output_debug_string_flush()
+{
+
+
+}
+
+
 CLASS_DECL_ACME void simple_debug_print(const ::scoped_string & scopedstr)
 {
 

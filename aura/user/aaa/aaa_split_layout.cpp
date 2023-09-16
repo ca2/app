@@ -85,7 +85,7 @@ namespace user
 
       //}
 
-      //::rectangle_f64 rectangleClient;
+      //::rectangle_f64 rectangleX;
 
       //for (i = 0; i < get_pane_count(); i++)
       //{
@@ -110,9 +110,9 @@ namespace user
 
       //   }
 
-      //   rectangleClient = rectanglePane;
+      //   rectangleX = rectanglePane;
 
-      //   rectangleClient.deflate(m_cxBorder, m_cyBorder);
+      //   rectangleX.deflate(m_cxBorder, m_cyBorder);
 
       //   if (rectanglePane.area() <= 0 || !bIsWindowVisible)
       //   {
@@ -209,7 +209,7 @@ namespace user
          if(m_panea[i]->m_pholder.is_null())
          {
 
-            m_panea[i]->m_pholder = get_new_place_holder(m_panea[i]->m_rectangleClient);
+            m_panea[i]->m_pholder = get_new_place_holder(m_panea[i]->m_rectangleX);
 
          }
 
@@ -367,20 +367,20 @@ namespace user
    i32 split_layout::GetMinPos()
    {
 
-      ::rectangle_f64 rectangleClient;
+      ::rectangle_f64 rectangleX;
 
-      client_rectangle(rectangleClient);
+      this->rectangle(rectangleX);
 
       if (m_eorientationSplit == e_orientation_horizontal)
       {
 
-         return rectangleClient.top;
+         return rectangleX.top();
 
       }
       else
       {
 
-         return rectangleClient.left;
+         return rectangleX.left();
 
       }
 
@@ -390,20 +390,20 @@ namespace user
    i32 split_layout::GetMaxPos()
    {
 
-      ::rectangle_f64 rectangleClient;
+      ::rectangle_f64 rectangleX;
 
-      client_rectangle(rectangleClient);
+      this->rectangle(rectangleX);
 
       if (m_eorientationSplit == e_orientation_horizontal)
       {
 
-         return rectangleClient.bottom;
+         return rectangleX.bottom();
 
       }
       else
       {
 
-         return rectangleClient.right;
+         return rectangleX.right();
 
       }
 
@@ -415,9 +415,9 @@ namespace user
 
       bool bIsWindowVisible = is_this_visible();
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
-      if (rectangleClient.is_empty())
+      if (rectangleX.is_empty())
       {
 
          return;
@@ -530,7 +530,7 @@ namespace user
 
          ::rectangle_f64 & rectanglePane = m_panea[i]->m_rect;
 
-         ::rectangle_f64 & rectangleClient = m_panea[i]->m_rectangleClient;
+         ::rectangle_f64 & rectangleX = m_panea[i]->m_rectangleX;
 
          CalcPaneRect(i,&rectanglePane);
 
@@ -545,13 +545,13 @@ namespace user
 
          }
 
-         rectangleClient = rectanglePane;
+         rectangleX = rectanglePane;
 
-         rectangleClient.deflate(m_cxBorder,m_cyBorder);
+         rectangleX.deflate(m_cxBorder,m_cyBorder);
 
          puserinteraction->order(e_zorder_top);
 
-         puserinteraction->place(rectangleClient);
+         puserinteraction->place(rectangleX);
 
          if (puserinteraction->is_request_visible())
          {
@@ -741,26 +741,26 @@ namespace user
 
    {
 
-      client_rectangle(prect);
+      this->rectangle(prect);
 
 
       if(m_eorientationSplit == e_orientation_horizontal)
       {
 
-         prect->top      = nMinPos;
+         prect->top()      = nMinPos;
 
 
-         prect->bottom   = nMaxPos;
+         prect->bottom()   = nMaxPos;
 
 
       }
       else
       {
 
-         prect->left   = nMinPos;
+         prect->left()   = nMinPos;
 
 
-         prect->right   = nMaxPos;
+         prect->right()   = nMaxPos;
 
 
       }
@@ -771,20 +771,20 @@ namespace user
    i32 split_layout::get_normal_dimension()
    {
 
-      ::rectangle_f64 rectangleClient;
+      ::rectangle_f64 rectangleX;
 
-      client_rectangle(rectangleClient);
+      this->rectangle(rectangleX);
 
       if(m_eorientationSplit == e_orientation_horizontal)
       {
 
-         return rectangleClient.height();
+         return rectangleX.height();
 
       }
       else
       {
 
-         return rectangleClient.width();
+         return rectangleX.width();
 
       }
 
@@ -794,20 +794,20 @@ namespace user
    i32 split_layout::get_ortogonal_dimension()
    {
 
-      ::rectangle_f64 rectangleClient;
+      ::rectangle_f64 rectangleX;
 
-      client_rectangle(rectangleClient);
+      this->rectangle(rectangleX);
 
       if(m_eorientationSplit == e_orientation_horizontal)
       {
 
-         return rectangleClient.width();
+         return rectangleX.width();
 
       }
       else
       {
 
-         return rectangleClient.height();
+         return rectangleX.height();
 
       }
 
@@ -848,38 +848,38 @@ namespace user
       }
 
 
-      client_rectangle(prect);
+      this->rectangle(prect);
 
 
       if(m_eorientationSplit == e_orientation_horizontal)
       {
 
-         nPos = maximum(nPos, prect->top + m_iMarging / 2);
+         nPos = maximum(nPos, prect->top() + m_iMarging / 2);
 
 
-         nPos = minimum(nPos, prect->bottom - m_iMarging / 2);
+         nPos = minimum(nPos, prect->bottom() - m_iMarging / 2);
 
 
-         prect->top      = nPos - m_iMarging / 2;
+         prect->top()      = nPos - m_iMarging / 2;
 
 
-         prect->bottom   = nPos + m_iMarging / 2;
+         prect->bottom()   = nPos + m_iMarging / 2;
 
 
       }
       else
       {
 
-         nPos = maximum(nPos, prect->left + m_iMarging / 2);
+         nPos = maximum(nPos, prect->left() + m_iMarging / 2);
 
 
-         nPos = minimum(nPos, prect->right - m_iMarging / 2);
+         nPos = minimum(nPos, prect->right() - m_iMarging / 2);
 
 
-         prect->left   = nPos - m_iMarging / 2;
+         prect->left()   = nPos - m_iMarging / 2;
 
 
-         prect->right   = nPos + m_iMarging / 2;
+         prect->right()   = nPos + m_iMarging / 2;
 
 
       }
@@ -938,7 +938,7 @@ namespace user
       else
       {
 
-         pcomponent->m_pholder = place_hold(puserinteraction,pcomponent->m_rectangleClient);
+         pcomponent->m_pholder = place_hold(puserinteraction,pcomponent->m_rectangleX);
 
          if (pcomponent->m_pholder == nullptr)
          {
@@ -1023,7 +1023,7 @@ namespace user
 
          ::rectangle_f64 rectanglePane;
 
-         pcomponent->m_pholder->client_rectangle(rectanglePane);
+         pcomponent->m_pholder->rectangle(rectanglePane);
 
          pcomponent->m_pholder = place_hold(puserinteraction, rectanglePane);
 
@@ -1079,13 +1079,13 @@ namespace user
          if(m_eorientationSplit == e_orientation_horizontal)
          {
 
-            return rectangle.bottom;
+            return rectangle.bottom();
 
          }
          else
          {
 
-            return rectangle.right;
+            return rectangle.right();
 
          }
 
@@ -1112,13 +1112,13 @@ namespace user
          if(m_eorientationSplit == e_orientation_horizontal)
          {
 
-            return rectangle.top;
+            return rectangle.top();
 
          }
          else
          {
 
-            return rectangle.left;
+            return rectangle.left();
 
          }
 
@@ -1150,8 +1150,8 @@ namespace user
       {
 
          i32   fwKeys = (i32) wParam;        // key flags
-//         i32 xPos = splitRect.left + (i16) LOWORD(lParam);  // horizontal position of cursor
-//         i32 yPos = splitRect.top + (i16) HIWORD(lParam);  // vertical position of cursor
+//         i32 xPos = splitRect.left() + (i16) LOWORD(lParam);  // horizontal position of cursor
+//         i32 yPos = splitRect.top() + (i16) HIWORD(lParam);  // vertical position of cursor
          if((fwKeys & MK_LBUTTON) > 0)
          {
             ::user::split_bar * pSplitBar = m_splitbara.element_at(iSplitBar);
@@ -1163,8 +1163,8 @@ namespace user
       else if(emessage == e_message_left_button_up)
       {
 //         i32   fwKeys = wParam;        // key flags
-//         i32 xPos = splitRect.left + (i16) LOWORD(lParam);  // horizontal position of cursor
-//         i32 yPos = splitRect.top + (i16) HIWORD(lParam);  // vertical position of cursor
+//         i32 xPos = splitRect.left() + (i16) LOWORD(lParam);  // horizontal position of cursor
+//         i32 yPos = splitRect.top() + (i16) HIWORD(lParam);  // vertical position of cursor
          if(m_iState != stateInitial)
          {
             psession->ReleaseCapture();
@@ -1177,8 +1177,8 @@ namespace user
       else if(emessage == e_message_mouse_move)
       {
          i32   fwKeys = (i32) wParam;        // key flags
-         i32 xPos = splitRect.left + (i16) LOWORD(lParam);  // horizontal position of cursor
-         i32 yPos = splitRect.top + (i16) HIWORD(lParam);  // vertical position of cursor
+         i32 xPos = splitRect.left() + (i16) LOWORD(lParam);  // horizontal position of cursor
+         i32 yPos = splitRect.top() + (i16) HIWORD(lParam);  // vertical position of cursor
          if((fwKeys & MK_LBUTTON) > 0 && (m_iState == stateDragging) && (iSplitBar == m_iIndex))
          {
             //cslock lock(m_pmutex);
@@ -1252,7 +1252,7 @@ namespace user
 
       }
 
-      return m_panea[iPane]->m_rectangleClient;
+      return m_panea[iPane]->m_rectangleX;
 
    }
 
@@ -1341,7 +1341,7 @@ namespace user
 
       m_rect.Null();
 
-      m_rectangleClient.Null();
+      m_rectangleX.Null();
 
       m_sizeFixed = ::size(0, 0);
 
@@ -1358,13 +1358,13 @@ namespace user
       if (colorBackground.m_iA > 0)
       {
 
-         ::rectangle_f64 rectangleClient;
+         ::rectangle_f64 rectangleX;
 
-         client_rectangle(rectangleClient);
+         this->rectangle(rectangleX);
 
          pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-         pgraphics->fill_rectangle(rectangleClient, colorBackground);
+         pgraphics->fill_rectangle(rectangleX, colorBackground);
 
       }
 

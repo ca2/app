@@ -45,10 +45,10 @@
 //
 //   ::user::native_window_initialize initialize;
 //
-//   initialize.m_rectangle.left = rectangle.origin.x();
-//   initialize.m_rectangle.top = rectangle.origin.y();
-//   initialize.m_rectangle.right = rectangle.origin.x() + rectangle.size.width;
-//   initialize.m_rectangle.bottom = rectangle.origin.x() + rectangle.size.height;
+//   initialize.m_rectangle.left() = rectangle.origin.x();
+//   initialize.m_rectangle.top() = rectangle.origin.y();
+//   initialize.m_rectangle.right() = rectangle.origin.x() + rectangle.size.width;
+//   initialize.m_rectangle.bottom() = rectangle.origin.x() + rectangle.size.height;
 //
 //   acmesystem()->m_possystemwindow->m_puserinteraction->initialize_native_window(&initialize);
 //

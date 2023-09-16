@@ -85,7 +85,7 @@ namespace user
       virtual void create_child(::user::interaction * puserinteraction, ::user::primitive * puserprimitiveParent);
 
 
-      virtual void defer_draw(::draw2d::graphics_pointer & pgraphics);
+      virtual void defer_do_graphics(::draw2d::graphics_pointer & pgraphics);
 
 
       virtual void top_down_prefix();
@@ -101,16 +101,22 @@ namespace user
 
       void destroy() override;
 
-      virtual void _window_show_change_visibility(::e_display edisplay, ::e_activation eactivation);
-      virtual void _window_request_presentation();
+      //virtual void _window_show_change_visibility_locked();
+      //virtual void _window_show_change_visibility_unlocked(::e_display edisplay, ::e_activation eactivation);
+      //virtual void _window_request_presentation_locked();
+      //virtual void _window_request_presentation_unlocked();
 
       virtual void create_message_queue(::user::interaction * pinteraction, const ::string & lpszName);
       
       //virtual void graphics_thread_update_screen();
 
-      //virtual void RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::atom nIdLeftOver, ::u32 nFlag = reposDefault, ::rectangle_i32 * prectParam = nullptr, const ::rectangle_i32 & rectangleClient = nullptr, bool bStretch = true);
+      //virtual void RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::atom nIdLeftOver, ::u32 nFlag = reposDefault, ::rectangle_i32 * prectParam = nullptr, const ::rectangle_i32 & rectangleX = nullptr, bool bStretch = true);
 
       virtual void window_move(i32 x, i32 y);
+
+
+      virtual void on_configure(const ::rectangle_i32 & rectangle);
+      //\virtual void on_resize(const ::size_i32 & size);
 
 
       virtual void post(::message::message* pusermessage);
@@ -153,10 +159,15 @@ namespace user
       virtual bool _is_window();
 
       
-      virtual ::lresult send_message(const ::atom& atom, ::wparam wParam = 0, ::lparam lParam = 0, const ::point_i32 & point = {});
+      virtual ::lresult send_message(const ::atom& atom, ::wparam wparam = 0, ::lparam lparam = 0, const ::point_i32 & point = {});
 
+      
+      using ::channel::message_handler;
 
-      virtual void post_message(const ::atom& atom, wparam wParam = 0, ::lparam lParam = 0);
+      virtual void message_handler(const ::atom & atom, wparam wparam = 0, lparam lparam = 0);
+
+     
+      virtual void post_message(const ::atom& atom, wparam wparam = 0, ::lparam lparam = 0);
 
 
       //virtual void set_window_text(const ::string& pszString);
@@ -362,8 +373,6 @@ namespace user
 
       virtual lresult message_call(const ::atom & atom, wparam wparam, lparam lparam, const ::point_i32 & point = {});
       virtual lresult message_call(::message::message * pmessage);
-
-
 
       virtual void send_message_to_descendants(const ::atom & atom, wparam wParam = 0,lparam lParam = 0,bool bDeep = true,bool bOnlyPerm = false);
 

@@ -1,6 +1,7 @@
 //Created by camilo on 2021-03-26 00:44 BRT <3ThomasBS_
 #include "framework.h"
 #include "context.h"
+#include "acme/exception/interface_only.h"
 #include "acme/filesystem/file/memory_file.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/acme_path.h"
@@ -12,6 +13,8 @@
 #include "acme/parallelization/retry.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/application.h"
+#include "acme/platform/nano_http.h"
+#include "acme/platform/nano_http_response.h"
 #include "acme/platform/node.h"
 #include "acme/platform/session.h"
 #include "acme/platform/system.h"
@@ -653,7 +656,7 @@ namespace acme
             if (!retry([&]()
                {
 
-                  return acmesystem()->http_download(pfile, path, set);
+                  return acmecontext()->http_download(pfile, path, set);
 
                }))
             {
@@ -818,6 +821,131 @@ namespace acme
       add_matter_locator(strMatterLocator);
 
       //on_update_matter_locator();
+
+   }
+
+
+   bool context::http_exists(const ::scoped_string & scopedstrUrl, ::property_set & set)
+   {
+
+      throw ::interface_only();
+
+      return false;
+
+
+   }
+
+
+   ::file::enum_type context::http_get_type(const ::scoped_string & scopedstrUrl, property_set & set)
+   {
+
+      throw ::interface_only();
+
+      return ::file::e_type_unknown;
+
+   }
+
+
+   ::file::enum_type context::http_get_type(const ::scoped_string & scopedstrUrl, ::payload * pvarQuery, property_set & set)
+   {
+
+      throw ::interface_only();
+
+      return ::file::e_type_unknown;
+
+   }
+
+
+
+   ::string context::http_text(const ::scoped_string & scopedstrUrl)
+   {
+
+      auto memory = http_memory(scopedstrUrl);
+
+      ::string str = memory.as_utf8();
+
+      return str;
+
+   }
+
+
+   ::string context::http_text(const ::scoped_string & scopedstrUrl, ::property_set & set)
+   {
+
+      auto memory = http_memory(scopedstrUrl, set);
+
+      ::string str = memory.as_utf8();
+
+      return str;
+
+   }
+
+
+   ::memory context::http_memory(const ::scoped_string & scopedstrUrl)
+   {
+
+      property_set set;
+
+      set["raw_http"] = true;
+
+      set["disable_common_name_cert_check"] = true;
+
+      return http_memory(scopedstrUrl, set);
+
+   }
+
+
+   ::memory context::http_memory(const ::scoped_string & scopedstrUrl, ::property_set & set)
+   {
+
+      //UNREFERENCED_PARAMETER(pcontext);
+
+      try
+      {
+
+         ::memory memory;
+
+         ::nano::http_response httpresponse(set, memory);
+
+         acmesystem()->nano_http()->memory(scopedstrUrl, httpresponse);
+
+         return ::transfer(memory);
+
+      }
+      catch (...)
+      {
+
+         set["timeout"] = true;
+
+         return {};
+
+      }
+
+      //return pasynchronousehttpresponse->m_data.m_memory;
+
+   }
+
+
+   void context::http_download(const ::payload & payloadFile, const ::scoped_string & scopedstrUrl)
+   {
+
+      auto pfile = acmefile()->get_writer(payloadFile);
+
+      auto memory = http_memory(scopedstrUrl);
+
+      pfile->write(memory.data(), memory.size());
+
+   }
+
+
+   void context::http_download(const ::payload & payloadFile, const ::scoped_string & scopedstrUrl, ::property_set & set)
+   {
+
+      auto pfile = acmefile()->get_writer(payloadFile);
+
+      auto memory = http_memory(scopedstrUrl, set);
+
+      pfile->write(memory.data(), memory.size());
 
    }
 

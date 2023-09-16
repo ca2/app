@@ -67,8 +67,8 @@ list(APPEND library_source
    #graphics/draw2d/keep.h
    graphics/draw2d/lock.cpp
    graphics/draw2d/lock.h
-   graphics/draw2d/matrix.cpp
-   graphics/draw2d/matrix.h
+   #graphics/draw2d/matrix.cpp
+   #graphics/draw2d/matrix.h
    graphics/draw2d/nano_svg.cpp
    graphics/draw2d/nano_svg_rasterization.cpp
    graphics/draw2d/object.cpp
@@ -1325,7 +1325,10 @@ list(APPEND static_library_references ${library_references})
 list(TRANSFORM static_library_references PREPEND static_)
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source})
+add_library(${PROJECT_NAME} SHARED ${library_source}
+   user/user/_string.h
+   user/user/_text_stream.h
+   user/user/_string.cpp)
 add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
 

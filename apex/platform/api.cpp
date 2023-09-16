@@ -84,6 +84,8 @@ void api::load_configuration()
    }
 
    pathConfiguration = "matter://api" / (strPrefix + pathName + ".network_payload");
+   
+   information() << "api::load_configuration path : " << pathConfiguration;
 
    string strNetworkPayload = file()->as_string(pathConfiguration);
 
@@ -94,9 +96,13 @@ void api::load_configuration()
 
 void api::load_profile()
 {
+   
+   auto path = m_pathProfileFolder / "profile.network_payload";
 
-   auto strNetworkPayload = file()->safe_get_string(m_pathProfileFolder / "profile.network_payload");
+   information() << "api::load_profile path : " << path;
 
+   auto strNetworkPayload = file()->safe_get_string(path);
+   
    try
    {
 
@@ -347,12 +353,12 @@ void api::_api_get(::string & strNetworkPayload, const ::scoped_string & scopeds
 
       }
       
-      if(payload.is_empty())
-      {
+      //if(payload.is_empty())
+      //{
 
-         return false;
+      //   return false;
 
-      }
+      //}
 
       int iHttpStatusCode = set["http_status_code"];
 

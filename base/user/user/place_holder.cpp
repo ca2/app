@@ -124,6 +124,8 @@ namespace user
 
       }
 
+      puserinteractionChild->m_bExtendOnParentClientArea = true;
+
       return true;
 
    }
@@ -329,37 +331,42 @@ namespace user
 
       }
 
-      auto rectangleClient = client_rectangle(e_layout_sketch);
+      auto rectangle = this->rectangle(e_layout_layout);
 
-      if (rectangleClient.is_empty())
+      if (rectangle.is_set())
       {
 
-         return;
+         //if (m_rectangleClient2 != rectangle)
+         //{
 
-      }
+         //   m_rectangleClient2 = rectangle;
 
+         //}
 
-      for(auto  & puiChild : puserinteractionpointeraChild->interactiona())
-      {
-
-         //auto puiChild = puserinteractionpointeraChild->first_interaction();
-
-         //lock_sketch_to_design lockSketchToDesign(puiChild);
-
-         puiChild->place(rectangleClient);
-
-         if(puserinteractionpointeraChild->interaction_count() == 1)
+         for (auto & puiChild : puserinteractionpointeraChild->interactiona())
          {
 
-            puiChild->display();
+            //auto puiChild = puserinteractionpointeraChild->first_interaction();
+
+            //lock_sketch_to_design lockSketchToDesign(puiChild);
+
+            puiChild->place(rectangle);
+
+            if (puserinteractionpointeraChild->interaction_count() == 1
+               && !puiChild->is_this_visible())
+            {
+
+               puiChild->display();
+
+            }
+
+            puiChild->set_reposition();
+
+            puiChild->set_need_layout();
+
+            puiChild->set_need_redraw({rectangle}, pgraphics);
 
          }
-
-         puiChild->set_reposition();
-
-         puiChild->set_need_layout();
-
-         puiChild->set_need_redraw();
 
       }
 
@@ -459,7 +466,7 @@ namespace user
    }
 
 
-   void place_holder::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void place_holder::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
       UNREFERENCED_PARAMETER(pgraphics);
@@ -467,7 +474,7 @@ namespace user
    }
 
 
-   void place_holder::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
+   void place_holder::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
       UNREFERENCED_PARAMETER(pgraphics);
@@ -587,7 +594,7 @@ namespace user
 
       get_parent()->get_child_rect(rectangle);
 
-      offset(rectangle, -rectangle.left, -rectangle.top);
+      offset(rectangle, -rectangle.left(), -rectangle.top());
 
    }
 

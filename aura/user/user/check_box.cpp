@@ -23,9 +23,9 @@ void scroll_x(::rectangle_i32 & rectangleTarget, double dRateX, const ::rectangl
 
    ::i32 w = ::width(rectangle);
 
-   rectangleTarget.left = (::i32) (rectangle.left + (rectangle.width() - w) * dRateX);
+   rectangleTarget.left() = (::i32) (rectangle.left() + (rectangle.width() - w) * dRateX);
 
-   rectangleTarget.right = rectangleTarget.left + w;
+   rectangleTarget.right() = rectangleTarget.left() + w;
 
 }
 
@@ -170,13 +170,13 @@ namespace user
 
       KEEP(pgraphics->m_pdrawcontext, &drawcontext);
 
-      //::rectangle_i32 rectangleClient;
+      //::rectangle_i32 rectangleX;
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
-      int w = rectangleClient.width();
+      int w = rectangleX.width();
 
-      int h = rectangleClient.height();
+      int h = rectangleX.height();
 
       if (w <= 0 || h <= 0)
       {
@@ -189,7 +189,7 @@ namespace user
 
       ::draw2d::save_context savecontext(pgraphics);
 
-      pgraphics->offset_origin(rectangleClient.left, rectangleClient.top);
+      pgraphics->offset_origin(rectangleX.left(), rectangleX.top());
 
       ::rectangle_i32 rectangleCheckBox;
 
@@ -199,14 +199,14 @@ namespace user
 
          int iSize = minimum(15 * w / 15, 15 * h / 15);
 
-         rectangleCheckBox.left = 0;
-         rectangleCheckBox.top = 0;
-         rectangleCheckBox.right = iSize;
-         rectangleCheckBox.bottom = iSize;
+         rectangleCheckBox.left() = 0;
+         rectangleCheckBox.top() = 0;
+         rectangleCheckBox.right() = iSize;
+         rectangleCheckBox.bottom() = iSize;
 
-         rectangleText = rectangleClient;
+         rectangleText = rectangleX;
 
-         rectangleText.left = rectangleCheckBox.right + 4;
+         rectangleText.left() = rectangleCheckBox.right() + 4;
 
          auto colorBackground = get_color(pstyle, e_element_background);
 
@@ -314,11 +314,11 @@ namespace user
 
       KEEP(pgraphics->m_pdrawcontext, &drawcontext);
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
-      int w = rectangleClient.width();
+      int w = rectangleX.width();
 
-      int h = rectangleClient.height();
+      int h = rectangleX.height();
 
       w--;
 
@@ -376,15 +376,15 @@ namespace user
 
       ppath->add_arc(rectangleL, -90_degree, -180_degree);
 
-      ppath->add_line((rectangleL.left + rectangleL.right) / 2, rectangleL.bottom);
+      ppath->add_line((rectangleL.left() + rectangleL.right()) / 2, rectangleL.bottom());
 
-      ppath->add_line((rectangleR.left + rectangleR.right) / 2, rectangleR.bottom);
+      ppath->add_line((rectangleR.left() + rectangleR.right()) / 2, rectangleR.bottom());
 
       ppath->add_arc(rectangleR, 90_degree, -180_degree);
 
-      ppath->add_line((rectangleR.left + rectangleR.right) / 2, rectangleR.top);
+      ppath->add_line((rectangleR.left() + rectangleR.right()) / 2, rectangleR.top());
 
-      ppath->add_line((rectangleL.left + rectangleL.right) / 2, rectangleL.top);
+      ppath->add_line((rectangleL.left() + rectangleL.right()) / 2, rectangleL.top());
 
       ppath->close_figure();
 
@@ -537,15 +537,15 @@ namespace user
    void check_box::_001OnDrawRedGreenCircle(::draw2d::graphics_pointer & pgraphics)
    {
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
-      int iMinimumDimension = maximum(rectangleClient.minimum_dimension() -1, 1);
+      int iMinimumDimension = maximum(rectangleX.minimum_dimension() -1, 1);
 
       ::rectangle_i32 rectangleCheckBox;
-      rectangleCheckBox.left = 1;
-      rectangleCheckBox.top = 1;
-      rectangleCheckBox.right = iMinimumDimension + 1;
-      rectangleCheckBox.bottom = iMinimumDimension + 1;
+      rectangleCheckBox.left() = 1;
+      rectangleCheckBox.top() = 1;
+      rectangleCheckBox.right() = iMinimumDimension + 1;
+      rectangleCheckBox.bottom() = iMinimumDimension + 1;
 
       ::color::color crPen = argb(255, 0, 0, 0);
       ::color::color crBrush;
@@ -597,7 +597,7 @@ namespace user
       //      pgraphics->line_to(13, 6);
       //   }
       //}
-      //pgraphics->offset_origin(-rectangleClient.left, -rectangleClient.top);
+      //pgraphics->offset_origin(-rectangleX.left(), -rectangleX.top());
 
    }
 

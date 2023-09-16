@@ -225,9 +225,9 @@ namespace app_build
    void impact::_001OnDraw(::draw2d::graphics_pointer& pgraphics)
    {
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
-      pgraphics->fill_rectangle(rectangleClient, argb(127, 255, 255, 255));
+      pgraphics->fill_rectangle(rectangleX, argb(127, 255, 255, 255));
 
       //string_array straLine;
 
@@ -237,7 +237,7 @@ namespace app_build
 
       p.x() = 10;
 
-      p.y() = rectangleClient.height();
+      p.y() = rectangleX.height();
 
       pgraphics->set_text_color(argb(255,89, 89, 89));
       //if (straLine.has_element())

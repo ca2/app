@@ -70,9 +70,9 @@ namespace experience_core
 
 #endif
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
-      if (rectangleClient.is_empty())
+      if (rectangleX.is_empty())
       {
 
          return;
@@ -129,7 +129,7 @@ namespace experience_core
 
       }
 
-      ::rectangle_i32 rectangleEllipse(rectangleClient);
+      ::rectangle_i32 rectangleEllipse(rectangleX);
 
       rectangleEllipse.deflate(0, 0, 2, 2);
 
@@ -150,7 +150,7 @@ namespace experience_core
 
          pgraphics->set_text_color(crText);
 
-         pgraphics->draw_text(strWindowText, rectangleClient, e_align_center, e_draw_text_single_line);
+         pgraphics->draw_text(strWindowText, rectangleX, e_align_center, e_draw_text_single_line);
 
       }
       else
@@ -208,9 +208,9 @@ namespace experience_core
    void control_box_button::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      auto rectangleClient = client_rectangle(::user::e_layout_layout);
+      auto rectangleX = this->rectangle(::user::e_layout_layout);
 
-      if (rectangleClient.is_empty())
+      if (rectangleX.is_empty())
       {
 
          return;
@@ -221,7 +221,7 @@ namespace experience_core
       
       ::ellipse_f64 ellipse;
       
-      ellipse.set(rectangleClient);
+      ellipse.set(rectangleX);
 
       m_pregion->create_ellipse(ellipse);
 

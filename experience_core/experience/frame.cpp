@@ -27,7 +27,7 @@ namespace experience_core
 
       m_colorCaptionText = argb(255, 0, 0, 0);
 
-      //m_rectangleClient.set(0, 0, 0, 0);
+      //m_rectangleX.set(0, 0, 0, 0);
 
    }
 
@@ -70,7 +70,7 @@ namespace experience_core
 
       auto pointBottomRight = m_pframewindow->const_layout().layout().raw_rectangle().bottom_right();
 
-      auto pointLastBottomRight = m_pframewindow->const_layout().design().raw_rectangle().bottom_right();
+      auto pointLastBottomRight = m_pframewindow->const_layout().window().raw_rectangle().bottom_right();
 
       if (pointBottomRight != pointLastBottomRight)
       {
@@ -83,28 +83,28 @@ namespace experience_core
 
          ::rectangle_i32 rectangleLeft;
 
-         rectangleLeft.left = 0;
-         rectangleLeft.right = pointBottomRight.x();
-         rectangleLeft.top = 0;
-         rectangleLeft.bottom = 7;
+         rectangleLeft.left() = 0;
+         rectangleLeft.right() = pointBottomRight.x();
+         rectangleLeft.top() = 0;
+         rectangleLeft.bottom() = 7;
 
          pgraphics->user_redraw()->set_need_redraw(rectangleLeft);
 
          ::rectangle_i32 rectangleTop;
 
-         rectangleTop.left = 0;
-         rectangleTop.right = 7;
-         rectangleTop.top = 0;
-         rectangleTop.bottom = pointBottomRight.y();
+         rectangleTop.left() = 0;
+         rectangleTop.right() = 7;
+         rectangleTop.top() = 0;
+         rectangleTop.bottom() = pointBottomRight.y();
 
          pgraphics->user_redraw()->set_need_redraw(rectangleTop);
 
          ::rectangle_i32 rectangleRight;
 
-         rectangleRight.left = pointMinimumInnerBottomRight.a();
-         rectangleRight.right = pointBottomRight.x();
-         rectangleRight.top = 0;
-         rectangleRight.bottom = pointBottomRight.y();
+         rectangleRight.left() = pointMinimumInnerBottomRight.a();
+         rectangleRight.right() = pointBottomRight.x();
+         rectangleRight.top() = 0;
+         rectangleRight.bottom() = pointBottomRight.y();
 
          rectangleRight.normalize();
 
@@ -112,10 +112,10 @@ namespace experience_core
 
          ::rectangle_i32 rectangleBottom;
 
-         rectangleBottom.left = 0;
-         rectangleBottom.right = pointBottomRight.x();
-         rectangleBottom.top = pointMinimumInnerBottomRight.b();
-         rectangleBottom.bottom = pointBottomRight.y();
+         rectangleBottom.left() = 0;
+         rectangleBottom.right() = pointBottomRight.x();
+         rectangleBottom.top() = pointMinimumInnerBottomRight.b();
+         rectangleBottom.bottom() = pointBottomRight.y();
 
          rectangleBottom.normalize();
 
@@ -142,11 +142,11 @@ namespace experience_core
 
       auto imaging = psystem->imaging();
 
-      ::rectangle_i32 rectangleClient(rectangleParam);
+      ::rectangle_i32 rectangleX(rectangleParam);
 
       ::rectangle_i32 rectangleInflate;
 
-      if (rectangleClient.is_empty())
+      if (rectangleX.is_empty())
       {
 
          return;
@@ -156,7 +156,7 @@ namespace experience_core
 
       i32 iInflate = 5; // raio 2 pixels + centro 1 pixel
 
-      rectangleInflate = rectangleClient;
+      rectangleInflate = rectangleX;
 
       rectangleInflate.inflate(iInflate, iInflate);
 
@@ -168,17 +168,17 @@ namespace experience_core
 
       ::image_pointer pimage2;
 
-      pimage1 = m_pcontext->m_pauracontext->create_image({ rectangleClient.width() + iInflate * 2,  rectangleClient.height() + iInflate * 2 });
+      pimage1 = m_pcontext->m_pauracontext->create_image({ rectangleX.width() + iInflate * 2,  rectangleX.height() + iInflate * 2 });
 
-      pimage2 = m_pcontext->m_pauracontext->create_image({ rectangleClient.width() + iInflate * 2,  rectangleClient.height() + iInflate * 2 });
+      pimage2 = m_pcontext->m_pauracontext->create_image({ rectangleX.width() + iInflate * 2,  rectangleX.height() + iInflate * 2 });
 
-      ::rectangle_i32 rectangleWindow = rectangleClient;
+      ::rectangle_i32 rectangleWindow = rectangleX;
 
       pframewindow->client_to_screen()(rectangleWindow);
 
       ::point_i32 pointInflate(iInflate, iInflate);
 
-      auto point = rectangleClient.top_left();
+      auto point = rectangleX.top_left();
 
       point -= pointInflate;
 
@@ -208,11 +208,11 @@ namespace experience_core
 
       {
 
-         rectangle_f64 rectangleSource(pointInflate, rectangleClient.size());
+         rectangle_f64 rectangleSource(pointInflate, rectangleX.size());
 
          image_source imagesource(pimage2, rectangleSource);
 
-         rectangle_f64 rectangleTarget(rectangleClient);
+         rectangle_f64 rectangleTarget(rectangleX);
 
          image_drawing_options imagedrawingoptions(rectangleTarget);
 
@@ -369,13 +369,13 @@ namespace experience_core
 
          }
 
-         rectangle.left = m_pointWindowIcon.x();
-         rectangle.top = m_pointWindowIcon.y();
-         rectangle.right = rectangle.left + m_sizeIcon.cx();
-         rectangle.bottom = rectangle.top + m_sizeIcon.cy();
+         rectangle.left() = m_pointWindowIcon.x();
+         rectangle.top() = m_pointWindowIcon.y();
+         rectangle.right() = rectangle.left() + m_sizeIcon.cx();
+         rectangle.bottom() = rectangle.top() + m_sizeIcon.cy();
 
-         //rectangle.right = rectangle.left + pdrawicon->get_size().cx();
-         //rectangle.bottom = rectangle.top + pdrawicon->get_size().cy();
+         //rectangle.right() = rectangle.left() + pdrawicon->get_size().cx();
+         //rectangle.bottom() = rectangle.top() + pdrawicon->get_size().cy();
 
          return true;
 
@@ -390,10 +390,10 @@ namespace experience_core
 
          }
 
-         //rectangle.left = m_pointMoveGripMinimal.x() + 2;
-         //rectangle.top = m_pointMoveGripMinimal.y() + 2;
-         rectangle.right = rectangle.left + m_iCaptionHeight - 4;
-         rectangle.bottom = rectangle.top + m_iCaptionHeight - 4;
+         //rectangle.left() = m_pointMoveGripMinimal.x() + 2;
+         //rectangle.top() = m_pointMoveGripMinimal.y() + 2;
+         rectangle.right() = rectangle.left() + m_iCaptionHeight - 4;
+         rectangle.bottom() = rectangle.top() + m_iCaptionHeight - 4;
 
          return true;
 
@@ -611,8 +611,8 @@ namespace experience_core
 
       ::rectangle_i32 rectangle(rectangleParam);
 
-      i32 x = rectangle.left;
-      i32 y = rectangle.top;
+      i32 x = rectangle.left();
+      i32 y = rectangle.top();
       i32 cx = rectangle.width();
       i32 cy = rectangle.height();
 
@@ -749,7 +749,7 @@ namespace experience_core
             while (i < rectangleGrip.width() - 5 + 1)
             {
 
-               ::rectangle_f64 rectangle(rectangleGrip.left + i, rectangleGrip.top, 3, rectangleGrip.height());
+               ::rectangle_f64 rectangle(rectangleGrip.left() + i, rectangleGrip.top(), 3, rectangleGrip.height());
 
                pgraphics->draw_inset_3d_rectangle(rectangle, argb(110, 230, 230, 230), argb(110, 130, 130, 130), 1.0);
 
@@ -861,32 +861,33 @@ namespace experience_core
       //::experience::enum_frame etest = ::item_t{::e_element_client;
       //{
          //      m_pframewindow->GetEventWindow()->screen_to_client()(point);
-         ::rectangle_i32 rectangleEvent;
-         m_pframewindow->window_rectangle(rectangleEvent);
+
+         auto rectangleEvent = m_pframewindow->raw_rectangle();
+
          ::rectangle_i32 rectangle;
          ::point_i32 pointCenter = rectangleEvent.center();
          enum_grip egrip = m_pframewindow->size_manager()->GetGripMask();
 
          ::point_i32 pointHitTest = pointCursor;
 
-         //                  if(rectangleEvent.left < 0)
-         //                     pointHitTest.x() -= rectangleEvent.left;
-         //                  if(rectangleEvent.top < 0)
-         //                     pointHitTest.y() -= rectangleEvent.top;
+         //                  if(rectangleEvent.left() < 0)
+         //                     pointHitTest.x() -= rectangleEvent.left();
+         //                  if(rectangleEvent.top() < 0)
+         //                     pointHitTest.y() -= rectangleEvent.top();
 
          if (egrip & e_grip_top_left)
          {
             rectangle = rectangleEvent;
-            rectangle.right = rectangle.left + 16;
-            rectangle.bottom = rectangle.top + 5;
+            rectangle.right() = rectangle.left() + 16;
+            rectangle.bottom() = rectangle.top() + 5;
             if (rectangle.contains(pointHitTest))
             {
                return ::experience::e_frame_sizing_top_left;
                // goto SizingSuccess;
             }
             rectangle = rectangleEvent;
-            rectangle.right = rectangle.left + 5;
-            rectangle.bottom = rectangle.top + 16;
+            rectangle.right() = rectangle.left() + 5;
+            rectangle.bottom() = rectangle.top() + 16;
             if (rectangle.contains(pointHitTest))
             {
                return ::experience::e_frame_sizing_top_left;
@@ -896,16 +897,16 @@ namespace experience_core
          if (egrip & e_grip_top_right)
          {
             rectangle = rectangleEvent;
-            rectangle.left = rectangle.right - 16;
-            rectangle.bottom = rectangle.top + 5;
+            rectangle.left() = rectangle.right() - 16;
+            rectangle.bottom() = rectangle.top() + 5;
             if (rectangle.contains(pointHitTest))
             {
                return ::experience::e_frame_sizing_top_right;
                // goto SizingSuccess;
             }
             rectangle = rectangleEvent;
-            rectangle.left = rectangle.right - 5;
-            rectangle.bottom = rectangle.top + 16;
+            rectangle.left() = rectangle.right() - 5;
+            rectangle.bottom() = rectangle.top() + 16;
             if (rectangle.contains(pointHitTest))
             {
                return ::experience::e_frame_sizing_top_right;
@@ -915,16 +916,16 @@ namespace experience_core
          if (egrip & e_grip_bottom_right)
          {
             rectangle = rectangleEvent;
-            rectangle.left = rectangle.right - 16;
-            rectangle.top = rectangle.bottom - 5;
+            rectangle.left() = rectangle.right() - 16;
+            rectangle.top() = rectangle.bottom() - 5;
             if (rectangle.contains(pointHitTest))
             {
                return ::experience::e_frame_sizing_bottom_right;
                // goto SizingSuccess;
             }
             rectangle = rectangleEvent;
-            rectangle.left = rectangle.right - 5;
-            rectangle.top = rectangle.bottom - 16;
+            rectangle.left() = rectangle.right() - 5;
+            rectangle.top() = rectangle.bottom() - 16;
             if (rectangle.contains(pointHitTest))
             {
                return ::experience::e_frame_sizing_bottom_right;
@@ -934,16 +935,16 @@ namespace experience_core
          if (egrip & e_grip_bottom_left)
          {
             rectangle = rectangleEvent;
-            rectangle.right = rectangle.left + 16;
-            rectangle.top = rectangle.bottom - 5;
+            rectangle.right() = rectangle.left() + 16;
+            rectangle.top() = rectangle.bottom() - 5;
             if (rectangle.contains(pointHitTest))
             {
                return ::experience::e_frame_sizing_bottom_left;
                // goto SizingSuccess;
             }
             rectangle = rectangleEvent;
-            rectangle.right = rectangle.left + 5;
-            rectangle.top = rectangle.bottom - 16;
+            rectangle.right() = rectangle.left() + 5;
+            rectangle.top() = rectangle.bottom() - 16;
             if (rectangle.contains(pointHitTest))
             {
                return ::experience::e_frame_sizing_bottom_left;
@@ -952,10 +953,10 @@ namespace experience_core
          }
          if (egrip & e_grip_top)
          {
-            rectangle.top = rectangleEvent.top;
-            rectangle.left = pointCenter.x() - 8;
-            rectangle.right = pointCenter.x() + 8;
-            rectangle.bottom = rectangleEvent.top + 5;
+            rectangle.top() = rectangleEvent.top();
+            rectangle.left() = pointCenter.x() - 8;
+            rectangle.right() = pointCenter.x() + 8;
+            rectangle.bottom() = rectangleEvent.top() + 5;
             if (rectangle.contains(pointHitTest))
             {
                return ::experience::e_frame_sizing_top;
@@ -964,10 +965,10 @@ namespace experience_core
          }
          if (egrip & e_grip_bottom)
          {
-            rectangle.top = rectangleEvent.bottom - 5;
-            rectangle.left = pointCenter.x() - 8;
-            rectangle.right = pointCenter.x() + 8;
-            rectangle.bottom = rectangleEvent.bottom;
+            rectangle.top() = rectangleEvent.bottom() - 5;
+            rectangle.left() = pointCenter.x() - 8;
+            rectangle.right() = pointCenter.x() + 8;
+            rectangle.bottom() = rectangleEvent.bottom();
             if (rectangle.contains(pointHitTest))
             {
                return ::experience::e_frame_sizing_bottom;
@@ -976,10 +977,10 @@ namespace experience_core
          }
          if (egrip & e_grip_left)
          {
-            rectangle.top = pointCenter.y() - 8;
-            rectangle.left = rectangleEvent.left;
-            rectangle.right = rectangleEvent.left + 5;
-            rectangle.bottom = pointCenter.y() + 8;
+            rectangle.top() = pointCenter.y() - 8;
+            rectangle.left() = rectangleEvent.left();
+            rectangle.right() = rectangleEvent.left() + 5;
+            rectangle.bottom() = pointCenter.y() + 8;
             if (rectangle.contains(pointHitTest))
             {
                return ::experience::e_frame_sizing_left;
@@ -988,10 +989,10 @@ namespace experience_core
          }
          if (egrip & e_grip_right)
          {
-            rectangle.top = pointCenter.y() - 8;
-            rectangle.left = rectangleEvent.right - 5;
-            rectangle.right = rectangleEvent.right;
-            rectangle.bottom = pointCenter.y() + 8;
+            rectangle.top() = pointCenter.y() - 8;
+            rectangle.left() = rectangleEvent.right() - 5;
+            rectangle.right() = rectangleEvent.right();
+            rectangle.bottom() = pointCenter.y() + 8;
             if (rectangle.contains(pointHitTest))
             {
                return ::experience::e_frame_sizing_right;
@@ -1024,24 +1025,24 @@ namespace experience_core
 
    //      ::point_i32 pointHitTest = point;
 
-   //      //if(rectangleEvent.left < 0)
-   //      // pointHitTest.x() -= rectangleEvent.left;
-   //      //if(rectangleEvent.top < 0)
-   //      // pointHitTest.y() -= rectangleEvent.top;
+   //      //if(rectangleEvent.left() < 0)
+   //      // pointHitTest.x() -= rectangleEvent.left();
+   //      //if(rectangleEvent.top() < 0)
+   //      // pointHitTest.y() -= rectangleEvent.top();
 
    //      if ((egrip & e_grip_top_left) == e_grip_top_left)
    //      {
    //         rectangle = rectangleEvent;
-   //         rectangle.right = rectangle.left + 16;
-   //         rectangle.bottom = rectangle.top + 5;
+   //         rectangle.right() = rectangle.left() + 16;
+   //         rectangle.bottom() = rectangle.top() + 5;
    //         if (rectangle.contains(pointHitTest))
    //         {
    //            return m_pframewindow->defer_item(::item_t{ ::e_element_sizing_top_left });
    //            // goto SizingSuccess;
    //         }
    //         rectangle = rectangleEvent;
-   //         rectangle.right = rectangle.left + 5;
-   //         rectangle.bottom = rectangle.top + 16;
+   //         rectangle.right() = rectangle.left() + 5;
+   //         rectangle.bottom() = rectangle.top() + 16;
    //         if (rectangle.contains(pointHitTest))
    //         {
    //            return m_pframewindow->defer_item(::item_t{ ::e_element_sizing_top_left });
@@ -1051,16 +1052,16 @@ namespace experience_core
    //      if ((egrip & e_grip_top_right) == e_grip_top_right)
    //      {
    //         rectangle = rectangleEvent;
-   //         rectangle.left = rectangle.right - 16;
-   //         rectangle.bottom = rectangle.top + 5;
+   //         rectangle.left() = rectangle.right() - 16;
+   //         rectangle.bottom() = rectangle.top() + 5;
    //         if (rectangle.contains(pointHitTest))
    //         {
    //            return m_pframewindow->defer_item(::item_t{ ::e_element_sizing_top_right });
    //            // goto SizingSuccess;
    //         }
    //         rectangle = rectangleEvent;
-   //         rectangle.left = rectangle.right - 5;
-   //         rectangle.bottom = rectangle.top + 16;
+   //         rectangle.left() = rectangle.right() - 5;
+   //         rectangle.bottom() = rectangle.top() + 16;
    //         if (rectangle.contains(pointHitTest))
    //         {
    //            return m_pframewindow->defer_item(::item_t{ ::e_element_sizing_top_right });
@@ -1070,16 +1071,16 @@ namespace experience_core
    //      if ((egrip & e_grip_bottom_right) == e_grip_bottom_right)
    //      {
    //         rectangle = rectangleEvent;
-   //         rectangle.left = rectangle.right - 16;
-   //         rectangle.top = rectangle.bottom - 5;
+   //         rectangle.left() = rectangle.right() - 16;
+   //         rectangle.top() = rectangle.bottom() - 5;
    //         if (rectangle.contains(pointHitTest))
    //         {
    //            return m_pframewindow->defer_item(::item_t{ ::e_element_sizing_bottom_right });
    //            // goto SizingSuccess;
    //         }
    //         rectangle = rectangleEvent;
-   //         rectangle.left = rectangle.right - 5;
-   //         rectangle.top = rectangle.bottom - 16;
+   //         rectangle.left() = rectangle.right() - 5;
+   //         rectangle.top() = rectangle.bottom() - 16;
    //         if (rectangle.contains(pointHitTest))
    //         {
    //            return m_pframewindow->defer_item(::item_t{ ::e_element_sizing_bottom_right });
@@ -1089,16 +1090,16 @@ namespace experience_core
    //      if ((egrip & e_grip_bottom_left) == e_grip_bottom_left)
    //      {
    //         rectangle = rectangleEvent;
-   //         rectangle.right = rectangle.left + 16;
-   //         rectangle.top = rectangle.bottom - 5;
+   //         rectangle.right() = rectangle.left() + 16;
+   //         rectangle.top() = rectangle.bottom() - 5;
    //         if (rectangle.contains(pointHitTest))
    //         {
    //            return m_pframewindow->defer_item(::item_t{ ::e_element_sizing_bottom_left });
    //            // goto SizingSuccess;
    //         }
    //         rectangle = rectangleEvent;
-   //         rectangle.right = rectangle.left + 5;
-   //         rectangle.top = rectangle.bottom - 16;
+   //         rectangle.right() = rectangle.left() + 5;
+   //         rectangle.top() = rectangle.bottom() - 16;
    //         if (rectangle.contains(pointHitTest))
    //         {
    //            return m_pframewindow->defer_item(::item_t{ ::e_element_sizing_bottom_left });
@@ -1107,10 +1108,10 @@ namespace experience_core
    //      }
    //      if ((egrip & e_grip_top) == e_grip_top)
    //      {
-   //         rectangle.top = rectangleEvent.top;
-   //         rectangle.left = pointCenter.x() - 8;
-   //         rectangle.right = pointCenter.x() + 8;
-   //         rectangle.bottom = rectangleEvent.top + 5;
+   //         rectangle.top() = rectangleEvent.top();
+   //         rectangle.left() = pointCenter.x() - 8;
+   //         rectangle.right() = pointCenter.x() + 8;
+   //         rectangle.bottom() = rectangleEvent.top() + 5;
    //         if (rectangle.contains(pointHitTest))
    //         {
    //            return m_pframewindow->defer_item(::item_t{ ::e_element_sizing_top });
@@ -1119,10 +1120,10 @@ namespace experience_core
    //      }
    //      if ((egrip & e_grip_bottom) == e_grip_bottom)
    //      {
-   //         rectangle.top = rectangleEvent.bottom - 5;
-   //         rectangle.left = pointCenter.x() - 8;
-   //         rectangle.right = pointCenter.x() + 8;
-   //         rectangle.bottom = rectangleEvent.bottom;
+   //         rectangle.top() = rectangleEvent.bottom() - 5;
+   //         rectangle.left() = pointCenter.x() - 8;
+   //         rectangle.right() = pointCenter.x() + 8;
+   //         rectangle.bottom() = rectangleEvent.bottom();
    //         if (rectangle.contains(pointHitTest))
    //         {
    //            return m_pframewindow->defer_item(::item_t{ ::e_element_sizing_bottom });
@@ -1131,10 +1132,10 @@ namespace experience_core
    //      }
    //      if ((egrip & e_grip_left) == e_grip_left)
    //      {
-   //         rectangle.top = pointCenter.y() - 8;
-   //         rectangle.left = rectangleEvent.left;
-   //         rectangle.right = rectangleEvent.left + 5;
-   //         rectangle.bottom = pointCenter.y() + 8;
+   //         rectangle.top() = pointCenter.y() - 8;
+   //         rectangle.left() = rectangleEvent.left();
+   //         rectangle.right() = rectangleEvent.left() + 5;
+   //         rectangle.bottom() = pointCenter.y() + 8;
    //         if (rectangle.contains(pointHitTest))
    //         {
    //            return m_pframewindow->defer_item(::item_t{ ::e_element_sizing_left });
@@ -1143,10 +1144,10 @@ namespace experience_core
    //      }
    //      if ((egrip & e_grip_right) == e_grip_right)
    //      {
-   //         rectangle.top = pointCenter.y() - 8;
-   //         rectangle.left = rectangleEvent.right - 5;
-   //         rectangle.right = rectangleEvent.right;
-   //         rectangle.bottom = pointCenter.y() + 8;
+   //         rectangle.top() = pointCenter.y() - 8;
+   //         rectangle.left() = rectangleEvent.right() - 5;
+   //         rectangle.right() = rectangleEvent.right();
+   //         rectangle.bottom() = pointCenter.y() + 8;
    //         if (rectangle.contains(pointHitTest))
    //         {
    //            return m_pframewindow->defer_item(::item_t{ ::e_element_sizing_right });
@@ -1160,6 +1161,56 @@ namespace experience_core
    //   }
    //   return ::item_t{::e_element_client;
    //}
+
+   
+   void frame::place_set_need_redraw(const ::rectangle_i32 & rectangleAfter, const ::rectangle_i32 & rectangleBefore, ::draw2d::graphics * pgraphics)
+   {
+
+      auto rectangle = rectangleAfter.get_union(rectangleBefore);
+   
+      m_pframewindow->set_need_redraw({ rectangle }, pgraphics);
+
+   }
+
+   void frame::GetBorderRectangle(const ::rectangle_i32 & rectangleOuter, ::rectangle_i32 * lprect, enum_border eside)
+   {
+
+      ::rectangle_i32 rectangleInner;
+
+      rectangleInner = m_pframewindow->client_rectangle();
+
+      ::rectangle_i32 rectangle;
+
+      if (eside == e_border_top)
+      {
+         rectangle.left() = rectangleOuter.left();
+         rectangle.right() = rectangleOuter.right();
+         rectangle.top() = rectangleOuter.top();
+         rectangle.bottom() = rectangleInner.top();
+      }
+      else if (eside == e_border_left)
+      {
+         rectangle.left() = rectangleOuter.left();
+         rectangle.right() = rectangleInner.left();
+         rectangle.top() = rectangleInner.top();
+         rectangle.bottom() = rectangleInner.bottom();
+      }
+      else if (eside == e_border_right)
+      {
+         rectangle.left() = rectangleInner.right();
+         rectangle.right() = rectangleOuter.right();
+         rectangle.top() = rectangleInner.top();
+         rectangle.bottom() = rectangleInner.bottom();
+      }
+      else if (eside == e_border_bottom)
+      {
+         rectangle.left() = rectangleOuter.left();
+         rectangle.right() = rectangleOuter.right();
+         rectangle.top() = rectangleInner.bottom();
+         rectangle.bottom() = rectangleOuter.bottom();
+      }
+      *lprect = rectangle;
+   }
 
 
 } // namespace experience

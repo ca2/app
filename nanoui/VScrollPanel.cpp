@@ -222,9 +222,9 @@ namespace nanoui
 
          auto wheelScrollPercent = 0.06;
 
-         int iY = rel.cy();
+         auto y = rel.cy();
 
-         auto addPercent = pagePercent * wheelScrollPercent * iY / wheelScrollUnit;
+         auto addPercent = pagePercent * wheelScrollPercent * y / wheelScrollUnit;
 
          screen()->acmeapplication()->fork([this, p, addPercent]()
                {
@@ -251,7 +251,7 @@ namespace nanoui
 
                         }
 
-                        m_fScroll = fScroll;
+                        m_fScroll = (::f32) fScroll;
 
                         addUp /= 2.0;
 

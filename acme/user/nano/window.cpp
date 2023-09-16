@@ -95,11 +95,11 @@ void nano_window::draw(nano_device * pnanodevice)
 
    }
 
-   ::rectangle_i32 rectangleClient;
+   ::rectangle_i32 rectangleX;
 
-   get_client_rectangle(rectangleClient);
+   get_client_rectangle(rectangleX);
 
-   pnanodevice->rectangle(rectangleClient, m_pbrushWindow, pnanopenBorder);
+   pnanodevice->rectangle(rectangleX, m_pbrushWindow, pnanopenBorder);
 
    on_draw(pnanodevice);
 
@@ -612,10 +612,10 @@ void nano_window::redraw()
 void nano_window::get_client_rectangle(::rectangle_i32 & rectangle)
 {
 
-   rectangle.left = 0;
-   rectangle.top = 0;
-   rectangle.right = m_rectangle.width();
-   rectangle.bottom = m_rectangle.height();
+   rectangle.left() = 0;
+   rectangle.top() = 0;
+   rectangle.right() = m_rectangle.width();
+   rectangle.bottom() = m_rectangle.height();
 
 }
 

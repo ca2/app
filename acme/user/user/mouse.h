@@ -20,14 +20,17 @@ namespace user
    class CLASS_DECL_ACME mouse :
       virtual public ::particle
    {
+   protected:
+      friend class ::user::interaction;
+      ::pointer<::windowing::cursor>        m_pwindowingcursor;
    public:
 
 
       ::user::e_button_state                m_ebuttonstate;
-      point_i32                             m_point;
+      point_i32                             m_pointHost;
+      point_i32                             m_pointAbsolute;
       point_i32                             m_pointDesired;
       //bool                                m_bTranslated;
-      ::pointer<::windowing::cursor>        m_pcursor;
       ::pointer<::user::interaction>        m_puserinteractionHit;
 
 
@@ -35,6 +38,13 @@ namespace user
       {
          return 0;
       }
+
+      //bool has_screen_coordinates() const
+      //{
+      //   return m_pointScreen.x() != I32_MINIMUM
+      //      && m_pointScreen.y() != I32_MINIMUM;
+
+      //}
 
       bool is_left_button_pressed() const       { return m_ebuttonstate & (int) ::user::e_button_state_left; }
       bool is_right_button_pressed() const      { return m_ebuttonstate & (int)::user::e_button_state_right; }

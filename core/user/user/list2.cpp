@@ -930,7 +930,7 @@ namespace user
       int x = 5;
       int y = 5;
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
       auto pstyle = get_style(pgraphics);
 
@@ -953,10 +953,10 @@ namespace user
 
          auto puseritem = user_item(pitem);
 
-         puseritem->m_rectangle.left = 0;
-         puseritem->m_rectangle.right = rectangleClient.width();
-         puseritem->m_rectangle.top = y;
-         puseritem->m_rectangle.bottom = y + iLineHeight;
+         puseritem->m_rectangle.left() = 0;
+         puseritem->m_rectangle.right() = rectangleX.width();
+         puseritem->m_rectangle.top() = y;
+         puseritem->m_rectangle.bottom() = (::i32) (y + iLineHeight);
 
          ::user::enum_state estate = ::user::e_state_none;
 
@@ -971,9 +971,9 @@ namespace user
 
          pgraphics->set_text_color(color);
 
-         pgraphics->text_out(x, y, pitem->get_text(0));
+         pgraphics->text_out(x, (::i32) y, pitem->get_text(0));
 
-         y += iLineHeight;
+         y = (::i32) (y + iLineHeight);
 
       }
 

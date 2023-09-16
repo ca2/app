@@ -928,6 +928,8 @@ void context_image::_load_multi_frame_image(image * pimage, memory & memory)
 
    pimageCompose.create(pimage);
 
+   pimageCompose->set_ok_flag();
+
    //auto estatus = 
    _load_image(pimageCompose, pframea, memory);
 

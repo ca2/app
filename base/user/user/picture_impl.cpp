@@ -2,7 +2,7 @@
 #include "framework.h"
 #include "picture_impl.h"
 //#include <math.h>
-//#include "aura/graphics/draw2d/matrix.h"
+//#include "acme/primitive/geometry2d/matrix.h"
 //#include "aura/graphics/image/image.h"
 //#include "aura/graphics/image/drawing.h"
 //#include "picture.h"
@@ -11,10 +11,10 @@
 //property & operator << (property & property, const ::rectangle_f64 & rectangle)
 //{
 //
-//   property["left"] = rectangle.left;
-//   property["top"] = rectangle.top;
-//   property["right"] = rectangle.right;
-//   property["bottom"] = rectangle.bottom;
+//   property["left"] = rectangle.left();
+//   property["top"] = rectangle.top();
+//   property["right"] = rectangle.right();
+//   property["bottom"] = rectangle.bottom();
 //
 //   return property;
 //
@@ -23,10 +23,10 @@
 //property & operator >> (property & property, ::rectangle_f64 & rectangle)
 //{
 //
-//   property["left"].as(rectangle.left);
-//   rectangle.top = property["top"].f64();
-//   rectangle.right = property["right"].f64();
-//   rectangle.bottom = property["bottom"].f64();
+//   property["left"].as(rectangle.left());
+//   rectangle.top() = property["top"].f64();
+//   rectangle.right() = property["right"].f64();
+//   rectangle.bottom() = property["bottom"].f64();
 //
 //   return property;
 //

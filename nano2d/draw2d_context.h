@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "aura/graphics/draw2d/matrix.h"
+#include "acme/primitive/geometry2d/matrix.h"
 #include "aura/graphics/image/drawing.h"
 #include "acme/primitive/collection/int_map.h"
 #include "context.h"
@@ -28,8 +28,8 @@ namespace nano2d
 
 
 
-      class state :
-         virtual public ::matter
+      class draw2d_state :
+         virtual public state
       {
       public:
 
@@ -39,23 +39,10 @@ namespace nano2d
 
          ::draw2d::path_pointer        m_ppath;
 
-         ::i32                         m_iSavedContext;
-
-         string                        m_strFontFace;
-         float                         m_fFontSize;
-
-         ::e_align                     m_ealignText;
-
-         ::point_f64                   m_pointCurrent;
-
-         ::draw2d::matrix              m_matrix;
-
-         bool                          m_bHasCurrentPoint;
-
-         state(::draw2d::graphics * pgraphics)
+         draw2d_state(::draw2d::graphics * pgraphics)
          {
 
-            m_fFontSize = 0.f;
+            
 
          }
 
@@ -74,8 +61,6 @@ namespace nano2d
       };
 
 
-      pointer_array < state >          m_statea;
-      ::pointer<state>                 m_pstate;
       ::i32                            m_iPaintImageSeed;
       i32_map < paint_image >          m_mapPaintImage;
 
@@ -95,7 +80,7 @@ namespace nano2d
       virtual ::write_text::font_pointer _get_current_font();
 
 
-      virtual ::pointer < state > create_new_state();
+      virtual ::pointer < ::nano2d::state > create_new_state();
       virtual paint_image & _create_new_paint_image();
 
 
@@ -146,8 +131,9 @@ namespace nano2d
 
       float text(float x, float y, const ::scoped_string & scopedstr) override;
       int text_glyph_positions(float x, float y, const ::scoped_string & scopedstr, ::nano2d::glyphPosition * positions, int maxPositions) override;
+      ::count character_metric(::f64_array& daLeft, ::f64_array& daRight, const ::string& scopedstr, strsize iStart = 0, strsize iEnd = -1) override;
       float text_bounds(float x, float y, const ::scoped_string & scopedstr, float * bounds) override;
-
+      void text_metrics(float * ascender, float * descender, float * lineh) override;
 
       void move_to(float x, float y) override;
       void line_to(float x, float y) override;
@@ -168,6 +154,8 @@ namespace nano2d
       void update_image(int image, const void * data) override;
       void _draw_image(float x, float y, float w, float h, ::image * pimage) override;
 
+
+      virtual void __set_current_font();
 
    };
 

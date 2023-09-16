@@ -34,7 +34,7 @@
 
                m_colorCaptionText = argb(255, 255, 255, 255);
 
-               m_rectangleClient = ::rectangle_i32();
+               m_rectangleX = ::rectangle_i32();
 
                //               m_iMargin = 7;
 
@@ -81,18 +81,18 @@
 
                //class imaging & imaging = psystem->imaging();
 
-               ::rectangle_i32 rectangleClient(lprect);
+               ::rectangle_i32 rectangleX(lprect);
 
                ::rectangle_i32 rectangleInflate;
 
-               if (rectangleClient.area() <= 0)
+               if (rectangleX.area() <= 0)
                   return;
 
 
 
                i32 iInflate = 5; // raio 2 pixels + centro 1 pixel
 
-               rectangleInflate = rectangleClient;
+               rectangleInflate = rectangleX;
                rectangleInflate.inflate(iInflate, iInflate);
 
                //::pointer<::user::interaction>puserinteractionDesktop = psystem->get_desktop_window();
@@ -105,22 +105,22 @@
 
                ::image_pointer pimage2;
 
-/*               pimage1 = create_image({rectangleClient.width() + iInflate * 2,  rectangleClient.height() + iInflate * 2});
+/*               pimage1 = create_image({rectangleX.width() + iInflate * 2,  rectangleX.height() + iInflate * 2});
 
-/*               pimage2 = create_image({rectangleClient.width() + iInflate * 2,  rectangleClient.height() + iInflate * 2});
-               ::rectangle_i32 rectangleWindow = rectangleClient;
+/*               pimage2 = create_image({rectangleX.width() + iInflate * 2,  rectangleX.height() + iInflate * 2});
+               ::rectangle_i32 rectangleWindow = rectangleX;
                pframewindow->client_to_screen(rectangleWindow);
-/*               //pimage = create_image({rectangleClient.width(),  rectangleClient.height()});
-               //bool b = pimage2->get_graphics()->BitBlt(0, 0, rectangleClient.width() + iInflate * 2, rectangleClient.height() + iInflate * 2, pgraphics, rectangleClient.left - iInflate, rectangleClient.top - iInflate);
-               pimage2->get_graphics()->BitBlt(0, 0, rectangleClient.width() + iInflate * 2, rectangleClient.height() + iInflate * 2, pgraphics, rectangleClient.left - iInflate, rectangleClient.top - iInflate);
-               //bool b = ::BitBlt(dc2, 0, 0, rectangleClient.width() + iInflate * 2, rectangleClient.height() + iInflate * 2, hdcScreen, rectangleClient.left - iInflate, rectangleClient.top - iInflate);
+/*               //pimage = create_image({rectangleX.width(),  rectangleX.height()});
+               //bool b = pimage2->get_graphics()->BitBlt(0, 0, rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2, pgraphics, rectangleX.left() - iInflate, rectangleX.top() - iInflate);
+               pimage2->get_graphics()->BitBlt(0, 0, rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2, pgraphics, rectangleX.left() - iInflate, rectangleX.top() - iInflate);
+               //bool b = ::BitBlt(dc2, 0, 0, rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2, hdcScreen, rectangleX.left() - iInflate, rectangleX.top() - iInflate);
 
-               m_blur1.blur(pimage1, 2, ::rectangle_i32(size(rectangleClient.width() + iInflate * 2, rectangleClient.height() + iInflate * 2)));
+               m_blur1.blur(pimage1, 2, ::rectangle_i32(size(rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2)));
 
-               //spgraphics->Draw3dRect(rectangleClient, 127 << 24, 127 << 24);
-               //rectangleClient.deflate(1, 1);
-               //spgraphics->Draw3dRect(rectangleClient, 64 << 24, 64 << 24);
-               /*b = imaging.bitmap_blend(pgraphics, lprect->left, lprect->top,
+               //spgraphics->Draw3dRect(rectangleX, 127 << 24, 127 << 24);
+               //rectangleX.deflate(1, 1);
+               //spgraphics->Draw3dRect(rectangleX, 64 << 24, 64 << 24);
+               /*b = imaging.bitmap_blend(pgraphics, lprect->left(), lprect->top(),
                rectangleWindow.width(),
                rectangleWindow.height(),
                &spgraphics,
@@ -131,7 +131,7 @@
                bf.BlendFlags = 0;
                bf.SourceConstantAlpha = 255;
                ::alpha_blend(pgraphics->get_handle1(),
-               lprect->left, lprect->top,
+               lprect->left(), lprect->top(),
                rectangleWindow.width(),
                rectangleWindow.height(),
                spgraphics->get_handle1(),
@@ -140,7 +140,7 @@
                rectangleWindow.height(),
                bf);*/
 
-               pgraphics->BitBlt(rectangleClient.left, rectangleClient.top, rectangleClient.width(), rectangleClient.height(), pimage1->g(), iInflate, iInflate);
+               pgraphics->BitBlt(rectangleX.left(), rectangleX.top(), rectangleX.width(), rectangleX.height(), pimage1->g(), iInflate, iInflate);
 
             }
 
@@ -163,7 +163,7 @@
                /*Gdiplus::Graphics g((HDC) pgraphics->get_os_data());
                g.SetCompositingMode(Gdiplus::CompositingModeSourceOver);
                Gdiplus::SolidBrush solidBrush(Gdiplus::Color(bAlpha, color32_u8_red(color32), color32_u8_green(color32), color32_u8_blue(color32)));
-               g.FillRectangle(&solidBrush, lprect->left, lprect->top, lprect->right - lprect->left, lprect->bottom - lprect->top);*/
+               g.FillRectangle(&solidBrush, lprect->left(), lprect->top(), lprect->right() - lprect->left(), lprect->bottom() - lprect->top());*/
 
                pgraphics->color_blend(lprect, color32, bAlpha);
 
@@ -242,12 +242,12 @@
                   if (m_pframewindow == nullptr || m_pframewindow->m_picon == nullptr)
                      return false;
 
-                  lprect->left = m_pointWindowIcon.x();
-                  lprect->top = m_pointWindowIcon.y();
-                  //lprect->right = lprect->left + m_pframewindow->m_picon->get_size().cx();
-                  //lprect->bottom = lprect->top + m_pframewindow->m_picon->get_size().cy();
-                  lprect->right = lprect->left + 24;
-                  lprect->bottom = lprect->top + 24;
+                  lprect->left() = m_pointWindowIcon.x();
+                  lprect->top() = m_pointWindowIcon.y();
+                  //lprect->right() = lprect->left() + m_pframewindow->m_picon->get_size().cx();
+                  //lprect->bottom() = lprect->top() + m_pframewindow->m_picon->get_size().cy();
+                  lprect->right() = lprect->left() + 24;
+                  lprect->bottom() = lprect->top() + 24;
 
                   return true;
 
@@ -256,10 +256,10 @@
                   if (m_pframewindow == nullptr || m_pframewindow->get_appearance() != ::e_display_minimal)
                      return false;
 
-                  lprect->left = m_pointMoveGripMinimal.x() + 2;
-                  lprect->top = m_pointMoveGripMinimal.y() + 2;
-                  lprect->right = lprect->left + get_control_box_rect()->height() - 4;
-                  lprect->bottom = lprect->top + get_control_box_rect()->height() - 4;
+                  lprect->left() = m_pointMoveGripMinimal.x() + 2;
+                  lprect->top() = m_pointMoveGripMinimal.y() + 2;
+                  lprect->right() = lprect->left() + get_control_box_rect()->height() - 4;
+                  lprect->bottom() = lprect->top() + get_control_box_rect()->height() - 4;
 
                   return true;
 
@@ -445,8 +445,8 @@
             {
 
                ::rectangle_i32 rectangle(rectangleParam);
-               i32 x = rectangle.left;
-               i32 y = rectangle.top;
+               i32 x = rectangle.left();
+               i32 y = rectangle.top();
                i32 cx = rectangle.width();
                i32 cy = rectangle.height();
 
@@ -561,7 +561,7 @@
                      if (picon != nullptr)
                      {
 
-                        pgraphics->DrawIcon(rectangleIcon.left, rectangleIcon.top, picon, rectangleIcon.width(), rectangleIcon.height(), 0, nullptr, DI_NORMAL);
+                        pgraphics->DrawIcon(rectangleIcon.left(), rectangleIcon.top(), picon, rectangleIcon.width(), rectangleIcon.height(), 0, nullptr, DI_NORMAL);
 
                      }
 
@@ -577,13 +577,13 @@
                      while (i < rectangleGrip.width() - 5 + 1)
                      {
 
-                        pgraphics->draw3d_rect_dim(rectangleGrip.left + i, rectangleGrip.top, 3, rectangleGrip.height(), argb(84 + 23, 230, 230, 230), argb(84 + 23, 108 + 23, 108 + 23, 108 + 23));
+                        pgraphics->draw3d_rect_dim(rectangleGrip.left() + i, rectangleGrip.top(), 3, rectangleGrip.height(), argb(84 + 23, 230, 230, 230), argb(84 + 23, 108 + 23, 108 + 23, 108 + 23));
 
                         i += 5;
 
                      }
 
-                     //pgraphics->Draw3dRect(rectangleGrip.left + 12,rectangleGrip.top,3,rectangleGrip.height(),argb(184,255,255,255),argb(184,84,84,84));
+                     //pgraphics->Draw3dRect(rectangleGrip.left() + 12,rectangleGrip.top(),3,rectangleGrip.height(),argb(184,255,255,255),argb(184,84,84,84));
 
                   }
 
@@ -658,7 +658,7 @@
                      if (picon != nullptr)
                      {
 
-                        pgraphics->DrawIcon(rectangleIcon.left, rectangleIcon.top, picon, rectangleIcon.width(), rectangleIcon.height(), 0, nullptr, DI_NORMAL);
+                        pgraphics->DrawIcon(rectangleIcon.left(), rectangleIcon.top(), picon, rectangleIcon.width(), rectangleIcon.height(), 0, nullptr, DI_NORMAL);
 
                      }
 
@@ -720,7 +720,48 @@
 
 
 
-      
+         void frame::GetBorderRectangle(const ::rectangle_i32 & lpcrectClient, ::rectangle_i32 * lprect, enum_border eside)
+         {
+
+            ::rectangle_i32 rectangleBig(lpcrectClient);
+
+            ::rectangle_i32 rectangleSmall;
+
+            get_window_client_rectangle(&rectangleSmall);
+
+            ::rectangle_i32 rectangle;
+
+            if (eside == e_border_top)
+            {
+               rectangle.left() = rectangleBig.left();
+               rectangle.right() = rectangleBig.right();
+               rectangle.top() = rectangleBig.top();
+               rectangle.bottom() = rectangleSmall.top();
+            }
+            else if (eside == e_border_left)
+            {
+               rectangle.left() = rectangleBig.left();
+               rectangle.right() = rectangleSmall.left();
+               rectangle.top() = rectangleSmall.top();
+               rectangle.bottom() = rectangleSmall.bottom();
+            }
+            else if (eside == e_border_right)
+            {
+               rectangle.left() = rectangleSmall.right();
+               rectangle.right() = rectangleBig.right();
+               rectangle.top() = rectangleSmall.top();
+               rectangle.bottom() = rectangleSmall.bottom();
+            }
+            else if (eside == e_border_bottom)
+            {
+               rectangle.left() = rectangleBig.left();
+               rectangle.right() = rectangleBig.right();
+               rectangle.top() = rectangleSmall.bottom();
+               rectangle.bottom() = rectangleBig.bottom();
+            }
+            *lprect = rectangle;
+         }
+
 
 
    } // namespace experience

@@ -12,7 +12,7 @@ namespace app_build
    main_impact::main_impact()
    {
 
-      m_ptopview = nullptr;
+      m_ptopimpact = nullptr;
       m_pimpact    = nullptr;
       m_flagNonClient.add(e_non_client_background);
       m_flagNonClient.add(e_non_client_focus_rect);
@@ -83,9 +83,9 @@ namespace app_build
 
          initialize_split_layout();
 
-         m_ptopview = create_impact < ::userex::top_impact >(nullptr, get_pane_holder(0), "top_impact");
+         m_ptopimpact = create_impact < ::userex::top_impact >(nullptr, get_pane_holder(0), "top_impact");
 
-         if (m_ptopview == nullptr)
+         if (m_ptopimpact == nullptr)
          {
 
             output_error_message("Could not create folder edit impact");

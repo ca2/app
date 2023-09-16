@@ -4,6 +4,7 @@
 #include "frame.h"
 #include "acme/constant/message.h"
 #include "apex/parallelization/thread.h"
+#include "aura/windowing/window.h"
 #include "aura/windowing/windowing.h"
 #include "aura/message/user.h"
 
@@ -60,9 +61,24 @@ namespace experience
 
       }
 
+      if(m_pframewindow->window()->defer_perform_entire_reposition_process())
+      {
+
+         pmouse->m_lresult = 1;
+
+         pmouse->m_bRet = true;
+
+         return true;
+
+      }
+
+      m_bMoving = true;
+
+      m_pframewindow->set_mouse_capture();
+
       m_stateBefore = m_pframewindow->const_layout().sketch();
 
-      auto pointCursor = pmouse->m_point;
+      auto pointCursor = pmouse->m_pointAbsolute;
 
       ::rectangle_i32 rectangleWindow;
 
@@ -74,11 +90,7 @@ namespace experience
 
       m_pointMove = m_pointWindowOrigin;
 
-      m_pframewindow->set_mouse_capture();
-
       m_iConsiderMove = 0;
-
-      m_bMoving = true;
 
       m_pframewindow->m_pthreadUserInteraction->m_emessageaGetLast.add(e_message_mouse_move);
 
@@ -134,11 +146,18 @@ namespace experience
 
       }
 
+//      if(m_pframewindow->window()->defer_perform_reposition())
+//      {
+//
+//         return true;
+//
+//      }
+//
       pmouse->payload("flush_similar_messages") = true;
 
       auto pframewindow = m_pframewindow;
 
-      auto pointMove = m_pointWindowOrigin + (pmouse->m_point - m_pointCursorOrigin);
+      auto pointMove = m_pointWindowOrigin + (pmouse->m_pointAbsolute - m_pointCursorOrigin);
 
       if (pframewindow->get_parent() != nullptr)
       {
@@ -164,13 +183,13 @@ namespace experience
 
          auto edisplay = pframewindow->const_layout().sketch().display();
 
-         if (::is_docking_appearance(edisplay))
-         {
-
-            pframewindow->m_pframe->defer_frame_placement_snapping();
-
-         }
-         else
+//         if (::is_docking_appearance(edisplay))
+//         {
+//
+//            //pframewindow->m_pframe->defer_frame_placement_snapping();
+//
+//         }
+//         else
          {
 
             pframewindow->set_position(pointMove);
@@ -208,7 +227,7 @@ namespace experience
 
       auto pcursor = pwindowing->get_cursor(e_cursor_arrow);
 
-      pmouse->m_pcursor = pcursor;
+      m_pframewindow->user_mouse_set_cursor(pmouse, pcursor);
 
       ////m_pframewindow->set_mouse_cursor(pcursor);
 
@@ -315,9 +334,7 @@ namespace experience
 
       m_pframewindow->m_pthreadUserInteraction->m_emessageaGetLast.erase(e_message_mouse_move);
 
-      auto pwindowing = m_pframewindow->windowing();
-
-      pwindowing->release_mouse_capture();
+      m_pframewindow->defer_release_mouse_capture();
 
       if (!consider_move())
       {
@@ -387,9 +404,7 @@ namespace experience
       
       m_bMoving = false;
       
-      auto pwindowing = m_pframewindow->windowing();
-
-      pwindowing->release_mouse_capture();
+      m_pframewindow->defer_release_mouse_capture();
 
    }
 

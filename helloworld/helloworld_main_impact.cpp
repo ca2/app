@@ -12,7 +12,7 @@ namespace helloworld
       place_holder_container(pparticle)
    {
 
-      m_ptopview = nullptr;
+      m_ptopimpact = nullptr;
       m_pimpact    = nullptr;
       m_flagNonClient.add(e_non_client_background);
       m_flagNonClient.add(e_non_client_focus_rect);
@@ -68,16 +68,16 @@ namespace helloworld
 
          initialize_split_layout();
 
-         m_ptopview = create_impact < ::userex::top_impact >(nullptr, nullptr, "top_impact");
+         m_ptopimpact = create_impact < ::userex::top_impact >(nullptr, nullptr, "top_impact");
 
-         if (m_ptopview == nullptr)
+         if (m_ptopimpact == nullptr)
          {
 
             message_box(nullptr, "Could not create folder edit impact");
 
          }
 
-         SetPane(0, m_ptopview, false);
+         SetPane(0, m_ptopimpact, false);
 
          iPane = 1;
 

@@ -46,9 +46,15 @@ public:
    virtual ::shift_i32 screen_to_client();
    virtual ::shift_i32 client_to_screen();
 
+   virtual ::shift_i32 absolute_to_client();
+   virtual ::shift_i32 client_to_absolute();
+
+   virtual ::point_i32 try_absolute_mouse_position(const ::point_i32 & point);
+
       // drag_client
    void drag_set_capture() override;
-   ::point_i32 on_drag_start(::item * pitem) override;
+   bool on_drag_start(::point_i32 & point, ::item * pitem) override;
+   ::point_i32 drag_mouse_cursor_position(::item* pitem, const ::point_i32 & point) override;
    bool drag_shift(::item * pitem) override;
    bool drag_hover(::item * pitem) override;
    void drag_release_capture() override;

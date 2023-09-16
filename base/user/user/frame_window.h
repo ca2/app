@@ -40,6 +40,7 @@ namespace user
       i32                                          m_iFrameData;
       ::atom                                         m_atomHelp;         // xxx mrs
       ::user::impact_system *                      m_pimpactsystem;
+      ::rectangle_i32                              m_rectangleClient;
 
       i32                                          m_nWindow;  // general purpose interaction_impl number - display as ":n"
 //      // -1 => unknown, 0 => only interaction_impl viewing ::user::document
@@ -338,6 +339,9 @@ namespace user
 
 
       virtual bool has_command_handler(::message::command * pcommand) override;
+
+
+      ::rectangle_i32 client_rectangle(::user::enum_layout elayout = ::user::e_layout_design) override;
 
 
    };

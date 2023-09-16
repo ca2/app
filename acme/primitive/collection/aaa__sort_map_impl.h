@@ -19,10 +19,10 @@
 //      if(compare(key,pnode->element1()))
 //      {
 //
-//         if(pnode->left == nullptr)
+//         if(pnode->left() == nullptr)
 //         {
 //
-//            pnode->left = memory_new node(key,newValue);
+//            pnode->left() = memory_new node(key,newValue);
 //
 //            return;
 //
@@ -30,7 +30,7 @@
 //         else
 //         {
 //
-//            pnode = pnode->left;
+//            pnode = pnode->left();
 //
 //         }
 //
@@ -38,10 +38,10 @@
 //      else if(m_bMultiKey || compare(pnode->element1(), key))
 //      {
 //
-//         if(pnode->right == nullptr)
+//         if(pnode->right() == nullptr)
 //         {
 //
-//            pnode->right = memory_new node(key, newValue);
+//            pnode->right() = memory_new node(key, newValue);
 //
 //            return;
 //
@@ -49,7 +49,7 @@
 //         else
 //         {
 //
-//            pnode = pnode->right;
+//            pnode = pnode->right();
 //
 //         }
 //

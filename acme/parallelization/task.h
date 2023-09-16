@@ -15,6 +15,10 @@ typedef map < itask_t, ::pointer<task >>task_map;
 typedef map < task *, itask_t > task_id_map;
 
 
+::index task_index(itask_t itask);
+::index task_index();
+
+
 class CLASS_DECL_ACME task :
    virtual public object,
    //virtual public synchronization_object,

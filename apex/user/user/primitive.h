@@ -276,6 +276,8 @@ namespace user
 
 #endif
 
+      void message_handler(const ::atom & atom, wparam wparam = 0, lparam lparam = 0)override;
+
       void post_message(const ::atom & atom, wparam wparam = 0,lparam lparam = 0)override;
 
       void post_simple_command(const enum_simple_command & ecommand,lparam lParam = 0) override;
@@ -385,7 +387,7 @@ namespace user
       //virtual bool is_descendant(const ::user::primitive * pinteraction,bool bIncludeSelf = false) const;
        ::user::interaction * get_focusable_descendant() override;
 
-      void RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::atom idLeftOver, ::u32 nFlag = reposDefault, ::rectangle_i32 * prectParam = nullptr, const ::rectangle_i32 & rectangleClient = {
+      void RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::atom idLeftOver, ::u32 nFlag = reposDefault, ::rectangle_i32 * prectParam = nullptr, const ::rectangle_i32 & rectangleX = {
          }, bool bStretch = true) override;
 
       ::user::interaction * ChildWindowFromPoint(const ::point_i32 & point) override;

@@ -378,8 +378,8 @@ namespace user
       //   ::user::interaction * pinteraction = _001GetControlBySubItem(pdrawitem->m_iSubItem);
       //   if(pinteraction != nullptr)
       //   {
-      //      pdrawitem->m_rectangleClient = pdrawitem.m_rectangleSubItem;
-      //      pdrawitem->m_rectangleWindow = pdrawitem.m_rectangleClient;
+      //      pdrawitem->m_rectangleX = pdrawitem.m_rectangleSubItem;
+      //      pdrawitem->m_rectangleWindow = pdrawitem.m_rectangleX;
       //      client_to_screen(pdrawitem->m_rectangleWindow);
       //      control_keep controlkeep(this,pdrawitem->m_iItem,pdrawitem->m_iSubItem);
       //      pinteraction->_003CallCustomDraw(pdrawitem->m_pgraphics,pdrawitem);
@@ -457,12 +457,12 @@ namespace user
 //      client_to_screen(rectangleControl);
 //      rectangle_i64 rectangleForm;
 //      window_rectangle(rectangleForm);
-//      rectangle_i64 rectangleClient;
-//      rectangleClient.top = rectangleForm.top;
-//      rectangleClient.bottom = rectangleForm.bottom;
-//      rectangleClient.left = rectangleControl.left;
-//      rectangleClient.right = rectangleControl.right;
-//      return rectangleClient.contains(point) != false;
+//      rectangle_i64 rectangleX;
+//      rectangleX.top() = rectangleForm.top();
+//      rectangleX.bottom() = rectangleForm.bottom();
+//      rectangleX.left() = rectangleControl.left();
+//      rectangleX.right() = rectangleControl.right();
+//      return rectangleX.contains(point) != false;
    }
 
    //void form_mesh::_001OnColumnChange()

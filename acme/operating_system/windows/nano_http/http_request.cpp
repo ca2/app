@@ -104,6 +104,8 @@ namespace windows
       //}
       } while (dwSize > 0);
 
+      return true;
+
    }
 
 

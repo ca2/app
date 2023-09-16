@@ -84,6 +84,28 @@ CLASS_DECL_ACME const ::ansi_character * string_find_character(const ::ansi_char
 }
 
 
+CLASS_DECL_ACME const ::ansi_character * string_find_character(const ::ansi_character * psz, const ::ansi_character * pszEnd, ::ansi_character chMatch) noexcept
+{
+   
+   while(psz < pszEnd)
+   {
+      
+      if(*psz == chMatch)
+      {
+       
+         return psz;
+         
+      }
+      
+      psz++;
+      
+   }
+
+   return nullptr;
+
+}
+
+
 CLASS_DECL_ACME const ::ansi_character * string_rear_find_string(const ::ansi_character * psz, const ::ansi_character * pszFind, strsize iStart) noexcept
 {
 

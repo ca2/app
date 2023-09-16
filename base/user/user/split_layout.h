@@ -29,7 +29,7 @@ namespace user
 
       bool                                   m_bSplitBar;
       pointer_array < split_bar >            m_splitbara;
-      ::pointer_array < split_pane >         m_splitpanecompositea;
+      ::pointer_array < split_pane >         m_panea;
       enum_orientation                       m_eorientationSplit;
       index                                  m_iIndex;
       i32                                    m_iState;
@@ -37,7 +37,7 @@ namespace user
       static const i32                       m_iMarging;
       i32                                    m_cxBorder;
       i32                                    m_cyBorder;
-
+      //::rectangle_i32                        m_rectangleClient;
       
       ::count                                m_iPaneCount;
 
@@ -100,11 +100,16 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_create);
       DECLARE_MESSAGE_HANDLER(on_message_show_window);
 
-      virtual void draw_control_background(::draw2d::graphics_pointer & pgraphics) override;
+      void draw_control_background(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics) override;
+      
+      void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual void _001OnDrawSplitLayout(::draw2d::graphics_pointer & pgraphics);
+      void _001OnDrawSplitLayout(::draw2d::graphics_pointer & pgraphics);
+
+
+      //::rectangle_i32 client_rectangle(::user::enum_layout elayout = ::user::e_layout_design) override;
 
 
    };

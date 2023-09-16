@@ -899,6 +899,7 @@
     <ClInclude Include="primitive\collection\array_2d.h" />
     <ClInclude Include="primitive\collection\_function.h" />
     <ClInclude Include="primitive\collection\_generic_array.h" />
+    <ClInclude Include="primitive\geometry2d\matrix.h" />
     <ClInclude Include="primitive\geometry\sequence.h" />
     <ClInclude Include="primitive\mathematics\aaa_numeric.h" />
     <ClInclude Include="primitive\mathematics\numeric.h" />
@@ -1163,6 +1164,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="primitive\geometry2d\matrix.cpp" />
     <ClCompile Include="primitive\geometry2d\rectangle_array.cpp" />
     <ClCompile Include="primitive\geometry2d\region.cpp" />
     <ClCompile Include="primitive\geometry2d\item.cpp" />

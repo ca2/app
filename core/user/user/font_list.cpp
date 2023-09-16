@@ -33,7 +33,9 @@ namespace user
 
       m_econtroltype = ::user::e_control_type_list;
 
-      m_flagNonClient.add(e_non_client_hover_rect);
+      m_flagNonClient += e_non_client_hover_rect;
+
+      m_flagNonClient -= e_non_client_focus_rect;
 
       m_bFirstShown = false;
       m_atomImpact = FONTSEL_IMPACT;
@@ -342,6 +344,13 @@ namespace user
 
       synchronous_lock synchronouslock(m_pfontlist->synchronization());
 
+      if (m_bEnsureVisible)
+      {
+
+         __on_draw_ensure_sel_visible();
+
+      }
+
       //m_pgraphics = pgraphics;
 
       if (m_pfontlist->m_strText != m_pfontlist->m_strTextLayout)
@@ -353,7 +362,7 @@ namespace user
 
       }
 
-      auto rectangleClient = client_rectangle();
+      auto rectangle = this->rectangle();
 
       if (m_pfontlist->get_font_list_type() != ::write_text::e_font_list_wide)
       {
@@ -362,7 +371,7 @@ namespace user
 
          ::color::color colorBackground = get_color(pstyle, ::e_element_background);
 
-         auto rectangleBackground(rectangleClient);
+         auto rectangleBackground(rectangle);
 
          //rectangleBackground += m_pointScroll;
 
@@ -411,14 +420,14 @@ namespace user
 
          ::rectangle_i32 rectangleImpact;
 
-         rectangleImpact = client_rectangle();
+         rectangleImpact = this->rectangle();
 
          rectangleImpact.offset(m_pointScroll);
 
          if (!rectangleImpact.contains(rectangle))
          {
 
-            m_pointScroll.y() = (rectangle.top + rectangle.bottom - rectangleImpact.height()) / 2;
+            m_pointScroll.y() = (rectangle.top() + rectangle.bottom() - rectangleImpact.height()) / 2;
 
          }
 
@@ -432,7 +441,7 @@ namespace user
    void font_list::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      auto rectangleFontList = client_rectangle();
+      auto rectangleFontList = this->rectangle();
 
       if(rectangleFontList.is_empty())
       {
@@ -457,11 +466,11 @@ namespace user
       //if (m_pfontlist->get_font_list_type() != ::write_text::e_font_list_wide)
       //{
 
-         rectangleFontList.right -= iScrollBarWidth;
+         rectangleFontList.right() -= iScrollBarWidth;
 
       //}
 
-      rectangleFontList.bottom -= iScrollBarWidth;
+      rectangleFontList.bottom() -= iScrollBarWidth;
 
       if (m_pfontlist->m_strFontFamily.has_char()
          && !::is_item_set(main_content().m_pitemCurrent)
@@ -476,13 +485,6 @@ namespace user
             ensure_sel_visible();
 
          }
-
-      }
-
-      if (m_bEnsureVisible)
-      {
-
-         __on_draw_ensure_sel_visible();
 
       }
 
@@ -729,7 +731,7 @@ namespace user
 
          ::pointer < ::write_text::font_list_item > pfontlistitem = m_pfontlist->m_pfontlistdata->item_at(iItem);
 
-         m_pointScroll.y() = pfontlistitem->m_box[0].m_rectangle.top;
+         m_pointScroll.y() = pfontlistitem->m_box[0].m_rectangle.top();
 
       }
       else

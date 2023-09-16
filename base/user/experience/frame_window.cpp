@@ -28,7 +28,7 @@ void constrain_vertex_left(R1 & r1, const R2 & r2)
 
    {
 
-      auto diff = r2.left - r1.right;
+      auto diff = r2.left() - r1.right();
 
       if (diff > 0)
       {
@@ -48,7 +48,7 @@ void constrain_vertex_right(R1 & r1, const R2 & r2)
 
    {
 
-      auto diff = r2.right - r1.left;
+      auto diff = r2.right() - r1.left();
 
       if (diff < 0)
       {
@@ -69,7 +69,7 @@ void constrain_vertex_top(R1 & r1, const R2 & r2)
 
    {
 
-      auto diff = r2.top - r1.bottom;
+      auto diff = r2.top() - r1.bottom();
 
       if (diff > 0)
       {
@@ -89,7 +89,7 @@ void constrain_vertex_bottom(R1 & r1, const R2 & r2)
 
    {
 
-      auto diff = r2.bottom - r1.top;
+      auto diff = r2.bottom() - r1.top();
 
       if (diff < 0)
       {
@@ -532,6 +532,8 @@ namespace experience
    void frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
+      ::user::frame_window::_001OnDraw(pgraphics);
+
       pgraphics->payload("log_fill_rectangle") = 0;
 
       if (is_frame_experience_enabled() && m_pframe != nullptr && !layout().is_full_screen())
@@ -560,6 +562,7 @@ namespace experience
       }
 
       pgraphics->payload("log_fill_rectangle") = 1;
+
 
    }
 
@@ -649,24 +652,15 @@ namespace experience
    }
 
 
-   void frame_window::GetRegionClientRectangle(::rectangle_i32 * prectangle)
-   {
+   //void frame_window::GetRegionClientRectangle(::rectangle_i32 * prectangle)
+   //{
 
-      ASSERT(m_pframe != nullptr);
+   //   ASSERT(m_pframe != nullptr);
 
-      m_pframe->get_window_client_rectangle(prectangle);
+   //   m_pframe->get_client_rectangle(prectangle);
 
-   }
+   //}
 
-
-   void frame_window::get_draw_client_rectangle(::rectangle_i32 * prectangle, ::user::enum_layout elayout)
-   {
-
-      ASSERT(m_pframe != nullptr);
-
-      m_pframe->get_window_client_rectangle(prectangle, elayout);
-
-   }
 
 
    void frame_window::initialize_frame_window_experience()
@@ -924,7 +918,12 @@ namespace experience
 
             defer_save_window_placement();
 
-            display();
+            if (!is_this_visible())
+            {
+
+               display();
+
+            }
 
             set_reposition();
 
@@ -1199,7 +1198,13 @@ namespace experience
 
          m_fActive = fActive;
 
-         if (!fActive)
+         if (fActive)
+         {
+            
+            information("frame_window::SetActiveFlag Active");
+            
+         }
+         else
          {
 
             information("frame_window::SetActiveFlag Not Active");
@@ -1215,7 +1220,7 @@ namespace experience
 
          if (m_puserinteraction->m_ewindowflag & ::e_window_flag_window_created)
          {
-
+            
             set_need_redraw();
 
             post_redraw();
@@ -1255,6 +1260,8 @@ namespace experience
    void frame_window::on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
+      //::user::frame_window::on_perform_top_down_layout(pgraphics);
+
       if (!is_frame_experience_enabled())
       {
 
@@ -1263,6 +1270,32 @@ namespace experience
          return;
 
       }
+
+      ::user::main_window::on_perform_top_down_layout(pgraphics);
+
+      //::rectangle_i32 frame_window::rectangle(::user::enum_layout elayout)
+      //{
+
+         //information() << "experience::frame_experience::on_perform_top_down_layout (2)";
+
+         if (::is_set(m_pframe))
+         {
+
+            //information() << "experience::frame_experience::on_perform_top_down_layout m_pframe is_set";
+
+            auto rectangleClient2 = this->rectangle(::user::e_layout_lading);
+
+            m_pframe->calculate_client_rectangle(&rectangleClient2, pgraphics);
+
+            m_rectangleClient = rectangleClient2;
+
+           // return ::user::frame_window::rectangle(elayout);
+
+         }
+
+         //return m_pframe->rectangle(elayout);
+
+      //}
 
       if (m_pframe != nullptr)
       {
@@ -2212,7 +2245,7 @@ namespace experience
 
       double dMargin = psystem->m_dDpi * 0.75 * (1.0 - sqrt((double)rectangle.area() / (double)rectangleWorkspace.area()));
 
-      if (ZONEING_COMPARE::is_equal(rectangle.top, rectangleWorkspace.top, dMargin, !(edisplayPrevious & e_display_top)))
+      if (ZONEING_COMPARE::is_equal(rectangle.top(), rectangleWorkspace.top(), dMargin, !(edisplayPrevious & e_display_top)))
       {
 
          edisplay |= e_display_top;
@@ -2220,13 +2253,13 @@ namespace experience
          if (bPreserveSize)
          {
 
-            rectangle.move_top_to(rectangleWorkspace.top);
+            rectangle.move_top_to(rectangleWorkspace.top());
 
          }
          else
          {
 
-            rectangle.top = rectangleWorkspace.top;
+            rectangle.top() = rectangleWorkspace.top();
 
          }
 
@@ -2238,7 +2271,7 @@ namespace experience
 
       }
 
-      if (ZONEING_COMPARE::is_equal(rectangleWorkspace.bottom, rectangle.bottom, dMargin, !(edisplayPrevious & e_display_bottom)))
+      if (ZONEING_COMPARE::is_equal(rectangleWorkspace.bottom(), rectangle.bottom(), dMargin, !(edisplayPrevious & e_display_bottom)))
       {
 
          edisplay |= e_display_bottom;
@@ -2246,13 +2279,13 @@ namespace experience
          if (bPreserveSize)
          {
 
-            rectangle.move_bottom_to(rectangleWorkspace.bottom);
+            rectangle.move_bottom_to(rectangleWorkspace.bottom());
 
          }
          else
          {
 
-            rectangle.bottom = rectangleWorkspace.bottom;
+            rectangle.bottom() = rectangleWorkspace.bottom();
 
          }
 
@@ -2264,7 +2297,7 @@ namespace experience
 
       }
 
-      if (ZONEING_COMPARE::is_equal(rectangle.left, rectangleWorkspace.left, dMargin, !(edisplayPrevious & e_display_left)))
+      if (ZONEING_COMPARE::is_equal(rectangle.left(), rectangleWorkspace.left(), dMargin, !(edisplayPrevious & e_display_left)))
       {
 
          edisplay |= e_display_left;
@@ -2272,13 +2305,13 @@ namespace experience
          if (bPreserveSize)
          {
 
-            rectangle.move_left_to(rectangleWorkspace.left);
+            rectangle.move_left_to(rectangleWorkspace.left());
 
          }
          else
          {
 
-            rectangle.left = rectangleWorkspace.left;
+            rectangle.left() = rectangleWorkspace.left();
 
          }
 
@@ -2290,7 +2323,7 @@ namespace experience
 
       }
 
-      if (ZONEING_COMPARE::is_equal(rectangleWorkspace.right, rectangle.right, dMargin, !(edisplayPrevious & e_display_right)))
+      if (ZONEING_COMPARE::is_equal(rectangleWorkspace.right(), rectangle.right(), dMargin, !(edisplayPrevious & e_display_right)))
       {
 
          edisplay |= e_display_right;
@@ -2298,13 +2331,13 @@ namespace experience
          if (bPreserveSize)
          {
 
-            rectangle.move_right_to(rectangleWorkspace.right);
+            rectangle.move_right_to(rectangleWorkspace.right());
 
          }
          else
          {
 
-            rectangle.right = rectangleWorkspace.right;
+            rectangle.right() = rectangleWorkspace.right();
 
          }
 
@@ -2320,7 +2353,7 @@ namespace experience
          && is_different(edisplay & e_display_left, edisplay & e_display_right))
       {
 
-         if (ZONEING_COMPARE::is_centered(rectangleWorkspace.top, rectangle.top, rectangle.bottom, rectangleWorkspace.bottom))
+         if (ZONEING_COMPARE::is_centered(rectangleWorkspace.top(), rectangle.top(), rectangle.bottom(), rectangleWorkspace.bottom()))
          {
 
             if (dock_manager()->window_is_docking())
@@ -2330,9 +2363,9 @@ namespace experience
 
                edisplay |= e_display_top;
 
-               rectangle.bottom = rectangleWorkspace.bottom;
+               rectangle.bottom() = rectangleWorkspace.bottom();
 
-               rectangle.top = rectangleWorkspace.top;
+               rectangle.top() = rectangleWorkspace.top();
 
             }
 
@@ -2351,7 +2384,7 @@ namespace experience
          && is_different(edisplay & e_display_top, edisplay & e_display_bottom))
       {
 
-         if (ZONEING_COMPARE::is_centered(rectangleWorkspace.left, rectangle.left, rectangle.right, rectangleWorkspace.right))
+         if (ZONEING_COMPARE::is_centered(rectangleWorkspace.left(), rectangle.left(), rectangle.right(), rectangleWorkspace.right()))
          {
 
             if (dock_manager()->window_is_docking())
@@ -2361,9 +2394,9 @@ namespace experience
 
                edisplay |= e_display_right;
 
-               rectangle.left = rectangleWorkspace.left;
+               rectangle.left() = rectangleWorkspace.left();
 
-               rectangle.right = rectangleWorkspace.right;
+               rectangle.right() = rectangleWorkspace.right();
 
             }
 
@@ -2553,6 +2586,51 @@ namespace experience
    }
 
 
+   bool frame_window::is_window_resizing()
+   {
+
+      if(!size_manager())
+      {
+
+         return false;
+
+      }
+
+      return size_manager()->window_is_sizing();
+
+   }
+
+
+   bool frame_window::is_window_repositioning()
+   {
+
+      if(!move_manager())
+      {
+
+         return false;
+
+      }
+
+      return move_manager()->window_is_moving();
+
+   }
+
+
+   bool frame_window::is_window_docking()
+   {
+
+      if(!dock_manager())
+      {
+
+         return false;
+
+      }
+
+      return dock_manager()->window_is_docking();
+
+   }
+
+
    bool frame_window::is_frame_experience_enabled()
    {
 
@@ -2668,6 +2746,20 @@ namespace experience
 
       post_redraw();
 
+   }
+
+
+   void frame_window::place_set_need_redraw(const ::rectangle_i32 & rectangleAfter, const ::rectangle_i32 & rectangleBefore, ::draw2d::graphics * pgraphics)
+   {
+
+      if (::is_null(m_pframe))
+      {
+
+         ::user::frame_window::place_set_need_redraw(rectangleAfter, rectangleBefore, pgraphics);
+
+         return;
+      }
+      m_pframe->place_set_need_redraw(rectangleAfter, rectangleBefore, pgraphics);
    }
 
 

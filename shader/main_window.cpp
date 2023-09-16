@@ -79,20 +79,20 @@ namespace app_shader
 
       }
 
-      {
-
-         tool().add_item(__new(::item(e_element_close_button, id_close_app)));
-
-//         auto pitem = user_item(::e_element_close_button);
+//      {
 //
-//         if (pitem)
-//         {
+//         tool().add_item(__new(::item(e_element_close_button, id_close_app)));
 //
-//            *pitem = ::e_element_close_icon;
+////         auto pitem = user_item(::e_element_close_button);
+////
+////         if (pitem)
+////         {
+////
+////            *pitem = ::e_element_close_icon;
+////
+////         }
 //
-//         }
-
-      }
+//      }
 
       {
 
@@ -104,37 +104,37 @@ namespace app_shader
 
       }
 
-      {
-
-         tool().add_item(__new(::item(::e_element_maximize_button, ::id_maximize)));
-
-         //auto pitem = user_item(::e_element_maximize_button);
-
-//         if (pitem)
-//         {
+//      {
 //
-//            *pitem = ::e_element_maximize_icon;
+//         tool().add_item(__new(::item(::e_element_maximize_button, ::id_maximize)));
 //
-//         }
-
-      }
-
-
-      {
-
-
-         tool().add_item(__new(::item(e_element_minimize_button, id_minimize)));
-
-//         auto pitem = user_item(::e_element_minimize_button);
+//         //auto pitem = user_item(::e_element_maximize_button);
 //
-//         if (pitem)
-//         {
+////         if (pitem)
+////         {
+////
+////            *pitem = ::e_element_maximize_icon;
+////
+////         }
 //
-//            *pitem = ::e_element_minimize_icon;
-//
-//         }
+//      }
 
-      }
+
+//      {
+//
+//
+//         tool().add_item(__new(::item(e_element_minimize_button, id_minimize)));
+//
+////         auto pitem = user_item(::e_element_minimize_button);
+////
+////         if (pitem)
+////         {
+////
+////            *pitem = ::e_element_minimize_icon;
+////
+////         }
+//
+//      }
 
       top_level()->set_auto_refresh();
 
@@ -204,7 +204,7 @@ namespace app_shader
    void main_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
       auto & prender = m_maprender[m_strCurrentShaderPath];
 
@@ -218,7 +218,7 @@ namespace app_shader
 
             m_bSaveFrame = false;
 
-            auto pimage = m_pcontext->m_pauracontext->create_image(rectangleClient.size());
+            auto pimage = m_pcontext->m_pauracontext->create_image(rectangleX.size());
 
             ::draw2d::graphics_pointer pgraphics = pimage->get_graphics();
 
@@ -258,9 +258,9 @@ namespace app_shader
    void main_window::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
-      if(rectangleClient.is_empty())
+      if(rectangleX.is_empty())
       {
 
          return;
@@ -272,7 +272,7 @@ namespace app_shader
       if(::is_set(prender))
       {
 
-         prender->m_rectangle = rectangleClient;
+         prender->m_rectangle = rectangleX;
 
          prender->on_layout(pgraphics);
 

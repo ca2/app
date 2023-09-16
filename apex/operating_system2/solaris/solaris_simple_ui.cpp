@@ -123,8 +123,8 @@ namespace os
       Window window = XCreateWindow(
                       display,
                       DefaultRootWindow(display),
-                      lpcrect->left,
-                      lpcrect->top,
+                      lpcrect->left(),
+                      lpcrect->top(),
                       width(lpcrect),
                       height(lpcrect),
                       0,
@@ -143,8 +143,8 @@ namespace os
 
       }
 
-      m_point.x() = lpcrect.left;
-      m_point.y() = lpcrect.top;
+      m_point.x() = lpcrect.left();
+      m_point.y() = lpcrect.top();
       m_size.cx() = width(lpcrect);
       m_size.cy() = height(lpcrect);
 
@@ -203,7 +203,7 @@ namespace os
 
       //on_size(width(lpcrect), height(lpcrect));
 
-      //on_move(lpcrect->left, lpcrect->top);
+      //on_move(lpcrect->left(), lpcrect->top());
 
       xdisplay d(m_window->display());
 
@@ -220,7 +220,7 @@ namespace os
 
       //bool bShow = true;
 
-//      XMoveResizeWindow(m_window->display(), m_window->window(), m_rectangleDesktop.right-m_point.x(), m_rectangleDesktop.bottom-m_point.y(), m_size.cx(), m_size.cy());
+//      XMoveResizeWindow(m_window->display(), m_window->window(), m_rectangleDesktop.right()-m_point.x(), m_rectangleDesktop.bottom()-m_point.y(), m_size.cx(), m_size.cy());
 
       //XMoveResizeWindow(m_window->display(), m_window->window(), 500, 0, 200, 200);
 
@@ -577,15 +577,15 @@ namespace os
       *prectangle = m_rectangleWindow;
 
    }
-   void simple_ui::client_rectangle(::rectangle_i32 * prectangle)
+   void simple_ui::this->rectangle(::rectangle_i32 * prectangle)
    {
 
       *prectangle = m_rectangleWindow;
 
-      prectangle->right -= prectangle->left;
-      prectangle->bottom -= prectangle->top;
-      prectangle->left = 0;
-      prectangle->top = 0;
+      prectangle->right() -= prectangle->left();
+      prectangle->bottom() -= prectangle->top();
+      prectangle->left() = 0;
+      prectangle->top() = 0;
 
    }
 
@@ -607,7 +607,7 @@ namespace os
       if(rectangleWindow.top_left() != m_rectangleWindow.top_left())
       {
 
-         on_move(rectangleWindow.left, rectangleWindow.top);
+         on_move(rectangleWindow.left(), rectangleWindow.top());
 
       }
 
@@ -617,9 +617,9 @@ namespace os
       if (m_pimage->is_set() && m_pimage->g() != nullptr)
       {
 
-         ::rectangle_i32 rectangleClient = rectangleWindow;
+         ::rectangle_i32 rectangleX = rectangleWindow;
 
-         rectangleClient -= rectangleWindow.top_left();
+         rectangleX -= rectangleWindow.top_left();
 
          ::rectangle_i32 rectangle;
 
@@ -629,7 +629,7 @@ namespace os
 
          m_pimage->g()->set_origin(0, 0);
 
-         m_pimage->g()->FillSolidRect(&rectangleClient, argb(255, 255, 255, 255));
+         m_pimage->g()->FillSolidRect(&rectangleX, argb(255, 255, 255, 255));
 
          draw(m_pimage->g());
 
@@ -704,10 +704,10 @@ namespace os
       m_point.x() = x;
       m_point.y() = y;
 
-      m_rectangle.left = m_point.x();
-      m_rectangle.right = m_point.x() + m_size.cx();
-      m_rectangle.top = m_point.y();
-      m_rectangle.bottom = m_point.y() + m_size.cy();
+      m_rectangle.left() = m_point.x();
+      m_rectangle.right() = m_point.x() + m_size.cx();
+      m_rectangle.top() = m_point.y();
+      m_rectangle.bottom() = m_point.y() + m_size.cy();
 
       return true;
 
@@ -719,10 +719,10 @@ namespace os
       m_size.cx() = cx;
       m_size.cy() = cy;
 
-      m_rectangle.left = m_point.x();
-      m_rectangle.right = m_point.x() + m_size.cx();
-      m_rectangle.top = m_point.y();
-      m_rectangle.bottom = m_point.y() + m_size.cy();
+      m_rectangle.left() = m_point.x();
+      m_rectangle.right() = m_point.x() + m_size.cx();
+      m_rectangle.top() = m_point.y();
+      m_rectangle.bottom() = m_point.y() + m_size.cy();
 
       m_pimage = create_image({get_app()->create_new,  this});
       m_pimage = create_image({m_size.cx(),  m_size.cy()});
@@ -773,10 +773,10 @@ namespace os
 
       ::set_window_position(m_window, nullptr, x, y, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
 
-      m_rectangle.left = x;
-      m_rectangle.top = y;
-      m_rectangle.right = x + m_size.cx();
-      m_rectangle.bottom = y + m_size.cy();
+      m_rectangle.left() = x;
+      m_rectangle.top() = y;
+      m_rectangle.right() = x + m_size.cx();
+      m_rectangle.bottom() = y + m_size.cy();
 
       m_point.x() = x;
       m_point.y() = y;

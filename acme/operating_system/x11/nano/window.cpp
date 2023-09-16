@@ -242,8 +242,8 @@ namespace x11
 
          attr.override_redirect = False;
 
-         int x = m_pinterface->m_rectangle.left;
-         int y = m_pinterface->m_rectangle.top;
+         int x = m_pinterface->m_rectangle.left();
+         int y = m_pinterface->m_rectangle.top();
          int w = m_pinterface->m_rectangle.width();
          int h = m_pinterface->m_rectangle.height();
 
@@ -437,13 +437,13 @@ namespace x11
       if (event_type == ConfigureNotify)
       {
 
-         m_pinterface->m_rectangle.left = pevent->xconfigure.x;
+         m_pinterface->m_rectangle.left() = pevent->xconfigure.x;
 
-         m_pinterface->m_rectangle.top = pevent->xconfigure.y;
+         m_pinterface->m_rectangle.top() = pevent->xconfigure.y;
 
-         m_pinterface->m_rectangle.right = pevent->xconfigure.x + pevent->xconfigure.width;
+         m_pinterface->m_rectangle.right() = pevent->xconfigure.x + pevent->xconfigure.width;
 
-         m_pinterface->m_rectangle.bottom = pevent->xconfigure.y + pevent->xconfigure.height;
+         m_pinterface->m_rectangle.bottom() = pevent->xconfigure.y + pevent->xconfigure.height;
 
          if (m_psurface)
          {
@@ -527,7 +527,9 @@ namespace x11
 
             auto pmouse = __create_new < ::user::mouse >();
 
-            pmouse->m_point = {pevent->xbutton.x_root, pevent->xbutton.y_root};
+            pmouse->m_pointHost = {pevent->xbutton.x, pevent->xbutton.y};
+
+            pmouse->m_pointAbsolute = {pevent->xbutton.x_root, pevent->xbutton.y_root};
 
             on_left_button_down(pmouse);
 
@@ -537,7 +539,9 @@ namespace x11
 
             auto pmouse = __create_new < ::user::mouse >();
 
-            pmouse->m_point = {pevent->xbutton.x_root, pevent->xbutton.y_root};
+            pmouse->m_pointHost = {pevent->xbutton.x, pevent->xbutton.y};
+
+            pmouse->m_pointAbsolute = {pevent->xbutton.x_root, pevent->xbutton.y_root};
 
             on_right_button_down(pmouse);
 
@@ -552,7 +556,9 @@ namespace x11
 
             auto pmouse = __create_new < ::user::mouse >();
 
-            pmouse->m_point = {pevent->xbutton.x_root, pevent->xbutton.y_root};
+            pmouse->m_pointHost = {pevent->xbutton.x, pevent->xbutton.y};
+
+            pmouse->m_pointAbsolute = {pevent->xbutton.x_root, pevent->xbutton.y_root};
 
             on_left_button_up(pmouse);
 
@@ -562,7 +568,9 @@ namespace x11
 
             auto pmouse = __create_new < ::user::mouse >();
 
-            pmouse->m_point = {pevent->xbutton.x_root, pevent->xbutton.y_root};
+            pmouse->m_pointHost = {pevent->xbutton.x, pevent->xbutton.y};
+
+            pmouse->m_pointAbsolute = {pevent->xbutton.x_root, pevent->xbutton.y_root};
 
             on_right_button_up(pmouse);
 
@@ -574,7 +582,9 @@ namespace x11
 
          auto pmouse = __create_new < ::user::mouse >();
 
-         pmouse->m_point = {pevent->xmotion.x_root, pevent->xmotion.y_root};
+         pmouse->m_pointHost = {pevent->xmotion.x, pevent->xmotion.y};
+
+         pmouse->m_pointAbsolute = {pevent->xmotion.x_root, pevent->xmotion.y_root};
 
          on_mouse_move(pmouse);
 
@@ -587,7 +597,9 @@ namespace x11
 
             auto pmouse = __create_new < ::user::mouse >();
 
-            pmouse->m_point = {-100'000, -100'000};
+            pmouse->m_pointHost = {I32_MINIMUM, I32_MINIMUM};
+
+            pmouse->m_pointAbsolute = {I32_MINIMUM, I32_MINIMUM};
 
             m_pinterface->m_pchildHover->on_mouse_move(pmouse);
 
@@ -723,8 +735,8 @@ namespace x11
    void nano_window::get_client_rectangle(::rectangle_i32 & rectangle)
    {
 
-      rectangle.left = 0;
-      rectangle.top = 0;
+      rectangle.left() = 0;
+      rectangle.top() = 0;
 
       Window windowRoot = 0;
       int x = 0;
@@ -744,8 +756,8 @@ namespace x11
 
       }
 
-      rectangle.right = w;
-      rectangle.bottom = h;
+      rectangle.right() = w;
+      rectangle.bottom() = h;
 
 
    }
@@ -772,10 +784,10 @@ namespace x11
 
       }
 
-      rectangle.left = x;
-      rectangle.top = y;
-      rectangle.right = x + w;
-      rectangle.bottom = y + h;
+      rectangle.left() = x;
+      rectangle.top() = y;
+      rectangle.right() = x + w;
+      rectangle.bottom() = y + h;
 
 
    }
@@ -814,7 +826,7 @@ namespace x11
 
       }
 
-      windowing_output_debug_string("\n::wm_nodecorations 2");
+      windowing_output_debug_string("::wm_nodecorations 2");
 
    }
 

@@ -4,10 +4,11 @@
 #include "top_edit_impact.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
-#include "aura/user/user/frame.h"
 #include "aura/graphics/write_text/font_list.h"
+#include "aura/user/user/frame.h"
+#include "aura/user/user/primitive_impl.h"
 #include "base/user/user/document.h"
-#include "core/user/user/font_list.h"
+#include "core/user/user/font_list_impact.h"
 
 
 namespace userex
@@ -21,7 +22,7 @@ namespace userex
 
       m_pimpact = nullptr;
 
-      m_ptopview = nullptr;
+      m_ptopimpact = nullptr;
 
       m_bSourceFontSel = true;
 
@@ -33,21 +34,6 @@ namespace userex
 
    }
 
-
-   //void font_impact::assert_ok() const
-   //{
-
-   //   ::user::split_impact::assert_ok();
-
-   //}
-
-
-   //void font_impact::dump(dump_context& dumpcontext) const
-   //{
-
-   //   ::user::split_impact::dump(dumpcontext);
-
-   //}
 
 
    void font_impact::install_message_routing(::channel* pchannel)
@@ -87,14 +73,14 @@ namespace userex
       if (ptopic->m_atom == id_after_change_text)
       {
 
-         if (m_ptopview != nullptr && ptopic->m_puserelement == m_ptopview->m_peditimpact)
+         if (m_ptopimpact != nullptr && ptopic->m_puserelement == m_ptopimpact->m_peditimpact)
          {
 
             synchronous_lock synchronouslock(m_pimpact->m_pfontlist->synchronization());
 
             string strText;
 
-            m_ptopview->m_peditimpact->_001GetText(strText);
+            m_ptopimpact->m_peditimpact->_001GetText(strText);
 
             m_pimpact->m_pfontlist->m_strText = strText;
 
@@ -114,11 +100,11 @@ namespace userex
 
                strText = m_pimpact->m_pfontlist->m_strFontFamily;
 
-               m_ptopview->m_peditimpact->_001SetText(strText, ::e_source_sync);
+               m_ptopimpact->m_peditimpact->_001SetText(strText, ::e_source_sync);
 
-               m_ptopview->m_peditimpact->m_pfont.defer_create(this);
+               m_ptopimpact->m_peditimpact->m_pfont.defer_create(this);
 
-               m_ptopview->m_peditimpact->m_pfont->set_family_name(strText);
+               m_ptopimpact->m_peditimpact->m_pfont->set_family_name(strText);
 
                m_pimpact->m_pfontlist->m_strText = "";
 
@@ -153,9 +139,9 @@ namespace userex
 
       initialize_split_layout();
 
-      m_ptopview = create_impact < top_impact >(nullptr, get_pane_holder(0), "top_impact");
+      m_ptopimpact = create_impact < top_impact >(nullptr, get_pane_holder(0), "top_impact");
 
-      if (m_ptopview == nullptr)
+      if (m_ptopimpact == nullptr)
       {
 
          output_error_message("Could not create folder edit impact");
@@ -183,6 +169,14 @@ namespace userex
    }
 
 
+   void font_impact::defer_do_graphics(::draw2d::graphics_pointer & pgraphics)
+   {
+
+      m_pprimitiveimpl->defer_do_graphics(pgraphics);
+
+   }
+
+
    void font_impact::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
@@ -197,11 +191,11 @@ namespace userex
       if (m_bSourceFontSel)
       {
 
-         m_ptopview->m_peditimpact->_001SetText(str, ::e_source_sync);
+         m_ptopimpact->m_peditimpact->_001SetText(str, ::e_source_sync);
 
-         m_ptopview->m_peditimpact->m_pfont.defer_create(this);
+         m_ptopimpact->m_peditimpact->m_pfont.defer_create(this);
 
-         m_ptopview->m_peditimpact->m_pfont->set_family_name(str);
+         m_ptopimpact->m_peditimpact->m_pfont->set_family_name(str);
 
       }
 
@@ -249,11 +243,11 @@ namespace userex
 
    //            strText = m_pimpact->m_pfontlist->m_strFontFamily;
 
-   //            m_ptopview->m_peditimpact->_001SetText(strText, ::e_source_sync);
+   //            m_ptopimpact->m_peditimpact->_001SetText(strText, ::e_source_sync);
 
-   //            m_ptopview->m_peditimpact->m_pfont.defer_create(this);
+   //            m_ptopimpact->m_peditimpact->m_pfont.defer_create(this);
 
-   //            m_ptopview->m_peditimpact->m_pfont->set_family_name(strText);
+   //            m_ptopimpact->m_peditimpact->m_pfont->set_family_name(strText);
 
    //            m_pimpact->m_pfontlist->m_strText = "";
 

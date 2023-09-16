@@ -60,6 +60,9 @@ namespace user
    class impact_creator;
 
 
+   class handler_impact;
+
+
    class tab_pane;
    class tab_drop_target_window;
    class single_document_template;

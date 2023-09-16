@@ -1,4 +1,10 @@
 #include "framework.h"
+#if defined(WINDOWS_DESKTOP)
+CLASS_DECL_ACME void attach_thread_input_to_main_thread(bool bAttach);
+#undef USUAL_OPERATING_SYSTEM_SUPPRESSIONS
+#include "acme/_operating_system.h"
+#endif
+
 #include "interaction_graphics_thread.h"
 #include "interaction_thread.h"
 #include "interaction_impl.h"
@@ -7,14 +13,13 @@
 ////#include "acme/exception/exception.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/parallelization/message_queue.h"
-//#include "acme/primitive/time/floating/operator.h"
+#include "acme/platform/node.h"
+#include "acme/primitive/time/_text_stream.h"
+#include "acme/primitive/datetime/_text_stream.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/windowing/window.h"
 
 
-#if defined(WINDOWS_DESKTOP)
-CLASS_DECL_ACME void attach_thread_input_to_main_thread(bool bAttach);
-#endif
 
 
 #if !defined(WINDOWS)
@@ -244,6 +249,27 @@ namespace user
    //}
 
 
+//   int graphics_thread::thread_index()
+//   {
+//
+//      synchronous_lock sl(this->synchronization());
+//
+//      auto iTask = ::get_current_itask();
+//
+//      auto iThreadIndex = m_iaThread.find_first(iTask);
+//
+//      if(iThreadIndex < 0)
+//      {
+//
+//         iThreadIndex = m_iaThread.add(iTask);
+//
+//      }
+//
+//      return iThreadIndex;
+//
+//   }
+
+
    void graphics_thread::run()
    {
 
@@ -281,20 +307,30 @@ namespace user
 
       //add_task(m_puserinteraction);
 
+      ::parallelization::set_priority(::e_priority_highest);
+#ifdef WINDOWS_DESKTOP
+      auto i = GdiSetBatchLimit(20);
+      auto i2 = GdiGetBatchLimit();
+      printf("result %d", i);
+      printf("result2 %d", i2);
+#endif
+
+      m_timeStart.Now();
+
       try
       {
 
          while (task_get_run())
          {
 
-            pump_runnable();
-
-            if (!graphics_thread_iteration())
+            if(!defer_process_redraw_message())
             {
 
                break;
 
             }
+
+            pump_runnable();
 
          }
 
@@ -326,12 +362,167 @@ namespace user
    }
 
 
+   bool graphics_thread::defer_process_redraw_message()
+   {
+
+      m_bAutoRefresh = false;
+
+      {
+
+         synchronous_lock synchronouslock(m_puserinteraction->synchronization());
+
+         ASSERT(!(m_puserinteraction->m_ewindowflag & e_window_flag_embedded_graphics_thread_if_child));
+
+         m_bAutoRefresh = m_puserinteraction->has_auto_refresh();
+
+         if (!m_puserinteraction->m_pinteractionimpl->m_bOfflineRender)
+         {
+
+            if (m_puserinteraction->const_layout().window().display() == e_display_iconic)
+            {
+
+               m_bAutoRefresh = false;
+
+            }
+            else if (m_puserinteraction->const_layout().window().display() == e_display_notify_icon)
+            {
+
+               m_bAutoRefresh = false;
+
+            }
+            else if (!::is_visible(m_puserinteraction->const_layout().window().display()))
+            {
+
+               m_bAutoRefresh = false;
+
+            }
+
+         }
+
+      }
+
+      if (!(m_puserinteraction->m_ewindowflag & e_window_flag_embedded_graphics_thread_if_child))
+      {
+
+         if (!m_bAutoRefresh)
+         {
+
+            m_puserinteraction->m_ewindowflag -= e_window_flag_redraw_in_queue;
+
+            get_message(&m_message, nullptr, 0, 0);
+
+            if(m_message.m_atom == e_message_quit)
+            {
+
+               ::string strType = type(m_puserinteraction).name();
+
+               information()(e_trace_category_graphics_thread) << "Graphics Thread has quit!! " << strType;
+
+               return false;
+
+            }
+
+            int iRedrawMessageCount = 0;
+
+            if(m_message.m_atom == e_message_redraw)
+            {
+
+               iRedrawMessageCount++;
+
+            }
+
+            while (peek_message(&m_message, nullptr, 0, 0, true))
+            {
+
+               if (m_message.m_atom == e_message_redraw)
+               {
+
+                  iRedrawMessageCount++;
+
+               }
+
+            }
+
+#ifdef EXTRA_PRODEVIAN_ITERATION_LOG
+
+            information() << "Skipped e_message_redraw count "+ as_string(iRedrawMessageCount) + "\n";
+
+#endif
+
+            if (iRedrawMessageCount <= 0)
+            {
+
+               return true;
+
+            }
+
+         }
+         else //if(!m_bAutoRefresh)
+         {
+
+            while (peek_message(&m_message, NULL, 0, 0, true))
+            {
+
+//               if (m_message.m_atom == e_message_null)
+//               {
+//
+//                  return true;
+//
+//               }
+//               else if (m_message.m_atom != e_message_redraw)
+//               {
+//
+//                  return true;
+//
+//               }
+
+            }
+
+         }
+
+      }
+
+      if(m_puserinteraction->m_ewindowflag & e_window_flag_postpone_visual_update)
+      {
+
+         if(m_pimpl->m_bPendingRedraw && m_pimpl->m_timeLastRedraw.elapsed() < 100_ms)
+         {
+
+            return true;
+
+         }
+
+      }
+
+      try
+      {
+
+         if (!graphics_thread_iteration())
+         {
+
+            return false;
+
+         }
+
+      }
+      catch(...)
+      {
+
+         information() << "exception while running graphics_thread_iteration";
+
+      }
+
+      return true;
+
+   }
+
+
    bool graphics_thread::graphics_thread_reset(::user::interaction * pinteraction)
    {
 
       m_puserinteraction = pinteraction;
 
-      m_timeNow.Now();
+      //m_timeNow.Now();
 
       //m_iFrameId = m_timeNow / m_timeFrame;
 
@@ -409,235 +600,12 @@ namespace user
    #undef EXTRA_PRODEVIAN_ITERATION_LOG
 
 
-   bool graphics_thread::graphics_thread_iteration()
+   bool graphics_thread::wait_to_present()
    {
 
-      bool bHasProdevian = false;
-
-      bool bRedraw = false;
-
-      string strType;
-
-      strType = __type_name(m_puserinteraction);
-
-      {
-
-         synchronous_lock synchronouslock(m_puserinteraction->synchronization());
-
-         if (strType.case_insensitive_contains("filemanager"))
-         {
-
-            //information() << "filemanager frame... ";
-
-         }
-
-         if (!m_puserinteraction)
-         {
-
-            return false;
-
-         }
-
-         ASSERT(!(m_puserinteraction->m_ewindowflag & e_window_flag_embedded_graphics_thread_if_child));
-         ASSERT(m_puserinteraction->m_pinteractionimpl.is_set());
-
-         bHasProdevian = m_puserinteraction->has_auto_refresh();
-
-         if (!m_puserinteraction->m_pinteractionimpl->m_bOfflineRender)
-         {
-
-            if (m_puserinteraction->const_layout().window().display() == e_display_iconic)
-            {
-
-               bHasProdevian = false;
-
-            }
-            else if (m_puserinteraction->const_layout().window().display() == e_display_notify_icon)
-            {
-
-               bHasProdevian = false;
-
-            }
-            else if (!::is_visible(m_puserinteraction->const_layout().window().display()))
-            {
-
-               bHasProdevian = false;
-
-            }
-
-
-         }
-         
-
-         //synchronous_lock synchronouslock(m_pimpl->synchronization());
-
-         // if (bHasProdevian)
-         // {
-
-         //    information("has_graphics_thread");
-
-         // }
-//
-//         }
-
-      }
-
-      if (!(m_puserinteraction->m_ewindowflag & e_window_flag_embedded_graphics_thread_if_child))
-      {
-
-         if (m_puserinteraction->m_pinteractionimpl.is_null() || !bHasProdevian)
-         {
-
-            m_puserinteraction->m_ewindowflag -= e_window_flag_redraw_in_queue;
-
-            get_message(&m_message, NULL, 0, 0);
-
-            if(m_message.m_atom == e_message_quit)
-            {
-
-               information()(e_trace_category_graphics_thread) << "Graphics Thread has quit!! " << strType;
-
-               return false;
-
-            }
-
-//            if (strType.case_insensitive_contains("list_box"))
-//            {
-//
-//               information("list_box");
-//
-//            }
-
-            //printf("graphics_thread get_message(%d)\n", m_message.message);
-
-            int iSkipped = 0;
-
-            while (peek_message(&m_message, NULL, 0, 0))
-            {
-
-               if (m_message.m_atom == e_message_redraw || m_message.m_atom == e_message_kick_idle)
-               {
-
-                  iSkipped++;
-
-                  peek_message(&m_message, NULL, 0, 0, true);
-
-               }
-               else
-               {
-
-                  break;
-
-               }
-
-            }
-
-   #ifdef EXTRA_PRODEVIAN_ITERATION_LOG
-
-            information() << "Skipped e_message_redraw count "+ as_string(iSkipped) + "\n";
-
-   #endif
-
-            if (m_message.m_atom == e_message_null)
-            {
-
-               return true;
-
-            }
-            else if (m_message.m_atom != e_message_redraw)
-            {
-
-               return true;
-
-            }
-            else if (!this->task_get_run())
-            {
-
-               return false;
-
-            }
-
-            bRedraw = true;
-
-         }
-         else if(!bHasProdevian)
-         {
-
-            while (peek_message(&m_message, NULL, 0, 0, true))
-            {
-
-               if (m_message.m_atom == e_message_null)
-               {
-
-                  return true;
-
-               }
-               else if (m_message.m_atom != e_message_redraw)
-               {
-
-                  return true;
-
-               }
-
-               bRedraw = true;
-
-            }
-
-            if (!this->task_get_run())
-            {
-
-               return false;
-
-            }
-
-         }
-
-      }
-
-      if(!m_puserinteraction)
-      {
-
-         return false;
-
-      }
-
-      if(m_puserinteraction->m_ewindowflag & e_window_flag_postpone_visual_update)
-      {
-
-         if(m_pimpl->m_bPendingRedraw && m_pimpl->m_timeLastRedraw.elapsed() < 100_ms)
-         {
-
-            return true;
-
-         }
-
-      }
-
-      // e_message_redraw
-
-      if(strType.case_insensitive_contains("filemanager"))
-      {
-
-         //information() << "filemanager";
-
-      }
-
-      i64 i1 = ::i64_nanosecond();
-
-      bRedraw = m_message.wParam & 1;
-
-      m_message.wParam &= ~1;
-
-      //if (m_puserinteraction->m_bUpdateBufferPending)
-      //{
-
-         graphics_thread_update_buffer();
-
-      //}
 
       //m_puserinteraction->m_bUpdateBufferPending = false;
 
-      m_timeNow.Now();
 
       if (!this->task_get_run())
       {
@@ -653,57 +621,63 @@ namespace user
 
       //}
 
-      bool bStartWindowVisual = false;
+//      bool bStartWindowVisual = false;
+//
+//      if (m_puserinteraction)
+//      {
+//
+//         if (m_puserinteraction->m_bUpdateWindow || m_puserinteraction->m_bUpdateVisual)
+//         {
+//
+//            m_puserinteraction->m_bUpdateVisual = false;
+//
+//            if (m_puserinteraction->m_ewindowflag & e_window_flag_postpone_visual_update)
+//            {
+//
+//               bStartWindowVisual = true;
+//
+//            }
+//
+//         }
+//
+//      }
+//
+//      //bool bWait = ((m_puserinteraction->m_bUpdateWindow || m_puserinteraction->m_bUpdateScreen) && !bStartWindowVisual) || m_bRedraw;
+//
+//      bool bWait = ((m_puserinteraction->m_bUpdateWindow || m_puserinteraction->m_bUpdateScreen) && !bStartWindowVisual);
+//
+//      if (bWait)
+//      {
 
-      if (m_puserinteraction)
-      {
 
-         if (m_puserinteraction->m_bUpdateWindow || m_puserinteraction->m_bUpdateVisual)
-         {
 
-            m_puserinteraction->m_bUpdateVisual = false;
+      bool bWait = false;
 
-            if (m_puserinteraction->m_ewindowflag & e_window_flag_postpone_visual_update)
-            {
+      //auto elapsed = m_timeNow - m_timeLastFrame;
 
-               bStartWindowVisual = true;
-
-            }
-
-         }
-
-      }
-
-      bool bWait = ((m_puserinteraction->m_bUpdateWindow || m_puserinteraction->m_bUpdateScreen) && !bStartWindowVisual) || bRedraw;
-
-      if (bWait)
-      {
-
-         auto elapsed = m_timeNow - m_timeLastFrame;
-
-         if (bHasProdevian)
-         {
-
-            bWait = elapsed < m_timePostRedrawProdevian.half();
-
-         }
-         else
-         {
-
-            bWait = elapsed < m_timePostRedrawNominal.half();
-
-         }
-
-      }
-
-      if (bWait)
-      {
+//      if (m_bAutoRefresh)
+//      {
+//
+//         bWait = elapsed < m_timePostRedrawProdevian.half();
+//
+//      }
+//      else
+//      {
+//
+//         bWait = elapsed < m_timePostRedrawNominal.half();
+//
+//      }
+//
+//      //}
+//
+//      if (bWait)
+//      {
 
          // Either:
          // - It has graphics_thread mode (FPS drawing);
          // - Or it is going to wait because a frame was already drawn an instant ago due on-request-drawing (cool down).
 
-         auto timeFrame = bHasProdevian ? m_timePostRedrawProdevian : m_timePostRedrawNominal ;
+         auto timeFrame = m_bAutoRefresh ? m_timePostRedrawProdevian : m_timePostRedrawNominal ;
 
          //i64 i2 = get_nanos();
 
@@ -712,23 +686,41 @@ namespace user
 
          //m_timeNextFrame = m_iFrameId * timeFrame;
 
-         m_timeNextFrame = m_timeNow + timeFrame;
+         //class ::time timeNow;
+
+         //timeNow.Now();
+
+         auto timeNow = m_timeStart.elapsed();
+
+         ::i64 iFrame = (::i64) floor(timeNow / timeFrame);
+
+         m_timeThisFrame = timeFrame * iFrame;
+
+         m_timeNextFrame = m_timeThisFrame + timeFrame;
 
          //m_cLost = (::count) (m_iFrameId - m_iLastFrameId - 1);
 
          //m_iLastFrameId = m_iFrameId;
 
-         m_timeNextScreenUpdate = m_timeNextFrame;
+         //m_timeNextScreenUpdate = m_timeNextFrame;
 
-         auto nanosElapsedSinceLastFrame = m_timeNow - m_timeLastFrame;
+         auto nanosElapsedInThisFrame = timeNow - m_timeThisFrame;
 
-         if (nanosElapsedSinceLastFrame > timeFrame)
+      //information() << "frame : " <<iFrame;
+      //information() << "time frame : " <<timeFrame.floating_millisecond() << "ms";
+      //information() << "elapsed in this frame : " <<nanosElapsedInThisFrame.floating_millisecond() << "ms";
+
+      m_timeNextScreenUpdate = m_timeThisFrame + timeFrame * ceil(nanosElapsedInThisFrame/ timeFrame);
+
+      if (nanosElapsedInThisFrame > timeFrame)
          {
 
             // todo display average from last 10 or so frame drawing time and not for every each single offending sample
             // information("("+as_string(nanosElapsedSinceLastFrame/1'000'000)+"ms)Frames are taking long to draw. Wait a bit more to free CPU. Is there much load?!?!\n");
 
-            m_timeNextScreenUpdate += timeFrame;
+
+
+            //information() << "next_frame time extended. frames taking long to draw";
 
             //m_iLastFrameId++;
 
@@ -736,9 +728,11 @@ namespace user
 
          {
 
-            auto timeStartWait = ::time::now();
+            //auto timeStartWait = ::time::now();
 
-            auto timeToWaitForNextFrame = m_timeNextScreenUpdate - timeStartWait;
+            auto timeToWaitForNextFrame = m_timeNextScreenUpdate - timeNow;
+
+            //information() << "timeToWaitForNextFrame:" <<timeToWaitForNextFrame.floating_millisecond()<<"ms";
 
             if (timeToWaitForNextFrame > 1_s)
             {
@@ -749,7 +743,7 @@ namespace user
 
             }
 
-            if (timeToWaitForNextFrame >= 2_ms)
+            if (timeToWaitForNextFrame >= 1_ms)
             {
 
                //auto timeStart = ::time::now();
@@ -759,28 +753,28 @@ namespace user
                if (timeToWaitForNextFrame < timeFrame)
                {
 
-                  if (timeToWaitForNextFrame >= 50_ms)
-                  {
-
-                     //printf("msToWaitForNextFrame >= 50ms (%dms)\n", (::i32) (msToWaitForNextFrame - 1));
-
-                     m_synchronizationa.wait(timeToWaitForNextFrame - 1_ms);
-
-                     //printf("Actually waited %dms\n", (::i32) ::time.elapsed().m_i);
-
-                  }
-                  else
+//                  if (timeToWaitForNextFrame >= 50_ms)
+//                  {
+//
+//                     //printf("msToWaitForNextFrame >= 50ms (%dms)\n", (::i32) (msToWaitForNextFrame - 1));
+//
+//                     m_synchronizationa.wait(timeToWaitForNextFrame - 1_ms);
+//
+//                     //printf("Actually waited %dms\n", (::i32) ::time.elapsed().m_i);
+//
+//                  }
+//                  else
                   {
 
                      //printf("msToWaitForNextFrame < 50\n");
 
-                     if(timeToWaitForNextFrame > 300_ms)
-                     {
-
-                        m_evUpdateScreen._wait(timeToWaitForNextFrame);
-
-                     }
-                     else
+//                     if(timeToWaitForNextFrame > 300_ms)
+//                     {
+//
+//                        m_evUpdateScreen._wait(timeToWaitForNextFrame);
+//
+//                     }
+//                     else
                      {
 
                         ::preempt(timeToWaitForNextFrame);
@@ -797,14 +791,14 @@ namespace user
 
             }
 
-            auto timeEndWait = ::time::now();
-
-            if (timeEndWait - timeStartWait > 100_ms)
-            {
-
-               information("Waited more than 100ms to go display drawn frame at screen?!?!\n");
-
-            }
+//            auto timeEndWait = ::time::now();
+//
+//            if (timeEndWait - timeStartWait > 100_ms)
+//            {
+//
+//               information("Waited more than 100ms to go display drawn frame at screen?!?!\n");
+//
+//            }
 
             //{
 
@@ -826,7 +820,7 @@ namespace user
 
          }
 
-      }
+//      }
 
       if (!this->task_get_run())
       {
@@ -835,132 +829,67 @@ namespace user
 
       }
 
-      if(!m_pimpl)
+      return true;
+
+   }
+
+
+   bool graphics_thread::graphics_thread_iteration()
+   {
+
+      i64 i1 = ::i64_nanosecond();
+
+      //m_timeLastFrame = m_timeThisFrame;
+
+      //m_timeThisFrame = m_timeNextFrame;
+
+      if(m_timeStart == 0_ms)
       {
 
-         return false;
+         m_timeStart.Now();
 
       }
 
-      if(!m_puserinteraction)
-      {
+      m_puserinteraction->m_bUpdateBuffer = false;
 
-         return false;
+      m_puserinteraction->m_bUpdateScreen = false;
 
-      }
+      m_puserinteraction->m_bUpdateWindow = false;
 
-      if (!(m_puserinteraction->m_ewindowflag & e_window_flag_postpone_visual_update))
-      {
+      //m_puserinteraction->m_pinteractionimpl->m_pwindow->_on
 
-         //#ifdef LINUX
+      m_puserinteraction->m_pinteractionimpl->do_graphics();
 
-         if (bStartWindowVisual)
-         {
+      //m_puserinteraction->m_pinteractionimpl->do_graphics(e_graphics_draw);
 
-            m_puserinteraction->_window_request_presentation();
-
-            //m_pimpl->window_show();
-
-         }
-
-         //#endif
-         ////END IFDEF LINUX
-
-      }
-
-      // if (m_bVisualUpdated)
-      // {
-
-      //    m_bVisualUpdated = false;
-
-      //    if (::is_set(m_pimpl->m_puserthread))
-      //    {
-
-      //       m_pimpl->m_puserthread->m_evApplyVisual.wait(15_s);
-
-      //    }
-
-      // }
-
-      if (!this->task_get_run())
-      {
-
-         return false;
-
-      }
-
-      bool bWindowsApplyVisual = true;
-
-      auto & edisplayOutput = m_puserinteraction->const_layout().output().m_edisplay;
-
-      auto & edisplayDesign = m_puserinteraction->const_layout().design().m_edisplay;
-
-      if (edisplayOutput != edisplayDesign)
-      {
-
-         m_puserinteraction->post_message(e_message_show_window, ::is_screen_visible(edisplayDesign) ? 1 : 0);
-
-      }
-
-
-#if TIME_REPORTING
-
-      auto e1 = g_timeBetweenUpdateBufferAndUpdateScreen.elapsed();
+      m_puserinteraction->on_after_graphical_update();
       
-      ::time timeUpdateScreenPost;
-      
-      timeUpdateScreenPost.Now();
+      m_puserinteraction->m_bNeedRedraw = false;
 
-      information("timeBetweenUpdateBufferAndUpdateScreen "+as_string(e1.floating_millisecond().m_d) +"ms\n");
+      //graphics_thread_do_layout();
 
-#endif
+      //graphics_thread_update_buffer();
 
-      //if (m_bUpdateScreen && (bWindowsApplyVisual || !bStartWindowVisual))
-      {
+      //m_puserinteraction->m_bLockSketchToDesign = true;df
 
-
-
-         graphics_thread_update_screen();
-
-      }
-      //else
-      //{
-
-      //   information() << "no update screen";
-
-      //}
-
-#if TIME_REPORTING
-
-      auto e2 = timeUpdateScreenPost.elapsed();
-
-      information("timeUpdateScreenPost " + as_string(e2.floating_millisecond().m_d) + "ms\n");
-
-#endif
-
-      m_puserinteraction->set_display(edisplayDesign, e_layout_output);
-
-      if (!m_puserinteraction)
+      if(!wait_to_present())
       {
 
          return false;
 
       }
 
-      if ((m_puserinteraction->m_ewindowflag & e_window_flag_postpone_visual_update))
-      {
-         // IFDEF WINDOWS
-         if (bStartWindowVisual)
-         {
+      m_puserinteraction->m_pinteractionimpl->m_pwindow->window_do_update_screen();
 
-            m_puserinteraction->_window_request_presentation();
+      //m_puserinteraction->m_bLockSketchToDesign = false;
 
-            //m_pimpl->m_pwindow->window_show();
-            //m_puserinteraction->post_procedure(m_procedureWindowShow);
+      return true;
 
-         }
-         // ENDIF WINDOWS
-      }
+   }
+
+
+   void graphics_thread::on_graphics_thread_iteration_end()
+   {
 
       {
 
@@ -991,40 +920,54 @@ namespace user
 
       }
 
-      if(!m_pimpl)
-      {
-
-         return false;
-
-      }
-
       m_pimpl->m_frequencyOutputFramesPerSecond = (double)(m_timeaFrame.get_size());
 
-      return true;
-
    }
 
 
-   bool graphics_thread::graphics_thread_update_buffer()
-   {
+   //bool graphics_thread::graphics_thread_do_layout()
+   //{
 
-      //m_bRedraw = bRedraw;
+   //   //m_bRedraw = bRedraw;
 
-      m_puserinteraction->m_bUpdateBuffer = false;
+   //   m_puserinteraction->m_bUpdateBuffer = false;
 
-      m_puserinteraction->m_bUpdateScreen = false;
+   //   m_puserinteraction->m_bUpdateScreen = false;
 
-      m_puserinteraction->m_bUpdateWindow = false;
+   //   m_puserinteraction->m_bUpdateWindow = false;
 
-      //update_buffer(m_bUpdateBuffer, m_bUpdateScreen, m_bUpdateWindow, bRedraw);
+   //   //update_buffer(m_bUpdateBuffer, m_bUpdateScreen, m_bUpdateWindow, bRedraw);
 
-      update_buffer();
+   //   update_buffer();
 
-      //m_bUpdateBufferUpdateWindowPending = m_bUpdateWindow;
+   //   //m_bUpdateBufferUpdateWindowPending = m_bUpdateWindow;
 
-      return true;
+   //   return true;
 
-   }
+   //}
+
+
+
+   //bool graphics_thread::graphics_thread_update_buffer()
+   //{
+
+   //   //m_bRedraw = bRedraw;
+
+   //   //m_puserinteraction->m_bUpdateBuffer = false;
+
+   //   //m_puserinteraction->m_bUpdateScreen = false;
+
+   //   //m_puserinteraction->m_bUpdateWindow = false;
+
+   //   //update_buffer(m_bUpdateBuffer, m_bUpdateScreen, m_bUpdateWindow, bRedraw);
+
+   //   update_buffer();
+
+   //   //m_bUpdateBufferUpdateWindowPending = m_bUpdateWindow;
+
+   //   return true;
+
+   //}
 
 
    bool graphics_thread::graphics_thread_update_screen()
@@ -1091,123 +1034,240 @@ namespace user
    }
 
 
-   //void graphics_thread::update_buffer(bool & bUpdateBuffer, bool & bUpdateScreen, bool & bUpdateWindow, bool bForce)
-   void graphics_thread::update_buffer()
-   {
 
-      try
-      {
-
-//         synchronous_lock synchronouslock(m_puserinteraction->synchronization());
+//   //void graphics_thread::update_buffer(bool & bUpdateBuffer, bool & bUpdateScreen, bool & bUpdateWindow, bool bForce)
+//   void graphics_thread::do_layout()
+//   {
 //
-//         if(!m_puserinteraction)
+//      try
+//      {
+//
+//         //         synchronous_lock synchronouslock(m_puserinteraction->synchronization());
+//         //
+//         //         if(!m_puserinteraction)
+//         //         {
+//         //
+//         //            return;
+//         //
+//         //         }
+//         //
+//         //         //bUpdateBuffer = false;
+//         //
+//         //         //bUpdateWindow = false;
+//         //
+//         //         i64 i1 = ::i64_nanosecond();
+//         //
+//         //      //   bool bTransparentDraw;
+//         //
+//         //      //#ifdef WINDOWS_DESKTOP
+//         //
+//         //      //   if (m_puserinteraction->GetExStyle() & WS_EX_LAYERED)
+//         //      //   {
+//         //
+//         //      //      bTransparentDraw = true;
+//         //
+//         //      //   }
+//         //      //   else
+//         //      //   {
+//         //
+//         //      //      bTransparentDraw = false;
+//         //
+//         //      //   }
+//         //
+//         //      //#else
+//         //
+//         //      //   bTransparentDraw = true;
+//         //
+//         //      //#endif
+//         //
+//         //         if (!::task_get_run())
+//         //         {
+//         //
+//         //            return;
+//         //
+//         //         }
+//         //
+//         //         if (m_puserinteraction == nullptr)
+//         //         {
+//         //
+//         //            return;
+//         //
+//         //         }
+//         //
+//         //
+//         //         if (!m_pimpl)
+//         //         {
+//         //
+//         //            return;
+//         //
+//         //         }
+//         //
+//         //         synchronouslock.unlock();
+//
+//         m_timeBeforeDrawing.Now();
+//
+//         m_timeOutOfDrawing = m_timeBeforeDrawing - m_timeAfterDrawing;
+//
+//         i64 i2 = ::i64_nanosecond();
+//
+//#if TIME_REPORTING
+//
+//         static ::time timeLast;
+//
+//         information("time outside updatebuffer " + as_string(timeLast.elapsed().floating_millisecond().m_d) + "ms\n");
+//
+//#endif
+//
+//         m_pimpl->do_graphics();
+//
+//#if TIME_REPORTING
+//
+//         timeLast.Now();
+//
+//         g_timeBetweenUpdateBufferAndUpdateScreen.Now();
+//
+//#endif
+//
+//         m_timeAfterDrawing.Now();
+//
+//         m_timeDuringDrawing = m_timeAfterDrawing - m_timeBeforeDrawing;
+//
+//         if (m_puserinteraction)
 //         {
 //
-//            return;
+//            m_puserinteraction->on_after_graphical_update();
+//
+//            m_puserinteraction->m_bNeedRedraw = false;
 //
 //         }
 //
-//         //bUpdateBuffer = false;
+//      }
+//      catch (...)
+//      {
 //
-//         //bUpdateWindow = false;
+//      }
 //
-//         i64 i1 = ::i64_nanosecond();
+//   }
 //
-//      //   bool bTransparentDraw;
+//   //void graphics_thread::update_buffer(bool & bUpdateBuffer, bool & bUpdateScreen, bool & bUpdateWindow, bool bForce)
+//   void graphics_thread::update_buffer()
+//   {
 //
-//      //#ifdef WINDOWS_DESKTOP
+//      try
+//      {
 //
-//      //   if (m_puserinteraction->GetExStyle() & WS_EX_LAYERED)
-//      //   {
+////         synchronous_lock synchronouslock(m_puserinteraction->synchronization());
+////
+////         if(!m_puserinteraction)
+////         {
+////
+////            return;
+////
+////         }
+////
+////         //bUpdateBuffer = false;
+////
+////         //bUpdateWindow = false;
+////
+////         i64 i1 = ::i64_nanosecond();
+////
+////      //   bool bTransparentDraw;
+////
+////      //#ifdef WINDOWS_DESKTOP
+////
+////      //   if (m_puserinteraction->GetExStyle() & WS_EX_LAYERED)
+////      //   {
+////
+////      //      bTransparentDraw = true;
+////
+////      //   }
+////      //   else
+////      //   {
+////
+////      //      bTransparentDraw = false;
+////
+////      //   }
+////
+////      //#else
+////
+////      //   bTransparentDraw = true;
+////
+////      //#endif
+////
+////         if (!::task_get_run())
+////         {
+////
+////            return;
+////
+////         }
+////
+////         if (m_puserinteraction == nullptr)
+////         {
+////
+////            return;
+////
+////         }
+////
+////
+////         if (!m_pimpl)
+////         {
+////
+////            return;
+////
+////         }
+////
+////         synchronouslock.unlock();
 //
-//      //      bTransparentDraw = true;
+//         m_timeBeforeDrawing.Now();
 //
-//      //   }
-//      //   else
-//      //   {
+//         m_timeOutOfDrawing = m_timeBeforeDrawing - m_timeAfterDrawing;
 //
-//      //      bTransparentDraw = false;
+//         i64 i2 = ::i64_nanosecond();
 //
-//      //   }
+//#if TIME_REPORTING
 //
-//      //#else
+//         static ::time timeLast;
 //
-//      //   bTransparentDraw = true;
+//         information("time outside updatebuffer " +as_string(timeLast.elapsed().floating_millisecond().m_d) + "ms\n");
 //
-//      //#endif
+//#endif
 //
-//         if (!::task_get_run())
+//         m_pimpl->do_graphics();
+//
+//#if TIME_REPORTING
+//
+//         timeLast.Now();
+//
+//         g_timeBetweenUpdateBufferAndUpdateScreen.Now();
+//
+//#endif
+//
+//         m_timeAfterDrawing.Now();
+//
+//         m_timeDuringDrawing = m_timeAfterDrawing - m_timeBeforeDrawing;
+//
+//         if (m_puserinteraction)
 //         {
 //
-//            return;
+//            m_puserinteraction->on_after_graphical_update();
+//
+//            m_puserinteraction->m_bNeedRedraw = false;
 //
 //         }
 //
-//         if (m_puserinteraction == nullptr)
-//         {
+//      }
+//      catch (...)
+//      {
 //
-//            return;
+//      }
 //
-//         }
-//
-//
-//         if (!m_pimpl)
-//         {
-//
-//            return;
-//
-//         }
-//
-//         synchronouslock.unlock();
-
-         m_timeBeforeDrawing.Now();
-
-         m_timeOutOfDrawing = m_timeBeforeDrawing - m_timeAfterDrawing;
-
-         i64 i2 = ::i64_nanosecond();
-
-#if TIME_REPORTING
-
-         static ::time timeLast;
-
-         information("time outside updatebuffer " +as_string(timeLast.elapsed().floating_millisecond().m_d) + "ms\n");
-
-#endif
-
-         m_pimpl->do_graphics();
-
-#if TIME_REPORTING
-
-         timeLast.Now();
-
-         g_timeBetweenUpdateBufferAndUpdateScreen.Now();
-
-#endif
-
-         m_timeAfterDrawing.Now();
-
-         m_timeDuringDrawing = m_timeAfterDrawing - m_timeBeforeDrawing;
-
-         if (m_puserinteraction)
-         {
-
-            m_puserinteraction->on_after_graphical_update();
-
-            m_puserinteraction->m_bNeedRedraw = false;
-
-         }
-
-      }
-      catch (...)
-      {
-
-      }
-
-   }
+//   }
 
 
    void graphics_thread::post_redraw()
    {
+
+      //information() << acmenode()->get_callstack();
 
       post_message(e_message_redraw);
 
@@ -1319,7 +1379,9 @@ namespace user
 
       synchronous_lock sl(synchronization());
       
-      m_timeLastFrame.Now();
+      //m_timeLastFrame.Now();
+
+      //m_timeLastFrame = m_timeNow;
 
       m_timeaFrame.add(m_timeLastFrame);
 

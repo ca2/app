@@ -221,11 +221,11 @@ namespace app_app
 
             pitemClose->m_rectangle.bottom() = pitemClose->m_rectangle.top() + iSize;
 
-            auto pointCursor = get_cursor_position();
-
             auto pmouse = __create_new < ::message::mouse >();
 
-            pmouse->m_point = pointCursor;
+            pmouse->m_pointHost = host_mouse_cursor_position();
+
+            pmouse->m_pointAbsolute = absolute_mouse_cursor_position();
 
             update_hover(pmouse, ::user::e_zorder_any);
 

@@ -626,7 +626,7 @@ namespace user
 
       }
 
-      auto point = pmouse->m_point;
+      auto point = pmouse->m_pointHost;
 
       host_to_client()(point);
 
@@ -655,7 +655,11 @@ namespace user
 
       ::user::enum_tree_element eelement;
 
-      pitem = _001HitTest(pmouse->m_point, eelement);
+      auto point = pmouse->m_pointHost;
+
+      host_to_client()(point);
+
+      pitem = _001HitTest(point, eelement);
 
       if (pitem != nullptr)
       {
@@ -679,7 +683,7 @@ namespace user
 
       //pmouse->previous();
 
-      auto point = pmouse->m_point;
+      auto point = pmouse->m_pointHost;
 
       ::pointer<::data::tree_item>pitem;
 
@@ -705,7 +709,7 @@ namespace user
 
       m_uiLButtonUpFlags = (::u32)pmouse->m_ebuttonstate;
 
-      m_pointLButtonUp = pmouse->m_point;
+      m_pointLButtonUp = pmouse->m_pointAbsolute;
 
       perform_click();
 
@@ -807,7 +811,11 @@ namespace user
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      perform_right_click(pmouse->m_ebuttonstate, pmouse->m_point);
+      auto point = pmouse->m_pointHost;
+
+      host_to_client()(point);
+
+      perform_right_click(pmouse->m_ebuttonstate, point);
 
       pmessage->m_bRet = true;
 
@@ -1362,7 +1370,9 @@ namespace user
    void tree::update_tree_hover()
    {
 
-      auto pointCursor = get_cursor_position();
+      auto pointCursor = host_mouse_cursor_position();
+
+      host_to_client()(pointCursor);
 
       update_tree_hover(pointCursor);
 

@@ -424,9 +424,9 @@ namespace user
 
       }
 
-      auto pointCursor = get_cursor_position();
+      auto pointCursor = mouse_cursor_position();
 
-      screen_to_client(::user::e_layout_design)(pointCursor);
+      //screen_to_client(::user::e_layout_design)(pointCursor);
 
       pgraphics->set_font(this, ::e_element_none);
 
@@ -861,9 +861,9 @@ namespace user
       if (pactivate->m_eactivate == e_activate_inactive)
       {
 
-         auto pointCursor = get_cursor_position();
-
-         m_pcombo->screen_to_client(::user::e_layout_sketch)(pointCursor);
+//         auto pointCursor = get_cursor_position();
+//
+//         m_pcombo->screen_to_client(::user::e_layout_sketch)(pointCursor);
 
       }
       else

@@ -1,8 +1,9 @@
 // created by Camilo <3CamiloSasukeThomasBorregaardSoerensen
 // recreated by Camilo 2021-01-28 22:20
 #include "framework.h"
-#include "placement_log.h"
 #include "cursor.h"
+#include "display.h"
+#include "placement_log.h"
 #include "acme/constant/message.h"
 #include "acme/exception/interface_only.h"
 #include "acme/parallelization/asynchronous.h"
@@ -170,20 +171,20 @@ namespace windowing
    }
 
 
-   void window::set_cursor_position(const ::point_i32 & pointCursor)
-   {
-
-      m_pointCursor = pointCursor;
-
-   }
-
-
-   void window::get_cursor_position(::point_i32 * ppointCursor)
-   {
-
-      *ppointCursor = m_pointCursor;
-
-   }
+//   void window::set_cursor_position(const ::point_i32 & pointCursor)
+//   {
+//
+//      m_pointCursor = pointCursor;
+//
+//   }
+//
+//
+//   void window::get_cursor_position(::point_i32 * ppointCursor)
+//   {
+//
+//      *ppointCursor = m_pointCursor;
+//
+//   }
 
 
    //bool window::defer_set_icon()
@@ -961,20 +962,20 @@ namespace windowing
    }
 
 
-   ::point_i32 window::get_mouse_cursor_host_position()
-   {
-
-      return ::point_i32(0, 0);
-
-   }
-
-
-   ::point_i32 window::get_mouse_cursor_absolute_position()
-   {
-
-      return ::point_i32(0, 0);
-
-   }
+//   ::point_i32 window::get_mouse_cursor_host_position()
+//   {
+//
+//      return ::point_i32(0, 0);
+//
+//   }
+//
+//
+//   ::point_i32 window::get_mouse_cursor_absolute_position()
+//   {
+//
+//      return ::point_i32(0, 0);
+//
+//   }
 
 
    void window::set_tool_window(bool bSet)
@@ -1799,42 +1800,54 @@ namespace windowing
    }
 
 
-   void window::on_touch_down(int x, int y)
+   void window::on_touch_down(int xHost, int yHost, int xAbsolute, int yAbsolute)
    {
 
-      ::lparam lparam(x, y);
+      ::lparam lparam(xHost, yHost);
 
-      m_pointCursor.x() = x;
+      m_pointCursor2.x() = xHost;
 
-      m_pointCursor.y() = y;
+      m_pointCursor2.y() = yHost;
+
+      m_pdisplay->m_pointCursor2.x() = xAbsolute;
+
+      m_pdisplay->m_pointCursor2.y() = yAbsolute;
 
       m_puserinteractionimpl->m_puserinteraction->post_message(e_message_left_button_down, 0, lparam);
 
    }
 
 
-   void window::on_touch_drag(int x, int y)
+   void window::on_touch_drag(int xHost, int yHost, int xAbsolute, int yAbsolute)
    {
 
-      ::lparam lparam(x, y);
+      ::lparam lparam(xHost, yHost);
 
-      m_pointCursor.x() = x;
+      m_pointCursor2.x() = xHost;
 
-      m_pointCursor.y() = y;
+      m_pointCursor2.y() = yHost;
+
+      m_pdisplay->m_pointCursor2.x() = xAbsolute;
+
+      m_pdisplay->m_pointCursor2.y() = yAbsolute;
 
       m_puserinteractionimpl->m_puserinteraction->post_message(e_message_mouse_move, 0, lparam);
 
    }
 
 
-   void window::on_touch_up(int x, int y)
+   void window::on_touch_up(int xHost, int yHost, int xAbsolute, int yAbsolute)
    {
 
-      ::lparam lparam(x, y);
+      ::lparam lparam(xHost, yHost);
 
-      m_pointCursor.x() = x;
+      m_pointCursor2.x() = xHost;
 
-      m_pointCursor.y() = y;
+      m_pointCursor2.y() = yHost;
+
+      m_pdisplay->m_pointCursor2.x() = xAbsolute;
+
+      m_pdisplay->m_pointCursor2.y() = yAbsolute;
 
       m_puserinteractionimpl->m_puserinteraction->post_message(e_message_left_button_up, 0, lparam);
 
@@ -2048,7 +2061,23 @@ namespace windowing
       try
       {
 
-         auto pcursor = m_puserinteractionimpl->m_puserinteraction->user_mouse_get_cursor(pmouse);
+         ::windowing::cursor * pcursor = nullptr;
+
+         auto pimpl = m_puserinteractionimpl;
+
+         if(::is_set(pimpl))
+         {
+
+            auto puserinteraction = pimpl->m_puserinteraction;
+
+            if(::is_set(puserinteraction))
+            {
+
+               pcursor = puserinteraction->user_mouse_get_cursor(pmouse);
+
+            }
+
+         }
 
          if(!pcursor)
          {

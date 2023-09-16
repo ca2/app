@@ -431,7 +431,7 @@ namespace user
 
          auto pmouse = pmessage->m_union.m_pmouse;
 
-         release_mouse_capture();
+         defer_release_mouse_capture();
 
          if (!is_text_editable())
          {
@@ -493,7 +493,7 @@ namespace user
 
             auto pcursor = get_mouse_cursor(e_cursor_text_select);
 
-            pmouse->m_pcursor = pcursor;
+            user_mouse_set_cursor(pmouse, pcursor);
 
             pmouse->m_bRet = true;
 
@@ -526,7 +526,7 @@ namespace user
 
             auto pcursor = get_mouse_cursor(e_cursor_text_select);
 
-            pmouse->m_pcursor = pcursor;
+            user_mouse_set_cursor(pmouse, pcursor);
 
             pmouse->m_bRet = true;
 
@@ -562,7 +562,7 @@ namespace user
       void edit_impl::on_message_mouse_leave(::message::message * pmessage)
       {
 
-         release_mouse_capture();
+         defer_release_mouse_capture();
 
          set_need_redraw();
 

@@ -1496,6 +1496,7 @@ namespace experience
 
       ::user::frame_window::install_message_routing(pchannel);
 
+      MESSAGE_LINK(e_message_create, pchannel, this, &frame_window::on_message_create);
       MESSAGE_LINK(e_message_parent_left_button_down, pchannel, this, &frame_window::on_message_parent_left_button_down);
       MESSAGE_LINK(e_message_parent_left_button_up, pchannel, this, &frame_window::on_message_parent_left_button_up);
       //MESSAGE_LINK(e_message_parent_left_button_double_click, pchannel, this, &frame_window::on_message_parent_left_button_double_click);
@@ -1511,6 +1512,20 @@ namespace experience
       MESSAGE_LINK(e_message_activate, pchannel, this, &frame_window::_001OnActivate);
 
       MESSAGE_LINK(e_message_size, pchannel, this, &frame_window::on_message_size);
+
+   }
+
+
+   void frame_window::on_message_create(::message::message * pmessage)
+   {
+
+      if(!windowing()->has_readily_gettable_absolute_coordinates()
+      || !windowing()->display()->has_readily_gettable_absolute_pointer_position())
+      {
+
+         disable_dock();
+
+      }
 
    }
 
@@ -2237,7 +2252,7 @@ namespace experience
 
          auto pwindow = window();
 
-         pointCursor = pwindow->get_cursor_position();
+         pointCursor = m_pwindow->m_pdisplay->m_pointCursor2;
 
       }
 

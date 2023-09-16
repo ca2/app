@@ -314,7 +314,7 @@ namespace user
       //virtual bool GetUpdateRect(::rectangle_i32 * prectangle,bool bErase = false);
 
 
-      virtual void interaction_post(const ::procedure & procedure);
+      virtual void host_post(const ::procedure & procedure);
 
 
       //virtual lresult send(::message::message * pmessage);

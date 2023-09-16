@@ -42,7 +42,7 @@ namespace windowing
    }
 
 
-   bool windowing::has_absolute_coordinate_system() const
+   bool windowing::has_readily_gettable_absolute_coordinates() const
    {
 
       return true;
@@ -163,12 +163,12 @@ namespace windowing
    }
 
 
-   void windowing::set_cursor_position(const ::point_i32 & pointCursor)
-   {
-
-      m_pointCursor = pointCursor;
-
-   }
+//   void windowing::set_cursor_position(const ::point_i32 & pointCursor)
+//   {
+//
+//      m_pointCursor = pointCursor;
+//
+//   }
 
 
    ::windowing::window * windowing::window(oswindow oswindow)
@@ -640,25 +640,25 @@ namespace windowing
    }
 
 
-   void windowing::windowing_send(const ::procedure & procedure)
-   {
-
-      __matter_send_procedure(this, this, &windowing::windowing_post, procedure);
-
-   }
-
-
-   void windowing::windowing_post(const ::procedure & procedure)
-   {
-
-      if(acmenode()->m_pauranode->defer_windowing_post(procedure))
-      {
-
-         return;
-
-      }
-
-   }
+//   void windowing::windowing_send(const ::procedure & procedure)
+//   {
+//
+//      __matter_send_procedure(this, this, &windowing::windowing_post, procedure);
+//
+//   }
+//
+//
+//   void windowing::windowing_post(const ::procedure & procedure)
+//   {
+//
+//      if(acmenode()->m_pauranode->defer_windowing_post(procedure))
+//      {
+//
+//         return;
+//
+//      }
+//
+//   }
 
 
    ::windowing::keyboard * windowing::keyboard()

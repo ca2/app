@@ -298,6 +298,8 @@ namespace windowing
          if (set_cursor_file(pcursorpair->m_ecursor, pathDir / strCursorName, bFromCache))
          {
 
+            information() << "set_cursor_file : " << (pathDir / strCursorName);
+
             countSuccess++;
 
          }

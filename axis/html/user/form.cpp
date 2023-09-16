@@ -426,7 +426,7 @@ void html_form::on_message_left_button_up(::message::message * pmessage)
 
    ::point_i32 point(pmouse->m_pointHost);
 
-   screen_to_client()(point);
+   host_to_client()(point);
 
    html::element * pelement = nullptr;
 

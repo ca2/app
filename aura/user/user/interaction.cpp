@@ -3102,170 +3102,189 @@ namespace user
    void interaction::display(::e_display edisplay, ::e_activation eactivation)
    {
 
-      bool bToggle = false;
+      bool bChange = false;
 
-      if (equivalence_sink(edisplay) == e_display_normal)
+      if(edisplay != const_layout().sketch().display())
       {
 
-         display_normal(edisplay, eactivation);
+         bChange = true;
 
-      }
-      else if (::is_docking_appearance(edisplay))
-      {
+         if (equivalence_sink(edisplay) == e_display_normal)
+         {
 
-         display_docked(edisplay, eactivation);
+            display_normal(edisplay, eactivation);
 
-      }
-      else if (edisplay == e_display_hide || edisplay == e_display_none)
-      {
+         }
+         else if (::is_docking_appearance(edisplay))
+         {
+
+            display_docked(edisplay, eactivation);
+
+         }
+         else if (edisplay == e_display_hide || edisplay == e_display_none)
+         {
 
 #ifdef INFO_LAYOUT_DISPLAY
 
-         //information() << "interaction_layout::display e_display_hide";
+            //information() << "interaction_layout::display e_display_hide";
 
 #endif
 
 #if DEBUG_LEVEL > 0
 
-         if (get_parent() == nullptr
-             && m_econtroltype != e_control_type_button)
-         {
+            if (get_parent() == nullptr
+                && m_econtroltype != e_control_type_button)
+            {
 
-            information() << "Top Level Window. Display Request -> hide";
+               information() << "Top Level Window. Display Request -> hide";
 
-         }
+            }
 
 #endif
 
-         layout().sketch().display() = e_display_hide;
+            layout().sketch().display() = e_display_hide;
 
-      }
-      else if (edisplay == e_display_zoomed)
-      {
+         }
+         else if (edisplay == e_display_zoomed)
+         {
 
-         display_zoomed();
+            display_zoomed();
 
-      }
-      else if (edisplay == e_display_iconic)
-      {
+         }
+         else if (edisplay == e_display_iconic)
+         {
 
-         display_iconic();
+            display_iconic();
 
-      }
-      else if (edisplay == e_display_full_screen)
-      {
+         }
+         else if (edisplay == e_display_full_screen)
+         {
 
-         information("e_display_full_screen");
+            information("e_display_full_screen");
 
 #ifdef INFO_LAYOUT_DISPLAY
 
-         information() << "interaction_layout::display e_display_full_screen";
+            information() << "interaction_layout::display e_display_full_screen";
 
 #endif
-         display_full_screen(-1, eactivation);
-         //layout().sketch().display() = e_display_full_screen;
+            display_full_screen(-1, eactivation);
+            //layout().sketch().display() = e_display_full_screen;
 
-      }
-      else if (edisplay == e_display_stored_state)
-      {
+         }
+         else if (edisplay == e_display_stored_state)
+         {
 
-         display_stored_state();
+            display_stored_state();
 
-      }
-      else if (edisplay == e_display_notify_icon)
-      {
+         }
+         else if (edisplay == e_display_notify_icon)
+         {
 
-         display_notify_icon();
+            display_notify_icon();
 
-      }
-      else if (edisplay == e_display_default)
-      {
+         }
+         else if (edisplay == e_display_default)
+         {
 
 #ifdef INFO_LAYOUT_DISPLAY
 
-         //information() << "interaction_layout::display e_display_default";
+            //information() << "interaction_layout::display e_display_default";
 
 #endif
 
-         auto edisplayCurrent = layout().sketch().display();
+            auto edisplayCurrent = layout().sketch().display();
 
-         auto edisplayStored = window_stored_display();
+            auto edisplayStored = window_stored_display();
 
-         auto edisplayPrevious = window_previous_display();
+            auto edisplayPrevious = window_previous_display();
 
-         if (edisplayCurrent == e_display_undefined)
-         {
+            if (edisplayCurrent == e_display_undefined)
+            {
 
-            edisplay = e_display_normal;
+               edisplay = e_display_normal;
 
-         }
-         else if (::is_screen_visible(edisplayCurrent))
-         {
+            }
+            else if (::is_screen_visible(edisplayCurrent))
+            {
 
-            edisplay = edisplayCurrent;
+               edisplay = edisplayCurrent;
 
-         }
-         else if (::is_screen_visible(edisplayStored))
-         {
+            }
+            else if (::is_screen_visible(edisplayStored))
+            {
 
-            edisplay = edisplayStored;
+               edisplay = edisplayStored;
 
-         }
-         else if (::is_screen_visible(edisplayPrevious))
-         {
+            }
+            else if (::is_screen_visible(edisplayPrevious))
+            {
 
-            edisplay = edisplayPrevious;
+               edisplay = edisplayPrevious;
+
+            }
+            else
+            {
+
+               edisplay = ::e_display_normal;
+
+            }
+
+            layout().sketch().display() = edisplay;
 
          }
          else
          {
 
-            edisplay = ::e_display_normal;
-
-         }
-
-         layout().sketch().display() = edisplay;
-
-      }
-      else
-      {
-
 #ifdef INFO_LAYOUT_DISPLAY
 
-         //information() << "interaction_layout::display (unknown)";
+            //information() << "interaction_layout::display (unknown)";
 
 #endif
 
-      }
+         }
 
-      if (::is_screen_visible(layout().sketch().display()))
-      {
-
-         if (m_setneedredrawa.has_element())
+         if (::is_screen_visible(layout().sketch().display()))
          {
 
-            for (auto & setneedredraw : m_setneedredrawa)
+            if (m_setneedredrawa.has_element())
             {
 
-               set_need_redraw(setneedredraw.m_rectangleaNeedRedraw, nullptr,
-                               setneedredraw.m_function, setneedredraw.m_bAscendants);
+               for (auto & setneedredraw: m_setneedredrawa)
+               {
+
+                  set_need_redraw(setneedredraw.m_rectangleaNeedRedraw, nullptr,
+                                  setneedredraw.m_function, setneedredraw.m_bAscendants);
+
+               }
+
+               m_setneedredrawa.clear();
+
+               post_redraw();
 
             }
-
-            m_setneedredrawa.clear();
-
-            post_redraw();
 
          }
 
       }
 
-      layout().sketch() = eactivation;
-
-      if (!sketch_on_display())
+      if(eactivation > const_layout().sketch().activation())
       {
 
-         return;
+         bChange = true;
+
+         layout().sketch() = eactivation;
+
+      }
+
+      if(bChange)
+      {
+
+         if (!sketch_on_display())
+         {
+
+            return;
+
+         }
 
       }
 
@@ -3558,7 +3577,7 @@ namespace user
          else
          {
 
-            interaction_post([this]()
+            user_post([this]()
                              {
 
                                 if (get_app() != nullptr && get_app()->get_session() != nullptr &&
@@ -6690,19 +6709,21 @@ namespace user
    //}
 
 
-   void interaction::interaction_post(const ::procedure & procedure)
+   void interaction::host_post(const ::procedure & procedure)
    {
 
-      auto puserinteractionHost = get_host_window();
+      auto pthread = m_pthreadUserInteraction;
 
-      if (!puserinteractionHost || puserinteractionHost == this)
+      if (::is_null(pthread))
       {
 
-         return m_pprimitiveimpl->interaction_post(procedure);
+         procedure();
+
+         return;
 
       }
 
-      return puserinteractionHost->interaction_post(procedure);
+      pthread->post_procedure(procedure);
 
    }
 
@@ -6749,10 +6770,32 @@ namespace user
    }
 
 
-   void interaction::interaction_send(const ::procedure & procedure)
+   void interaction::host_send(const ::procedure & procedure)
    {
 
-      __matter_send_procedure(this, this, &interaction::interaction_post, procedure);
+      //__matter_send_procedure(this, this, &interaction::interaction_post, procedure);
+
+      auto pevent = __new(manual_reset_event);
+
+      host_post([ procedure, pevent ]
+                {
+
+                   procedure();
+
+                   pevent->SetEvent();
+
+                });
+
+      if(!pevent->wait(procedure.m_timeTimeout))
+      {
+
+         throw ::exception(error_timeout);
+         //pevent.release();
+
+         //return false;
+
+      }
+
 
    }
 
@@ -6928,38 +6971,38 @@ namespace user
    }
 
 
-   void interaction::windowing_send(const ::procedure & procedure)
-   {
-
-      auto pwindowing = windowing();
-
-      if (::is_null(pwindowing))
-      {
-
-         throw ::exception(error_wrong_state);
-
-      }
-
-      pwindowing->windowing_send(procedure);
-
-   }
-
-
-   void interaction::windowing_post(const ::procedure & procedure)
-   {
-
-      auto pwindowing = windowing();
-
-      if (::is_null(pwindowing))
-      {
-
-         throw ::exception(error_wrong_state);
-
-      }
-
-      pwindowing->windowing_post(procedure);
-
-   }
+//   void interaction::windowing_send(const ::procedure & procedure)
+//   {
+//
+//      auto pwindowing = windowing();
+//
+//      if (::is_null(pwindowing))
+//      {
+//
+//         throw ::exception(error_wrong_state);
+//
+//      }
+//
+//      pwindowing->windowing_send(procedure);
+//
+//   }
+//
+//
+//   void interaction::windowing_post(const ::procedure & procedure)
+//   {
+//
+//      auto pwindowing = windowing();
+//
+//      if (::is_null(pwindowing))
+//      {
+//
+//         throw ::exception(error_wrong_state);
+//
+//      }
+//
+//      pwindowing->windowing_post(procedure);
+//
+//   }
 
 
    void interaction::_000OnDrag(::message::drag_and_drop * pdrag)
@@ -7281,7 +7324,7 @@ namespace user
 
       auto pwindow = window();
 
-      auto pointCursor = pwindow->get_cursor_position();
+      //auto pointCursor = pwindow->get_cursor_position();
 
       if (!pkey->m_bRet)
       {
@@ -14660,7 +14703,7 @@ namespace user
 
       pmouse->m_pwindowingcursor = pcursor;
 
-      information() << "user_mouse_initialize_cursor : " << pcursor->m_ecursor;
+      //information() << "user_mouse_initialize_cursor : " << pcursor->m_ecursor;
 
    }
 
@@ -14670,7 +14713,7 @@ namespace user
 
       pmouse->m_pwindowingcursor = pcursor;
 
-      information() << "user_mouse_set_cursor : " << pcursor->m_ecursor;
+      //information() << "user_mouse_set_cursor : " << pcursor->m_ecursor;
 
    }
 
@@ -15082,7 +15125,7 @@ namespace user
    }
 
 
-   ::point_i32 interaction::get_cursor_position()
+   ::point_i32 interaction::host_mouse_cursor_position()
    {
 
       auto pwindow = window();
@@ -15094,14 +15137,14 @@ namespace user
 
       }
 
-      auto pointCursor = pwindow->get_cursor_position();
+      auto pointCursor = pwindow->m_pointCursor2;
 
       return pointCursor;
 
    }
 
 
-   void interaction::set_cursor_position(const ::point_i32 & pointCursor)
+   ::point_i32 interaction::mouse_cursor_position()
    {
 
       auto pwindow = window();
@@ -15109,13 +15152,55 @@ namespace user
       if (::is_null(pwindow))
       {
 
-         throw ::exception(::error_wrong_state);
+         return {};
 
       }
 
-      pwindow->set_cursor_position(pointCursor);
+      auto pointCursor = pwindow->m_pointCursor2;
+
+      host_to_client()(pointCursor);
+
+      return pointCursor;
 
    }
+
+
+   ::point_i32 interaction::absolute_mouse_cursor_position()
+   {
+
+      auto pwindow = window();
+
+      if (::is_null(pwindow))
+      {
+
+         return {};
+
+      }
+
+      auto pointCursor = pwindow->m_pointCursor2;
+
+      screen_to_client()(pointCursor);
+
+      return pointCursor;
+
+   }
+
+
+//   void interaction::set_cursor_position(const ::point_i32 & pointCursor)
+//   {
+//
+//      auto pwindow = window();
+//
+//      if (::is_null(pwindow))
+//      {
+//
+//         throw ::exception(::error_wrong_state);
+//
+//      }
+//
+//      pwindow->set_cursor_position(pointCursor);
+//
+//   }
 
 
    void interaction::set_mouse_capture()
@@ -15151,7 +15236,9 @@ namespace user
    bool interaction::defer_release_mouse_capture()
    {
 
-      information() << "interaction::defer_release_mouse_capture";
+      ::string strType = ::type(this).name();
+
+      information() << "interaction::defer_release_mouse_capture type : " << strType << ", atom : " << m_atom.as_string();
 
       auto pwindow = window();
 
@@ -17351,9 +17438,26 @@ namespace user
       if (window() && (eactivation & e_activation_under_mouse_cursor || rectangle.is_null()))
       {
 
-         ::point_i32 pointCursor = window()->get_mouse_cursor_absolute_position();
+         if(windowing()->display()->has_readily_gettable_absolute_pointer_position())
+         {
 
-         rectangleSample.set(pointCursor - ::size_i32(5, 5), ::size_i32(10, 10));
+            ::point_i32 pointCursor = windowing()->display()->get_mouse_cursor_position();
+
+            rectangleSample.set(pointCursor - ::size_i32(5, 5), ::size_i32(10, 10));
+
+         }
+         else
+         {
+
+            warning() << "This windowing system !is_absolute_pointer_position_readily_gettable(). Is there a specific flag to set at window creation for enabling e_activation_under_mouse_cursor?";
+
+            //throw ::exception(todo,
+            //             "The window may not be visible yet so no mouse position in it."
+            //             "Is there reliable cross platform to get pointer position, "
+            //             "or maybe at least just make this feature work in platforms that "
+            //             "supports getting pointer position globally?");
+
+         }
 
       }
       else if (rectangle.is_set())
@@ -23038,7 +23142,9 @@ namespace user
 
       synchronous_lock synchronouslock(this->synchronization());
 
-      //information() << "interaction::on_message_mouse_leave";
+      ::string strType = ::type(this).name();
+
+      information() << "interaction::on_message_mouse_leave type : " << strType;
 
       auto pappearance = get_appearance();
 
@@ -23061,6 +23167,8 @@ namespace user
          if (puseritem->m_rectangle.is_set())
          {
 
+            information() << "interaction::on_message_mouse_leave : " << puseritem->m_rectangle;
+
             set_need_redraw({ puseritem->m_rectangle });
 
             post_redraw();
@@ -23068,6 +23176,8 @@ namespace user
          }
          else if (puseritem->m_ppath.is_set())
          {
+
+            information() << "interaction::on_message_mouse_leave set_need_redraw()";
 
             set_need_redraw();
 

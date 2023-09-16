@@ -1126,9 +1126,9 @@ namespace user
 
             auto pwindow = window();
 
-            auto pointCursor = pwindow->get_cursor_position();
+            auto pointCursor = pwindow->m_pointWindow;
 
-            screen_to_client()(pointCursor);
+            host_to_client()(pointCursor);
 
             ::rectangle_i32 rectangleActiveClient;
 

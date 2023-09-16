@@ -294,7 +294,11 @@ namespace filemanager
 
             index iItem;
 
-            if(_001HitTest_(pmouse->m_point, iItem))
+            auto point = pmouse->m_pointHost;
+
+            host_to_client()(point);
+
+            if(_001HitTest_(point, iItem))
             {
 
                if(m_itema[iItem]->IsFolder())

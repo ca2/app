@@ -629,7 +629,7 @@ namespace acme
 
       //::acme::idpool::term();
 
-      m_pnode->node_quit();
+      m_pnode->user_post_quit();
 
       m_pnode.release();
 
@@ -2686,25 +2686,25 @@ namespace acme
    }
 
 
-   void system::windowing_send(const ::procedure & procedure)
-   {
-
-      auto pmanualresetevent = __new(manual_reset_event);
-
-      windowing_post([pmanualresetevent, procedure]()
-                     {
-
-                        procedure();
-
-                        pmanualresetevent->set_event();
-
-      }
-
-      );
-
-      pmanualresetevent->wait(procedure.m_timeTimeout);
-
-   }
+//   void system::windowing_send(const ::procedure & procedure)
+//   {
+//
+//      auto pmanualresetevent = __new(manual_reset_event);
+//
+//      windowing_post([pmanualresetevent, procedure]()
+//                     {
+//
+//                        procedure();
+//
+//                        pmanualresetevent->set_event();
+//
+//      }
+//
+//      );
+//
+//      pmanualresetevent->wait(procedure.m_timeTimeout);
+//
+//   }
 
 
    void system::destroy()

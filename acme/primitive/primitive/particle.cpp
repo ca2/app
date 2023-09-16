@@ -4,11 +4,12 @@
 #include "factory.h"
 #include "acme/exception/interface_only.h"
 #include "acme/handler/extended_topic.h"
+#include "acme/handler/topic.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/acme.h"
 #include "acme/platform/application.h"
-#include "acme/handler/topic.h"
 #include "acme/platform/context.h"
+#include "acme/platform/node.h"
 #include "acme/platform/system.h"
 #include "acme/user/nano/nano.h"
 //#include "acme/primitive/primitive/payload.h"
@@ -2132,6 +2133,54 @@ pointer < ::sequencer < ::conversation > > particle::exception_message_console(c
 {
 
    return acmesystem()->nano()->exception_message_console(exception, strMessage, strTitle, emessagebox, strDetails);
+
+}
+
+
+void particle::app_post(const ::procedure & procedure)
+{
+
+   acmeapplication()->post_procedure(procedure);
+
+}
+
+
+void particle::app_fork(const ::procedure & procedure)
+{
+
+   acmeapplication()->fork(procedure);
+
+}
+
+
+void particle::task_post(const ::procedure & procedure)
+{
+
+   ::get_task()->post_procedure(procedure);
+
+}
+
+
+void particle::task_fork(const ::procedure & procedure)
+{
+
+   ::get_task()->fork(procedure);
+
+}
+
+
+void particle::user_send(const ::procedure & procedure)
+{
+
+   acmenode()->user_send(procedure);
+
+}
+
+
+void particle::user_post(const ::procedure & procedure)
+{
+
+   acmenode()->user_post(procedure);
 
 }
 

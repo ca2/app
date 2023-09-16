@@ -786,8 +786,8 @@ namespace user
 
          m_puserinteraction->m_bMessageWindow = false;
 
-         auto pwindowing = windowing();
-         pwindowing->windowing_send([&]()
+         //auto pwindowing = windowing();
+         user_send([&]()
             {
 
                auto pwindowing = windowing();
@@ -2055,6 +2055,13 @@ namespace user
 
       ::message::key * pkey = nullptr;
 
+      if(::is_null(m_puserinteraction))
+      {
+
+         return;
+
+      }
+
       if (m_puserinteraction->pre_message_handler(pkey, bKeyMessage, pmessage))
       {
 
@@ -2574,7 +2581,7 @@ namespace user
 
          //::string strType = ::type(m_puserinteractionMouseCapture).name();
 
-         //information() << "on_mouse_message capture type : " << strType;
+         //information() << "on_mouse_message CAPTURED to object of type : " << strType;
 
          m_puserinteractionMouseCapture->route_as_parent_mouse_message(pmouse);
 
@@ -2588,6 +2595,10 @@ namespace user
       }
       else
       {
+
+         //::string strType = ::type(m_puserinteraction).name();
+
+         //information() << "on_mouse_message type : " << strType;
 
          m_puserinteraction->on_mouse_message(pmouse);
 

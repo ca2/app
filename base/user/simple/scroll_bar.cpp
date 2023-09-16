@@ -824,9 +824,9 @@ void simple_scroll_bar::_001OnTimer(::timer * ptimer)
 
    ::user::scroll_bar::_001OnTimer(ptimer);
 
-   auto pointCursor = get_cursor_position();
+   auto pointCursor = mouse_cursor_position();
 
-   host_to_client()(pointCursor);
+   //host_to_client()(pointCursor);
 
    if (ptimer->m_uEvent == (uptr)this)
    {
@@ -2264,7 +2264,7 @@ bool simple_scroll_bar::on_drag_start(::point_i32 & point, ::item * pitem)
 
    }
 
-   return true;
+   return false;
 
 }
 

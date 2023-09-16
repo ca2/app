@@ -117,7 +117,7 @@ namespace user
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      release_mouse_capture();
+      defer_release_mouse_capture();
 
       if (m_bMouseDown)
       {

@@ -43,11 +43,11 @@ namespace windowing
 
 
 
-   void desktop_environment::windowing_post(const ::procedure & procedure)
-   {
-
-
-   }
+//   void desktop_environment::windowing_post(const ::procedure & procedure)
+//   {
+//
+//
+//   }
 
 
    bool desktop_environment::message_loop_step()

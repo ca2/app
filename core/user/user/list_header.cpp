@@ -510,9 +510,9 @@ namespace user
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      auto pointCursor = pmouse->m_point;
+      auto pointCursor = pmouse->m_pointHost;
 
-      screen_to_client()(pointCursor);
+      host_to_client()(pointCursor);
 
       if(hit_test(pointCursor, m_eelementLButtonDown, m_iItemLButtonDown))
       {
@@ -533,9 +533,9 @@ namespace user
 
       list * plist = m_plist;
 
-      auto pointCursor = pmouse->m_point;
+      auto pointCursor = pmouse->m_pointHost;
 
-      screen_to_client()(pointCursor);
+      host_to_client()(pointCursor);
 
       if(m_bLButtonDown)
       {
@@ -610,9 +610,9 @@ namespace user
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      auto pointCursor = pmouse->m_point;
+      auto pointCursor = pmouse->m_pointHost;
 
-      screen_to_client()(pointCursor);
+      host_to_client()(pointCursor);
 
       list * plist = m_plist;
 
@@ -638,7 +638,7 @@ namespace user
 
             m_bTrack = false;
 
-            release_mouse_capture();
+            defer_release_mouse_capture();
 
          }
 
@@ -692,7 +692,7 @@ namespace user
 
       }
 
-      pmouse->m_pcursor = pcursor;
+      user_mouse_set_cursor(pmouse, pcursor);
 
       pmouse->m_bRet = false;
 
@@ -704,9 +704,9 @@ namespace user
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      auto pointCursor = pmouse->m_point;
+      auto pointCursor = pmouse->m_pointHost;
 
-      screen_to_client()(pointCursor);
+      host_to_client()(pointCursor);
 
       list * plist = m_plist;
 

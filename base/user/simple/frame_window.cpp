@@ -412,7 +412,7 @@ void simple_frame_window::task_intensive_save_window_placement()
 
          m_bPendingSaveWindowRect = false;
 
-         windowing()->windowing_post([this]()
+         user_post([this]()
                                      {
 
          WindowDataSaveWindowRectangle();
@@ -596,11 +596,7 @@ void simple_frame_window::on_message_destroy(::message::message* pmessage)
       try
       {
 
-         auto psystem = acmesystem();
-
-         auto pnode = psystem->node();
-
-         pnode->node_send([this]()
+         user_send([this]()
             {
 
                if (m_pnotifyicon)
@@ -1013,13 +1009,17 @@ void simple_frame_window::on_message_create(::message::message* pmessage)
       if (m_bDefaultNotifyIcon)
       {
 
-          main_asynchronous([this]()
+         information() << "simple_frame_window::on_message_create m_bDefaultNotifyIcon";
+
+          user_post([this]()
                          {
 
               //auto papp = get_app();
          //auto psystem = acmesystem()->m_papexsystem;
 
-         //auto estatus = 
+         //auto estatus =
+
+         information() << "simple_frame_window::on_message_create default notify icon starting user thread";
 
          __defer_construct(m_pnotifyicon);
 
@@ -2902,7 +2902,7 @@ void simple_frame_window::defer_create_notification_icon()
 
    }
 
-   windowing_post([this]
+   user_post([this]
       {
 
          //      if (m_pnotifyicon)
@@ -3332,7 +3332,7 @@ void simple_frame_window::handle(::topic* ptopic, ::context* pcontext)
 
          //OnNotifyIconContextMenu(ptopic->m_puserelement->m_atom);
 
-         auto pointCursor = get_cursor_position();
+         auto pointCursor = mouse_cursor_position();
 
          string strXml = notification_area_get_xml_menu();
 
@@ -4240,7 +4240,7 @@ void simple_frame_window::call_notification_area_action(const ::string& pszId)
 
    ::atom atom(pszId);
 
-   interaction_post([this, atom]()
+   host_post([this, atom]()
       {
 
          handle_command(atom);

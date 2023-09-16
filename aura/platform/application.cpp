@@ -5544,7 +5544,7 @@ namespace aura
          if(pinteraction)
          {
 
-            pinteraction->interaction_post([pinteraction, idCommand]()
+            pinteraction->host_post([pinteraction, idCommand]()
             {
 
                ::message::command command(idCommand);

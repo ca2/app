@@ -952,7 +952,7 @@ namespace user
    }
 
 
-   void element::interaction_post(const ::procedure & procedure)
+   void element::host_post(const ::procedure & procedure)
    {
 
       //throw ::interface_only();

@@ -1327,7 +1327,7 @@ namespace sandbox_windowing
 
 
    //
-   //      x11_windowing()->windowing_post([this, edisplay, eactivation]()
+   //      user_post([this, edisplay, eactivation]()
    //         {
    //
    //            windowing_output_debug_string("::window::show_window 1");

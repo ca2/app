@@ -1041,11 +1041,11 @@ namespace base
    bool user::track_popup_menu(::user::interaction* pinteraction, ::user::menu_item * pitem, i32 iFlags, ::channel* pchannelNotify)
    {
 
-      ::point_i32 point;
+      //::point_i32 point;
 
-      auto pwindow = pinteraction->window();
+      //auto pwindow = pinteraction->window();
 
-      auto pointCursor = pwindow->get_cursor_position();
+      auto pointCursor = pinteraction->mouse_cursor_position();
 
       return track_popup_menu(pinteraction, pitem, iFlags, pointCursor, pchannelNotify);
 
@@ -1084,7 +1084,7 @@ namespace base
 
       ::point_i32 point = pmouse->m_pointHost;
 
-      pinteraction->screen_to_client()(point);
+      pinteraction->host_to_client()(point);
 
       return track_popup_menu(pinteraction, pitem, iFlags, point, pchannelNotify);
 

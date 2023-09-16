@@ -1609,11 +1609,9 @@ namespace nanoui
 
       m_pwidgetMouseCapture.release();
 
-      screen()->m_puserinteraction->release_mouse_capture();
+      screen()->m_puserinteraction->defer_release_mouse_capture();
 
    }
-
-
 
 
    bool Screen::on_button_down(::user::e_key ekeyButton, const ::point_i32& point, const ::user::e_key& ekeyModifiers, bool bDoubleClick)

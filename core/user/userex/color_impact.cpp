@@ -854,7 +854,7 @@ namespace userex
       
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      ::point_i32 point = pmouse->m_point;
+      ::point_i32 point = pmouse->m_pointHost;
 
       host_to_client()(point);
 
@@ -874,7 +874,7 @@ namespace userex
 
       auto pmouse = pmessage->m_union.m_pmouse;
       
-      ::point_i32 point = pmouse->m_point;
+      ::point_i32 point = pmouse->m_pointHost;
       
       host_to_client()(point);
 
@@ -882,7 +882,7 @@ namespace userex
 
       pmouse->m_bRet = true;
 
-      release_mouse_capture();
+      defer_release_mouse_capture();
 
       m_bLButtonPressed = false;
       
@@ -910,7 +910,7 @@ namespace userex
       if (m_bLButtonPressed)
       {
 
-         ::point_i32 point = pmouse->m_point;
+         ::point_i32 point = pmouse->m_pointHost;
 
          host_to_client()(point);
 

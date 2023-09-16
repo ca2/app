@@ -187,9 +187,9 @@ namespace filemanager
 
       index iItem;
 
-      auto point = pcontextmenu->m_point;
+      auto point = pcontextmenu->m_pointHost;
 
-      ::user::list::screen_to_client()(point);
+      ::user::list::host_to_client()(point);
 
       if (_001HitTest_(point, iItem))
       {
@@ -209,7 +209,11 @@ namespace filemanager
             
             auto puser = psession->m_puser->m_pcoreuser;
 
-            puser->track_popup_xml_menu(this, filemanager_data()->m_strXmlPopup, 0, pcontextmenu->m_point);
+            auto point = pcontextmenu->m_pointHost;
+
+            host_to_client()(point);
+
+            puser->track_popup_xml_menu(this, filemanager_data()->m_strXmlPopup, 0, point);
 
          }
 
@@ -223,7 +227,11 @@ namespace filemanager
          
          auto puser = psession->m_puser->m_pcoreuser;
 
-         puser->track_popup_xml_menu(this, filemanager_data()->m_strPopup, 0, pcontextmenu->m_point);
+         auto point = pcontextmenu->m_pointHost;
+
+         host_to_client()(point);
+
+         puser->track_popup_xml_menu(this, filemanager_data()->m_strPopup, 0, point);
 
       }
 

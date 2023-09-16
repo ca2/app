@@ -2784,7 +2784,7 @@ namespace user
 
          defer_release_mouse_capture();
 
-         auto pointCursor = get_cursor_position();
+         auto pointCursor = mouse_cursor_position();
 
          auto pitem = hit_test(pointCursor, ::user::e_zorder_any);
 

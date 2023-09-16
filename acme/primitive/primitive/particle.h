@@ -497,6 +497,16 @@ public:
    }
 
 
+   virtual void app_post(const ::procedure & procedure);
+   virtual void app_fork(const ::procedure & procedure);
+
+   virtual void task_post(const ::procedure & procedure);
+   virtual void task_fork(const ::procedure & procedure);
+
+   virtual void user_send(const ::procedure & procedure);
+   virtual void user_post(const ::procedure & procedure);
+
+
    //template < typename BASE_TYPE >
    //inline void __raw_construct(::pointer<BASE_TYPE> & p, ::factory::factory * pfactory = ::get_system_factory());
 

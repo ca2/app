@@ -565,8 +565,8 @@ namespace acme
 
       virtual bool fast_is_decompressable_folder(const ::file::path & path);
 
-      virtual void windowing_send(const ::procedure & procedure);
-      virtual void windowing_post(const ::procedure & procedure);
+      //virtual void windowing_send(const ::procedure & procedure);
+      //virtual void windowing_post(const ::procedure & procedure);
 
       
       bool _handle_call(::payload & payload, const ::string & strObject, const ::string & strMember, ::property_set & propertyset) override;

@@ -57,7 +57,7 @@ namespace windowing
       ::pointer<::windowing::windowing>         m_pwindowing;
       ::pointer<::user::copydesk>               m_pcopydesk;
       ::pointer<::windowing::cursor>            m_pcursor;
-      ::point_i32                               m_pointCursor;
+      ::point_i32                               m_pointCursor2;
       ::oswindow                                m_oswindow;
       bool                                      m_bUpdateScreenSynchronously;
       
@@ -94,11 +94,11 @@ namespace windowing
       virtual void create_window(::user::interaction_impl * pimpl);
 
 
-      virtual void set_cursor_position(const ::point_i32 & pointCursor);
+      //virtual void set_cursor_position(const ::point_i32 & pointCursor);
 
-      virtual void get_cursor_position(::point_i32 * ppointCursor);
+      //virtual void get_cursor_position(::point_i32 * ppointCursor);
 
-      inline ::point_i32 get_cursor_position() { ::point_i32 point; get_cursor_position(&point); return point; }
+      //inline ::point_i32 get_cursor_position() { ::point_i32 point; get_cursor_position(&point); return point; }
 
 
       //virtual bool defer_set_icon();
@@ -314,9 +314,9 @@ namespace windowing
       virtual ::windowing::cursor * get_mouse_cursor();
 
 
-      virtual ::point_i32 get_mouse_cursor_host_position();
+      //virtual ::point_i32 get_mouse_cursor_host_position();
       
-      virtual ::point_i32 get_mouse_cursor_absolute_position();
+      //virtual ::point_i32 get_mouse_cursor_absolute_position();
 
 
       virtual void set_tool_window(bool bSet);
@@ -379,9 +379,9 @@ namespace windowing
       itask_t get_itask() const;
 
 
-      virtual void on_touch_down(int x, int y);
-      virtual void on_touch_drag(int x, int y);
-      virtual void on_touch_up(int x, int y);
+      virtual void on_touch_down(int xHost, int yHost, int xAbsolute, int yAbsolute);
+      virtual void on_touch_drag(int xHost, int yHost, int xAbsolute, int yAbsolute);
+      virtual void on_touch_up(int xHost, int yHost, int xAbsolute, int yAbsolute);
 
       virtual void on_size(int w, int h);
 

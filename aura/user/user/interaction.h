@@ -578,13 +578,13 @@ namespace user
 
       virtual bool is_user_thread();
 
-      virtual void interaction_send(const ::procedure & procedure);
+      //virtual void interaction_send(const ::procedure & procedure);
 
-      virtual void interaction_post(const ::procedure & procedure) override;
+      //virtual void interaction_post(const ::procedure & procedure) override;
 
-      virtual void windowing_send(const ::procedure& procedure);
+      virtual void host_send(const ::procedure& procedure);
 
-      virtual void windowing_post(const ::procedure& procedure);
+      virtual void host_post(const ::procedure& procedure);
 
 
 
@@ -1465,8 +1465,10 @@ namespace user
       virtual ::pointer<::windowing::cursor>get_mouse_cursor(enum_cursor ecursor);
       virtual ::windowing::cursor * get_mouse_cursor() override;
 
-      virtual ::point_i32 get_cursor_position();
-      virtual void set_cursor_position(const ::point_i32 & pointCursor);
+      virtual ::point_i32 absolute_mouse_cursor_position();
+      virtual ::point_i32 host_mouse_cursor_position();
+      virtual ::point_i32 mouse_cursor_position();
+      //virtual void set_cursor_position(const ::point_i32 & pointCursor);
 
       virtual bool has_mouse_capture();
       virtual void set_mouse_capture();

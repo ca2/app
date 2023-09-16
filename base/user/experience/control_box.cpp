@@ -222,9 +222,9 @@ namespace experience
 
          }
 
-         ::point_i32 pointCursor;
+         ::point_i32 pointCursorHost;
 
-         pointCursor = get_cursor_position();
+         pointCursorHost = host_mouse_cursor_position();
 
          if (is_window_visible())
          {
@@ -243,16 +243,15 @@ namespace experience
                   if (m_pframewindow->layout().is_full_screen())
                   {
 
-                     ::rectangle_i32 rectangleWindow;
+                     auto rectangleHost = host_rectangle();
 
-                     window_rectangle(rectangleWindow);
-
-                     if (rectangleWindow.contains(pointCursor))
+                     if (rectangleHost.contains(pointCursorHost))
                      {
 
                         m_timeShow.Now();
 
-                     } else
+                     }
+                     else
                      {
 
                         if (m_timeShow.elapsed() > 1_s)
@@ -280,16 +279,11 @@ namespace experience
                   if (m_pframewindow->layout().is_full_screen())
                   {
 
-                     ::rectangle_i32 rectangleWindow;
+                     auto rectangleHost = host_rectangle();
 
-                     window_rectangle(rectangleWindow);
-
-                     rectangleWindow.left() = minimum(rectangleWindow.left(), rectangleWindow.right());
-                     rectangleWindow.bottom() = minimum(rectangleWindow.top(), rectangleWindow.bottom());
-
-
-                     if (pointCursor.x() >= rectangleWindow.left() && pointCursor.y() <= rectangleWindow.right() &&
-                         pointCursor.y() == 0)
+                     if (pointCursorHost.x() >= rectangleHost.left()
+                     && pointCursorHost.x() <= rectangleHost.right() &&
+                        pointCursorHost.y() == 0)
                      {
 
                         order(e_zorder_top);
@@ -311,28 +305,11 @@ namespace experience
             if (m_pframewindow->layout().is_full_screen())
             {
 
-               ::rectangle_i32 rectangleWindow;
+               auto rectangleHost = host_rectangle();
 
-               window_rectangle(rectangleWindow);
-
-               rectangleWindow.left() = minimum(rectangleWindow.left(), rectangleWindow.right());
-               rectangleWindow.bottom() = minimum(rectangleWindow.top(), rectangleWindow.bottom());
-
-               ::point_i32 pointCursor;
-
-               try
-               {
-
-                  pointCursor = get_cursor_position();
-
-               }
-               catch (...)
-               {
-
-               }
-
-               if (pointCursor.x() >= rectangleWindow.left() && pointCursor.x() <= rectangleWindow.right() &&
-                   pointCursor.y() == 0)
+               if (pointCursorHost.x() >= rectangleHost.left()
+                   && pointCursorHost.x() <= rectangleHost.right() &&
+                   pointCursorHost.y() == 0)
                {
 
                   m_bShowAttempt = true;
@@ -497,7 +474,7 @@ namespace experience
       } else if (ebutton == e_button_dock)
       {
 
-         if (m_pframewindow->updown_get_up_enable())
+         if (!m_pframewindow->is_docking_enabled())
          {
 
             return false;

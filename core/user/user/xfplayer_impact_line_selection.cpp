@@ -144,9 +144,7 @@ void xfplayer_impact_line_selection::relay_event(xfplayer_impact_line & viewline
 
                   string str;
 
-                  auto pwindow = m_puserinteraction->window();
-
-                  auto pointCursor = pwindow->get_cursor_position();
+                  auto pointCursor = m_puserinteraction->mouse_cursor_position();
 
                   if(viewline.get_link(str, pointCursor))
                   {
@@ -161,9 +159,7 @@ void xfplayer_impact_line_selection::relay_event(xfplayer_impact_line & viewline
          else if(emessage == e_message_mouse_move)
          {
 
-            auto pwindow = m_puserinteraction->window();
-
-            auto pointCursor = pwindow->get_cursor_position();
+            auto pointCursor = m_puserinteraction->mouse_cursor_position();
 
             viewline.update_hover(pointCursor);
 
@@ -180,20 +176,25 @@ void xfplayer_impact_line_selection::relay_event(xfplayer_impact_line & viewline
       if(uEvent == ::e_timer_hover)
       {
 
-         auto pwindow = m_puserinteraction->window();
-
-         auto pointCursor = pwindow->get_cursor_position();
+         auto pointCursor = m_puserinteraction->mouse_cursor_position();
 
          viewline.update_hover(pointCursor);
 
          if(!viewline.is_hover())
          {
+
             ::pointer<::user::interaction>puserinteraction = viewline.get_interaction();
+
             puserinteraction->KillTimer(::e_timer_hover);
+
          }
+
       }
+
    }
+
 }
+
 
 void xfplayer_impact_line_selection::OnSelEvent(xfplayer_impact_line & viewline, xfplayer_impact_line_selection::enum_event eevent)
 {
@@ -686,11 +687,7 @@ bool xfplayer_impact_line_selection::OnTimer(xfplayer_impact_line & viewline, ::
       if(viewline.is_hover())
       {
          
-         auto pwindow = m_puserinteraction->window();
-
-         auto pointCursor = pwindow->get_cursor_position();
-
-         viewline.get_interaction()->screen_to_client()(pointCursor);
+         auto pointCursor = m_puserinteraction->mouse_cursor_position();
 
          viewline.update_hover(pointCursor);
 

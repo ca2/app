@@ -272,7 +272,7 @@ namespace user
       void edit::on_message_mouse_leave(::message::message * pmessage)
       {
 
-         release_mouse_capture();
+         defer_release_mouse_capture();
 
          set_need_redraw();
 

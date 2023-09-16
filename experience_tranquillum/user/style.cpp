@@ -891,7 +891,7 @@ namespace experience_tranquillum
             if (pane.m_pimage->is_set())
             {
 
-               size.cy() = (::i32)maximum(maximum(size.cy(), pane.m_pimage->size().cy()), metric.get_line_spacing());
+               size.cy() = (::i32)maximum(maximum(size.cy(), pane.m_pimage->size().cy()), metric.get_line_height());
 
             }
 

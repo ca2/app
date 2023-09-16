@@ -80,9 +80,9 @@ namespace user
 
       ::color::color crBk;
 
-      auto pointCursor = get_cursor_position();
+      auto pointCursor = mouse_cursor_position();
       
-      screen_to_client()(pointCursor);
+      //screen_to_client()(pointCursor);
 
       enum_position epositionDrag = m_ptab->DragHitTest(pointCursor);
 

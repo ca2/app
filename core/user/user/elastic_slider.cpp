@@ -86,9 +86,9 @@ namespace user
       
       GetSliderRect(rectangle);
       
-      auto point = pmouse->m_point;
+      auto point = pmouse->m_pointHost;
 
-      screen_to_client()(point);
+      host_to_client()(point);
 
       if(rectangle.contains(point))
       {
@@ -152,9 +152,9 @@ namespace user
    void elastic_slider::CalcTension()
    {
       
-      auto pointCursor = get_cursor_position();
+      auto pointCursor = host_mouse_cursor_position();
 
-      screen_to_client()(pointCursor);
+      host_to_client()(pointCursor);
 
       CalcTension(pointCursor);
 
@@ -253,9 +253,9 @@ namespace user
          
          pgraphics->set_current_point(rectangle.center());
          
-         auto pointCursor = get_cursor_position();
+         auto pointCursor = host_mouse_cursor_position();
 
-         screen_to_client()(pointCursor);
+         host_to_client()(pointCursor);
 
          pgraphics->line_to(pointCursor);
 

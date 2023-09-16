@@ -28,7 +28,7 @@ namespace windowing
       ::sandbox_windowing::windowing *          m_psandboxwindowing;
       void *                                    m_pWindowing4;
 
-      ::point_i32                               m_pointCursor;
+      //::point_i32                               m_pointCursor;
 
       display_map                               m_displaymap;
 
@@ -72,7 +72,7 @@ namespace windowing
 
       //virtual void _initialize_windowing();
 
-      bool has_absolute_coordinate_system() const;
+      virtual bool has_readily_gettable_absolute_coordinates() const;
 
 
       virtual void initialize_windowing(::user::user * puser);
@@ -97,8 +97,8 @@ namespace windowing
       virtual void set_cursor_set_from_matter(::object * pobjectContext, const ::file::path & pathDir);
 
       
-      inline ::point_i32 get_cursor_position() { return m_pointCursor; }
-      virtual void set_cursor_position(const ::point_i32 & pointCursor);
+      //inline ::point_i32 get_cursor_position() { return m_pointCursor; }
+      //virtual void set_cursor_position(const ::point_i32 & pointCursor);
 
 
       virtual ::windowing::window * window(oswindow oswindow);
@@ -194,8 +194,8 @@ namespace windowing
       virtual void lock_set_foreground_window(bool bLock = true);
 
 
-      virtual void windowing_send(const ::procedure & procedure);
-      virtual void windowing_post(const ::procedure & procedure);
+      //virtual void windowing_send(const ::procedure & procedure);
+      //virtual void windowing_post(const ::procedure & procedure);
 
 
       virtual void _main_loop();
@@ -224,10 +224,10 @@ namespace windowing
 
 
       template < typename OBJECT_POINTER, typename OBJECT_METHOD, typename PAYLOAD_POINTER >
-      void windowing_get_posted_payload_synchronously(OBJECT_POINTER preturning, OBJECT_METHOD returning_method, PAYLOAD_POINTER ppayload)
+      void user_get_posted_payload_synchronously(OBJECT_POINTER preturning, OBJECT_METHOD returning_method, PAYLOAD_POINTER ppayload)
       {
 
-         return ::matter::__get_posted_payload_synchronously(this, &windowing::windowing_post, preturning, returning_method, ppayload);
+         return ::matter::__get_posted_payload_synchronously(this, &particle::user_post, preturning, returning_method, ppayload);
 
       }
 

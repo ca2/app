@@ -118,21 +118,21 @@ int get_current_process_affinity_order()
 }
 
 
-void ns_main_async(dispatch_block_t block);
+void __ns_main_async(dispatch_block_t block);
 
 
-void main_asynchronous(const ::procedure & procedure)
-{
-   
-   auto procedureLocal = procedure;
-  
-   ns_main_async(^{
-      
-      procedureLocal();
-      
-   });
-   
-}
+//void main_asynchronous(const ::procedure & procedure)
+//{
+//
+//   auto procedureLocal = procedure;
+//
+//   ns_main_async(^{
+//
+//      procedureLocal();
+//
+//   });
+//
+//}
 
 
 i32 process_get_os_priority(i32 nCa2Priority)

@@ -818,42 +818,42 @@ thread_local payload t_payloada[e_task_payload_count];
 }
 
 
-CLASS_DECL_ACME bool main_synchronous(const class time & time, const ::procedure & function)
-{
-   
-   auto pevent = __new(manual_reset_event);
-   
-   main_asynchronous([ function, &pevent ]
-   {
-      
-      if(pevent)
-      {
-      
-         function();
-      
-         if(pevent)
-         {
-         
-            pevent->SetEvent();
-         
-         }
-         
-      }
-      
-   });
-   
-   if(!pevent->wait(time))
-   {
-      
-      pevent.release();
-      
-      return false;
-      
-   }
-   
-   return true;
-   
-}
+//CLASS_DECL_ACME bool main_synchronous(const class time & time, const ::procedure & function)
+//{
+//
+//   auto pevent = __new(manual_reset_event);
+//
+//   main_asynchronous([ function, &pevent ]
+//   {
+//
+//      if(pevent)
+//      {
+//
+//         function();
+//
+//         if(pevent)
+//         {
+//
+//            pevent->SetEvent();
+//
+//         }
+//
+//      }
+//
+//   });
+//
+//   if(!pevent->wait(time))
+//   {
+//
+//      pevent.release();
+//
+//      return false;
+//
+//   }
+//
+//   return true;
+//
+//}
 
 
 CLASS_DECL_ACME bool is_single_main_user_thread()

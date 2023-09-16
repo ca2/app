@@ -36,6 +36,8 @@ namespace windowing
 
       ::rectangle_i32_array         m_rectangleaWorkAreas;
       ::string                      m_strDarkModeAnnotation;
+      ::point_i32                   m_pointCursor2;
+
 
 
       display();
@@ -73,6 +75,13 @@ namespace windowing
 
       //virtual ::count get_desk_monitor_count() ;
       //virtual bool  get_desk_monitor_rect(index iMonitor, ::rectangle_i32 * prectangle) ;
+
+      virtual bool has_readily_gettable_absolute_pointer_position() const;
+
+      // dynamically get mouse cursor absolute position (also set it to m_pointCursor2 member).
+      virtual ::point_i32 get_mouse_cursor_position();
+
+      virtual ::point_i32 _get_mouse_cursor_position();
 
       virtual monitor * get_monitor(index iMonitor);
 

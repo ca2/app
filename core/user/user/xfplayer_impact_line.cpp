@@ -1864,8 +1864,14 @@ void xfplayer_impact_line::OnMouseMove(::message::message * pmessage)
    single_lock synchronouslock(m_pContainer->synchronization());
 
    auto pmouse = pmessage->m_union.m_pmouse;
+
    strsize iChar;
-   if (CalcChar(pmouse->m_point, iChar))
+
+   auto point = pmouse->m_pointHost;
+
+   m_pContainer->m_puserinteraction->host_to_client()(point);
+
+   if (CalcChar(point, iChar))
    {
 
       if (CharHasLink(iChar))
@@ -1875,11 +1881,13 @@ void xfplayer_impact_line::OnMouseMove(::message::message * pmessage)
 
          auto pcursor = pwindowing->get_cursor(e_cursor_hand);
 
-         pmouse->m_pcursor = pcursor;
+         m_pContainer->m_puserinteraction->user_mouse_set_cursor(pmouse, pcursor);
 
       }
 
    }
+
+
    /*
    lyric_impact_line_selection & selection = GetSelection();
 
@@ -1957,7 +1965,11 @@ void xfplayer_impact_line::OnMouseMove(::message::message * pmessage)
 
    }*/
 
-   if (GetSelection().OnMouseMove(*this, pmouse->m_ebuttonstate, pmouse->m_point))
+   //auto point = pmouse->m_pointHost;
+
+   //m_pContainer->m_puserinteraction->host_to_client()(point);
+
+   if (GetSelection().OnMouseMove(*this, pmouse->m_ebuttonstate, point))
    {
 
       pmouse->m_bRet = true;
@@ -1993,7 +2005,11 @@ void xfplayer_impact_line::OnLButtonDown(::message::message * pmessage)
 
    auto pmouse = pmessage->m_union.m_pmouse;
 
-   if (GetSelection().OnLButtonDown(*this, pmouse->m_ebuttonstate, pmouse->m_point))
+   auto point = pmouse->m_pointHost;
+
+   m_pContainer->m_puserinteraction->host_to_client()(point);
+
+   if (GetSelection().OnLButtonDown(*this, pmouse->m_ebuttonstate, point))
    {
 
       pmouse->m_bRet = true;
@@ -2014,7 +2030,11 @@ void xfplayer_impact_line::OnLButtonUp(::message::message * pmessage)
 
    strsize iChar;
 
-   if (CalcChar(pmouse->m_point, iChar))
+   auto point = pmouse->m_pointHost;
+
+   m_pContainer->m_puserinteraction->host_to_client()(point);
+
+   if (CalcChar(point, iChar))
    {
 
       if (CharHasLink(iChar))
@@ -2036,7 +2056,7 @@ void xfplayer_impact_line::OnLButtonUp(::message::message * pmessage)
 
    }
 
-   if (GetSelection().OnLButtonUp(*this, pmouse->m_ebuttonstate, pmouse->m_point))
+   if (GetSelection().OnLButtonUp(*this, pmouse->m_ebuttonstate, point))
    {
 
       pmouse->m_bRet = true;

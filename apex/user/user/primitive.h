@@ -258,7 +258,7 @@ namespace user
       //bool GetUpdateRect(::rectangle_i32 * prectangle,bool bErase = false) override;
 
 
-      void interaction_post(const ::procedure & procedure) override;
+      void host_post(const ::procedure & procedure) override;
 
 
       virtual lresult send(::message::message * pmessage);

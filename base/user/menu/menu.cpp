@@ -307,12 +307,12 @@ namespace user
          if (m_puserinteractionParent)
          {
 
-            interaction_post([this]()
+            host_post([this]()
             {
 
                set_foreground_window();
 
-               interaction_post([this]()
+               host_post([this]()
                   {
 
                      set_active_window();
@@ -623,7 +623,7 @@ namespace user
       if (!m_bPositionHint)
       {
 
-         auto pointCursor = get_cursor_position();
+         auto pointCursor = mouse_cursor_position();
          
          m_pointPositionHint = pointCursor;
 

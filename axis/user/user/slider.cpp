@@ -140,9 +140,9 @@ namespace user
 
       double dScalar = m_scalar.get_rate();
 
-      auto pointCursor = get_cursor_position();
+      auto pointCursor = mouse_cursor_position();
 
-      screen_to_client(e_layout_design)(pointCursor);
+      //screen_to_client(e_layout_design)(pointCursor);
 
       auto rectangle = this->rectangle();
 

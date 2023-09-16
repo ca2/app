@@ -238,6 +238,8 @@ namespace user
       virtual ::color::color screen_pixel(int x, int y) const;
       void interaction_post(const ::procedure & procedure) override;
 
+      //virtual void user_call(const ::procedure & procedure);
+
       // call these from window
       //virtual void set_keyboard_focus();
       virtual void set_mouse_capture(::user::interaction * puserinteraction);

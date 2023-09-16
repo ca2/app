@@ -72,6 +72,8 @@ namespace experience_nanoui
 
       bool get_element_rectangle(::rectangle_i32 & rectangle, enum_element eelement) override;
 
+      void GetBorderRectangle(const ::rectangle_i32 & rectangleX, ::rectangle_i32 * lprect, enum_border eside);
+
       //bool experience_frame_hit_test(const ::point_i32 &point, enum_element &eelementParam) override;
 
       ::experience::enum_frame experience_frame_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;

@@ -2886,7 +2886,7 @@ namespace user
 
       pmouse->m_lresult = 1;
 
-      ::point_i32 point = pmouse->m_point;
+      ::point_i32 point = pmouse->m_pointHost;
 
       host_to_client()(point);
 
@@ -2947,11 +2947,11 @@ namespace user
 
       {
 
-         auto pointCursor = get_cursor_position();
+         auto pointCursor = host_mouse_cursor_position();
 
          auto pmouse = __create_new < ::message::mouse >();
 
-         pmouse->m_point = pointCursor;
+         pmouse->m_pointHost = pointCursor;
 
          update_hover(pmouse, ::user::e_zorder_any);
 
@@ -3000,7 +3000,7 @@ namespace user
 
       index iItem;
 
-      ::point_i32 point = pmouse->m_point;
+      ::point_i32 point = pmouse->m_pointHost;
 
       host_to_client()(point);
 
@@ -3215,11 +3215,11 @@ namespace user
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      ::point_i32 point = pmouse->m_point;
+      ::point_i32 point = pmouse->m_pointHost;
 
       host_to_client()(point);
 
-      release_mouse_capture();
+      defer_release_mouse_capture();
 
       if (m_bDrag)
       {
@@ -3294,7 +3294,7 @@ namespace user
 
                       pmessage->m_ebuttonstate = pmouse->m_ebuttonstate;
 
-                      pmessage->m_point = point;
+                      pmessage->m_pointHost = pmouse->m_pointHost;
 
                       post(pmessage);
 
@@ -3324,7 +3324,7 @@ namespace user
 
       pmouse->previous();
 
-      ::point_i32 point = pmouse->m_point;
+      ::point_i32 point = pmouse->m_pointHost;
 
       host_to_client()(point);
 
@@ -3375,7 +3375,7 @@ namespace user
 
       pmouse->previous();
 
-      ::point_i32 point = pmouse->m_point;
+      ::point_i32 point = pmouse->m_pointHost;
 
       host_to_client()(point);
 
@@ -3765,7 +3765,7 @@ namespace user
 
       index iSubItemSel;
 
-      auto pointCursor = get_cursor_position();
+      auto pointCursor = host_mouse_cursor_position();
 
       host_to_client()(pointCursor);
 
@@ -5335,28 +5335,32 @@ namespace user
 
       cache_hint();
 
-      auto pointCursor = get_cursor_position();
+      auto pointCursor = host_mouse_cursor_position();
 
       auto pmouse = __create_new < ::message::mouse >();
 
-      pmouse->m_point = pointCursor;
+      pmouse->m_pointHost = pointCursor;
 
       update_hover(pmouse, ::user::e_zorder_any);
 
    }
 
 
-
    ::draw2d::pen * mesh::_001GetPenHighlight()
    {
+
       return m_ppenHighlight;
+
    }
+
 
    ::draw2d::pen * mesh::_001GetPenFocused()
    {
+
       return m_ppenFocused;
 
    }
+
 
    //::write_text::font * mesh::_001GetFont()
    //{

@@ -199,7 +199,7 @@ namespace nanoui
 
          m_bDrag = false;
 
-         screen()->m_puserinteraction->windowing()->release_mouse_capture();
+         screen()->m_puserinteraction->defer_release_mouse_capture();
 
       }
 

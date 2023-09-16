@@ -124,7 +124,7 @@ namespace user
 
 #if !defined(UNIVERSAL_WINDOWS)
 
-      windowing()->windowing_post([this]()
+      user_post([this]()
                                   {
 
       auto & edisplay = layout().design().display();
@@ -583,7 +583,7 @@ namespace user
          if(m_ewindowflag & e_window_flag_window_created)
          {
             
-            interaction_send(functionGoodRestore);
+            user_send(functionGoodRestore);
             
          }
          else

@@ -1189,43 +1189,74 @@ namespace acme
 
 
 
-   void node::node_post(const ::procedure & procedure)
-   {
-
-//      defer_create_synchronization();
+//   void node::user_post(const ::procedure & procedure)
+//   {
 //
-//      synchronous_lock synchronouslock(this->synchronization());
+//      throw interface_only();
 //
-//      m_routineaPost.add(routine);
+////      defer_create_synchronization();
+////
+////      synchronous_lock synchronouslock(this->synchronization());
+////
+////      m_routineaPost.add(routine);
+//
+//   }
 
-   }
 
-
-   void node::node_send(const ::procedure & procedure)
+   void node::user_send(const ::procedure & procedure)
    {
 
-      __matter_send_procedure(this, this, &node::node_post, procedure);
+      //__matter_send_procedure(this, this, &node::node_post, procedure);
+
+//      CLASS_DECL_ACME bool main_synchronous(const class time & time, const ::procedure & function)
+//      {
+
+         auto pevent = __new(manual_reset_event);
+
+         user_post([ procedure, pevent ]
+                           {
+
+                                 procedure();
+
+                                    pevent->SetEvent();
+
+                           });
+
+         if(!pevent->wait(procedure.m_timeTimeout))
+         {
+
+            throw ::exception(error_timeout);
+            //pevent.release();
+
+            //return false;
+
+         }
+
+         ///return true;
+//
+//      }
+
 
    }
 
 
-   void node::post_procedure(const ::procedure & procedure)
-   {
+//   void node::post_procedure(const ::procedure & procedure)
+//   {
+//
+//      node_post(procedure);
+//
+//   }
+//
+//
+//   void node::send_procedure(const ::procedure & procedure)
+//   {
+//
+//      node_send(procedure);
+//
+//   }
 
-      node_post(procedure);
 
-   }
-
-
-   void node::send_procedure(const ::procedure & procedure)
-   {
-
-      node_send(procedure);
-
-   }
-
-
-   void node::node_post_quit()
+   void node::user_post_quit()
    {
 
 
@@ -1239,10 +1270,10 @@ namespace acme
 //   }
 
 
-   void node::node_quit()
-   {
-
-   }
+//   void node::node_quit()
+//   {
+//
+//   }
 
 
   bool node::should_launch_on_node(::topic * ptopic)

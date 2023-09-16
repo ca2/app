@@ -1057,7 +1057,7 @@ namespace user
    }
 
 
-   void primitive::interaction_post(const ::procedure & procedure)
+   void primitive::host_post(const ::procedure & procedure)
    {
 
       throw ::interface_only();

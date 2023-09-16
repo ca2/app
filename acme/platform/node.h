@@ -308,17 +308,17 @@ namespace acme
 
       virtual void * get_os_xcb_connection();
 
-      virtual void node_post(const ::procedure & procedure);
+      virtual void user_post(const ::procedure & procedure);
 
-      virtual void node_send(const ::procedure & procedure);
+      virtual void user_send(const ::procedure & procedure);
 
-      void post_procedure(const ::procedure & procedure) override;
+      //void post_procedure(const ::procedure & procedure) override;
 
-      void send_procedure(const ::procedure & procedure) override;
+      //void send_procedure(const ::procedure & procedure) override;
 
-      virtual void node_post_quit();
+      virtual void user_post_quit();
 
-      virtual void node_quit();
+      //virtual void node_quit();
 
       virtual bool should_launch_on_node(::topic * ptopic);
 

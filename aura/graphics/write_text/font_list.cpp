@@ -385,11 +385,9 @@ namespace write_text
 
       auto pwindowing = m_puserinteraction->windowing();
 
-      auto pointCursor = m_puserinteraction->get_cursor_position();
+      auto pointCursor = m_puserinteraction->mouse_cursor_position();
 
-      m_puserinteraction->screen_to_client()(pointCursor);
-
-      pointCursor += m_puserinteraction->get_context_offset();
+      ///pointCursor += m_puserinteraction->get_context_offset();
 
       bool bCheckHover = true;
 

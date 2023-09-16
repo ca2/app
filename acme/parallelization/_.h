@@ -35,9 +35,14 @@ CLASS_DECL_ACME::task * get_task();
 
 CLASS_DECL_ACME void __call(const ::procedure & procedure);
 
-CLASS_DECL_ACME bool main_synchronous(const class time & time, const ::procedure & function);
 
-CLASS_DECL_ACME void main_asynchronous(const ::procedure & procedure);
+//CLASS_DECL_ACME bool main_synchronous(const class time & time, const ::procedure & function);
+
+
+//CLASS_DECL_ACME void main_asynchronous(const ::procedure & procedure);
+
+
+
 
 CLASS_DECL_ACME bool predicate_Sleep(int iTime, ::function < bool(void) > functionOkToSleep);
 

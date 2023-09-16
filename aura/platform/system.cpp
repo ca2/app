@@ -6841,48 +6841,48 @@ namespace aura
    }
 
 
-   void system::windowing_send(const ::procedure & procedure)
-   {
-
-      if (::is_null(acmeapplication())
-         || ::is_null(acmeapplication()->m_pauraapplication)
-         || ::is_null(acmeapplication()->m_pauraapplication->get_session())
-         || ::is_null(acmeapplication()->m_pauraapplication->get_session()->user())
-         || ::is_null(acmeapplication()->m_pauraapplication->get_session()->user()->windowing())
-         )
-      {
-
-         return aqua::system::windowing_send(procedure);
-
-      }
-
-      auto pwindowing = acmeapplication()->m_pauraapplication->get_session()->user()->windowing();
-
-      pwindowing->windowing_send(procedure);
-
-   }
-
-
-   void system::windowing_post(const ::procedure & procedure)
-   {
-
-      if(::is_null(acmeapplication())
-         || ::is_null(acmeapplication()->m_pauraapplication)
-            || ::is_null(acmeapplication()->m_pauraapplication->get_session())
-               || ::is_null(acmeapplication()->m_pauraapplication->get_session()->user())
-                  || ::is_null(acmeapplication()->m_pauraapplication->get_session()->user()->windowing())
-               )
-      {
-
-         return aqua::system::windowing_post(procedure);
-
-      }
-
-      auto pwindowing = acmeapplication()->m_pauraapplication->get_session()->user()->windowing();
-
-      pwindowing->windowing_post(procedure);
-
-   }
+//   void system::windowing_send(const ::procedure & procedure)
+//   {
+//
+//      if (::is_null(acmeapplication())
+//         || ::is_null(acmeapplication()->m_pauraapplication)
+//         || ::is_null(acmeapplication()->m_pauraapplication->get_session())
+//         || ::is_null(acmeapplication()->m_pauraapplication->get_session()->user())
+//         || ::is_null(acmeapplication()->m_pauraapplication->get_session()->user()->windowing())
+//         )
+//      {
+//
+//         return aqua::system::windowing_send(procedure);
+//
+//      }
+//
+//      auto pwindowing = acmeapplication()->m_pauraapplication->get_session()->user()->windowing();
+//
+//      pwindowing->windowing_send(procedure);
+//
+//   }
+//
+//
+//   void system::windowing_post(const ::procedure & procedure)
+//   {
+//
+//      if(::is_null(acmeapplication())
+//         || ::is_null(acmeapplication()->m_pauraapplication)
+//            || ::is_null(acmeapplication()->m_pauraapplication->get_session())
+//               || ::is_null(acmeapplication()->m_pauraapplication->get_session()->user())
+//                  || ::is_null(acmeapplication()->m_pauraapplication->get_session()->user()->windowing())
+//               )
+//      {
+//
+//         return aqua::system::windowing_post(procedure);
+//
+//      }
+//
+//      auto pwindowing = acmeapplication()->m_pauraapplication->get_session()->user()->windowing();
+//
+//      pwindowing->windowing_post(procedure);
+//
+//   }
 
 
    ::aura::session* system::get_session()

@@ -3533,7 +3533,7 @@ namespace user
 
       pmouse->m_lresult = 1;
 
-      auto point = pmouse->m_point;
+      auto point = pmouse->m_pointHost;
 
       host_to_client()(point);
 
@@ -3726,7 +3726,7 @@ namespace user
 
       index iDisplayItem;
 
-      auto point = pmouse->m_point;
+      auto point = pmouse->m_pointHost;
 
       host_to_client()(point);
 
@@ -4017,7 +4017,7 @@ namespace user
             if (m_eview == impact_icon)
             {
 
-               auto point = pmouse->m_point;
+               auto point = pmouse->m_pointHost;
 
                host_to_client()(point);
 
@@ -4080,11 +4080,11 @@ namespace user
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      auto point = pmouse->m_point;
+      auto point = pmouse->m_pointHost;
 
       host_to_client()(point);
 
-      release_mouse_capture();
+      defer_release_mouse_capture();
 
       KillTimer(e_timer_drag_start);
 
@@ -4238,7 +4238,7 @@ namespace user
 
                       pmessage->m_ebuttonstate = pmouse->m_ebuttonstate;
 
-                      pmessage->m_point = point;
+                      pmessage->m_pointHost = point;
 
                       post(pmessage);
 
@@ -4295,7 +4295,7 @@ namespace user
 
       auto psession = get_session();
 
-      auto point = pmouse->m_point;
+      auto point = pmouse->m_pointHost;
 
       host_to_client()(point);
 
@@ -4334,7 +4334,7 @@ namespace user
          
          m_uiRButtonUpFlags = (::u32)pmouse->m_ebuttonstate;
          
-         m_pointRButtonUp = pmouse->m_point;
+         m_pointRButtonUp = pmouse->m_pointHost;
          
          SetTimer(8477, 500_ms, nullptr);
 
@@ -4565,7 +4565,7 @@ namespace user
 
       m_iClick = 2;
 
-      auto point = pmouse->m_point;
+      auto point = pmouse->m_pointHost;
 
       host_to_client()(point);
 
@@ -6880,11 +6880,11 @@ namespace user
 
       cache_hint();
 
-      auto pointCursor = get_cursor_position();
+      auto pointCursor = host_mouse_cursor_position();
 
       auto pmouse = __create_new < ::message::mouse >();
 
-      pmouse->m_point = pointCursor;
+      pmouse->m_pointHost = pointCursor;
 
       update_hover(pmouse, ::user::e_zorder_any);
 

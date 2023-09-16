@@ -185,9 +185,9 @@ namespace userex
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      ::point_i32 point = pmouse->m_point;
+      ::point_i32 point = pmouse->m_pointHost;
 
-      screen_to_client()(point);
+      host_to_client()(point);
 
       on_mouse(point);
 
@@ -203,15 +203,15 @@ namespace userex
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      ::point_i32 point = pmouse->m_point;
+      ::point_i32 point = pmouse->m_pointHost;
 
-      screen_to_client()(point);
+      host_to_client()(point);
 
       on_mouse(point);
 
       pmouse->m_bRet = true;
 
-      release_mouse_capture();
+      defer_release_mouse_capture();
 
       auto ptopic = create_topic(::id_after_change_cur_sel);
 

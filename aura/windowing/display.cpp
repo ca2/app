@@ -1,6 +1,7 @@
 // created by Camilo <3CamiloSasukeThomasBorregaardSoerensen
 // recreated by Camilo 2021-01-28 22:20
 #include "framework.h"
+#include "acme/exception/interface_only.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/primitive/geometry2d/_text_stream.h"
 #include "acme/primitive/geometry2d/rectangle_array.h"
@@ -571,6 +572,36 @@ namespace windowing
    }
 
 
+   bool display::has_readily_gettable_absolute_pointer_position() const
+   {
+
+      return true;
+
+   }
+
+
+   ::point_i32 display::get_mouse_cursor_position()
+   {
+
+      auto point = _get_mouse_cursor_position();
+
+      m_pointCursor2 = point;
+
+      return point;
+
+   }
+
+
+   ::point_i32 display::_get_mouse_cursor_position()
+   {
+
+      throw interface_only();
+
+      return {};
+
+   }
+
+
    monitor * display::monitor_hit_test(const ::point_i32 & point)
    {
 
@@ -630,9 +661,6 @@ namespace windowing
       }
 
    }
-
-
-
 
 
 #define ZONEING_COMPARE ::comparison
@@ -933,22 +961,49 @@ namespace windowing
       if (eactivation & e_activation_under_mouse_cursor || rectangle.is_null())
       {
 
-         ::point_i32 pointCursor;
-
-         if(::is_set(pwindowCursorPosition))
+         if(has_readily_gettable_absolute_pointer_position())
          {
 
-            pointCursor = pwindowCursorPosition->get_cursor_position();
+            ::point_i32 pointCursor = get_mouse_cursor_position();
+
+            rectangle.set(pointCursor - ::size_i32(5, 5), ::size_i32(10, 10));
 
          }
          else
          {
 
-            pointCursor = m_pwindowing->get_cursor_position();
+            warning() << "This windowing system !is_absolute_pointer_position_readily_gettable(). Is there a specific flag to set at window creation for enabling e_activation_under_mouse_cursor?";
+
+            //throw ::exception(todo,
+            //             "The window may not be visible yet so no mouse position in it."
+            //             "Is there reliable cross platform to get pointer position, "
+            //             "or maybe at least just make this feature work in platforms that "
+            //             "supports getting pointer position globally?");
 
          }
 
-         rectangle.set(pointCursor - ::size_i32(5, 5), ::size_i32(10, 10));
+//         ::point_i32 pointCursor;
+//
+//         throw ::exception(todo,
+//            "The window may not be visible yet so no mouse position in it."
+//            "Is there reliable cross platform to get pointer position, "
+//            "or maybe at least just make this feature work in platforms that "
+//            "supports getting pointer position globally?");
+
+//         if(::is_set(pwindowCursorPosition))
+//         {
+//
+//            pointCursor = pwindowCursorPosition->get_absolcursor_position();
+//
+//         }
+//         else
+//         {
+//
+//            pointCursor = m_pwindowing->get_cursor_position();
+//
+//         }
+
+         //rectangle.set(pointCursor - ::size_i32(5, 5), ::size_i32(10, 10));
 
       }
 
@@ -1026,9 +1081,37 @@ namespace windowing
       if (eactivation & e_activation_under_mouse_cursor)
       {
 
-         ::point_i32 pointCursor = pwindowCursorPosition->get_cursor_position();
+         //::point_i32 pointCursor = pwindowCursorPosition->get_cursor_position();
 
-         rectangle.set(pointCursor - ::size_i32(5, 5), ::size_i32(10, 10));
+         //rectangle.set(pointCursor - ::size_i32(5, 5), ::size_i32(10, 10));
+
+         if(has_readily_gettable_absolute_pointer_position())
+         {
+
+            ::point_i32 pointCursor = get_mouse_cursor_position();
+
+            rectangle.set(pointCursor - ::size_i32(5, 5), ::size_i32(10, 10));
+
+         }
+         else
+         {
+
+            warning() << "This windowing system !is_absolute_pointer_position_readily_gettable(). Is there a specific flag to set at window creation for enabling e_activation_under_mouse_cursor?";
+
+            //throw ::exception(todo,
+            //             "The window may not be visible yet so no mouse position in it."
+            //             "Is there reliable cross platform to get pointer position, "
+            //             "or maybe at least just make this feature work in platforms that "
+            //             "supports getting pointer position globally?");
+
+         }
+
+//         throw ::exception(todo,
+//                           "The window may not be visible yet so no mouse position in it."
+//                           "Is there reliable cross platform to get pointer position, "
+//                           "or maybe at least just make this feature work in platforms that "
+//                           "supports getting pointer position globally?");
+
 
       }
 

@@ -305,7 +305,7 @@ namespace app_shader
 
                //auto puser = psession->user();
 
-               auto pointCursor = m_puserinteraction->get_cursor_position();
+               auto pointCursor = m_puserinteraction->mouse_cursor_position();
 
                float x = (float) pointCursor.x();
 

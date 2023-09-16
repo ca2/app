@@ -270,6 +270,14 @@ CLASS_DECL_ACME itask_t current_itask()
 }
 
 
+CLASS_DECL_ACME itask_t as_itask(htask_t htask)
+{
+
+   return (itask_t) (::iptr) htask;
+
+}
+
+
 //void __node_init_cross_windows_threading();
 
 

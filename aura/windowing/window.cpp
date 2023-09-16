@@ -1790,7 +1790,7 @@ namespace windowing
       } else
       {
 
-         itask = get_current_itask();
+         itask = current_itask();
 
       }
 

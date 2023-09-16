@@ -1082,7 +1082,7 @@ namespace base
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      ::point_i32 point = pmouse->m_point;
+      ::point_i32 point = pmouse->m_pointHost;
 
       pinteraction->screen_to_client()(point);
 

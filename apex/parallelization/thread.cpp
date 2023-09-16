@@ -1197,7 +1197,7 @@ bool thread::defer_pump_message()
       if(m_message.m_atom == e_message_quit)
       {
 
-         ::information("\n\n\nthread::defer_pump_message (1) quitting (wm_quit? {PeekMessage->message : " + ::as_string(m_message.m_atom == e_message_quit ? 1 : 0) + "!}) : " + __type_name(this) + " (" + ::as_string((u64)::get_current_itask()) + ")\n\n\n");
+         ::information("\n\n\nthread::defer_pump_message (1) quitting (wm_quit? {PeekMessage->message : " + ::as_string(m_message.m_atom == e_message_quit ? 1 : 0) + "!}) : " + __type_name(this) + " (" + ::as_string((u64)::current_itask()) + ")\n\n\n");
 
          return false;
 
@@ -2584,15 +2584,15 @@ void thread::set_current_handles()
 
 #ifdef WINDOWS_DESKTOP
 
-   m_htask = duplicate_handle(::get_current_htask());
+   m_htask = duplicate_handle(::current_htask());
 
 #else
 
-   m_htask = ::get_current_htask();
+   m_htask = ::current_htask();
 
 #endif
 
-   m_itask = ::get_current_itask();
+   m_itask = ::current_itask();
 
 }
 
@@ -2651,11 +2651,11 @@ void thread::__os_initialize()
 //
 //#else
 //
-//   m_htask = ::get_current_htask();
+//   m_htask = ::current_htask();
 //
 //#endif
 //
-//   m_uThread = ::get_current_itask();
+//   m_uThread = ::current_itask();
 
    try
    {
@@ -2831,7 +2831,7 @@ void thread::__set_thread_on()
 
    //SetCurrentHandles();
 
-   //auto atom = ::get_current_itask();
+   //auto atom = ::current_itask();
 
    //::parallelization::task_register(m_itask, this);
 
@@ -2891,9 +2891,9 @@ void thread::__set_thread_off()
 
    unregister_task();
 
-   auto atom = ::get_current_itask();
+   auto atom = ::current_itask();
 
-   acmesystem()->set_task_off(::get_current_itask());
+   acmesystem()->set_task_off(::current_itask());
 
    //::set_task(nullptr);
 

@@ -1,7 +1,7 @@
 #pragma once
 
 //
-//CLASS_DECL_APEX itask_t get_current_itask();
+//CLASS_DECL_APEX itask_t current_itask();
 //
 //
 //#ifdef __cplusplus

@@ -180,7 +180,7 @@ namespace opengl
 
       }
 
-      m_itaskGpu = ::get_current_itask();
+      m_itaskGpu = ::current_itask();
 
       //return ::success;
 

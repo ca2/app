@@ -251,7 +251,7 @@ namespace parallelization
    bool set_priority(::enum_priority epriority)
    {
 
-      return set_priority(get_current_htask(), epriority);
+      return set_priority(current_htask(), epriority);
 
    }
 
@@ -267,7 +267,7 @@ namespace parallelization
    ::enum_priority get_priority()
    {
 
-      return get_priority(get_current_htask());
+      return get_priority(current_htask());
 
    }
 

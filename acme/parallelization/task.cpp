@@ -74,7 +74,7 @@ task::~task()
 #if defined(_DEBUG) && defined(TASK_DESTRUCTOR_REPORTING)
 
    auto strThreadName = ::task_get_name();
-   auto itask = ::get_current_itask();
+   auto itask = ::current_itask();
 
    ::information("Task destructor : " + strThreadName + " : (" + ::as_string(itask) + ")\n");
 
@@ -162,7 +162,7 @@ void task::add_task(::object* pobjectTask)
 bool task::is_current_task() const
 {
 
-   auto itaskCurrent = ::get_current_itask();
+   auto itaskCurrent = ::current_itask();
 
    return itaskCurrent == m_itask;
 
@@ -196,7 +196,7 @@ void task::post_request(::request* prequest)
 bool task::task_set_name(const ::scoped_string & scopedstrTaskName)
 {
    
-   if(::get_current_itask() == m_itask)
+   if(::current_itask() == m_itask)
    {
       
       ::task_set_name(scopedstrTaskName);
@@ -1587,7 +1587,7 @@ void task::kick_idle()
 bool task::is_branch_current() const
 {
 
-   return ::get_current_itask() == m_itask;
+   return ::current_itask() == m_itask;
 
 }
 
@@ -2055,9 +2055,17 @@ CLASS_DECL_ACME itask_t get_main_user_itask();
 CLASS_DECL_ACME void set_main_user_thread()
 {
 
-   set_main_user_itask(get_current_itask());
+   set_main_user_thread(current_htask());
 
-   set_main_user_htask(get_current_htask());
+}
+
+
+CLASS_DECL_ACME void set_main_user_thread(htask_t htask)
+{
+
+   set_main_user_itask(::as_itask(htask));
+
+   set_main_user_htask(htask);
 
 }
 
@@ -2065,7 +2073,7 @@ CLASS_DECL_ACME void set_main_user_thread()
 CLASS_DECL_ACME bool is_main_thread()
 {
 
-   return get_current_itask() == get_main_user_itask();
+   return current_itask() == get_main_user_itask();
 
 }
 
@@ -2223,7 +2231,7 @@ task_guard::~task_guard()
 ::index task_index()
 {
 
-   return task_index(::get_current_itask());
+   return task_index(::current_itask());
 
 }
 

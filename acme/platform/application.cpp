@@ -34,9 +34,6 @@ CLASS_DECL_ACME::file::path get_module_path();
 #endif
 
 
-CLASS_DECL_ACME void set_main_user_thread();
-
-
 namespace acme
 {
 

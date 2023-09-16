@@ -206,7 +206,7 @@ extern "C" unsigned long crypto_initializer_SSL_id_function()
 
    //#ifdef WIN32
 
-   return (unsigned long) ::get_current_itask();
+   return (unsigned long) ::current_itask();
 
    //#else
    //

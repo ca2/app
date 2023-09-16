@@ -343,7 +343,7 @@ void html_form::on_message_mouse_move(::message::message * pmessage)
 
    track_mouse_hover();
 
-   ::point_i32 point(pmouse->m_point);
+   ::point_i32 point(pmouse->m_pointHost);
 
    host_to_client()(point);
 
@@ -424,7 +424,7 @@ void html_form::on_message_left_button_up(::message::message * pmessage)
 
    auto pmouse = pmessage->m_union.m_pmouse;
 
-   ::point_i32 point(pmouse->m_point);
+   ::point_i32 point(pmouse->m_pointHost);
 
    screen_to_client()(point);
 

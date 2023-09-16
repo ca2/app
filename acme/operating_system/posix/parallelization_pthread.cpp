@@ -56,7 +56,7 @@ message_queue * get_message_queue(itask_t idthread, bool bCreate);
    if (dwWakeMask > 0)
    {
 
-      pmq = ::get_message_queue(get_current_itask(), false);
+      pmq = ::get_message_queue(current_itask(), false);
 
    }
 
@@ -254,7 +254,7 @@ message_queue * get_message_queue(itask_t idthread, bool bCreate);
 //}
 
 
-CLASS_DECL_ACME htask_t get_current_htask()
+CLASS_DECL_ACME htask_t current_htask()
 {
 
    return (htask_t) ::pthread_self();
@@ -262,7 +262,7 @@ CLASS_DECL_ACME htask_t get_current_htask()
 }
 
 
-CLASS_DECL_ACME itask_t get_current_itask()
+CLASS_DECL_ACME itask_t current_itask()
 {
 
    return (itask_t) ::pthread_self();
@@ -699,7 +699,7 @@ namespace parallelization
    CLASS_DECL_ACME bool set_priority(::enum_priority epriority)
    {
 
-      return set_priority(get_current_htask(), epriority);
+      return set_priority(current_htask(), epriority);
 
    }
 
@@ -724,7 +724,7 @@ namespace parallelization
    CLASS_DECL_ACME ::enum_priority get_priority()
    {
 
-      return get_priority(get_current_htask());
+      return get_priority(current_htask());
 
    }
 

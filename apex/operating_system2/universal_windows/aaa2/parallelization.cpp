@@ -179,7 +179,7 @@ CLASS_DECL_APEX DWORD WINAPI MsgWaitForMultipleObjects(DWORD nCount, const HANDL
 //
 //      ::memory_copy(ph, pHandles, sizeof(HANDLE) * nCount);
 //
-//      ph[nCount] = (HANDLE)::get_message_queue(get_current_itask(), true)->m_eventNewMessage.hsync();
+//      ph[nCount] = (HANDLE)::get_message_queue(current_itask(), true)->m_eventNewMessage.hsync();
 //
 //      dwResult = ::WaitForMultipleObjectsEx(nCount + 1, ph, dwFlags & MWMO_WAITALL, dw::times, true);
 //
@@ -206,7 +206,7 @@ void _on_os_htask_end()
 }
 
 
-//itask_t get_current_itask()
+//itask_t current_itask()
 //{
 //
 //   return ::GetCurrentThreadId();
@@ -214,7 +214,7 @@ void _on_os_htask_end()
 //}
 //
 //
-//htask_t get_current_htask()
+//htask_t current_htask()
 //{
 //
 //   return ::GetCurrentThread();

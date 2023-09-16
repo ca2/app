@@ -679,7 +679,7 @@ namespace user
 
       auto metrics = pgraphics->get_text_metrics();
 
-      auto dMaxHeight = metrics.get_line_spacing();
+      auto dMaxHeight = metrics.get_line_height();
 
       m_dItemHeight = dMaxHeight;
 

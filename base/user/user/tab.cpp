@@ -917,7 +917,7 @@ namespace user
 
       }
 
-      auto pointClient = pmouse->m_point;
+      auto pointClient = pmouse->m_pointHost;
 
       host_to_client()(pointClient);
 

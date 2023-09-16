@@ -2233,7 +2233,7 @@ bool simple_scroll_bar::drag_shift(::item * pitem)
 
       auto pcursor = get_mouse_cursor(e_cursor_arrow);
 
-      pmouse->m_pcursor = pcursor;
+      user_mouse_set_cursor(pmouse, pcursor);
 
       return true;
 
@@ -2244,7 +2244,7 @@ bool simple_scroll_bar::drag_shift(::item * pitem)
 }
 
 
-::point_i32 simple_scroll_bar::on_drag_start(::item * pitem)
+bool simple_scroll_bar::on_drag_start(::point_i32 & point, ::item * pitem)
 {
 
    if (pitem->m_item.m_eelement == e_element_scrollbar_trackbar)
@@ -2258,13 +2258,13 @@ bool simple_scroll_bar::drag_shift(::item * pitem)
 
       pointInitial -= pointContextOffset;
 
-      return pointInitial;
+      point = pointInitial;
 
-      //retu
+      return true;
 
    }
 
-   throw exception(::error_unexpected);
+   return true;
 
 }
 

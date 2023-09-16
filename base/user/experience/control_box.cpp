@@ -110,7 +110,7 @@ namespace experience
          if (m_bDrag)
          {
 
-            ::point_i32 point = pmouse->m_point;
+            ::point_i32 point = pmouse->m_pointHost;
 
             m_pframewindow->host_to_client()(point);
 

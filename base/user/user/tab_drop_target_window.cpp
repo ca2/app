@@ -135,9 +135,9 @@ namespace user
 
       defer_release_mouse_capture();
 
-      auto point(pmouse->m_point);
+      auto point(pmouse->m_pointHost);
 
-      screen_to_client()(point);
+      host_to_client()(point);
 
       enum_position eposition = m_ptab->DragHitTest(point);
 

@@ -1371,7 +1371,7 @@ bool particle::_wait(const class time & timeWait)
 //      {
 //
 //         pmutex->m_strThread = ::task_get_name();
-//         pmutex->m_itask = ::get_current_itask();
+//         pmutex->m_itask = ::current_itask();
 //         ::information("");
 //
 //      }

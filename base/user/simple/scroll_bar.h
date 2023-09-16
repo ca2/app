@@ -78,7 +78,7 @@ public:
    virtual bool _001SetScrollInfo(::user::scroll_info * psi, bool bRedraw = true) override;
 
    bool drag_shift(::item * pitem) override;
-   ::point_i32 on_drag_start(::item * pitem) override;
+   bool on_drag_start(::point_i32& point, ::item* pitem) override;
    //virtual bool create_interaction(enum_orientation eorientation, u32 uStyle, ::user::interaction * puiParent, ::atom atom) override;
 
    //i32 SetTrackingPos(const ::point_i32 & point, ::draw2d::graphics_pointer & pgraphics);

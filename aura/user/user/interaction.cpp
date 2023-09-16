@@ -6658,7 +6658,7 @@ namespace user
 
       }
 
-      auto itaskCurrent = get_current_itask();
+      auto itaskCurrent = current_itask();
 
       auto itaskUserInteraction = m_pthreadUserInteraction->m_itask;
 

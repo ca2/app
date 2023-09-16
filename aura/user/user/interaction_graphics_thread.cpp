@@ -254,7 +254,7 @@ namespace user
 //
 //      synchronous_lock sl(this->synchronization());
 //
-//      auto iTask = ::get_current_itask();
+//      auto iTask = ::current_itask();
 //
 //      auto iThreadIndex = m_iaThread.find_first(iTask);
 //

@@ -908,6 +908,8 @@ namespace user
       virtual void window_rectangle(::rectangle_i32 & rect, enum_layout elayout = e_layout_design);
       virtual ::rectangle_i32 window_rectangle(enum_layout elayout = e_layout_design);
 
+      virtual ::rectangle_i32 outer_frame();
+
 
       inline void set_auto_refresh() { return add_auto_refresh(this); }
       inline void clear_auto_refresh() { return erase_auto_refresh(this); }

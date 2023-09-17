@@ -1835,6 +1835,14 @@ namespace experience
    }
 
 
+   ::rectangle_i32 frame::outer_frame()
+   {
+
+      return m_pframewindow->raw_rectangle();
+
+   }
+
+
 } // namespace experience
 
 

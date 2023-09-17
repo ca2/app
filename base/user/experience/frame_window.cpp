@@ -1439,6 +1439,14 @@ namespace experience
    }
 
 
+   ::rectangle_i32 frame_window::outer_frame()
+   {
+
+      return m_pframe->outer_frame();
+
+   }
+
+
    ::item_pointer frame_window::hit_test(::user::mouse * pmouse, ::user::e_zorder ezorder)
    {
 

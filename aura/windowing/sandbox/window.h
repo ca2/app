@@ -63,7 +63,7 @@ namespace sandbox_windowing
       //virtual ::Window get_parent_handle();
       ::oswindow get_parent_oswindow() const override;
 
-      ::point_i32 get_mouse_cursor_position() override;
+      //::point_i32 get_mouse_cursor_position() override;
 
       //virtual ::Window get_parent_handle() const;
 
@@ -75,7 +75,7 @@ namespace sandbox_windowing
       //virtual long get_state();
       virtual bool is_iconic() override;
       virtual bool is_window_visible() override;
-      void _configure_window_unlocked(const ::e_display& edisplay, const ::e_activation& eactivation) override;
+      bool _configure_window_unlocked(const class ::zorder & zorder, const ::e_activation & eactivation, bool bNoZorder, ::e_display edisplay) override;
       //virtual iptr get_window_long_ptr(i32 nIndex);
       //virtual iptr set_window_long_ptr(i32 nIndex, iptr l);
       virtual bool client_to_screen(::point_i32* ppoint) override;
@@ -150,7 +150,9 @@ namespace sandbox_windowing
       void set_tool_window(bool bSet) override;
 
 
-      bool set_window_position(const class ::zorder& zorder, i32 x, i32 y, i32 cx, i32 cy, const ::e_activation& eactivation, bool bNoZorder, bool bNoMove, bool bNoSize, bool bShow, bool bHide) override;
+      //bool set_window_position(const class ::zorder& zorder, i32 x, i32 y, i32 cx, i32 cy, const ::e_activation& eactivation, bool bNoZorder, bool bNoMove, bool bNoSize, bool bShow, bool bHide) override;
+
+      bool _set_window_position(const class ::zorder & zorder, i32 x, i32 y, i32 cx, i32 cy, const ::e_activation & eactivation, bool bNoZorder, bool bNoMove, bool bNoSize, ::e_display edisplay, ::u32 nOverrideFlags = 0) override;
 
 
       //virtual comparable_array < Atom > wm_get_list_raw(windowing_android_WINDOW_MEMBER Atom atomList);

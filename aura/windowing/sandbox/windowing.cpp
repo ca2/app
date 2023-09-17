@@ -227,23 +227,23 @@ namespace sandbox_windowing
    //   }
 
 
-   void windowing::windowing_post(const ::procedure& procedure)
-   {
+   //void windowing::windowing_post(const ::procedure& procedure)
+   //{
 
-      if (!procedure)
-      {
+   //   if (!procedure)
+   //   {
 
-         throw ::exception(error_null_pointer);
+   //      throw ::exception(error_null_pointer);
 
-      }
+   //   }
 
-      synchronous_lock synchronouslock(this->synchronization());
+   //   synchronous_lock synchronouslock(this->synchronization());
 
-      m_procedurelist.add_tail(procedure);
+   //   m_procedurelist.add_tail(procedure);
 
-      //return ::success_scheduled;
+   //   //return ::success_scheduled;
 
-   }
+   //}
 
 
    bool windowing::x11_runnable_step()
@@ -494,13 +494,20 @@ namespace sandbox_windowing
    }
 
 
-   void windowing::release_mouse_capture()
+   bool windowing::defer_release_mouse_capture(::thread * pthread, ::windowing::window * pwindow)
    {
 
       if (!m_pwindowMouseCapture)
       {
 
-         return;
+         return false;
+
+      }
+
+      if (m_pwindowMouseCapture != pwindow)
+      {
+
+         return false;
 
       }
 
@@ -514,6 +521,8 @@ namespace sandbox_windowing
       }
 
       m_pwindowMouseCapture.release();
+
+      return true;
 
    }
 

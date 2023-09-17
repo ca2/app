@@ -267,10 +267,10 @@ namespace acme
 {
 
 
-   void system::windowing_post(const ::procedure & procedure)
+   void node::user_post(const ::procedure & procedure)
    {
 
-      m_pnode->windowing_post(procedure);
+      //m_pnode->windowing_post(procedure);
 
    }
 
@@ -279,23 +279,23 @@ namespace acme
 
 
 
-void main_asynchronous(const ::procedure& procedure)
-{
-
-   if (is_main_thread())
-   {
-
-      procedure();
-
-      return;
-
-   }
-
-   auto psystem = ::acme::acme::g_pacme->m_psubsystem->acmesystem();
-
-   psystem->windowing_post(procedure);
-
-}
+//void main_asynchronous(const ::procedure& procedure)
+//{
+//
+//   if (is_main_thread())
+//   {
+//
+//      procedure();
+//
+//      return;
+//
+//   }
+//
+//   auto psystem = ::acme::acme::g_pacme->m_psubsystem->acmesystem();
+//
+//   psystem->windowing_post(procedure);
+//
+//}
 
 
 

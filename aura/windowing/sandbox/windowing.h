@@ -81,13 +81,13 @@ namespace sandbox_windowing
       ::windowing::window* get_mouse_capture(::thread* pthread) override;
 
 
-      void release_mouse_capture() override;
+      bool defer_release_mouse_capture(::thread * pthread, ::windowing::window * pwindow) override;
 
 
       void clear_keyboard_focus(::user::element * pelementGainingFocusIfAny = nullptr) override;
 
 
-      void windowing_post(const ::procedure& procedure) override;
+      //void windowing_post(const ::procedure& procedure) override;
 
       virtual bool x11_runnable_step();
 

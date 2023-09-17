@@ -343,6 +343,7 @@
     <ClInclude Include="windowing\message_box.h" />
     <ClInclude Include="windowing\monitor.h" />
     <ClInclude Include="windowing\sandbox\window.h" />
+    <ClInclude Include="windowing\sandbox\windowing.h" />
     <ClInclude Include="windowing\simple_ui_display.h" />
     <ClInclude Include="windowing\text_editor_interface.h" />
     <ClInclude Include="windowing\window.h" />
@@ -417,7 +418,6 @@
     </ClCompile>
     <ClCompile Include="graphics\draw2d\graphics.cpp" />
     <ClCompile Include="graphics\draw2d\graphics_extension.cpp" />
-    <ClCompile Include="graphics\draw2d\matrix.cpp" />
     <ClCompile Include="graphics\draw2d\nano_svg_rasterization.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>

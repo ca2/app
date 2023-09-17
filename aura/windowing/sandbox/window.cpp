@@ -281,7 +281,7 @@ namespace sandbox_windowing
                if (pimpl->m_puserinteraction->const_layout().sketch().display() == e_display_undefined)
                {
 
-                  auto pointCursor = get_cursor_position();
+                  auto pointCursor = pimpl->m_puserinteraction->mouse_cursor_position();
 
                   pimpl->m_puserinteraction->set_position(pointCursor);
 
@@ -1113,12 +1113,12 @@ namespace sandbox_windowing
    }
 
 
-   ::point_i32 window::get_mouse_cursor_position()
-   {
+   //::point_i32 window::get_mouse_cursor_position()
+   //{
 
-      return m_pointCursor;
+   //   return m_pointCursor;
 
-   }
+   //}
 
 
    //   ::Window window::get_parent_handle()
@@ -2074,7 +2074,7 @@ namespace sandbox_windowing
 
 
    //bool window::set_window_position(const class ::zorder& zorder, i32 x, i32 y, i32 cx, i32 cy, const ::e_activation& eactivation, bool bNoZorder, bool bNoMove, bool bNoSize, bool bShow, bool bHide)
-   bool window::_strict_set_window_position_unlocked(i32 x, i32 y, i32 cx, i32 cy, bool bNoMove, bool bNoSize)
+   bool window::_set_window_position(const class ::zorder & zorder, i32 x, i32 y, i32 cx, i32 cy, const ::e_activation & eactivation, bool bNoZorder, bool bNoMove, bool bNoSize, ::e_display edisplay, ::u32 nOverrideFlags)
    {
 
       //synchronous_lock sl(user_synchronization());

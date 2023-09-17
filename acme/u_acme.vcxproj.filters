@@ -227,9 +227,6 @@
     <Filter Include="Source Files\primitive\time">
       <UniqueIdentifier>{881c9292-2e02-419b-9b57-fdafb10e5b91}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\primitive\NewFilter1">
-      <UniqueIdentifier>{41eeca4c-8261-4db0-8fa0-7dbc5b85ff5e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\memory\os_impl">
       <UniqueIdentifier>{d13e4c7a-f361-472d-9567-a5f1b50293ab}</UniqueIdentifier>
     </Filter>
@@ -1560,6 +1557,9 @@
     </ClCompile>
     <ClCompile Include="filesystem\watcher\watcher.cpp">
       <Filter>Source Files\filesystem\watcher</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\geometry2d\matrix.cpp">
+      <Filter>Source Files\primitive\geometry2d</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -47,9 +47,9 @@ namespace x11
          case XK_Down:
             return ::user::e_key_down;
          case XK_Page_Up:
-            return ::user::e_key_prior;
+            return ::user::e_key_page_up;
          case XK_Page_Down:
-            return ::user::e_key_next;
+            return ::user::e_key_page_down;
          case XK_Home:
             return ::user::e_key_home;
          case XK_End:

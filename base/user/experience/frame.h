@@ -118,7 +118,7 @@ namespace experience
       virtual void set_moveable_border_color(const ::color::color & color);
 
 
-      
+      virtual ::rectangle_i32 outer_frame();
       
       //virtual bool calculate_client_rectangle(::rectangle_i32 * prectangle, ::user::enum_layout elayout = ::user::e_layout_design);
 

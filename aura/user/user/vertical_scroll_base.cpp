@@ -356,7 +356,7 @@ namespace user
 
       auto ekey = pkey->m_ekey;
 
-      if (ekey == ::user::e_key_prior)
+      if (ekey == ::user::e_key_page_up)
       {
 
          m_pscrollbarVertical->post_scroll_message(e_scroll_command_page_up);
@@ -366,7 +366,7 @@ namespace user
          pkey->m_bRet = true;
 
       }
-      else if (ekey == ::user::e_key_next)
+      else if (ekey == ::user::e_key_page_down)
       {
 
          m_pscrollbarVertical->post_scroll_message(e_scroll_command_page_down);

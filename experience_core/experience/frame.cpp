@@ -1213,6 +1213,18 @@ namespace experience_core
    }
 
 
+   ::rectangle_i32 frame::outer_frame()
+   {
+
+      auto rectangle = m_pframewindow->raw_rectangle();
+
+      rectangle.deflate(3);
+
+      return rectangle;
+
+   }
+
+
 } // namespace experience
 
 

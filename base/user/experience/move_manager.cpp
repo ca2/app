@@ -3,6 +3,7 @@
 #include "frame_window.h"
 #include "frame.h"
 #include "acme/constant/message.h"
+#include "acme/primitive/geometry2d/_text_stream.h"
 #include "apex/parallelization/thread.h"
 #include "aura/windowing/window.h"
 #include "aura/windowing/windowing.h"
@@ -87,6 +88,8 @@ namespace experience
       m_pointCursorOrigin = pointCursor;
 
       m_pointWindowOrigin = rectangleWindow.top_left();
+
+      information() << "on_message_left_button_down m_pointWindowOrigin : " << m_pointWindowOrigin;
 
       m_pointMove = m_pointWindowOrigin;
 

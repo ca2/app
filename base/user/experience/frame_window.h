@@ -70,6 +70,9 @@ namespace experience
       bool is_full_screen_enabled() override;
 
 
+      ::rectangle_i32 outer_frame() override;
+
+
       ::item_pointer hit_test(::user::mouse * pmouse, ::user::e_zorder ezorder) override;
 
 

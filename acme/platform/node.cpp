@@ -1206,6 +1206,15 @@ namespace acme
    void node::user_send(const ::procedure & procedure)
    {
 
+      if(::is_main_thread())
+      {
+
+         procedure();
+
+         return;
+
+      }
+
       //__matter_send_procedure(this, this, &node::node_post, procedure);
 
 //      CLASS_DECL_ACME bool main_synchronous(const class time & time, const ::procedure & function)

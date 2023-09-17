@@ -5565,7 +5565,7 @@ namespace user
 
             bool bShift = psession->is_key_pressed(::user::e_key_shift);
 
-            if (pkey->m_ekey == ::user::e_key_prior)
+            if (pkey->m_ekey == ::user::e_key_page_up)
             {
 
                if (is_text_composition_active())
@@ -5611,7 +5611,7 @@ namespace user
                   });
 
             }
-            else if (pkey->m_ekey == ::user::e_key_next)
+            else if (pkey->m_ekey == ::user::e_key_page_down)
             {
 
                if (is_text_composition_active())
@@ -6236,7 +6236,7 @@ namespace user
 
 
             if ((pkey->m_ekey != ::user::e_key_up && pkey->m_ekey != ::user::e_key_down
-               && pkey->m_ekey != ::user::e_key_prior && pkey->m_ekey != ::user::e_key_next))
+               && pkey->m_ekey != ::user::e_key_page_up && pkey->m_ekey != ::user::e_key_page_down))
             {
 
                queue_graphics_call([this](::draw2d::graphics_pointer & pgraphics)

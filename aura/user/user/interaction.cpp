@@ -17535,6 +17535,14 @@ namespace user
    }
 
 
+   ::rectangle_i32 interaction::outer_frame()
+   {
+
+      return this->raw_rectangle();
+
+   }
+
+
    index interaction::best_workspace(::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangle, bool bSet,
                                      ::e_activation eactivation, ::zorder zorderParam)
    {

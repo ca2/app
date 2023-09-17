@@ -3427,7 +3427,7 @@ namespace user
       synchronous_lock synchronouslock(this->synchronization());
 
       if (pkey->m_ekey == ::user::e_key_down || pkey->m_ekey == ::user::e_key_up ||
-            pkey->m_ekey == ::user::e_key_next || pkey->m_ekey == ::user::e_key_prior)
+            pkey->m_ekey == ::user::e_key_page_down || pkey->m_ekey == ::user::e_key_page_up)
       {
          if (m_nItemCount > 0)
          {
@@ -3438,11 +3438,11 @@ namespace user
 
             if (iItem < 0)
             {
-               if (pkey->m_ekey == ::user::e_key_down || pkey->m_ekey == ::user::e_key_next)
+               if (pkey->m_ekey == ::user::e_key_down || pkey->m_ekey == ::user::e_key_page_down)
                {
                   iItem = 0;
                }
-               else if (pkey->m_ekey == ::user::e_key_up || pkey->m_ekey == ::user::e_key_prior)
+               else if (pkey->m_ekey == ::user::e_key_up || pkey->m_ekey == ::user::e_key_page_up)
                {
                   iItem = m_nItemCount - 1;
                }
@@ -3453,7 +3453,7 @@ namespace user
                {
                   iItem++;
                }
-               else if (pkey->m_ekey == ::user::e_key_next)
+               else if (pkey->m_ekey == ::user::e_key_page_down)
                {
                   iItem += m_nDisplayCount;
                }
@@ -3461,7 +3461,7 @@ namespace user
                {
                   iItem--;
                }
-               else if (pkey->m_ekey == ::user::e_key_prior)
+               else if (pkey->m_ekey == ::user::e_key_page_up)
                {
                   iItem -= m_nDisplayCount;
                }

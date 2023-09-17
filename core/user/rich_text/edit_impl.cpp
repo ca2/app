@@ -1469,7 +1469,7 @@ namespace user
 
                bool bShift = psession->is_key_pressed(::user::e_key_shift);
 
-               if (pkey->m_ekey == ::user::e_key_prior)
+               if (pkey->m_ekey == ::user::e_key_page_up)
                {
 
                   //on_reset_focus_start_tick();
@@ -1502,7 +1502,7 @@ namespace user
                   //_001EnsureVisibleLine(iLine);
 
                }
-               else if (pkey->m_ekey == ::user::e_key_next)
+               else if (pkey->m_ekey == ::user::e_key_page_down)
                {
 
                   //on_reset_focus_start_tick();

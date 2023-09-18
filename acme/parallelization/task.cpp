@@ -950,8 +950,15 @@ bool task::has_message() const
 //}
 
 
-::pointer<::task>task::branch(const ::create_task_attributes & createtaskattributes)
+::pointer<::task>task::branch(enum_parallelization eparallelization, const ::create_task_attributes & createtaskattributes)
 {
+
+   if(eparallelization == e_parallelization_synchronous)
+   {
+
+      return branch_synchronously(createtaskattributes);
+
+   }
 
    if (m_atom.is_empty())
    {
@@ -1254,7 +1261,7 @@ bool task::has_message() const
 
    //auto estatus = branch(epriority, nStackSize, uiCreateFlags);
 
-   branch(createtaskattributes);
+   branch(e_parallelization_asynchronous, createtaskattributes);
 
    if (m_htask == 0)
    {

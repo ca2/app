@@ -448,7 +448,7 @@ namespace user
 
       m_pdroptargetwindow->m_bTransparent = true;
 
-      m_pdroptargetwindow->create_host();
+      m_pdroptargetwindow->create_host(e_parallelization_synchronous);
 
       m_pdroptargetwindow->order(e_zorder_top_most);
 

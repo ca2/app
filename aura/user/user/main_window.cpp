@@ -206,7 +206,7 @@ namespace user
 
       //bool bOk = 
       
-      create_host();
+      create_host(e_parallelization_synchronous);
 
       //if (!bOk)
       //{

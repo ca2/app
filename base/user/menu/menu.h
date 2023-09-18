@@ -46,7 +46,7 @@ namespace user
       ::i32_array                              m_iaColumnWidth;
       ::i32_array                              m_iaColumnHeight;
       bool                                   m_bCloseButton;
-
+      procedure                              m_procedureOnCreate;
 
 
       menu();

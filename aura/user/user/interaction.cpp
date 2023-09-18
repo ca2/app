@@ -2303,7 +2303,7 @@ namespace user
 
          }
 
-         pprimitiveimplNew->create_host(this);
+         pprimitiveimplNew->create_host(this, e_parallelization_synchronous);
 
          on_after_set_parent();
 
@@ -8809,7 +8809,7 @@ namespace user
    //}
 
 
-   void interaction::create_host()
+   void interaction::create_host(enum_parallelization eparallelization)
    {
 
       if (is_window())
@@ -8902,7 +8902,7 @@ namespace user
               //pusersystem->m_createstruct.hwndParent = ::is_set(puserinteractionParent) ? puserinteractionParent->get_safe_handle() : nullptr;
 
 
-      pprimitiveimplNew->create_host(this);
+      pprimitiveimplNew->create_host(this, eparallelization);
       //if (!pprimitiveimplNew->create_host(this))
       //{
 

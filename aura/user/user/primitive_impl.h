@@ -81,7 +81,7 @@ namespace user
 
 
 
-      virtual void create_host(::user::interaction * puserinteraction);
+      virtual void create_host(::user::interaction * puserinteraction, enum_parallelization eparallelization);
       virtual void create_child(::user::interaction * puserinteraction, ::user::primitive * puserprimitiveParent);
 
 

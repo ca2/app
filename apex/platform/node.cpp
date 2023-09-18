@@ -10,6 +10,7 @@
 #include "acme/filesystem/filesystem/link.h"
 #include "acme/exception/interface_only.h"
 #include "acme/filesystem/filesystem/file_context.h"
+#include "apex/input/input.h"
 #include "apex/platform/application.h"
 #include "apex/platform/os_context.h"
 #include "apex/platform/system.h"
@@ -533,6 +534,14 @@ namespace apex
          }
 
       }
+
+   }
+
+
+   ::pointer < ::input::input > node::get_input()
+   {
+
+      return __create < ::input::input > ();
 
    }
 

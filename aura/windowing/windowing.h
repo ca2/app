@@ -252,16 +252,6 @@ namespace windowing
 
       virtual void defer_create_main_menu(const string_array & straParent, const string_array & straMenu, const string_array & straId);
 
-      virtual ::e_status is_keyboard_hook_enabled(::user::interaction * puserinteractionEnablePrompt);
-
-      virtual void install_keyboard_hook(::matter * pmatterListener);
-      virtual void uninstall_keyboard_hook(::matter * pmatterListener);
-
-      virtual ::e_status is_mouse_hook_enabled(::user::interaction * puserinteractionEnablePrompt);
-
-      virtual void install_mouse_hook(::matter * pmatterListener);
-      virtual void uninstall_mouse_hook(::matter * pmatterListener);
-
       virtual ::pointer < ::user::interaction > create_message_window(const ::string & pszName, ::user::interaction_listener * plistener = nullptr);
 
 

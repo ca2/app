@@ -1386,7 +1386,9 @@ list(APPEND static_library_references ${library_references})
 list(TRANSFORM static_library_references PREPEND static_)
 
 
-add_library(${PROJECT_NAME} SHARED ${apex_source})
+add_library(${PROJECT_NAME} SHARED ${apex_source}
+   input/input.cpp
+   input/input.h)
 add_library(static_${PROJECT_NAME} STATIC ${apex_source})
 
 

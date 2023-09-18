@@ -1138,7 +1138,7 @@ namespace user
       else
       {
 
-         create_host();
+         create_host(e_parallelization_synchronous);
 
          //if (!create_host())
          //{

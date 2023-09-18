@@ -46,7 +46,7 @@ namespace apex
       size_t                                             m_nSafetyPoolSize; // ideal size_i32
 
 
-
+      ::pointer < ::input::input >                       m_pinput;
 
       string_array                                       m_straCommandLineAccumul;
       string_array                                       m_straCommandLineExtra;
@@ -142,6 +142,9 @@ namespace apex
 
 
       ::apex::node * node();
+
+
+      virtual ::input::input * input();
 
 
       virtual ::pointer<::factory::factory>& node_factory() override;

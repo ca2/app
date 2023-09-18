@@ -14,6 +14,9 @@ namespace user
    class language_map;
 
 
+   class primitive;
+
+
 } // namespace user
 
 

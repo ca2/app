@@ -62,13 +62,13 @@ task_group::task_group(::matter * pmatter, ::enum_priority epriority)
       if (epriority == ::e_priority_none)
       {
 
-         ptooltask->branch(::e_priority_highest);
+         ptooltask->branch(e_parallelization_asynchronous, ::e_priority_highest);
 
       }
       else
       {
 
-         ptooltask->branch(epriority);
+         ptooltask->branch(e_parallelization_asynchronous, epriority);
 
       }
 

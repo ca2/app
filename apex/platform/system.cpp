@@ -30,6 +30,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/primitive/datetime/datetime.h"
 #include "acme/primitive/string/command_line.h"
+#include "apex/input/input.h"
 #include "apex/message/message.h"
 //#include "apex/operating_system.h"
 #include "apex/networking/http/context.h"
@@ -2086,6 +2087,24 @@ pacmedirectory->create("/ca2core");
    {
 
       return m_pnode ? m_pnode->m_papexnode : nullptr;
+
+   }
+
+
+   ::input::input * system::input()
+   {
+
+      if(!m_pinput)
+      {
+
+         auto pinput = acmenode()->m_papexnode->get_input();
+
+         m_pinput = pinput;
+
+      }
+
+      return m_pinput;
+
 
    }
 

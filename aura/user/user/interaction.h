@@ -1317,7 +1317,7 @@ namespace user
       /// ::user::control_descriptor.
       //virtual bool create_interaction(class ::user::control_descriptor * pdescriptor);
 
-      virtual void create_host() override;
+      virtual void create_host(enum_parallelization eparallelization) override;
       virtual void create_child(::user::interaction * pparent) override;
 
       // virtual bool create_interaction(const ::string & pszClassName, const ::string & pszWindowName, u32 uStyle, ::user::interaction * puiParent, ::request * prequest = nullptr) override;

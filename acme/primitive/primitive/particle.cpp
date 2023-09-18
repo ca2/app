@@ -1690,6 +1690,13 @@ void particle::handle(::message::message * pmessage)
 }
 
 
+void particle::handle(::item * pmessage)
+{
+
+
+}
+
+
 bool particle::_handle_uri(const ::string & strUri)
 {
 
@@ -2145,10 +2152,10 @@ void particle::app_post(const ::procedure & procedure)
 }
 
 
-void particle::app_fork(const ::procedure & procedure)
+::task_pointer particle::app_fork(const ::procedure & procedure)
 {
 
-   acmeapplication()->fork(procedure);
+   return acmeapplication()->fork(procedure);
 
 }
 
@@ -2161,10 +2168,10 @@ void particle::task_post(const ::procedure & procedure)
 }
 
 
-void particle::task_fork(const ::procedure & procedure)
+::task_pointer particle::task_fork(const ::procedure & procedure)
 {
 
-   ::get_task()->fork(procedure);
+   return ::get_task()->fork(procedure);
 
 }
 

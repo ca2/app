@@ -127,6 +127,9 @@ namespace apex
       void load_character_set_default_sample_text() override;
 
 
+      virtual ::pointer < ::input::input > get_input();
+
+
    };
 
 

@@ -323,7 +323,7 @@ namespace user
 
          pinteraction->m_bMessageWindow = true;
 
-         create_host(pinteraction);
+         create_host(pinteraction, e_parallelization_synchronous);
 
       }
 
@@ -830,7 +830,7 @@ namespace user
    }
 
 
-   void interaction_impl::create_host(::user::interaction * puserinteraction)
+   void interaction_impl::create_host(::user::interaction * puserinteraction, enum_parallelization eparallelization)
    {
 
       m_puserinteraction = puserinteraction;
@@ -961,7 +961,7 @@ namespace user
       {
 
          //if (!m_puserthread->begin_synch())
-         m_puserthread->branch_synchronously();
+         m_puserthread->branch(eparallelization);
          //{
 
          //   __release(m_pgraphicsthread);

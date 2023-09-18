@@ -1446,7 +1446,7 @@ public:
 
       //if(create_window_ex(pusersystem))
       //if(create_host())
-      create_host();
+      create_host(e_parallelization_synchronous);
       //{
 
       //   information("created trw");

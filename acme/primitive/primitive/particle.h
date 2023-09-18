@@ -360,6 +360,7 @@ public:
    // ThomasBorregaardSorensen!! Like handlers
    virtual void handle(::topic * ptopic, ::context * pcontext);
    virtual void handle(::message::message * pmessage);
+   virtual void handle(::item * pitem);
 
 
    virtual bool _handle_uri(const ::string & strUri);
@@ -498,10 +499,10 @@ public:
 
 
    virtual void app_post(const ::procedure & procedure);
-   virtual void app_fork(const ::procedure & procedure);
+   virtual ::task_pointer app_fork(const ::procedure & procedure);
 
    virtual void task_post(const ::procedure & procedure);
-   virtual void task_fork(const ::procedure & procedure);
+   virtual ::task_pointer task_fork(const ::procedure & procedure);
 
    virtual void user_send(const ::procedure & procedure);
    virtual void user_post(const ::procedure & procedure);

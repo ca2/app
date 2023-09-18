@@ -773,44 +773,44 @@ namespace windowing
    }
 
 
-   ::e_status windowing::is_keyboard_hook_enabled(::user::interaction * puserinteractionEnablePrompt)
-   {
-
-      return ::success;
-
-   }
-
-
-   void windowing::install_keyboard_hook(::matter * pmatterListener)
-   {
-
-   }
-
-
-   void windowing::uninstall_keyboard_hook(::matter * pmatterListener)
-   {
-
-   }
-
-
-   ::e_status windowing::is_mouse_hook_enabled(::user::interaction * puserinteractionEnablePrompt)
-   {
-
-      return ::success;
-
-   }
-
-
-   void windowing::install_mouse_hook(::matter * pmatterListener)
-   {
-
-   }
-
-
-   void windowing::uninstall_mouse_hook(::matter * pmatterListener)
-   {
-
-   }
+//   ::e_status windowing::is_keyboard_message_handling_enabled(::user::interaction * puserinteractionEnablePrompt)
+//   {
+//
+//      return ::success;
+//
+//   }
+//
+//
+//   void windowing::add_keyboard_message_handler(::particle * pparticle)
+//   {
+//
+//   }
+//
+//
+//   void windowing::erase_keyboard_message_handler(::particle * pparticle)
+//   {
+//
+//   }
+//
+//
+//   ::e_status windowing::is_mouse_message_handling_enabled(::user::interaction * puserinteractionEnablePrompt)
+//   {
+//
+//      return ::success;
+//
+//   }
+//
+//
+//   void windowing::add_mouse_message_handler(::particle * pparticle)
+//   {
+//
+//   }
+//
+//
+//   void windowing::erase_mouse_message_handler(::particle * pparticle)
+//   {
+//
+//   }
 
 
    ::aura::application* windowing::get_app()

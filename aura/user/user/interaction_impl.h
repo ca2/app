@@ -233,7 +233,7 @@ namespace user
       void set_tool_window(bool bSet) override;
 
 
-      void create_host(::user::interaction * pinteraction) override;
+      void create_host(::user::interaction * pinteraction, enum_parallelization eparallelization) override;
 
       virtual ::color::color screen_pixel(int x, int y) const;
       void interaction_post(const ::procedure & procedure) override;

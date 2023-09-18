@@ -2330,7 +2330,7 @@ size_t engine_symbol(char * sz, int n, DWORD_PTR * pdisplacement, DWORD_PTR dwAd
 //}
 
 
-::pointer<::task>thread::branch(const ::create_task_attributes & createtaskattributes)
+::pointer<::task>thread::branch(enum_parallelization eparallelization, const ::create_task_attributes & createtaskattributes)
 {
 
    clear_finishing_flag();
@@ -2407,7 +2407,7 @@ size_t engine_symbol(char * sz, int n, DWORD_PTR * pdisplacement, DWORD_PTR dwAd
 
    //}
 
-   auto ptask = ::task::branch(createtaskattributes);
+   auto ptask = ::task::branch(eparallelization, createtaskattributes);
 
 //   if(m_htask == 0)
 //   {

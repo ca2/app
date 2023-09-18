@@ -1677,7 +1677,7 @@ void object::branch_each(const ::procedure_array& routinea)
 }
 
 
-::pointer<task>object::branch_procedure(const ::procedure & procedure, const create_task_attributes & createtaskattributes)
+::pointer<task>object::branch_procedure(const ::procedure & procedure, enum_parallelization eparallelization, const create_task_attributes & createtaskattributes)
 {
 
    if (::is_reference_null(procedure))
@@ -1702,7 +1702,7 @@ void object::branch_each(const ::procedure_array& routinea)
 
    ptask->m_atom = typeid(*pbase).name();
 
-   ptask->branch(createtaskattributes);
+   ptask->branch(eparallelization, createtaskattributes);
 
    return ptask;
 
@@ -1742,10 +1742,10 @@ void object::branch_each(const ::procedure_array& routinea)
 }
 
 
-::pointer<task>object::branch(const create_task_attributes & createthreadattributes)
+::pointer<task>object::branch(enum_parallelization eparallelization, const create_task_attributes & createthreadattributes)
 {
 
-   auto ptask = branch_procedure(this, createthreadattributes);
+   auto ptask = branch_procedure(this, eparallelization, createthreadattributes);
 
    return ptask;
 
@@ -3761,7 +3761,7 @@ void object::defer_branch(::task_pointer & ptask, const ::procedure & procedure)
 ::pointer<task>object::fork(const ::procedure & procedure, const ::particle_array & elementaHold, const create_task_attributes & createthreadattributes)
 {
 
-   auto ptask = this->branch_procedure(procedure, createthreadattributes);
+   auto ptask = this->branch_procedure(procedure, e_parallelization_asynchronous, createthreadattributes);
 
    if (!ptask)
    {

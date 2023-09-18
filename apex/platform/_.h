@@ -26,4 +26,14 @@ class application_menu_item;
 class application_menu;
 
 
+namespace input
+{
+
+
+   class input;
+
+
+} // namespace input
+
+
 

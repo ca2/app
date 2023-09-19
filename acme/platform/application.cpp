@@ -521,7 +521,7 @@ namespace acme
    }
 
 
-   ::string application::get_application_title()
+   ::string application::application_title()
    {
 
       auto textAppTitle = m_textAppTitle;
@@ -552,6 +552,42 @@ namespace acme
       }
 
       return strAppTitle;
+
+   }
+
+
+
+   ::string application::application_name()
+   {
+
+      auto textAppName = m_textAppName;
+
+      string strAppName;
+
+      if (textAppName.get_text().has_char())
+      {
+
+         strAppName = textAppName.get_text();
+
+      }
+      else
+      {
+
+         string_array stra;
+
+         stra.explode("/", m_strAppId);
+
+         strAppName = stra.slice(1).implode(" ");
+
+         strAppName.replace_with(" ", "_");
+
+         strAppName.replace_with(" ", "-");
+
+         strAppName.replace_with(" ", ".");
+
+      }
+
+      return strAppName;
 
    }
 

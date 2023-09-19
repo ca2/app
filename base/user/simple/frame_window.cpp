@@ -182,7 +182,7 @@ void simple_frame_window::on_update_notify_icon_menu_header(::index & iNotifyIco
 
    auto papp = auraapplication();
 
-   auto strAppTitle = papp->get_application_title();
+   auto strAppTitle = papp->application_title();
 
    m_pnotifyicon->notify_icon_insert_item(iNotifyIconItem, strAppTitle, "notify_icon_topic");
 
@@ -497,6 +497,7 @@ bool simple_frame_window::WindowDataLoadWindowRectangle()
       }
       else if (wfi_is_down())
       {
+
          information() << "-------------------------------------------------------------------";
          information() << "";
          information() << "";

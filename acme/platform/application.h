@@ -72,6 +72,7 @@ namespace acme
 
       enum_application_capability_array               m_eapplicationcapabilitya;
       ::text::text                                    m_textAppTitle;
+      ::text::text                                    m_textAppName;
 
 
       ::pointer < ::mutex >                                      m_pmutexMatterLocator;
@@ -118,8 +119,10 @@ namespace acme
 
       virtual ::string app_root();
 
-      virtual ::string get_application_title();
+      virtual ::string application_title();
 
+
+      virtual ::string application_name();
 //
 //#ifdef WINDOWS
 //
@@ -127,7 +130,7 @@ namespace acme
 //
 //#else
 //
-//      void set_args(int argc, char * argv[], char * envp[]);
+//      void set_args(int argc, char * argv[], char * envpb[]);
 //
 //#endif
 

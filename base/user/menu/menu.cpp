@@ -413,6 +413,95 @@ namespace user
    }
 
 
+   void menu::defer_initialize_user_menu()
+   {
+
+      if(!m_pmenuitem)
+      {
+
+         return;
+
+      }
+
+      initialize_user_menu();
+
+   }
+
+
+   void menu::initialize_user_menu()
+   {
+
+      auto psystem = acmesystem()->m_paurasystem;
+
+      auto pdraw2d = psystem->draw2d();
+
+      auto pgraphics = pdraw2d->create_memory_graphics(this);
+
+      if (m_bCloseButton)
+      {
+
+         if (m_pitemClose.is_null())
+         {
+
+            m_pitemClose = __new(menu_item);
+
+            m_pitemClose->m_atom = "close_menu";
+
+            m_pitemClose->m_pmenu = this;
+
+            ::pointer<::user::interaction>pinteraction = m_pitemClose->m_puserinteraction;
+
+            pinteraction = create_menu_button(pgraphics, m_pitemClose);
+
+            m_pitemClose->m_puserinteraction = pinteraction;
+
+            //if (!m_pitemClose->m_puserinteraction->create_interaction(this, "close_menu"))
+            //if (!m_pitemClose->m_puserinteraction->create_child(this))
+            m_pitemClose->m_puserinteraction->create_control(this, m_pitemClose->m_atom);
+            //{
+
+            //   return false;
+
+            //}
+
+         }
+
+         ::pointer<::user::button>pbutton = m_pitemClose->m_puserinteraction;
+
+         if (pbutton)
+         {
+
+            pbutton->set_stock_icon(e_stock_icon_close);
+
+         }
+         else
+         {
+
+            m_pitemClose->m_puserinteraction->set_window_text("x");
+
+         }
+
+      }
+
+      if (!m_pmenuitem->create_buttons(pgraphics, this))
+      {
+
+         ASSERT(false);
+
+         return;
+
+      }
+
+      if(m_procedureOnAfterInitializeUserMenu)
+      {
+
+         m_procedureOnAfterInitializeUserMenu();
+
+      }
+
+   }
+
+
    bool menu::create_menu(::channel* pchannelNotify, ::user::interaction * puiParent)
    {
 
@@ -501,6 +590,12 @@ namespace user
 //         }
 
       }
+      else
+      {
+
+         defer_initialize_user_menu();
+
+      }
 
       //::user::style_context stylecontext;
 
@@ -552,7 +647,7 @@ namespace user
    bool menu::track_popup_menu(::channel * pchannelNotify, ::user::interaction * puiParent)
    {
 
-      m_procedureOnCreate = [this]()
+      m_procedureOnAfterInitializeUserMenu = [this]()
       {
 
          if (!m_bPositionHint)
@@ -1171,73 +1266,7 @@ namespace user
 
       //create_translucency(::user::e_translucency_present;
 
-      auto psystem = acmesystem()->m_paurasystem;
-
-      auto pdraw2d = psystem->draw2d();
-
-      auto pgraphics = pdraw2d->create_memory_graphics(this);
-
-      if (m_bCloseButton)
-      {
-
-         if (m_pitemClose.is_null())
-         {
-
-            m_pitemClose = __new(menu_item);
-
-            m_pitemClose->m_atom = "close_menu";
-
-            m_pitemClose->m_pmenu = this;
-
-            ::pointer<::user::interaction>pinteraction = m_pitemClose->m_puserinteraction;
-
-            pinteraction = create_menu_button(pgraphics, m_pitemClose);
-
-            m_pitemClose->m_puserinteraction = pinteraction;
-
-            //if (!m_pitemClose->m_puserinteraction->create_interaction(this, "close_menu"))
-            //if (!m_pitemClose->m_puserinteraction->create_child(this))
-            m_pitemClose->m_puserinteraction->create_control(this, m_pitemClose->m_atom);
-            //{
-
-            //   return false;
-
-            //}
-
-         }
-
-         ::pointer<::user::button>pbutton = m_pitemClose->m_puserinteraction;
-
-         if (pbutton)
-         {
-
-            pbutton->set_stock_icon(e_stock_icon_close);
-
-         }
-         else
-         {
-
-            m_pitemClose->m_puserinteraction->set_window_text("x");
-
-         }
-
-      }
-
-      if (!m_pmenuitem->create_buttons(pgraphics, this))
-      {
-
-         ASSERT(false);
-
-         return;
-
-      }
-
-      if(m_procedureOnCreate)
-      {
-
-         m_procedureOnCreate();
-
-      }
+      defer_initialize_user_menu();
 
    }
 

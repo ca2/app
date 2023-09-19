@@ -1666,6 +1666,15 @@ namespace user
       bool bAscendants)
    {
 
+      if(!is_window())
+      {
+
+         warning() << "interaction::set_need_redraw !is_window returning...";
+
+         return;
+
+      }
+
       if (::is_set(pgraphics))
       {
 
@@ -1874,6 +1883,15 @@ namespace user
 
    void interaction::post_redraw(bool bAscendants)
    {
+
+      if(!is_window())
+      {
+
+         warning() << "interaction::post_redraw !is_window returning...";
+
+         return;
+
+      }
 
       auto * pinteraction = get_host_window();
 
@@ -6018,7 +6036,7 @@ namespace user
          if(!get_parent())
          {
 
-            information() << "interaction::_000OnDraw no parent this is not visible";
+            information() << "interaction::_000OnDraw (no parent) (top level) this is not visible";
 
          }
 
@@ -7718,6 +7736,13 @@ namespace user
 
          }
 
+         if(window()->defer_perform_entire_reposition_process())
+         {
+
+            return false;
+
+         }
+
          pointDrag = layout().window().origin();
 
          return true;
@@ -7725,6 +7750,13 @@ namespace user
       }
       else if (pitem->m_item.m_eelement == e_element_resize)
       {
+
+         if(window()->defer_perform_entire_resizing_process(::experience::e_frame_sizing_bottom_right))
+         {
+
+            return false;
+
+         }
 
          pointDrag = layout().window().origin() + layout().window().size();
 

@@ -937,6 +937,8 @@ namespace user
             pmenu->m_pmenuitem.release();
             
             pmenu->m_puserinteractionpointeraChild.release();
+
+            information() << "::user::tab_impact::on_change_cur_sel Going to call prepare_impact_menu";
             
             prepare_impact_menu(pmenu);
             
@@ -993,14 +995,22 @@ namespace user
    void tab_impact::prepare_impact_menu(::user::menu * pmenu)
    {
 
-      auto strXml = get_app()->file()->as_string("matter://impact.menu");
+      ::file::path path;
 
-      if (pmenu->load_xml_menu(strXml))
+      path = "matter://impact.menu";
+
+      auto strXml = get_app()->file()->as_string(path);
+
+      if (!pmenu->load_xml_menu(strXml))
       {
 
-         pmenu->create_inline_menu(this, m_pimpactdata->m_pplaceholder);
+         throw ::exception(error_failed, "tab_impact::prepare_impact_menu Failed to load \"" + path + "\".");
 
       }
+
+      information() << "::user::tab_impact::prepare_impact_menu Going to call menu::create_inline_menu";
+
+      pmenu->create_inline_menu(this, m_pimpactdata->m_pplaceholder);
 
       //return ::success;
 
@@ -1045,7 +1055,6 @@ namespace user
       ::user::tab::on_erase_place_holder_child(pinteraction);
 
    }
-
 
 
    void tab_impact::on_hide_child(::user::interaction* pinteraction)

@@ -46,7 +46,7 @@ namespace user
       ::i32_array                              m_iaColumnWidth;
       ::i32_array                              m_iaColumnHeight;
       bool                                   m_bCloseButton;
-      procedure                              m_procedureOnCreate;
+      procedure                              m_procedureOnAfterInitializeUserMenu;
 
 
       menu();
@@ -73,6 +73,9 @@ namespace user
       virtual ::channel * get_notify_channel();
 
       ::user::menu_item * GetSubMenu(i32 i);
+
+      virtual void defer_initialize_user_menu();
+      virtual void initialize_user_menu();
 
       virtual void layout_menu(::draw2d::graphics_pointer& pgraphics);
 

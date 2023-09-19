@@ -8554,6 +8554,15 @@ void image::set_rgb_pre_alpha(i32 R, i32 G, i32 B, i32 A)
 ::i64 image::_001GetTopLeftWeightedOpaqueArea(int iAlphaMin, const ::rectangle_i32 &rect) const
 {
 
+   map();
+
+   if(::is_null(this->data()))
+   {
+
+      return 0;
+
+   }
+
    ::rectangle_i32 r(rect);
 
    ::rectangle_i32 rTotal(this->rectangle());

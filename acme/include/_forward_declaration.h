@@ -892,7 +892,7 @@ class particle;
 class matter;
 class exception_translator;
 class counter;
-class type;
+//class type;
 
 class acme_file;
 class acme_path;
@@ -2003,7 +2003,7 @@ namespace mathematics
 
 
 
-class type;
+//class type;
 
 namespace text
 {

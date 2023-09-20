@@ -181,17 +181,26 @@ public:
 
 
 template < typename TYPE >
-class __type :
+class __type2 :
    public ::type
 {
 public:
 
-   __type() :
+   __type2() :
    type(typeid(TYPE))
    {
    }
 
 };
+
+
+template < typename TYPE >
+inline ::__type2 < TYPE > typed_type()
+{
+
+   return {};
+
+}
 
 
 //#define __type(TYPE)  ___type<TYPE>()

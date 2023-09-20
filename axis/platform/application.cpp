@@ -1842,7 +1842,7 @@ namespace axis
 
          econtroltype = ::user::e_control_type_static;
 
-         return __type(::user::still);
+         return ::__type < ::user::still >();
 
       }
       else if (str.case_insensitive_begins("label_"))
@@ -1850,7 +1850,7 @@ namespace axis
 
          econtroltype = ::user::e_control_type_static;
 
-         return __type(::user::still);
+         return ::__type < ::user::still >();
 
       }
       else if (str.case_insensitive_begins("combo_"))

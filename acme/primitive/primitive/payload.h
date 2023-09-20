@@ -277,7 +277,7 @@ public:
    void set_pointer(const ::pointer < T > & p)
    {
 
-      operator[](::__type < T >().name()) = p;
+      operator[](::typed_type < T >().name()) = p;
 
    }
 
@@ -285,7 +285,7 @@ public:
    bool has_pointer() const
    {
 
-      return has_property(::__type < T >().name());
+      return has_property(::typed_type < T >().name());
 
    }
 
@@ -293,7 +293,7 @@ public:
    ::property * find_pointer() const
    {
 
-      return find_property(::__type < T >().name());
+      return find_property(::typed_type < T >().name());
 
    }
 

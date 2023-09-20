@@ -2965,9 +2965,11 @@ namespace user
       if(m_puserinteraction)
       {
 
-         m_puserinteraction->trace_statement_prefix(statement);
+         m_puserinteraction->raw_trace_statement_prefix(statement);
 
       }
+
+      return statement;
 
    }
 

@@ -6,6 +6,7 @@
 #include "acme/constant/message.h"
 #include "acme/constant/timer.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/primitive/geometry2d/_text_stream.h"
 #include "acme/user/user/content.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/brush.h"
@@ -1141,6 +1142,8 @@ namespace user
          rectangleList.right() = rectangleWindow.left() + maximum(rectangleWindow.width(), sizeFull.cx());
          rectangleList.top() = rectangleWindow.bottom();
          rectangleList.bottom() = rectangleWindow.bottom() + sizeFull.cy();
+
+         information() << "on_drop_down (1) : " << rectangleList;
 
          if (i < 0)
          {

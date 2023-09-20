@@ -20,7 +20,7 @@
 #include "acme/handler/item.h"
 #include "acme/platform/keep.h"
 #include "acme/parallelization/synchronous_lock.h"
-#include "acme/parallelization/asynchronous.h"
+//#include "acme/parallelization/asynchronous.h"
 #include "acme/platform/hyperlink.h"
 #include "acme/platform/node.h"
 #include "acme/platform/timer.h"
@@ -31,7 +31,7 @@
 //#include "acme/primitive/geometry2d/_defer_shape.h"
 #include "acme/primitive/geometry2d/_text_stream.h"
 #include "acme/primitive/string/international.h"
-#include "acme/primitive/time/_string.h"
+//#include "acme/primitive/time/_string.h"
 #include "acme/user/user/_text_stream.h"
 #include "acme/user/user/content.h"
 #include "acme/user/user/drag.h"
@@ -44,7 +44,7 @@
 #include "aura/graphics/draw2d/path.h"
 #include "aura/graphics/graphics/graphics.h"
 #include "aura/graphics/image/image.h"
-#include "aura/message/timer.h"
+//#include "aura/message/timer.h"
 #include "aura/user/appearance/appearance.h"
 #include "aura/user/user/calc_size.h"
 #include "aura/user/user/system.h"
@@ -178,7 +178,7 @@ CLASS_DECL_AURA::rectangle_i32 bounding_box(const ::user::item * pitem)
 
 int g_iMouseHoverCount = 0;
 int g_i134 = 0;
-#define TEST_PRINT_BUFFER
+//#define TEST_PRINT_BUFFER
 
 #ifdef WINDOWS_DESKTOP
 //#include "aura/operating_system/windows/windowing.h"
@@ -187,7 +187,7 @@ int g_i134 = 0;
 
 //#include "aura/os/universal_windows/_uwp.h"
 
-#endif // UNIVERSAL_WINDOWS
+#endif // WINDOWS_DESKTOP
 
 //#define memory_new AURA_NEW
 
@@ -1499,10 +1499,10 @@ namespace user
 
          bDuplicate = false;
 
-         for (auto & pinteraction : puserinteractionpointeraChild->interactiona())
+         for (auto & pinteractionChild : puserinteractionpointeraChild->interactiona())
          {
 
-            if (pinteraction->m_atom == strCandidateId)
+            if (pinteractionChild->m_atom == strCandidateId)
             {
 
                bDuplicate = true;
@@ -1748,9 +1748,9 @@ namespace user
          if (m_flagNonClient.has(e_non_client_focus_rect) && keyboard_focus_is_focusable())
          {
 
-            ::draw2d::graphics_pointer pgraphics;
+            ::draw2d::graphics_pointer pgraphicsGetStyle;
 
-            auto pstyle = get_style(pgraphics);
+            auto pstyle = get_style(pgraphicsGetStyle);
 
             auto rectangleFocusRectExtraMargin = pstyle->simple_ui_focus_rect_extra_margin(this);
 
@@ -4127,7 +4127,7 @@ namespace user
 
             auto pinteraction = puserinteractionpointeraChild->interaction_at(i);
 
-            auto type = ::type(this);
+            //auto type = ::type(this);
 
             if (type.name().contains("auraclick::impact"))
             {
@@ -6178,7 +6178,7 @@ namespace user
                   ////         pgraphics->offset_origin(-pointParentOffset.x(), -pointParentOffset.y());
                   {
 
-                     ::draw2d::save_context savecontext(pgraphics);
+                     ::draw2d::save_context savecontextThis(pgraphics);
 
                      //auto rectangleX = this->rectangle();
 
@@ -6992,6 +6992,20 @@ namespace user
       //}
 
       send_message(e_message_change_experience);
+
+      if(::is_null(get_parent()))
+      {
+
+         auto pusersystem = m_pusersystem;
+
+         if (pusersystem && pusersystem->m_procedureSuccess)
+         {
+
+            pusersystem->m_procedureSuccess();
+
+         }
+
+      }
 
    }
 
@@ -8078,12 +8092,12 @@ namespace user
 
          }
 
-         ::pointer<interaction> pinteraction = top_child();
+         ::pointer<interaction> pinteractionItem = top_child();
 
-         while (pinteraction != nullptr)
+         while (pinteractionItem != nullptr)
          {
 
-            pchild = pinteraction->get_child_by_name(strName, iItem, iLevel);
+            pchild = pinteractionItem->get_child_by_name(strName, iItem, iLevel);
 
             if (pchild != nullptr)
             {
@@ -8092,7 +8106,7 @@ namespace user
 
             }
 
-            pinteraction = pinteraction->under_sibling();
+            pinteractionItem = pinteractionItem->under_sibling();
 
          }
 
@@ -13889,7 +13903,7 @@ namespace user
    }
 
 
-   static i64 g_i_graphics_thread_update_visual = 0;
+   //static i64 g_i_graphics_thread_update_visual = 0;
 
 
    void interaction::lading_to_layout(bool & bUpdateBuffer, bool & bUpdateWindow)
@@ -21474,7 +21488,7 @@ namespace user
 
          }
 
-         ::string strType = ::type(this).name();
+         //::string strType = ::type(this).name();
 
          if (strType == "simple_scroll_bar")
          {
@@ -24115,7 +24129,13 @@ namespace user
       while (puserinteraction)
       {
 
-         point += puserinteraction->const_layout().origin(elayout);
+         if(!::is_null(puserinteraction->get_parent())
+         || windowing()->has_readily_gettable_absolute_coordinates())
+         {
+
+            point += puserinteraction->const_layout().origin(elayout);
+
+         }
 
          puserinteraction = puserinteraction->get_parent();
 

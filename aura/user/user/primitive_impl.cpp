@@ -2962,7 +2962,12 @@ namespace user
 
       statement << "usrimpl ";
 
-      return m_puserinteraction->trace_statement_prefix(statement);
+      if(m_puserinteraction)
+      {
+
+         m_puserinteraction->trace_statement_prefix(statement);
+
+      }
 
    }
 

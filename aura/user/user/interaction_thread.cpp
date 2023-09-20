@@ -296,14 +296,14 @@ namespace user
 
       //}
 
-      auto pusersystem = m_pimpl->m_puserinteraction->m_pusersystem;
-
-      if(pusersystem && pusersystem->m_procedureSuccess)
-      {
-
-         pusersystem->m_procedureSuccess();
-
-      }
+//     auto pusersystem = m_pimpl->m_puserinteraction->m_pusersystem;
+//
+//      if(pusersystem && pusersystem->m_procedureSuccess)
+//      {
+//
+//         pusersystem->m_procedureSuccess();
+//
+//      }
 
 
       //}
@@ -851,7 +851,7 @@ namespace user
 
       ASSERT_VALID(this);
 
-      ::string strType = ::type(m_pimpl->m_puserinteraction).name();
+      ::string strType = ::type(m_pimpl->m_puserinteraction.m_p).name();
 
       information()
          << "usrthrd " << strType << " : "

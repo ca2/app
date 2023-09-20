@@ -18,7 +18,9 @@ namespace file
 
 folder_dialog::folder_dialog()
 {
-   
+
+   m_posdata = nullptr;
+   m_bCanCreateFolders = false;
    
 }
 

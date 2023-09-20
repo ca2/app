@@ -5,6 +5,7 @@
 #include "acme/constant/message.h"
 #include "acme/handler/item.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/primitive/geometry2d/_text_stream.h"
 #include "acme/user/user/_constant.h"
 #include "acme/user/user/content.h"
 #include "aura/graphics/draw2d/graphics.h"
@@ -787,6 +788,8 @@ namespace user
          ::rectangle_i32 rectangleWindow;
 
          window_rectangle(rectangleWindow, ::user::e_layout_sketch);
+
+         information() << "plisbox->on_drop_down (a) : " << rectangleWindow;
 
          m_plistbox->on_drop_down(rectangleWindow, m_sizeFull);
 

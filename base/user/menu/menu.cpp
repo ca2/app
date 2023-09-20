@@ -10,6 +10,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/sequencer.h"
 #include "acme/platform/timer.h"
+#include "acme/primitive/geometry2d/_text_stream.h"
 #include "acme/user/nano/nano.h"
 #include "aqua/xml/document.h"
 #include "aqua/xml/xml.h"
@@ -416,6 +417,8 @@ namespace user
    void menu::defer_initialize_user_menu()
    {
 
+      information() << "::user::menu::defer_initialize_user_menu";
+
       if(!m_pmenuitem)
       {
 
@@ -430,6 +433,8 @@ namespace user
 
    void menu::initialize_user_menu()
    {
+
+      information() << "::user::menu::initialize_user_menu";
 
       auto psystem = acmesystem()->m_paurasystem;
 
@@ -495,6 +500,8 @@ namespace user
       if(m_procedureOnAfterInitializeUserMenu)
       {
 
+         information() << "m_procedureOnAfterInitializeUserMenu set. gonna call it...";
+
          m_procedureOnAfterInitializeUserMenu();
 
       }
@@ -512,34 +519,34 @@ namespace user
 
       }
 
-      m_puserinteractionParent = puiParent;
+      m_puserinteractionOwner = puiParent;
 
-      information() << "::user::menu::create_menu parent window: " << (::iptr) m_puserinteractionParent.m_p;
+      information() << "::user::menu::create_menu parent window: " << (::iptr) m_puserinteractionOwner.m_p;
 
       ::string strType;
 
-      strType = ::type(m_puserinteractionParent).name();
+      strType = ::type(m_puserinteractionOwner).name();
 
       information() << "::user::menu::create_menu parent window type: " << strType;
 
 #if defined(UNIVERSAL_WINDOWS) || defined(WINDOWS_DESKTOP) || defined(LINUX) || defined(FREEBSD) || defined(MACOS)
 
-      auto pwindow = m_puserinteractionParent->get_wnd();
+      auto pwindow = m_puserinteractionOwner->get_wnd();
 
       pwindow->m_menua.add(this);
 
 #else
 
-      m_puserinteractionParent->m_menua.add(this);
+      m_puserinteractionOwner->m_menua.add(this);
 
 #endif
 
-      m_pmenuitem->m_puserinteractionHost = m_puserinteractionParent;
+      m_pmenuitem->m_puserinteractionHost = m_puserinteractionOwner;
 
       if (::is_null(pchannelNotify))
       {
 
-         pchannelNotify = m_puserinteractionParent;
+         pchannelNotify = m_puserinteractionOwner;
 
       }
 
@@ -657,6 +664,8 @@ namespace user
 
       m_procedureOnAfterInitializeUserMenu = [this]()
       {
+
+         information() << "m_procedureOnAfterInitializeUserMenu menu::track_popup_menu.";
 
          if (!m_bPositionHint)
          {
@@ -914,6 +923,8 @@ namespace user
       }
 
       order(e_zorder_top_most);
+
+      information() << "::user::menu::layout_menu place : " << rectangleWindow;
 
       place(rectangleWindow);
 
@@ -1263,6 +1274,8 @@ namespace user
 
    void menu::on_message_create(::message::message * pmessage)
    {
+
+      information() << "::user::menu::on_messsage_create";
 
       /// descriptor().set_control_type(e_control_type_menu);
 

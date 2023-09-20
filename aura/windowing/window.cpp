@@ -2139,7 +2139,19 @@ namespace windowing
 
       statement << "window  ";
 
-      return m_puserinteractionimpl->m_puserinteraction->trace_statement_prefix(statement);
+      if(m_puserinteractionimpl)
+      {
+
+         if(m_puserinteractionimpl->m_puserinteraction)
+         {
+
+            m_puserinteractionimpl->m_puserinteraction->raw_trace_statement_prefix(statement);
+
+         }
+
+      }
+
+      return statement;
 
    }
 

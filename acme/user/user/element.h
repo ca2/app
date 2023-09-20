@@ -117,7 +117,7 @@ namespace user
       //::pointer<::message::message>get_message(const ::atom & atom, wparam wparam, lparam lparam) override;
       void destroy() override;
 
-      ::user::interaction * get_host_window();
+      virtual ::user::interaction * get_host_window();
 
       virtual ::user::form * get_form();
 

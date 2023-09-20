@@ -630,21 +630,25 @@ namespace user
 
          m_puserinteraction->m_bMessageWindow = false;
 
-         auto psession = get_session();
 
-         auto puser = psession->user();
+         user_send([&]()
+                   {
 
-         auto pwindowing = puser->windowing();
-         //pwindowing->windowing_send([&]()
-         //   {
+                      auto psession = get_session();
 
-         //      auto psession = get_session();
+                      auto puser = psession->user();
 
-         //      auto puser = psession->user();
+                      auto pwindowing = puser->windowing();
 
-         //      auto pwindowing = puser->windowing();
+                      //      auto psession = get_session();
 
-         pwindowing->new_window(this);
+                      //      auto puser = psession->user();
+
+                      //      auto pwindowing = puser->windowing();
+
+                      pwindowing->new_window(this);
+
+                   });
 
          if (m_pwindow)
          {
@@ -959,6 +963,8 @@ namespace user
 
       if (bNewOwnThread)
       {
+
+         information() << "interaction_impl::create_host user thread branch";
 
          //if (!m_puserthread->begin_synch())
          m_puserthread->branch(eparallelization);

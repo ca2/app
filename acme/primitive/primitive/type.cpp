@@ -2,15 +2,6 @@
 #include "type.h"
 
 
-type_atom::type_atom(const ::particle * pparticle)
-{
-
-   auto name = typeid(*(::particle *)pparticle).name();
-
-   ::atom::operator = (demangle(name));
-
-}
-
 
 
 string cxxabi_demangle (const char* name);

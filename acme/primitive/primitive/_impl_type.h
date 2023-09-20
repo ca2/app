@@ -31,6 +31,28 @@ inline bool type_atom::operator == (const ::atom& atom) const
 }
 
 
+template < primitive_pointer POINTER >
+type_atom::type_atom(POINTER p)
+{
+
+   auto name = typeid(*(non_const <POINTER >)p).name();
+
+   ::atom::operator = (demangle(name));
+
+}
+
+
+template < primitive_object OBJECT >
+type_atom::type_atom(OBJECT & object)
+{
+
+   auto name = typeid(*(&(non_const < OBJECT > &)object)).name();
+
+   ::atom::operator = (demangle(name));
+
+}
+
+
 template < typename BASE >
 inline type_atom::type_atom(const ::pointer<BASE>& p)
 {

@@ -570,6 +570,7 @@
     <ClCompile Include="user\user\windowing.cpp" />
     <ClCompile Include="user\user\zorder.cpp" />
     <ClCompile Include="user\user\_.cpp" />
+    <ClCompile Include="user\user\_string.cpp" />
     <ClCompile Include="windowing\cursor.cpp" />
     <ClCompile Include="windowing\cursor_manager.cpp" />
     <ClCompile Include="windowing\Debug.cpp" />

@@ -150,7 +150,7 @@ namespace filehandler
          }*/
          /*         create_context cc;
          cc.m_pCurrentDoc = get_document();
-         cc.m_typeNewImpact =  ::type < rtprx::impact >();
+         cc.m_typeatomNewImpact =  ::type < rtprx::impact >();
 
          ::pointer<::user::impact>pimpact = (CreateImpact(&cc, 101, this));
          if(pimpact != nullptr)

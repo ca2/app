@@ -18,8 +18,8 @@ namespace base
    {
 
 
-      m_typeHtmlDocument = typeid(html_document);
-      m_typeHtmlImpact = typeid(html_impact);
+      m_typeatomHtmlDocument = typeid(html_document);
+      m_typeatomHtmlImpact = typeid(html_impact);
 
       factory()->add_factory_item < html_document >();
       factory()->add_factory_item < html_impact >();

@@ -40,7 +40,7 @@ namespace user
 
       template < class VIEW >
       inline ::pointer<VIEW>create_pane_impact(index iPane, atom atom = ::atom(), ::user::interaction * pviewLast = nullptr);
-      ::pointer<::user::impact>create_pane_impact(const ::type & type, index iPane, atom atom = ::atom(), ::user::interaction * pviewLast = nullptr);
+      ::pointer<::user::impact>create_pane_impact(const ::type_atom & typeatom, index iPane, atom atom = ::atom(), ::user::interaction * pviewLast = nullptr);
 
       bool on_prepare_impact_data(::user::impact_data* pimpactdata) override;
 

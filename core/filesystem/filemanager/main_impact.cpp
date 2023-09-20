@@ -109,7 +109,7 @@ namespace filemanager
 
       //pleftview->create_impacts();
 
-      m_pfilelist = create_pane_impact(filemanager_data()->m_typeFileList, 1);
+      m_pfilelist = create_pane_impact(filemanager_data()->m_typeatomFileList, 1);
 
       if(m_pfilelist == nullptr)
       {

@@ -60,7 +60,7 @@ namespace app_integration
 
 
 
-      virtual ::type get_pane_impact_type() const;
+      virtual ::type_atom get_pane_impact_type() const;
 
 
 

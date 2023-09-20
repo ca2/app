@@ -234,24 +234,24 @@ namespace core
 
       //}
 
-      if (!m_typeDefaultMeshData)
+      if (!m_typeatomDefaultMeshData)
       {
 
-         m_typeDefaultMeshData = ::type < ::simple_mesh_data >();
+         m_typeatomDefaultMeshData = ::type < ::simple_mesh_data >();
 
       }
 
-      if (!m_typeDefaultListData)
+      if (!m_typeatomDefaultListData)
       {
 
-         m_typeDefaultListData = ::type < ::simple_list_data >();
+         m_typeatomDefaultListData = ::type < ::simple_list_data >();
 
       }
 
-      if (!m_typeDefaultListHeader)
+      if (!m_typeatomDefaultListHeader)
       {
 
-         m_typeDefaultListHeader = ::type < ::simple_list_header_control >();
+         m_typeatomDefaultListHeader = ::type < ::simple_list_header_control >();
 
       }
 
@@ -1195,7 +1195,7 @@ namespace core
    ::type user::default_type_mesh_data()
    {
 
-      return m_typeDefaultMeshData;
+      return m_typeatomDefaultMeshData;
 
    }
 
@@ -1203,7 +1203,7 @@ namespace core
    ::type user::default_type_list_header()
    {
 
-      return m_typeDefaultListHeader;
+      return m_typeatomDefaultListHeader;
 
    }
 
@@ -1211,7 +1211,7 @@ namespace core
    ::type user::default_type_list_data()
    {
 
-      return m_typeDefaultListData;
+      return m_typeatomDefaultListData;
 
    }
 

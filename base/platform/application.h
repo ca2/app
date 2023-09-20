@@ -729,8 +729,8 @@ namespace base
 //
 //      virtual void on_graphics_ready();
 //
-//      //virtual ::type user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype);
-//      virtual ::type control_type_from_id(const ::atom & atom, ::user::enum_control_type & econtroltype);
+//      //virtual ::type_atom user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype);
+//      virtual ::type_atom control_type_from_id(const ::atom & atom, ::user::enum_control_type & econtroltype);
 //
 //
 //      virtual ::atom translate_property_id(const ::atom & atom) override;
@@ -796,7 +796,7 @@ namespace base
       virtual void on_create_split_impact(::user::split_impact* pimpact);
 //
 //
-//      //virtual ::type control_type_from_id(const ::atom& atom, ::user::enum_control_type& econtroltype) override;
+//      //virtual ::type_atom control_type_from_id(const ::atom& atom, ::user::enum_control_type& econtroltype) override;
 //
 //
 //      virtual bool base_support();
@@ -1199,7 +1199,7 @@ namespace base
 //
 ////virtual void on_create_keyboard() override;
 //
-////virtual ::type user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype) override;
+////virtual ::type_atom user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype) override;
 //
 ////virtual void set_form_impact_system(::user::impact_system * pdoctemplate,::user::impact_system * pdoctemplateChild,::user::impact_system * pdoctemplatePlaceHolder);
 //
@@ -1251,8 +1251,8 @@ virtual void on_change_cur_sel(::user::tab* ptab);
 //
 virtual void     create_impact_system() override;
 //
-////virtual ::type user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype) override;
-////virtual ::type control_type_from_id(const ::atom& atom, ::user::enum_control_type& econtroltype) override;
+////virtual ::type_atom user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype) override;
+////virtual ::type_atom control_type_from_id(const ::atom& atom, ::user::enum_control_type& econtroltype) override;
 //
 //
 virtual void on_create_impact(::user::impact_data* pimpactdata) override;

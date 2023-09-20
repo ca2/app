@@ -32,7 +32,7 @@ namespace user
    {
 
       m_econtroltype                         = e_control_type_combo_box;
-      m_typeListBox                          = ::type < ::user::list_box >();
+      m_typeatomListBox                          = ::type < ::user::list_box >();
       m_estyle                               = style_simply;
       m_bEdit                                = true;
       m_edatamode                            = data_mode_opaque;
@@ -820,7 +820,7 @@ namespace user
       if(!m_plistbox)
       {
 
-         auto plistbox = __id_create < list_box >(m_typeListBox);
+         auto plistbox = __id_create < list_box >(m_typeatomListBox);
 
          m_plistbox = plistbox;
 

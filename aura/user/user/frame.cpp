@@ -234,7 +234,7 @@ namespace user
    }
 
 
-//   ::pointer<::utoolbar>frame::load_toolbar(const ::atom & idToolbar, const ::string & strToolbar, u32 dwCtrlStyle, u32 uStyle, const ::type & type)
+//   ::pointer<::utoolbar>frame::load_toolbar(const ::atom & idToolbar, const ::string & strToolbar, u32 dwCtrlStyle, u32 uStyle, const ::type_atom & typeatom)
 //   {
 //
 //      return false;

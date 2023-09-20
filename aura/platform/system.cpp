@@ -6767,10 +6767,10 @@ namespace aura
 
       //}
 
-   ::type system::get_pane_tab_impact_type_info()
+   ::type_atom system::get_pane_tab_impact_type_info()
    {
 
-      return m_typePaneTabImpact;
+      return m_typeatomPaneTabImpact;
 
    }
 

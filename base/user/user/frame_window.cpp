@@ -945,7 +945,7 @@ namespace user
       if (pusersystem != nullptr)
       {
 
-         if (pusersystem->m_typeNewImpact || pusersystem->m_puserprimitiveNew != nullptr)
+         if (pusersystem->m_typeatomNewImpact || pusersystem->m_puserprimitiveNew != nullptr)
          {
 
             auto pinteraction = pusersystem->create_impact(this, FIRST_PANE);
@@ -953,7 +953,7 @@ namespace user
             if(!pinteraction)
             {
 
-               warning() <<"the impact wasn't created: " << pusersystem->m_typeNewImpact.as_string();
+               warning() <<"the impact wasn't created: " << pusersystem->m_typeatomNewImpact.as_string();
 
             }
 
@@ -1715,7 +1715,7 @@ namespace user
    }
 
 
-   ::pointer<toolbar>frame_window::get_toolbar(const ::atom & idToolbar, bool bCreate, const ::string & strToolbarParam, u32 dwCtrlStyle, u32 uStyle, const ::type & type)
+   ::pointer<toolbar>frame_window::get_toolbar(const ::atom & idToolbar, bool bCreate, const ::string & strToolbarParam, u32 dwCtrlStyle, u32 uStyle, const ::type_atom & typeatom)
    {
 
       try
@@ -1792,7 +1792,7 @@ namespace user
    }
 
 
-   ::pointer<toolbar>frame_window::create_toolbar(const ::atom & idToolbar, const ::string & strToolbarParam, u32 dwCtrlStyle, u32 uStyle, const ::type & type)
+   ::pointer<toolbar>frame_window::create_toolbar(const ::atom & idToolbar, const ::string & strToolbarParam, u32 dwCtrlStyle, u32 uStyle, const ::type_atom & typeatom)
    {
 
       auto ptoolbar = __id_create < toolbar >(type);

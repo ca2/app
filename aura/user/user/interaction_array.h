@@ -25,7 +25,7 @@ namespace user
       
       
       using address_array < ::user::interaction * >::find_first;
-      ::user::interaction * find_first_typed(const ::type & type);
+      ::user::interaction * find_first_typed(const ::type_atom & typeatom);
       ::user::interaction * find_first(oswindow oswindow);
 
       
@@ -62,7 +62,7 @@ namespace user
       }
 
 
-      ::user::primitive * find_first_typed(const ::type & type);
+      ::user::primitive * find_first_typed(const ::type_atom & typeatom);
       ::user::primitive * find_first(oswindow oswindow);
 
 

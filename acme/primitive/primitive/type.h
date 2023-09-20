@@ -59,15 +59,10 @@ inline const char * c_demangle(const ::ansi_character * psz)
 #endif
 
 
-#define __object_type(t) ::type(e_data_structure_type, t)
-
-
-enum enum_data_structure_type
-{
-
-   e_data_structure_type
-
-};
+//#define __object_type(t) ::type(data_structure_t{}, t)
+//
+//
+//struct data_structure_t {};
 
 
 class CLASS_DECL_ACME type_atom :
@@ -85,17 +80,17 @@ public:
    using atom::atom;
 
 
-   template < typename TYPE >
-   type_atom(enum_data_structure_type, const TYPE &) :
-#ifdef WINDOWS
-   atom(c_demangle(typeid(TYPE).name()))
-#else
-   atom(demangle(typeid(TYPE).name()))
-#endif
-   {
-
-
-   }
+//   template < typename TYPE >
+//   type_atom(enum_data_structure_type, const TYPE &) :
+//#ifdef WINDOWS
+//   atom(c_demangle(typeid(TYPE).name()))
+//#else
+//   atom(demangle(typeid(TYPE).name()))
+//#endif
+//   {
+//
+//
+//   }
 
 
    //type_atom(const ::scoped_string & scopedstrTypeName) :
@@ -105,23 +100,28 @@ public:
    //}
 
 
-   type_atom(const ::type_atom & datatype)
+   type_atom(const ::type_atom & typeatom)
    {
 
-      operator = (datatype);
+      operator = (typeatom);
 
    }
 
 
-   type_atom(::type_atom && datatype):
-      atom((::atom &&)::transfer(datatype))
+   type_atom(::type_atom && typeatom):
+      atom((::atom &&)::transfer(typeatom))
    {
 
    }
 
 
    type_atom(const ::std::type_info & typeinfo);
-   type_atom(const ::particle * pparticle);
+
+   template < primitive_pointer POINTER >
+   type_atom(POINTER p);
+
+   template < primitive_object OBJECT >
+   type_atom(OBJECT & object);
 
    template < typename BASE >
    type_atom(const ::pointer<BASE>& p);
@@ -204,10 +204,20 @@ inline ::typed_type_atom < TYPE > type()
 }
 
 
-inline ::type_atom type(const ::particle * pparticle)
+template < primitive_pointer POINTER >
+inline ::type_atom type(POINTER p)
 {
 
-   return pparticle;
+   return p;
+
+}
+
+
+template < primitive_object OBJECT >
+inline ::type_atom type(OBJECT & object)
+{
+
+   return object;
 
 }
 

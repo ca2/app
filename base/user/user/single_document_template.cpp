@@ -86,7 +86,7 @@ namespace user
       if (prequest->m_atom.is_null())
       {
 
-         prequest->m_atom = m_typeImpact;
+         prequest->m_atom = m_typeatomImpact;
 
       }
 

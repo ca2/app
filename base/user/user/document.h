@@ -247,9 +247,9 @@ namespace user
 
 
 
-      virtual ::pointer<::user::impact>get_typed_impact(::type info, index indexFind = 0);
+      virtual ::pointer<::user::impact>get_typed_impact(::type_atom typeatom, index indexFind = 0);
 
-      virtual ::pointer<::user::impact>get_typed_impact_with_id(::type info,atom atom);
+      virtual ::pointer<::user::impact>get_typed_impact_with_id(::type_atom typeatom,atom atom);
 
       virtual void show_all_frames(const ::e_display & edisplay = e_display_normal);
 

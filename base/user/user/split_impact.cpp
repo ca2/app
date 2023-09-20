@@ -261,7 +261,7 @@ namespace user
    }
 
 
-      ::pointer<::user::impact>split_impact::create_pane_impact(const ::type & type, index iPane, atom atom, ::user::interaction * pviewLast)
+      ::pointer<::user::impact>split_impact::create_pane_impact(const ::type_atom & typeatom, index iPane, atom atom, ::user::interaction * pviewLast)
    {
 
       return create_impact(type, get_document(), get_pane_holder(iPane), atom, pviewLast);

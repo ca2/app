@@ -495,10 +495,50 @@ class rectangle_type;
 
 
 
+template<typename _Tp>
+struct remove_cv
+{ using type = _Tp; };
+
+template<typename _Tp>
+struct remove_cv<const _Tp>
+{ using type = _Tp; };
+
+template<typename _Tp>
+struct remove_cv<volatile _Tp>
+{ using type = _Tp; };
+
+template<typename _Tp>
+struct remove_cv<const volatile _Tp>
+{ using type = _Tp; };
+
+
+template<typename _Tp>
+using __remove_cv_t = typename remove_cv<_Tp>::type;
 
 
 
+template<typename>
+struct __is_pointer_helper
+   : public false_type { };
+
+template<typename _Tp>
+struct __is_pointer_helper<_Tp*>
+   : public true_type { };
+
+/// is_pointer
+template<typename _Tp>
+struct is_pointer_struct
+   : public __is_pointer_helper<__remove_cv_t<_Tp>>
+{ };
 
 
+template<typename T>
+inline constexpr bool is_pointer = is_pointer_struct < T >::value;
 
 
+template < typename POINTER >
+concept primitive_pointer = ::is_pointer < POINTER >;
+
+
+template < typename OBJECT >
+concept primitive_object = !::is_pointer < OBJECT > && !::is_function < OBJECT >;

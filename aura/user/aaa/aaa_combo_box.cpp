@@ -17,7 +17,7 @@ namespace user
    {
 
       m_bCaseSensitiveMatch   = false;
-      m_typeComboList         = ::type < ::user::list_box >();
+      m_typeatomComboList         = ::type < ::user::list_box >();
       m_estyle                = style_simply;
       m_bEdit                 = true;
       m_edatamode             = data_mode_opaque;
@@ -779,7 +779,7 @@ namespace user
       if(m_plist == nullptr)
       {
 
-         auto plist = __id_create < list_box >(m_typeComboList);
+         auto plist = __id_create < list_box >(m_typeatomComboList);
 
          m_plist = plist;
 

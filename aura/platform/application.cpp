@@ -8180,7 +8180,7 @@ namespace aura
    }
 
 
-   ::type application::control_type_from_id(const ::atom& atom, ::user::enum_control_type& econtroltype)
+   ::type_atom application::control_type_from_id(const ::atom& atom, ::user::enum_control_type& econtroltype)
    {
 
       string str(atom);

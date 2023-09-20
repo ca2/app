@@ -69,7 +69,7 @@ namespace user
 //      HMENU                                      m_hMenuAlt;           // menu to update to (nullptr means default)
 //#endif
       bool                                         m_bInRecalcLayout;     // avoid recursion in on_layout
-      ::type                                       m_pFloatingFrameClass;
+      ::type_atom                                  m_typeatomFloatingFrame;
 
    ::u32                                           m_nIdleFlags;          // set of bit flags for idle processing
 
@@ -175,10 +175,10 @@ namespace user
       void hide_control_bar(::user::control_bar * pcontrolbar) override;
 
 
-      virtual ::pointer<toolbar>get_toolbar(const ::atom & idToolBar, bool bCreate = true, const ::string & strToolbar = nullptr, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = CBRS_ALIGN_TOP, const ::type & type = "user::toolbar");
+      virtual ::pointer<toolbar>get_toolbar(const ::atom & idToolBar, bool bCreate = true, const ::string & strToolbar = nullptr, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = CBRS_ALIGN_TOP, const ::type_atom & typeatom = "user::toolbar");
 
 
-      virtual ::pointer<toolbar>create_toolbar(const ::atom & idToolbar, const ::string & strToolbar = nullptr, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = CBRS_ALIGN_TOP, const ::type & type = "user::toolbar") ;
+      virtual ::pointer<toolbar>create_toolbar(const ::atom & idToolbar, const ::string & strToolbar = nullptr, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = CBRS_ALIGN_TOP, const ::type_atom & typeatom = "user::toolbar") ;
 
       //   template < class TOOLBAR >
       // bool load_toolbar(atom idToolBar, const ::string & pszToolBar,u32 dwCtrlStyle = TBSTYLE_FLAT,u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP);

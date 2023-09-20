@@ -271,7 +271,7 @@ namespace user
       index                                     m_iColumn;
 
       atom                                      m_uiText;
-      ::type                                    m_type;
+      ::type_atom                               m_typeatom;
       atom                                      m_atomPrivateDataSection;
       //::atom                                  m_atomTranslated;
       enum_control_type                         m_econtroltype;

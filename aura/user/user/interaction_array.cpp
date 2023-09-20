@@ -25,7 +25,7 @@ namespace user
 
 
 
-   ::user::interaction * interaction_ptra::find_first_typed(const ::type & type)
+   ::user::interaction * interaction_ptra::find_first_typed(const ::type_atom & typeatom)
    {
 
       for (i32 i = 0; i < this->get_size(); i++)
@@ -33,7 +33,7 @@ namespace user
 
          ::user::interaction * pinteraction = this->element_at(i);
 
-         if (type == pinteraction)
+         if (typeatom == pinteraction)
          {
 
             return pinteraction;
@@ -187,7 +187,7 @@ namespace user
    }
 
 
-   ::user::primitive * primitive_pointer_array::find_first_typed(const ::type & type)
+   ::user::primitive * primitive_pointer_array::find_first_typed(const ::type_atom & typeatom)
    {
 
       for (i32 i = 0; i < primitive_count(); i++)
@@ -195,7 +195,7 @@ namespace user
 
          auto pprimitive = primitive_at(i).m_p;
 
-         if (type == typeid(*pprimitive))
+         if (typeatom == pprimitive)
          {
 
             return pprimitive;

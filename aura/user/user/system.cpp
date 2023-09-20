@@ -132,7 +132,7 @@ namespace user
    ::pointer<::user::interaction>system::create_impact(::user::interaction * puserinteractionParent, const ::atom & atom)
    {
 
-      ASSERT(m_typeNewImpact || m_puserprimitiveNew != nullptr);
+      ASSERT(m_typeatomNewImpact || m_puserprimitiveNew != nullptr);
 
       auto papp = puserinteractionParent->get_app();
 
@@ -172,7 +172,7 @@ namespace user
          string strType = typeid(*pcontextJustForInspection).name();
 
          //estatus =
-         pparticle->__id_construct(pinteraction, m_typeNewImpact);
+         pparticle->__id_construct(pinteraction, m_typeatomNewImpact);
 
       }
 

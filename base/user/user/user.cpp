@@ -1340,7 +1340,7 @@ namespace base
    }
 
 
-   ::pointer<::form_document>user::create_typed_form(::particle * pparticle, const ::type & type, ::user::element * puserelementParent, const ::payload & payload, const ::payload & payloadArgs)
+   ::pointer<::form_document>user::create_typed_form(::particle * pparticle, const ::type_atom & typeatom, ::user::element * puserelementParent, const ::payload & payload, const ::payload & payloadArgs)
    {
 
       if (!type)
@@ -1357,8 +1357,8 @@ namespace base
 
          pimpactsystem = __new(::user::multiple_document_template(
             m_ptemplateForm->m_atom,
-            m_ptemplateForm->m_typeDocument,
-            m_ptemplateForm->m_typeFrame,
+            m_ptemplateForm->m_typeatomDocument,
+            m_ptemplateForm->m_typeatomFrame,
             type));
 
          document_manager()->add_document_template(pimpactsystem);
@@ -1580,7 +1580,7 @@ namespace base
    }
 
 
-   ::pointer < ::form_document > user::create_typed_child_form(::particle * pparticle, const ::type & type, ::user::element * puserelementParent, const ::payload & payload, const ::payload & payloadArgs)
+   ::pointer < ::form_document > user::create_typed_child_form(::particle * pparticle, const ::type_atom & typeatom, ::user::element * puserelementParent, const ::payload & payload, const ::payload & payloadArgs)
    {
 
       auto pathFile = payload.as_file_path();
@@ -1600,7 +1600,7 @@ namespace base
          if (!pimpactsystem)
          {
 
-            ::type typeDocument = m_ptemplateChildForm->m_typeDocument;
+            ::type typeDocument = m_ptemplateChildForm->m_typeatomDocument;
 
             if (is_html_file(payload.as_file_path()))
             {
@@ -1612,7 +1612,7 @@ namespace base
             auto pimpactsystemNew = __new(::user::multiple_document_template(
                m_ptemplateChildForm->m_atom,
                typeDocument,
-               m_ptemplateChildForm->m_typeFrame,
+               m_ptemplateChildForm->m_typeatomFrame,
                type));
 
             pimpactsystemNew->initialize(pparticle);

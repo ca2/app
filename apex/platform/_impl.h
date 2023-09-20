@@ -133,7 +133,7 @@
 //     {
 //
 //        return proute->m_pobjectReceiver == pobjectReceiver
-//        && proute->m_typeReceiver == typeReceiver
+//        && proute->m_typeatomReceiver == typeReceiver
 //        && proute->m_phandler = phandler;
 //
 //     };
@@ -222,7 +222,7 @@
 //     auto pred = [=](auto & proute)
 //     {
 //
-//        return proute->m_pobjectReceiver == pobjectReceiver && proute->m_typeReceiver == typeReceiver;
+//        return proute->m_pobjectReceiver == pobjectReceiver && proute->m_typeatomReceiver == typeReceiver;
 //
 //     };
 //

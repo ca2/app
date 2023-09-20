@@ -1795,7 +1795,7 @@ namespace user
    ::pointer<toolbar>frame_window::create_toolbar(const ::atom & idToolbar, const ::string & strToolbarParam, u32 dwCtrlStyle, u32 uStyle, const ::type_atom & typeatom)
    {
 
-      auto ptoolbar = __id_create < toolbar >(type);
+      auto ptoolbar = __id_create < toolbar >(typeatom);
 
       ptoolbar->m_dwStyle = uStyle;
 

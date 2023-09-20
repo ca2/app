@@ -164,7 +164,12 @@ public:
 //   bool operator != (const ::type_atom& type) const;
 
 
-   bool operator == (const ::particle* pparticle) const;
+   template < primitive_pointer POINTER >
+   bool operator == (POINTER p) const;
+
+
+   template < typename TYPE >
+   bool operator == (const ::pointer < TYPE > & p) const;
 
 
    //bool operator != (const ::particle* pparticle) const;

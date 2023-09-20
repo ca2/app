@@ -13,8 +13,8 @@ namespace user
 {
 
 
-   multiple_document_template::multiple_document_template(const ::string & pszMatter, ::type pDocClass, ::type pFrameClass, ::type pImpactClass) :
-      ::user::impact_system(pszMatter, pDocClass, pFrameClass, pImpactClass)
+   multiple_document_template::multiple_document_template(const ::string & pszMatter, const ::type_atom & typeatomDocument, const ::type_atom & typeatomFrame, const ::type_atom & typeatomImpact) :
+      ::user::impact_system(pszMatter, typeatomDocument, typeatomFrame, typeatomImpact)
    {
 
       defer_create_synchronization();

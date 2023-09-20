@@ -17,7 +17,7 @@ namespace user
       ::pointer<::user::document>m_pdocument;
 
 
-      single_document_template(const ::string & pszMatter, ::type pDocClass, ::type pFrameClass, ::type pImpactClass);
+      single_document_template(const ::string & pszMatter, const ::type_atom & typeatomDocument, const ::type_atom & typeatomFrame, const ::type_atom & pImpactClass);
       ~single_document_template() override;
 
       virtual void add_document(::user::document * pDoc) override;

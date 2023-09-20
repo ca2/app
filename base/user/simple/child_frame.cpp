@@ -101,7 +101,7 @@ namespace base
 {
 
 
-   ::type user::get_simple_child_frame_type_info()
+   ::type_atom user::get_simple_child_frame_type_info()
    {
 
       

@@ -466,12 +466,12 @@ bool type_atom::operator == (const ::string& strType) const
 //}
 
 
-bool type_atom::operator == (const ::particle* pparticle) const
-{
-
-   return operator ==(::type_atom(pparticle));
-
-}
+//bool type_atom::operator == (const ::particle* pparticle) const
+//{
+//
+//   return operator ==(::type_atom(pparticle));
+//
+//}
 
 
 //bool type_atom::operator != (const ::particle* pparticle) const

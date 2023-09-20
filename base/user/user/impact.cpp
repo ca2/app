@@ -901,7 +901,7 @@ namespace user
 
       }
 
-      pusersystem->m_typeatomNewImpact = type;
+      pusersystem->m_typeatomNewImpact = typeatom;
 
       pusersystem->m_puserprimitiveLastImpact = pviewLast;
 
@@ -948,7 +948,7 @@ namespace user
 
       auto pusersystem= __new(::user::system);
 
-      pusersystem->m_typeatomNewImpact = type;
+      pusersystem->m_typeatomNewImpact = typeatom;
 
       pusersystem->m_puserprimitiveLastImpact = pviewLast;
 

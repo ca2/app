@@ -617,7 +617,7 @@ namespace user
    }
 
 
-   ::pointer<::user::impact>document::get_typed_impact(::type info, index indexFind)
+   ::pointer<::user::impact>document::get_typed_impact(const ::type_atom & typeatom, index indexFind)
    {
 
       single_lock synchronouslock(synchronization(), true);
@@ -633,7 +633,7 @@ namespace user
 
          pimpact = get_impact(index);
 
-         if (info == ::type(pimpact).name())
+         if (typeatom == pimpact)
          {
 
             if (indexFind == countFind)
@@ -658,22 +658,40 @@ namespace user
    }
 
 
-   ::pointer<::user::impact>document::get_typed_impact_with_id(::type info, atom atom)
+   ::pointer<::user::impact>document::get_typed_impact_with_id(const ::type_atom & typeatom, atom atom)
    {
+
       single_lock synchronouslock(synchronization(), true);
+
       ::count countImpact = get_impact_count();
+      
       ::count countFind = 0;
+
       ::pointer<::user::impact>pimpact;
+
       for (index index = 0; index < countImpact; index++)
       {
+
          pimpact = get_impact(index);
-         if (info == ::type(pimpact).name())
+
+         if (typeatom == pimpact)
          {
+
             if (atom == pimpact->m_atom)
+            {
+
                return pimpact;
+
+            }
             else
+            {
+
                countFind++;
+
+            }
+
          }
+
       }
 
       return nullptr;

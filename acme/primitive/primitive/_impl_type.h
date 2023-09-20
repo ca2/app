@@ -103,4 +103,23 @@ inline type_atom::type_atom(const ::pointer<BASE>& p)
 //}
 
 
+template < primitive_pointer POINTER >
+inline bool type_atom::operator == (POINTER p) const
+{
+
+   return operator ==(::type_atom(p));
+
+}
+
+
+
+template < typename TYPE >
+inline bool type_atom::operator == (const ::pointer < TYPE > & p) const
+{
+
+   return this->operator==(p.m_p);
+
+}
+
+
 

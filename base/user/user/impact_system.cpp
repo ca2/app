@@ -27,9 +27,9 @@ namespace user
       m_puserinteractionOwner = nullptr;
 
       m_atom = atom;
-      m_typeatomDocument = typeDocument;
-      m_typeatomFrame = typeFrame;
-      m_typeatomImpact = typeImpact;
+      m_typeatomDocument = typeatomDocument;
+      m_typeatomFrame = typeatomFrame;
+      m_typeatomImpact = typeatomImpact;
       m_pAttachedFactory = nullptr;
 
       load_template();

@@ -1391,7 +1391,7 @@ namespace filemanager
             //pinteraction->m_atom = _vms::FILE_MANAGER_ID_FILE_NAME;
             pinteraction->set_data_type(user::e_control_data_type_string);
             pinteraction->add_function(user::e_control_function_vms_data_edit);
-            pinteraction->m_type = ::type < ::user::plain_edit >();
+            pinteraction->m_typeatom = ::type < ::user::plain_edit >();
             //pinteraction->m_iSubItem = i;
             pinteraction->m_atom = 1000 + i;
             index iControl = _001AddControl(pinteraction);

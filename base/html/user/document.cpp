@@ -449,15 +449,12 @@ void html_document::form_document_set_callback(form_callback * pcallback)
 }
 
 
+CLASS_DECL_BASE ::type_atom __form_document_type()
+{
+
+   return ::type <  ::html_document >();
+
+}
 
 
 
-
-//
-//
-//CLASS_DECL_BASE ::type __form_document_type()
-//{
-//
-//   return ::typed_type(::html_document);
-//
-//}

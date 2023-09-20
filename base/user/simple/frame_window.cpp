@@ -46,11 +46,12 @@
 #define TEST 0
 //#define VERBOSE_LOG
 
+
 namespace base
 {
 
 
-   ::type user::get_simple_frame_window_type_info()
+   ::type_atom user::get_simple_frame_window_type_info()
    {
 
       return ::type < ::simple_frame_window >();

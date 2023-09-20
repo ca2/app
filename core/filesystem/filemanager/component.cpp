@@ -46,12 +46,11 @@
 #include "core/platform/session.h"
 
 
-CLASS_DECL_CORE ::type __form_document_type();
+CLASS_DECL_CORE ::type_atom __form_document_type();
+
 
 namespace filemanager
 {
-
-
 
 
    int get_manager_id_byte_len()

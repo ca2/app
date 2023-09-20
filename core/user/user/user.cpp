@@ -533,13 +533,12 @@ namespace core
    }
 
 
-   ::type user::controltype_to_typeinfo(::user::enum_control_type econtroltype)
+   ::type_atom user::controltype_to_typeinfo(::user::enum_control_type econtroltype)
    {
 
-      return ::type();
+      return {};
 
    }
-
 
 
    void user::term()
@@ -1192,7 +1191,7 @@ namespace core
    }
 
 
-   ::type user::default_type_mesh_data()
+   ::type_atom user::default_type_mesh_data()
    {
 
       return m_typeatomDefaultMeshData;
@@ -1200,7 +1199,7 @@ namespace core
    }
 
 
-   ::type user::default_type_list_header()
+   ::type_atom user::default_type_list_header()
    {
 
       return m_typeatomDefaultListHeader;
@@ -1208,7 +1207,7 @@ namespace core
    }
 
 
-   ::type user::default_type_list_data()
+   ::type_atom user::default_type_list_data()
    {
 
       return m_typeatomDefaultListData;

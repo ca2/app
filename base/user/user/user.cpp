@@ -473,10 +473,10 @@ namespace base
 //   }
 
 
-   ::type user::controltype_to_typeinfo(::user::enum_control_type econtroltype)
+   ::type_atom user::controltype_to_typeinfo(::user::enum_control_type econtroltype)
    {
 
-      return ::type();
+      return {};
 
    }
 
@@ -1258,13 +1258,12 @@ namespace base
    //}
 
 
-   ::type user::user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype)
+   ::type_atom user::user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype)
    {
 
       auto psession = get_session();
 
       return psession->user()->controltype_to_typeinfo(econtroltype);
-
 
    }
 
@@ -1343,14 +1342,14 @@ namespace base
    ::pointer<::form_document>user::create_typed_form(::particle * pparticle, const ::type_atom & typeatom, ::user::element * puserelementParent, const ::payload & payload, const ::payload & payloadArgs)
    {
 
-      if (!type)
+      if (!typeatom)
       {
 
          return nullptr;
 
       }
 
-      auto & pimpactsystem = m_mapimpactsystem[type];
+      auto & pimpactsystem = m_mapimpactsystem[typeatom];
 
       if (!pimpactsystem)
       {
@@ -1359,7 +1358,7 @@ namespace base
             m_ptemplateForm->m_atom,
             m_ptemplateForm->m_typeatomDocument,
             m_ptemplateForm->m_typeatomFrame,
-            type));
+            typeatom));
 
          document_manager()->add_document_template(pimpactsystem);
 
@@ -1588,19 +1587,19 @@ namespace base
       try
       {
 
-         if (!type)
+         if (!typeatom)
          {
 
             return nullptr;
 
          }
 
-         auto pimpactsystem = m_mapimpactsystem[type];
+         auto pimpactsystem = m_mapimpactsystem[typeatom];
 
          if (!pimpactsystem)
          {
 
-            ::type typeDocument = m_ptemplateChildForm->m_typeatomDocument;
+            auto typeDocument = m_ptemplateChildForm->m_typeatomDocument;
 
             if (is_html_file(payload.as_file_path()))
             {
@@ -1613,13 +1612,13 @@ namespace base
                m_ptemplateChildForm->m_atom,
                typeDocument,
                m_ptemplateChildForm->m_typeatomFrame,
-               type));
+               typeatom));
 
             pimpactsystemNew->initialize(pparticle);
 
             pimpactsystem = pimpactsystemNew;
 
-            m_mapimpactsystem[type] = pimpactsystemNew;
+            m_mapimpactsystem[typeatom] = pimpactsystemNew;
 
             document_manager()->add_document_template(pimpactsystem);
 

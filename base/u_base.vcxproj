@@ -278,6 +278,7 @@
     <ClCompile Include="user\user\document.cpp" />
     <ClCompile Include="user\user\document_manager.cpp" />
     <ClCompile Include="user\user\document_manager_container.cpp" />
+    <ClCompile Include="user\user\form_handler.cpp" />
     <ClCompile Include="user\user\frame_window.cpp" />
     <ClCompile Include="user\user\hotplugin.cpp" />
     <ClCompile Include="user\user\image_list.cpp" />
@@ -290,7 +291,7 @@
     <ClCompile Include="user\user\margin.cpp" />
     <ClCompile Include="user\user\multiple_document_template.cpp" />
     <ClCompile Include="user\user\network_configuration.cpp" />
-    <ClCompile Include="user\user\options_impact.cpp" />
+    <ClCompile Include="user\user\handler_impact.cpp" />
     <ClCompile Include="user\user\picture.cpp" />
     <ClCompile Include="user\user\picture_impl.cpp" />
     <ClCompile Include="user\user\picture_interaction.cpp" />

@@ -283,7 +283,7 @@ namespace account
 
       //auto pusersystem = __new(::user::system (0, nullptr, nullptr, 0, rectangleFontopus));
 
-      create_host();
+      create_host(e_parallelization_synchronous);
 
       //if (!create_host())
       //{

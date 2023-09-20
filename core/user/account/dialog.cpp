@@ -540,7 +540,7 @@ namespace account
 
       m_bDrag = false;
 
-      m_pointLButtonDown = pmouse->m_point;
+      m_pointLButtonDown = user_mouse_get_cursor(pmouse);
 
       m_pointLButtonDownPos = m_pointLButtonDown;
 
@@ -558,11 +558,11 @@ namespace account
 
       m_bLButtonDown = false;
 
-      auto pmouse = pmessage->m_union.m_pmouse;
-
-auto pwindowing = windowing();
-
-      pwindowing->release_mouse_capture();
+//      auto pmouse = pmessage->m_union.m_pmouse;
+//
+//auto pwindowing = windowing();
+//
+      defer_release_mouse_capture();
 
       m_bDrag = false;
 
@@ -591,7 +591,7 @@ auto pwindowing = windowing();
 
             m_bDrag = true;
 
-            const point_i32 & pointNow = pmouse->m_point;
+            auto pointNow = user_mouse_get_cursor(pmouse);
 
             ::point_i32 point;
 

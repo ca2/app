@@ -81,7 +81,7 @@ namespace user
 
       m_pimpl = pimpl;
 
-      string strType = __type_name(m_pimpl->m_puserinteraction);
+      string strType = ::type(m_pimpl->m_puserinteraction).name();
 
       m_strDebugType = strType;
 
@@ -223,9 +223,9 @@ namespace user
 //
 //#endif
 
-      //set_topic_text("window_thread_" + __type_name(m_pimpl->m_puserinteraction)) + "> ";
+      //set_topic_text("window_thread_" + ::type(m_pimpl->m_puserinteraction).name()) + "> ";
 
-      ::task_set_name(__type_name(m_pimpl->m_puserinteraction));
+      ::task_set_name(::type(m_pimpl->m_puserinteraction).name());
 
 #ifdef WINDOWS_DESKTOP
 

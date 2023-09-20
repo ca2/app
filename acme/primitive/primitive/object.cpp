@@ -2857,7 +2857,7 @@ void object::initialize(::particle * pparticle)
 //
 //   pthread->m_pelement = routine;
 //
-//   pthread->m_atom = __type_name(pthread->m_pelement);
+//   pthread->m_atom = ::type(pthread->m_pelement).name();
 //
 //   pthread->begin_thread();
 //

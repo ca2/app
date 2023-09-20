@@ -31,7 +31,7 @@ namespace core
 {
 
 
-   ::type user::get_pane_tab_impact_type_info()
+   ::type_atom user::get_pane_tab_impact_type_info()
    {
 
       return ::type < ::userex::pane_tab_impact >();

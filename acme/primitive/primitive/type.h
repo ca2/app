@@ -174,7 +174,7 @@ public:
 
    //inline operator const char * () const { return ::atom::operator const char *(); }
 
-   bool name_contains(const ::ansi_character * psz) const;
+   //bool name_contains(const ::ansi_character * psz) const;
 
 
 };

@@ -3366,9 +3366,9 @@ namespace user
 
       }
 
-      auto type = __object_type(*this);
+      auto type = ::type(this);
 
-      if (type.name_contains("main_frame"))
+      if (type.name().contains("main_frame"))
       {
 
          information("main_frame on_message_destroy");

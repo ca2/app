@@ -173,7 +173,7 @@ namespace sandbox_windowing
 
       m_phostinteraction->place(*lpcrect);
 
-      m_phostinteraction->create_host();
+      m_phostinteraction->create_host(e_parallelization_synchronous);
 
       m_phostinteraction->display();
 

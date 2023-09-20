@@ -199,12 +199,12 @@ payload::payload(const ::string & str)
 }
 
 
-payload::payload(const type & type)
+payload::payload(const type_atom & typeatom)
 {
 
    m_etype = e_type_new;
 
-   set_type(type);
+   set_type(typeatom);
 
 }
 
@@ -661,17 +661,17 @@ class ::payload & payload::operator ++(::i32)
 }
 
 
-void payload::set_type(const ::type & type)
+void payload::set_type(const ::type_atom & typeatom)
 {
 
    set_type(e_type_type, false);
 
-   m_type = type;
+   m_typeatom = typeatom;
 
 }
 
 
-bool payload::get_type(::type & type) const
+bool payload::get_type(::type_atom & typeatom) const
 {
 
    if (m_etype != e_type_type)
@@ -681,7 +681,7 @@ bool payload::get_type(::type & type) const
 
    }
 
-   type = m_type;
+   typeatom = m_typeatom;
 
    return true;
 

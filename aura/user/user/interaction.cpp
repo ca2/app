@@ -473,6 +473,13 @@ namespace user
 
       //__defer_construct_new(m_puseritema);
 
+      if (m_atom.is_empty())
+      {
+
+         m_atom = ::type(this).name();
+
+      }
+
       ::user::primitive::on_initialize_particle();
 
       if (m_bEnableDragClient)
@@ -1460,7 +1467,7 @@ namespace user
    string interaction::default_id_prefix()
    {
 
-      return __type_name(this) + "_";
+      return ::type(this).name() + "_";
 
    }
 
@@ -4888,7 +4895,7 @@ namespace user
             //            if (timeElapsed > 100_ms)
             //            {
             //
-            //               information()(e_trace_category_graphics_thread) << "\ndrawing at " << __type_name(this) << "!!";
+            //               information()(e_trace_category_graphics_thread) << "\ndrawing at " << ::type(this).name() << "!!";
             //               information()(e_trace_category_graphics_thread) << "\ndrawing took " << timeElapsed.integral_millisecond() << +"!!";
             //               information()(e_trace_category_graphics_thread) << "\ndrawing took more more than 100ms more than 50ms to complete!!";
             //               information()(e_trace_category_graphics_thread) << "\n";
@@ -4915,7 +4922,7 @@ namespace user
       if (tickElapsedWithLock > 3_ms)
       {
 
-         //string strType = __type_name(this);
+         //string strType = ::type(this).name();
 
          //         information("\n" + strType + "drawing took " + as_string(tickElapsedWithLock.m_i) + "!!");
          //       information("\ndrawing took more than 3ms to complete!!");
@@ -5135,7 +5142,7 @@ namespace user
                      //   //if(d1.m_i > 50)
                      //   //{
 
-                     //   //   string strType = __type_name(pinteraction);
+                     //   //   string strType = ::type(pinteraction).name();
 
                      //   //   if(strType.contains("hello_multiverse") && strType.contains("frame"))
                      //   //   {
@@ -13894,7 +13901,7 @@ namespace user
 
       bUpdateWindow = false;
 
-      //string strType = __type_name(this);
+      //string strType = ::type(this).name();
 
       //if (strType.contains("app_veriwell_keyboard") && strType.contains("main_frame"))
       //{
@@ -14824,7 +14831,7 @@ namespace user
 
       auto pchild = this;
 
-      string strType = __type_name(pchild);
+      string strType = ::type(pchild).name();
 
       if (strType.case_insensitive_contains("button"))
       {
@@ -18699,7 +18706,7 @@ namespace user
 
       }
 
-      //      string strType = __type_name(this);
+      //      string strType = ::type(this).name();
       //
       //      if(strType.contains("main_frame"))
       //      {
@@ -21467,7 +21474,7 @@ namespace user
 
          }
 
-         ::string strType = ::type(this).as_string();
+         ::string strType = ::type(this).name();
 
          if (strType == "simple_scroll_bar")
          {

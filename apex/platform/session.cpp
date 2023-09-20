@@ -675,7 +675,7 @@ namespace apex
 
       }
 
-      information() << "::apex::session::on_request(::pointer<::create> " << __type_name(this);
+      information() << "::apex::session::on_request(::pointer<::create> " << ::type(this).name();
 
       //string strAppId = prequest->m_strAppId;
 

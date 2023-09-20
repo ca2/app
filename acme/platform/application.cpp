@@ -1375,7 +1375,7 @@ namespace acme
       //if (!init1())
       //{
       //
-      ////dappy(__type_name(this) + " : init1 failure : " + as_string(m_iErrorCode));
+      ////dappy(::type(this).name() + " : init1 failure : " + as_string(m_iErrorCode));
       //
       //return false;
       //
@@ -1392,7 +1392,7 @@ namespace acme
       //if (!init2())
       //{
       //
-      ////dappy(__type_name(this) + " : init2 failure : " + as_string(m_iErrorCode));
+      ////dappy(::type(this).name() + " : init2 failure : " + as_string(m_iErrorCode));
       //
       //return false;
       //
@@ -1409,7 +1409,7 @@ namespace acme
       //if (!init3())
       //{
       //
-      ////dappy(__type_name(this) + " : init3 failure : " + as_string(m_iErrorCode));
+      ////dappy(::type(this).name() + " : init3 failure : " + as_string(m_iErrorCode));
       //
       //return false;
       //
@@ -1421,7 +1421,7 @@ namespace acme
 
       m_timeHeartBeat.Now();
 
-      //dappy(__type_name(this) + " : init3 ok : " + as_string(m_iErrorCode));
+      //dappy(::type(this).name() + " : init3 ok : " + as_string(m_iErrorCode));
 
       //try
       //{
@@ -1429,7 +1429,7 @@ namespace acme
       init();
       //{
       //
-      ////dappy(__type_name(this) + " : initialize failure : " + as_string(m_iErrorCode));
+      ////dappy(::type(this).name() + " : initialize failure : " + as_string(m_iErrorCode));
       //
       //return false;
       //

@@ -1834,7 +1834,7 @@ namespace aura
          
          __construct(m_puser);
 
-         information() << "aura::session user type : " << ::type(m_puser).name().as_string();
+         information() << "aura::session user type : " << ::type(m_puser).name();
 
          //}
 

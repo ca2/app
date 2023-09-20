@@ -1266,7 +1266,7 @@ namespace user
             if(timeEllapsed > 50_ms)
             {
 
-               string strType = __type_name(this);
+               string strType = ::type(this).name();
 
 #ifdef VERBOSE_LOG               
 

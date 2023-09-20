@@ -514,6 +514,14 @@ namespace user
 
       m_puserinteractionParent = puiParent;
 
+      information() << "::user::menu::create_menu parent window: " << (::iptr) m_puserinteractionParent.m_p;
+
+      ::string strType;
+
+      strType = ::type(m_puserinteractionParent).name();
+
+      information() << "::user::menu::create_menu parent window type: " << strType;
+
 #if defined(UNIVERSAL_WINDOWS) || defined(WINDOWS_DESKTOP) || defined(LINUX) || defined(FREEBSD) || defined(MACOS)
 
       auto pwindow = m_puserinteractionParent->get_wnd();

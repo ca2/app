@@ -279,6 +279,32 @@ namespace graphics
    }
 
 
+   ::trace_statement & graphics::trace_statement_prefix(::trace_statement & statement) const
+   {
+
+      statement << "buffer  ";
+
+      auto pimpl = m_pimpl;
+
+      if(pimpl)
+      {
+
+         auto puserinteraction = pimpl->m_puserinteraction;
+
+         if(puserinteraction)
+         {
+
+            puserinteraction->trace_statement_prefix(statement);
+
+         }
+
+      }
+
+      return statement;
+
+   }
+
+
 } // namespace graphics
 
 

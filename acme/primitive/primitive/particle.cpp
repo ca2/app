@@ -173,7 +173,7 @@ const char * particle::topic_text() const
 //string matter::class_title() const
 //{
 //
-//   auto strTypeName =  __type_name(this);
+//   auto strTypeName =  ::type(this).name();
 //
 //   auto findLastColonColon = strTypeName.rear_find("::");
 //
@@ -573,7 +573,7 @@ void particle::on_sequence()
 strsize particle::sz_len() const
 {
 
-   return ansi_len(__type_name(this)) + 1;
+   return ansi_len(::type(this).name()) + 1;
 
 }
 
@@ -581,7 +581,7 @@ strsize particle::sz_len() const
 void particle::to_sz(char * sz, strsize len) const
 {
 
-   ansi_ncpy(sz, __type_name(this), len);
+   ansi_ncpy(sz, ::type(this).name(), len);
 
 }
 
@@ -774,10 +774,30 @@ class tracer & particle::tracer() const
 }
 
 
+::trace_statement particle::trace_statement() const
+{
+
+   auto statement = ::transfer(::trace_statement(this->tracer()));
+
+   trace_statement_prefix(statement);
+
+   return ::transfer(statement);
+
+}
+
+
+::trace_statement & particle::trace_statement_prefix(::trace_statement & statement) const
+{
+
+   return statement;
+
+}
+
+
 ::trace_statement particle::log_statement() const
 {
 
-   return ::transfer(trace_statement(tracer())((::particle *) this));
+   return ::transfer(trace_statement()((::particle *) this));
 
 }
 
@@ -785,7 +805,7 @@ class tracer & particle::tracer() const
 ::trace_statement particle::information() const
 {
 
-   return ::transfer(trace_statement(tracer())(e_trace_level_information));
+   return ::transfer(trace_statement()(e_trace_level_information));
 
 }
 
@@ -793,7 +813,7 @@ class tracer & particle::tracer() const
 ::trace_statement particle::warning() const
 {
 
-   return ::transfer(trace_statement(tracer())(e_trace_level_warning));
+   return ::transfer(trace_statement()(e_trace_level_warning));
 
 }
 
@@ -801,7 +821,7 @@ class tracer & particle::tracer() const
 ::trace_statement particle::error() const
 {
 
-   return ::transfer(trace_statement(tracer())(e_trace_level_error));
+   return ::transfer(trace_statement()(e_trace_level_error));
 
 }
 
@@ -809,9 +829,43 @@ class tracer & particle::tracer() const
 ::trace_statement particle::fatal() const
 {
 
-   return ::transfer(trace_statement(tracer())(e_trace_level_fatal));
+   return ::transfer(trace_statement()(e_trace_level_fatal));
 
 }
+
+
+void particle::format_trace(enum_trace_level etracelevel, const ::ansi_character * pszFormat, va_list & arguments) const
+{
+
+   auto statement = ::transfer(log_statement());
+
+   statement(etracelevel)(trace_category());
+
+   statement.format_output_arguments(pszFormat, arguments);
+
+}
+
+
+void particle::trace(enum_trace_level etracelevel, const ::ansi_character * pszFormat, ...) const
+{
+
+    va_list arguments;
+
+    va_start(arguments, pszFormat);
+
+    {
+
+       auto statement = ::transfer(log_statement());
+
+       statement(etracelevel)(trace_category());
+
+       statement.format_output_arguments(pszFormat, arguments);
+
+    }
+
+    va_end(arguments);
+
+ }
 
 
 void particle::information(const ::ansi_character * pszFormat, ...) const
@@ -821,15 +875,7 @@ void particle::information(const ::ansi_character * pszFormat, ...) const
 
    va_start(arguments, pszFormat);
 
-   {
-
-      auto statement = log_statement();
-
-      statement(e_trace_level_information)(trace_category());
-
-      statement.format_output_arguments(pszFormat, arguments);
-
-   }
+   format_trace(e_trace_level_information, pszFormat, arguments);
 
    va_end(arguments);
 
@@ -843,15 +889,7 @@ void particle::warning(const ::ansi_character * pszFormat, ...) const
 
    va_start(arguments, pszFormat);
 
-   {
-
-      auto statement = log_statement();
-
-      statement(e_trace_level_warning)(trace_category());
-
-      statement.format_output_arguments(pszFormat, arguments);
-
-   }
+   format_trace(e_trace_level_warning, pszFormat, arguments);
 
    va_end(arguments);
 
@@ -865,15 +903,7 @@ void particle::error(const ::ansi_character * pszFormat, ...) const
 
    va_start(arguments, pszFormat);
 
-   {
-
-      auto statement = log_statement();
-
-      statement(e_trace_level_error)(trace_category());
-
-      statement.format_output_arguments(pszFormat, arguments);
-
-   }
+   format_trace(e_trace_level_error, pszFormat, arguments);
 
    va_end(arguments);
 
@@ -887,15 +917,7 @@ void particle::fatal(const ::ansi_character * pszFormat, ...) const
 
    va_start(arguments, pszFormat);
 
-   {
-
-      auto statement = log_statement();
-
-      statement(e_trace_level_fatal)(trace_category());
-
-      statement.format_output_arguments(pszFormat, arguments);
-
-   }
+   format_trace(e_trace_level_fatal, pszFormat, arguments);
 
    va_end(arguments);
 
@@ -2261,7 +2283,6 @@ CLASS_DECL_ACME ::trace_statement log_statement()
    return ::transfer(trace_statement(tracer())(e_trace_level_fatal));
 
 }
-
 
 
 void information(const ::ansi_character * pszFormat, ...)

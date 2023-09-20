@@ -894,7 +894,7 @@ namespace experience_nanoui
       if (::is_set(pinteraction))
       {
 
-         //string strType = __type_name(pinteraction);
+         //string strType = ::type(pinteraction).name();
 
 //            if (strType.contains("form"))
 //            {

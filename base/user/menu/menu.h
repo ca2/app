@@ -20,7 +20,7 @@ namespace user
       ::size_i32                             m_sizeMinimum;
       ::pointer<menu>                       m_pmenuParent;
       ::pointer<menu_item>                  m_pmenuitem;
-      ::pointer<::user::interaction>        m_puserinteractionParent;
+      ///::pointer<::user::interaction>        m_puserinteractionParent;
       ::pointer<::channel>                  m_pchannelNotify;
 //#ifdef WINDOWS_DESKTOP
 //      HMENU                                  m_hmenu;

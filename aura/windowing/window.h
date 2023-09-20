@@ -416,6 +416,9 @@ namespace windowing
       virtual void on_destruct_mouse_message(::message::mouse * pmouse);
 
 
+      ::trace_statement & trace_statement_prefix(::trace_statement & statement) const override;
+
+
    };
 
 

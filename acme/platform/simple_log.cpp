@@ -218,7 +218,7 @@ simple_log::~simple_log()
 }
 
 
-void simple_log::print(trace_statement & tracestatement, bool bFlush)
+void simple_log::print(::trace_statement & tracestatement, bool bFlush)
 {
 
    if (!m_bLog)

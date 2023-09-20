@@ -42,43 +42,43 @@ inline type::type(const ::pointer<BASE>& point)
 }
 
 
-template < typename TYPE >
-inline string __type_name()
-{
-
-   auto pszType = typeid(TYPE).name();
-
-   string strName = demangle(pszType);
-
-   return strName;
-
-}
-
-
-template < typename TYPE >
-inline string __type_name(const TYPE * p)
-{
-
-   auto pszType = typeid(*p).name();
-
-   string strName = demangle(pszType);
-
-   return strName;
-
-}
-
-
-template < typename TYPE >
-inline string __type_name(const TYPE & t)
-{
-
-   auto pszType = typeid(t).name();
-
-   string strName = demangle(pszType);
-
-   return strName;
-
-}
+//template < typename TYPE >
+//inline string __type_name()
+//{
+//
+//   auto pszType = typeid(TYPE).name();
+//
+//   string strName = demangle(pszType);
+//
+//   return strName;
+//
+//}
+//
+//
+//template < typename TYPE >
+//inline string __type_name(const TYPE * p)
+//{
+//
+//   auto pszType = typeid(*p).name();
+//
+//   string strName = demangle(pszType);
+//
+//   return strName;
+//
+//}
+//
+//
+//template < typename TYPE >
+//inline string __type_name(const TYPE & t)
+//{
+//
+//   auto pszType = typeid(t).name();
+//
+//   string strName = demangle(pszType);
+//
+//   return strName;
+//
+//}
 
 
 

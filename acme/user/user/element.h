@@ -839,6 +839,10 @@ namespace user
       virtual bool vertical_scrollbar_visible();
 
 
+      virtual ::trace_statement & raw_trace_statement_prefix(::trace_statement & statement) const;
+      ::trace_statement & trace_statement_prefix(::trace_statement & statement) const override;
+
+
    };
 
 

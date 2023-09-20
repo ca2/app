@@ -739,9 +739,9 @@ bool task::on_get_task_name(string & strTaskName)
    else
    {
 
-      //::task_set_name(__type_name(this));
+      //::task_set_name(::type(this).name());
 
-      strTaskName = __type_name(this);
+      strTaskName = ::type(this).name();
 
    }
 
@@ -770,13 +770,13 @@ void task::init_task()
 
    }
 
-   if (__type_name(this).contains("synth_thread"))
+   if (::type(this).name().contains("synth_thread"))
    {
 
       information("synth_thread thread::thread_proc");
 
    }
-   else if (__type_name(this).case_insensitive_ends("out"))
+   else if (::type(this).name().case_insensitive_ends("out"))
    {
 
       information("synth_thread thread::out");
@@ -887,7 +887,7 @@ void task::term_task()
 //
 //   //      }
 //
-//   //      m_atom = __type_name(pelement);
+//   //      m_atom = ::type(pelement).name();
 //
 //   //      task_set_name(m_atom);
 //
@@ -943,7 +943,7 @@ bool task::has_message() const
 //
 //   m_pelement = pelement;
 //
-//   m_atom = __type_name(pelement);
+//   m_atom = ::type(pelement).name();
 //
 //   return branch(epriority, nStackSize, uCreateFlags ADD_PARAM_SEC_ATTRS);
 //
@@ -966,13 +966,13 @@ bool task::has_message() const
       if (m_procedure)
       {
 
-         m_atom = __type_name(m_procedure);
+         m_atom = ::type(m_procedure).name();
 
       }
       else
       {
 
-         m_atom = __type_name(*this);
+         m_atom = ::type(this).name();
 
       }
 
@@ -1187,7 +1187,7 @@ bool task::has_message() const
    //if(m_atom.is_empty())
    //{
 
-   //   m_atom = __type_name(this);
+   //   m_atom = ::type(this).name();
 
    //}
 
@@ -1314,13 +1314,13 @@ bool task::has_message() const
 //      if (m_pelement)
 //      {
 //
-//         m_atom = __type_name(m_pelement);
+//         m_atom = ::type(m_pelement).name();
 //
 //      }
 //      else
 //      {
 //
-//         m_atom = __type_name(this);
+//         m_atom = ::type(this).name();
 //
 //      }
 //

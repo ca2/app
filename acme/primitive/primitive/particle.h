@@ -319,6 +319,12 @@ public:
    virtual class tracer & tracer() const;
 
 
+   virtual ::trace_statement trace_statement() const;
+
+
+   virtual ::trace_statement & trace_statement_prefix(::trace_statement & statement) const;
+
+
    virtual ::trace_statement log_statement() const;
 
 
@@ -329,6 +335,11 @@ public:
    virtual ::trace_statement warning() const;
    virtual ::trace_statement error() const;
    virtual ::trace_statement fatal() const;
+
+
+   virtual void trace(enum_trace_level etracelevel, const ::ansi_character * pszFormat, ...) const;
+
+   virtual void format_trace(enum_trace_level etracelevel, const ::ansi_character * pszFormat, va_list & arguments) const;
 
    virtual void information(const ::ansi_character * pszFormat, ...) const;
    virtual void warning(const ::ansi_character * pszFormat, ...) const;

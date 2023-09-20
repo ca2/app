@@ -104,7 +104,7 @@ namespace factory
 
           ::string strMessage;
 
-          strMessage = "Factory hasn't creator for type \"" + __type_name<ORIGIN_TYPE>() + "\"";
+          strMessage = "Factory hasn't creator for type \"" + ::__type < ORIGIN_TYPE >().name() + "\"";
 
           warning (strMessage);
 
@@ -119,7 +119,7 @@ namespace factory
 
           ::string strMessage;
 
-          strMessage = "Couldn't create_particle for type \"" + __type_name<ORIGIN_TYPE>() + "\"";
+          strMessage = "Couldn't create_particle for type \"" + ::__type < ORIGIN_TYPE >().name() + "\"";
 
           warning (strMessage);
 
@@ -134,7 +134,7 @@ namespace factory
 
           ::string strMessage;
 
-          strMessage = "Created element is not of the base type \"" + __type_name<ORIGIN_TYPE>() + "\"";
+          strMessage = "Created element is not of the base type \"" + ::__type<ORIGIN_TYPE>().name() + "\"";
 
           warning (strMessage);
 
@@ -228,7 +228,7 @@ namespace factory
     //   if (strText.is_empty() || strText.case_insensitive_begins_eat("factoryless://"))
     //   {
 
-    //      if (p && __type_name(p)) == strText
+    //      if (p && ::type(p).name()) == strText
     //      {
 
     //         ::information("loading into existing matter of same class type (1)");
@@ -247,7 +247,7 @@ namespace factory
     //            stream.set_fail_bit();
 
     //         }
-    //         else if (__type_name(p)) != strText
+    //         else if (::type(p).name()) != strText
     //         {
 
     //            ::information("allocated matter type is different from streamed matter type (1.2)");
@@ -264,7 +264,7 @@ namespace factory
 
     //      auto atom = stream.text_to_factory_id(strText);
 
-    //      if (p && atom == __type_name(p))
+    //      if (p && atom == ::type(p).name())
     //      {
 
     //         ::information("loading into existing matter of same class type (2)");
@@ -281,7 +281,7 @@ namespace factory
     //            ::information("stream::alloc_object_from_text failed (2.1)");
 
     //         }
-    //         else if (__type_name(p)) != atom.to_string()
+    //         else if (::type(p).name()) != atom.to_string()
     //         {
 
     //            ::information("allocated matter type is different from streamed matter type (2.2)");
@@ -350,7 +350,7 @@ inline void __raw_construct(::pointer<TYPE>& p, ::factory::factory* pfactory)
 
       string strMessage;
 
-      strMessage.format("matter::__construct has failed to find factory_item for type \"%s\"", __type_name < TYPE >().c_str());
+      strMessage.format("matter::__construct has failed to find factory_item for type \"%s\"", ::__type < TYPE >().name().c_str());
 
       throw_exception(::error_not_implemented, strMessage);
 
@@ -363,7 +363,7 @@ inline void __raw_construct(::pointer<TYPE>& p, ::factory::factory* pfactory)
 
       string strMessage;
 
-      strMessage.format("matter::__construct no memory to allocate implementation of type \"%ss\"", __type_name < TYPE >().c_str());
+      strMessage.format("matter::__construct no memory to allocate implementation of type \"%ss\"", ::__type < TYPE >().name().c_str());
 
       throw_exception(::error_no_memory, strMessage);
 
@@ -378,7 +378,7 @@ inline void __raw_construct(::pointer<TYPE>& p, ::factory::factory* pfactory)
 
       string strMessage;
 
-      strMessage.format("matter::__construct object(%s) is not of type \"%s\"", __type_name(*pparticleNew).c_str(), __type_name < TYPE >().c_str());
+      strMessage.format("matter::__construct object(%s) is not of type \"%s\"", ::type(pparticleNew).name().c_str(), ::__type < TYPE >().name().c_str());
 
       throw_exception(::error_wrong_type, strMessage);
 

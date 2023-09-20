@@ -681,7 +681,7 @@ void property_object::run_property(const ::atom& atom)
 //void property_object::to_string(const class string_exchange & str) const
 //{
 //
-//   str = __type_name(this);
+//   str = ::type(this).name();
 //
 //}
 

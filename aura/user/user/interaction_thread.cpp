@@ -396,9 +396,9 @@ namespace user
 
             }
 
-            information()(e_trace_category_appmsg) << __type_name(this) << " thread::pump_message - Received e_message_quit.\n";
+            information()(e_trace_category_appmsg) << ::type(this).name() << " thread::pump_message - Received e_message_quit.\n";
 
-            //::information(__type_name(this)) << " thread::pump_message - Received e_message_quit.\n");
+            //::information(::type(this).name()) << " thread::pump_message - Received e_message_quit.\n");
 
             m_nDisablePumpCount++; // application must die
             // Note: prevents calling message loop things in 'exit_thread'
@@ -565,7 +565,7 @@ namespace user
 
                         throw ::exception(error_failed, "Please post e_message_redraw directly to the graphics thread");
 
-                        //string strType = __type_name(puserinteraction);
+                        //string strType = ::type(puserinteraction).name();
 
                         //if (strType.case_insensitive_contains("filemanager"))
                         //{
@@ -851,7 +851,11 @@ namespace user
 
       ASSERT_VALID(this);
 
-      information() << "user::thread::run";
+      ::string strType = ::type(m_pimpl->m_puserinteraction).name();
+
+      information()
+         << "usrthrd " << strType << " : "
+         << "user::thread::run";
 
       if (m_strDebugType.contains("main_frame"))
       {
@@ -1141,7 +1145,7 @@ namespace user
       else
       {
 
-         //string strType = __type_name(m_puserinteraction);
+         //string strType = ::type(m_puserinteraction).name();
 
          if (m_strDebugType.contains("filemanager"))
          {

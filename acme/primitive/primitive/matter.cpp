@@ -647,7 +647,7 @@ void matter::task_osterm()
 //void matter::to_string(const class string_exchange & str) const
 //{
 //
-//   str = __type_name(this);
+//   str = ::type(this).name();
 //
 //}
 //

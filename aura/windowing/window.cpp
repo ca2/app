@@ -2134,6 +2134,16 @@ namespace windowing
    }
 
 
+   ::trace_statement & window::trace_statement_prefix(::trace_statement & statement) const
+   {
+
+      statement << "window  ";
+
+      return m_puserinteractionimpl->m_puserinteraction->trace_statement_prefix(statement);
+
+   }
+
+
 } // namespace windowing
 
 

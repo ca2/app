@@ -104,6 +104,6 @@ string apex_get_task_name(::task* ptask)
 
    }
 
-   return __type_name(ptask);
+   return ::type(ptask).name();
 
 }

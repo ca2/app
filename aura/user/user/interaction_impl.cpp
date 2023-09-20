@@ -649,13 +649,13 @@ namespace user
          if (m_pwindow)
          {
 
-            information("window created");
+            information() << "operating_system_create_host window created";
 
          }
          else
          {
 
-            information("window not created");
+            information("operating_system_create_host window not created");
 
          }
 
@@ -1730,7 +1730,7 @@ namespace user
    void interaction_impl::on_message_destroy(::message::message * pmessage)
    {
 
-      if (m_puserinteraction && __type_name(m_puserinteraction).contains("notify_icon"))
+      if (m_puserinteraction && ::type(m_puserinteraction).name().contains("notify_icon"))
       {
 
          information() << "notify_icon";
@@ -1767,7 +1767,7 @@ namespace user
    void interaction_impl::post_non_client_destroy()
    {
 
-      string strType = __type_name(m_puserinteraction);
+      string strType = ::type(m_puserinteraction).name();
 
       //      if (strType.contains("main_frame"))
       //      {
@@ -1830,7 +1830,7 @@ namespace user
          if (::is_set(m_puserinteraction))
          {
 
-            information() << __type_name(m_puserinteraction) << "::destroy_impl_only";
+            information() << ::type(m_puserinteraction).name() << "::destroy_impl_only";
 
             m_puserinteraction->transfer_handler(m_dispatchermapNormal, this, false);
             m_puserinteraction->transfer_handler(m_dispatchermapProbe, this, true);
@@ -1856,7 +1856,7 @@ namespace user
          if (m_puserinteraction)
          {
 
-            information() << __type_name(m_puserinteraction) << "::destroy_impl_only ( 2)";
+            information() << ::type(m_puserinteraction).name() << "::destroy_impl_only ( 2)";
 
          }
 
@@ -1921,7 +1921,7 @@ namespace user
    void interaction_impl::destroy_window()
    {
 
-      auto strType = __type_name(m_puserinteraction);
+      auto strType = ::type(m_puserinteraction).name();
 
       if (strType.contains("main_frame"))
       {
@@ -2604,7 +2604,7 @@ namespace user
 
       }
 
-      //         string strUserInteractionType(::is_null(puserinteractionMouse) ? "(null)" : __type_name(puserinteractionMouse));
+      //         string strUserInteractionType(::is_null(puserinteractionMouse) ? "(null)" : ::type(puserinteractionMouse).name());
       //
       //         if(pmouse->m_atom == e_message_mouse_move)
       //         {
@@ -2693,7 +2693,7 @@ namespace user
 //
 //         information("e_message_left_button_down");
 //
-//         string strType = __type_name(m_puserinteraction);
+//         string strType = ::type(m_puserinteraction).name();
 //
 //         if (strType.case_insensitive_contains("list_box"))
 //         {
@@ -2742,7 +2742,7 @@ namespace user
 //
 //      if (pmouse->m_atom == e_message_mouse_move)
 //      {
-//         string strType = __type_name(m_puserinteraction);
+//         string strType = ::type(m_puserinteraction).name();
 //
 //         // We are at the message handler procedure.
 //         // mouse messages originated from message handler and that are mouse transfer events should end up with the correct cursor.
@@ -2761,7 +2761,7 @@ namespace user
 //         if (m_puserinteraction)
 //         {
 //
-//            strType = __type_name(m_puserinteraction);
+//            strType = ::type(m_puserinteraction).name();
 //
 //            if (strType.case_insensitive_contains("list_box"))
 //            {
@@ -2809,7 +2809,7 @@ namespace user
 //      //if (pchild)
 //      //{
 //
-//      //   string strType = __type_name(pchild);
+//      //   string strType = ::type(pchild).name();
 //
 //      //   if (strType.case_insensitive_contains("button"))
 //      //   {
@@ -2881,7 +2881,7 @@ namespace user
 //      //if (pchild)
 //      //{
 //
-//      //   string strType = __type_name(pchild);
+//      //   string strType = ::type(pchild).name();
 //
 //      //   if (strType.case_insensitive_contains("button"))
 //      //   {
@@ -4839,7 +4839,7 @@ namespace user
    void interaction_impl::on_message_create(::message::message * pmessage)
    {
 
-      string strType = __type_name(m_puserinteraction);
+      string strType = ::type(m_puserinteraction).name();
 
       m_pwindowing = m_puserinteraction->windowing();
 
@@ -4867,11 +4867,11 @@ namespace user
 
                m_pcsDisplay = memory_new(critical_section);
 
-               information("interaction_impl m_pgraphics alloc");
+               information() << "interaction_impl m_pgraphics alloc : " << strType;
 
                update_graphics_resources();
 
-               information("interaction_impl on _create_window");
+               information() << "interaction_impl on _create_window : " << strType;
 
             }
 
@@ -5280,7 +5280,7 @@ namespace user
 
       windowing_output_debug_string("\n_001UpdateBuffer : after window_rectangle");
 
-      string strType = __type_name(m_puserinteraction);
+      string strType = ::type(m_puserinteraction).name();
 
       //      if (strType.contains("list_box"))
       //      {
@@ -6324,7 +6324,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 //
 //      }
 //
-//      string strType = __type_name(m_puserinteraction);
+//      string strType = ::type(m_puserinteraction).name();
 //
 //      if (strType.case_insensitive_contains("list_box"))
 //      {
@@ -7713,7 +7713,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 //
 //      //}
 //
-//      string strType = __type_name(m_puserinteraction);
+//      string strType = ::type(m_puserinteraction).name();
 //
 //      if (strType.contains("font_format"))
 //      {
@@ -7828,7 +7828,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 //         )
 //      {
 //
-//         string strType = __type_name(m_puserinteraction);
+//         string strType = ::type(m_puserinteraction).name();
 //
 //         if (strType.contains("font_format"))
 //         {
@@ -8144,7 +8144,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 //
 //      }
 //
-//      string strType = __type_name(m_puserinteraction);
+//      string strType = ::type(m_puserinteraction).name();
 //
 //      if (strType.case_insensitive_contains("filemanager"))
 //      {
@@ -8644,7 +8644,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
    void interaction_impl::_001OnDestroyWindow(::message::message * pmessage)
    {
 
-      if (m_puserinteraction && __type_name(m_puserinteraction).contains("notify_icon"))
+      if (m_puserinteraction && ::type(m_puserinteraction).name().contains("notify_icon"))
       {
 
          information() << "notify_icon";

@@ -4830,6 +4830,39 @@ namespace user
    }
 
 
+   ::trace_statement & element::raw_trace_statement_prefix(::trace_statement & statement) const
+   {
+
+      ::string strType = ::type(this).name();
+
+      statement << strType;
+
+      ::string strAtom = m_atom.as_string();
+
+      if(strAtom.has_char() && strAtom != strType)
+      {
+
+         statement << "=" << strAtom;
+
+      }
+
+      statement << "  ";
+
+      return statement;
+
+   }
+
+
+   ::trace_statement & element::trace_statement_prefix(::trace_statement & statement) const
+   {
+
+      statement << "usrintr ";
+
+      return raw_trace_statement_prefix(statement);
+
+   }
+
+
 } // namespace user
 
 

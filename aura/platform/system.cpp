@@ -2320,7 +2320,7 @@ namespace aura
 
    //   //   try
    //   //   {
-   //   //      strMessage += __type_name(pparticle);
+   //   //      strMessage += ::type(pparticle).name();
 
    //   //   }
    //   //   catch (...)
@@ -2836,7 +2836,7 @@ namespace aura
 
    //   }
 
-   //   information("%s", ("::aura::system::on_request session = " + string(__type_name(psession)) + "("+as_string((iptr) psession)+")\n\n").c_str());
+   //   information("%s", ("::aura::system::on_request session = " + string(::type(psession).name()) + "("+as_string((iptr) psession)+")\n\n").c_str());
 
    //   psession->do_request(pcreate);
 

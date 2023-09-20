@@ -466,6 +466,9 @@ namespace user
       virtual void _raw_client_to_screen(::point_i32 & point);
 
 
+      ::trace_statement & trace_statement_prefix(::trace_statement & statement) const override;
+
+
    };
 
 

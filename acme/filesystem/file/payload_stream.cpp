@@ -227,7 +227,7 @@
 ////
 ////   payload_stream stream(memory_new ::payload(&payload()[atom].propset()));
 ////
-////   ::atom idType = __type_name(pparticle);
+////   ::atom idType = ::type(pparticle).name();
 ////
 ////   string strId = stream.factory_id_to_text(idType);
 ////

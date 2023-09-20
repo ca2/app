@@ -227,7 +227,7 @@ namespace user
 
       string strType;
 
-      strType = __type_name(m_puserinteraction);
+      strType = ::type(m_puserinteraction).name();
 
       if (strType.contains("playlist"))
       {
@@ -290,7 +290,7 @@ namespace user
 
       }
 
-      string strType = __type_name(m_puserinteraction);
+      string strType = ::type(m_puserinteraction).name();
 
       ::task_set_name("graphics_thread," + strType);
 
@@ -1308,7 +1308,7 @@ namespace user
 //      try
 //      {
 //
-//         string strType = __type_name(m_puserinteraction);
+//         string strType = ::type(m_puserinteraction).name();
 //
 //         if(strType.case_insensitive_contains("list_box"))
 //         {

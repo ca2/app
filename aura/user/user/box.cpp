@@ -38,13 +38,6 @@ namespace user
 
       interaction::initialize(pparticle);
 
-      if (m_atom.is_empty())
-      {
-
-         m_atom = __type_name(this);
-
-      }
-
    }
 
 

@@ -520,7 +520,7 @@
 //
 //   string strText;
 //
-//   auto type = __type_name(p);
+//   auto type = ::type(p).name();
 //
 //   if (p->has(e_flag_factory))
 //   {

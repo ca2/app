@@ -417,7 +417,7 @@ namespace user
 //
 //      }
 //
-//      string strType = __type_name(m_puserinteraction);
+//      string strType = ::type(m_puserinteraction).name();
 //
 ////      if (strType.contains("list_box"))
 ////      {
@@ -2574,7 +2574,7 @@ namespace user
    void primitive_impl::on_message_non_client_destroy(::message::message * pmessage)
    {
 
-      if (m_puserinteraction && __type_name(m_puserinteraction).contains("notify_icon"))
+      if (m_puserinteraction && ::type(m_puserinteraction).name().contains("notify_icon"))
       {
 
          information() << "notify_icon";
@@ -2596,13 +2596,13 @@ namespace user
 
       //}
 
-      //g_p->set_at((iptr)this, __type_name(m_puserinteraction)) + "xxx" + __type_name(this);
+      //g_p->set_at((iptr)this, ::type(m_puserinteraction).name()) + "xxx" + ::type(this).name();
       MESSAGE_LINK(e_message_show_window, pchannel, this, &primitive_impl::on_message_show_window);
       MESSAGE_LINK(MESSAGE_DESTROY, pchannel, this, &primitive_impl::on_message_destroy);
       MESSAGE_LINK(e_message_non_client_destroy, pchannel, this, &primitive_impl::on_message_non_client_destroy);
       MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &primitive_impl::_001OnPrioCreate);
 
-      if (m_puserinteraction && __type_name(m_puserinteraction).contains("notify_icon"))
+      if (m_puserinteraction && ::type(m_puserinteraction).name().contains("notify_icon"))
       {
 
          information() << "notify_icon";
@@ -2953,6 +2953,16 @@ namespace user
    {
 
       m_puserinteraction->client_to_screen(e_layout_design)(point);
+
+   }
+
+
+   ::trace_statement & primitive_impl::trace_statement_prefix(::trace_statement & statement) const
+   {
+
+      statement << "usrimpl ";
+
+      return m_puserinteraction->trace_statement_prefix(statement);
 
    }
 

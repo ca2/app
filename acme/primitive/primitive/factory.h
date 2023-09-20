@@ -645,7 +645,7 @@ namespace factory
    //   if (strText.is_empty() || strText.case_insensitive_begins_eat("factoryless://"))
    //   {
 
-   //      if (p && __type_name(p)) == strText
+   //      if (p && ::type(p).name()) == strText
    //      {
 
    //         ::information("loading into existing matter of same class type (1)");
@@ -664,7 +664,7 @@ namespace factory
    //            stream.set_fail_bit();
 
    //         }
-   //         else if (__type_name(p)) != strText
+   //         else if (::type(p).name()) != strText
    //         {
 
    //            ::information("allocated matter type is different from streamed matter type (1.2)");
@@ -681,7 +681,7 @@ namespace factory
 
    //      auto atom = stream.text_to_factory_id(strText);
 
-   //      if (p && atom == __type_name(p))
+   //      if (p && atom == ::type(p).name())
    //      {
 
    //         ::information("loading into existing matter of same class type (2)");
@@ -698,7 +698,7 @@ namespace factory
    //            ::information("stream::alloc_object_from_text failed (2.1)");
 
    //         }
-   //         else if (__type_name(p)) != atom.to_string()
+   //         else if (::type(p).name()) != atom.to_string()
    //         {
 
    //            ::information("allocated matter type is different from streamed matter type (2.2)");
@@ -795,7 +795,7 @@ inline void __raw_construct(::pointer<TYPE>& p, ::factory::factory* pfactory = :
 //
 //      string strMessage;
 //
-//      strMessage.format("matter::__construct object(%s) is not of type \"%s\"", __type_name(*pparticleNew).c_str(), __type_name < TYPE >().c_str());
+//      strMessage.format("matter::__construct object(%s) is not of type \"%s\"", ::type(pparticleNew).name().c_str(), __type_name < TYPE >().c_str());
 //
 //      throw_exception(::error_wrong_type, strMessage);
 //

@@ -54,7 +54,7 @@
 //::string material_object::as_string() const
 //{
 //
-//   return __type_name(this);
+//   return ::type(this).name();
 //
 //}
 //

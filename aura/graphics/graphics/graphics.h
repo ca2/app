@@ -105,6 +105,9 @@ namespace graphics
       //virtual ::image_pointer & get_screen_image();
       //virtual ::particle * get_screen_sync();
 
+      ::trace_statement & trace_statement_prefix(::trace_statement & statement) const override;
+
+
    };
 
 

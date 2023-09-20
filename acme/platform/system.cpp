@@ -1744,7 +1744,7 @@ namespace acme
 
       }
 
-      information() << "::apex::system::on_request session = " << __type_name(psession) << "(" << ((iptr)psession) << ")";
+      information() << "::apex::system::on_request session = " << ::type(psession).name() << "(" << ((iptr)psession) << ")";
 
       psession->post_request(prequest);
 

@@ -1343,7 +1343,7 @@ namespace apex
    //////         if(m_iErrorCode != 0)
    //////         {
    //////
-   //////            dappy(__type_name(this) + " : on_run failure : " + as_string(m_iErrorCode));
+   //////            dappy(::type(this).name() + " : on_run failure : " + as_string(m_iErrorCode));
    //////
    //////            ::information("application::main on_run termination failure\n");
    //////
@@ -1363,7 +1363,7 @@ namespace apex
    ////      catch (...)
    ////      {
    ////
-   ////         //dappy(__type_name(this) + " : on_run general exception");
+   ////         //dappy(::type(this).name() + " : on_run general exception");
    ////
    ////      }
    ////
@@ -2606,7 +2606,7 @@ namespace apex
 
       }
 
-      information() << "initial_check_directrix : ok (" << __type_name(this) << ")" << m_strAppId;
+      information() << "initial_check_directrix : ok (" << ::type(this).name() << ")" << m_strAppId;
 
       //return true;
 
@@ -3074,7 +3074,7 @@ namespace apex
    //   //if (!init1())
    //   //{
    //   //
-   //   ////dappy(__type_name(this) + " : init1 failure : " + as_string(m_iErrorCode));
+   //   ////dappy(::type(this).name() + " : init1 failure : " + as_string(m_iErrorCode));
    //   //
    //   //return false;
    //   //
@@ -3091,7 +3091,7 @@ namespace apex
    //   //if (!init2())
    //   //{
    //   //
-   //   ////dappy(__type_name(this) + " : init2 failure : " + as_string(m_iErrorCode));
+   //   ////dappy(::type(this).name() + " : init2 failure : " + as_string(m_iErrorCode));
    //   //
    //   //return false;
    //   //
@@ -3108,7 +3108,7 @@ namespace apex
    //   //if (!init3())
    //   //{
    //   //
-   //   ////dappy(__type_name(this) + " : init3 failure : " + as_string(m_iErrorCode));
+   //   ////dappy(::type(this).name() + " : init3 failure : " + as_string(m_iErrorCode));
    //   //
    //   //return false;
    //   //
@@ -3120,7 +3120,7 @@ namespace apex
 
    //   m_timeHeartBeat.Now();
 
-   //   //dappy(__type_name(this) + " : init3 ok : " + as_string(m_iErrorCode));
+   //   //dappy(::type(this).name() + " : init3 ok : " + as_string(m_iErrorCode));
 
    //   //try
    //   //{
@@ -3128,7 +3128,7 @@ namespace apex
    //   init();
    //   //{
    //   //
-   //   ////dappy(__type_name(this) + " : initialize failure : " + as_string(m_iErrorCode));
+   //   ////dappy(::type(this).name() + " : initialize failure : " + as_string(m_iErrorCode));
    //   //
    //   //return false;
    //   //
@@ -5584,7 +5584,7 @@ namespace apex
       //try
       //{
 
-      string strType = __type_name(this);
+      string strType = ::type(this).name();
 
       //if(::is_set(acmesystem()))
       //{

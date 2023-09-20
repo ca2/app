@@ -2321,7 +2321,7 @@ pacmedirectory->create("/ca2core");
 
       //   //   try
       //   //   {
-      //   //      strMessage += __type_name(pparticle);
+      //   //      strMessage += ::type(pparticle).name();
 
       //   //   }
       //   //   catch (...)

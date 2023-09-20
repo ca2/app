@@ -748,7 +748,7 @@ namespace user
 
       //   bool bFirst = true;
 
-      //   string strType = __type_name(this);
+      //   string strType = ::type(this).name();
 
       //   if (strType.case_insensitive_contains("control_box"))
       //   {

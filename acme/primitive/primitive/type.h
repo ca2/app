@@ -143,7 +143,7 @@ public:
    }
    
 
-   const ::atom & name() const { return *this; }
+   ::string name() const { return this->as_string(); }
 
 
    bool operator == (const ::std::type_info& typeinfo) const;
@@ -181,29 +181,34 @@ public:
 
 
 template < typename TYPE >
-::type ___type()
+class __type :
+   public ::type
 {
+public:
 
-   return ::type(typeid(TYPE));
+   __type() :
+   type(typeid(TYPE))
+   {
+   }
 
-}
+};
 
 
 //#define __type(TYPE)  ___type<TYPE>()
 
-#define __type(TYPE)  ___type<TYPE>()
+//#define __type(TYPE)  ___type<TYPE>()
 
 
-template < typename TYPE >
-inline string __type_name();
+//template < typename TYPE >
+//inline string __type_name();
 
 
-template < typename TYPE >
-inline string __type_name(const TYPE * p);
+//template < typename TYPE >
+//inline string __type_name(const TYPE * p);
 
 
-template < typename TYPE >
-inline string __type_name(const TYPE & t);
+//template < typename TYPE >
+//inline string __type_name(const TYPE & t);
 
 
 //template < typename BASE >

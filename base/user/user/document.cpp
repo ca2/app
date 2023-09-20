@@ -633,7 +633,7 @@ namespace user
 
          pimpact = get_impact(index);
 
-         if (info == __type_name(pimpact))
+         if (info == ::type(pimpact).name())
          {
 
             if (indexFind == countFind)
@@ -667,7 +667,7 @@ namespace user
       for (index index = 0; index < countImpact; index++)
       {
          pimpact = get_impact(index);
-         if (info == __type_name(pimpact))
+         if (info == ::type(pimpact).name())
          {
             if (atom == pimpact->m_atom)
                return pimpact;

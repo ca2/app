@@ -98,7 +98,7 @@ namespace experience
 //      try
 //      {
 //
-//         if (__type_name(this).case_insensitive_contains("control_box"))
+//         if (::type(this).name().case_insensitive_contains("control_box"))
 //         {
 //
 //            information("control_box");

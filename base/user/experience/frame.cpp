@@ -1223,7 +1223,7 @@ namespace experience
    //::rectangle_i32 frame::rectangle(::user::enum_layout elayout)
    //{
 
-   //   if (__type_name(this).case_insensitive_contains("file"))
+   //   if (::type(this).name().case_insensitive_contains("file"))
    //   {
 
 
@@ -1417,7 +1417,7 @@ namespace experience
 
       string strType;
 
-      strType = __type_name(m_pframewindow);
+      strType = ::type(m_pframewindow).name();
 
       if (strType.contains("playlist"))
       {
@@ -1707,7 +1707,7 @@ namespace experience
 
       }
 
-      string strType = __type_name(m_pframewindow);
+      string strType = ::type(m_pframewindow).name();
 
       if (strType.contains("filemanager"))
       {

@@ -251,7 +251,7 @@ namespace user
 
       }
 
-      return create_impact(__type(IMPACT), pdocument, puserinteractionParent, atom, pviewLast, pimpactdata);
+      return create_impact(::__type < IMPACT >(), pdocument, puserinteractionParent, atom, pviewLast, pimpactdata);
 
    }
 

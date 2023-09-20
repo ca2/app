@@ -166,7 +166,7 @@ void object::process_exit_status(const ::e_status & estatus)
 
       //#if OBJECT_REFERENCE_COUNT_DEBUG
       //
-      //   string strType = __type_name(this);
+      //   string strType = ::type(this).name();
       //
       //   if (strType.case_insensitive_contains("session"))
       //   {

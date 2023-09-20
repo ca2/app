@@ -235,7 +235,7 @@ int_bool message_queue::peek_message(LPMESSAGE pMsg,oswindow oswindow,::u32 wMsg
 //   if(pthread->m_bClosedMq)
 //   {
 //
-//      string strType = __type_name(pthread);
+//      string strType = ::type(pthread).name();
 //
 //      if(string_begins(strType, "multimedia::"))
 //      {
@@ -281,7 +281,7 @@ int_bool message_queue::peek_message(LPMESSAGE pMsg,oswindow oswindow,::u32 wMsg
 //   if(!bCreate)
 //   {
 //
-//      string strType = __type_name(pthread);
+//      string strType = ::type(pthread).name();
 //
 //      if(string_begins(strType, "multimedia::"))
 //      {

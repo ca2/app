@@ -623,7 +623,7 @@ void thread::thread_loop()
       if (!task_get_run())
       {
 
-         string strType = __type_name(this);
+         string strType = ::type(this).name();
 
 //         if (strType.case_insensitive_contains("session"))
 //         {
@@ -649,7 +649,7 @@ void thread::thread_loop()
          if(!thread_step())
          {
 
-//            string strType = __type_name(this);
+//            string strType = ::type(this).name();
 //
 //            if (strType.case_insensitive_contains("session"))
 //            {
@@ -736,7 +736,7 @@ void thread::run()
    if (m_procedure && m_procedure != this)
    {
 
-      m_atom = __type_name(*m_procedure.m_pbase);
+      m_atom = ::type(m_procedure.m_pbase);
 
       task_set_name(m_atom.as_string());
 
@@ -888,7 +888,7 @@ bool thread::pump_message()
       if(m_message.m_atom == e_message_quit)
       {
 
-         string strType = __type_name(this);
+         string strType = ::type(this).name();
 
          if (strType.case_insensitive_contains("session"))
          {
@@ -911,9 +911,9 @@ bool thread::pump_message()
 
          }
 
-         information()(e_trace_category_appmsg) << __type_name(this) << " thread::pump_message - Received e_message_quit.";
+         information()(e_trace_category_appmsg) << ::type(this).name() << " thread::pump_message - Received e_message_quit.";
 
-         information() << __type_name(this) << " thread::pump_message - Received e_message_quit.";
+         information() << ::type(this).name() << " thread::pump_message - Received e_message_quit.";
 
          m_nDisablePumpCount++; // application must die
          // Note: prevents calling message loop things in 'exit_thread'
@@ -997,7 +997,7 @@ bool thread::get_message()
 bool thread::raw_pump_message()
 {
 
-   string strType = __type_name(this);
+   string strType = ::type(this).name();
 
    try
    {
@@ -1197,7 +1197,7 @@ bool thread::defer_pump_message()
       if(m_message.m_atom == e_message_quit)
       {
 
-         ::information("\n\n\nthread::defer_pump_message (1) quitting (wm_quit? {PeekMessage->message : " + ::as_string(m_message.m_atom == e_message_quit ? 1 : 0) + "!}) : " + __type_name(this) + " (" + ::as_string((u64)::current_itask()) + ")\n\n\n");
+         ::information("\n\n\nthread::defer_pump_message (1) quitting (wm_quit? {PeekMessage->message : " + ::as_string(m_message.m_atom == e_message_quit ? 1 : 0) + "!}) : " + ::type(this).name() + " (" + ::as_string((u64)::current_itask()) + ")\n\n\n");
 
          return false;
 
@@ -1294,19 +1294,19 @@ void thread::kick_idle()
 void thread::post_quit()
 {
 
-   if (string(__type_name(this)).contains("output_thread"))
+   if (string(::type(this).name()).contains("output_thread"))
    {
 
       information("output_thread ::thread::post_quit");
 
    }
-   else if (string(__type_name(this)).contains("synth_thread"))
+   else if (string(::type(this).name()).contains("synth_thread"))
    {
 
       information("synth_thread ::thread::post_quit");
 
    }
-   else if (string(__type_name(this)).contains("audio::out"))
+   else if (string(::type(this).name()).contains("audio::out"))
    {
 
       information("out ::thread::post_quit");
@@ -1440,7 +1440,7 @@ bool thread::post_quit_message(int nExitCode)
 //   try
 //   {
 //
-//      string strType = __type_name(ptask);
+//      string strType = ::type(ptask).name();
 //
 //      if(strType == "user::shell::thread")
 //      {
@@ -1504,9 +1504,9 @@ void thread::task_erase(::task * ptask)
    try
    {
 
-      string strThreadThis = __type_name(this);
+      string strThreadThis = ::type(this).name();
 
-      string strThreadChild = __type_name(ptask);
+      string strThreadChild = ::type(ptask).name();
 
       synchronous_lock synchronouslock(this->synchronization());
 
@@ -1559,7 +1559,7 @@ void thread::destroy()
 
    //call_procedures(DESTROY_ROUTINE);
 
-   string strType = __type_name(this);
+   string strType = ::type(this).name();
 
    if (m_strTaskName.contains("main_frame"))
    {
@@ -2342,7 +2342,7 @@ size_t engine_symbol(char * sz, int n, DWORD_PTR * pdisplacement, DWORD_PTR dwAd
    //if(m_atom.is_empty())
    //{
 
-   //   m_atom = __type_name(this);
+   //   m_atom = ::type(this).name();
 
    //}
 
@@ -2672,7 +2672,7 @@ void thread::__os_initialize()
 
 //#ifndef WINDOWS
 //
-//   information() << "init_thread : " << __type_name(this);
+//   information() << "init_thread : " << ::type(this).name();
 //
 //#endif
 
@@ -2716,7 +2716,7 @@ void thread::task_osinit()
    if (m_bMessageThread)
    {
 
-      if (__type_name(this).case_insensitive_contains("out"))
+      if (::type(this).name().case_insensitive_contains("out"))
       {
 
          information("out");
@@ -3036,7 +3036,7 @@ void thread::post_message(const ::atom & atom, wparam wparam, lparam lparam)
       if (atom == e_message_quit)
       {
 
-         string strType = __type_name(this);
+         string strType = ::type(this).name();
 
          if (strType.case_insensitive_contains("::application"))
          {
@@ -3298,7 +3298,7 @@ void thread::on_task_init()
 //void thread::main()
 //{
 //
-//   string strType = __type_name(this);
+//   string strType = ::type(this).name();
 //
 //   if(strType.contains("wave_player"))
 //   {
@@ -3539,7 +3539,7 @@ bool thread::peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin
 ////   if (m_bitFinishing)
 ////   {
 ////
-////      string strTypeName = __type_name(this);
+////      string strTypeName = ::type(this).name();
 ////
 ////#ifdef ANDROID
 ////
@@ -3625,7 +3625,7 @@ bool thread::peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin
 ////
 ////                  string strThreadType;
 ////
-////                  strThreadType = __type_name(pcomposite);
+////                  strThreadType = ::type(pcomposite).name();
 ////
 ////                  strWaiting += strThreadType;
 ////
@@ -3644,7 +3644,7 @@ bool thread::peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin
 ////            if (strWaiting.has_char())
 ////            {
 ////
-////               information("The thread %s is waiting for the following threads to finish:\r\n%s", __type_name(this), strWaiting.c_str());
+////               information("The thread %s is waiting for the following threads to finish:\r\n%s", ::type(this).name(), strWaiting.c_str());
 ////
 ////            }
 ////
@@ -3657,7 +3657,7 @@ bool thread::peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin
 ////      {
 ////
 ////
-////         string strType = __type_name(this);
+////         string strType = ::type(this).name();
 ////
 ////         if (strType.case_insensitive_contains("session"))
 ////         {
@@ -3706,7 +3706,7 @@ bool thread::peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin
 //
 //   synchronous_lock synchronouslock(this->synchronization());
 //
-//   string strTypeName = __type_name(this);
+//   string strTypeName = ::type(this).name();
 //
 //   bool bReadyToQuit = true;
 //

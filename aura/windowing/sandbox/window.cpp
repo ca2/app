@@ -3433,7 +3433,7 @@ namespace sandbox_windowing
    //            if (::is_set(puserinteraction))
    //            {
 
-   //               string strType = __type_name(puserinteraction);
+   //               string strType = ::type(puserinteraction).name();
 
    //               if (strType.contains("menu"))
    //               {

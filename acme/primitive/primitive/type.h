@@ -204,7 +204,7 @@ inline ::typed_type_atom < TYPE > type()
 }
 
 
-inline ::type_atom type(::particle * pparticle)
+inline ::type_atom type(const ::particle * pparticle)
 {
 
    return pparticle;

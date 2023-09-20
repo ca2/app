@@ -94,12 +94,12 @@ namespace acme
 {
 
 
-   void system::windowing_post(const ::procedure & procedure)
-   {
+   //void system::windowing_post(const ::procedure & procedure)
+   //{
 
-      main_asynchronous(procedure);
+   //   main_asynchronous(procedure);
 
-   }
+   //}
 
 
 } // namespace acme

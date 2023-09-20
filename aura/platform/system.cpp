@@ -6287,7 +6287,7 @@ namespace aura
    //::type system::get_pane_tab_impact_type_info()
    //{
 
-   //   return __type(userex::pane_tab_impact);
+   //   return ::type < userex::pane_tab_impact >();
 
    //}
 

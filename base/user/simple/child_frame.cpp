@@ -105,7 +105,7 @@ namespace base
    {
 
       
-      return __type(simple_child_frame);
+      return ::type < simple_child_frame >();
 
       
    }

@@ -51,7 +51,7 @@ namespace app_integration
    ::type application::get_pane_impact_type() const
    {
 
-      return __type(tab_impact);
+      return ::type < tab_impact >();
 
    }
 
@@ -117,8 +117,8 @@ namespace app_integration
 
       auto pdoctemplate = __new(::user::single_document_template(
                                "main",
-                               __type(document),
-                               __type(main_frame),
+                               ::type < document >(),
+                               ::type < main_frame >(),
                                get_pane_impact_type()));
 
       m_ptemplateSimpleDrawingMain = pdoctemplate;
@@ -128,9 +128,9 @@ namespace app_integration
 
       pdoctemplate = __new(::user::single_document_template(
          "openssl",
-         __type(document),
-         __type(main_frame),
-         __type(impact)));
+         ::type < document >(),
+         ::type < main_frame >(),
+         ::type < impact >()));
 
       m_ptemplateOpenSSL = pdoctemplate;
 
@@ -138,9 +138,9 @@ namespace app_integration
 
       pdoctemplate = __new(::user::single_document_template(
          "ffmpeg",
-         __type(document),
-         __type(main_frame),
-         __type(impact)));
+         ::type < document >(),
+         ::type < main_frame >(),
+         ::type < impact >()));
 
       m_ptemplateFFMPEG = pdoctemplate;
 

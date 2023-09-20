@@ -70,7 +70,7 @@ enum enum_data_structure_type
 };
 
 
-class CLASS_DECL_ACME type :
+class CLASS_DECL_ACME type_atom :
    public atom
 {
 public:
@@ -86,7 +86,7 @@ public:
 
 
    template < typename TYPE >
-   type(enum_data_structure_type, const TYPE &) :
+   type_atom(enum_data_structure_type, const TYPE &) :
 #ifdef WINDOWS
    atom(c_demangle(typeid(TYPE).name()))
 #else
@@ -98,33 +98,33 @@ public:
    }
 
 
-   //type(const ::scoped_string & scopedstrTypeName) :
+   //type_atom(const ::scoped_string & scopedstrTypeName) :
    //   atom(pszTypeName)
    //{
    //   
    //}
 
 
-   type(const ::type & type)
+   type_atom(const ::type_atom & datatype)
    {
 
-      operator = (type);
+      operator = (datatype);
 
    }
 
 
-   type(::type && type):
-      atom((::atom &&)::transfer(type))
+   type_atom(::type_atom && datatype):
+      atom((::atom &&)::transfer(datatype))
    {
 
    }
 
 
-   type(const ::std::type_info & typeinfo);
-   type(const ::particle * pparticle);
+   type_atom(const ::std::type_info & typeinfo);
+   type_atom(const ::particle * pparticle);
 
    template < typename BASE >
-   type(const ::pointer<BASE>& point);
+   type_atom(const ::pointer<BASE>& p);
 
 
    //type& operator = (const ::std::type_info& typeinfo);
@@ -133,10 +133,10 @@ public:
    //type& operator = (const ::type& type);
 
 
-   type& operator = (const ::type& type)
+   type_atom& operator = (const ::type_atom& datatype)
    {
 
-      ::atom::operator = (type);
+      ::atom::operator = (datatype);
 
       return *this;
 
@@ -149,7 +149,7 @@ public:
    bool operator == (const ::std::type_info& typeinfo) const;
 
 
-   bool operator == (const ::type& type) const;
+   bool operator == (const ::type_atom& datatype) const;
 
 
    bool operator == (const ::string& strType) const;
@@ -158,16 +158,16 @@ public:
    bool operator == (const ::atom& atom) const;
 
 
-   bool operator != (const ::std::type_info& typeinfo) const;
-
-
-   bool operator != (const ::type& type) const;
+//   bool operator != (const ::std::type_info& typeinfo) const;
+//
+//
+//   bool operator != (const ::type_atom& type) const;
 
 
    bool operator == (const ::particle* pparticle) const;
 
 
-   bool operator != (const ::particle* pparticle) const;
+   //bool operator != (const ::particle* pparticle) const;
 
 
    inline operator bool() const { return ::atom::has_char(); }
@@ -181,13 +181,14 @@ public:
 
 
 template < typename TYPE >
-class __type2 :
-   public ::type
+class typed_type_atom :
+   public ::type_atom
 {
 public:
 
-   __type2() :
-   type(typeid(TYPE))
+
+   typed_type_atom() :
+      type_atom(typeid(TYPE))
    {
    }
 
@@ -195,7 +196,7 @@ public:
 
 
 template < typename TYPE >
-inline ::__type2 < TYPE > typed_type()
+inline ::typed_type_atom < TYPE > type()
 {
 
    return {};
@@ -203,9 +204,17 @@ inline ::__type2 < TYPE > typed_type()
 }
 
 
-//#define __type(TYPE)  ___type<TYPE>()
+inline ::type_atom type(::particle * pparticle)
+{
 
-//#define __type(TYPE)  ___type<TYPE>()
+   return pparticle;
+
+}
+
+
+//#define ::type < TYPE >()  ___type<TYPE>()
+
+//#define ::type < TYPE >()  ___type<TYPE>()
 
 
 //template < typename TYPE >

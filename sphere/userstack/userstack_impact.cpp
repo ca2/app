@@ -170,7 +170,7 @@ namespace userstack
          return;
       }
 
-      m_ppaneimpact = (create_impact(__type(pane_impact), get_document(), this, 102));
+      m_ppaneimpact = (create_impact(::type < pane_impact >(), get_document(), this, 102));
 
 
    }

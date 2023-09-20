@@ -53,7 +53,7 @@ namespace base
    ::type user::get_simple_frame_window_type_info()
    {
 
-      return __type(::simple_frame_window);
+      return ::type < ::simple_frame_window >();
 
    }
 

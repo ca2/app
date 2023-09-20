@@ -1842,7 +1842,7 @@ namespace axis
 
          econtroltype = ::user::e_control_type_static;
 
-         return ::__type < ::user::still >();
+         return ::type < ::user::still >();
 
       }
       else if (str.case_insensitive_begins("label_"))
@@ -1850,7 +1850,7 @@ namespace axis
 
          econtroltype = ::user::e_control_type_static;
 
-         return ::__type < ::user::still >();
+         return ::type < ::user::still >();
 
       }
       else if (str.case_insensitive_begins("combo_"))
@@ -1858,7 +1858,7 @@ namespace axis
 
          econtroltype = ::user::e_control_type_combo_box;
 
-         return __type(::user::combo_box);
+         return ::type < ::user::combo_box >();
 
       }
       else if (str.case_insensitive_begins("check_") || str.case_insensitive_begins("checkbox_"))
@@ -1866,7 +1866,7 @@ namespace axis
 
          econtroltype = ::user::e_control_type_check_box;
 
-         return __type(::user::check_box);
+         return ::type < ::user::check_box >();
 
       }
       if (str.case_insensitive_begins("button_"))
@@ -1874,7 +1874,7 @@ namespace axis
 
          econtroltype = ::user::e_control_type_button;
 
-         return __type(::user::button);
+         return ::type < ::user::button >();
 
       }
 

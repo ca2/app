@@ -58,7 +58,7 @@ public:
       void * m_pvoid;
       para_return                            m_parareturn;
       atom                                   m_atom;
-      type                                   m_type;
+      type_atom                              m_typeatom;
       bool                                   m_b;
       bool * m_pb;
       ::i8                                   m_i8;
@@ -178,7 +178,7 @@ public:
    payload(const ::ansi_character * begin, const ::ansi_character * end);
    payload(const ::ansi_character * psz);
    payload(const ::string & str);
-   payload(const ::type & type);
+   payload(const ::type_atom & typeatom);
    payload(const ::atom & atom);
    payload(const ::earth::time & time);
    payload(const ::color::color & color);
@@ -270,14 +270,14 @@ public:
    enum_type get_type() const;
 
 
-   void set_type(const ::type & type);
+   void set_type(const ::type_atom & typeatom);
 
 
    template < typename T >
    void set_pointer(const ::pointer < T > & p)
    {
 
-      operator[](::typed_type < T >().name()) = p;
+      operator[](::type < T >().name()) = p;
 
    }
 
@@ -285,7 +285,7 @@ public:
    bool has_pointer() const
    {
 
-      return has_property(::typed_type < T >().name());
+      return has_property(::type < T >().name());
 
    }
 
@@ -293,14 +293,14 @@ public:
    ::property * find_pointer() const
    {
 
-      return find_property(::typed_type < T >().name());
+      return find_property(::type < T >().name());
 
    }
 
    template < typename T >
    ::pointer < T > pointer() const;
 
-   bool get_type(::type & type) const;
+   bool get_type(::type_atom & typeatom) const;
 
    ::i64 release();
 

@@ -63,25 +63,25 @@ namespace tc4
       pDocTemplate = memory_new ::user::single_document_template(
       this,
       "main",
-      __type(::tc4::document),
-      __type(::tc4::frame),       // top level SDI frame::user::interaction_impl
-      __type(::tc4::pane_impact));
+      ::type < ::tc4::document >(),
+      ::type < ::tc4::frame >(),       // top level SDI frame::user::interaction_impl
+      ::type < ::tc4::pane_impact >());
       add_document_template(pDocTemplate);
       m_ptemplateHelloMultiverseMain = pDocTemplate;
       pDocTemplate = memory_new ::user::single_document_template(
       this,
       "main",
-      __type(::tc4::document),
-      __type(::tc4::frame),       // top level SDI frame::user::interaction_impl
-      __type(::tc4::main_impact));
+      ::type < ::tc4::document >(),
+      ::type < ::tc4::frame >(),       // top level SDI frame::user::interaction_impl
+      ::type < ::tc4::main_impact >());
       add_document_template(pDocTemplate);
       m_ptemplateHelloMultiverseImpact = pDocTemplate;
       pDocTemplate = memory_new ::user::single_document_template(
       this,
       "main",
-      __type(::tc4::document),
-      __type(::tc4::frame),       // top level SDI frame::user::interaction_impl
-      __type(::tc4::switcher_impact));
+      ::type < ::tc4::document >(),
+      ::type < ::tc4::frame >(),       // top level SDI frame::user::interaction_impl
+      ::type < ::tc4::switcher_impact >());
       add_document_template(pDocTemplate);
       m_ptemplateHelloMultiverseSwitcher = pDocTemplate;
 

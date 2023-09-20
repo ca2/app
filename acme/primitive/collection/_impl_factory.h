@@ -104,7 +104,7 @@ namespace factory
 
           ::string strMessage;
 
-          strMessage = "Factory hasn't creator for type \"" + ::typed_type < ORIGIN_TYPE >().name() + "\"";
+          strMessage = "Factory hasn't creator for type \"" + ::type < ORIGIN_TYPE >().name() + "\"";
 
           warning (strMessage);
 
@@ -119,7 +119,7 @@ namespace factory
 
           ::string strMessage;
 
-          strMessage = "Couldn't create_particle for type \"" + ::typed_type < ORIGIN_TYPE >().name() + "\"";
+          strMessage = "Couldn't create_particle for type \"" + ::type < ORIGIN_TYPE >().name() + "\"";
 
           warning (strMessage);
 
@@ -134,7 +134,7 @@ namespace factory
 
           ::string strMessage;
 
-          strMessage = "Created element is not of the base type \"" + ::typed_type < ORIGIN_TYPE >().name() + "\"";
+          strMessage = "Created element is not of the base type \"" + ::type < ORIGIN_TYPE >().name() + "\"";
 
           warning (strMessage);
 
@@ -350,7 +350,7 @@ inline void __raw_construct(::pointer<TYPE>& p, ::factory::factory* pfactory)
 
       string strMessage;
 
-      strMessage.format("matter::__construct has failed to find factory_item for type \"%s\"", ::typed_type < TYPE >().name().c_str());
+      strMessage.format("matter::__construct has failed to find factory_item for type \"%s\"", ::type < TYPE >().name().c_str());
 
       throw_exception(::error_not_implemented, strMessage);
 
@@ -363,7 +363,7 @@ inline void __raw_construct(::pointer<TYPE>& p, ::factory::factory* pfactory)
 
       string strMessage;
 
-      strMessage.format("matter::__construct no memory to allocate implementation of type \"%ss\"", ::typed_type < TYPE >().name().c_str());
+      strMessage.format("matter::__construct no memory to allocate implementation of type \"%ss\"", ::type < TYPE >().name().c_str());
 
       throw_exception(::error_no_memory, strMessage);
 
@@ -378,7 +378,7 @@ inline void __raw_construct(::pointer<TYPE>& p, ::factory::factory* pfactory)
 
       string strMessage;
 
-      strMessage.format("matter::__construct object(%s) is not of type \"%s\"", ::type(pparticleNew).name().c_str(), ::typed_type < TYPE >().name().c_str());
+      strMessage.format("matter::__construct object(%s) is not of type \"%s\"", ::type(pparticleNew).name().c_str(), ::type < TYPE >().name().c_str());
 
       throw_exception(::error_wrong_type, strMessage);
 

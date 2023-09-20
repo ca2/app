@@ -25649,7 +25649,7 @@ namespace user
       {
       case e_control_type_edit:
 
-         //         m_type = __type(CSimpleFormListEdit);
+         //         m_type = ::type < CSimpleFormListEdit >();
 
          break;
 

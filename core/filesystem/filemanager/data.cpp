@@ -85,7 +85,7 @@ namespace filemanager
       //{
 
       //   return estatus;
-      m_typeFileList = __type(file_list);
+      m_typeFileList = ::type < file_list >();
       //}
       m_pfont.create(this);
 

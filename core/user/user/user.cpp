@@ -237,21 +237,21 @@ namespace core
       if (!m_typeDefaultMeshData)
       {
 
-         m_typeDefaultMeshData = __type(::simple_mesh_data);
+         m_typeDefaultMeshData = ::type < ::simple_mesh_data >();
 
       }
 
       if (!m_typeDefaultListData)
       {
 
-         m_typeDefaultListData = __type(::simple_list_data);
+         m_typeDefaultListData = ::type < ::simple_list_data >();
 
       }
 
       if (!m_typeDefaultListHeader)
       {
 
-         m_typeDefaultListHeader = __type(::simple_list_header_control);
+         m_typeDefaultListHeader = ::type < ::simple_list_header_control >();
 
       }
 
@@ -297,9 +297,9 @@ namespace core
 
       auto ptemplate = __new(::user::multiple_document_template(
          "system/form",
-         __type(form_document),
+         ::type < form_document >(),
          psystem->get_simple_frame_window_type_info(),
-         __type(::user::form_impact)));
+         ::type < ::user::form_impact >()));
 
       ptemplate->initialize(this);
 
@@ -310,9 +310,9 @@ namespace core
 
       ptemplate = __new(::user::multiple_document_template(
          "system/form",
-         __type(form_document),
+         ::type < form_document >(),
          get_simple_child_frame_type_info(),
-         __type(::user::form_impact)));
+         ::type < ::user::form_impact >()));
 
       ptemplate->initialize(this);
 
@@ -322,9 +322,9 @@ namespace core
 
       ptemplate = __new(::user::multiple_document_template(
          "system/form",
-         __type(::user::document),
+         ::type < ::user::document >(),
          psystem->get_simple_frame_window_type_info(),
-         __type(::user::place_holder)));
+         ::type < ::user::place_holder >()));
 
       ptemplate->initialize(this);
 
@@ -334,9 +334,9 @@ namespace core
 
       auto pmultitemplate = memory_new::user::multiple_document_template(
          "main",
-         __type(::user::document),
-         __type(::userex::dialog_frame),
-         __type(::userex::progress_impact));
+         ::type < ::user::document >(),
+         ::type < ::userex::dialog_frame >(),
+         ::type < ::userex::progress_impact >());
 
       m_ptemplateProgress2 = pmultitemplate;
 
@@ -1723,9 +1723,9 @@ namespace core
          //user()->m_mapimpactsystem[COLORSEL_IMPACT] = __new(::user::multiple_document_template(
          //   get_app(),
          //   "main",
-         //   __type(::user::document),
-         //   __type(::prodevian_translucent_simple_frame_window),
-         //   __type(::user::color_impact)));
+         //   ::type < ::user::document >(),
+         //   ::type < ::prodevian_translucent_simple_frame_window >(),
+         //   ::type < ::user::color_impact >()));
 
          //add_document_template(user()->m_mapimpactsystem[COLORSEL_IMPACT]);
 
@@ -1744,9 +1744,9 @@ namespace core
 
          auto ptemplate = __new(::user::multiple_document_template(
             "main",
-            __type(::user::document),
-            __type(::simple_frame_window),
-            __type(::userex::color_impact)));
+            ::type < ::user::document >(),
+            ::type < ::simple_frame_window >(),
+            ::type < ::userex::color_impact >()));
 
          auto psession = get_session();
 
@@ -1773,9 +1773,9 @@ namespace core
 
          auto ptemplate = __new(::user::multiple_document_template(
             "main",
-            __type(::user::document),
-            __type(::simple_frame_window),
-            __type(::userex::font_impact)));
+            ::type < ::user::document >(),
+            ::type < ::simple_frame_window >(),
+            ::type < ::userex::font_impact >()));
 
          auto psession = get_session();
 

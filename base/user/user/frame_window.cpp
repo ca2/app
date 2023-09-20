@@ -2681,15 +2681,15 @@ namespace user
 //
 //      bool bUpdateWindow;
 //
-//      auto type = __object_type(*this);
+//      auto type = ::type(this);
 //
-//      if (type.name_contains("app_veriwell_keyboard") && type.name_contains("main_frame"))
+//      if (type.name().contains("app_veriwell_keyboard") && type.name().contains("main_frame"))
 //      {
 //
 //         //::information("app_veriwell_keyboard::main_frame");
 //
 //      }
-//      else if(type.name_contains("simple_child_frame"))
+//      else if(type.name().contains("simple_child_frame"))
 //      {
 //
 //         //::information("simple_child_frame");

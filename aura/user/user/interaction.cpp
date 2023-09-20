@@ -4102,9 +4102,9 @@ namespace user
 
       m_ewindowflag -= e_window_flag_is_window;
 
-      auto type = __object_type(*this);
+      auto type = ::type(this);
 
-      if (type.name_contains("simple_scroll_bar"))
+      if (type.name().contains("simple_scroll_bar"))
       {
 
          information("simple_scroll_bar::user_interaction_on_destroy");
@@ -4127,9 +4127,9 @@ namespace user
 
             auto pinteraction = puserinteractionpointeraChild->interaction_at(i);
 
-            auto type = __object_type(*this);
+            auto type = ::type(this);
 
-            if (type.name_contains("auraclick::impact"))
+            if (type.name().contains("auraclick::impact"))
             {
 
                information("auraclick::impact");
@@ -4729,9 +4729,9 @@ namespace user
             if (timeElapsed > 50_ms)
             {
 
-               auto type = __object_type(*this);
+               auto type = ::type(this);
 
-               if (type.name_contains("font_list"))
+               if (type.name().contains("font_list"))
                {
 
                   information(type + "\n");
@@ -4760,7 +4760,7 @@ namespace user
       catch (...)
       {
 
-         information() << "Exception: interaction::_001DrawThis %s" << __object_type(*this).as_string();
+         information() << "Exception: interaction::_001DrawThis %s" << ::type(this).name();
 
       }
 
@@ -5313,15 +5313,15 @@ namespace user
    //
    //      }
    //
-   //      auto type = __object_type(*this);
+   //      auto type = ::type(this);
    //
-   //      if (type.name_contains("app_veriwell_keyboard") && type.name_contains("main_frame"))
+   //      if (type.name().contains("app_veriwell_keyboard") && type.name().contains("main_frame"))
    //      {
    //
    //         // information("app_veriwell_keyboard::main_frame");
    //
    //      }
-   //      else if (type.name_contains("plain_edit"))
+   //      else if (type.name().contains("plain_edit"))
    //      {
    //
    //         //information("plain_edit");
@@ -5333,7 +5333,7 @@ namespace user
    //         //         information("font_list");
    //         //
    //         //      }
-   //      else if (type.name_contains("combo_box"))
+   //      else if (type.name().contains("combo_box"))
    //      {
    //
    //         //information("combo_box");
@@ -5354,7 +5354,7 @@ namespace user
    //         bool bUpdateWindow = false;
    //
    //
-   //         //      else if (type.name_contains("list_box"))
+   //         //      else if (type.name().contains("list_box"))
    //         //      {
    //         //
    //         //         information("list_box");
@@ -5400,10 +5400,10 @@ namespace user
    //
    //         }
    //
-   //         if (type.name_contains("experience"))
+   //         if (type.name().contains("experience"))
    //         {
    //
-   //            if (type.name_contains("button"))
+   //            if (type.name().contains("button"))
    //            {
    //
    //               string strTag = m_strInteractionTag;
@@ -5462,7 +5462,7 @@ namespace user
    //
    //      }
    //
-   //      //      if (type.name_contains("list_box"))
+   //      //      if (type.name().contains("list_box"))
    //      //      {
    //      //
    //      //         information("list_box");
@@ -5854,10 +5854,10 @@ namespace user
 
       //   }
 
-      //   if (type.name_contains("experience"))
+      //   if (type.name().contains("experience"))
       //   {
 
-      //      if (type.name_contains("button"))
+      //      if (type.name().contains("button"))
       //      {
 
       //         string strTag = m_strInteractionTag;
@@ -5916,7 +5916,7 @@ namespace user
 
       }
 
-      //      if (type.name_contains("list_box"))
+      //      if (type.name().contains("list_box"))
       //      {
       //
       //         information("list_box");
@@ -6120,7 +6120,7 @@ namespace user
                try
                {
 
-                  auto type = __object_type(*this);
+                  auto type = ::type(this);
 
 
                   //if (pgraphics->m_bDraw)
@@ -6154,7 +6154,7 @@ namespace user
 
                   _001OnNcDraw(pgraphics);
 
-                  //         if (type.name_contains("waven::impact"))
+                  //         if (type.name().contains("waven::impact"))
                   //         {
                   //
                   //            information("waven::impact");
@@ -6194,7 +6194,7 @@ namespace user
                      {
 
                         information() << "Exception: interaction::_000OnDraw _001DrawThis %s"
-                           << __object_type(*this).as_string();
+                           << ::type(this).as_string();
 
                      }
 
@@ -6228,7 +6228,7 @@ namespace user
                {
 
                   information() << "Exception: interaction::_000OnDraw _001DrawChildren %s"
-                     << __object_type(*this).as_string();
+                     << ::type(this).as_string();
 
                }
 
@@ -6262,7 +6262,7 @@ namespace user
                      if (d1 > 50_ms)
                      {
 
-                        auto type = __object_type(*this);
+                        auto type = ::type(this);
 
                         CATEGORY_INFORMATION(prodevian, "(more than 50ms)(E) " << type.m_strName << "::_008CallOnDraw took " <<
                            d1.integral_millisecond() << "::time.\n");
@@ -9999,9 +9999,9 @@ namespace user
    void interaction::start_destroying_window()
    {
 
-      auto type = __object_type(*this);
+      auto type = ::type(this);
 
-      if (type.name_contains("main_frame"))
+      if (type.name().contains("main_frame"))
       {
 
          information("main_frame start_destroying_window\n");
@@ -10192,9 +10192,9 @@ namespace user
 
       }
 
-      auto type = __object_type(*this);
+      auto type = ::type(this);
 
-      if (type.name_contains("main_frame"))
+      if (type.name().contains("main_frame"))
       {
 
          information("main_frame post_non_client_destroy");
@@ -10955,7 +10955,7 @@ namespace user
    bool interaction::display_lading_to_layout()
    {
 
-      auto type = __object_type(*this);
+      auto type = ::type(this);
 
       auto edisplayLayout = layout().layout().display();
 
@@ -11212,9 +11212,9 @@ namespace user
       else
       {
 
-         auto type = __object_type(*this);
+         auto type = ::type(this);
 
-         if (type.name_contains("page_home"))
+         if (type.name().contains("page_home"))
          {
 
             information() << "page_home";
@@ -11341,9 +11341,9 @@ namespace user
       }
 
 #ifdef EXTRA_DESIGN_REPOSITION_LOG
-      auto type = __object_type(*this);
+      auto type = ::type(this);
 
-      if (type.name_contains("control_box"))
+      if (type.name().contains("control_box"))
       {
 
          information("control_box design_reposition");
@@ -11358,15 +11358,15 @@ namespace user
 
       ::point_i32 pointHost;
 
-      auto type = __object_type(*this);
+      auto type = ::type(this);
 
-      if (type.name_contains("list_box"))
+      if (type.name().contains("list_box"))
       {
 
          information("list_box reposition");
 
       }
-      else if (type.name_contains("_001"))
+      else if (type.name().contains("_001"))
       {
 
          information("_001 reposition");
@@ -11395,9 +11395,9 @@ namespace user
       //
       //      }
 
-//      auto type = __object_type(*this);
+//      auto type = ::type(this);
 
-      if (type.name_contains("tap"))
+      if (type.name().contains("tap"))
       {
 
          information() << "tap graphics_thread_reposition (" << this->screen_origin().x() << ", "
@@ -11740,9 +11740,9 @@ namespace user
    void interaction::message_handler(::message::message * pmessage)
    {
 
-      auto type = __object_type(*this);
+      auto type = ::type(this);
 
-      if (type.name_contains("list_box"))
+      if (type.name().contains("list_box"))
       {
 
          ::information("list_box");
@@ -20554,9 +20554,9 @@ namespace user
          //   void interaction::prodevian_redraw(bool bUpdateBuffer)
          //   {
          //
-         //      auto type = __object_type(*this);
+         //      auto type = ::type(this);
          //
-         //      //      if (type.name_contains("list_box"))
+         //      //      if (type.name().contains("list_box"))
          //      //      {
          //      //
          //      //         information("prodevian_redraw list_box");
@@ -21449,9 +21449,9 @@ namespace user
 
       //if (m_bDefaultMouseHoverHandling)
       {
-         auto type = __object_type(*this);
+         auto type = ::type(this);
 
-         if (type.name_contains("button"))
+         if (type.name().contains("button"))
          {
 
             //information("button");
@@ -22339,9 +22339,9 @@ namespace user
 
       //if (m_bDefaultMouseHoverHandling)
       {
-         auto type = __object_type(*this);
+         auto type = ::type(this);
 
-         if (type.name_contains("button"))
+         if (type.name().contains("button"))
          {
 
             //information("button");

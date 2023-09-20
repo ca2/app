@@ -784,10 +784,10 @@ namespace user
 //   }
 
 
-   ::type user::controltype_to_typeinfo(::user::enum_control_type econtroltype)
+   ::type_atom user::controltype_to_typeinfo(::user::enum_control_type econtroltype)
    {
 
-      return ::type();
+      return {};
 
    }
 
@@ -1136,10 +1136,10 @@ namespace aura
    //   }
 
    //}
-   ::type system::get_simple_frame_window_type_info()
+   ::type_atom system::get_simple_frame_window_type_info()
    {
 
-      return ::type();
+      return {};
 
    }
 

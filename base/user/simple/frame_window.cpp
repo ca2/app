@@ -2449,7 +2449,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer& pgraphicsParam)
 //   try
 //   {
 //
-//      auto type = __object_type(*this);
+//      auto type = ::type(this);
 //
 //
 //      //if (pgraphics->m_bDraw)

@@ -586,6 +586,7 @@ namespace user
 
       virtual void host_post(const ::procedure& procedure);
 
+      virtual void user_send(const ::procedure & procedure);
 
 
       inline void auto_refresh_on_show() { m_ewindowflag |= e_window_flag_auto_refresh_on_show; }

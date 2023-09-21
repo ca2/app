@@ -2973,6 +2973,23 @@ namespace user
 
    }
 
+   
+   void primitive_impl::user_send(const ::procedure & procedure)
+   {
+
+      if (!m_puserinteraction)
+      {
+
+         ::channel::user_send(procedure);
+
+         return;
+
+      }
+
+      m_puserinteraction->user_send(procedure);
+
+   }
+
 
 } // namespace user
 

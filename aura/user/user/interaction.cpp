@@ -6753,6 +6753,24 @@ namespace user
    }
 
 
+   void interaction::user_send(const ::procedure & procedure)
+   {
+
+      auto pthread = m_pthreadUserInteraction;
+
+      if (::is_null(pthread))
+      {
+
+         procedure();
+
+         return;
+
+      }
+
+      pthread->send_procedure(procedure);
+   
+   }
+
    //void interaction::enumerate_composite(matter_array& a)
    //{
 

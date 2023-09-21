@@ -669,6 +669,34 @@ void task::post_procedure(const ::procedure & procedure)
 }
 
 
+void task::send_procedure(const ::procedure & procedure)
+{
+
+   if (is_current_task())
+   {
+
+      procedure();
+
+      return;
+
+   }
+
+   auto pevent = __create_new < manual_reset_event>();
+
+   post_procedure([procedure, pevent]()
+      {
+
+         procedure();
+
+         pevent->set_event();
+
+         });
+
+   pevent->wait(procedure.m_timeTimeout);
+
+}
+
+
 void task::run_posted_procedures()
 {
 

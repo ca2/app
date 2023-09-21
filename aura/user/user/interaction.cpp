@@ -17625,7 +17625,7 @@ namespace user
 
       auto pdisplay = pwindowing->display();
 
-      index iMatchingMonitor = pdisplay->get_best_monitor(&rectangleNew, rectangleWindow, eactivation, window());
+      index iMatchingMonitor = pdisplay->get_best_monitor(&rectangleNew, rectangleWindow, eactivation, this);
 
       ::rectangle_i32 rectangleWorkspace;
 
@@ -18050,7 +18050,7 @@ namespace user
 
       auto pdisplay = pwindowing->display();
 
-      return pdisplay->get_best_workspace(prectangle, rectangle, eactivation, window());
+      return pdisplay->get_best_workspace(prectangle, rectangle, eactivation, this);
 
    }
 
@@ -18064,7 +18064,7 @@ namespace user
 
       auto pdisplay = pwindowing->display();
 
-      return pdisplay->get_best_monitor(prectangle, rectangle, eactivation, window());
+      return pdisplay->get_best_monitor(prectangle, rectangle, eactivation, this);
 
    }
 

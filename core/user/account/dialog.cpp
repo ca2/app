@@ -540,7 +540,11 @@ namespace account
 
       m_bDrag = false;
 
-      m_pointLButtonDown = user_mouse_get_cursor(pmouse);
+      auto point = pmouse->m_pointHost;
+
+      host_to_client()(point);
+
+      m_pointLButtonDown = point;
 
       m_pointLButtonDownPos = m_pointLButtonDown;
 
@@ -558,7 +562,7 @@ namespace account
 
       m_bLButtonDown = false;
 
-//      auto pmouse = pmessage->m_union.m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 //
 //auto pwindowing = windowing();
 //
@@ -591,7 +595,9 @@ namespace account
 
             m_bDrag = true;
 
-            auto pointNow = user_mouse_get_cursor(pmouse);
+            auto pointNow = pmouse->m_pointHost;
+
+            host_to_client()(pointNow);
 
             ::point_i32 point;
 

@@ -11,7 +11,7 @@ namespace input
 {
 
 
-   class input :
+   class CLASS_DECL_APEX input :
       virtual public ::acme::department
    {
    public:

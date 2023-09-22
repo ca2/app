@@ -375,6 +375,8 @@ namespace acme
       
       virtual void launch_app(const ::string & psz, const char ** argv, int iFlags);
 
+      virtual void launch_app_by_app_id(const ::scoped_string & scopedstrAppId);
+
       virtual ::process_identifier create_process(const ::string & pszCommandLine);
 
       virtual void run_silent(const ::string & strFunct, const ::string & strstrParams);

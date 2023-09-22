@@ -1677,6 +1677,14 @@ namespace acme
    }
 
 
+   void node::launch_app_by_app_id(const ::scoped_string & scopedstrAppId)
+   {
+
+      throw ::interface_only();
+
+   }
+
+
    ::process_identifier node::create_process(const ::string & pszCommandLine)
    {
 

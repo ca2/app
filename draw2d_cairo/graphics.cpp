@@ -5,12 +5,13 @@
 #include "region.h"
 #include "font.h"
 #include "acme/exception/interface_only.h"
+#include "acme/graphics/draw2d/_text_stream.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/node.h"
 #include "acme/platform/scoped_restore.h"
 #include "acme/platform/system.h"
 #include "acme/primitive/collection/int_map.h"
-//#include "acme/primitive/geometry2d/_shape.h"
+#include "acme/primitive/geometry2d/_text_stream.h"
 #include "acme/primitive/geometry2d/item.h"
 #include "acme/primitive/string/international.h"
 #include "acme/primitive/string/str.h"
@@ -937,6 +938,13 @@ namespace draw2d_cairo
 
       }
 
+//      if(payload("log_fill_rectangle").is_true())
+//      {
+//
+//         information() << "graphics::fill_rectangle : " << rectangle << ", color : " << pbrush->m_color;
+//
+//      }
+
       cairo_rectangle(m_pdc, rectangle.left(), rectangle.top(), rectangle.right() - rectangle.left(),
                       rectangle.bottom() - rectangle.top());
 
@@ -1443,6 +1451,13 @@ namespace draw2d_cairo
    {
 
       _synchronous_lock ml(cairo_mutex());
+
+//      if(payload("log_fill_rectangle").is_true())
+//      {
+//
+//         information() << "graphics::rectangle : " << rectangle << ", color : " << m_pbrush->m_color;
+//
+//      }
 
       cairo_rectangle(m_pdc, rectangle.left(), rectangle.top(), ::width(rectangle), ::height(rectangle));
 
@@ -4642,6 +4657,26 @@ namespace draw2d_cairo
       }
 
       _set_os_color(color);
+
+//      if(payload("log_fill_rectangle").is_true())
+//      {
+//
+//         information() << "graphics::fill_rectangle (2) : " << rectangle << ", color : " << color;
+//
+//         if((::i32) rectangle.height() == 472 && (::i32) rectangle.top() == 0)
+//         {
+//
+//
+//            information() << "height 472 top=0 switching to green color graphics origin : " << get_origin();
+//            _set_os_color(::color::green);
+//
+//            //information() << "not drawing with height 472";
+//
+//            //return;
+//
+//         }
+//
+//      }
 
       cairo_rectangle(m_pdc, rectangle.left(), rectangle.top(), rectangle.right() - rectangle.left(),
                       rectangle.bottom() - rectangle.top());

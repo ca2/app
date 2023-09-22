@@ -7,15 +7,16 @@
 #include "acme/constant/message.h"
 #include "acme/constant/simple_command.h"
 #include "acme/exception/interface_only.h"
+#include "acme/filesystem/filesystem/acme_directory.h"
+#include "acme/filesystem/filesystem/dir_context.h"
+#include "acme/filesystem/filesystem/file_context.h"
 #include "acme/parallelization/task_flag.h"
 #include "acme/platform/keep.h"
 #include "acme/platform/system.h"
 #include "acme/platform/sequencer.h"
+#include "acme/primitive/geometry2d/_text_stream.h"
 #include "acme/user/nano/nano.h"
 #include "apex/message/simple_command.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
-#include "acme/filesystem/filesystem/dir_context.h"
-#include "acme/filesystem/filesystem/file_context.h"
 #include "apex/platform/savings.h"
 #include "aura/graphics/graphics/graphics.h"
 #include "aura/graphics/image/context_image.h"
@@ -2800,7 +2801,11 @@ namespace user
 
       //return;
 
+      information() << "user::frame_window::_001OnNcDraw graphics offset : " << pgraphics->get_origin();
+
       auto pstyle = get_style(pgraphics);
+
+      information() << "user::frame_window::_001OnNcDraw graphics offset (2) : " << pgraphics->get_origin();
 
 //      ::rectangle_i32 rectangleX;
 //

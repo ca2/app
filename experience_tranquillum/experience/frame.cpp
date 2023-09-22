@@ -521,6 +521,10 @@ namespace experience_tranquillum
    void frame::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
+      //pgraphics->fill_solid_rectangle(::rectangle_f64_dimension(0, 0, 16, 16), ::color::red);
+
+      //return;
+
       if (!m_pframewindow->is_frame_experience_enabled())
       {
 

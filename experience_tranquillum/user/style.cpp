@@ -716,12 +716,12 @@ namespace experience_tranquillum
 
       pgraphics->m_pdraw2dhost = pframe;
 
-      if (!pframe->is_custom_draw() && pgraphics != nullptr && pgraphics->m_pnext == nullptr)
-      {
-
-         pframe->set_context_org(pgraphics);
-
-      }
+//      if (!pframe->is_custom_draw() && pgraphics != nullptr && pgraphics->m_pnext == nullptr)
+//      {
+//
+//         pframe->set_context_org(pgraphics);
+//
+//      }
 
       ::rectangle_i32 rectangleX;
 
@@ -1091,6 +1091,8 @@ namespace experience_tranquillum
          if (!pane.m_bTabPaneVisible)
          {
 
+            information() << "tranquillum not drawing tab (1) : " << iPane;
+
             continue;
 
          }
@@ -1099,6 +1101,8 @@ namespace experience_tranquillum
 
          if (!ptab->get_element_rectangle(iTab, rectangle, ::e_element_tab))
          {
+
+            information() << "tranquillum not drawing tab (2) : " << iPane;
 
             continue;
 
@@ -1129,12 +1133,16 @@ namespace experience_tranquillum
          if (!ptab->get_element_rectangle(iTab, rectangleBorder, ::e_element_border))
          {
 
+            information() << "tranquillum not drawing tab (3) : " << iPane;
+
             continue;
 
          }
 
          if (!ptab->get_element_rectangle(iTab, rectangleX, ::e_element_client))
          {
+
+            information() << "tranquillum not drawing tab (4) : " << iPane;
 
             continue;
 

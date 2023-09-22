@@ -265,11 +265,10 @@ public:
    //   }
 
    template < primitive_enum ENUM >
-   payload(ENUM e)
+   payload(ENUM e) :
+   m_etype(e_type_atom),
+   m_atom(e)
    {
-
-      m_etype = e_type_atom;
-      m_atom = e;
 
    }
 
@@ -940,6 +939,19 @@ public:
    template < is_type_of < ::u64 > U64 > payload & operator=(U64 u) { return assign_u64(u); }
    template < is_type_of < ::f32 > F32 > payload & operator=(F32 f) { return assign_f32(f); }
    template < is_type_of < ::f64 > F64 > payload & operator=(F64 f) { return assign_f64(f); }
+
+
+   payload & operator=(i8 * pi) { return assign_pi8(pi); }
+   payload & operator=(u8 * pu) { return assign_pu8(pu); }
+   payload & operator=(i16 * pi) { return assign_pi16(pi); }
+   payload & operator=(u16 * pu) { return assign_pu16(pu); }
+   payload & operator=(i32 * pi) { return assign_pi32(pi); }
+   payload & operator=(u32 * pu) { return assign_pu32(pu); }
+   payload & operator=(i64 * pi) { return assign_pi64(pi); }
+   payload & operator=(u64 * pu) { return assign_pu64(pu); }
+   payload & operator=(f32 * pf) { return assign_pf32(pf); }
+   payload & operator=(f64 * pf) { return assign_pf64(pf); }
+
 #ifdef WINDOWS
    payload & operator = (long l);
 #endif

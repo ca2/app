@@ -501,6 +501,8 @@ public:
    bool is_update() const { return _is_compounded(e_type_update); }
 
 
+   bool is_true(bool bDefault = false) const;
+
    inline bool operator == (const atom& atom) const;
    inline ::std::strong_ordering operator <=> (const atom & atom) const;
 

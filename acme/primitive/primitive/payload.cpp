@@ -2144,6 +2144,8 @@ bool payload::is_true(bool bDefault) const
          return m_ppayload->is_true(bDefault);
       case e_type_property:
          return m_pproperty->is_true(bDefault);
+      case e_type_atom:
+         return m_atom.is_true(bDefault);
 //      case e_type_enum_status:
 //         return m_estatus.succeeded();
 //      case e_type_enum_check:

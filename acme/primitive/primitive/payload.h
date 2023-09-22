@@ -375,7 +375,7 @@ public:
 #define IMPLEMENT_PAYLOAD_ENUMERATION(ENUMTYPE) \
    inline payload(const ::e_ ## ENUMTYPE & e) : m_etype(e_type_atom),m_atom(e) { } \
    inline ::e_ ## ENUMTYPE as_e ## ENUMTYPE() const { return as_atom().as_e ## ENUMTYPE(); } \
-   inline ::e_ ## ENUMTYPE & ENUMTYPE ## _reference() { return atom_reference().e ## ENUMTYPE ## _reference(); }
+   inline ::e_ ## ENUMTYPE & e ## ENUMTYPE ## _reference() { return atom_reference().e ## ENUMTYPE ## _reference(); }
    IMPLEMENT_PAYLOAD_ENUMERATION(status);
    IMPLEMENT_PAYLOAD_ENUMERATION(command);
    IMPLEMENT_PAYLOAD_ENUMERATION(check);

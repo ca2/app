@@ -176,7 +176,6 @@ enum enum_type
    // integral
    //type_block = 1000,
    e_type_bool,
-   e_type_pbool,
    e_type_byte,
    e_type_u8 = e_type_byte,
    e_type_char,
@@ -249,13 +248,14 @@ enum enum_type
    e_type_last_element,
 
    // enum
-   e_type_enum_command = 20000,
-   e_type_enum_status,
-   e_type_enum_check,
-   e_type_enum_flag,
+   //e_type_enum_command = 20000,
+   //e_type_enum_status,
+   //e_type_enum_check,
+   //e_type_enum_flag,
 
    e_type_primitive_mask = 65535,
    e_type_pointer_of = 65536,
+   e_type_pbool = e_type_bool | e_type_pointer_of,
    e_type_pu8 = e_type_u8 | e_type_pointer_of,
    e_type_pi8 = e_type_i8 | e_type_pointer_of,
    e_type_pu16 = e_type_u16 | e_type_pointer_of,
@@ -270,6 +270,25 @@ enum enum_type
 
 
 };
+
+
+constexpr bool is_number(enum_type etype)
+{
+
+   return
+      etype == e_type_bool
+   && etype == e_type_u8
+   && etype == e_type_i8
+   && etype ==  e_type_u16
+   && etype ==  e_type_i16
+   && etype ==  e_type_u32
+   && etype ==  e_type_i32
+   && etype ==  e_type_u64
+   && etype ==  e_type_i64
+   && etype == e_type_f32
+   && etype == e_type_f64;
+
+}
 
 
 enum enum_trace_category

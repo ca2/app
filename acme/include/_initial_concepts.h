@@ -494,26 +494,25 @@ class rectangle_type;
 
 
 
-
 template<typename _Tp>
-struct remove_cv
+struct erase_const_effemeral_struct
 { using type = _Tp; };
 
 template<typename _Tp>
-struct remove_cv<const _Tp>
+struct erase_const_effemeral_struct<const _Tp>
 { using type = _Tp; };
 
 template<typename _Tp>
-struct remove_cv<volatile _Tp>
+struct erase_const_effemeral_struct<volatile _Tp>
 { using type = _Tp; };
 
 template<typename _Tp>
-struct remove_cv<const volatile _Tp>
+struct erase_const_effemeral_struct<const volatile _Tp>
 { using type = _Tp; };
 
 
 template<typename _Tp>
-using __remove_cv_t = typename remove_cv<_Tp>::type;
+using erase_const_effemeral = typename erase_const_effemeral_struct<_Tp>::type;
 
 
 
@@ -528,7 +527,7 @@ struct __is_pointer_helper<_Tp*>
 /// is_pointer
 template<typename _Tp>
 struct is_pointer_struct
-   : public __is_pointer_helper<__remove_cv_t<_Tp>>
+   : public __is_pointer_helper<erase_const_effemeral<_Tp>>
 { };
 
 
@@ -542,3 +541,16 @@ concept primitive_pointer = ::is_pointer < POINTER >;
 
 template < typename OBJECT >
 concept primitive_object = !::is_pointer < OBJECT > && !::is_function < OBJECT >;
+
+
+template < typename T, typename TYPE >
+concept is_type_of = ::std::is_same < TYPE, erase_const_effemeral < T > >::value;
+
+template < typename T >
+concept bool_type = is_type_of < T, bool >;
+
+template < typename T >
+concept i8_type = is_type_of < T, ::i8 >;
+
+template < typename T >
+concept char_type = is_type_of < T, char >;

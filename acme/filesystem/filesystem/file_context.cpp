@@ -1708,6 +1708,8 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
    try
    {
 
+      information() << "preader : " << (iptr) preader.m_p;
+
       if(preader.nok())
       {
 
@@ -1721,6 +1723,8 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
 
             strError.format("Failed to copy file \"%s\" to \"%s\" bFailIfExists=%d error=could not open input file",
                             varSource.as_file_path().c_str(), varNew.as_file_path().c_str(), bFailIfExists);
+
+            error() << strError;
 
             throw ::exception(::error_io, strError);
 

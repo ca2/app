@@ -117,10 +117,10 @@ public:
       //floating_day *                         m_pfloatingday;
       class time                             m_time;
       class time * m_ptime;
-      ::e_status                             m_estatus;
-      ::e_command                            m_ecommand;
-      ::e_check                              m_echeck;
-      ::e_flag                               m_eflag;
+      //::e_status                             m_estatus;
+      //::e_command                            m_ecommand;
+      //::e_check                              m_echeck;
+      //::e_flag                               m_eflag;
       ::color::color                         m_color;
       ::color::hls                           m_hls;
 
@@ -147,13 +147,18 @@ public:
    payload(std::nullptr_t);
    payload(const ::payload & payload);
    payload(::payload && payload) { *this = payload; payload = ::payload{}; };
-   payload(bool b);
-   payload(::i32 i);
-   payload(::u32 u);
-   payload(::i64 i);
-   payload(::u64 u);
-   payload(float f);
-   payload(double d);
+   template < bool_type BOOL > payload(BOOL b) : m_etype(e_type_bool) {m_b = b;}
+   template < char_type CHAR > payload(CHAR c) : m_etype(e_type_i8) {m_i8 = c;}
+   template < i8_type I8 > payload(I8 i) : m_etype(e_type_i8) {m_i8 = i;}
+   template < is_type_of < ::u8 > U8 > payload(U8 u) : m_etype(e_type_u8) {m_u8 = u;}
+   template < is_type_of < ::i16 > I16 > payload(I16 i) : m_etype(e_type_i16) {m_i16 = i;}
+   template < is_type_of < ::u16 > U16 > payload(U16 u) : m_etype(e_type_u16) {m_u16 = u;}
+   template < is_type_of < ::i32 > I32 > payload(I32 i) : m_etype(e_type_i32) {m_i32 = i;}
+   template < is_type_of < ::u32 > U32 > payload(U32 u) : m_etype(e_type_u32) {m_u32 = u;}
+   template < is_type_of < ::i64 > I64 > payload(I64 i) : m_etype(e_type_i64) {m_i64 = i;}
+   template < is_type_of < ::u64 > U64 > payload(U64 u) : m_etype(e_type_u64) {m_u64 = u;}
+   template < is_type_of < ::f32 > F32 > payload(F32 f) : m_etype(e_type_f32) {m_f32 = f;}
+   template < is_type_of < ::f64 > F64 > payload(F64 f) : m_etype(e_type_f64) {m_f64 = f;}
 #ifdef __APPLE__
 #ifdef OS64BIT
    payload(long l);
@@ -259,6 +264,14 @@ public:
    //      operator = (t);
    //   }
 
+   template < primitive_enum ENUM >
+   payload(ENUM e)
+   {
+
+      m_etype = e_type_atom;
+      m_atom = e;
+
+   }
 
    ~payload();
 
@@ -335,28 +348,39 @@ public:
    template < typename ENUM >
    ENUM                             e(ENUM edefault = enum_default < ENUM >())  const { return (ENUM)i64(edefault); }
 
-#define DECL_VAR_FLAG(ENUMTYPE) \
-inline payload(::enum_ ## ENUMTYPE e ## ENUMTYPE) { m_etype = ::e_type_enum_ ## ENUMTYPE; m_e ## ENUMTYPE = e ## ENUMTYPE; } \
-inline ::enum_ ## ENUMTYPE e ## ENUMTYPE(::enum_ ## ENUMTYPE e ## ENUMTYPE ## Default = enum_default < ::enum_ ## ENUMTYPE >()) const { return e < ::enum_ ## ENUMTYPE >(e ## ENUMTYPE ## Default); } \
-::enum_ ## ENUMTYPE & as_e ## ENUMTYPE ();         \
-inline payload & operator = (::enum_ ## ENUMTYPE e ## ENUMTYPE)  { release(); if(m_etype != ::e_type_enum_ ## ENUMTYPE) m_etype = ::e_type_enum_ ## ENUMTYPE; m_e ## ENUMTYPE = e ## ENUMTYPE; return *this; } \
-inline bool operator == (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return m_etype == ::e_type_enum_ ## ENUMTYPE && m_e ## ENUMTYPE == e ## ENUMTYPE; } 
-#undef DECL_VAR_FLAG
+//#define DECL_VAR_FLAG(ENUMTYPE) \
+//inline payload(::enum_ ## ENUMTYPE e ## ENUMTYPE) { m_etype = ::e_type_enum_ ## ENUMTYPE; m_e ## ENUMTYPE = e ## ENUMTYPE; } \
+//inline ::enum_ ## ENUMTYPE e ## ENUMTYPE(::enum_ ## ENUMTYPE e ## ENUMTYPE ## Default = enum_default < ::enum_ ## ENUMTYPE >()) const { return e < ::enum_ ## ENUMTYPE >(e ## ENUMTYPE ## Default); } \
+//::enum_ ## ENUMTYPE & as_e ## ENUMTYPE ();         \
+//inline payload & operator = (::enum_ ## ENUMTYPE e ## ENUMTYPE)  { release(); if(m_etype != ::e_type_enum_ ## ENUMTYPE) m_etype = ::e_type_enum_ ## ENUMTYPE; m_e ## ENUMTYPE = e ## ENUMTYPE; return *this; } \
+//inline bool operator == (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return m_etype == ::e_type_enum_ ## ENUMTYPE && m_e ## ENUMTYPE == e ## ENUMTYPE; }
+//#undef DECL_VAR_FLAG
+//
 
 
+//#define DECL_VAR_ENUM(ENUMTYPE) \
+//   inline explicit payload(const ::e_ ## ENUMTYPE & e) { m_etype = ::e_type_enum_ ## ENUMTYPE; m_e ## ENUMTYPE = e; } \
+//   inline explicit payload(::enum_ ## ENUMTYPE e) { m_etype = ::e_type_enum_ ## ENUMTYPE; m_e ## ENUMTYPE = e; } \
+//   inline ::e_ ## ENUMTYPE e ## ENUMTYPE(::enum_ ## ENUMTYPE eDefault = enum_default < ::enum_ ## ENUMTYPE >()) const { return e < ::enum_ ## ENUMTYPE >(eDefault); } \
+//   inline operator ::e_ ## ENUMTYPE () const { return ::e_ ## ENUMTYPE(); } \
+//   ::e_ ## ENUMTYPE & e_ ## ENUMTYPE ## _reference();         \
+//   inline payload & operator = (const ::e_ ## ENUMTYPE & e) &{ set_type(::e_type_enum_ ## ENUMTYPE, false); m_e ## ENUMTYPE = e; return *this; } \
+//   inline payload & operator = (::enum_ ## ENUMTYPE e) { set_type(::e_type_enum_ ## ENUMTYPE, false); m_e ## ENUMTYPE = e; return *this; } \
+//   inline bool equals_enum (::e_ ## ENUMTYPE e) const { return m_etype == ::e_type_enum_ ## ENUMTYPE && m_e ## ENUMTYPE == e; }
+//   DECL_VAR_ENUM(status);
+//   DECL_VAR_ENUM(command);
+//   DECL_VAR_ENUM(check);
+//#undef DECL_VAR_ENUM
 
-#define DECL_VAR_ENUM(ENUMTYPE) \
-   inline explicit payload(const ::e_ ## ENUMTYPE & e) { m_etype = ::e_type_enum_ ## ENUMTYPE; m_e ## ENUMTYPE = e; } \
-   inline ::e_ ## ENUMTYPE e ## ENUMTYPE(::enum_ ## ENUMTYPE eDefault = enum_default < ::enum_ ## ENUMTYPE >()) const { return e < ::enum_ ## ENUMTYPE >(eDefault); } \
-   inline operator ::e_ ## ENUMTYPE () const { return ::e_ ## ENUMTYPE(); } \
-   ::e_ ## ENUMTYPE & e_ ## ENUMTYPE ## _reference();         \
-   inline payload & operator = (const ::e_ ## ENUMTYPE & e) &{ set_type(::e_type_enum_ ## ENUMTYPE, false); m_e ## ENUMTYPE = e; return *this; } \
-   inline payload & operator = (::enum_ ## ENUMTYPE e) { set_type(::e_type_enum_ ## ENUMTYPE, false); m_e ## ENUMTYPE = e; return *this; } \
-   inline bool equals_enum (::e_ ## ENUMTYPE e) const { return m_etype == ::e_type_enum_ ## ENUMTYPE && m_e ## ENUMTYPE == e; } 
-   DECL_VAR_ENUM(status);
-   DECL_VAR_ENUM(command);
-   DECL_VAR_ENUM(check);
-#undef DECL_VAR_ENUM
+
+#define IMPLEMENT_PAYLOAD_ENUMERATION(ENUMTYPE) \
+   inline payload(const ::e_ ## ENUMTYPE & e) : m_etype(e_type_atom),m_atom(e) { } \
+   inline ::e_ ## ENUMTYPE as_e ## ENUMTYPE() const { return as_atom().as_e ## ENUMTYPE(); } \
+   inline ::e_ ## ENUMTYPE & ENUMTYPE ## _reference() { return atom_reference().e ## ENUMTYPE ## _reference(); }
+   IMPLEMENT_PAYLOAD_ENUMERATION(status);
+   IMPLEMENT_PAYLOAD_ENUMERATION(command);
+   IMPLEMENT_PAYLOAD_ENUMERATION(check);
+#undef IMPLEMENT_PAYLOAD_ENUMERATION
 
 
    template < primitive_enum ENUM >
@@ -376,7 +400,7 @@ inline bool operator == (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return m_ety
 
       }
 
-      return equals_enum(e);
+      return operator == (::as_i64(e));
 
    }
 
@@ -595,12 +619,12 @@ inline bool operator == (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return m_ety
    operator ::color::hls() const { return this->as_hls(); }
    operator ::block() const { return this->as_block(); }
 
-   ::string & string_reference(const char * scopedstrOnNull = nullptr);
+   ::string & string_reference();
 
    ::memory & memory_reference();
 
 
-   ::atom & id_reference(const ::atom & idDefault);
+   ::atom & atom_reference();
 
 
    ::string_array & string_array_reference();
@@ -736,23 +760,186 @@ inline bool operator == (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return m_ety
    //   return operator =(estatus.m_estatus);
    //}
 
+   //payload & operator = (const payload & eret);
+
    payload & operator = (para_return & eret);
-   payload & operator = (bool b);
-   payload & operator = (bool * pb);
-   payload & operator = (::i32 i);
-   payload & operator = (::i32 * pi);
-   payload & operator = (::u32 u);
-   payload & operator = (::u32 * pinteraction);
 #ifdef WINDOWS
 #elif defined(__APPLE__) || defined(ANDROID) || defined(RASPBERRYPIOS)
    payload & operator = (long l);
 #endif
-   payload & operator = (::i64 i);
-   payload & operator = (::i64 * pi);
-   payload & operator = (::u64 i);
-   payload & operator = (::u64 * pi);
-   payload & operator = (float f);
-   payload & operator = (double d);
+
+
+   payload & assign_bool   (bool     b)   { return __assign_primitive(m_b   , e_type_bool  , b ); }
+   payload & assign_i8     (::i8     i)   { return __assign_primitive(m_i8  , e_type_i8    , i ); }
+   payload & assign_u8     (::u8     u)   { return __assign_primitive(m_u8  , e_type_u8    , u ); }
+   payload & assign_i16    (::i16    i)   { return __assign_primitive(m_i16 , e_type_i16   , i ); }
+   payload & assign_u16    (::u16    u)   { return __assign_primitive(m_u16 , e_type_u16   , u ); }
+   payload & assign_i32    (::i32    i)   { return __assign_primitive(m_i32 , e_type_i32   , i ); }
+   payload & assign_u32    (::u32    u)   { return __assign_primitive(m_u32 , e_type_u32   , u ); }
+   payload & assign_i64    (::i64    i)   { return __assign_primitive(m_i64 , e_type_i64   , i ); }
+   payload & assign_u64    (::u64    u)   { return __assign_primitive(m_u64 , e_type_u64   , u ); }
+   payload & assign_f32    (::f32    f)   { return __assign_primitive(m_f32 , e_type_f32   , f ); }
+   payload & assign_f64    (::f64    f)   { return __assign_primitive(m_f64 , e_type_f64   , f ); }
+
+
+   payload & assign_pbool  (bool  * pb)   { return __assign_primitive_pointer(m_pb     , e_type_pbool , pb); }
+   payload & assign_pi8    (::i8  * pi)   { return __assign_primitive_pointer(m_pi8    , e_type_pi8   , pi); }
+   payload & assign_pu8    (::u8  * pu)   { return __assign_primitive_pointer(m_pu8    , e_type_pu8   , pu); }
+   payload & assign_pi16   (::i16 * pi)   { return __assign_primitive_pointer(m_pi16   , e_type_pi16  , pi); }
+   payload & assign_pu16   (::u16 * pu)   { return __assign_primitive_pointer(m_pu16   , e_type_pu16  , pu); }
+   payload & assign_pi32   (::i32 * pi)   { return __assign_primitive_pointer(m_pi32   , e_type_pi32  , pi); }
+   payload & assign_pu32   (::u32 * pu)   { return __assign_primitive_pointer(m_pu32   , e_type_pu32  , pu); }
+   payload & assign_pi64   (::i64 * pi)   { return __assign_primitive_pointer(m_pi64   , e_type_pi64  , pi); }
+   payload & assign_pu64   (::u64 * pu)   { return __assign_primitive_pointer(m_pu64   , e_type_pu64  , pu); }
+   payload & assign_pf32   (::f32 * pf)   { return __assign_primitive_pointer(m_pf32   , e_type_pf32  , pf); }
+   payload & assign_pf64   (::f64 * pf)   { return __assign_primitive_pointer(m_pf64   , e_type_pf64  , pf); }
+
+protected:
+
+
+   template < typename PRIMITIVE >
+   bool __assign_to_held_pointer_member(PRIMITIVE primitive)
+   {
+
+      if(get_type() == e_type_pbool)
+      {
+
+         *m_pb = (bool) primitive;
+
+      }
+      else if(get_type() == e_type_pu8)
+      {
+
+         *m_pu8 = (::u8) primitive;
+
+      }
+      else if(get_type() == e_type_pi8)
+      {
+
+         *m_pi8 = (::i8) primitive;
+
+      }
+      else if(get_type() == e_type_pu16)
+      {
+
+         *m_pu16 = (::u16) primitive;
+
+      }
+      else if(get_type() == e_type_pi16)
+      {
+
+         *m_pi16 = (::i16) primitive;
+
+      }
+      else if(get_type() == e_type_pu32)
+      {
+
+         *m_pu32 = (::u32) primitive;
+
+      }
+      else if(get_type() == e_type_pi32)
+      {
+
+         *m_pi32 = (::i32) primitive;
+
+      }
+      else if(get_type() == e_type_pu64)
+      {
+
+         *m_pu64 = (::u64) primitive;
+
+      }
+      else if(get_type() == e_type_pi64)
+      {
+
+         *m_pi64 = (::i64) primitive;
+
+      }
+      else if(get_type() == e_type_pf32)
+      {
+
+         *m_pf32 = (::f32) primitive;
+
+      }
+      else if(get_type() == e_type_pf64)
+      {
+
+         *m_pf64 = (::f64) primitive;
+
+      }
+      else
+      {
+
+         return false;
+
+      }
+
+      return true;
+
+   }
+
+
+   template < typename PRIMITIVE >
+   payload & __assign_primitive(PRIMITIVE & member, enum_type etype, PRIMITIVE primitive)
+   {
+
+      if(__assign_to_held_pointer_member(primitive))
+      {
+
+
+      }
+      else if(get_type() == e_type_payload_pointer)
+      {
+
+         *m_ppayload = primitive;
+
+      }
+      else if (get_type() == e_type_property)
+      {
+
+         *m_pproperty = primitive;
+
+      }
+      else
+      {
+
+         set_type(etype, false);
+
+         member = primitive;
+
+      }
+
+      return *this;
+
+   }
+
+
+   template < typename PRIMITIVE >
+   payload & __assign_primitive_pointer(PRIMITIVE * & member, enum_type etype, PRIMITIVE * pprimitive)
+   {
+
+      set_type(etype, false);
+
+      member = pprimitive;
+
+      return *this;
+
+   }
+
+
+public:
+   template < bool_type BOOL > payload & operator=(BOOL b) { return assign_bool(b); }
+   template < char_type CHAR > payload & operator=(CHAR c) { return assign_char(c); }
+   template < i8_type I8 > payload & operator=(I8 i) { return assign_i8(i); }
+   template < is_type_of < ::u8 > U8 > payload & operator=(U8 u) { return assign_u8(u); }
+   template < is_type_of < ::i16 > I16 > payload & operator=(I16 i) { return assign_i16(i); }
+   template < is_type_of < ::u16 > U16 > payload & operator=(U16 u) { return assign_u16(u); }
+   template < is_type_of < ::i32 > I32 > payload & operator=(I32 i) { return assign_i32(i); }
+   template < is_type_of < ::u32 > U32 > payload & operator=(U32 u) { return assign_u32(u); }
+   template < is_type_of < ::i64 > I64 > payload & operator=(I64 i) { return assign_i64(i); }
+   template < is_type_of < ::u64 > U64 > payload & operator=(U64 u) { return assign_u64(u); }
+   template < is_type_of < ::f32 > F32 > payload & operator=(F32 f) { return assign_f32(f); }
+   template < is_type_of < ::f64 > F64 > payload & operator=(F64 f) { return assign_f64(f); }
 #ifdef WINDOWS
    payload & operator = (long l);
 #endif
@@ -780,6 +967,8 @@ inline bool operator == (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return m_ety
    payload & operator = (const ::property_set & propset);
    payload & operator = (const ::atom & atom);
    payload & operator = (::atom * pid);
+   template < primitive_enum ENUM >
+   payload & operator = (ENUM e) { this->operator = ((const ::atom &) e); return *this; }
    //payload & operator = (const ::second & second);
    //payload & operator = (class ::second * ptime);
    //payload & operator = (const class time & time);

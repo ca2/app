@@ -10,6 +10,7 @@
 #include "user.h"
 ////#include "acme/exception/exception.h"
 #include "acme/primitive/primitive/url.h"
+#include "acme/platform/application.h"
 #include "acme/platform/system.h"
 #include "apex/networking/http/context.h"
 #include "apex/platform/context.h"
@@ -265,7 +266,7 @@ namespace account
 
       pcredentials->m_strResponse = strResponse;
 
-      pcredentials->m_estatusHttp = set["get_status"].estatus();
+      pcredentials->m_estatusHttp = set["get_status"].as_atom().as_estatus();
 
       information() << "login_task::NetLogin Total time pcontext->m_papexcontext->http().get(\""<<strAuthUrl<<"\") : " << tickTimeProfile1.elapsed().integral_millisecond();
 
@@ -329,7 +330,7 @@ namespace account
       if(set["get_status"].failed())
       {
 
-         throw ::exception(set["get_status"].estatus());
+         throw ::exception(set["get_status"].as_estatus());
 
       }
 

@@ -34,6 +34,7 @@
 #include "apex/message/message.h"
 //#include "apex/operating_system.h"
 #include "apex/networking/http/context.h"
+#include "apex/networking/http/cookie.h"
 #include "apex/networking/networking.h"
 #include "apex/operating_system/department.h"
 #include "apex/user/user/language_map.h"

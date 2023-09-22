@@ -9,6 +9,8 @@
 #pragma once
 
 
+template < typename ENUM > struct raw_enum_of_struct { using type = ENUM; };
+
 
 template <class TYPE, TYPE t >
 struct integral_constant

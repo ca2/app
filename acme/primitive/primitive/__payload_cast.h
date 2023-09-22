@@ -24,7 +24,7 @@ public:
    }
 
 
-   operator enum_check () const { return m_payload.echeck(); }
+   //operator enum_check () const { return m_payload.echeck(); }
 
    operator bool() const { return m_payload.get_bool(); }
    operator i8 ()const { return m_payload.as_i8(); }

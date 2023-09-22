@@ -219,14 +219,14 @@ payload::payload(::string * pstr)
 }
 
 
-payload::payload(bool b)
-{
-
-   m_etype = e_type_new;
-
-   operator = (b);
-
-}
+//payload::payload(bool b)
+//{
+//
+//   m_etype = e_type_new;
+//
+//   operator = (b);
+//
+//}
 
 
 payload::payload(bool * pb)
@@ -239,44 +239,44 @@ payload::payload(bool * pb)
 }
 
 
-payload::payload(::i32 i)
-{
-
-   m_etype = e_type_new;
-
-   operator = (i);
-
-}
-
-
-payload::payload(::u32 u )
-{
-
-   m_etype = e_type_u32;
-
-   operator = (u);
-
-}
-
-
-payload::payload(::i64 i)
-{
-
-   m_etype = e_type_new;
-
-   operator = (i);
-
-}
-
-
-payload::payload(::u64 u )
-{
-
-   m_etype = e_type_u64;
-
-   m_u64 = u;
-
-}
+//payload::payload(::i32 i)
+//{
+//
+//   m_etype = e_type_new;
+//
+//   operator = (i);
+//
+//}
+//
+//
+//payload::payload(::u32 u )
+//{
+//
+//   m_etype = e_type_u32;
+//
+//   operator = (u);
+//
+//}
+//
+//
+//payload::payload(::i64 i)
+//{
+//
+//   m_etype = e_type_new;
+//
+//   operator = (i);
+//
+//}
+//
+//
+//payload::payload(::u64 u )
+//{
+//
+//   m_etype = e_type_u64;
+//
+//   m_u64 = u;
+//
+//}
 
 
 #ifdef __APPLE__
@@ -330,22 +330,22 @@ payload::payload(::u64 * pinteraction)
 }
 
 
-payload::payload(::f32 f32)
-{
-
-   m_etype = e_type_new;
-   operator = (f32);
-
-}
-
-
-payload::payload(::f64 f64)
-{
-
-   m_etype = e_type_new;
-   operator = (f64);
-
-}
+//payload::payload(::f32 f32)
+//{
+//
+//   m_etype = e_type_new;
+//   operator = (f32);
+//
+//}
+//
+//
+//payload::payload(::f64 f64)
+//{
+//
+//   m_etype = e_type_new;
+//   operator = (f64);
+//
+//}
 
 
 payload::payload(const ::file::path & path)
@@ -552,12 +552,12 @@ bool payload::convert(const ::payload & payload)
       m_i8 = payload.as_i8();
 
    }
-   else if(m_etype == e_type_enum_check)
-   {
-
-      m_echeck = payload.echeck();
-
-   }
+//   else if(m_etype == e_type_enum_check)
+//   {
+//
+//      m_echeck = payload.echeck();
+//
+//   }
    else if(m_etype == e_type_string)
    {
 
@@ -975,134 +975,134 @@ class ::payload & payload::operator = (para_return & eret)
 }
 
 
-class ::payload & payload::operator = (bool b)
-{
-
-   if(get_type() == e_type_pbool)
-   {
-
-      *m_pb = b;
-
-   }
-   else if(get_type() == e_type_payload_pointer)
-   {
-
-      *m_ppayload = b;
-
-   }
-   else if (get_type() == e_type_property)
-   {
-
-      *m_pproperty = b;
-
-   }
-   else
-   {
-
-      set_type(e_type_bool, false);
-
-      m_b = b;
-
-   }
-
-   return *this;
-
-}
-
-
-class ::payload & payload::operator = (bool * pb)
-{
-
-   set_type(e_type_pbool, false);
-
-   m_pb = pb;
-
-   return *this;
-
-}
+//class ::payload & payload::operator = (bool b)
+//{
+//
+//   if(get_type() == e_type_pbool)
+//   {
+//
+//      *m_pb = b;
+//
+//   }
+//   else if(get_type() == e_type_payload_pointer)
+//   {
+//
+//      *m_ppayload = b;
+//
+//   }
+//   else if (get_type() == e_type_property)
+//   {
+//
+//      *m_pproperty = b;
+//
+//   }
+//   else
+//   {
+//
+//      set_type(e_type_bool, false);
+//
+//      m_b = b;
+//
+//   }
+//
+//   return *this;
+//
+//}
 
 
-class ::payload & payload::operator = (::i32 i)
-{
-
-    if(get_type() == e_type_pi32)
-   {
-
-       *m_pi32 = i;
-
-   }
-   else if(get_type() == e_type_payload_pointer)
-   {
-
-       *m_ppayload = i;
-
-   }
-   else if (get_type() == e_type_property)
-   {
-
-       *m_pproperty = i;
-
-   }
-   else
-   {
-
-       set_type(e_type_i32, false);
-
-      m_i32 = i;
-
-   }
-
-   return *this;
-
-}
+//class ::payload & payload::operator = (bool * pb)
+//{
+//
+//   set_type(e_type_pbool, false);
+//
+//   m_pb = pb;
+//
+//   return *this;
+//
+//}
 
 
-class ::payload & payload::operator = (::i32 * pi)
-{
-
-   set_type(e_type_pi32, false);
-
-   m_pi32 = pi;
-
-   return *this;
-
-}
-
-
-class ::payload & payload::operator = (::u32 * pinteraction)
-{
-
-    set_type(e_type_pu32, false);
-
-   m_pu32 = pinteraction;
-
-   return *this;
-
-}
-
-
-class ::payload & payload::operator = (::i64 * pi)
-{
-
-    set_type(e_type_pi64, false);
-
-   m_pi64 = pi;
-
-   return *this;
-
-}
-
-
-class ::payload & payload::operator = (::u64 * pinteraction)
-{
-
-    set_type(e_type_pu64, false);
-
-   m_pu64 = pinteraction;
-
-   return *this;
-
-}
+//class ::payload & payload::operator = (::i32 i)
+//{
+//
+//    if(get_type() == e_type_pi32)
+//   {
+//
+//       *m_pi32 = i;
+//
+//   }
+//   else if(get_type() == e_type_payload_pointer)
+//   {
+//
+//       *m_ppayload = i;
+//
+//   }
+//   else if (get_type() == e_type_property)
+//   {
+//
+//       *m_pproperty = i;
+//
+//   }
+//   else
+//   {
+//
+//       set_type(e_type_i32, false);
+//
+//      m_i32 = i;
+//
+//   }
+//
+//   return *this;
+//
+//}
+//
+//
+//class ::payload & payload::operator = (::i32 * pi)
+//{
+//
+//   set_type(e_type_pi32, false);
+//
+//   m_pi32 = pi;
+//
+//   return *this;
+//
+//}
+//
+//
+//class ::payload & payload::operator = (::u32 * pinteraction)
+//{
+//
+//    set_type(e_type_pu32, false);
+//
+//   m_pu32 = pinteraction;
+//
+//   return *this;
+//
+//}
+//
+//
+//class ::payload & payload::operator = (::i64 * pi)
+//{
+//
+//    set_type(e_type_pi64, false);
+//
+//   m_pi64 = pi;
+//
+//   return *this;
+//
+//}
+//
+//
+//class ::payload & payload::operator = (::u64 * pinteraction)
+//{
+//
+//    set_type(e_type_pu64, false);
+//
+//   m_pu64 = pinteraction;
+//
+//   return *this;
+//
+//}
 
 
 class ::payload & payload::operator = (const ::earth::time & time)
@@ -1159,58 +1159,58 @@ class ::payload & payload::operator = (const ::color::hls & hls)
 //#endif
 
 
-class ::payload & payload::operator = (::i64 i)
-{
-   if(get_type() == e_type_pi64)
-   {
-      *m_pi64 = i;
-   }
-   else if(get_type() == e_type_payload_pointer)
-   {
-      *m_ppayload = i;
-   }
-   else if (get_type() == e_type_property)
-   {
-      *m_pproperty = i;
-   }
-   else
-   {
-      set_type(e_type_i64, false);
-      m_i64 = i;
-   }
-   return *this;
-}
-
-
-class ::payload & payload::operator = (::u64 u)
-{
-   if(get_type() == e_type_pu64)
-   {
-      *m_pu64 = u;
-   }
-   else if(get_type() == e_type_payload_pointer)
-   {
-      *m_ppayload = u;
-   }
-   else if (get_type() == e_type_property)
-   {
-      *m_pproperty = u;
-   }
-   else
-   {
-      set_type(e_type_u64, false);
-      m_u64 = u;
-   }
-   return *this;
-}
-
-
-class ::payload & payload::operator = (::u32 u)
-{
-   set_type(e_type_u32, false);
-   m_u32 = u;
-   return *this;
-}
+//class ::payload & payload::operator = (::i64 i)
+//{
+//   if(get_type() == e_type_pi64)
+//   {
+//      *m_pi64 = i;
+//   }
+//   else if(get_type() == e_type_payload_pointer)
+//   {
+//      *m_ppayload = i;
+//   }
+//   else if (get_type() == e_type_property)
+//   {
+//      *m_pproperty = i;
+//   }
+//   else
+//   {
+//      set_type(e_type_i64, false);
+//      m_i64 = i;
+//   }
+//   return *this;
+//}
+//
+//
+//class ::payload & payload::operator = (::u64 u)
+//{
+//   if(get_type() == e_type_pu64)
+//   {
+//      *m_pu64 = u;
+//   }
+//   else if(get_type() == e_type_payload_pointer)
+//   {
+//      *m_ppayload = u;
+//   }
+//   else if (get_type() == e_type_property)
+//   {
+//      *m_pproperty = u;
+//   }
+//   else
+//   {
+//      set_type(e_type_u64, false);
+//      m_u64 = u;
+//   }
+//   return *this;
+//}
+//
+//
+//class ::payload & payload::operator = (::u32 u)
+//{
+//   set_type(e_type_u32, false);
+//   m_u32 = u;
+//   return *this;
+//}
 
 
 #if !defined(LINUX) && !defined(MACOS) && !defined(ANDROID) && !defined(APPLE_IOS) && !defined(FREEBSD)
@@ -1248,141 +1248,141 @@ class ::payload & payload::operator = (long l)
    }
 #endif
 
-class ::payload & payload::operator = (::f32 f32)
-{
-
-   if (m_etype == e_type_payload_pointer)
-   {
-
-      m_ppayload->operator = (f32);
-
-   }
-   else if (m_etype == e_type_property)
-   {
-
-      m_pproperty->operator =(f32);
-
-   }
-   else if (m_etype == e_type_pf64)
-   {
-
-      *m_pf64 = f32;
-
-   }
-   else if (m_etype == e_type_pf32)
-   {
-
-      *m_pf32 = f32;
-
-   }
-   else if (m_etype == e_type_pi8)
-   {
-
-      *m_pi8 = (::i8)f32;
-
-   }
-   else if (m_etype == e_type_pi16)
-   {
-
-      *m_pi16 = (::i16)f32;
-
-   }
-   else if (m_etype == e_type_pi32)
-   {
-
-      *m_pi32 = (::i32)f32;
-
-   }
-   else if (m_etype == e_type_pi64)
-   {
-
-      *m_pi64 = (::i64)f32;
-
-   }
-   else
-   {
-
-      if (m_etype != e_type_f32)
-      {
-
-         set_type(e_type_f32, false);
-
-      }
-
-      m_f32 = f32;
-
-   }
-   
-   return *this;
-
-}
-
-
-class ::payload & payload::operator = (::f64 f64)
-{
-
-   if (m_etype == e_type_payload_pointer)
-   {
-
-      m_ppayload->operator = (f64);
-
-   }
-   else if (m_etype == e_type_property)
-   {
-
-      m_pproperty->operator =(f64);
-
-   }
-   else if (m_etype == e_type_pf64)
-   {
-
-      *m_pf64 = f64;
-
-   }
-   else if (m_etype == e_type_pf32)
-   {
-
-      *m_pf32 = (::f32) f64;
-
-   }
-   else if (m_etype == e_type_pi8)
-   {
-
-      *m_pi8 = (::i8) f64;
-
-   }
-   else if (m_etype == e_type_pi16)
-   {
-
-      *m_pi16 = (::i16)f64;
-
-   }
-   else if (m_etype == e_type_pi32)
-   {
-
-      *m_pi32 = (::i32)f64;
-
-   }
-   else if (m_etype == e_type_pi64)
-   {
-
-      *m_pi64 = (::i64)f64;
-
-   }
-   else 
-   {
-      if (m_etype != e_type_f64)
-      {
-         set_type(e_type_f64, false);
-
-      }
-      m_f64 = f64;
-
-   }
-
-   return *this;
-
-}
+//class ::payload & payload::operator = (::f32 f32)
+//{
+//
+//   if (m_etype == e_type_payload_pointer)
+//   {
+//
+//      m_ppayload->operator = (f32);
+//
+//   }
+//   else if (m_etype == e_type_property)
+//   {
+//
+//      m_pproperty->operator =(f32);
+//
+//   }
+//   else if (m_etype == e_type_pf64)
+//   {
+//
+//      *m_pf64 = f32;
+//
+//   }
+//   else if (m_etype == e_type_pf32)
+//   {
+//
+//      *m_pf32 = f32;
+//
+//   }
+//   else if (m_etype == e_type_pi8)
+//   {
+//
+//      *m_pi8 = (::i8)f32;
+//
+//   }
+//   else if (m_etype == e_type_pi16)
+//   {
+//
+//      *m_pi16 = (::i16)f32;
+//
+//   }
+//   else if (m_etype == e_type_pi32)
+//   {
+//
+//      *m_pi32 = (::i32)f32;
+//
+//   }
+//   else if (m_etype == e_type_pi64)
+//   {
+//
+//      *m_pi64 = (::i64)f32;
+//
+//   }
+//   else
+//   {
+//
+//      if (m_etype != e_type_f32)
+//      {
+//
+//         set_type(e_type_f32, false);
+//
+//      }
+//
+//      m_f32 = f32;
+//
+//   }
+//
+//   return *this;
+//
+//}
+//
+//
+//class ::payload & payload::operator = (::f64 f64)
+//{
+//
+//   if (m_etype == e_type_payload_pointer)
+//   {
+//
+//      m_ppayload->operator = (f64);
+//
+//   }
+//   else if (m_etype == e_type_property)
+//   {
+//
+//      m_pproperty->operator =(f64);
+//
+//   }
+//   else if (m_etype == e_type_pf64)
+//   {
+//
+//      *m_pf64 = f64;
+//
+//   }
+//   else if (m_etype == e_type_pf32)
+//   {
+//
+//      *m_pf32 = (::f32) f64;
+//
+//   }
+//   else if (m_etype == e_type_pi8)
+//   {
+//
+//      *m_pi8 = (::i8) f64;
+//
+//   }
+//   else if (m_etype == e_type_pi16)
+//   {
+//
+//      *m_pi16 = (::i16)f64;
+//
+//   }
+//   else if (m_etype == e_type_pi32)
+//   {
+//
+//      *m_pi32 = (::i32)f64;
+//
+//   }
+//   else if (m_etype == e_type_pi64)
+//   {
+//
+//      *m_pi64 = (::i64)f64;
+//
+//   }
+//   else
+//   {
+//      if (m_etype != e_type_f64)
+//      {
+//         set_type(e_type_f64, false);
+//
+//      }
+//      m_f64 = f64;
+//
+//   }
+//
+//   return *this;
+//
+//}
 
 
 //class ::payload & payload::operator = (enum_command ecommand)
@@ -2144,10 +2144,10 @@ bool payload::is_true(bool bDefault) const
          return m_ppayload->is_true(bDefault);
       case e_type_property:
          return m_pproperty->is_true(bDefault);
-      case e_type_enum_status:
-         return m_estatus.succeeded();
-      case e_type_enum_check:
-         return __bool(m_echeck);
+//      case e_type_enum_status:
+//         return m_estatus.succeeded();
+//      case e_type_enum_check:
+//         return __bool(m_echeck);
       default:
          return bDefault;
       }
@@ -3097,7 +3097,7 @@ string payload::as_string(const ::scoped_string & scopedstrOnNull) const
 
 
 //string & payload::get_string(const ::scoped_string & scopedstrOnNull)
-string & payload::string_reference(const char * pszOnNull)
+string & payload::string_reference()
 {
 
    if(m_etype == e_type_string)
@@ -3109,13 +3109,13 @@ string & payload::string_reference(const char * pszOnNull)
    else if(m_etype == e_type_payload_pointer)
    {
 
-      return m_ppayload->string_reference(pszOnNull);
+      return m_ppayload->string_reference();
 
    }
    else if (m_etype == e_type_property)
    {
 
-      return m_pproperty->string_reference(pszOnNull);
+      return m_pproperty->string_reference();
 
    }
    else if(m_etype == e_type_pstring)
@@ -3127,7 +3127,7 @@ string & payload::string_reference(const char * pszOnNull)
    else
    {
 
-      ::string str = this->as_string(pszOnNull);
+      ::string str = this->as_string();
 
       set_string(str);
 
@@ -3280,19 +3280,19 @@ string & payload::string_reference(const char * pszOnNull)
 }
 
 
-::atom & payload::id_reference(const ::atom & idDefault)
+::atom & payload::atom_reference()
 {
 
    if(m_etype == e_type_payload_pointer)
    {
 
-      return m_ppayload->id_reference(idDefault);
+      return m_ppayload->atom_reference();
 
    }
    else if (m_etype == e_type_property)
    {
 
-      return m_pproperty->id_reference(idDefault);
+      return m_pproperty->atom_reference();
 
    }
    else if(m_etype == e_type_patom)
@@ -3304,7 +3304,7 @@ string & payload::string_reference(const char * pszOnNull)
    else
    {
 
-      auto atom = this->as_atom(idDefault);
+      auto atom = this->as_atom();
 
       set_type(e_type_atom, false);
 
@@ -3317,9 +3317,9 @@ string & payload::string_reference(const char * pszOnNull)
 }
 
 
-
 ::i32 payload::as_i32(::i32 iDefault) const
 {
+
    switch(m_etype)
    {
    case e_type_null:
@@ -3386,7 +3386,9 @@ string & payload::string_reference(const char * pszOnNull)
    default:
       return iDefault;
    }
+
 }
+
 
 //
 //i32 & payload::as_i32()
@@ -3547,14 +3549,14 @@ string & payload::string_reference(const char * pszOnNull)
          return m_ppayload->as_i64(iDefault);
       case e_type_property:
          return m_pproperty->as_i64(iDefault);
-      case e_type_enum_command:
-         return m_ecommand;
-      case e_type_enum_status:
-         return m_estatus.m_eenum;
-      case e_type_enum_check:
-         return m_echeck.m_echeck;
-      case e_type_enum_flag:
-         return m_eflag;
+//      case e_type_enum_command:
+//         return m_ecommand;
+//      case e_type_enum_status:
+//         return m_estatus.m_eenum;
+//      case e_type_enum_check:
+//         return m_echeck.m_echeck;
+//      case e_type_enum_flag:
+//         return m_eflag;
       default:
          return iDefault;
 
@@ -8696,11 +8698,11 @@ bool payload::is_false() const
    //         return !m_floatingday.m_d;
    //      case e_type_pfloating_day:
    //         return !m_pfloatingday || !m_pfloatingday->m_d;
-   case e_type_enum_command:
-   case e_type_enum_status:
-   case e_type_enum_check:
-      case e_type_enum_flag:
-      return !m_i64;
+//   case e_type_enum_command:
+//   case e_type_enum_status:
+//   case e_type_enum_check:
+//      case e_type_enum_flag:
+//      return !m_i64;
    case e_type_color:
       return !m_color.m_u32;
    case e_type_hls:
@@ -8883,11 +8885,11 @@ bool payload::is_set_false() const
       //         return !m_floatingday.m_d;
       //      case e_type_pfloating_day:
       //         return !m_pfloatingday || !m_pfloatingday->m_d;
-   case e_type_enum_command:
-   case e_type_enum_status:
-   case e_type_enum_check:
-      case e_type_enum_flag:
-      return !m_i64;
+//   case e_type_enum_command:
+//   case e_type_enum_status:
+//   case e_type_enum_check:
+//      case e_type_enum_flag:
+//      return !m_i64;
    case e_type_color:
       return !m_color.m_u32;
    case e_type_hls:
@@ -9245,38 +9247,38 @@ IMPLEMENT_PAYLOAD_NUMBER(f64);
 
 
 
-#define IMPL_VAR_ENUM(ENUMTYPE) \
-e_ ## ENUMTYPE & payload::e_ ## ENUMTYPE ## _reference()         \
-{                                                  \
-                                                   \
-   if(m_etype == ::e_type_payload_pointer)                      \
-   {                                               \
-                                                   \
-      return m_ppayload->e_ ## ENUMTYPE ## _reference();            \
-                                                   \
-   }                                               \
-   else if(m_etype == ::e_type_property)                      \
-   {                                               \
-                                                   \
-      return m_pproperty->e_ ## ENUMTYPE ## _reference();            \
-                                                   \
-   }                                               \
-         \
-   if(m_etype != ::e_type_enum_ ## ENUMTYPE)        \
-   {                                               \
-                                                   \
-      m_etype = ::e_type_enum_ ## ENUMTYPE;              \
-      zero(m_all);   \
-                                                   \
-   }                                               \
-                                                   \
-   return m_e ## ENUMTYPE;                         \
-                                                   \
-}
-IMPL_VAR_ENUM(status);
-IMPL_VAR_ENUM(command);
-IMPL_VAR_ENUM(check);
-#undef IMPL_VAR_ENUM
+//#define IMPL_VAR_ENUM(ENUMTYPE) \
+//e_ ## ENUMTYPE & payload::e_ ## ENUMTYPE ## _reference()         \
+//{                                                  \
+//                                                   \
+//   if(m_etype == ::e_type_payload_pointer)                      \
+//   {                                               \
+//                                                   \
+//      return m_ppayload->e_ ## ENUMTYPE ## _reference();            \
+//                                                   \
+//   }                                               \
+//   else if(m_etype == ::e_type_property)                      \
+//   {                                               \
+//                                                   \
+//      return m_pproperty->e_ ## ENUMTYPE ## _reference();            \
+//                                                   \
+//   }                                               \
+//         \
+//   if(m_etype != ::e_type_enum_ ## ENUMTYPE)        \
+//   {                                               \
+//                                                   \
+//      m_etype = ::e_type_enum_ ## ENUMTYPE;              \
+//      zero(m_all);   \
+//                                                   \
+//   }                                               \
+//                                                   \
+//   return m_e ## ENUMTYPE;                         \
+//                                                   \
+//}
+//IMPL_VAR_ENUM(status);
+//IMPL_VAR_ENUM(command);
+//IMPL_VAR_ENUM(check);
+//#undef IMPL_VAR_ENUM
 
 
 //::extended::status payload::run()
@@ -10314,10 +10316,10 @@ payload & payload::operator = (const ::file::path & path)
 bool succeeded(const ::payload & payload)
 {
 
-   if (payload.m_etype == e_type_enum_status)
+   if (payload.m_etype == e_type_atom && payload.m_atom.m_estatus)
    {
 
-      return payload.m_estatus.succeeded();
+      return payload.m_atom.m_estatus.succeeded();
 
    }
    else if (payload.is_integer())

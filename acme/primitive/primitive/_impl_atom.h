@@ -270,12 +270,12 @@ inline atom::atom(enum_element eelement) :
 }
 
 
-inline atom::atom(const ::e_command & ecommand) :
-        m_etype(e_type_command),
-        m_i((::iptr) ecommand) // used m_i to reset 64-bit field
-{
-
-}
+//inline atom::atom(const ::e_command & ecommand) :
+//        m_etype(e_type_command),
+//        m_i((::iptr) ecommand) // used m_i to reset 64-bit field
+//{
+//
+//}
 
 
 inline atom::atom(ENUM_ID EID) :
@@ -369,6 +369,22 @@ inline atom::atom(enum_happening eevent) :
 {
 
 }
+
+
+//inline atom::atom(::e_check echeck) :
+//        m_etype(e_type_check),
+//        m_i((::iptr)echeck) // used m_i to reset 64-bit field
+//{
+//
+//}
+//
+//
+//inline atom::atom(::e_status estatus) :
+//        m_etype(e_type_status),
+//        m_i((::iptr)estatus) // used m_i to reset 64-bit field
+//{
+//
+//}
 
 
 // This constructor shouldn't change the primitive type of
@@ -563,24 +579,57 @@ inline ::std::strong_ordering atom::operator <=>(const atom & atom) const
 inline atom & atom::operator = (const atom & atom)
 {
 
-   _defer_free();
-
-   if (atom.is_range())
+   if (is_text() && !is_range())
    {
 
-      m_range = atom.m_range;
+      if(atom.is_text() && !atom.is_range())
+      {
 
-   }
-   else if (atom.is_text())
-   {
+         m_str = atom.m_str;
 
-      ::new(&m_str) ::string(atom.m_str);
+      }
+      else
+      {
+
+         _defer_free();
+
+         if (atom.is_range())
+         {
+
+            m_range = atom.m_range;
+
+         }
+         else
+         {
+
+            m_u = atom.m_u;
+
+         }
+
+      }
 
    }
    else
    {
 
-      m_u = atom.m_u;
+      if (atom.is_range())
+      {
+
+         m_range = atom.m_range;
+
+      }
+      else if (atom.is_text())
+      {
+
+         ::new(&m_str) ::string(atom.m_str);
+
+      }
+      else
+      {
+
+         m_u = atom.m_u;
+
+      }
 
    }
 
@@ -1221,6 +1270,14 @@ inline enum_message atom::as_emessage() const
 }
 
 
+//inline e_check atom::as_echeck() const
+//{
+//
+//   return m_etype == e_type_check ? m_echeck : (enum_check) e_check_undefined;
+//
+//}
+
+
 //inline atom::operator enum_dialog_result () const
 //{
 //
@@ -1699,12 +1756,12 @@ atom::atom(const PAYLOAD & payload)
       operator = (payload.m_atom);
 
    }
-   else if (payload.get_type() == ::e_type_enum_command)
-   {
-
-      operator = (payload.m_ecommand);
-
-   }
+//   else if (payload.get_type() == ::e_type_enum_command)
+//   {
+//
+//      operator = (payload.m_ecommand);
+//
+//   }
    else if (payload.is_integer())
    {
 

@@ -143,6 +143,8 @@ list(APPEND apex_source
         inline/console.h
         inline/console_common.h
         #inline/library.h
+        input/input.cpp
+        input/input.h
         interprocess/base.cpp
         interprocess/base.h
         interprocess/call.cpp

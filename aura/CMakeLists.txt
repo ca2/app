@@ -357,6 +357,7 @@ list(APPEND library_source
    user/user/_impl.h
    user/user/_interaction_impl.h
    user/user/_prelude.h
+        user/user/_string.cpp
    #user/user/_user.h
    user/user/alpha_source.cpp
    user/user/alpha_source.h

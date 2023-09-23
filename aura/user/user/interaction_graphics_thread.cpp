@@ -390,7 +390,7 @@ namespace user
                m_bAutoRefresh = false;
 
             }
-            else if (!::is_visible(m_puserinteraction->const_layout().window().display()))
+            else if (!::is_visible(m_puserinteraction->const_layout().design().display()))
             {
 
                m_bAutoRefresh = false;

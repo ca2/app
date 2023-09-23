@@ -23,7 +23,7 @@ namespace sandbox_windowing
 
       class ::time                                m_timeLastMouseMove;
       ::rectangle_i32                           m_rect;
-      ::point_i32                               m_pointCursor;
+      //::point_i32                               m_pointCursor;
 
 
       htask_t                                   m_htask;

@@ -493,7 +493,7 @@ namespace acme
       virtual void on_change_application_capability();
 
 
-      virtual void windowing_post(const ::procedure& procedure);
+      //virtual void windowing_post(const ::procedure& procedure);
 
 
       virtual string get_local_mutex_name(const ::string & strAppId);

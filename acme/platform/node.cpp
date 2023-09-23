@@ -2252,11 +2252,11 @@ return false;
     }
 
 
-    void node::windowing_post(const ::procedure& procedure)
-    {
+    //void node::windowing_post(const ::procedure& procedure)
+    //{
 
 
-    }
+    //}
 
 
     string node::get_local_mutex_name(const ::string& strAppId)

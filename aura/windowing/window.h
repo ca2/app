@@ -33,6 +33,7 @@ namespace windowing
          ::point_i32                               m_pointMouseMove;
          class ::time                              m_timeMouseMove;
          class ::time                              m_timeMouseMoveIgnore;
+         //bool                                      m_bMouseMovePending;
          
       };
 

@@ -261,6 +261,8 @@ public:
       e_type_check,
       e_type_status,
 
+      e_type_not_an_atom = 127,
+
 
       e_type_text = 1ull << 8,
       e_type_id_text = e_type_id | e_type_text,

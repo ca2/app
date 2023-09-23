@@ -280,6 +280,7 @@ public:
 
    void set_type(enum_type enum_type, bool bConvert = true);
    enum_type get_type() const;
+   atom::enum_type atom_type() const;
 
 
    void set_type(const ::type_atom & typeatom);

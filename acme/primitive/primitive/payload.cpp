@@ -608,6 +608,21 @@ void payload::as(::memory_base & memory) const
 }
 
 
+atom::enum_type payload::atom_type() const
+{
+
+   if(m_etype != e_type_atom)
+   {
+
+      return atom::e_type_not_an_atom;
+
+   }
+
+   return m_atom.m_etype;
+
+}
+
+
 class ::payload & payload::operator ++(::i32)
 {
 

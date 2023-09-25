@@ -220,9 +220,9 @@ namespace windowing
       //virtual bool presentation_complete();
 
 
-      virtual void on_visual_applied();
+      //virtual void on_visual_applied();
 
-      virtual void _on_visual_changed_unlocked();
+      virtual void _on_configure_notify_unlocked(const ::rectangle_i32 & rectangle);
 
 
       virtual void win_update_graphics();

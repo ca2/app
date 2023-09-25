@@ -2200,7 +2200,7 @@ void simple_scroll_bar::update_rectangles()
 }
 
 
-bool simple_scroll_bar::drag_shift(::item * pitem)
+bool simple_scroll_bar::drag_shift(::item * pitem, ::user::mouse * pmouse)
 {
 
    if (pitem->m_item.m_eelement == e_element_scrollbar_trackbar)
@@ -2208,11 +2208,11 @@ bool simple_scroll_bar::drag_shift(::item * pitem)
 
       auto pdrag = drag(pitem);
 
-      auto pmouse = pdrag->m_pmouse;
+      //auto pmouse = pdrag->m_pmouse;
 
       //auto point = pmouse->m_point - m_sizeTrackOffset - get_parent_accumulated_scroll();
 
-      auto point = drag_point(pitem);
+      auto point = drag_point(pitem, pmouse);
 
       //screen_to_client()(point);
 
@@ -2560,10 +2560,10 @@ bool simple_scroll_bar::on_drag_start(::point_i32 & point, ::item * pitem)
 }
 
 
-::point_i32 simple_scroll_bar::drag_point(::item * pitem)
+::point_i32 simple_scroll_bar::drag_point(::item * pitem, ::user::mouse * pmouse)
 {
 
-   return ::user::scroll_bar::drag_point(pitem);
+   return ::user::scroll_bar::drag_point(pitem, pmouse);
 
    //auto pdrag = drag(pitem);
 

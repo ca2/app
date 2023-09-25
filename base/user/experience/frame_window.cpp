@@ -1608,13 +1608,13 @@ namespace experience
    }
 
 
-   void frame_window::on_visual_applied()
-   {
-
-      ::user::frame_window::on_visual_applied();
-
-
-   }
+//   void frame_window::on_visual_applied()
+//   {
+//
+//      ::user::frame_window::on_visual_applied();
+//
+//
+//   }
 
 
    void frame_window::on_message_parent_mouse_move(::message::message * pmessage)

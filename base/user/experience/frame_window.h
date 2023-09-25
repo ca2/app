@@ -215,7 +215,7 @@ namespace experience
       virtual void on_defer_display() override;
 
 
-      virtual void on_visual_applied() override;
+      //virtual void on_visual_applied() override;
 
       void place_set_need_redraw(const ::rectangle_i32 & rectangleAfter, const ::rectangle_i32 & rectangleBefore, ::draw2d::graphics * pgraphics) override;
 

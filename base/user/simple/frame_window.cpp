@@ -4306,10 +4306,10 @@ string simple_frame_window::notification_area_get_xml_menu()
 }
 
 
-void simple_frame_window::on_visual_applied()
+void simple_frame_window::_on_configure_notify_unlocked(const ::rectangle_i32 & rectangle)
 {
 
-   ::experience::frame_window::on_visual_applied();
+   ::experience::frame_window::_on_configure_notify_unlocked(rectangle);
 
    if (get_parent() == nullptr)
    {

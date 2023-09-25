@@ -830,7 +830,7 @@ namespace user
 
       //virtual bool check_show_flags() override;
 
-      virtual void on_visual_applied();
+      //virtual void on_visual_applied();
 
       void set_need_redraw(const ::rectangle_i32_array & rectangleaHostNeedRedraw = {}, function<void()> function = nullptr,  bool bAscendants = true) override;
       //virtual bool needs_to_draw(const ::rectangle_i32& rectangleHostNeedsToDraw, ::draw2d::graphics_pointer & pgraphics);

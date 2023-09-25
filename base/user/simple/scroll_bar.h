@@ -77,7 +77,7 @@ public:
    virtual bool _001GetScrollInfo(::user::scroll_info * psi) override;
    virtual bool _001SetScrollInfo(::user::scroll_info * psi, bool bRedraw = true) override;
 
-   bool drag_shift(::item * pitem) override;
+   bool drag_shift(::item * pitem, ::user::mouse * pmouse) override;
    bool on_drag_start(::point_i32 & point, ::item * pitem) override;
    //virtual bool create_interaction(enum_orientation eorientation, u32 uStyle, ::user::interaction * puiParent, ::atom atom) override;
 
@@ -136,7 +136,7 @@ public:
    virtual ::color::color scrollbar_draw_color(::user::style* pstyle, ::enum_element eelement)override;
 
 
-   ::point_i32 drag_point(::item * pitem) override;
+   ::point_i32 drag_point(::item * pitem, ::user::mouse * pmouse) override;
 
 
    ::i32 scrollbar_width() override;

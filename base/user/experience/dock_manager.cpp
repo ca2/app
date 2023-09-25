@@ -379,7 +379,7 @@ namespace experience
 
       auto rectangleWindow = m_pframewindow->screen_rectangle();
 
-      auto pointCursor = rectangleWindow.origin() + pmouse->m_pointAbsolute;
+      auto pointCursor = pmouse->m_pointAbsolute;
 
       m_rectangleOnDockStart = rectangleWindow;
 
@@ -488,7 +488,7 @@ namespace experience
 
       pbutton->defer_release_mouse_capture();
 
-      dock_window(pmouse);
+      //dock_window(pmouse);
 
       m_pframewindow->on_end_layout_experience(e_layout_experience_docking);
 
@@ -570,15 +570,15 @@ namespace experience
    e_dock dock_manager::get_dock_mask()
    {
 
-      return m_edock;
+      return m_edockMask;
 
    }
 
 
-   void dock_manager::set_dock_mask(e_dock edock)
+   void dock_manager::set_dock_mask(e_dock edockMask)
    {
 
-      m_edock = edock;
+      m_edockMask = edockMask;
 
    }
 

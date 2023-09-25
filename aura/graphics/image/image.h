@@ -862,14 +862,16 @@ public:
    inline ::color::color pixel(int x, int y) const
    {
 
-      if (::is_null(this) || ::is_null(image32()) || x < 0 || y < 0 || x>= m_size.cx() || y >= m_size.cy())
+      auto pimage32 = image32();
+
+      if (::is_null(this) || ::is_null(pimage32) || x < 0 || y < 0 || x >= m_size.cx() || y >= m_size.cy())
       {
 
          return {};
 
       }
 
-      return ::draw2d::get_pixel(image32(), m_colorindexes, scan_size(), width(), x, y);
+      return ::draw2d::get_pixel(pimage32, m_colorindexes, scan_size(), width(), x, y);
 
    }
 

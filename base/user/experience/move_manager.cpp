@@ -77,7 +77,7 @@ namespace experience
 
       m_pframewindow->set_mouse_capture();
 
-      m_stateBefore = m_pframewindow->const_layout().sketch();
+      m_stateBefore = m_pframewindow->const_layout().design();
 
       auto pointCursor = pmouse->m_pointAbsolute;
 
@@ -232,6 +232,8 @@ namespace experience
 
       m_pframewindow->user_mouse_set_cursor(pmouse, pcursor);
 
+      m_iConsiderMove++;
+
       ////m_pframewindow->set_mouse_cursor(pcursor);
 
       //if (!window_is_moving())
@@ -314,16 +316,16 @@ namespace experience
 
       }
 
-      bool bApply = !is_docking_appearance(m_pframewindow->const_layout().sketch().display());
+      //bool bApply = !is_docking_appearance(m_pframewindow->const_layout().sketch().display());
 
-      window_stop_moving(bApply, pmouse);
+      window_stop_moving(pmouse);
 
       return true;
 
    }
 
 
-   bool move_manager::window_stop_moving(bool bApply, ::message::mouse * pmouse)
+   bool move_manager::window_stop_moving(::message::mouse * pmouse)
    {
 
       if (!m_bMoving)
@@ -342,6 +344,8 @@ namespace experience
       if (!consider_move())
       {
 
+         information() << "Repositioning isn't considered intentional (too few mouse moves). Restoring previous state";
+
          {
 
 //            ::user::lock_sketch_to_design lockSketchToDesign(m_pframewindow);
@@ -353,29 +357,29 @@ namespace experience
          m_pframewindow->set_need_redraw();
 
       }
-      else if (bApply)
-      {
-
-         auto rectangleRequest = m_pframewindow->screen_rectangle();
-
-         //index iMatchingMonitor = m_pframewindow->good_move(rectangleRequest, nullptr);
-
-         //index iMatchingMonitor =
-         m_pframewindow->good_move(&rectangleRequest);
-
-         //if (iMatchingMonitor >= 0)
-         //{
-
-         //   if (!pmouse)
-         //   {
-
-         //      pmouse->m_point = -m_pointWindowOrigin + rectangleRequest.top_left() + m_pointCursorOrigin;
-
-         //   }
-
-         //}
-
-      }
+//      else if (bApply)
+//      {
+//
+//         auto rectangleRequest = m_pframewindow->screen_rectangle();
+//
+//         //index iMatchingMonitor = m_pframewindow->good_move(rectangleRequest, nullptr);
+//
+//         //index iMatchingMonitor =
+//         m_pframewindow->good_move(&rectangleRequest);
+//
+//         //if (iMatchingMonitor >= 0)
+//         //{
+//
+//         //   if (!pmouse)
+//         //   {
+//
+//         //      pmouse->m_point = -m_pointWindowOrigin + rectangleRequest.top_left() + m_pointCursorOrigin;
+//
+//         //   }
+//
+//         //}
+//
+//      }
 
       m_pframewindow->on_end_layout_experience(e_layout_experience_moving);
 

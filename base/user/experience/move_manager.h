@@ -60,7 +60,8 @@ namespace experience
       //void message_handler(::user::interaction * pframewindow, ::user::message * pusermessage);
 
 
-      virtual bool window_stop_moving(bool bApply = true, ::message::mouse * pmouse = nullptr);
+      //virtual bool window_stop_moving(bool bApply = true, ::message::mouse * pmouse = nullptr);
+      virtual bool window_stop_moving(::message::mouse * pmouse = nullptr);
 
    };
 

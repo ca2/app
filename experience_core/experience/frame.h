@@ -92,6 +92,7 @@ namespace experience_core
 
 
       virtual void GetBorderRectangle(const ::rectangle_i32 & rectangleOuter, ::rectangle_i32 * lprect, enum_border eside);
+      virtual void GetBorderRectangle(const ::rectangle_i32 & rectangleOuter, int iDeflate, ::rectangle_i32 * lprect, enum_border eside);
 
       ::rectangle_i32 outer_frame() override;
 

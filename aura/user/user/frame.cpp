@@ -620,6 +620,8 @@ namespace user
 
    void frame::initial_frame_display()
    {
+
+      information() << "frame::initial_frame_display";
       
       display();
 

@@ -2242,7 +2242,6 @@ namespace user
          pmessage->m_atom == e_message_right_button_up ||
          pmessage->m_atom == e_message_left_button_double_click ||
          pmessage->m_atom == e_message_mouse_move ||
-         pmessage->m_atom == e_message_mouse_move ||
          pmessage->m_atom == e_message_mouse_wheel)
       {
 
@@ -2377,7 +2376,7 @@ namespace user
       else if (pmouse->m_atom == e_message_mouse_move)
       {
 
-         //information() << "e_message_mouse_move";
+         information() << "e_message_mouse_move : " << pmouse->m_pointAbsolute;
 
       }
       else if (pmouse->m_atom == e_message_left_button_up)
@@ -2506,7 +2505,11 @@ namespace user
 
          m_puserinteraction->m_pinteractionimpl->_on_mouse_move_step(pmouse->m_pointAbsolute);
 
+         information() << "e_message_mouse_move (2): " << pmouse->m_pointAbsolute;
+
       }
+
+
 
       //_008OnMouse(pmouse);
 
@@ -2590,6 +2593,8 @@ namespace user
          //information() << "on_mouse_message CAPTURED to object of type : " << strType;
 
          m_puserinteractionMouseCapture->route_as_parent_mouse_message(pmouse);
+
+         information() << "on_mouse_message (capture): " << pmouse->m_pointAbsolute;
 
          if (!pmouse->m_bRet && m_puserinteractionMouseCapture)
          {
@@ -8019,10 +8024,10 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 //   }
 
 
-   void interaction_impl::on_visual_applied()
-   {
-
-   }
+//   void interaction_impl::on_visual_applied()
+//   {
+//
+//   }
 
 
    void interaction_impl::ShowWindow(const ::e_display & edisplay)

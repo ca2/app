@@ -110,19 +110,21 @@ namespace user
    }
 
 
-   void box::on_visual_applied()
+   void box::_on_configure_notify_unlocked(const ::rectangle_i32 & rectangle)
    {
 
-      ::user::interaction::on_visual_applied();
+      ::user::interaction::_on_configure_notify_unlocked(rectangle);
 
-#if !defined(UNIVERSAL_WINDOWS)
+//#if !defined(UNIVERSAL_WINDOWS)
 
-      user_post([this]()
-                                  {
+      //user_post([this]()
+                                  //{
 
       auto & edisplay = layout().design().display();
 
-      window_rectangle(m_windowrectangle.m_rectangleWindow, e_layout_design);
+      //window_rectangle(m_windowrectangle.m_rectangleWindow, e_layout_design);
+
+      m_windowrectangle.m_rectangleWindow = rectangle;
 
       if (is_docking_appearance(edisplay))
       {
@@ -152,6 +154,8 @@ namespace user
 
             m_windowrectangle.m_rectangleNormal = m_windowrectangle.m_rectangleWindow;
 
+            information() << "m_windowrectangle.m_rectangleNormal (1) : " << m_windowrectangle.m_rectangleNormal;
+
          }
          //else
          //{
@@ -169,9 +173,9 @@ namespace user
 
       }
 
-                                  });
+//                                  });
 
-#endif
+//#endif
 
    }
 

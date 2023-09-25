@@ -253,7 +253,7 @@ namespace user
       bool                                      m_bLoadingWindowRectangle;
 
 
-      bool                                      m_bVisualChanged;
+      //bool                                      m_bVisualChanged;
 
       // <3ThomasBorreggardSoerensen_!!
       ::pointer<::matter>                       m_pmatterCommandHandler;
@@ -1290,8 +1290,8 @@ namespace user
       //virtual void _window_show_change_visibility_unlocked();
       //virtual void _window_request_presentation_locked();
       //virtual void _window_request_presentation_unlocked();
-      virtual void on_visual_applied();
-      virtual void _on_visual_changed_unlocked();
+      //virtual void on_configure_notifyvisual_applied();
+      virtual void _on_configure_notify_unlocked(const ::rectangle_i32 & rectangle);
 
 
       virtual void defer_save_window_placement();
@@ -1642,7 +1642,7 @@ namespace user
       void drag_set_capture() override;
       bool on_drag_start(::point_i32 & pointStart, ::item * pitem) override;
       ::point_i32 drag_mouse_cursor_position(::item* pitem, const ::point_i32 & point) override;
-      bool drag_shift(::item * pitem) override;
+      bool drag_shift(::item * pitem, ::user::mouse * pmouse) override;
       bool drag_hover(::item * pitem) override;
       void drag_release_capture() override;
       void drag_set_cursor(::item * pitem) override;
@@ -2264,6 +2264,7 @@ namespace user
 
       //virtual bool update_hover(const ::point_i32 & point, bool bAvoidRedraw = true);
       virtual ::item_pointer update_hover(::message::mouse * pmouse, e_zorder ezorder);
+      virtual ::item_pointer update_hover_according_to_last_hover_update(e_zorder ezorder);
       //virtual ::item_pointer update_hover(::user::mouse * pmouse, e_zorder ezorder);
 
 

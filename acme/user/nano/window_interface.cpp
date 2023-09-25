@@ -204,13 +204,13 @@ bool nano_window_interface::on_drag_start(::point_i32 & point, ::item * pitem)
 
 
 
-bool nano_window_interface::drag_shift(::item * pitem)
+bool nano_window_interface::drag_shift(::item * pitem, ::user::mouse * pmouse)
 {
 
    if (pitem->m_item.m_eelement == e_element_client)
    {
 
-      auto point = drag_point(pitem);
+      auto point = drag_point(pitem, pmouse);
 
       move_to(point);
 

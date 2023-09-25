@@ -226,7 +226,7 @@ namespace user
 
       m_bAutoResize = false;
 
-      m_bVisualChanged = false;
+      //m_bVisualChanged = false;
 
 
 #ifdef REPORT_OFFSETS
@@ -831,6 +831,13 @@ namespace user
 
    bool interaction::on_set_position(::point_i32 & point, enum_layout elayout)
    {
+
+      if(point.x() < 0 || point.y() < 0)
+      {
+
+         information() << "on_set_position x < 0 || y < 0 : " << point;
+
+      }
 
       if (point == const_layout().m_statea[elayout].origin())
       {
@@ -1891,15 +1898,15 @@ namespace user
    void interaction::post_redraw(bool bAscendants)
    {
 
-      if(!is_window())
-      {
-
-         warning() << "interaction::post_redraw !is_window returning...";
-
-         return;
-
-      }
-
+//      if(!is_window())
+//      {
+//
+//         warning() << "interaction::post_redraw !is_window returning...";
+//
+//         return;
+//
+//      }
+//
       auto * pinteraction = get_host_window();
 
       if (::is_null(pinteraction))
@@ -3035,8 +3042,12 @@ namespace user
 
       auto edisplayPrevious = window_previous_display();
 
+      information() << "display_previous : " << edisplayPrevious;
+
       if (!::is_screen_visible(edisplayPrevious))
       {
+
+         information() << "display_previous not screen visible, using e_display_normal";
 
          edisplayPrevious = e_display_normal;
 
@@ -7818,7 +7829,7 @@ namespace user
    }
 
 
-   bool interaction::drag_shift(::item * pitem)
+   bool interaction::drag_shift(::item * pitem, ::user::mouse * pmouse)
    {
 
       if (pitem->m_item.m_eelement == e_element_client)
@@ -7828,7 +7839,7 @@ namespace user
 
          pdrag->m_ecursor = e_cursor_move;
 
-         auto point = drag_point(pitem);
+         auto point = drag_point(pitem, pmouse);
 
          set_position(point);
 
@@ -7848,7 +7859,7 @@ namespace user
 
          pdrag->m_ecursor = e_cursor_size_bottom_right;
 
-         auto pointBottomRight = drag_point(pitem);
+         auto pointBottomRight = drag_point(pitem, pmouse);
 
          //auto Δ = point - pdrag->m_pointLButtonDown;
 
@@ -12664,32 +12675,32 @@ namespace user
 //   }
 
 
-   void interaction::_on_visual_changed_unlocked()
+   void interaction::_on_configure_notify_unlocked(const ::rectangle_i32 & rectangle)
    {
 
-      if (m_bVisualChanged)
-      {
-
-         on_visual_applied();
-
-         m_bVisualChanged = false;
-
-      }
+//      if (m_bVisualChanged)
+//      {
+//
+//         on_visual_applied();
+//
+//         m_bVisualChanged = false;
+//
+//      }
 
    }
 
 
-   void interaction::on_visual_applied()
-   {
-
-      if (m_pinteractionimpl)
-      {
-
-         m_pinteractionimpl->on_visual_applied();
-
-      }
-
-   }
+//   void interaction::on_visual_applied()
+//   {
+//
+//      if (m_pinteractionimpl)
+//      {
+//
+//         m_pinteractionimpl->on_visual_applied();
+//
+//      }
+//
+//   }
 
 
    void interaction::on_reposition()
@@ -15248,9 +15259,16 @@ namespace user
 
       }
 
-      auto pointCursor = pwindow->m_pointCursor2;
+      auto pdisplay = pwindow->display();
 
-      screen_to_client()(pointCursor);
+      if (::is_null(pdisplay))
+      {
+
+         return {};
+
+      }
+
+      auto pointCursor = pdisplay->m_pointCursor2;
 
       return pointCursor;
 
@@ -20030,8 +20048,12 @@ namespace user
                   || pitem->m_item.m_eelement == ::e_element_maximize_icon)
          {
 
+            information() << "clicked maximize";
+
             if (is_display_like_maximized())
             {
+
+               information() << "window is like maximized - going to display e_display_normal";
 
                auto & sizeWindow = layout().window().m_size;
 
@@ -20042,6 +20064,8 @@ namespace user
             }
             else
             {
+
+               information() << "window isn't like maximized - going to display e_display_zoomed";
 
                display(e_display_zoomed);
 
@@ -23193,6 +23217,20 @@ namespace user
       }
 
       return pitemHitTest;
+
+   }
+
+
+   ::item_pointer interaction::update_hover_according_to_last_hover_update(e_zorder ezorder)
+   {
+
+      auto pmouse = __create_new < ::message::mouse >();
+
+      pmouse->m_pointHost = host_mouse_cursor_position();
+
+      pmouse->m_pointAbsolute = absolute_mouse_cursor_position();
+
+      return update_hover(pmouse, ezorder);
 
    }
 

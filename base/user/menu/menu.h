@@ -46,7 +46,6 @@ namespace user
       ::i32_array                              m_iaColumnWidth;
       ::i32_array                              m_iaColumnHeight;
       bool                                   m_bCloseButton;
-      procedure                              m_procedureOnAfterInitializeUserMenu;
 
 
       menu();
@@ -77,7 +76,7 @@ namespace user
       virtual void defer_initialize_user_menu();
       virtual void initialize_user_menu();
 
-      virtual void layout_menu(::draw2d::graphics_pointer& pgraphics);
+      //virtual void layout_menu(::draw2d::graphics_pointer& pgraphics);
 
       virtual bool contains_menu_item(menu_item * pitem, bool bRecursive = true) const;
 
@@ -143,6 +142,9 @@ namespace user
 
       //// <3ThomasBorregaardSorensen__!!
       void handle_command(const ::atom& atom) override;
+
+
+      void on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics) override;
 
 
    };

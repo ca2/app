@@ -134,7 +134,7 @@ namespace user
          {
 
 
-            branch();
+            branch_synchronously();
 
             //if (!branch())
             //{

@@ -71,21 +71,32 @@ namespace graphics
    //}
 
 
-   buffer_item * double_buffer::on_begin_draw()
+   bool double_buffer::_on_begin_draw(buffer_item * pitem)
    {
 
-      auto pitem = get_buffer_item();
+      //auto pitem = get_buffer_item();
 
-      buffer_size_and_position(pitem);
+      //buffer_size_and_position(pitem);
 
-      if (pitem->m_size.is_empty())
-      {
+      //if (pitem->m_size.is_empty())
+      //{
 
-         information() << "window size is zero in begin draw!!";
+      //   if (egraphics & e_graphics_layout)
+      //   {
 
-         return nullptr;
+      //      pitem->m_size = { 512, 256 };
 
-      }
+      //   }
+      //   else
+      //   {
+
+      //      information() << "window size is zero in begin draw!!";
+
+      //      return nullptr;
+
+      //   }
+
+      //}
 
       if (!m_bDibIsHostingBuffer)
       {
@@ -129,7 +140,7 @@ namespace graphics
          if (pimage.nok())
          {
 
-            return nullptr;
+            return false;
 
          }
 
@@ -144,7 +155,9 @@ namespace graphics
 
       }
 
-      return pitem;
+      //return pitem;
+
+      return true;
 
    }
 

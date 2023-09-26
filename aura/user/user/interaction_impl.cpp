@@ -5608,6 +5608,8 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
    void interaction_impl::top_down_prefix()
    {
 
+      m_puserinteraction->top_down_prefix();
+
    }
 
 
@@ -5625,9 +5627,9 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 
       //{
 
-      m_puserinteraction->top_down_prefix();
+      //m_puserinteraction->top_down_prefix();
 
-      m_puserinteraction->layout_to_design();
+      //m_puserinteraction->layout_to_design();
 
       ::draw2d::lock draw2dlock(this);
 
@@ -5643,7 +5645,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 
 
 
-         auto pbufferitem = m_pgraphics->on_begin_draw();
+         auto pbufferitem = m_pgraphics->on_begin_draw(e_graphics_layout);
          //auto pparticleSynchronization = m_pgraphics->get_buffer_item()->m_pmutex;
 
          if (!pbufferitem)
@@ -5695,8 +5697,6 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
          }
 
          {
-
-            pgraphics->m_egraphics = e_graphics_layout;
 
             //ASSERT(!(pgraphics->m_egraphics & e_graphics_from_context));
             //ASSERT(pgraphics->m_egraphics & (e_graphics_layout | e_graphics_draw));
@@ -5912,7 +5912,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 
 
 
-         auto pbufferitem = m_pgraphics->on_begin_draw();
+         auto pbufferitem = m_pgraphics->on_begin_draw(e_graphics_draw);
          //auto pparticleSynchronization = m_pgraphics->get_buffer_item()->m_pmutex;
 
          if (!pbufferitem)
@@ -5965,7 +5965,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 
          {
 
-            pgraphics->m_egraphics = e_graphics_draw;
+            //pgraphics->m_egraphics = e_graphics_draw;
 
             //ASSERT(!(pgraphics->m_egraphics & e_graphics_from_context));
             //ASSERT(pgraphics->m_egraphics & (e_graphics_layout | e_graphics_draw));

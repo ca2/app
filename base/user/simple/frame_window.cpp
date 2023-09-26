@@ -25,6 +25,7 @@
 #include "aura/graphics/image/fastblur.h"
 #include "aura/user/user/alpha_source.h"
 #include "aura/user/user/primitive_impl.h"
+#include "aura/windowing/display.h"
 #include "aura/windowing/icon.h"
 #include "aura/windowing/windowing.h"
 #include "base/user/user/user.h"
@@ -3346,7 +3347,7 @@ void simple_frame_window::handle(::topic* ptopic, ::context* pcontext)
 
          //OnNotifyIconContextMenu(ptopic->m_puserelement->m_atom);
 
-         auto pointCursor = mouse_cursor_position();
+         auto pointCursor = windowing()->display()->get_mouse_cursor_position();
 
          string strXml = notification_area_get_xml_menu();
 

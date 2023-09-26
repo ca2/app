@@ -232,7 +232,7 @@ namespace windowing
       }
 
 
-      virtual void register_extended_event_listener(::matter * pdata, bool bMouse, bool bKeyboard);
+      //virtual void register_extended_event_listener(::matter * pdata, bool bMouse, bool bKeyboard);
 
 
 #ifdef WINDOWS_DESKTOP

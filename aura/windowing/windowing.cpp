@@ -743,12 +743,12 @@ namespace windowing
 #endif
 
 
-   void windowing::register_extended_event_listener(::matter * pdata, bool bMouse, bool bKeyboard)
-   {
-
-      throw ::interface_only();
-
-   }
+//   void windowing::register_extended_event_listener(::matter * pdata, bool bMouse, bool bKeyboard)
+//   {
+//
+//      throw ::interface_only();
+//
+//   }
 
 
    void windowing::os_menu_item_enable(void * pitem, bool bEnable)

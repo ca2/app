@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "acme/primitive/geometry2d/_text_stream.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "frame_008.h"
@@ -241,17 +242,135 @@ namespace experience_core
       }
 
       enum_dock edock = m_pframewindow->dock_manager()->get_dock_mask();
+
+      enum_display edisplay = m_pframewindow->const_layout().design().display();
+
       ::rectangle_i32 rectangleA(rectangleX);
+
+      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       if(m_bHollow)
       {
 
+         ::rectangle_i32 rectangleA(rectangleX);
+
+         //rectangleA.bottom()--;
+
+         //rectangleA.right()--;
+
+         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+
+         if(eside & e_border_left)
+         {
+
+            information() << "draw_border_side e_border_left";
+
+         }
+
+         if(eside & e_border_top)
+         {
+
+            information() << "draw_border_side e_border_top";
+
+         }
+
+         if(eside & e_border_bottom)
+         {
+
+            information() << "draw_border_side e_border_bottom";
+
+         }
+
+         if(eside & e_border_right)
+         {
+
+            information() << "draw_border_side e_border_right";
+
+         }
+
+         if(edisplay & e_display_left)
+         {
+
+            information() << "draw_border_side e_display_left";
+
+         }
+
+         if(edisplay & e_display_top)
+         {
+
+            information() << "draw_border_side e_display_top";
+
+         }
+
+         if(edisplay & e_display_bottom)
+         {
+
+            information() << "draw_border_side e_display_bottom";
+
+         }
+
+         if(edisplay & e_display_right)
+         {
+
+            information() << "draw_border_side e_display_right";
+
+         }
          ::rectangle_i32 rectangle;
-         GetBorderRectangle(rectangleA, &rectangle, eside);
 
-         pgraphics->fill_rectangle(rectangle, crMoveableBorder.opaque());//m_colorMoveableBorderDkShadow);
+         GetBorderRectangle(rectangleA, 1, &rectangle, eside);
 
-         // rgb(255, 170, 136) RedOrange
+         pgraphics->fill_rectangle(rectangle, m_ppenHollow0->m_color);
+
+         rectangleA.deflate(
+            edisplay & e_display_left ? 0 : 1,
+            edisplay & e_display_top ? 0 : 1,
+            edisplay & e_display_right ? 0 : 1,
+            edisplay & e_display_bottom ? 0 : 1);
+
+         information() << "rA : " << rectangleA;
+
+         GetBorderRectangle(rectangleA, 1, &rectangle, eside);
+
+         pgraphics->fill_rectangle(rectangle, m_ppenHollow1->m_color);
+
+         rectangleA.deflate(
+            edisplay & e_display_left ? 0 : 1,
+            edisplay & e_display_top ? 0 : 1,
+            edisplay & e_display_right ? 0 : 1,
+            edisplay & e_display_bottom ? 0 : 1);
+
+         information() << "rA : " << rectangleA;
+
+         GetBorderRectangle(rectangleA, 1, &rectangle, eside);
+
+         pgraphics->fill_rectangle(rectangle, m_ppenHollow2->m_color);
+
+         rectangleA.deflate(
+            edisplay & e_display_left ? 0 : 1,
+            edisplay & e_display_top ? 0 : 1,
+            edisplay & e_display_right ? 0 : 1,
+            edisplay & e_display_bottom ? 0 : 1);
+
+         GetBorderRectangle(rectangleA, 1, &rectangle, eside);
+
+         information() << "rA : " << rectangleA;
+
+         pgraphics->fill_rectangle(rectangle, m_ppenHollow3->m_color);
+
+         rectangleA.deflate(
+            edisplay & e_display_left ? 0 : 1,
+            edisplay & e_display_top ? 0 : 1,
+            edisplay & e_display_right ? 0 : 1,
+            edisplay & e_display_bottom ? 0 : 1);
+
+         GetBorderRectangle(rectangleA, 1, &rectangle, eside);
+
+         information() << "rA : " << rectangleA;
+         information() << "graphics origin : " << pgraphics->origin();
+         information() << "r : " << rectangle;
+
+         pgraphics->fill_rectangle(rectangle, m_ppenHollow5->m_color);
+
       }
       else if(m_pframewindow->m_estyle == ::user::StyleLightBlue || m_pframewindow->m_estyle == ::user::StyleRedOrange)
       {
@@ -371,6 +490,7 @@ namespace experience_core
       //
       ////////////////////
 
+      information() << "rectangleNClient : " << rectangleNClient;
 
       if(!pframewindow->layout().is_full_screen())
       {
@@ -418,15 +538,13 @@ namespace experience_core
                         | e_border_left));
       }
 
-
-
       if(m_bHollow && eborder == e_border_all)
       {
 
          ::rectangle_i32 rectangleA(rectangleX);
 
-         rectangleA.bottom()--;
-         rectangleA.right()--;
+         //rectangleA.bottom()--;
+         //rectangleA.right()--;
 
          pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 

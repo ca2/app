@@ -20,6 +20,8 @@ public:
 
 
    bool m_bReallySimple;
+   bool m_bWithTimePrefix;
+   bool m_bDisplayRelativeTime;
 
 
    simple_log();

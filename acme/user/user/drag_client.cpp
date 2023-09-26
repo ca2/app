@@ -2,6 +2,7 @@
 #include "framework.h"
 #include "drag_client.h"
 #include "drag.h"
+#include "acme/primitive/geometry2d/_text_stream.h"
 #include "acme/user/user/mouse.h"
 #include "acme/user/user/item.h"
 
@@ -200,7 +201,7 @@ namespace user
 
                m_pdragCurrent->m_bDrag = true;
 
-               drag_shift(m_pdragCurrent->m_pitem);
+               drag_shift(m_pdragCurrent->m_pitem, pmouse);
 
                if (m_pdragCurrent->m_ecursor != e_cursor_none)
                {
@@ -288,7 +289,7 @@ namespace user
 
       drag_release_capture();
 
-      drag_shift(m_pdragCurrent->m_pitem);
+      //drag_shift(m_pdragCurrent->m_pitem);
 
       m_pdragCurrent->drag_end();
 
@@ -307,7 +308,7 @@ namespace user
    //}
 
 
-   ::point_i32 drag_client::drag_point(::item * pitem)
+   ::point_i32 drag_client::drag_point(::item * pitem, ::user::mouse * pmouse)
    {
 
       auto pdrag = drag(pitem);
@@ -316,9 +317,16 @@ namespace user
 
       auto Δ = pdrag->m_pointLButtonDown2 - pdrag->m_pointInitial;
 
-      auto pointCursor = drag_mouse_cursor_position(pitem, pdrag->m_pmouse->m_pointAbsolute);
+      auto pointCursor = drag_mouse_cursor_position(pitem, pmouse->m_pointAbsolute);
 
       auto pointDrag = pointCursor - Δ;
+
+      information() << "drag_client::drag_point";
+      information() << "pointLButtonDown2 : " << pdrag->m_pointLButtonDown2;
+      information() << "pointInitial : " << pdrag->m_pointInitial;
+      information() << "pointAbsolute : " << pmouse->m_pointAbsolute;
+      information() << "pointCursor : " << pointCursor;
+      information() << "pointDrag : " << pointDrag;
 
       return pointDrag;
 

@@ -3,6 +3,7 @@
 #include "framework.h"
 #include "acme/exception/interface_only.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/platform/node.h"
 #include "acme/primitive/geometry2d/_text_stream.h"
 #include "acme/primitive/geometry2d/rectangle_array.h"
 #include "aura/windowing/display.h"
@@ -1792,8 +1793,15 @@ namespace windowing
 
 
    // todo color:// gradient:// if the operating system doesn't have this, create the file, please.
-   bool display::impl_set_wallpaper(::index, string strWallpaper)
+   bool display::impl_set_wallpaper(::index iMonitorIndex, string strWallpaper)
    {
+
+      if(acmenode()->set_wallpaper(iMonitorIndex, strWallpaper))
+      {
+
+         return true;
+
+      }
 
       //return "";
       return false;

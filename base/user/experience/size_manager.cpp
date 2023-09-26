@@ -197,6 +197,8 @@ namespace experience
 
       }
 
+      information() << "size_manager::on_message_mouse_move : " << pmouse->m_pointAbsolute;
+
       ASSERT(
          pmouse->m_atom == e_message_mouse_move 
          || pmouse->m_atom == e_message_parent_mouse_move
@@ -237,6 +239,8 @@ namespace experience
          if (m_eframeCursor != e_frame_none)
          {
 
+            information() << "m_eframeCursor changed to none";
+
             //m_pframewindow->set_mouse_cursor(nullptr);
 
             //m_eframeCursor = e_frame_none;
@@ -253,6 +257,8 @@ namespace experience
       {
 
          m_eframeCursor = eframeCursor;
+
+         information() << "m_eframeCursor changed to : " << m_eframeCursor;
 
       }
 

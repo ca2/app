@@ -7,6 +7,7 @@
 #include "aura/graphics/image/icon.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/imaging.h"
+#include "aura/windowing/windowing.h"
 #include "base/user/experience/control_box.h"
 #include "base/user/experience/frame_window.h"
 #include "base/user/experience/size_manager.h"
@@ -864,6 +865,13 @@ namespace experience_core
 
          auto rectangleEvent = m_pframewindow->raw_rectangle();
 
+         if(m_pframewindow->windowing()->has_readily_gettable_absolute_coordinates())
+         {
+
+            m_pframewindow->client_to_screen()(rectangleEvent);
+
+         }
+
          ::rectangle_i32 rectangle;
          ::point_i32 pointCenter = rectangleEvent.center();
          enum_grip egrip = m_pframewindow->size_manager()->GetGripMask();
@@ -1178,6 +1186,53 @@ namespace experience_core
       ::rectangle_i32 rectangleInner;
 
       rectangleInner = m_pframewindow->client_rectangle();
+
+      ::rectangle_i32 rectangle;
+
+      if (eside == e_border_top)
+      {
+         rectangle.left() = rectangleOuter.left();
+         rectangle.right() = rectangleOuter.right();
+         rectangle.top() = rectangleOuter.top();
+         rectangle.bottom() = rectangleInner.top();
+      }
+      else if (eside == e_border_left)
+      {
+         rectangle.left() = rectangleOuter.left();
+         rectangle.right() = rectangleInner.left();
+         rectangle.top() = rectangleInner.top();
+         rectangle.bottom() = rectangleInner.bottom();
+      }
+      else if (eside == e_border_right)
+      {
+         rectangle.left() = rectangleInner.right();
+         rectangle.right() = rectangleOuter.right();
+         rectangle.top() = rectangleInner.top();
+         rectangle.bottom() = rectangleInner.bottom();
+      }
+      else if (eside == e_border_bottom)
+      {
+         rectangle.left() = rectangleOuter.left();
+         rectangle.right() = rectangleOuter.right();
+         rectangle.top() = rectangleInner.bottom();
+         rectangle.bottom() = rectangleOuter.bottom();
+      }
+      *lprect = rectangle;
+   }
+
+
+   void frame::GetBorderRectangle(const ::rectangle_i32 & rectangleOuter, int iDeflate, ::rectangle_i32 * lprect, enum_border eside)
+   {
+
+      enum_display edisplay = m_pframewindow->const_layout().design().display();
+
+      ::rectangle_i32 rectangleInner(rectangleOuter);
+
+      rectangleInner.deflate(
+         edisplay & e_display_left ? 0 : 1,
+         edisplay & e_display_top ? 0 : 1,
+         edisplay & e_display_right ? 0 : 1,
+         edisplay & e_display_bottom ? 0 : 1);
 
       ::rectangle_i32 rectangle;
 

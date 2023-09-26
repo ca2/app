@@ -55,7 +55,7 @@ namespace user
       void set_window_previous_display(::e_display edisplayPrevious) override;
 
 
-      void on_visual_applied() override;
+      void _on_configure_notify_unlocked(const ::rectangle_i32 & rectangle) override;
 
       //void _window_show_change_visibility_unlocked() override;
 

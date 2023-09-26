@@ -385,18 +385,22 @@ namespace windowing
    }
 
 
-   void window::on_visual_applied()
+//   void window::on_visual_applied()
+//   {
+//
+//      throw ::interface_only();
+//
+//   }
+
+
+   void window::_on_configure_notify_unlocked(const ::rectangle_i32 & rectangle)
    {
 
-      throw ::interface_only();
+      m_pointWindow = rectangle.top_left();
 
-   }
+      m_sizeWindow = rectangle.size();
 
-
-   void window::_on_visual_changed_unlocked()
-   {
-
-      m_puserinteractionimpl->m_puserinteraction->_on_visual_changed_unlocked();
+      m_puserinteractionimpl->m_puserinteraction->_on_configure_notify_unlocked(rectangle);
 
    }
 

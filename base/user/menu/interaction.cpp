@@ -187,18 +187,18 @@ namespace user
    }
 
 
-   void menu_interaction::on_calc_size(calc_size * pcalcsize)
+   ::size_f64 menu_interaction::get_preferred_size(::draw2d::graphics_pointer & pgraphics)
    {
 
       auto strWindowText = get_window_text();
 
       //get_window_text(strText);
 
-      pcalcsize->m_pgraphics->set_font(this, ::e_element_none);
+      pgraphics->set_font(this, ::e_element_none);
 
-      auto size = pcalcsize->m_pgraphics->get_text_extent(strWindowText);
+      auto size = pgraphics->get_text_extent(strWindowText);
 
-      auto pstyle = get_style(pcalcsize->m_pgraphics);
+      auto pstyle = get_style(pgraphics);
 
       auto rectangleMargin = get_margin(pstyle);
 
@@ -227,7 +227,9 @@ namespace user
 
       size.cy() += rectangleMargin.bottom() + rectangleBorder.bottom() + rectanglePadding.bottom();
 
-      pcalcsize->m_size = size;
+      //pcalcsize->m_size = size;
+
+      return size;
 
    }
 

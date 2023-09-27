@@ -153,72 +153,11 @@ namespace user
    }
 
 
-   void menu_list_window::on_layout(::draw2d::graphics_pointer & pgraphics)
-   {
-
-      if (!m_bMenuOk)
-      {
-
-         return;
-
-      }
-
-      if(get_parent() == nullptr)
-      {
-
-         return;
-
-      }
-
-      ::pointer<menu_item>pitem = get_menu_item();
-
-      if(pitem == nullptr)
-      {
-
-         return;
-
-      }
-
-      ::rectangle_i32 rectangleX;
-
-      rectangleX = get_parent()->rectangle();
-
-      pgraphics->set_font(this, ::e_element_none);
-
-      const ::size_i32 & size = pgraphics->get_text_extent("XXXMMMgggppp");
-
-      i32 iMaxHeight = size.cy();
-
-      i32 iMaxWidth = size.cx();
-
-      m_dHeaderHeight = size.cy();
-
-      calc_size(m_pmenuitem, pgraphics, iMaxWidth, iMaxHeight);
-
-      m_dItemHeight = iMaxHeight * 3 / 2;
-
-      m_size.cx() = iMaxWidth * 7 / 4;
-
-      m_size.cy() = (::i32) (m_dHeaderHeight + pitem->m_iSeparatorCount * 3 + pitem->m_iFullHeightItemCount * m_dItemHeight + 4);
-
-      ::rectangle_i32 rectangle(4, (::i32) m_dHeaderHeight + 4, m_size.cx() - 8, 4);
-
-      string str;
-
-      layout_buttons(m_pmenuitem, iMaxWidth + 4, &rectangle, rectangleX);
-
-      auto & puiClose = m_pitemClose->m_puserinteraction;
-
-      if(puiClose->is_window())
-      {
-
-         puiClose->resize_to_fit(pgraphics);
-
-         puiClose->set_position({m_size.cx() - puiClose->width() - 2, 2});
-
-      }
-
-   }
+//   void menu_list_window::on_layout(::draw2d::graphics_pointer & pgraphics)
+//   {
+//
+//
+//   }
 
 
    void menu_list_window::layout_buttons(menu_item * pitemParent, i32 iMaxWidth, ::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangleBound)
@@ -284,6 +223,74 @@ namespace user
    {
 
       ::user::interaction::_001OnDraw(pgraphics);
+
+   }
+
+
+   void menu_list_window::on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics)
+   {
+
+      if (!m_bMenuOk)
+      {
+
+         return;
+
+      }
+
+      if(get_parent() == nullptr)
+      {
+
+         return;
+
+      }
+
+      ::pointer<menu_item>pitem = get_menu_item();
+
+      if(pitem == nullptr)
+      {
+
+         return;
+
+      }
+
+      ::rectangle_i32 rectangleX;
+
+      rectangleX = get_parent()->rectangle();
+
+      pgraphics->set_font(this, ::e_element_none);
+
+      const ::size_i32 & size = pgraphics->get_text_extent("XXXMMMgggppp");
+
+      i32 iMaxHeight = size.cy();
+
+      i32 iMaxWidth = size.cx();
+
+      m_dHeaderHeight = size.cy();
+
+      calc_size(m_pmenuitem, pgraphics, iMaxWidth, iMaxHeight);
+
+      m_dItemHeight = iMaxHeight * 3 / 2;
+
+      m_size.cx() = iMaxWidth * 7 / 4;
+
+      m_size.cy() = (::i32) (m_dHeaderHeight + pitem->m_iSeparatorCount * 3 + pitem->m_iFullHeightItemCount * m_dItemHeight + 4);
+
+      ::rectangle_i32 rectangle(4, (::i32) m_dHeaderHeight + 4, m_size.cx() - 8, 4);
+
+      string str;
+
+      layout_buttons(m_pmenuitem, iMaxWidth + 4, &rectangle, rectangleX);
+
+      auto & puiClose = m_pitemClose->m_puserinteraction;
+
+      if(puiClose->is_window())
+      {
+
+         puiClose->resize_to_fit(pgraphics);
+
+         puiClose->set_position({m_size.cx() - puiClose->width() - 2, 2});
+
+      }
 
    }
 

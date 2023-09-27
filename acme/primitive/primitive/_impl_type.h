@@ -42,11 +42,11 @@ type_atom::type_atom(POINTER p)
 }
 
 
-template < primitive_object OBJECT >
-type_atom::type_atom(OBJECT & object)
+template < primitive_object_not_type_atom OBJECT_NOT_TYPE_ATOM >
+type_atom::type_atom(OBJECT_NOT_TYPE_ATOM & objectnottypeatom)
 {
 
-   auto name = typeid(*(&(non_const < OBJECT > &)object)).name();
+   auto name = typeid(*(&(non_const < OBJECT_NOT_TYPE_ATOM > &)objectnottypeatom)).name();
 
    ::atom::operator = (demangle(name));
 

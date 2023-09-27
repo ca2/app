@@ -450,7 +450,7 @@ namespace user
    //}
 
 
-   ::size_f64 still::_001CalculateFittingSize(::draw2d::graphics_pointer & pgraphics)
+   ::size_f64 still::get_fitting_size(::draw2d::graphics_pointer & pgraphics)
    {
 
       if (pgraphics.is_null())
@@ -518,7 +518,7 @@ namespace user
       else
       {
 
-         auto sizeTotal = _001CalculateAdjustedFittingSize(pgraphics);
+         auto sizeTotal = get_adjusted_fitting_size(pgraphics);
 
          set_size(sizeTotal);
 
@@ -742,7 +742,7 @@ namespace user
 
          auto rectangleX = this->rectangle();
 
-         ::size_f64 sizeText = _001CalculateFittingSize(pgraphics);
+         ::size_f64 sizeText = get_fitting_size(pgraphics);
 
          //::rectangle_i32 rectangle;
 

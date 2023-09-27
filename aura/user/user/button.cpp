@@ -190,7 +190,7 @@ namespace user
    }
 
 
-   ::size_f64 button::_001CalculateFittingSize(::draw2d::graphics_pointer & pgraphics)
+   ::size_f64 button::get_fitting_size(::draw2d::graphics_pointer & pgraphics)
    {
 
       if (pgraphics.is_null())
@@ -225,15 +225,13 @@ namespace user
    }
 
 
-   void button::resize_to_fit(::draw2d::graphics_pointer& pgraphics)
+   ::size_f64 button::get_preferred_size(::draw2d::graphics_pointer & pgraphics)
    {
 
       if (m_estyle == e_style_simple)
       {
 
-         auto sizeTotal = _001CalculateAdjustedFittingSize(pgraphics);
-
-         set_size(sizeTotal);
+         return get_adjusted_fitting_size(pgraphics);
 
       }
       else if (m_estyle == e_style_image)
@@ -241,21 +239,19 @@ namespace user
 
          ::size_i32 sizeTotal = m_pbitmap->m_pimage->size();
 
-         set_size(sizeTotal);
+         return sizeTotal;
 
       }
       else if (m_estockicon != e_stock_icon_none)
       {
 
-         set_size({24, 24});
+         return {24., 24.};
 
       }
       else
       {
 
-         auto sizeTotal = _001CalculateAdjustedFittingSize(pgraphics);
-
-         set_size(sizeTotal);
+         return get_adjusted_fitting_size(pgraphics);
 
       }
 
@@ -321,7 +317,7 @@ namespace user
       if (m_bAutoResize)
       {
 
-         auto sizeControl = _001CalculateAdjustedFittingSize(pgraphics);
+         auto sizeControl = get_preferred_size(pgraphics);
 
          //::rectangle_i32 rectangle;
 
@@ -448,7 +444,7 @@ namespace user
 
       pgraphics->set_font(this, ::e_element_none);
 
-      auto sizeFitting = _001CalculateFittingSize(pgraphics);
+      auto sizeFitting = get_fitting_size(pgraphics);
 
       rectangleText.left() = (::i32)(rectangleX.left() + (rectangleX.width() - sizeFitting.cx()) / 2);
 

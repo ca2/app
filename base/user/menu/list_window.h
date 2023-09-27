@@ -19,10 +19,10 @@ namespace user
 
       menu_list_window();
       menu_list_window(menu_item * pitem);
-      virtual ~menu_list_window();
+      ~menu_list_window() override;
 
 
-      void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+      //void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
       void install_message_routing(::channel * pchannel) override;
 
@@ -38,6 +38,7 @@ namespace user
 
       virtual void layout_buttons(menu_item * pitemParent, i32 iMaxWidth, ::rectangle_i32 * prectangle, const ::rectangle_i32 & lpcrectBound);
 
+      void on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics) override;
 
 
    };

@@ -65,6 +65,16 @@ inline const char * c_demangle(const ::ansi_character * psz)
 //struct data_structure_t {};
 
 
+class type_atom;
+
+
+template < typename OBJECT_NOT_TYPE_ATOM >
+concept primitive_object_not_type_atom =
+   primitive_object < OBJECT_NOT_TYPE_ATOM >
+      && !std::is_same_v < OBJECT_NOT_TYPE_ATOM, type_atom >
+      && !std::is_base_of_v < type_atom, OBJECT_NOT_TYPE_ATOM >;
+
+
 class CLASS_DECL_ACME type_atom :
    public atom
 {
@@ -120,8 +130,8 @@ public:
    template < primitive_pointer POINTER >
    type_atom(POINTER p);
 
-   template < primitive_object OBJECT >
-   type_atom(OBJECT & object);
+   template < primitive_object_not_type_atom OBJECT_NOT_TYPE_ATOM >
+   type_atom(OBJECT_NOT_TYPE_ATOM & objectnottypeatom);
 
    template < typename BASE >
    type_atom(const ::pointer<BASE>& p);

@@ -1746,30 +1746,39 @@ namespace user
    void menu::on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
+      ::pointer<::user::menu_item>pitem = get_menu_item();
 
-      information() << "m_procedureOnAfterInitializeUserMenu menu::track_popup_menu.";
-
-      if (!m_bPositionHint)
+      if(!pitem)
       {
 
-         auto pointCursor = mouse_cursor_position();
-
-         m_pointPositionHint = pointCursor;
+         return;
 
       }
 
-      auto psystem = acmesystem()->m_paurasystem;
+      ::point_i32 point;
 
-      auto pdraw2d = psystem->draw2d();
+      if(get_parent() == nullptr)
+      {
 
-      //auto pgraphics = pdraw2d->create_memory_graphics(this);
+         information() << "menu::on_perform_top_down_layout top level menu";
 
-      m_pointTrack = m_pointPositionHint;
+         if (!m_bPositionHint)
+         {
 
-      //void menu::layout_menu(::draw2d::graphics_pointer & pgraphics)
-      //{
+            auto pointCursor = mouse_cursor_position();
 
-         ::point_i32 point = m_pointTrack;
+            m_pointPositionHint = pointCursor;
+
+         }
+
+         //auto pgraphics = pdraw2d->create_memory_graphics(this);
+
+         m_pointTrack = m_pointPositionHint;
+
+         //void menu::layout_menu(::draw2d::graphics_pointer & pgraphics)
+         //{
+
+         point = m_pointTrack;
 
          if (get_parent() != nullptr)
          {
@@ -1778,154 +1787,180 @@ namespace user
 
          }
 
-         auto pstyle = get_style(pgraphics);
+      }
+      else
+      {
 
-         pgraphics->set(get_font(pstyle));
+         information() << "menu::on_perform_top_down_layout child menu";
 
-         auto metrics = pgraphics->get_text_metrics();
+      }
 
-         auto dMaxHeight = metrics.get_line_height();
+      auto psystem = acmesystem()->m_paurasystem;
 
-         m_dItemHeight = dMaxHeight;
+      auto pdraw2d = psystem->draw2d();
 
-         m_dCheckBoxSize = dMaxHeight;
+      auto pstyle = get_style(pgraphics);
 
-         m_dHeaderHeight = dMaxHeight;
+      pgraphics->set(get_font(pstyle));
 
-         ::pointer<::user::menu_item>pitem = get_menu_item();
+      auto metrics = pgraphics->get_text_metrics();
 
-         ::pointer<::user::menu_item_ptra>pmenuitema = pitem->m_pmenuitema;
+      auto dMaxHeight = metrics.get_line_height();
 
-         auto rectangleMargin = get_margin(pstyle);
+      m_dItemHeight = dMaxHeight;
 
-         auto rectangleBorder = get_border(pstyle);
+      m_dCheckBoxSize = dMaxHeight;
 
-         auto rectanglePadding = get_padding(pstyle);
+      m_dHeaderHeight = dMaxHeight;
 
-         //int iElementPadding = rectanglePadding.left();
+      ::pointer<::user::menu_item_ptra>pmenuitema = pitem->m_pmenuitema;
 
-         int x = (int) (rectangleMargin.left() + rectangleBorder.left() + rectanglePadding.left());
+      auto rectangleMargin = get_margin(pstyle);
 
-         int y = (int) (rectangleMargin.top() + rectangleBorder.top() + rectanglePadding.top());
+      auto rectangleBorder = get_border(pstyle);
 
-         class calc_size calcsize;
+      auto rectanglePadding = get_padding(pstyle);
 
-         calcsize.m_pgraphics = pgraphics;
+      //int iElementPadding = rectanglePadding.left();
 
-         if (m_bCloseButton)
+      int x = (int) (rectangleMargin.left() + rectangleBorder.left() + rectanglePadding.left());
+
+      int y = (int) (rectangleMargin.top() + rectangleBorder.top() + rectanglePadding.top());
+
+      //class calc_size calcsize;
+
+      //calcsize.m_pgraphics = pgraphics;
+
+      ::size_i32 size;
+
+      if (m_bCloseButton)
+      {
+
+         size = m_pitemClose->m_puserinteraction->get_preferred_size(pgraphics);
+
+         information() << "close_button size : " << size;
+
+         m_pitemClose->m_rectangleUi.left() = x;
+         m_pitemClose->m_rectangleUi.right() = x + size.cx();
+         m_pitemClose->m_rectangleUi.top() = y;
+         m_pitemClose->m_rectangleUi.bottom() = y + size.cy();
+
+         y += size.cy();
+
+      }
+
+      int yClose = y;
+
+      m_iaColumnWidth.set_size(1);
+
+      m_iaColumnHeight.set_size(1);
+
+      m_iaColumnWidth[0] = size.cx();
+
+      m_iaColumnHeight[0] = yClose;
+
+      index iColumn = 0;
+
+      for (i32 i = 0; i < pmenuitema->get_size(); i++)
+      {
+
+         string strButtonText = pmenuitema->element_at(i)->m_puserinteraction->get_window_text();
+
+         pmenuitema->element_at(i)->m_iColumn = (int) iColumn;
+
+         size = pmenuitema->element_at(i)->m_puserinteraction->get_preferred_size(pgraphics);
+
+         information() << "button text and size : \"" << strButtonText << "\", " << size;
+
+         pmenuitema->element_at(i)->m_rectangleUi.left() = x;
+         pmenuitema->element_at(i)->m_rectangleUi.right() = x + size.cx();
+         pmenuitema->element_at(i)->m_rectangleUi.top() = y;
+         pmenuitema->element_at(i)->m_rectangleUi.bottom() = y + size.cy();
+
+         y += size.cy();
+
+         m_iaColumnHeight[iColumn] = y;
+
+         if (size.cx() > m_iaColumnWidth[iColumn])
          {
 
-            m_pitemClose->m_puserinteraction->on_calc_size(&calcsize);
-
-            m_pitemClose->m_rectangleUi.left() = x;
-            m_pitemClose->m_rectangleUi.right() = x + calcsize.m_size.cx();
-            m_pitemClose->m_rectangleUi.top() = y;
-            m_pitemClose->m_rectangleUi.bottom() = y + calcsize.m_size.cy();
-
-            y += calcsize.m_size.cy();
+            m_iaColumnWidth[iColumn] = size.cx();
 
          }
 
-         int yClose = y;
-
-         m_iaColumnWidth.set_size(1);
-
-         m_iaColumnHeight.set_size(1);
-
-         m_iaColumnWidth[0] = calcsize.m_size.cx();
-
-         m_iaColumnHeight[0] = yClose;
-
-         index iColumn = 0;
-
-         for (i32 i = 0; i < pmenuitema->get_size(); i++)
+         if (pmenuitema->element_at(i)->m_bBreak)
          {
 
-            string strButtonText = pmenuitema->element_at(i)->m_puserinteraction->get_window_text();
+            x += m_iaColumnWidth[iColumn];
 
-            pmenuitema->element_at(i)->m_iColumn = (int) iColumn;
+            y = yClose;
 
-            pmenuitema->element_at(i)->m_puserinteraction->on_calc_size(&calcsize);
+            iColumn++;
 
-            pmenuitema->element_at(i)->m_rectangleUi.left() = x;
-            pmenuitema->element_at(i)->m_rectangleUi.right() = x + calcsize.m_size.cx();
-            pmenuitema->element_at(i)->m_rectangleUi.top() = y;
-            pmenuitema->element_at(i)->m_rectangleUi.bottom() = y + calcsize.m_size.cy();
+            m_iaColumnWidth.add(0);
 
-            y += calcsize.m_size.cy();
+            m_iaColumnHeight.add(yClose);
 
-            m_iaColumnHeight[0] = y;
-
-            if (calcsize.m_size.cx() > m_iaColumnWidth[0])
-            {
-
-               m_iaColumnWidth[0] = calcsize.m_size.cx();
-
-            }
-
-            if (pmenuitema->element_at(i)->m_bBreak)
-            {
-
-               x += m_iaColumnWidth[0];
-
-               y = yClose;
-
-               iColumn++;
-
-               m_iaColumnWidth.add(0);
-
-               m_iaColumnHeight.add(yClose);
-
-            }
+            iColumn = m_iaColumnWidth.get_upper_bound();
 
          }
 
-         m_size.cx() = (int) (m_iaColumnWidth.get_sum()
-                     + rectangleMargin.left() + rectangleMargin.right()
-                     + rectangleBorder.left() + rectangleBorder.right()
-                     + rectanglePadding.left() + rectanglePadding.right());
+      }
 
-         m_size.cy() = (int) (m_iaColumnHeight.get_maximum_value()
-                     + rectangleMargin.top() + rectangleMargin.bottom()
-                     + rectangleBorder.top() + rectangleBorder.bottom()
-                     + rectanglePadding.top() + rectanglePadding.bottom());
+      m_size.cx() = (int) (m_iaColumnWidth.get_sum()
+                  + rectangleMargin.left() + rectangleMargin.right()
+                  + rectangleBorder.left() + rectangleBorder.right()
+                  + rectanglePadding.left() + rectanglePadding.right());
 
+      m_size.cy() = (int) (m_iaColumnHeight.get_maximum_value()
+                  + rectangleMargin.top() + rectangleMargin.bottom()
+                  + rectangleBorder.top() + rectangleBorder.bottom()
+                  + rectanglePadding.top() + rectanglePadding.bottom());
 
-         m_size.cx() = maximum(m_sizeMinimum.cx(), m_size.cx());
+      m_size.cx() = maximum(m_sizeMinimum.cx(), m_size.cx());
 
-         m_size.cy() = maximum(m_sizeMinimum.cy(), m_size.cy());
+      m_size.cy() = maximum(m_sizeMinimum.cy(), m_size.cy());
 
-         ::count iItemCount = pmenuitema->get_size();
+      ::count iItemCount = pmenuitema->get_size();
 
-         ::pointer<::base::style>pbasestyle = pstyle;
+      ::pointer<::base::style>pbasestyle = pstyle;
 
-         for (i32 i = 0; i < iItemCount; i++)
-         {
+      for (i32 i = 0; i < iItemCount; i++)
+      {
 
-            ::user::menu_item * pitem = pmenuitema->element_at(i);
+         ::user::menu_item * pitem = pmenuitema->element_at(i);
 
-            pmenuitema->element_at(i)->m_rectangleUi.right() = x + m_iaColumnWidth[pitem->m_iColumn];
+         pmenuitema->element_at(i)->m_rectangleUi.right() =
+            pmenuitema->element_at(i)->m_rectangleUi.left() + m_iaColumnWidth[pitem->m_iColumn];
 
-            pbasestyle->prepare_menu(pgraphics, pitem);
+         pbasestyle->prepare_menu(pgraphics, pitem);
 
-            pitem->m_rectangleUi.right() = maximum(pitem->m_rectangleUi.right(), pitem->m_rectangleUi.left() + m_sizeMinimum.cx());
+         //pitem->m_rectangleUi.right() = maximum(pitem->m_rectangleUi.right(), pitem->m_rectangleUi.left() + m_sizeMinimum.cx());
 
-            pitem->m_puserinteraction->place(pitem->m_rectangleUi);
+         pitem->m_puserinteraction->place(pitem->m_rectangleUi);
 
-            pitem->m_puserinteraction->display();
+         pitem->m_puserinteraction->display();
 
-         }
+      }
 
-         if (pbasestyle && m_bCloseButton)
+      if (m_bCloseButton)
+      {
+
+         if (pbasestyle)
          {
 
             pbasestyle->prepare_menu(pgraphics, m_pitemClose);
 
-            m_pitemClose->m_puserinteraction->place(m_pitemClose->m_rectangleUi);
-
-            m_pitemClose->m_puserinteraction->display();
-
          }
+
+         m_pitemClose->m_puserinteraction->place(m_pitemClose->m_rectangleUi);
+
+         m_pitemClose->m_puserinteraction->display();
+
+      }
+
+      if(get_parent() == nullptr)
+      {
 
          ::rectangle_i32 rectangleWindow;
 
@@ -1980,11 +2015,15 @@ namespace user
          //display(e_display_normal, e_activation_no_activate);
 
 
-      //}
+      }
+      else
+      {
+
+         set_size(m_size);
+
+      }
 
       m_bMenuOk = true;
-
-
 
    }
 

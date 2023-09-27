@@ -370,65 +370,71 @@ namespace user
    }
 
 
-   void menu_button::on_calc_size(calc_size * pcalcsize)
+   ::size_f64 menu_button::get_preferred_size(::draw2d::graphics_pointer & pgraphics)
    {
 
-      if (m_estockicon != e_stock_icon_none)
-      {
+      auto size = button::get_preferred_size(pgraphics);
 
-         pcalcsize->m_size.cx() = 24;
-
-         pcalcsize->m_size.cy() = 24;
-
-
-         return;
-
-      }
-
-      auto pstyle = get_style(pcalcsize->m_pgraphics);
-
-      pcalcsize->m_pgraphics->set_font(this, ::e_element_none);
-
-      string strButtonText;
-
-      strButtonText = get_window_text();
-
-      bool bSeparator = false;
-
-      if (strButtonText.is_empty())
-      {
-
-         strButtonText = "separator";
-
-         bSeparator = true;
-
-      }
-
-      auto size = pcalcsize->m_pgraphics->get_text_extent(strButtonText);
-
-      if (bSeparator)
-      {
-
-         size.cy() /= 2;
-
-      }
-
-      auto rectangleMargin = get_margin(pstyle);
-
-      auto rectangleBorder = get_border(pstyle);
-
-      auto rectanglePadding = get_padding(pstyle);
-
-      size.cx() += rectangleMargin.left() + rectangleBorder.left() + rectanglePadding.left();
-
-      size.cx() += rectangleMargin.right();
-
-      size.cx() += m_pmenuitem->m_pmenu->m_dCheckBoxSize;
-
-      size.cx() += rectanglePadding.left();
+//      if (m_estockicon != e_stock_icon_none)
+//      {
+//
+//         pcalcsize->m_size.cx() = 24;
+//
+//         pcalcsize->m_size.cy() = 24;
+//
+//
+//         return;
+//
+//      }
+//
+//      auto pstyle = get_style(pcalcsize->m_pgraphics);
+//
+//      pcalcsize->m_pgraphics->set_font(this, ::e_element_none);
+//
+//      string strButtonText;
+//
+//      strButtonText = get_window_text();
+//
+//      bool bSeparator = false;
+//
+//      if (strButtonText.is_empty())
+//      {
+//
+//         strButtonText = "separator";
+//
+//         bSeparator = true;
+//
+//      }
+//
+//      auto size = pcalcsize->m_pgraphics->get_text_extent(strButtonText);
+//
+//      if (bSeparator)
+//      {
+//
+//         size.cy() /= 2;
+//
+//      }
+//
+//      auto rectangleMargin = get_margin(pstyle);
+//
+//      auto rectangleBorder = get_border(pstyle);
+//
+//      auto rectanglePadding = get_padding(pstyle);
+//
+//      size.cx() += rectangleMargin.left() + rectangleBorder.left() + rectanglePadding.left();
+//
+//      size.cx() += rectangleMargin.right();435
+//
+//      size.cx() += m_pmenuitem->m_pmenu->m_dCheckBoxSize;
+//
+//      size.cx() += rectanglePadding.left();
 
       if (m_pmenuitem->IsPopup())
       {
+
+         auto pstyle = get_style(pgraphics);
+
+         auto rectanglePadding = get_padding(pstyle);
 
          size.cx() += rectanglePadding.left();
 
@@ -436,13 +442,15 @@ namespace user
 
       }
 
-      size.cx() += rectangleMargin.right() + rectangleBorder.right() + rectanglePadding.right();
+//      size.cx() += rectangleMargin.right() + rectangleBorder.right() + rectanglePadding.right();
+//
+//      size.cy() += rectangleMargin.top() + rectangleBorder.top() + rectanglePadding.top();
+//
+//      size.cy() += rectangleMargin.bottom() + rectangleBorder.bottom() + rectanglePadding.bottom();
+//
+//      pcalcsize->m_size = size;
 
-      size.cy() += rectangleMargin.top() + rectangleBorder.top() + rectanglePadding.top();
-
-      size.cy() += rectangleMargin.bottom() + rectangleBorder.bottom() + rectanglePadding.bottom();
-
-      pcalcsize->m_size = size;
+      return size;
 
    }
 

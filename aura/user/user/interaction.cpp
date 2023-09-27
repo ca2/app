@@ -1319,6 +1319,14 @@ namespace user
          return rectangleDefaultPadding;
 
       }
+      else if (get_control_type() == ::user::e_control_type_menu_button)
+      {
+
+         ::rectangle_f64 rectangleDefaultPadding(16.0, 8.0, 16.0, 8.0);
+
+         return rectangleDefaultPadding;
+
+      }
       else
       {
 
@@ -12156,7 +12164,7 @@ namespace user
    }
 
 
-   ::size_f64 interaction::_001CalculateFittingSize(::draw2d::graphics_pointer & pgraphics)
+   ::size_f64 interaction::get_fitting_size(::draw2d::graphics_pointer &pgraphics)
    {
 
       pgraphics->set_font(this, ::e_element_none);
@@ -12180,14 +12188,14 @@ namespace user
    }
 
 
-   ::size_f64 interaction::_001CalculateAdjustedFittingSize(::draw2d::graphics_pointer & pgraphics)
+   ::size_f64 interaction::get_adjusted_fitting_size(::draw2d::graphics_pointer &pgraphics)
    {
 
       auto pstyle = get_style(pgraphics);
 
       ::rectangle_f64 rectanglePadding = get_padding(pstyle);
 
-      auto sizeFitting = _001CalculateFittingSize(pgraphics);
+      auto sizeFitting = get_fitting_size(pgraphics);
 
       ::size_f64 sizePaddedFitting;
 
@@ -12196,6 +12204,24 @@ namespace user
       sizePaddedFitting.cy() = rectanglePadding.top() + sizeFitting.cy() + rectanglePadding.bottom();
 
       return sizePaddedFitting;
+
+   }
+
+
+   ::size_f64 interaction::get_preferred_size(::draw2d::graphics_pointer &pgraphics)
+   {
+
+      return const_layout().sketch().size();
+
+   }
+
+
+   void interaction::resize_to_fit(::draw2d::graphics_pointer& pgraphics)
+   {
+
+      auto size = get_preferred_size(pgraphics);
+
+      set_size(size);
 
    }
 
@@ -13920,11 +13946,10 @@ namespace user
 
       layout().lading() = layout().sketch();
 
-      //layout().sketch().reset_pending();
+      layout().sketch().reset_pending();
 
-      layout().sketch().m_eactivation = e_activation_default;
-      layout().sketch().m_bImpactUpdateGoingOn = false;
-
+      //layout().sketch().m_eactivation = e_activation_default;
+      //layout().sketch().m_bImpactUpdateGoingOn = false;
 
       if (get_parent() == nullptr)
       {
@@ -20212,17 +20237,17 @@ namespace user
    }
 
 
-   void interaction::resize_to_fit(::draw2d::graphics_pointer & pgraphics)
-   {
-
-      // this default implementation doesn't need to be called by derived
-      // classes and it has the side effect of warning at debug output log
-      // the default resize_to_fit implementation is being called.
-
-      ::information("default resize_to_fit doesn't do anything\n");
-
-
-   }
+//   void interaction::resize_to_fit(::draw2d::graphics_pointer & pgraphics)
+//   {
+//
+//      // this default implementation doesn't need to be called by derived
+//      // classes and it has the side effect of warning at debug output log
+//      // the default resize_to_fit implementation is being called.
+//
+//      ::information("default resize_to_fit doesn't do anything\n");
+//
+//
+//   }
 
 
    void interaction::wait_redraw()
@@ -20408,16 +20433,16 @@ namespace user
    }
 
 
-   void interaction::on_calc_size(calc_size * psize)
-   {
-
-      ::rectangle_i32 rectangleWindow;
-
-      window_rectangle(rectangleWindow);
-
-      psize->m_size = rectangleWindow.size();
-
-   }
+//   void interaction::on_calc_size(calc_size * psize)
+//   {
+//
+//      ::rectangle_i32 rectangleWindow;
+//
+//      window_rectangle(rectangleWindow);
+//
+//      psize->m_size = rectangleWindow.size();
+//
+//   }
 
 
    enum_control_type interaction::get_control_type() const

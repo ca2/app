@@ -1265,8 +1265,10 @@ namespace user
       virtual bool scroll_bar_get_client_rect(::rectangle_i32 & rectangle);
 
 
-      virtual ::size_f64 _001CalculateFittingSize(::draw2d::graphics_pointer & pgraphics);
-      virtual ::size_f64 _001CalculateAdjustedFittingSize(::draw2d::graphics_pointer & pgraphics);
+      virtual ::size_f64 get_fitting_size(::draw2d::graphics_pointer & pgraphics);
+      virtual ::size_f64 get_adjusted_fitting_size(::draw2d::graphics_pointer & pgraphics);
+      virtual ::size_f64 get_preferred_size(::draw2d::graphics_pointer & pgraphics);
+      virtual void resize_to_fit(::draw2d::graphics_pointer& pgraphics);
 
 
       virtual void _extend_on_parent(::draw2d::graphics_pointer & pgraphics);
@@ -1500,7 +1502,7 @@ namespace user
       inline bool is_this_window_enabled()  { return m_ewindowflag.is(e_window_flag_enable); }
       void enable_window(bool bEnable = true) override;
 
-      virtual void on_calc_size(calc_size* pcalcsize);
+      //virtual void on_calc_size(calc_size* pcalcsize);
 
       virtual void walk_pre_translate_tree(::message::message* pmessage, ::user::interaction* puiStop = nullptr);
 
@@ -2212,7 +2214,7 @@ namespace user
       virtual ::size_f64 get_size(enum_layout elayout = e_layout_design);
       virtual ::size_f64 get_client_size(enum_layout elayout = e_layout_design);
 
-      virtual void resize_to_fit(::draw2d::graphics_pointer& pgraphics);
+      //virtual void resize_to_fit(::draw2d::graphics_pointer& pgraphics);
 
       virtual void wait_redraw();
 

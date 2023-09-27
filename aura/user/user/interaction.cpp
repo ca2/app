@@ -2750,6 +2750,7 @@ namespace user
 
       MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &interaction::on_message_create);
       MESSAGE_LINK(MESSAGE_DESTROY, pchannel, this, &interaction::on_message_destroy);
+      MESSAGE_LINK(e_message_pos_create, pchannel, this, &interaction::on_message_after_create);
       MESSAGE_LINK(e_message_text_composition, pchannel, this, &interaction::_001OnTextComposition);
 
       primitive::install_message_routing(pchannel);
@@ -7033,6 +7034,26 @@ namespace user
             pusersystem->m_procedureSuccess();
 
          }
+
+      }
+
+      if (m_procedureOnAfterCreate)
+      {
+
+         post_message(e_message_pos_create);
+
+      }
+
+   }
+
+
+   void interaction::on_message_after_create(::message::message * pmessage)
+   {
+
+      if (m_procedureOnAfterCreate)
+      {
+
+         m_procedureOnAfterCreate();
 
       }
 
@@ -14420,7 +14441,23 @@ namespace user
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      layout().design() = layout().layout();
+      layout().design().visual_state::operator=(layout().layout());
+
+      if (!layout().design().m_zorder.is_change_request() || layout().layout().m_zorder.is_change_request())
+      {
+
+         layout().design().m_zorder = layout().layout().m_zorder;
+
+      }
+
+      if (layout().design().m_eactivation == e_activation_default || layout().layout().m_eactivation != e_activation_default)
+      {
+
+         layout().design().m_eactivation = layout().layout().m_eactivation;
+
+      }
+
+      auto & eactivation = layout().design().m_eactivation;
 
       layout().layout().reset_pending();
 

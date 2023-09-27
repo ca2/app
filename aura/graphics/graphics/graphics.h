@@ -16,6 +16,7 @@ namespace graphics
    public:
 
       
+      ::e_graphics                  m_egraphics;
       ::image_pointer               m_pimage2;
       ::mutex_pointer               m_pmutex;
       ::draw2d::graphics_pointer    m_pgraphics;
@@ -82,7 +83,9 @@ namespace graphics
       virtual i64 _001GetTopLeftWeightedOpaqueArea(const ::rectangle_i32 &rect);
 
       //virtual ::particle * get_draw_lock();
-      virtual buffer_item * on_begin_draw();
+      virtual buffer_item * on_begin_draw(::e_graphics egraphics);
+
+      virtual bool _on_begin_draw(buffer_item * pbufferitem);
 
       virtual void on_end_draw();
 

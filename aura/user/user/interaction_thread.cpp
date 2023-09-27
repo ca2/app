@@ -231,6 +231,8 @@ namespace user
 
       //attach_thread_input_to_main_thread();
 
+      attach_thread_input_to_main_thread(true);
+
 #endif
 
       if (!m_pimpl->m_puserinteraction->is_system_message_window())

@@ -307,6 +307,8 @@ namespace user
       ::draw2d::path_pointer                    m_pathFocusRect2;
       ::draw2d::path_pointer                    m_pathFocusRect3;
       ::draw2d::path_pointer                    m_pathFocusRect4;
+      procedure                                 m_procedureOnAfterCreate;
+
 
 
       ::function < bool(::user::interaction *, ::item *) > m_callbackOnClick;
@@ -1075,6 +1077,13 @@ namespace user
          for (auto & pinteraction : *puserinteractionpointeraChild)
          {
 
+            if (::is_null(pinteraction))
+            {
+
+               continue;
+
+            }
+
             if (pinteraction != puiExclude)
             {
 
@@ -1657,6 +1666,7 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_size);
       DECLARE_MESSAGE_HANDLER(on_message_move);
       DECLARE_MESSAGE_HANDLER(on_message_create);
+      DECLARE_MESSAGE_HANDLER(on_message_after_create);
       DECLARE_MESSAGE_HANDLER(on_message_non_client_calculate_size);
       DECLARE_MESSAGE_HANDLER(on_message_close);
       //DECLARE_MESSAGE_HANDLER(_001OnCommand);

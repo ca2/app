@@ -497,14 +497,14 @@ namespace user
 
       }
 
-      if(m_procedureOnAfterInitializeUserMenu)
-      {
+      //if(m_procedureOnAfterInitializeUserMenu)
+      //{
 
-         information() << "m_procedureOnAfterInitializeUserMenu set. gonna call it...";
+      //   information() << "m_procedureOnAfterInitializeUserMenu set. gonna call it...";
 
-         m_procedureOnAfterInitializeUserMenu();
+      //   m_procedureOnAfterInitializeUserMenu();
 
-      }
+      //}
 
    }
 
@@ -647,6 +647,8 @@ namespace user
 
       //display();
 
+      display(e_display_normal,  e_activation_set_foreground | e_activation_set_popup);
+
       set_need_layout();
 
       set_need_redraw();
@@ -662,33 +664,42 @@ namespace user
    bool menu::track_popup_menu(::channel * pchannelNotify, ::user::interaction * puiParent)
    {
 
-      m_procedureOnAfterInitializeUserMenu = [this]()
+      m_procedureOnAfterCreate = [this]()
       {
 
-         information() << "m_procedureOnAfterInitializeUserMenu menu::track_popup_menu.";
+      //   information() << "m_procedureOnAfterInitializeUserMenu menu::track_popup_menu.";
 
-         if (!m_bPositionHint)
-         {
+      //   if (!m_bPositionHint)
+      //   {
 
-            auto pointCursor = mouse_cursor_position();
+      //      auto pointCursor = mouse_cursor_position();
 
-            m_pointPositionHint = pointCursor;
+      //      m_pointPositionHint = pointCursor;
 
-         }
+      //   }
 
-         auto psystem = acmesystem()->m_paurasystem;
+      //   auto psystem = acmesystem()->m_paurasystem;
 
-         auto pdraw2d = psystem->draw2d();
+      //   auto pdraw2d = psystem->draw2d();
 
-         auto pgraphics = pdraw2d->create_memory_graphics(this);
+      //   auto pgraphics = pdraw2d->create_memory_graphics(this);
 
-         m_pointTrack = m_pointPositionHint;
+      //   m_pointTrack = m_pointPositionHint;
 
-         layout_menu(pgraphics);
+      //   layout_menu(pgraphics);
 
-         m_bMenuOk = true;
+      //   m_bMenuOk = true;
+
+            display(e_display_normal, e_activation_set_foreground | e_activation_set_popup);
+
+            set_need_layout();
+
+            set_need_redraw();
+
+            post_redraw();
 
       };
+
 
       if (!create_menu(pchannelNotify, puiParent))
       {
@@ -717,228 +728,228 @@ namespace user
    }
 
 
-   void menu::layout_menu(::draw2d::graphics_pointer & pgraphics)
-   {
+   //void menu::layout_menu(::draw2d::graphics_pointer & pgraphics)
+   //{
 
-      ::point_i32 point = m_pointTrack;
+   //   ::point_i32 point = m_pointTrack;
 
-      if (get_parent() != nullptr)
-      {
+   //   if (get_parent() != nullptr)
+   //   {
 
-         get_parent()->screen_to_client()(m_pointTrack);
+   //      get_parent()->screen_to_client()(m_pointTrack);
 
-      }
+   //   }
 
-      auto pstyle = get_style(pgraphics);
+   //   auto pstyle = get_style(pgraphics);
 
-      pgraphics->set(get_font(pstyle));
+   //   pgraphics->set(get_font(pstyle));
 
-      auto metrics = pgraphics->get_text_metrics();
+   //   auto metrics = pgraphics->get_text_metrics();
 
-      auto dMaxHeight = metrics.get_line_height();
+   //   auto dMaxHeight = metrics.get_line_height();
 
-      m_dItemHeight = dMaxHeight;
+   //   m_dItemHeight = dMaxHeight;
 
-      m_dCheckBoxSize = dMaxHeight;
+   //   m_dCheckBoxSize = dMaxHeight;
 
-      m_dHeaderHeight = dMaxHeight;
+   //   m_dHeaderHeight = dMaxHeight;
 
-      ::pointer<::user::menu_item>pitem = get_menu_item();
+   //   ::pointer<::user::menu_item>pitem = get_menu_item();
 
-      ::pointer<::user::menu_item_ptra>pmenuitema = pitem->m_pmenuitema;
+   //   ::pointer<::user::menu_item_ptra>pmenuitema = pitem->m_pmenuitema;
 
-      auto rectangleMargin = get_margin(pstyle);
+   //   auto rectangleMargin = get_margin(pstyle);
 
-      auto rectangleBorder = get_border(pstyle);
+   //   auto rectangleBorder = get_border(pstyle);
 
-      auto rectanglePadding = get_padding(pstyle);
+   //   auto rectanglePadding = get_padding(pstyle);
 
-      //int iElementPadding = rectanglePadding.left();
+   //   //int iElementPadding = rectanglePadding.left();
 
-      int x = (int) (rectangleMargin.left() + rectangleBorder.left() + rectanglePadding.left());
+   //   int x = (int) (rectangleMargin.left() + rectangleBorder.left() + rectanglePadding.left());
 
-      int y = (int) (rectangleMargin.top() + rectangleBorder.top() + rectanglePadding.top());
+   //   int y = (int) (rectangleMargin.top() + rectangleBorder.top() + rectanglePadding.top());
 
-      class calc_size calcsize;
+   //   class calc_size calcsize;
 
-      calcsize.m_pgraphics = pgraphics;
+   //   calcsize.m_pgraphics = pgraphics;
 
-      if (m_bCloseButton)
-      {
+   //   if (m_bCloseButton)
+   //   {
 
-         m_pitemClose->m_puserinteraction->on_calc_size(&calcsize);
+   //      m_pitemClose->m_puserinteraction->on_calc_size(&calcsize);
 
-         m_pitemClose->m_rectangleUi.left() = x;
-         m_pitemClose->m_rectangleUi.right() = x + calcsize.m_size.cx();
-         m_pitemClose->m_rectangleUi.top() = y;
-         m_pitemClose->m_rectangleUi.bottom() = y + calcsize.m_size.cy();
+   //      m_pitemClose->m_rectangleUi.left() = x;
+   //      m_pitemClose->m_rectangleUi.right() = x + calcsize.m_size.cx();
+   //      m_pitemClose->m_rectangleUi.top() = y;
+   //      m_pitemClose->m_rectangleUi.bottom() = y + calcsize.m_size.cy();
 
-         y += calcsize.m_size.cy();
+   //      y += calcsize.m_size.cy();
 
-      }
+   //   }
 
-      int yClose = y;
+   //   int yClose = y;
 
-      m_iaColumnWidth.set_size(1);
+   //   m_iaColumnWidth.set_size(1);
 
-      m_iaColumnHeight.set_size(1);
+   //   m_iaColumnHeight.set_size(1);
 
-      m_iaColumnWidth[0] = calcsize.m_size.cx();
+   //   m_iaColumnWidth[0] = calcsize.m_size.cx();
 
-      m_iaColumnHeight[0] = yClose;
+   //   m_iaColumnHeight[0] = yClose;
 
-      index iColumn = 0;
+   //   index iColumn = 0;
 
-      for (i32 i = 0; i < pmenuitema->get_size(); i++)
-      {
+   //   for (i32 i = 0; i < pmenuitema->get_size(); i++)
+   //   {
 
-         string strButtonText = pmenuitema->element_at(i)->m_puserinteraction->get_window_text();
+   //      string strButtonText = pmenuitema->element_at(i)->m_puserinteraction->get_window_text();
 
-         pmenuitema->element_at(i)->m_iColumn = (int) iColumn;
+   //      pmenuitema->element_at(i)->m_iColumn = (int) iColumn;
 
-         pmenuitema->element_at(i)->m_puserinteraction->on_calc_size(&calcsize);
+   //      pmenuitema->element_at(i)->m_puserinteraction->on_calc_size(&calcsize);
 
-         pmenuitema->element_at(i)->m_rectangleUi.left() = x;
-         pmenuitema->element_at(i)->m_rectangleUi.right() = x + calcsize.m_size.cx();
-         pmenuitema->element_at(i)->m_rectangleUi.top() = y;
-         pmenuitema->element_at(i)->m_rectangleUi.bottom() = y + calcsize.m_size.cy();
+   //      pmenuitema->element_at(i)->m_rectangleUi.left() = x;
+   //      pmenuitema->element_at(i)->m_rectangleUi.right() = x + calcsize.m_size.cx();
+   //      pmenuitema->element_at(i)->m_rectangleUi.top() = y;
+   //      pmenuitema->element_at(i)->m_rectangleUi.bottom() = y + calcsize.m_size.cy();
 
-         y += calcsize.m_size.cy();
+   //      y += calcsize.m_size.cy();
 
-         m_iaColumnHeight[0] = y;
+   //      m_iaColumnHeight[0] = y;
 
-         if (calcsize.m_size.cx() > m_iaColumnWidth[0])
-         {
+   //      if (calcsize.m_size.cx() > m_iaColumnWidth[0])
+   //      {
 
-            m_iaColumnWidth[0] = calcsize.m_size.cx();
+   //         m_iaColumnWidth[0] = calcsize.m_size.cx();
 
-         }
+   //      }
 
-         if (pmenuitema->element_at(i)->m_bBreak)
-         {
+   //      if (pmenuitema->element_at(i)->m_bBreak)
+   //      {
 
-            x += m_iaColumnWidth[0];
+   //         x += m_iaColumnWidth[0];
 
-            y = yClose;
+   //         y = yClose;
 
-            iColumn++;
+   //         iColumn++;
 
-            m_iaColumnWidth.add(0);
+   //         m_iaColumnWidth.add(0);
 
-            m_iaColumnHeight.add(yClose);
+   //         m_iaColumnHeight.add(yClose);
 
-         }
+   //      }
 
-      }
+   //   }
 
-      m_size.cx() = (int) (m_iaColumnWidth.get_sum()
-                  + rectangleMargin.left() + rectangleMargin.right()
-                  + rectangleBorder.left() + rectangleBorder.right()
-                  + rectanglePadding.left() + rectanglePadding.right());
+   //   m_size.cx() = (int) (m_iaColumnWidth.get_sum()
+   //               + rectangleMargin.left() + rectangleMargin.right()
+   //               + rectangleBorder.left() + rectangleBorder.right()
+   //               + rectanglePadding.left() + rectanglePadding.right());
 
-      m_size.cy() = (int) (m_iaColumnHeight.get_maximum_value()
-                  + rectangleMargin.top() + rectangleMargin.bottom()
-                  + rectangleBorder.top() + rectangleBorder.bottom()
-                  + rectanglePadding.top() + rectanglePadding.bottom());
+   //   m_size.cy() = (int) (m_iaColumnHeight.get_maximum_value()
+   //               + rectangleMargin.top() + rectangleMargin.bottom()
+   //               + rectangleBorder.top() + rectangleBorder.bottom()
+   //               + rectanglePadding.top() + rectanglePadding.bottom());
 
 
-      m_size.cx() = maximum(m_sizeMinimum.cx(), m_size.cx());
+   //   m_size.cx() = maximum(m_sizeMinimum.cx(), m_size.cx());
 
-      m_size.cy() = maximum(m_sizeMinimum.cy(), m_size.cy());
+   //   m_size.cy() = maximum(m_sizeMinimum.cy(), m_size.cy());
 
-      ::count iItemCount = pmenuitema->get_size();
+   //   ::count iItemCount = pmenuitema->get_size();
 
-      ::pointer<::base::style>pbasestyle = pstyle;
+   //   ::pointer<::base::style>pbasestyle = pstyle;
 
-      for (i32 i = 0; i < iItemCount; i++)
-      {
+   //   for (i32 i = 0; i < iItemCount; i++)
+   //   {
 
-         ::user::menu_item * pitem = pmenuitema->element_at(i);
+   //      ::user::menu_item * pitem = pmenuitema->element_at(i);
 
-         pmenuitema->element_at(i)->m_rectangleUi.right() = x + m_iaColumnWidth[pitem->m_iColumn];
+   //      pmenuitema->element_at(i)->m_rectangleUi.right() = x + m_iaColumnWidth[pitem->m_iColumn];
 
-         pbasestyle->prepare_menu(pgraphics, pitem);
+   //      pbasestyle->prepare_menu(pgraphics, pitem);
 
-         pitem->m_rectangleUi.right() = maximum(pitem->m_rectangleUi.right(), pitem->m_rectangleUi.left() + m_sizeMinimum.cx());
+   //      pitem->m_rectangleUi.right() = maximum(pitem->m_rectangleUi.right(), pitem->m_rectangleUi.left() + m_sizeMinimum.cx());
 
-         pitem->m_puserinteraction->place(pitem->m_rectangleUi);
+   //      pitem->m_puserinteraction->place(pitem->m_rectangleUi);
 
-         pitem->m_puserinteraction->display();
+   //      pitem->m_puserinteraction->display();
 
-      }
+   //   }
 
-      if (pbasestyle && m_bCloseButton)
-      {
+   //   if (pbasestyle && m_bCloseButton)
+   //   {
 
-         pbasestyle->prepare_menu(pgraphics, m_pitemClose);
+   //      pbasestyle->prepare_menu(pgraphics, m_pitemClose);
 
-         m_pitemClose->m_puserinteraction->place(m_pitemClose->m_rectangleUi);
+   //      m_pitemClose->m_puserinteraction->place(m_pitemClose->m_rectangleUi);
 
-         m_pitemClose->m_puserinteraction->display();
+   //      m_pitemClose->m_puserinteraction->display();
 
-      }
+   //   }
 
-      ::rectangle_i32 rectangleWindow;
+   //   ::rectangle_i32 rectangleWindow;
 
-      rectangleWindow.left() = point.x();
-      rectangleWindow.top() = point.y();
-      rectangleWindow.right() = rectangleWindow.left() + m_size.cx();
-      rectangleWindow.bottom() = rectangleWindow.top() + m_size.cy();
+   //   rectangleWindow.left() = point.x();
+   //   rectangleWindow.top() = point.y();
+   //   rectangleWindow.right() = rectangleWindow.left() + m_size.cx();
+   //   rectangleWindow.bottom() = rectangleWindow.top() + m_size.cy();
 
-      ::rectangle_i32 rectangleMonitor;
+   //   ::rectangle_i32 rectangleMonitor;
 
-      auto iMonitor = get_best_monitor(&rectangleMonitor, rectangleWindow);
-         
-      if(iMonitor >= 0)
-      {
+   //   auto iMonitor = get_best_monitor(&rectangleMonitor, rectangleWindow);
+   //      
+   //   if(iMonitor >= 0)
+   //   {
 
-         rectangleMonitor.deflate(16, 16);
+   //      rectangleMonitor.deflate(16, 16);
 
-         if (rectangleWindow.left() < rectangleMonitor.left())
-         {
+   //      if (rectangleWindow.left() < rectangleMonitor.left())
+   //      {
 
-            rectangleWindow.offset(rectangleMonitor.left() - rectangleWindow.left(), 0);
+   //         rectangleWindow.offset(rectangleMonitor.left() - rectangleWindow.left(), 0);
 
-         }
-         else if (rectangleWindow.right() > rectangleMonitor.right())
-         {
+   //      }
+   //      else if (rectangleWindow.right() > rectangleMonitor.right())
+   //      {
 
-            rectangleWindow.offset(rectangleMonitor.right() - rectangleWindow.right(), 0);
+   //         rectangleWindow.offset(rectangleMonitor.right() - rectangleWindow.right(), 0);
 
-         }
+   //      }
 
-         if (rectangleWindow.top() < rectangleMonitor.top())
-         {
+   //      if (rectangleWindow.top() < rectangleMonitor.top())
+   //      {
 
-            rectangleWindow.offset(0, rectangleMonitor.top() - rectangleWindow.top());
+   //         rectangleWindow.offset(0, rectangleMonitor.top() - rectangleWindow.top());
 
-         }
-         else if (rectangleWindow.bottom() > rectangleMonitor.bottom())
-         {
+   //      }
+   //      else if (rectangleWindow.bottom() > rectangleMonitor.bottom())
+   //      {
 
-            rectangleWindow.offset(0, rectangleMonitor.bottom() - rectangleWindow.bottom());
+   //         rectangleWindow.offset(0, rectangleMonitor.bottom() - rectangleWindow.bottom());
 
-         }
+   //      }
 
-      }
+   //   }
 
-      order(e_zorder_top_most);
+   //   order(e_zorder_top_most);
 
-      information() << "::user::menu::layout_menu place : " << rectangleWindow;
+   //   information() << "::user::menu::layout_menu place : " << rectangleWindow;
 
-      place(rectangleWindow);
+   //   place(rectangleWindow);
 
-      //display(e_display_normal, e_activation_no_activate);
+   //   //display(e_display_normal, e_activation_no_activate);
 
-      display(e_display_normal, 
-         e_activation_set_foreground |
-      e_activation_set_popup);
+   //   display(e_display_normal, 
+   //      e_activation_set_foreground |
+   //   e_activation_set_popup);
 
-      set_need_redraw();
+   //   set_need_redraw();
 
-      post_redraw();
+   //   post_redraw();
 
-   }
+   //}
 
 
    void menu::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
@@ -1728,6 +1739,252 @@ namespace user
       }
 
       //return ::error_failed;
+
+   }
+
+
+   void menu::on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics)
+   {
+
+
+      information() << "m_procedureOnAfterInitializeUserMenu menu::track_popup_menu.";
+
+      if (!m_bPositionHint)
+      {
+
+         auto pointCursor = mouse_cursor_position();
+
+         m_pointPositionHint = pointCursor;
+
+      }
+
+      auto psystem = acmesystem()->m_paurasystem;
+
+      auto pdraw2d = psystem->draw2d();
+
+      //auto pgraphics = pdraw2d->create_memory_graphics(this);
+
+      m_pointTrack = m_pointPositionHint;
+
+      //void menu::layout_menu(::draw2d::graphics_pointer & pgraphics)
+      //{
+
+         ::point_i32 point = m_pointTrack;
+
+         if (get_parent() != nullptr)
+         {
+
+            get_parent()->screen_to_client()(m_pointTrack);
+
+         }
+
+         auto pstyle = get_style(pgraphics);
+
+         pgraphics->set(get_font(pstyle));
+
+         auto metrics = pgraphics->get_text_metrics();
+
+         auto dMaxHeight = metrics.get_line_height();
+
+         m_dItemHeight = dMaxHeight;
+
+         m_dCheckBoxSize = dMaxHeight;
+
+         m_dHeaderHeight = dMaxHeight;
+
+         ::pointer<::user::menu_item>pitem = get_menu_item();
+
+         ::pointer<::user::menu_item_ptra>pmenuitema = pitem->m_pmenuitema;
+
+         auto rectangleMargin = get_margin(pstyle);
+
+         auto rectangleBorder = get_border(pstyle);
+
+         auto rectanglePadding = get_padding(pstyle);
+
+         //int iElementPadding = rectanglePadding.left();
+
+         int x = (int) (rectangleMargin.left() + rectangleBorder.left() + rectanglePadding.left());
+
+         int y = (int) (rectangleMargin.top() + rectangleBorder.top() + rectanglePadding.top());
+
+         class calc_size calcsize;
+
+         calcsize.m_pgraphics = pgraphics;
+
+         if (m_bCloseButton)
+         {
+
+            m_pitemClose->m_puserinteraction->on_calc_size(&calcsize);
+
+            m_pitemClose->m_rectangleUi.left() = x;
+            m_pitemClose->m_rectangleUi.right() = x + calcsize.m_size.cx();
+            m_pitemClose->m_rectangleUi.top() = y;
+            m_pitemClose->m_rectangleUi.bottom() = y + calcsize.m_size.cy();
+
+            y += calcsize.m_size.cy();
+
+         }
+
+         int yClose = y;
+
+         m_iaColumnWidth.set_size(1);
+
+         m_iaColumnHeight.set_size(1);
+
+         m_iaColumnWidth[0] = calcsize.m_size.cx();
+
+         m_iaColumnHeight[0] = yClose;
+
+         index iColumn = 0;
+
+         for (i32 i = 0; i < pmenuitema->get_size(); i++)
+         {
+
+            string strButtonText = pmenuitema->element_at(i)->m_puserinteraction->get_window_text();
+
+            pmenuitema->element_at(i)->m_iColumn = (int) iColumn;
+
+            pmenuitema->element_at(i)->m_puserinteraction->on_calc_size(&calcsize);
+
+            pmenuitema->element_at(i)->m_rectangleUi.left() = x;
+            pmenuitema->element_at(i)->m_rectangleUi.right() = x + calcsize.m_size.cx();
+            pmenuitema->element_at(i)->m_rectangleUi.top() = y;
+            pmenuitema->element_at(i)->m_rectangleUi.bottom() = y + calcsize.m_size.cy();
+
+            y += calcsize.m_size.cy();
+
+            m_iaColumnHeight[0] = y;
+
+            if (calcsize.m_size.cx() > m_iaColumnWidth[0])
+            {
+
+               m_iaColumnWidth[0] = calcsize.m_size.cx();
+
+            }
+
+            if (pmenuitema->element_at(i)->m_bBreak)
+            {
+
+               x += m_iaColumnWidth[0];
+
+               y = yClose;
+
+               iColumn++;
+
+               m_iaColumnWidth.add(0);
+
+               m_iaColumnHeight.add(yClose);
+
+            }
+
+         }
+
+         m_size.cx() = (int) (m_iaColumnWidth.get_sum()
+                     + rectangleMargin.left() + rectangleMargin.right()
+                     + rectangleBorder.left() + rectangleBorder.right()
+                     + rectanglePadding.left() + rectanglePadding.right());
+
+         m_size.cy() = (int) (m_iaColumnHeight.get_maximum_value()
+                     + rectangleMargin.top() + rectangleMargin.bottom()
+                     + rectangleBorder.top() + rectangleBorder.bottom()
+                     + rectanglePadding.top() + rectanglePadding.bottom());
+
+
+         m_size.cx() = maximum(m_sizeMinimum.cx(), m_size.cx());
+
+         m_size.cy() = maximum(m_sizeMinimum.cy(), m_size.cy());
+
+         ::count iItemCount = pmenuitema->get_size();
+
+         ::pointer<::base::style>pbasestyle = pstyle;
+
+         for (i32 i = 0; i < iItemCount; i++)
+         {
+
+            ::user::menu_item * pitem = pmenuitema->element_at(i);
+
+            pmenuitema->element_at(i)->m_rectangleUi.right() = x + m_iaColumnWidth[pitem->m_iColumn];
+
+            pbasestyle->prepare_menu(pgraphics, pitem);
+
+            pitem->m_rectangleUi.right() = maximum(pitem->m_rectangleUi.right(), pitem->m_rectangleUi.left() + m_sizeMinimum.cx());
+
+            pitem->m_puserinteraction->place(pitem->m_rectangleUi);
+
+            pitem->m_puserinteraction->display();
+
+         }
+
+         if (pbasestyle && m_bCloseButton)
+         {
+
+            pbasestyle->prepare_menu(pgraphics, m_pitemClose);
+
+            m_pitemClose->m_puserinteraction->place(m_pitemClose->m_rectangleUi);
+
+            m_pitemClose->m_puserinteraction->display();
+
+         }
+
+         ::rectangle_i32 rectangleWindow;
+
+         rectangleWindow.left() = point.x();
+         rectangleWindow.top() = point.y();
+         rectangleWindow.right() = rectangleWindow.left() + m_size.cx();
+         rectangleWindow.bottom() = rectangleWindow.top() + m_size.cy();
+
+         ::rectangle_i32 rectangleMonitor;
+
+         auto iMonitor = get_best_monitor(&rectangleMonitor, rectangleWindow);
+            
+         if(iMonitor >= 0)
+         {
+
+            rectangleMonitor.deflate(16, 16);
+
+            if (rectangleWindow.left() < rectangleMonitor.left())
+            {
+
+               rectangleWindow.offset(rectangleMonitor.left() - rectangleWindow.left(), 0);
+
+            }
+            else if (rectangleWindow.right() > rectangleMonitor.right())
+            {
+
+               rectangleWindow.offset(rectangleMonitor.right() - rectangleWindow.right(), 0);
+
+            }
+
+            if (rectangleWindow.top() < rectangleMonitor.top())
+            {
+
+               rectangleWindow.offset(0, rectangleMonitor.top() - rectangleWindow.top());
+
+            }
+            else if (rectangleWindow.bottom() > rectangleMonitor.bottom())
+            {
+
+               rectangleWindow.offset(0, rectangleMonitor.bottom() - rectangleWindow.bottom());
+
+            }
+
+         }
+
+         //order(e_zorder_top_most);
+
+         information() << "::user::menu::layout_menu place : " << rectangleWindow;
+
+         place(rectangleWindow);
+
+         //display(e_display_normal, e_activation_no_activate);
+
+
+      //}
+
+      m_bMenuOk = true;
+
+
 
    }
 

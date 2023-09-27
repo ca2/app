@@ -25,7 +25,7 @@ class trace_statement;
 CLASS_DECL_ACME ::factory::factory * get_system_factory();
 
 
-CLASS_DECL_ACME class tracer & tracer();
+CLASS_DECL_ACME class tracer * tracer();
 
 //struct PARTICLE
 //{
@@ -316,7 +316,7 @@ public:
    //virtual void trace_log_fatal() << const ::ansi_character * pszFormat, ...;
 
 
-   virtual class tracer & tracer() const;
+   virtual class tracer * tracer() const;
 
 
    virtual ::trace_statement trace_statement() const;

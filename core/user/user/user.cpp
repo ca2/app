@@ -253,6 +253,10 @@ namespace core
 
          m_typeatomDefaultListHeader = ::type < ::simple_list_header_control >();
 
+         auto strAtomDefaultListHeader = m_typeatomDefaultListHeader.as_string();
+
+         information() << "m_typeatomDefaultListHeader : " << strAtomDefaultListHeader;
+
       }
 
 
@@ -1170,7 +1174,11 @@ namespace core
    ::pointer<::user::list_header>user::default_create_list_header(::particle * pparticle)
    {
 
-      return ::__id_create < ::user::list_header >(pparticle, default_type_list_header());
+      auto typeListHeader = default_type_list_header();
+
+      information() << "default_create_list_header : " << typeListHeader.as_string();
+
+      return ::__id_create < ::user::list_header >(pparticle, typeListHeader);
 
    }
 

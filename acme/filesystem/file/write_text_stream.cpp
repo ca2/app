@@ -48,10 +48,11 @@ write_text_stream::write_text_stream(const write_text_stream & stream) :
 
 
 write_text_stream::write_text_stream(write_text_stream && stream) :
-   write_text_stream_struct(stream)
+   write_text_stream_struct(::transfer(stream)),
+   m_pfile(::transfer(stream.m_pfile))
 {
 
-   m_pfile = ::transfer(stream.m_pfile);
+
 }
 
 

@@ -29,13 +29,13 @@ struct trace_statement_struct
 
 
 class CLASS_DECL_ACME trace_statement :
-   public trace_statement_struct,
-   public string_stream
+   virtual public string_stream,
+   public trace_statement_struct
 {
 public:
 
 
-   trace_statement(class tracer & tracer);
+   trace_statement(class tracer * ptracer);
    trace_statement(const trace_statement & tracestatement) = delete;
    trace_statement(trace_statement && tracestatement) : trace_statement_struct(::transfer(tracestatement)), string_stream(::transfer(tracestatement)) { tracestatement.m_ptracer = nullptr; }
    ~trace_statement();

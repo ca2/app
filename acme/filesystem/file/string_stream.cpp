@@ -22,11 +22,11 @@ string_stream::string_stream(const ::file_pointer & pfile)
 
 
 string_stream::string_stream(string_stream && stream) :
-   write_text_stream() 
+   write_text_stream(::transfer(stream))
 { 
 
-   m_pfile = ::transfer(stream.m_pfile);
-
+//   m_pfile = ::transfer(stream.m_pfile);
+//
 }
 
 

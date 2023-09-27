@@ -198,3 +198,14 @@ void tracer::flush(trace_statement & tracestatement)
 
 }
 
+
+
+
+class tracer * fallback_tracer()
+{
+
+   static class tracer s_tracerFallback;
+
+   return &s_tracerFallback;
+
+}

@@ -1,13 +1,30 @@
 // From tracer.h by camilo on 2023-06-10 23:27 <3ThomasBorregaardSorensen!!
 #include "framework.h"
+#include "acme/platform/tracer.h"
 #include <stdarg.h>
 
 
-trace_statement::trace_statement(class tracer & tracer) :
-   trace_statement_struct(&tracer) 
+class tracer * fallback_tracer();
+
+trace_statement::trace_statement(class tracer * ptracer) :
+   trace_statement_struct(ptracer)
 { 
    
-   m_pprintingformat = &tracer; 
+   m_pprintingformat = ptracer;
+
+   if(m_ptracer == nullptr)
+   {
+
+      m_ptracer = fallback_tracer();
+
+   }
+
+   if(m_pprintingformat == nullptr)
+   {
+
+      m_pprintingformat = fallback_tracer();
+
+   }
 
 }
 

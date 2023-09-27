@@ -702,12 +702,28 @@ CLASS_DECL_ACME ::task * get_task()
    if (!t_ptask)
    {
 
-      if (::acme::acme::g_pacme)
+      auto pacme = ::acme::acme::g_pacme;
+
+      if (::is_set(pacme))
       {
 
-         t_ptask = new ::task();
+         auto psubsystem =  pacme->m_psubsystem;
 
-         t_ptask->initialize(::acme::acme::g_pacme->m_psubsystem->acmesystem());
+         if(::is_set(psubsystem))
+         {
+
+            auto psystem = psubsystem->acmesystem();
+
+            if(::is_set(psystem))
+            {
+
+               t_ptask = new ::task();
+
+               t_ptask->initialize(psubsystem->acmesystem());
+
+            }
+
+         }
 
       }
 

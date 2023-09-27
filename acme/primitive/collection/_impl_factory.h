@@ -146,24 +146,6 @@ namespace factory
 
 
 
-    inline ::factory::factory_item_interface * factory::get_factory_item(const ::atom & atom) const
-    {
-
-       critical_section_lock cs(&((factory*)this)->m_criticalsection);
-
-       auto p = this->plookup(atom);
-
-       if (!p)
-       {
-
-          return nullptr;
-
-       }
-
-       return p->payload();
-
-    }
-
 
     template < typename ORIGIN_TYPE >
     inline ::pointer<::factory::factory_item_interface> & factory::get_factory_item()
@@ -178,41 +160,6 @@ namespace factory
     }
 
 
-    inline ::pointer<::factory::factory_item_interface> & factory::get_factory_item(const ::atom & atom)
-    {
-
-       critical_section_lock cs(&m_criticalsection);
-
-       return this->operator[](atom);
-
-    }
-
-
-    //inline ::pointer<factory_item_interface> & factory::get_factory_item(const ::atom & atom)
-    //{
-
-    //   critical_section_lock cs(&m_criticalsection);
-
-    //   return (*get_factory())[atom];
-
-    //}
-
-
-    inline ::pointer<factory_item_interface> & get_existing_factory_item(const ::atom & atom)
-    {
-
-       auto & pfactoryitem = get_factory_item(atom);
-
-       if (!pfactoryitem)
-       {
-
-          throw_exception(error_no_factory, "No factory for \"" + atom + "\"");
-
-       }
-
-       return pfactoryitem;
-
-    }
 
 
 

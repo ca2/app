@@ -1014,6 +1014,73 @@ namespace factory
    }
 
 
+   ::factory::factory_item_interface * factory::get_factory_item(const ::atom & atom) const
+   {
+
+      critical_section_lock cs(&((factory*)this)->m_criticalsection);
+
+      auto p = this->plookup(atom);
+
+      if (!p)
+      {
+
+         error() << "factory::get_factory_item FAILED!! the following atom wasn't found : \"" << atom.as_string() << "\"";
+
+         return nullptr;
+
+      }
+
+      return p->payload();
+
+   }
+
+
+   ::pointer<::factory::factory_item_interface> & factory::get_factory_item(const ::atom & atom)
+   {
+
+      critical_section_lock cs(&m_criticalsection);
+
+      auto & pfactoryiteminterface = this->operator[](atom);
+
+      if(!pfactoryiteminterface)
+      {
+
+         warning() << "factory::get_factory_item (2) : \"" << atom.as_string() << "\"";
+
+      }
+
+      return pfactoryiteminterface;
+
+   }
+
+
+   //inline ::pointer<factory_item_interface> & factory::get_factory_item(const ::atom & atom)
+   //{
+
+   //   critical_section_lock cs(&m_criticalsection);
+
+   //   return (*get_factory())[atom];
+
+   //}
+
+
+   ::pointer<factory_item_interface> & get_existing_factory_item(const ::atom & atom)
+   {
+
+      auto & pfactoryitem = get_factory_item(atom);
+
+      if (!pfactoryitem)
+      {
+
+         throw_exception(error_no_factory, "No factory for \"" + atom + "\"");
+
+      }
+
+      return pfactoryitem;
+
+   }
+
+
 } // namespace factory
 
 

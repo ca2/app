@@ -757,7 +757,7 @@ enum_trace_category particle::trace_category(const ::particle * pparticle) const
 //}
 
 
-class tracer & particle::tracer() const
+class tracer * particle::tracer() const
 {
 
    auto ptask = get_task();
@@ -765,11 +765,33 @@ class tracer & particle::tracer() const
    if (!ptask)
    {
 
-      return *::acme::acme::g_pacme->m_psubsystem->m_pcontext;
+      auto pacme = ::acme::acme::g_pacme;
+
+      if (::is_set(pacme))
+      {
+
+         auto psubsystem = pacme->m_psubsystem;
+
+         if (::is_set(psubsystem))
+         {
+
+            auto pcontext = psubsystem->m_pcontext;
+
+            if (::is_set(pcontext))
+            {
+
+
+               return pcontext;
+
+            }
+
+         }
+
+      }
 
    }
 
-   return *ptask;
+   return ptask;
 
 }
 
@@ -777,7 +799,9 @@ class tracer & particle::tracer() const
 ::trace_statement particle::trace_statement() const
 {
 
-   auto statement = ::transfer(::trace_statement(this->tracer()));
+   auto ptracer = this->tracer();
+
+   auto statement = ::transfer(::trace_statement(ptracer));
 
    trace_statement_prefix(statement);
 
@@ -2224,7 +2248,7 @@ void particle::user_post(const ::procedure & procedure)
 //}
 
 
-CLASS_DECL_ACME class tracer & tracer()
+CLASS_DECL_ACME class tracer * tracer()
 {
 
    auto ptask = get_task();
@@ -2232,11 +2256,11 @@ CLASS_DECL_ACME class tracer & tracer()
    if (!ptask)
    {
 
-      return *::acme::acme::g_pacme->m_psubsystem->m_pcontext;
+      return ::acme::acme::g_pacme->m_psubsystem->m_pcontext;
 
    }
 
-   return *ptask;
+   return ptask;
 
 }
 

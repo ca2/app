@@ -1677,6 +1677,86 @@ namespace acme
    }
 
 
+   ::file::path node::get_executable_path_by_app_id(const ::scoped_string & scopedstrAppId)
+   {
+
+      ::string_array stra;
+
+      stra.explode("/", scopedstrAppId);
+
+      if(stra.get_count() != 2)
+      {
+
+         throw exception(error_invalid_parameter);
+
+      }
+
+      return get_executable_path_by_app_id(stra[0], stra[1]);
+
+   }
+
+
+   ::file::path node::get_executable_path_by_app_id(const ::scoped_string & scopedstrRepos, const ::scoped_string & scopedstrApp)
+   {
+
+
+#if defined(MACOS)
+
+      return macos_app_folder() / "Contents/MacOS" / m_strApp;
+
+#else
+
+      string strName = scopedstrRepos + "_" + scopedstrApp;
+
+      strName.find_replace("-", "_");
+
+      ::file::path path;
+
+#if defined(WINDOWS)
+
+      if (m_bSingleExecutable)
+      {
+
+         strName = "static_" + strName + ".exe";
+
+      }
+      else
+      {
+
+         strName = "shared_" + strName + ".exe";
+
+      }
+
+#elif defined(LINUX)
+
+      strName = "_" + strName;
+
+#endif
+
+#ifdef WINDOWS
+
+      auto pathFolder = acmedirectory()->roaming() / m_strRepos / m_strApp / "x64" ;
+
+      path = pathFolder / strName;
+
+      return path;
+
+#else
+
+      auto pathFolder = acmedirectory()->home();
+
+      path = pathFolder / "application" / scopedstrRepos / scopedstrApp / "x64" / strName;
+
+      return path;
+
+#endif
+
+
+#endif
+
+   }
+
+
    void node::launch_app_by_app_id(const ::scoped_string & scopedstrAppId)
    {
 

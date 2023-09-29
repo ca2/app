@@ -1677,7 +1677,7 @@ namespace acme
    }
 
 
-   ::file::path node::get_executable_path_by_app_id(const ::scoped_string & scopedstrAppId, bool bSingleExecutable)
+   ::file::path node::get_executable_path_by_app_id(const ::scoped_string & scopedstrAppId, bool bSingleExecutableVersion)
    {
 
       ::string_array stra;
@@ -1691,12 +1691,12 @@ namespace acme
 
       }
 
-      return get_executable_path_by_app_id(stra[0], stra[1], bSingleExecutable);
+      return get_executable_path_by_app_id(stra[0], stra[1], bSingleExecutableVersion);
 
    }
 
 
-   ::file::path node::get_executable_path_by_app_id(const ::scoped_string & scopedstrRepos, const ::scoped_string & scopedstrApp, bool bSingleExecutable)
+   ::file::path node::get_executable_path_by_app_id(const ::scoped_string & scopedstrRepos, const ::scoped_string & scopedstrApp, bool bSingleExecutableVersion)
    {
 
 
@@ -1714,7 +1714,7 @@ namespace acme
 
 #if defined(WINDOWS)
 
-      if (bSingleExecutable)
+      if (bSingleExecutableVersion)
       {
 
          strName = "static_" + strName + ".exe";
@@ -1757,7 +1757,7 @@ namespace acme
    }
 
 
-   void node::launch_app_by_app_id(const ::scoped_string & scopedstrAppId)
+   void node::launch_app_by_app_id(const ::scoped_string & scopedstrAppId, bool bSingleExecutableVersion)
    {
 
       throw ::interface_only();

@@ -1171,7 +1171,7 @@ void draw2d_context::text_metrics(float * pfAscender, float * pfDescender, float
 
       //auto textmetric = m_pgraphics->get_text_metrics();
 
-      m_pstate->lineHeight = 1;
+      m_pstate->lineHeight = 1.0f;
 
    }
 

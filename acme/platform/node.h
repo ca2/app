@@ -375,8 +375,8 @@ namespace acme
       
       virtual void launch_app(const ::string & psz, const char ** argv, int iFlags);
 
-      virtual ::file::path get_executable_path_by_app_id(const ::scoped_string & scopedstrAppId);
-      virtual ::file::path get_executable_path_by_app_id(const ::scoped_string & scopedstrRepos, const ::scoped_string & scopedstrApp);
+      virtual ::file::path get_executable_path_by_app_id(const ::scoped_string & scopedstrAppId, bool bSingleExecutable);
+      virtual ::file::path get_executable_path_by_app_id(const ::scoped_string & scopedstrRepos, const ::scoped_string & scopedstrApp, bool bSingleExecutable);
       virtual void launch_app_by_app_id(const ::scoped_string & scopedstrAppId);
 
       virtual ::process_identifier create_process(const ::string & pszCommandLine);

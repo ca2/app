@@ -1677,7 +1677,7 @@ namespace acme
    }
 
 
-   ::file::path node::get_executable_path_by_app_id(const ::scoped_string & scopedstrAppId)
+   ::file::path node::get_executable_path_by_app_id(const ::scoped_string & scopedstrAppId, bool bSingleExecutable)
    {
 
       ::string_array stra;
@@ -1691,12 +1691,12 @@ namespace acme
 
       }
 
-      return get_executable_path_by_app_id(stra[0], stra[1]);
+      return get_executable_path_by_app_id(stra[0], stra[1], bSingleExecutable);
 
    }
 
 
-   ::file::path node::get_executable_path_by_app_id(const ::scoped_string & scopedstrRepos, const ::scoped_string & scopedstrApp)
+   ::file::path node::get_executable_path_by_app_id(const ::scoped_string & scopedstrRepos, const ::scoped_string & scopedstrApp, bool bSingleExecutable)
    {
 
 
@@ -1714,7 +1714,7 @@ namespace acme
 
 #if defined(WINDOWS)
 
-      if (m_bSingleExecutable)
+      if (bSingleExecutable)
       {
 
          strName = "static_" + strName + ".exe";
@@ -1735,7 +1735,7 @@ namespace acme
 
 #ifdef WINDOWS
 
-      auto pathFolder = acmedirectory()->roaming() / m_strRepos / m_strApp / "x64" ;
+      auto pathFolder = acmedirectory()->roaming() / scopedstrRepos / scopedstrApp / "x64" ;
 
       path = pathFolder / strName;
 

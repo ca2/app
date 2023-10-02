@@ -62,12 +62,22 @@ int wmain(int argc, wchar_t* argv[], wchar_t* envp[])
 int main(int argc, platform_char ** argv, platform_char ** envp)
 #endif
 {
-   //char sz[256];
+#define DEEP_DEBUG
+#ifdef DEEP_DEBUG
    printf("argc=%d\n", argc);
    for(int i = 0; i < argc; i++)
    {
-      printf("argv[%d]=%s\n", i, argv[i]);
+      auto pszParameter = argv[i];
+      if (sizeof(platform_char) == sizeof(wchar_t))
+      {
+         printf("argv[%d]=%S\n", i, pszParameter);
+      }
+      else
+      {
+         printf("argv[%d]=%s\n", i, pszParameter);
+      }
    }
+#endif
 
    ::acme::acme::g_pacme->initialize(argc, argv, envp);
 

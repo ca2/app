@@ -2,6 +2,7 @@
 
 
 #include "aura/user/user/box.h"
+#include "base/user/user/auto_hide.h"
 
 
 namespace experience
@@ -9,7 +10,8 @@ namespace experience
 
 
    class CLASS_DECL_BASE control_box :
-      virtual public ::user::box
+      virtual public ::user::box,
+      virtual public ::user::auto_hide
    {
    public:
 
@@ -40,7 +42,7 @@ namespace experience
 
 
       ::experience::frame_window *           m_pframewindow;
-      class ::time                             m_timeShow;
+      class ::time                           m_timeShow;
       bool                                   m_bShowAttempt;
       bool                                   m_bDrag;
       point_i32                              m_pointDrag;
@@ -65,9 +67,9 @@ namespace experience
       ::color::color                         m_colorButtonForeDisabled;
 
       enum_button_item_map                   m_itemmap;
-      atom_map < enum_button >                 m_idmap;
+      atom_map < enum_button >               m_idmap;
             
-      status < ::color::color  >      m_colorBackground;
+      status < ::color::color  >             m_colorBackground;
 
 
       control_box();
@@ -88,6 +90,7 @@ namespace experience
       DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
       DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
       DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
+      DECLARE_MESSAGE_HANDLER(on_message_mouse_leave);
       void _001OnTimer(::timer * ptimer) override;
       DECLARE_MESSAGE_HANDLER(on_message_create);
       DECLARE_MESSAGE_HANDLER(on_message_move);
@@ -104,6 +107,8 @@ namespace experience
       virtual i32 calculate_control_box_width(::draw2d::graphics_pointer & pgraphics);
 
       //virtual void reset_layout(::draw2d::graphics_pointer & pgraphics);
+
+      ::i32 auto_hide_threshold_height() override;
 
       virtual void _layout_button(enum_button ebutton, ::rectangle_i32 & rectangle);
       virtual bool should_show_button(enum_button ebutton) const;
@@ -133,6 +138,9 @@ namespace experience
       virtual ::count get_visible_control_box_button() const;
 
       virtual bool get_font(::write_text::font_pointer & font);
+
+
+      void handle(::topic * ptopic, ::context * pcontext) override;
 
 
    };

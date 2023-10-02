@@ -49,6 +49,14 @@ namespace experience
    }
 
 
+   bool button::should_draw()
+   {
+
+      return get_parent()->should_draw();
+
+   }
+
+
    void button::on_message_show_window(::message::message * pmessage)
    {
 

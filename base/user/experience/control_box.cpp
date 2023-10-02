@@ -102,6 +102,8 @@ namespace experience
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
+      auto_hide_on_message_mouse_move(pmessage);
+
       if (m_pframewindow != nullptr
           && m_pframewindow->m_pframe != nullptr
           && m_pframewindow->m_pframe->is_control_box_moveable())
@@ -121,6 +123,14 @@ namespace experience
          pmouse->m_bRet = true;
 
       }
+
+   }
+
+
+   void control_box::on_message_mouse_leave(::message::message * pmessage)
+   {
+
+      auto_hide_on_message_mouse_leave(pmessage);
 
    }
 
@@ -202,6 +212,8 @@ namespace experience
 
    void control_box::_001OnTimer(::timer * ptimer)
    {
+
+      ::user::auto_hide::_001OnTimer(ptimer);
 
       if (ptimer->m_uEvent == e_timer_check_hover)
       {
@@ -330,6 +342,8 @@ namespace experience
    void control_box::on_message_create(::message::message * pmessage)
    {
 
+      auto_hide_on_message_create(pmessage);
+
       m_pbrushButtonBack.create(this);
       m_pbrushButtonBackSel.create(this);
       m_pbrushButtonBackFocus.create(this);
@@ -371,6 +385,7 @@ namespace experience
       MESSAGE_LINK(e_message_show_window, pframewindow, this, &control_box::on_message_show_window);
       MESSAGE_LINK(MESSAGE_CREATE, pframewindow, this, &control_box::on_message_create);
       MESSAGE_LINK(e_message_mouse_move, pframewindow, this, &control_box::on_message_mouse_move);
+      MESSAGE_LINK(e_message_mouse_leave, pframewindow, this, &control_box::on_message_mouse_leave);
       MESSAGE_LINK(e_message_left_button_down, pframewindow, this, &control_box::on_message_left_button_down);
       MESSAGE_LINK(e_message_left_button_up, pframewindow, this, &control_box::on_message_left_button_up);
       MESSAGE_LINK(e_message_reposition, pframewindow, this, &control_box::on_message_move);
@@ -490,6 +505,14 @@ namespace experience
    }
 
 
+   ::i32 control_box::auto_hide_threshold_height()
+   {
+
+      return this->height();
+
+   }
+
+
    void control_box::_layout_button(enum_button ebutton, ::rectangle_i32 & rectangle)
    {
 
@@ -553,6 +576,7 @@ namespace experience
    void control_box::on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
+      auto_hide_calculate_control_visibility();
 //      ::rectangle_i32 rectangleWindow = m_pframewindow->window_rectangle(::user::e_layout_lading);
 //
 //      ::rectangle_i32 rectangleParent(rectangleWindow);
@@ -590,6 +614,8 @@ namespace experience
       _layout_button(e_button_transparent_frame, rectangle);
 
       _layout_button(e_button_dock, rectangle);
+      
+      order(e_zorder_top);
 
    }
 
@@ -1196,6 +1222,16 @@ namespace experience
 //         throw ::exception(error_failed, "no more a u");
 //
 //      }
+
+   }
+
+
+   void control_box::handle(::topic * ptopic, ::context * pcontext)
+   {
+
+      ::user::box::handle(ptopic, pcontext);
+
+      ::user::auto_hide::handle(ptopic, pcontext);
 
    }
 

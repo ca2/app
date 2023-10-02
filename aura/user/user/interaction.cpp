@@ -4833,6 +4833,13 @@ namespace user
    void interaction::_001CallOnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
+      if (!should_draw())
+      {
+
+         return;
+
+      }
+
       scoped_restore(pgraphics->m_puserinteraction);
 
       pgraphics->m_puserinteraction = this;
@@ -12781,6 +12788,14 @@ namespace user
       }
 
       return m_pprimitiveimpl->is_this_visible(elayout);
+
+   }
+
+
+   bool interaction::should_draw()
+   {
+
+      return true;
 
    }
 

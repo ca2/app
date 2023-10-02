@@ -34,16 +34,16 @@ namespace user
    void tab::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
-
-      pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
-
-      if (!m_bEffectiveVisibleTabs)
+      if (!m_bEffectiveVisibleControl)
       {
 
          return;
 
       }
+
+      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+
+      pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
       //if (top_level()->frame_is_transparent())
       //{
@@ -713,7 +713,7 @@ namespace user
 
       //}
 
-      calculate_tab_visibility();
+      auto_hide_calculate_control_visibility();
 
       ::pointer<::base::style>pstyle = get_style(pgraphics);
 
@@ -872,7 +872,7 @@ namespace user
          get_data()->m_rectangleTab.right() = get_data()->m_rectangleTab.left() + get_data()->m_iTabWidth;
          get_data()->m_rectangleTab.bottom() = rectangleX.bottom();
 
-         get_data()->m_rectangleTabClient.left() = m_bEffectiveVisibleTabs ? get_data()->m_rectangleTab.right() : rectangleX.left();
+         get_data()->m_rectangleTabClient.left() = m_bEffectiveVisibleControl ? get_data()->m_rectangleTab.right() : rectangleX.left();
          get_data()->m_rectangleTabClient.top() = get_data()->m_rectangleTab.top();
          get_data()->m_rectangleTabClient.right() = rectangleX.right();
          get_data()->m_rectangleTabClient.bottom() = get_data()->m_rectangleTab.bottom();
@@ -988,7 +988,7 @@ namespace user
          ::rectangle_i32 & rectangleTabClient = get_data()->m_rectangleTabClient;
 
          rectangleTabClient.left() = get_data()->m_rectangleTab.left();
-         rectangleTabClient.top() = m_bEffectiveVisibleTabs ? get_data()->m_rectangleTab.bottom() : rectangleX.top();
+         rectangleTabClient.top() = m_bEffectiveVisibleControl ? get_data()->m_rectangleTab.bottom() : rectangleX.top();
          rectangleTabClient.right() = get_data()->m_rectangleTab.right();
          rectangleTabClient.bottom() = rectangleX.bottom();
 

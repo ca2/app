@@ -928,6 +928,7 @@ namespace user
       virtual bool is_frame_window();
       virtual bool is_impact();
       bool is_this_visible(enum_layout elayout = e_layout_design) override;
+      virtual bool should_draw();
 
       virtual bool sketch_on_display();
 

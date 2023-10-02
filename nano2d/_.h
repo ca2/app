@@ -28,6 +28,8 @@ namespace nano2d
 
    struct glyphPosition;
 
+   class text_box;
+
 //
 //
 } // namespace nano2d

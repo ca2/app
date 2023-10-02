@@ -91,9 +91,9 @@ namespace quartz2d
       CGContextSetTextMatrix(m_pdc, trans);
       CGContextSetRGBFillColor (m_pdc, __expand_f32_rgba(pnanobrushText->m_color));
 
-      double x = rectangleText.left;
+      double x = rectangleText.left();
       
-      double y = rectangleText.top;
+      double y = rectangleText.top();
 
       if(ealign & e_align_horizontal_center)
       {
@@ -155,8 +155,8 @@ namespace quartz2d
 
       CGRect rect;
       
-      rect.origin.x = rectangle.left;
-      rect.origin.y = rectangle.top;
+      rect.origin.x = rectangle.left();
+      rect.origin.y = rectangle.top();
       rect.size.width = rectangle.width();
       rect.size.height = rectangle.height();
 

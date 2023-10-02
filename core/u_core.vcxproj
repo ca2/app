@@ -244,6 +244,8 @@
     <ClInclude Include="platform\application.h" />
     <ClInclude Include="platform\session.h" />
     <ClInclude Include="platform\system.h" />
+    <ClInclude Include="user\user\font_list_impact.h" />
+    <ClInclude Include="user\user\list2.h" />
     <ClInclude Include="version\version.h" />
     <None Include="filesystem\_impl.h" />
     <ClInclude Include="framework.h" />
@@ -319,7 +321,6 @@
     <ClInclude Include="user\simple_ui\_.h" />
     <ClInclude Include="user\simple_ui\_simple_ui.h" />
     <ClInclude Include="user\userex\aaa_want_to_erase_form_update_hint.h" />
-    <ClInclude Include="user\userex\calculator_edit_impact.h" />
     <ClInclude Include="user\userex\color_impact.h" />
     <ClInclude Include="user\userex\const.h" />
     <ClInclude Include="user\userex\dialog.h" />
@@ -352,7 +353,6 @@
     <ClInclude Include="user\userex\_.h" />
     <ClInclude Include="user\userex\_impl.h" />
     <ClInclude Include="user\userex\_userex.h" />
-    <ClInclude Include="user\user\00.h" />
     <ClInclude Include="user\user\color_combo_box.h" />
     <ClInclude Include="user\user\control_ddx_dbflags.h" />
     <ClInclude Include="user\user\elastic_slider.h" />
@@ -363,7 +363,6 @@
     <ClInclude Include="user\user\form_mesh.h" />
     <ClInclude Include="user\user\form_update_hint.h" />
     <ClInclude Include="user\user\image_manager.h" />
-    <ClInclude Include="user\user\inline.h" />
     <ClInclude Include="user\user\list.h" />
     <ClInclude Include="user\user\listing.h" />
     <ClInclude Include="user\user\list_cache.h" />
@@ -394,10 +393,6 @@
     <ClInclude Include="user\user\xfplayer_impact_lines.h" />
     <ClInclude Include="user\user\xfplayer_impact_line_selection.h" />
     <ClInclude Include="user\user\_.h" />
-    <ClInclude Include="user\user\_const.h" />
-    <None Include="user\user\_impl.h" />
-    <ClInclude Include="user\user\_tree.h" />
-    <ClInclude Include="user\user\_user.h" />
     <ClInclude Include="user\_.h" />
     <ClInclude Include="_.h" />
     <ClInclude Include="_defer.h" />
@@ -522,7 +517,6 @@
     <ClCompile Include="user\simple\tab_control.cpp" />
     <ClCompile Include="user\simple\tab_impact.cpp" />
     <ClCompile Include="user\simple\tree_impact.cpp" />
-    <ClCompile Include="user\userex\calculator_edit_impact.cpp" />
     <ClCompile Include="user\userex\color_impact.cpp" />
     <ClCompile Include="user\userex\dialog.cpp" />
     <ClCompile Include="user\userex\dialog_frame.cpp" />
@@ -551,11 +545,13 @@
     <ClCompile Include="user\user\elastic_slider.cpp" />
     <ClCompile Include="user\user\font_combo_box.cpp" />
     <ClCompile Include="user\user\font_list.cpp" />
+    <ClCompile Include="user\user\font_list_impact.cpp" />
     <ClCompile Include="user\user\form_list.cpp" />
     <ClCompile Include="user\user\form_list_impact.cpp" />
     <ClCompile Include="user\user\form_mesh.cpp" />
     <ClCompile Include="user\user\image_manager.cpp" />
     <ClCompile Include="user\user\list.cpp" />
+    <ClCompile Include="user\user\list2.cpp" />
     <ClCompile Include="user\user\list_cache.cpp" />
     <ClCompile Include="user\user\list_column.cpp" />
     <ClCompile Include="user\user\list_data.cpp" />

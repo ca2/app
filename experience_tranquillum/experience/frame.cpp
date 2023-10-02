@@ -1,7 +1,5 @@
 #include "framework.h"
 #include "frame.h"
-#include "base/user/experience/frame_window.h"
-#include "base/user/experience/control_box.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/pen.h"
@@ -9,6 +7,9 @@
 #include "aura/graphics/image/icon.h"
 #include "aura/graphics/image/drawing.h"
 #include "base/platform/system.h"
+#include "base/user/experience/control_box.h"
+#include "base/user/experience/frame_window.h"
+#include "base/user/experience/size_manager.h"
 
 
 namespace experience_tranquillum
@@ -24,7 +25,7 @@ namespace experience_tranquillum
 
       m_colorCaptionText = argb(255, 255, 255, 255);
 
-      //m_rectangleClient = nullptr;
+      //m_rectangleX = nullptr;
 
    }
 
@@ -56,11 +57,11 @@ namespace experience_tranquillum
 
       //class imaging & imaging = psystem->imaging();
 
-      ::rectangle_i32 rectangleClient(rectangle);
+      ::rectangle_i32 rectangleX(rectangle);
 
       ::rectangle_i32 rectangleInflate;
 
-      if (rectangleClient.area() <= 0)
+      if (rectangleX.area() <= 0)
       {
 
          return;
@@ -71,7 +72,7 @@ namespace experience_tranquillum
 
       //i32 iInflate = 5; // raio 2 pixels + centro 1 pixel
 
-      //rectangleInflate = rectangleClient;
+      //rectangleInflate = rectangleX;
       //rectangleInflate.inflate(iInflate, iInflate);
 
       ////::pointer<::user::interaction>puserinteractionDesktop = psystem->get_desktop_window();
@@ -84,22 +85,22 @@ namespace experience_tranquillum
 
       //::image_pointer pimage2;
 
-      //pimage = create_image({rectangleClient.width() + iInflate * 2,  rectangleClient.height() + iInflate * 2});
+      //pimage = create_image({rectangleX.width() + iInflate * 2,  rectangleX.height() + iInflate * 2});
 
-      //pimage2 = create_image({rectangleClient.width() + iInflate * 2,  rectangleClient.height() + iInflate * 2});
-      //::rectangle_i32 rectangleWindow = rectangleClient;
+      //pimage2 = create_image({rectangleX.width() + iInflate * 2,  rectangleX.height() + iInflate * 2});
+      //::rectangle_i32 rectangleWindow = rectangleX;
       //pframewindow->client_to_screen(rectangleWindow);
-      ////pimage = create_image({rectangleClient.width(),  rectangleClient.height()});
-      //bool b = pimage2->get_graphics()->BitBlt(0, 0, rectangleClient.width() + iInflate * 2, rectangleClient.height() + iInflate * 2, pgraphics, rectangleClient.left - iInflate, rectangleClient.top - iInflate);
-      ////bool b = ::BitBlt(dc2, 0, 0, rectangleClient.width() + iInflate * 2, rectangleClient.height() + iInflate * 2, hdcScreen, rectangleClient.left - iInflate, rectangleClient.top - iInflate);
+      ////pimage = create_image({rectangleX.width(),  rectangleX.height()});
+      //bool b = pimage2->get_graphics()->BitBlt(0, 0, rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2, pgraphics, rectangleX.left() - iInflate, rectangleX.top() - iInflate);
+      ////bool b = ::BitBlt(dc2, 0, 0, rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2, hdcScreen, rectangleX.left() - iInflate, rectangleX.top() - iInflate);
       //b = imaging.blur(pimage->g(), ::point_i32(),
-      //                 size_i32(rectangleClient.width() + iInflate * 2, rectangleClient.height() + iInflate * 2),
+      //                 size_i32(rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2),
       //                 pimage2->get_graphics(), ::point_i32(), 2);
 
-      ////spgraphics->Draw3dRect(rectangleClient, 127 << 24, 127 << 24);
-      ////rectangleClient.deflate(1, 1);
-      ////spgraphics->Draw3dRect(rectangleClient, 64 << 24, 64 << 24);
-      ////b = imaging.bitmap_blend(pgraphics, rectangle.left, rectangle.top,
+      ////spgraphics->Draw3dRect(rectangleX, 127 << 24, 127 << 24);
+      ////rectangleX.deflate(1, 1);
+      ////spgraphics->Draw3dRect(rectangleX, 64 << 24, 64 << 24);
+      ////b = imaging.bitmap_blend(pgraphics, rectangle.left(), rectangle.top(),
 
       //rectangleWindow.width(),
       //rectangleWindow.height(),
@@ -111,7 +112,7 @@ namespace experience_tranquillum
       //bf.BlendFlags = 0;
       //bf.SourceConstantAlpha = 255;
       //::alpha_blend(pgraphics->get_handle1(),
-      //rectangle.left, rectangle.top,
+      //rectangle.left(), rectangle.top(),
 
       //rectangleWindow.width(),
       //rectangleWindow.height(),
@@ -121,7 +122,7 @@ namespace experience_tranquillum
       //rectangleWindow.height(),
       //bf);*/
 
-      //pgraphics->BitBlt(rectangleClient.left, rectangleClient.top, rectangleClient.width(), rectangleClient.height(), pimage->g(), iInflate, iInflate);
+      //pgraphics->BitBlt(rectangleX.left(), rectangleX.top(), rectangleX.width(), rectangleX.height(), pimage->g(), iInflate, iInflate);
 
    }
 
@@ -149,7 +150,7 @@ namespace experience_tranquillum
       /*Gdiplus::Graphics g((HDC) pgraphics->get_os_data());
       g.SetCompositingMode(Gdiplus::CompositingModeSourceOver);
       Gdiplus::SolidBrush solidBrush(Gdiplus::Color(bAlpha, color32_u8_red(color32), color32_u8_green(color32), color32_u8_blue(color32)));
-      g.FillRectangle(&solidBrush, rectangle.left, rectangle.top, rectangle.right - rectangle.left, rectangle.bottom - rectangle.top);*/
+      g.FillRectangle(&solidBrush, rectangle.left(), rectangle.top(), rectangle.right() - rectangle.left(), rectangle.bottom() - rectangle.top());*/
 
 
       pgraphics->fill_rectangle(rectangle, color & opacity);
@@ -191,13 +192,13 @@ namespace experience_tranquillum
 
          }
 
-         rectangle.left = m_rectangleCaption.left + m_pcontrolbox->m_iDefaultButtonMargin;
+         rectangle.left() = m_rectangleCaption.left() + m_pcontrolbox->m_iDefaultButtonMargin;
 
-         rectangle.right = rectangle.left + 16;
+         rectangle.right() = rectangle.left() + 16;
 
-         rectangle.bottom = m_iTitleBottom;
+         rectangle.bottom() = m_iTitleBottom;
 
-         rectangle.top = rectangle.bottom - 16;
+         rectangle.top() = rectangle.bottom() - 16;
 
          return true;
 
@@ -206,13 +207,13 @@ namespace experience_tranquillum
          if (m_pframewindow == nullptr || m_pframewindow->const_layout().design().display() != ::e_display_minimal)
             return false;
 
-         rectangle.left = m_pointMoveGripMinimal.x() + 2;
+         rectangle.left() = m_pointMoveGripMinimal.x() + 2;
 
-         rectangle.top = m_pointMoveGripMinimal.y() + 2;
+         rectangle.top() = m_pointMoveGripMinimal.y() + 2;
 
-         rectangle.right = rectangle.left + m_iCaptionHeight - 4;
+         rectangle.right() = rectangle.left() + m_iCaptionHeight - 4;
 
-         rectangle.bottom = rectangle.top + m_iCaptionHeight - 4;
+         rectangle.bottom() = rectangle.top() + m_iCaptionHeight - 4;
 
 
          return true;
@@ -416,8 +417,8 @@ namespace experience_tranquillum
 
       ::rectangle_i32 rectangle(rectangleParam);
 
-      i32 x = rectangle.left;
-      i32 y = rectangle.top;
+      i32 x = rectangle.left();
+      i32 y = rectangle.top();
       i32 cx = rectangle.width() - 1;
       i32 cy = rectangle.height() - 1;
 
@@ -520,6 +521,10 @@ namespace experience_tranquillum
    void frame::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
+      //pgraphics->fill_solid_rectangle(::rectangle_f64_dimension(0, 0, 16, 16), ::color::red);
+
+      //return;
+
       if (!m_pframewindow->is_frame_experience_enabled())
       {
 
@@ -597,7 +602,7 @@ namespace experience_tranquillum
             while (i < rectangleGrip.width() - 5 + 1)
             {
 
-               auto rect3d = ::rectangle_f64_dimension(rectangleGrip.left + i, rectangleGrip.top, 3, rectangleGrip.height());
+               auto rect3d = ::rectangle_f64_dimension(rectangleGrip.left() + i, rectangleGrip.top(), 3, rectangleGrip.height());
 
                pgraphics->draw_inset_3d_rectangle(rect3d, argb(110, 230, 230, 230), argb(110, 130, 130, 130), 1.0);
 
@@ -605,7 +610,7 @@ namespace experience_tranquillum
 
             }
 
-            //pgraphics->Draw3dRect(rectangleGrip.left + 12,rectangleGrip.top,3,rectangleGrip.height(),argb(184,255,255,255),argb(184,84,84,84));
+            //pgraphics->Draw3dRect(rectangleGrip.left() + 12,rectangleGrip.top(),3,rectangleGrip.height(),argb(184,255,255,255),argb(184,84,84,84));
 
          }
 
@@ -824,6 +829,187 @@ namespace experience_tranquillum
       rectangle.deflate(get_margin_rectangle());
 
    }
+
+
+   ::experience::enum_frame frame::experience_frame_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
+   {
+      //::item_pointer pitemHi etest = ::experience::e_frame_client;
+      {
+         //      m_pframewindow->GetEventWindow()->screen_to_client()(point);
+         //::rectangle_i32 rectangleEvent;
+
+         auto rectangleEvent = m_pframewindow->raw_rectangle();
+
+         ::rectangle_i32 rectangle;
+         //::point_i32 pointCenter = rectangleEvent.center();
+         enum_grip egrip = m_pframewindow->size_manager()->GetGripMask();
+
+
+         ::rectangle_i32 rectangleOuter(rectangleEvent);
+
+         ::rectangle_i32 rectangleInner(rectangleEvent);
+
+         rectangleInner.deflate(8);
+
+         ::point_i32 pointHitTest = point;
+
+         //               if(rectangleEvent.left() < 0)
+         //                  pointHitTest.x() -= rectangleEvent.left();
+         //               if(rectangleEvent.top() < 0)
+         //                  pointHitTest.y() -= rectangleEvent.top();
+
+         if (egrip & e_grip_top_left)
+         {
+            rectangle.top_left() = rectangleOuter.top_left();
+            rectangle.bottom_right() = rectangleInner.top_left();
+            if (rectangle.contains(pointHitTest))
+            {
+               return ::experience::e_frame_sizing_top_left;
+               //goto SizingSuccess;
+            }
+         }
+         if (egrip & e_grip_top_right)
+         {
+            rectangle.top() = rectangleOuter.top();
+            rectangle.left() = rectangleInner.right();
+            rectangle.bottom() = rectangleInner.top();
+            rectangle.right() = rectangleOuter.right();
+            if (rectangle.contains(pointHitTest))
+            {
+               return ::experience::e_frame_sizing_top_right;
+               //goto SizingSuccess;
+            }
+         }
+         if (egrip & e_grip_bottom_right)
+         {
+            rectangle.top_left() = rectangleInner.bottom_right();
+            rectangle.bottom_right() = rectangleOuter.bottom_right();
+            if (rectangle.contains(pointHitTest))
+            {
+               return ::experience::e_frame_sizing_bottom_right;
+               //goto SizingSuccess;
+            }
+         }
+         if (egrip & e_grip_bottom_left)
+         {
+            rectangle.top() = rectangleInner.bottom();
+            rectangle.left() = rectangleOuter.left();
+            rectangle.bottom() = rectangleOuter.bottom();
+            rectangle.right() = rectangleInner.left();
+            if (rectangle.contains(pointHitTest))
+            {
+               return ::experience::e_frame_sizing_bottom_left;
+               //goto SizingSuccess;
+            }
+         }
+         if (egrip & e_grip_top)
+         {
+            rectangle.top() = rectangleOuter.top();
+            rectangle.left() = rectangleInner.left();
+            rectangle.right() = rectangleInner.right();
+            rectangle.bottom() = rectangleInner.top();
+            if (rectangle.contains(pointHitTest))
+            {
+               return ::experience::e_frame_sizing_top;
+               //goto SizingSuccess;
+            }
+         }
+         if (egrip & e_grip_bottom)
+         {
+            rectangle.top() = rectangleInner.bottom();
+            rectangle.left() = rectangleInner.left();
+            rectangle.right() = rectangleInner.right();
+            rectangle.bottom() = rectangleOuter.bottom();
+            if (rectangle.contains(pointHitTest))
+            {
+               return ::experience::e_frame_sizing_bottom;
+               //goto SizingSuccess;
+            }
+         }
+         if (egrip & e_grip_left)
+         {
+            rectangle.top() = rectangleInner.top();
+            rectangle.left() = rectangleOuter.left();
+            rectangle.right() = rectangleInner.left();
+            rectangle.bottom() = rectangleInner.bottom();
+            if (rectangle.contains(pointHitTest))
+            {
+               return ::experience::e_frame_sizing_left;
+               //goto SizingSuccess;
+            }
+         }
+         if (egrip & e_grip_right)
+         {
+            rectangle.top() = rectangleInner.top();
+            rectangle.left() = rectangleInner.right();
+            rectangle.right() = rectangleOuter.right();
+            rectangle.bottom() = rectangleInner.bottom();
+            if (rectangle.contains(pointHitTest))
+            {
+               return ::experience::e_frame_sizing_right;
+               //goto SizingSuccess;
+            }
+         }
+         return ::experience::e_frame_client;
+         //goto SizingNone;
+      //SizingSuccess:
+         //return etest;
+      //SizingNone:
+        // ;
+      }
+      //return  ::experience::e_frame_client;
+   }
+
+
+
+   void frame::GetBorderRectangle(const ::rectangle_i32 & rectangleOuter, ::rectangle_i32 * prectangle, enum_border eside)
+   {
+
+      auto rectangleInner = client_rectangle();
+
+      ::rectangle_i32 rectangle;
+
+      if (eside == e_border_top)
+      {
+
+         rectangle.left() = rectangleOuter.left();
+         rectangle.right() = rectangleOuter.right();
+         rectangle.top() = rectangleOuter.top();
+         rectangle.bottom() = rectangleInner.top();
+
+      }
+      else if (eside == e_border_left)
+      {
+
+         rectangle.left() = rectangleOuter.left();
+         rectangle.right() = rectangleInner.left();
+         rectangle.top() = rectangleInner.top();
+         rectangle.bottom() = rectangleInner.bottom();
+
+      }
+      else if (eside == e_border_right)
+      {
+
+         rectangle.left() = rectangleInner.right();
+         rectangle.right() = rectangleOuter.right();
+         rectangle.top() = rectangleInner.top();
+         rectangle.bottom() = rectangleInner.bottom();
+
+      }
+      else if (eside == e_border_bottom)
+      {
+
+         rectangle.left() = rectangleOuter.left();
+         rectangle.right() = rectangleOuter.right();
+         rectangle.top() = rectangleInner.bottom();
+         rectangle.bottom() = rectangleOuter.bottom();
+
+      }
+
+      *prectangle = rectangle;
+
+   }
+
 
 
 } // namespace experience_tranquillum

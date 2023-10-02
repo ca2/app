@@ -72,7 +72,13 @@ void output_debug_string(const ::scoped_string & str)
 }
 
 
-CLASS_DECL_ACME htask_t get_current_htask()
+void output_debug_string_flush()
+{
+
+}
+
+
+CLASS_DECL_ACME htask_t current_htask()
 {
 
    return ::GetCurrentThread();
@@ -80,10 +86,18 @@ CLASS_DECL_ACME htask_t get_current_htask()
 }
 
 
-CLASS_DECL_ACME itask_t get_current_itask()
+CLASS_DECL_ACME itask_t current_itask()
 {
 
    return ::GetCurrentThreadId();
+
+}
+
+
+CLASS_DECL_ACME itask_t as_itask(htask_t htask)
+{
+
+   return ::GetThreadId(htask);
 
 }
 

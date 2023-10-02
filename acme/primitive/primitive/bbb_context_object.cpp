@@ -166,7 +166,7 @@ void object::process_exit_status(const ::e_status & estatus)
 
       //#if OBJECT_REFERENCE_COUNT_DEBUG
       //
-      //   string strType = __type_name(this);
+      //   string strType = ::type(this).name();
       //
       //   if (strType.case_insensitive_contains("session"))
       //   {
@@ -253,7 +253,7 @@ void object::process_exit_status(const ::e_status & estatus)
 
        pthread->m_pmatter = routine;
 
-       pthread->m_atom = __type_name(pthread->m_pmatter);
+       pthread->m_atom = ::type(pthread->m_pmatter).name();
 
        pthread->begin_thread();
 

@@ -28,7 +28,7 @@ namespace user
       void install_message_routing(::channel * pchannel) override;
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
-      void GetStepHoverRect(::rectangle_i32 * prectangle, i64 iVal, i64 iMin, i64 iMax, const ::rectangle_i32 & rectangleClient);
+      void GetStepHoverRect(::rectangle_i32 * prectangle, i64 iVal, i64 iMin, i64 iMax, const ::rectangle_i32 & rectangleX);
 
       void GetStepRect(::rectangle_i32 * prectangle, i64 iVal, i64 iMin, i64 iMax, const ::rectangle_i32 & lpcrectClient);
 

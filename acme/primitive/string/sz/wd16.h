@@ -44,6 +44,7 @@ CLASS_DECL_ACME ::wd16_character * string_lowercase(::wd16_character * psz, strs
 
 
 CLASS_DECL_ACME const ::wd16_character * string_find_character(const ::wd16_character * pszBlock, ::wd16_character chMatch) noexcept;
+CLASS_DECL_ACME const ::wd16_character * string_find_character(const ::wd16_character * psz, const ::wd16_character * pszEnd, ::wd16_character chMatch) noexcept;
 CLASS_DECL_ACME const ::wd16_character * string_rear_find_character(const ::wd16_character * psz, ::wd16_character ch) noexcept;
 CLASS_DECL_ACME const ::wd16_character * string_find_string(const ::wd16_character * pszBlock, const ::wd16_character * pszMatch) noexcept;
 CLASS_DECL_ACME const ::wd16_character * string_rear_find_string(const ::wd16_character * psz, const ::wd16_character * pszFind, strsize iStart) noexcept;

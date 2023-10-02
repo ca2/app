@@ -305,13 +305,13 @@ namespace account
 
       ::rectangle_i32 rectangleFontopus;
 
-      rectangleFontopus.left = rectangleDesktop.left + (rectangleDesktop.width() - w) / 2;
+      rectangleFontopus.left() = rectangleDesktop.left() + (rectangleDesktop.width() - w) / 2;
 
-      rectangleFontopus.top = rectangleDesktop.top + (rectangleDesktop.height() - h) / 3;
+      rectangleFontopus.top() = rectangleDesktop.top() + (rectangleDesktop.height() - h) / 3;
 
-      rectangleFontopus.right = rectangleFontopus.left + w;
+      rectangleFontopus.right() = rectangleFontopus.left() + w;
 
-      rectangleFontopus.bottom = rectangleFontopus.top + h;
+      rectangleFontopus.bottom() = rectangleFontopus.top() + h;
 
       if (puiParent != nullptr)
       {
@@ -502,20 +502,20 @@ namespace account
    void dialog::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
-      if(rectangleClient.is_empty())
+      if(rectangleX.is_empty())
       {
 
          return;
 
       }
 
-      rectangleClient = client_rectangle();
+      rectangleX = this->rectangle();
 
       ::user::interaction::on_layout(pgraphics);
 
-      m_plogin->place(rectangleClient);
+      m_plogin->place(rectangleX);
 
       m_plogin->display(::e_display_normal);
 
@@ -540,7 +540,11 @@ namespace account
 
       m_bDrag = false;
 
-      m_pointLButtonDown = pmouse->m_point;
+      auto point = pmouse->m_pointHost;
+
+      host_to_client()(point);
+
+      m_pointLButtonDown = point;
 
       m_pointLButtonDownPos = m_pointLButtonDown;
 
@@ -559,10 +563,10 @@ namespace account
       m_bLButtonDown = false;
 
       auto pmouse = pmessage->m_union.m_pmouse;
-
-auto pwindowing = windowing();
-
-      pwindowing->release_mouse_capture();
+//
+//auto pwindowing = windowing();
+//
+      defer_release_mouse_capture();
 
       m_bDrag = false;
 
@@ -591,7 +595,9 @@ auto pwindowing = windowing();
 
             m_bDrag = true;
 
-            const point_i32 & pointNow = pmouse->m_point;
+            auto pointNow = pmouse->m_pointHost;
+
+            host_to_client()(pointNow);
 
             ::point_i32 point;
 

@@ -25,7 +25,7 @@ class trace_statement;
 CLASS_DECL_ACME ::factory::factory * get_system_factory();
 
 
-CLASS_DECL_ACME class tracer & tracer();
+CLASS_DECL_ACME class tracer * tracer();
 
 //struct PARTICLE
 //{
@@ -316,7 +316,13 @@ public:
    //virtual void trace_log_fatal() << const ::ansi_character * pszFormat, ...;
 
 
-   virtual class tracer & tracer() const;
+   virtual class tracer * tracer() const;
+
+
+   virtual ::trace_statement trace_statement() const;
+
+
+   virtual ::trace_statement & trace_statement_prefix(::trace_statement & statement) const;
 
 
    virtual ::trace_statement log_statement() const;
@@ -329,6 +335,11 @@ public:
    virtual ::trace_statement warning() const;
    virtual ::trace_statement error() const;
    virtual ::trace_statement fatal() const;
+
+
+   virtual void trace(enum_trace_level etracelevel, const ::ansi_character * pszFormat, ...) const;
+
+   virtual void format_trace(enum_trace_level etracelevel, const ::ansi_character * pszFormat, va_list & arguments) const;
 
    virtual void information(const ::ansi_character * pszFormat, ...) const;
    virtual void warning(const ::ansi_character * pszFormat, ...) const;
@@ -360,6 +371,7 @@ public:
    // ThomasBorregaardSorensen!! Like handlers
    virtual void handle(::topic * ptopic, ::context * pcontext);
    virtual void handle(::message::message * pmessage);
+   virtual void handle(::item * pitem);
 
 
    virtual bool _handle_uri(const ::string & strUri);
@@ -495,6 +507,16 @@ public:
       return p;
 
    }
+
+
+   virtual void app_post(const ::procedure & procedure);
+   virtual ::task_pointer app_fork(const ::procedure & procedure);
+
+   virtual void task_post(const ::procedure & procedure);
+   virtual ::task_pointer task_fork(const ::procedure & procedure);
+
+   virtual void user_send(const ::procedure & procedure);
+   virtual void user_post(const ::procedure & procedure);
 
 
    //template < typename BASE_TYPE >

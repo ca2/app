@@ -743,7 +743,7 @@ namespace nanoui
 
       if (elapsed > 0.5_s) {
          /* Draw tooltips */
-         const Widget* pwidget = find_widget(m_mouse_pos);
+         auto pwidget = find_widget(m_mouse_pos);
          if (pwidget && pwidget->tooltip().has_char()) {
             int tooltip_width = 150;
 
@@ -761,10 +761,16 @@ namespace nanoui
             int h = (int)((bounds[2] - bounds[0]) / 2.f);
             if (h > tooltip_width / 2) {
                pcontext->text_align(::nano2d::e_align_center | ::nano2d::e_align_top);
-               pcontext->text_box_bounds((float)pos.x(), (float)pos.y(), (float)tooltip_width,
-                  pwidget->tooltip(), bounds);
+               pwidget->m_ptextboxTooltip = pcontext->text_box_layout(
+                  pwidget->tooltip(),
+                  (float)tooltip_width);
+               pcontext->text_box_bounds((float)pos.x(), (float)pos.y(), pwidget->m_ptextboxTooltip, bounds);
 
                h = (int)((bounds[2] - bounds[0]) / 2.f);
+            }
+            else
+            {
+               pwidget->m_ptextboxTooltip.release();
             }
             int shift = 0;
 
@@ -792,7 +798,7 @@ namespace nanoui
 
             pcontext->fill_color(::color::color(255, 255));
             pcontext->font_blur(0.0f);
-            pcontext->text_box((float)(pos.x() - h), (float)pos.y(), (float)tooltip_width, pwidget->tooltip());
+            pcontext->text_box((float)(pos.x() - h), (float)pos.y(), pwidget->m_ptextboxTooltip);
          }
       }
 
@@ -1537,7 +1543,7 @@ namespace nanoui
       /*if (m_puserinteraction)
       {
 
-         auto r = m_puserinteraction->client_rectangle();
+         auto r = m_puserinteraction->rectangle();
          m_size.cx() = r.width();
          m_size.cy() = r.height();
       }*/
@@ -1603,11 +1609,9 @@ namespace nanoui
 
       m_pwidgetMouseCapture.release();
 
-      screen()->m_puserinteraction->release_mouse_capture();
+      screen()->m_puserinteraction->defer_release_mouse_capture();
 
    }
-
-
 
 
    bool Screen::on_button_down(::user::e_key ekeyButton, const ::point_i32& point, const ::user::e_key& ekeyModifiers, bool bDoubleClick)

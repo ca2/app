@@ -76,7 +76,9 @@ namespace experience_core
 
       //bool _001HitTest(const ::point_i32 &point, enum_element &eelementParam) override;
 
-      ::experience::enum_frame experience_frame_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;
+      //::experience::enum_frame experience_frame_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;
+
+      //::item_pointer experience_frame_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;
 
       virtual void Glass(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle);
 
@@ -88,6 +90,14 @@ namespace experience_core
 
       virtual void on_draw_frame(::draw2d::graphics_pointer & pgraphics);
 
+
+      virtual void GetBorderRectangle(const ::rectangle_i32 & rectangleOuter, ::rectangle_i32 * lprect, enum_border eside);
+      virtual void GetBorderRectangle(const ::rectangle_i32 & rectangleOuter, int iDeflate, ::rectangle_i32 * lprect, enum_border eside);
+
+      ::rectangle_i32 outer_frame() override;
+
+      ::experience::enum_frame experience_frame_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;
+      void place_set_need_redraw(const ::rectangle_i32 & rectangleAfter, const ::rectangle_i32 & rectangleBefore, ::draw2d::graphics * pgraphics) override;
 
    };
 

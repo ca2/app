@@ -142,12 +142,12 @@ namespace user
 
       ::rectangle_f64 rectangle;
 
-      client_rectangle(rectangle);
+      this->rectangle(rectangle);
 
       if(rectangle.width() != 0)
       {
 
-         dScalar = (double) (point.x() - rectangle.left) / (double) rectangle.width();
+         dScalar = (double) (point.x() - rectangle.left()) / (double) rectangle.width();
 
       }
 
@@ -199,15 +199,15 @@ namespace user
 
       }
 
-      ::rectangle_f64 rectangleClient;
+      ::rectangle_f64 rectangleX;
 
-      client_rectangle(rectangleClient);
+      this->rectangle(rectangleX);
 
       class imaging & imaging = ::auraacmesystem()->imaging();
 
       ::u8 bAlpha1 = (::u8) (128.0* get_alpha());
 
-      imaging.color_blend(pgraphics, rectangleClient, rgb(250,255,255), bAlpha1);
+      imaging.color_blend(pgraphics, rectangleX, rgb(250,255,255), bAlpha1);
 
       ::rectangle_f64 rectangle;
 
@@ -235,16 +235,16 @@ namespace user
    void slider::get_slider_rect(::rectangle_f64 & rectangle)
    {
 
-      ::rectangle_f64 rectangleClient;
+      ::rectangle_f64 rectangleX;
 
-      client_rectangle(rectangleClient);
+      this->rectangle(rectangleX);
 
       i32 iWidth = 16;
 
-      rectangle.top = rectangleClient.top;
-      rectangle.bottom = rectangleClient.bottom;
-      rectangle.left = (::i32)minimum(rectangleClient.right,m_dRate * (rectangleClient.width() - iWidth));
-      rectangle.right = (::i32)minimum(rectangleClient.right,m_dRate * ((rectangleClient.width() - iWidth)) + iWidth);
+      rectangle.top() = rectangleX.top();
+      rectangle.bottom() = rectangleX.bottom();
+      rectangle.left() = (::i32)minimum(rectangleX.right(),m_dRate * (rectangleX.width() - iWidth));
+      rectangle.right() = (::i32)minimum(rectangleX.right(),m_dRate * ((rectangleX.width() - iWidth)) + iWidth);
 
 
    }

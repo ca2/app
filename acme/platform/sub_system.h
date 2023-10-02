@@ -113,6 +113,8 @@ public:
 
    string get_argument1(::index iArgument) const;
 
+   bool has_argument1(const ::scoped_string & scopedArgument) const;
+
    inline ::count get_argument_count1() const { return _get_argc() - 1; }
 
    string_array get_arguments();

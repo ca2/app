@@ -171,7 +171,7 @@ namespace opengl
       }
       
       //::e_status estatus =
-      m_itaskGpu = ::get_current_itask();
+      m_itaskGpu = ::current_itask();
       make_current();
 
 //      if(!estatus)

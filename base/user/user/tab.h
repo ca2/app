@@ -2,6 +2,7 @@
 
 
 #include "place_holder_container.h"
+#include "auto_hide.h"
 
 
 namespace user
@@ -13,7 +14,8 @@ namespace user
 
    class CLASS_DECL_BASE tab :
       virtual public ::user::interaction,
-      virtual public place_holder_container
+      virtual public place_holder_container,
+      virtual public ::user::auto_hide
    {
    public:
 
@@ -55,21 +57,15 @@ namespace user
       ::pointer<tab_data>                          m_pdata;
       ::pointer<::draw2d::graphics_extension>      m_pgraphicsextension;
       bool                                         m_bDisableSavingRestorableTabs;
-      bool                                         m_bEffectiveVisibleTabs;
-      bool                                         m_bTabVisibilityChanging;
-      bool                                         m_bVisibleTabs;
-      bool                                         m_bOverrideVisibleTabs;
-      bool                                         m_bForceNoTabs;
-      bool                                         m_bHideTabsOnFullScreenOrTransparentFrame;
-      class ::time                                 m_timeLastTabVisibilityChange;
       ::item_pointer                               m_pitemClick;
       ::write_text::font_pointer                   m_pfontTab;
       ::count                                      m_iRestoredTabCount;
       bool                                         m_bDrawTabAtBackground;
-      ::boolean                                   m_bitLastShowTabs;
+      ::boolean                                    m_bitLastShowTabs;
       int                                          m_iTabSize;
       bool                                         m_bCreatedTabs;
       bool                                         m_bAutoCreateTabsOnCreate;
+      ::rectangle_i32                              m_rectangleClient;
 
 
       tab();
@@ -155,6 +151,9 @@ namespace user
 
       virtual void _001OnRemoveTab(tab_pane * ptab);
 
+      bool on_click(::item * pitem) override;
+
+      ::i32 auto_hide_threshold_height() override;
 
       virtual void _001OnTabClick(::index iTab);
       virtual void _001OnTabClose(::index iTab);
@@ -259,11 +258,9 @@ namespace user
 
       void _001OnTimer(::timer * ptimer) override;
 
-      virtual bool is_top_level_full_screen_or_transparent();
 
-      virtual bool full_screen_or_transparent_frame_tab_visibility();
 
-      virtual void calculate_tab_visibility();
+      ::rectangle_i32 client_rectangle(::user::enum_layout elayout = ::user::e_layout_design) override;
 
 
    };

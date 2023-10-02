@@ -37,7 +37,7 @@
 #include "core/user/simple/mesh_data.h"
 #include "core/user/simple/pane_document.h"
 #include "core/user/simple/printer_list_impact.h"
-#include "core/user/userex/calculator_edit_impact.h"
+#include "core/user/user/font_list_impact.h"
 #include "core/user/userex/color_impact.h"
 #include "core/user/userex/dialog_frame.h"
 #include "core/user/userex/font_impact.h"
@@ -123,6 +123,8 @@ namespace core
    user::user()
    {
 
+      printf("core::user::user\n");
+
       m_pcoreuser = this;
       m_ptemplateForm = nullptr;
       m_ptemplateChildForm = nullptr;
@@ -168,10 +170,13 @@ namespace core
 
    }
 
+
    void user::initialize(::particle * pparticle)
    {
 
       //auto estatus =
+
+      printf("core::user::initialize\n");
 
       ::base::user::initialize(pparticle);
 
@@ -229,24 +234,28 @@ namespace core
 
       //}
 
-      if (!m_typeDefaultMeshData)
+      if (!m_typeatomDefaultMeshData)
       {
 
-         m_typeDefaultMeshData = __type(::simple_mesh_data);
+         m_typeatomDefaultMeshData = ::type < ::simple_mesh_data >();
 
       }
 
-      if (!m_typeDefaultListData)
+      if (!m_typeatomDefaultListData)
       {
 
-         m_typeDefaultListData = __type(::simple_list_data);
+         m_typeatomDefaultListData = ::type < ::simple_list_data >();
 
       }
 
-      if (!m_typeDefaultListHeader)
+      if (!m_typeatomDefaultListHeader)
       {
 
-         m_typeDefaultListHeader = __type(::simple_list_header_control);
+         m_typeatomDefaultListHeader = ::type < ::simple_list_header_control >();
+
+         auto strAtomDefaultListHeader = m_typeatomDefaultListHeader.as_string();
+
+         information() << "m_typeatomDefaultListHeader : " << strAtomDefaultListHeader;
 
       }
 
@@ -292,9 +301,9 @@ namespace core
 
       auto ptemplate = __new(::user::multiple_document_template(
          "system/form",
-         __type(form_document),
+         ::type < form_document >(),
          psystem->get_simple_frame_window_type_info(),
-         __type(::user::form_impact)));
+         ::type < ::user::form_impact >()));
 
       ptemplate->initialize(this);
 
@@ -305,9 +314,9 @@ namespace core
 
       ptemplate = __new(::user::multiple_document_template(
          "system/form",
-         __type(form_document),
+         ::type < form_document >(),
          get_simple_child_frame_type_info(),
-         __type(::user::form_impact)));
+         ::type < ::user::form_impact >()));
 
       ptemplate->initialize(this);
 
@@ -317,9 +326,9 @@ namespace core
 
       ptemplate = __new(::user::multiple_document_template(
          "system/form",
-         __type(::user::document),
+         ::type < ::user::document >(),
          psystem->get_simple_frame_window_type_info(),
-         __type(::user::place_holder)));
+         ::type < ::user::place_holder >()));
 
       ptemplate->initialize(this);
 
@@ -329,9 +338,9 @@ namespace core
 
       auto pmultitemplate = memory_new::user::multiple_document_template(
          "main",
-         __type(::user::document),
-         __type(::userex::dialog_frame),
-         __type(::userex::progress_impact));
+         ::type < ::user::document >(),
+         ::type < ::userex::dialog_frame >(),
+         ::type < ::userex::progress_impact >());
 
       m_ptemplateProgress2 = pmultitemplate;
 
@@ -528,13 +537,12 @@ namespace core
    }
 
 
-   ::type user::controltype_to_typeinfo(::user::enum_control_type econtroltype)
+   ::type_atom user::controltype_to_typeinfo(::user::enum_control_type econtroltype)
    {
 
-      return ::type();
+      return {};
 
    }
-
 
 
    void user::term()
@@ -1166,7 +1174,11 @@ namespace core
    ::pointer<::user::list_header>user::default_create_list_header(::particle * pparticle)
    {
 
-      return ::__id_create < ::user::list_header >(pparticle, default_type_list_header());
+      auto typeListHeader = default_type_list_header();
+
+      information() << "default_create_list_header : " << typeListHeader.as_string();
+
+      return ::__id_create < ::user::list_header >(pparticle, typeListHeader);
 
    }
 
@@ -1187,26 +1199,26 @@ namespace core
    }
 
 
-   ::type user::default_type_mesh_data()
+   ::type_atom user::default_type_mesh_data()
    {
 
-      return m_typeDefaultMeshData;
+      return m_typeatomDefaultMeshData;
 
    }
 
 
-   ::type user::default_type_list_header()
+   ::type_atom user::default_type_list_header()
    {
 
-      return m_typeDefaultListHeader;
+      return m_typeatomDefaultListHeader;
 
    }
 
 
-   ::type user::default_type_list_data()
+   ::type_atom user::default_type_list_data()
    {
 
-      return m_typeDefaultListData;
+      return m_typeatomDefaultListData;
 
    }
 
@@ -1718,9 +1730,9 @@ namespace core
          //user()->m_mapimpactsystem[COLORSEL_IMPACT] = __new(::user::multiple_document_template(
          //   get_app(),
          //   "main",
-         //   __type(::user::document),
-         //   __type(::prodevian_translucent_simple_frame_window),
-         //   __type(::user::color_impact)));
+         //   ::type < ::user::document >(),
+         //   ::type < ::prodevian_translucent_simple_frame_window >(),
+         //   ::type < ::user::color_impact >()));
 
          //add_document_template(user()->m_mapimpactsystem[COLORSEL_IMPACT]);
 
@@ -1739,9 +1751,9 @@ namespace core
 
          auto ptemplate = __new(::user::multiple_document_template(
             "main",
-            __type(::user::document),
-            __type(::simple_frame_window),
-            __type(::userex::color_impact)));
+            ::type < ::user::document >(),
+            ::type < ::simple_frame_window >(),
+            ::type < ::userex::color_impact >()));
 
          auto psession = get_session();
 
@@ -1768,9 +1780,9 @@ namespace core
 
          auto ptemplate = __new(::user::multiple_document_template(
             "main",
-            __type(::user::document),
-            __type(::simple_frame_window),
-            __type(::userex::font_impact)));
+            ::type < ::user::document >(),
+            ::type < ::simple_frame_window >(),
+            ::type < ::userex::font_impact >()));
 
          auto psession = get_session();
 
@@ -1814,12 +1826,6 @@ namespace core
 
    __namespace_object_factory(user, ::system_setup::flag_object_user);
 
-   ::pointer<::user::plain_edit>user::create_calculator_plain_edit()
-   {
-
-      return memory_new::calculator::plain_edit_impact();
-
-   }
 
 
 } // namespace userex

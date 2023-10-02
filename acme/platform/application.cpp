@@ -34,9 +34,6 @@ CLASS_DECL_ACME::file::path get_module_path();
 #endif
 
 
-CLASS_DECL_ACME void set_main_user_thread();
-
-
 namespace acme
 {
 
@@ -150,17 +147,7 @@ namespace acme
    void application::implement_application()
    {
 
-      //on_initialize_application(pmain);
-
-
-      //
-
-
-
-      //void __main(::acme::application * pacmeapplication)
-      //{
-
-
+      output_debug_string("acme::application implement_application\n");
 
       set_main_user_thread();
 
@@ -179,7 +166,6 @@ namespace acme
 
       }
 
-
       {
 
          string strPrgName = m_strAppId;
@@ -192,8 +178,6 @@ namespace acme
 
       }
 
-
-
       //main.m_bAudio = main_hold_base::is_audio_enabled();
 
       auto pfactoryitem = ::acme::acme::g_pacme->m_psubsystem->m_pfactory->get_factory_item<::acme::system>();
@@ -204,11 +188,11 @@ namespace acme
 
       psystem->initialize_system();
 
+      information() << "acme implement_application system_construct";
+
       psystem->system_construct(this);
 
-      //psystem->acmeapplication() = pacmeapplication;
-
-      //psystem->m_psubsystem = psubsystem;
+      information() << "acme implement_application create_os_node";
 
       psystem->create_os_node();
 
@@ -537,7 +521,7 @@ namespace acme
    }
 
 
-   ::string application::get_application_title()
+   ::string application::application_title()
    {
 
       auto textAppTitle = m_textAppTitle;
@@ -568,6 +552,42 @@ namespace acme
       }
 
       return strAppTitle;
+
+   }
+
+
+
+   ::string application::application_name()
+   {
+
+      auto textAppName = m_textAppName;
+
+      string strAppName;
+
+      if (textAppName.get_text().has_char())
+      {
+
+         strAppName = textAppName.get_text();
+
+      }
+      else
+      {
+
+         string_array stra;
+
+         stra.explode("/", m_strAppId);
+
+         strAppName = stra.slice(1).implode(" ");
+
+         strAppName.replace_with(" ", "_");
+
+         strAppName.replace_with(" ", "-");
+
+         strAppName.replace_with(" ", ".");
+
+      }
+
+      return strAppName;
 
    }
 
@@ -1355,7 +1375,7 @@ namespace acme
       //if (!init1())
       //{
       //
-      ////dappy(__type_name(this) + " : init1 failure : " + as_string(m_iErrorCode));
+      ////dappy(::type(this).name() + " : init1 failure : " + as_string(m_iErrorCode));
       //
       //return false;
       //
@@ -1372,7 +1392,7 @@ namespace acme
       //if (!init2())
       //{
       //
-      ////dappy(__type_name(this) + " : init2 failure : " + as_string(m_iErrorCode));
+      ////dappy(::type(this).name() + " : init2 failure : " + as_string(m_iErrorCode));
       //
       //return false;
       //
@@ -1389,7 +1409,7 @@ namespace acme
       //if (!init3())
       //{
       //
-      ////dappy(__type_name(this) + " : init3 failure : " + as_string(m_iErrorCode));
+      ////dappy(::type(this).name() + " : init3 failure : " + as_string(m_iErrorCode));
       //
       //return false;
       //
@@ -1401,7 +1421,7 @@ namespace acme
 
       m_timeHeartBeat.Now();
 
-      //dappy(__type_name(this) + " : init3 ok : " + as_string(m_iErrorCode));
+      //dappy(::type(this).name() + " : init3 ok : " + as_string(m_iErrorCode));
 
       //try
       //{
@@ -1409,7 +1429,7 @@ namespace acme
       init();
       //{
       //
-      ////dappy(__type_name(this) + " : initialize failure : " + as_string(m_iErrorCode));
+      ////dappy(::type(this).name() + " : initialize failure : " + as_string(m_iErrorCode));
       //
       //return false;
       //

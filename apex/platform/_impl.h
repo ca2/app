@@ -133,7 +133,7 @@
 //     {
 //
 //        return proute->m_pobjectReceiver == pobjectReceiver
-//        && proute->m_typeReceiver == typeReceiver
+//        && proute->m_typeatomReceiver == typeReceiver
 //        && proute->m_phandler = phandler;
 //
 //     };
@@ -222,7 +222,7 @@
 //     auto pred = [=](auto & proute)
 //     {
 //
-//        return proute->m_pobjectReceiver == pobjectReceiver && proute->m_typeReceiver == typeReceiver;
+//        return proute->m_pobjectReceiver == pobjectReceiver && proute->m_typeatomReceiver == typeReceiver;
 //
 //     };
 //
@@ -557,7 +557,7 @@
 //   //::pointer<::user::document>session::create_form(::pointer<::user::interaction>userinteractionParent, ::payload payload, ::payload varArgs)
 //   //{
 //
-//   //   return create_form(__type(VIEW), puserinteractionParent, payload);
+//   //   return create_form(::type < VIEW >(), puserinteractionParent, payload);
 //
 //   //}
 //
@@ -566,7 +566,7 @@
 //   //::pointer<::user::document>session::create_child_form(::pointer<::user::interaction>userinteractionParent, ::payload payload)
 //   //{
 //
-//   //   return create_child_form(__type(VIEW), puserinteractionParent, payload);
+//   //   return create_child_form(::type < VIEW >(), puserinteractionParent, payload);
 //
 //   //}
 //

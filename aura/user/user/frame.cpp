@@ -234,7 +234,7 @@ namespace user
    }
 
 
-//   ::pointer<::utoolbar>frame::load_toolbar(const ::atom & idToolbar, const ::string & strToolbar, u32 dwCtrlStyle, u32 uStyle, const ::type & type)
+//   ::pointer<::utoolbar>frame::load_toolbar(const ::atom & idToolbar, const ::string & strToolbar, u32 dwCtrlStyle, u32 uStyle, const ::type_atom & typeatom)
 //   {
 //
 //      return false;
@@ -370,15 +370,15 @@ namespace user
    }
 
 
-   //void frame::client_rectangle(::rectangle_i32* lprect)
+   //void frame::this->rectangle(::rectangle_i32* lprect)
    //{
    //   
-   //   ::user::interaction::client_rectangle(lprect);
+   //   ::user::interaction::this->rectangle(lprect);
    //   
    //   if((m_ewindowflag & e_window_flag_top_level) && window())
    //   {
    //   
-   //      lprect->top += window()->get_top_margin();
+   //      lprect->top() += window()->get_top_margin();
    //      
    //   }
    //   
@@ -620,6 +620,8 @@ namespace user
 
    void frame::initial_frame_display()
    {
+
+      information() << "frame::initial_frame_display";
       
       display();
 

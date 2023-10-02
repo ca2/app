@@ -7,7 +7,7 @@ simple_child_frame::simple_child_frame()
 {
    
    m_ewindowflag += e_window_flag_satellite_window_if_child;
-   m_ewindowflag += e_window_flag_embedded_prodevian_if_child;
+   m_ewindowflag += e_window_flag_embedded_graphics_thread_if_child;
 
    //m_bWindowFrame       = false;
    //m_bAutoWindowFrame = false;
@@ -101,11 +101,11 @@ namespace base
 {
 
 
-   ::type user::get_simple_child_frame_type_info()
+   ::type_atom user::get_simple_child_frame_type_info()
    {
 
       
-      return __type(simple_child_frame);
+      return ::type < simple_child_frame >();
 
       
    }

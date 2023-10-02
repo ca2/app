@@ -82,9 +82,10 @@ memory_file::memory_file(const ::block & block) :
    memory_file(block.data(), block.size())
 {
 
+   m_estatus = ::success;
+   set_ok_flag();
 
 }
-
 
 
 memory_file::memory_file(memory_base & memory, ::file::e_open eopen) :
@@ -94,6 +95,7 @@ memory_file::memory_file(memory_base & memory, ::file::e_open eopen) :
    m_eopen = eopen;
    m_position = 0;
    m_estatus = ::success;
+   set_ok_flag();
 
 }
 

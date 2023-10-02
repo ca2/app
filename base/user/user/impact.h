@@ -113,7 +113,7 @@ namespace user
       enum_window_type get_window_type() override;
 
 
-      ::pointer<::user::interaction>create_impact(const ::type & type, ::user::document * pdocument = nullptr, ::user::interaction * puserinteractionParent = nullptr, const ::atom & atom = ::atom(), ::user::interaction * pviewLast = nullptr, ::user::impact_data * pdata = nullptr);
+      ::pointer<::user::interaction>create_impact(const ::type_atom & typeatom, ::user::document * pdocument = nullptr, ::user::interaction * puserinteractionParent = nullptr, const ::atom & atom = ::atom(), ::user::interaction * pviewLast = nullptr, ::user::impact_data * pdata = nullptr);
 
       virtual void initialize_impact(::user::document * pdocument);
 
@@ -251,7 +251,7 @@ namespace user
 
       }
 
-      return create_impact(__type(IMPACT), pdocument, puserinteractionParent, atom, pviewLast, pimpactdata);
+      return create_impact(::type < IMPACT >(), pdocument, puserinteractionParent, atom, pviewLast, pimpactdata);
 
    }
 

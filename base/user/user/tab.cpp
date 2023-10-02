@@ -40,19 +40,12 @@ namespace user
    tab::tab()
    {
 
-      m_bHoverDefaultMouseHandling = true;
+      m_bDefaultClickHandling = true;
+
+      m_bDefaultMouseHoverHandling = true;
 
       m_econtroltype = e_control_type_tab;
 
-      m_bVisibleTabs = true;
-
-      m_bEffectiveVisibleTabs = m_bVisibleTabs;
-
-      m_bTabVisibilityChanging = false;
-
-      m_bOverrideVisibleTabs = false;
-
-      m_bHideTabsOnFullScreenOrTransparentFrame = true;
 
       //m_bMouseDown = false;
 
@@ -62,17 +55,17 @@ namespace user
 
       m_iRestoredTabCount = 0;
 
-      m_bDisableSavingRestorableTabs           = true;
+      m_bDisableSavingRestorableTabs = true;
 
       //m_bShowTabs                      = true;
 
       //m_bNoTabs                        = false;
 
-      m_bDrawTabAtBackground           = true;
+      m_bDrawTabAtBackground = true;
 
-      m_bCreatedTabs                   = false;
+      m_bCreatedTabs = false;
 
-      m_bAutoCreateTabsOnCreate        = true;
+      m_bAutoCreateTabsOnCreate = true;
 
    }
 
@@ -87,7 +80,7 @@ namespace user
    {
 
       //auto estatus = 
-      
+
       ::user::interaction::on_initialize_particle();
 
       //if (!estatus)
@@ -98,20 +91,20 @@ namespace user
       //}
 
       //estatus = 
-      
+
       __defer_construct_new(m_pdata);
 
       //if (estatus == ::success)
       //{
 
-         auto pdata = get_data();
+      auto pdata = get_data();
 
-         pdata->m_iHeightAddUp = 0;
-         pdata->m_pcallback = nullptr;
-         pdata->m_bCreated = false;
-         pdata->m_iTabHeight = 16;
-         pdata->m_iTabWidth = 48;
-         pdata->m_iClickTab = -1;
+      pdata->m_iHeightAddUp = 0;
+      pdata->m_pcallback = nullptr;
+      pdata->m_bCreated = false;
+      pdata->m_iTabHeight = 16;
+      pdata->m_iTabWidth = 48;
+      pdata->m_iClickTab = -1;
 
       //}
 
@@ -130,13 +123,13 @@ namespace user
       {
          return false;
       }*/
-   //   ppane->m_pcontainer = pcontainer;
-   // ppane->m_type = nullptr;
-   /* ppane->m_iImage = -1;
+      //   ppane->m_pcontainer = pcontainer;
+      // ppane->m_type = nullptr;
+      /* ppane->m_iImage = -1;
 
-    get_data()->m_tabpanecompositea.add(get_pane);
-    return true;
-   }*/
+       get_data()->m_tabpanecompositea.add(get_pane);
+       return true;
+      }*/
 
 
    enum_element tab::get_default_element()
@@ -219,9 +212,9 @@ namespace user
       //set_tille("text://hello_multiverse/AKDFJG./:Main Tab"));
       ppane->set_title(strTitle);
 
-      ppane->m_bTabPaneVisible   = bVisible;
-      ppane->m_bPermanent        = bPermanent;
-      ppane->m_pplaceholder      = pholder;
+      ppane->m_bTabPaneVisible = bVisible;
+      ppane->m_bPermanent = bPermanent;
+      ppane->m_pplaceholder = pholder;
 
       synchronous_lock synchronouslock(this->synchronization());
 
@@ -240,7 +233,7 @@ namespace user
 
    }
 
-   
+
    bool tab::set_tab(const ::string & strName, const ::atom & atomImpact, bool bVisible)
    {
 
@@ -295,8 +288,8 @@ namespace user
       return add_tab_with_icon(strName, strIcon, atomImpact, bVisible, true);
 
    }
-      
-      
+
+
    void tab::_001OnRemoveTab(class tab_pane * ptab)
    {
 
@@ -309,10 +302,10 @@ namespace user
 
       bool bRestorableMatch = false;
 
-      for(i32 i = 0; i < get_data()->m_tabpanecompositea.get_count(); i++)
+      for (i32 i = 0; i < get_data()->m_tabpanecompositea.get_count(); i++)
       {
 
-         if(get_data()->m_tabpanecompositea[i]->m_atom == atom)
+         if (get_data()->m_tabpanecompositea[i]->m_atom == atom)
          {
 
             if (!bRestorableMatch && matches_restorable_tab(get_data()->m_tabpanecompositea[i]->m_atom, get_data()->m_tabpanecompositea[i]->m_pplaceholder))
@@ -366,16 +359,16 @@ namespace user
 
       }
 
-      if(bVisible)
+      if (bVisible)
       {
 
-         for(i32 i = 0; iIndex >= 0 && i < get_data()->m_tabpanecompositea.get_count(); i++)
+         for (i32 i = 0; iIndex >= 0 && i < get_data()->m_tabpanecompositea.get_count(); i++)
          {
 
-            if(get_data()->m_tabpanecompositea[i]->m_bTabPaneVisible)
+            if (get_data()->m_tabpanecompositea[i]->m_bTabPaneVisible)
             {
 
-               if(iIndex <= 0)
+               if (iIndex <= 0)
                {
 
                   auto ppane = get_data()->m_tabpanecompositea[iIndex];
@@ -428,170 +421,6 @@ namespace user
 
    }
 
-
-   void tab::calculate_tab_visibility()
-   {
-
-      if (m_bForceNoTabs)
-      {
-
-         m_bEffectiveVisibleTabs = false;
-
-      }
-      else if (m_bHideTabsOnFullScreenOrTransparentFrame)
-      {
-
-         auto bNewVisible = full_screen_or_transparent_frame_tab_visibility();
-
-         if (is_different(bNewVisible, m_bEffectiveVisibleTabs))
-         {
-
-            if (!m_bTabVisibilityChanging)
-            {
-
-               m_bTabVisibilityChanging = true;
-
-               m_timeLastTabVisibilityChange.Now();
-
-               SetTimer(e_timer_defer_handle_auto_hide_tabs, 100_ms);
-
-            }
-            else if (m_timeLastTabVisibilityChange.elapsed() > 2_s)
-            {
-
-               m_bTabVisibilityChanging = false;
-
-               m_bEffectiveVisibleTabs = bNewVisible;
-
-            }
-
-         }
-
-      }
-      else if (m_bVisibleTabs)
-      {
-
-         m_bEffectiveVisibleTabs = m_bVisibleTabs;
-
-      }
-
-      //return m_bCalculatedVisibleTabs;
-
-      //auto bVisible = are_tabs_visible();
-
-      //auto puiTopLevel = top_level();
-
-      //if (puiTopLevel->frame_is_transparent() && !top_level_frame()->layout().is_full_screen())
-      //{
-
-      //   if (m_bShowTabs)
-      //   {
-
-      //      m_bShowTabs = false;
-
-      //      set_need_layout();
-
-      //   }
-
-      //   return;
-
-      //}
-
-      //if(m_bNoTabs)
-      //{
-
-      //   if(m_bShowTabs)
-      //   {
-
-      //      m_bShowTabs = false;
-
-      //      set_need_layout();
-
-      //   }
-
-      //   return;
-
-      //}
-
-      //if(m_bShowTabs)
-      //{
-
-      //   if(top_level_frame()!= nullptr && top_level_frame()->is_full_screen())
-      //   {
-
-      //      ::rectangle_i32 rectangleTab(get_data()->m_rectangleTab);
-
-      //      rectangleTab+=client_to_screen();
-
-      //      auto pointCursor = get_cursor_position();
-
-      //      bool bShowTabs = rectangleTab.contains(pointCursor);
-
-      //      if(is_different(bShowTabs, m_bShowTabs))
-      //      {
-
-      //         m_bShowTabs = bShowTabs;
-
-      //         set_need_layout();
-
-      //         bNeedLayout = true;
-
-      //      }
-
-      //   }
-
-      //}
-      //else
-      //{
-
-      //   auto pframe = parent_frame();
-
-      //   if(::is_set(pframe) && !pframe->layout().is_full_screen())
-      //   {
-
-      //      m_bShowTabs = true;
-
-      //      set_need_layout();
-
-      //   }
-      //   else if(::is_set(get_app()) && ::is_set(get_app()->get_session()))
-      //   {
-
-      //      ::rectangle_i32 rectangleWindow;
-
-      //      window_rectangle(rectangleWindow);
-
-      //      bool bShowTabs;
-
-      //      auto pointCursor = get_cursor_position();
-
-      //      if(get_data()->m_bVertical)
-      //      {
-
-      //         bShowTabs = pointCursor.x() <= rectangleWindow.left;
-
-      //      }
-      //      else
-      //      {
-
-      //         bShowTabs = pointCursor.y() <= rectangleWindow.top;
-
-      //      }
-
-      //      m_bShowTabs = bShowTabs;
-
-      //      if(bShowTabs)
-      //      {
-
-      //         set_need_layout();
-
-      //      }
-
-      //   }
-
-      //}
-
-   }
 
 
 
@@ -648,7 +477,7 @@ namespace user
 
       auto pholder = ppane->m_pplaceholder;
 
-      if(pholder.is_null())
+      if (pholder.is_null())
       {
 
          return;
@@ -665,7 +494,7 @@ namespace user
 
       screen_to_client()(rectangleWindow);
 
-      if(bDisplay && iIndex == get_current_tab_index())
+      if (bDisplay && iIndex == get_current_tab_index())
       {
 
          pholder->order(e_zorder_top);
@@ -674,26 +503,30 @@ namespace user
 
       pholder->place(rectangleChild);
 
+      //pholder->m_rectangleClient2 = rectangleChild;
+
+      //pholder->m_rectangleClient2.offset(-pholder->m_rectangleClient2.top_left());
+
       if (bDisplay)
       {
 
          pholder->display(::e_display_normal);
 
-//         if (ppane->m_bNeedLayout)
-//         {
-//
-//            ppane->m_bNeedLayout = false;
-//
-//            pholder->set_need_layout();
-//
-//         }
-//
-//         pholder->set_need_redraw();
-//
-//         pholder->post_redraw();
+         //         if (ppane->m_bNeedLayout)
+         //         {
+         //
+         //            ppane->m_bNeedLayout = false;
+         //
+         //            pholder->set_need_layout();
+         //
+         //         }
+         //
+         //         pholder->set_need_redraw();
+         //
+         //         pholder->post_redraw();
 
       }
-      else if(::is_set(ppaneSel) && ppaneSel->m_eflag.has(e_flag_hide_all_others_on_show))
+      else if (::is_set(ppaneSel) && ppaneSel->m_eflag.has(e_flag_hide_all_others_on_show))
       {
 
          pholder->hide();
@@ -717,13 +550,13 @@ namespace user
       get_data()->m_iClickTab = -1;
 
       ///m_pointLeftButtonDown = pmouse->m_point;
-      
+
       //m_bMouseDown = true;
 
-      if(::is_element(m_pitemClick, e_element_tab_near_scroll))
+      if (::is_element(m_pitemClick, e_element_tab_near_scroll))
       {
 
-         if(m_pointBarDragScroll.x() > 0)
+         if (m_pointBarDragScroll.x() > 0)
          {
 
             m_pointBarDragScroll.x()--;
@@ -741,10 +574,10 @@ namespace user
          }
 
       }
-      else if(::is_element(m_pitemClick, e_element_tab_far_scroll))
+      else if (::is_element(m_pitemClick, e_element_tab_far_scroll))
       {
 
-         if(m_pointBarDragScroll.x() < m_pointBarDragScrollMax.x())
+         if (m_pointBarDragScroll.x() < m_pointBarDragScrollMax.x())
          {
 
             m_pointBarDragScroll.x()++;
@@ -763,12 +596,12 @@ namespace user
 
       }
 
-      if(::is_set(m_pitemClick) && m_pitemClick->m_item.m_iItem >= 0)
+      if (::is_set(m_pitemClick) && m_pitemClick->m_item.m_iItem >= 0)
       {
 
          index iIndex = get_current_tab_index();
 
-         if(::is_element(m_pitemClick, e_element_close_tab_button))
+         if (::is_element(m_pitemClick, e_element_close_tab_button))
          {
 
             get_data()->m_iClickTab = m_pitemClick->m_item.m_iItem;
@@ -780,7 +613,7 @@ namespace user
             m_estate = state_close_button_down;
 
          }
-         else if(m_pitemClick->m_item.m_iItem != iIndex)
+         else if (m_pitemClick->m_item.m_iItem != iIndex)
          {
 
             get_data()->m_iClickTab = m_pitemClick->m_item.m_iItem;
@@ -800,7 +633,7 @@ namespace user
          }
          else
          {
-            
+
             pmouse->m_bRet = true;
 
             pmouse->m_lresult = 1;
@@ -815,66 +648,66 @@ namespace user
    void tab::on_message_left_button_up(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_union.m_pmouse;
-
-//      if(m_bMouseDown)
-//      {
-//
-//         m_bMouseDown = false;
-//
-//         release_mouse_capture();
-//
-//      }
-
-      auto pitem = hit_test(pmouse, ::user::e_zorder_any);
-
-      index iClickTab = get_data()->m_iClickTab;
-
-      if (m_estate == state_other_tab_button_down)
-      {
-
-         // drag operation was about to start (but ended prematurely)
-
-         release_mouse_capture();
-
-         KillTimer(e_timer_drag_start);
-
-      }
-
-      if (::is_set(pitem))
-      {
-
-         if (pitem->m_item.m_iItem >= 0 && iClickTab == pitem->m_item.m_iItem && ::is_same_item(m_pitemClick, pitem))
-         {
-
-            if (::is_element(pitem, e_element_close_tab_button))
-            {
-
-               _001OnTabClose(pitem->m_item.m_iItem);
-
-            }
-            else
-            {
-
-               _001OnTabClick(pitem->m_item.m_iItem);
-
-            }
-
-//            set_need_redraw();
-//
-//            post_redraw();
-
-            pmouse->m_bRet = true;
-
-            pmouse->m_lresult = 1;
-
-         }
-
-      }
-
-      get_data()->m_iClickTab = -1;
-
-      get_data()->m_bDrag = false;
+      //      auto pmouse = pmessage->m_union.m_pmouse;
+      //
+      ////      if(m_bMouseDown)
+      ////      {
+      ////
+      ////         m_bMouseDown = false;
+      ////
+      ////         release_mouse_capture();
+      ////
+      ////      }
+      //
+      //      auto pitem = hit_test(pmouse, ::user::e_zorder_any);
+      //
+      //      index iClickTab = get_data()->m_iClickTab;
+      //
+      //      if (m_estate == state_other_tab_button_down)
+      //      {
+      //
+      //         // drag operation was about to start (but ended prematurely)
+      //
+      //         release_mouse_capture();
+      //
+      //         KillTimer(e_timer_drag_start);
+      //
+      //      }
+      //
+      //      if (::is_set(pitem))
+      //      {
+      //
+      //         if (pitem->m_item.m_iItem >= 0 && iClickTab == pitem->m_item.m_iItem && ::is_same_item(m_pitemClick, pitem))
+      //         {
+      //
+      //            if (::is_element(pitem, e_element_close_tab_button))
+      //            {
+      //
+      //               _001OnTabClose(pitem->m_item.m_iItem);
+      //
+      //            }
+      //            else
+      //            {
+      //
+      //               _001OnTabClick(pitem->m_item.m_iItem);
+      //
+      //            }
+      //
+      ////            set_need_redraw();
+      ////
+      ////            post_redraw();
+      //
+      //            pmouse->m_bRet = true;
+      //
+      //            pmouse->m_lresult = 1;
+      //
+      //         }
+      //
+      //      }
+      //
+      //      get_data()->m_iClickTab = -1;
+      //
+      //      get_data()->m_bDrag = false;
 
    }
 
@@ -883,7 +716,7 @@ namespace user
    {
 
       pmessage->m_bRet = m_pitemClick.is_set();
-      
+
    }
 
 
@@ -892,17 +725,17 @@ namespace user
 
       ::pointer < ::message::mouse > pmouse(pmessage);
 
-      if(pmessage->previous())
+      if (pmessage->previous())
       {
-         
+
          return;
-         
+
       }
 
-      if(get_data()->m_iClickTab >= 0)
+      if (get_data()->m_iClickTab >= 0)
       {
 
-         if(get_data()->m_pcallback != nullptr)
+         if (get_data()->m_pcallback != nullptr)
          {
 
             get_data()->m_pcallback->_001DropTargetWindowRelay(this);
@@ -911,60 +744,7 @@ namespace user
 
       }
 
-      auto pointClient = pmouse->m_point;
-
-      screen_to_client()(pointClient);
-
-      auto ptabdata = get_data();
-
-      if (m_bEffectiveVisibleTabs 
-         && m_bTabVisibilityChanging
-         && pointClient.y() < ptabdata->m_iTabHeight)
-      {
-
-         KillTimer(e_timer_defer_handle_auto_hide_tabs);
-
-         m_bOverrideVisibleTabs = true;
-
-         m_bTabVisibilityChanging = false;
-
-      }
-      else if (pointClient.y() <= 1)
-      {
-
-         if (m_bHideTabsOnFullScreenOrTransparentFrame)
-         {
-
-            m_bOverrideVisibleTabs = true;
-
-            m_bEffectiveVisibleTabs = true;
-
-            set_need_layout();
-
-            set_need_redraw();
-
-            post_redraw();
-
-         }
-
-      }
-      else if (pointClient.y() > ptabdata->m_iTabHeight)
-      {
-
-         if (m_bOverrideVisibleTabs)
-         {
-
-            m_bOverrideVisibleTabs = false;
-
-            set_need_layout();
-
-            set_need_redraw();
-
-            post_redraw();
-
-         }
-
-      }
+      auto_hide_on_message_mouse_move(pmessage);
 
    }
 
@@ -978,6 +758,15 @@ namespace user
    }
 
 
+   ::i32 tab::auto_hide_threshold_height()
+   {
+
+      auto pdata = get_data();
+
+      return pdata->m_iTabHeight;
+
+   }
+
    //bool tab::has_tab_scrolling() const
    //{
 
@@ -989,11 +778,11 @@ namespace user
    bool tab::get_element_rectangle(::index iIndex, ::rectangle_i32 & rectangle, enum_element eelement)
    {
 
-      point_i32 ptOffset(0,0);
+      point_i32 ptOffset(0, 0);
 
       auto ptabdata = get_data();
 
-      if(_001HasHorizontalBarDragScrolling())
+      if (_001HasHorizontalBarDragScrolling())
       {
 
          float fDensity = 1.0f;
@@ -1009,15 +798,15 @@ namespace user
 
                   auto & rectangleTab = ptabdata->m_rectangleTab;
 
-                  rectangle.left = rectangleTab.left;
+                  rectangle.left() = rectangleTab.left();
 
-                  rectangle.top = rectangleTab.top;
+                  rectangle.top() = rectangleTab.top();
 
-                  rectangle.right = rectangleTab.right;
+                  rectangle.right() = rectangleTab.right();
 
                   fDensity = get_density_for_window();
 
-                  rectangle.bottom = rectangle.top + (::i32)(8.0f * fDensity);
+                  rectangle.bottom() = rectangle.top() + (::i32)(8.0f * fDensity);
 
                }
                else
@@ -1025,15 +814,15 @@ namespace user
 
                   auto & rectangleTab = ptabdata->m_rectangleTab;
 
-                  rectangle.left = rectangleTab.left;
+                  rectangle.left() = rectangleTab.left();
 
-                  rectangle.top = rectangleTab.top;
+                  rectangle.top() = rectangleTab.top();
 
                   fDensity = get_density_for_window();
 
-                  rectangle.right = rectangle.left + (::i32)(8.0f * fDensity);
+                  rectangle.right() = rectangle.left() + (::i32)(8.0f * fDensity);
 
-                  rectangle.bottom = rectangle.bottom;
+                  rectangle.bottom() = rectangle.bottom();
 
                }
 
@@ -1048,15 +837,15 @@ namespace user
 
                   auto & rectangleTab = ptabdata->m_rectangleTab;
 
-                  rectangle.left = rectangleTab.left;
+                  rectangle.left() = rectangleTab.left();
 
                   fDensity = get_density_for_window();
 
-                  rectangle.top = rectangleTab.bottom - (::i32)(8.0f * fDensity);
+                  rectangle.top() = rectangleTab.bottom() - (::i32)(8.0f * fDensity);
 
-                  rectangle.right = rectangleTab.right;
+                  rectangle.right() = rectangleTab.right();
 
-                  rectangle.bottom = rectangleTab.bottom;
+                  rectangle.bottom() = rectangleTab.bottom();
 
                }
                else
@@ -1066,13 +855,13 @@ namespace user
 
                   fDensity = get_density_for_window();
 
-                  rectangle.left = rectangleTab.right - (::i32)(8.0f * fDensity);
+                  rectangle.left() = rectangleTab.right() - (::i32)(8.0f * fDensity);
 
-                  rectangle.top = rectangleTab.top;
+                  rectangle.top() = rectangleTab.top();
 
-                  rectangle.right = rectangleTab.right;
+                  rectangle.right() = rectangleTab.right();
 
-                  rectangle.bottom = rectangleTab.bottom;
+                  rectangle.bottom() = rectangleTab.bottom();
 
                }
 
@@ -1082,7 +871,7 @@ namespace user
 
          }
 
-         if(get_data()->m_bVertical)
+         if (get_data()->m_bVertical)
          {
 
             ptOffset.y() += 4;
@@ -1108,7 +897,7 @@ namespace user
 
       }
 
-      if(eelement == e_element_border)
+      if (eelement == e_element_border)
       {
 
          if (!get_element_rectangle(iIndex, rectangle, e_element_tab))
@@ -1124,7 +913,7 @@ namespace user
 
       }
 
-      if(eelement == e_element_client)
+      if (eelement == e_element_client)
       {
 
          if (!get_element_rectangle(iIndex, rectangle, e_element_border))
@@ -1140,7 +929,7 @@ namespace user
 
       }
 
-      if(eelement == e_element_icon)
+      if (eelement == e_element_icon)
       {
 
          if (ptabdata->m_tabpanecompositea[iIndex]->m_pimage.nok())
@@ -1157,14 +946,14 @@ namespace user
 
          }
 
-         rectangle.right = rectangle.left + ptabdata->m_tabpanecompositea[iIndex]->m_pimage->width();
+         rectangle.right() = rectangle.left() + ptabdata->m_tabpanecompositea[iIndex]->m_pimage->width();
 
-         rectangle.bottom = rectangle.top + ptabdata->m_tabpanecompositea[iIndex]->m_pimage->height();
+         rectangle.bottom() = rectangle.top() + ptabdata->m_tabpanecompositea[iIndex]->m_pimage->height();
 
          return true;
 
       }
-      else if(eelement == e_element_text)
+      else if (eelement == e_element_text)
       {
 
          if (!get_element_rectangle(iIndex, rectangle, e_element_client))
@@ -1174,17 +963,17 @@ namespace user
 
          }
 
-         if(ptabdata->m_tabpanecompositea[iIndex]->m_pimage.ok())
+         if (ptabdata->m_tabpanecompositea[iIndex]->m_pimage.ok())
          {
 
-            rectangle.left += ptabdata->m_tabpanecompositea[iIndex]->m_pimage->width() + 2;
+            rectangle.left() += ptabdata->m_tabpanecompositea[iIndex]->m_pimage->width() + 2;
 
          }
 
-         if(!ptabdata->m_tabpanecompositea[iIndex]->m_bPermanent)
+         if (!ptabdata->m_tabpanecompositea[iIndex]->m_bPermanent)
          {
 
-            rectangle.right -= 2 + 16 + 2;
+            rectangle.right() -= 2 + 16 + 2;
 
          }
 
@@ -1193,7 +982,7 @@ namespace user
          return true;
 
       }
-      else if(eelement == e_element_close_tab_button)
+      else if (eelement == e_element_close_tab_button)
       {
 
          if (iIndex < 0)
@@ -1224,11 +1013,11 @@ namespace user
 
          }
 
-         rectangle.right  = rectangle.right;
+         rectangle.right() = rectangle.right();
 
-         rectangle.left   = rectangle.right - 20;
+         rectangle.left() = rectangle.right() - 20;
 
-         rectangle.top    = rectangle.bottom - 20;
+         rectangle.top() = rectangle.bottom() - 20;
 
          return true;
 
@@ -1241,18 +1030,18 @@ namespace user
 
       }
 
-      if(ptabdata->m_bVertical)
+      if (ptabdata->m_bVertical)
       {
 
          auto & rectangleTab = ptabdata->m_rectangleTab;
 
-         rectangle.left = rectangleTab.left;
+         rectangle.left() = rectangleTab.left();
 
-         rectangle.top = (::i32) (rectangleTab.top +  iIndex * ptabdata->m_iTabHeight);
+         rectangle.top() = (::i32)(rectangleTab.top() + iIndex * ptabdata->m_iTabHeight);
 
-         rectangle.right  = rectangleTab.right;
+         rectangle.right() = rectangleTab.right();
 
-         rectangle.bottom = rectangle.top + ptabdata->m_iTabHeight;
+         rectangle.bottom() = rectangle.top() + ptabdata->m_iTabHeight;
 
       }
       else
@@ -1260,13 +1049,13 @@ namespace user
 
          auto ppane = get_data()->m_tabpanecompositea[iIndex].get();
 
-         rectangle.left = ppane->m_point.x();
+         rectangle.left() = ppane->m_point.x();
 
-         rectangle.top = ppane->m_point.y();
+         rectangle.top() = ppane->m_point.y();
 
-         rectangle.right = rectangle.left + ppane->m_size.cx();
+         rectangle.right() = rectangle.left() + ppane->m_size.cx();
 
-         rectangle.bottom = rectangle.top + ppane->m_size.cy();
+         rectangle.bottom() = rectangle.top() + ppane->m_size.cy();
 
       }
 
@@ -1377,7 +1166,7 @@ namespace user
 
    ::item_pointer tab::on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
    {
-      
+
       auto pointCursor = point;
 
       //synchronous_lock synchronouslock(this->synchronization());
@@ -1386,7 +1175,7 @@ namespace user
 
       bool bScroll = _001HasHorizontalBarDragScrolling();
 
-      if(bScroll)
+      if (bScroll)
       {
 
          if (is_sandboxed())
@@ -1423,42 +1212,42 @@ namespace user
          }
 
       }
-      
+
       //point += m_pointDragScroll;
 
       ::rectangle_i32 rectangle;
 
-      for(i32 iIndex = 0; iIndex < get_data()->m_tabpanecompositea.get_size(); iIndex++)
+      for (i32 iIndex = 0; iIndex < get_data()->m_tabpanecompositea.get_size(); iIndex++)
       {
 
          auto ppane = get_data()->m_tabpanecompositea[iIndex].get();
 
-         if(ppane->m_straTitle.get_size() > 1)
+         if (ppane->m_straTitle.get_size() > 1)
          {
 
             ::rectangle_i32 rectangleText;
 
-            if(get_element_rectangle(iIndex, rectangleText, e_element_text))
+            if (get_element_rectangle(iIndex, rectangleText, e_element_text))
             {
 
-               if(rectangleText.contains(point))
+               if (rectangleText.contains(point))
                {
 
-                  for(int iTitle = 0; iTitle < ppane->m_straTitle.get_size(); iTitle++)
+                  for (int iTitle = 0; iTitle < ppane->m_straTitle.get_size(); iTitle++)
                   {
 
-                     rectangleText.left += (::i32) (ppane->m_sizeaText[iTitle].cx());
+                     rectangleText.left() += (::i32)(ppane->m_sizeaText[iTitle].cx());
 
-                     rectangleText.right = (::i32) (rectangleText.left + get_data()->m_sizeSep.cx());
+                     rectangleText.right() = (::i32)(rectangleText.left() + get_data()->m_sizeSep.cx());
 
-                     if(rectangleText.contains(point))
+                     if (rectangleText.contains(point))
                      {
 
-                        return __new(::item((enum_element)((int)e_element_split + iTitle), iIndex ));
+                        return __new(::item((enum_element)((int)e_element_split + iTitle), iIndex));
 
                      }
 
-                     rectangleText.left += (::i32) (get_data()->m_sizeSep.cx());
+                     rectangleText.left() += (::i32)(get_data()->m_sizeSep.cx());
 
                   }
 
@@ -1468,10 +1257,10 @@ namespace user
 
          }
 
-         if(get_element_rectangle(iIndex, rectangle, e_element_close_tab_button) )
+         if (get_element_rectangle(iIndex, rectangle, e_element_close_tab_button))
          {
 
-            if(rectangle.contains(point))
+            if (rectangle.contains(point))
             {
 
                ppane->m_pitemClose->m_item.m_iItem = iIndex;
@@ -1484,10 +1273,10 @@ namespace user
 
          }
 
-         if(get_element_rectangle(iIndex, rectangle, e_element_tab))
+         if (get_element_rectangle(iIndex, rectangle, e_element_tab))
          {
 
-            if(rectangle.contains(point))
+            if (rectangle.contains(point))
             {
 
                ppane->m_item.m_iItem = iIndex;
@@ -1547,12 +1336,13 @@ namespace user
    }
    */
 
+
    void tab::on_message_create(::message::message * pmessage)
    {
 
       top_level()->add_handler(this);
 
-      m_bEffectiveVisibleTabs = m_bVisibleTabs;
+      auto_hide_on_message_create(pmessage);
 
       if (is_sandboxed())
       {
@@ -1573,12 +1363,12 @@ namespace user
       }
 
       auto psystem = acmesystem()->m_pbasesystem;
-      
-      if(psystem->has_property("no_tabs"))
+
+      if (psystem->has_property("no_tabs"))
       {
-         
-         m_bForceNoTabs = false;
-         
+
+         m_bForceHiddenControl = false;
+
       }
 
       ::pointer<::user::message>pusermessage(pmessage);
@@ -1641,7 +1431,7 @@ namespace user
 
       KEEP(m_bDisableSavingRestorableTabs);
 
-      if(get_data()->m_matchanyRestore.m_itema.get_count() > 0)
+      if (get_data()->m_matchanyRestore.m_itema.get_count() > 0)
       {
 
          ::payload payload;
@@ -1660,7 +1450,7 @@ namespace user
    }
 
 
-   void tab::install_message_routing(::channel *pchannel)
+   void tab::install_message_routing(::channel * pchannel)
    {
 
       ::user::interaction::install_message_routing(pchannel);
@@ -1675,7 +1465,7 @@ namespace user
       MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &tab::on_message_mouse_leave);
       MESSAGE_LINK(e_message_show_window, pchannel, this, &tab::on_message_show_window);
       MESSAGE_LINK(e_message_language, pchannel, this, &tab::_001OnAppLanguage);
-      MESSAGE_LINK(message_start_tab_drag, pchannel, this,&tab::_001OnStartTabDrag);
+      MESSAGE_LINK(message_start_tab_drag, pchannel, this, &tab::_001OnStartTabDrag);
 
       ////MESSAGE_LINK(e_message_timer, pchannel, this, &tab::_001OnTimer);
 
@@ -1684,8 +1474,8 @@ namespace user
 
    void tab::set_current_tab_by_index(::index iIndex)
    {
-      
-      information("tab::set_current_tab_by_index start\n");
+
+      information() << "tab::set_current_tab_by_index start : " << iIndex;
 
       synchronous_lock lock(get_data()->synchronization());
 
@@ -1698,27 +1488,29 @@ namespace user
 
          get_data()->m_idaSel.add(idTab);
 
+         information() << "tab::set_current_tab_by_index idTab : " << idTab.as_string();
+
       }
 
       on_change_cur_sel();
 
       on_after_change_cur_sel();
-      
+
       if (m_ewindowflag & ::e_window_flag_window_created)
       {
-      
+
          set_need_redraw();
-      
+
          post_redraw();
-         
+
       }
-      
-      information("tab::set_current_tab_by_index end\n");
-      
+
+      information() << "tab::set_current_tab_by_index end";
+
    }
 
 
-   ::index tab::tab_index(::user::tab_pane* ptabpaneFind)
+   ::index tab::tab_index(::user::tab_pane * ptabpaneFind)
    {
 
       if (::is_null(ptabpaneFind))
@@ -1732,7 +1524,7 @@ namespace user
 
       synchronous_lock lock(pdata->synchronization());
 
-      return pdata->m_tabpanecompositea.predicate_find_first([ptabpaneFind](auto& ptabpane)
+      return pdata->m_tabpanecompositea.predicate_find_first([ptabpaneFind](auto & ptabpane)
          {
 
             return ptabpane == ptabpaneFind;
@@ -1780,7 +1572,7 @@ namespace user
 
       synchronous_lock lock(pdata->synchronization());
 
-      return pdata->m_tabpanecompositea.index_predicate_index(iIndex, [](auto& ptabpane)
+      return pdata->m_tabpanecompositea.index_predicate_index(iIndex, [](auto & ptabpane)
          {
 
             return ptabpane->m_bTabPaneVisible;
@@ -1790,14 +1582,14 @@ namespace user
    }
 
 
-   ::index tab::id_index(const ::atom& atom)
+   ::index tab::id_index(const ::atom & atom)
    {
 
       auto pdata = get_data();
 
       synchronous_lock lock(pdata->synchronization());
 
-      return pdata->m_tabpanecompositea.predicate_find_first([atom](auto& ptabpane)
+      return pdata->m_tabpanecompositea.predicate_find_first([atom](auto & ptabpane)
          {
 
             return ptabpane->m_atom == atom;
@@ -1835,8 +1627,8 @@ namespace user
 
    }
 
-   
-   ::index tab::id_visible_index(const ::atom& atom)
+
+   ::index tab::id_visible_index(const ::atom & atom)
    {
 
       auto iIndex = id_index(atom);
@@ -1873,7 +1665,7 @@ namespace user
    void tab::_001SetTabCallback(tab_callback * pcallback)
    {
 
-      if(get_data()->m_pcallback != nullptr)
+      if (get_data()->m_pcallback != nullptr)
       {
 
          delete get_data()->m_pcallback;
@@ -1888,7 +1680,7 @@ namespace user
    ::index tab::get_current_tab_index()
    {
 
-      if(get_data()->m_idaSel.get_size() == 1)
+      if (get_data()->m_idaSel.get_size() == 1)
       {
 
          return id_index(get_data()->m_idaSel[0]);
@@ -1926,7 +1718,7 @@ namespace user
    bool tab::_001IsAddTab(::index iIndex)
    {
 
-      if(get_data()->m_pcallback != nullptr)
+      if (get_data()->m_pcallback != nullptr)
       {
 
          return get_data()->m_pcallback->_001IsAddTab(this, iIndex);
@@ -1942,10 +1734,38 @@ namespace user
    }
 
 
+   bool tab::on_click(::item * pitem)
+   {
+
+      if (pitem->m_item.m_eelement != e_element_tab)
+      {
+
+         return false;
+
+      }
+
+      if (::is_element(pitem, e_element_close_tab_button))
+      {
+
+         _001OnTabClose(pitem->m_item.m_iItem);
+
+      }
+      else
+      {
+
+         _001OnTabClick(pitem->m_item.m_iItem);
+
+      }
+
+      return true;
+
+   }
+
+
    void tab::_001OnTabClick(::index iIndex)
    {
 
-      if(get_data()->m_pcallback != nullptr)
+      if (get_data()->m_pcallback != nullptr)
       {
 
          get_data()->m_pcallback->_001OnTabClick(this, iIndex);
@@ -1964,7 +1784,7 @@ namespace user
    void tab::_001OnTabClose(::index iIndex)
    {
 
-      if(get_data()->m_pcallback != nullptr)
+      if (get_data()->m_pcallback != nullptr)
       {
 
          get_data()->m_pcallback->_001OnTabClose(this, iIndex);
@@ -2058,7 +1878,7 @@ namespace user
 
       auto pplaceholder = ptabpane->m_pplaceholder;
 
-      if(::is_null(pplaceholder))
+      if (::is_null(pplaceholder))
       {
 
          return false;
@@ -2067,9 +1887,9 @@ namespace user
 
       pplaceholder->hide();
 
-//      pplaceholder->set_need_redraw();
-//
-//      pplaceholder->post_redraw();
+      //      pplaceholder->set_need_redraw();
+      //
+      //      pplaceholder->post_redraw();
 
       return true;
 
@@ -2166,7 +1986,7 @@ namespace user
    }
 
 
-   ::user::tab_pane* tab::get_visible_tab(::index iVisibleIndex)
+   ::user::tab_pane * tab::get_visible_tab(::index iVisibleIndex)
    {
 
       auto iIndex = visible_index_index(iVisibleIndex);
@@ -2219,51 +2039,6 @@ namespace user
 //   }
 
 
-   bool tab::is_top_level_full_screen_or_transparent()
-   {
-
-      auto puiTopLevel = top_level();
-
-      if (puiTopLevel->frame_is_transparent() || top_level_frame()->layout().is_full_screen())
-      {
-
-         return true;
-
-      }
-
-      return false;
-
-   }
-
-
-   bool tab::full_screen_or_transparent_frame_tab_visibility()
-   {
-
-      if (!m_bHideTabsOnFullScreenOrTransparentFrame)
-      {
-
-         return true;
-
-      }
-
-      if (m_bOverrideVisibleTabs)
-      {
-
-         return true;
-
-      }
-
-      if (is_top_level_full_screen_or_transparent())
-      {
-
-         return false;
-
-      }
-
-      return true;
-
-   }
-
 
    //bool tab::are_tabs_visible() const
    //{
@@ -2303,7 +2078,7 @@ namespace user
    void tab::on_change_cur_sel()
    {
 
-      if(get_data()->m_pcallback != nullptr && dynamic_cast < ::user::tab * > (get_data()->m_pcallback) != this)
+      if (get_data()->m_pcallback != nullptr && dynamic_cast <::user::tab *> (get_data()->m_pcallback) != this)
       {
 
          get_data()->m_pcallback->_001OnShowTab(this);
@@ -2324,7 +2099,7 @@ namespace user
    }
 
 
-   void tab:: _001SetVertical(bool bVertical)
+   void tab::_001SetVertical(bool bVertical)
    {
 
       get_data()->m_bVertical = bVertical;
@@ -2424,7 +2199,7 @@ namespace user
 
          ::index iIndex = id_index(atom);
 
-         if(iIndex < 0)
+         if (iIndex < 0)
          {
 
             auto ptabpane = create_tab_by_id(atom);
@@ -2462,7 +2237,7 @@ namespace user
          return false;
 
       }
-      catch(...)
+      catch (...)
       {
 
          return false;
@@ -2481,7 +2256,7 @@ namespace user
    }
 
 
-   ::user::tab_pane* tab::get_current_tab()
+   ::user::tab_pane * tab::get_current_tab()
    {
 
       auto atom = get_current_tab_id();
@@ -2504,13 +2279,13 @@ namespace user
    {
       ::rectangle_i32 rectangle;
       GetDragRect(rectangle, e_position_top);
-      if(rectangle.contains(point))
+      if (rectangle.contains(point))
       {
          return e_position_top;
       }
       GetDragRect(rectangle, e_position_bottom);
 
-      if(rectangle.contains(point))
+      if (rectangle.contains(point))
       {
 
          return e_position_bottom;
@@ -2519,7 +2294,7 @@ namespace user
 
       GetDragRect(rectangle, e_position_left);
 
-      if(rectangle.contains(point))
+      if (rectangle.contains(point))
       {
 
          return e_position_left;
@@ -2528,7 +2303,7 @@ namespace user
 
       GetDragRect(rectangle, e_position_right);
 
-      if(rectangle.contains(point))
+      if (rectangle.contains(point))
       {
 
          return e_position_right;
@@ -2543,54 +2318,54 @@ namespace user
    void tab::GetDragRect(::rectangle_i32 & rectangle, enum_position eposition)
    {
 
-      switch(eposition)
+      switch (eposition)
       {
       case e_position_top:
       {
 
-         rectangle.top = get_data()->m_rectangleTabClient.top;
+         rectangle.top() = get_data()->m_rectangleTabClient.top();
 
-         rectangle.left = get_data()->m_rectangleTabClient.left + get_data()->m_rectangleTabClient.width() / 3;
+         rectangle.left() = get_data()->m_rectangleTabClient.left() + get_data()->m_rectangleTabClient.width() / 3;
 
-         rectangle.right = rectangle.left + get_data()->m_rectangleTabClient.width() / 3;
+         rectangle.right() = rectangle.left() + get_data()->m_rectangleTabClient.width() / 3;
 
-         rectangle.bottom = rectangle.top + get_data()->m_rectangleTabClient.height() / 3;
+         rectangle.bottom() = rectangle.top() + get_data()->m_rectangleTabClient.height() / 3;
 
       }
       break;
       case e_position_left:
       {
-         rectangle.top = get_data()->m_rectangleTabClient.top + get_data()->m_rectangleTabClient.height() / 3;
+         rectangle.top() = get_data()->m_rectangleTabClient.top() + get_data()->m_rectangleTabClient.height() / 3;
 
-         rectangle.left = get_data()->m_rectangleTabClient.left;
+         rectangle.left() = get_data()->m_rectangleTabClient.left();
 
-         rectangle.right = rectangle.left + get_data()->m_rectangleTabClient.width() / 3;
+         rectangle.right() = rectangle.left() + get_data()->m_rectangleTabClient.width() / 3;
 
-         rectangle.bottom = rectangle.top + get_data()->m_rectangleTabClient.height() / 3;
+         rectangle.bottom() = rectangle.top() + get_data()->m_rectangleTabClient.height() / 3;
 
       }
       break;
       case e_position_right:
       {
-         rectangle.top = get_data()->m_rectangleTabClient.top + get_data()->m_rectangleTabClient.height() / 3;
+         rectangle.top() = get_data()->m_rectangleTabClient.top() + get_data()->m_rectangleTabClient.height() / 3;
 
-         rectangle.left = get_data()->m_rectangleTabClient.left + get_data()->m_rectangleTabClient.width() * 2 / 3;
+         rectangle.left() = get_data()->m_rectangleTabClient.left() + get_data()->m_rectangleTabClient.width() * 2 / 3;
 
-         rectangle.right = rectangle.left + get_data()->m_rectangleTabClient.width() / 3;
+         rectangle.right() = rectangle.left() + get_data()->m_rectangleTabClient.width() / 3;
 
-         rectangle.bottom = rectangle.top + get_data()->m_rectangleTabClient.height() / 3;
+         rectangle.bottom() = rectangle.top() + get_data()->m_rectangleTabClient.height() / 3;
 
       }
       break;
       case e_position_bottom:
       {
-         rectangle.top = get_data()->m_rectangleTabClient.top + get_data()->m_rectangleTabClient.height() * 2 / 3;
+         rectangle.top() = get_data()->m_rectangleTabClient.top() + get_data()->m_rectangleTabClient.height() * 2 / 3;
 
-         rectangle.left = get_data()->m_rectangleTabClient.left + get_data()->m_rectangleTabClient.width() / 3;
+         rectangle.left() = get_data()->m_rectangleTabClient.left() + get_data()->m_rectangleTabClient.width() / 3;
 
-         rectangle.right = rectangle.left + get_data()->m_rectangleTabClient.width() / 3;
+         rectangle.right() = rectangle.left() + get_data()->m_rectangleTabClient.width() / 3;
 
-         rectangle.bottom = rectangle.top + get_data()->m_rectangleTabClient.height() / 3;
+         rectangle.bottom() = rectangle.top() + get_data()->m_rectangleTabClient.height() / 3;
 
       }
       break;
@@ -2604,7 +2379,7 @@ namespace user
    void tab::_001OnDropTab(::index iIndex, enum_position eposition)
    {
 
-      if(get_data()->m_pcallback != nullptr)
+      if (get_data()->m_pcallback != nullptr)
       {
 
          get_data()->m_pcallback->_001OnDropTab(iIndex, eposition);
@@ -2637,31 +2412,9 @@ namespace user
 
       ::user::interaction::handle(ptopic, pcontext);
 
-      if (ptopic->m_atom == id_on_after_enter_full_screen)
-      {
+      ::user::auto_hide::handle(ptopic, pcontext);
 
-         m_bEffectiveVisibleTabs = false;
-
-      }
-      else if (ptopic->m_atom == id_on_set_transparent_frame)
-      {
-
-         m_bEffectiveVisibleTabs = false;
-
-      }
-      else if(ptopic->m_atom == id_on_after_exit_full_screen)
-      {
-
-         m_bEffectiveVisibleTabs = full_screen_or_transparent_frame_tab_visibility();
-
-      }
-      else if (ptopic->m_atom == id_on_clear_transparent_frame)
-      {
-
-         m_bEffectiveVisibleTabs = full_screen_or_transparent_frame_tab_visibility();
-
-      }
-      else if (ptopic->m_atom == id_get_topic_impact_id)
+      if (ptopic->m_atom == id_get_topic_impact_id)
       {
 
          ptopic->payload(id_id) = get_current_tab_id();
@@ -2677,10 +2430,10 @@ namespace user
          ptopic->m_bRet = true;
 
       }
-      else if(ptopic->m_atom == id_place_child_title_change)
+      else if (ptopic->m_atom == id_place_child_title_change)
       {
 
-         for (auto& ppane : get_data()->m_tabpanecompositea)
+         for (auto & ppane : get_data()->m_tabpanecompositea)
          {
 
             if (ppane->m_pplaceholder == ptopic->m_puserelement)
@@ -2721,40 +2474,22 @@ namespace user
 
       ::user::interaction::_001OnTimer(ptimer);
 
-      if (ptimer->m_uEvent == e_timer_defer_handle_auto_hide_tabs)
-      {
+      ::user::auto_hide::_001OnTimer(ptimer);
 
-         calculate_tab_visibility();
-
-         if(!m_bTabVisibilityChanging)
-         {
-
-            KillTimer(e_timer_defer_handle_auto_hide_tabs);
-
-            set_need_layout();
-
-            set_need_redraw();
-
-            post_redraw();
-
-         }
-
-      }
-
-      if(ptimer->m_uEvent == e_timer_drag_start)
+      if (ptimer->m_uEvent == e_timer_drag_start)
       {
          //auto elapsed = g_tickDragStart.elapsed();
          KillTimer(e_timer_drag_start);
 
-         release_mouse_capture();
+         defer_release_mouse_capture();
 
-         auto pointCursor = get_cursor_position();
+         auto pointCursor = mouse_cursor_position();
 
          auto pitem = hit_test(pointCursor, ::user::e_zorder_any);
 
          index iClickTab = get_data()->m_iClickTab;
 
-         if(::is_item(pitem, iClickTab))
+         if (::is_item(pitem, iClickTab))
          {
 
             get_data()->m_bDrag = true;
@@ -2779,7 +2514,7 @@ namespace user
    void tab::_001OnStartTabDrag(::message::message * pmessage)
    {
 
-      if(get_data()->m_pcallback != nullptr)
+      if (get_data()->m_pcallback != nullptr)
       {
 
          get_data()->m_pcallback->_001DropTargetWindowInitialize(this);
@@ -2903,7 +2638,7 @@ namespace user
    //}
 
 
-   ::user::tab_pane *tab::get_tab_by_id(const ::atom & atom)
+   ::user::tab_pane * tab::get_tab_by_id(const ::atom & atom)
    {
 
       return get_data()->get_tab_by_id(atom);
@@ -3064,17 +2799,17 @@ namespace user
 
       auto & panea = get_data()->m_tabpanecompositea;
 
-      for(i32 i = 0; i < panea.get_count(); i++)
+      for (i32 i = 0; i < panea.get_count(); i++)
       {
 
          auto ppane = panea[i].get();
 
          strPath = ppane->m_atom;
 
-         if(strPrefix.is_empty() || strPath.case_insensitive_begins(strPrefix))
+         if (strPrefix.is_empty() || strPath.case_insensitive_begins(strPrefix))
          {
 
-            if(strSuffix.is_empty() || strPath.case_insensitive_ends(strSuffix))
+            if (strSuffix.is_empty() || strPath.case_insensitive_ends(strSuffix))
             {
 
                stra.add(strPath);
@@ -3115,17 +2850,17 @@ namespace user
 
       tab_pane_composite_array & panea = get_data()->m_tabpanecompositea;
 
-      for(i32 i = 0; i < panea.get_count(); i++)
+      for (i32 i = 0; i < panea.get_count(); i++)
       {
 
          auto ppane = panea[i].get();
 
          strPath = ppane->m_atom;
 
-         if(strPrefix.is_empty() || strPath.case_insensitive_begins(strPrefix))
+         if (strPrefix.is_empty() || strPath.case_insensitive_begins(strPrefix))
          {
 
-            if(strSuffix.is_empty() || strPath.case_insensitive_ends(strSuffix))
+            if (strSuffix.is_empty() || strPath.case_insensitive_ends(strSuffix))
             {
 
                stra.add(strPath);
@@ -3176,12 +2911,12 @@ namespace user
 
       tab_pane_composite_array & panea = get_data()->m_tabpanecompositea;
 
-      for(i32 i = 0; i < panea.get_count(); i++)
+      for (i32 i = 0; i < panea.get_count(); i++)
       {
 
          varId = panea[i]->m_atom;
 
-         if(matches_restorable_tab(varId, panea[i]->m_pplaceholder))
+         if (matches_restorable_tab(varId, panea[i]->m_pplaceholder))
          {
 
             payloada.add(varId);
@@ -3208,16 +2943,16 @@ namespace user
    bool tab::has_restore_tab()
    {
 
-      ::match::any  & matchany = get_data()->m_matchanyRestore;
+      ::match::any & matchany = get_data()->m_matchanyRestore;
 
-      if(matchany.is_there_no_item())
+      if (matchany.is_there_no_item())
          return false;
       ::payload varId;
       tab_pane_composite_array & panea = get_data()->m_tabpanecompositea;
-      for(i32 i = 0; i < panea.get_count(); i++)
+      for (i32 i = 0; i < panea.get_count(); i++)
       {
          varId = panea[i]->m_atom;
-         if(matchany.matches(varId))
+         if (matchany.matches(varId))
          {
             return true;
          }
@@ -3235,15 +2970,15 @@ namespace user
 
       string_array stra;
 
-      for(i32 i = 0; i < payloada.get_count(); i++)
+      for (i32 i = 0; i < payloada.get_count(); i++)
       {
 
          // ODOW : TODO : should create bergedgewrapper to open bergedge inside a window.
 
-         if(payloada[i].get_type() == ::e_type_string && payloada[i].as_string() == "app:bergedge")
+         if (payloada[i].get_type() == ::e_type_string && payloada[i].as_string() == "app:bergedge")
             continue;
 
-         if(payloada[i].get_type() == ::e_type_string && payloada[i].as_string() == "app:")
+         if (payloada[i].get_type() == ::e_type_string && payloada[i].as_string() == "app:")
             continue;
 
          //if(stra.add_unique(payloada[i]) >= 0)
@@ -3276,29 +3011,38 @@ namespace user
 
       UNREFERENCED_PARAMETER(pmessage);
 
-//      ::pointer<::message::show_window>pshowwindow(pmessage);
+      //      ::pointer<::message::show_window>pshowwindow(pmessage);
 
-//      ::user::place_holder * pholder = tab_holder(get_current_tab_index());
-//
-//      if (pholder != nullptr)
-//      {
-//
-//         if (pshowwindow->m_bShow)
-//         {
-//
-//            pholder->display(e_display_normal);
-//
-//         }
-//         else
-//         {
-//
-//            pholder->display(e_display_none);
-//
-//         }
-//
-//      }
+      //      ::user::place_holder * pholder = tab_holder(get_current_tab_index());
+      //
+      //      if (pholder != nullptr)
+      //      {
+      //
+      //         if (pshowwindow->m_bShow)
+      //         {
+      //
+      //            pholder->display(e_display_normal);
+      //
+      //         }
+      //         else
+      //         {
+      //
+      //            pholder->display(e_display_none);
+      //
+      //         }
+      //
+      //      }
 
    }
+
+
+   ::rectangle_i32 tab::client_rectangle(::user::enum_layout elayout)
+   {
+
+      return m_rectangleClient;
+
+   }
+
 
 
 } // namespace base

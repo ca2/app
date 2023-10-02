@@ -151,7 +151,7 @@ namespace windowing
 
       pcursor->set_cursor(ecursor);
 
-      m_cursormap.set_at(ecursor, pcursor);
+      //m_cursormap.set_at(ecursor, pcursor);
 
       return pcursor;
 
@@ -297,6 +297,8 @@ namespace windowing
 
          if (set_cursor_file(pcursorpair->m_ecursor, pathDir / strCursorName, bFromCache))
          {
+
+            information() << "set_cursor_file : " << (pathDir / strCursorName);
 
             countSuccess++;
 

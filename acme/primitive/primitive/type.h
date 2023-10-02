@@ -59,18 +59,23 @@ inline const char * c_demangle(const ::ansi_character * psz)
 #endif
 
 
-#define __object_type(t) ::type(e_data_structure_type, t)
+//#define __object_type(t) ::type(data_structure_t{}, t)
+//
+//
+//struct data_structure_t {};
 
 
-enum enum_data_structure_type
-{
-
-   e_data_structure_type
-
-};
+class type_atom;
 
 
-class CLASS_DECL_ACME type :
+template < typename OBJECT_NOT_TYPE_ATOM >
+concept primitive_object_not_type_atom =
+   primitive_object < OBJECT_NOT_TYPE_ATOM >
+      && !std::is_same_v < OBJECT_NOT_TYPE_ATOM, type_atom >
+      && !std::is_base_of_v < type_atom, OBJECT_NOT_TYPE_ATOM >;
+
+
+class CLASS_DECL_ACME type_atom :
    public atom
 {
 public:
@@ -85,46 +90,51 @@ public:
    using atom::atom;
 
 
-   template < typename TYPE >
-   type(enum_data_structure_type, const TYPE &) :
-#ifdef WINDOWS
-   atom(c_demangle(typeid(TYPE).name()))
-#else
-   atom(demangle(typeid(TYPE).name()))
-#endif
-   {
+//   template < typename TYPE >
+//   type_atom(enum_data_structure_type, const TYPE &) :
+//#ifdef WINDOWS
+//   atom(c_demangle(typeid(TYPE).name()))
+//#else
+//   atom(demangle(typeid(TYPE).name()))
+//#endif
+//   {
+//
+//
+//   }
 
 
-   }
-
-
-   //type(const ::scoped_string & scopedstrTypeName) :
+   //type_atom(const ::scoped_string & scopedstrTypeName) :
    //   atom(pszTypeName)
    //{
    //   
    //}
 
 
-   type(const ::type & type)
+   type_atom(const ::type_atom & typeatom)
    {
 
-      operator = (type);
+      operator = (typeatom);
 
    }
 
 
-   type(::type && type):
-      atom((::atom &&)::transfer(type))
+   type_atom(::type_atom && typeatom):
+      atom((::atom &&)::transfer(typeatom))
    {
 
    }
 
 
-   type(const ::std::type_info & typeinfo);
-   type(const ::particle * pparticle);
+   type_atom(const ::std::type_info & typeinfo);
+
+   template < primitive_pointer POINTER >
+   type_atom(POINTER p);
+
+   template < primitive_object_not_type_atom OBJECT_NOT_TYPE_ATOM >
+   type_atom(OBJECT_NOT_TYPE_ATOM & objectnottypeatom);
 
    template < typename BASE >
-   type(const ::pointer<BASE>& point);
+   type_atom(const ::pointer<BASE>& p);
 
 
    //type& operator = (const ::std::type_info& typeinfo);
@@ -133,23 +143,23 @@ public:
    //type& operator = (const ::type& type);
 
 
-   type& operator = (const ::type& type)
+   type_atom& operator = (const ::type_atom& datatype)
    {
 
-      ::atom::operator = (type);
+      ::atom::operator = (datatype);
 
       return *this;
 
    }
    
 
-   const ::atom & name() const { return *this; }
+   ::string name() const { return this->as_string(); }
 
 
    bool operator == (const ::std::type_info& typeinfo) const;
 
 
-   bool operator == (const ::type& type) const;
+   bool operator == (const ::type_atom& datatype) const;
 
 
    bool operator == (const ::string& strType) const;
@@ -158,52 +168,90 @@ public:
    bool operator == (const ::atom& atom) const;
 
 
-   bool operator != (const ::std::type_info& typeinfo) const;
+//   bool operator != (const ::std::type_info& typeinfo) const;
+//
+//
+//   bool operator != (const ::type_atom& type) const;
 
 
-   bool operator != (const ::type& type) const;
+   template < primitive_pointer POINTER >
+   bool operator == (POINTER p) const;
 
 
-   bool operator == (const ::particle* pparticle) const;
+   template < typename TYPE >
+   bool operator == (const ::pointer < TYPE > & p) const;
 
 
-   bool operator != (const ::particle* pparticle) const;
+   //bool operator != (const ::particle* pparticle) const;
 
 
    inline operator bool() const { return ::atom::has_char(); }
 
    //inline operator const char * () const { return ::atom::operator const char *(); }
 
-   bool name_contains(const ::ansi_character * psz) const;
+   //bool name_contains(const ::ansi_character * psz) const;
 
 
 };
 
 
 template < typename TYPE >
-::type ___type()
+class typed_type_atom :
+   public ::type_atom
+{
+public:
+
+
+   typed_type_atom() :
+      type_atom(typeid(TYPE))
+   {
+   }
+
+};
+
+
+template < typename TYPE >
+inline ::typed_type_atom < TYPE > type()
 {
 
-   return ::type(typeid(TYPE));
+   return {};
 
 }
 
 
-//#define __type(TYPE)  ___type<TYPE>()
+template < primitive_pointer POINTER >
+inline ::type_atom type(POINTER p)
+{
 
-#define __type(TYPE)  ___type<TYPE>()
+   return p;
 
-
-template < typename TYPE >
-inline string __type_name();
-
-
-template < typename TYPE >
-inline string __type_name(const TYPE * p);
+}
 
 
-template < typename TYPE >
-inline string __type_name(const TYPE & t);
+template < primitive_object OBJECT >
+inline ::type_atom type(OBJECT & object)
+{
+
+   return object;
+
+}
+
+
+//#define ::type < TYPE >()  ___type<TYPE>()
+
+//#define ::type < TYPE >()  ___type<TYPE>()
+
+
+//template < typename TYPE >
+//inline string __type_name();
+
+
+//template < typename TYPE >
+//inline string __type_name(const TYPE * p);
+
+
+//template < typename TYPE >
+//inline string __type_name(const TYPE & t);
 
 
 //template < typename BASE >

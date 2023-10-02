@@ -4,17 +4,6 @@
 
 
 
-type::type(const ::particle * pparticle)
-{
-
-   auto name = typeid(*(::particle *)pparticle).name();
-
-   ::atom::operator = (demangle(name));
-
-}
-
-
-
 string cxxabi_demangle (const char* name);
 
 
@@ -110,7 +99,7 @@ string demangle(const char* name)
 
 
 //
-//type::type(const atom & atom, const ::atom & idFriendly)
+//type_atom::type_atom(const atom & atom, const ::atom & idFriendly)
 //{
 //
 //   m_pfactoryitem = nullptr;
@@ -120,20 +109,20 @@ string demangle(const char* name)
 //}
 //
 //
-//type::type()
+//type_atom::type_atom()
 //{
 //
 //   m_pfactoryitem = nullptr;
 //
 //}
 //
-//type::~type()
+//type_atom::~type_atom()
 //{
 //
 //}
 //
 //
-//type::type(const type & info)
+//type_atom::type_atom(const type_atom & info)
 //{
 //
 //   m_atom              = info.m_atom;
@@ -143,7 +132,7 @@ string demangle(const char* name)
 //}
 //
 //
-//type::type(const ::std::type_info & info)
+//type_atom::type_atom(const ::std::type_info & info)
 //{
 //
 //   m_pfactoryitem = nullptr;
@@ -164,7 +153,7 @@ string demangle(const char* name)
 //}
 //
 //
-//type::type(const ::string & strName, const ::string & strFriendlyName)
+//type_atom::type_atom(const ::string & strName, const ::string & strFriendlyName)
 //{
 //
 //   m_pfactoryitem = nullptr;
@@ -174,7 +163,7 @@ string demangle(const char* name)
 //}
 //
 //
-//type & type::operator = (const type & info)
+//type_atom & type_atom::operator = (const type_atom & info)
 //{
 //
 //   m_atom              = info.m_atom;
@@ -186,7 +175,7 @@ string demangle(const char* name)
 //}
 //
 //
-//type & type::operator = (const ::std::type_info & info)
+//type_atom & type_atom::operator = (const ::std::type_info & info)
 //{
 //
 //#ifdef WINDOWS
@@ -209,7 +198,7 @@ string demangle(const char* name)
 //}
 //
 //
-//bool type::operator == (const type & info) const
+//bool type_atom::operator == (const type_atom & info) const
 //{
 //
 //   return m_atom == info.m_atom;
@@ -217,7 +206,7 @@ string demangle(const char* name)
 //}
 //
 //
-//bool type::operator == (const ::std::type_info & info) const
+//bool type_atom::operator == (const ::std::type_info & info) const
 //{
 //
 //#ifdef WINDOWS
@@ -233,7 +222,7 @@ string demangle(const char* name)
 //}
 //
 //
-//bool type::operator == (const ::string & strName) const
+//bool type_atom::operator == (const ::string & strName) const
 //{
 //
 //   return m_atom == strName;
@@ -241,7 +230,7 @@ string demangle(const char* name)
 //}
 //
 //
-//bool type::operator == (const atom & atom ) const
+//bool type_atom::operator == (const atom & atom ) const
 //{
 //
 //   return m_atom == atom ;
@@ -249,7 +238,7 @@ string demangle(const char* name)
 //}
 //
 //
-//bool type::operator != (const type & info) const
+//bool type_atom::operator != (const type_atom & info) const
 //{
 //
 //   return m_atom != info.m_atom;
@@ -257,7 +246,7 @@ string demangle(const char* name)
 //}
 //
 //
-//bool type::operator != (const ::std::type_info & info) const
+//bool type_atom::operator != (const ::std::type_info & info) const
 //{
 //
 //#ifdef WINDOWS
@@ -273,7 +262,7 @@ string demangle(const char* name)
 //}
 //
 //
-//bool type::operator != (const ::string & strName) const
+//bool type_atom::operator != (const ::string & strName) const
 //{
 //
 //   return m_atom != strName;
@@ -281,7 +270,7 @@ string demangle(const char* name)
 //}
 //
 //
-//bool type::operator != (const atom & atom ) const
+//bool type_atom::operator != (const atom & atom ) const
 //{
 //
 //   return m_atom != atom ;
@@ -289,14 +278,14 @@ string demangle(const char* name)
 //}
 //
 //
-//const char * type::name() const
+//const char * type_atom::name() const
 //{
 //
 //   return m_atom;
 //
 //}
 //
-//const char * type::friendly_name() const
+//const char * type_atom::friendly_name() const
 //{
 //
 //   return m_atomFriendly;
@@ -304,7 +293,7 @@ string demangle(const char* name)
 //}
 //
 //
-//ptra * type::new_ptra()
+//ptra * type_atom::new_ptra()
 //{
 //
 //   return memory_new ptra();
@@ -312,7 +301,7 @@ string demangle(const char* name)
 //}
 //
 //
-//CLASS_DECL_ACME bool operator == (const ::std::type_info & info1, const ::type info2)
+//CLASS_DECL_ACME bool operator == (const ::std::type_info & info1, const ::type_atom info2)
 //{
 //
 //#ifdef WINDOWS
@@ -327,7 +316,7 @@ string demangle(const char* name)
 //
 //}
 //
-//CLASS_DECL_ACME bool operator != (const ::std::type_info & info1, const ::type info2)
+//CLASS_DECL_ACME bool operator != (const ::std::type_info & info1, const ::type_atom info2)
 //{
 //
 //   return !operator == (info1, info2);
@@ -337,7 +326,7 @@ string demangle(const char* name)
 
 
 
-//type& type::operator = (const ::std::type_info& typeinfo)
+//type_atom& type_atom::operator = (const ::std::type_info& typeinfo)
 //{
 //
 //   ::string strName = typeinfo.name();
@@ -351,13 +340,13 @@ string demangle(const char* name)
 //}
 
 
-//type& type::operator = (const ::type& type)
+//type_atom& type_atom::operator = (const ::type_atom& typeatom)
 //{
 //
-//   if (this != &type)
+//   if (this != &typeatom)
 //   {
 //
-//      ::atom::operator =(type);
+//      ::atom::operator =(typeatom);
 //
 //   }
 //
@@ -366,10 +355,10 @@ string demangle(const char* name)
 //}
 
 
-bool type::operator == (const ::std::type_info& typeinfo) const
+bool type_atom::operator == (const ::std::type_info& typeinfo) const
 {
 
-   ::string strName = ::type(typeinfo);
+   ::string strName = ::type_atom(typeinfo);
 
    strName = demangle(strName);
 
@@ -378,15 +367,15 @@ bool type::operator == (const ::std::type_info& typeinfo) const
 }
 
 
-bool type::operator == (const ::type& type) const
+bool type_atom::operator == (const ::type_atom & typeatom) const
 {
 
-   return ::atom::operator == (type);
+   return ::atom::operator == (typeatom);
 
 }
 
 
-bool type::operator == (const ::string& strType) const
+bool type_atom::operator == (const ::string& strType) const
 {
 
    return ::atom::operator == (strType);
@@ -394,22 +383,21 @@ bool type::operator == (const ::string& strType) const
 }
 
 
-bool type::operator != (const ::std::type_info& typeinfo) const
-{
-
-   return !operator==(typeinfo);
-
-}
-
-
-
-//type& type::operator = (const ::type& type)
+//bool type_atom::operator != (const ::std::type_info& typeinfo) const
 //{
 //
-//   if (this != &type)
+//   return !operator==(typeinfo);
+//
+//}
+
+
+//type_atom& type_atom::operator = (const ::type_atom& typeatom)
+//{
+//
+//   if (this != &typeatom)
 //   {
 //
-//      ::atom::operator =(type);
+//      ::atom::operator =(typeatom);
 //
 //   }
 //
@@ -418,7 +406,7 @@ bool type::operator != (const ::std::type_info& typeinfo) const
 //}
 
 
-//const ::atom& type::name() const
+//const ::atom& type_atom::name() const
 //{ 
 //   
 //   return *this; 
@@ -426,10 +414,10 @@ bool type::operator != (const ::std::type_info& typeinfo) const
 //}
 
 
-//bool type::operator == (const ::std::type_info& typeinfo) const
+//bool type_atom::operator == (const ::std::type_info& typeinfo) const
 //{
 //
-//   ::string strName = ::type(typeinfo);
+//   ::string strName = ::type_atom(typeinfo);
 //
 //   strName = demangle(strName);
 //
@@ -438,10 +426,10 @@ bool type::operator != (const ::std::type_info& typeinfo) const
 //}
 
 
-//bool typea::operator == (const ::type& type) const
+//bool type_atom::operator == (const ::type_atom& typeatom) const
 //{
 //
-//   return ::atom::operator == (type);
+//   return ::atom::operator == (typeatom);
 //
 //}
 //
@@ -454,7 +442,7 @@ bool type::operator != (const ::std::type_info& typeinfo) const
 //}
 
 
-//bool type::operator == (const ::atom& atom) const
+//bool type_atom::operator == (const ::atom& atom) const
 //{
 //
 //   return ::atom::operator==(atom);
@@ -462,7 +450,7 @@ bool type::operator != (const ::std::type_info& typeinfo) const
 //}
 //
 //
-//bool type::operator != (const ::std::type_info& typeinfo) const
+//bool type_atom::operator != (const ::std::type_info& typeinfo) const
 //{
 //
 //   return !operator==(typeinfo);
@@ -470,27 +458,27 @@ bool type::operator != (const ::std::type_info& typeinfo) const
 //}
 
 
-bool type::operator != (const ::type& type) const
-{
-
-   return !operator==(type);
-
-}
-
-
-bool type::operator == (const ::particle* pparticle) const
-{
-
-   return operator ==(::type(pparticle));
-
-}
+//bool type_atom::operator != (const ::type_atom& typeatom) const
+//{
+//
+//   return !operator==(typeatom);
+//
+//}
 
 
-bool type::operator != (const ::particle* pparticle) const
-{
+//bool type_atom::operator == (const ::particle* pparticle) const
+//{
+//
+//   return operator ==(::type_atom(pparticle));
+//
+//}
 
-   return !operator==(pparticle);
 
-}
+//bool type_atom::operator != (const ::particle* pparticle) const
+//{
+//
+//   return !operator==(pparticle);
+//
+//}
 
 

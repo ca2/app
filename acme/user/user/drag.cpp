@@ -1,8 +1,8 @@
 // Created by camilo on 2021-01-22 06:11 AM <3ThomasBorregaardSorensen
 #include "framework.h"
-#include "acme/user/user/mouse.h"
-//#include "acme/handler/item.h"
 #include "drag.h"
+#include "drag_client.h"
+#include "acme/user/user/mouse.h"
 
 
 namespace user
@@ -33,7 +33,7 @@ namespace user
    }
 
 
-   void drag::start(::user::mouse * pmouse, const ::point_i32 & pointDrag)
+   void drag::drag_start(::user::mouse * pmouse, ::user::drag_client* pdragclient, ::item * pitem, const ::point_i32 & pointDrag)
    {
 
       m_pmouse = pmouse;
@@ -42,7 +42,7 @@ namespace user
 
       m_bDrag = false;
 
-      m_pointLButtonDown = m_pmouse->m_point;
+      m_pointLButtonDown2 = pdragclient->drag_mouse_cursor_position(pitem, pmouse->m_pointAbsolute);
       
       m_pointInitial = pointDrag;
 
@@ -51,7 +51,7 @@ namespace user
    }
 
 
-   void drag::end()
+   void drag::drag_end()
    {
 
       m_bLButtonDown = false;
@@ -63,17 +63,7 @@ namespace user
    }
 
 
-   ::point_i32 drag::point() const
-   {
-
-      //auto pointDrag = m_pmouse->m_point - m_sizeLButtonDownOffset;
-
-      auto pointDrag = m_pmouse->m_point;
-
-      return pointDrag;
-
-   }
-
+   
 
 } // namespace user
 

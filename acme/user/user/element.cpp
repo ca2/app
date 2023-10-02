@@ -458,7 +458,7 @@ namespace user
 //}
 
 
-//bool element::client_rectangle(::rectangle_i32 * prectangle)
+//bool element::this->rectangle(::rectangle_i32 * prectangle)
 //{
 
 //   throw ::interface_only();
@@ -468,7 +468,7 @@ namespace user
 //}
 
 
-//bool element::client_rectangle(::rectangle_i64 * prectangle)
+//bool element::this->rectangle(::rectangle_i64 * prectangle)
 
 //{
 
@@ -646,7 +646,7 @@ namespace user
    //}
 
 
-   void element::add_prodevian(::matter * pmatter)
+   void element::add_auto_refresh(::matter * pmatter)
    {
 
       //return false;
@@ -654,7 +654,7 @@ namespace user
    }
 
 
-   void element::erase_prodevian(::matter * pmatter)
+   void element::erase_auto_refresh(::matter * pmatter)
    {
 
       //return false;
@@ -662,7 +662,7 @@ namespace user
    }
 
 
-   bool element::is_prodevian(const ::matter * pmatter) const
+   bool element::is_auto_refresh(const ::matter * pmatter) const
    {
 
       return false;
@@ -952,7 +952,7 @@ namespace user
    }
 
 
-   void element::interaction_post(const ::procedure & procedure)
+   void element::host_post(const ::procedure & procedure)
    {
 
       //throw ::interface_only();
@@ -1211,7 +1211,7 @@ namespace user
 
          //estatus = create_host();
 
-         create_host();
+         create_host(e_parallelization_synchronous);
 
       }
       else
@@ -1234,7 +1234,7 @@ namespace user
 
 
    //bool element::create_window_ex(::pointer<::user::system>pcs, ::user::interaction * puiParent, const ::atom & atom)
-   void element::create_host()
+   void element::create_host(enum_parallelization eparallelization)
    {
 
       //throw ::interface_only();
@@ -1798,7 +1798,7 @@ namespace user
    //}
 
 
-   void element::RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::atom idLeftOver, ::u32 nFlag, ::rectangle_i32 * prectParam, const ::rectangle_i32 & rectangleClient, bool bStretch)
+   void element::RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::atom idLeftOver, ::u32 nFlag, ::rectangle_i32 * prectParam, const ::rectangle_i32 & rectangleX, bool bStretch)
    {
 
       throw ::interface_only();
@@ -2027,8 +2027,6 @@ namespace user
    {
 
       throw ::interface_only();
-
-      //return false;
 
    }
 
@@ -2319,12 +2317,18 @@ namespace user
    }
 
 
-   void element::post_message(const ::atom & atom, wparam wparam, lparam lparam)
+   void element::message_handler(const ::atom & atom, wparam wparam, lparam lparam)
    {
 
       throw ::interface_only();
 
-      //return false;
+   }
+
+
+   void element::post_message(const ::atom & atom, wparam wparam, lparam lparam)
+   {
+
+      throw ::interface_only();
 
    }
 
@@ -2650,9 +2654,9 @@ namespace user
 
    //   ::size_f64 sizePaddedFitting;
 
-   //   sizePaddedFitting.cx() = rectanglePadding.left + sizeFitting.cx() + rectanglePadding.right;
+   //   sizePaddedFitting.cx() = rectanglePadding.left() + sizeFitting.cx() + rectanglePadding.right();
 
-   //   sizePaddedFitting.cy() = rectanglePadding.top + sizeFitting.cy() + rectanglePadding.bottom;
+   //   sizePaddedFitting.cy() = rectanglePadding.top() + sizeFitting.cy() + rectanglePadding.bottom();
 
    //   return sizePaddedFitting;
 
@@ -3553,13 +3557,13 @@ namespace user
    }
 
 
-   void element::prodevian_redraw(bool bUpdateBuffer)
-   {
+   //void element::graphics_thread_post_redraw(bool bUpdateBuffer)
+   //{
 
-   }
+   //}
 
 
-   void element::prodevian_stop()
+   void element::auto_refresh_stop()
    {
 
 
@@ -4806,6 +4810,55 @@ namespace user
    void element::on_after_impact_update()
    {
 
+
+   }
+
+
+   bool element::horizontal_scrollbar_visible()
+   {
+
+      return false;
+
+   }
+
+
+   bool element::vertical_scrollbar_visible()
+   {
+
+      return false;
+
+   }
+
+
+   ::trace_statement & element::raw_trace_statement_prefix(::trace_statement & statement) const
+   {
+
+      ::string strType = ::type(this).name();
+
+      statement << strType;
+
+      ::string strAtom = m_atom.as_string();
+
+      if(strAtom.has_char() && strAtom != strType)
+      {
+
+         statement << "=" << strAtom;
+
+      }
+
+      statement << "  ";
+
+      return statement;
+
+   }
+
+
+   ::trace_statement & element::trace_statement_prefix(::trace_statement & statement) const
+   {
+
+      statement << "usrintr ";
+
+      return raw_trace_statement_prefix(statement);
 
    }
 

@@ -3,6 +3,7 @@
 #include "acme/operating_system/ansi/_pthread.h"
 #include "acme/user/nano/display.h"
 #include "acme/platform/acme.h"
+#include "acme/platform/node.h"
 #include "acme/platform/system.h"
 
 
@@ -54,36 +55,37 @@
 //CLASS_DECL_ACME ::acme::system * acmesystem();
 
 
-void main_asynchronous(const ::procedure & procedure)
-{
-
-   if(is_main_thread())
-   {
-
-      procedure();
-
-      return;
-
-   }
-
-   auto predicate = [procedure]()
-                            {
-
-                               procedure();
-
-                            };
-
-   auto psystem = ::acme::acme::g_pacme->m_psubsystem->acmesystem();
-
-   psystem->windowing_post(predicate);
-
-}
+//void main_asynchronous(const ::procedure & procedure)
+//{
+//
+//   if(is_main_thread())
+//   {
+//
+//      procedure();
+//
+//      return;
+//
+//   }
+//
+//   auto predicate = [procedure]()
+//                            {
+//
+//                               procedure();
+//
+//                            };
+//
+//   auto psystem = ::acme::acme::g_pacme->m_psubsystem->acmesystem();
+//
+//   psystem->windowing_post(predicate);
+//
+//}
 
 
 namespace acme
 {
 
-   void system::windowing_post(const ::procedure &procedure)
+
+   void node::user_post(const ::procedure &procedure)
    {
 
       ::nano::display::g_p->display_post(procedure);

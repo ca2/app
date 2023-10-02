@@ -295,7 +295,7 @@ namespace simpledb
 
       string strDataKey = pclient->calculate_data_key(scopedstrDataKey);
 
-      string strType = __type_name(pclient);
+      string strType = ::type(pclient).name();
 
       if(strType.contains("filemanager::frame"))
       {
@@ -321,7 +321,7 @@ namespace simpledb
 
       auto strDataKey = pclient->calculate_data_key(scopedstrDataKey);
 
-      string strType = __type_name(pclient);
+      string strType = ::type(pclient).name();
 
       if(strType.contains("filemanager::frame"))
       {

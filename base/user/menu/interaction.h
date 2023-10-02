@@ -46,7 +46,7 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
 
 
-      virtual void on_calc_size(calc_size * psize) override;
+      ::size_f64 get_preferred_size(::draw2d::graphics_pointer & pgraphics) override;
 
 
    };

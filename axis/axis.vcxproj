@@ -183,6 +183,7 @@
     <CustomBuildStep />
     <CustomBuildStep />
     <CustomBuildStep />
+    <PreBuildEvent />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">
     <ClCompile>
@@ -219,6 +220,7 @@
       <EnableUAC>false</EnableUAC>
       <AdditionalDependencies>ws2_32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PreBuildEvent />
     <PreBuildEvent />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">
@@ -275,6 +277,7 @@
     </CustomBuildStep>
     <CustomBuildStep />
     <CustomBuildStep />
+    <PreBuildEvent />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">
     <ClCompile>
@@ -312,6 +315,7 @@
       <EnableUAC>false</EnableUAC>
       <AdditionalDependencies>ws2_32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PreBuildEvent />
     <PreBuildEvent />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">
@@ -500,6 +504,7 @@
     <ClInclude Include="user\form\window.h" />
     <ClInclude Include="user\form\_.h" />
     <ClInclude Include="user\user\aaa__component.h" />
+    <ClInclude Include="user\user\calculator_edit.h" />
     <ClInclude Include="user\user\combo_box.h" />
     <ClInclude Include="user\user\form_handler.h" />
     <ClInclude Include="user\user\line_layout.h" />
@@ -611,6 +616,7 @@
     <ClCompile Include="user\form\control.cpp" />
     <ClCompile Include="user\form\data.cpp" />
     <ClCompile Include="user\form\window.cpp" />
+    <ClCompile Include="user\user\calculator_edit.cpp" />
     <ClCompile Include="user\user\combo_box.cpp" />
     <ClCompile Include="user\user\form_handler.cpp" />
     <ClCompile Include="user\user\line_layout.cpp" />

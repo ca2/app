@@ -32,8 +32,8 @@ namespace base
 
       //::pointer<::user::shell>                         m_pshell;
 
-      //::type                                           m_typeHtmlDocument;
-      //::type                                           m_typeHtmlImpact;
+      //::type_atom                                      m_typeatomHtmlDocument;
+      //::type_atom                                      m_typeatomHtmlImpact;
 
       ::pointer < ::user::menu_central >                 m_pmenucentral;
 
@@ -74,10 +74,10 @@ namespace base
       virtual void init() override;
 
   
-      inline ::type get_html_document_type() { return m_typeHtmlDocument; }
-      inline ::type get_html_impact_type() { return m_typeHtmlImpact; }
+      inline ::type_atom get_html_document_type() { return m_typeatomHtmlDocument; }
+      inline ::type_atom get_html_impact_type() { return m_typeatomHtmlImpact; }
 
-      virtual ::type user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype);
+      virtual ::type_atom user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype);
 
 
       virtual ::user::primitive * get_mouse_focus_LButtonDown() override;
@@ -94,7 +94,7 @@ namespace base
 
       virtual void term() override;
 
-      virtual ::type controltype_to_typeinfo(::user::enum_control_type econtroltype) override;
+      virtual ::type_atom controltype_to_typeinfo(::user::enum_control_type econtroltype) override;
 
 
       virtual ::pointer<::user::menu_interaction>create_menu_button(::user::style * pstyle, ::user::menu_item * pitem);
@@ -117,9 +117,9 @@ namespace base
       ::user::style_pointer get_user_style(const ::string & strExperience, ::apex::application* papp = nullptr);
 
 
-      //virtual ::type get_pane_tab_impact_type_info();
-      virtual ::type get_simple_frame_window_type_info();
-      virtual ::type get_simple_child_frame_type_info();
+      //virtual ::type_atom get_pane_tab_impact_type_info();
+      virtual ::type_atom get_simple_frame_window_type_info();
+      virtual ::type_atom get_simple_child_frame_type_info();
 
 
       virtual void on_frame_window_drop_files(::user::interaction* pinteraction, ::file::path_array& patha);
@@ -128,20 +128,23 @@ namespace base
       virtual void initialize_html();
 
 
-      ::pointer<::form_document>  create_typed_form(::particle * pparticle, const ::type & type, ::user::element * puserelementParent, const ::payload & payload = ::e_type_empty_argument, const ::payload & payloadArgs = ::e_type_empty_argument);
+      ::pointer<::form_document>  create_typed_form(::particle * pparticle, const ::type_atom & typeatom, ::user::element * puserelementParent, const ::payload & payload = ::e_type_empty_argument, const ::payload & payloadArgs = ::e_type_empty_argument);
       //::pointer<::form_document>  create_form(::particle * pparticle, ::user::form_callback * pcallback, ::pointer<::user::interaction>userinteractionParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::e_type_empty_argument);
       ::pointer<::form_document>  create_form(::particle * pparticle, ::user::form * pform, ::user::form_callback * pformcallback, ::user::element * puserelementParent, const ::payload & payload = ::e_type_empty_argument, const ::payload & payloadArgs = ::e_type_empty_argument);
       //::pointer<::form_document>  create_child_form(::particle * pparticle, ::user::form_callback * pcallback, ::pointer<::user::interaction>userinteractionParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::e_type_empty_argument);
-      ::pointer<::form_document>  create_typed_child_form(::particle * pparticle, const ::type & type, ::user::element * puserelementParent, const ::payload & payload = ::e_type_empty_argument, const ::payload & payloadArgs = ::e_type_empty_argument);
+      ::pointer<::form_document>  create_typed_child_form(::particle * pparticle, const ::type_atom & typeatom, ::user::element * puserelementParent, const ::payload & payload = ::e_type_empty_argument, const ::payload & payloadArgs = ::e_type_empty_argument);
       ::pointer<::form_document>  create_child_form(::particle * pparticle, ::user::form * pform, ::user::form_callback * pformcallback, ::user::element * puserelementParent, const ::payload & payload = ::e_type_empty_argument, const ::payload & payloadArgs = ::e_type_empty_argument);
 
       template < typename FORM >
       ::pointer<::form_document>  create_child_form(::particle * pparticle, ::user::impact_data * pimpactdata, ::payload payload = ::payload(::e_type_empty_argument))
       {
 
-         return create_typed_child_form(pparticle, __type(FORM), pimpactdata->m_pplaceholder, payload);
+         return create_typed_child_form(pparticle, ::type < FORM >(), pimpactdata->m_pplaceholder, payload);
 
       }
+
+      
+      ::pointer<::user::plain_edit> create_calculator_edit() override;
 
 
    };

@@ -1838,7 +1838,7 @@ retry_license:
 
       }
 
-      information() << "initial_check_directrix : ok ("<< __type_name(this) << ")" << m_strAppId;
+      information() << "initial_check_directrix : ok ("<< ::type(this).name() << ")" << m_strAppId;
 
       //return true;
 
@@ -1987,7 +1987,7 @@ retry_license:
 //      if (!init1())
 //      {
 //
-//         //dappy(__type_name(this) + " : init1 failure : " + as_string(m_iErrorCode));
+//         //dappy(::type(this).name() + " : init1 failure : " + as_string(m_iErrorCode));
 //
 //         return false;
 //
@@ -2002,7 +2002,7 @@ retry_license:
 //      if (!init2())
 //      {
 //
-//         //dappy(__type_name(this) + " : init2 failure : " + as_string(m_iErrorCode));
+//         //dappy(::type(this).name() + " : init2 failure : " + as_string(m_iErrorCode));
 //
 //         return false;
 //
@@ -2017,7 +2017,7 @@ retry_license:
 //      if (!init3())
 //      {
 //
-//         //dappy(__type_name(this) + " : init3 failure : " + as_string(m_iErrorCode));
+//         //dappy(::type(this).name() + " : init3 failure : " + as_string(m_iErrorCode));
 //
 //         return false;
 //
@@ -2029,7 +2029,7 @@ retry_license:
 //
 //      m_timeHeartBeat.Now();
 //
-//      //dappy(__type_name(this) + " : init3 ok : " + as_string(m_iErrorCode));
+//      //dappy(::type(this).name() + " : init3 ok : " + as_string(m_iErrorCode));
 //
 //      try
 //      {
@@ -2037,7 +2037,7 @@ retry_license:
 //         if (!init())
 //         {
 //
-//            //dappy(__type_name(this) + " : initialize failure : " + as_string(m_iErrorCode));
+//            //dappy(::type(this).name() + " : initialize failure : " + as_string(m_iErrorCode));
 //
 //            return false;
 //
@@ -3407,7 +3407,7 @@ retry_license:
 
          }
 
-         information() << "::base::application::add_user_interaction ::user::interaction = 0x" << (::iptr) (puserinteraction) << " (" << typeid(*puserinteraction).name() << ") app=" << __type_name(this);
+         information() << "::base::application::add_user_interaction ::user::interaction = 0x" << (::iptr) (puserinteraction) << " (" << typeid(*puserinteraction).name() << ") app=" << ::type(this).name();
 
          if (!(puserinteraction->m_ewindowflag & e_window_flag_satellite_window))
          {
@@ -3465,7 +3465,7 @@ retry_license:
          if (m_puserinteractiona->erase_interaction(puserinteraction) > 0)
          {
 
-            information() << "::base::application::erase_user_interaction ::user::interaction = 0x"<<(iptr)puserinteraction<<" ("<<typeid(*puserinteraction).name()<<") app=" << __type_name(this);
+            information() << "::base::application::erase_user_interaction ::user::interaction = 0x"<<(iptr)puserinteraction<<" ("<<typeid(*puserinteraction).name()<<") app=" << ::type(this).name();
 
          }
 
@@ -3479,7 +3479,7 @@ retry_license:
          if (m_puserinteractionaFrame->erase_interaction(puserinteraction) > 0)
          {
 
-            information() << "::base::application::erase_frame ::user::interaction = 0x"<<(iptr)puserinteraction<<" ("<<typeid(*puserinteraction).name()<<") app=" <<__type_name(this);
+            information() << "::base::application::erase_frame ::user::interaction = 0x"<<(iptr)puserinteraction<<" ("<<typeid(*puserinteraction).name()<<") app=" <<::type(this).name();
 
          }
 
@@ -4010,7 +4010,7 @@ retry_license:
    //::type application::user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype)
    //{
 
-   //   return __type(::user::interaction);
+   //   return ::type < ::user::interaction >();
 
    //}
 
@@ -4466,7 +4466,7 @@ retry_license:
    //   try
    //   {
 
-   //      string strType = __type_name(this);
+   //      string strType = ::type(this).name();
 
    //      //if(::is_set(acmesystem()))
    //      //{
@@ -5544,7 +5544,7 @@ namespace aura
          if(pinteraction)
          {
 
-            pinteraction->interaction_post([pinteraction, idCommand]()
+            pinteraction->host_post([pinteraction, idCommand]()
             {
 
                ::message::command command(idCommand);
@@ -8180,7 +8180,7 @@ namespace aura
    }
 
 
-   ::type application::control_type_from_id(const ::atom& atom, ::user::enum_control_type& econtroltype)
+   ::type_atom application::control_type_from_id(const ::atom& atom, ::user::enum_control_type& econtroltype)
    {
 
       string str(atom);
@@ -8190,7 +8190,7 @@ namespace aura
 
          econtroltype = ::user::e_control_type_edit_plain_text;
 
-         return __type(::user::plain_edit);
+         return ::type < ::user::plain_edit >();
 
       }
 

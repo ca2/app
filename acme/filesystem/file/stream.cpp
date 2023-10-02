@@ -36,7 +36,7 @@ bool  stream_base::is_version(int i)
 //void binary_stream::write_element(const ::atom & atom, ::particle * pparticle)
 //{
 //
-//   auto strId = factory_id_to_text(__type_name(pelement));
+//   auto strId = factory_id_to_text(::type(pelement).name());
 //
 //   exchange(e_property_id, strId);
 //

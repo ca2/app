@@ -46,7 +46,7 @@ namespace apex
       size_t                                             m_nSafetyPoolSize; // ideal size_i32
 
 
-
+      ::pointer < ::input::input >                       m_pinput;
 
       string_array                                       m_straCommandLineAccumul;
       string_array                                       m_straCommandLineExtra;
@@ -142,6 +142,9 @@ namespace apex
 
 
       ::apex::node * node();
+
+
+      virtual ::input::input * input();
 
 
       virtual ::pointer<::factory::factory>& node_factory() override;
@@ -292,7 +295,7 @@ namespace apex
 
 
 
-      virtual void install_progress_add_up(int iAddUp = 1);
+      void install_progress_add_up(int iAddUp = 1) override;
 
 
 
@@ -433,11 +436,6 @@ namespace apex
       ::string fetch_public_internet_domain_extension_list_text() override;
 
 
-      using acme::system::http_text;
-      ::string http_text(const ::scoped_string & scopedstrUrl, ::property_set & set) override;
-
-      using acme::system::http_download;
-      void http_download(const ::payload & payloadFile, const ::scoped_string & scopedstrUrl, ::property_set & set) override;
 
 
    };

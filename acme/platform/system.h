@@ -169,7 +169,7 @@ namespace acme
       void initialize_system();
 
 
-      void os_construct();
+      //void os_construct();
 
 
 #ifdef _DEBUG
@@ -220,21 +220,6 @@ namespace acme
 
 
 
-      virtual bool http_exists(const ::scoped_string & scopedstrUrl, ::property_set & set);
-      virtual ::file::enum_type http_get_type(const ::scoped_string & scopedstrUrl, property_set & set);
-      virtual ::file::enum_type http_get_type(const ::scoped_string & scopedstrUrl, ::payload * pvarQuery, property_set & set);
-
-
-      virtual ::string http_text(const ::scoped_string & scopedstrUrl);
-      virtual ::string http_text(const ::scoped_string & scopedstrUrl, ::property_set & set);
-
-      
-      virtual ::memory http_memory(const ::scoped_string & scopedstrUrl);
-      virtual ::memory http_memory(const ::scoped_string & scopedstrUrl, ::property_set & set);
-
-      
-      virtual void http_download(const ::payload & payloadFile, const ::scoped_string & scopedstrUrl);
-      virtual void http_download(const ::payload & payloadFile, const ::scoped_string & scopedstrUrl, ::property_set & set);
 
 
       virtual void defer_audio();
@@ -580,8 +565,8 @@ namespace acme
 
       virtual bool fast_is_decompressable_folder(const ::file::path & path);
 
-      virtual void windowing_send(const ::procedure & procedure);
-      virtual void windowing_post(const ::procedure & procedure);
+      //virtual void windowing_send(const ::procedure & procedure);
+      //virtual void windowing_post(const ::procedure & procedure);
 
       
       bool _handle_call(::payload & payload, const ::string & strObject, const ::string & strMember, ::property_set & propertyset) override;

@@ -4,18 +4,6 @@
     <ClCompile Include="framework.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filesystem\dir_context.cpp">
-      <Filter>Source Files\filesystem\filesystem</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\filesystem\dir_system.cpp">
-      <Filter>Source Files\filesystem\filesystem</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\filesystem\file_context.cpp">
-      <Filter>Source Files\filesystem\filesystem</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\filesystem\file_system.cpp">
-      <Filter>Source Files\filesystem\filesystem</Filter>
-    </ClCompile>
     <ClCompile Include="_.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -51,12 +39,6 @@
     </ClCompile>
     <ClCompile Include="database\stringhelper.cpp">
       <Filter>Source Files\database</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\crypto.cpp">
-      <Filter>Source Files\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\rsa.cpp">
-      <Filter>Source Files\crypto</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\edit_file.cpp">
       <Filter>Source Files\filesystem\file</Filter>
@@ -96,12 +78,6 @@
     </ClCompile>
     <ClCompile Include="message\application.cpp">
       <Filter>Source Files\message</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\is_dir.cpp">
-      <Filter>Source Files\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\not_dir.cpp">
-      <Filter>Source Files\compress</Filter>
     </ClCompile>
     <ClCompile Include="constant\idpool.cpp">
       <Filter>Source Files\constant</Filter>
@@ -265,9 +241,6 @@
     <ClCompile Include="platform\system.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="crypto\initializer.cpp">
-      <Filter>Source Files\crypto</Filter>
-    </ClCompile>
     <ClCompile Include="handler\context.cpp">
       <Filter>Source Files\handler</Filter>
     </ClCompile>
@@ -406,15 +379,6 @@
     <ClCompile Include="networking\http\listener.cpp">
       <Filter>Source Files\networking\http</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\file\action.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\watch.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\watcher.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
     <ClCompile Include="operating_system\department.cpp">
       <Filter>Source Files\operating_system</Filter>
     </ClCompile>
@@ -434,9 +398,6 @@
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\primitive.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\container.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1304,9 +1265,6 @@
     <Filter Include="Source Files\filesystem\file">
       <UniqueIdentifier>{5fc128d3-6b86-4b49-9d1d-a282ae9e0174}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\filesystem\filesystem">
-      <UniqueIdentifier>{4c299533-e47a-4b86-8444-68e456ab3c54}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\filesystem\filesystem">
       <UniqueIdentifier>{cf33ca26-3a3f-4822-bfd4-2e6fb4fff10f}</UniqueIdentifier>
     </Filter>
@@ -1321,12 +1279,6 @@
     </Filter>
     <Filter Include="Header Files\inline\application">
       <UniqueIdentifier>{888e24b3-7902-4b63-84fd-2913fa2c8fe7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\compress">
-      <UniqueIdentifier>{cfb9a164-fe11-4408-a558-00024ad61959}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\crypto">
-      <UniqueIdentifier>{8aaf19d4-a571-437f-a889-50510fa2a216}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\message">
       <UniqueIdentifier>{007b0a5c-63be-4d23-8cd4-1ac82dfd16ec}</UniqueIdentifier>

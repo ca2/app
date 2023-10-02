@@ -24,10 +24,10 @@ void request::initialize_create(arguments arguments)
    for(auto & arg : arguments)
    {
 
-      if(arg.get_type() == e_type_enum_command)
+      if(arg.get_type() == e_type_atom && arg.as_atom().m_etype == atom::e_type_command)
       {
 
-         m_ecommand = arg.m_ecommand;
+         m_ecommand = arg.as_atom().m_ecommand;
 
       }
       else if(arg.get_type() == e_type_string)

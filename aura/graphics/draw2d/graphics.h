@@ -12,11 +12,11 @@
 #include "aura/graphics/image/source.h"
 //#include "acme/primitive/geometry2d/collection.h"
 #include "acme/primitive/geometry2d/angle.h"
+#include "acme/primitive/geometry2d/matrix.h"
 #include "acme/primitive/geometry2d/shift.h"
 #include "aura/user/user/redraw.h"
 #include "region.h"
 #include "bitmap.h"
-#include "matrix.h"
 
 
 //#include "acme/primitive/geometry2d/_geometry2d.h"
@@ -68,11 +68,13 @@ namespace draw2d
    public:
 
 
+      e_graphics                             m_egraphics;
       bool                                   m_bBeginDraw;
+      bool                                   m_bInheritDraw;
       bool                                   m_bOutline;
       void *                                 m_pthis;
       ::user::interaction *                  m_puserinteraction;
-      ::pointer<::draw2d::host>             m_pdraw2dhost;
+      ::pointer<::draw2d::host>              m_pdraw2dhost;
 
       bool                                   m_bPat;
 
@@ -108,7 +110,7 @@ namespace draw2d
 
       ::size_f64                             m_sizeScaling;
       ::point_f64                            m_pointOrigin;
-      ::draw2d::matrix                       m_matrix;
+      ::geometry2d::matrix                   m_matrix;
 
       ::rectangle_f64                        m_rectangleDraw;
 
@@ -1108,15 +1110,15 @@ namespace draw2d
       virtual void set_font(::user::interaction* pinteraction, ::enum_element eelement = ::e_element_none, ::user::enum_state estate = ::user::e_state_none);
 
 
-      virtual void get(matrix & matrix);
+      virtual void get(::geometry2d::matrix & matrix);
       //using ::aura::simple_chain < ::aura::draw_context >::set;
-      virtual void set(const matrix & matrix);
-      virtual void append(const matrix & matrix);
-      virtual void prepend(const matrix & matrix);
+      virtual void set(const ::geometry2d::matrix & matrix);
+      virtual void append(const ::geometry2d::matrix & matrix);
+      virtual void prepend(const ::geometry2d::matrix & matrix);
       virtual void update_matrix();
 
-      virtual void _get(matrix & matrix);
-      virtual void _set(const matrix & matrix);
+      virtual void _get(::geometry2d::matrix & matrix);
+      virtual void _set(const ::geometry2d::matrix & matrix);
 
       //=============================================================================
       //
@@ -1284,12 +1286,12 @@ namespace draw2d
    public:
 
 
-      graphics *     m_pgraphics;
-      int            m_iSavedDC;
+      graphics *              m_pgraphics;
+      int                     m_iSavedDC;
 
-      ::size_f64     m_sizeScaling;
-      ::point_f64    m_pointOrigin;
-      matrix         m_matrix;
+      ::size_f64              m_sizeScaling;
+      ::point_f64             m_pointOrigin;
+      ::geometry2d::matrix    m_matrix;
 
       save_context(graphics * graphics);
       ~save_context();

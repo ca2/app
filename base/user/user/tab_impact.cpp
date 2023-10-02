@@ -5,7 +5,7 @@
 #include "frame_window.h"
 #include "split_impact.h"
 #include "document.h"
-#include "options_impact.h"
+#include "handler_impact.h"
 #include "tab_drop_target_window.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
@@ -448,7 +448,7 @@ namespace user
 
       m_pdroptargetwindow->m_bTransparent = true;
 
-      m_pdroptargetwindow->create_host();
+      m_pdroptargetwindow->create_host(e_parallelization_synchronous);
 
       m_pdroptargetwindow->order(e_zorder_top_most);
 
@@ -524,6 +524,13 @@ namespace user
 
       }
 
+      if (atom != CONTEXT_OPTIONS_IMPACT)
+      {
+
+         m_poptionsimpacthandlerContext = pimpactdata->m_pplaceholder->typed_descendant < ::user::options_impact_handler >();
+
+      }
+
       if(iTab >= 0)
       {
 
@@ -592,6 +599,17 @@ namespace user
 
       }
 
+      if (pimpactdata->m_pplaceholder)
+      {
+
+         ::string strPlaceHolderId;
+
+         strPlaceHolderId = "place_holder : " + pimpactdata->m_atom.as_string();
+
+         pimpactdata->m_pplaceholder->m_atom = strPlaceHolderId;
+
+      }
+
       idSplit = pimpactdata->m_atomSplit;
 
       if(pimpactdata != m_pimpactdata)
@@ -647,6 +665,8 @@ namespace user
    void tab_impact::on_after_change_cur_sel()
    {
 
+      synchronous_lock synchronouslock(this->synchronization());
+
       auto ptabdata = get_data();
 
       ::rectangle_i32 rectangleTabClient = ptabdata->m_rectangleTabClient;
@@ -654,7 +674,9 @@ namespace user
       if (m_pimpactdataOld
          && m_pimpactdataOld->m_eflag & ::user::e_flag_hide_on_kill_focus
          && m_pimpactdataOld->m_atom != MENU_IMPACT
-         && m_pimpactdataOld->m_atom != OPTIONS_IMPACT)
+         && m_pimpactdataOld->m_atom != OPTIONS_IMPACT
+         && m_pimpactdataOld->m_atom != APP_OPTIONS_IMPACT
+         && m_pimpactdataOld->m_atom != CONTEXT_OPTIONS_IMPACT)
       {
 
          information("::user::e_flag_hide_on_kill_focus");
@@ -683,7 +705,6 @@ namespace user
                   continue;
 
                }
-
                else if (m_pimpactdata->m_eflag & ::user::e_flag_hidid_on_show)
                {
 
@@ -711,12 +732,58 @@ namespace user
 
       }
 
-      ::rectangle_i32 rectangleClient;
+      ::rectangle_i32 rectangleX;
 
-      rectangleClient = m_pimpactdata->m_pplaceholder->client_rectangle();
+      rectangleX = m_pimpactdata->m_pplaceholder->rectangle();
 
       if (!rectangleTabClient.is_empty())
       {
+
+         {
+
+            auto pchild = m_pimpactdata->m_pplaceholder;
+
+            ::string strType = ::type(pchild).name();
+
+            if (strType.case_insensitive_contains("place_holder"))
+            {
+
+               if (pchild->m_puserinteractionpointeraChild
+                  && pchild->m_puserinteractionpointeraChild->has_interaction())
+               {
+
+                  auto puserinteractionChild = pchild->m_puserinteractionpointeraChild->first_interaction();
+
+                  ::string strTypePlaceHolderChild = ::type(puserinteractionChild).name();
+
+                  if (strTypePlaceHolderChild.case_insensitive_contains("simple_frame_window"))
+                  {
+
+                     auto puserinteractionChild2 = puserinteractionChild->m_puserinteractionpointeraChild->first_interaction();
+
+                     ::string strTypePlaceHolderChild2 = ::type(puserinteractionChild2).name();
+
+                     if (strTypePlaceHolderChild2.case_insensitive_contains("font_impact"))
+                     {
+
+                        information() << "going to display " << strTypePlaceHolderChild2;
+
+                        if (m_puserinteractionpointeraChild->contains_interaction(pchild))
+                        {
+
+                           //information() << "tab impact has font_list place_holder as child window";
+
+                        }
+
+                     }
+
+                  }
+
+               }
+
+            }
+
+         }
 
          m_pimpactdata->m_pplaceholder->order(e_zorder_top);
 
@@ -782,10 +849,28 @@ namespace user
    void tab_impact::on_create_impact(::user::impact_data * pimpactdata)
    {
    
-      if (pimpactdata->m_atom == OPTIONS_IMPACT)
+      if (pimpactdata->m_atom == OPTIONS_IMPACT
+         || pimpactdata->m_atom == APP_OPTIONS_IMPACT
+         || pimpactdata->m_atom == CONTEXT_OPTIONS_IMPACT)
       {
 
-         create_impact < options_impact >(pimpactdata);
+         m_maphandlerimpact[pimpactdata->m_atom] = create_impact < handler_impact >(pimpactdata);
+
+         if (pimpactdata->m_atom == APP_OPTIONS_IMPACT)
+         {
+
+            auto phandlerimpact = m_maphandlerimpact[pimpactdata->m_atom];
+
+            auto functionHandler = [this](auto puserinteraction)
+               {
+
+                  acmeapplication()->m_pbaseapplication->create_options_impact(puserinteraction);
+
+               };
+
+            phandlerimpact->call_handler(functionHandler);
+
+         }
 
          //pimpactdata->m_eflag += ::user::e_flag_hide_all_others_on_show;
 
@@ -836,7 +921,7 @@ namespace user
    {
 
       _on_change_cur_sel();
-      
+
       if (m_pimpactdata->m_atom == MENU_IMPACT)
       {
          
@@ -852,6 +937,8 @@ namespace user
             pmenu->m_pmenuitem.release();
             
             pmenu->m_puserinteractionpointeraChild.release();
+
+            information() << "::user::tab_impact::on_change_cur_sel Going to call prepare_impact_menu";
             
             prepare_impact_menu(pmenu);
             
@@ -859,6 +946,22 @@ namespace user
          
          return;
          
+      }
+      else if (m_pimpactdata->m_atom == CONTEXT_OPTIONS_IMPACT && m_maphandlerimpact[m_pimpactdata->m_atom])
+      {
+
+         auto poptionsimpacthandler = m_poptionsimpacthandlerContext;
+
+         auto phandlerimpact = m_maphandlerimpact[m_pimpactdata->m_atom];
+
+         phandlerimpact->call_handler(
+            [poptionsimpacthandler](auto puserinteractionParent)
+            {
+
+               poptionsimpacthandler->create_options_impact(puserinteractionParent);
+
+            });
+
       }
 
    }
@@ -892,14 +995,22 @@ namespace user
    void tab_impact::prepare_impact_menu(::user::menu * pmenu)
    {
 
-      auto strXml = get_app()->file()->as_string("matter://impact.menu");
+      ::file::path path;
 
-      if (pmenu->load_xml_menu(strXml))
+      path = "matter://impact.menu";
+
+      auto strXml = get_app()->file()->as_string(path);
+
+      if (!pmenu->load_xml_menu(strXml))
       {
 
-         pmenu->create_inline_menu(this, m_pimpactdata->m_pplaceholder);
+         throw ::exception(error_failed, "tab_impact::prepare_impact_menu Failed to load \"" + path + "\".");
 
       }
+
+      information() << "::user::tab_impact::prepare_impact_menu Going to call menu::create_inline_menu";
+
+      pmenu->create_inline_menu(this, m_pimpactdata->m_pplaceholder);
 
       //return ::success;
 
@@ -944,7 +1055,6 @@ namespace user
       ::user::tab::on_erase_place_holder_child(pinteraction);
 
    }
-
 
 
    void tab_impact::on_hide_child(::user::interaction* pinteraction)
@@ -1156,7 +1266,7 @@ namespace user
             if(timeEllapsed > 50_ms)
             {
 
-               string strType = __type_name(this);
+               string strType = ::type(this).name();
 
 #ifdef VERBOSE_LOG               
 
@@ -1210,6 +1320,8 @@ namespace user
             auto pplaceholder = get_new_place_holder(get_data()->m_rectangleTabClient);
 
             pimpactdata->m_pplaceholder = pplaceholder;
+
+            pplaceholder->m_bExtendOnParentClientArea = true;
 
          }
 

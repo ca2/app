@@ -64,7 +64,7 @@ namespace user
       ::draw2d::icon* get_draw_icon() override;
 
       
-      //void client_rectangle(::rectangle_i32 * prectangle) override;
+      //void this->rectangle(::rectangle_i32 * prectangle) override;
 
       
       virtual bool is_translucid_user_style(enum_style estyle);
@@ -104,7 +104,7 @@ namespace user
       void hide_control_bar(::user::control_bar * pcontrolbar) override;
 
 
-      //virtual ::pointer<toolbar>create_toolbar(const ::atom & idToolbar, const ::string & strToolbar = nullptr, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = CBRS_ALIGN_TOP, const ::type & type = "user::toolbar");
+      //virtual ::pointer<toolbar>create_toolbar(const ::atom & idToolbar, const ::string & strToolbar = nullptr, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = CBRS_ALIGN_TOP, const ::type_atom & typeatom = "user::toolbar");
 
 
       virtual void on_create_bars();

@@ -65,13 +65,13 @@ namespace app_integration
 
       rectangleBack.deflate(2, 2);
 
-      rectangleBack.bottom = rectangleBack.top + size.cy() * 2 + 4 * 3;
+      rectangleBack.bottom() = rectangleBack.top() + size.cy() * 2 + 4 * 3;
 
       pgraphics->fill_rectangle(rectangleBack, argb(127, 80, 80, 80));
 
-      pgraphics->text_out(rectangleBack.left + 4, rectangleBack.top + 4, str1);
+      pgraphics->text_out(rectangleBack.left() + 4, rectangleBack.top() + 4, str1);
 
-      pgraphics->text_out(rectangleBack.left + 4, rectangleBack.top + size.cy() + 8, str2);
+      pgraphics->text_out(rectangleBack.left() + 4, rectangleBack.top() + size.cy() + 8, str2);
 
       auto ppen = __create < ::draw2d::pen >();
 
@@ -224,11 +224,11 @@ namespace app_integration
 
       rectangle_i32 r;
 
-      r.top = 0;
+      r.top() = 0;
 
-      r.left = 0;
+      r.left() = 0;
 
-      r.bottom = rClient.center().y();
+      r.bottom() = rClient.center().y();
 
       int i = 0;
 
@@ -237,28 +237,28 @@ namespace app_integration
       for (i = 0; i < iColumnCount && i < angleaStart.get_size(); i++)
       {
 
-         r.right = r.left + iColumnWidth;
+         r.right() = r.left() + iColumnWidth;
 
          draw_arc(pgraphics, r, angleaStart[i], angleaAngle[i], bPath);
 
-         r.left = r.right;
+         r.left() = r.right();
 
       }
 
-      r.top = r.bottom;
+      r.top() = r.bottom();
 
-      r.left = 0;
+      r.left() = 0;
 
-      r.bottom = rClient.bottom;
+      r.bottom() = rClient.bottom();
 
       for (; i < iColumnCount * 2 && i < angleaStart.get_size(); i++)
       {
 
-         r.right = r.left + iColumnWidth;
+         r.right() = r.left() + iColumnWidth;
 
          draw_arc(pgraphics, r, angleaStart[i], angleaAngle[i], bPath);
 
-         r.left = r.right;
+         r.left() = r.right();
 
       }
 

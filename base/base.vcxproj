@@ -228,6 +228,7 @@
       <Command>
       </Command>
     </PostBuildEvent>
+    <PreBuildEvent />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">
     <ClCompile>
@@ -341,6 +342,7 @@
       <Command>
       </Command>
     </PostBuildEvent>
+    <PreBuildEvent />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">
     <ClCompile>
@@ -460,6 +462,7 @@
     <ResourceCompile>
       <AdditionalIncludeDirectories>$(SolutionDir)../../..</AdditionalIncludeDirectories>
     </ResourceCompile>
+    <PreBuildEvent />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">
     <ClCompile>
@@ -569,6 +572,7 @@
     <ResourceCompile>
       <AdditionalIncludeDirectories>$(SolutionDir)../../..</AdditionalIncludeDirectories>
     </ResourceCompile>
+    <PreBuildEvent />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">
     <ClCompile>
@@ -679,12 +683,14 @@
     <ClCompile Include="user\simple\status_bar.cpp" />
     <ClCompile Include="user\simple\tab_document.cpp" />
     <ClCompile Include="user\simple\toolbar.cpp" />
+    <ClCompile Include="user\user\auto_hide.cpp" />
     <ClCompile Include="user\user\control_bar.cpp" />
     <ClCompile Include="user\user\control_property.cpp" />
     <ClCompile Include="user\user\data_exchange.cpp" />
     <ClCompile Include="user\user\document.cpp" />
     <ClCompile Include="user\user\document_manager.cpp" />
     <ClCompile Include="user\user\document_manager_container.cpp" />
+    <ClCompile Include="user\user\form_handler.cpp" />
     <ClCompile Include="user\user\frame_window.cpp" />
     <ClCompile Include="user\user\hotplugin.cpp" />
     <ClCompile Include="user\user\impact.cpp" />
@@ -696,7 +702,7 @@
     <ClCompile Include="user\user\margin.cpp" />
     <ClCompile Include="user\user\multiple_document_template.cpp" />
     <ClCompile Include="user\user\network_configuration.cpp" />
-    <ClCompile Include="user\user\options_impact.cpp" />
+    <ClCompile Include="user\user\handler_impact.cpp" />
     <ClCompile Include="user\user\picture.cpp" />
     <ClCompile Include="user\user\picture_impl.cpp" />
     <ClCompile Include="user\user\picture_interaction.cpp" />
@@ -798,12 +804,14 @@
     <ClInclude Include="user\simple\_.h" />
     <ClInclude Include="user\simple\_impl.h" />
     <ClInclude Include="user\simple\_component.h" />
+    <ClInclude Include="user\user\auto_hide.h" />
     <ClInclude Include="user\user\data_exchange.h" />
-    <ClInclude Include="user\user\form_maker.h" />
+    <ClInclude Include="user\user\form_handler.h" />
     <ClInclude Include="user\user\image_list.h" />
     <ClInclude Include="user\user\impact_data.h" />
     <ClInclude Include="user\user\impact_exception.h" />
-    <ClInclude Include="user\user\options_impact.h" />
+    <ClInclude Include="user\user\handler_impact.h" />
+    <ClInclude Include="user\user\options_impact_handler.h" />
     <ClInclude Include="user\user\picture_impl.h" />
     <ClInclude Include="user\user\server.h" />
     <ClInclude Include="user\user\show.h" />

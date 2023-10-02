@@ -115,7 +115,7 @@ public:
    inline short x() const
    {
 
-      return (short) (m_lparam & 0xffff);
+      return ::i32_x(m_lparam);
 
    }
 
@@ -123,7 +123,7 @@ public:
    inline short y() const
    {
 
-      return (short) ((m_lparam >> 16) & 0xffff);
+      return ::i32_y(m_lparam);
 
    }
 

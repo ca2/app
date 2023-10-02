@@ -258,6 +258,11 @@ public:
       e_type_impact,
       e_type_happening,
       e_type_element,
+      e_type_check,
+      e_type_status,
+
+      e_type_not_an_atom = 127,
+
 
       e_type_text = 1ull << 8,
       e_type_id_text = e_type_id | e_type_text,
@@ -301,7 +306,6 @@ public:
       ::uptr               m_u;
       ::iptr               m_i;
       enum_id              m_eid;
-      enum_command         m_ecommand;
       enum_impact          m_eimpact;
       enum_property        m_eproperty;
       enum_factory         m_efactory;
@@ -311,6 +315,9 @@ public:
       enum_dialog_result   m_edialogresult;
       enum_happening       m_ehappening;
       enum_element         m_eelement;
+      e_status             m_estatus;
+      e_command            m_ecommand;
+      e_check              m_echeck;
       ::string             m_str;
       ::ansi_range         m_range;
       ::iptr               m_iBody;
@@ -331,10 +338,11 @@ public:
 
    inline atom();
    inline atom(enum_type etype);
+
    inline atom(enum_id eid);
    inline atom(enum_element eelement);
    inline atom(ENUM_ID EID);
-   inline atom(const ::e_command & ecommand);
+   //inline atom(const ::e_command & ecommand);
    inline atom(enum_message emessage);
    inline atom(ENUM_MESSAGE EMESSAGE);
    inline atom(enum_impact eimpact);
@@ -345,6 +353,9 @@ public:
    inline atom(enum_timer etimer);
    inline atom(enum_dialog_result edialogresult);
    inline atom(enum_happening eevent);
+   //inline atom(e_check echeck);
+   //inline atom(e_status estatus);
+
    inline atom(enum_type etypeAdd, const atom & atom);
    inline atom(const atom & atom);
    atom(const ::ansi_character * psz);
@@ -451,12 +462,33 @@ public:
    }
 
 
-   void set_compounded_type(enum_type etype)
+   void set_compounded_type2(enum_type etype)
    {
 
       m_etype = compounded_type(etype);
 
    }
+
+
+   void set_type(enum_type etype)
+   {
+
+      if(m_etype != etype)
+      {
+
+         if(!is_text(etype) || is_range(etype))
+         {
+
+            _defer_free();
+
+         }
+
+      }
+
+      m_etype = etype;
+
+   }
+
 
    bool _is_compounded(enum_type etype) const { return (m_etype & 0xffff) == etype;}
 
@@ -470,6 +502,8 @@ public:
    //bool is_has_command_handler() const { return _is_compounded(e_type_has_command_handler); }
    bool is_update() const { return _is_compounded(e_type_update); }
 
+
+   bool is_true(bool bDefault = false) const;
 
    inline bool operator == (const atom& atom) const;
    inline ::std::strong_ordering operator <=> (const atom & atom) const;
@@ -637,9 +671,31 @@ public:
    inline ::index as_index() const { return (::index)as_i64(); }
    inline ::u32 as_umessage() const { return u32(); }
    inline ::enum_message as_emessage() const;
+   //inline ::e_check as_echeck() const { return m_etype == e_type_check ? m_echeck : (::e_check) e_check_undefined; }
+   //inline ::e_status as_estatus() const { return m_etype == e_type_status ? m_estatus : (::e_status) e_status_none; }
+
+
+#define IMPLEMENT_ATOM_ENUMERATION(ENUMTYPE) \
+   constexpr ::e_ ## ENUMTYPE as_e ## ENUMTYPE() const { return (m_etype == e_type_ ## ENUMTYPE) ? m_e ## ENUMTYPE : (::e_ ## ENUMTYPE) (::enum_ ## ENUMTYPE) 0; } \
+   ::e_ ## ENUMTYPE & e ## ENUMTYPE ## _reference() { set_type(e_type_ ## ENUMTYPE); return m_e ## ENUMTYPE; } \
+   constexpr atom(const ::e_ ## ENUMTYPE & e):m_etype(e_type_ ## ENUMTYPE), m_i((::iptr)e) { }
+//   inline explicit payload(::enum_ ## ENUMTYPE e) { m_etype = ::e_type_enum_ ## ENUMTYPE; m_e ## ENUMTYPE = e; } \
+//   inline ::e_ ## ENUMTYPE e ## ENUMTYPE(::enum_ ## ENUMTYPE eDefault = enum_default < ::enum_ ## ENUMTYPE >()) const { return e < ::enum_ ## ENUMTYPE >(eDefault); } \
+//   inline operator ::e_ ## ENUMTYPE () const { return ::e_ ## ENUMTYPE(); } \
+//   ::e_ ## ENUMTYPE & e_ ## ENUMTYPE ## _reference();         \
+//   inline payload & operator = (const ::e_ ## ENUMTYPE & e) &{ set_type(::e_type_enum_ ## ENUMTYPE, false); m_e ## ENUMTYPE = e; return *this; } \
+//   inline payload & operator = (::enum_ ## ENUMTYPE e) { set_type(::e_type_enum_ ## ENUMTYPE, false); m_e ## ENUMTYPE = e; return *this; } \
+//   inline bool equals_enum (::e_ ## ENUMTYPE e) const { return m_etype == ::e_type_enum_ ## ENUMTYPE && m_e ## ENUMTYPE == e; }
+   IMPLEMENT_ATOM_ENUMERATION(status);
+   IMPLEMENT_ATOM_ENUMERATION(command);
+   IMPLEMENT_ATOM_ENUMERATION(check);
+#undef IMPLEMENT_ATOM_ENUMERATION
+
+
    //inline operator const char* () const;
    //inline operator enum_dialog_result () const;
 
+   //inline ::e_check & echeck_reference() { if(m_etype != e_type_check) set_compounded_type(e_type_check); return m_echeck; }
 
    //::string as_string() const;
    //::string string() const;
@@ -668,9 +724,15 @@ public:
    inline bool ends(const ::scoped_string & scopedstrSuffix) const;
    inline bool case_insensitive_ends(const ::scoped_string & scopedstrSuffix) const;
 
-   inline bool is_text() const { return m_etype >= e_type_text; }
-   inline bool is_range() const { return m_etype >= e_type_range; }
-   inline bool is_integer() const { return m_etype >= 0 && m_etype < e_type_text; }
+
+   constexpr static bool is_text(enum_type etype) { return etype >= e_type_text; }
+   constexpr static bool is_range(enum_type etype) { return etype >= e_type_range; }
+   constexpr static bool is_integer(enum_type etype) { return etype >= 0 && etype < e_type_text; }
+
+
+   constexpr bool is_text() const { return is_text(m_etype); }
+   constexpr bool is_range() const { return is_range(m_etype); }
+   constexpr bool is_integer() const { return is_integer(m_etype); }
 
 
    //inline atom & operator +=(const ::scoped_string & scopedstr);

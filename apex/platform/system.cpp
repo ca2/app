@@ -30,9 +30,11 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/primitive/datetime/datetime.h"
 #include "acme/primitive/string/command_line.h"
+#include "apex/input/input.h"
 #include "apex/message/message.h"
 //#include "apex/operating_system.h"
 #include "apex/networking/http/context.h"
+#include "apex/networking/http/cookie.h"
 #include "apex/networking/networking.h"
 #include "apex/operating_system/department.h"
 #include "apex/user/user/language_map.h"
@@ -1144,8 +1146,16 @@ pacmedirectory->create("/ca2core");
 
          if (pfile)
          {
+            
+            information() << "found Thomas Borregaard Sørensen.dedicatory";
 
             bMatterFromResource = true;
+
+         }
+         else
+         {
+
+            information() << "Thomas Borregaard Sørensen.dedicatory not found";
 
          }
 
@@ -2069,29 +2079,7 @@ pacmedirectory->create("/ca2core");
    void system::create_os_node()
    {
 
-      //::e_status estatus = ::success;
-
-      //estatus = 
-
       ::acme::system::create_os_node();
-
-      //if(!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-//      estatus = m_pnode->initialize(this);
-//
-//      if(!estatus)
-//      {
-//
-//         return estatus;
-//
-//      }
-
-      //return estatus;
 
    }
 
@@ -2100,6 +2088,24 @@ pacmedirectory->create("/ca2core");
    {
 
       return m_pnode ? m_pnode->m_papexnode : nullptr;
+
+   }
+
+
+   ::input::input * system::input()
+   {
+
+      if(!m_pinput)
+      {
+
+         auto pinput = acmenode()->m_papexnode->get_input();
+
+         m_pinput = pinput;
+
+      }
+
+      return m_pinput;
+
 
    }
 
@@ -2316,7 +2322,7 @@ pacmedirectory->create("/ca2core");
 
       //   //   try
       //   //   {
-      //   //      strMessage += __type_name(pparticle);
+      //   //      strMessage += ::type(pparticle).name();
 
       //   //   }
       //   //   catch (...)
@@ -3266,13 +3272,13 @@ pacmedirectory->create("/ca2core");
    //
    //      ::winrt::Windows::Foundation::Rect rectangle = pwindow->window_rectangle();
    //
-   //      prectangle->left = rectangle.X;
+   //      prectangle->left() = rectangle.X;
    //
-   //      prectangle->top = rectangle.Y;
+   //      prectangle->top() = rectangle.Y;
    //
-   //      prectangle->right = prectangle->left + rectangle.Width;
+   //      prectangle->right() = prectangle->left() + rectangle.Width;
    //
-   //      prectangle->bottom = prectangle->top + rectangle.Height;
+   //      prectangle->bottom() = prectangle->top() + rectangle.Height;
    //
    //
    //      return true;
@@ -5152,22 +5158,6 @@ string get_bundle_app_library_name();
          acmeapplication()->m_bNetworking = false;
 
       }
-
-   }
-
-
-   ::string system::http_text(const ::scoped_string & scopedstrUrl, ::property_set & set)
-   {
-
-      return http().get(scopedstrUrl, set);
-
-   }
-
-
-   void system::http_download(const ::payload & payloadFile, const ::scoped_string & scopedstrUrl, ::property_set & set)
-   {
-
-      http().download(scopedstrUrl, payloadFile, set);
 
    }
 

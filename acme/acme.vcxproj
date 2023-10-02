@@ -217,6 +217,7 @@
       <Command>
       </Command>
     </PostBuildEvent>
+    <PreBuildEvent />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">
     <ClCompile>
@@ -329,6 +330,7 @@
       <Command>
       </Command>
     </PostBuildEvent>
+    <PreBuildEvent />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">
     <ClCompile>
@@ -447,6 +449,7 @@
     </Manifest>
     <ResourceCompile />
     <PreBuildEvent />
+    <PreBuildEvent />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">
     <ClCompile>
@@ -543,6 +546,7 @@
       </AdditionalManifestFiles>
     </Manifest>
     <ResourceCompile />
+    <PreBuildEvent />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">
     <ClCompile>
@@ -672,6 +676,8 @@
     <ClCompile Include="handler\extended_topic.cpp" />
     <ClCompile Include="handler\handler.cpp" />
     <ClCompile Include="handler\item.cpp" />
+    <ClCompile Include="handler\item_container.cpp" />
+    <ClCompile Include="handler\item_container_map.cpp" />
     <ClCompile Include="handler\request.cpp" />
     <ClCompile Include="handler\topic.cpp" />
     <ClInclude Include="aaa_id.h" />
@@ -846,6 +852,8 @@
     <ClInclude Include="handler\extended_topic.h" />
     <ClInclude Include="handler\handler.h" />
     <ClInclude Include="handler\item.h" />
+    <ClInclude Include="handler\item_container.h" />
+    <ClInclude Include="handler\item_container_map.h" />
     <ClInclude Include="handler\topic.h" />
     <ClInclude Include="include\_c_swap.h" />
     <ClInclude Include="include\_enumeration.h" />
@@ -875,7 +883,13 @@
     <ClInclude Include="operating_system\shared_posix\c_error_number.h" />
     <ClInclude Include="operating_system\shared_posix\stdio_file.h" />
     <ClInclude Include="operating_system\shared_posix\time.h" />
+    <ClInclude Include="operating_system\windows\nano_http\hinternet.h" />
     <ClInclude Include="operating_system\windows\nano_http\http.h" />
+    <ClInclude Include="operating_system\windows\nano_http\http_connect.h" />
+    <ClInclude Include="operating_system\windows\nano_http\http_get.h" />
+    <ClInclude Include="operating_system\windows\nano_http\http_request.h" />
+    <ClInclude Include="operating_system\windows\nano_http\http_session.h" />
+    <ClInclude Include="operating_system\windows\nano_http\_.h" />
     <ClInclude Include="operating_system\windows\nano_http\_nano_http.h" />
     <ClInclude Include="operating_system\windows\_gdiplus.h" />
     <ClInclude Include="parallelization\retry.h" />
@@ -885,9 +899,11 @@
     <ClInclude Include="platform\nano_http_synchronous_source.h" />
     <ClInclude Include="platform\nano_http_response.h" />
     <ClInclude Include="platform\trace_statement.h" />
+    <ClInclude Include="platform\_.h" />
     <ClInclude Include="primitive\collection\array_2d.h" />
     <ClInclude Include="primitive\collection\_function.h" />
     <ClInclude Include="primitive\collection\_generic_array.h" />
+    <ClInclude Include="primitive\geometry2d\matrix.h" />
     <ClInclude Include="primitive\geometry\sequence.h" />
     <ClInclude Include="primitive\mathematics\aaa_numeric.h" />
     <ClInclude Include="primitive\mathematics\numeric.h" />
@@ -902,9 +918,11 @@
     <ClInclude Include="primitive\time\time\time.h" />
     <ClInclude Include="primitive\time\time\time_span.h" />
     <ClInclude Include="user\user\container.h" />
+    <ClInclude Include="user\user\content.h" />
     <ClInclude Include="user\user\drag.h" />
     <ClInclude Include="user\user\drag_client.h" />
     <ClInclude Include="user\user\item.h" />
+    <ClInclude Include="user\user\tool.h" />
     <ClInclude Include="user\user\tool_item.h" />
     <ClInclude Include="_win32_gdi.h" />
     <None Include="constant\character_set.enum" />
@@ -1001,7 +1019,12 @@
     <ClCompile Include="operating_system\windows\nano\pen.cpp" />
     <ClCompile Include="operating_system\windows\nano\window.cpp" />
     <ClCompile Include="operating_system\windows\nano\_nano.cpp" />
+    <ClCompile Include="operating_system\windows\nano_http\hinternet.cpp" />
     <ClCompile Include="operating_system\windows\nano_http\http.cpp" />
+    <ClCompile Include="operating_system\windows\nano_http\http_connect.cpp" />
+    <ClCompile Include="operating_system\windows\nano_http\http_get.cpp" />
+    <ClCompile Include="operating_system\windows\nano_http\http_request.cpp" />
+    <ClCompile Include="operating_system\windows\nano_http\http_session.cpp" />
     <ClCompile Include="operating_system\windows\nano_http\_nano_http.cpp" />
     <ClCompile Include="operating_system\windows\parallelization.cpp" />
     <ClCompile Include="operating_system\windows\process.cpp" />
@@ -1145,6 +1168,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="primitive\geometry2d\matrix.cpp" />
     <ClCompile Include="primitive\geometry2d\rectangle_array.cpp" />
     <ClCompile Include="primitive\geometry2d\region.cpp" />
     <ClCompile Include="primitive\geometry2d\item.cpp" />

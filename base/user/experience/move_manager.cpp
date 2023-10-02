@@ -3,7 +3,9 @@
 #include "frame_window.h"
 #include "frame.h"
 #include "acme/constant/message.h"
+#include "acme/primitive/geometry2d/_text_stream.h"
 #include "apex/parallelization/thread.h"
+#include "aura/windowing/window.h"
 #include "aura/windowing/windowing.h"
 #include "aura/message/user.h"
 
@@ -60,9 +62,24 @@ namespace experience
 
       }
 
-      m_stateBefore = m_pframewindow->const_layout().sketch();
+      if(m_pframewindow->window()->defer_perform_entire_reposition_process())
+      {
 
-      auto pointCursor = pmouse->m_point;
+         pmouse->m_lresult = 1;
+
+         pmouse->m_bRet = true;
+
+         return true;
+
+      }
+
+      m_bMoving = true;
+
+      m_pframewindow->set_mouse_capture();
+
+      m_stateBefore = m_pframewindow->const_layout().design();
+
+      auto pointCursor = pmouse->m_pointAbsolute;
 
       ::rectangle_i32 rectangleWindow;
 
@@ -72,13 +89,11 @@ namespace experience
 
       m_pointWindowOrigin = rectangleWindow.top_left();
 
+      information() << "on_message_left_button_down m_pointWindowOrigin : " << m_pointWindowOrigin;
+
       m_pointMove = m_pointWindowOrigin;
 
-      m_pframewindow->set_mouse_capture();
-
       m_iConsiderMove = 0;
-
-      m_bMoving = true;
 
       m_pframewindow->m_pthreadUserInteraction->m_emessageaGetLast.add(e_message_mouse_move);
 
@@ -107,7 +122,7 @@ namespace experience
    }
 
 
-   bool move_manager::on_message_mouse_move(::message::mouse * pmouse)
+   bool move_manager::on_message_parent_mouse_move(::message::mouse * pmouse)
    {
 
       if (!m_pframewindow->is_moving_enabled())
@@ -117,16 +132,13 @@ namespace experience
 
       }
 
-      ASSERT(
-         pmouse->m_atom == e_message_mouse_move 
-         || pmouse->m_atom == e_message_parent_mouse_move
-         || pmouse->m_atom == e_message_non_client_mouse_move);
+      ASSERT(pmouse->m_atom == e_message_parent_mouse_move);
 
-      auto pwindowing = m_pframewindow->windowing();
+      //auto pwindowing = m_pframewindow->windowing();
 
-      auto pcursor = pwindowing->get_cursor(e_cursor_arrow);
+      //auto pcursor = pwindowing->get_cursor(e_cursor_arrow);
 
-      pmouse->m_pcursor = pcursor;
+      //pmouse->m_pcursor = pcursor;
 
       //m_pframewindow->set_mouse_cursor(pcursor);
 
@@ -137,11 +149,18 @@ namespace experience
 
       }
 
+//      if(m_pframewindow->window()->defer_perform_reposition())
+//      {
+//
+//         return true;
+//
+//      }
+//
       pmouse->payload("flush_similar_messages") = true;
 
       auto pframewindow = m_pframewindow;
 
-      auto pointMove = m_pointWindowOrigin + (pmouse->m_point - m_pointCursorOrigin);
+      auto pointMove = m_pointWindowOrigin + (pmouse->m_pointAbsolute - m_pointCursorOrigin);
 
       if (pframewindow->get_parent() != nullptr)
       {
@@ -167,13 +186,13 @@ namespace experience
 
          auto edisplay = pframewindow->const_layout().sketch().display();
 
-         if (::is_docking_appearance(edisplay))
-         {
-
-            pframewindow->m_pframe->defer_frame_placement_snapping();
-
-         }
-         else
+//         if (::is_docking_appearance(edisplay))
+//         {
+//
+//            //pframewindow->m_pframe->defer_frame_placement_snapping();
+//
+//         }
+//         else
          {
 
             pframewindow->set_position(pointMove);
@@ -185,6 +204,93 @@ namespace experience
       }
 
       pframewindow->post_redraw();
+
+      pmouse->m_bRet = true;
+
+      return true;
+
+   }
+
+
+   bool move_manager::on_message_mouse_move(::message::mouse * pmouse)
+   {
+
+      if (!m_pframewindow->is_moving_enabled())
+      {
+
+         return false;
+
+      }
+
+      ASSERT(
+         pmouse->m_atom == e_message_mouse_move 
+         || pmouse->m_atom == e_message_non_client_mouse_move);
+
+      auto pwindowing = m_pframewindow->windowing();
+
+      auto pcursor = pwindowing->get_cursor(e_cursor_arrow);
+
+      m_pframewindow->user_mouse_set_cursor(pmouse, pcursor);
+
+      m_iConsiderMove++;
+
+      ////m_pframewindow->set_mouse_cursor(pcursor);
+
+      //if (!window_is_moving())
+      //{
+
+      //   return false;
+
+      //}
+
+      //pmouse->payload("flush_similar_messages") = true;
+
+      //auto pframewindow = m_pframewindow;
+
+      //auto pointMove = m_pointWindowOrigin + (pmouse->m_point - m_pointCursorOrigin);
+
+      //if (pframewindow->get_parent() != nullptr)
+      //{
+
+      //   pframewindow->screen_to_client()(pointMove);
+
+      //}
+
+      //if (pframewindow->find_i32("ysnap") > 1)
+      //{
+
+      //   pointMove.y() -= pointMove.y() % pframewindow->find_i32("ysnap");
+
+      //}
+
+      //m_pointMove = pointMove;
+
+      //m_iConsiderMove++;
+
+      //{
+
+      //   //::user::lock_sketch_to_design lockSketchToDesign(pframewindow);
+
+      //   auto edisplay = pframewindow->const_layout().sketch().display();
+
+      //   if (::is_docking_appearance(edisplay))
+      //   {
+
+      //      pframewindow->m_pframe->defer_frame_placement_snapping();
+
+      //   }
+      //   else
+      //   {
+
+      //      pframewindow->set_position(pointMove);
+
+      //   }
+
+      //   pframewindow->set_need_redraw();
+
+      //}
+
+      //pframewindow->post_redraw();
 
       pmouse->m_bRet = true;
 
@@ -210,16 +316,16 @@ namespace experience
 
       }
 
-      bool bApply = !is_docking_appearance(m_pframewindow->const_layout().sketch().display());
+      //bool bApply = !is_docking_appearance(m_pframewindow->const_layout().sketch().display());
 
-      window_stop_moving(bApply, pmouse);
+      window_stop_moving(pmouse);
 
       return true;
 
    }
 
 
-   bool move_manager::window_stop_moving(bool bApply, ::message::mouse * pmouse)
+   bool move_manager::window_stop_moving(::message::mouse * pmouse)
    {
 
       if (!m_bMoving)
@@ -233,12 +339,12 @@ namespace experience
 
       m_pframewindow->m_pthreadUserInteraction->m_emessageaGetLast.erase(e_message_mouse_move);
 
-      auto pwindowing = m_pframewindow->windowing();
-
-      pwindowing->release_mouse_capture();
+      m_pframewindow->defer_release_mouse_capture();
 
       if (!consider_move())
       {
+
+         information() << "Repositioning isn't considered intentional (too few mouse moves). Restoring previous state";
 
          {
 
@@ -251,29 +357,29 @@ namespace experience
          m_pframewindow->set_need_redraw();
 
       }
-      else if (bApply)
-      {
-
-         auto rectangleRequest = m_pframewindow->screen_rectangle();
-
-         //index iMatchingMonitor = m_pframewindow->good_move(rectangleRequest, nullptr);
-
-         //index iMatchingMonitor =
-         m_pframewindow->good_move(&rectangleRequest);
-
-         //if (iMatchingMonitor >= 0)
-         //{
-
-         //   if (!pmouse)
-         //   {
-
-         //      pmouse->m_point = -m_pointWindowOrigin + rectangleRequest.top_left() + m_pointCursorOrigin;
-
-         //   }
-
-         //}
-
-      }
+//      else if (bApply)
+//      {
+//
+//         auto rectangleRequest = m_pframewindow->screen_rectangle();
+//
+//         //index iMatchingMonitor = m_pframewindow->good_move(rectangleRequest, nullptr);
+//
+//         //index iMatchingMonitor =
+//         m_pframewindow->good_move(&rectangleRequest);
+//
+//         //if (iMatchingMonitor >= 0)
+//         //{
+//
+//         //   if (!pmouse)
+//         //   {
+//
+//         //      pmouse->m_point = -m_pointWindowOrigin + rectangleRequest.top_left() + m_pointCursorOrigin;
+//
+//         //   }
+//
+//         //}
+//
+//      }
 
       m_pframewindow->on_end_layout_experience(e_layout_experience_moving);
 
@@ -305,9 +411,7 @@ namespace experience
       
       m_bMoving = false;
       
-      auto pwindowing = m_pframewindow->windowing();
-
-      pwindowing->release_mouse_capture();
+      m_pframewindow->defer_release_mouse_capture();
 
    }
 

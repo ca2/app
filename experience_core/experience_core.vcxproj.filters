@@ -9,9 +9,6 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{3ce4c3c0-474d-4293-bcfa-e5c676f7364e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\experience">
       <UniqueIdentifier>{5e203915-a134-4580-8c3c-31e7695ec7d0}</UniqueIdentifier>
     </Filter>
@@ -23,6 +20,9 @@
     </Filter>
     <Filter Include="Header Files\user">
       <UniqueIdentifier>{e9b333c3-9173-4a54-b878-742a57952567}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{3ce4c3c0-474d-4293-bcfa-e5c676f7364e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -59,7 +59,7 @@
     <ClCompile Include="experience\frame_011.cpp">
       <Filter>Source Files\experience</Filter>
     </ClCompile>
-    <ClCompile Include="experience\frame_013.cpp">
+    <ClCompile Include="experience\frame_022.cpp">
       <Filter>Source Files\experience</Filter>
     </ClCompile>
     <ClCompile Include="experience\frame_Minimal001.cpp">
@@ -106,7 +106,7 @@
     <ClInclude Include="experience\frame_011.h">
       <Filter>Header Files\experience</Filter>
     </ClInclude>
-    <ClInclude Include="experience\frame_013.h">
+    <ClInclude Include="experience\frame_022.h">
       <Filter>Header Files\experience</Filter>
     </ClInclude>
     <ClInclude Include="experience\frame_Minimal001.h">

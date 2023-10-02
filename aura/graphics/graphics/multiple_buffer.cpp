@@ -82,13 +82,33 @@ namespace graphics
    //}
 
 
-   ::graphics::buffer_item * multiple_buffer::on_begin_draw()
+   bool multiple_buffer::_on_begin_draw(::graphics::buffer_item * pitem)
    {
 
-      auto pitem = get_buffer_item();
+      //auto pitem = get_buffer_item();
 
-      //auto sizeBuffer = window_size();
-      buffer_size_and_position(pitem);
+      ////auto sizeBuffer = window_size();
+      //buffer_size_and_position(pitem);
+
+      //if (pitem->m_size.is_empty())
+      //{
+
+      //   if (egraphics & e_graphics_layout)
+      //   {
+
+      //      pitem->m_size = { 512, 256 };
+
+      //   }
+      //   else
+      //   {
+
+      //      information() << "window size is zero in begin draw!!";
+
+      //      return nullptr;
+
+      //   }
+
+      //}
 
       //if (m_imageaBuffer[m_iBuffer]->size() != sizeBuffer)
       {
@@ -109,11 +129,11 @@ namespace graphics
       if (!pimage)
       {
 
-         return nullptr;
+         return false;
 
       }
 
-      return pitem;
+      return true;
 
    }
 

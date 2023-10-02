@@ -508,7 +508,7 @@ bool dir_context::_enumerate(::file::listing& listing)
 
       property_set set;
 
-      string str = acmesystem()->http_text(listing.m_pathFinal, set);
+      string str = acmecontext()->http_text(listing.m_pathFinal, set);
 
       listing.add_tokens(str, "\n", false);
 
@@ -1916,7 +1916,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
          string strUrl = "https://api.ca2.software/api/matter/list_dir?dir=" + ::url::encode(strMatter);
 
-         strLs = acmesystem()->http_text(strUrl, set);
+         strLs = acmecontext()->http_text(strUrl, set);
 
          file()->put_text(strFile, strLs);
 
@@ -2258,7 +2258,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
       const ::scoped_string & scopedstrUrl = strUrl;
 
-      strMatter = acmesystem()->http_text(strUrl, set);
+      strMatter = acmecontext()->http_text(strUrl, set);
 
       bool bDir = strMatter.ends("/");
 

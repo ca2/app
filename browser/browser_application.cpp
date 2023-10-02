@@ -120,9 +120,9 @@ pacmedirectory->create(szRelative);  // or SHCreateDirectory(NULL, szCacheDir); 
       pDocTemplate = __new(::user::single_document_template(
                           this,
                           "main",
-                          __type(document),
-                          __type(main_frame),
-                          __type(pane_impact)));
+                          ::type < document >(),
+                          ::type < main_frame >(),
+                          ::type < pane_impact >()));
       m_ptemplateHelloBrowserMain = pDocTemplate;
       add_document_template(pDocTemplate);
 
@@ -130,9 +130,9 @@ pacmedirectory->create(szRelative);  // or SHCreateDirectory(NULL, szCacheDir); 
       pDocTemplate = __new(::user::single_document_template(
                           this,
                           "main",
-                          __type(document),
-                          __type(frame),
-                          __type(main_impact)));
+                          ::type < document >(),
+                          ::type < frame >(),
+                          ::type < main_impact >()));
       m_ptemplateHelloBrowserView = pDocTemplate;
       add_document_template(pDocTemplate);
 
@@ -140,9 +140,9 @@ pacmedirectory->create(szRelative);  // or SHCreateDirectory(NULL, szCacheDir); 
       pDocTemplate = __new(::user::single_document_template(
                           this,
                           "switcher",
-                          __type(document),
-                          __type(frame),
-                          __type(switcher_impact)));
+                          ::type < document >(),
+                          ::type < frame >(),
+                          ::type < switcher_impact >()));
       m_ptemplateHelloBrowserSwitcher = pDocTemplate;
       add_document_template(pDocTemplate);
 

@@ -209,6 +209,15 @@ namespace aura
 
    //}
 
+
+   bool node::defer_windowing_post(const ::procedure & procedure)
+   {
+
+      return false;
+
+   }
+
+
 } // namespace aura
 
 

@@ -431,7 +431,7 @@ namespace user
 
          auto pmouse = pmessage->m_union.m_pmouse;
 
-         release_mouse_capture();
+         defer_release_mouse_capture();
 
          if (!is_text_editable())
          {
@@ -493,7 +493,7 @@ namespace user
 
             auto pcursor = get_mouse_cursor(e_cursor_text_select);
 
-            pmouse->m_pcursor = pcursor;
+            user_mouse_set_cursor(pmouse, pcursor);
 
             pmouse->m_bRet = true;
 
@@ -526,7 +526,7 @@ namespace user
 
             auto pcursor = get_mouse_cursor(e_cursor_text_select);
 
-            pmouse->m_pcursor = pcursor;
+            user_mouse_set_cursor(pmouse, pcursor);
 
             pmouse->m_bRet = true;
 
@@ -562,7 +562,7 @@ namespace user
       void edit_impl::on_message_mouse_leave(::message::message * pmessage)
       {
 
-         release_mouse_capture();
+         defer_release_mouse_capture();
 
          set_need_redraw();
 
@@ -699,18 +699,18 @@ namespace user
 
          //::aura::draw_context* pdrawcontext = pgraphics->::aura::simple_chain < ::aura::draw_context >::get_last();
 
-         //::rectangle_i32 rectangleClient;
+         //::rectangle_i32 rectangleX;
 
          //if (pdrawcontext != nullptr)
          //{
 
-         //   rectangleClient = pdrawcontext->m_rectangleClient;
+         //   rectangleX = pdrawcontext->m_rectangleX;
 
          //}
          //else
          //{
 
-         //   client_rectangle(rectangleClient);
+         //   this->rectangle(rectangleX);
 
          //}
 
@@ -737,7 +737,7 @@ namespace user
          //   if (crBackground != 0)
          //   {
 
-         //      pgraphics->fill_rectangle(rectangleClient, crBackground);
+         //      pgraphics->fill_rectangle(rectangleX, crBackground);
 
          //   }
 
@@ -758,7 +758,7 @@ namespace user
 
          //   //crBackground = argb(255, 255, 200, 100);
 
-         //   pgraphics->fill_rectangle(rectangleClient, crBackground);
+         //   pgraphics->fill_rectangle(rectangleX, crBackground);
 
          //}
 
@@ -784,9 +784,9 @@ namespace user
        //  else
        //  {
 
-            auto rectangleClient = client_rectangle();
+            auto rectangleX = this->rectangle();
 
-            pgraphics->fill_rectangle(rectangleClient, argb(40, 255, 255, 255));
+            pgraphics->fill_rectangle(rectangleX, argb(40, 255, 255, 255));
 
             draw_impl(pgraphics);
 //
@@ -902,9 +902,9 @@ namespace user
 
             point -= rectangleWindow.top_left();
 
-            auto rectangleClient = client_rectangle();
+            auto rectangleX = this->rectangle();
 
-            return rectangleClient.contains(::point_i32(point));
+            return rectangleX.contains(::point_i32(point));
 
          }
 
@@ -1469,7 +1469,7 @@ namespace user
 
                bool bShift = psession->is_key_pressed(::user::e_key_shift);
 
-               if (pkey->m_ekey == ::user::e_key_prior)
+               if (pkey->m_ekey == ::user::e_key_page_up)
                {
 
                   //on_reset_focus_start_tick();
@@ -1477,11 +1477,11 @@ namespace user
                   //i32 x;
                   //index iLine = SelToLineX(m_pdata->m_iSelEnd, x);
 
-                  //::rectangle_i32 rectangleClient;
+                  //::rectangle_i32 rectangleX;
 
-                  //GetFocusRect(rectangleClient);
+                  //GetFocusRect(rectangleX);
 
-                  //iLine -= rectangleClient.height() / m_iLineHeight;
+                  //iLine -= rectangleX.height() / m_iLineHeight;
 
                   //if (iLine < 0)
                   //{
@@ -1502,7 +1502,7 @@ namespace user
                   //_001EnsureVisibleLine(iLine);
 
                }
-               else if (pkey->m_ekey == ::user::e_key_next)
+               else if (pkey->m_ekey == ::user::e_key_page_down)
                {
 
                   //on_reset_focus_start_tick();
@@ -1511,11 +1511,11 @@ namespace user
 
                   //index iLine = SelToLineX(m_pdata->m_iSelEnd, x);
 
-                  //::rectangle_i32 rectangleClient;
+                  //::rectangle_i32 rectangleX;
 
-                  //GetFocusRect(rectangleClient);
+                  //GetFocusRect(rectangleX);
 
-                  //iLine += rectangleClient.height() / m_iLineHeight;
+                  //iLine += rectangleX.height() / m_iLineHeight;
 
                   //if (iLine >= m_iaLineStart.get_size())
                   //{

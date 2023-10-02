@@ -219,7 +219,7 @@ namespace opengl
       m_size = { rectClient.right - rectClient.left,
          rectClient.bottom - rectClient.top };
 
-      m_itaskGpu = ::get_current_itask();
+      m_itaskGpu = ::current_itask();
 
       m_estatus = ::success;
 
@@ -284,7 +284,7 @@ namespace opengl
    void context_win32::make_current()
    {
 
-      ASSERT(m_itaskGpu == ::get_current_itask());
+      ASSERT(m_itaskGpu == ::current_itask());
 
       ::e_status estatus = ::success;
 
@@ -309,7 +309,7 @@ namespace opengl
    void context_win32::destroy_offscreen_buffer()
    {
 
-      ASSERT(m_itaskGpu == ::get_current_itask());
+      ASSERT(m_itaskGpu == ::current_itask());
 
       ::e_status estatus = ::success;
 

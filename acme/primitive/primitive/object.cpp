@@ -99,7 +99,7 @@ void object::create_object_meta()
 string object::as_string() const
 {
 
-   return string(__type_name(this)) + " (0x" + ::hex::lower_case_from((uptr)this) + ")";
+   return ::type(this).name() + " (0x" + ::hex::lower_case_from((uptr)this) + ")";
 
 }
 
@@ -141,7 +141,7 @@ string object::as_string() const
 //   if (m_preferencea->get_upper_bound() == 8)
 //   {
 //
-//      if (__type_name(this).contains("application"))
+//      if (::type(this).name().contains("application"))
 //      {
 //
 //         string strMessage = "what is this? : " + __type_name(m_preferencea->last());
@@ -700,7 +700,7 @@ void object::defer_update_object_id()
 ::atom object::calc_default_object_id() const
 {
 
-   string strType = __type_name(this);
+   string strType = ::type(this).name();
 
    strType.case_insensitive_begins_eat("class ");
 
@@ -944,7 +944,7 @@ void object::add_task(::object* pobjectTask)
 
    __defer_construct_new(m_pparticleaChildrenTask);
 
-   string strType = __type_name(this);
+   string strType = ::type(this).name();
 
    if (strType.contains("prodevian"))
    {
@@ -1001,7 +1001,7 @@ void object::erase_task_and_set_task_new_parent(::object* pobjectTask, ::object 
 
    }
 
-   string strType = __type_name(this);
+   string strType = ::type(this).name();
 
    if (strType.contains("user::thread"))
    {
@@ -1183,7 +1183,7 @@ bool object::check_tasks_finished()
                try
                {
 
-                  strType = __type_name(ptaskChild);
+                  strType = ::type(ptaskChild).name();
 
                }
                catch (...)
@@ -1225,7 +1225,7 @@ bool object::check_tasks_finished()
 
       //       _synchronous_lock synchronouslockChild(ptaskChild->synchronization());
 
-      //       string strType = __type_name(ptaskChild);
+      //       string strType = ::type(ptaskChild).name();
 
       //       if (ptaskChild->m_bTaskTerminated || !ptaskChild->m_bTaskStarted)
       //       {
@@ -1369,7 +1369,7 @@ void object::delete_this()
 //
 //   ::e_status estatus = ::success;
 //
-//   string strTypeName = __type_name(this);
+//   string strTypeName = ::type(this).name();
 //
 //   _synchronous_lock synchronouslock(this->synchronization());
 //
@@ -1401,7 +1401,7 @@ void object::delete_this()
 //
 //   ::e_status estatus = ::success;
 //
-//   string strTypeName = __type_name(this);
+//   string strTypeName = ::type(this).name();
 //
 //   _synchronous_lock synchronouslock(this->synchronization());
 //
@@ -1677,7 +1677,7 @@ void object::branch_each(const ::procedure_array& routinea)
 }
 
 
-::pointer<task>object::branch_procedure(const ::procedure & procedure, const create_task_attributes & createtaskattributes)
+::pointer<task>object::branch_procedure(const ::procedure & procedure, enum_parallelization eparallelization, const create_task_attributes & createtaskattributes)
 {
 
    if (::is_reference_null(procedure))
@@ -1702,7 +1702,7 @@ void object::branch_each(const ::procedure_array& routinea)
 
    ptask->m_atom = typeid(*pbase).name();
 
-   ptask->branch(createtaskattributes);
+   ptask->branch(eparallelization, createtaskattributes);
 
    return ptask;
 
@@ -1742,10 +1742,10 @@ void object::branch_each(const ::procedure_array& routinea)
 }
 
 
-::pointer<task>object::branch(const create_task_attributes & createthreadattributes)
+::pointer<task>object::branch(enum_parallelization eparallelization, const create_task_attributes & createthreadattributes)
 {
 
-   auto ptask = branch_procedure(this, createthreadattributes);
+   auto ptask = branch_procedure(this, eparallelization, createthreadattributes);
 
    return ptask;
 
@@ -1899,9 +1899,9 @@ void object::task_erase(::task* ptask)
    try
    {
 
-      string strThreadThis = __type_name(this);
+      string strThreadThis = ::type(this).name();
 
-      string strThreadChild = __type_name(ptask);
+      string strThreadChild = ::type(ptask).name();
 
       _synchronous_lock synchronouslock(this->synchronization());
 
@@ -2358,7 +2358,7 @@ struct context_object_test_struct :
 //CLASS_DECL_ACME void object_on_add_composite(const element* pusermessage)
 //{
 //
-//   string strType = __type_name(pusermessage);
+//   string strType = ::type(pusermessage).name();
 //
 //   if (strType.case_insensitive_contains("user::thread"))
 //   {
@@ -2735,7 +2735,7 @@ void object::initialize(::particle * pparticle)
 
    //#if OBJECT_REFERENCE_COUNT_DEBUG
    //
-   //   string strType = __type_name(this);
+   //   string strType = ::type(this).name();
    //
    //   if (strType.case_insensitive_contains("session"))
    //   {
@@ -2857,7 +2857,7 @@ void object::initialize(::particle * pparticle)
 //
 //   pthread->m_pelement = routine;
 //
-//   pthread->m_atom = __type_name(pthread->m_pelement);
+//   pthread->m_atom = ::type(pthread->m_pelement).name();
 //
 //   pthread->begin_thread();
 //
@@ -3761,7 +3761,7 @@ void object::defer_branch(::task_pointer & ptask, const ::procedure & procedure)
 ::pointer<task>object::fork(const ::procedure & procedure, const ::particle_array & elementaHold, const create_task_attributes & createthreadattributes)
 {
 
-   auto ptask = this->branch_procedure(procedure, createthreadattributes);
+   auto ptask = this->branch_procedure(procedure, e_parallelization_asynchronous, createthreadattributes);
 
    if (!ptask)
    {

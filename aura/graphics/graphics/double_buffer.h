@@ -56,7 +56,7 @@ namespace graphics
       bool update_screen() override;
 
       //::particle * get_draw_lock() override;
-      buffer_item * on_begin_draw() override;
+      bool _on_begin_draw(buffer_item * pbufferitem) override;
 
 
       void destroy_buffer() override;

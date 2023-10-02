@@ -20,13 +20,15 @@ public:
 
 
    bool m_bReallySimple;
+   bool m_bWithTimePrefix;
+   bool m_bDisplayRelativeTime;
 
 
    simple_log();
    ~simple_log() override;
 
 
-   void print(trace_statement & tracestatement) override;
+   void print(::trace_statement & tracestatement, bool bFlush) override;
 
 
 };

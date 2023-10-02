@@ -117,14 +117,14 @@ namespace filemanager
    {
 
       if (::is_item(pitem, m_iNameSubItem) ||
-         ((m_eview == impact_list || m_eview == impact_report)
-         && subitem_less_than(pitem, 0)))
+         ((m_eview == impact_list || m_eview == impact_report)))
+         //&& subitem_less_than(pitem, 0)))
       {
 
          if (!_017OpenSelected(true, ::e_source_user))
          {
 
-            index iStrict = pitem->m_item.item_index();
+            index iStrict = pitem->m_item.m_iItem;
 
             auto pitem = fs_list_item(iStrict);
 
@@ -187,9 +187,9 @@ namespace filemanager
 
       index iItem;
 
-      auto point = pcontextmenu->m_point;
+      auto point = pcontextmenu->m_pointHost;
 
-      ::user::list::screen_to_client()(point);
+      ::user::list::host_to_client()(point);
 
       if (_001HitTest_(point, iItem))
       {
@@ -209,7 +209,11 @@ namespace filemanager
             
             auto puser = psession->m_puser->m_pcoreuser;
 
-            puser->track_popup_xml_menu(this, filemanager_data()->m_strXmlPopup, 0, pcontextmenu->m_point);
+            auto point = pcontextmenu->m_pointHost;
+
+            host_to_client()(point);
+
+            puser->track_popup_xml_menu(this, filemanager_data()->m_strXmlPopup, 0, point);
 
          }
 
@@ -223,7 +227,11 @@ namespace filemanager
          
          auto puser = psession->m_puser->m_pcoreuser;
 
-         puser->track_popup_xml_menu(this, filemanager_data()->m_strPopup, 0, pcontextmenu->m_point);
+         auto point = pcontextmenu->m_pointHost;
+
+         host_to_client()(point);
+
+         puser->track_popup_xml_menu(this, filemanager_data()->m_strPopup, 0, point);
 
       }
 
@@ -1316,7 +1324,7 @@ namespace filemanager
             auto pinteraction = __create_new <  user::button > ();
             pinteraction->m_bTransparent = true;
             //pinteraction->set_control_type(user::e_control_type_button);
-            //pinteraction->m_type = __type(::user::button);
+            //pinteraction->m_type = ::type < ::user::button >();
             pinteraction->m_atom = atom;
             pinteraction->add_function(user::e_control_function_action);
             _001AddControl(pinteraction);
@@ -1383,7 +1391,7 @@ namespace filemanager
             //pinteraction->m_atom = _vms::FILE_MANAGER_ID_FILE_NAME;
             pinteraction->set_data_type(user::e_control_data_type_string);
             pinteraction->add_function(user::e_control_function_vms_data_edit);
-            pinteraction->m_type = __type(::user::plain_edit);
+            pinteraction->m_typeatom = ::type < ::user::plain_edit >();
             //pinteraction->m_iSubItem = i;
             pinteraction->m_atom = 1000 + i;
             index iControl = _001AddControl(pinteraction);
@@ -1713,7 +1721,7 @@ namespace filemanager
 
          ::file::item item;
 
-         index iItem = pinteraction->m_iItem;
+         index iItem = pinteraction->m_item.m_iItem;
 
          index iStrict = display_to_strict(iItem);
 

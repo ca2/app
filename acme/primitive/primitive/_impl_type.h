@@ -4,7 +4,7 @@
 #pragma once
 
 
-inline type::type(const ::std::type_info & typeinfo) :
+inline type_atom::type_atom(const ::std::type_info & typeinfo) :
 #ifdef WINDOWS
         atom(c_demangle(typeinfo.name()))
 #else
@@ -15,15 +15,15 @@ inline type::type(const ::std::type_info & typeinfo) :
 }
 
 
-inline bool type::name_contains(const ::ansi_character * psz) const
-{
+//inline bool type_atom::name_contains(const ::ansi_character * psz) const
+//{
+//
+//   return m_str.contains(psz);
+//
+//}
 
-   return m_str.contains(psz);
 
-}
-
-
-inline bool type::operator == (const ::atom& atom) const
+inline bool type_atom::operator == (const ::atom& atom) const
 {
 
    return ::atom::operator ==(atom);
@@ -31,52 +31,93 @@ inline bool type::operator == (const ::atom& atom) const
 }
 
 
-template < typename BASE >
-inline type::type(const ::pointer<BASE>& point)
+template < primitive_pointer POINTER >
+type_atom::type_atom(POINTER p)
 {
 
-   auto name = typeid(*((BASE *)point.m_p)).name();
+   auto name = typeid(*(non_const <POINTER >)p).name();
 
    ::atom::operator = (demangle(name));
 
 }
 
 
-template < typename TYPE >
-inline string __type_name()
+template < primitive_object_not_type_atom OBJECT_NOT_TYPE_ATOM >
+type_atom::type_atom(OBJECT_NOT_TYPE_ATOM & objectnottypeatom)
 {
 
-   auto pszType = typeid(TYPE).name();
+   auto name = typeid(*(&(non_const < OBJECT_NOT_TYPE_ATOM > &)objectnottypeatom)).name();
 
-   string strName = demangle(pszType);
-
-   return strName;
+   ::atom::operator = (demangle(name));
 
 }
 
 
-template < typename TYPE >
-inline string __type_name(const TYPE * p)
+template < typename BASE >
+inline type_atom::type_atom(const ::pointer<BASE>& p)
 {
 
-   auto pszType = typeid(*p).name();
+   auto name = typeid(*((BASE *)p.m_p)).name();
 
-   string strName = demangle(pszType);
-
-   return strName;
+   ::atom::operator = (demangle(name));
 
 }
 
 
-template < typename TYPE >
-inline string __type_name(const TYPE & t)
+//template < typename TYPE >
+//inline string __type_name()
+//{
+//
+//   auto pszType = typeid(TYPE).name();
+//
+//   string strName = demangle(pszType);
+//
+//   return strName;
+//
+//}
+//
+//
+//template < typename TYPE >
+//inline string __type_name(const TYPE * p)
+//{
+//
+//   auto pszType = typeid(*p).name();
+//
+//   string strName = demangle(pszType);
+//
+//   return strName;
+//
+//}
+//
+//
+//template < typename TYPE >
+//inline string __type_name(const TYPE & t)
+//{
+//
+//   auto pszType = typeid(t).name();
+//
+//   string strName = demangle(pszType);
+//
+//   return strName;
+//
+//}
+
+
+template < primitive_pointer POINTER >
+inline bool type_atom::operator == (POINTER p) const
 {
 
-   auto pszType = typeid(t).name();
+   return operator ==(::type_atom(p));
 
-   string strName = demangle(pszType);
+}
 
-   return strName;
+
+
+template < typename TYPE >
+inline bool type_atom::operator == (const ::pointer < TYPE > & p) const
+{
+
+   return this->operator==(p.m_p);
 
 }
 

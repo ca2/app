@@ -8,6 +8,8 @@
 #include "acme/handler/request.h"
 #include "acme/platform/system.h"
 #include "acme/platform/system.h"
+#include "acme/primitive/geometry2d/_text_stream.h"
+#include "acme/user/user/_text_stream.h"
 #include "apex/database/_binary_stream.h"
 #include "apex/database/change_event.h"
 #include "acme/filesystem/filesystem/file_context.h"
@@ -23,7 +25,9 @@
 #include "aura/graphics/image/fastblur.h"
 #include "aura/user/user/alpha_source.h"
 #include "aura/user/user/primitive_impl.h"
+#include "aura/windowing/display.h"
 #include "aura/windowing/icon.h"
+#include "aura/windowing/windowing.h"
 #include "base/user/user/user.h"
 #include "base/platform/application.h"
 #include "aura/user/user/notify_icon.h"
@@ -43,14 +47,15 @@
 #define TEST 0
 //#define VERBOSE_LOG
 
+
 namespace base
 {
 
 
-   ::type user::get_simple_frame_window_type_info()
+   ::type_atom user::get_simple_frame_window_type_info()
    {
 
-      return __type(::simple_frame_window);
+      return ::type < ::simple_frame_window >();
 
    }
 
@@ -63,9 +68,9 @@ simple_frame_window::simple_frame_window()
 
    m_bEnableDragClient = false;
 
-   m_bClickDefaultMouseHandling = false;
+   m_bDefaultClickHandling = false;
 
-   m_bHoverDefaultMouseHandling = false;
+   m_bDefaultMouseHoverHandling = false;
 
    m_bFramePayloadFlags = false;
 
@@ -179,7 +184,7 @@ void simple_frame_window::on_update_notify_icon_menu_header(::index & iNotifyIco
 
    auto papp = auraapplication();
 
-   auto strAppTitle = papp->get_application_title();
+   auto strAppTitle = papp->application_title();
 
    m_pnotifyicon->notify_icon_insert_item(iNotifyIconItem, strAppTitle, "notify_icon_topic");
 
@@ -409,7 +414,12 @@ void simple_frame_window::task_intensive_save_window_placement()
 
          m_bPendingSaveWindowRect = false;
 
+         user_post([this]()
+                                     {
+
          WindowDataSaveWindowRectangle();
+
+                                     });
 
          break;
 
@@ -489,6 +499,7 @@ bool simple_frame_window::WindowDataLoadWindowRectangle()
       }
       else if (wfi_is_down())
       {
+
          information() << "-------------------------------------------------------------------";
          information() << "";
          information() << "";
@@ -588,11 +599,7 @@ void simple_frame_window::on_message_destroy(::message::message* pmessage)
       try
       {
 
-         auto psystem = acmesystem();
-
-         auto pnode = psystem->node();
-
-         pnode->node_send([this]()
+         user_send([this]()
             {
 
                if (m_pnotifyicon)
@@ -1005,13 +1012,17 @@ void simple_frame_window::on_message_create(::message::message* pmessage)
       if (m_bDefaultNotifyIcon)
       {
 
-          main_asynchronous([this]()
+         information() << "simple_frame_window::on_message_create m_bDefaultNotifyIcon";
+
+          user_post([this]()
                          {
 
               //auto papp = get_app();
          //auto psystem = acmesystem()->m_papexsystem;
 
-         //auto estatus = 
+         //auto estatus =
+
+         information() << "simple_frame_window::on_message_create default notify icon starting user thread";
 
          __defer_construct(m_pnotifyicon);
 
@@ -1071,7 +1082,7 @@ void simple_frame_window::on_message_show_window(::message::message* pmessage)
    if (pshow->m_bShow)
    {
 
-      information("\nsimple_frame_window::on_message_show_window true : " + __type_name(this) + "\n");
+      //information("simple_frame_window::on_message_show_window true : " + ::type(this).name());
 
       //defer_set_icon();
 
@@ -1079,7 +1090,7 @@ void simple_frame_window::on_message_show_window(::message::message* pmessage)
    else
    {
 
-      information("\nsimple_frame_window::on_message_show_window false :" + __type_name(this) + "\n");
+      //information("simple_frame_window::on_message_show_window false :" + ::type(this).name());
 
    }
 
@@ -1233,10 +1244,10 @@ bool simple_frame_window::pre_create_window(::user::system* pusersystem)
 void simple_frame_window::on_layout(::draw2d::graphics_pointer& pgraphics)
 {
 
-   if (__type_name(this).case_insensitive_contains("child_frame"))
+   if (::type(this).name().case_insensitive_contains("child_frame"))
    {
 
-      information("%child_frame%\n");
+      information() << "child_frame";
 
    }
 
@@ -1245,7 +1256,7 @@ void simple_frame_window::on_layout(::draw2d::graphics_pointer& pgraphics)
    //if (!papp->m_bExperienceMainFrame && get_parent() == nullptr)
    //{
 
-   //   auto rectangle = get_host_window()->client_rectangle();
+   //   auto rectangle = get_host_window()->rectangle();
 
    //   place(rectangle);
 
@@ -1998,7 +2009,19 @@ void simple_frame_window::_001OnActivate(::message::message* pmessage)
 bool simple_frame_window::LoadFrame(const ::string& pszMatter, u32 dwDefaultStyle, ::user::interaction* puiParent, ::user::system* pusersystem)
 {
 
-   m_atom = pusersystem->m_atom + "::frame";
+   if(pusersystem->m_atom.is_set())
+   {
+
+      ::string strAtom = pusersystem->m_atom.as_string();
+
+      if (strAtom.has_char())
+      {
+
+         m_atom = strAtom;
+
+      }
+
+   }
 
    UNREFERENCED_PARAMETER(puiParent);
 
@@ -2020,7 +2043,7 @@ bool simple_frame_window::LoadFrame(const ::string& pszMatter, u32 dwDefaultStyl
    if (puiParent != nullptr && (pholder = puiParent).is_set())
    {
 
-      rectangleFrame = pholder->client_rectangle();
+      rectangleFrame = pholder->rectangle();
 
    }
 
@@ -2053,8 +2076,8 @@ bool simple_frame_window::LoadFrame(const ::string& pszMatter, u32 dwDefaultStyl
 
          rectangleFrame = const_layout().state(::user::e_layout_sketch).parent_raw_rectangle();
 
-         information("simple_frame_window::LoadFrame rectangleFrame (l=%d, t=%d) (w=%d, h=%d)", rectangleFrame.left, rectangleFrame.top, rectangleFrame.width(), rectangleFrame.height());
-         information("simple_frame_window::LoadFrame edisplay=%s", ::string(::as_string((int)const_layout().sketch().display().eflag())).c_str());
+         information() << "simple_frame_window::LoadFrame rectangleFrame : " << rectangleFrame;
+         information() << "simple_frame_window::LoadFrame edisplay : " << const_layout().sketch().display();
 
          if (wfi_has_up_down())
          {
@@ -2103,7 +2126,7 @@ bool simple_frame_window::LoadFrame(const ::string& pszMatter, u32 dwDefaultStyl
 
       //pusersystem->set_rect(rectangleFrame);
 
-      information("(2) simple_frame_window::LoadFrame rectangleFrame (l=%d, t=%d) (w=%d, h=%d)", rectangleFrame.left, rectangleFrame.top, rectangleFrame.width(), rectangleFrame.height());
+      information("(2) simple_frame_window::LoadFrame rectangleFrame (l=%d, t=%d) (w=%d, h=%d)", rectangleFrame.left(), rectangleFrame.top(), rectangleFrame.width(), rectangleFrame.height());
       information("(2) simple_frame_window::LoadFrame edisplay=%s", ::string(::as_string((int)const_layout().sketch().display().eflag())).c_str());
 
 
@@ -2383,9 +2406,9 @@ void simple_frame_window::_001OnDeferPaintLayeredWindowBackground(::draw2d::grap
       || psession->m_paurasession->savings().is_trying_to_save(::e_resource_translucent_background))
    {
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
-      pgraphics->fill_rectangle(rectangleClient, rgb(0, 0, 0));
+      pgraphics->fill_rectangle(rectangleX, rgb(0, 0, 0));
 
    }
    else
@@ -2428,7 +2451,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer& pgraphicsParam)
 //   try
 //   {
 //
-//      auto type = __object_type(*this);
+//      auto type = ::type(this);
 //
 //
 //      //if (pgraphics->m_bDraw)
@@ -2490,9 +2513,9 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer& pgraphicsParam)
 //
 //   windowing_output_debug_string("\nsimple_frame_window::_001OnDraw B");
 //
-//   ::rectangle_i32 rectangleClient;
+//   ::rectangle_i32 rectangleX;
 //
-//   client_rectangle(rectangleClient);
+//   this->rectangle(rectangleX);
 //
 //   bool bDib = false;
 //
@@ -2507,7 +2530,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer& pgraphicsParam)
 //
 //   }
 //
-//   if (rectangleClient.area() > 0 && dAlpha > 0.0 && dAlpha < 1.0 && m_bTransparent)
+//   if (rectangleX.area() > 0 && dAlpha > 0.0 && dAlpha < 1.0 && m_bTransparent)
 //   {
 //
 //      //auto estatus = 
@@ -2517,7 +2540,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer& pgraphicsParam)
 //      //{
 //
 //         //estatus = 
-//      m_pimageAlpha->create(rectangleClient.size());
+//      m_pimageAlpha->create(rectangleX.size());
 //
 //      //   if(estatus.succeeded())
 //      {
@@ -2583,7 +2606,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer& pgraphicsParam)
 ////
 ////#endif
 //
-//         string strType = __type_name(this);
+//         string strType = ::type(this).name();
 //
 //#ifdef VERBOSE_LOG
 //
@@ -2656,7 +2679,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer& pgraphicsParam)
 //
 //      image_source imagesource(pgraphics);
 //
-//      image_drawing_options imagedrawingoptions(rectangleClient.size());
+//      image_drawing_options imagedrawingoptions(rectangleX.size());
 //
 //      image_drawing imagedrawing(imagedrawingoptions, imagesource);
 //
@@ -2696,29 +2719,29 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer& pgraphics)
    if (bBlurBackground)
    {
 
-      //printf("simplefrmwnd : " + __type_name(this) + " : blur_background");
+      //printf("simplefrmwnd : " + ::type(this).name() + " : blur_background");
 
       //auto psystem = acmesystem()->m_pbasesystem;
 
 //      class imaging & imaging = psystem->imaging();
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
-      //rectangleClient.offset(rectangleClient.top_left());
+      //rectangleX.offset(rectangleX.top_left());
 
       auto psession = get_session();
 
       if (psession->m_paurasession->savings().is_trying_to_save(::e_resource_translucent_background))
       {
 
-         //pgraphics->fill_rectangle(rectangleClient, rgb(150, 220, 140));
+         //pgraphics->fill_rectangle(rectangleX, rgb(150, 220, 140));
 
       }
       else if (psession->m_paurasession->savings().is_trying_to_save(::e_resource_processing)
          || psession->m_paurasession->savings().is_trying_to_save(::e_resource_blur_background))
       {
 
-         pgraphics->fill_rectangle(rectangleClient, argb(150, 150, 180, 140));
+         pgraphics->fill_rectangle(rectangleX, argb(150, 150, 180, 140));
 
       }
       else
@@ -2726,25 +2749,25 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer& pgraphics)
 
 #ifndef LINUX
 
-         //printf("simplefrmwnd : " + __type_name(this) + " : ifndef LINUX");
+         //printf("simplefrmwnd : " + ::type(this).name() + " : ifndef LINUX");
 
-         if (rectangleClient.size() != m_pimageBk->size())
+         if (rectangleX.size() != m_pimageBk->size())
          {
-            m_pimageBk->create(rectangleClient.size());
+            m_pimageBk->create(rectangleX.size());
             m_pimageBk->clear_argb(0, 200, 200, 190);
             //HMODULE hmodule = ::LoadLibrary("ca2performance.dll");
             //::draw2d::fastblur *( *pfnNew )(::pointer<::aura::application> = (::draw2d::fastblur *(*)(::pointer<::aura::application> ::GetProcAddress(hmodule, "new_fastblur");
             //m_pimageBlur->create(this);
-            //m_fastblur.initialize(rectangleClient.size(),2);
+            //m_fastblur.initialize(rectangleX.size(),2);
 
-            m_pimageBlur->create(rectangleClient.size());
+            m_pimageBlur->create(rectangleX.size());
 
          }
 
          if (m_pimageBlur->is_ok())
          {
 
-            ::rectangle_f64 rectangleTarget(rectangleClient.size());
+            ::rectangle_f64 rectangleTarget(rectangleX.size());
 
             {
 
@@ -2766,7 +2789,7 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer& pgraphics)
 
                image_source imagesource(m_pimageBk);
 
-               image_drawing_options imagedrawingoptions(rectangleClient.size());
+               image_drawing_options imagedrawingoptions(rectangleX.size());
 
                imagedrawingoptions.opacity(49);
 
@@ -2780,7 +2803,7 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer& pgraphics)
 
                image_source imagesource(m_pimageBlur);
 
-               image_drawing_options imagedrawingoptions(rectangleClient);
+               image_drawing_options imagedrawingoptions(rectangleX);
 
                image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
@@ -2796,7 +2819,7 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer& pgraphics)
 
    }
 
-   //printf("simplefrmwnd : " + __type_name(this) + " : draw_frame");
+   //printf("simplefrmwnd : " + ::type(this).name() + " : draw_frame");
 
    draw_frame(pgraphics);
 
@@ -2864,10 +2887,10 @@ void simple_frame_window::on_after_set_parent()
 }
 
 
-::rectangle_i32 simple_frame_window::client_rectangle(::user::enum_layout elayout)
+::rectangle_i32 simple_frame_window::rectangle(::user::enum_layout elayout)
 {
 
-   return ::experience::frame_window::client_rectangle(elayout);
+   return ::experience::frame_window::rectangle(elayout);
 
 }
 
@@ -2894,7 +2917,7 @@ void simple_frame_window::defer_create_notification_icon()
 
    }
 
-   windowing_post([this]
+   user_post([this]
       {
 
          //      if (m_pnotifyicon)
@@ -3324,7 +3347,7 @@ void simple_frame_window::handle(::topic* ptopic, ::context* pcontext)
 
          //OnNotifyIconContextMenu(ptopic->m_puserelement->m_atom);
 
-         auto pointCursor = get_cursor_position();
+         auto pointCursor = windowing()->display()->get_mouse_cursor_position();
 
          string strXml = notification_area_get_xml_menu();
 
@@ -3497,7 +3520,7 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
                      if (timeEllapsed > 50_ms)
                      {
 
-                        string strType = __type_name(pinteraction);
+                        string strType = ::type(pinteraction).name();
 
                         //if(strType.contains("pane_impact"))
                         //{
@@ -4232,7 +4255,7 @@ void simple_frame_window::call_notification_area_action(const ::string& pszId)
 
    ::atom atom(pszId);
 
-   interaction_post([this, atom]()
+   host_post([this, atom]()
       {
 
          handle_command(atom);
@@ -4284,10 +4307,10 @@ string simple_frame_window::notification_area_get_xml_menu()
 }
 
 
-void simple_frame_window::on_visual_applied()
+void simple_frame_window::_on_configure_notify_unlocked(const ::rectangle_i32 & rectangle)
 {
 
-   ::experience::frame_window::on_visual_applied();
+   ::experience::frame_window::_on_configure_notify_unlocked(rectangle);
 
    if (get_parent() == nullptr)
    {

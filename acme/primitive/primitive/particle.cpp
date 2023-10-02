@@ -4,11 +4,12 @@
 #include "factory.h"
 #include "acme/exception/interface_only.h"
 #include "acme/handler/extended_topic.h"
+#include "acme/handler/topic.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/acme.h"
 #include "acme/platform/application.h"
-#include "acme/handler/topic.h"
 #include "acme/platform/context.h"
+#include "acme/platform/node.h"
 #include "acme/platform/system.h"
 #include "acme/user/nano/nano.h"
 //#include "acme/primitive/primitive/payload.h"
@@ -172,7 +173,7 @@ const char * particle::topic_text() const
 //string matter::class_title() const
 //{
 //
-//   auto strTypeName =  __type_name(this);
+//   auto strTypeName =  ::type(this).name();
 //
 //   auto findLastColonColon = strTypeName.rear_find("::");
 //
@@ -572,7 +573,7 @@ void particle::on_sequence()
 strsize particle::sz_len() const
 {
 
-   return ansi_len(__type_name(this)) + 1;
+   return ansi_len(::type(this).name()) + 1;
 
 }
 
@@ -580,7 +581,7 @@ strsize particle::sz_len() const
 void particle::to_sz(char * sz, strsize len) const
 {
 
-   ansi_ncpy(sz, __type_name(this), len);
+   ansi_ncpy(sz, ::type(this).name(), len);
 
 }
 
@@ -756,7 +757,7 @@ enum_trace_category particle::trace_category(const ::particle * pparticle) const
 //}
 
 
-class tracer & particle::tracer() const
+class tracer * particle::tracer() const
 {
 
    auto ptask = get_task();
@@ -764,11 +765,55 @@ class tracer & particle::tracer() const
    if (!ptask)
    {
 
-      return *::acme::acme::g_pacme->m_psubsystem->m_pcontext;
+      auto pacme = ::acme::acme::g_pacme;
+
+      if (::is_set(pacme))
+      {
+
+         auto psubsystem = pacme->m_psubsystem;
+
+         if (::is_set(psubsystem))
+         {
+
+            auto pcontext = psubsystem->m_pcontext;
+
+            if (::is_set(pcontext))
+            {
+
+
+               return pcontext;
+
+            }
+
+         }
+
+      }
 
    }
 
-   return *ptask;
+   return ptask;
+
+}
+
+
+::trace_statement particle::trace_statement() const
+{
+
+   auto ptracer = this->tracer();
+
+   auto statement = ::transfer(::trace_statement(ptracer));
+
+   trace_statement_prefix(statement);
+
+   return ::transfer(statement);
+
+}
+
+
+::trace_statement & particle::trace_statement_prefix(::trace_statement & statement) const
+{
+
+   return statement;
 
 }
 
@@ -776,7 +821,7 @@ class tracer & particle::tracer() const
 ::trace_statement particle::log_statement() const
 {
 
-   return ::transfer(trace_statement(tracer())((::particle *) this));
+   return ::transfer(trace_statement()((::particle *) this));
 
 }
 
@@ -784,7 +829,7 @@ class tracer & particle::tracer() const
 ::trace_statement particle::information() const
 {
 
-   return ::transfer(trace_statement(tracer())(e_trace_level_information));
+   return ::transfer(trace_statement()(e_trace_level_information));
 
 }
 
@@ -792,7 +837,7 @@ class tracer & particle::tracer() const
 ::trace_statement particle::warning() const
 {
 
-   return ::transfer(trace_statement(tracer())(e_trace_level_warning));
+   return ::transfer(trace_statement()(e_trace_level_warning));
 
 }
 
@@ -800,7 +845,7 @@ class tracer & particle::tracer() const
 ::trace_statement particle::error() const
 {
 
-   return ::transfer(trace_statement(tracer())(e_trace_level_error));
+   return ::transfer(trace_statement()(e_trace_level_error));
 
 }
 
@@ -808,9 +853,43 @@ class tracer & particle::tracer() const
 ::trace_statement particle::fatal() const
 {
 
-   return ::transfer(trace_statement(tracer())(e_trace_level_fatal));
+   return ::transfer(trace_statement()(e_trace_level_fatal));
 
 }
+
+
+void particle::format_trace(enum_trace_level etracelevel, const ::ansi_character * pszFormat, va_list & arguments) const
+{
+
+   auto statement = ::transfer(log_statement());
+
+   statement(etracelevel)(trace_category());
+
+   statement.format_output_arguments(pszFormat, arguments);
+
+}
+
+
+void particle::trace(enum_trace_level etracelevel, const ::ansi_character * pszFormat, ...) const
+{
+
+    va_list arguments;
+
+    va_start(arguments, pszFormat);
+
+    {
+
+       auto statement = ::transfer(log_statement());
+
+       statement(etracelevel)(trace_category());
+
+       statement.format_output_arguments(pszFormat, arguments);
+
+    }
+
+    va_end(arguments);
+
+ }
 
 
 void particle::information(const ::ansi_character * pszFormat, ...) const
@@ -820,15 +899,7 @@ void particle::information(const ::ansi_character * pszFormat, ...) const
 
    va_start(arguments, pszFormat);
 
-   {
-
-      auto statement = log_statement();
-
-      statement(e_trace_level_information)(trace_category());
-
-      statement.format_output_arguments(pszFormat, arguments);
-
-   }
+   format_trace(e_trace_level_information, pszFormat, arguments);
 
    va_end(arguments);
 
@@ -842,15 +913,7 @@ void particle::warning(const ::ansi_character * pszFormat, ...) const
 
    va_start(arguments, pszFormat);
 
-   {
-
-      auto statement = log_statement();
-
-      statement(e_trace_level_warning)(trace_category());
-
-      statement.format_output_arguments(pszFormat, arguments);
-
-   }
+   format_trace(e_trace_level_warning, pszFormat, arguments);
 
    va_end(arguments);
 
@@ -864,15 +927,7 @@ void particle::error(const ::ansi_character * pszFormat, ...) const
 
    va_start(arguments, pszFormat);
 
-   {
-
-      auto statement = log_statement();
-
-      statement(e_trace_level_error)(trace_category());
-
-      statement.format_output_arguments(pszFormat, arguments);
-
-   }
+   format_trace(e_trace_level_error, pszFormat, arguments);
 
    va_end(arguments);
 
@@ -886,15 +941,7 @@ void particle::fatal(const ::ansi_character * pszFormat, ...) const
 
    va_start(arguments, pszFormat);
 
-   {
-
-      auto statement = log_statement();
-
-      statement(e_trace_level_fatal)(trace_category());
-
-      statement.format_output_arguments(pszFormat, arguments);
-
-   }
+   format_trace(e_trace_level_fatal, pszFormat, arguments);
 
    va_end(arguments);
 
@@ -1371,7 +1418,7 @@ bool particle::_wait(const class time & timeWait)
 //      {
 //
 //         pmutex->m_strThread = ::task_get_name();
-//         pmutex->m_itask = ::get_current_itask();
+//         pmutex->m_itask = ::current_itask();
 //         ::information("");
 //
 //      }
@@ -1683,6 +1730,13 @@ void particle::call(const ::atom & atom, i64 wParam, i64 lParam, ::particle * pp
 
 
 void particle::handle(::message::message * pmessage)
+{
+
+
+}
+
+
+void particle::handle(::item * pmessage)
 {
 
 
@@ -2136,6 +2190,54 @@ pointer < ::sequencer < ::conversation > > particle::exception_message_console(c
 }
 
 
+void particle::app_post(const ::procedure & procedure)
+{
+
+   acmeapplication()->post_procedure(procedure);
+
+}
+
+
+::task_pointer particle::app_fork(const ::procedure & procedure)
+{
+
+   return acmeapplication()->fork(procedure);
+
+}
+
+
+void particle::task_post(const ::procedure & procedure)
+{
+
+   ::get_task()->post_procedure(procedure);
+
+}
+
+
+::task_pointer particle::task_fork(const ::procedure & procedure)
+{
+
+   return ::get_task()->fork(procedure);
+
+}
+
+
+void particle::user_send(const ::procedure & procedure)
+{
+
+   acmenode()->user_send(procedure);
+
+}
+
+
+void particle::user_post(const ::procedure & procedure)
+{
+
+   acmenode()->user_post(procedure);
+
+}
+
+
 //::pointer < particle > particle::clone() const
 //{
 //
@@ -2146,7 +2248,7 @@ pointer < ::sequencer < ::conversation > > particle::exception_message_console(c
 //}
 
 
-CLASS_DECL_ACME class tracer & tracer()
+CLASS_DECL_ACME class tracer * tracer()
 {
 
    auto ptask = get_task();
@@ -2154,11 +2256,11 @@ CLASS_DECL_ACME class tracer & tracer()
    if (!ptask)
    {
 
-      return *::acme::acme::g_pacme->m_psubsystem->m_pcontext;
+      return ::acme::acme::g_pacme->m_psubsystem->m_pcontext;
 
    }
 
-   return *ptask;
+   return ptask;
 
 }
 
@@ -2205,7 +2307,6 @@ CLASS_DECL_ACME ::trace_statement log_statement()
    return ::transfer(trace_statement(tracer())(e_trace_level_fatal));
 
 }
-
 
 
 void information(const ::ansi_character * pszFormat, ...)

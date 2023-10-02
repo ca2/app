@@ -72,6 +72,7 @@ namespace acme
 
       enum_application_capability_array               m_eapplicationcapabilitya;
       ::text::text                                    m_textAppTitle;
+      ::text::text                                    m_textAppName;
 
 
       ::pointer < ::mutex >                                      m_pmutexMatterLocator;
@@ -100,8 +101,8 @@ namespace acme
 
       virtual bool is_application() const;
 
-      virtual bool is_system() const;
-      virtual bool is_session() const;
+      bool is_system() const override;
+      bool is_session() const override;
 
       virtual bool is_service() const;
       virtual bool is_user_service() const;
@@ -118,8 +119,10 @@ namespace acme
 
       virtual ::string app_root();
 
-      virtual ::string get_application_title();
+      virtual ::string application_title();
 
+
+      virtual ::string application_name();
 //
 //#ifdef WINDOWS
 //
@@ -127,7 +130,7 @@ namespace acme
 //
 //#else
 //
-//      void set_args(int argc, char * argv[], char * envp[]);
+//      void set_args(int argc, char * argv[], char * envpb[]);
 //
 //#endif
 
@@ -176,12 +179,12 @@ namespace acme
       virtual ::string get_application_name();
 
 
-      virtual void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::string & strLocale, const ::string & strSchema);
+      void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::string & strLocale, const ::string & strSchema) override;
       virtual void matter_locator_locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::string & strLocale, const ::string & strSchema);
 
       virtual string get_locale_schema_dir(const ::string & strLocale, const ::string & strSchema);
       virtual string get_locale_schema_dir(const ::string & strLocale);
-      virtual string get_locale_schema_dir();
+      string get_locale_schema_dir() override;
 
       virtual void set_locale(const string & pcsz, const ::action_context & action_context);
 

@@ -3,7 +3,9 @@
 #include "acme/constant/message.h"
 #include "acme/constant/simple_command.h"
 #include "acme/parallelization/single_lock.h"
+#include "acme/platform/scoped_restore.h"
 #include "acme/platform/keep.h"
+#include "acme/primitive/geometry2d/_text_stream.h"
 #include "acme/user/user/_text_stream.h"
 #include "apex/database/_binary_stream.h"
 #include "apex/message/simple_command.h"
@@ -35,13 +37,6 @@ namespace user
    {
 
       interaction::initialize(pparticle);
-
-      if (m_atom.is_empty())
-      {
-
-         m_atom = __type_name(this);
-
-      }
 
    }
 
@@ -115,16 +110,21 @@ namespace user
    }
 
 
-   void box::on_visual_applied()
+   void box::_on_configure_notify_unlocked(const ::rectangle_i32 & rectangle)
    {
 
-      ::user::interaction::on_visual_applied();
+      ::user::interaction::_on_configure_notify_unlocked(rectangle);
 
-#if !defined(UNIVERSAL_WINDOWS)
+//#if !defined(UNIVERSAL_WINDOWS)
+
+      //user_post([this]()
+                                  //{
 
       auto & edisplay = layout().design().display();
 
-      window_rectangle(m_windowrectangle.m_rectangleWindow, e_layout_design);
+      //window_rectangle(m_windowrectangle.m_rectangleWindow, e_layout_design);
+
+      m_windowrectangle.m_rectangleWindow = rectangle;
 
       if (is_docking_appearance(edisplay))
       {
@@ -132,7 +132,7 @@ namespace user
          m_windowrectangle.m_rectangleSnapped = m_windowrectangle.m_rectangleWindow;
 
       }
-      else if (!layout().is_docking() && is_same_in_equivalence_sink(edisplay, e_display_normal))
+      else if (!layout().is_docking() && is_equivalent_in_equivalence_sink(edisplay, e_display_normal))
       {
 
          calculate_broad_and_compact_restore();
@@ -154,6 +154,8 @@ namespace user
 
             m_windowrectangle.m_rectangleNormal = m_windowrectangle.m_rectangleWindow;
 
+            information() << "m_windowrectangle.m_rectangleNormal (1) : " << m_windowrectangle.m_rectangleNormal;
+
          }
          //else
          //{
@@ -171,19 +173,21 @@ namespace user
 
       }
 
-#endif
+//                                  });
+
+//#endif
 
    }
 
 
-   void box::_window_show_change_visibility()
-   {
-
-      ::user::interaction::_window_show_change_visibility();
-
-      m_windowrectangle.m_edisplay = const_layout().window().display();
-
-   }
+//   void box::_window_show_change_visibility_unlocked()
+//   {
+//
+//      ::user::interaction::_window_show_change_visibility_unlocked();
+//
+//      m_windowrectangle.m_edisplay = const_layout().window().display();
+//
+//   }
 
 
    bool box::should_save_window_rectangle()
@@ -261,6 +265,13 @@ namespace user
       if (!bLoad)
       {
 
+         at_end_of_scope
+         {
+
+            m_bLoadingWindowRectangle = false;
+
+         };
+
          m_bLoadingWindowRectangle = true;
 
          ::index iDisplay = good_restore(nullptr, {}, true, e_activation_default, e_zorder_top, initial_restore_display());
@@ -301,6 +312,13 @@ namespace user
       if (!bLoad)
       {
 
+         at_end_of_scope
+         {
+
+            m_bLoadingWindowRectangle = false;
+
+         };
+
          m_bLoadingWindowRectangle = true;
 
          ::index iDisplay = good_restore(nullptr, {}, true, e_activation_default, e_zorder_top, initial_restore_display());
@@ -334,6 +352,13 @@ namespace user
          return false;
 
       }
+
+      at_end_of_scope
+      {
+
+         m_bLoadingWindowRectangle = false;
+
+      };
 
       m_bLoadingWindowRectangle = true;
 
@@ -465,6 +490,13 @@ namespace user
 
       }
 
+      at_end_of_scope
+      {
+
+         m_bLoadingWindowRectangle = false;
+
+      };
+
       m_bLoadingWindowRectangle = true;
 
       ::user::window_rectangle windowrectangle;
@@ -539,6 +571,8 @@ namespace user
          auto functionGoodRestore = [this, windowrectangle]()
          {
 
+            information() << "FancyLoadWindowRectangle windowrectangle.m_rectangleNormal " << windowrectangle.m_rectangleNormal;
+
             good_restore(nullptr, windowrectangle.m_rectangleNormal, true, e_activation_default, e_zorder_top, windowrectangle.m_edisplay);
                
          };
@@ -546,7 +580,7 @@ namespace user
          if(m_ewindowflag & e_window_flag_window_created)
          {
             
-            interaction_send(functionGoodRestore);
+            user_send(functionGoodRestore);
             
          }
          else
@@ -719,6 +753,8 @@ namespace user
             
             auto rectangle = m_windowrectangle.m_rectangleBroad.is_empty() ? rectangleSketch : m_windowrectangle.m_rectangleBroad;
 
+            information() << "display_normal m_windowrectangle.m_rectangleBroad : " << m_windowrectangle.m_rectangleBroad << ", rectangleSketch : " << rectangleSketch;
+
             good_restore(nullptr, rectangle, true, eactivation, e_zorder_top, e_display_broad);
 
          }
@@ -727,6 +763,8 @@ namespace user
 
             auto rectangle = m_windowrectangle.m_rectangleCompact.is_empty() ? rectangleSketch : m_windowrectangle.m_rectangleCompact;
 
+            information() << "display_normal m_windowrectangle.m_rectangleCompact : " << m_windowrectangle.m_rectangleCompact << ", rectangleSketch : " << rectangleSketch;
+
             good_restore(nullptr, rectangle, true, eactivation, e_zorder_top, e_display_compact);
 
          }
@@ -734,6 +772,8 @@ namespace user
          {
 
             auto rectangle = m_windowrectangle.m_rectangleNormal.is_empty() ? rectangleSketch : m_windowrectangle.m_rectangleNormal;
+
+            information() << "display_normal m_windowrectangle.m_rectangleNormal : " << m_windowrectangle.m_rectangleNormal << ", rectangleSketch : " << rectangleSketch;
 
             good_restore(nullptr, rectangle, true, eactivation, e_zorder_top, e_display_normal);
 

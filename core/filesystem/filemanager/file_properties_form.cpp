@@ -44,9 +44,9 @@ namespace filemanager
 
       m_ptemplatePane = __new(::user::single_document_template(
          "system/auth",
-         __type(::user::document),
-         __type(simple_frame_window),
-         __type(::userex::pane_tab_impact)));
+         ::type < ::user::document >(),
+         ::type < simple_frame_window >(),
+         ::type < ::userex::pane_tab_impact >()));
 
       //return estatus;
 

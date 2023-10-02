@@ -26,7 +26,7 @@ namespace user
    form_control::form_control()
    {
 
-      m_bDataUpdateDefaultHandling = true;
+      m_bDefaultDataUpdateHandling = true;
 
       m_bOnEditUpdate         = false;
       m_bOnLanguageChange     = false;
@@ -764,7 +764,7 @@ namespace user
 
       /*      ::user::list * plist = dynamic_cast<::user::list *>(get_child_by_id(pinteraction->m_atom));
 
-      if(typeid(plist->GetDataInterface()) == __type(::user::simple_mesh_data))
+      if(typeid(plist->GetDataInterface()) == ::type < ::user::simple_mesh_data >())
       {
       ::user::simple_mesh_data * pdata = dynamic_cast < ::user::simple_mesh_data * > (plist->GetDataInterface());
       string_array stra;
@@ -1188,7 +1188,7 @@ namespace user
       //         {
       //            //xxx pinteraction->m_puserinteraction->unsubclass_window();
       //         }
-      //         //            ASSERT(pinteraction->m_type->IsDerivedFrom(__type(window)));
+      //         //            ASSERT(pinteraction->m_type->IsDerivedFrom(::type < window >()));
       //         if(descriptor.m_pcontrol.is_set())
       //         {
       //            //window_id wndidTemp = get_child_by_id(pinteraction->m_atom)->GetSafeoswindow_();
@@ -1201,7 +1201,7 @@ namespace user
       //      if(descriptor.m_pcontrol != nullptr)
       //      {
       //         //               ::type ti = typeid(descriptor.m_pcontrol);
-      //         /*               if(ti == __type(::user::list))
+      //         /*               if(ti == ::type < ::user::list >())
       //         {
       //         if(descriptor.m_etype == e_control_type_simple_list)
       //         {
@@ -1210,7 +1210,7 @@ namespace user
       //         plist->_001SetSingleColumnMode(false);
       //         }
       //         }*/
-      //         /*            else if(pinteraction->m_type->IsDerivedFrom(__type(simple_still)))
+      //         /*            else if(pinteraction->m_type->IsDerivedFrom(::type < simple_still >()))
       //         {
       //         simple_still * pstatic = (simple_still *) pinteraction->m_puserinteraction;
       //         pstatic->m_bTransparent = pinteraction->m_bTransparent;
@@ -1647,7 +1647,7 @@ namespace user
    void form_control::control_get_client_rect(::user::interaction * pinteraction, ::rectangle_i32 & rectangle)
    {
 
-      rectangle = pinteraction->client_rectangle();
+      rectangle = pinteraction->rectangle();
 
    }
 

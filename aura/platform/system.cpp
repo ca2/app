@@ -196,7 +196,7 @@ namespace aura
 
       enable_trace_category(e_trace_category_windowing, true);
 
-      enable_trace_category(e_trace_category_prodevian, false);
+      enable_trace_category(e_trace_category_graphics_thread, false);
     
       //__construct(g_pmutexImage);
 
@@ -2320,7 +2320,7 @@ namespace aura
 
    //   //   try
    //   //   {
-   //   //      strMessage += __type_name(pparticle);
+   //   //      strMessage += ::type(pparticle).name();
 
    //   //   }
    //   //   catch (...)
@@ -2836,7 +2836,7 @@ namespace aura
 
    //   }
 
-   //   information("%s", ("::aura::system::on_request session = " + string(__type_name(psession)) + "("+as_string((iptr) psession)+")\n\n").c_str());
+   //   information("%s", ("::aura::system::on_request session = " + string(::type(psession).name()) + "("+as_string((iptr) psession)+")\n\n").c_str());
 
    //   psession->do_request(pcreate);
 
@@ -3404,13 +3404,13 @@ namespace aura
 //
 //      ::winrt::Windows::Foundation::Rect rectangle = pwindow->window_rectangle();
 //
-//      prectangle->left = rectangle.X;
+//      prectangle->left() = rectangle.X;
 //
-//      prectangle->top = rectangle.Y;
+//      prectangle->top() = rectangle.Y;
 //
-//      prectangle->right = prectangle->left + rectangle.Width;
+//      prectangle->right() = prectangle->left() + rectangle.Width;
 //
-//      prectangle->bottom = prectangle->top + rectangle.Height;
+//      prectangle->bottom() = prectangle->top() + rectangle.Height;
 //
 //
 //      return true;
@@ -3714,9 +3714,9 @@ namespace aura
 //      GetWorkspaceRect(prectangle, (int) iWorkspace);
 //
 //
-//      //      prectangle->top += ::mac::get_system_main_menu_bar_height();
+//      //      prectangle->top() += ::mac::get_system_main_menu_bar_height();
 //
-//      //    prectangle->bottom -= ::mac::get_system_dock_height();
+//      //    prectangle->bottom() -= ::mac::get_system_dock_height();
 //
 //#elif defined(LINUX)
 //
@@ -6287,7 +6287,7 @@ namespace aura
    //::type system::get_pane_tab_impact_type_info()
    //{
 
-   //   return __type(userex::pane_tab_impact);
+   //   return ::type < userex::pane_tab_impact >();
 
    //}
 
@@ -6767,10 +6767,10 @@ namespace aura
 
       //}
 
-   ::type system::get_pane_tab_impact_type_info()
+   ::type_atom system::get_pane_tab_impact_type_info()
    {
 
-      return m_typePaneTabImpact;
+      return m_typeatomPaneTabImpact;
 
    }
 
@@ -6841,48 +6841,48 @@ namespace aura
    }
 
 
-   void system::windowing_send(const ::procedure & procedure)
-   {
-
-      if (::is_null(acmeapplication())
-         || ::is_null(acmeapplication()->m_pauraapplication)
-         || ::is_null(acmeapplication()->m_pauraapplication->get_session())
-         || ::is_null(acmeapplication()->m_pauraapplication->get_session()->user())
-         || ::is_null(acmeapplication()->m_pauraapplication->get_session()->user()->windowing())
-         )
-      {
-
-         return aqua::system::windowing_send(procedure);
-
-      }
-
-      auto pwindowing = acmeapplication()->m_pauraapplication->get_session()->user()->windowing();
-
-      pwindowing->windowing_send(procedure);
-
-   }
-
-
-   void system::windowing_post(const ::procedure & procedure)
-   {
-
-      if(::is_null(acmeapplication())
-         || ::is_null(acmeapplication()->m_pauraapplication)
-            || ::is_null(acmeapplication()->m_pauraapplication->get_session())
-               || ::is_null(acmeapplication()->m_pauraapplication->get_session()->user())
-                  || ::is_null(acmeapplication()->m_pauraapplication->get_session()->user()->windowing())
-               )
-      {
-
-         return aqua::system::windowing_post(procedure);
-
-      }
-
-      auto pwindowing = acmeapplication()->m_pauraapplication->get_session()->user()->windowing();
-
-      pwindowing->windowing_post(procedure);
-
-   }
+//   void system::windowing_send(const ::procedure & procedure)
+//   {
+//
+//      if (::is_null(acmeapplication())
+//         || ::is_null(acmeapplication()->m_pauraapplication)
+//         || ::is_null(acmeapplication()->m_pauraapplication->get_session())
+//         || ::is_null(acmeapplication()->m_pauraapplication->get_session()->user())
+//         || ::is_null(acmeapplication()->m_pauraapplication->get_session()->user()->windowing())
+//         )
+//      {
+//
+//         return aqua::system::windowing_send(procedure);
+//
+//      }
+//
+//      auto pwindowing = acmeapplication()->m_pauraapplication->get_session()->user()->windowing();
+//
+//      pwindowing->windowing_send(procedure);
+//
+//   }
+//
+//
+//   void system::windowing_post(const ::procedure & procedure)
+//   {
+//
+//      if(::is_null(acmeapplication())
+//         || ::is_null(acmeapplication()->m_pauraapplication)
+//            || ::is_null(acmeapplication()->m_pauraapplication->get_session())
+//               || ::is_null(acmeapplication()->m_pauraapplication->get_session()->user())
+//                  || ::is_null(acmeapplication()->m_pauraapplication->get_session()->user()->windowing())
+//               )
+//      {
+//
+//         return aqua::system::windowing_post(procedure);
+//
+//      }
+//
+//      auto pwindowing = acmeapplication()->m_pauraapplication->get_session()->user()->windowing();
+//
+//      pwindowing->windowing_post(procedure);
+//
+//   }
 
 
    ::aura::session* system::get_session()

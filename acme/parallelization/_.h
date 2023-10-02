@@ -29,70 +29,50 @@
 
 #endif
 
-
 CLASS_DECL_ACME bool task_get_run();
 
-
-
 CLASS_DECL_ACME::task * get_task();
-
 
 CLASS_DECL_ACME void __call(const ::procedure & procedure);
 
 
-CLASS_DECL_ACME bool main_synchronous(const class time & time, const ::procedure & function);
+//CLASS_DECL_ACME bool main_synchronous(const class time & time, const ::procedure & function);
 
 
-CLASS_DECL_ACME void main_asynchronous(const ::procedure & procedure);
+//CLASS_DECL_ACME void main_asynchronous(const ::procedure & procedure);
 
 
 
 
 CLASS_DECL_ACME bool predicate_Sleep(int iTime, ::function < bool(void) > functionOkToSleep);
 
-
 CLASS_DECL_ACME void preempt();
 
-
 CLASS_DECL_ACME void preempt(const class time & time);
-
-
-
-//CLASS_DECL_ACME void precision_wait(const class time & time);
-
-
 
 CLASS_DECL_ACME bool is_single_main_user_thread();
 
 CLASS_DECL_ACME bool is_main_thread();
 
-CLASS_DECL_ACME itask_t get_main_user_itask();
+CLASS_DECL_ACME itask_t main_user_itask();
 
+CLASS_DECL_ACME itask_t current_itask();
 
+CLASS_DECL_ACME htask_t current_htask();
 
+CLASS_DECL_ACME itask_t as_itask(htask_t htask);
 
+CLASS_DECL_ACME void set_main_user_thread();
 
-CLASS_DECL_ACME itask_t get_current_itask();
-
-CLASS_DECL_ACME htask_t get_current_htask();
-
+CLASS_DECL_ACME void set_main_user_thread(htask_t htask);
 
 CLASS_DECL_ACME void preempt();
-
-
-
 
 CLASS_DECL_ACME bool task_sleep(const class time & timeWait);
 
 CLASS_DECL_ACME bool task_get_run();
 
-
 CLASS_DECL_ACME void task_release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
-
-
-
-
-
 
 
 namespace parallelization

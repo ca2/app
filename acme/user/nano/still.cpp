@@ -78,7 +78,7 @@ void nano_still::on_mouse_move(::user::mouse * pmouse)
 
          r += m_pnanowindow->m_rectangle.top_left();
 
-         if (!r.contains(pmouse->m_point))
+         if (!r.contains(pmouse->m_pointAbsolute))
          {
 
             m_pnanowindow->m_pchildHover = nullptr;
@@ -117,8 +117,8 @@ bool nano_still::is_focusable() const
 //
 //   auto size = pdevice->get_text_extents(m_strText, m_pnanowindow->m_pfont);
 //
-//   m_rectangle.right = m_rectangle.left + size.cx();
+//   m_rectangle.right() = m_rectangle.left() + size.cx();
 //
-//   m_rectangle.bottom = m_rectangle.top + size.cy();
+//   m_rectangle.bottom() = m_rectangle.top() + size.cy();
 //
 //}

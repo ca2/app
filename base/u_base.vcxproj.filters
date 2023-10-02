@@ -510,6 +510,9 @@
     <ClInclude Include="user\user\statusbar.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
+    <ClInclude Include="user\user\options_impact.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="user\user\_impl.h">
@@ -760,8 +763,11 @@
     <ClCompile Include="user\user\tab_graphics.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\form\options.cpp">
-      <Filter>Source Files\user\form</Filter>
+    <ClCompile Include="user\user\handler_impact.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\form_handler.cpp">
+      <Filter>Source Files\user\user</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -21,7 +21,7 @@ namespace user
       index                            m_iItem;
       index                            m_iIndentation;
       double                           m_dItemHeight;
-      ::rectangle_f64                          m_rectangleClient;
+      ::rectangle_f64                          m_rectangleX;
       ::rectangle_f64                          m_rectangle;
    };
 

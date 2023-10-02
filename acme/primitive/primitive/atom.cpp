@@ -128,4 +128,37 @@ bool is_font_sel(const ::atom & atom)
 }
 
 
+bool atom::is_true(bool bDefault) const
+{
 
+   if(is_empty())
+   {
+
+      return bDefault;
+
+   }
+
+   switch(m_etype)
+   {
+      case e_type_status:
+         return m_estatus.succeeded();
+      case e_type_check:
+         return __bool(m_echeck);
+      default:
+         break;
+   };
+
+   if(is_text())
+   {
+
+      return as_string().has_char();
+
+   }
+   else
+   {
+
+      return m_i != 0;
+
+   }
+
+}

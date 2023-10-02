@@ -608,8 +608,8 @@ namespace draw2d_cairo
       bool draw();
 
 
-      void _get(::draw2d::matrix & matrix) override;
-      void _set(const ::draw2d::matrix & matrix) override;
+      void _get(::geometry2d::matrix & matrix) override;
+      void _set(const ::geometry2d::matrix & matrix) override;
 
 
       void flush() override;

@@ -19,17 +19,17 @@ namespace user
       ::u32 m_nUntitledCount;   // start at 0, for "Document1" title
 
 
-      multiple_document_template(const ::string & pszMatter, ::type pDocClass, ::type pFrameClass, ::type pImpactClass);
-      virtual ~multiple_document_template();
+      multiple_document_template(const ::string & pszMatter, const ::type_atom & typeatomDocument, const ::type_atom & typeatomFrame, const ::type_atom & typeatomImpact);
+      ~multiple_document_template() override;
 
 
-      virtual void load_template() override;
-      virtual void add_document(::user::document * pDoc) override;
-      virtual void erase_document(::user::document * pDoc) override;
-      virtual ::count get_document_count() const override;
-      virtual ::user::document * get_document(index index) const override;
-      virtual void on_request(::request * prequest) override;
-      virtual void set_default_title(::user::document * pdocument) override;
+      void load_template() override;
+      void add_document(::user::document * pDoc) override;
+      void erase_document(::user::document * pDoc) override;
+      ::count get_document_count() const override;
+      ::user::document * get_document(index index) const override;
+      void on_request(::request * prequest) override;
+      void set_default_title(::user::document * pdocument) override;
 
       // virtual void dump(dump_context &) const override;
       // void assert_ok() const override;

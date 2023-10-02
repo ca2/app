@@ -33,6 +33,7 @@ namespace integration
    {
 
       m_bMsys = false;
+      m_bBuildDependencies = true;
 
    }
 
@@ -61,6 +62,8 @@ namespace integration
       
       m_pathPlatformConfiguration = m_strPlatform / m_strConfiguration;
 
+      m_pathBuild = m_pathFolder / m_pathBase / m_pathPlatformConfiguration / "build";
+
       m_pathSource = m_pathFolder / m_pathBase / m_pathPlatformConfiguration / "source";
 
       //acmedirectory()->create(m_pathSource2);
@@ -74,6 +77,25 @@ namespace integration
       ::file::path path;
 
       path = m_pathSource;
+
+      if (scopedstr.has_char())
+      {
+
+         path /= scopedstr;
+
+      }
+
+      return path;
+
+   }
+
+
+   ::file::path context::get_build_folder_path(const ::scoped_string& scopedstr)
+   {
+
+      ::file::path path;
+
+      path = m_pathBuild;
 
       if (scopedstr.has_char())
       {
@@ -330,7 +352,7 @@ namespace integration
 
             information() << "Downloading \"" << url << "\"...";
 
-            acmesystem()->http_download(pmemoryFileTarGz, url, set);
+            acmecontext()->http_download(pmemoryFileTarGz, url, set);
 
             //auto pathTar = m_pathFolder / m_path / (m_strName + ".tar");
 

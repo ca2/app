@@ -279,7 +279,7 @@ public:
    //virtual void     create(i32 iWidth, i32 iHeight, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, int iGoodStride = -1, void bPreserve = false);
 
 
-   virtual bool host(const ::pixmap * ppixmap);
+   virtual bool host(::pixmap * ppixmap);
    virtual bool on_host_read_pixels(::pixmap * ppixmapHost) const;
    void destroy() override;
    void destroy_os_data() override;
@@ -862,14 +862,16 @@ public:
    inline ::color::color pixel(int x, int y) const
    {
 
-      if (::is_null(this) || ::is_null(image32()) || x < 0 || y < 0 || x>= m_size.cx() || y >= m_size.cy())
+      auto pimage32 = image32();
+
+      if (::is_null(this) || ::is_null(pimage32) || x < 0 || y < 0 || x >= m_size.cx() || y >= m_size.cy())
       {
 
          return {};
 
       }
 
-      return ::draw2d::get_pixel(image32(), m_colorindexes, scan_size(), width(), x, y);
+      return ::draw2d::get_pixel(pimage32, m_colorindexes, scan_size(), width(), x, y);
 
    }
 

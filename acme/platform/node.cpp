@@ -1189,43 +1189,83 @@ namespace acme
 
 
 
-   void node::node_post(const ::procedure & procedure)
-   {
-
-//      defer_create_synchronization();
+//   void node::user_post(const ::procedure & procedure)
+//   {
 //
-//      synchronous_lock synchronouslock(this->synchronization());
+//      throw interface_only();
 //
-//      m_routineaPost.add(routine);
+////      defer_create_synchronization();
+////
+////      synchronous_lock synchronouslock(this->synchronization());
+////
+////      m_routineaPost.add(routine);
+//
+//   }
 
-   }
 
-
-   void node::node_send(const ::procedure & procedure)
+   void node::user_send(const ::procedure & procedure)
    {
 
-      __matter_send_procedure(this, this, &node::node_post, procedure);
+      if(::is_main_thread())
+      {
+
+         procedure();
+
+         return;
+
+      }
+
+      //__matter_send_procedure(this, this, &node::node_post, procedure);
+
+//      CLASS_DECL_ACME bool main_synchronous(const class time & time, const ::procedure & function)
+//      {
+
+         auto pevent = __new(manual_reset_event);
+
+         user_post([ procedure, pevent ]
+                           {
+
+                                 procedure();
+
+                                    pevent->SetEvent();
+
+                           });
+
+         if(!pevent->wait(procedure.m_timeTimeout))
+         {
+
+            throw ::exception(error_timeout);
+            //pevent.release();
+
+            //return false;
+
+         }
+
+         ///return true;
+//
+//      }
+
 
    }
 
 
-   void node::post_procedure(const ::procedure & procedure)
-   {
+//   void node::post_procedure(const ::procedure & procedure)
+//   {
+//
+//      node_post(procedure);
+//
+//   }
+//
+//
+//   void node::send_procedure(const ::procedure & procedure)
+//   {
+//
+//      node_send(procedure);
+//
+//   }
 
-      node_post(procedure);
 
-   }
-
-
-   void node::send_procedure(const ::procedure & procedure)
-   {
-
-      node_send(procedure);
-
-   }
-
-
-   void node::node_post_quit()
+   void node::user_post_quit()
    {
 
 
@@ -1239,10 +1279,10 @@ namespace acme
 //   }
 
 
-   void node::node_quit()
-   {
-
-   }
+//   void node::node_quit()
+//   {
+//
+//   }
 
 
   bool node::should_launch_on_node(::topic * ptopic)
@@ -1634,6 +1674,94 @@ namespace acme
       
       //throw ::interface_only();
       
+   }
+
+
+   ::file::path node::get_executable_path_by_app_id(const ::scoped_string & scopedstrAppId, bool bSingleExecutableVersion)
+   {
+
+      ::string_array stra;
+
+      stra.explode("/", scopedstrAppId);
+
+      if(stra.get_count() != 2)
+      {
+
+         throw exception(error_invalid_parameter);
+
+      }
+
+      return get_executable_path_by_app_id(stra[0], stra[1], bSingleExecutableVersion);
+
+   }
+
+
+   ::file::path node::get_executable_path_by_app_id(const ::scoped_string & scopedstrRepos, const ::scoped_string & scopedstrApp, bool bSingleExecutableVersion)
+   {
+
+
+#if defined(MACOS)
+
+      return macos_app_folder() / "Contents/MacOS" / m_strApp;
+
+#else
+
+      string strName = scopedstrRepos + "_" + scopedstrApp;
+
+      strName.find_replace("-", "_");
+
+      ::file::path path;
+
+#if defined(WINDOWS)
+
+      if (bSingleExecutableVersion)
+      {
+
+         strName = "static_" + strName + ".exe";
+
+      }
+      else
+      {
+
+         strName = "shared_" + strName + ".exe";
+
+      }
+
+#elif defined(LINUX)
+
+      strName = "_" + strName;
+
+#endif
+
+#ifdef WINDOWS
+
+      auto pathFolder = acmedirectory()->roaming() / scopedstrRepos / scopedstrApp / "x64" ;
+
+      path = pathFolder / strName;
+
+      return path;
+
+#else
+
+      auto pathFolder = acmedirectory()->home();
+
+      path = pathFolder / "application" / scopedstrRepos / scopedstrApp / "x64" / strName;
+
+      return path;
+
+#endif
+
+
+#endif
+
+   }
+
+
+   void node::launch_app_by_app_id(const ::scoped_string & scopedstrAppId, bool bSingleExecutableVersion)
+   {
+
+      throw ::interface_only();
+
    }
 
 
@@ -2204,11 +2332,11 @@ return false;
     }
 
 
-    void node::windowing_post(const ::procedure& procedure)
-    {
+    //void node::windowing_post(const ::procedure& procedure)
+    //{
 
 
-    }
+    //}
 
 
     string node::get_local_mutex_name(const ::string& strAppId)

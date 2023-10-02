@@ -77,7 +77,7 @@ void matter::add_ref_history(matter* p, const ::scoped_string & scopedstrObjRefD
       try
       {
 
-         string strType = __type_name(this);
+         string strType = ::type(this).name();
 
          if (strType == "pacman::game")
          {

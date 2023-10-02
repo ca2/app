@@ -142,16 +142,43 @@ namespace graphics
    //}
 
 
-   ::graphics::buffer_item * buffer::on_begin_draw()
+   bool buffer::_on_begin_draw(::graphics::buffer_item * pitem)
    {
 
-      auto pitem = get_buffer_item();
+      //auto pitem = get_buffer_item();
 
-      buffer_size_and_position(pitem);
+      //buffer_size_and_position(pitem);
 
-      update_buffer(pitem);
+      //if (pitem->m_size.is_empty())
+      //{
 
-      return pitem;
+      //   if (egraphics & e_graphics_layout)
+      //   {
+
+      //      pitem->m_size = { 512, 256 };
+
+      //   }
+      //   else
+      //   {
+
+      //      information() << "window size is zero in begin draw!!";
+
+      //      return nullptr;
+
+      //   }
+
+      //}
+
+      if (!update_buffer(pitem))
+      {
+
+         return false;
+
+      }
+
+      //return pitem;
+
+      return true;
 
    }
 

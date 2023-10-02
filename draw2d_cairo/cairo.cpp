@@ -3,7 +3,7 @@
 #include "acme/primitive/collection/int_map.h"
 #include "acme/primitive/collection/string_map.h"
 #include "acme/primitive/primitive/factory.h"
-#include "aura/graphics/draw2d/matrix.h"
+#include "acme/primitive/geometry2d/matrix.h"
 
 
 static ::pointer< ::mutex > s_pmutex = nullptr;
@@ -152,7 +152,7 @@ void term_cairo_mutex()
 //#endif
 
 
-void copy(::draw2d::matrix * pmatrix, const cairo_matrix_t * pcairomatrix)
+void copy(::geometry2d::matrix * pmatrix, const cairo_matrix_t * pcairomatrix)
 {
 
    pmatrix->a1 = pcairomatrix->xx;
@@ -165,7 +165,7 @@ void copy(::draw2d::matrix * pmatrix, const cairo_matrix_t * pcairomatrix)
 }
 
 
-void copy(cairo_matrix_t* pcairomatrix,  const ::draw2d::matrix* pmatrix)
+void copy(cairo_matrix_t* pcairomatrix,  const ::geometry2d::matrix* pmatrix)
 {
 
    pcairomatrix->xx = pmatrix->a1;

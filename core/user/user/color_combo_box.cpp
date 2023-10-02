@@ -117,7 +117,7 @@ namespace user
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      release_mouse_capture();
+      defer_release_mouse_capture();
 
       if (m_bMouseDown)
       {
@@ -183,7 +183,7 @@ namespace user
 
                pframe->order(e_zorder_top_most);
                
-               pframe->place(rectangleWindow.left, rectangleWindow.bottom, 400, 200);
+               pframe->place(rectangleWindow.left(), rectangleWindow.bottom(), 400, 200);
                
                pframe->display();
 

@@ -67,7 +67,7 @@ namespace user
    void menu_interaction::_001OnDrawDefault(::draw2d::graphics_pointer & pgraphics)
    {
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
       if (m_atom == "separator")
       {
@@ -78,9 +78,9 @@ namespace user
 
          pgraphics->set(ppen);
 
-         pgraphics->set_current_point(rectangleClient.left, (rectangleClient.top + rectangleClient.bottom) / 2);
+         pgraphics->set_current_point(rectangleX.left(), (rectangleX.top() + rectangleX.bottom()) / 2);
 
-         pgraphics->line_to(rectangleClient.right, (rectangleClient.top + rectangleClient.bottom) / 2);
+         pgraphics->line_to(rectangleX.right(), (rectangleX.top() + rectangleX.bottom()) / 2);
 
          return;
 
@@ -101,21 +101,21 @@ namespace user
          pgraphics->set(ppen);
          pgraphics->set(pbrush);
          ::rectangle_i32 rectanglePopupArrow;
-         rectanglePopupArrow.left = rectangleClient.right - 9;
-         rectanglePopupArrow.right = rectangleClient.right - 4;
-         rectanglePopupArrow.top = ((rectangleClient.top + rectangleClient.bottom) / 2) - 4;
-         rectanglePopupArrow.bottom = ((rectangleClient.top + rectangleClient.bottom) / 2) + 4;
+         rectanglePopupArrow.left() = rectangleX.right() - 9;
+         rectanglePopupArrow.right() = rectangleX.right() - 4;
+         rectanglePopupArrow.top() = ((rectangleX.top() + rectangleX.bottom()) / 2) - 4;
+         rectanglePopupArrow.bottom() = ((rectangleX.top() + rectangleX.bottom()) / 2) + 4;
          point_f64_array pointa;
 
-         pointa.add(point_i32(rectanglePopupArrow.left, rectanglePopupArrow.bottom));
+         pointa.add(point_i32(rectanglePopupArrow.left(), rectanglePopupArrow.bottom()));
 
-         pointa.add(point_i32(rectanglePopupArrow.right, (rectanglePopupArrow.bottom + rectanglePopupArrow.top) / 2));
+         pointa.add(point_i32(rectanglePopupArrow.right(), (rectanglePopupArrow.bottom() + rectanglePopupArrow.top()) / 2));
 
-         pointa.add(point_i32(rectanglePopupArrow.left, rectanglePopupArrow.top));
+         pointa.add(point_i32(rectanglePopupArrow.left(), rectanglePopupArrow.top()));
 
 
 
-         pointa.add(point_i32(rectanglePopupArrow.left, rectanglePopupArrow.bottom));
+         pointa.add(point_i32(rectanglePopupArrow.left(), rectanglePopupArrow.bottom()));
          pgraphics->polygon(pointa);
 
       }
@@ -187,18 +187,18 @@ namespace user
    }
 
 
-   void menu_interaction::on_calc_size(calc_size * pcalcsize)
+   ::size_f64 menu_interaction::get_preferred_size(::draw2d::graphics_pointer & pgraphics)
    {
 
       auto strWindowText = get_window_text();
 
       //get_window_text(strText);
 
-      pcalcsize->m_pgraphics->set_font(this, ::e_element_none);
+      pgraphics->set_font(this, ::e_element_none);
 
-      auto size = pcalcsize->m_pgraphics->get_text_extent(strWindowText);
+      auto size = pgraphics->get_text_extent(strWindowText);
 
-      auto pstyle = get_style(pcalcsize->m_pgraphics);
+      auto pstyle = get_style(pgraphics);
 
       auto rectangleMargin = get_margin(pstyle);
 
@@ -206,28 +206,30 @@ namespace user
 
       auto rectanglePadding = get_padding(pstyle);
 
-      size.cx() += rectangleMargin.left + rectangleBorder.left + rectanglePadding.left;
+      size.cx() += rectangleMargin.left() + rectangleBorder.left() + rectanglePadding.left();
 
       size.cx() += m_pmenuitem->m_pmenu->m_dCheckBoxSize;
 
-      size.cx() += rectanglePadding.left;
+      size.cx() += rectanglePadding.left();
 
       if (m_pmenuitem->IsPopup())
       {
 
-         size.cx() += rectanglePadding.left;
+         size.cx() += rectanglePadding.left();
 
          size.cx() += m_pmenuitem->m_pmenu->m_dCheckBoxSize;
 
       }
 
-      size.cx() += rectangleMargin.right + rectangleBorder.right + rectanglePadding.right;
+      size.cx() += rectangleMargin.right() + rectangleBorder.right() + rectanglePadding.right();
 
-      size.cy() += rectangleMargin.top + rectangleBorder.top + rectanglePadding.top;
+      size.cy() += rectangleMargin.top() + rectangleBorder.top() + rectanglePadding.top();
 
-      size.cy() += rectangleMargin.bottom + rectangleBorder.bottom + rectanglePadding.bottom;
+      size.cy() += rectangleMargin.bottom() + rectangleBorder.bottom() + rectanglePadding.bottom();
 
-      pcalcsize->m_size = size;
+      //pcalcsize->m_size = size;
+
+      return size;
 
    }
 

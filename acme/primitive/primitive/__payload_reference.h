@@ -16,7 +16,7 @@ public:
 
    }
 
-   operator e_check & () { return m_payload.e_check_reference(); }
+   operator e_check & () { return m_payload.echeck_reference(); }
 
    operator bool & () { return m_payload.bool_reference(); }
    operator i8 & () { return m_payload.i8_reference(); }

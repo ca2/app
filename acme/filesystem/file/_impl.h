@@ -520,7 +520,7 @@
 //
 //   string strText;
 //
-//   auto type = __type_name(p);
+//   auto type = ::type(p).name();
 //
 //   if (p->has(e_flag_factory))
 //   {
@@ -901,14 +901,14 @@
 //inline void __exchange(::binary_stream & s, ::rectangle_i32 & rectangle)
 //{
 //
-//   s.exchange("left", rectangle.left); s.exchange("top", rectangle.top); s.exchange("right", rectangle.right); s.exchange("bottom", rectangle.bottom);
+//   s.exchange("left", rectangle.left()); s.exchange("top", rectangle.top()); s.exchange("right", rectangle.right()); s.exchange("bottom", rectangle.bottom());
 //
 //}
 //
 //inline void __exchange(::binary_stream & s, ::rectangle_i64 & rectangle)
 //{
 //
-//   s.exchange("left", rectangle.left); s.exchange("top", rectangle.top); s.exchange("right", rectangle.right); s.exchange("bottom", rectangle.bottom);
+//   s.exchange("left", rectangle.left()); s.exchange("top", rectangle.top()); s.exchange("right", rectangle.right()); s.exchange("bottom", rectangle.bottom());
 //
 //}
 //
@@ -916,14 +916,14 @@
 //
 //inline void __exchange(::binary_stream & s, ::rectangle_f32 & rectangle)
 //{
-//   s.exchange("left", rectangle.left); s.exchange("top", rectangle.top); s.exchange("right", rectangle.right); s.exchange("bottom", rectangle.bottom);
+//   s.exchange("left", rectangle.left()); s.exchange("top", rectangle.top()); s.exchange("right", rectangle.right()); s.exchange("bottom", rectangle.bottom());
 //}
 //
 //
 //
 //inline void __exchange(::binary_stream & s, ::rectangle_f64 & rectangle)
 //{
-//   s.exchange("left", rectangle.left); s.exchange("top", rectangle.top); s.exchange("right", rectangle.right); s.exchange("bottom", rectangle.bottom);
+//   s.exchange("left", rectangle.left()); s.exchange("top", rectangle.top()); s.exchange("right", rectangle.right()); s.exchange("bottom", rectangle.bottom());
 //}
 //
 //

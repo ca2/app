@@ -29,7 +29,7 @@ namespace windowing
       virtual void get_workspace_rectangle(::index iMonitor, ::rectangle_i32 * prectangle);
 
 
-      virtual void windowing_post(const ::procedure & procedure);
+      //virtual void windowing_post(const ::procedure & procedure);
 
 
       virtual bool message_loop_step();

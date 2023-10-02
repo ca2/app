@@ -2,6 +2,7 @@
 #include "main_window.h"
 #include "acme/constant/id.h"
 #include "acme/handler/item.h"
+#include "acme/user/user/tool.h"
 #include "aura/windowing/window.h"
 #include "aura/platform/application.h"
 
@@ -32,9 +33,13 @@ namespace user
 
       m_bEnableDragResize = true;
 
-      m_bClickDefaultMouseHandling = true;
+      m_bEnableDefaultControlBox = true;
 
-      m_bHoverDefaultMouseHandling = true;
+      m_bDefaultClickHandling = true;
+
+      m_bDefaultMouseHoverHandling = true;
+
+      m_bDefaultParentMouseMessageHandling = true;
 
       m_bExtendOnParentIfClientOnly = true;
 
@@ -66,33 +71,38 @@ namespace user
 
       defer_set_icon();
 
+      if (m_bEnableDefaultControlBox)
       {
 
-         auto pitemClose = __new(::item(::e_element_close_button, ::id_close_app));
+         {
 
-         add_item(pitemClose);
+            auto pitemClose = __new(::item(::e_element_close_button, ::id_close_app));
 
-         user_item(pitemClose)->m_ezorder = e_zorder_front;
+            tool().add_item(pitemClose);
 
-      }
+            user_item(pitemClose)->m_ezorder = e_zorder_front;
 
-      {
+         }
 
-         auto pitemMaximize = __new(::item(::e_element_maximize_button, ::id_maximize));
+         {
 
-         add_item(pitemMaximize);
+            auto pitemMaximize = __new(::item(::e_element_maximize_button, ::id_maximize));
 
-         user_item(pitemMaximize)->m_ezorder = e_zorder_front;
+            tool().add_item(pitemMaximize);
 
-      }
+            user_item(pitemMaximize)->m_ezorder = e_zorder_front;
 
-      {
+         }
 
-         auto pitemMinimize = __new(::item(::e_element_minimize_button, ::id_minimize));
+         {
 
-         add_item(pitemMinimize);
+            auto pitemMinimize = __new(::item(::e_element_minimize_button, ::id_minimize));
 
-         user_item(pitemMinimize)->m_ezorder = e_zorder_front;
+            tool().add_item(pitemMinimize);
+
+            user_item(pitemMinimize)->m_ezorder = e_zorder_front;
+
+         }
 
       }
 
@@ -102,12 +112,12 @@ namespace user
    void main_window::input_client_rectangle(::rectangle_i32 & rectangle, enum_layout elayout)
    {
       
-      rectangle = client_rectangle(elayout);
+      rectangle = this->rectangle(elayout);
    
       if(is_top_level() && ::is_set(m_pwindow))
       {
          
-         rectangle.top += (::i32) m_pwindow->get_top_margin();
+         rectangle.top() += (::i32) m_pwindow->get_top_margin();
          
       }
       
@@ -147,9 +157,9 @@ namespace user
 
          auto sizeMinimum = frame::get_window_minimum_size();
 
-         auto rectangleClient = const_layout().state(e_layout_sketch).raw_rectangle();
+         auto rectangleX = const_layout().state(e_layout_sketch).raw_rectangle();
 
-         auto sizeFrame = rectangleClient.size();
+         auto sizeFrame = rectangleX.size();
 
          if(sizeFrame.cx() < sizeMinimum.cx() || sizeFrame.cy() < sizeMinimum.cy())
          {
@@ -196,7 +206,7 @@ namespace user
 
       //bool bOk = 
       
-      create_host();
+      create_host(e_parallelization_synchronous);
 
       //if (!bOk)
       //{

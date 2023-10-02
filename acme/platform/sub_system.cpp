@@ -204,6 +204,31 @@ string sub_system::get_argument1(::index iArgument) const
 }
 
 
+bool sub_system::has_argument1(const ::scoped_string& scopedArgument) const
+{
+
+   bool bHasArgument = false;
+
+   for (index iArg = 0; iArg < get_argument_count1(); iArg++)
+   {
+
+      ::string strArg = get_argument1(iArg);
+
+      if (strArg == scopedArgument)
+      {
+
+         bHasArgument = true;
+
+         break;
+
+      }
+
+   }
+
+   return bHasArgument;
+
+}
+
 
 int * sub_system::get_pargc()
 {

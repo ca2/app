@@ -9,6 +9,8 @@
 #pragma once
 
 
+template < typename ENUM > struct raw_enum_of_struct { using type = ENUM; };
+
 
 template <class TYPE, TYPE t >
 struct integral_constant
@@ -892,7 +894,7 @@ class particle;
 class matter;
 class exception_translator;
 class counter;
-class type;
+//class type;
 
 class acme_file;
 class acme_path;
@@ -2003,7 +2005,7 @@ namespace mathematics
 
 
 
-class type;
+//class type;
 
 namespace text
 {

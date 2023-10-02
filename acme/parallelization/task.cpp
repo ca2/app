@@ -74,7 +74,7 @@ task::~task()
 #if defined(_DEBUG) && defined(TASK_DESTRUCTOR_REPORTING)
 
    auto strThreadName = ::task_get_name();
-   auto itask = ::get_current_itask();
+   auto itask = ::current_itask();
 
    ::information("Task destructor : " + strThreadName + " : (" + ::as_string(itask) + ")\n");
 
@@ -162,7 +162,7 @@ void task::add_task(::object* pobjectTask)
 bool task::is_current_task() const
 {
 
-   auto itaskCurrent = ::get_current_itask();
+   auto itaskCurrent = ::current_itask();
 
    return itaskCurrent == m_itask;
 
@@ -196,7 +196,7 @@ void task::post_request(::request* prequest)
 bool task::task_set_name(const ::scoped_string & scopedstrTaskName)
 {
    
-   if(::get_current_itask() == m_itask)
+   if(::current_itask() == m_itask)
    {
       
       ::task_set_name(scopedstrTaskName);
@@ -669,6 +669,34 @@ void task::post_procedure(const ::procedure & procedure)
 }
 
 
+void task::send_procedure(const ::procedure & procedure)
+{
+
+   if (is_current_task())
+   {
+
+      procedure();
+
+      return;
+
+   }
+
+   auto pevent = __create_new < manual_reset_event>();
+
+   post_procedure([procedure, pevent]()
+      {
+
+         procedure();
+
+         pevent->set_event();
+
+         });
+
+   pevent->wait(procedure.m_timeTimeout);
+
+}
+
+
 void task::run_posted_procedures()
 {
 
@@ -739,9 +767,9 @@ bool task::on_get_task_name(string & strTaskName)
    else
    {
 
-      //::task_set_name(__type_name(this));
+      //::task_set_name(::type(this).name());
 
-      strTaskName = __type_name(this);
+      strTaskName = ::type(this).name();
 
    }
 
@@ -770,13 +798,13 @@ void task::init_task()
 
    }
 
-   if (__type_name(this).contains("synth_thread"))
+   if (::type(this).name().contains("synth_thread"))
    {
 
       information("synth_thread thread::thread_proc");
 
    }
-   else if (__type_name(this).case_insensitive_ends("out"))
+   else if (::type(this).name().case_insensitive_ends("out"))
    {
 
       information("synth_thread thread::out");
@@ -887,7 +915,7 @@ void task::term_task()
 //
 //   //      }
 //
-//   //      m_atom = __type_name(pelement);
+//   //      m_atom = ::type(pelement).name();
 //
 //   //      task_set_name(m_atom);
 //
@@ -943,15 +971,22 @@ bool task::has_message() const
 //
 //   m_pelement = pelement;
 //
-//   m_atom = __type_name(pelement);
+//   m_atom = ::type(pelement).name();
 //
 //   return branch(epriority, nStackSize, uCreateFlags ADD_PARAM_SEC_ATTRS);
 //
 //}
 
 
-::pointer<::task>task::branch(const ::create_task_attributes & createtaskattributes)
+::pointer<::task>task::branch(enum_parallelization eparallelization, const ::create_task_attributes & createtaskattributes)
 {
+
+   if(eparallelization == e_parallelization_synchronous)
+   {
+
+      return branch_synchronously(createtaskattributes);
+
+   }
 
    if (m_atom.is_empty())
    {
@@ -959,13 +994,13 @@ bool task::has_message() const
       if (m_procedure)
       {
 
-         m_atom = __type_name(m_procedure);
+         m_atom = ::type(m_procedure).name();
 
       }
       else
       {
 
-         m_atom = __type_name(*this);
+         m_atom = ::type(this).name();
 
       }
 
@@ -1180,7 +1215,7 @@ bool task::has_message() const
    //if(m_atom.is_empty())
    //{
 
-   //   m_atom = __type_name(this);
+   //   m_atom = ::type(this).name();
 
    //}
 
@@ -1254,7 +1289,7 @@ bool task::has_message() const
 
    //auto estatus = branch(epriority, nStackSize, uiCreateFlags);
 
-   branch(createtaskattributes);
+   branch(e_parallelization_asynchronous, createtaskattributes);
 
    if (m_htask == 0)
    {
@@ -1307,13 +1342,13 @@ bool task::has_message() const
 //      if (m_pelement)
 //      {
 //
-//         m_atom = __type_name(m_pelement);
+//         m_atom = ::type(m_pelement).name();
 //
 //      }
 //      else
 //      {
 //
-//         m_atom = __type_name(this);
+//         m_atom = ::type(this).name();
 //
 //      }
 //
@@ -1587,7 +1622,7 @@ void task::kick_idle()
 bool task::is_branch_current() const
 {
 
-   return ::get_current_itask() == m_itask;
+   return ::current_itask() == m_itask;
 
 }
 
@@ -2055,9 +2090,17 @@ CLASS_DECL_ACME itask_t get_main_user_itask();
 CLASS_DECL_ACME void set_main_user_thread()
 {
 
-   set_main_user_itask(get_current_itask());
+   set_main_user_thread(current_htask());
 
-   set_main_user_htask(get_current_htask());
+}
+
+
+CLASS_DECL_ACME void set_main_user_thread(htask_t htask)
+{
+
+   set_main_user_itask(::as_itask(htask));
+
+   set_main_user_htask(htask);
 
 }
 
@@ -2065,7 +2108,7 @@ CLASS_DECL_ACME void set_main_user_thread()
 CLASS_DECL_ACME bool is_main_thread()
 {
 
-   return get_current_itask() == get_main_user_itask();
+   return current_itask() == get_main_user_itask();
 
 }
 
@@ -2195,6 +2238,37 @@ task_guard::~task_guard()
 //   return ::acme::get()->m_psubsystem->m_pfactory;
 //
 //}
+
+
+
+::index_array g_iaThreadIndex;
+
+
+::index task_index(itask_t itask)
+{
+
+   synchronous_lock sl(::acme::acme::g_pacme->m_psubsystem->acmesystem()->synchronization());
+
+   auto iThreadIndex = g_iaThreadIndex.find_first(itask);
+
+   if(iThreadIndex < 0)
+   {
+
+      iThreadIndex = g_iaThreadIndex.add(itask);
+
+   }
+
+   return iThreadIndex;
+
+}
+
+
+::index task_index()
+{
+
+   return task_index(::current_itask());
+
+}
 
 
 

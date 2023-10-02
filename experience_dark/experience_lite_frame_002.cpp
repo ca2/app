@@ -74,16 +74,16 @@ color32_t SetAValue(::u8 a, color32_t color32)
                   if(egrip & e_grip_top_left)
                   {
                      rectangle = rectangleEvent;
-                     rectangle.right = rectangle.left + 16;
-                     rectangle.bottom = rectangle.top + 5;
+                     rectangle.right() = rectangle.left() + 16;
+                     rectangle.bottom() = rectangle.top() + 5;
                      if(rectangle.contains(pointCursor))
                      {
                         etest = ::experience::e_frame_sizing_top_left;
                         goto SizingSuccess;
                      }
                      rectangle = rectangleEvent;
-                     rectangle.right = rectangle.left + 5;
-                     rectangle.bottom = rectangle.top + 16;
+                     rectangle.right() = rectangle.left() + 5;
+                     rectangle.bottom() = rectangle.top() + 16;
                      if(rectangle.contains(pointCursor))
                      {
                         etest = ::experience::e_frame_sizing_top_left;
@@ -93,16 +93,16 @@ color32_t SetAValue(::u8 a, color32_t color32)
                   if(egrip & e_grip_top_right)
                   {
                      rectangle = rectangleEvent;
-                     rectangle.left = rectangle.right - 16;
-                     rectangle.bottom = rectangle.top + 5;
+                     rectangle.left() = rectangle.right() - 16;
+                     rectangle.bottom() = rectangle.top() + 5;
                      if(rectangle.contains(pointCursor))
                      {
                         etest = ::experience::e_frame_sizing_top_right;
                         goto SizingSuccess;
                      }
                      rectangle = rectangleEvent;
-                     rectangle.left = rectangle.right - 5;
-                     rectangle.bottom = rectangle.top + 16;
+                     rectangle.left() = rectangle.right() - 5;
+                     rectangle.bottom() = rectangle.top() + 16;
                      if(rectangle.contains(pointCursor))
                      {
                         etest = ::experience::e_frame_sizing_top_right;
@@ -112,16 +112,16 @@ color32_t SetAValue(::u8 a, color32_t color32)
                   if(egrip & e_grip_bottom_right)
                   {
                      rectangle = rectangleEvent;
-                     rectangle.left = rectangle.right - 16;
-                     rectangle.top = rectangle.bottom - 5;
+                     rectangle.left() = rectangle.right() - 16;
+                     rectangle.top() = rectangle.bottom() - 5;
                      if(rectangle.contains(pointCursor))
                      {
                         etest = ::experience::e_frame_sizing_bottom_right;
                         goto SizingSuccess;
                      }
                      rectangle = rectangleEvent;
-                     rectangle.left = rectangle.right - 5;
-                     rectangle.top = rectangle.bottom - 16;
+                     rectangle.left() = rectangle.right() - 5;
+                     rectangle.top() = rectangle.bottom() - 16;
                      if(rectangle.contains(pointCursor))
                      {
                         etest = ::experience::e_frame_sizing_bottom_right;
@@ -131,16 +131,16 @@ color32_t SetAValue(::u8 a, color32_t color32)
                   if(egrip & e_grip_bottom_left)
                   {
                      rectangle = rectangleEvent;
-                     rectangle.right = rectangle.left + 16;
-                     rectangle.top = rectangle.bottom - 5;
+                     rectangle.right() = rectangle.left() + 16;
+                     rectangle.top() = rectangle.bottom() - 5;
                      if(rectangle.contains(pointCursor))
                      {
                         etest = ::experience::e_frame_sizing_bottom_left;
                         goto SizingSuccess;
                      }
                      rectangle = rectangleEvent;
-                     rectangle.right = rectangle.left + 5;
-                     rectangle.top = rectangle.bottom - 16;
+                     rectangle.right() = rectangle.left() + 5;
+                     rectangle.top() = rectangle.bottom() - 16;
                      if(rectangle.contains(pointCursor))
                      {
                         etest = ::experience::e_frame_sizing_bottom_left;
@@ -149,10 +149,10 @@ color32_t SetAValue(::u8 a, color32_t color32)
                   }
                   if(egrip & e_grip_top)
                   {
-                     rectangle.top = rectangleEvent.top;
-                     rectangle.left = ptCenter.x() - 8;
-                     rectangle.right = ptCenter.x() + 8;
-                     rectangle.bottom = rectangleEvent.top + 5;
+                     rectangle.top() = rectangleEvent.top();
+                     rectangle.left() = ptCenter.x() - 8;
+                     rectangle.right() = ptCenter.x() + 8;
+                     rectangle.bottom() = rectangleEvent.top() + 5;
                      if(rectangle.contains(pointCursor))
                      {
                         etest = ::experience::e_frame_sizing_top;
@@ -161,10 +161,10 @@ color32_t SetAValue(::u8 a, color32_t color32)
                   }
                   if(egrip & e_grip_bottom)
                   {
-                     rectangle.top = rectangleEvent.bottom - 5;
-                     rectangle.left = ptCenter.x() - 8;
-                     rectangle.right = ptCenter.x() + 8;
-                     rectangle.bottom = rectangleEvent.bottom;
+                     rectangle.top() = rectangleEvent.bottom() - 5;
+                     rectangle.left() = ptCenter.x() - 8;
+                     rectangle.right() = ptCenter.x() + 8;
+                     rectangle.bottom() = rectangleEvent.bottom();
                      if(rectangle.contains(pointCursor))
                      {
                         etest = ::experience::e_frame_sizing_bottom;
@@ -173,10 +173,10 @@ color32_t SetAValue(::u8 a, color32_t color32)
                   }
                   if(egrip & e_grip_left)
                   {
-                     rectangle.top = ptCenter.y() - 8;
-                     rectangle.left = rectangleEvent.left;
-                     rectangle.right = rectangleEvent.left + 5;
-                     rectangle.bottom = ptCenter.y() + 8;
+                     rectangle.top() = ptCenter.y() - 8;
+                     rectangle.left() = rectangleEvent.left();
+                     rectangle.right() = rectangleEvent.left() + 5;
+                     rectangle.bottom() = ptCenter.y() + 8;
                      if(rectangle.contains(pointCursor))
                      {
                         etest = ::experience::e_frame_sizing_left;
@@ -185,10 +185,10 @@ color32_t SetAValue(::u8 a, color32_t color32)
                   }
                   if(egrip & e_grip_right)
                   {
-                     rectangle.top = ptCenter.y() - 8;
-                     rectangle.left = rectangleEvent.right - 5;
-                     rectangle.right = rectangleEvent.right;
-                     rectangle.bottom = ptCenter.y() + 8;
+                     rectangle.top() = ptCenter.y() - 8;
+                     rectangle.left() = rectangleEvent.right() - 5;
+                     rectangle.right() = rectangleEvent.right();
+                     rectangle.bottom() = ptCenter.y() + 8;
                      if(rectangle.contains(pointCursor))
                      {
                         etest = ::experience::e_frame_sizing_right;
@@ -278,9 +278,9 @@ SizingNone:;
                else
                {
                   ::rectangle_i32 rectangle;
-                  ::rectangle_i32 rectangleClient = lpcrectClient;
-                  rectangleClient.deflate(1, 1);
-                  GetBorderRectangle(rectangleClient, &rectangle, eside);
+                  ::rectangle_i32 rectangleX = lpcrectClient;
+                  rectangleX.deflate(1, 1);
+                  GetBorderRectangle(rectangleX, &rectangle, eside);
 
                   pgraphics->color_blend(
                                       rectangle,
@@ -289,30 +289,30 @@ SizingNone:;
 
                   GetBorderRectangle(lpcrectClient, rectangle, eside);
 
-                  ::rectangle_i32 rectangleClientB = rectangleA;
+                  ::rectangle_i32 rectangleXB = rectangleA;
 
-                  rectangleClientB.bottom--;
-                  rectangleClientB.right--;
+                  rectangleXB.bottom()--;
+                  rectangleXB.right()--;
 
-                  rectangleA.top++;
-                  rectangleA.bottom--;
-                  rectangleA.left++;
-                  rectangleA.right--;
+                  rectangleA.top()++;
+                  rectangleA.bottom()--;
+                  rectangleA.left()++;
+                  rectangleA.right()--;
                   if(edock == e_dock_none)
                   {
                      Draw3dRectSide(pgraphics, rectangleA, eside, SetAValue(255, m_colorDkShadow), SetAValue(255, m_colorDkShadow));
                   }
 
-                  rectangleA.top++;
-                  rectangleA.bottom--;
-                  rectangleA.left++;
-                  rectangleA.right--;
+                  rectangleA.top()++;
+                  rectangleA.bottom()--;
+                  rectangleA.left()++;
+                  rectangleA.right()--;
                   Draw3dRectSide(pgraphics, rectangleA, eside, SetAValue(255, m_colorDkShadow), SetAValue(255, m_colorDkShadow));
 
-                  rectangleA.top++;
-                  rectangleA.bottom--;
-                  rectangleA.left++;
-                  rectangleA.right--;
+                  rectangleA.top()++;
+                  rectangleA.bottom()--;
+                  rectangleA.left()++;
+                  rectangleA.right()--;
                   if(edock == e_dock_none)
                   {
                      Draw3dRectSide(pgraphics, rectangleA, eside, SetAValue(255, m_colorDkShadow), SetAValue(255, m_colorDkShadow));
@@ -342,7 +342,7 @@ SizingNone:;
                //    CVMSApp * pApp = (CVMSApp *) System;
                //::aura::savings & savings = psession->savings();
 
-               auto rectangleClient = pframewindow->client_rectangle();
+               auto rectangleX = pframewindow->rectangle();
 
                string str;
 
@@ -431,31 +431,31 @@ SizingNone:;
                ::rectangle_i32 rectangle;
                if(eside == e_border_top)
                {
-                  rectangle.left = rectangleBig.left;
-                  rectangle.right = rectangleBig.right;
-                  rectangle.top = rectangleBig.top;
-                  rectangle.bottom = rectangleSmall.top;
+                  rectangle.left() = rectangleBig.left();
+                  rectangle.right() = rectangleBig.right();
+                  rectangle.top() = rectangleBig.top();
+                  rectangle.bottom() = rectangleSmall.top();
                }
                else if(eside == e_border_left)
                {
-                  rectangle.left = rectangleBig.left;
-                  rectangle.right = rectangleSmall.left;
-                  rectangle.top = rectangleSmall.top;
-                  rectangle.bottom = rectangleSmall.bottom;
+                  rectangle.left() = rectangleBig.left();
+                  rectangle.right() = rectangleSmall.left();
+                  rectangle.top() = rectangleSmall.top();
+                  rectangle.bottom() = rectangleSmall.bottom();
                }
                else if(eside == e_border_right)
                {
-                  rectangle.left = rectangleSmall.right;
-                  rectangle.right = rectangleBig.right;
-                  rectangle.top = rectangleSmall.top;
-                  rectangle.bottom = rectangleSmall.bottom;
+                  rectangle.left() = rectangleSmall.right();
+                  rectangle.right() = rectangleBig.right();
+                  rectangle.top() = rectangleSmall.top();
+                  rectangle.bottom() = rectangleSmall.bottom();
                }
                else if(eside == e_border_bottom)
                {
-                  rectangle.left = rectangleBig.left;
-                  rectangle.right = rectangleBig.right;
-                  rectangle.top = rectangleSmall.bottom;
-                  rectangle.bottom = rectangleBig.bottom;
+                  rectangle.left() = rectangleBig.left();
+                  rectangle.right() = rectangleBig.right();
+                  rectangle.top() = rectangleSmall.bottom();
+                  rectangle.bottom() = rectangleBig.bottom();
                }
                *lprect = rectangle;
             }
@@ -481,13 +481,13 @@ SizingNone:;
                //            const i32 size1 = 14;
                //      const i32 size2 = 15;
 
-               ::rectangle_i32 rectangleClient(lpcrectClient);
-               //            ::rectangle_i32 rectangleClientB(rectangleClient);
+               ::rectangle_i32 rectangleX(lpcrectClient);
+               //            ::rectangle_i32 rectangleXB(rectangleX);
                ::rectangle_i32 rectangleA;
                point_i32 ptA;
                point_i32 ptB;
                point_i32 ptC;
-               ::rectangle_i32 rectangle(rectangleClient);
+               ::rectangle_i32 rectangle(rectangleX);
 
 
 
@@ -496,10 +496,10 @@ SizingNone:;
                case e_grip_top_left:
                {
 
-                  rectangleClient.bottom--;
-                  rectangleClient.right--;
+                  rectangleX.bottom()--;
+                  rectangleX.right()--;
 
-                  rectangleA = rectangleClient;
+                  rectangleA = rectangleX;
 
                   pgraphics->SelectObject(m_ppenHilight1);
 
@@ -598,10 +598,10 @@ SizingNone:;
                case e_grip_top_right:
                {
 
-                  rectangleClient.bottom--;
-                  rectangleClient.right--;
+                  rectangleX.bottom()--;
+                  rectangleX.right()--;
 
-                  rectangleA = rectangleClient;
+                  rectangleA = rectangleX;
 
                   pgraphics->SelectObject(m_ppenHilight1);
 
@@ -700,10 +700,10 @@ SizingNone:;
                {
                   pgraphics->SelectObject(m_ppenHilight1);
 
-                  rectangleClient.bottom--;
-                  rectangleClient.right--;
+                  rectangleX.bottom()--;
+                  rectangleX.right()--;
 
-                  rectangleA = rectangleClient;
+                  rectangleA = rectangleX;
 
 
                   ptA = rectangleA.bottom_left();
@@ -799,10 +799,10 @@ SizingNone:;
                break;
                case e_grip_bottom_right:
                {
-                  rectangleClient.bottom--;
-                  rectangleClient.right--;
+                  rectangleX.bottom()--;
+                  rectangleX.right()--;
 
-                  rectangleA = rectangleClient;
+                  rectangleA = rectangleX;
 
 
                   pgraphics->SelectObject(m_ppenDkShadow1);
@@ -907,10 +907,10 @@ SizingNone:;
 
                   ::rectangle_i32 rectangleB;
 
-                  rectangleB.top = rectangleClient.top;
-                  rectangleB.left = ptCenter.x() - GRIP_CENTER_LARGE_CX / 2;
-                  rectangleB.right = ptCenter.x() + GRIP_CENTER_LARGE_CX / 2;
-                  rectangleB.bottom = rectangleB.top + GRIP_CENTER_SMALL_CY;
+                  rectangleB.top() = rectangleX.top();
+                  rectangleB.left() = ptCenter.x() - GRIP_CENTER_LARGE_CX / 2;
+                  rectangleB.right() = ptCenter.x() + GRIP_CENTER_LARGE_CX / 2;
+                  rectangleB.bottom() = rectangleB.top() + GRIP_CENTER_SMALL_CY;
 
                   DrawRectGrip(pgraphics, rectangleB);
                }
@@ -921,10 +921,10 @@ SizingNone:;
 
                   ::rectangle_i32 rectangleB;
 
-                  rectangleB.bottom = rectangleClient.bottom;
-                  rectangleB.left = ptCenter.x() - GRIP_CENTER_LARGE_CX / 2;
-                  rectangleB.right = ptCenter.x() + GRIP_CENTER_LARGE_CX / 2;
-                  rectangleB.top = rectangleB.bottom - GRIP_CENTER_SMALL_CY;
+                  rectangleB.bottom() = rectangleX.bottom();
+                  rectangleB.left() = ptCenter.x() - GRIP_CENTER_LARGE_CX / 2;
+                  rectangleB.right() = ptCenter.x() + GRIP_CENTER_LARGE_CX / 2;
+                  rectangleB.top() = rectangleB.bottom() - GRIP_CENTER_SMALL_CY;
 
                   DrawRectGrip(pgraphics, rectangleB);
                }
@@ -935,10 +935,10 @@ SizingNone:;
 
                   ::rectangle_i32 rectangleB;
 
-                  rectangleB.top = ptCenter.y() - GRIP_CENTER_LARGE_CY / 2;
-                  rectangleB.left = rectangleClient.left;
-                  rectangleB.right = rectangleClient.left + GRIP_CENTER_SMALL_CX;
-                  rectangleB.bottom = ptCenter.y() + GRIP_CENTER_LARGE_CY / 2;
+                  rectangleB.top() = ptCenter.y() - GRIP_CENTER_LARGE_CY / 2;
+                  rectangleB.left() = rectangleX.left();
+                  rectangleB.right() = rectangleX.left() + GRIP_CENTER_SMALL_CX;
+                  rectangleB.bottom() = ptCenter.y() + GRIP_CENTER_LARGE_CY / 2;
 
                   DrawRectGrip(pgraphics, rectangleB);
                }
@@ -949,10 +949,10 @@ SizingNone:;
 
                   ::rectangle_i32 rectangleB;
 
-                  rectangleB.top = ptCenter.y() - GRIP_CENTER_LARGE_CY / 2;
-                  rectangleB.right = rectangleClient.right;
-                  rectangleB.left = rectangleClient.right - GRIP_CENTER_SMALL_CX;
-                  rectangleB.bottom = ptCenter.y() + GRIP_CENTER_LARGE_CY / 2;
+                  rectangleB.top() = ptCenter.y() - GRIP_CENTER_LARGE_CY / 2;
+                  rectangleB.right() = rectangleX.right();
+                  rectangleB.left() = rectangleX.right() - GRIP_CENTER_SMALL_CX;
+                  rectangleB.bottom() = ptCenter.y() + GRIP_CENTER_LARGE_CY / 2;
 
                   DrawRectGrip(pgraphics, rectangleB);
                }
@@ -973,17 +973,17 @@ SizingNone:;
 
                pgraphics->draw_inset_3d_rectangle(rectangle, crButtonHilite, crButtonDarkShadow);
 
-               rectangle.top++;
-               rectangle.bottom--;
-               rectangle.left++;
-               rectangle.right--;
+               rectangle.top()++;
+               rectangle.bottom()--;
+               rectangle.left()++;
+               rectangle.right()--;
 
                pgraphics->draw_inset_3d_rectangle(rectangle, crButtonFace, crButtonShadow);
 
-               rectangle.top++;
-               rectangle.bottom--;
-               rectangle.left++;
-               rectangle.right--;
+               rectangle.top()++;
+               rectangle.bottom()--;
+               rectangle.left()++;
+               rectangle.right()--;
 
                pgraphics->fill_rectangle(rectangle, crButtonFace);
 

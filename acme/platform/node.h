@@ -308,17 +308,17 @@ namespace acme
 
       virtual void * get_os_xcb_connection();
 
-      virtual void node_post(const ::procedure & procedure);
+      virtual void user_post(const ::procedure & procedure);
 
-      virtual void node_send(const ::procedure & procedure);
+      virtual void user_send(const ::procedure & procedure);
 
-      void post_procedure(const ::procedure & procedure) override;
+      //void post_procedure(const ::procedure & procedure) override;
 
-      void send_procedure(const ::procedure & procedure) override;
+      //void send_procedure(const ::procedure & procedure) override;
 
-      virtual void node_post_quit();
+      virtual void user_post_quit();
 
-      virtual void node_quit();
+      //virtual void node_quit();
 
       virtual bool should_launch_on_node(::topic * ptopic);
 
@@ -374,6 +374,10 @@ namespace acme
       
       
       virtual void launch_app(const ::string & psz, const char ** argv, int iFlags);
+
+      virtual ::file::path get_executable_path_by_app_id(const ::scoped_string & scopedstrAppId, bool bSingleExecutableVersion);
+      virtual ::file::path get_executable_path_by_app_id(const ::scoped_string & scopedstrRepos, const ::scoped_string & scopedstrApp, bool bSingleExecutableVersion);
+      virtual void launch_app_by_app_id(const ::scoped_string & scopedstrAppId, bool bSingleExecutableVersion);
 
       virtual ::process_identifier create_process(const ::string & pszCommandLine);
 
@@ -491,7 +495,7 @@ namespace acme
       virtual void on_change_application_capability();
 
 
-      virtual void windowing_post(const ::procedure& procedure);
+      //virtual void windowing_post(const ::procedure& procedure);
 
 
       virtual string get_local_mutex_name(const ::string & strAppId);

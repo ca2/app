@@ -35,59 +35,59 @@ namespace filemanager
       /// fix this concept if there are app exclusive file systems.... but,
       /// other file systems can be included in more incluse fs::data
       /// (or just exclusive file systems at fs::data (ftp only file system?)
-      ::pointer<::request>m_prequest;
-      ::file::path m_filepath;
-      bool m_bMakeVisible;
-      bool m_bTransparentBackground;
-      ::user::interaction * m_puserinteractionParent;
-      ::pointer<::fs::data>      m_pfsdata;
-      callback *                 m_pcallback;
+      ::pointer<::request>                   m_prequest;
+      ::file::path                           m_filepath;
+      bool                                   m_bMakeVisible;
+      bool                                   m_bTransparentBackground;
+      ::user::interaction *                  m_puserinteractionParent;
+      ::pointer<::fs::data>                  m_pfsdata;
+      callback *                             m_pcallback;
       //bool bMakeVisible = true, bool bTransparentBackground = false, ::pointer<::user::interaction>puiParent = nullptr, ::fs::data * pfsdata = nullptr, ::pointer<data>data = nullptr, callback * pcallback = nullptr
-      ::user::multiple_document_template * m_pimpactsystem;
-      ::write_text::font_pointer                   m_pfont;
-      ::user::document *                  m_pdocumentTopic;
-      ::filemanager::document *                    m_pdocument;
-      string m_strTitle;
-      ::type m_typeFileList;
-      //    callback   *                        m_pfilemanager;
-//      callback *                          m_pcallback;
-//      bool                                m_bTransparentBackground;
-      ::string                            m_strDataKey;
-      ::user::place_holder *              m_pholderFileList;
-      ::user::tree *                      m_ptreeFileTreeMerge;
-      bool                                m_bSetBergedgeTopicFile;
-      property_set                        m_setToolbar;
-      bool                                m_bEnableRecursiveFolderSelectionList;
-      atom                                  m_atom;
-      string                              m_strCopy;
-      ::file::path                        m_pathDefault;
-      string                              m_strMenuBar;
-      string                              m_strDialogBar;
-      string                              m_strPopup;
-      string                              m_strXmlPopup;
-      string                              m_strXmlPopupSubstId;
+      ::user::multiple_document_template *   m_pimpactsystem;
+      ::write_text::font_pointer             m_pfont;
+      ::user::document *                     m_pdocumentTopic;
+      ::filemanager::document *              m_pdocument;
+      string                                 m_strTitle;
+      ::type_atom                            m_typeatomFileList;
+      // callback *                          m_pfilemanager;
+      // callback *                          m_pcallback;
+      // bool                                m_bTransparentBackground;
+      ::string                               m_strDataKey;
+      ::user::place_holder *                 m_pholderFileList;
+      ::user::tree *                         m_ptreeFileTreeMerge;
+      bool                                   m_bSetBergedgeTopicFile;
+      property_set                           m_setToolbar;
+      bool                                   m_bEnableRecursiveFolderSelectionList;
+      atom                                   m_atom;
+      string                                 m_strCopy;
+      ::file::path                           m_pathDefault;
+      string                                 m_strMenuBar;
+      string                                 m_strDialogBar;
+      string                                 m_strPopup;
+      string                                 m_strXmlPopup;
+      string                                 m_strXmlPopupSubstId;
 
-      string                              m_strFolderPopup;
+      string                                 m_strFolderPopup;
 
-      atom                                  m_atomExpandBox;
-      atom                                  m_atomCollapseBox;
+      atom                                   m_atomExpandBox;
+      atom                                   m_atomCollapseBox;
 
-      ::string                     m_strDataKeyStatic;
+      ::string                               m_strDataKeyStatic;
 
 
-      ::pointer<file_list_callback>      m_pfilelistcallback;
+      ::pointer<file_list_callback>          m_pfilelistcallback;
 
-      string                              m_strLevelUp;
-      i32                                 m_iIconSize;
-      bool                                m_bListText;
-      bool                                m_bListSelection;
-      bool                                m_bFileSize;
-      bool                                m_bPassBk;
-      bool                                m_bIconImpact;
+      string                                 m_strLevelUp;
+      i32                                    m_iIconSize;
+      bool                                   m_bListText;
+      bool                                   m_bListSelection;
+      bool                                   m_bFileSize;
+      bool                                   m_bPassBk;
+      bool                                   m_bIconImpact;
 
 
       data();
-      virtual ~data();
+      ~data() override;
 
 
       // void assert_ok() const override;

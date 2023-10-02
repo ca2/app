@@ -42,6 +42,47 @@ CLASS_DECL_ACME void trace_category_static_init(::acme::system * psystem);
 CLASS_DECL_ACME void trace_category_static_term();
 
 
+::file::path _system_config_folder_path()
+{
+
+   ::file::path pathSystemConfigFolder;
+
+#ifdef WINDOWS
+
+   pathSystemConfigFolder = getenv("AppData");
+
+#else // WINDOWS
+
+   pathSystemConfigFolder = getenv("HOME");
+
+#ifdef MACOS
+
+   pathSystemConfigFolder /= "Application Support";
+
+#else // MACOS
+
+   pathSystemConfigFolder /= ".config";
+
+#endif // !MACOS
+
+#endif // !WINDOWS
+
+   return pathSystemConfigFolder;
+
+}
+
+::file::path _ca2_config_system_folder_path()
+{
+
+   auto pathSystemConfigFolder = _system_config_folder_path();
+
+   auto pathCa2ConfigSystemFolder = pathSystemConfigFolder / "ca2/config/system";
+
+   return pathCa2ConfigSystemFolder;
+
+}
+
+
 //static ::acme::system * g_psystem = nullptr;
 
 
@@ -109,12 +150,22 @@ namespace acme
 
       m_psubsystem->initialize(this);
 
+      ::output_debug_string("Going to create simple log\n");
+
       m_plogger = __create_new < ::simple_log >();
 
+      ::output_debug_string("output_debug_string : simple log created\n");
+
+      information() << "information() << output_debug_string : simple log created";
+
 #ifdef PARALLELIZATION_PTHREAD
+
 #if defined(__APPLE__)
+
       m_bJoinable = true;
+
 #endif
+
 #endif
 
       //#ifdef WINDOWS_DESKTOP
@@ -155,6 +206,8 @@ namespace acme
 
       m_plogger->m_etracelevelMinimum = e_trace_level_information;
 
+      information() << "initialize_system trace_category_static_init";
+
       trace_category_static_init(this);
 
 
@@ -175,33 +228,41 @@ namespace acme
       //m_pacmedirectory = nullptr;
       //m_pacmepath = nullptr;
 
+      information() << "initialize_system factory()->initialize";
+
       factory()->initialize(this);
 
-      //#ifdef LINUX
-      //
-      //      m_elinuxdistribution = e_linux_distribution_unknown;
-      //
-      //#endif
+//      //#ifdef LINUX
+//      //
+//      //      m_elinuxdistribution = e_linux_distribution_unknown;
+//      //
+//      //#endif
+//
+//      //m_edesktop = ::user::e_desktop_none;
+//
+//      information() << "initialize_system os_construct";
+//
+//      os_construct();
+//
+//      //acmesystem() = this;
+//
+//      //      if (g_psystem == nullptr)
+//      //      {
+//      //
+//      //         g_psystem = this;
+//      //
+//      //      }
 
-      //m_edesktop = ::user::e_desktop_none;
 
-      os_construct();
-
-      //acmesystem() = this;
-
-      //      if (g_psystem == nullptr)
-      //      {
-      //
-      //         g_psystem = this;
-      //
-      //      }
-
+      information() << "initialize_system create nano";
 
       __construct_new(m_pnano);
 
       //m_psystemimpl = memory_new system_impl;
 
       //set_os_data(LAYERED_ACME, this);
+
+      information() << "acme initialize_system end";
 
    }
 
@@ -285,40 +346,33 @@ namespace acme
       if (m_pnode)
       {
 
-         //return ::success;
-
          return;
 
       }
+
+      information() <<"::acme::system create_os_node";
 
       auto & pfactory = node_factory();
 
       if (!pfactory)
       {
 
-         //fatal() <<"node_factory has failed (status=" << (const void &) pfactory << ")";
+         fatal() <<"node_factory has failed";
 
          throw ::exception(error_resource);
 
       }
 
-
-
-
-
 #if !defined(WINDOWS)
-
 
       __construct(m_pexceptiontranslator);
 
-
       m_pexceptiontranslator->attach();
-
 
 #endif
 
+      information() << "create_os_node going to create node";
 
-      //auto estatus = __construct(m_pnode);
       __construct(m_pnode);
 
       m_pacmenode = m_pnode;
@@ -575,7 +629,7 @@ namespace acme
 
       //::acme::idpool::term();
 
-      m_pnode->node_quit();
+      m_pnode->user_post_quit();
 
       m_pnode.release();
 
@@ -1033,130 +1087,6 @@ namespace acme
       return m_pnanohttp;
 
    }
-
-
-   bool system::http_exists(const ::scoped_string & scopedstrUrl, ::property_set & set)
-   {
-
-      throw ::interface_only();
-
-      return false;
-
-
-   }
-
-
-   ::file::enum_type system::http_get_type(const ::scoped_string & scopedstrUrl, property_set & set)
-   {
-
-      throw ::interface_only();
-
-      return ::file::e_type_unknown;
-
-   }
-
-   
-   ::file::enum_type system::http_get_type(const ::scoped_string & scopedstrUrl, ::payload * pvarQuery, property_set & set)
-   {
-
-      throw ::interface_only();
-
-      return ::file::e_type_unknown;
-
-   }
-
-
-
-   ::string system::http_text(const ::scoped_string & scopedstrUrl)
-   {
-
-      auto memory = http_memory(scopedstrUrl);
-
-      ::string str = memory.as_utf8();
-
-      return str;
-
-   }
-
-
-   ::string system::http_text(const ::scoped_string & scopedstrUrl, ::property_set & set)
-   {
-
-      auto memory = http_memory(scopedstrUrl, set);
-
-      ::string str = memory.as_utf8();
-
-      return str;
-
-   }
-
-
-   ::memory system::http_memory(const ::scoped_string & scopedstrUrl)
-   {
-
-      property_set set;
-
-      set["raw_http"] = true;
-
-      set["disable_common_name_cert_check"] = true;
-
-      return http_memory(scopedstrUrl, set);
-
-   }
-
-
-   ::memory system::http_memory(const ::scoped_string & scopedstrUrl, ::property_set & set)
-   {
-
-      try
-      {
-
-         ::memory memory;
-
-         ::nano::http_response httpresponse(set, memory);
-
-         nano_http()->memory(scopedstrUrl, httpresponse);
-
-         return ::transfer(memory);
-
-      }
-      catch (...)
-      {
-
-         set["timeout"] = true;
-
-         return {};
-
-      }
-
-      //return pasynchronousehttpresponse->m_data.m_memory;
-
-   }
-
-
-   void system::http_download(const ::payload & payloadFile, const ::scoped_string & scopedstrUrl)
-   {
-
-      auto pfile = acmefile()->get_writer(payloadFile);
-
-      auto memory = http_memory(scopedstrUrl);
-
-      pfile->write(memory.data(), memory.size());
-
-   }
-
-
-   void system::http_download(const ::payload & payloadFile, const ::scoped_string & scopedstrUrl, ::property_set & set)
-   {
-
-      auto pfile = acmefile()->get_writer(payloadFile);
-
-      auto memory = http_memory(scopedstrUrl, set);
-
-      pfile->write(memory.data(), memory.size());
-
-   }
-
 
 
    bool system::has_audio()
@@ -1814,7 +1744,7 @@ namespace acme
 
       }
 
-      information() << "::apex::system::on_request session = " << __type_name(psession) << "(" << ((iptr)psession) << ")";
+      information() << "::apex::system::on_request session = " << ::type(psession).name() << "(" << ((iptr)psession) << ")";
 
       psession->post_request(prequest);
 
@@ -2122,7 +2052,22 @@ namespace acme
 
 #else
 
-      etracelevel = e_trace_level_warning;
+      auto pathCa2ConfigSystemFolder = _ca2_config_system_folder_path();
+
+      auto pathTraceLevelInformation = pathCa2ConfigSystemFolder / "trace_level_information.txt";
+
+      if(file_exists(pathTraceLevelInformation))
+      {
+
+         etracelevel = e_trace_level_information;
+
+      }
+      else
+      {
+
+         etracelevel = e_trace_level_warning;
+
+      }
 
 #endif
 
@@ -2180,11 +2125,11 @@ namespace acme
 
 
 
-   void system::os_construct()
-   {
-
-
-   }
+//   void system::os_construct()
+//   {
+//
+//
+//   }
 
 
 #ifdef _DEBUG
@@ -2741,25 +2686,25 @@ namespace acme
    }
 
 
-   void system::windowing_send(const ::procedure & procedure)
-   {
-
-      auto pmanualresetevent = __new(manual_reset_event);
-
-      windowing_post([pmanualresetevent, procedure]()
-                     {
-
-                        procedure();
-
-                        pmanualresetevent->set_event();
-
-      }
-
-      );
-
-      pmanualresetevent->wait(procedure.m_timeTimeout);
-
-   }
+//   void system::windowing_send(const ::procedure & procedure)
+//   {
+//
+//      auto pmanualresetevent = __new(manual_reset_event);
+//
+//      windowing_post([pmanualresetevent, procedure]()
+//                     {
+//
+//                        procedure();
+//
+//                        pmanualresetevent->set_event();
+//
+//      }
+//
+//      );
+//
+//      pmanualresetevent->wait(procedure.m_timeTimeout);
+//
+//   }
 
 
    void system::destroy()

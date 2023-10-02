@@ -115,7 +115,8 @@ CONFIGURATION_IMPACT =15,
 PROPERTIES_IMPACT= 16,
 HELP_IMPACT =17,
 FIRST_PANE =18,
-
+APP_OPTIONS_IMPACT = 19,
+CONTEXT_OPTIONS_IMPACT = 20,
 };
 
 
@@ -175,7 +176,6 @@ enum enum_type
    // integral
    //type_block = 1000,
    e_type_bool,
-   e_type_pbool,
    e_type_byte,
    e_type_u8 = e_type_byte,
    e_type_char,
@@ -248,13 +248,14 @@ enum enum_type
    e_type_last_element,
 
    // enum
-   e_type_enum_command = 20000,
-   e_type_enum_status,
-   e_type_enum_check,
-   e_type_enum_flag,
+   //e_type_enum_command = 20000,
+   //e_type_enum_status,
+   //e_type_enum_check,
+   //e_type_enum_flag,
 
    e_type_primitive_mask = 65535,
    e_type_pointer_of = 65536,
+   e_type_pbool = e_type_bool | e_type_pointer_of,
    e_type_pu8 = e_type_u8 | e_type_pointer_of,
    e_type_pi8 = e_type_i8 | e_type_pointer_of,
    e_type_pu16 = e_type_u16 | e_type_pointer_of,
@@ -269,6 +270,25 @@ enum enum_type
 
 
 };
+
+
+constexpr bool is_number(enum_type etype)
+{
+
+   return
+      etype == e_type_bool
+   && etype == e_type_u8
+   && etype == e_type_i8
+   && etype ==  e_type_u16
+   && etype ==  e_type_i16
+   && etype ==  e_type_u32
+   && etype ==  e_type_i32
+   && etype ==  e_type_u64
+   && etype ==  e_type_i64
+   && etype == e_type_f32
+   && etype == e_type_f64;
+
+}
 
 
 enum enum_trace_category
@@ -314,7 +334,7 @@ enum enum_trace_category
    e_trace_category_html,         // html traces
    e_trace_category_socket,      // socket traces
    e_trace_category_colorertake5,
-   e_trace_category_prodevian, // screen update and window layout
+   e_trace_category_graphics_thread, // screen update and window layout
    e_trace_category_count
 
 
@@ -662,7 +682,7 @@ enum enum_window_flag : i64
    e_window_flag_active = 1 << 3,
    e_window_flag_redraw_in_queue = 1 << 4,
    //e_window_flag_visual_changed = 1 << 5,
-   e_window_flag_auto_prodevian_on_show = 1 << 6,
+   e_window_flag_auto_refresh_on_show = 1 << 6,
    e_window_flag_on_show_window_visible = 1 << 7,
    e_window_flag_on_show_window_screen_visible = 1 << 8,
    e_window_flag_satellite_window = 1 << 9,
@@ -684,7 +704,7 @@ enum enum_window_flag : i64
    e_window_flag_destroying = 1 << 26,
    e_window_flag_not_visible = 1 << 27,
    e_window_flag_satellite_window_if_child = 1 << 28,
-   e_window_flag_embedded_prodevian_if_child = 1 << 29,
+   e_window_flag_embedded_graphics_thread_if_child = 1 << 29,
    e_window_flag_composite = 1 << 30,
    e_window_flag_hosted = 1 << 31,
    e_window_flag_top_level = 1ll << 32,

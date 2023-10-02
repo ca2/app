@@ -1,11 +1,13 @@
 #include "framework.h"
 #include "impact.h"
+#include "item.h"
 #include "acme/handler/item.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
 #include "acme/platform/sequencer.h"
 #include "acme/primitive/geometry2d/_collection.h"
 #include "acme/user/nano/nano.h"
+#include "acme/user/user/content.h"
 #include "apex/database/_binary_stream.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "aqua/xml/document.h"
@@ -33,7 +35,7 @@ namespace user
    menu_impact::menu_impact() 
    {
 
-      m_bClickDefaultMouseHandling = true;
+      m_bDefaultClickHandling = true;
 
       m_flagNonClient.erase(e_non_client_background);
 
@@ -87,62 +89,63 @@ namespace user
 
       }
 
-      //auto point = item.m_pointHitTest;
+      ////auto point = item.m_pointHitTest;
 
-      auto pitemHit = pitem;
+      //::pointer < menu_item > pitemHit = pitem;
 
-      ::atom idCommand;
+      //::atom idCommand;
 
-      if (::is_set(pitemHit) && pitemHit->m_item.menu_impact_command() >= 0)
-      {
+      ////if (::is_set(pitemHit) && pitemHit->m_item.menu_impact_command() >= 0)
+      //if (::is_set(pitemHit) && pitemHit->m_iCommand >= 0)
+      //{
 
-         xml::node * pnodeMain = m_pxmldoc->get_child_at("menubar", 0, 1);
+      //   xml::node * pnodeMain = m_pxmldoc->get_child_at("menubar", 0, 1);
 
-         if (pnodeMain->get_children_count("menubar") <= 0)
-         {
+      //   if (pnodeMain->get_children_count("menubar") <= 0)
+      //   {
 
-            pnodeMain = m_pxmldoc;
+      //      pnodeMain = m_pxmldoc;
 
-         }
+      //   }
 
-         xml::node * pnode = pnodeMain->get_child_at("menubar", pitemHit->m_item.menu_impact_group(), 1);
+      //   xml::node * pnode = pnodeMain->get_child_at("menubar", pitemHit->m_iGroup, 1);
 
-         if (pnode != nullptr)
-         {
+      //   if (pnode != nullptr)
+      //   {
 
-            xml::node * pnodeItem = pnode->child_at(pitemHit->m_item.menu_impact_command());
+      //      xml::node * pnodeItem = pnode->child_at(pitemHit->m_iCommand);
 
-            if (pnodeItem != nullptr)
-            {
+      //      if (pnodeItem != nullptr)
+      //      {
 
-               idCommand = pnodeItem->attribute("id").as_atom();
+      //         idCommand = pnodeItem->attribute("id").as_atom();
 
-            }
+      //      }
 
-         }
+      //   }
 
-      }
-      else
-      {
+      //}
+      //else
+      //{
 
-         idCommand = "home";
+      //   idCommand = "home";
 
-      }
+      //}
 
-      m_pitemCurrent = pitemHit;
+      //main_content().m_pitemCurrent = pitemHit;
 
-      set_need_redraw();
+      //set_need_redraw();
 
-      if (!idCommand.is_empty())
-      {
+      //if (!idCommand.is_empty())
+      //{
 
-         ::message::command command(idCommand);
+      //   ::message::command command(idCommand);
 
-         route_command(&command);
+      //   route_command(&command);
 
-         return command.m_bRet;
+      //   return command.m_bRet;
 
-      }
+      //}
 
       return false;
 
@@ -277,9 +280,9 @@ namespace user
 
       y += 10;
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
-      int w = rectangleClient.width() - x * 2;
+      int w = rectangleX.width() - x * 2;
 
       int k = 0;
 
@@ -300,13 +303,13 @@ namespace user
          iSep++;
       }
 
-      rectangleMenuItem.top = (::i32)( y + (iMenuItemIndex + iSep) * iHeight);
+      rectangleMenuItem.top() = (::i32)( y + (iMenuItemIndex + iSep) * iHeight);
 
-      rectangleMenuItem.bottom = rectangleMenuItem.top + iHeight;
+      rectangleMenuItem.bottom() = rectangleMenuItem.top() + iHeight;
 
-      rectangleMenuItem.left = x;
+      rectangleMenuItem.left() = x;
 
-      rectangleMenuItem.right = x + w;
+      rectangleMenuItem.right() = x + w;
 
       rectangleMenuItem.m_estatus = ::success;
 
@@ -318,58 +321,60 @@ namespace user
    ::item_pointer menu_impact::on_hit_test(const ::point_i32 &point, ::user::e_zorder ezorder)
    {
 
-      index iPos = 0;
+      //index iPos = 0;
 
-      ::status < ::rectangle_i32 > statusrectangle;
+      //::status < ::rectangle_i32 > statusrectangle;
 
-      xml::node * pnodeMain = m_pxmldoc->get_child_at("menubar", 0, 1);
+      //xml::node * pnodeMain = m_pxmldoc->get_child_at("menubar", 0, 1);
 
-      if (pnodeMain->get_children_count("menubar") <= 0)
-      {
+      //if (pnodeMain->get_children_count("menubar") <= 0)
+      //{
 
-         pnodeMain = m_pxmldoc;
+      //   pnodeMain = m_pxmldoc;
 
-      }
+      //}
 
-      for (::index iMenu = 0; iMenu < pnodeMain->get_children_count("menubar"); iMenu++)
-      {
+      //for (::index iMenu = 0; iMenu < pnodeMain->get_children_count("menubar"); iMenu++)
+      //{
 
-         xml::node * pnode = pnodeMain->get_child_at("menubar", iMenu, 1);
+      //   xml::node * pnode = pnodeMain->get_child_at("menubar", iMenu, 1);
 
-         ::index iCommand = -1;
+      //   ::index iCommand = -1;
 
-         statusrectangle = get_menu_item_rectangle(iPos);
+      //   statusrectangle = get_menu_item_rectangle(iPos);
 
-         if (statusrectangle.ok() && statusrectangle.contains(point))
-         {
+      //   if (statusrectangle.ok() && statusrectangle.contains(point))
+      //   {
 
-            return __new(::item(::e_element_item, iPos, iMenu, -1));
+      //      return __new(::item(::e_element_item, iPos, iMenu, -1));
 
-         }
+      //   }
 
-         iPos++;
+      //   iPos++;
 
-         for (iCommand = 0; iCommand < pnode->get_children_count(); iCommand++)
-         {
+      //   for (iCommand = 0; iCommand < pnode->get_children_count(); iCommand++)
+      //   {
 
-            statusrectangle = get_menu_item_rectangle(iPos);
+      //      statusrectangle = get_menu_item_rectangle(iPos);
 
-            if (statusrectangle.ok() && statusrectangle.contains(point))
-            {
+      //      if (statusrectangle.ok() && statusrectangle.contains(point))
+      //      {
 
-               return __new(::item(::e_element_item, iPos, iMenu, iCommand));
+      //         return __new(::item(::e_element_item, iPos, iMenu, iCommand));
 
-            }
+      //      }
 
-            iPos++;
+      //      iPos++;
 
-         }
+      //   }
 
-      }
+      //}
 
-      auto pitemNone = __new(::item(e_element_none));
+      //auto pitemNone = __new(::item(e_element_none));
 
-      return pitemNone;
+      //return pitemNone;
+
+      return nullptr;
 
    }
 
@@ -383,16 +388,16 @@ namespace user
 
       pimage1 = m_pimageMem;
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
-      if (rectangleClient.area() <= 0)
+      if (rectangleX.area() <= 0)
       {
 
          return;
 
       }
 
-      pimage1->create(rectangleClient.size());
+      pimage1->create(rectangleX.size());
 
       ::draw2d::graphics_pointer pgraphics = pimage1->get_graphics();
 
@@ -419,6 +424,8 @@ namespace user
 
       pgraphics->draw(imagedrawing);
 
+      //__construct_new(m_pitema);
+
       ::rectangle_i32 rectangle;
 
       rectangle_i32_array raMenu;
@@ -439,6 +446,8 @@ namespace user
 
          xml::node * pnode = pnodeMain->get_child_at("menubar", i, 1);
 
+         ///main_content().add_item(__new(::item(::e_element_item, iPos, iMenu, -1)));
+
          string strTitle;
          
          strTitle = pnode->attribute("title");
@@ -453,7 +462,7 @@ namespace user
 
          pgraphics->set_text_color(argb(255, 0, 0, 0));
 
-         pgraphics->text_out(statusrectangleMenu.left + 10, statusrectangleMenu.top + 5, strTitle);
+         pgraphics->text_out(statusrectangleMenu.left() + 10, statusrectangleMenu.top() + 5, strTitle);
 
          iPos++;
 
@@ -482,7 +491,7 @@ namespace user
                if (::is_set(m_pitemHover) && *m_pitemHover == item)
                {
 
-                  if (::is_set(m_pitemCurrent) && *m_pitemCurrent == item)
+                  if (::is_set(main_content().m_pitemCurrent) && *main_content().m_pitemCurrent == item)
                   {
 
                      pgraphics->set(m_pbrushBkHoverSel);
@@ -500,7 +509,7 @@ namespace user
                   }
 
                }
-               else if (::is_set(m_pitemCurrent) && *m_pitemCurrent == item)
+               else if (::is_set(main_content().m_pitemCurrent) && *main_content().m_pitemCurrent == item)
                {
 
                   pgraphics->set(m_pbrushBkSel);
@@ -517,7 +526,7 @@ namespace user
 
                pgraphics->set(m_pfont);
 
-               if (::is_set(m_pitemCurrent) && *m_pitemCurrent == item)
+               if (::is_set(main_content().m_pitemCurrent) && *main_content().m_pitemCurrent == item)
                {
 
                   pgraphics->set_text_color(argb(255, 0, 148, 202));
@@ -530,19 +539,19 @@ namespace user
 
                }
 
-               pgraphics->text_out(rectangle.left + 10, rectangle.top + 5, strItem);
+               pgraphics->text_out(rectangle.left() + 10, rectangle.top() + 5, strItem);
 
                pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
                ::image_pointer pimage1;
 
-               if (::is_set(m_pitemCurrent) && *m_pitemCurrent == item)
+               if (::is_set(main_content().m_pitemCurrent) && *main_content().m_pitemCurrent == item)
                {
 
                   pgraphics->set(m_ppenBkSel);
 
-                  pgraphics->set_current_point(rectangle.left + 1, rectangle.top);
-                  pgraphics->line_to(rectangle.left + 1, rectangle.bottom - 1);
+                  pgraphics->set_current_point(rectangle.left() + 1, rectangle.top());
+                  pgraphics->line_to(rectangle.left() + 1, rectangle.bottom() - 1);
 
                   pimage1 = m_pimageMap[strId];
 
@@ -559,8 +568,8 @@ namespace user
 
                   ::rectangle_i32 rectangleDib;
 
-                  rectangleDib.left = rectangle.right - pimage1->width() - 10;
-                  rectangleDib.top = rectangle.top + (rectangle.height() - pimage1->height()) / 2;
+                  rectangleDib.left() = rectangle.right() - pimage1->width() - 10;
+                  rectangleDib.top() = rectangle.top() + (rectangle.height() - pimage1->height()) / 2;
                   rectangleDib.set_size(pimage1->width(), pimage1->height());
 
                   image_source imagesource(pimage1);
@@ -642,7 +651,7 @@ namespace user
 
          image_source imagesource(pimage1);
 
-         image_drawing_options imagedrawingoptions(rectangleClient);
+         image_drawing_options imagedrawingoptions(rectangleX);
 
          image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
@@ -664,9 +673,9 @@ namespace user
    void menu_impact::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
-      if (rectangleClient.area() <= 0)
+      if (rectangleX.area() <= 0)
          return;
 
    }
@@ -717,10 +726,18 @@ namespace user
 
       m_iaPopup.erase_all();
 
+      auto pmenuitemParent = __create_new < menu_item >();
+
+      m_pitem = pmenuitemParent;
+
       for (iMenu = 0; iMenu < pnodeMain->get_children_count("menubar"); iMenu++)
       {
 
          xml::node * pnode = pnodeMain->get_child_at("menubar", iMenu, 1);
+
+         auto pmenuitemMenuBar = __create_new < menu_item >();
+
+         __construct_new(pmenuitemMenuBar->m_pitema);
 
          m_iaPopup.add((const int)pnode->get_children_count() + 1);
 
@@ -729,7 +746,11 @@ namespace user
          for (iCommand = 0; iCommand < pnode->get_children_count(); iCommand++)
          {
 
+            auto pmenuitemCommand = __create_new < menu_item >();
+
             statusrectangle = get_menu_item_rectangle(iPos);
+
+            pmenuitemMenuBar->m_pitema->add(pmenuitemCommand);
 
             auto pcontext = m_pcontext->m_pauracontext;
 
@@ -756,8 +777,6 @@ namespace user
 
             }
 
-
-
             iPos++;
 
          }
@@ -772,13 +791,13 @@ namespace user
    void menu_impact::draw_border_rectangle(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle)
    {
 
-      pgraphics->set_current_point(rectangle.left, rectangle.top);
+      pgraphics->set_current_point(rectangle.left(), rectangle.top());
 
-      pgraphics->line_to(rectangle.right, rectangle.top);
+      pgraphics->line_to(rectangle.right(), rectangle.top());
 
-      pgraphics->set_current_point(rectangle.left, rectangle.bottom);
+      pgraphics->set_current_point(rectangle.left(), rectangle.bottom());
 
-      pgraphics->line_to(rectangle.right, rectangle.bottom);
+      pgraphics->line_to(rectangle.right(), rectangle.bottom());
 
    }
 
@@ -797,13 +816,13 @@ namespace user
 
       pgraphics->fill_rectangle(rectangle, argb(255, 240, 240, 240));
 
-      pgraphics->set_current_point(rectangle.left, rectangle.top);
+      pgraphics->set_current_point(rectangle.left(), rectangle.top());
 
-      pgraphics->line_to(rectangle.left, rectangle.bottom);
+      pgraphics->line_to(rectangle.left(), rectangle.bottom());
 
-      pgraphics->set_current_point(rectangle.right, rectangle.top);
+      pgraphics->set_current_point(rectangle.right(), rectangle.top());
 
-      pgraphics->line_to(rectangle.right, rectangle.bottom);
+      pgraphics->line_to(rectangle.right(), rectangle.bottom());
 
 
 
@@ -814,13 +833,13 @@ namespace user
    void menu_impact::draw_item_rectangle(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle)
    {
 
-      pgraphics->set_current_point(rectangle.left, rectangle.top);
+      pgraphics->set_current_point(rectangle.left(), rectangle.top());
 
-      pgraphics->line_to(rectangle.left, rectangle.bottom);
+      pgraphics->line_to(rectangle.left(), rectangle.bottom());
 
-      pgraphics->set_current_point(rectangle.right, rectangle.top);
+      pgraphics->set_current_point(rectangle.right(), rectangle.top());
 
-      pgraphics->line_to(rectangle.right, rectangle.bottom);
+      pgraphics->line_to(rectangle.right(), rectangle.bottom());
 
 
    }
@@ -832,15 +851,15 @@ namespace user
       pgraphics->fill_rectangle(rectangle);
 
 
-      pgraphics->set_current_point(rectangle.left, rectangle.top);
+      pgraphics->set_current_point(rectangle.left(), rectangle.top());
 
-      pgraphics->line_to(rectangle.left, rectangle.bottom);
+      pgraphics->line_to(rectangle.left(), rectangle.bottom());
 
 
 
-      pgraphics->set_current_point(rectangle.right, rectangle.top);
+      pgraphics->set_current_point(rectangle.right(), rectangle.top());
 
-      pgraphics->line_to(rectangle.right, rectangle.bottom);
+      pgraphics->line_to(rectangle.right(), rectangle.bottom());
 
 
    }
@@ -851,29 +870,29 @@ namespace user
 
       pgraphics->fill_rectangle(rectangle);
 
-      pgraphics->set_current_point(rectangle.left, rectangle.top);
+      pgraphics->set_current_point(rectangle.left(), rectangle.top());
 
-      pgraphics->line_to(rectangle.left, rectangle.bottom);
+      pgraphics->line_to(rectangle.left(), rectangle.bottom());
 
-      pgraphics->set_current_point(rectangle.right, rectangle.bottom - 1);
+      pgraphics->set_current_point(rectangle.right(), rectangle.bottom() - 1);
 
       int h = ::height(rectangle);
 
       point_f64_array pta;
-      pta.add(rectangle.right, rectangle.bottom - h / 3 - 2);
+      pta.add(rectangle.right(), rectangle.bottom() - h / 3 - 2);
 
-      pta.add(rectangle.right + h * 3 / 16, rectangle.bottom - h / 2 - 2);
+      pta.add(rectangle.right() + h * 3 / 16, rectangle.bottom() - h / 2 - 2);
 
-      pta.add(rectangle.right, rectangle.bottom - h * 2 / 3 - 2);
+      pta.add(rectangle.right(), rectangle.bottom() - h * 2 / 3 - 2);
 
       pgraphics->fill_polygon(pta);
-      pgraphics->line_to(rectangle.right, rectangle.bottom - h / 3 - 2);
+      pgraphics->line_to(rectangle.right(), rectangle.bottom() - h / 3 - 2);
 
-      pgraphics->line_to(rectangle.right + h * 3 / 16, rectangle.bottom - h / 2 - 2);
+      pgraphics->line_to(rectangle.right() + h * 3 / 16, rectangle.bottom() - h / 2 - 2);
 
-      pgraphics->line_to(rectangle.right, rectangle.bottom - h * 2 / 3 - 2);
+      pgraphics->line_to(rectangle.right(), rectangle.bottom() - h * 2 / 3 - 2);
 
-      pgraphics->line_to(rectangle.right, rectangle.top);
+      pgraphics->line_to(rectangle.right(), rectangle.top());
 
    }
 
@@ -882,30 +901,30 @@ namespace user
 
       pgraphics->fill_rectangle(rectangle);
 
-      pgraphics->set_current_point(rectangle.left, rectangle.top);
+      pgraphics->set_current_point(rectangle.left(), rectangle.top());
 
-      pgraphics->line_to(rectangle.left, rectangle.bottom);
+      pgraphics->line_to(rectangle.left(), rectangle.bottom());
 
-      pgraphics->set_current_point(rectangle.right, rectangle.bottom - 1);
+      pgraphics->set_current_point(rectangle.right(), rectangle.bottom() - 1);
 
       int h = ::height(rectangle);
 
       point_f64_array pta;
-      pta.add(rectangle.right, rectangle.bottom - h / 3 - 2);
+      pta.add(rectangle.right(), rectangle.bottom() - h / 3 - 2);
 
-      pta.add(rectangle.right + h * 3 / 16, rectangle.bottom - h / 2 - 2);
+      pta.add(rectangle.right() + h * 3 / 16, rectangle.bottom() - h / 2 - 2);
 
-      pta.add(rectangle.right, rectangle.bottom - h * 2 / 3 - 2);
+      pta.add(rectangle.right(), rectangle.bottom() - h * 2 / 3 - 2);
 
       pgraphics->fill_polygon(pta);
-      pgraphics->line_to(rectangle.right, rectangle.bottom - h / 3 - 2);
+      pgraphics->line_to(rectangle.right(), rectangle.bottom() - h / 3 - 2);
 
-      pgraphics->line_to(rectangle.right + h * 3 / 16, rectangle.bottom - h / 2 - 2);
+      pgraphics->line_to(rectangle.right() + h * 3 / 16, rectangle.bottom() - h / 2 - 2);
 
-      pgraphics->line_to(rectangle.right, rectangle.bottom - h * 2 / 3 - 2);
+      pgraphics->line_to(rectangle.right(), rectangle.bottom() - h * 2 / 3 - 2);
 
 
-      pgraphics->line_to(rectangle.right, rectangle.top);
+      pgraphics->line_to(rectangle.right(), rectangle.top());
 
 
    }

@@ -102,6 +102,9 @@ namespace aura
       //pointer< ::sequence < ::conversation > > message_box(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox) override;
 
 
+      virtual bool defer_windowing_post(const ::procedure & procedure);
+
+
    };
 
 

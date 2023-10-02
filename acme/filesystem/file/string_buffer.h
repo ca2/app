@@ -5,7 +5,7 @@
 class string_buffer;
 
 
-class string_buffer_base :
+class CLASS_DECL_ACME string_buffer_base :
    virtual public ::file::file
 {
 public:
@@ -31,7 +31,7 @@ public:
 };
 
 
-class string_reference_buffer :
+class CLASS_DECL_ACME string_reference_buffer :
    virtual public ::string_buffer_base
 {
 public:

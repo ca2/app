@@ -226,7 +226,7 @@ public:
 
 
    pair_map();
-   pair_map(node pairs[], i32 iCount);
+   pair_map(const PAIR * ppair, ::count c);
    pair_map(const ::std::initializer_list < PAIR > & list);
    pair_map(const pair_map & m);
    ~pair_map();
@@ -682,12 +682,12 @@ pair_map < PAIR >::pair_map(const ::std::initializer_list < PAIR > & list)
 }
 
 template < typename PAIR >
-pair_map < PAIR >::pair_map(node pairs[], i32 iCount)
+pair_map < PAIR >::pair_map(const PAIR * ppair, ::count c)
 {
    construct();
-   for(i32 i = 0; i < iCount; i++)
+   for(::index i = 0; i < c; i++)
    {
-      set_at(pairs[i].element1(), pairs[i].element2());
+      set_at((ARG_ITEM) ppair[i].element1(), (ARG_PAYLOAD) ppair[i].element2());
    }
 }
 

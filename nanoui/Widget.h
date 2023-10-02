@@ -43,7 +43,7 @@ namespace nanoui
     */
    class CLASS_DECL_NANOUI Widget :
       public Object,
-      public ::user::container
+      public ::user::acme_container
    {
    public:
 
@@ -57,6 +57,8 @@ namespace nanoui
       size_i32                m_size;
       size_i32                m_fixed_size;
       bool                    m_bHoverCache;
+      ::pointer<::nano2d::text_box>    m_ptextboxTooltip;
+
       //size_i32                m_offsetToApplyOnDraw;
       //size_i32                m_offsetSizeToApplyOnDraw;
       ::pointer<Widget>       m_pwidgetDragDropArena;
@@ -272,9 +274,9 @@ namespace nanoui
       //   /// Return the number of pwidgetChild widgets
       int child_count() const { return (int)m_children.size(); }
 
-      ::count get_child_as_item_count() override;
+      //::count get_child_as_item_count() override;
       
-      item_pointer get_child_as_item(::index iIndex) override;
+      //item_pointer get_child_as_item(::index iIndex) override;
 
       item_pointer selected_item() override;
 

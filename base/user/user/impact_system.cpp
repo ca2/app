@@ -19,7 +19,7 @@ namespace user
 {
 
 
-   impact_system::impact_system(const ::atom & atom, const ::type & typeDocument, const ::type & typeFrame, const ::type & typeImpact)
+   impact_system::impact_system(const ::atom & atom, const ::type_atom & typeatomDocument, const ::type_atom & typeatomFrame, const ::type_atom & typeatomImpact)
    {
 
       m_bHiddenOnNotifyIcon = false;
@@ -27,9 +27,9 @@ namespace user
       m_puserinteractionOwner = nullptr;
 
       m_atom = atom;
-      m_typeDocument = typeDocument;
-      m_typeFrame = typeFrame;
-      m_typeImpact = typeImpact;
+      m_typeatomDocument = typeatomDocument;
+      m_typeatomFrame = typeatomFrame;
+      m_typeatomImpact = typeatomImpact;
       m_pAttachedFactory = nullptr;
 
       load_template();
@@ -131,7 +131,7 @@ namespace user
    {
 
       // default implementation constructs one from ::type
-      if (!m_typeDocument)
+      if (!m_typeatomDocument)
       {
 
          error()(e_trace_category_appmsg) << "Error: you must override impact_system::create_new_document.";
@@ -148,12 +148,12 @@ namespace user
 
       //auto estatus = 
       
-      papp->__id_construct(pdocument, m_typeDocument);
+      papp->__id_construct(pdocument, m_typeatomDocument);
 
       if (!pdocument)
       {
 
-         warning()(e_trace_category_appmsg) << "Warning: Dynamic create of ::user::document type %hs failed.\n" << m_typeDocument.as_string();
+         warning()(e_trace_category_appmsg) << "Warning: Dynamic create of ::user::document type %hs failed.\n" << m_typeatomDocument.as_string();
 
          return nullptr;
 
@@ -203,13 +203,13 @@ namespace user
       else
       {
 
-         pusersystem->m_typeNewImpact = m_typeImpact;
+         pusersystem->m_typeatomNewImpact = m_typeatomImpact;
 
       }
 
       pusersystem->m_ptemplateNewDocument = this;
 
-      if (!m_typeFrame)
+      if (!m_typeatomFrame)
       {
 
          error()(e_trace_category_appmsg) << "Error: you must override impact_system::create_new_frame.\n";
@@ -226,16 +226,16 @@ namespace user
 
       //auto estatus =
       
-      papp->__id_construct(pframe, m_typeFrame);
+      papp->__id_construct(pframe, m_typeatomFrame);
 
       if (!pframe)
       {
 
-         warning()(e_trace_category_appmsg) << "Warning: Dynamic create of frame %hs failed." << m_typeFrame.as_string().c_str();
+         warning()(e_trace_category_appmsg) << "Warning: Dynamic create of frame %hs failed." << m_typeatomFrame.as_string().c_str();
 
          string strMessage;
 
-         strMessage.format("Warning: Dynamic create of frame %hs failed.\n\n(Does allocation was implemented)?", m_typeFrame.as_string().c_str());
+         strMessage.format("Warning: Dynamic create of frame %hs failed.\n\n(Does allocation was implemented)?", m_typeatomFrame.as_string().c_str());
 
          //message_box(strMessage);
 
@@ -249,7 +249,7 @@ namespace user
 
       pframe->m_pimpactsystem = this;
 
-      if (!pusersystem->m_typeNewImpact)
+      if (!pusersystem->m_typeatomNewImpact)
       {
 
          warning()(e_trace_category_appmsg) << "Warning: creating frame with no default ::user::impact.\n";
@@ -403,8 +403,8 @@ namespace user
 //      //dumpcontext << "m_strMatter = " << m_atom;
 //      //dumpcontext << "\nm_strDocStrings: " << m_strDocStrings;
 //
-//      //if (m_typeDocument)
-//      //   dumpcontext << "\nm_pDocClass = " << m_typeDocument.name();
+//      //if (m_typeatomDocument)
+//      //   dumpcontext << "\nm_pDocClass = " << m_typeatomDocument.name();
 //      //else
 //      //   dumpcontext << "\nm_pDocClass = nullptr";
 //

@@ -1,15 +1,14 @@
 #pragma once
 
 
-//#include "acme/primitive/geometry2d/_geometry2d.h"
-////#include "acme/primitive/primitive/object.h"
+#include "acme/parallelization/manual_reset_event.h"
 #include "acme/primitive/geometry2d/point.h"
 #include "acme/primitive/geometry2d/size.h"
 
 
-
 namespace graphics
 {
+
 
    class CLASS_DECL_AURA buffer_item :
       virtual public ::particle
@@ -17,12 +16,16 @@ namespace graphics
    public:
 
       
+      ::e_graphics                  m_egraphics;
       ::image_pointer               m_pimage2;
       ::mutex_pointer               m_pmutex;
       ::draw2d::graphics_pointer    m_pgraphics;
       ::point_i32                   m_point;
       ::size_i32                    m_size;
       ::pointer < ::particle >      m_pparticleData;
+      manual_reset_event            m_manualresetevent;
+      ::size_i32                    m_sizeInternal;
+      ::i32                         m_iScan;
 
 
       ::draw2d::graphics_pointer g();
@@ -30,28 +33,29 @@ namespace graphics
 
    };
 
+
    class CLASS_DECL_AURA graphics :
       virtual public ::object
    {
    public:
 
 
-      ::pointer<::user::interaction_impl>         m_pimpl;
-      ::pointer<::windowing::window>              m_pwindow;
+      ::pointer<::user::interaction_impl>          m_pimpl;
+      ::pointer<::windowing::window>               m_pwindow;
       bool                                         m_bNewBuffer;
 
       union
       {
 
          ::uptr                                    m_uptrBuffer;
-         ::OPERATING_SYSTEM_NAMESPACE::buffer *            m_pPlatformBuffer;
+         ::OPERATING_SYSTEM_NAMESPACE::buffer *    m_pPlatformBuffer;
          ::windowing_universal_windows::buffer *   m_pWindowingUniversalWindowsBuffer;
          ::windowing_win32::buffer *               m_pWindowingWin32Buffer;
 
       };
 
 
-      ::pointer_array<buffer_item >          m_bufferitema;
+      ::pointer_array<buffer_item >                m_bufferitema;
 
 
       graphics();
@@ -65,7 +69,7 @@ namespace graphics
 
       virtual bool is_single_buffer_mode() const;
 
-
+      //virtual bool presentation_complete();
       virtual void on_after_graphical_update();
 
       virtual bool buffer_lock_round_swap_key_buffers();
@@ -79,7 +83,9 @@ namespace graphics
       virtual i64 _001GetTopLeftWeightedOpaqueArea(const ::rectangle_i32 &rect);
 
       //virtual ::particle * get_draw_lock();
-      virtual buffer_item * on_begin_draw();
+      virtual buffer_item * on_begin_draw(::e_graphics egraphics);
+
+      virtual bool _on_begin_draw(buffer_item * pbufferitem);
 
       virtual void on_end_draw();
 
@@ -102,6 +108,7 @@ namespace graphics
       //virtual ::image_pointer & get_screen_image();
       //virtual ::particle * get_screen_sync();
 
+      ::trace_statement & trace_statement_prefix(::trace_statement & statement) const override;
 
 
    };

@@ -99,12 +99,12 @@ auto m_timeRoll = ::time::now();
 
       defer_check_on_draw_layout();
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
-      if (rectangleClient.area() <= 0)
+      if (rectangleX.area() <= 0)
          return;
 
-/*      m_pimagePost = create_image(rectangleClient->size());
+/*      m_pimagePost = create_image(rectangleX->size());
 
       m_pimagePost->Fill(00, 00, 00, 00);
 
@@ -203,9 +203,9 @@ auto m_timeRoll = ::time::now();
 
       //image d(e_create);
 
-      //d->create(rectangleClient.size());
+      //d->create(rectangleX.size());
 
-      //d->get_graphics()->BitBlt(rectangleClient, pimage->g());
+      //d->get_graphics()->BitBlt(rectangleX, pimage->g());
 
       //d.save_to_file(         auto psystem = acmesystem();
 
@@ -254,9 +254,9 @@ pacmedirectory->system() / "obs.png");
          int iFactor = 2;
          int iMult = 1 << iFactor;
 
-         auto rectangleClient = client_rectangle();
+         auto rectangleX = this->rectangle();
 
-         size_i32 s = rectangleClient.size();
+         size_i32 s = rectangleX.size();
 
          size_i32 s2(s.cx() / iMult, s.cy() / iMult);
 

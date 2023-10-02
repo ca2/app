@@ -112,9 +112,9 @@ namespace user
 
          //get_window_text(strText);
 
-         ::rectangle_f64 rectangleClient;
+         ::rectangle_f64 rectangleX;
 
-         rectangleClient = client_rectangle();
+         rectangleX = this->rectangle();
 
          auto estate = get_user_state();
 
@@ -124,7 +124,7 @@ namespace user
 
          auto rectanglePadding = get_padding(pstyle);
 
-         rectangleClient.deflate(rectanglePadding);
+         rectangleX.deflate(rectanglePadding);
 
          if (m_estockicon != e_stock_icon_none)
          {
@@ -137,7 +137,7 @@ namespace user
 
             pgraphics->set(ppen);
 
-            ::rectangle_i32 rectangleIcon(rectangleClient);
+            ::rectangle_i32 rectangleIcon(rectangleX);
 
             rectangleIcon.deflate(rectangleIcon.width() / 4, rectangleIcon.height() / 4);
 
@@ -187,15 +187,15 @@ namespace user
 
             }
 
-            //pgraphics->draw_text(strText, rectangleClient, ealign, edrawtext);
+            //pgraphics->draw_text(strText, rectangleX, ealign, edrawtext);
 
-            //m_rectangleTextBoundingBox.left = 0;
+            //m_rectangleTextBoundingBox.left() = 0;
 
-            //m_rectangleTextBoundingBox.top = 0;
+            //m_rectangleTextBoundingBox.top() = 0;
 
             //m_rectangleTextBoundingBox.set_size(pgraphics->get_text_extent(strText));
 
-            //m_rectangleTextBoundingBox.Align(ealign, rectangleClient);
+            //m_rectangleTextBoundingBox.Align(ealign, rectangleX);
 
          }
 
@@ -450,7 +450,7 @@ namespace user
    //}
 
 
-   ::size_f64 still::_001CalculateFittingSize(::draw2d::graphics_pointer & pgraphics)
+   ::size_f64 still::get_fitting_size(::draw2d::graphics_pointer & pgraphics)
    {
 
       if (pgraphics.is_null())
@@ -478,7 +478,7 @@ namespace user
 
       sizeTotal.cx() = size.cx();
 
-      sizeTotal.cy() = tm.get_line_spacing();
+      sizeTotal.cy() = tm.get_line_height();
 
       return sizeTotal;
 
@@ -501,8 +501,8 @@ namespace user
 
          ::rectangle_i32 rectangle(0, 0, 0, 0);
 
-         rectangle.right = ::i32(size.cx() * 1.6);
-         rectangle.bottom = ::i32(size.cy() * 1.4);
+         rectangle.right() = ::i32(size.cx() * 1.6);
+         rectangle.bottom() = ::i32(size.cy() * 1.4);
 
          const_layout().sketch().size() = rectangle.size();
 
@@ -518,7 +518,7 @@ namespace user
       else
       {
 
-         auto sizeTotal = _001CalculateAdjustedFittingSize(pgraphics);
+         auto sizeTotal = get_adjusted_fitting_size(pgraphics);
 
          set_size(sizeTotal);
 
@@ -655,7 +655,7 @@ namespace user
 
       //auto pstyle = get_style(pgraphics);
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
       ::e_align ealign = (enum_align)get_int(pstyle, ::user::e_int_edit_text_align, ::user::e_state_none, m_ealignText);
 
@@ -672,7 +672,7 @@ namespace user
 
       m_ptextouta->text_outa().erase_all();
 
-      pgraphics->create_simple_multiline_layout(*m_ptextouta, strWindowText, rectangleClient, pgraphics->get_current_font(), ealign, etextwrap);
+      pgraphics->create_simple_multiline_layout(*m_ptextouta, strWindowText, rectangleX, pgraphics->get_current_font(), ealign, etextwrap);
 
       m_ptextouta->m_strLast = strWindowText;
 
@@ -740,19 +740,19 @@ namespace user
 
          }
 
-         auto rectangleClient = client_rectangle();
+         auto rectangleX = this->rectangle();
 
-         ::size_f64 sizeText = _001CalculateFittingSize(pgraphics);
+         ::size_f64 sizeText = get_fitting_size(pgraphics);
 
          //::rectangle_i32 rectangle;
 
-         //rectangle.left = (::i32)(rectangleClient.left + (rectangleClient.width() - sizeText.cx()) / 2);
+         //rectangle.left() = (::i32)(rectangleX.left() + (rectangleX.width() - sizeText.cx()) / 2);
 
-         //rectangle.top = (::i32)(rectangleClient.top + (rectangleClient.height() - sizeText.cy()) / 2);
+         //rectangle.top() = (::i32)(rectangleX.top() + (rectangleX.height() - sizeText.cy()) / 2);
 
-         //rectangle.right = (::i32)(rectangle.left + sizeText.cx());
+         //rectangle.right() = (::i32)(rectangle.left() + sizeText.cx());
 
-         //rectangle.bottom = (::i32)(rectangle.top + sizeText.cy());
+         //rectangle.bottom() = (::i32)(rectangle.top() + sizeText.cy());
 
          //m_rectangleText = rectangle;
 
@@ -801,7 +801,7 @@ namespace user
    void still::_002OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
       ::color::color colorBackground;
 
@@ -841,13 +841,13 @@ namespace user
       if (get_translucency(pstyle) >= e_translucency_present)
       {
 
-         pgraphics->fill_rectangle(rectangleClient, colorBackground & 0.5_opacity);
+         pgraphics->fill_rectangle(rectangleX, colorBackground & 0.5_opacity);
 
       }
       else
       {
 
-         pgraphics->fill_rectangle(rectangleClient, colorBackground);
+         pgraphics->fill_rectangle(rectangleX, colorBackground);
 
       }
 
@@ -883,17 +883,17 @@ namespace user
       if (rectangle.is_ok())
       {
 
-         pgraphics->draw_inset_rectangle(rectangleClient, colorBorder, 1.0);
+         pgraphics->draw_inset_rectangle(rectangleX, colorBorder, 1.0);
 
       }
 
-//      rectangleClient.left += 3;
+//      rectangleX.left() += 3;
 //
-//      rectangleClient.top += 3;
+//      rectangleX.top() += 3;
 
       //::rectangle_i32 rectangleText = m_rectangleText;
 
-      auto rectangleText = client_rectangle();
+      auto rectangleText = this->rectangle();
 
       //      string str = utf8_to_unicode(str);
 
@@ -903,8 +903,8 @@ namespace user
          ::rectangle_i32 rectangleDib;
 
          rectangleDib = rectangleText;
-         rectangleDib.bottom = minimum(rectangleText.top + m_pimage->height(), rectangleText.bottom);
-         rectangleDib.right = minimum(rectangleText.left + m_pimage->width(), rectangleText.right);
+         rectangleDib.bottom() = minimum(rectangleText.top() + m_pimage->height(), rectangleText.bottom());
+         rectangleDib.right() = minimum(rectangleText.left() + m_pimage->width(), rectangleText.right());
          //m_pimage->to(pgraphics, rectangleDib);
 
          {
@@ -921,7 +921,7 @@ namespace user
 
          }
 
-         rectangleText.left += m_pimage->width();
+         rectangleText.left() += m_pimage->width();
 
       }
 
@@ -1022,7 +1022,7 @@ namespace user
 
       auto strWindowText = get_window_text();
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
 
       //if (pstyle == nullptr)
@@ -1031,13 +1031,13 @@ namespace user
       //   if (m_iHover == 0 || psession->m_puiLastLButtonDown == this)
       //   {
 
-      //      pgraphics->fill_rectangle(rectangleClient, argb(255, 127, 127, 127));
+      //      pgraphics->fill_rectangle(rectangleX, argb(255, 127, 127, 127));
 
       //   }
       //   else
       //   {
 
-      //      pgraphics->fill_rectangle(rectangleClient, argb(255, 127, 127, 127));
+      //      pgraphics->fill_rectangle(rectangleX, argb(255, 127, 127, 127));
 
       //   }
 
@@ -1050,23 +1050,23 @@ namespace user
          if (!is_window_enabled())
          {
 
-            pgraphics->fill_rectangle(rectangleClient, get_color(pstyle, e_element_background, e_state_disabled));
+            pgraphics->fill_rectangle(rectangleX, get_color(pstyle, e_element_background, e_state_disabled));
 
          }
          else if ((m_pitemHover && m_pitemHover->is_set()) || is_left_button_pressed())
          {
 
-            //pgraphics->draw_inset_3d_rectangle(rectangleClient,pstyle->_001GetColor(color_border_hover),pstyle->_001GetColor(color_border_hover));
+            //pgraphics->draw_inset_3d_rectangle(rectangleX,pstyle->_001GetColor(color_border_hover),pstyle->_001GetColor(color_border_hover));
 
-            //rectangleClient.deflate(1,1);
+            //rectangleX.deflate(1,1);
 
-            pgraphics->fill_rectangle(rectangleClient, get_color(pstyle, e_element_background, e_state_pressed));
+            pgraphics->fill_rectangle(rectangleX, get_color(pstyle, e_element_background, e_state_pressed));
 
          }
          else
          {
 
-            pgraphics->fill_rectangle(rectangleClient, get_color(pstyle, e_element_background));
+            pgraphics->fill_rectangle(rectangleX, get_color(pstyle, e_element_background));
 
          }
 
@@ -1081,32 +1081,32 @@ namespace user
       // use the main bitmap for up, the selected bitmap for down
       ::image_pointer pimage = m_pimage;
 
-      if (pimage->area() > 0 && rectangleClient.area() > 0)
+      if (pimage->area() > 0 && rectangleX.area() > 0)
       {
 
          ::rectangle_i32 rectangleAspect;
 
-         rectangleAspect.left = 0;
+         rectangleAspect.left() = 0;
 
-         rectangleAspect.top = 0;
+         rectangleAspect.top() = 0;
 
-         double dW = (double)rectangleClient.width() / (double)pimage->width();
+         double dW = (double)rectangleX.width() / (double)pimage->width();
 
-         double dH = (double)rectangleClient.height() / (double)pimage->height();
+         double dH = (double)rectangleX.height() / (double)pimage->height();
 
          double dMin = maximum(minimum(dW, dH), 1.0);
 
-         rectangleAspect.right = (::i32) (pimage->width() * dMin);
+         rectangleAspect.right() = (::i32) (pimage->width() * dMin);
 
-         rectangleAspect.bottom = (::i32) (pimage->height() * dMin);
+         rectangleAspect.bottom() = (::i32) (pimage->height() * dMin);
 
-         rectangleAspect.Align(e_align_center, rectangleClient);
+         rectangleAspect.Align(e_align_center, rectangleX);
 
          {
 
             image_source imagesource(pimage, ::rectangle_f64(pimage->get_size()));
 
-            rectangle_f64 rectangle(rectangleClient);
+            rectangle_f64 rectangle(rectangleX);
 
             image_drawing_options imagedrawingoptions(rectangle);
 
@@ -1270,7 +1270,7 @@ namespace user
    {
 
       // use window client rectangle_i32 as the tool rectangle_i32
-      rectangle = client_rectangle();
+      rectangle = this->rectangle();
 
    }
 

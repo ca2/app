@@ -90,6 +90,16 @@ list(APPEND library_source
    compress/compress.h
    compress/uncompress.cpp
    compress/uncompress.h
+   compress/_.h
+   #compress/context.cpp
+   #compress/context.h
+   compress/is_dir.cpp
+   compress/is_dir.h
+   compress/not_dir.cpp
+   compress/not_dir.h
+   #compress/zip/_.h
+   #compress/zip/context.cpp
+   #compress/zip/context.h
    constant/_.h
    constant/code_page.h
    constant/earth.h
@@ -97,6 +107,18 @@ list(APPEND library_source
    #constant/idpool.cpp
    constant/library.h
    constant/message_box.h
+   crypto/_.h
+   crypto/_crypto.h
+   crypto/crypto.cpp
+   crypto/crypto.h
+   #crypto/hasher.cpp
+   crypto/hasher.h
+   #crypto/hasher_algorithm.cpp
+   crypto/hasher_algorithm.h
+   crypto/initializer.cpp
+   crypto/initializer.h
+   crypto/rsa.cpp
+   crypto/rsa.h
    #context_glx.cpp
    #exception/callstack.cpp
    exception/assert.cpp
@@ -167,12 +189,25 @@ list(APPEND library_source
    filesystem/file/translatable.h
    filesystem/file/write_text_stream.cpp
    filesystem/file/write_text_stream.h
+   filesystem/filesystem/_.h
+   filesystem/filesystem/_2.h
+   filesystem/filesystem/_impl.h
+   filesystem/filesystem/_impl2.h
    filesystem/filesystem/acme_directory.cpp
    filesystem/filesystem/acme_directory.h
    filesystem/filesystem/acme_file.cpp
    filesystem/filesystem/acme_file.h
    filesystem/filesystem/acme_path.cpp
    filesystem/filesystem/acme_path.h
+   filesystem/filesystem/dir_context.cpp
+   filesystem/filesystem/dir_context.h
+   filesystem/filesystem/dir_system.cpp
+   filesystem/filesystem/dir_system.h
+   filesystem/filesystem/dir_system_heap.h
+   filesystem/filesystem/file_context.cpp
+   filesystem/filesystem/file_context.h
+   filesystem/filesystem/file_system.cpp
+   filesystem/filesystem/file_system.h
    filesystem/filesystem/link.cpp
    filesystem/filesystem/link.h
    filesystem/filesystem/file_dialog.cpp
@@ -186,6 +221,13 @@ list(APPEND library_source
    filesystem/filesystem/listing.cpp
    filesystem/filesystem/path.cpp
    filesystem/filesystem/path_object.cpp
+   filesystem/watcher/action.cpp
+   filesystem/watcher/action.h
+   filesystem/watcher/listener.h
+   filesystem/watcher/watch.cpp
+   filesystem/watcher/watch.h
+   filesystem/watcher/watcher.cpp
+   filesystem/watcher/watcher.h
    framework.cpp
    graphics/draw2d/_.cpp
    graphics/draw2d/_system_color.h
@@ -203,6 +245,10 @@ list(APPEND library_source
    handler/handler.h
    handler/item.cpp
    handler/item.h
+   handler/item_container.cpp
+   handler/item_container.h
+   handler/item_container_map.cpp
+   handler/item_container_map.cpp
    handler/topic.cpp
    handler/topic.h
    handler/request.cpp
@@ -293,6 +339,7 @@ list(APPEND library_source
    parallelization/multiple_lock.h
    parallelization/mutex.cpp
    parallelization/pool.cpp
+   parallelization/retry.h
    parallelization/semaphore.cpp
    parallelization/signalization.cpp
    parallelization/signalization.h
@@ -511,6 +558,8 @@ list(APPEND library_source
    primitive/geometry2d/line.h
    primitive/geometry2d/lines.h
    #primitive/geometry2d/point.cpp
+   primitive/geometry2d/matrix.cpp
+   primitive/geometry2d/matrix.h
    primitive/geometry2d/point.h
    primitive/geometry2d/point_array.h
    primitive/geometry2d/polygon.h
@@ -970,6 +1019,7 @@ list(APPEND library_source
    user/user/check.h
    user/user/container.cpp
    user/user/container.h
+   user/user/content.h
    user/user/conversation.cpp
    user/user/conversation.h
    user/user/drag.cpp
@@ -988,11 +1038,12 @@ list(APPEND library_source
    user/user/text.cpp
    user/user/text.h
    user/user/theme_colors.h
+   user/user/tool.h
    user/user/tool_item.cpp
    user/user/tool_item.h
    user/_.h
    #update.h
-   )
+)
 
 
 list(APPEND library_source
@@ -1585,7 +1636,7 @@ list(APPEND library_source
    version/version.config.h
    version/version.h
    include/_impl.h
-   )
+)
 
 if (ANDROID)
    list(APPEND library_source
@@ -1606,7 +1657,7 @@ if (ANDROID)
       operating_system/android/internal.h
       operating_system/android/process.h
 
-      )
+   )
 
 endif ()
 
@@ -1635,7 +1686,7 @@ if (APPLE_IOS)
       operating_system/ios/window_impl.h
       operating_system/ios/windowing.h
 
-      )
+   )
 
 endif ()
 
@@ -1681,7 +1732,7 @@ if (UWP)
       operating_system/universal_windows/net/net_address.h
       operating_system/universal_windows/_.h
       operating_system/universal_windows/_uwp.h
-      )
+   )
 
 endif ()
 
@@ -1763,7 +1814,7 @@ if (WIN32)
       operating_system/windows/nano_user/nano_object.cpp
       operating_system/windows/nano_user/nano_pen.cpp
       operating_system/windows/nano_user/nano_pen.h
-      )
+   )
 else ()
 
    list(APPEND library_source
@@ -1825,7 +1876,7 @@ else ()
       #operating_system/cross/_.h
       #operating_system/cross.h
       #operating_system/cross/_cross.h
-      )
+   )
 
 endif ()
 
@@ -1846,12 +1897,12 @@ if (${WIN32} OR ${UWP})
       #      operating_system/windows_common/parallelization.cpp
       #      operating_system/windows_common/time.cpp
       #      operating_system/windows_common/unicode.cpp
-      )
+   )
 
 endif ()
 
 
-if(${CURL_NANO_HTTP})
+if (${CURL_NANO_HTTP})
 
    list(APPEND library_source
       operating_system/curl/nano_http/_nano_http.cpp
@@ -1863,7 +1914,7 @@ if(${CURL_NANO_HTTP})
 
    list(APPEND extra_pkg_modules libcurl)
 
-endif()
+endif ()
 
 
 if (${LINUX} OR ${FREEBSD})
@@ -1894,7 +1945,7 @@ if (${LINUX} OR ${FREEBSD})
       operating_system/xcb/nano/window.cpp
       operating_system/xcb/_.h
       operating_system/xcb/_.cpp
-      )
+   )
 
    list(APPEND extra_pkg_modules cairo xcb x11 xkbcommon xcb-render xcb-aux x11-xcb libarchive)
 
@@ -1956,7 +2007,7 @@ if (${LINUX})
       operating_system/linux/user_private.h
       operating_system/linux/util.cpp
       operating_system/linux/win_base.cpp
-      )
+   )
 
 
 endif ()
@@ -2002,7 +2053,7 @@ if (MACOS)
       #operating_system/macos/win_base.cpp
       #operating_system/macos/windowing.cpp
       #operating_system/macos/winpr_keycode.cpp
-      )
+   )
 
 
    list(APPEND library_source
@@ -2034,7 +2085,7 @@ if (MACOS)
       #operating_system/macos/_c.h
       #operating_system/macos/_macos.h
       #operating_system/macos/_mm.h
-      )
+   )
 
 endif ()
 
@@ -2089,7 +2140,7 @@ if (IOS)
       operating_system/ios/window.cpp
       #"operating_system/ios/window_boot 2.h"
       operating_system/ios/windowing.cpp
-      )
+   )
 
 
    list(APPEND library_source
@@ -2107,7 +2158,7 @@ if (IOS)
       operating_system/ios/_ios.h
       operating_system/ios/_m.h
       operating_system/ios/_mm.h
-      )
+   )
 
 
 endif ()
@@ -2156,7 +2207,7 @@ if (APPLE)
       #operating_system/apple/process.cpp
       #operating_system/apple/time.cpp
       #operating_system/apple/UncaughtExceptionHandler.mm
-      )
+   )
 endif ()
 
 
@@ -2200,7 +2251,7 @@ if (ANDROID)
       operating_system/android/process.cpp
       operating_system/android/process_pid.cpp
       operating_system/android/win_base.cpp
-      )
+   )
 
 
 endif ()
@@ -2239,9 +2290,8 @@ endif ()
 if (${DARWIN})
    list(APPEND library_source
       #operating_system/darwin/callstack.cpp
-      )
-endif()
-
+   )
+endif ()
 
 
 if (${FREEBSD})
@@ -2315,7 +2365,7 @@ if (${FREEBSD})
       operating_system/freebsd/user_private.h
       operating_system/freebsd/util.cpp
       operating_system/freebsd/win_base.cpp
-      )
+   )
 
 endif ()
 
@@ -2341,7 +2391,7 @@ if (LINUX OR APPLE OR SOLARIS OR FREEBSD)
       #operating_system/posix/timer.cpp
       operating_system/winpr_keycode.cpp
       operating_system/winpr_scancode.cpp
-      )
+   )
 
    #set_source_files_properties(operating_system/posix/process.cpp PROPERTIES SKIP_PRECOMPILE_HEADERS ON)
 endif ()
@@ -2352,7 +2402,7 @@ if (${LINUX} OR ${FREEBSD})
 
    list(APPEND library_source
       operating_system/ansi/binreloc.cpp
-      )
+   )
 
 
 endif ()
@@ -2363,7 +2413,7 @@ if (${LINUX} OR ${FREEBSD})
 
    list(APPEND library_source
       operating_system/posix/callstack.cpp
-      )
+   )
 
 
 endif ()

@@ -102,8 +102,8 @@ namespace user
    //void system::set_rect(const ::rectangle_i32 & rectangle)
    //{
 
-   //   m_createstruct.x() = rectangle.left;
-   //   m_createstruct.y() = rectangle.top;
+   //   m_createstruct.x() = rectangle.left();
+   //   m_createstruct.y() = rectangle.top();
    //   m_createstruct.cx() = rectangle.width();
    //   m_createstruct.cy() = rectangle.height();
 
@@ -132,7 +132,7 @@ namespace user
    ::pointer<::user::interaction>system::create_impact(::user::interaction * puserinteractionParent, const ::atom & atom)
    {
 
-      ASSERT(m_typeNewImpact || m_puserprimitiveNew != nullptr);
+      ASSERT(m_typeatomNewImpact || m_puserprimitiveNew != nullptr);
 
       auto papp = puserinteractionParent->get_app();
 
@@ -172,7 +172,7 @@ namespace user
          string strType = typeid(*pcontextJustForInspection).name();
 
          //estatus =
-         pparticle->__id_construct(pinteraction, m_typeNewImpact);
+         pparticle->__id_construct(pinteraction, m_typeatomNewImpact);
 
       }
 
@@ -258,10 +258,10 @@ namespace user
    //void system::get_rect(::rectangle_i32 * lprect)
    //{
 
-   //   lprect->left = m_createstruct.x();
-   //   lprect->top = m_createstruct.y();
-   //   lprect->right = m_createstruct.x() + m_createstruct.cx();
-   //   lprect->bottom = m_createstruct.y() + m_createstruct.cy();
+   //   lprect->left() = m_createstruct.x();
+   //   lprect->top() = m_createstruct.y();
+   //   lprect->right() = m_createstruct.x() + m_createstruct.cx();
+   //   lprect->bottom() = m_createstruct.y() + m_createstruct.cy();
 
    //}
 

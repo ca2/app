@@ -2327,10 +2327,10 @@ namespace acme
 
 
 
-//const char * matter::__type_name(this) const
+//const char * matter::::type(this).name() const
 //{
 //
-//   return __type_name(this);
+//   return ::type(this).name();
 //
 //}
 

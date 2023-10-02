@@ -63,7 +63,7 @@ namespace user
       ::e_align                           m_ealignText;
       ::e_draw_text                       m_edrawtext;
       enum_style                          m_estyle;
-      ::rectangle_i32                     m_rectangleText;
+      //::rectangle_i32                     m_rectangleText;
       index                               m_iClick;
       enum_stock_icon                     m_estockicon;
       ::rectangle_i32                     m_rectangleCheckBox;
@@ -87,9 +87,7 @@ namespace user
       ::write_text::font_pointer get_font(style* pstyle, enum_element eelement = e_element_none, ::user::enum_state estate = e_state_none) override;
       enum_translucency get_translucency(style * pstyle) override;
 
-
-
-      virtual void resize_to_fit(::draw2d::graphics_pointer& pgraphics) override;
+      //virtual void resize_to_fit(::draw2d::graphics_pointer& pgraphics) override;
 
       void install_message_routing(::channel * pchannel) override;
       
@@ -126,7 +124,8 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_left_button_double_click);
 
 
-      virtual ::size_f64 _001CalculateFittingSize(::draw2d::graphics_pointer & pgraphics) override;
+      ::size_f64 get_fitting_size(::draw2d::graphics_pointer & pgraphics) override;
+      ::size_f64 get_preferred_size(::draw2d::graphics_pointer & pgraphics) override;
 
       bool keyboard_focus_is_focusable() override;
 

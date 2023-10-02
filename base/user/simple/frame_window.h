@@ -65,7 +65,7 @@ public:
    bool create_bars() override;
    void on_create_bars() override;
 
-   void on_visual_applied() override;
+   void _on_configure_notify_unlocked(const ::rectangle_i32 & rectangle) override;
 
    void install_message_routing(::channel * pchannel) override;
 
@@ -75,7 +75,7 @@ public:
 
    
    //void raw_rectangle(::rectangle_i32 & rectangle, ::user::enum_layout elayout = ::user::e_layout_sketch) override;
-   ::rectangle_i32 client_rectangle(::user::enum_layout elayout = ::user::e_layout_sketch) override;
+   ::rectangle_i32 rectangle(::user::enum_layout elayout = ::user::e_layout_sketch) override;
 
 
    virtual bool is_application_main_window();

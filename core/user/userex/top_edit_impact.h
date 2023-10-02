@@ -17,7 +17,7 @@ namespace userex
 
       class ::time                  m_timeLastChange;
       class ::time                  m_timeDelayedAfterChange;
-      top_impact *              m_ptopview;
+      top_impact *              m_ptopimpact;
       bool                    m_bEnterKeyPressed;
       ::write_text::font_pointer  m_pfont;
 

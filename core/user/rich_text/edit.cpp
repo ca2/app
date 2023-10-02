@@ -272,7 +272,7 @@ namespace user
       void edit::on_message_mouse_leave(::message::message * pmessage)
       {
 
-         release_mouse_capture();
+         defer_release_mouse_capture();
 
          set_need_redraw();
 
@@ -435,9 +435,9 @@ namespace user
 
             point -= rectangleWindow.top_left();
 
-            auto rectangleClient = client_rectangle();
+            auto rectangleX = this->rectangle();
 
-            return rectangleClient.contains(::point_i32(point));
+            return rectangleX.contains(::point_i32(point));
 
          }
 
@@ -457,9 +457,9 @@ namespace user
       void edit::on_layout(::draw2d::graphics_pointer & pgraphics)
       {
 
-         auto rectangleClient = client_rectangle();
+         auto rectangleX = this->rectangle();
 
-         if (rectangleClient.is_empty())
+         if (rectangleX.is_empty())
          {
 
             return;

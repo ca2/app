@@ -292,7 +292,7 @@ namespace axis
 ////         if(m_iErrorCode != 0)
 ////         {
 ////
-////            dappy(__type_name(this) + " : on_run failure : " + as_string(m_iErrorCode));
+////            dappy(::type(this).name() + " : on_run failure : " + as_string(m_iErrorCode));
 ////
 ////            ::information("application::main on_run termination failure\n");
 ////
@@ -312,7 +312,7 @@ namespace axis
 //      catch (...)
 //      {
 //
-//         //dappy(__type_name(this) + " : on_run general exception");
+//         //dappy(::type(this).name() + " : on_run general exception");
 //
 //      }
 //
@@ -809,7 +809,7 @@ namespace axis
 //      if (!init1())
 //      {
 //
-//         //dappy(__type_name(this) + " : init1 failure : " + as_string(m_iErrorCode));
+//         //dappy(::type(this).name() + " : init1 failure : " + as_string(m_iErrorCode));
 //
 //         return false;
 //
@@ -824,7 +824,7 @@ namespace axis
 //      if (!init2())
 //      {
 //
-//         //dappy(__type_name(this) + " : init2 failure : " + as_string(m_iErrorCode));
+//         //dappy(::type(this).name() + " : init2 failure : " + as_string(m_iErrorCode));
 //
 //         return false;
 //
@@ -839,7 +839,7 @@ namespace axis
 //      if (!init3())
 //      {
 //
-//         //dappy(__type_name(this) + " : init3 failure : " + as_string(m_iErrorCode));
+//         //dappy(::type(this).name() + " : init3 failure : " + as_string(m_iErrorCode));
 //
 //         return false;
 //
@@ -851,7 +851,7 @@ namespace axis
 //
 //      m_timeHeartBeat.Now();
 //
-//      //dappy(__type_name(this) + " : init3 ok : " + as_string(m_iErrorCode));
+//      //dappy(::type(this).name() + " : init3 ok : " + as_string(m_iErrorCode));
 //
 //      try
 //      {
@@ -859,7 +859,7 @@ namespace axis
 //         if (!init())
 //         {
 //
-//            //dappy(__type_name(this) + " : initialize failure : " + as_string(m_iErrorCode));
+//            //dappy(::type(this).name() + " : initialize failure : " + as_string(m_iErrorCode));
 //
 //            return false;
 //
@@ -1399,7 +1399,7 @@ namespace axis
       try
       {
 
-         string strType = __type_name(this);
+         string strType = ::type(this).name();
 
          //if(::is_set(acmesystem()))
          //{
@@ -1832,7 +1832,7 @@ namespace axis
    }
 
 
-   ::type application::control_type_from_id(const ::atom& atom, ::user::enum_control_type& econtroltype)
+   ::type_atom application::control_type_from_id(const ::atom& atom, ::user::enum_control_type& econtroltype)
    {
 
       string str(atom);
@@ -1842,7 +1842,7 @@ namespace axis
 
          econtroltype = ::user::e_control_type_static;
 
-         return __type(::user::still);
+         return ::type < ::user::still >();
 
       }
       else if (str.case_insensitive_begins("label_"))
@@ -1850,7 +1850,7 @@ namespace axis
 
          econtroltype = ::user::e_control_type_static;
 
-         return __type(::user::still);
+         return ::type < ::user::still >();
 
       }
       else if (str.case_insensitive_begins("combo_"))
@@ -1858,7 +1858,7 @@ namespace axis
 
          econtroltype = ::user::e_control_type_combo_box;
 
-         return __type(::user::combo_box);
+         return ::type < ::user::combo_box >();
 
       }
       else if (str.case_insensitive_begins("check_") || str.case_insensitive_begins("checkbox_"))
@@ -1866,7 +1866,7 @@ namespace axis
 
          econtroltype = ::user::e_control_type_check_box;
 
-         return __type(::user::check_box);
+         return ::type < ::user::check_box >();
 
       }
       if (str.case_insensitive_begins("button_"))
@@ -1874,7 +1874,7 @@ namespace axis
 
          econtroltype = ::user::e_control_type_button;
 
-         return __type(::user::button);
+         return ::type < ::user::button >();
 
       }
 

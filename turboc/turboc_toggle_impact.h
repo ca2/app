@@ -12,7 +12,7 @@ namespace turboc
    public:
 
 
-      top_impact * m_ptopview;
+      top_impact * m_ptopimpact;
 
 
       toggle_impact(::particle * pparticle);

@@ -19,8 +19,14 @@ namespace user
    class user;
 
 
+   class acme_content;
+   class acme_tool;
+
+
    DECLARE_ENUMERATION(e_state, enum_state);
    CLASS_DECL_ACME string get_wallpaper(::index iIndex);
+
+
 
 
 } // namespace user

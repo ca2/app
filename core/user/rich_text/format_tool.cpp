@@ -4,8 +4,8 @@
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
 #include "acme/handler/item.h"
-////#include "acme/exception/exception.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/user/user/content.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/write_text/font_list.h"
@@ -254,12 +254,12 @@ namespace user
 
       auto pbrushBk = __create < ::draw2d::brush > ();
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
-      pbrushBk->CreateLinearGradientBrush(rectangleClient.top_left(), rectangleClient.bottom_left(),
+      pbrushBk->CreateLinearGradientBrush(rectangleX.top_left(), rectangleX.bottom_left(),
                                       argb(255, 230, 230, 230), argb(255, 200, 200, 200));
 
-      pgraphics->fill_rectangle(rectangleClient, pbrushBk);
+      pgraphics->fill_rectangle(rectangleX, pbrushBk);
 
    }
 
@@ -627,12 +627,12 @@ namespace user
       if (bSaveAndValidate)
       {
 
-         if (m_pcomboFamily->m_pitemCurrent.is_set())
+         if (m_pcomboFamily->main_content().m_pitemCurrent.is_set())
          {
 
             auto pcombolistbox = m_pcomboFamily->m_plistbox;
 
-            auto pitemCurrent = m_pcomboFamily->m_pitemCurrent;
+            auto pitemCurrent = m_pcomboFamily->main_content().m_pitemCurrent;
 
             ::pointer<::user::font_list>pfontlist = pcombolistbox;
 
@@ -752,10 +752,10 @@ namespace user
 
       ::rectangle_i32 rectangleRequest;
 
-      rectangleRequest.left = rectangle.left - 32;
-      rectangleRequest.top = rectangle.top - 32;
-      rectangleRequest.right = rectangleRequest.left + 400;
-      rectangleRequest.bottom = rectangleRequest.top + 32;
+      rectangleRequest.left() = rectangle.left() - 32;
+      rectangleRequest.top() = rectangle.top() - 32;
+      rectangleRequest.right() = rectangleRequest.left() + 400;
+      rectangleRequest.bottom() = rectangleRequest.top() + 32;
 
       enable_window();
 

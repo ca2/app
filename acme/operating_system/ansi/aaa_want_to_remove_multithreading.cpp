@@ -164,7 +164,7 @@
 //
 //
 //
-//CLASS_DECL_ACME htask_t get_current_htask()
+//CLASS_DECL_ACME htask_t current_htask()
 //{
 //
 //   return ::GetCurrentThread();
@@ -172,7 +172,7 @@
 //}
 //
 //
-////CLASS_DECL_ACME pDWORD get_current_itask()
+////CLASS_DECL_ACME pDWORD current_itask()
 ////{
 ////
 ////   return ::GetCurrentThreadId();

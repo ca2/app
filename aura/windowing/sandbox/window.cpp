@@ -8,7 +8,7 @@
 #include "aura/graphics/image/context_image.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/user/user/interaction_impl.h"
-#include "aura/user/user/interaction_prodevian.h"
+#include "aura/user/user/interaction_graphics_thread.h"
 #include "aura/platform/application.h"
 #include "aura/platform/message_queue.h"
 
@@ -172,7 +172,7 @@ namespace sandbox_windowing
 
             //}
 
-            //htask_t htask = ::get_current_htask();
+            //htask_t htask = ::current_htask();
 
             //m_htask = htask;
 
@@ -281,7 +281,7 @@ namespace sandbox_windowing
                if (pimpl->m_puserinteraction->const_layout().sketch().display() == e_display_undefined)
                {
 
-                  auto pointCursor = get_cursor_position();
+                  auto pointCursor = pimpl->m_puserinteraction->mouse_cursor_position();
 
                   pimpl->m_puserinteraction->set_position(pointCursor);
 
@@ -1113,12 +1113,12 @@ namespace sandbox_windowing
    }
 
 
-   ::point_i32 window::get_mouse_cursor_position()
-   {
+   //::point_i32 window::get_mouse_cursor_position()
+   //{
 
-      return m_pointCursor;
+   //   return m_pointCursor;
 
-   }
+   //}
 
 
    //   ::Window window::get_parent_handle()
@@ -1308,16 +1308,29 @@ namespace sandbox_windowing
 //   }
 //
 //
-   void window::show_window(const ::e_display& edisplay, const ::e_activation& eactivation)
+
+
+
+   //void window::show_window(const ::e_display& edisplay, const ::e_activation& eactivation)
+   //{
+
+   //}
+
+
+   bool window::_configure_window_unlocked(const class ::zorder & zorder, const ::e_activation & eactivation, bool bNoZorder, ::e_display edisplay)
    {
+
+      return true;
 
    }
 
+
+
    //
-   //      x11_windowing()->windowing_post([this, edisplay, eactivation]()
+   //      user_post([this, edisplay, eactivation]()
    //         {
    //
-   //            windowing_output_debug_string("\n::window::show_window 1");
+   //            windowing_output_debug_string("::window::show_window 1");
    //
    //            synchronous_lock synchronouslock(user_synchronization());
    //
@@ -1328,7 +1341,7 @@ namespace sandbox_windowing
    //            if (!XGetWindowAttributes(Display(), Window(), &attr))
    //            {
    //
-   //               windowing_output_debug_string("\n::window::show_window 1.2");
+   //               windowing_output_debug_string("::window::show_window 1.2");
    //
    //               return false;
    //
@@ -1378,7 +1391,7 @@ namespace sandbox_windowing
    //
    //            }
    //
-   //            windowing_output_debug_string("\n::window::show_window 2");
+   //            windowing_output_debug_string("::window::show_window 2");
    //
    //            return true;
    //
@@ -1400,7 +1413,7 @@ namespace sandbox_windowing
    //
    //      int iMonitor = m_pdisplay->get_best_monitor(&rBest, rectangle);
    //
-   //      windowing_output_debug_string("\n::window::full_screen 1");
+   //      windowing_output_debug_string("::window::full_screen 1");
    //
    //      synchronous_lock synchronouslock(user_synchronization());
    //
@@ -1409,7 +1422,7 @@ namespace sandbox_windowing
    //      //      if (x11_display()->is_null())
    //      //      {
    //      //
-   //      //         windowing_output_debug_string("\n::window::full_screen 1.1");
+   //      //         windowing_output_debug_string("::window::full_screen 1.1");
    //      //
    //      //         return;
    //      //
@@ -1420,7 +1433,7 @@ namespace sandbox_windowing
    //      if (!XGetWindowAttributes(Display(), Window(), &attr))
    //      {
    //
-   //         windowing_output_debug_string("\n::window::full_screen 1.2");
+   //         windowing_output_debug_string("::window::full_screen 1.2");
    //
    //         fflush(stdout);
    //
@@ -1430,17 +1443,17 @@ namespace sandbox_windowing
    //
    //      ::rectangle_i32 rWindow;
    //
-   //      rWindow.left = attr.x();
-   //      rWindow.top = attr.y();
-   //      rWindow.right = attr.x() + attr.width;
-   //      rWindow.bottom = attr.y() + attr.height;
+   //      rWindow.left() = attr.x();
+   //      rWindow.top() = attr.y();
+   //      rWindow.right() = attr.x() + attr.width;
+   //      rWindow.bottom() = attr.y() + attr.height;
    //
    //      if (rBest != rWindow)
    //      {
    //
    //         m_puserinteractionimpl->m_puserinteraction->place(rBest);
    //
-   //         XMoveResizeWindow(Display(), Window(), rBest.left, rBest.top, rBest.width(), rBest.height());
+   //         XMoveResizeWindow(Display(), Window(), rBest.left(), rBest.top(), rBest.width(), rBest.height());
    //
    //      }
    //
@@ -1459,7 +1472,7 @@ namespace sandbox_windowing
    //
    //      }
    //
-   //      windowing_output_debug_string("\n::window::full_screen 2");
+   //      windowing_output_debug_string("::window::full_screen 2");
    //
    //      ::fflush(stdout);
    //
@@ -1480,7 +1493,7 @@ namespace sandbox_windowing
       //if (!XGetWindowAttributes(Display(), Window(), &attr))
       //{
 
-      //   windowing_output_debug_string("\n::window::exit_full_screen 1.2");
+      //   windowing_output_debug_string("::window::exit_full_screen 1.2");
 
       //   fflush(stdout);
 
@@ -1512,7 +1525,7 @@ namespace sandbox_windowing
       //if (!XGetWindowAttributes(Display(), Window(), &attr))
       //{
 
-      //   windowing_output_debug_string("\n::window::exit_full_screen 1.2");
+      //   windowing_output_debug_string("::window::exit_full_screen 1.2");
 
       //   fflush(stdout);
 
@@ -1544,7 +1557,7 @@ namespace sandbox_windowing
       //if (!XGetWindowAttributes(Display(), Window(), &attr))
       //{
 
-      //   windowing_output_debug_string("\n::window::exit_zoomed 1.2");
+      //   windowing_output_debug_string("::window::exit_zoomed 1.2");
 
       //   fflush(stdout);
 
@@ -1619,7 +1632,7 @@ namespace sandbox_windowing
    //long window::get_state()
    //{
 
-   //   windowing_output_debug_string("\n::window::get_state 1");
+   //   windowing_output_debug_string("::window::get_state 1");
 
    //   synchronous_lock synchronouslock(user_synchronization());
 
@@ -1668,13 +1681,13 @@ namespace sandbox_windowing
 
    //      XFree(point);
 
-   //      windowing_output_debug_string("\n::window::get_state 1.1");
+   //      windowing_output_debug_string("::window::get_state 1.1");
 
    //      return lStatus;
 
    //   }
 
-   //   windowing_output_debug_string("\n::window::get_state 2");
+   //   windowing_output_debug_string("::window::get_state 2");
 
    //   return -1;
 
@@ -1707,7 +1720,7 @@ namespace sandbox_windowing
    bool window::is_window_visible()
    {
 
-      //windowing_output_debug_string("\n::window::is_window_visible 1");
+      //windowing_output_debug_string("::window::is_window_visible 1");
 
       //synchronous_lock synchronouslock(user_synchronization());
 
@@ -1716,7 +1729,7 @@ namespace sandbox_windowing
       //if (x11_display()->is_null())
       //{
 
-      //   windowing_output_debug_string("\n::window::is_window_visible 1.1");
+      //   windowing_output_debug_string("::window::is_window_visible 1.1");
 
       //   return false;
 
@@ -1727,13 +1740,13 @@ namespace sandbox_windowing
       //if (!XGetWindowAttributes(Display(), Window(), &attr))
       //{
 
-      //   windowing_output_debug_string("\n::window::is_window_visible 1.2");
+      //   windowing_output_debug_string("::window::is_window_visible 1.2");
 
       //   return false;
 
       //}
 
-      //windowing_output_debug_string("\n::window::is_window_visible 2");
+      //windowing_output_debug_string("::window::is_window_visible 2");
 
       //return attr.map_state == IsViewable;
 
@@ -1832,14 +1845,14 @@ namespace sandbox_windowing
    //
    //      int iMonitor = best_xinerama_monitor(m_puserinteractionimpl->m_puserinteraction, rectangle, rBest);
    //
-   //      windowing_output_debug_string("\n::oswindow_data::full_screen 1");
+   //      windowing_output_debug_string("::oswindow_data::full_screen 1");
    //
    //      xdisplay d(display());
    //
    //      if(d.is_null())
    //      {
    //
-   //         windowing_output_debug_string("\n::oswindow_data::full_screen 1.1");
+   //         windowing_output_debug_string("::oswindow_data::full_screen 1.1");
    //
    //         return;
    //
@@ -1850,7 +1863,7 @@ namespace sandbox_windowing
    //      if(!XGetWindowAttributes(display(), window(), &attr))
    //      {
    //
-   //         windowing_output_debug_string("\n::oswindow_data::full_screen 1.2");
+   //         windowing_output_debug_string("::oswindow_data::full_screen 1.2");
    //
    //         fflush(stdout);
    //
@@ -1860,17 +1873,17 @@ namespace sandbox_windowing
    //
    //      ::rectangle_i32 rWindow;
    //
-   //      rWindow.left      = attr.x();
-   //      rWindow.top       = attr.y();
-   //      rWindow.right     = attr.x()    + attr.width;
-   //      rWindow.bottom    = attr.y()    + attr.height;
+   //      rWindow.left()      = attr.x();
+   //      rWindow.top()       = attr.y();
+   //      rWindow.right()     = attr.x()    + attr.width;
+   //      rWindow.bottom()    = attr.y()    + attr.height;
    //
    //      if(rBest != rWindow)
    //      {
    //
    //         m_puserinteractionimpl->m_puserinteraction->place(rBest);
    //
-   //         XMoveResizeWindow(d, m_window, rBest.left, rBest.top, rBest.width(), rBest.height());
+   //         XMoveResizeWindow(d, m_window, rBest.left(), rBest.top(), rBest.width(), rBest.height());
    //
    //      }
    //
@@ -1889,7 +1902,7 @@ namespace sandbox_windowing
    //
    //      }
    //
-   //      windowing_output_debug_string("\n::oswindow_data::full_screen 2");
+   //      windowing_output_debug_string("::oswindow_data::full_screen 2");
    //
    //      ::fflush(stdout);
    //
@@ -2060,12 +2073,13 @@ namespace sandbox_windowing
    //}
 
 
-   bool window::set_window_position(const class ::zorder& zorder, i32 x, i32 y, i32 cx, i32 cy, const ::e_activation& eactivation, bool bNoZorder, bool bNoMove, bool bNoSize, bool bShow, bool bHide)
+   //bool window::set_window_position(const class ::zorder& zorder, i32 x, i32 y, i32 cx, i32 cy, const ::e_activation& eactivation, bool bNoZorder, bool bNoMove, bool bNoSize, bool bShow, bool bHide)
+   bool window::_set_window_position(const class ::zorder & zorder, i32 x, i32 y, i32 cx, i32 cy, const ::e_activation & eactivation, bool bNoZorder, bool bNoMove, bool bNoSize, ::e_display edisplay, ::u32 nOverrideFlags)
    {
 
       //synchronous_lock sl(user_synchronization());
 
-      windowing_output_debug_string("\n::window::set_window_pos 1");
+      windowing_output_debug_string("::window::set_window_pos 1");
 
       //      display_lock displaylock(x11_display()->Display());
       //
@@ -2074,7 +2088,7 @@ namespace sandbox_windowing
       //      if (!XGetWindowAttributes(Display(), Window(), &attrs))
       //      {
       //
-      //         windowing_output_debug_string("\n::window::set_window_pos 1.1 xgetwindowattr failed");
+      //         windowing_output_debug_string("::window::set_window_pos 1.1 xgetwindowattr failed");
       //
       //         return false;
       //
@@ -2086,7 +2100,7 @@ namespace sandbox_windowing
       //         if (attrs.map_state == IsUnmapped)
       //         {
       //
-      //            windowing_output_debug_string("\n::window::set_window_pos Mapping Window 1.2");
+      //            windowing_output_debug_string("::window::set_window_pos Mapping Window 1.2");
       //
       //            XMapWindow(Display(), Window());
       //
@@ -2095,7 +2109,7 @@ namespace sandbox_windowing
       //         if (!XGetWindowAttributes(Display(), Window(), &attrs))
       //         {
       //
-      //            windowing_output_debug_string("\n::window::set_window_pos 1.3 xgetwindowattr failed");
+      //            windowing_output_debug_string("::window::set_window_pos 1.3 xgetwindowattr failed");
       //
       //            return false;
       //
@@ -2113,7 +2127,7 @@ namespace sandbox_windowing
       //         if (bSize)
       //         {
       //
-      //            windowing_output_debug_string("\n::window::set_window_pos Move Resize Window 1.4");
+      //            windowing_output_debug_string("::window::set_window_pos Move Resize Window 1.4");
       //
       //#ifdef SET_WINDOW_POS_LOG
       //
@@ -2142,7 +2156,7 @@ namespace sandbox_windowing
       //         else
       //         {
       //
-      //            windowing_output_debug_string("\n::window::set_window_pos Move Window 1.4.1");
+      //            windowing_output_debug_string("::window::set_window_pos Move Window 1.4.1");
       //
       //            XMoveWindow(Display(), Window(), x, y);
       //
@@ -2152,7 +2166,7 @@ namespace sandbox_windowing
       //      else if (bSize)
       //      {
       //
-      //         windowing_output_debug_string("\n::window::set_window_pos Resize Window 1.4.2");
+      //         windowing_output_debug_string("::window::set_window_pos Resize Window 1.4.2");
       //
       //         XResizeWindow(Display(), Window(), cx, cy);
       //
@@ -2191,7 +2205,7 @@ namespace sandbox_windowing
       //         if (attrs.map_state == IsViewable)
       //         {
       //
-      //            windowing_output_debug_string("\n::window::set_window_pos Withdraw Window 1.4.3");
+      //            windowing_output_debug_string("::window::set_window_pos Withdraw Window 1.4.3");
       //
       //            XWithdrawWindow(Display(), Window(), Screen());
       //
@@ -2202,7 +2216,7 @@ namespace sandbox_windowing
       //      if (XGetWindowAttributes(Display(), Window(), &attrs) == 0)
       //      {
       //
-      //         windowing_output_debug_string("\n::window::set_window_pos xgetwndattr 1.4.4");
+      //         windowing_output_debug_string("::window::set_window_pos xgetwndattr 1.4.4");
       //
       //         return false;
       //
@@ -2273,7 +2287,7 @@ namespace sandbox_windowing
       //
       //            //m_puserinteractionimpl->on_change_visibility();
       //
-      //      windowing_output_debug_string("\n::window::set_window_pos 2");
+      //      windowing_output_debug_string("::window::set_window_pos 2");
 
       return true;
 
@@ -2450,7 +2464,7 @@ namespace sandbox_windowing
 
       //      synchronous_lock sl(user_synchronization());
 
-      //      windowing_output_debug_string("\n::SetCursor 1");
+      //      windowing_output_debug_string("::SetCursor 1");
 
       //      display_lock displaylock(x11_display()->Display());;
 
@@ -2497,7 +2511,7 @@ namespace sandbox_windowing
    //}
 
 
-   //::e_status window::client_rectangle(::rectangle_i32 * prectangle)
+   //::e_status window::this->rectangle(::rectangle_i32 * prectangle)
    //{
 
    //   return x11_get_client_rect(prectangle);
@@ -2512,7 +2526,7 @@ namespace sandbox_windowing
 //
 //      ra.erase_all();
 //
-//      windowing_output_debug_string("\n::GetFocus 1");
+//      windowing_output_debug_string("::GetFocus 1");
 //
 //#ifdef display_lock_LOCK_LOG
 //
@@ -2522,7 +2536,7 @@ namespace sandbox_windowing
 //
 //      display_lock displaylock(x11_display()->Display());
 //
-//      windowing_output_debug_string("\n::GetFocus 1.01");
+//      windowing_output_debug_string("::GetFocus 1.01");
 //
 //      auto windowa = x11_display()->x11_window_list();
 //
@@ -2580,7 +2594,7 @@ namespace sandbox_windowing
 
    //   {
 
-   //      windowing_output_debug_string("\n::set_active_window 1");
+   //      windowing_output_debug_string("::set_active_window 1");
 
    //      display_lock displaylock(x11_display()->Display());
 
@@ -2606,7 +2620,7 @@ namespace sandbox_windowing
 
    //      XSendEvent(Display(), windowRoot, False, SubstructureRedirectMask | SubstructureNotifyMask, &xev);
 
-   //      windowing_output_debug_string("\n::set_active_window 2");
+   //      windowing_output_debug_string("::set_active_window 2");
 
    //   }
 
@@ -2632,7 +2646,7 @@ namespace sandbox_windowing
    //   if (::is_null(windowa))
    //   {
 
-   //      windowing_output_debug_string("\n::_get_window_relative");
+   //      windowing_output_debug_string("::_get_window_relative");
 
    //      return 0;
 
@@ -2741,7 +2755,7 @@ namespace sandbox_windowing
 
    //   ::Window window = 0;
 
-   //   windowing_output_debug_string("\n::get_window 1");
+   //   windowing_output_debug_string("::get_window 1");
 
    //   display_lock displaylock(x11_display()->Display());
 
@@ -2933,7 +2947,7 @@ namespace sandbox_windowing
 
       m_pwindowing->erase_window(this);
 
-      windowing_output_debug_string("\n::DestroyWindow 1");
+      windowing_output_debug_string("::DestroyWindow 1");
 
       //display_lock displaylock(x11_display()->Display());
 
@@ -2941,7 +2955,7 @@ namespace sandbox_windowing
 
       //XDestroyWindow(Display(), Window());
 
-      //windowing_output_debug_string("\n::DestroyWindow 2");
+      //windowing_output_debug_string("::DestroyWindow 2");
       ////
       ////               });
 
@@ -3070,14 +3084,14 @@ namespace sandbox_windowing
 
    //   synchronous_lock synchronouslock(user_synchronization());
 
-   //   windowing_output_debug_string("\n::wm_test_state 1");
+   //   windowing_output_debug_string("::wm_test_state 1");
 
    //   display_lock displaylock(x11_display()->Display());
 
    //   if (x11_display()->is_null())
    //   {
 
-   //      windowing_output_debug_string("\n::wm_test_state 1.1");
+   //      windowing_output_debug_string("::wm_test_state 1.1");
 
    //      return 0;
 
@@ -3085,7 +3099,7 @@ namespace sandbox_windowing
 
    //   int i = wm_test_state_raw(pszNetStateFlag);
 
-   //   windowing_output_debug_string("\n::wm_test_state 2");
+   //   windowing_output_debug_string("::wm_test_state 2");
 
    //   return i;
 
@@ -3328,7 +3342,7 @@ namespace sandbox_windowing
    //      if (!XGetWindowAttributes(Display(), window, &attrs))
    //      {
    //
-   //         windowing_output_debug_string("\n::x11_get_window_rect 1.1 (xgetwindowattributes failed)");
+   //         windowing_output_debug_string("::x11_get_window_rect 1.1 (xgetwindowattributes failed)");
    //
    //         return false;
    //
@@ -3346,22 +3360,22 @@ namespace sandbox_windowing
    //
    //      XTranslateCoordinates(Display(), window, windowRoot, 0, 0, &x, &y, &child);
    //
-   //      prectangle->left = x + attrs.x();
+   //      prectangle->left() = x + attrs.x();
    //
-   //      prectangle->top = y + attrs.y();
+   //      prectangle->top() = y + attrs.y();
    //
-   //      prectangle->right = x + attrs.x() + attrs.width;
+   //      prectangle->right() = x + attrs.x() + attrs.width;
    //
-   //      prectangle->bottom = y + attrs.y() + attrs.height;
+   //      prectangle->bottom() = y + attrs.y() + attrs.height;
    //
    //
-   //      windowing_output_debug_string("\n::x11_get_window_rect 2");
+   //      windowing_output_debug_string("::x11_get_window_rect 2");
    //
    //      return true;
    //
    //   }
 
-   //   int_bool window::client_rectangle(::rectangle_i32 *prectangle)
+   //   int_bool window::this->rectangle(::rectangle_i32 *prectangle)
    //   {
    //
    //      synchronous_lock synchronouslock(user_synchronization());
@@ -3371,7 +3385,7 @@ namespace sandbox_windowing
    //      if (x11_display()->is_null())
    //      {
    //
-   //         windowing_output_debug_string("\n::client_rectangle 1.1 (display is null)");
+   //         windowing_output_debug_string("::this->rectangle 1.1 (display is null)");
    //
    //         return false;
    //
@@ -3382,21 +3396,21 @@ namespace sandbox_windowing
    //      if (XGetWindowAttributes(Display(), Window(), &attr) == 0)
    //      {
    //
-   //         windowing_output_debug_string("\n::client_rectangle 1.2 (xgetwindowattributes failed");
+   //         windowing_output_debug_string("::this->rectangle 1.2 (xgetwindowattributes failed");
    //
    //         return false;
    //
    //      }
    //
-   //      prectangle->left = 0;
+   //      prectangle->left() = 0;
    //
-   //      prectangle->top = 0;
+   //      prectangle->top() = 0;
    //
-   //      prectangle->right = prectangle->left + attr.width;
+   //      prectangle->right() = prectangle->left() + attr.width;
    //
-   //      prectangle->bottom = prectangle->top + attr.height;
+   //      prectangle->bottom() = prectangle->top() + attr.height;
    //
-   //      windowing_output_debug_string("\n::client_rectangle 2");
+   //      windowing_output_debug_string("::this->rectangle 2");
    //
    //      return true;
    //
@@ -3419,7 +3433,7 @@ namespace sandbox_windowing
    //            if (::is_set(puserinteraction))
    //            {
 
-   //               string strType = __type_name(puserinteraction);
+   //               string strType = ::type(puserinteraction).name();
 
    //               if (strType.contains("menu"))
    //               {
@@ -3433,7 +3447,7 @@ namespace sandbox_windowing
    //               if (::is_set(pimpl2))
    //               {
 
-   //                  auto pprodevian = pimpl2->m_pprodevian;
+   //                  auto pprodevian = pimpl2->m_pgraphicsthread;
 
    //                  if (::is_set(pprodevian))
    //                  {

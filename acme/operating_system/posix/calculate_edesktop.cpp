@@ -18,10 +18,14 @@
 
    const char * pszDesktop = getenv("XDG_CURRENT_DESKTOP");
 
+   printf("XDG_CURRENT_DESKTOP %s\n", pszDesktop);
+
    string strDesktop(pszDesktop);
 
    if(strDesktop.case_insensitive_order("kde") == 0)
    {
+
+      printf("calculate_edesktop e_desktop_kde\n");
 
       return ::user::e_desktop_kde;
 
@@ -29,11 +33,15 @@
    else if(strDesktop.case_insensitive_order("gnome") == 0)
    {
 
+      printf("calculate_edesktop e_desktop_gnome\n");
+
       return ::user::e_desktop_gnome;
 
    }
    else if(strDesktop.case_insensitive_order("lxde") == 0)
    {
+
+      printf("calculate_edesktop e_desktop_lxde\n");
 
       return ::user::e_desktop_lxde;
 

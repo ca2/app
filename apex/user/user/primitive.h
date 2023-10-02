@@ -69,9 +69,9 @@ namespace user
       enum_control_type get_control_type() const override;
 
 
-      void add_prodevian(::matter * pmatter) override;
-      void erase_prodevian(::matter * pmatter) override;
-      bool is_prodevian(const ::matter * pmatter) const override;
+      void add_auto_refresh(::matter * pmatter) override;
+      void erase_auto_refresh(::matter * pmatter) override;
+      bool is_auto_refresh(const ::matter * pmatter) const override;
 
       void display(::e_display edisplay = e_display_default, ::e_activation eactivation = e_activation_default) override;
 
@@ -181,7 +181,7 @@ namespace user
       void design_down() override;
       void design_up() override;
 
-      void prodevian_stop() override;
+      void auto_refresh_stop() override;
 
       virtual void design_window_minimize(::e_activation eactivation);
       virtual void design_window_maximize();
@@ -190,7 +190,7 @@ namespace user
       virtual void design_window_dock(e_display edisplayDock);
 
 
-      void prodevian_redraw(bool bUpdateBuffer) override;
+      //void graphics_thread_post_redraw(bool bUpdateBuffer) override;
 
       virtual void on_start_layout_experience(enum_layout_experience elayoutexperience);
       virtual void on_end_layout_experience(enum_layout_experience elayoutexperience);
@@ -227,7 +227,7 @@ namespace user
       void create_interaction(::user::interaction * puserinteractionParent, const ::atom & atom = nullptr) override;
 
 
-      void create_host() override;
+      void create_host(enum_parallelization eparallelization) override;
       void create_child(::user::interaction * puserinteractionParent) override;
       void create_control(::user::interaction * puserinteractionParent, const ::atom & atom) override;
 
@@ -258,7 +258,7 @@ namespace user
       //bool GetUpdateRect(::rectangle_i32 * prectangle,bool bErase = false) override;
 
 
-      void interaction_post(const ::procedure & procedure) override;
+      void host_post(const ::procedure & procedure) override;
 
 
       virtual lresult send(::message::message * pmessage);
@@ -275,6 +275,8 @@ namespace user
       virtual lresult send_x11_event(void * pevent); // pevent <= XEvent *
 
 #endif
+
+      void message_handler(const ::atom & atom, wparam wparam = 0, lparam lparam = 0)override;
 
       void post_message(const ::atom & atom, wparam wparam = 0,lparam lparam = 0)override;
 
@@ -385,7 +387,7 @@ namespace user
       //virtual bool is_descendant(const ::user::primitive * pinteraction,bool bIncludeSelf = false) const;
        ::user::interaction * get_focusable_descendant() override;
 
-      void RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::atom idLeftOver, ::u32 nFlag = reposDefault, ::rectangle_i32 * prectParam = nullptr, const ::rectangle_i32 & rectangleClient = {
+      void RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::atom idLeftOver, ::u32 nFlag = reposDefault, ::rectangle_i32 * prectParam = nullptr, const ::rectangle_i32 & rectangleX = {
          }, bool bStretch = true) override;
 
       ::user::interaction * ChildWindowFromPoint(const ::point_i32 & point) override;

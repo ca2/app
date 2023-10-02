@@ -17,7 +17,13 @@
 //};
 
 
+enum enum_parallelization
+{
 
+   e_parallelization_synchronous,
+   e_parallelization_asynchronous,
+
+};
 
 //
 //enum e_task_flag :

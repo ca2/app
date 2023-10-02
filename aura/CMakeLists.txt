@@ -67,8 +67,8 @@ list(APPEND library_source
    #graphics/draw2d/keep.h
    graphics/draw2d/lock.cpp
    graphics/draw2d/lock.h
-   graphics/draw2d/matrix.cpp
-   graphics/draw2d/matrix.h
+   #graphics/draw2d/matrix.cpp
+   #graphics/draw2d/matrix.h
    graphics/draw2d/nano_svg.cpp
    graphics/draw2d/nano_svg_rasterization.cpp
    graphics/draw2d/object.cpp
@@ -357,9 +357,13 @@ list(APPEND library_source
    user/user/_impl.h
    user/user/_interaction_impl.h
    user/user/_prelude.h
+        user/user/_string.cpp
    #user/user/_user.h
    user/user/alpha_source.cpp
    user/user/alpha_source.h
+        user/user/auto_refresh.cpp
+        user/user/auto_refresh.h
+
    user/user/box.cpp
    user/user/box.h
    user/user/button.cpp
@@ -395,8 +399,8 @@ list(APPEND library_source
    user/user/interaction_impl.h
    user/user/interaction_layout.cpp
    user/user/interaction_layout.h
-   user/user/interaction_prodevian.cpp
-   user/user/interaction_prodevian.h
+   user/user/interaction_graphics_thread.cpp
+   user/user/interaction_graphics_thread.h
    user/user/interaction_thread.cpp
    user/user/interaction_thread.h
    user/user/interaction_scaler.cpp
@@ -431,8 +435,6 @@ list(APPEND library_source
    user/user/plain_text_tree.h
    user/user/primitive_impl.cpp
    user/user/primitive_impl.h
-   user/user/prodevian.cpp
-   user/user/prodevian.h
    user/user/progress.cpp
    user/user/progress.h
    user/user/range.cpp
@@ -1324,7 +1326,10 @@ list(APPEND static_library_references ${library_references})
 list(TRANSFORM static_library_references PREPEND static_)
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source})
+add_library(${PROJECT_NAME} SHARED ${library_source}
+   user/user/_string.h
+   user/user/_text_stream.h
+   user/user/_string.cpp)
 add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
 

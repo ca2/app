@@ -141,7 +141,7 @@ namespace userex
 
       ::rectangle_i32 rectangle;
 
-      rectangle = client_rectangle();
+      rectangle = this->rectangle();
 
       auto pframewindow = m_mapframe[idImpact];
 
@@ -230,9 +230,9 @@ namespace userex
 
          m_ptemplateTab = __new(user::single_document_template(
             "main",
-            __type(::user::document),
-            __type(simple_child_frame),
-            __type(::userex::pane_tab_impact)));
+            ::type < ::user::document >(),
+            ::type < simple_child_frame >(),
+            ::type < ::userex::pane_tab_impact >()));
 
          m_ptemplateTab->initialize(this);
 

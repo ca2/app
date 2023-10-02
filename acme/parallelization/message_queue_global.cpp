@@ -96,16 +96,16 @@ void clear_message_queue(itask_t idthread)
 ////
 ////   itask_t idthread = pinteraction->m_pthreadUserInteraction->get_os_int();
 ////
-////   auto pmq = ::get_message_queue(idthread, message.message != e_message_quit);
+////   auto pmessagequeue = ::get_message_queue(idthread, message.message != e_message_quit);
 ////
-////   if(pmq == nullptr)
+////   if(pmessagequeue == nullptr)
 ////   {
 ////
 ////      return false;
 ////
 ////   }
 ////
-////   return pmq->post_message(message);
+////   return pmessagequeue->post_message(message);
 //
 //}
 
@@ -131,18 +131,18 @@ void clear_message_queue(itask_t idthread)
 ////
 ////   itask_t idthread = pinteraction->get_app()->get_os_int();
 ////
-////   message_queue * pmq = __get_mq(idthread, false);
+////   message_queue * pmessagequeue = __get_mq(idthread, false);
 ////
-////   if(pmq == nullptr)
+////   if(pmessagequeue == nullptr)
 ////   {
 ////
 ////      return false;
 ////
 ////   }
 ////
-////   synchronous_lock ml(&pmq->m_pmutex);
+////   synchronous_lock ml(&pmessagequeue->m_pmutex);
 ////
-////   pmq->m_messagea.predicate_erase([=](MESSAGE & item)
+////   pmessagequeue->m_messagea.predicate_erase([=](MESSAGE & item)
 ////   {
 ////
 ////      return item.hwnd == oswindow;
@@ -157,9 +157,9 @@ void clear_message_queue(itask_t idthread)
 CLASS_DECL_ACME void mq_clear(itask_t idthread)
 {
 
-   auto pmq = ::get_message_queue(idthread, false);
+   auto pmessagequeue = ::get_message_queue(idthread, false);
 
-   if (pmq == nullptr)
+   if (pmessagequeue == nullptr)
    {
 
       return;
@@ -168,7 +168,7 @@ CLASS_DECL_ACME void mq_clear(itask_t idthread)
 
    critical_section_lock ml(&g_criticalsectionMq);
 
-   pmq->m_messagea.erase_all();
+   pmessagequeue->m_messagea.erase_all();
 
 }
 
@@ -183,16 +183,16 @@ void mq_post_thread_message(itask_t idthread, const ::atom & atom, wparam wparam
 
    }
 
-   auto pmq = get_message_queue(idthread, true);
+   auto pmessagequeue = get_message_queue(idthread, true);
 
-   if (::is_null(pmq))
+   if (::is_null(pmessagequeue))
    {
 
       return;
 
    }
 
-   pmq->post_message(nullptr, atom.m_emessage, wparam, lparam);
+   pmessagequeue->post_message(nullptr, atom.m_emessage, wparam, lparam);
 
 }
 
@@ -200,16 +200,16 @@ void mq_post_thread_message(itask_t idthread, const ::atom & atom, wparam wparam
 CLASS_DECL_ACME int_bool mq_peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, ::u32 wRemoveMsg)
 {
 
-   auto pmq = ::get_message_queue(::get_current_itask(), false);
+   auto pmessagequeue = ::get_message_queue(::current_itask(), false);
 
-   if (pmq == nullptr)
+   if (pmessagequeue == nullptr)
    {
 
       return false;
 
    }
 
-   if (!pmq->peek_message(pMsg, oswindow, wMsgFilterMin, wMsgFilterMax, wRemoveMsg))
+   if (!pmessagequeue->peek_message(pMsg, oswindow, wMsgFilterMin, wMsgFilterMax, wRemoveMsg))
    {
 
       return false;
@@ -224,16 +224,16 @@ CLASS_DECL_ACME int_bool mq_peek_message(MESSAGE * pMsg, oswindow oswindow, ::u3
 CLASS_DECL_ACME ::e_status mq_get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax)
 {
 
-   auto pmq = ::get_message_queue(::get_current_itask(), true);
+   auto pmessagequeue = ::get_message_queue(::current_itask(), true);
 
-   if (pmq == nullptr)
+   if (pmessagequeue == nullptr)
    {
 
       throw ::exception(error_failed);
 
    }
 
-   auto estatus = pmq->get_message(pMsg, oswindow, wMsgFilterMin, wMsgFilterMax);
+   auto estatus = pmessagequeue->get_message(pMsg, oswindow, wMsgFilterMin, wMsgFilterMax);
 
    return estatus;
 

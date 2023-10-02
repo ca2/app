@@ -24,16 +24,17 @@
 #include "core/platform/application.h"
 #include "core/platform/session.h"
 #include "core/user/account/impact.h"
+#include "core/user/user/font_list_impact.h"
 
 
 namespace core
 {
 
 
-   ::type user::get_pane_tab_impact_type_info()
+   ::type_atom user::get_pane_tab_impact_type_info()
    {
 
-      return __type(::userex::pane_tab_impact);
+      return ::type < ::userex::pane_tab_impact >();
 
    }
 
@@ -484,6 +485,10 @@ namespace userex
          return false;
 
       }
+
+      ptabpane->m_pplaceholder->m_bExtendOnParentClientArea = true;
+
+      ptabpane->m_pplaceholder->place(this->client_rectangle());
 
       pimpactdata->m_pimpactdata = (void *)pimpactdata;
 
@@ -1113,7 +1118,7 @@ namespace userex
 //::type system::get_pane_tab_impact_type_info()
 //{
 //
-//   return __type(userex::pane_tab_impact);
+//   return ::type < userex::pane_tab_impact >();
 //
 //}
 //

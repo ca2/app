@@ -44,7 +44,7 @@ namespace user
       ::pointer<::windowing::window>            m_pwindow;
 
       boolean                                  m_bWindowFrame;
-      ::type                                    m_typeNewImpact;
+      ::type_atom                               m_typeatomNewImpact;
       ::pointer<::object>                       m_pdocumentCurrent;
       ::pointer<::user::primitive>              m_puserprimitiveNew;
 

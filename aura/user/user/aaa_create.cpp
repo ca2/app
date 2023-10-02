@@ -39,7 +39,7 @@ namespace user
    //   if (this == &pcreate)
    //      return *this;
 
-   //   m_typeNewImpact = pcreate.m_typeNewImpact;
+   //   m_typeatomNewImpact = pcreate.m_typeatomNewImpact;
    //   m_pdocumentCurrent = pcreate.m_pdocumentCurrent;
    //   m_ptemplateNewDocument = pcreate.m_ptemplateNewDocument;
    //   m_puiLastAccess = pcreate.m_puiLastImpact;

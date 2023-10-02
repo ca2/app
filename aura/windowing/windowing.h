@@ -28,28 +28,28 @@ namespace windowing
       ::sandbox_windowing::windowing *          m_psandboxwindowing;
       void *                                    m_pWindowing4;
 
-      ::point_i32                               m_pointCursor;
+      //::point_i32                               m_pointCursor;
 
       display_map                               m_displaymap;
 
-      ::pointer < ::mutex >                                   m_pmutexDisplay;
-      ::pointer < ::mutex >                                   m_pmutexWindow;
-      ::pointer < ::mutex >                                   m_pmutexMonitor;
+      ::pointer < ::mutex >                     m_pmutexDisplay;
+      ::pointer < ::mutex >                     m_pmutexWindow;
+      ::pointer < ::mutex >                     m_pmutexMonitor;
 
 
       bool                                      m_bSettingCursorMatter;
-      ::pointer<::windowing::cursor_manager>   m_pcursormanager;
-      ::pointer<::windowing::keyboard>       m_pkeyboard;
+      ::pointer<::windowing::cursor_manager>    m_pcursormanager;
+      ::pointer<::windowing::keyboard>          m_pkeyboard;
 
 
 
-      ::pointer<::windowing::cursor>           m_pcursor;
-      ::pointer<::windowing::cursor>           m_pcursorCursor;
+      ::pointer<::windowing::cursor>            m_pcursor;
+      ::pointer<::windowing::cursor>            m_pcursorCursor;
       enum_cursor                               m_ecursorDefault;
       enum_cursor                               m_ecursor;
 
       bool                                      m_bDrawCursor;
-      ::pointer<::user::user>                m_puser;
+      ::pointer<::user::user>                   m_puser;
       
 
 
@@ -70,10 +70,14 @@ namespace windowing
       //::aura::system* acmesystem();
 
 
-      virtual void _initialize_windowing();
+      //virtual void _initialize_windowing();
+
+      virtual bool has_readily_gettable_absolute_coordinates() const;
 
 
       virtual void initialize_windowing(::user::user * puser);
+
+      virtual void terminate_windowing();
 
       virtual void defer_term_ui();
 
@@ -82,7 +86,7 @@ namespace windowing
 
       void destroy() override;
 
-      virtual void windowing_main();
+      //virtual void windowing_main();
 
       virtual void windowing_post_quit();
 
@@ -93,8 +97,8 @@ namespace windowing
       virtual void set_cursor_set_from_matter(::object * pobjectContext, const ::file::path & pathDir);
 
       
-      inline ::point_i32 get_cursor_position() { return m_pointCursor; }
-      virtual void set_cursor_position(const ::point_i32 & pointCursor);
+      //inline ::point_i32 get_cursor_position() { return m_pointCursor; }
+      //virtual void set_cursor_position(const ::point_i32 & pointCursor);
 
 
       virtual ::windowing::window * window(oswindow oswindow);
@@ -115,9 +119,16 @@ namespace windowing
 
       virtual ::windowing::window * get_keyboard_focus(::thread * pthread);
 
+      virtual ::point_i32 try_absolute_mouse_position(::user::interaction* puserinteraction, const ::point_i32& point);
+      virtual void set_mouse_capture(::thread * pthread, ::windowing::window * pwindow);
+
       virtual ::windowing::window * get_mouse_capture(::thread * pthread);
 
-      virtual void release_mouse_capture();
+      virtual void release_mouse_capture(::thread * pthread);
+
+      virtual bool defer_release_mouse_capture(::thread * pthread, ::windowing::window * pwindow);
+
+      virtual void set_mouse_cursor(::windowing::cursor * pcursor);
 
       virtual void clear_keyboard_focus(::user::element * pelementGainingFocusIfAny = nullptr);
 
@@ -143,6 +154,8 @@ namespace windowing
       virtual bool __hook_process_event(class display * pdisplay, void * pevent, void * cookie);
 
 
+
+      virtual bool is_screen_visible(::e_display edisplay);
 
       virtual ::pointer<::windowing::cursor>load_default_cursor(enum_cursor ecursor);
 
@@ -181,8 +194,8 @@ namespace windowing
       virtual void lock_set_foreground_window(bool bLock = true);
 
 
-      virtual void windowing_send(const ::procedure & procedure);
-      virtual void windowing_post(const ::procedure & procedure);
+      //virtual void windowing_send(const ::procedure & procedure);
+      //virtual void windowing_post(const ::procedure & procedure);
 
 
       virtual void _main_loop();
@@ -211,15 +224,15 @@ namespace windowing
 
 
       template < typename OBJECT_POINTER, typename OBJECT_METHOD, typename PAYLOAD_POINTER >
-      void windowing_get_posted_payload_synchronously(OBJECT_POINTER preturning, OBJECT_METHOD returning_method, PAYLOAD_POINTER ppayload)
+      void user_get_posted_payload_synchronously(OBJECT_POINTER preturning, OBJECT_METHOD returning_method, PAYLOAD_POINTER ppayload)
       {
 
-         return ::matter::__get_posted_payload_synchronously(this, &windowing::windowing_post, preturning, returning_method, ppayload);
+         return ::matter::__get_posted_payload_synchronously(this, &particle::user_post, preturning, returning_method, ppayload);
 
       }
 
 
-      virtual void register_extended_event_listener(::matter * pdata, bool bMouse, bool bKeyboard);
+      //virtual void register_extended_event_listener(::matter * pdata, bool bMouse, bool bKeyboard);
 
 
 #ifdef WINDOWS_DESKTOP
@@ -238,16 +251,6 @@ namespace windowing
       virtual void os_menu_item_check(void * pitem, bool bCheck);
 
       virtual void defer_create_main_menu(const string_array & straParent, const string_array & straMenu, const string_array & straId);
-
-      virtual ::e_status is_keyboard_hook_enabled(::user::interaction * puserinteractionEnablePrompt);
-
-      virtual void install_keyboard_hook(::matter * pmatterListener);
-      virtual void uninstall_keyboard_hook(::matter * pmatterListener);
-
-      virtual ::e_status is_mouse_hook_enabled(::user::interaction * puserinteractionEnablePrompt);
-
-      virtual void install_mouse_hook(::matter * pmatterListener);
-      virtual void uninstall_mouse_hook(::matter * pmatterListener);
 
       virtual ::pointer < ::user::interaction > create_message_window(const ::string & pszName, ::user::interaction_listener * plistener = nullptr);
 

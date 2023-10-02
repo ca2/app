@@ -104,7 +104,7 @@ namespace factory
 
           ::string strMessage;
 
-          strMessage = "Factory hasn't creator for type \"" + __type_name<ORIGIN_TYPE>() + "\"";
+          strMessage = "Factory hasn't creator for type \"" + ::type < ORIGIN_TYPE >().name() + "\"";
 
           warning (strMessage);
 
@@ -119,7 +119,7 @@ namespace factory
 
           ::string strMessage;
 
-          strMessage = "Couldn't create_particle for type \"" + __type_name<ORIGIN_TYPE>() + "\"";
+          strMessage = "Couldn't create_particle for type \"" + ::type < ORIGIN_TYPE >().name() + "\"";
 
           warning (strMessage);
 
@@ -134,7 +134,7 @@ namespace factory
 
           ::string strMessage;
 
-          strMessage = "Created element is not of the base type \"" + __type_name<ORIGIN_TYPE>() + "\"";
+          strMessage = "Created element is not of the base type \"" + ::type < ORIGIN_TYPE >().name() + "\"";
 
           warning (strMessage);
 
@@ -145,24 +145,6 @@ namespace factory
     }
 
 
-
-    inline ::factory::factory_item_interface * factory::get_factory_item(const ::atom & atom) const
-    {
-
-       critical_section_lock cs(&((factory*)this)->m_criticalsection);
-
-       auto p = this->plookup(atom);
-
-       if (!p)
-       {
-
-          return nullptr;
-
-       }
-
-       return p->payload();
-
-    }
 
 
     template < typename ORIGIN_TYPE >
@@ -178,41 +160,6 @@ namespace factory
     }
 
 
-    inline ::pointer<::factory::factory_item_interface> & factory::get_factory_item(const ::atom & atom)
-    {
-
-       critical_section_lock cs(&m_criticalsection);
-
-       return this->operator[](atom);
-
-    }
-
-
-    //inline ::pointer<factory_item_interface> & factory::get_factory_item(const ::atom & atom)
-    //{
-
-    //   critical_section_lock cs(&m_criticalsection);
-
-    //   return (*get_factory())[atom];
-
-    //}
-
-
-    inline ::pointer<factory_item_interface> & get_existing_factory_item(const ::atom & atom)
-    {
-
-       auto & pfactoryitem = get_factory_item(atom);
-
-       if (!pfactoryitem)
-       {
-
-          throw_exception(error_no_factory, "No factory for \"" + atom + "\"");
-
-       }
-
-       return pfactoryitem;
-
-    }
 
 
 
@@ -228,7 +175,7 @@ namespace factory
     //   if (strText.is_empty() || strText.case_insensitive_begins_eat("factoryless://"))
     //   {
 
-    //      if (p && __type_name(p)) == strText
+    //      if (p && ::type(p).name()) == strText
     //      {
 
     //         ::information("loading into existing matter of same class type (1)");
@@ -247,7 +194,7 @@ namespace factory
     //            stream.set_fail_bit();
 
     //         }
-    //         else if (__type_name(p)) != strText
+    //         else if (::type(p).name()) != strText
     //         {
 
     //            ::information("allocated matter type is different from streamed matter type (1.2)");
@@ -264,7 +211,7 @@ namespace factory
 
     //      auto atom = stream.text_to_factory_id(strText);
 
-    //      if (p && atom == __type_name(p))
+    //      if (p && atom == ::type(p).name())
     //      {
 
     //         ::information("loading into existing matter of same class type (2)");
@@ -281,7 +228,7 @@ namespace factory
     //            ::information("stream::alloc_object_from_text failed (2.1)");
 
     //         }
-    //         else if (__type_name(p)) != atom.to_string()
+    //         else if (::type(p).name()) != atom.to_string()
     //         {
 
     //            ::information("allocated matter type is different from streamed matter type (2.2)");
@@ -350,7 +297,7 @@ inline void __raw_construct(::pointer<TYPE>& p, ::factory::factory* pfactory)
 
       string strMessage;
 
-      strMessage.format("matter::__construct has failed to find factory_item for type \"%s\"", __type_name < TYPE >().c_str());
+      strMessage.format("matter::__construct has failed to find factory_item for type \"%s\"", ::type < TYPE >().name().c_str());
 
       throw_exception(::error_not_implemented, strMessage);
 
@@ -363,7 +310,7 @@ inline void __raw_construct(::pointer<TYPE>& p, ::factory::factory* pfactory)
 
       string strMessage;
 
-      strMessage.format("matter::__construct no memory to allocate implementation of type \"%ss\"", __type_name < TYPE >().c_str());
+      strMessage.format("matter::__construct no memory to allocate implementation of type \"%ss\"", ::type < TYPE >().name().c_str());
 
       throw_exception(::error_no_memory, strMessage);
 
@@ -378,7 +325,7 @@ inline void __raw_construct(::pointer<TYPE>& p, ::factory::factory* pfactory)
 
       string strMessage;
 
-      strMessage.format("matter::__construct object(%s) is not of type \"%s\"", __type_name(*pparticleNew).c_str(), __type_name < TYPE >().c_str());
+      strMessage.format("matter::__construct object(%s) is not of type \"%s\"", ::type(pparticleNew).name().c_str(), ::type < TYPE >().name().c_str());
 
       throw_exception(::error_wrong_type, strMessage);
 

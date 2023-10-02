@@ -399,10 +399,20 @@ concept primitive_dimension = requires(DIMENSION dimension)
 template < typename RECTANGLE >
 concept primitive_rectangle = requires(RECTANGLE rectangle)
 {
-   rectangle.left;
-   rectangle.top;
-   rectangle.right;
-   rectangle.bottom;
+   rectangle.left();
+   rectangle.top();
+   rectangle.right();
+   rectangle.bottom();
+};
+
+
+template < typename RECTANGLE >
+concept struct_rectangle = requires(RECTANGLE rectangle)
+{
+   { rectangle.left } -> primitive_number;
+   { rectangle.top } -> primitive_number;
+   { rectangle.right } -> primitive_number;
+   { rectangle.bottom } -> primitive_number;
 };
 
 
@@ -484,11 +494,63 @@ class rectangle_type;
 
 
 
+template<typename _Tp>
+struct erase_const_effemeral_struct
+{ using type = _Tp; };
+
+template<typename _Tp>
+struct erase_const_effemeral_struct<const _Tp>
+{ using type = _Tp; };
+
+template<typename _Tp>
+struct erase_const_effemeral_struct<volatile _Tp>
+{ using type = _Tp; };
+
+template<typename _Tp>
+struct erase_const_effemeral_struct<const volatile _Tp>
+{ using type = _Tp; };
+
+
+template<typename _Tp>
+using erase_const_effemeral = typename erase_const_effemeral_struct<_Tp>::type;
 
 
 
+template<typename>
+struct __is_pointer_helper
+   : public false_type { };
+
+template<typename _Tp>
+struct __is_pointer_helper<_Tp*>
+   : public true_type { };
+
+/// is_pointer
+template<typename _Tp>
+struct is_pointer_struct
+   : public __is_pointer_helper<erase_const_effemeral<_Tp>>
+{ };
 
 
+template<typename T>
+inline constexpr bool is_pointer = is_pointer_struct < T >::value;
 
 
+template < typename POINTER >
+concept primitive_pointer = ::is_pointer < POINTER >;
 
+
+template < typename OBJECT >
+concept primitive_object = !::is_pointer < OBJECT > && !::is_function < OBJECT >;
+
+
+template < typename T, typename TYPE >
+concept is_type_of = ::std::is_same < TYPE, erase_const_effemeral < T > >::value;
+
+template < typename T >
+concept bool_type = is_type_of < T, bool >;
+
+template < typename T >
+concept i8_type = is_type_of < T, ::i8 >;
+
+template < typename T >
+concept char_type = is_type_of < T, char >;

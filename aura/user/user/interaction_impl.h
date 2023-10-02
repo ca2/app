@@ -66,7 +66,7 @@ namespace user
 
 
 
-   class prodevian;
+   class graphics_thread;
    class thread;
 
 
@@ -101,21 +101,21 @@ namespace user
 
       ::IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)::interaction_impl *  m_pImpl2;
       ::rectangle_i32                           m_rectangleWindowScreen;
-      ::rectangle_i32                           m_rectangleClientScreen;
+      ::rectangle_i32                           m_rectangleXScreen;
       int                                       m_iState1;
       ::u32                                     m_uCodePage;
       int                                       m_iLangId;
-      class ::time                                    m_timeLastExposureAddUp;
-      ::pointer<prodevian>                   m_pprodevian;
-      ::pointer<::user::thread>              m_puserthread;
-      pointer_array < ::matter >                 m_matteraProdevian;
+      class ::time                              m_timeLastExposureAddUp;
+      ::pointer<::user::graphics_thread>        m_pgraphicsthread;
+      ::pointer<::user::thread>                 m_puserthread;
+      pointer_array < ::matter >                m_matteraProdevian;
       string                                    m_strBitmapSource;
-      ::pointer<::windowing::windowing>        m_pwindowing;
-      ::frequency                                    m_frequencyProdevianFramesPerSecond;
-      ::frequency                                    m_frequencyNominalFramesPerSecond;
-      ::frequency                                    m_frequencyOutputFramesPerSecond;
+      ::pointer<::windowing::windowing>         m_pwindowing;
+      ::frequency                               m_frequencyProdevianFramesPerSecond;
+      ::frequency                               m_frequencyNominalFramesPerSecond;
+      ::frequency                               m_frequencyOutputFramesPerSecond;
       point_i32                                 m_pointMouseMove;
-      //::size_i32                                m_sizeDrawnAAA;
+      //::size_i32                              m_sizeDrawnAAA;
       ::size_i32                                m_sizeSetWindowSizeRequest;
       particle_array                            m_particleaRedraw;
 
@@ -233,14 +233,17 @@ namespace user
       void set_tool_window(bool bSet) override;
 
 
-      void create_host(::user::interaction * pinteraction) override;
+      void create_host(::user::interaction * pinteraction, enum_parallelization eparallelization) override;
 
       virtual ::color::color screen_pixel(int x, int y) const;
       void interaction_post(const ::procedure & procedure) override;
 
+      //virtual void user_call(const ::procedure & procedure);
+
       // call these from window
       //virtual void set_keyboard_focus();
-      //virtual void set_capture();
+      virtual void set_mouse_capture(::user::interaction * puserinteraction);
+      virtual bool defer_release_mouse_capture(::user::interaction * puserinteraction);
       //virtual void set_active_window();
       //virtual void set_foreground_window();
 
@@ -302,12 +305,12 @@ namespace user
       //virtual void mouse_hover_step(const __status < ::point_i32 > & statusPointCursor);
 
 
-      void add_prodevian(::matter * pmatter) override;
-      void erase_prodevian(::matter * pmatter) override;
-      bool is_prodevian(const ::matter * pmatter) const override;
-      inline bool has_prodevian() const noexcept { return m_matteraProdevian.has_element(); }
+      void add_auto_refresh(::matter * pmatter) override;
+      void erase_auto_refresh(::matter * pmatter) override;
+      bool is_auto_refresh(const ::matter * pmatter) const override;
+      inline bool has_auto_refresh() const noexcept { return m_matteraProdevian.has_element(); }
 
-      //void prodevian_stop() override;
+      //void auto_refresh_stop() override;
 
 
       //virtual ::user::interaction * get_owner();
@@ -331,11 +334,17 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_prio_message_set_focus);
       DECLARE_MESSAGE_HANDLER(on_message_show_window);
       //DECLARE_MESSAGE_HANDLER(_001OnApplyVisual);
+
+
+      void on_configure(const ::rectangle_i32 & rectangle) override;
+      virtual void _on_configure(const ::rectangle_i32 & rectangle);
+
+
       DECLARE_MESSAGE_HANDLER(on_message_reposition);
       DECLARE_MESSAGE_HANDLER(on_message_size);
       DECLARE_MESSAGE_HANDLER(_001OnDestroyWindow);
       DECLARE_MESSAGE_HANDLER(on_message_destroy);
-      DECLARE_MESSAGE_HANDLER(_001OnRedraw);
+      //DECLARE_MESSAGE_HANDLER(_001OnRedraw);
       //DECLARE_MESSAGE_HANDLER(_001OnDoShowWindow);
 
 
@@ -494,10 +503,10 @@ namespace user
 
 
       // try calling prodevian things from prodevian... he is not much called...
-      //void prodevian_update_screen() override;
+      //void graphics_thread_update_screen() override;
 
       // try calling prodevian things from prodevian... is he ever called...
-      //void prodevian_redraw(bool bUpdateBuffer) override;
+      //void graphics_thread_redraw(bool bUpdateBuffer) override;
 
 //#ifdef WINDOWS
 //
@@ -749,7 +758,7 @@ namespace user
       //virtual void sketch_to_design(::draw2d::graphics_pointer& pgraphics, bool & bUpdateBuffer, bool & bUpdateWindow) override;
       virtual void do_graphics();
       void _001OnNcClip(::draw2d::graphics_pointer & pgraphics) override;
-      void defer_draw(::draw2d::graphics_pointer & pgraphics) override;
+      void defer_do_graphics(::draw2d::graphics_pointer & pgraphics) override;
       //void _000CallOnDraw(::draw2d::graphics_pointer & pgraphics) override;
       // call window window_update_screen_buffer
       //virtual void _001UpdateScreen();
@@ -803,9 +812,10 @@ namespace user
 
       virtual bool is_this_visible(enum_layout elayout) override;
 
-      void _window_show_change_visibility(::e_display edisplay, ::e_activation eactivation) override;
+      //void _window_show_change_visibility_unlocked(::e_display edisplay, ::e_activation eactivation) override;
       
-      void _window_request_presentation() override;
+      //void _window_request_presentation_locked() override;
+      //void _window_request_presentation_unlocked() override;
 
 
 
@@ -820,7 +830,7 @@ namespace user
 
       //virtual bool check_show_flags() override;
 
-      virtual void on_visual_applied();
+      //virtual void on_visual_applied();
 
       void set_need_redraw(const ::rectangle_i32_array & rectangleaHostNeedRedraw = {}, function<void()> function = nullptr,  bool bAscendants = true) override;
       //virtual bool needs_to_draw(const ::rectangle_i32& rectangleHostNeedsToDraw, ::draw2d::graphics_pointer & pgraphics);

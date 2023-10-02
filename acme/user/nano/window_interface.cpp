@@ -140,6 +140,34 @@ void nano_window_interface::update_drawing_objects()
 }
 
 
+::shift_i32 nano_window_interface::absolute_to_client()
+{
+
+   return screen_to_client();
+
+}
+
+
+::shift_i32 nano_window_interface::client_to_absolute()
+{
+
+   return client_to_screen();
+
+}
+
+
+::point_i32 nano_window_interface::try_absolute_mouse_position(const ::point_i32& point)
+{
+
+   auto p = point;
+
+   client_to_screen()(p);
+   
+   return p;
+
+}
+
+
 void nano_window_interface::drag_set_capture()
 {
 
@@ -148,28 +176,13 @@ void nano_window_interface::drag_set_capture()
 }
 
 
-::point_i32 nano_window_interface::on_drag_start(::user::drag * pdrag)
+bool nano_window_interface::on_drag_start(::point_i32 & point, ::item * pitem)
 {
 
-   if (pdrag->m_item.m_eelement == e_element_client)
+   if (pitem->m_item.m_eelement == e_element_client)
    {
 
-      return origin();
-
-   }
-
-   throw exception(::error_unexpected);
-
-}
-
-
-bool nano_window_interface::drag_shift(::user::drag * pdrag)
-{
-
-   if (pdrag->m_item.m_eelement == e_element_client)
-   {
-
-      move_to(pdrag->point());
+      point = origin();
 
       return true;
 
@@ -180,10 +193,40 @@ bool nano_window_interface::drag_shift(::user::drag * pdrag)
 }
 
 
-bool nano_window_interface::drag_hover(::user::drag * pdrag)
+::point_i32 nano_window_interface::drag_mouse_cursor_position(::item* pitem, const ::point_i32 & point)
 {
 
-   if (pdrag->m_item.m_eelement == e_element_client)
+   auto p = try_absolute_mouse_position(point);
+
+   return p;
+
+}
+
+
+
+bool nano_window_interface::drag_shift(::item * pitem, ::user::mouse * pmouse)
+{
+
+   if (pitem->m_item.m_eelement == e_element_client)
+   {
+
+      auto point = drag_point(pitem, pmouse);
+
+      move_to(point);
+
+      return true;
+
+   }
+
+   return false;
+
+}
+
+
+bool nano_window_interface::drag_hover(::item * pitem)
+{
+
+   if (pitem->m_item.m_eelement == e_element_client)
    {
 
       set_cursor(e_cursor_hand);
@@ -191,7 +234,7 @@ bool nano_window_interface::drag_hover(::user::drag * pdrag)
       return true;
 
    }
-   else if (pdrag->m_item.m_eelement == e_element_resize)
+   else if (pitem->m_item.m_eelement == e_element_resize)
    {
 
       set_cursor(e_cursor_size_bottom_right);
@@ -213,8 +256,10 @@ void nano_window_interface::drag_release_capture()
 }
 
 
-void nano_window_interface::drag_set_cursor(::user::drag * pdrag)
+void nano_window_interface::drag_set_cursor(::item * pitem)
 {
+
+   auto pdrag = drag(pitem);
 
    set_cursor(pdrag->m_ecursor);
 
@@ -224,7 +269,7 @@ void nano_window_interface::drag_set_cursor(::user::drag * pdrag)
 nano_child * nano_window_interface::hit_test(::user::mouse * pmouse, ::user::e_zorder ezorder)
 {
 
-   auto point = pmouse->m_point;
+   auto point = pmouse->m_pointAbsolute;
 
    screen_to_client()(point);
 

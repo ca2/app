@@ -15,6 +15,10 @@ typedef map < itask_t, ::pointer<task >>task_map;
 typedef map < task *, itask_t > task_id_map;
 
 
+::index task_index(itask_t itask);
+::index task_index();
+
+
 class CLASS_DECL_ACME task :
    virtual public object,
    //virtual public synchronization_object,
@@ -129,7 +133,7 @@ public:
    //virtual void erase_notify(::matter* pmatter);
 
    void post_procedure(const ::procedure & procedure) override;
-  
+   void send_procedure(const ::procedure & procedure) override;
 
    virtual void run_posted_procedures();
 
@@ -149,7 +153,7 @@ public:
 
    virtual bool has_message() const;
 
-   ::pointer<::task>branch(const create_task_attributes & createtaskattributes = nullptr) override;
+   ::pointer<::task>branch(enum_parallelization eparallelization = e_parallelization_asynchronous, const create_task_attributes & createtaskattributes = nullptr) override;
 
    ::pointer<::task>branch_synchronously(const create_task_attributes & createtaskattributes = nullptr) override;
 
@@ -364,3 +368,6 @@ inline void while_predicateicate_Sleep(int iTime, PRED pred)
    throw ::exception(error_timeout);
 
 }
+
+
+

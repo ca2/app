@@ -44,7 +44,7 @@
     <ClCompile Include="experience\frame_005.cpp" />
     <ClCompile Include="experience\frame_008.cpp" />
     <ClCompile Include="experience\frame_011.cpp" />
-    <ClCompile Include="experience\frame_013.cpp" />
+    <ClCompile Include="experience\frame_022.cpp" />
     <ClCompile Include="experience\frame_Minimal001.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -70,7 +70,7 @@
     <ClInclude Include="experience\frame_005.h" />
     <ClInclude Include="experience\frame_008.h" />
     <ClInclude Include="experience\frame_011.h" />
-    <ClInclude Include="experience\frame_013.h" />
+    <ClInclude Include="experience\frame_022.h" />
     <ClInclude Include="experience\frame_Minimal001.h" />
     <ClInclude Include="experience\_experience.h" />
     <ClInclude Include="user\style.h" />
@@ -290,6 +290,7 @@
     <ResourceCompile>
       <AdditionalIncludeDirectories>$(SolutionDir)../../..</AdditionalIncludeDirectories>
     </ResourceCompile>
+    <PreBuildEvent />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">
     <ClCompile>
@@ -399,6 +400,7 @@
     <ResourceCompile>
       <AdditionalIncludeDirectories>$(SolutionDir)../../..</AdditionalIncludeDirectories>
     </ResourceCompile>
+    <PreBuildEvent />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">
     <ClCompile>
@@ -520,6 +522,7 @@
     <ResourceCompile>
       <AdditionalIncludeDirectories>$(SolutionDir)../../..</AdditionalIncludeDirectories>
     </ResourceCompile>
+    <PreBuildEvent />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">
     <ClCompile>
@@ -620,6 +623,7 @@
     <ResourceCompile>
       <AdditionalIncludeDirectories>$(SolutionDir)../../..</AdditionalIncludeDirectories>
     </ResourceCompile>
+    <PreBuildEvent />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">
     <ClCompile>

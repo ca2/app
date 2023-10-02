@@ -2,7 +2,7 @@
 
 
 #include "interaction_layout.h"
-//#include "prodevian.h"
+//#include "graphics_thread.h"
 #include "drawable.h"
 #include "acme/exception/status.h"
 #include "acme/user/user/drag_client.h"
@@ -138,8 +138,9 @@ namespace user
 
 
       
-      bool                                      m_bExtendOnParent;
-      bool                                      m_bExtendOnParentIfClientOnly;
+      boolean                                   m_bExtendOnParent;
+      boolean                                   m_bExtendOnParentIfClientOnly;
+      boolean                                   m_bExtendOnParentClientArea;
       bool                                      m_bToolWindow;
       bool                                      m_bMessageWindow;
       boolean                                   m_bLockGraphicalUpdate;
@@ -150,18 +151,21 @@ namespace user
       bool                                      m_bMouseHoverOnCapture;
 
       //bool                                      m_bMouseHover;
-      bool                                      m_bClickDefaultMouseHandling;
-      bool                                      m_bHoverDefaultMouseHandling;
-      bool                                      m_bEditDefaultHandling;
+      bool                                      m_bDefaultClickHandling;
+      bool                                      m_bDefaultMouseHoverHandling;
+      bool                                      m_bDefaultParentMouseMessageHandling;
 
-      bool                                      m_bKeyboardMultipleSelectionDefaultHandling;
-      bool                                      m_bDataUpdateDefaultHandling;
+      bool                                      m_bDefaultEditHandling;
+
+      bool                                      m_bDefaultKeyboardMultipleSelectionHandling;
+      bool                                      m_bDefaultDataUpdateHandling;
       bool                                      m_bParentScrollX;
       bool                                      m_bParentScrollY;
 
       bool                                      m_bUserInteractionHost;
       bool                                      m_bEnableDragClient;
       bool                                      m_bEnableDragResize;
+      bool                                      m_bEnableDefaultControlBox;
       bool                                      m_bDerivedHeight;
 
       bool                                      m_bLadingToLayout;
@@ -216,7 +220,7 @@ namespace user
       bool                                      m_bRectOk;
 
       bool                                      m_bWfiUpDownTarget;
-      bool                                      m_bPendingZorder;
+      bool                                      m_bPendingChildrenZorder;
       bool                                      m_bPadding001;
       bool                                      m_bPadding002;
       
@@ -249,7 +253,7 @@ namespace user
       bool                                      m_bLoadingWindowRectangle;
 
 
-      bool                                      m_bVisualChanged;
+      //bool                                      m_bVisualChanged;
 
       // <3ThomasBorreggardSoerensen_!!
       ::pointer<::matter>                       m_pmatterCommandHandler;
@@ -261,13 +265,13 @@ namespace user
 
    public:
 
-      index                                     m_iItem;
-      index                                     m_iSubItem;
-      index                                     m_iListItem;
+      index                                     m_iEditItem;
+      index                                     m_iEditSubItem;
+      // index                                     m_iListItem;
       index                                     m_iColumn;
 
       atom                                      m_uiText;
-      ::type                                    m_type;
+      ::type_atom                               m_typeatom;
       atom                                      m_atomPrivateDataSection;
       //::atom                                  m_atomTranslated;
       enum_control_type                         m_econtroltype;
@@ -303,6 +307,11 @@ namespace user
       ::draw2d::path_pointer                    m_pathFocusRect2;
       ::draw2d::path_pointer                    m_pathFocusRect3;
       ::draw2d::path_pointer                    m_pathFocusRect4;
+      procedure                                 m_procedureOnAfterCreate;
+
+
+
+      ::function < bool(::user::interaction *, ::item *) > m_callbackOnClick;
 
       
       //class draw_select
@@ -338,21 +347,11 @@ namespace user
       ::rectangle_i32                           m_rectangleRestoreBroad;
       ::rectangle_i32                           m_rectangleRestoreCompact;
       enumeration < enum_non_client >           m_flagNonClient;
-      int                                       m_iMouseMoveSkipCount;
-      int                                       m_iMouseMoveSkipSquareDistance;
-      class ::time                              m_timeMouseMoveSkip;
-      ::point_i32                               m_pointMouseMoveSkip;
-      class ::time                              m_timeMouseMovePeriod;
-      ::point_i32                               m_pointMouseMove;
       class ::time                              m_timeLastRedraw;
       ::atom                                    m_atomImpact;
       ::status < ::color::color >               m_statuscolorBackground;
       ::status < ::color::color >               m_statuscolorText;
       point_i32                                 m_pointScroll;
-      // if high frequency mouse transfer notification is required
-      // create a fast path/low latency callback system
-      class ::time                              m_timeMouseMove;
-      class ::time                              m_timeMouseMoveIgnore;
       double                                    m_dItemHeight;
       point_i32                                 m_pointMoveCursor;
       class ::time                              m_timeLastFullUpdate;
@@ -405,8 +404,10 @@ namespace user
       pointer_array < interaction >                m_menua;
       ::pointer<::appearance::appearance>          m_pappearance;
       bool                                         m_bEmptyAreaIsClientArea;
-      ::item_pointer                               m_pitemClient;
+      //::item_pointer                               m_pitemClient;
       ::array < struct set_need_redraw >           m_setneedredrawa;
+      boolean                                      m_bNeedFullRedrawOnResize;
+      boolean                                      m_bLockSketchToDesign;
 
 
       interaction();
@@ -450,9 +451,22 @@ namespace user
 
       virtual void set_restored_rectangle(const ::rectangle_i32 & rectangleRestored);
 
-      
-      virtual void set_position(const ::point_i32 & point, enum_layout elayout = e_layout_sketch, ::draw2d::graphics * pgraphics = nullptr);
-      virtual void set_size(const ::size_i32 & size, enum_layout elayout = e_layout_sketch, ::draw2d::graphics * pgraphics = nullptr);
+      /// <summary>
+      ///  
+      /// </summary>
+      /// <param name="point"></param>
+      /// <param name="elayout"></param>
+      /// <param name="pgraphics"></param>
+      /// <returns>true if position has changed</returns>
+      virtual bool set_position(const ::point_i32 & point, enum_layout elayout = e_layout_sketch, ::draw2d::graphics * pgraphics = nullptr);
+      /// <summary>
+   /// 
+   /// </summary>
+   /// <param name="size"></param>
+   /// <param name="elayout"></param>
+   /// <param name="pgraphics"></param>
+   /// <returns>true if size has changed</returns>
+      virtual bool set_size(const ::size_i32 & size, enum_layout elayout = e_layout_sketch, ::draw2d::graphics * pgraphics = nullptr);
       virtual void _set_size(const ::size_i32 & size, enum_layout elayout = e_layout_sketch);
       virtual void set_width(::i32 width, enum_layout elayout = e_layout_sketch, ::draw2d::graphics * pgraphics = nullptr);
       virtual void set_height(::i32 height, enum_layout elayout = e_layout_sketch, ::draw2d::graphics * pgraphics = nullptr);
@@ -566,19 +580,20 @@ namespace user
 
       virtual bool is_user_thread();
 
-      virtual void interaction_send(const ::procedure & procedure);
+      //virtual void interaction_send(const ::procedure & procedure);
 
-      virtual void interaction_post(const ::procedure & procedure) override;
+      //virtual void interaction_post(const ::procedure & procedure) override;
 
-      virtual void windowing_send(const ::procedure& procedure);
+      virtual void host_send(const ::procedure& procedure);
 
-      virtual void windowing_post(const ::procedure& procedure);
+      virtual void host_post(const ::procedure& procedure);
+
+      virtual void user_send(const ::procedure & procedure);
 
 
-
-      inline void auto_prodevian_on_show() { m_ewindowflag |= e_window_flag_auto_prodevian_on_show; }
-      inline void clear_auto_prodevian_on_show() { m_ewindowflag -= e_window_flag_auto_prodevian_on_show; }
-      inline bool is_auto_prodevian_on_show() { return m_ewindowflag & e_window_flag_auto_prodevian_on_show; }
+      inline void auto_refresh_on_show() { m_ewindowflag |= e_window_flag_auto_refresh_on_show; }
+      inline void clear_auto_refresh_on_show() { m_ewindowflag -= e_window_flag_auto_refresh_on_show; }
+      inline bool is_auto_refresh_on_show() { return m_ewindowflag & e_window_flag_auto_refresh_on_show; }
 
       //inline void visual_changed() { m_ewindowflag |= e_window_flag_visual_changed; }
       //inline void clear_visual_changed() { m_ewindowflag -= e_window_flag_visual_changed; }
@@ -615,6 +630,10 @@ namespace user
       virtual bool _is_full_screen();
 
       virtual bool get_element_rectangle(::rectangle_i32 & rectangle, enum_element eelement);
+
+
+      virtual status < rectangle_i32 > item_rectangle(::item * pitem);
+      virtual ::draw2d::path_pointer item_graphics_path(::item * pitem);
 
 
       virtual status < rectangle_i32 > rectangle(enum_element eelement)
@@ -692,7 +711,6 @@ namespace user
       // end updown
 
 
-
       virtual void child_set_unique_id(::user::interaction* pinteraction);
 
       virtual string default_id_prefix();
@@ -733,7 +751,7 @@ namespace user
       //void window_move(i32 x, i32 y) override;
 
 
-      //auto prodevian() { return __new(::prodevian(this)); }
+      //auto auto_refresh() { return __new(::auto_refresh(this)); }
 
       virtual bool should_save_window_rectangle();
       
@@ -746,9 +764,9 @@ namespace user
       virtual bool display_lading_to_layout();
       virtual void layout_display();
       virtual void layout_appearance();
-      virtual void layout_zorder();
+      virtual void layout_children_zorder();
       virtual void layout_reposition();
-      virtual void layout_layout(::draw2d::graphics_pointer & pgraphics);
+      virtual bool layout_layout(::draw2d::graphics_pointer & pgraphics);
 
 
       virtual void display_previous();
@@ -773,9 +791,14 @@ namespace user
       virtual ::size_i32 preferred_size(::draw2d::graphics_pointer & pgraphics);
 
 
-      //virtual void prodevian_stop() override;
+      virtual bool is_display_like_maximized();
 
-      //virtual void prodevian_redraw(bool bUpdateBuffer) override;
+      virtual bool is_display_like_full_screen();
+
+
+      //virtual void graphics_thread_stop() override;
+
+      //virtual void graphics_thread_redraw(bool bUpdateBuffer) override;
 
       //virtual void _001OnAfterAppearance();
 
@@ -826,7 +849,7 @@ namespace user
       virtual void display(::e_display edisplay = e_display_normal, ::e_activation eactivation = ::e_activation_default) override;
 
 
-      virtual bool check_child_zorder();
+      virtual bool check_children_zorder();
 
       virtual ::zorder zorder(enum_layout elayout = e_layout_design);
       virtual void order(::zorder zorder);
@@ -858,7 +881,7 @@ namespace user
 
       virtual void frame_occlude();
       
-      virtual void frame_toggle_restore();
+      virtual void frame_toggle_restore(bool bDisplayPreviousOnRestore = false);
       
       virtual void display_previous_restore();
 
@@ -868,8 +891,10 @@ namespace user
       //virtual void raw_rectangle(::rectangle_i32 & rect, enum_layout elayout = e_layout_design);
       virtual ::rectangle_i32 raw_rectangle(enum_layout elayout = e_layout_design);
 
-      //virtual void client_rectangle(::rectangle_i32 & rect, enum_layout elayout = e_layout_design);
+      //virtual void this->rectangle(::rectangle_i32 & rect, enum_layout elayout = e_layout_design);
+      virtual ::rectangle_i32 rectangle(enum_layout elayout = e_layout_design);
       virtual ::rectangle_i32 client_rectangle(enum_layout elayout = e_layout_design);
+      virtual ::rectangle_i32 host_rectangle(enum_layout elayout = e_layout_design);
       virtual ::rectangle_i32 screen_rectangle(enum_layout elayout = e_layout_design);
 
 
@@ -886,21 +911,24 @@ namespace user
       virtual void window_rectangle(::rectangle_i32 & rect, enum_layout elayout = e_layout_design);
       virtual ::rectangle_i32 window_rectangle(enum_layout elayout = e_layout_design);
 
-
-      inline void set_prodevian() { return add_prodevian(this); }
-      inline void clear_prodevian() { return erase_prodevian(this); }
-      inline bool is_prodevian() const { return is_prodevian(this); }
+      virtual ::rectangle_i32 outer_frame();
 
 
-      void add_prodevian(::matter * pmatter) override;
-      void erase_prodevian(::matter * pmatter) override;
-      bool is_prodevian(const ::matter * pmatter) const override;
-      bool has_prodevian() const noexcept;
+      inline void set_auto_refresh() { return add_auto_refresh(this); }
+      inline void clear_auto_refresh() { return erase_auto_refresh(this); }
+      inline bool is_auto_refresh() const { return is_auto_refresh(this); }
+
+
+      void add_auto_refresh(::matter * pmatter) override;
+      void erase_auto_refresh(::matter * pmatter) override;
+      bool is_auto_refresh(const ::matter * pmatter) const override;
+      bool has_auto_refresh() const noexcept;
 
 
       virtual bool is_frame_window();
       virtual bool is_impact();
       bool is_this_visible(enum_layout elayout = e_layout_design) override;
+      virtual bool should_draw();
 
       virtual bool sketch_on_display();
 
@@ -911,7 +939,12 @@ namespace user
       bool is_window_visible(enum_layout elayout = e_layout_design);
       bool is_window_screen_visible(enum_layout elayout = e_layout_design);
 
+      virtual void user_mouse_initialize_cursor(::user::mouse* pmouse, ::windowing::cursor* pcursor);
+      virtual void user_mouse_set_cursor(::user::mouse* pmouse, ::windowing::cursor* pcursor);
+      virtual ::windowing::cursor* user_mouse_get_cursor(::user::mouse* pmouse);
 
+
+      virtual void route_as_parent_mouse_message(::message::mouse * pmouse);
       virtual bool on_mouse_message(::message::mouse * pmouse);
 
       virtual bool on_child_from_point_mouse_message_routing(::message::mouse * pmouse);
@@ -934,15 +967,6 @@ namespace user
       virtual ::frequency get_output_per_second();
 
 
-      virtual ::pointer<::windowing::cursor>get_mouse_cursor(enum_cursor ecursor);
-
-      virtual ::windowing::cursor * get_mouse_cursor() override;
-
-      virtual ::point_i32 get_cursor_position();
-
-      virtual void set_cursor_position(const ::point_i32 & pointCursor);
-
-      virtual void release_mouse_capture();
 
 
       inline void defer_graphics(::draw2d::graphics_pointer & pgraphics)
@@ -1053,6 +1077,13 @@ namespace user
 
          for (auto & pinteraction : *puserinteractionpointeraChild)
          {
+
+            if (::is_null(pinteraction))
+            {
+
+               continue;
+
+            }
 
             if (pinteraction != puiExclude)
             {
@@ -1235,11 +1266,14 @@ namespace user
       virtual bool scroll_bar_get_client_rect(::rectangle_i32 & rectangle);
 
 
-      virtual ::size_f64 _001CalculateFittingSize(::draw2d::graphics_pointer & pgraphics);
-      virtual ::size_f64 _001CalculateAdjustedFittingSize(::draw2d::graphics_pointer & pgraphics);
+      virtual ::size_f64 get_fitting_size(::draw2d::graphics_pointer & pgraphics);
+      virtual ::size_f64 get_adjusted_fitting_size(::draw2d::graphics_pointer & pgraphics);
+      virtual ::size_f64 get_preferred_size(::draw2d::graphics_pointer & pgraphics);
+      virtual void resize_to_fit(::draw2d::graphics_pointer& pgraphics);
 
 
-      virtual void extend_on_parent(::draw2d::graphics_pointer & pgraphics);
+      virtual void _extend_on_parent(::draw2d::graphics_pointer & pgraphics);
+      virtual void _extend_on_parent_client_area(::draw2d::graphics_pointer & pgraphics);
 
 
       virtual void top_down_prefix();
@@ -1256,6 +1290,7 @@ namespace user
       ///    - during on_perform_layout the position and/or size of
       ///      the user::interaction has changed.
       virtual bool on_perform_layout(::draw2d::graphics_pointer & pgraphics);
+      virtual void on_items_layout(::draw2d::graphics_pointer & pgraphics, ::index iIdContainer, ::item_array * pitema);
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics);
       virtual void on_reposition() override;
       virtual void on_show_window() override;
@@ -1263,9 +1298,12 @@ namespace user
       
       virtual void on_drag_scroll_layout(::draw2d::graphics_pointer & pgraphics);
 
-      virtual void _window_show_change_visibility();
-      virtual void _window_request_presentation();
-      virtual void on_visual_applied();
+      //virtual void _window_show_change_visibility_locked();
+      //virtual void _window_show_change_visibility_unlocked();
+      //virtual void _window_request_presentation_locked();
+      //virtual void _window_request_presentation_unlocked();
+      //virtual void on_configure_notifyvisual_applied();
+      virtual void _on_configure_notify_unlocked(const ::rectangle_i32 & rectangle);
 
 
       virtual void defer_save_window_placement();
@@ -1292,7 +1330,7 @@ namespace user
       /// ::user::control_descriptor.
       //virtual bool create_interaction(class ::user::control_descriptor * pdescriptor);
 
-      virtual void create_host() override;
+      virtual void create_host(enum_parallelization eparallelization) override;
       virtual void create_child(::user::interaction * pparent) override;
 
       // virtual bool create_interaction(const ::string & pszClassName, const ::string & pszWindowName, u32 uStyle, ::user::interaction * puiParent, ::request * prequest = nullptr) override;
@@ -1381,9 +1419,11 @@ namespace user
 
 #endif
 
-      virtual void post_message(const ::atom & atom, wparam wParam = 0, lparam lParam = 0) override;
+      void message_handler(const ::atom & atom, wparam wparam = 0, lparam lparam = 0) override;
 
-      virtual void post_object(const ::atom & atom, wparam wParam, lparam lParam);
+      void post_message(const ::atom & atom, wparam wparam = 0, lparam lparam = 0) override;
+
+      virtual void post_object(const ::atom & atom, wparam wparam = 0, lparam lparam = 0);
 
 
       //virtual void user_post(const ::atom& atom, wparam wParam = 0, lparam lParam = 0) override;
@@ -1402,7 +1442,8 @@ namespace user
 
       //virtual void do_graphics(::draw2d::graphics_pointer & pgraphics);
       //virtual void on_graphics(::draw2d::graphics_pointer & pgraphics);
-      virtual void defer_draw(::draw2d::graphics_pointer & pgraphics);
+      virtual void defer_do_graphics(::draw2d::graphics_pointer & pgraphics);
+      virtual void defer_do_layout(::draw2d::graphics_pointer & pgraphics);
       void _000TopCallOnDraw(::draw2d::graphics_pointer & pgraphics);
       void _000CallOnDraw(::draw2d::graphics_pointer & pgraphics) override;
       void _000OnDraw(::draw2d::graphics_pointer & pgraphics) override;
@@ -1421,6 +1462,8 @@ namespace user
 
       virtual bool is_custom_draw();
 
+      virtual void design_to_window();
+
       virtual atom GetDlgCtrlId() const override;
       virtual atom SetDlgCtrlId(const ::atom & atom) override;
 
@@ -1433,8 +1476,19 @@ namespace user
 
       virtual bool is_active_window();
 
+
+      virtual ::pointer<::windowing::cursor>get_mouse_cursor(enum_cursor ecursor);
+      virtual ::windowing::cursor * get_mouse_cursor() override;
+
+      virtual ::point_i32 absolute_mouse_cursor_position();
+      virtual ::point_i32 host_mouse_cursor_position();
+      virtual ::point_i32 mouse_cursor_position();
+      //virtual void set_cursor_position(const ::point_i32 & pointCursor);
+
       virtual bool has_mouse_capture();
       virtual void set_mouse_capture();
+      virtual bool defer_release_mouse_capture();
+
 
       virtual bool has_keyboard_focus();
       void set_keyboard_focus() override;
@@ -1449,7 +1503,7 @@ namespace user
       inline bool is_this_window_enabled()  { return m_ewindowflag.is(e_window_flag_enable); }
       void enable_window(bool bEnable = true) override;
 
-      virtual void on_calc_size(calc_size* pcalcsize);
+      //virtual void on_calc_size(calc_size* pcalcsize);
 
       virtual void walk_pre_translate_tree(::message::message* pmessage, ::user::interaction* puiStop = nullptr);
 
@@ -1598,11 +1652,12 @@ namespace user
 
       // drag_client
       void drag_set_capture() override;
-      ::point_i32 on_drag_start(::user::drag * pdrag) override;
-      bool drag_shift(::user::drag * pdrag) override;
-      bool drag_hover(::user::drag * pdrag) override;
+      bool on_drag_start(::point_i32 & pointStart, ::item * pitem) override;
+      ::point_i32 drag_mouse_cursor_position(::item* pitem, const ::point_i32 & point) override;
+      bool drag_shift(::item * pitem, ::user::mouse * pmouse) override;
+      bool drag_hover(::item * pitem) override;
       void drag_release_capture() override;
-      void drag_set_cursor(::user::drag * pdrag) override;
+      void drag_set_cursor(::item * pitem) override;
 
       //virtual void on_size_change_request(const ::rectangle_i32 & rectanglePrevious);
 
@@ -1614,6 +1669,7 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_size);
       DECLARE_MESSAGE_HANDLER(on_message_move);
       DECLARE_MESSAGE_HANDLER(on_message_create);
+      DECLARE_MESSAGE_HANDLER(on_message_after_create);
       DECLARE_MESSAGE_HANDLER(on_message_non_client_calculate_size);
       DECLARE_MESSAGE_HANDLER(on_message_close);
       //DECLARE_MESSAGE_HANDLER(_001OnCommand);
@@ -1640,7 +1696,7 @@ namespace user
 
       virtual bool _001IsPointInsideInline(const ::point_i32 & point);
       virtual bool _001IsClientPointInsideInline(const ::point_i32 & point);
-      virtual  bool _001IsParentClientPointInsideInline(const ::point_i32 & point);
+      virtual bool _001IsParentClientPointInsideInline(const ::point_i32 & point, enum_layout elayout = e_layout_design);
 
       ::user::interaction* _001FromPoint(::point_i32 point, bool bTestedIfParentVisible = false) override;
 
@@ -1725,7 +1781,7 @@ namespace user
       virtual void show_control_bar(::user::control_bar * pcontrolbar);
       virtual void hide_control_bar(::user::control_bar * pcontrolbar);
 
-      void RepositionBars(::u32 nIDFirst = 0, ::u32 nIDLast = 0xffff, ::atom idLeftOver = FIRST_PANE, ::u32 nFlag = reposDefault, ::rectangle_i32* prectParam = nullptr, const ::rectangle_i32& rectangleClient = {
+      void RepositionBars(::u32 nIDFirst = 0, ::u32 nIDLast = 0xffff, ::atom idLeftOver = FIRST_PANE, ::u32 nFlag = reposDefault, ::rectangle_i32* prectParam = nullptr, const ::rectangle_i32& rectangleX = {
          }, bool bStretch = true) override;
 
       virtual ::user::interaction* ChildWindowFromPoint(const ::point_i32& point) override;
@@ -1887,6 +1943,7 @@ namespace user
       //virtual void move_to(i32 x, i32 y);
       //virtual void set_size(i32 cx, i32 cy);
       //virtual void set_dim(const ::point_i32& point, const ::size_i32& size);
+      virtual void place_set_need_redraw(const ::rectangle_i32 & rectangleAfter, const ::rectangle_i32 & rectangleBefore, ::draw2d::graphics * pgraphics);
       virtual void place(const ::rectangle_i32& rectangle, enum_layout elayout = e_layout_sketch, ::draw2d::graphics * pgraphics = nullptr);
       virtual void place(::i32 x, ::i32 y, ::i32 w, ::i32 h, enum_layout elayout = e_layout_sketch, ::draw2d::graphics * pgraphics = nullptr);
       //inline void set_placement(i32 x, i32 y, i32 cx, i32 cy, enum_layout elayout = e_layout_sketch)
@@ -1903,11 +1960,11 @@ namespace user
       virtual void activation(::e_activation eactivation);
 
 
-      virtual void display_child(const ::rectangle_i32 & rectangle);
-      inline void display_child(::i32 x, ::i32 y, ::i32 cx, ::i32 cy)
+      virtual void display_child(const ::rectangle_i32 & rectangle, enum_layout elayout = e_layout_sketch, ::draw2d::graphics * pgraphics = nullptr);
+      inline void display_child(::i32 x, ::i32 y, ::i32 cx, ::i32 cy, enum_layout elayout = e_layout_sketch, ::draw2d::graphics * pgraphics = nullptr)
       {
 
-         display_child(rectangle_i32_dimension(x, y, cx, cy));
+         display_child(rectangle_i32_dimension(x, y, cx, cy), elayout, pgraphics);
 
       }
 
@@ -1973,6 +2030,8 @@ namespace user
       virtual void set_total_size(const ::size_f64& size);
       virtual void set_page_size(const ::size_f64& size);
       virtual ::point_i32 get_parent_accumulated_scroll(enum_layout elayout = e_layout_design);
+      virtual ::point_i32 get_accumulated_scroll(enum_layout elayout = e_layout_design);
+      virtual ::point_i32 get_scroll(enum_layout elayout = e_layout_design);
       virtual ::point_i32 get_parent_context_offset();
       virtual ::point_i32 get_ascendant_context_offset();
       virtual void get_margin_rect(::rectangle_i32* prectMargin);
@@ -2010,7 +2069,8 @@ namespace user
       virtual void hide() override;
 
 
-
+      virtual void erase_children();
+      virtual void erase_child(::user::interaction * puserinteraction);
 
 
 
@@ -2155,13 +2215,15 @@ namespace user
       virtual ::size_f64 get_size(enum_layout elayout = e_layout_design);
       virtual ::size_f64 get_client_size(enum_layout elayout = e_layout_design);
 
-      virtual void resize_to_fit(::draw2d::graphics_pointer& pgraphics);
+      //virtual void resize_to_fit(::draw2d::graphics_pointer& pgraphics);
 
       virtual void wait_redraw();
 
       virtual bool has_pending_redraw_flags() override;
 
       virtual bool is_window_resizing();
+      virtual bool is_window_repositioning();
+      virtual bool is_window_docking();
 
       virtual void set_bitmap_source(const string & strBitmapFileTitle) override;
       virtual void clear_bitmap_source() override;
@@ -2205,6 +2267,7 @@ namespace user
       virtual bool item_contains(::item * pitem, const ::point_i32 & point);
 
       virtual ::item_pointer on_items_hit_test(const ::point_i32& point, e_zorder ezorder);
+      virtual ::item_pointer on_items_hit_test(const ::point_i32 & point, e_zorder ezorder, ::index iIdContainer, ::item_array * pitema);
 
       virtual void defer_setup_default_bottom_right_resize_user_item();
 
@@ -2213,7 +2276,8 @@ namespace user
 ///      virtual ::item_pointer on_default_full_client_area_hit_test(const ::point_i32 & point, e_zorder ezorder);
 
       //virtual bool update_hover(const ::point_i32 & point, bool bAvoidRedraw = true);
-      virtual ::item_pointer update_hover(::user::mouse * pmouse, e_zorder ezorder);
+      virtual ::item_pointer update_hover(::message::mouse * pmouse, e_zorder ezorder);
+      virtual ::item_pointer update_hover_according_to_last_hover_update(e_zorder ezorder);
       //virtual ::item_pointer update_hover(::user::mouse * pmouse, e_zorder ezorder);
 
 
@@ -2223,13 +2287,15 @@ namespace user
 
       //inline auto rectangle(::item * pitem) { get_rect((::item *) pitem); return pitem->m_rectangle; }
 
-      virtual ::user::item * add_user_item(::item * pitem);
+      //virtual ::user::item * add_user_item(::item * pitem);
 
-      virtual ::user::item * _add_user_item(::item * pitem);
+      //virtual ::user::item * _add_user_item(::item * pitem);
 
 //      virtual ::item_pointer add_user_item(::item * pitem);
 
       virtual void _001DrawItems(::draw2d::graphics_pointer & pgraphics);
+
+      virtual void _001DrawItems(::draw2d::graphics_pointer & pgraphics, ::index iIdContainer, ::item_array * pitema);
 
       virtual void _001DrawItem(::draw2d::graphics_pointer& pgraphics, ::user::item & item, const ::user::e_state & estate);
 
@@ -2264,8 +2330,8 @@ namespace user
       //index GetEditSubItem();
       // index GetEditItem();
       //virtual ::user::interaction * ControlExGetWnd();
-      //using ::user::box::client_rectangle;
-      //virtual bool client_rectangle(::rectangle_i32 * prectangle) override;
+      //using ::user::box::this->rectangle;
+      //virtual bool this->rectangle(::rectangle_i32 * prectangle) override;
       //using ::user::box::window_rectangle;
       //virtual bool window_rectangle(::rectangle_i32 * prectangle) override;
       //bool operator == (const class ::user::control_descriptor& descriptor);
@@ -2326,7 +2392,7 @@ namespace user
 
 
       //virtual void post_procedure(const ::procedure & procedure) override;
-      //virtual void prodevian_post_procedure(const ::procedure & procedure);
+      //virtual void auto_refresh_post_procedure(const ::procedure & procedure);
 
 
       //void send_procedure(const ::procedure & procedure) override;
@@ -2342,10 +2408,10 @@ namespace user
 
 
  /*     template < typename PRED >
-      void prodevian_post_predicate(PRED pred)
+      void graphics_thread_post_predicate(PRED pred)
       {
 
-         prodevian_schedule(__routine(pred));
+         graphics_thread_schedule(__routine(pred));
 
       }*/
 
@@ -2379,11 +2445,13 @@ namespace user
       virtual point_i32 host_origin(enum_layout elayout = e_layout_design);
 
 
-      ::item_pointer get_child_as_item(::index iIndex) override;
-      ::count get_child_as_item_count() override;
+      //::item_pointer get_child_as_item(::index iIndex) override;
+      //::count get_child_as_item_count() override;
+
+      ::user::interaction * child_at(::index iIndex);
 
 
-      void on_item_selected(::item* pitem) override;
+      virtual void on_item_selected(::item* pitem);
       void on_item_hover(::item* pitem) override;
 
 
@@ -2563,26 +2631,26 @@ namespace user
    }
 
 
-   //class lock_sketch_to_design
-   //{
-   //public:
+   class lock_sketch_to_design
+   {
+   public:
 
-   //   ::user::interaction * m_puserinteraction;
+      ::user::interaction * m_puserinteraction;
 
-   //   lock_sketch_to_design(::user::interaction * puserinteraction) :
-   //   m_puserinteraction(puserinteraction)
-   //   {
-   //      m_puserinteraction->m_bLockSketchToDesign = true;
+      lock_sketch_to_design(::user::interaction * puserinteraction) :
+      m_puserinteraction(puserinteraction)
+      {
+         m_puserinteraction->m_bLockSketchToDesign = true;
 
-   //   }
-   //   ~lock_sketch_to_design()
-   //   {
+      }
+      ~lock_sketch_to_design()
+      {
 
-   //      m_puserinteraction->m_bLockSketchToDesign = false;
+         m_puserinteraction->m_bLockSketchToDesign = false;
 
-   //   }
+      }
 
-   //};
+   };
 
 
    //compile_time_assert((offsetof(::user::interaction, m_oswindow) & 4) == 0);

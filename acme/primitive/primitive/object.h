@@ -608,7 +608,7 @@ public:
    //}
 
 
-   virtual ::pointer<::task>branch_procedure(const ::procedure & procedure, const create_task_attributes & createtaskattributes = nullptr);
+   virtual ::pointer<::task>branch_procedure(const ::procedure & procedure, enum_parallelization eparallelization = e_parallelization_asynchronous, const create_task_attributes & createtaskattributes = nullptr);
 
    virtual ::pointer<::task>branch_procedure_synchronously(const ::procedure & procedure, const create_task_attributes & createtaskattributes = nullptr);
 
@@ -616,7 +616,7 @@ public:
 
    //using property_object::branch;
 
-   virtual ::pointer<::task> branch(const create_task_attributes & createtaskattributes = nullptr);
+   virtual ::pointer<::task> branch(enum_parallelization eparallelization = e_parallelization_asynchronous, const create_task_attributes & createtaskattributes = nullptr);
 
    virtual ::pointer<::task> branch_synchronously(const create_task_attributes & createtaskattributes = nullptr);
 

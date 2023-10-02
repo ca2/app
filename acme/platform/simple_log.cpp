@@ -4,6 +4,7 @@
 #include "acme/platform/application.h"
 #include "acme/platform/debug.h"
 #include "acme/platform/system.h"
+#include "acme/primitive/datetime/datetime.h"
 #ifdef WINDOWS
 #include <process.h>
 #elif defined(LINUX)
@@ -200,6 +201,8 @@ simple_log::simple_log()
 {
 
    m_bReallySimple = true;
+   m_bWithTimePrefix = true;
+   m_bDisplayRelativeTime = true;
 
 #ifdef _DEBUG
 
@@ -218,7 +221,7 @@ simple_log::~simple_log()
 }
 
 
-void simple_log::print(trace_statement & tracestatement)
+void simple_log::print(::trace_statement & tracestatement, bool bFlush)
 {
 
    if (!m_bLog)
@@ -250,12 +253,72 @@ void simple_log::print(trace_statement & tracestatement)
       else
       {
 
-
          str.format("%s> %c %s %d %s\n", strTaskName.c_str(), trace_level_char(tracestatement.m_etracelevel), tracestatement.m_pszFunction, tracestatement.m_iLine, tracestatement.as_string().c_str());
 
       }
 
-      if (acmeapplication()->m_bConsole)
+      if(m_bWithTimePrefix)
+      {
+
+         ::string strTime;
+
+         class ::time timeNow;
+
+         timeNow.Now();
+
+         if(m_bDisplayRelativeTime)
+         {
+
+            auto Δtime = timeNow - ::acme::acme::g_pacme->m_timeStart;
+
+            ::earth::time_span earthtimepan(Δtime);
+
+            if(earthtimepan.GetDays() <= 0)
+            {
+
+               strTime.format("%02d:%02d:%02d %03d ",
+                              earthtimepan.GetHours(),
+                              earthtimepan.GetMinutes(),
+                              earthtimepan.GetSeconds(),
+                              Δtime.millisecond());
+
+            }
+            else
+            {
+
+               strTime.format("%3d %02d:%02d:%02d %03d ",
+                              earthtimepan.GetDays(),
+                              earthtimepan.GetHours(),
+                              earthtimepan.GetMinutes(),
+                              earthtimepan.GetSeconds(),
+                              Δtime.millisecond());
+
+            }
+
+         }
+         else
+         {
+
+            ::earth::time earthtime(timeNow);
+
+            strTime.format("%04d-%02d-%02d %02d:%02d:%02d %03d ",
+                           earthtime.year(),
+                           earthtime.month(),
+                           earthtime.day(),
+                           earthtime.hour(),
+                           earthtime.minute(),
+                           earthtime.second(),
+                           timeNow.millisecond());
+
+         }
+
+         str = strTime + str;
+
+      }
+
+      auto papplication = acmeapplication();
+
+      if (papplication && papplication->m_bConsole)
       {
 
          if (tracestatement.m_etracelevel == e_trace_level_information)
@@ -263,11 +326,25 @@ void simple_log::print(trace_statement & tracestatement)
 
             printf("%s", str.c_str());
 
+            if(bFlush)
+            {
+
+               fflush(stdout);
+
+            }
+
          }
          else
          {
 
             fprintf(stderr, "%s", str.c_str());
+
+            if(bFlush)
+            {
+
+               fflush(stderr);
+
+            }
 
          }
 
@@ -276,6 +353,8 @@ void simple_log::print(trace_statement & tracestatement)
       {
 
          ::output_debug_string(str);
+
+         ::output_debug_string_flush();
 
       }
 
@@ -389,5 +468,4 @@ CLASS_DECL_ACME void __simple_tracev(::particle * pparticle, enum_trace_level el
    __simple_tracea(pparticle, elevel, pszFunction, pszFileName, iLine, strMessage);
 
 }
-
 

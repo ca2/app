@@ -18,7 +18,7 @@ public:
    static void t_release();
 
 
-   virtual void print(trace_statement & tracestatement) = 0;
+   virtual void print(::trace_statement & tracestatement, bool bFlush) = 0;
 
 
 };
@@ -30,11 +30,11 @@ class CLASS_DECL_ACME log :
 public:
 
 
-   bool                       m_bLog : 1;
-   bool                       m_bExtendedLog : 1;
-   bool                       m_bLogFileName : 1;
-   bool                       m_bLogFunctionName : 1;
-   bool                       m_bLogThreadName : 1;
+   bool                       m_bLog;
+   bool                       m_bExtendedLog;
+   bool                       m_bLogFileName;
+   bool                       m_bLogFunctionName;
+   bool                       m_bLogThreadName;
 
 
    log();

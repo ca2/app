@@ -40,11 +40,11 @@ namespace experience
    void orto_button::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rectangle_i32 rectangleClient;
+      ::rectangle_i32 rectangleX;
 
-      rectangleClient = ::user::interaction::client_rectangle();
+      rectangleX = ::user::interaction::rectangle();
 
-      if (rectangleClient.area() <= 0)
+      if (rectangleX.area() <= 0)
       {
 
          return;
@@ -56,7 +56,7 @@ namespace experience
       if (!is_window_enabled())
       {
 
-         pgraphics->fill_rectangle(rectangleClient, argb(255, 90, 90, 80));
+         pgraphics->fill_rectangle(rectangleX, argb(255, 90, 90, 80));
 
          crText = argb(255, 49, 50, 23);
 
@@ -64,7 +64,7 @@ namespace experience
       else if (::is_set(m_pitemHover))
       {
 
-         pgraphics->fill_rectangle(rectangleClient, argb(190, 49, 50, 23));
+         pgraphics->fill_rectangle(rectangleX, argb(190, 49, 50, 23));
 
          crText = argb(255, 255, 255, 255);
 
@@ -72,7 +72,7 @@ namespace experience
       else if (has_keyboard_focus())
       {
 
-         pgraphics->fill_rectangle(rectangleClient, argb(255, 255, 250, 184));
+         pgraphics->fill_rectangle(rectangleX, argb(255, 255, 250, 184));
 
          crText = argb(255, 255, 255, 255);
 
@@ -95,7 +95,7 @@ namespace experience
 
          pgraphics->set_text_color(crText);
 
-         pgraphics->draw_text(strWindowText, rectangleClient, e_align_center, e_draw_text_single_line);
+         pgraphics->draw_text(strWindowText, rectangleX, e_align_center, e_draw_text_single_line);
 
       }
       else
@@ -117,7 +117,7 @@ namespace experience
 
          pgraphics->set(ppen);
 
-         ::rectangle_i32 rectangleIcon(rectangleClient);
+         ::rectangle_i32 rectangleIcon(rectangleX);
 
          rectangleIcon.deflate(rectangleIcon.width() / 6, rectangleIcon.height() / 6);
 
@@ -161,11 +161,11 @@ namespace experience
    //   {
    //      ::point_i32 pointCursor = pmsg->pt;
 
-   //      ::rectangle_i32 rectangleClient;
-   //      ::user::interaction::client_rectangle(rectangleClient);
-   //      ::user::interaction::client_to_screen(rectangleClient);
+   //      ::rectangle_i32 rectangleX;
+   //      ::user::interaction::this->rectangle(rectangleX);
+   //      ::user::interaction::client_to_screen(rectangleX);
 
-   //      if (rectangleClient.contains(pointCursor))
+   //      if (rectangleX.contains(pointCursor))
    //      {
    //         set_need_redraw();
    //      }
@@ -202,11 +202,11 @@ namespace experience
          auto pwindowing = puser->windowing();
 
          pointCursor = pwindowing->get_cursor_position();
-         ::rectangle_i32 rectangleClient;
-         ::user::interaction::client_rectangle(rectangleClient);
-         ::user::interaction::client_to_screen(rectangleClient);
+         ::rectangle_i32 rectangleX;
+         ::user::interaction::this->rectangle(rectangleX);
+         ::user::interaction::client_to_screen(rectangleX);
 
-         if(rectangleClient.is_empty().contains(pointCursor))
+         if(rectangleX.is_empty().contains(pointCursor))
          {
          KillTimer(ptimer->m_uEvent);
          m_bFocus = false;
@@ -225,7 +225,7 @@ namespace experience
 
 
          ::rectangle_i32 rectangle;
-         rectangle = ::user::interaction::client_rectangle();
+         rectangle = ::user::interaction::rectangle();
       }
 
 
@@ -235,15 +235,15 @@ namespace experience
    void orto_button::UpdateWndRgn()
    {
 
-      ::rectangle_i32 rectangleClient;
+      ::rectangle_i32 rectangleX;
 
-      rectangleClient = ::user::interaction::client_rectangle();
+      rectangleX = ::user::interaction::rectangle();
 
       __defer_construct(m_pregion);
       
       ::ellipse_f64 ellipse;
       
-      ellipse.set(rectangleClient);
+      ellipse.set(rectangleX);
 
       m_pregion->create_ellipse(ellipse);
 

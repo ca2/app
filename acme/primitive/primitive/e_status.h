@@ -43,7 +43,9 @@ public:
    constexpr explicit e_status(bool b) : m_eenum(b ? success : error_failed){}
    constexpr explicit e_status(i32 i) : m_eenum((::enum_status) i) {}
    constexpr explicit e_status(i64 i) : m_eenum((::enum_status) i) {}
-   
+
+
+   constexpr operator ::enum_status() const { return m_eenum; }
 
    constexpr ::enum_status as_estatus() const { return m_eenum; }
 
@@ -279,3 +281,4 @@ public:
 
 
 
+template < > struct raw_enum_of_struct<::e_status > { using type = ::enum_status; };

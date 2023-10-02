@@ -17,8 +17,8 @@
 //
 //dump_context & operator<<(dump_context & dumpcontext,const ::rectangle_i32 & rectangle)
 //{
-//   dumpcontext << "(L " << rectangle.left << ", T " << rectangle.top << ", R " <<
-//          rectangle.right << ", B " << rectangle.bottom << ")";
+//   dumpcontext << "(L " << rectangle.left() << ", T " << rectangle.top() << ", R " <<
+//          rectangle.right() << ", B " << rectangle.bottom() << ")";
 //   return dumpcontext;
 //}
 //

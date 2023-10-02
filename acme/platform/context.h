@@ -114,6 +114,21 @@ namespace acme
       virtual ::file::path side_get_matter_path(string strMatter);
 
 
+      virtual bool http_exists(const ::scoped_string & scopedstrUrl, ::property_set & set);
+      virtual ::file::enum_type http_get_type(const ::scoped_string & scopedstrUrl, property_set & set);
+      virtual ::file::enum_type http_get_type(const ::scoped_string & scopedstrUrl, ::payload * pvarQuery, property_set & set);
+
+
+      virtual ::string http_text(const ::scoped_string & scopedstrUrl);
+      virtual ::string http_text(const ::scoped_string & scopedstrUrl, ::property_set & set);
+
+      
+      virtual ::memory http_memory(const ::scoped_string & scopedstrUrl);
+      virtual ::memory http_memory(const ::scoped_string & scopedstrUrl, ::property_set & set);
+
+      
+      virtual void http_download(const ::payload & payloadFile, const ::scoped_string & scopedstrUrl);
+      virtual void http_download(const ::payload & payloadFile, const ::scoped_string & scopedstrUrl, ::property_set & set);
 
 
    };

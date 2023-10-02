@@ -1453,7 +1453,7 @@
     <ClCompile Include="user\user\interaction_layout.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\interaction_prodevian.cpp">
+    <ClCompile Include="user\user\interaction_graphics_thread.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\interaction_scaler.cpp">
@@ -1603,7 +1603,7 @@
     <ClCompile Include="user\user\horizontal_scroll_base.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\prodevian.cpp">
+    <ClCompile Include="user\user\auto_refresh.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\run_application.cpp">
@@ -1663,7 +1663,7 @@
     <ClCompile Include="user\user\interaction_array.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\form_designer.cpp">
+    <ClCompile Include="user\user\form_handler.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="graphics\draw2d\path_optimization.cpp">

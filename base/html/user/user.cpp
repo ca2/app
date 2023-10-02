@@ -18,8 +18,8 @@ namespace base
    {
 
 
-      m_typeHtmlDocument = typeid(html_document);
-      m_typeHtmlImpact = typeid(html_impact);
+      m_typeatomHtmlDocument = typeid(html_document);
+      m_typeatomHtmlImpact = typeid(html_impact);
 
       factory()->add_factory_item < html_document >();
       factory()->add_factory_item < html_impact >();
@@ -27,9 +27,9 @@ namespace base
 
       //auto ptemplate = __new(::user::multiple_document_template(
       //   "system/form",
-      //   __type(html_document),
+      //   ::type < html_document >(),
       //   get_simple_child_frame_type_info(),
-      //   __type(html_impact)));
+      //   ::type < html_impact >()));
 
       //m_ptemplateHtmlChildForm1 = ptemplate;
 

@@ -171,6 +171,12 @@
     <Filter Include="Header Files\user\user">
       <UniqueIdentifier>{2f71ac51-960c-488f-a584-9946874eccc4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\input">
+      <UniqueIdentifier>{d77a16bf-6871-49ec-87d4-9a936a5e1cc4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\input">
+      <UniqueIdentifier>{dabf8456-ce9f-474e-979e-aa1119f6f857}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\filesystem.h">
@@ -953,6 +959,9 @@
     <ClInclude Include="message\dispatcher.h">
       <Filter>Header Files\message</Filter>
     </ClInclude>
+    <ClInclude Include="input\input.h">
+      <Filter>Header Files\input</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="filesystem\file\set.cpp">
@@ -1359,6 +1368,9 @@
     </ClCompile>
     <ClCompile Include="user\user\primitive.cpp">
       <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="input\input.cpp">
+      <Filter>Source Files\input</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

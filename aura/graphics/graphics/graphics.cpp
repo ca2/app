@@ -27,9 +27,13 @@ namespace graphics
 
    ::draw2d::graphics_pointer buffer_item::g()
    {
-      
-      return m_pgraphics ? m_pgraphics.m_p : m_pimage2->g();
-   
+
+      auto pgraphics = m_pgraphics ? m_pgraphics.m_p : m_pimage2->g();
+
+      pgraphics->m_egraphics = m_egraphics;
+
+      return pgraphics;
+
    }
 
 
@@ -59,7 +63,7 @@ namespace graphics
    {
 
       //auto estatus = 
-      
+
       object::initialize(pimpl);
 
       defer_create_synchronization();
@@ -86,7 +90,7 @@ namespace graphics
       destroy_buffer();
 
       //auto estatus = 
-      
+
       object::destroy();
 
       //return estatus;
@@ -115,6 +119,14 @@ namespace graphics
    }
 
 
+   //   bool graphics::presentation_complete()
+   //   {
+   //
+   //      return true;
+   //
+   //   }
+
+
    void graphics::buffer_size_and_position(buffer_item * pbufferitem)
    {
 
@@ -125,9 +137,15 @@ namespace graphics
 
       }
 
-      pbufferitem->m_point = m_pimpl->m_puserinteraction->const_layout().layout().origin();
+      pbufferitem->m_point = m_pimpl->m_puserinteraction->const_layout().design().origin();
 
-      pbufferitem->m_size = m_pimpl->m_puserinteraction->const_layout().layout().size();
+      pbufferitem->m_size = m_pimpl->m_puserinteraction->const_layout().design().size();
+
+      //pbufferitem->m_point = m_pimpl->m_puserinteraction->const_layout().layout().origin();
+
+      //pbufferitem->m_size = m_pimpl->m_puserinteraction->const_layout().layout().size();
+
+
 
    }
 
@@ -148,10 +166,51 @@ namespace graphics
    //}
 
 
-   ::graphics::buffer_item * graphics::on_begin_draw()
+   ::graphics::buffer_item * graphics::on_begin_draw(::e_graphics egraphics)
    {
 
-      return nullptr;
+      auto pbufferitem = get_buffer_item();
+
+      pbufferitem->m_egraphics = egraphics;
+
+      buffer_size_and_position(pbufferitem);
+
+      if (pbufferitem->m_size.is_empty())
+      {
+
+         if (egraphics & e_graphics_layout)
+         {
+
+            pbufferitem->m_size = { 512, 256 };
+
+         }
+         else
+         {
+
+            information() << "window size is zero in begin draw!!";
+
+            return nullptr;
+
+         }
+
+      }
+
+      if (!_on_begin_draw(pbufferitem))
+      {
+
+         return nullptr;
+
+      }
+
+      return pbufferitem;
+
+   }
+
+
+   bool graphics::_on_begin_draw(buffer_item * pbufferitem)
+   {
+
+      return true;
 
    }
 
@@ -191,7 +250,7 @@ namespace graphics
    }
 
 
-   bool graphics::ipc_copy(const pixmap* ppixmap)
+   bool graphics::ipc_copy(const pixmap * ppixmap)
    {
 
       return false;
@@ -199,7 +258,7 @@ namespace graphics
    }
 
 
-   void graphics::set_bitmap_source(const string& strBitmapSource)
+   void graphics::set_bitmap_source(const string & strBitmapSource)
    {
 
       throw ::interface_only();
@@ -257,12 +316,38 @@ namespace graphics
    }
 
 
-   i64 graphics::_001GetTopLeftWeightedOpaqueArea(const ::rectangle_i32 &rect)
+   i64 graphics::_001GetTopLeftWeightedOpaqueArea(const ::rectangle_i32 & rect)
    {
 
       _synchronous_lock synchronouslock(get_screen_item()->m_pmutex);
 
       return get_screen_item()->m_pimage2->_001GetTopLeftWeightedOpaqueArea(0, rect);
+
+   }
+
+
+   ::trace_statement & graphics::trace_statement_prefix(::trace_statement & statement) const
+   {
+
+      statement << "buffer  ";
+
+      auto pimpl = m_pimpl;
+
+      if (pimpl)
+      {
+
+         auto puserinteraction = pimpl->m_puserinteraction;
+
+         if (puserinteraction)
+         {
+
+            puserinteraction->trace_statement_prefix(statement);
+
+         }
+
+      }
+
+      return statement;
 
    }
 

@@ -702,12 +702,28 @@ CLASS_DECL_ACME ::task * get_task()
    if (!t_ptask)
    {
 
-      if (::acme::acme::g_pacme)
+      auto pacme = ::acme::acme::g_pacme;
+
+      if (::is_set(pacme))
       {
 
-         t_ptask = new ::task();
+         auto psubsystem =  pacme->m_psubsystem;
 
-         t_ptask->initialize(::acme::acme::g_pacme->m_psubsystem->acmesystem());
+         if(::is_set(psubsystem))
+         {
+
+            auto psystem = psubsystem->acmesystem();
+
+            if(::is_set(psystem))
+            {
+
+               t_ptask = new ::task();
+
+               t_ptask->initialize(psubsystem->acmesystem());
+
+            }
+
+         }
 
       }
 
@@ -818,42 +834,42 @@ thread_local payload t_payloada[e_task_payload_count];
 }
 
 
-CLASS_DECL_ACME bool main_synchronous(const class time & time, const ::procedure & function)
-{
-   
-   auto pevent = __new(manual_reset_event);
-   
-   main_asynchronous([ function, &pevent ]
-   {
-      
-      if(pevent)
-      {
-      
-         function();
-      
-         if(pevent)
-         {
-         
-            pevent->SetEvent();
-         
-         }
-         
-      }
-      
-   });
-   
-   if(!pevent->wait(time))
-   {
-      
-      pevent.release();
-      
-      return false;
-      
-   }
-   
-   return true;
-   
-}
+//CLASS_DECL_ACME bool main_synchronous(const class time & time, const ::procedure & function)
+//{
+//
+//   auto pevent = __new(manual_reset_event);
+//
+//   main_asynchronous([ function, &pevent ]
+//   {
+//
+//      if(pevent)
+//      {
+//
+//         function();
+//
+//         if(pevent)
+//         {
+//
+//            pevent->SetEvent();
+//
+//         }
+//
+//      }
+//
+//   });
+//
+//   if(!pevent->wait(time))
+//   {
+//
+//      pevent.release();
+//
+//      return false;
+//
+//   }
+//
+//   return true;
+//
+//}
 
 
 CLASS_DECL_ACME bool is_single_main_user_thread()

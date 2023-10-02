@@ -335,7 +335,7 @@ bool synchronization::_wait(const class ::wait & wait)
       {
 
          pmutex->m_strThread = ::task_get_name();
-         pmutex->m_itask = ::get_current_itask();
+         pmutex->m_itask = ::current_itask();
          ::information("");
 
       }

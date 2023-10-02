@@ -11,8 +11,10 @@
 #include "aura/message/user.h"
 #include "aura/user/user/interaction.h"
 #include "aura/user/user/user.h"
+#include "aura/platform/node.h"
 #include "aura/platform/system.h"
 #include "aura/windowing/windowing.h"
+#include "aura/windowing/cursor.h"
 #include "aura/windowing/cursor_manager.h"
 #include "aura/windowing/window.h"
 #include "aura/windowing/keyboard.h"
@@ -40,9 +42,10 @@ namespace windowing
    }
 
 
-   void windowing::_initialize_windowing()
+   bool windowing::has_readily_gettable_absolute_coordinates() const
    {
 
+      return true;
 
    }
 
@@ -50,28 +53,11 @@ namespace windowing
    void windowing::initialize_windowing(::user::user * puser)
    {
 
-      //auto estatus = initialize(puser);
+      information("aura::windowing::initialize_windowing");
 
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      //auto estatus = 
-      
       m_puser = puser;
 
-
       factory()->add_factory_item < cursor_manager >();
-
-      //if(!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
 
       m_ecursorDefault = e_cursor_arrow;
 
@@ -79,7 +65,14 @@ namespace windowing
       
       m_bDrawCursor = false;
 
-//      return ::success;
+      information("aura::windowing::initialize_windowing end");
+
+   }
+
+
+   void windowing::terminate_windowing()
+   {
+
 
    }
 
@@ -109,43 +102,7 @@ namespace windowing
 
       m_pcursormanager.release();
 
-      //auto estatus = 
-      
       ::acme::department::destroy();
-
-      //return estatus;
-
-   }
-
-
-   //void windowing::destroy()
-   //{
-
-   //   auto estatus = ::acme::department::destroy();
-
-   //   if (!estatus)
-   //   {
-
-   //      return estatus;
-
-   //   }
-
-   //   return estatus;
-
-   //}
-
-
-//   void windowing::start()
-//   {
-//
-//      //return ::success;
-//
-//   }
-//
-
-   void windowing::windowing_main()
-   {
-
 
    }
 
@@ -173,18 +130,7 @@ namespace windowing
       if (m_pcursormanager.is_null())
       {
 
-         //auto estatus = 
-         
          __construct_new(m_pcursormanager);
-
-         //if (!estatus)
-         //{
-
-         //   return nullptr;
-
-         //}
-
-         //m_pcursormanager->set_cursor_set_system_default();
 
       }
 
@@ -210,39 +156,19 @@ namespace windowing
 
       synchronouslock.unlock();
 
-      //auto estatus = 
-      
       __construct(m_pcursormanager);
 
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      //estatus = 
-      
       m_pcursormanager->set_cursor_set_from_matter(pobjectContext, pathDir);
 
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      //return estatus;
-
    }
 
 
-   void windowing::set_cursor_position(const ::point_i32 & pointCursor)
-   {
-
-      m_pointCursor = pointCursor;
-
-   }
+//   void windowing::set_cursor_position(const ::point_i32 & pointCursor)
+//   {
+//
+//      m_pointCursor = pointCursor;
+//
+//   }
 
 
    ::windowing::window * windowing::window(oswindow oswindow)
@@ -252,39 +178,6 @@ namespace windowing
 
    }
 
-
-   //::user::interaction_impl * windowing::interaction_impl(::windowing::window * pwindow)
-   //{
-
-   //   auto pwindow = window(oswindow);
-
-   //   if (::is_null(pwindow))
-   //   {
-
-   //      return nullptr;
-
-   //   }
-
-   //   return pwindow->m_pimpl;
-
-   //}
-
-
-   //::user::interaction * windowing::interaction(::windowing::window * pwindow)
-   //{
-
-   //   auto pimpl = interaction_impl(oswindow);
-
-   //   if (::is_null(pimpl))
-   //   {
-
-   //      return nullptr;
-
-   //   }
-
-   //   return pimpl->m_puserinteraction;
-
-   //}
 
    void windowing::defer_initialize_host_window(const ::rectangle_i32* lpcrect)
    {
@@ -347,8 +240,6 @@ namespace windowing
 
       throw ::interface_only();
 
-      //throw ::interface_only();
-
    }
 
 
@@ -356,8 +247,6 @@ namespace windowing
    {
 
       throw ::interface_only();
-
-      return nullptr;
 
    }
 
@@ -378,30 +267,18 @@ namespace windowing
    }
 
 
-//    void windowing::defer_initialize_x11()
-//   {
-//
-//       return ::success;
-//   }
-
    void windowing::handle_just_hooks()
    {
 
+
    }
 
 
-    void windowing::defer_handle_just_hooks()
+   void windowing::defer_handle_just_hooks()
    {
 
+
    }
-
-
-   // int windowing::message_box(const ::string & str, const ::string & strTitle, const ::e_message_box & emessagebox)
-   //{
-
-   //    throw ::interface_only();
-   //    return 0;
-   //}
 
 
    bool windowing::__hook_process_event(class display * pdisplay, void * pevent, void * cookie)
@@ -413,18 +290,22 @@ namespace windowing
    }
 
 
-   //void windowing::get_cursor_position(::point_i32 * ppoint)
-   //{
-
-   //   *ppoint = m_pointCursor;
-
-   //}
-
-
    ::windowing::window * windowing::get_keyboard_focus(::thread *)
    {
 
       return nullptr;
+
+   }
+
+
+   ::point_i32 windowing::try_absolute_mouse_position(::user::interaction* puserinteraction, const ::point_i32& point)
+   {
+
+      auto p = point;
+
+      //puserinteraction->client_to_screen()(p);
+
+      return p;
 
    }
 
@@ -447,6 +328,14 @@ namespace windowing
    void windowing::__wait_timer_or_event(class display * pdisplay)
    {
 
+
+   }
+
+
+   bool windowing::is_screen_visible(::e_display edisplay)
+   {
+
+      return ::is_screen_visible(edisplay);
 
    }
 
@@ -475,29 +364,116 @@ namespace windowing
    }
 
 
-   //int_bool windowing::window_set_mouse_cursor(window *pwindow, hcursor hcursor)
-   //{
-
-   //   return false;
-
-   //}
-
-
-//   bool windowing::sn_start_context()
-//   {
-//
-//
-//      return false;
-//
-//   }
-
-   
-   void windowing::release_mouse_capture()
+   void windowing::set_mouse_capture(::thread *, ::windowing::window * pwindow)
    {
 
       throw ::interface_only();
 
    }
+
+
+//   ::windowing::window * windowing::get_mouse_capture(::thread *)
+//   {
+//
+//      throw ::interface_only();
+//
+//      return nullptr;
+//
+//   }
+
+
+   void windowing::release_mouse_capture(::thread *)
+   {
+
+      throw ::interface_only();
+
+   }
+
+
+   void windowing::set_mouse_cursor(::windowing::cursor * pcursor)
+   {
+
+      throw ::interface_only();
+
+      //return nullptr;
+
+   }
+
+
+//   void windowing::release_mouse_capture(::thread * pthread)
+//   {
+//
+//      throw ::interface_only();
+//
+//   }
+
+
+   bool windowing::defer_release_mouse_capture(::thread * pthread, ::windowing::window * pwindow)
+   {
+
+      throw ::interface_only();
+
+      return false;
+
+   }
+
+
+//   void windowing::set_mouse_cursor(::windowing::cursor * pcursor)
+//   {
+//
+////      void * poscursor = nullptr;
+////
+////      if (::is_set(pcursor))
+//
+////      HCURSOR hcursor = nullptr;
+////
+////      if (::is_set(pcursor))
+////      {
+////
+////         hcursor = (HCURSOR)pcursor->get_os_data();
+////
+////         if (hcursor == nullptr)
+////         {
+////
+////            //auto estatus =
+////
+////            pcursor->_create_os_cursor();
+////
+////            //if (!estatus)
+////            //{
+////
+////            //   return estatus;
+////
+////            //};
+////
+////            hcursor = (HCURSOR)pcursor->get_os_data();
+////
+////            //if (!hcursor)
+////            //{
+////
+////            //   return error_resource;
+////
+////            //}
+////
+////         }
+////
+////      }
+////
+////      // At windows SetMouseCursor(nullptr) removes the cursor from screen
+////      // similar apis in other platforms behave the same?
+////
+////      if (!::SetCursor(hcursor))
+////      {
+////
+////         throw ::exception(error_failed);
+////
+////      }
+////
+////      //return ::success;
+////
+//
+//
+//   }
 
 
    /// pwindowGainingFocusIfAny
@@ -511,14 +487,6 @@ namespace windowing
    }
 
 
-   //::extended::transport < ::windowing::icon > window::load_icon(const ::payload & payloadFile)
-   //{
-
-   //   return nullptr;
-
-   //}
-
-   //
    void windowing::term1()
    {
 
@@ -538,33 +506,7 @@ namespace windowing
    void windowing::term2()
    {
 
-      //return ::success;
-
    }
-   //bool windowing::set_window_icon(window *pwindow, const ::file::path &path)
-   //{
-
-
-   //   return false;
-
-   //}
-
-
-   //pointer< ::future < enum_dialog_result > > windowing::message_box(const ::string &pszMessage, const ::string &pszTitle, const ::e_message_box &emessagebox)
-   //{
-
-   //   return nullptr;
-
-   //}
-
-
-   //enum_dialog_result windowing::message_box_timeout(const ::string &pszMessage, const ::string &pszTitle, const ::time &time,
-   //                                   const ::e_message_box &emessagebox)
-   //{
-
-   //   return e_dialog_result_none;
-
-   //}
 
 
    window *windowing::new_message_window(::user::interaction_impl *pimpl)
@@ -592,39 +534,7 @@ namespace windowing
    void windowing::erase_window(::windowing::window * pwindow)
    {
 
-      //if (!m_windowmap.erase_key(pwindow->get_os_data()))
-      //{
-
-        // return ::error_failed;
-
-      //}
-
-      //return ::success;
-
    }
-
-
-//   void windowing::hook(class hook *phook)
-//   {
-//
-//      throw ::interface_only();
-//
-//      return
-//         error_interface_only;
-//
-//   }
-//
-//
-//   void windowing::unhook(class hook * phook)
-//   {
-//
-//      throw ::interface_only();
-//
-//      return
-//         error_interface_only;
-//
-//   }
-
 
 
    bool windowing::route_message(::user::message * pusermessage)
@@ -662,14 +572,6 @@ namespace windowing
    }
 
 
-   //void windowing::enum_draw2d_fonts(::write_text::font_enumeration_item_array & itema)
-   //{
-
-
-
-   //}
-
-
    int_bool windowing::point_is_window_origin(::point_i32 ptHitTest, oswindow oswindowExclude, int iMargin)
    {
 
@@ -692,8 +594,6 @@ namespace windowing
       if (::is_null(pcursor))
       {
 
-         //return ::error_bad_argument;
-
          throw ::exception(error_bad_argument);
 
       }
@@ -703,15 +603,9 @@ namespace windowing
       if (!str.case_insensitive_ends_eat(".png"))
       {
 
-         //return false;
-
          return;
 
       }
-
-      ////pcursor->m_pimage = pcontextimage->load_image(path, bFromCache, bSync);
-
-      //return true;
 
    }
 
@@ -743,25 +637,28 @@ namespace windowing
    void windowing::lock_set_foreground_window(bool bLock)
    {
 
-      //return error_not_implemented;
-    
    }
 
 
-   void windowing::windowing_send(const ::procedure & procedure)
-   {
-
-      __matter_send_procedure(this, this, &windowing::windowing_post, procedure);
-
-   }
-
-
-   void windowing::windowing_post(const ::procedure & procedure)
-   {
-
-      throw ::interface_only();
-
-   }
+//   void windowing::windowing_send(const ::procedure & procedure)
+//   {
+//
+//      __matter_send_procedure(this, this, &windowing::windowing_post, procedure);
+//
+//   }
+//
+//
+//   void windowing::windowing_post(const ::procedure & procedure)
+//   {
+//
+//      if(acmenode()->m_pauranode->defer_windowing_post(procedure))
+//      {
+//
+//         return;
+//
+//      }
+//
+//   }
 
 
    ::windowing::keyboard * windowing::keyboard()
@@ -817,7 +714,6 @@ namespace windowing
    }
 
 
-
 #if defined(LINUX) || defined(FREEBSD)
 
 
@@ -847,14 +743,12 @@ namespace windowing
 #endif
 
 
-   void windowing::register_extended_event_listener(::matter * pdata, bool bMouse, bool bKeyboard)
-   {
-
-      throw ::interface_only();
-
-      //throw ::interface_only();
-
-   }
+//   void windowing::register_extended_event_listener(::matter * pdata, bool bMouse, bool bKeyboard)
+//   {
+//
+//      throw ::interface_only();
+//
+//   }
 
 
    void windowing::os_menu_item_enable(void * pitem, bool bEnable)
@@ -876,57 +770,47 @@ namespace windowing
    void windowing::defer_create_main_menu(const string_array & straParent, const string_array & straMenu, const string_array & straId)
    {
 
-      //throw ::interface_only();
-
    }
 
 
-   ::e_status windowing::is_keyboard_hook_enabled(::user::interaction * puserinteractionEnablePrompt)
-   {
-
-      return ::success;
-
-   }
-
-
-   void windowing::install_keyboard_hook(::matter * pmatterListener)
-   {
-
-      //return ::success;
-
-   }
-
-
-   void windowing::uninstall_keyboard_hook(::matter * pmatterListener)
-   {
-
-      //return ::success;
-
-   }
-
-
-   ::e_status windowing::is_mouse_hook_enabled(::user::interaction * puserinteractionEnablePrompt)
-   {
-
-      return ::success;
-
-   }
-
-
-   void windowing::install_mouse_hook(::matter * pmatterListener)
-   {
-
-      //return ::success;
-
-   }
-
-
-   void windowing::uninstall_mouse_hook(::matter * pmatterListener)
-   {
-
-      //return ::success;
-
-   }
+//   ::e_status windowing::is_keyboard_message_handling_enabled(::user::interaction * puserinteractionEnablePrompt)
+//   {
+//
+//      return ::success;
+//
+//   }
+//
+//
+//   void windowing::add_keyboard_message_handler(::particle * pparticle)
+//   {
+//
+//   }
+//
+//
+//   void windowing::erase_keyboard_message_handler(::particle * pparticle)
+//   {
+//
+//   }
+//
+//
+//   ::e_status windowing::is_mouse_message_handling_enabled(::user::interaction * puserinteractionEnablePrompt)
+//   {
+//
+//      return ::success;
+//
+//   }
+//
+//
+//   void windowing::add_mouse_message_handler(::particle * pparticle)
+//   {
+//
+//   }
+//
+//
+//   void windowing::erase_mouse_message_handler(::particle * pparticle)
+//   {
+//
+//   }
 
 
    ::aura::application* windowing::get_app()
@@ -944,13 +828,6 @@ namespace windowing
 
    }
 
-
-   //::aura::system* windowingacmesystem()
-   //{
-
-   //   return ::is_set(acmesystem()) ? dynamic_cast <::aura::system*> (acmesystem()) : nullptr;
-
-   //}
 
    ::pointer < ::user::interaction > windowing::create_message_window(const ::string & pszName, ::user::interaction_listener * plistener)
    {

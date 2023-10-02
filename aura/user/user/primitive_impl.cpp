@@ -118,7 +118,7 @@ namespace user
    }
 
 
-   void primitive_impl::defer_draw(::draw2d::graphics_pointer & pgraphics)
+   void primitive_impl::defer_do_graphics(::draw2d::graphics_pointer & pgraphics)
    {
 
       m_puserinteraction->_000CallOnDraw(pgraphics);
@@ -207,7 +207,7 @@ namespace user
    //}
 
 
-//   void primitive_impl::prodevian_update_screen()
+//   void primitive_impl::graphics_thread_update_screen()
 //   {
 //
 //      //return true;
@@ -215,7 +215,7 @@ namespace user
 //   }
 
 
-   //void primitive_impl::RepositionBars(::u32 nIDFirst, ::u32 nIDLast, atom idLeft, ::u32 nFlags, ::rectangle_i32 * prectParam, const rectangle_i32 & rectangleClient, bool bStretch)
+   //void primitive_impl::RepositionBars(::u32 nIDFirst, ::u32 nIDLast, atom idLeft, ::u32 nFlags, ::rectangle_i32 * prectParam, const rectangle_i32 & rectangleX, bool bStretch)
    //{
 
    //   if (!_is_window())
@@ -239,16 +239,16 @@ namespace user
 
    //   sizeparentparams.sizeTotal.cx() = sizeparentparams.sizeTotal.cy() = 0;
 
-   //   if (rectangleClient != nullptr)
+   //   if (rectangleX != nullptr)
    //   {
 
-   //      sizeparentparams.rectangle = rectangleClient;
+   //      sizeparentparams.rectangle = rectangleX;
 
    //   }
    //   else
    //   {
 
-   //      m_puserinteraction->client_rectangle(&sizeparentparams.rectangle);
+   //      m_puserinteraction->rectangle(&sizeparentparams.rectangle);
 
    //   }
 
@@ -295,11 +295,11 @@ namespace user
    //      else
    //      {
 
-   //         prectParam->left = prectParam->top = 0;
+   //         prectParam->left() = prectParam->top() = 0;
 
-   //         prectParam->right = sizeparentparams.sizeTotal.cx();
+   //         prectParam->right() = sizeparentparams.sizeTotal.cx();
 
-   //         prectParam->bottom = sizeparentparams.sizeTotal.cy();
+   //         prectParam->bottom() = sizeparentparams.sizeTotal.cy();
 
 
    //      }
@@ -318,13 +318,13 @@ namespace user
    //         ASSERT(prectParam != nullptr);
 
 
-   //         sizeparentparams.rectangle.left += prectParam->left;
+   //         sizeparentparams.rectangle.left() += prectParam->left();
 
-   //         sizeparentparams.rectangle.top += prectParam->top;
+   //         sizeparentparams.rectangle.top() += prectParam->top();
 
-   //         sizeparentparams.rectangle.right -= prectParam->right;
+   //         sizeparentparams.rectangle.right() -= prectParam->right();
 
-   //         sizeparentparams.rectangle.bottom -= prectParam->bottom;
+   //         sizeparentparams.rectangle.bottom() -= prectParam->bottom();
 
 
    //      }
@@ -353,6 +353,20 @@ namespace user
       //return true;
 
    }
+
+
+   void primitive_impl::on_configure(const ::rectangle_i32 & rectangle)
+   {
+
+
+   }
+
+
+//   void primitive_impl::on_resize(const ::size_i32 & size)
+//   {
+//
+//
+//   }
 
 
    //void primitive_impl::main_async(const promise::procedure & routine, enum_priority epriority)
@@ -403,7 +417,7 @@ namespace user
 //
 //      }
 //
-//      string strType = __type_name(m_puserinteraction);
+//      string strType = ::type(m_puserinteraction).name();
 //
 ////      if (strType.contains("list_box"))
 ////      {
@@ -506,8 +520,8 @@ namespace user
    void primitive_impl::viewport_client_to_screen(::rectangle_i32 & rectangle)
    {
 
-      viewport_client_to_screen((::point_i32 &)rectangle.left);
-      viewport_client_to_screen((::point_i32 &)rectangle.right);
+      viewport_client_to_screen((::point_i32 &)rectangle.left());
+      viewport_client_to_screen((::point_i32 &)rectangle.right());
 
    }
 
@@ -515,8 +529,8 @@ namespace user
    void primitive_impl::viewport_screen_to_client(::rectangle_i32 & rectangle)
    {
 
-      viewport_screen_to_client((::point_i32 &)rectangle.left);
-      viewport_screen_to_client((::point_i32 &)rectangle.right);
+      viewport_screen_to_client((::point_i32 &)rectangle.left());
+      viewport_screen_to_client((::point_i32 &)rectangle.right());
 
    }
 
@@ -585,21 +599,21 @@ namespace user
    }
 
 
-   void primitive_impl::add_prodevian(::matter* pmatter)
+   void primitive_impl::add_auto_refresh(::matter* pmatter)
    {
 
 
    }
 
 
-   void primitive_impl::erase_prodevian(::matter* pmatter)
+   void primitive_impl::erase_auto_refresh(::matter* pmatter)
    {
 
 
    }
 
 
-   bool primitive_impl::is_prodevian(const ::matter* pmatter) const
+   bool primitive_impl::is_auto_refresh(const ::matter* pmatter) const
    {
 
       return false;
@@ -607,7 +621,7 @@ namespace user
    }
 
 
-//   void primitive_impl::prodevian_stop()
+//   void primitive_impl::auto_refresh_stop()
 //   {
 //
 //
@@ -866,9 +880,11 @@ namespace user
 //
 //         }
 
-         pmessage->m_point = lparam.point();
+         pmessage->m_pointHost = lparam.point();
 
-         _raw_client_to_screen(pmessage->m_point);
+         pmessage->m_pointAbsolute = lparam.point();
+
+         _raw_client_to_screen(pmessage->m_pointAbsolute);
 
       }
       break;
@@ -895,11 +911,13 @@ namespace user
 
          pmessage->m_ebuttonstate = (::user::enum_button_state) lower_u16(wparam);
 
-         pmessage->m_point = lparam.point();
+         pmessage->m_pointHost = lparam.point();
 
          pmessage->m_Δ = upper_i16(wparam);
 
-         //_raw_client_to_screen(pmessage->m_point);
+         pmessage->m_pointAbsolute = lparam.point();
+
+         _raw_client_to_screen(pmessage->m_pointAbsolute);
 
       }
       break;
@@ -1047,7 +1065,7 @@ namespace user
    //}
 
 
-//   void primitive_impl::prodevian_redraw(bool bUpdateBuffer)
+//   void primitive_impl::graphics_thread_redraw(bool bUpdateBuffer)
 //   {
 //
 //
@@ -1834,6 +1852,46 @@ namespace user
    //}
 
 
+   void primitive_impl::message_handler(const ::atom & atom, wparam wparam, lparam lparam)
+   {
+
+      // if (::is_null(m_puserinteraction))
+      // {
+
+      //    throw ::exception(error_wrong_state);
+
+      // }
+
+      // m_puserinteraction->interaction_post(__new(call_message_handler_task(m_puserinteraction, atom, wparam, lparam)));
+
+      //auto pmessage
+
+      //get_message()
+
+      ::pointer<::message::message>pmessage;
+
+      if (m_puserinteraction)
+      {
+
+         pmessage = m_puserinteraction->get_message(atom, wparam, lparam);
+
+      }
+      else
+      {
+
+         pmessage = get_message(atom, wparam, lparam);
+
+      }
+
+      pmessage->m_pchannel = this;
+
+      //return message_call(pmessage);
+
+      message_handler(pmessage);
+
+   }
+
+
    lresult primitive_impl::message_call(const ::atom & atom, wparam wparam, lparam lparam, const ::point_i32& point)
    {
 
@@ -2038,15 +2096,15 @@ namespace user
    }
 
 
-   //void primitive_impl::defer_start_prodevian()
+   //void primitive_impl::defer_start_auto_refresh()
    //{
 
-   //   m_puserinteraction->post_simple_command(e_simple_command_defer_start_prodevian);
+   //   m_puserinteraction->post_simple_command(e_simple_command_defer_start_auto_refresh);
 
    //}
 
 
-   //void primitive_impl::_defer_start_prodevian()
+   //void primitive_impl::_defer_start_auto_refresh()
    //{
 
    //}
@@ -2516,7 +2574,7 @@ namespace user
    void primitive_impl::on_message_non_client_destroy(::message::message * pmessage)
    {
 
-      if (m_puserinteraction && __type_name(m_puserinteraction).contains("notify_icon"))
+      if (m_puserinteraction && ::type(m_puserinteraction).name().contains("notify_icon"))
       {
 
          information() << "notify_icon";
@@ -2538,13 +2596,13 @@ namespace user
 
       //}
 
-      //g_p->set_at((iptr)this, __type_name(m_puserinteraction)) + "xxx" + __type_name(this);
+      //g_p->set_at((iptr)this, ::type(m_puserinteraction).name()) + "xxx" + ::type(this).name();
       MESSAGE_LINK(e_message_show_window, pchannel, this, &primitive_impl::on_message_show_window);
       MESSAGE_LINK(MESSAGE_DESTROY, pchannel, this, &primitive_impl::on_message_destroy);
       MESSAGE_LINK(e_message_non_client_destroy, pchannel, this, &primitive_impl::on_message_non_client_destroy);
       MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &primitive_impl::_001OnPrioCreate);
 
-      if (m_puserinteraction && __type_name(m_puserinteraction).contains("notify_icon"))
+      if (m_puserinteraction && ::type(m_puserinteraction).name().contains("notify_icon"))
       {
 
          information() << "notify_icon";
@@ -2668,7 +2726,7 @@ namespace user
    //}
 
 
-   void primitive_impl::create_host(::user::interaction * puserinteraction)
+   void primitive_impl::create_host(::user::interaction * puserinteraction, enum_parallelization eparallelization)
    {
 
       //return false;
@@ -2705,18 +2763,28 @@ namespace user
    // }
 
 
-   void primitive_impl::_window_show_change_visibility(::e_display edisplay, ::e_activation eactivation)
-   {
-
-   }
-
-
-   void primitive_impl::_window_request_presentation()
-   {
-
-      //return true;
-
-   }
+//   void primitive_impl::_window_show_change_visibility_unlocked(::e_display edisplay, ::e_activation eactivation)
+//   {
+//
+//   }
+//
+//
+//   void primitive_impl::_window_show_change_visibility_locked()
+//   {
+//
+//   }
+//
+//
+//   void primitive_impl::_window_request_presentation_locked()
+//   {
+//
+//   }
+//
+//
+//   void primitive_impl::_window_request_presentation_unlocked()
+//   {
+//
+//   }
 
 
    void primitive_impl::enable_window(bool bEnable)
@@ -2885,6 +2953,40 @@ namespace user
    {
 
       m_puserinteraction->client_to_screen(e_layout_design)(point);
+
+   }
+
+
+   ::trace_statement & primitive_impl::trace_statement_prefix(::trace_statement & statement) const
+   {
+
+      statement << "usrimpl ";
+
+      if(m_puserinteraction)
+      {
+
+         m_puserinteraction->raw_trace_statement_prefix(statement);
+
+      }
+
+      return statement;
+
+   }
+
+   
+   void primitive_impl::user_send(const ::procedure & procedure)
+   {
+
+      if (!m_puserinteraction)
+      {
+
+         ::channel::user_send(procedure);
+
+         return;
+
+      }
+
+      m_puserinteraction->user_send(procedure);
 
    }
 

@@ -256,7 +256,7 @@ namespace draw2d_opengl
       //  bool LineTo(const ::point_i32 & point);
       void polyline(const ::point_f64* ppoints,::count nCount) override;
 
-      void set(const ::draw2d::matrix & matrix) override;
+      void set(const ::geometry2d::matrix & matrix) override;
 
       //using ::draw2d::graphics::Arc;
       //bool arc(double x1, double y1, double x2, double y2,i32 x3,i32 y3,i32 x4,i32 y4);

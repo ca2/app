@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "interaction_thread.h"
-#include "interaction_prodevian.h"
+#include "interaction_graphics_thread.h"
 #include "interaction_impl.h"
 #include "interaction.h"
 #include "user.h"
@@ -81,7 +81,7 @@ namespace user
 
       m_pimpl = pimpl;
 
-      string strType = __type_name(m_pimpl->m_puserinteraction);
+      string strType = ::type(m_pimpl->m_puserinteraction).name();
 
       m_strDebugType = strType;
 
@@ -223,13 +223,15 @@ namespace user
 //
 //#endif
 
-      //set_topic_text("window_thread_" + __type_name(m_pimpl->m_puserinteraction)) + "> ";
+      //set_topic_text("window_thread_" + ::type(m_pimpl->m_puserinteraction).name()) + "> ";
 
-      ::task_set_name(__type_name(m_pimpl->m_puserinteraction));
+      ::task_set_name(::type(m_pimpl->m_puserinteraction).name());
 
 #ifdef WINDOWS_DESKTOP
 
       //attach_thread_input_to_main_thread();
+
+      attach_thread_input_to_main_thread(true);
 
 #endif
 
@@ -296,14 +298,14 @@ namespace user
 
       //}
 
-      auto pusersystem = m_pimpl->m_puserinteraction->m_pusersystem;
-
-      if(pusersystem && pusersystem->m_procedureSuccess)
-      {
-
-         pusersystem->m_procedureSuccess();
-
-      }
+//     auto pusersystem = m_pimpl->m_puserinteraction->m_pusersystem;
+//
+//      if(pusersystem && pusersystem->m_procedureSuccess)
+//      {
+//
+//         pusersystem->m_procedureSuccess();
+//
+//      }
 
 
       //}
@@ -319,6 +321,20 @@ namespace user
       //m_himc = ImmGetContext(m_pimpl->get_handle());
 
       m_oswindow = m_pimpl->m_pwindow->oswindow();
+
+//      if(m_pimpl->m_puserinteraction->const_layout().sketch().is_screen_visible())
+//      {
+//
+//         m_pimpl->m_puserinteraction->set_reposition();
+//
+//         m_pimpl->m_puserinteraction->set_need_layout();
+//
+//         m_pimpl->m_puserinteraction->set_need_redraw();
+//
+//         m_pimpl->m_puserinteraction->post_redraw();
+//
+//
+//      }
 
       //delete m_pusersystem;
 
@@ -382,9 +398,9 @@ namespace user
 
             }
 
-            information()(e_trace_category_appmsg) << __type_name(this) << " thread::pump_message - Received e_message_quit.\n";
+            information()(e_trace_category_appmsg) << ::type(this).name() << " thread::pump_message - Received e_message_quit.\n";
 
-            //::information(__type_name(this)) << " thread::pump_message - Received e_message_quit.\n");
+            //::information(::type(this).name()) << " thread::pump_message - Received e_message_quit.\n");
 
             m_nDisablePumpCount++; // application must die
             // Note: prevents calling message loop things in 'exit_thread'
@@ -549,16 +565,18 @@ namespace user
                      if (msg.m_atom == ::e_message_redraw)
                      {
 
-                        string strType = __type_name(puserinteraction);
+                        throw ::exception(error_failed, "Please post e_message_redraw directly to the graphics thread");
 
-                        if (strType.case_insensitive_contains("filemanager"))
-                        {
+                        //string strType = ::type(puserinteraction).name();
 
-                           //information() << "filemanager";
+                        //if (strType.case_insensitive_contains("filemanager"))
+                        //{
 
-                        }
+                        //   //information() << "filemanager";
 
-                        puserinteraction->prodevian_redraw(msg.wParam & 1);
+                        //}
+
+                        //puserinteraction->prodevian_redraw(msg.wParam & 1);
 
                         return true;
 
@@ -835,7 +853,11 @@ namespace user
 
       ASSERT_VALID(this);
 
-      information() << "user::thread::run";
+      ::string strType = ::type(m_pimpl->m_puserinteraction.m_p).name();
+
+      information()
+         << "usrthrd " << strType << " : "
+         << "user::thread::run";
 
       if (m_strDebugType.contains("main_frame"))
       {
@@ -1125,7 +1147,7 @@ namespace user
       else
       {
 
-         //string strType = __type_name(m_puserinteraction);
+         //string strType = ::type(m_puserinteraction).name();
 
          if (m_strDebugType.contains("filemanager"))
          {

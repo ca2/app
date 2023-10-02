@@ -231,6 +231,7 @@
       <Command>
       </Command>
     </PostBuildEvent>
+    <PreBuildEvent />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">
     <ClCompile>
@@ -343,6 +344,7 @@
       <Command>
       </Command>
     </PostBuildEvent>
+    <PreBuildEvent />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">
     <ClCompile>
@@ -461,6 +463,7 @@
     <ResourceCompile>
       <AdditionalIncludeDirectories>$(SolutionDir)../../..</AdditionalIncludeDirectories>
     </ResourceCompile>
+    <PreBuildEvent />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">
     <ClCompile>
@@ -560,6 +563,7 @@
     <ResourceCompile>
       <AdditionalIncludeDirectories>$(SolutionDir)../../..</AdditionalIncludeDirectories>
     </ResourceCompile>
+    <PreBuildEvent />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">
     <ClCompile>
@@ -642,7 +646,6 @@
     <ClCompile Include="graphics\draw2d\host.cpp" />
     <ClCompile Include="graphics\draw2d\item.cpp" />
     <ClCompile Include="graphics\draw2d\lock.cpp" />
-    <ClCompile Include="graphics\draw2d\matrix.cpp" />
     <ClCompile Include="graphics\draw2d\nano_svg.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">NotUsing</PrecompiledHeader>
@@ -766,7 +769,7 @@
     <ClCompile Include="user\user\interaction_impl.cpp" />
     <ClCompile Include="user\user\interaction_layout.cpp" />
     <ClCompile Include="user\user\interaction_listener.cpp" />
-    <ClCompile Include="user\user\interaction_prodevian.cpp" />
+    <ClCompile Include="user\user\interaction_graphics_thread.cpp" />
     <ClCompile Include="user\user\interaction_scaler.cpp" />
     <ClCompile Include="user\user\interaction_thread.cpp" />
     <ClCompile Include="user\user\key.cpp" />
@@ -780,7 +783,7 @@
     <ClCompile Include="user\user\plain_text_data.cpp" />
     <ClCompile Include="user\user\plain_text_tree.cpp" />
     <ClCompile Include="user\user\primitive_impl.cpp" />
-    <ClCompile Include="user\user\prodevian.cpp" />
+    <ClCompile Include="user\user\auto_refresh.cpp" />
     <ClCompile Include="user\user\progress.cpp" />
     <ClCompile Include="user\user\range.cpp" />
     <ClCompile Include="user\user\redraw.cpp" />
@@ -803,6 +806,7 @@
     <ClCompile Include="user\user\windowing.cpp" />
     <ClCompile Include="user\user\zorder.cpp" />
     <ClCompile Include="user\user\_.cpp" />
+    <ClCompile Include="user\user\_string.cpp" />
     <ClCompile Include="windowing\cursor.cpp" />
     <ClCompile Include="windowing\cursor_manager.cpp" />
     <ClCompile Include="windowing\Debug.cpp" />
@@ -872,7 +876,6 @@
     <ClInclude Include="graphics\draw2d\host.h" />
     <ClInclude Include="graphics\draw2d\item.h" />
     <ClInclude Include="graphics\draw2d\lock.h" />
-    <ClInclude Include="graphics\draw2d\matrix.h" />
     <ClInclude Include="graphics\draw2d\object.h" />
     <ClInclude Include="graphics\draw2d\palette.h" />
     <ClInclude Include="graphics\draw2d\path.h" />
@@ -1098,7 +1101,7 @@
     <ClInclude Include="user\user\interaction_impl.h" />
     <ClInclude Include="user\user\interaction_layout.h" />
     <ClInclude Include="user\user\interaction_listener.h" />
-    <ClInclude Include="user\user\interaction_prodevian.h" />
+    <ClInclude Include="user\user\interaction_graphics_thread.h" />
     <ClInclude Include="user\user\interaction_scaler.h" />
     <ClInclude Include="user\user\interaction_style.h" />
     <ClInclude Include="user\user\interaction_thread.h" />
@@ -1115,7 +1118,7 @@
     <ClInclude Include="user\user\plain_edit_style.h" />
     <ClInclude Include="user\user\plain_text_data.h" />
     <ClInclude Include="user\user\primitive_impl.h" />
-    <ClInclude Include="user\user\prodevian.h" />
+    <ClInclude Include="user\user\auto_refresh.h" />
     <ClInclude Include="user\user\progress.h" />
     <ClInclude Include="user\user\range.h" />
     <ClInclude Include="user\user\redraw.h" />

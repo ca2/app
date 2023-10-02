@@ -10,6 +10,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/system.h"
 #include "acme/primitive/geometry2d/_text_stream.h"
+#include "acme/user/user/_text_stream.h"
 #include "aura/message/user.h"
 #include "aura/user/user/style.h"
 #include "base/platform/session.h"
@@ -24,7 +25,7 @@ CLASS_DECL_BASE ::rectangle_i32_array get_borders(const ::rectangle_i32 & rectan
    
    // Top
    rectangle = rectangleOuter;
-   rectangle.bottom = rectangleInner.top + 1;
+   rectangle.bottom() = rectangleInner.top() + 1;
 
    if (rectangle.is_set())
    {
@@ -35,7 +36,7 @@ CLASS_DECL_BASE ::rectangle_i32_array get_borders(const ::rectangle_i32 & rectan
 
    // Bottom
    rectangle = rectangleOuter;
-   rectangle.top = rectangleInner.bottom - 1;
+   rectangle.top() = rectangleInner.bottom() - 1;
    
    if (rectangle.is_set())
    {
@@ -46,9 +47,9 @@ CLASS_DECL_BASE ::rectangle_i32_array get_borders(const ::rectangle_i32 & rectan
 
    // Left
    rectangle = rectangleOuter;
-   rectangle.top = rectangleInner.top;
-   rectangle.bottom = rectangleInner.bottom;
-   rectangle.right = rectangleInner.left + 1;
+   rectangle.top() = rectangleInner.top();
+   rectangle.bottom() = rectangleInner.bottom();
+   rectangle.right() = rectangleInner.left() + 1;
 
    if (rectangle.is_set())
    {
@@ -59,9 +60,9 @@ CLASS_DECL_BASE ::rectangle_i32_array get_borders(const ::rectangle_i32 & rectan
 
    // Right
    rectangle = rectangleOuter;
-   rectangle.top = rectangleInner.top;
-   rectangle.bottom = rectangleInner.bottom;
-   rectangle.left = rectangleInner.right - 1;
+   rectangle.top() = rectangleInner.top();
+   rectangle.bottom() = rectangleInner.bottom();
+   rectangle.left() = rectangleInner.right() - 1;
 
    if (rectangle.is_set())
    {
@@ -87,10 +88,10 @@ namespace experience
       m_bHollow = true;
       m_bFirstLayoutDone = false;
 
-      m_rectangleCaptionTextPadding.left = 4;
-      m_rectangleCaptionTextPadding.right = 4;
-      m_rectangleCaptionTextPadding.top = 0;
-      m_rectangleCaptionTextPadding.bottom = 0;
+      m_rectangleCaptionTextPadding.left() = 4;
+      m_rectangleCaptionTextPadding.right() = 4;
+      m_rectangleCaptionTextPadding.top() = 0;
+      m_rectangleCaptionTextPadding.bottom() = 0;
 
 
       m_rectangleMarginFullScreen.set(0, 0, 0, 0);
@@ -238,12 +239,12 @@ namespace experience
 
       synchronous_lock synchronouslock(pframewindow->synchronization());
 
-      if (m_pcontrolbox.is_set())
-      {
-
-         m_pcontrolbox->reset_layout(pgraphics);
-
-      }
+//      if (m_pcontrolbox.is_set())
+//      {
+//
+//         m_pcontrolbox->reset_layout(pgraphics);
+//
+//      }
 
       calculate_caption_height(pgraphics);
 
@@ -251,9 +252,7 @@ namespace experience
 
       update_window_client_rect();
 
-      ::rectangle_i32 rectangleClient;
-
-      get_window_client_rectangle(&rectangleClient, ::user::e_layout_lading);
+      auto rectangleClient = m_pframewindow->client_rectangle();
 
       if (pframewindow != nullptr)
       {
@@ -324,18 +323,46 @@ namespace experience
    }
 
 
+   bool frame::on_message_parent_left_button_down(::message::mouse * pmouse)
+   {
+
+      if (!m_pframewindow->layout().is_zoomed() && !m_pframewindow->layout().is_full_screen())
+      {
+
+         if (m_pframewindow->size_manager()->on_message_parent_left_button_down(pmouse))
+         {
+
+            return true;
+
+         }
+
+         //if (m_pframewindow->move_manager()->on_message_left_button_down(pmouse))
+         //{
+
+         //   return true;
+
+         //}
+
+      }
+
+      return false;
+
+   }
+
+
+
    bool frame::on_message_left_button_down(::message::mouse * pmouse)
    {
 
       if (!m_pframewindow->layout().is_zoomed() && !m_pframewindow->layout().is_full_screen())
       {
 
-         if (m_pframewindow->size_manager()->on_message_left_button_down(pmouse))
-         {
+         //if (m_pframewindow->size_manager()->on_message_left_button_down(pmouse))
+         //{
 
-            return true;
+         //   return true;
 
-         }
+         //}
 
          if (m_pframewindow->move_manager()->on_message_left_button_down(pmouse))
          {
@@ -375,9 +402,9 @@ namespace experience
    bool frame::on_message_left_button_double_click(::message::mouse * pmouse)
    {
 
-      auto ehittest = experience_frame_hit_test(pmouse->m_point, ::user::e_zorder_any);
+      auto eframeHittest = experience_frame_hit_test(pmouse->m_pointAbsolute, ::user::e_zorder_any);
 
-      if (ehittest == ::experience::e_frame_client)
+      if (eframeHittest == e_frame_client)
       {
 
          m_pframewindow->dock_manager()->cancel_docking();
@@ -412,12 +439,121 @@ namespace experience
    }
 
 
+   bool frame::on_message_parent_mouse_move(::message::mouse * pmouse)
+   {
+
+      auto psession = get_session();
+
+      psession->m_pointCursor = pmouse->m_pointAbsolute;
+
+      if (!m_pframewindow->layout().is_zoomed() && !m_pframewindow->layout().is_full_screen())
+      {
+
+         if (!m_pframewindow->move_manager()->window_is_moving()
+            && !m_pframewindow->size_manager()->window_is_sizing())
+         {
+
+            if (m_pframewindow->dock_manager()->window_is_docking())
+            {
+
+               ::pointer<::message::mouse>pmouseHold = pmouse;
+
+               //m_pframewindow->prodevian_predicate([this, pmouseHold->()
+               //{
+
+//                  m_pframewindow->dock_manager()->on_message_mouse_move(pmouseHold);
+
+               //});
+
+               return true;
+
+            }
+            else
+            {
+
+               //               if (m_pframewindow->dock_manager()->on_message_mouse_move(pmouse))
+               //               {
+               //
+               //                  return true;
+               //
+               //               }
+
+            }
+
+         }
+
+         if (!m_pframewindow->size_manager()->window_is_sizing())
+         {
+
+            if (m_pframewindow->move_manager()->window_is_moving())
+            {
+
+               ::pointer<::message::mouse>pmouseHold = pmouse;
+
+               //m_pframewindow->prodevian_predicate([this, pmouseHold->()
+               //{
+
+               m_pframewindow->move_manager()->on_message_parent_mouse_move(pmouseHold);
+
+               //});
+
+               return true;
+
+            }
+            else
+            {
+
+               if (m_pframewindow->move_manager()->on_message_parent_mouse_move(pmouse))
+               {
+
+                  return true;
+
+               }
+
+            }
+
+         }
+
+         if (m_pframewindow->size_manager()->window_is_sizing())
+         {
+
+            ::pointer<::message::mouse>pmouseHold = pmouse;
+
+            //m_pframewindow->prodevian_predicate([this, pmouseHold->()
+            //{
+
+            m_pframewindow->size_manager()->on_message_mouse_move(pmouseHold);
+
+            //});
+
+            return true;
+
+         }
+         else
+         {
+
+            if (m_pframewindow->size_manager()->on_message_mouse_move(pmouse))
+            {
+
+               return true;
+
+            }
+
+         }
+
+      }
+
+      return false;
+
+   }
+
+
    bool frame::on_message_mouse_move(::message::mouse * pmouse)
    {
 
       auto psession = get_session();
 
-      psession->m_pointCursor = pmouse->m_point;
+      psession->m_pointCursor = pmouse->m_pointAbsolute;
 
       if (!m_pframewindow->layout().is_zoomed() && !m_pframewindow->layout().is_full_screen())
       {
@@ -639,7 +775,7 @@ namespace experience
          //         if(m_pframewindow->dock_manager()->on_message_left_button_down(pmouse))
          //            return true;
 
-         if (m_pframewindow->size_manager()->on_message_left_button_down(pmouse))
+         if (m_pframewindow->size_manager()->on_message_parent_left_button_down(pmouse))
             return true;
 
          if (m_pframewindow->move_manager()->on_message_left_button_down(pmouse))
@@ -765,11 +901,11 @@ namespace experience
    void frame::calculate_caption_height(::draw2d::graphics_pointer & pgraphics)
    {
 
-      auto rectangle = get_control_box()->get_button_margin(e_button_close);
+      auto rectangleMargin = get_control_box()->get_button_margin(e_button_close);
 
       auto iButtonSize = get_control_box()->calculate_button_size(pgraphics);
 
-      auto iCaptionHeight = rectangle.top + iButtonSize + rectangle.bottom;
+      auto iCaptionHeight = rectangleMargin.top() + iButtonSize + rectangleMargin.bottom();
 
       m_iCaptionHeight = iCaptionHeight;
 
@@ -818,13 +954,13 @@ namespace experience
 
       }
 
-      ::rectangle_i32 rectangleClient;
+      ::rectangle_i32 rectangleRaw;
 
-      rectangleClient = pframewindow->::user::interaction::client_rectangle(::user::e_layout_lading);
+      rectangleRaw = pframewindow->raw_rectangle(::user::e_layout_lading);
 
-      //information() << "experience::frame_window::title_bar_layout " << rectangleClient;
+      //information() << "experience::frame_window::title_bar_layout " << rectangleRaw;
 
-      if (rectangleClient.is_empty())
+      if (rectangleRaw.is_empty())
       {
 
          return;
@@ -841,18 +977,18 @@ namespace experience
 
       //information() << "experience::frame_window::title_bar_layout iControlBoxWidth: " << iControlBoxWidth;
 
-      calculate_caption_height(pgraphics);
+      //calculate_caption_height(pgraphics);
 
       //i32 iCaptionHeight = m_iCap;
 
-      m_rectangleCaption.left = rectangleClient.left + rectangleMargin.left;
-      m_rectangleCaption.top = rectangleClient.top + rectangleMargin.top;
-      m_rectangleCaption.right = rectangleClient.right - rectangleMargin.right;
-      m_rectangleCaption.bottom = m_rectangleCaption.top + m_iCaptionHeight;
+      m_rectangleCaption.left() = rectangleRaw.left() + rectangleMargin.left();
+      m_rectangleCaption.top() = rectangleRaw.top() + rectangleMargin.top();
+      m_rectangleCaption.right() = rectangleRaw.right() - rectangleMargin.right();
+      m_rectangleCaption.bottom() = m_rectangleCaption.top() + m_iCaptionHeight;
 
-      m_iTitleBottom = m_rectangleCaption.bottom;
+      m_iTitleBottom = m_rectangleCaption.bottom();
 
-      rectangleClient.deflate(rectangleMargin);
+      rectangleRaw.deflate(rectangleMargin);
 
       auto eappearance = m_pframewindow->const_layout().design().appearance();
 
@@ -860,24 +996,24 @@ namespace experience
          !(eappearance & ::e_appearance_transparent_frame))
       {
 
-         rectangleClient.top = m_rectangleCaption.bottom - 1;
+         rectangleRaw.top() = m_rectangleCaption.bottom() - 1;
 
       }
 
-      ///m_rectangleClient = rectangleClient;
+      ///m_rectangleX = rectangleX;
 
-      m_iControlBoxPosition = rectangleClient.right;
+      m_iControlBoxPosition = rectangleRaw.right();
 
-      if (m_iControlBoxPosition < rectangleClient.left)
+      if (m_iControlBoxPosition < rectangleRaw.left())
       {
 
-         m_iControlBoxPosition = rectangleClient.left;
+         m_iControlBoxPosition = rectangleRaw.left();
 
       }
-      else if (m_iControlBoxPosition > rectangleClient.right - iControlBoxWidth)
+      else if (m_iControlBoxPosition > rectangleRaw.right() - iControlBoxWidth)
       {
 
-         m_iControlBoxPosition = rectangleClient.right - iControlBoxWidth;
+         m_iControlBoxPosition = rectangleRaw.right() - iControlBoxWidth;
 
       }
 
@@ -885,10 +1021,10 @@ namespace experience
 
       ::rectangle_i32 rectangleControlBox;
 
-      rectangleControlBox.left = m_iControlBoxPosition;
-      rectangleControlBox.right = rectangleControlBox.left + iControlBoxWidth;
-      rectangleControlBox.top = m_rectangleCaption.top;
-      rectangleControlBox.bottom = m_rectangleCaption.bottom;
+      rectangleControlBox.left() = m_iControlBoxPosition;
+      rectangleControlBox.right() = rectangleControlBox.left() + iControlBoxWidth;
+      rectangleControlBox.top() = m_rectangleCaption.top();
+      rectangleControlBox.bottom() = m_rectangleCaption.bottom();
 
       if (m_pframewindow->const_layout().is_this_screen_visible(::user::e_layout_lading) && !is_iconic(m_pframewindow->const_layout().lading().display()))
       {
@@ -899,30 +1035,30 @@ namespace experience
 
       }
 
-      m_rectangleWindow = rectangleClient;
+      m_rectangleWindow = rectangleRaw;
 
       ::rectangle_i32 rectangleIcon;
 
       bool bIcon = get_element_rectangle(rectangleIcon, ::e_element_top_left_icon);
 
-      m_pointWindowIcon.y() = rectangleMargin.top + ((m_iCaptionHeight - rectangleIcon.height()) / 2);
+      m_pointWindowIcon.y() = rectangleMargin.top() + ((m_iCaptionHeight - rectangleIcon.height()) / 2);
 
       if (bIcon)
       {
 
-         m_rectangleWindowText.left = rectangleIcon.right + rectangleCaptionTextPadding.left;
+         m_rectangleWindowText.left() = rectangleIcon.right() + rectangleCaptionTextPadding.left();
 
       }
       else
       {
 
-         m_rectangleWindowText.left = m_rectangleCaption.left + rectangleCaptionTextPadding.left;
+         m_rectangleWindowText.left() = m_rectangleCaption.left() + rectangleCaptionTextPadding.left();
 
       }
 
-      m_rectangleWindowText.top = m_rectangleCaption.top + rectangleCaptionTextPadding.top;
-      m_rectangleWindowText.right = m_rectangleCaption.right - rectangleCaptionTextPadding.right;
-      m_rectangleWindowText.bottom = m_iTitleBottom;
+      m_rectangleWindowText.top() = m_rectangleCaption.top() + rectangleCaptionTextPadding.top();
+      m_rectangleWindowText.right() = m_rectangleCaption.right() - rectangleCaptionTextPadding.right();
+      m_rectangleWindowText.bottom() = m_iTitleBottom;
 
       if (bVisibleControlBox)
       {
@@ -1041,18 +1177,20 @@ namespace experience
    }
 
 
-   bool frame::calculate_window_client_rectangle(::rectangle_i32 * prectangle, ::user::enum_layout elayout)
+   bool frame::calculate_client_rectangle(::rectangle_i32 * prectangle, ::draw2d::graphics_pointer & pgraphics)
    {
 
       ::rectangle_i32 rectangleClient(*prectangle);
 
-      auto eappearance = m_pframewindow->const_layout().state(elayout).appearance();
+      auto eappearance = m_pframewindow->const_layout().state(::user::e_layout_lading).appearance();
+
+      calculate_caption_height(pgraphics);
 
       if (!m_pframewindow->layout().is_full_screen() &&
          !(eappearance & ::e_appearance_transparent_frame))
       {
 
-         rectangleClient.top += m_iCaptionHeight;
+         rectangleClient.top() += m_iCaptionHeight;
 
       }
 
@@ -1074,64 +1212,72 @@ namespace experience
    }
 
 
-   bool frame::get_window_client_rectangle(::rectangle_i32 * prectangle, ::user::enum_layout elayout)
+   ::rectangle_i32 frame::client_rectangle()
    {
 
-      if (__type_name(this).case_insensitive_contains("file"))
-      {
-
-
-         information("frame::get_window_client_rectangle file");
-
-      }
-
-      ::rectangle_i32 rectangleClient;
-
-      rectangleClient = m_pframewindow->::user::interaction::client_rectangle(elayout);
-
-      if (!calculate_window_client_rectangle(&rectangleClient, elayout))
-      {
-
-         return false;
-
-      }
-
-      *prectangle = rectangleClient;
-
-      return true;
+      return m_pframewindow->client_rectangle();
 
    }
 
 
-   bool frame::get_draw_client_rectangle(::rectangle_i32 * prectangle, ::user::enum_layout elayout)
-   {
+   //::rectangle_i32 frame::rectangle(::user::enum_layout elayout)
+   //{
 
-      ::rectangle_i32 rectangle;
+   //   if (::type(this).name().case_insensitive_contains("file"))
+   //   {
 
-      if (!get_window_client_rectangle(&rectangle, elayout))
-      {
 
-         return false;
+   //      information("frame::get_window_client_rectangle file");
 
-      }
+   //   }
 
-      rectangle.offset(-rectangle.top_left());
+   //   ::rectangle_i32 rectangleX;
 
-      *prectangle = rectangle;
+   //   rectangleX = m_pframewindow->::user::interaction::rectangle(elayout);
 
-      return true;
+   //   if (!calculate_client_rectangle(&rectangleX, elayout))
+   //   {
 
-   }
+   //      return {};
+
+   //   }
+
+   //   return rectangleX;
+
+   //}
+
+
+   //bool frame::get_draw_client_rectangle(::rectangle_i32 * prectangle, ::user::enum_layout elayout)
+   //{
+
+   //   ::rectangle_i32 rectangle;
+
+   //   if (!get_client_rectangle(&rectangle, elayout))
+   //   {
+
+   //      return false;
+
+   //   }
+
+   //   rectangle.offset(-rectangle.top_left());
+
+   //   *prectangle = rectangle;
+
+   //   return true;
+
+   //}
 
 
    void frame::set_need_redraw_frame(::user::enum_layout elayout)
    {
 
-      auto rectangle = m_pframewindow->::user::interaction::client_rectangle(elayout);
+      auto rectangle = m_pframewindow->::user::interaction::rectangle(elayout);
 
       ::rectangle_i32 rectangleInner(rectangle);
 
-      calculate_window_client_rectangle(&rectangleInner);
+      ::draw2d::graphics_pointer pgraphics;
+
+      calculate_client_rectangle(&rectangleInner, pgraphics);
 
       auto rectangleaBorders = get_borders(rectangle, rectangleInner);
 
@@ -1154,11 +1300,11 @@ namespace experience
 
       }
 
-      ::rectangle_i32 rectangleClient;
+      ::rectangle_i32 rectangleX;
 
-      rectangleClient = pframewindow->::user::interaction::client_rectangle();
+      rectangleX = pframewindow->::user::interaction::rectangle();
 
-      //calc_window_client_rect(m_rectangleClient, rectangleClient);
+      //calc_window_client_rect(m_rectangleX, rectangleX);
 
    }
 
@@ -1237,23 +1383,27 @@ namespace experience
       if (m_pframewindow->layout().is_this_screen_visible(::user::e_layout_lading))
       {
 
-         if (m_pframewindow->get_parent() == nullptr)
-         {
-
-            if (!(m_pframewindow->m_ewindowflag & e_window_flag_disable_window_placement_snapping)
-               //&& !m_pframewindow->layout().is_moving()
-               //&& !m_pframewindow->layout().is_sizing()
-               && !m_pframewindow->layout().is_docking()
-               //&& !::is_docking_appearance(m_pframewindow->layout().sketch().display())
-               && m_pframewindow->const_layout().sketch().display() != e_display_zoomed
-               && m_pframewindow->const_layout().sketch().display() != e_display_full_screen)
-            {
-
-               defer_frame_placement_snapping();
-
-            }
-
-         }
+//         if (m_pframewindow->get_parent() == nullptr)
+//         {
+//
+//            if (!(m_pframewindow->m_ewindowflag & e_window_flag_disable_window_placement_snapping)
+//               // Move manager may have its own snapping algorithm.
+//               && !m_pframewindow->layout().is_moving()
+//               // Sizing manager may do snapping sensible to what vertice/side is being dragged-resized.
+//               // Here where every layout of the window happens isn't proper place to deal with this particular case.
+//               && !m_pframewindow->layout().is_sizing()
+//               // Docking manager really does its own snapping.
+//               && !m_pframewindow->layout().is_docking()
+//               //&& !::is_docking_appearance(m_pframewindow->layout().sketch().display())
+//               && m_pframewindow->const_layout().sketch().display() != e_display_zoomed
+//               && m_pframewindow->const_layout().sketch().display() != e_display_full_screen)
+//            {
+//
+//               defer_frame_placement_snapping();
+//
+//            }
+//
+//         }
 
          sync_dock_grip_border();
 
@@ -1262,12 +1412,12 @@ namespace experience
    }
 
 
-   void frame::defer_frame_placement_snapping()
+   void frame::__defer_frame_placement_snapping()
    {
 
       string strType;
 
-      strType = __type_name(m_pframewindow);
+      strType = ::type(m_pframewindow).name();
 
       if (strType.contains("playlist"))
       {
@@ -1326,7 +1476,13 @@ namespace experience
 
       auto iWorkspace = m_pframewindow->get_best_zoneing(edisplay, &rectangle, rectangleRequest, bPreserveSize);
 
-      if (edisplay != m_pframewindow->const_layout().sketch().display() ||
+      auto edisplaySketch = m_pframewindow->const_layout().sketch().display();
+
+      information() << "frame::defer_frame_placement_snapping edisplaySketch : " << edisplaySketch;
+
+      information() << "get_best_zoneing returned : " << iWorkspace << ", edisplay : " << edisplay;
+
+      if (edisplay != edisplaySketch ||
          (::is_docking_appearance(edisplay) && iWorkspace != m_pframewindow->m_windowrectangle.m_iWorkspace))
       {
 
@@ -1516,28 +1672,28 @@ namespace experience
          if (edisplay & e_display_top)
          {
 
-            rectangleMargin.top = 0;
+            rectangleMargin.top() = 0;
 
          }
 
          if (edisplay & e_display_bottom)
          {
 
-            rectangleMargin.bottom = 0;
+            rectangleMargin.bottom() = 0;
 
          }
 
          if (edisplay & e_display_right)
          {
 
-            rectangleMargin.right = 0;
+            rectangleMargin.right() = 0;
 
          }
 
          if (edisplay & e_display_left)
          {
 
-            rectangleMargin.left = 0;
+            rectangleMargin.left() = 0;
 
          }
 
@@ -1551,7 +1707,7 @@ namespace experience
 
       }
 
-      string strType = __type_name(m_pframewindow);
+      string strType = ::type(m_pframewindow).name();
 
       if (strType.contains("filemanager"))
       {
@@ -1643,11 +1799,14 @@ namespace experience
 
 
    ::experience::enum_frame frame::experience_frame_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
+   //::item_pointer frame::experience_frame_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
    {
 
       UNREFERENCED_PARAMETER(point);
 
       return e_frame_client;
+
+      //return m_pframewindow->m_pitemClient;
 
    }
 
@@ -1655,7 +1814,7 @@ namespace experience
    void frame::GetFrameRect(rectangle_i32 & rectangle)
    {
 
-      rectangle = m_pframewindow->::user::interaction::client_rectangle();
+      rectangle = m_pframewindow->::user::interaction::rectangle();
 
    }
 
@@ -1666,6 +1825,22 @@ namespace experience
    //   m_pframewindow->nextstyle(pcontext);
 
    //}
+
+
+   void frame::place_set_need_redraw(const ::rectangle_i32 & rectangleAfter, const ::rectangle_i32 & rectangleBefore, ::draw2d::graphics * pgraphics)
+   {
+
+      m_pframewindow->::user::frame_window::place_set_need_redraw(rectangleAfter, rectangleBefore, pgraphics);
+
+   }
+
+
+   ::rectangle_i32 frame::outer_frame()
+   {
+
+      return m_pframewindow->raw_rectangle();
+
+   }
 
 
 } // namespace experience

@@ -316,6 +316,8 @@ enum enum_id : ::uptr
 
 
    id_item_update,
+   id_tool,
+   id_content,
 
 };
 

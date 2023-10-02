@@ -4,9 +4,6 @@
     <Filter Include="Source Files">
       <UniqueIdentifier>{fb7c4136-1a41-46ca-bd11-725fd9815b5e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{972c284f-e77e-4100-9190-eb6f911ab071}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\windowing">
       <UniqueIdentifier>{98e90c53-09ec-4933-92cb-7b844fb07fb9}</UniqueIdentifier>
     </Filter>
@@ -61,6 +58,18 @@
     <Filter Include="Source Files\constant">
       <UniqueIdentifier>{b38620b8-502f-46e1-9f2b-2668cff52b8d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{c2e2ae15-73aa-43b0-9177-a905ac83bc1f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\user">
+      <UniqueIdentifier>{1e44594e-ac79-44a4-9087-4027ae2bdf3a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics\gpu">
+      <UniqueIdentifier>{87c64e4a-c20f-4179-aabc-8516f8d3a9b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{972c284f-e77e-4100-9190-eb6f911ab071}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Header Files\windowing">
       <UniqueIdentifier>{2f4dce99-369d-460a-8936-030140b770ff}</UniqueIdentifier>
     </Filter>
@@ -72,6 +81,9 @@
     </Filter>
     <Filter Include="Header Files\user\menu">
       <UniqueIdentifier>{1ba90460-664d-434e-a59e-82b8cdac368c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\user\appearance">
+      <UniqueIdentifier>{0b9fe4af-27ed-42d2-8b1b-ed9a30c6735c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\platform">
       <UniqueIdentifier>{1b2f8666-de36-4ad3-bab1-45e5d58dd71e}</UniqueIdentifier>
@@ -112,6 +124,12 @@
     <Filter Include="Header Files\graphics\user">
       <UniqueIdentifier>{b722db8c-b31f-4647-bcc4-251e9ec5b0e9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\graphics\draw3d">
+      <UniqueIdentifier>{fffaf690-e781-4fae-8d14-3c0634791ce7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\graphics\gpu">
+      <UniqueIdentifier>{103fd0f3-c2b7-41c1-be80-b0baed061c93}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Header Files\include">
       <UniqueIdentifier>{ca549c1f-d025-43e9-9481-fcacd88b1343}</UniqueIdentifier>
     </Filter>
@@ -120,24 +138,6 @@
     </Filter>
     <Filter Include="Header Files\message">
       <UniqueIdentifier>{d91dfb11-60f9-44b0-bd0a-1d2c446ec320}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\user\appearance">
-      <UniqueIdentifier>{0b9fe4af-27ed-42d2-8b1b-ed9a30c6735c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{c2e2ae15-73aa-43b0-9177-a905ac83bc1f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\user\user">
-      <UniqueIdentifier>{1e44594e-ac79-44a4-9087-4027ae2bdf3a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\graphics\draw3d">
-      <UniqueIdentifier>{fffaf690-e781-4fae-8d14-3c0634791ce7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\graphics\gpu">
-      <UniqueIdentifier>{87c64e4a-c20f-4179-aabc-8516f8d3a9b7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\graphics\gpu">
-      <UniqueIdentifier>{103fd0f3-c2b7-41c1-be80-b0baed061c93}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -222,7 +222,7 @@
     <ClCompile Include="user\user\interaction_layout.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\interaction_prodevian.cpp">
+    <ClCompile Include="user\user\interaction_graphics_thread.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\interaction_scaler.cpp">
@@ -391,9 +391,6 @@
       <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
     <ClCompile Include="graphics\draw2d\lock.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\draw2d\matrix.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
     <ClCompile Include="graphics\draw2d\nano_svg.cpp">
@@ -606,7 +603,7 @@
     <ClCompile Include="user\user\vertical_scroll_base.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\prodevian.cpp">
+    <ClCompile Include="user\user\auto_refresh.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\drawable.cpp">
@@ -688,6 +685,9 @@
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\interaction_array.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\_string.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
   </ItemGroup>
@@ -836,7 +836,7 @@
     <ClInclude Include="user\user\interaction_layout.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\interaction_prodevian.h">
+    <ClInclude Include="user\user\interaction_graphics_thread.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\interaction_scaler.h">
@@ -878,7 +878,7 @@
     <ClInclude Include="user\user\primitive_impl.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\prodevian.h">
+    <ClInclude Include="user\user\auto_refresh.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\progress.h">
@@ -1227,9 +1227,6 @@
       <Filter>Header Files\graphics\draw2d</Filter>
     </ClInclude>
     <ClInclude Include="graphics\draw2d\lock.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\matrix.h">
       <Filter>Header Files\graphics\draw2d</Filter>
     </ClInclude>
     <ClInclude Include="graphics\draw2d\object.h">

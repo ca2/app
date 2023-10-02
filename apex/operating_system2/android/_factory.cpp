@@ -16,12 +16,12 @@
 //
 //         add_factory_item < ::android::file_system      , ::file_system              >(),1);
 //         add_factory_item < ::android::dir_system       , ::dir_system         >(),1);
-//         add_factory_item < stdio_file            >(__type(::file::text_file);
-//         add_factory_item < file                  >(__type(::file::binary_file);
+//         add_factory_item < stdio_file            >(::type < ::file::text_file >();
+//         add_factory_item < file                  >(::type < ::file::binary_file >();
 //         add_factory_item < file, ::file::file >();
-//         add_factory_item < os                          >(__type(::apex::os),1);
-//         add_factory_item < ::ansios::process           >(__type(::operating_system::process), 10);
-//         add_factory_item < ::ansios::pipe              >(__type(::operating_system::pipe), 10);
+//         add_factory_item < os                          >(::type < ::apex::os >(),1);
+//         add_factory_item < ::ansios::process           >(::type < ::operating_system::process >(), 10);
+//         add_factory_item < ::ansios::pipe              >(::type < ::operating_system::pipe >(), 10);
 //
 //      }
 //

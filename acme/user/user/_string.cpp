@@ -135,12 +135,52 @@ CLASS_DECL_ACME ::string as_string(::enum_activation eactivation)
 
 }
 
+
+
+#undef DO
+#define DO(e) STRINGFY(e)
+
+const char * g_pszaEnumCursor[]= {
+   DO(e_cursor_unmodified),
+   DO(e_cursor_draw2d),
+   DO(e_cursor_default),
+   DO(e_cursor_none),
+   DO(e_cursor_system),
+   DO(e_cursor_arrow),
+   DO(e_cursor_hand),
+   DO(e_cursor_text_select),
+   DO(e_cursor_size_top_left),
+   DO(e_cursor_size_top),
+   DO(e_cursor_size_top_right),
+   DO(e_cursor_size_right),
+   DO(e_cursor_size_bottom_right),
+   DO(e_cursor_size_bottom),
+   DO(e_cursor_size_bottom_left),
+   DO(e_cursor_size_left),
+   DO(e_cursor_size_vertical),
+   DO(e_cursor_size_horizontal),
+   DO(e_cursor_move),
+   DO(e_cursor_wait),
+   DO(e_cursor_wait_arrow)
+};
+
+
+CLASS_DECL_ACME ::string as_string(enum_cursor ecursor)
+{
+   if(ecursor <e_cursor_unmodified || ecursor > e_cursor_wait_arrow)
+      return {};
+   return g_pszaEnumCursor[ecursor];
+
+}
+
+
+#undef DO
 ////
 ////
 ////template < typename FILE, primitive_rectangle RECTANGLE >
 ////inline ::write_text_stream < FILE > & operator <<(::write_text_stream < FILE > & textstream, const RECTANGLE & rectangle)
 ////{
 ////
-////   return textstream << "xy(" << rectangle.left  << ", " << rectangle.top << ")-wh(" << rectangle.width() << ", " << rectangle.height() << ")";
+////   return textstream << "xy(" << rectangle.left()  << ", " << rectangle.top() << ")-wh(" << rectangle.width() << ", " << rectangle.height() << ")";
 ////
 ////}

@@ -50,7 +50,7 @@ namespace opengl
    void context::draw()
    {
 
-      ASSERT(m_itaskGpu == ::get_current_itask());
+      ASSERT(m_itaskGpu == ::current_itask());
 
       if (m_VAO != 0)
       {
@@ -131,7 +131,7 @@ namespace opengl
 
 
 
-      ASSERT(m_itaskGpu == ::get_current_itask());
+      ASSERT(m_itaskGpu == ::current_itask());
 
       //      glClearColor(0.0f, 0.0f, 0.4f, 0.0f);
 
@@ -215,7 +215,7 @@ namespace opengl
    void context::render()
    {
 
-      ASSERT(m_itaskGpu == ::get_current_itask());
+      ASSERT(m_itaskGpu == ::current_itask());
 
       //#ifdef __APPLE__
 
@@ -276,7 +276,7 @@ namespace opengl
    void context::set_bitmap_1(::image * pimage)
    {
 
-      ASSERT(m_itaskGpu == ::get_current_itask());
+      ASSERT(m_itaskGpu == ::current_itask());
 
       if (!m_gluTextureBitmap1)
       {

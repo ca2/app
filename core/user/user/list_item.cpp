@@ -342,7 +342,7 @@ namespace user
          //{
 
          //   m_pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
-         //   return m_pgraphics->BitBlt(m_rectangleImage.left, m_rectangleImage.top, m_rectangleImage.width(), m_rectangleImage.height(),get_image_list()->m_pimage->g(), m_iImage * m_rectangleImage->width());
+         //   return m_pgraphics->BitBlt(m_rectangleImage.left(), m_rectangleImage.top(), m_rectangleImage.width(), m_rectangleImage.height(),get_image_list()->m_pimage->g(), m_iImage * m_rectangleImage->width());
 
          //}
          else
@@ -575,7 +575,7 @@ namespace user
 
             m_pitem->m_pdrawlistitem->m_pgraphics->draw_text(m_strText, m_rectangleText, ealign, edrawtext);
 
-            //m_pgraphics->fill_rectangle(m_rectangleText.left, m_rectangleText.top, 100, 100, argb(128, 100, 125, 255));
+            //m_pgraphics->fill_rectangle(m_rectangleText.left(), m_rectangleText.top(), 100, 100, argb(128, 100, 125, 255));
 
             if (m_strText == "LOVE OR NOTHING")
             {

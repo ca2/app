@@ -215,9 +215,6 @@
     <Filter Include="Header Files\primitive\media_library">
       <UniqueIdentifier>{82ba40bf-dcc9-432b-82fb-311781d2fc74}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\asset">
-      <UniqueIdentifier>{be37a1f7-c5ed-4c87-a67b-a41f81a30bbb}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\memory">
       <UniqueIdentifier>{a60ae170-0db0-4bb0-854d-de36583c6607}</UniqueIdentifier>
     </Filter>
@@ -229,9 +226,6 @@
     </Filter>
     <Filter Include="Source Files\primitive\time">
       <UniqueIdentifier>{881c9292-2e02-419b-9b57-fdafb10e5b91}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\primitive\NewFilter1">
-      <UniqueIdentifier>{41eeca4c-8261-4db0-8fa0-7dbc5b85ff5e}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\memory\os_impl">
       <UniqueIdentifier>{d13e4c7a-f361-472d-9567-a5f1b50293ab}</UniqueIdentifier>
@@ -265,6 +259,12 @@
     </Filter>
     <Filter Include="Header Files\operating_system\universal_windows\nano_http">
       <UniqueIdentifier>{819a17e3-a5ba-494f-b62f-b01e31589f52}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\crypto">
+      <UniqueIdentifier>{2d533553-725f-4935-a586-02700caa8d9c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\filesystem\watcher">
+      <UniqueIdentifier>{d83f812b-8cd7-4eed-9888-c46d78df0938}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1512,6 +1512,54 @@
     </ClCompile>
     <ClCompile Include="filesystem\filesystem\link.cpp">
       <Filter>Source Files\filesystem\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\container.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="handler\item_container.cpp">
+      <Filter>Source Files\handler</Filter>
+    </ClCompile>
+    <ClCompile Include="handler\item_container_map.cpp">
+      <Filter>Source Files\handler</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\crypto.cpp">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\initializer.cpp">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\rsa.cpp">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\is_dir.cpp">
+      <Filter>Source Files\compress</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\not_dir.cpp">
+      <Filter>Source Files\compress</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filesystem\dir_context.cpp">
+      <Filter>Source Files\filesystem\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filesystem\dir_system.cpp">
+      <Filter>Source Files\filesystem\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filesystem\file_context.cpp">
+      <Filter>Source Files\filesystem\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filesystem\file_system.cpp">
+      <Filter>Source Files\filesystem\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\watcher\action.cpp">
+      <Filter>Source Files\filesystem\watcher</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\watcher\watch.cpp">
+      <Filter>Source Files\filesystem\watcher</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\watcher\watcher.cpp">
+      <Filter>Source Files\filesystem\watcher</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\geometry2d\matrix.cpp">
+      <Filter>Source Files\primitive\geometry2d</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -3830,6 +3878,9 @@
     </ClInclude>
     <ClInclude Include="user\_.h">
       <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\container.h">
+      <Filter>Header Files\user\user</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

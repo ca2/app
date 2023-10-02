@@ -175,10 +175,9 @@ constexpr  ENUM operator & (INTEGRAL i, ENUM e) { return (ENUM) ((::u64)i & (::u
 using ENUMERATION = ::enumeration < ENUM >
 
 
-template < typename ENUM > struct raw_enum_of_struct { using type = ENUM; };
 template < typename ENUM > struct raw_enum_of_struct<::enumeration <ENUM>> { using type = ENUM; };
 template < typename ENUM >
-using raw_enum_of = typename raw_enum_of_struct<ENUM>::type;
+using raw_enum_of = typename raw_enum_of_struct<erase_const_effemeral<ENUM>>::type;
 
 
 template < primitive_enum ENUM >

@@ -51,7 +51,7 @@ namespace turboc
 
       pframe->set_style("LightBlue");
 
-      pschema->m_typeControlBoxButton = __type(MetaButton);
+      pschema->m_typeatomControlBoxButton = ::type < MetaButton >();
 
       return pframe;
 

@@ -332,7 +332,7 @@ namespace user
 
       
       ::item_pointer                m_pitem;
-      ::point_i32                   m_pointScreen;
+      //::point_i32                   m_pointScreen;
       ::point_i32                   m_pointHost;
       ::point_i32                   m_pointClient;
       ::point_i32                   m_pointHitTest;
@@ -362,7 +362,7 @@ namespace user
       item & operator = (const item & item)
       {
 
-         m_pointScreen = item.m_pointScreen;
+         //m_pointScreen = item.m_pointScreen;
          m_pointHost = item.m_pointHost;
          m_pointClient = item.m_pointClient;
          m_pointHitTest = item.m_pointHitTest;

@@ -83,10 +83,10 @@ namespace nano2d
    }
 
 
-   ::pointer < draw2d_context::state > draw2d_context::create_new_state()
+   ::pointer < ::nano2d::state > draw2d_context::create_new_state()
    {
 
-      auto pstate = __new(state(m_pgraphics));
+      auto pstate = __new(draw2d_state(m_pgraphics));
 
       pstate->initialize(m_pgraphics);
 
@@ -122,13 +122,13 @@ namespace nano2d
    void draw2d_context::save1()
    {
 
-      auto pstateOld = m_pstate;
+      ::pointer < draw2d_state > pstateOld = m_pstate;
 
       pstateOld->m_matrix = m_pgraphics->m_matrix;
 
       m_statea.add(pstateOld);
 
-      auto pstateNew = create_new_state();
+      ::pointer < draw2d_state > pstateNew = create_new_state();
 
       *pstateNew->m_ppen            = *pstateOld->m_ppen;
       *pstateNew->m_pbrush          = *pstateOld->m_pbrush;
@@ -169,21 +169,25 @@ namespace nano2d
 
    void draw2d_context::begin_path()
    {
+      
+      ::pointer < draw2d_state > pstate = m_pstate;
 
-      m_pgraphics->__construct(m_pstate->m_ppath);
-
-      m_pstate->m_ppath->begin_figure();
+      m_pgraphics->__construct(pstate->m_ppath);
+      
+      pstate->m_ppath->begin_figure();
    
    }
 
 
    void draw2d_context::path_winding(int dir)
    {
+      
+      ::pointer < draw2d_state > pstate = m_pstate;
 
-      if (m_pstate->m_ppath)
+      if (pstate->m_ppath)
       {
 
-         m_pstate->m_ppath->set_fill_mode(
+         pstate->m_ppath->set_fill_mode(
             dir == ::nano2d::e_solidity_solid ?
             ::draw2d::e_fill_mode_winding
             : ::draw2d::e_fill_mode_alternate);
@@ -202,12 +206,15 @@ namespace nano2d
 
 
    void draw2d_context::close_path()
-   {
 
-      if (m_pstate->m_ppath)
+{
+
+      ::pointer < draw2d_state > pstate = m_pstate;
+
+      if (pstate->m_ppath)
       {
 
-         m_pstate->m_ppath->close_figure();
+         pstate->m_ppath->close_figure();
 
       }
       else
@@ -223,7 +230,7 @@ namespace nano2d
    void draw2d_context::translate(float x, float y)
    {
 
-      ::draw2d::matrix matrix;
+      ::geometry2d::matrix matrix;
 
       matrix.translate(x, y);
 
@@ -235,7 +242,7 @@ namespace nano2d
    void draw2d_context::rotate(float angle)
    {
 
-      ::draw2d::matrix matrix;
+      ::geometry2d::matrix matrix;
 
       matrix.rotate(angle);
 
@@ -262,7 +269,10 @@ namespace nano2d
 
       }
 
-      m_pstate->m_ppath->add_round_rectangle({ x, y, x + w, y + h }, r);
+      ::pointer < draw2d_state > pstate = m_pstate;
+
+      
+      pstate->m_ppath->add_round_rectangle({ x, y, x + w, y + h }, r);
 
    }
 
@@ -279,8 +289,11 @@ namespace nano2d
          {
 
             m_pgraphics->set(paintimage.m_pbrush);
+            
+            ::pointer < draw2d_state > pstate = m_pstate;
 
-            m_pgraphics->fill(m_pstate->m_ppath);
+
+            m_pgraphics->fill(pstate->m_ppath);
 
 
          }
@@ -288,8 +301,11 @@ namespace nano2d
          {
 
             ::draw2d::save_context savecontext(m_pgraphics);
+            
+            ::pointer < draw2d_state > pstate = m_pstate;
 
-            m_pgraphics->intersect_clip(m_pstate->m_ppath);
+
+            m_pgraphics->intersect_clip(pstate->m_ppath);
 
             image_source imagesource(paintimage.m_pimage);
 
@@ -309,9 +325,11 @@ namespace nano2d
       else
       {
 
-         m_pgraphics->set(m_pstate->m_pbrush);
+         ::pointer < draw2d_state > pstate = m_pstate;
 
-         m_pgraphics->fill(m_pstate->m_ppath);
+         m_pgraphics->set(pstate->m_pbrush);
+         
+         m_pgraphics->fill(pstate->m_ppath);
 
       }
 
@@ -320,10 +338,12 @@ namespace nano2d
 
    void draw2d_context::stroke()
    {
+      
+      ::pointer < draw2d_state > pstate = m_pstate;
 
-      m_pgraphics->set(m_pstate->m_ppen);
+      m_pgraphics->set(pstate->m_ppen);
 
-      m_pgraphics->draw(m_pstate->m_ppath);
+      m_pgraphics->draw(pstate->m_ppath);
 
    }
 
@@ -529,11 +549,14 @@ namespace nano2d
    void draw2d_context::fill_color(::color::color color)
    {
 
-      m_pstate->m_pbrush->m_ebrush = ::draw2d::e_brush_solid;
+      
+      ::pointer < draw2d_state > pstate = m_pstate;
 
-      m_pstate->m_pbrush->m_color = color;
+pstate->m_pbrush->m_ebrush = ::draw2d::e_brush_solid;
 
-      m_pstate->m_pbrush->set_modified();
+      pstate->m_pbrush->m_color = color;
+
+      pstate->m_pbrush->set_modified();
       
       m_iPaint = -1;
 
@@ -568,11 +591,13 @@ namespace nano2d
       if (paintimage.m_pbrush)
       {
 
-         m_pstate->m_ppen->m_pbrush = paintimage.m_pbrush;
+         ::pointer < draw2d_state > pstate = m_pstate;
 
-         m_pstate->m_ppen->set_modified();
+         pstate->m_ppen->m_pbrush = paintimage.m_pbrush;
 
-         m_pgraphics->draw(m_pstate->m_ppath, m_pstate->m_ppen);
+         pstate->m_ppen->set_modified();
+
+         m_pgraphics->draw(pstate->m_ppath, pstate->m_ppen);
 
 
       }
@@ -626,20 +651,24 @@ namespace nano2d
    void draw2d_context::stroke_color(::color::color color)
    {
 
-      m_pstate->m_ppen->m_color = color;
+      
+      ::pointer < draw2d_state > pstate = m_pstate;
 
-      m_pstate->m_ppen->set_modified();
+pstate->m_ppen->m_color = color;
+
+      pstate->m_ppen->set_modified();
 
    }
 
 
    void draw2d_context::stroke_width(float width)
    {
-  
+      ::pointer < draw2d_state > pstate = m_pstate;
 
-      m_pstate->m_ppen->m_dWidth = width;
 
-      m_pstate->m_ppen->set_modified();
+      pstate->m_ppen->m_dWidth = width;
+
+      pstate->m_ppen->set_modified();
 
 
    }
@@ -698,9 +727,12 @@ namespace nano2d
       
       //::string strText(string, end ? end - string : string_safe_length(string));
 
-      m_pgraphics->set(_get_current_font());
+      __set_current_font();
+      
+      ::pointer < draw2d_state > pstate = m_pstate;
 
-      m_pgraphics->set(m_pstate->m_pbrush);
+
+      m_pgraphics->set(pstate->m_pbrush);
 
       double offsetx = 0.0;
 
@@ -747,7 +779,7 @@ namespace nano2d
       f64_array daLeft;
       f64_array daRight;
 
-      m_pgraphics->set(_get_current_font());
+      __set_current_font();
 
       auto size = m_pgraphics->get_text_extent(scopedstr);
 
@@ -782,7 +814,7 @@ namespace nano2d
       }
 
 
-      m_pgraphics->get_character_extent(daLeft, daRight, scopedstr);
+      character_metric(daLeft, daRight, scopedstr);
 
       auto pszStart = scopedstr.begin();
 
@@ -814,15 +846,12 @@ namespace nano2d
    }
 
 
-
    float draw2d_context::text_bounds(float x, float y, const ::scoped_string & scopedstr, float * bounds)
    {
 
       //::string strText(string, end ? end - string : string_safe_length(scopedstr));
       
-      auto pfont = _get_current_font();
-
-      m_pgraphics->set(pfont);
+      __set_current_font();
 
       auto size = m_pgraphics->get_text_extent(scopedstr);
 
@@ -871,13 +900,47 @@ namespace nano2d
    }
 
 
+void draw2d_context::text_metrics(float * pfAscender, float * pfDescender, float * pfLineHeight)
+{
+   
+   __set_current_font();
+   
+   auto textmetrics = m_pgraphics->get_text_metrics();
+   
+   if(pfAscender)
+   {
+      
+      *pfAscender = (float) textmetrics.m_dAscent;
+      
+   }
+   
+   if(pfDescender)
+   {
+    
+      *pfDescender = (float) textmetrics.m_dAscent;
+      
+   }
+   
+   if(pfLineHeight)
+   {
+   
+      *pfLineHeight = (float) textmetrics.get_line_height();
+      
+   }
+
+}
+
+
    void draw2d_context::move_to(float x, float y)
    {
+      
+      ::pointer < draw2d_state > pstate = m_pstate;
 
-      if (m_pstate->m_ppath)
+
+      if (pstate->m_ppath)
       {
 
-         m_pstate->m_ppath->set_current_point(::point_f64(x, y));
+         pstate->m_ppath->set_current_point(::point_f64(x, y));
 
       }
       else
@@ -893,10 +956,13 @@ namespace nano2d
    void draw2d_context::line_to(float x, float y)
    {
       
-      if (m_pstate->m_ppath)
+      ::pointer < draw2d_state > pstate = m_pstate;
+
+      
+      if (pstate->m_ppath)
       {
 
-         m_pstate->m_ppath->add_line(::point_f64(x, y));
+         pstate->m_ppath->add_line(::point_f64(x, y));
 
       }
       else
@@ -911,11 +977,14 @@ namespace nano2d
 
    void draw2d_context::rectangle(float x, float y, float w, float h)
    {
+      
+      ::pointer < draw2d_state > pstate = m_pstate;
 
-      if (m_pstate->m_ppath)
+
+      if (pstate->m_ppath)
       {
 
-         m_pstate->m_ppath->add_rectangle(rectangle_f64_dimension(x, y, w, h));
+         pstate->m_ppath->add_rectangle(rectangle_f64_dimension(x, y, w, h));
 
       }
       else
@@ -933,15 +1002,19 @@ namespace nano2d
       
       ::ellipse_f64 ellipse;
       
-      ellipse.left = cx - rx;
-      ellipse.top = cy - ry;
-      ellipse.right = cx + rx;
-      ellipse.bottom = cy + ry;
+      ellipse.left() = cx - rx;
+      ellipse.top() = cy - ry;
+      ellipse.right() = cx + rx;
+      ellipse.bottom() = cy + ry;
+      
+      
+      ::pointer < draw2d_state > pstate = m_pstate;
 
-      if (m_pstate->m_ppath)
+
+      if (pstate->m_ppath)
       {
 
-         m_pstate->m_ppath->add_ellipse(ellipse);
+         pstate->m_ppath->add_ellipse(ellipse);
 
       }
       else
@@ -959,10 +1032,13 @@ namespace nano2d
       
       ::rectangle_f64 rectangle(cx - r, cy - r, cx + r, cy + r);
 
-      if (m_pstate->m_ppath)
+      ::pointer < draw2d_state > pstate = m_pstate;
+
+      
+      if (pstate->m_ppath)
       {
 
-         m_pstate->m_ppath->add_arc(rectangle, a0, dir ? a1 - a0 : a0 - a1);
+         pstate->m_ppath->add_arc(rectangle, a0, dir ? a1 - a0 : a0 - a1);
 
       }
       else
@@ -1072,6 +1148,30 @@ namespace nano2d
 
       m_pgraphics->draw(imagedrawing);
 
+
+   }
+
+
+   ::count draw2d_context::character_metric(::f64_array& daLeft, ::f64_array& daRight, const ::string& scopedstr, strsize iStart, strsize iEnd)
+   {
+
+      __set_current_font();
+
+      auto c = m_pgraphics->get_character_extent(daLeft, daRight, scopedstr, iStart, iEnd);
+
+      return c;
+
+   }
+
+
+   void draw2d_context::__set_current_font()
+   {
+
+      m_pgraphics->set(_get_current_font());
+
+      //auto textmetric = m_pgraphics->get_text_metrics();
+
+      m_pstate->lineHeight = 1.0f;
 
    }
 

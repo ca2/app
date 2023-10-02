@@ -1,4 +1,6 @@
 #include "framework.h"
+#include "acme/platform/node.h"
+#include "acme/platform/system.h"
 #include "acme/_operating_system.h"
 
 
@@ -209,6 +211,20 @@ bool __os_term_thread()
 
 }
 
+
+namespace acme
+{
+
+
+   void node::user_post(const ::procedure & procedure)
+   {
+
+      acmesystem()->post_procedure(procedure);
+
+   }
+
+
+}  // namespace acme
 
 
 

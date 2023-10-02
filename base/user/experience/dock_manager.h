@@ -20,7 +20,7 @@ namespace experience
 
       ::experience::frame_window *        m_pframewindow;
       e_border                            m_eborder;
-      e_dock                              m_edock;
+      e_dock                              m_edockMask;
       point_i32                           m_pointCursorDockOrigin;
       size_i32                            m_sizeDockRightOrigin;
       point_i32                           m_pointWindowOrigin;
@@ -32,6 +32,9 @@ namespace experience
       bool                                m_bPendingCursorPos;
       int                                 m_iDockMove;
       int                                 m_iConsiderDockMove;
+      ::rectangle_i32                     m_rectangleOnDockStart;
+      ::point_i32                         m_pointLastRepositionCursorOrigin;
+      ::point_i32                         m_pointLastRepositionWindowOrigin;
 
 
       dock_manager();
@@ -53,7 +56,7 @@ namespace experience
       void set_border_mask(const ::e_border & eborder);
       e_border get_border_mask();
 
-      void set_dock_mask(e_dock edock);
+      void set_dock_mask(e_dock edockMask);
       e_dock get_dock_mask();
       
       bool window_is_docking();

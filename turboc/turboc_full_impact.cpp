@@ -97,17 +97,17 @@ namespace turboc
       if(m_pimageWork->area() <= 0)
          return;
 
-      ::rectangle_i32 rectangleClient;
+      ::rectangle_i32 rectangleX;
 
-      rectangleClient.left = 0;
+      rectangleX.left() = 0;
 
-      rectangleClient.top = 0;
+      rectangleX.top() = 0;
 
-      rectangleClient.right = m_cx;
+      rectangleX.right() = m_cx;
 
-      rectangleClient.bottom = m_cy;
+      rectangleX.bottom() = m_cy;
 
-      if(rectangleClient.area() <= 0)
+      if(rectangleX.area() <= 0)
          return;
 
 //      i32 iCount = 30;
@@ -239,7 +239,7 @@ namespace turboc
 
          pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-/*         pgraphics->BitBlt(rectangleClient,m_pimage->g());
+/*         pgraphics->BitBlt(rectangleX,m_pimage->g());
 
       }
 
@@ -405,9 +405,9 @@ namespace turboc
 
 #endif
 
-      GetClientRect(rectangleClient);
+      GetClientRect(rectangleX);
 
-      if(strHelloMultiverse == get_processed_turboc() && m_cx == rectangleClient.width() && m_cy == rectangleClient.height())
+      if(strHelloMultiverse == get_processed_turboc() && m_cx == rectangleX.width() && m_cy == rectangleX.height())
       {
 
          m_bFirstDone = true;

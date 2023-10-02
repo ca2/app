@@ -273,7 +273,16 @@ namespace imaging_freeimage
 
       ::file::path pathProcess = m_pcontext->m_papexcontext->defer_process_path(path);
 
-      file()->as_memory(payloadFile, memory);
+      try
+      {
+
+         file()->as_memory(payloadFile, memory);
+
+      }
+      catch(...)
+      {
+
+      }
 
       auto p1 = memory.data();
 

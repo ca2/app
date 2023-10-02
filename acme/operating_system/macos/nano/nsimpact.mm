@@ -106,6 +106,28 @@
 }
 
 
+- (NSPoint) flippedLocationInWindow: (NSEvent *) event
+{
+   
+   NSPoint point = [event locationInWindow];
+   
+   if([event window] != nil)
+   {
+      
+      CGRect rectWindow = [[event window] frame];
+      
+      point.y = rectWindow.size.height - point.y - 1;
+      
+   }
+   
+   //point.y = (int) [[NSScreen mainScreen] frame].size.height - point.y;
+
+   return point;
+   
+}
+
+
+
 - (void) mouseUp: (NSEvent *) event
 {
 
@@ -117,14 +139,20 @@
       return;
       
    }
-    
-   NSPoint point = [self screenLocationEx: event];
+
+   NSPoint pointHost = [self flippedLocationInWindow: event];
    
-   int x = point.x;
+   int xHost = pointHost.x;
    
-   int y = point.y;
+   int yHost = pointHost.y;
+
+   NSPoint pointAbsolute = [self screenLocationEx: event];
+   
+   int xAbsolute = pointAbsolute.x;
+   
+   int yAbsolute = pointAbsolute.y;
  
-   p->on_left_button_up(x, y);
+   p->on_left_button_up(xHost, yHost, xAbsolute, yAbsolute);
    
 }
 
@@ -141,13 +169,19 @@
       
    }
    
-   NSPoint point = [ self screenLocationEx: event ];
+   NSPoint pointHost = [self flippedLocationInWindow: event];
    
-   int x = point.x;
+   int xHost = pointHost.x;
    
-   int y = point.y;
+   int yHost = pointHost.y;
+
+   NSPoint pointAbsolute = [self screenLocationEx: event];
    
-   p->on_mouse_move(x, y);
+   int xAbsolute = pointAbsolute.x;
+   
+   int yAbsolute = pointAbsolute.y;
+
+   p->on_mouse_move(xHost, yHost, xAbsolute, yAbsolute);
    
    return;
    
@@ -166,13 +200,19 @@
       
    }
    
-   NSPoint point = [self screenLocationEx: event];
+   NSPoint pointHost = [self flippedLocationInWindow: event];
    
-   int x = point.x;
+   int xHost = pointHost.x;
    
-   int y = point.y;
+   int yHost = pointHost.y;
 
-   p->on_mouse_move(x, y);
+   NSPoint pointAbsolute = [self screenLocationEx: event];
+   
+   int xAbsolute = pointAbsolute.x;
+   
+   int yAbsolute = pointAbsolute.y;
+
+   p->on_mouse_move(xHost, yHost, xAbsolute, yAbsolute);
    
 }
 
@@ -189,13 +229,19 @@
       
    }
    
-   NSPoint point = [self screenLocationEx: event];
+   NSPoint pointHost = [self flippedLocationInWindow: event];
    
-   int x = point.x;
+   int xHost = pointHost.x;
    
-   int y = point.y;
+   int yHost = pointHost.y;
 
-   p->on_left_button_down(x, y);
+   NSPoint pointAbsolute = [self screenLocationEx: event];
+   
+   int xAbsolute = pointAbsolute.x;
+   
+   int yAbsolute = pointAbsolute.y;
+
+   p->on_left_button_down(xHost, yHost, xAbsolute, yAbsolute);
    
 }
 
@@ -212,13 +258,19 @@
       
    }
     
-   NSPoint point = [self screenLocationEx: event];
+   NSPoint pointHost = [self flippedLocationInWindow: event];
    
-   int x = point.x;
+   int xHost = pointHost.x;
    
-   int y = point.y;
- 
-   p->on_right_button_up(x, y);
+   int yHost = pointHost.y;
+
+   NSPoint pointAbsolute = [self screenLocationEx: event];
+   
+   int xAbsolute = pointAbsolute.x;
+   
+   int yAbsolute = pointAbsolute.y;
+
+   p->on_right_button_up(xHost, yHost, xAbsolute, yAbsolute);
    
 }
 
@@ -235,17 +287,21 @@
       
    }
    
-   NSPoint point = [self screenLocationEx: event];
+   NSPoint pointHost = [self flippedLocationInWindow: event];
    
-   int x = point.x;
+   int xHost = pointHost.x;
    
-   int y = point.y;
+   int yHost = pointHost.y;
 
-   p->on_right_button_down(x, y);
+   NSPoint pointAbsolute = [self screenLocationEx: event];
+   
+   int xAbsolute = pointAbsolute.x;
+   
+   int yAbsolute = pointAbsolute.y;
+
+   p->on_right_button_down(xHost, yHost, xAbsolute, yAbsolute);
    
 }
-
-
 
 
 - (BOOL) isFlipped

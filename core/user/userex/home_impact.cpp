@@ -185,9 +185,9 @@ namespace userex
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      ::point_i32 point = pmouse->m_point;
+      ::point_i32 point = pmouse->m_pointHost;
 
-      screen_to_client()(point);
+      host_to_client()(point);
 
       on_mouse(point);
 
@@ -203,15 +203,15 @@ namespace userex
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      ::point_i32 point = pmouse->m_point;
+      ::point_i32 point = pmouse->m_pointHost;
 
-      screen_to_client()(point);
+      host_to_client()(point);
 
       on_mouse(point);
 
       pmouse->m_bRet = true;
 
-      release_mouse_capture();
+      defer_release_mouse_capture();
 
       auto ptopic = create_topic(::id_after_change_cur_sel);
 
@@ -239,9 +239,9 @@ namespace userex
 
       ::user::impact::on_layout(pgraphics);
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
-      if (rectangleClient.area() <= 0)
+      if (rectangleX.area() <= 0)
       {
 
          return;
@@ -250,15 +250,15 @@ namespace userex
 
       ::rectangle_i32 rectangleColors;
 
-      rectangleColors = client_rectangle();
+      rectangleColors = this->rectangle();
 
       //if (!m_bCompact)
       //{
 
-      //   rectangleColors.left = rectangleClient.center().x();
-      //   rectangleColors.bottom = rectangleClient.center().y();
+      //   rectangleColors.left() = rectangleX.center().x();
+      //   rectangleColors.bottom() = rectangleX.center().y();
 
-      //   rectangleColors.deflate(rectangleClient.width() / 16, rectangleClient.height() / 16);
+      //   rectangleColors.deflate(rectangleX.width() / 16, rectangleX.height() / 16);
 
       //}
 

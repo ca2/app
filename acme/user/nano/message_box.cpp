@@ -45,7 +45,7 @@ void nano_message_box::on_draw(nano_device * pnanodevice)
 
    get_client_rectangle(rectangleText);
 
-   rectangleText.bottom = rectangleText.top + rectangleText.height() * 3 / 4;
+   rectangleText.bottom() = rectangleText.top() + rectangleText.height() * 3 / 4;
 
    rectangleText.deflate(25);
 
@@ -217,12 +217,12 @@ void nano_message_box::initialize_conversation(const ::string & strMessage, cons
 
       auto pbutton = m_buttona[iButton];
 
-      pbutton->m_rectangle.bottom = iBottom;
-      pbutton->m_rectangle.top = pbutton->m_rectangle.bottom - hButton;
-      pbutton->m_rectangle.right = iRight;
-      pbutton->m_rectangle.left = pbutton->m_rectangle.right - wButton;
+      pbutton->m_rectangle.bottom() = iBottom;
+      pbutton->m_rectangle.top() = pbutton->m_rectangle.bottom() - hButton;
+      pbutton->m_rectangle.right() = iRight;
+      pbutton->m_rectangle.left() = pbutton->m_rectangle.right() - wButton;
 
-      iRight = pbutton->m_rectangle.left - wSpacing;
+      iRight = pbutton->m_rectangle.left() - wSpacing;
 
    }
 
@@ -280,7 +280,7 @@ void nano_message_box::on_create()
 
       m_pstillDetails->resize_to_fit();
 
-      m_pstillDetails->m_rectangle.move_bottom_to(m_buttona[0]->m_rectangle.bottom);
+      m_pstillDetails->m_rectangle.move_bottom_to(m_buttona[0]->m_rectangle.bottom());
 
       m_pstillDetails->m_rectangle.move_left_to(25);
 
@@ -549,7 +549,7 @@ void nano_message_box::on_right_click(const ::atom & atom, ::user::mouse * pmous
 
    };
 
-   pbutton->initialize_popup_button("Dump to File...", pmouse->m_point.x(), pmouse->m_point.y());
+   pbutton->initialize_popup_button("Dump to File...", pmouse->m_pointAbsolute.x(), pmouse->m_pointAbsolute.y());
 
    pbutton->do_asynchronously();
 

@@ -2,9 +2,9 @@
 #include "group_image_list.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
-////#include "acme/exception/exception.h"
 #include "aura/graphics/image/context_image.h"
 #include "acme/handler/item.h"
+#include "acme/user/user/content.h"
 #include "aura/message/user.h"
 #include "aura/platform/context.h"
 #include "base/user/menu/button.h"
@@ -262,7 +262,7 @@ namespace userex
 
       //}
 
-      auto pgroup = m_groupa[pitem->m_item.item_index()];
+      auto pgroup = m_groupa[pitem->m_item.m_iItem];
 
       if (!pgroup)
       {
@@ -315,7 +315,7 @@ namespace userex
 
       auto * plist = get_group_list(idGroup);
 
-      m_pitemCurrent = __new(::item(::e_element_item, plist->m_iIndex));
+      main_content().m_pitemCurrent = main_content().defer_item(::e_element_item, plist->m_iIndex);
 
       auto pcontext = m_pcontext->m_pauracontext;
 
@@ -504,24 +504,24 @@ namespace userex
    void group_image_list_impact::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
-      if (!rectangleClient)
+      if (!rectangleX)
       {
 
          return;
 
       }
 
-      ::rectangle_i32 rectangleMenu(rectangleClient);
+      ::rectangle_i32 rectangleMenu(rectangleX);
 
-      rectangleMenu.bottom = rectangleClient.top + 32;
+      rectangleMenu.bottom() = rectangleX.top() + 32;
 
       m_pbuttonMenu->display_child(rectangleMenu);
 
-      ::rectangle_i32 rectangleList(rectangleClient);
+      ::rectangle_i32 rectangleList(rectangleX);
 
-      rectangleList.top = rectangleClient.top + 32;
+      rectangleList.top() = rectangleX.top() + 32;
 
       auto * plist = get_current_list();
 

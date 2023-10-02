@@ -36,7 +36,7 @@ namespace sandbox_windowing
    bool windowing::is_branch_current() const
    {
 
-      auto itaskCurrent = get_current_itask();
+      auto itaskCurrent = current_itask();
 
       return itaskCurrent == m_itask;
 
@@ -173,7 +173,7 @@ namespace sandbox_windowing
 
       m_phostinteraction->place(*lpcrect);
 
-      m_phostinteraction->create_host();
+      m_phostinteraction->create_host(e_parallelization_synchronous);
 
       m_phostinteraction->display();
 
@@ -227,23 +227,23 @@ namespace sandbox_windowing
    //   }
 
 
-   void windowing::windowing_post(const ::procedure& procedure)
-   {
+   //void windowing::windowing_post(const ::procedure& procedure)
+   //{
 
-      if (!procedure)
-      {
+   //   if (!procedure)
+   //   {
 
-         throw ::exception(error_null_pointer);
+   //      throw ::exception(error_null_pointer);
 
-      }
+   //   }
 
-      synchronous_lock synchronouslock(this->synchronization());
+   //   synchronous_lock synchronouslock(this->synchronization());
 
-      m_procedurelist.add_tail(procedure);
+   //   m_procedurelist.add_tail(procedure);
 
-      //return ::success_scheduled;
+   //   //return ::success_scheduled;
 
-   }
+   //}
 
 
    bool windowing::x11_runnable_step()
@@ -421,7 +421,7 @@ namespace sandbox_windowing
 
       //synchronous_lock sl(user_synchronization());
 
-      windowing_output_debug_string("\n::x11_GetWindowRect 1");
+      windowing_output_debug_string("::x11_GetWindowRect 1");
 
       //display_lock lock(m_pdisplay->Display());
 
@@ -494,13 +494,20 @@ namespace sandbox_windowing
    }
 
 
-   void windowing::release_mouse_capture()
+   bool windowing::defer_release_mouse_capture(::thread * pthread, ::windowing::window * pwindow)
    {
 
       if (!m_pwindowMouseCapture)
       {
 
-         return;
+         return false;
+
+      }
+
+      if (m_pwindowMouseCapture != pwindow)
+      {
+
+         return false;
 
       }
 
@@ -514,6 +521,8 @@ namespace sandbox_windowing
       }
 
       m_pwindowMouseCapture.release();
+
+      return true;
 
    }
 

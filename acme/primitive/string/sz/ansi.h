@@ -77,6 +77,7 @@ CLASS_DECL_ACME ::ansi_character * string_lowercase(::ansi_character * psz, strs
 
 
 CLASS_DECL_ACME const ::ansi_character * string_find_character(const ::ansi_character * pszBlock, ::ansi_character chMatch) noexcept;
+CLASS_DECL_ACME const ::ansi_character * string_find_character(const ::ansi_character * psz, const ::ansi_character * pszEnd, ::ansi_character chMatch) noexcept;
 CLASS_DECL_ACME const ::ansi_character * string_rear_find_character(const ::ansi_character * psz, ::ansi_character ch) noexcept;
 CLASS_DECL_ACME const ::ansi_character * string_find_string(const ::ansi_character * pszBlock, const ::ansi_character * pszMatch) noexcept;
 CLASS_DECL_ACME const ::ansi_character * string_rear_find_string(const ::ansi_character * psz, const ::ansi_character * pszFind, strsize iStart) noexcept;

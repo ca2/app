@@ -71,6 +71,11 @@ list(APPEND library_source
    user/experience/orto_button.h
    user/experience/size_manager.cpp
    user/experience/size_manager.h
+   user/form/document.cpp
+   user/form/document.h
+   user/form/update_hint.h
+   user/form/impact.cpp
+   user/form/impact.h
    user/menu/_.h
    #user/menu/_menu.h
    user/menu/button.cpp
@@ -98,6 +103,13 @@ list(APPEND library_source
    user/simple/tab_document.h
    user/simple/toolbar.cpp
    user/simple/toolbar.h
+   user/simple/child_frame.cpp
+   user/simple/child_frame.h
+   user/simple/impact.cpp
+   user/simple/impact.h
+   #user/simple/pane_document.cpp
+   #user/simple/pane_document.h
+
    #user/user/_.cpp
    user/user/_.h
    #user/user/_constant.h
@@ -127,17 +139,8 @@ list(APPEND library_source
    #user/user/edit_plain_text_impact.cpp
    #user/user/edit_plain_text_impact.h
    user/user/edit_window.h
-   user/form/document.cpp
-   user/form/document.h
-   user/form/update_hint.h
-   user/form/impact.cpp
-   user/form/impact.h
-   user/simple/child_frame.cpp
-   user/simple/child_frame.h
-   user/simple/impact.cpp
-   user/simple/impact.h
-   #user/simple/pane_document.cpp
-   #user/simple/pane_document.h
+   user/user/form_handler.cpp
+   user/user/form_handler.cpp
    user/user/frame_window.cpp
    user/user/frame_window.h
    user/user/hotplugin.cpp
@@ -164,6 +167,8 @@ list(APPEND library_source
    user/menu/menu.h
    #user/user/menu_command.cpp
    #user/user/menu_command.h
+   user/user/handler_impact.cpp
+   user/user/handler_impact.h
    user/menu/interaction.cpp
    user/menu/interaction.h
    user/menu/item.cpp
@@ -174,8 +179,7 @@ list(APPEND library_source
    user/user/network_configuration.h
    #user/user/notification_area.cpp
    #user/user/notification_area.h
-   user/user/options_impact.cpp
-   user/user/options_impact.h
+   user/user/options_impact_handler.h
    user/user/picture.cpp
    user/user/picture.h
    user/user/picture_interaction.cpp
@@ -253,7 +257,7 @@ if (WIN32)
 
    list(APPEND library_source
       operating_system/windows/frame_window.cpp
-      )
+   )
 
 endif ()
 
@@ -261,7 +265,7 @@ if (${LINUX})
 
    list(APPEND library_source
       operating_system/linux/frame_window.cpp
-      )
+   )
 
 endif ()
 
@@ -274,7 +278,7 @@ if (APPLE)
       #user/user/notify_icon_mm_bridge.h
       #user/user/notify_icon_mm_bridge.mm
 
-      )
+   )
 
 endif ()
 

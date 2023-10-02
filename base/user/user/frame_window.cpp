@@ -7,15 +7,16 @@
 #include "acme/constant/message.h"
 #include "acme/constant/simple_command.h"
 #include "acme/exception/interface_only.h"
+#include "acme/filesystem/filesystem/acme_directory.h"
+#include "acme/filesystem/filesystem/dir_context.h"
+#include "acme/filesystem/filesystem/file_context.h"
 #include "acme/parallelization/task_flag.h"
 #include "acme/platform/keep.h"
 #include "acme/platform/system.h"
 #include "acme/platform/sequencer.h"
+#include "acme/primitive/geometry2d/_text_stream.h"
 #include "acme/user/nano/nano.h"
 #include "apex/message/simple_command.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
-#include "acme/filesystem/filesystem/dir_context.h"
-#include "acme/filesystem/filesystem/file_context.h"
 #include "apex/platform/savings.h"
 #include "aura/graphics/graphics/graphics.h"
 #include "aura/graphics/image/context_image.h"
@@ -517,7 +518,7 @@ namespace user
 
                   //auto pparticleSynchronization = pimpl->m_pgraphics->get_draw_lock();
 
-                  auto pbufferitem = pimpl->m_pgraphics->on_begin_draw();
+                  auto pbufferitem = pimpl->m_pgraphics->on_begin_draw(e_graphics_draw);
 
                   synchronous_lock synchronouslock(pbufferitem->m_pmutex);
 
@@ -945,7 +946,7 @@ namespace user
       if (pusersystem != nullptr)
       {
 
-         if (pusersystem->m_typeNewImpact || pusersystem->m_puserprimitiveNew != nullptr)
+         if (pusersystem->m_typeatomNewImpact || pusersystem->m_puserprimitiveNew != nullptr)
          {
 
             auto pinteraction = pusersystem->create_impact(this, FIRST_PANE);
@@ -953,7 +954,7 @@ namespace user
             if(!pinteraction)
             {
 
-               warning() <<"the impact wasn't created: " << pusersystem->m_typeNewImpact.as_string();
+               warning() <<"the impact wasn't created: " << pusersystem->m_typeatomNewImpact.as_string();
 
             }
 
@@ -1073,7 +1074,6 @@ namespace user
    }
 
 
-
    bool frame_window::LoadFrame(const ::string & pszMatter, u32 dwDefaultStyle, ::user::interaction * puiParent, ::user::system * pcreate)
    {
 
@@ -1098,7 +1098,7 @@ namespace user
       if (puiParent != nullptr && (pholder = puiParent).is_set())
       {
 
-         rectangleFrame = pholder->client_rectangle();
+         rectangleFrame = pholder->rectangle();
 
       }
       else
@@ -1139,7 +1139,7 @@ namespace user
       else
       {
 
-         create_host();
+         create_host(e_parallelization_synchronous);
 
          //if (!create_host())
          //{
@@ -1716,7 +1716,7 @@ namespace user
    }
 
 
-   ::pointer<toolbar>frame_window::get_toolbar(const ::atom & idToolbar, bool bCreate, const ::string & strToolbarParam, u32 dwCtrlStyle, u32 uStyle, const ::type & type)
+   ::pointer<toolbar>frame_window::get_toolbar(const ::atom & idToolbar, bool bCreate, const ::string & strToolbarParam, u32 dwCtrlStyle, u32 uStyle, const ::type_atom & typeatom)
    {
 
       try
@@ -1793,10 +1793,10 @@ namespace user
    }
 
 
-   ::pointer<toolbar>frame_window::create_toolbar(const ::atom & idToolbar, const ::string & strToolbarParam, u32 dwCtrlStyle, u32 uStyle, const ::type & type)
+   ::pointer<toolbar>frame_window::create_toolbar(const ::atom & idToolbar, const ::string & strToolbarParam, u32 dwCtrlStyle, u32 uStyle, const ::type_atom & typeatom)
    {
 
-      auto ptoolbar = __id_create < toolbar >(type);
+      auto ptoolbar = __id_create < toolbar >(typeatom);
 
       ptoolbar->m_dwStyle = uStyle;
 
@@ -2259,6 +2259,10 @@ namespace user
    void frame_window::on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
+      ::user::main_window::on_perform_top_down_layout(pgraphics);
+
+      m_rectangleClient = this->raw_rectangle(e_layout_layout);
+
       __task_guard(m_bInRecalcLayout);
 
       // clear idle flags for recalc on_layout if called elsewhere
@@ -2678,15 +2682,15 @@ namespace user
 //
 //      bool bUpdateWindow;
 //
-//      auto type = __object_type(*this);
+//      auto type = ::type(this);
 //
-//      if (type.name_contains("app_veriwell_keyboard") && type.name_contains("main_frame"))
+//      if (type.name().contains("app_veriwell_keyboard") && type.name().contains("main_frame"))
 //      {
 //
 //         //::information("app_veriwell_keyboard::main_frame");
 //
 //      }
-//      else if(type.name_contains("simple_child_frame"))
+//      else if(type.name().contains("simple_child_frame"))
 //      {
 //
 //         //::information("simple_child_frame");
@@ -2797,11 +2801,15 @@ namespace user
 
       //return;
 
+      //information() << "user::frame_window::_001OnNcDraw graphics offset : " << pgraphics->get_origin();
+
       auto pstyle = get_style(pgraphics);
 
-//      ::rectangle_i32 rectangleClient;
+      //information() << "user::frame_window::_001OnNcDraw graphics offset (2) : " << pgraphics->get_origin();
+
+//      ::rectangle_i32 rectangleX;
 //
-//      client_rectangle(rectangleClient);
+//      this->rectangle(rectangleX);
 
       if(pstyle)
       {
@@ -2881,6 +2889,14 @@ namespace user
       //}
 
       return false;
+
+   }
+
+
+   ::rectangle_i32 frame_window::client_rectangle(::user::enum_layout elayout)
+   {
+
+      return m_rectangleClient;
 
    }
 

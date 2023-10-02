@@ -64,13 +64,13 @@ public:
    inline RECTANGLE & operator()(RECTANGLE & rectangle) const noexcept
    { 
       
-      rectangle.left = (::std::decay_t<decltype(rectangle.left)>)(rectangle.left + this->Δx);
+      rectangle.left() = (::std::decay_t<decltype(rectangle.left())>)(rectangle.left() + this->Δx);
       
-      rectangle.top = (::std::decay_t<decltype(rectangle.top)>)(rectangle.top + this->Δy);
+      rectangle.top() = (::std::decay_t<decltype(rectangle.top())>)(rectangle.top() + this->Δy);
       
-      rectangle.right = (::std::decay_t<decltype(rectangle.right)>)(rectangle.right + this->Δx);
+      rectangle.right() = (::std::decay_t<decltype(rectangle.right())>)(rectangle.right() + this->Δx);
       
-      rectangle.bottom = (::std::decay_t<decltype(rectangle.bottom)>)(rectangle.bottom + this->Δy);
+      rectangle.bottom() = (::std::decay_t<decltype(rectangle.bottom())>)(rectangle.bottom() + this->Δy);
       
       return rectangle;
    
@@ -84,7 +84,7 @@ public:
    inline SIZE get(const SIZE & size) const noexcept { return { (decltype(size.cx()))(size.cx() + this->Δx), (decltype(size.cy()))(size.cy() + this->Δy) }; }
 
    template < primitive_rectangle RECTANGLE >
-   inline RECTANGLE get(const RECTANGLE & rectangle) const noexcept { return { (decltype(rectangle.left))(rectangle.left + this->Δx), (decltype(rectangle.top))(rectangle.top + this->Δy), (decltype(rectangle.right))(rectangle.right + this->Δx), (decltype(rectangle.bottom))(rectangle.bottom + this->Δy) }; }
+   inline RECTANGLE get(const RECTANGLE & rectangle) const noexcept { return { (decltype(rectangle.left()))(rectangle.left() + this->Δx), (decltype(rectangle.top()))(rectangle.top() + this->Δy), (decltype(rectangle.right()))(rectangle.right() + this->Δx), (decltype(rectangle.bottom()))(rectangle.bottom() + this->Δy) }; }
 
 
 };

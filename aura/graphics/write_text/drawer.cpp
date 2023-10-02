@@ -444,7 +444,7 @@ namespace write_text
 
          }
 
-         y += textmetric.get_line_spacing();
+         y += textmetric.get_line_height();
 
       }
 

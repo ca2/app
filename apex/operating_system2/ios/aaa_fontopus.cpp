@@ -62,7 +62,7 @@ namespace account
 
       virtual void window_rectangle(::rectangle_i32 * prectangle);
 
-      virtual void client_rectangle(::rectangle_i32 * prectangle);
+      virtual void this->rectangle(::rectangle_i32 * prectangle);
 
       virtual void draw_dark_glass(simple_graphics & g);
       virtual void draw_pestana(simple_graphics &g);
@@ -115,7 +115,7 @@ namespace account
 
       ::rectangle_i32 rectangle;
 
-      client_rectangle(rectangle);
+      this->rectangle(rectangle);
 
       g.set_alpha_mode(draw2d::e_alpha_mode_blend);
 
@@ -133,24 +133,24 @@ namespace account
       point_i32 pc[4];
 
 
-      pa[0].x() = rectangle.left;
-      pa[0].y() = rectangle.top;
-      pa[1].x() = rectangle.right - rectangle.width() / 10;
-      pa[1].y() = rectangle.top + rectangle.height() / 10;
-      pa[2].x() = rectangle.right - rectangle.width() / 8;
-      pa[2].y() = rectangle.bottom - rectangle.height() / 10;
-      pa[3].x() = rectangle.left;
-      pa[3].y() = rectangle.bottom;
+      pa[0].x() = rectangle.left();
+      pa[0].y() = rectangle.top();
+      pa[1].x() = rectangle.right() - rectangle.width() / 10;
+      pa[1].y() = rectangle.top() + rectangle.height() / 10;
+      pa[2].x() = rectangle.right() - rectangle.width() / 8;
+      pa[2].y() = rectangle.bottom() - rectangle.height() / 10;
+      pa[3].x() = rectangle.left();
+      pa[3].y() = rectangle.bottom();
 
 
-      pb[0].x() = rectangle.left + rectangle.width() / 6;
-      pb[0].y() = rectangle.top + rectangle.height() / 6;
-      pb[1].x() = rectangle.right - rectangle.width() / 6;
-      pb[1].y() = rectangle.top + rectangle.height() / 6;
-      pb[2].x() = rectangle.right - rectangle.width() / 5;
-      pb[2].y() = rectangle.bottom - rectangle.height() / 4;
-      pb[3].x() = rectangle.left + rectangle.width() / 5;
-      pb[3].y() = rectangle.bottom - rectangle.height() / 4;
+      pb[0].x() = rectangle.left() + rectangle.width() / 6;
+      pb[0].y() = rectangle.top() + rectangle.height() / 6;
+      pb[1].x() = rectangle.right() - rectangle.width() / 6;
+      pb[1].y() = rectangle.top() + rectangle.height() / 6;
+      pb[2].x() = rectangle.right() - rectangle.width() / 5;
+      pb[2].y() = rectangle.bottom() - rectangle.height() / 4;
+      pb[3].x() = rectangle.left() + rectangle.width() / 5;
+      pb[3].y() = rectangle.bottom() - rectangle.height() / 4;
 
       {
 
@@ -331,7 +331,7 @@ namespace account
          ::u8 g1 = brate(dRate, 23, 127);
          ::u8 b1 = brate(dRate, 23, 127);
          p.create_solid(g, argb(a1, r1, g1, b1));
-         g.draw_line(rectangleWindow.left, i, rectangleWindow.right, i, p);
+         g.draw_line(rectangleWindow.left(), i, rectangleWindow.right(), i, p);
 
       }
 
@@ -375,10 +375,10 @@ namespace account
 
       if (lprect == nullptr)
       {
-         m_rectangleDesktop.left = 0;
-         m_rectangleDesktop.top = 0;
-         m_rectangleDesktop.right = 800;
-         m_rectangleDesktop.bottom = 600;
+         m_rectangleDesktop.left() = 0;
+         m_rectangleDesktop.top() = 0;
+         m_rectangleDesktop.right() = 800;
+         m_rectangleDesktop.bottom() = 600;
 
 //         ::window_rectangle(::get_desktop_window(), &m_rectangleDesktop);
 
@@ -455,16 +455,16 @@ namespace account
       int w = m_w + 184;
       int h = m_h + 284;
 
-      rectangleFontopus.origin.x() = rectangleDesktop.left + (width(rectangleDesktop) - w) / 2;
-      rectangleFontopus.origin.y() = rectangleDesktop.top + (height(rectangleDesktop) - h) / 3;
+      rectangleFontopus.origin.x() = rectangleDesktop.left() + (width(rectangleDesktop) - w) / 2;
+      rectangleFontopus.origin.y() = rectangleDesktop.top() + (height(rectangleDesktop) - h) / 3;
       rectangleFontopus.size.width = w;
       rectangleFontopus.size.height = h;
 
 
-      m_login.m_rectangle.left = (w - m_w) / 2;
-      m_login.m_rectangle.top = (h - m_h) / 2;
-      m_login.m_rectangle.right = m_w;
-      m_login.m_rectangle.bottom = m_h;
+      m_login.m_rectangle.left() = (w - m_w) / 2;
+      m_login.m_rectangle.top() = (h - m_h) / 2;
+      m_login.m_rectangle.right() = m_w;
+      m_login.m_rectangle.bottom() = m_h;
 
       m_login.defer_translate(this);
 
@@ -628,10 +628,10 @@ namespace account
    {
       ::window_rectangle(m_oswindow, prectangle);
    }
-   void account::client_rectangle(::rectangle_i32 * prectangle)
+   void account::this->rectangle(::rectangle_i32 * prectangle)
    {
 
-      ::client_rectangle(m_oswindow, prectangle);
+      ::this->rectangle(m_oswindow, prectangle);
 
    }
 

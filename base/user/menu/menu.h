@@ -20,7 +20,7 @@ namespace user
       ::size_i32                             m_sizeMinimum;
       ::pointer<menu>                       m_pmenuParent;
       ::pointer<menu_item>                  m_pmenuitem;
-      ::pointer<::user::interaction>        m_puserinteractionParent;
+      ///::pointer<::user::interaction>        m_puserinteractionParent;
       ::pointer<::channel>                  m_pchannelNotify;
 //#ifdef WINDOWS_DESKTOP
 //      HMENU                                  m_hmenu;
@@ -48,7 +48,6 @@ namespace user
       bool                                   m_bCloseButton;
 
 
-
       menu();
       menu(::user::menu_item * pitem);
       ~menu() override;
@@ -74,7 +73,10 @@ namespace user
 
       ::user::menu_item * GetSubMenu(i32 i);
 
-      virtual void layout_menu(::draw2d::graphics_pointer& pgraphics);
+      virtual void defer_initialize_user_menu();
+      virtual void initialize_user_menu();
+
+      //virtual void layout_menu(::draw2d::graphics_pointer& pgraphics);
 
       virtual bool contains_menu_item(menu_item * pitem, bool bRecursive = true) const;
 
@@ -140,6 +142,9 @@ namespace user
 
       //// <3ThomasBorregaardSorensen__!!
       void handle_command(const ::atom& atom) override;
+
+
+      void on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics) override;
 
 
    };

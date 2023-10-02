@@ -153,7 +153,81 @@ namespace user
    }
 
 
-   void menu_list_window::on_layout(::draw2d::graphics_pointer & pgraphics)
+//   void menu_list_window::on_layout(::draw2d::graphics_pointer & pgraphics)
+//   {
+//
+//
+//   }
+
+
+   void menu_list_window::layout_buttons(menu_item * pitemParent, i32 iMaxWidth, ::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangleBound)
+   {
+
+      if (!m_bMenuOk)
+      {
+
+         return;
+
+      }
+
+      if(pitemParent->m_pmenuitema == nullptr)
+      {
+
+         return;
+
+      }
+
+      for(i32 i = 0; i < pitemParent->m_pmenuitema->get_size(); i++)
+      {
+
+         menu_item * pitem = pitemParent->m_pmenuitema->element_at(i);
+
+         prectangle->bottom() = (::i32) (prectangle->top() + m_dItemHeight * 1.2 - 2);
+
+         if(prectangle->bottom() > rectangleBound.bottom())
+         {
+
+            prectangle->left() += iMaxWidth + 16;
+
+            prectangle->top() = rectangleBound.top();
+
+            prectangle->bottom() = (::i32) (prectangle->top() + m_dItemHeight - 2);
+
+         }
+
+         if (pitem->m_atom != "separator" && pitem->m_puserinteraction != nullptr)
+         {
+            
+            auto rPlacement = ::rectangle_i32_dimension(
+                                                        prectangle->left() + pitem->m_iLevel * g_base_menu_indent,
+                                                        prectangle->top(),
+                                                        iMaxWidth - pitem->m_iLevel * g_base_menu_indent,
+                                                        prectangle->bottom() - prectangle->top());
+
+            pitem->m_puserinteraction->place(rPlacement);
+
+            pitem->m_puserinteraction->display();
+
+            layout_buttons(pitem, iMaxWidth, prectangle, rectangleBound);
+
+         }
+
+         prectangle->top() = prectangle->bottom() + 5;
+
+      }
+
+   }
+
+
+   void menu_list_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   {
+
+      ::user::interaction::_001OnDraw(pgraphics);
+
+   }
+
+
+   void menu_list_window::on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
       if (!m_bMenuOk)
@@ -179,9 +253,9 @@ namespace user
 
       }
 
-      ::rectangle_i32 rectangleClient;
+      ::rectangle_i32 rectangleX;
 
-      rectangleClient = get_parent()->client_rectangle();
+      rectangleX = get_parent()->rectangle();
 
       pgraphics->set_font(this, ::e_element_none);
 
@@ -205,7 +279,7 @@ namespace user
 
       string str;
 
-      layout_buttons(m_pmenuitem, iMaxWidth + 4, &rectangle, rectangleClient);
+      layout_buttons(m_pmenuitem, iMaxWidth + 4, &rectangle, rectangleX);
 
       auto & puiClose = m_pitemClose->m_puserinteraction;
 
@@ -217,73 +291,6 @@ namespace user
          puiClose->set_position({m_size.cx() - puiClose->width() - 2, 2});
 
       }
-
-   }
-
-
-   void menu_list_window::layout_buttons(menu_item * pitemParent, i32 iMaxWidth, ::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangleBound)
-   {
-
-      if (!m_bMenuOk)
-      {
-
-         return;
-
-      }
-
-      if(pitemParent->m_pmenuitema == nullptr)
-      {
-
-         return;
-
-      }
-
-      for(i32 i = 0; i < pitemParent->m_pmenuitema->get_size(); i++)
-      {
-
-         menu_item * pitem = pitemParent->m_pmenuitema->element_at(i);
-
-         prectangle->bottom = (::i32) (prectangle->top + m_dItemHeight * 1.2 - 2);
-
-         if(prectangle->bottom > rectangleBound.bottom)
-         {
-
-            prectangle->left += iMaxWidth + 16;
-
-            prectangle->top = rectangleBound.top;
-
-            prectangle->bottom = (::i32) (prectangle->top + m_dItemHeight - 2);
-
-         }
-
-         if (pitem->m_atom != "separator" && pitem->m_puserinteraction != nullptr)
-         {
-            
-            auto rPlacement = ::rectangle_i32_dimension(
-                                                        prectangle->left + pitem->m_iLevel * g_base_menu_indent,
-                                                        prectangle->top,
-                                                        iMaxWidth - pitem->m_iLevel * g_base_menu_indent,
-                                                        prectangle->bottom - prectangle->top);
-
-            pitem->m_puserinteraction->place(rPlacement);
-
-            pitem->m_puserinteraction->display();
-
-            layout_buttons(pitem, iMaxWidth, prectangle, rectangleBound);
-
-         }
-
-         prectangle->top = prectangle->bottom + 5;
-
-      }
-
-   }
-
-
-   void menu_list_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
-   {
-
-      ::user::interaction::_001OnDraw(pgraphics);
 
    }
 

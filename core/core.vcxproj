@@ -228,6 +228,7 @@
       <Command>
       </Command>
     </PostBuildEvent>
+    <PreBuildEvent />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">
     <ClCompile>
@@ -341,6 +342,7 @@
       <Command>
       </Command>
     </PostBuildEvent>
+    <PreBuildEvent />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">
     <ClCompile>
@@ -460,6 +462,7 @@
     <ResourceCompile>
       <AdditionalIncludeDirectories>$(SolutionDir)../../..</AdditionalIncludeDirectories>
     </ResourceCompile>
+    <PreBuildEvent />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">
     <ClCompile>
@@ -569,6 +572,7 @@
     <ResourceCompile>
       <AdditionalIncludeDirectories>$(SolutionDir)../../..</AdditionalIncludeDirectories>
     </ResourceCompile>
+    <PreBuildEvent />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">
     <ClCompile>
@@ -731,7 +735,6 @@
     <ClCompile Include="user\simple\tab_impact.cpp" />
     <ClCompile Include="user\simple\tree_impact.cpp" />
     <ClCompile Include="user\userex\failure_dialog.cpp" />
-    <ClCompile Include="user\userex\calculator_edit_impact.cpp" />
     <ClCompile Include="user\userex\color_impact.cpp" />
     <ClCompile Include="user\userex\dialog.cpp" />
     <ClCompile Include="user\userex\dialog_frame.cpp" />
@@ -760,6 +763,7 @@
     <ClCompile Include="user\user\elastic_slider.cpp" />
     <ClCompile Include="user\user\font_combo_box.cpp" />
     <ClCompile Include="user\user\font_list.cpp" />
+    <ClCompile Include="user\user\font_list_impact.cpp" />
     <ClCompile Include="user\user\form_list.cpp" />
     <ClCompile Include="user\user\form_list_impact.cpp" />
     <ClCompile Include="user\user\form_mesh.cpp" />
@@ -844,7 +848,6 @@
     <ClInclude Include="include\_c_bridge.h" />
     <ClInclude Include="include\_include.h" />
     <ClInclude Include="platform\_impl.h" />
-    <ClInclude Include="update.h" />
     <ClInclude Include="user\account\_component.h" />
     <ClInclude Include="user\netuser\network_configuration.h" />
     <ClInclude Include="user\netuser\_.h" />
@@ -866,11 +869,11 @@
     <ClInclude Include="user\rich_text\_binary_stream.h" />
     <ClInclude Include="user\rich_text\_constant.h" />
     <ClInclude Include="user\rich_text\_component.h" />
-    <ClInclude Include="user\userex\calculator_edit_impact.h" />
     <ClInclude Include="user\userex\dialog_frame.h" />
     <ClInclude Include="user\userex\group_image_list.h" />
     <ClInclude Include="user\userex\image_list.h" />
     <ClInclude Include="user\userex\progress.h" />
+    <ClInclude Include="user\user\font_list_impact.h" />
     <ClInclude Include="user\user\impact.h" />
     <ClInclude Include="user\user\list2.h" />
     <ClInclude Include="user\user\text_format_object.h" />

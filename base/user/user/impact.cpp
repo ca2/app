@@ -31,6 +31,8 @@ namespace user
 
       //m_bExtendOnParent = true;
 
+      m_bExtendOnParentClientArea = true;
+
    }
 
 
@@ -265,7 +267,7 @@ namespace user
    //   i32 nAdjust = ::windows_definition::Data.cxVScroll;
    //   if (uStyle & WS_BORDER)
    //   nAdjust -= CX_BORDER;
-   //   pClientRect->right += nAdjust;
+   //   pClientRect->right() += nAdjust;
 
    //   }
    //   if (uStyle & WS_HSCROLL)
@@ -273,7 +275,7 @@ namespace user
    //   i32 nAdjust = ::windows_definition::Data.cyHScroll;
    //   if (uStyle & WS_BORDER)
    //   nAdjust -= CY_BORDER;
-   //   pClientRect->bottom += nAdjust;
+   //   pClientRect->bottom() += nAdjust;
 
    //   }
    //   return;
@@ -883,7 +885,7 @@ namespace user
    }
 
 
-   ::pointer<::user::interaction>impact::create_impact(const ::type & type, ::user::document * pdocument, ::user::interaction * puserinteractionParent, const ::atom & atom, ::user::interaction * pviewLast, ::user::impact_data * pimpactdata)
+   ::pointer<::user::interaction>impact::create_impact(const ::type_atom & typeatom, ::user::document * pdocument, ::user::interaction * puserinteractionParent, const ::atom & atom, ::user::interaction * pviewLast, ::user::impact_data * pimpactdata)
    {
 
       ::pointer<::request>pcreate(e_create_new, this);
@@ -899,7 +901,7 @@ namespace user
 
       }
 
-      pusersystem->m_typeNewImpact = type;
+      pusersystem->m_typeatomNewImpact = typeatom;
 
       pusersystem->m_puserprimitiveLastImpact = pviewLast;
 
@@ -928,7 +930,7 @@ namespace user
       if (idCreate.is_empty())
       {
 
-         idCreate = (const ::atom &) pusersystem->m_typeNewImpact.name();
+         idCreate = (const ::atom &) pusersystem->m_typeatomNewImpact.name();
 
       }
 
@@ -939,14 +941,14 @@ namespace user
    }
 
 
-   ::pointer<::user::interaction>create_impact(const ::type & type, ::user::document * pdocument, ::user::interaction * puserinteractionParent, const ::atom & atom, ::user::interaction * pviewLast)
+   ::pointer<::user::interaction>create_impact(const ::type_atom & typeatom, ::user::document * pdocument, ::user::interaction * puserinteractionParent, const ::atom & atom, ::user::interaction * pviewLast)
    {
 
       ::pointer<::request>pcreate(e_create_new, pdocument);
 
       auto pusersystem= __new(::user::system);
 
-      pusersystem->m_typeNewImpact = type;
+      pusersystem->m_typeatomNewImpact = typeatom;
 
       pusersystem->m_puserprimitiveLastImpact = pviewLast;
 
@@ -1374,14 +1376,14 @@ namespace user
    {
    ASSERT(is_window());
    ASSERT(pContext != nullptr);
-   ASSERT(pContext->m_typeNewImpact != nullptr);
+   ASSERT(pContext->m_typeatomNewImpact != nullptr);
 
    // Note: can be a ::user::interaction with post_non_client_destroy self cleanup
-   ::pointer<::user::interaction>pimpact =  (psystem->alloc(pContext->m_typeNewImpact));
+   ::pointer<::user::interaction>pimpact =  (psystem->alloc(pContext->m_typeatomNewImpact));
    if (pimpact == nullptr)
    {
    TRACE1("Warning: Dynamic create of ::user::impact type %hs failed.\n",
-   pContext->m_typeNewImpact.name());
+   pContext->m_typeatomNewImpact.name());
    return nullptr;
    }
    ASSERT_KINDOF(::user::interaction, pimpact);
@@ -1411,14 +1413,14 @@ namespace user
    {
    ASSERT(puserinteractionParent->is_window());
    ASSERT(pContext != nullptr);
-   ASSERT(pContext->m_typeNewImpact != nullptr);
+   ASSERT(pContext->m_typeatomNewImpact != nullptr);
 
    // Note: can be a interaction_impl with post_non_client_destroy self cleanup
-   ::user::interaction_impl * pimpact = (puserinteractionParent->psystem->alloc(pContext->m_typeNewImpact));
+   ::user::interaction_impl * pimpact = (puserinteractionParent->psystem->alloc(pContext->m_typeatomNewImpact));
    if (pimpact == nullptr)
    {
    TRACE1("Warning: Dynamic create of ::user::impact type %hs failed.\n",
-   pContext->m_typeNewImpact.name());
+   pContext->m_typeatomNewImpact.name());
    return nullptr;
    }
    ASSERT_KINDOF(interaction_impl, pimpact);

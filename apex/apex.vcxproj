@@ -225,6 +225,7 @@
       <Command>
       </Command>
     </PostBuildEvent>
+    <PreBuildEvent />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">
     <ClCompile>
@@ -333,6 +334,7 @@
       <Command>
       </Command>
     </PostBuildEvent>
+    <PreBuildEvent />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">
     <ClCompile>
@@ -444,6 +446,7 @@
       </AdditionalManifestFiles>
     </Manifest>
     <ResourceCompile />
+    <PreBuildEvent />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">
     <ClCompile>
@@ -539,6 +542,7 @@
       </AdditionalManifestFiles>
     </Manifest>
     <ResourceCompile />
+    <PreBuildEvent />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">
     <ClCompile>
@@ -611,6 +615,7 @@
     <ClCompile Include="handler\manager.cpp" />
     <ClCompile Include="handler\signal.cpp" />
     <ClCompile Include="handler\source.cpp" />
+    <ClCompile Include="input\input.cpp" />
     <ClCompile Include="interprocess\base.cpp" />
     <ClCompile Include="interprocess\call.cpp" />
     <ClCompile Include="interprocess\caller.cpp" />
@@ -777,6 +782,7 @@
     <ClInclude Include="inline\_app_impl1.h" />
     <ClInclude Include="inline\_console_old.h" />
     <ClInclude Include="inline\_new_impl.h" />
+    <ClInclude Include="input\input.h" />
     <ClInclude Include="interprocess\base.h" />
     <ClInclude Include="interprocess\call.h" />
     <ClInclude Include="interprocess\caller.h" />

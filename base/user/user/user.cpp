@@ -18,6 +18,7 @@
 #include "aura/graphics/image/image.h"
 #include "aura/message/user.h"
 #include "aura/windowing/window.h"
+#include "axis/user/user/calculator_edit.h"
 #include "base/platform/application.h"
 #include "base/platform/session.h"
 #include "base/platform/system.h"
@@ -44,6 +45,8 @@ namespace base
    user::user()
    {
 
+      printf("base::user::user\n");
+
       m_pbaseuser = this;
 
    }
@@ -58,7 +61,9 @@ namespace base
    void user::initialize(::particle * pparticle)
    {
 
-      //auto estatus = 
+      //auto estatus =
+
+      printf("base::user::initialize\n");
       
       ::axis::user::initialize(pparticle);
 
@@ -69,7 +74,9 @@ namespace base
 
       //}
 
-      //estatus = 
+      //estatus =
+
+      printf("base::user::initialize (2)\n");
       
       ::user::document_manager_container::initialize(pparticle);
 
@@ -466,10 +473,10 @@ namespace base
 //   }
 
 
-   ::type user::controltype_to_typeinfo(::user::enum_control_type econtroltype)
+   ::type_atom user::controltype_to_typeinfo(::user::enum_control_type econtroltype)
    {
 
-      return ::type();
+      return {};
 
    }
 
@@ -1034,11 +1041,11 @@ namespace base
    bool user::track_popup_menu(::user::interaction* pinteraction, ::user::menu_item * pitem, i32 iFlags, ::channel* pchannelNotify)
    {
 
-      ::point_i32 point;
+      //::point_i32 point;
 
-      auto pwindow = pinteraction->window();
+      //auto pwindow = pinteraction->window();
 
-      auto pointCursor = pwindow->get_cursor_position();
+      auto pointCursor = pinteraction->mouse_cursor_position();
 
       return track_popup_menu(pinteraction, pitem, iFlags, pointCursor, pchannelNotify);
 
@@ -1075,9 +1082,9 @@ namespace base
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      ::point_i32 point = pmouse->m_point;
+      ::point_i32 point = pmouse->m_pointHost;
 
-      pinteraction->screen_to_client()(point);
+      pinteraction->host_to_client()(point);
 
       return track_popup_menu(pinteraction, pitem, iFlags, point, pchannelNotify);
 
@@ -1251,13 +1258,12 @@ namespace base
    //}
 
 
-   ::type user::user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype)
+   ::type_atom user::user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype)
    {
 
       auto psession = get_session();
 
       return psession->user()->controltype_to_typeinfo(econtroltype);
-
 
    }
 
@@ -1333,26 +1339,26 @@ namespace base
    }
 
 
-   ::pointer<::form_document>user::create_typed_form(::particle * pparticle, const ::type & type, ::user::element * puserelementParent, const ::payload & payload, const ::payload & payloadArgs)
+   ::pointer<::form_document>user::create_typed_form(::particle * pparticle, const ::type_atom & typeatom, ::user::element * puserelementParent, const ::payload & payload, const ::payload & payloadArgs)
    {
 
-      if (!type)
+      if (!typeatom)
       {
 
          return nullptr;
 
       }
 
-      auto & pimpactsystem = m_mapimpactsystem[type];
+      auto & pimpactsystem = m_mapimpactsystem[typeatom];
 
       if (!pimpactsystem)
       {
 
          pimpactsystem = __new(::user::multiple_document_template(
             m_ptemplateForm->m_atom,
-            m_ptemplateForm->m_typeDocument,
-            m_ptemplateForm->m_typeFrame,
-            type));
+            m_ptemplateForm->m_typeatomDocument,
+            m_ptemplateForm->m_typeatomFrame,
+            typeatom));
 
          document_manager()->add_document_template(pimpactsystem);
 
@@ -1573,7 +1579,7 @@ namespace base
    }
 
 
-   ::pointer < ::form_document > user::create_typed_child_form(::particle * pparticle, const ::type & type, ::user::element * puserelementParent, const ::payload & payload, const ::payload & payloadArgs)
+   ::pointer < ::form_document > user::create_typed_child_form(::particle * pparticle, const ::type_atom & typeatom, ::user::element * puserelementParent, const ::payload & payload, const ::payload & payloadArgs)
    {
 
       auto pathFile = payload.as_file_path();
@@ -1581,19 +1587,19 @@ namespace base
       try
       {
 
-         if (!type)
+         if (!typeatom)
          {
 
             return nullptr;
 
          }
 
-         auto pimpactsystem = m_mapimpactsystem[type];
+         auto pimpactsystem = m_mapimpactsystem[typeatom];
 
          if (!pimpactsystem)
          {
 
-            ::type typeDocument = m_ptemplateChildForm->m_typeDocument;
+            auto typeDocument = m_ptemplateChildForm->m_typeatomDocument;
 
             if (is_html_file(payload.as_file_path()))
             {
@@ -1605,14 +1611,14 @@ namespace base
             auto pimpactsystemNew = __new(::user::multiple_document_template(
                m_ptemplateChildForm->m_atom,
                typeDocument,
-               m_ptemplateChildForm->m_typeFrame,
-               type));
+               m_ptemplateChildForm->m_typeatomFrame,
+               typeatom));
 
             pimpactsystemNew->initialize(pparticle);
 
             pimpactsystem = pimpactsystemNew;
 
-            m_mapimpactsystem[type] = pimpactsystemNew;
+            m_mapimpactsystem[typeatom] = pimpactsystemNew;
 
             document_manager()->add_document_template(pimpactsystem);
 
@@ -1728,6 +1734,12 @@ namespace base
 
    //__namespace_object_factory(user, ::system_setup::flag_object_user);
 
+   ::pointer<::user::plain_edit>user::create_calculator_edit()
+   {
+
+      return __new(::user::show < ::calculator::edit >());
+
+   }
 
 } // namespace base
 

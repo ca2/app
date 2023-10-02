@@ -15396,7 +15396,7 @@ namespace user
       if (::is_null(pwindow))
       {
 
-         throw ::exception(error_wrong_state);
+         return false;
 
       }
 
@@ -15405,7 +15405,7 @@ namespace user
       if (::is_null(puserinteractionimpl))
       {
 
-         throw ::exception(error_wrong_state);
+         return false;
 
       }
 

@@ -707,6 +707,8 @@ namespace windows
       break;
       case WM_ERASEBKGND:
          return 1;
+      case WM_MOUSEACTIVATE:
+         return MA_ACTIVATE;
       case WM_PAINT:
       {
 
@@ -748,9 +750,14 @@ namespace windows
       case WM_ACTIVATE:
       {
 
-         LRESULT lresult = DefWindowProc(m_hwnd, message, wparam, lparam);
+         if (wparam > 0)
+         {
 
-         return lresult;
+            ::SetFocus(m_hwnd);
+
+         }
+
+         return 0;
 
       }
       case WM_FONTCHANGE:

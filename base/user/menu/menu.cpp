@@ -647,7 +647,7 @@ namespace user
 
       //display();
 
-      display(e_display_normal,  e_activation_set_foreground | e_activation_set_popup);
+      display(e_display_normal,  e_activation_set_foreground | e_activation_for_context_menu);
 
       set_need_layout();
 
@@ -690,7 +690,7 @@ namespace user
 
       //   m_bMenuOk = true;
 
-            display(e_display_normal, e_activation_set_foreground | e_activation_set_popup);
+            display(e_display_normal, e_activation_set_foreground | e_activation_for_context_menu);
 
             set_need_layout();
 

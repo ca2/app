@@ -838,7 +838,7 @@ namespace experience_tranquillum
          //      m_pframewindow->GetEventWindow()->screen_to_client()(point);
          //::rectangle_i32 rectangleEvent;
 
-         auto rectangleEvent = m_pframewindow->raw_rectangle();
+         auto rectangleEvent = m_pframewindow->window_rectangle();
 
          ::rectangle_i32 rectangle;
          //::point_i32 pointCenter = rectangleEvent.center();

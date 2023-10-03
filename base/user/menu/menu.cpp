@@ -64,6 +64,7 @@ namespace user
       m_pmenuitemSub = nullptr;
 
       m_bEnableDragClient = true;
+      m_bDefaultParentMouseMessageHandling = true;
 
    }
 

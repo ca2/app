@@ -1016,7 +1016,11 @@ namespace user
       if (ptopic->m_atom == ::id_click)
       {
 
-         if (m_pitemClose.is_set() && ptopic->user_interaction() == m_pitemClose->m_puserinteraction)
+         auto puserinteractionTopic = ptopic->user_interaction();
+
+         auto puserinteractionClose = m_pitemClose->m_puserinteraction;
+
+         if (m_pitemClose.is_set() && puserinteractionTopic == puserinteractionClose)
          {
 
             defer_close();

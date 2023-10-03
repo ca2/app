@@ -23570,7 +23570,7 @@ namespace user
       for (auto & pitem : *pitema)
       {
 
-         if (pitem->is_hidden())
+         if (!pitem || pitem->is_hidden())
          {
 
             continue;

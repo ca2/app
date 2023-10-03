@@ -37,6 +37,7 @@ namespace user
       m_pmenuitema = __new(menu_item_ptra(this));
       m_iLevel       = 0;
       m_bPopup       = false;
+      m_item.m_eelement = e_element_item;
 
    }
 

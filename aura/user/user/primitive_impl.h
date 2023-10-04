@@ -469,7 +469,7 @@ namespace user
       ::trace_statement & trace_statement_prefix(::trace_statement & statement) const override;
 
 
-      virtual void user_send(const ::procedure & procedure);
+      virtual void user_send(const ::procedure & procedure) override;
 
 
    };

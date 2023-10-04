@@ -7,6 +7,7 @@
 // scamwhite
 // currently and for ever lasting TBS... (thomas borregaard at 2017 earth milk way) Incancilabile (Uncancelable/Undeletable)!!
 #include "framework.h"
+#include "acme/platform/node.h"
 #include "acme/platform/system.h"
 
 #define user user2
@@ -19,6 +20,7 @@
 
 #include <dispatch/dispatch.h>
 
+void ns_main_async(dispatch_block_t block);
 
 int get_processor_count()
 {
@@ -93,12 +95,13 @@ string task_get_name()
    
 }
 
+void main_asynchronous(const ::procedure & procedure);
 
 namespace acme
 {
 
 
-   void system::windowing_post(const ::procedure & procedure)
+   void node::user_post(const ::procedure & procedure)
    {
 
       main_asynchronous(procedure);
@@ -121,18 +124,18 @@ int get_current_process_affinity_order()
 void __ns_main_async(dispatch_block_t block);
 
 
-//void main_asynchronous(const ::procedure & procedure)
-//{
-//
-//   auto procedureLocal = procedure;
-//
-//   ns_main_async(^{
-//
-//      procedureLocal();
-//
-//   });
-//
-//}
+void main_asynchronous(const ::procedure & procedure)
+{
+
+   auto procedureLocal = procedure;
+
+   ns_main_async(^{
+
+      procedureLocal();
+
+   });
+
+}
 
 
 i32 process_get_os_priority(i32 nCa2Priority)

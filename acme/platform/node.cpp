@@ -1699,13 +1699,6 @@ namespace acme
    ::file::path node::get_executable_path_by_app_id(const ::scoped_string & scopedstrRepos, const ::scoped_string & scopedstrApp, bool bSingleExecutableVersion)
    {
 
-
-#if defined(MACOS)
-
-      return macos_app_folder() / "Contents/MacOS" / m_strApp;
-
-#else
-
       string strName = scopedstrRepos + "_" + scopedstrApp;
 
       strName.find_replace("-", "_");
@@ -1746,13 +1739,19 @@ namespace acme
       auto pathFolder = acmedirectory()->home();
 
       path = pathFolder / "application" / scopedstrRepos / scopedstrApp / "x64" / strName;
+      
+#ifdef MACOS
+      
+      path /= "Contents/MacOS" / scopedstrApp;
+
+#endif
 
       return path;
 
 #endif
 
 
-#endif
+//#endif
 
    }
 

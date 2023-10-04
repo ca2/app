@@ -1101,7 +1101,7 @@ namespace experience_core
          m_rectangleTab.height(),
          0);*/
 
-         pdata->m_rectangleTabClient.left() = ptab->m_bEffectiveVisibleTabs ? pdata->m_rectangleTab.right() : rectangleX.left();
+         pdata->m_rectangleTabClient.left() = ptab->m_bEffectiveVisibleControl ? pdata->m_rectangleTab.right() : rectangleX.left();
          pdata->m_rectangleTabClient.top() = pdata->m_rectangleTab.top();
          pdata->m_rectangleTabClient.right() = rectangleX.right();
          pdata->m_rectangleTabClient.bottom() = pdata->m_rectangleTab.bottom();
@@ -1230,7 +1230,7 @@ namespace experience_core
          //bool bTabbedClient = ptab->m_bShowTabs;
 
          rectangleTabClient.left() = pdata->m_rectangleTab.left();
-         rectangleTabClient.top() = ptab->m_bEffectiveVisibleTabs ? pdata->m_rectangleTab.bottom() : rectangleX.top();
+         rectangleTabClient.top() = ptab->m_bEffectiveVisibleControl ? pdata->m_rectangleTab.bottom() : rectangleX.top();
          rectangleTabClient.right() = pdata->m_rectangleTab.right();
          rectangleTabClient.bottom() = rectangleX.bottom();
 

@@ -46,15 +46,6 @@ namespace user
 
       m_econtroltype = e_control_type_tab;
 
-      m_bVisibleTabs = true;
-
-      m_bEffectiveVisibleTabs = m_bVisibleTabs;
-
-      m_bTabVisibilityChanging = false;
-
-      m_bOverrideVisibleTabs = false;
-
-      m_bHideTabsOnFullScreenOrTransparentFrame = true;
 
       //m_bMouseDown = false;
 
@@ -431,170 +422,6 @@ namespace user
    }
 
 
-   void tab::calculate_tab_visibility()
-   {
-
-      if (m_bForceNoTabs)
-      {
-
-         m_bEffectiveVisibleTabs = false;
-
-      }
-      else if (m_bHideTabsOnFullScreenOrTransparentFrame)
-      {
-
-         auto bNewVisible = full_screen_or_transparent_frame_tab_visibility();
-
-         if (is_different(bNewVisible, m_bEffectiveVisibleTabs))
-         {
-
-            if (!m_bTabVisibilityChanging)
-            {
-
-               m_bTabVisibilityChanging = true;
-
-               m_timeLastTabVisibilityChange.Now();
-
-               SetTimer(e_timer_defer_handle_auto_hide_tabs, 100_ms);
-
-            }
-            else if (m_timeLastTabVisibilityChange.elapsed() > 2_s)
-            {
-
-               m_bTabVisibilityChanging = false;
-
-               m_bEffectiveVisibleTabs = bNewVisible;
-
-            }
-
-         }
-
-      }
-      else if (m_bVisibleTabs)
-      {
-
-         m_bEffectiveVisibleTabs = m_bVisibleTabs;
-
-      }
-
-      //return m_bCalculatedVisibleTabs;
-
-      //auto bVisible = are_tabs_visible();
-
-      //auto puiTopLevel = top_level();
-
-      //if (puiTopLevel->frame_is_transparent() && !top_level_frame()->layout().is_full_screen())
-      //{
-
-      //   if (m_bShowTabs)
-      //   {
-
-      //      m_bShowTabs = false;
-
-      //      set_need_layout();
-
-      //   }
-
-      //   return;
-
-      //}
-
-      //if(m_bNoTabs)
-      //{
-
-      //   if(m_bShowTabs)
-      //   {
-
-      //      m_bShowTabs = false;
-
-      //      set_need_layout();
-
-      //   }
-
-      //   return;
-
-      //}
-
-      //if(m_bShowTabs)
-      //{
-
-      //   if(top_level_frame()!= nullptr && top_level_frame()->is_full_screen())
-      //   {
-
-      //      ::rectangle_i32 rectangleTab(get_data()->m_rectangleTab);
-
-      //      rectangleTab+=client_to_screen();
-
-      //      auto pointCursor = get_cursor_position();
-
-      //      bool bShowTabs = rectangleTab.contains(pointCursor);
-
-      //      if(is_different(bShowTabs, m_bShowTabs))
-      //      {
-
-      //         m_bShowTabs = bShowTabs;
-
-      //         set_need_layout();
-
-      //         bNeedLayout = true;
-
-      //      }
-
-      //   }
-
-      //}
-      //else
-      //{
-
-      //   auto pframe = parent_frame();
-
-      //   if(::is_set(pframe) && !pframe->layout().is_full_screen())
-      //   {
-
-      //      m_bShowTabs = true;
-
-      //      set_need_layout();
-
-      //   }
-      //   else if(::is_set(get_app()) && ::is_set(get_app()->get_session()))
-      //   {
-
-      //      ::rectangle_i32 rectangleWindow;
-
-      //      window_rectangle(rectangleWindow);
-
-      //      bool bShowTabs;
-
-      //      auto pointCursor = get_cursor_position();
-
-      //      if(get_data()->m_bVertical)
-      //      {
-
-      //         bShowTabs = pointCursor.x() <= rectangleWindow.left();
-
-      //      }
-      //      else
-      //      {
-
-      //         bShowTabs = pointCursor.y() <= rectangleWindow.top();
-
-      //      }
-
-      //      m_bShowTabs = bShowTabs;
-
-      //      if(bShowTabs)
-      //      {
-
-      //         set_need_layout();
-
-      //      }
-
-      //   }
-
-      //}
-
-   }
-
 
 
    void tab::get_title(int iIndex, string_array & stra)
@@ -917,60 +744,7 @@ namespace user
 
       }
 
-      auto pointClient = pmouse->m_pointHost;
-
-      host_to_client()(pointClient);
-
-      auto ptabdata = get_data();
-
-      if (m_bEffectiveVisibleTabs
-         && m_bTabVisibilityChanging
-         && pointClient.y() < ptabdata->m_iTabHeight)
-      {
-
-         KillTimer(e_timer_defer_handle_auto_hide_tabs);
-
-         m_bOverrideVisibleTabs = true;
-
-         m_bTabVisibilityChanging = false;
-
-      }
-      else if (pointClient.y() <= 1)
-      {
-
-         if (m_bHideTabsOnFullScreenOrTransparentFrame)
-         {
-
-            m_bOverrideVisibleTabs = true;
-
-            m_bEffectiveVisibleTabs = true;
-
-            set_need_layout();
-
-            set_need_redraw();
-
-            post_redraw();
-
-         }
-
-      }
-      else if (pointClient.y() > ptabdata->m_iTabHeight)
-      {
-
-         if (m_bOverrideVisibleTabs)
-         {
-
-            m_bOverrideVisibleTabs = false;
-
-            set_need_layout();
-
-            set_need_redraw();
-
-            post_redraw();
-
-         }
-
-      }
+      auto_hide_on_message_mouse_move(pmessage);
 
    }
 
@@ -983,6 +757,15 @@ namespace user
 
    }
 
+
+   ::i32 tab::auto_hide_threshold_height()
+   {
+
+      auto pdata = get_data();
+
+      return pdata->m_iTabHeight;
+
+   }
 
    //bool tab::has_tab_scrolling() const
    //{
@@ -1553,12 +1336,13 @@ namespace user
    }
    */
 
+
    void tab::on_message_create(::message::message * pmessage)
    {
 
       top_level()->add_handler(this);
 
-      m_bEffectiveVisibleTabs = m_bVisibleTabs;
+      auto_hide_on_message_create(pmessage);
 
       if (is_sandboxed())
       {
@@ -1583,7 +1367,7 @@ namespace user
       if (psystem->has_property("no_tabs"))
       {
 
-         m_bForceNoTabs = false;
+         m_bForceHiddenControl = false;
 
       }
 
@@ -2255,51 +2039,6 @@ namespace user
 //   }
 
 
-   bool tab::is_top_level_full_screen_or_transparent()
-   {
-
-      auto puiTopLevel = top_level();
-
-      if (puiTopLevel->frame_is_transparent() || top_level_frame()->layout().is_full_screen())
-      {
-
-         return true;
-
-      }
-
-      return false;
-
-   }
-
-
-   bool tab::full_screen_or_transparent_frame_tab_visibility()
-   {
-
-      if (!m_bHideTabsOnFullScreenOrTransparentFrame)
-      {
-
-         return true;
-
-      }
-
-      if (m_bOverrideVisibleTabs)
-      {
-
-         return true;
-
-      }
-
-      if (is_top_level_full_screen_or_transparent())
-      {
-
-         return false;
-
-      }
-
-      return true;
-
-   }
-
 
    //bool tab::are_tabs_visible() const
    //{
@@ -2673,31 +2412,9 @@ namespace user
 
       ::user::interaction::handle(ptopic, pcontext);
 
-      if (ptopic->m_atom == id_on_after_enter_full_screen)
-      {
+      ::user::auto_hide::handle(ptopic, pcontext);
 
-         m_bEffectiveVisibleTabs = false;
-
-      }
-      else if (ptopic->m_atom == id_on_set_transparent_frame)
-      {
-
-         m_bEffectiveVisibleTabs = false;
-
-      }
-      else if (ptopic->m_atom == id_on_after_exit_full_screen)
-      {
-
-         m_bEffectiveVisibleTabs = full_screen_or_transparent_frame_tab_visibility();
-
-      }
-      else if (ptopic->m_atom == id_on_clear_transparent_frame)
-      {
-
-         m_bEffectiveVisibleTabs = full_screen_or_transparent_frame_tab_visibility();
-
-      }
-      else if (ptopic->m_atom == id_get_topic_impact_id)
+      if (ptopic->m_atom == id_get_topic_impact_id)
       {
 
          ptopic->payload(id_id) = get_current_tab_id();
@@ -2757,25 +2474,7 @@ namespace user
 
       ::user::interaction::_001OnTimer(ptimer);
 
-      if (ptimer->m_uEvent == e_timer_defer_handle_auto_hide_tabs)
-      {
-
-         calculate_tab_visibility();
-
-         if (!m_bTabVisibilityChanging)
-         {
-
-            KillTimer(e_timer_defer_handle_auto_hide_tabs);
-
-            set_need_layout();
-
-            set_need_redraw();
-
-            post_redraw();
-
-         }
-
-      }
+      ::user::auto_hide::_001OnTimer(ptimer);
 
       if (ptimer->m_uEvent == e_timer_drag_start)
       {

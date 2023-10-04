@@ -4833,6 +4833,13 @@ namespace user
    void interaction::_001CallOnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
+      if (!should_draw())
+      {
+
+         return;
+
+      }
+
       scoped_restore(pgraphics->m_puserinteraction);
 
       pgraphics->m_puserinteraction = this;
@@ -12785,6 +12792,14 @@ namespace user
    }
 
 
+   bool interaction::should_draw()
+   {
+
+      return true;
+
+   }
+
+
 #undef INFO_LAYOUT_DISPLAY
 
 
@@ -15396,7 +15411,7 @@ namespace user
       if (::is_null(pwindow))
       {
 
-         throw ::exception(error_wrong_state);
+         return false;
 
       }
 
@@ -15405,7 +15420,7 @@ namespace user
       if (::is_null(puserinteractionimpl))
       {
 
-         throw ::exception(error_wrong_state);
+         return false;
 
       }
 
@@ -23555,7 +23570,7 @@ namespace user
       for (auto & pitem : *pitema)
       {
 
-         if (pitem->is_hidden())
+         if (!pitem || pitem->is_hidden())
          {
 
             continue;

@@ -64,6 +64,7 @@ namespace user
       m_pmenuitemSub = nullptr;
 
       m_bEnableDragClient = true;
+      m_bDefaultParentMouseMessageHandling = true;
 
    }
 
@@ -647,7 +648,7 @@ namespace user
 
       //display();
 
-      display(e_display_normal,  e_activation_set_foreground | e_activation_set_popup);
+      display(e_display_normal,  e_activation_set_foreground | e_activation_for_context_menu);
 
       set_need_layout();
 
@@ -690,7 +691,7 @@ namespace user
 
       //   m_bMenuOk = true;
 
-            display(e_display_normal, e_activation_set_foreground | e_activation_set_popup);
+            display(e_display_normal, e_activation_set_foreground | e_activation_for_context_menu);
 
             set_need_layout();
 
@@ -1016,7 +1017,11 @@ namespace user
       if (ptopic->m_atom == ::id_click)
       {
 
-         if (m_pitemClose.is_set() && ptopic->user_interaction() == m_pitemClose->m_puserinteraction)
+         auto puserinteractionTopic = ptopic->user_interaction();
+
+         auto puserinteractionClose = m_pitemClose->m_puserinteraction;
+
+         if (m_pitemClose.is_set() && puserinteractionTopic == puserinteractionClose)
          {
 
             defer_close();

@@ -87,21 +87,16 @@ CLASS_DECL_ACME  void copy(::payload & payload, const ::string & str)
 #endif
 
 
-
-
-
-payload::payload()
+payload::payload() :
+   m_etype(e_type_new)
 {
-
-   m_etype = e_type_new;
 
 }
 
 
-payload::payload(enum_type etype)
+payload::payload(enum_type etype) :
+   m_etype(e_type_new)
 {
-
-   m_etype = e_type_new;
 
    set_type(etype, false);
 
@@ -138,10 +133,9 @@ payload::payload(enum_type etype)
 //}
 
 
-payload::payload(std::nullptr_t)
+payload::payload(std::nullptr_t) :
+   m_etype(e_type_null)
 {
-
-   m_etype = e_type_null;
 
 }
 
@@ -157,20 +151,18 @@ payload::payload(std::nullptr_t)
 //}
 
 
-payload::payload(::particle * pelement)
+payload::payload(::particle * pelement) :
+   m_etype(e_type_new)
 {
-
-   m_etype = e_type_new;
 
    operator = ((::particle *) pelement);
 
 }
 
 
-payload::payload(const ::particle & particle)
+payload::payload(const ::particle & particle) :
+   m_etype(e_type_new)
 {
-
-   m_etype = e_type_new;
 
    operator = (particle);
 
@@ -179,42 +171,42 @@ payload::payload(const ::particle & particle)
 
 
 
-payload::payload(const ::ansi_character * start, const ::ansi_character * end) {
-m_etype = e_type_new;
-set_string({start, end});
+payload::payload(const ::ansi_character * start, const ::ansi_character * end) :
+m_etype(e_type_new),
+m_str{ start, end }
+{
 }
 
 
-payload::payload(const ::ansi_character * psz) {m_etype = e_type_new;
-set_string(psz);
-}
-
-payload::payload(const ::string & str)
+payload::payload(const ::ansi_character * psz) :
+   m_etype(e_type_string),
+   m_str(psz)
 {
 
-   m_etype = e_type_new;
+}
 
-   set_string(str);
+payload::payload(const ::string & str) :
+   m_etype(e_type_string),
+   m_str(str)
+{
+
 
 }
 
 
-payload::payload(const type_atom & typeatom)
+payload::payload(const type_atom & typeatom):
+   m_etype(e_type_atom),
+   m_atom(typeatom)
 {
 
-   m_etype = e_type_new;
-
-   set_type(typeatom);
 
 }
 
 
-payload::payload(::string * pstr)
+payload::payload(::string * pstr) :
+   m_etype(e_type_pstring),
+   m_pstr(pstr)
 {
-
-   m_etype = e_type_new;
-
-   operator = (pstr);
 
 }
 
@@ -229,12 +221,10 @@ payload::payload(::string * pstr)
 //}
 
 
-payload::payload(bool * pb)
+payload::payload(bool * pb) :
+   m_etype(e_type_pbool),
+   m_pb(pb)
 {
-
-   m_etype = e_type_new;
-
-   operator = (pb);
 
 }
 
@@ -294,38 +284,34 @@ payload::payload(long l)
 #endif
 
 
-payload::payload(::i32 * pi)
+payload::payload(::i32 * pi) :
+   m_etype(e_type_pi32),
+   m_pi32(pi)
 {
-
-   m_etype = e_type_new;
-   operator = (pi);
 
 }
 
 
-payload::payload(::u32 * pinteraction)
+payload::payload(::u32 * pu) :
+   m_etype(e_type_pu32),
+   m_pu32(pu)
 {
-
-   m_etype = e_type_new;
-   operator = (pinteraction);
 
 }
 
 
-payload::payload(::i64 * pi)
+payload::payload(::i64 * pi):
+   m_etype(e_type_pi64),
+   m_pi64(pi)
 {
-
-   m_etype = e_type_new;
-   operator = (pi);
 
 }
 
 
-payload::payload(::u64 * pinteraction)
+payload::payload(::u64 * pu) :
+   m_etype(e_type_pu64),
+   m_pu64(pu)
 {
-
-   m_etype = e_type_new;
-   operator = (pinteraction);
 
 }
 
@@ -348,68 +334,60 @@ payload::payload(::u64 * pinteraction)
 //}
 
 
-payload::payload(const ::file::path & path)
+payload::payload(const ::file::path & path) :
+   m_etype(e_type_path),
+   m_ppath(new ::file::path_object(path))
 {
-
-   m_etype = e_type_new;
-   operator = (path);
 
 }
 
 
-payload::payload(const string_array & payload)
+payload::payload(const string_array & stra) :
+   m_etype(e_type_string_array),
+   m_pstra(new string_array(stra))
 {
 
-   m_etype  = e_type_new;
+
+}
+
+
+payload::payload(const ::i32_array & ia) :
+   m_etype(e_type_i32_array),
+   m_pia(new ::i32_array(ia))
+{
+
+}
+
+
+payload::payload(const payload_array & payloada) :
+   m_etype(e_type_payload_array),
+   m_ppayloada(new payload_array(payloada))
+{
+
+}
+
+
+payload::payload(const property_set & set) :
+   m_etype(e_type_property_set),
+   m_ppropertyset(new property_set(set))
+{
+
+}
+
+
+payload::payload(const class ::payload & payload) :
+   m_etype(e_type_new)
+{
+
    operator = (payload);
 
 }
 
 
-payload::payload(const ::i32_array & ia)
+payload::payload(::payload * ppayload) :
+   m_etype(e_type_payload_pointer),
+   m_ppayload(ppayload)
 {
-
-   m_etype  = e_type_new;
-   operator = (ia);
-
-}
-
-
-payload::payload(const payload_array & payload)
-{
-
-   m_etype  = e_type_new;
-
-   operator = (payload);
-
-}
-
-
-payload::payload(const property_set & set)
-{
-
-   m_etype  = e_type_new;
-
-   operator = (set);
-
-}
-
-
-payload::payload(const class ::payload & payload)
-{
-
-   m_etype = e_type_new;
-   operator = (payload);
-
-}
-
-
-payload::payload(::payload * ppayload)
-{
-
-   m_etype = e_type_new;
-
-   operator = (ppayload);
 
 }
 
@@ -432,12 +410,10 @@ payload::payload(::payload * ppayload)
 //}
 
 
-payload::payload(const ::property & property)
+payload::payload(const ::property & property) :
+   m_etype(e_type_property),
+   m_pproperty(new ::property(property))
 {
-
-   m_etype = e_type_new;
-
-   operator = (property);
 
 }
 
@@ -463,57 +439,51 @@ payload::payload(::property * pproperty)
 }
 
 
-payload::payload(const ::atom & atom)
+payload::payload(const ::atom & atom) :
+   m_etype(e_type_atom),
+   m_atom(atom)
 {
-
-   m_etype = e_type_new;
-   operator = (atom);
 
 }
 
 
-payload::payload(const class time & time)
+payload::payload(const class time & time) :
+   m_etype(e_type_time),
+   m_time(time)
 {
 
-   m_etype = e_type_time;
-   m_time = time;
 
 }
 
 
-payload::payload(class ::time * ptime)
+payload::payload(class ::time * ptime) :
+   m_etype(e_type_ptime),
+   m_ptime(ptime)
 {
-
-   m_etype = e_type_ptime;
-   m_ptime = ptime;
 
 }
 
 
-payload::payload(const ::earth::time & time)
+payload::payload(const ::earth::time & earthtime) :
+   m_etype(e_type_earth_time),
+   m_earthtime(earthtime)
 {
    
-   m_etype = e_type_time;
-   
-   m_earthtime = time;
+}
+
+
+payload::payload(const ::color::color & color) :
+   m_etype(e_type_color),
+   m_color(color)
+{
 
 }
 
 
-payload::payload(const ::color::color & color)
+payload::payload(const ::color::hls & hls) :
+   m_etype(e_type_hls),
+   m_hls(hls)
 {
-
-   m_etype = e_type_color;
-   m_color = color;
-
-}
-
-
-payload::payload(const ::color::hls & hls)
-{
-
-   m_etype = e_type_hls;
-   m_hls = hls;
 
 }
 

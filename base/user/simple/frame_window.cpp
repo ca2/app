@@ -1247,7 +1247,7 @@ void simple_frame_window::on_layout(::draw2d::graphics_pointer& pgraphics)
    if (::type(this).name().case_insensitive_contains("child_frame"))
    {
 
-      information("%child_frame%\n");
+      information() << "child_frame";
 
    }
 

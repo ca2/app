@@ -683,6 +683,7 @@
     <ClCompile Include="user\simple\status_bar.cpp" />
     <ClCompile Include="user\simple\tab_document.cpp" />
     <ClCompile Include="user\simple\toolbar.cpp" />
+    <ClCompile Include="user\user\auto_hide.cpp" />
     <ClCompile Include="user\user\control_bar.cpp" />
     <ClCompile Include="user\user\control_property.cpp" />
     <ClCompile Include="user\user\data_exchange.cpp" />
@@ -803,6 +804,7 @@
     <ClInclude Include="user\simple\_.h" />
     <ClInclude Include="user\simple\_impl.h" />
     <ClInclude Include="user\simple\_component.h" />
+    <ClInclude Include="user\user\auto_hide.h" />
     <ClInclude Include="user\user\data_exchange.h" />
     <ClInclude Include="user\user\form_handler.h" />
     <ClInclude Include="user\user\image_list.h" />

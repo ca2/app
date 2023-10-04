@@ -1654,7 +1654,7 @@ namespace experience_anthill
          m_rectangleTab.height(),
          0);*/
 
-         ptab->get_data()->m_rectangleTabClient.left() = ptab->m_bEffectiveVisibleTabs ? ptab->get_data()->m_rectangleTab.right() : rectangleX.left();
+         ptab->get_data()->m_rectangleTabClient.left() = ptab->m_bEffectiveVisibleControl ? ptab->get_data()->m_rectangleTab.right() : rectangleX.left();
          ptab->get_data()->m_rectangleTabClient.top() = ptab->get_data()->m_rectangleTab.top();
          ptab->get_data()->m_rectangleTabClient.right() = rectangleX.right();
          ptab->get_data()->m_rectangleTabClient.bottom() = ptab->get_data()->m_rectangleTab.bottom();
@@ -1792,7 +1792,7 @@ namespace experience_anthill
          auto & rectangleTabClient = ptab->get_data()->m_rectangleTabClient;
 
          rectangleTabClient.left() = ptab->get_data()->m_rectangleTab.left();
-         rectangleTabClient.top() = ptab->m_bEffectiveVisibleTabs ? ptab->get_data()->m_rectangleTab.bottom() : rectangleX.top();
+         rectangleTabClient.top() = ptab->m_bEffectiveVisibleControl ? ptab->get_data()->m_rectangleTab.bottom() : rectangleX.top();
          rectangleTabClient.right() = ptab->get_data()->m_rectangleTab.right();
          rectangleTabClient.bottom() = rectangleX.bottom();
 

@@ -93,9 +93,9 @@ public:
 
    property() { on_property_construct(this); }
    property(const ::atom& atom) : m_atom(atom) { on_property_construct(this); }
-   property(const ::atom& atom, const ::payload& varValue) : m_atom(atom), ::payload(varValue) { on_property_construct(this); }
-   property(const ::property& property) : m_atom(property.m_atom), ::payload(property) { on_property_construct(this); }
-   property(::property&& property) : m_atom(::transfer(property.m_atom)), ::payload(::transfer(property)) { on_property_construct(this); }
+   property(const ::atom& atom, const ::payload& payload) : m_atom(atom), ::payload(payload) { on_property_construct(this); }
+   property(const ::property& property) : m_atom(property.m_atom), ::payload((const ::payload &) property) { on_property_construct(this); }
+   property(::property&& property) : m_atom(::transfer(property.m_atom)), ::payload((::payload &&)::transfer(property)) { on_property_construct(this); }
    ~property() { on_property_destruct(this); }
 
 

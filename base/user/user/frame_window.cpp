@@ -2801,11 +2801,11 @@ namespace user
 
       //return;
 
-      information() << "user::frame_window::_001OnNcDraw graphics offset : " << pgraphics->get_origin();
+      //information() << "user::frame_window::_001OnNcDraw graphics offset : " << pgraphics->get_origin();
 
       auto pstyle = get_style(pgraphics);
 
-      information() << "user::frame_window::_001OnNcDraw graphics offset (2) : " << pgraphics->get_origin();
+      //information() << "user::frame_window::_001OnNcDraw graphics offset (2) : " << pgraphics->get_origin();
 
 //      ::rectangle_i32 rectangleX;
 //

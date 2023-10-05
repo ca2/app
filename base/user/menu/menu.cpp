@@ -693,6 +693,8 @@ namespace user
 
             display(e_display_normal, e_activation_set_foreground | e_activation_for_context_menu);
 
+            order(e_zorder_top_most);
+
             set_need_layout();
 
             set_need_redraw();

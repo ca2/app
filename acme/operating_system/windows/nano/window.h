@@ -96,6 +96,10 @@ namespace windows
       void redraw() override;
 
 
+      ::point_i32 try_absolute_mouse_position(const ::point_i32 & point) override;
+
+
+
       void get_client_rectangle(::rectangle_i32 & rectangle) override;
 
       void get_window_rectangle(::rectangle_i32 & rectangle) override;

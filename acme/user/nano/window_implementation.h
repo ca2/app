@@ -34,6 +34,9 @@ public:
    virtual void on_create();
 
 
+   ::point_i32 try_absolute_mouse_position(const ::point_i32 & point) override;
+
+
    void handle(::topic * ptopic, ::context * pcontext) override;
 
 

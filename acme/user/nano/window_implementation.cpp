@@ -82,6 +82,14 @@ void nano_window_implementation::on_create()
 }
 
 
+::point_i32 nano_window_implementation::try_absolute_mouse_position(const ::point_i32 & point)
+{
+
+   return nano_window_interface::try_absolute_mouse_position(point);
+
+}
+
+
 void nano_window_implementation::handle(::topic * ptopic, ::context * pcontext)
 {
 

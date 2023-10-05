@@ -1041,6 +1041,14 @@ namespace windows
    }
 
 
+   ::point_i32 nano_window::try_absolute_mouse_position(const ::point_i32 & point)
+   {
+
+      return point;
+
+   }
+
+
    void nano_window::get_client_rectangle(::rectangle_i32& rectangle)
    {
 

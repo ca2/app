@@ -46,7 +46,14 @@ namespace user
             if (iFind2 < 0)
             {
 
-               stra.add(str(iFind2));
+               auto strRemainingWord = str(iFind);
+
+               if (strRemainingWord.has_char())
+               {
+
+                  stra.add(strRemainingWord);
+
+               }
 
                return;
 

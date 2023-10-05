@@ -385,7 +385,7 @@ namespace experience_tranquillum
                else
                {
 
-                  return ::color::transparent;
+                  return argb(255, 255, 255, 255);
 
                }
 

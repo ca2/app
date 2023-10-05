@@ -354,7 +354,7 @@ CLASS_DECL_ACME string string_from_strdup(const ::ansi_character * psz);
 inline strsize str::utf8_dec_len(const ::ansi_character * pszBeg, const ::ansi_character * psz)
 {
 
-   const ::ansi_character * pszDec = unicode_prior(pszBeg, psz);
+   const ::ansi_character * pszDec = unicode_prior(psz, pszBeg);
 
    if (pszDec == nullptr)
    {

@@ -703,6 +703,8 @@ namespace user
 
       query_full_size(pgraphics, &m_sizeFull);
 
+      ::user::scroll_base::on_layout(pgraphics);
+
    }
 
 
@@ -1168,6 +1170,14 @@ namespace user
             {
 
                rectangleListOver.move_to(rectangleListOver.left(), rectangleMonitor.top());
+
+            }
+
+
+            if (rectangleListOver.bottom() > rectangleMonitor.bottom() - m_iBorder)
+            {
+
+               rectangleListOver.bottom() = rectangleMonitor.bottom() - m_iBorder;
 
             }
 

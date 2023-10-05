@@ -502,7 +502,7 @@ namespace user
          if (m_bSelDrag)
          {
 
-            if (::is_item(m_pitemHover, m_pdata->m_iSelEnd))
+            if (!::is_item(m_pitemHover, m_pdata->m_iSelEnd))
             {
 
                m_pdata->m_iSelEnd = m_pitemHover->m_item.m_iItem;
@@ -669,9 +669,11 @@ namespace user
 
          //return m_pdata->hit_test(point);
 
-         auto pitemNone = __new(::item(e_element_none));
+         auto pitem = __new(::item(e_element_item));
 
-         return pitemNone;
+         pitem->m_item.m_iItem = m_pdata->hit_test(point);
+
+         return pitem;
 
       }
 

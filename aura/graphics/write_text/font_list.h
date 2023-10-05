@@ -42,6 +42,7 @@ namespace write_text
       ::color::color                            m_uaBackgroundColor[2][3];
       ::color::color                            m_uaForegroundColor[2][3];
       ::pointer<::user::interaction>            m_puserinteraction;
+      ::pointer<::user::interaction>            m_puserinteractionGraphicsContext;
 
 
       point_i32                                 m_point;
@@ -85,9 +86,9 @@ namespace write_text
 
       virtual bool is_updating() const;
 
-      virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
+      virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics, ::user::interaction * puserinteraction);
       virtual void _001OnDrawWide(::draw2d::graphics_pointer & pgraphics);
-      virtual void _001OnDrawSingleColumn(::draw2d::graphics_pointer & pgraphics);
+      virtual void _001OnDrawSingleColumn(::draw2d::graphics_pointer & pgraphics, ::user::interaction * puserinteraction);
 
       virtual index find_name(string str);
 

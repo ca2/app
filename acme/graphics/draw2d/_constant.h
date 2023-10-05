@@ -324,12 +324,12 @@ enum enum_draw_text
 {
 
    e_draw_text_none,
-   e_draw_text_no_prefix,
-   e_draw_text_word_break,
-   e_draw_text_path_ellipsis,
-   e_draw_text_end_ellipsis,
-   e_draw_text_single_line,
-   e_draw_text_expand_tabs,
+   e_draw_text_no_prefix = 1,
+   e_draw_text_word_break = 2,
+   e_draw_text_path_ellipsis = 4,
+   e_draw_text_end_ellipsis = 8,
+   e_draw_text_single_line = 16,
+   e_draw_text_expand_tabs = 32,
 
 };
 

@@ -101,6 +101,8 @@
 		9A5ECD2728CCC1C20084D354 /* tab_drop_target_window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5ECD2328CCC1620084D354 /* tab_drop_target_window.cpp */; };
 		9A615C3B28B1C5EE00377F68 /* tab_document.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A615C3A28B1C5BD00377F68 /* tab_document.cpp */; };
 		9A615C3C28B1C5EF00377F68 /* tab_document.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A615C3A28B1C5BD00377F68 /* tab_document.cpp */; };
+		9A88DAF02ACDD65000A34627 /* auto_hide.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88DAEE2ACDD65000A34627 /* auto_hide.cpp */; };
+		9A88DAF12ACDD65000A34627 /* auto_hide.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88DAEF2ACDD65000A34627 /* auto_hide.h */; };
 		9A92318327EAE4B400B5A78D /* impact_kit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A92318127EAE4B400B5A78D /* impact_kit.cpp */; };
 		9A92318427EAE4B400B5A78D /* impact_kit.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A92318227EAE4B400B5A78D /* impact_kit.h */; };
 		9A93B69D2846EB33005ACD11 /* impact_kit.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A92318227EAE4B400B5A78D /* impact_kit.h */; };
@@ -404,6 +406,8 @@
 		9A615C3928B1C5BD00377F68 /* tab_document.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = tab_document.h; sourceTree = "<group>"; };
 		9A615C3A28B1C5BD00377F68 /* tab_document.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = tab_document.cpp; sourceTree = "<group>"; };
 		9A6D3F132A2E2A360081052F /* tab_graphics.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = tab_graphics.cpp; sourceTree = "<group>"; };
+		9A88DAEE2ACDD65000A34627 /* auto_hide.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = auto_hide.cpp; sourceTree = "<group>"; };
+		9A88DAEF2ACDD65000A34627 /* auto_hide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = auto_hide.h; sourceTree = "<group>"; };
 		9A92318127EAE4B400B5A78D /* impact_kit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = impact_kit.cpp; sourceTree = "<group>"; };
 		9A92318227EAE4B400B5A78D /* impact_kit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = impact_kit.h; sourceTree = "<group>"; };
 		9A93B6FA2846EB33005ACD11 /* libios_base.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_base.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -575,6 +579,8 @@
 				9A1D5DE82751A98C003D9B5F /* _data.h */,
 				9A1D5DAA2751A98B003D9B5F /* _impl.h */,
 				9A1D5DF52751A98C003D9B5F /* _tree.h */,
+				9A88DAEE2ACDD65000A34627 /* auto_hide.cpp */,
+				9A88DAEF2ACDD65000A34627 /* auto_hide.h */,
 				9A1D5DC12751A98C003D9B5F /* composition_imm_client.h */,
 				9A1D5DBC2751A98C003D9B5F /* control_bar.cpp */,
 				9A1D5DCC2751A98C003D9B5F /* control_bar.h */,
@@ -844,6 +850,7 @@
 				9A92318427EAE4B400B5A78D /* impact_kit.h in Headers */,
 				9AAFBF802A8B2C35005D10AB /* handler_impact.h in Headers */,
 				9AA3FA872A96236C004283CA /* form_handler.h in Headers */,
+				9A88DAF12ACDD65000A34627 /* auto_hide.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1109,6 +1116,7 @@
 				9A5ECD1628CCC01E0084D354 /* impact.cpp in Sources */,
 				9A1D5F152751B537003D9B5F /* control_box.cpp in Sources */,
 				9A5ECD2428CCC1B40084D354 /* picture_impl.cpp in Sources */,
+				9A88DAF02ACDD65000A34627 /* auto_hide.cpp in Sources */,
 				9A1D5F162751B537003D9B5F /* department.cpp in Sources */,
 				9A1D5F172751B537003D9B5F /* dock_manager.cpp in Sources */,
 				9A1D5F182751B537003D9B5F /* experience_updown.cpp in Sources */,

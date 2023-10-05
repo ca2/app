@@ -222,14 +222,7 @@ void nano_window_implementation::handle(::topic * ptopic, ::context * pcontext)
 void nano_window_implementation::do_asynchronously()
 {
 
-   /*m_pinterface->m_functionClose = [this](nano_window * pwindow)
-   {
-
-      m_pinterface->m_psequence->on_sequence();
-
-   };*/
-
-   user_post([this]()
+   auto procedure = [this]()
       {
 
          create();
@@ -238,7 +231,20 @@ void nano_window_implementation::do_asynchronously()
 
          message_loop();
 
-      });
+      };
+
+   if (is_main_thread())
+   {
+
+      procedure();
+
+   }
+   else
+   {
+
+      user_post(procedure);
+
+   }
 
    //display(m_strMessage, m_strTitle, m_emessagebox, m_strDetails);
 

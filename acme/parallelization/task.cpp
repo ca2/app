@@ -660,6 +660,15 @@ void task::post_procedure(const ::procedure & procedure)
 
    }
 
+   if (is_current_task())
+   {
+
+      procedure();
+
+      return;
+
+   }
+
    synchronous_lock synchronouslock(this->synchronization());
 
    m_procedurea.add(procedure);

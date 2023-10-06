@@ -391,7 +391,7 @@ CLASS_DECL_ACME htask_t get_main_user_htask()
 }
 
 
-CLASS_DECL_ACME itask_t get_main_user_itask()
+CLASS_DECL_ACME itask_t main_user_itask()
 {
 
    return g_uiMainThread;

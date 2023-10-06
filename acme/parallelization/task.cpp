@@ -2098,7 +2098,7 @@ CLASS_DECL_ACME void set_main_user_itask(itask_t itask);
 CLASS_DECL_ACME void set_main_user_htask(htask_t htask);
 
 
-CLASS_DECL_ACME itask_t get_main_user_itask();
+CLASS_DECL_ACME itask_t main_user_itask();
 
 
 CLASS_DECL_ACME void set_main_user_thread()
@@ -2122,7 +2122,7 @@ CLASS_DECL_ACME void set_main_user_thread(htask_t htask)
 CLASS_DECL_ACME bool is_main_thread()
 {
 
-   return current_itask() == get_main_user_itask();
+   return current_itask() == main_user_itask();
 
 }
 

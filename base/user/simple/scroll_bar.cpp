@@ -339,7 +339,7 @@ void simple_scroll_bar::on_message_left_button_up(::message::message * pmessage)
 
    }
 
-   auto pstyle = get_style();
+   //auto pstyle = get_style();
 
    int iScrollBarWidth = scrollbar_width();
 
@@ -430,7 +430,7 @@ bool simple_scroll_bar::_001SetScrollInfo(::user::scroll_info * psi, bool bRedra
 bool simple_scroll_bar::GetTrackClientRect(::rectangle_i32 * prectangle)
 {
 
-   auto pstyle = get_style();
+   //auto pstyle = get_style();
 
    //int iScrollBarWidth = get_int(pstyle, ::user::e_int_scroll_bar_width);
 
@@ -473,7 +473,7 @@ bool simple_scroll_bar::GetTrackClientRect(::rectangle_i32 * prectangle)
 i32 simple_scroll_bar::GetTrackSize(::size_i32 & size)
 {
 
-   auto pstyle = get_style();
+   ///auto pstyle = get_style();
 
    //int iScrollBarWidth = get_int(pstyle, ::user::e_int_scroll_bar_width);
 
@@ -580,7 +580,7 @@ i32 simple_scroll_bar::SetTrackingPos(const ::point_i32 & point)
 
    rectangleX = this->rectangle();
 
-   auto pstyle = get_style();
+   //auto pstyle = get_style();
 
    //int iScrollBarWidth = get_int(pstyle, ::user::e_int_scroll_bar_width);
 
@@ -824,7 +824,7 @@ void simple_scroll_bar::_001OnTimer(::timer * ptimer)
 
    ::user::scroll_bar::_001OnTimer(ptimer);
 
-   auto pointCursor = mouse_cursor_position();
+   //auto pointCursor = mouse_cursor_position();
 
    //host_to_client()(pointCursor);
 
@@ -1131,7 +1131,7 @@ void simple_scroll_bar::UpdateBitmaps()
 
    ::rectangle_i32 rectangleButtonA;
 
-   auto pstyle = get_style();
+   //auto pstyle = get_style();
 
    //int iScrollBarWidth = get_int(pstyle, ::user::e_int_scroll_bar_width);
 
@@ -1164,7 +1164,7 @@ void simple_scroll_bar::UpdateBitmaps()
 
    ::rectangle_i32 rectangleButtonB;
 
-   auto pstyle = get_style();
+   //auto pstyle = get_style();
 
    //int iScrollBarWidth = get_int(pstyle, ::user::e_int_scroll_bar_width);
 
@@ -1199,7 +1199,7 @@ void simple_scroll_bar::UpdateBitmaps()
 
    //int iScrollBarWidth = get_int(pstyle, ::user::e_int_scroll_bar_width);
 
-   int iScrollBarWidth = scrollbar_width();
+   //int iScrollBarWidth = scrollbar_width();
 
    auto rectangleA = get_buttonA_rectangle(rectangleX);
 
@@ -1256,7 +1256,7 @@ void simple_scroll_bar::UpdateBitmaps()
 
    //int iScrollBarWidth = get_int(pstyle, ::user::e_int_scroll_bar_width);
 
-   int iScrollBarWidth = scrollbar_width();
+   //int iScrollBarWidth = scrollbar_width();
 
    auto rectangleB = get_buttonB_rectangle(rectangleX);
 
@@ -1311,7 +1311,7 @@ void simple_scroll_bar::UpdateBitmaps()
 
    ::status < ::rectangle_i32 > statusrectanglePageA;
 
-   auto pstyle = get_style();
+   //auto pstyle = get_style();
 
    //int iScrollBarWidth = get_int(pstyle, ::user::e_int_scroll_bar_width);
 
@@ -1352,7 +1352,7 @@ void simple_scroll_bar::UpdateBitmaps()
 
    ::status < ::rectangle_i32 > statusrectanglePageB;
 
-   auto pstyle = get_style();
+   ///auto pstyle = get_style();
 
    //int iScrollBarWidth = get_int(pstyle, ::user::e_int_scroll_bar_width);
 
@@ -2206,7 +2206,7 @@ bool simple_scroll_bar::drag_shift(::item * pitem, ::user::mouse * pmouse)
    if (pitem->m_item.m_eelement == e_element_scrollbar_trackbar)
    {
 
-      auto pdrag = drag(pitem);
+      //auto pdrag = drag(pitem);
 
       //auto pmouse = pdrag->m_pmouse;
 

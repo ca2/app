@@ -1802,9 +1802,9 @@ namespace user
 
       }
 
-      auto psystem = acmesystem()->m_paurasystem;
+      //auto psystem = acmesystem()->m_paurasystem;
 
-      auto pdraw2d = psystem->draw2d();
+      //auto pdraw2d = psystem->draw2d();
 
       auto pstyle = get_style(pgraphics);
 

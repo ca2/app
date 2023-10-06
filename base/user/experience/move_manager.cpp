@@ -184,7 +184,7 @@ namespace experience
 
          //::user::lock_sketch_to_design lockSketchToDesign(pframewindow);
 
-         auto edisplay = pframewindow->const_layout().sketch().display();
+         //auto edisplay = pframewindow->const_layout().sketch().display();
 
 //         if (::is_docking_appearance(edisplay))
 //         {

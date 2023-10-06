@@ -523,9 +523,9 @@ namespace experience
          if (pointBottomRight.is_null())
          {
 
-            auto & p = m_pframewindow->const_layout().sketch().m_point2;
+            ///auto & p = m_pframewindow->const_layout().sketch().m_point2;
 
-            auto & size = m_pframewindow->const_layout().sketch().m_size;
+            //auto & size = m_pframewindow->const_layout().sketch().m_size;
 
             __set_bottom_right(rectangleWindow.bottom_right());
 
@@ -769,7 +769,7 @@ namespace experience
 
       enum_grip egrip;
 
-      ::enum_element eelement = e_element_none;
+      //::enum_element eelement = e_element_none;
 
       //if (eframe != e_frame_none)
       //{

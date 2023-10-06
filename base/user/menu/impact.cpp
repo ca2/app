@@ -372,7 +372,7 @@ namespace user
    ::item_pointer menu_impact::on_hit_test(const ::point_i32 &point, ::user::e_zorder ezorder)
    {
 
-      index iPos = 0;
+      //index iPos = 0;
 
       ::status < ::rectangle_i32 > statusrectangle;
 

@@ -1360,7 +1360,7 @@ namespace user
    void split_layout::draw_control_background(::draw2d::graphics_pointer & pgraphics)
    {
 
-      return;
+      //return;
 
       auto pstyle = get_style(pgraphics);
 
@@ -1383,7 +1383,7 @@ namespace user
    void split_layout::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      return;
+      ///return;
 
       ::user::place_holder_container::_001OnNcDraw(pgraphics);
 
@@ -1393,7 +1393,7 @@ namespace user
    void split_layout::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      return;
+      //return;
 
       auto pstyle = get_style(pgraphics);
 

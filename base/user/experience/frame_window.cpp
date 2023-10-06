@@ -2258,7 +2258,7 @@ namespace experience
       if (bCursorPosition)
       {
 
-         auto pwindow = window();
+         //auto pwindow = window();
 
          pointCursor = m_pwindow->m_pdisplay->m_pointCursor2;
 

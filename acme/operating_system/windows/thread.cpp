@@ -219,6 +219,15 @@ namespace acme
    void node::user_post(const ::procedure & procedure)
    {
 
+      if (is_main_thread())
+      {
+
+         procedure();
+
+         return;
+
+      }
+
       acmesystem()->post_procedure(procedure);
 
    }

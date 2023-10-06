@@ -18,6 +18,8 @@ bool on_init_thread();
 
 void on_term_thread();
 
+CLASS_DECL_ACME void _do_tasks();
+
 
 #ifdef PARALLELIZATION_PTHREAD
 
@@ -944,7 +946,10 @@ void task::term_task()
 bool task::do_events()
 {
    
-   throw ::interface_only("tasks don't have message queue, threads do (1)");
+   //throw ::interface_only("tasks don't have message queue, threads do (1)");
+
+   _do_tasks();
+
 
    return true;
 
@@ -2276,6 +2281,23 @@ task_guard::~task_guard()
 {
 
    return task_index(::current_itask());
+
+}
+
+
+void do_tasks()
+{
+
+   _do_tasks();
+
+   auto ptask = ::get_task();
+
+   if (ptask)
+   {
+
+      ptask->do_events();
+
+   }
 
 }
 

@@ -143,3 +143,13 @@ void popup_button::on_draw(nano_device * pnanodevice)
 
 
 
+
+
+void popup_button::on_click(const ::atom & atom, ::user::mouse * pmouse)
+{
+
+   m_payloadResult = atom;
+
+   destroy();
+
+}

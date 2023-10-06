@@ -19,9 +19,8 @@ namespace windows
 
       //CreatableFromBase(nano_window, ::nano_window_implementation);
 
-
       HWND m_hwnd;
-      bool m_bDestroy;
+      //bool m_bDestroy;
 //      HFONT m_hfont;
 //      color32_t m_crText;
 //      color32_t m_crFocus;
@@ -37,7 +36,7 @@ namespace windows
 //      ::atom m_atomLeftButtonUp;
 //      //::atom                             m_atomResult;
 //      ::pointer<nano_child>m_pchildFocus;
-
+      ::task_pointer       m_ptask;
 
       nano_window();
 
@@ -46,8 +45,6 @@ namespace windows
       void create() override;
 
       void display() override;
-
-      void message_loop() override;
 
       virtual void _draw(HDC hdc);
 
@@ -91,6 +88,8 @@ namespace windows
 
       void move_to(const ::point_i32 & point) override;
 
+      //void _destroy_window();
+
       void destroy() override;
 
       void redraw() override;
@@ -118,10 +117,17 @@ namespace windows
       ::size_i32 get_main_screen_size() override;
 
 
+      void user_post(const ::procedure & procedure) override;
+
+
    };
 
 
 } // namespace windows
+
+
+
+CLASS_DECL_ACME void win32_process_messages(bool bWait = false);
 
 
 

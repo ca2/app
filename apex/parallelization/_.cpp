@@ -518,7 +518,18 @@ namespace apex
             if (::is_set(ptask))
             {
 
-               bProcess1 = ptask->do_events();
+               if (ptask == this)
+               {
+
+                  ::acme::system::do_events();
+
+               }
+               else
+               {
+
+                  bProcess1 = ptask->do_events();
+
+               }
 
             }
 
@@ -537,7 +548,7 @@ namespace apex
 
             auto psystem = acmesystem()->m_papexsystem;
 
-            if (::is_set(psystem))
+            if (::is_set(psystem) && psystem != this)
             {
 
                bProcess2 = psystem->do_events();

@@ -48,7 +48,12 @@ namespace draw2d
 
          m_pdraw2d = pparticle->acmesystem()->m_paurasystem->draw2d();
 
-         m_pdraw2d->lock_device();
+         if (m_pdraw2d)
+         {
+
+            m_pdraw2d->lock_device();
+
+         }
 
       }
 

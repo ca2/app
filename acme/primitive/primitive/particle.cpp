@@ -15,6 +15,9 @@
 //#include "acme/primitive/primitive/payload.h"
 
 
+CLASS_DECL_ACME void do_tasks();
+
+
 particle::~particle()
 {
 
@@ -1248,6 +1251,8 @@ void particle::_wait()
          return error_failed;
 
       }
+
+      do_tasks();
 
    }
 

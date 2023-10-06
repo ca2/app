@@ -759,6 +759,15 @@ CLASS_DECL_ACME void set_task(task * ptask OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PA
 
    t_ptask = ptask;
 
+   if (::is_set(ptask))
+   {
+
+      ptask->m_itask = ::current_itask();
+
+      ptask->m_htask = ::current_htask();
+
+   }
+
    ::release(ptaskOld);
 
 }

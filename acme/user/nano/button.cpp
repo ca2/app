@@ -81,14 +81,6 @@ bool nano_button::is_focusable() const
 //}
 
 
-void popup_button::on_click(const ::atom & atom, ::user::mouse * pmouse)
-{
-
-   m_payloadResult = atom;
-
-   destroy();
-
-}
 
 
 

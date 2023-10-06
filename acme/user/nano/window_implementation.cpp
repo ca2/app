@@ -229,7 +229,12 @@ void nano_window_implementation::do_asynchronously()
 
          m_pinterface->nano_window::display();
 
-         message_loop();
+         //if (!is_main_thread())
+         //{
+
+         //   message_loop();
+
+         //}
 
       };
 

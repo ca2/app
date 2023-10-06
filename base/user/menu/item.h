@@ -33,7 +33,7 @@ namespace user
       ::rectangle_i32                  m_rectangleUi;
       int                              m_iColumn;
       ::pointer<::image>               m_pimage;
-      ::pointer<::item_array>          m_pitema;
+      //::pointer<::item_array>          m_pmenuitema;
 
 
       menu_item();

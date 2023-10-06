@@ -15,7 +15,7 @@ namespace user
 
 
       ::image_pointer                     m_pimageMem;
-      ::pointer<::xml::document>          m_pxmldoc;
+      //::pointer<::xml::document>          m_pxmldoc;
       ::image_pointer                     m_pimageLogo;
       ::write_text::font_pointer          m_pfontTitle;
       ::write_text::font_pointer          m_pfont;
@@ -25,8 +25,8 @@ namespace user
       ::draw2d::pen_pointer               m_ppen;
       string_map < ::image_pointer >      m_pimageMap;
       string_map < ::image_pointer >      m_pimageMapGray;
-      ::i32_array                         m_iaPopup;
-      ::item_pointer                      m_pitem;
+      //::i32_array                         m_iaPopup;
+      ::pointer < menu_item >             m_pmenuitem;
 
 
       menu_impact();
@@ -68,7 +68,7 @@ namespace user
       //DECLARE_MESSAGE_HANDLER(on_message_mouse_leave);
       //DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
 
-      virtual ::status < rectangle_i32 > get_menu_item_rectangle(index iMenuItemIndex);
+      virtual ::user::item * layout_user_item_by_index(index iMenuItemIndex);
 
 
       ::item_pointer on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;

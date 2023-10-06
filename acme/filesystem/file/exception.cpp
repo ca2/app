@@ -3,6 +3,9 @@
 #include "exception.h"
 
 
+CLASS_DECL_ACME void get_message(::string & strMessage, const ::error_code & errorcode);
+
+
 #define DUMP_FILE_EXCEPTION_BACK_TRACE 0
 
 /////////////////////////////////////////////////////////////////////////////
@@ -109,7 +112,7 @@ namespace file
          
          string strErrorCodeMessage;
          
-         errorcode.get_message(strErrorCodeMessage);
+         ::get_message(strErrorCodeMessage, errorcode);
 
          string strException;
 

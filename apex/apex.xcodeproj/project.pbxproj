@@ -342,6 +342,8 @@
 		9A787DF1264CA9F2003DF8A0 /* command.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A787DEC264CA9F2003DF8A0 /* command.cpp */; };
 		9A787DF4264CA9F2003DF8A0 /* command.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A787DEE264CA9F2003DF8A0 /* command.h */; };
 		9A787DF5264CA9F2003DF8A0 /* command.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A787DEE264CA9F2003DF8A0 /* command.h */; };
+		9A7963492ACD1BD20056777F /* input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7963482ACD1B9B0056777F /* input.cpp */; };
+		9A79634A2ACD1BD50056777F /* input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7963482ACD1B9B0056777F /* input.cpp */; };
 		9A81ECAA274EDFCA003F38EC /* api.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A81ECA5274EDFCA003F38EC /* api.cpp */; };
 		9A81ECAB274EDFCA003F38EC /* api.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A81ECA5274EDFCA003F38EC /* api.cpp */; };
 		9A81ECAC274EDFCA003F38EC /* api_client.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A81ECA7274EDFCA003F38EC /* api_client.cpp */; };
@@ -1252,6 +1254,8 @@
 		9A787DE6264CA9D8003DF8A0 /* predicate_handler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = predicate_handler.h; sourceTree = "<group>"; };
 		9A787DEC264CA9F2003DF8A0 /* command.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = command.cpp; sourceTree = "<group>"; };
 		9A787DEE264CA9F2003DF8A0 /* command.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = command.h; sourceTree = "<group>"; };
+		9A7963472ACD1B9B0056777F /* input.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = input.h; sourceTree = "<group>"; };
+		9A7963482ACD1B9B0056777F /* input.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = input.cpp; sourceTree = "<group>"; };
 		9A81ECA5274EDFCA003F38EC /* api.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = api.cpp; sourceTree = "<group>"; };
 		9A81ECA7274EDFCA003F38EC /* api_client.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = api_client.cpp; sourceTree = "<group>"; };
 		9A81ECA8274EDFCA003F38EC /* api_client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = api_client.h; sourceTree = "<group>"; };
@@ -1568,6 +1572,7 @@
 				9A9230B327EACE7F00B5A78D /* handler */,
 				9A68B5A92511444B008DABD2 /* include */,
 				9A68B7322511444B008DABD2 /* inline */,
+				9A7963462ACD1B9B0056777F /* input */,
 				9AE6DF39296390D3008A1335 /* interprocess */,
 				9A68B6932511444B008DABD2 /* message */,
 				9A239CB926CDF9AE00F98012 /* networking */,
@@ -1882,6 +1887,15 @@
 				9A787D5D264C960E003DF8A0 /* threading.h */,
 			);
 			path = parallelization;
+			sourceTree = "<group>";
+		};
+		9A7963462ACD1B9B0056777F /* input */ = {
+			isa = PBXGroup;
+			children = (
+				9A7963472ACD1B9B0056777F /* input.h */,
+				9A7963482ACD1B9B0056777F /* input.cpp */,
+			);
+			path = input;
 			sourceTree = "<group>";
 		};
 		9A9230B327EACE7F00B5A78D /* handler */ = {
@@ -2781,6 +2795,7 @@
 			files = (
 				9A97C03628C83B0400A43004 /* udp_socket.cpp in Sources */,
 				9A787D73264C960F003DF8A0 /* thread.cpp in Sources */,
+				9A7963492ACD1BD20056777F /* input.cpp in Sources */,
 				9A226D0127CE8FAB0042BAC2 /* apex.cpp in Sources */,
 				9A68BB4A2511444D008DABD2 /* event_change.cpp in Sources */,
 				9A787D8D264C960F003DF8A0 /* _.cpp in Sources */,
@@ -2923,6 +2938,7 @@
 			files = (
 				9AC97FEB2A71B39E00B1BCF3 /* udp_socket.cpp in Sources */,
 				9AC97FEC2A71B39E00B1BCF3 /* thread.cpp in Sources */,
+				9A79634A2ACD1BD50056777F /* input.cpp in Sources */,
 				9AC97FED2A71B39E00B1BCF3 /* apex.cpp in Sources */,
 				9AC97FEE2A71B39E00B1BCF3 /* event_change.cpp in Sources */,
 				9AC97FEF2A71B39E00B1BCF3 /* _.cpp in Sources */,

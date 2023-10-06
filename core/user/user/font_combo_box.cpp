@@ -4,6 +4,7 @@
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/platform/system.h"
 #include "aura/message/user.h"
 #include "aura/graphics/write_text/font_list.h"
 #include "aura/graphics/write_text/font_enumeration_item.h"
@@ -68,6 +69,10 @@ namespace user
 
       pfontlist->set_font_list_type(::write_text::e_font_list_single_column);
 
+      on_font_enumeration();
+
+      acmesystem()->add_handler(this);
+
    }
 
 
@@ -83,27 +88,7 @@ namespace user
       if (ptopic->m_atom == id_font_enumeration)
       {
 
-         ::pointer<::user::font_list>pfontlist = m_plistbox;
-
-         synchronous_lock synchronouslock(pfontlist->synchronization());
-
-         auto pfontenumerationitema = pfontlist->m_pfontlist->m_pfontenumerationitema;
-
-         for (auto & item : *pfontenumerationitema)
-         {
-
-            if (item.is_set())
-            {
-
-               add_string(item->m_strName, item->m_strName);
-
-            }
-
-         }
-
-         set_need_redraw();
-
-         post_redraw();
+         on_font_enumeration();
 
       }
 
@@ -111,6 +96,45 @@ namespace user
 
    }
 
+
+   void font_combo_box::on_font_enumeration()
+   {
+
+      ::pointer<::user::font_list>pfontlist = m_plistbox;
+
+      if (!pfontlist)
+      {
+
+         return;
+
+      }
+
+      synchronous_lock synchronouslock(pfontlist->synchronization());
+
+      pfontlist->m_pfontlist->m_puserinteractionGraphicsContext = pfontlist;
+
+      pfontlist->m_pfontlist->update_extents();
+
+
+      auto pfontenumeration = pfontlist->m_pfontlist->m_pfontenumeration;
+
+      for (auto & item : *pfontenumeration->m_pfontenumerationitema)
+      {
+
+         if (item.is_set())
+         {
+
+            add_string(item->m_strName, item->m_strName);
+
+         }
+
+      }
+
+      set_need_redraw();
+
+      post_redraw();
+
+   }
 
 
 } //  namespace user

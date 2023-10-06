@@ -2,11 +2,12 @@
 #include "framework.h"
 #include "window.h"
 #include "device.h"
-////#include "acme/exception/exception.h"
+#include "acme/parallelization/task.h"
 #include "acme/user/nano/button.h"
 #include "acme/user/nano/message_box.h"
 #include "acme/user/user/mouse.h"
 #include "acme/user/nano/window.h"
+
 
 
 CLASS_DECL_ACME string task_get_name();
@@ -46,7 +47,7 @@ namespace windows
    nano_window::nano_window()
    {
 
-      m_bDestroy = false;
+//      m_bDestroy = false;
 
    }
 
@@ -134,14 +135,14 @@ namespace windows
    LRESULT CALLBACK nano_window_procedure(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
    {
 
-      ::windows::nano_window* pwindow = nullptr;
+      ::windows::nano_window * pwindow = nullptr;
 
       if (msg == WM_NCCREATE)
       {
 
-         CREATESTRUCT* pcreatestruct = (CREATESTRUCT*)lParam;
+         CREATESTRUCT * pcreatestruct = (CREATESTRUCT *)lParam;
 
-         pwindow = (::windows::nano_window*)pcreatestruct->lpCreateParams;
+         pwindow = (::windows::nano_window *)pcreatestruct->lpCreateParams;
 
          SetWindowLongPtr(hwnd, GWLP_USERDATA, (LONG_PTR)pwindow);
 
@@ -151,7 +152,7 @@ namespace windows
       else
       {
 
-         pwindow = (::windows::nano_window*)GetWindowLongPtr(hwnd, GWLP_USERDATA);
+         pwindow = (::windows::nano_window *)GetWindowLongPtr(hwnd, GWLP_USERDATA);
 
       }
 
@@ -182,6 +183,8 @@ namespace windows
       wstring wstrTitle(m_pinterface->m_strTitle);
 
       auto hinstanceWndProc = nano_message_box_hinstance();
+
+      m_ptask = ::get_task();
 
       HWND hwnd = CreateWindowEx(
          m_pinterface->m_bTopMost ? WS_EX_TOPMOST : 0,
@@ -369,7 +372,7 @@ namespace windows
    //}
    //
 
-   void nano_window::on_left_button_down(::user::mouse* pmouse)
+   void nano_window::on_left_button_down(::user::mouse * pmouse)
    {
 
       //SetCapture(m_hwnd);
@@ -400,7 +403,7 @@ namespace windows
    }
 
 
-   void nano_window::on_left_button_up(::user::mouse* pmouse)
+   void nano_window::on_left_button_up(::user::mouse * pmouse)
    {
 
       //ReleaseCapture();
@@ -431,7 +434,7 @@ namespace windows
 
    }
 
-   void nano_window::on_mouse_move(::user::mouse* pmouse)
+   void nano_window::on_mouse_move(::user::mouse * pmouse)
    {
 
       //if (m_pdragmove && m_pdragmove->m_bLButtonDown)
@@ -465,7 +468,7 @@ namespace windows
    }
 
 
-   void nano_window::on_right_button_down(::user::mouse* pmouse)
+   void nano_window::on_right_button_down(::user::mouse * pmouse)
    {
 
       //SetCapture(m_hwnd);
@@ -496,7 +499,7 @@ namespace windows
    }
 
 
-   void nano_window::on_right_button_up(::user::mouse* pmouse)
+   void nano_window::on_right_button_up(::user::mouse * pmouse)
    {
 
       //ReleaseCapture();
@@ -603,8 +606,10 @@ namespace windows
       case WM_CLOSE:
          DestroyWindow(m_hwnd);
          break;
+      case WM_NCDESTROY:
+         break;
       case WM_DESTROY:
-         PostQuitMessage(0);
+         //PostQuitMessage(0);
          break;
       case WM_CREATE:
       {
@@ -775,7 +780,7 @@ namespace windows
          if (wparam == 0)
          {
 
-            strLparamString = (const WCHAR*)(LPARAM(lparam));
+            strLparamString = (const WCHAR *)(LPARAM(lparam));
 
          }
 
@@ -879,62 +884,8 @@ namespace windows
    }
 
 
-   void nano_window::message_loop()
-   {
 
-      auto strThreadName = ::task_get_name();
-
-      auto pmessagebox = m_pinterface.cast < nano_message_box >();
-
-      ::string strAbbreviation("nano_window");
-
-      //if (strType.contains("message_box"))
-      if (pmessagebox)
-      {
-         //auto pmessagebox = m_pinterface.cast<nano::me
-         /// @brief ////////123456789012345
-         //strAbbreviation = "msgbx:" + pmessagebox->m_strMessage.left(20);
-
-         strAbbreviation = "msgbx:" + pmessagebox->m_strMessage;
-
-      }
-
-      scoped_task_name scopedtaskname(strAbbreviation);
-
-      //::task_set_name("nanownd");
-
-      MSG msg;
-
-      while (::task_get_run() && GetMessage(&msg, NULL, 0, 0) > 0)
-      {
-
-         TranslateMessage(&msg);
-
-         DispatchMessage(&msg);
-
-         if (m_bDestroy)
-         {
-
-            ::DestroyWindow(m_hwnd);
-
-            while (PeekMessage(&msg, NULL, 0, 0, TRUE))
-            {
-
-               TranslateMessage(&msg);
-
-               DispatchMessage(&msg);
-
-            }
-
-            break;
-
-         }
-
-      }
-
-   }
-
-   void nano_window::add_child(nano_child* pchild)
+   void nano_window::add_child(nano_child * pchild)
    {
 
       m_pinterface->add_child(pchild);
@@ -950,12 +901,25 @@ namespace windows
    }
 
 
+   //void nano_window::_destroy_window()
+   //{
+   //
+   //}
+
+
    void nano_window::destroy()
    {
 
-      m_bDestroy = true;
+      user_post([this]()
+      {
 
-      PostMessage(m_hwnd, WM_ENTERIDLE, 0, 0);
+         //::ShowWindow(m_hwnd, SW_HIDE);
+
+         ::DestroyWindow(m_hwnd);
+
+         win32_process_messages();
+
+      });
 
    }
 
@@ -1041,6 +1005,14 @@ namespace windows
    }
 
 
+   ::point_i32 nano_window::try_absolute_mouse_position(const ::point_i32 & point)
+   {
+
+      return point;
+
+   }
+
+
    void nano_window::get_client_rectangle(::rectangle_i32& rectangle)
    {
 
@@ -1116,7 +1088,66 @@ namespace windows
    }
 
 
+   void nano_window::user_post(const ::procedure & procedure)
+   {
+
+      if (m_ptask)
+      {
+
+         m_ptask->post_procedure(procedure);
+
+      }
+      else
+      {
+
+         ::nano_window_implementation::user_post(procedure);
+
+      }
+
+
+   }
+
+
 } // namespace windows
 
 
 
+
+
+void win32_process_messages(bool bWait)
+{
+
+   auto strThreadName = ::task_get_name();
+
+   //auto pmessagebox = m_pinterface.cast < nano_message_box >();
+
+   //::string strAbbreviation("nano_window");
+
+   //if (strType.contains("message_box"))
+   //if (pmessagebox)
+   //{
+      //auto pmessagebox = m_pinterface.cast<nano::me
+      /// @brief ////////123456789012345
+      //strAbbreviation = "msgbx:" + pmessagebox->m_strMessage.left(20);
+
+     // strAbbreviation = "msgbx:" + pmessagebox->m_strMessage;
+
+   //}
+
+   //scoped_task_name scopedtaskname(strAbbreviation);
+
+   //::task_set_name("nanownd");
+
+   MSG msg;
+
+   while (bWait ? (::GetMessage(& msg, NULL, 0, 0) >0) :
+      (::PeekMessage(&msg, NULL, 0, 0, TRUE)))
+   {
+
+      TranslateMessage(&msg);
+
+      DispatchMessage(&msg);
+
+   }
+
+}

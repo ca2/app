@@ -31,7 +31,7 @@ public:
    error_code(enum_error_code_type etype, ::i64 iOsError) :m_etype(etype), m_iOsError(iOsError) {}
 
 
-   void get_message(::string & strMessage) const;
+   //void get_message(::string & strMessage) const;
 
    
 };

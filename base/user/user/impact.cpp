@@ -31,7 +31,6 @@ namespace user
 
       //m_bExtendOnParent = true;
 
-      m_bExtendOnParentClientArea = true;
 
    }
 
@@ -128,6 +127,14 @@ namespace user
    {
 
       ::pointer<::message::create>pmessagecreate(pmessage);
+
+      if (get_parent()->is_frame_window() ||
+         get_parent()->is_place_holder())
+      {
+
+         m_bExtendOnParentClientArea = true;
+
+      }
 
       if (!(m_ewindowflag & e_window_flag_window_created))
       {

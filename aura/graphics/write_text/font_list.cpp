@@ -370,7 +370,7 @@ namespace write_text
    }
 
 
-   void font_list::_001OnDrawSingleColumn(::draw2d::graphics_pointer & pgraphics)
+   void font_list::_001OnDrawSingleColumn(::draw2d::graphics_pointer & pgraphics, ::user::interaction * puserinteraction)
    {
 
       synchronous_lock synchronouslock(this->synchronization());
@@ -379,13 +379,13 @@ namespace write_text
 
       auto pfontlistdata = m_pfontlistdata;
 
-      rectangle_i32 rectangleX = m_puserinteraction->rectangle();
+      rectangle_i32 rectangleClient = puserinteraction->rectangle();
 
-      rectangleX += m_puserinteraction->get_context_offset();
+      //rectangleX += m_puserinteraction->get_context_offset();
 
-      auto pwindowing = m_puserinteraction->windowing();
+      //auto pwindowing = m_puserinteraction->windowing();
 
-      auto pointCursor = m_puserinteraction->mouse_cursor_position();
+      //auto pointcursor = m_puserinteraction->mouse_cursor_position();
 
       ///pointCursor += m_puserinteraction->get_context_offset();
 
@@ -424,7 +424,7 @@ namespace write_text
 
          }
 
-         if (!rectangleX.intersects(rectangle))
+         if (!rectangleClient.intersects(rectangle))
          {
 
             if (bIntersected)
@@ -438,42 +438,42 @@ namespace write_text
 
          }
 
-         if (bCheckHover && rectangle.contains_y(pointCursor.y()))
-         {
+         //if (bCheckHover && rectangle.contains_y(pointCursor.y()))
+         //{
 
-            //m_puserinteraction->m_pitemHover = __new(::item({ ::e_element_item, i }));
+         //   //m_puserinteraction->m_pitemHover = __new(::item({ ::e_element_item, i }));
 
-            m_puserinteraction->m_pitemHover = pfontlistitem;
+         //   m_puserinteraction->m_pitemHover = pfontlistitem;
 
-            //m_iHover = i;
+         //   //m_iHover = i;
 
-            bCheckHover = false;
+         //   bCheckHover = false;
 
-         }
+         //}
 
          bIntersected = true;
 
-         if (pfontlistitem == m_puserinteraction->main_content().m_pitemCurrent)
+         if (pfontlistitem == puserinteraction->main_content().m_pitemCurrent)
          {
 
-            if (!bCheckHover && pfontlistitem == m_puserinteraction->m_pitemHover)
+            if (!bCheckHover && pfontlistitem == puserinteraction->m_pitemHover)
             {
 
-               pgraphics->fill_rectangle(rectangle, m_puserinteraction->get_color(pgraphics->m_puserstyle, ::e_element_background, ::user::e_state_selected | ::user::e_state_hover));
+               pgraphics->fill_rectangle(rectangle, puserinteraction->get_color(pgraphics->m_puserstyle, ::e_element_background, ::user::e_state_selected | ::user::e_state_hover));
 
             }
             else
             {
 
-               pgraphics->fill_rectangle(rectangle, m_puserinteraction->get_color(pgraphics->m_puserstyle, ::e_element_background, ::user::e_state_selected));
+               pgraphics->fill_rectangle(rectangle, puserinteraction->get_color(pgraphics->m_puserstyle, ::e_element_background, ::user::e_state_selected));
 
             }
 
          }
-         else if (!bCheckHover && pfontlistitem == m_puserinteraction->m_pitemHover)
+         else if (!bCheckHover && pfontlistitem == puserinteraction->m_pitemHover)
          {
 
-            auto color = m_puserinteraction->get_color(pgraphics->m_puserstyle, ::e_element_background, ::user::e_state_hover);
+            auto color = puserinteraction->get_color(pgraphics->m_puserstyle, ::e_element_background, ::user::e_state_hover);
 
             //auto u8Opacity = color.m_u8Opacity;
 
@@ -502,7 +502,7 @@ namespace write_text
    }
 
 
-   void font_list::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void font_list::_001OnDraw(::draw2d::graphics_pointer & pgraphics, ::user::interaction * puserinteraction)
    {
 
       synchronous_lock synchronouslock(this->synchronization());
@@ -516,7 +516,7 @@ namespace write_text
       else
       {
 
-         _001OnDrawSingleColumn(pgraphics);
+         _001OnDrawSingleColumn(pgraphics, puserinteraction);
 
       }
 
@@ -692,6 +692,8 @@ namespace write_text
          pbox->set_text_box_ok(false);
 
          pbox->set_text_box_init();
+
+         m_size.cx() = maximum(m_size.cx(), s.cx());
 
       }
 
@@ -1071,7 +1073,7 @@ namespace write_text
 
          auto pdraw2d = psystem->draw2d();
 
-         auto pgraphics = pdraw2d->create_memory_graphics(m_puserinteraction);
+         auto pgraphics = pdraw2d->create_memory_graphics(m_puserinteractionGraphicsContext ? m_puserinteractionGraphicsContext : m_puserinteraction);
 
       restart:
 
@@ -1268,11 +1270,22 @@ namespace write_text
 
       }
 
-      m_puserinteraction->set_need_layout();
+      if (m_puserinteraction)
+      {
 
-      m_puserinteraction->set_need_redraw();
+         m_puserinteraction->set_need_layout();
 
-      m_puserinteraction->post_redraw();
+         m_puserinteraction->set_need_redraw();
+
+         m_puserinteraction->post_redraw();
+
+      }
+      else
+      {
+
+         signal(id_font_list_redraw);
+
+      }
 
       information() << "font_list::layout() FINISHED 1";
       information() << "font_list::layout() FINISHED 2";

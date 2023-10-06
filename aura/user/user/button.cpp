@@ -907,17 +907,17 @@ namespace user
 
       auto rectangleX = this->rectangle();
 
-      ::rectangle_i32 rectangleMargin(4, 4, 4, 4);
+      //::rectangle_i32 rectangleMargin(4, 4, 4, 4);
 
-      ::rectangle_i32 rectangleBorder(2, 2,2 ,2);
+      //::rectangle_i32 rectangleBorder(2, 2,2 ,2);
 
-      rectangleX.deflate(rectangleMargin);
+      //rectangleX.deflate(rectangleMargin);
 
-      rectangleX.deflate(rectangleBorder);
+      //rectangleX.deflate(rectangleBorder);
 
-      ::rectangle_i32 rectanglePadding(4, 4,4,4);
+      //::rectangle_i32 rectanglePadding(4, 4,4,4);
 
-      rectangleX.deflate(rectanglePadding);
+      //rectangleX.deflate(rectanglePadding);
 
       if (pimage->area() > 0 && rectangleX.area() > 0)
       {

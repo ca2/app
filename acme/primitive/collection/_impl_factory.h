@@ -160,10 +160,6 @@ namespace factory
     }
 
 
-
-
-
-
     //template < typename TYPE >
     //inline stream & load_object(stream & stream, ::pointer<TYPE>& p)
     //{

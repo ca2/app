@@ -80,24 +80,35 @@ namespace userex
             //cc.m_typeatomNewImpact = ::type < ::user::menu_list_impact >();
 
             ::pointer<::user::impact>pimpact = create_impact < ::user::impact > ();
+            
             if(pimpact != nullptr)
             {
+
 //               ::pointer<::user::menu_list_impact>pmenuview = (::pointer<::user::menu_list_impact>pimpact;
    /* xxx           xml::node node(this);
                node.load(pcontext->m_papexcontext->file()->as_string(dir()->matter(
                   "mplite_popup_lyricview.xml")));
                pmenuview->LoadMenu(&node);*/
                pimpactdata->m_puserinteraction = pimpact;
+
             }
+
             break;
+
          }
+
       }
+
    }
 
+   
    void pane_impact::set_new_pane_info(atom atom, const ::string & pszMatter)
    {
+   
       set_menu_info(atom, pszMatter, "new_pane");
+
    }
+
 
    void pane_impact::set_menu_info(atom atom, const ::string & pszMatter, ::atom idCommand)
    {

@@ -18,6 +18,8 @@ bool on_init_thread();
 
 void on_term_thread();
 
+CLASS_DECL_ACME void _do_tasks();
+
 
 #ifdef PARALLELIZATION_PTHREAD
 
@@ -660,6 +662,15 @@ void task::post_procedure(const ::procedure & procedure)
 
    }
 
+   if (is_current_task())
+   {
+
+      procedure();
+
+      return;
+
+   }
+
    synchronous_lock synchronouslock(this->synchronization());
 
    m_procedurea.add(procedure);
@@ -935,7 +946,10 @@ void task::term_task()
 bool task::do_events()
 {
    
-   throw ::interface_only("tasks don't have message queue, threads do (1)");
+   //throw ::interface_only("tasks don't have message queue, threads do (1)");
+
+   _do_tasks();
+
 
    return true;
 
@@ -2084,7 +2098,7 @@ CLASS_DECL_ACME void set_main_user_itask(itask_t itask);
 CLASS_DECL_ACME void set_main_user_htask(htask_t htask);
 
 
-CLASS_DECL_ACME itask_t get_main_user_itask();
+CLASS_DECL_ACME itask_t main_user_itask();
 
 
 CLASS_DECL_ACME void set_main_user_thread()
@@ -2108,7 +2122,7 @@ CLASS_DECL_ACME void set_main_user_thread(htask_t htask)
 CLASS_DECL_ACME bool is_main_thread()
 {
 
-   return current_itask() == get_main_user_itask();
+   return current_itask() == main_user_itask();
 
 }
 
@@ -2267,6 +2281,23 @@ task_guard::~task_guard()
 {
 
    return task_index(::current_itask());
+
+}
+
+
+void do_tasks()
+{
+
+   _do_tasks();
+
+   auto ptask = ::get_task();
+
+   if (ptask)
+   {
+
+      ptask->do_events();
+
+   }
 
 }
 

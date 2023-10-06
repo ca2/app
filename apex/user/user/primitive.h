@@ -41,7 +41,7 @@ namespace user
       void create_message_queue(const ::string & lpszName) override;
 
 
-      ::user::interaction * get_host_window();
+      ::user::interaction * get_host_window() override;
 
       ::user::form * get_form() override;
 

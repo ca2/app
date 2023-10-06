@@ -151,22 +151,26 @@ namespace user
       m_pbuttonBold->LoadBitmaps("matter://fontformat/bold-text-option12.png");
       m_pbuttonBold->m_flagNonClient.erase(::user::interaction::e_non_client_focus_rect);
       m_pbuttonBold->m_flagNonClient.erase(::user::interaction::e_non_client_background);
+      m_pbuttonBold->add_handler(this);
 
       m_pbuttonItalic->create_control(this, "font_italic");
       m_pbuttonItalic->LoadBitmaps("matter://fontformat/italicize-text12.png");
       m_pbuttonItalic->m_flagNonClient.erase(::user::interaction::e_non_client_focus_rect);
       m_pbuttonItalic->m_flagNonClient.erase(::user::interaction::e_non_client_background);
+      m_pbuttonItalic->add_handler(this);
 
       m_pbuttonUnderline->create_control(this, "font_underline");
       m_pbuttonUnderline->LoadBitmaps("matter://fontformat/underline-text-option12.png");
       m_pbuttonUnderline->m_flagNonClient.erase(::user::interaction::e_non_client_focus_rect);
       m_pbuttonUnderline->m_flagNonClient.erase(::user::interaction::e_non_client_background);
+      m_pbuttonUnderline->add_handler(this);
 
       m_pcomboFamily->create_control(this, "combo_family");
       //auto pfont = m_pcomboFamily->create_point_font(::user::font_plain_edit, pnode->font_name(e_font_sans_ui), 9.0);
       //pfont->m_ewritetextrendering = ::write_text::e_rendering_clear_type_grid_fit;
       //m_pcomboFamily->create_color(::user::color_text, argb(255, 80, 80, 80));
       //m_pcomboFamily->create_color(::user::color_background, argb(255, 255, 255, 255));
+      m_pcomboFamily->add_handler(this);
 
       m_pcomboSize->create_control(this, "combo_size");
       //pfont = m_pcomboSize->create_point_font(::user::font_plain_edit, pnode->font_name(e_font_sans_ui), 9.0);
@@ -175,12 +179,8 @@ namespace user
       //m_pcomboSize->create_color(::user::color_background, argb(255, 255, 255, 255));
       //::rectangle_f64 r(2, 2, 2, 2);
       //create_rect(::user::rect_edit_padding, r, ::draw2d::e_unit_pixel);
-
-
       m_pcomboSize->m_edatamode = ::user::combo_box::data_mode_string;
-
       m_pcomboSize->m_bEdit = true;
-
       m_pcomboSize->add_string("6", "6");
       m_pcomboSize->add_string("6.5", "6.5");
       m_pcomboSize->add_string("7", "7");
@@ -204,42 +204,51 @@ namespace user
       m_pcomboSize->add_string("64", "64");
       m_pcomboSize->add_string("72", "72");
       m_pcomboSize->add_string("144", "144");
+      m_pcomboSize->add_handler(this);
 
       m_pbuttonForeground->create_control(this, "font_foreground");
       m_pbuttonForeground->LoadBitmaps("matter://fontformat/font-foreground12.png");
-
       m_pbuttonForeground->m_flagNonClient.erase(::user::interaction::e_non_client_focus_rect);
       m_pbuttonForeground->m_flagNonClient.erase(::user::interaction::e_non_client_background);
+      m_pbuttonForeground->add_handler(this);
+
 
       m_pbuttonBackground->create_control(this, "font_background");
       m_pbuttonBackground->LoadBitmaps("matter://fontformat/text-background12.png");
       m_pbuttonBackground->m_flagNonClient.erase(::user::interaction::e_non_client_focus_rect);
       m_pbuttonBackground->m_flagNonClient.erase(::user::interaction::e_non_client_background);
+      m_pbuttonBackground->add_handler(this);
+
 
       m_pbuttonSubscript->create_control(this, "font_subscript");
       m_pbuttonSubscript->LoadBitmaps("matter://fontformat/x2-symbol-of-a-letter-and-a-number-subscript12.png");
       m_pbuttonSubscript->m_flagNonClient.erase(::user::interaction::e_non_client_focus_rect);
       m_pbuttonSubscript->m_flagNonClient.erase(::user::interaction::e_non_client_background);
+      m_pbuttonSubscript->add_handler(this);
 
       m_pbuttonSuperscript->create_control(this, "font_superscript");
       m_pbuttonSuperscript->LoadBitmaps("matter://fontformat/superscript-text-formatting12.png");
       m_pbuttonSuperscript->m_flagNonClient.erase(::user::interaction::e_non_client_focus_rect);
       m_pbuttonSuperscript->m_flagNonClient.erase(::user::interaction::e_non_client_background);
+      m_pbuttonSuperscript->add_handler(this);
 
       m_pbuttonAlignLeft->create_control(this, "e_align_left");
       m_pbuttonAlignLeft->LoadBitmaps("matter://fontformat/align-to-left12.png");
       m_pbuttonAlignLeft->m_flagNonClient.erase(::user::interaction::e_non_client_focus_rect);
       m_pbuttonAlignLeft->m_flagNonClient.erase(::user::interaction::e_non_client_background);
+      m_pbuttonAlignLeft->add_handler(this);
 
       m_pbuttonAlignCenter->create_control(this, "e_align_center");
       m_pbuttonAlignCenter->LoadBitmaps("matter://fontformat/center-text-alignment12.png");
       m_pbuttonAlignCenter->m_flagNonClient.erase(::user::interaction::e_non_client_focus_rect);
       m_pbuttonAlignCenter->m_flagNonClient.erase(::user::interaction::e_non_client_background);
+      m_pbuttonAlignCenter->add_handler(this);
 
       m_pbuttonAlignRight->create_control(this, "e_align_right");
       m_pbuttonAlignRight->LoadBitmaps("matter://fontformat/align-to-right12.png");
       m_pbuttonAlignRight->m_flagNonClient.erase(::user::interaction::e_non_client_focus_rect);
       m_pbuttonAlignRight->m_flagNonClient.erase(::user::interaction::e_non_client_background);
+      m_pbuttonAlignRight->add_handler(this);
 
       //create_color(::user::color_background, argb(255, 200, 200, 200));
       //create_color(::user::color_button_background, argb(0, 0, 0, 0));
@@ -710,23 +719,20 @@ namespace user
 
          index iIndex = pfontlist->m_pfontlist->find_name(m_pformata->first()->m_strFontFamily);
 
-         throw "";
+         m_pcomboFamily->set_current_item_by_index(iIndex, ::e_source_sync);
 
-         //m_pcomboFamily->set_current_item(iIndex, ::e_source_sync);
+         set_font_size(m_pformata->first()->m_dFontSize);
 
-         //set_font_size(m_pformata->first()->m_dFontSize);
+         m_pbuttonBold->_001SetCheck(m_pformata->first()->m_bBold ? ::e_check_checked : ::e_check_unchecked, ::e_source_sync);
+         m_pbuttonItalic->_001SetCheck(m_pformata->first()->m_bItalic ? ::e_check_checked : ::e_check_unchecked, ::e_source_sync);
+         m_pbuttonUnderline->_001SetCheck(m_pformata->first()->m_bUnderline ? ::e_check_checked : ::e_check_unchecked, ::e_source_sync);
+         bool bLeft = m_pformata->first()->m_ealign == e_align_left;
+         bool bCenter = m_pformata->first()->m_ealign == e_align_center;
+         bool bRight = m_pformata->first()->m_ealign == e_align_right;
 
-         //m_pbuttonBold->_001SetCheck(m_pformata->first()->m_bBold ? ::e_check_checked : ::e_check_unchecked, ::e_source_sync);
-         //m_pbuttonItalic->_001SetCheck(m_pformata->first()->m_bItalic ? ::e_check_checked : ::e_check_unchecked, ::e_source_sync);
-         //m_pbuttonUnderline->_001SetCheck(m_pformata->first()->m_bUnderline ? ::e_check_checked : ::e_check_unchecked, ::e_source_sync);
-
-         //bool bLeft = m_pformata->first()->m_ealign == e_align_left;
-         //bool bCenter = m_pformata->first()->m_ealign == e_align_center;
-         //bool bRight = m_pformata->first()->m_ealign == e_align_right;
-
-         //m_pbuttonAlignLeft->_001SetCheck(bLeft, ::e_source_sync);
-         //m_pbuttonAlignCenter->_001SetCheck(bCenter, ::e_source_sync);
-         //m_pbuttonAlignRight->_001SetCheck(bRight, ::e_source_sync);
+         m_pbuttonAlignLeft->_001SetCheck(bLeft, ::e_source_sync);
+         m_pbuttonAlignCenter->_001SetCheck(bCenter, ::e_source_sync);
+         m_pbuttonAlignRight->_001SetCheck(bRight, ::e_source_sync);
 
       }
 
@@ -756,6 +762,8 @@ namespace user
       rectangleRequest.top() = rectangle.top() - 32;
       rectangleRequest.right() = rectangleRequest.left() + 400;
       rectangleRequest.bottom() = rectangleRequest.top() + 32;
+
+      add_handler(pinteraction);
 
       enable_window();
 

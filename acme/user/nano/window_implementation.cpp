@@ -82,6 +82,14 @@ void nano_window_implementation::on_create()
 }
 
 
+::point_i32 nano_window_implementation::try_absolute_mouse_position(const ::point_i32 & point)
+{
+
+   return nano_window_interface::try_absolute_mouse_position(point);
+
+}
+
+
 void nano_window_implementation::handle(::topic * ptopic, ::context * pcontext)
 {
 
@@ -214,23 +222,34 @@ void nano_window_implementation::handle(::topic * ptopic, ::context * pcontext)
 void nano_window_implementation::do_asynchronously()
 {
 
-   /*m_pinterface->m_functionClose = [this](nano_window * pwindow)
-   {
-
-      m_pinterface->m_psequence->on_sequence();
-
-   };*/
-
-   user_post([this]()
+   auto procedure = [this]()
       {
 
          create();
 
          m_pinterface->nano_window::display();
 
-         message_loop();
+         //if (!is_main_thread())
+         //{
 
-      });
+         //   message_loop();
+
+         //}
+
+      };
+
+   if (is_main_thread())
+   {
+
+      procedure();
+
+   }
+   else
+   {
+
+      user_post(procedure);
+
+   }
 
    //display(m_strMessage, m_strTitle, m_emessagebox, m_strDetails);
 

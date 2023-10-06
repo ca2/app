@@ -197,7 +197,7 @@ namespace user
    void list::_001OnNcClip(::draw2d::graphics_pointer & pgraphics)
    {
 
-      return;
+//      return;
 
       ::user::mesh::_001OnNcClip(pgraphics);
 
@@ -7639,7 +7639,7 @@ namespace user
    void list::_001OnClip(::draw2d::graphics_pointer & pgraphics)
    {
 
-      return;
+      //return;
 
       mesh::_001OnClip(pgraphics);
 

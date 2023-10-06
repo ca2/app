@@ -1777,7 +1777,7 @@ namespace user
                               }
 
                               pgraphics->fill_rectangle(
-                                 ::rectangle_f64_dimension(l,
+                                 ::rectangle_f64(l,
                                  pboxBeg->m_rectangleBox.top(),
                                  r,
                                  pboxEnd->m_rectangleBox.bottom()),
@@ -1851,14 +1851,14 @@ namespace user
 
                   r = pbox->get_pos(m_iSelEnd);
 
-                  //r += rectangle.left();
+                  ////r += rectangle.left();
 
-                  if (r > rectangle.left())
-                  {
+                  //if (r > rectangle.right())
+                  //{
 
-                     r -= 1.0;
+                  //   r -= 1.0;
 
-                  }
+                  //}
 
                   if (r < rectangle.left() + 2)
                   {
@@ -1941,16 +1941,20 @@ namespace user
 
          synchronous_lock synchronouslock(this->synchronization());
 
-         m_pformata->erase_all();
-
-         for (index i = 0; i < m_spana.get_count(); i++)
          {
 
-            //m_spana[i]->m_pformat = this;
+            auto formataOld = *m_pformata;
 
-            m_spana[i]->m_pformat->m_pcontainer = m_pformata;
+            m_pformata->erase_all();
 
-            m_spana[i]->m_pformat = m_pformata->get_existing_defer_add(m_spana[i]->m_pformat);
+            for (auto & pspan : m_spana)
+            {
+
+               pspan->m_pformat->m_pcontainer = m_pformata;
+
+               pspan->m_pformat = m_pformata->get_existing_defer_add(pspan->m_pformat);
+
+            }
 
          }
 

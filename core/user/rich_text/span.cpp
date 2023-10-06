@@ -2,6 +2,7 @@
 #include "span.h"
 #include "data.h"
 #include "format.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "acme/primitive/collection/_array_binary_stream.h"
 #include "acme/primitive/data/listener.h"
 #include "aura/graphics/draw2d/graphics.h"
@@ -131,10 +132,14 @@ namespace user
       
       ::pointer<span>span::fork()
       { 
+
+         synchronous_lock synchronouslock(m_pdata->synchronization());
          
          auto pspan = __new(class span(m_pdata));
          
-         pspan->m_pformat = m_pformat;
+         pspan->m_pformat = m_pdata->add_format();
+
+         *pspan->m_pformat = *m_pformat;
          
          return pspan; 
       
@@ -144,9 +149,11 @@ namespace user
       ::pointer<span>span::fork(const class format* pformat, const e_attribute& eattribute)
       {
 
+         synchronous_lock synchronouslock(m_pdata->synchronization());
+
          auto pspan = fork();
 
-         pspan->m_pformat.merge(m_pdata->m_pformata, pformat, eattribute);
+         pspan->m_pformat->apply(pformat, eattribute);
 
          return pspan;
 

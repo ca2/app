@@ -98,6 +98,9 @@ public:
    void update_drawing_objects() override;
 
 
+   ::point_i32 try_absolute_mouse_position(const ::point_i32 & point) override;
+
+
    ::point_i32 origin() override;
 
 

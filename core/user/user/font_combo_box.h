@@ -30,6 +30,8 @@ namespace user
 
       void handle(::topic * ptopic, ::context * pcontext) override;
 
+      virtual void on_font_enumeration();
+
 
    };
 

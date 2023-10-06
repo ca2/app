@@ -383,7 +383,9 @@ namespace user
 
       //m_pfontlist->m_puserstyle = this;
 
-      m_pfontlist->_001OnDraw(pgraphics);
+      //auto rectangle = client_rectangle();
+
+      m_pfontlist->_001OnDraw(pgraphics, this);
 
       //m_pfontlist->m_puserstyle = pstyle;
 

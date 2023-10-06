@@ -94,6 +94,27 @@ namespace user
       bool format::operator==(const format & format) const
       {
 
+         if (::is_null(this) && ::is_null(&format))
+         {
+
+            return true;
+
+         }
+
+         if (::is_null(this) || ::is_null(&format))
+         {
+
+            return false;
+
+         }
+
+         if (this == &format)
+         {
+
+            return true;
+
+         }
+
          return m_strFontFamily.case_insensitive_order(format.m_strFontFamily) == 0
                 && is_equal_bool(m_bBold, format.m_bBold)
                 && is_equal_bool(m_bItalic, format.m_bItalic)

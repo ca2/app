@@ -516,7 +516,7 @@ namespace user
 
       virtual ::windowing::display * get_display();
 
-      virtual ::user::interaction * get_host_window();
+      virtual ::user::interaction * get_host_window() override;
 
       virtual ::user::interaction_impl * get_window_impl();
 
@@ -586,9 +586,9 @@ namespace user
 
       virtual void host_send(const ::procedure& procedure);
 
-      virtual void host_post(const ::procedure& procedure);
+      void host_post(const ::procedure& procedure) override;
 
-      virtual void user_send(const ::procedure & procedure);
+      void user_send(const ::procedure & procedure) override;
 
 
       inline void auto_refresh_on_show() { m_ewindowflag |= e_window_flag_auto_refresh_on_show; }

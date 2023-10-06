@@ -308,9 +308,9 @@ namespace acme
 
       virtual void * get_os_xcb_connection();
 
-      virtual void user_post(const ::procedure & procedure);
+      virtual void user_post(const ::procedure & procedure) override;
 
-      virtual void user_send(const ::procedure & procedure);
+      virtual void user_send(const ::procedure & procedure) override;
 
       //void post_procedure(const ::procedure & procedure) override;
 

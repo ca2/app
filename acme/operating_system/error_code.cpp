@@ -22,19 +22,19 @@ error_code::error_code(const c_error_number & error_code) :
 }
 
 
-void error_code::get_message(::string & strMessage) const
+void get_message(::string & strMessage, const ::error_code & errorcode)
 {
 
    string_reference_stream textstream(strMessage);
    
-   switch(m_etype)
+   switch(errorcode.m_etype)
    {
       case e_error_code_type_errno:
-         textstream << "errno = " << m_iOsError << "\n";
-         textstream << ::posix::get_errno_string((::i32)m_iOsError);
+         textstream << "errno = " << errorcode.m_iOsError << "\n";
+         textstream << ::posix::get_errno_string((::i32)errorcode.m_iOsError);
          break;
       default:
-         textstream << "(Unknown error code type :" << (iptr) m_etype << ") (Error code :" << m_iOsError << ")";
+         textstream << "(Unknown error code type :" << (iptr)errorcode.m_etype << ") (Error code :" << errorcode.m_iOsError << ")";
          break;
    };
    

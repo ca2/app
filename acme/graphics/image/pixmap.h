@@ -27,7 +27,7 @@ namespace draw2d
 // POD
 
 #ifdef __cplusplus
-struct CLASS_DECL_AURA pixmap :
+struct CLASS_DECL_ACME pixmap :
    public image_header
 #else
 struct pixmap
@@ -107,6 +107,11 @@ struct pixmap
    inline ::image32_t * image32() { return m_pimage32; }
    inline ::image32_t * image32() const { return m_pimage32; }
 
+
+   inline ::image32_t * data() { return m_pimage32; }
+   inline ::image32_t * data() const { return m_pimage32; }
+
+
    inline operator pixmap * () { return this; }
    inline operator const pixmap * () const { return this; }
 
@@ -178,7 +183,7 @@ struct pixmap
 
 
 
-   //class CLASS_DECL_AURA pixmap :
+   //class CLASS_DECL_ACME pixmap :
    //   public bitmap
    //{
    //public:
@@ -343,30 +348,30 @@ struct pixmap
 
 
 
-CLASS_DECL_AURA void vertical_swap_copy_image32(::image32_t * pimage32Dst, int cx, int cy, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc);
-CLASS_DECL_AURA void copy_image32(::image32_t * pimage32Dst, int cx, int cy, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc);
-CLASS_DECL_AURA void copy_image32(::image32_t * pimage32Dst, int x, int y, int cx, int cy, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc);
+CLASS_DECL_ACME void vertical_swap_copy_image32(::image32_t * pimage32Dst, int cx, int cy, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc);
+CLASS_DECL_ACME void copy_image32(::image32_t * pimage32Dst, int cx, int cy, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc);
+CLASS_DECL_ACME void copy_image32(::image32_t * pimage32Dst, int x, int y, int cx, int cy, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc);
 
 
-CLASS_DECL_AURA void copy_image32(::image32_t * pimage32Dst, const ::size_i32 & size, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc);
+CLASS_DECL_ACME void copy_image32(::image32_t * pimage32Dst, const ::size_i32 & size, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc);
 
 
+class color_array;
 
 
+CLASS_DECL_ACME void colora_from_quada(color_array & colora, WINRGBQUAD * prgbquad, int iCount);
 
-CLASS_DECL_AURA void colora_from_quada(color_array & colora, WINRGBQUAD * prgbquad, int iCount);
 
-
-CLASS_DECL_AURA void vertical_swap(pixmap * ppixmap);
-CLASS_DECL_AURA void vertical_swap_copy_image32(::image32_t * pimage32Dst, int cx, int cy, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc = -1);
-CLASS_DECL_AURA void vertical_swap_copy_image32_swap_red_blue(::image32_t * pimage32Dst, int cx, int cy, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc = -1);
-CLASS_DECL_AURA void copy_image32(::image32_t * pimage32Dst, int cx, int cy, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc = -1);
-CLASS_DECL_AURA void copy_image32(::image32_t * pimage32Dst, int x, int y, int cx, int cy, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc = -1);
-CLASS_DECL_AURA void copy_image32(::image32_t * pimage32Dst, const size_i32 & size, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc = -1);
-CLASS_DECL_AURA void copy_image32(::image32_t * pimage32Dst, const ::point_i32 & point, const size_i32 & size, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc = -1);
-CLASS_DECL_AURA void copy_image32(::image32_t * pimage32Dst, const ::rectangle_i32 & rectangle, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc = -1);
-CLASS_DECL_AURA void copy_image32_swap_red_blue(::image32_t * pimage32Dst, int cx, int cy, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc = -1);
-CLASS_DECL_AURA void _001ProperCopyColorref(::image32_t * pimage32Dst, int cx, int cy, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc = -1);
+CLASS_DECL_ACME void vertical_swap(pixmap * ppixmap);
+CLASS_DECL_ACME void vertical_swap_copy_image32(::image32_t * pimage32Dst, int cx, int cy, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc = -1);
+CLASS_DECL_ACME void vertical_swap_copy_image32_swap_red_blue(::image32_t * pimage32Dst, int cx, int cy, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc = -1);
+CLASS_DECL_ACME void copy_image32(::image32_t * pimage32Dst, int cx, int cy, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc = -1);
+CLASS_DECL_ACME void copy_image32(::image32_t * pimage32Dst, int x, int y, int cx, int cy, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc = -1);
+CLASS_DECL_ACME void copy_image32(::image32_t * pimage32Dst, const size_i32 & size, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc = -1);
+CLASS_DECL_ACME void copy_image32(::image32_t * pimage32Dst, const ::point_i32 & point, const size_i32 & size, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc = -1);
+CLASS_DECL_ACME void copy_image32(::image32_t * pimage32Dst, const ::rectangle_i32 & rectangle, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc = -1);
+CLASS_DECL_ACME void copy_image32_swap_red_blue(::image32_t * pimage32Dst, int cx, int cy, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc = -1);
+CLASS_DECL_ACME void _001ProperCopyColorref(::image32_t * pimage32Dst, int cx, int cy, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc = -1);
 
 
 
@@ -374,21 +379,21 @@ namespace draw2d
 {
 
 
-   CLASS_DECL_AURA void image_copy(::image * imagethis, ::image * pimage);
-   CLASS_DECL_AURA void image_create(::particle * pparticle, ::image *& image);
-   CLASS_DECL_AURA void image_create_image(::image * pimage, const size_i32 & size);
-   CLASS_DECL_AURA unsigned int * image_get_data(::image * pimage);
-   CLASS_DECL_AURA graphics * image_get_graphics(::image * pimage);
+   CLASS_DECL_ACME void image_copy(::image * imagethis, ::image * pimage);
+   CLASS_DECL_ACME void image_create(::particle * pparticle, ::image *& image);
+   CLASS_DECL_ACME void image_create_image(::image * pimage, const size_i32 & size);
+   CLASS_DECL_ACME unsigned int * image_get_data(::image * pimage);
+   CLASS_DECL_ACME graphics * image_get_graphics(::image * pimage);
 
 
 } // namespace draw2d
 
 
-CLASS_DECL_AURA enum_rotate_flip exif_orientation_rotate_flip(int orientation);
+CLASS_DECL_ACME enum_rotate_flip exif_orientation_rotate_flip(int orientation);
 
 
-CLASS_DECL_AURA void copy_image32(::image32_t * pimage32Dst, const ::point_i32 & point, const size_i32 & size, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc);
-CLASS_DECL_AURA void copy_image32(::image32_t * pimage32Dst, const ::rectangle_i32 & rectangle, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc);
+CLASS_DECL_ACME void copy_image32(::image32_t * pimage32Dst, const ::point_i32 & point, const size_i32 & size, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc);
+CLASS_DECL_ACME void copy_image32(::image32_t * pimage32Dst, const ::rectangle_i32 & rectangle, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc);
 
 
 namespace draw2d

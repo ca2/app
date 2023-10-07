@@ -4,6 +4,7 @@
 #include "acme/user/nano/display.h"
 #include "acme/platform/acme.h"
 #include "acme/platform/node.h"
+#include "acme/platform/sub_system.h"
 #include "acme/platform/system.h"
 
 
@@ -114,5 +115,36 @@ bool __os_term_thread()
 
 }
 
+
+void x11_process_messages();
+void xcb_process_messages();
+void wayland_process_messages();
+
+
+void _do_tasks()
+{
+
+   auto psystem = ::acme::acme::g_pacme->m_psubsystem->acmesystem();
+
+   if(psystem->m_ewindowing == e_windowing_wayland)
+   {
+
+      wayland_process_messages();
+
+   }
+   else if(psystem->m_ewindowing == e_windowing_xcb)
+   {
+
+      xcb_process_messages();
+
+   }
+   else
+   {
+
+      x11_process_messages();
+
+   }
+
+}
 
 

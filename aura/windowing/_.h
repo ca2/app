@@ -27,6 +27,7 @@ namespace windowing
 
    class display;
    class window;
+   class window_base;
    class windowing;
    class text_editor_interface;
    class desktop_environment;

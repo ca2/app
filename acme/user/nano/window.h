@@ -98,6 +98,9 @@ public:
    void update_drawing_objects() override;
 
 
+   bool defer_perform_entire_reposition_process() override;
+
+
    ::point_i32 try_absolute_mouse_position(const ::point_i32 & point) override;
 
 

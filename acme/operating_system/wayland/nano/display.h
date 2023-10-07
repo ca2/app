@@ -1,35 +1,39 @@
 //
 // Created by camilo on 21/02/2022 23:09 <3ThomasBorregaardSorensen!!
+// Modified 2023-10-05 23:51
 //
 #pragma once
 
 
-#include "acme/user/nano/display.h"
-#include "event_listener.h"
+#include "display_base.h"
+//#include "event_listener.h"
 #include "acme/operating_system/x11/_atom.h"
 
 
-namespace x11
+struct wl_display;
+
+
+namespace wayland
 {
 
 
    class nano_window;
 
 
-   class display :
-      virtual public ::nano::display,
-      virtual public event_listener
+   class CLASS_DECL_ACME display :
+      virtual public ::wayland::display_base
+      //virtual public event_listener
    {
    public:
 
 
       bool                                   m_bUnhook;
-      Display   *                            m_pdisplay;
-      pointer_array < event_listener >        m_eventlistenera;
-      pointer_array < nano_window >           m_windowa;
-      Window                                 m_windowActive;
-      map < enum_atom, Atom >                m_atommap;
-
+      //::wl_display *                         m_pwldisplay;
+      //pointer_array < event_listener >       m_eventlistenera;
+      //pointer_array < nano_window_base >          m_windowa;
+      //Window                                 m_windowActive;
+      //map < enum_atom, Atom >                m_atommap;
+bool m_bOwnDisplay;
 
       static display *                       g_p;
 
@@ -38,51 +42,57 @@ namespace x11
       ~display() override;
 
 
-      virtual void set_X11_Display(Display * pdisplay);
+      void initialize(::particle * pparticle) override;
+
+
+      virtual void set_wl_display(::wl_display * pwldisplay);
 
 
       bool is_branch_current() const override;
 
 
-      virtual Atom intern_atom(const char *pszAtomName, bool bCreate);
-      virtual Atom intern_atom(enum_atom eatom, bool bCreate);
-
-      virtual Atom _intern_atom_unlocked(const char *pszAtomName, bool bCreate);
-      virtual Atom _intern_atom_unlocked(enum_atom eatom, bool bCreate);
-
-      unsigned char * _get_string_property(Display *display, Window window, char *property_name);
-      unsigned long _get_long_property(Display *d, Window w, char *property_name);
+      ::wl_display * __get_wayland_display() override;
 
 
-      virtual Window _get_active_window();
+      //virtual Atom intern_atom(const char *pszAtomName, bool bCreate);
+      //virtual Atom intern_atom(enum_atom eatom, bool bCreate);
+
+      //virtual Atom _intern_atom_unlocked(const char *pszAtomName, bool bCreate);
+      //virtual Atom _intern_atom_unlocked(enum_atom eatom, bool bCreate);
+
+      //unsigned char * _get_string_property(Display *display, Window window, char *property_name);
+      //unsigned long _get_long_property(Display *d, Window w, char *property_name);
 
 
-      static Window window_from_name_search(Display *display, Window current, char const *needle, int iOffset = 0, int depth = 1);
-
-      Window window_from_name(char const *name, int iOffset, int depth = 1);
+      //virtual Window _get_active_window();
 
 
-      static display * get(::particle * pparticle, bool bBranch = true, Display * pdisplay = nullptr);
+      //static Window window_from_name_search(Display *display, Window current, char const *needle, int iOffset = 0, int depth = 1);
+
+      //Window window_from_name(char const *name, int iOffset, int depth = 1);
+
+
+      static display * get(::particle * pparticle, bool bBranch = true, ::wl_display * pwldisplay = nullptr);
 
       bool message_loop_step();
-      void message_loop();
+      //void message_loop();
 
       void init_task() override;
 
       void run() override;
 
 
-      void add_listener(event_listener * plistener);
-      void add_window(nano_window * pwindow);
+//      //void add_listener(event_listener * plistener);
+//      void add_window(nano_window_base * pwindow);
+//
+//      //void erase_listener(event_listener * plistener);
+//      void erase_window(nano_window_base * pwindow);
 
-      void erase_listener(event_listener * plistener);
-      void erase_window(nano_window * pwindow);
+      //bool _on_event(XEvent * pevent) override;
 
-      bool _on_event(XEvent * pevent) override;
+      //virtual bool x11_event(XEvent * pevent);
 
-      virtual bool x11_event(XEvent * pevent);
-
-      virtual bool x11_posted();
+      //virtual bool x11_posted();
 
       //void display_post(const ::procedure & procedure) override;
       //void display_send(const ::procedure & procedure);

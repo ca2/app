@@ -304,9 +304,11 @@ namespace acme
 
       virtual void enable_wallpaper_change_notification();
 
-      virtual bool has_xcb() const;
+      virtual bool has_xcb();
 
       virtual void * get_os_xcb_connection();
+
+      virtual bool is_wayland();
 
       virtual void user_post(const ::procedure & procedure) override;
 

@@ -311,6 +311,27 @@ void nano_window::update_drawing_objects()
 }
 
 
+bool nano_window::defer_perform_entire_reposition_process()
+{
+
+   if(m_pimplementation)
+   {
+
+      if(m_pimplementation->defer_perform_entire_reposition_process())
+      {
+
+         return true;
+
+      }
+
+   }
+
+   return false;
+
+}
+
+
+
 ::point_i32 nano_window::try_absolute_mouse_position(const ::point_i32 & point)
 {
 

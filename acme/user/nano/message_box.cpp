@@ -107,7 +107,6 @@ void nano_message_box::defer_create_details_still()
 void nano_message_box::calculate_size()
 {
 
-
 #if !defined(UNIVERSAL_WINDOWS) && !defined(ANDROID)
 
    //int wScreen = 1280;

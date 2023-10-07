@@ -1,4 +1,5 @@
 // Created by camilo on 2023-02-23 23:00 BRT <3ThomasBorregaardSorensen!!
+// Modified 2023-10-05 23:50
 #include "framework.h"
 #include "keyboard.h"
 //#include "x11_keyboard.h"
@@ -8,7 +9,8 @@
 #include "acme/constant/user.h"
 // <3 ThomasBS - 400th follower
 
-namespace x11
+
+namespace wayland
 {
 
 
@@ -76,8 +78,7 @@ namespace x11
    }
 
 
-} // namespace x11
-
+} // namespace wayland
 
 
 

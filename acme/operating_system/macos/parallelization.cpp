@@ -41,3 +41,14 @@ bool __os_term_thread()
    return true;
 
 }
+
+void _ns_do_tasks(double dSeconds);
+
+void _do_tasks()
+{
+   
+   _ns_do_tasks(0.005);
+   
+}
+
+

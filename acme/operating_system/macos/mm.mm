@@ -184,3 +184,9 @@ void ns_launch_app_at_url(NSURL * url, const char ** argv, int iFlags)
 
 
 
+void _ns_do_tasks(double dSeconds)
+{
+   
+   [ [ NSRunLoop currentRunLoop ] runUntilDate:[NSDate dateWithTimeIntervalSinceNow: dSeconds ] ];
+   
+}

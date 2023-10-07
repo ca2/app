@@ -14,7 +14,8 @@ class nano_button :
 public:
 
 
-   enum_dialog_result      m_edialogresult;
+   enum_dialog_result      m_edialogresult1 = e_dialog_result_cancel;
+   char                    m_chLetter = '\0';
 
 
    void on_draw(nano_device * pnanodevice) override;

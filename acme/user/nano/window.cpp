@@ -357,15 +357,18 @@ void nano_window::add_child(nano_child * pchild)
 }
 
 
-void nano_window::add_button(const ::scoped_string & scopedstrText, enum_dialog_result edialogresult)
+void nano_window::add_button(const ::scoped_string & scopedstrText, enum_dialog_result edialogresult, char chLetter)
 {
 
    auto pbutton = __new(nano_button);
 
    pbutton->m_strText = scopedstrText;
    pbutton->m_atom = edialogresult;
+   pbutton->m_edialogresult1 = edialogresult;
+   pbutton->m_chLetter = chLetter;
+   //pbutton->m_bDefault = bDefault;
 
-   m_buttona.add(pbutton);
+   m_nanobuttona.add(pbutton);
 
    add_child(pbutton);
 

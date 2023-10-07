@@ -57,7 +57,8 @@ public:
    bool                                      m_bTopMost;
 
 
-   pointer_array < nano_button >             m_buttona;
+   pointer_array < nano_button >             m_nanobuttona;
+   ::index                                   m_iDefaultButton = -1;
 
    //map < const ::item *, ::user::item >      m_useritemmap;
 
@@ -141,7 +142,7 @@ public:
    void set_cursor(enum_cursor ecursor) override;
 
 
-   void add_button(const ::scoped_string & scopedstrText, enum_dialog_result edialogresult);
+   void add_button(const ::scoped_string & scopedstrText, enum_dialog_result edialogresult, char chLetter);
 
 
    void display_temporary_file_with_text(const ::string & str);

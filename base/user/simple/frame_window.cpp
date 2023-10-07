@@ -1014,7 +1014,7 @@ void simple_frame_window::on_message_create(::message::message* pmessage)
 
          information() << "simple_frame_window::on_message_create m_bDefaultNotifyIcon";
 
-          user_post([this]()
+          user_send([this]()
                          {
 
               //auto papp = get_app();

@@ -1042,6 +1042,8 @@ list(APPEND library_source
    user/user/tool_item.cpp
    user/user/tool_item.h
    user/_.h
+   windowing/window_base.h
+   windowing/window_base.cpp
    #update.h
 )
 
@@ -1945,7 +1947,31 @@ if (${LINUX} OR ${FREEBSD})
       operating_system/xcb/nano/window.cpp
       operating_system/xcb/_.h
       operating_system/xcb/_.cpp
-   )
+      operating_system/wayland/nano/_nano.cpp
+      operating_system/wayland/nano/_.h
+      operating_system/wayland/nano/display.cpp
+      operating_system/wayland/nano/display.h
+      operating_system/wayland/nano/display_base.cpp
+      operating_system/wayland/nano/display_base.h
+      operating_system/wayland/nano/event_listener.h
+      operating_system/wayland/nano/window.h
+      operating_system/wayland/nano/window.cpp
+      operating_system/wayland/nano/window_base.cpp
+      operating_system/wayland/nano/window_base.h
+      operating_system/wayland/_.h
+      operating_system/wayland/_.cpp
+      operating_system/wayland/wayland-gtk_shell1.c
+      operating_system/wayland/wayland-gtk_shell1.h
+      operating_system/wayland/wayland-xdg_activation_v1.c
+      operating_system/wayland/wayland-xdg_activation_v1.h
+      operating_system/wayland/wayland-xdg_wm_base.c
+      operating_system/wayland/wayland-xdg_wm_base.h
+      operating_system/wayland/xfree86_key.h
+      operating_system/wayland/xkb_input.cpp
+      operating_system/wayland/xkb_input.h
+
+
+      )
 
    list(APPEND extra_pkg_modules cairo xcb x11 xkbcommon xcb-render xcb-aux x11-xcb libarchive)
 
@@ -2419,7 +2445,7 @@ if (${LINUX} OR ${FREEBSD})
 endif ()
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source})
+add_library(${PROJECT_NAME} SHARED ${library_source} graphics/image/pixmap.cpp)
 add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
 if (NOT ${NO_PRECOMPILED_HEADER})
@@ -2448,6 +2474,8 @@ elseif (${LINUX} OR ${FREEBSD})
    #//target_compile_options\([A-Za-z0-9_)]+\s+PRIVATE\s+\$\{PKGCONFIG_CFLAGS\}\)
 
    #if(USE_PKGCONFIG)
+   list(APPEND extra_pkg_modules
+      xkbcommon x11 xrender xi xext libstartup-notification-1.0 wayland-client wayland-server wayland-cursor)
    pkg_check_modules(PKGCONFIG cairo freetype2 libidn ${extra_pkg_modules})
    #endif()
    target_compile_options(${PROJECT_NAME} PRIVATE -fpermissive)

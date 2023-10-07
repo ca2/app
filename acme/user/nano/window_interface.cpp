@@ -3,6 +3,7 @@
 //
 #include "framework.h"
 #include "window_interface.h"
+#include "acme/platform/system.h"
 #include "acme/primitive/geometry2d/rectangle.h"
 #include "acme/user/user/drag.h"
 #include "acme/user/user/mouse.h"
@@ -114,22 +115,31 @@ void nano_window_interface::update_drawing_objects()
 }
 
 
+bool nano_window_interface::defer_perform_entire_reposition_process()
+{
+
+   return false;
+
+}
 
 
 ::shift_i32 nano_window_interface::screen_to_client()
 {
 
-   ::rectangle_i32 r;
-
-   get_window_rectangle(r);
-
-   return  - r.top_left();
+   return - client_to_screen();
 
 }
 
 
 ::shift_i32 nano_window_interface::client_to_screen()
 {
+
+   if(acmesystem()->m_ewindowing == e_windowing_wayland)
+   {
+
+      return {};
+
+   }
 
    ::rectangle_i32 r;
 
@@ -181,6 +191,13 @@ bool nano_window_interface::on_drag_start(::point_i32 & point, ::item * pitem)
 
    if (pitem->m_item.m_eelement == e_element_client)
    {
+
+      if(defer_perform_entire_reposition_process())
+      {
+
+         return false;
+
+      }
 
       point = origin();
 

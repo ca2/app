@@ -30,6 +30,10 @@
 sub_system::sub_system()
 {
 
+   // One of first time to set a main user thread
+
+   set_main_user_thread();
+
    factory_initialize();
 
 }

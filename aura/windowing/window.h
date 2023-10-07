@@ -7,6 +7,7 @@
 #include "acme/primitive/collection/osdata_array.h"
 #include "acme/primitive/geometry2d/rectangle.h"
 #include "acme/primitive/geometry2d/size.h"
+#include "acme/windowing/window_base.h"
 
 
 namespace windowing
@@ -15,7 +16,8 @@ namespace windowing
 
    class CLASS_DECL_AURA window :
       virtual public ::channel,
-      virtual public osdata_array
+      virtual public osdata_array,
+      virtual public ::windowing::window_base
    {
    public:
 
@@ -49,16 +51,13 @@ namespace windowing
       ::pointer<::message_queue>                m_pmessagequeue;
       class ::time                              m_timeLastMouseMove;
       ::pointer<::windowing::window>            m_pwindowParent;
-      ::point_i32                               m_pointWindow;
-      ::size_i32                                m_sizeWindow;
-      
+
       mouse_reposition_throttling               m_mouserepositionthrottling;
       
       ::pointer<::windowing::icon>              m_picon;
       ::pointer<::windowing::windowing>         m_pwindowing;
       ::pointer<::user::copydesk>               m_pcopydesk;
       ::pointer<::windowing::cursor>            m_pcursor;
-      ::point_i32                               m_pointCursor2;
       ::oswindow                                m_oswindow;
       bool                                      m_bUpdateScreenSynchronously;
       
@@ -234,7 +233,7 @@ namespace windowing
 
       virtual void set_window_text(const ::scoped_string & scopedstr);
 
-      virtual ::string get_window_text();
+      //::string get_window_text() override;
 
       //virtual void get_window_text(string & rectangleString);
       //virtual strsize get_window_text_length();
@@ -418,6 +417,14 @@ namespace windowing
 
 
       ::trace_statement & trace_statement_prefix(::trace_statement & statement) const override;
+
+
+      bool is_satellite_window() override;
+      bool is_windowing_popup() override;
+      ::point_i32 windowing_popup_origin() override;
+      void _on_windowing_close_window() override;
+      ::windowing::window_base * owner_window() override;
+      ::string get_window_text() override;
 
 
    };

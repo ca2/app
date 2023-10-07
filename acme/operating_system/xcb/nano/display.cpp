@@ -1964,4 +1964,14 @@ namespace xcb
 } // namespace xcb
 
 
+void xcb_process_messages()
+{
 
+   if(::xcb::display::g_p)
+   {
+
+      ::xcb::display::g_p->message_loop_step();
+
+   }
+
+}

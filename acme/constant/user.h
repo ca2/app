@@ -13,7 +13,8 @@ enum enum_windowing
    e_windowing_win32,
    e_windowing_x11,
    e_windowing_xcb,
-   e_windowing_macos
+   e_windowing_macos,
+   e_windowing_wayland,
 
 };
 

@@ -171,7 +171,7 @@ list(APPEND library_source
    graphics/image/frame_array.h
    graphics/image/gif_antialias_8bit.cpp
    #graphics/image/gif_detect_8bit_borders.cpp
-   graphics/image/header.h
+   #graphics/image/header.h
    graphics/image/list.cpp
    graphics/image/list.h
    graphics/image/map.cpp
@@ -186,7 +186,7 @@ list(APPEND library_source
    graphics/image/source.h
    graphics/image/imaging.cpp
    graphics/image/imaging.h
-   graphics/image/pixmap.h
+   #graphics/image/pixmap.h
    graphics/user/control_box_button.cpp
    graphics/user/control_box_button.h
    graphics/user/control_box_icon.cpp
@@ -350,6 +350,9 @@ list(APPEND library_source
    #user/micro/message_box.h
    user/user/_.cpp
    user/user/_.h
+   user/user/_string.h
+   user/user/_text_stream.h
+   user/user/_string.cpp
    #user/_const-.h
    user/user/_constant.h
    user/user/_data.h
@@ -1326,10 +1329,7 @@ list(APPEND static_library_references ${library_references})
 list(TRANSFORM static_library_references PREPEND static_)
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source}
-   user/user/_string.h
-   user/user/_text_stream.h
-   user/user/_string.cpp)
+add_library(${PROJECT_NAME} SHARED ${library_source})
 add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
 

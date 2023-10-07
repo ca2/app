@@ -32,7 +32,7 @@ namespace wayland
 
       ::wl_display *                               m_pwldisplay;
 
-
+      bool                                         m_bOwnDisplay;
 
       //::wl_display * m_pwldisplay;
       ::wl_shm *m_pwlshm;
@@ -76,10 +76,14 @@ namespace wayland
       ::pointer < ::wayland::nano_window_base > m_pwindowKeyboardFocus;
 
 
+      static display_base * s_pdisplaybase;
+
 
       display_base();
       ~display_base() override;
 
+
+      static display_base * get(::particle * pparticle, bool bBranch = true, ::wl_display * pwldisplay = nullptr);
 
 
       void initialize(::particle * pparticle) override;
@@ -112,6 +116,7 @@ namespace wayland
       virtual ::wayland::nano_window_base * _window(::wl_surface * pwlsurface);
 
 
+      virtual bool message_loop_step();
 
       //      //void add_listener(event_listener * plistener);
 //      void add_window(nano_window_base * pwindow);

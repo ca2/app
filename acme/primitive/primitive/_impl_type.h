@@ -35,9 +35,20 @@ template < primitive_pointer POINTER >
 type_atom::type_atom(POINTER p)
 {
 
-   auto name = typeid(*(non_const <POINTER >)p).name();
+   if(::is_null(p))
+   {
 
-   ::atom::operator = (demangle(name));
+      set_type(atom::e_type_null);
+
+   }
+   else
+   {
+
+      auto name = typeid(*(non_const<POINTER>) p).name();
+
+      ::atom::operator=(demangle(name));
+
+   }
 
 }
 

@@ -139,7 +139,7 @@ namespace wayland
 
       get_client_rectangle(r);
 
-      auto pwldisplay = m_pdisplay->m_pwldisplay;
+      auto pwldisplay = m_pdisplaybase->m_pwldisplay;
 
       auto window = m_window;
 
@@ -193,25 +193,23 @@ namespace wayland
    ::nano::display * nano_window::get_display()
    {
 
-      if (!m_pdisplay)
+      if (!m_pdisplaybase)
       {
 
-         m_pdisplay = ::wayland::display::get(this);
+         m_pdisplaybase = ::wayland::display_base::get(this);
 
-         if (!m_pdisplay)
+         if (!m_pdisplaybase)
          {
 
             throw ::exception(error_null_pointer);
 
          }
 
-         m_pdisplay->open();
-
-         m_pdisplaybase = m_pdisplay;
+         m_pdisplaybase->open();
 
       }
 
-      return m_pdisplay;
+      return m_pdisplaybase;
 
    }
 

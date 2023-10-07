@@ -27,15 +27,14 @@ namespace wayland
    public:
 
 
-      bool                                   m_bUnhook;
-      //::wl_display *                         m_pwldisplay;
-      //pointer_array < event_listener >       m_eventlistenera;
-      //pointer_array < nano_window_base >          m_windowa;
-      //Window                                 m_windowActive;
-      //map < enum_atom, Atom >                m_atommap;
-bool m_bOwnDisplay;
+      bool                                      m_bUnhook;
+      //::wl_display *                          m_pwldisplay;
+      //pointer_array < event_listener >        m_eventlistenera;
+      //pointer_array < nano_window_base >      m_windowa;
+      //Window                                  m_windowActive;
+      //map < enum_atom, Atom >                 m_atommap;
 
-      static display *                       g_p;
+      //static display *                          g_pdisplay;
 
 
       display();
@@ -72,9 +71,7 @@ bool m_bOwnDisplay;
       //Window window_from_name(char const *name, int iOffset, int depth = 1);
 
 
-      static display * get(::particle * pparticle, bool bBranch = true, ::wl_display * pwldisplay = nullptr);
-
-      bool message_loop_step();
+      bool message_loop_step() override;
       //void message_loop();
 
       void init_task() override;

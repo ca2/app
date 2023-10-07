@@ -1486,7 +1486,7 @@ namespace user
 //
 //   }
 //
-//   AttachThreadInput(::GetCurrentThreadId(), (DWORD)get_main_user_itask(), bAttach ? true : false);
+//   AttachThreadInput(::GetCurrentThreadId(), (DWORD)main_user_itask(), bAttach ? true : false);
 //
 //}
 //

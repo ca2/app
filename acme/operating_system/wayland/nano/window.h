@@ -27,7 +27,7 @@ namespace wayland
    public:
 
 
-      ::pointer<class display>         m_pdisplay;
+      //::pointer<class display>         m_pdisplay;
       Window                           m_window;
       Window                           m_windowRoot;
       //cairo_surface_t *              m_psurface;

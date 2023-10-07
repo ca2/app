@@ -114,8 +114,8 @@ namespace wayland
       virtual void _on_windowing_close_window();
 
 
-
       virtual void _update_window();
+
 
    };
 

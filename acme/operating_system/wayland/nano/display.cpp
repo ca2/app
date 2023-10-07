@@ -31,7 +31,7 @@ namespace wayland
 {
 
 
-   display * display::g_p = nullptr;
+   //display * display::g_p = nullptr;
 
 
    display::display()
@@ -41,12 +41,12 @@ namespace wayland
 
       m_bUnhook = false;
 
-      if(!g_p)
-      {
-
-         g_p = this;
-
-      }
+//      if(!g_p)
+//      {
+//
+//         g_p = this;
+//
+//      }
 
       defer_create_synchronization();
 
@@ -352,40 +352,40 @@ namespace wayland
    }
 
 
-   display * display::get(::particle * pparticle, bool bBranch, ::wl_display * pwldisplay)
-   {
-
-      critical_section_lock lock(::acme::acme::g_pacme->globals_critical_section());
-
-      if (g_p == nullptr)
-      {
-
-         auto p = memory_new display;
-
-         p->initialize(pparticle);
-
-         //p->add_listener(p);
-
-         p->m_pwldisplay = pwldisplay;
-
-         if(bBranch)
-         {
-
-            p->branch_synchronously();
-
-         }
-         else
-         {
-
-            p->init_task();
-
-         }
-
-      }
-
-      return g_p;
-
-   }
+//   display * display::get(::particle * pparticle, bool bBranch, ::wl_display * pwldisplay)
+//   {
+//
+//      critical_section_lock lock(::acme::acme::g_pacme->globals_critical_section());
+//
+//      if (g_p == nullptr)
+//      {
+//
+//         auto p = memory_new display;
+//
+//         p->initialize(pparticle);
+//
+//         //p->add_listener(p);
+//
+//         p->m_pwldisplay = pwldisplay;
+//
+//         if(bBranch)
+//         {
+//
+//            p->branch_synchronously();
+//
+//         }
+//         else
+//         {
+//
+//            p->init_task();
+//
+//         }
+//
+//      }
+//
+//      return g_p;
+//
+//   }
 
 
 //   void display::add_listener(event_listener * plistener)
@@ -431,7 +431,7 @@ namespace wayland
    bool display::message_loop_step()
    {
 
-      return true;
+      return ::wayland::display_base::message_loop_step();
 
    }
 //
@@ -732,6 +732,14 @@ void * wayland_get_display(::particle * pparticle)
 }
 
 
+void wayland_set_display(::wayland::display_base * pdisplaybase)
+{
+
+   ::wayland::display_base::s_pdisplaybase = pdisplaybase;
+
+}
+
+
 void initialize_wayland_display(::particle * pparticle, void * pwaylanddisplay)
 {
 
@@ -753,10 +761,10 @@ void * initialize_wayland_display(::particle * pparticle)
 void wayland_process_messages()
 {
 
-   if(::wayland::display::g_p)
+   if(::wayland::display_base::s_pdisplaybase)
    {
 
-      ::wayland::display::g_p->message_loop_step();
+      ::wayland::display_base::s_pdisplaybase->message_loop_step();
 
    }
 

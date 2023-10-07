@@ -72,6 +72,8 @@ namespace windowing
 
       m_pwindowing = pwindowing;
 
+      open();
+
       //return ::success;
 
    }

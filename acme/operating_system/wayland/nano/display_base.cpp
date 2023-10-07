@@ -3,11 +3,13 @@
 //
 #include "framework.h"
 #include "display_base.h"
+#include "display.h"
 #include "acme/exception/interface_only.h"
 #include "acme/graphics/image/pixmap.h"
 #include "acme/operating_system/wayland/nano/window_base.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/parallelization/task.h"
+#include "acme/platform/acme.h"
 #include "acme/platform/node.h"
 #include <linux/input.h> // for BTN_LEFT
 #include <sys/poll.h>
@@ -28,6 +30,9 @@ int os_create_anonymous_file(off_t size);
 
 namespace wayland
 {
+
+
+   display_base * display_base::s_pdisplaybase = nullptr;
 
 
    /**
@@ -736,9 +741,47 @@ namespace wayland
    display_base::display_base()
    {
 
+      if(s_pdisplaybase == nullptr)
+      {
+
+         s_pdisplaybase = this;
+
+      }
+
       m_pxkbkeymap = nullptr;
       m_pxkbstate = nullptr;
       m_bOpened = false;
+      m_pwldisplay = nullptr;
+
+
+
+      //::wl_display * m_pwldisplay;
+      m_pwlshm = nullptr;
+      m_pxdgwmbase = nullptr;
+      m_pwlcompositor = nullptr;
+      m_pwlsurfaceCursor = nullptr;
+      m_pwlseat = nullptr;
+      m_pwlkeyboard = nullptr;
+      m_pwlpointer = nullptr;
+      m_pwlsubcompositor = nullptr;
+      //::wl_shm_pool * m_pwlshmpool;
+      m_pwlsurfacePointerEnter = nullptr;
+      m_pwlsurfaceLastLButtonDown = nullptr;
+      m_pwlsurfaceMouseCapture = nullptr;
+      m_pxdgsurfaceMouseCapture = nullptr;
+      m_pxdgtoplevelMouseCapture = nullptr;
+      //wayland_buffer m_waylandbufferMouseCapture;
+      m_bMouseCaptured = false;
+      //::rectangle_i32 m_rectangleMouseCapture;
+      m_uLastButtonSerial = 0;
+      m_uLastPointerSerial = 0;
+      m_uLastSeatSerial = 0;
+      m_uLastKeyboardSerial = 0;
+      m_uLastKeyboardEnterSerial = 0;
+      m_uLastKeyboardLeaveSerial = 0;
+      m_pgtkshell1 = nullptr;
+      m_pxdgactivationv1 = nullptr;
+      m_pwlsurfaceKeyboardEnter = nullptr;
 
    }
 
@@ -781,13 +824,6 @@ namespace wayland
    void display_base::open()
    {
 
-      if (::is_null(m_pwldisplay))
-      {
-
-         return;
-
-      }
-
       if(m_bOpened)
       {
 
@@ -797,23 +833,23 @@ namespace wayland
 
       m_bOpened = true;
 
-      acmenode()->user_send([this]()
+      user_send([this]()
                             {
 
-                               information()
+                               if(!m_pwldisplay)
+                               {
 
-                                  << "windowing_wayland::display::open";
+                                  m_pwldisplay = __get_wayland_display();
 
-                               information()
+                               }
 
-                                  << "windowing_wayland::display::open pwldisplay : " << (::iptr)
-                                  m_pwldisplay;
+                               information() << "windowing_wayland::display::open";
+
+                               information() << "windowing_wayland::display::open pwldisplay : " << (::iptr) m_pwldisplay;
 
                                auto pwlregistry = wl_display_get_registry(m_pwldisplay);
 
-
-                               wl_registry_add_listener(pwlregistry, &g_wl_registry_listener,
-                                                        this);
+                               wl_registry_add_listener(pwlregistry, &g_wl_registry_listener, this);
 
                                wl_display_dispatch(m_pwldisplay);
 
@@ -1734,6 +1770,8 @@ namespace wayland
 
       }
 
+      open();
+
    }
 
 
@@ -1753,46 +1791,89 @@ namespace wayland
       while (::task_get_run())
       {
 
-         struct pollfd fds[1];
+         message_loop_step();
 
-         while (wl_display_prepare_read(m_pwldisplay) != 0)
-            wl_display_dispatch_pending(m_pwldisplay);
-         wl_display_flush(m_pwldisplay);
-
-         /* watch stdin for input */
-         fds[0].fd = wl_display_get_fd(m_pwldisplay);
-         fds[0].events = POLLIN;
-
-         int ret = poll(fds, 1, 5);
-         if (ret <= 0)
-         {
-            wl_display_cancel_read(m_pwldisplay);
-         }
-         else
-         {
-            wl_display_read_events(m_pwldisplay);
-
-         }
-
-         wl_display_dispatch_pending(m_pwldisplay);
-         while(true)
-         {
-
-            if(!display_posted_routine_step())
-            {
-
-               break;
-
-            }
-
-         }
       }
 
    }
 
 
+   bool display_base::message_loop_step()
+   {
+
+      struct pollfd fds[1];
+
+      while (wl_display_prepare_read(m_pwldisplay) != 0)
+         wl_display_dispatch_pending(m_pwldisplay);
+      wl_display_flush(m_pwldisplay);
+
+      /* watch stdin for input */
+      fds[0].fd = wl_display_get_fd(m_pwldisplay);
+      fds[0].events = POLLIN;
+
+      int ret = poll(fds, 1, 5);
+      if (ret <= 0)
+      {
+         wl_display_cancel_read(m_pwldisplay);
+      }
+      else
+      {
+         wl_display_read_events(m_pwldisplay);
+
+      }
+
+      wl_display_dispatch_pending(m_pwldisplay);
+      while(true)
+      {
+
+         if(!display_posted_routine_step())
+         {
+
+            break;
+
+         }
+
+      }
+
+      return true;
+
+   }
 
 
+   display_base * display_base::get(::particle * pparticle, bool bBranch, ::wl_display * pwldisplay)
+   {
+
+      critical_section_lock lock(::acme::acme::g_pacme->globals_critical_section());
+
+      if (s_pdisplaybase == nullptr)
+      {
+
+         auto p = memory_new ::wayland::display;
+
+         p->initialize(pparticle);
+
+         //p->add_listener(p);
+
+         p->m_pwldisplay = pwldisplay;
+
+         if(bBranch)
+         {
+
+            p->branch_synchronously();
+
+         }
+         else
+         {
+
+            p->init_task();
+
+         }
+
+      }
+
+      return s_pdisplaybase;
+
+   }
 
 
 } // namespace wayland

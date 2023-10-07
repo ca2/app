@@ -522,7 +522,13 @@ namespace wayland
 
       auto pdisplaybase = m_pdisplaybase;
 
-      m_pwlsurface = wl_compositor_create_surface(pdisplaybase->m_pwlcompositor);
+      information() << "pdisplaybase : " << (::iptr) pdisplaybase.m_p;
+
+      auto pwlcompositor = pdisplaybase->m_pwlcompositor;
+
+      information() << "pwlcompositor : " << (::iptr) pwlcompositor;
+
+      m_pwlsurface = wl_compositor_create_surface(pwlcompositor);
 
       if (m_pwlsurface == NULL)
       {

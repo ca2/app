@@ -17,7 +17,7 @@ void operating_system_initialize_wayland_nano(::factory::factory * pfactory)
 
    pfactory->add_factory_item<::wayland::nano_window, ::nano_window_implementation>();
 
-   ::wayland::display::get(pfactory);
+   //::wayland::display::get(pfactory);
 
 }
 

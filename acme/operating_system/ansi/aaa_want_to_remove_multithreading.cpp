@@ -1029,12 +1029,12 @@
 ////}
 ////
 ////
-////CLASS_DECL_ACME HANDLE get_main_user_htask()
+////CLASS_DECL_ACME HANDLE main_user_htask()
 ////{
 ////   return g_hMainThread;
 ////
 ////}
-////CLASS_DECL_ACME ::u32   get_main_user_itask()
+////CLASS_DECL_ACME ::u32   main_user_itask()
 ////{
 ////   return g_iMainThread;
 ////}
@@ -1050,7 +1050,7 @@
 ////
 ////   //PeekMessage(&msg, NULL, 0, 0xffffffff, false);
 ////
-////   //   AttachThreadInput(::GetCurrentThreadId(), get_main_user_itask(), bAttach ? true : false); // AttachThreadInput function used to attach thread input to main thread in Windows Desktop
+////   //   AttachThreadInput(::GetCurrentThreadId(), main_user_itask(), bAttach ? true : false); // AttachThreadInput function used to attach thread input to main thread in Windows Desktop
 ////
 ////}
 ////*/

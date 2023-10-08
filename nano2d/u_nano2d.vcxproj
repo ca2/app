@@ -73,7 +73,6 @@
     <ClInclude Include="_user.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="color.cpp" />
     <ClCompile Include="context.cpp" />
     <ClCompile Include="draw2d_context.cpp" />
     <ClCompile Include="font_sink.cpp" />

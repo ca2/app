@@ -704,6 +704,10 @@ namespace user
       //virtual bool AddControlBar(::user::control_bar* pcontrolbar);
       //virtual bool RemoveControlBar(::user::control_bar* pcontrolbar);
 
+      virtual bool has_compulsory_window_manager_decorations();
+      virtual bool should_show_platform_control_box();
+
+
       // updown
       virtual bool wfi_is_up();
       virtual bool wfi_is_down();

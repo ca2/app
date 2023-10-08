@@ -71,7 +71,7 @@ namespace user
 
       defer_set_icon();
 
-      if (m_bEnableDefaultControlBox)
+      if (m_bEnableDefaultControlBox && should_show_platform_control_box())
       {
 
          {

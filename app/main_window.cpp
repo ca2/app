@@ -134,9 +134,9 @@ namespace app_app
 
       pgraphics->draw_inset_rectangle(rectangleX, colorInset, dBase);
 
-      m_dDrawControlBox = true;
+      //m_dDrawControlBox = true;
 
-      if (m_dDrawControlBox)
+      if (should_show_platform_control_box())
       {
 
          pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_high);

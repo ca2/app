@@ -24556,6 +24556,38 @@ namespace user
    }
 
 
+   bool interaction::has_compulsory_window_manager_decorations()
+   {
+
+#ifdef UNIVERSAL_WINDOWS
+
+      return true;
+
+#else
+
+      return false;
+
+#endif
+
+
+   }
+
+
+   bool interaction::should_show_platform_control_box()
+   {
+
+      if (has_compulsory_window_manager_decorations())
+      {
+
+         return false;
+
+      }
+
+      return true;
+
+   }
+
+
    // updown
    bool interaction::wfi_is_up()
    {

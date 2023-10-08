@@ -24588,6 +24588,29 @@ namespace user
    }
 
 
+   bool interaction::should_inline_notify_context_menu()
+   {
+
+#ifdef UNIVERSAL_WINDOWS
+
+      return true;
+
+#else
+
+      if (is_sandboxed())
+      {
+
+         return true;
+
+      }
+
+      return false;
+
+#endif
+
+   }
+
+
    // updown
    bool interaction::wfi_is_up()
    {

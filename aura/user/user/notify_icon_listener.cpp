@@ -197,7 +197,7 @@ namespace user
    }
 
 
-   bool notify_icon_listener::notify_icon_insert_item(index & iIndex, string strName, string strId, string strLabel, string strAccelerator, string strDescription)
+   bool notify_icon_listener::notify_icon_insert_item(bool bStockItem, index & iIndex, string strName, string strId, string strLabel, string strAccelerator, string strDescription)
    {
 
       if (iIndex < 0 || iIndex > m_notifyiconitema.get_count())
@@ -261,6 +261,8 @@ namespace user
       }
 
       auto pitem = __new(item(strName, strId, strLabel, strAccelerator, strDescription));
+
+      pitem->m_bStockItem = bStockItem;
 
       m_notifyiconitema.insert_at(iIndex, pitem);
 

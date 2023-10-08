@@ -707,6 +707,8 @@ namespace user
       virtual bool has_compulsory_window_manager_decorations();
       virtual bool should_show_platform_control_box();
 
+      virtual bool should_inline_notify_context_menu();
+
 
       // updown
       virtual bool wfi_is_up();

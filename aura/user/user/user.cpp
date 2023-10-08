@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "button.h"
 #include "user.h"
 #include "shell.h"
 #include "style.h"
@@ -7,7 +8,7 @@
 #include "plain_edit.h"
 #include "still.h"
 #include "check_box.h"
-#include "button.h"
+#include "notify_icon.h"
 #include "progress.h"
 #include "acme/constant/message.h"
 #include "acme/constant/simple_command.h"
@@ -436,6 +437,15 @@ namespace user
 
       factory()->add_factory_item <::user::button >();
       factory()->add_factory_item <::user::check_box >();
+      factory()->add_factory_item <::user::still >();
+
+      if (!factory()->get_factory_item < ::user::notify_icon >())
+      {
+
+         factory()->add_factory_item <::user::notify_icon >();
+
+      }
+
       factory()->add_factory_item <::user::still >();
 
       factory()->add_factory_item <::user::progress >();

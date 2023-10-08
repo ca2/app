@@ -25,7 +25,7 @@ namespace user
    void notify_icon::create_notify_icon(const ::atom & atom, ::user::interaction * pinteractionNotify, ::windowing::icon * picon)
    {
       
-      throw ::interface_only();
+      //throw ::interface_only();
       
       //throw ::interface_only();
 

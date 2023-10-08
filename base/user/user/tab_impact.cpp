@@ -6,6 +6,7 @@
 #include "split_impact.h"
 #include "document.h"
 #include "handler_impact.h"
+#include "aura/user/user/notify_icon.h"
 #include "tab_drop_target_window.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
@@ -16,6 +17,8 @@
 #include "base/platform/application.h"
 #include "base/platform/session.h"
 #include "base/user/form/document.h"
+#include "base/user/menu/item.h"
+#include "base/user/menu/item_ptra.h"
 #include "base/user/menu/menu.h"
 #include "base/user/menu/list_impact.h"
 #include "base/user/user/user.h"
@@ -999,12 +1002,61 @@ namespace user
 
       path = "matter://impact.menu";
 
-      auto strXml = get_app()->file()->as_string(path);
+      auto strXml = get_app()->file()->safe_get_string(path);
 
-      if (!pmenu->load_xml_menu(strXml))
+      if (strXml.has_char())
       {
 
-         throw ::exception(error_failed, "tab_impact::prepare_impact_menu Failed to load \"" + path + "\".");
+         if (!pmenu->load_xml_menu(strXml))
+         {
+
+            throw ::exception(error_failed, "tab_impact::prepare_impact_menu Failed to load \"" + path + "\".");
+
+         }
+
+      }
+
+      auto pframe = top_level_frame();
+
+      if (pframe && pframe->should_inline_notify_context_menu())
+      {
+
+         __defer_construct_new(pmenu->m_pmenuitem);
+
+         pmenu->m_pmenuitem->m_pmenu = pmenu;
+
+         if (!pmenu->m_pmenuitem->m_pmenuitema)
+         {
+
+            pmenu->m_pmenuitem->m_pmenuitema = __new(::user::menu_item_ptra(pmenu->m_pmenuitem));
+
+         }
+
+         for(::index i = 0; i < pframe->notify_icon()->m_notifyiconitema.get_count(); i++)
+         {
+
+            auto pnotifyiconitem = pframe->notify_icon()->m_notifyiconitema[i];
+
+            if (pnotifyiconitem->m_bStockItem)
+            {
+
+               continue;
+
+            }
+
+            auto pmenuitem = __create_new < menu_item >();
+
+            pmenuitem->m_pmenu = pmenu;
+
+            pmenuitem->m_atom = pnotifyiconitem->m_strId;
+
+            pmenuitem->m_strTitle = pnotifyiconitem->m_strName;
+
+            pmenu->m_pmenuitem->m_pmenuitema->add(pmenuitem);
+
+         }
+
+         pmenu->add_handler(pframe);
 
       }
 

@@ -186,7 +186,7 @@ void simple_frame_window::on_update_notify_icon_menu_header(::index & iNotifyIco
 
    auto strAppTitle = papp->application_title();
 
-   m_pnotifyicon->notify_icon_insert_item(iNotifyIconItem, strAppTitle, "notify_icon_topic");
+   m_pnotifyicon->notify_icon_insert_item(true, iNotifyIconItem, strAppTitle, "notify_icon_topic");
 
 }
 
@@ -203,7 +203,7 @@ void simple_frame_window::on_update_notify_icon_menu_top(::index & iNotifyIconIt
 
       auto& item = papp->applicationmenu()[i];
 
-      m_pnotifyicon->notify_icon_insert_item(iNotifyIconItem, item.m_strName, item.m_strId);
+      m_pnotifyicon->notify_icon_insert_item(false, iNotifyIconItem, item.m_strName, item.m_strId);
 
    }
 
@@ -226,10 +226,10 @@ void simple_frame_window::on_update_notify_icon_menu_bottom(::index & iNotifyIco
       && m_pframe->get_control_box()->has_button(::experience::e_button_transparent_frame))
    {
 
-      m_pnotifyicon->notify_icon_insert_item(iNotifyIconItem, "separator");
+      m_pnotifyicon->notify_icon_insert_item(true, iNotifyIconItem, "separator");
 
       //m_pnotifyicon->notify_icon_insert_item(iNotifyIconItem, _("Transparent Frame"), "transparent_frame");
-      m_pnotifyicon->notify_icon_insert_item(iNotifyIconItem, "Transparent Frame", "transparent_frame");
+      m_pnotifyicon->notify_icon_insert_item(true, iNotifyIconItem, "Transparent Frame", "transparent_frame");
 
    }
 
@@ -239,10 +239,10 @@ void simple_frame_window::on_update_notify_icon_menu_bottom(::index & iNotifyIco
 void simple_frame_window::on_update_notify_icon_menu_footer(::index & iNotifyIconItem)
 {
 
-   m_pnotifyicon->notify_icon_insert_item(iNotifyIconItem, "separator");
+   m_pnotifyicon->notify_icon_insert_item(true, iNotifyIconItem, "separator");
 
    //m_pnotifyicon->notify_icon_insert_item(iNotifyIconItem, _("Exit"), "app_exit");
-   m_pnotifyicon->notify_icon_insert_item(iNotifyIconItem, "Exit", "app_exit");
+   m_pnotifyicon->notify_icon_insert_item(true, iNotifyIconItem, "Exit", "app_exit");
 
 }
 
@@ -1004,7 +1004,7 @@ void simple_frame_window::on_message_create(::message::message* pmessage)
 
    }
 
-#if !defined(UNIVERSAL_WINDOWS) && !defined(ANDROID) && !defined(APPLE_IOS)
+//#if !defined(UNIVERSAL_WINDOWS) && !defined(ANDROID) && !defined(APPLE_IOS)
 
    if (!(m_ewindowflag & e_window_flag_window_created))
    {
@@ -1045,7 +1045,7 @@ void simple_frame_window::on_message_create(::message::message* pmessage)
 
    }
 
-#endif
+//#endif
 
    set_window_text(get_frame_title());
 

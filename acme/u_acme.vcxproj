@@ -614,6 +614,11 @@
     <ClInclude Include="filesystem\file\streamable_composite.h" />
     <ClInclude Include="filesystem\file\transfer.h" />
     <ClInclude Include="filesystem\file\translatable.h" />
+    <ClInclude Include="graphics\image\color_indexes.h" />
+    <ClInclude Include="graphics\image\header.h" />
+    <ClInclude Include="graphics\image\pixmap.h" />
+    <ClInclude Include="graphics\image\_.h" />
+    <ClInclude Include="graphics\image\_configuration.h" />
     <ClInclude Include="handler\extended_topic.h" />
     <ClInclude Include="handler\handler.h" />
     <ClInclude Include="handler\item.h" />
@@ -855,6 +860,7 @@
     <ClInclude Include="user\user\_const_key.h" />
     <ClInclude Include="user\user\_style.h" />
     <ClInclude Include="user\_.h" />
+    <ClInclude Include="windowing\window_base.h" />
     <ClInclude Include="_forward_declaration.h" />
     <ClInclude Include="_start.h" />
     <None Include="filesystem\_impl.h" />
@@ -1403,6 +1409,7 @@
     <ClCompile Include="graphics\draw2d\image32_array.cpp" />
     <ClCompile Include="graphics\draw2d\os_font_name.cpp" />
     <ClCompile Include="graphics\draw2d\_.cpp" />
+    <ClCompile Include="graphics\image\pixmap.cpp" />
     <ClCompile Include="handler\extended_topic.cpp" />
     <ClCompile Include="handler\handler.cpp" />
     <ClCompile Include="handler\item.cpp" />
@@ -1945,6 +1952,7 @@
     <ClCompile Include="user\user\text.cpp" />
     <ClCompile Include="user\user\tool_item.cpp" />
     <ClCompile Include="user\user\_string.cpp" />
+    <ClCompile Include="windowing\window_base.cpp" />
     <ClCompile Include="_.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

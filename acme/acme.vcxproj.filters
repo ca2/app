@@ -318,6 +318,15 @@
     <Filter Include="Source Files\crypto">
       <UniqueIdentifier>{56e07465-2a0b-4719-9847-d297fa077b35}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\graphics\image">
+      <UniqueIdentifier>{ee4cd659-a60c-4f0b-b04b-69a9847acc70}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\windowing">
+      <UniqueIdentifier>{86deb70e-007c-447e-ae09-4aa2cf85278d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\windowing">
+      <UniqueIdentifier>{b785409f-1afc-4463-8064-03b729958250}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\filesystem.h">
@@ -3428,6 +3437,15 @@
     <ClInclude Include="primitive\geometry2d\matrix.h">
       <Filter>Header Files\primitive\geometry2d</Filter>
     </ClInclude>
+    <ClInclude Include="graphics\image\pixmap.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\header.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="windowing\window_base.h">
+      <Filter>Header Files\windowing</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\bit.cpp">
@@ -4743,6 +4761,12 @@
     </ClCompile>
     <ClCompile Include="primitive\geometry2d\matrix.cpp">
       <Filter>Source Files\primitive\geometry2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\image\pixmap.cpp">
+      <Filter>Source Files\graphics\image</Filter>
+    </ClCompile>
+    <ClCompile Include="windowing\window_base.cpp">
+      <Filter>Source Files\windowing</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

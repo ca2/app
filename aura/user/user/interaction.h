@@ -1621,6 +1621,8 @@ namespace user
       void handle(::topic * ptopic, ::context * pcontext) override;
 
 
+      void on_after_impact_update() override;
+
 
       virtual void install_message_routing(::channel* pchannel) override;
       virtual void prio_install_message_routing(::channel* pchannel);

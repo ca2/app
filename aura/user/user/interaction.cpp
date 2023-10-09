@@ -1838,6 +1838,13 @@ namespace user
 
       }
 
+      if (!get_host_window()->m_pinteractionimpl->m_pgraphics->is_single_buffer_mode())
+      {
+
+         return true;
+
+      }
+
       auto * pinteraction = get_wnd();
 
       if (::is_null(pinteraction))
@@ -4517,7 +4524,7 @@ namespace user
 
 
    void interaction::_001OnNcClip(::draw2d::graphics_pointer & pgraphics)
-   {  //return;
+   {  
 
       m_pprimitiveimpl->_001OnNcClip(pgraphics);
 
@@ -15179,6 +15186,13 @@ namespace user
 
       auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
 
+      if (::is_null(puserinteractionpointeraChild))
+      {
+
+         return false;
+
+      }
+
       if (puserinteractionpointeraChild->contains_interaction(pinteraction))
       {
 
@@ -19550,6 +19564,16 @@ namespace user
          }
 
       }
+
+   }
+
+
+   void interaction::on_after_impact_update()
+   {
+
+      set_need_redraw();
+
+      post_redraw();
 
    }
 

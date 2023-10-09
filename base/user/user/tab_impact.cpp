@@ -1018,7 +1018,9 @@ namespace user
 
       auto pframe = top_level_frame();
 
-      if (pframe && pframe->should_inline_notify_context_menu())
+      if (pframe 
+         && pframe->should_inline_notify_context_menu()
+         && pframe->notify_icon())
       {
 
          __defer_construct_new(pmenu->m_pmenuitem);

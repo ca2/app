@@ -19,7 +19,9 @@ namespace user
       span::span()
       {
          
-         m_ealignEndOfLine = e_align_none;
+         m_ealignNewLine = e_align_none;
+
+         m_bEndOfLine = false;
 
          ASSERT(m_pformat != nullptr);
 
@@ -34,7 +36,9 @@ namespace user
 
          m_pformat = m_pdata->m_pformatCurrent;
 
-         m_ealignEndOfLine = e_align_none;
+         m_ealignNewLine = e_align_none;
+
+         m_bEndOfLine = false;
 
          ASSERT(m_pformat != nullptr);
 
@@ -49,7 +53,9 @@ namespace user
 
          m_pformat = m_pdata->m_pformatCurrent;
 
-         m_ealignEndOfLine = ealignNewLine;
+         m_ealignNewLine = ealignNewLine;
+
+         m_bEndOfLine = false;
 
          ASSERT(m_pformat != nullptr);
 
@@ -59,7 +65,8 @@ namespace user
       span::span(data * pdata, const span & span) :
          m_pdata(pdata),
          m_pformat(__new(class format(*span.m_pformat))),
-         m_ealignEndOfLine(span.m_ealignEndOfLine),
+         m_ealignNewLine(span.m_ealignNewLine),
+         m_bEndOfLine(span.m_bEndOfLine),
          m_str(span.m_str)
       {
 
@@ -74,7 +81,8 @@ namespace user
 
       span::span(const span & span) :
          m_pformat(__new(class format(*span.m_pformat))),
-         m_ealignEndOfLine(span.m_ealignEndOfLine),
+         m_ealignNewLine(span.m_ealignNewLine),
+         m_bEndOfLine(span.m_bEndOfLine),
          m_str(span.m_str)
       {
 
@@ -95,17 +103,17 @@ namespace user
       ::e_align span::get_align() const
       {
 
-         ::e_align ealign = e_align_none;
+         ::e_align ealign = e_align_left;
 
          index i = m_pdata->m_spana.find_first(this);
 
-         for (; i < m_pdata->m_spana.get_count(); i++)
+         for (; i >= 0; i--)
          {
 
-            if (m_pdata->m_spana[i]->is_end_of_line())
+            if (m_pdata->m_spana[i]->is_start_of_line())
             {
 
-               ealign = m_pdata->m_spana[i]->m_ealignEndOfLine;
+               ealign = m_pdata->m_spana[i]->m_ealignNewLine;
 
                break;
 
@@ -121,7 +129,8 @@ namespace user
       span & span::operator = (const span & span)
       {
 
-         m_ealignEndOfLine= span.m_ealignEndOfLine;
+         m_ealignNewLine= span.m_ealignNewLine;
+         m_bEndOfLine = span.m_bEndOfLine;
          m_pformat = span.m_pformat;
          m_iPosBeg = span.m_iPosBeg;
          m_iPosEnd = span.m_iPosEnd;

@@ -63,9 +63,10 @@ namespace user
          //::pointer<span>create_span(::e_align ealignNewLine = e_align_none);
          ::pointer<span>create_span();
 
-         virtual ::pointer<span> __add_span2(::e_align ealignEndOfLine);
-         virtual ::pointer<span> add_span2();
-         virtual ::pointer<span> add_end_of_line_span(::e_align ealignEndOfLine);
+         virtual ::pointer<span> add_span(::e_align ealignEndOfLine, bool bEndOfLine);
+         //virtual ::pointer<span> add_start_of_line_span(::e_align ealignNewLine, bool bEndOfLine);
+         //virtual ::pointer<span> add_span();
+         //virtual ::pointer<span> add_end_of_line_span();
 
          ::pointer<span>add_span(const span & span);
 

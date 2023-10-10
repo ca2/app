@@ -643,18 +643,18 @@ namespace user
       }
 
 
-      ::pointer<span>edit_impl::add_span2()
+      //::pointer<span>edit_impl::add_span2()
+      //{
+
+      //   return m_pdata->add_span2();
+
+      //}
+
+
+      ::pointer<span>edit_impl::add_span(::e_align ealignNewLine, bool bEndOfLine)
       {
 
-         return m_pdata->add_span2();
-
-      }
-
-
-      ::pointer<span>edit_impl::add_end_of_line_span(::e_align ealignEndOfLine)
-      {
-
-         return m_pdata->add_end_of_line_span(ealignEndOfLine);
+         return m_pdata->add_span(ealignNewLine, bEndOfLine);
 
       }
 

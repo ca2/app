@@ -335,7 +335,7 @@ namespace user
 
             str += pspan->m_str;
 
-            if (pspan->m_ealignEndOfLine != e_align_none)
+            if (pspan->is_end_of_line())
             {
 
                str += "\n";
@@ -390,30 +390,32 @@ namespace user
       ::e_align box_align(pointer_array < span > & spana, index iBox)
       {
 
-         ::e_align ealignLast = e_align_left;
+         ::e_align ealign = e_align_left;
 
-         if (iBox >= 0)
+         if (iBox >= spana.get_count())
          {
 
-            while (iBox < spana.get_count())
-            {
-
-               if (spana[iBox]->is_end_of_line())
-               {
-
-                  ealignLast = spana[iBox]->m_ealignEndOfLine;
-
-                  break;
-
-               }
-
-               iBox++;
-
-            }
+            iBox = spana.get_upper_bound();
 
          }
 
-         return ealignLast;
+         while (iBox >= 0)
+         {
+
+            if (spana[iBox]->is_start_of_line())
+            {
+
+               ealign = spana[iBox]->m_ealignNewLine;
+
+               break;
+
+            }
+
+            iBox--;
+
+         }
+
+         return ealign;
 
       }
 
@@ -421,26 +423,26 @@ namespace user
       bool box_align(pointer_array < span > & spana, index iBox, ::e_align ealign)
       {
 
-         if (iBox < 0)
+         if (iBox >= spana.get_count())
          {
 
-            iBox = 0;
+            iBox = spana.get_upper_bound();
 
          }
 
-         while (iBox < spana.get_upper_bound())
+         while (iBox >= 0)
          {
 
-            if (spana[iBox]->is_end_of_line())
+            if (spana[iBox]->is_start_of_line())
             {
 
-               spana[iBox]->m_ealignEndOfLine = ealign;
+               spana[iBox]->m_ealignNewLine = ealign;
 
                return true;
 
             }
 
-            iBox++;
+            iBox--;
 
          }
 
@@ -514,7 +516,7 @@ namespace user
 
          }
 
-         auto ealign = pline->last_ptr()->m_pspan->m_ealignEndOfLine;
+         auto ealign = pline->first_ptr()->m_pspan->m_ealignNewLine;
 
          // pline->last().m_str += "\n";
 

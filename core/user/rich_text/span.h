@@ -25,8 +25,9 @@ namespace user
          ::pointer < class data >         m_pdata;
          ::pointer < class format >       m_pformat;
 
+         ::e_align                        m_ealignNewLine;
+         bool                             m_bEndOfLine;
 
-         ::e_align                        m_ealignEndOfLine;
          string                           m_str;
 
          // Common thing among indexes:
@@ -60,7 +61,9 @@ namespace user
 
          void set_new_format();
 
-         bool is_end_of_line() const { return m_ealignEndOfLine != e_align_none; }
+         bool is_start_of_line() const { return m_ealignNewLine != e_align_none; }
+
+         bool is_end_of_line() const { return m_bEndOfLine; }
 
          ::e_align get_align() const;
 

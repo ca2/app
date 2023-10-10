@@ -60,9 +60,12 @@ namespace user
          virtual ::rectangle_f64 get_drawing_rect();
 
          // if span has alignment set, it generates memory_new line
-         ::pointer<span>create_span(::e_align ealignNewLine = e_align_none);
+         //::pointer<span>create_span(::e_align ealignNewLine = e_align_none);
+         ::pointer<span>create_span();
 
-         ::pointer<span>add_span(::e_align ealignNewLine = e_align_none);
+         virtual ::pointer<span> __add_span2(::e_align ealignEndOfLine);
+         virtual ::pointer<span> add_span2();
+         virtual ::pointer<span> add_end_of_line_span(::e_align ealignEndOfLine);
 
          ::pointer<span>add_span(const span & span);
 

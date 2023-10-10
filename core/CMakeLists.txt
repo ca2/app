@@ -161,6 +161,8 @@ list(APPEND library_source
    filesystem/userfs/userfs.h
    filesystem/_impl.h
    filesystem/filesystem.h
+   graphics/color_selector.cpp
+   graphics/color_selector.h
    #include/_.cpp
    include/_.h
    include/_c.h
@@ -283,6 +285,8 @@ list(APPEND library_source
    user/rich_text/edit_impl.h
    user/rich_text/format.cpp
    user/rich_text/format.h
+   user/rich_text/format_host.cpp
+   user/rich_text/format_host.h
    user/rich_text/format_tool.cpp
    user/rich_text/format_tool.h
    user/rich_text/global.cpp
@@ -349,8 +353,14 @@ list(APPEND library_source
    #user/user/_impl.h
    #user/user/_tree.h
    #user/user/_user.h
-   user/user/color_combo_box.cpp
-   user/user/color_combo_box.h
+   user/user/color_selector_combo_box.cpp
+   user/user/color_selector_combo_box.h
+   user/user/color_selector_control.cpp
+   user/user/color_selector_control.h
+   user/user/color_selector_impact.cpp
+   user/user/color_selector_impact.h
+   user/user/color_selector_popup.cpp
+   user/user/color_selector_popup.h
    user/user/control_ddx_dbflags.h
    user/user/elastic_slider.cpp
    user/user/elastic_slider.h
@@ -400,6 +410,8 @@ list(APPEND library_source
    user/user/mesh_data.h
    user/user/mesh_item.cpp
    user/user/mesh_item.h
+   user/user/popup.cpp
+   user/user/popup.h
    #user/user/statusbar.cpp
    #user/user/statusbar.h
    user/user/step_slider.cpp
@@ -435,8 +447,8 @@ list(APPEND library_source
    #user/userex/_userex.h
    #user/userex/calculator_edit_impact.cpp
    #user/userex/calculator_edit_impact.h
-   user/userex/color_impact.cpp
-   user/userex/color_impact.h
+   #user/userex/color_impact.cpp
+   #user/userex/color_impact.h
    user/userex/const.h
    user/userex/dialog.cpp
    user/userex/dialog.h

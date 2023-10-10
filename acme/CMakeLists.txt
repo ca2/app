@@ -235,10 +235,12 @@ list(APPEND library_source
    graphics/draw2d/color32.h
    graphics/draw2d/color_array.cpp
    graphics/draw2d/color_array.h
-   graphics/draw2d/image32.h
-   graphics/draw2d/image32_array.cpp
-   graphics/draw2d/image32_array.h
    graphics/draw2d/os_font_name.cpp
+   graphics/image/image32.cpp
+   graphics/image/image32.h
+   graphics/image/image32_array.cpp
+   graphics/image/image32_array.h
+   graphics/image/pixmap.cpp
    handler/extended_topic.cpp
    handler/extended_topic.h
    handler/handler.cpp
@@ -2445,7 +2447,7 @@ if (${LINUX} OR ${FREEBSD})
 endif ()
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source} graphics/image/pixmap.cpp)
+add_library(${PROJECT_NAME} SHARED ${library_source})
 add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
 if (NOT ${NO_PRECOMPILED_HEADER})

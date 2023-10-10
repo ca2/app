@@ -230,7 +230,8 @@ namespace user
 
                //pboxLast = pbox;
 
-               if (pbox->m_iPosBeg <= iSel && iSel <= (pbox->m_iPosEnd + (pbox == pline->last_ptr() ? 1 : 0)))
+               //if (pbox->m_iPosBeg <= iSel && iSel <= (pbox->m_iPosEnd + (pbox == pline->last_ptr() ? 1 : 0)))
+               if (pbox->m_iPosBeg <= iSel && iSel <= pbox->m_iPosEnd)
                {
 
                   strsize iPos = iSel;
@@ -238,16 +239,17 @@ namespace user
                   int xLeft;
                   //int xRight;
 
-                  if (iPos - 1 <= pbox->m_iPosBeg)
+                  if (iPos <= pbox->m_iPosBeg)
                   {
 
                      xLeft = (::i32)pbox->m_rectangleBox.left();
 
                   }
-                  else if ((iPos - 1) >= pbox->m_iPosEnd)
+                  else if (iPos >= pbox->m_iPosEnd)
                   {
 
-                     xLeft = (::i32)pbox->get_last_pos();
+                     //xLeft = (::i32)pbox->get_last_pos();
+                     xLeft = (::i32)pbox->m_rectangleBox.right();
 
                   }
                   else
@@ -272,36 +274,36 @@ namespace user
       }
 
 
-      index sel_char(pointer_array < line > & linea, index iSel)
-      {
-
-         if (iSel < 0 || linea.is_empty() || linea.first()->is_empty())
-         {
-
-            return -1;
-
-         }
-
-         for (auto & pline : linea)
-         {
-
-            for (auto & pbox : *pline)
-            {
-
-               if (pbox->m_iPosBeg <= iSel && iSel <= pbox->m_iPosEnd)
-               {
-
-                  return minimum(pbox->m_iPosEnd + 1, iSel - pbox->m_iPosBeg + pbox->m_iPosBeg);
-
-               }
-
-            }
-
-         }
-
-         return linea.last()->last()->m_iPosEnd + 1;
-
-      }
+//      index sel_char(pointer_array < line > & linea, index iSel)
+//      {
+//
+//         if (iSel < 0 || linea.is_empty() || linea.first()->is_empty())
+//         {
+//
+//            return -1;
+//
+//         }
+//
+//         for (auto & pline : linea)
+//         {
+//
+//            for (auto & pbox : *pline)
+//            {
+//
+//               if (pbox->m_iPosBeg <= iSel && iSel <= pbox->m_iPosEnd)
+//               {
+//
+//                  return minimum(pbox->m_iPosEnd, iSel - pbox->m_iPosBeg + pbox->m_iPosBeg);
+//
+//               }
+//
+//            }
+//
+//         }
+//
+//         return linea.last()->last()->m_iPosEnd + 1;
+//
+//      }
 
 
 
@@ -328,26 +330,17 @@ namespace user
 
          string str;
 
-         bool bFirstBox = true;
-
          for (auto & pspan : spana)
          {
 
-            if (pspan->m_ealignNewLine != e_align_none)
-            {
-
-               if (!bFirstBox)
-               {
-
-                  str += "\n";
-
-               }
-
-            }
-
             str += pspan->m_str;
 
-            bFirstBox = false;
+            if (pspan->m_ealignEndOfLine != e_align_none)
+            {
+
+               str += "\n";
+
+            }
 
          }
 
@@ -368,21 +361,16 @@ namespace user
 
             ::pointer<span>& pspan = spana[i];
 
-            if (i > 0)
-            {
-               
-               if (pspan->m_ealignNewLine != e_align_none)
-               {
-
-                  iPos++;
-
-               }
-
-            }
-
             pspan->m_iPosBeg = iPos;
 
             iPos += (::i32) pspan->m_str.length();
+
+            if (pspan->is_end_of_line())
+            {
+
+               iPos++;
+
+            }
 
             pspan->m_iPosEnd = iPos;
 
@@ -402,34 +390,30 @@ namespace user
       ::e_align box_align(pointer_array < span > & spana, index iBox)
       {
 
-         while (true)
+         ::e_align ealignLast = e_align_left;
+
+         if (iBox >= 0)
          {
 
-            if (iBox > spana.get_count())
+            while (iBox < spana.get_count())
             {
 
-               iBox = spana.get_upper_bound();
+               if (spana[iBox]->is_end_of_line())
+               {
+
+                  ealignLast = spana[iBox]->m_ealignEndOfLine;
+
+                  break;
+
+               }
+
+               iBox++;
 
             }
-
-            if (iBox < 0)
-            {
-
-               return e_align_left;
-
-            }
-
-            if (spana[iBox]->m_ealignNewLine != e_align_none)
-            {
-
-               return spana[iBox]->m_ealignNewLine;
-
-            }
-
-            iBox--;
 
          }
 
+         return ealignLast;
 
       }
 
@@ -437,35 +421,30 @@ namespace user
       bool box_align(pointer_array < span > & spana, index iBox, ::e_align ealign)
       {
 
-         if (iBox > spana.get_count())
+         if (iBox < 0)
          {
 
-            iBox = spana.get_upper_bound();
+            iBox = 0;
 
          }
 
-         while (true)
+         while (iBox < spana.get_upper_bound())
          {
 
-            if (iBox < 0)
+            if (spana[iBox]->is_end_of_line())
             {
 
-               return false;
-
-            }
-
-            if (spana[iBox]->m_ealignNewLine != e_align_none)
-            {
-
-               spana[iBox]->m_ealignNewLine = ealign;
+               spana[iBox]->m_ealignEndOfLine = ealign;
 
                return true;
 
             }
 
-            iBox--;
+            iBox++;
 
          }
+
+         return false;
 
       }
 
@@ -535,7 +514,7 @@ namespace user
 
          }
 
-         auto ealign = pline->first_ptr()->m_pspan->m_ealignNewLine;
+         auto ealign = pline->last_ptr()->m_pspan->m_ealignEndOfLine;
 
          // pline->last().m_str += "\n";
 
@@ -581,9 +560,7 @@ namespace user
 
             }
 
-
          }
-
 
       }
 
@@ -591,7 +568,7 @@ namespace user
       box * find_box(pointer_array < line > & linea, index iSel)
       {
 
-         if (iSel < 0 || linea.is_empty() || linea.first()->is_empty())
+         if (iSel < 0 || linea.is_empty())
          {
 
             return nullptr;
@@ -608,7 +585,8 @@ namespace user
 
                pboxLast = pbox;
 
-               if (pbox->m_iPosBeg <= iSel && iSel <= (pbox->m_iPosEnd + (pbox->is_line_end() ? 1 : 0)))
+               //if (pbox->m_iPosBeg <= iSel && iSel <= (pbox->m_iPosEnd + (pbox->is_line_end() ? 1 : 0)))
+               if (pbox->m_iPosBeg <= iSel && iSel <= pbox->m_iPosEnd)
                {
 
                   return pbox;
@@ -638,12 +616,12 @@ namespace user
 
             auto & pline = linea[iLine];
 
-            if (plineLast.is_set() && plineLast->first()->m_pspan != pline->first()->m_pspan)
-            {
-
-               str += "\n";
-
-            }
+//            if (plineLast.is_set() && plineLast->last()->m_pspan != pline->last()->m_pspan)
+//            {
+//
+//            str += "\n";
+//
+//            }
 
             for (auto & pbox : *pline)
             {
@@ -651,6 +629,8 @@ namespace user
                str += pbox->get_text();
 
             }
+
+            str += "\n";
 
          }
 

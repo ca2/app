@@ -6772,6 +6772,8 @@ namespace user
    void interaction::host_post(const ::procedure & procedure)
    {
 
+#ifdef WINDOWS_DESKTOP
+
       auto pthread = m_pthreadUserInteraction;
 
       if (::is_null(pthread))
@@ -6785,11 +6787,19 @@ namespace user
 
       pthread->post_procedure(procedure);
 
+#else
+
+      acmenode()->user_post(procedure);
+
+#endif
+
    }
 
 
    void interaction::user_send(const ::procedure & procedure)
    {
+
+#ifdef WINDOWS_DESKTOP
 
       auto pthread = m_pthreadUserInteraction;
 
@@ -6803,6 +6813,12 @@ namespace user
       }
 
       pthread->send_procedure(procedure);
+
+#else
+
+      acmenode()->user_send(procedure);
+
+#endif
    
    }
 

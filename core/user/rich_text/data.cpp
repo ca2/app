@@ -155,10 +155,10 @@ namespace user
 
 
       
-      ::pointer<span>data::create_span(::e_align ealignNewLine)
+      ::pointer<span>data::create_span()
       {
 
-         return __new(span(this, ealignNewLine));
+         return __new(span(this));
 
       }
 
@@ -173,12 +173,12 @@ namespace user
       }
 
 
-      ::pointer<span>data::add_span(::e_align ealignNewLine)
+      ::pointer<span>data::__add_span2(::e_align ealignEndOfLine)
       {
 
          synchronous_lock synchronouslock(this->synchronization());
 
-         auto pspan = create_span(ealignNewLine);
+         auto pspan = create_span();
 
          if (pspan->m_pformat.is_null())
          {
@@ -187,12 +187,31 @@ namespace user
 
          }
 
+         pspan->m_ealignEndOfLine = ealignEndOfLine;
+
          m_spana.add(pspan);
 
          return pspan;
 
       }
 
+
+      ::pointer<span>data::add_span2()
+      {
+
+         return __add_span2(::e_align_none);
+
+      }
+
+
+      ::pointer<span>data::add_end_of_line_span(::e_align ealignEndOfLine)
+      {
+
+         ASSERT(ealignEndOfLine != ::e_align_none);
+
+         return __add_span2(ealignEndOfLine);
+
+      }
 
 
       strsize data::get_sel_beg()
@@ -256,13 +275,6 @@ namespace user
                {
 
                   break;
-
-               }
-
-               if (m_spana[iSpanBeg]->m_ealignNewLine != e_align_none)
-               {
-
-                  ealign = e_align_none;
 
                }
 
@@ -582,7 +594,7 @@ namespace user
 
                }
 
-               if (iSelBeg == pspanBeg->m_iPosEnd && pspanNext.is_set() && pspanNext->is_new_line())
+               if (iSelBeg == pspanBeg->m_iPosEnd && pspanNext.is_set() && pspanBeg->is_end_of_line())
                {
 
                   if (pspanBeg->m_pformat == pspanNext->m_pformat)
@@ -598,7 +610,7 @@ namespace user
                   else
                   {
 
-                     pspanNext->m_ealignNewLine = e_align_none;
+                     pspanBeg->m_ealignEndOfLine = e_align_none;
 
                   }
 
@@ -694,7 +706,7 @@ namespace user
 
          ::pointer<span>pspan;
 
-         ::e_align ealignNewLine;
+         ::e_align ealignEndOfLine;
 
          if (iSpan >= 0)
          {
@@ -703,7 +715,7 @@ namespace user
 
             pformat = pspan->format();
 
-            ealignNewLine = pspan->get_align();
+            ealignEndOfLine = pspan->get_align();
 
             iSpan++;
 
@@ -713,7 +725,7 @@ namespace user
 
             pformat = m_pformatCurrent;
 
-            ealignNewLine = e_align_left;
+            ealignEndOfLine = e_align_left;
 
             iSpan = 0;
 
@@ -738,16 +750,18 @@ namespace user
             if (pformatParam != nullptr)
             {
 
-               if (iLine <= 0 || pformatParam->m_ealign != e_align_none)
+               pspan = create_span();
+
+               if(iLine <= 0 || pformatParam->m_ealign != e_align_none)
                {
 
-                  pspan = create_span(pformatParam->m_ealign);
+                  pspan->m_ealignEndOfLine = pformatParam->m_ealign;
 
                }
                else
                {
 
-                  pspan = create_span(ealignNewLine);
+                  pspan->m_ealignEndOfLine = ealignEndOfLine;
 
                }
 
@@ -761,7 +775,9 @@ namespace user
             else if (iLine > 0 || !pspan)
             {
 
-               pspan = create_span(ealignNewLine);
+               pspan = create_span();
+
+               pspan->m_ealignEndOfLine = ealignEndOfLine;
 
                pspan->m_pformat = m_pformatCurrent;
 
@@ -780,6 +796,10 @@ namespace user
             else
             {
 
+               information() << "iSelBeg : " << iSelBeg;
+               information() << "pspan : " << (::iptr) pspan.m_p;
+               information() << "pspan->m_iPosBeg : " << (iptr) pspan->m_iPosBeg;
+
                ASSERT(iSelBeg >= pspan->m_iPosBeg);
 
                strsize iMid = iSelBeg - pspan->m_iPosBeg + 1;
@@ -795,11 +815,11 @@ namespace user
 
                   {
 
-                     auto pspanLast = create_span(ealignNewLine);
+                     auto pspanLast = create_span();
 
                      pspanLast->m_str = straLines.last() + pspan->m_str.substr(iMid);
 
-                     pspanLast->m_ealignNewLine = pspan->get_align();
+                     pspanLast->m_ealignEndOfLine = pspan->get_align();
 
                      pspanLast->m_pformat = pspan->m_pformat;
 
@@ -1172,13 +1192,13 @@ namespace user
 
          }
 
-         if (m_spana.first()->m_ealignNewLine == e_align_none)
-         {
-
-            m_spana.first()->m_ealignNewLine = e_align_left;
-
-         }
-
+//         if (m_spana.first()->m_ealignNewLine == e_align_none)
+//         {
+//
+//            m_spana.first()->m_ealignNewLine = e_align_left;
+//
+//         }
+//
          update_span_cache(m_spana);
 
          //bool bLineWrap = false;
@@ -1258,7 +1278,9 @@ namespace user
          while (iSpan < m_spana.get_count())
          {
 
-            ::pointer<span>pspan = m_spana[iSpan];
+            ::pointer < span > pspan = m_spana[iSpan];
+
+            ealign = box_align(m_spana, iSpan);
 
             pspan->m_str.find_replace("\n", "");
 
@@ -1295,62 +1317,9 @@ namespace user
 
             strSlice.empty();
 
-            //if (spanaMultiWordFormat.is_empty() &&
-            if((pspan->is_new_line() || iSpanChar > 0))
-            {
-
-               if (pline.is_set())
-               {
-
-                  ASSERT(pline->has_element());
-
-                  plinea->add(pline);
-
-               }
-
-               pline = __new(line);
-
-               x = (int) rectangle.left();
-
-               //xLast = x;
-
-               //bLineWrap = false;
-
-               ealign = pspan->m_ealignNewLine;
-
-               x = (int) rectangle.left();
-
-               //pbox = __new(box(pspan));
-
-               //index iSpan = find_char_span(m_spana, iCharLayout);
-
-               //int iHeight = pspan->format()->m_pfont->get_height();
-
-               //pbox->m_rectangle.set(x, 0, x, 0);
-
-               //pbox->m_rectangleHitTest.set(x, 0, x, 0);
-
-               //pbox->m_size.set_size(0, iHeight);
-
-               //pbox->m_iPosBeg = pspan->m_iPosBeg + iCharLayout;
-
-               //pbox->m_iPosEnd = pspan->m_iPosBeg + (bFirstParagraph ? iCharLayout : iCharLayout + 1);
-
-               //iCharLayout = pbox->m_iPosEnd;
-
-               pline->m_dLeft = x;
-
-               pline->m_dLeftDevice = x;
-
-               //pline->add(pbox);
-
-               //bFirstParagraph = false;
-
-            }
-
             // Format Word
 
-            string strTopic = &pspan->m_str[iSpanChar];
+            string strTopic = pspan->m_str.c_str() + iSpanChar;
 
             if (strTopic.is_empty())
             {
@@ -1408,7 +1377,7 @@ namespace user
 
             if (ansi_char_isspace(straWords.last().last_char())
                || (iSpan + 1 < m_spana.get_count()
-                  && (m_spana[iSpan + 1]->is_new_line()
+                  && (m_spana[iSpan]->is_end_of_line()
                      || (m_spana[iSpan + 1]->m_str.has_char()
                         && ansi_char_isspace(m_spana[iSpan + 1]->m_str[0]))))
                || cWords < straWords.get_count())
@@ -1523,6 +1492,58 @@ namespace user
             }
 
          new_span:
+
+            //if (spanaMultiWordFormat.is_empty() &&
+
+            if((pspan->is_end_of_line() || iSpanChar > 0))
+            {
+
+               if (pline.is_set())
+               {
+
+                  ASSERT(pline->has_element());
+
+                  plinea->add(pline);
+
+               }
+
+               pline = __new(line);
+
+               x = (int) rectangle.left();
+
+               //xLast = x;
+
+               //bLineWrap = false;
+
+               x = (int) rectangle.left();
+
+               //pbox = __new(box(pspan));
+
+               //index iSpan = find_char_span(m_spana, iCharLayout);
+
+               //int iHeight = pspan->format()->m_pfont->get_height();
+
+               //pbox->m_rectangle.set(x, 0, x, 0);
+
+               //pbox->m_rectangleHitTest.set(x, 0, x, 0);
+
+               //pbox->m_size.set_size(0, iHeight);
+
+               //pbox->m_iPosBeg = pspan->m_iPosBeg + iCharLayout;
+
+               //pbox->m_iPosEnd = pspan->m_iPosBeg + (bFirstParagraph ? iCharLayout : iCharLayout + 1);
+
+               //iCharLayout = pbox->m_iPosEnd;
+
+               pline->m_dLeft = x;
+
+               pline->m_dLeftDevice = x;
+
+               //pline->add(pbox);
+
+               //bFirstParagraph = false;
+
+            }
 
             iSpan++;
 
@@ -1981,7 +2002,7 @@ namespace user
 
             i++;
 
-            while (i < m_spana.get_count() && !m_spana[i]->is_new_line())
+            while (i < m_spana.get_count() && !m_spana[i - 1]->is_end_of_line())
             {
 
                auto pformat2 = m_spana[i]->m_pformat;
@@ -2264,13 +2285,18 @@ namespace user
                else
                {
 
-                  pgraphics->set(pformat->get_font(pgraphics));
-
-                  pgraphics->set_text_color(pformat->m_colorForeground);
-
                   string strText = pbox->get_text();
 
-                  pgraphics->draw_text(strText, rectangle, e_align_bottom_left, e_draw_text_single_line);
+                  if(strText.has_char())
+                  {
+
+                     pgraphics->set(pformat->get_font(pgraphics));
+
+                     pgraphics->set_text_color(pformat->m_colorForeground);
+
+                     pgraphics->draw_text(strText, rectangle, e_align_bottom_left, e_draw_text_single_line);
+
+                  }
 
                }
 

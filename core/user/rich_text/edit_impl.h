@@ -47,7 +47,9 @@ namespace user
 
          //virtual void do_layout() override;
 
-         ::pointer<span>add_span(::e_align ealignNewLine = e_align_none);
+         virtual ::pointer<span> add_span2();
+
+         virtual ::pointer<span> add_end_of_line_span(::e_align ealignEndOfLine);
 
          virtual ::item_pointer on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;
 

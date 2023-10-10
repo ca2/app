@@ -803,8 +803,8 @@ namespace user
             m_pbuttonAlignCenter->_001SetCheck(bCenter, ::e_source_sync);
             m_pbuttonAlignRight->_001SetCheck(bRight, ::e_source_sync);
 
-            m_hlsForeground = m_pformat->m_colorForeground;
-            m_hlsBackground = m_pformat->m_colorBackground;
+            m_hlsForeground = m_pformat->m_colorForeground.get_hls();
+            m_hlsBackground = m_pformat->m_colorBackground.get_hls();
 
          }
 

@@ -927,7 +927,7 @@ namespace core
 
       auto pdocument = m_mapimpactsystem[COLORSEL_IMPACT]->open_document_file(puiOwner->get_app(), ::e_type_null, true);
 
-      ::pointer<::userex::color_impact>pimpact = pdocument->get_typed_impact < ::userex::color_impact >();
+      ::pointer<::user::color_selector_impact>pimpact = pdocument->get_typed_impact < ::user::color_selector_impact >();
 
       ::pointer<::user::frame_window>pframe = pimpact->top_level_frame();
 

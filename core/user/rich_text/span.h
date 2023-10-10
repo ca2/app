@@ -22,12 +22,12 @@ namespace user
       public:
 
 
-         class data *            m_pdata;
-         ::pointer<class format>        m_pformat;
+         ::pointer < class data >         m_pdata;
+         ::pointer < class format >       m_pformat;
 
 
-         ::e_align           m_ealignNewLine;
-         string            m_str;
+         ::e_align                        m_ealignNewLine;
+         string                           m_str;
 
          // Common thing among indexes:
          // A single character is accounted for the same as the UTF8-::u8-count.

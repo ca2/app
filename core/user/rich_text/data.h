@@ -3,6 +3,7 @@
 
 #include "acme/primitive/data/data.h"
 #include "span.h"
+#include "format_host.h"
 
 
 namespace user
@@ -17,7 +18,8 @@ namespace user
 
 
       class CLASS_DECL_CORE data :
-         virtual public ::data::data
+         virtual public ::data::data,
+         virtual public ::user::rich_text::format_host
       {
       public:
 
@@ -27,20 +29,20 @@ namespace user
          //::rectangle_f64                            m_rectangle;
          
          // storage data
-         pointer_array < span >                        m_spana;
-         pointer< pointer_array < format > >           m_pformata;
+         pointer_array < span >                       m_spana;
+         //pointer< pointer_array < format > >          m_pformata;
 
-         ::pointer<format>                           m_pformatCurrent;
+         ::pointer<format>                            m_pformatCurrent;
 
          /// runtime span, ephemeral, derived
          /// should be easily rebuildable from "storage" data and a client rectangle_i32
-         pointer< pointer_array < line > >             m_plinea;
+         pointer< pointer_array < line > >            m_plinea;
 
          strsize                                      m_iSelBeg;
          strsize                                      m_iSelEnd;
          index                                        m_iSelLine;
-         rich_text::edit_impl *                       m_pedit;
-         class ::time                                   m_timeCaretPeriod;
+         ::pointer < rich_text::edit_impl >           m_pedit;
+         class ::time                                 m_timeCaretPeriod;
          //index                                      m_iFormatDefault;
          bool                                         m_bCaretRight;
 
@@ -50,7 +52,7 @@ namespace user
 
 
          void initialize_data(::data::data_container_base * pdocument) override;
-
+         void destroy() override;
 
          virtual void __initialize(::pointer<::user::rich_text::format>& pformat);
 
@@ -59,8 +61,6 @@ namespace user
 
          // if span has alignment set, it generates memory_new line
          ::pointer<span>create_span(::e_align ealignNewLine = e_align_none);
-
-         ::pointer<format>add_format();
 
          ::pointer<span>add_span(::e_align ealignNewLine = e_align_none);
 

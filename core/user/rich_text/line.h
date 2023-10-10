@@ -25,7 +25,7 @@ namespace user
 
 
          line();
-         virtual ~line();
+         ~line() override;
 
 
       };

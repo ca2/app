@@ -523,10 +523,10 @@ public:
    //inline void __raw_construct(::pointer<BASE_TYPE> & p, ::factory::factory * pfactory = ::get_system_factory());
 
    template < typename BASE_TYPE >
-   inline void __defer_construct(::pointer<BASE_TYPE>& ptype, ::factory::factory* pfactory = ::get_system_factory());
+   inline bool __defer_construct(::pointer<BASE_TYPE>& ptype, ::factory::factory* pfactory = ::get_system_factory());
 
    template < typename TYPE >
-   inline void __defer_construct_new(::pointer<TYPE>& ptype);
+   inline bool __defer_construct_new(::pointer<TYPE>& ptype);
 
    template < typename BASE_TYPE >
    inline void __construct(::pointer<BASE_TYPE>& ptype, ::factory::factory* pfactory = ::get_system_factory());

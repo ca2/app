@@ -2,7 +2,7 @@
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
 #include "acme/constant/timer.h"
-#include "acme/graphics/draw2d/image32.h"
+#include "acme/graphics/image/image32.h"
 #include "acme/platform/context.h"
 #include "acme/platform/timer.h"
 #include "acme/platform/keep.h"

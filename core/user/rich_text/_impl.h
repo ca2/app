@@ -17,8 +17,6 @@ namespace user
       }
 
 
-
-
    }  // namespace rich_text
 
 

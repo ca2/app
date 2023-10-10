@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "frame.h"
 #include "image.h"
-#include "acme/graphics/draw2d/image32.h"
+#include "acme/graphics/image/image32.h"
 #include "acme/graphics/draw2d/color_array.h"
 
 

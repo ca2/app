@@ -3188,9 +3188,6 @@
     <ClInclude Include="graphics\draw2d\_text_stream.h">
       <Filter>Header Files\graphics\draw2d</Filter>
     </ClInclude>
-    <ClInclude Include="graphics\draw2d\image32.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
     <ClInclude Include="include\_integer.h">
       <Filter>Header Files\include</Filter>
     </ClInclude>
@@ -3213,9 +3210,6 @@
       <Filter>Header Files\graphics\draw2d</Filter>
     </ClInclude>
     <ClInclude Include="graphics\draw2d\color_array.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\image32_array.h">
       <Filter>Header Files\graphics\draw2d</Filter>
     </ClInclude>
     <ClInclude Include="include\_tags.h">
@@ -3445,6 +3439,15 @@
     </ClInclude>
     <ClInclude Include="windowing\window_base.h">
       <Filter>Header Files\windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\_exif.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\image32_array.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\image32.h">
+      <Filter>Header Files\graphics\image</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -4582,9 +4585,6 @@
     <ClCompile Include="graphics\draw2d\color_array.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\draw2d\image32_array.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
     <ClCompile Include="user\user\mouse.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
@@ -4767,6 +4767,12 @@
     </ClCompile>
     <ClCompile Include="windowing\window_base.cpp">
       <Filter>Source Files\windowing</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\image\image32.cpp">
+      <Filter>Source Files\graphics\image</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\image\image32_array.cpp">
+      <Filter>Source Files\graphics\image</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

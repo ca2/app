@@ -20,21 +20,21 @@ namespace user
       public:
 
 
-         ::pointer<span>  m_pspan;
+         ::pointer<span>      m_pspan;
 
-         rectangle_f64             m_rectangleBox;
-         rectangle_f64             m_rectangleDevice;
-         rectangle_f64             m_rectangleHitTest;
+         rectangle_f64        m_rectangleBox;
+         rectangle_f64        m_rectangleDevice;
+         rectangle_f64        m_rectangleHitTest;
 
          size_f64             m_sizeBox;
-         strsize           m_iPosBeg;
-         strsize           m_iPosEnd;
+         strsize              m_iPosBeg;
+         strsize              m_iPosEnd;
 
-         double            m_dLeft;
+         double               m_dLeft;
 
 
          box(span* pspan);
-         virtual ~box();
+         ~box() override;
 
 
          string get_text() const;

@@ -63,7 +63,7 @@ namespace user
 
          initialize(pdata);
 
-         pdata->m_pformata->add(m_pformat);
+         pdata->add(m_pformat);
 
          pdata->m_spana.add(this);
 
@@ -120,7 +120,7 @@ namespace user
       {
 
          m_ealignNewLine= span.m_ealignNewLine;
-         m_pformat.container_copy(span.m_pformat);
+         m_pformat = span.m_pformat;
          m_iPosBeg = span.m_iPosBeg;
          m_iPosEnd = span.m_iPosEnd;
          m_str = span.m_str;

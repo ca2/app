@@ -1,7 +1,6 @@
 #include "framework.h"
 #include "pane_tab_impact.h"
 #include "font_impact.h"
-#include "color_impact.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
 #include "acme/platform/keep.h"
@@ -24,6 +23,7 @@
 #include "core/platform/application.h"
 #include "core/platform/session.h"
 #include "core/user/account/impact.h"
+#include "core/user/user/color_selector_impact.h"
 #include "core/user/user/font_list_impact.h"
 
 
@@ -198,14 +198,14 @@ namespace userex
    ::user::interaction * pane_tab_impact::get_color_interaction()
    {
   
-      if(::is_null(m_pcolorimpact))
+      if(::is_null(m_pcolorselectorimpact))
       {
          
          return nullptr;
          
       }
       
-      auto pimpact = m_pcolorimpact;
+      auto pimpact = m_pcolorselectorimpact;
       
       if(::is_null(pimpact))
       {
@@ -695,20 +695,20 @@ namespace userex
 
          //auto pdocument = pimpactsystem->open_document_file(get_app(), ::e_type_null, __visible(false).is_true(), pimpactdata->m_pplaceholder);
 
-         m_pcolorimpact = create_impact < color_impact >(pimpactdata);
+         m_pcolorselectorimpact = create_impact < ::user::color_selector_impact >(pimpactdata);
 
 //         pdocument->m_pviewTopic->set_notify_user_interaction(this);
 
   //       pimpactdata->m_puserinteraction = pdocument->m_pviewTopic;
          
-         m_pcolorimpact->add_handler(this);
+         m_pcolorselectorimpact->add_handler(this);
 
          ::pointer<::user::interaction>pimpact = psession->get_bound_ui(COLORSEL_IMPACT);
 
          if(pimpact)
          {
 
-            m_pcolorimpact->add_handler(pimpact);
+            m_pcolorselectorimpact->add_handler(pimpact);
 
          }
 

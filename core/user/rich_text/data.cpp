@@ -98,13 +98,6 @@ namespace user
       data::~data()
       {
 
-         if (synchronization() == m_pedit->synchronization())
-         {
-
-            set_synchronization(nullptr);
-
-         }
-
       }
 
 
@@ -124,7 +117,7 @@ namespace user
 
          //estatus = 
          
-         __construct_new(m_pformata);
+         //__construct_new(m_pformathost);
 
          //if (!estatus)
          //{
@@ -151,19 +144,17 @@ namespace user
       }
 
 
-      ::pointer<format>data::add_format()
+      void data::destroy()
       {
 
-         auto pformat = __create_new < format >();
+         ::data::data::destroy();
 
-         pformat->initialize_user_rich_text_format(m_pformata);
-
-         m_pformata->add(pformat);
-
-         return ::transfer(pformat);
+         ::user::rich_text::format_host::destroy();
 
       }
 
+
+      
       ::pointer<span>data::create_span(::e_align ealignNewLine)
       {
 
@@ -844,7 +835,6 @@ namespace user
       }
 
 
-
       void data::_001SetSelFontFormat(const format * pformat, const e_attribute & eattribute)
       {
 
@@ -862,122 +852,145 @@ namespace user
 
          index iEnd = find_span(m_spana, iSelEnd);
 
-         if (iBeg >= 0 && iEnd >= iBeg)
+         if (iSelEnd - iSelBeg + 1 > 0)
          {
 
-            auto pspanBeg = m_spana[iBeg];
-
-            auto pspanEnd = m_spana[iEnd];
-
-            index iEndBeg = pspanEnd->m_iPosBeg;
-
-            index iEndEnd = pspanEnd->m_iPosEnd;
-
-            string str;
-
-            if (iBeg == iEnd)
+            if (iBeg >= 0 && iEnd >= iBeg)
             {
 
-               if (iSelBeg > pspanBeg->m_iPosBeg)
+               auto pspanBeg = m_spana[iBeg];
+
+               auto pspanEnd = m_spana[iEnd];
+
+               index iEndBeg = pspanEnd->m_iPosBeg;
+
+               index iEndEnd = pspanEnd->m_iPosEnd;
+
+               string str;
+
+               if (iBeg == iEnd)
                {
 
-                  str = pspanBeg->m_str;
-
-                  pspanBeg->m_str = str.left(iSelBeg - pspanBeg->m_iPosBeg);
-
-                  auto pspan2 = pspanBeg->fork(pformat, eattribute);
-                  pspan2->m_str = str.substr(iSelBeg - pspanBeg->m_iPosBeg, iSelEnd - iSelBeg + 1);
-                  m_spana.insert_at(iBeg + 1, pspan2);
-
-                  if (iSelEnd < pspanBeg->m_iPosEnd)
-                  {
-
-                     auto pspan3 = pspanBeg->fork();
-                     pspan3->m_str = str.substr(iSelEnd - pspanBeg->m_iPosBeg + 1);
-                     m_spana.insert_at(iBeg + 2, pspan3);
-
-                  }
-
-               }
-               else
-               {
-
-                  if (iSelEnd + 1 < pspanBeg->m_iPosEnd)
+                  if (iSelBeg > pspanBeg->m_iPosBeg)
                   {
 
                      str = pspanBeg->m_str;
 
-                     auto pspan2 = pspanBeg->fork();
-                     pspan2->m_str = str.substr(iSelEnd - pspanBeg->m_iPosBeg + 1);
+                     pspanBeg->m_str = str.left(iSelBeg - pspanBeg->m_iPosBeg);
+
+                     auto pspan2 = pspanBeg->fork(pformat, eattribute);
+
+                     pspan2->m_str = str.substr(iSelBeg - pspanBeg->m_iPosBeg, iSelEnd - iSelBeg + 1);
+
                      m_spana.insert_at(iBeg + 1, pspan2);
 
-                     pspanBeg->m_str = str.left(iSelEnd - pspanBeg->m_iPosBeg + 1);
+                     if (iSelEnd + 1 < pspanBeg->m_iPosEnd)
+                     {
+
+                        auto pspan3 = pspanBeg->fork();
+
+                        pspan3->m_str = str.substr(iSelEnd - pspanBeg->m_iPosBeg + 1);
+
+                        m_spana.insert_at(iBeg + 2, pspan3);
+
+                     }
 
                   }
-
-                  pspanBeg->m_pformat.merge(m_pformata, pformat, eattribute);
-
-               }
-
-            }
-            else
-            {
-
-               if (iSelBeg > pspanBeg->m_iPosBeg)
-               {
-
-                  iEnd++;
-
-                  str = pspanBeg->m_str;
-
-                  pspanBeg->m_str = str.left(iSelBeg - pspanBeg->m_iPosBeg);
-
-                  auto pspan2 = pspanBeg->fork(pformat, eattribute);
-                  pspan2->m_str = str.substr(iSelBeg - pspanBeg->m_iPosBeg);
-                  m_spana.insert_at(iBeg + 1, pspan2);
-
-               }
-               else
-               {
-
-                  pspanBeg->m_pformat.merge(m_pformata,pformat, eattribute);
-
-               }
-
-
-               if (iSelEnd < iEndEnd)
-               {
-
-                  str = pspanEnd->m_str;
-
-                  auto pspan3 = pspanEnd->fork(pformat, eattribute);
-                  pspan3->m_str = str.left(iSelEnd - iEndBeg + 1);
-
-                  m_spana.insert_at(iEnd, pspan3);
-
-                  pspanEnd->m_str = str.substr(iSelEnd - iEndBeg + 1);
-
-               }
-               else
-               {
-
-                  pspanEnd->m_pformat.merge(m_pformata,pformat, eattribute);
-
-               }
-
-               for (index i = iBeg + 1; i < iEnd; i++)
-               {
-
-                  if (m_spana[i].is_set())
+                  else
                   {
 
-                     m_spana[i]->m_pformat.merge(m_pformata, pformat, eattribute);
+                     if (iSelEnd + 1 < pspanBeg->m_iPosEnd)
+                     {
+
+                        str = pspanBeg->m_str;
+
+                        auto pspan2 = pspanBeg->fork();
+
+                        pspan2->m_str = str.substr(iSelEnd - pspanBeg->m_iPosBeg + 1);
+
+                        m_spana.insert_at(iBeg + 1, pspan2);
+
+                        pspanBeg->m_str = str.left(iSelEnd - pspanBeg->m_iPosBeg + 1);
+
+                     }
+
+                     auto pformatNew = add_format();
+
+                     *pformatNew = *pspanBeg->m_pformat;
+
+                     pformatNew->apply(pformat, eattribute);
+
+                     pspanBeg->m_pformat = pformatNew;
+
+                  }
+
+               }
+               else
+               {
+
+                  if (iSelBeg > pspanBeg->m_iPosBeg)
+                  {
+
+                     iEnd++;
+
+                     str = pspanBeg->m_str;
+
+                     pspanBeg->m_str = str.left(iSelBeg - pspanBeg->m_iPosBeg);
+
+                     auto pspan2 = pspanBeg->fork(pformat, eattribute);
+                     pspan2->m_str = str.substr(iSelBeg - pspanBeg->m_iPosBeg);
+                     m_spana.insert_at(iBeg + 1, pspan2);
+
+                  }
+                  else
+                  {
+
+                     pspanBeg->m_pformat->apply(pformat, eattribute);
+
+                  }
+
+
+                  if (iSelEnd < iEndEnd)
+                  {
+
+                     str = pspanEnd->m_str;
+
+                     auto pspan3 = pspanEnd->fork(pformat, eattribute);
+                     pspan3->m_str = str.left(iSelEnd - iEndBeg + 1);
+
+                     m_spana.insert_at(iEnd, pspan3);
+
+                     pspanEnd->m_str = str.substr(iSelEnd - iEndBeg + 1);
+
+                  }
+                  else
+                  {
+
+                     pspanEnd->m_pformat->apply(pformat, eattribute);
+
+                  }
+
+                  for (index i = iBeg + 1; i < iEnd; i++)
+                  {
+
+                     if (m_spana[i].is_set())
+                     {
+
+                        m_spana[i]->m_pformat->apply(pformat, eattribute);
+
+                     }
 
                   }
 
                }
 
             }
+
+         }
+         else
+         {
+
+            information() << "iSelEnd - iSelBeg + 1 <= 0";
 
          }
 
@@ -1186,10 +1199,10 @@ namespace user
 
          //strsize iCharLayout = 0;
 
-   //if (m_spana.first().m_pformat >= m_pformata.get_count())
+   //if (m_spana.first().m_pformat >= m_pformathost.get_count())
    //{
 
-   //   m_pformata.add(__new(format(this)));
+   //   m_pformathost.add(__new(format(this)));
 
    //}
 
@@ -1200,10 +1213,10 @@ namespace user
 
          //   m_spana.first_pointer()->m_iFormat = 0;
 
-         //   if (m_spana.first_pointer()->m_iFormat >= m_pformata.get_count())
+         //   if (m_spana.first_pointer()->m_iFormat >= m_pformathost.get_count())
          //   {
 
-         //      m_pformata.add(__new(format(this)));
+         //      m_pformathost.add(__new(format(this)));
 
          //   }
 
@@ -1943,21 +1956,16 @@ namespace user
 
          {
 
-            auto formataOld = *m_pformata;
-
-            m_pformata->erase_all();
+            erase_all();
 
             for (auto & pspan : m_spana)
             {
 
-               pspan->m_pformat->m_pcontainer = m_pformata;
-
-               pspan->m_pformat = m_pformata->get_existing_defer_add(pspan->m_pformat);
+               format_host::defer_use_existing(pspan->m_pformat);
 
             }
 
          }
-
 
          //for (index i = 0; i < m_spana.get_count(); i++)
          //{
@@ -1976,7 +1984,9 @@ namespace user
             while (i < m_spana.get_count() && !m_spana[i]->is_new_line())
             {
 
-               if (m_spana[i]->m_pformat == pformat)
+               auto pformat2 = m_spana[i]->m_pformat;
+
+               if (pformat2 == pformat)
                {
 
                   auto pspanTarget = m_spana[i - 1];
@@ -2131,7 +2141,7 @@ namespace user
 
          //auto estatus = 
          
-         pformat->initialize_user_rich_text_format(m_pformata);
+         pformat->initialize_user_rich_text_format(this);
 
          //if (!estatus)
          //{
@@ -2150,7 +2160,7 @@ namespace user
 
       //   synchronous_lock synchronouslock(this->synchronization());
 
-      //   stream << m_pformata;
+      //   stream << m_pformathost;
 
       //   stream << m_spana;
 
@@ -2164,11 +2174,11 @@ namespace user
 
       //   m_plinea->erase_all();
 
-      //   m_pformata->erase_all();
+      //   m_pformathost->erase_all();
 
       //   m_spana.erase_all();
 
-      //   stream >> m_pformata;
+      //   stream >> m_pformathost;
 
       //   stream >> m_spana;
 
@@ -2180,11 +2190,11 @@ namespace user
 
          synchronous_lock synchronouslock(pgraphics->synchronization());
 
-         synchronous_lock sl1(synchronization());
+         synchronous_lock sl1(this->synchronization());
 
          //synchronous_lock sl2(m_plinea->synchronization());
 
-         //synchronous_lock sl3(m_pformata->synchronization());
+         //synchronous_lock sl3(m_pformathost->synchronization());
 
          pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 

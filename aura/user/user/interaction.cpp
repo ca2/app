@@ -248,6 +248,7 @@ namespace user
    void interaction::user_interaction_common_construct()
    {
 
+      m_edisplayOwnedBeforeHidden = e_display_normal;
 
       m_bIgnoringSketchToLading = false;
 
@@ -6383,19 +6384,19 @@ namespace user
 
          auto colorBackground = get_color(pstyle, e_element_background);
 
-         if (strType.case_insensitive_contains("font_list"))
-         {
+         //if (strType.case_insensitive_contains("font_list"))
+         //{
 
-            information() << "e_translucency_present";
+         //   information() << "e_translucency_present";
 
-         }
+         //}
 
-         if (colorBackground.u8_red() == 255)
-         {
+         //if (colorBackground.u8_red() == 255)
+         //{
 
-            information("full red");
+         //   information("full red");
 
-         }
+         //}
 
          if (colorBackground.is_ok())
          {
@@ -10533,7 +10534,8 @@ namespace user
 
       auto puserinteractionOwner = m_puserinteractionOwner;
 
-      if (::is_set(puserinteractionOwner))
+      if (::is_set(puserinteractionOwner) 
+         && puserinteractionOwner != pprimitive)
       {
 
          auto puserinteractionpointeraOwned = puserinteractionOwner->m_puserinteractionpointeraOwned;
@@ -14898,7 +14900,7 @@ namespace user
       if (pmouse->m_atom == e_message_left_button_down)
       {
 
-         ::output_debug_string("e_message_left_button_down");
+         information("on_mouse_message e_message_left_button_down");
 
       }
 
@@ -14963,7 +14965,7 @@ namespace user
       if (strType.case_insensitive_contains("button"))
       {
 
-         information("mouse transfer on button");
+         //information("mouse transfer on button");
 
       }
       else if (strType.case_insensitive_contains("tab"))
@@ -18819,6 +18821,15 @@ namespace user
           || layout().layout().m_edisplay == e_display_iconic)
       {
 
+         information() << "on_message_show_window 0";
+
+         if (::type(this).name().contains("main_frame"))
+         {
+
+            information() << "on_message_show_window main_frame 0";
+
+         }
+
          for (auto & pmenu : m_menua)
          {
 
@@ -18830,9 +18841,40 @@ namespace user
 
          }
 
+         if (m_puserinteractionpointeraOwned)
+         {
+
+            for (auto & puserprimitiveOwned : m_puserinteractionpointeraOwned->primitivea())
+            {
+
+               ::pointer < ::user::interaction > puserinteractionOwned = puserprimitiveOwned;
+
+               auto edisplayOwnedBeforeHidden = puserinteractionOwned->const_layout().design().m_edisplay;
+
+               puserinteractionOwned->m_edisplayOwnedBeforeHidden = edisplayOwnedBeforeHidden;
+
+               puserinteractionOwned->hide();
+
+               puserinteractionOwned->set_need_redraw();
+
+               puserinteractionOwned->post_redraw();
+
+            }
+
+         }
+
       }
       else
       {
+
+         information() << "on_message_show_window 1";
+
+         if (::type(this).name().contains("main_frame"))
+         {
+
+            information() << "on_message_show_window main_frame 1";
+
+         }
 
          for (auto & pmenu : m_menua)
          {
@@ -18842,6 +18884,26 @@ namespace user
             pmenu->set_need_redraw();
 
             pmenu->post_redraw();
+
+         }
+
+         if (m_puserinteractionpointeraOwned)
+         {
+
+            for (auto & puserprimitiveOwned : m_puserinteractionpointeraOwned->primitivea())
+            {
+
+               ::pointer < ::user::interaction > puserinteractionOwned = puserprimitiveOwned;
+
+               auto edisplayOwnedBeforeHidden = puserinteractionOwned->m_edisplayOwnedBeforeHidden;
+
+               puserinteractionOwned->display(edisplayOwnedBeforeHidden, e_activation_no_activate);
+
+               puserinteractionOwned->set_need_redraw();
+
+               puserinteractionOwned->post_redraw();
+
+            }
 
          }
 

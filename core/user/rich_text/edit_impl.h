@@ -19,17 +19,17 @@ namespace user
       public:
 
 
-         bool                          m_bComposing;
-         ::pointer<data>              m_pdata;
-         bool                          m_bSelDrag;
-         ::pointer<::message::key>    m_pkeymessageLast;
-         bool                          m_bKeyPressed;
-         bool                          m_bEditable2;
+         bool                             m_bComposing;
+         ::pointer<data>                  m_pdata;
+         bool                             m_bSelDrag;
+         ::pointer<::message::key>        m_pkeymessageLast;
+         bool                             m_bKeyPressed;
+         bool                             m_bEditable2;
          /// If true, mouse events over empty
          /// areas of text continue through message routing.
-         bool                          m_bClickThrough;
+         bool                             m_bClickThrough;
 
-         bool                          m_bPendingSelectionChange;
+         bool                             m_bPendingSelectionChange;
 
 
          edit_impl();
@@ -95,6 +95,11 @@ namespace user
 
          ::pointer<format_tool>get_format_tool(bool bCreate);
 
+         ::user::rich_text::format_host * get_format_host() override;
+
+         ::pointer<::user::rich_text::format> get_selection_common_format() override;
+
+
          //::user::tool_window * tool_window(enum_tool etool, bool bCreate) override;
 
          using ::user::interaction::_001GetText;
@@ -130,6 +135,8 @@ namespace user
 
 
          void keyboard_focus_OnChar(::message::message * pmessage) override;
+
+
 
 
          void on_set_keyboard_focus() override;

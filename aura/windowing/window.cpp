@@ -1969,7 +1969,7 @@ namespace windowing
       if (edisplayOutput != edisplayDesign)
       {
 
-         puserinteraction->post_message(e_message_show_window, ::is_screen_visible(edisplayDesign) ? 1 : 0);
+         puserinteraction->send_message(e_message_show_window, ::is_screen_visible(edisplayDesign) ? 1 : 0);
 
       }
 

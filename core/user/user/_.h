@@ -83,6 +83,11 @@ namespace user
 
    class controller;
 
+   class color_selector_combo_box;
+   class color_selector_popup;
+   class color_selector_impact;
+   class color_selector_control;
+
 
 } // namespace user
 

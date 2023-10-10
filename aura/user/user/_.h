@@ -346,16 +346,6 @@ namespace user
 
 
 
-namespace userex
-{
-
-
-   class color_impact;
-
-
-} // namespace userex
-
-
 class cregexp;
 //
 //namespace database

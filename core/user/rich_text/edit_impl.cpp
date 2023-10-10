@@ -185,7 +185,7 @@ namespace user
 
          auto psession = get_session();
 
-         m_pdata->set_synchronization(synchronization());
+         //m_pdata->set_synchronization(synchronization());
 
          fork([this]()
             {
@@ -245,6 +245,14 @@ namespace user
       }
 
 
+      ::user::rich_text::format_host * edit_impl::get_format_host()
+      {
+
+         return m_pdata;
+
+      }
+
+
       void edit_impl::on_set_keyboard_focus()
       {
 
@@ -262,7 +270,9 @@ namespace user
 
          auto pformattool = get_format_tool(true);
 
-         pformattool->show_for_ui(this);
+         auto pformathost = get_format_host();
+
+         pformattool->show_for_ui(this, pformathost);
 
          //::user::rich_text::edit::on_set_keyboard_focus();
 
@@ -326,11 +336,27 @@ namespace user
          if (pformattool.is_set())
          {
 
-            m_pdata->on_selection_change(pformattool->m_pformata->element_at(0));
-
+            pformattool->m_pformat = get_selection_common_format();
+            
             pformattool->update_data(false);
 
          }
+
+      }
+
+
+      ::pointer<format>edit_impl::get_selection_common_format()
+      {
+
+         synchronous_lock synchronouslock(m_pdata->synchronization());
+
+         auto pformatSelectionCommon = __create_new < format >();
+
+         pformatSelectionCommon->initialize_user_rich_text_format(m_pdata);
+
+         m_pdata->on_selection_change(pformatSelectionCommon);
+
+         return pformatSelectionCommon;
 
       }
 
@@ -356,7 +382,9 @@ namespace user
 
             auto pformattool = get_format_tool(true);
 
-            pformattool->show_for_ui(this);
+            auto pformathost = get_format_host();
+
+            pformattool->show_for_ui(this, pformathost);
 
             m_bSelDrag = true;
 
@@ -822,10 +850,14 @@ namespace user
 
                auto pformattool = get_format_tool(true);
 
+               auto pformathost = get_format_host();
+
                //if (!ptool->is_window_visible() || !ptool->is_showing_for_ui(this))
                {
 
-                  pformattool->show_for_ui(this);
+                  m_pdata->on_selection_change(pformattool->m_pformat);
+
+                  pformattool->show_for_ui(this, pformathost);
 
                }
 
@@ -942,14 +974,16 @@ namespace user
             if (ptopic->user_interaction() == pformattool)
             {
 
+               synchronous_lock synchronouslock(m_pdata->synchronization());
+
                if (pformattool->m_eattribute & e_attribute_align)
                {
 
-                  box_align(m_pdata->m_spana, find_span(m_pdata->m_spana, m_pdata->m_iSelEnd), pformattool->m_pformata->element_at(0)->m_ealign);
+                  box_align(m_pdata->m_spana, find_span(m_pdata->m_spana, m_pdata->m_iSelEnd), pformattool->m_pformat->m_ealign);
 
                }
 
-               m_pdata->_001SetSelFontFormat(pformattool->m_pformata->element_at(0), pformattool->m_eattribute);
+               m_pdata->_001SetSelFontFormat(pformattool->m_pformat, pformattool->m_eattribute);
 
                pformattool->m_eattribute.clear();
 
@@ -959,7 +993,7 @@ namespace user
 
                post_redraw();
 
-               set_keyboard_focus();
+               //set_keyboard_focus();
 
                //ptopic->Ret();
 

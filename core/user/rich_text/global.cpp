@@ -480,7 +480,7 @@ namespace user
 
             ::pointer<span>& pspan = spana[i];
 
-            if (iSel <= pspan->m_iPosEnd)
+            if (iSel < pspan->m_iPosEnd)
             {
 
                return i;

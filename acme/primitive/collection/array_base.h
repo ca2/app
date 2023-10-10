@@ -886,7 +886,9 @@ public:
 
    inline bool is_index_ok(::index iIndex) const { return iIndex >= 0 && iIndex < get_count(); }
 
+   
    inline bool is_last_index(::index iIndex) const { return iIndex >= get_upper_bound(); }
+
 
    template < typename PRED >
    bool predicate_contains(PRED pred, ::index iStart = 0, ::index iEnd = -1) const
@@ -897,47 +899,95 @@ public:
    }
 
    template < typename OTHER_IS_PTR >
-   TYPE_IS_PTR get_existing_defer_add(const OTHER_IS_PTR& pother)
+   TYPE_IS_PTR get_existing_defer_add(const OTHER_IS_PTR & p)
    {
 
       for (::index i = 0; i < this->get_count(); i++)
       {
 
-         if (*this->element_at(i) == *pother)
+         auto & pelementHere = this->element_at(i);
+
+         if (pelementHere == p)
          {
 
-            return this->element_at(i);
+            return pelementHere;
+
+         }
+         else if (*pelementHere == *p)
+         {
+
+            return pelementHere;
 
          }
 
       }
 
-      this->add(pother);
+      this->add(p);
 
-      return pother;
+      return p;
 
    }
 
 
    template < typename OTHER_IS_PTR >
-   TYPE_IS_PTR get_existing(const OTHER_IS_PTR & pother) const
+   void defer_use_existing(OTHER_IS_PTR & p)
    {
 
       for (::index i = 0; i < this->get_count(); i++)
       {
 
-         if (*this->element_at(i) == *pother)
+         auto & pelementHere = this->element_at(i);
+
+         if (pelementHere == p)
          {
 
-            return this->element_at(i);
+            return;
+
+         }
+         else if (*pelementHere == *p)
+         {
+
+            p = pelementHere;
+
+            return;
 
          }
 
       }
 
-      return pother;
+      this->add(p);
 
    }
+
+
+   template < typename OTHER_IS_PTR >
+   TYPE_IS_PTR get_existing(const OTHER_IS_PTR & p) const
+   {
+
+      for (::index i = 0; i < this->get_count(); i++)
+      {
+
+         auto & pelementHere = this->element_at(i);
+
+         if (pelementHere == p)
+         {
+
+            return pelementHere;
+
+         }
+         else if (*pelementHere == *p)
+         {
+
+            return pelementHere;
+
+         }
+
+      }
+
+      return p;
+
+   }
+
 
    template < typename OBJECT, typename ATTRIBUTE >
    TYPE_IS_PTR merge_get_existing(const TYPE_IS_PTR & p, const OBJECT& pparticle, const ATTRIBUTE& attribute)
@@ -950,7 +1000,6 @@ public:
       return this->get_existing(pModified);
 
    }
-
 
 
    template < typename PRED >
@@ -987,6 +1036,7 @@ public:
 
    }
 
+
    template < typename PRED >
    ::index predicate_find_last(PRED pred, ::index iLast = -1)
    {
@@ -1014,9 +1064,11 @@ public:
 
    }
 
+
    template < typename PRED >
    TYPE * predicate_get_first(PRED pred)
    {
+
       for (int i = 0; i < get_count(); i++)
       {
 
@@ -1032,9 +1084,6 @@ public:
       return nullptr;
 
    }
-
-   //template < typename VAR >
-   //inline array_base & operator = (const class ::payload_type < VAR > & a);
 
 
    template < typename PRED >
@@ -1060,18 +1109,20 @@ public:
    }
 
 
-
-
    template < typename PRED >
    ::count predicate_erase(PRED pred)
    {
+
       ::count cTotal = 0;
+
       for (int i = 0; i < get_count();)
       {
 
          if (!pred(this->m_begin[i]))
          {
+
             i++;
+
          }
          else
          {
@@ -1107,8 +1158,11 @@ public:
          }
 
       }
+   
       return cTotal;
+
    }
+
 
    template < typename F >
    void each(F f)
@@ -1116,7 +1170,9 @@ public:
 
       for (::index i = 0; i < get_count(); i++)
       {
+
          f(this->m_begin[i]);
+
       }
 
    }
@@ -1125,8 +1181,10 @@ public:
    template < typename PRED >
    void predicate_sort(PRED pred);
 
+
    template < typename T, typename PRED >
    ::index predicate_binary_search(const T & t, PRED pred) const;
+
 
    inline bool valid_iter(iterator first, iterator last)
    {
@@ -1134,6 +1192,7 @@ public:
       return first < last;
 
    }
+
 
    inline bool rvalid_iter(iterator first, iterator last)
    {

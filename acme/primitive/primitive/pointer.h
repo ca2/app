@@ -341,58 +341,58 @@ public:
    }
 
 
-   template < typename CONTAINER, typename OBJECT, typename ATTRIBUTE >
-   pointer & merge(const CONTAINER & pcontainer, const OBJECT & pparticle, const ATTRIBUTE & attribute)
-   {
+   //template < typename CONTAINER, typename OBJECT, typename ATTRIBUTE >
+   //pointer & merge(const CONTAINER & pcontainer, const OBJECT & pparticle, const ATTRIBUTE & attribute)
+   //{
 
-      auto pModified = __new(TYPE(*m_p));
+   //   auto pModified = __new(TYPE(*m_p));
 
-      pModified->apply(pparticle, attribute);
+   //   pModified->apply(pparticle, attribute);
 
-      return operator =(pcontainer->get_existing(pModified));
+   //   return operator =(pcontainer->get_existing(pModified));
 
-   }
+   //}
 
-   template < typename OBJECT, typename ATTRIBUTE >
-   pointer & container_merge(const OBJECT & pparticle, const ATTRIBUTE & attribute)
-   {
+   //template < typename OBJECT, typename ATTRIBUTE >
+   //pointer & container_merge(const OBJECT & pparticle, const ATTRIBUTE & attribute)
+   //{
 
-      return merge(m_p->m_pcontainer, pparticle, attribute);
+   //   return merge(m_p->m_pcontainer, pparticle, attribute);
 
-   }
+   //}
 
-   template < typename CONTAINER, typename OBJECT >
-   pointer & copy(const CONTAINER & pcontainer, const OBJECT & pparticle)
-   {
+   //template < typename CONTAINER, typename OBJECT >
+   //pointer & copy(const CONTAINER & pcontainer, const OBJECT & pparticle)
+   //{
 
-      auto pobjectParent = m_p;
+   //   auto pobjectParent = m_p;
 
-      auto pOld = m_p;
+   //   auto pOld = m_p;
 
-      m_p = memory_new TYPE(*pparticle);
+   //   m_p = memory_new TYPE(*pparticle);
 
-      m_pparticle = m_p;
+   //   m_pparticle = m_p;
 
-      pcontainer->erase(pOld);
+   //   pcontainer->erase(pOld);
 
-      pcontainer->add(m_p);
+   //   pcontainer->add(m_p);
 
-      m_p->initialize(pobjectParent);
+   //   m_p->initialize(pobjectParent);
 
-      m_p->m_pcontainer = pcontainer;
+   //   m_p->m_pcontainer = pcontainer;
 
-      return *this;
+   //   return *this;
 
-   }
+   //}
 
 
-   template < typename OBJECT >
-   pointer & container_copy(const OBJECT & pparticle)
-   {
+   //template < typename OBJECT >
+   //pointer & container_copy(const OBJECT & pparticle)
+   //{
 
-      return copy(m_p->m_pcontainer, pparticle);
+   //   return copy(m_p->m_pcontainer, pparticle);
 
-   }
+   //}
 
    inline pointer& reset(const ::pointer < T > & p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 

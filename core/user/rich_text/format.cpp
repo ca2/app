@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "format.h"
+#include "format_host.h"
 #include "acme/platform/flags.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/write_text/font.h"
@@ -18,8 +19,6 @@ namespace user
       format::format()
       {
 
-         defer_create_synchronization();
-         
          m_bBold = false;
          m_bItalic = false;
          m_bUnderline = false;
@@ -36,7 +35,6 @@ namespace user
 
       //format::format(pointer_array < format >* pcontainer)
       //{
-
 
       //   defer_create_synchronization();
 
@@ -75,18 +73,14 @@ namespace user
       }
 
 
-      void format::initialize_user_rich_text_format(pointer_array < format >* pcontainer)
+      void format::initialize_user_rich_text_format(::user::rich_text::format_host * pformathost)
       {
-
-         m_pcontainer = pcontainer;
 
          auto psystem = acmesystem()->m_paurasystem;
 
          auto pnode = psystem->node();
 
          m_strFontFamily = pnode->font_name(e_font_sans);
-
-         //return ::success;
 
       }
 

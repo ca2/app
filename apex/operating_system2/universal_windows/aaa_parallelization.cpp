@@ -242,7 +242,7 @@ void set_main_user_itask(itask_t itask)
 }
 
 
-htask_t get_main_user_htask()
+htask_t main_user_htask()
 {
 
    return g_hMainThread;
@@ -250,7 +250,7 @@ htask_t get_main_user_htask()
 }
 
 
-::u32   get_main_user_itask()
+::u32   main_user_itask()
 {
 
    return g_iMainThread;

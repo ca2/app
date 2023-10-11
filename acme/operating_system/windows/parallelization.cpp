@@ -31,7 +31,7 @@ void set_main_user_itask(itask_t itask)
 }
 
 
-htask_t get_main_user_htask()
+htask_t main_user_htask()
 {
 
    return (htask_t)g_hMainThread;
@@ -39,7 +39,7 @@ htask_t get_main_user_htask()
 }
 
 
-itask_t get_main_user_itask()
+itask_t main_user_itask()
 {
 
    return (itask_t)g_iMainThread;

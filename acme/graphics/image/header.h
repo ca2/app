@@ -10,7 +10,7 @@
 
 
 #ifdef __cplusplus
-struct CLASS_DECL_AURA image_header
+struct CLASS_DECL_ACME image_header
 #else
 struct image_header
 #endif

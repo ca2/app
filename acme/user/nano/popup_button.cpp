@@ -77,9 +77,9 @@ void popup_button::initialize_popup_button(const ::string & strText, int x, int 
 
    calculate_size_and_position(x, y);
 
-   add_button(strText, e_dialog_result_yes);
+   add_button(strText, e_dialog_result_yes, 'y');
 
-   add_button("Cancel", e_dialog_result_cancel);
+   add_button("Cancel", e_dialog_result_cancel, 'c');
 
    int wButton = 150;
 
@@ -91,17 +91,17 @@ void popup_button::initialize_popup_button(const ::string & strText, int x, int 
 
    int wSpacing = 25;
 
-   for (index iButton = m_buttona.get_upper_bound(); iButton >= 0; iButton--)
+   for (index iButton = m_nanobuttona.get_upper_bound(); iButton >= 0; iButton--)
    {
 
-      auto pbutton = m_buttona[iButton];
+      auto pnanobutton = m_nanobuttona[iButton];
 
-      pbutton->m_rectangle.bottom() = iBottom;
-      pbutton->m_rectangle.top() = pbutton->m_rectangle.bottom() - hButton;
-      pbutton->m_rectangle.right() = iRight;
-      pbutton->m_rectangle.left() = pbutton->m_rectangle.right() - wButton;
+      pnanobutton->m_rectangle.bottom() = iBottom;
+      pnanobutton->m_rectangle.top() = pnanobutton->m_rectangle.bottom() - hButton;
+      pnanobutton->m_rectangle.right() = iRight;
+      pnanobutton->m_rectangle.left() = pnanobutton->m_rectangle.right() - wButton;
 
-      iBottom = pbutton->m_rectangle.top();
+      iBottom = pnanobutton->m_rectangle.top();
 
    }
 

@@ -29,11 +29,25 @@ namespace user
          if (m_iPosBeg > m_pspan->m_iPosBeg)
          {
 
+            if (iPos - m_pspan->m_iPosBeg >= m_pspan->m_daPositionDeviceLeft.length())
+            {
+
+               return 0.;
+
+            }
+
             return m_pspan->m_daPositionDeviceLeft[iPos - m_pspan->m_iPosBeg] - m_pspan->m_daPositionDeviceLeft[m_iPosBeg - m_pspan->m_iPosBeg - 1] + m_rectangleBox.left();
 
          }
          else
          {
+
+            if (iPos - m_iPosBeg >= m_pspan->m_daPositionDeviceLeft.length())
+            {
+
+               return 0.;
+
+            }
 
             return m_pspan->m_daPositionDeviceLeft[iPos - m_iPosBeg] + m_rectangleDevice.left();
 
@@ -48,11 +62,25 @@ namespace user
          if (m_iPosBeg > m_pspan->m_iPosBeg)
          {
 
+            if (iPos - m_pspan->m_iPosBeg >= m_pspan->m_daPositionDeviceRight.length())
+            {
+
+               return 0.;
+
+            }
+
             return m_pspan->m_daPositionDeviceRight[iPos - m_pspan->m_iPosBeg] - m_pspan->m_daPositionDeviceRight[m_iPosBeg - m_pspan->m_iPosBeg - 1] + m_rectangleBox.left();
 
          }
          else
          {
+
+            if (iPos - m_iPosBeg >= m_pspan->m_daPositionDeviceRight.length())
+            {
+
+               return 0.;
+
+            }
 
             return m_pspan->m_daPositionDeviceRight[iPos - m_iPosBeg] + m_rectangleDevice.left();
 

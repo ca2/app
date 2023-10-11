@@ -1045,7 +1045,7 @@ namespace factory
       if(!pfactoryiteminterface)
       {
 
-         warning() << "factory::get_factory_item (2) : \"" << atom.as_string() << "\"";
+         //warning() << "factory::get_factory_item (2) : \"" << atom.as_string() << "\"";
 
       }
 

@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "acme/constant/id.h"
-#include "acme/graphics/draw2d/image32.h"
+#include "acme/graphics/image/image32.h"
 
 
 ::color32_t argb_swap_red_blue(::color32_t color32)

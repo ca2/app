@@ -81,7 +81,11 @@ namespace user
 
          virtual void draw_impl(::draw2d::graphics_pointer & pgraphics) override;
 
-         ::pointer<format_tool>get_format_tool(bool bCreate);
+         virtual ::pointer<format_tool>get_format_tool(bool bCreate);
+
+         virtual ::user::rich_text::format_host * get_format_host();
+
+         virtual ::pointer<::user::rich_text::format> get_selection_common_format();
 
          using ::user::interaction::_001GetText;
          void _001GetText(string & str) override;

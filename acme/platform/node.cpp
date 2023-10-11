@@ -1171,7 +1171,7 @@ namespace acme
    }
 
 
-   bool node::has_xcb() const
+   bool node::has_xcb()
    {
 
       return false;
@@ -1187,6 +1187,14 @@ namespace acme
    }
 
 
+   bool node::is_wayland()
+   {
+
+      string strWaylandDisplay(get_environment_variable("WAYLAND_DISPLAY"));
+
+      return strWaylandDisplay.has_char();
+
+   }
 
 
 //   void node::user_post(const ::procedure & procedure)

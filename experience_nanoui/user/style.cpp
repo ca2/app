@@ -709,7 +709,7 @@ namespace experience_nanoui
          m_rectangleTab.height(),
          0);*/
 
-         ptab->get_data()->m_rectangleTabClient.left()       = ptab->m_bEffectiveVisibleTabs ? ptab->get_data()->m_rectangleTab.right() : rectangleX.left();
+         ptab->get_data()->m_rectangleTabClient.left()       = ptab->m_bEffectiveVisibleControl ? ptab->get_data()->m_rectangleTab.right() : rectangleX.left();
          ptab->get_data()->m_rectangleTabClient.top()        = ptab->get_data()->m_rectangleTab.top();
          ptab->get_data()->m_rectangleTabClient.right()      = rectangleX.right();
          ptab->get_data()->m_rectangleTabClient.bottom()     = ptab->get_data()->m_rectangleTab.bottom();
@@ -835,7 +835,7 @@ namespace experience_nanoui
          rectangle_i32 & rectangleTabClient = ptab->get_data()->m_rectangleTabClient;
 
          //bool bTabbedClient = ptab->m_bShowTabs && !ptab->top_level_frame()->layout().is_full_screen();
-         bool bTabbedClient = ptab->m_bEffectiveVisibleTabs;
+         bool bTabbedClient = ptab->m_bEffectiveVisibleControl;
 
          rectangleTabClient.left() = ptab->get_data()->m_rectangleTab.left();
          rectangleTabClient.top() = bTabbedClient ? ptab->get_data()->m_rectangleTab.bottom() : rectangleX.top();

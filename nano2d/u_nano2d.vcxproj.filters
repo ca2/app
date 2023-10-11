@@ -29,9 +29,6 @@
     <ClCompile Include="_factory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="color.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="context.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

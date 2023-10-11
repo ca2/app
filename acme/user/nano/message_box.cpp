@@ -107,7 +107,6 @@ void nano_message_box::defer_create_details_still()
 void nano_message_box::calculate_size()
 {
 
-
 #if !defined(UNIVERSAL_WINDOWS) && !defined(ANDROID)
 
    //int wScreen = 1280;
@@ -150,34 +149,34 @@ void nano_message_box::initialize_conversation(const ::string & strMessage, cons
    switch (emessageboxType)
    {
       case e_message_box_ok_cancel:
-         add_button("OK", e_dialog_result_ok);
-         add_button("Cancel", e_dialog_result_cancel);
+         add_button("OK", e_dialog_result_ok, 'o');
+         add_button("Cancel", e_dialog_result_cancel, 'c');
          break;
       case e_message_box_abort_retry_ignore:
-         add_button("Abort", e_dialog_result_abort);
-         add_button("Retry", e_dialog_result_retry);
-         add_button("Ignore", e_dialog_result_ignore);
+         add_button("Abort", e_dialog_result_abort, 'a');
+         add_button("Retry", e_dialog_result_retry, 'r');
+         add_button("Ignore", e_dialog_result_ignore, 'i');
          break;
       case e_message_box_yes_no_cancel:
-         add_button("Yes", e_dialog_result_yes);
-         add_button("No", e_dialog_result_no);
-         add_button("Cancel", e_dialog_result_cancel);
+         add_button("Yes", e_dialog_result_yes, 'y');
+         add_button("No", e_dialog_result_no, 'n');
+         add_button("Cancel", e_dialog_result_cancel, 'c');
          break;
       case e_message_box_yes_no:
-         add_button("Yes", e_dialog_result_yes);
-         add_button("No", e_dialog_result_no);
+         add_button("Yes", e_dialog_result_yes, 'y');
+         add_button("No", e_dialog_result_no, 'n');
          break;
       case e_message_box_retry_cancel:
-         add_button("Retry", e_dialog_result_retry);
-         add_button("Cancel", e_dialog_result_cancel);
+         add_button("Retry", e_dialog_result_retry, 'r');
+         add_button("Cancel", e_dialog_result_cancel, 'c');
          break;
       case e_message_box_cancel_try_continue:
-         add_button("Cancel", e_dialog_result_cancel);
-         add_button("Try", e_dialog_result_try_again);
-         add_button("Continue", e_dialog_result_continue);
+         add_button("Cancel", e_dialog_result_cancel, 'c');
+         add_button("Try", e_dialog_result_try_again, 't');
+         add_button("Continue", e_dialog_result_continue, 'n');
          break;
       default:
-         add_button("OK", e_dialog_result_ok);
+         add_button("OK", e_dialog_result_ok, 'o');
          break;
    }
 
@@ -212,17 +211,17 @@ void nano_message_box::initialize_conversation(const ::string & strMessage, cons
 
    auto wSpacing = (::i32) (m_rectangle.width() * 0.025);
 
-   for (index iButton = m_buttona.get_upper_bound(); iButton >= 0; iButton--)
+   for (index iButton = m_nanobuttona.get_upper_bound(); iButton >= 0; iButton--)
    {
 
-      auto pbutton = m_buttona[iButton];
+      auto pnanobutton = m_nanobuttona[iButton];
 
-      pbutton->m_rectangle.bottom() = iBottom;
-      pbutton->m_rectangle.top() = pbutton->m_rectangle.bottom() - hButton;
-      pbutton->m_rectangle.right() = iRight;
-      pbutton->m_rectangle.left() = pbutton->m_rectangle.right() - wButton;
+      pnanobutton->m_rectangle.bottom() = iBottom;
+      pnanobutton->m_rectangle.top() = pnanobutton->m_rectangle.bottom() - hButton;
+      pnanobutton->m_rectangle.right() = iRight;
+      pnanobutton->m_rectangle.left() = pnanobutton->m_rectangle.right() - wButton;
 
-      iRight = pbutton->m_rectangle.left() - wSpacing;
+      iRight = pnanobutton->m_rectangle.left() - wSpacing;
 
    }
 
@@ -280,7 +279,7 @@ void nano_message_box::on_create()
 
       m_pstillDetails->resize_to_fit();
 
-      m_pstillDetails->m_rectangle.move_bottom_to(m_buttona[0]->m_rectangle.bottom());
+      m_pstillDetails->m_rectangle.move_bottom_to(m_nanobuttona[0]->m_rectangle.bottom());
 
       m_pstillDetails->m_rectangle.move_left_to(25);
 

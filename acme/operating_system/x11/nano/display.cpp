@@ -692,4 +692,17 @@ void * initialize_x11_display(::particle * pparticle)
 }
 
 
+void x11_process_messages()
+{
+
+   if(::x11::display::g_p)
+   {
+
+      ::x11::display::g_p->message_loop_step();
+
+   }
+
+}
+
+
 

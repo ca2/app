@@ -27,6 +27,39 @@
 
 #define IMAGE_OK(pimpl) (::is_set(pimpl) && pimpl->area() > 0)
 
+double floor(double d1, double d)
+{
+
+   auto dMod = fmod(d1, d);
+
+   if(dMod >= 0)
+   {
+
+      return d1 - dMod;
+
+   }
+
+   return d1;
+
+}
+
+
+double ceil(double d1, double d)
+{
+
+   auto dMod = fmod(d1, d);
+
+   if (dMod >= 0.0)
+   {
+
+      return d1 + d - dMod;
+
+   }
+
+   return d1;
+
+}
+
 
 namespace draw2d
 {
@@ -2522,68 +2555,83 @@ namespace draw2d
 
       }
 
-      if (eborder & e_border_top)
+      double pixelsize = 1.0;
+      double halfpixel = pixelsize/ 2.0;
+
+      //if (eborder & e_border_all)
+      //{
+
+
+      //}
+      //else
       {
 
-         fill_rectangle(rectangle_f64_dimension(rectangle.left(), rectangle.top(), rectangle.width(), dWidth), colorTopLeft);
+         if (eborder & e_border_top)
+         {
 
-      }
+            fill_rectangle(rectangle_f64_dimension(floor(rectangle.left(), pixelsize), floor(rectangle.top(), pixelsize), ceil(rectangle.width(), pixelsize), ceil(dWidth, pixelsize)), colorTopLeft);
 
-      if (eborder & e_border_left)
-      {
+         }
 
-         fill_rectangle(rectangle_f64_dimension(
-            rectangle.left(),
-            rectangle.top() + (eborder & e_border_top ? dWidth : 0),
-            dWidth,
-            rectangle.height() - (eborder & e_border_top ? dWidth : 0)), colorTopLeft);
-         //{
+         if (eborder & e_border_left)
+         {
 
-         //   return false;
+            fill_rectangle(rectangle_f64_dimension(
+               floor(rectangle.left(), pixelsize),
+               floor(rectangle.top(), pixelsize) + ceil(eborder & e_border_top ? dWidth : 0, pixelsize),
+               ceil(dWidth, pixelsize),
+               ceil(rectangle.height(), pixelsize) - ceil(eborder & e_border_top ? dWidth : 0, pixelsize)),
+               colorTopLeft);
+            //{
 
-         //}
+            //   return false;
 
-      }
+            //}
 
-      if (eborder & e_border_bottom)
-      {
+         }
 
-         fill_rectangle(rectangle_f64_dimension(
-            rectangle.left() + (eborder & e_border_left ? dWidth : 0),
-            rectangle.bottom() - dWidth,
-            rectangle.width() - (eborder & e_border_left ? dWidth : 0),
-            dWidth), colorBottomRight);
-         //{
+         if (eborder & e_border_bottom)
+         {
 
-         //   return false;
+            fill_rectangle(rectangle_f64_dimension(
+               floor(rectangle.left(), pixelsize) + ceil(eborder & e_border_left ? dWidth : 0, pixelsize),
+               ceil(rectangle.bottom(), pixelsize) - ceil(dWidth, pixelsize),
+               ceil(rectangle.width(), pixelsize) - ceil(eborder & e_border_left ? dWidth : 0, pixelsize),
+               ceil(dWidth, pixelsize)), 
+               colorBottomRight);
+            //{
 
-         //}
+            //   return false;
 
-      }
+            //}
 
-      if (eborder & e_border_right)
-      {
+         }
 
-         //if (!
-         fill_rectangle(
-            ::rectangle_f64_dimension(
-               rectangle.right() - dWidth,
-               rectangle.top() + (eborder & e_border_top ? dWidth : 0),
-               dWidth,
-               rectangle.height() - (eborder & e_border_top ? dWidth : 0) - (eborder & e_border_bottom ? dWidth : 0)),
-            colorBottomRight);
-         //{
+         if (eborder & e_border_right)
+         {
 
-         //   return false;
+            //if (!
+            fill_rectangle(
+               ::rectangle_f64_dimension(
+                  ceil(rectangle.right(), pixelsize) - ceil(dWidth, pixelsize),
+                  floor(rectangle.top(), pixelsize) + ceil(eborder & e_border_top ? dWidth : 0, pixelsize),
+                  ceil(dWidth, pixelsize),
+                  ceil(rectangle.height(), pixelsize) - ceil(eborder & e_border_top ? dWidth : 0, pixelsize) - ceil(eborder & e_border_bottom ? dWidth : 0, pixelsize)),
+               colorBottomRight);
+            //{
 
-         //}
+            //   return false;
 
-      }
+            //}
 
-      if (smooth_mode != e_smooth_mode_none)
-      {
+         }
 
-         set_smooth_mode(smooth_mode);
+         if (smooth_mode != e_smooth_mode_none)
+         {
+
+            set_smooth_mode(smooth_mode);
+
+         }
 
       }
 
@@ -2595,17 +2643,10 @@ namespace draw2d
    void graphics::draw_inset_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & color, double dWidth, const ::e_border & eborder)
    {
 
-      //if (!
       draw_inset_3d_rectangle(rectangle, color, color, dWidth, eborder);
-      //{
-
-      //   return false;
-
-      //}
-
-      //return true;
 
    }
+
 
    void graphics::frame_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & color, const ::e_border & eborder)
    {

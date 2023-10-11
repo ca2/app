@@ -4800,17 +4800,30 @@ namespace apex
    void system::main()
    {
 
-      //auto estatus = 
-      ::thread::main();
+      process_init();
 
-      //if (!estatus)
-      //{
+      if (acmeapplication()->m_bConsole)
+      {
 
-      //   return estatus;
+         acmeapplication()->main();
 
-      //}
+      }
+      else
+      {
 
-      //return estatus;
+         //auto estatus = 
+         ::thread::main();
+
+         //if (!estatus)
+         //{
+
+         //   return estatus;
+
+         //}
+
+         //return estatus;
+
+      }
 
       if (m_iExitCode == 0 && m_estatus.failed())
       {

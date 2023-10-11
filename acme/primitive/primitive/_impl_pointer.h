@@ -474,14 +474,14 @@ inline bool operator ==(const ::pointer<T1>& t1, const T2 * t2)
 
 
 template < typename T >
-inline bool operator ==(const ::pointer<T>& t1, const ::pointer<T> t2)
+inline bool operator ==(const ::pointer<T>& t1, const ::pointer<T> & t2)
 {
    return t1.m_p == t2.m_p;
 }
 
 
 template < class T1, class T2 >
-inline bool operator ==(const ::pointer<T1>& t1, const ::pointer<T2> t2)
+inline bool operator ==(const ::pointer<T1>& t1, const ::pointer<T2> & t2)
 {
    auto p1 = dynamic_cast < T1 * > (t2.m_p);
    if(p1 != nullptr)
@@ -515,49 +515,49 @@ inline bool operator ==(const ::pointer<T1>& t1, T2 * t2)
 }
 
 
-template < class T1, class T2 >
-inline bool operator !=(const T1 * t1, const ::pointer<T2>& t2)
-{
-
-   return !operator == (t1, t2);
-
-}
-
-
-template < class T1, class T2 >
-inline bool operator !=(const ::pointer<T1>& t1, const T2 * t2)
-{
-
-   return !operator == (t1, t2);
-
-}
-
-
-template < class T1, class T2 >
-inline bool operator !=(T1 * t1, const ::pointer<T2>& t2)
-{
-
-   return !operator == ((const T1 *) t1, t2);
-
-}
-
-
-template < class T1, class T2 >
-inline bool operator !=(const ::pointer<T1>& t1, T2 * t2)
-{
-   return !operator == (t1, (const T2 *) t2);
-}
-
-
-template < class T1, class T2 >
-inline bool operator !=(const ::pointer<T1>& t1, const ::pointer<T2> t2)
-{
-
-   return !operator == (t1, t2);
-
-}
-
-
+//template < class T1, class T2 >
+//inline bool operator !=(const T1 * t1, const ::pointer<T2>& t2)
+//{
+//
+//   return !operator == (t1, t2);
+//
+//}
+//
+//
+//template < class T1, class T2 >
+//inline bool operator !=(const ::pointer<T1>& t1, const T2 * t2)
+//{
+//
+//   return !operator == (t1, t2);
+//
+//}
+//
+//
+//template < class T1, class T2 >
+//inline bool operator !=(T1 * t1, const ::pointer<T2>& t2)
+//{
+//
+//   return !operator == ((const T1 *) t1, t2);
+//
+//}
+//
+//
+//template < class T1, class T2 >
+//inline bool operator !=(const ::pointer<T1>& t1, T2 * t2)
+//{
+//   return !operator == (t1, (const T2 *) t2);
+//}
+//
+//
+//template < class T1, class T2 >
+//inline bool operator !=(const ::pointer<T1>& t1, const ::pointer<T2> t2)
+//{
+//
+//   return !operator == (t1, t2);
+//
+//}
+//
+//
 
 
 //template < typename TYPE >

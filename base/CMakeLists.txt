@@ -117,6 +117,8 @@ list(APPEND library_source
    user/user/_impl.h
    user/user/_tree.h
    #user/user/_component.h
+   user/user/auto_hide.cpp
+   user/user/auto_hide.h
    user/user/composition_imm_client.h
    #user/user/control.cpp
    #user/user/control.h

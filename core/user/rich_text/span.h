@@ -22,12 +22,13 @@ namespace user
       public:
 
 
-         class data *            m_pdata;
-         ::pointer<class format>        m_pformat;
+         ::pointer < class data >         m_pdata;
+         ::pointer < class format >       m_pformat;
 
+         ::e_align                        m_ealignNewLine;
+         bool                             m_bEndOfLine;
 
-         ::e_align           m_ealignNewLine;
-         string            m_str;
+         string                           m_str;
 
          // Common thing among indexes:
          // A single character is accounted for the same as the UTF8-::u8-count.
@@ -60,7 +61,9 @@ namespace user
 
          void set_new_format();
 
-         bool is_new_line() const { return m_ealignNewLine != e_align_none; }
+         bool is_start_of_line() const { return m_ealignNewLine != e_align_none; }
+
+         bool is_end_of_line() const { return m_bEndOfLine; }
 
          ::e_align get_align() const;
 

@@ -26,6 +26,7 @@ namespace user
          string m_strLabel;
          string m_strAccelerator;
          string m_strDescription;
+         bool  m_bStockItem = false;
 
          item();
 
@@ -58,7 +59,7 @@ namespace user
       virtual void call_notification_area_action(const ::scoped_string & pszId);
 
 
-      virtual bool notify_icon_insert_item(index & iIndex, string strName, string strId = "", string strLabel = "", string strAccelerator = "", string strDescription = "");
+      virtual bool notify_icon_insert_item(bool bStockItem, index & iIndex, string strName, string strId = "", string strLabel = "", string strAccelerator = "", string strDescription = "");
 
 
    };

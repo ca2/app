@@ -1850,6 +1850,13 @@ namespace user
    ::count toolbar::tool_item_count()
    {
 
+      if (!main_content().m_pitema)
+      {
+
+         return 0;
+
+      }
+
       return main_content().m_pitema->count();
 
    }

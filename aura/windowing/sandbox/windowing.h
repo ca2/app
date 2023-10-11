@@ -76,9 +76,9 @@ namespace sandbox_windowing
 
       virtual void _message_handler(void* p) override;
 
-      ::windowing::window* get_keyboard_focus(::thread* pthread) override;
+      ::windowing::window_base * get_keyboard_focus(::thread* pthread) override;
 
-      ::windowing::window* get_mouse_capture(::thread* pthread) override;
+      ::windowing::window * get_mouse_capture(::thread* pthread) override;
 
 
       bool defer_release_mouse_capture(::thread * pthread, ::windowing::window * pwindow) override;

@@ -197,7 +197,7 @@ namespace experience
 
       }
 
-      information() << "size_manager::on_message_mouse_move : " << pmouse->m_pointAbsolute;
+      //information() << "size_manager::on_message_mouse_move : " << pmouse->m_pointAbsolute;
 
       ASSERT(
          pmouse->m_atom == e_message_mouse_move 

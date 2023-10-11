@@ -311,6 +311,27 @@ void nano_window::update_drawing_objects()
 }
 
 
+bool nano_window::defer_perform_entire_reposition_process()
+{
+
+   if(m_pimplementation)
+   {
+
+      if(m_pimplementation->defer_perform_entire_reposition_process())
+      {
+
+         return true;
+
+      }
+
+   }
+
+   return false;
+
+}
+
+
+
 ::point_i32 nano_window::try_absolute_mouse_position(const ::point_i32 & point)
 {
 
@@ -357,15 +378,18 @@ void nano_window::add_child(nano_child * pchild)
 }
 
 
-void nano_window::add_button(const ::scoped_string & scopedstrText, enum_dialog_result edialogresult)
+void nano_window::add_button(const ::scoped_string & scopedstrText, enum_dialog_result edialogresult, char chLetter)
 {
 
    auto pbutton = __new(nano_button);
 
    pbutton->m_strText = scopedstrText;
    pbutton->m_atom = edialogresult;
+   pbutton->m_edialogresult1 = edialogresult;
+   pbutton->m_chLetter = chLetter;
+   //pbutton->m_bDefault = bDefault;
 
-   m_buttona.add(pbutton);
+   m_nanobuttona.add(pbutton);
 
    add_child(pbutton);
 

@@ -404,6 +404,7 @@ namespace user
       pointer_array < interaction >                m_menua;
       ::pointer<::appearance::appearance>          m_pappearance;
       bool                                         m_bEmptyAreaIsClientArea;
+      ::enum_display                               m_edisplayOwnedBeforeHidden;
       //::item_pointer                               m_pitemClient;
       ::array < struct set_need_redraw >           m_setneedredrawa;
       boolean                                      m_bNeedFullRedrawOnResize;
@@ -703,6 +704,12 @@ namespace user
 
       //virtual bool AddControlBar(::user::control_bar* pcontrolbar);
       //virtual bool RemoveControlBar(::user::control_bar* pcontrolbar);
+
+      virtual bool has_compulsory_window_manager_decorations();
+      virtual bool should_show_platform_control_box();
+
+      virtual bool should_inline_notify_context_menu();
+
 
       // updown
       virtual bool wfi_is_up();
@@ -1614,6 +1621,8 @@ namespace user
       using ::user::primitive::handle;
       void handle(::topic * ptopic, ::context * pcontext) override;
 
+
+      void on_after_impact_update() override;
 
 
       virtual void install_message_routing(::channel* pchannel) override;

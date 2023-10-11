@@ -18,6 +18,8 @@ namespace universal_windows
    public:
 
 
+
+
       ::winrt::Windows::UI::Popups::MessageDialog     m_messagedialog = nullptr;
    
 

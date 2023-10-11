@@ -631,6 +631,12 @@ namespace acme
       virtual ::file::path local_get_matter_path(string strMatter);
 
       virtual void install_progress_add_up(int iAddUp = 1);
+
+
+      virtual ::string get_application_server_name();
+
+
+
    };
 
 

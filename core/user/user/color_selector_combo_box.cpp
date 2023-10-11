@@ -1,5 +1,6 @@
 #include "framework.h"
-#include "color_combo_box.h"
+#include "color_selector_combo_box.h"
+#include "color_selector_popup.h"
 #include "acme/constant/message.h"
 #include "acme/handler/item.h"
 #include "acme/platform/system.h"
@@ -14,7 +15,7 @@
 #include "core/platform/application.h"
 #include "core/platform/session.h"
 #include "core/user/user/user.h"
-#include "core/user/userex/color_impact.h"
+#include "core/user/user/color_selector_impact.h"
 
 
 namespace user
@@ -24,8 +25,8 @@ namespace user
    color_combo_box::color_combo_box() 
    {
 
-      m_pimpact = nullptr;
-      m_pdocument = nullptr;
+      //m_pimpact = nullptr;
+      //m_pdocument = nullptr;
       m_bMouseDown = false;
 
    }
@@ -134,68 +135,6 @@ namespace user
          {
 
 
-            bool bNew = m_pdocument == nullptr;
-
-            if(bNew)
-            {
-
-               auto pcontext = m_pcontext;
-               
-               auto psession = pcontext->m_pacmesession->m_pcoresession;
-               
-               auto puser = psession->m_puser->m_pcoreuser;
-
-               puser->will_use_impact_hint(COLORSEL_IMPACT);
-
-               m_pdocument = puser->m_mapimpactsystem[COLORSEL_IMPACT]->open_document_file(get_app(), ::e_type_null, __visible(false).is_true());
-
-               m_pimpact = m_pdocument->get_typed_impact < ::userex::color_impact >();
-
-               m_pimpact->m_bCompact = true;
-
-               psession->set_bound_ui(COLORSEL_IMPACT, this);
-
-               m_pframewindow = dynamic_cast < ::simple_frame_window * > (m_pimpact->top_level_frame());
-
-               m_pframewindow->set_owner(this);
-
-               m_pframewindow->m_ebuttonaHide.add(::experience::e_button_dock);
-               m_pframewindow->m_ebuttonaHide.add(::experience::e_button_down);
-               m_pframewindow->m_ebuttonaHide.add(::experience::e_button_up);
-               m_pframewindow->m_ebuttonaHide.add(::experience::e_button_minimize);
-
-            }
-
-            m_pimpact->m_hls = m_hls;
-
-            auto pframe = frame();
-
-            if(bNew)
-            {
-
-               ::rectangle_i32 rectangleWindow;
-
-               window_rectangle(rectangleWindow);
-
-               pframe->m_sizeMinimum.cx() = 300;
-
-               pframe->m_sizeMinimum.cy() = 150;
-
-               pframe->order(e_zorder_top_most);
-               
-               pframe->place(rectangleWindow.left(), rectangleWindow.bottom(), 400, 200);
-               
-               pframe->display();
-
-            }
-            else
-            {
-
-               pframe->order(e_zorder_top_most);
-
-               pframe->display();
-
-            }
 
          }
 
@@ -210,14 +149,14 @@ namespace user
    void color_combo_box::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if(ptopic->m_puserelement == m_pimpact)
+      if(ptopic->m_puserelement == m_pcolorselectorpopup)
       {
 
          ptopic->m_puserelement = this;
 
-         ptopic->m_puserelement->m_atom = m_atom;
+         //ptopic->m_puserelement->m_atom = m_atom;
 
-         m_hls = m_pimpact->m_hls;
+         m_hls = m_pcolorselectorpopup->m_hls;
 
       }
 

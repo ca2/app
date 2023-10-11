@@ -456,7 +456,7 @@ namespace sandbox_windowing
    }
 
 
-   ::windowing::window* windowing::get_keyboard_focus(::thread*)
+   ::windowing::window_base * windowing::get_keyboard_focus(::thread*)
    {
 
       //auto pwindowApplicationHost = get_application_host_window();

@@ -433,13 +433,13 @@ namespace user
          if(m_message.m_atom == e_message_left_button_down)
          {
 
-            ::information("::user::thread::LBUTTONDOWN\n");
+            information("::user::thread::LBUTTONDOWN");
 
          }
          else if(m_message.m_atom == e_message_left_button_up)
          {
 
-            ::information("::user::thread::LBUTTONUP\n");
+            information("::user::thread::LBUTTONUP");
 
          }
 

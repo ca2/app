@@ -57,7 +57,8 @@ public:
    bool                                      m_bTopMost;
 
 
-   pointer_array < nano_button >             m_buttona;
+   pointer_array < nano_button >             m_nanobuttona;
+   ::index                                   m_iDefaultButton = -1;
 
    //map < const ::item *, ::user::item >      m_useritemmap;
 
@@ -96,6 +97,9 @@ public:
 
    void create_drawing_objects() override;
    void update_drawing_objects() override;
+
+
+   bool defer_perform_entire_reposition_process() override;
 
 
    ::point_i32 try_absolute_mouse_position(const ::point_i32 & point) override;
@@ -141,7 +145,7 @@ public:
    void set_cursor(enum_cursor ecursor) override;
 
 
-   void add_button(const ::scoped_string & scopedstrText, enum_dialog_result edialogresult);
+   void add_button(const ::scoped_string & scopedstrText, enum_dialog_result edialogresult, char chLetter);
 
 
    void display_temporary_file_with_text(const ::string & str);

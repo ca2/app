@@ -1,12 +1,13 @@
 #include "framework.h"
-#include "color_impact.h"
+#include "color_selector.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
-#include "acme/graphics/draw2d/image32.h"
+#include "acme/graphics/image/image32.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/image/drawing.h"
+#include "aura/graphics/write_text/font.h"
 #include "aura/user/user/frame.h"
 #include "aura/message/user.h"
 //#include "aura/operating_system/windows_common/graphics.h"
@@ -42,7 +43,7 @@ namespace app_core_flag
 }
 
 
-namespace visual
+namespace graphics
 {
 
 
@@ -121,9 +122,9 @@ namespace visual
       double dL = 0.5;
 
       double dS = 1.0 - IMAGE_Y(j, h) / h;
-//#if defined(__APPLE__)
-//      dS = 1.0 - dS;
-//#endif
+      //#if defined(__APPLE__)
+      //      dS = 1.0 - dS;
+      //#endif
 
       double dCMin;
       double dCAdd;
@@ -152,23 +153,23 @@ namespace visual
 
    void color_with_shade_of_grey(::color::color & color, double i, double j, double dw, double dh)
    {
-      
+
 #ifdef __APPLE__
 
       image_color_with_shade_of_grey(
          color.m_u8Red,
          color.m_u8Green,
-         color.m_u8Blue, 
-         i, dh - j -1, dw, dh);
-      
+         color.m_u8Blue,
+         i, dh - j - 1, dw, dh);
+
 #else
-      
+
       image_color_with_shade_of_grey(
-         color.m_u8Red, 
+         color.m_u8Red,
          color.m_u8Green,
          color.m_u8Blue,
          i, j, dw, dh);
-      
+
 #endif
 
    }
@@ -195,7 +196,7 @@ namespace visual
       for (index i = 0; i < w; i++)
       {
 
-         pline = (::u8 *) (pimage->get_data() + i);
+         pline = (::u8 *)(pimage->get_data() + i);
 
          for (index j = 0; j < h; j++)
          {
@@ -204,11 +205,11 @@ namespace visual
                pline[r],
                pline[g],
                pline[b],
-               (double) i, (double) j, (double) w, (double) h);
+               (double)i, (double)j, (double)w, (double)h);
 
             pline[a] = 255;
 
-            pline+=uScan;
+            pline += uScan;
 
          }
 
@@ -228,7 +229,7 @@ namespace visual
 
       ::color::color color;
 
-      auto dh = (double) h;
+      auto dh = (double)h;
 
       ::u32 uScan;
 
@@ -307,7 +308,7 @@ namespace visual
 
       for (index j = 0; j < h; j++)
       {
-         double dL = 1.0 - ((double) j / dh);
+         double dL = 1.0 - ((double)j / dh);
 
 #if defined(__APPLE__)
          dL = 1.0 - dL;
@@ -345,7 +346,7 @@ namespace visual
 
             *pline = color32;
 
-            pline ++;
+            pline++;
 
          }
 
@@ -353,37 +354,39 @@ namespace visual
 
    }
 
-}
+} // namespace graphics
 
 
-namespace userex
+namespace graphics
 {
 
 
-   color_impact::color_impact()
+   color_selector::color_selector()
    {
 
       m_bMouseColorBeam = false;
 
       m_bCompact = false;
 
-      m_atomImpact = COLORSEL_IMPACT;
+      //m_atomImpact = COLORSEL_IMPACT;
 
       m_bLButtonPressed = false;
 
-      m_atom = COLORSEL_IMPACT;
+      //m_atom = COLORSEL_IMPACT;
+
+      m_strOk = "OK";
 
    }
 
 
-   color_impact::~color_impact()
+   color_selector::~color_selector()
    {
 
 
    }
 
 
-   //void color_impact::assert_ok() const
+   //void color_selector::assert_ok() const
    //{
 
    //   ::user::impact::assert_ok();
@@ -391,7 +394,7 @@ namespace userex
    //}
 
 
-   //void color_impact::dump(dump_context & dumpcontext) const
+   //void color_selector::dump(dump_context & dumpcontext) const
    //{
 
    //   ::user::impact::dump(dumpcontext);
@@ -399,51 +402,73 @@ namespace userex
    //}
 
 
-   void color_impact::install_message_routing(::channel * pchannel)
+   //void color_selector::install_message_routing(::channel * pchannel)
+   //{
+
+   //   ::user::impact::install_message_routing(pchannel);
+
+   //   MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &color_selector::on_message_create);
+   //   MESSAGE_LINK(e_message_mouse_move, pchannel, this, &color_selector::on_message_mouse_move);
+   //   MESSAGE_LINK(e_message_left_button_down, pchannel, this, &color_selector::on_message_left_button_down);
+   //   MESSAGE_LINK(e_message_left_button_up, pchannel, this, &color_selector::on_message_left_button_up);
+   //   MESSAGE_LINK(e_message_show_window, pchannel, this, &color_selector::on_message_show_window);
+
+   //   m_pimageTemplate = m_pcontext->m_pauracontext->create_image({ 2048,  2048 });
+
+   //   ::visual::colors_with_shades_of_grey(m_pimageTemplate);
+
+   //   m_pimageLuminance = m_pcontext->m_pauracontext->create_image({ 100,  100 });
+
+   //}
+
+
+   void color_selector::on_initialize_particle()
    {
 
-      ::user::impact::install_message_routing(pchannel);
+      ::particle::on_initialize_particle();
 
-      MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &color_impact::on_message_create);
-      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &color_impact::on_message_mouse_move);
-      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &color_impact::on_message_left_button_down);
-      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &color_impact::on_message_left_button_up);
-      MESSAGE_LINK(e_message_show_window, pchannel, this, &color_impact::on_message_show_window);
+      m_pimageTemplate = m_pcontext->m_pauracontext->create_image({ 2048,  2048 });
 
-      m_pimageTemplate = m_pcontext->m_pauracontext->create_image({2048,  2048});
+      ::graphics::colors_with_shades_of_grey(m_pimageTemplate);
 
-      ::visual::colors_with_shades_of_grey(m_pimageTemplate);
+      m_pimageLuminance = m_pcontext->m_pauracontext->create_image({ 100,  100 });
 
-      m_pimageLuminance = m_pcontext->m_pauracontext->create_image({100,  100});
+      if (__defer_construct(m_pfontOk))
+      {
+
+         m_pfontOk->create_font(e_font_sans_ui, 16_pt, e_font_weight_light);
+
+      }
 
    }
 
 
-   void color_impact::set_sel_color(const ::color::hls& hls)
+
+   void color_selector::set_sel_color(const ::color::hls & hls)
    {
 
-      set_color(hls);
+      color_selector_set_color(hls);
 
    }
 
 
-   ::color::hls color_impact::get_sel_color()
+   ::color::hls color_selector::get_sel_color()
    {
 
-      return get_color().get_hls();
+      return color_selector_get_color().get_hls();
 
    }
 
 
-   void color_impact::handle(::topic * ptopic, ::context * pcontext)
+   void color_selector::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      ::user::impact::handle(ptopic, pcontext);
+      //::user::impact::handle(ptopic, pcontext);
 
    }
 
 
-   //void color_impact::handle(::topic * ptopic, ::context * pcontext)
+   //void color_selector::handle(::topic * ptopic, ::context * pcontext)
    //{
 
    //   ::user::impact::handle(ptopic, pcontext);
@@ -451,51 +476,51 @@ namespace userex
    //}
 
 
-   void color_impact::on_message_create(::message::message * pmessage)
-   {
+   //void color_selector::on_message_create(::message::message * pmessage)
+   //{
 
-      //m_pimageBeam->create_image(this, ::size_i32(32, 32));
+   //   //m_pimageBeam->create_image(this, ::size_i32(32, 32));
 
-      //m_pimageBeam->fill(0);
+   //   //m_pimageBeam->fill(0);
 
-      //auto ppen = __create < ::draw2d::pen > ();
+   //   //auto ppen = __create < ::draw2d::pen > ();
 
-      //ppen->create_solid(1.0, argb(255, 255, 255, 255));
+   //   //ppen->create_solid(1.0, argb(255, 255, 255, 255));
 
-      //m_pimageBeam->g()->set(ppen);
+   //   //m_pimageBeam->g()->set(ppen);
 
-      //m_pimageBeam->g()->DrawEllipse(rectangle_i32_dimension(0, 0, 32, 32));
-
-
-
-      //get_parent_frame()->m_atom += ".color_sel";
-
-      pmessage->previous();
-
-      if(get_document()->m_pviewTopic == nullptr)
-      {
-
-         get_document()->m_pviewTopic = this;
-
-      }
-
-      //set_impact_title("__CoLoR_");
-
-      parent_frame()->set_frame_title("__CoLoR_");
-
-   }
+   //   //m_pimageBeam->g()->DrawEllipse(rectangle_i32_dimension(0, 0, 32, 32));
 
 
-   void color_impact::on_message_show_window(::message::message * pmessage)
-   {
 
-      UNREFERENCED_PARAMETER(pmessage);
-      //::pointer<::message::show_window>pshowwindow(pmessage);
+   //   //get_parent_frame()->m_atom += ".color_sel";
 
-   }
+   //   pmessage->previous();
+
+   //   if (get_document()->m_pviewTopic == nullptr)
+   //   {
+
+   //      get_document()->m_pviewTopic = this;
+
+   //   }
+
+   //   //set_impact_title("__CoLoR_");
+
+   //   parent_frame()->set_frame_title("__CoLoR_");
+
+   //}
 
 
-   ::color::color color_impact::get_color()
+   //void color_selector::on_message_show_window(::message::message * pmessage)
+   //{
+
+   //   UNREFERENCED_PARAMETER(pmessage);
+   //   //::pointer<::message::show_window>pshowwindow(pmessage);
+
+   //}
+
+
+   ::color::color color_selector::color_selector_get_color()
    {
 
       ::color::color color;
@@ -509,21 +534,21 @@ namespace userex
    }
 
 
-   void color_impact::set_color(const ::color::color & color)
+   void color_selector::color_selector_set_color(const ::color::color & color)
    {
 
       m_bMouseColorBeam = false;
 
       color.get_hls(m_hls);
 
-      set_need_layout();
+      //set_need_layout();
 
-      set_need_redraw();
+      //set_need_redraw();
 
    }
 
 
-   void color_impact::on_mouse(const ::point_i32 & point)
+   void color_selector::on_mouse_motion(const ::point_i32 & point)
    {
 
       if (point.y() >= m_rectangleColors.bottom())
@@ -566,7 +591,7 @@ namespace userex
 
          ::color::color color;
 
-         visual::color_with_shade_of_grey(color,
+         ::graphics::color_with_shade_of_grey(color,
             x, y,
             iColorsWidth, m_rectangleColors.height());
 
@@ -579,23 +604,8 @@ namespace userex
          m_hls.m_dS = hls.m_dS;
 
          rebuild_luminance();
-         
-         if(has_handler())
-         {
 
-            auto ptopic = create_topic(::id_after_change_cur_hover);
-
-            ptopic->m_puserelement = this;
-
-            ptopic->m_actioncontext = ::e_source_user;
-
-            route(ptopic);
-               
-         }
-
-         set_need_redraw();
-
-         post_redraw();
+         on_after_hover_color_change();
 
       }
       else if (point.x() < m_rectangleColors.center().x() + m_rectangleColors.width() / 8)
@@ -603,46 +613,56 @@ namespace userex
 
          auto pointLuminance = point - ::size_i32(m_rectangleColors.center().x(), m_rectangleColors.top());
 
-         m_hls.m_dL = 1.0 - ((double)pointLuminance.y() / (double) m_pimage->height());
-         
-         if(has_handler())
-         {
+         m_hls.m_dL = 1.0 - ((double)pointLuminance.y() / (double)m_pimage->height());
 
-            auto ptopic = create_topic(::id_after_change_cur_hover);
+         on_after_hover_color_change();
 
-            ptopic->m_puserelement = this;
+         //if (has_handler())
+         //{
 
-            ptopic->m_actioncontext = ::e_source_user;
+         //   auto ptopic = create_topic(::id_after_change_cur_hover);
 
-            route(ptopic);
-               
-         }
+         //   ptopic->m_puserelement = this;
 
-         set_need_redraw();
+         //   ptopic->m_actioncontext = ::e_source_user;
 
-         post_redraw();
+         //   route(ptopic);
+
+         //}
+
+         //set_need_redraw();
+
+         //post_redraw();
 
       }
 
    }
 
 
-   void color_impact::rebuild_luminance()
+   bool color_selector::is_ok_target(const ::point_i32 & point)
    {
 
-      ::visual::shades_of_luminance(m_pimageLuminance, m_hls.m_dH, m_hls.m_dS);
+      return m_strOk.has_char() && m_pfontOk && m_rectangleTarget.contains(point);
 
    }
 
 
-   void color_impact::draw_beam(::draw2d::graphics_pointer & pgraphics, const ::point_i32 & pointParam)
+   void color_selector::rebuild_luminance()
+   {
+
+      ::graphics::shades_of_luminance(m_pimageLuminance, m_hls.m_dH, m_hls.m_dS);
+
+   }
+
+
+   void color_selector::draw_beam(::draw2d::graphics_pointer & pgraphics, const ::point_i32 & pointParam)
    {
 
       point_f64 point(pointParam);
 
       double dSize = 17.0;
 
-      size_f64 sizeBeam(dSize,dSize);
+      size_f64 sizeBeam(dSize, dSize);
 
       rectangle_f64 rectangleOuter(point.x() - sizeBeam.cx() / 2.0, point.y() - sizeBeam.cy() / 2.0, point.x() + sizeBeam.cx() / 2.0, point.y() + sizeBeam.cy() / 2.0);
 
@@ -650,7 +670,7 @@ namespace userex
 
       rectangleInner.deflate(sizeBeam.cx() / 4.0, sizeBeam.cy() / 4.0);
 
-      auto pbrush = __create < ::draw2d::brush > ();
+      auto pbrush = __create < ::draw2d::brush >();
 
       pbrush->create_solid(argb(255, 0, 0, 0));
 
@@ -709,7 +729,7 @@ namespace userex
    }
 
 
-   void color_impact::draw_level(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleW, int yParam)
+   void color_selector::draw_level(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleW, int yParam)
    {
 
       double y = yParam;
@@ -722,7 +742,7 @@ namespace userex
 
       rectangleOuter.inflate(dSize / 2.0, dSize / 2.0);
 
-      auto pbrush = __create < ::draw2d::brush > ();
+      auto pbrush = __create < ::draw2d::brush >();
 
       pbrush->create_solid(argb(255, 0, 0, 0));
 
@@ -757,16 +777,18 @@ namespace userex
    }
 
 
-   void color_impact::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void color_selector::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
       ::rectangle_i32 rC;
 
-      rC = this->rectangle();
+      //rC = this->rectangle();
+
+      rC = m_rectangleColors;
 
       pgraphics->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
-      ::rectangle_i32 rTarget;
+      auto & rTarget = m_rectangleTarget;
 
       rTarget.top_left() = m_rectangleColors.top_left();
 
@@ -816,7 +838,7 @@ namespace userex
 
       ::rectangle_i32 rectangleLum1;
 
-      rectangleLum1.top_left() = m_rectangleColors.top_left() + ::size_i32(m_pimage->width()-1, 0);
+      rectangleLum1.top_left() = m_rectangleColors.top_left() + ::size_i32(m_pimage->width() - 1, 0);
 
       rectangleLum1.set_size(m_pimageLuminance->get_size());
 
@@ -840,120 +862,142 @@ namespace userex
 
       rTarget.set_size(m_rectangleColors.right() - rTarget.left(), m_pimage->height());
 
-      pgraphics->fill_rectangle(rTarget, get_color());
+      pgraphics->fill_rectangle(rTarget, color_selector_get_color());
 
-      int y = (int) (rectangleLum1.top() + (1.0 - m_hls.m_dL)  * rectangleLum1.height());
+      int y = (int)(rectangleLum1.top() + (1.0 - m_hls.m_dL) * rectangleLum1.height());
 
       draw_level(pgraphics, rectangleLum1, y);
 
-   }
-
-
-   void color_impact::on_message_left_button_down(::message::message * pmessage)
-   {
-      
-      auto pmouse = pmessage->m_union.m_pmouse;
-
-      ::point_i32 point = pmouse->m_pointHost;
-
-      host_to_client()(point);
-
-      on_mouse(point);
-
-      pmouse->m_bRet = true;
-
-      set_mouse_capture();
-
-      m_bLButtonPressed = true;
-
-   }
-
-
-   void color_impact::on_message_left_button_up(::message::message * pmessage)
-   {
-
-      auto pmouse = pmessage->m_union.m_pmouse;
-      
-      ::point_i32 point = pmouse->m_pointHost;
-      
-      host_to_client()(point);
-
-      on_mouse(point);
-
-      pmouse->m_bRet = true;
-
-      defer_release_mouse_capture();
-
-      m_bLButtonPressed = false;
-      
-      if(has_handler())
+      if (m_strOk.has_char() && m_pfontOk)
       {
 
-         auto ptopic = create_topic(::id_after_change_cur_sel);
+         pgraphics->set(m_pfontOk);
 
-         ptopic->m_puserelement = this;
+         if (m_hls.m_dL >= 0.5)
+         {
 
-         ptopic->m_actioncontext = ::e_source_user;
+            pgraphics->set_text_color(argb(255, 0, 0, 0));
 
-         route(ptopic);
-            
-      }
+         }
+         else
+         {
 
-   }
+            pgraphics->set_text_color(argb(255, 255, 255, 255));
 
+         }
 
-   void color_impact::on_message_mouse_move(::message::message * pmessage)
-   {
-      
-      auto pmouse = pmessage->m_union.m_pmouse;
-
-      if (m_bLButtonPressed)
-      {
-
-         ::point_i32 point = pmouse->m_pointHost;
-
-         host_to_client()(point);
-
-         on_mouse(point);
-
-         pmouse->m_bRet = true;
+         pgraphics->draw_text(m_strOk, rTarget, e_align_center);
 
       }
 
    }
 
 
-   void color_impact::on_layout(::draw2d::graphics_pointer & pgraphics)
+   //void color_selector::on_message_left_button_down(::message::message * pmessage)
+   //{
+
+   //   auto pmouse = pmessage->m_union.m_pmouse;
+
+   //   ::point_i32 point = pmouse->m_pointHost;
+
+   //   host_to_client()(point);
+
+   //   on_mouse(point);
+
+   //   pmouse->m_bRet = true;
+
+   //   set_mouse_capture();
+
+   //   m_bLButtonPressed = true;
+
+   //}
+
+
+   //void color_selector::on_message_left_button_up(::message::message * pmessage)
+   //{
+
+   //   auto pmouse = pmessage->m_union.m_pmouse;
+
+   //   ::point_i32 point = pmouse->m_pointHost;
+
+   //   host_to_client()(point);
+
+   //   on_mouse(point);
+
+   //   pmouse->m_bRet = true;
+
+   //   defer_release_mouse_capture();
+
+   //   m_bLButtonPressed = false;
+
+   //   if (has_handler())
+   //   {
+
+   //      auto ptopic = create_topic(::id_after_change_cur_sel);
+
+   //      ptopic->m_puserelement = this;
+
+   //      ptopic->m_actioncontext = ::e_source_user;
+
+   //      route(ptopic);
+
+   //   }
+
+   //}
+
+
+   //void color_selector::on_message_mouse_move(::message::message * pmessage)
+   //{
+
+   //   auto pmouse = pmessage->m_union.m_pmouse;
+
+   //   if (m_bLButtonPressed)
+   //   {
+
+   //      ::point_i32 point = pmouse->m_pointHost;
+
+   //      host_to_client()(point);
+
+   //      on_mouse(point);
+
+   //      pmouse->m_bRet = true;
+
+   //   }
+
+   //}
+
+
+   void color_selector::layout_color_selector(const ::rectangle_i32 & rectangle)
    {
 
-      ::user::impact::on_layout(pgraphics);
+   //   ::user::impact::on_layout(pgraphics);
 
-      auto rectangleX = this->rectangle();
+   //   auto rectangleX = this->rectangle();
 
-      if (rectangleX.area() <= 0)
-      {
+   //   if (rectangleX.area() <= 0)
+   //   {
 
-         return;
+   //      return;
 
-      }
+   //   }
 
       ::rectangle_i32 rectangleColors;
 
-      rectangleColors = this->rectangle();
+      rectangleColors = rectangle;
 
-      if(!m_bCompact)
+      if (!m_bCompact)
       {
 
-         rectangleColors.left() = rectangleX.center().x();
-         rectangleColors.bottom() = rectangleX.center().y();
+         rectangleColors.left() = rectangle.center().x();
+         rectangleColors.bottom() = rectangle.center().y();
 
-         rectangleColors.deflate(rectangleX.width() / 16, rectangleX.height() / 16);
+         rectangleColors.deflate(rectangle.width() / 16, rectangle.height() / 16);
 
       }
 
       m_rectangleColors = rectangleColors;
 
-      m_pimage = m_pcontext->m_pauracontext->create_image({m_rectangleColors.width() / 2,  m_rectangleColors.height()});
+      m_pimage = m_pcontext->m_pauracontext->create_image({ m_rectangleColors.width() / 2,  m_rectangleColors.height() });
 
       {
 
@@ -967,14 +1011,22 @@ namespace userex
 
       }
 
-      m_pimageLuminance = m_pcontext->m_pauracontext->create_image({m_rectangleColors.width() / 8,  m_rectangleColors.height()});
+      m_pimageLuminance = m_pcontext->m_pauracontext->create_image({ m_rectangleColors.width() / 8,  m_rectangleColors.height() });
 
       rebuild_luminance();
 
    }
 
 
-} // namespace userex
+   void color_selector::on_after_hover_color_change()
+   {
+
+      m_callbackHls(m_hls, false);
+
+   }
+
+
+} // namespace graphics
 
 
 

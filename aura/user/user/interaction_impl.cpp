@@ -2376,7 +2376,7 @@ namespace user
       else if (pmouse->m_atom == e_message_mouse_move)
       {
 
-         information() << "e_message_mouse_move : " << pmouse->m_pointAbsolute;
+         //information() << "e_message_mouse_move : " << pmouse->m_pointAbsolute;
 
       }
       else if (pmouse->m_atom == e_message_left_button_up)
@@ -2503,9 +2503,9 @@ namespace user
          // what forces, at the end of message processing, setting the bergedge cursor to the default cursor, if no other
          // handler has set it to another one.
 
-         m_puserinteraction->m_pinteractionimpl->_on_mouse_move_step(pmouse->m_pointAbsolute);
+         m_puserinteraction->m_pinteractionimpl->_on_mouse_move_step(pmouse->m_pointHost);
 
-         information() << "e_message_mouse_move (2): " << pmouse->m_pointAbsolute;
+         //information() << "e_message_mouse_move (2): " << pmouse->m_pointAbsolute;
 
       }
 
@@ -2557,7 +2557,7 @@ namespace user
       {
 
 
-         ::information("left_button_down (A)");
+         information("left_button_down (A)");
 
       }
 
@@ -2574,14 +2574,14 @@ namespace user
       {
 
 
-         ::information("left_button_down");
+         information("left_button_down");
 
       }
       else if (pmouse->m_atom == e_message_left_button_up)
       {
 
 
-         ::information("left_button_up");
+         information("left_button_up");
 
       }
 

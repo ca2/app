@@ -5,7 +5,7 @@
 //para
 
 
-#include "pixmap.h"
+#include "acme/graphics/image/pixmap.h"
 
 
 #include "aura/graphics/draw2d/bitmap.h"

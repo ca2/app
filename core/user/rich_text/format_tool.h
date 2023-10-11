@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include "format_host.h"
 #include "aura/user/user/tool_window.h"
 #include "core/user/user/font_combo_box.h"
 
@@ -19,25 +20,28 @@ namespace user
       public:
 
 
-         ::user::rich_text::e_attribute                           m_eattribute;
+         ::user::rich_text::e_attribute                              m_eattribute;
          // an array just to hold one format
          // the one the tool is editing
-         pointer< pointer_array < ::user::rich_text::format > >    m_pformata;
-         ::pointer<::user::button>                             m_pbuttonBold;
-         ::pointer<::user::button>                             m_pbuttonItalic;
-         ::pointer<::user::button>                             m_pbuttonUnderline;
-         ::pointer<::user::font_combo_box>                     m_pcomboFamily;
-         ::pointer<::user::combo_box>                          m_pcomboSize;
-         ::pointer<::user::button>                             m_pbuttonForeground;
-         ::pointer<::user::button>                             m_pbuttonBackground;
-         ::pointer<::user::button>                             m_pbuttonSubscript;
-         ::pointer<::user::button>                             m_pbuttonSuperscript;
-         ::pointer<::user::button>                             m_pbuttonLineHeight;
-         ::pointer<::user::button>                             m_pbuttonAlignLeft;
-         ::pointer<::user::button>                             m_pbuttonAlignCenter;
-         ::pointer<::user::button>                             m_pbuttonAlignRight;
-
-
+         ::pointer < ::user::rich_text::format >                     m_pformat;
+         //::pointer < ::user::rich_text::format_host >                m_pformathost;
+         ::pointer<::user::button>                                   m_pbuttonBold;
+         ::pointer<::user::button>                                   m_pbuttonItalic;
+         ::pointer<::user::button>                                   m_pbuttonUnderline;
+         ::pointer<::user::font_combo_box>                           m_pcomboFamily;
+         ::pointer<::user::combo_box>                                m_pcomboSize;
+         ::pointer<::user::button>                                   m_pbuttonForeground;
+         ::pointer<::user::button>                                   m_pbuttonBackground;
+         ::pointer<::user::button>                                   m_pbuttonSubscript;
+         ::pointer<::user::button>                                   m_pbuttonSuperscript;
+         ::pointer<::user::button>                                   m_pbuttonLineHeight;
+         ::pointer<::user::button>                                   m_pbuttonAlignLeft;
+         ::pointer<::user::button>                                   m_pbuttonAlignCenter;
+         ::pointer<::user::button>                                   m_pbuttonAlignRight;
+         ::pointer<::user::color_selector_popup>                     m_pcolorselectorpopupForeground;
+         ::pointer<::user::color_selector_popup>                     m_pcolorselectorpopupBackground;
+         ::color::hls                                                m_hlsForeground;
+         ::color::hls                                                m_hlsBackground;
 
          format_tool();
          ~format_tool() override;
@@ -59,7 +63,7 @@ namespace user
 
          void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
-         virtual void show_for_ui(::user::interaction * pinteraction);
+         virtual void show_for_ui(::user::interaction * puserinteraction, ::user::rich_text::format_host * pformathost);
 
          void handle(::topic * ptopic, ::context * pcontext) override;
 

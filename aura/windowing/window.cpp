@@ -437,12 +437,12 @@ namespace windowing
    }
 
 
-   ::string window::get_window_text()
-   {
-
-      return {};
-
-   }
+//   ::string window::get_window_text()
+//   {
+//
+//      return {};
+//
+//   }
 
 
 //   strsize window::get_window_text(char * pszStringBuf, strsize nMaxCount)
@@ -1969,7 +1969,7 @@ namespace windowing
       if (edisplayOutput != edisplayDesign)
       {
 
-         puserinteraction->post_message(e_message_show_window, ::is_screen_visible(edisplayDesign) ? 1 : 0);
+         puserinteraction->send_message(e_message_show_window, ::is_screen_visible(edisplayDesign) ? 1 : 0);
 
       }
 
@@ -2156,6 +2156,68 @@ namespace windowing
       }
 
       return statement;
+
+   }
+
+
+   bool window::is_windowing_popup()
+   {
+
+      return ::is_set(m_puserinteractionimpl->m_puserinteraction->m_puserinteractionOwner);
+
+   }
+
+
+   ::point_i32 window::windowing_popup_origin()
+   {
+
+      auto p = m_puserinteractionimpl->m_puserinteraction->const_layout().sketch().origin();
+
+      if (m_puserinteractionimpl->m_puserinteraction)
+      {
+
+         if (m_puserinteractionimpl->m_puserinteraction->get_parent())
+         {
+
+            m_puserinteractionimpl->m_puserinteraction->get_parent()->client_to_host()(p);
+
+         }
+
+      }
+
+      return p;
+
+   }
+
+
+   void window::_on_windowing_close_window()
+   {
+
+      m_puserinteractionimpl->m_puserinteraction->post_message(e_message_close);
+
+   }
+
+
+   bool window::is_satellite_window()
+   {
+
+      return m_puserinteractionimpl->m_puserinteraction->m_ewindowflag & e_window_flag_satellite_window;
+
+   }
+
+
+   ::windowing::window_base * window::owner_window()
+   {
+
+      return m_puserinteractionimpl->m_puserinteraction->m_puserinteractionOwner->window();
+
+   }
+
+
+   ::string window::get_window_text()
+   {
+
+      return m_puserinteractionimpl->m_puserinteraction->get_window_text();
 
    }
 

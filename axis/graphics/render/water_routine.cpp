@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "water_routine.h"
-#include "acme/graphics/draw2d/image32.h"
+#include "acme/graphics/image/image32.h"
 
 
 namespace draw2d

@@ -691,6 +691,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="graphics\color_selector.cpp" />
     <ClCompile Include="html\hi5\hi5_twitter_authorization.cpp" />
     <ClCompile Include="networking\ftp\client_socket.cpp" />
     <ClCompile Include="networking\ftp\data_types.cpp" />
@@ -715,6 +716,7 @@
     <ClCompile Include="user\rich_text\edit.cpp" />
     <ClCompile Include="user\rich_text\edit_impl.cpp" />
     <ClCompile Include="user\rich_text\format.cpp" />
+    <ClCompile Include="user\rich_text\format_host.cpp" />
     <ClCompile Include="user\rich_text\format_tool.cpp" />
     <ClCompile Include="user\rich_text\global.cpp" />
     <ClCompile Include="user\rich_text\line.cpp" />
@@ -735,7 +737,6 @@
     <ClCompile Include="user\simple\tab_impact.cpp" />
     <ClCompile Include="user\simple\tree_impact.cpp" />
     <ClCompile Include="user\userex\failure_dialog.cpp" />
-    <ClCompile Include="user\userex\color_impact.cpp" />
     <ClCompile Include="user\userex\dialog.cpp" />
     <ClCompile Include="user\userex\dialog_frame.cpp" />
     <ClCompile Include="user\userex\font_impact.cpp" />
@@ -759,7 +760,10 @@
     <ClCompile Include="user\userex\top_toggle_impact.cpp" />
     <ClCompile Include="user\userex\top_impact.cpp" />
     <ClCompile Include="user\userex\wait_message_dialog.cpp" />
-    <ClCompile Include="user\user\color_combo_box.cpp" />
+    <ClCompile Include="user\user\color_selector_combo_box.cpp" />
+    <ClCompile Include="user\user\color_selector_impact.cpp" />
+    <ClCompile Include="user\user\color_selector_control.cpp" />
+    <ClCompile Include="user\user\color_selector_popup.cpp" />
     <ClCompile Include="user\user\elastic_slider.cpp" />
     <ClCompile Include="user\user\font_combo_box.cpp" />
     <ClCompile Include="user\user\font_list.cpp" />
@@ -781,6 +785,7 @@
     <ClCompile Include="user\user\mesh_cache_interface.cpp" />
     <ClCompile Include="user\user\mesh_data.cpp" />
     <ClCompile Include="user\user\mesh_item.cpp" />
+    <ClCompile Include="user\user\popup.cpp" />
     <ClCompile Include="user\user\step_slider.cpp" />
     <ClCompile Include="user\user\text_format_object.cpp" />
     <ClCompile Include="user\user\toggle_switch.cpp" />
@@ -808,6 +813,7 @@
     <ClInclude Include="filesystem\userfs\_tree.h" />
     <ClInclude Include="filesystem\_.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="graphics\color_selector.h" />
     <ClInclude Include="html\hi5\_.h" />
     <ClInclude Include="html\hi5\hi5_twitter_authorization.h" />
     <ClInclude Include="html\_.h" />
@@ -858,6 +864,7 @@
     <ClInclude Include="user\rich_text\edit.h" />
     <ClInclude Include="user\rich_text\edit_impl.h" />
     <ClInclude Include="user\rich_text\format.h" />
+    <ClInclude Include="user\rich_text\format_host.h" />
     <ClInclude Include="user\rich_text\format_tool.h" />
     <ClInclude Include="user\rich_text\global.h" />
     <ClInclude Include="user\rich_text\layout.h" />
@@ -868,14 +875,18 @@
     <ClInclude Include="user\rich_text\_.h" />
     <ClInclude Include="user\rich_text\_binary_stream.h" />
     <ClInclude Include="user\rich_text\_constant.h" />
-    <ClInclude Include="user\rich_text\_component.h" />
     <ClInclude Include="user\userex\dialog_frame.h" />
     <ClInclude Include="user\userex\group_image_list.h" />
     <ClInclude Include="user\userex\image_list.h" />
     <ClInclude Include="user\userex\progress.h" />
+    <ClInclude Include="user\user\color_selector_control.h" />
+    <ClInclude Include="user\user\color_selector_impact.h" />
+    <ClInclude Include="user\user\color_selector_popup.h" />
+    <ClInclude Include="user\user\aaa_color_selector.h" />
     <ClInclude Include="user\user\font_list_impact.h" />
     <ClInclude Include="user\user\impact.h" />
     <ClInclude Include="user\user\list2.h" />
+    <ClInclude Include="user\user\popup.h" />
     <ClInclude Include="user\user\text_format_object.h" />
     <ClInclude Include="user\user\user.h" />
     <ClInclude Include="user\user\_binary_stream.h" />
@@ -992,7 +1003,6 @@
     <ClInclude Include="user\simple\_impl.h" />
     <ClInclude Include="user\simple\_component.h" />
     <ClInclude Include="user\userex\aaa_want_to_erase_form_update_hint.h" />
-    <ClInclude Include="user\userex\color_impact.h" />
     <ClInclude Include="user\userex\const.h" />
     <ClInclude Include="user\userex\dialog.h" />
     <ClInclude Include="user\userex\failure_dialog.h" />
@@ -1020,7 +1030,7 @@
     <ClInclude Include="user\userex\_.h" />
     <ClInclude Include="user\userex\_impl.h" />
     <ClInclude Include="user\userex\_component.h" />
-    <ClInclude Include="user\user\color_combo_box.h" />
+    <ClInclude Include="user\user\color_selector_combo_box.h" />
     <ClInclude Include="user\user\control_ddx_dbflags.h" />
     <ClInclude Include="user\user\elastic_slider.h" />
     <ClInclude Include="user\user\font_combo_box.h" />

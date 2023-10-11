@@ -13,6 +13,15 @@ class CLASS_DECL_ACME nano_window_implementation :
 public:
 
 
+   struct console
+   {
+
+      map < char, ::index >         m_mapCharIndex;
+      ::array < char >              m_cha1;
+      ::string_array                m_stra;
+
+   } m_console;
+
    ::pointer < ::nano_window >         m_pinterface;
 
 
@@ -32,6 +41,11 @@ public:
    virtual void nano_window_on_create();
 
    virtual void on_create();
+
+
+   virtual void _console_create();
+
+   virtual void _display_console();
 
 
    ::point_i32 try_absolute_mouse_position(const ::point_i32 & point) override;

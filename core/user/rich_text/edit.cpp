@@ -166,7 +166,9 @@ namespace user
 
          auto pformattool = get_format_tool(true);
 
-         pformattool->show_for_ui(this);
+         auto pformathost = get_format_host();
+
+         pformattool->show_for_ui(this, pformathost);
 
       }
 
@@ -485,6 +487,28 @@ namespace user
          return pformattool;
 
       }
+
+
+      ::user::rich_text::format_host * edit::get_format_host()
+      {
+
+         return nullptr;
+
+      }
+
+
+      ::pointer<::user::rich_text::format> edit::get_selection_common_format()
+      {
+
+         return nullptr;
+
+      }
+
+
+
+
+
+
 
 
       bool edit::keyboard_focus_is_focusable()

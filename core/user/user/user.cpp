@@ -38,7 +38,7 @@
 #include "core/user/simple/pane_document.h"
 #include "core/user/simple/printer_list_impact.h"
 #include "core/user/user/font_list_impact.h"
-#include "core/user/userex/color_impact.h"
+#include "core/user/user/color_selector_impact.h"
 #include "core/user/userex/dialog_frame.h"
 #include "core/user/userex/font_impact.h"
 #include "core/user/userex/form_child_frame.h"
@@ -927,7 +927,7 @@ namespace core
 
       auto pdocument = m_mapimpactsystem[COLORSEL_IMPACT]->open_document_file(puiOwner->get_app(), ::e_type_null, true);
 
-      ::pointer<::userex::color_impact>pimpact = pdocument->get_typed_impact < ::userex::color_impact >();
+      ::pointer<::user::color_selector_impact>pimpact = pdocument->get_typed_impact < ::user::color_selector_impact >();
 
       ::pointer<::user::frame_window>pframe = pimpact->top_level_frame();
 
@@ -1747,13 +1747,13 @@ namespace core
 
          }
 
-         factory()->add_factory_item <::userex::color_impact >();
+         factory()->add_factory_item <::user::color_selector_impact >();
 
          auto ptemplate = __new(::user::multiple_document_template(
             "main",
             ::type < ::user::document >(),
             ::type < ::simple_frame_window >(),
-            ::type < ::userex::color_impact >()));
+            ::type < ::user::color_selector_impact >()));
 
          auto psession = get_session();
 

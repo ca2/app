@@ -2844,10 +2844,19 @@ namespace acme
 #endif
 
    }
-   
+
+
    void system::install_progress_add_up(int iAddUp)
    {
 
+
+   }
+
+
+   ::string system::get_application_server_name()
+   {
+
+      return {};
 
    }
 

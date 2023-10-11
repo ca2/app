@@ -82,6 +82,101 @@ void nano_window_implementation::on_create()
 }
 
 
+void nano_window_implementation::_console_create()
+{
+
+   ::index i = 0;
+
+   for (auto & pnanobutton : m_pinterface->m_nanobuttona)
+   {
+
+      char ch = pnanobutton->m_chLetter;
+
+      m_console.m_mapCharIndex[character_tolower(ch)] = i;
+
+      if (i == m_pinterface->m_iDefaultButton)
+      {
+
+         m_console.m_cha1.insert_at(0, character_toupper(ch));
+
+         m_console.m_stra.insert_at(0, pnanobutton->m_strText);
+
+      }
+      else
+      {
+
+         m_console.m_cha1.add(character_tolower(ch));
+
+         m_console.m_stra.add(pnanobutton->m_strText);
+
+      }
+
+      i++;
+
+   }
+
+}
+
+
+void nano_window_implementation::_display_console()
+{
+
+   ::index iButton;
+
+   while (true)
+   {
+
+      printf("%s", m_pinterface->m_strTitle.c_str());
+
+      ::string str;
+
+      str = m_console.m_stra.implode(",");
+
+      printf(" %s", str.c_str());
+
+      printf(" (");
+
+      printf("%c", m_console.m_cha1[0]);
+
+      for (::index i = 1; i < m_console.m_cha1.get_count(); i++)
+      {
+
+         printf("/%c", m_console.m_cha1[i]);
+
+      }
+
+      printf("):");
+
+      char ch;
+
+      scanf("%c", &ch);
+
+      ch = character_tolower(ch);
+
+      iButton = -1;
+
+      if (m_console.m_mapCharIndex.lookup(ch, iButton))
+      {
+
+         break;
+
+      }
+
+   }
+
+   if (iButton >= 0)
+   {
+
+      auto pnanobutton = m_pinterface->m_nanobuttona[iButton];
+
+      m_pinterface->on_click(pnanobutton->m_edialogresult1, nullptr);
+
+   }
+
+}
+
+
+
 ::point_i32 nano_window_implementation::try_absolute_mouse_position(const ::point_i32 & point)
 {
 

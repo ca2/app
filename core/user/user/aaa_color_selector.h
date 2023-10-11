@@ -1,16 +1,13 @@
+// From userex/color_impact 2023-10-09 01:30 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
-#include "base/user/user/impact.h"
-#include "aura/user/user/plain_edit.h"
-
-
-namespace userex
+namespace graphics
 {
 
 
-   class CLASS_DECL_CORE color_impact :
-      virtual public ::user::impact
+   class CLASS_DECL_CORE color_selector :
+      virtual public ::user::particle
    {
    public:
 
@@ -28,13 +25,13 @@ namespace userex
       ::image_pointer                  m_pimage;
       ::image_pointer                  m_pimageLuminance;
 
-      ::color::hls                            m_hls;
+      ::color::hls                     m_hls;
 
-      ::rectangle_i32                           m_rectangleColors;
+      ::rectangle_i32                  m_rectangleColors;
 
 
-      color_impact();
-      ~color_impact() override;
+      color_selector();
+      ~color_selector() override;
 
 
       // void assert_ok() const override;
@@ -42,12 +39,12 @@ namespace userex
       // void dump(dump_context & dumpcontext) const override;
 
       void install_message_routing(::channel * pchannel) override;
-      
-      
+
+
       void set_sel_color(const ::color::hls & hls) override;
       ::color::hls get_sel_color() override;
-      
-      
+
+
       void handle(::topic * ptopic, ::context * pcontext) override;
 
       //void handle(::topic * ptopic, ::context * pcontext) override;
@@ -58,11 +55,11 @@ namespace userex
       virtual void draw_level(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleW, int y);
 
 
-      DECLARE_MESSAGE_HANDLER(on_message_create);
-      DECLARE_MESSAGE_HANDLER(on_message_show_window);
-      DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
-      DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
-      DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
+      //DECLARE_MESSAGE_HANDLER(on_message_create);
+      //DECLARE_MESSAGE_HANDLER(on_message_show_window);
+      //DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
+      //DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
+      //DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
@@ -70,13 +67,13 @@ namespace userex
       virtual void rebuild_luminance();
 
       virtual ::color::color get_color();
-      virtual void set_color(const ::color::color &color);
+      virtual void set_color(const ::color::color & color);
 
 
    };
 
 
-} // namespace userex
+} // namespace graphics
 
 
 
@@ -90,7 +87,7 @@ namespace app_core_flag
 } // namespace flag
 
 
-namespace visual
+namespace graphics
 {
 
 
@@ -99,7 +96,7 @@ namespace visual
    CLASS_DECL_CORE void shades_of_luminance(::image * pimage, double dH, double dS);
 
 
-} // namespace visual
+} // namespace graphics
 
 
 

@@ -304,7 +304,7 @@ template<class T>
 inline constexpr bool is_array = is_array_struct < T >::value;
 
 
-namespace detail
+namespace inner_detail
 {
    template<class T>
    struct type_identity { using type = T; }; // or use std::type_identity (since C++20)
@@ -316,7 +316,7 @@ namespace detail
 } // namespace detail
 
 template<class T>
-struct add_pointer_struct : decltype(detail::try_add_pointer<T>(0)) {};
+struct add_pointer_struct : decltype(inner_detail::try_add_pointer<T>(0)) {};
 
 template < typename T >
 using add_pointer = typename add_pointer_struct < T >::type;

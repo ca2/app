@@ -43,6 +43,8 @@ public:
 
    virtual ::point_i32 origin();
 
+   virtual bool defer_perform_entire_reposition_process();
+
    virtual ::shift_i32 screen_to_client();
    virtual ::shift_i32 client_to_screen();
 

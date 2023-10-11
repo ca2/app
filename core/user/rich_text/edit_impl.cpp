@@ -1906,12 +1906,12 @@ namespace user
                else if (pkey->m_ekey == ::user::e_key_return)
                {
 
-//                if(m_bMultiLine)
-                  {
-
-                     insert_text("\n", true, e_source_user);
-
-                  }
+////                if(m_bMultiLine)
+//                  {
+//
+//                     insert_text("\n", true, e_source_user);
+//
+//                  }
 
                }
                else if (is_window_enabled())

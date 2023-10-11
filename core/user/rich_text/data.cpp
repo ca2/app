@@ -25,7 +25,7 @@ namespace user
 
       void align(line * pline, const ::rectangle_f64 & rectangle);
 
-      ::count get_vars(strsize_array& ia1, strsize_array& ia2, string str)
+      ::count get_vars(strsize_array & ia1, strsize_array & ia2, string str)
       {
 
          strsize i1 = 0;
@@ -105,7 +105,7 @@ namespace user
       {
 
          //auto estatus =
-         
+
          ::data::data::initialize_data(pdocument);
 
          //if (!estatus)
@@ -116,7 +116,7 @@ namespace user
          //}
 
          //estatus = 
-         
+
          //__construct_new(m_pformathost);
 
          //if (!estatus)
@@ -129,7 +129,7 @@ namespace user
          m_pformatCurrent = add_format();
 
          //estatus = 
-         
+
          __construct_new(m_plinea);
 
          //if (!estatus)
@@ -154,7 +154,7 @@ namespace user
       }
 
 
-      
+
       ::pointer<span>data::create_span()
       {
 
@@ -429,7 +429,7 @@ namespace user
          for (index iBox = 0; iBox < plinea->get_count(); iBox++)
          {
 
-            auto& pbox = pline->element_at(iBox);
+            auto & pbox = pline->element_at(iBox);
 
             if (x <= pbox->m_rectangleHitTest.left())
             {
@@ -523,7 +523,7 @@ namespace user
 
          }
 
-         int iMax = (int) _001GetLayoutTextLength();
+         int iMax = (int)_001GetLayoutTextLength();
 
          auto plinea = m_plinea;
 
@@ -537,7 +537,7 @@ namespace user
          if (iColumn < 0)
          {
 
-            int iChar = (int) ( iColumn + plinea->element_at(iLine)->last()->m_iPosEnd + 2);
+            int iChar = (int)(iColumn + plinea->element_at(iLine)->last()->m_iPosEnd + 2);
 
             if (iChar < 0)
             {
@@ -642,7 +642,7 @@ namespace user
 
                pspanBeg->m_str = pspanBeg->m_str.left(iSelBeg - pspanBeg->m_iPosBeg);
 
-               pspanBeg->m_iPosEnd = (int) iSelBeg;
+               pspanBeg->m_iPosEnd = (int)iSelBeg;
 
                iSpanBeg++;
 
@@ -653,13 +653,13 @@ namespace user
 
                pspanEnd->m_str = pspanEnd->m_str.substr(iSelEnd - iEndBeg);
 
-               pspanEnd->m_iPosBeg = (int) iSelEnd;
+               pspanEnd->m_iPosBeg = (int)iSelEnd;
 
                iSpanEnd--;
 
             }
 
-            int iCount = (int) (iSpanEnd - iSpanBeg + 1);
+            int iCount = (int)(iSpanEnd - iSpanBeg + 1);
 
             if (iCount > 0)
             {
@@ -687,12 +687,18 @@ namespace user
       }
 
 
-      void data::_001InsertText(const ::string & psz, format * pformatParam)
+      void data::_001InsertText(const ::string & strNewText, format * pformatParam)
       {
+
+         ::string strProcess(strNewText);
+
+         strProcess.find_replace("\r\n", "\n");
+
+         strProcess.find_replace("\r", "\n");
 
          string_array straLines;
 
-         straLines.add_lines(psz);
+         straLines.add_lines(strProcess);
 
          synchronous_lock synchronouslock(this->synchronization());
 
@@ -756,7 +762,7 @@ namespace user
 
                pspan = create_span();
 
-               if(iLine <= 0 || pformatParam->m_ealign != e_align_none)
+               if (iLine <= 0 || pformatParam->m_ealign != e_align_none)
                {
 
                   pspan->m_ealignNewLine = pformatParam->m_ealign;
@@ -801,8 +807,8 @@ namespace user
             {
 
                information() << "iSelBeg : " << iSelBeg;
-               information() << "pspan : " << (::iptr) pspan.m_p;
-               information() << "pspan->m_iPosBeg : " << (iptr) pspan->m_iPosBeg;
+               information() << "pspan : " << (::iptr)pspan.m_p;
+               information() << "pspan->m_iPosBeg : " << (iptr)pspan->m_iPosBeg;
 
                ASSERT(iSelBeg >= pspan->m_iPosBeg);
 
@@ -830,6 +836,8 @@ namespace user
                      m_spana.insert_at(iSpan, pspanLast);
 
                   }
+
+                  pspan->m_bEndOfLine = true;
 
                   pspan->m_str = pspan->m_str.left(iMid) + strLine;
 
@@ -904,6 +912,10 @@ namespace user
 
                      auto pspan2 = pspanBeg->fork(pformat, eattribute);
 
+                     pspan2->m_bEndOfLine = pspanBeg->m_bEndOfLine;
+
+                     pspanBeg->m_bEndOfLine = false;
+
                      pspan2->m_str = str.substr(iSelBeg - pspanBeg->m_iPosBeg, iSelEnd - iSelBeg + 1);
 
                      m_spana.insert_at(iBeg + 1, pspan2);
@@ -912,6 +924,10 @@ namespace user
                      {
 
                         auto pspan3 = pspanBeg->fork();
+
+                        pspan3->m_bEndOfLine = pspan2->m_bEndOfLine;
+
+                        pspan2->m_bEndOfLine = false;
 
                         pspan3->m_str = str.substr(iSelEnd - pspanBeg->m_iPosBeg + 1);
 
@@ -962,7 +978,13 @@ namespace user
                      pspanBeg->m_str = str.left(iSelBeg - pspanBeg->m_iPosBeg);
 
                      auto pspan2 = pspanBeg->fork(pformat, eattribute);
+
+                     pspan2->m_bEndOfLine = pspanBeg->m_bEndOfLine;
+
+                     pspanBeg->m_bEndOfLine = false;
+
                      pspan2->m_str = str.substr(iSelBeg - pspanBeg->m_iPosBeg);
+
                      m_spana.insert_at(iBeg + 1, pspan2);
 
                   }
@@ -973,14 +995,18 @@ namespace user
 
                   }
 
-
                   if (iSelEnd < iEndEnd)
                   {
 
                      str = pspanEnd->m_str;
 
                      auto pspan3 = pspanEnd->fork(pformat, eattribute);
+
                      pspan3->m_str = str.left(iSelEnd - iEndBeg + 1);
+
+                     pspan3->m_ealignNewLine = pspanEnd->m_ealignNewLine;
+
+                     pspanEnd->m_ealignNewLine = e_align_none;
 
                      m_spana.insert_at(iEnd, pspan3);
 
@@ -994,13 +1020,19 @@ namespace user
 
                   }
 
-                  for (index i = iBeg + 1; i < iEnd; i++)
+                  for (index i = iBeg + 2; i < iEnd - 1; i++)
                   {
 
                      if (m_spana[i].is_set())
                      {
 
-                        m_spana[i]->m_pformat->apply(pformat, eattribute);
+                        auto pformatNew = add_format();
+
+                        *pformatNew = *m_spana[i]->m_pformat;
+
+                        pformatNew->apply(pformat, eattribute);
+
+                        m_spana[i]->m_pformat = pformatNew;
 
                      }
 
@@ -1066,14 +1098,14 @@ namespace user
 
          long m = 1;
 
-         while(l < u)
+         while (l < u)
          {
 
-            m = (long) ((l + u) / 2);
+            m = (long)((l + u) / 2);
 
             dPosition = pdaPosition[m - 1] - dPositionLeft;
 
-            if(dPosition > cx)
+            if (dPosition > cx)
             {
 
                u = m - 1;
@@ -1132,7 +1164,7 @@ namespace user
 
          dPosition = pdaPosition[m - 1];
 
-         return (int) m;
+         return (int)m;
 
       }
 
@@ -1194,13 +1226,13 @@ namespace user
 
          }
 
-//         if (m_spana.first()->m_ealignNewLine == e_align_none)
-//         {
-//
-//            m_spana.first()->m_ealignNewLine = e_align_left;
-//
-//         }
-//
+         //         if (m_spana.first()->m_ealignNewLine == e_align_none)
+         //         {
+         //
+         //            m_spana.first()->m_ealignNewLine = e_align_left;
+         //
+         //         }
+         //
          update_span_cache(m_spana);
 
          //bool bLineWrap = false;
@@ -1209,7 +1241,7 @@ namespace user
 
          rectangle_f64 rectangleX(rectangle);
 
-         int x = (int) rectangle.left();
+         int x = (int)rectangle.left();
 
          //int xLast = x;
 
@@ -1258,7 +1290,7 @@ namespace user
 
          //strsize iSpanCharEnd = 0;
 
-         index iSpan = 0;
+         //index iSpan = 0;
 
          ::count cWords = 0;
 
@@ -1277,48 +1309,31 @@ namespace user
 
 //         int iHeight;
 
-         while (iSpan < m_spana.get_count())
-         {
+         //bool bLineBreak = false;
 
-            ::pointer < span > pspan = m_spana[iSpan];
-
-            ealign = box_align(m_spana, iSpan);
-
-            pspan->m_str.find_replace("\n", "");
-
-            pspan->m_str.find_replace("\r", "");
-
-            auto pformat = pspan->format();
-
-            pgraphics->set(pformat->get_font(pgraphics));
-
+         auto defer_add_line = [&]()
             {
 
-               auto iLenSpan = pspan->m_str.length();
-
-               auto iLenMeasure = pgraphics->get_character_extent(pspan->m_daPositionLeft, pspan->m_daPositionRight, pspan->m_str);
-
-               if(iLenSpan != iLenMeasure)
+               if (pline)
                {
 
-                  ASSERT(false);
+                  ASSERT(pline->has_element());
 
-                  information("unexpected: iLenSpan != iLenMeasure");
+                  plinea->add(pline);
+
+                  pline = nullptr;
 
                }
 
-            }
+            };
 
-            pspan->m_sizeSpan = pgraphics->get_text_extent(pspan->m_str);
 
-            strsize iSpanChar = 0;
-
-            double dPositionLeft = 0.;
-
-         restart_span:
-
-            if (__defer_construct_new(pline))
+         auto new_line = [&]()
             {
+
+               defer_add_line();
+
+               __construct_new(pline);
 
                //pline = __new(line);
 
@@ -1356,218 +1371,274 @@ namespace user
 
                //bFirstParagraph = false;
 
-            }
+            };
 
-            strSlice.empty();
 
-            // Format Word
+         for (::index iSpan = 0; iSpan < m_spana.get_count(); iSpan++)
+         {
 
-            string strTopic = pspan->m_str.c_str() + iSpanChar;
+            ::pointer < span > pspan = m_spana[iSpan];
 
-            if (strTopic.is_empty())
+            ealign = box_align(m_spana, iSpan);
+
+            pspan->m_str.find_replace("\n", "");
+
+            pspan->m_str.find_replace("\r", "");
+
+            auto pformat = pspan->format();
+
+            pgraphics->set(pformat->get_font(pgraphics));
+
             {
 
-               if (pline->is_empty())
+               auto iLenSpan = pspan->m_str.length();
+
+               auto iLenMeasure = pgraphics->get_character_extent(pspan->m_daPositionLeft, pspan->m_daPositionRight, pspan->m_str);
+
+               if (iLenSpan != iLenMeasure)
                {
 
-                  auto pbox = __new(box(pspan));
+                  ASSERT(false);
 
-                  pbox->m_iPosBeg = pspan->m_iPosBeg + iSpanChar;
-
-                  iSpanChar += strSlice.get_upper_bound();
-
-                  pbox->m_iPosEnd = pspan->m_iPosBeg + iSpanChar;
-
-                  // keeping dimensions
-                  //pbox->m_size.cy() = pspan->m_size.cy();
-
-                  //if (pbox->m_size.cy() <= 0)
-                  {
-
-                     pbox->m_sizeBox.cy() = pformat->get_font(pgraphics)->get_height(pgraphics);
-
-                  }
-
-                  pbox->m_sizeBox.cx() = 0;
-
-                  // just horizonal layout
-                  pbox->m_rectangleBox.set_dimension(x, 0, pbox->m_sizeBox.cx(), 0);
-
-                  pbox->m_rectangleHitTest = pbox->m_rectangleBox;
-
-                  pline->add(pbox);
+                  information("unexpected: iLenSpan != iLenMeasure");
 
                }
 
-               goto new_span;
-
             }
 
-            straWords.erase_all();
+            pspan->m_sizeSpan = pgraphics->get_text_extent(pspan->m_str);
 
-            words_trailing_spaces(straWords, strTopic);
+            double dPositionLeft = 0.;
 
-            if (straWords.get_count() <= 0)
+            strsize iSpanChar = 0;
+
+
+            do
             {
 
-               goto new_span;
-
-            }
-
-            strSlice.empty();
-
-            cWords = (int) longest_pline(strSlice, dPosition, straWords, &pspan->m_daPositionRight[iSpanChar], dPositionLeft, (int) rectangleX.right() - x);
-
-            if (ansi_char_isspace(straWords.last().last_char())
-               || (iSpan + 1 < m_spana.get_count()
-                  && (m_spana[iSpan]->is_end_of_line()
-                     || (m_spana[iSpan + 1]->m_str.has_char()
-                        && ansi_char_isspace(m_spana[iSpan + 1]->m_str[0]))))
-               || cWords < straWords.get_count())
-            {
-
-               if (cWords > 0)
+               if (!pline)
                {
 
-                  auto pbox = __new(box(pspan));
+                  new_line();
 
-                  pbox->m_iPosBeg = pspan->m_iPosBeg + iSpanChar;
+               }
 
-                  iSpanChar += strSlice.get_upper_bound();
+               strSlice.empty();
 
-                  pbox->m_iPosEnd = pspan->m_iPosBeg + iSpanChar;
+               // Format Word
 
-                  // keeping dimensions
-                  pbox->m_sizeBox.cy() = pspan->m_sizeSpan.cy();
+               string strTopic = pspan->m_str.c_str() + iSpanChar;
 
-                  pbox->m_sizeBox.cx() = dPosition - dPositionLeft;
+               if (strTopic.is_empty())
+               {
 
-                  // just horizonal layout
-                  pbox->m_rectangleBox.set_dimension(x, 0, pbox->m_sizeBox.cx(), 0);
-
-                  pbox->m_rectangleHitTest = pbox->m_rectangleBox;
-
-                  pline->add(pbox);
-
-                  x += (int) pbox->m_sizeBox.cx();
-
-                  if (cWords >= straWords.get_count())
+                  if (pline->is_empty())
                   {
 
-                     goto new_span;
+                     auto pbox = __new(box(pspan));
+
+                     pbox->m_iPosBeg = pspan->m_iPosBeg + iSpanChar;
+
+                     iSpanChar += strSlice.length();
+
+                     pbox->m_iPosEnd = pspan->m_iPosBeg + iSpanChar;
+
+                     // keeping dimensions
+                     //pbox->m_size.cy() = pspan->m_size.cy();
+
+                     //if (pbox->m_size.cy() <= 0)
+                     {
+
+                        pbox->m_sizeBox.cy() = pformat->get_font(pgraphics)->get_height(pgraphics);
+
+                     }
+
+                     pbox->m_sizeBox.cx() = 0;
+
+                     // just horizonal layout
+                     pbox->m_rectangleBox.set_dimension(x, 0, pbox->m_sizeBox.cx(), 0);
+
+                     pbox->m_rectangleHitTest = pbox->m_rectangleBox;
+
+                     pline->add(pbox);
+
+                  }
+
+                  break;
+
+               }
+
+               straWords.erase_all();
+
+               words_trailing_spaces(straWords, strTopic);
+
+               if (straWords.get_count() <= 0)
+               {
+
+                  break;
+
+               }
+
+               strSlice.empty();
+
+               cWords = (int)longest_pline(strSlice, dPosition, straWords, &pspan->m_daPositionRight[iSpanChar], dPositionLeft, (int)rectangleX.right() - x);
+
+               if (ansi_char_isspace(straWords.last().last_char())
+                  || (iSpan + 1 < m_spana.get_count()
+                     && (m_spana[iSpan]->is_end_of_line()
+                        || (m_spana[iSpan + 1]->m_str.has_char()
+                           && ansi_char_isspace(m_spana[iSpan + 1]->m_str[0]))))
+                  || cWords < straWords.get_count())
+               {
+
+                  if (cWords > 0)
+                  {
+
+                     auto pbox = __new(box(pspan));
+
+                     pbox->m_iPosBeg = pspan->m_iPosBeg + iSpanChar;
+
+                     iSpanChar += strSlice.length();
+
+                     pbox->m_iPosEnd = pspan->m_iPosBeg + iSpanChar;
+
+                     // keeping dimensions
+                     pbox->m_sizeBox.cy() = pspan->m_sizeSpan.cy();
+
+                     pbox->m_sizeBox.cx() = dPosition - dPositionLeft;
+
+                     // just horizonal layout
+                     pbox->m_rectangleBox.set_dimension(x, 0, pbox->m_sizeBox.cx(), 0);
+
+                     pbox->m_rectangleHitTest = pbox->m_rectangleBox;
+
+                     pline->add(pbox);
+
+                     x += (int)pbox->m_sizeBox.cx();
+
+                     if (cWords >= straWords.get_count())
+                     {
+
+                        break;
+
+                     }
+                     else
+                     {
+
+                        //iSpanChar++;
+
+                        dPositionLeft = dPosition;
+
+                        new_line();
+
+                     }
 
                   }
                   else
                   {
 
-                     iSpanChar++;
+                     string strWord = straWords[0];
+
+                     strSlice.empty();
+
+                     longest_word(strSlice, dPosition, strWord, &pspan->m_daPositionRight[iSpanChar], dPositionLeft, (int)rectangleX.right() - x);
+
+                     auto pbox = __new(box(pspan));
+
+                     pbox->m_iPosBeg = pspan->m_iPosBeg + iSpanChar;
+
+                     iSpanChar += strSlice.length();
+
+                     pbox->m_iPosEnd = pspan->m_iPosBeg + iSpanChar;
+
+                     // keeping dimensions
+                     pbox->m_sizeBox.cy() = pspan->m_sizeSpan.cy();
+
+                     pbox->m_sizeBox.cx() = dPosition - dPositionLeft;
+
+                     // just horizonal layout
+                     pbox->m_rectangleBox.set_dimension(x, 0, pbox->m_sizeBox.cx(), 0);
+
+                     pbox->m_rectangleHitTest = pbox->m_rectangleBox;
+
+                     pline->add(pbox);
+
+                     x += (int)pbox->m_sizeBox.cx();
+
+                     //iSpanChar++;
 
                      dPositionLeft = dPosition;
 
-                     goto restart_span;
+                     new_line();
 
                   }
 
                }
-
-               string strWord = straWords[0];
-
-               strSlice.empty();
-
-               longest_word(strSlice, dPosition, strWord, &pspan->m_daPositionRight[iSpanChar], dPositionLeft, (int) rectangleX.right() - x);
-
-               auto pbox = __new(box(pspan));
-
-               pbox->m_iPosBeg = pspan->m_iPosBeg + iSpanChar;
-
-               iSpanChar += strSlice.get_upper_bound();
-
-               pbox->m_iPosEnd = pspan->m_iPosBeg + iSpanChar;
-
-               // keeping dimensions
-               pbox->m_sizeBox.cy() = pspan->m_sizeSpan.cy();
-
-               pbox->m_sizeBox.cx() = dPosition - dPositionLeft;
-
-               // just horizonal layout
-               pbox->m_rectangleBox.set_dimension(x, 0, pbox->m_sizeBox.cx(), 0);
-
-               pbox->m_rectangleHitTest = pbox->m_rectangleBox;
-
-               pline->add(pbox);
-
-               x += (int) pbox->m_sizeBox.cx();
-
-               iSpanChar++;
-
-               dPositionLeft = dPosition;
-
-               goto restart_span;
-
-            }
-            else
-            {
-
-               auto pbox = __new(box(pspan));
-
-               pbox->m_iPosBeg = pspan->m_iPosBeg + iSpanChar;
-
-               iSpanChar += strTopic.get_upper_bound();
-
-               pbox->m_iPosEnd = pbox->m_iPosBeg + iSpanChar;
-
-               // keeping dimensions
-               pbox->m_sizeBox.cy() = pspan->m_sizeSpan.cy();
-
-               pbox->m_sizeBox.cx() = dPosition;
-
-               // just horizonal layout
-               pbox->m_rectangleBox.set_dimension(x, 0, pbox->m_sizeBox.cx(), 0);
-
-               pbox->m_rectangleHitTest = pbox->m_rectangleBox;
-
-               pline->add(pbox);
-
-               x += (int)  pbox->m_sizeBox.cx();
-
-               //spanaMultiWordFormat.add(pspan);
-
-            }
-
-         new_span:
-
-            //if (spanaMultiWordFormat.is_empty() &&
-
-            if(pspan->is_end_of_line() || iSpanChar > 0)
-            {
-
-               if (pline.is_set())
+               else
                {
 
-                  ASSERT(pline->has_element());
+                  auto pbox = __new(box(pspan));
 
-                  plinea->add(pline);
+                  pbox->m_iPosBeg = pspan->m_iPosBeg + iSpanChar;
 
-                  pline = nullptr;
+                  iSpanChar += strTopic.length();
+
+                  pbox->m_iPosEnd = pbox->m_iPosBeg + iSpanChar;
+
+                  // keeping dimensions
+                  pbox->m_sizeBox.cy() = pspan->m_sizeSpan.cy();
+
+                  pbox->m_sizeBox.cx() = dPosition;
+
+                  // just horizonal layout
+                  pbox->m_rectangleBox.set_dimension(x, 0, pbox->m_sizeBox.cx(), 0);
+
+                  pbox->m_rectangleHitTest = pbox->m_rectangleBox;
+
+                  pline->add(pbox);
+
+                  x += (int)pbox->m_sizeBox.cx();
+
+                  //spanaMultiWordFormat.add(pspan);
+
+                  break;
+
 
                }
 
+
+               //new_span:
+
+               //   //if (spanaMultiWordFormat.is_empty() &&
+
+               //   if(pspan->is_end_of_line() || bLineBreak)
+               //   {
+
+
+               //   }
+
+
+            } while (iSpanChar < pspan->m_str.length());
+            //if (pline.is_set())
+            //{
+
+            //   ASSERT(pline->has_element());
+
+            //   plinea->add(pline);
+
+            if (pspan->is_end_of_line())
+            {
+
+               new_line();
+
             }
 
-            iSpan++;
-
          }
 
-         if (pline.is_set())
-         {
+         defer_add_line();
 
-            ASSERT(pline->has_element());
 
-            plinea->add(pline);
-
-         }
-
-         for (auto& pline : *plinea)
+         for (auto & pline : *plinea)
          {
 
             align(pline, rectangleX);
@@ -1646,6 +1717,10 @@ namespace user
 
          }
 
+         bHasFocus = true;
+
+         bCaretOn = true;
+
          if (m_pedit->m_bPendingSelectionChange)
          {
 
@@ -1665,168 +1740,172 @@ namespace user
          }
 
 
-            //if (plinea->has_elements() && plinea->last().has_elements())
-            //{
+         //if (plinea->has_elements() && plinea->last().has_elements())
+         //{
 
-            //   plinea->last().last().m_iSelEnd--;
+         //   plinea->last().last().m_iSelEnd--;
 
-            //   plinea->last().last().m_str.Truncate(plinea->last().last().m_str.length()-1);
+         //   plinea->last().last().m_str.Truncate(plinea->last().last().m_str.length()-1);
 
-            //}
+         //}
 
-            int y = (int)  rectangle.top();
+         int y = (int)rectangle.top();
 
 
-            int nexty;
+         int nexty;
 
-            // vertical span
+         // vertical span
 
-            for (auto& pline : *plinea)
+         for (auto & pline : *plinea)
+         {
+
+            int iMaxCy = 0;
+
+            for (auto & pbox : *pline)
             {
 
-               int iMaxCy = 0;
+               iMaxCy = maximum(iMaxCy, (int)pbox->m_sizeBox.cy());
 
-               for (auto& pbox : *pline)
-               {
+               pbox->m_rectangleBox.top() = y;
 
-                  iMaxCy = maximum(iMaxCy, (int) pbox->m_sizeBox.cy());
-
-                  pbox->m_rectangleBox.top() = y;
-
-                  pbox->m_rectangleHitTest.top() = y;
-
-               }
-
-               nexty = y + iMaxCy;
-
-               for (auto& pbox : *pline)
-               {
-
-                  pbox->m_rectangleBox.bottom() = nexty;
-
-                  pbox->m_rectangleHitTest.bottom() = nexty;
-
-                  //pbox->m_rectangleBox.right() += 2;
-
-               }
-
-               y = nexty;
+               pbox->m_rectangleHitTest.top() = y;
 
             }
 
-            // Draw Select Rectangle
+            nexty = y + iMaxCy;
 
-            ::color::color crBkSel;
-
-            if (bHasFocus && m_pedit->is_text_editable())
+            for (auto & pbox : *pline)
             {
 
-               crBkSel = argb(192, 175, 200, 240);
+               pbox->m_rectangleBox.bottom() = nexty;
 
-            }
-            else
-            {
+               pbox->m_rectangleHitTest.bottom() = nexty;
 
-               crBkSel = argb(127, 192, 210, 225);
+               //pbox->m_rectangleBox.right() += 2;
 
             }
 
+            y = nexty;
+
+         }
+
+         // Draw Select Rectangle
+
+         ::color::color crBkSel;
+
+         if (bHasFocus && m_pedit->is_text_editable())
+         {
+
+            crBkSel = argb(192, 175, 200, 240);
+
+         }
+         else
+         {
+
+            crBkSel = argb(127, 192, 210, 225);
+
+         }
+
+         {
+
+            //strsize iSelBeg = get_sel_beg();
+
+            //strsize iSelEnd = get_sel_end();
+
+            for (index iLine = 0; iLine < plinea->get_count(); iLine++)
             {
 
-               //strsize iSelBeg = get_sel_beg();
+               auto & pline = plinea->element_at(iLine);
 
-               //strsize iSelEnd = get_sel_end();
-
-               for(index iLine = 0; iLine < plinea->get_count(); iLine++)
+               if (pline->has_element())
                {
 
-                  auto& pline = plinea->element_at(iLine);
+                  auto pboxBeg = pline->first_pointer();
 
-                  if (pline->has_element())
+                  auto pboxEnd = pline->last_pointer();
+
+                  strsize iBoxPosBeg = pboxBeg->m_iPosBeg;
+
+                  strsize iBoxPosEnd = pboxEnd->m_iPosEnd;
+
+                  if (iBoxPosBeg <= get_sel_end() && get_sel_beg() <= iBoxPosEnd)
                   {
 
-                     auto pboxBeg = pline->first_pointer();
+                     iBoxPosBeg = maximum(iBoxPosBeg, get_sel_beg());
 
-                     auto pboxEnd = pline->last_pointer();
+                     iBoxPosEnd = minimum(iBoxPosEnd, get_sel_end());
 
-                     strsize iBoxPosBeg = pboxBeg->m_iPosBeg;
-
-                     strsize iBoxPosEnd = pboxEnd->m_iPosEnd + 1;
-
-                     if (iBoxPosBeg <= get_sel_end() && get_sel_beg() <= iBoxPosEnd)
+                     index iBeg = pline->predicate_find_first([&](auto & pbox)
                      {
-
-                        iBoxPosBeg = maximum(iBoxPosBeg, get_sel_beg());
-
-                        iBoxPosEnd = minimum(iBoxPosEnd, get_sel_end());
-
-                        index iBeg = pline->predicate_find_first([&](auto & pbox)
-                        {
 
                            return pbox->m_iPosBeg <= iBoxPosBeg && iBoxPosBeg <= pbox->m_iPosEnd;
 
-                        });
+                     });
 
-                        if (iBeg >= 0)
+                     if (iBeg >= 0)
+                     {
+
+                        pboxBeg = pline->element_at(iBeg);
+
+                        index iEnd = pline->predicate_find_first([&](auto & pbox)
                         {
-
-                           pboxBeg = pline->element_at(iBeg);
-
-                           index iEnd = pline->predicate_find_first([&](auto & pbox)
-                           {
 
                               return pbox->m_iPosBeg <= iBoxPosEnd && iBoxPosEnd <= pbox->m_iPosEnd + 1;
 
-                           });
+                        });
 
-                           if (iEnd >= 0)
+                        if (iEnd >= 0)
+                        {
+
+                           pboxEnd = pline->element_at(iEnd);
+
+                           double l;
+
+                           if (iBoxPosBeg == pboxBeg->m_iPosBeg)
                            {
 
-                              pboxEnd = pline->element_at(iEnd);
+                              l = pboxBeg->m_rectangleBox.left();
 
-                              double l;
+                           }
+                           else if (iBoxPosBeg >= pboxBeg->m_iPosEnd)
+                           {
 
-                              if (iBoxPosBeg == pboxBeg->m_iPosBeg)
-                              {
+                              l = pboxBeg->m_rectangleBox.right();
 
-                                 l = pboxBeg->m_rectangleBox.left();
+                           }
+                           else
+                           {
 
-                              }
-                              else
-                              {
+                              l = pboxBeg->get_pos_left(iBoxPosBeg);
 
-                                 l = pboxBeg->get_pos_left(iBoxPosBeg);
+                           }
 
-                              }
+                           double r;
 
-                              double r;
+                           if (iBoxPosEnd == pboxEnd->m_iPosBeg)
+                           {
 
-                              if (iBoxPosEnd == pboxEnd->m_iPosBeg)
-                              {
+                              r = pboxEnd->m_rectangleBox.left();
 
-                                 r = pboxEnd->m_rectangleBox.left();
+                           }
+                           else if (iBoxPosEnd >= pboxEnd->m_iPosEnd)
+                           {
 
-                              }
-                              else if (iBoxPosEnd >= pboxEnd->m_iPosEnd + 1)
-                              {
+                              r = pboxEnd->m_rectangleBox.right();
 
-                                 r = pboxEnd->m_rectangleBox.right();
+                           }
+                           else
+                           {
 
-                              }
-                              else
-                              {
+                              r = pboxEnd->get_pos_left(iBoxPosEnd);
+                           }
 
-                                 r = pboxEnd->get_pos_left(iBoxPosEnd);
-                              }
-
-                              pgraphics->fill_rectangle(
-                                 ::rectangle_f64(l,
+                           pgraphics->fill_rectangle(
+                              ::rectangle_f64(l,
                                  pboxBeg->m_rectangleBox.top(),
                                  r,
                                  pboxEnd->m_rectangleBox.bottom()),
-                                 crBkSel);
-
-                           }
+                              crBkSel);
 
                         }
 
@@ -1838,136 +1917,138 @@ namespace user
 
             }
 
-            ::draw2d::fastblur blurDropShadow;
+         }
 
-            ::image_pointer imageDropShadow;
+         ::draw2d::fastblur blurDropShadow;
 
-            ::rectangle_i32 rDropShadow;
+         ::image_pointer imageDropShadow;
 
-            if (m_pedit->m_ppictureimpl != nullptr)
+         ::rectangle_i32 rDropShadow;
+
+         if (m_pedit->m_ppictureimpl != nullptr)
+         {
+
+            rDropShadow = m_pedit->m_ppictureimpl->m_rectangleDrawing;
+
+            rDropShadow.offset(-rDropShadow.center());
+
+         }
+
+         if (m_pedit->m_ppictureimpl != nullptr && m_pedit->m_ppictureimpl->m_bGlowDropShadow)
+         {
+
+            ::image_pointer pimage;
+
+            pimage.create(this);
+
+            pimage->create(m_pedit->m_ppictureimpl->m_rectangleDrawing.size());
+
+            ::size_i32 sz = m_pedit->m_ppictureimpl->m_rectangleDrawing.size();
+
+            pimage->g()->set_origin(sz.cx() / 2, sz.cy() / 2);
+
+            ::draw2d::graphics_pointer pgraphicsImage = pimage->g();
+
+            draw_text(pgraphicsImage, rectangle);
+
+            pimage->g()->set_origin(0, 0);
+
+            m_pedit->defer_draw_drop_shadow_phase1(rDropShadow, blurDropShadow, imageDropShadow, pimage);
+
+            m_pedit->defer_draw_drop_shadow_phase2(pgraphics, rDropShadow, blurDropShadow, imageDropShadow);
+
+         }
+
+         draw_text(pgraphics, rectangle);
+
+         // Draw Caret
+
+         if (bCaretOn && m_pedit->is_text_editable())
+         {
+
+            ::pointer<box>pbox = find_box(*plinea, m_iSelEnd);
+
+            if (pbox)
             {
 
-               rDropShadow = m_pedit->m_ppictureimpl->m_rectangleDrawing;
+               double r;
 
-               rDropShadow.offset(-rDropShadow.center());
+               r = pbox->get_pos(m_iSelEnd);
 
-            }
+               ////r += rectangle.left();
 
-            if (m_pedit->m_ppictureimpl != nullptr && m_pedit->m_ppictureimpl->m_bGlowDropShadow)
-            {
+               //if (r > rectangle.right())
+               //{
 
-               ::image_pointer pimage;
+               //   r -= 1.0;
 
-               pimage.create(this);
+               //}
 
-               pimage->create(m_pedit->m_ppictureimpl->m_rectangleDrawing.size());
-
-               ::size_i32 sz = m_pedit->m_ppictureimpl->m_rectangleDrawing.size();
-
-               pimage->g()->set_origin(sz.cx() / 2, sz.cy() / 2);
-
-               ::draw2d::graphics_pointer pgraphicsImage = pimage->g();
-
-               draw_text(pgraphicsImage, rectangle);
-
-               pimage->g()->set_origin(0, 0);
-
-               m_pedit->defer_draw_drop_shadow_phase1(rDropShadow, blurDropShadow, imageDropShadow, pimage);
-
-               m_pedit->defer_draw_drop_shadow_phase2(pgraphics, rDropShadow, blurDropShadow, imageDropShadow);
-
-            }
-
-            draw_text(pgraphics, rectangle);
-
-            // Draw Caret
-
-            if (bCaretOn && m_pedit->is_text_editable())
-            {
-
-               ::pointer<box>pbox = find_box(*plinea, m_iSelEnd);
-
-               if (pbox)
+               if (r < rectangle.left() + 2)
                {
 
-                  double r;
-
-                  r = pbox->get_pos(m_iSelEnd);
-
-                  ////r += rectangle.left();
-
-                  //if (r > rectangle.right())
-                  //{
-
-                  //   r -= 1.0;
-
-                  //}
-
-                  if (r < rectangle.left() + 2)
-                  {
-
-                     r = rectangle.left() + 2;
-
-                  }
-
-                  if (r > rectangle.right() - 2)
-                  {
-
-                     r = rectangle.right() - 2;
-
-                  }
-
-                  auto dDescent = pbox->m_pspan->m_pformat->m_pfont->get_descent(pgraphics);
-
-                  pgraphics->fill_rectangle(::rectangle_f64(r,
-                     pbox->m_rectangleBox.top() + 1,
-                     r + 0.5,
-                     pbox->m_rectangleBox.bottom() - dDescent),
-                     argb(255, 0, 0, 0));
+                  r = rectangle.left() + 2;
 
                }
 
-            }
-
-            ::geometry2d::matrix m;
-
-            m.scaling(pgraphics->get_scaling());
-
-            //m.invert();
-
-            for (auto& pline : *plinea)
-            {
-
-               for (auto& pbox : *pline)
+               if (r > rectangle.right() - 2)
                {
 
-                  pbox->m_rectangleDevice = pbox->m_rectangleBox;
-
-                  m.transform(pbox->m_rectangleHitTest.top_left());
-                  m.transform(pbox->m_rectangleHitTest.bottom_right());
-
-                  m.transform(pbox->m_rectangleDevice.top_left());
-                  m.transform(pbox->m_rectangleDevice.bottom_right());
+                  r = rectangle.right() - 2;
 
                }
 
+               auto dDescent = pbox->m_pspan->m_pformat->m_pfont->get_descent(pgraphics);
+
+               pgraphics->fill_rectangle(::rectangle_f64(r,
+                  pbox->m_rectangleBox.top() + 1,
+                  r + 0.5,
+                  pbox->m_rectangleBox.bottom() - dDescent),
+                  argb(255, 0, 0, 0));
+
             }
 
+         }
 
-         for (auto& pspan : m_spana)
+         ::geometry2d::matrix m;
+
+         m.scaling(pgraphics->get_scaling());
+
+         //m.invert();
+
+         for (auto & pline : *plinea)
+         {
+
+            for (auto & pbox : *pline)
+            {
+
+               pbox->m_rectangleDevice = pbox->m_rectangleBox;
+
+               m.transform(pbox->m_rectangleHitTest.top_left());
+               m.transform(pbox->m_rectangleHitTest.bottom_right());
+
+               m.transform(pbox->m_rectangleDevice.top_left());
+               m.transform(pbox->m_rectangleDevice.bottom_right());
+
+            }
+
+         }
+
+
+         for (auto & pspan : m_spana)
          {
 
             pspan->m_daPositionDeviceLeft.erase_all();
             pspan->m_daPositionDeviceRight.erase_all();
 
-            for (auto& x : pspan->m_daPositionLeft)
+            for (auto & x : pspan->m_daPositionLeft)
             {
 
                pspan->m_daPositionDeviceLeft.add(x * m.a1);
 
             }
 
-            for (auto& x : pspan->m_daPositionRight)
+            for (auto & x : pspan->m_daPositionRight)
             {
 
                pspan->m_daPositionDeviceRight.add(x * m.a1);
@@ -2164,13 +2245,13 @@ namespace user
       }
 
 
-      void data::__initialize(::pointer<::user::rich_text::format>& pformat)
+      void data::__initialize(::pointer<::user::rich_text::format> & pformat)
       {
 
          __defer_construct(pformat);
 
          //auto estatus = 
-         
+
          pformat->initialize_user_rich_text_format(this);
 
          //if (!estatus)
@@ -2271,12 +2352,12 @@ namespace user
                if (m_pedit->m_ppictureimpl != nullptr && m_pedit->m_ppictureimpl->m_bOutline)
                {
 
-                  auto ppath = __create < ::draw2d::path > ();
+                  auto ppath = __create < ::draw2d::path >();
 
                   //ppath->add_draw_text(pbox->get_text(), rectangle, e_align_bottom_left | DT_SINGLELINE, pformat->get_font(pgraphics), pformat->m_colorForeground);
                   ppath->add_draw_text(pbox->get_text(), rectangle, e_align_bottom_left, e_draw_text_single_line, pformat->get_font(pgraphics));
 
-                  auto ppen = __create < ::draw2d::pen > ();
+                  auto ppen = __create < ::draw2d::pen >();
 
                   auto pbrush = __create < ::draw2d::brush >();
 
@@ -2296,7 +2377,7 @@ namespace user
 
                   string strText = pbox->get_text();
 
-                  if(strText.has_char())
+                  if (strText.has_char())
                   {
 
                      pgraphics->set(pformat->get_font(pgraphics));

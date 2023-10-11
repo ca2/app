@@ -10946,7 +10946,7 @@ namespace user
          for (auto & pchild : puserinteractionpointeraChild->interactiona())
          {
 
-            if (pchild->layout().sketch().zorder().is_change_request())
+            if (pchild && pchild->layout().sketch().zorder().is_change_request())
             {
 
                ::string strType = ::type(pchild).name();

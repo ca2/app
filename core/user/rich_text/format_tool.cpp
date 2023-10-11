@@ -522,6 +522,15 @@ namespace user
                   else
                   {
 
+                     auto set_color_and_show = [this, pointShowPopup]()
+                     {
+
+                        m_pcolorselectorpopupForeground->set_sel_color(m_hlsForeground);
+
+                        m_pcolorselectorpopupForeground->show_popup(pointShowPopup);
+
+                     };
+
                      if (!m_pcolorselectorpopupForeground)
                      {
 
@@ -547,13 +556,20 @@ namespace user
 
                            };
 
-                        m_pcolorselectorpopupForeground->create_host(::e_parallelization_synchronous);
+                        m_pcolorselectorpopupForeground->m_procedureOnAfterCreate = set_color_and_show;
+
+                        m_pcolorselectorpopupForeground->m_puserinteractionOwner = this;
+
+                        m_pcolorselectorpopupForeground->create_host(::e_parallelization_asynchronous);
+
+                     }
+                     else
+                     {
+
+                        m_pcolorselectorpopupForeground->user_post(set_color_and_show);
 
                      }
 
-                     m_pcolorselectorpopupForeground->set_sel_color(m_hlsForeground);
-
-                     m_pcolorselectorpopupForeground->show_popup(pointShowPopup);
 
                   }
 

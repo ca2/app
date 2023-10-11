@@ -5,6 +5,7 @@
 #include "node.h"
 #include "os_context.h"
 #include "acme/constant/id.h"
+#include "acme/constant/user_key.h"
 #include "acme/constant/message.h"
 ////#include "acme/exception/exception.h"
 #include "acme/primitive/primitive/url.h"

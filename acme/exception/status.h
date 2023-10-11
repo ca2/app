@@ -35,44 +35,23 @@ public:
    }
 
 
-   status(const ::e_status & estatus)
+   status(const ::e_status & estatus) :
+      m_estatus(estatus == error_not_initialized ? error_failed : estatus.m_eenum)
    {
-
-      if (estatus == error_not_initialized)
-      {
-
-         m_estatus = ::error_failed;
-
-      }
-      else
-      {
-
-         m_estatus = estatus;
-
-      }
 
    }
 
 
-   status(::enum_status estatus)
+   status(::enum_status estatus) :
+      m_estatus(estatus == error_not_initialized ? error_failed : estatus)
    {
-
-      if (estatus == error_not_initialized)
-      {
-
-         estatus = ::error_failed;
-
-      }
-
-      m_estatus = estatus;
 
    }
 
 
-   status(nullptr_t)
+   status(nullptr_t) :
+      m_estatus(error_null_result)
    {
-
-      m_estatus = error_null_result;
 
    }
 
@@ -94,6 +73,7 @@ public:
       return *this;
 
    }
+
 
    status & operator = (const e_status & estatus)
    {

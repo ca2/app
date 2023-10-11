@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "data.h"
 #include "core_data.h"
+#include "acme/constant/user_key.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/primitive/data/listener.h"
 #include "aura/message/user.h"

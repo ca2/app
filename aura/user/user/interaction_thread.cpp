@@ -272,7 +272,7 @@ namespace user
 
       //estatus =
       
-      m_pimpl->operating_system_create_host();
+      m_pimpl->operating_system_create_host(e_parallelization_asynchronous);
 
       ///*if(!estatus)
       //{*/
@@ -320,7 +320,7 @@ namespace user
 
       //m_himc = ImmGetContext(m_pimpl->get_handle());
 
-      m_oswindow = m_pimpl->m_pwindow->oswindow();
+//      m_oswindow = m_pimpl->m_pwindow->oswindow();
 
 //      if(m_pimpl->m_puserinteraction->const_layout().sketch().is_screen_visible())
 //      {

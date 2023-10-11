@@ -4,6 +4,7 @@
 #include "vertical_scroll_base.h"
 #include "scroll_bar.h"
 #include "acme/constant/message.h"
+#include "acme/constant/user_key.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/message/user.h"

@@ -596,7 +596,14 @@ namespace user
    void color_selector_control::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::user::interaction::on_layout(pgraphics);
+      if(this->rectangle().area() < (48 * 48))
+      {
+
+         return;
+
+      }
+
+         ::user::interaction::on_layout(pgraphics);
 
       layout_color_selector(this->rectangle());
 

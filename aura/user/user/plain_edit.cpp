@@ -16,6 +16,7 @@
 #endif
 #endif
 #include "acme/constant/id.h"
+#include "acme/constant/user_key.h"
 #include "acme/constant/message.h"
 #include "acme/constant/timer.h"
 #include "acme/filesystem/file/memory_file.h"
@@ -5707,6 +5708,10 @@ namespace user
 
                         psetsel->m_iPreviousSelEnd = m_ptree->m_iSelEnd;
 
+                        information() << "SelBeg : " << psetsel->m_iPreviousSelBeg;
+
+                        information() << "SelEnd : " << psetsel->m_iPreviousSelEnd;
+
                         char buf[512];
 
                         memory_set(buf, 0, sizeof(buf));
@@ -5738,6 +5743,8 @@ namespace user
 
                            iMultiByteUtf8DeleteCount = &buf[iCur] - psz;
 
+                           information() << "iMultiByteUtf8DeleteCount : " << iMultiByteUtf8DeleteCount;
+
                         }
 
                         index i2 = m_ptree->m_iSelEnd;
@@ -5746,6 +5753,8 @@ namespace user
                         string strSel;
 
                         _001GetText(strSel, i1, i2);
+
+                        information() << "strSel : " << strSel;
 
                         bFullUpdate = strSel.find_index('\n') >= 0 || strSel.find_index('\r') >= 0;
 
@@ -7893,6 +7902,10 @@ namespace user
          ptexteditorinterface->show_software_keyboard();
 
       }
+
+      set_need_redraw();
+
+      post_redraw();
 
    }
 

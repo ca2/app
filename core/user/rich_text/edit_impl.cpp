@@ -7,7 +7,9 @@
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
 #include "acme/constant/timer.h"
+#include "acme/constant/user_key.h"
 #include "acme/handler/item.h"
+#include "acme/platform/node.h"
 #include "acme/platform/timer.h"
 #include "acme/primitive/geometry2d/_binary_stream.h"
 #include "acme/primitive/string/str.h"
@@ -256,6 +258,9 @@ namespace user
       void edit_impl::on_set_keyboard_focus()
       {
 
+         information() << "on_set_keyboard_focus";
+
+         information() << acmenode()->get_callstack();
 
          //UNREFERENCED_PARAMETER(pmessage);
 
@@ -1300,9 +1305,9 @@ namespace user
             if (is_text_editable() && is_window_visible() && has_keyboard_focus())
             {
 
-               set_need_redraw();
+               //xxx set_need_redraw();
 
-               post_redraw();
+               //xxx post_redraw();
 
             }
 
@@ -1906,12 +1911,12 @@ namespace user
                else if (pkey->m_ekey == ::user::e_key_return)
                {
 
-////                if(m_bMultiLine)
-//                  {
-//
-//                     insert_text("\n", true, e_source_user);
-//
-//                  }
+//                if(m_bMultiLine)
+                  {
+
+                     insert_text("\n", true, e_source_user);
+
+                  }
 
                }
                else if (is_window_enabled())

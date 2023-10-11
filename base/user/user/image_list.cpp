@@ -2,6 +2,7 @@
 #include "image_list.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
+#include "acme/constant/user_key.h"
 #include "acme/handler/item.h"
 #include "acme/primitive/collection/_array.h"
 #include "acme/user/user/content.h"

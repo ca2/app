@@ -440,7 +440,7 @@ namespace user
             else if (iBox >= pline->get_upper_bound() && x > pbox->m_rectangleHitTest.right())
             {
 
-               return pbox->m_iPosEnd + 1;
+               return pbox->m_iPosEnd;
 
             }
             else if (x <= pbox->m_rectangleHitTest.right())
@@ -537,7 +537,7 @@ namespace user
          if (iColumn < 0)
          {
 
-            int iChar = (int)(iColumn + plinea->element_at(iLine)->last()->m_iPosEnd + 2);
+            int iChar = (int)(iColumn + plinea->element_at(iLine)->last()->m_iPosEnd + 1);
 
             if (iChar < 0)
             {

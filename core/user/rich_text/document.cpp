@@ -3,6 +3,8 @@
 #include "edit_impl.h"
 #include "text_format.h"
 #include "acme/filesystem/file/file.h"
+#include "acme/filesystem/filesystem/file_context.h"
+#include "acme/platform/system.h"
 
 
 namespace user
@@ -54,12 +56,39 @@ namespace user
       }
 
 
-      bool document::on_open_document(::file::file * pfile)
+      bool document::on_open_document(const ::payload & payloadFile)
       {
 
-         auto str = pfile->full_string();
+         auto path = payloadFile.as_file_path();
 
-         parse_rtf_text(str);
+         auto extension = path.final_extension();
+
+         if (extension.case_insensitive_order("rtf") == 0)
+         {
+
+            auto preader = file()->get_reader(payloadFile);
+
+            //parse_rtf_text(str);
+
+            //if (parse_rtf_text(str))
+            //{
+
+            auto pedit = get_typed_impact<::user::rich_text::edit_impl>();
+
+            auto pdata = pedit->m_pdata;
+
+            auto pfactory = acmesystem()->factory("text_format", "rtf");
+
+            auto ptextformat = __create< ::user::rich_text::text_format >(pfactory);
+
+            ptextformat->text_format_load(pdata, preader);
+
+            id_update_all_impacts(ID_INCOMING_DOCUMENT);
+
+            //}
+
+         }
+
 
          return true;
 
@@ -73,7 +102,9 @@ namespace user
 
          auto pdata = pedit->m_pdata;
 
-         auto ptextformat = __id_create< ::user::rich_text::text_format >("text_format::rtf");
+         auto pfactory = acmesystem()->factory("text_format", "rtf");
+
+         auto ptextformat = __create< ::user::rich_text::text_format >(pfactory);
 
          ptextformat->text_format_save(pfile, pdata);
 
@@ -83,14 +114,14 @@ namespace user
 
 
 
-      bool document::parse_rtf_text(string str)
-      {
-
-//         papp->m_ppaneimpact->set_current_tab_by_id(::impact_rich_edit);
-
-         return true;
-
-      }
+//      bool document::parse_rtf_text(string str)
+//      {
+//
+////         papp->m_ppaneimpact->set_current_tab_by_id(::impact_rich_edit);
+//
+//         return true;
+//
+//      }
 
 #ifdef _DEBUG
 

@@ -2278,7 +2278,7 @@ namespace user
 
       }
 
-
+      ::string strType(::type(this).name());
       // reposition all the child windows (regardless of ID)
       //if (GetStyle() & FWS_SNAPTOBARS)
       if(m_bSnapToBars)

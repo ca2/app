@@ -849,7 +849,16 @@ namespace user
 
          auto psubitem = get_subitem(pdrawitem, iSubItem);
 
-         psubitem->m_iOrder = _001MapColumnToOrder(psubitem->m_pcolumn->m_iColumn);
+         auto pcolumn = psubitem->m_pcolumn;
+
+         if (::is_null(pcolumn))
+         {
+
+            continue;
+
+         }
+
+         psubitem->m_iOrder = _001MapColumnToOrder(pcolumn->m_iColumn);
 
          if (psubitem->m_iOrder < 0)
          {

@@ -1106,3 +1106,13 @@ enum enum_unit :
 };
 
 
+namespace user
+{
+
+
+   enum enum_key : ::i64;
+
+
+} // namespace user
+
+

@@ -10,6 +10,8 @@
 #include "user.h"
 #include "frame.h"
 #include "form.h"
+#include "acme/constant/user.h"
+#include "acme/constant/user_key.h"
 #include "aura/windowing/placement_log.h"
 #include "size_parent_layout.h"
 #include "acme/constant/id.h"
@@ -13442,6 +13444,19 @@ namespace user
       if (::is_null(pwindowThis))
       {
 
+         information() << "has_keyboard_focus No Window";
+
+         return false;
+
+      }
+
+      auto pprimitiveimpl = pwindowThis->m_puserinteractionimpl;
+
+      if (::is_null(pprimitiveimpl))
+      {
+
+         information() << "has_keyboard_focus No Primitive Impl";
+
          return false;
 
       }
@@ -13449,20 +13464,76 @@ namespace user
       if (!pwindowThis->has_keyboard_focus())
       {
 
+         if(pprimitiveimpl->m_puserinteraction->m_puserinteractionOwner)
+         {
+
+            auto pwindowOwner = pprimitiveimpl->m_puserinteraction->m_puserinteractionOwner->window();
+
+            if (::is_null(pwindowOwner))
+            {
+
+               information() << "has_keyboard_focus No Owner Window";
+
+               return false;
+
+            }
+
+            auto pprimitiveimplOwner = pwindowOwner->m_puserinteractionimpl;
+
+            if (::is_null(pprimitiveimplOwner))
+            {
+
+               information() << "has_keyboard_focus No Owner Primitive Impl";
+
+               return false;
+
+            }
+
+            if(pwindowOwner->has_keyboard_focus())
+            {
+
+               //::string strType;
+
+               //strType = ::type(pwindowOwner->m_puserinteractionimpl->m_puserinteraction.m_p);
+
+               //information() << "pwindowOwner->has_keyboard_focus() : " << strType;
+
+               //::string strTypeOldFocus;
+
+               //strTypeOldFocus = ::type(pwindowOwner->m_puserinteractionimpl->m_puserinteraction.m_p);
+
+               //information() << "old focus : " << strTypeOldFocus;
+
+               if(pprimitiveimplOwner->m_puserinteractionKeyboardFocus == this)
+               {
+
+                  return true;
+
+               }
+               else
+               {
+
+                  return false;
+
+               }
+
+            }
+
+         }
+
+
          return false;
 
       }
 
-      auto pprimitiveimplFocus = pwindowThis->m_puserinteractionimpl;
-
-      if (::is_null(pprimitiveimplFocus))
+      if (::is_null(pprimitiveimpl))
       {
 
          return false;
 
       }
 
-      if (pprimitiveimplFocus->m_puserinteractionKeyboardFocus != this)
+      if (pprimitiveimpl->m_puserinteractionKeyboardFocus != this)
       {
 
          return false;
@@ -13477,10 +13548,14 @@ namespace user
    void interaction::set_keyboard_focus()
    {
 
+      information() << "set_keyboard_focus";
+
       auto pwindowThis = window();
 
       if (::is_null(pwindowThis))
       {
+
+         information() << "set_keyboard_focus No Window";
 
          return;
 
@@ -13491,24 +13566,78 @@ namespace user
       if (::is_null(pprimitiveimpl))
       {
 
+         information() << "set_keyboard_focus No Primitive Impl";
+
          return;
 
       }
 
-      pprimitiveimpl->m_puserinteractionKeyboardFocusRequest = this;
-
       if (pwindowThis->has_keyboard_focus())
       {
 
+         information() << "pwindowThis->has_keyboard_focus()";
+
+         pprimitiveimpl->m_puserinteractionKeyboardFocusRequest = this;
+
          pprimitiveimpl->on_final_set_keyboard_focus();
+
+         return;
 
       }
       else
       {
 
-         pwindowThis->set_keyboard_focus();
+         if(pprimitiveimpl->m_puserinteraction->m_puserinteractionOwner)
+         {
+
+            auto pwindowOwner = pprimitiveimpl->m_puserinteraction->m_puserinteractionOwner->window();
+
+            if (::is_null(pwindowOwner))
+            {
+
+               return;
+
+            }
+
+            auto pprimitiveimplOwner = pwindowOwner->m_puserinteractionimpl;
+
+            if (::is_null(pprimitiveimplOwner))
+            {
+
+               return;
+
+            }
+
+            if(pwindowOwner->has_keyboard_focus())
+            {
+
+               ::string strType;
+
+               strType = ::type(pwindowOwner->m_puserinteractionimpl->m_puserinteraction.m_p);
+
+               information() << "pwindowOwner->has_keyboard_focus() : " << strType;
+
+               ::string strTypeOldFocus;
+
+               strTypeOldFocus = ::type(pwindowOwner->m_puserinteractionimpl->m_puserinteraction.m_p);
+
+               information() << "old focus : " << strTypeOldFocus;
+
+               pprimitiveimplOwner->m_puserinteractionKeyboardFocusRequest = this;
+
+               pprimitiveimplOwner->on_final_set_keyboard_focus();
+
+               return;
+
+            }
+
+         }
 
       }
+
+      pprimitiveimpl->m_puserinteractionKeyboardFocusRequest = this;
+
+      pwindowThis->set_keyboard_focus();
 
    }
 

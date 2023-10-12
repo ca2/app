@@ -3,6 +3,7 @@
 #include "list_box.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
+#include "acme/constant/user_key.h"
 #include "acme/handler/item.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/primitive/geometry2d/_text_stream.h"
@@ -724,6 +725,13 @@ namespace user
 
    void combo_box::on_set_keyboard_focus()
    {
+
+      if(m_bEdit)
+      {
+
+         plain_edit::on_set_keyboard_focus();
+
+      }
 
    }
 
@@ -1560,7 +1568,7 @@ namespace user
    bool combo_box::keyboard_focus_is_focusable()
    {
 
-      return is_window_enabled() && is_window_visible(e_layout_sketch);
+      return m_bEdit && is_window_enabled() && is_window_visible(e_layout_sketch);
 
    }
 

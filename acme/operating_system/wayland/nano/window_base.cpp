@@ -9,9 +9,23 @@
 #include "acme/operating_system/wayland/xfree86_key.h"
 #include "acme/platform/system.h"
 #include "acme/primitive/geometry2d/_text_stream.h"
-//#include "apex/platform/system.h"
+#include "acme/constant/_user_key_text.h"
 #include <xkbcommon/xkbcommon.h>
 
+bool is_control_character(ansi_character ansich)
+{
+
+   return ansich >= 0 && ansich <= 31;
+
+}
+
+
+bool is_control_character(const ::scoped_string & scopedstr)
+{
+
+   return scopedstr.length_in_bytes() == 1 && ::is_control_character(scopedstr.begin()[0]);
+
+}
 
 namespace wayland
 {
@@ -512,7 +526,7 @@ namespace wayland
 
       m_bDoneFirstMapping = false;
 
-      //m_bXdgInitialConfigure = false;
+      m_bXdgInitialConfigure = false;
 
       m_uLastRequestSerial = 0;
 
@@ -758,7 +772,7 @@ namespace wayland
    void nano_window_base::__unmap()
    {
 
-      information() << "windowing_wayland::window::__unmap";
+      information() << "windowing_wayland::nano_window_base::__unmap";
 
       if (m_pwlsurface != nullptr)
       {
@@ -779,7 +793,6 @@ namespace wayland
          m_pxdgtoplevel = nullptr;
 
       }
-
 
       if (m_pxdgpopup != nullptr)
       {
@@ -825,6 +838,8 @@ namespace wayland
          m_pwlsurface = nullptr;
 
       }
+
+      information() << "windowing_wayland::nano_window_base::__unmap end";
 
    }
 
@@ -1500,11 +1515,15 @@ namespace wayland
          if(pressed == WL_KEYBOARD_KEY_STATE_PRESSED)
          {
 
+            information() << "_on_simple_key_message e_message_key_down : " << ::as_string(ekey);
+
             _on_simple_key_message(ekey, e_message_key_down);
 
          }
          else
          {
+
+            information() << "_on_simple_key_message e_message_key_up : " << ::as_string(ekey);
 
             _on_simple_key_message(ekey, e_message_key_up);
 
@@ -1528,6 +1547,8 @@ namespace wayland
       if (::xkb_state_key_get_syms(pdisplaybase->m_pxkbstate, key + 8, &syms) != 1)
       {
 
+         information() << "xkb_state_key_get_syms has failed";
+
          return;
 
       }
@@ -1544,7 +1565,23 @@ namespace wayland
 
             text[size] = 0;
 
-            _on_text_composition(text);
+            ::string strText(text);
+
+            information() << "xkb_keysym_to_utf8 size : " << size << " and text : \"" << strText << "\"";
+
+            for(::index i = 0; i < size; i++)
+            {
+
+               information() << "xkb_keysym_to_utf8 size ("  << i <<  ") : 0x" << ::hex::lower_case_from(text[i]);
+
+            }
+
+            if(!::is_control_character(strText))
+            {
+
+               _on_text_composition(strText);
+
+            }
 
 //            //Wayland_data_device_set_serial(input->data_device, serial);
 //

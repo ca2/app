@@ -1,5 +1,6 @@
 #include "framework.h"
 ////#include "acme/exception/exception.h"
+#include "acme/constant/user_key.h"
 #include "acme/exception/extended_status.h"
 #include "acme/filesystem/file/item_array.h"
 #include "acme/primitive/primitive/url.h"

@@ -968,6 +968,10 @@ namespace user
                else
                {
 
+                  ::index iInnerBeg;
+
+                  ::index iInnerEnd;
+
                   if (iSelBeg > pspanBeg->m_iPosBeg)
                   {
 
@@ -987,11 +991,13 @@ namespace user
 
                      m_spana.insert_at(iBeg + 1, pspan2);
 
+                     iInnerBeg = iBeg + 2;
+
                   }
                   else
                   {
 
-                     pspanBeg->m_pformat->apply(pformat, eattribute);
+                     iInnerBeg = iBeg;
 
                   }
 
@@ -1012,15 +1018,19 @@ namespace user
 
                      pspanEnd->m_str = str.substr(iSelEnd - iEndBeg + 1);
 
+                     iInnerEnd = iEnd - 1;
+
                   }
                   else
                   {
 
-                     pspanEnd->m_pformat->apply(pformat, eattribute);
+                     //pspanEnd->m_pformat->apply(pformat, eattribute);
+
+                     iInnerEnd = iEnd;
 
                   }
 
-                  for (index i = iBeg + 2; i < iEnd - 1; i++)
+                  for (index i = iInnerBeg; i <= iInnerEnd; i++)
                   {
 
                      if (m_spana[i].is_set())

@@ -528,7 +528,7 @@ namespace user
    }
 
 
-   void interaction_impl::operating_system_create_host()
+   void interaction_impl::operating_system_create_host(enum_parallelization eparallelization)
    {
 
       //      auto pwindowMain = acmesystem()->m_paurasystem->m_pwindowMain;
@@ -631,7 +631,7 @@ namespace user
          m_puserinteraction->m_bMessageWindow = false;
 
 
-         user_send([&]()
+         auto procedure = [&]()
                    {
 
                       auto psession = get_session();
@@ -648,20 +648,35 @@ namespace user
 
                       pwindowing->new_window(this);
 
-                   });
+                      if (m_pwindow)
+                      {
 
-         if (m_pwindow)
+                         information() << "operating_system_create_host window created";
+
+                      }
+                      else
+                      {
+
+                         information("operating_system_create_host window not created");
+
+                      }
+
+                   };
+
+
+         if(eparallelization == e_parallelization_asynchronous)
          {
 
-            information() << "operating_system_create_host window created";
+            user_post(procedure);
 
          }
          else
          {
 
-            information("operating_system_create_host window not created");
+            user_send(procedure);
 
          }
+
 
          //});
 
@@ -1080,7 +1095,7 @@ namespace user
 
          //}
 
-         operating_system_create_host();
+         operating_system_create_host(eparallelization);
 
          ////if (!native_create_host())
          //{
@@ -2261,10 +2276,14 @@ namespace user
          if (::is_set(pkey))
          {
 
+            information() << "interaction_impl::message_handler key message";
+
             ::pointer<::user::interaction>puiKeyboardFocus = m_puserinteractionKeyboardFocus;
 
             if (puiKeyboardFocus)
             {
+
+               information() << "interaction_impl::message_handler keyboard focus " << ::string(::type(puiKeyboardFocus.m_p));
 
                puiKeyboardFocus->route_message(pkey);
 
@@ -2353,9 +2372,6 @@ namespace user
    {
 
    }
-
-
-
 
 
    bool interaction_impl::on_mouse_message(::message::mouse * pmouse)
@@ -4854,6 +4870,10 @@ namespace user
 
       m_pwindowing = m_puserinteraction->windowing();
 
+      ::pointer < ::user::thread > puserthread = m_puserinteraction->m_pthreadUserInteraction;
+
+      puserthread->m_oswindow = window()->m_oswindow;
+
       if (m_puserinteraction->m_ewindowflag & e_window_flag_graphical)
       {
 
@@ -6889,11 +6909,17 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 
       _synchronous_lock synchronouslock(this->synchronization());
 
+      information() << "on_final_set_keyboard_focus";
+
       if (m_puserinteractionKeyboardFocusRequest)
       {
 
+         information() << "on_final_set_keyboard_focus : " << ::string(::type(m_puserinteractionKeyboardFocusRequest.m_p));
+
          if (m_puserinteractionKeyboardFocusRequest != m_puserinteractionKeyboardFocus)
          {
+
+            information() << "on_final_set_keyboard_focus : (2)";
 
             m_puserinteractionKeyboardFocus = m_puserinteractionKeyboardFocusRequest;
 
@@ -7009,6 +7035,8 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
+
+      information() << "on_final_kill_keyboard_focus";
 
       if (m_puserinteractionToKillKeyboardFocus && m_puserinteractionToKillKeyboardFocus != m_puserinteractionKeyboardFocusRequest)
       {

@@ -3,6 +3,7 @@
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
 #include "acme/graphics/image/image32.h"
+#include "acme/primitive/geometry2d/_text_stream.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/draw2d/brush.h"
@@ -974,12 +975,14 @@ namespace graphics
 
    //   auto rectangleX = this->rectangle();
 
-   //   if (rectangleX.area() <= 0)
-   //   {
+      if (rectangle.is_empty())
+      {
 
-   //      return;
+         return;
 
-   //   }
+      }
+
+      information() << "rectangle : " << rectangle;
 
       ::rectangle_i32 rectangleColors;
 
@@ -995,9 +998,22 @@ namespace graphics
 
       }
 
+      information() << "rectangleColors : " << rectangleColors;
+
       m_rectangleColors = rectangleColors;
 
-      m_pimage = m_pcontext->m_pauracontext->create_image({ m_rectangleColors.width() / 2,  m_rectangleColors.height() });
+      __defer_construct(m_pimage);
+
+      auto sizeImage = ::size_i32(m_rectangleColors.width() / 2,  m_rectangleColors.height());
+
+      if(sizeImage.is_empty())
+      {
+
+         return;
+
+      }
+
+      m_pimage->create(sizeImage);
 
       {
 

@@ -2447,7 +2447,10 @@ if (${LINUX} OR ${FREEBSD})
 endif ()
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source})
+add_library(${PROJECT_NAME} SHARED ${library_source}
+   constant/user_key.cpp
+   constant/user_key.h
+   constant/_user_key_text.h)
 add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
 if (NOT ${NO_PRECOMPILED_HEADER})

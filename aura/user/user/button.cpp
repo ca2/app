@@ -3,6 +3,7 @@
 #include "style.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
+#include "acme/constant/user_key.h"
 #include "acme/handler/item.h" 
 #include "acme/platform/context.h"
 #include "aura/graphics/draw2d/graphics.h"

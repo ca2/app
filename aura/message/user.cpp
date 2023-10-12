@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "user.h"
+#include "acme/constant/user_key.h"
 #include "acme/exception/interface_only.h"
 #include "acme/include/_c_swap.h"
 #include "aura/windowing/windowing.h"

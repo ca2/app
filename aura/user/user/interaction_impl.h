@@ -393,7 +393,7 @@ namespace user
 
       //virtual bool create_host();
 
-      virtual void operating_system_create_host();
+      virtual void operating_system_create_host(::enum_parallelization eparrallelization);
 
       virtual void native_create_host_alternate();
 

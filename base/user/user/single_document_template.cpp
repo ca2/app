@@ -210,7 +210,7 @@ namespace user
       if (prequest)
       {
 
-         bMakeVisible = prequest->payload("make_visible_boolean").get_bool() || prequest->m_bMakeVisible;
+         prequest->m_bMakeVisible = prequest->payload("make_visible_boolean").get_bool() || prequest->m_bMakeVisible;
 
       }
 
@@ -307,12 +307,12 @@ namespace user
 
       }
 
-      if(bCreated)
-      {
-
-         prepare_frame(pFrame,pdocument,bMakeVisible);
-
-      }
+//      if(bCreated)
+//      {
+//
+//         prepare_frame(pFrame,pdocument,bMakeVisible);
+//
+//      }
 
  /*     auto papp = get_app();
 

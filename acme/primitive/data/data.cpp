@@ -14,7 +14,7 @@ namespace data
    {
 
       //m_bModified = false;
-      //m_bNew = true;
+      m_bNew = false;
 
    }
 
@@ -147,8 +147,18 @@ namespace data
    }
 
 
+   bool data::is_new_data() const
+   {
+
+      return m_bNew;
+
+   }
+
+
    bool data::on_new_data()
    {
+
+      m_bNew = true;
 
       return true;
 

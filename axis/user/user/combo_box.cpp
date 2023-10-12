@@ -831,7 +831,7 @@ namespace user
       if(!m_plistbox)
       {
 
-         auto plistbox = __id_create < list_box >(m_typeatomListBox);
+         auto plistbox = __id_create(m_typeatomListBox);
 
          m_plistbox = plistbox;
 

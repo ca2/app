@@ -373,14 +373,14 @@ namespace user
          return get_data(get_typed_document < DOCUMENT > ());
       }
 
-      template < class DOCUMENT >
-      ::data::data * get_data(DOCUMENT * pthis)
-      {
-         ASSERT(this == pthis);
-         if (this != pthis)
-            return nullptr;
-         return m_datamap[pthis];
-      }
+      //template < class DOCUMENT >
+      //::data::data * get_data(DOCUMENT * pthis)
+      //{
+      //   ASSERT(this == pthis);
+      //   if (this != pthis)
+      //      return nullptr;
+      //   return m_datamap[pthis];
+      //}
 
       template < class DOCUMENT >
       void set_typed_document_data(::data::data * pdata)

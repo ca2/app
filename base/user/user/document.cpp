@@ -1005,6 +1005,17 @@ namespace user
    bool document::on_new_document()
    {
 
+      if (m_pimpactsystem->m_typeatomData.has_char())
+      {
+
+         auto pNew = __id_create((const ::atom &) m_pimpactsystem->m_typeatomData);
+
+         ::pointer < ::data::data > pdataNew = pNew;
+
+         set_data(0, pdataNew);
+
+      }
+
       return true;
 
    }
@@ -1032,6 +1043,9 @@ namespace user
    bool document::on_open_document(const ::payload & payloadFile)
    {
 
+
+
+
       if (payloadFile.is_empty())
       {
 
@@ -1039,38 +1053,50 @@ namespace user
 
       }
 
-      auto pcontext = get_context();
+      //auto pcontext = get_context();
 
-      auto preader = pcontext->m_papexcontext->file()->get_reader(payloadFile, ::file::e_open_read | ::file::e_open_share_deny_write | ::file::e_open_binary);
+      //auto preader = pcontext->m_papexcontext->file()->get_reader(payloadFile, ::file::e_open_read | ::file::e_open_share_deny_write | ::file::e_open_binary);
 
-      if (preader.nok())
-      {
+      //if (preader.nok())
+      //{
 
-         report_load_exception(payloadFile, preader, "__IDP_FAILED_TO_OPEN_DOC");
+      //   report_load_exception(payloadFile, preader, "__IDP_FAILED_TO_OPEN_DOC");
 
-         return false;
+      //   return false;
 
-      }
+      //}
 
-      try
-      {
+      //try
+      //{
 
-         if (!on_open_document(preader.m_p))
+         //if (!on_open_document(preader.m_p))
+         //{
+
+         //   return false;
+
+         //}
+
+         //preader->close();
+         if (m_pimpactsystem->m_typeatomData.has_char())
          {
 
-            return false;
+            auto pNew = __id_create((const ::atom &)m_pimpactsystem->m_typeatomData);
+
+            ::pointer < ::data::data > pdataNew = pNew;
+
+            pdataNew->on_open_data(payloadFile);
+
+            set_data(0, pdataNew);
 
          }
 
-         preader->close();
+      //}
+      //catch (const ::exception &)
+      //{
 
-      }
-      catch (const ::exception &)
-      {
+      //   report_load_exception(payloadFile, preader, "__IDP_FAILED_TO_OPEN_DOC");
 
-         report_load_exception(payloadFile, preader, "__IDP_FAILED_TO_OPEN_DOC");
-
-      }
+      //}
 
       return true;
 
@@ -1079,10 +1105,6 @@ namespace user
 
    bool document::on_open_document(::file::file * pfile)
    {
-
-      //::binary_stream reader(pfile);
-
-      //read(reader);
 
       return true;
 
@@ -1137,13 +1159,7 @@ namespace user
    bool document::on_save_document(::file::file * pfile)
    {
 
-      //{
-
-      //   ::binary_stream writer(pfile);
-
-      //   write(writer);
-
-      //}
+      get_data(0)->on_save_data(pfile);
 
       return true;
 

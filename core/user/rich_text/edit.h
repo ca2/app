@@ -22,6 +22,17 @@ namespace user
 //#endif
       {
       public:
+         bool                             m_bPendingSelectionChange;
+
+         /// runtime span, ephemeral, derived
+/// should be easily rebuildable from "storage" data and a client rectangle_i32
+         pointer< pointer_array < line > >            m_plinea;
+         strsize                                      m_iSelBeg;
+         strsize                                      m_iSelEnd;
+         index                                        m_iSelLine;
+         class ::time                                 m_timeCaretPeriod;
+         //index                                      m_iFormatDefault;
+         bool                                         m_bCaretRight;
 
 
          edit();
@@ -54,6 +65,14 @@ namespace user
          virtual void update_placement() override;
 
 
+         virtual void on_selection_change(format * pformat);
+         virtual void get_selection_intersection_format(format * pformat, index iSelBeg, index iSelEnd);
+
+         virtual void _001SetSelFontFormat(const format * pformat, const e_attribute & eattribute);
+         virtual void _001InsertText(const ::string & psz, format * pformatParam = nullptr);
+         virtual void _001GetLayoutText(string & str) const;
+
+
          //virtual i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override
          //{
          //   return ::object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
@@ -72,6 +91,12 @@ namespace user
          bool is_text_editor() override;
 
          virtual void _001OnDeleteText();
+
+         virtual ::rectangle_f64 get_drawing_rect();
+
+         virtual void internal_update_sel_char();
+
+         virtual void do_layout(::draw2d::graphics_pointer & pgraphics);
 
          virtual void on_selection_change();
 
@@ -124,6 +149,9 @@ namespace user
 
          void handle(::topic * ptopic, ::context * pcontext) override;
 
+         virtual void draw_text(::draw2d::graphics_pointer & pgraphics, const ::rectangle_f64 & rectangle);
+
+         virtual strsize _001GetLayoutTextLength() const;
 
          strsize _001GetTextLength() override;
 
@@ -140,7 +168,17 @@ namespace user
          bool edit_undo() override;
 
 
+         virtual strsize get_sel_beg();
+         virtual strsize get_sel_end();
+
+         virtual index SelToLine(strsize i);
+         virtual strsize LineColumnToSel(index iLine, strsize iColumn);
+
+
          bool has_text_input() override;
+
+         virtual strsize _hit_test(point_f64 point);
+         virtual strsize _hit_test_line_x(index iLine, double x);
 
 
       };

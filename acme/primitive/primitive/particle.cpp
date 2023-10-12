@@ -2163,6 +2163,34 @@ void particle::kick_idle()
 }
 
 
+ ::pointer<particle>particle::__id_create(const ::atom & atom, ::factory::factory * pfactory)
+{
+
+   auto pfactoryitem = pfactory->get_factory_item(atom);
+
+   if (!pfactoryitem)
+   {
+
+      throw ::exception(error_no_factory);
+
+   }
+
+   auto p = pfactoryitem->create_particle();
+
+   if (!p)
+   {
+
+      throw ::no_memory();
+
+   }
+
+   p->initialize(this);
+
+   return p;
+
+}
+
+
 pointer < ::sequencer < ::conversation > > particle::message_box(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails)
 {
 

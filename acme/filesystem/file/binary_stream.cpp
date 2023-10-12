@@ -826,6 +826,6 @@ void binary_stream::read_to_hex(string & str, filesize tickStart, filesize tickE
 
    auto atom = text_to_factory_id(strText);
 
-   return __id_create < ::matter >(atom);
+   return __id_create(atom);
 
 }

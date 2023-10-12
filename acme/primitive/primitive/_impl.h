@@ -59,33 +59,33 @@ inline ::pointer<BASE_TYPE>particle::__create(::factory::factory* pfactory)
 }
 
 
-template < typename BASE_TYPE >
-inline ::pointer<BASE_TYPE>particle::__id_create(const ::atom & atom, ::factory::factory* pfactory)
-{
-
-   auto pfactoryitem = pfactory->get_factory_item(atom);
-
-   if (!pfactoryitem)
-   {
-
-      throw ::exception(error_no_factory);
-
-   }
-
-   auto p = pfactoryitem->create_particle();
-
-   if (!p)
-   {
-
-      throw ::no_memory();
-
-   }
-
-   p->initialize(this);
-
-   return p;
-
-}
+//template < typename BASE_TYPE >
+//inline ::pointer<BASE_TYPE>particle::__id_create(const ::atom & atom, ::factory::factory* pfactory)
+//{
+//
+//   auto pfactoryitem = pfactory->get_factory_item(atom);
+//
+//   if (!pfactoryitem)
+//   {
+//
+//      throw ::exception(error_no_factory);
+//
+//   }
+//
+//   auto p = pfactoryitem->create_particle();
+//
+//   if (!p)
+//   {
+//
+//      throw ::no_memory();
+//
+//   }
+//
+//   p->initialize(this);
+//
+//   return p;
+//
+//}
 
 
 template < typename TYPE >

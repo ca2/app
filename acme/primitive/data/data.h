@@ -29,6 +29,7 @@ namespace data
 
       listener_array                               m_listenera;
       ::atom                 m_atom;
+      bool                    m_bNew;
 
 
       data();
@@ -51,6 +52,7 @@ namespace data
       virtual void on_update_data(i32 iHint);
 
 
+      bool is_new_data() const;
    //protected:
 
 

@@ -20,7 +20,7 @@ namespace user
 
 
          bool                             m_bComposing;
-         ::pointer<data>                  m_pdata;
+         //::pointer<data>                  m_pdata;
          bool                             m_bSelDrag;
          ::pointer<::message::key>        m_pkeymessageLast;
          bool                             m_bKeyPressed;
@@ -29,14 +29,13 @@ namespace user
          /// areas of text continue through message routing.
          bool                             m_bClickThrough;
 
-         bool                             m_bPendingSelectionChange;
 
 
          edit_impl();
          ~edit_impl() override;
 
 
-         virtual void initialize_edit_impl(document * pdocument);
+         //virtual void initialize_impact(::user::document * pdocument) override;
 
 
          virtual void on_after_change(const ::atom & atom) override;
@@ -87,6 +86,7 @@ namespace user
 
          void _001OnDeleteText() override;
 
+         using rich_text::edit::on_selection_change;
          void on_selection_change() override;
 
          void insert_text(string str, bool bForceNewStep, const ::action_context & context) override;
@@ -165,6 +165,9 @@ namespace user
          void on_text_composition(string str) override;
          void on_text_composition_done() override;
          bool edit_undo() override;
+
+
+
 
 
       };

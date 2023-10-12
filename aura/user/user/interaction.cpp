@@ -24953,6 +24953,14 @@ namespace user
    }
 
 
+   ::data::data * interaction::_get_data(const ::atom & atom)
+   {
+
+      return nullptr;
+
+   }
+
+
    bool interaction::has_function(enum_control_function econtrolfunction)
    {
 

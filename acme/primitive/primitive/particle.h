@@ -444,8 +444,7 @@ public:
    template < typename BASE_TYPE >
    inline ::pointer<BASE_TYPE>__create(::factory::factory* pfactory = ::get_system_factory());
 
-   template < typename BASE_TYPE >
-   inline ::pointer<BASE_TYPE>__id_create(const ::atom& atom, ::factory::factory* pfactory = ::get_system_factory());
+   ::pointer<particle>__id_create(const ::atom& atom, ::factory::factory* pfactory = ::get_system_factory());
 
    template < typename TYPE >
    inline ::pointer<TYPE>__create_new();

@@ -2334,6 +2334,9 @@ namespace user
       //control null() { return control(); }
       //bool Validate(string& str);
       bool get_data(::pointer<::user::interaction>puserinteraction, ::payload& payload);
+      
+      virtual ::data::data * _get_data(const ::atom & atom);
+
       //void SetEditItem(index iItem);
       //void SetEditSubItem(index iItem);
       //index GetEditSubItem();

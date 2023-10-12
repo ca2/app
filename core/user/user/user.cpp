@@ -31,6 +31,7 @@
 #include "core/platform/application.h"
 #include "core/platform/session.h"
 #include "core/user/account/impact.h"
+#include "core/user/rich_text/data.h"
 #include "core/user/simple/list_data.h"
 #include "core/user/simple/list_header_control.h"
 #include "core/user/simple/list_impact.h"
@@ -214,6 +215,8 @@ namespace core
 
 
       factory()->add_factory_item < ::simple_toolbar >();
+
+      factory()->add_factory_item < ::user::rich_text::data >();
 
       factory()->add_factory_item <::userex::dialog_frame >();
 

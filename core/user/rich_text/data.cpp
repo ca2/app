@@ -4,10 +4,12 @@
 #include "format.h"
 #include "line.h"
 #include "box.h"
+#include "text_format.h"
 #include "acme/constant/id.h"
+#include "acme/filesystem/filesystem/file_context.h"
 #include "acme/parallelization/mutex.h"
+#include "acme/platform/system.h"
 #include "acme/primitive/data/listener.h"
-//#include "acme/primitive/time/integral/generic.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/write_text/font.h"
 #include "aura/graphics/image/image.h"
@@ -2405,6 +2407,64 @@ namespace user
          }
 
       }
+
+
+      bool data::on_new_data()
+      {
+
+         return ::data::data::on_new_data();
+
+      }
+
+
+      bool data::on_open_data(const ::payload & payloadFile)
+      {
+
+         auto path = payloadFile.as_file_path();
+
+         auto extension = path.final_extension();
+
+         if (extension.case_insensitive_order("rtf") == 0)
+         {
+
+            auto preader = file()->get_reader(payloadFile);
+
+            //parse_rtf_text(str);
+
+            //if (parse_rtf_text(str))
+            //{
+
+            auto pfactory = acmesystem()->factory("text_format", "rtf");
+
+            auto ptextformat = __create< ::user::rich_text::text_format >(pfactory);
+
+            ptextformat->text_format_load(this, preader);
+
+            //id_update_all_impacts(ID_INCOMING_DOCUMENT);
+
+            //}
+
+         }
+
+
+         return true;
+
+      }
+
+
+      bool data::on_save_data(::file::file * pfile)
+      {
+
+         auto pfactory = acmesystem()->factory("text_format", "rtf");
+
+         auto ptextformat = __create< ::user::rich_text::text_format >(pfactory);
+
+         ptextformat->text_format_save(pfile, this);
+
+         return true;
+
+      }
+
 
 
    } // namespace rich_text

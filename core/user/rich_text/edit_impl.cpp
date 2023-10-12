@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "edit_impl.h"
 #include "format_tool.h"
-#include "document.h"
+//#include "document.h"
 #include "data.h"
 #include "format.h"
 #include "acme/constant/id.h"

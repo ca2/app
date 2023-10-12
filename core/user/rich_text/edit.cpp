@@ -2,7 +2,7 @@
 #include "edit.h"
 #include "edit_impl.h"
 #include "format_tool.h"
-#include "document.h"
+//#include "document.h"
 #include "span.h"
 #include "acme/constant/id.h"
 #include "acme/constant/user_key.h"
@@ -936,7 +936,7 @@ void rich_text_factory_exchange(::factory::factory * pfactory)
    pfactory->add_factory_item < ::user::rich_text::edit_impl, ::user::rich_text::edit >();
    //add_factory_item <::user::rich_text::format >();
    pfactory->add_factory_item <::user::rich_text::span >();
-   pfactory->add_factory_item <::user::rich_text::document >();
+   //pfactory->add_factory_item <::user::rich_text::document >();
 
    pfactory->add_factory_item < ::user::rich_text::edit_impl >("rich_text_impact");
 

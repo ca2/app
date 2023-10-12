@@ -51,11 +51,14 @@ namespace data
       virtual void on_update_data(i32 iHint);
 
 
-   protected:
+   //protected:
 
 
       virtual void initialize_data(::data::data_container_base* pdocument);
 
+      virtual bool on_new_data();
+      virtual bool on_open_data(const ::payload & payloadFile);
+      virtual bool on_save_data(::file::file * pfile);
 
 
    };

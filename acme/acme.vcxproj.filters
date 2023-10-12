@@ -3449,6 +3449,9 @@
     <ClInclude Include="graphics\image\image32.h">
       <Filter>Header Files\graphics\image</Filter>
     </ClInclude>
+    <ClInclude Include="constant\user_key.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\bit.cpp">

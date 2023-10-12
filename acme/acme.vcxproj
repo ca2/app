@@ -728,6 +728,7 @@
     <ClInclude Include="constant\status_range_authentication.h" />
     <ClInclude Include="constant\timer.h" />
     <ClInclude Include="constant\user.h" />
+    <ClInclude Include="constant\user_key.h" />
     <ClInclude Include="constant\user_text.h" />
     <ClInclude Include="constant\_.h" />
     <ClInclude Include="constant\_constant.h" />

@@ -13,8 +13,6 @@ namespace user
    namespace rich_text
    {
 
-      class document;
-
       class format_tool;
 
       class span;

@@ -147,6 +147,31 @@ namespace data
    }
 
 
+   bool data::on_new_data()
+   {
+
+      return true;
+
+   }
+
+
+   bool data::on_open_data(const ::payload & payloadFile)
+   {
+
+      return true;
+
+   }
+
+
+   bool data::on_save_data(::file::file * pfile)
+   {
+
+      return true;
+
+   }
+
+
+
 } // namespace data
 
 

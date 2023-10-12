@@ -2,6 +2,7 @@
 #include "login.h"
 #include "dialog.h"
 #include "acme/constant/message.h"
+#include "acme/constant/user_key.h"
 #include "acme/constant/timer.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/hyperlink.h"

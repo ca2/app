@@ -109,7 +109,9 @@ namespace user
 
          //void write(::binary_stream & stream) const override;
          //void read(::binary_stream & stream) override;
-
+         bool on_new_data();
+         bool on_open_data(const ::payload & payloadFile);
+         bool on_save_data(::file::file * pfile);
 
       };
 

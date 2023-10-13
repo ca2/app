@@ -47,7 +47,7 @@ if (MSVC)
 elseif(${LINUX} OR ${FREEBSD})
 
 
-    target_compile_options(api_ca2 PRIVATE -fpermissive)
+    target_compile_options(api_ca2 PRIVATE $<$<COMPILE_LANGUAGE:CXX>:-fpermissive>)
     target_link_libraries(api_ca2 PRIVATE ${library_references})
     target_link_options(api_ca2 PRIVATE -Wl,-z,defs)
 

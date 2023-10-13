@@ -835,12 +835,7 @@ namespace user
    bool interaction::on_set_position(::point_i32 & point, enum_layout elayout)
    {
 
-      if(point.x() < 0 || point.y() < 0)
-      {
-
-         information() << "on_set_position x < 0 || y < 0 : " << point;
-
-      }
+      information() << "on_set_position : " << point;
 
       if (point == const_layout().m_statea[elayout].origin())
       {

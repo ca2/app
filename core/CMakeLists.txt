@@ -277,8 +277,8 @@ list(APPEND library_source
    user/rich_text/box.h
    user/rich_text/data.cpp
    user/rich_text/data.h
-   user/rich_text/document.cpp
-   user/rich_text/document.h
+   #user/rich_text/document.cpp
+   #user/rich_text/document.h
    user/rich_text/edit.cpp
    user/rich_text/edit.h
    user/rich_text/edit_impl.cpp
@@ -1033,8 +1033,8 @@ if (MSVC)
 elseif (${LINUX} OR ${FREEBSD})
 
 
-   target_compile_options(${PROJECT_NAME} PRIVATE -fpermissive)
-   target_compile_options(static_${PROJECT_NAME} PRIVATE -fpermissive)
+   target_compile_options(${PROJECT_NAME} PRIVATE $<$<COMPILE_LANGUAGE:CXX>:-fpermissive>)
+   target_compile_options(static_${PROJECT_NAME} PRIVATE $<$<COMPILE_LANGUAGE:CXX>:-fpermissive>)
    target_compile_definitions(static_${PROJECT_NAME} PRIVATE CUBE)
 
 

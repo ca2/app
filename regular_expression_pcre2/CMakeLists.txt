@@ -59,7 +59,7 @@ elseif (${LINUX} OR ${FREEBSD})
     message(STATUS "PKGCONFIG_LDFLAGS is ${PKGCONFIG_LDFLAGS}")
     message(STATUS "PKGCONFIG_LIBRARIES is ${PKGCONFIG_LIBRARIES}")
 
-    target_compile_options(${PROJECT_NAME} PRIVATE -fpermissive)
+    target_compile_options(${PROJECT_NAME} PRIVATE $<$<COMPILE_LANGUAGE:CXX>:-fpermissive>)
     target_compile_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
     target_compile_definitions(static_${PROJECT_NAME} PRIVATE CUBE)
 

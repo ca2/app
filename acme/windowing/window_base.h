@@ -28,6 +28,7 @@ namespace windowing
 
       virtual bool is_windowing_popup();
       virtual ::point_i32 windowing_popup_origin();
+      virtual ::size_i32 windowing_popup_size();
       virtual void _on_windowing_close_window();
       virtual bool is_satellite_window();
       virtual window_base * owner_window();

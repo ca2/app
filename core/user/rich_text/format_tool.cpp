@@ -5,6 +5,7 @@
 #include "acme/constant/message.h"
 #include "acme/handler/item.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/primitive/geometry2d/_text_stream.h"
 #include "acme/user/user/content.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/graphics.h"
@@ -738,8 +739,11 @@ namespace user
             set_font_size(strtod(str, nullptr));
 
             m_pformat->m_bUnderline = m_pbuttonUnderline->echeck() == ::e_check_checked;
+
             m_pformat->m_bItalic = m_pbuttonItalic->echeck() == ::e_check_checked;
+
             m_pformat->m_bBold = m_pbuttonBold->echeck() == ::e_check_checked;
+
             if (m_pbuttonSuperscript->echeck() == ::e_check_checked)
             {
 
@@ -758,6 +762,7 @@ namespace user
                m_pformat->m_escript = ::user::rich_text::e_script_normal;
 
             }
+
             if (m_pbuttonAlignRight->echeck() == ::e_check_checked)
             {
 
@@ -824,8 +829,6 @@ namespace user
 
          }
 
-         //return true;
-
       }
 
 
@@ -857,9 +860,14 @@ namespace user
          ::rectangle_i32 rectangleRequest;
 
          rectangleRequest.left() = rectangle.left() - 32;
+
          rectangleRequest.top() = rectangle.top() - 32;
+
          rectangleRequest.right() = rectangleRequest.left() + 400;
+
          rectangleRequest.bottom() = rectangleRequest.top() + 32;
+
+         information() << "show_for_ui place(rectangleRequest) : " << rectangleRequest;
 
          place(rectangleRequest);
 
@@ -874,12 +882,6 @@ namespace user
          post_redraw();
 
       }
-
-      //} // namespace user
-      //
-
-
-
 
 
    } // namespace rich_text

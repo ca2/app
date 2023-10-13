@@ -2190,6 +2190,16 @@ namespace windowing
    }
 
 
+   ::size_i32 window::windowing_popup_size()
+   {
+
+      auto s = m_puserinteractionimpl->m_puserinteraction->const_layout().sketch().size();
+
+      return s;
+
+   }
+
+
    void window::_on_windowing_close_window()
    {
 

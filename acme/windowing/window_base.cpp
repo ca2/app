@@ -39,6 +39,14 @@ namespace windowing
    }
 
 
+   ::size_i32 window_base::windowing_popup_size()
+   {
+
+      return {};
+
+   }
+
+
    void window_base::_on_windowing_close_window()
    {
 

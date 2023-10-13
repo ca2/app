@@ -559,6 +559,7 @@ namespace wayland
 
       }
 
+
       //auto puserinteractionOwner = m_puserinteractionimpl->m_puserinteraction->m_puserinteractionOwner;
 
 //      if(puserinteractionOwner)
@@ -601,7 +602,7 @@ namespace wayland
 
       information() << "pxdgwmbase : " << (::iptr) pxdgwmbase;
 
-      if (!m_pwlsubsurface)
+      if (!m_pxdgsurface)
       {
 
          m_pxdgsurface = xdg_wm_base_get_xdg_surface(pxdgwmbase, m_pwlsurface);
@@ -627,6 +628,15 @@ namespace wayland
 
       }
 
+
+      ::i32 x = m_pointWindow.x();
+
+      ::i32 y = m_pointWindow.y();
+
+      ::i32 cx = m_sizeWindow.cx();
+
+      ::i32 cy = m_sizeWindow.cy();
+
       if (is_windowing_popup())
       {
 
@@ -634,11 +644,55 @@ namespace wayland
 
          m_pointWindow = windowing_popup_origin();
 
-         xdg_positioner_set_offset(m_pxdgpositioner,
-                                   m_pointWindow.x(),
-                                   m_pointWindow.y());
+         m_sizeWindow = windowing_popup_size();
 
-         information() << "xdg_positioner_set_offset " << m_pointWindow;
+         //x = m_pointWindow.x();
+
+         //y = m_pointWindow.y();
+
+         x = 0;
+
+         y = 0;
+
+         cx = m_sizeWindow.cx();
+
+         cy = m_sizeWindow.cy();
+
+         auto sizeScreen = m_pdisplaybase->get_main_screen_size();
+
+         auto pwindowbaseParent = owner_window();
+
+         ::rectangle_i32 rectangleAnchor;
+
+         rectangleAnchor.set_dimension(
+            -sizeScreen.cx(),
+            -sizeScreen.cy(),
+            sizeScreen.cx() * 3,
+            sizeScreen.cy() * 3);
+
+         information() << "xdg_positioner_set_anchor_rect : " << rectangleAnchor;
+
+         xdg_positioner_set_anchor_rect(m_pxdgpositioner,
+                                 rectangleAnchor.left(),
+                                 rectangleAnchor.top(),
+                                 rectangleAnchor.width(),
+                                 rectangleAnchor.height());
+
+         information() << "xdg_positioner_set_offset : " << m_pointWindow;
+
+         xdg_positioner_set_offset(m_pxdgpositioner,
+                                   sizeScreen.cx() + m_pointWindow.x(),
+                                   sizeScreen.cy() + m_pointWindow.y());
+
+         information() << "xdg_positioner_set_size : " << m_sizeWindow;
+
+         xdg_positioner_set_size(m_pxdgpositioner,
+                                 m_sizeWindow.cx(),
+                                 m_sizeWindow.cy());
+
+         information() << "xdg_positioner_set_anchor XDG_POSITIONER_ANCHOR_TOP_LEFT";
+
+         xdg_positioner_set_anchor(m_pxdgpositioner, XDG_POSITIONER_ANCHOR_TOP_LEFT);
 
          ::pointer<nano_window_base> pwindowOwner = owner_window();
 
@@ -649,7 +703,6 @@ namespace wayland
          //data->shell_surface.xdg.roleobj.popup.popup = xdg_surface_get_popup(data->shell_surface.xdg.surface,
          //                                                                  focuseddata->shell_surface.xdg.surface,
          //                                                                data->shell_surface.xdg.roleobj.popup.positioner);
-
 
          m_pxdgpopup = xdg_surface_get_popup(m_pxdgsurface, pwindowOwner->m_pxdgsurface, m_pxdgpositioner);
 
@@ -683,6 +736,15 @@ namespace wayland
 
       }
 
+
+//      information() << "m_pointWindow : " << m_pointWindow;
+//
+//      information() << "m_sizeWindow : " << m_sizeWindow;
+//
+//      information() << "x, y : " << x << ", " << y;
+//
+//      information() << "cx, cy : " << cx << ", " << cy;
+
       //m_pointWindow.x() = x;
 
       //m_pointWindow.y() = y;
@@ -690,14 +752,6 @@ namespace wayland
       //auto x = m_pointWindowBestEffort.x();
 
       //auto y = m_pointWindowBestEffort.y();
-
-      auto x = m_pointWindow.x();
-
-      auto y = m_pointWindow.y();
-
-      auto cx = m_sizeWindow.cx();
-
-      auto cy = m_sizeWindow.cy();
 
       if (m_pxdgsurface)
       {
@@ -716,6 +770,8 @@ namespace wayland
 
          if (!is_satellite_window())
          {
+
+            information() << "xdg_toplevel_set_app_id (1)";
 
             auto psystem = acmesystem();
 
@@ -741,6 +797,8 @@ namespace wayland
       if (strWindowText.has_char())
       {
 
+         information() << "xdg_toplevel_set_title (1)";
+
          xdg_toplevel_set_title(m_pxdgtoplevel, strWindowText);
 
       }
@@ -748,6 +806,8 @@ namespace wayland
       m_timeLastConfigureRequest.Now();
 
       m_uLastRequestSerial = m_uLastConfigureSerial;
+
+      information() << "wl_surface_commit (1)";
 
       wl_surface_commit(m_pwlsurface);
 
@@ -757,6 +817,8 @@ namespace wayland
       {
 
          //wl_display_flush(pdisplaybase->m_pwldisplay);
+
+         information() << "wl_display_dispatch (!m_bXdgInitialConfigure)";
 
          wl_display_dispatch(pdisplaybase->m_pwldisplay);
 

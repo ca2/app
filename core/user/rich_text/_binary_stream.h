@@ -53,8 +53,11 @@
    property_set set;
 
    set["align"] = (i32)span.m_ealignNewLine;
+
    set["text"] = span.m_str;
-   index iFormatIndex = span.m_pdata->m_pformata->find_first(span.m_pformat);
+
+   index iFormatIndex = span.m_pdata->find_first(span.m_pformat);
+
    set["format_index"] = iFormatIndex;
 
    stream << set;
@@ -73,17 +76,24 @@
    stream >> set;
 
    span.m_ealignNewLine = set["align"].e< ::enum_align>();
+
    span.m_str = set["text"];
+
    ::index iFormatIndex;
 
    iFormatIndex = set["format_index"];
-   if (iFormatIndex >= 0 && iFormatIndex < span.m_pdata->m_pformata->get_count())
+
+   if (iFormatIndex >= 0 && iFormatIndex < span.m_pdata->get_count())
    {
-      span.m_pformat = span.m_pdata->m_pformata->element_at(iFormatIndex);
+
+      span.m_pformat = span.m_pdata->element_at(iFormatIndex);
+
    }
    else
    {
+
       information("corruption... non fatal... partially recoverable...");
+
    }
 
    return stream;
@@ -97,7 +107,7 @@
 
    synchronous_lock synchronouslock(data.synchronization());
 
-   stream << *data.m_pformata;
+   stream << (const ::pointer_array< ::user::rich_text::format > &) data;
 
    stream << data.m_spana;
 
@@ -112,13 +122,13 @@
 
    synchronous_lock synchronouslock(data.synchronization());
 
-   data.m_plinea->erase_all();
+   //data.m_plinea->erase_all();
 
-   data.m_pformata->erase_all();
+   data.::pointer_array< ::user::rich_text::format >::erase_all();
 
    data.m_spana.erase_all();
 
-   stream >> *data.m_pformata;
+   stream >> (::pointer_array< ::user::rich_text::format > &) data;
 
    stream >> data.m_spana;
 
@@ -126,55 +136,54 @@
 
 }
 
-
-
-// template < typename FILE >
-::binary_stream & operator <<(::binary_stream & stream, ::user::rich_text::edit_impl & editimpl)
-{
-
-   stream << (const ::user::picture &) editimpl;
-
-   stream << *editimpl.m_pdata;
-
-   ::rectangle_i32 rectangleWindow;
-
-   rectangleWindow = editimpl.window_rectangle();
-
-   if (((::user::rich_text::edit_impl & )editimpl).get_parent() != nullptr)
-   {
-
-      ((::user::rich_text::edit_impl&)editimpl).get_parent()->screen_to_client()(rectangleWindow);
-
-   }
-
-   stream << rectangleWindow;
-
-   return stream;
-
-}
-
-
-// template < typename FILE >
-::binary_stream & operator >>(::binary_stream & stream, ::user::rich_text::edit_impl & editimpl)
-{
-
-   stream >> (::user::picture &)editimpl;
-
-   stream >> *editimpl.m_pdata;
-
-   ::rectangle_i32 rectangleWindow;
-
-   stream >> rectangleWindow;
-
-   editimpl.place(rectangleWindow);
-
-   editimpl.display(e_display_normal);
-
-   editimpl.set_need_layout();
-
-   return stream;
-
-}
+//
+//// template < typename FILE >
+//::binary_stream & operator <<(::binary_stream & stream, ::user::rich_text::edit_impl & editimpl)
+//{
+//
+//   stream << (const ::user::picture &) editimpl;
+//
+//   stream << *editimpl.m_pdata;
+//
+//   ::rectangle_i32 rectangleWindow;
+//
+//   rectangleWindow = editimpl.window_rectangle();
+//
+//   if (((::user::rich_text::edit_impl & )editimpl).get_parent() != nullptr)
+//   {
+//
+//      ((::user::rich_text::edit_impl&)editimpl).get_parent()->screen_to_client()(rectangleWindow);
+//
+//   }
+//
+//   stream << rectangleWindow;
+//
+//   return stream;
+//
+//}
+//
+//
+//// template < typename FILE >
+//::binary_stream & operator >>(::binary_stream & stream, ::user::rich_text::edit_impl & editimpl)
+//{
+//
+//   stream >> (::user::picture &)editimpl;
+//
+//   stream >> *editimpl.m_pdata;
+//
+//   ::rectangle_i32 rectangleWindow;
+//
+//   stream >> rectangleWindow;
+//
+//   editimpl.place(rectangleWindow);
+//
+//   editimpl.display(e_display_normal);
+//
+//   editimpl.set_need_layout();
+//
+//   return stream;
+//
+//}
 
 
 

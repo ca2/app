@@ -12,6 +12,7 @@
 #include "framework.h"
 #include "VScrollPanel.h"
 #include "Screen.h"
+#include "acme/constant/user_key.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/application.h"
 #include "aura/user/user/interaction.h"

@@ -16,6 +16,7 @@
 #include "Popup.h"
 #include "Button.h"
 #include "acme/constant/_font_awesome.h"
+#include "acme/constant/user_key.h"
 #include "acme/handler/item.h"
 #include "aura/user/user/interaction.h"
 #include "nano2d/context.h"

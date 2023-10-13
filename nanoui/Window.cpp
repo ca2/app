@@ -13,6 +13,7 @@
 #include "Layout.h"
 #include "PopupButton.h"
 #include "Screen.h"
+#include "acme/constant/user_key.h"
 #include "nano2d/context.h"
 #include "aura/user/user/interaction.h"
 

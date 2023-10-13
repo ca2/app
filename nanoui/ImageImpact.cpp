@@ -13,6 +13,7 @@
 #include "Screen.h"
 #include "nano2d/context.h"
 #include "acme/constant/message.h"
+#include "acme/constant/user_key.h"
 #include "aura/graphics/image/image.h"
 
 

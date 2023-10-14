@@ -87,6 +87,9 @@ namespace gpu
       ~context() override;
 
 
+      virtual void create_context();
+
+
       virtual void lock_context();
       virtual void unlock_context();
 

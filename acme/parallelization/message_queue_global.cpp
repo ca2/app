@@ -197,28 +197,28 @@ void mq_post_thread_message(itask_t idthread, const ::atom & atom, wparam wparam
 }
 
 
-CLASS_DECL_ACME int_bool mq_peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, ::u32 wRemoveMsg)
-{
-
-   auto pmessagequeue = ::get_message_queue(::current_itask(), false);
-
-   if (pmessagequeue == nullptr)
-   {
-
-      return false;
-
-   }
-
-   if (!pmessagequeue->peek_message(pMsg, oswindow, wMsgFilterMin, wMsgFilterMax, wRemoveMsg))
-   {
-
-      return false;
-
-   }
-
-   return true;
-
-}
+//CLASS_DECL_ACME int_bool mq_peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, ::u32 wRemoveMsg)
+//{
+//
+//   auto pmessagequeue = ::get_message_queue(::current_itask(), false);
+//
+//   if (pmessagequeue == nullptr)
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   if (!pmessagequeue->peek_message(pMsg, oswindow, wMsgFilterMin, wMsgFilterMax, wRemoveMsg))
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   return true;
+//
+//}
 
 
 CLASS_DECL_ACME ::e_status mq_get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax)

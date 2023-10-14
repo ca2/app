@@ -284,6 +284,13 @@ namespace gpu
    }
 
 
+   void context::create_context()
+   {
+
+
+   }
+
+
    void context::lock_context()
    {
 

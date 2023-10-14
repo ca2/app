@@ -51,6 +51,20 @@
 #elif defined(LINUX) || defined(FREEBSD)
 
 
+#define __GPU_OPENGL_USE_EGL
+
+
+#ifdef __GPU_OPENGL_USE_EGL
+
+#include <GL/gl.h>
+#include <EGL/egl.h>
+#include <EGL/eglext.h>
+// OpenGL ES includes
+#include <GLES3/gl3.h>
+#include <GLES3/gl3ext.h>
+
+#else
+
 // Enable function definitions in the GL headers below
 #define GL_GLEXT_PROTOTYPES 1
 
@@ -61,20 +75,20 @@
 //#define GL_GLEXT_PROTOTYPES 1
 //#include <GLES/gl.h>
 //#include <GLES/glext.h>
-#include <glad.h>
+//#include <glad.h>
 
 // OpenGL ES includes
 //#include <GLES2/gl2.h>
 //#include <GLES2/gl2ext.h>
 
 
-//#include <GL/gl.h>
+#include <GL/gl.h>
 
 
 // apt install libosmesa6-dev
 // dnf install mesa-libOSMesa-devel
-#define GLAPI extern
-#include <GL/osmesa.h>
+///#define GLAPI extern
+//#include <GL/osmesa.h>
 //#include <GL/glx.h>
 
 // Ubuntu  libglfw3-dev
@@ -84,6 +98,8 @@
 //#include <GL/glu.h>
 
 //#include <glm/glm.hpp>
+
+#endif
 
 
 #elif defined(MACOS)

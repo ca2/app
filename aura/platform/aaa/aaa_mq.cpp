@@ -477,28 +477,28 @@ CLASS_DECL_AURA int_bool message_queue_post(oswindow oswindow, const ::atom & at
 }
 
 
-CLASS_DECL_AURA int_bool mq_peek_message(LPMESSAGE pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, ::u32 wRemoveMsg)
-{
-
-   auto pmq = ::get_message_queue(::current_itask(), false);
-
-   if (pmq == nullptr)
-   {
-
-      return false;
-
-   }
-
-   if (!pmq->peek_message(pMsg, oswindow, wMsgFilterMin, wMsgFilterMax, wRemoveMsg))
-   {
-
-      return false;
-
-   }
-
-   return true;
-
-}
+//CLASS_DECL_AURA int_bool mq_peek_message(LPMESSAGE pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, ::u32 wRemoveMsg)
+//{
+//
+//   auto pmq = ::get_message_queue(::current_itask(), false);
+//
+//   if (pmq == nullptr)
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   if (!pmq->peek_message(pMsg, oswindow, wMsgFilterMin, wMsgFilterMax, wRemoveMsg))
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   return true;
+//
+//}
 
 
 CLASS_DECL_AURA int_bool mq_get_message(LPMESSAGE pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax)

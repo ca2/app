@@ -68,6 +68,8 @@ namespace opengl
 
       glCompileShader(uShader);
 
+      information() << "compiling shader : " << sza[0];
+
       //string strSummary;
 
       //::e_status estatus =
@@ -324,6 +326,8 @@ namespace opengl
          const char * pszLog = infoLog;
 
          strSummary.format("error::SHADER_COMPILATION_ERROR of type: %s \n %s \n -- --------------------------------------------------- -- \n", psz, pszLog);
+
+         warning() << strSummary;
 
          throw ::exception(error_failed, "Shader Compilation Error", strSummary);
 

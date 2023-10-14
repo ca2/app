@@ -18,10 +18,10 @@ namespace opengl
 {
 
 
-   ::gpu::context * create_glx_context()
+   ::pointer <::gpu::context > allocate_glx_context(::particle * pparticle)
    {
 
-      return memory_new context_glx();
+      return pparticle->__create_new < context_glx >();
 
    }
 

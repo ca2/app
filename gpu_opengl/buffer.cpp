@@ -41,11 +41,22 @@ namespace opengl
       int cy = m_pimage->m_size.cy();
       
 #if defined(__APPLE__) || defined(ANDROID)
-      
+
       glReadPixels(
          0, 0,
          cx, cy,
          GL_RGBA,
+         GL_UNSIGNED_BYTE,
+         m_pimage->m_pimage32Raw);
+
+      //m_pimage->mult_alpha();
+
+#elif defined(LINUX)
+
+      glReadPixels(
+         0, 0,
+         cx, cy,
+         GL_BGRA,
          GL_UNSIGNED_BYTE,
          m_pimage->m_pimage32Raw);
       

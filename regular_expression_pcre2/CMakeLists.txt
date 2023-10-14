@@ -49,6 +49,9 @@ if (MSVC)
 
 elseif (${LINUX} OR ${FREEBSD})
 
+   target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
+
+
 
     if (${USE_PKGCONFIG})
         pkg_check_modules(PKGCONFIG libpcre2-8)
@@ -59,7 +62,7 @@ elseif (${LINUX} OR ${FREEBSD})
     message(STATUS "PKGCONFIG_LDFLAGS is ${PKGCONFIG_LDFLAGS}")
     message(STATUS "PKGCONFIG_LIBRARIES is ${PKGCONFIG_LIBRARIES}")
 
-    target_compile_options(${PROJECT_NAME} PRIVATE $<$<COMPILE_LANGUAGE:CXX>:-fpermissive>)
+    target_compile_options(${PROJECT_NAME} PRIVATE $<$<COMPILE_LANGUAGE:CXX>:-fpermissive  ${EXTRA_CXX_TARGET_COMPILER_OPTIONS}>)
     target_compile_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
     target_compile_definitions(static_${PROJECT_NAME} PRIVATE CUBE)
 

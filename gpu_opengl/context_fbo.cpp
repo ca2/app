@@ -16,10 +16,10 @@ namespace opengl
 {
 
 
-   ::gpu::context * create_fbo_context()
+   ::pointer <::gpu::context > allocate_fbo_context(::particle * pparticle)
    {
 
-      return memory_new context_fbo();
+      return pparticle->__create_new < context_fbo >();
 
    }
 

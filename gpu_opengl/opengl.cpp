@@ -11,25 +11,25 @@ namespace opengl
 
 #ifdef WINDOWS_DESKTOP
 
-   ::pointer <::gpu::context > create_system_context(::particle * pparticle);
+   ::pointer <::gpu::context > allocate_system_context(::particle * pparticle);
 
 #elif defined(__APPLE__)
 
 #if 1
 
-   ::gpu::context * create_fbo_context();
+   ::pointer <::gpu::context > allocate_fbo_context(::particle * pparticle);
 
 #else
 
-   ::gpu::context * create_cgl_context();
+   ::pointer <::gpu::context > allocate_cgl_context(::particle * pparticle);
 
 #endif
 
 #else
 
-   ::gpu::context * create_egl_context();
+   ::pointer <::gpu::context > allocate_egl_context(::particle * pparticle);
 
-   ::gpu::context * create_glx_context();
+   ::pointer <::gpu::context > allocate_glx_context(::particle * pparticle);
 
 #endif
 
@@ -115,25 +115,27 @@ namespace opengl
    ::pointer < ::gpu::context > opengl::create_context(::particle * pparticle)
    {
 
+      ::pointer < ::gpu::context > pgpucontext;
+
 #ifdef WINDOWS_DESKTOP
 
-      return create_system_context(pparticle);
+      pgpucontext = allocate_system_context(pparticle);
 
 #elif defined(__APPLE__)
       
 #if 1
 
-      return create_fbo_context();
+      pgpucontext = allocate_fbo_context(pparticle);
       
 #else
       
-      return create_cgl_context();
+      pgpucontext = allocate_cgl_context(pparticle);
       
 #endif
 
 #elif defined(ANDROID)
 
-      return create_egl_context();
+      pgpucontext = allocate_egl_context(pparticle);
 
 #else
 
@@ -142,17 +144,28 @@ namespace opengl
       if(strWaylandDisplay.has_char())
       {
 
-         return create_egl_context();
+         pgpucontext = allocate_egl_context(pparticle);
 
       }
       else
       {
 
-         return create_glx_context();
+         pgpucontext = allocate_glx_context(pparticle);
 
       }
 
 #endif
+
+      if(!pgpucontext)
+      {
+
+         return nullptr;
+
+      }
+
+      pgpucontext->create_context();
+
+      return pgpucontext;
 
    }
 
@@ -160,7 +173,11 @@ namespace opengl
    void opengl::defer_init_glew()
    {
 
+#if !defined(LINUX)
+
       gladLoadGL();
+
+#endif
 
 //      if (!m_bGlewInit)
 //      {

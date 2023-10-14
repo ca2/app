@@ -53,8 +53,13 @@ if (MSVC)
     target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references})
     target_link_options(${PROJECT_NAME} PRIVATE "/SUBSYSTEM:WINDOWS")
 elseif (${LINUX} OR ${FREEBSD})
-    target_compile_options(${PROJECT_NAME} PRIVATE $<$<COMPILE_LANGUAGE:CXX>:-fpermissive>)
-    target_compile_options(static_${PROJECT_NAME} PRIVATE $<$<COMPILE_LANGUAGE:CXX>:-fpermissive>)
+
+   target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
+
+
+   target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
+    target_compile_options(${PROJECT_NAME} PRIVATE $<$<COMPILE_LANGUAGE:CXX>:-fpermissive  ${EXTRA_CXX_TARGET_COMPILER_OPTIONS}>)
+    target_compile_options(static_${PROJECT_NAME} PRIVATE $<$<COMPILE_LANGUAGE:CXX>:-fpermissive  ${EXTRA_CXX_TARGET_COMPILER_OPTIONS}>)
     target_compile_definitions(static_${PROJECT_NAME} PRIVATE CUBE)
 
     #target_link_options(${PROJECT_NAME}  PRIVATE -Wl,-rpath=$ORIGIN)

@@ -4,6 +4,8 @@
 #include "acme/_operating_system.h"
 #include "context.h"
 //#include "aura/os/_os.h"
+///#include "glad_egl.h"
+
 #include <EGL/egl.h>
 #include <EGL/eglext.h>
 
@@ -25,17 +27,21 @@ namespace opengl
 
 
       context_egl();
-      virtual ~context_egl();
+      ~context_egl() override;
 
-      virtual void _create_offscreen_buffer(const ::size_i32& size) override;
-      virtual void resize_offscreen_buffer(const ::size_i32& size) override;
-      virtual void destroy_offscreen_buffer() override;
 
-      virtual void make_current() override;
+      void create_context() override;
 
-      virtual string get_shader_version_text() override;
 
-      virtual void _translate_shader(string_array& stra) override;
+      void _create_offscreen_buffer(const ::size_i32& size) override;
+      void resize_offscreen_buffer(const ::size_i32& size) override;
+      void destroy_offscreen_buffer() override;
+
+      void make_current() override;
+
+      string get_shader_version_text() override;
+
+      void _translate_shader(string_array& stra) override;
 
 
    };

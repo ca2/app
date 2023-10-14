@@ -739,6 +739,14 @@ bool acme_file::_memory_map_file_copy(const ::file::path & pathTarget, const ::f
 void acme_file::_read_write_file_copy(const ::file::path & pathTarget, const ::file::path & pathSource, ::memsize sizeBuffer)
 {
 
+   if(pathSource.case_insensitive_ends("/store.zip"))
+   {
+
+
+      information() << "copy .../store.zip";
+
+   }
+
    auto pfileIn = get_file(pathSource, ::file::e_open_read | ::file::e_open_binary);
    
    auto pfileOut = get_file(pathTarget, ::file::e_open_write | ::file::e_open_binary

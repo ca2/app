@@ -1466,7 +1466,7 @@ namespace user
 
       auto paurasystem = psystem->m_paurasystem;
 
-      pauranode->m_pwindowing = m_pwindowing;
+      pauranode->m_pwindowingAuraNode = m_pwindowing;
 
       printf("aura::user::create_windowing end\n");
 

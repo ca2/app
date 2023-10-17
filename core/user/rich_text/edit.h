@@ -1,8 +1,9 @@
 #pragma once
 
 
-#include "base/user/user/picture_interaction.h"
+#include "selection.h"
 #include "aura/user/user/text_composition_composite.h"
+#include "base/user/user/picture_interaction.h"
 
 
 namespace user
@@ -16,7 +17,8 @@ namespace user
       class CLASS_DECL_CORE edit :
          virtual public ::user::interaction,
          virtual public ::user::picture_interaction,
-         virtual public text_composition_composite
+         virtual public text_composition_composite,
+         virtual public ::user::rich_text::selection
 //#ifdef WINDOWS_DESKTOP
   //       , virtual public ::imm_client
 //#endif
@@ -34,7 +36,7 @@ namespace user
          //index                                      m_iFormatDefault;
          bool                                         m_bCaretRight;
          ::pointer < ::user::rich_text::data >        m_prichtextdataOwned;
-
+         bool                                         m_bShouldDrawOverride;
          
 
 
@@ -53,6 +55,13 @@ namespace user
          virtual bool get_item_rect(::rectangle_i32 * prectangle, index i);
 
          virtual bool get_element_rectangle(::rectangle_i32 * prectangle, index i, enum_element eelement);
+
+
+         ::user::drawable * get_drawable() override;
+
+         bool should_draw() override;
+
+         bool is_this_visible(enum_layout elayout = e_layout_design) override;
 
 
          virtual ::size_f64 get_size() override;

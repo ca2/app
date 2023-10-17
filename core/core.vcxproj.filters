@@ -947,6 +947,9 @@
     <ClInclude Include="filesystem\userfs\tree_data.h">
       <Filter>Header Files\filesystem\userfs</Filter>
     </ClInclude>
+    <ClInclude Include="user\rich_text\selection.h">
+      <Filter>Header Files\user\rich_text</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="user\user\tooltip.cpp">
@@ -1457,6 +1460,9 @@
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\rich_text\format_host.cpp">
+      <Filter>Source Files\user\rich_text</Filter>
+    </ClCompile>
+    <ClCompile Include="user\rich_text\selection.cpp">
       <Filter>Source Files\user\rich_text</Filter>
     </ClCompile>
   </ItemGroup>

@@ -37,6 +37,9 @@ namespace user
 
       edit::edit()
       {
+
+         m_bShouldDrawOverride = false;
+
          m_bCaretRight = false;
 
          m_iSelBeg = 0;
@@ -189,9 +192,9 @@ namespace user
 
          auto pformattool = get_format_tool(true);
 
-         auto pformathost = get_format_host();
+         ::user::rich_text::selection * pselection = this;
 
-         pformattool->show_for_ui(this, pformathost);
+         pformattool->show_for_ui(this, pselection);
 
       }
 
@@ -270,6 +273,30 @@ namespace user
          UNREFERENCED_PARAMETER(pmessage);
          
          //auto pmouse = pmessage->m_union.m_pmouse;
+
+      }
+
+
+      ::user::drawable * edit::get_drawable()
+      {
+
+         return this;
+
+      }
+
+
+      bool edit::should_draw()
+      {
+
+         return m_bShouldDrawOverride || m_ppictureimpl.is_null();
+
+      }
+
+
+      bool edit::is_this_visible(enum_layout elayout)
+      {
+
+         return should_draw() || ::user::interaction::is_this_visible(elayout);
 
       }
 
@@ -1241,8 +1268,6 @@ namespace user
       }
 
 
-
-
       void edit::draw_impl(::draw2d::graphics_pointer & pgraphics)
       {
 
@@ -1386,6 +1411,8 @@ namespace user
       {
 
          return nullptr;
+
+         //return this;
 
       }
 

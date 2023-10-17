@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "format_tool.h"
 #include "format.h"
+#include "selection.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
 #include "acme/handler/item.h"
@@ -326,8 +327,6 @@ namespace user
          return get_owner() == pinteraction;
 
       }
-
-
 
 
       void format_tool::handle(::topic * ptopic, ::context * pcontext)
@@ -832,12 +831,12 @@ namespace user
       }
 
 
-      void format_tool::show_for_ui(::user::interaction * puserinteraction, ::user::rich_text::format_host * pformathost)
+      void format_tool::show_for_ui(::user::interaction * puserinteraction, ::user::rich_text::selection * pselection)
       {
 
          information() << "show_for_ui";
 
-         m_pformat = pformathost->get_selection_common_format();
+         m_pformat = pselection->get_selection_common_format();
 
          ::rectangle_i32 rectangleOther;
 

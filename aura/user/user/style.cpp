@@ -285,28 +285,28 @@ namespace user
 
       ::rectangle_i32 rectangleX = pinteraction->::user::interaction::rectangle();
 
-      double dRotate = pinteraction->get_rotate();
+      //double dRotate = pinteraction->get_rotate();
 
-      if (dRotate != 0.)
-      {
+      //if (dRotate != 0.)
+      //{
 
-         ::geometry2d::matrix mRot;
+      //   ::geometry2d::matrix mRot;
 
-         mRot.append(::geometry2d::matrix::rotation(dRotate));
+      //   mRot.append(::geometry2d::matrix::rotation(dRotate));
 
-         pgraphics->prepend(mRot);
+      //   pgraphics->prepend(mRot);
 
-         ::geometry2d::matrix mTrans;
+      //   ::geometry2d::matrix mTrans;
 
-         auto offset = rectangleX.center();
+      //   auto offset = rectangleX.center();
 
-         mTrans.append(::geometry2d::matrix::translation(offset.x(), offset.y()));
+      //   mTrans.append(::geometry2d::matrix::translation(offset.x(), offset.y()));
 
-         pgraphics->append(mTrans);
+      //   pgraphics->append(mTrans);
 
-         rectangleX -= offset;
+      //   rectangleX -= offset;
 
-      }
+      //}
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 

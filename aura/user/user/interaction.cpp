@@ -5717,6 +5717,14 @@ namespace user
    //}
 
 
+   ::user::drawable * interaction::get_drawable()
+   {
+
+      return nullptr;
+
+   }
+
+
    void interaction::defer_do_graphics(::draw2d::graphics_pointer & pgraphics)
    {
 
@@ -5993,7 +6001,20 @@ namespace user
       try
       {
 
-         _000OnDraw(pgraphics);
+         auto pdrawable = get_drawable();
+
+         if (pdrawable)
+         {
+
+            pdrawable->_000DrawImpl(pgraphics);
+
+         }
+         else
+         {
+
+            _000OnDraw(pgraphics);
+
+         }
 
       }
       catch (...)
@@ -6067,6 +6088,8 @@ namespace user
    {
 
       scoped_restore(pgraphics->m_bInheritDraw);
+
+      auto pszType = typeid(*this).name();
 
       if (pgraphics->m_bInheritDraw && !(pgraphics->m_egraphics & e_graphics_draw))
       {
@@ -6150,7 +6173,7 @@ namespace user
 
             }
 
-            if (m_bOnDraw)
+            if (m_bOnDraw && should_draw())
             {
 
                pgraphics->m_dFontFactor = 1.0;
@@ -6278,7 +6301,7 @@ namespace user
 
          }
 
-         if (pgraphics->m_bInheritDraw)
+         if (pgraphics->m_bInheritDraw && should_draw())
          {
 
             try
@@ -23677,6 +23700,17 @@ namespace user
 
       host_to_client()(pointClient);
 
+      auto r = this->client_rectangle();
+
+      if (!r.contains(pointClient))
+      {
+
+         auto pitemNone = __new(item(e_element_none));
+
+         return pitemNone;
+
+      }
+
       auto pitem = hit_test(pointClient, ezorder);
 
       if (!pitem)
@@ -23723,6 +23757,30 @@ namespace user
       puseritem->m_pointClient = pointClient;
 
       return pitem;
+
+   }
+
+
+   ::item_pointer interaction::parent_client_hit_test(const ::point_i32 & point, e_zorder ezorder)
+   {
+
+      auto p = point;
+
+      parent_to_client()(p);
+
+      return hit_test(p, ezorder);
+
+   }
+
+
+   ::item_pointer interaction::parent_client_on_hit_test(const ::point_i32 & point, e_zorder ezorder)
+   {
+
+      auto p = point;
+
+      parent_to_client()(p);
+
+      return hit_test(p, ezorder);
 
    }
 
@@ -26327,8 +26385,15 @@ namespace user
    bool interaction::is_window_visible(enum_layout elayout)
    {
 
-      return m_puserinteractionParent && !m_puserinteractionParent->is_window_visible(elayout) ? false : m_layout.state(
-              elayout).is_visible();
+      if (m_puserinteractionParent
+         && !m_puserinteractionParent->is_window_visible(elayout))
+      {
+
+         return false;
+
+      }
+
+      return is_this_visible(elayout);
 
    }
 

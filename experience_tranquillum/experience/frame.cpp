@@ -19,7 +19,9 @@ namespace experience_tranquillum
    frame::frame()
    {
 
-      m_colorActiveCaptionTextBk = ::color::transparent;
+      m_colorActiveCaptionTextBk = argb(255, 255, 255, 255);
+
+      m_colorCaptionTextBk = argb(255, 192, 192, 192);
 
       m_rectangleMarginNormal.set(1, 1, 1, 1);
 

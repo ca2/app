@@ -129,7 +129,7 @@ namespace user
    }
 
 
-   ::item_pointer picture::on_hit_test(const ::point_i32 &point, ::user::e_zorder ezorder)
+   ::item_pointer picture::parent_client_on_hit_test(const ::point_i32 &point, ::user::e_zorder ezorder)
    {
 
       ASSERT(is_picture_enabled());
@@ -870,6 +870,7 @@ namespace user
 
    }
 
+
    void picture::defer_draw_drop_shadow_phase2(::draw2d::graphics_pointer & pgraphics, const rectangle_i32 & rectangle, ::draw2d::fastblur & pblurDropShadow, ::image_pointer & pimageDropShadow)
    {
 
@@ -900,7 +901,15 @@ namespace user
    }
 
 
-   ::item_pointer picture::hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
+   bool picture::is_picture_hover()
+   {
+
+      return false;
+
+   }
+
+
+   ::item_pointer picture::parent_client_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
    {
 
       //item.m_pointScreen = point;
@@ -909,7 +918,7 @@ namespace user
 
       //item.m_pointHitTest = item.m_pointClient;
 
-      return on_hit_test(point, ezorder);
+      return parent_client_on_hit_test(point, ezorder);
 
    }
 
@@ -957,7 +966,7 @@ namespace user
       polygon_i32[2] = _transform_drawing(rectangleClip.bottom_right());
       polygon_i32[3] = _transform_drawing(rectangleClip.bottom_left());
 
-      pgraphics->intersect_clip(polygon_i32);
+      //pgraphics->intersect_clip(polygon_i32);
 
       mRot.append(::geometry2d::matrix::rotation(m_ppictureimpl->m_dRotate));
 

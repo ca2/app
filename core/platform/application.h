@@ -33,6 +33,8 @@ namespace core
       ::pointer<::progress::real>show_progress(::user::interaction* puiParent, const ::string & pszTitle, ::count iProgressCount) override;
 
 
+      virtual void initialize_rich_text_kit();
+
       //virtual void prepare_impact_menu(::user::menu * pmenu);
 
 

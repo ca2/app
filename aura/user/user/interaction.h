@@ -1446,10 +1446,15 @@ namespace user
 
 //      virtual void enable_window(bool bEnable = true) override;
 
+
+      virtual ::user::drawable * get_drawable();
+
       //virtual void process_queue(::draw2d::graphics_pointer & pgraphics);
 
       //virtual void do_graphics(::draw2d::graphics_pointer & pgraphics);
       //virtual void on_graphics(::draw2d::graphics_pointer & pgraphics);
+
+
       virtual void defer_do_graphics(::draw2d::graphics_pointer & pgraphics);
       virtual void defer_do_layout(::draw2d::graphics_pointer & pgraphics);
       void _000TopCallOnDraw(::draw2d::graphics_pointer & pgraphics);
@@ -1467,6 +1472,8 @@ namespace user
       virtual void _001OnNcClip(::draw2d::graphics_pointer& pgraphics);
       virtual void _001OnClip(::draw2d::graphics_pointer & pgraphics);
       virtual void draw_control_background(::draw2d::graphics_pointer & pgraphics) ;
+
+
 
       virtual bool is_custom_draw();
 
@@ -2267,14 +2274,15 @@ namespace user
 
       //virtual bool simple_on_control_event(::message::message* pmessage, ::enum_topic etopic);
 
-      ::item_pointer hit_test(::user::mouse * pmouse, e_zorder ezorder) override;
+      virtual ::item_pointer hit_test(::user::mouse * pmouse, e_zorder ezorder);
 
-      //using ::aura::drawable::hit_test;
-      ::item_pointer hit_test(const ::point_i32 & point, e_zorder ezorder) override;
+      virtual ::item_pointer hit_test(const ::point_i32 & point, e_zorder ezorder);
 
-      //using ::aura::drawable::on_hit_test;
-      ::item_pointer on_hit_test(const ::point_i32 & point, e_zorder ezorder) override;
+      virtual ::item_pointer on_hit_test(const ::point_i32 & point, e_zorder ezorder);
 
+      ::item_pointer parent_client_hit_test(const ::point_i32 & point, e_zorder ezorder) override;
+
+      ::item_pointer parent_client_on_hit_test(const ::point_i32 & point, e_zorder ezorder) override;
 
       virtual bool item_contains(::item * pitem, const ::point_i32 & point);
 

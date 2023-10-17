@@ -7034,8 +7034,15 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 
       information() << "on_final_kill_keyboard_focus";
 
-      if (m_puserinteractionToKillKeyboardFocus && m_puserinteractionToKillKeyboardFocus != m_puserinteractionKeyboardFocusRequest)
+      if (m_puserinteractionToKillKeyboardFocus)
       {
+
+         if (m_puserinteractionKeyboardFocusRequest == m_puserinteractionToKillKeyboardFocus)
+         {
+
+            m_puserinteractionKeyboardFocusRequest.release();
+
+         }
 
          auto pinteraction = m_puserinteractionToKillKeyboardFocus;
 

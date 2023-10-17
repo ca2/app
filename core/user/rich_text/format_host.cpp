@@ -38,12 +38,12 @@ namespace user
       }
 
 
-      ::pointer<format>format_host::get_selection_common_format()
-      {
+      //::pointer<format>format_host::get_selection_common_format()
+      //{
 
-         return nullptr;
+      //   return nullptr;
 
-      }
+      //}
 
 
 

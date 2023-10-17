@@ -63,7 +63,7 @@ namespace user
 
          void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
-         virtual void show_for_ui(::user::interaction * puserinteraction, ::user::rich_text::format_host * pformathost);
+         virtual void show_for_ui(::user::interaction * puserinteraction, ::user::rich_text::selection * pselection);
 
          void handle(::topic * ptopic, ::context * pcontext) override;
 

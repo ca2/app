@@ -80,11 +80,15 @@ namespace user
       virtual bool enable_picture(bool bEnable = true);
       virtual bool is_picture_enabled() const;
 
-      using ::user::drawable::hit_test;
-      ::item_pointer hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;
+
+      virtual bool is_picture_hover();
 
 
-      ::item_pointer on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;
+      using ::user::drawable::parent_client_hit_test;
+      ::item_pointer parent_client_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;
+
+
+      virtual ::item_pointer parent_client_on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder);
       //virtual int on_hit_test_cursor(point_f64 point);
       //virtual int on_hit_test( point_i32) const;
       virtual bool intersects_drawing(const polygon_f64 & polygon_i32) const;

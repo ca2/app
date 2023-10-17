@@ -367,6 +367,13 @@ bool acme_file::exists(const ::file::path & pathParam)
 
    auto path = acmepath()->defer_process_relative_path(pathParam);
 
+   if (path.case_insensitive_begins("data:"))
+   {
+
+      return true;
+
+   }
+
    auto bExists = _exists(path);
 
    if(!bExists)

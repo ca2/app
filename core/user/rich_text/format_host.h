@@ -24,7 +24,7 @@ namespace user
 
          virtual ::pointer<::user::rich_text::format>add_format();
 
-         virtual ::pointer<::user::rich_text::format>get_selection_common_format();
+         //virtual ::pointer<::user::rich_text::format>get_selection_common_format();
 
 
       };

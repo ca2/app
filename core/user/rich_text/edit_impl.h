@@ -42,7 +42,9 @@ namespace user
          virtual double get_rotate() override;
 
 
-         virtual void draw_control_background(::draw2d::graphics_pointer & pgraphics) override;
+         void draw_control_background(::draw2d::graphics_pointer & pgraphics) override;
+
+         void _001OnNcPostDraw(::draw2d::graphics_pointer & pgraphics) override;
 
          //virtual void do_layout() override;
 
@@ -93,9 +95,13 @@ namespace user
 
          void install_message_routing(::channel * psender) override;
 
+         void _001CallOnDraw(::draw2d::graphics_pointer & pgraphics) override;
+
          void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
          void draw_impl(::draw2d::graphics_pointer & pgraphics) override;
+
+         void _000DrawImpl(::draw2d::graphics_pointer & pgraphics) override;
 
          ::pointer<format_tool>get_format_tool(bool bCreate);
 

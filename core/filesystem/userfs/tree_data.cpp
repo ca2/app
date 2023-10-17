@@ -1,7 +1,7 @@
 #include "framework.h"
-#include "tree.h"
 #include "document.h"
 #include "item.h"
+#include "tree_data.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
 #include "acme/platform/application.h"
@@ -12,14 +12,14 @@
 #include "acme/primitive/data/listener.h"
 #include "aura/user/user/interaction.h"
 #include "base/user/user/impact.h"
-#include "core/user/user/tree.h"
+#include "core/user/user/tree_data.h"
 
 
 namespace userfs
 {
 
 
-   tree::tree()
+   tree_data::tree_data()
    {
 
       m_iAnimate = 0;
@@ -27,13 +27,13 @@ namespace userfs
    }
 
 
-   tree::~tree()
+   tree_data::~tree_data()
    {
 
    }
 
 
-   ::core::application* tree::get_app()
+   ::core::application* tree_data::get_app()
    {
 
       auto pacmeapplication = acmeapplication();
@@ -43,7 +43,7 @@ namespace userfs
    }
 
 
-   ::core::session* tree::get_session()
+   ::core::session* tree_data::get_session()
    {
 
       auto pacmesession = acmesession();
@@ -53,7 +53,7 @@ namespace userfs
    }
 
 
-   ::core::system* tree::get_system()
+   ::core::system* tree_data::get_system()
    {
 
       auto pacmesystem = acmesystem();
@@ -65,7 +65,7 @@ namespace userfs
 
 #ifdef _DEBUG
 
-   i64 tree::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+   i64 tree_data::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
    {
 
       auto c = m_countReference++;
@@ -81,7 +81,7 @@ namespace userfs
    }
 
 
-   i64 tree::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+   i64 tree_data::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
    {
 
       auto c = m_countReference--;
@@ -102,7 +102,7 @@ namespace userfs
    }
 
 
-   i64 tree::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+   i64 tree_data::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
    {
 
       i64 i = decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
@@ -122,36 +122,36 @@ namespace userfs
 #endif
 
 
-//   void tree::assert_ok() const
+//   void tree_data::assert_ok() const
 //   {
 //
 //   }
 //
 //
-//   void tree::dump(dump_context &) const
+//   void tree_data::dump(dump_context &) const
 //   {
 //   }
 
 
 
-   void tree::install_message_routing(::channel * pchannel)
+   void tree_data::install_message_routing(::channel * pchannel)
    {
 
-      MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &tree::on_message_create);
-      MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &tree::on_message_left_button_double_click);
-      MESSAGE_LINK(e_message_context_menu, pchannel, this, &tree::on_message_context_menu);
+      MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &tree_data::on_message_create);
+      MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &tree_data::on_message_left_button_double_click);
+      MESSAGE_LINK(e_message_context_menu, pchannel, this, &tree_data::on_message_context_menu);
 
    }
 
 
 
 
-   void tree::on_message_left_button_double_click(::message::message * pmessage)
+   void tree_data::on_message_left_button_double_click(::message::message * pmessage)
    {
       UNREFERENCED_PARAMETER(pmessage);
    }
 
-   void tree::on_message_context_menu(::message::message * pmessage)
+   void tree_data::on_message_context_menu(::message::message * pmessage)
    {
 
       UNREFERENCED_PARAMETER(pmessage);
@@ -159,7 +159,7 @@ namespace userfs
       //   i32 iItem;
       //   HRESULT hr;
 //         auto point = pcontextmenu->GetPoint();
-//      ::user::tree::screen_to_client(&point);
+//      ::user::tree_data::screen_to_client(&point);
       /*     if(_001HitTest_(point, iItem))
          {
          CSimpleMenu menu(CBaseMenuCentral::GetMenuCentral());
@@ -215,7 +215,7 @@ namespace userfs
    }
 
 
-   void tree::_001OnTimer(::timer * ptimer)
+   void tree_data::_001OnTimer(::timer * ptimer)
    {
 
       if (ptimer->m_uEvent == 1234567)
@@ -249,7 +249,7 @@ namespace userfs
    }
 
 
-   void tree::StartAnimation(::user::interaction * pinteraction)
+   void tree_data::StartAnimation(::user::interaction * pinteraction)
    {
       
       m_iAnimate = 1;
@@ -259,7 +259,7 @@ namespace userfs
    }
 
 
-   void tree::_001OnShellCommand(::message::message * pmessage)
+   void tree_data::_001OnShellCommand(::message::message * pmessage)
    {
 
       UNREFERENCED_PARAMETER(pmessage);
@@ -267,15 +267,15 @@ namespace userfs
    }
 
 
-   void tree::_017OpenFolder(::pointer<::file::item>pitem, const ::action_context & context)
+   void tree_data::_017OpenFolder(::pointer<::file::item>pitem, const ::action_context & context)
    {
 
-      get_document()->browse(pitem, context);
+      m_puserfsdocument->browse(pitem, context);
 
    }
 
 
-   void tree::on_message_create(::message::message * pmessage)
+   void tree_data::on_message_create(::message::message * pmessage)
    {
 
       UNREFERENCED_PARAMETER(pmessage);
@@ -285,26 +285,26 @@ namespace userfs
 
 
 
-   void tree::update_list()
+   void tree_data::update_list()
    {
 
    }
 
 
-   void tree::browse_sync(const ::action_context & context)
+   void tree_data::browse_sync(const ::action_context & context)
    {
 
 
    }
 
 
-   void tree::_017EnsureVisible(const ::file::path & path, const ::action_context & context)
+   void tree_data::_017EnsureVisible(const ::file::path & path, const ::action_context & context)
    {
 
    }
 
 
-   ::data::tree_item * tree::find_item_by_user_path(const::file::path & pathUser, bool bPathFromItemFromOwnTree, ::data::tree_item * pitemStart)
+   ::data::tree_item * tree_data::find_item_by_user_path(const::file::path & pathUser, bool bPathFromItemFromOwnTree, ::data::tree_item * pitemStart)
    {
 
       return find_user_path(pathUser, bPathFromItemFromOwnTree, pitemStart);
@@ -312,7 +312,7 @@ namespace userfs
    }
 
 
-   void tree::on_insert_columns()
+   void tree_data::on_insert_columns()
    {
 
       /*::user::form_control control;
@@ -338,7 +338,7 @@ namespace userfs
 
    }
 
-   void tree::GetSelectedFilePath(string_array & stra)
+   void tree_data::GetSelectedFilePath(string_array & stra)
    {
 
       ::data::tree_item_ptr_array itemptraSelected;
@@ -355,14 +355,14 @@ namespace userfs
    }
 
 
-   void tree::TakeAnimationSnapshot()
+   void tree_data::TakeAnimationSnapshot()
    {
       m_iAnimate = 1;
-      //   ::user::tree::_001OnDraw(m_gimageuffer.GetBuffer());
+      //   ::user::tree_data::_001OnDraw(m_gimageuffer.GetBuffer());
    }
 
 
-   /*   IShellFolder * tree::_001GetFolder(EFolder efolder)
+   /*   IShellFolder * tree_data::_001GetFolder(EFolder efolder)
    {
    IShellFolder * psf;
 
@@ -411,7 +411,7 @@ namespace userfs
    }
    }*/
 
-   /*   i32 tree::MapToCSIDL(EFolder efolder)
+   /*   i32 tree_data::MapToCSIDL(EFolder efolder)
    {
    switch(efolder)
    {
@@ -423,21 +423,21 @@ namespace userfs
    }
    */
 
-   void tree::_001OnItemExpand(::data::tree_item * pitem, const ::action_context & context)
+   void tree_data::_001OnItemExpand(::data::tree_item * pitem, const ::action_context & context)
    {
    }
 
-   void tree::_001OnItemCollapse(::data::tree_item * pitem, const ::action_context & context)
+   void tree_data::_001OnItemCollapse(::data::tree_item * pitem, const ::action_context & context)
    {
       UNREFERENCED_PARAMETER(pitem);
    }
 
-   bool tree::_001IsTranslucent()
+   bool tree_data::_001IsTranslucent()
    {
       return true;
    }
 
-   void tree::_001OnOpenItem(::data::tree_item * pitem, const ::action_context & context)
+   void tree_data::_001OnOpenItem(::data::tree_item * pitem, const ::action_context & context)
    {
 
       _017OpenFolder(__new(::file::item(*pitem->m_pdataitem.cast < ::userfs::item >())), context);
@@ -448,12 +448,16 @@ namespace userfs
 
 
 
-   ::color::color tree::get_background_color()
+   ::color::color tree_data::get_background_color()
    {
-      if (get_document() == nullptr)
+      
+      if (m_puserfsdocument == nullptr)
       {
+
          return rgb(200, 255, 255);
+
       }
+
       /*      else if(get_filemanager_template()->get_filemanager_data()->is_saving())
       {
       return rgb(255, 180, 90);
@@ -464,7 +468,7 @@ namespace userfs
       }
    }
 
-   ::data::tree_item * tree::find_absolute(const ::file::path & path, bool bPointerFromPathFromItemFromOwnTree, ::data::tree_item * pitemStart)
+   ::data::tree_item * tree_data::find_absolute(const ::file::path & path, bool bPointerFromPathFromItemFromOwnTree, ::data::tree_item * pitemStart)
    {
 
       ::data::tree_item * pitem;
@@ -545,7 +549,7 @@ namespace userfs
    }
 
 
-   ::data::tree_item * tree::find_user_path(const ::file::path & pathUser, bool bPointerFromPathFromItemFromOwnTree, ::data::tree_item * pitemStart)
+   ::data::tree_item * tree_data::find_user_path(const ::file::path & pathUser, bool bPointerFromPathFromItemFromOwnTree, ::data::tree_item * pitemStart)
    {
 
       ::data::tree_item * pitem;
@@ -634,7 +638,7 @@ namespace userfs
    }
 
 
-   void tree::arrange(::fs::e_arrange earrange)
+   void tree_data::arrange(::fs::e_arrange earrange)
    {
 
       //if (earrange == ::fs::arrange_by_name)
@@ -645,16 +649,16 @@ namespace userfs
    }
 
 
-   ::userfs::document * tree::get_document()
-   {
+   //::userfs::document * tree_data::get_document()
+   //{
 
-      return  dynamic_cast < ::userfs::document * > (get_data_container());
+   //   return  dynamic_cast < ::userfs::document * > (get_data_container());
 
-   }
+   //}
 
 
 
-   void tree::handle(::topic * ptopic, ::context * pcontext)
+   void tree_data::handle(::topic * ptopic, ::context * pcontext)
    {
 
       ////__update(::update)

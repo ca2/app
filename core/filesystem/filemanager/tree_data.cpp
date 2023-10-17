@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "tree.h"
+#include "tree_data.h"
 #include "document.h"
 #include "data.h"
 #include "context_menu.h"
@@ -14,29 +14,29 @@
 #include "aura/graphics/image/list.h"
 #include "aura/user/user/shell.h"
 #include "aura/template/list.h"
-#include "core/filesystem/userfs/item.h"
 #include "base/user/user/user.h"
-#include "core/user/user/tree.h"
 #include "aura/message/user.h"
+#include "core/filesystem/userfs/item.h"
+#include "core/user/user/tree.h"
 
 
 namespace filemanager
 {
 
 
-   tree::tree()
+   tree_data::tree_data()
    {
 
    }
 
 
-   tree::~tree()
+   tree_data::~tree_data()
    {
 
    }
 
 
-   ::core::application* tree::get_app()
+   ::core::application* tree_data::get_app()
    {
 
       auto pacmeapplication = acmeapplication();
@@ -46,7 +46,7 @@ namespace filemanager
    }
 
 
-   ::core::session* tree::get_session()
+   ::core::session* tree_data::get_session()
    {
 
       auto pacmesession = acmesession();
@@ -56,7 +56,7 @@ namespace filemanager
    }
 
 
-   ::core::system* tree::get_system()
+   ::core::system* tree_data::get_system()
    {
 
       auto pacmesystem = acmesystem();
@@ -69,7 +69,7 @@ namespace filemanager
 #ifdef _DEBUG
 
 
-   i64 tree::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
+   i64 tree_data::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
    {
 
       return ::object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
@@ -77,7 +77,7 @@ namespace filemanager
    }
 
 
-   i64 tree::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
+   i64 tree_data::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
    {
 
       return ::object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
@@ -85,7 +85,7 @@ namespace filemanager
    }
 
 
-   i64 tree::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
+   i64 tree_data::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
    {
 
       return ::object::release(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
@@ -95,7 +95,7 @@ namespace filemanager
 #endif
 
 
-   void tree::initialize_filemanager_tree(document * pdocument)
+   void tree_data::initialize_filemanager_tree(document * pdocument)
    {
 
       //auto estatus = 
@@ -111,7 +111,7 @@ namespace filemanager
 
       pdocument->add_data(this);
 
-      m_pdatacontainerbase = pdocument;
+      //m_pdatacontainerbase = pdocument;
 
       defer_create_synchronization();
 
@@ -126,7 +126,7 @@ namespace filemanager
    }
 
 
-   void tree::_017EnsureVisible(const ::file::path & pathUser, const ::action_context & context)
+   void tree_data::_017EnsureVisible(const ::file::path & pathUser, const ::action_context & context)
    {
 
       synchronous_lock synchronouslock(m_usertreea.has_elements() ? m_usertreea[0]->synchronization() : nullptr);
@@ -156,7 +156,7 @@ namespace filemanager
    }
 
 
-   void tree::knowledge(const ::file::path& pathUser, const ::action_context& context)
+   void tree_data::knowledge(const ::file::path& pathUser, const ::action_context& context)
    {
 
       knowledge(pathUser, context, false);
@@ -164,7 +164,7 @@ namespace filemanager
    }
 
 
-   void tree::knowledge(const ::file::path & pathUser, const ::action_context & context,bool bOnlyParent)
+   void tree_data::knowledge(const ::file::path & pathUser, const ::action_context & context,bool bOnlyParent)
    {
 
       if (bOnlyParent && pathUser.has_char() && find_item_by_user_path(pathUser))
@@ -255,7 +255,7 @@ namespace filemanager
    }
 
 
-   void tree::browse_sync(const ::action_context & context)
+   void tree_data::browse_sync(const ::action_context & context)
    {
 
       auto pparticleSynchronization = m_usertreea.has_elements() ? m_usertreea[0]->synchronization() : nullptr;
@@ -268,7 +268,7 @@ namespace filemanager
 
       ::file::path pathUser = filemanager_path();
 
-      // Add parent path ascendant tree items
+      // Add parent path ascendant tree_data items
       {
 
          ::file::path path = filemanager_path();
@@ -336,7 +336,7 @@ namespace filemanager
 
       }
 
-      // Add child folder-like tree items
+      // Add child folder-like tree_data items
       {
 
          ::file::path path = filemanager_path();
@@ -352,9 +352,9 @@ namespace filemanager
 
          }
 
-         ::file::listing & listingUser = ::userfs::tree::get_document()->m_listingFolderUser2;
+         ::file::listing & listingUser = m_puserfsdocument->m_listingFolderUser2;
 
-         ::file::listing & listingFinal = ::userfs::tree::get_document()->m_listingFolderFinal2;
+         ::file::listing & listingFinal = m_puserfsdocument->m_listingFolderFinal2;
 
          pointer_array < ::data::tree_item > childrenNew;
 
@@ -458,10 +458,10 @@ namespace filemanager
          }
 
          if (filemanager_data() != nullptr && filemanager_data()->m_ptreeFileTreeMerge != nullptr
-               && !(dynamic_cast <::user::tree *> (filemanager_data()->m_ptreeFileTreeMerge))->m_ptree->contains(this))
+               && !(dynamic_cast <::user::tree_data *> (filemanager_data()->m_ptreeFileTreeMerge))->m_ptree->contains(this))
          {
 
-            filemanager_data()->m_ptreeFileTreeMerge->m_ptree->insert_item(this, ::data::e_relative_first_child);
+            filemanager_data()->m_ptreeFileTreeMerge->m_ptreedata->insert_item(this, ::data::e_relative_first_child);
 
          }
 
@@ -473,9 +473,9 @@ namespace filemanager
 
          string str;
 
-         //::file::listing & listingUser = ::userfs::tree::get_document()->m_listingFolderUser2;
+         //::file::listing & listingUser = ::userfs::tree_data::get_document()->m_listingFolderUser2;
 
-         //::file::listing & listingFinal = ::userfs::tree::get_document()->m_listingFolderFinal2;
+         //::file::listing & listingFinal = ::userfs::tree_data::get_document()->m_listingFolderFinal2;
 
          if (!context.is(::e_source_system))
          {
@@ -556,13 +556,13 @@ namespace filemanager
    }
 
 
-   void tree::on_insert_columns()
+   void tree_data::on_insert_columns()
    {
 
    }
 
 
-   void tree::GetSelectedFilePath(string_array & stra)
+   void tree_data::GetSelectedFilePath(string_array & stra)
    {
 
       ::data::tree_item_ptr_array itemptraSelected;
@@ -580,7 +580,7 @@ namespace filemanager
 
 
 
-   void tree::_001OnMainPostMessage(::message::message * pmessage)
+   void tree_data::_001OnMainPostMessage(::message::message * pmessage)
    {
       
       ::pointer<::user::message>pusermessage(pmessage);
@@ -618,20 +618,20 @@ namespace filemanager
    }
 
 
-   void tree::install_message_routing(::channel * pchannel)
+   void tree_data::install_message_routing(::channel * pchannel)
    {
 
       ::filemanager_impact_base::install_message_routing(pchannel);
-      ::userfs::tree::install_message_routing(pchannel);
+      ::userfs::tree_data::install_message_routing(pchannel);
 
-      MESSAGE_LINK(MessageMainPost, pchannel,  this,  &tree::_001OnMainPostMessage);
-      MESSAGE_LINK(e_message_context_menu, pchannel, this, &tree::on_message_context_menu);
-      MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &tree::on_message_create);
+      MESSAGE_LINK(MessageMainPost, pchannel,  this,  &tree_data::_001OnMainPostMessage);
+      MESSAGE_LINK(e_message_context_menu, pchannel, this, &tree_data::on_message_context_menu);
+      MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &tree_data::on_message_create);
 
    }
 
 
-   void tree::StartAnimation()
+   void tree_data::StartAnimation()
    {
       
       m_iAnimate = 1;
@@ -641,16 +641,16 @@ namespace filemanager
    }
 
 
-   void tree::TakeAnimationSnapshot()
+   void tree_data::TakeAnimationSnapshot()
    {
       m_iAnimate = 1;
-      //   ::user::tree::_001OnDraw(m_gimageuffer.GetBuffer());
+      //   ::user::tree_data::_001OnDraw(m_gimageuffer.GetBuffer());
    }
 
 
 //#ifdef WINDOWS_DESKTOP
 //
-//   IShellFolder * tree::_001GetFolder(EFolder efolder)
+//   IShellFolder * tree_data::_001GetFolder(EFolder efolder)
 //   {
 //      IShellFolder * psf;
 //
@@ -700,7 +700,7 @@ namespace filemanager
 //
 //   }
 
-   //i32 tree::MapToCSIDL(EFolder efolder)
+   //i32 tree_data::MapToCSIDL(EFolder efolder)
    //{
    //   switch(efolder)
    //   {
@@ -715,7 +715,7 @@ namespace filemanager
 //#endif
 
 
-   void tree::_001OnItemExpand(::data::tree_item * pitem, const ::action_context & context)
+   void tree_data::_001OnItemExpand(::data::tree_item * pitem, const ::action_context & context)
    {
 
       auto puserfsitem = pitem->m_pdataitem.cast <::userfs::item>();
@@ -730,7 +730,7 @@ namespace filemanager
    }
 
 
-   void tree::_001OnItemCollapse(::data::tree_item * pitem, const ::action_context & context)
+   void tree_data::_001OnItemCollapse(::data::tree_item * pitem, const ::action_context & context)
    {
 
       UNREFERENCED_PARAMETER(pitem);
@@ -738,7 +738,7 @@ namespace filemanager
    }
 
 
-   bool tree::_001IsTranslucent()
+   bool tree_data::_001IsTranslucent()
    {
 
       return filemanager_data()->m_bTransparentBackground;
@@ -746,7 +746,7 @@ namespace filemanager
    }
 
 
-   void tree::_001OnOpenItem(::data::tree_item * pitem, const ::action_context & context)
+   void tree_data::_001OnOpenItem(::data::tree_item * pitem, const ::action_context & context)
    {
 
       auto puserfsitem = pitem->m_pdataitem.cast < ::userfs::item > ();
@@ -758,7 +758,7 @@ namespace filemanager
    }
 
 
-   void tree::_017OpenFolder(::pointer<::file::item>pitem, const ::action_context & context)
+   void tree_data::_017OpenFolder(::pointer<::file::item>pitem, const ::action_context & context)
    {
 
       filemanager_document()->browse(pitem,context);
@@ -766,10 +766,10 @@ namespace filemanager
    }
 
 
-   void tree::_001OnTimer(::timer * ptimer)
+   void tree_data::_001OnTimer(::timer * ptimer)
    {
 
-      ::userfs::tree::_001OnTimer(ptimer);
+      ::userfs::tree_data::_001OnTimer(ptimer);
 
       if (ptimer->m_uEvent == 1234567)
       {
@@ -807,31 +807,31 @@ namespace filemanager
    }
 
 
-//   void tree::assert_ok() const
+//   void tree_data::assert_ok() const
 //   {
 //
-//      ::data::tree::assert_ok();
+//      ::data::tree_data::assert_ok();
 //
 //   }
 //
 //
-//   void tree::dump(dump_context & dumpcontext) const
+//   void tree_data::dump(dump_context & dumpcontext) const
 //   {
 //
-//      ::data::tree::dump(dumpcontext);
+//      ::data::tree_data::dump(dumpcontext);
 //
 //   }
 
 
 
 
-   void tree::on_message_context_menu(::message::message * pmessage)
+   void tree_data::on_message_context_menu(::message::message * pmessage)
    {
 
    }
 
 
-   void tree::_001OnShellCommand(::message::message * pmessage)
+   void tree_data::_001OnShellCommand(::message::message * pmessage)
    {
 
       m_pcontextmenu->OnCommand(pmessage->GetId());
@@ -839,7 +839,7 @@ namespace filemanager
    }
 
 
-   void tree::on_message_create(::message::message * pmessage)
+   void tree_data::on_message_create(::message::message * pmessage)
    {
 
       pmessage->previous();
@@ -847,13 +847,13 @@ namespace filemanager
    }
 
 
-   void tree::on_merge_user_tree(::user::tree * pusertree)
+   void tree_data::on_merge_user_tree(::user::tree * pusertree)
    {
 
    }
 
 
-   void tree::on_bind_user_tree(::user::tree * pusertree)
+   void tree_data::on_bind_user_tree(::user::tree * pusertree)
    {
 
       UNREFERENCED_PARAMETER(pusertree);
@@ -861,7 +861,7 @@ namespace filemanager
    }
 
 
-   void tree::handle(::topic * ptopic, ::context * pcontext)
+   void tree_data::handle(::topic * ptopic, ::context * pcontext)
    {
 
       ::filemanager_impact_base::handle(ptopic, pcontext);

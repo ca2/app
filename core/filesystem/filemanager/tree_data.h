@@ -2,15 +2,15 @@
 
 
 #include "impact_base.h"
-#include "core/filesystem/userfs/tree.h"
+#include "core/filesystem/userfs/tree_data.h"
 
 
 namespace filemanager
 {
 
 
-   class CLASS_DECL_CORE tree :
-      virtual public ::userfs::tree,
+   class CLASS_DECL_CORE tree_data :
+      virtual public ::userfs::tree_data,
       virtual public ::filemanager_impact_base
    {
    public:
@@ -50,8 +50,8 @@ namespace filemanager
 //#endif
 
 
-      tree();
-      virtual ~tree();
+      tree_data();
+      ~tree_data();
 
 
 #ifdef _DEBUG
@@ -106,7 +106,7 @@ namespace filemanager
       virtual bool _001IsTranslucent() override;
 
 
-      virtual void browse_sync(const ::action_context & action_context) override;
+      void browse_sync(const ::action_context & action_context) override;
       virtual void knowledge(const ::file::path & pathUser, const ::action_context & action_context,bool bOnlyParent);
       virtual void knowledge(const ::file::path& pathUser, const ::action_context& action_context) override;
       //virtual void filemanager_tree_insert(const ::file::path & strPath,::file::listing & listingUser, ::file::listing & listingFinal, const ::action_context & action_context,bool bOnlyParent = false, bool bVoidTreeDataChangeEvent = true);

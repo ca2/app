@@ -12,7 +12,7 @@ namespace userfs
    class main_impact;
 
 
-   class CLASS_DECL_CORE tree :
+   class CLASS_DECL_CORE tree_data :
       virtual public ::user::tree_data,
       virtual public ::channel
    {
@@ -26,8 +26,8 @@ namespace userfs
       string_array               m_straUpdatePtrFilter;
 
 
-      tree();
-      ~tree() override;
+      tree_data();
+      ~tree_data() override;
 
 
 

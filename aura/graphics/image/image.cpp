@@ -10362,10 +10362,10 @@ CLASS_DECL_AURA void draw_freetype_bitmap(::image* m_p, i32 Δx, i32 Δy, void* 
 //}
 
 
-::particle_pointer image::clone() const
+::particle_pointer image::clone()
 {
 
-   auto pimage = ((::image*)this)->__create<::image>();
+   auto pimage = this->__create<::image>();
 
    pimage->copy_from((::image *) this);
 

@@ -37,7 +37,7 @@ namespace geometry2d
       ::draw2d::enum_item type() const override;
 
 
-      ::particle_pointer clone() const override
+      ::particle_pointer clone() override
       {
 
          auto pitem = __new(begin_figure_item);
@@ -60,7 +60,7 @@ namespace geometry2d
       ::draw2d::enum_item type() const override;
 
 
-      ::particle_pointer clone() const override
+      ::particle_pointer clone() override
       {
 
          auto pitem = __new(close_figure_item);
@@ -83,7 +83,7 @@ namespace geometry2d
       ::draw2d::enum_item type() const override;
 
 
-      ::particle_pointer clone() const override
+      ::particle_pointer clone() override
       {
 
          auto pitem = __new(end_figure_item);
@@ -105,7 +105,7 @@ namespace geometry2d
       ::draw2d::enum_item type() const override;
 
 
-      ::particle_pointer clone() const override
+      ::particle_pointer clone() override
       {
 
          auto pitem = __new(intersect_clip_item);
@@ -140,7 +140,7 @@ namespace geometry2d
       //void expand_bounding_box(::rectangle_f64 & rectangle) override;
 
 
-      ::particle_pointer clone() const override
+      ::particle_pointer clone() override
       {
 
          auto pitem = __new(polygon_item);
@@ -179,7 +179,7 @@ namespace geometry2d
       void expand_bounding_box(::rectangle_f64 & rectangle) override;
 
 
-      ::particle_pointer clone() const override
+      ::particle_pointer clone() override
       {
 
          auto pitem = __new(poly_polygon_item);
@@ -219,7 +219,7 @@ namespace geometry2d
       void expand_bounding_box(::rectangle_f64 & rectangle) override;
 
 
-      ::particle_pointer clone() const override;
+      ::particle_pointer clone() override;
 
 
    };
@@ -240,7 +240,7 @@ namespace geometry2d
       void expand_bounding_box(::rectangle_f64 & rectangle) override;
 
 
-      ::particle_pointer clone() const override
+      ::particle_pointer clone() override
       {
 
          auto pitem = __new(round_rectangle_item);

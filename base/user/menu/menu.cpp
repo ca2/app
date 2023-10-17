@@ -1021,9 +1021,7 @@ namespace user
 
          auto puserinteractionTopic = ptopic->user_interaction();
 
-         auto puserinteractionClose = m_pitemClose->m_puserinteraction;
-
-         if (m_pitemClose.is_set() && puserinteractionTopic == puserinteractionClose)
+         if (m_pitemClose.is_set() && puserinteractionTopic == m_pitemClose->m_puserinteraction)
          {
 
             defer_close();

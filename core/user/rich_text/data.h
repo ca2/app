@@ -41,7 +41,8 @@ namespace user
          ~data() override;
 
 
-         void initialize_data(::data::data_container_base * pdocument) override;
+         void initialize_data() override;
+         //void initialize_data(::data::data_container_base * pdocument) override;
          void destroy() override;
 
          virtual void __initialize(::pointer<::user::rich_text::format>& pformat);

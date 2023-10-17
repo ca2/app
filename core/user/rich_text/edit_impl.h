@@ -14,7 +14,7 @@ namespace user
 
 
       class CLASS_DECL_CORE edit_impl :
-         virtual public ::user::show < ::user::rich_text::edit >
+         virtual public ::user::rich_text::edit
       {
       public:
 
@@ -68,7 +68,7 @@ namespace user
          void update_data(bool bSaveAndValidate) override;
          virtual void update_placement() override;
 
-         document * get_document();
+         //document * get_document();
          /*virtual i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override
          {
             return ::object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
@@ -172,7 +172,7 @@ namespace user
 
       };
 
-      //using edit_impact = ::user::show < ::user::rich_text::edit_impl >;
+      using edit_impact_impl = ::user::show < ::user::rich_text::edit_impl >;
 
    } // namespace rich_text
 

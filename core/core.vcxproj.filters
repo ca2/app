@@ -410,7 +410,7 @@
     <ClInclude Include="filesystem\filemanager\tab_impact.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filemanager\tree.h">
+    <ClInclude Include="filesystem\filemanager\tree_data.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\filemanager\update_hint.h">
@@ -588,9 +588,6 @@
       <Filter>Header Files\filesystem\userfs</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\userfs\main_impact.h">
-      <Filter>Header Files\filesystem\userfs</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\userfs\tree.h">
       <Filter>Header Files\filesystem\userfs</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\userfs\userfs.h">
@@ -947,6 +944,9 @@
     <ClInclude Include="user\rich_text\format_host.h">
       <Filter>Header Files\user\rich_text</Filter>
     </ClInclude>
+    <ClInclude Include="filesystem\userfs\tree_data.h">
+      <Filter>Header Files\filesystem\userfs</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="user\user\tooltip.cpp">
@@ -1150,7 +1150,7 @@
     <ClCompile Include="filesystem\filemanager\tab_impact.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filemanager\tree.cpp">
+    <ClCompile Include="filesystem\filemanager\tree_data.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\impact.cpp">
@@ -1177,7 +1177,7 @@
     <ClCompile Include="filesystem\userfs\main_impact.cpp">
       <Filter>Source Files\filesystem\userfs</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\userfs\tree.cpp">
+    <ClCompile Include="filesystem\userfs\tree_data.cpp">
       <Filter>Source Files\filesystem\userfs</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\userfs\userfs.cpp">

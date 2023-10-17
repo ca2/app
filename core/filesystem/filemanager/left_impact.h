@@ -14,8 +14,8 @@ namespace filemanager
    public:
 
 
-      ::user::tree *          m_pusertree;
-      ::filemanager::tree *   m_ptree;
+      ::pointer < ::user::tree >                m_pusertree;
+      ::pointer < ::filemanager::tree_data >    m_ptreedata;
 
 
       left_impact();

@@ -1257,6 +1257,8 @@ namespace user
 
          display(e_display_normal);
 
+         set_activation(e_activation_no_activate);
+
          auto & window_state = const_layout().sketch();
 
          string str;

@@ -52,7 +52,7 @@ namespace user
    {
 
       m_bDefaultClickHandling = true;
-
+      
       m_econtroltype = e_control_type_button;
 
       //m_bMouseHoverOnCapture = true;
@@ -69,14 +69,12 @@ namespace user
 
       m_iClick = 0;
 
-      m_bDefaultClickHandling = true;
 
-      //m_bDefaultParentMouseMessageHandling = true;
 
    }
 
 
-   ::particle_pointer button::clone() const
+   ::particle_pointer button::clone()
    {
 
       auto pcheckbox = m_pcontext->__create_new < ::user::button >();

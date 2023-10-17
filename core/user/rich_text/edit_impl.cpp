@@ -99,7 +99,7 @@ namespace user
       void edit_impl::install_message_routing(::channel * pchannel)
       {
 
-         ::user::show < edit >::install_message_routing(pchannel);
+         ::user::rich_text::edit::install_message_routing(pchannel);
 
          MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &edit_impl::on_message_create);
          MESSAGE_LINK(MESSAGE_DESTROY, pchannel, this, &edit_impl::on_message_destroy);
@@ -1003,7 +1003,7 @@ namespace user
          else if (ptopic->m_atom == ID_INCOMING_DOCUMENT)
          {
 
-            auto puserdocument = get_document();
+            auto puserdocument = ptopic->m_pparticle.cast < ::user::document >();
 
             puserdocument->m_strSaveFileExtension = "rtf";
 
@@ -2154,12 +2154,12 @@ namespace user
       }
 
 
-      document * edit_impl::get_document()
-      {
+      //document * edit_impl::get_document()
+      //{
 
-         return m_pdocument.cast < document >();
+      //   return m_pdocument.cast < document >();
 
-      }
+      //}
 
 
       //void edit_impl::write(::binary_stream & stream) const

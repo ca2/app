@@ -1184,10 +1184,10 @@ namespace user
 
             ::user::frame * pframe = pimpact->parent_frame();
 
-            if (::is_null(pframe))
+            if (::is_set(pframe))
             {
 
-               pframe->payload("hold_impact_system") = m_pimpactsystem;
+               //pframe->payload("hold_impact_system") = m_pimpactsystem;
 
                frameptra.add_unique(pframe->m_puserframewindow);
 
@@ -1202,7 +1202,9 @@ namespace user
 
          pre_close_frame(pframe);
 
-         pframe->destroy();
+         pframe->post_message(e_message_destroy_window);
+
+         //pframe->destroy();
 
       }
 
@@ -1235,10 +1237,14 @@ namespace user
 
          auto pframe = pimpact->parent_frame();
 
-         if (::is_null(pframe))
+         if (::is_set(pframe))
          {
 
             pframe->display(e_display_none);
+
+            pframe->set_need_redraw();
+
+            pframe->post_redraw();
 
             //pframe->child_post_quit("prodevian");
 
@@ -1246,21 +1252,21 @@ namespace user
 
       }
 
-      for(auto & pimpact : viewptra)
-      {
+      //for(auto & pimpact : viewptra)
+      //{
 
-         auto pframe = pimpact->parent_frame();
+      //   auto pframe = pimpact->parent_frame();
 
-         if (::is_null(pframe))
-         {
+      //   if (::is_set(pframe))
+      //   {
 
-            pframe->display(e_display_none);
+      //      pframe->display(e_display_none);
 
-            //pframe->child_post_quit_and_wait("prodevian", seconds(5));
+      //      //pframe->child_post_quit_and_wait("prodevian", seconds(5));
 
-         }
+      //   }
 
-      }
+      //}
 
       update_all_impacts(nullptr, ID_PRE_CLOSE_DOCUMENT);
 

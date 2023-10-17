@@ -1,9 +1,9 @@
 #include "framework.h"
 #include "userfs.h"
-#include "tree.h"
 #include "list.h"
 #include "list_item.h"
 #include "main_impact.h"
+#include "tree_data.h"
 #include "acme/handler/item.h"
 #include "acme/primitive/data/listener.h"
 #include "core/user/user/user.h"
@@ -41,7 +41,7 @@ namespace userfs
 
 
       factory()->add_factory_item <::userfs::main_impact > ();
-      factory()->add_factory_item <::userfs::tree > ();
+      factory()->add_factory_item <::userfs::tree_data > ();
       factory()->add_factory_item <::userfs::list > ();
       factory()->add_factory_item <::userfs::list_item > ();
 

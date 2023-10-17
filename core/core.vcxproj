@@ -667,7 +667,7 @@
     <ClCompile Include="filesystem\filemanager\thumbnail.cpp" />
     <ClCompile Include="filesystem\filemanager\save_as_edit_impact.cpp" />
     <ClCompile Include="filesystem\filemanager\tab_impact.cpp" />
-    <ClCompile Include="filesystem\filemanager\tree.cpp" />
+    <ClCompile Include="filesystem\filemanager\tree_data.cpp" />
     <ClCompile Include="filesystem\filemanager\impact_base.cpp" />
     <ClCompile Include="filesystem\filemanager\impact.cpp" />
     <ClCompile Include="filesystem\filemanager\_.cpp" />
@@ -679,7 +679,7 @@
     <ClCompile Include="filesystem\userfs\list_item.cpp" />
     <ClCompile Include="filesystem\userfs\list_item_array.cpp" />
     <ClCompile Include="filesystem\userfs\main_impact.cpp" />
-    <ClCompile Include="filesystem\userfs\tree.cpp" />
+    <ClCompile Include="filesystem\userfs\tree_data.cpp" />
     <ClCompile Include="filesystem\userfs\userfs.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">Create</PrecompiledHeader>
@@ -808,6 +808,7 @@
     <ClInclude Include="filesystem\filemanager\save_as_impact.h" />
     <ClInclude Include="filesystem\filemanager\_impl.h" />
     <ClInclude Include="filesystem\filemanager\_tree.h" />
+    <ClInclude Include="filesystem\userfs\tree_data.h" />
     <ClInclude Include="filesystem\userfs\_binary_stream.h" />
     <ClInclude Include="filesystem\userfs\_data.h" />
     <ClInclude Include="filesystem\userfs\_tree.h" />
@@ -936,7 +937,7 @@
     <ClInclude Include="filesystem\filemanager\thumbnail.h" />
     <ClInclude Include="filesystem\filemanager\save_as_edit_impact.h" />
     <ClInclude Include="filesystem\filemanager\tab_impact.h" />
-    <ClInclude Include="filesystem\filemanager\tree.h" />
+    <ClInclude Include="filesystem\filemanager\tree_data.h" />
     <ClInclude Include="filesystem\filemanager\update_hint.h" />
     <ClInclude Include="filesystem\filemanager\impact_base.h" />
     <ClInclude Include="filesystem\filemanager\_.h" />
@@ -958,7 +959,6 @@
     <ClInclude Include="filesystem\userfs\list_item.h" />
     <ClInclude Include="filesystem\userfs\list_item_array.h" />
     <ClInclude Include="filesystem\userfs\main_impact.h" />
-    <ClInclude Include="filesystem\userfs\tree.h" />
     <ClInclude Include="filesystem\userfs\userfs.h" />
     <ClInclude Include="filesystem\userfs\_.h" />
     <ClInclude Include="filesystem\userfs\_component.h" />

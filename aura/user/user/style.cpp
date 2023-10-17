@@ -316,6 +316,312 @@ namespace user
 
       //rectangleX.top()--;
 
+      if (get_app() != nullptr && (pinteraction->hover_item().is_set() || pinteraction->should_show_keyboard_focus()))
+      {
+
+         auto pbrush = __create < ::draw2d::brush >();
+
+         //if (pinteraction->hover_item().is_set() && !pinteraction->has_text_input())
+         //{
+
+         //   pbrush->create_solid(pinteraction->get_color(this, e_element_background, e_state_hover));
+
+         //   pgraphics->set(pbrush);
+
+         //   pgraphics->fill_rectangle(rectangleX);
+
+         //}
+
+         if (iStyle == 1)
+         {
+
+            bool bHover = pinteraction->hover_item().is_set();
+
+            //if (bHover)
+            //{
+
+            //   ::draw2d::pen_pointer& ppen = m_ppenFocusRect0;
+
+            //   if (!ppen)
+            //   {
+
+            //      ppen.create(this);
+
+            //      ppen->create_solid(1.0, pinteraction->get_color(this, e_element_border, e_state_hover));
+
+            //   }
+
+            //   pgraphics->draw_rectangle(rectangleX, ppen);
+
+            //}
+            //else
+            //{
+
+            //   ::draw2d::pen_pointer& ppen = m_ppenFocusRect1;
+
+            //   if (!ppen)
+            //   {
+
+            //      ppen.create(this);
+
+            //      ppen->create_solid(1.0, argb(190, 90, 90, 80));
+
+            //   }
+
+            //   pgraphics->draw_rectangle(rectangleX, ppen);
+
+            //}
+
+//#ifdef WINDOWS_DESKTOP
+//
+//            oswindow hwndFocus = ::get_keyboard_focus();
+//
+//            oswindow hwndThis = pinteraction->get_handle();
+//
+//#endif
+
+            if (pinteraction->should_show_keyboard_focus())
+            {
+
+               auto rectangleFocusGlow = rectangleX;
+
+               rectangleFocusGlow.inflate(1);
+
+               {
+
+                  ::draw2d::pen_pointer & ppen = m_ppenFocusRect2;
+
+                  if (!ppen)
+                  {
+
+                     ppen.create(this);
+
+                     ppen->create_solid(1.0, bError ? argb(195, 255, 130, 120) : bHover ? argb(220, 120, 190, 255) : argb(220, 150, 190, 235));
+
+                  }
+
+                  pgraphics->draw_rectangle(rectangleFocusGlow, ppen);
+
+               }
+
+               rectangleFocusGlow.left()--;
+               rectangleFocusGlow.right()++;
+               rectangleFocusGlow.top()--;
+               rectangleFocusGlow.bottom()++;
+
+               {
+
+                  ::draw2d::pen_pointer & ppen = m_ppenFocusRect3;
+
+                  if (!ppen)
+                  {
+
+                     ppen.create(this);
+
+                     ppen->create_solid(1.0, bError ? argb(155, 255, 150, 140) : bHover ? argb(200, 140, 200, 255) : argb(200, 150, 210, 235));
+
+                  }
+
+                  pgraphics->set(ppen);
+
+                  pgraphics->draw_rectangle(rectangleFocusGlow, ppen);
+
+               }
+
+               rectangleFocusGlow.left()--;
+               rectangleFocusGlow.right()++;
+               rectangleFocusGlow.top()--;
+               rectangleFocusGlow.bottom()++;
+
+               {
+
+                  //::draw2d::path_pointer & pathRound = m_pathFocusRect1;
+                  //
+                  //if (!pathRound)
+                  //{
+
+                  //   pathRound.create();
+
+                  //   ppathRound->begin_figure(true, ::draw2d::e_fill_mode_winding);
+
+                  //   ppathRound->add_round_rect(rectangleFocusGlow, 1 * 2);
+
+                  //   ppathRound->end_figure(true);
+
+                  //}
+
+                  ::draw2d::pen_pointer & ppen = m_ppenFocusRect4;
+
+                  if (!ppen)
+                  {
+
+                     ppen.create(this);
+
+                     ppen->create_solid(1.0, bError ? argb(135, 255, 170, 160) : bHover ? argb(160, 160, 210, 255) : argb(160, 180, 220, 255));
+
+                  }
+
+                  pgraphics->set(ppen);
+
+                  pgraphics->draw_rectangle(rectangleFocusGlow, ppen);
+
+               }
+
+               rectangleFocusGlow.left()--;
+               rectangleFocusGlow.right()++;
+               rectangleFocusGlow.top()--;
+               rectangleFocusGlow.bottom()++;
+
+               {
+
+                  //auto ppathRound = __create < ::draw2d::path >();
+
+                  //ppathRound->begin_figure(true, ::draw2d::e_fill_mode_winding);
+
+                  //ppathRound->add_round_rect(rectangleFocusGlow, 1 * 2);
+
+                  //ppathRound->end_figure(true);
+
+                  //::draw2d::pen_pointer pen(pgraphics, 1.0, argb(60, 108, 149, 255));
+                  auto ppen = __create < ::draw2d::pen > ();
+
+                  ppen->create_solid(1.0, bError ? argb(105, 255, 190, 180) : bHover ? argb(120, 180, 220, 255) : argb(120, 200, 230, 235));
+
+                  pgraphics->set(ppen);
+
+                  pgraphics->draw_rectangle(rectangleFocusGlow, ppen);
+
+               }
+
+
+               rectangleFocusGlow.left()--;
+               rectangleFocusGlow.right()++;
+               rectangleFocusGlow.top()--;
+               rectangleFocusGlow.bottom()++;
+
+               {
+
+                  //auto ppathRound = __create < ::draw2d::path >();
+
+                  //ppathRound->begin_figure(true, ::draw2d::e_fill_mode_winding);
+
+                  //ppathRound->add_round_rect(rectangleFocusGlow, 1 * 2);
+
+                  //ppathRound->end_figure(true);
+
+                  //::draw2d::pen_pointer pen(pgraphics, 1.0, argb(48, 108, 149, 255));
+                  auto ppen = __create < ::draw2d::pen > ();
+
+                  ppen->create_solid(1.0, bError ? argb(75, 255, 210, 200) : bHover ? argb(80, 200, 230, 255) : argb(80, 220, 231, 235));
+
+                  pgraphics->set(ppen);
+
+                  pgraphics->draw_rectangle(rectangleFocusGlow, ppen);
+
+               }
+
+
+
+               rectangleFocusGlow.left()--;
+               rectangleFocusGlow.right()++;
+               rectangleFocusGlow.top()--;
+               rectangleFocusGlow.bottom()++;
+
+               {
+
+                  //auto ppathRound = __create < ::draw2d::path >();
+
+                  //ppathRound->begin_figure(true, ::draw2d::e_fill_mode_winding);
+
+                  //ppathRound->add_round_rect(rectangleFocusGlow, 1 * 2);
+
+                  //ppathRound->end_figure(true);
+
+                  //::draw2d::pen_pointer pen(pgraphics, 1.0, argb(36, 108, 149, 255));
+                  auto ppen = __create < ::draw2d::pen > ();
+
+                  ppen->create_solid(1.0, bError ? argb(45, 255, 230, 220) : bHover ? argb(40, 220, 240, 255) : argb(40, 230, 235, 240));
+
+                  pgraphics->set(ppen);
+
+                  pgraphics->draw_rectangle(rectangleFocusGlow, ppen);
+
+               }
+
+
+
+
+            }
+
+         }
+         else
+         {
+
+            auto ppen = __create < ::draw2d::pen > ();
+
+            ppen->create_solid(3.0, argb(255, 90, 80, 255));
+
+            pgraphics->draw_rectangle(rectangleX, ppen);
+
+         }
+
+      }
+
+      auto ppen = __create < ::draw2d::pen > ();
+
+      auto color = pinteraction->get_color(this, e_element_border);
+
+      ppen->create_solid(1.0, color);
+
+      pgraphics->draw_rectangle(rectangleX, ppen);
+
+      return true;
+
+   }
+
+
+   bool style::simple_ui_draw_border(::user::interaction * pinteraction, ::draw2d::graphics_pointer & pgraphics)
+   {
+
+      //return true;
+
+      bool bError = pinteraction->m_ptooltip.is_set() && pinteraction->m_ptooltip->is_window_visible(e_layout_sketch);
+
+      ::draw2d::save_context savecontext(pgraphics);
+
+      ::rectangle_i32 rectangleX = pinteraction->::user::interaction::rectangle();
+
+      double dRotate = pinteraction->get_rotate();
+
+      if (dRotate != 0.)
+      {
+
+         ::geometry2d::matrix mRot;
+
+         mRot.append(::geometry2d::matrix::rotation(dRotate));
+
+         pgraphics->prepend(mRot);
+
+         ::geometry2d::matrix mTrans;
+
+         auto offset = rectangleX.center();
+
+         mTrans.append(::geometry2d::matrix::translation(offset.x(), offset.y()));
+
+         pgraphics->append(mTrans);
+
+         rectangleX -= offset;
+
+      }
+
+      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+
+      i32 iStyle = 1;
+
+      //rectangleX.left()--;
+
+      //rectangleX.top()--;
+
       if (get_app() != nullptr && (pinteraction->hover_item().is_set() || pinteraction->has_keyboard_focus()))
       {
 
@@ -481,7 +787,7 @@ namespace user
                   //ppathRound->end_figure(true);
 
                   //::draw2d::pen_pointer pen(pgraphics, 1.0, argb(60, 108, 149, 255));
-                  auto ppen = __create < ::draw2d::pen > ();
+                  auto ppen = __create < ::draw2d::pen >();
 
                   ppen->create_solid(1.0, bError ? argb(105, 255, 190, 180) : bHover ? argb(120, 180, 220, 255) : argb(120, 200, 230, 235));
 
@@ -508,7 +814,7 @@ namespace user
                   //ppathRound->end_figure(true);
 
                   //::draw2d::pen_pointer pen(pgraphics, 1.0, argb(48, 108, 149, 255));
-                  auto ppen = __create < ::draw2d::pen > ();
+                  auto ppen = __create < ::draw2d::pen >();
 
                   ppen->create_solid(1.0, bError ? argb(75, 255, 210, 200) : bHover ? argb(80, 200, 230, 255) : argb(80, 220, 231, 235));
 
@@ -536,7 +842,7 @@ namespace user
                   //ppathRound->end_figure(true);
 
                   //::draw2d::pen_pointer pen(pgraphics, 1.0, argb(36, 108, 149, 255));
-                  auto ppen = __create < ::draw2d::pen > ();
+                  auto ppen = __create < ::draw2d::pen >();
 
                   ppen->create_solid(1.0, bError ? argb(45, 255, 230, 220) : bHover ? argb(40, 220, 240, 255) : argb(40, 230, 235, 240));
 
@@ -555,7 +861,7 @@ namespace user
          else
          {
 
-            auto ppen = __create < ::draw2d::pen > ();
+            auto ppen = __create < ::draw2d::pen >();
 
             ppen->create_solid(3.0, argb(255, 90, 80, 255));
 
@@ -564,16 +870,12 @@ namespace user
          }
 
       }
-      else
-      {
 
-         auto ppen = __create < ::draw2d::pen > ();
+      auto ppen = __create < ::draw2d::pen >();
 
-         ppen->create_solid(1.0, pinteraction->get_color(this, e_element_border));
+      ppen->create_solid(1.0, pinteraction->get_color(this, e_element_border));
 
-         pgraphics->draw_rectangle(rectangleX, ppen);
-
-      }
+      pgraphics->draw_rectangle(rectangleX, ppen);
 
       return true;
 

@@ -1249,6 +1249,23 @@ namespace user
       }
 
 
+      ::data::data * edit::_get_data(const ::atom & atom)
+      {
+
+         if (!m_prichtextdataOwned)
+         {
+
+            __construct_new(m_prichtextdataOwned);
+
+            m_prichtextdataOwned->initialize_data();
+
+         }
+
+         return m_prichtextdataOwned;
+
+      }
+
+
       ::user::rich_text::data * edit::get_rich_text_data()
       {
 

@@ -1845,7 +1845,7 @@ void particle::set_timeout(const class time & timeTimeout)
 //}
 
 
-::particle_pointer particle::clone() const
+::particle_pointer particle::clone()
 {
 
    throw interface_only();

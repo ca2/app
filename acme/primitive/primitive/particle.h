@@ -582,7 +582,7 @@ public:
    }
 
 
-   virtual ::particle_pointer clone() const;
+   virtual ::particle_pointer clone();
 
 
    virtual ::user::user * aurauser();

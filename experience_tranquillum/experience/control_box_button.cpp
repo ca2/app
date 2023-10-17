@@ -162,7 +162,29 @@ namespace experience_tranquillum
 
       ::experience::button::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_show_window, pchannel, this, &button::on_message_show_window);
+      MESSAGE_LINK(e_message_create, pchannel, this, &control_box_button::on_message_create);
+      MESSAGE_LINK(e_message_show_window, pchannel, this, &control_box_button::on_message_show_window);
+
+   }
+
+
+   void control_box_button::on_message_create(::message::message * pmessage)
+   {
+
+      ::pointer<::message::create>pcreate(pmessage);
+
+      pcreate->previous();
+
+      if (pcreate->m_bRet)
+      {
+
+         return;
+
+      }
+
+      __construct(m_ppen);
+      
+      __construct(m_pbrush);
 
    }
 
@@ -170,9 +192,7 @@ namespace experience_tranquillum
    void control_box_button::on_message_show_window(::message::message * pmessage)
    {
 
-
       ::pointer<::message::show_window>pshowwindow(pmessage);
-
 
       if (pshowwindow->m_bShow)
       {
@@ -186,52 +206,55 @@ namespace experience_tranquillum
 
       }
 
-
    }
 
 
    void control_box_button::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      __construct(m_spregion);
-      __construct(m_ppen);
-      __construct(m_pbrush);
-         
-      auto rectangleX = this->rectangle();
-      
-      ::ellipse_f64 ellipse;
-      
-      ellipse.set(rectangleX);
+      ::experience::button::on_layout(pgraphics);
 
-      m_spregion->create_ellipse(ellipse);
+      //__construct(m_spregion);
+      //__construct(m_ppen);
+      //__construct(m_pbrush);
+      //   
+      //auto rectangleX = this->rectangle();
+      //
+      //::ellipse_f64 ellipse;
+      //
+      //ellipse.set(rectangleX);
+
+      //m_spregion->create_ellipse(ellipse);
 
    }
 
 
-   ::item_pointer control_box_button::on_hit_test(const ::point_i32 &point, ::user::e_zorder ezorder)
+   ::item_pointer control_box_button::on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      return ::experience::button::on_hit_test(point, ezorder);
 
-      if (m_spregion.is_null())
-      {
+      //synchronous_lock synchronouslock(this->synchronization());
 
-         auto pitemNone = __new(::item(e_element_none));
+      //if (m_spregion.is_null())
+      //{
 
-         return pitemNone;
+      //   auto pitemNone = __new(::item(e_element_none));
 
-      }
+      //   return pitemNone;
 
-      if (!m_spregion->contains(point))
-      {
+      //}
 
-         auto pitemNone = __new(::item(e_element_none));
+      //if (!m_spregion->contains(point))
+      //{
 
-         return pitemNone;
+      //   auto pitemNone = __new(::item(e_element_none));
 
-      }
+      //   return pitemNone;
 
-      return __new(::item(::e_element_client));
+      //}
+
+      //return __new(::item(::e_element_client));
 
    }
 

@@ -320,11 +320,22 @@ namespace user
       try
       {
 
-         while (task_get_run())
+         while (true)
          {
+
+            if (!task_get_run())
+            {
+
+               information() << "graphics_thread::run !task_get_run()";
+
+               break;
+
+            }
 
             if(!defer_process_redraw_message())
             {
+
+               information() << "graphics_thread::run !defer_process_redraw_message()";
 
                break;
 
@@ -338,24 +349,27 @@ namespace user
       catch (::exception&)
       {
 
+         information() << "graphics_thread::run exception!!";
 
       }
       catch (...)
       {
 
-      }
-
-      if (m_puserinteraction)
-      {
-
-         if (m_puserinteraction->has_destroying_flag())
-         {
-
-           m_puserinteraction->post_message(e_message_destroy_window);
-
-         }
+         information() << "graphics_thread::run exception (...) !!";
 
       }
+
+      //if (m_puserinteraction)
+      //{
+
+      //   if (m_puserinteraction->has_destroying_flag())
+      //   {
+
+      //     m_puserinteraction->post_message(e_message_destroy_window);
+
+      //   }
+
+      //}
 
       //return m_estatus;
 
@@ -374,6 +388,14 @@ namespace user
          ASSERT(!(m_puserinteraction->m_ewindowflag & e_window_flag_embedded_graphics_thread_if_child));
 
          m_bAutoRefresh = m_puserinteraction->has_auto_refresh();
+
+         if (!m_puserinteraction
+            || !m_puserinteraction->m_pinteractionimpl)
+         {
+
+            return false;
+
+         }
 
          if (!m_puserinteraction->m_pinteractionimpl->m_bOfflineRender)
          {

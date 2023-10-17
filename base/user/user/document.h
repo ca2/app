@@ -231,7 +231,9 @@ namespace user
 
          //auto estatus = 
          
-         pdata->initialize_data(this);
+         //pdata->initialize_data(this);
+
+         pdata->initialize_data();
 
          //if (!estatus)
          //{

@@ -735,46 +735,51 @@ namespace user
 
       }
 
-      ::rectangle_i32 rectangleX;
-
-      rectangleX = m_pimpactdata->m_pplaceholder->rectangle();
-
-      if (!rectangleTabClient.is_empty())
+      if (!ptabdata->m_bNoClient)
       {
 
+         ::rectangle_i32 rectangleX;
+
+         rectangleX = m_pimpactdata->m_pplaceholder->rectangle();
+
+         if (!rectangleTabClient.is_empty())
          {
 
-            auto pchild = m_pimpactdata->m_pplaceholder;
-
-            ::string strType = ::type(pchild).name();
-
-            if (strType.case_insensitive_contains("place_holder"))
             {
 
-               if (pchild->m_puserinteractionpointeraChild
-                  && pchild->m_puserinteractionpointeraChild->has_interaction())
+               auto pchild = m_pimpactdata->m_pplaceholder;
+
+               ::string strType = ::type(pchild).name();
+
+               if (strType.case_insensitive_contains("place_holder"))
                {
 
-                  auto puserinteractionChild = pchild->m_puserinteractionpointeraChild->first_interaction();
-
-                  ::string strTypePlaceHolderChild = ::type(puserinteractionChild).name();
-
-                  if (strTypePlaceHolderChild.case_insensitive_contains("simple_frame_window"))
+                  if (pchild->m_puserinteractionpointeraChild
+                     && pchild->m_puserinteractionpointeraChild->has_interaction())
                   {
 
-                     auto puserinteractionChild2 = puserinteractionChild->m_puserinteractionpointeraChild->first_interaction();
+                     auto puserinteractionChild = pchild->m_puserinteractionpointeraChild->first_interaction();
 
-                     ::string strTypePlaceHolderChild2 = ::type(puserinteractionChild2).name();
+                     ::string strTypePlaceHolderChild = ::type(puserinteractionChild).name();
 
-                     if (strTypePlaceHolderChild2.case_insensitive_contains("font_impact"))
+                     if (strTypePlaceHolderChild.case_insensitive_contains("simple_frame_window"))
                      {
 
-                        information() << "going to display " << strTypePlaceHolderChild2;
+                        auto puserinteractionChild2 = puserinteractionChild->m_puserinteractionpointeraChild->first_interaction();
 
-                        if (m_puserinteractionpointeraChild->contains_interaction(pchild))
+                        ::string strTypePlaceHolderChild2 = ::type(puserinteractionChild2).name();
+
+                        if (strTypePlaceHolderChild2.case_insensitive_contains("font_impact"))
                         {
 
-                           //information() << "tab impact has font_list place_holder as child window";
+                           information() << "going to display " << strTypePlaceHolderChild2;
+
+                           if (m_puserinteractionpointeraChild->contains_interaction(pchild))
+                           {
+
+                              //information() << "tab impact has font_list place_holder as child window";
+
+                           }
 
                         }
 
@@ -786,57 +791,57 @@ namespace user
 
             }
 
-         }
+            m_pimpactdata->m_pplaceholder->order(e_zorder_top);
 
-         m_pimpactdata->m_pplaceholder->order(e_zorder_top);
+            m_pimpactdata->m_pplaceholder->place(rectangleTabClient);
 
-         m_pimpactdata->m_pplaceholder->place(rectangleTabClient);
+            m_pimpactdata->m_pplaceholder->display();
 
-         m_pimpactdata->m_pplaceholder->display();
-
-         //         m_pimpactdata->m_pplaceholder->set_need_redraw();
-         //
-         //         m_pimpactdata->m_pplaceholder->set_need_layout();
-         //
-         //         m_pimpactdata->m_pplaceholder->post_redraw();
-
-      }
-
-      ::user::impact * pimpact = nullptr;
-
-      if (m_pimpactdata->m_puserinteraction)
-      {
-
-         pimpact = m_pimpactdata->m_puserinteraction.cast < ::user::impact >();
-
-      }
-
-      if (pimpact == nullptr)
-      {
-
-         pimpact = this;
-
-      }
-
-      auto pframe = parent_frame();
-
-      auto pframeImpact = pimpact->parent_frame();
-
-      if (pframe && pframeImpact)
-      {
-
-         if (pframeImpact != pframe)
-         {
-
-            pframe->set_active_impact(this);
-
-            pframeImpact->set_active_impact(pimpact);
+            //         m_pimpactdata->m_pplaceholder->set_need_redraw();
+            //
+            //         m_pimpactdata->m_pplaceholder->set_need_layout();
+            //
+            //         m_pimpactdata->m_pplaceholder->post_redraw();
 
          }
-         else
+
+         ::user::impact * pimpact = nullptr;
+
+         if (m_pimpactdata->m_puserinteraction)
          {
 
-            pframe->set_active_impact(pimpact);
+            pimpact = m_pimpactdata->m_puserinteraction.cast < ::user::impact >();
+
+         }
+
+         if (pimpact == nullptr)
+         {
+
+            pimpact = this;
+
+         }
+
+         auto pframe = parent_frame();
+
+         auto pframeImpact = pimpact->parent_frame();
+
+         if (pframe && pframeImpact)
+         {
+
+            if (pframeImpact != pframe)
+            {
+
+               pframe->set_active_impact(this);
+
+               pframeImpact->set_active_impact(pimpact);
+
+            }
+            else
+            {
+
+               pframe->set_active_impact(pimpact);
+
+            }
 
          }
 

@@ -252,7 +252,7 @@ namespace sqlite
    bool database::isActive()
    {
 
-      return false;
+      return m_psqlite != nullptr;
 
    }
 
@@ -926,9 +926,9 @@ i32 database_sqlite3_sqlite_callback(void * res_ptr,i32 ncol, char** reslt,char*
 
    auto & prowa = presultset->m_prowa;
 
-   presultset->__construct_new(pfielda);
+   presultset->__defer_construct_new(pfielda);
 
-   presultset->__construct_new(prowa);
+   presultset->__defer_construct_new(prowa);
 
    if (pfielda->is_empty())
    {

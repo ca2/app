@@ -14,12 +14,10 @@ namespace filemanager
    public:
 
 
-      
-
-      ::user::tree *             m_pusertree;
-      tree *                     m_ptree;
-      folder_list_impact *         m_plistview;
-      data *                     m_pdata;
+      ::pointer < ::user::tree >          m_pusertree;
+      ::pointer < tree_data >             m_ptreedata;
+      ::pointer < folder_list_impact >    m_plistview;
+      ::pointer < data >                  m_pdata;
 
 
       folder_selection_list_impact();

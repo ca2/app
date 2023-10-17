@@ -590,6 +590,7 @@ namespace user
       void host_post(const ::procedure& procedure) override;
 
       void user_send(const ::procedure & procedure) override;
+      void user_post(const ::procedure & procedure) override;
 
 
       inline void auto_refresh_on_show() { m_ewindowflag |= e_window_flag_auto_refresh_on_show; }
@@ -1498,6 +1499,7 @@ namespace user
 
 
       virtual bool has_keyboard_focus();
+      virtual bool should_show_keyboard_focus();
       void set_keyboard_focus() override;
       void clear_keyboard_focus(::user::element * pelementGainingFocusIfAny = nullptr) override;
 
@@ -2256,6 +2258,7 @@ namespace user
 
 
       virtual void simple_ui_draw_focus_rect(::draw2d::graphics_pointer & pgraphics);
+      virtual void simple_ui_draw_border(::draw2d::graphics_pointer & pgraphics);
 
 
       virtual bool on_action(const ::string & pszId);
@@ -2401,6 +2404,8 @@ namespace user
 
       virtual void set_stock_icon(enum_stock_icon eicon);
       virtual enum_stock_icon get_stock_icon();
+
+
 
 
       //virtual void post_procedure(const ::procedure & procedure) override;

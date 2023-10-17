@@ -74,7 +74,7 @@ namespace write_text
    }
 
 
-   ::particle_pointer font_family::clone() const
+   ::particle_pointer font_family::clone()
    {
 
       return __new(font_family(*this));

@@ -2,7 +2,7 @@
 #include "folder_selection_list_impact.h"
 #include "document.h"
 #include "folder_list_impact.h"
-#include "tree.h"
+#include "tree_data.h"
 #include "acme/constant/id.h"
 #include "acme/handler/item.h"
 #include "acme/platform/context.h"
@@ -16,10 +16,10 @@ namespace filemanager
    folder_selection_list_impact::folder_selection_list_impact()
    {
 
-      m_ptree = nullptr;
-      m_pusertree = nullptr;
-      m_pdata = nullptr;
-      m_plistview = nullptr;
+//      m_ptree = nullptr;
+      //m_pusertree = nullptr;
+      //m_pdata = nullptr;
+      //m_plistview = nullptr;
 
    }
 
@@ -58,9 +58,9 @@ namespace filemanager
 
       }
 
-      auto ptree = filemanager_document()->__create_new < tree >();
+      auto ptreedata = filemanager_document()->__create_new < ::filemanager::tree_data >();
       
-      if(ptree == nullptr)
+      if(ptreedata == nullptr)
       {
 
          output_error_message("Could not create folder tree");
@@ -69,15 +69,15 @@ namespace filemanager
       else
       {
 
-         m_ptree = ptree;
+         m_ptreedata = ptreedata;
 
          auto pdocument = get_document();
 
-         ptree->initialize_filemanager_tree(pdocument);
+         ptreedata->initialize_filemanager_tree(pdocument);
 
          //ptree->m_pdocument = get_document();
 
-         m_pusertree->merge(m_ptree, true);
+         m_pusertree->merge(m_ptreedata, true);
 
       }
 
@@ -98,7 +98,7 @@ namespace filemanager
 
       string_array straSel;
 
-      m_ptree->GetSelectedFilePath(straSel);
+      m_ptreedata->GetSelectedFilePath(straSel);
 
       if(m_plistview->m_bRecursive)
       {

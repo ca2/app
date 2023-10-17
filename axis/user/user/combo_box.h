@@ -57,13 +57,18 @@ namespace user
       void install_message_routing(::channel * pchannel) override;
 
 
+      ::pointer < ::particle > clone() override;
+
+
       ::write_text::font_pointer get_font(style* pstyle, enum_element eelement = e_element_none, ::user::enum_state estate = e_state_none) override;
 
 
-      virtual void _000OnDraw(::draw2d::graphics_pointer & pgraphics) override;
-      virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      void _000OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
       virtual void _001OnDrawCombo(::draw2d::graphics_pointer & pgraphics);
       virtual void _001OnDrawStaticText(::draw2d::graphics_pointer & pgraphics);
+
+      void _001OnNcPostDraw(::draw2d::graphics_pointer & pgraphics) override;
 
       virtual enum_input_type preferred_input_type() override;
 
@@ -112,6 +117,8 @@ namespace user
       virtual bool has_text_input() override;
       virtual bool is_drop_down();
 
+
+      bool should_show_keyboard_focus() override;
 
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;

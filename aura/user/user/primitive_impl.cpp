@@ -2794,6 +2794,10 @@ namespace user
 
       m_puserinteraction->m_ewindowflag.set(e_window_flag_enable, bEnable);
 
+      m_puserinteraction->set_need_redraw();
+
+      m_puserinteraction->post_redraw();
+
       //return bWasDisabled;
 
    }
@@ -2921,6 +2925,13 @@ namespace user
    ::windowing::window* primitive_impl::window()
    {
 
+      if (::is_null(m_puserinteraction))
+      {
+
+         return nullptr;
+
+      }
+
       return m_puserinteraction->m_pwindow;
 
    }
@@ -2987,6 +2998,23 @@ namespace user
       }
 
       m_puserinteraction->user_send(procedure);
+
+   }
+
+
+   void primitive_impl::user_post(const ::procedure & procedure)
+   {
+
+      if (!m_puserinteraction)
+      {
+
+         ::channel::user_post(procedure);
+
+         return;
+
+      }
+
+      m_puserinteraction->user_post(procedure);
 
    }
 

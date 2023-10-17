@@ -54,10 +54,10 @@ namespace data
 //   }
 
 
-   void data::initialize_data(::data::data_container_base * pdatacontainerbase)
+   void data::initialize_data()
    {
 
-      /*auto estatus = */::object::initialize(pdatacontainerbase);
+      ///*auto estatus = */::object::initialize(pdatacontainerbase);
 
       //if (!estatus)
       //{
@@ -66,14 +66,14 @@ namespace data
 
       //}
 
-      m_pdatacontainerbase = pdatacontainerbase;
+      //m_pdatacontainerbase = pdatacontainerbase;
 
-      if (!m_pdatacontainerbase)
-      {
+      //if (!m_pdatacontainerbase)
+      //{
 
-         throw ::exception(::error_failed);
+      //   throw ::exception(::error_failed);
 
-      }
+      //}
 
       //run_property(ID_CREATE);
 
@@ -84,12 +84,12 @@ namespace data
    }
 
 
-   ::data::data_container_base* data::get_data_container()
-   {
+   //::data::data_container_base* data::get_data_container()
+   //{
 
-      return m_pdatacontainerbase.get();
+   //   return m_pdatacontainerbase.get();
 
-   }
+   //}
 
 
    ::count data::get_data_bound_impact_count() const

@@ -519,7 +519,20 @@ namespace user
 
             ::item item(::e_element_item, iPos, i, j);
 
-            if (::is_set(m_pitemHover) && *m_pitemHover == item)
+            if (::is_set(m_pitemHover))
+            {
+
+               information() << "menu_impact::_001OnDraw m_pitemHover (item, subitem) : " << m_pitemHover->m_item.m_iItem << ", " << m_pitemHover->m_item.m_iSubItem;
+
+            }
+            else
+            {
+
+               information() << "menu_impact::_001OnDraw m_pitemHover is not set";
+
+            }
+
+            if (::is_set(m_pitemHover) && m_pitemHover == pmenuitem)
             {
 
                if (::is_set(main_content().m_pitemCurrent) && *main_content().m_pitemCurrent == item)

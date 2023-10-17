@@ -1918,14 +1918,10 @@ namespace user
             m_pgraphicsthread->set_finish();
 
          }
-         else
-         {
 
-            set_destroying_flag();
+         set_destroying_flag();
 
-            m_puserinteraction->post_message(e_message_destroy_window);
-
-         }
+         m_puserinteraction->post_message(e_message_destroy_window);
 
          return;
 

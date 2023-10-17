@@ -33,6 +33,9 @@ namespace user
          class ::time                                 m_timeCaretPeriod;
          //index                                      m_iFormatDefault;
          bool                                         m_bCaretRight;
+         ::pointer < ::user::rich_text::data >        m_prichtextdataOwned;
+
+         
 
 
          edit();
@@ -82,6 +85,8 @@ namespace user
          //   return ::object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
          //}
 
+         ::data::data * _get_data(const ::atom & atom) override;
+
          virtual ::user::rich_text::data * get_rich_text_data();
 
          virtual bool set_text_editable(bool bEditable = true) override;
@@ -115,6 +120,7 @@ namespace user
          using ::user::interaction::_001GetText;
          void _001GetText(string & str) override;
          virtual void _001GetLayoutText(string & str);
+
 
          virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 

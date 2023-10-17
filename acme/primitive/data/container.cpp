@@ -77,7 +77,7 @@ namespace data
    bool data_container_base::add_data(::data::data * pdata)
    {
 
-      pdata->initialize_data(this);
+      pdata->initialize_data();
 
       m_datamap.set_at(pdata->m_atom, pdata);
 

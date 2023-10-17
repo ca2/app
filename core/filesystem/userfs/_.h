@@ -12,7 +12,7 @@ namespace userfs
    class list_item;
    class list_item_array;
 
-   class tree;
+   class tree_data;
 
    class document;
 

@@ -95,12 +95,13 @@ namespace user
       }
 
 
-      void data::initialize_data(::data::data_container_base * pdocument)
+      //void data::initialize_data(::data::data_container_base * pdocument)
+      void data::initialize_data()
       {
 
          //auto estatus =
 
-         ::data::data::initialize_data(pdocument);
+//         ::data::data::initialize_data(pdocument);
 
          //if (!estatus)
          //{

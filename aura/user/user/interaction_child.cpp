@@ -468,6 +468,13 @@ namespace user
 
       bool bKeyMessage = false;
 
+      if (!m_puserinteraction)
+      {
+
+         return;
+
+      }
+
       if (m_puserinteraction->pre_message_handler(pkey, bKeyMessage, pmessage))
       {
 

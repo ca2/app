@@ -1361,6 +1361,8 @@ namespace user
 
             //itemFirst.m_iDisplayItem = 0;
 
+            const char * pszType = typeid(*this).name();
+
             index_item_rectangle(*pitem);
 
             rectangle = pitem->m_pdrawlistitem->m_rectangleItem;
@@ -1505,6 +1507,19 @@ namespace user
       m_pcolumna->add(pcolumn);
 
       pcolumn->m_iColumn = m_pcolumna->get_upper_bound();
+
+      return pcolumn;
+
+   }
+
+   ::pointer<list_column>list::new_list_column_with_control(::user::interaction * puserinteraction)
+   {
+      
+      auto pcolumn = new_list_column();
+
+      pcolumn->m_atom = puserinteraction->m_atom;
+
+      pcolumn->m_puserinteractionTemplate = puserinteraction;
 
       return pcolumn;
 
@@ -1848,7 +1863,9 @@ namespace user
 
       }
 
-      if (iColumn >= m_pcolumna->get_visible_count())
+      auto columnCount = m_pcolumna->get_count();
+
+      if (iColumn >= columnCount)
       {
 
          return -1;
@@ -5068,6 +5085,7 @@ namespace user
    void list_column_array::OnChange()
    {
 
+      m_mapSubItemIndex.clear();
 
       predicate_sort(predicate_list_compare_key);
 //      sort::array::quick_sort(*this, list_column::CompareKey);
@@ -5521,6 +5539,8 @@ namespace user
          synchronous_lock synchronouslock(this->synchronization());
 
          m_pcolumna->erase_all();
+
+         m_mapItem.clear();
 
       }
 

@@ -702,6 +702,23 @@ namespace experience_tranquillum
          }
 
       }
+      else if (eelement == ::e_element_border)
+      {
+
+         if (is_dark_mode())
+         {
+
+            return argb(255, 192, 192, 192);
+
+         }
+         else
+         {
+
+            return argb(255, 192, 192, 192);
+
+         }
+
+      }
 
 
       return ::base::style::get_color(pinteraction, eelement, estate);

@@ -62,6 +62,29 @@ namespace user
    }
 
 
+   ::pointer < ::particle > combo_box::clone()
+   {
+
+      auto pcomboboxClone = m_pcontext->__create_new < combo_box >();
+
+      pcomboboxClone->m_estyle = m_estyle;
+
+      pcomboboxClone->m_edatamode = m_edatamode;
+
+      pcomboboxClone->m_bEdit = m_bEdit;
+
+      if (m_plistbox)
+      {
+
+         pcomboboxClone->m_plistbox = m_plistbox->clone();
+
+      }
+      
+      return pcomboboxClone;
+
+   }
+
+
    void combo_box::install_message_routing(::channel * pchannel)
    {
 
@@ -357,6 +380,14 @@ namespace user
    }
 
 
+   bool combo_box::should_show_keyboard_focus()
+   {
+
+      return has_keyboard_focus() || (m_plistbox && m_plistbox->should_show_keyboard_focus());
+
+   }
+
+
    ::write_text::font_pointer combo_box::get_font(style * pstyle, enum_element eelement, ::user::enum_state estate)
    {
 
@@ -397,6 +428,14 @@ namespace user
       ::user::interaction::_001OnDraw(pgraphics);
 
       _001OnDrawCombo(pgraphics);
+
+   }
+
+
+   void combo_box::_001OnNcPostDraw(::draw2d::graphics_pointer & pgraphics)
+   {
+
+      ::user::plain_edit::_001OnNcPostDraw(pgraphics);
 
    }
 
@@ -692,6 +731,12 @@ namespace user
 
          }
 
+         set_keyboard_focus();
+
+         set_need_redraw();
+
+         post_redraw();
+
          pmouse->m_bRet = true;
 
       }
@@ -883,7 +928,12 @@ namespace user
 
       string strItem;
 
-      _001GetListText(pitem->m_item.m_iItem, strItem);
+      if (::is_set(pitem))
+      {
+
+         _001GetListText(pitem->m_item.m_iItem, strItem);
+
+      }
 
       _001SetText(strItem, actioncontext);
 
@@ -1568,7 +1618,8 @@ namespace user
    bool combo_box::keyboard_focus_is_focusable()
    {
 
-      return m_bEdit && is_window_enabled() && is_window_visible(e_layout_sketch);
+      // return m_bEdit && is_window_enabled() && is_window_visible(e_layout_sketch);
+      return is_window_enabled() && is_window_visible(e_layout_sketch);
 
    }
 

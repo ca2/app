@@ -9,6 +9,8 @@
 #include "aura/platform/session.h"
 #include "aura/user/user/frame.h"
 #include "aura/user/user/progress.h"
+#include "aura/windowing/display.h"
+#include "aura/windowing/windowing.h"
 #include "base/user/user/multiple_document_template.h"
 #include "base/user/user/document.h"
 #include "core/user/user/user.h"
@@ -38,7 +40,7 @@ namespace userex
    }
 
 
-   void progress_control::set_progress_title(const ::string& pszTitle)
+   void progress_control::set_progress_title(const ::string & pszTitle)
    {
 
       m_pimpact->parent_frame()->set_window_text(pszTitle);
@@ -93,7 +95,7 @@ namespace userex
    void progress_control::close_progress()
    {
 
-      ::user::document* pdocument = nullptr;
+      ::user::document * pdocument = nullptr;
 
       {
 
@@ -128,7 +130,7 @@ namespace userex
    }
 
 
-   void progress_control::defer_show(::user::interaction* puiParent, const ::string& pszTitle, ::count iStepCount)
+   void progress_control::defer_show(::user::interaction * puiParent, const ::string & pszTitle, ::count iStepCount)
    {
 
       m_strTitle = pszTitle;
@@ -143,55 +145,55 @@ namespace userex
 
       pprogressCopy->create_progress();
 
-      //      defer_fork("show_progress", [this, pprogressCopy, puiParent]()
-      //      {
-      //
-      //         ::pointer<progress_control>pprogress = pprogressCopy;
-      //
-      //
-      //         try
-      //         {
-      //
-      //            
-      //
-      //            release();
-      //
-      //         }
-      //         catch (...)
-      //         {
-      //                  
-      //            }
-      //
-      //            sleep(150_ms);
-      //
-      //            if (m_pdocument != nullptr)
-      //            {
-      //
-      //               try
-      //               {
-      //
-      //            }
-      //            catch (...)
-      //            {
-      //
-      //
-      //            }
-      //
-      //            ::get_task()->m_bSimpleMessageLoop = false;
-      //
-      //            ::get_task()->::thread::run();
-      //
-      //         }
-      //
-      //         children_erase(::get_task());
-      //
-      //         close_progress();
-      //
-      ////            release();
-      //
-      //         information("finished");
-      //
-      //      });
+   //   acmeapplication()->defer_branch("show_progress", [this, pprogressCopy, puiParent]()
+   //   {
+
+   //::pointer<progress_control>pprogress = pprogressCopy;
+
+
+   ////try
+   ////{
+
+   ////   
+
+   ////   release();
+
+   ////}
+   ////catch (...)
+   ////{
+   ////         
+   ////   }
+
+   //sleep(150_ms);
+
+   //if (m_pdocument != nullptr)
+   //{
+
+   //   try
+   //   {
+
+   //   }
+   //   catch (...)
+   //   {
+
+
+   //   }
+
+   //   //::get_task()->m_bSimpleMessageLoop = false;
+
+   //   //::get_task()->::thread::run();
+
+   //}
+
+   ////children_erase(::get_task());
+
+   //close_progress();
+
+   ////            release();
+
+   //information("finished");
+
+   //   });
 
    }
 
@@ -224,7 +226,7 @@ namespace userex
    //}
 
 
-   void  progress_impact::install_message_routing(::channel* pchannel)
+   void  progress_impact::install_message_routing(::channel * pchannel)
    {
 
       ::user::impact::install_message_routing(pchannel);
@@ -235,13 +237,13 @@ namespace userex
    }
 
 
-   void progress_impact::handle(::topic* ptopic, ::context* pcontext)
+   void progress_impact::handle(::topic * ptopic, ::context * pcontext)
    {
 
    }
 
 
-   void progress_impact::on_message_create(::message::message* pmessage)
+   void progress_impact::on_message_create(::message::message * pmessage)
    {
 
       ::pointer<::message::create>pcreate(pmessage);
@@ -269,46 +271,46 @@ namespace userex
    }
 
 
-   void progress_impact::_001OnTimer(::timer* ptimer)
+   void progress_impact::_001OnTimer(::timer * ptimer)
    {
 
-      //      if (ptimer->m_uEvent == e_timer_update_current_area)
-      //      {
-      //
-      //         KillTimer(ptimer->m_uEvent);
-      //
-      //         ::rectangle_i32 rectangle;
-      //
-      //         auto pwindowing = windowing();
-      //
-      //         auto pdisplay = pwindowing->display();
-      //
-      //         pdisplay->get_main_monitor(rectangle);
-      //
-      //         rectangle.deflate(rectangle.width() / 6, rectangle.height() / 3, rectangle.width() / 6, rectangle.height() / 2);
-      //
-      //         auto pframe = parent_frame();
-      //
-      //         if (::is_set(pframe))
-      //         {
-      //
-      //            pframe->m_sizeMinimum.cx() = 300;
-      //            pframe->m_sizeMinimum.cy() = 50;
-      //
-      //            pframe->good_restore(nullptr, rectangle, true);
-      //
-      //            pframe->set_need_redraw();
-      //
-      //            pframe->post_redraw();
-      //
-      //         }
-      //
-      //      }
+            if (ptimer->m_uEvent == e_timer_update_current_area)
+            {
+      
+               KillTimer(ptimer->m_uEvent);
+      
+               ::rectangle_i32 rectangle;
+      
+               auto pwindowing = windowing();
+      
+               auto pdisplay = pwindowing->display();
+      
+               pdisplay->get_main_monitor(rectangle);
+      
+               rectangle.deflate(rectangle.width() / 6, rectangle.height() / 3, rectangle.width() / 6, rectangle.height() / 2);
+      
+               auto pframe = parent_frame();
+      
+               if (::is_set(pframe))
+               {
+      
+                  pframe->m_sizeMinimum.cx() = 300;
+                  pframe->m_sizeMinimum.cy() = 50;
+      
+                  pframe->good_restore(nullptr, rectangle, true);
+      
+                  pframe->set_need_redraw();
+      
+                  pframe->post_redraw();
+      
+               }
+      
+            }
 
    }
 
 
-   void progress_impact::on_message_destroy(::message::message* pmessage)
+   void progress_impact::on_message_destroy(::message::message * pmessage)
    {
 
       pmessage->previous();
@@ -316,7 +318,7 @@ namespace userex
    }
 
 
-   void progress_impact::_001OnDraw(::draw2d::graphics_pointer& pgraphics)
+   void progress_impact::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
       if (m_pprogress == nullptr)
@@ -335,7 +337,7 @@ namespace userex
    }
 
 
-   void progress_impact::on_layout(::draw2d::graphics_pointer& pgraphics)
+   void progress_impact::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
       auto rectangleX = this->rectangle();

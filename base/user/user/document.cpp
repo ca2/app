@@ -1077,16 +1077,26 @@ namespace user
          //}
 
          //preader->close();
-         if (m_pimpactsystem->m_typeatomData.has_char())
+         //if (m_pimpactsystem->m_typeatomData.has_char())
          {
 
-            auto pNew = __id_create((const ::atom &)m_pimpactsystem->m_typeatomData);
+           // auto pNew = __id_create((const ::atom &)m_pimpactsystem->m_typeatomData);
 
-            ::pointer < ::data::data > pdataNew = pNew;
+            auto pdata = create_data(0);
 
-            pdataNew->on_open_data(payloadFile);
+            pdata->initialize_data();
 
-            set_data(0, pdataNew);
+            auto preader = file()->get_reader(payloadFile);
+
+            ::binary_stream binarystream(preader);
+
+            auto path = payloadFile.as_file_path();
+
+            pdata->read_data(binarystream, path.all_extensions());
+
+            //set_data(0, pdata);
+
+            m_pdataIncoming = pdata;
 
          }
 
@@ -1159,7 +1169,9 @@ namespace user
    bool document::on_save_document(::file::file * pfile)
    {
 
-      get_data(0)->on_save_data(pfile);
+      binary_stream binarystream(pfile);
+
+      get_data(0)->write_data(binarystream, m_strSaveFileExtension);
 
       return true;
 

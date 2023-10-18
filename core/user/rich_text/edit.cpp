@@ -2445,6 +2445,7 @@ void rich_text_factory_exchange(::factory::factory * pfactory)
    //pfactory->add_factory_item <::user::rich_text::document >();
 
    pfactory->add_factory_item < ::user::rich_text::edit_impl >("rich_text_impact");
+   pfactory->add_factory_item < ::user::rich_text::edit_impl >();
 
 }
 

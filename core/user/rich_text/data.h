@@ -82,11 +82,15 @@ namespace user
 
          virtual strsize _001GetTextLength() const;
 
-         //void write(::binary_stream & stream) const override;
-         //void read(::binary_stream & stream) override;
-         bool on_new_data();
-         bool on_open_data(const ::payload & payloadFile);
-         bool on_save_data(::file::file * pfile);
+         
+         bool on_new_data() override;
+
+
+         void read_data(::binary_stream & binarystream, const ::scoped_string & scopedstrFormat) override;
+         void write_data(::binary_stream & binarystream, const ::scoped_string & scopedstrFormat) override;
+         void read_from_stream(::binary_stream & stream) override;
+         void write_to_stream(::binary_stream & stream) override;
+
 
       };
 

@@ -880,7 +880,16 @@ namespace user
 
       //m_puserinteraction->m_pinteractionimpl->m_pwindow->_on
 
-      m_puserinteraction->m_pinteractionimpl->do_graphics();
+      auto puserinteractionimpl = m_puserinteraction->m_pinteractionimpl;
+
+      if (!puserinteractionimpl)
+      {
+
+         return false;
+
+      }
+
+      puserinteractionimpl->do_graphics();
 
       //m_puserinteraction->m_pinteractionimpl->do_graphics(e_graphics_draw);
 

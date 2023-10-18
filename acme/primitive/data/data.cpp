@@ -165,21 +165,16 @@ namespace data
    }
 
 
-   bool data::on_open_data(const ::payload & payloadFile)
+   void data::write_data(::binary_stream & binarystream, const ::scoped_string & scopedstrFormat)
    {
-
-      return true;
 
    }
 
 
-   bool data::on_save_data(::file::file * pfile)
+   void data::read_data(::binary_stream & binarystream, const ::scoped_string & scopedstrFormat)
    {
 
-      return true;
-
    }
-
 
 
 } // namespace data

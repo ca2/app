@@ -38,7 +38,7 @@ namespace user
       string                              m_strSaveFileExtension;
       atom_map < ::procedure_array >          m_mapRoutine;
       bool                                m_bToolbar;
-
+      ::pointer < ::data::data >          m_pdataIncoming;
 
 
       document();

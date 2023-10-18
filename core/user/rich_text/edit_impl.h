@@ -173,7 +173,8 @@ namespace user
          bool edit_undo() override;
 
 
-
+         void read_from_stream(::binary_stream & binarystream) override;
+         void write_to_stream(::binary_stream & binarystream) override;
 
 
       };

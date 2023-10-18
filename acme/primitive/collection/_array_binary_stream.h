@@ -16,7 +16,7 @@ inline binary_stream & operator <<(binary_stream & stream, const ::pointer_array
    for (auto & pitem : itema)
    {
 
-      stream << *pitem;
+      stream.write_particle(pitem);
 
       if (stream.nok())
       {
@@ -57,9 +57,7 @@ inline binary_stream & operator >>(binary_stream & stream, ::pointer_array < ITE
       for (; i < c && stream.has_ok_flag(); i++)
       {
 
-         itema.__construct(itema[i]);
-
-         stream >> *itema[i];
+         itema[i] = stream.read_particle();
 
       }
 

@@ -18,9 +18,9 @@ namespace user
       public:
 
 
-         virtual void     text_format_load(data * pdata, ::file::file * pfileIn);
+         virtual void text_format_read(data * pdata, ::binary_stream & binarystream);
 
-         virtual void     text_format_save(::file::file* pfileOut, data * pdata);
+         virtual void text_format_write(::binary_stream & binarystream, data * pdata);
 
 
       };

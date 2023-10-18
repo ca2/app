@@ -108,13 +108,32 @@ namespace user
    }
 
 
+   void picture::picture_impl::read_from_stream(::binary_stream & binarystream)
+   {
+
+      binarystream >> m_rectangle;
+      binarystream >> m_dRotate;
+
+   }
+   
+   
+   void picture::picture_impl::write_to_stream(::binary_stream & binarystream)
+   {
+
+      binarystream << m_rectangle;
+      binarystream << m_dRotate;
+
+   }
+
+
+
    bool picture::enable_picture(bool bEnable)
    {
 
       if (bEnable)
       {
 
-         __construct_new(m_ppictureimpl);
+         __defer_construct_new(m_ppictureimpl);
 
       }
       else
@@ -1034,6 +1053,27 @@ namespace user
    }
 
 
+   void picture::read_from_stream(::binary_stream & binarystream)
+   {
+
+      if (!is_picture_enabled())
+      {
+
+         enable_picture();
+
+      }
+
+      m_ppictureimpl->read_from_stream(binarystream);
+
+   }
+
+
+   void picture::write_to_stream(::binary_stream & binarystream)
+   {
+
+      m_ppictureimpl->write_to_stream(binarystream);
+
+   }
 
 
 } // namespace user

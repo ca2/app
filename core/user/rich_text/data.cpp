@@ -1032,28 +1032,25 @@ namespace user
       }
 
 
-      bool data::on_open_data(const ::payload & payloadFile)
+      void data::read_data(::binary_stream & binarystream, const ::scoped_string & scopedstrFormat)
       {
 
-         auto path = payloadFile.as_file_path();
-
-         auto extension = path.final_extension();
-
-         if (extension.case_insensitive_order("rtf") == 0)
+         if (scopedstrFormat.case_insensitive_order("rtf") == 0)
          {
 
-            auto preader = file()->get_reader(payloadFile);
+            read_from_stream(binarystream);
+            //auto preader = file()->get_reader(payloadFile);
 
             //parse_rtf_text(str);
 
             //if (parse_rtf_text(str))
             //{
 
-            auto pfactory = acmesystem()->factory("text_format", "rtf");
+            //auto pfactory = acmesystem()->factory("text_format", "rtf");
 
-            auto ptextformat = __create< ::user::rich_text::text_format >(pfactory);
+            //auto ptextformat = __create< ::user::rich_text::text_format >(pfactory);
 
-            ptextformat->text_format_load(this, preader);
+            //ptextformat->text_format_read(this, bin);
 
             //id_update_all_impacts(ID_INCOMING_DOCUMENT);
 
@@ -1062,24 +1059,54 @@ namespace user
          }
 
 
-         return true;
+         //return true;
 
       }
 
 
-      bool data::on_save_data(::file::file * pfile)
+      void data::write_data(::binary_stream & binarystream, const ::scoped_string & scopedstrFormat)
+      {
+
+         if (scopedstrFormat.case_insensitive_order("rtf") == 0)
+         {
+
+            write_to_stream(binarystream);
+
+            //auto pfactory = acmesystem()->factory("text_format", "rtf");
+
+            //auto ptextformat = __create< ::user::rich_text::text_format >(pfactory);
+
+            //ptextformat->text_format_save(pfile, this);
+
+         }
+
+         //return true;
+
+      }
+
+      
+      void data::read_from_stream(::binary_stream & binarystream)
       {
 
          auto pfactory = acmesystem()->factory("text_format", "rtf");
 
          auto ptextformat = __create< ::user::rich_text::text_format >(pfactory);
 
-         ptextformat->text_format_save(pfile, this);
-
-         return true;
+         ptextformat->text_format_read(this, binarystream);
 
       }
 
+
+      void data::write_to_stream(::binary_stream & binarystream)
+      {
+
+         auto pfactory = acmesystem()->factory("text_format", "rtf");
+
+         auto ptextformat = __create< ::user::rich_text::text_format >(pfactory);
+
+         ptextformat->text_format_write(binarystream, this);
+
+      }
 
 
    } // namespace rich_text

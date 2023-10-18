@@ -2111,21 +2111,20 @@ void particle::destroy_os_data()
 }
 
 
+void particle::write_to_stream(::binary_stream & stream)
+{
 
-//void particle::write(::binary_stream & stream) const
-//{
-//
-//   throw interface_only();
-//
-//}
-//
-//
-//void particle::read(::binary_stream & stream)
-//{
-//
-//   throw interface_only();
-//
-//}
+   throw interface_only();
+
+}
+
+
+void particle::read_from_stream(::binary_stream & stream)
+{
+
+   throw interface_only();
+
+}
 
 
 CLASS_DECL_ACME ::pointer < ::particle > detach_pointer(::lparam& lparam)

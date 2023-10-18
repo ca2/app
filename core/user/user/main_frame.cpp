@@ -74,9 +74,14 @@ namespace user
 
                __construct_new(m_prichtextformattool);
 
-               m_prichtextformattool->create_host(e_parallelization_synchronous);
+               m_prichtextformattool->m_procedureOnAfterCreate = [this]()
+                  {
+                     m_prichtextformattool->set_owner(this);
+                  };
 
-               m_prichtextformattool->set_owner(this);
+               m_prichtextformattool->create_host(e_parallelization_asynchronous);
+
+               
 
             }
 

@@ -552,8 +552,8 @@ public:
    //virtual void exchange(::stream& s);
    //virtual void exchange(::payload_stream& s);
 
-   //virtual void write(::binary_stream& stream) const;
-   //virtual void read(::binary_stream& stream);
+   virtual void write_to_stream(::binary_stream & stream);
+   virtual void read_from_stream(::binary_stream & stream);
 
 
    //virtual void add_composite(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);

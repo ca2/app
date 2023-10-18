@@ -1314,6 +1314,8 @@ virtual binary_stream & operator >>(::payload & payload);
    }
 
 
+   virtual ::pointer < ::particle > read_particle();
+   virtual void write_particle(::particle * pparticle);
 
 };
 

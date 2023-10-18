@@ -63,8 +63,11 @@ namespace data
 
 
       virtual bool on_new_data();
-      virtual bool on_open_data(const ::payload & payloadFile);
-      virtual bool on_save_data(::file::file * pfile);
+
+      virtual void read_data(::binary_stream & binarystream, const ::scoped_string & scopedstrFormat);
+      virtual void write_data(::binary_stream & binarystream, const ::scoped_string & scopedstrFormat);
+      //virtual bool on_open_data(const ::payload & payloadFile);
+      //virtual bool on_save_data(::file::file * pfile);
 
 
    };

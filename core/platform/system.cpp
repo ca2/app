@@ -91,7 +91,7 @@ namespace core
    void system::initialize_rich_text()
    {
 
-      rich_text_factory_exchange(factory());
+      rich_text_factory_exchange(this->factory());
 
    }
 

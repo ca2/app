@@ -12,6 +12,8 @@ binary_stream::binary_stream(const ::file_pointer & pfile) :
    m_pfile(pfile)
 {
 
+   initialize(pfile);
+
    set_ok_flag();
 
    if (pfile->has_storing_flag())
@@ -827,5 +829,33 @@ void binary_stream::read_to_hex(string & str, filesize tickStart, filesize tickE
    auto atom = text_to_factory_id(strText);
 
    return __id_create(atom);
+
+}
+
+
+::pointer < ::particle > binary_stream::read_particle()
+{
+
+   ::type_atom typeatom;
+
+   *this >> typeatom;
+
+   auto pparticle = __id_create(typeatom);
+
+   pparticle->read_from_stream(*this);
+
+   return pparticle;
+
+}
+
+
+void binary_stream::write_particle(::particle * pparticle)
+{
+
+   ::type_atom typeatom(pparticle);
+
+   *this << typeatom;
+
+   pparticle->write_to_stream(*this);
 
 }

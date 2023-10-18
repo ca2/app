@@ -98,9 +98,6 @@
     <ClCompile Include="experience\frame_011.cpp">
       <Filter>Source Files\experience</Filter>
     </ClCompile>
-    <ClCompile Include="experience\frame_013.cpp">
-      <Filter>Source Files\experience</Filter>
-    </ClCompile>
     <ClCompile Include="user\style.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
@@ -112,6 +109,9 @@
     </ClCompile>
     <ClCompile Include="_.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="experience\frame_022.cpp">
+      <Filter>Source Files\experience</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

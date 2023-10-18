@@ -230,7 +230,7 @@
     <ClCompile Include="filesystem\filemanager\save_as_impact.cpp" />
     <ClCompile Include="filesystem\filemanager\thumbnail.cpp" />
     <ClCompile Include="filesystem\filemanager\tab_impact.cpp" />
-    <ClCompile Include="filesystem\filemanager\tree.cpp" />
+    <ClCompile Include="filesystem\filemanager\tree_data.cpp" />
     <ClCompile Include="filesystem\filemanager\_.cpp" />
     <ClCompile Include="filesystem\userfs\document.cpp" />
     <ClCompile Include="filesystem\userfs\item.cpp" />
@@ -239,9 +239,10 @@
     <ClCompile Include="filesystem\userfs\list_item.cpp" />
     <ClCompile Include="filesystem\userfs\list_item_array.cpp" />
     <ClCompile Include="filesystem\userfs\main_impact.cpp" />
-    <ClCompile Include="filesystem\userfs\tree.cpp" />
+    <ClCompile Include="filesystem\userfs\tree_data.cpp" />
     <ClCompile Include="filesystem\userfs\userfs.cpp" />
     <ClCompile Include="framework.cpp" />
+    <ClCompile Include="graphics\color_selector.cpp" />
     <ClCompile Include="html\hi5\hi5_twitter_authorization.cpp" />
     <ClCompile Include="node\windows\shell.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
@@ -257,13 +258,14 @@
     <ClCompile Include="user\databaseuser\mesh_data.cpp" />
     <ClCompile Include="user\rich_text\box.cpp" />
     <ClCompile Include="user\rich_text\data.cpp" />
-    <ClCompile Include="user\rich_text\document.cpp" />
     <ClCompile Include="user\rich_text\edit.cpp" />
     <ClCompile Include="user\rich_text\edit_impl.cpp" />
     <ClCompile Include="user\rich_text\format.cpp" />
+    <ClCompile Include="user\rich_text\format_host.cpp" />
     <ClCompile Include="user\rich_text\format_tool.cpp" />
     <ClCompile Include="user\rich_text\global.cpp" />
     <ClCompile Include="user\rich_text\line.cpp" />
+    <ClCompile Include="user\rich_text\selection.cpp" />
     <ClCompile Include="user\rich_text\span.cpp" />
     <ClCompile Include="user\rich_text\text_format.cpp" />
     <ClCompile Include="user\simple\form_list_impact.cpp" />
@@ -280,8 +282,6 @@
     <ClCompile Include="user\simple\tab_control.cpp" />
     <ClCompile Include="user\simple\tab_impact.cpp" />
     <ClCompile Include="user\simple\tree_impact.cpp" />
-    <ClCompile Include="user\userex\calculator_edit_impact.cpp" />
-    <ClCompile Include="user\userex\color_impact.cpp" />
     <ClCompile Include="user\userex\dialog.cpp" />
     <ClCompile Include="user\userex\dialog_frame.cpp" />
     <ClCompile Include="user\userex\font_impact.cpp" />
@@ -307,15 +307,20 @@
     <ClCompile Include="user\userex\wait_message_dialog.cpp" />
     <ClCompile Include="user\userpresence\department.cpp" />
     <ClCompile Include="user\userpresence\presence.cpp" />
-    <ClCompile Include="user\user\color_combo_box.cpp" />
+    <ClCompile Include="user\user\color_selector_combo_box.cpp" />
+    <ClCompile Include="user\user\color_selector_control.cpp" />
+    <ClCompile Include="user\user\color_selector_impact.cpp" />
+    <ClCompile Include="user\user\color_selector_popup.cpp" />
     <ClCompile Include="user\user\elastic_slider.cpp" />
     <ClCompile Include="user\user\font_combo_box.cpp" />
     <ClCompile Include="user\user\font_list.cpp" />
+    <ClCompile Include="user\user\font_list_impact.cpp" />
     <ClCompile Include="user\user\form_list.cpp" />
     <ClCompile Include="user\user\form_list_impact.cpp" />
     <ClCompile Include="user\user\form_mesh.cpp" />
     <ClCompile Include="user\user\image_manager.cpp" />
     <ClCompile Include="user\user\list.cpp" />
+    <ClCompile Include="user\user\list2.cpp" />
     <ClCompile Include="user\user\list_cache.cpp" />
     <ClCompile Include="user\user\list_column.cpp" />
     <ClCompile Include="user\user\list_data.cpp" />
@@ -327,7 +332,9 @@
     <ClCompile Include="user\user\mesh_cache_interface.cpp" />
     <ClCompile Include="user\user\mesh_data.cpp" />
     <ClCompile Include="user\user\mesh_item.cpp" />
+    <ClCompile Include="user\user\popup.cpp" />
     <ClCompile Include="user\user\step_slider.cpp" />
+    <ClCompile Include="user\user\text_format_object.cpp" />
     <ClCompile Include="user\user\toggle_switch.cpp" />
     <ClCompile Include="user\user\toolbar_ctrl.cpp" />
     <ClCompile Include="user\user\tooltip.cpp" />
@@ -491,6 +498,24 @@
     <ClInclude Include="user\menu\list_impact.h" />
     <ClInclude Include="user\menu\list_window.h" />
     <ClInclude Include="user\menu\_.h" />
+    <ClInclude Include="user\rich_text\box.h" />
+    <ClInclude Include="user\rich_text\data.h" />
+    <ClInclude Include="user\rich_text\edit.h" />
+    <ClInclude Include="user\rich_text\edit_impl.h" />
+    <ClInclude Include="user\rich_text\format.h" />
+    <ClInclude Include="user\rich_text\format_host.h" />
+    <ClInclude Include="user\rich_text\format_tool.h" />
+    <ClInclude Include="user\rich_text\global.h" />
+    <ClInclude Include="user\rich_text\layout.h" />
+    <ClInclude Include="user\rich_text\line.h" />
+    <ClInclude Include="user\rich_text\rich_text.h" />
+    <ClInclude Include="user\rich_text\selection.h" />
+    <ClInclude Include="user\rich_text\span.h" />
+    <ClInclude Include="user\rich_text\text_format.h" />
+    <ClInclude Include="user\rich_text\_.h" />
+    <ClInclude Include="user\rich_text\_binary_stream.h" />
+    <ClInclude Include="user\rich_text\_constant.h" />
+    <ClInclude Include="user\rich_text\_impl.h" />
     <ClInclude Include="user\simple\child_frame.h" />
     <ClInclude Include="user\simple\form_list_impact.h" />
     <ClInclude Include="user\simple\form_impact.h" />
@@ -654,29 +679,6 @@
     <ClInclude Include="user\user\_interaction_impl.h" />
   </ItemGroup>
   <ItemGroup>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\acme\nord_acme.vcxproj">
-      <Project>{ecb0620d-bfa8-4f9b-b2ad-9d9c20a44fe9}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\apex\nord_apex.vcxproj">
-      <Project>{9d102bb4-2054-4d90-a3e7-dd63bdf83982}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\aqua\nord_aqua.vcxproj">
-      <Project>{576b7916-147f-49f2-84b8-360d703894b5}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\aura\nord_aura.vcxproj">
-      <Project>{02207bc4-c08b-4a2d-b754-f3bd46ad3098}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\axis\nord_axis.vcxproj">
-      <Project>{6f5c86b4-07bb-45a5-9fb9-b7921bcbbf36}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\base\nord_base.vcxproj">
-      <Project>{15ccba90-45f6-46fa-a1fd-af4c40595697}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\bred\nord_bred.vcxproj">
-      <Project>{404ae736-b4d1-492b-a3c8-aba442415c68}</Project>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

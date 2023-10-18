@@ -99,7 +99,6 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
     <ClCompile>
-      <PreprocessorDefinitions>_AXIS_LIBRARY;CUBE;DEBUG</PreprocessorDefinitions>
       <ExceptionHandling>Enabled</ExceptionHandling>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <CppLanguageStandard>
@@ -108,14 +107,14 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <CLanguageStandard>c11</CLanguageStandard>
-      <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
     </ClCompile>
     <Link>
       <AdditionalDependencies>
       </AdditionalDependencies>
-      <LibraryDependencies>aurasqlite;aurabzip2;aurapcre;jnigraphics;android;log;m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
+      <LibraryDependencies>unac;jnigraphics;android;log;m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
       <UnresolvedSymbolReferences>true</UnresolvedSymbolReferences>
       <AdditionalLibraryDirectories>$(OutDir);$(__operating_system)storage-android\third\library\$(Platform)\$(Configuration)\;$(__operating_system)storage-android\library\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath)</AdditionalLibraryDirectories>
+      <AdditionalOptions>-error-limit=0 %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PreBuildEvent>
       <Command>
@@ -127,24 +126,21 @@
       <ExceptionHandling>Enabled</ExceptionHandling>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <AdditionalOptions>-Wno-attributes -Wno-sign-compare -Wno-comment -Wno-strict-overflow -Wno-unused-local-typedefs -Wno-unknown-pragmas -Wno-unused-function -Wno-unused-variable -Wno-unused-value -Wno-reorder -Wno-overloaded-virtual -std=c++20 -Wno-char-subscripts</AdditionalOptions>
-      <PreprocessorDefinitions>_AXIS_LIBRARY;CUBE;DEBUG</PreprocessorDefinitions>
       <CLanguageStandard>c11</CLanguageStandard>
       <CppLanguageStandard>
       </CppLanguageStandard>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
-      <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
     </ClCompile>
     <Link />
     <Link>
       <AdditionalLibraryDirectories>$(OutDir);$(__operating_system)storage-android\third\library\$(Platform)\$(Configuration)\;$(__operating_system)storage-android\library\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\$(ToolchainName)\$(ToolchainVersion)\$(PlatformShortName);$(StlLibraryPath)</AdditionalLibraryDirectories>
-      <LibraryDependencies>sqlite;ssl;crypto;idn;bzip2;zlib;pcre;iconv;android;log;m;$(StlLibraryName);jnigraphics;android</LibraryDependencies>
+      <LibraryDependencies>unac;jnigraphics;android;log;m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
     <ClCompile>
       <DebugInformationFormat>FullDebug</DebugInformationFormat>
-      <PreprocessorDefinitions>_AXIS_LIBRARY;CUBE</PreprocessorDefinitions>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <CLanguageStandard>c11</CLanguageStandard>
       <CppLanguageStandard>
@@ -154,10 +150,9 @@
       <Optimization>Disabled</Optimization>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
-      <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
     </ClCompile>
     <Link>
-      <LibraryDependencies>sqlite;ssl;crypto;idn;bzip2;zlib;pcre;iconv;android;log;m;$(StlLibraryName);jnigraphics;android</LibraryDependencies>
+      <LibraryDependencies>unac;jnigraphics;android;log;m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
       <AdditionalLibraryDirectories>$(OutDir);$(__operating_system)storage-android\third\library\$(Platform)\$(Configuration)\;$(__operating_system)storage-android\library\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\$(ToolchainName)\$(ToolchainVersion)\$(PlatformShortName);$(StlLibraryPath)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
@@ -169,14 +164,12 @@
       <CLanguageStandard>c11</CLanguageStandard>
       <CppLanguageStandard>
       </CppLanguageStandard>
-      <PreprocessorDefinitions>_AXIS_LIBRARY;CUBE</PreprocessorDefinitions>
       <AdditionalOptions>-Wno-attributes -Wno-sign-compare -Wno-comment -Wno-strict-overflow -Wno-unused-local-typedefs -Wno-unknown-pragmas -Wno-unused-function -Wno-unused-variable -Wno-unused-value -Wno-reorder -Wno-overloaded-virtual -std=c++20 -Wno-char-subscripts</AdditionalOptions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
-      <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
     </ClCompile>
     <Link>
-      <LibraryDependencies>sqlite;ssl;crypto;idn;bzip2;zlib;pcre;iconv;android;log;m;$(StlLibraryName);jnigraphics;android</LibraryDependencies>
+      <LibraryDependencies>unac;jnigraphics;android;log;m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
       <AdditionalLibraryDirectories>$(OutDir);$(__operating_system)storage-android\third\library\$(Platform)\$(Configuration)\;$(__operating_system)storage-android\library\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
@@ -299,7 +292,10 @@
     <ClCompile Include="user\form\control.cpp" />
     <ClCompile Include="user\form\data.cpp" />
     <ClCompile Include="user\form\window.cpp" />
+    <ClCompile Include="user\user\calculator_edit.cpp" />
     <ClCompile Include="user\user\combo_box.cpp" />
+    <ClCompile Include="user\user\form_handler.cpp" />
+    <ClCompile Include="user\user\line_layout.cpp" />
     <ClCompile Include="user\user\list_box.cpp" />
     <ClCompile Include="user\user\object.cpp" />
     <ClCompile Include="user\user\plus_minus.cpp" />
@@ -1056,20 +1052,6 @@
     <None Include="primitive\primitive.inl" />
     <None Include="primitive\factory_impl.inl" />
     <None Include="primitive\primitive\block.inl" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\acme\nord_acme.vcxproj">
-      <Project>{ecb0620d-bfa8-4f9b-b2ad-9d9c20a44fe9}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\apex\nord_apex.vcxproj">
-      <Project>{9d102bb4-2054-4d90-a3e7-dd63bdf83982}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\aqua\nord_aqua.vcxproj">
-      <Project>{576b7916-147f-49f2-84b8-360d703894b5}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\aura\nord_aura.vcxproj">
-      <Project>{02207bc4-c08b-4a2d-b754-f3bd46ad3098}</Project>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

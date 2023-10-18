@@ -233,9 +233,11 @@
     <ClCompile Include="framework.cpp" />
     <ClCompile Include="graphics\draw2d\color.cpp" />
     <ClCompile Include="graphics\draw2d\color_array.cpp" />
-    <ClCompile Include="graphics\draw2d\image32_array.cpp" />
     <ClCompile Include="graphics\draw2d\os_font_name.cpp" />
     <ClCompile Include="graphics\draw2d\_.cpp" />
+    <ClCompile Include="graphics\image\image32.cpp" />
+    <ClCompile Include="graphics\image\image32_array.cpp" />
+    <ClCompile Include="graphics\image\pixmap.cpp" />
     <ClCompile Include="handler\extended_topic.cpp" />
     <ClCompile Include="handler\handler.cpp" />
     <ClCompile Include="handler\item.cpp" />
@@ -510,6 +512,7 @@
     <ClCompile Include="primitive\datetime\system_time.cpp" />
     <ClCompile Include="primitive\geometry2d\geometry.cpp" />
     <ClCompile Include="primitive\geometry2d\item.cpp" />
+    <ClCompile Include="primitive\geometry2d\matrix.cpp" />
     <ClCompile Include="primitive\geometry2d\rectangle.cpp" />
     <ClCompile Include="primitive\geometry2d\rectangle_array.cpp" />
     <ClCompile Include="primitive\geometry2d\region.cpp" />
@@ -620,6 +623,8 @@
     <ClCompile Include="primitive\text\text.cpp" />
     <ClCompile Include="primitive\text\translator.cpp" />
     <ClCompile Include="primitive\time\time.cpp" />
+    <ClCompile Include="primitive\time\time\posix_time.cpp" />
+    <ClCompile Include="primitive\time\time\time.cpp" />
     <ClCompile Include="primitive\time\__string.cpp" />
     <ClCompile Include="regular_expression\context.cpp" />
     <ClCompile Include="regular_expression\regular_expression.cpp" />
@@ -653,6 +658,7 @@
     <ClCompile Include="user\user\text.cpp" />
     <ClCompile Include="user\user\tool_item.cpp" />
     <ClCompile Include="user\user\_string.cpp" />
+    <ClCompile Include="windowing\window_base.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="compress\compress.h" />
@@ -1320,6 +1326,7 @@
     <ClInclude Include="primitive\primitive\malloc.h" />
     <ClInclude Include="primitive\primitive\map.h" />
     <ClInclude Include="primitive\primitive\math_math.h" />
+    <ClInclude Include="primitive\primitive\matter.h" />
     <ClInclude Include="primitive\primitive\member.h" />
     <ClInclude Include="primitive\primitive\memory.h" />
     <ClInclude Include="primitive\primitive\memory_base.h" />
@@ -1511,6 +1518,7 @@
     <ClInclude Include="user\user\_constant.h" />
     <ClInclude Include="user\user\_constant_key.h" />
     <ClInclude Include="user\user\_style.h" />
+    <ClInclude Include="windowing\window_base.h" />
     <ClInclude Include="_start.h" />
   </ItemGroup>
   <ItemGroup>

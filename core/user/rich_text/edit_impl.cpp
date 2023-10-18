@@ -2141,9 +2141,12 @@ namespace user
 
                }
 
+               //auto prichtextdata = get_rich_text_data();
 
+               //prichtextdata->_001InsertText(str);
+               
+               _001InsertText(str);
 
-               prichtextdata->_001InsertText(str);
 
 #endif
 

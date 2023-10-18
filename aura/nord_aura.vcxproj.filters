@@ -1279,9 +1279,6 @@
     <ClCompile Include="graphics\draw2d\lock.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\draw2d\matrix.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
     <ClCompile Include="graphics\draw2d\object.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
@@ -1677,6 +1674,12 @@
     </ClCompile>
     <ClCompile Include="windowing\placement_log.cpp">
       <Filter>Source Files\windowing</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\_.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\_string.cpp">
+      <Filter>Source Files\user\user</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

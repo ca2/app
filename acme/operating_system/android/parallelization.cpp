@@ -2,6 +2,7 @@
 #include "framework.h"
 #include "acme/parallelization/task.h"
 #include "acme/platform/acme.h"
+#include "acme/platform/node.h"
 #include "acme/platform/system.h"
 
 
@@ -67,7 +68,7 @@ void main_asynchronous(const ::procedure & procedure)
 
    auto psystem = ::acme::acme::g_pacme->m_psubsystem->acmesystem();
 
-   psystem->windowing_post(predicate);
+   psystem->acmenode()->user_post(predicate);
 
 }
 
@@ -76,7 +77,7 @@ namespace acme
 {
 
 
-   void system::windowing_post(const ::procedure & procedure)
+   void node::user_post(const ::procedure & procedure)
    {
 
       main_asynchronous(procedure);
@@ -107,3 +108,11 @@ bool __os_term_thread()
 }
 
 
+
+
+
+void _do_tasks()
+{
+
+
+}

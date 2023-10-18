@@ -203,7 +203,7 @@
     <ClCompile Include="experience\frame_005.cpp" />
     <ClCompile Include="experience\frame_008.cpp" />
     <ClCompile Include="experience\frame_011.cpp" />
-    <ClCompile Include="experience\frame_013.cpp" />
+    <ClCompile Include="experience\frame_022.cpp" />
     <ClCompile Include="experience\frame_Minimal001.cpp" />
     <ClCompile Include="framework.cpp" />
     <ClCompile Include="user\style.cpp" />
@@ -220,7 +220,7 @@
     <ClInclude Include="experience\frame_005.h" />
     <ClInclude Include="experience\frame_008.h" />
     <ClInclude Include="experience\frame_011.h" />
-    <ClInclude Include="experience\frame_013.h" />
+    <ClInclude Include="experience\frame_022.h" />
     <ClInclude Include="experience\frame_Minimal001.h" />
     <ClInclude Include="experience\_experience.h" />
     <ClInclude Include="framework.h" />

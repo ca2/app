@@ -92,7 +92,7 @@ namespace user
       ::item_pointer parent_client_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;
 
 
-      virtual ::item_pointer parent_client_on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder);
+      ::item_pointer parent_client_on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;
       //virtual int on_hit_test_cursor(point_f64 point);
       //virtual int on_hit_test( point_i32) const;
       virtual bool intersects_drawing(const polygon_f64 & polygon_i32) const;
@@ -159,8 +159,8 @@ namespace user
       virtual void move_to(point_f64 point, ::size_f64 sizePage, ::size_f64 sizeClient, const ::rectangle_f64 & rectangleMargin);
 
 
-      void read_from_stream(::binary_stream & stream);
-      void write_to_stream(::binary_stream & stream);
+      void read_from_stream(::binary_stream & stream) override;
+      void write_to_stream(::binary_stream & stream) override;
 
 
    };

@@ -318,26 +318,6 @@
   <ItemGroup>
     <None Include="inline\aaa_want_to_remove_app_prelude.inl" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\acme\nord_acme.vcxproj">
-      <Project>{ecb0620d-bfa8-4f9b-b2ad-9d9c20a44fe9}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\apex\nord_apex.vcxproj">
-      <Project>{9d102bb4-2054-4d90-a3e7-dd63bdf83982}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\aqua\nord_aqua.vcxproj">
-      <Project>{576b7916-147f-49f2-84b8-360d703894b5}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\aura\nord_aura.vcxproj">
-      <Project>{02207bc4-c08b-4a2d-b754-f3bd46ad3098}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\axis\nord_axis.vcxproj">
-      <Project>{6f5c86b4-07bb-45a5-9fb9-b7921bcbbf36}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\base\nord_base.vcxproj">
-      <Project>{15ccba90-45f6-46fa-a1fd-af4c40595697}</Project>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />
 </Project>

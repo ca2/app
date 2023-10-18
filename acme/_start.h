@@ -10,6 +10,7 @@
 
 #include "acme/include/_acme.h"
 #include "acme/version/version.h"
+#include "configuration_selection.h"
 #include "acme/platform/_features.h"
 #include "debugbreak.h"
 #include "operating_system/platform_setup.h"

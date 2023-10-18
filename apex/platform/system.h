@@ -112,34 +112,28 @@ namespace apex
 
       virtual void init();
 
-      virtual void inline_init() override;
-      virtual void inline_term() override;
+      void inline_init() override;
+      void inline_term() override;
 
 
-      virtual void init_system() override;
+      void init_system() override;
       virtual void term_system();
 
       virtual void on_system_construct();
 
-      virtual void on_start_system() override;
+      void on_start_system() override;
 
-      virtual void system_main() override;
+      void system_main() override;
 
       virtual void term();
 
-
       DECLARE_MESSAGE_HANDLER(on_message_erase_session);
 
+      string get_application_server_name() override;
 
-      virtual string get_application_server_name();
+      bool task_get_run() const override;
 
-
-
-      virtual bool task_get_run() const override;
-
-
-      virtual void create_os_node() override;
-
+      void create_os_node() override;
 
       ::apex::node * node();
 

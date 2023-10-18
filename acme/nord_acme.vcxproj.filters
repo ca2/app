@@ -1138,9 +1138,6 @@
     <ClCompile Include="graphics\draw2d\color_array.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\draw2d\image32_array.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
     <ClCompile Include="graphics\draw2d\os_font_name.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
@@ -1273,9 +1270,6 @@
     <ClCompile Include="user\user\mouse.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\_string.cpp">
-      <Filter>Source Files\primitive\primitive</Filter>
-    </ClCompile>
     <ClCompile Include="operating_system\android\nano_http\_nano_http.cpp">
       <Filter>Source Files\operating_system\android\nano_http</Filter>
     </ClCompile>
@@ -1338,6 +1332,30 @@
     </ClCompile>
     <ClCompile Include="user\user\container.cpp">
       <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\image\image32.cpp">
+      <Filter>Source Files\graphics\image</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\image\image32_array.cpp">
+      <Filter>Source Files\graphics\image</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\image\pixmap.cpp">
+      <Filter>Source Files\graphics\image</Filter>
+    </ClCompile>
+    <ClCompile Include="windowing\window_base.cpp">
+      <Filter>Source Files\windowing</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\geometry2d\matrix.cpp">
+      <Filter>Source Files\primitive\geometry2d</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\_string.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\time\time\time.cpp">
+      <Filter>Source Files\primitive\time\time</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\time\time\posix_time.cpp">
+      <Filter>Source Files\primitive\time\time</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -3918,6 +3936,12 @@
     <ClInclude Include="handler\item_container.h">
       <Filter>Header Files\handler</Filter>
     </ClInclude>
+    <ClInclude Include="windowing\window_base.h">
+      <Filter>Header Files\windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\matter.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
@@ -4183,6 +4207,18 @@
     </Filter>
     <Filter Include="Source Files\crypto">
       <UniqueIdentifier>{e1b1fa7a-3512-4ae5-bd3e-d80b0d6c453d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics\image">
+      <UniqueIdentifier>{6b4f3346-f7b1-4ee9-914b-d9d628ad7375}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\windowing">
+      <UniqueIdentifier>{90ad6dbc-9a22-4c8a-b8f8-3004528e54e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\windowing">
+      <UniqueIdentifier>{17884940-233c-43ec-b427-d4404b813ed6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\primitive\time\time">
+      <UniqueIdentifier>{334b72ec-5620-47b0-9c3b-56f9780fed9f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

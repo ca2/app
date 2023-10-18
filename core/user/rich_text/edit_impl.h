@@ -103,7 +103,7 @@ namespace user
 
          void _000DrawImpl(::draw2d::graphics_pointer & pgraphics) override;
 
-         ::pointer<format_tool>get_format_tool(bool bCreate);
+         ::pointer<format_tool>get_format_tool(bool bCreate) override;
 
          ::user::rich_text::format_host * get_format_host() override;
 

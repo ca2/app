@@ -229,6 +229,21 @@
     <ClCompile Include="html\user\user.cpp">
       <Filter>Source Files\html\user</Filter>
     </ClCompile>
+    <ClCompile Include="user\user\form_handler.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\auto_hide.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\tab_graphics.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\simple\toolbar.cpp">
+      <Filter>Source Files\user\simple</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\handler_impact.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -685,6 +700,12 @@
     </Filter>
     <Filter Include="Source Files\html\user">
       <UniqueIdentifier>{0dfd0254-b3d7-4e00-9cfc-165ac81f1144}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\simple\NewFilter1">
+      <UniqueIdentifier>{edada5f4-e998-42d1-887d-d779c4d5457f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\user\NewFilter1">
+      <UniqueIdentifier>{ee2ce039-f369-4928-b667-e75261366794}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

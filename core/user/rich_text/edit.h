@@ -114,24 +114,24 @@ namespace user
 
          virtual void on_selection_change();
 
-         virtual void install_message_routing(::channel * psender) override;
+         void install_message_routing(::channel * psender) override;
 
-         virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+         void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-         virtual void draw_impl(::draw2d::graphics_pointer & pgraphics) override;
+         void draw_impl(::draw2d::graphics_pointer & pgraphics) override;
 
          virtual ::pointer<format_tool>get_format_tool(bool bCreate);
 
          virtual ::user::rich_text::format_host * get_format_host();
 
-         virtual ::pointer<::user::rich_text::format> get_selection_common_format();
+         ::pointer<::user::rich_text::format> get_selection_common_format() override;
 
          using ::user::interaction::_001GetText;
          void _001GetText(string & str) override;
          virtual void _001GetLayoutText(string & str);
 
 
-         virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+         void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
          DECLARE_MESSAGE_HANDLER(on_message_create);
          DECLARE_MESSAGE_HANDLER(on_message_destroy);
@@ -147,14 +147,14 @@ namespace user
          //DECLARE_MESSAGE_HANDLER(on_message_kill_focus);
 
 
-         virtual void _001OnTimer(::timer * ptimer) override;
+         void _001OnTimer(::timer * ptimer) override;
 
 
          virtual void key_to_char(::message::key * pkey);
 
-         virtual void on_set_keyboard_focus() override;
+         void on_set_keyboard_focus() override;
 
-         virtual void on_kill_keyboard_focus() override;
+         void on_kill_keyboard_focus() override;
 
          bool keyboard_focus_is_focusable() override;
 

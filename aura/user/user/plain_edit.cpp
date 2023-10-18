@@ -6113,7 +6113,7 @@ namespace user
             else if (pkey->m_ekey == ::user::e_key_return)
             {
 
-#ifndef WINDOWS_DESKTOP
+//#ifndef WINDOWS_DESKTOP
 
                if (m_bMultiLine)
                {
@@ -6122,7 +6122,7 @@ namespace user
 
                }
 
-#endif
+//#endif
 
             }
             else if (is_window_enabled())

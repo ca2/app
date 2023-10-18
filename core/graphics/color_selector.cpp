@@ -1037,7 +1037,12 @@ namespace graphics
    void color_selector::on_after_hover_color_change()
    {
 
-      m_callbackHls(m_hls, false);
+      if (m_callbackHls)
+      {
+
+         m_callbackHls(m_hls, false);
+
+      }
 
    }
 

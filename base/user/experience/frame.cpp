@@ -252,7 +252,7 @@ namespace experience
 
       update_window_client_rect();
 
-      auto rectangleClient = m_pframewindow->client_rectangle();
+      auto rectangleHosting = m_pframewindow->hosting_rectangle();
 
       if (pframewindow != nullptr)
       {
@@ -264,7 +264,7 @@ namespace experience
 
             pframewindow->RepositionBars(0, 0xffff, FIRST_PANE, pframewindow->reposQuery,
                                  &rectangle, rectangle, false);
-            rectangle.offset(rectangleClient.top_left());
+            rectangle.offset(rectangleHosting.top_left());
             ::rectangle_i32 rectangleBorder;
             pframewindow->GetBorderRectangle(&rectangleBorder);
             pframewindow->RepositionBars(0, 0xffff, FIRST_PANE, pframewindow->reposExtra,
@@ -288,7 +288,7 @@ namespace experience
 
             pframewindow->GetBorderRectangle(&rectangleBorder);
 
-            pframewindow->RepositionBars(0, 0xffff, FIRST_PANE, pframewindow->reposExtra, &rectangleBorder, rectangleClient);
+            pframewindow->RepositionBars(0, 0xffff, FIRST_PANE, pframewindow->reposExtra, &rectangleBorder, rectangleHosting);
 
             pframewindow->SetBorderRect(rectangleBorder);
 
@@ -1177,10 +1177,10 @@ namespace experience
    }
 
 
-   bool frame::calculate_client_rectangle(::rectangle_i32 * prectangle, ::draw2d::graphics_pointer & pgraphics)
+   bool frame::calculate_hosting_rectangle(::rectangle_i32 * prectangle, ::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rectangle_i32 rectangleClient(*prectangle);
+      ::rectangle_i32 rectangleHosting(*prectangle);
 
       auto eappearance = m_pframewindow->const_layout().state(::user::e_layout_lading).appearance();
 
@@ -1190,32 +1190,32 @@ namespace experience
          !(eappearance & ::e_appearance_transparent_frame))
       {
 
-         rectangleClient.top() += m_iCaptionHeight;
+         rectangleHosting.top() += m_iCaptionHeight;
 
       }
 
       rectangle_i32 rectangleMargin = get_margin_rectangle();
 
-      rectangleClient.deflate(rectangleMargin);
+      rectangleHosting.deflate(rectangleMargin);
 
-      if (rectangleClient.is_empty())
+      if (rectangleHosting.is_empty())
       {
 
          return false;
 
       }
 
-      *prectangle = rectangleClient;
+      *prectangle = rectangleHosting;
 
       return true;
 
    }
 
 
-   ::rectangle_i32 frame::client_rectangle()
+   ::rectangle_i32 frame::hosting_rectangle()
    {
 
-      return m_pframewindow->client_rectangle();
+      return m_pframewindow->hosting_rectangle();
 
    }
 
@@ -1273,13 +1273,13 @@ namespace experience
 
       auto rectangle = m_pframewindow->::user::interaction::rectangle(elayout);
 
-      ::rectangle_i32 rectangleInner(rectangle);
+      ::rectangle_i32 rectangleHosting(rectangle);
 
       ::draw2d::graphics_pointer pgraphics;
 
-      calculate_client_rectangle(&rectangleInner, pgraphics);
+      calculate_hosting_rectangle(&rectangleHosting, pgraphics);
 
-      auto rectangleaBorders = get_borders(rectangle, rectangleInner);
+      auto rectangleaBorders = get_borders(rectangle, rectangleHosting);
 
       m_pframewindow->set_need_redraw(rectangleaBorders);
 

@@ -712,7 +712,6 @@
     <ClCompile Include="user\netuser\network_configuration.cpp" />
     <ClCompile Include="user\rich_text\box.cpp" />
     <ClCompile Include="user\rich_text\data.cpp" />
-    <ClCompile Include="user\rich_text\aaa_document.cpp" />
     <ClCompile Include="user\rich_text\edit.cpp" />
     <ClCompile Include="user\rich_text\edit_impl.cpp" />
     <ClCompile Include="user\rich_text\format.cpp" />

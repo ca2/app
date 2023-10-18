@@ -107,7 +107,7 @@ namespace lite
 
       ::rectangle_i32 rcClient;
 
-      rcClient = ptab->get_data()->m_rectangleTabClient;
+      rcClient = ptab->get_data()->m_rectangleHosting;
 
       int iTabHeight = ptab->get_data()->m_iTabHeight;
 
@@ -667,10 +667,10 @@ namespace lite
          m_rectangleTab.height(),
          0);*/
 
-         ptab->get_data()->m_rectangleTabClient.left()       = ptab->m_bShowTabs ? ptab->get_data().m_rectangleTab.right() : rectangleX.left();
-         ptab->get_data()->m_rectangleTabClient.top()        = ptab->get_data().m_rectangleTab.top();
-         ptab->get_data()->m_rectangleTabClient.right()      = rectangleX.right();
-         ptab->get_data()->m_rectangleTabClient.bottom()     = ptab->get_data().m_rectangleTab.bottom();
+         ptab->get_data()->m_rectangleHosting.left()       = ptab->m_bShowTabs ? ptab->get_data().m_rectangleTab.right() : rectangleX.left();
+         ptab->get_data()->m_rectangleHosting.top()        = ptab->get_data().m_rectangleTab.top();
+         ptab->get_data()->m_rectangleHosting.right()      = rectangleX.right();
+         ptab->get_data()->m_rectangleHosting.bottom()     = ptab->get_data().m_rectangleTab.bottom();
 
       }
       else
@@ -787,14 +787,14 @@ namespace lite
          m_rectangleTab.height(),
          0);*/
 
-         rectangle_i32 & rectangleTabClient = ptab->get_data()->m_rectangleTabClient;
+         rectangle_i32 & rectangleHosting = ptab->get_data()->m_rectangleHosting;
 
-         rectangleTabClient.left()       = ptab->get_data()->m_rectangleTab.left();
-         rectangleTabClient.top()        = ptab->m_bShowTabs ? ptab->get_data()->m_rectangleTab.bottom() : rectangleX.top();
-         rectangleTabClient.right()      = ptab->get_data()->m_rectangleTab.right();
-         rectangleTabClient.bottom()     = rectangleX.bottom();
+         rectangleHosting.left()       = ptab->get_data()->m_rectangleTab.left();
+         rectangleHosting.top()        = ptab->m_bShowTabs ? ptab->get_data()->m_rectangleTab.bottom() : rectangleX.top();
+         rectangleHosting.right()      = ptab->get_data()->m_rectangleTab.right();
+         rectangleHosting.bottom()     = rectangleX.bottom();
 
-         //TRACE0("rectangleTabClient");
+         //TRACE0("rectangleHosting");
 
       }
 

@@ -132,7 +132,7 @@ namespace user
          get_parent()->is_place_holder())
       {
 
-         m_bExtendOnParentClientArea = true;
+         m_bExtendOnParentHostingArea = true;
 
       }
 

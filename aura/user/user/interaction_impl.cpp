@@ -5112,9 +5112,11 @@ namespace user
 
          {
 
-            auto puserinteractionpointeraChild = m_puserinteraction->m_puserinteractionpointeraChild;
+            auto children = m_puserinteraction->synchronized_get_children();
 
-            if (puserinteractionpointeraChild)
+            // auto puserinteractionpointeraChild = m_puserinteraction->m_puserinteractionpointeraChild;
+
+            // if (puserinteractionpointeraChild)
             {
 
                //{
@@ -5132,8 +5134,10 @@ namespace user
 
                //}
 
-               for (auto & pinteraction : puserinteractionpointeraChild->interactiona())
+               for (auto & pinteraction : children)
                {
+
+                  //synchronouslock.unlock();
 
                   try
                   {
@@ -5145,6 +5149,8 @@ namespace user
                   {
 
                   }
+
+                  //synchronouslock.lock();
 
                }
 
@@ -6910,6 +6916,15 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
       if (m_puserinteractionKeyboardFocusRequest)
       {
 
+         if (m_puserinteractionKeyboardFocusRequest == m_puserinteractionToKillKeyboardFocus)
+         {
+
+            m_puserinteractionKeyboardFocusRequest.release();
+
+            return;
+
+         }
+
          information() << "on_final_set_keyboard_focus : " << ::string(::type(m_puserinteractionKeyboardFocusRequest.m_p));
 
          if (m_puserinteractionKeyboardFocusRequest != m_puserinteractionKeyboardFocus)
@@ -7040,7 +7055,9 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
          if (m_puserinteractionKeyboardFocusRequest == m_puserinteractionToKillKeyboardFocus)
          {
 
-            m_puserinteractionKeyboardFocusRequest.release();
+            m_puserinteractionToKillKeyboardFocus.release();
+
+            return;
 
          }
 
@@ -7334,6 +7351,13 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
       //   pwindowGainingFocusIfAny = pprimitiveimplGainingFocusIfAny->window();
 
       //}
+
+      if (m_puserinteractionKeyboardFocusRequest == m_puserinteractionKeyboardFocus)
+      {
+
+         m_puserinteractionKeyboardFocusRequest.release();
+
+      }
 
       m_puserinteractionToKillKeyboardFocus = m_puserinteractionKeyboardFocus;
 

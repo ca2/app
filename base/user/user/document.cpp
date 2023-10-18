@@ -6,11 +6,11 @@
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
 #include "acme/constant/simple_command.h"
-////#include "acme/exception/exception.h"
 #include "acme/filesystem/file/file.h"
 #include "acme/platform/keep.h"
 #include "acme/handler/request.h"
 #include "acme/primitive/datetime/datetime.h"
+#include "acme/primitive/primitive/_text_stream.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "aura/user/user/wait_cursor.h"
 #include "aura/user/user/interaction_array.h"
@@ -1005,16 +1005,16 @@ namespace user
    bool document::on_new_document()
    {
 
-      if (m_pimpactsystem->m_typeatomData.has_char())
-      {
+      //if (m_pimpactsystem->m_typeatomData.has_char())
+      //{
 
-         auto pNew = __id_create((const ::atom &) m_pimpactsystem->m_typeatomData);
+      //   auto pNew = __id_create((const ::atom &) m_pimpactsystem->m_typeatomData);
 
-         ::pointer < ::data::data > pdataNew = pNew;
+      //   ::pointer < ::data::data > pdataNew = pNew;
 
-         set_data(0, pdataNew);
+      //   set_data(0, pdataNew);
 
-      }
+      //}
 
       return true;
 
@@ -1162,6 +1162,62 @@ namespace user
       get_data(0)->on_save_data(pfile);
 
       return true;
+
+   }
+
+
+   //::data::data * document::get_data(const ::atom & atom)
+   //{
+
+   //   auto pdata = data_container_base::get_data(atom);
+
+   //   if(!pdata)
+   //   {
+
+   //      return create_data(atom);
+
+   //   }
+
+   //   return p->element2();
+
+   //}
+
+
+   ::pointer < ::data::data > document::create_data(const ::atom & atom)
+   {
+
+      ::pointer < ::data::data > pdata;
+
+      if (atom.m_etype == atom::e_type_integer && atom.m_i == 0)
+      {
+
+         auto & typeatomData = m_pimpactsystem->m_typeatomData;
+
+         auto pdataNew = __id_create(typeatomData);
+
+         if (!pdataNew)
+         {
+
+            information() << "user::document could not create of type : " << m_pimpactsystem->m_typeatomData;
+
+         }
+         else
+         {
+
+            pdata = pdataNew;
+
+            if (!pdata)
+            {
+
+               information() << "user::document created data is not of ::data::data type : " << m_pimpactsystem->m_typeatomData;
+
+            }
+
+         }
+
+      }
+
+      return ::transfer(pdata);
 
    }
 
@@ -2015,6 +2071,8 @@ namespace user
    {
 
       ASSERT(!ptopic || ptopic->m_psender == nullptr || !m_impacta.is_empty());
+
+      ptopic->m_pparticle = this;
 
       for (auto & pimpact : m_impacta)
       {

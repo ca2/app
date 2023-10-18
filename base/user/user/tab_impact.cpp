@@ -445,7 +445,7 @@ namespace user
 
       m_pdroptargetwindow->initialize_tab_drop_target_window(this, (i32)pchannel->get_data()->m_iClickTab);
 
-      auto rectangle = pchannel->get_data()->m_rectangleTabClient;
+      auto rectangle = pchannel->get_data()->m_rectangleHosting;
 
       pchannel->client_to_screen()(rectangle);
 
@@ -514,9 +514,9 @@ namespace user
 
       auto ptabdata = get_data();
 
-      //::rectangle_i32 rectangleTabClient = ptabdata->m_rectangleTabClient;
+      //::rectangle_i32 rectangleHosting = ptabdata->m_rectangleHosting;
 
-      //::user::impact_data * pimpactdata = get_impact_data(atom, rectangleTabClient);
+      //::user::impact_data * pimpactdata = get_impact_data(atom, rectangleHosting);
 
       ::user::impact_data * pimpactdata = get_impact_data(atom, true);
       
@@ -558,7 +558,7 @@ namespace user
                if (pane_holder(iTab) == nullptr)
                {
 
-                  get_data()->m_tabpanecompositea[iTab]->m_pplaceholder = place_hold(pimpactdata->m_puserinteraction, get_data()->m_rectangleTabClient);
+                  get_data()->m_tabpanecompositea[iTab]->m_pplaceholder = place_hold(pimpactdata->m_puserinteraction, get_data()->m_rectangleHosting);
 
                }
                else
@@ -574,7 +574,7 @@ namespace user
             else
             {
 
-               get_data()->m_tabpanecompositea[iTab]->m_pplaceholder = get_new_place_holder(get_data()->m_rectangleTabClient);
+               get_data()->m_tabpanecompositea[iTab]->m_pplaceholder = get_new_place_holder(get_data()->m_rectangleHosting);
 
             }
 
@@ -672,7 +672,7 @@ namespace user
 
       auto ptabdata = get_data();
 
-      ::rectangle_i32 rectangleTabClient = ptabdata->m_rectangleTabClient;
+      ::rectangle_i32 rectangleHosting = ptabdata->m_rectangleHosting;
 
       if (m_pimpactdataOld
          && m_pimpactdataOld->m_eflag & ::user::e_flag_hide_on_kill_focus
@@ -742,7 +742,7 @@ namespace user
 
          rectangleX = m_pimpactdata->m_pplaceholder->rectangle();
 
-         if (!rectangleTabClient.is_empty())
+         if (!rectangleHosting.is_empty())
          {
 
             {
@@ -793,7 +793,7 @@ namespace user
 
             m_pimpactdata->m_pplaceholder->order(e_zorder_top);
 
-            m_pimpactdata->m_pplaceholder->place(rectangleTabClient);
+            m_pimpactdata->m_pplaceholder->place(rectangleHosting);
 
             m_pimpactdata->m_pplaceholder->display();
 
@@ -978,7 +978,7 @@ namespace user
    ::user::tab_pane * tab_impact::create_tab_by_id(const ::atom & atom)
    {
 
-      //if (get_impact_data(atom, get_data()->m_rectangleTabClient) == nullptr)
+      //if (get_impact_data(atom, get_data()->m_rectangleHosting) == nullptr)
       if (get_impact_data(atom, true) == nullptr)
       {
 
@@ -1376,11 +1376,11 @@ namespace user
          if (!pimpactdata->m_pplaceholder)
          {
 
-            auto pplaceholder = get_new_place_holder(get_data()->m_rectangleTabClient);
+            auto pplaceholder = get_new_place_holder(get_data()->m_rectangleHosting);
 
             pimpactdata->m_pplaceholder = pplaceholder;
 
-            pplaceholder->m_bExtendOnParentClientArea = true;
+            pplaceholder->m_bExtendOnParentHostingArea = true;
 
          }
 

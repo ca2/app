@@ -18,7 +18,7 @@ namespace user
 
       atom                                   m_atom;
       ::rectangle_i32                        m_rectanglePane;
-      ::rectangle_i32                        m_rectangleClient;
+      ::rectangle_i32                        m_rectangleHosting;
       ::size_i32                             m_sizeFixed;
       bool                                   m_bFixedSize;
       ::pointer<::user::place_holder>        m_pplaceholder;

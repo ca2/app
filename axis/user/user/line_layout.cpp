@@ -134,55 +134,67 @@ namespace user
 
       }
 
-      if (m_puserinteractionpointeraChild && m_puserinteractionpointeraChild->has_interaction())
       {
 
-         if (m_atom == "RedDotLogicsInternal_license_manager::user_form::line_layout")
+         //synchronous_lock synchronouslock(this->synchronization());
+
+         auto children = synchronized_get_children();
+
+         //if (m_puserinteractionpointeraChild && m_puserinteractionpointeraChild->has_interaction())
          {
 
-            information() << "RedDotLogicsInternal_license_manager::user_form::line_layout";
+            if (m_atom == "RedDotLogicsInternal_license_manager::user_form::line_layout")
+            {
 
-         }
+               information() << "RedDotLogicsInternal_license_manager::user_form::line_layout";
 
-         ::point_i32 point;
+            }
 
-         int iMaximumNormal = 0;
+            ::point_i32 point;
 
-         bool bChanged = false;
+            int iMaximumNormal = 0;
 
-         for (auto & puserinteraction : m_puserinteractionpointeraChild->interactiona())
-         {
+            bool bChanged = false;
 
-            if (puserinteraction->set_position(point, e_layout_layout, pgraphics))
+            for (auto & puserinteraction : children)
+            {
+
+               //synchronouslock.unlock();
+
+               if (puserinteraction->set_position(point, e_layout_layout, pgraphics))
+               {
+
+                  bChanged = true;
+
+               }
+
+               iMaximumNormal = ::maximum(iMaximumNormal, puserinteraction->size(e_layout_sketch).get_normal_dimension(m_eorientation));
+
+               point.set_dimension(m_eorientation,
+                  point.get_dimension(m_eorientation) +
+                  puserinteraction->size(e_layout_sketch).get_dimension(m_eorientation)
+                  + m_iPadding);
+
+               //synchronouslock.lock();
+
+            }
+
+            ::size_i32 size;
+
+            size.set_orthogonal_dimension(m_eorientation, iMaximumNormal);
+
+            size.set_dimension(m_eorientation, point.get_dimension(m_eorientation));
+
+            if (set_size(size, ::user::e_layout_layout, pgraphics))
             {
 
                bChanged = true;
 
             }
 
-            iMaximumNormal = ::maximum(iMaximumNormal, puserinteraction->size(e_layout_sketch).get_normal_dimension(m_eorientation));
-
-            point.set_dimension(m_eorientation,
-               point.get_dimension(m_eorientation) +
-               puserinteraction->size(e_layout_sketch).get_dimension(m_eorientation)
-               + m_iPadding);
+            return bChanged;
 
          }
-
-         ::size_i32 size;
-
-         size.set_orthogonal_dimension(m_eorientation, iMaximumNormal);
-
-         size.set_dimension(m_eorientation, point.get_dimension(m_eorientation));
-
-         if (set_size(size, ::user::e_layout_layout, pgraphics))
-         {
-
-            bChanged = true;
-
-         }
-
-         return bChanged;
 
       }
 

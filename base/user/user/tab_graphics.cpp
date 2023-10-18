@@ -872,10 +872,10 @@ namespace user
          get_data()->m_rectangleTab.right() = get_data()->m_rectangleTab.left() + get_data()->m_iTabWidth;
          get_data()->m_rectangleTab.bottom() = rectangleX.bottom();
 
-         get_data()->m_rectangleTabClient.left() = m_bEffectiveVisibleControl ? get_data()->m_rectangleTab.right() : rectangleX.left();
-         get_data()->m_rectangleTabClient.top() = get_data()->m_rectangleTab.top();
-         get_data()->m_rectangleTabClient.right() = rectangleX.right();
-         get_data()->m_rectangleTabClient.bottom() = get_data()->m_rectangleTab.bottom();
+         get_data()->m_rectangleHosting.left() = m_bEffectiveVisibleControl ? get_data()->m_rectangleTab.right() : rectangleX.left();
+         get_data()->m_rectangleHosting.top() = get_data()->m_rectangleTab.top();
+         get_data()->m_rectangleHosting.right() = rectangleX.right();
+         get_data()->m_rectangleHosting.bottom() = get_data()->m_rectangleTab.bottom();
 
       }
       else
@@ -985,14 +985,14 @@ namespace user
          get_data()->m_rectangleTab.right() = rectangleX.right();
          get_data()->m_rectangleTab.bottom() = get_data()->m_rectangleTab.top() + get_data()->m_iTabHeight;
 
-         ::rectangle_i32 & rectangleTabClient = get_data()->m_rectangleTabClient;
+         ::rectangle_i32 & rectangleHosting = get_data()->m_rectangleHosting;
 
-         rectangleTabClient.left() = get_data()->m_rectangleTab.left();
-         rectangleTabClient.top() = m_bEffectiveVisibleControl ? get_data()->m_rectangleTab.bottom() : rectangleX.top();
-         rectangleTabClient.right() = get_data()->m_rectangleTab.right();
-         rectangleTabClient.bottom() = rectangleX.bottom();
+         rectangleHosting.left() = get_data()->m_rectangleTab.left();
+         rectangleHosting.top() = m_bEffectiveVisibleControl ? get_data()->m_rectangleTab.bottom() : rectangleX.top();
+         rectangleHosting.right() = get_data()->m_rectangleTab.right();
+         rectangleHosting.bottom() = rectangleX.bottom();
 
-         //TRACE0("rectangleTabClient");
+         //TRACE0("rectangleHosting");
       }
 
       {

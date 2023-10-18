@@ -48,6 +48,8 @@ namespace user
       //void dump(dump_context &) const override;
       // void assert_ok() const override;
 
+      ::pointer < ::data::data > create_data(const ::atom & atom) override;
+
 
       ::base::application * get_app();
       ::base::session * get_session();

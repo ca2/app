@@ -207,6 +207,14 @@ namespace user
    }
 
 
+   void form_list_impact::_001CallOnDraw(::draw2d::graphics_pointer & pgraphics)
+   {
+
+      ::user::list_impact::_001CallOnDraw(pgraphics);
+
+   }
+
+
    void form_list_impact::route_command(::message::command * pcommand, bool bRouteToKeyDescendant)
    {
 
@@ -229,6 +237,14 @@ namespace user
       ::user::list_impact::_001OnTimer(ptimer);
 
       ::user::form_impact::_001OnTimer(ptimer);
+
+   }
+
+
+   ::data::data * form_list_impact::_get_data(const ::atom & atom)
+   {
+
+      return ::user::list_impact::_get_data(atom);
 
    }
 

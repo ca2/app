@@ -41,7 +41,7 @@ namespace user
 
       m_bDefaultParentMouseMessageHandling = true;
 
-      m_bExtendOnParentIfClientOnly = true;
+      m_bExtendOnParentIfOnlyClient = true;
 
       //m_ewindowflag |= e_window_flag_desktop_window;
 

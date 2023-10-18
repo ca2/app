@@ -1180,44 +1180,55 @@ namespace experience_core
 
    }
 
+
    void frame::GetBorderRectangle(const ::rectangle_i32 & rectangleOuter, ::rectangle_i32 * lprect, enum_border eside)
    {
 
-      ::rectangle_i32 rectangleInner;
+      ::rectangle_i32 rectangleHosting;
 
-      rectangleInner = m_pframewindow->client_rectangle();
+      rectangleHosting = m_pframewindow->hosting_rectangle();
 
       ::rectangle_i32 rectangle;
 
       if (eside == e_border_top)
       {
+
          rectangle.left() = rectangleOuter.left();
          rectangle.right() = rectangleOuter.right();
          rectangle.top() = rectangleOuter.top();
-         rectangle.bottom() = rectangleInner.top();
+         rectangle.bottom() = rectangleHosting.top();
+
       }
       else if (eside == e_border_left)
       {
+
          rectangle.left() = rectangleOuter.left();
-         rectangle.right() = rectangleInner.left();
-         rectangle.top() = rectangleInner.top();
-         rectangle.bottom() = rectangleInner.bottom();
+         rectangle.right() = rectangleHosting.left();
+         rectangle.top() = rectangleHosting.top();
+         rectangle.bottom() = rectangleHosting.bottom();
+
       }
       else if (eside == e_border_right)
       {
-         rectangle.left() = rectangleInner.right();
+
+         rectangle.left() = rectangleHosting.right();
          rectangle.right() = rectangleOuter.right();
-         rectangle.top() = rectangleInner.top();
-         rectangle.bottom() = rectangleInner.bottom();
+         rectangle.top() = rectangleHosting.top();
+         rectangle.bottom() = rectangleHosting.bottom();
+
       }
       else if (eside == e_border_bottom)
       {
+         
          rectangle.left() = rectangleOuter.left();
          rectangle.right() = rectangleOuter.right();
-         rectangle.top() = rectangleInner.bottom();
+         rectangle.top() = rectangleHosting.bottom();
          rectangle.bottom() = rectangleOuter.bottom();
+
       }
+      
       *lprect = rectangle;
+
    }
 
 

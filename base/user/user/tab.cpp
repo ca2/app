@@ -437,7 +437,7 @@ namespace user
    void tab::GetTabClientRect(::rectangle_i32 & rectangle)
    {
 
-      rectangle = get_data()->m_rectangleTabClient;
+      rectangle = get_data()->m_rectangleHosting;
 
    }
 
@@ -445,11 +445,11 @@ namespace user
    void tab::GetTabClientRect(::rectangle_i64 & rectangle)
    {
 
-      ::rectangle_i32 rectangleTabClient;
+      ::rectangle_i32 rectangleHosting;
 
-      GetTabClientRect(rectangleTabClient);
+      GetTabClientRect(rectangleHosting);
 
-      rectangle = rectangleTabClient;
+      rectangle = rectangleHosting;
 
    }
 
@@ -2323,49 +2323,49 @@ namespace user
       case e_position_top:
       {
 
-         rectangle.top() = get_data()->m_rectangleTabClient.top();
+         rectangle.top() = get_data()->m_rectangleHosting.top();
 
-         rectangle.left() = get_data()->m_rectangleTabClient.left() + get_data()->m_rectangleTabClient.width() / 3;
+         rectangle.left() = get_data()->m_rectangleHosting.left() + get_data()->m_rectangleHosting.width() / 3;
 
-         rectangle.right() = rectangle.left() + get_data()->m_rectangleTabClient.width() / 3;
+         rectangle.right() = rectangle.left() + get_data()->m_rectangleHosting.width() / 3;
 
-         rectangle.bottom() = rectangle.top() + get_data()->m_rectangleTabClient.height() / 3;
+         rectangle.bottom() = rectangle.top() + get_data()->m_rectangleHosting.height() / 3;
 
       }
       break;
       case e_position_left:
       {
-         rectangle.top() = get_data()->m_rectangleTabClient.top() + get_data()->m_rectangleTabClient.height() / 3;
+         rectangle.top() = get_data()->m_rectangleHosting.top() + get_data()->m_rectangleHosting.height() / 3;
 
-         rectangle.left() = get_data()->m_rectangleTabClient.left();
+         rectangle.left() = get_data()->m_rectangleHosting.left();
 
-         rectangle.right() = rectangle.left() + get_data()->m_rectangleTabClient.width() / 3;
+         rectangle.right() = rectangle.left() + get_data()->m_rectangleHosting.width() / 3;
 
-         rectangle.bottom() = rectangle.top() + get_data()->m_rectangleTabClient.height() / 3;
+         rectangle.bottom() = rectangle.top() + get_data()->m_rectangleHosting.height() / 3;
 
       }
       break;
       case e_position_right:
       {
-         rectangle.top() = get_data()->m_rectangleTabClient.top() + get_data()->m_rectangleTabClient.height() / 3;
+         rectangle.top() = get_data()->m_rectangleHosting.top() + get_data()->m_rectangleHosting.height() / 3;
 
-         rectangle.left() = get_data()->m_rectangleTabClient.left() + get_data()->m_rectangleTabClient.width() * 2 / 3;
+         rectangle.left() = get_data()->m_rectangleHosting.left() + get_data()->m_rectangleHosting.width() * 2 / 3;
 
-         rectangle.right() = rectangle.left() + get_data()->m_rectangleTabClient.width() / 3;
+         rectangle.right() = rectangle.left() + get_data()->m_rectangleHosting.width() / 3;
 
-         rectangle.bottom() = rectangle.top() + get_data()->m_rectangleTabClient.height() / 3;
+         rectangle.bottom() = rectangle.top() + get_data()->m_rectangleHosting.height() / 3;
 
       }
       break;
       case e_position_bottom:
       {
-         rectangle.top() = get_data()->m_rectangleTabClient.top() + get_data()->m_rectangleTabClient.height() * 2 / 3;
+         rectangle.top() = get_data()->m_rectangleHosting.top() + get_data()->m_rectangleHosting.height() * 2 / 3;
 
-         rectangle.left() = get_data()->m_rectangleTabClient.left() + get_data()->m_rectangleTabClient.width() / 3;
+         rectangle.left() = get_data()->m_rectangleHosting.left() + get_data()->m_rectangleHosting.width() / 3;
 
-         rectangle.right() = rectangle.left() + get_data()->m_rectangleTabClient.width() / 3;
+         rectangle.right() = rectangle.left() + get_data()->m_rectangleHosting.width() / 3;
 
-         rectangle.bottom() = rectangle.top() + get_data()->m_rectangleTabClient.height() / 3;
+         rectangle.bottom() = rectangle.top() + get_data()->m_rectangleHosting.height() / 3;
 
       }
       break;
@@ -2402,7 +2402,7 @@ namespace user
 
       synchronous_lock synchronouslock(this->synchronization());
 
-      rectangle = get_data()->m_rectangleTabClient;
+      rectangle = get_data()->m_rectangleHosting;
 
    }
 
@@ -3036,13 +3036,12 @@ namespace user
    }
 
 
-   ::rectangle_i32 tab::client_rectangle(::user::enum_layout elayout)
+   ::rectangle_i32 tab::hosting_rectangle(::user::enum_layout elayout)
    {
 
-      return m_rectangleClient;
+      return m_pdata->m_rectangleHosting;
 
    }
-
 
 
 } // namespace base

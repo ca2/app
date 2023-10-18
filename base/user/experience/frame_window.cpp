@@ -1284,11 +1284,11 @@ namespace experience
 
             //information() << "experience::frame_experience::on_perform_top_down_layout m_pframe is_set";
 
-            auto rectangleClient2 = this->rectangle(::user::e_layout_lading);
+            auto rectangleHosting = this->rectangle(::user::e_layout_lading);
 
-            m_pframe->calculate_client_rectangle(&rectangleClient2, pgraphics);
+            m_pframe->calculate_hosting_rectangle(&rectangleHosting, pgraphics);
 
-            m_rectangleClient = rectangleClient2;
+            m_rectangleHosting = rectangleHosting;
 
            // return ::user::frame_window::rectangle(elayout);
 

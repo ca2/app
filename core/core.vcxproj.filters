@@ -1294,9 +1294,6 @@
     <ClCompile Include="user\rich_text\data.cpp">
       <Filter>Source Files\user\rich_text</Filter>
     </ClCompile>
-    <ClCompile Include="user\rich_text\aaa_document.cpp">
-      <Filter>Source Files\user\rich_text</Filter>
-    </ClCompile>
     <ClCompile Include="user\rich_text\edit.cpp">
       <Filter>Source Files\user\rich_text</Filter>
     </ClCompile>

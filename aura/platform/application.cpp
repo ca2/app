@@ -3428,11 +3428,13 @@ retry_license:
 
             ::pointer<::user::interaction>puserinteractionHost = psession->m_puserprimitiveHost;
 
-            auto puserinteractionpointeraChild = __new(::user::interaction_array(*puserinteractionHost->m_puserinteractionpointeraChild));
+            {
 
-            puserinteractionpointeraChild->add_unique_interaction(puserinteraction);
+               synchronous_lock synchronouslock(puserinteractionHost->synchronization());
 
-            puserinteractionHost->m_puserinteractionpointeraChild = puserinteractionpointeraChild;
+               puserinteractionHost->m_puserinteractionpointeraChild->add_unique_interaction(puserinteraction);
+
+            }
 
             puserinteractionHost->set_need_layout();
 

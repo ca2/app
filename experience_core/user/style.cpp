@@ -1101,10 +1101,10 @@ namespace experience_core
          m_rectangleTab.height(),
          0);*/
 
-         pdata->m_rectangleTabClient.left() = ptab->m_bEffectiveVisibleControl ? pdata->m_rectangleTab.right() : rectangleX.left();
-         pdata->m_rectangleTabClient.top() = pdata->m_rectangleTab.top();
-         pdata->m_rectangleTabClient.right() = rectangleX.right();
-         pdata->m_rectangleTabClient.bottom() = pdata->m_rectangleTab.bottom();
+         pdata->m_rectangleHosting.left() = ptab->m_bEffectiveVisibleControl ? pdata->m_rectangleTab.right() : rectangleX.left();
+         pdata->m_rectangleHosting.top() = pdata->m_rectangleTab.top();
+         pdata->m_rectangleHosting.right() = rectangleX.right();
+         pdata->m_rectangleHosting.bottom() = pdata->m_rectangleTab.bottom();
 
       }
       else
@@ -1224,19 +1224,19 @@ namespace experience_core
          m_rectangleTab.height(),
          0);*/
 
-         rectangle_i32 & rectangleTabClient = pdata->m_rectangleTabClient;
+         rectangle_i32 & rectangleHosting = pdata->m_rectangleHosting;
 
          //bool bTabbedClient = ptab->m_bShowTabs && !ptab->top_level_frame()->layout().is_full_screen();
          //bool bTabbedClient = ptab->m_bShowTabs;
 
-         rectangleTabClient.left() = pdata->m_rectangleTab.left();
-         rectangleTabClient.top() = ptab->m_bEffectiveVisibleControl ? pdata->m_rectangleTab.bottom() : rectangleX.top();
-         rectangleTabClient.right() = pdata->m_rectangleTab.right();
-         rectangleTabClient.bottom() = rectangleX.bottom();
+         rectangleHosting.left() = pdata->m_rectangleTab.left();
+         rectangleHosting.top() = ptab->m_bEffectiveVisibleControl ? pdata->m_rectangleTab.bottom() : rectangleX.top();
+         rectangleHosting.right() = pdata->m_rectangleTab.right();
+         rectangleHosting.bottom() = rectangleX.bottom();
 
-         ptab->m_rectangleClient = rectangleTabClient;
+         //ptab->m_rectangleHosting = rectangleHosting;
 
-         //information() << "rectangleTabClient";
+         //information() << "rectangleHosting";
 
       }
 

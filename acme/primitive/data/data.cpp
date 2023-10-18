@@ -14,7 +14,7 @@ namespace data
    {
 
       //m_bModified = false;
-      m_bNew = false;
+      m_bNew = true;
 
    }
 

@@ -2,6 +2,7 @@
 #include "impact_creator.h"
 #include "impact_data.h"
 #include "place_holder.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "aura/user/user/interaction_array.h"
 
 
@@ -69,14 +70,20 @@ namespace user
 
       }
 
-      if (::is_set(pimpactdata->m_pplaceholder) 
-         && ::is_set(pimpactdata->m_pplaceholder->m_puserinteractionpointeraChild)
-         && pimpactdata->m_pplaceholder->m_puserinteractionpointeraChild->has_interaction())
       {
 
-         pimpactdata->m_bOk = true;
+         synchronous_lock synchronouslock(this->synchronization());
 
-         return true;
+         if (::is_set(pimpactdata->m_pplaceholder)
+            && ::is_set(pimpactdata->m_pplaceholder->m_puserinteractionpointeraChild)
+            && pimpactdata->m_pplaceholder->m_puserinteractionpointeraChild->has_interaction())
+         {
+
+            pimpactdata->m_bOk = true;
+
+            return true;
+
+         }
 
       }
 

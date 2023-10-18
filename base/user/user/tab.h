@@ -65,7 +65,7 @@ namespace user
       int                                          m_iTabSize;
       bool                                         m_bCreatedTabs;
       bool                                         m_bAutoCreateTabsOnCreate;
-      ::rectangle_i32                              m_rectangleClient;
+      //::rectangle_i32                              m_rectangleHosting;
 
 
       tab();
@@ -258,9 +258,7 @@ namespace user
 
       void _001OnTimer(::timer * ptimer) override;
 
-
-
-      ::rectangle_i32 client_rectangle(::user::enum_layout elayout = ::user::e_layout_design) override;
+      ::rectangle_i32 hosting_rectangle(::user::enum_layout elayout = ::user::e_layout_design) override;
 
 
    };

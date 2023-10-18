@@ -69,6 +69,8 @@ namespace filemanager
 
       auto ptreedata = pfilemanagerdocument->__create_new < ::filemanager::tree_data >();
 
+      ptreedata->m_puserfsdocument = pfilemanagerdocument;
+
       m_ptreedata = ptreedata;
 
       m_ptreedata->m_usertreea.add(m_pusertree);

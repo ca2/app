@@ -39,7 +39,7 @@ namespace user
       i32                                 m_iTabWidth;
       tab_pane_composite_array            m_tabpanecompositea;
       ::rectangle_i32                     m_rectangleTab;
-      ::rectangle_i32                     m_rectangleTabClient;
+      ::rectangle_i32                     m_rectangleHosting;
       draw2d::graphics_extension          m_dcextension;
       atom_array                          m_idaSel;
       ::rectangle_i32                     m_rectangleBorder;

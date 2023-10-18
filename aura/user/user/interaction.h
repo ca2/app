@@ -139,8 +139,8 @@ namespace user
 
       
       boolean                                   m_bExtendOnParent;
-      boolean                                   m_bExtendOnParentIfClientOnly;
-      boolean                                   m_bExtendOnParentClientArea;
+      boolean                                   m_bExtendOnParentIfOnlyClient;
+      boolean                                   m_bExtendOnParentHostingArea;
       bool                                      m_bToolWindow;
       bool                                      m_bMessageWindow;
       boolean                                   m_bLockGraphicalUpdate;
@@ -901,7 +901,8 @@ namespace user
 
       //virtual void this->rectangle(::rectangle_i32 & rect, enum_layout elayout = e_layout_design);
       virtual ::rectangle_i32 rectangle(enum_layout elayout = e_layout_design);
-      virtual ::rectangle_i32 client_rectangle(enum_layout elayout = e_layout_design);
+      virtual ::rectangle_i32 client2_rectangle(enum_layout elayout = e_layout_design);
+      virtual ::rectangle_i32 hosting_rectangle(enum_layout elayout = e_layout_design);
       virtual ::rectangle_i32 host_rectangle(enum_layout elayout = e_layout_design);
       virtual ::rectangle_i32 screen_rectangle(enum_layout elayout = e_layout_design);
 
@@ -1281,7 +1282,7 @@ namespace user
 
 
       virtual void _extend_on_parent(::draw2d::graphics_pointer & pgraphics);
-      virtual void _extend_on_parent_client_area(::draw2d::graphics_pointer & pgraphics);
+      virtual void _extend_on_parent_hosting_area(::draw2d::graphics_pointer & pgraphics);
 
 
       virtual void top_down_prefix();
@@ -2085,6 +2086,8 @@ namespace user
 
 
       virtual void hide() override;
+
+      virtual ::pointer_array < ::user::interaction > synchronized_get_children();
 
 
       virtual void erase_children();

@@ -424,7 +424,7 @@ namespace userex
    bool pane_tab_impact::on_prepare_impact_data(::user::impact_data * pimpactdata)
    {
 
-      pimpactdata->m_pplaceholder = get_new_place_holder(get_data()->m_rectangleTabClient);
+      pimpactdata->m_pplaceholder = get_new_place_holder(get_data()->m_rectangleHosting);
 
       if (pimpactdata->m_pplaceholder == nullptr)
       {
@@ -486,9 +486,9 @@ namespace userex
 
       }
 
-      ptabpane->m_pplaceholder->m_bExtendOnParentClientArea = true;
+      ptabpane->m_pplaceholder->m_bExtendOnParentHostingArea = true;
 
-      ptabpane->m_pplaceholder->place(this->client_rectangle());
+      ptabpane->m_pplaceholder->place(this->hosting_rectangle());
 
       pimpactdata->m_pimpactdata = (void *)pimpactdata;
 
@@ -550,7 +550,7 @@ namespace userex
    ::user::tab_pane * pane_tab_impact::create_tab_by_id(const ::atom & atom)
    {
 
-      //::user::impact_data * pimpactdata = get_impact_data(atom, get_data()->m_rectangleTabClient);
+      //::user::impact_data * pimpactdata = get_impact_data(atom, get_data()->m_rectangleHosting);
 
       ::user::impact_data * pimpactdata = get_impact_data(atom, true);
 

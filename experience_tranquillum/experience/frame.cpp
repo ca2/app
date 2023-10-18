@@ -963,11 +963,10 @@ namespace experience_tranquillum
    }
 
 
-
    void frame::GetBorderRectangle(const ::rectangle_i32 & rectangleOuter, ::rectangle_i32 * prectangle, enum_border eside)
    {
 
-      auto rectangleInner = client_rectangle();
+      auto rectangleInner = hosting_rectangle();
 
       ::rectangle_i32 rectangle;
 

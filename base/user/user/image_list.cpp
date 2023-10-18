@@ -417,7 +417,7 @@ namespace user
 
       auto pstyle = get_style(pgraphics);
 
-      auto rectangleX = this->client_rectangle();
+      auto rectangleClient = this->client2_rectangle();
 
       //pgraphics->set(get_font(pstyle));
 
@@ -473,7 +473,7 @@ namespace user
 
          auto & rectangle1 = puseritem->m_rectangle;
 
-         if (!rectangleX.intersects(rectangle1))
+         if (!rectangleClient.intersects(rectangle1))
          {
 
             continue;

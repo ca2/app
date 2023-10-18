@@ -219,6 +219,8 @@ namespace user
 
          // m_uiptraChild.interactiona().erase_all();
 
+         synchronous_lock synchronouslock(this->synchronization());
+
          m_puserinteractionpointeraChild.release();
 
       }

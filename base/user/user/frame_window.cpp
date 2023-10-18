@@ -2277,7 +2277,7 @@ namespace user
 
       ::user::main_window::on_perform_top_down_layout(pgraphics);
 
-      m_rectangleClient = this->raw_rectangle(e_layout_layout);
+      m_rectangleHosting = this->raw_rectangle(e_layout_layout);
 
       __task_guard(m_bInRecalcLayout);
 
@@ -2909,10 +2909,10 @@ namespace user
    }
 
 
-   ::rectangle_i32 frame_window::client_rectangle(::user::enum_layout elayout)
+   ::rectangle_i32 frame_window::hosting_rectangle(::user::enum_layout elayout)
    {
 
-      return m_rectangleClient;
+      return m_rectangleHosting;
 
    }
 

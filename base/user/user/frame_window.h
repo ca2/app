@@ -57,6 +57,7 @@ namespace user
       i32                                          m_nShowDelay;           // SW_ command for delay show/hide
 
       bool                                         m_bFrameMoveEnable;
+      //bool                                         m_bNeedRepositionBars;
 
 
       string                                       m_strMatterHelp;             // Help ID (0 for none, see HID_BASE_RESOURCE)

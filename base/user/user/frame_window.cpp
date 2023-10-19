@@ -1700,11 +1700,11 @@ namespace user
 
       pcontrolbar->post_redraw();
 
+      // m_bNeedRepositionBars = true;
+
       set_need_layout();
 
       set_need_redraw();
-
-      RepositionBars();
 
       post_redraw();
 
@@ -1725,7 +1725,10 @@ namespace user
 
       pcontrolbar->hide();
 
-      RepositionBars();
+      set_need_layout();
+
+      //m_bNeedRepositionBars = true;
+
 
       //throw ::interface_only();
 

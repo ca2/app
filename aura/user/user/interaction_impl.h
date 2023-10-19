@@ -395,6 +395,8 @@ namespace user
 
       virtual void operating_system_create_host(::enum_parallelization eparrallelization);
 
+      virtual void _create_window(::enum_parallelization eparrallelization);
+
       virtual void native_create_host_alternate();
 
 

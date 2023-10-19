@@ -1731,15 +1731,15 @@ namespace windowing
    }
 
 
-   void window::window_send(const ::procedure & procedure)
+   void window::user_send(const ::procedure & procedure)
    {
 
-      __matter_send_procedure(this, this, &window::window_post, procedure);
+      __matter_send_procedure(this, this, &window::user_post, procedure);
 
    }
 
 
-   void window::window_post(const ::procedure & procedure)
+   void window::user_post(const ::procedure & procedure)
    {
 
       auto puserinteractionimpl = m_puserinteractionimpl;

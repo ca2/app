@@ -611,7 +611,7 @@ namespace user
 
       install_message_routing(m_puserinteraction);
 
-      bool bOk = true;
+      //bool bOk = true;
 
       //      if(pusersystem->m_createstruct.hwndParent == (oswindow) MESSAGE_WINDOW_PARENT)
       //      {
@@ -626,45 +626,71 @@ namespace user
       //
       //      }
       //      else
+
+      _create_window(eparallelization);
+
+      //      if(bOk)
+      //      {
+      //
+      //         m_puserinteraction->send_message(e_message_create, 0, (lparam) &pusersystem->m_createstruct);
+      //
+      //         m_puserinteraction->m_ewindowflag |= e_window_flag_window_created;
+      //
+      //      }
+
+      //if (!bOk)
+      //{
+
+      //   throw ::exception(error_failed);
+
+      //}
+
+
+   }
+
+
+   void interaction_impl::_create_window(::enum_parallelization eparallelization)
+   {
+
       {
 
          m_puserinteraction->m_bMessageWindow = false;
 
 
          auto procedure = [&]()
-                   {
+            {
 
-                      auto psession = get_session();
+               auto psession = get_session();
 
-                      auto puser = psession->user();
+               auto puser = psession->user();
 
-                      auto pwindowing = puser->windowing();
+               auto pwindowing = puser->windowing();
 
-                      //      auto psession = get_session();
+               //      auto psession = get_session();
 
-                      //      auto puser = psession->user();
+               //      auto puser = psession->user();
 
-                      //      auto pwindowing = puser->windowing();
+               //      auto pwindowing = puser->windowing();
 
-                      pwindowing->new_window(this);
+               pwindowing->new_window(this);
 
-                      if (m_pwindow)
-                      {
+               if (m_pwindow)
+               {
 
-                         information() << "operating_system_create_host window created";
+                  information() << "operating_system_create_host window created";
 
-                      }
-                      else
-                      {
+               }
+               else
+               {
 
-                         information("operating_system_create_host window not created");
+                  information("operating_system_create_host window not created");
 
-                      }
+               }
 
-                   };
+            };
 
 
-         if(eparallelization == e_parallelization_asynchronous)
+         if (eparallelization == e_parallelization_asynchronous)
          {
 
             user_post(procedure);
@@ -682,25 +708,7 @@ namespace user
 
       }
 
-      //      if(bOk)
-      //      {
-      //
-      //         m_puserinteraction->send_message(e_message_create, 0, (lparam) &pusersystem->m_createstruct);
-      //
-      //         m_puserinteraction->m_ewindowflag |= e_window_flag_window_created;
-      //
-      //      }
-
-      if (!bOk)
-      {
-
-         throw ::exception(error_failed);
-
-      }
-
-
    }
-
 
 
    void interaction_impl::native_create_host_alternate()

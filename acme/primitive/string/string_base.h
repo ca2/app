@@ -1652,6 +1652,14 @@ template < character_range RANGE, primitive_character CHARACTER >
 }
 
 
+template < character_range RANGE, primitive_character CHARACTER >
+::string_base < typename RANGE::const_iterator > operator + (const RANGE & range, const CHARACTER ch)
+{
+
+   return ::transfer(::string_base < typename RANGE::const_iterator >(range) + ::string_base < typename RANGE::const_iterator >(ch));
+
+}
+
 //template < primitive_character CHARACTER, primitive_character CHARACTER2 >
 //::string_base < const CHARACTER * > operator + (const CHARACTER * psz, const CHARACTER2 * psz2)
 //{

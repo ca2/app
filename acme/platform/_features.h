@@ -12,11 +12,19 @@
 #ifndef CUBE
 
 #define CUBE
+
+#endif
+
+#endif
+
+
+
+
+#ifdef CUBE
+
+#ifndef STATIC_CUBE
+
 #define STATIC_CUBE
-
-#else
-
-#error "CUBE already defined"
 
 #endif
 

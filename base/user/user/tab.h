@@ -157,6 +157,10 @@ namespace user
 
       ::i32 auto_hide_threshold_height() override;
 
+      virtual ::user::interaction_array place_holders();
+      virtual tab_pane * place_holder_pane(::user::place_holder * pplaceholder);
+      virtual tab_pane * top_pane();
+
       virtual void _001OnTabClick(::index iTab);
       virtual void _001OnTabClose(::index iTab);
       virtual ::user::interaction * GetNotifyWnd();

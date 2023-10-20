@@ -1013,10 +1013,10 @@ namespace experience_anthill
 
       auto ppenBorder = __create < ::draw2d::pen >();
 
-      for (i32 iPane = 0; iPane < ptab->get_data()->m_tabpanecompositea.get_size(); iPane++)
+      for (i32 iPane = 0; iPane < ptab->get_data()->m_tabpanea.get_size(); iPane++)
       {
 
-         auto ppane = ptab->get_data()->m_tabpanecompositea[iPane].get();
+         auto ppane = ptab->get_data()->m_tabpanea[iPane].get();
 
          if (!ppane->m_bTabPaneVisible)
          {
@@ -1347,7 +1347,7 @@ namespace experience_anthill
 
             }
 
-            if (iPane == ptab->get_data()->m_tabpanecompositea.get_upper_bound())
+            if (iPane == ptab->get_data()->m_tabpanea.get_upper_bound())
             {
 
                if (rectangleBorder.right() - 1 < rcTab.right())
@@ -1565,10 +1565,10 @@ namespace experience_anthill
          i32 cx;
          i32 cy;
 
-         for (i32 iPane = 0; iPane < ptab->get_data()->m_tabpanecompositea.get_size(); iPane++)
+         for (i32 iPane = 0; iPane < ptab->get_data()->m_tabpanea.get_size(); iPane++)
          {
 
-            auto ppane = ptab->get_data()->m_tabpanecompositea[iPane].get();
+            auto ppane = ptab->get_data()->m_tabpanea[iPane].get();
 
             if (!ppane->m_bTabPaneVisible)
             {
@@ -1676,10 +1676,10 @@ namespace experience_anthill
 
          i32 ixAdd;
 
-         for (i32 iPane = 0; iPane < ptab->get_data()->m_tabpanecompositea.get_size(); iPane++)
+         for (i32 iPane = 0; iPane < ptab->get_data()->m_tabpanea.get_size(); iPane++)
          {
 
-            auto ppane = ptab->get_data()->m_tabpanecompositea[iPane].get();
+            auto ppane = ptab->get_data()->m_tabpanea[iPane].get();
 
             if (!ppane->m_bTabPaneVisible)
             {
@@ -1764,10 +1764,10 @@ namespace experience_anthill
 
          pdata->m_iTabHeight = iTabHeight;
 
-         for (i32 iPane = 0; iPane < ptab->get_data()->m_tabpanecompositea.get_size(); iPane++)
+         for (i32 iPane = 0; iPane < ptab->get_data()->m_tabpanea.get_size(); iPane++)
          {
 
-            auto ppane = ptab->get_data()->m_tabpanecompositea[iPane].get();
+            auto ppane = ptab->get_data()->m_tabpanea[iPane].get();
 
             ppane->m_size.cy() = iTabHeight;
 
@@ -1800,7 +1800,7 @@ namespace experience_anthill
 
       }
 
-      for (i32 iPane = 0; iPane < ptab->get_data()->m_tabpanecompositea.get_size(); iPane++)
+      for (i32 iPane = 0; iPane < ptab->get_data()->m_tabpanea.get_size(); iPane++)
       {
 
          if (iPane != ptab->get_current_tab_index())

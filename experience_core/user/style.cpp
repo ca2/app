@@ -141,10 +141,10 @@ namespace experience_core
 
       auto & groupTabTheme = holdeeTab.m_map[::draw2d::e_change_theme][0];
 
-      for (i32 iPane = 0; iPane < pdata->m_tabpanecompositea.get_size(); iPane++)
+      for (i32 iPane = 0; iPane < pdata->m_tabpanea.get_size(); iPane++)
       {
 
-         auto ppane = pdata->m_tabpanecompositea[iPane].get();
+         auto ppane = pdata->m_tabpanea[iPane].get();
 
          if (!ppane->m_bTabPaneVisible)
          {
@@ -1012,10 +1012,10 @@ namespace experience_core
          i32 iTabHeight = 8;
          i32 cx;
          i32 cy;
-         for (i32 iPane = 0; iPane < pdata->m_tabpanecompositea.get_size(); iPane++)
+         for (i32 iPane = 0; iPane < pdata->m_tabpanea.get_size(); iPane++)
          {
 
-            auto ppane = pdata->m_tabpanecompositea[iPane].get();
+            auto ppane = pdata->m_tabpanea[iPane].get();
 
             if (!ppane->m_bTabPaneVisible)
                continue;
@@ -1121,10 +1121,10 @@ namespace experience_core
          int x = rectangleX.left();
 
          i32 ixAdd;
-         for (i32 iPane = 0; iPane < pdata->m_tabpanecompositea.get_size(); iPane++)
+         for (i32 iPane = 0; iPane < pdata->m_tabpanea.get_size(); iPane++)
          {
 
-            auto ppane = pdata->m_tabpanecompositea[iPane].get();
+            auto ppane = pdata->m_tabpanea[iPane].get();
 
             if (!ppane->m_bTabPaneVisible)
             {
@@ -1199,10 +1199,10 @@ namespace experience_core
 
          pdata->m_iTabHeight = iTabHeight;
 
-         for (i32 iPane = 0; iPane < pdata->m_tabpanecompositea.get_size(); iPane++)
+         for (i32 iPane = 0; iPane < pdata->m_tabpanea.get_size(); iPane++)
          {
 
-            auto ppane = pdata->m_tabpanecompositea[iPane].get();
+            auto ppane = pdata->m_tabpanea[iPane].get();
 
             ppane->m_size.cy() = iTabHeight;
 
@@ -1240,7 +1240,7 @@ namespace experience_core
 
       }
 
-      for (i32 iPane = 0; iPane < pdata->m_tabpanecompositea.get_size(); iPane++)
+      for (i32 iPane = 0; iPane < pdata->m_tabpanea.get_size(); iPane++)
       {
 
          if (iPane != ptab->get_current_tab_id())
@@ -1261,23 +1261,23 @@ namespace experience_core
       if (pdata->m_bVertical)
       {
 
-         ptab->m_iTabSize = (int)(pdata->m_tabpanecompositea.get_count() * pdata->m_iTabHeight);
+         ptab->m_iTabSize = (int)(pdata->m_tabpanea.get_count() * pdata->m_iTabHeight);
 
 //         ptab->m_pointDragScrollMax.y() = ptab->m_sizeDragScroll.cy() - rcClient.height();
 
-         ptab->m_sizeBarDragScroll.cy() = (int)ptab->m_pdata->m_tabpanecompositea.get_count() * ptab->m_pdata->m_iTabHeight;
+         ptab->m_sizeBarDragScroll.cy() = (int)ptab->m_pdata->m_tabpanea.get_count() * ptab->m_pdata->m_iTabHeight;
 
       }
       else
       {
 
-         ptab->m_iTabSize = pdata->m_tabpanecompositea.last()->m_point.x() +
-            pdata->m_tabpanecompositea.last()->m_size.cx();
+         ptab->m_iTabSize = pdata->m_tabpanea.last()->m_point.x() +
+            pdata->m_tabpanea.last()->m_size.cx();
 
          //ptab->m_pointDragScrollMax.x() = ptab->m_sizeDragScroll.cx() - rcClient.width();
 
-         ptab->m_sizeBarDragScroll.cx() = ptab->m_pdata->m_tabpanecompositea.last()->m_point.x() +
-            ptab->m_pdata->m_tabpanecompositea.last()->m_size.cx();
+         ptab->m_sizeBarDragScroll.cx() = ptab->m_pdata->m_tabpanea.last()->m_point.x() +
+            ptab->m_pdata->m_tabpanea.last()->m_size.cx();
 
          //if (m_pdata->m_bVertical)
          //{

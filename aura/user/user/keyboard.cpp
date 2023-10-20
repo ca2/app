@@ -307,9 +307,9 @@ namespace user
       string str = pcontext->m_papexcontext->file()->as_string(pszPath);
 
 
-      information(pszPath);
+      informationf(pszPath);
 
-      information(str);
+      informationf(str);
 
       if(str.is_empty())
       {

@@ -97,10 +97,10 @@ namespace experience_nanoui
 
       int iTabHeight = 0;
 
-      for(i32 iPane = 0; iPane < ptab->get_data()->m_tabpanecompositea.get_size(); iPane++)
+      for(i32 iPane = 0; iPane < ptab->get_data()->m_tabpanea.get_size(); iPane++)
       {
             
-         auto ppane = ptab->get_data()->m_tabpanecompositea[iPane].get();
+         auto ppane = ptab->get_data()->m_tabpanea[iPane].get();
 
          if (!ppane->m_bTabPaneVisible)
          {
@@ -636,10 +636,10 @@ namespace experience_nanoui
          i32 iTabHeight = 8;
          i32 cx;
          i32 cy;
-         for(i32 iPane = 0; iPane < ptab->get_data()->m_tabpanecompositea.get_size(); iPane++)
+         for(i32 iPane = 0; iPane < ptab->get_data()->m_tabpanea.get_size(); iPane++)
          {
 
-            auto ppane = ptab->get_data()->m_tabpanecompositea[iPane].get();
+            auto ppane = ptab->get_data()->m_tabpanea[iPane].get();
 
             if(!ppane->m_bTabPaneVisible)
                continue;
@@ -729,10 +729,10 @@ namespace experience_nanoui
          int x = rectangleX.left();
 
          i32 ixAdd;
-         for(i32 iPane = 0; iPane < ptab->get_data()->m_tabpanecompositea.get_size(); iPane++)
+         for(i32 iPane = 0; iPane < ptab->get_data()->m_tabpanea.get_size(); iPane++)
          {
 
-            auto ppane = ptab->get_data()->m_tabpanecompositea[iPane].get();
+            auto ppane = ptab->get_data()->m_tabpanea[iPane].get();
 
             if (!ppane->m_bTabPaneVisible)
             {
@@ -807,10 +807,10 @@ namespace experience_nanoui
 
          ptab->get_data()->m_iTabHeight = iTabHeight;
 
-         for(i32 iPane = 0; iPane < ptab->get_data()->m_tabpanecompositea.get_size(); iPane++)
+         for(i32 iPane = 0; iPane < ptab->get_data()->m_tabpanea.get_size(); iPane++)
          {
 
-            auto ppane = ptab->get_data()->m_tabpanecompositea[iPane].get();
+            auto ppane = ptab->get_data()->m_tabpanea[iPane].get();
 
             ppane->m_size.cy() = iTabHeight;
 
@@ -846,7 +846,7 @@ namespace experience_nanoui
          //TRACE0("rectangleHosting");
       }
 
-      for(i32 iPane = 0; iPane < ptab->get_data()->m_tabpanecompositea.get_size(); iPane++)
+      for(i32 iPane = 0; iPane < ptab->get_data()->m_tabpanea.get_size(); iPane++)
       {
 
          if(iPane != ptab->get_current_tab_id())
@@ -867,7 +867,7 @@ namespace experience_nanoui
       if(ptab->get_data()->m_bVertical)
       {
 
-         ptab->m_iTabSize = (int) (ptab->get_data()->m_tabpanecompositea.get_count() * ptab->get_data()->m_iTabHeight);
+         ptab->m_iTabSize = (int) (ptab->get_data()->m_tabpanea.get_count() * ptab->get_data()->m_iTabHeight);
 
          //ptab->m_iTabScrollMax = ptab->m_iTabSize - rcClient.height();
 
@@ -875,8 +875,8 @@ namespace experience_nanoui
       else
       {
 
-         ptab->m_iTabSize = ptab->get_data()->m_tabpanecompositea.last()->m_point.x() +
-         ptab->get_data()->m_tabpanecompositea.last()->m_size.cx();
+         ptab->m_iTabSize = ptab->get_data()->m_tabpanea.last()->m_point.x() +
+         ptab->get_data()->m_tabpanea.last()->m_size.cx();
 
          //ptab->m_iTabScrollMax = ptab->m_iTabSize - rcClient.width();
 

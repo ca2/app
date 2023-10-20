@@ -514,7 +514,7 @@ namespace userex
 
       }
 
-      auto & panea = get_data()->m_tabpanecompositea;
+      auto & panea = get_data()->m_tabpanea;
 
       for(i32 iTab = 0; iTab < panea.get_count(); iTab++)
       {

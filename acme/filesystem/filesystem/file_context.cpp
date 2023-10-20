@@ -1428,7 +1428,7 @@ void file_context::calculate_main_resource_memory()
 
    strPath.replace_with("/", "\\");
 
-   ::information(strPath);
+   ::informationf(strPath);
 
    fflush(stdout);
 

@@ -926,7 +926,7 @@ namespace networking_bsd
       catch (const ::exception& e)
       {
 
-         information(e.m_strMessage);
+         informationf(e.m_strMessage);
 
          return false;
 

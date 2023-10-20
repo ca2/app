@@ -106,7 +106,7 @@ namespace factory
 
           strMessage = "Factory hasn't creator for type \"" + ::type < ORIGIN_TYPE >().name() + "\"";
 
-          warning (strMessage);
+          warningf(strMessage);
 
           throw_exception(error_no_factory, strMessage);
 
@@ -121,7 +121,7 @@ namespace factory
 
           strMessage = "Couldn't create_particle for type \"" + ::type < ORIGIN_TYPE >().name() + "\"";
 
-          warning (strMessage);
+          warningf(strMessage);
 
           throw_exception(error_no_memory, strMessage);
 
@@ -136,7 +136,7 @@ namespace factory
 
           strMessage = "Created element is not of the base type \"" + ::type < ORIGIN_TYPE >().name() + "\"";
 
-          warning (strMessage);
+          warningf(strMessage);
 
           throw_exception(error_wrong_type, strMessage);
 

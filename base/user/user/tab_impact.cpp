@@ -282,8 +282,6 @@ namespace user
 
       synchronous_lock synchronouslock(this->synchronization());
 
-      ::user::tab::_001OnRemoveTab(ptabpane);
-
       if (ptabpane->m_pplaceholder.is_set())
       {
 
@@ -316,7 +314,22 @@ namespace user
       if (m_pimpactdata == pimpactdata)
       {
 
+         // erased tab pane was current pane,
+         // set current tab to null
+
          m_pimpactdata = nullptr;
+
+         // if there is pane that was previously opened,
+         // get top one and set it current
+
+         auto ptabpaneTop = top_pane();
+
+         if (ptabpaneTop)
+         {
+
+            set_current_tab_by_id(ptabpaneTop->m_atom);
+
+         }
 
       }
 
@@ -328,6 +341,8 @@ namespace user
       }
 
       m_impactdatamap.erase_item(idTab);
+
+      ::user::tab::_001OnRemoveTab(ptabpane);
 
    }
 
@@ -556,7 +571,7 @@ namespace user
       if(iTab >= 0)
       {
 
-         auto& tabpanecompositea = ptabdata->m_tabpanecompositea;
+         auto& tabpanecompositea = ptabdata->m_tabpanea;
 
          auto & ptabpanecomposite = tabpanecompositea[iTab];
 
@@ -568,7 +583,7 @@ namespace user
             if (pimpactdata->m_pplaceholder != nullptr)
             {
 
-               get_data()->m_tabpanecompositea[iTab]->m_pplaceholder = pimpactdata->m_pplaceholder;
+               get_data()->m_tabpanea[iTab]->m_pplaceholder = pimpactdata->m_pplaceholder;
 
             }
             else if (pimpactdata->m_puserinteraction != nullptr)
@@ -577,15 +592,15 @@ namespace user
                if (pane_holder(iTab) == nullptr)
                {
 
-                  get_data()->m_tabpanecompositea[iTab]->m_pplaceholder = place_hold(pimpactdata->m_puserinteraction, get_data()->m_rectangleHosting);
+                  get_data()->m_tabpanea[iTab]->m_pplaceholder = place_hold(pimpactdata->m_puserinteraction, get_data()->m_rectangleHosting);
 
                }
                else
                {
 
-                  get_data()->m_tabpanecompositea[iTab]->m_pplaceholder->m_puserinteractionpointeraChild.release();
+                  get_data()->m_tabpanea[iTab]->m_pplaceholder->m_puserinteractionpointeraChild.release();
 
-                  get_data()->m_tabpanecompositea[iTab]->m_pplaceholder->place_hold(pimpactdata->m_puserinteraction);
+                  get_data()->m_tabpanea[iTab]->m_pplaceholder->place_hold(pimpactdata->m_puserinteraction);
 
                }
 
@@ -593,7 +608,7 @@ namespace user
             else
             {
 
-               get_data()->m_tabpanecompositea[iTab]->m_pplaceholder = get_new_place_holder(get_data()->m_rectangleHosting);
+               get_data()->m_tabpanea[iTab]->m_pplaceholder = get_new_place_holder(get_data()->m_rectangleHosting);
 
             }
 
@@ -606,10 +621,10 @@ namespace user
 
                   index iTab = get_current_tab_index();
 
-                  if (iTab >= 0 && get_data()->m_tabpanecompositea[iTab]->m_atom == pimpactdata->m_atom)
+                  if (iTab >= 0 && get_data()->m_tabpanea[iTab]->m_atom == pimpactdata->m_atom)
                   {
 
-                     get_data()->m_tabpanecompositea[iTab]->set_title(pimpactdata->m_strTitle);
+                     get_data()->m_tabpanea[iTab]->set_title(pimpactdata->m_strTitle);
 
                   }
 
@@ -715,7 +730,7 @@ namespace user
             || m_pimpactdata->m_eflag.has(::user::e_flag_hidid_on_show))
          {
 
-            ::user::tab_pane_composite_array & panecompositea = get_data()->m_tabpanecompositea;
+            ::user::tab_pane_array & panecompositea = get_data()->m_tabpanea;
 
             for (i32 iTab = 0; iTab < panecompositea.get_count(); iTab++)
             {
@@ -1031,7 +1046,7 @@ namespace user
 
       }
 
-      return get_data()->m_tabpanecompositea[iTab];
+      return get_data()->m_tabpanea[iTab];
 
    }
 

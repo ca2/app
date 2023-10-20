@@ -341,10 +341,10 @@ public:
 
    virtual void format_trace(enum_trace_level etracelevel, const ::ansi_character * pszFormat, va_list & arguments) const;
 
-   virtual void information(const ::ansi_character * pszFormat, ...) const;
-   virtual void warning(const ::ansi_character * pszFormat, ...) const;
-   virtual void error(const ::ansi_character * pszFormat, ...) const;
-   virtual void fatal(const ::ansi_character * pszFormat, ...) const;
+   virtual void informationf(const ::ansi_character * pszFormat, ...) const;
+   virtual void warningf(const ::ansi_character * pszFormat, ...) const;
+   virtual void errorf(const ::ansi_character * pszFormat, ...) const;
+   virtual void fatalf(const ::ansi_character * pszFormat, ...) const;
 
    //virtual trace_statement trace_log_warning() << ;
    //virtual trace_statement trace_log_error() << ;
@@ -790,10 +790,10 @@ CLASS_DECL_ACME ::trace_statement error();
 CLASS_DECL_ACME ::trace_statement fatal();
 
 
-CLASS_DECL_ACME void information(const ::ansi_character * pszFormat, ...);
-CLASS_DECL_ACME void warning(const ::ansi_character * pszFormat, ...);
-CLASS_DECL_ACME void error(const ::ansi_character * pszFormat, ...);
-CLASS_DECL_ACME void fatal(const ::ansi_character * pszFormat, ...);
+CLASS_DECL_ACME void informationf(const ::ansi_character * pszFormat, ...);
+CLASS_DECL_ACME void warningf(const ::ansi_character * pszFormat, ...);
+CLASS_DECL_ACME void errorf(const ::ansi_character * pszFormat, ...);
+CLASS_DECL_ACME void fatalf(const ::ansi_character * pszFormat, ...);
 
 
 inline bool is_ok(const ::particle * pconstparticle)

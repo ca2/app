@@ -1800,7 +1800,7 @@ namespace apex
 
             //message_box(strMessage, m_strAppName, e_message_box_icon_asterisk);
 
-            information(strMessage + m_strAppName);
+            informationf(strMessage + m_strAppName);
 
             information() << "apex::application::init_application exit";
 

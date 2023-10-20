@@ -785,10 +785,10 @@ namespace experience_tranquillum
          i32 iTabHeight = 8;
          i32 cx;
          i32 cy;
-         for (i32 iPane = 0; iPane < ptab->get_data()->m_tabpanecompositea.get_size(); iPane++)
+         for (i32 iPane = 0; iPane < ptab->get_data()->m_tabpanea.get_size(); iPane++)
          {
 
-            auto& pane = *ptab->get_data()->m_tabpanecompositea[iPane];
+            auto& pane = *ptab->get_data()->m_tabpanea[iPane];
 
             if (!pane.m_bTabPaneVisible)
             {
@@ -881,10 +881,10 @@ namespace experience_tranquillum
          int x = rectangleX.left();
 
          i32 ixAdd;
-         for (i32 iPane = 0; iPane < ptab->get_data()->m_tabpanecompositea.get_size(); iPane++)
+         for (i32 iPane = 0; iPane < ptab->get_data()->m_tabpanea.get_size(); iPane++)
          {
 
-            auto& pane = *ptab->get_data()->m_tabpanecompositea[iPane];
+            auto& pane = *ptab->get_data()->m_tabpanea[iPane];
 
             if (!pane.m_bTabPaneVisible)
             {
@@ -964,10 +964,10 @@ namespace experience_tranquillum
 
          ptab->get_data()->m_iTabHeight = iTabHeight + 8;
 
-         for (i32 iPane = 0; iPane < ptab->get_data()->m_tabpanecompositea.get_size(); iPane++)
+         for (i32 iPane = 0; iPane < ptab->get_data()->m_tabpanea.get_size(); iPane++)
          {
 
-            auto& pane = *ptab->get_data()->m_tabpanecompositea[iPane];
+            auto& pane = *ptab->get_data()->m_tabpanea[iPane];
 
             pane.m_size.cy() = iTabHeight;
 
@@ -1004,7 +1004,7 @@ namespace experience_tranquillum
 
       }
 
-      for (i32 iPane = 0; iPane < ptab->get_data()->m_tabpanecompositea.get_size(); iPane++)
+      for (i32 iPane = 0; iPane < ptab->get_data()->m_tabpanea.get_size(); iPane++)
       {
 
          if (iPane != ptab->get_current_tab_index())
@@ -1100,10 +1100,10 @@ namespace experience_tranquillum
 
       auto ppenBorder = __create < ::draw2d::pen >();
 
-      for (i32 iPane = 0; iPane < ptab->get_data()->m_tabpanecompositea.get_size(); iPane++)
+      for (i32 iPane = 0; iPane < ptab->get_data()->m_tabpanea.get_size(); iPane++)
       {
 
-         auto& pane = *ptab->get_data()->m_tabpanecompositea[iPane];
+         auto& pane = *ptab->get_data()->m_tabpanea[iPane];
 
          if (!pane.m_bTabPaneVisible)
          {

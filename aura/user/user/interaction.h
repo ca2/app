@@ -857,6 +857,10 @@ namespace user
       virtual void display(::e_display edisplay = e_display_normal, ::e_activation eactivation = ::e_activation_default) override;
 
 
+      virtual void sort_children_by_zorder(::user::interaction_array & interactiona);
+
+      virtual ::index child_zorder(::user::interaction * puserinteraction);
+
       virtual bool check_children_zorder();
 
       virtual ::zorder zorder(enum_layout elayout = e_layout_design);

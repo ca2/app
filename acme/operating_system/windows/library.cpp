@@ -441,11 +441,12 @@ namespace acme
 
       }
 
-      ::information(strMessage + "\n\n");
+      ::informationf(strMessage + "\n\n");
 
       return plibrary;
 
    }
+
 
    bool system::operating_system_library_close(void* plibrary)
    {

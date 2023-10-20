@@ -4529,18 +4529,13 @@ return get_data()[nIndex];
 //
 
 
-
-
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 inline void string_array_base < Type, RawType, m_etypeContainer > ::debug_output(::index iStart, ::count inCountLastOut)
 {
 
-::information(implode(STR_NEWLINE, iStart, inCountLastOut));
+   ::informationf(implode(STR_NEWLINE, iStart, inCountLastOut));
 
 }
-
-
-
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
@@ -4569,9 +4564,6 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 }
 
 
-
-
-
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 ::index string_array_base < Type, RawType, m_etypeContainer > ::suffix_find_first(const RawType &strTopic, ::index iFind, ::index iLast) const
 {
@@ -4596,8 +4588,6 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
    return -1;
 
 }
-
-
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >

@@ -118,7 +118,7 @@ namespace user
       get_pane get_pane;
       ppane->m_uiId = uiIdTitle;
       ppane->m_istrTitleEx = L"";
-      ppane->m_iId = iId == -1 ? get_data()->m_tabpanecompositea.get_size() : iId;
+      ppane->m_iId = iId == -1 ? get_data()->m_tabpanea.get_size() : iId;
       if(!ppane->m_wstrTitle.load_string(uiIdTitle))
       {
          return false;
@@ -127,7 +127,7 @@ namespace user
       // ppane->m_type = nullptr;
       /* ppane->m_iImage = -1;
 
-       get_data()->m_tabpanecompositea.add(get_pane);
+       get_data()->m_tabpanea.add(get_pane);
        return true;
       }*/
 
@@ -153,14 +153,14 @@ namespace user
 
       }
 
-      if (iIndex >= get_data()->m_tabpanecompositea.get_size())
+      if (iIndex >= get_data()->m_tabpanea.get_size())
       {
 
          return false;
 
       }
 
-      get_data()->m_tabpanecompositea[iIndex]->set_title(pcsz);
+      get_data()->m_tabpanea[iIndex]->set_title(pcsz);
 
 
       return true;
@@ -180,7 +180,7 @@ namespace user
 
       }
 
-      get_data()->m_tabpanecompositea[iIndex]->set_title(pcsz);
+      get_data()->m_tabpanea[iIndex]->set_title(pcsz);
 
       return true;
 
@@ -200,7 +200,7 @@ namespace user
 
       ::atom atom(atomImpact);
 
-      auto & ppane = get_data()->m_tabpanecompositea.add_new();
+      auto & ppane = get_data()->m_tabpanea.add_new();
 
       __construct_new(ppane);
 
@@ -221,7 +221,7 @@ namespace user
       if (atom.is_empty())
       {
 
-         atom = get_data()->m_tabpanecompositea.get_size();
+         atom = get_data()->m_tabpanea.get_size();
 
       }
 
@@ -247,7 +247,7 @@ namespace user
 
       ::atom atom(atomImpact);
 
-      auto & ppane = get_data()->m_tabpanecompositea.add_new();
+      auto & ppane = get_data()->m_tabpanea.add_new();
 
       __construct_new(ppane);
 
@@ -262,7 +262,7 @@ namespace user
       if (atom.is_empty())
       {
 
-         atom = get_data()->m_tabpanecompositea.get_size();
+         atom = get_data()->m_tabpanea.get_size();
 
       }
 
@@ -290,9 +290,21 @@ namespace user
    }
 
 
-   void tab::_001OnRemoveTab(class tab_pane * ptab)
+   void tab::_001OnRemoveTab(class tab_pane * ptabpane)
    {
 
+      if (matches_restorable_tab(ptabpane->m_atom, ptabpane->m_pplaceholder))
+      {
+
+         on_change_tab_count({ nullptr });
+
+      }
+      else
+      {
+
+         on_change_tab_count();
+
+      }
 
    }
 
@@ -300,20 +312,20 @@ namespace user
    bool tab::erase_tab_by_id(const ::atom & atom)
    {
 
-      bool bRestorableMatch = false;
+      //bool bRestorableMatch = false;
 
-      for (i32 i = 0; i < get_data()->m_tabpanecompositea.get_count(); i++)
+      for (i32 i = 0; i < get_data()->m_tabpanea.get_count(); i++)
       {
 
-         if (get_data()->m_tabpanecompositea[i]->m_atom == atom)
+         if (get_data()->m_tabpanea[i]->m_atom == atom)
          {
 
-            if (!bRestorableMatch && matches_restorable_tab(get_data()->m_tabpanecompositea[i]->m_atom, get_data()->m_tabpanecompositea[i]->m_pplaceholder))
-            {
+            //if (!bRestorableMatch && matches_restorable_tab(get_data()->m_tabpanea[i]->m_atom, get_data()->m_tabpanea[i]->m_pplaceholder))
+            //{
 
-               bRestorableMatch = true;
+            //   bRestorableMatch = true;
 
-            }
+            //}
 
             erase_tab(i, false);
 
@@ -323,14 +335,14 @@ namespace user
 
       }
 
-      if (bRestorableMatch)
-      {
+      //if (bRestorableMatch)
+      //{
 
-         on_change_tab_count({ nullptr });
+      //   on_change_tab_count({ nullptr });
 
-      }
+      //}
 
-      on_change_tab_count();
+      //on_change_tab_count();
 
       return true;
 
@@ -345,14 +357,12 @@ namespace user
    //}
 
 
-
-
    void tab::erase_tab(::index iIndex, bool bVisible)
    {
 
       synchronous_lock synchronouslock(this->synchronization());
 
-      if (iIndex < 0 || iIndex >= get_data()->m_tabpanecompositea.get_size())
+      if (iIndex < 0 || iIndex >= get_data()->m_tabpanea.get_size())
       {
 
          return;
@@ -362,22 +372,22 @@ namespace user
       if (bVisible)
       {
 
-         for (i32 i = 0; iIndex >= 0 && i < get_data()->m_tabpanecompositea.get_count(); i++)
+         for (i32 i = 0; iIndex >= 0 && i < get_data()->m_tabpanea.get_count(); i++)
          {
 
-            if (get_data()->m_tabpanecompositea[i]->m_bTabPaneVisible)
+            if (get_data()->m_tabpanea[i]->m_bTabPaneVisible)
             {
 
                if (iIndex <= 0)
                {
 
-                  auto ppane = get_data()->m_tabpanecompositea[iIndex];
+                  auto ppane = get_data()->m_tabpanea[iIndex];
 
-                  get_data()->m_tabpanecompositea.erase_at(iIndex);
+                  get_data()->m_tabpanea.erase_at(iIndex);
 
                   _001OnRemoveTab(ppane);
 
-                  on_change_tab_count();
+                  //on_change_tab_count();
 
                   break;
 
@@ -397,13 +407,13 @@ namespace user
       else
       {
 
-         auto ppane = get_data()->m_tabpanecompositea[iIndex];
+         auto ppane = get_data()->m_tabpanea[iIndex];
 
-         get_data()->m_tabpanecompositea.erase_at(iIndex);
+         get_data()->m_tabpanea.erase_at(iIndex);
 
          _001OnRemoveTab(ppane);
 
-         on_change_tab_count();
+         //on_change_tab_count();
 
       }
 
@@ -415,7 +425,7 @@ namespace user
 
       synchronous_lock synchronouslock(this->synchronization());
 
-      get_data()->m_tabpanecompositea.erase_all();
+      get_data()->m_tabpanea.erase_all();
 
       on_change_tab_count();
 
@@ -427,7 +437,7 @@ namespace user
    void tab::get_title(int iIndex, string_array & stra)
    {
 
-      auto ppane = get_data()->m_tabpanecompositea[iIndex].get();
+      auto ppane = get_data()->m_tabpanea[iIndex].get();
 
       stra = ppane->m_straTitle;
 
@@ -610,6 +620,8 @@ namespace user
 
             pmouse->m_lresult = 1;
 
+            //set_mouse_capture();
+
             m_estate = state_close_button_down;
 
          }
@@ -648,66 +660,66 @@ namespace user
    void tab::on_message_left_button_up(::message::message * pmessage)
    {
 
-      //      auto pmouse = pmessage->m_union.m_pmouse;
-      //
-      ////      if(m_bMouseDown)
-      ////      {
-      ////
-      ////         m_bMouseDown = false;
-      ////
-      ////         release_mouse_capture();
-      ////
-      ////      }
-      //
-      //      auto pitem = hit_test(pmouse, ::user::e_zorder_any);
-      //
-      //      index iClickTab = get_data()->m_iClickTab;
-      //
-      //      if (m_estate == state_other_tab_button_down)
+      //auto pmouse = pmessage->m_union.m_pmouse;
+
+      //      if(m_bMouseDown)
       //      {
       //
-      //         // drag operation was about to start (but ended prematurely)
+      //         m_bMouseDown = false;
       //
       //         release_mouse_capture();
       //
-      //         KillTimer(e_timer_drag_start);
-      //
       //      }
-      //
-      //      if (::is_set(pitem))
+
+      //auto pitem = hit_test(pmouse, ::user::e_zorder_any);
+
+      //index iClickTab = get_data()->m_iClickTab;
+
+      //if (m_estate == state_other_tab_button_down)
+      //{
+
+      //    drag operation was about to start (but ended prematurely)
+
+      //   release_mouse_capture();
+
+      //   KillTimer(e_timer_drag_start);
+
+      //}
+
+      //if (::is_set(pitem))
+      //{
+
+      //   if (pitem->m_item.m_iItem >= 0 && iClickTab == pitem->m_item.m_iItem && ::is_same_item(m_pitemClick, pitem))
+      //   {
+
+      //      if (::is_element(pitem, e_element_close_tab_button))
       //      {
-      //
-      //         if (pitem->m_item.m_iItem >= 0 && iClickTab == pitem->m_item.m_iItem && ::is_same_item(m_pitemClick, pitem))
-      //         {
-      //
-      //            if (::is_element(pitem, e_element_close_tab_button))
-      //            {
-      //
-      //               _001OnTabClose(pitem->m_item.m_iItem);
-      //
-      //            }
-      //            else
-      //            {
-      //
-      //               _001OnTabClick(pitem->m_item.m_iItem);
-      //
-      //            }
-      //
-      ////            set_need_redraw();
-      ////
-      ////            post_redraw();
-      //
-      //            pmouse->m_bRet = true;
-      //
-      //            pmouse->m_lresult = 1;
-      //
-      //         }
-      //
+
+      //         _001OnTabClose(pitem->m_item.m_iItem);
+
       //      }
-      //
-      //      get_data()->m_iClickTab = -1;
-      //
-      //      get_data()->m_bDrag = false;
+      //      else
+      //      {
+
+      //         _001OnTabClick(pitem->m_item.m_iItem);
+
+      //      }
+
+      //                  set_need_redraw();
+      //      
+      //                  post_redraw();
+
+      //      pmouse->m_bRet = true;
+
+      //      pmouse->m_lresult = 1;
+
+      //   }
+
+      //}
+
+      //get_data()->m_iClickTab = -1;
+
+      //get_data()->m_bDrag = false;
 
    }
 
@@ -932,7 +944,7 @@ namespace user
       if (eelement == e_element_icon)
       {
 
-         if (ptabdata->m_tabpanecompositea[iIndex]->m_pimage.nok())
+         if (ptabdata->m_tabpanea[iIndex]->m_pimage.nok())
          {
 
             return false;
@@ -946,9 +958,9 @@ namespace user
 
          }
 
-         rectangle.right() = rectangle.left() + ptabdata->m_tabpanecompositea[iIndex]->m_pimage->width();
+         rectangle.right() = rectangle.left() + ptabdata->m_tabpanea[iIndex]->m_pimage->width();
 
-         rectangle.bottom() = rectangle.top() + ptabdata->m_tabpanecompositea[iIndex]->m_pimage->height();
+         rectangle.bottom() = rectangle.top() + ptabdata->m_tabpanea[iIndex]->m_pimage->height();
 
          return true;
 
@@ -963,14 +975,14 @@ namespace user
 
          }
 
-         if (ptabdata->m_tabpanecompositea[iIndex]->m_pimage.ok())
+         if (ptabdata->m_tabpanea[iIndex]->m_pimage.ok())
          {
 
-            rectangle.left() += ptabdata->m_tabpanecompositea[iIndex]->m_pimage->width() + 2;
+            rectangle.left() += ptabdata->m_tabpanea[iIndex]->m_pimage->width() + 2;
 
          }
 
-         if (!ptabdata->m_tabpanecompositea[iIndex]->m_bPermanent)
+         if (!ptabdata->m_tabpanea[iIndex]->m_bPermanent)
          {
 
             rectangle.right() -= 2 + 16 + 2;
@@ -992,7 +1004,7 @@ namespace user
 
          }
 
-         if (ptabdata->m_tabpanecompositea[iIndex]->m_bPermanent)
+         if (ptabdata->m_tabpanea[iIndex]->m_bPermanent)
          {
 
             return false;
@@ -1047,7 +1059,7 @@ namespace user
       else
       {
 
-         auto ppane = get_data()->m_tabpanecompositea[iIndex].get();
+         auto ppane = get_data()->m_tabpanea[iIndex].get();
 
          rectangle.left() = ppane->m_point.x();
 
@@ -1069,7 +1081,7 @@ namespace user
    ::count tab::get_tab_count()
    {
 
-      return get_data()->m_tabpanecompositea.get_size();
+      return get_data()->m_tabpanea.get_size();
 
    }
 
@@ -1077,7 +1089,7 @@ namespace user
    ::count tab::get_visible_tab_count()
    {
 
-      return get_data()->m_tabpanecompositea.predicate_get_count([](auto & pane) {return pane->m_bTabPaneVisible; });
+      return get_data()->m_tabpanea.predicate_get_count([](auto & pane) {return pane->m_bTabPaneVisible; });
 
    }
 
@@ -1085,7 +1097,7 @@ namespace user
    index tab::find_child_pane(::user::interaction * pinteraction)
    {
 
-      index iIndex = get_data()->m_tabpanecompositea.predicate_find_first([=](auto & pane)
+      index iIndex = get_data()->m_tabpanea.predicate_find_first([=](auto & pane)
       {
 
          return pane->m_pplaceholder && pane->m_pplaceholder->is_ascendant_of(pinteraction, true);
@@ -1217,10 +1229,10 @@ namespace user
 
       ::rectangle_i32 rectangle;
 
-      for (i32 iIndex = 0; iIndex < get_data()->m_tabpanecompositea.get_size(); iIndex++)
+      for (i32 iIndex = 0; iIndex < get_data()->m_tabpanea.get_size(); iIndex++)
       {
 
-         auto ppane = get_data()->m_tabpanecompositea[iIndex].get();
+         auto ppane = get_data()->m_tabpanea[iIndex].get();
 
          if (ppane->m_straTitle.get_size() > 1)
          {
@@ -1524,7 +1536,7 @@ namespace user
 
       synchronous_lock lock(pdata->synchronization());
 
-      return pdata->m_tabpanecompositea.predicate_find_first([ptabpaneFind](auto & ptabpane)
+      return pdata->m_tabpanea.predicate_find_first([ptabpaneFind](auto & ptabpane)
          {
 
             return ptabpane == ptabpaneFind;
@@ -1548,7 +1560,7 @@ namespace user
 
       synchronous_lock lock(pdata->synchronization());
 
-      return pdata->m_tabpanecompositea.predicate_index_index(iVisibleIndex, [](auto & ptabpane)
+      return pdata->m_tabpanea.predicate_index_index(iVisibleIndex, [](auto & ptabpane)
          {
 
             return ptabpane->m_bTabPaneVisible;
@@ -1572,7 +1584,7 @@ namespace user
 
       synchronous_lock lock(pdata->synchronization());
 
-      return pdata->m_tabpanecompositea.index_predicate_index(iIndex, [](auto & ptabpane)
+      return pdata->m_tabpanea.index_predicate_index(iIndex, [](auto & ptabpane)
          {
 
             return ptabpane->m_bTabPaneVisible;
@@ -1589,7 +1601,7 @@ namespace user
 
       synchronous_lock lock(pdata->synchronization());
 
-      return pdata->m_tabpanecompositea.predicate_contains([atom](auto & ptabpane)
+      return pdata->m_tabpanea.predicate_contains([atom](auto & ptabpane)
          {
 
             return ptabpane->m_atom == atom;
@@ -1606,7 +1618,7 @@ namespace user
 
       synchronous_lock lock(pdata->synchronization());
 
-      return pdata->m_tabpanecompositea.predicate_find_first([atom](auto & ptabpane)
+      return pdata->m_tabpanea.predicate_find_first([atom](auto & ptabpane)
          {
 
             return ptabpane->m_atom == atom;
@@ -1624,14 +1636,14 @@ namespace user
 
       synchronous_lock lock(pdata->synchronization());
 
-      if (iIndex < 0 || iIndex >= pdata->m_tabpanecompositea.get_count())
+      if (iIndex < 0 || iIndex >= pdata->m_tabpanea.get_count())
       {
 
          return -1;
 
       }
 
-      auto ppane = pdata->m_tabpanecompositea[iIndex];
+      auto ppane = pdata->m_tabpanea[iIndex];
 
       if (!ppane)
       {
@@ -1754,27 +1766,121 @@ namespace user
    bool tab::on_click(::item * pitem)
    {
 
-      if (pitem->m_item.m_eelement != e_element_tab)
-      {
-
-         return false;
-
-      }
-
       if (::is_element(pitem, e_element_close_tab_button))
       {
 
          _001OnTabClose(pitem->m_item.m_iItem);
 
       }
-      else
+      else if (::is_element(pitem, e_element_tab))
       {
 
          _001OnTabClick(pitem->m_item.m_iItem);
 
       }
+      else
+      {
+
+         return false;
+
+      }
 
       return true;
+
+   }
+
+
+   ::user::interaction_array tab::place_holders()
+   {
+
+      ::user::interaction_array interactiona;
+
+      auto & panea = get_data()->m_tabpanea;
+
+      for (i32 i = 0; i < panea.get_count(); i++)
+      {
+
+         auto ptabpane = panea[i].get();
+
+         if (ptabpane->m_pplaceholder.is_set())
+         {
+
+            interactiona.add_interaction(ptabpane->m_pplaceholder);
+
+         }
+
+      }
+
+      sort_children_by_zorder(interactiona);
+
+      return interactiona;
+
+   }
+
+   
+   tab_pane * tab::place_holder_pane(::user::place_holder * pplaceholder)
+   {
+
+      if (::is_null(pplaceholder))
+      {
+
+         return nullptr;
+
+      }
+
+      auto & panea = get_data()->m_tabpanea;
+
+      for (i32 i = 0; i < panea.get_count(); i++)
+      {
+
+         auto ptabpane = panea[i].get();
+
+         if (ptabpane->m_pplaceholder.is_set()
+            && ptabpane->m_pplaceholder == pplaceholder)
+         {
+
+            return ptabpane;
+
+         }
+
+      }
+
+      return nullptr;
+
+   }
+
+
+   tab_pane * tab::top_pane()
+   {
+
+      auto interactiona = place_holders();
+
+      if (!interactiona.has_interaction())
+      {
+
+         return nullptr;
+
+      }
+
+      ::pointer < ::user::place_holder > pplaceholder = interactiona.last_interaction();
+
+      if (!pplaceholder)
+      {
+
+         return nullptr;
+
+      }
+
+      auto ptabpane = place_holder_pane(pplaceholder);
+
+      if (!ptabpane)
+      {
+
+         return nullptr;
+
+      }
+
+      return ptabpane;
 
    }
 
@@ -1991,14 +2097,14 @@ namespace user
 
       }
 
-      if (iIndex >= get_data()->m_tabpanecompositea.get_count())
+      if (iIndex >= get_data()->m_tabpanea.get_count())
       {
 
          return nullptr;
 
       }
 
-      return get_data()->m_tabpanecompositea.element_at(iIndex);
+      return get_data()->m_tabpanea.element_at(iIndex);
 
    }
 
@@ -2034,7 +2140,7 @@ namespace user
 
    //   }
 
-   //   return get_data()->m_tabpanecompositea.element_at(iIndex);
+   //   return get_data()->m_tabpanea.element_at(iIndex);
 
    //}
 
@@ -2145,17 +2251,17 @@ namespace user
 
    //   index iIndex = -1;
 
-   //   for(::index iIndex = 0; iIndex < get_data()->m_tabpanecompositea.get_size(); iIndex++)
+   //   for(::index iIndex = 0; iIndex < get_data()->m_tabpanea.get_size(); iIndex++)
    //   {
 
-   //      if (get_data()->m_tabpanecompositea[iIndex]->m_bTabPaneVisible)
+   //      if (get_data()->m_tabpanea[iIndex]->m_bTabPaneVisible)
    //      {
 
    //         iIndex++;
 
    //      }
 
-   //      if (get_data()->m_tabpanecompositea[iIndex]->m_atom == atom)
+   //      if (get_data()->m_tabpanea[iIndex]->m_atom == atom)
    //      {
 
    //         return iIndex;
@@ -2173,16 +2279,16 @@ namespace user
    //atom tab::index_id(::index iIndex)
    //{
 
-   //   for(i32 iIndex = 0; iIndex < get_data()->m_tabpanecompositea.get_count(); iIndex++)
+   //   for(i32 iIndex = 0; iIndex < get_data()->m_tabpanea.get_count(); iIndex++)
    //   {
 
-   //      if(get_data()->m_tabpanecompositea[iIndex]->m_bTabPaneVisible)
+   //      if(get_data()->m_tabpanea[iIndex]->m_bTabPaneVisible)
    //      {
 
    //         if(iIndex <= 0)
    //         {
 
-   //            return get_data()->m_tabpanecompositea[iIndex]->m_atom;
+   //            return get_data()->m_tabpanea[iIndex]->m_atom;
 
    //         }
    //         else
@@ -2450,7 +2556,7 @@ namespace user
       else if (ptopic->m_atom == id_place_child_title_change)
       {
 
-         for (auto & ppane : get_data()->m_tabpanecompositea)
+         for (auto & ppane : get_data()->m_tabpanea)
          {
 
             if (ppane->m_pplaceholder == ptopic->m_puserelement)
@@ -2814,7 +2920,7 @@ namespace user
 
       string strPath;
 
-      auto & panea = get_data()->m_tabpanecompositea;
+      auto & panea = get_data()->m_tabpanea;
 
       for (i32 i = 0; i < panea.get_count(); i++)
       {
@@ -2865,7 +2971,7 @@ namespace user
 
       string strPath;
 
-      tab_pane_composite_array & panea = get_data()->m_tabpanecompositea;
+      tab_pane_array & panea = get_data()->m_tabpanea;
 
       for (i32 i = 0; i < panea.get_count(); i++)
       {
@@ -2926,7 +3032,7 @@ namespace user
 
       ::payload varId;
 
-      tab_pane_composite_array & panea = get_data()->m_tabpanecompositea;
+      tab_pane_array & panea = get_data()->m_tabpanea;
 
       for (i32 i = 0; i < panea.get_count(); i++)
       {
@@ -2965,7 +3071,7 @@ namespace user
       if (matchany.is_there_no_item())
          return false;
       ::payload varId;
-      tab_pane_composite_array & panea = get_data()->m_tabpanecompositea;
+      tab_pane_array & panea = get_data()->m_tabpanea;
       for (i32 i = 0; i < panea.get_count(); i++)
       {
          varId = panea[i]->m_atom;

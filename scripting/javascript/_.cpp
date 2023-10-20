@@ -1468,7 +1468,7 @@ void CScriptVar::trace(string indentStr, const string &name)
               getString().c_str(),
               getFlagsAsString().c_str());
 
-   ::information(str);
+   ::informationf(str);
 
    string indent = indentStr+" ";
 

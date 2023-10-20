@@ -2227,7 +2227,7 @@ pacmedirectory->create("/ca2core");
 
       //}
 
-      information(strPrint);
+      informationf(strPrint);
 
       if (iReportType == _CRT_ASSERT)
       {

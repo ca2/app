@@ -116,10 +116,10 @@ namespace user
 
       auto ppenBorder = __create < ::draw2d::pen >();
 
-      for (; iIndex < get_data()->m_tabpanecompositea.get_size(); iIndex++)
+      for (; iIndex < get_data()->m_tabpanea.get_size(); iIndex++)
       {
 
-         auto ppane = get_data()->m_tabpanecompositea[iIndex].get();
+         auto ppane = get_data()->m_tabpanea[iIndex].get();
 
          if (!ppane->m_bTabPaneVisible)
          {
@@ -463,10 +463,10 @@ namespace user
 
       auto pbrushText = __create < ::draw2d::brush >();
 
-      for (i32 iIndex = 0; iIndex < get_data()->m_tabpanecompositea.get_size(); iIndex++)
+      for (i32 iIndex = 0; iIndex < get_data()->m_tabpanea.get_size(); iIndex++)
       {
 
-         auto ppane = get_data()->m_tabpanecompositea[iIndex].get();
+         auto ppane = get_data()->m_tabpanea[iIndex].get();
 
          if (!ppane->m_bTabPaneVisible)
          {
@@ -786,10 +786,10 @@ namespace user
 
          i32 cy;
 
-         for (i32 iIndex = 0; iIndex < get_data()->m_tabpanecompositea.get_size(); iIndex++)
+         for (i32 iIndex = 0; iIndex < get_data()->m_tabpanea.get_size(); iIndex++)
          {
 
-            auto ppane = get_data()->m_tabpanecompositea[iIndex].get();
+            auto ppane = get_data()->m_tabpanea[iIndex].get();
 
             if (!ppane->m_bTabPaneVisible)
             {
@@ -895,10 +895,10 @@ namespace user
 
          i32 ixAdd;
 
-         for (i32 iIndex = 0; iIndex < get_data()->m_tabpanecompositea.get_size(); iIndex++)
+         for (i32 iIndex = 0; iIndex < get_data()->m_tabpanea.get_size(); iIndex++)
          {
 
-            auto ppane = get_data()->m_tabpanecompositea[iIndex].get();
+            auto ppane = get_data()->m_tabpanea[iIndex].get();
 
             if (!ppane->m_bTabPaneVisible)
             {
@@ -971,10 +971,10 @@ namespace user
 
          get_data()->m_iTabHeight = iTabHeight;
 
-         for (i32 iIndex = 0; iIndex < get_data()->m_tabpanecompositea.get_size(); iIndex++)
+         for (i32 iIndex = 0; iIndex < get_data()->m_tabpanea.get_size(); iIndex++)
          {
 
-            auto ppane = get_data()->m_tabpanecompositea[iIndex].get();
+            auto ppane = get_data()->m_tabpanea[iIndex].get();
 
             ppane->m_size.cy() = iTabHeight;
 
@@ -1004,7 +1004,7 @@ namespace user
       }
 
 
-      for (i32 iIndex = 0; iIndex < get_data()->m_tabpanecompositea.get_size(); iIndex++)
+      for (i32 iIndex = 0; iIndex < get_data()->m_tabpanea.get_size(); iIndex++)
       {
 
          if (iIndex != get_current_tab_index())
@@ -1021,15 +1021,15 @@ namespace user
       if (m_pdata->m_bVertical)
       {
 
-         m_sizeBarDragScroll.cy() = (int)m_pdata->m_tabpanecompositea.get_count() * m_pdata->m_iTabHeight;
+         m_sizeBarDragScroll.cy() = (int)m_pdata->m_tabpanea.get_count() * m_pdata->m_iTabHeight;
 
 
       }
       else
       {
 
-         m_sizeBarDragScroll.cx() = m_pdata->m_tabpanecompositea.last()->m_point.x() +
-            m_pdata->m_tabpanecompositea.last()->m_size.cx();
+         m_sizeBarDragScroll.cx() = m_pdata->m_tabpanea.last()->m_point.x() +
+            m_pdata->m_tabpanea.last()->m_size.cx();
 
       }
 

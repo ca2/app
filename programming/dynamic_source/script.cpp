@@ -564,7 +564,7 @@ namespace dynamic_source
          {
 
             information() << "Build: " << m_strName;
-            information(str);
+            informationf(str);
 
          }
          else

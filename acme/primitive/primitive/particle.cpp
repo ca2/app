@@ -895,7 +895,7 @@ void particle::trace(enum_trace_level etracelevel, const ::ansi_character * pszF
  }
 
 
-void particle::information(const ::ansi_character * pszFormat, ...) const
+void particle::informationf(const ::ansi_character * pszFormat, ...) const
 {
 
    va_list arguments;
@@ -909,7 +909,7 @@ void particle::information(const ::ansi_character * pszFormat, ...) const
 }
 
 
-void particle::warning(const ::ansi_character * pszFormat, ...) const
+void particle::warningf(const ::ansi_character * pszFormat, ...) const
 {
 
    va_list arguments;
@@ -923,7 +923,7 @@ void particle::warning(const ::ansi_character * pszFormat, ...) const
 }
 
 
-void particle::error(const ::ansi_character * pszFormat, ...) const
+void particle::errorf(const ::ansi_character * pszFormat, ...) const
 {
 
    va_list arguments;
@@ -937,7 +937,7 @@ void particle::error(const ::ansi_character * pszFormat, ...) const
 }
 
 
-void particle::fatal(const ::ansi_character * pszFormat, ...) const
+void particle::fatalf(const ::ansi_character * pszFormat, ...) const
 {
 
    va_list arguments;
@@ -2341,7 +2341,7 @@ CLASS_DECL_ACME ::trace_statement log_statement()
 }
 
 
-void information(const ::ansi_character * pszFormat, ...)
+void informationf(const ::ansi_character * pszFormat, ...)
 {
 
    va_list arguments;
@@ -2363,7 +2363,7 @@ void information(const ::ansi_character * pszFormat, ...)
 }
 
 
-void warning(const ::ansi_character * pszFormat, ...)
+void warningf(const ::ansi_character * pszFormat, ...)
 {
 
    va_list arguments;
@@ -2385,7 +2385,7 @@ void warning(const ::ansi_character * pszFormat, ...)
 }
 
 
-void error(const ::ansi_character * pszFormat, ...)
+void errorf(const ::ansi_character * pszFormat, ...)
 {
 
    va_list arguments;
@@ -2407,7 +2407,7 @@ void error(const ::ansi_character * pszFormat, ...)
 }
 
 
-void fatal(const ::ansi_character * pszFormat, ...)
+void fatalf(const ::ansi_character * pszFormat, ...)
 {
 
    va_list arguments;

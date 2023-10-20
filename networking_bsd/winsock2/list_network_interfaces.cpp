@@ -230,7 +230,7 @@ namespace networking_bsd
          FREE(pAddresses);
       }
 
-      ::information(strLog);
+      ::informationf(strLog);
 
       for (::index iItem = 0; iItem < pitema->size(); iItem++)
       {

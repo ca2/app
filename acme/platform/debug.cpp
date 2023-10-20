@@ -134,7 +134,7 @@ CLASS_DECL_ACME void debug_print(const char * pszFormat, ...)
 
    str.format_arguments(pszFormat, args);
 
-   ::information(str);
+   ::informationf(str);
 
    va_end(args);
 

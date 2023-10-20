@@ -347,7 +347,7 @@ namespace simpledb
 
          string strSql = "REPLACE INTO fun_user_str_set PAYLOAD('" + pserver->m_strUser + "', '" + pdatabase->escape(strKey) + "', '" + strValue + "')";
 
-         information(strSql);
+         informationf(strSql);
 
          pdatabase->exec(strSql);
 

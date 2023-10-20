@@ -3,11 +3,14 @@
 #include "main_window.h"
 
 
+__DECLARE_RELEASE_TIME(app_message_box);
+
+
 namespace app_message_box
 {
 
 
-   __IMPLEMENT_APPLICATION_RELEASE_TIME();
+   __IMPLEMENT_APPLICATION_RELEASE_TIME(app_message_box);
 
 
    application::application()

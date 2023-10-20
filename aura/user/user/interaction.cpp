@@ -4821,7 +4821,7 @@ namespace user
                if (type.name().contains("font_list"))
                {
 
-                  information(type + "\n");
+                  informationf(type + "\n");
 
                }
 
@@ -11113,6 +11113,38 @@ namespace user
    }
 
 
+   void interaction::sort_children_by_zorder(::user::interaction_array & interactiona)
+   {
+
+      interactiona.interactiona().predicate_sort([this](auto & p1, auto & p2)
+         {
+
+            return child_zorder(p1) < child_zorder(p2);
+
+         });
+
+   }
+
+
+   ::index interaction::child_zorder(::user::interaction * puserinteraction)
+   {
+
+      synchronous_lock synchronouslock(this->synchronization());
+
+      if (!m_puserinteractionpointeraChild)
+      {
+
+         return -1;
+
+      }
+
+      auto iZorderIndex = m_puserinteractionpointeraChild->find_first_interaction(puserinteraction);
+
+      return iZorderIndex;
+
+   }
+
+
    bool interaction::check_children_zorder()
    {
 
@@ -14621,7 +14653,7 @@ namespace user
             if (m_bLoadingWindowRectangle)
             {
 
-               information(
+               informationf(
                        "window visual changed: not setting pending save rectangle_i32 cause loading window rectangle_i32");
 
             }

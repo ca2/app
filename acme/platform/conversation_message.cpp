@@ -94,7 +94,7 @@ void conversation_message::do_asynchronously()
    textstream << "Details:\n";
    textstream << m_strDetails << "\n";
    
-   information(textstream.as_string());
+   informationf(textstream.as_string());
    
 }
 

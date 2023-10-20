@@ -292,13 +292,13 @@ namespace base
 
       auto playoutLine = create_line_layout(pparent, e_orientation_vertical);
 
-      ::string strVersion(get_version());
+      ::string strReleaseTime(release_time());
 
       create_label<::user::still>(playoutLine, m_strAppName);
 
-      create_label<::user::still>(playoutLine, "appid: " + m_strAppId);
+      create_label<::user::still>(playoutLine, "Application ID: " + m_strAppId);
 
-      create_label<::user::still>(playoutLine, "Version: " + strVersion);
+      create_label<::user::still>(playoutLine, "Release Time: " + strReleaseTime);
 
    }
 

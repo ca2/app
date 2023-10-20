@@ -1582,6 +1582,23 @@ namespace user
    }
 
 
+   bool tab::contains_tab_with_id(const ::atom & atom)
+   {
+
+      auto pdata = get_data();
+
+      synchronous_lock lock(pdata->synchronization());
+
+      return pdata->m_tabpanecompositea.predicate_contains([atom](auto & ptabpane)
+         {
+
+            return ptabpane->m_atom == atom;
+
+         });
+
+   }
+
+
    ::index tab::id_index(const ::atom & atom)
    {
 

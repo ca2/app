@@ -103,6 +103,23 @@ namespace user
    }
 
 
+   void tab_impact::on_command_display_about(::message::message * pmessage)
+   {
+
+      ::pointer < ::message::command > pcommand(pmessage);
+
+      if (!contains_tab_with_id(ABOUT_IMPACT))
+      {
+
+         add_tab("About", ABOUT_IMPACT);
+
+      }
+
+      set_current_tab_by_id(ABOUT_IMPACT);
+
+   }
+
+
    bool tab_impact::add_impact(const ::string & strName, const ::atom & atomImpact, bool bVisible, bool bPermanent, ::user::place_holder * pplacehoder)
    {
 
@@ -246,6 +263,8 @@ namespace user
       MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &tab_impact::on_message_create);
       MESSAGE_LINK(WM_USER + 1122, pchannel, this, &tab_impact::_001OnMenuMessage);
       MESSAGE_LINK(e_message_set_focus, pchannel, this, &tab_impact::on_message_set_focus);
+
+      add_command_handler("display_about", { this, &tab_impact::on_command_display_about });
 
    }
 
@@ -679,7 +698,8 @@ namespace user
          && m_pimpactdataOld->m_atom != MENU_IMPACT
          && m_pimpactdataOld->m_atom != OPTIONS_IMPACT
          && m_pimpactdataOld->m_atom != APP_OPTIONS_IMPACT
-         && m_pimpactdataOld->m_atom != CONTEXT_OPTIONS_IMPACT)
+         && m_pimpactdataOld->m_atom != CONTEXT_OPTIONS_IMPACT
+         && m_pimpactdataOld->m_atom != ABOUT_IMPACT)
       {
 
          information("::user::e_flag_hide_on_kill_focus");
@@ -859,7 +879,8 @@ namespace user
    
       if (pimpactdata->m_atom == OPTIONS_IMPACT
          || pimpactdata->m_atom == APP_OPTIONS_IMPACT
-         || pimpactdata->m_atom == CONTEXT_OPTIONS_IMPACT)
+         || pimpactdata->m_atom == CONTEXT_OPTIONS_IMPACT
+         || pimpactdata->m_atom == ABOUT_IMPACT)
       {
 
          m_maphandlerimpact[pimpactdata->m_atom] = create_impact < handler_impact >(pimpactdata);
@@ -873,6 +894,21 @@ namespace user
                {
 
                   acmeapplication()->m_pbaseapplication->create_options_impact(puserinteraction);
+
+               };
+
+            phandlerimpact->call_handler(functionHandler);
+
+         }
+         else if (pimpactdata->m_atom == ABOUT_IMPACT)
+         {
+
+            auto phandlerimpact = m_maphandlerimpact[pimpactdata->m_atom];
+
+            auto functionHandler = [this](auto puserinteraction)
+               {
+
+                  acmeapplication()->m_pbaseapplication->create_about_impact(puserinteraction);
 
                };
 
@@ -1018,6 +1054,8 @@ namespace user
             throw ::exception(error_failed, "tab_impact::prepare_impact_menu Failed to load \"" + path + "\".");
 
          }
+
+         acmeapplication()->m_pbaseapplication->on_after_prepare_impact_menu(pmenu);
 
       }
 

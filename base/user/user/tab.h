@@ -136,6 +136,8 @@ namespace user
       virtual ::index visible_index_index(::index iVisibleIndex);
       virtual ::index index_visible_index(::index iIndex);
 
+      virtual bool contains_tab_with_id(const ::atom & atom);
+
       virtual ::index id_index(const ::atom & atom);
       virtual ::atom index_id(::index iIndex);
 

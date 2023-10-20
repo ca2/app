@@ -7,6 +7,12 @@
 #include "acme/platform/object_reference_count_debug.h"
 
 
+#define __VERSION(library)  library ## _version
+#define __DECLARE_VERSION(library) extern "C" const char * __VERSION(library)()
+#define __IMPLEMENT_APPLICATION_VERSION(library) \
+const char * application::get_version() { return __VERSION(library); }
+
+
 #define ALOG_CONTEXT context_trace_object()
 
 #define _S_ALOG_CONTEXT ::context_trace_object()

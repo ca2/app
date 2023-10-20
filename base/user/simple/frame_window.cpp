@@ -319,7 +319,7 @@ void simple_frame_window::install_message_routing(::channel * pchannel)
 void simple_frame_window::task_save_window_placement()
 {
 
-   ::information("_task_save_window_rect start\n");
+   ::informationf("_task_save_window_rect start\n");
 
    auto ptask = ::get_task();
 
@@ -380,7 +380,7 @@ void simple_frame_window::task_save_window_placement()
 
    }
 
-   ::information("_task_save_window_rect end\n");
+   ::informationf("_task_save_window_rect end\n");
 
 }
 
@@ -1082,7 +1082,7 @@ void simple_frame_window::on_message_show_window(::message::message * pmessage)
    if (pshow->m_bShow)
    {
 
-      //information("simple_frame_window::on_message_show_window true : " + ::type(this).name());
+      //informationf("simple_frame_window::on_message_show_window true : " + ::type(this).name());
 
       //defer_set_icon();
 
@@ -1090,7 +1090,7 @@ void simple_frame_window::on_message_show_window(::message::message * pmessage)
    else
    {
 
-      //information("simple_frame_window::on_message_show_window false :" + ::type(this).name());
+      //informationf("simple_frame_window::on_message_show_window false :" + ::type(this).name());
 
    }
 
@@ -2126,8 +2126,8 @@ bool simple_frame_window::LoadFrame(const ::string & pszMatter, u32 dwDefaultSty
 
       //pusersystem->set_rect(rectangleFrame);
 
-      information("(2) simple_frame_window::LoadFrame rectangleFrame (l=%d, t=%d) (w=%d, h=%d)", rectangleFrame.left(), rectangleFrame.top(), rectangleFrame.width(), rectangleFrame.height());
-      information("(2) simple_frame_window::LoadFrame edisplay=%s", ::string(::as_string((int)const_layout().sketch().display().eflag())).c_str());
+      informationf("(2) simple_frame_window::LoadFrame rectangleFrame (l=%d, t=%d) (w=%d, h=%d)", rectangleFrame.left(), rectangleFrame.top(), rectangleFrame.width(), rectangleFrame.height());
+      informationf("(2) simple_frame_window::LoadFrame edisplay=%s", ::string(::as_string((int)const_layout().sketch().display().eflag())).c_str());
 
 
    }
@@ -3531,7 +3531,7 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
                         //if(strType.contains("pane_impact"))
                         //{
 
-                          // information("paneimpact\n");
+                          // informationf("paneimpact\n");
 
                         //}
 

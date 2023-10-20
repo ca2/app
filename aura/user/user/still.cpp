@@ -88,7 +88,7 @@ namespace user
       if (m_bAutoResize)
       {
 
-         information("m_bAutoResize");
+         informationf("m_bAutoResize");
 
       }
 

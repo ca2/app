@@ -1267,7 +1267,7 @@ namespace user
          if (strType.contains("form"))
          {
 
-            information("form");
+            informationf("form");
 
          }
 

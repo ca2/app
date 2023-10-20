@@ -1189,7 +1189,7 @@ namespace filemanager
             //if (spitem->m_strName.case_insensitive_contains("aaa."))
             //{
 
-            //   information("test filemanager file_list");
+            //   informationf("test filemanager file_list");
 
             //}
 
@@ -2009,7 +2009,7 @@ namespace filemanager
    void file_list::on_message_set_focus(::message::message * pmessage)
    {
 
-      information("filemanager::file_list::on_message_set_focus");
+      informationf("filemanager::file_list::on_message_set_focus");
 
    }
 
@@ -2017,7 +2017,7 @@ namespace filemanager
    void file_list::on_message_kill_focus(::message::message * pmessage)
    {
 
-      information("filemanager::file_list::on_message_kill_focus");
+      informationf("filemanager::file_list::on_message_kill_focus");
 
    }
 

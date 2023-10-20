@@ -1555,7 +1555,7 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 ////   catch (...)
 ////   {
 ////
-////      information("exception:app_core:run");
+////      informationf("exception:app_core:run");
 ////
 ////      estatus = error_exception;
 ////

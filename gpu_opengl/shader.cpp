@@ -54,7 +54,7 @@ namespace opengl
          
          auto errString = opengl_error_string(eerror);
 
-         information("error %d \"%s\"", eerror, errString);
+         informationf("error %d \"%s\"", eerror, errString);
 
          return ::error_failed;
 

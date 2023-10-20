@@ -118,6 +118,9 @@ namespace http
 
       //application();
       //~application() override;
+      
+      __DECLARE_APPLICATION_RELEASE_TIME();
+
 
       void http_application_destruct();
 

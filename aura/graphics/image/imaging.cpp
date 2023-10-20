@@ -142,7 +142,7 @@ i32                 cy)
    //if(!pgraphics->text_out(x,y, string(pcsz, cb)))
    pgraphics->text_out(x, y, string(pcsz, cb));
    //{
-   //   //      information("Failed to ExtTextOut, get_last_error() -->%d\n", get_last_error());
+   //   //      informationf("Failed to ExtTextOut, get_last_error() -->%d\n", get_last_error());
    //}
 
    /* restore the DC

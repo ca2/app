@@ -5,6 +5,9 @@ namespace programming
 {
 
 
+   __IMPLEMENT_APPLICATION_RELEASE_TIME();
+
+
    application::application() :
       m_semCompiler(maximum(1, ::get_processor_count()), maximum(1, ::get_processor_count()))
    {

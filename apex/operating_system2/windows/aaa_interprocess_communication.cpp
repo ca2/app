@@ -291,7 +291,7 @@
          if (!ChangeWindowMessageFilterEx((HWND) m_oswindow, WM_COPYDATA, MSGFLT_ADD, NULL))
          {
 
-            information("Failed to change WM_COPYDATA message filter");
+            informationf("Failed to change WM_COPYDATA message filter");
 
          }
 

@@ -502,7 +502,7 @@ retry:
 //atom_array app_get_pid(const ::scoped_string & scopedstr)
 //{
 //
-//   ::information("os/linux_process.cpp app_get_pid (" + string(psz) + ")");
+//   ::informationf("os/linux_process.cpp app_get_pid (" + string(psz) + ")");
 //
 //   atom_array ia;
 //
@@ -530,7 +530,7 @@ retry:
 //
 //      //if(iPid == 22912)
 //      //{
-//      //information("22912");
+//      //informationf("22912");
 //      //}
 //         ::file::path path = module_path_from_pid(iPid);
 //

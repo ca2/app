@@ -21,6 +21,9 @@ public:
 
    application();
    ~application() override;
+      
+      __DECLARE_APPLICATION_RELEASE_TIME();
+
 
 
    void application_boot();

@@ -50,7 +50,7 @@ namespace http
       /*if (!m_file.get())
          m_file = ::pointer<IFile>e>(memory_new MemFile);
       DEBUG_ONLY(   else
-         information("Body data file already opened\n");*/
+         informationf("Body data file already opened\n");*/
    }
 
 

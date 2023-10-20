@@ -214,7 +214,7 @@ namespace colorertake5
                      ::exception_pointer esp(pe);
                      string str = pe->get_message();
 
-                     information("exception %s", str.c_str());
+                     informationf("exception %s", str.c_str());
                   }
                }
             }
@@ -233,7 +233,7 @@ namespace colorertake5
 
                   string str = e->get_message();
 
-                  information("exception %s", str.c_str());
+                  informationf("exception %s", str.c_str());
 
                }
             }

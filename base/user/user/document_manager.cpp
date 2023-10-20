@@ -408,7 +408,7 @@ namespace user
       if (c <= 0)
       {
 
-         information("removing document template not managed by document manager");
+         informationf("removing document template not managed by document manager");
 
       }
 

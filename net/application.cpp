@@ -5,6 +5,9 @@ namespace app_net
 {
 
 
+   __IMPLEMENT_APPLICATION_RELEASE_TIME();
+
+
    application::application()
    {
 

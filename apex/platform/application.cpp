@@ -25,8 +25,7 @@
 #include "acme/primitive/string/str.h"
 #include "acme/primitive/text/context.h"
 #include "apex/message/application.h"
-//#include "apex/id.h"
-#include "acme/platform/version.h"
+#include "acme/platform/release_time.h"
 #include "apex/platform/machine_event_data.h"
 #include "apex/platform/machine_event.h"
 #include "apex/platform/machine_event_central.h"
@@ -1345,7 +1344,7 @@ namespace apex
    //////
    //////            dappy(::type(this).name() + " : on_run failure : " + as_string(m_iErrorCode));
    //////
-   //////            ::information("application::main on_run termination failure\n");
+   //////            ::informationf("application::main on_run termination failure\n");
    //////
    //////         }
    ////
@@ -2528,7 +2527,7 @@ namespace apex
       on_install();
       //{
 
-      //   ::information("Failed at on_install : " + m_strAppId + "\n\n");
+      //   ::informationf("Failed at on_install : " + m_strAppId + "\n\n");
 
       //   psystem->m_result.add(error_failed);
 

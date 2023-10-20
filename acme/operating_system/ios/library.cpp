@@ -54,7 +54,7 @@ void * system::operating_system_node_library_open(const ::file::path & path, str
 
    }
 
-   //::information("\n\nGoing to dlopen : \"" + strPath + "\"");
+   //::informationf("\n\nGoing to dlopen : \"" + strPath + "\"");
 
    ::file::path path;
 
@@ -138,7 +138,7 @@ finished:
 
    }
 
-   ::information("\n"+strMessage+"\n\n");
+   ::informationf("\n"+strMessage+"\n\n");
 
    return plibrary;
 
@@ -210,7 +210,7 @@ finished:
 
    }
 
-   ::information("\n"+strMessage+"\n\n");
+   ::informationf("\n"+strMessage+"\n\n");
 
    return plibrary;
 

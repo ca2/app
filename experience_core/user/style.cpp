@@ -119,13 +119,13 @@ namespace experience_core
       if(rcClient.is_empty())
       {
          
-         information("style::_001TabOnDrawSchema01 Tab Client Rect is empty\n");
+         informationf("style::_001TabOnDrawSchema01 Tab Client Rect is empty\n");
          
          return true;
          
       }
       
-      //information("style::_001TabOnDrawSchema01\n");
+      //informationf("style::_001TabOnDrawSchema01\n");
 
       auto pstyle = ptab->get_style(pgraphics);
 
@@ -1307,7 +1307,7 @@ namespace experience_core
 //            if (strType.contains("form"))
 //            {
 //
-//               information("form");
+//               informationf("form");
 //
 //            }
 

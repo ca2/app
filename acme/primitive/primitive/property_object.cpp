@@ -142,7 +142,7 @@ CLASS_DECL_ACME void debug_debug_reference()
 //
 //      information(str);
 //
-//      information("-");
+//      informationf("-");
 //
 //   }
 
@@ -158,7 +158,7 @@ CLASS_DECL_ACME void debug_debug_reference()
 //
 //      information(str);
 //
-//      information("-");
+//      informationf("-");
 //
 //   }
 
@@ -178,9 +178,9 @@ CLASS_DECL_ACME void debug_debug_reference()
 
    information(network_payload2);
 
-   information("debug_debug_reference end");
+   informationf("debug_debug_reference end");
 
-   information("-");
+   informationf("-");
 
 }
 //void property_object::add_trait(::i64 i)

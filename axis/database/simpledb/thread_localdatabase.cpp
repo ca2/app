@@ -188,7 +188,7 @@ namespace simpledb
 //                  if (res != SQLITE_OK)
 //                  {
 //
-//                     information("failure to bind text");
+//                     informationf("failure to bind text");
 //
 //                     continue;
 //
@@ -199,7 +199,7 @@ namespace simpledb
 //                  if (res != SQLITE_OK)
 //                  {
 //
-//                     information("failure to bind blob");
+//                     informationf("failure to bind blob");
 //
 //                     continue;
 //

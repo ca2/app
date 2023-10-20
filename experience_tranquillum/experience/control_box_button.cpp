@@ -200,7 +200,7 @@ namespace experience_tranquillum
          if (m_estockicon == e_stock_icon_restore)
          {
 
-            information("restore button is being shown");
+            informationf("restore button is being shown");
 
          }
 

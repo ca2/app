@@ -49,7 +49,7 @@ namespace simpledb
 //         /* initialize client library */
 //         if (mysql_library_init (0, nullptr, nullptr))
 //         {
-//            information("mysql_library_init() failed");
+//            informationf("mysql_library_init() failed");
 //            return false;
 //         }
 //#endif

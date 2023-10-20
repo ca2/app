@@ -929,7 +929,7 @@ namespace acme
       //if (!pfactory)
       //{
 
-      //   information("library::create_factory factory(\"%s\") failed!!", strName.c_str());
+      //   informationf("library::create_factory factory(\"%s\") failed!!", strName.c_str());
 
       //   throw ::exception(error_wrong_state);
 
@@ -952,10 +952,10 @@ namespace acme
          if (::is_null((const void *) pfnFactory))
          {
 
-            warning("library::create_factory factory function: \"%s\" doesn't exist!!!", strFactoryFunction.c_str());
+            warningf("library::create_factory factory function: \"%s\" doesn't exist!!!", strFactoryFunction.c_str());
 
-            warning("Is _factory.cpp included in the project \"%s\"???", strName.c_str());
-            warning("Does it contain the implementation of factory function \"%s\"???", strFactoryFunction.c_str());
+            warningf("Is _factory.cpp included in the project \"%s\"???", strName.c_str());
+            warningf("Does it contain the implementation of factory function \"%s\"???", strFactoryFunction.c_str());
 
             string strDetails;
 
@@ -973,7 +973,7 @@ namespace acme
 
       m_pfnFactory(pfactory);
 
-      information("%s_factory succeeded!",strName.c_str());
+      informationf("%s_factory succeeded!",strName.c_str());
 
       //return pfactory;
 

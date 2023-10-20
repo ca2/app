@@ -756,7 +756,7 @@ namespace wayland
       if (m_pxdgsurface)
       {
 
-         information("xdg_surface_set_window_geometry x, y, cx, cy : %d, %d, %d, %d", x, y, cx, cy);
+         informationf("xdg_surface_set_window_geometry x, y, cx, cy : %d, %d, %d, %d", x, y, cx, cy);
 
          xdg_surface_set_window_geometry(m_pxdgsurface, x, y, cx, cy);
 

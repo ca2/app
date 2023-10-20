@@ -66,7 +66,7 @@ namespace draw2d_cairo
       if(pgraphics->fill_contains(point))
       {
 
-         information("cairo in fill");
+         informationf("cairo in fill");
 
          return true;
 
@@ -74,7 +74,7 @@ namespace draw2d_cairo
       else
       {
 
-         information("cairo NOT in fill");
+         informationf("cairo NOT in fill");
 
          return false;
 

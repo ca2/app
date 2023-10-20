@@ -503,7 +503,7 @@ namespace acme
       catch(...)
       {
 
-         information("Could not create .desktop shortcut file for the Linux papp for the current user.");
+         informationf("Could not create .desktop shortcut file for the Linux papp for the current user.");
 
       }
 

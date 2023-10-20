@@ -51,7 +51,7 @@ namespace simple_ui
 
  /*     if(pprinttask != nullptr)
       {
-         information("Print Job Is Printing page %d",pprinttask->m_iPrintingPage);
+         informationf("Print Job Is Printing page %d",pprinttask->m_iPrintingPage);
       }*/
 
       bool bCaretOn = m_durationFocusStart.on_off(m_durationCaretPeriod);

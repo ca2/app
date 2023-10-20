@@ -297,7 +297,7 @@ namespace user
 //      if (strType.case_insensitive_contains("list_box"))
 //      {
 //
-//         information("list_box");
+//         informationf("list_box");
 //
 //      }
 
@@ -738,7 +738,7 @@ namespace user
          {
 
             // todo display average from last 10 or so frame drawing time and not for every each single offending sample
-            // information("("+as_string(nanosElapsedSinceLastFrame/1'000'000)+"ms)Frames are taking long to draw. Wait a bit more to free CPU. Is there much load?!?!\n");
+            // informationf("("+as_string(nanosElapsedSinceLastFrame/1'000'000)+"ms)Frames are taking long to draw. Wait a bit more to free CPU. Is there much load?!?!\n");
 
 
 
@@ -759,7 +759,7 @@ namespace user
             if (timeToWaitForNextFrame > 1_s)
             {
 
-               //information("what?!?!\n");
+               //informationf("what?!?!\n");
 
                timeToWaitForNextFrame = 500_ms;
 
@@ -818,7 +818,7 @@ namespace user
 //            if (timeEndWait - timeStartWait > 100_ms)
 //            {
 //
-//               information("Waited more than 100ms to go display drawn frame at screen?!?!\n");
+//               informationf("Waited more than 100ms to go display drawn frame at screen?!?!\n");
 //
 //            }
 
@@ -1145,7 +1145,7 @@ namespace user
 //
 //         static ::time timeLast;
 //
-//         information("time outside updatebuffer " + as_string(timeLast.elapsed().floating_millisecond().m_d) + "ms\n");
+//         informationf("time outside updatebuffer " + as_string(timeLast.elapsed().floating_millisecond().m_d) + "ms\n");
 //
 //#endif
 //
@@ -1259,7 +1259,7 @@ namespace user
 //
 //         static ::time timeLast;
 //
-//         information("time outside updatebuffer " +as_string(timeLast.elapsed().floating_millisecond().m_d) + "ms\n");
+//         informationf("time outside updatebuffer " +as_string(timeLast.elapsed().floating_millisecond().m_d) + "ms\n");
 //
 //#endif
 //
@@ -1344,7 +1344,7 @@ namespace user
 //         if(strType.case_insensitive_contains("list_box"))
 //         {
 //
-//            information("We're on the list_box update_screen");
+//            informationf("We're on the list_box update_screen");
 //
 //         }
 //
@@ -1423,9 +1423,9 @@ namespace user
       if (m_timeDuringUpdateScreen > 60_ms)
       {
 
-         //information("It took about " + as_string(m_timeDuringUpdateScreen) + " to update screen\n");
+         //informationf("It took about " + as_string(m_timeDuringUpdateScreen) + " to update screen\n");
 
-         //information("It took about " + as_string(m_timeOufOfUpdateScreen) + " out of screen update\n");
+         //informationf("It took about " + as_string(m_timeOufOfUpdateScreen) + " out of screen update\n");
 
       }
 
@@ -1434,9 +1434,9 @@ namespace user
       if (m_timeOufOfUpdateScreen > 60_ms)
       {
 
-         //information("It took about " + as_string(m_timeDuringUpdateScreen) + " to update screen\n");
+         //informationf("It took about " + as_string(m_timeDuringUpdateScreen) + " to update screen\n");
 
-         //information("It took about " + as_string(m_timeOufOfUpdateScreen) + " out of screen update\n");
+         //informationf("It took about " + as_string(m_timeOufOfUpdateScreen) + " out of screen update\n");
 
       }
       

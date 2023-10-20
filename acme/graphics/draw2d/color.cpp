@@ -317,15 +317,15 @@ namespace color
 
       if(dHParam > 1.0)
       {
-         ::information("dHParam > 1.0");
+         ::informationf("dHParam > 1.0");
       }
       if(dLParam > 1.0)
       {
-         ::information("dLParam > 1.0");
+         ::informationf("dLParam > 1.0");
       }
       if(dSParam > 1.0)
       {
-         ::information("dSParam > 1.0");
+         ::informationf("dSParam > 1.0");
       }
       */
 

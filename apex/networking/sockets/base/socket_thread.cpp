@@ -110,7 +110,7 @@ namespace sockets
    socket_thread::~socket_thread()
    {
 
-      ::information("--->>>>>socket_thread::~SOCKET_thread\n");
+      ::informationf("--->>>>>socket_thread::~SOCKET_thread\n");
 
    }
 
@@ -190,7 +190,7 @@ namespace sockets
       //if (phandler.get() != m_psocket->m_psockethandler.get())
       //{
 
-      //   //   ::information("");
+      //   //   ::informationf("");
 
       //   //}
       //   //else

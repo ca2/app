@@ -82,6 +82,9 @@ namespace acme
 
       application();
       ~application() override;
+      
+     
+      virtual ::string release_time();
 
 
       void initialize(::particle * pparticle) override;

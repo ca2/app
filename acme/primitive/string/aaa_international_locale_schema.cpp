@@ -648,7 +648,7 @@ restart:
 
             if(m_idaLocale.get_count() > 256)
             {
-               //information("What!!!!!!");
+               //informationf("What!!!!!!");
             }
 
             for(index i = 0; i < m_idaLocale.get_count(); i++)

@@ -78,7 +78,7 @@ namespace netserver
       if (m_strIp.is_empty() && m_iPortMaximum >= m_iPortMinimum)
       {
 
-         information("Invalid address \"%s\" or invalid port range", m_strIp.c_str());
+         informationf("Invalid address \"%s\" or invalid port range", m_strIp.c_str());
 
          throw ::exception(error_bad_argument);
 
@@ -126,7 +126,7 @@ namespace netserver
 
                      }
 
-                     information("netserver::socket_thread_base::run Couldn't bind to address %s!!", m_strIp.c_str());
+                     informationf("netserver::socket_thread_base::run Couldn't bind to address %s!!", m_strIp.c_str());
 
                      break;
 

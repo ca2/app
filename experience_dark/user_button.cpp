@@ -173,7 +173,7 @@ namespace user
          if (m_estockicon == stock_icon_restore)
          {
 
-            information("restore button is being shown");
+            informationf("restore button is being shown");
 
          }
 

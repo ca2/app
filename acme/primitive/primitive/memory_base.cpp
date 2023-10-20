@@ -2038,7 +2038,7 @@ void memory_base::patch_line_suffix(const ::block& blockPrefix, const ::block& b
 
       memory_copy(ptarget, psource, c);
 
-      information(" ");
+      informationf(" ");
 
    }
 

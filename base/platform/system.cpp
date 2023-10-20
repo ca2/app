@@ -68,7 +68,7 @@ namespace base
 //      //}
 //      //catch (...)
 //      //{
-//      //   information("system::~system: Potentially catastrophical error : error disabling simple factory_item request");
+//      //   informationf("system::~system: Potentially catastrophical error : error disabling simple factory_item request");
 //      //}
 //
 //      if (g_p == this)

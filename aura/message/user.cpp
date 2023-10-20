@@ -377,7 +377,7 @@ namespace message
    //   if((m_nFlags & I32_MINIMUM) == (I32_MINIMUM))
    //   {
 
-   //      information("(m_nFlags & I32_MINIMUM) == (I32_MINIMUM)");
+   //      informationf("(m_nFlags & I32_MINIMUM) == (I32_MINIMUM)");
 
    //   }
 

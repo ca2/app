@@ -1,11 +1,14 @@
 #include "framework.h"
-//#include "aura/update.h"
 
-//IMPLEMENT_APPLICATION(app_just_message_box);
+
+__DECLARE_RELEASE_TIME(app_just_message_box);
 
 
 namespace app_just_message_box
 {
+
+
+   __IMPLEMENT_APPLICATION_RELEASE_TIME(app_just_message_box);
 
 
    application::application()

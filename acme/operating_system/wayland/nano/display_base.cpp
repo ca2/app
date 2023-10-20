@@ -721,7 +721,7 @@ namespace wayland
       }
 
 
-      pdisplay->information("registry interface : %s", interface);
+      pdisplay->informationf("registry interface : %s", interface);
 
 
    }
@@ -983,7 +983,7 @@ namespace wayland
 //                            _NET_WORKAREA, 0, ~0, False,
 //                            XA_CARDINAL, &type, &format, &items, &bytesAfter, (uint8_t **)&workArea) || !workArea)
 //      {
-//         warning("error getting desktop work area, using root window size");
+//         warningf("error getting desktop work area, using root window size");
 //      }
 //      else
 //      {

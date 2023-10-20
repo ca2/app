@@ -390,8 +390,8 @@ namespace experience_lite
 
          //         ::u32 dwTime2= ::duration::now();
 
-         //information("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
-         //information("usertab::on_layout call time1= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+         //informationf("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+         //informationf("usertab::on_layout call time1= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
       }
       if(!ptab->get_data()->m_bCreated)
          return false;
@@ -1164,7 +1164,7 @@ namespace experience_lite
       if (!bOk)
       {
 
-         information("\nUnknown color: code=" + as_string((int) ecolor));
+         informationf("\nUnknown color: code=" + as_string((int) ecolor));
 
       }
 

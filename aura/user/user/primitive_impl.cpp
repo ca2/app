@@ -422,7 +422,7 @@ namespace user
 ////      if (strType.contains("list_box"))
 ////      {
 ////
-////         information("list_box");
+////         informationf("list_box");
 ////
 ////      }
 //
@@ -876,7 +876,7 @@ namespace user
 //         if ((pmessage->m_ebuttonstate & I32_MINIMUM) == (I32_MINIMUM))
 //         {
 //
-//            information("(m_ebuttonstate & I32_MINIMUM) == (I32_MINIMUM)");
+//            informationf("(m_ebuttonstate & I32_MINIMUM) == (I32_MINIMUM)");
 //
 //         }
 
@@ -1932,13 +1932,13 @@ namespace user
       if (m_puserinteraction->layout().is_moving())
       {
          
-         information("moving: skip walk pre translate tree");
+         informationf("moving: skip walk pre translate tree");
 
       }
       else if (m_puserinteraction->layout().is_sizing())
       {
          
-         information("sizing: skip walk pre translate tree");
+         informationf("sizing: skip walk pre translate tree");
 
       }
       else
@@ -2147,7 +2147,7 @@ namespace user
 
       start_destroying_window();
 
-      //information("destroy_impl_only DestroyWindow %d", bOk != false);
+      //informationf("destroy_impl_only DestroyWindow %d", bOk != false);
 
       //return bOk;
 

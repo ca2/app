@@ -590,7 +590,7 @@ namespace user
             if (size.cy() != 18)
             {
 
-               //information("\nCOMBO LIST ITEM HEIGHT != 18\n");
+               //informationf("\nCOMBO LIST ITEM HEIGHT != 18\n");
 
             }
 
@@ -770,7 +770,7 @@ namespace user
       else
       {
 
-         //information("list_box hide");
+         //informationf("list_box hide");
 
       }
 
@@ -822,7 +822,7 @@ namespace user
             //   else
             //   {
 
-            //      //information("A phantom is loosing focus. What a pitty!!");
+            //      //informationf("A phantom is loosing focus. What a pitty!!");
 
             //   }
 

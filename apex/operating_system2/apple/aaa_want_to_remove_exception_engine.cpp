@@ -652,7 +652,7 @@
 
 // //          if (!dwModBase)
 // //          {
-// //          //::information("engine::stack_next :: StackWalk returned true but the address doesn't belong to a module in the process.");
+// //          //::informationf("engine::stack_next :: StackWalk returned true but the address doesn't belong to a module in the process.");
 // //          return;
 // //          if (bRetry)
 // //          {
@@ -1050,7 +1050,7 @@
 // //       if (!::SymInitialize(hprocess, 0, true))
 // //       {
 // //          ::u32 dw = ::GetLastError();
-// //          information("Last Error = " + as_string(dw));
+// //          informationf("Last Error = " + as_string(dw));
 // //          ASSERT(0);
 
 // //          //load_modules();

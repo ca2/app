@@ -43,6 +43,9 @@ namespace app_build
 
       application();
       ~application() override;
+      
+      __DECLARE_APPLICATION_RELEASE_TIME();
+
 
 
       void set_finish() override;

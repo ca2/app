@@ -281,7 +281,7 @@ namespace sockets
    {
 
 #if HEAVY_HTTP_LOG
-      information("OnHeader %s: %s", (const char*)key, (const char*)value);
+      informationf("OnHeader %s: %s", (const char*)key, (const char*)value);
 #endif
 
       m_content += key + ": " + value + "\r\n";
@@ -384,7 +384,7 @@ namespace sockets
 //         m_pfile->seek_to_begin();
 //
 //         string str = dump_hex(m_pfile);
-//         information("%s", m_strUrl.c_str());
+//         informationf("%s", m_strUrl.c_str());
 //         
 //         for (int i = 0; i < str.length(); i+=32 * 100)
 //         {

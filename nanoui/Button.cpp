@@ -548,7 +548,7 @@ namespace nanoui
       if (m_strCaption == "Load Presets")
       {
 
-         ::information("Drawing Load Presets");
+         ::informationf("Drawing Load Presets");
 
       }
 

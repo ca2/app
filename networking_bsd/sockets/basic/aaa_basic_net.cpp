@@ -257,7 +257,7 @@
 ////            l = item.m_ipaddr;
 ////         }
 ////         //         ::duration tick2= ::duration::now();
-////         /*information("Got from cache net::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
+////         /*informationf("Got from cache net::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
 ////         (u32)((byte*)&pitem->m_ipaddr)[0],
 ////         (u32)((byte*)&pitem->m_ipaddr)[1],
 ////         (u32)((byte*)&pitem->m_ipaddr)[2],
@@ -375,7 +375,7 @@
 ////   }
 ////
 //////      ::duration tick2= ::duration::now();
-//////      information("DNS lookup net::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
+//////      informationf("DNS lookup net::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
 ////   //       (u32)((byte*)&pitem->m_ipaddr)[0],
 ////   //     (u32)((byte*)&pitem->m_ipaddr)[1],
 ////   //   (u32)((byte*)&pitem->m_ipaddr)[2],

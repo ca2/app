@@ -203,7 +203,7 @@ namespace experience
       } else
       {
 
-         information(".");
+         informationf(".");
 
       }
 
@@ -221,14 +221,14 @@ namespace experience
          if (top_level()->layout().is_moving())
          {
 
-            //information("experience control_box : top level is moving : ignoring e_message_timer");
+            //informationf("experience control_box : top level is moving : ignoring e_message_timer");
 
             return;
 
          } else if (top_level()->layout().is_sizing())
          {
 
-            //information("experience control_box : top level is sizing : ignoring e_message_timer");
+            //informationf("experience control_box : top level is sizing : ignoring e_message_timer");
 
             return;
 
@@ -532,7 +532,7 @@ namespace experience
          if (rectangle.left() > 400)
          {
 
-            information("rectangle.left() > 400");
+            informationf("rectangle.left() > 400");
 
          }
 
@@ -1131,7 +1131,7 @@ namespace experience
 
       //auto rectangleX = this->rectangle();
 
-      information("rectangleX");
+      informationf("rectangleX");
 
    }
 

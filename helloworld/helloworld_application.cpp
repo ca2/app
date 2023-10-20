@@ -138,13 +138,13 @@ namespace helloworld
 
 #ifdef _DEBUG
 
-      information("_DEBUG build? (basis)");
+      informationf("_DEBUG build? (basis)");
 
       ASSERT(false);
 
 #else
 
-      information("RELEASE build? (stage)");
+      informationf("RELEASE build? (stage)");
 
       ASSERT(false);
 
@@ -175,7 +175,7 @@ namespace helloworld
 
       }
 
-      information("\nfinished helloworld::on_request");
+      informationf("\nfinished helloworld::on_request");
 
    }
 

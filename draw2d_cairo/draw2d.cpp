@@ -1196,7 +1196,7 @@ namespace draw2d_cairo
 //      if (!estatus)
 //      {
 //
-//         information("([a-z0-9_]+)_factory has failed.\n\nSome reasons:\n   - No draw2d library present;\n   - Failure to open any suitable draw2d library.", e_message_box_ok);
+//         informationf("([a-z0-9_]+)_factory has failed.\n\nSome reasons:\n   - No draw2d library present;\n   - Failure to open any suitable draw2d library.", e_message_box_ok);
 //
 //         return estatus;
 //
@@ -1210,7 +1210,7 @@ namespace draw2d_cairo
 //      if (!estatus)
 //      {
 //
-//         information("Couldn't construct memory_new draw2d.");
+//         informationf("Couldn't construct memory_new draw2d.");
 //
 //         return false;
 //
@@ -1221,7 +1221,7 @@ namespace draw2d_cairo
 //      if (!estatus)
 //      {
 //
-//         information("Couldn't initialize write_text (init1).");
+//         informationf("Couldn't initialize write_text (init1).");
 //
 //         return estatus;
 //
@@ -1357,7 +1357,7 @@ namespace draw2d_cairo
 //
 //      }
 //
-//      //information("No write_text pluging available!!.");
+//      //informationf("No write_text pluging available!!.");
 //      return error_failed;
 //
 //      //destroy:

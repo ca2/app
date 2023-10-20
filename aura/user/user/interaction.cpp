@@ -604,7 +604,7 @@ namespace user
          if (x < 100 || y < 100)
          {
 
-            //information("user::interaction set_position x or y < 100 (%d, %d)", x, y);
+            //informationf("user::interaction set_position x or y < 100 (%d, %d)", x, y);
 
          }
 
@@ -801,7 +801,7 @@ namespace user
          if (::is_null(get_parent()))
          {
 
-            information("::user::interaction::set_right");
+            informationf("::user::interaction::set_right");
 
          }
 
@@ -884,12 +884,12 @@ namespace user
          else
          {
 
-            //information("control_box::on_set_size(" + as_string(size) + ")");
+            //informationf("control_box::on_set_size(" + as_string(size) + ")");
 
             //if (size.cx() > 500)
             //{
 
-            //   information("size.cx() > 500");
+            //   informationf("size.cx() > 500");
 
             //}
 
@@ -1728,7 +1728,7 @@ namespace user
 
       //      auto r = rectangleaNeedRedraw[0];
 
-      //      information("%d,%d  %d,%d", r.left(), r.top(), r.width(), r.height());
+      //      informationf("%d,%d  %d,%d", r.left(), r.top(), r.width(), r.height());
 
       //   }
 
@@ -2559,7 +2559,7 @@ namespace user
          if (emessage == e_message_key_down)
          {
 
-            ::information("e_message_key_down");
+            ::informationf("e_message_key_down");
 
          }
 
@@ -3011,7 +3011,7 @@ namespace user
    void interaction::display_zoomed()
    {
 
-      information("\ne_display_zoomed\n");
+      informationf("\ne_display_zoomed\n");
 
 #ifdef INFO_LAYOUT_DISPLAY
 
@@ -3211,7 +3211,7 @@ namespace user
          else if (edisplay == e_display_full_screen)
          {
 
-            information("e_display_full_screen");
+            informationf("e_display_full_screen");
 
 #ifdef INFO_LAYOUT_DISPLAY
 
@@ -3401,7 +3401,7 @@ namespace user
       if (type.name().contains("main_frame"))
       {
 
-         information("main_frame on_message_destroy");
+         informationf("main_frame on_message_destroy");
 
       }
 
@@ -3630,7 +3630,7 @@ namespace user
              || get_wnd()->m_pprimitiveimpl->has_destroying_flag())
          {
 
-            information("destroying os window");
+            informationf("destroying os window");
 
          }
          else
@@ -4106,7 +4106,7 @@ namespace user
             else
             {
 
-               information("Parent being destroyed");
+               informationf("Parent being destroyed");
 
             }
 
@@ -4172,7 +4172,7 @@ namespace user
       if (type.name().contains("simple_scroll_bar"))
       {
 
-         information("simple_scroll_bar::user_interaction_on_destroy");
+         informationf("simple_scroll_bar::user_interaction_on_destroy");
 
       }
 
@@ -4199,7 +4199,7 @@ namespace user
             if (type.name().contains("auraclick::impact"))
             {
 
-               information("auraclick::impact");
+               informationf("auraclick::impact");
 
             }
 
@@ -4248,13 +4248,13 @@ namespace user
       if (psize->m_nType == ::user::e_size_minimized)
       {
 
-         information("::user::interaction::on_message_size SIZE_MINIMIZED - ignoring event");
+         informationf("::user::interaction::on_message_size SIZE_MINIMIZED - ignoring event");
 
       }
       else if (m_pprimitiveimpl->m_bIgnoreSizeEvent)
       {
 
-         information("::user::interaction::on_message_size instructed to m_bIgnoreSizeEvent");
+         informationf("::user::interaction::on_message_size instructed to m_bIgnoreSizeEvent");
 
       }
 
@@ -4766,9 +4766,9 @@ namespace user
                if (timeElapsed > 100_ms)
                {
 
-                  information("\ndrawing took " + ::as_string(timeElapsed.integral_millisecond()) + "!!");
-                  information("\ndrawing took more than 100ms to complete!!");
-                  information("\n");
+                  informationf("\ndrawing took " + ::as_string(timeElapsed.integral_millisecond()) + "!!");
+                  informationf("\ndrawing took more than 100ms to complete!!");
+                  informationf("\n");
 
                   // let's trye to see what happened?
                   //_001OnNcDraw(pgraphics);
@@ -5018,9 +5018,9 @@ namespace user
 
          //string strType = ::type(this).name();
 
-         //         information("\n" + strType + "drawing took " + as_string(tickElapsedWithLock.m_i) + "!!");
-         //       information("\ndrawing took more than 3ms to complete!!");
-         //     information("\n");
+         //         informationf("\n" + strType + "drawing took " + as_string(tickElapsedWithLock.m_i) + "!!");
+         //       informationf("\ndrawing took more than 3ms to complete!!");
+         //     informationf("\n");
 
       }
 
@@ -5166,7 +5166,7 @@ namespace user
                   if (pinteraction->has_destroying_flag() || !pinteraction->is_window())
                   {
 
-                     ::information("trying to draw window being destroyed");
+                     ::informationf("trying to draw window being destroyed");
 
                      continue;
 
@@ -5250,7 +5250,7 @@ namespace user
                      //   //   if(strType.contains("hello_multiverse") && strType.contains("frame"))
                      //   //   {
 
-                     //   //      information(".");
+                     //   //      informationf(".");
 
                      //   //   }
 
@@ -5269,7 +5269,7 @@ namespace user
                catch (...)
                {
 
-                  information("Exception thrown while drawing user::interaction");
+                  informationf("Exception thrown while drawing user::interaction");
 
                }
 
@@ -5421,25 +5421,25 @@ namespace user
    //      if (type.name().contains("app_veriwell_keyboard") && type.name().contains("main_frame"))
    //      {
    //
-   //         // information("app_veriwell_keyboard::main_frame");
+   //         // informationf("app_veriwell_keyboard::main_frame");
    //
    //      }
    //      else if (type.name().contains("plain_edit"))
    //      {
    //
-   //         //information("plain_edit");
+   //         //informationf("plain_edit");
    //
    //      }
    //         //      else if (strType.case_insensitive_contains("font_list"))
    //         //      {
    //         //
-   //         //         information("font_list");
+   //         //         informationf("font_list");
    //         //
    //         //      }
    //      else if (type.name().contains("combo_box"))
    //      {
    //
-   //         //information("combo_box");
+   //         //informationf("combo_box");
    //
    //      }
    //
@@ -5460,7 +5460,7 @@ namespace user
    //         //      else if (type.name().contains("list_box"))
    //         //      {
    //         //
-   //         //         information("list_box");
+   //         //         informationf("list_box");
    //         //
    //         //      }
    //
@@ -5499,7 +5499,7 @@ namespace user
    //         if (::is_null(get_parent()))
    //         {
    //
-   //            information("Top Level Window is NOT visible.");
+   //            informationf("Top Level Window is NOT visible.");
    //
    //         }
    //
@@ -5516,37 +5516,37 @@ namespace user
    //               if (strTag == "button_close")
    //               {
    //
-   //                  information("button_close not visible\n");
+   //                  informationf("button_close not visible\n");
    //
    //               }
    //               else if (strTag == "button_maximize")
    //               {
    //
-   //                  information("button_maximize not visible\n");
+   //                  informationf("button_maximize not visible\n");
    //
    //               }
    //               else if (strTag == "button_minimize")
    //               {
    //
-   //                  information("button_minimize not visible\n");
+   //                  informationf("button_minimize not visible\n");
    //
    //               }
    //               else if (strTag == "button_restore")
    //               {
    //
-   //                  information("button_restore not visible\n");
+   //                  informationf("button_restore not visible\n");
    //
    //               }
    //               else if (strTag == "button_dock")
    //               {
    //
-   //                  information("button_dock not visible\n");
+   //                  informationf("button_dock not visible\n");
    //
    //               }
    //               else if (strTag == "button_transparent_frame")
    //               {
    //
-   //                  information("button_transparent_frame not visible\n");
+   //                  informationf("button_transparent_frame not visible\n");
    //
    //               }
    //
@@ -5568,20 +5568,20 @@ namespace user
    //      //      if (type.name().contains("list_box"))
    //      //      {
    //      //
-   //      //         information("list_box");
+   //      //         informationf("list_box");
    //      //
    //      //      }
    //
    //      //      if(m_strInteractionTag.case_insensitive_begins("button_"))
    //      //      {
    //      //
-   //      //         information("drawing: " + m_strInteractionTag + "\n");
+   //      //         informationf("drawing: " + m_strInteractionTag + "\n");
    //      //
    //      //      }
    //      //      else if(m_strInteractionTag.case_insensitive_begins("control_box"))
    //      //      {
    //      //
-   //      //         information("-------- drawing: " + m_strInteractionTag + "\n");
+   //      //         informationf("-------- drawing: " + m_strInteractionTag + "\n");
    //      //
    //      //      }
    //
@@ -5970,7 +5970,7 @@ namespace user
       //   if (::is_null(get_parent()))
       //   {
 
-      //      information("Top Level Window is NOT visible.");
+      //      informationf("Top Level Window is NOT visible.");
 
       //   }
 
@@ -5987,37 +5987,37 @@ namespace user
       //         if (strTag == "button_close")
       //         {
 
-      //            information("button_close not visible\n");
+      //            informationf("button_close not visible\n");
 
       //         }
       //         else if (strTag == "button_maximize")
       //         {
 
-      //            information("button_maximize not visible\n");
+      //            informationf("button_maximize not visible\n");
 
       //         }
       //         else if (strTag == "button_minimize")
       //         {
 
-      //            information("button_minimize not visible\n");
+      //            informationf("button_minimize not visible\n");
 
       //         }
       //         else if (strTag == "button_restore")
       //         {
 
-      //            information("button_restore not visible\n");
+      //            informationf("button_restore not visible\n");
 
       //         }
       //         else if (strTag == "button_dock")
       //         {
 
-      //            information("button_dock not visible\n");
+      //            informationf("button_dock not visible\n");
 
       //         }
       //         else if (strTag == "button_transparent_frame")
       //         {
 
-      //            information("button_transparent_frame not visible\n");
+      //            informationf("button_transparent_frame not visible\n");
 
       //         }
 
@@ -6039,20 +6039,20 @@ namespace user
       //      if (type.name().contains("list_box"))
       //      {
       //
-      //         information("list_box");
+      //         informationf("list_box");
       //
       //      }
 
       //      if(m_strInteractionTag.case_insensitive_begins("button_"))
       //      {
       //
-      //         information("drawing: " + m_strInteractionTag + "\n");
+      //         informationf("drawing: " + m_strInteractionTag + "\n");
       //
       //      }
       //      else if(m_strInteractionTag.case_insensitive_begins("control_box"))
       //      {
       //
-      //         information("-------- drawing: " + m_strInteractionTag + "\n");
+      //         informationf("-------- drawing: " + m_strInteractionTag + "\n");
       //
       //      }
 
@@ -6292,12 +6292,12 @@ namespace user
                   //         if (type.name().contains("waven::impact"))
                   //         {
                   //
-                  //            information("waven::impact");
+                  //            informationf("waven::impact");
                   //         }
                   //         else if(strType.case_insensitive_contains("menu_list_impact"))
                   //         {
                   //
-                  //            information("menu_list_impact");
+                  //            informationf("menu_list_impact");
                   //
                   //         }
                   //   if (!is_custom_draw() && pgraphics->m_pnext == nullptr)
@@ -6500,7 +6500,7 @@ namespace user
          //if (colorBackground.u8_red() == 255)
          //{
 
-         //   information("full red");
+         //   informationf("full red");
 
          //}
 
@@ -6526,7 +6526,7 @@ namespace user
          //if (color32_u8_red(crBackground) != 255)
          //{
 
-         //   information("no full red");
+         //   informationf("no full red");
 
          //}
 
@@ -6558,14 +6558,14 @@ namespace user
          if (iDrawControlBackgroundCounter >= 2)
          {
 
-            //information("draw_control_background_counter >= 2");
+            //informationf("draw_control_background_counter >= 2");
 
          }
 
          if (iNcDraw0FillCounter <= 0)
          {
 
-            //information("nc_draw_0_fill_counter <= 0");
+            //informationf("nc_draw_0_fill_counter <= 0");
 
          }
 
@@ -8073,7 +8073,7 @@ namespace user
 
          size = size.maximum(sizeMinimum);
 
-         information("drag_shift resize %d, %d", size.cx(), size.cy());
+         informationf("drag_shift resize %d, %d", size.cx(), size.cy());
 
          //auto rectanglePrevious = layout().window().raw_rectangle();
 
@@ -8636,7 +8636,7 @@ namespace user
       if (pmessage->m_atom == e_message_key_down)
       {
 
-         information("::user::interaction::post e_message_key_down");
+         informationf("::user::interaction::post e_message_key_down");
 
       }
 
@@ -9104,7 +9104,7 @@ namespace user
    //   if (!create_interaction(puserinteractionParent))
    //   {
 
-   //      information("Failed to create control");
+   //      informationf("Failed to create control");
 
    //      return false;
 
@@ -10277,7 +10277,7 @@ namespace user
       if (type.name().contains("main_frame"))
       {
 
-         information("main_frame start_destroying_window\n");
+         informationf("main_frame start_destroying_window\n");
 
       }
 
@@ -10485,7 +10485,7 @@ namespace user
       if (type.name().contains("main_frame"))
       {
 
-         information("main_frame post_non_client_destroy");
+         informationf("main_frame post_non_client_destroy");
 
       }
 
@@ -11639,7 +11639,7 @@ namespace user
       if (type.name().contains("control_box"))
       {
 
-         information("control_box design_reposition");
+         informationf("control_box design_reposition");
 
       }
 
@@ -11656,13 +11656,13 @@ namespace user
       if (type.name().contains("list_box"))
       {
 
-         information("list_box reposition");
+         informationf("list_box reposition");
 
       }
       else if (type.name().contains("_001"))
       {
 
-         information("_001 reposition");
+         informationf("_001 reposition");
 
       }
 
@@ -12059,7 +12059,7 @@ namespace user
       if (type.name().contains("list_box"))
       {
 
-         ::information("list_box");
+         ::informationf("list_box");
 
       }
 
@@ -13223,7 +13223,7 @@ namespace user
    //      //         //
    //      //         //#endif
    //      //         //
-   //      //         information("blocking setting window state to iconic (1)");
+   //      //         informationf("blocking setting window state to iconic (1)");
    //      //
    //      //      }
    //      //      else
@@ -13470,7 +13470,7 @@ namespace user
    void interaction::EndModalLoop(atom idResult)
    {
 
-      information("EndModalLoop");
+      informationf("EndModalLoop");
 
       ASSERT(is_window());
 
@@ -14410,31 +14410,31 @@ namespace user
       //if (strType.contains("app_veriwell_keyboard") && strType.contains("main_frame"))
       //{
 
-      //   //information("app_veriwell_keyboard::main_frame");
+      //   //informationf("app_veriwell_keyboard::main_frame");
 
       //}
       ////      else if (strType.contains("main_frame"))
       ////      {
       ////
-      ////         information("main_frame");
+      ////         informationf("main_frame");
       ////
       ////      }
       ////      else if (strType.contains("place_holder"))
       ////      {
       ////
-      ////         information("place_holder");
+      ////         informationf("place_holder");
       ////
       ////      }
       ////   else if (strType.contains("combo_box"))
       ////   {
       ////
-      ////      information("combo_box");
+      ////      informationf("combo_box");
       ////
       ////   }
       ////   else if (strType.contains("list_box"))
       ////   {
       ////
-      ////      information("list_box");
+      ////      informationf("list_box");
       ////
       ////   }
 
@@ -15294,7 +15294,7 @@ namespace user
       if (pmouse->m_atom == e_message_left_button_down)
       {
 
-         information("on_mouse_message e_message_left_button_down");
+         informationf("on_mouse_message e_message_left_button_down");
 
       }
 
@@ -15359,13 +15359,13 @@ namespace user
       if (strType.case_insensitive_contains("button"))
       {
 
-         //information("mouse transfer on button");
+         //informationf("mouse transfer on button");
 
       }
       else if (strType.case_insensitive_contains("tab"))
       {
 
-         information("mouse transfer on tab");
+         informationf("mouse transfer on tab");
 
       }
 
@@ -19325,7 +19325,7 @@ namespace user
       //      if(strType.contains("main_frame"))
       //      {
       //
-      //         information("main_frame interaction::on_message_show_window\n");
+      //         informationf("main_frame interaction::on_message_show_window\n");
       //
       //      }
 
@@ -19428,7 +19428,7 @@ namespace user
       if (::is_null(pinteractionHost))
       {
 
-         information("interaction::get_internal_draw2d_graphics ::is_null(pinteractionHost)");
+         informationf("interaction::get_internal_draw2d_graphics ::is_null(pinteractionHost)");
 
          return nullptr;
 
@@ -19439,7 +19439,7 @@ namespace user
       if (::is_null(pinteractionimpl))
       {
 
-         information("interaction::get_internal_draw2d_graphics ::is_null(pinteractionimpl)");
+         informationf("interaction::get_internal_draw2d_graphics ::is_null(pinteractionimpl)");
 
          return nullptr;
 
@@ -20388,7 +20388,7 @@ namespace user
    //         //if (bVoidSending)
    //         //{
 
-   //         //   information("void sending :: defer_notify_mouse_move");
+   //         //   informationf("void sending :: defer_notify_mouse_move");
 
    //         //}
    //         //else
@@ -20759,7 +20759,7 @@ namespace user
    //      // classes and it has the side effect of warning at debug output log
    //      // the default resize_to_fit implementation is being called.
    //
-   //      ::information("default resize_to_fit doesn't do anything\n");
+   //      ::informationf("default resize_to_fit doesn't do anything\n");
    //
    //
    //   }
@@ -21192,7 +21192,7 @@ namespace user
          //      //      if (type.name().contains("list_box"))
          //      //      {
          //      //
-         //      //         information("prodevian_redraw list_box");
+         //      //         informationf("prodevian_redraw list_box");
          //      //
          //      //      }
          //
@@ -21763,7 +21763,7 @@ namespace user
 
       //      bool bSameItemAsMouseDown = ::is_same_item(pwindowimpl->m_pitemLButtonDown, puseritemLeftButtonUp);
 
-      //      //information("interaction::on_message_left_button_up item=" << (int)pitemLeftButtonUp->m_item.m_iItem<<", SameUserInteractionAsMsDwn="<< (int) bSameUserInteractionAsMouseDown<<", SameItemAsMsDwn=" << (int) bSameItemAsMouseDown);
+      //      //informationf("interaction::on_message_left_button_up item=" << (int)pitemLeftButtonUp->m_item.m_iItem<<", SameUserInteractionAsMsDwn="<< (int) bSameUserInteractionAsMouseDown<<", SameItemAsMsDwn=" << (int) bSameItemAsMouseDown);
 
       //      if (bSameUserInteractionAsMouseDown && bSameItemAsMouseDown)
       //      {
@@ -22087,7 +22087,7 @@ namespace user
          if (type.name().contains("button"))
          {
 
-            //information("button");
+            //informationf("button");
 
          }
 
@@ -22662,7 +22662,7 @@ namespace user
 
             bool bSameItemAsMouseDown = ::is_same_item(pwindowimpl->m_pitemLButtonDown, puseritemLeftButtonUp);
 
-            //information("interaction::on_message_left_button_up item=" << (int)pitemLeftButtonUp->m_item.m_iItem<<", SameUserInteractionAsMsDwn="<< (int) bSameUserInteractionAsMouseDown<<", SameItemAsMsDwn=" << (int) bSameItemAsMouseDown);
+            //informationf("interaction::on_message_left_button_up item=" << (int)pitemLeftButtonUp->m_item.m_iItem<<", SameUserInteractionAsMsDwn="<< (int) bSameUserInteractionAsMouseDown<<", SameItemAsMsDwn=" << (int) bSameItemAsMouseDown);
 
             if (bSameUserInteractionAsMouseDown && bSameItemAsMouseDown)
             {
@@ -22977,7 +22977,7 @@ namespace user
          if (type.name().contains("button"))
          {
 
-            //information("button");
+            //informationf("button");
 
          }
 
@@ -23100,7 +23100,7 @@ namespace user
 
       auto pszType = typeid(*this).name();
 
-      ::information("interaction::on_message_left_button_double_click" + ::string(pszType));
+      ::informationf("interaction::on_message_left_button_double_click" + ::string(pszType));
 
       if (!is_window_enabled())
       {
@@ -23599,7 +23599,7 @@ namespace user
       if (!::is_item_equivalent(pitemHitTest, m_pitemHover))
       {
 
-         //information("user::interaction::update_hover !is_item_equivalent(pitemHitTest, m_pitemHover)");
+         //informationf("user::interaction::update_hover !is_item_equivalent(pitemHitTest, m_pitemHover)");
 
          auto pitemOldHover = m_pitemHover;
 
@@ -23642,12 +23642,12 @@ namespace user
          if (::is_item_set(pitemOldHover))
          {
 
-            //information("user::interaction::update_hover is_item_set(pitemOldHover)");
+            //informationf("user::interaction::update_hover is_item_set(pitemOldHover)");
 
             if (should_redraw_on_hover(pitemOldHover))
             {
 
-               //information("user::interaction::update_hover should_redraw_on_hover(pitemOldHover)");
+               //informationf("user::interaction::update_hover should_redraw_on_hover(pitemOldHover)");
 
                auto puseritem = user_item(pitemOldHover);
 
@@ -23662,12 +23662,12 @@ namespace user
          if (::is_item_set(pitemHitTest))
          {
 
-            //information("user::interaction::update_hover is_item_set(pitemHitTest)");
+            //informationf("user::interaction::update_hover is_item_set(pitemHitTest)");
 
             if (should_redraw_on_hover(pitemHitTest))
             {
 
-               //information("user::interaction::update_hover should_redraw_on_hover(pitemHitTest)");
+               //informationf("user::interaction::update_hover should_redraw_on_hover(pitemHitTest)");
 
                ::rectangle_i32 rectangleBounding = ::bounding_box(user_item(pitemHitTest));
 
@@ -23680,7 +23680,7 @@ namespace user
          if (rectanglea.has_element())
          {
 
-            //information("user::interaction::update_hover set_need_redraw (%d rectangle(s))", rectanglea.size());
+            //informationf("user::interaction::update_hover set_need_redraw (%d rectangle(s))", rectanglea.size());
 
             for (auto & rectangle : rectanglea)
             {
@@ -24540,7 +24540,7 @@ namespace user
          //         if(iCount > 1)
          //         {
          //
-         //            information("drawing 2nd, 3rd, nth item");
+         //            informationf("drawing 2nd, 3rd, nth item");
          //
          //         }
 

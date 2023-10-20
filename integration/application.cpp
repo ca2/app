@@ -18,6 +18,9 @@ namespace app_integration
 {
 
 
+   __IMPLEMENT_APPLICATION_RELEASE_TIME();
+
+
    application::application()
    {
 
@@ -91,7 +94,7 @@ namespace app_integration
       if (!bCheckOk)
       {
 
-         information("ERROR: simple_check_box is not ok");
+         informationf("ERROR: simple_check_box is not ok");
 
       }
 
@@ -172,13 +175,13 @@ namespace app_integration
 
 #ifdef _DEBUG
 
-      information("_DEBUG build? (basis)");
+      informationf("_DEBUG build? (basis)");
 
       ASSERT(false);
 
 #else
 
-      information("RELEASE build? (stage)");
+      informationf("RELEASE build? (stage)");
 
       ASSERT(false);
 
@@ -215,7 +218,7 @@ namespace app_integration
 
       }
 
-      information("\nfinished simple_drawing::on_request");
+      informationf("\nfinished simple_drawing::on_request");
 
    }
 

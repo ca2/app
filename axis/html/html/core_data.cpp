@@ -898,7 +898,7 @@ namespace html
       
       property_set_replace(str);
       
-      information("%s", str.c_str());
+      informationf("%s", str.c_str());
       
       if (str.has_char())
       {

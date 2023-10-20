@@ -220,7 +220,7 @@ namespace dynamic_source
 
       str = m_strError;
 
-      if(str.contains(" error("))
+      if(str.contains(" errorf("))
          return true;
       if(str.contains(" error "))
          return true;
@@ -294,7 +294,7 @@ namespace dynamic_source
          {
             // if dll does not exist
             {
-               strsize iFind1 = str.find_index(" error(");
+               strsize iFind1 = str.find_index(" errorf(");
                strsize iFind2 = str.find_index(" error ");
                strsize iFind3 = str.find_index("Linking...");
                // and have compile error (others than the ones above, that are considered temporary as they may be due temporary file locks, for example...).
@@ -319,7 +319,7 @@ namespace dynamic_source
             return true;
       }
       {
-         strsize iFind1 = str.find_index(" error(");
+         strsize iFind1 = str.find_index(" errorf(");
          strsize iFind2 = str.find_index(" error ");
          strsize iFind3 = str.find_index("Linking...");
          if(iFind3 >= 0 && (iFind1 > iFind3 || iFind2 > iFind3))
@@ -394,7 +394,7 @@ namespace dynamic_source
 
             }
 
-            information("Error Message Id: %d\n", dwMessageId);
+            informationf("Error Message Id: %d\n", dwMessageId);
 
             string strError = ::windows::last_error_message(dwMessageId);
 
@@ -418,7 +418,7 @@ namespace dynamic_source
          if (m_lpfnCreateInstance == nullptr)
          {
 
-            information("create_dynamic_source_script_instance error");
+            informationf("create_dynamic_source_script_instance error");
 
          }
 
@@ -525,7 +525,7 @@ namespace dynamic_source
       if (m_strSourcePath.case_insensitive_find_index("\\applications\\basic\\") > 0)
       {
 
-         information("/applications/basic/");
+         informationf("/applications/basic/");
 
       }
 

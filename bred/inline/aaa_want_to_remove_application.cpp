@@ -2,7 +2,10 @@
 #include "_application.h"
 
 
-application::application()
+__IMPLEMENT_APPLICATION_RELEASE_TIME();
+
+
+   application::application()
 {
 
    m_bConsole = false;

@@ -97,7 +97,7 @@ namespace netserver
 
       string strUrl = m_request.attr("http_protocol") + "://" + m_request.header("host") + m_request.attr("request_uri");
 
-      //information("socket::OnExecute: %s", strUrl.c_str());
+      //informationf("socket::OnExecute: %s", strUrl.c_str());
 
       string str;
 
@@ -111,7 +111,7 @@ namespace netserver
          if (str.length() + strNewHeader.length() > 80)
          {
 
-            information("Headers %s", str.c_str());
+            informationf("Headers %s", str.c_str());
 
             str = strNewHeader;
 
@@ -128,7 +128,7 @@ namespace netserver
       if (str.length() > 0)
       {
 
-         information("Headers %s", str.c_str());
+         informationf("Headers %s", str.c_str());
 
       }
 

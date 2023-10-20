@@ -1227,7 +1227,7 @@ namespace experience
    //   {
 
 
-   //      information("frame::get_window_client_rectangle file");
+   //      informationf("frame::get_window_client_rectangle file");
 
    //   }
 

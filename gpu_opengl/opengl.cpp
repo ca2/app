@@ -195,7 +195,7 @@ namespace opengl
 //
 //            //throw ::exception(error_resource);
 //            // Problem: glewInit failed, something is seriously wrong.
-//            information("glewInit failed: %s (%d)\n", pszErrorString, err);
+//            informationf("glewInit failed: %s (%d)\n", pszErrorString, err);
 //
 //            throw ::exception(error_failed);
 //

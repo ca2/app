@@ -60,7 +60,7 @@ void acme_auto_debug_teste()
 
          wstr3 = str3;
 
-         information("strstr");
+         informationf("strstr");
 
       }
 

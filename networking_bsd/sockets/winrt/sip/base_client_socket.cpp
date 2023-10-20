@@ -281,8 +281,8 @@ namespace sockets
 
    void sip_base_client_socket::SendResponse()
    {
-      information("");
-      information("SendResponse");
+      informationf("");
+      informationf("SendResponse");
       string msg;
       string strLine;
       string strTrace;
@@ -468,7 +468,7 @@ namespace sockets
    void sip_base_client_socket::OnHeader(const string & key,const string & value, const string & lowvalue)
    {
       //sip_base_client_socket::OnHeader(key, value);
-      information("  (request)OnHeader %s: %s\n", (const char *) key, (const char *) value);
+      informationf("  (request)OnHeader %s: %s\n", (const char *) key, (const char *) value);
       if(key == "cookie")
       {
          m_request.cookies().parse_header(value);

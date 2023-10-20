@@ -87,13 +87,13 @@ namespace helloaxis
 
 #ifdef _DEBUG
 
-      information("_DEBUG build? (basis)");
+      informationf("_DEBUG build? (basis)");
 
       ASSERT(false);
 
 #else
 
-      information("RELEASE build? (stage)");
+      informationf("RELEASE build? (stage)");
 
       ASSERT(false);
 
@@ -103,7 +103,7 @@ namespace helloaxis
 
 //      m_bAxisChat = !m_varTopicQuery["no_hello_edit"].is_set();
 
-      information("\nfinished helloaxis::on_request");
+      informationf("\nfinished helloaxis::on_request");
 
       m_prender = memory_new ::helloaxis::render(this);
 

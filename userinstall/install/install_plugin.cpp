@@ -850,7 +850,7 @@ run_install:
       {
          //::u32 dwTime3= ::time::now();
 
-         //information("eval1 %d",dwTime3 - dwTime1);
+         //informationf("eval1 %d",dwTime3 - dwTime1);
 
          //if(ensure_tx(::hotplugin::message_paint, (void *) &lprect, sizeof(lprect)))
          if(ensure_tx(WM_APP+WM_USER,(void *)&lprect,sizeof(lprect)))
@@ -858,7 +858,7 @@ run_install:
 
             //::u32 dwTime5= ::time::now();
 
-            //information("ensure_tx %d",dwTime5 - dwTime3);
+            //informationf("ensure_tx %d",dwTime5 - dwTime3);
 
             if(m_phost->m_pbasecomposer->m_bSendActivationState)
             {
@@ -948,14 +948,14 @@ run_install:
 
             //::u32 dwTime7= ::time::now();
 
-            //information("focus_update %d",dwTime7 - dwTime5);
+            //informationf("focus_update %d",dwTime7 - dwTime5);
 
 
             m_phost->blend_bitmap(pgraphics, lprect);
 
             //::u32 dwTime9= ::time::now();
 
-            //information("blend %d",dwTime9 - dwTime7);
+            //informationf("blend %d",dwTime9 - dwTime7);
 
 
             return;
@@ -1020,7 +1020,7 @@ run_install:
 
       if(m_bLogin)
       {
-         //::information("m_bLogin");
+         //::informationf("m_bLogin");
          //get_login().draw(pgraphics);
       }
       else if (psystem->install().is_installing_ca2())
@@ -1060,7 +1060,7 @@ run_install:
       }
       else
       {
-         //::information("Neither");
+         //::informationf("Neither");
       }
 
 #ifdef WINDOWS
@@ -1094,7 +1094,7 @@ run_install:
       else
       {
 
-         //::information("m_bLogin || !bInstallingCa2");
+         //::informationf("m_bLogin || !bInstallingCa2");
       }
 
 
@@ -1652,7 +1652,7 @@ restart:
          else
          {
 
-            // information("probably very healthly ignoring install::plugin::set_window_position");
+            // informationf("probably very healthly ignoring install::plugin::set_window_position");
 
          }
 

@@ -762,6 +762,14 @@ namespace acme
    }
 
 
+   ::string application::release_time()
+   {
+
+      return "(not set)";
+
+   }
+
+
    string application::get_visual_studio_build()
    {
 

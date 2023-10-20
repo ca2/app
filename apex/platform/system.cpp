@@ -625,13 +625,13 @@ namespace apex
       {
 
          //printf("%s", "\n\nApplication Information\n");
-         information("Application Information");
+         informationf("Application Information");
 
          auto iPid = acmenode()->current_process_identifier();
 
          //printf("%s", ("Process PID: " + ::as_string(iPid) + "\n").c_str());
 
-         information("Process PID: " + ::as_string(iPid));
+         informationf("Process PID: " + ::as_string(iPid));
 
       }
 
@@ -1028,7 +1028,7 @@ pacmedirectory->create("/ca2core");
       //
       //         strCurrentWorkingDirectory = get_current_directory_name();
       //
-      //         ::information("\nCurrent Working Directory : " + strCurrentWorkingDirectory);
+      //         ::informationf("\nCurrent Working Directory : " + strCurrentWorkingDirectory);
       //
       //      }
 
@@ -1378,7 +1378,7 @@ pacmedirectory->create("/ca2core");
 
       //   //output_error_message("Failed to allocate get_session()!!");
 
-      //   information("Failed to allocate get_session()!!");
+      //   informationf("Failed to allocate get_session()!!");
 
       //   return estatus;
 
@@ -1410,7 +1410,7 @@ pacmedirectory->create("/ca2core");
       }
          //{
 
-         //   information("\nFailed to begin_synch the session (::apex::session or ::apex::session derived)");
+         //   informationf("\nFailed to begin_synch the session (::apex::session or ::apex::session derived)");
 
          //   return false;
 
@@ -2737,11 +2737,11 @@ pacmedirectory->create("/ca2core");
    ////
    ////      ::file::path pathCa2Module = dir()->ca2module();
    ////
-   ////      ::information("\n\n::apex::system::find_applications_to_cache\n\n");
+   ////      ::informationf("\n\n::apex::system::find_applications_to_cache\n\n");
    ////
-   ////      ::information("ca2 module folder : " + pathCa2Module);
+   ////      ::informationf("ca2 module folder : " + pathCa2Module);
    ////
-   ////      ::information("\n\n\n");
+   ////      ::informationf("\n\n\n");
    ////
    ////      straTitle.ls_pattern(pathCa2Module, { "*.*" });
    ////
@@ -2762,7 +2762,7 @@ pacmedirectory->create("/ca2core");
    ////               continue;
    ////            }
    ////
-   ////            ::information("library("+as_string(i)+") : " + strLibraryId+"\n\n");
+   ////            ::informationf("library("+as_string(i)+") : " + strLibraryId+"\n\n");
    ////
    ////            map_application_library(strLibraryId);
    ////
@@ -2835,7 +2835,7 @@ pacmedirectory->create("/ca2core");
    //      //if(!library.open_library())
    //      //{
    //
-   //      //   ::information("::system::map_application_library open_ca2_library(2) Failed :" + string(pszLibrary) + "\n\n");
+   //      //   ::informationf("::system::map_application_library open_ca2_library(2) Failed :" + string(pszLibrary) + "\n\n");
    //
    //      //   return false;
    //
@@ -5002,7 +5002,7 @@ namespace apex
          if (is_true("show_application_information"))
          {
 
-            information("return code is %" PRIi64 "x", estatus.m_eenum);
+            informationf("return code is %" PRIi64 "x", estatus.m_eenum);
 
          }
 

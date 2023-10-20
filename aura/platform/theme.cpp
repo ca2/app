@@ -58,7 +58,7 @@ namespace aura
    void theme::switch_context_theme()
    {
 
-      information("changing theme (::aura::theme::switch_contex_theme)\n");
+      informationf("changing theme (::aura::theme::switch_contex_theme)\n");
 
       if (m_straTheme.get_size() <= 0)
       {

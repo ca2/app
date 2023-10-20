@@ -20,8 +20,8 @@ namespace operating_system
 
       application();
       ~application() override;
-
-
+      
+      
       virtual void open_by_process_identifier(::process_identifier processidentifier);
 
       virtual void open_by_module_path(const ::scoped_string & scopedstr);

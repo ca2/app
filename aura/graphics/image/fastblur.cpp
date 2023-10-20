@@ -414,17 +414,17 @@ auto tick2 = ::time::now();
          string str2;
          str2.format("| time for calculating box blur : %d\b",dw3);
 
-         information("/-----------------------------------------\n");
-         information("| \n");
+         informationf("/-----------------------------------------\n");
+         informationf("| \n");
          information(str1);
          information(str2);
-         information("| \n");
+         informationf("| \n");
 
          ::aura::application * papp = m_p->get_app();
-         information("/--------------------------------");
-         information("| fastblur::blur");
-         information("| ");
-         information("| do_fastblur = %d ms",dw3);
+         informationf("/--------------------------------");
+         informationf("| fastblur::blur");
+         informationf("| ");
+         informationf("| do_fastblur = %d ms",dw3);
       }
 
       {
@@ -531,11 +531,11 @@ auto tickC1 = ::time::now();
             string str2;
             str2.format("| time for calculating stack blur : %" PRId64 "ms\b",tick3.integral_millisecond());
 
-            information("/-----------------------------------------\n");
-            information("| \n");
+            informationf("/-----------------------------------------\n");
+            informationf("| \n");
             information(str1);
             information(str2);
-            information("| \n");
+            informationf("| \n");
 
             //::aura::application * papp = pimage->get_app();
             information() << "/--------------------------------";
@@ -624,17 +624,17 @@ auto tick2 = ::time::now();
       string str2;
       str2.format("| time for calculating fast blur : %d\b",dw3);
 
-      information("/-----------------------------------------\n");
-      information("| \n");
+      informationf("/-----------------------------------------\n");
+      informationf("| \n");
       information(str1);
       information(str2);
-      information("| \n");
+      informationf("| \n");
 
       ::aura::application * papp = m_p->get_app();
-      information("/--------------------------------");
-      information("| fastblur::blur");
-      information("| ");
-      information("| do_fastblur = %d ms",dw3);
+      informationf("/--------------------------------");
+      informationf("| fastblur::blur");
+      informationf("| ");
+      informationf("| do_fastblur = %d ms",dw3);
       */
 #endif
 

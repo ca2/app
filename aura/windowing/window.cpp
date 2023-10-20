@@ -141,12 +141,12 @@ namespace windowing
          if (pmessagePost->m_atom == e_message_vscroll)
          {
 
-            ::information("vscroll");
+            ::informationf("vscroll");
 
          } else if (pmessagePost->m_atom == e_message_text_composition)
          {
 
-            ::information("message text composition");
+            ::informationf("message text composition");
 
          }
 
@@ -1390,7 +1390,7 @@ namespace windowing
       if (bVisibilityChange || bZ || eactivationOutput != e_activation_default)
       {
 
-         information("::windowing::window::configure_window_unlocked bVisibilityChange(%d) bZ(%d) bActivation(%d)",
+         informationf("::windowing::window::configure_window_unlocked bVisibilityChange(%d) bZ(%d) bActivation(%d)",
                      (int)bVisibilityChange,
                      (int)bZ,
                      (int) (eactivationOutput != e_activation_default));
@@ -1982,7 +1982,7 @@ namespace windowing
 
       timeUpdateScreenPost.Now();
 
-      information("timeBetweenUpdateBufferAndUpdateScreen "+as_string(e1.floating_millisecond().m_d) +"ms\n");
+      informationf("timeBetweenUpdateBufferAndUpdateScreen "+as_string(e1.floating_millisecond().m_d) +"ms\n");
 
 #endif
 
@@ -2004,7 +2004,7 @@ namespace windowing
 
       auto e2 = timeUpdateScreenPost.elapsed();
 
-      information("timeUpdateScreenPost " + as_string(e2.floating_millisecond().m_d) + "ms\n");
+      informationf("timeUpdateScreenPost " + as_string(e2.floating_millisecond().m_d) + "ms\n");
 
 #endif
 

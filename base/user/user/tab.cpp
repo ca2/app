@@ -2729,7 +2729,7 @@ namespace user
       else
       {
 
-         information("Yup! Optimized Out a save_restorable_tabs {?A*dev}op! ...... . .");
+         informationf("Yup! Optimized Out a save_restorable_tabs {?A*dev}op! ...... . .");
 
       }
 
@@ -2755,7 +2755,7 @@ namespace user
 
          //if (payloada.get_size() > 0)
          //{
-         //   information(".");
+         //   informationf(".");
          //   for (index i = 0; i < 200; i++)
          //   {
 
@@ -2765,7 +2765,7 @@ namespace user
          //}
          //else
          //{
-         //   information("o");
+         //   informationf("o");
          //   for (index i = 0; i < 200; i++)
          //   {
 

@@ -884,7 +884,7 @@ namespace user
          catch(...)
          {
 
-            information("_001GetItemImage exception");
+            informationf("_001GetItemImage exception");
 
          }
 
@@ -1211,10 +1211,10 @@ namespace user
 
       //on_change_impact_size(pgraphics);
 
-      //information("mesh::_001OnUpdateItemCount ItemCount %d\n",m_nItemCount);
+      //informationf("mesh::_001OnUpdateItemCount ItemCount %d\n",m_nItemCount);
       //if(m_bGroup)
       //{
-        // information("mesh::_001OnUpdateItemCount GroupCount %d\n",m_nGroupCount);
+        // informationf("mesh::_001OnUpdateItemCount GroupCount %d\n",m_nGroupCount);
       //}
 
       //return true;
@@ -4924,7 +4924,7 @@ namespace user
 
       auto tickIn = ::time::now();
 
-      information("mesh::Filter1Step");
+      informationf("mesh::Filter1Step");
 
       information() << "tickIn = " << tickIn.integral_millisecond();
 

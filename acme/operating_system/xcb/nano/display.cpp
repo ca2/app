@@ -136,7 +136,7 @@ namespace xcb
          if(eatom == ::x11::e_atom_net_active_window)
          {
 
-            ::information("e_atom_net_active_window");
+            ::informationf("e_atom_net_active_window");
 
          }
 
@@ -508,13 +508,13 @@ namespace xcb
       // if (pevent->response_type == XCB_CONFIGURE_NOTIFY)
       // {
 
-      //    information("ConfigureNotify");
+      //    informationf("ConfigureNotify");
 
       // }
       // else if (pevent->response_type == XCB_BUTTON_PRESS)
       // {
 
-      //    information("ButtonPress");
+      //    informationf("ButtonPress");
 
       // }
 
@@ -642,7 +642,7 @@ namespace xcb
       if (xcb_connection_has_error(m_pconnection))
       {
 
-         error("ERROR: failed to connection to X server");
+         errorf("ERROR: failed to connection to X server");
 
          throw ::exception(error_failed);
 
@@ -756,7 +756,7 @@ namespace xcb
       if (!m_pdepth)
       {
 
-         error("ERROR: screen does not support 32 bit color depth");
+         errorf("ERROR: screen does not support 32 bit color depth");
 
          xcb_disconnect(m_pconnection);
 
@@ -789,7 +789,7 @@ namespace xcb
       if (!m_pvisualtype)
       {
 
-         error("ERROR: screen does not support true Color");
+         errorf("ERROR: screen does not support true Color");
 
          xcb_disconnect(m_pconnection);
 
@@ -813,7 +813,7 @@ namespace xcb
          if (!estatus)
          {
 
-            error("ERROR: failed to create colormap");
+            errorf("ERROR: failed to create colormap");
 
             xcb_disconnect(m_pconnection);
 
@@ -959,7 +959,7 @@ namespace xcb
             {
 
 
-               information("kick_idle\n");
+               informationf("kick_idle\n");
 
             }
 

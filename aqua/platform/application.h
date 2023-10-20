@@ -20,7 +20,7 @@ namespace aqua
 
       application();
       ~application() override;
-
+      
 
       void common_construct();
 

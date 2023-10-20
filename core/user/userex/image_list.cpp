@@ -224,7 +224,7 @@ namespace userex
 
                   synchronouslock.lock();
 
-                  information("(2) Could not pimage->load_from_file.file=" + m_plisting->element_at(i));
+                  informationf("(2) Could not pimage->load_from_file.file=" + m_plisting->element_at(i));
 
                   m_plisting->erase_at(i);
 
@@ -236,7 +236,7 @@ namespace userex
 
                synchronouslock.lock();
 
-               information("Could not pimage->load_from_file.file=" + m_plisting->element_at(i));
+               informationf("Could not pimage->load_from_file.file=" + m_plisting->element_at(i));
 
                m_plisting->erase_at(i);
 

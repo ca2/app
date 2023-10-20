@@ -6258,14 +6258,14 @@ void image::Rotate034(::image* pimage, double dAngle, double dScale)
    if (hdst != hsrc)
    {
 
-      information("different height");
+      informationf("different height");
 
    }
 
    if (wdst != wsrc)
    {
 
-      information("different width");
+      informationf("different width");
 
    }
 
@@ -6306,7 +6306,7 @@ void image::Rotate034(::image* pimage, double dAngle, double dScale)
       if (lineDst < 0)
       {
 
-         information("image::Rotate034 lineDst < 0");
+         informationf("image::Rotate034 lineDst < 0");
 
       }
 
@@ -8616,7 +8616,7 @@ void image::set_rgb_pre_alpha(i32 R, i32 G, i32 B, i32 A)
       if (areaRgba < areaRgbaLast)
       {
 
-         information("_001GetTopLeftWeightedOpaqueArea areaRgba < areaRgbaLast");
+         informationf("_001GetTopLeftWeightedOpaqueArea areaRgba < areaRgbaLast");
 
       }
 

@@ -125,7 +125,7 @@ namespace sockets
 
       //RAND_cleanup();
 
-      //      information("~SSLInitializer()\n");
+      //      informationf("~SSLInitializer()\n");
       //DeleteRandFile();
       // %! delete mutexes
 

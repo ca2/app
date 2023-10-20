@@ -1133,7 +1133,7 @@ namespace user
 
          ::file::path path = payloadFile.as_file_path();
 
-         information("Failed to save document : file path : %s", path.c_str());
+         informationf("Failed to save document : file path : %s", path.c_str());
 
          //report_save_exception(payloadFile, pwriter, "__IDP_INVALID_FILENAME");
 

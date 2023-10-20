@@ -306,7 +306,7 @@ namespace user
       if (pshow->m_bShow)
       {
 
-         information("menu::on_message_show_window bShow = %d", pshow->m_bShow);
+         informationf("menu::on_message_show_window bShow = %d", pshow->m_bShow);
 
          if (m_puserinteractionParent)
          {
@@ -335,7 +335,7 @@ namespace user
       else
       {
 
-         information("menu::on_message_show_window bShow = %d", pshow->m_bShow);
+         informationf("menu::on_message_show_window bShow = %d", pshow->m_bShow);
 
       }
 
@@ -357,7 +357,7 @@ namespace user
          else
          {
 
-            ::information("parent has other Topic Submenu");
+            ::informationf("parent has other Topic Submenu");
 
          }
 

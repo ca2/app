@@ -588,7 +588,7 @@ namespace user
 
             auto psz = strLine.c_str();
 
-            information("Line %s", psz);
+            informationf("Line %s", psz);
 
          }
 
@@ -1880,7 +1880,7 @@ namespace user
                if (pmouse->m_pointHost.x() < rectangleWindow.left() - 30)
                {
 
-                  information("test06");
+                  informationf("test06");
 
                }
 
@@ -1952,7 +1952,7 @@ namespace user
 
                auto iSelEnd = iSelBeg;
                
-               information("LeftButtonDown(%d,%d)-queue_graphics_call", iSelBeg, iSelEnd);
+               informationf("LeftButtonDown(%d,%d)-queue_graphics_call", iSelBeg, iSelEnd);
 
                _001SetSel(iSelBeg, iSelEnd);
 
@@ -2172,7 +2172,7 @@ namespace user
       //   if (iRead < iImpactSize)
       //   {
 
-      //      information("ops1");
+      //      informationf("ops1");
 
       //      iImpactSize = iRead;
 
@@ -2209,14 +2209,14 @@ namespace user
       //   if (iPos + iStrLen > m_iImpactSize)
       //   {
 
-      //      information("ops3");
+      //      informationf("ops3");
 
       //      iStrLen = iImpactSize - iPos;
 
       //      if (iStrLen <= 0)
       //      {
 
-      //         information("ops4");
+      //         informationf("ops4");
 
       //         break;
 
@@ -2239,7 +2239,7 @@ namespace user
       //   else
       //   {
 
-      //      //information("optstr");
+      //      //informationf("optstr");
 
       //   }
 
@@ -2248,7 +2248,7 @@ namespace user
       //   if (iPos > iImpactSize)
       //   {
 
-      //      information("ops2");
+      //      informationf("ops2");
 
       //      break;
 
@@ -2623,7 +2623,7 @@ namespace user
       //         if (iRead < iImpactSize)
       //         {
       //
-      //            information("ops1");
+      //            informationf("ops1");
       //
       //            iImpactSize = iRead;
       //
@@ -2661,14 +2661,14 @@ namespace user
       //         if (iPos + iStrLen > m_iImpactSize)
       //         {
       //
-      //            information("ops3");
+      //            informationf("ops3");
       //
       //            iStrLen = iImpactSize - iPos;
       //
       //            if (iStrLen <= 0)
       //            {
       //
-      //               information("ops4");
+      //               informationf("ops4");
       //
       //               break;
       //
@@ -2692,7 +2692,7 @@ namespace user
       //         else
       //         {
       //
-      //            //information("optstr");
+      //            //informationf("optstr");
       //
       //         }
       //
@@ -2704,7 +2704,7 @@ namespace user
       //         if (iPos > iImpactSize)
       //         {
       //
-      //            information("ops2");
+      //            informationf("ops2");
       //
       //            break;
       //
@@ -3035,7 +3035,7 @@ namespace user
          if (iRead < iImpactSize)
          {
 
-            information("ops1");
+            informationf("ops1");
 
             iImpactSize = iRead;
 
@@ -3072,14 +3072,14 @@ namespace user
          if (iPos + iStrLen > m_iImpactSize)
          {
 
-            information("ops3");
+            informationf("ops3");
 
             iStrLen = iImpactSize - iPos;
 
             if (iStrLen <= 0)
             {
 
-               information("ops4");
+               informationf("ops4");
 
                break;
 
@@ -3102,7 +3102,7 @@ namespace user
          else
          {
 
-            //information("optstr");
+            //informationf("optstr");
 
          }
 
@@ -3111,7 +3111,7 @@ namespace user
          if (iPos > iImpactSize)
          {
 
-            information("ops2");
+            informationf("ops2");
 
             break;
 
@@ -3401,7 +3401,7 @@ namespace user
 //   if (iRead < iImpactSize)
 //   {
 
-//      information("ops1");
+//      informationf("ops1");
 
 //      iImpactSize = iRead;
 
@@ -3438,14 +3438,14 @@ namespace user
 //   if (iPos + iStrLen > m_iImpactSize)
 //   {
 
-//      information("ops3");
+//      informationf("ops3");
 
 //      iStrLen = iImpactSize - iPos;
 
 //      if (iStrLen <= 0)
 //      {
 
-//         information("ops4");
+//         informationf("ops4");
 
 //         break;
 
@@ -3468,7 +3468,7 @@ namespace user
 //   else
 //   {
 
-//      //information("optstr");
+//      //informationf("optstr");
 
 //   }
 
@@ -3477,7 +3477,7 @@ namespace user
 //   if (iPos > iImpactSize)
 //   {
 
-//      information("ops2");
+//      informationf("ops2");
 
 //      break;
 
@@ -6435,7 +6435,7 @@ namespace user
 
          _001GetText(strText);
 
-         ::information("\nplain_edit::on_text_composition (m_pitemComposing != nullptr) Current Text: " + strText + "\n");
+         ::informationf("\nplain_edit::on_text_composition (m_pitemComposing != nullptr) Current Text: " + strText + "\n");
 
       }
       else
@@ -6507,7 +6507,7 @@ namespace user
 
          _001GetText(strText);
 
-         ::information("Current Text: " + strText + "\n");
+         ::informationf("Current Text: " + strText + "\n");
 
          m_pitemComposing.release();
 
@@ -7823,7 +7823,7 @@ namespace user
    //   if (!::user::interaction::create_interaction(puserinteractionParent, atom))
    //   {
 
-   //      information("Failed to create control");
+   //      informationf("Failed to create control");
 
    //      return false;
 
@@ -8143,7 +8143,7 @@ namespace user
    //   if (nCmdShow != e_display_none)
    //   {
 
-   //      information("Going to Show plain_edit");
+   //      informationf("Going to Show plain_edit");
 
    //   }
 
@@ -8278,7 +8278,7 @@ namespace user
    void plain_edit::plain_edit_insert_text(::draw2d::graphics_pointer & pgraphics, string strText, bool bForceNewStep)
    {
 
-      ::information("plain_edit::insert_text: \"" + strText.left(64) + "\" \n");
+      ::informationf("plain_edit::insert_text: \"" + strText.left(64) + "\" \n");
 
       synchronous_lock synchronouslock(this->synchronization());
 

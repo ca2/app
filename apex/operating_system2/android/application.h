@@ -16,6 +16,9 @@
 //
 //      application(::particle * pparticle);
 //      ~application() override;
+      
+      __DECLARE_APPLICATION_RELEASE_TIME();
+
 //
 //      virtual HINSTANCE GetHinstance();
 //      bool _001OnDDECommand(const char * lpcsz);

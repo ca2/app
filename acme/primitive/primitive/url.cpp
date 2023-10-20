@@ -412,7 +412,7 @@ namespace url
          if(not_found(pStart))
          {
 
-//xxx            information("invalid url %s", pszUrl);
+//xxx            informationf("invalid url %s", pszUrl);
 
             pStart = strUrl.begin();
 

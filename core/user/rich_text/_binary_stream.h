@@ -92,7 +92,7 @@
    else
    {
 
-      information("corruption... non fatal... partially recoverable...");
+      informationf("corruption... non fatal... partially recoverable...");
 
    }
 

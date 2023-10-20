@@ -19,7 +19,7 @@ namespace core
 
       application();
       ~application() override;
-
+      
 
       void common_construct();
 

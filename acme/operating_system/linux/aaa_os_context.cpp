@@ -1092,7 +1092,7 @@ namespace linux
    void os_context::list_process(::file::path_array & patha, u32_array & uaPid)
    {
 
-      ::information("linux::os_context::list_process");
+      ::informationf("linux::os_context::list_process");
 
       ::file::path_array stra;
 

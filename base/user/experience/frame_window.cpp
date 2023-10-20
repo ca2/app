@@ -829,7 +829,7 @@ namespace experience
 
          auto atom = ptopic->user_element_id();
 
-         information("frame_window::handle_event btn_clkd=%s", string(atom).c_str());
+         informationf("frame_window::handle_event btn_clkd=%s", string(atom).c_str());
 
          auto ebutton = m_pframe->get_control_box()->get_control_box_button_type(atom);
 
@@ -837,7 +837,7 @@ namespace experience
          {
          case e_button_close:
 
-            information("button_clicked : button_close");
+            informationf("button_clicked : button_close");
 
             post_message(MESSAGE_CLOSE);
 
@@ -849,7 +849,7 @@ namespace experience
 
          case e_button_minimize:
 
-            information("button_clicked : button_minimize");
+            informationf("button_clicked : button_minimize");
 
             display(e_display_iconic, e_activation_no_activate);
 
@@ -861,7 +861,7 @@ namespace experience
 
          case e_button_maximize:
 
-            information("button_clicked : button_maximize");
+            informationf("button_clicked : button_maximize");
 
             display(e_display_zoomed);
 
@@ -879,7 +879,7 @@ namespace experience
 
          case e_button_restore:
 
-            information("button_clicked : button_restore");
+            informationf("button_clicked : button_restore");
 
             frame_experience_restore();
 
@@ -889,7 +889,7 @@ namespace experience
 
          case e_button_up:
 
-            information("button_clicked : button_up");
+            informationf("button_clicked : button_up");
 
             display(e_display_up);
 
@@ -901,7 +901,7 @@ namespace experience
 
          case e_button_down:
 
-            information("button_clicked : button_down");
+            informationf("button_clicked : button_down");
 
             display(e_display_down);
 
@@ -913,7 +913,7 @@ namespace experience
 
          case e_button_transparent_frame:
 
-            information("button_clicked : button_transparent_frame");
+            informationf("button_clicked : button_transparent_frame");
 
             toggle_appearance(e_appearance_transparent_frame);
 
@@ -940,7 +940,7 @@ namespace experience
 
          case e_button_notify_icon:
 
-            information("button_clicked : button_notify_icon");
+            informationf("button_clicked : button_notify_icon");
 
             display(e_display_notify_icon);
 
@@ -1195,20 +1195,20 @@ namespace experience
       if (is_different(fActive, m_fActive))
       {
 
-         //information("frame_window::SetActiveFlag %d\n", fActive);
+         //informationf("frame_window::SetActiveFlag %d\n", fActive);
 
          m_fActive = fActive;
 
          if (fActive)
          {
             
-            information("frame_window::SetActiveFlag Active");
+            informationf("frame_window::SetActiveFlag Active");
             
          }
          else
          {
 
-            information("frame_window::SetActiveFlag Not Active");
+            informationf("frame_window::SetActiveFlag Not Active");
 
          }
 

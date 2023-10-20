@@ -187,7 +187,7 @@ namespace dynamic_source
 //      catch (const ::e_status & estatus)
 //      {
 //
-//         information("failed to setup visual studio environment " + as_string((::i64)estatus.m_estatus));
+//         informationf("failed to setup visual studio environment " + as_string((::i64)estatus.m_estatus));
 //
 //      }
 //
@@ -300,7 +300,7 @@ namespace dynamic_source
 
       synchronous_lock synchronouslock(pscript->synchronization());
 
-      information("Compiling script %s", pscript->m_strName.c_str());
+      informationf("Compiling script %s", pscript->m_strName.c_str());
 
       auto & ostreamError = pscript->m_textstreamError;
 
@@ -309,7 +309,7 @@ namespace dynamic_source
       if (strName.case_insensitive_ends("\\auth3.ds"))
       {
 
-         ::information("compile auth3.ds");
+         ::informationf("compile auth3.ds");
 
       }
 
@@ -407,7 +407,7 @@ namespace dynamic_source
 
          string strCompileLogUnique2 = datetime()->format(INTERNATIONAL_DATE_TIME_FORMAT_FOR_FILE, timeNow);
 
-         ::information("Ops");
+         ::informationf("Ops");
 
       }
 
@@ -648,7 +648,7 @@ namespace dynamic_source
 
          //::exception_pointer esp(pexception);
 
-         //information("%s", esp->get_message().c_str());
+         //informationf("%s", esp->get_message().c_str());
 
       }
 
@@ -668,7 +668,7 @@ namespace dynamic_source
 
          //::exception_pointer esp(pexception);
 
-         //information("%s", esp->get_message().c_str());
+         //informationf("%s", esp->get_message().c_str());
 
       }
 
@@ -688,7 +688,7 @@ namespace dynamic_source
 
          //::exception_pointer esp(pexception);
 
-         //information("%s", esp->get_message().c_str());
+         //informationf("%s", esp->get_message().c_str());
 
       }
 
@@ -858,8 +858,8 @@ namespace dynamic_source
 
             //ostreamError << "Compiling Command\n";
             //ostreamError << pathCompiler << "\n";
-            information("Compiling Command File %s", pathCompiler.c_str());
-            information("Compiling Command %s", strCompiler.c_str());
+            informationf("Compiling Command File %s", pathCompiler.c_str());
+            informationf("Compiling Command %s", strCompiler.c_str());
             ostreamError << "Compiling...\n";
             ostreamError << pscript->m_strCppPath;
             ostreamError << "\n";
@@ -877,8 +877,8 @@ namespace dynamic_source
          if (process->m_exitstatus.m_iExitCode != 0 || file()->length(pathObjFile) < iObjFileMinimumByteCount)
          {
 
-            information("Compilation FAILED: or object file is shorter than %lld bytes...", iObjFileMinimumByteCount);
-            information("%s", strLog.c_str());
+            informationf("Compilation FAILED: or object file is shorter than %lld bytes...", iObjFileMinimumByteCount);
+            informationf("%s", strLog.c_str());
 
             //string_array straLog;
             //straLog.add_lines(strLog);
@@ -2942,13 +2942,13 @@ ch_else:
             catch (const ::parsing_exception & )
             {
 
-               information("script_compiler::parse_pstr_set");
+               informationf("script_compiler::parse_pstr_set");
 
             }
             catch (const ::exception & )
             {
 
-               information("script_compiler::parse_pstr_set");
+               informationf("script_compiler::parse_pstr_set");
 
             }
             catch(...)

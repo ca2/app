@@ -181,8 +181,8 @@ namespace draw2d_opengl
    {
 
       if (draw2d_opengl()->m_atomClass == 0) {
-         information("MS GDI - RegisterClass failed");
-         information("last-error code: %d\n", GetLastError());
+         informationf("MS GDI - RegisterClass failed");
+         informationf("last-error code: %d\n", GetLastError());
          return false;
       }
 
@@ -213,8 +213,8 @@ namespace draw2d_opengl
 
       if (window == nullptr) 
       {
-         information("MS GDI - CreateWindow failed");
-         information("last-error code: %d\n", GetLastError());
+         informationf("MS GDI - CreateWindow failed");
+         informationf("last-error code: %d\n", GetLastError());
          return false;
       }
 
@@ -225,8 +225,8 @@ namespace draw2d_opengl
       HDC hdc = GetDC(window);
       if (hdc == nullptr)
       {
-         information("MS GDI - GetDC failed");
-         information("last-error code: %d\n", GetLastError());
+         informationf("MS GDI - GetDC failed");
+         informationf("last-error code: %d\n", GetLastError());
          return false;
       }
 
@@ -243,24 +243,24 @@ namespace draw2d_opengl
       chosenformat = ChoosePixelFormat(hdc, &pixformat);
       if (chosenformat == 0) 
       {
-         information("MS GDI - ChoosePixelFormat failed");
-         information("last-error code: %d\n", GetLastError());
+         informationf("MS GDI - ChoosePixelFormat failed");
+         informationf("last-error code: %d\n", GetLastError());
          return false;
       }
 
       bool spfok = SetPixelFormat(hdc, chosenformat, &pixformat);
       if (!spfok) 
       {
-         information("MS GDI - SetPixelFormat failed");
-         information("last-error code: %d\n", GetLastError());
+         informationf("MS GDI - SetPixelFormat failed");
+         informationf("last-error code: %d\n", GetLastError());
          return false;
       }
 
       HGLRC hglrcTime = wglCreateContext(hdc);
       if (hglrcTime == nullptr)
       {
-         information("MS WGL - wglCreateContext failed");
-         information("last-error code: %d\n", GetLastError());
+         informationf("MS WGL - wglCreateContext failed");
+         informationf("last-error code: %d\n", GetLastError());
          ReleaseDC(m_hwnd, m_hdc);
          return false;
       }
@@ -268,8 +268,8 @@ namespace draw2d_opengl
       bool okMakeCurrent = wglMakeCurrent(hdc, hglrcTime);
       if (!okMakeCurrent)
       {
-         information("MS WGL - wglMakeCurrent failed");
-         information("last-error code: %d\n", GetLastError());
+         informationf("MS WGL - wglMakeCurrent failed");
+         informationf("last-error code: %d\n", GetLastError());
          return false;
       }
       //glfwInit();
@@ -286,7 +286,7 @@ namespace draw2d_opengl
       if (!gladLoadWGL(hdc))
       {
          // Problem: glewInit failed, something is seriously wrong.
-         information("gladLoadWGL failed");
+         informationf("gladLoadWGL failed");
          //return false;
          //throw resource_exception();
 
@@ -464,7 +464,7 @@ namespace draw2d_opengl
    //      //   catch(...)
    //      //   {
 
-   //      //      information("graphics::SelectObject(HGDIOBJ) OBJ_BITMAP : Failed to delete plusplus::Graphics");
+   //      //      informationf("graphics::SelectObject(HGDIOBJ) OBJ_BITMAP : Failed to delete plusplus::Graphics");
 
    //      //   }
 
@@ -944,7 +944,7 @@ namespace draw2d_opengl
    //   //   if(!::DrawIconEx(hdc,0,0,(HICON)picon->m_picon,cx,cy,istepIfAniCur,nullptr,DI_IMAGE | DI_MASK))
    //   //   {
 
-   //   //      information("nok");
+   //   //      informationf("nok");
    //   //   }
    //   //   else
    //   //   {
@@ -3416,7 +3416,7 @@ namespace draw2d_opengl
    //   //catch(...)
    //   //{
 
-   //   //   information("graphics::Detach : Failed to delete plusplus::Graphics");
+   //   //   informationf("graphics::Detach : Failed to delete plusplus::Graphics");
 
    //   //}
 
@@ -3491,7 +3491,7 @@ namespace draw2d_opengl
       //   if(!bDeleted)
       //   {
 
-      //      information("graphics::DeleteDC : Failed to delete GDI device context");
+      //      informationf("graphics::DeleteDC : Failed to delete GDI device context");
 
       //   }
 
@@ -3509,7 +3509,7 @@ namespace draw2d_opengl
       //   catch(...)
       //   {
 
-      //      information("graphics::DeleteDC : Failed to delete plusplus::Graphics");
+      //      informationf("graphics::DeleteDC : Failed to delete plusplus::Graphics");
 
       //   }
 
@@ -5418,7 +5418,7 @@ namespace draw2d_opengl
    //   //   catch(...)
    //   //   {
 
-   //   //      information("graphics::attach : Failed to delete plusplus::Graphics");
+   //   //      informationf("graphics::attach : Failed to delete plusplus::Graphics");
 
    //   //   }
 

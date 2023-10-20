@@ -412,7 +412,7 @@ namespace user
          if(m_message.m_atom == e_message_left_button_down)
          {
 
-            information("pump_message e_message_left_button_down");
+            informationf("pump_message e_message_left_button_down");
 
          }
 
@@ -433,13 +433,13 @@ namespace user
          if(m_message.m_atom == e_message_left_button_down)
          {
 
-            information("::user::thread::LBUTTONDOWN");
+            informationf("::user::thread::LBUTTONDOWN");
 
          }
          else if(m_message.m_atom == e_message_left_button_up)
          {
 
-            information("::user::thread::LBUTTONUP");
+            informationf("::user::thread::LBUTTONUP");
 
          }
 
@@ -532,13 +532,13 @@ namespace user
          else if(msg.m_atom == e_message_left_button_down)
          {
 
-            ::information("e_message_left_button_down");
+            ::informationf("e_message_left_button_down");
 
          }
          else if(msg.m_atom == e_message_left_button_up)
          {
 
-            ::information("e_message_left_button_up");
+            ::informationf("e_message_left_button_up");
 
          }
 
@@ -590,13 +590,13 @@ namespace user
                         if(msg.m_atom == e_message_left_button_down)
                         {
 
-                           ::information("e_message_left_button_down");
+                           ::informationf("e_message_left_button_down");
 
                         }
                         else if(msg.m_atom == e_message_left_button_up)
                         {
 
-                           ::information("e_message_left_button_up");
+                           ::informationf("e_message_left_button_up");
 
                         }
 
@@ -608,7 +608,7 @@ namespace user
                            if(pmessage->m_atom == e_message_left_button_down)
                            {
 
-                              ::information("e_message_left_button_down");
+                              ::informationf("e_message_left_button_down");
 
                            }
 
@@ -862,7 +862,7 @@ namespace user
       if (m_strDebugType.contains("main_frame"))
       {
 
-         information("xxthread::run from main_frame");
+         informationf("xxthread::run from main_frame");
 
       }
 
@@ -951,7 +951,7 @@ namespace user
                if (m_strDebugType.contains("main_frame"))
                {
 
-                  information("!xxm_bSimpleMessageLoop !xxpump_message xxthread::run from main_frame");
+                  informationf("!xxm_bSimpleMessageLoop !xxpump_message xxthread::run from main_frame");
 
                }
 
@@ -996,7 +996,7 @@ namespace user
       if (m_strDebugType.contains("main_frame"))
       {
 
-         information("ending xxthread::run from main_frame");
+         informationf("ending xxthread::run from main_frame");
 
       }
 

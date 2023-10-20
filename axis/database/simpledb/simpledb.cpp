@@ -192,7 +192,7 @@ namespace simpledb
             else
             {
 
-               information("");
+               informationf("");
 
             }
 

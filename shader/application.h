@@ -19,6 +19,9 @@ namespace app_shader
 
       application();
       ~application() override;
+      
+      __DECLARE_APPLICATION_RELEASE_TIME();
+
 
  
       virtual void init_instance() override;

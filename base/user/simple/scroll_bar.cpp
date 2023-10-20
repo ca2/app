@@ -1449,7 +1449,7 @@ public:
       create_host(e_parallelization_synchronous);
       //{
 
-      //   information("created trw");
+      //   informationf("created trw");
 
       //}
 
@@ -2307,7 +2307,7 @@ bool simple_scroll_bar::on_drag_start(::point_i32 & point, ::item * pitem)
 //
 //      size = size.maximum(sizeMinimum);
 //
-//      information("drag_shift resize %d, %d", size.cx(), size.cy());
+//      informationf("drag_shift resize %d, %d", size.cx(), size.cy());
 //
 //      //auto rectanglePrevious = layout().window().raw_rectangle();
 //

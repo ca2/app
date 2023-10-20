@@ -1128,7 +1128,7 @@ namespace user
 
       set_display(e_display_none);
 
-      information("\nm_bLayoutEnable false");
+      informationf("\nm_bLayoutEnable false");
 
       //auto pusersystem = __new(::user::system (0L, nullptr, m_strFrameTitle, dwDefaultStyle, rectangleFrame, pcreate));
 
@@ -2292,8 +2292,8 @@ namespace user
 
          //         ::u32 dwTime2= ::time::now();
 
-         //information("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
-         //information("userframewindow call time1= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+         //informationf("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+         //informationf("userframewindow call time1= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
 
       }
 
@@ -2706,13 +2706,13 @@ namespace user
 //      if (type.name().contains("app_veriwell_keyboard") && type.name().contains("main_frame"))
 //      {
 //
-//         //::information("app_veriwell_keyboard::main_frame");
+//         //::informationf("app_veriwell_keyboard::main_frame");
 //
 //      }
 //      else if(type.name().contains("simple_child_frame"))
 //      {
 //
-//         //::information("simple_child_frame");
+//         //::informationf("simple_child_frame");
 //
 //      }
 //

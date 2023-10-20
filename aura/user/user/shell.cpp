@@ -964,7 +964,7 @@ namespace user
 //      if (string_ends_ci(getfileimage.m_imagekey.m_strPath, ".sln"))
 //      {
 //
-//         // information("test .sln");
+//         // informationf("test .sln");
 //
 //      }
 //
@@ -1782,7 +1782,7 @@ namespace user
          if (::is_null(pimage))
          {
 
-            information("error loading image: \"" + path + "\"\n");
+            informationf("error loading image: \"" + path + "\"\n");
 
          }
 

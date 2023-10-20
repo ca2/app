@@ -7,10 +7,11 @@
 #include "acme/platform/object_reference_count_debug.h"
 
 
-#define __VERSION(library)  library ## _version
-#define __DECLARE_VERSION(library) extern "C" const char * __VERSION(library)()
-#define __IMPLEMENT_APPLICATION_VERSION(library) \
-const char * application::get_version() { return __VERSION(library); }
+#define __RELEASE_TIME(library)  library ## _release_time
+#define __DECLARE_RELEASE_TIME(library) extern "C" const char * __RELEASE_TIME(library)()
+#define __DECLARE_APPLICATION_RELEASE_TIME() ::string release_time() override
+#define __IMPLEMENT_APPLICATION_RELEASE_TIME(library) \
+::string application::release_time() { return __RELEASE_TIME(library)(); }
 
 
 #define ALOG_CONTEXT context_trace_object()

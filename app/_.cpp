@@ -1,16 +1,11 @@
 #include "framework.h"
 #include "acme/_library.h"
+#include "acme/platform/release_time.h"
 
 
-extern "C" const char * app_app_version()
-{
-
-#include "version.txt"
-
-   return pszVersion;
-
-}
-
+__BEGIN_RELEASE_TIME(app_app)
+#include "release_time.txt"
+__END_RELEASE_TIME()
 
 
 

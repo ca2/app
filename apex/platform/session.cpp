@@ -107,7 +107,7 @@ namespace apex
       //if(acmesystem()->m_etracelevel >= e_trace_level_information)
       {
 
-         information("apex::session::~session()");
+         informationf("apex::session::~session()");
 
       }
 
@@ -1172,7 +1172,7 @@ ret:
       //if (!estatus)
       //{
 
-      //   information("\nFailed to __construct_new(m_pfs)");
+      //   informationf("\nFailed to __construct_new(m_pfs)");
 
       //   m_result.add(estatus);
 
@@ -1202,7 +1202,7 @@ ret:
 
       //   m_result.add(estatus);
 
-      //   information("Failed to create memory_new User Presence");
+      //   informationf("Failed to create memory_new User Presence");
 
       //   return false;
 
@@ -1254,7 +1254,7 @@ ret:
 
       //      m_result.add(estatus);
 
-      //      information("Failed to create ftpfs");
+      //      informationf("Failed to create ftpfs");
 
       //   }
 
@@ -1351,7 +1351,7 @@ ret:
 
          //output_error_message("Could not initialize Local data central");
 
-         information("Could not initialize Local data central");
+         informationf("Could not initialize Local data central");
 
          //return false;
 
@@ -1653,13 +1653,13 @@ namespace apex
 
       //if(m_pdatabase == nullptr)
       //{
-      //   information("VmpLightApp::init_instance failed to instatiate LightDB");
+      //   informationf("VmpLightApp::init_instance failed to instatiate LightDB");
       //   return false;
       //}
 
       //if(!m_pdatabase->Initialize())
       //{
-      //   information("VmpLightApp::init_instance failed to initialize LightDB");
+      //   informationf("VmpLightApp::init_instance failed to initialize LightDB");
       //   return false;
       //}
 

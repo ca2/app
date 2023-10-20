@@ -281,7 +281,7 @@ namespace user
             if (pformattool->is_ascendant_or_owner_of(pinteraction, true))
             {
 
-               information("Window winning focus is own font format tool");
+               informationf("Window winning focus is own font format tool");
 
                return;
 
@@ -767,7 +767,7 @@ namespace user
          //   //if (color32_u8_red(crBackground) != 255)
          //   //{
 
-         //   //   information("no full red");
+         //   //   informationf("no full red");
 
          //   //}
 
@@ -791,7 +791,7 @@ namespace user
          //   //if (color32_u8_red(crBackground) != 255)
          //   //{
 
-         //   //   information("no full red");
+         //   //   informationf("no full red");
 
          //   //}
 

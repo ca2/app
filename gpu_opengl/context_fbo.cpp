@@ -103,7 +103,7 @@ namespace opengl
       for(int iFormat = 0; iFormat < NumFormats; iFormat++)
       {
          
-         information("\nFormat " + ::as_string(iFormat) + "\n");
+         informationf("\nFormat " + ::as_string(iFormat) + "\n");
          
 #define DUMP_FORMAT(x)                                                        \
          {                                                                    \

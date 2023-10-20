@@ -2189,19 +2189,19 @@ void TransformSkewX(float* t, float a)
 		const ::nano2d::path * path;
 		int i, j;
 
-		information("Dumping %d cached paths\n", m_ppathcache->npaths);
+		informationf("Dumping %d cached paths\n", m_ppathcache->npaths);
 		for (i = 0; i < m_ppathcache->npaths; i++) {
 			path = &m_ppathcache->paths[i];
-         information(" - Path %d\n", i);
+         informationf(" - Path %d\n", i);
 			if (path->nfill) {
-            information("   - fill: %d\n", path->nfill);
+            informationf("   - fill: %d\n", path->nfill);
 				for (j = 0; j < path->nfill; j++)
-               information("%f\t%f\n", path->fill[j].x, path->fill[j].y);
+               informationf("%f\t%f\n", path->fill[j].x, path->fill[j].y);
 			}
 			if (path->nstroke) {
-            information("   - stroke: %d\n", path->nstroke);
+            informationf("   - stroke: %d\n", path->nstroke);
 				for (j = 0; j < path->nstroke; j++)
-               information("%f\t%f\n", path->stroke[j].x, path->stroke[j].y);
+               informationf("%f\t%f\n", path->stroke[j].x, path->stroke[j].y);
 			}
 		}
 	}

@@ -675,7 +675,7 @@ namespace user
 
             string strType =  typeid(*p1).name();
 
-            information("the type is " + strType);
+            informationf("the type is " + strType);
             
          }
 
@@ -702,7 +702,7 @@ namespace user
          && m_pimpactdataOld->m_atom != ABOUT_IMPACT)
       {
 
-         information("::user::e_flag_hide_on_kill_focus");
+         informationf("::user::e_flag_hide_on_kill_focus");
 
          m_pimpactdataOld->m_pplaceholder->hide();
 

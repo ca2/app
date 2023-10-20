@@ -837,12 +837,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\Debug\source\app\aura\operating_system\windows\message_window.h" />
-    <ClInclude Include="..\..\..\..\Debug\source\app\aura\operating_system\windows\message_window_listener.h" />
-    <ClInclude Include="application.h" />
-    <ClInclude Include="aaa_astr.h" />
-    <ClInclude Include="console.h" />
-    <ClInclude Include="console_slim.h" />
     <ClInclude Include="constant\hardware.h" />
     <ClInclude Include="constant\idpool.h" />
     <ClInclude Include="filesystem\filemanager\callback.h" />
@@ -850,7 +844,6 @@
     <ClInclude Include="filesystem\filemanager\_.h" />
     <ClInclude Include="filesystem\_.h" />
     <ClInclude Include="framework.h" />
-    <ClInclude Include="framework_c.h" />
     <ClInclude Include="game\estamira.h" />
     <ClInclude Include="game\game.h" />
     <ClInclude Include="game\_.h" />
@@ -981,7 +974,6 @@
     <ClInclude Include="hardware\device_listener.h" />
     <ClInclude Include="hardware\_.h" />
     <ClInclude Include="hardware\_constant.h" />
-    <ClInclude Include="id.h" />
     <ClInclude Include="include\objc.h" />
     <ClInclude Include="include\objcpp.h" />
     <ClInclude Include="include\winrt.h" />
@@ -992,15 +984,12 @@
     <ClInclude Include="include\_library.h" />
     <ClInclude Include="include\_no_templates.h" />
     <ClInclude Include="include\_setup.h" />
-    <ClInclude Include="library.h" />
-    <ClInclude Include="main.h" />
     <ClInclude Include="message\aaa_menu_shared.h" />
     <ClInclude Include="message\timer.h" />
     <ClInclude Include="message\user.h" />
     <ClInclude Include="message\_.h" />
     <ClInclude Include="message\_impl.h" />
     <ClInclude Include="message\_message.h" />
-    <ClInclude Include="operating_system.h" />
     <ClInclude Include="operating_system\aaa_2.h" />
     <ClInclude Include="operating_system\aaa_binreloc.h" />
     <ClInclude Include="operating_system\aaa_c.h" />
@@ -1064,7 +1053,6 @@
     <ClInclude Include="platform\_features.h" />
     <ClInclude Include="platform\_impl.h" />
     <ClInclude Include="platform\_platform.h" />
-    <ClInclude Include="procedure.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="user\appearance\appearance.h" />
     <ClInclude Include="user\appearance\button.h" />
@@ -1180,9 +1168,6 @@
     <ClInclude Include="windowing\_windowing.h" />
     <ClInclude Include="_.h" />
     <ClInclude Include="__defer.h" />
-    <ClInclude Include="_factory.h" />
-    <ClInclude Include="_h.h" />
-    <ClInclude Include="_library.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="deployment.rc" />

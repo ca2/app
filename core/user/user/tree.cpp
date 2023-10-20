@@ -479,7 +479,7 @@ namespace user
 
       }
 
-      //information("(1)TreeItemElapsed %d", ::time.elapsed());
+      //informationf("(1)TreeItemElapsed %d", ::time.elapsed());
 
       //      ::aura::savings & savings = psession->m_paurasession->savings();
 
@@ -1650,7 +1650,7 @@ namespace user
          if (spitema.find_first(pitem) >= 0)
          {
 
-            //information("what!?!");
+            //informationf("what!?!");
 
             break;
 
@@ -1737,7 +1737,7 @@ namespace user
          if (treeitema.find_first(ptreeitem) >= 0)
          {
 
-            //information("what!!?");
+            //informationf("what!!?");
 
             break;
 

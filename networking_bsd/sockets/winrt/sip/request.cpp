@@ -48,7 +48,7 @@ namespace sip
       /*if (!m_file.get())
          m_file = std::auto_ptr<IFile>(memory_new MemFile);
    DEBUG_ONLY(   else
-         information("Body data file already opened");*/
+         informationf("Body data file already opened");*/
    }
 
 

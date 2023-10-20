@@ -130,7 +130,7 @@ namespace hellobase
       //}
       ////else
       //{
-      //   //information("XXX123546");
+      //   //informationf("XXX123546");
       //}
 
    }

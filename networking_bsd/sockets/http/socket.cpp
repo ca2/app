@@ -511,7 +511,7 @@ namespace sockets
             string strValue = straValue[j];
             //         strLine = ;
             msg += strKey + ": " + strValue + "\r\n";
-            //information("%s: %s", strKey, strValue);
+            //informationf("%s: %s", strKey, strValue);
          }
          //information(strTrace + "\n");
       }
@@ -752,7 +752,7 @@ namespace sockets
       //http_socket::OnHeader(key, value);
       /*if(key.case_insensitive_order("user-agent") == 0)
       {
-         information("  (request)OnHeader %s: %s\n", (const char *) key, (const char *) value);
+         informationf("  (request)OnHeader %s: %s\n", (const char *) key, (const char *) value);
       }*/
       if(key == "cookie")
       {

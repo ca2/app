@@ -2086,7 +2086,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
    if (patha[0].contains("yesno.xhtml"))
    {
 
-      information("matter_from_locator yesno.xhtml");
+      informationf("matter_from_locator yesno.xhtml");
 
    }
 
@@ -2229,9 +2229,9 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
       }
 
-      //      information("");
+      //      informationf("");
       information() << "Topic: " << patha[0];
-      //      information("");
+      //      informationf("");
 
       string strCandidate = stra.implode("|");
 
@@ -2266,11 +2266,11 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
       strMatter.replace_with("https://ca2.software/", "https://server.ca2.software/");
 
 
-      //information("");
-      //information("");
+      //informationf("");
+      //informationf("");
       information() << "matter = " << strMatter;
-      //information("");
-      //information("");
+      //informationf("");
+      //informationf("");
 
       strMatter.trim();
 

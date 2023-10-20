@@ -101,7 +101,7 @@ namespace user
       //if (!estatus)
       //{
 
-      //   information("\nFailed to create_windowing at user::user::initialize.");
+      //   informationf("\nFailed to create_windowing at user::user::initialize.");
 
       //   return estatus;
 
@@ -524,9 +524,9 @@ namespace user
 
       bool bHasUninstall = psystem->is_true("uninstall");
 
-      information("user::initialize bHasInstall %c", bHasInstall);
+      informationf("user::initialize bHasInstall %c", bHasInstall);
 
-      information("user::initialize bHasUninstall %c", bHasUninstall);
+      informationf("user::initialize bHasUninstall %c", bHasUninstall);
 
       //return true;
 

@@ -683,7 +683,7 @@ namespace user
                else
                {
 
-                  information("operating_system_create_host window not created");
+                  informationf("operating_system_create_host window not created");
 
                }
 
@@ -824,13 +824,13 @@ namespace user
                if (m_pwindow)
                {
 
-                  information("window created");
+                  informationf("window created");
 
                }
                else
                {
 
-                  information("window not created");
+                  informationf("window not created");
 
                }
 
@@ -1349,7 +1349,7 @@ namespace user
       //   if (pmouse->m_atom == e_message_left_button_up)
       //   {
 
-      //      ::information("lbutton_up");
+      //      ::informationf("lbutton_up");
 
       //   }
 
@@ -1417,7 +1417,7 @@ namespace user
       //      if (pmouse->m_atom == e_message_left_button_up)
       //      {
 
-      //         ::information("lbutton_up");
+      //         ::informationf("lbutton_up");
 
       //      }
 
@@ -1452,7 +1452,7 @@ namespace user
       //      if (pmouse->m_atom == e_message_left_button_up)
       //      {
 
-      //         ::information("lbutton_up");
+      //         ::informationf("lbutton_up");
 
       //      }
 
@@ -1801,7 +1801,7 @@ namespace user
       //      if (strType.contains("main_frame"))
       //      {
       //
-      //         information("main_frame");
+      //         informationf("main_frame");
       //
       //      }
 
@@ -1951,7 +1951,7 @@ namespace user
       if (strType.contains("main_frame"))
       {
 
-         information("main_frame user::interaction_impl::destroy_window");
+         informationf("main_frame user::interaction_impl::destroy_window");
 
       }
 
@@ -2105,13 +2105,13 @@ namespace user
       else if (pmessage->m_atom == e_message_left_button_down)
       {
 
-         information("linux::interaction_impl::e_message_left_button_down");
+         informationf("linux::interaction_impl::e_message_left_button_down");
 
       }
       else if (pmessage->m_atom == e_message_left_button_up)
       {
 
-         information("linux::interaction_impl::e_message_left_button_up");
+         informationf("linux::interaction_impl::e_message_left_button_up");
 
       }
       else if (pmessage->m_atom == e_message_mouse_move)
@@ -2119,7 +2119,7 @@ namespace user
 
          //g_iMouseMove++;
 
-         //information("interaction_impl::message_handler e_message_mouse_move");
+         //informationf("interaction_impl::message_handler e_message_mouse_move");
          //printf("g_iMouseMove = %d\n", g_iMouseMove);
 
       }
@@ -2130,7 +2130,7 @@ namespace user
       else if (pmessage->m_atom == e_message_left_button_up)
       {
 
-         information("e_message_left_button_up (0)");
+         informationf("e_message_left_button_up (0)");
 
       }
 
@@ -2153,7 +2153,7 @@ namespace user
       //         if(iDebugmessage_handlerTime > 20)
       //         {
       //
-      //            ::information("interaction_impl::message handler flooded?\n");
+      //            ::informationf("interaction_impl::message handler flooded?\n");
       //
       //         }
       //         else
@@ -2170,11 +2170,11 @@ namespace user
 
          if (m_puserinteraction->layout().is_moving())
          {
-            //information("moving: skip pre translate message");
+            //informationf("moving: skip pre translate message");
          }
          else if (m_puserinteraction->layout().is_sizing())
          {
-            //information("sizing: skip pre translate message");
+            //informationf("sizing: skip pre translate message");
          }
          else
          {
@@ -2547,7 +2547,7 @@ namespace user
       //   //            else if(g_puserinteractionMouseCapture123 != m_puserinteractionCapture)
       //   //            {
       //   //
-      //   //               information("different capture (1)");
+      //   //               informationf("different capture (1)");
       //   //
       //   //            }
 
@@ -2561,7 +2561,7 @@ namespace user
       //            if(g_puserinteractionMouseCapture123 != puserinteractionMouse)
       //            {
       //
-      //               information("different capture (2)");
+      //               informationf("different capture (2)");
       //
       //            }
       //
@@ -2577,7 +2577,7 @@ namespace user
       {
 
 
-         information("left_button_down (A)");
+         informationf("left_button_down (A)");
 
       }
 
@@ -2594,14 +2594,14 @@ namespace user
       {
 
 
-         information("left_button_down");
+         informationf("left_button_down");
 
       }
       else if (pmouse->m_atom == e_message_left_button_up)
       {
 
 
-         information("left_button_up");
+         informationf("left_button_up");
 
       }
 
@@ -2647,7 +2647,7 @@ namespace user
       //            if (strUserInteractionType.case_insensitive_contains("button"))
       //            {
       //
-      //               information("mouse_move::userinteraction=button");
+      //               informationf("mouse_move::userinteraction=button");
       //
       //            }
       //            else
@@ -2722,14 +2722,14 @@ namespace user
 //      if (pmouse->m_atom == e_message_left_button_down)
 //      {
 //
-//         information("e_message_left_button_down");
+//         informationf("e_message_left_button_down");
 //
 //         string strType = ::type(m_puserinteraction).name();
 //
 //         if (strType.case_insensitive_contains("list_box"))
 //         {
 //
-//            ::information("list_box e_message_left_button_down");
+//            ::informationf("list_box e_message_left_button_down");
 //
 //         }
 //
@@ -2737,26 +2737,26 @@ namespace user
 //      else if (pmouse->m_atom == e_message_left_button_up)
 //      {
 //
-//         information("e_message_left_button_up");
+//         informationf("e_message_left_button_up");
 //
 //      }
 //      else if (pmouse->m_atom == e_message_non_client_left_button_up)
 //      {
 //
-//         information("e_message_non_client_left_button_up");
+//         informationf("e_message_non_client_left_button_up");
 //
 //      }
 //      else if (pmouse->m_atom == e_message_non_client_left_button_down)
 //      {
 //
-//         information("e_message_non_client_left_button_down");
+//         informationf("e_message_non_client_left_button_down");
 //
 //         string strType;
 //
 //         if (strType.case_insensitive_contains("list_box"))
 //         {
 //
-//            ::information("list_box e_message_non_client_left_button_down");
+//            ::informationf("list_box e_message_non_client_left_button_down");
 //
 //         }
 //
@@ -2785,7 +2785,7 @@ namespace user
 //
 //         pmouse->m_pcursor = pcursor;
 //
-//         //information("windows::e_message_mouse_move(%d,%d)", pmouse->m_point.x(), pmouse->m_point.y());
+//         //informationf("windows::e_message_mouse_move(%d,%d)", pmouse->m_point.x(), pmouse->m_point.y());
 //
 //         //string strType;
 //
@@ -2797,7 +2797,7 @@ namespace user
 //            if (strType.case_insensitive_contains("list_box"))
 //            {
 //
-//               //::information("list_box e_message_mouse_move");
+//               //::informationf("list_box e_message_mouse_move");
 //
 //            }
 //
@@ -2845,13 +2845,13 @@ namespace user
 //      //   if (strType.case_insensitive_contains("button"))
 //      //   {
 //
-//      //      information("mouse transfer on button");
+//      //      informationf("mouse transfer on button");
 //
 //      //   }
 //      //   else if (strType.case_insensitive_contains("tab"))
 //      //   {
 //
-//      //      information("mouse transfer on tab");
+//      //      informationf("mouse transfer on tab");
 //
 //      //   }
 //
@@ -2917,13 +2917,13 @@ namespace user
 //      //   if (strType.case_insensitive_contains("button"))
 //      //   {
 //
-//      //      information("mouse transfer on button");
+//      //      informationf("mouse transfer on button");
 //
 //      //   }
 //      //   else if (strType.case_insensitive_contains("tab"))
 //      //   {
 //
-//      //      information("mouse transfer on tab");
+//      //      informationf("mouse transfer on tab");
 //
 //      //   }
 //
@@ -3592,7 +3592,7 @@ namespace user
 
    //   oswindow w = ::set_capture(get_handle());
 
-   //   information("\nSet Capture: oswindow=0x" + ::hex::lower_from((iptr) w));
+   //   informationf("\nSet Capture: oswindow=0x" + ::hex::lower_from((iptr) w));
 
    //   auto psession = get_session();
 
@@ -3703,13 +3703,13 @@ namespace user
       if (m_puserinteraction->layout().is_moving())
       {
 
-         information("moving: skip walk pre translate tree");
+         informationf("moving: skip walk pre translate tree");
 
       }
       else if (m_puserinteraction->layout().is_sizing())
       {
 
-         information("sizing: skip walk pre translate tree");
+         informationf("sizing: skip walk pre translate tree");
 
       }
       else
@@ -4223,7 +4223,7 @@ namespace user
       if (m_bDoingGraphics)
       {
 
-         //information("set_need_redraw on doing graphics");
+         //informationf("set_need_redraw on doing graphics");
 
       }
 
@@ -5326,7 +5326,7 @@ namespace user
       //      if (strType.contains("list_box"))
       //      {
       //
-      //         information("list_box");
+      //         informationf("list_box");
       //
       //      }
 
@@ -5632,7 +5632,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 //
 //   auto elapsed = timeStart.elapsed();
 //
-//   information("_001UpdateBuffer " + as_string(elapsed.floating_millisecond().m_d) + "ms\n");
+//   informationf("_001UpdateBuffer " + as_string(elapsed.floating_millisecond().m_d) + "ms\n");
 //
 //#endif
 
@@ -5723,7 +5723,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
                         //for(index i = 0; i < iSeverity * 20; i++)
                         //{
 
-            information("m_pgraphics->on_begin_draw FAILED (1)\n");
+            informationf("m_pgraphics->on_begin_draw FAILED (1)\n");
 
             //}
 
@@ -5861,7 +5861,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
                if (m_puserinteraction->has_finishing_flag())
                {
 
-                  information("::user::interaction_impl set_finish");
+                  informationf("::user::interaction_impl set_finish");
 
                }
                else
@@ -5897,7 +5897,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 
                //m_rectangleUpdateBuffer = r;
 
-               //information("PrintBuffer (%d, %d)",  r.right(), r.bottom());
+               //informationf("PrintBuffer (%d, %d)",  r.right(), r.bottom());
 
                //if (!m_pgraphics)
                //{
@@ -5990,7 +5990,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
                         //for(index i = 0; i < iSeverity * 20; i++)
                         //{
 
-            information("m_pgraphics->on_begin_draw FAILED (1)\n");
+            informationf("m_pgraphics->on_begin_draw FAILED (1)\n");
 
             //}
 
@@ -6130,7 +6130,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
                if (m_puserinteraction->has_finishing_flag())
                {
 
-                  information("::user::interaction_impl set_finish");
+                  informationf("::user::interaction_impl set_finish");
 
                }
                else
@@ -6166,7 +6166,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 
                //m_rectangleUpdateBuffer = r;
 
-               //information("PrintBuffer (%d, %d)",  r.right(), r.bottom());
+               //informationf("PrintBuffer (%d, %d)",  r.right(), r.bottom());
 
                if (!m_pgraphics)
                {
@@ -6374,7 +6374,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 //
 //         bool bGraphicsSet = m_pgraphics.is_set();
 //
-//         information("_001UpdateScreen list_box");
+//         informationf("_001UpdateScreen list_box");
 //
 //      }
 //
@@ -6975,7 +6975,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
    bool interaction_impl::keyboard_focus_OnKillFocus(::oswindow oswindowNew)
    {
 
-      information("::android::interaction_impl::keyboard_focus_OnKillFocus() (1) \n");
+      informationf("::android::interaction_impl::keyboard_focus_OnKillFocus() (1) \n");
 
       //      auto pwindowing = windowing();
       //
@@ -7011,7 +7011,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
    bool interaction_impl::keyboard_focus_OnChildKillFocus()
    {
 
-      information("::android::interaction_impl::keyboard_focus_OnChildKillFocus() (2) \n");
+      informationf("::android::interaction_impl::keyboard_focus_OnChildKillFocus() (2) \n");
 
       auto pwindowing = windowing();
 
@@ -7696,7 +7696,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 //         //if(m_sizeDrawn != sizeOutput)
 //         //{
 //
-//         //   information("blank borders (1), drawing extrapoation (1) or cut border (1)??\n");
+//         //   informationf("blank borders (1), drawing extrapoation (1) or cut border (1)??\n");
 //
 //         //}
 //
@@ -7937,7 +7937,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 //
 //         ::point_i32 pointBottomRight = pointOutput + sizeOutput;
 //
-//         //information("SetWindowPos bottom_right " + as_string(pointBottomRight.x()) + ", " + as_string(pointBottomRight.y()) + "\n");
+//         //informationf("SetWindowPos bottom_right " + as_string(pointBottomRight.x()) + ", " + as_string(pointBottomRight.y()) + "\n");
 //
 //   //#if !defined(UNIVERSAL_WINDOWS) && !defined(ANDROID)
 //
@@ -8068,7 +8068,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 //         if (pimplFocus == this)
 //         {
 //
-//            information("optimized out a set_keyboard_focus");
+//            informationf("optimized out a set_keyboard_focus");
 //
 //         }
 //         else
@@ -8736,7 +8736,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 
          m_puserinteraction->destroy_window();
 
-         information("destroy_window");
+         informationf("destroy_window");
 
       }
 

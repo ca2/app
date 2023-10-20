@@ -193,7 +193,7 @@ namespace acme
       ////      else
       ////      {
 
-      ////         information("Waiting France Exit of %s", typeid(pappItem.m_p).name());
+      ////         informationf("Waiting France Exit of %s", typeid(pappItem.m_p).name());
 
       ////         j++;
 
@@ -485,7 +485,7 @@ namespace acme
    //            {
    //
    //               //output_error_message("papp \"" + strApp + "\"\nat path \"" + pathExe + "\"\n is not installed.");
-   //               information("papp \"" + strApp + "\"\nat path \"" + pathExe + "\"\n is not installed.");
+   //               informationf("papp \"" + strApp + "\"\nat path \"" + pathExe + "\"\n is not installed.");
    //
    //               return nullptr;
    //

@@ -317,7 +317,7 @@ m_bDrag(false)
                
             }
 
-            information("rectangleOld (%d, %d, %d, %d)",
+            informationf("rectangleOld (%d, %d, %d, %d)",
                         rectangleOld.left(),
                         rectangleOld.top(),
                         rectangleOld.right(),
@@ -354,7 +354,7 @@ m_bDrag(false)
 
                }
 
-               information("extra Popup Button : rectangleOld (%d, %d, %d, %d)",
+               informationf("extra Popup Button : rectangleOld (%d, %d, %d, %d)",
                   rectangleOld.left(),
                   rectangleOld.top(),
                   rectangleOld.right(),
@@ -373,7 +373,7 @@ m_bDrag(false)
                
             }
             
-            information("rectangleNew (%d, %d, %d, %d)",
+            informationf("rectangleNew (%d, %d, %d, %d)",
                         rectangleNew.left(),
                         rectangleNew.top(),
                         rectangleNew.right(),
@@ -412,7 +412,7 @@ m_bDrag(false)
 
                }
 
-               information("extra Popup Button : rectangleNew (%d, %d, %d, %d)",
+               informationf("extra Popup Button : rectangleNew (%d, %d, %d, %d)",
                   rectangleNew.left(),
                   rectangleNew.top(),
                   rectangleNew.right(),

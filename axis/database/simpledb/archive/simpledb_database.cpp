@@ -59,7 +59,7 @@ namespace simpledb
 
       m_strLastError += error1(pszPrefix);
 
-      information("%s", m_strLastError);
+      informationf("%s", m_strLastError);
 
    }
 

@@ -11,7 +11,7 @@ DO_FACTORY(REFERENCE_FACTORY)
 ////#include "acme/exception/exception.h"
 #include "acme/operating_system/process.h"
 #include APPLICATION_INCLUDE
-
+#include <type_traits>
 
 
 
@@ -59,7 +59,7 @@ namespace acme
 #ifdef WINDOWS
 int wmain(int argc, wchar_t* argv[], wchar_t* envp[])
 #else
-int main(int argc, platform_char ** argv, platform_char ** envp)
+int main(int argc, char ** argv, char ** envp)
 #endif
 {
 #define DEEP_DEBUG
@@ -68,13 +68,13 @@ int main(int argc, platform_char ** argv, platform_char ** envp)
    for(int i = 0; i < argc; i++)
    {
       auto pszParameter = argv[i];
-      if (sizeof(platform_char) == sizeof(wchar_t))
+      if constexpr(std::is_same_v<decltype(*argv[0]), wchar_t>)
       {
-         printf("argv[%d]=%S\n", i, pszParameter);
+         printf("argv[%d]=%S\n", i, (wchar_t*) pszParameter);
       }
       else
       {
-         printf("argv[%d]=%s\n", i, pszParameter);
+         printf("argv[%d]=%s\n", i, (char *) pszParameter);
       }
    }
 #endif

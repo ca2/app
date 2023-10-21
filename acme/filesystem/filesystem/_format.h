@@ -11,16 +11,17 @@ namespace std
 {
 
 
-   template <> 
+   template <>
    struct std::formatter<::file::path> :
       public std::formatter<std::string>
    {
 
       template<typename Context>
-      auto format(const ::file::path & path, Context & ctx) const
+      auto format(const ::file::path& path, Context& ctx) const
       {
 
          return formatter<string>::format(std::format("{}", path.c_str()), ctx);
+
       }
 
    };

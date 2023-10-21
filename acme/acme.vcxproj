@@ -835,6 +835,8 @@
     <ClInclude Include="filesystem\watcher\watcher.h" />
     <ClInclude Include="filesystem\watcher\_.h" />
     <ClInclude Include="filesystem\_.h" />
+    <ClInclude Include="filesyste\filesyste\_format.h" />
+    <ClInclude Include="format.h" />
     <ClInclude Include="graphics\draw2d\color32.h" />
     <ClInclude Include="graphics\draw2d\color_array.h" />
     <ClInclude Include="graphics\draw2d\image32_array.h" />
@@ -867,6 +869,7 @@
     <ClInclude Include="include\_configuration.h" />
     <ClInclude Include="include\_new.h" />
     <ClInclude Include="include\_initial_concepts.h" />
+    <ClInclude Include="include\_operating_system.h" />
     <ClInclude Include="include\_string.h" />
     <ClInclude Include="include\_structures.h" />
     <ClInclude Include="include\_tags.h" />

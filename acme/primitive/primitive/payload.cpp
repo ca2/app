@@ -7401,13 +7401,13 @@ void payload_skip_network_payload(::ansi_range & range)
    else if (*range.m_begin == ']')
    {
 
-      ::information("");
+      ::informationf("");
 
    }
    else if (*range.m_begin == '\0')
    {
 
-      ::information("");
+      ::informationf("");
 
    }
    else
@@ -7507,7 +7507,7 @@ void payload::parse_network_payload(::ansi_range & range)
    else if (*range.m_begin == ']')
    {
 
-      ::information("");
+      ::informationf("");
 
       //pszJson++;
 
@@ -7515,7 +7515,7 @@ void payload::parse_network_payload(::ansi_range & range)
    else if (*range.m_begin == '\0')
    {
 
-      ::information("");
+      ::informationf("");
 
    }
    else
@@ -7536,7 +7536,7 @@ void payload::parse_network_payload(::ansi_range & range)
    if (range.is_empty())
    {
       
-      ::information("");
+      ::informationf("");
 
       return ::e_type_new;
 
@@ -7544,7 +7544,7 @@ void payload::parse_network_payload(::ansi_range & range)
    else if (*range.m_begin == '\0')
    {
 
-      ::information("");
+      ::informationf("");
 
       return ::e_type_new;
 
@@ -7671,7 +7671,7 @@ void payload::parse_network_payload(::ansi_range & range)
    }
    else if (*range.m_begin == ']')
    {
-      ::information("");
+      ::informationf("");
       return ::e_type_new;
    }
    else

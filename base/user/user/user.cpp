@@ -224,7 +224,7 @@ namespace base
 
 
 
-      information("::user::application::initialize");
+      informationf("::user::application::initialize");
 
       //xml::document docUser;
 

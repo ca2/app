@@ -402,7 +402,7 @@ namespace introjection
 //
 //      ::payload payload = psystem->process().get_output(strCommandLine);
 //
-//      information("%s", payload.string().c_str());
+//      informationf("%s", payload.string().c_str());
 //
 //#endif
 //
@@ -433,7 +433,7 @@ namespace introjection
 //      bResult = setenv("PATH",str,true);
 //#endif
 //
-//      information("compiler::prepare_compile_and_link_environment SetEnvironmentVariable return bool " << bResult);
+//      informationf("compiler::prepare_compile_and_link_environment SetEnvironmentVariable return bool " << bResult);
 //
 //
 //   }
@@ -502,7 +502,7 @@ namespace introjection
 //      for (auto & pproperty : setEnvironment)
 //      {
 //
-//         information("%s : %s", pproperty->m_atom.to_string().c_str(), pproperty->string().c_str());
+//         informationf("%s : %s", pproperty->m_atom.to_string().c_str(), pproperty->string().c_str());
 //
 //         SetEnvironmentVariableW(wstring(pproperty->m_atom), wstring(pproperty->string()));
 //
@@ -951,7 +951,7 @@ pacmedirectory->create("/var/tmp/ca2/intermediate");
       catch(string strError)
       {
 
-         information("%s", (strError + "\n").c_str());
+         informationf("%s", (strError + "\n").c_str());
 
       }
       //try

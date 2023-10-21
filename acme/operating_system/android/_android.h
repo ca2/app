@@ -1,13 +1,13 @@
 #pragma once
 
 
-CLASS_DECL_ACME void os_shell_initialize();
+//CLASS_DECL_ACME void os_shell_initialize();
 
 
 //#include "acme/node/ansios/ansios.h"
 
 
-string get_error_message(::u32 dwError);
+//string get_error_message(::u32 dwError);
 
 //::acme::application* win_instantiate_application(::acme::application* pappSystem, const ::scoped_string & scopedstrId);
 

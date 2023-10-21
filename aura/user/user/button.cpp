@@ -3,6 +3,7 @@
 #include "style.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
+#include "acme/constant/user_key.h"
 #include "acme/handler/item.h" 
 #include "acme/platform/context.h"
 #include "aura/graphics/draw2d/graphics.h"
@@ -51,7 +52,7 @@ namespace user
    {
 
       m_bDefaultClickHandling = true;
-
+      
       m_econtroltype = e_control_type_button;
 
       //m_bMouseHoverOnCapture = true;
@@ -68,14 +69,12 @@ namespace user
 
       m_iClick = 0;
 
-      m_bDefaultClickHandling = true;
 
-      //m_bDefaultParentMouseMessageHandling = true;
 
    }
 
 
-   ::particle_pointer button::clone() const
+   ::particle_pointer button::clone()
    {
 
       auto pcheckbox = m_pcontext->__create_new < ::user::button >();

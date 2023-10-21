@@ -12,6 +12,7 @@
 #include "framework.h"
 #include "VScrollPanel.h"
 #include "Screen.h"
+#include "acme/constant/user_key.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/application.h"
 #include "aura/user/user/interaction.h"
@@ -131,7 +132,7 @@ namespace nanoui
 
          float fScroll = y_coordinate_vertical_scroll(p.y());
 
-         information("drag:point=" + as_string(p.y()) + ",rate=" + as_string(fScroll) + "\n");
+         informationf("drag:point=" + as_string(p.y()) + ",rate=" + as_string(fScroll) + "\n");
 
          if (is_different(fScroll, m_fScroll, 0.00001))
          {

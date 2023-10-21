@@ -132,7 +132,7 @@ namespace acme
 
       return "";
 #else
-      information("returning hard coded default 1.0 version for universal_windows::application::get_version");
+      informationf("returning hard coded default 1.0 version for universal_windows::application::get_version");
       return "1.0";
 #endif
 

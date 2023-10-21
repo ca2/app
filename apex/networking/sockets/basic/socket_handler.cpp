@@ -60,7 +60,7 @@ namespace sockets
 
       g_interlockedcountsocket_idHandler++;
 
-      ::information("::sockets::socket_handler currently allocated count = " + ::as_string((::iptr) g_interlockedcountsocket_idHandler));
+      ::informationf("::sockets::socket_handler currently allocated count = " + ::as_string((::iptr) g_interlockedcountsocket_idHandler));
 
    }
 
@@ -1253,7 +1253,7 @@ namespace sockets
 //                 {
 //
 //                    //socket_id nn = *it; //(*it3).element1();
-//                    //information(" close(2) fd %d\n", socket_id));
+//                    //informationf(" close(2) fd %d\n", socket_id));
 //
 //                    ptcpsocket->SetCloseAndDelete(false);
 //
@@ -1292,7 +1292,7 @@ namespace sockets
 //                 else
 //                 {
 //
-//                    //information(" close(3) fd %d get_socket_id() %d\n", socket_id, point_i32 -> get_socket_id()));
+//                    //informationf(" close(3) fd %d get_socket_id() %d\n", socket_id, point_i32 -> get_socket_id()));
 //
 //                    if (psocket && psocket->IsConnected() && ptcpsocket->GetOutputLength())
 //                    {
@@ -1587,7 +1587,7 @@ namespace sockets
 //
 //      m_resolve_q[pbasesocket_id] = true;
 //
-//      information(" *** Resolve '%s:%d' atom#%d  m_resolve_q size_i32: %d  base_socket: %p\n", host.c_str(), port, presolvsocket_id->GetId(), m_resolve_q.get_size(), pbasesocket_id));
+//      informationf(" *** Resolve '%s:%d' atom#%d  m_resolve_q size_i32: %d  base_socket: %p\n", host.c_str(), port, presolvsocket_id->GetId(), m_resolve_q.get_size(), pbasesocket_id));
 //
 //      return presolvsocket_id->GetId();
 //
@@ -1923,7 +1923,7 @@ namespace sockets
 ////         if (!::contains_payload(m_delete, *p))
 ////         {
 ////
-////            information("CheckList failed for \"%s\": fd %d\n", listname.c_str(), *p));
+////            informationf("CheckList failed for \"%s\": fd %d\n", listname.c_str(), *p));
 ////
 ////         }
 //
@@ -1985,7 +1985,7 @@ namespace sockets
 
    //  //if (add)
    //  //{
-   //  //   /*         information("AddList);  %5d: %s: %s\n", s, (which_one == e_list_call_on_connect) ? "CallOnConnect" :
+   //  //   /*         informationf("AddList);  %5d: %s: %s\n", s, (which_one == e_list_call_on_connect) ? "CallOnConnect" :
    //  //               (which_one == e_list_detach) ? "detach" :
    //  //               (which_one == e_list_timeout) ? "time_out" :
    //  //               (which_one == e_list_retry) ? "Retry" :
@@ -1998,7 +1998,7 @@ namespace sockets
    //     //if (which_one == e_list_close)
    //     //{
 
-   //     //   //INFO(information("list_close");
+   //     //   //INFO(informationf("list_close");
    //     //}
    //     //return;
    //  //}
@@ -2021,7 +2021,7 @@ namespace sockets
 
    //     //if (add)
    //     //{
-   //     //   /*         information("AddList);  %5d: %s: %s\n", s, (which_one == e_list_call_on_connect) ? "CallOnConnect" :
+   //     //   /*         informationf("AddList);  %5d: %s: %s\n", s, (which_one == e_list_call_on_connect) ? "CallOnConnect" :
    //     //               (which_one == e_list_detach) ? "detach" :
    //     //               (which_one == e_list_timeout) ? "time_out" :
    //     //               (which_one == e_list_retry) ? "Retry" :
@@ -2034,7 +2034,7 @@ namespace sockets
    //  //if (which_one == e_list_close)
    //  //{
 
-   //  //   //INFO(information("list_close");
+   //  //   //INFO(informationf("list_close");
    //  //}
    //  //return;
    ////}

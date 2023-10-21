@@ -118,9 +118,6 @@ namespace http
 
       //virtual void on_auth(property_set & set, ::apex::application * papp, string & strUrl, string & strSessId, ::pointer<::account::user>& puser);
 
-      //application();
-      //~application() override;
-
       void http_application_destruct();
 
       property_set & process_set(property_set & set, const ::scoped_string & scopedstrUrl);

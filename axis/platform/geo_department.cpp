@@ -110,7 +110,7 @@ namespace geo
             for (int i = 0; i < 20; i++)
             {
 
-               information("dump: %s, %s, %d, %f, %f\n", m_straCity[i].c_str(), m_straCityLo[i].c_str(), m_iaIds[i], m_daLon[i], m_daLat[i]);
+               informationf("dump: %s, %s, %d, %f, %f\n", m_straCity[i].c_str(), m_straCityLo[i].c_str(), m_iaIds[i], m_daLon[i], m_daLat[i]);
 
             }
 
@@ -609,9 +609,9 @@ namespace geo
 
       string strSunset(timeSunset.FormatZone(INTERNATIONAL_DATE_TIME_FORMAT));
 
-      information("sunrise:" + strSunrise + "\n");
+      informationf("sunrise:" + strSunrise + "\n");
 
-      information("sunset:" + strSunset + "\n");
+      informationf("sunset:" + strSunset + "\n");
 
       return true;
 
@@ -1308,7 +1308,7 @@ namespace geo
       else if (!::mathematics::convert_to_double(dTimeZoneOffset, strCountryCode))
       {
 
-         information("(2) ERROR !! Missing timezone offset information for \"%s\" - \"%s\"", str.c_str(), strCountryCode.c_str());
+         informationf("(2) ERROR !! Missing timezone offset information for \"%s\" - \"%s\"", str.c_str(), strCountryCode.c_str());
 
       }
 

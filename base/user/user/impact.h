@@ -48,6 +48,8 @@ namespace user
       ::user::document * get_document() const;
 
 
+      ::data::data * _get_data(const ::atom & atom) override;
+
       template < class DATA >
       DATA * get_typed_data()
       {

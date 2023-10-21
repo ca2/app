@@ -16,10 +16,10 @@ namespace opengl
 {
 
 
-   ::gpu::context * create_fbo_context()
+   ::pointer <::gpu::context > allocate_fbo_context(::particle * pparticle)
    {
 
-      return memory_new context_fbo();
+      return pparticle->__create_new < context_fbo >();
 
    }
 
@@ -103,14 +103,14 @@ namespace opengl
       for(int iFormat = 0; iFormat < NumFormats; iFormat++)
       {
          
-         information("\nFormat " + ::as_string(iFormat) + "\n");
+         informationf("\nFormat " + ::as_string(iFormat) + "\n");
          
 #define DUMP_FORMAT(x)                                                        \
          {                                                                    \
                                                                               \
             GLint value = 0;                                                  \
             CGLDescribePixelFormat(PixelFormat, iFormat, x, &value);          \
-            information(string(#x) + ": " + ::as_string(value) + "\n");     \
+            informationf(string(#x) + ": " + ::as_string(value) + "\n");     \
                                                                               \
          }
          

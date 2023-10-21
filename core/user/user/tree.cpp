@@ -109,7 +109,7 @@ namespace user
 
       //auto estatus =
 
-      __construct_new(m_ptree);
+      __construct_new(m_ptreedata);
 
       //if (!estatus)
       //{
@@ -479,7 +479,7 @@ namespace user
 
       }
 
-      //information("(1)TreeItemElapsed %d", ::time.elapsed());
+      //informationf("(1)TreeItemElapsed %d", ::time.elapsed());
 
       //      ::aura::savings & savings = psession->m_paurasession->savings();
 
@@ -874,7 +874,7 @@ namespace user
 
       }
 
-      synchronous_lock synchronouslock(m_ptree ? m_ptree->synchronization() : nullptr);
+      synchronous_lock synchronouslock(m_ptreedata ? m_ptreedata->synchronization() : nullptr);
 
       ::pointer<::data::tree_item>pitem = get_proper_item(iItem);
 
@@ -1158,20 +1158,20 @@ namespace user
    }
 
 
-   ::pointer<::data::tree>tree::find_tree(::data::tree_item * pitem) const
+   ::pointer<::data::tree>tree::find_data_tree(::data::tree_item * pitem) const
    {
 
-      //return m_ptree->contains(pitem);
+      //return m_ptreedata->contains(pitem);
 
-      return m_ptree;
+      return m_ptreedata;
 
    }
 
 
-   ::pointer<::data::tree_item>tree::find(::data::item * pitem, index * piIndex)
+   ::pointer<::data::tree_item>tree::find_data_tree_item(::data::item * pitem, index * piIndex)
    {
 
-      return  m_ptree->find(pitem, piIndex);
+      return m_ptreedata->find(pitem, piIndex);
 
    }
 
@@ -1179,7 +1179,7 @@ namespace user
    bool tree::contains(::data::item * pitem)
    {
 
-      return find(pitem).is_set();
+      return find_data_tree_item(pitem).is_set();
 
    }
 
@@ -1187,8 +1187,12 @@ namespace user
    bool tree::contains(::data::tree_item * pitem)
    {
 
-      if (m_ptree->contains(pitem))
+      if (m_ptreedata->contains(pitem))
+      {
+
          return true;
+
+      }
 
       return false;
 
@@ -1198,12 +1202,12 @@ namespace user
    void tree::_001OnItemExpand(::data::tree_item * pitem, const ::action_context & context)
    {
 
-      ::pointer<::data::tree>ptree = find_tree(pitem);
+      ::pointer<::data::tree>ptreedata = find_data_tree(pitem);
 
-      if (ptree.is_set())
+      if (ptreedata.is_set())
       {
 
-         ptree->_001OnItemExpand(pitem, context);
+         ptreedata->_001OnItemExpand(pitem, context);
 
       }
 
@@ -1212,16 +1216,17 @@ namespace user
    void tree::_001OnItemCollapse(::data::tree_item * pitem, const ::action_context & context)
    {
 
-      ::pointer<::data::tree>ptree = find_tree(pitem);
+      ::pointer<::data::tree>ptreedata = find_data_tree(pitem);
 
-      if (ptree.is_set())
+      if (ptreedata.is_set())
       {
 
-         ptree->_001OnItemCollapse(pitem, context);
+         ptreedata->_001OnItemCollapse(pitem, context);
 
       }
 
    }
+
 
    void tree::_001OnVScroll(::message::message * pmessage)
    {
@@ -1497,7 +1502,7 @@ namespace user
    ::pointer<::data::tree_item>tree::CalcFirstVisibleItem(index & iProperIndex)
    {
 
-      synchronous_lock synchronouslock(m_ptree ? m_ptree->synchronization() : nullptr);
+      synchronous_lock synchronouslock(m_ptreedata ? m_ptreedata->synchronization() : nullptr);
 
       index nOffset;
 
@@ -1508,7 +1513,7 @@ namespace user
 
       }
 
-      if (!m_ptree)
+      if (!m_ptreedata)
       {
 
          return nullptr;
@@ -1525,7 +1530,7 @@ namespace user
 
       iProperIndex = 0;
 
-      pitem = m_ptree->get_base_item();
+      pitem = m_ptreedata->get_base_item();
 
       for (;;)
       {
@@ -1583,7 +1588,7 @@ namespace user
 
       }
 
-      if (!m_ptree)
+      if (!m_ptreedata)
       {
 
          return 0;
@@ -1626,7 +1631,7 @@ namespace user
 
       pointer_array < ::data::tree_item > spitema;
 
-      pitem = m_ptree->get_base_item();
+      pitem = m_ptreedata->get_base_item();
 
       iLevel = 0;
 
@@ -1645,7 +1650,7 @@ namespace user
          if (spitema.find_first(pitem) >= 0)
          {
 
-            //information("what!?!");
+            //informationf("what!?!");
 
             break;
 
@@ -1693,7 +1698,7 @@ namespace user
    count tree::_001GetProperItemCount()
    {
 
-      if (!m_ptree)
+      if (!m_ptreedata)
       {
 
          return 0;
@@ -1708,7 +1713,7 @@ namespace user
 
       pointer_array < ::data::tree_item > treeitema;
 
-      ptreeitem = m_ptree->get_base_item();
+      ptreeitem = m_ptreedata->get_base_item();
 
       for (;;)
       {
@@ -1722,7 +1727,7 @@ namespace user
 
          }
 
-         if (ptreeitem == m_ptree->get_base_item())
+         if (ptreeitem == m_ptreedata->get_base_item())
          {
 
             break;
@@ -1732,7 +1737,7 @@ namespace user
          if (treeitema.find_first(ptreeitem) >= 0)
          {
 
-            //information("what!!?");
+            //informationf("what!!?");
 
             break;
 
@@ -1776,16 +1781,16 @@ namespace user
    bool tree::selection_add(::data::item * pitemdata, index i)
    {
 
-      auto  pitem = find(pitemdata, &i);
+      auto ptreedataitem = find_data_tree_item(pitemdata, &i);
 
-      if (!pitem)
+      if (!ptreedataitem)
       {
 
          return false;
 
       }
 
-      return selection_add(pitem);
+      return selection_add(ptreedataitem);
 
    }
 
@@ -1837,16 +1842,16 @@ namespace user
    bool tree::selection_set(index i, ::data::item * pitemdata, bool bIfNotInSelection, bool bIfParentInSelection)
    {
 
-      auto pitem = find(pitemdata, &i);
+      auto ptreedataitem = find_data_tree_item(pitemdata, &i);
 
-      if (!pitem)
+      if (!ptreedataitem)
       {
 
          return false;
 
       }
 
-      return selection_set(pitem, bIfNotInSelection, bIfParentInSelection);
+      return selection_set(ptreedataitem, bIfNotInSelection, bIfParentInSelection);
 
    }
 
@@ -1911,16 +1916,16 @@ namespace user
    bool tree::selection_erase(::data::item * pitemdata, index i)
    {
 
-      auto pitem = find(pitemdata, &i);
+      auto ptreedataitem = find_data_tree_item(pitemdata, &i);
 
-      if (!pitem)
+      if (!ptreedataitem)
       {
 
          return false;
 
       }
 
-      return selection_erase(pitem);
+      return selection_erase(ptreedataitem);
 
    }
 
@@ -1966,9 +1971,9 @@ namespace user
    bool tree::hover(::data::item * pitemdata, index i)
    {
 
-      auto pitem = find(pitemdata, &i);
+      auto ptreedataitem = find_data_tree_item(pitemdata, &i);
 
-      return hover(pitem);
+      return hover(ptreedataitem);
 
    }
 
@@ -2065,14 +2070,14 @@ namespace user
    bool tree::can_merge(const ::data::tree * ptree) const
    {
 
-      if (!m_ptree)
+      if (!m_ptreedata)
       {
 
          return false;
 
       }
 
-      return !m_ptree->contains(ptree);
+      return !m_ptreedata->contains(ptree);
 
    }
 
@@ -2103,7 +2108,7 @@ namespace user
 
       }
 
-      m_ptree->insert_item(ptree);
+      m_ptreedata->insert_item(ptree);
 
       ptree->on_merge_user_tree(this);
 
@@ -2140,14 +2145,14 @@ namespace user
    ::pointer<::data::tree_item>tree::get_proper_item(index i, index * piLevel)
    {
 
-      if (!m_ptree)
+      if (!m_ptreedata)
       {
 
          return nullptr;
 
       }
 
-      ::data::tree_item * pitem = m_ptree->get_proper_item(i, piLevel);
+      ::data::tree_item * pitem = m_ptreedata->get_proper_item(i, piLevel);
 
       if (::is_set(pitem))
       {
@@ -2164,7 +2169,7 @@ namespace user
    ::pointer<::data::tree_item>tree::_get_proper_item(index i, index * piLevel, index * piCount)
    {
 
-      if (!m_ptree)
+      if (!m_ptreedata)
       {
 
          return nullptr;
@@ -2175,7 +2180,7 @@ namespace user
 
       ::pointer<::data::tree_item>pitem;
 
-      pitem = m_ptree->_get_proper_item(i, piLevel, &iCount);
+      pitem = m_ptreedata->_get_proper_item(i, piLevel, &iCount);
 
       if (::is_set(pitem))
       {
@@ -2203,7 +2208,7 @@ namespace user
 
       index iFound;
 
-      iFound = m_ptree->get_proper_item_index(pitemParam, piLevel, &iCount);
+      iFound = m_ptreedata->get_proper_item_index(pitemParam, piLevel, &iCount);
 
       if (iFound >= 0)
       {
@@ -2222,7 +2227,7 @@ namespace user
 
       synchronous_lock synchronouslock(this->synchronization());
 
-      if (!m_ptree)
+      if (!m_ptreedata)
       {
 
          return -1;
@@ -2231,7 +2236,7 @@ namespace user
 
       index iCount = 0;
 
-      iCount += m_ptree->get_proper_item_count();
+      iCount += m_ptreedata->get_proper_item_count();
 
       return iCount;
 
@@ -2302,10 +2307,10 @@ namespace user
    void tree::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if (m_ptree)
+      if (m_ptreedata)
       {
 
-         m_ptree->handle(ptopic, pcontext);
+         m_ptreedata->handle(ptopic, pcontext);
 
       }
 

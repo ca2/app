@@ -291,65 +291,68 @@ namespace wayland
 //   };
 
 
-   void
-   pointer_handle_enter(void * data, struct wl_pointer * pwlpointer,
+   void pointer_handle_enter(void * data, struct wl_pointer * pwlpointer,
                         uint32_t serial, struct wl_surface * pwlsurface,
                         wl_fixed_t sx, wl_fixed_t sy)
    {
 
       auto x = wl_fixed_to_double(sx);
+
       auto y = wl_fixed_to_double(sy);
 
       struct wl_buffer * buffer;
+
       struct wl_cursor_image * image;
 
       fprintf(stderr, "Pointer entered surface %p at %0.0f %0.0f\n", pwlsurface, x, y);
 
       auto pdisplay = (display_base *) data;
 
-      pdisplay->m_uLastPointerSerial = serial;
+      pdisplay->__handle_pointer_enter(pwlpointer, serial, pwlsurface, sx, sy);
 
-      pdisplay->m_uLastSeatSerial = serial;
-
-      if (pwlsurface == pdisplay->m_pwlsurfaceMouseCapture)
-      {
-
-         fprintf(stderr, "entered Mouse Capture surface at %0.0f %0.0f!!\n", x, y);
-
-         pdisplay->m_bMouseCaptured = true;
-
-         ///pdisplay->__handle_pointer_enter(x, y, pwaylandwindow);
-
-         return;
-
-      }
-
-      auto pwaylandwindow = pdisplay->_window(pwlsurface);
-
-      //auto pcursor = pwaylandwindow->get_mouse_cursor();
-
-//      auto pwlsurfaceCursor =  pdisplay->m_pwlsurfaceCursor;
+//      pdisplay->m_uLastPointerSerial = serial;
 //
-//      ::pointer < ::windowing_wayland::cursor > pwaylandcursor = pcursor;
-
-      //image = default_cursor->images[0];
-      //buffer = wl_cursor_image_get_buffer(image);
-
-//      if(pwaylandcursor)
+//      pdisplay->m_uLastSeatSerial = serial;
+//
+//      if (pwlsurface == pdisplay->m_pwlsurfaceMouseCapture)
 //      {
 //
-//         wl_pointer_set_cursor(pwlpointer, serial,
-//                               pwlsurfaceCursor,
-//                               pwaylandcursor->m_szHotspotOffset.cx(),
-//                               pwaylandcursor->m_szHotspotOffset.cy());
-//         wl_surface_attach(pwlsurfaceCursor, pwaylandcursor->m_waylandbuffer.m_pwlbuffer, 0, 0);
-//         wl_surface_damage(pwlsurfaceCursor, 0, 0, pwaylandcursor->m_pimage->width(),
-//                           pwaylandcursor->m_pimage->height());
-//         wl_surface_commit(pwlsurfaceCursor);
+//         fprintf(stderr, "entered Mouse Capture surface at %0.0f %0.0f!!\n", x, y);
+//
+//         pdisplay->m_bMouseCaptured = true;
+//
+//         ///pdisplay->__handle_pointer_enter(x, y, pwaylandwindow);
+//
+//         return;
 //
 //      }
-
-      pdisplay->__handle_pointer_enter(pwlpointer, x, y, pwaylandwindow);
+//
+//      auto pwaylandwindow = pdisplay->_window(pwlsurface);
+//
+//      //auto pcursor = pwaylandwindow->get_mouse_cursor();
+//
+////      auto pwlsurfaceCursor =  pdisplay->m_pwlsurfaceCursor;
+////
+////      ::pointer < ::windowing_wayland::cursor > pwaylandcursor = pcursor;
+//
+//      //image = default_cursor->images[0];
+//      //buffer = wl_cursor_image_get_buffer(image);
+//
+////      if(pwaylandcursor)
+////      {
+////
+////         wl_pointer_set_cursor(pwlpointer, serial,
+////                               pwlsurfaceCursor,
+////                               pwaylandcursor->m_szHotspotOffset.cx(),
+////                               pwaylandcursor->m_szHotspotOffset.cy());
+////         wl_surface_attach(pwlsurfaceCursor, pwaylandcursor->m_waylandbuffer.m_pwlbuffer, 0, 0);
+////         wl_surface_damage(pwlsurfaceCursor, 0, 0, pwaylandcursor->m_pimage->width(),
+////                           pwaylandcursor->m_pimage->height());
+////         wl_surface_commit(pwlsurfaceCursor);
+////
+////      }
+//
+//      pdisplay->__handle_pointer_enter(pwlpointer, x, y, pwaylandwindow);
 
    }
 
@@ -417,13 +420,12 @@ namespace wayland
    }
 
 
-   void
-   pointer_handle_button(void * data, struct wl_pointer * pwlpointer,
+   void pointer_handle_button(void * data, struct wl_pointer * pwlpointer,
                          uint32_t serial, uint32_t millis, uint32_t linux_button,
                          uint32_t pressed)
    {
-///      printf("Pointer button\n");
 
+      fprintf(stderr, "Pointer button\n");
 
       auto pdisplay = (display_base *) data;
 
@@ -719,7 +721,7 @@ namespace wayland
       }
 
 
-      pdisplay->information("registry interface : %s", interface);
+      pdisplay->informationf("registry interface : %s", interface);
 
 
    }
@@ -981,7 +983,7 @@ namespace wayland
 //                            _NET_WORKAREA, 0, ~0, False,
 //                            XA_CARDINAL, &type, &format, &items, &bytesAfter, (uint8_t **)&workArea) || !workArea)
 //      {
-//         warning("error getting desktop work area, using root window size");
+//         warningf("error getting desktop work area, using root window size");
 //      }
 //      else
 //      {
@@ -1383,9 +1385,85 @@ namespace wayland
    }
 
 
-   void display_base::__handle_pointer_enter(::wl_pointer * pwlpointer, double x, double y,
-                                             ::wayland::nano_window_base * pwindowPointerEnter)
+   //void display_base::__handle_pointer_enter(::wl_pointer * pwlpointer, double x, double y,
+     //                                        ::wayland::nano_window_base * pwindowPointerEnter)
+
+   void display_base::__handle_pointer_enter(struct wl_pointer * pwlpointer,
+                        uint32_t serial, struct wl_surface * pwlsurface,
+                        double x, double y)
    {
+
+      //auto x = wl_fixed_to_double(sx);
+      //auto y = wl_fixed_to_double(sy);
+
+      struct wl_buffer * buffer;
+
+      struct wl_cursor_image * image;
+
+      //fprintf(stderr, "Pointer entered surface %p at %0.0f %0.0f\n", pwlsurface, x, y);
+
+      //auto pdisplay = (display_base *) data;
+
+      //pdisplay->__handle_pointer_enter(pwlpointer, serial, pwlsurface, sx, sy);
+
+      m_uLastPointerSerial = serial;
+
+      m_uLastSeatSerial = serial;
+
+      if (pwlsurface == m_pwlsurfaceMouseCapture)
+      {
+
+         fprintf(stderr, "entered Mouse Capture surface at %0.0f %0.0f!!\n", x, y);
+
+         m_bMouseCaptured = true;
+
+         ///pdisplay->__handle_pointer_enter(x, y, pwaylandwindow);
+
+         return;
+
+      }
+
+      information() << "display_base::__handle_pointer_enter : " << (::iptr) pwlsurface;
+
+      auto pwindowPointerEnter = _window(pwlsurface);
+
+      if(::is_null(pwindowPointerEnter))
+      {
+
+         information() << "display_base::__handle_pointer_enter not found surface window : " << (::iptr) pwindowPointerEnter;
+
+         return;
+
+      }
+
+      //auto pcursor = pwaylandwindow->get_mouse_cursor();
+
+//      auto pwlsurfaceCursor =  pdisplay->m_pwlsurfaceCursor;
+//
+//      ::pointer < ::windowing_wayland::cursor > pwaylandcursor = pcursor;
+
+      //image = default_cursor->images[0];
+      //buffer = wl_cursor_image_get_buffer(image);
+
+//      if(pwaylandcursor)
+//      {
+//
+//         wl_pointer_set_cursor(pwlpointer, serial,
+//                               pwlsurfaceCursor,
+//                               pwaylandcursor->m_szHotspotOffset.cx(),
+//                               pwaylandcursor->m_szHotspotOffset.cy());
+//         wl_surface_attach(pwlsurfaceCursor, pwaylandcursor->m_waylandbuffer.m_pwlbuffer, 0, 0);
+//         wl_surface_damage(pwlsurfaceCursor, 0, 0, pwaylandcursor->m_pimage->width(),
+//                           pwaylandcursor->m_pimage->height());
+//         wl_surface_commit(pwlsurfaceCursor);
+//
+//      }
+
+//      pdisplay->__handle_pointer_enter(pwlpointer, x, y, pwaylandwindow);
+//
+//   }
+//
+//{
 
       m_pwindowPointerEnter = pwindowPointerEnter;
 
@@ -1508,18 +1586,21 @@ namespace wayland
    }
 
 
-   void
-   display_base::__handle_pointer_button(::wl_pointer * pwlpointer, ::u32 linux_button, ::u32 pressed, ::u32 millis)
+   void display_base::__handle_pointer_button(::wl_pointer * pwlpointer, ::u32 linux_button, ::u32 pressed, ::u32 millis)
    {
 
       if (m_pwindowPointerCapture)
       {
+
+         information() << "display_base::__handle_pointer_button m_pwindowPointerCapture";
 
          m_pwindowPointerCapture->__handle_pointer_button(pwlpointer, linux_button, pressed, millis);
 
       }
       else if (m_pwindowPointerEnter)
       {
+
+         information() << "display_base::__handle_pointer_button m_pwindowPointerEnter";
 
          m_pwindowPointerEnter->__handle_pointer_button(pwlpointer, linux_button, pressed, millis);
 
@@ -1596,6 +1677,8 @@ namespace wayland
                                               ::wl_array * pwlarrayKeys)
    {
 
+      information() << "display_base::__handle_keyboard_enter";
+
       m_pwlkeyboard = pwlkeyboard;
 
       m_pwlsurfaceKeyboardEnter = pwlsurface;
@@ -1603,6 +1686,8 @@ namespace wayland
       m_uLastSeatSerial = serial;
       m_uLastKeyboardSerial = serial;
       m_uLastKeyboardEnterSerial = serial;
+
+      information() << "display_base::__handle_keyboard_enter : " << (::iptr) pwlsurface;
 
       auto pwaylandwindow = _window(pwlsurface);
 
@@ -1614,6 +1699,10 @@ namespace wayland
          return;
 
       }
+
+      ::string strType(::type(pwaylandwindow));
+
+      information() << "display_base::__handle_keyboard_enter : " << strType;
 
       m_pwindowKeyboardFocus = pwaylandwindow;
 

@@ -16,6 +16,9 @@ namespace app_app
 
       application();
       ~application() override;
+      
+      __DECLARE_APPLICATION_RELEASE_TIME();
+
 
 
       virtual void on_request(::request * prequest) override;

@@ -74,7 +74,7 @@ namespace ftp
    void output::WriteLine(const ::string & strLine, const string &  strStatus)
    {
 
-      information("%s: %s", strStatus.c_str(), strLine.c_str());
+      informationf("%s: %s", strStatus.c_str(), strLine.c_str());
 
    }
 

@@ -9,6 +9,7 @@
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
 #include "acme/constant/timer.h"
+#include "acme/constant/user_key.h"
 #include "acme/exception/interface_only.h"
 #include "acme/handler/item.h"
 #include "acme/platform/keep.h"
@@ -849,7 +850,16 @@ namespace user
 
          auto psubitem = get_subitem(pdrawitem, iSubItem);
 
-         psubitem->m_iOrder = _001MapColumnToOrder(psubitem->m_pcolumn->m_iColumn);
+         auto pcolumn = psubitem->m_pcolumn;
+
+         if (::is_null(pcolumn))
+         {
+
+            continue;
+
+         }
+
+         psubitem->m_iOrder = _001MapColumnToOrder(pcolumn->m_iColumn);
 
          if (psubitem->m_iOrder < 0)
          {
@@ -1351,6 +1361,8 @@ namespace user
 
             //itemFirst.m_iDisplayItem = 0;
 
+            const char * pszType = typeid(*this).name();
+
             index_item_rectangle(*pitem);
 
             rectangle = pitem->m_pdrawlistitem->m_rectangleItem;
@@ -1495,6 +1507,19 @@ namespace user
       m_pcolumna->add(pcolumn);
 
       pcolumn->m_iColumn = m_pcolumna->get_upper_bound();
+
+      return pcolumn;
+
+   }
+
+   ::pointer<list_column>list::new_list_column_with_control(::user::interaction * puserinteraction)
+   {
+      
+      auto pcolumn = new_list_column();
+
+      pcolumn->m_atom = puserinteraction->m_atom;
+
+      pcolumn->m_puserinteractionTemplate = puserinteraction;
 
       return pcolumn;
 
@@ -1838,7 +1863,9 @@ namespace user
 
       }
 
-      if (iColumn >= m_pcolumna->get_visible_count())
+      auto columnCount = m_pcolumna->get_count();
+
+      if (iColumn >= columnCount)
       {
 
          return -1;
@@ -5058,6 +5085,7 @@ namespace user
    void list_column_array::OnChange()
    {
 
+      m_mapSubItemIndex.clear();
 
       predicate_sort(predicate_list_compare_key);
 //      sort::array::quick_sort(*this, list_column::CompareKey);
@@ -5511,6 +5539,8 @@ namespace user
          synchronous_lock synchronouslock(this->synchronization());
 
          m_pcolumna->erase_all();
+
+         m_mapItem.clear();
 
       }
 
@@ -6444,7 +6474,7 @@ namespace user
 
       auto tickIn = ::time::now();
 
-      information("list::Filter1Step");
+      informationf("list::Filter1Step");
 
       information() << "tickIn = " << tickIn.integral_millisecond();
 
@@ -7670,7 +7700,7 @@ namespace user
 //         catch (...)
 //         {
 //
-//            information("Exception : ::list::_001OnClip");
+//            informationf("Exception : ::list::_001OnClip");
 //
 //         }
 //

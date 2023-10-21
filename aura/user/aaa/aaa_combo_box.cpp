@@ -630,7 +630,7 @@ namespace user
             else if (!m_plist->is_this_screen_visible())
             {
 
-               //information("test");
+               //informationf("test");
 
             }
 
@@ -727,7 +727,7 @@ namespace user
 
          //      m_plist->m_durationLastHide -= 300;
 
-         //      information("asking to show too soon!! not going to show!!");
+         //      informationf("asking to show too soon!! not going to show!!");
 
          //      return;
 
@@ -1641,7 +1641,7 @@ namespace user
       if (!::user::interaction::create_control(pdescriptor))
       {
 
-         information("Failed to create control");
+         informationf("Failed to create control");
 
          return false;
 
@@ -1659,7 +1659,7 @@ namespace user
    void combo_box::on_message_left_button_double_click(::message::message * pmessage)
    {
 
-      //information("\nCOMBO_BOX: DOUBLE CLICK\n");
+      //informationf("\nCOMBO_BOX: DOUBLE CLICK\n");
 
       on_message_left_button_down(pmessage);
 

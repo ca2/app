@@ -1472,46 +1472,7 @@
     <ClInclude Include="__defer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="_factory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="_h.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="_library.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="application.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="aaa_astr.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="console.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="console_slim.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="framework.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="framework_c.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="id.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="library.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="main.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="procedure.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="resource.h">
@@ -1657,12 +1618,6 @@
     </ClInclude>
     <ClInclude Include="hardware\_constant.h">
       <Filter>Header Files\hardware</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\Debug\source\app\aura\operating_system\windows\message_window_listener.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\Debug\source\app\aura\operating_system\windows\message_window.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="user\common_controls.h">
       <Filter>Header Files\user</Filter>

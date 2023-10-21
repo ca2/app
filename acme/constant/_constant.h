@@ -117,6 +117,7 @@ HELP_IMPACT =17,
 FIRST_PANE =18,
 APP_OPTIONS_IMPACT = 19,
 CONTEXT_OPTIONS_IMPACT = 20,
+ABOUT_IMPACT = 21,
 };
 
 
@@ -277,16 +278,16 @@ constexpr bool is_number(enum_type etype)
 
    return
       etype == e_type_bool
-   && etype == e_type_u8
-   && etype == e_type_i8
-   && etype ==  e_type_u16
-   && etype ==  e_type_i16
-   && etype ==  e_type_u32
-   && etype ==  e_type_i32
-   && etype ==  e_type_u64
-   && etype ==  e_type_i64
-   && etype == e_type_f32
-   && etype == e_type_f64;
+   || etype == e_type_u8
+   || etype == e_type_i8
+   || etype ==  e_type_u16
+   || etype ==  e_type_i16
+   || etype ==  e_type_u32
+   || etype ==  e_type_i32
+   || etype ==  e_type_u64
+   || etype ==  e_type_i64
+   || etype == e_type_f32
+   || etype == e_type_f64;
 
 }
 
@@ -1087,5 +1088,15 @@ enum enum_unit :
 
 
 };
+
+
+namespace user
+{
+
+
+   enum enum_key : ::i64;
+
+
+} // namespace user
 
 

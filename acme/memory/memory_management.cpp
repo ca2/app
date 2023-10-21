@@ -90,7 +90,7 @@ CLASS_DECL_ACME void manage_memory_free(enum_memory_heap ememoryheap, void* p)
    else
    {
 
-      information("unknown ememoryheap\n");
+      informationf("unknown ememoryheap\n");
 
       throw ::exception(error_index_out_of_bounds);
 

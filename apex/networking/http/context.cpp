@@ -436,7 +436,7 @@ namespace http
 
       //output_error_message("What?!", nullptr, e_message_box_ok);
 
-      information("What?!");
+      informationf("What?!");
 
       string strUrl = locale_schema_url(scopedstrUrl, scopedstrLocale, scopedstrSchema);
 
@@ -968,7 +968,7 @@ namespace http
 
       //            pproxy->m_iPort = pnode->attribute("port");
 
-      //            information("Select Proxy : address %s mask %s server %s port %d", pnode->attribute("address").as_string().c_str(),
+      //            informationf("Select Proxy : address %s mask %s server %s port %d", pnode->attribute("address").as_string().c_str(),
       //               pnode->attribute("mask").as_string().c_str(), pproxy->m_strProxy.c_str(), pproxy->m_iPort);
 
       //            return;
@@ -1008,14 +1008,14 @@ namespace http
       ////         //if(bAutoDetect)
       ////         //{
       ////
-      ////         //   information("proxy auto_detect true");
+      ////         //   informationf("proxy auto_detect true");
       ////
       ////         //   string strUrl = m_pcontext->m_papexcontext->os().connection_settings_get_auto_config_url();
       ////
       ////         //   if(strUrl.has_char())
       ////         //   {
       ////
-      ////         //      information("get_auto_config_url : %s",strUrl);
+      ////         //      informationf("get_auto_config_url : %s",strUrl);
       ////
       ////         //      if(try_pac_script(strUrl,scopedstrUrl,pproxy))
       ////         //         return;
@@ -1026,14 +1026,14 @@ namespace http
       ////         //else
       ////         //{
       ////
-      ////         //   information("proxy auto_detect false");
+      ////         //   informationf("proxy auto_detect false");
       ////
       ////         //   string strUrl = m_pcontext->m_papexcontext->os().connection_settings_get_auto_config_url();
       ////
       ////         //   if(strUrl.has_char())
       ////         //   {
       ////
-      ////         //      information("get_auto_config_url : %s",strUrl);
+      ////         //      informationf("get_auto_config_url : %s",strUrl);
       ////
       ////         //      if(try_pac_script(strUrl,scopedstrUrl,pproxy))
       ////         //         return;
@@ -1302,7 +1302,7 @@ namespace http
 //
 //            }
 //
-//            information("opening context::request time(%d) = ", tickBeg.elapsed().integral_second().m_i);
+//            informationf("opening context::request time(%d) = ", tickBeg.elapsed().integral_second().m_i);
 //
 //         }
 //         catch (...)
@@ -1493,7 +1493,7 @@ namespace http
 //
 //         //}
 //
-//         information("opening preparation context::request time(%d) = ", tickBegA.elapsed().integral_second().m_i);
+//         informationf("opening preparation context::request time(%d) = ", tickBegA.elapsed().integral_second().m_i);
 //
 //         tick1 = payload("dw").time();
 //
@@ -1673,7 +1673,7 @@ namespace http
 //
 //         set["get_status"] = estatus;
 //
-//         information("Total time ::http::apex::context::get(\"%s\") %d ms ", strUrl.left(minimum(255, strUrl.length())).c_str(), tick1.elapsed().integral_second().m_i);
+//         informationf("Total time ::http::apex::context::get(\"%s\") %d ms ", strUrl.left(minimum(255, strUrl.length())).c_str(), tick1.elapsed().integral_second().m_i);
 //
 //      }
 //      catch (...)
@@ -1786,8 +1786,8 @@ namespace http
 
       i64 iHttpGetSerial = ++psystem->networking()->m_lHttpGetSerial;
 
-      //information("");
-      //information("");
+      //informationf("");
+      //informationf("");
       set["http_get_serial"] = iHttpGetSerial;
 
       //auto tickStart = ::time::now();

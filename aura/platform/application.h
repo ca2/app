@@ -151,7 +151,7 @@ namespace aura
 
       application();
       ~application() override;
-
+      
 
       virtual void initialize(::particle * pparticle) override;
 
@@ -371,9 +371,8 @@ namespace aura
 
 
       //application();
-      //~application() override;
-
-
+      //~ application() override;
+      
       //virtual void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::string & strLocale, const ::string & strSchema);
       //virtual string get_locale_schema_dir();
 

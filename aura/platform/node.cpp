@@ -124,7 +124,7 @@ namespace aura
    ::windowing::windowing * node::windowing()
    {
 
-      return m_pwindowing;
+      return m_pwindowingAuraNode;
 
    }
 

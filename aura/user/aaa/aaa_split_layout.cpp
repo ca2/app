@@ -291,9 +291,9 @@ namespace user
             synchronous_lock synchronouslock(this->synchronization());
             //cslock synchronouslock(m_pmutex);
             {
-               //      information("split_layout::RelayChildEvent LOWORD(pMsg->lParam) %d\n", LOWORD(lpMsg->lParam));
+               //      informationf("split_layout::RelayChildEvent LOWORD(pMsg->lParam) %d\n", LOWORD(lpMsg->lParam));
 
-               //      information("split_layout::RelayChildEvent HIWORD(pMsg->lParam) %d\n", HIWORD(lpMsg->lParam));
+               //      informationf("split_layout::RelayChildEvent HIWORD(pMsg->lParam) %d\n", HIWORD(lpMsg->lParam));
 
 
 
@@ -321,8 +321,8 @@ namespace user
                {
                   bMove = nPos != (i32) m_splitbara[m_iIndex]->m_dwPosition;
                }
-               information("split_layout::RelayChildEvent nPos %d\nOldPos", m_splitbara[m_iIndex]->m_dwPosition);
-               FORMATTED_ information("split_layout::RelayChildEvent nPos %d\n", nPos);
+               informationf("split_layout::RelayChildEvent nPos %d\nOldPos", m_splitbara[m_iIndex]->m_dwPosition);
+               FORMATTED_ informationf("split_layout::RelayChildEvent nPos %d\n", nPos);
                if(bMove)
                {
 
@@ -1186,8 +1186,8 @@ namespace user
             synchronous_lock synchronouslock(this->synchronization());
 
             {
-               information("split_layout::RelayChildEvent LOWORD(lParam) %d\n", LOWORD(lParam));
-               information("split_layout::RelayChildEvent HIWORD(lParam) %d\n", HIWORD(lParam));
+               informationf("split_layout::RelayChildEvent LOWORD(lParam) %d\n", LOWORD(lParam));
+               informationf("split_layout::RelayChildEvent HIWORD(lParam) %d\n", HIWORD(lParam));
 
 
                i32 nPos;

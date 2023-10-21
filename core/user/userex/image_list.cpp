@@ -145,6 +145,12 @@ namespace userex
 
          int iForkDib = m_iForkAddDib;
 
+         class time timeStart;
+
+         timeStart.Now();
+
+         bool bMissingRedraw = false;
+
          for (index i = 0; iForkDib == m_iForkAddDib && i < m_plisting->get_count();)
          {
 
@@ -160,7 +166,7 @@ namespace userex
 
             pimage1 = pcontextimage->load_image(path, { .cache = false });
 
-            if (pimage1)
+            if (::is_ok(pimage1))
             {
 
                if (pimage1->width() > 256)
@@ -182,7 +188,7 @@ namespace userex
 
                }
 
-               if (pimage1->is_set())
+               if (::is_ok(pimage1))
                {
 
                   pimage1->get_extension()->payload("read_only_link") = get_link_prefix() + path.name();
@@ -193,7 +199,24 @@ namespace userex
 
                   m_pimagea->add_image(pimage1);
 
-                  set_need_layout();
+                  if (timeStart.elapsed() > 200_ms)
+                  {
+
+                     bMissingRedraw = false;
+
+                     set_need_layout();
+
+                     set_need_redraw();
+
+                     post_redraw();
+
+                  }
+                  else
+                  {
+
+                     bMissingRedraw = true;
+
+                  }
 
                }
                else
@@ -201,7 +224,7 @@ namespace userex
 
                   synchronouslock.lock();
 
-                  information("(2) Could not pimage->load_from_file.file=" + m_plisting->element_at(i));
+                  informationf("(2) Could not pimage->load_from_file.file=" + m_plisting->element_at(i));
 
                   m_plisting->erase_at(i);
 
@@ -213,11 +236,22 @@ namespace userex
 
                synchronouslock.lock();
 
-               information("Could not pimage->load_from_file.file=" + m_plisting->element_at(i));
+               informationf("Could not pimage->load_from_file.file=" + m_plisting->element_at(i));
 
                m_plisting->erase_at(i);
 
             }
+
+         }
+
+         if (bMissingRedraw)
+         {
+
+            set_need_layout();
+
+            set_need_redraw();
+
+            post_redraw();
 
          }
 

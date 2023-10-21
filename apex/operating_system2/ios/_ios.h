@@ -5,7 +5,7 @@
 
 
 
-string get_error_message(::u32 dwError);
+//string get_error_message(::u32 dwError);
 
 ::acme::application *     ios_instantiate_application(::apex::application * pappSystem, const ::scoped_string & scopedstrId);
 

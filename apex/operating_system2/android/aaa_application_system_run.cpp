@@ -82,7 +82,7 @@ string ca2_command_line()
 //      //if (!begin_synch())
 //      //{
 //
-//      //   information("Failed to begin_synch the system (::apex::system or ::apex::system derived)");
+//      //   informationf("Failed to begin_synch the system (::apex::system or ::apex::system derived)");
 //
 //      //   return ::error_failed;
 //

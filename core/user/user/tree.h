@@ -21,7 +21,7 @@ namespace user
       //size_i32                                m_sizeTotal;
       ::e_align                                 m_ealignText;
       ::e_draw_text                             m_edrawtext;
-      ::pointer<::data::tree>                   m_ptree;
+      ::pointer<::data::tree>                   m_ptreedata;
       ::pointer_array < ::data::tree >          m_treeaBound;
       ::pointer<::data::tree_item_ptr_array>    m_pitemptraSelected;
       ::data::tree_item *                       m_pitemHover;
@@ -78,8 +78,8 @@ namespace user
 
       void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual ::pointer<::data::tree>find_tree(::data::tree_item * pitem) const;
-      virtual ::pointer<::data::tree_item>find(::data::item * pitem, index * piIndex = nullptr);
+      virtual ::pointer<::data::tree>find_data_tree(::data::tree_item * pitem) const;
+      virtual ::pointer<::data::tree_item>find_data_tree_item(::data::item * pitem, index * piIndex = nullptr);
       virtual bool contains(::data::item * pitem);
       virtual bool contains(::data::tree_item * pitem);
 

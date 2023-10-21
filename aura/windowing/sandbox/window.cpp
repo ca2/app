@@ -721,7 +721,7 @@ namespace sandbox_windowing
 
    //   ::file::path path = pnode->get_desktop_file_path(papp);
 
-   //   information("\nfreebsd::interaction_impl::set_window_text");
+   //   informationf("\nfreebsd::interaction_impl::set_window_text");
 
    //   fflush(stdout);
 
@@ -743,7 +743,7 @@ namespace sandbox_windowing
    //      (const unsigned char *)(const char *)path,
    //      path.get_length());
 
-   //   information("\nfreebsd::interaction_impl::bamf_set_icon END");
+   //   informationf("\nfreebsd::interaction_impl::bamf_set_icon END");
 
    //   fflush(stdout);
 
@@ -1822,7 +1822,7 @@ namespace sandbox_windowing
       //   (const unsigned char *)(const char *)path,
       //   path.get_length());
 
-      //information("\nfreebsd::interaction_impl::bamf_set_icon END");
+      //informationf("\nfreebsd::interaction_impl::bamf_set_icon END");
 
       //fflush(stdout);
 
@@ -2003,20 +2003,20 @@ namespace sandbox_windowing
    //   if (message.m_atom == e_message_quit)
    //   {
 
-   //      information("e_message_quit thread");
+   //      informationf("e_message_quit thread");
 
    //   }
 
    //   if (message.m_atom == e_message_left_button_down)
    //   {
 
-   //      information("post_ui_message::e_message_left_button_down\n");
+   //      informationf("post_ui_message::e_message_left_button_down\n");
 
    //   }
    //   else if (message.m_atom == e_message_left_button_up)
    //   {
 
-   //      information("post_ui_message::e_message_left_button_up\n");
+   //      informationf("post_ui_message::e_message_left_button_up\n");
 
    //   }
 
@@ -2131,7 +2131,7 @@ namespace sandbox_windowing
       //
       //#ifdef SET_WINDOW_POS_LOG
       //
-      //            information("XMoveResizeWindow (%Display(), %d) - (%Display(), %d)", x, y, cx, cy);
+      //            informationf("XMoveResizeWindow (%Display(), %d) - (%Display(), %d)", x, y, cx, cy);
       //
       //#endif
       //
@@ -2144,7 +2144,7 @@ namespace sandbox_windowing
       //
       //#ifdef SET_WINDOW_POS_LOG
       //
-      //               information("Changing parameters... (%Display(), %d) - (%Display(), %d)", x, y, cx, cy);
+      //               informationf("Changing parameters... (%Display(), %d) - (%Display(), %d)", x, y, cx, cy);
       //
       //#endif
       //
@@ -2399,7 +2399,7 @@ namespace sandbox_windowing
       //   (const unsigned char *)(const char *)path,
       //   path.get_length());
 
-      //information("\nfreebsd::interaction_impl::bamf_set_icon END");
+      //informationf("\nfreebsd::interaction_impl::bamf_set_icon END");
 
       //fflush(stdout);
 
@@ -3438,7 +3438,7 @@ namespace sandbox_windowing
    //               if (strType.contains("menu"))
    //               {
 
-   //                  information("menu");
+   //                  informationf("menu");
 
    //               }
 

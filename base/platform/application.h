@@ -40,7 +40,7 @@ namespace base
 
       application();
       ~application() override;
-
+      
 
       virtual void initialize(::particle * pparticle) override;
 
@@ -259,7 +259,8 @@ namespace base
 //
 //
 //      //application();
-//      //~application() override;
+//      //~ application() override;
+     
 //
 //
 //      //virtual void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::string & strLocale, const ::string & strSchema);
@@ -1235,7 +1236,8 @@ virtual void on_change_cur_sel(::user::tab* ptab);
 //
 //
 ////application();
-////~application() override;
+////~ application() override;
+      
 //
 //
 ////virtual void     initialize(::particle * pparticle) override;
@@ -1344,6 +1346,11 @@ virtual void on_create_impact(::user::impact_data* pimpactdata) override;
       virtual void create_options_footer(::user::interaction * pparent);
 
       virtual void create_auto_start_option(::user::interaction* pparent);
+
+
+      virtual void create_about_impact(::user::interaction * pparent);
+
+      virtual void on_after_prepare_impact_menu(::user::menu * pmenu);
 
 
    };

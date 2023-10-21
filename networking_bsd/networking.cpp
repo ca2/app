@@ -496,7 +496,7 @@ namespace networking_bsd
             l = item.m_ipaddr;
          }
          //         ::time tick2= ::time::now();
-         /*information("Got from cache networking::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
+         /*informationf("Got from cache networking::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
          (u32)((::u8*)&pitem->m_ipaddr)[0],
          (u32)((::u8*)&pitem->m_ipaddr)[1],
          (u32)((::u8*)&pitem->m_ipaddr)[2],
@@ -614,7 +614,7 @@ namespace networking_bsd
       }
 
       //      ::time tick2= ::time::now();
-      //      information("DNS lookup networking::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
+      //      informationf("DNS lookup networking::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
          //       (u32)((::u8*)&pitem->m_ipaddr)[0],
          //     (u32)((::u8*)&pitem->m_ipaddr)[1],
          //   (u32)((::u8*)&pitem->m_ipaddr)[2],
@@ -926,7 +926,7 @@ namespace networking_bsd
       catch (const ::exception& e)
       {
 
-         information(e.m_strMessage);
+         informationf(e.m_strMessage);
 
          return false;
 
@@ -1873,7 +1873,7 @@ namespace networking_bsd
    //            l = item.m_ipaddr;
    //         }
    //         //         ::time tick2= ::time::now();
-   //         /*information("Got from cache networking::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
+   //         /*informationf("Got from cache networking::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
    //         (u32)((::u8*)&pitem->m_ipaddr)[0],
    //         (u32)((::u8*)&pitem->m_ipaddr)[1],
    //         (u32)((::u8*)&pitem->m_ipaddr)[2],
@@ -1991,7 +1991,7 @@ namespace networking_bsd
    //   }
    //
    ////      ::time tick2= ::time::now();
-   ////      information("DNS lookup networking::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
+   ////      informationf("DNS lookup networking::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
    //   //       (u32)((::u8*)&pitem->m_ipaddr)[0],
    //   //     (u32)((::u8*)&pitem->m_ipaddr)[1],
    //   //   (u32)((::u8*)&pitem->m_ipaddr)[2],

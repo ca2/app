@@ -6,8 +6,14 @@
 #include "acme/filesystem/filesystem/dir_context.h"
 
 
+__DECLARE_RELEASE_TIME(app_shader);
+
+
 namespace app_shader
 {
+
+
+   __IMPLEMENT_APPLICATION_RELEASE_TIME(app_shader);
 
 
    application::application() 

@@ -534,7 +534,7 @@ pacmedirectory->roaming() / "home";
 
                string strError = get_last_error_message(dwError);
 
-               information("dir_context::mk CreateDirectoryW last error(%d)=%s", dwError, strError);
+               informationf("dir_context::mk CreateDirectoryW last error(%d)=%s", dwError, strError);
 
                //m_isdirmap.set(stra[i], false, 0);
 

@@ -390,8 +390,8 @@ namespace experience_lite
 
          //         ::u32 dwTime2= ::duration::now();
 
-         //information("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
-         //information("usertab::on_layout call time1= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+         //informationf("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+         //informationf("usertab::on_layout call time1= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
       }
       if(!ptab->get_data()->m_bCreated)
          return false;
@@ -487,10 +487,10 @@ namespace experience_lite
          m_rectangleTab.height(),
          0);*/
 
-         ptab->get_data()->m_rectangleTabClient.left()       = ptab->m_bShowTabs ? ptab->get_data().m_rectangleTab.right() : rectangleX.left();
-         ptab->get_data()->m_rectangleTabClient.top()        = ptab->get_data().m_rectangleTab.top();
-         ptab->get_data()->m_rectangleTabClient.right()      = rectangleX.right();
-         ptab->get_data()->m_rectangleTabClient.bottom()     = ptab->get_data().m_rectangleTab.bottom();
+         ptab->get_data()->m_rectangleHosting.left()       = ptab->m_bShowTabs ? ptab->get_data().m_rectangleTab.right() : rectangleX.left();
+         ptab->get_data()->m_rectangleHosting.top()        = ptab->get_data().m_rectangleTab.top();
+         ptab->get_data()->m_rectangleHosting.right()      = rectangleX.right();
+         ptab->get_data()->m_rectangleHosting.bottom()     = ptab->get_data().m_rectangleTab.bottom();
 
       }
       else
@@ -603,14 +603,14 @@ namespace experience_lite
          m_rectangleTab.height(),
          0);*/
 
-         rectangle & rectangleTabClient = ptab->get_data()->m_rectangleTabClient;
+         rectangle & rectangleHosting = ptab->get_data()->m_rectangleHosting;
 
-         rectangleTabClient.left()       = ptab->get_data()->m_rectangleTab.left();
-         rectangleTabClient.top()        = ptab->m_bShowTabs ? ptab->get_data()->m_rectangleTab.bottom() : rectangleX.top();
-         rectangleTabClient.right()      = ptab->get_data()->m_rectangleTab.right();
-         rectangleTabClient.bottom()     = rectangleX.bottom();
+         rectangleHosting.left()       = ptab->get_data()->m_rectangleTab.left();
+         rectangleHosting.top()        = ptab->m_bShowTabs ? ptab->get_data()->m_rectangleTab.bottom() : rectangleX.top();
+         rectangleHosting.right()      = ptab->get_data()->m_rectangleTab.right();
+         rectangleHosting.bottom()     = rectangleX.bottom();
 
-         //TRACE0("rectangleTabClient");
+         //TRACE0("rectangleHosting");
       }
 
       for(i32 iPane = 0; iPane < ptab->get_data()->m_panea.get_size(); iPane++)
@@ -1164,7 +1164,7 @@ namespace experience_lite
       if (!bOk)
       {
 
-         information("\nUnknown color: code=" + as_string((int) ecolor));
+         informationf("\nUnknown color: code=" + as_string((int) ecolor));
 
       }
 

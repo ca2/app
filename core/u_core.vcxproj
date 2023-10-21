@@ -132,7 +132,7 @@
     <ClInclude Include="filesystem\filemanager\thumbnail.h" />
     <ClInclude Include="filesystem\filemanager\save_as_name_impact.h" />
     <ClInclude Include="filesystem\filemanager\tab_impact.h" />
-    <ClInclude Include="filesystem\filemanager\tree.h" />
+    <ClInclude Include="filesystem\filemanager\tree_data.h" />
     <ClInclude Include="filesystem\filemanager\update_hint.h" />
     <ClInclude Include="filesystem\filemanager\_.h" />
     <ClInclude Include="filesystem\filemanager\_filemanager.h" />
@@ -151,12 +151,13 @@
     <ClInclude Include="filesystem\userfs\list_item.h" />
     <ClInclude Include="filesystem\userfs\list_item_array.h" />
     <ClInclude Include="filesystem\userfs\main_impact.h" />
-    <ClInclude Include="filesystem\userfs\tree.h" />
+    <ClInclude Include="filesystem\userfs\tree_data.h" />
     <ClInclude Include="filesystem\userfs\userfs.h" />
     <ClInclude Include="filesystem\userfs\_.h" />
     <ClInclude Include="filesystem\userfs\_data.h" />
     <ClInclude Include="filesystem\userfs\_tree.h" />
     <ClInclude Include="filesystem\userfs\_userfs.h" />
+    <ClInclude Include="graphics\color_selector.h" />
     <ClInclude Include="html\element\element.h" />
     <ClInclude Include="html\element\_.h" />
     <ClInclude Include="html\element\_element.h" />
@@ -244,6 +245,11 @@
     <ClInclude Include="platform\application.h" />
     <ClInclude Include="platform\session.h" />
     <ClInclude Include="platform\system.h" />
+    <ClInclude Include="user\rich_text\format_host.h" />
+    <ClInclude Include="user\rich_text\selection.h" />
+    <ClInclude Include="user\rich_text\_.h" />
+    <ClInclude Include="user\rich_text\_binary_stream.h" />
+    <ClInclude Include="user\rich_text\_constant.h" />
     <ClInclude Include="user\user\font_list_impact.h" />
     <ClInclude Include="user\user\list2.h" />
     <ClInclude Include="version\version.h" />
@@ -276,15 +282,11 @@
     <ClInclude Include="user\rich_text\format.h" />
     <ClInclude Include="user\rich_text\format_tool.h" />
     <ClInclude Include="user\rich_text\global.h" />
-    <ClInclude Include="user\rich_text\layout.h" />
     <ClInclude Include="user\rich_text\line.h" />
     <ClInclude Include="user\rich_text\rich_text.h" />
     <ClInclude Include="user\rich_text\span.h" />
     <ClInclude Include="user\rich_text\text_format.h" />
-    <ClInclude Include="user\rich_text\text_format_object.h" />
-    <ClInclude Include="user\rich_text\_const.h" />
     <None Include="user\rich_text\_impl.h" />
-    <ClInclude Include="user\rich_text\_rich_text.h" />
     <ClInclude Include="user\simple\child_frame.h" />
     <ClInclude Include="user\simple\form_list_impact.h" />
     <ClInclude Include="user\simple\form_impact.h" />
@@ -442,7 +444,7 @@
     <ClCompile Include="filesystem\filemanager\save_as_impact.cpp" />
     <ClCompile Include="filesystem\filemanager\thumbnail.cpp" />
     <ClCompile Include="filesystem\filemanager\tab_impact.cpp" />
-    <ClCompile Include="filesystem\filemanager\tree.cpp" />
+    <ClCompile Include="filesystem\filemanager\tree_data.cpp" />
     <ClCompile Include="filesystem\filemanager\_.cpp" />
     <ClCompile Include="filesystem\fs\ftpfs.cpp" />
     <ClCompile Include="filesystem\fs\ftpnet.cpp" />
@@ -454,7 +456,7 @@
     <ClCompile Include="filesystem\userfs\list_item.cpp" />
     <ClCompile Include="filesystem\userfs\list_item_array.cpp" />
     <ClCompile Include="filesystem\userfs\main_impact.cpp" />
-    <ClCompile Include="filesystem\userfs\tree.cpp" />
+    <ClCompile Include="filesystem\userfs\tree_data.cpp" />
     <ClCompile Include="filesystem\userfs\userfs.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">Create</PrecompiledHeader>
@@ -474,6 +476,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="graphics\color_selector.cpp" />
     <ClCompile Include="html\hi5\hi5_twitter_authorization.cpp" />
     <ClCompile Include="networking\ftp\client_socket.cpp" />
     <ClCompile Include="networking\ftp\data_types.cpp" />
@@ -494,13 +497,14 @@
     <ClCompile Include="user\netuser\network_configuration.cpp" />
     <ClCompile Include="user\rich_text\box.cpp" />
     <ClCompile Include="user\rich_text\data.cpp" />
-    <ClCompile Include="user\rich_text\document.cpp" />
     <ClCompile Include="user\rich_text\edit.cpp" />
     <ClCompile Include="user\rich_text\edit_impl.cpp" />
     <ClCompile Include="user\rich_text\format.cpp" />
+    <ClCompile Include="user\rich_text\format_host.cpp" />
     <ClCompile Include="user\rich_text\format_tool.cpp" />
     <ClCompile Include="user\rich_text\global.cpp" />
     <ClCompile Include="user\rich_text\line.cpp" />
+    <ClCompile Include="user\rich_text\selection.cpp" />
     <ClCompile Include="user\rich_text\span.cpp" />
     <ClCompile Include="user\rich_text\text_format.cpp" />
     <ClCompile Include="user\simple\form_list_impact.cpp" />
@@ -517,7 +521,6 @@
     <ClCompile Include="user\simple\tab_control.cpp" />
     <ClCompile Include="user\simple\tab_impact.cpp" />
     <ClCompile Include="user\simple\tree_impact.cpp" />
-    <ClCompile Include="user\userex\color_impact.cpp" />
     <ClCompile Include="user\userex\dialog.cpp" />
     <ClCompile Include="user\userex\dialog_frame.cpp" />
     <ClCompile Include="user\userex\font_impact.cpp" />
@@ -541,7 +544,10 @@
     <ClCompile Include="user\userex\top_toggle_impact.cpp" />
     <ClCompile Include="user\userex\top_impact.cpp" />
     <ClCompile Include="user\userex\wait_message_dialog.cpp" />
-    <ClCompile Include="user\user\color_combo_box.cpp" />
+    <ClCompile Include="user\user\color_selector_combo_box.cpp" />
+    <ClCompile Include="user\user\color_selector_control.cpp" />
+    <ClCompile Include="user\user\color_selector_impact.cpp" />
+    <ClCompile Include="user\user\color_selector_popup.cpp" />
     <ClCompile Include="user\user\elastic_slider.cpp" />
     <ClCompile Include="user\user\font_combo_box.cpp" />
     <ClCompile Include="user\user\font_list.cpp" />
@@ -563,7 +569,9 @@
     <ClCompile Include="user\user\mesh_cache_interface.cpp" />
     <ClCompile Include="user\user\mesh_data.cpp" />
     <ClCompile Include="user\user\mesh_item.cpp" />
+    <ClCompile Include="user\user\popup.cpp" />
     <ClCompile Include="user\user\step_slider.cpp" />
+    <ClCompile Include="user\user\text_format_object.cpp" />
     <ClCompile Include="user\user\toggle_switch.cpp" />
     <ClCompile Include="user\user\toolbar_ctrl.cpp" />
     <ClCompile Include="user\user\tooltip.cpp" />

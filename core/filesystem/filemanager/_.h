@@ -18,7 +18,7 @@ namespace filemanager
    class file_properties_form;
    class folder_list_data;
    class folder_list_impact;
-   class tree;
+   class tree_data;
    class operation_list_impact;
    class operation_info_impact;
 

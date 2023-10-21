@@ -45,7 +45,7 @@ namespace userex
       if (!pimpactdata->m_pplaceholder)
       {
 
-         pimpactdata->m_pplaceholder = get_new_place_holder(ppane->m_rectangleClient);
+         pimpactdata->m_pplaceholder = get_new_place_holder(ppane->m_rectangleHosting);
 
          ppane->m_pplaceholder = pimpactdata->m_pplaceholder;
 

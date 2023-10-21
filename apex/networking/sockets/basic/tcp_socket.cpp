@@ -481,7 +481,7 @@ return true;
 //
 //      auto paddressdepartment = ::networking::address_department();
 //
-//      information("OnResolved atom %d addr %s port %d\n",atom,paddressdepartment->canonical_name(a).c_str(),a.u.s.m_port);
+//      informationf("OnResolved atom %d addr %s port %d\n",atom,paddressdepartment->canonical_name(a).c_str(),a.u.s.m_port);
 //
 //      if(atom == m_resolver_id)
 //      {
@@ -575,14 +575,14 @@ return true;
 //                     SetLost();
 //                     break;
 //                  case SSL_ERROR_SYSCALL:
-//                     information("SSL read problem, errcode = %d (SSL_FORMATTED_ERROR_SYSCALL) errno = %d ", n , errno);
+//                     informationf("SSL read problem, errcode = %d (SSL_FORMATTED_ERROR_SYSCALL) errno = %d ", n , errno);
 //                     OnDisconnect();
 //                     SetCloseAndDelete(true);
 //                     SetFlushBeforeClose(false);
 //                     SetLost();
 //                     break;
 //                  default:
-//                     information("SSL read problem, errcode = %d", n);
+//                     informationf("SSL read problem, errcode = %d", n);
 //                     OnDisconnect();
 //                     SetCloseAndDelete(true);
 //                     SetFlushBeforeClose(false);
@@ -597,7 +597,7 @@ return true;
 //               //   SetFlushBeforeClose(false);
 //               //   SetLost();
 //               //   SetShutdownStatus(SHUT_WR);
-//               //   //information("tcp_socket::recv ssl disconnect(2)");
+//               //   //informationf("tcp_socket::recv ssl disconnect(2)");
 //
 //               //}
 //               else if (n > 0 && n <= nBufSize)
@@ -651,7 +651,7 @@ return true;
 //            SetCloseAndDelete(true);
 //            SetFlushBeforeClose(false);
 //            SetLost();
-//            information() << "tcp_socket::recv (B1) recv error(" << bsd_socket_error(Errno) << ")";
+//            information() << "tcp_socket::recv (B1) recv errorf(" << bsd_socket_error(Errno) << ")";
 //         }
 //         else if(!n)
 //         {
@@ -661,7 +661,7 @@ return true;
 ////            #else
 ////            #endif
 ////            {
-////               information("tcp_socket::recv 0 No Error or WOULD BLOCK");
+////               informationf("tcp_socket::recv 0 No Error or WOULD BLOCK");
 ////            }
 ////            else
 //            {
@@ -1356,7 +1356,7 @@ return true;
       //   if(m_ssl_ctx)
       //   {
 
-      //      information("SSL Context already initialized - closing socket");
+      //      informationf("SSL Context already initialized - closing socket");
 
       //      SetCloseAndDelete(true);
 
@@ -1682,7 +1682,7 @@ return true;
 
       //            auto last_error = networking_last_error();
 
-      //            // information("");
+      //            // informationf("");
       //          
       //         }
 
@@ -1867,7 +1867,7 @@ return true;
 //            //if (!(SSL_CTX_use_RSAPrivateKey(m_psslcontext->m_pclientcontext->m_psslcontext, key)))
 //            //{
 //
-//            //   error("tcp_socket InitializeContext,0,Couldn't read private key file %s e_trace_level_fatal", keyfile.c_str());
+//            //   errorf("tcp_socket InitializeContext,0,Couldn't read private key file %s e_trace_level_fatal", keyfile.c_str());
 //
 //            //}
 //
@@ -1997,7 +1997,7 @@ return true;
 //         if (!(SSL_CTX_use_PrivateKey_file(m_psslcontext->m_pclientcontext->m_psslcontext, keyfile, SSL_FILETYPE_PEM)))
 //         {
 //
-//            fatal("tcp_socket InitializeContext: Couldn't read private key file %s ", keyfile.c_str());
+//            fatalf("tcp_socket InitializeContext: Couldn't read private key file %s ", keyfile.c_str());
 //
 //         }
 //
@@ -2307,7 +2307,7 @@ return true;
 ////      UNREFERENCED_PARAMETER(type);
 ////      UNREFERENCED_PARAMETER(protocol);
 ////      UNREFERENCED_PARAMETER(s);
-////      //information("socket::OnOptions()");
+////      //informationf("socket::OnOptions()");
 ////#ifdef SO_NOSIGPIPE
 ////      SetSoNosigpipe(true);
 ////#endif

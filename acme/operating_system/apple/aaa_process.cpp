@@ -475,7 +475,7 @@ namespace apple
       if (status != errAuthorizationSuccess)
       {
 
-         information("Error Creating Initial Authorization: %d", status);
+         informationf("Error Creating Initial Authorization: %d", status);
 
          return false;
 
@@ -495,13 +495,13 @@ namespace apple
       if (status != errAuthorizationSuccess)
       {
 
-         information("Copy Rights Unsuccessful: %d", status);
+         informationf("Copy Rights Unsuccessful: %d", status);
 
          return false;
 
       }
 
-      information("\n\n** %s **\n\n", "This command should work.");
+      informationf("\n\n** %s **\n\n", "This command should work.");
 
 //      string_array straParam;
 //
@@ -548,32 +548,32 @@ namespace apple
 
 //      int uid = getuid();
 
-      ::information("---\n");
-      ::information("---\n");
-      ::information("---\n");
-      ::information("---\n");
-      ::information("---\n");
-      ::information("---\n");
-      ::information("---\n");
-      ::information("---\n");
-      ::information("---\n");
-      ::information("---\n");
-      ::information("---\n");
-      ::information("---\n");
-      ::information("---\n");
-      ::information("---\n");
-      ::information("---\n");
-      ::information("---\n");
-      ::information("---\n");
-      ::information("---\n");
-      ::information("---\n");
-      ::information("---\n");
+      ::informationf("---\n");
+      ::informationf("---\n");
+      ::informationf("---\n");
+      ::informationf("---\n");
+      ::informationf("---\n");
+      ::informationf("---\n");
+      ::informationf("---\n");
+      ::informationf("---\n");
+      ::informationf("---\n");
+      ::informationf("---\n");
+      ::informationf("---\n");
+      ::informationf("---\n");
+      ::informationf("---\n");
+      ::informationf("---\n");
+      ::informationf("---\n");
+      ::informationf("---\n");
+      ::informationf("---\n");
+      ::informationf("---\n");
+      ::informationf("---\n");
+      ::informationf("---\n");
 
 //      int i = setuid(0);
 
       //    if(i != 0)
       //  {
-      //   information("Failed to setuid: %d", i);
+      //   informationf("Failed to setuid: %d", i);
       // return -1;
       //}
 
@@ -623,7 +623,7 @@ auto tickStart = ::duration::now();
       if (status != errAuthorizationSuccess)
       {
 
-         information("AuthorizationExecuteWithPrivileges Error: %d", status);
+         informationf("AuthorizationExecuteWithPrivileges Error: %d", status);
 
          return false;
 
@@ -643,7 +643,7 @@ auto tickStart = ::duration::now();
       status = AuthorizationExecuteWithPrivileges(authorizationRef, tool, kAuthorizationFlagDefaults, args, &pipe);
       if (status != errAuthorizationSuccess)
       {
-         information("AuthorizationExecuteWithPrivileges Error: %d", status);
+         informationf("AuthorizationExecuteWithPrivileges Error: %d", status);
          return -1;
       }
 
@@ -714,7 +714,7 @@ auto tickStart = ::duration::now();
          }
          else if(ferror(pipe))
          {
-            information("Error reading from file");
+            informationf("Error reading from file");
             break;
          }
          else
@@ -746,7 +746,7 @@ auto tickStart = ::duration::now();
                   }
                   else if(ferror(pipe))
                   {
-                     information("Error reading from file");
+                     informationf("Error reading from file");
                      break;
                   }
                   else
@@ -770,7 +770,7 @@ auto tickStart = ::duration::now();
 
       if (status != errAuthorizationSuccess)
       {
-         information("AuthorizationFree Error: %d", status);
+         informationf("AuthorizationFree Error: %d", status);
       }
 
       //return dwExitCode;

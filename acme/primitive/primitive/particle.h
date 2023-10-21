@@ -341,10 +341,10 @@ public:
 
    virtual void format_trace(enum_trace_level etracelevel, const ::ansi_character * pszFormat, va_list & arguments) const;
 
-   virtual void information(const ::ansi_character * pszFormat, ...) const;
-   virtual void warning(const ::ansi_character * pszFormat, ...) const;
-   virtual void error(const ::ansi_character * pszFormat, ...) const;
-   virtual void fatal(const ::ansi_character * pszFormat, ...) const;
+   virtual void informationf(const ::ansi_character * pszFormat, ...) const;
+   virtual void warningf(const ::ansi_character * pszFormat, ...) const;
+   virtual void errorf(const ::ansi_character * pszFormat, ...) const;
+   virtual void fatalf(const ::ansi_character * pszFormat, ...) const;
 
    //virtual trace_statement trace_log_warning() << ;
    //virtual trace_statement trace_log_error() << ;
@@ -444,8 +444,7 @@ public:
    template < typename BASE_TYPE >
    inline ::pointer<BASE_TYPE>__create(::factory::factory* pfactory = ::get_system_factory());
 
-   template < typename BASE_TYPE >
-   inline ::pointer<BASE_TYPE>__id_create(const ::atom& atom, ::factory::factory* pfactory = ::get_system_factory());
+   ::pointer<particle>__id_create(const ::atom& atom, ::factory::factory* pfactory = ::get_system_factory());
 
    template < typename TYPE >
    inline ::pointer<TYPE>__create_new();
@@ -523,10 +522,10 @@ public:
    //inline void __raw_construct(::pointer<BASE_TYPE> & p, ::factory::factory * pfactory = ::get_system_factory());
 
    template < typename BASE_TYPE >
-   inline void __defer_construct(::pointer<BASE_TYPE>& ptype, ::factory::factory* pfactory = ::get_system_factory());
+   inline bool __defer_construct(::pointer<BASE_TYPE>& ptype, ::factory::factory* pfactory = ::get_system_factory());
 
    template < typename TYPE >
-   inline void __defer_construct_new(::pointer<TYPE>& ptype);
+   inline bool __defer_construct_new(::pointer<TYPE>& ptype);
 
    template < typename BASE_TYPE >
    inline void __construct(::pointer<BASE_TYPE>& ptype, ::factory::factory* pfactory = ::get_system_factory());
@@ -553,8 +552,8 @@ public:
    //virtual void exchange(::stream& s);
    //virtual void exchange(::payload_stream& s);
 
-   //virtual void write(::binary_stream& stream) const;
-   //virtual void read(::binary_stream& stream);
+   virtual void write_to_stream(::binary_stream & stream);
+   virtual void read_from_stream(::binary_stream & stream);
 
 
    //virtual void add_composite(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
@@ -583,7 +582,7 @@ public:
    }
 
 
-   virtual ::particle_pointer clone() const;
+   virtual ::particle_pointer clone();
 
 
    virtual ::user::user * aurauser();
@@ -651,7 +650,7 @@ inline i64 release(T*& p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 //   catch (...)
 //   {
 //
-//      ::information("exception release p = nullptr; \n");
+//      ::informationf("exception release p = nullptr; \n");
 //
 //   }
 //
@@ -664,7 +663,7 @@ inline i64 release(T*& p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 //   catch (...)
 //   {
 //
-//      ::information("exception release pparticle->release() \n");
+//      ::informationf("exception release pparticle->release() \n");
 //
 //   }
 //
@@ -702,7 +701,7 @@ inline i64 global_release(T*& p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 //   catch (...)
 //   {
 //
-//      ::information("exception release pparticle->release() \n");
+//      ::informationf("exception release pparticle->release() \n");
 //
 //   }
 //
@@ -791,10 +790,10 @@ CLASS_DECL_ACME ::trace_statement error();
 CLASS_DECL_ACME ::trace_statement fatal();
 
 
-CLASS_DECL_ACME void information(const ::ansi_character * pszFormat, ...);
-CLASS_DECL_ACME void warning(const ::ansi_character * pszFormat, ...);
-CLASS_DECL_ACME void error(const ::ansi_character * pszFormat, ...);
-CLASS_DECL_ACME void fatal(const ::ansi_character * pszFormat, ...);
+CLASS_DECL_ACME void informationf(const ::ansi_character * pszFormat, ...);
+CLASS_DECL_ACME void warningf(const ::ansi_character * pszFormat, ...);
+CLASS_DECL_ACME void errorf(const ::ansi_character * pszFormat, ...);
+CLASS_DECL_ACME void fatalf(const ::ansi_character * pszFormat, ...);
 
 
 inline bool is_ok(const ::particle * pconstparticle)

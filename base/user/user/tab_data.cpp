@@ -16,7 +16,7 @@ namespace user
       m_bVertical = false;
       m_bNoClient = false;
       m_bEnableCloseAll = false;
-      m_rectangleTabClient.set(0, 0, 0, 0);
+      //m_rectangleHosting.set(0, 0, 0, 0);
 
    }
 
@@ -72,7 +72,7 @@ namespace user
    tab_pane * tab_data::get_tab_by_id(atom atom)
    {
 
-      return m_tabpanecompositea.get_by_id(atom);
+      return m_tabpanea.get_by_id(atom);
 
    }
 
@@ -80,7 +80,7 @@ namespace user
    ::count tab_data::get_visible_tab_count()
    {
 
-      return m_tabpanecompositea.get_visible_count();
+      return m_tabpanea.get_visible_count();
 
    }
 

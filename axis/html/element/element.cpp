@@ -412,7 +412,7 @@ namespace html
                if (m_strClass == "field")
                {
 
-                  information("field");
+                  informationf("field");
 
                }
                m_pstyle->get_surround_box("html_padding", "", phtmldata, this, m_pimpl->m_padding);
@@ -428,7 +428,7 @@ namespace html
             if (m_pimpl->m_margin.left() > 1.0f)
             {
 
-               information("margin-left greater than 1.0f");
+               informationf("margin-left greater than 1.0f");
 
             }
 
@@ -614,7 +614,7 @@ namespace html
          if (iExtraCy > 0)
          {
 
-            information("extra_cy > 0");
+            informationf("extra_cy > 0");
 
          }
 

@@ -579,7 +579,7 @@ namespace wayland
 //      else if (pevent->type == UnmapNotify)
 //      {
 //
-//         information("UnmapNotify");
+//         informationf("UnmapNotify");
 //
 //      }
 //      else if (pevent->type == MapNotify)
@@ -624,7 +624,7 @@ namespace wayland
 //      else if (pevent->type == PropertyNotify)
 //      {
 //
-//         information("PropertyNotify");
+//         informationf("PropertyNotify");
 //
 //      }
 //      else if (pevent->type == KeyPress)

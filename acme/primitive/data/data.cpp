@@ -14,7 +14,7 @@ namespace data
    {
 
       //m_bModified = false;
-      //m_bNew = true;
+      m_bNew = true;
 
    }
 
@@ -54,10 +54,10 @@ namespace data
 //   }
 
 
-   void data::initialize_data(::data::data_container_base * pdatacontainerbase)
+   void data::initialize_data()
    {
 
-      /*auto estatus = */::object::initialize(pdatacontainerbase);
+      ///*auto estatus = */::object::initialize(pdatacontainerbase);
 
       //if (!estatus)
       //{
@@ -66,14 +66,14 @@ namespace data
 
       //}
 
-      m_pdatacontainerbase = pdatacontainerbase;
+      //m_pdatacontainerbase = pdatacontainerbase;
 
-      if (!m_pdatacontainerbase)
-      {
+      //if (!m_pdatacontainerbase)
+      //{
 
-         throw ::exception(::error_failed);
+      //   throw ::exception(::error_failed);
 
-      }
+      //}
 
       //run_property(ID_CREATE);
 
@@ -84,12 +84,12 @@ namespace data
    }
 
 
-   ::data::data_container_base* data::get_data_container()
-   {
+   //::data::data_container_base* data::get_data_container()
+   //{
 
-      return m_pdatacontainerbase.get();
+   //   return m_pdatacontainerbase.get();
 
-   }
+   //}
 
 
    ::count data::get_data_bound_impact_count() const
@@ -143,6 +143,36 @@ namespace data
          m_listenera[i]->on_update_data(this, iHint);
 
       }
+
+   }
+
+
+   bool data::is_new_data() const
+   {
+
+      return m_bNew;
+
+   }
+
+
+   bool data::on_new_data()
+   {
+
+      m_bNew = true;
+
+      return true;
+
+   }
+
+
+   void data::write_data(::binary_stream & binarystream, const ::scoped_string & scopedstrFormat)
+   {
+
+   }
+
+
+   void data::read_data(::binary_stream & binarystream, const ::scoped_string & scopedstrFormat)
+   {
 
    }
 

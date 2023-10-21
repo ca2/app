@@ -370,8 +370,8 @@ namespace windowing
       
       virtual void frame_toggle_restore();
 
-      virtual void window_send(const ::procedure & procedure);
-      virtual void window_post(const ::procedure & procedure);
+      void user_send(const ::procedure & procedure) override;
+      void user_post(const ::procedure & procedure) override;
 
       bool is_branch_current() const override;
 
@@ -422,6 +422,7 @@ namespace windowing
       bool is_satellite_window() override;
       bool is_windowing_popup() override;
       ::point_i32 windowing_popup_origin() override;
+      ::size_i32 windowing_popup_size() override;
       void _on_windowing_close_window() override;
       ::windowing::window_base * owner_window() override;
       ::string get_window_text() override;

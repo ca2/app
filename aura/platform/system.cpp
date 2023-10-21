@@ -628,7 +628,7 @@ namespace aura
       if (!pfactory)
       {
 
-         information("Fatal Error: Failed to do node factory_item exchange (system::([a-z0-9_]+)_factory).\n");
+         informationf("Fatal Error: Failed to do node factory_item exchange (system::([a-z0-9_]+)_factory).\n");
 
          return pfactory;
 
@@ -705,18 +705,18 @@ namespace aura
 
       //auto pcreate = pcommand->m_pcreate;
 
-      //information("m_pcreate WARNING");
-      //information("m_pcreate WARNING");
-      //information("m_pcreate WARNING");
-      //information("m_pcreate WARNING");
-      //information("m_pcreate WARNING");
-      //information("m_pcreate WARNING");
-      //information("m_pcreate WARNING");
-      //information("m_pcreate COMMENT BEGIN");
+      //informationf("m_pcreate WARNING");
+      //informationf("m_pcreate WARNING");
+      //informationf("m_pcreate WARNING");
+      //informationf("m_pcreate WARNING");
+      //informationf("m_pcreate WARNING");
+      //informationf("m_pcreate WARNING");
+      //informationf("m_pcreate WARNING");
+      //informationf("m_pcreate COMMENT BEGIN");
       //auto pcreate = m_pcreate;
 
       //pcreate->m_XstrAppId = strAppId;
-      //information("m_pcreate COMMENT END");
+      //informationf("m_pcreate COMMENT END");
 
       //add_factory_item < ::database::field >();
 
@@ -725,14 +725,14 @@ namespace aura
       //{
 
       //   printf("%s", "\n\nApplication Information\n");
-      //   information("\n\nApplication Information\n");
+      //   informationf("\n\nApplication Information\n");
 
       //   int iPid;
 
       //   iPid = ::get_current_process_id();
 
       //   printf("%s", ("Process PID: " + as_string(iPid) + "\n").c_str());
-      //   information("Process PID: " + as_string(iPid) + "\n");
+      //   informationf("Process PID: " + as_string(iPid) + "\n");
 
       //}
 
@@ -909,7 +909,7 @@ namespace aura
 //
 //         if(status != errAuthorizationSuccess)
 //         {
-//            information("Error Creating Initial Authorization: %d", status);
+//            informationf("Error Creating Initial Authorization: %d", status);
 //
 //            return false;
 //
@@ -932,7 +932,7 @@ namespace aura
 //         if (status != errAuthorizationSuccess)
 //         {
 //
-//            information("Copy Rights Unsuccessful: %d", status);
+//            informationf("Copy Rights Unsuccessful: %d", status);
 //
 //            return false;
 //
@@ -1032,10 +1032,10 @@ namespace aura
 
       //}
 
-      ////information("CommonAppData (matter) : " + dir()->commonappdata()  + "\n");
-      ////information("commonappdata (matter) : " + dir()->commonappdata() + "\n");
-      ////information("Common App Data (matter) : " + dir()->commonappdata() + "\n");
-      ////information("common app data (matter) : " + dir()->commonappdata() + "\n");
+      ////informationf("CommonAppData (matter) : " + dir()->commonappdata()  + "\n");
+      ////informationf("commonappdata (matter) : " + dir()->commonappdata() + "\n");
+      ////informationf("Common App Data (matter) : " + dir()->commonappdata() + "\n");
+      ////informationf("common app data (matter) : " + dir()->commonappdata() + "\n");
 
       //__construct_new(m_pcrypto);
 
@@ -1086,7 +1086,7 @@ namespace aura
          //else
          //{
 
-         //   information("ERROR: Failed to initialize draw2d library.");
+         //   informationf("ERROR: Failed to initialize draw2d library.");
 
          //   ///estatus = (const ::extended::status &) m_pfactoryDraw2d;
 
@@ -1329,7 +1329,7 @@ namespace aura
 
       }
 
-      //information("No draw2d pluging available!!.");
+      //informationf("No draw2d pluging available!!.");
       if (pfactoryDraw2d)
       {
 
@@ -2836,7 +2836,7 @@ namespace aura
 
    //   }
 
-   //   information("%s", ("::aura::system::on_request session = " + string(::type(psession).name()) + "("+as_string((iptr) psession)+")\n\n").c_str());
+   //   informationf("%s", ("::aura::system::on_request session = " + string(::type(psession).name()) + "("+as_string((iptr) psession)+")\n\n").c_str());
 
    //   psession->do_request(pcreate);
 
@@ -2928,11 +2928,11 @@ namespace aura
 ////
 ////      ::file::path pathCa2Module = dir()->ca2module();
 ////
-////      ::information("\n\n::aura::system::find_applications_to_cache\n\n");
+////      ::informationf("\n\n::aura::system::find_applications_to_cache\n\n");
 ////
-////      ::information("ca2 module folder : " + pathCa2Module);
+////      ::informationf("ca2 module folder : " + pathCa2Module);
 ////
-////      ::information("\n\n\n");
+////      ::informationf("\n\n\n");
 ////
 ////      straTitle.ls_pattern(pathCa2Module, { "*.*" });
 ////
@@ -2953,7 +2953,7 @@ namespace aura
 ////               continue;
 ////            }
 ////
-////            ::information("library("+as_string(i)+") : " + strLibraryId+"\n\n");
+////            ::informationf("library("+as_string(i)+") : " + strLibraryId+"\n\n");
 ////
 ////            map_application_library(strLibraryId);
 ////
@@ -2999,34 +2999,34 @@ namespace aura
 //
 //      if(!strcmp(pszLibrary,"app_core_rdpclient"))
 //      {
-//         information("reach");
+//         informationf("reach");
 //      }
 //
 //      if(!ansi_compare_ci(pszLibrary, "app_core_hello_multiverse"))
 //      {
-//         information("reach app_core_hello_multiverse");
+//         informationf("reach app_core_hello_multiverse");
 //      }
 //
 //      if(!ansi_compare_ci(pszLibrary, "experience_lite"))
 //      {
-//         information("reach experience_lite");
+//         informationf("reach experience_lite");
 //      }
 //
 //      if(!ansi_compare_ci(pszLibrary, "app_core_hello_multiverse"))
 //      {
-//         information("reach app_core_hello_multiverse");
+//         informationf("reach app_core_hello_multiverse");
 //      }
 //
 //      if(!library.open(pszLibrary, true))
 //      {
-//         ::information("::system::map_application_library Failed to open library :" + string(pszLibrary) + "\n\n");
+//         ::informationf("::system::map_application_library Failed to open library :" + string(pszLibrary) + "\n\n");
 //         return false;
 //      }
 //
 //      if(!library.open_ca2_library())
 //      {
 //
-//         ::information("::system::map_application_library open_ca2_library(2) Failed :" + string(pszLibrary) + "\n\n");
+//         ::informationf("::system::map_application_library open_ca2_library(2) Failed :" + string(pszLibrary) + "\n\n");
 //
 //         return false;
 //
@@ -5807,7 +5807,7 @@ namespace aura
 ////      if(f != nullptr)
 ////      {
 ////
-////         information("linux_g_direct_term entry point_i32 not found at basecore library");
+////         informationf("linux_g_direct_term entry point_i32 not found at basecore library");
 ////
 ////         (*f)();
 ////

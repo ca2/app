@@ -30,7 +30,7 @@
   // if(!pthread_setname_np((pthread_t) htask, psz))
    //{
 
-     //  information("pthread_setname_np Failed\n");
+     //  informationf("pthread_setname_np Failed\n");
 
    //}
 

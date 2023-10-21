@@ -80,7 +80,8 @@ namespace user
 
       using mesh::get_subitem;
 
-      ::pointer<list_column>new_list_column();
+      virtual ::pointer<list_column>new_list_column();
+      virtual ::pointer<list_column>new_list_column_with_control(::user::interaction * puserinteraction);
 
 
       void on_hover_select_timer() override;

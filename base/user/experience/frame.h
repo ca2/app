@@ -120,11 +120,11 @@ namespace experience
 
       virtual ::rectangle_i32 outer_frame();
       
-      //virtual bool calculate_client_rectangle(::rectangle_i32 * prectangle, ::user::enum_layout elayout = ::user::e_layout_design);
+      //virtual bool calculate_hosting_rectangle(::rectangle_i32 * prectangle, ::user::enum_layout elayout = ::user::e_layout_design);
 
-      virtual bool calculate_client_rectangle(::rectangle_i32 * prectangle, ::draw2d::graphics_pointer & pgraphics);
+      virtual bool calculate_hosting_rectangle(::rectangle_i32 * prectangle, ::draw2d::graphics_pointer & pgraphics);
 
-      virtual ::rectangle_i32 client_rectangle();
+      virtual ::rectangle_i32 hosting_rectangle();
 
       //virtual ::rectangle_i32 rectangle(::user::enum_layout elayout = ::user::e_layout_design);
 

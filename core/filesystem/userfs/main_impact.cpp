@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "main_impact.h"
 #include "list.h"
-#include "tree.h"
+#include "tree_data.h"
 #include "acme/constant/message.h"
 #include "acme/handler/item.h"
 #include "acme/primitive/data/listener.h"
@@ -46,7 +46,8 @@ namespace userfs
 
 //      prequest->m_usercreatecontext.m_pCurrentDoc = get_document();
   //    prequest->m_usercreatecontext.m_typeatomNewImpact = ::type < tree >();
-      ::pointer<::user::interaction>puserinteraction = create_impact(::type < tree >(),get_document(),get_pane_holder(0),100);
+      ::pointer<::user::interaction>puserinteraction = create_impact(::type < ::user::tree >(),get_document(),get_pane_holder(0),100);
+
       SetPane(0, puserinteraction, false);
 //      ::pointer<tree>ptree =  (puserinteraction);
 

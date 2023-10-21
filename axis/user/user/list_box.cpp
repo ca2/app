@@ -4,6 +4,7 @@
 #include "acme/handler/item.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
+#include "acme/constant/user_key.h"
 #include "acme/constant/timer.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/primitive/geometry2d/_text_stream.h"
@@ -589,7 +590,7 @@ namespace user
             if (size.cy() != 18)
             {
 
-               //information("\nCOMBO LIST ITEM HEIGHT != 18\n");
+               //informationf("\nCOMBO LIST ITEM HEIGHT != 18\n");
 
             }
 
@@ -769,7 +770,7 @@ namespace user
       else
       {
 
-         //information("list_box hide");
+         //informationf("list_box hide");
 
       }
 
@@ -821,7 +822,7 @@ namespace user
             //   else
             //   {
 
-            //      //information("A phantom is loosing focus. What a pitty!!");
+            //      //informationf("A phantom is loosing focus. What a pitty!!");
 
             //   }
 
@@ -1255,6 +1256,8 @@ namespace user
          order_top_most();
 
          display(e_display_normal);
+
+         set_activation(e_activation_no_activate);
 
          auto & window_state = const_layout().sketch();
 

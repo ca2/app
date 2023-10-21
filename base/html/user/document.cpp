@@ -273,7 +273,7 @@ void html_document::soft_reload()
 
    property_set_replace(str);
 
-   information("%s", str.c_str());
+   informationf("%s", str.c_str());
 
    get_html_data()->load(str);
 

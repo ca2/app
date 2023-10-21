@@ -973,7 +973,7 @@ namespace experience_anthill
 
       ::rectangle_i32 rcClient;
 
-      rcClient = ptab->get_data()->m_rectangleTabClient;
+      rcClient = ptab->get_data()->m_rectangleHosting;
 
       int iTabHeight = ptab->get_data()->m_iTabHeight;
 
@@ -1013,10 +1013,10 @@ namespace experience_anthill
 
       auto ppenBorder = __create < ::draw2d::pen >();
 
-      for (i32 iPane = 0; iPane < ptab->get_data()->m_tabpanecompositea.get_size(); iPane++)
+      for (i32 iPane = 0; iPane < ptab->get_data()->m_tabpanea.get_size(); iPane++)
       {
 
-         auto ppane = ptab->get_data()->m_tabpanecompositea[iPane].get();
+         auto ppane = ptab->get_data()->m_tabpanea[iPane].get();
 
          if (!ppane->m_bTabPaneVisible)
          {
@@ -1347,7 +1347,7 @@ namespace experience_anthill
 
             }
 
-            if (iPane == ptab->get_data()->m_tabpanecompositea.get_upper_bound())
+            if (iPane == ptab->get_data()->m_tabpanea.get_upper_bound())
             {
 
                if (rectangleBorder.right() - 1 < rcTab.right())
@@ -1565,10 +1565,10 @@ namespace experience_anthill
          i32 cx;
          i32 cy;
 
-         for (i32 iPane = 0; iPane < ptab->get_data()->m_tabpanecompositea.get_size(); iPane++)
+         for (i32 iPane = 0; iPane < ptab->get_data()->m_tabpanea.get_size(); iPane++)
          {
 
-            auto ppane = ptab->get_data()->m_tabpanecompositea[iPane].get();
+            auto ppane = ptab->get_data()->m_tabpanea[iPane].get();
 
             if (!ppane->m_bTabPaneVisible)
             {
@@ -1654,10 +1654,10 @@ namespace experience_anthill
          m_rectangleTab.height(),
          0);*/
 
-         ptab->get_data()->m_rectangleTabClient.left() = ptab->m_bEffectiveVisibleControl ? ptab->get_data()->m_rectangleTab.right() : rectangleX.left();
-         ptab->get_data()->m_rectangleTabClient.top() = ptab->get_data()->m_rectangleTab.top();
-         ptab->get_data()->m_rectangleTabClient.right() = rectangleX.right();
-         ptab->get_data()->m_rectangleTabClient.bottom() = ptab->get_data()->m_rectangleTab.bottom();
+         ptab->get_data()->m_rectangleHosting.left() = ptab->m_bEffectiveVisibleControl ? ptab->get_data()->m_rectangleTab.right() : rectangleX.left();
+         ptab->get_data()->m_rectangleHosting.top() = ptab->get_data()->m_rectangleTab.top();
+         ptab->get_data()->m_rectangleHosting.right() = rectangleX.right();
+         ptab->get_data()->m_rectangleHosting.bottom() = ptab->get_data()->m_rectangleTab.bottom();
 
       }
       else
@@ -1676,10 +1676,10 @@ namespace experience_anthill
 
          i32 ixAdd;
 
-         for (i32 iPane = 0; iPane < ptab->get_data()->m_tabpanecompositea.get_size(); iPane++)
+         for (i32 iPane = 0; iPane < ptab->get_data()->m_tabpanea.get_size(); iPane++)
          {
 
-            auto ppane = ptab->get_data()->m_tabpanecompositea[iPane].get();
+            auto ppane = ptab->get_data()->m_tabpanea[iPane].get();
 
             if (!ppane->m_bTabPaneVisible)
             {
@@ -1764,10 +1764,10 @@ namespace experience_anthill
 
          pdata->m_iTabHeight = iTabHeight;
 
-         for (i32 iPane = 0; iPane < ptab->get_data()->m_tabpanecompositea.get_size(); iPane++)
+         for (i32 iPane = 0; iPane < ptab->get_data()->m_tabpanea.get_size(); iPane++)
          {
 
-            auto ppane = ptab->get_data()->m_tabpanecompositea[iPane].get();
+            auto ppane = ptab->get_data()->m_tabpanea[iPane].get();
 
             ppane->m_size.cy() = iTabHeight;
 
@@ -1789,18 +1789,18 @@ namespace experience_anthill
          m_rectangleTab.height(),
          0);*/
 
-         auto & rectangleTabClient = ptab->get_data()->m_rectangleTabClient;
+         auto & rectangleHosting = ptab->get_data()->m_rectangleHosting;
 
-         rectangleTabClient.left() = ptab->get_data()->m_rectangleTab.left();
-         rectangleTabClient.top() = ptab->m_bEffectiveVisibleControl ? ptab->get_data()->m_rectangleTab.bottom() : rectangleX.top();
-         rectangleTabClient.right() = ptab->get_data()->m_rectangleTab.right();
-         rectangleTabClient.bottom() = rectangleX.bottom();
+         rectangleHosting.left() = ptab->get_data()->m_rectangleTab.left();
+         rectangleHosting.top() = ptab->m_bEffectiveVisibleControl ? ptab->get_data()->m_rectangleTab.bottom() : rectangleX.top();
+         rectangleHosting.right() = ptab->get_data()->m_rectangleTab.right();
+         rectangleHosting.bottom() = rectangleX.bottom();
 
-         //TRACE0("rectangleTabClient");
+         //TRACE0("rectangleHosting");
 
       }
 
-      for (i32 iPane = 0; iPane < ptab->get_data()->m_tabpanecompositea.get_size(); iPane++)
+      for (i32 iPane = 0; iPane < ptab->get_data()->m_tabpanea.get_size(); iPane++)
       {
 
          if (iPane != ptab->get_current_tab_index())

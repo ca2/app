@@ -59,33 +59,33 @@ inline ::pointer<BASE_TYPE>particle::__create(::factory::factory* pfactory)
 }
 
 
-template < typename BASE_TYPE >
-inline ::pointer<BASE_TYPE>particle::__id_create(const ::atom & atom, ::factory::factory* pfactory)
-{
-
-   auto pfactoryitem = pfactory->get_factory_item(atom);
-
-   if (!pfactoryitem)
-   {
-
-      throw ::exception(error_no_factory);
-
-   }
-
-   auto p = pfactoryitem->create_particle();
-
-   if (!p)
-   {
-
-      throw ::no_memory();
-
-   }
-
-   p->initialize(this);
-
-   return p;
-
-}
+//template < typename BASE_TYPE >
+//inline ::pointer<BASE_TYPE>particle::__id_create(const ::atom & atom, ::factory::factory* pfactory)
+//{
+//
+//   auto pfactoryitem = pfactory->get_factory_item(atom);
+//
+//   if (!pfactoryitem)
+//   {
+//
+//      throw ::exception(error_no_factory);
+//
+//   }
+//
+//   auto p = pfactoryitem->create_particle();
+//
+//   if (!p)
+//   {
+//
+//      throw ::no_memory();
+//
+//   }
+//
+//   p->initialize(this);
+//
+//   return p;
+//
+//}
 
 
 template < typename TYPE >
@@ -1646,29 +1646,37 @@ void object_reference_count_debug_release(TYPE * & p OBJECT_REFERENCE_COUNT_DEBU
 //
 
 template < typename TYPE >
-inline void particle::__defer_construct(::pointer<TYPE> & p, ::factory::factory * pfactory)
+inline bool particle::__defer_construct(::pointer<TYPE> & p, ::factory::factory * pfactory)
 {
 
-   if (::is_null(p))
+   if (::is_set(p))
    {
 
-      __construct(p, pfactory);
+      return false;
 
    }
+
+   __construct(p, pfactory);
+
+   return true;
 
 }
 
 
 template < typename TYPE >
-inline void particle::__defer_construct_new(::pointer<TYPE> & p)
+inline bool particle::__defer_construct_new(::pointer<TYPE> & p)
 {
 
-   if (::is_null(p))
+   if (::is_set(p))
    {
 
-      __construct_new(p);
+      return false;
 
    }
+
+   __construct_new(p);
+
+   return true;
 
 }
 

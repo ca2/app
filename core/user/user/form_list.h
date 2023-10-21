@@ -58,6 +58,7 @@ namespace user
       //void _001UpdateColumns() override;
       ::user::interaction * _001GetEditControl();
       void _001SetEditControl(::user::interaction * pinteraction);
+      ::pointer<list_column>new_list_column_with_control(::user::interaction * puserinteraction) override;
       bool _001AddControl(::user::interaction * pinteraction) override;
       void _001PlaceControl(::user::interaction * pinteraction, index iEditItem, bool bClick = false, bool bOnlySizeAndPosition = false) override;
       virtual void _001OnShowControl(::user::interaction * pinteraction);

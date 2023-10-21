@@ -11,7 +11,7 @@ namespace user
    {
 
 
-      void text_format::text_format_load(data * pdata, ::file::file * pfileIn)
+      void text_format::text_format_read(data * pdata, ::binary_stream & binarystream)
       {
 
          throw ::exception(error_not_implemented);
@@ -19,7 +19,7 @@ namespace user
       }
 
 
-      void     text_format::text_format_save(::file::file * pfileOut, data * pdata)
+      void text_format::text_format_write(::binary_stream & binarystream, data * pdata)
       {
 
          throw ::exception(error_not_implemented);

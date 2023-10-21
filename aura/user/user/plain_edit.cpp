@@ -16,6 +16,7 @@
 #endif
 #endif
 #include "acme/constant/id.h"
+#include "acme/constant/user_key.h"
 #include "acme/constant/message.h"
 #include "acme/constant/timer.h"
 #include "acme/filesystem/file/memory_file.h"
@@ -587,7 +588,7 @@ namespace user
 
             auto psz = strLine.c_str();
 
-            information("Line %s", psz);
+            informationf("Line %s", psz);
 
          }
 
@@ -1879,7 +1880,7 @@ namespace user
                if (pmouse->m_pointHost.x() < rectangleWindow.left() - 30)
                {
 
-                  information("test06");
+                  informationf("test06");
 
                }
 
@@ -1951,7 +1952,7 @@ namespace user
 
                auto iSelEnd = iSelBeg;
                
-               information("LeftButtonDown(%d,%d)-queue_graphics_call", iSelBeg, iSelEnd);
+               informationf("LeftButtonDown(%d,%d)-queue_graphics_call", iSelBeg, iSelEnd);
 
                _001SetSel(iSelBeg, iSelEnd);
 
@@ -2171,7 +2172,7 @@ namespace user
       //   if (iRead < iImpactSize)
       //   {
 
-      //      information("ops1");
+      //      informationf("ops1");
 
       //      iImpactSize = iRead;
 
@@ -2208,14 +2209,14 @@ namespace user
       //   if (iPos + iStrLen > m_iImpactSize)
       //   {
 
-      //      information("ops3");
+      //      informationf("ops3");
 
       //      iStrLen = iImpactSize - iPos;
 
       //      if (iStrLen <= 0)
       //      {
 
-      //         information("ops4");
+      //         informationf("ops4");
 
       //         break;
 
@@ -2238,7 +2239,7 @@ namespace user
       //   else
       //   {
 
-      //      //information("optstr");
+      //      //informationf("optstr");
 
       //   }
 
@@ -2247,7 +2248,7 @@ namespace user
       //   if (iPos > iImpactSize)
       //   {
 
-      //      information("ops2");
+      //      informationf("ops2");
 
       //      break;
 
@@ -2622,7 +2623,7 @@ namespace user
       //         if (iRead < iImpactSize)
       //         {
       //
-      //            information("ops1");
+      //            informationf("ops1");
       //
       //            iImpactSize = iRead;
       //
@@ -2660,14 +2661,14 @@ namespace user
       //         if (iPos + iStrLen > m_iImpactSize)
       //         {
       //
-      //            information("ops3");
+      //            informationf("ops3");
       //
       //            iStrLen = iImpactSize - iPos;
       //
       //            if (iStrLen <= 0)
       //            {
       //
-      //               information("ops4");
+      //               informationf("ops4");
       //
       //               break;
       //
@@ -2691,7 +2692,7 @@ namespace user
       //         else
       //         {
       //
-      //            //information("optstr");
+      //            //informationf("optstr");
       //
       //         }
       //
@@ -2703,7 +2704,7 @@ namespace user
       //         if (iPos > iImpactSize)
       //         {
       //
-      //            information("ops2");
+      //            informationf("ops2");
       //
       //            break;
       //
@@ -3034,7 +3035,7 @@ namespace user
          if (iRead < iImpactSize)
          {
 
-            information("ops1");
+            informationf("ops1");
 
             iImpactSize = iRead;
 
@@ -3071,14 +3072,14 @@ namespace user
          if (iPos + iStrLen > m_iImpactSize)
          {
 
-            information("ops3");
+            informationf("ops3");
 
             iStrLen = iImpactSize - iPos;
 
             if (iStrLen <= 0)
             {
 
-               information("ops4");
+               informationf("ops4");
 
                break;
 
@@ -3101,7 +3102,7 @@ namespace user
          else
          {
 
-            //information("optstr");
+            //informationf("optstr");
 
          }
 
@@ -3110,7 +3111,7 @@ namespace user
          if (iPos > iImpactSize)
          {
 
-            information("ops2");
+            informationf("ops2");
 
             break;
 
@@ -3400,7 +3401,7 @@ namespace user
 //   if (iRead < iImpactSize)
 //   {
 
-//      information("ops1");
+//      informationf("ops1");
 
 //      iImpactSize = iRead;
 
@@ -3437,14 +3438,14 @@ namespace user
 //   if (iPos + iStrLen > m_iImpactSize)
 //   {
 
-//      information("ops3");
+//      informationf("ops3");
 
 //      iStrLen = iImpactSize - iPos;
 
 //      if (iStrLen <= 0)
 //      {
 
-//         information("ops4");
+//         informationf("ops4");
 
 //         break;
 
@@ -3467,7 +3468,7 @@ namespace user
 //   else
 //   {
 
-//      //information("optstr");
+//      //informationf("optstr");
 
 //   }
 
@@ -3476,7 +3477,7 @@ namespace user
 //   if (iPos > iImpactSize)
 //   {
 
-//      information("ops2");
+//      informationf("ops2");
 
 //      break;
 
@@ -5707,6 +5708,10 @@ namespace user
 
                         psetsel->m_iPreviousSelEnd = m_ptree->m_iSelEnd;
 
+                        information() << "SelBeg : " << psetsel->m_iPreviousSelBeg;
+
+                        information() << "SelEnd : " << psetsel->m_iPreviousSelEnd;
+
                         char buf[512];
 
                         memory_set(buf, 0, sizeof(buf));
@@ -5738,6 +5743,8 @@ namespace user
 
                            iMultiByteUtf8DeleteCount = &buf[iCur] - psz;
 
+                           information() << "iMultiByteUtf8DeleteCount : " << iMultiByteUtf8DeleteCount;
+
                         }
 
                         index i2 = m_ptree->m_iSelEnd;
@@ -5746,6 +5753,8 @@ namespace user
                         string strSel;
 
                         _001GetText(strSel, i1, i2);
+
+                        information() << "strSel : " << strSel;
 
                         bFullUpdate = strSel.find_index('\n') >= 0 || strSel.find_index('\r') >= 0;
 
@@ -6104,7 +6113,7 @@ namespace user
             else if (pkey->m_ekey == ::user::e_key_return)
             {
 
-#ifndef WINDOWS_DESKTOP
+//#ifndef WINDOWS_DESKTOP
 
                if (m_bMultiLine)
                {
@@ -6113,7 +6122,7 @@ namespace user
 
                }
 
-#endif
+//#endif
 
             }
             else if (is_window_enabled())
@@ -6426,7 +6435,7 @@ namespace user
 
          _001GetText(strText);
 
-         ::information("\nplain_edit::on_text_composition (m_pitemComposing != nullptr) Current Text: " + strText + "\n");
+         ::informationf("\nplain_edit::on_text_composition (m_pitemComposing != nullptr) Current Text: " + strText + "\n");
 
       }
       else
@@ -6498,7 +6507,7 @@ namespace user
 
          _001GetText(strText);
 
-         ::information("Current Text: " + strText + "\n");
+         ::informationf("Current Text: " + strText + "\n");
 
          m_pitemComposing.release();
 
@@ -7814,7 +7823,7 @@ namespace user
    //   if (!::user::interaction::create_interaction(puserinteractionParent, atom))
    //   {
 
-   //      information("Failed to create control");
+   //      informationf("Failed to create control");
 
    //      return false;
 
@@ -7893,6 +7902,10 @@ namespace user
          ptexteditorinterface->show_software_keyboard();
 
       }
+
+      set_need_redraw();
+
+      post_redraw();
 
    }
 
@@ -8130,7 +8143,7 @@ namespace user
    //   if (nCmdShow != e_display_none)
    //   {
 
-   //      information("Going to Show plain_edit");
+   //      informationf("Going to Show plain_edit");
 
    //   }
 
@@ -8265,7 +8278,7 @@ namespace user
    void plain_edit::plain_edit_insert_text(::draw2d::graphics_pointer & pgraphics, string strText, bool bForceNewStep)
    {
 
-      ::information("plain_edit::insert_text: \"" + strText.left(64) + "\" \n");
+      ::informationf("plain_edit::insert_text: \"" + strText.left(64) + "\" \n");
 
       synchronous_lock synchronouslock(this->synchronization());
 

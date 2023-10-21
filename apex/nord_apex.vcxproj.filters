@@ -400,6 +400,9 @@
     <ClCompile Include="user\user\primitive.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
+    <ClCompile Include="input\input.cpp">
+      <Filter>Source Files\input</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -1239,6 +1242,9 @@
     <ClInclude Include="user\user\container.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
+    <ClInclude Include="input\input.h">
+      <Filter>Header Files\input</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
@@ -1390,6 +1396,12 @@
     </Filter>
     <Filter Include="Header Files\user\user">
       <UniqueIdentifier>{71bf7263-b145-4c4a-b86e-73de64a49593}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\input">
+      <UniqueIdentifier>{06d5539e-77fc-4997-a1e1-cd68b8d91fe2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\input">
+      <UniqueIdentifier>{63ca2b31-3298-4ace-b391-b5579e1b5810}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

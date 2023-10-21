@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "item.h"
-#include "tree.h"
+#include "tree_data.h"
 #include "acme/constant/message.h"
 #include "acme/primitive/data/listener.h"
 #include "acme/primitive/data/tree_item.h"
@@ -15,11 +15,13 @@ namespace userfs
 {
 
 
-   item::item(::userfs::tree * ptree) :
-      m_ptree(ptree)
+   item::item(::userfs::tree_data * ptreedata) :
+      m_ptreedata(ptreedata)
    {
+      
       //m_iImage = -1;
       //m_iImageSelected = -1;
+
    }
 
 
@@ -90,7 +92,7 @@ namespace userfs
 
       ::user::shell::enum_icon eicon;
 
-      if (m_ptree->is_selected(this))
+      if (m_ptreedata->is_selected(this))
       {
 
          eicon = ::user::shell::e_icon_open;
@@ -103,7 +105,7 @@ namespace userfs
 
       }
 
-      auto psession = m_ptree->get_session();
+      auto psession = m_ptreedata->get_session();
 
       auto puser = psession->user();
 
@@ -118,14 +120,14 @@ namespace userfs
 
       }
 
-      pshell->warn_when_ok(user_path(), m_ptree->m_usertreea);
+      pshell->warn_when_ok(user_path(), m_ptreedata->m_usertreea);
 
       iImage = pshell->get_file_image(final_path(), efileattribute, eicon);
 
       if(iImage < 0)
       {
 
-         pshell->warn_when_ok(final_path(), m_ptree->m_usertreea);
+         pshell->warn_when_ok(final_path(), m_ptreedata->m_usertreea);
 
       }
 
@@ -137,7 +139,7 @@ namespace userfs
    ::image_list * item::data_item_get_image_list(::particle * pparticle) const
    {
 
-      return m_ptree->m_pimagelist;
+      return m_ptreedata->m_pimagelist;
 
    }
 

@@ -8,7 +8,8 @@
 #include "save_image.h"
 #include "context_image.h"
 #include "acme/exception/interface_only.h"
-#include "acme/graphics/draw2d/image32.h"
+#include "acme/graphics/image/_exif.h"
+#include "acme/graphics/image/image32.h"
 #include "acme/primitive/mathematics/mathematics.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/task_tool.h"
@@ -6257,14 +6258,14 @@ void image::Rotate034(::image* pimage, double dAngle, double dScale)
    if (hdst != hsrc)
    {
 
-      information("different height");
+      informationf("different height");
 
    }
 
    if (wdst != wsrc)
    {
 
-      information("different width");
+      informationf("different width");
 
    }
 
@@ -6305,7 +6306,7 @@ void image::Rotate034(::image* pimage, double dAngle, double dScale)
       if (lineDst < 0)
       {
 
-         information("image::Rotate034 lineDst < 0");
+         informationf("image::Rotate034 lineDst < 0");
 
       }
 
@@ -8615,7 +8616,7 @@ void image::set_rgb_pre_alpha(i32 R, i32 G, i32 B, i32 A)
       if (areaRgba < areaRgbaLast)
       {
 
-         information("_001GetTopLeftWeightedOpaqueArea areaRgba < areaRgbaLast");
+         informationf("_001GetTopLeftWeightedOpaqueArea areaRgba < areaRgbaLast");
 
       }
 
@@ -10361,10 +10362,10 @@ CLASS_DECL_AURA void draw_freetype_bitmap(::image* m_p, i32 Δx, i32 Δy, void* 
 //}
 
 
-::particle_pointer image::clone() const
+::particle_pointer image::clone()
 {
 
-   auto pimage = ((::image*)this)->__create<::image>();
+   auto pimage = this->__create<::image>();
 
    pimage->copy_from((::image *) this);
 

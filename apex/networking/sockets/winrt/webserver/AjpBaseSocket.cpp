@@ -98,13 +98,13 @@ namespace sockets
 
    void AjpBaseSocket::OnRawData(char *buf, memsize sz)
    {
-   information("OnRawData: %d bytes\n", sz);
+   informationf("OnRawData: %d bytes\n", sz);
       memsize ptr = 0;
       while (true)
       {
          memsize left = sz - ptr;
-   information(" left: %d bytes\n", left);
-   information(" state: %d\n", m_state);
+   informationf(" left: %d bytes\n", left);
+   informationf(" state: %d\n", m_state);
          switch (m_state)
          {
          case 0:

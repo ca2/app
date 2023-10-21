@@ -106,7 +106,7 @@ namespace factory
 
           strMessage = "Factory hasn't creator for type \"" + ::type < ORIGIN_TYPE >().name() + "\"";
 
-          warning (strMessage);
+          warningf(strMessage);
 
           throw_exception(error_no_factory, strMessage);
 
@@ -121,7 +121,7 @@ namespace factory
 
           strMessage = "Couldn't create_particle for type \"" + ::type < ORIGIN_TYPE >().name() + "\"";
 
-          warning (strMessage);
+          warningf(strMessage);
 
           throw_exception(error_no_memory, strMessage);
 
@@ -136,7 +136,7 @@ namespace factory
 
           strMessage = "Created element is not of the base type \"" + ::type < ORIGIN_TYPE >().name() + "\"";
 
-          warning (strMessage);
+          warningf(strMessage);
 
           throw_exception(error_wrong_type, strMessage);
 
@@ -174,7 +174,7 @@ namespace factory
     //      if (p && ::type(p).name()) == strText
     //      {
 
-    //         ::information("loading into existing matter of same class type (1)");
+    //         ::informationf("loading into existing matter of same class type (1)");
 
     //      }
     //      else
@@ -185,7 +185,7 @@ namespace factory
     //         if (!p)
     //         {
 
-    //            ::information("defer_new failed (1.1)");
+    //            ::informationf("defer_new failed (1.1)");
 
     //            stream.set_fail_bit();
 
@@ -193,7 +193,7 @@ namespace factory
     //         else if (::type(p).name()) != strText
     //         {
 
-    //            ::information("allocated matter type is different from streamed matter type (1.2)");
+    //            ::informationf("allocated matter type is different from streamed matter type (1.2)");
 
     //            stream.set_fail_bit();
 
@@ -210,7 +210,7 @@ namespace factory
     //      if (p && atom == ::type(p).name())
     //      {
 
-    //         ::information("loading into existing matter of same class type (2)");
+    //         ::informationf("loading into existing matter of same class type (2)");
 
     //      }
     //      else
@@ -221,13 +221,13 @@ namespace factory
     //         if (!p)
     //         {
 
-    //            ::information("stream::alloc_object_from_text failed (2.1)");
+    //            ::informationf("stream::alloc_object_from_text failed (2.1)");
 
     //         }
     //         else if (::type(p).name()) != atom.to_string()
     //         {
 
-    //            ::information("allocated matter type is different from streamed matter type (2.2)");
+    //            ::informationf("allocated matter type is different from streamed matter type (2.2)");
 
     //            stream.set_fail_bit();
 

@@ -132,7 +132,7 @@ namespace user
          get_parent()->is_place_holder())
       {
 
-         m_bExtendOnParentClientArea = true;
+         m_bExtendOnParentHostingArea = true;
 
       }
 
@@ -250,6 +250,10 @@ namespace user
          throw ::exception(error_wrong_type);
 
       }
+
+//      _set_data(0, pdocument->get_data(0));
+
+
 
       //return estatus;
 
@@ -1024,6 +1028,14 @@ namespace user
 
       ASSERT(::is_set(this));
       return ((::user::impact *) this)->m_pdocument;
+
+   }
+
+
+   ::data::data * impact::_get_data(const ::atom & atom)
+   {
+
+      return m_pdocument->get_data(atom);
 
    }
 

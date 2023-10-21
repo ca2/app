@@ -6,6 +6,8 @@
 #include "toolbar.h"
 #include "acme/constant/message.h"
 #include "acme/constant/simple_command.h"
+#include "acme/constant/user_key.h"
+#include "acme/handler/request.h"
 #include "acme/exception/interface_only.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/dir_context.h"
@@ -1017,6 +1019,20 @@ namespace user
 
 //      defer_synch_layered();
 
+      if (m_pimpactsystem)
+      {
+
+         ::pointer < ::user::document > puserdocument;
+
+         puserdocument = m_pusersystem->m_pdocumentCurrent;
+
+         m_pimpactsystem->prepare_frame(
+            this,
+            puserdocument,
+            m_pusersystem->m_prequest->m_bMakeVisible);
+
+      }
+
    }
 
 
@@ -1112,7 +1128,7 @@ namespace user
 
       set_display(e_display_none);
 
-      information("\nm_bLayoutEnable false");
+      informationf("\nm_bLayoutEnable false");
 
       //auto pusersystem = __new(::user::system (0L, nullptr, m_strFrameTitle, dwDefaultStyle, rectangleFrame, pcreate));
 
@@ -1684,11 +1700,11 @@ namespace user
 
       pcontrolbar->post_redraw();
 
+      // m_bNeedRepositionBars = true;
+
       set_need_layout();
 
       set_need_redraw();
-
-      RepositionBars();
 
       post_redraw();
 
@@ -1709,7 +1725,10 @@ namespace user
 
       pcontrolbar->hide();
 
-      RepositionBars();
+      set_need_layout();
+
+      //m_bNeedRepositionBars = true;
+
 
       //throw ::interface_only();
 
@@ -1796,7 +1815,7 @@ namespace user
    ::pointer<toolbar>frame_window::create_toolbar(const ::atom & idToolbar, const ::string & strToolbarParam, u32 dwCtrlStyle, u32 uStyle, const ::type_atom & typeatom)
    {
 
-      auto ptoolbar = __id_create < toolbar >(typeatom);
+      ::pointer < toolbar> ptoolbar = __id_create (typeatom);
 
       ptoolbar->m_dwStyle = uStyle;
 
@@ -2261,7 +2280,7 @@ namespace user
 
       ::user::main_window::on_perform_top_down_layout(pgraphics);
 
-      m_rectangleClient = this->raw_rectangle(e_layout_layout);
+      m_rectangleHosting = this->raw_rectangle(e_layout_layout);
 
       __task_guard(m_bInRecalcLayout);
 
@@ -2273,12 +2292,12 @@ namespace user
 
          //         ::u32 dwTime2= ::time::now();
 
-         //information("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
-         //information("userframewindow call time1= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+         //informationf("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+         //informationf("userframewindow call time1= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
 
       }
 
-
+      ::string strType(::type(this).name());
       // reposition all the child windows (regardless of ID)
       //if (GetStyle() & FWS_SNAPTOBARS)
       if(m_bSnapToBars)
@@ -2687,13 +2706,13 @@ namespace user
 //      if (type.name().contains("app_veriwell_keyboard") && type.name().contains("main_frame"))
 //      {
 //
-//         //::information("app_veriwell_keyboard::main_frame");
+//         //::informationf("app_veriwell_keyboard::main_frame");
 //
 //      }
 //      else if(type.name().contains("simple_child_frame"))
 //      {
 //
-//         //::information("simple_child_frame");
+//         //::informationf("simple_child_frame");
 //
 //      }
 //
@@ -2893,10 +2912,10 @@ namespace user
    }
 
 
-   ::rectangle_i32 frame_window::client_rectangle(::user::enum_layout elayout)
+   ::rectangle_i32 frame_window::hosting_rectangle(::user::enum_layout elayout)
    {
 
-      return m_rectangleClient;
+      return m_rectangleHosting;
 
    }
 

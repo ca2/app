@@ -8,7 +8,9 @@
 namespace userfs
 {
 
-   class tree;
+   
+   class tree_data;
+
 
    class CLASS_DECL_CORE item:
       virtual public ::data::item,
@@ -17,13 +19,13 @@ namespace userfs
    public:
 
 
-      ::userfs::tree *                    m_ptree;
+      ::userfs::tree_data *               m_ptreedata;
       i32                                 m_iIdentation;
       string                              m_strFolder;
       i32                                 m_iIndex;
 
 
-      item(::userfs::tree * ptree);
+      item(::userfs::tree_data * ptree);
       virtual ~item();
 
       virtual string data_item_get_text(::particle * pparticle) const override;

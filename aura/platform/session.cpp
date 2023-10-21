@@ -1,5 +1,6 @@
 #include "framework.h"
 ////#include "acme/exception/exception.h"
+#include "acme/constant/user_key.h"
 #include "acme/exception/extended_status.h"
 #include "acme/filesystem/file/item_array.h"
 #include "acme/primitive/primitive/url.h"
@@ -93,7 +94,7 @@ namespace aura
    session::~session()
    {
 
-      information("aura::session::~session()");
+      informationf("aura::session::~session()");
 
    }
 
@@ -813,7 +814,7 @@ namespace aura
 ////      //      if (pkeyboardfocusOld != nullptr)
 ////      //      {
 ////
-////      //         information("axis::session::set_keyboard_focus pkeyboardfocusOld->keyboard_focus_OnKillFocus()\n");
+////      //         informationf("axis::session::set_keyboard_focus pkeyboardfocusOld->keyboard_focus_OnKillFocus()\n");
 ////
 ////      //         if (!pkeyboardfocusOld->keyboard_focus_OnKillFocus( (pkeyboardfocus != nullptr &&
 ////      //               pkeyboardfocus != (::user::primitive *) (ulong_ptr) 1) ?
@@ -978,7 +979,7 @@ namespace aura
 //      //      if (pkeyboardfocusOld != nullptr)
 //      //      {
 //
-//      //         information("axis::session::set_keyboard_focus pkeyboardfocusOld->keyboard_focus_OnKillFocus()\n");
+//      //         informationf("axis::session::set_keyboard_focus pkeyboardfocusOld->keyboard_focus_OnKillFocus()\n");
 //
 //      //         if (!pkeyboardfocusOld->keyboard_focus_OnKillFocus( (pkeyboardfocus != nullptr &&
 //      //               pkeyboardfocus != (::user::primitive *) (ulong_ptr) 1) ?
@@ -1136,7 +1137,7 @@ namespace aura
 //      //      if (pkeyboardfocusOld != nullptr)
 //      //      {
 //
-//      //         information("axis::session::set_keyboard_focus pkeyboardfocusOld->keyboard_focus_OnKillFocus()\n");
+//      //         informationf("axis::session::set_keyboard_focus pkeyboardfocusOld->keyboard_focus_OnKillFocus()\n");
 //
 //      //         if (!pkeyboardfocusOld->keyboard_focus_OnKillFocus( (pkeyboardfocus != nullptr &&
 //      //               pkeyboardfocus != (::user::primitive *) (ulong_ptr) 1) ?
@@ -1756,7 +1757,7 @@ namespace aura
 
       //      m_result.add(estatus);
 
-      //      information("Failed to create ifs");
+      //      informationf("Failed to create ifs");
 
       //   }
 
@@ -1772,7 +1773,7 @@ namespace aura
 
       //      m_result.add(estatus);
 
-      //      information("Failed to create remotefs");
+      //      informationf("Failed to create remotefs");
 
       //   }
 
@@ -1798,7 +1799,7 @@ namespace aura
 
       //      m_result.add(estatus);
 
-      //      information("Failed to create fsdata");
+      //      informationf("Failed to create fsdata");
 
       //   }
 
@@ -1821,7 +1822,7 @@ namespace aura
          //   if(!estatus)
          //   {
 
-         //      information("\nFailed to __construct(m_puser)");
+         //      informationf("\nFailed to __construct(m_puser)");
 
          //   }
 
@@ -1841,7 +1842,7 @@ namespace aura
          if (!m_puser)
          {
 
-            warning("Failed to __construct_new(m_puser)");
+            warningf("Failed to __construct_new(m_puser)");
 
             error() <<".4";
 
@@ -2358,13 +2359,13 @@ namespace aura
 
       //if(m_pdatabase == nullptr)
       //{
-      //   information("VmpLightApp::init_instance failed to instatiate LightDB");
+      //   informationf("VmpLightApp::init_instance failed to instatiate LightDB");
       //   return false;
       //}
 
       //if(!m_pdatabase->Initialize())
       //{
-      //   information("VmpLightApp::init_instance failed to initialize LightDB");
+      //   informationf("VmpLightApp::init_instance failed to initialize LightDB");
       //   return false;
       //}
 

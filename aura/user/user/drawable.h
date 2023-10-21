@@ -20,6 +20,8 @@ namespace user
       ~drawable() override;
 
 
+      virtual void _000DrawImpl(::draw2d::graphics_pointer & pgraphics);
+
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
 
       virtual bool _000OnBeforeDraw(::draw2d::graphics_pointer & pgraphics);
@@ -39,11 +41,11 @@ namespace user
 
       virtual bool is_composite();
 
-      virtual ::item_pointer hit_test(::user::mouse * pmouse, e_zorder ezorder);
+      //virtual ::item_pointer hit_test(::user::mouse * pmouse, e_zorder ezorder);
 
-      virtual ::item_pointer hit_test(const ::point_i32 & point, e_zorder ezorder);
+      virtual ::item_pointer parent_client_hit_test(const ::point_i32 & point, e_zorder ezorder);
 
-      virtual ::item_pointer on_hit_test(const ::point_i32 & point, e_zorder ezorder);
+      virtual ::item_pointer parent_client_on_hit_test(const ::point_i32 & point, e_zorder ezorder);
 
 
    };

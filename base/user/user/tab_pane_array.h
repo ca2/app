@@ -9,14 +9,14 @@ namespace user
 {
 
 
-   class CLASS_DECL_BASE tab_pane_composite_array :
+   class CLASS_DECL_BASE tab_pane_array :
       public ::pointer_array < tab_pane >
    {
    public:
 
 
-      tab_pane_composite_array();
-      ~tab_pane_composite_array() override;
+      tab_pane_array();
+      ~tab_pane_array() override;
 
 
       virtual tab_pane * get_by_id(atom atom);

@@ -7,7 +7,7 @@
     <ClCompile Include="filesystem\filemanager\impact.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filemanager\tree.cpp">
+    <ClCompile Include="filesystem\filemanager\tree_data.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\tab_impact.cpp">
@@ -136,7 +136,7 @@
     <ClCompile Include="filesystem\userfs\main_impact.cpp">
       <Filter>Source Files\filesystem\userfs</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\userfs\tree.cpp">
+    <ClCompile Include="filesystem\userfs\tree_data.cpp">
       <Filter>Source Files\filesystem\userfs</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\userfs\userfs.cpp">
@@ -196,9 +196,6 @@
     <ClCompile Include="user\rich_text\data.cpp">
       <Filter>Source Files\user\rich_text</Filter>
     </ClCompile>
-    <ClCompile Include="user\rich_text\document.cpp">
-      <Filter>Source Files\user\rich_text</Filter>
-    </ClCompile>
     <ClCompile Include="user\rich_text\edit.cpp">
       <Filter>Source Files\user\rich_text</Filter>
     </ClCompile>
@@ -234,9 +231,6 @@
     </ClCompile>
     <ClCompile Include="filesystem\filehandler\tree_interface.cpp">
       <Filter>Source Files\filesystem\filehandler</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\color_combo_box.cpp">
-      <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\elastic_slider.cpp">
       <Filter>Source Files\user\user</Filter>
@@ -321,12 +315,6 @@
     </ClCompile>
     <ClCompile Include="user\user\xfplayer_impact_lines.cpp">
       <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\userex\calculator_edit_impact.cpp">
-      <Filter>Source Files\user\userex</Filter>
-    </ClCompile>
-    <ClCompile Include="user\userex\color_impact.cpp">
-      <Filter>Source Files\user\userex</Filter>
     </ClCompile>
     <ClCompile Include="user\userex\dialog.cpp">
       <Filter>Source Files\user\userex</Filter>
@@ -460,6 +448,39 @@
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\save_as_impact.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\color_selector_combo_box.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\color_selector_control.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\color_selector_impact.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\color_selector_popup.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\font_list_impact.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\list2.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\popup.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\text_format_object.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\rich_text\selection.cpp">
+      <Filter>Source Files\user\rich_text</Filter>
+    </ClCompile>
+    <ClCompile Include="user\rich_text\format_host.cpp">
+      <Filter>Source Files\user\rich_text</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\color_selector.cpp">
+      <Filter>Source Files\graphics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1394,6 +1415,60 @@
     <ClInclude Include="filesystem\filemanager\save_as_button_impact.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
+    <ClInclude Include="user\rich_text\_.h">
+      <Filter>Header Files\user\rich_text</Filter>
+    </ClInclude>
+    <ClInclude Include="user\rich_text\_binary_stream.h">
+      <Filter>Header Files\user\rich_text</Filter>
+    </ClInclude>
+    <ClInclude Include="user\rich_text\_constant.h">
+      <Filter>Header Files\user\rich_text</Filter>
+    </ClInclude>
+    <ClInclude Include="user\rich_text\_impl.h">
+      <Filter>Header Files\user\rich_text</Filter>
+    </ClInclude>
+    <ClInclude Include="user\rich_text\box.h">
+      <Filter>Header Files\user\rich_text</Filter>
+    </ClInclude>
+    <ClInclude Include="user\rich_text\data.h">
+      <Filter>Header Files\user\rich_text</Filter>
+    </ClInclude>
+    <ClInclude Include="user\rich_text\edit.h">
+      <Filter>Header Files\user\rich_text</Filter>
+    </ClInclude>
+    <ClInclude Include="user\rich_text\edit_impl.h">
+      <Filter>Header Files\user\rich_text</Filter>
+    </ClInclude>
+    <ClInclude Include="user\rich_text\format.h">
+      <Filter>Header Files\user\rich_text</Filter>
+    </ClInclude>
+    <ClInclude Include="user\rich_text\format_host.h">
+      <Filter>Header Files\user\rich_text</Filter>
+    </ClInclude>
+    <ClInclude Include="user\rich_text\format_tool.h">
+      <Filter>Header Files\user\rich_text</Filter>
+    </ClInclude>
+    <ClInclude Include="user\rich_text\global.h">
+      <Filter>Header Files\user\rich_text</Filter>
+    </ClInclude>
+    <ClInclude Include="user\rich_text\layout.h">
+      <Filter>Header Files\user\rich_text</Filter>
+    </ClInclude>
+    <ClInclude Include="user\rich_text\line.h">
+      <Filter>Header Files\user\rich_text</Filter>
+    </ClInclude>
+    <ClInclude Include="user\rich_text\rich_text.h">
+      <Filter>Header Files\user\rich_text</Filter>
+    </ClInclude>
+    <ClInclude Include="user\rich_text\selection.h">
+      <Filter>Header Files\user\rich_text</Filter>
+    </ClInclude>
+    <ClInclude Include="user\rich_text\span.h">
+      <Filter>Header Files\user\rich_text</Filter>
+    </ClInclude>
+    <ClInclude Include="user\rich_text\text_format.h">
+      <Filter>Header Files\user\rich_text</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
@@ -1515,6 +1590,12 @@
     </Filter>
     <Filter Include="Source Files\html\hi5">
       <UniqueIdentifier>{1ead309b-79a9-46b6-923e-e1e460574bb8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\user\rich_text">
+      <UniqueIdentifier>{82349d8e-dbf8-4a50-b176-96265003b041}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics">
+      <UniqueIdentifier>{43ec78c5-44ff-4c58-9bbe-42d720a381b9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

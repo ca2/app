@@ -96,7 +96,7 @@ string_to_string * g_pmapFontPath;
 //
 //         if (wcsicmp(lplf->lfFaceName, L"Gulim") == 0)
 //         {
-//            information("Gulim");
+//            informationf("Gulim");
 //         }
 //         pc->m_csa.add(::draw2d::wingdi_get_cs(lplf->lfCharSet));
 //
@@ -3920,7 +3920,7 @@ namespace draw2d_cairo
 
             const ::scoped_string & scopedstrStatus = cairo_status_to_string(status);
 
-            information("cairo error : graphics::draw_text %d %s", status, pszStatus);
+            informationf("cairo error : graphics::draw_text %d %s", status, pszStatus);
 
          }
 
@@ -4275,7 +4275,7 @@ namespace draw2d_cairo
 
    //            const ::scoped_string & scopedstrStatus = cairo_status_to_string(status);
 
-   //            information("cairo error : graphics::draw_text %d %s", status, pszStatus);
+   //            informationf("cairo error : graphics::draw_text %d %s", status, pszStatus);
 
    //        }
 
@@ -4584,7 +4584,7 @@ namespace draw2d_cairo
          if (string_begins(str, unitext("virtual_machine")))
          {
 
-            information("Likely to fail in certain circumstances");
+            informationf("Likely to fail in certain circumstances");
 
          }
 
@@ -4610,7 +4610,7 @@ namespace draw2d_cairo
 
             const ::scoped_string & scopedstrStatus = cairo_status_to_string(status);
 
-            information("cairo error : graphics::_GetTextExtent %d %s", status, pszStatus);
+            informationf("cairo error : graphics::_GetTextExtent %d %s", status, pszStatus);
 
          }
 
@@ -6206,7 +6206,7 @@ namespace draw2d_cairo
 
          const ::scoped_string & scopedstrStatus = cairo_status_to_string(status);
 
-         information("cairo error : graphics::set(string_path) %d %s", status, pszStatus);
+         informationf("cairo error : graphics::set(string_path) %d %s", status, pszStatus);
 
       }
 
@@ -6242,7 +6242,7 @@ namespace draw2d_cairo
 
          const ::scoped_string & scopedstrStatus = cairo_status_to_string(status);
 
-         information("cairo error : graphics::set(string_path) %d %s", status, pszStatus);
+         informationf("cairo error : graphics::set(string_path) %d %s", status, pszStatus);
 
       }
 
@@ -6642,7 +6642,7 @@ namespace draw2d_cairo
 //    if (str == "TakaoPGothic")
 //    {
 //
-//        information("searching TakaoPGothic");
+//        informationf("searching TakaoPGothic");
 //
 //    }
 //
@@ -6662,7 +6662,7 @@ namespace draw2d_cairo
 //        if (str == "TakaoPGothic")
 //        {
 //
-//            information("searching TakaoPGothic");
+//            informationf("searching TakaoPGothic");
 //
 //        }
 //
@@ -6856,7 +6856,7 @@ namespace draw2d_cairo
          else
          {
 
-            information("Creating font : " << pszFontName);
+            informationf("Creating font : " << pszFontName);
 
          }
 

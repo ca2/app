@@ -15,6 +15,7 @@
 #include "TextBox.h"
 //#include <regex>
 #include "acme/constant/message.h"
+#include "acme/constant/user_key.h"
 #include "acme/regular_expression/regular_expression.h"
 #include "acme/regular_expression/result.h"
 #include "aura/platform/session.h"

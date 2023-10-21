@@ -54,7 +54,7 @@ namespace opengl
          
          auto errString = opengl_error_string(eerror);
 
-         information("error %d \"%s\"", eerror, errString);
+         informationf("error %d \"%s\"", eerror, errString);
 
          return ::error_failed;
 
@@ -67,6 +67,8 @@ namespace opengl
       glShaderSource(uShader, 1, sza, NULL);
 
       glCompileShader(uShader);
+
+      information() << "compiling shader : " << sza[0];
 
       //string strSummary;
 
@@ -324,6 +326,8 @@ namespace opengl
          const char * pszLog = infoLog;
 
          strSummary.format("error::SHADER_COMPILATION_ERROR of type: %s \n %s \n -- --------------------------------------------------- -- \n", psz, pszLog);
+
+         warning() << strSummary;
 
          throw ::exception(error_failed, "Shader Compilation Error", strSummary);
 

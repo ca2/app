@@ -255,7 +255,7 @@ CLASS_DECL_ACME bool safe_free_memory(void * ptype)
 //   if (!pfactory)
 //   {
 //
-//      information("plibrary->add_factory_item()? : Library \"%s\" didn't register any relevant factory_item for type name \"%s\"?", strLibrary.c_str(), strName.c_str());
+//      informationf("plibrary->add_factory_item()? : Library \"%s\" didn't register any relevant factory_item for type name \"%s\"?", strLibrary.c_str(), strName.c_str());
 //
 //   }
 //

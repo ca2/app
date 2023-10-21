@@ -527,7 +527,7 @@ namespace integration
                //write(1, buff, size);
             }
 
-            ::information(strPathName + "\n");
+            ::informationf(strPathName + "\n");
 
          }
          next:

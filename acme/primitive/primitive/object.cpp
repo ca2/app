@@ -855,14 +855,14 @@ void object::run()
 //   if (string(m_atom).contains("::rx"))
 //   {
 //
-//      information("::rx destroy");
+//      informationf("::rx destroy");
 //
 //   }
 //
 //   if (string(m_atom).contains("::interprocess::communication"))
 //   {
 //
-//      information("::interprocess::communication destroy");
+//      informationf("::interprocess::communication destroy");
 //
 //   }
 //
@@ -949,13 +949,13 @@ void object::add_task(::object* pobjectTask)
    if (strType.contains("prodevian"))
    {
 
-      ::information("task added to prodevian\n");
+      ::informationf("task added to prodevian\n");
 
    }
    else if (strType.contains("user::thread"))
    {
 
-      ::information("task added to user::thread\n");
+      ::informationf("task added to user::thread\n");
 
    }
 
@@ -1006,7 +1006,7 @@ void object::erase_task_and_set_task_new_parent(::object* pobjectTask, ::object 
    if (strType.contains("user::thread"))
    {
 
-      ::information("task added to user::thread\n");
+      ::informationf("task added to user::thread\n");
 
    }
 
@@ -1015,7 +1015,7 @@ void object::erase_task_and_set_task_new_parent(::object* pobjectTask, ::object 
    if (m_pparticleaChildrenTask->erase(pobjectTask) <= 0)
    {
 
-      ::information("not a child");
+      ::informationf("not a child");
 
    }
 
@@ -1939,7 +1939,7 @@ void object::task_erase(::task* ptask)
          if (strThreadThis == "app_veriwell_keyboard::application")
          {
 
-            information("app_veriwell_keyboard::application");
+            informationf("app_veriwell_keyboard::application");
 
          }
 
@@ -2743,7 +2743,7 @@ void object::initialize(::particle * pparticle)
    //      if (m_pobjrefdbg->m_iStep == 39)
    //      {
    //
-   //         information("session");
+   //         informationf("session");
    //
    //      }
    //

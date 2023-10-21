@@ -122,7 +122,7 @@ namespace database
 
       m_strLastError += query_error(pszPrefix);
    
-      information("%s", m_strLastError.c_str());
+      informationf("%s", m_strLastError.c_str());
 
    }
 

@@ -253,7 +253,7 @@ namespace write_text
       //if (!estatus)
       //{
 
-      //   information("write_text::font_enumeration Failed to enumerate fonts");
+      //   informationf("write_text::font_enumeration Failed to enumerate fonts");
 
       //   return estatus;
 
@@ -266,7 +266,7 @@ namespace write_text
       //if (!estatus)
       //{
 
-      //   information("write_text::font_enumeration Failed to sort fonts");
+      //   informationf("write_text::font_enumeration Failed to sort fonts");
 
       //   //return estatus;
 

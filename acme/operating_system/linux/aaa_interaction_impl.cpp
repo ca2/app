@@ -352,7 +352,7 @@ namespace linux
 
             //attr.override_redirect = True;
 
-            information("XCreateWindow (l=%d, t=%d) (w=%d, h=%d)", pusersystem->m_createstruct.x(), pusersystem->m_createstruct.y(), pusersystem->m_createstruct.cx(), pusersystem->m_createstruct.cy());
+            informationf("XCreateWindow (l=%d, t=%d) (w=%d, h=%d)", pusersystem->m_createstruct.x(), pusersystem->m_createstruct.y(), pusersystem->m_createstruct.cx(), pusersystem->m_createstruct.cy());
 
             Window window = XCreateWindow(display, DefaultRootWindow(display), pusersystem->m_createstruct.x(), pusersystem->m_createstruct.y(), pusersystem->m_createstruct.cx(), pusersystem->m_createstruct.cy(),
             0,
@@ -760,7 +760,7 @@ namespace linux
       if (bMove)
       {
 
-         information("linux::interaction_impl Window Manager Move (%d, %d)", m_pointLastMove.x(), m_pointLastMove.y());
+         informationf("linux::interaction_impl Window Manager Move (%d, %d)", m_pointLastMove.x(), m_pointLastMove.y());
 
          m_puserinteraction->move_to(m_pointLastMove);
 
@@ -775,7 +775,7 @@ namespace linux
       if (bSize)
       {
 
-         information("linux::interaction_impl Window Manager Size (%d, %d)", m_sizeLastSize.cx(), m_sizeLastSize.cy());
+         informationf("linux::interaction_impl Window Manager Size (%d, %d)", m_sizeLastSize.cx(), m_sizeLastSize.cy());
 
          m_puserinteraction->set_size(m_sizeLastSize);
 
@@ -888,7 +888,7 @@ namespace linux
       if(pshowwindow->m_bShow)
       {
 
-         information("linux::interaction_impl::on_message_show_window VISIBLE edisplay=%s", __c_str(m_puserinteraction->layout().design().display().m_eenum));
+         informationf("linux::interaction_impl::on_message_show_window VISIBLE edisplay=%s", __c_str(m_puserinteraction->layout().design().display().m_eenum));
 
          m_puserinteraction->ModifyStyle(0, WS_VISIBLE);
 
@@ -1333,13 +1333,13 @@ namespace linux
       else if(pusermessage->m_atom == e_message_left_button_down)
       {
 
-         information("e_message_left_button_down (0)");
+         informationf("e_message_left_button_down (0)");
 
       }
       else if(pusermessage->m_atom == e_message_left_button_up)
       {
 
-         information("e_message_left_button_up (0)");
+         informationf("e_message_left_button_up (0)");
 
       }
       else if(pusermessage->m_atom == e_message_mouse_move)
@@ -1347,7 +1347,7 @@ namespace linux
 
          g_iMouseMove++;
 
-         //information("linux::interaction_impl::message_handler e_message_mouse_move");
+         //informationf("linux::interaction_impl::message_handler e_message_mouse_move");
          //printf("g_iMouseMove = %d\n", g_iMouseMove);
 
       }
@@ -1375,7 +1375,7 @@ namespace linux
          if(iDebugmessage_handlerTime > 20)
          {
 
-            ::information("interaction_impl::message handler flooded?\n");
+            ::informationf("interaction_impl::message handler flooded?\n");
 
          }
          else
@@ -1392,11 +1392,11 @@ namespace linux
 
          if (m_puserinteraction->layout().is_moving())
          {
-            //information("moving: skip pre translate message");
+            //informationf("moving: skip pre translate message");
          }
          else if (m_puserinteraction->layout().is_sizing())
          {
-            //information("sizing: skip pre translate message");
+            //informationf("sizing: skip pre translate message");
          }
          else
          {
@@ -2287,7 +2287,7 @@ namespace linux
 ////               else
 ////               {
 ////
-////                  information("window is locked for drawing update");
+////                  informationf("window is locked for drawing update");
 ////
 ////                  fflush(stdout);
 ////
@@ -2345,7 +2345,7 @@ namespace linux
 //      if(m_puserinteraction->is_message_only_window())
 //      {
 //
-//         information("good : opt out!");
+//         informationf("good : opt out!");
 //
 //      }
 //      else
@@ -2410,7 +2410,7 @@ namespace linux
 //
 //         if(m_event.wait(::duration(tickTimeout)).timeout())
 //         {
-//            information("print_window::time_out");
+//            informationf("print_window::time_out");
 //         }
 //      }
 //

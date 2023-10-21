@@ -32,9 +32,9 @@ namespace user
    public:
 
 
-      pointer_array < ::user::tree >       m_usertreea;
-      pointer_array < ::user::tree >       m_usertreeaBound;
-      ::pointer<::image_list>          m_pimagelist;
+      pointer_array < ::user::tree >         m_usertreea;
+      pointer_array < ::user::tree >         m_usertreeaBound;
+      ::pointer<::image_list>                m_pimagelist;
 
 
 

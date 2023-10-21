@@ -51,7 +51,7 @@ namespace sip
       /*if (!m_file.get())
          m_file = ::pointer<IFile>e>(memory_new MemFile);
       DEB(   else
-         information("Body data file already opened");*/
+         informationf("Body data file already opened");*/
 
    }
 

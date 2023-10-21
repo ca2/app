@@ -17,7 +17,7 @@ namespace user
    }
 
 
-   ::item_pointer picture_interaction::hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
+   ::item_pointer picture_interaction::parent_client_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
    {
 
       if (is_picture_enabled())
@@ -33,32 +33,32 @@ namespace user
 
          //item.m_pointHitTest = item.m_pointClient + m_pointScroll;
 
-         return on_hit_test(point, ezorder);
+         return parent_client_on_hit_test(point, ezorder);
 
       }
       else
       {
 
-         return ::user::interaction::hit_test(point, ezorder);
+         return ::user::interaction::parent_client_hit_test(point, ezorder);
 
       }
 
    }
 
 
-   ::item_pointer picture_interaction::on_hit_test(const ::point_i32 &point, ::user::e_zorder ezorder)
+   ::item_pointer picture_interaction::parent_client_on_hit_test(const ::point_i32 &point, ::user::e_zorder ezorder)
    {
 
       if (is_picture_enabled())
       {
 
-         return ::user::picture::on_hit_test(point, ezorder);
+         return ::user::picture::parent_client_on_hit_test(point, ezorder);
 
       }
       else
       {
 
-         return ::user::interaction::on_hit_test(point, ezorder);
+         return ::user::interaction::parent_client_hit_test(point, ezorder);
 
       }
 

@@ -31,6 +31,7 @@
 #include "core/platform/application.h"
 #include "core/platform/session.h"
 #include "core/user/account/impact.h"
+#include "core/user/rich_text/data.h"
 #include "core/user/simple/list_data.h"
 #include "core/user/simple/list_header_control.h"
 #include "core/user/simple/list_impact.h"
@@ -38,7 +39,7 @@
 #include "core/user/simple/pane_document.h"
 #include "core/user/simple/printer_list_impact.h"
 #include "core/user/user/font_list_impact.h"
-#include "core/user/userex/color_impact.h"
+#include "core/user/user/color_selector_impact.h"
 #include "core/user/userex/dialog_frame.h"
 #include "core/user/userex/font_impact.h"
 #include "core/user/userex/form_child_frame.h"
@@ -215,6 +216,8 @@ namespace core
 
       factory()->add_factory_item < ::simple_toolbar >();
 
+      factory()->add_factory_item < ::user::rich_text::data >();
+
       factory()->add_factory_item <::userex::dialog_frame >();
 
 
@@ -372,7 +375,7 @@ namespace core
 
       //}
 
-      information("::user::application::initialize");
+      informationf("::user::application::initialize");
 
       //      auto pxml = psystem->xml();
       //
@@ -927,7 +930,7 @@ namespace core
 
       auto pdocument = m_mapimpactsystem[COLORSEL_IMPACT]->open_document_file(puiOwner->get_app(), ::e_type_null, true);
 
-      ::pointer<::userex::color_impact>pimpact = pdocument->get_typed_impact < ::userex::color_impact >();
+      ::pointer<::user::color_selector_impact>pimpact = pdocument->get_typed_impact < ::user::color_selector_impact >();
 
       ::pointer<::user::frame_window>pframe = pimpact->top_level_frame();
 
@@ -1581,7 +1584,7 @@ namespace core
    //i32 application::sync_message_box(::user::primitive * puiOwner, const ::string & pszMessage, ::u32 fuStyle)
    //{
 
-   //   ::information("\n\napp_message_box: " + string(pszMessage) + "\n\n");
+   //   ::informationf("\n\napp_message_box: " + string(pszMessage) + "\n\n");
 
    //   if (&Session == nullptr || psession->user() == nullptr)
    //      return ::base::application::sync_message_box(puiOwner, pszMessage, fuStyle);
@@ -1747,13 +1750,13 @@ namespace core
 
          }
 
-         factory()->add_factory_item <::userex::color_impact >();
+         factory()->add_factory_item <::user::color_selector_impact >();
 
          auto ptemplate = __new(::user::multiple_document_template(
             "main",
             ::type < ::user::document >(),
             ::type < ::simple_frame_window >(),
-            ::type < ::userex::color_impact >()));
+            ::type < ::user::color_selector_impact >()));
 
          auto psession = get_session();
 

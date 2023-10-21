@@ -116,10 +116,10 @@ namespace user
 
       auto ppenBorder = __create < ::draw2d::pen >();
 
-      for (; iIndex < get_data()->m_tabpanecompositea.get_size(); iIndex++)
+      for (; iIndex < get_data()->m_tabpanea.get_size(); iIndex++)
       {
 
-         auto ppane = get_data()->m_tabpanecompositea[iIndex].get();
+         auto ppane = get_data()->m_tabpanea[iIndex].get();
 
          if (!ppane->m_bTabPaneVisible)
          {
@@ -463,10 +463,10 @@ namespace user
 
       auto pbrushText = __create < ::draw2d::brush >();
 
-      for (i32 iIndex = 0; iIndex < get_data()->m_tabpanecompositea.get_size(); iIndex++)
+      for (i32 iIndex = 0; iIndex < get_data()->m_tabpanea.get_size(); iIndex++)
       {
 
-         auto ppane = get_data()->m_tabpanecompositea[iIndex].get();
+         auto ppane = get_data()->m_tabpanea[iIndex].get();
 
          if (!ppane->m_bTabPaneVisible)
          {
@@ -786,10 +786,10 @@ namespace user
 
          i32 cy;
 
-         for (i32 iIndex = 0; iIndex < get_data()->m_tabpanecompositea.get_size(); iIndex++)
+         for (i32 iIndex = 0; iIndex < get_data()->m_tabpanea.get_size(); iIndex++)
          {
 
-            auto ppane = get_data()->m_tabpanecompositea[iIndex].get();
+            auto ppane = get_data()->m_tabpanea[iIndex].get();
 
             if (!ppane->m_bTabPaneVisible)
             {
@@ -872,10 +872,10 @@ namespace user
          get_data()->m_rectangleTab.right() = get_data()->m_rectangleTab.left() + get_data()->m_iTabWidth;
          get_data()->m_rectangleTab.bottom() = rectangleX.bottom();
 
-         get_data()->m_rectangleTabClient.left() = m_bEffectiveVisibleControl ? get_data()->m_rectangleTab.right() : rectangleX.left();
-         get_data()->m_rectangleTabClient.top() = get_data()->m_rectangleTab.top();
-         get_data()->m_rectangleTabClient.right() = rectangleX.right();
-         get_data()->m_rectangleTabClient.bottom() = get_data()->m_rectangleTab.bottom();
+         get_data()->m_rectangleHosting.left() = m_bEffectiveVisibleControl ? get_data()->m_rectangleTab.right() : rectangleX.left();
+         get_data()->m_rectangleHosting.top() = get_data()->m_rectangleTab.top();
+         get_data()->m_rectangleHosting.right() = rectangleX.right();
+         get_data()->m_rectangleHosting.bottom() = get_data()->m_rectangleTab.bottom();
 
       }
       else
@@ -895,10 +895,10 @@ namespace user
 
          i32 ixAdd;
 
-         for (i32 iIndex = 0; iIndex < get_data()->m_tabpanecompositea.get_size(); iIndex++)
+         for (i32 iIndex = 0; iIndex < get_data()->m_tabpanea.get_size(); iIndex++)
          {
 
-            auto ppane = get_data()->m_tabpanecompositea[iIndex].get();
+            auto ppane = get_data()->m_tabpanea[iIndex].get();
 
             if (!ppane->m_bTabPaneVisible)
             {
@@ -971,10 +971,10 @@ namespace user
 
          get_data()->m_iTabHeight = iTabHeight;
 
-         for (i32 iIndex = 0; iIndex < get_data()->m_tabpanecompositea.get_size(); iIndex++)
+         for (i32 iIndex = 0; iIndex < get_data()->m_tabpanea.get_size(); iIndex++)
          {
 
-            auto ppane = get_data()->m_tabpanecompositea[iIndex].get();
+            auto ppane = get_data()->m_tabpanea[iIndex].get();
 
             ppane->m_size.cy() = iTabHeight;
 
@@ -985,26 +985,26 @@ namespace user
          get_data()->m_rectangleTab.right() = rectangleX.right();
          get_data()->m_rectangleTab.bottom() = get_data()->m_rectangleTab.top() + get_data()->m_iTabHeight;
 
-         ::rectangle_i32 & rectangleTabClient = get_data()->m_rectangleTabClient;
+         ::rectangle_i32 & rectangleHosting = get_data()->m_rectangleHosting;
 
-         rectangleTabClient.left() = get_data()->m_rectangleTab.left();
-         rectangleTabClient.top() = m_bEffectiveVisibleControl ? get_data()->m_rectangleTab.bottom() : rectangleX.top();
-         rectangleTabClient.right() = get_data()->m_rectangleTab.right();
-         rectangleTabClient.bottom() = rectangleX.bottom();
+         rectangleHosting.left() = get_data()->m_rectangleTab.left();
+         rectangleHosting.top() = m_bEffectiveVisibleControl ? get_data()->m_rectangleTab.bottom() : rectangleX.top();
+         rectangleHosting.right() = get_data()->m_rectangleTab.right();
+         rectangleHosting.bottom() = rectangleX.bottom();
 
-         //TRACE0("rectangleTabClient");
+         //TRACE0("rectangleHosting");
       }
 
       {
 
          //               ::u32 dwTime2= ::time::now();
 
-               //information("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
-               //information("usertab::on_layout call time2= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+               //informationf("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+               //informationf("usertab::on_layout call time2= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
       }
 
 
-      for (i32 iIndex = 0; iIndex < get_data()->m_tabpanecompositea.get_size(); iIndex++)
+      for (i32 iIndex = 0; iIndex < get_data()->m_tabpanea.get_size(); iIndex++)
       {
 
          if (iIndex != get_current_tab_index())
@@ -1021,15 +1021,15 @@ namespace user
       if (m_pdata->m_bVertical)
       {
 
-         m_sizeBarDragScroll.cy() = (int)m_pdata->m_tabpanecompositea.get_count() * m_pdata->m_iTabHeight;
+         m_sizeBarDragScroll.cy() = (int)m_pdata->m_tabpanea.get_count() * m_pdata->m_iTabHeight;
 
 
       }
       else
       {
 
-         m_sizeBarDragScroll.cx() = m_pdata->m_tabpanecompositea.last()->m_point.x() +
-            m_pdata->m_tabpanecompositea.last()->m_size.cx();
+         m_sizeBarDragScroll.cx() = m_pdata->m_tabpanea.last()->m_point.x() +
+            m_pdata->m_tabpanea.last()->m_size.cx();
 
       }
 

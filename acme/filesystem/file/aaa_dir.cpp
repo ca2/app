@@ -695,7 +695,7 @@ namespace dir
 
             FormatMessage(FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM, nullptr, dwError, 0, (char *)&pszError, 8, nullptr);
 
-            //information("         auto psystem = acmesystem();
+            //informationf("         auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -966,7 +966,7 @@ pacmedirectory->create CreateDirectoryW last error(%d)=%s", dwError, pszError);
          path.m_iSize = -1;
          stra.add(path);
 
-         //information("flood for you: dir::ls ----> " + path);
+         //informationf("flood for you: dir::ls ----> " + path);
 
       }
 
@@ -1235,7 +1235,7 @@ pacmedirectory->create CreateDirectoryW last error(%d)=%s", dwError, pszError);
 
          //if (stra.has_elements() && stra.last() == "teste")
          //{
-         //   information("teste");
+         //   informationf("teste");
          //}
 
          if(!FindNextFileW(hFind, &FindFileData))

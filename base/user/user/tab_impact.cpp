@@ -103,6 +103,23 @@ namespace user
    }
 
 
+   void tab_impact::on_command_display_about(::message::message * pmessage)
+   {
+
+      ::pointer < ::message::command > pcommand(pmessage);
+
+      if (!contains_tab_with_id(ABOUT_IMPACT))
+      {
+
+         add_tab("About", ABOUT_IMPACT);
+
+      }
+
+      set_current_tab_by_id(ABOUT_IMPACT);
+
+   }
+
+
    bool tab_impact::add_impact(const ::string & strName, const ::atom & atomImpact, bool bVisible, bool bPermanent, ::user::place_holder * pplacehoder)
    {
 
@@ -247,6 +264,8 @@ namespace user
       MESSAGE_LINK(WM_USER + 1122, pchannel, this, &tab_impact::_001OnMenuMessage);
       MESSAGE_LINK(e_message_set_focus, pchannel, this, &tab_impact::on_message_set_focus);
 
+      add_command_handler("display_about", { this, &tab_impact::on_command_display_about });
+
    }
 
 
@@ -262,8 +281,6 @@ namespace user
    {
 
       synchronous_lock synchronouslock(this->synchronization());
-
-      ::user::tab::_001OnRemoveTab(ptabpane);
 
       if (ptabpane->m_pplaceholder.is_set())
       {
@@ -297,7 +314,22 @@ namespace user
       if (m_pimpactdata == pimpactdata)
       {
 
+         // erased tab pane was current pane,
+         // set current tab to null
+
          m_pimpactdata = nullptr;
+
+         // if there is pane that was previously opened,
+         // get top one and set it current
+
+         auto ptabpaneTop = top_pane();
+
+         if (ptabpaneTop)
+         {
+
+            set_current_tab_by_id(ptabpaneTop->m_atom);
+
+         }
 
       }
 
@@ -309,6 +341,8 @@ namespace user
       }
 
       m_impactdatamap.erase_item(idTab);
+
+      ::user::tab::_001OnRemoveTab(ptabpane);
 
    }
 
@@ -445,7 +479,7 @@ namespace user
 
       m_pdroptargetwindow->initialize_tab_drop_target_window(this, (i32)pchannel->get_data()->m_iClickTab);
 
-      auto rectangle = pchannel->get_data()->m_rectangleTabClient;
+      auto rectangle = pchannel->get_data()->m_rectangleHosting;
 
       pchannel->client_to_screen()(rectangle);
 
@@ -514,9 +548,9 @@ namespace user
 
       auto ptabdata = get_data();
 
-      //::rectangle_i32 rectangleTabClient = ptabdata->m_rectangleTabClient;
+      //::rectangle_i32 rectangleHosting = ptabdata->m_rectangleHosting;
 
-      //::user::impact_data * pimpactdata = get_impact_data(atom, rectangleTabClient);
+      //::user::impact_data * pimpactdata = get_impact_data(atom, rectangleHosting);
 
       ::user::impact_data * pimpactdata = get_impact_data(atom, true);
       
@@ -537,7 +571,7 @@ namespace user
       if(iTab >= 0)
       {
 
-         auto& tabpanecompositea = ptabdata->m_tabpanecompositea;
+         auto& tabpanecompositea = ptabdata->m_tabpanea;
 
          auto & ptabpanecomposite = tabpanecompositea[iTab];
 
@@ -549,7 +583,7 @@ namespace user
             if (pimpactdata->m_pplaceholder != nullptr)
             {
 
-               get_data()->m_tabpanecompositea[iTab]->m_pplaceholder = pimpactdata->m_pplaceholder;
+               get_data()->m_tabpanea[iTab]->m_pplaceholder = pimpactdata->m_pplaceholder;
 
             }
             else if (pimpactdata->m_puserinteraction != nullptr)
@@ -558,15 +592,15 @@ namespace user
                if (pane_holder(iTab) == nullptr)
                {
 
-                  get_data()->m_tabpanecompositea[iTab]->m_pplaceholder = place_hold(pimpactdata->m_puserinteraction, get_data()->m_rectangleTabClient);
+                  get_data()->m_tabpanea[iTab]->m_pplaceholder = place_hold(pimpactdata->m_puserinteraction, get_data()->m_rectangleHosting);
 
                }
                else
                {
 
-                  get_data()->m_tabpanecompositea[iTab]->m_pplaceholder->m_puserinteractionpointeraChild.release();
+                  get_data()->m_tabpanea[iTab]->m_pplaceholder->m_puserinteractionpointeraChild.release();
 
-                  get_data()->m_tabpanecompositea[iTab]->m_pplaceholder->place_hold(pimpactdata->m_puserinteraction);
+                  get_data()->m_tabpanea[iTab]->m_pplaceholder->place_hold(pimpactdata->m_puserinteraction);
 
                }
 
@@ -574,7 +608,7 @@ namespace user
             else
             {
 
-               get_data()->m_tabpanecompositea[iTab]->m_pplaceholder = get_new_place_holder(get_data()->m_rectangleTabClient);
+               get_data()->m_tabpanea[iTab]->m_pplaceholder = get_new_place_holder(get_data()->m_rectangleHosting);
 
             }
 
@@ -587,10 +621,10 @@ namespace user
 
                   index iTab = get_current_tab_index();
 
-                  if (iTab >= 0 && get_data()->m_tabpanecompositea[iTab]->m_atom == pimpactdata->m_atom)
+                  if (iTab >= 0 && get_data()->m_tabpanea[iTab]->m_atom == pimpactdata->m_atom)
                   {
 
-                     get_data()->m_tabpanecompositea[iTab]->set_title(pimpactdata->m_strTitle);
+                     get_data()->m_tabpanea[iTab]->set_title(pimpactdata->m_strTitle);
 
                   }
 
@@ -656,7 +690,7 @@ namespace user
 
             string strType =  typeid(*p1).name();
 
-            information("the type is " + strType);
+            informationf("the type is " + strType);
             
          }
 
@@ -672,17 +706,18 @@ namespace user
 
       auto ptabdata = get_data();
 
-      ::rectangle_i32 rectangleTabClient = ptabdata->m_rectangleTabClient;
+      ::rectangle_i32 rectangleHosting = ptabdata->m_rectangleHosting;
 
       if (m_pimpactdataOld
          && m_pimpactdataOld->m_eflag & ::user::e_flag_hide_on_kill_focus
          && m_pimpactdataOld->m_atom != MENU_IMPACT
          && m_pimpactdataOld->m_atom != OPTIONS_IMPACT
          && m_pimpactdataOld->m_atom != APP_OPTIONS_IMPACT
-         && m_pimpactdataOld->m_atom != CONTEXT_OPTIONS_IMPACT)
+         && m_pimpactdataOld->m_atom != CONTEXT_OPTIONS_IMPACT
+         && m_pimpactdataOld->m_atom != ABOUT_IMPACT)
       {
 
-         information("::user::e_flag_hide_on_kill_focus");
+         informationf("::user::e_flag_hide_on_kill_focus");
 
          m_pimpactdataOld->m_pplaceholder->hide();
 
@@ -695,7 +730,7 @@ namespace user
             || m_pimpactdata->m_eflag.has(::user::e_flag_hidid_on_show))
          {
 
-            ::user::tab_pane_composite_array & panecompositea = get_data()->m_tabpanecompositea;
+            ::user::tab_pane_array & panecompositea = get_data()->m_tabpanea;
 
             for (i32 iTab = 0; iTab < panecompositea.get_count(); iTab++)
             {
@@ -735,46 +770,51 @@ namespace user
 
       }
 
-      ::rectangle_i32 rectangleX;
-
-      rectangleX = m_pimpactdata->m_pplaceholder->rectangle();
-
-      if (!rectangleTabClient.is_empty())
+      if (!ptabdata->m_bNoClient)
       {
 
+         ::rectangle_i32 rectangleX;
+
+         rectangleX = m_pimpactdata->m_pplaceholder->rectangle();
+
+         if (!rectangleHosting.is_empty())
          {
 
-            auto pchild = m_pimpactdata->m_pplaceholder;
-
-            ::string strType = ::type(pchild).name();
-
-            if (strType.case_insensitive_contains("place_holder"))
             {
 
-               if (pchild->m_puserinteractionpointeraChild
-                  && pchild->m_puserinteractionpointeraChild->has_interaction())
+               auto pchild = m_pimpactdata->m_pplaceholder;
+
+               ::string strType = ::type(pchild).name();
+
+               if (strType.case_insensitive_contains("place_holder"))
                {
 
-                  auto puserinteractionChild = pchild->m_puserinteractionpointeraChild->first_interaction();
-
-                  ::string strTypePlaceHolderChild = ::type(puserinteractionChild).name();
-
-                  if (strTypePlaceHolderChild.case_insensitive_contains("simple_frame_window"))
+                  if (pchild->m_puserinteractionpointeraChild
+                     && pchild->m_puserinteractionpointeraChild->has_interaction())
                   {
 
-                     auto puserinteractionChild2 = puserinteractionChild->m_puserinteractionpointeraChild->first_interaction();
+                     auto puserinteractionChild = pchild->m_puserinteractionpointeraChild->first_interaction();
 
-                     ::string strTypePlaceHolderChild2 = ::type(puserinteractionChild2).name();
+                     ::string strTypePlaceHolderChild = ::type(puserinteractionChild).name();
 
-                     if (strTypePlaceHolderChild2.case_insensitive_contains("font_impact"))
+                     if (strTypePlaceHolderChild.case_insensitive_contains("simple_frame_window"))
                      {
 
-                        information() << "going to display " << strTypePlaceHolderChild2;
+                        auto puserinteractionChild2 = puserinteractionChild->m_puserinteractionpointeraChild->first_interaction();
 
-                        if (m_puserinteractionpointeraChild->contains_interaction(pchild))
+                        ::string strTypePlaceHolderChild2 = ::type(puserinteractionChild2).name();
+
+                        if (strTypePlaceHolderChild2.case_insensitive_contains("font_impact"))
                         {
 
-                           //information() << "tab impact has font_list place_holder as child window";
+                           information() << "going to display " << strTypePlaceHolderChild2;
+
+                           if (m_puserinteractionpointeraChild->contains_interaction(pchild))
+                           {
+
+                              //information() << "tab impact has font_list place_holder as child window";
+
+                           }
 
                         }
 
@@ -786,57 +826,57 @@ namespace user
 
             }
 
-         }
+            m_pimpactdata->m_pplaceholder->order(e_zorder_top);
 
-         m_pimpactdata->m_pplaceholder->order(e_zorder_top);
+            m_pimpactdata->m_pplaceholder->place(rectangleHosting);
 
-         m_pimpactdata->m_pplaceholder->place(rectangleTabClient);
+            m_pimpactdata->m_pplaceholder->display();
 
-         m_pimpactdata->m_pplaceholder->display();
-
-         //         m_pimpactdata->m_pplaceholder->set_need_redraw();
-         //
-         //         m_pimpactdata->m_pplaceholder->set_need_layout();
-         //
-         //         m_pimpactdata->m_pplaceholder->post_redraw();
-
-      }
-
-      ::user::impact * pimpact = nullptr;
-
-      if (m_pimpactdata->m_puserinteraction)
-      {
-
-         pimpact = m_pimpactdata->m_puserinteraction.cast < ::user::impact >();
-
-      }
-
-      if (pimpact == nullptr)
-      {
-
-         pimpact = this;
-
-      }
-
-      auto pframe = parent_frame();
-
-      auto pframeImpact = pimpact->parent_frame();
-
-      if (pframe && pframeImpact)
-      {
-
-         if (pframeImpact != pframe)
-         {
-
-            pframe->set_active_impact(this);
-
-            pframeImpact->set_active_impact(pimpact);
+            //         m_pimpactdata->m_pplaceholder->set_need_redraw();
+            //
+            //         m_pimpactdata->m_pplaceholder->set_need_layout();
+            //
+            //         m_pimpactdata->m_pplaceholder->post_redraw();
 
          }
-         else
+
+         ::user::impact * pimpact = nullptr;
+
+         if (m_pimpactdata->m_puserinteraction)
          {
 
-            pframe->set_active_impact(pimpact);
+            pimpact = m_pimpactdata->m_puserinteraction.cast < ::user::impact >();
+
+         }
+
+         if (pimpact == nullptr)
+         {
+
+            pimpact = this;
+
+         }
+
+         auto pframe = parent_frame();
+
+         auto pframeImpact = pimpact->parent_frame();
+
+         if (pframe && pframeImpact)
+         {
+
+            if (pframeImpact != pframe)
+            {
+
+               pframe->set_active_impact(this);
+
+               pframeImpact->set_active_impact(pimpact);
+
+            }
+            else
+            {
+
+               pframe->set_active_impact(pimpact);
+
+            }
 
          }
 
@@ -854,7 +894,8 @@ namespace user
    
       if (pimpactdata->m_atom == OPTIONS_IMPACT
          || pimpactdata->m_atom == APP_OPTIONS_IMPACT
-         || pimpactdata->m_atom == CONTEXT_OPTIONS_IMPACT)
+         || pimpactdata->m_atom == CONTEXT_OPTIONS_IMPACT
+         || pimpactdata->m_atom == ABOUT_IMPACT)
       {
 
          m_maphandlerimpact[pimpactdata->m_atom] = create_impact < handler_impact >(pimpactdata);
@@ -868,6 +909,21 @@ namespace user
                {
 
                   acmeapplication()->m_pbaseapplication->create_options_impact(puserinteraction);
+
+               };
+
+            phandlerimpact->call_handler(functionHandler);
+
+         }
+         else if (pimpactdata->m_atom == ABOUT_IMPACT)
+         {
+
+            auto phandlerimpact = m_maphandlerimpact[pimpactdata->m_atom];
+
+            auto functionHandler = [this](auto puserinteraction)
+               {
+
+                  acmeapplication()->m_pbaseapplication->create_about_impact(puserinteraction);
 
                };
 
@@ -973,7 +1029,7 @@ namespace user
    ::user::tab_pane * tab_impact::create_tab_by_id(const ::atom & atom)
    {
 
-      //if (get_impact_data(atom, get_data()->m_rectangleTabClient) == nullptr)
+      //if (get_impact_data(atom, get_data()->m_rectangleHosting) == nullptr)
       if (get_impact_data(atom, true) == nullptr)
       {
 
@@ -990,7 +1046,7 @@ namespace user
 
       }
 
-      return get_data()->m_tabpanecompositea[iTab];
+      return get_data()->m_tabpanea[iTab];
 
    }
 
@@ -1013,6 +1069,8 @@ namespace user
             throw ::exception(error_failed, "tab_impact::prepare_impact_menu Failed to load \"" + path + "\".");
 
          }
+
+         acmeapplication()->m_pbaseapplication->on_after_prepare_impact_menu(pmenu);
 
       }
 
@@ -1371,11 +1429,11 @@ namespace user
          if (!pimpactdata->m_pplaceholder)
          {
 
-            auto pplaceholder = get_new_place_holder(get_data()->m_rectangleTabClient);
+            auto pplaceholder = get_new_place_holder(get_data()->m_rectangleHosting);
 
             pimpactdata->m_pplaceholder = pplaceholder;
 
-            pplaceholder->m_bExtendOnParentClientArea = true;
+            pplaceholder->m_bExtendOnParentHostingArea = true;
 
          }
 

@@ -8,7 +8,7 @@
 //    ::exception(pszMessage)
 // {
 
-//    information("parsing_exception");
+//    informationf("parsing_exception");
 
 // }
 
@@ -80,7 +80,7 @@ network_payload_parsing_exception::network_payload_parsing_exception(const ::sco
    parsing_exception(pszMessage)
 {
 
-   information("parsing_exception");
+   informationf("parsing_exception");
 
 }
 

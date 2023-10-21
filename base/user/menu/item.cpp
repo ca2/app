@@ -45,9 +45,9 @@ namespace user
    menu_item::~menu_item()
    {
 
-      information("menu_item::~menu_item (1)");
-      information("menu_item::~menu_item (2)");
-      information("menu_item::~menu_item (3)");
+      informationf("menu_item::~menu_item (1)");
+      informationf("menu_item::~menu_item (2)");
+      informationf("menu_item::~menu_item (3)");
 
    }
 

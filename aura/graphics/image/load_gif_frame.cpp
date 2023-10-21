@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "frame.h"
 #include "image.h"
-#include "acme/graphics/draw2d/image32.h"
+#include "acme/graphics/image/image32.h"
 #include "acme/graphics/draw2d/color_array.h"
 
 
@@ -82,7 +82,7 @@ bool draw2d_gif_draw_frame(::image * pimageCanvas, image_frame_array * pframea, 
 //   //      else
 //   //      {
 //
-//   //         information("non zero alpha");
+//   //         informationf("non zero alpha");
 //
 //   //      }
 //
@@ -248,7 +248,7 @@ bool draw2d_gif_draw_frame(::image * pimageCanvas, image_frame_array * pframea, 
 //         else
 //         {
 //
-//            information("non zero alpha");
+//            informationf("non zero alpha");
 //
 //         }
 //
@@ -343,7 +343,7 @@ bool draw2d_gif_draw_frame(image * pimageCanvas, image_frame_array * pframea, im
          if (bA != 255)
          {
 
-            information("test255");
+            informationf("test255");
          }
          pimage32[y*w + x].assign(argb(bA, bA * bR / 255, bA * bG / 255, bA * bB / 255), pimageCanvas->color_indexes());
 

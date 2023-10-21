@@ -895,7 +895,7 @@ void particle::trace(enum_trace_level etracelevel, const ::ansi_character * pszF
  }
 
 
-void particle::information(const ::ansi_character * pszFormat, ...) const
+void particle::informationf(const ::ansi_character * pszFormat, ...) const
 {
 
    va_list arguments;
@@ -909,7 +909,7 @@ void particle::information(const ::ansi_character * pszFormat, ...) const
 }
 
 
-void particle::warning(const ::ansi_character * pszFormat, ...) const
+void particle::warningf(const ::ansi_character * pszFormat, ...) const
 {
 
    va_list arguments;
@@ -923,7 +923,7 @@ void particle::warning(const ::ansi_character * pszFormat, ...) const
 }
 
 
-void particle::error(const ::ansi_character * pszFormat, ...) const
+void particle::errorf(const ::ansi_character * pszFormat, ...) const
 {
 
    va_list arguments;
@@ -937,7 +937,7 @@ void particle::error(const ::ansi_character * pszFormat, ...) const
 }
 
 
-void particle::fatal(const ::ansi_character * pszFormat, ...) const
+void particle::fatalf(const ::ansi_character * pszFormat, ...) const
 {
 
    va_list arguments;
@@ -1398,7 +1398,7 @@ bool particle::_wait(const class time & timeWait)
 //   //if (milliseconds < 1'000'000'000)
 //   //{
 //
-//   //   information("milliseconds < 1'000'000'000");
+//   //   informationf("milliseconds < 1'000'000'000");
 //
 //   //}
 //
@@ -1424,7 +1424,7 @@ bool particle::_wait(const class time & timeWait)
 //
 //         pmutex->m_strThread = ::task_get_name();
 //         pmutex->m_itask = ::current_itask();
-//         ::information("");
+//         ::informationf("");
 //
 //      }
 //
@@ -1845,7 +1845,7 @@ void particle::set_timeout(const class time & timeTimeout)
 //}
 
 
-::particle_pointer particle::clone() const
+::particle_pointer particle::clone()
 {
 
    throw interface_only();
@@ -2111,21 +2111,20 @@ void particle::destroy_os_data()
 }
 
 
+void particle::write_to_stream(::binary_stream & stream)
+{
 
-//void particle::write(::binary_stream & stream) const
-//{
-//
-//   throw interface_only();
-//
-//}
-//
-//
-//void particle::read(::binary_stream & stream)
-//{
-//
-//   throw interface_only();
-//
-//}
+   throw interface_only();
+
+}
+
+
+void particle::read_from_stream(::binary_stream & stream)
+{
+
+   throw interface_only();
+
+}
 
 
 CLASS_DECL_ACME ::pointer < ::particle > detach_pointer(::lparam& lparam)
@@ -2159,6 +2158,34 @@ void particle::kick_idle()
 {
 
    return m_pcontext->get_file(payloadFile, eopen, pfileexception);
+
+}
+
+
+ ::pointer<particle>particle::__id_create(const ::atom & atom, ::factory::factory * pfactory)
+{
+
+   auto pfactoryitem = pfactory->get_factory_item(atom);
+
+   if (!pfactoryitem)
+   {
+
+      throw ::exception(error_no_factory);
+
+   }
+
+   auto p = pfactoryitem->create_particle();
+
+   if (!p)
+   {
+
+      throw ::no_memory();
+
+   }
+
+   p->initialize(this);
+
+   return p;
 
 }
 
@@ -2314,7 +2341,7 @@ CLASS_DECL_ACME ::trace_statement log_statement()
 }
 
 
-void information(const ::ansi_character * pszFormat, ...)
+void informationf(const ::ansi_character * pszFormat, ...)
 {
 
    va_list arguments;
@@ -2336,7 +2363,7 @@ void information(const ::ansi_character * pszFormat, ...)
 }
 
 
-void warning(const ::ansi_character * pszFormat, ...)
+void warningf(const ::ansi_character * pszFormat, ...)
 {
 
    va_list arguments;
@@ -2358,7 +2385,7 @@ void warning(const ::ansi_character * pszFormat, ...)
 }
 
 
-void error(const ::ansi_character * pszFormat, ...)
+void errorf(const ::ansi_character * pszFormat, ...)
 {
 
    va_list arguments;
@@ -2380,7 +2407,7 @@ void error(const ::ansi_character * pszFormat, ...)
 }
 
 
-void fatal(const ::ansi_character * pszFormat, ...)
+void fatalf(const ::ansi_character * pszFormat, ...)
 {
 
    va_list arguments;

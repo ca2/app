@@ -4,6 +4,7 @@
 #include "style.h"
 #include "user.h"
 #include "acme/constant/id.h"
+#include "acme/constant/user_key.h"
 #include "acme/exception/interface_only.h"
 #include "acme/parallelization/pool.h"
 #include "acme/constant/message.h"
@@ -106,7 +107,7 @@ namespace user
       {
 
          
-         if(pkey->m_ekey == e_key_q && get_session()->is_key_pressed(::user::e_key_command))
+         if(pkey->m_ekey == ::user::e_key_q && get_session()->is_key_pressed(::user::e_key_command))
          {
             
             post_message(MESSAGE_CLOSE);

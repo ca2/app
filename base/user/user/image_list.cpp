@@ -2,6 +2,7 @@
 #include "image_list.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
+#include "acme/constant/user_key.h"
 #include "acme/handler/item.h"
 #include "acme/primitive/collection/_array.h"
 #include "acme/user/user/content.h"
@@ -20,6 +21,7 @@ namespace user
    {
 
       m_bDefaultClickHandling = true;
+      m_bDefaultParentMouseMessageHandling = true;
 
       m_sizeImage.set(0, 0);
 
@@ -28,8 +30,10 @@ namespace user
       m_size.cx() = 128;
       m_size.cy() = 128;
 
-      m_bNoName = false;
-      m_iPad = 10;
+      m_iMargin = 10;
+
+      m_bLabel = true;
+      m_iLabelHeight = 18;
       m_ealign = e_align_top_left;
 
       //m_pscrolldataVertical->m_bScrollEnable = true;
@@ -115,7 +119,7 @@ namespace user
    void image_list::install_message_routing(::channel * pchannel)
    {
 
-      ::user::box::install_message_routing(pchannel);
+      ::user::scroll_base::install_message_routing(pchannel);
 
       //install_click_default_mouse_handling(pchannel);
 
@@ -350,6 +354,7 @@ namespace user
    ::item_pointer image_list::on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
    {
 
+      return ::user::scroll_base::on_hit_test(point, ezorder);
       //::count c = m_imagea.get_count();
 
       //for (index i = 0; i < c; i++)
@@ -375,19 +380,21 @@ namespace user
 
       ////item = ::e_element_none;
 
-      auto pitemNone = __new(::item(e_element_none));
+      //auto pitemNone = __new(::item(e_element_none));
 
-      return pitemNone;
+      //return pitemNone;
 
    }
 
 
-   void image_list::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void image_list::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
    {
+
+      synchronous_lock synchronouslock(this->synchronization());
 
       auto pstyle = get_style(pgraphics);
 
-      auto rectangleX = this->rectangle();
+      auto rectangleX = this->raw_rectangle();
 
       pgraphics->set(get_font(pstyle));
 
@@ -396,6 +403,29 @@ namespace user
       pgraphics->fill_rectangle(rectangleX, get_color(pstyle, e_element_background));
 
       pgraphics->draw_inset_rectangle(rectangleX, argb(255, 192, 192, 192), 1.0);
+
+      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+
+
+   }
+
+
+   void image_list::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   {
+
+      synchronous_lock synchronouslock(this->synchronization());
+
+      auto pstyle = get_style(pgraphics);
+
+      auto rectangleClient = this->client2_rectangle();
+
+      //pgraphics->set(get_font(pstyle));
+
+      //rectangleX.offset(m_pointScroll);
+
+      //pgraphics->fill_rectangle(rectangleX, get_color(pstyle, e_element_background));
+
+      //pgraphics->draw_inset_rectangle(rectangleX, argb(255, 192, 192, 192), 1.0);
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
@@ -410,6 +440,20 @@ namespace user
          ::rectangle_i32 rectangleText;
 
          //itemText = e_element_text;
+
+         if (::is_null(main_content().m_pitema))
+         {
+
+            continue;
+
+         }
+
+         if (iImage >= main_content().m_pitema->get_count())
+         {
+
+            continue;
+
+         }
 
          auto pitem = (*main_content().m_pitema)[iImage];
 
@@ -427,7 +471,23 @@ namespace user
 
          auto puseritem = user_item(pitem);
 
-         auto & rectangle = puseritem->m_rectangle;
+         auto & rectangle1 = puseritem->m_rectangle;
+
+         if (!rectangleClient.intersects(rectangle1))
+         {
+
+            continue;
+
+         }
+
+         ::rectangle_i32 rectangleForImage(rectangle1);
+
+         if (m_bLabel)
+         {
+
+            rectangleForImage.bottom() -= m_iLabelHeight;
+
+         }
 
          //bool bRectText = get_rect(itemText);
 
@@ -464,9 +524,9 @@ namespace user
 
                   ::rectangle_i32 rectangleImage;
 
-                  double dW = (double)rectangle.width() / (double)pimageSrc->width();
+                  double dW = (double)rectangleForImage.width() / (double)pimageSrc->width();
 
-                  double dH = (double)rectangle.height() / (double)pimageSrc->height();
+                  double dH = (double)rectangleForImage.height() / (double)pimageSrc->height();
 
                   double dMin = minimum(dW, dH);
 
@@ -485,9 +545,9 @@ namespace user
 
                      image_source imagesource(pimageSrc);
 
-                     rectangle_f64 rectangle(szNew);
+                     rectangle_f64 rectangleImageNew(szNew);
 
-                     image_drawing_options imagedrawingoptions(rectangle);
+                     image_drawing_options imagedrawingoptions(rectangleImageNew);
 
                      image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
@@ -499,9 +559,9 @@ namespace user
 
                ::rectangle_i32 rectangleImage;
 
-               rectangleImage.left() = rectangle.left() + (rectangle.width() - pimage->width()) / 2;
+               rectangleImage.left() = rectangleForImage.left() + (rectangleForImage.width() - pimage->width()) / 2;
 
-               rectangleImage.top() = rectangle.top() + (rectangle.height() - pimage->height()) / 2;
+               rectangleImage.top() = rectangleForImage.top() + (rectangleForImage.height() - pimage->height()) / 2;
 
                rectangleImage.right() = rectangleImage.left() + pimage->width();
 
@@ -509,8 +569,12 @@ namespace user
 
                rectangleSel = rectangleImage;
 
-               if (!m_bNoName)
+               rectangleText = rectangle1;
+
+               if (m_bLabel)
                {
+
+                  rectangleText.top() = rectangleText.bottom() - m_iLabelHeight;
 
                   rectangleSel.bottom() = rectangleText.bottom();
 
@@ -653,9 +717,11 @@ namespace user
 
       }
 
-      int left = m_iPad;
+      synchronous_lock synchronouslock(this->synchronization());
 
-      int top = m_iPad;
+      int left = m_iMargin;
+
+      int top = m_iMargin;
 
       int x = left;
 
@@ -663,10 +729,12 @@ namespace user
 
       ::rectangle_i32 rectangleTotal;
 
+      __defer_construct_new(main_content().m_pitema);
+
       for (index iImage = 0; iImage < m_pimagea->image_count(); iImage++)
       {
 
-         auto pitem = main_content().item_at(iImage);
+         auto & pitem = main_content().m_pitema->element_at_grow(iImage);
 
          if (pitem == nullptr)
          {
@@ -677,18 +745,23 @@ namespace user
 
             pitem->m_item.m_eelement = e_element_item;
 
-            main_content().add_item(pitem);
-
          }
 
          auto puseritem = user_item(pitem);
 
-         if (x > left && x + m_size.cx() + m_iPad >= rectangleX.width())
+         if (x > left && x + m_size.cx() + m_iMargin >= rectangleX.width())
          {
 
             x = left;
 
-            y += m_size.cy() + m_iPad;
+            y += m_size.cy() + m_iMargin;
+
+            if (m_bLabel)
+            {
+
+               y += m_iLabelHeight;
+
+            }
 
          }
 
@@ -697,7 +770,14 @@ namespace user
          puseritem->m_rectangle.top() = y;
          puseritem->m_rectangle.bottom() = y + m_size.cy();
 
-         x = puseritem->m_rectangle.right() + m_iPad;
+         if (m_bLabel)
+         {
+
+            puseritem->m_rectangle.bottom() += m_iLabelHeight;
+
+         }
+
+         x = puseritem->m_rectangle.right() + m_iMargin;
 
          rectangleTotal.unite(rectangleTotal, puseritem->m_rectangle);
 
@@ -718,14 +798,15 @@ namespace user
 
       rectangleTotal.top() = 0;
 
-      rectangleTotal.bottom() += m_iPad;
+      rectangleTotal.bottom() += m_iMargin;
 
-      //m_sizeTotal = rectangleTotal.size();
+      m_sizeTotal = rectangleTotal.size();
 
       //m_pscrolldataVertical->m_iPage = rectangleX.height();
 
-      ::user::box::on_layout(pgraphics);
+      ::user::scroll_base::on_layout(pgraphics);
 
+      on_change_impact_size(pgraphics);
 
    }
 
@@ -784,6 +865,27 @@ namespace user
    {
 
    }
+
+
+   //void image_list_impact::on_layout(::draw2d::graphics_pointer & pgraphics)
+   //{
+
+   //   ::user::image_list::on_layout(pgraphics);
+
+   //   auto rectangleX = this->rectangle();
+
+   //   if (rectangleX.is_empty())
+   //   {
+
+   //      return;
+
+   //   }
+
+   //   m_sizeTotal = m_rectangleTotal.size();
+
+   //   on_change_impact_size(pgraphics);
+
+   //}
 
 
    void image_list_impact::handle(::topic * ptopic, ::context * pcontext)

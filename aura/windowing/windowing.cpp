@@ -53,7 +53,7 @@ namespace windowing
    void windowing::initialize_windowing(::user::user * puser)
    {
 
-      information("aura::windowing::initialize_windowing");
+      informationf("aura::windowing::initialize_windowing");
 
       m_puser = puser;
 
@@ -65,7 +65,7 @@ namespace windowing
       
       m_bDrawCursor = false;
 
-      information("aura::windowing::initialize_windowing end");
+      informationf("aura::windowing::initialize_windowing end");
 
    }
 

@@ -55,23 +55,23 @@ namespace core
    }
 
 
-   ::core::session* application::get_session() 
+   ::core::session * application::get_session()
    {
 
       auto pacmesession = acmesession();
-      
-      return ::is_set(pacmesession) ? pacmesession->m_pcoresession : nullptr; 
-   
+
+      return ::is_set(pacmesession) ? pacmesession->m_pcoresession : nullptr;
+
    }
 
 
-   ::core::system* application::get_system() 
+   ::core::system * application::get_system()
    {
 
       auto pacmesystem = acmesystem();
-      
-      return ::is_set(pacmesystem) ? pacmesystem->m_pcoresystem : nullptr; 
-   
+
+      return ::is_set(pacmesystem) ? pacmesystem->m_pcoresystem : nullptr;
+
    }
 
 
@@ -79,7 +79,7 @@ namespace core
    {
 
       //auto estatus =
-      
+
       ::base::application::initialize(pparticle);
 
       //if (!estatus)
@@ -94,7 +94,7 @@ namespace core
    }
 
 
-   ::pointer<progress::real>application::show_progress(::user::interaction* puiParent, const ::string & pszTitle, ::count iProgressCount)
+   ::pointer<progress::real>application::show_progress(::user::interaction * puiParent, const ::string & pszTitle, ::count iProgressCount)
    {
 
       auto pprogresscontrol = __create_new <  ::userex::progress_control >();
@@ -102,6 +102,38 @@ namespace core
       pprogresscontrol->defer_show(puiParent, pszTitle, iProgressCount);
 
       return ::transfer(pprogresscontrol);
+
+   }
+
+
+   void application::initialize_rich_text_kit()
+   {
+
+      auto psession = get_session();
+
+      auto puser = psession->user()->m_pcoreuser;
+
+      puser->will_use_impact_hint(COLORSEL_IMPACT);
+      puser->will_use_impact_hint(FONTSEL_IMPACT);
+
+      auto psystem = acmesystem()->m_pcoresystem;
+
+      psystem->initialize_rich_text();
+
+      auto pfactory = psystem->factory("text_format", "rtf");
+
+      //if (!pfactory)
+      //{
+
+
+      //   warning() <<"exiting application. Could not do factory_item exchange text_format rtf.";
+
+      //   return pfactory;
+
+      //}
+
+      pfactory->merge_to_global_factory();
+
 
    }
 
@@ -209,7 +241,7 @@ namespace core
    }
 
 
-   
+
    bool application::handle_call(::payload & payload, const ::string & strObject, const ::string & strMember, property_set & propertyset)
    {
 
@@ -250,19 +282,19 @@ namespace core
       pcheckbox->_001SetCheck(bUserAutoStart, ::e_source_initialize);
 
       pcheckbox->m_callbackOnCheck = [this](auto pcheck)
-      {
+         {
 
-         bool bCheck = pcheck->bcheck();
+            bool bCheck = pcheck->bcheck();
 
-         auto papplication = acmeapplication()->m_papexapplication;
+            auto papplication = acmeapplication()->m_papexapplication;
 
-         os_context()->register_user_auto_start(
-            papplication->get_executable_appid(),
-            papplication->get_executable_path(),
-            "--auto_start=1",
-            bCheck);
+            os_context()->register_user_auto_start(
+               papplication->get_executable_appid(),
+               papplication->get_executable_path(),
+               "--auto_start=1",
+               bCheck);
 
-      };
+         };
 
       create_label<::user::still>(playoutLine, "Enable Auto Start");
 

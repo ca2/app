@@ -18,24 +18,24 @@ namespace user
       public:
 
 
-         pointer_array < format > *           m_pcontainer;
-         index                               m_iIndex;
+         //::pointer < ::user::rich_text::format_host >    m_pcontainer;
+         index                                           m_iIndex;
 
-         bool                                m_bBold;
-         bool                                m_bItalic;
-         bool                                m_bUnderline;
-         string                              m_strFontFamily;
-         double                              m_dFontSize;
-         ::color::color                      m_colorForeground;
-         ::color::color                      m_colorBackground;
-         enum_script                         m_escript;
-         enum_line_height                    m_elineheight;
+         bool                                            m_bBold;
+         bool                                            m_bItalic;
+         bool                                            m_bUnderline;
+         string                                          m_strFontFamily;
+         double                                          m_dFontSize;
+         ::color::color                                  m_colorForeground;
+         ::color::color                                  m_colorBackground;
+         enum_script                                     m_escript;
+         enum_line_height                                m_elineheight;
 
 
          // cache or transport (not serialized)
-         mutable bool                        m_bUpdated;
-         mutable ::write_text::font_pointer  m_pfont;
-         mutable ::e_align                   m_ealign;
+         mutable bool                                    m_bUpdated;
+         mutable ::write_text::font_pointer              m_pfont;
+         mutable ::e_align                               m_ealign;
 
 
          format();
@@ -44,7 +44,7 @@ namespace user
          ~format() override;
 
 
-         virtual void initialize_user_rich_text_format(pointer_array < format >* pcontainer);
+         virtual void initialize_user_rich_text_format(::user::rich_text::format_host * pformathost);
 
          //void write(::binary_stream & stream) const override;
          //void read(::binary_stream & stream) override;

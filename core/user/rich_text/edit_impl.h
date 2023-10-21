@@ -14,40 +14,45 @@ namespace user
 
 
       class CLASS_DECL_CORE edit_impl :
-         virtual public ::user::show < ::user::rich_text::edit >
+         virtual public ::user::rich_text::edit
       {
       public:
 
 
-         bool                          m_bComposing;
-         ::pointer<data>              m_pdata;
-         bool                          m_bSelDrag;
-         ::pointer<::message::key>    m_pkeymessageLast;
-         bool                          m_bKeyPressed;
-         bool                          m_bEditable2;
+         bool                             m_bComposing;
+         //::pointer<data>                  m_pdata;
+         bool                             m_bSelDrag;
+         ::pointer<::message::key>        m_pkeymessageLast;
+         bool                             m_bKeyPressed;
+         bool                             m_bEditable2;
          /// If true, mouse events over empty
          /// areas of text continue through message routing.
-         bool                          m_bClickThrough;
+         bool                             m_bClickThrough;
 
-         bool                          m_bPendingSelectionChange;
 
 
          edit_impl();
          ~edit_impl() override;
 
 
-         virtual void initialize_edit_impl(document * pdocument);
+         //virtual void initialize_impact(::user::document * pdocument) override;
 
 
          virtual void on_after_change(const ::atom & atom) override;
          virtual double get_rotate() override;
 
 
-         virtual void draw_control_background(::draw2d::graphics_pointer & pgraphics) override;
+         void draw_control_background(::draw2d::graphics_pointer & pgraphics) override;
+
+         void _001OnNcPostDraw(::draw2d::graphics_pointer & pgraphics) override;
 
          //virtual void do_layout() override;
 
-         ::pointer<span>add_span(::e_align ealignNewLine = e_align_none);
+         //virtual ::pointer<span> add_start_of_line_span(::e_align ealignEndOfLine);
+
+         virtual ::pointer<span> add_span(::e_align ealignEndOfLine, bool bEndOfLine);
+
+         //virtual ::pointer<span> add_end_of_line_span();
 
          virtual ::item_pointer on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;
 
@@ -65,7 +70,7 @@ namespace user
          void update_data(bool bSaveAndValidate) override;
          virtual void update_placement() override;
 
-         document * get_document();
+         //document * get_document();
          /*virtual i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override
          {
             return ::object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
@@ -83,17 +88,27 @@ namespace user
 
          void _001OnDeleteText() override;
 
+         using rich_text::edit::on_selection_change;
          void on_selection_change() override;
 
          void insert_text(string str, bool bForceNewStep, const ::action_context & context) override;
 
          void install_message_routing(::channel * psender) override;
 
+         void _001CallOnDraw(::draw2d::graphics_pointer & pgraphics) override;
+
          void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
          void draw_impl(::draw2d::graphics_pointer & pgraphics) override;
 
-         ::pointer<format_tool>get_format_tool(bool bCreate);
+         void _000DrawImpl(::draw2d::graphics_pointer & pgraphics) override;
+
+         ::pointer<format_tool>get_format_tool(bool bCreate) override;
+
+         ::user::rich_text::format_host * get_format_host() override;
+
+         ::pointer<::user::rich_text::format> get_selection_common_format() override;
+
 
          //::user::tool_window * tool_window(enum_tool etool, bool bCreate) override;
 
@@ -132,6 +147,8 @@ namespace user
          void keyboard_focus_OnChar(::message::message * pmessage) override;
 
 
+
+
          void on_set_keyboard_focus() override;
 
 
@@ -156,9 +173,13 @@ namespace user
          bool edit_undo() override;
 
 
+         void read_from_stream(::binary_stream & binarystream) override;
+         void write_to_stream(::binary_stream & binarystream) override;
+
+
       };
 
-      //using edit_impact = ::user::show < ::user::rich_text::edit_impl >;
+      using edit_impact_impl = ::user::show < ::user::rich_text::edit_impl >;
 
    } // namespace rich_text
 

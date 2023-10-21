@@ -519,8 +519,8 @@ namespace turboc
 
             //          ::u32 dwTime2= ::time::now();
 
-            //information("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
-//            information("hello_impact::lyot call timeA= %d ms",(u64) (dwTime2 - t_time1.operator DWORD_PTR()));
+            //informationf("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+//            informationf("hello_impact::lyot call timeA= %d ms",(u64) (dwTime2 - t_time1.operator DWORD_PTR()));
 
          }
 
@@ -570,8 +570,8 @@ namespace turboc
 
 //            ::u32 dwTime2= ::time::now();
 
-            //information("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
-            //information("hello_impact::lyot call timeB= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+            //informationf("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+            //informationf("hello_impact::lyot call timeB= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
 
          }
 
@@ -590,7 +590,7 @@ namespace turboc
       }
       else
       {
-         information("XXX123546");
+         informationf("XXX123546");
       }
 
    }

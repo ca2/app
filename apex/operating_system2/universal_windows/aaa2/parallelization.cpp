@@ -250,7 +250,7 @@ htask_t main_user_htask()
 }
 
 
-::u32   main_user_itask()
+::u32 main_user_itask()
 {
 
    return g_iMainThread;

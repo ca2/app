@@ -150,6 +150,14 @@ namespace user
    }
 
 
+   bool style_base::simple_ui_draw_border(::user::interaction * pinteraction, ::draw2d::graphics_pointer & pgraphics)
+   {
+
+      return false;
+
+   }
+
+
    bool style_base::_001DrawToolbarItem(::draw2d::graphics_pointer & pgraphics, index iItem, ::user::toolbar * ptoolbar)
    {
 

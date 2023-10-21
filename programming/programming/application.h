@@ -17,6 +17,9 @@ namespace programming
 
       application();
       ~application() override;
+      
+      __DECLARE_APPLICATION_RELEASE_TIME();
+
 
 
       DECLARE_MESSAGE_HANDLER(on_application_signal);

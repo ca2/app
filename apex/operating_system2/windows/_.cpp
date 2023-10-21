@@ -93,7 +93,7 @@ CLASS_DECL_APEX i32 __cdecl _memory_type(const void* p);
 ////    if(FAILED(hr))
 ////    {
 //
-////       ::information("Failed to ::CoInitializeEx(nullptr, COINIT_MULTITHREADED) at __node_pre_init");
+////       ::informationf("Failed to ::CoInitializeEx(nullptr, COINIT_MULTITHREADED) at __node_pre_init");
 //
 ////       return false;
 //

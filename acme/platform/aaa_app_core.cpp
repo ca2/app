@@ -1028,7 +1028,7 @@ void app_core::system_proc()
 //   catch (...)
 //   {
 //
-//      information("exception:app_core:run");
+//      informationf("exception:app_core:run");
 //
 //      estatus = error_exception;
 //

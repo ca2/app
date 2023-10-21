@@ -1,16 +1,20 @@
 #include "framework.h"
 #include "edit_impl.h"
 #include "format_tool.h"
-#include "document.h"
+//#include "document.h"
 #include "data.h"
 #include "format.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
 #include "acme/constant/timer.h"
+#include "acme/constant/user_key.h"
+#include "acme/filesystem/file/memory_file.h"
 #include "acme/handler/item.h"
+#include "acme/platform/node.h"
 #include "acme/platform/timer.h"
 #include "acme/primitive/geometry2d/_binary_stream.h"
 #include "acme/primitive/string/str.h"
+#include "acme/platform/scoped_restore.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/message/user.h"
 #include "aura/user/user/frame.h"
@@ -38,50 +42,17 @@ namespace user
       }
 
 
-      void edit_impl::initialize_edit_impl(document * pdocument)
-      {
+      //void edit_impl::initialize_impact(::user::document * pdocument)
+      //{
 
-         //auto estatus =
-         
-         ::user::rich_text::edit::initialize(pdocument);
+      //   //auto estatus =
+      //   
+      //   ::user::rich_text::edit::initialize(pdocument);
 
-         //if (!estatus)
-         //{
+      //   ::user::impact::initialize_impact(pdocument);
 
-         //   return estatus;
 
-         //}
-
-         m_bComposing = false;
-
-         m_pdata = __new(data);
-
-         //estatus = 
-         
-         m_pdata->initialize_data(pdocument);
-
-         //if (!estatus)
-         //{
-
-         //   return estatus;
-
-         //}
-
-         m_bPendingSelectionChange = false;
-
-         m_bEditable2 = true;
-
-         m_pdata->m_pedit = this;
-
-         m_bKeyPressed = false;
-
-         m_bSelDrag = false;
-
-         m_bClickThrough = false;
-
-         //return estatus;
-
-      }
+      //}
 
 
       edit_impl::~edit_impl()
@@ -130,7 +101,7 @@ namespace user
       void edit_impl::install_message_routing(::channel * pchannel)
       {
 
-         ::user::show < edit >::install_message_routing(pchannel);
+         ::user::rich_text::edit::install_message_routing(pchannel);
 
          MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &edit_impl::on_message_create);
          MESSAGE_LINK(MESSAGE_DESTROY, pchannel, this, &edit_impl::on_message_destroy);
@@ -147,11 +118,11 @@ namespace user
 
          text_composition_composite::initialize_text_composition_client(pchannel, this);
 
-//#ifdef WINDOWS_DESKTOP
-//
-//         imm_client::install_message_routing(pchannel);
-//
-//#endif
+         //#ifdef WINDOWS_DESKTOP
+         //
+         //         imm_client::install_message_routing(pchannel);
+         //
+         //#endif
 
       }
 
@@ -171,8 +142,8 @@ namespace user
          }
 
          //auto estatus = 
-         
-         initialize_edit_impl(get_document());
+
+         //initialize_impact(get_document());
 
          //if (!estatus)
          //{
@@ -185,7 +156,7 @@ namespace user
 
          auto psession = get_session();
 
-         m_pdata->set_synchronization(synchronization());
+         //prichtextdata->set_synchronization(synchronization());
 
          fork([this]()
             {
@@ -194,9 +165,9 @@ namespace user
 
             });
 
-//#if !defined(APPLE_IOS) && !defined(ANDROID)
-//         psession->keyboard(); // trigger keyboard creationg
-//#endif
+         //#if !defined(APPLE_IOS) && !defined(ANDROID)
+         //         psession->keyboard(); // trigger keyboard creationg
+         //#endif
 
 
          SetTimer(100, 100_ms, nullptr);
@@ -245,9 +216,22 @@ namespace user
       }
 
 
+      ::user::rich_text::format_host * edit_impl::get_format_host()
+      {
+
+         auto prichtextdata = get_rich_text_data();
+
+         return prichtextdata;
+
+      }
+
+
       void edit_impl::on_set_keyboard_focus()
       {
 
+         information() << "on_set_keyboard_focus";
+
+         information() << acmenode()->get_callstack();
 
          //UNREFERENCED_PARAMETER(pmessage);
 
@@ -262,7 +246,9 @@ namespace user
 
          auto pformattool = get_format_tool(true);
 
-         pformattool->show_for_ui(this);
+         ::user::rich_text::selection * pselection = this;
+
+         pformattool->show_for_ui(this, pselection);
 
          //::user::rich_text::edit::on_set_keyboard_focus();
 
@@ -295,7 +281,7 @@ namespace user
             if (pformattool->is_ascendant_or_owner_of(pinteraction, true))
             {
 
-               information("Window winning focus is own font format tool");
+               informationf("Window winning focus is own font format tool");
 
                return;
 
@@ -313,7 +299,7 @@ namespace user
       void edit_impl::insert_text(string str, bool bForceNewStep, const ::action_context & context)
       {
 
-         m_pdata->_001InsertText(str);
+         _001InsertText(str);
 
       }
 
@@ -326,11 +312,29 @@ namespace user
          if (pformattool.is_set())
          {
 
-            m_pdata->on_selection_change(pformattool->m_pformata->element_at(0));
+            pformattool->m_pformat = get_selection_common_format();
 
             pformattool->update_data(false);
 
          }
+
+      }
+
+
+      ::pointer<format>edit_impl::get_selection_common_format()
+      {
+
+         auto prichtextdata = get_rich_text_data();
+
+         synchronous_lock synchronouslock(prichtextdata->synchronization());
+
+         auto pformatSelectionCommon = __create_new < format >();
+
+         pformatSelectionCommon->initialize_user_rich_text_format(prichtextdata);
+
+         on_selection_change(pformatSelectionCommon);
+
+         return pformatSelectionCommon;
 
       }
 
@@ -351,28 +355,32 @@ namespace user
 
          auto pitem = hit_test(pmouse, ::user::e_zorder_any);
 
+         auto prichtextdata = get_rich_text_data();
+
          if (pitem)
          {
 
             auto pformattool = get_format_tool(true);
 
-            pformattool->show_for_ui(this);
+            ::user::rich_text::selection * pselection = this;
+
+            pformattool->show_for_ui(this, pselection);
 
             m_bSelDrag = true;
 
             if (psession->is_key_pressed(e_key_shift))
             {
 
-               if (pitem->m_item.m_iItem < minimum(m_pdata->m_iSelBeg, m_pdata->m_iSelEnd))
+               if (pitem->m_item.m_iItem < minimum(m_iSelBeg, m_iSelEnd))
                {
 
-                  m_pdata->m_iSelBeg = maximum(m_pdata->m_iSelBeg, m_pdata->m_iSelEnd);
+                  m_iSelBeg = maximum(m_iSelBeg, m_iSelEnd);
 
                }
-               else if (pitem->m_item.m_iItem > maximum(m_pdata->m_iSelBeg, m_pdata->m_iSelEnd))
+               else if (pitem->m_item.m_iItem > maximum(m_iSelBeg, m_iSelEnd))
                {
 
-                  m_pdata->m_iSelBeg = minimum(m_pdata->m_iSelBeg, m_pdata->m_iSelEnd);
+                  m_iSelBeg = minimum(m_iSelBeg, m_iSelEnd);
 
                }
 
@@ -380,13 +388,13 @@ namespace user
             else
             {
 
-               m_pdata->m_iSelBeg = pitem->m_item.m_iItem;
+               m_iSelBeg = pitem->m_item.m_iItem;
 
             }
 
-            m_pdata->m_iSelEnd = pitem->m_item.m_iItem;
+            m_iSelEnd = pitem->m_item.m_iItem;
 
-            m_pdata->internal_update_sel_char();
+            internal_update_sel_char();
 
             set_mouse_capture();
 
@@ -403,7 +411,7 @@ namespace user
             post_redraw();
 
          }
-         else if(m_bClickThrough)
+         else if (m_bClickThrough)
          {
 
             auto pformattool = get_format_tool(false);
@@ -426,7 +434,7 @@ namespace user
       }
 
 
-      void edit_impl::on_message_left_button_up(::message::message* pmessage)
+      void edit_impl::on_message_left_button_up(::message::message * pmessage)
       {
 
          auto pmouse = pmessage->m_union.m_pmouse;
@@ -446,12 +454,14 @@ namespace user
 
          auto psession = get_session();
 
+         auto prichtextdata = get_rich_text_data();
+
          if (pitem && psession->user()->get_mouse_focus_LButtonDown() == this)
          {
 
-            m_pdata->m_iSelEnd = pitem->m_item.m_iItem;
+            m_iSelEnd = pitem->m_item.m_iItem;
 
-            m_pdata->internal_update_sel_char();
+            internal_update_sel_char();
 
             pmouse->m_bRet = true;
 
@@ -474,7 +484,7 @@ namespace user
       }
 
 
-      void edit_impl::on_message_mouse_move(::message::message* pmessage)
+      void edit_impl::on_message_mouse_move(::message::message * pmessage)
       {
 
          auto pmouse = pmessage->m_union.m_pmouse;
@@ -499,15 +509,17 @@ namespace user
 
          }
 
+         auto prichtextdata = get_rich_text_data();
+
          if (m_bSelDrag)
          {
 
-            if (!::is_item(m_pitemHover, m_pdata->m_iSelEnd))
+            if (!::is_item(m_pitemHover, m_iSelEnd))
             {
 
-               m_pdata->m_iSelEnd = m_pitemHover->m_item.m_iItem;
+               m_iSelEnd = m_pitemHover->m_item.m_iItem;
 
-               m_pdata->internal_update_sel_char();
+               internal_update_sel_char();
 
                pmouse->m_bRet = true;
 
@@ -615,10 +627,20 @@ namespace user
       }
 
 
-      ::pointer<span>edit_impl::add_span(::e_align ealignNewLine)
+      //::pointer<span>edit_impl::add_span2()
+      //{
+
+      //   return prichtextdata->add_span2();
+
+      //}
+
+
+      ::pointer<span>edit_impl::add_span(::e_align ealignNewLine, bool bEndOfLine)
       {
 
-         return m_pdata->add_span(ealignNewLine);
+         auto prichtextdata = get_rich_text_data();
+
+         return prichtextdata->add_span(ealignNewLine, bEndOfLine);
 
       }
 
@@ -639,8 +661,19 @@ namespace user
 
 
 
-      ::item_pointer edit_impl::on_hit_test(const ::point_i32 &point, ::user::e_zorder ezorder)
+      ::item_pointer edit_impl::on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
       {
+
+         auto r = this->raw_rectangle();
+
+         if (!r.contains(point))
+         {
+
+            auto pitem = __new(::item(e_element_none));
+
+            return pitem;
+
+         }
 
          //::point_f64 pointHit = item.m_pointHitTest;
 
@@ -667,11 +700,13 @@ namespace user
 
          //}
 
-         //return m_pdata->hit_test(point);
+         //return prichtextdata->hit_test(point);
 
          auto pitem = __new(::item(e_element_item));
 
-         pitem->m_item.m_iItem = m_pdata->hit_test(point);
+         auto prichtextdata = get_rich_text_data();
+
+         pitem->m_item.m_iItem = _hit_test(point);
 
          return pitem;
 
@@ -681,7 +716,9 @@ namespace user
       void edit_impl::_001GetText(string & str)
       {
 
-         m_pdata->_001GetText(str);
+         auto prichtextdata = get_rich_text_data();
+
+         prichtextdata->_001GetText(str);
 
       }
 
@@ -689,7 +726,7 @@ namespace user
       void edit_impl::_001GetLayoutText(string & str)
       {
 
-         m_pdata->_001GetLayoutText(str);
+         ::user::rich_text::edit::_001GetLayoutText(str);
 
       }
 
@@ -730,7 +767,7 @@ namespace user
          //   //if (color32_u8_red(crBackground) != 255)
          //   //{
 
-         //   //   information("no full red");
+         //   //   informationf("no full red");
 
          //   //}
 
@@ -754,7 +791,7 @@ namespace user
          //   //if (color32_u8_red(crBackground) != 255)
          //   //{
 
-         //   //   information("no full red");
+         //   //   informationf("no full red");
 
          //   //}
 
@@ -764,16 +801,31 @@ namespace user
 
          //}
 
-         ::user::rich_text::edit::draw_control_background(pgraphics);
+         //::user::rich_text::edit::draw_control_background(pgraphics);
 
       }
 
 
+      void edit_impl::_001OnNcPostDraw(::draw2d::graphics_pointer & pgraphics)
+      {
 
+         ::user::rich_text::edit::_001OnNcPostDraw(pgraphics);
+
+      }
+
+
+      void edit_impl::_001CallOnDraw(::draw2d::graphics_pointer & pgraphics)
+      {
+
+         ::user::rich_text::edit::_001CallOnDraw(pgraphics);
+
+      }
 
 
       void edit_impl::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
       {
+
+         //return;
 
          //return;
 
@@ -786,13 +838,15 @@ namespace user
        //  else
        //  {
 
-            auto rectangleX = this->rectangle();
+         //auto rectangleX = this->rectangle();
 
-            pgraphics->fill_rectangle(rectangleX, argb(40, 255, 255, 255));
+         //pgraphics->fill_rectangle(rectangleX, argb(40, 255, 255, 255));
 
-            draw_impl(pgraphics);
-//
-  //       }
+         //draw_impl(pgraphics);
+         ::user::rich_text::edit::_001OnDraw(pgraphics);
+         // 
+         //
+           //       }
 
       }
 
@@ -804,7 +858,54 @@ namespace user
 
          //pgraphics->offset_origin(m_pointScroll.x(), m_pointScroll.y());
 
-         m_pdata->_001OnDraw(pgraphics);
+         //::rectangle_i32 r(25, 25, 150, 150);
+
+         //pgraphics->fill_solid_rectangle(r, ::color::red);
+
+         at_end_of_scope
+         {
+
+            m_bShouldDrawOverride = false;
+
+         };
+
+         m_bShouldDrawOverride = true;
+
+         _000OnDraw(pgraphics);
+
+      }
+
+
+      void edit_impl::_000DrawImpl(::draw2d::graphics_pointer & pgraphics)
+      {
+
+         if (m_ppictureimpl)
+         {
+
+            return;
+
+         }
+
+         return _000OnDraw(pgraphics);
+
+         //synchronous_lock synchronouslock(this->synchronization());
+
+         ////pgraphics->offset_origin(m_pointScroll.x(), m_pointScroll.y());
+
+         //::rectangle_i32 r(25, 25, 150, 150);
+
+         //pgraphics->fill_solid_rectangle(r, ::color::red);
+
+         //at_end_of_scope
+         //{
+
+         //   m_bShouldDrawOverride = false;
+
+         //};
+
+         //m_bShouldDrawOverride = true;
+
+         //_000OnDraw(pgraphics);
 
       }
 
@@ -817,15 +918,26 @@ namespace user
          if (bEditable)
          {
 
-            if (is_text_editable() && is_window_visible())
+            if(is_text_editable())
             {
 
+               //if (!is_window_visible())
+               //{
+
+               //   display();
+
+               //}
+
                auto pformattool = get_format_tool(true);
+
+               ::user::rich_text::selection * pselection = this;
 
                //if (!ptool->is_window_visible() || !ptool->is_showing_for_ui(this))
                {
 
-                  pformattool->show_for_ui(this);
+                  on_selection_change(pformattool->m_pformat);
+
+                  pformattool->show_for_ui(this, pselection);
 
                }
 
@@ -837,6 +949,13 @@ namespace user
          else
          {
 
+            //if (is_window_visible())
+            //{
+
+            //   hide();
+
+            //}
+
             auto pformattool = get_format_tool(false);
 
             if (pformattool != nullptr && pformattool->is_showing_for_ui(this))
@@ -846,7 +965,7 @@ namespace user
 
             }
 
-            if(has_keyboard_focus())
+            if (has_keyboard_focus())
             {
 
                keyboard_set_focus_next();
@@ -854,6 +973,7 @@ namespace user
             }
 
          }
+
 
          return m_bEditable2;
 
@@ -926,7 +1046,7 @@ namespace user
       void edit_impl::on_layout(::draw2d::graphics_pointer & pgraphics)
       {
 
-         m_pdata->do_layout(pgraphics);
+         do_layout(pgraphics);
 
       }
 
@@ -942,14 +1062,18 @@ namespace user
             if (ptopic->user_interaction() == pformattool)
             {
 
+               auto prichtextdata = get_rich_text_data();
+
+               synchronous_lock synchronouslock(prichtextdata->synchronization());
+
                if (pformattool->m_eattribute & e_attribute_align)
                {
 
-                  box_align(m_pdata->m_spana, find_span(m_pdata->m_spana, m_pdata->m_iSelEnd), pformattool->m_pformata->element_at(0)->m_ealign);
+                  box_align(prichtextdata->m_spana, find_span(prichtextdata->m_spana, m_iSelEnd), pformattool->m_pformat->m_ealign);
 
                }
 
-               m_pdata->_001SetSelFontFormat(pformattool->m_pformata->element_at(0), pformattool->m_eattribute);
+               _001SetSelFontFormat(pformattool->m_pformat, pformattool->m_eattribute);
 
                pformattool->m_eattribute.clear();
 
@@ -959,7 +1083,7 @@ namespace user
 
                post_redraw();
 
-               set_keyboard_focus();
+               //set_keyboard_focus();
 
                //ptopic->Ret();
 
@@ -968,6 +1092,53 @@ namespace user
             }
 
          }
+         else if (ptopic->m_atom == ID_INCOMING_DOCUMENT)
+         {
+
+            auto puserdocument = ptopic->m_pparticle.cast < ::user::document >();
+
+            puserdocument->m_strSaveFileExtension = "rtf";
+
+            auto prichtextdata = get_rich_text_data();
+
+            if (prichtextdata->is_new_data())
+            {
+               //if (!estatus)
+   //{
+
+   //   return estatus;
+
+   //}
+
+               m_bComposing = false;
+
+               //estatus = 
+
+               //prichtextdata->initialize_data(pdocument);
+
+               //if (!estatus)
+               //{
+
+               //   return estatus;
+
+               //}
+
+               m_bPendingSelectionChange = false;
+
+               m_bEditable2 = true;
+
+               m_bKeyPressed = false;
+
+               m_bSelDrag = false;
+
+               m_bClickThrough = false;
+
+               //return estatus;
+
+            }
+
+         }
+
 
          return ::user::interaction::handle(ptopic, pcontext);
 
@@ -1148,7 +1319,7 @@ namespace user
 
                   pcopydesk->get_plain_text(str);
 
-                  m_pdata->_001InsertText(str);
+                  _001InsertText(str);
 
                }
 
@@ -1207,7 +1378,7 @@ namespace user
          if (pkey->m_ekey == ::user::e_key_return)
          {
 
-            if (psession->is_key_pressed(::user::e_key_control)  && psession->is_key_pressed(::user::e_key_alt))
+            if (psession->is_key_pressed(::user::e_key_control) && psession->is_key_pressed(::user::e_key_alt))
             {
                pkey->m_bRet = false;
                return;
@@ -1237,12 +1408,12 @@ namespace user
          }
          else if (ptimer->m_uEvent == 500 || ptimer->m_uEvent == 501)
          {
-            
+
             if (ptimer->m_uEvent == 500)
             {
-               
+
                KillTimer(500);
-               
+
                SetTimer(501, 300_ms, nullptr);
 
             }
@@ -1255,12 +1426,12 @@ namespace user
 
             // Caret
 
-            if (is_text_editable() && is_window_visible() && has_keyboard_focus())
+            //if (is_text_editable() && is_window_visible() && has_keyboard_focus())
             {
 
-               set_need_redraw();
+               //xxx set_need_redraw();
 
-               post_redraw();
+               //xxx post_redraw();
 
             }
 
@@ -1328,27 +1499,29 @@ namespace user
 
          {
 
-            synchronous_lock synchronouslock(m_pdata->synchronization());
+            auto prichtextdata = get_rich_text_data();
 
-            strsize i1 = m_pdata->get_sel_beg();
+            synchronous_lock synchronouslock(prichtextdata->synchronization());
 
-            strsize i2 = m_pdata->get_sel_end();
+            strsize i1 = get_sel_beg();
+
+            strsize i2 = get_sel_end();
 
             if (i1 != i2)
             {
 
-               m_pdata->_001Delete(i1, i2);
+               prichtextdata->_001Delete(i1, i2);
 
-               m_pdata->m_iSelBeg = m_pdata->m_iSelEnd = i1;
+               m_iSelBeg = m_iSelEnd = i1;
 
-               //index i = find_span(m_pdata->m_spana, i1);
+               //index i = find_span(prichtextdata->m_spana, i1);
 
                on_after_change(::id_after_change_text);
 
                set_need_redraw();
 
             }
-            else if (i1 >= 0 && i1 < m_pdata->_001GetLayoutTextLength())
+            else if (i1 >= 0 && i1 < _001GetLayoutTextLength())
             {
 
                string str;
@@ -1357,11 +1530,11 @@ namespace user
 
                strsize iIncLen = ::str::utf8_inc_len(&str[i1]);
 
-               m_pdata->_001Delete(i1, i1 + iIncLen);
+               prichtextdata->_001Delete(i1, i1 + iIncLen);
 
-               m_pdata->m_iSelBeg = m_pdata->m_iSelEnd = i1;
+               m_iSelBeg = m_iSelEnd = i1;
 
-               //index i = find_span(m_pdata->m_spana, i1);
+               //index i = find_span(prichtextdata->m_spana, i1);
 
                on_after_change(::id_after_change_text);
 
@@ -1378,581 +1551,609 @@ namespace user
       void edit_impl::on_message_character(::message::message * pmessage)
       {
 
-            auto pkey = pmessage->m_union.m_pkey;
+         auto pkey = pmessage->m_union.m_pkey;
 
-            string strChar;
+         string strChar;
 
-            auto psession = get_session();
+         auto psession = get_session();
 
-            if (pkey->m_ekey == ::user::e_key_s)
+         if (pkey->m_ekey == ::user::e_key_s)
+         {
+
+            if (psession->is_key_pressed(::user::e_key_control))
             {
 
-               if (psession->is_key_pressed(::user::e_key_control))
+               return;
+
+            }
+
+         }
+         else if (pkey->m_ekey == ::user::e_key_a)
+         {
+
+            if (psession->is_key_pressed(::user::e_key_control))
+            {
+
+               _001SetSel(0, _001GetTextLength());
+
+               return;
+
+            }
+
+         }
+         else if (pkey->m_ekey == ::user::e_key_z)
+         {
+
+            if (psession->is_key_pressed(::user::e_key_control))
+            {
+
+               if (is_window_enabled())
                {
 
-                  return;
+                  //Undo();
 
                }
 
+               return;
+
             }
-            else if (pkey->m_ekey == ::user::e_key_a)
+
+         }
+         else if (pkey->m_ekey == ::user::e_key_y)
+         {
+
+            if (psession->is_key_pressed(::user::e_key_control))
             {
 
-               if (psession->is_key_pressed(::user::e_key_control))
+               if (is_window_enabled())
                {
 
-                  _001SetSel(0, _001GetTextLength());
-
-                  return;
+                  //Redo();
 
                }
 
+               return;
+
             }
-            else if (pkey->m_ekey == ::user::e_key_z)
+
+         }
+         else if (psession->is_key_pressed(::user::e_key_control))
+         {
+
+            if (pkey->m_ekey == ::user::e_key_home)
             {
 
-               if (psession->is_key_pressed(::user::e_key_control))
+            }
+            else if (pkey->m_ekey == ::user::e_key_end)
+            {
+
+            }
+            else
+            {
+
+               return;
+            }
+
+         }
+
+         {
+
+            synchronous_lock synchronouslock(this->synchronization());
+
+            bool bControl = psession->is_key_pressed(::user::e_key_control);
+
+            bool bShift = psession->is_key_pressed(::user::e_key_shift);
+
+            if (pkey->m_ekey == ::user::e_key_page_up)
+            {
+
+               //on_reset_focus_start_tick();
+
+               //i32 x;
+               //index iLine = SelToLineX(m_iSelEnd, x);
+
+               //::rectangle_i32 rectangleX;
+
+               //GetFocusRect(rectangleX);
+
+               //iLine -= rectangleX.height() / m_iLineHeight;
+
+               //if (iLine < 0)
+               //{
+
+               //   iLine = 0;
+
+               //}
+
+               //m_iSelEnd = LineXToSel(iLine, m_iColumnX);
+
+               //if (!bShift)
+               //{
+
+               //   m_iSelBeg = m_iSelEnd;
+
+               //}
+
+               //_001EnsureVisibleLine(iLine);
+
+            }
+            else if (pkey->m_ekey == ::user::e_key_page_down)
+            {
+
+               //on_reset_focus_start_tick();
+
+               //i32 x;
+
+               //index iLine = SelToLineX(m_iSelEnd, x);
+
+               //::rectangle_i32 rectangleX;
+
+               //GetFocusRect(rectangleX);
+
+               //iLine += rectangleX.height() / m_iLineHeight;
+
+               //if (iLine >= m_iaLineStart.get_size())
+               //{
+
+               //   iLine = m_iaLineStart.get_upper_bound();
+
+               //}
+
+               //m_iSelEnd = LineXToSel(iLine, m_iColumnX);
+
+               //if (!bShift)
+               //{
+
+               //   m_iSelBeg = m_iSelEnd;
+
+               //}
+
+               //_001EnsureVisibleLine(iLine);
+
+            }
+            else if (pkey->m_ekey == ::user::e_key_back)
+            {
+
+               if (is_window_enabled())
                {
 
-                  if (is_window_enabled())
+                  on_reset_focus_start_tick();
+
+                  auto prichtextdata = get_rich_text_data();
+
                   {
 
-                     //Undo();
+                     synchronous_lock synchronouslock(prichtextdata->synchronization());
+
+                     strsize i1 = get_sel_beg();
+
+                     strsize i2 = get_sel_end();
+
+                     if (i1 > 0)
+                     {
+
+                        if (i1 != i2)
+                        {
+
+                           prichtextdata->_001Delete(i1, i2);
+
+                           m_iSelBeg = m_iSelEnd = i1;
+
+                           on_after_change(::id_after_change_text);
+
+                           set_need_redraw();
+
+                        }
+                        else
+                        {
+
+                           string str;
+
+                           _001GetLayoutText(str);
+
+                           strsize iDecLen = ::str::utf8_dec_len(str, &str[i1]);
+
+                           prichtextdata->_001Delete(i1, i1 - iDecLen);
+
+                           m_iSelBeg = m_iSelEnd = i1 - iDecLen;
+
+                           on_after_change(::id_after_change_text);
+
+                           set_need_redraw();
+
+                        }
+
+                     }
 
                   }
 
-                  return;
-
                }
 
             }
-            else if (pkey->m_ekey == ::user::e_key_y)
+            else if (pkey->m_ekey == ::user::e_key_delete)
             {
 
-               if (psession->is_key_pressed(::user::e_key_control))
+               if (is_window_enabled())
                {
 
-                  if (is_window_enabled())
+                  _001OnDeleteText();
+
+               }
+
+               return;
+
+            }
+            else if (pkey->m_ekey == ::user::e_key_up)
+            {
+
+               on_reset_focus_start_tick();
+
+               auto prichtextdata = get_rich_text_data();
+
+               synchronous_lock synchronouslock(prichtextdata->synchronization());
+
+               double x;
+
+               auto plinea = m_plinea;
+
+               index iLine = line_caret_x(*plinea, m_iSelEnd, x);
+
+               iLine--;
+
+               if (iLine >= 0)
+               {
+
+                  m_iSelEnd = _hit_test_line_x(iLine, x);
+
+                  if (!bShift)
                   {
 
-                     //Redo();
+                     m_iSelBeg = m_iSelEnd;
 
                   }
 
-                  return;
+                  //_001EnsureVisibleLine(iLine);
+
+                  internal_update_sel_char();
+
+               }
+
+               pkey->m_bRet = true;
+
+            }
+            else if (pkey->m_ekey == ::user::e_key_down)
+            {
+
+               on_reset_focus_start_tick();
+
+               auto prichtextdata = get_rich_text_data();
+
+               synchronous_lock synchronouslock(prichtextdata->synchronization());
+
+               double x;
+
+               auto plinea = m_plinea;
+
+               index iLine = line_caret_x(*plinea, m_iSelEnd, x);
+
+               iLine++;
+
+               if (iLine < plinea->get_count())
+               {
+
+                  m_iSelEnd = _hit_test_line_x(iLine, x);
+
+                  if (!bShift)
+                  {
+
+                     m_iSelBeg = m_iSelEnd;
+
+                  }
+
+
+                  //_001EnsureVisibleLine(iLine);
+
+                  internal_update_sel_char();
 
                }
 
             }
-            else if (psession->is_key_pressed(::user::e_key_control))
+            else if (pkey->m_ekey == ::user::e_key_right)
             {
 
-               if (pkey->m_ekey == ::user::e_key_home)
+               on_reset_focus_start_tick();
+
+               auto prichtextdata = get_rich_text_data();
+
+               if (!bShift && m_iSelBeg > m_iSelEnd)
                {
 
+                  synchronous_lock synchronouslock(prichtextdata->synchronization());
+
+                  m_iSelEnd = m_iSelBeg;
+
+                  internal_update_sel_char();
+
                }
-               else if (pkey->m_ekey == ::user::e_key_end)
+               else if (!bShift && m_iSelEnd > m_iSelBeg)
                {
+
+                  auto prichtextdata = get_rich_text_data();
+
+                  synchronous_lock synchronouslock(prichtextdata->synchronization());
+
+                  m_iSelBeg = m_iSelEnd;
+
+                  internal_update_sel_char();
 
                }
                else
                {
 
-                  return;
-               }
+                  auto prichtextdata = get_rich_text_data();
 
-            }
+                  synchronous_lock synchronouslock(prichtextdata->synchronization());
 
-            {
-
-               synchronous_lock synchronouslock(this->synchronization());
-
-               bool bControl = psession->is_key_pressed(::user::e_key_control);
-
-               bool bShift = psession->is_key_pressed(::user::e_key_shift);
-
-               if (pkey->m_ekey == ::user::e_key_page_up)
-               {
-
-                  //on_reset_focus_start_tick();
-
-                  //i32 x;
-                  //index iLine = SelToLineX(m_pdata->m_iSelEnd, x);
-
-                  //::rectangle_i32 rectangleX;
-
-                  //GetFocusRect(rectangleX);
-
-                  //iLine -= rectangleX.height() / m_iLineHeight;
-
-                  //if (iLine < 0)
-                  //{
-
-                  //   iLine = 0;
-
-                  //}
-
-                  //m_pdata->m_iSelEnd = LineXToSel(iLine, m_iColumnX);
-
-                  //if (!bShift)
-                  //{
-
-                  //   m_pdata->m_iSelBeg = m_pdata->m_iSelEnd;
-
-                  //}
-
-                  //_001EnsureVisibleLine(iLine);
-
-               }
-               else if (pkey->m_ekey == ::user::e_key_page_down)
-               {
-
-                  //on_reset_focus_start_tick();
-
-                  //i32 x;
-
-                  //index iLine = SelToLineX(m_pdata->m_iSelEnd, x);
-
-                  //::rectangle_i32 rectangleX;
-
-                  //GetFocusRect(rectangleX);
-
-                  //iLine += rectangleX.height() / m_iLineHeight;
-
-                  //if (iLine >= m_iaLineStart.get_size())
-                  //{
-
-                  //   iLine = m_iaLineStart.get_upper_bound();
-
-                  //}
-
-                  //m_pdata->m_iSelEnd = LineXToSel(iLine, m_iColumnX);
-
-                  //if (!bShift)
-                  //{
-
-                  //   m_pdata->m_iSelBeg = m_pdata->m_iSelEnd;
-
-                  //}
-
-                  //_001EnsureVisibleLine(iLine);
-
-               }
-               else if (pkey->m_ekey == ::user::e_key_back)
-               {
-
-                  if (is_window_enabled())
+                  if (m_iSelEnd < _001GetLayoutTextLength())
                   {
-
-                     on_reset_focus_start_tick();
-
-                     {
-                        synchronous_lock synchronouslock(m_pdata->synchronization());
-
-                        strsize i1 = m_pdata->get_sel_beg();
-
-                        strsize i2 = m_pdata->get_sel_end();
-
-                        if (i1 > 0)
-                        {
-
-                           if (i1 != i2)
-                           {
-
-                              m_pdata->_001Delete(i1, i2);
-
-                              m_pdata->m_iSelBeg = m_pdata->m_iSelEnd = i1;
-
-                              on_after_change(::id_after_change_text);
-
-                              set_need_redraw();
-
-                           }
-                           else
-                           {
-
-                              string str;
-
-                              _001GetLayoutText(str);
-
-                              strsize iDecLen = ::str::utf8_dec_len(str, &str[i1]);
-
-                              m_pdata->_001Delete(i1, i1 - iDecLen);
-
-                              m_pdata->m_iSelBeg = m_pdata->m_iSelEnd = i1 - iDecLen;
-
-                              on_after_change(::id_after_change_text);
-
-                              set_need_redraw();
-
-                           }
-
-                        }
-
-                     }
-
-                  }
-
-               }
-               else if (pkey->m_ekey == ::user::e_key_delete)
-               {
-
-                  if (is_window_enabled())
-                  {
-
-                     _001OnDeleteText();
-
-                  }
-
-                  return;
-
-               }
-               else if (pkey->m_ekey == ::user::e_key_up)
-               {
-
-                  on_reset_focus_start_tick();
-
-                  synchronous_lock synchronouslock(m_pdata->synchronization());
-
-                  double x;
-
-                  auto plinea = m_pdata->m_plinea;
-
-                  index iLine = line_caret_x(*plinea, m_pdata->m_iSelEnd, x);
-
-                  iLine--;
-
-                  if (iLine >= 0)
-                  {
-
-                     m_pdata->m_iSelEnd = m_pdata->hit_test_line_x(iLine, x);
-
-                     if (!bShift)
-                     {
-
-                        m_pdata->m_iSelBeg = m_pdata->m_iSelEnd;
-
-                     }
-
-                     //_001EnsureVisibleLine(iLine);
-
-                     m_pdata->internal_update_sel_char();
-
-                  }
-
-               }
-               else if (pkey->m_ekey == ::user::e_key_down)
-               {
-
-                  on_reset_focus_start_tick();
-
-                  synchronous_lock synchronouslock(m_pdata->synchronization());
-
-                  double x;
-
-                  auto plinea = m_pdata->m_plinea;
-
-                  index iLine = line_caret_x(*plinea, m_pdata->m_iSelEnd, x);
-
-                  iLine++;
-
-                  if (iLine < plinea->get_count())
-                  {
-
-                     m_pdata->m_iSelEnd = m_pdata->hit_test_line_x(iLine, x);
-
-                     if (!bShift)
-                     {
-
-                        m_pdata->m_iSelBeg = m_pdata->m_iSelEnd;
-
-                     }
-
-
-                     //_001EnsureVisibleLine(iLine);
-
-                     m_pdata->internal_update_sel_char();
-
-                  }
-
-               }
-               else if (pkey->m_ekey == ::user::e_key_right)
-               {
-
-                  on_reset_focus_start_tick();
-
-                  if (!bShift && m_pdata->m_iSelBeg > m_pdata->m_iSelEnd)
-                  {
-
-                     synchronous_lock synchronouslock(m_pdata->synchronization());
-
-                     m_pdata->m_iSelEnd = m_pdata->m_iSelBeg;
-
-                     m_pdata->internal_update_sel_char();
-
-                  }
-                  else if (!bShift && m_pdata->m_iSelEnd > m_pdata->m_iSelBeg)
-                  {
-
-                     synchronous_lock synchronouslock(m_pdata->synchronization());
-
-                     m_pdata->m_iSelBeg = m_pdata->m_iSelEnd;
-
-                     m_pdata->internal_update_sel_char();
-
-                  }
-                  else
-                  {
-
-                     synchronous_lock synchronouslock(m_pdata->synchronization());
-
-                     if (m_pdata->m_iSelEnd < m_pdata->_001GetLayoutTextLength())
-                     {
-
-                        string strText;
-
-                        _001GetLayoutText(strText);
-
-                        const char * psz = strText.c_str();
-
-                        const char * end = &psz[m_pdata->m_iSelEnd];
-
-                        const char * inc = unicode_next(end);
-
-                        m_pdata->m_iSelEnd += inc - end;
-
-                        if (!bShift)
-                        {
-
-                           m_pdata->m_iSelBeg = m_pdata->m_iSelEnd;
-
-                        }
-
-                        m_pdata->internal_update_sel_char();
-
-                     }
-
-                  }
-
-               }
-               else if (pkey->m_ekey == ::user::e_key_left)
-               {
-
-                  on_reset_focus_start_tick();
-
-                  if (!bShift && m_pdata->m_iSelBeg < m_pdata->m_iSelEnd)
-                  {
-
-                     synchronous_lock synchronouslock(m_pdata->synchronization());
-
-                     m_pdata->m_iSelEnd = m_pdata->m_iSelBeg;
-
-                     m_pdata->internal_update_sel_char();
-
-                  }
-                  else if (!bShift && m_pdata->m_iSelEnd < m_pdata->m_iSelBeg)
-                  {
-
-                     synchronous_lock synchronouslock(m_pdata->synchronization());
-
-                     m_pdata->m_iSelBeg = m_pdata->m_iSelEnd;
-
-                     m_pdata->internal_update_sel_char();
-
-                  }
-                  else if (m_pdata->m_iSelEnd > 0)
-                  {
-
-                     synchronous_lock synchronouslock(m_pdata->synchronization());
 
                      string strText;
 
                      _001GetLayoutText(strText);
 
-                     const ::ansi_character * psz = strText.c_str();
+                     const char * psz = strText.c_str();
 
-                     const char * end = &psz[m_pdata->m_iSelEnd];
+                     const char * end = &psz[m_iSelEnd];
 
-                     const char * dec = unicode_prior(end, psz);
+                     const char * inc = unicode_next(end);
 
-                     m_pdata->m_iSelEnd -= end - dec;
+                     m_iSelEnd += inc - end;
 
                      if (!bShift)
                      {
 
-                        m_pdata->m_iSelBeg = m_pdata->m_iSelEnd;
+                        m_iSelBeg = m_iSelEnd;
 
                      }
 
-                     m_pdata->internal_update_sel_char();
+                     internal_update_sel_char();
 
                   }
 
                }
-               else if (pkey->m_ekey == ::user::e_key_home)
+
+            }
+            else if (pkey->m_ekey == ::user::e_key_left)
+            {
+
+               on_reset_focus_start_tick();
+
+               auto prichtextdata = get_rich_text_data();
+
+               if (!bShift && m_iSelBeg < m_iSelEnd)
                {
 
-                  on_reset_focus_start_tick();
+                  synchronous_lock synchronouslock(prichtextdata->synchronization());
 
-                  synchronous_lock synchronouslock(m_pdata->synchronization());
+                  m_iSelEnd = m_iSelBeg;
 
-                  if (bControl)
-                  {
+                  internal_update_sel_char();
 
-                     m_pdata->m_iSelEnd = 0;
+               }
+               else if (!bShift && m_iSelEnd < m_iSelBeg)
+               {
 
-                     //   _001EnsureVisibleLine(0);
+                  auto prichtextdata = get_rich_text_data();
 
-                  }
-                  else
-                  {
+                  synchronous_lock synchronouslock(prichtextdata->synchronization());
 
-                     index iLine = m_pdata->SelToLine(m_pdata->m_iSelEnd);
+                  m_iSelBeg = m_iSelEnd;
 
-                     m_pdata->m_iSelEnd = m_pdata->LineColumnToSel(iLine, 0);
+                  internal_update_sel_char();
 
-                  }
+               }
+               else if (m_iSelEnd > 0)
+               {
+
+                  auto prichtextdata = get_rich_text_data();
+
+                  synchronous_lock synchronouslock(prichtextdata->synchronization());
+
+                  string strText;
+
+                  _001GetLayoutText(strText);
+
+                  const ::ansi_character * psz = strText.c_str();
+
+                  const char * end = &psz[m_iSelEnd];
+
+                  const char * dec = unicode_prior(end, psz);
+
+                  m_iSelEnd -= end - dec;
 
                   if (!bShift)
                   {
 
-                     m_pdata->m_iSelBeg = m_pdata->m_iSelEnd;
+                     m_iSelBeg = m_iSelEnd;
 
                   }
 
-                  m_pdata->internal_update_sel_char();
+                  internal_update_sel_char();
 
                }
-               else if (pkey->m_ekey == ::user::e_key_end)
+
+            }
+            else if (pkey->m_ekey == ::user::e_key_home)
+            {
+
+               on_reset_focus_start_tick();
+
+               auto prichtextdata = get_rich_text_data();
+
+               synchronous_lock synchronouslock(prichtextdata->synchronization());
+
+               if (bControl)
                {
 
-                  on_reset_focus_start_tick();
+                  m_iSelEnd = 0;
 
-                  synchronous_lock synchronouslock(m_pdata->synchronization());
-
-                  if (bControl)
-                  {
-
-                     m_pdata->m_iSelEnd = _001GetTextLength();
-
-                     //   _001EnsureVisibleLine(iLine);
-
-                  }
-                  else
-                  {
-
-                     index iLine = m_pdata->SelToLine(m_pdata->m_iSelEnd);
-
-                     m_pdata->m_iSelEnd = m_pdata->LineColumnToSel(iLine, -1);
-
-                  }
-
-                  if (!bShift)
-                  {
-
-                     m_pdata->m_iSelBeg = m_pdata->m_iSelEnd;
-
-                  }
-
-                  m_pdata->internal_update_sel_char();
+                  //   _001EnsureVisibleLine(0);
 
                }
-               else if (pkey->m_ekey == ::user::e_key_escape)
+               else
                {
+
+                  index iLine = SelToLine(m_iSelEnd);
+
+                  m_iSelEnd = LineColumnToSel(iLine, 0);
 
                }
-               else if (pkey->m_ekey == ::user::e_key_return)
+
+               if (!bShift)
                {
 
-//                if(m_bMultiLine)
-                  {
-
-                     insert_text("\n", true, e_source_user);
-
-                  }
+                  m_iSelBeg = m_iSelEnd;
 
                }
-               else if (is_window_enabled())
+
+               internal_update_sel_char();
+
+            }
+            else if (pkey->m_ekey == ::user::e_key_end)
+            {
+
+               on_reset_focus_start_tick();
+
+               auto prichtextdata = get_rich_text_data();
+
+               synchronous_lock synchronouslock(prichtextdata->synchronization());
+
+               if (bControl)
                {
+
+                  m_iSelEnd = _001GetTextLength();
+
+                  //   _001EnsureVisibleLine(iLine);
+
+               }
+               else
+               {
+
+                  index iLine = SelToLine(m_iSelEnd);
+
+                  m_iSelEnd = LineColumnToSel(iLine, -1);
+
+               }
+
+               if (!bShift)
+               {
+
+                  m_iSelBeg = m_iSelEnd;
+
+               }
+
+               internal_update_sel_char();
+
+            }
+            else if (pkey->m_ekey == ::user::e_key_escape)
+            {
+
+            }
+            else if (pkey->m_ekey == ::user::e_key_return)
+            {
+
+               //                if(m_bMultiLine)
+               {
+
+                  insert_text("\n", true, e_source_user);
+
+               }
+
+            }
+            else if (is_window_enabled())
+            {
 
 #if defined(WINDOWS_DESKTOP) || defined(LINUX) || defined(MACOS)
 
-                  return;
+               return;
 
 #else
 
-                  on_reset_focus_start_tick();
+               on_reset_focus_start_tick();
 
-                  string str;
+               string str;
 
-                  char ch = 0;
+               char ch = 0;
 
-                  if (pkey->m_ekey == ::user::e_key_tab)
+               if (pkey->m_ekey == ::user::e_key_tab)
+               {
+
+                  str = "   ";
+
+               }
+               else if (pkey->m_ekey == ::user::e_key_refer_to_text_member)
+               {
+
+                  str = pkey->m_strText;
+
+               }
+               else
+               {
+
+                  ch = (char)pkey->m_nChar;
+
+                  if (ch == '\r')
                   {
 
-                     str = "   ";
-
-                  }
-                  else if (pkey->m_ekey == ::user::e_key_refer_to_text_member)
-                  {
-
-                     str = pkey->m_strText;
-
-                  }
-                  else
-                  {
-
-                     ch = (char)pkey->m_nChar;
-
-                     if (ch == '\r')
-                     {
-
-                        ch = '\n';
-
-                     }
-
-                     i32 iChar = (i32)pkey->m_nChar;
-
-                     if (iChar == '\r')
-                     {
-
-                        iChar = '\n';
-
-                     }
-
-                     if (bShift)
-                     {
-
-                        iChar |= I32_MINIMUM;
-
-                     }
-
-                     //i32 iCode = pkey->m_nFlags & 0xff;
-
-                     //if (bShift)
-                     //{
-
-                     //   iCode |= I32_MINIMUM;
-
-                     //}
-
-                     //str = psession->keyboard().process_key(pkey);
-                                          //str = psession->keyboard().process_key(pkey);
-                     throw ::exception(todo, "keyboard");
-
+                     ch = '\n';
 
                   }
 
+                  i32 iChar = (i32)pkey->m_nChar;
 
+                  if (iChar == '\r')
+                  {
 
-                  m_pdata->_001InsertText(str);
+                     iChar = '\n';
 
-                  #endif
+                  }
+
+                  if (bShift)
+                  {
+
+                     iChar |= I32_MINIMUM;
+
+                  }
+
+                  //i32 iCode = pkey->m_nFlags & 0xff;
+
+                  //if (bShift)
+                  //{
+
+                  //   iCode |= I32_MINIMUM;
+
+                  //}
+
+                  //str = psession->keyboard().process_key(pkey);
+                                       //str = psession->keyboard().process_key(pkey);
+                  throw ::exception(todo, "keyboard");
+
 
                }
 
+               //auto prichtextdata = get_rich_text_data();
+
+               //prichtextdata->_001InsertText(str);
+               
+               _001InsertText(str);
+
+
+#endif
 
             }
+
+
+         }
 
 
       }
@@ -1961,7 +2162,9 @@ namespace user
       void edit_impl::on_after_change(const ::atom & atom)
       {
 
-         m_pdata->optimize_data();
+         auto prichtextdata = get_rich_text_data();
+
+         prichtextdata->optimize_data();
 
          auto ptopic = create_topic(atom);
 
@@ -1985,7 +2188,9 @@ namespace user
       strsize edit_impl::_001GetTextLength()
       {
 
-         return m_pdata->_001GetTextLength();
+         auto prichtextdata = get_rich_text_data();
+
+         return prichtextdata->_001GetTextLength();
 
       }
 
@@ -1993,10 +2198,11 @@ namespace user
       void edit_impl::_001GetSel(strsize & iBeg, strsize & iEnd)
       {
 
-         iBeg = m_pdata->m_iSelBeg;
+         auto prichtextdata = get_rich_text_data();
 
-         iEnd = m_pdata->m_iSelEnd;
+         iBeg = m_iSelBeg;
 
+         iEnd = m_iSelEnd;
 
       }
 
@@ -2004,11 +2210,13 @@ namespace user
       void edit_impl::_001GetSelLineText(string & strText)
       {
 
-//         double x;
+         //         double x;
 
-         index iLine = m_pdata->SelToLine(m_pdata->m_iSelBeg);
+         auto prichtextdata = get_rich_text_data();
 
-         index iLineEnd = m_pdata->SelToLine(m_pdata->m_iSelBeg);
+         index iLine = SelToLine(m_iSelBeg);
+
+         index iLineEnd = SelToLine(m_iSelBeg);
 
          if (iLine != iLineEnd)
          {
@@ -2017,9 +2225,9 @@ namespace user
 
          }
 
-         index iBeg = m_pdata->LineColumnToSel(iLine, 0);
+         index iBeg = LineColumnToSel(iLine, 0);
 
-         index iEnd = m_pdata->LineColumnToSel(iLine, -1);
+         index iEnd = LineColumnToSel(iLine, -1);
 
          _001GetText(strText, iBeg, iEnd);
 
@@ -2041,12 +2249,12 @@ namespace user
       }
 
 
-      document * edit_impl::get_document()
-      {
+      //document * edit_impl::get_document()
+      //{
 
-         return m_pdocument.cast < document >();
+      //   return m_pdocument.cast < document >();
 
-      }
+      //}
 
 
       //void edit_impl::write(::binary_stream & stream) const
@@ -2054,7 +2262,7 @@ namespace user
 
       //   ::user::picture::write(stream);
 
-      //   m_pdata->write(stream);
+      //   prichtextdata->write(stream);
 
       //   ::rectangle_i32 rectangleWindow;
 
@@ -2079,7 +2287,7 @@ namespace user
 
       //   ::user::picture::read(stream);
 
-      //   m_pdata->read(stream);
+      //   prichtextdata->read(stream);
 
       //   ::rectangle_i32 rectangleWindow;
 
@@ -2118,7 +2326,7 @@ namespace user
 
          }
 
-         m_pdata->_001InsertText(str);
+         _001InsertText(str);
 
       }
 
@@ -2138,13 +2346,52 @@ namespace user
       }
 
 
-      ::user::rich_text::data * edit_impl::get_rich_text_data()
+      void edit_impl::read_from_stream(::binary_stream & binarystream)
       {
 
-         return m_pdata;
+         ::user::picture::read_from_stream(binarystream);
+
+         auto prichtextdata = get_rich_text_data();
+
+         ::string strRtf;
+
+         binarystream >> strRtf;
+
+         auto pmemoryfile = create_memory_file(strRtf);
+
+         ::binary_stream binarystreamRtf(pmemoryfile);
+
+         prichtextdata->read_from_stream(binarystreamRtf);
 
       }
 
+
+      void edit_impl::write_to_stream(::binary_stream & binarystream)
+      {
+
+         ::user::picture::write_to_stream(binarystream);
+
+         //m_ppictureimpl->write_to_stream(binarystream);
+
+         auto prichtextdata = get_rich_text_data();
+
+         auto pmemoryfile = create_memory_file();
+
+         ::binary_stream binarystreamRtf(pmemoryfile);
+
+         prichtextdata->write_to_stream(binarystreamRtf);
+
+         binarystream << pmemoryfile->as_string();
+
+      }
+
+
+      ::user::rich_text::data * edit_impl::get_rich_text_data()
+      {
+
+         return ::user::rich_text::edit::get_rich_text_data();
+
+      }
 
 
    } // namespace rich_text

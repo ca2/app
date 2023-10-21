@@ -200,7 +200,7 @@ bool string_buffer_base::unget_if(::ansi_character ch)
 ////      {
 ////         if(m_iAlloc > 1024 * 1024)
 ////         {
-////            ::information("strange string buffer usage");
+////            ::informationf("strange string buffer usage");
 ////         }
 ////         m_psz = (char *)memory_reallocate(m_psz,m_iAlloc);
 ////      }

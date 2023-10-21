@@ -108,19 +108,19 @@ namespace sockets
       // parse form data / query_string and cookie header if available
       m_request.ParseBody();
 
-      //information("http version: %s\n", m_request.attr("http_version").as_string());
-      //information("connection: %s\n", m_request.header("connection").as_string());
-      //information("keepalive: %s\n", m_b_keepalive ? "true" : "false");
+      //informationf("http version: %s\n", m_request.attr("http_version").as_string());
+      //informationf("connection: %s\n", m_request.header("connection").as_string());
+      //informationf("keepalive: %s\n", m_b_keepalive ? "true" : "false");
    /*   if(string_ends(m_request.attr("http_version").as_string(), "/1.1")
          && m_request.header("connection").as_string().case_insensitive_order("close") != 0)
       {
          m_b_keepalive = true;
-      information(" ***    keepalive: true\n");
+      informationf(" ***    keepalive: true\n");
       }
       else
       {
          m_b_keepalive = false;
-         information(" *** keepalive: false\n");
+         informationf(" *** keepalive: false\n");
       }*/
 
       // prepare page
@@ -183,18 +183,18 @@ namespace sockets
    void http_base_socket::OnWriteComplete()
    {
       //Debug deb("http_base_socket::OnTransferLimit");
-      //information("\n");
-      //information("http_base_socket::OnTransferLimit\n");
+      //informationf("\n");
+      //informationf("http_base_socket::OnTransferLimit\n");
    //   char msg[32768];
       OnResponseComplete();
       if (!m_b_keepalive)
       {
-         //information("SetCloseAndDelete\n");
+         //informationf("SetCloseAndDelete\n");
          SetCloseAndDelete();
       }
       else
       {
-         //information("keep-alive\n");
+         //informationf("keep-alive\n");
       }
    }
 

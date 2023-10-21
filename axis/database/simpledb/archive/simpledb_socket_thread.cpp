@@ -75,13 +75,13 @@ namespace simpledb
       if(!m_plistensocket->create(80, SOCK_STREAM))
       {
       u32 dw = ::get_last_error();
-      information("error %u", dw);
+      informationf("error %u", dw);
       return false;
       }
       if(!m_plistensocket->Listen())
       {
       u32 dw = ::get_last_error();
-      information("error %u", dw);
+      informationf("error %u", dw);
       return false;
       }*/
       m_evInitialized.SetEvent();

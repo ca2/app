@@ -1034,7 +1034,7 @@
 ////   return g_hMainThread;
 ////
 ////}
-////CLASS_DECL_ACME ::u32   main_user_itask()
+////CLASS_DECL_ACME ::u32 main_user_itask()
 ////{
 ////   return g_iMainThread;
 ////}

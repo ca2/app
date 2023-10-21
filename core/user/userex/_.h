@@ -12,7 +12,6 @@ namespace userex
 
 
    class font_impact;
-   class color_impact;
 
    class top_impact;
    class top_edit_impact;

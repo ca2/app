@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "lock.h"
-#include "acme/graphics/draw2d/image32.h"
+#include "acme/graphics/image/image32.h"
 #include "acme/platform/application.h"
 #include "aura/graphics/image/save_image.h"
 #include "aura/graphics/image/array.h"
@@ -1527,7 +1527,7 @@ void draw2d::emboss_predicate(
 
       }
 
-      //information("No write_text pluging available!!.");
+      //informationf("No write_text pluging available!!.");
       if (pfactoryWriteText)
       {
 
@@ -1600,36 +1600,5 @@ void draw2d::emboss_predicate(
 
 
 } // namespace draw2d
-
-
-enum_rotate_flip exif_orientation_rotate_flip(int orientation)
-{
-
-
-   switch (orientation)
-   {
-   case 1:
-      return e_rotate_none_flip_none;
-   case 2:
-      return e_rotate_none_flip_x;
-   case 3:
-      return e_rotate_180_flip_none;
-   case 4:
-      return e_rotate_180_flip_x;
-   case 5:
-      return e_rotate_90_flip_x;
-   case 6:
-      return e_rotate_90_flip_none;
-   case 7:
-      return e_rotate_270_flip_x;
-   case 8:
-      return e_rotate_270_flip_none;
-   default:
-      return e_rotate_none_flip_none;
-   }
-
-
-}
-
 
 

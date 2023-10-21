@@ -49,7 +49,7 @@ namespace sockets
       if (atom != 0x1234)
       {
 
-         information("ABORT: bad packet atom: %x\n", atom);
+         informationf("ABORT: bad packet atom: %x\n", atom);
 
          SetCloseAndDelete();
 
@@ -57,7 +57,7 @@ namespace sockets
       else
       {
 
-         information("Packet size: %d bytes\n", len);
+         informationf("Packet size: %d bytes\n", len);
 
       }
 
@@ -68,7 +68,7 @@ namespace sockets
    {
       if (sz - 2 > m_body_size_left)
       {
-         information("More body data received than expected\n");
+         informationf("More body data received than expected\n");
          SetCloseAndDelete();
          return;
       }
@@ -152,7 +152,7 @@ namespace sockets
             u16 x = (u16)get_integer(buf, ptr);
             if (!psystem->sockets().m_pajpaxissocketinit->header.lookup(x, key))
             {
-               information("Unknown header key value: %x\n", x);
+               informationf("Unknown header key value: %x\n", x);
                SetCloseAndDelete();
             }
          }
@@ -185,7 +185,7 @@ namespace sockets
          {
             if(!psystem->sockets().m_pajpaxissocketinit->Attribute.lookup(code, key))
             {
-               information("Unknown attribute key: 0x%02x\n", buf[ptr]);
+               informationf("Unknown attribute key: 0x%02x\n", buf[ptr]);
                SetCloseAndDelete();
             }
          }
@@ -369,7 +369,7 @@ namespace sockets
    // --------------------------------------------------------------------------------------
    void Ajp13Socket::OnPacket( const char *buf, memsize sz )
    {
-      information("OnPacket: %d bytes, code 0x%02x %02x %02x %02x\n", sz, *buf, buf[1], buf[2], buf[3]);
+      informationf("OnPacket: %d bytes, code 0x%02x %02x %02x %02x\n", sz, *buf, buf[1], buf[2], buf[3]);
 
       // check body size left to read, if non-zero packet is body data
       if (m_body_size_left) // must be a body packet
@@ -392,7 +392,7 @@ namespace sockets
          ReceiveCPing(buf, sz);
          break;
       default:
-         information("Unknown packet type: 0x%02x\n", *buf);
+         informationf("Unknown packet type: 0x%02x\n", *buf);
          SetCloseAndDelete();
       }
 

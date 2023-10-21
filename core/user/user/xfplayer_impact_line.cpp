@@ -1593,7 +1593,7 @@ void xfplayer_impact_line::CacheEmboss(::draw2d::graphics_pointer & pgraphics, c
 
    m_bCacheEmboss = true;
 
-   //information("CLyricImpactLine::CacheEmboss: %s\n", pcsz);
+   //informationf("CLyricImpactLine::CacheEmboss: %s\n", pcsz);
 
    ::size_f64 size;
 

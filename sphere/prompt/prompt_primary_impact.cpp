@@ -88,7 +88,7 @@ namespace prompt
                catch(const ::string & psz)
                {
 
-                  information("error %s", psz);
+                  informationf("error %s", psz);
 
                   bOk = false;
 
@@ -182,7 +182,7 @@ namespace prompt
                catch(const ::string & psz)
                {
 
-                  information("error %s", psz);
+                  informationf("error %s", psz);
 
                   bOk = false;
 

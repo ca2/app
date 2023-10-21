@@ -67,7 +67,7 @@ namespace acme
       if (plibrary != nullptr)
       {
 
-         //information("Loaded Library (1) %s", strPath.c_str());
+         //informationf("Loaded Library (1) %s", strPath.c_str());
 
          goto finished;
 
@@ -272,7 +272,7 @@ namespace acme
 
       }
 
-      ::information("\n\nGoing to touch library (1) " + string(strPath) + "\n");
+      ::informationf("\n\nGoing to touch library (1) " + string(strPath) + "\n");
 
       ::file::path path;
 
@@ -441,11 +441,12 @@ namespace acme
 
       }
 
-      ::information(strMessage + "\n\n");
+      ::informationf(strMessage + "\n\n");
 
       return plibrary;
 
    }
+
 
    bool system::operating_system_library_close(void* plibrary)
    {
@@ -492,7 +493,7 @@ namespace acme
 
       }
 
-      ::information("\n" + strMessage + "\n\n");
+      ::informationf("\n" + strMessage + "\n\n");
 
       return p;
 

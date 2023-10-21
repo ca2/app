@@ -4,7 +4,7 @@
 #include "fastblur.h"
 #include "context_image.h"
 #include "array.h"
-#include "acme/graphics/draw2d/image32.h"
+#include "acme/graphics/image/image32.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/brush.h"
@@ -142,7 +142,7 @@ i32                 cy)
    //if(!pgraphics->text_out(x,y, string(pcsz, cb)))
    pgraphics->text_out(x, y, string(pcsz, cb));
    //{
-   //   //      information("Failed to ExtTextOut, get_last_error() -->%d\n", get_last_error());
+   //   //      informationf("Failed to ExtTextOut, get_last_error() -->%d\n", get_last_error());
    //}
 
    /* restore the DC

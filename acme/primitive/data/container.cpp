@@ -77,7 +77,7 @@ namespace data
    bool data_container_base::add_data(::data::data * pdata)
    {
 
-      pdata->initialize_data(this);
+      pdata->initialize_data();
 
       m_datamap.set_at(pdata->m_atom, pdata);
 
@@ -104,11 +104,37 @@ namespace data
       if (p.is_null())
       {
 
-         return nullptr;
+         auto & pdata = m_datamap[atom];
+
+         auto pdataNew = create_data(atom);
+
+         if (pdataNew)
+         {
+
+            pdata = pdataNew;
+
+         }
+
+         if (pdata)
+         {
+
+            pdata->initialize_data();
+
+         }
+
+         p = m_datamap.plookup(atom);
 
       }
 
       return p->element2();
+
+   }
+
+
+   ::pointer < data > data_container_base::create_data(const ::atom & atom)
+   {
+
+      return {};
 
    }
 

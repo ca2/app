@@ -32,6 +32,7 @@ namespace experience_tranquillum
 
       virtual void _001OnClip(::draw2d::graphics_pointer & pgraphics) override;
 
+      DECLARE_MESSAGE_HANDLER(on_message_create);
       DECLARE_MESSAGE_HANDLER(on_message_show_window);
       
       void on_layout(::draw2d::graphics_pointer & pgraphics) override;

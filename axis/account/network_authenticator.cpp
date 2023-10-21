@@ -171,7 +171,7 @@ namespace account
       if(strHost.is_empty())
       {
 
-         information("Host is missing. Has pre_login been called and succeeded?");
+         informationf("Host is missing. Has pre_login been called and succeeded?");
 
          throw ::exception(error_authentication_missing_host);
 
@@ -486,7 +486,7 @@ namespace account
 //
 //      ::u32 tickEnd= ::time::now();
 //
-//      information("get_account_login HTTP GET time = %dms",tickEnd - dwBeg);
+//      informationf("get_account_login HTTP GET time = %dms",tickEnd - dwBeg);
 //
 //   }
 //   catch(...)

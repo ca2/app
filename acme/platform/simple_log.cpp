@@ -57,7 +57,9 @@ void matter::trace_last_status()
 extern "C"
 void o_debug_string(const ::scoped_string & scopedstr)
 {
-   information(scopedstr);
+
+   informationf(scopedstr);
+
 }
 
 
@@ -444,7 +446,7 @@ CLASS_DECL_ACME void __simple_tracea(::particle * pparticle, enum_trace_level el
 
    strMessage += "\n";
 
-   information(strMessage);
+   informationf(strMessage);
 
 }
 

@@ -35,7 +35,7 @@ namespace aura
    public:
 
 
-      ::pointer<::windowing::windowing>        m_pwindowing;
+      ::pointer<::windowing::windowing>         m_pwindowingAuraNode;
       bool                                      m_bUnhookX;
 
 

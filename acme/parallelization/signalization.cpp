@@ -21,7 +21,7 @@ namespace parallelization
    signalization::~signalization()
    {
 
-      //::information("signalization::~signalization");
+      //::informationf("signalization::~signalization");
 
    }
 

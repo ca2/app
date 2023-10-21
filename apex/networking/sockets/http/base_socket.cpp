@@ -107,7 +107,7 @@ namespace sockets
          if (strTest.find_index('.') > 0)
          {
 
-            information("!!!!!!!!!! -> " + strTest + "\n");
+            informationf("!!!!!!!!!! -> " + strTest + "\n");
 
          }
 
@@ -143,7 +143,7 @@ namespace sockets
       if(m_request.headers().has_property("accept-language"))
       {
 
-         information("accept-language: %s", m_request.header("accept-language").as_string().c_str());
+         informationf("accept-language: %s", m_request.header("accept-language").as_string().c_str());
 
       }
 
@@ -175,19 +175,19 @@ namespace sockets
       // parse form data / query_string and cookie header if available
       m_request.ParseBody(m_pcontext->m_papexcontext);
 
-      //information("http version: %s\n", m_request.attr("http_version").string());
-      //information("connection: %s\n", m_request.header("connection").string());
-      //information("keepalive: %s\n", m_b_keepalive ? "true" : "false");
+      //informationf("http version: %s\n", m_request.attr("http_version").string());
+      //informationf("connection: %s\n", m_request.header("connection").string());
+      //informationf("keepalive: %s\n", m_b_keepalive ? "true" : "false");
       /*   if(string_ends(m_request.attr("http_version").string(), "/1.1")
             && m_request.header("connection").string().case_insensitive_order("close") != 0)
          {
             m_b_keepalive = true;
-         information(" ***    keepalive: true");
+         informationf(" ***    keepalive: true");
          }
          else
          {
             m_b_keepalive = false;
-            information(" *** keepalive: false");
+            informationf(" *** keepalive: false");
          }*/
 
       // prepare page
@@ -262,18 +262,18 @@ namespace sockets
    void http_base_socket::OnWriteComplete()
    {
       //Debug deb("http_base_socket::OnTransferLimit");
-      //information("");
-      //information("http_base_socket::OnTransferLimit");
+      //informationf("");
+      //informationf("http_base_socket::OnTransferLimit");
       //   char msg[32768];
       OnResponseComplete();
       //if (!m_b_keepalive)
       //{
-      //   //information("SetCloseAndDelete");
+      //   //informationf("SetCloseAndDelete");
       //   SetCloseAndDelete();
       //}
       //else
       //{
-      //   //information("keep-alive");
+      //   //informationf("keep-alive");
       //}
    }
 

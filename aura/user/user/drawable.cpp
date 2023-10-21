@@ -1,6 +1,6 @@
 #include "framework.h" // previously aqua/user/user.h
 #include "drawable.h"
-//#include "acme/constant/activate.h"
+#include "acme/exception/interface_only.h"
 //#include "aura/message/user.h"
 
 
@@ -16,6 +16,14 @@ namespace user
 
    drawable::~drawable()
    {
+
+   }
+
+
+   void drawable::_000DrawImpl(::draw2d::graphics_pointer & pgraphics)
+   {
+
+      UNREFERENCED_PARAMETER(pgraphics);
 
    }
 
@@ -36,7 +44,7 @@ namespace user
    }
 
 
-   ::item_pointer drawable::hit_test(const ::point_i32& point, e_zorder ezorder)
+   ::item_pointer drawable::parent_client_hit_test(const ::point_i32& point, e_zorder ezorder)
    {
 
       UNREFERENCED_PARAMETER(point);
@@ -46,7 +54,7 @@ namespace user
    }
 
 
-   ::item_pointer drawable::on_hit_test(const ::point_i32 & point, e_zorder ezorder)
+   ::item_pointer drawable::parent_client_on_hit_test(const ::point_i32 & point, e_zorder ezorder)
    {
 
       return nullptr;
@@ -127,14 +135,14 @@ namespace user
    }
 
 
-   ::item_pointer drawable::hit_test(::user::mouse* pmouse, e_zorder ezorder)
+ /*  ::item_pointer drawable::hit_test(::user::mouse* pmouse, e_zorder ezorder)
    {
+
+      throw ::interface_only();
 
       return nullptr;
 
-      //return hit_test(pmouse->m_point);
-
-   }
+   }*/
 
 
    //::item * drawable::hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)

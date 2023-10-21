@@ -43,17 +43,18 @@ namespace data
 
 
       data_container_base();
-      virtual ~data_container_base();
+      ~data_container_base() override;
 
 
-      bool set_data(const ::atom & atom, ::data::data * pdata);
-      bool add_data(::data::data * pdata);
-      bool erase_data(::data::data * pdata);
-      data * get_data(const ::atom & atom);
-      ::count get_count() const;
+      virtual bool set_data(const ::atom & atom, ::data::data * pdata);
+      virtual bool add_data(::data::data * pdata);
+      virtual bool erase_data(::data::data * pdata);
+      virtual data * get_data(const ::atom & atom);
+      virtual ::pointer < data > create_data(const ::atom & atom);
+      virtual ::count get_count() const;
 
 
-      bool is_empty() const;
+      virtual bool is_empty() const;
 
 
       template < typename TYPE >
@@ -76,7 +77,7 @@ namespace data
       }
 
 
-      synchronization_array get_synca();
+      virtual synchronization_array get_synca();
 
 
    };

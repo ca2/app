@@ -65,7 +65,7 @@ namespace user
       int                                          m_iTabSize;
       bool                                         m_bCreatedTabs;
       bool                                         m_bAutoCreateTabsOnCreate;
-      ::rectangle_i32                              m_rectangleClient;
+      //::rectangle_i32                              m_rectangleHosting;
 
 
       tab();
@@ -136,6 +136,8 @@ namespace user
       virtual ::index visible_index_index(::index iVisibleIndex);
       virtual ::index index_visible_index(::index iIndex);
 
+      virtual bool contains_tab_with_id(const ::atom & atom);
+
       virtual ::index id_index(const ::atom & atom);
       virtual ::atom index_id(::index iIndex);
 
@@ -154,6 +156,10 @@ namespace user
       bool on_click(::item * pitem) override;
 
       ::i32 auto_hide_threshold_height() override;
+
+      virtual ::user::interaction_array place_holders();
+      virtual tab_pane * place_holder_pane(::user::place_holder * pplaceholder);
+      virtual tab_pane * top_pane();
 
       virtual void _001OnTabClick(::index iTab);
       virtual void _001OnTabClose(::index iTab);
@@ -258,9 +264,7 @@ namespace user
 
       void _001OnTimer(::timer * ptimer) override;
 
-
-
-      ::rectangle_i32 client_rectangle(::user::enum_layout elayout = ::user::e_layout_design) override;
+      ::rectangle_i32 hosting_rectangle(::user::enum_layout elayout = ::user::e_layout_design) override;
 
 
    };

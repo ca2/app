@@ -123,7 +123,7 @@ void application_container::request_exit()
                else
                {
 
-                  information("Waiting France Exit of %s", typeid(pappItem.m_p).name());
+                  informationf("Waiting France Exit of %s", typeid(pappItem.m_p).name());
 
                   j++;
 
@@ -233,7 +233,7 @@ application_array application_container::get_applicationa()
          if (::auraacmesystem()->acmeapplication()->m_strAppId != strAppId)
          {
 
-            information("Wrong papp Data Type");
+            informationf("Wrong papp Data Type");
 
             return nullptr;
 
@@ -433,7 +433,7 @@ application_array application_container::get_applicationa()
    if (!papp->on_start_application())
    {
 
-      information("One or more errors occurred during on_start_application execution.");
+      informationf("One or more errors occurred during on_start_application execution.");
 
    }
 

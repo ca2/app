@@ -445,7 +445,7 @@ public:
    //::stream & read(::stream & stream) override;
 
    
-   ::particle_pointer clone() const override;
+   ::particle_pointer clone() override;
 
 
    //inline int line(int line);
@@ -871,7 +871,7 @@ public:
 
       }
 
-      return ::draw2d::get_pixel(pimage32, m_colorindexes, scan_size(), width(), x, y);
+      return ::image32_get_pixel(pimage32, m_colorindexes, scan_size(), width(), x, y);
 
    }
 

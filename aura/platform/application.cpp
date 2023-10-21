@@ -10,7 +10,6 @@
 #include "acme/primitive/primitive/memory.h"
 #include "acme/primitive/string/base64.h"
 #include "acme/handler/request.h"
-#include "acme/platform/version.h"
 #include "acme/platform/profiler.h"
 #include "acme/primitive/text/context.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
@@ -1764,7 +1763,7 @@ namespace aura
       //if (!on_install())
       //{
 
-      //   ::information("Failed at on_install : " + m_strAppId + "\n\n");
+      //   ::informationf("Failed at on_install : " + m_strAppId + "\n\n");
 
       //   psystem->m_result.add(error_failed);
 
@@ -3126,7 +3125,7 @@ retry_license:
 //      // 1: Create subkey for extension -> HKEY_CLASSES_ROOT\.002
 //      if (RegCreateKeyExW(HKEY_CLASSES_ROOT, extension.c_str(), 0, 0, 0, KEY_ALL_ACCESS, 0, &hkey, 0) != ERROR_SUCCESS)
 //      {
-//         information("Could not create or open a registrty key\n");
+//         informationf("Could not create or open a registrty key\n");
 //         return 0;
 //      }
 //      RegSetValueExW(hkey, L"", 0, REG_SZ, (::u8*)desc.c_str(), ::u32 (desc.length() * sizeof(wchar_t))); // default vlaue is description of file extension
@@ -3139,7 +3138,7 @@ retry_license:
 //      // HKEY_CLASSES_ROOT\.002\Shell\\open with my program\\command
 //      if (RegCreateKeyExW(HKEY_CLASSES_ROOT, path.c_str(), 0, 0, 0, KEY_ALL_ACCESS, 0, &hkey, 0) != ERROR_SUCCESS)
 //      {
-//         information("Could not create or open a registrty key\n");
+//         informationf("Could not create or open a registrty key\n");
 //         return 0;
 //      }
 //      RegSetValueExW(hkey, L"", 0, REG_SZ, (::u8*)app.c_str(), ::u32(app.length() * sizeof(wchar_t)));
@@ -3150,7 +3149,7 @@ retry_license:
 //
 //      if (RegCreateKeyExW(HKEY_CLASSES_ROOT, path.c_str(), 0, 0, 0, KEY_ALL_ACCESS, 0, &hkey, 0) != ERROR_SUCCESS)
 //      {
-//         information("Could not create or open a registrty key\n");
+//         informationf("Could not create or open a registrty key\n");
 //         return 0;
 //      }
 //      RegSetValueExW(hkey, L"", 0, REG_SZ, (::u8*)icon.c_str(), ::u32 (icon.length() * sizeof(wchar_t)));
@@ -3428,11 +3427,13 @@ retry_license:
 
             ::pointer<::user::interaction>puserinteractionHost = psession->m_puserprimitiveHost;
 
-            auto puserinteractionpointeraChild = __new(::user::interaction_array(*puserinteractionHost->m_puserinteractionpointeraChild));
+            {
 
-            puserinteractionpointeraChild->add_unique_interaction(puserinteraction);
+               synchronous_lock synchronouslock(puserinteractionHost->synchronization());
 
-            puserinteractionHost->m_puserinteractionpointeraChild = puserinteractionpointeraChild;
+               puserinteractionHost->m_puserinteractionpointeraChild->add_unique_interaction(puserinteraction);
+
+            }
 
             puserinteractionHost->set_need_layout();
 
@@ -4775,7 +4776,7 @@ retry_license:
       
       string strSchema;
 
-      information("update_appmatter(root=%s, relative=%s, locale=%s, style=%s)", pszRoot.c_str(), pszRelative.c_str(), pszLocale.c_str(), pszStyle.c_str());
+      informationf("update_appmatter(root=%s, relative=%s, locale=%s, style=%s)", pszRoot.c_str(), pszRelative.c_str(), pszLocale.c_str(), pszStyle.c_str());
       
       ::file::path strRelative = ::file::path(pszRoot) / "_matter" / pszRelative / get_locale_schema_dir(pszLocale, pszStyle) + ".zip";
 
@@ -5462,10 +5463,6 @@ retry_license:
 
 
 
-
-
-
-
 namespace aura
 {
 
@@ -5476,7 +5473,8 @@ namespace aura
    //const char application::gen_ThumbnailEntry[] = "ThumbnailPages";
 
 
-   //application::application()
+
+   // application::application()
    //{
 
    //   add_factory_item < ::user::user >();

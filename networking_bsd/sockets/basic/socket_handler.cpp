@@ -1505,7 +1505,7 @@ end_processing_adding:
                   {
 
                      //SOCKET nn = *it; //(*it3).element1();
-                     //information(" close(2) fd %d\n", socket));
+                     //informationf(" close(2) fd %d\n", socket));
 
                      ptcpsocket->SetCloseAndDelete(false);
 
@@ -1544,7 +1544,7 @@ end_processing_adding:
                   else
                   {
 
-                     //information(" close(3) fd %d GetSocket() %d\n", socket, point_i32 -> GetSocket()));
+                     //informationf(" close(3) fd %d GetSocket() %d\n", socket, point_i32 -> GetSocket()));
 
                      if (psocket && psocket->IsConnected() && ptcpsocket->GetOutputLength())
                      {
@@ -1841,7 +1841,7 @@ end_processing_adding:
 //
 //      m_resolve_q[pbasesocket] = true;
 //
-//      information(" *** Resolve '%s:%d' atom#%d  m_resolve_q size_i32: %d  base_socket: %p\n", host.c_str(), port, presolvsocket->GetId(), m_resolve_q.get_size(), pbasesocket));
+//      informationf(" *** Resolve '%s:%d' atom#%d  m_resolve_q size_i32: %d  base_socket: %p\n", host.c_str(), port, presolvsocket->GetId(), m_resolve_q.get_size(), pbasesocket));
 //
 //      return presolvsocket->GetId();
 //
@@ -2176,7 +2176,7 @@ end_processing_adding:
 //         if (!::contains_payload(m_delete, *p))
 //         {
 //
-//            information("CheckList failed for \"%s\": fd %d\n", listname.c_str(), *p));
+//            informationf("CheckList failed for \"%s\": fd %d\n", listname.c_str(), *p));
 //
 //         }
 
@@ -2238,7 +2238,7 @@ end_processing_adding:
 
       //if (add)
       //{
-      //   /*         information("AddList);  %5d: %s: %s\n", s, (which_one == e_list_call_on_connect) ? "CallOnConnect" :
+      //   /*         informationf("AddList);  %5d: %s: %s\n", s, (which_one == e_list_call_on_connect) ? "CallOnConnect" :
       //               (which_one == e_list_detach) ? "detach" :
       //               (which_one == e_list_timeout) ? "time_out" :
       //               (which_one == e_list_retry) ? "Retry" :
@@ -2251,7 +2251,7 @@ end_processing_adding:
          //if (which_one == e_list_close)
          //{
 
-         //   //INFO(information("list_close");
+         //   //INFO(informationf("list_close");
          //}
          //return;
       //}
@@ -2274,7 +2274,7 @@ end_processing_adding:
 
          //if (add)
          //{
-         //   /*         information("AddList);  %5d: %s: %s\n", s, (which_one == e_list_call_on_connect) ? "CallOnConnect" :
+         //   /*         informationf("AddList);  %5d: %s: %s\n", s, (which_one == e_list_call_on_connect) ? "CallOnConnect" :
          //               (which_one == e_list_detach) ? "detach" :
          //               (which_one == e_list_timeout) ? "time_out" :
          //               (which_one == e_list_retry) ? "Retry" :
@@ -2287,7 +2287,7 @@ end_processing_adding:
       //if (which_one == e_list_close)
       //{
 
-      //   //INFO(information("list_close");
+      //   //INFO(informationf("list_close");
       //}
       //return;
    //}

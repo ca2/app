@@ -414,7 +414,7 @@ namespace dynamic_source
          if (pinstance->m_strDebugRequestUri.case_insensitive_find_index("google") > 0)
          {
 
-            information("resident");
+            informationf("resident");
 
          }
 
@@ -456,15 +456,15 @@ namespace dynamic_source
 
                pinstance->dprint("str");
 
-               information("Error: exception * at script_manager::handle run");
+               informationf("Error: exception * at script_manager::handle run");
 
-               information("%s", str.c_str());
+               informationf("%s", str.c_str());
 
             }
             catch (...)
             {
 
-               information("Error: Exception at script_manager::handle run");
+               informationf("Error: Exception at script_manager::handle run");
 
             }
 
@@ -479,13 +479,13 @@ namespace dynamic_source
          catch (const ::exception&)
          {
 
-            information("Error: exception at script_manager::handle main_finalize");
+            informationf("Error: exception at script_manager::handle main_finalize");
 
          }
          catch (...)
          {
 
-            information("Error: Exception at script_manager::handle main_finalize");
+            informationf("Error: Exception at script_manager::handle main_finalize");
 
          }
 
@@ -523,11 +523,11 @@ namespace dynamic_source
       //   }
       //   catch (const ::exception&)
       //   {
-      //      information("Error: exception at script_manager::handle destroy pinstance");
+      //      informationf("Error: exception at script_manager::handle destroy pinstance");
       //   }
       //   catch (...)
       //   {
-      //      information("Error: Exception at script_manager::handle destroy pinstance");
+      //      informationf("Error: Exception at script_manager::handle destroy pinstance");
       //   }
       //   __check_pending_releases(pinst2);
 
@@ -540,11 +540,11 @@ namespace dynamic_source
       //}
       //catch (const ::exception&)
       //{
-      //   information("Error: exception at script_manager::handle destroy pinstance");
+      //   informationf("Error: exception at script_manager::handle destroy pinstance");
       //}
       //catch (...)
       //{
-      //   information("Error: Exception at script_manager::handle destroy pinstance");
+      //   informationf("Error: Exception at script_manager::handle destroy pinstance");
       //}
 
       //auto pmain2 = pmain.m_p;

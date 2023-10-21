@@ -298,7 +298,7 @@ namespace user
       m_rectangleBorder.top() = (::i32)(cyHeight - m_sizeButton.cy() - m_rectangleBorder.bottom());
       if (m_rectangleBorder.top() < 0)
       {
-         information("Warning: toolbar::SetHeight(%d) is smaller than button.",
+         informationf("Warning: toolbar::SetHeight(%d) is smaller than button.",
             nHeight);
          m_rectangleBorder.bottom() += m_rectangleBorder.top();
          m_rectangleBorder.top() = 0;  // will clip at bottom
@@ -1123,11 +1123,11 @@ namespace user
       //
       //               GetToolBarCtrl().GetButtonInfo(uId, &buttona);
       //
-      //               information("BUTTON.idCommand = %d\n", buttona.idCommand);
+      //               informationf("BUTTON.idCommand = %d\n", buttona.idCommand);
       //
-      //               information("BUTTON.fsStyle = %d\n", buttona.fsStyle);
+      //               informationf("BUTTON.fsStyle = %d\n", buttona.fsStyle);
       //
-      //               information("BUTTON.cx() = %d\n", buttona.cx() );
+      //               informationf("BUTTON.cx() = %d\n", buttona.cx() );
       //
       //            }
       //
@@ -1849,6 +1849,13 @@ namespace user
 
    ::count toolbar::tool_item_count()
    {
+
+      if (!main_content().m_pitema)
+      {
+
+         return 0;
+
+      }
 
       return main_content().m_pitema->count();
 

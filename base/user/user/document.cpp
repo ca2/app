@@ -6,11 +6,11 @@
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
 #include "acme/constant/simple_command.h"
-////#include "acme/exception/exception.h"
 #include "acme/filesystem/file/file.h"
 #include "acme/platform/keep.h"
 #include "acme/handler/request.h"
 #include "acme/primitive/datetime/datetime.h"
+#include "acme/primitive/primitive/_text_stream.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "aura/user/user/wait_cursor.h"
 #include "aura/user/user/interaction_array.h"
@@ -1005,6 +1005,17 @@ namespace user
    bool document::on_new_document()
    {
 
+      //if (m_pimpactsystem->m_typeatomData.has_char())
+      //{
+
+      //   auto pNew = __id_create((const ::atom &) m_pimpactsystem->m_typeatomData);
+
+      //   ::pointer < ::data::data > pdataNew = pNew;
+
+      //   set_data(0, pdataNew);
+
+      //}
+
       return true;
 
    }
@@ -1032,6 +1043,9 @@ namespace user
    bool document::on_open_document(const ::payload & payloadFile)
    {
 
+
+
+
       if (payloadFile.is_empty())
       {
 
@@ -1039,38 +1053,60 @@ namespace user
 
       }
 
-      auto pcontext = get_context();
+      //auto pcontext = get_context();
 
-      auto preader = pcontext->m_papexcontext->file()->get_reader(payloadFile, ::file::e_open_read | ::file::e_open_share_deny_write | ::file::e_open_binary);
+      //auto preader = pcontext->m_papexcontext->file()->get_reader(payloadFile, ::file::e_open_read | ::file::e_open_share_deny_write | ::file::e_open_binary);
 
-      if (preader.nok())
-      {
+      //if (preader.nok())
+      //{
 
-         report_load_exception(payloadFile, preader, "__IDP_FAILED_TO_OPEN_DOC");
+      //   report_load_exception(payloadFile, preader, "__IDP_FAILED_TO_OPEN_DOC");
 
-         return false;
+      //   return false;
 
-      }
+      //}
 
-      try
-      {
+      //try
+      //{
 
-         if (!on_open_document(preader.m_p))
+         //if (!on_open_document(preader.m_p))
+         //{
+
+         //   return false;
+
+         //}
+
+         //preader->close();
+         //if (m_pimpactsystem->m_typeatomData.has_char())
          {
 
-            return false;
+           // auto pNew = __id_create((const ::atom &)m_pimpactsystem->m_typeatomData);
+
+            auto pdata = create_data(0);
+
+            pdata->initialize_data();
+
+            auto preader = file()->get_reader(payloadFile);
+
+            ::binary_stream binarystream(preader);
+
+            auto path = payloadFile.as_file_path();
+
+            pdata->read_data(binarystream, path.all_extensions());
+
+            //set_data(0, pdata);
+
+            m_pdataIncoming = pdata;
 
          }
 
-         preader->close();
+      //}
+      //catch (const ::exception &)
+      //{
 
-      }
-      catch (const ::exception &)
-      {
+      //   report_load_exception(payloadFile, preader, "__IDP_FAILED_TO_OPEN_DOC");
 
-         report_load_exception(payloadFile, preader, "__IDP_FAILED_TO_OPEN_DOC");
-
-      }
+      //}
 
       return true;
 
@@ -1079,10 +1115,6 @@ namespace user
 
    bool document::on_open_document(::file::file * pfile)
    {
-
-      //::binary_stream reader(pfile);
-
-      //read(reader);
 
       return true;
 
@@ -1101,7 +1133,7 @@ namespace user
 
          ::file::path path = payloadFile.as_file_path();
 
-         information("Failed to save document : file path : %s", path.c_str());
+         informationf("Failed to save document : file path : %s", path.c_str());
 
          //report_save_exception(payloadFile, pwriter, "__IDP_INVALID_FILENAME");
 
@@ -1137,15 +1169,67 @@ namespace user
    bool document::on_save_document(::file::file * pfile)
    {
 
-      //{
+      binary_stream binarystream(pfile);
 
-      //   ::binary_stream writer(pfile);
-
-      //   write(writer);
-
-      //}
+      get_data(0)->write_data(binarystream, m_strSaveFileExtension);
 
       return true;
+
+   }
+
+
+   //::data::data * document::get_data(const ::atom & atom)
+   //{
+
+   //   auto pdata = data_container_base::get_data(atom);
+
+   //   if(!pdata)
+   //   {
+
+   //      return create_data(atom);
+
+   //   }
+
+   //   return p->element2();
+
+   //}
+
+
+   ::pointer < ::data::data > document::create_data(const ::atom & atom)
+   {
+
+      ::pointer < ::data::data > pdata;
+
+      if (atom.m_etype == atom::e_type_integer && atom.m_i == 0)
+      {
+
+         auto & typeatomData = m_pimpactsystem->m_typeatomData;
+
+         auto pdataNew = __id_create(typeatomData);
+
+         if (!pdataNew)
+         {
+
+            information() << "user::document could not create of type : " << m_pimpactsystem->m_typeatomData;
+
+         }
+         else
+         {
+
+            pdata = pdataNew;
+
+            if (!pdata)
+            {
+
+               information() << "user::document created data is not of ::data::data type : " << m_pimpactsystem->m_typeatomData;
+
+            }
+
+         }
+
+      }
+
+      return ::transfer(pdata);
 
    }
 
@@ -1168,10 +1252,10 @@ namespace user
 
             ::user::frame * pframe = pimpact->parent_frame();
 
-            if (::is_null(pframe))
+            if (::is_set(pframe))
             {
 
-               pframe->payload("hold_impact_system") = m_pimpactsystem;
+               //pframe->payload("hold_impact_system") = m_pimpactsystem;
 
                frameptra.add_unique(pframe->m_puserframewindow);
 
@@ -1186,7 +1270,9 @@ namespace user
 
          pre_close_frame(pframe);
 
-         pframe->destroy();
+         pframe->post_message(e_message_destroy_window);
+
+         //pframe->destroy();
 
       }
 
@@ -1219,10 +1305,14 @@ namespace user
 
          auto pframe = pimpact->parent_frame();
 
-         if (::is_null(pframe))
+         if (::is_set(pframe))
          {
 
             pframe->display(e_display_none);
+
+            pframe->set_need_redraw();
+
+            pframe->post_redraw();
 
             //pframe->child_post_quit("prodevian");
 
@@ -1230,21 +1320,21 @@ namespace user
 
       }
 
-      for(auto & pimpact : viewptra)
-      {
+      //for(auto & pimpact : viewptra)
+      //{
 
-         auto pframe = pimpact->parent_frame();
+      //   auto pframe = pimpact->parent_frame();
 
-         if (::is_null(pframe))
-         {
+      //   if (::is_set(pframe))
+      //   {
 
-            pframe->display(e_display_none);
+      //      pframe->display(e_display_none);
 
-            //pframe->child_post_quit_and_wait("prodevian", seconds(5));
+      //      //pframe->child_post_quit_and_wait("prodevian", seconds(5));
 
-         }
+      //   }
 
-      }
+      //}
 
       update_all_impacts(nullptr, ID_PRE_CLOSE_DOCUMENT);
 
@@ -1993,6 +2083,8 @@ namespace user
    {
 
       ASSERT(!ptopic || ptopic->m_psender == nullptr || !m_impacta.is_empty());
+
+      ptopic->m_pparticle = this;
 
       for (auto & pimpact : m_impacta)
       {

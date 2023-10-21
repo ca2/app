@@ -13,8 +13,6 @@ namespace user
    namespace rich_text
    {
 
-      class document;
-
       class format_tool;
 
       class span;
@@ -24,6 +22,10 @@ namespace user
       class box;
 
       class format;
+
+      class format_host;
+
+      class selection;
 
       bool is_equal_bool(bool b1, bool b2);
 

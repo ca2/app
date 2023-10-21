@@ -259,7 +259,7 @@ namespace apex
 
             strCaption = "Assertion Failed";
 
-            ::information(str);
+            ::informationf(str);
             /*if(message_box(nullptr, str, strCaption, e_message_box_icon_information | MB_OKCANCEL | MB_DEFBUTTON1) == e_dialog_result_cancel)
             {
                string strCmdLine = "\"C:\\Program Files (x86)\\Microsoft Visual Studio 11.0\\Common7\\IDE\\devenv.exe\" /edit \""+string(pszFileName)+ "\" /command \"edit.goto "+as_string(iLine)+"\"";
@@ -277,7 +277,7 @@ namespace apex
 
          char buf[2048];
          vsnprintf_s(buf, sizeof(buf), sizeof(buf), pszFormat, list);
-         ::information(buf);
+         ::informationf(buf);
 
       }
 
@@ -546,7 +546,7 @@ namespace apex
 ////
 ////         print("<log>Starting Log</log>"); // <<  this is one of the "...possible_recursive_impossible_logging_in_file"...
 ////
-////         information("\n" + m_strLogPath + "\n");
+////         informationf("\n" + m_strLogPath + "\n");
 ////
 ////#if !defined(UNIVERSAL_WINDOWS)
 ////

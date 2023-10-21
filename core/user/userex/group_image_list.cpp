@@ -141,6 +141,8 @@ namespace userex
 
       m_atomaHandledCommands.add(m_atom);
 
+      __construct_new(m_pbuttonMenu);
+
       m_pbuttonMenu->create_control(this, m_atom);
 
       m_pbuttonMenu->set_button_style(::user::button::e_style_image_and_text);

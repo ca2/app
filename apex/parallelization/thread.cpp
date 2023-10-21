@@ -633,7 +633,7 @@ void thread::thread_loop()
 //            if (!bShouldRun)
 //            {
 //
-//               information("session_shouldn't_run?");
+//               informationf("session_shouldn't_run?");
 //
 //            }
 //
@@ -659,7 +659,7 @@ void thread::thread_loop()
 //               if (!bShouldRun)
 //               {
 //
-//                  information("session_shouldn't_run?");
+//                  informationf("session_shouldn't_run?");
 //
 //               }
 //
@@ -672,19 +672,19 @@ void thread::thread_loop()
 //            if(strType.contains("wave_player"))
 //            {
 //
-//               information("!xxm_bSimpleMessageLoop !xxpump_message xxthread::run from wave_player");
+//               informationf("!xxm_bSimpleMessageLoop !xxpump_message xxthread::run from wave_player");
 //
 //            }
 //            else if(strType.case_insensitive_ends("out"))
 //            {
 //
-//               information("!xxm_bSimpleMessageLoop !xxpump_message xxthread::run from out");
+//               informationf("!xxm_bSimpleMessageLoop !xxpump_message xxthread::run from out");
 //
 //            }
 //            else if(strType.contains("output_thread"))
 //            {
 //
-//               information("!xxm_bSimpleMessageLoop !xxpump_message xxthread::run from output_thread");
+//               informationf("!xxm_bSimpleMessageLoop !xxpump_message xxthread::run from output_thread");
 //
 //            }
 
@@ -699,7 +699,7 @@ void thread::thread_loop()
          handle_exception(e);
          //{
 
-         //   information("exception occurred (2.1)");
+         //   informationf("exception occurred (2.1)");
 
          //   break;
 
@@ -709,7 +709,7 @@ void thread::thread_loop()
       catch (...)
       {
 
-         information("exception occurred (2.2)");
+         informationf("exception occurred (2.2)");
 
          break;
 
@@ -898,7 +898,7 @@ bool thread::pump_message()
             if (!bShouldRun)
             {
 
-               information("session_shouldn't_run?");
+               informationf("session_shouldn't_run?");
 
             }
 
@@ -1005,7 +1005,7 @@ bool thread::raw_pump_message()
       if(strType.contains("output_thread"))
       {
 
-         //information("\nOUTPUT_THREAD thread::raw_pump_message");
+         //informationf("\nOUTPUT_THREAD thread::raw_pump_message");
 
       }
 
@@ -1018,25 +1018,25 @@ bool thread::raw_pump_message()
             if(strType.contains("wave_player"))
             {
 
-               information("!xxGetMessage !xxpump_message xxthread::run from wave_player");
+               informationf("!xxGetMessage !xxpump_message xxthread::run from wave_player");
 
             }
             else if(strType.case_insensitive_ends("out"))
             {
 
-               information("!xxGetMessage !xxpump_message xxthread::run from out");
+               informationf("!xxGetMessage !xxpump_message xxthread::run from out");
 
             }
             else if(strType.contains("output_thread"))
             {
 
-               information("!xxGetMessage !xxpump_message xxthread::run from output_thread");
+               informationf("!xxGetMessage !xxpump_message xxthread::run from output_thread");
 
             }
             else
             {
 
-               information("!xxGetMessage !xxpump_message xxthread::run from multimedia::*");
+               informationf("!xxGetMessage !xxpump_message xxthread::run from multimedia::*");
 
             }
 
@@ -1080,7 +1080,7 @@ bool thread::raw_pump_message()
    catch (...)
    {
 
-      information("xxcatch... xx" + strType + "xxraw_pump_message");
+      informationf("xxcatch... xx" + strType + "xxraw_pump_message");
 
    }
 
@@ -1166,7 +1166,7 @@ bool thread::process_thread_message(::message::message * pmessage)
 //
 //      process_window_procedure_exception(pe, pusermessage);
 //
-//      information("application::process_window_message : ::extended::status processing window message (const ::exception & )");
+//      informationf("application::process_window_message : ::extended::status processing window message (const ::exception & )");
 //
 //      if (!handle_exception(pe))
 //      {
@@ -1181,7 +1181,7 @@ bool thread::process_thread_message(::message::message * pmessage)
 //   catch (...)
 //   {
 //
-//      information("application::process_window_message : ::extended::status processing window message (...)");
+//      informationf("application::process_window_message : ::extended::status processing window message (...)");
 //
 //   }
 //
@@ -1197,7 +1197,7 @@ bool thread::defer_pump_message()
       if(m_message.m_atom == e_message_quit)
       {
 
-         ::information("\n\n\nthread::defer_pump_message (1) quitting (wm_quit? {PeekMessage->message : " + ::as_string(m_message.m_atom == e_message_quit ? 1 : 0) + "!}) : " + ::type(this).name() + " (" + ::as_string((u64)::current_itask()) + ")\n\n\n");
+         ::informationf("\n\n\nthread::defer_pump_message (1) quitting (wm_quit? {PeekMessage->message : " + ::as_string(m_message.m_atom == e_message_quit ? 1 : 0) + "!}) : " + ::type(this).name() + " (" + ::as_string((u64)::current_itask()) + ")\n\n\n");
 
          return false;
 
@@ -1297,19 +1297,19 @@ void thread::post_quit()
    if (string(::type(this).name()).contains("output_thread"))
    {
 
-      information("output_thread ::thread::post_quit");
+      informationf("output_thread ::thread::post_quit");
 
    }
    else if (string(::type(this).name()).contains("synth_thread"))
    {
 
-      information("synth_thread ::thread::post_quit");
+      informationf("synth_thread ::thread::post_quit");
 
    }
    else if (string(::type(this).name()).contains("audio::out"))
    {
 
-      information("out ::thread::post_quit");
+      informationf("out ::thread::post_quit");
 
    }
 
@@ -1445,7 +1445,7 @@ bool thread::post_quit_message(int nExitCode)
 //      if(strType == "user::shell::thread")
 //      {
 //
-//         ::information("user::shell::thread");
+//         ::informationf("user::shell::thread");
 //
 //      }
 //
@@ -1536,7 +1536,7 @@ void thread::task_erase(::task * ptask)
          if (strThreadThis == "app_veriwell_keyboard::application")
          {
 
-            information("app_veriwell_keyboard::application");
+            informationf("app_veriwell_keyboard::application");
 
          }
 
@@ -1564,7 +1564,7 @@ void thread::destroy()
    if (m_strTaskName.contains("main_frame"))
    {
 
-      information("I am main_frame xxpost_quit at " + strType + "\n");
+      informationf("I am main_frame xxpost_quit at " + strType + "\n");
 
    }
 
@@ -1574,7 +1574,7 @@ void thread::destroy()
       if (strType.contains("shell_thread"))
       {
 
-         information("I am shell_thread xxpost_quit at " + strType + "\n");
+         informationf("I am shell_thread xxpost_quit at " + strType + "\n");
 
       }
 
@@ -1585,49 +1585,49 @@ void thread::destroy()
       if (strType.contains("wave_player"))
       {
 
-         information("I am wave_player xxpost_quit from wave_player\n");
+         informationf("I am wave_player xxpost_quit from wave_player\n");
 
       }
       else if (strType.case_insensitive_ends("out"))
       {
 
-         information("I am out xxpost_quit from out\n");
+         informationf("I am out xxpost_quit from out\n");
 
       }
       else if (strType.contains("output_thread"))
       {
 
-         information("I am output xxpost_quit from output_thread\n");
+         informationf("I am output xxpost_quit from output_thread\n");
 
       }
       else if (strType.contains("synth_thread"))
       {
 
-         information("I am synth_thread xxpost_quit from synth_thread\n");
+         informationf("I am synth_thread xxpost_quit from synth_thread\n");
 
       }
       else if (strType == "multimedia::audio_core_audio::out")
       {
 
-         ::information("I am audio_core_audio::out xxpost_quit from multimedia::audio_core_audio::out\n");
+         ::informationf("I am audio_core_audio::out xxpost_quit from multimedia::audio_core_audio::out\n");
 
       }
       else if (strType == "multimedia::audio::out")
       {
 
-         ::information("I am audio::out xxpost_quit from multimedia::audio::out\n");
+         ::informationf("I am audio::out xxpost_quit from multimedia::audio::out\n");
 
       }
       else if (strType == "multimedia::wave::player")
       {
 
-         ::information("I am wave::player xxpost_quit from multimedia::wave::player\n");
+         ::informationf("I am wave::player xxpost_quit from multimedia::wave::player\n");
 
       }
       else
       {
 
-         ::information("I am multimedia:: xxpost_quit from multimedia::*\n");
+         ::informationf("I am multimedia:: xxpost_quit from multimedia::*\n");
 
       }
 
@@ -1635,7 +1635,7 @@ void thread::destroy()
    else if (strType == "::apex::system")
    {
 
-      ::information("I am system xxpost_quit from ::apex::system\n");
+      ::informationf("I am system xxpost_quit from ::apex::system\n");
 
    }
 
@@ -1653,7 +1653,7 @@ void thread::destroy()
    //   //if(!estatus)
    //   //{
 
-   //   //   information("release_composite2 failed");
+   //   //   informationf("release_composite2 failed");
 
    //   //}
 
@@ -2618,13 +2618,13 @@ void thread::__priority_and_affinity()
       if (bOk)
       {
 
-         //information("successfully set thread affinity mask");
+         //informationf("successfully set thread affinity mask");
 
       }
       else
       {
 
-         information("failed to set thread affinity mask");
+         informationf("failed to set thread affinity mask");
 
       }
 
@@ -2719,7 +2719,7 @@ void thread::task_osinit()
       if (::type(this).name().case_insensitive_contains("out"))
       {
 
-         information("out");
+         informationf("out");
 
       }
 
@@ -3018,13 +3018,13 @@ void thread::post_message(const ::atom & atom, wparam wparam, lparam lparam)
    if (atom == MESSAGE_CLOSE)
    {
 
-      information("thread::post_message MESSAGE_CLOSE");
+      informationf("thread::post_message MESSAGE_CLOSE");
 
    }
    else if (atom == e_message_branch)
    {
 
-      information("thread::post_message e_message_branch");
+      informationf("thread::post_message e_message_branch");
 
    }
 
@@ -3041,14 +3041,14 @@ void thread::post_message(const ::atom & atom, wparam wparam, lparam lparam)
          if (strType.case_insensitive_contains("::application"))
          {
 
-            information("application_shouldn't_run?");
+            informationf("application_shouldn't_run?");
 
             auto bShouldRun = task_get_run();
 
             if (!bShouldRun)
             {
 
-               information("application_shouldn't_run?");
+               informationf("application_shouldn't_run?");
 
             }
 
@@ -3061,7 +3061,7 @@ void thread::post_message(const ::atom & atom, wparam wparam, lparam lparam)
             if (!bShouldRun)
             {
 
-               information("session_shouldn't_run?");
+               informationf("session_shouldn't_run?");
 
             }
 
@@ -3074,7 +3074,7 @@ void thread::post_message(const ::atom & atom, wparam wparam, lparam lparam)
             if (!bShouldRun)
             {
 
-               information("session_shouldn't_run?");
+               informationf("session_shouldn't_run?");
 
             }
 
@@ -3226,7 +3226,7 @@ void thread::send_message(const ::atom & atom, wparam wparam, lparam lparam, con
 //      else
 //      {
 //
-//         information("thread::set_os_data failed to duplicate handle");
+//         informationf("thread::set_os_data failed to duplicate handle");
 //
 //      }
 //
@@ -3303,19 +3303,19 @@ void thread::on_task_init()
 //   if(strType.contains("wave_player"))
 //   {
 //
-//      information("I am xxthread::main from wave_player");
+//      informationf("I am xxthread::main from wave_player");
 //
 //   }
 //   else if(strType.case_insensitive_ends("out"))
 //   {
 //
-//      information("I am xxthread::main from out");
+//      informationf("I am xxthread::main from out");
 //
 //   }
 //   else if(strType.contains("output_thread"))
 //   {
 //
-//      information("I am xxthread::main from output_thread");
+//      informationf("I am xxthread::main from output_thread");
 //
 //   }
 //
@@ -3356,26 +3356,26 @@ void thread::on_task_init()
 //   catch(...)
 //   {
 //
-//      information("exception occurred");
+//      informationf("exception occurred");
 //
 //   }
 //
 //   if(strType.contains("wave_player"))
 //   {
 //
-//      information("after run xxthread::main from wave_player");
+//      informationf("after run xxthread::main from wave_player");
 //
 //   }
 //   else if(strType.case_insensitive_ends("out"))
 //   {
 //
-//      information("after run xxthread::main from out");
+//      informationf("after run xxthread::main from out");
 //
 //   }
 //   else if(strType.contains("output_thread"))
 //   {
 //
-//      information("after run xxthread::main from output_thread");
+//      informationf("after run xxthread::main from output_thread");
 //
 //   }
 //
@@ -3426,7 +3426,7 @@ message_queue* thread::_get_message_queue()
    if(pmq->m_bQuit)
    {
 
-      information("WHAT?!?!WHAT?!?!WHAT?!?!BornQuitting?!?!");
+      informationf("WHAT?!?!WHAT?!?!WHAT?!?!BornQuitting?!?!");
 
    }
 
@@ -3550,13 +3550,13 @@ bool thread::peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin
 ////      if (strTypeName == "user::shell")
 ////      {
 ////
-////         information("user::shell::finish");
+////         informationf("user::shell::finish");
 ////
 ////      }
 ////      else if (strTypeName == "apex::system")
 ////      {
 ////
-////         information("apex::system::finish");
+////         informationf("apex::system::finish");
 ////
 ////      }
 ////
@@ -3565,7 +3565,7 @@ bool thread::peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin
 ////      if (strTypeName.case_insensitive_contains("app_app::window"))
 ////      {
 ////
-////         information("set_finish at app_window");
+////         informationf("set_finish at app_window");
 ////
 ////      }
 ////
@@ -3644,7 +3644,7 @@ bool thread::peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin
 ////            if (strWaiting.has_char())
 ////            {
 ////
-////               information("The thread %s is waiting for the following threads to finish:\r\n%s", ::type(this).name(), strWaiting.c_str());
+////               informationf("The thread %s is waiting for the following threads to finish:\r\n%s", ::type(this).name(), strWaiting.c_str());
 ////
 ////            }
 ////
@@ -3667,7 +3667,7 @@ bool thread::peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin
 ////            if (!bShouldRun)
 ////            {
 ////
-////               information("session_shouldn't_run?");
+////               informationf("session_shouldn't_run?");
 ////
 ////            }
 ////
@@ -3680,7 +3680,7 @@ bool thread::peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin
 ////            if (!bShouldRun)
 ////            {
 ////
-////               information("application_shouldn't_run?");
+////               informationf("application_shouldn't_run?");
 ////
 ////            }
 ////
@@ -3767,7 +3767,7 @@ bool thread::peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin
 //      else
 //      {
 //
-//         ::information("!m_bMessageThread");
+//         ::informationf("!m_bMessageThread");
 //
 //      }
 //
@@ -3854,7 +3854,7 @@ void thread::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin,
 
          auto lasterror = ::GetLastError();
 
-         ::information("Last Error : " + ::as_string(lasterror) + "\n");
+         ::informationf("Last Error : " + ::as_string(lasterror) + "\n");
 
          auto estatus = ::windows::last_error_status(lasterror);
 
@@ -3864,7 +3864,7 @@ void thread::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin,
       else if (iRet == 0)
       {
 
-         ::information("GetMessage returned 0");
+         ::informationf("GetMessage returned 0");
 
          msg.message = WM_QUIT;
 
@@ -3872,13 +3872,13 @@ void thread::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin,
       else if(msg.message == e_message_quit)
       {
 
-         ::information("e_message_quit");
+         ::informationf("e_message_quit");
 
       }
       else if (msg.message == e_message_destroy_window)
       {
 
-         ::information("e_message_destroy_window");
+         ::informationf("e_message_destroy_window");
 
       }
 
@@ -4456,7 +4456,7 @@ bool thread::set_thread_priority(::enum_priority epriority)
 
       ::e_status estatus = ::get_last_status();
 
-      information("thread::SetThreadPriority LastError = " + ::as_string(estatus));
+      informationf("thread::SetThreadPriority LastError = " + ::as_string(estatus));
 
    }
 

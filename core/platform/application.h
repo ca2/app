@@ -19,7 +19,7 @@ namespace core
 
       application();
       ~application() override;
-
+      
 
       void common_construct();
 
@@ -32,6 +32,8 @@ namespace core
       virtual void initialize(::particle * pparticle) override;
       ::pointer<::progress::real>show_progress(::user::interaction* puiParent, const ::string & pszTitle, ::count iProgressCount) override;
 
+
+      virtual void initialize_rich_text_kit();
 
       //virtual void prepare_impact_menu(::user::menu * pmenu);
 

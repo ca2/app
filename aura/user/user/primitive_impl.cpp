@@ -422,7 +422,7 @@ namespace user
 ////      if (strType.contains("list_box"))
 ////      {
 ////
-////         information("list_box");
+////         informationf("list_box");
 ////
 ////      }
 //
@@ -876,7 +876,7 @@ namespace user
 //         if ((pmessage->m_ebuttonstate & I32_MINIMUM) == (I32_MINIMUM))
 //         {
 //
-//            information("(m_ebuttonstate & I32_MINIMUM) == (I32_MINIMUM)");
+//            informationf("(m_ebuttonstate & I32_MINIMUM) == (I32_MINIMUM)");
 //
 //         }
 
@@ -1932,13 +1932,13 @@ namespace user
       if (m_puserinteraction->layout().is_moving())
       {
          
-         information("moving: skip walk pre translate tree");
+         informationf("moving: skip walk pre translate tree");
 
       }
       else if (m_puserinteraction->layout().is_sizing())
       {
          
-         information("sizing: skip walk pre translate tree");
+         informationf("sizing: skip walk pre translate tree");
 
       }
       else
@@ -2147,7 +2147,7 @@ namespace user
 
       start_destroying_window();
 
-      //information("destroy_impl_only DestroyWindow %d", bOk != false);
+      //informationf("destroy_impl_only DestroyWindow %d", bOk != false);
 
       //return bOk;
 
@@ -2794,6 +2794,10 @@ namespace user
 
       m_puserinteraction->m_ewindowflag.set(e_window_flag_enable, bEnable);
 
+      m_puserinteraction->set_need_redraw();
+
+      m_puserinteraction->post_redraw();
+
       //return bWasDisabled;
 
    }
@@ -2921,6 +2925,13 @@ namespace user
    ::windowing::window* primitive_impl::window()
    {
 
+      if (::is_null(m_puserinteraction))
+      {
+
+         return nullptr;
+
+      }
+
       return m_puserinteraction->m_pwindow;
 
    }
@@ -2987,6 +2998,23 @@ namespace user
       }
 
       m_puserinteraction->user_send(procedure);
+
+   }
+
+
+   void primitive_impl::user_post(const ::procedure & procedure)
+   {
+
+      if (!m_puserinteraction)
+      {
+
+         ::channel::user_post(procedure);
+
+         return;
+
+      }
+
+      m_puserinteraction->user_post(procedure);
 
    }
 

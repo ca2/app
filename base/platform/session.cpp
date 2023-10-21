@@ -21,7 +21,7 @@ namespace base
    session::~session()
    {
 
-      information("aura::session::~session()");
+      informationf("aura::session::~session()");
 
    }
 

@@ -55,7 +55,7 @@ namespace file
 
       // g_interlockedcountFilePathObject++;
 
-       //::information("----::file::path_object (count=" + as_string(g_interlockedcountFilePathObject.operator long long()) + ")\n");
+       //::informationf("----::file::path_object (count=" + as_string(g_interlockedcountFilePathObject.operator long long()) + ")\n");
 
    }
 
@@ -65,7 +65,7 @@ namespace file
 
       //g_interlockedcountFilePathObject++;
 
-      //::information("----::file::path_object (count=" + as_string(g_interlockedcountFilePathObject.operator long long()) + ")\n");
+      //::informationf("----::file::path_object (count=" + as_string(g_interlockedcountFilePathObject.operator long long()) + ")\n");
 
    }
 
@@ -76,7 +76,7 @@ namespace file
 
       //g_interlockedcountFilePathObject++;
 
-      //::information("----::file::path_object (count=" + as_string(g_interlockedcountFilePathObject.operator long long()) + ")\n");
+      //::informationf("----::file::path_object (count=" + as_string(g_interlockedcountFilePathObject.operator long long()) + ")\n");
 
    }
 
@@ -87,7 +87,7 @@ namespace file
 
       //g_interlockedcountFilePathObject++;
 
-      //::information("----::file::path_object (count=" + as_string(g_interlockedcountFilePathObject.operator long long()) + ")\n");
+      //::informationf("----::file::path_object (count=" + as_string(g_interlockedcountFilePathObject.operator long long()) + ")\n");
 
    }
 

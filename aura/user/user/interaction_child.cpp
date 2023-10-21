@@ -129,7 +129,7 @@ namespace user
          //   information() << "-------------------------------------------------------------------";
          //   information() << "";
          //   information() << "";
-         //   information("interaction_child::create_window_ex (rectangleChild %d, %d, (%d, %d))", rectangleChild.origin().x(), rectangleChild.origin().y(), rectangleChild.width(), rectangleChild.height());
+         //   informationf("interaction_child::create_window_ex (rectangleChild %d, %d, (%d, %d))", rectangleChild.origin().x(), rectangleChild.origin().y(), rectangleChild.width(), rectangleChild.height());
          //   information() << "";
          //   information() << "";
 
@@ -468,6 +468,13 @@ namespace user
 
       bool bKeyMessage = false;
 
+      if (!m_puserinteraction)
+      {
+
+         return;
+
+      }
+
       if (m_puserinteraction->pre_message_handler(pkey, bKeyMessage, pmessage))
       {
 
@@ -487,7 +494,7 @@ namespace user
          //if (message == e_message_key_down)
          //{
 
-         //   information("\n Key Down Event ");
+         //   informationf("\n Key Down Event ");
 
          //}
 
@@ -862,7 +869,7 @@ namespace user
       if (pinteraction != nullptr)
       {
 
-         information("::user::interaction_child::keyboard_focus_OnKillFocus() (1) \n");
+         informationf("::user::interaction_child::keyboard_focus_OnKillFocus() (1) \n");
 
          return pinteraction->keyboard_focus_OnChildKillFocus();
 

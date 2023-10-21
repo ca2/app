@@ -21,6 +21,8 @@ namespace user
          
          m_ealignNewLine = e_align_none;
 
+         m_bEndOfLine = false;
+
          ASSERT(m_pformat != nullptr);
 
       }
@@ -36,6 +38,8 @@ namespace user
 
          m_ealignNewLine = e_align_none;
 
+         m_bEndOfLine = false;
+
          ASSERT(m_pformat != nullptr);
 
       }
@@ -46,8 +50,12 @@ namespace user
       {
 
          initialize(pdata);
+
          m_pformat = m_pdata->m_pformatCurrent;
+
          m_ealignNewLine = ealignNewLine;
+
+         m_bEndOfLine = false;
 
          ASSERT(m_pformat != nullptr);
 
@@ -58,12 +66,13 @@ namespace user
          m_pdata(pdata),
          m_pformat(__new(class format(*span.m_pformat))),
          m_ealignNewLine(span.m_ealignNewLine),
+         m_bEndOfLine(span.m_bEndOfLine),
          m_str(span.m_str)
       {
 
          initialize(pdata);
 
-         pdata->m_pformata->add(m_pformat);
+         pdata->add(m_pformat);
 
          pdata->m_spana.add(this);
 
@@ -73,6 +82,7 @@ namespace user
       span::span(const span & span) :
          m_pformat(__new(class format(*span.m_pformat))),
          m_ealignNewLine(span.m_ealignNewLine),
+         m_bEndOfLine(span.m_bEndOfLine),
          m_str(span.m_str)
       {
 
@@ -93,14 +103,14 @@ namespace user
       ::e_align span::get_align() const
       {
 
-         ::e_align ealign = e_align_none;
+         ::e_align ealign = e_align_left;
 
          index i = m_pdata->m_spana.find_first(this);
 
          for (; i >= 0; i--)
          {
 
-            if (m_pdata->m_spana[i]->is_new_line())
+            if (m_pdata->m_spana[i]->is_start_of_line())
             {
 
                ealign = m_pdata->m_spana[i]->m_ealignNewLine;
@@ -120,7 +130,8 @@ namespace user
       {
 
          m_ealignNewLine= span.m_ealignNewLine;
-         m_pformat.container_copy(span.m_pformat);
+         m_bEndOfLine = span.m_bEndOfLine;
+         m_pformat = span.m_pformat;
          m_iPosBeg = span.m_iPosBeg;
          m_iPosEnd = span.m_iPosEnd;
          m_str = span.m_str;

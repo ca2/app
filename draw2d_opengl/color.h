@@ -2,7 +2,7 @@
 #pragma once
 
 
-#include "acme/graphics/draw2d/image32.h"
+#include "acme/graphics/image/image32.h"
 
 
 namespace opengl

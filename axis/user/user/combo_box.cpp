@@ -3,6 +3,7 @@
 #include "list_box.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
+#include "acme/constant/user_key.h"
 #include "acme/handler/item.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/primitive/geometry2d/_text_stream.h"
@@ -57,6 +58,29 @@ namespace user
          }
 
       }
+
+   }
+
+
+   ::pointer < ::particle > combo_box::clone()
+   {
+
+      auto pcomboboxClone = m_pcontext->__create_new < combo_box >();
+
+      pcomboboxClone->m_estyle = m_estyle;
+
+      pcomboboxClone->m_edatamode = m_edatamode;
+
+      pcomboboxClone->m_bEdit = m_bEdit;
+
+      if (m_plistbox)
+      {
+
+         pcomboboxClone->m_plistbox = m_plistbox->clone();
+
+      }
+      
+      return pcomboboxClone;
 
    }
 
@@ -356,6 +380,14 @@ namespace user
    }
 
 
+   bool combo_box::should_show_keyboard_focus()
+   {
+
+      return has_keyboard_focus() || (m_plistbox && m_plistbox->should_show_keyboard_focus());
+
+   }
+
+
    ::write_text::font_pointer combo_box::get_font(style * pstyle, enum_element eelement, ::user::enum_state estate)
    {
 
@@ -396,6 +428,14 @@ namespace user
       ::user::interaction::_001OnDraw(pgraphics);
 
       _001OnDrawCombo(pgraphics);
+
+   }
+
+
+   void combo_box::_001OnNcPostDraw(::draw2d::graphics_pointer & pgraphics)
+   {
+
+      ::user::plain_edit::_001OnNcPostDraw(pgraphics);
 
    }
 
@@ -687,9 +727,15 @@ namespace user
          else if (!m_plistbox->const_layout().sketch().is_screen_visible())
          {
 
-            //information("test");
+            //informationf("test");
 
          }
+
+         set_keyboard_focus();
+
+         set_need_redraw();
+
+         post_redraw();
 
          pmouse->m_bRet = true;
 
@@ -724,6 +770,13 @@ namespace user
 
    void combo_box::on_set_keyboard_focus()
    {
+
+      if(m_bEdit)
+      {
+
+         plain_edit::on_set_keyboard_focus();
+
+      }
 
    }
 
@@ -823,7 +876,7 @@ namespace user
       if(!m_plistbox)
       {
 
-         auto plistbox = __id_create < list_box >(m_typeatomListBox);
+         auto plistbox = __id_create(m_typeatomListBox);
 
          m_plistbox = plistbox;
 
@@ -875,7 +928,12 @@ namespace user
 
       string strItem;
 
-      _001GetListText(pitem->m_item.m_iItem, strItem);
+      if (::is_set(pitem))
+      {
+
+         _001GetListText(pitem->m_item.m_iItem, strItem);
+
+      }
 
       _001SetText(strItem, actioncontext);
 
@@ -1560,6 +1618,7 @@ namespace user
    bool combo_box::keyboard_focus_is_focusable()
    {
 
+      // return m_bEdit && is_window_enabled() && is_window_visible(e_layout_sketch);
       return is_window_enabled() && is_window_visible(e_layout_sketch);
 
    }

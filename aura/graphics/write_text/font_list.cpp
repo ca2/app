@@ -553,7 +553,7 @@ namespace write_text
          if (str.case_insensitive_order("GOUDY STOUT") == 0)
          {
 
-            information("test05");
+            informationf("test05");
 
          }
 

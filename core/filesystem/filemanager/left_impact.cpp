@@ -1,7 +1,7 @@
 #include "framework.h"
-#include "left_impact.h"
 #include "document.h"
-#include "tree.h"
+#include "left_impact.h"
+#include "tree_data.h"
 #include "core/user/user/tree.h"
 
 
@@ -67,15 +67,17 @@ namespace filemanager
 
       auto pfilemanagerdocument = filemanager_document();
 
-      auto ptree = pfilemanagerdocument->__create_new < tree >();
+      auto ptreedata = pfilemanagerdocument->__create_new < ::filemanager::tree_data >();
 
-      m_ptree = ptree;
+      ptreedata->m_puserfsdocument = pfilemanagerdocument;
 
-      m_ptree->m_usertreea.add(m_pusertree);
+      m_ptreedata = ptreedata;
 
-      __construct(m_pusertree->m_ptree, ptree);
+      m_ptreedata->m_usertreea.add(m_pusertree);
 
-      ptree->initialize_filemanager_tree(pfilemanagerdocument);
+      __construct(m_pusertree->m_ptreedata, ptreedata);
+
+      ptreedata->initialize_filemanager_tree(pfilemanagerdocument);
 
    }
 

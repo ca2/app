@@ -38,7 +38,7 @@ namespace write_text
       ::string family_name(::particle * pparticle) const;
 
 
-      ::particle_pointer clone() const override;
+      ::particle_pointer clone() override;
 
 
    };

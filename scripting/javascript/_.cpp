@@ -1468,7 +1468,7 @@ void CScriptVar::trace(string indentStr, const string &name)
               getString().c_str(),
               getFlagsAsString().c_str());
 
-   ::information(str);
+   ::informationf(str);
 
    string indent = indentStr+" ";
 
@@ -2074,7 +2074,7 @@ CScriptVarLink *tinyjs::factor(bool &execute)
    {
       CScriptVarLink *funcVar = parseFunctionDefinition();
       if (funcVar->name != TINYJS_TEMP_NAME)
-         information("Functions not defined at statement-level are not meant to have a name");
+         informationf("Functions not defined at statement-level are not meant to have a name");
       return funcVar;
    }
    if (l->token==LEX_R_NEW)
@@ -2118,7 +2118,7 @@ CScriptVarLink *tinyjs::factor(bool &execute)
             CScriptVarLink *objClassOrFunc = findInScopes(className);
             if (!objClassOrFunc)
             {
-               information("%s is not a valid class name", className.c_str());
+               informationf("%s is not a valid class name", className.c_str());
                return memory_new CScriptVarLink(memory_new CScriptVar());
             }
             l->match(LEX_ID);
@@ -2379,7 +2379,7 @@ CScriptVarLink *tinyjs::axis(bool &execute)
             lhs = realLhs;
          }
          else
-            information("Trying to assign to an un-named type");
+            informationf("Trying to assign to an un-named type");
       }
 
       i32 op = l->token;
@@ -2620,7 +2620,7 @@ void tinyjs::statement(bool &execute)
          if (resultVar)
             resultVar->replaceWith(result);
          else
-            information("RETURN statement, but not in a function.");
+            informationf("RETURN statement, but not in a function.");
          execute = false;
       }
       CLEAN(result);
@@ -2632,7 +2632,7 @@ void tinyjs::statement(bool &execute)
       if (execute)
       {
          if (funcVar->name == TINYJS_TEMP_NAME)
-            information("Functions defined at statement-level are meant to have a name");
+            informationf("Functions defined at statement-level are meant to have a name");
          else
             scopes.last()->addChildNoDup(funcVar->name, funcVar->payload);
       }

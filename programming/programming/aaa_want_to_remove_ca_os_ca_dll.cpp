@@ -9,13 +9,13 @@ DllMain(HINSTANCE hInstance, ::u32 dwReason, LPVOID lpReserved)
 
    if (dwReason == DLL_PROCESS_ATTACH)
    {
-      ::information("::ca2:: data.dll :: initializing!\n");
+      ::informationf("::ca2:: data.dll :: initializing!\n");
 
 #ifndef UNIVERSAL_WINDOWS
       /* initialize client library */
       if(mysql_library_init(0,nullptr,nullptr))
       {
-         information("mysql_library_init() failed\n");
+         informationf("mysql_library_init() failed\n");
          return false;
       }
 #endif
@@ -33,7 +33,7 @@ DllMain(HINSTANCE hInstance, ::u32 dwReason, LPVOID lpReserved)
       }
 #endif
 
-      ::information("::ca2:: data.dll :: terminating!\n");
+      ::informationf("::ca2:: data.dll :: terminating!\n");
    }
    return 1;   // ok
 }

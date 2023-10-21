@@ -8,19 +8,19 @@ namespace user
 {
 
    
-   tab_pane_composite_array::tab_pane_composite_array()
+   tab_pane_array::tab_pane_array()
    {
 
    }
 
 
-   tab_pane_composite_array::~tab_pane_composite_array()
+   tab_pane_array::~tab_pane_array()
    {
 
    }
 
 
-   tab_pane * tab_pane_composite_array::get_by_id(atom atom)
+   tab_pane * tab_pane_array::get_by_id(atom atom)
    {
 
       for (i32 i = 0; i < this->get_count(); i++)
@@ -33,7 +33,7 @@ namespace user
       return nullptr;
    }
 
-   ::count tab_pane_composite_array::get_visible_count()
+   ::count tab_pane_array::get_visible_count()
    {
 
       ::count count = 0;

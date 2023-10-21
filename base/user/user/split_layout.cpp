@@ -236,7 +236,7 @@ namespace user
          if(m_panea[i]->m_pplaceholder.is_null())
          {
 
-            m_panea[i]->m_pplaceholder = get_new_place_holder(m_panea[i]->m_rectangleClient);
+            m_panea[i]->m_pplaceholder = get_new_place_holder(m_panea[i]->m_rectangleHosting);
 
          }
 
@@ -319,9 +319,9 @@ namespace user
          //   synchronous_lock synchronouslock(this->synchronization());
          //   //critical_section_lock synchronouslock(m_pmutex);
          //   {
-         //      //      information("split_layout::RelayChildEvent LOWORD(pMsg->lParam) %d\n", LOWORD(lpMsg->lParam));
+         //      //      informationf("split_layout::RelayChildEvent LOWORD(pMsg->lParam) %d\n", LOWORD(lpMsg->lParam));
 
-         //      //      information("split_layout::RelayChildEvent HIWORD(pMsg->lParam) %d\n", HIWORD(lpMsg->lParam));
+         //      //      informationf("split_layout::RelayChildEvent HIWORD(pMsg->lParam) %d\n", HIWORD(lpMsg->lParam));
 
 
 
@@ -349,8 +349,8 @@ namespace user
          //      {
          //         bMove = nPos != (i32) m_splitbara[m_iIndex]->m_dwPosition;
          //      }
-         //      information("split_layout::RelayChildEvent nPos %d\nOldPos", m_splitbara[m_iIndex]->m_dwPosition);
-         //      information("split_layout::RelayChildEvent nPos %d\n", nPos);
+         //      informationf("split_layout::RelayChildEvent nPos %d\nOldPos", m_splitbara[m_iIndex]->m_dwPosition);
+         //      informationf("split_layout::RelayChildEvent nPos %d\n", nPos);
          //      if(bMove)
          //      {
 
@@ -579,7 +579,7 @@ namespace user
 
          ::rectangle_i32 & rectanglePane = ppane->m_rectanglePane;
 
-         ::rectangle_i32 & rectangleClient = ppane->m_rectangleClient;
+         ::rectangle_i32 & rectangleClient = ppane->m_rectangleHosting;
 
          CalcPaneRect(i, rectanglePane, e_layout_layout);
 
@@ -761,6 +761,8 @@ namespace user
          return true; // assume future place_holder by default is visible
 
       }
+
+      synchronous_lock synchronouslock(this->synchronization());
 
       auto puserinteractionpointeraChild = pholder->m_puserinteractionpointeraChild;
 
@@ -950,7 +952,7 @@ namespace user
 
       __construct_new(ppane);
 
-      ppane->m_pplaceholder = place_hold(puserinteraction, ppane->m_rectangleClient);
+      ppane->m_pplaceholder = place_hold(puserinteraction, ppane->m_rectangleHosting);
 
       if (ppane->m_pplaceholder == nullptr)
       {
@@ -1033,11 +1035,11 @@ namespace user
       else
       {
 
-         ::rectangle_i32 rectangleClient;
+         ::rectangle_i32 rectangleHosting;
 
-         rectangleClient = ppane->m_rectangleClient;
+         rectangleHosting = ppane->m_rectangleHosting;
 
-         ppane->m_pplaceholder = place_hold(puserinteraction, rectangleClient);
+         ppane->m_pplaceholder = place_hold(puserinteraction, rectangleHosting);
 
          if (!ppane->m_pplaceholder)
          {
@@ -1209,8 +1211,8 @@ namespace user
 //            synchronous_lock synchronouslock(this->synchronization());
 //
 //            {
-//               information("split_layout::RelayChildEvent LOWORD(lParam) %d\n", LOWORD(lParam));
-//               information("split_layout::RelayChildEvent HIWORD(lParam) %d\n", HIWORD(lParam));
+//               informationf("split_layout::RelayChildEvent LOWORD(lParam) %d\n", LOWORD(lParam));
+//               informationf("split_layout::RelayChildEvent HIWORD(lParam) %d\n", HIWORD(lParam));
 //
 //
 //               i32 nPos;
@@ -1275,7 +1277,7 @@ namespace user
 
       }
 
-      return m_panea[iPane]->m_rectangleClient;
+      return m_panea[iPane]->m_rectangleHosting;
 
    }
 
@@ -1418,10 +1420,11 @@ namespace user
 
    }
 
-   //::rectangle_i32 split_layout::client_rectangle(::user::enum_layout elayout)
+   
+   //::rectangle_i32 split_layout::hosting_rectangle(::user::enum_layout elayout)
    //{
 
-   //   return m_rectangleClient;
+   //   return m_rectangleHosting;
 
    //}
 

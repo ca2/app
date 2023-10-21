@@ -4,8 +4,14 @@
 #include "acme/platform/system.h"
 
 
+__DECLARE_RELEASE_TIME(app_app);
+
+
 namespace app_app
 {
+
+
+   __IMPLEMENT_APPLICATION_RELEASE_TIME(app_app);
 
 
    application::application()

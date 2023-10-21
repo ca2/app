@@ -13,8 +13,8 @@ namespace user
 {
 
 
-   single_document_template::single_document_template(const ::string & pszMatter, const ::type_atom & typeatomDocument, const ::type_atom & typeatomFrame, const ::type_atom & typeatomImpact) :
-      ::user::impact_system(pszMatter, typeatomDocument, typeatomFrame, typeatomImpact)
+   single_document_template::single_document_template(const ::string & pszMatter, const ::type_atom & typeatomDocument, const ::type_atom & typeatomFrame, const ::type_atom & typeatomImpact, const ::type_atom & typeatomData) :
+      ::user::impact_system(pszMatter, typeatomDocument, typeatomFrame, typeatomImpact, typeatomData)
    {
 
       defer_create_synchronization();
@@ -210,7 +210,7 @@ namespace user
       if (prequest)
       {
 
-         bMakeVisible = prequest->payload("make_visible_boolean").get_bool() || prequest->m_bMakeVisible;
+         prequest->m_bMakeVisible = prequest->payload("make_visible_boolean").get_bool() || prequest->m_bMakeVisible;
 
       }
 
@@ -307,12 +307,12 @@ namespace user
 
       }
 
-      if(bCreated)
-      {
-
-         prepare_frame(pFrame,pdocument,bMakeVisible);
-
-      }
+//      if(bCreated)
+//      {
+//
+//         prepare_frame(pFrame,pdocument,bMakeVisible);
+//
+//      }
 
  /*     auto papp = get_app();
 

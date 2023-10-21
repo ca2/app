@@ -235,10 +235,12 @@ list(APPEND library_source
    graphics/draw2d/color32.h
    graphics/draw2d/color_array.cpp
    graphics/draw2d/color_array.h
-   graphics/draw2d/image32.h
-   graphics/draw2d/image32_array.cpp
-   graphics/draw2d/image32_array.h
    graphics/draw2d/os_font_name.cpp
+   graphics/image/image32.cpp
+   graphics/image/image32.h
+   graphics/image/image32_array.cpp
+   graphics/image/image32_array.h
+   graphics/image/pixmap.cpp
    handler/extended_topic.cpp
    handler/extended_topic.h
    handler/handler.cpp
@@ -1275,6 +1277,9 @@ list(APPEND library_source
    constant/status.h
    constant/status_range_authentication.h
    constant/timer.h
+   constant/user_key.cpp
+   constant/user_key.h
+   constant/_user_key_text.h
    #constant/user/_.h
    #constant/user/tool_item.h
    exception/_.h
@@ -1987,8 +1992,8 @@ if (${LINUX})
       operating_system/linux/_.h
       operating_system/linux/_c.h
       operating_system/linux/_factory.cpp
-      operating_system/linux/_linux.h
-      operating_system/linux/_linux.h
+      #operating_system/linux/_linux.h
+      #operating_system/linux/_linux.h
       operating_system/linux/_user.h
       operating_system/linux/application.h
       operating_system/linux/callstack.cpp
@@ -2445,8 +2450,9 @@ if (${LINUX} OR ${FREEBSD})
 endif ()
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source} graphics/image/pixmap.cpp)
+add_library(${PROJECT_NAME} SHARED ${library_source})
 add_library(static_${PROJECT_NAME} STATIC ${library_source})
+
 
 if (NOT ${NO_PRECOMPILED_HEADER})
 
@@ -2471,6 +2477,9 @@ if (MSVC)
 
 elseif (${LINUX} OR ${FREEBSD})
 
+   target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
+
+
    #//target_compile_options\([A-Za-z0-9_)]+\s+PRIVATE\s+\$\{PKGCONFIG_CFLAGS\}\)
 
    #if(USE_PKGCONFIG)
@@ -2478,9 +2487,10 @@ elseif (${LINUX} OR ${FREEBSD})
       xkbcommon x11 xrender xi xext libstartup-notification-1.0 wayland-client wayland-server wayland-cursor)
    pkg_check_modules(PKGCONFIG cairo freetype2 libidn ${extra_pkg_modules})
    #endif()
-   target_compile_options(${PROJECT_NAME} PRIVATE -fpermissive)
-   target_compile_options(static_${PROJECT_NAME} PRIVATE -fpermissive)
+   target_compile_options(${PROJECT_NAME} PRIVATE $<$<COMPILE_LANGUAGE:CXX>:-fpermissive  ${EXTRA_CXX_TARGET_COMPILER_OPTIONS}>)
+   target_compile_options(static_${PROJECT_NAME} PRIVATE $<$<COMPILE_LANGUAGE:CXX>:-fpermissive  ${EXTRA_CXX_TARGET_COMPILER_OPTIONS}>)
    target_compile_definitions(static_${PROJECT_NAME} PRIVATE CUBE)
+
 
    target_compile_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS} ${GLOBAL_EXTRA_COMPILER_FLAGS})
    target_compile_options(static_${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})

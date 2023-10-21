@@ -129,7 +129,7 @@ namespace wayland
       void update_wayland_buffer(wayland_buffer & waylandbuffer, ::pixmap * ppixmap);
 
 
-      virtual void __handle_pointer_enter(::wl_pointer * pwlpointer, double x, double y, ::wayland::nano_window_base * pwindowPointerEnter);
+      //virtual void __handle_pointer_enter(::wl_pointer * pwlpointer, double x, double y, ::wayland::nano_window_base * pwindowPointerEnter);
       virtual void __handle_pointer_motion(::wl_pointer * pwlpointer, double x, double y, ::u32 time);
       virtual void __handle_pointer_leave(::wl_pointer * pwlpointer, ::wayland::nano_window_base * pwindowPointerLeave);
 
@@ -166,6 +166,12 @@ namespace wayland
       virtual void message_loop();
 
       void run() override;
+
+
+      void __handle_pointer_enter(struct wl_pointer * pwlpointer,
+                           uint32_t serial, struct wl_surface * pwlsurface,
+                           double x, double y);
+
 
 
    };

@@ -109,7 +109,7 @@ namespace user
       void _001OnDrawSplitLayout(::draw2d::graphics_pointer & pgraphics);
 
 
-      //::rectangle_i32 client_rectangle(::user::enum_layout elayout = ::user::e_layout_design) override;
+      //::rectangle_i32 hosting_rectangle(::user::enum_layout elayout = ::user::e_layout_design) override;
 
 
    };

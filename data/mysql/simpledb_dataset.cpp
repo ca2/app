@@ -51,7 +51,7 @@ namespace simpledb
    }
    /*if (!handle())
    {
-      information("sqlite::set::exec: No Database Connection");
+      informationf("sqlite::set::exec: No Database Connection");
       m_strQueryErrorMessage = "No Database Connection";
       m_strDatabaseErrorMessage = "No Database Connection";
       return false;
@@ -136,7 +136,7 @@ namespace simpledb
          {
             m_strQueryErrorMessage = errmsg;
             m_strDatabaseErrorMessage = db->getErrorMsg();
-            information("sqlite::set::exec: Error %s, %s", errmsg, db->getErrorMsg());
+            informationf("sqlite::set::exec: Error %s, %s", errmsg, db->getErrorMsg());
             return false;
          }
       }
@@ -607,28 +607,28 @@ namespace simpledb
       UNREFERENCED_PARAMETER(query);
       if(db == nullptr)
       {
-         information("set::query: base is not Defined");
+         informationf("set::query: base is not Defined");
          m_strQueryErrorMessage = "base is not defined";
          m_strDatabaseErrorMessage = "base is not defined";
          return false;
       }
       if(dynamic_cast<base*>(db) == nullptr)
       {
-         information("set::query: base is not valid");
+         informationf("set::query: base is not valid");
          m_strQueryErrorMessage = "base is not valid";
          m_strDatabaseErrorMessage = "base is not valid";
          return false;
       }
       /*      if(dynamic_cast<base*>(db)->getHandle() == nullptr)
             {
-               information("set::query: No base connection");
+               informationf("set::query: No base connection");
                m_strQueryErrorMessage = "No base Connection";
                m_strDatabaseErrorMessage = "No base Connection";
                return false;
             }
             if(ansi_count_compare("select",query,6) != 0)
             {
-               information("set::query: Must be select SQL");
+               informationf("set::query: Must be select SQL");
                return false;
             }
 
@@ -647,7 +647,7 @@ namespace simpledb
             {
                //m_strQueryErrorMessage = errmsg;
                //m_strDatabaseErrorMessage = db->getErrorMsg();
-               //information("set::query: Error: %s, %s", errmsg, db->getErrorMsg());
+               //informationf("set::query: Error: %s, %s", errmsg, db->getErrorMsg());
                //return false;
             }*/
       return false;

@@ -9,6 +9,8 @@
 #include "aura/user/user/check_box.h"
 #include "aura/user/user/interaction.h"
 #include "axis/user/user/line_layout.h"
+#include "base/user/menu/item.h"
+#include "base/user/menu/menu.h"
 #include "base/user/user/document_manager.h"
 #include "base/user/user/impact_system.h"
 #include "aura/user/user/still.h"
@@ -281,6 +283,53 @@ namespace base
       };
 
       create_label<::user::still>(playoutLine, "Enable Auto Start");
+
+   }
+
+
+   void application::create_about_impact(::user::interaction * pparent)
+   {
+
+      auto playoutLine = create_line_layout(pparent, e_orientation_vertical);
+
+      ::string strReleaseTime(release_time());
+
+      create_label<::user::still>(playoutLine, m_strAppName);
+
+      create_label<::user::still>(playoutLine, "Application ID: " + m_strAppId);
+
+      create_label<::user::still>(playoutLine, "Release Time: " + strReleaseTime);
+
+   }
+
+
+   void application::on_after_prepare_impact_menu(::user::menu * pmenu)
+   {
+      
+
+
+      {
+
+         auto pitemNewChild = __create_new<::user::menu_item>();
+         pitemNewChild->m_pmenu = pmenu;
+         pitemNewChild->m_atom = "separator";
+         pmenu->m_pmenuitem->add_item(pitemNewChild);
+
+      }
+
+
+
+
+      {
+
+         auto pitemNewChild = __create_new<::user::menu_item>();
+         pitemNewChild->m_pmenu = pmenu;
+         pitemNewChild->m_atom = "display_about";
+         pitemNewChild->m_strTitle = "About";
+         pmenu->m_pmenuitem->add_item(pitemNewChild);
+
+      }
+
 
    }
 

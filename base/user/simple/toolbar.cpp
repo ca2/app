@@ -934,7 +934,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 //            if(rectangle.width() > 10000)
                //          {
 
-               //           information("width > 10000");
+               //           informationf("width > 10000");
 
                //         index_element_rectangle(iItem, rectangle, element_image);
 
@@ -1251,7 +1251,7 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
    if (m_dwCtrlStyle & TBSTYLE_ALIGN_CENTER)
    {
 
-      information("please_center_align");
+      informationf("please_center_align");
 
       if (main_content().m_pitema->has_elements())
       {
@@ -2427,9 +2427,9 @@ size_i32 simple_toolbar::CalcLayout(::draw2d::graphics_pointer & pgraphics, u32 
             //    | TBIF_SIZE;
             // ::u32 uID = GetItemID(i);
             // GetToolBarCtrl().GetButtonInfo(uId, &buttona);
-            // information("BUTTON.m_atom = %d\n", buttona.m_atom  );
-            // information("BUTTON.m_fsStyle = %d\n", buttona.m_fsStyle  );
-            // information("BUTTON.cx() = %d\n", buttona.cx() );
+            // informationf("BUTTON.m_atom = %d\n", buttona.m_atom  );
+            // informationf("BUTTON.m_fsStyle = %d\n", buttona.m_fsStyle  );
+            // informationf("BUTTON.cx() = %d\n", buttona.cx() );
 
          }
 

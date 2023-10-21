@@ -19,7 +19,7 @@ namespace user
 {
 
 
-   impact_system::impact_system(const ::atom & atom, const ::type_atom & typeatomDocument, const ::type_atom & typeatomFrame, const ::type_atom & typeatomImpact)
+   impact_system::impact_system(const ::atom & atom, const ::type_atom & typeatomDocument, const ::type_atom & typeatomFrame, const ::type_atom & typeatomImpact, const ::type_atom & typeatomData)
    {
 
       m_bHiddenOnNotifyIcon = false;
@@ -30,6 +30,7 @@ namespace user
       m_typeatomDocument = typeatomDocument;
       m_typeatomFrame = typeatomFrame;
       m_typeatomImpact = typeatomImpact;
+      m_typeatomData = typeatomData;
       m_pAttachedFactory = nullptr;
 
       load_template();

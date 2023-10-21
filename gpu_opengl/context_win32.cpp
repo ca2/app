@@ -11,7 +11,7 @@ namespace opengl
 {
 
 
-   ::pointer < ::gpu::context > create_system_context(::particle * pparticle)
+   ::pointer < ::gpu::context > allocate_system_context(::particle * pparticle)
    {
 
       return pparticle->__create_new <context_win32>();
@@ -64,9 +64,9 @@ namespace opengl
       if (!hwnd)
       {
 
-         information("MS GDI - CreateWindow failed");
+         informationf("MS GDI - CreateWindow failed");
 
-         information("last-error code: %d\n", GetLastError());
+         informationf("last-error code: %d\n", GetLastError());
 
          throw ::exception(error_failed);
 
@@ -91,9 +91,9 @@ namespace opengl
       if (!popengl->m_atomClass)
       {
 
-         information("MS GDI - RegisterClass failed");
+         informationf("MS GDI - RegisterClass failed");
 
-         information("last-error code: %d\n", GetLastError());
+         informationf("last-error code: %d\n", GetLastError());
 
          throw ::exception(error_failed);
 
@@ -110,9 +110,9 @@ namespace opengl
       if (!hdc)
       {
 
-         information("MS GDI - GetDC failed");
+         informationf("MS GDI - GetDC failed");
 
-         information("last-error code: %d\n", GetLastError());
+         informationf("last-error code: %d\n", GetLastError());
 
          throw ::exception(error_failed);
 
@@ -137,9 +137,9 @@ namespace opengl
       if (chosenformat == 0)
       {
 
-         information("MS GDI - ChoosePixelFormat failed");
+         informationf("MS GDI - ChoosePixelFormat failed");
 
-         information("last-error code: %d\n", GetLastError());
+         informationf("last-error code: %d\n", GetLastError());
 
          ReleaseDC(hwnd, hdc);
 
@@ -152,9 +152,9 @@ namespace opengl
       if (!spfok)
       {
 
-         information("MS GDI - SetPixelFormat failed");
+         informationf("MS GDI - SetPixelFormat failed");
 
-         information("last-error code: %d\n", GetLastError());
+         informationf("last-error code: %d\n", GetLastError());
 
          ReleaseDC(hwnd, hdc);
 
@@ -167,9 +167,9 @@ namespace opengl
       if (!hglrc)
       {
 
-         information("MS WGL - wglCreateContext failed");
+         informationf("MS WGL - wglCreateContext failed");
 
-         information("last-error code: %d\n", GetLastError());
+         informationf("last-error code: %d\n", GetLastError());
 
          ReleaseDC(hwnd, hdc);
 
@@ -182,9 +182,9 @@ namespace opengl
       if (!bMakeCurrentOk)
       {
 
-         information("MS WGL - wglMakeCurrent failed");
+         informationf("MS WGL - wglMakeCurrent failed");
 
-         information("last-error code: %d\n", GetLastError());
+         informationf("last-error code: %d\n", GetLastError());
 
          ReleaseDC(hwnd, hdc);
 
@@ -293,9 +293,9 @@ namespace opengl
       if (!bMakeCurrentOk)
       {
 
-         information("MS WGL - wglMakeCurrent failed");
+         informationf("MS WGL - wglMakeCurrent failed");
 
-         information("last-error code: %d\n", GetLastError());
+         informationf("last-error code: %d\n", GetLastError());
 
          throw ::exception(error_failed);
 

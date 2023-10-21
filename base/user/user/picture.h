@@ -64,6 +64,10 @@ namespace user
          
          //virtual void exchange(::stream & stream) override;
 
+         void read_from_stream(::binary_stream & binarystream) override;
+         void write_to_stream(::binary_stream & binarystream) override;
+
+
 
       };
 
@@ -80,11 +84,15 @@ namespace user
       virtual bool enable_picture(bool bEnable = true);
       virtual bool is_picture_enabled() const;
 
-      using ::user::drawable::hit_test;
-      ::item_pointer hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;
+
+      virtual bool is_picture_hover();
 
 
-      ::item_pointer on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;
+      using ::user::drawable::parent_client_hit_test;
+      ::item_pointer parent_client_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;
+
+
+      ::item_pointer parent_client_on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;
       //virtual int on_hit_test_cursor(point_f64 point);
       //virtual int on_hit_test( point_i32) const;
       virtual bool intersects_drawing(const polygon_f64 & polygon_i32) const;
@@ -151,8 +159,8 @@ namespace user
       virtual void move_to(point_f64 point, ::size_f64 sizePage, ::size_f64 sizeClient, const ::rectangle_f64 & rectangleMargin);
 
 
-      void read(::binary_stream & stream);
-      void write(::binary_stream & stream) const;
+      void read_from_stream(::binary_stream & stream) override;
+      void write_to_stream(::binary_stream & stream) override;
 
 
    };

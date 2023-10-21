@@ -219,6 +219,8 @@ namespace user
 
          // m_uiptraChild.interactiona().erase_all();
 
+         synchronous_lock synchronouslock(this->synchronization());
+
          m_puserinteractionpointeraChild.release();
 
       }
@@ -304,7 +306,7 @@ namespace user
       if (pshow->m_bShow)
       {
 
-         information("menu::on_message_show_window bShow = %d", pshow->m_bShow);
+         informationf("menu::on_message_show_window bShow = %d", pshow->m_bShow);
 
          if (m_puserinteractionParent)
          {
@@ -333,7 +335,7 @@ namespace user
       else
       {
 
-         information("menu::on_message_show_window bShow = %d", pshow->m_bShow);
+         informationf("menu::on_message_show_window bShow = %d", pshow->m_bShow);
 
       }
 
@@ -355,7 +357,7 @@ namespace user
          else
          {
 
-            ::information("parent has other Topic Submenu");
+            ::informationf("parent has other Topic Submenu");
 
          }
 
@@ -1021,9 +1023,7 @@ namespace user
 
          auto puserinteractionTopic = ptopic->user_interaction();
 
-         auto puserinteractionClose = m_pitemClose->m_puserinteraction;
-
-         if (m_pitemClose.is_set() && puserinteractionTopic == puserinteractionClose)
+         if (m_pitemClose.is_set() && puserinteractionTopic == m_pitemClose->m_puserinteraction)
          {
 
             defer_close();

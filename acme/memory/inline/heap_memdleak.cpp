@@ -701,16 +701,16 @@ void memdleak_dump()
    {
       if (pblock->m_iStack > 0)
       {
-         information("\n");
-         information("--------------------------------------------------------\n");
+         informationf("\n");
+         informationf("--------------------------------------------------------\n");
          ansi_from_u64(sz, ++i, 10);
-         information("Index : ");
+         informationf("Index : ");
          information(sz);
-         information("\n");
+         informationf("\n");
          ansi_from_u64(sz, pblock->m_size, 10);
-         information("Size : ");
+         informationf("Size : ");
          information(sz);
-         information("\n");
+         informationf("\n");
 #if FAST_STACK_TRACE
          information(::exception_engine().xxxstack_trace(pblock->m_puiStack + 1, pblock->m_iStack));
 #else
@@ -719,12 +719,12 @@ void memdleak_dump()
       }
       pblock = pblock->m_pnext;
    }
-   information("\n");
-   information("--------------------------------------------------------\n");
+   informationf("\n");
+   informationf("--------------------------------------------------------\n");
    ansi_from_u64(sz, i, 10);
-   information("\nFound ");
+   informationf("\nFound ");
    information(sz);
-   information(" memory leaks.");
+   informationf(" memory leaks.");
 
    //acmefile()->put_contents(         auto psystem = acmesystem();
 

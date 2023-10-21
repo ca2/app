@@ -38,7 +38,7 @@ namespace user
       string                              m_strSaveFileExtension;
       atom_map < ::procedure_array >          m_mapRoutine;
       bool                                m_bToolbar;
-
+      ::pointer < ::data::data >          m_pdataIncoming;
 
 
       document();
@@ -47,6 +47,8 @@ namespace user
 
       //void dump(dump_context &) const override;
       // void assert_ok() const override;
+
+      ::pointer < ::data::data > create_data(const ::atom & atom) override;
 
 
       ::base::application * get_app();
@@ -231,7 +233,9 @@ namespace user
 
          //auto estatus = 
          
-         pdata->initialize_data(this);
+         //pdata->initialize_data(this);
+
+         pdata->initialize_data();
 
          //if (!estatus)
          //{
@@ -373,14 +377,14 @@ namespace user
          return get_data(get_typed_document < DOCUMENT > ());
       }
 
-      template < class DOCUMENT >
-      ::data::data * get_data(DOCUMENT * pthis)
-      {
-         ASSERT(this == pthis);
-         if (this != pthis)
-            return nullptr;
-         return m_datamap[pthis];
-      }
+      //template < class DOCUMENT >
+      //::data::data * get_data(DOCUMENT * pthis)
+      //{
+      //   ASSERT(this == pthis);
+      //   if (this != pthis)
+      //      return nullptr;
+      //   return m_datamap[pthis];
+      //}
 
       template < class DOCUMENT >
       void set_typed_document_data(::data::data * pdata)

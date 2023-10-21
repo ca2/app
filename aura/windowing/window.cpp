@@ -141,12 +141,12 @@ namespace windowing
          if (pmessagePost->m_atom == e_message_vscroll)
          {
 
-            ::information("vscroll");
+            ::informationf("vscroll");
 
          } else if (pmessagePost->m_atom == e_message_text_composition)
          {
 
-            ::information("message text composition");
+            ::informationf("message text composition");
 
          }
 
@@ -1390,7 +1390,7 @@ namespace windowing
       if (bVisibilityChange || bZ || eactivationOutput != e_activation_default)
       {
 
-         information("::windowing::window::configure_window_unlocked bVisibilityChange(%d) bZ(%d) bActivation(%d)",
+         informationf("::windowing::window::configure_window_unlocked bVisibilityChange(%d) bZ(%d) bActivation(%d)",
                      (int)bVisibilityChange,
                      (int)bZ,
                      (int) (eactivationOutput != e_activation_default));
@@ -1731,15 +1731,15 @@ namespace windowing
    }
 
 
-   void window::window_send(const ::procedure & procedure)
+   void window::user_send(const ::procedure & procedure)
    {
 
-      __matter_send_procedure(this, this, &window::window_post, procedure);
+      __matter_send_procedure(this, this, &window::user_post, procedure);
 
    }
 
 
-   void window::window_post(const ::procedure & procedure)
+   void window::user_post(const ::procedure & procedure)
    {
 
       auto puserinteractionimpl = m_puserinteractionimpl;
@@ -1969,7 +1969,7 @@ namespace windowing
       if (edisplayOutput != edisplayDesign)
       {
 
-         puserinteraction->post_message(e_message_show_window, ::is_screen_visible(edisplayDesign) ? 1 : 0);
+         puserinteraction->send_message(e_message_show_window, ::is_screen_visible(edisplayDesign) ? 1 : 0);
 
       }
 
@@ -1982,7 +1982,7 @@ namespace windowing
 
       timeUpdateScreenPost.Now();
 
-      information("timeBetweenUpdateBufferAndUpdateScreen "+as_string(e1.floating_millisecond().m_d) +"ms\n");
+      informationf("timeBetweenUpdateBufferAndUpdateScreen "+as_string(e1.floating_millisecond().m_d) +"ms\n");
 
 #endif
 
@@ -2004,7 +2004,7 @@ namespace windowing
 
       auto e2 = timeUpdateScreenPost.elapsed();
 
-      information("timeUpdateScreenPost " + as_string(e2.floating_millisecond().m_d) + "ms\n");
+      informationf("timeUpdateScreenPost " + as_string(e2.floating_millisecond().m_d) + "ms\n");
 
 #endif
 
@@ -2186,6 +2186,16 @@ namespace windowing
       }
 
       return p;
+
+   }
+
+
+   ::size_i32 window::windowing_popup_size()
+   {
+
+      auto s = m_puserinteractionimpl->m_puserinteraction->const_layout().sketch().size();
+
+      return s;
 
    }
 

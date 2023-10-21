@@ -702,6 +702,23 @@ namespace experience_tranquillum
          }
 
       }
+      else if (eelement == ::e_element_border)
+      {
+
+         if (is_dark_mode())
+         {
+
+            return argb(255, 192, 192, 192);
+
+         }
+         else
+         {
+
+            return argb(255, 192, 192, 192);
+
+         }
+
+      }
 
 
       return ::base::style::get_color(pinteraction, eelement, estate);
@@ -768,10 +785,10 @@ namespace experience_tranquillum
          i32 iTabHeight = 8;
          i32 cx;
          i32 cy;
-         for (i32 iPane = 0; iPane < ptab->get_data()->m_tabpanecompositea.get_size(); iPane++)
+         for (i32 iPane = 0; iPane < ptab->get_data()->m_tabpanea.get_size(); iPane++)
          {
 
-            auto& pane = *ptab->get_data()->m_tabpanecompositea[iPane];
+            auto& pane = *ptab->get_data()->m_tabpanea[iPane];
 
             if (!pane.m_bTabPaneVisible)
             {
@@ -847,10 +864,10 @@ namespace experience_tranquillum
          m_rectangleTab.height(),
          0);*/
 
-         ptab->get_data()->m_rectangleTabClient.left() = ptab->m_bEffectiveVisibleControl ? ptab->get_data()->m_rectangleTab.right() : rectangleX.left();
-         ptab->get_data()->m_rectangleTabClient.top() = ptab->get_data()->m_rectangleTab.top();
-         ptab->get_data()->m_rectangleTabClient.right() = rectangleX.right();
-         ptab->get_data()->m_rectangleTabClient.bottom() = ptab->get_data()->m_rectangleTab.bottom();
+         ptab->get_data()->m_rectangleHosting.left() = ptab->m_bEffectiveVisibleControl ? ptab->get_data()->m_rectangleTab.right() : rectangleX.left();
+         ptab->get_data()->m_rectangleHosting.top() = ptab->get_data()->m_rectangleTab.top();
+         ptab->get_data()->m_rectangleHosting.right() = rectangleX.right();
+         ptab->get_data()->m_rectangleHosting.bottom() = ptab->get_data()->m_rectangleTab.bottom();
 
       }
       else
@@ -864,10 +881,10 @@ namespace experience_tranquillum
          int x = rectangleX.left();
 
          i32 ixAdd;
-         for (i32 iPane = 0; iPane < ptab->get_data()->m_tabpanecompositea.get_size(); iPane++)
+         for (i32 iPane = 0; iPane < ptab->get_data()->m_tabpanea.get_size(); iPane++)
          {
 
-            auto& pane = *ptab->get_data()->m_tabpanecompositea[iPane];
+            auto& pane = *ptab->get_data()->m_tabpanea[iPane];
 
             if (!pane.m_bTabPaneVisible)
             {
@@ -947,10 +964,10 @@ namespace experience_tranquillum
 
          ptab->get_data()->m_iTabHeight = iTabHeight + 8;
 
-         for (i32 iPane = 0; iPane < ptab->get_data()->m_tabpanecompositea.get_size(); iPane++)
+         for (i32 iPane = 0; iPane < ptab->get_data()->m_tabpanea.get_size(); iPane++)
          {
 
-            auto& pane = *ptab->get_data()->m_tabpanecompositea[iPane];
+            auto& pane = *ptab->get_data()->m_tabpanea[iPane];
 
             pane.m_size.cy() = iTabHeight;
 
@@ -972,22 +989,22 @@ namespace experience_tranquillum
          m_rectangleTab.height(),
          0);*/
 
-         rectangle_i32& rectangleTabClient = ptab->get_data()->m_rectangleTabClient;
+         rectangle_i32& rectangleHosting = ptab->get_data()->m_rectangleHosting;
 
          //bool bTabbedClient = ptab->m_bShowTabs && !ptab->top_level_frame()->layout().is_full_screen();
          // bool bTabbedClient = ptab->m_bEffectiveVisibleTabs;
 
-         rectangleTabClient.left() = ptab->get_data()->m_rectangleTab.left();
-         rectangleTabClient.top() = ptab->m_bEffectiveVisibleControl ? ptab->get_data()->m_rectangleTab.bottom() : rectangleX.top();
-         rectangleTabClient.right() = ptab->get_data()->m_rectangleTab.right();
-         rectangleTabClient.bottom() = rectangleX.bottom();
+         rectangleHosting.left() = ptab->get_data()->m_rectangleTab.left();
+         rectangleHosting.top() = ptab->m_bEffectiveVisibleControl ? ptab->get_data()->m_rectangleTab.bottom() : rectangleX.top();
+         rectangleHosting.right() = ptab->get_data()->m_rectangleTab.right();
+         rectangleHosting.bottom() = rectangleX.bottom();
 
 
-         //TRACE0("rectangleTabClient");
+         //TRACE0("rectangleHosting");
 
       }
 
-      for (i32 iPane = 0; iPane < ptab->get_data()->m_tabpanecompositea.get_size(); iPane++)
+      for (i32 iPane = 0; iPane < ptab->get_data()->m_tabpanea.get_size(); iPane++)
       {
 
          if (iPane != ptab->get_current_tab_index())
@@ -1053,7 +1070,7 @@ namespace experience_tranquillum
 
       ::rectangle_i32 rcClient;
 
-      rcClient = ptab->get_data()->m_rectangleTabClient;
+      rcClient = ptab->get_data()->m_rectangleHosting;
 
       int iTabHeight = ptab->get_data()->m_iTabHeight;
 
@@ -1083,10 +1100,10 @@ namespace experience_tranquillum
 
       auto ppenBorder = __create < ::draw2d::pen >();
 
-      for (i32 iPane = 0; iPane < ptab->get_data()->m_tabpanecompositea.get_size(); iPane++)
+      for (i32 iPane = 0; iPane < ptab->get_data()->m_tabpanea.get_size(); iPane++)
       {
 
-         auto& pane = *ptab->get_data()->m_tabpanecompositea[iPane];
+         auto& pane = *ptab->get_data()->m_tabpanea[iPane];
 
          if (!pane.m_bTabPaneVisible)
          {

@@ -16,19 +16,20 @@ namespace data
    class CLASS_DECL_ACME data :
       virtual public ::object
    {
-   protected:
+   //protected:
 
 
-      friend class ::data::data_container_base;
+   //   friend class ::data::data_container_base;
 
-      ::pointer<::data::data_container_base>    m_pdatacontainerbase;
+   //   ::pointer<::data::data_container_base>    m_pdatacontainerbase;
 
 
    public:
 
 
-      listener_array                               m_listenera;
-      ::atom                 m_atom;
+      listener_array                m_listenera;
+      ::atom                        m_atom;
+      bool                          m_bNew;
 
 
       data();
@@ -39,7 +40,7 @@ namespace data
       // void assert_ok() const override;
 
 
-      virtual ::data::data_container_base* get_data_container();
+      ///virtual ::data::data_container_base* get_data_container();
 
 
       virtual ::count get_data_bound_impact_count() const;
@@ -51,11 +52,22 @@ namespace data
       virtual void on_update_data(i32 iHint);
 
 
-   protected:
+      bool is_new_data() const;
+   //protected:
 
 
-      virtual void initialize_data(::data::data_container_base* pdocument);
+      //virtual void initialize_data(::data::data_container_base* pdocument);
 
+      
+      virtual void initialize_data();
+
+
+      virtual bool on_new_data();
+
+      virtual void read_data(::binary_stream & binarystream, const ::scoped_string & scopedstrFormat);
+      virtual void write_data(::binary_stream & binarystream, const ::scoped_string & scopedstrFormat);
+      //virtual bool on_open_data(const ::payload & payloadFile);
+      //virtual bool on_save_data(::file::file * pfile);
 
 
    };

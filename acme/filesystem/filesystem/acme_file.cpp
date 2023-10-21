@@ -24,7 +24,7 @@ CLASS_DECL_ACME void exception_message_box(::particle * pparticle, ::exception &
 void trace_last_error()
 {
 
-   information("trace_last_error::todo");
+   informationf("trace_last_error::todo");
 
 }
 
@@ -366,6 +366,13 @@ bool acme_file::exists(const ::file::path & pathParam)
    }
 
    auto path = acmepath()->defer_process_relative_path(pathParam);
+
+   if (path.case_insensitive_begins("data:"))
+   {
+
+      return true;
+
+   }
 
    auto bExists = _exists(path);
 
@@ -738,6 +745,14 @@ bool acme_file::_memory_map_file_copy(const ::file::path & pathTarget, const ::f
 
 void acme_file::_read_write_file_copy(const ::file::path & pathTarget, const ::file::path & pathSource, ::memsize sizeBuffer)
 {
+
+   if(pathSource.case_insensitive_ends("/store.zip"))
+   {
+
+
+      information() << "copy .../store.zip";
+
+   }
 
    auto pfileIn = get_file(pathSource, ::file::e_open_read | ::file::e_open_binary);
    

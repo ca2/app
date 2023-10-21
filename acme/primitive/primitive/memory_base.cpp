@@ -1901,10 +1901,10 @@ memsize memory_base::length() const
 }
 
 
-::particle_pointer memory_base::clone() const
+::particle_pointer memory_base::clone()
 {
 
-   auto pmemory = ((::particle *)this)->__create_new < ::memory >();
+   auto pmemory = __create_new < ::memory >();
 
    pmemory->copy_from(this);
 
@@ -2038,7 +2038,7 @@ void memory_base::patch_line_suffix(const ::block& blockPrefix, const ::block& b
 
       memory_copy(ptarget, psource, c);
 
-      information(" ");
+      informationf(" ");
 
    }
 

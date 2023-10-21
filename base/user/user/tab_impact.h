@@ -47,6 +47,8 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_create);
       DECLARE_MESSAGE_HANDLER(on_message_set_focus);
 
+      DECLARE_MESSAGE_HANDLER(on_command_display_about);
+
 
       virtual bool add_impact(const ::string & strName, const ::atom & idImpact = nullptr, bool bVisible = true, bool bPermanent = false, ::user::place_holder * pholder = nullptr) override;
       virtual bool add_impact_with_icon(const ::string & strName, const ::string & strIcon, const ::atom & idImpact = nullptr, bool bVisible = true, bool bPermanent = false, ::user::place_holder * pholder = nullptr) override;

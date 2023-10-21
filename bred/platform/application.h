@@ -16,7 +16,7 @@ namespace bred
 
       application();
       ~application() override;
-
+      
 
       void common_construct();
 

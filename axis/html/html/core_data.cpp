@@ -3,6 +3,7 @@
 #include "data.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
+#include "acme/constant/user_key.h"
 #include "acme/parallelization/task_keep.h"
 #include "acme/primitive/primitive/url.h"
 #include "acme/parallelization/synchronous_lock.h"
@@ -334,17 +335,23 @@ namespace html
 
       m_pelement->implement(this);
 
-      if (m_pform->m_puserinteractionpointeraChild)
+      auto children = m_pform->synchronized_get_children();
+
+      //if (m_pform->m_puserinteractionpointeraChild)
       {
 
-         for (auto & pinteraction : m_pform->m_puserinteractionpointeraChild->interactiona())
+         for (auto & pinteraction :children)
          {
+
+            //synchronouslock.unlock();
             
             auto ptopic = create_topic(::id_initialize_control);
 
             ptopic->m_puserelement = pinteraction;
 
             m_pform->route(ptopic);
+
+            //synchronouslock.lock();
 
          }
 
@@ -891,7 +898,7 @@ namespace html
       
       property_set_replace(str);
       
-      information("%s", str.c_str());
+      informationf("%s", str.c_str());
       
       if (str.has_char())
       {

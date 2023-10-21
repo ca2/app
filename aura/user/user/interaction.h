@@ -139,8 +139,8 @@ namespace user
 
       
       boolean                                   m_bExtendOnParent;
-      boolean                                   m_bExtendOnParentIfClientOnly;
-      boolean                                   m_bExtendOnParentClientArea;
+      boolean                                   m_bExtendOnParentIfOnlyClient;
+      boolean                                   m_bExtendOnParentHostingArea;
       bool                                      m_bToolWindow;
       bool                                      m_bMessageWindow;
       boolean                                   m_bLockGraphicalUpdate;
@@ -404,6 +404,7 @@ namespace user
       pointer_array < interaction >                m_menua;
       ::pointer<::appearance::appearance>          m_pappearance;
       bool                                         m_bEmptyAreaIsClientArea;
+      ::enum_display                               m_edisplayOwnedBeforeHidden;
       //::item_pointer                               m_pitemClient;
       ::array < struct set_need_redraw >           m_setneedredrawa;
       boolean                                      m_bNeedFullRedrawOnResize;
@@ -589,6 +590,7 @@ namespace user
       void host_post(const ::procedure& procedure) override;
 
       void user_send(const ::procedure & procedure) override;
+      void user_post(const ::procedure & procedure) override;
 
 
       inline void auto_refresh_on_show() { m_ewindowflag |= e_window_flag_auto_refresh_on_show; }
@@ -855,6 +857,10 @@ namespace user
       virtual void display(::e_display edisplay = e_display_normal, ::e_activation eactivation = ::e_activation_default) override;
 
 
+      virtual void sort_children_by_zorder(::user::interaction_array & interactiona);
+
+      virtual ::index child_zorder(::user::interaction * puserinteraction);
+
       virtual bool check_children_zorder();
 
       virtual ::zorder zorder(enum_layout elayout = e_layout_design);
@@ -899,7 +905,8 @@ namespace user
 
       //virtual void this->rectangle(::rectangle_i32 & rect, enum_layout elayout = e_layout_design);
       virtual ::rectangle_i32 rectangle(enum_layout elayout = e_layout_design);
-      virtual ::rectangle_i32 client_rectangle(enum_layout elayout = e_layout_design);
+      virtual ::rectangle_i32 client2_rectangle(enum_layout elayout = e_layout_design);
+      virtual ::rectangle_i32 hosting_rectangle(enum_layout elayout = e_layout_design);
       virtual ::rectangle_i32 host_rectangle(enum_layout elayout = e_layout_design);
       virtual ::rectangle_i32 screen_rectangle(enum_layout elayout = e_layout_design);
 
@@ -1279,7 +1286,7 @@ namespace user
 
 
       virtual void _extend_on_parent(::draw2d::graphics_pointer & pgraphics);
-      virtual void _extend_on_parent_client_area(::draw2d::graphics_pointer & pgraphics);
+      virtual void _extend_on_parent_hosting_area(::draw2d::graphics_pointer & pgraphics);
 
 
       virtual void top_down_prefix();
@@ -1444,10 +1451,15 @@ namespace user
 
 //      virtual void enable_window(bool bEnable = true) override;
 
+
+      virtual ::user::drawable * get_drawable();
+
       //virtual void process_queue(::draw2d::graphics_pointer & pgraphics);
 
       //virtual void do_graphics(::draw2d::graphics_pointer & pgraphics);
       //virtual void on_graphics(::draw2d::graphics_pointer & pgraphics);
+
+
       virtual void defer_do_graphics(::draw2d::graphics_pointer & pgraphics);
       virtual void defer_do_layout(::draw2d::graphics_pointer & pgraphics);
       void _000TopCallOnDraw(::draw2d::graphics_pointer & pgraphics);
@@ -1465,6 +1477,8 @@ namespace user
       virtual void _001OnNcClip(::draw2d::graphics_pointer& pgraphics);
       virtual void _001OnClip(::draw2d::graphics_pointer & pgraphics);
       virtual void draw_control_background(::draw2d::graphics_pointer & pgraphics) ;
+
+
 
       virtual bool is_custom_draw();
 
@@ -1497,6 +1511,7 @@ namespace user
 
 
       virtual bool has_keyboard_focus();
+      virtual bool should_show_keyboard_focus();
       void set_keyboard_focus() override;
       void clear_keyboard_focus(::user::element * pelementGainingFocusIfAny = nullptr) override;
 
@@ -2076,6 +2091,8 @@ namespace user
 
       virtual void hide() override;
 
+      virtual ::pointer_array < ::user::interaction > synchronized_get_children();
+
 
       virtual void erase_children();
       virtual void erase_child(::user::interaction * puserinteraction);
@@ -2255,6 +2272,7 @@ namespace user
 
 
       virtual void simple_ui_draw_focus_rect(::draw2d::graphics_pointer & pgraphics);
+      virtual void simple_ui_draw_border(::draw2d::graphics_pointer & pgraphics);
 
 
       virtual bool on_action(const ::string & pszId);
@@ -2263,14 +2281,15 @@ namespace user
 
       //virtual bool simple_on_control_event(::message::message* pmessage, ::enum_topic etopic);
 
-      ::item_pointer hit_test(::user::mouse * pmouse, e_zorder ezorder) override;
+      virtual ::item_pointer hit_test(::user::mouse * pmouse, e_zorder ezorder);
 
-      //using ::aura::drawable::hit_test;
-      ::item_pointer hit_test(const ::point_i32 & point, e_zorder ezorder) override;
+      virtual ::item_pointer hit_test(const ::point_i32 & point, e_zorder ezorder);
 
-      //using ::aura::drawable::on_hit_test;
-      ::item_pointer on_hit_test(const ::point_i32 & point, e_zorder ezorder) override;
+      virtual ::item_pointer on_hit_test(const ::point_i32 & point, e_zorder ezorder);
 
+      ::item_pointer parent_client_hit_test(const ::point_i32 & point, e_zorder ezorder) override;
+
+      ::item_pointer parent_client_on_hit_test(const ::point_i32 & point, e_zorder ezorder) override;
 
       virtual bool item_contains(::item * pitem, const ::point_i32 & point);
 
@@ -2333,6 +2352,9 @@ namespace user
       //control null() { return control(); }
       //bool Validate(string& str);
       bool get_data(::pointer<::user::interaction>puserinteraction, ::payload& payload);
+      
+      virtual ::data::data * _get_data(const ::atom & atom);
+
       //void SetEditItem(index iItem);
       //void SetEditSubItem(index iItem);
       //index GetEditSubItem();
@@ -2397,6 +2419,8 @@ namespace user
 
       virtual void set_stock_icon(enum_stock_icon eicon);
       virtual enum_stock_icon get_stock_icon();
+
+
 
 
       //virtual void post_procedure(const ::procedure & procedure) override;

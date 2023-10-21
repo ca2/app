@@ -2,7 +2,7 @@
 #include "user.h"
 #include "key.h"
 #include "interaction.h"
-////#include "acme/exception/exception.h"
+#include "acme/constant/user_key.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "aura/windowing/windowing.h"
@@ -307,9 +307,9 @@ namespace user
       string str = pcontext->m_papexcontext->file()->as_string(pszPath);
 
 
-      information(pszPath);
+      informationf(pszPath);
 
-      information(str);
+      informationf(str);
 
       if(str.is_empty())
       {
@@ -331,7 +331,7 @@ namespace user
 
       //if(!doc.load(str))
       //{
-      //   information("unable to load os keyboard on_layout");
+      //   informationf("unable to load os keyboard on_layout");
       //   //if(is_debugger_attached())
       //   //{
 
@@ -440,23 +440,23 @@ namespace user
 //      }
 //      if(initialize(playout, strPath))
 //      {
-//         information("setting keyboard on_layout to %s (path=%s)", playout->m_strName.c_str(), playout->m_strPath.c_str());
+//         informationf("setting keyboard on_layout to %s (path=%s)", playout->m_strName.c_str(), playout->m_strPath.c_str());
 //         if(playout->load(playout->m_strPath))
 //         {
 //            m_playout = playout;
 //// xxx            papp->simpledb().on_set_keyboard_layout(playout->m_strPath, context);
-//            information("successfully set keyboard on_layout to %s (path=%s)", playout->m_strName.c_str(), playout->m_strPath.c_str());
+//            informationf("successfully set keyboard on_layout to %s (path=%s)", playout->m_strName.c_str(), playout->m_strPath.c_str());
 //            return true;
 //         }
 //         else
 //         {
 //            playout->release();
-//            information("failed to load keyboard on_layout : %s (path=%s)", playout->m_strName.c_str(), playout->m_strPath.c_str());
+//            informationf("failed to load keyboard on_layout : %s (path=%s)", playout->m_strName.c_str(), playout->m_strPath.c_str());
 //         }
 //      }
 //      else
 //      {
-//         information("failed to set keyboard on_layout path=%s", pszPath);
+//         informationf("failed to set keyboard on_layout path=%s", pszPath);
 //      }
 //      return false;
 //   }

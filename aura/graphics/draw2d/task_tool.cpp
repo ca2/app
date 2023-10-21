@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "task_tool.h"
-#include "acme/graphics/draw2d/image32.h"
+#include "acme/graphics/image/image32.h"
 
 
 namespace draw2d

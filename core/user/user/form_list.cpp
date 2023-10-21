@@ -5,6 +5,7 @@
 #include "list_item.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
+#include "acme/constant/user_key.h"
 #include "acme/handler/item.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/keep.h"
@@ -429,6 +430,18 @@ namespace user
    void form_list::_001OnShowControl(::user::interaction * pinteraction)
    {
 
+
+   }
+
+
+   ::pointer<list_column>form_list::new_list_column_with_control(::user::interaction * puserinteraction)
+   {
+
+      auto pcolumn = ::user::list::new_list_column_with_control(puserinteraction);
+
+      _001AddControl(puserinteraction);
+
+      return pcolumn;
 
    }
 
@@ -1333,7 +1346,6 @@ namespace user
 
       ::user::list::on_column_update();
 
-
       {
 
          synchronous_lock synchronouslock(this->synchronization());
@@ -2195,28 +2207,32 @@ namespace user
 
       }
 
-      auto puserinteractiona = pcolumn->m_puserinteractiona;
+      auto & puserinteractiona = pcolumn->m_puserinteractiona;
+
+      __defer_construct_new(puserinteractiona);
 
       ::index iIndex = iItem - m_iTopDisplayIndex;
 
       auto & pinteraction = puserinteractiona->interactiona().element_at_grow(iIndex);
 
-      if (!pinteraction)
+      auto pinteractionTemplate = pcolumn->m_puserinteractionTemplate;
+
+      if (::is_null(pinteractionTemplate))
       {
 
-         auto pinteractionTemplate = pcolumn->m_puserinteractionTemplate;
+         return nullptr;
 
-         if (::is_null(pinteractionTemplate))
-         {
+      }
 
-            return nullptr;
-
-         }
+      if (!pinteraction)
+      {
 
          pinteraction = pinteractionTemplate->clone();
 
          if (::is_set(pinteraction))
          {
+
+            pinteraction->create_child(get_parent());
 
             pinteraction->initialize(this);
 
@@ -2226,11 +2242,19 @@ namespace user
 
             pinteraction->m_flagsfunction = pinteractionTemplate->m_flagsfunction;
 
+            _001OnInitializeControl(pinteraction);
+
          }
 
       }
 
-      pinteraction->m_atom = pcolumn->m_atom;
+      ::string strIdTemplate(pinteractionTemplate->m_atom);
+
+      ::string strId;
+
+      strId.format("%s-%04d", strIdTemplate.c_str(), iIndex);
+
+      pinteraction->m_atom = strId;
 
       pinteraction->m_item.m_iItem = iItem;
 
@@ -2360,9 +2384,29 @@ namespace user
             //
             //            //pdrawitem->m_rectangleWindow = pdrawitem->m_rectangleX;
             //
-            pinteraction->place(pdrawlistsubitem->m_pdrawmeshsubitem->m_rectangleSubItem);
 
-            pinteraction->display();
+            auto r = pinteraction->parent_client_rectangle();
+
+            if (r != pdrawlistsubitem->m_pdrawmeshsubitem->m_rectangleSubItem)
+            {
+
+               pinteraction->place(pdrawlistsubitem->m_pdrawmeshsubitem->m_rectangleSubItem);
+
+               pinteraction->display();
+
+               pinteraction->set_need_layout();
+
+               pinteraction->set_need_redraw();
+
+               pinteraction->post_redraw();
+
+            }
+            else
+            {
+
+               information() << "optimized placement";
+
+            }
 
             //
                         //client_to_screen(pdrawitem->m_rectangleWindow);

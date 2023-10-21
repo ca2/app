@@ -244,7 +244,7 @@ namespace account
 //
 //      ::u32 dwGetFontopusEnd= ::time::now();
 //
-//      information("NetLogin: Get Fontopus Millis = %d",dwGetFontopusEnd - dwGetFontopusBeg);
+//      informationf("NetLogin: Get Fontopus Millis = %d",dwGetFontopusEnd - dwGetFontopusBeg);
 //
 //      return strFontopusServer;
 //

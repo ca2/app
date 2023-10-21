@@ -243,25 +243,25 @@ int_bool message_queue::peek_message(LPMESSAGE pMsg,oswindow oswindow,::u32 wMsg
 //         if(strType.contains("wave_player"))
 //         {
 //
-//            information("xxCLOSED_MQ xx__get_mq from xxwave_player");
+//            informationf("xxCLOSED_MQ xx__get_mq from xxwave_player");
 //
 //         }
 //         else if(strType.case_insensitive_ends("out"))
 //         {
 //
-//            information("xxCLOSED_MQ xx__get_mq from xxout");
+//            informationf("xxCLOSED_MQ xx__get_mq from xxout");
 //
 //         }
 //         else if(strType.contains("output_thread"))
 //         {
 //
-//            information("xxCLOSED_MQ xx__get_mq from xxoutput_thread");
+//            informationf("xxCLOSED_MQ xx__get_mq from xxoutput_thread");
 //
 //         }
 //         else
 //         {
 //
-//            information("xxCLOSED_MQ xx__get_mq from xxmultimedia::*");
+//            informationf("xxCLOSED_MQ xx__get_mq from xxmultimedia::*");
 //
 //         }
 //
@@ -289,25 +289,25 @@ int_bool message_queue::peek_message(LPMESSAGE pMsg,oswindow oswindow,::u32 wMsg
 //         if(strType.contains("wave_player"))
 //         {
 //
-//            information("notxxbCreate xx__get_mq from xxwave_player");
+//            informationf("notxxbCreate xx__get_mq from xxwave_player");
 //
 //         }
 //         else if(strType.case_insensitive_ends("out"))
 //         {
 //
-//            information("notxxbCreate xx__get_mq from xxout");
+//            informationf("notxxbCreate xx__get_mq from xxout");
 //
 //         }
 //         else if(strType.contains("output_thread"))
 //         {
 //
-//            information("notxxbCreate xx__get_mq from xxoutput_thread");
+//            informationf("notxxbCreate xx__get_mq from xxoutput_thread");
 //
 //         }
 //         else
 //         {
 //
-//            information("notxxbCreate xx__get_mq from xxmultimedia::*");
+//            informationf("notxxbCreate xx__get_mq from xxmultimedia::*");
 //
 //         }
 //
@@ -477,28 +477,28 @@ CLASS_DECL_AURA int_bool message_queue_post(oswindow oswindow, const ::atom & at
 }
 
 
-CLASS_DECL_AURA int_bool mq_peek_message(LPMESSAGE pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, ::u32 wRemoveMsg)
-{
-
-   auto pmq = ::get_message_queue(::current_itask(), false);
-
-   if (pmq == nullptr)
-   {
-
-      return false;
-
-   }
-
-   if (!pmq->peek_message(pMsg, oswindow, wMsgFilterMin, wMsgFilterMax, wRemoveMsg))
-   {
-
-      return false;
-
-   }
-
-   return true;
-
-}
+//CLASS_DECL_AURA int_bool mq_peek_message(LPMESSAGE pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, ::u32 wRemoveMsg)
+//{
+//
+//   auto pmq = ::get_message_queue(::current_itask(), false);
+//
+//   if (pmq == nullptr)
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   if (!pmq->peek_message(pMsg, oswindow, wMsgFilterMin, wMsgFilterMax, wRemoveMsg))
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   return true;
+//
+//}
 
 
 CLASS_DECL_AURA int_bool mq_get_message(LPMESSAGE pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax)

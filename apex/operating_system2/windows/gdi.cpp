@@ -55,7 +55,7 @@
 //
 //   {
 //
-//      information("got log font");
+//      informationf("got log font");
 //   }
 //
 //

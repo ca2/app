@@ -1402,9 +1402,6 @@
     <ClCompile Include="graphics\draw2d\color_array.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\draw2d\image32_array.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\file\write_text_stream.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
@@ -1581,6 +1578,12 @@
     </ClCompile>
     <ClCompile Include="windowing\window_base.cpp">
       <Filter>Source Files\windowing</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\image\image32.cpp">
+      <Filter>Source Files\graphics\image</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\image\image32_array.cpp">
+      <Filter>Source Files\graphics\image</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

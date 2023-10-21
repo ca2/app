@@ -119,6 +119,7 @@ namespace user
 
       }
 
+
       //using ::user::impact::update;
       void handle(::topic* ptopic, ::context* pcontext) override
       {
@@ -188,6 +189,23 @@ namespace user
       {
 
          VIEW::_001OnDraw(pgraphics);
+
+      }
+
+
+
+      void _001CallOnDraw(::draw2d::graphics_pointer & pgraphics) override
+      {
+
+         VIEW::_001CallOnDraw(pgraphics);
+
+      }
+
+
+      ::data::data * _get_data(const ::atom & atom) override
+      {
+
+         return ::user::impact::_get_data(atom);
 
       }
 

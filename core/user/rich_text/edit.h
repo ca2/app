@@ -1,8 +1,9 @@
 #pragma once
 
 
-#include "base/user/user/picture_interaction.h"
+#include "selection.h"
 #include "aura/user/user/text_composition_composite.h"
+#include "base/user/user/picture_interaction.h"
 
 
 namespace user
@@ -16,12 +17,27 @@ namespace user
       class CLASS_DECL_CORE edit :
          virtual public ::user::interaction,
          virtual public ::user::picture_interaction,
-         virtual public text_composition_composite
+         virtual public text_composition_composite,
+         virtual public ::user::rich_text::selection
 //#ifdef WINDOWS_DESKTOP
   //       , virtual public ::imm_client
 //#endif
       {
       public:
+         bool                             m_bPendingSelectionChange;
+
+         /// runtime span, ephemeral, derived
+/// should be easily rebuildable from "storage" data and a client rectangle_i32
+         pointer< pointer_array < line > >            m_plinea;
+         strsize                                      m_iSelBeg;
+         strsize                                      m_iSelEnd;
+         index                                        m_iSelLine;
+         class ::time                                 m_timeCaretPeriod;
+         //index                                      m_iFormatDefault;
+         bool                                         m_bCaretRight;
+         ::pointer < ::user::rich_text::data >        m_prichtextdataOwned;
+         bool                                         m_bShouldDrawOverride;
+         
 
 
          edit();
@@ -41,6 +57,13 @@ namespace user
          virtual bool get_element_rectangle(::rectangle_i32 * prectangle, index i, enum_element eelement);
 
 
+         ::user::drawable * get_drawable() override;
+
+         bool should_draw() override;
+
+         bool is_this_visible(enum_layout elayout = e_layout_design) override;
+
+
          virtual ::size_f64 get_size() override;
 
          virtual void do_layout();
@@ -54,6 +77,14 @@ namespace user
          virtual void update_placement() override;
 
 
+         virtual void on_selection_change(format * pformat);
+         virtual void get_selection_intersection_format(format * pformat, index iSelBeg, index iSelEnd);
+
+         virtual void _001SetSelFontFormat(const format * pformat, const e_attribute & eattribute);
+         virtual void _001InsertText(const ::string & psz, format * pformatParam = nullptr);
+         virtual void _001GetLayoutText(string & str) const;
+
+
          //virtual i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override
          //{
          //   return ::object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
@@ -62,6 +93,8 @@ namespace user
          //{
          //   return ::object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
          //}
+
+         ::data::data * _get_data(const ::atom & atom) override;
 
          virtual ::user::rich_text::data * get_rich_text_data();
 
@@ -73,21 +106,32 @@ namespace user
 
          virtual void _001OnDeleteText();
 
+         virtual ::rectangle_f64 get_drawing_rect();
+
+         virtual void internal_update_sel_char();
+
+         virtual void do_layout(::draw2d::graphics_pointer & pgraphics);
+
          virtual void on_selection_change();
 
-         virtual void install_message_routing(::channel * psender) override;
+         void install_message_routing(::channel * psender) override;
 
-         virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+         void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-         virtual void draw_impl(::draw2d::graphics_pointer & pgraphics) override;
+         void draw_impl(::draw2d::graphics_pointer & pgraphics) override;
 
-         ::pointer<format_tool>get_format_tool(bool bCreate);
+         virtual ::pointer<format_tool>get_format_tool(bool bCreate);
+
+         virtual ::user::rich_text::format_host * get_format_host();
+
+         ::pointer<::user::rich_text::format> get_selection_common_format() override;
 
          using ::user::interaction::_001GetText;
          void _001GetText(string & str) override;
          virtual void _001GetLayoutText(string & str);
 
-         virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+
+         void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
          DECLARE_MESSAGE_HANDLER(on_message_create);
          DECLARE_MESSAGE_HANDLER(on_message_destroy);
@@ -103,14 +147,14 @@ namespace user
          //DECLARE_MESSAGE_HANDLER(on_message_kill_focus);
 
 
-         virtual void _001OnTimer(::timer * ptimer) override;
+         void _001OnTimer(::timer * ptimer) override;
 
 
          virtual void key_to_char(::message::key * pkey);
 
-         virtual void on_set_keyboard_focus() override;
+         void on_set_keyboard_focus() override;
 
-         virtual void on_kill_keyboard_focus() override;
+         void on_kill_keyboard_focus() override;
 
          bool keyboard_focus_is_focusable() override;
 
@@ -120,6 +164,9 @@ namespace user
 
          void handle(::topic * ptopic, ::context * pcontext) override;
 
+         virtual void draw_text(::draw2d::graphics_pointer & pgraphics, const ::rectangle_f64 & rectangle);
+
+         virtual strsize _001GetLayoutTextLength() const;
 
          strsize _001GetTextLength() override;
 
@@ -136,7 +183,17 @@ namespace user
          bool edit_undo() override;
 
 
+         virtual strsize get_sel_beg();
+         virtual strsize get_sel_end();
+
+         virtual index SelToLine(strsize i);
+         virtual strsize LineColumnToSel(index iLine, strsize iColumn);
+
+
          bool has_text_input() override;
+
+         virtual strsize _hit_test(point_f64 point);
+         virtual strsize _hit_test_line_x(index iLine, double x);
 
 
       };

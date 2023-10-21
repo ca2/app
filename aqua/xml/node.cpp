@@ -431,7 +431,7 @@ namespace xml
 
             string strError;
 
-            strError.format("<%s> attr has error ", m_strName.c_str());
+            strError.formatf("<%s> attr has error ", m_strName.c_str());
 
             throw ::xml::exception(e_parse_error_attr_no_value, strError, pszStart);
 
@@ -658,12 +658,12 @@ namespace xml
 //            //   pparseinfo->m_bErrorOccur = true;
 //            //   pparseinfo->m_pszErrorPointer = xml;
 //            //   pparseinfo->m_eparseerror = e_parse_error_attr_no_value;
-//            //   pparseinfo->m_strError.format( "<%s> attr has error ", m_strName.c_str() );
+//            //   pparseinfo->m_strError.formatf( "<%s> attr has error ", m_strName.c_str() );
 //            //}
 //
 //            string strError;
 //
-//            strError.format("<%s> attr has error ", m_strName.c_str());
+//            strError.formatf("<%s> attr has error ", m_strName.c_str());
 //
 //            throw ::xml::exception(e_parse_error_attr_no_value, strError, rangeXml.m_begin);
 //
@@ -1175,12 +1175,12 @@ namespace xml
                   //   pparseinfo->m_bErrorOccur = true;
                   //   pparseinfo->m_pszErrorPointer = xml;
                   //   pparseinfo->m_eparseerror = e_parse_error_not_closed;
-                  //   pparseinfo->m_strError.format("%s must be closed with </%s>", m_strName.c_str() );
+                  //   pparseinfo->m_strError.formatf("%s must be closed with </%s>", m_strName.c_str() );
                   //}
 
                   string strError;
 
-                  strError.format(" % s must be closed with < / % s>", pnode->m_strName.c_str());
+                  strError.formatf(" % s must be closed with < / % s>", pnode->m_strName.c_str());
 
                   throw ::xml::exception(e_parse_error_not_closed, strError, pszStart);
 
@@ -1270,13 +1270,13 @@ namespace xml
                         //   pparseinfo->m_bErrorOccur = true;
                         //   pparseinfo->m_pszErrorPointer = xml;
                         //   pparseinfo->m_eparseerror = parse_error_not_closed;
-                        //   pparseinfo->m_strError.format("it must be closed with </%s>", m_strName.c_str() );
+                        //   pparseinfo->m_strError.formatf("it must be closed with </%s>", m_strName.c_str() );
                         //}
                         //// error
 
                         string strError;
 
-                        strError.format("it must be closed with </%s>", pnode->m_strName.c_str());
+                        strError.formatf("it must be closed with </%s>", pnode->m_strName.c_str());
 
                         throw ::xml::exception(e_parse_error_not_closed, strError, rangeXml.m_begin);
 
@@ -1306,12 +1306,12 @@ namespace xml
                            //   pparseinfo->m_bErrorOccur = true;
                            //   pparseinfo->m_pszErrorPointer = xml;
                            //   pparseinfo->m_eparseerror = e_parse_error_not_nested;
-                           //   pparseinfo->m_strError.format("'<%s> ... </%s>' is not wel-formed.", m_strName.c_str(), closename.c_str() );
+                           //   pparseinfo->m_strError.formatf("'<%s> ... </%s>' is not wel-formed.", m_strName.c_str(), closename.c_str() );
                            //}
 
                            string strError;
 
-                           strError.format("'<%s> ... </%s>' is not wel-formed.", pnode->m_strName.c_str(), closename.c_str());
+                           strError.formatf("'<%s> ... </%s>' is not wel-formed.", pnode->m_strName.c_str(), closename.c_str());
 
                            throw ::xml::exception(e_parse_error_not_nested, strError, pszStart);
 
@@ -1342,11 +1342,11 @@ namespace xml
                         //   pparseinfo->m_bErrorOccur = true;
                         //   pparseinfo->m_pszErrorPointer = xml;
                         //   pparseinfo->m_eparseerror = parse_error_not_closed;
-                        //   pparseinfo->m_strError.format("it must be closed with </%s>", m_strName.c_str() );
+                        //   pparseinfo->m_strError.formatf("it must be closed with </%s>", m_strName.c_str() );
                         //}
                         string strError;
 
-                        strError.format("it must be closed with </%s>", pnode->m_strName.c_str());
+                        strError.formatf("it must be closed with </%s>", pnode->m_strName.c_str());
 
                         throw ::xml::exception(e_parse_error_not_closed, strError, pszStart);
 

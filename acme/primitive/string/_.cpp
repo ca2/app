@@ -51,7 +51,7 @@ int debug_string_iterator()
 //
 //   va_start(argList, pszFormat);
 //
-//   str.format_arguments(pszFormat, argList);
+//   str.formatf_arguments(pszFormat, argList);
 //
 //   va_end(argList);
 //

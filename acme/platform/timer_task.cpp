@@ -108,7 +108,7 @@ void timer_task::start(const class time & timeWait, bool bPeriodic)
 
       m_bRunning = true;
 
-      m_strDebugNote.format("uEvent=%d", m_uEvent);
+      m_strDebugNote.formatf("uEvent=%d", m_uEvent);
 
       //auto pparent = m_ptimera->m_pobject;
 
@@ -124,7 +124,7 @@ void timer_task::start(const class time & timeWait, bool bPeriodic)
 
       //      string strFormat;
 
-      //      strFormat.format(",container: [% s", typeid(*playeredContainer).name());
+      //      strFormat.formatf(",container: [% s", typeid(*playeredContainer).name());
 
       //      m_strDebugNote += strFormat;
 
@@ -133,7 +133,7 @@ void timer_task::start(const class time & timeWait, bool bPeriodic)
       //      if (pcontextobjectContainer)
       //      {
 
-      //         strFormat.format(", atom = % s]", as_string(pcontextobjectContainer->m_atom).c_str());
+      //         strFormat.formatf(", atom = % s]", as_string(pcontextobjectContainer->m_atom).c_str());
       //         
       //         m_strDebugNote += strFormat;
 

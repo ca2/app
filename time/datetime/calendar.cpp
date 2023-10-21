@@ -139,17 +139,17 @@ namespace datetime
          string strDate;
          string strWeekDay;
          string strTime;
-         strDate.format(
+         strDate.formatf(
             "%d de %s de %d",
             time.day(),
             GetMonth(pcontext, time.month()),
             time.year());
          strWeekDay = GetWeekDay(pcontext, time.day_of_week());
-         strTime.format("%02d:%02d:%02d",
+         strTime.formatf("%02d:%02d:%02d",
             time.hour(),
             time.minute(),
             time.second());
-         strDateTime.format("%s %s, %s", strTime, strWeekDay, strDate);
+         strDateTime.formatf("%s %s, %s", strTime, strWeekDay, strDate);
       }
 
 

@@ -236,7 +236,7 @@ namespace user
 
          string strMessage;
 
-         strMessage.format("Warning: Dynamic create of frame %hs failed.\n\n(Does allocation was implemented)?", m_typeatomFrame.as_string().c_str());
+         strMessage.formatf("Warning: Dynamic create of frame %hs failed.\n\n(Does allocation was implemented)?", m_typeatomFrame.as_string().c_str());
 
          //message_box(strMessage);
 

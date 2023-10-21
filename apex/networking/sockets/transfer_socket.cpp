@@ -61,11 +61,11 @@ namespace sockets
    //{
    //   if (m_nError == 0)
    //   {
-   //      strError.format("%s error", m_strMessage);
+   //      strError.formatf("%s error", m_strMessage);
    //   }
    //   else
    //   {
-   //      strError.format("%s error 0x%08x", m_strMessage, m_nError);
+   //      strError.formatf("%s error 0x%08x", m_strMessage, m_nError);
    //   }
    //   return true;
    //}

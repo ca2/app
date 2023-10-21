@@ -1122,7 +1122,7 @@ pacmedirectory->localconfig() / "user.component";
 //   if (pdocument->filemanager_data()->m_strDataKey.is_empty())
 //   {
 
-//      pdocument->filemanager_data()->m_strDataKey.m_strDataKey.format("%s(%d)",
+//      pdocument->filemanager_data()->m_strDataKey.m_strDataKey.formatf("%s(%d)",
 //            psession->component().m_atomFileManager.str(),
 //            pdocument->filemanager_data()->m_iDocument);
 

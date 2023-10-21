@@ -2164,7 +2164,7 @@ namespace user
                string strText;
 
                // :%d will produce a maximum of 11 TCHARs
-               strText.format(":%d", m_nWindow);
+               strText.formatf(":%d", m_nWindow);
 
                WindowText += strText;
 
@@ -2193,7 +2193,7 @@ namespace user
                string strText;
 
                // :%d will produce a maximum of 11 TCHARs
-               strText.format(":%d", m_nWindow);
+               strText.formatf(":%d", m_nWindow);
 
                WindowText += strText;
 

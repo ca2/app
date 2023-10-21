@@ -2408,7 +2408,7 @@ namespace url
 //   }
 //   else
 //   {
-//      strChar.format("%02X", *psz);
+//      strChar.formatf("%02X", *psz);
 //      str += "%" + strChar.right(2);
 //   }
 //
@@ -2963,7 +2963,7 @@ CLASS_DECL_ACME string url::encode(const ::scoped_string & scopedstr)
 //   }
 //   else
 //   {
-//      strChar.format("%02X", *psz);
+//      strChar.formatf("%02X", *psz);
 //      str += "%" + strChar.right(2);
 //   }
 //

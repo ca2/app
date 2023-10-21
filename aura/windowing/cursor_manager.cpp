@@ -293,7 +293,7 @@ namespace windowing
 
          string strCursorName;
 
-         strCursorName.format("%s.png", pcursorpair->m_pszName);
+         strCursorName.formatf("%s.png", pcursorpair->m_pszName);
 
          if (set_cursor_file(pcursorpair->m_ecursor, pathDir / strCursorName, bFromCache))
          {

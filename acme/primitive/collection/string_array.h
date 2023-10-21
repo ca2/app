@@ -215,7 +215,7 @@ public:
 
       va_start(arguments, psz);
 
-      auto & str = this->add_new().format_arguments(psz, arguments);
+      auto & str = this->add_new().formatf_arguments(psz, arguments);
 
       va_end(arguments);
 

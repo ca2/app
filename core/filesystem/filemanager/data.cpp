@@ -264,7 +264,7 @@ namespace filemanager
 //      if(m_strDataKey.is_empty())
 //      {
 //
-//         m_strDataKey.format("%s", m_atom.str().c_str());
+//         m_strDataKey.formatf("%s", m_atom.str().c_str());
 //
 //      }
 //

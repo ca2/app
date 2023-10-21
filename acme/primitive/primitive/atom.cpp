@@ -35,7 +35,7 @@ bool is_filemanager_group(const ::atom & atom, const ::scoped_string & scopedstr
 
    string strFileManagerGroup;
 
-   strFileManagerGroup.format("file_manager_%s", scopedstrGroup.c_str());
+   strFileManagerGroup.formatf("file_manager_%s", scopedstrGroup.c_str());
 
    if(atom == strFileManagerGroup)
    {

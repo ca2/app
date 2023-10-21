@@ -116,7 +116,7 @@ namespace file
 
          string strException;
 
-         strException.format("path = \"%s\"\nstatus = \"%s\"\nstatus_code = (%" PRId64 ")\nos_error = \"%s\"", path.c_str(), psz, estatus.as_i64(), strErrorCodeMessage.c_str());
+         strException.formatf("path = \"%s\"\nstatus = \"%s\"\nstatus_code = (%" PRId64 ")\nos_error = \"%s\"", path.c_str(), psz, estatus.as_i64(), strErrorCodeMessage.c_str());
 
          m_strMessage += strException;
 
@@ -261,7 +261,7 @@ namespace file
 
       strExtra = get_last_error_message(m_lOsError);
 
-      strMessage.format("file error number: %d - %s - file: %s", m_cause, strExtra, strFileName);
+      strMessage.formatf("file error number: %d - %s - file: %s", m_cause, strExtra, strFileName);
 
       str = strMessage;
 
@@ -427,7 +427,7 @@ namespace file
 //
 //      string strFormat;
 //
-//      strFormat.format("file exception: %hs, file %s, App error information = %s (%ld).\n", psz, (path.is_empty()) ? "Unknown" : path.c_str(), FormatMessageFromSystem(lOsError).c_str(), lOsError);
+//      strFormat.formatf("file exception: %hs, file %s, App error information = %s (%ld).\n", psz, (path.is_empty()) ? "Unknown" : path.c_str(), FormatMessageFromSystem(lOsError).c_str(), lOsError);
 //
 //      ::acme::application* papp = ::get_app();
 //

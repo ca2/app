@@ -467,7 +467,7 @@ CLASS_DECL_ACME void _crypto_base64_decode(const char* enc_data, int length, ::u
 
                string str;
 
-               str.format("Illegal character '%ca' in input spfile->\n", uch);
+               str.formatf("Illegal character '%ca' in input spfile->\n", uch);
 
                //throw ::exception(io_exception(str));
                return false;
@@ -527,7 +527,7 @@ CLASS_DECL_ACME void _crypto_base64_decode(const char* enc_data, int length, ::u
 
                string str;
 
-               str.format("Illegal character '%ca' in input spfile->\n", uch);
+               str.formatf("Illegal character '%ca' in input spfile->\n", uch);
 
                //throw ::exception(io_exception(str));
                return -1;

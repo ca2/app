@@ -752,7 +752,7 @@ pacmedirectory->create("/var/tmp/ca2/intermediate");
       //if(!pcontext->m_papexcontext->file()->exists(lib->m_strSourcePath))
       //{
       //   lib->m_memfileError << "<pre>";
-      //   str.format("Source File : \"%s\" does not exist",lib->m_strSourcePath);
+      //   str.formatf("Source File : \"%s\" does not exist",lib->m_strSourcePath);
       //   lib->m_memfileError << str;
       //   lib->m_memfileError << "</pre>";
       //   return;
@@ -804,7 +804,7 @@ pacmedirectory->create("/var/tmp/ca2/intermediate");
       //lib->m_strBuildBat = strB;
       //m_pathScript = m_pmanager->get_script_path(strName);
       //#else
-      // lib->m_strLibraryPath.format(dir()->install(m_strDynamicSourceStage /" Release\\%s.dll"), strName);
+      // lib->m_strLibraryPath.formatf(dir()->install(m_strDynamicSourceStage /" Release\\%s.dll"), strName);
       //#endif
 
       try
@@ -1044,9 +1044,9 @@ pacmedirectory->create("/var/tmp/ca2/intermediate");
 #if defined(LINUX) || defined(FREEBSD)
       strBuildCmd = dir()->install() / "operating_system/operating_system-linux/stage/_introjection" / m_strApp / (m_strDynamicSourceConfiguration + "_c" + m_pintegrationcontext->m_strPlatform + ".bash");
 #elif defined(__APPLE__)
-      strBuildCmd.format(dir()->install() / "operating_system/operating_system-macos/_stage/introjection" / m_strApp / (m_strDynamicSourceConfiguration + "_c" + m_pintegrationcontext->m_strPlatform + ".bat"));
+      strBuildCmd.formatf(dir()->install() / "operating_system/operating_system-macos/_stage/introjection" / m_strApp / (m_strDynamicSourceConfiguration + "_c" + m_pintegrationcontext->m_strPlatform + ".bat"));
 #else
-      strBuildCmd.format(dir()->install() / "operating_system/operating_system-windows/_stage/introjection" / m_strApp / m_pintegrationcontext->payload("vstools").as_string() / (m_strDynamicSourceConfiguration + "_c_" + m_pintegrationcontext->m_strPlatform + ".bat"));
+      strBuildCmd.formatf(dir()->install() / "operating_system/operating_system-windows/_stage/introjection" / m_strApp / m_pintegrationcontext->payload("vstools").as_string() / (m_strDynamicSourceConfiguration + "_c_" + m_pintegrationcontext->m_strPlatform + ".bat"));
 #endif
 
       str = pcontext->m_papexcontext->file()->as_string(strBuildCmd);
@@ -1264,9 +1264,9 @@ auto tickStart = ::time::now();
 #ifndef MACOS
 
 #if defined(LINUX) || defined(FREEBSD)
-         strBuildCmd.format(dir()->install() / "operating_system/operating_system-linux/_stage/introjection" / m_strApp / (m_strDynamicSourceConfiguration + "_l" + m_pintegrationcontext->m_strPlatform + ".bash"));
+         strBuildCmd.formatf(dir()->install() / "operating_system/operating_system-linux/_stage/introjection" / m_strApp / (m_strDynamicSourceConfiguration + "_l" + m_pintegrationcontext->m_strPlatform + ".bash"));
 #else
-         strBuildCmd.format(dir()->install() / "operating_system/operating_system-windows/_stage/introjection" / m_strApp / m_pintegrationcontext->payload("vstools").as_string() / (m_strDynamicSourceConfiguration + "_l_" + m_pintegrationcontext->m_strPlatform + ".bat"));
+         strBuildCmd.formatf(dir()->install() / "operating_system/operating_system-windows/_stage/introjection" / m_strApp / m_pintegrationcontext->payload("vstools").as_string() / (m_strDynamicSourceConfiguration + "_l_" + m_pintegrationcontext->m_strPlatform + ".bat"));
 #endif
 
          str = pcontext->m_papexcontext->file()->as_string(strBuildCmd);

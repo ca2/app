@@ -1256,13 +1256,13 @@ public:
    string_base left_skipping_any_character_in(const SCOPED_STRING & scopedstrCharSet) const;
 
 
-   string_base & format(const CHARACTER * pszFormat, ...);
+   string_base & formatf(const CHARACTER * pszFormat, ...);
 
-   string_base & format_arguments(const CHARACTER * pszFormat, va_list args);
+   string_base & formatf_arguments(const CHARACTER * pszFormat, va_list args);
 
-   string_base & append_format(const CHARACTER * pszFormat, ...);
+   string_base & append_formatf(const CHARACTER * pszFormat, ...);
 
-   string_base & append_format_arguments(const CHARACTER * pszFormat, va_list args);
+   string_base & append_formatf_arguments(const CHARACTER * pszFormat, va_list args);
 
    //void FormatMessage(const CHARACTER * pszFormat, ...);
 

@@ -78,7 +78,7 @@ CLASS_DECL_ACME ::string as_string(::enum_display edisplay)
       default:
       {
          ::string str;
-         str.format("unknown e_display %d", (iptr) edisplay);
+         str.formatf("unknown e_display %d", (iptr) edisplay);
          return str;
       }
 
@@ -123,7 +123,7 @@ CLASS_DECL_ACME ::string as_string(::enum_activation eactivation)
    }
    if(str.is_empty())
    {
-      str.format("unknown e_display %d", (iptr) eactivation);
+      str.formatf("unknown e_display %d", (iptr) eactivation);
    }
    else
    {

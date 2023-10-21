@@ -516,7 +516,7 @@ string LiteHTMLElemAttr::getColorHexValue(::lite_html_reader * preader) const
       ::color::color crTemp = getColorValue(preader);
 
       if (crTemp != 0xffffffff)
-         strColorHex.format("#%06x", crTemp.m_u32);
+         strColorHex.formatf("#%06x", crTemp.m_u32);
 
    }
 

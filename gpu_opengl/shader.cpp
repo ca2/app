@@ -313,7 +313,7 @@ namespace opengl
       if (success)
       {
 
-         strSummary.format("SUCCESS::SHADER_COMPILATION (%s) \n -- --------------------------------------------------- -- \n", shader_type_c_str(type));
+         strSummary.formatf("SUCCESS::SHADER_COMPILATION (%s) \n -- --------------------------------------------------- -- \n", shader_type_c_str(type));
 
       }
       else
@@ -325,7 +325,7 @@ namespace opengl
 
          const char * pszLog = infoLog;
 
-         strSummary.format("error::SHADER_COMPILATION_ERROR of type: %s \n %s \n -- --------------------------------------------------- -- \n", psz, pszLog);
+         strSummary.formatf("error::SHADER_COMPILATION_ERROR of type: %s \n %s \n -- --------------------------------------------------- -- \n", psz, pszLog);
 
          warning() << strSummary;
 
@@ -354,7 +354,7 @@ namespace opengl
       if (success)
       {
 
-         strSummary.format("SUCCESS::PROGRAM_LINKING \n -- --------------------------------------------------- -- \n");
+         strSummary.formatf("SUCCESS::PROGRAM_LINKING \n -- --------------------------------------------------- -- \n");
 
       }
       else
@@ -362,7 +362,7 @@ namespace opengl
 
          glGetProgramInfoLog(program, sizeof(infoLog), NULL, infoLog);
 
-         strSummary.format("error::PROGRAM_LINKING_ERROR : \n %s \n -- --------------------------------------------------- -- \n", infoLog);
+         strSummary.formatf("error::PROGRAM_LINKING_ERROR : \n %s \n -- --------------------------------------------------- -- \n", infoLog);
 
          throw ::exception(error_failed);
 

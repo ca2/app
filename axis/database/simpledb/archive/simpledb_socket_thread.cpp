@@ -113,7 +113,7 @@ namespace simpledb
                   if (ll.Bind(m_strIp, (port_t) m_iPort))
                   {
                      string strMessage;
-                     strMessage.format("could not bind to address %s %d", m_strIp, m_iPort);
+                     strMessage.formatf("could not bind to address %s %d", m_strIp, m_iPort);
                      information(strMessage);
                      //message_box(nullptr, strMessage);
                      return;

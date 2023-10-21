@@ -222,7 +222,7 @@ int __cdecl debug_report(int iType, char const* psz, int iLine, char const* pszM
    string strExtra;
    va_list argList;
    va_start(argList, pszFormat);
-   strExtra.format(pszFormat, argList);
+   strExtra.formatf(pszFormat, argList);
    va_end(argList);
 
    string strModule;
@@ -230,7 +230,7 @@ int __cdecl debug_report(int iType, char const* psz, int iLine, char const* pszM
    if (pszModuleName != nullptr && *pszModuleName != '\0')
    {
 
-      strModule.format("%s: ", pszModuleName);
+      strModule.formatf("%s: ", pszModuleName);
 
    }
 
@@ -253,7 +253,7 @@ int __cdecl debug_report(int iType, wchar_t const* pszFile, int iLine, wchar_t c
    string strFormat;
    strFormat = pszFormat;
    strFormat.replace_with("%S", "%s");
-   strExtra.format(strFormat.c_str(), argList);
+   strExtra.formatf(strFormat.c_str(), argList);
    va_end(argList);
 
    string strModule;
@@ -263,7 +263,7 @@ int __cdecl debug_report(int iType, wchar_t const* pszFile, int iLine, wchar_t c
    if (pszModuleName != nullptr && *pszModuleName != '\0')
    {
 
-      strModule.format("%S: ", pszModuleName);
+      strModule.formatf("%S: ", pszModuleName);
 
    }
 

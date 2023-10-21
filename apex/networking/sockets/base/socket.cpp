@@ -361,7 +361,7 @@ namespace sockets
    //      
    //       //string strTopicText;
 
-   //       //strTopicText.format("socket_%d> ", s);
+   //       //strTopicText.formatf("socket_%d> ", s);
 
    //       //set_topic_text(strTopicText);
 

@@ -148,7 +148,7 @@ namespace userex
 
          string str;
 
-         str.format("%d", time.integral_second());
+         str.formatf("%d", time.integral_second());
 
          pinteraction->_001SetText(str, ::e_source_sync);
 

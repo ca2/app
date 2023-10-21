@@ -330,7 +330,7 @@ namespace api_ca2
 
       string strAppLogin;
 
-      strAppLogin.format("http://127.0.0.1:%d/%s/", iCurrentPort, strAppId.c_str());
+      strAppLogin.formatf("http://127.0.0.1:%d/%s/", iCurrentPort, strAppId.c_str());
 
       return strAppLogin;
 

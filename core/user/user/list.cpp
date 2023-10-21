@@ -4757,7 +4757,7 @@ namespace user
       //for (i = 0; i < m_pcolumna->get_count(); i++)
       //{
 
-      //   str.format("list_column[%d].width", i);
+      //   str.formatf("list_column[%d].width", i);
 
       //   //width = m_pcolumna->element_at(i)->m_iWidth;
 
@@ -4799,7 +4799,7 @@ namespace user
 
       string str;
 
-      str.format("SubItem[%d].Visible", iSubItem);
+      str.formatf("SubItem[%d].Visible", iSubItem);
 
       //datastream()->set(str, bShow ? 1 : 0);
 
@@ -5421,7 +5421,7 @@ namespace user
 //
 //         list_column * pcolumn = element_at(i);
 //
-//         str.format("list_column[%d].Next", i);
+//         str.formatf("list_column[%d].Next", i);
 //
 //         //m_plist->datastream()->set(str, pcolumn->m_iOrder);
 //
@@ -5442,7 +5442,7 @@ namespace user
 //
 //         list_column * pcolumn = element_at(i);
 //
-//         str.format("list_column[%d].Next", i);
+//         str.formatf("list_column[%d].Next", i);
 //
 //         //m_plist->datastream()->get(str, pcolumn->m_iOrder);
 //

@@ -98,7 +98,7 @@ string _ansi_stack_trace(void *const *ppui, int frames, const char *pszFormat, i
       
       apple_backtrace_symbol_parse(strSymbolName, strAddress, pmessage, ppui[i]);
 
-      strLine.format("%02d : %s : %s\n", frames - i - 1, strAddress.c_str(), strSymbolName.c_str());
+      strLine.formatf("%02d : %s : %s\n", frames - i - 1, strAddress.c_str(), strSymbolName.c_str());
 
 #elif defined(FREEBSD)
 
@@ -106,13 +106,13 @@ string _ansi_stack_trace(void *const *ppui, int frames, const char *pszFormat, i
 
       freebsd_backtrace_symbol_parse(strSymbolName, strModule, strAddress, pmessage, ppui[i]);
 
-      strLine.format("%02d : %s : %s (%s)\n", frames - i - 1, strAddress.c_str(), strSymbolName.c_str(), strModule.c_str());
+      strLine.formatf("%02d : %s : %s (%s)\n", frames - i - 1, strAddress.c_str(), strSymbolName.c_str(), strModule.c_str());
 
 #else
       
       backtrace_symbol_parse(strSymbolName, strAddress, pmessage, ppui[i]);
       
-      strLine.format("%02d : %s : %s\n", frames - i - 1, strAddress.c_str(), strSymbolName.c_str());
+      strLine.formatf("%02d : %s : %s\n", frames - i - 1, strAddress.c_str(), strSymbolName.c_str());
 
 #endif
 

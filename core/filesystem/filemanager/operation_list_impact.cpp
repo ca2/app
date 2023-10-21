@@ -71,7 +71,7 @@ namespace filemanager
          
          d = get_document()->m_poperationthread->get_item_progress((i32)psubitem->m_pitem->m_iItem);
 
-         psubitem->m_strText.format("%0.1f%%",d * 100.0);
+         psubitem->m_strText.formatf("%0.1f%%",d * 100.0);
 
          psubitem->m_bOk = true;
 

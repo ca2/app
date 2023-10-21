@@ -118,7 +118,7 @@ namespace write_text
 
          string str;
 
-         str.format("item:ARGB(%d,%d,%d,%d):%d, %d, %s",
+         str.formatf("item:ARGB(%d,%d,%d,%d):%d, %d, %s",
             uForegroundColor.m_u8Opacity,
             uForegroundColor.m_u8Red,
             uForegroundColor.m_u8Green,

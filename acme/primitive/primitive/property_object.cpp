@@ -138,7 +138,7 @@ CLASS_DECL_ACME void debug_debug_reference()
 //
 //      string str;
 //
-//      str.format("%s wparam=0x%" PRIxPTR " lparam=0x%" PRIxPTR, get_message_text(message, true).c_str(), wparam, lparam);
+//      str.formatf("%s wparam=0x%" PRIxPTR " lparam=0x%" PRIxPTR, get_message_text(message, true).c_str(), wparam, lparam);
 //
 //      information(str);
 //
@@ -154,7 +154,7 @@ CLASS_DECL_ACME void debug_debug_reference()
 //
 //      const ::scoped_string & scopedstrMessageText = strMessageText;
 //
-//      str.format("%s %" PRIxPTR " %" PRIxPTR, strMessageText.c_str(), wparam, lparam);
+//      str.formatf("%s %" PRIxPTR " %" PRIxPTR, strMessageText.c_str(), wparam, lparam);
 //
 //      information(str);
 //

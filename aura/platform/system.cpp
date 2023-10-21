@@ -4460,7 +4460,7 @@ namespace aura
    //string system::get_local_mutex_name(const ::string & pszAppName)
    //{
    //   string strMutex;
-   //   strMutex.format("Local\\ca2_application_local_mutex:%s", pszAppName);
+   //   strMutex.formatf("Local\\ca2_application_local_mutex:%s", pszAppName);
    //   return strMutex;
    //}
 
@@ -4468,14 +4468,14 @@ namespace aura
    //{
    //   string strId(pszId);
    //   string strMutex;
-   //   strMutex.format("Local\\ca2_application_local_mutex:%s, atom:%s", pszAppName, strId.c_str());
+   //   strMutex.formatf("Local\\ca2_application_local_mutex:%s, atom:%s", pszAppName, strId.c_str());
    //   return strMutex;
    //}
 
    //string system::get_global_mutex_name(const ::string & pszAppName)
    //{
    //   string strMutex;
-   //   strMutex.format("Global\\ca2_application_global_mutex:%s", pszAppName);
+   //   strMutex.formatf("Global\\ca2_application_global_mutex:%s", pszAppName);
    //   return strMutex;
    //}
 
@@ -4483,7 +4483,7 @@ namespace aura
    //{
    //   string strId(pszId);
    //   string strMutex;
-   //   strMutex.format("Global\\ca2_application_global_mutex:%s, atom:%s", pszAppName, strId.c_str());
+   //   strMutex.formatf("Global\\ca2_application_global_mutex:%s, atom:%s", pszAppName, strId.c_str());
    //   return strMutex;
    //}
 
@@ -5980,7 +5980,7 @@ namespace aura
 
       string strMessage;
 
-      strMessage.format("system::on_allocation_error Implement \"%s\" allocation\n", str.c_str());
+      strMessage.formatf("system::on_allocation_error Implement \"%s\" allocation\n", str.c_str());
 
       dev_log(strMessage);
 

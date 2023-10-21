@@ -76,7 +76,7 @@ namespace aura
 
          string str;
 
-         str.format(pszFormat, args);
+         str.formatf(pszFormat, args);
 
          ::information(str);
 
@@ -115,7 +115,7 @@ namespace aura
 
          string str;
 
-         str.format(pszFmt, args);
+         str.formatf(pszFmt, args);
 
          ::information(str);
 
@@ -404,13 +404,13 @@ CLASS_DECL_AURA void __simple_tracea(::particle * pparticle, enum_trace_level el
 
       strTopic.case_insensitive_begins_eat("struct ");
 
-      strMessage.format("%c:%s> %s", e_trace_level_char(elevel), strTopic.c_str(), psz);
+      strMessage.formatf("%c:%s> %s", e_trace_level_char(elevel), strTopic.c_str(), psz);
 
    }
    else
    {
 
-      strMessage.format("%c> %s", e_trace_level_char(elevel), psz);
+      strMessage.formatf("%c> %s", e_trace_level_char(elevel), psz);
 
    }
 
@@ -468,7 +468,7 @@ CLASS_DECL_AURA void __simple_tracev(::particle * pparticle, enum_trace_level el
 
    string strMessage;
 
-   strMessage.format_arguments(pszFormat, args);
+   strMessage.formatf_arguments(pszFormat, args);
 
    __simple_tracea(pparticle, elevel, pszFunction, pszFileName, iLine, strMessage);
 

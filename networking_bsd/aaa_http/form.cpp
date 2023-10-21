@@ -264,7 +264,7 @@ namespace http
 
                         strTime = ::earth::format("%Y\\%m\\%d\\%H\\%M\\%S\\", t);
 
-                        strIndex.format("%08x\\", i);
+                        strIndex.formatf("%08x\\", i);
 
                         strTempFile = "C:\\upload\\" + strTime + strIndex + current_filename;
 

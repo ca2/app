@@ -3220,7 +3220,7 @@ string & payload::string_reference()
 
          ::string str;
 
-         str.format("%f", m_f32);
+         str.formatf("%f", m_f32);
 
          atom = str;
 
@@ -3230,7 +3230,7 @@ string & payload::string_reference()
 
          ::string str;
 
-         str.format("%f", m_f64);
+         str.formatf("%f", m_f64);
 
          atom = str;
 
@@ -8337,7 +8337,7 @@ string & payload::get_network_payload(::string & str, bool bNewLine) const
 
       ::string strHls;
 
-      strHls.format("\"hls://%f32:%f32:%f32\"", m_hls.m_dH, m_hls.m_dL, m_hls.m_dS);
+      strHls.formatf("\"hls://%f32:%f32:%f32\"", m_hls.m_dH, m_hls.m_dL, m_hls.m_dS);
 
       str += strHls;
 

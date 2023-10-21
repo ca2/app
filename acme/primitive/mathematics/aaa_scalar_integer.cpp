@@ -474,7 +474,7 @@ string integer_scalar::printf(const ::string& strFormat)
 
    ::string str;
 
-   str.format(strFormat, get());
+   str.formatf(strFormat, get());
 
    return str;
 

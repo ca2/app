@@ -35,16 +35,16 @@ summary::~summary()
    
    ::string strSummary;
    
-   strSummary.append_format("__SYSTEM_DISTRO is %s", m_strDistro.c_str());
-   strSummary.append_format("__SYSTEM_DISTRO_FAMILY is %s", m_strDistroFamily.c_str());
-   strSummary.append_format("__SYSTEM_DISTRO_BRANCH is %s", m_strDistroBranch.c_str());
-   strSummary.append_format("__SYSTEM_DISTRO_RELEASE is %s", m_strDistroRelease.c_str());
-   strSummary.append_format("__SYSTEM_DESKTOP_ENVIRONMENT is %s", m_strDesktopEnvironment.c_str());
-   strSummary.append_format("__SYSTEM_SLASHED_STORE is %s", m_strSlashedStore.c_str());
-   strSummary.append_format("__SYSTEM_SLASHED_INTEGRATION is %s", m_strSlashedIntegration.c_str());
-   strSummary.append_format("__SYSTEM_UNDERSCORE_OPERATING_SYSTEM is %s", m_strUnderscoreOperatingSystem.c_str());
-   strSummary.append_format("__SYSTEM_SUDO_INSTALL is %s", m_strSudoInstall.c_str());
-   strSummary.append_format("__SYSTEM_STANDARD_PACKAGE_FILE_EXTENSION is %s", m_strStandardPackageFileExtension.c_str());
+   strSummary.append_formatf("__SYSTEM_DISTRO is %s", m_strDistro.c_str());
+   strSummary.append_formatf("__SYSTEM_DISTRO_FAMILY is %s", m_strDistroFamily.c_str());
+   strSummary.append_formatf("__SYSTEM_DISTRO_BRANCH is %s", m_strDistroBranch.c_str());
+   strSummary.append_formatf("__SYSTEM_DISTRO_RELEASE is %s", m_strDistroRelease.c_str());
+   strSummary.append_formatf("__SYSTEM_DESKTOP_ENVIRONMENT is %s", m_strDesktopEnvironment.c_str());
+   strSummary.append_formatf("__SYSTEM_SLASHED_STORE is %s", m_strSlashedStore.c_str());
+   strSummary.append_formatf("__SYSTEM_SLASHED_INTEGRATION is %s", m_strSlashedIntegration.c_str());
+   strSummary.append_formatf("__SYSTEM_UNDERSCORE_OPERATING_SYSTEM is %s", m_strUnderscoreOperatingSystem.c_str());
+   strSummary.append_formatf("__SYSTEM_SUDO_INSTALL is %s", m_strSudoInstall.c_str());
+   strSummary.append_formatf("__SYSTEM_STANDARD_PACKAGE_FILE_EXTENSION is %s", m_strStandardPackageFileExtension.c_str());
    
    return strSummary;
    

@@ -3630,7 +3630,7 @@ bool object::IsSerializable() const
 //   {
 //
 //      string str;
-//      str.format_arguments(psz, valist);
+//      str.formatf_arguments(psz, valist);
 //      set_topic_text(str);
 //
 //   }

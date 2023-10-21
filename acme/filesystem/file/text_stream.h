@@ -323,7 +323,7 @@ public:
 //
 //   string str;
 //
-//   str.format("%f", f);
+//   str.formatf("%f", f);
 //
 //   print_number(str);
 //
@@ -338,7 +338,7 @@ public:
 //
 //   string str;
 //
-//   str.format("%f", d);
+//   str.formatf("%f", d);
 //
 //   print_number(as_string(d));
 //

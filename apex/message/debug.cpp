@@ -138,7 +138,7 @@
 //#endif
 //else
 //{
-//str.format("message 0x%04x (%d)", uMessage, uMessage);
+//str.formatf("message 0x%04x (%d)", uMessage, uMessage);
 //
 //return str;
 //
@@ -153,7 +153,7 @@
 //
 // string strNumbers;
 //
-// strNumbers.format("%s 0x%04x (%d)", str.c_str(), uMessage, uMessage);
+// strNumbers.formatf("%s 0x%04x (%d)", str.c_str(), uMessage, uMessage);
 //
 // return strNumbers;
 //

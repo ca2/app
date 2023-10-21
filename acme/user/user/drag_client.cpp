@@ -192,7 +192,7 @@ namespace user
             //auto integral_milliseconds = integral_millisecond(now_t{});
 
             //string str;
-            //str.format("e_mouse_move=-=%lldms\n", integral_milliseconds.m_i);
+            //str.formatf("e_mouse_move=-=%lldms\n", integral_milliseconds.m_i);
 
             //information(str);
 

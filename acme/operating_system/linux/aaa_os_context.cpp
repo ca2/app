@@ -583,7 +583,7 @@ namespace linux
             registry::Key keyLink1(keyLink2, "command", true);
 
             string strFormat;
-            strFormat.format("\"%s\" \"%%L\" %s", pszCommand, pszParam);
+            strFormat.formatf("\"%s\" \"%%L\" %s", pszCommand, pszParam);
             keyLink1.SetValue(nullptr, strFormat);
 
             return true;

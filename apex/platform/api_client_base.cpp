@@ -47,7 +47,7 @@ api_client_base::~api_client_base()
    while (true)
    {
 
-      strProfile.format("new_profile_%d", iProfile);
+      strProfile.formatf("new_profile_%d", iProfile);
 
       pathProfile = m_pathFolder / strProfile;
 

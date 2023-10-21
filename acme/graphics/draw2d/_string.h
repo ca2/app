@@ -7,7 +7,7 @@ inline string hex_color(const ::color::color & color)
 
    string str;
 
-   str.format("%02x%02x%02x", color.u8_red(), color.u8_green(), color.u8_blue());
+   str.formatf("%02x%02x%02x", color.u8_red(), color.u8_green(), color.u8_blue());
 
    return str;
 

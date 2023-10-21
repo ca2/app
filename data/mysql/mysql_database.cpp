@@ -213,7 +213,7 @@ namespace mysql
       }
       else
       {
-         strFormat.format(
+         strFormat.formatf(
             "mysql error => %u (%s): %s\n",
             mysql_errno((MYSQL*)m_pmysql),
             mysql_sqlstate((MYSQL*)m_pmysql),
@@ -797,7 +797,7 @@ namespace mysql
    //::payload database::query_table_item(const ::string & table, const ::string & item, const ::string & where, ::payload notfound)
    //{
    //   string strSql;
-   //   strSql.format("SELECT `%s` FROM `%s` WHERE %s", item, table, where);
+   //   strSql.formatf("SELECT `%s` FROM `%s` WHERE %s", item, table, where);
    //   return database_impl::query_item(strSql, notfound);
    //}
 

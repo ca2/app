@@ -410,7 +410,7 @@ inline string get_default_integer_scalar_format()
 //
 //      string str;
 //
-//      str.format(strFormat,f);
+//      str.formatf(strFormat,f);
 //
 //      return str;
 //

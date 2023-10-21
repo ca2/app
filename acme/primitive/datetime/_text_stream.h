@@ -13,7 +13,7 @@ inline ::write_text_stream & operator <<(::write_text_stream & textstream, const
 
    ::string strTime;
    
-   strTime.format("%04d-%02d-%02d %02d:%02d:%02d",
+   strTime.formatf("%04d-%02d-%02d %02d:%02d:%02d",
               time.year(),
               time.month(),
               time.day(),

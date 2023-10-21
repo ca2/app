@@ -53,7 +53,7 @@ void dumpBacktrace(string & str, void ** buffer, size_t count)
       }
 
       string strLine;
-      strLine.format("#02%d: 0x%" PRIXPTR " %s\n", idx, addr, symbol);
+      strLine.formatf("#02%d: 0x%" PRIXPTR " %s\n", idx, addr, symbol);
       str += strLine;
 
       // os << "  #" << std::setw(2) << idx << ": " << addr << "  " << symbol << "\n";

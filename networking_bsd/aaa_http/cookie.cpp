@@ -322,7 +322,7 @@ namespace http
                                };
       string strDateTime;
 
-      strDateTime.format("%s, %02d-%s-%04d %02d:%02d:%02d GMT",
+      strDateTime.formatf("%s, %02d-%s-%04d %02d:%02d:%02d GMT",
          days[tmstruct.tm_wday],
          tmstruct.tm_mday,
          months[tmstruct.tm_mon],

@@ -115,7 +115,7 @@ namespace hotplugin
 
       string strProgress;
 
-      strProgress.format("%0.3f%%",dRate * 100.0);
+      strProgress.formatf("%0.3f%%",dRate * 100.0);
 
       rectangleBar.left() +=4;
 

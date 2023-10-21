@@ -2359,7 +2359,7 @@ return false;
 
        string strMutex;
 
-       strMutex.format("Local\\%s", strApp.c_str());
+       strMutex.formatf("Local\\%s", strApp.c_str());
 
        return strMutex;
 
@@ -2379,7 +2379,7 @@ return false;
 
        string strMutex;
 
-       strMutex.format("Local\\%s, atom:%s", strApp.c_str(), strId.c_str());
+       strMutex.formatf("Local\\%s, atom:%s", strApp.c_str(), strId.c_str());
 
        return strMutex;
 
@@ -2399,7 +2399,7 @@ return false;
 
        string strMutex;
 
-       strMutex.format("Global\\%s", strApp.c_str());
+       strMutex.formatf("Global\\%s", strApp.c_str());
 
        return strMutex;
 
@@ -2419,7 +2419,7 @@ return false;
 
        string strMutex;
 
-       strMutex.format("Global\\%s, atom:%s", strApp.c_str(), strId.c_str());
+       strMutex.formatf("Global\\%s, atom:%s", strApp.c_str(), strId.c_str());
 
        return strMutex;
 
@@ -3124,7 +3124,7 @@ return false;
 
          ::string strCommand;
 
-         strCommand.format("command -v %s", scopedstrCommand.c_str());
+         strCommand.formatf("command -v %s", scopedstrCommand.c_str());
 
          auto iExitCode = unix_shell_command(strCommand);
 
@@ -3162,7 +3162,7 @@ return false;
 //
 //         strCommandInner.find_replace("\"", "\\\"");
 //
-//         strCommand.format("\"%s\" -c \"%s\"", strUnixShell.c_str(), strCommandInner.c_str());
+//         strCommand.formatf("\"%s\" -c \"%s\"", strUnixShell.c_str(), strCommandInner.c_str());
 //
 //         auto iExitCode = acmenode()->command_system(strCommand);
 //

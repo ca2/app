@@ -79,7 +79,7 @@ namespace netserver
 
          string strMessage;
 
-         strMessage.format("Invalid address \"%s\" or invalid port range", m_strIp.c_str());
+         strMessage.formatf("Invalid address \"%s\" or invalid port range", m_strIp.c_str());
 
          information(strMessage);
 
@@ -129,7 +129,7 @@ namespace netserver
 
                      string strMessage;
 
-                     strMessage.format("\n\netserver::socket_thread_base::run Couldn't bind to address %s!!\n\n", m_strIp.c_str());
+                     strMessage.formatf("\n\netserver::socket_thread_base::run Couldn't bind to address %s!!\n\n", m_strIp.c_str());
 
                      information(strMessage);
 

@@ -729,7 +729,7 @@ namespace file
 
       va_start(list, format);
 
-      strFormat.format(format, list);
+      strFormat.formatf(format, list);
 
       va_end(list);
 

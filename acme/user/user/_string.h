@@ -60,7 +60,7 @@ CLASS_DECL_ACME ::string as_string(enum_cursor ecursor);
 //default:
 //{
 //::string str;
-//str.format("unknown e_display %d", (iptr) edisplay.m_eenum);
+//str.formatf("unknown e_display %d", (iptr) edisplay.m_eenum);
 //textstream << str;
 //}
 //

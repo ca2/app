@@ -107,7 +107,7 @@ i32 context_image::create_image_integer(int w, int h, const image32_t * pimage32
 
    string strPath;
 
-   strPath.format("image_pointer://%016" PRIxPTR, pimage.m_p);
+   strPath.formatf("image_pointer://%016" PRIxPTR, pimage.m_p);
 
    synchronous_lock  synchronouslock(this->synchronization());
 

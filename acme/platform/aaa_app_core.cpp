@@ -369,7 +369,7 @@ void app_core::system_init()
 //
 //         string strError;
 //
-//         strError.format("errno=%d uid=%d", iErr);
+//         strError.formatf("errno=%d uid=%d", iErr);
 //
 //         //message_box(strError, "seteuid failed", e_message_box_icon_exclamation);
 //

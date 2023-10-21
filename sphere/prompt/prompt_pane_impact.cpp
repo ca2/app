@@ -360,7 +360,7 @@ namespace prompt
 
          //string str;
 
-         //str.format("%d", i);
+         //str.formatf("%d", i);
 
          ////message_box(str);
 

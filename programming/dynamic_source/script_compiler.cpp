@@ -359,14 +359,14 @@ namespace dynamic_source
       }
       else
       {
-         pscript->m_strSourcePath.format(m_pmanager->m_strNetnodePath / "net\\%s",strName.c_str());
+         pscript->m_strSourcePath.formatf(m_pmanager->m_strNetnodePath / "net\\%s",strName.c_str());
       }
       pscript->m_strSourceDir = pscript->m_strSourcePath.folder();
 
       if(!file()->exists(pscript->m_strSourcePath))
       {
          ostreamError << "<pre>";
-         str.format("Source File : \"%s\" does not exist",pscript->m_strSourcePath.c_str());
+         str.formatf("Source File : \"%s\" does not exist",pscript->m_strSourcePath.c_str());
          ostreamError << str;
          ostreamError << "</pre>";
          return;
@@ -392,7 +392,7 @@ namespace dynamic_source
 
       string strTime = m_pathTime;
 
-      pscript->m_strCppPath.format(m_pathTime / "dynamic_source\\%s.cpp",strTransformName.c_str());
+      pscript->m_strCppPath.formatf(m_pathTime / "dynamic_source\\%s.cpp",strTransformName.c_str());
 
       auto pathCa2Root = dir()->install();
 
@@ -411,15 +411,15 @@ namespace dynamic_source
 
       }
 
-      strClog.format(m_pathTime / "dynamic_source/%s-compile-log-%s.txt",strTransformName.c_str(), strCompileLogUnique.c_str());
-      strLlog.format(m_pathTime / "dynamic_source/%s-link-log.txt",strTransformName.c_str());
+      strClog.formatf(m_pathTime / "dynamic_source/%s-compile-log-%s.txt",strTransformName.c_str(), strCompileLogUnique.c_str());
+      strLlog.formatf(m_pathTime / "dynamic_source/%s-link-log.txt",strTransformName.c_str());
 
       string strPathCompiler;
-      strPathCompiler.format(m_pathTime / "dynamic_source/%s-compiler.txt", strTransformName.c_str());
+      strPathCompiler.formatf(m_pathTime / "dynamic_source/%s-compiler.txt", strTransformName.c_str());
       ::file::path pathCompiler(strPathCompiler);
 
       string strPathLinker;
-      strPathLinker.format(m_pathTime / "dynamic_source/%s-linker.txt", strTransformName.c_str());
+      strPathLinker.formatf(m_pathTime / "dynamic_source/%s-linker.txt", strTransformName.c_str());
       ::file::path pathLinker(strPathLinker);
 
       //#ifdef _DEBUG
@@ -743,9 +743,9 @@ namespace dynamic_source
       string strBuildCmd;
 
 #if defined(LINUX) || defined(MACOS) || defined(FREEBSD)
-      strBuildCmd.format(dir()->install() / "operating_system" / "operating_system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_cl_" + m_pintegrationcontext->m_strPlatform + ".bash");
+      strBuildCmd.formatf(dir()->install() / "operating_system" / "operating_system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_cl_" + m_pintegrationcontext->m_strPlatform + ".bash");
 #else
-      strBuildCmd.format(dir()->install() / "operating_system" / "operating_system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_pintegrationcontext->payload("vstools").as_string() / m_strDynamicSourceConfiguration + "_c_" + m_pintegrationcontext->m_strPlatform + ".bat");
+      strBuildCmd.formatf(dir()->install() / "operating_system" / "operating_system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_pintegrationcontext->payload("vstools").as_string() / m_strDynamicSourceConfiguration + "_c_" + m_pintegrationcontext->m_strPlatform + ".bat");
 #endif
 
       str = file()->as_string(strBuildCmd);
@@ -909,9 +909,9 @@ namespace dynamic_source
          //strBuildCmd;
 
 #if defined(LINUX) || defined(MACOS) || defined(FREEBSD)
-         strBuildCmd.format(dir()->install() / "operating_system" / "operating_system-" OPERATING_SYSTEM_NAME"\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_cl_" + m_pintegrationcontext->m_strPlatform + ".bash");
+         strBuildCmd.formatf(dir()->install() / "operating_system" / "operating_system-" OPERATING_SYSTEM_NAME"\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_cl_" + m_pintegrationcontext->m_strPlatform + ".bash");
 #else
-         strBuildCmd.format(dir()->install() / "operating_system" / "operating_system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" /m_pintegrationcontext->payload("vstools").as_string() / m_strDynamicSourceConfiguration + "_l_" + m_pintegrationcontext->m_strPlatform + ".bat");
+         strBuildCmd.formatf(dir()->install() / "operating_system" / "operating_system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" /m_pintegrationcontext->payload("vstools").as_string() / m_strDynamicSourceConfiguration + "_l_" + m_pintegrationcontext->m_strPlatform + ".bat");
 #endif
 
          str = file()->as_string(strBuildCmd);
@@ -1482,7 +1482,7 @@ namespace dynamic_source
       l.m_strLibraryPath = dir()->install() / m_strDynamicSourceStage / m_pintegrationcontext->m_strPlatform / "dynamic_source/" / strName / strLib + ".dll";
 #endif
       //#else
-      // plib->m_strLibraryPath.format(strFolder, "app/_stage/aura/account/app/main/front/Release/%s.dll", false), strName);
+      // plib->m_strLibraryPath.formatf(strFolder, "app/_stage/aura/account/app/main/front/Release/%s.dll", false), strName);
       //#endif
 
       dir()->create(l.m_strLibraryPath.folder());
@@ -1551,13 +1551,13 @@ namespace dynamic_source
 //         strCmd = dir()->install() / m_strDynamicSourceStage / "front" / m_strDynamicSourceConfiguration + "_libc" + m_strPlat1 + ".bat";
 //#endif
 #ifdef LINUX
-         strCmd.format(dir()->install() / "operating_system" / "operating_system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_libc_" + m_pintegrationcontext->m_strPlatform + ".bash");
+         strCmd.formatf(dir()->install() / "operating_system" / "operating_system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_libc_" + m_pintegrationcontext->m_strPlatform + ".bash");
 #else
-         strCmd.format(dir()->install() / "operating_system" / "operating_system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + ::file::path("_libc") + m_pintegrationcontext->m_strPlatform + ".bat");
+         strCmd.formatf(dir()->install() / "operating_system" / "operating_system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + ::file::path("_libc") + m_pintegrationcontext->m_strPlatform + ".bat");
 #endif
 
          //#else
-         //    strCmd.format(strFolder, "app\\_stage\\aura\\account\\app\\main\\front\\dynamic_source_cl.bat", false));
+         //    strCmd.formatf(strFolder, "app\\_stage\\aura\\account\\app\\main\\front\\dynamic_source_cl.bat", false));
          //#endif
          string str = file()->as_string(strCmd);
 
@@ -1716,12 +1716,12 @@ namespace dynamic_source
 //         ".bat";
 //#endif
 #ifdef LINUX
-      strCmd.format(dir()->install() / "operating_system" / "operating_system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_libl_" + m_pintegrationcontext->m_strPlatform + ".bash");
+      strCmd.formatf(dir()->install() / "operating_system" / "operating_system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_libl_" + m_pintegrationcontext->m_strPlatform + ".bash");
 #else
-      strCmd.format(dir()->install() / "operating_system" / "operating_system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_libl" + m_pintegrationcontext->m_strPlatform + ".bat");
+      strCmd.formatf(dir()->install() / "operating_system" / "operating_system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_libl" + m_pintegrationcontext->m_strPlatform + ".bat");
 #endif
       //#else
-      // strCmd.format(strFolder, "app\\_stage\\aura\\account\\app\\main\\front\\dynamic_source_libl.bat", false));
+      // strCmd.formatf(strFolder, "app\\_stage\\aura\\account\\app\\main\\front\\dynamic_source_libl.bat", false));
       //#endif
       string str = file()->as_string(strCmd);
       str.find_replace("%ITEM_NAME%",::file::path("library")/strName);

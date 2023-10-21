@@ -764,7 +764,7 @@ namespace user
          //      case ::type_int32:
          //      {
          //         string str;
-         //         str.format("%d", payload.i32());
+         //         str.formatf("%d", payload.i32());
          //         ptext->_001SetText(str, ::e_source_database);
          //      }
          //      break;
@@ -2252,7 +2252,7 @@ namespace user
 
       ::string strId;
 
-      strId.format("%s-%04d", strIdTemplate.c_str(), iIndex);
+      strId.formatf("%s-%04d", strIdTemplate.c_str(), iIndex);
 
       pinteraction->m_atom = strId;
 

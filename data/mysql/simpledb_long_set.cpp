@@ -279,7 +279,7 @@ bool db_long_set::load(const ::string & lpKey, i64 * plValue)
       strKey.replace("'", "''");
 
       string strSql;
-      strSql.format(
+      strSql.formatf(
          "select value FROM integertable WHERE atom = '%s';",
          strKey);
 
@@ -359,7 +359,7 @@ bool db_long_set::save(const ::string & lpKey, i64 lValue)
       slDatabase.lock();
       if(load(lpKey, &l))
       {
-         strSql.format(
+         strSql.formatf(
             "UPDATE integertable SET value = '%d' WHERE atom = '%s';",
             lValue,
             strKey);
@@ -379,7 +379,7 @@ bool db_long_set::save(const ::string & lpKey, i64 lValue)
       else
       {
 
-         strSql.format(
+         strSql.formatf(
             "INSERT INTO integertable (atom, value) values ('%s', '%d');",
             strKey,
             lValue);

@@ -1396,7 +1396,7 @@ void acme_file::_erase(const ::file::path & path)
 
       string strHexadecimal;
 
-      strHexadecimal.format("%08x", i);
+      strHexadecimal.formatf("%08x", i);
 
       path = pathFolder / (strPrefix + "-" + strHexadecimal + "." + strExtension);
 

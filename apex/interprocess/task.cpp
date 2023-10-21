@@ -44,7 +44,7 @@ namespace interprocess
 
          string strPid = m_pcall->m_pinterprocesscommunication->m_atomApp;
 
-         strSource.format("protocol.origin=%s&protocol.origin_pid=%s", m_pcall->m_pinterprocesscommunication->m_strApp.c_str(), strPid.c_str());
+         strSource.formatf("protocol.origin=%s&protocol.origin_pid=%s", m_pcall->m_pinterprocesscommunication->m_strApp.c_str(), strPid.c_str());
 
          string strApp = m_pcall->m_strApp;
 

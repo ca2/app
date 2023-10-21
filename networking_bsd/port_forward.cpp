@@ -297,7 +297,7 @@ namespace net
    HRESULT /* STDMETHODCALLTYPE */ port_forward_change_callbacks::OnNewNumberOfEntries( i32 lNewNumberOfEntries )
    {
 	   string tempStr;
-	   tempStr.format( "UPnP has detected a machine in the number of port mappings for your router \n"
+	   tempStr.formatf( "UPnP has detected a machine in the number of port mappings for your router \n"
 		   "New number of mappings = %d \n"
 		   "It is recommended to update your list of mappings", lNewNumberOfEntries );
 
@@ -315,7 +315,7 @@ namespace net
    HRESULT /* STDMETHODCALLTYPE */ port_forward_change_callbacks::OnNewExternalIPAddress(const ::scoped_string & scopedstrNewExternalIPAddress )
    {
 	   string tempStr;
-	   tempStr.format( "UPnP has detected a machine in your external IP address \n"
+	   tempStr.formatf( "UPnP has detected a machine in your external IP address \n"
 		   "New IP address = %s \n"
 		   "It is recommended to update your list of mappings", ::string(scopedstrNewExternalIPAddress).c_str());
 

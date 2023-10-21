@@ -998,7 +998,7 @@ namespace ftp
       if (sckDataConnection.Bind(nullptr, "tcp", 1))
       {
          string strMessage;
-         strMessage.format("could not bind to address %s %d", strIp.c_str(), iPort);
+         strMessage.formatf("could not bind to address %s %d", strIp.c_str(), iPort);
          informationf(strMessage);
          //message_box(nullptr, strMessage);
          return false;

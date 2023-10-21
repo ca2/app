@@ -37,7 +37,7 @@ namespace aura
 
       string strPid = as_string(m_pcall->m_pinterprocesscommunication->m_atomApp);
 
-      strSource.format(" from %s:%s ", m_pcall->m_pinterprocesscommunication->m_strApp.c_str(), strPid.c_str());
+      strSource.formatf(" from %s:%s ", m_pcall->m_pinterprocesscommunication->m_strApp.c_str(), strPid.c_str());
 
       string str = "call " + as_string(m_iTask) + strSource + strObject + "." + strMember + ": " + strVara;
 

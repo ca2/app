@@ -78,7 +78,7 @@ namespace mathematics
                    atof(m_pvalue2->get_value_string(egetvalue).c_str());
          }
          string str;
-         str.format("%d", d);
+         str.formatf("%d", d);
          return str;
 
       }

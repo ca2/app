@@ -121,7 +121,7 @@ inline ::write_text_stream & operator <<(::write_text_stream & textstream, const
 
    ::string strTime;
 
-   strTime.format("%fs", time.floating_second());
+   strTime.formatf("%fs", time.floating_second());
 
    return textstream << strTime;
 

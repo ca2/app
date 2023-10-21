@@ -504,7 +504,7 @@ CLASS_DECL_NETWORKING_BSD ::string as_string(const sockaddr_in6 &  addr)
 
       string strAddress;
 
-      strAddress.format("[%s]:%d", strIp.c_str(), addr.sin6_port);
+      strAddress.formatf("[%s]:%d", strIp.c_str(), addr.sin6_port);
 
       return strAddress;
 

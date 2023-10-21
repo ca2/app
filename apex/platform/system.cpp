@@ -2202,7 +2202,7 @@ pacmedirectory->create("/ca2core");
          //         if(list != nullptr)
          {
 
-            str2.format(pszFormat, list);
+            str2.formatf(pszFormat, list);
 
          }
          //     else
@@ -3367,13 +3367,13 @@ pacmedirectory->create("/ca2core");
 
          string strMessage;
 
-         strMessage.format("protocol: ca2project\nbase: %s\nAppId: %s\nquery: %s\n", strBase, strAppId, strQuery);
+         strMessage.formatf("protocol: ca2project\nbase: %s\nAppId: %s\nquery: %s\n", strBase, strAppId, strQuery);
 
          //message_box(strMessage, e_message_box_ok);
 
          string strParams;
 
-         //strParams.format("\"ca2project\" \"%s\" \"%s\" \"%s\"\n", strBase, strAppId, strQuery);
+         //strParams.formatf("\"ca2project\" \"%s\" \"%s\" \"%s\"\n", strBase, strAppId, strQuery);
 
          string strProj;
 
@@ -3388,7 +3388,7 @@ pacmedirectory->create("/ca2core");
 
          //strProj = "..\\..\\..\\" + stra[0] + "\\" + stra[1] + "\\" + stra[1] + ".vcxproj";
 
-         strParams.format("\"openvsproject://%s\"", strProj);
+         strParams.formatf("\"openvsproject://%s\"", strProj);
 
 
          //int iRet = call_sync("C:\\bergedge\\time\\stage\\visual_studio_automation_2017.exe",strParams, "C:\\bergedge\\time\\stage\\", e_display_none, 30, 1000, nullptr, 0);
@@ -4153,7 +4153,7 @@ pacmedirectory->create("/ca2core");
 
    //   string strMutex;
 
-   //   strMutex.format("Local\\%s", pszAppName.c_str());
+   //   strMutex.formatf("Local\\%s", pszAppName.c_str());
 
    //   return strMutex;
 
@@ -4167,7 +4167,7 @@ pacmedirectory->create("/ca2core");
    //   
    //   string strMutex;
    //   
-   //   strMutex.format("Local\\%s, atom:%s", pszAppName.c_str(), strId.c_str());
+   //   strMutex.formatf("Local\\%s, atom:%s", pszAppName.c_str(), strId.c_str());
    //   
    //   return strMutex;
 
@@ -4179,7 +4179,7 @@ pacmedirectory->create("/ca2core");
    //   
    //   string strMutex;
    //   
-   //   strMutex.format("Global\\%s", pszAppName.c_str());
+   //   strMutex.formatf("Global\\%s", pszAppName.c_str());
    //   
    //   return strMutex;
 
@@ -4193,7 +4193,7 @@ pacmedirectory->create("/ca2core");
    //   
    //   string strMutex;
 
-   //   strMutex.format("Global\\%s, atom:%s", pszAppName.c_str(), strId.c_str());
+   //   strMutex.formatf("Global\\%s, atom:%s", pszAppName.c_str(), strId.c_str());
 
    //   return strMutex;
 
@@ -4540,7 +4540,7 @@ namespace apex
 
       string strMessage;
 
-      strMessage.format("system::on_allocation_error Implement \"%s\" allocation\n", str.c_str());
+      strMessage.formatf("system::on_allocation_error Implement \"%s\" allocation\n", str.c_str());
 
       dev_log(strMessage);
 

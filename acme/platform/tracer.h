@@ -31,7 +31,7 @@ public:
 
    //   string str;
 
-   //   str.format_arguments(psz, arguments);
+   //   str.formatf_arguments(psz, arguments);
 
    //   operator << (str);
 
@@ -47,7 +47,7 @@ public:
 
    //   string str;
 
-   //   str.format_arguments(psz, arguments);
+   //   str.formatf_arguments(psz, arguments);
 
    //   operator << (str);
 

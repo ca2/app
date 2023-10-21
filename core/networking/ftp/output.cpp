@@ -65,7 +65,7 @@ namespace ftp
 
       string strMessage;
 
-      strMessage.format(("%s ==> File \"%s\" (%d)"), strErrorMsg.c_str(), strFileName.c_str(), dwLineNr);
+      strMessage.formatf(("%s ==> File \"%s\" (%d)"), strErrorMsg.c_str(), strFileName.c_str(), dwLineNr);
 
       WriteLine(strMessage, "E");
 

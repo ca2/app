@@ -391,7 +391,7 @@ pacmedirectory->is(stra[i]))
 //         string strFormat;
 //         ::earth::time time;
 //         time = ::earth::time::now();
-//         strFormat.format("%04d-%02d-%02d %02d-%02d-%02d\\", time.GetYear(), time.GetMonth(), time.GetDay(), time.GetHour(), time.GetMinute(), time.GetSecond());
+//         strFormat.formatf("%04d-%02d-%02d %02d-%02d-%02d\\", time.GetYear(), time.GetMonth(), time.GetDay(), time.GetHour(), time.GetMinute(), time.GetSecond());
 //         str += strFormat;
 //         if(strDir.m_pszData[2] == '\\')
 //         {

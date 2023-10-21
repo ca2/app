@@ -233,7 +233,7 @@ namespace user
 
          string strNum;
 
-         strNum.format("%d", m_nUntitledCount+1);
+         strNum.formatf("%d", m_nUntitledCount+1);
 
          strDocName += strNum;
 

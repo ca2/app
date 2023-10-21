@@ -177,7 +177,7 @@ namespace mail
          return false;
       m_ppop3->m_atom = m_ppop3->m_straId[0];
       string strSend;
-      strSend.format("RETR %s\r\n", m_ppop3->m_straIndex[0]);
+      strSend.formatf("RETR %s\r\n", m_ppop3->m_straIndex[0]);
       Send((const ::string &) strSend);
       m_ppop3->m_strHeaders.empty();
       m_ppop3->m_strBody.empty();

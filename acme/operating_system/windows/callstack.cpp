@@ -153,7 +153,7 @@ namespace acme
 
          ::string strLine;
 
-         strLine.format("%s (%d)", imagehlp_line.FileName, imagehlp_line.LineNumber);
+         strLine.formatf("%s (%d)", imagehlp_line.FileName, imagehlp_line.LineNumber);
 
          if (strLine.length() > maximum_line_length)
          {
@@ -185,7 +185,7 @@ namespace acme
 
          ::string strLine;
 
-         strLine.format("%s : %02d : %s\n", strPrefix.c_str(), frames - i - 1, psymbolinfo->Name);
+         strLine.formatf("%s : %02d : %s\n", strPrefix.c_str(), frames - i - 1, psymbolinfo->Name);
 
          strCallstack += strLine;
 

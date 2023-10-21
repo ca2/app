@@ -54,7 +54,7 @@ namespace windows
 
       ::string strCommand;
 
-      strCommand.format("\"%s\" \"%s\" %s %s|%s",
+      strCommand.formatf("\"%s\" \"%s\" %s %s|%s",
          strDevEnv.c_str(),
          strSolution.c_str(),
          strOperationSwitch.c_str(),

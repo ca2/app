@@ -478,7 +478,7 @@ file_context::time(const ::file::path &psz, i32 iMaxLevel, const string &pszPref
 
             }
 
-            strFormat.format("%02d", iMax);
+            strFormat.formatf("%02d", iMax);
 
             str /= strFormat;
 
@@ -535,13 +535,13 @@ file_context::time(const ::file::path &psz, i32 iMaxLevel, const string &pszPref
                if (bTryDelete)
                {
 
-                  strFormat.format("%d", iMax);
+                  strFormat.formatf("%d", iMax);
 
                }
                else
                {
 
-                  strFormat.format("%02d", iMax);
+                  strFormat.formatf("%02d", iMax);
 
                }
 
@@ -1721,7 +1721,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
 
             string strError;
 
-            strError.format("Failed to copy file \"%s\" to \"%s\" bFailIfExists=%d error=could not open input file",
+            strError.formatf("Failed to copy file \"%s\" to \"%s\" bFailIfExists=%d error=could not open input file",
                             varSource.as_file_path().c_str(), varNew.as_file_path().c_str(), bFailIfExists);
 
             error() << strError;
@@ -1745,7 +1745,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
 
             string strError;
 
-            strError.format("Failed to copy file \"%s\" to \"%s\" bFailIfExists=%d error=could not open output file",
+            strError.formatf("Failed to copy file \"%s\" to \"%s\" bFailIfExists=%d error=could not open output file",
                             varSource.as_file_path().c_str(), varNew.as_file_path().c_str(), bFailIfExists);
 
             throw ::exception(::error_io, strError);
@@ -1845,7 +1845,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
       if (bOutputFail)
       {
          string strError;
-         strError.format(
+         strError.formatf(
             "During copy, failed to close both input file \"%s\" and output file \"%s\" bFailIfExists=%d",
             varSource.as_file_path().c_str(), varTarget.as_file_path().c_str(), bFailIfExists);
          throw ::exception(::error_io, strError);
@@ -1853,7 +1853,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
       else
       {
          string strError;
-         strError.format("During copy, failed to close input file \"%s\" bFailIfExists=%d",
+         strError.formatf("During copy, failed to close input file \"%s\" bFailIfExists=%d",
                          varSource.as_file_path().c_str(), bFailIfExists);
          throw ::exception(::error_io, strError);
       }
@@ -1861,7 +1861,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
    else if (bOutputFail)
    {
       string strError;
-      strError.format("During copy, failed to close output file \"%s\" bFailIfExists=%d",
+      strError.formatf("During copy, failed to close output file \"%s\" bFailIfExists=%d",
                       varTarget.as_file_path().c_str(), bFailIfExists);
       throw ::exception(::error_io, strError);
    }
@@ -2068,7 +2068,7 @@ void file_context::erase(const ::file::path & path)
       i32 i = 1;
       while (i <= 100)
       {
-         strNew.format("%s-%s-%d", psz.c_str(), strCopy.c_str(), i);
+         strNew.formatf("%s-%s-%d", psz.c_str(), strCopy.c_str(), i);
          if (!exists(strNew))
          {
             copy(strNew, psz, false, e_extract_all);
@@ -2087,7 +2087,7 @@ void file_context::erase(const ::file::path & path)
       i32 i = 1;
       while (i <= 100)
       {
-         strNew.format("%s-%s-%d%s", psz.c_str(), strCopy.c_str(), i, strExt.c_str());
+         strNew.formatf("%s-%s-%d%s", psz.c_str(), strCopy.c_str(), i, strExt.c_str());
          if (!exists(strNew))
          {
             copy(strNew, psz, false, e_extract_all);
@@ -2426,7 +2426,7 @@ file_pointer file_context::get(const ::file::path &name)
 
       strTime = datetime()->format("%Y\\%m\\%d\\%H\\%M\\%S\\", timeFile);
 
-      strIndex.format("%08x\\", i);
+      strIndex.formatf("%08x\\", i);
 
       strTempFile = m_pcontext->acmesystem()->m_pdirsystem->m_pathUpload / (strTime + strIndex + pathCurrent);
 

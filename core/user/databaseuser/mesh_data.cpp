@@ -54,9 +54,9 @@ namespace databaseuser
 
       // default implementation
 
-      strDataKey1.format("%d", iSubItem);
+      strDataKey1.formatf("%d", iSubItem);
 
-      strDataKey2.format("%d.%d", iItem, iListItem);
+      strDataKey2.formatf("%d.%d", iItem, iListItem);
 
       return true;
 

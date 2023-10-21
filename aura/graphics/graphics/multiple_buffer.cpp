@@ -298,14 +298,14 @@ namespace graphics
 
 #ifdef EXTRALOG
 
-      strFormat.format(" age %d", iAge);
+      strFormat.formatf(" age %d", iAge);
 
       str += strFormat;
 
       if (!bFoundExact)
       {
 
-         strFormat.format(" buffer size_i32 %d, %d", pimageBuffer2->width(), pimageBuffer2->height());
+         strFormat.formatf(" buffer size_i32 %d, %d", pimageBuffer2->width(), pimageBuffer2->height());
 
          s_iLastExact = -1;
 
@@ -313,7 +313,7 @@ namespace graphics
       else
       {
 
-         strFormat.format("!!");
+         strFormat.formatf("!!");
 
          s_iLastExact++;
 

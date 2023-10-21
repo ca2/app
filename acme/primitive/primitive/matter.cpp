@@ -443,7 +443,7 @@ void matter::delete_this()
 //
 //   va_copy(ptr1, valist);
 //
-//   str.format_arguments(pszFormat, valist);
+//   str.formatf_arguments(pszFormat, valist);
 //
 //   va_end(ptr1);
 //

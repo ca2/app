@@ -70,7 +70,7 @@ namespace prompt
 
                   string strValue;
 
-                  strValue.format("%f", pmatter->get_value().to_string().c_str());
+                  strValue.formatf("%f", pmatter->get_value().to_string().c_str());
 
                   string strNewText = str + pmatter->get_expression() + " = " + strValue  + "\n";
 
@@ -110,19 +110,19 @@ namespace prompt
 
                         string strValue;
 
-                        strValue.format("%f", pmatter->get_value().to_string().c_str());
+                        strValue.formatf("%f", pmatter->get_value().to_string().c_str());
 
                         string strMinFrac;
 
-                        strMinFrac.format("%f", pmatter->get_value().mod() / 60.0);
+                        strMinFrac.formatf("%f", pmatter->get_value().mod() / 60.0);
 
                         string strMin;
 
-                        strMin.format("%d", ((i32)pmatter->get_value().mod() / 60));
+                        strMin.formatf("%d", ((i32)pmatter->get_value().mod() / 60));
 
                         string strMinSec;
 
-                        strMinSec.format("%f", fmod(pmatter->get_value().mod(), 60.0));
+                        strMinSec.formatf("%f", fmod(pmatter->get_value().mod(), 60.0));
 
                         string strNewText = str + pmatter->get_expression() + " segundos = " + strValue  + " segundos = " + strMinFrac + " minutos = " + strMin + " minutos e " + strMinSec + " segundos\n";
 
@@ -146,19 +146,19 @@ namespace prompt
 
                         string strValue;
 
-                        strValue.format("%f", pmatter->get_value().to_string().c_str());
+                        strValue.formatf("%f", pmatter->get_value().to_string().c_str());
 
                         string strMinFrac;
 
-                        strMinFrac.format("%f", pmatter->get_value().mod() / 60.0);
+                        strMinFrac.formatf("%f", pmatter->get_value().mod() / 60.0);
 
                         string strMin;
 
-                        strMin.format("%d", ((i32)pmatter->get_value().mod() / 60));
+                        strMin.formatf("%d", ((i32)pmatter->get_value().mod() / 60));
 
                         string strMinSec;
 
-                        strMinSec.format("%f", fmod(pmatter->get_value().mod(), 60.0));
+                        strMinSec.formatf("%f", fmod(pmatter->get_value().mod(), 60.0));
 
                         string strNewText = str + pmatter->get_expression() + " segundos = " + strValue  + " segundos = " + strMinFrac + " minutos = " + strMin + " minutos e " + strMinSec + " segundos\n";
 

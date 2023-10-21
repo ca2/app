@@ -132,7 +132,7 @@ CLASS_DECL_ACME void debug_print(const char * pszFormat, ...)
 
    string str;
 
-   str.format_arguments(pszFormat, args);
+   str.formatf_arguments(pszFormat, args);
 
    ::informationf(str);
 
@@ -208,13 +208,13 @@ string get_status_message(const ::e_status & estatus)
    // if(estatus)
    // {
     
-   //    str.format("success status (%" PRId64 ")", (::i64) estatus.m_estatus);
+   //    str.formatf("success status (%" PRId64 ")", (::i64) estatus.m_estatus);
       
    // }
    // else
    // {
          
-   //    str.format("failure status (%" PRId64 ")", (::i64) estatus.m_estatus);
+   //    str.formatf("failure status (%" PRId64 ")", (::i64) estatus.m_estatus);
          
    // }
 

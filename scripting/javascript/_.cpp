@@ -1462,7 +1462,7 @@ void CScriptVar::trace(string indentStr, const string &name)
 
    string str;
 
-   str.format("%s'%s' = '%s' %s\n",
+   str.formatf("%s'%s' = '%s' %s\n",
               indentStr.c_str(),
               name.c_str(),
               getString().c_str(),

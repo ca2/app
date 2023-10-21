@@ -374,7 +374,7 @@ void create_directory(const ::file::path & path)
 
       string strDetails;
 
-      strDetails.format("Failed to create directory (2) \"%s\"", strWindowsPath.c_str());
+      strDetails.formatf("Failed to create directory (2) \"%s\"", strWindowsPath.c_str());
 
       throw_last_error_exception(strDetails, lasterror);
 
@@ -397,7 +397,7 @@ void create_directory(const ::file::path & path)
 
             string strDetails;
 
-            strDetails.format("Failed to create directory (2) \"%s\"", string(wstr).c_str());
+            strDetails.formatf("Failed to create directory (2) \"%s\"", string(wstr).c_str());
 
             throw ::exception(estatus, strDetails);
 
@@ -411,7 +411,7 @@ void create_directory(const ::file::path & path)
 
          //string strDetails;
 
-         //strDetails.format("Failed to create directory (1) \"%s\"", string(wstr).c_str());
+         //strDetails.formatf("Failed to create directory (1) \"%s\"", string(wstr).c_str());
 
          //throw ::exception(estatus, strDetails);
 

@@ -2973,7 +2973,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   return(Left(::str::string_find_first_character_in(m_psz,pszCharSet)));
 //}
 //
-//void string::append_format_arguments(const ::scoped_string & scopedstrFormat,va_list args)
+//void string::append_formatf_arguments(const ::scoped_string & scopedstrFormat,va_list args)
 //{
 //
 //   ASSERT(is_string_ok(pszFormat));
@@ -3170,7 +3170,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 ////   va_list argList;
 ////   va_start(argList, pszFormat);
 ////
-////   append_format_arguments(pszFormat, argList);
+////   append_formatf_arguments(pszFormat, argList);
 ////
 ////   va_end(argList);
 ////}
@@ -3198,7 +3198,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   va_list argList;
 //   va_start(argList,pszFormat);
 //
-//   append_format_arguments(pszFormat,argList);
+//   append_formatf_arguments(pszFormat,argList);
 //
 //   va_end(argList);
 //}
@@ -3428,7 +3428,7 @@ CLASS_DECL_ACME::string string_format(const ::ansi_character * pszFormat, ...)
 
    va_start(argList, pszFormat);
 
-   str.format_arguments(pszFormat, argList);
+   str.formatf_arguments(pszFormat, argList);
 
    va_end(argList);
 

@@ -302,7 +302,7 @@ namespace apex
 
    //   string str;
 
-   //   str.format(pszFormat, args);
+   //   str.formatf(pszFormat, args);
 
    //   alog(ecategory, elevel, pszFunction, pszFile, iLine, str);
 
@@ -404,23 +404,23 @@ namespace apex
 ////      // sipman LCTV learning to format hours, minutes and seconds.... (me (re) learning too)...
 ////      if (uiTotalDays > 0)
 ////      {
-////         strTick.format(" %d:%d:%d:%d.%03d ", uiTotalDays, uiHours, uiMinutes, uiSeconds, uiMillis);
+////         strTick.formatf(" %d:%d:%d:%d.%03d ", uiTotalDays, uiHours, uiMinutes, uiSeconds, uiMillis);
 ////      }
 ////      else if(uiTotalHours > 0)
 ////      {
-////         strTick.format(" %d:%d:%d.%03d ", uiHours, uiMinutes, uiSeconds, uiMillis);
+////         strTick.formatf(" %d:%d:%d.%03d ", uiHours, uiMinutes, uiSeconds, uiMillis);
 ////      }
 ////      else if (uiTotalMinutes > 0)
 ////      {
-////         strTick.format(" %d:%d.%03d ", uiMinutes, uiSeconds, uiMillis);
+////         strTick.formatf(" %d:%d.%03d ", uiMinutes, uiSeconds, uiMillis);
 ////      }
 ////      else if (uiTotalSeconds > 0)
 ////      {
-////         strTick.format(" %d.%03ds ", uiSeconds, uiMillis);
+////         strTick.formatf(" %d.%03ds ", uiSeconds, uiMillis);
 ////      }
 ////      else
 ////      {
-////         strTick.format(" %3dms ", uiMillis);
+////         strTick.formatf(" %3dms ", uiMillis);
 ////      }
 ////
 ////      //string strCat(pcategory->m_pszName);
@@ -474,7 +474,7 @@ namespace apex
 ////
 ////         string strIndex;
 ////
-////         strIndex.format("%d-%05d", get_current_process_id(), iRetry);
+////         strIndex.formatf("%d-%05d", get_current_process_id(), iRetry);
 ////
 ////         m_strLogPath = acmedirectory()->appdata() / string(m_atom) / strDatetime + "-" + strIndex + ".ca2log";
 ////

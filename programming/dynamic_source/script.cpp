@@ -400,7 +400,7 @@ namespace dynamic_source
 
             string str;
 
-            str.format("%d - ", dwMessageId);
+            str.formatf("%d - ", dwMessageId);
 
             m_textstreamError << strStagePath << " : LoadLibrary, get_last_error : " << str << dwMessageId;
 

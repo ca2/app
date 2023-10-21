@@ -184,7 +184,7 @@ namespace user
 
          string str;
 
-         str.format(m_strFormat, m_i);
+         str.formatf(m_strFormat, m_i);
 
          return str;
 

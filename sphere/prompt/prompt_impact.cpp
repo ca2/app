@@ -250,7 +250,7 @@ namespace prompt
       string strDate;
       string strWeekDay;
       string strTime;
-      strDate.format(
+      strDate.formatf(
       "%04d-%02d-%02d",
       time.GetYear(),
       time.GetMonth(),
@@ -279,11 +279,11 @@ namespace prompt
          strWeekDay = "sabado";
          break;
       }
-      strTime.format("%02d:%02d:%02d",
+      strTime.formatf("%02d:%02d:%02d",
                      time.GetHour(),
                      time.GetMinute(),
                      time.GetSecond());
-      strDateTime.format("%s %s %s", strDate.c_str(), strWeekDay.c_str(), strTime.c_str());
+      strDateTime.formatf("%s %s %s", strDate.c_str(), strWeekDay.c_str(), strTime.c_str());
    }
 
    void impact::on_message_show_window(::message::message * pmessage)

@@ -134,7 +134,7 @@ namespace userstack
       //   else if(get_impact_id() == ::bergedge::impact_winactionarea)
       //   {
       //      string strDirName;
-      //      strDirName.format("desktop-%d", m_iDisplay);
+      //      strDirName.formatf("desktop-%d", m_iDisplay);
       //      string strDir = dir()->userfolder(strDirName);
       //      if(m_iDisplay <= 0)
       //      {
@@ -281,7 +281,7 @@ namespace userstack
             L"\"" + utf8_to_unicode(dir()->name(itema[0].m_strPath)) + L"\"",
             SW_SHOWNORMAL);
          string str;
-         str.format("%d", i);
+         str.formatf("%d", i);
          //message_box(str);
          if(i == ERROR_FILE_NOT_FOUND)
          {

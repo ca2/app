@@ -100,7 +100,7 @@ namespace graphics
 
       string strMutexName;
 
-      strMutexName.format(szName, strBitmapSource.c_str());
+      strMutexName.formatf(szName, strBitmapSource.c_str());
 
       m_pmutexBitmapSource = acmenode()->create_local_named_mutex(this, false, strMutexName, nullptr);
 

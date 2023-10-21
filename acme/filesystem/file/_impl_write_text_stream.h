@@ -191,7 +191,7 @@
 //
 //    va_start(argList, pszFormat);
 //
-//    strText.format_arguments(pszFormat, argList);
+//    strText.formatf_arguments(pszFormat, argList);
 //
 //    va_end(argList);
 //
@@ -432,7 +432,7 @@
 //
 //    string strFormat;
 //
-//    strFormat.format("%%0%d.%df", m_pprintingformat->m_width, m_pprintingformat->m_precision);
+//    strFormat.formatf("%%0%d.%df", m_pprintingformat->m_width, m_pprintingformat->m_precision);
 //
 ////   char szFormat[32];
 ////

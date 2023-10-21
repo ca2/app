@@ -281,7 +281,7 @@ void filemanager_impact_base::handle(::topic * ptopic, ::context * pcontext)
 
             string str;
 
-            str.format("frame(%s)", ::string(filemanager_data()->m_atom).c_str());
+            str.formatf("frame(%s)", ::string(filemanager_data()->m_atom).c_str());
 
             pclient->set_data_key_modifier(str);
 

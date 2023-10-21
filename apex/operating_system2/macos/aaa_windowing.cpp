@@ -786,7 +786,7 @@ string MYCFStringCopyUTF8String(CFStringRef aString)
    
 }
 
-#define FUNCTION_TRACE(...) strFormat.format(__VA_ARGS__); str+=strFormat;
+#define FUNCTION_TRACE(...) strFormat.formatf(__VA_ARGS__); str+=strFormat;
 
 
 rectangle_i32_array cg_get_window_rect_list_intersect_above(CGWindowID windowid)
@@ -1054,7 +1054,7 @@ end1:
 #endif
 
 
-#define FUNCTION_TRACE(...) strFormat.format(__VA_ARGS__); str+=strFormat;
+#define FUNCTION_TRACE(...) strFormat.formatf(__VA_ARGS__); str+=strFormat;
 
 
 void cg_get_window_rect_list(rectangle_i32_array & recta, array < CGWindowID > & windowida)

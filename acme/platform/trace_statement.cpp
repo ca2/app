@@ -49,7 +49,7 @@ void trace_statement::format_output_arguments(const ::ansi_character * psz, va_l
 
    string str;
 
-   str.format_arguments(psz, arguments);
+   str.formatf_arguments(psz, arguments);
 
    operator << (str);
 
@@ -66,7 +66,7 @@ trace_statement & trace_statement::operator()(const ::ansi_character * pszFormat
 
    string str;
 
-   str.format_arguments(pszFormat, arguments);
+   str.formatf_arguments(pszFormat, arguments);
 
    operator << (str);
 

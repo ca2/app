@@ -320,7 +320,7 @@ namespace filemanager
 
             //               string str;
             //
-            //               str.format("(%d,%d)",filemanager_document().filemanager_data()->m_iTemplate,filemanager_document().filemanager_data()->m_iDocument);
+            //               str.formatf("(%d,%d)",filemanager_document().filemanager_data()->m_iTemplate,filemanager_document().filemanager_data()->m_iDocument);
             //
             //               ::pointer<::database::client>pclient = get_parent_frame();
             //

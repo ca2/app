@@ -352,7 +352,7 @@ bool db_str_set::load(const ::string & lpKey, string & strValue)
       strKey.replace("'", "''");
 
       string strSql;
-      strSql.format(
+      strSql.formatf(
          "select value FROM stringtable WHERE atom = '%s';",
          strKey);
 
@@ -402,7 +402,7 @@ bool db_str_set::save(const ::string & lpKey, const ::string & lpcsz)
       slDatabase.lock();
       if(load(lpKey, str))
       {
-         strSql.format(
+         strSql.formatf(
             "UPDATE stringtable SET value = '%s' WHERE atom = '%s';",
             strValue,
             strKey);
@@ -418,7 +418,7 @@ bool db_str_set::save(const ::string & lpKey, const ::string & lpcsz)
       else
       {
 
-         strSql.format(
+         strSql.formatf(
             "INSERT INTO stringtable (atom, value) values ('%s', '%s');",
             strKey,
             strValue);

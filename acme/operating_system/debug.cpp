@@ -52,7 +52,7 @@ void os_trace(enum_trace_level elevel, const ::scoped_string & scopedstrTag, con
 
    strTag = string(' ', maximum(0, 23 - strTag.length()));
 
-   strMessage.format("-%c- %s %s\n", trace_level_char(elevel), strTag.c_str(), ::string(scopedstr).c_str());
+   strMessage.formatf("-%c- %s %s\n", trace_level_char(elevel), strTag.c_str(), ::string(scopedstr).c_str());
 
    informationf(strMessage);
 
@@ -84,7 +84,7 @@ void simple_debug_print(const ::scoped_string & scopedstr)
 //
 //   strTag = string(' ', maximum(0, 23 - strTag.length()));
 //
-//   strMessage.format("-%c- %s %s\n", e_trace_level_char(elevel), strTag.c_str(), psz);
+//   strMessage.formatf("-%c- %s %s\n", e_trace_level_char(elevel), strTag.c_str(), psz);
 //
 //   information(strMessage);
 //
@@ -168,7 +168,7 @@ void output_debug_string_format(const char* pszFormat, ...)
 
    ::string str;
 
-   str.format_arguments(pszFormat, argList);
+   str.formatf_arguments(pszFormat, argList);
 
    va_end(argList);
 

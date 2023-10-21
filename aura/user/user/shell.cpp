@@ -1929,7 +1929,7 @@ namespace user
 
             string strSize;
 
-            strSize.format("%d", iSize);
+            strSize.formatf("%d", iSize);
 
             ::file::path pathImage = pathFolder / strSize / (strIcon + ".png");
 
@@ -1951,7 +1951,7 @@ namespace user
                   if (iSizeFallback != iSize)
                   {
 
-                     strSize.format("%d", iSizeFallback);
+                     strSize.formatf("%d", iSizeFallback);
 
                      pathImage = pathFolder / strSize / (strIcon + ".png");
 

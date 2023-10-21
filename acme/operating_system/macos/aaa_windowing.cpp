@@ -792,7 +792,7 @@ void ns_main_async(dispatch_block_t block);
 //}
 //
 //
-////#define FUNCTION_TRACE(...) strFormat.format(__VA_ARGS__); str+=strFormat;
+////#define FUNCTION_TRACE(...) strFormat.formatf(__VA_ARGS__); str+=strFormat;
 //#undef FUNCTION_TRACE
 //
 //
@@ -1061,7 +1061,7 @@ void ns_main_async(dispatch_block_t block);
 //#endif
 //
 //
-////#define FUNCTION_TRACE(...) strFormat.format(__VA_ARGS__); str+=strFormat;
+////#define FUNCTION_TRACE(...) strFormat.formatf(__VA_ARGS__); str+=strFormat;
 //#undef FUNCTION_TRACE
 //
 //

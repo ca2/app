@@ -175,7 +175,7 @@ public:
    //
    //       va_start(argList, pszFormat);
    //
-   //       strText.format_arguments(pszFormat, argList);
+   //       strText.formatf_arguments(pszFormat, argList);
    //
    //       va_end(argList);
    //
@@ -703,7 +703,7 @@ inline write_text_stream & write_text_stream::operator <<(FLOATING f)
 
    string strFormat;
 
-   strFormat.format("%%0%d.%df", m_pprintingformat->m_width, m_pprintingformat->m_precision);
+   strFormat.formatf("%%0%d.%df", m_pprintingformat->m_width, m_pprintingformat->m_precision);
 
    //   char szFormat[32];
    //

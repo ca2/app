@@ -226,7 +226,7 @@ namespace compare_swap
    //      {
    //         string strCode(straPath[i].name() + strSuffix);
    //         string str;
-   //         str.format("%08x", acmesystem()->crc32(0, strCode));
+   //         str.formatf("%08x", acmesystem()->crc32(0, strCode));
    //         straName.set_at_grow(i, str);
    //      }
 
@@ -287,7 +287,7 @@ namespace test_compilation_some_strong_ordering_swap_functions
       {
          string strCode(straPath[i] + strSuffix);
          string str;
-         str.format("%08x", atoi(strCode));
+         str.formatf("%08x", atoi(strCode));
          straName.set_at_grow(i, str);
       }
 

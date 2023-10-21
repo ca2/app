@@ -102,7 +102,7 @@ namespace apex
                char * lpsz;
                ::u32 uSize;
 
-               strKey.format(
+               strKey.formatf(
                TEXT("\\StringFileInfo\\%04x%04x\\FileDescription"),
                lpTranslate[i].wLanguage,
                lpTranslate[i].wCodePage);
@@ -110,7 +110,7 @@ namespace apex
 
 
 
-               strKey.format(
+               strKey.formatf(
                TEXT("\\StringFileInfo\\%04x%04x\\FileVersion"),
                lpTranslate[i].wLanguage,
                lpTranslate[i].wCodePage);

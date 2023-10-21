@@ -2024,7 +2024,7 @@ namespace http
 
       string strTopicText;
 
-      strTopicText.format(__prhttpget, iHttpGetSerial);
+      strTopicText.formatf(__prhttpget, iHttpGetSerial);
 
       //psocket->set_topic_text(strTopicText);
 
@@ -2999,7 +2999,7 @@ namespace http
 
       ::string strDateTime;
 
-      strDateTime.format("%s, %02d-%s-%04d %02d:%02d:%02d GMT",
+      strDateTime.formatf("%s, %02d-%s-%04d %02d:%02d:%02d GMT",
          days[tp.tm_wday],
          tp.tm_mday,
          months[tp.tm_mon],
@@ -3022,7 +3022,7 @@ namespace http
    //   string strPasswordFile;
    //   string strSection;
 
-   //   strSection.format("proxy_auth\\%s.%s", puser->m_strLogin.c_str(), "proxy_auth");
+   //   strSection.formatf("proxy_auth\\%s.%s", puser->m_strLogin.c_str(), "proxy_auth");
 
    //   strUserNameFile = dir()->appdata() / strSection + "_1";
 
@@ -3078,7 +3078,7 @@ namespace http
 
    //   string strSection;
 
-   //   strSection.format("proxy_auth\\%s.%s", puser->m_strLogin.c_str(), "proxy_auth");
+   //   strSection.formatf("proxy_auth\\%s.%s", puser->m_strLogin.c_str(), "proxy_auth");
 
    //   file()->del(dir()->appdata() / strSection + "_1");
 

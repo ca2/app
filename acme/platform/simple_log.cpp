@@ -255,7 +255,7 @@ void simple_log::print(::trace_statement & tracestatement, bool bFlush)
       else
       {
 
-         str.format("%s> %c %s %d %s\n", strTaskName.c_str(), trace_level_char(tracestatement.m_etracelevel), tracestatement.m_pszFunction, tracestatement.m_iLine, tracestatement.as_string().c_str());
+         str.formatf("%s> %c %s %d %s\n", strTaskName.c_str(), trace_level_char(tracestatement.m_etracelevel), tracestatement.m_pszFunction, tracestatement.m_iLine, tracestatement.as_string().c_str());
 
       }
 
@@ -278,7 +278,7 @@ void simple_log::print(::trace_statement & tracestatement, bool bFlush)
             if(earthtimepan.GetDays() <= 0)
             {
 
-               strTime.format("%02d:%02d:%02d %03d ",
+               strTime.formatf("%02d:%02d:%02d %03d ",
                               earthtimepan.GetHours(),
                               earthtimepan.GetMinutes(),
                               earthtimepan.GetSeconds(),
@@ -288,7 +288,7 @@ void simple_log::print(::trace_statement & tracestatement, bool bFlush)
             else
             {
 
-               strTime.format("%3d %02d:%02d:%02d %03d ",
+               strTime.formatf("%3d %02d:%02d:%02d %03d ",
                               earthtimepan.GetDays(),
                               earthtimepan.GetHours(),
                               earthtimepan.GetMinutes(),
@@ -303,7 +303,7 @@ void simple_log::print(::trace_statement & tracestatement, bool bFlush)
 
             ::earth::time earthtime(timeNow);
 
-            strTime.format("%04d-%02d-%02d %02d:%02d:%02d %03d ",
+            strTime.formatf("%04d-%02d-%02d %02d:%02d:%02d %03d ",
                            earthtime.year(),
                            earthtime.month(),
                            earthtime.day(),
@@ -401,13 +401,13 @@ CLASS_DECL_ACME void __simple_tracea(::particle * pparticle, enum_trace_level el
 
       strTopic.case_insensitive_begins_eat("struct ");
 
-      strMessage.format("%c:%s> %s", trace_level_char(elevel), strTopic.c_str(), scopedstr.c_str());
+      strMessage.formatf("%c:%s> %s", trace_level_char(elevel), strTopic.c_str(), scopedstr.c_str());
 
    }
    else
    {
 
-      strMessage.format("%c> %s", trace_level_char(elevel), scopedstr.c_str());
+      strMessage.formatf("%c> %s", trace_level_char(elevel), scopedstr.c_str());
 
    }
 
@@ -465,7 +465,7 @@ CLASS_DECL_ACME void __simple_tracev(::particle * pparticle, enum_trace_level el
 
    string strMessage;
 
-   strMessage.format_arguments(pszFormat, args);
+   strMessage.formatf_arguments(pszFormat, args);
 
    __simple_tracea(pparticle, elevel, pszFunction, pszFileName, iLine, strMessage);
 

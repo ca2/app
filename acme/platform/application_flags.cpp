@@ -890,7 +890,7 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 ////
 ////         string strError;
 ////
-////         strError.format("errno=%d uid=%d", iErr);
+////         strError.formatf("errno=%d uid=%d", iErr);
 ////
 ////         //message_box(strError, "seteuid failed", e_message_box_icon_exclamation);
 ////

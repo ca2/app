@@ -596,7 +596,7 @@ bool scalar_source::on_set_real_scalar(enum_scalar escalar,::real d,int iFlags)
 ////
 ////   string str;
 ////
-////   str.format(strFormat,get());
+////   str.formatf(strFormat,get());
 ////
 ////   return str;
 ////
@@ -698,7 +698,7 @@ bool scalar_source::on_set_real_scalar(enum_scalar escalar,::real d,int iFlags)
 ////
 ////   string str;
 ////
-////   str.format(strFormat,get());
+////   str.formatf(strFormat,get());
 ////
 ////   return str;
 ////
@@ -1192,7 +1192,7 @@ string real_scalar::printf(const ::string& strFormat)
 
    ::string str;
 
-   str.format(strFormat, get());
+   str.formatf(strFormat, get());
 
    return str;
 

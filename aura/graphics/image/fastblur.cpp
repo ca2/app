@@ -379,7 +379,7 @@ auto tickA1 = ::time::now();
          ::u32 dwA2 = dwA1 - dwA0;
          string str;
 
-         str.format("%d",dwA2);
+         str.formatf("%d",dwA2);
 
       }
 
@@ -446,7 +446,7 @@ auto tickC1 = ::time::now();
          ::u32 dwC2 = dwC1 - dwC0;
          string str;
 
-         str.format("%d",dwC2);
+         str.formatf("%d",dwC2);
       }
 #else
       u32 * pimage32 = (u32 *)pimage->image32();

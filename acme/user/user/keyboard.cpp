@@ -72,7 +72,7 @@ namespace keyboard
       if (ekey.m_eenum >= ::user::e_key_f1 && ekey.m_eenum <= ::user::e_key_f24)
       {
 
-         res.format("F%d", ekey.m_eenum - ::user::e_key_f1 + 1);
+         res.formatf("F%d", ekey.m_eenum - ::user::e_key_f1 + 1);
 
       }
       else if (ekey == ::user::e_key_space)
@@ -84,13 +84,13 @@ namespace keyboard
       else if (ekey >= ::user::e_key_0 && ekey <= ::user::e_key_9)
       {
 
-         res.format("%c", ekey.m_eenum - ::user::e_key_0 + '0');
+         res.formatf("%c", ekey.m_eenum - ::user::e_key_0 + '0');
 
       }
       else if (ekey >= ::user::e_key_a && ekey <= ::user::e_key_z)
       {
 
-         res.format("%c", ekey.m_eenum - ::user::e_key_a + 'A');
+         res.formatf("%c", ekey.m_eenum - ::user::e_key_a + 'A');
 
       }
       else if (ekey == ::user::e_key_plus_oem)
@@ -123,7 +123,7 @@ namespace keyboard
       if (ekey.m_eenum >= ::user::e_key_f1 && ekey.m_eenum <= ::user::e_key_f24)
       {
 
-         strKeyWithNoModifier.format("F%d", ekey.m_eenum - ::user::e_key_f1 + 1);
+         strKeyWithNoModifier.formatf("F%d", ekey.m_eenum - ::user::e_key_f1 + 1);
 
       }
       else if (ekey == ::user::e_key_space)
@@ -135,13 +135,13 @@ namespace keyboard
       else if (ekey >= ::user::e_key_0 && ekey <= ::user::e_key_9)
       {
 
-         strKeyWithNoModifier.format("%c", ekey.m_eenum - ::user::e_key_0 + '0');
+         strKeyWithNoModifier.formatf("%c", ekey.m_eenum - ::user::e_key_0 + '0');
 
       }
       else if (ekey >= ::user::e_key_a && ekey <= ::user::e_key_z)
       {
 
-         strKeyWithNoModifier.format("%c", ekey.m_eenum - ::user::e_key_a + 'A');
+         strKeyWithNoModifier.formatf("%c", ekey.m_eenum - ::user::e_key_a + 'A');
 
       }
       else if (ekey == ::user::e_key_plus_oem)

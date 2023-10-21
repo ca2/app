@@ -157,7 +157,7 @@ template < primitive_string STRING, primitive_integral INTEGRAL >
 inline STRING& copy(STRING& string, const INTEGRAL& number)
 {
 
-	string.append_format("%lld", (::i64)number);
+	string.append_formatf("%lld", (::i64)number);
 
 	return string;
 
@@ -228,7 +228,7 @@ inline string as_string(NUMBER number, const ::ansi_character * pszFormat)
 
    ::string str;
 
-   str.format(pszFormat, number);
+   str.formatf(pszFormat, number);
 
    return ::transfer(str);
 
@@ -276,7 +276,7 @@ inline ::string as_string(FLOATING f, const ::ansi_character * pszFormat)
 
    ::string str;
 
-   str.format(pszFormat, f);
+   str.formatf(pszFormat, f);
 
    return str;
 

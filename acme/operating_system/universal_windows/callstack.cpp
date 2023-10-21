@@ -146,7 +146,7 @@ namespace acme
 
       //   string strLine;
 
-      //   strLine.format("%02d : %" PRIdPTR " : %s\n", frames - i - 1, psymbolinfo->Address, psymbolinfo->Name);
+      //   strLine.formatf("%02d : %" PRIdPTR " : %s\n", frames - i - 1, psymbolinfo->Address, psymbolinfo->Name);
 
       //   strCallstack += strLine;
 

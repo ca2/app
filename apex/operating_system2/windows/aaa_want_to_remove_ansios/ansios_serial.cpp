@@ -831,7 +831,7 @@ serial::serial_impl::setBreak (bool level)
     if (-1 == ioctl (fd_, TIOCSBRK))
     {
        string str;
-        str.format("setBreak failed on a call to ioctl(TIOCSBRK): %d %s",errno ,strerror(errno));
+        str.formatf("setBreak failed on a call to ioctl(TIOCSBRK): %d %s",errno ,strerror(errno));
         throw ::exception(serial_exception(str));
     }
   } else {

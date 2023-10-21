@@ -1507,7 +1507,7 @@ namespace user
       for (index iIdSuffix = 1; iIdSuffix <= 1000; iIdSuffix++)
       {
 
-         strCandidateId.format("%s_%d", strDefaultIdPrefix.c_str(), iIdSuffix);
+         strCandidateId.formatf("%s_%d", strDefaultIdPrefix.c_str(), iIdSuffix);
 
          bDuplicate = false;
 

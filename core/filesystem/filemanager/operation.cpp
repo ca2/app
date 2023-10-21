@@ -664,7 +664,7 @@ namespace filemanager
 
       string str;
 
-      str.format("Copying %s (%s) to %s", ::string(m_stra[iItem].name()).c_str(), ::string(m_stra[iItem].name()).c_str(),m_str.c_str());
+      str.formatf("Copying %s (%s) to %s", ::string(m_stra[iItem].name()).c_str(), ::string(m_stra[iItem].name()).c_str(),m_str.c_str());
 
       return str;
 
@@ -916,7 +916,7 @@ namespace filemanager
          string strFormat;
          for(i32 i = 1; i < 1000; i++)
          {
-            strFormat.format("-Copy-%03d",i);
+            strFormat.formatf("-Copy-%03d",i);
             str = strDir /strName + strFormat + strExtension;
             if(!pcontext->m_papexcontext->file()->exists(str))
                return true;

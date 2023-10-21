@@ -75,34 +75,34 @@ namespace calculator
       {
          if(m_dI == 0.0)
          {
-            str.format("%f", m_dR);
+            str.formatf("%f", m_dR);
             return str;
          }
          else if(m_dR == 0.0 || (fabs(m_dR) < (1.0 / 1000000000.0) && (fabs(m_dI) / fabs(m_dR)) > 1000000000.0))
          {
             // Real part is precisely or almost 0
-            str.format("i%f",m_dI);
+            str.formatf("i%f",m_dI);
             return str;
          }
          else if(m_dI > 0.0)
          {
-            str.format("%f + i%f", m_dR, m_dI);
+            str.formatf("%f + i%f", m_dR, m_dI);
             return str;
          }
          else
          {
-            str.format("%f - i%f", m_dR, fabs(m_dI));
+            str.formatf("%f - i%f", m_dR, fabs(m_dI));
             return str;
          }
       }
       else if(emode == mode_polar_radian)
       {
-         str.format("%f arg(%f)", mod(), arg());
+         str.formatf("%f arg(%f)", mod(), arg());
          return str;
       }
       else if(emode == mode_polar_degree)
       {
-         str.format(unitext("%f arg(%fdegrees)"), mod(), arg() * 180.0 / π);
+         str.formatf(unitext("%f arg(%fdegrees)"), mod(), arg() * 180.0 / π);
          return str;
       }
       return "";

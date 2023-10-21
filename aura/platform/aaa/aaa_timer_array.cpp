@@ -33,7 +33,7 @@ namespace aura
 
 //         string str;
 //
-//         str.format("creating fast timer: %d\n", nEllapse);
+//         str.formatf("creating fast timer: %d\n", nEllapse);
 //
 //         ::information(str);
 

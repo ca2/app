@@ -149,7 +149,7 @@ namespace freedesktop
 
             string strMessage;
 
-            strMessage.format("Category \"%s\"has not been found", strCategoryParam.c_str());
+            strMessage.formatf("Category \"%s\"has not been found", strCategoryParam.c_str());
 
             information(strMessage);
 

@@ -331,7 +331,7 @@ string url_encode(const ::string & psz)
 //   }
 //   else
 //   {
-//      strChar.format("%02X", *psz);
+//      strChar.formatf("%02X", *psz);
 //      str += "%" + strChar.right(2);
 //   }
 //

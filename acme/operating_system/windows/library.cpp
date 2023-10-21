@@ -33,7 +33,7 @@ namespace acme
 
          string strMessage;
 
-         strMessage.format("Not going to try to load library. Invalid file extension in name : \"%s\"", pathParam.c_str());
+         strMessage.formatf("Not going to try to load library. Invalid file extension in name : \"%s\"", pathParam.c_str());
 
          error() << strMessage;
 

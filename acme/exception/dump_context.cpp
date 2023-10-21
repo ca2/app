@@ -186,7 +186,7 @@
 ////
 ////   string str;
 ////
-////   str.format("%d", (i32) i);
+////   str.formatf("%d", (i32) i);
 ////
 ////   output_string(str);
 ////
@@ -200,7 +200,7 @@
 ////
 ////   string str;
 ////
-////   str.format("%u", (i32) u);
+////   str.formatf("%u", (i32) u);
 ////
 ////   output_string(str);
 ////
@@ -214,7 +214,7 @@
 ////
 ////   string str;
 ////
-////   str.format("%d", (i32) i);
+////   str.formatf("%d", (i32) i);
 ////
 ////   output_string(str);
 ////
@@ -228,7 +228,7 @@
 ////
 ////   string str;
 ////
-////   str.format("%u", (u16) u);
+////   str.formatf("%u", (u16) u);
 ////
 ////   output_string(str);
 ////
@@ -242,7 +242,7 @@
 ////
 ////   string str;
 ////
-////   str.format("%d", i);
+////   str.formatf("%d", i);
 ////
 ////   output_string(str);
 ////
@@ -256,7 +256,7 @@
 ////
 ////   string str;
 ////
-////   str.format("%u", u);
+////   str.formatf("%u", u);
 ////
 ////   output_string(str);
 ////
@@ -270,7 +270,7 @@
 ////
 ////   string str;
 ////
-////   str.format("%l64d", i);
+////   str.formatf("%l64d", i);
 ////
 ////   output_string(str);
 ////
@@ -284,7 +284,7 @@
 ////
 ////   string str;
 ////
-////   str.format("%l64u", u);
+////   str.formatf("%l64u", u);
 ////
 ////   output_string(str);
 ////
@@ -298,7 +298,7 @@
 ////
 ////   string str;
 ////
-////   str.format("0x%02x", (u32) i);
+////   str.formatf("0x%02x", (u32) i);
 ////
 ////   output_string(str);
 ////
@@ -312,7 +312,7 @@
 ////
 ////   string str;
 ////
-////   str.format("0x%02x", (u32)u);
+////   str.formatf("0x%02x", (u32)u);
 ////
 ////   output_string(str);
 ////
@@ -326,7 +326,7 @@
 ////
 ////   string str;
 ////
-////   str.format("0x%04x", (u32) i);
+////   str.formatf("0x%04x", (u32) i);
 ////
 ////   output_string(str);
 ////
@@ -340,7 +340,7 @@
 ////
 ////   string str;
 ////
-////   str.format("0x%04x", (u32) u);
+////   str.formatf("0x%04x", (u32) u);
 ////
 ////   output_string(str);
 ////
@@ -354,7 +354,7 @@
 ////
 ////   string str;
 ////
-////   str.format("0x%08x", i);
+////   str.formatf("0x%08x", i);
 ////
 ////   output_string(str);
 ////
@@ -368,7 +368,7 @@
 ////
 ////   string str;
 ////
-////   str.format("0x%08x", u);
+////   str.formatf("0x%08x", u);
 ////
 ////   output_string(str);
 ////
@@ -382,7 +382,7 @@
 ////
 ////   string str;
 ////
-////   str.format("0x%016l64x", i);
+////   str.formatf("0x%016l64x", i);
 ////
 ////   output_string(str);
 ////
@@ -396,7 +396,7 @@
 ////
 ////   string str;
 ////
-////   str.format("0x%016l64x", u);
+////   str.formatf("0x%016l64x", u);
 ////
 ////   output_string(str);
 ////
@@ -442,7 +442,7 @@
 ////   string str;
 ////
 ////   // prefix a pointer with "$" and print in hex
-////   str.format("$%point_i32", p);
+////   str.formatf("$%point_i32", p);
 ////
 ////   output_string(str);
 ////
@@ -546,12 +546,12 @@
 ////
 ////      if (nRow == 0)
 ////      {
-////         str.format(pszLine, pby);
+////         str.formatf(pszLine, pby);
 ////
 ////         *this << str;
 ////      }
 ////
-////      str.format(" %02X", *pby);
+////      str.formatf(" %02X", *pby);
 ////      *this << str;
 ////
 ////      pby++;

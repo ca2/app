@@ -5789,7 +5789,7 @@ string_base < ITERATOR_TYPE > string_base < ITERATOR_TYPE >::left_skipping_any_c
 
 
 template < typename ITERATOR_TYPE >
-string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::append_format_arguments(const CHARACTER * pszFormat, va_list args)
+string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::append_formatf_arguments(const CHARACTER * pszFormat, va_list args)
 {
 
    ASSERT(is_string_ok(pszFormat));
@@ -5816,7 +5816,7 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::append_format_arg
 
 
 template < typename ITERATOR_TYPE >
-string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::format_arguments(const CHARACTER * pszFormat, va_list args)
+string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::formatf_arguments(const CHARACTER * pszFormat, va_list args)
 {
 
    ASSERT(is_string_ok(pszFormat));
@@ -5897,7 +5897,7 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::format_arguments(
 
 
 template < typename ITERATOR_TYPE >
-string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::format(const CHARACTER * pszFormat, ...)
+string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::formatf(const CHARACTER * pszFormat, ...)
 {
 
    ASSERT(is_string_ok(pszFormat));
@@ -5906,7 +5906,7 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::format(const CHAR
 
    va_start(argList, pszFormat);
 
-   format_arguments(pszFormat, argList);
+   formatf_arguments(pszFormat, argList);
 
    va_end(argList);
 
@@ -5917,7 +5917,7 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::format(const CHAR
 
 // append formatted begin using format string_base < ITERATOR_TYPE > 'pszFormat'
 template < typename ITERATOR_TYPE >
-string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::append_format(const CHARACTER * pszFormat, ...)
+string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::append_formatf(const CHARACTER * pszFormat, ...)
 {
 
    ASSERT(is_string_ok(pszFormat));
@@ -5926,7 +5926,7 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::append_format(con
 
    va_start(argList, pszFormat);
 
-   append_format_arguments(pszFormat, argList);
+   append_formatf_arguments(pszFormat, argList);
 
    va_end(argList);
 

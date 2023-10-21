@@ -767,7 +767,7 @@ inline void __raw_construct(::pointer<TYPE>& p, ::factory::factory* pfactory = :
 //
 //      string strMessage;
 //
-//      strMessage.format("matter::__construct has failed to find factory_item for type \"%s\"", __type_name < TYPE >().c_str());
+//      strMessage.formatf("matter::__construct has failed to find factory_item for type \"%s\"", __type_name < TYPE >().c_str());
 //
 //      throw_exception(::error_not_implemented, strMessage);
 //
@@ -780,7 +780,7 @@ inline void __raw_construct(::pointer<TYPE>& p, ::factory::factory* pfactory = :
 //
 //      string strMessage;
 //
-//      strMessage.format("matter::__construct no memory to allocate implementation of type \"%ss\"", __type_name < TYPE >().c_str());
+//      strMessage.formatf("matter::__construct no memory to allocate implementation of type \"%ss\"", __type_name < TYPE >().c_str());
 //
 //      throw_exception(::error_no_memory, strMessage);
 //
@@ -795,7 +795,7 @@ inline void __raw_construct(::pointer<TYPE>& p, ::factory::factory* pfactory = :
 //
 //      string strMessage;
 //
-//      strMessage.format("matter::__construct object(%s) is not of type \"%s\"", ::type(pparticleNew).name().c_str(), __type_name < TYPE >().c_str());
+//      strMessage.formatf("matter::__construct object(%s) is not of type \"%s\"", ::type(pparticleNew).name().c_str(), __type_name < TYPE >().c_str());
 //
 //      throw_exception(::error_wrong_type, strMessage);
 //

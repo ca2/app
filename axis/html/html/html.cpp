@@ -281,7 +281,7 @@ namespace html
          }
          else
          {
-            strChar.format("&#%d;", iChar);
+            strChar.formatf("&#%d;", iChar);
             str += strChar;
          }
          unicode_increment(psz);
@@ -333,7 +333,7 @@ namespace html
          }
          else
          {
-            strChar.format("&#%d;", iChar);
+            strChar.formatf("&#%d;", iChar);
             str += strChar;
          }
          

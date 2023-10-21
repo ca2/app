@@ -807,7 +807,7 @@ namespace core
 
          double d = (double)i64Size / (1024.0 * 1024.0 * 1024.0);
 
-         strSize.format("%0.2f GB", d);
+         strSize.formatf("%0.2f GB", d);
 
       }
       else if (i64Size > 1024 * 1024)
@@ -815,7 +815,7 @@ namespace core
 
          double d = (double)i64Size / (1024.0 * 1024.0);
 
-         strSize.format("%0.1f MB", d);
+         strSize.formatf("%0.1f MB", d);
 
       }
       else if (i64Size > 1024)
@@ -823,19 +823,19 @@ namespace core
 
          double d = (double)i64Size / (1024.0);
 
-         strSize.format("%0.0f KB", d);
+         strSize.formatf("%0.0f KB", d);
 
       }
       else if (i64Size > 0)
       {
 
-         strSize.format("1 KB");
+         strSize.formatf("1 KB");
 
       }
       else
       {
 
-         strSize.format("0 KB");
+         strSize.formatf("0 KB");
 
       }
 

@@ -118,7 +118,7 @@ CLASS_DECL_ACME void TRACELASTERROR()
 
    string strError;
 
-   strError.format("\nError Message:\n%s\n\n", strErrorMessage.c_str());
+   strError.formatf("\nError Message:\n%s\n\n", strErrorMessage.c_str());
 
    ::output_debug_string(strError);
 

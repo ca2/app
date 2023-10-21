@@ -1079,7 +1079,7 @@ namespace geo
 
             string strMinutes;
 
-            strMinutes.format("%02d", (int)(60.0 * dMod));
+            strMinutes.formatf("%02d", (int)(60.0 * dMod));
 
             strUTCOffset += ":" + strMinutes;
 
@@ -1509,11 +1509,11 @@ namespace geo
 
       string strLat;
          
-      strLat.format("%0.2f", dLat);
+      strLat.formatf("%0.2f", dLat);
 
       string strLng;
 
-      strLng.format("%0.2f", dLng);
+      strLng.formatf("%0.2f", dLng);
 
       string strUrl = "https://camilothomas.com/account/time_zone";
 

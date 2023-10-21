@@ -616,7 +616,7 @@ namespace crypto
 
             i64 iDigit = random<char>();
 
-            strFormat.format("%02x", iDigit);
+            strFormat.formatf("%02x", iDigit);
 
             strSalt += strFormat;
 

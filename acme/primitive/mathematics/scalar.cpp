@@ -593,7 +593,7 @@
 ////
 ////   string str;
 ////
-////   str.format(strFormat,get());
+////   str.formatf(strFormat,get());
 ////
 ////   return str;
 ////
@@ -695,7 +695,7 @@
 ////
 ////   string str;
 ////
-////   str.format(strFormat,get());
+////   str.formatf(strFormat,get());
 ////
 ////   return str;
 ////
@@ -1363,7 +1363,7 @@ bool scalar_source::on_set_scalar(enum_scalar escalar, ::number d, int iFlags)
 ////
 ////   string str;
 ////
-////   str.format(strFormat,get());
+////   str.formatf(strFormat,get());
 ////
 ////   return str;
 ////
@@ -1465,7 +1465,7 @@ bool scalar_source::on_set_scalar(enum_scalar escalar, ::number d, int iFlags)
 ////
 ////   string str;
 ////
-////   str.format(strFormat,get());
+////   str.formatf(strFormat,get());
 ////
 ////   return str;
 ////
@@ -1937,7 +1937,7 @@ void scalar::set(::number number)
 //
 //   ::string str;
 //
-//   str.format(strFormat, get());
+//   str.formatf(strFormat, get());
 //
 //   return str;
 //

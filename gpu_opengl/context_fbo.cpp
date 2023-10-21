@@ -110,7 +110,7 @@ namespace opengl
                                                                               \
             GLint value = 0;                                                  \
             CGLDescribePixelFormat(PixelFormat, iFormat, x, &value);          \
-            information(string(#x) + ": " + ::as_string(value) + "\n");     \
+            informationf(string(#x) + ": " + ::as_string(value) + "\n");     \
                                                                               \
          }
          

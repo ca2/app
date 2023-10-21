@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -410,7 +410,8 @@
 		9A574B8F16AAB906000CC4EF /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1300;
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1500;
 				ORGANIZATIONNAME = "Camilo Sasuke Tsumanuma";
 				TargetAttributes = {
 					07B65772190F3CA2002DAADE = {
@@ -681,9 +682,11 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEPLOYMENT_POSTPROCESSING = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				EXECUTABLE_EXTENSION = dylib;
 				EXECUTABLE_PREFIX = lib;
 				GCC_C_LANGUAGE_STANDARD = c11;
@@ -714,9 +717,34 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				STRIP_INSTALLED_PRODUCT = NO;
-				SYSTEM_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/operating_system $(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER) $(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/include $(WorkspaceDir)/port/_ $(WorkspaceDir)/port/include $(WorkspaceDir)/source/app";
-				USER_HEADER_SEARCH_PATHS = ". $(WorkspaceDir)/source $(WorkspaceDir)/source/include $(WorkspaceDir)/source/app $(WorkspaceDir)/source/app/include $(WorkspaceDir)/operating_system $(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER) $(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/include/configuration_selection/$(CONFIGURATION) $(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/include $(WorkspaceDir)/operating_system/operating_system-apple $(WorkspaceDir)/operating_system/operating_system-darwin $(WorkspaceDir)/operating_system/operating_system-posix $(WorkspaceDir)/port/_ $(WorkspaceDir)/port/include $(PROJECT_DIR) $(PROJECT_DIR)/.. $(PROJECT_DIR)/../.. $(HOME)/sensitive/sensitive/include";
+				SYSTEM_HEADER_SEARCH_PATHS = (
+					"$(WorkspaceDir)/operating_system",
+					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)",
+					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/include",
+					"$(WorkspaceDir)/port/_",
+					"$(WorkspaceDir)/port/include",
+					"$(WorkspaceDir)/source/app",
+				);
+				USER_HEADER_SEARCH_PATHS = (
+					.,
+					"$(WorkspaceDir)/source",
+					"$(WorkspaceDir)/source/include",
+					"$(WorkspaceDir)/source/app",
+					"$(WorkspaceDir)/source/app/include",
+					"$(WorkspaceDir)/operating_system",
+					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)",
+					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/include/configuration_selection/$(CONFIGURATION)",
+					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/include",
+					"$(WorkspaceDir)/operating_system/operating_system-apple",
+					"$(WorkspaceDir)/operating_system/operating_system-darwin",
+					"$(WorkspaceDir)/operating_system/operating_system-posix",
+					"$(WorkspaceDir)/port/_",
+					"$(WorkspaceDir)/port/include",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/..",
+					"$(PROJECT_DIR)/../..",
+					"$(HOME)/sensitive/sensitive/include",
+				);
 				USE_HEADERMAP = NO;
 				WorkspaceDir = "$(SRCROOT)/../../..";
 			};
@@ -748,9 +776,11 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_POSTPROCESSING = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				EXECUTABLE_EXTENSION = dylib;
 				EXECUTABLE_PREFIX = lib;
 				GCC_C_LANGUAGE_STANDARD = c11;
@@ -775,8 +805,34 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SYSTEM_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/operating_system $(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER) $(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/include $(WorkspaceDir)/port/_ $(WorkspaceDir)/port/include $(WorkspaceDir)/source/app";
-				USER_HEADER_SEARCH_PATHS = ". $(WorkspaceDir)/source $(WorkspaceDir)/source/include $(WorkspaceDir)/source/app $(WorkspaceDir)/source/app/include $(WorkspaceDir)/operating_system $(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER) $(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/include/configuration_selection/$(CONFIGURATION) $(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/include $(WorkspaceDir)/operating_system/operating_system-apple $(WorkspaceDir)/operating_system/operating_system-darwin $(WorkspaceDir)/operating_system/operating_system-posix $(WorkspaceDir)/port/_ $(WorkspaceDir)/port/include $(PROJECT_DIR) $(PROJECT_DIR)/.. $(PROJECT_DIR)/../.. $(HOME)/sensitive/sensitive/include";
+				SYSTEM_HEADER_SEARCH_PATHS = (
+					"$(WorkspaceDir)/operating_system",
+					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)",
+					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/include",
+					"$(WorkspaceDir)/port/_",
+					"$(WorkspaceDir)/port/include",
+					"$(WorkspaceDir)/source/app",
+				);
+				USER_HEADER_SEARCH_PATHS = (
+					.,
+					"$(WorkspaceDir)/source",
+					"$(WorkspaceDir)/source/include",
+					"$(WorkspaceDir)/source/app",
+					"$(WorkspaceDir)/source/app/include",
+					"$(WorkspaceDir)/operating_system",
+					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)",
+					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/include/configuration_selection/$(CONFIGURATION)",
+					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/include",
+					"$(WorkspaceDir)/operating_system/operating_system-apple",
+					"$(WorkspaceDir)/operating_system/operating_system-darwin",
+					"$(WorkspaceDir)/operating_system/operating_system-posix",
+					"$(WorkspaceDir)/port/_",
+					"$(WorkspaceDir)/port/include",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/..",
+					"$(PROJECT_DIR)/../..",
+					"$(HOME)/sensitive/sensitive/include",
+				);
 				USE_HEADERMAP = NO;
 				WorkspaceDir = "$(SRCROOT)/../../..";
 			};
@@ -787,6 +843,7 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				PLATFORM_MODIFIER = macos;
 			};
 			name = Debug;
@@ -796,6 +853,7 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				PLATFORM_MODIFIER = macos;
 			};
 			name = Release;

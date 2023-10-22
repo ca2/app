@@ -2232,6 +2232,12 @@ namespace windowing
    }
 
 
+   void window::defer_show_system_menu(::message::mouse * pmouse)
+   {
+
+   }
+
+
 } // namespace windowing
 
 

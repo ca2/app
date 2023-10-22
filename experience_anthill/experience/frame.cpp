@@ -870,6 +870,11 @@ namespace experience_anthill
                // goto SizingSuccess;
             }
          }
+         if (m_rectangleCaption.contains(point))
+         {
+
+            return ::experience::e_frame_title_bar;
+         }
          return ::experience::e_frame_client;
       //   goto SizingNone;
       //SizingSuccess:

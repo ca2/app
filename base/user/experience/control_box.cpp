@@ -22,6 +22,8 @@ namespace experience
    control_box::control_box()
    {
 
+      m_bVisibleIfWindowActive = true;
+
       m_strInteractionTag = "control_box";
 
       set_control_box_button_id(e_button_close, "frame::ButtonClose");

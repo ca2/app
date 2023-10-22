@@ -27,6 +27,8 @@ namespace user
 
       m_bForceHiddenControl = false; 
 
+      m_bVisibleIfWindowActive = false;
+
    }
 
 
@@ -244,6 +246,14 @@ namespace user
 
       }
 
+      if (m_bVisibleIfWindowActive &&
+         is_active_window())
+      {
+
+         return true;
+
+      }
+
       if (auto_hide_is_top_level_full_screen_or_transparent())
       {
 
@@ -429,6 +439,12 @@ namespace user
 
       }
       else if (ptopic->m_atom == id_on_clear_transparent_frame)
+      {
+
+         m_bEffectiveVisibleControl = auto_hide_full_screen_or_transparent_frame_control_visibility();
+
+      }
+      else if (ptopic->m_atom == id_on_activate)
       {
 
          m_bEffectiveVisibleControl = auto_hide_full_screen_or_transparent_frame_control_visibility();

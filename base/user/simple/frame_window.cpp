@@ -70,7 +70,7 @@ simple_frame_window::simple_frame_window()
 
    m_bDefaultClickHandling = false;
 
-   m_bDefaultMouseHoverHandling = false;
+   //m_bDefaultMouseHoverHandling = false;
 
    m_bFramePayloadFlags = false;
 

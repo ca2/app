@@ -20,6 +20,16 @@
 namespace user
 {
 
+   enum enum_keyboard_mode
+   {
+
+      e_keyboard_mode_none,
+      e_keyboard_mode_reposition,
+      e_keyboard_mode_resize,
+
+   };
+
+
    struct set_need_redraw
    {
 
@@ -149,6 +159,9 @@ namespace user
       bool                                      m_bEdgeGestureDisableTouchWhenFullscreen;
       bool                                      m_bVisible;
       bool                                      m_bMouseHoverOnCapture;
+
+      enum_keyboard_mode                        m_ekeyboardmode;
+      ::size_i32                                m_sizeInitialResizeOffset;
 
       //bool                                      m_bMouseHover;
       bool                                      m_bDefaultClickHandling;

@@ -23,6 +23,7 @@ namespace user
    class acme_tool;
 
 
+
    DECLARE_ENUMERATION(e_state, enum_state);
    CLASS_DECL_ACME string get_wallpaper(::index iIndex);
 
@@ -83,6 +84,7 @@ namespace experience
       e_frame_sizing_bottom_left = e_frame_sizing_bottom | e_frame_sizing_left,
       e_frame_sizing_bottom_right = e_frame_sizing_bottom | e_frame_sizing_right,
       e_frame_client = 16,
+      e_frame_title_bar = 32,
 //      e_frame_move = 32,
 
    };

@@ -148,6 +148,7 @@ namespace experience
       DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
       DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
       DECLARE_MESSAGE_HANDLER(on_message_left_button_double_click);
+      DECLARE_MESSAGE_HANDLER(on_message_right_button_up);
       DECLARE_MESSAGE_HANDLER(_001OnNcLButtonDown);
       DECLARE_MESSAGE_HANDLER(_001OnNcMouseMove);
       DECLARE_MESSAGE_HANDLER(_001OnNcLButtonUp);
@@ -163,6 +164,8 @@ namespace experience
 
       virtual index get_best_zoneing(::e_display & edisplay, ::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangleRequest = ::rectangle_i32(), bool bPreserveSize = false) override;
 
+      
+      ::item_pointer on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;
 
 
       bool IsHoverModeOn();

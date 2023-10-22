@@ -2381,6 +2381,8 @@ namespace user
    bool interaction_impl::on_mouse_message(::message::mouse * pmouse)
    {
 
+      pmouse->m_pwindow->m_pointCursor2 = pmouse->m_pointHost;
+
       if (pmouse->m_atom == e_message_left_button_double_click)
       {
 

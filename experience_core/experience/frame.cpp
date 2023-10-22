@@ -1007,6 +1007,14 @@ namespace experience_core
                // goto SizingSuccess;
             }
          }
+
+         if (m_rectangleCaption.contains(pointHitTest))
+         {
+
+            return ::experience::e_frame_title_bar;
+
+         }
+
          return ::experience::e_frame_client;
 //            return m_pframewindow->m_pitemClient;
       //   goto SizingNone;

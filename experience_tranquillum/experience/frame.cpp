@@ -952,6 +952,10 @@ namespace experience_tranquillum
                //goto SizingSuccess;
             }
          }
+         if (m_rectangleCaption.contains(pointHitTest))
+         {
+            return ::experience::e_frame_title_bar;
+         }
          return ::experience::e_frame_client;
          //goto SizingNone;
       //SizingSuccess:

@@ -4,6 +4,7 @@
 #include "impact.h"
 #include "impact_system.h"
 #include "toolbar.h"
+#include "acme/constant/id.h"
 #include "acme/constant/message.h"
 #include "acme/constant/simple_command.h"
 #include "acme/constant/user_key.h"
@@ -1541,6 +1542,17 @@ namespace user
       //   pTopLevel = this;
 
       //}
+
+      {
+
+         auto ptopic = create_topic(id_on_activate);
+
+         ptopic->payload("eactivate") = (::i32)pactivate->m_eactivate;
+
+         route(ptopic);
+
+      }
+
 
       //bool bStayActive =
       //(pTopLevel == pActive ||

@@ -166,6 +166,7 @@ namespace experience
       m_bEnableDefaultControlBox = false;
 
       m_bDefaultParentMouseMessageHandling = false;
+      m_bDefaultMouseHoverHandling = true;
 
       m_eupdown = e_updown_normal_frame;
 
@@ -1513,6 +1514,7 @@ namespace experience
       MESSAGE_LINK(e_message_left_button_down, pchannel, this, &frame_window::on_message_left_button_down);
       MESSAGE_LINK(e_message_left_button_up, pchannel, this, &frame_window::on_message_left_button_up);
       MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &frame_window::on_message_left_button_double_click);
+      MESSAGE_LINK(e_message_right_button_up, pchannel, this, &frame_window::on_message_right_button_up);
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &frame_window::on_message_mouse_move);
       MESSAGE_LINK(e_message_non_client_left_button_down, pchannel, this, &frame_window::_001OnNcLButtonDown);
       MESSAGE_LINK(e_message_non_client_left_button_up, pchannel, this, &frame_window::_001OnNcLButtonUp);
@@ -1804,6 +1806,48 @@ namespace experience
          pmouse->m_lresult = 1;
 
       }
+
+   }
+
+
+   void frame_window::on_message_right_button_up(::message::message * pmessage)
+   {
+
+      auto pmouse = pmessage->m_union.m_pmouse;
+
+      auto pitem = update_hover(pmouse, ::user::e_zorder_any);
+
+      if (pitem)
+      {
+
+         if (pitem->m_item.m_eelement == e_element_title_bar)
+         {
+
+            window()->defer_show_system_menu(pmouse);
+
+         }
+
+      }
+
+      //if (!is_frame_experience_enabled())
+      //{
+
+      //   pmouse->m_bRet = false;
+
+      //   return;
+
+      //}
+
+      //ASSERT(m_pframe != nullptr);
+
+      //m_pframe->on_message_left_button_up(pmouse);
+
+      //if (pmouse->m_bRet)
+      //{
+
+      //   pmouse->m_lresult = 1;
+
+      //}
 
    }
 
@@ -2492,6 +2536,36 @@ namespace experience
       }
 
       return iBestWorkspace;
+
+   }
+
+
+   ::item_pointer frame_window::on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
+   {
+
+       auto eframe = m_pframe->experience_frame_hit_test(point, ezorder);
+
+       if (eframe == ::experience::e_frame_title_bar)
+       {
+
+          auto pitem = __new(::item(::e_element_title_bar, 0));
+
+          pitem->initialize(this);
+
+          return pitem;
+
+       }
+
+       auto pitem = ::user::frame_window::on_hit_test(point, ezorder);
+
+       if (!pitem)
+       {
+
+          return nullptr;
+
+       }
+
+       return pitem;
 
    }
 

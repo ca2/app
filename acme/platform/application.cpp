@@ -10,10 +10,12 @@
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/node.h"
+#include "acme/platform/sequencer.h"
 #include "acme/platform/system.h"
 #include "acme/platform/session.h"
 #include "acme/primitive/string/_str.h"
 #include "acme/primitive/text/context.h"
+#include "acme/user/nano/nano.h"
 
 
 #ifdef WINDOWS_DESKTOP
@@ -1491,6 +1493,62 @@ namespace acme
 
    void application::on_uninstall()
    {
+
+
+   }
+
+
+   ::string_array application::get_about_box_lines()
+   {
+
+      ::string strReleaseTime(release_time());
+
+      ::string_array stra;
+
+      stra.add(m_strAppName);
+
+      stra.add("Application ID: " + m_strAppId);
+
+      stra.add("Release Time: " + strReleaseTime);
+
+      return ::transfer(stra);
+
+   }
+
+
+   void application::show_about_box()
+   {
+
+      auto lines = get_about_box_lines();
+
+      ::string strMessage;
+      
+      strMessage = lines.implode("\n");
+
+      auto psequencer = nano()->message_box("About\n\n" + strMessage, nullptr, e_message_box_ok);
+
+      //psequencer->then([this, strPath](auto pconversation)
+      //      {
+
+      //   if (pconversation->m_payloadResult == e_dialog_result_yes)
+      //   {
+
+      //      save_document(strPath);
+
+      //   }
+      //   else
+      //   {
+
+      //      cancel_save_document();
+
+      //   }
+
+
+      //      });
+
+      psequencer->do_asynchronously();
+
+
 
 
    }

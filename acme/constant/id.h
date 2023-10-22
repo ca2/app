@@ -319,6 +319,8 @@ enum enum_id : ::uptr
    id_tool,
    id_content,
 
+   id_on_activate,
+
 };
 
 

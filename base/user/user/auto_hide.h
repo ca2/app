@@ -21,6 +21,7 @@ namespace user
       bool                                         m_bHideControlOnFullScreenOrTransparentFrame;
       bool                                         m_bVisibleControl;
       bool                                         m_bForceHiddenControl;
+      bool                                         m_bVisibleIfWindowActive;
       class ::time                                 m_timeLastControlVisibilityChange;
 
 

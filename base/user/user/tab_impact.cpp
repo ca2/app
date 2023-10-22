@@ -56,6 +56,13 @@ namespace user
 
       pdata->m_pcallback = this;
 
+      if (!acmeapplication()->m_pbaseapplication->m_ptabimpactBase)
+      {
+
+         acmeapplication()->m_pbaseapplication->m_ptabimpactBase = this;
+
+      }
+
       if (pmessage->previous())
       {
 
@@ -108,6 +115,14 @@ namespace user
 
       ::pointer < ::message::command > pcommand(pmessage);
 
+      show_about_tab_pane();
+
+   }
+
+
+   void tab_impact::show_about_tab_pane()
+   {
+
       if (!contains_tab_with_id(ABOUT_IMPACT))
       {
 
@@ -116,6 +131,7 @@ namespace user
       }
 
       set_current_tab_by_id(ABOUT_IMPACT);
+
 
    }
 
@@ -1070,9 +1086,9 @@ namespace user
 
          }
 
-         acmeapplication()->m_pbaseapplication->on_after_prepare_impact_menu(pmenu);
-
       }
+
+      acmeapplication()->m_pbaseapplication->on_after_prepare_impact_menu(pmenu);
 
       auto pframe = top_level_frame();
 

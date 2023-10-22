@@ -23,10 +23,10 @@
 
 #define _STUD_NOEXCEPT(expr) noexcept(noexcept(expr))
 
-#define DISCARD(expr) ((void)expr)
-#define NOOP() DISCARD(0)
+//#define DISCARD(expr) ((void)expr)
+//#define NOOP() DISCARD(0)
 
-#define _STUD ::stud::
+//#define _STUD ::stud::
 //#define _DETAIL ::stud::__detail::
 
 #define _NODISCARD [[nodiscard]]

@@ -5,17 +5,18 @@
 #include "acme/filesystem/file/item_array.h"
 #include "acme/handler/request.h"
 #include "apex/platform/os_context.h"
-#include "axis/user/user/form_handler.h"
+#include "aura/user/user/button.h"
 #include "aura/user/user/check_box.h"
 #include "aura/user/user/interaction.h"
+#include "axis/user/user/form_handler.h"
 #include "axis/user/user/line_layout.h"
 #include "base/user/menu/item.h"
 #include "base/user/menu/menu.h"
 #include "base/user/user/document_manager.h"
 #include "base/user/user/impact_system.h"
 #include "aura/user/user/still.h"
+#include "base/user/user/tab_impact.h"
 #include "base/user/user/user.h"
-#include "base/user/user/document_manager.h"
 
 
 namespace base
@@ -247,7 +248,7 @@ namespace base
 
       }
 
-      
+      create_about_option(pparent);
 
    }
 
@@ -287,18 +288,37 @@ namespace base
    }
 
 
+   void application::create_about_option(::user::interaction * pparent)
+   {
+
+      auto pbutton = create_button<::user::button>(pparent, "About");
+
+      pbutton->m_callbackOnClick = [this](::user::interaction * puserinteraction, ::item * pitem)
+         {
+
+            show_about_box();
+
+            return true;
+
+         };
+
+   }
+
+
    void application::create_about_impact(::user::interaction * pparent)
    {
 
       auto playoutLine = create_line_layout(pparent, e_orientation_vertical);
 
-      ::string strReleaseTime(release_time());
+      auto lines = get_about_box_lines();
 
-      create_label<::user::still>(playoutLine, m_strAppName);
+      for (auto & line : lines)
+      {
 
-      create_label<::user::still>(playoutLine, "Application ID: " + m_strAppId);
+         create_label<::user::still>(playoutLine, line);
 
-      create_label<::user::still>(playoutLine, "Release Time: " + strReleaseTime);
+      }
+
 
    }
 
@@ -307,7 +327,15 @@ namespace base
    {
       
 
+      if (!pmenu->m_pmenuitem)
+      {
 
+         pmenu->__construct_new(pmenu->m_pmenuitem);
+
+         pmenu->m_pmenuitem->m_pmenu = pmenu;
+
+      }
+      else
       {
 
          auto pitemNewChild = __create_new<::user::menu_item>();
@@ -330,6 +358,23 @@ namespace base
 
       }
 
+
+   }
+
+
+   void application::show_about_box()
+   {
+
+      if (!m_ptabimpactBase)
+      {
+
+         ::axis::application::show_about_box();
+
+         return;
+
+      }
+
+      m_ptabimpactBase->show_about_tab_pane();
 
    }
 

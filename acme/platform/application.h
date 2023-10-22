@@ -36,7 +36,6 @@ namespace acme
       ::bred::application* m_pbredapplication;
       ::core::application* m_pcoreapplication;
 
-
       //::APPLICATION_FLAGS                      m_applicationflags;
       ::pointer<main_hold_base>                      m_pmainholdbase;
       // FROM ::main (Now main2)
@@ -209,6 +208,11 @@ namespace acme
       virtual void application_pre_run();
 
       virtual void init_application();
+
+      virtual ::string_array get_about_box_lines();
+
+      virtual void show_about_box();
+
 
    };
 

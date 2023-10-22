@@ -923,9 +923,6 @@
     <ClInclude Include="primitive\datetime\_datetime.h">
       <Filter>Header Files\primitive\datetime</Filter>
     </ClInclude>
-    <ClInclude Include="_operating_system.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="parallelization\condition_variable.h">
       <Filter>Header Files\parallelization</Filter>
     </ClInclude>
@@ -3451,6 +3448,18 @@
     </ClInclude>
     <ClInclude Include="constant\user_key.h">
       <Filter>Header Files\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="filesyste\filesyste\_format.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="format.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\_operating_system.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="_operating_system.h">
+      <Filter>Header Files\include</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

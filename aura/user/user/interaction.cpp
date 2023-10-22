@@ -210,6 +210,8 @@ namespace user
    interaction::interaction()
    {
 
+      m_ekeyboardmode = e_keyboard_mode_none;
+
       m_bEmptyAreaIsClientArea = true;
 
       m_bBarDragScrollLeftButtonDown = false;
@@ -2849,11 +2851,11 @@ namespace user
          }
 
          //MESSAGE_LINK(e_message_set_cursor, pchannel, this, &::user::interaction::on_message_set_cursor);
+         MESSAGE_LINK(e_message_key_down, pchannel, this, &::user::interaction::on_message_key_down);
 
          if (m_bDefaultEditHandling || m_bDefaultKeyboardMultipleSelectionHandling)
          {
 
-            MESSAGE_LINK(e_message_key_down, pchannel, this, &::user::interaction::on_message_key_down);
             MESSAGE_LINK(e_message_key_up, pchannel, this, &::user::interaction::on_message_key_up);
             MESSAGE_LINK(e_message_sys_key_down, pchannel, this, &::user::interaction::on_message_key_down);
             MESSAGE_LINK(e_message_sys_key_up, pchannel, this, &::user::interaction::on_message_key_up);
@@ -7813,6 +7815,151 @@ namespace user
 
    void interaction::on_message_key_down(::message::message * pmessage)
    {
+
+      if (m_ekeyboardmode == e_keyboard_mode_reposition
+         || m_ekeyboardmode == e_keyboard_mode_resize)
+      {
+
+         ::size_i32 sizeOffset;
+
+         if (pmessage->m_union.m_pkey->m_ekey == ::user::e_key_up)
+         {
+
+            sizeOffset.cy() -= 10;
+
+         }
+         else if (pmessage->m_union.m_pkey->m_ekey == ::user::e_key_down)
+         {
+
+            sizeOffset.cy() += 10;
+
+         }
+         else if (pmessage->m_union.m_pkey->m_ekey == ::user::e_key_left)
+         {
+
+            sizeOffset.cx() -= 10;
+
+         }
+         else if (pmessage->m_union.m_pkey->m_ekey == ::user::e_key_right)
+         {
+
+            sizeOffset.cx() += 10;
+
+         }
+         else if (pmessage->m_union.m_pkey->m_ekey == ::user::e_key_escape)
+         {
+
+            m_ekeyboardmode = e_keyboard_mode_none;
+            m_sizeInitialResizeOffset.cx() = 0;
+            m_sizeInitialResizeOffset.cy() = 0;
+
+            auto pwindowing = windowing();
+
+            auto pcursor = pwindowing->get_cursor(::e_cursor_arrow);
+
+            window()->set_mouse_cursor(pcursor);
+
+         }
+
+         if (sizeOffset.cx() != 0 || sizeOffset.cy() != 0)
+         {
+
+            if (m_ekeyboardmode == e_keyboard_mode_reposition)
+            {
+
+               auto position = this->position();
+
+               position += sizeOffset;
+
+               set_position(position);
+
+               set_reposition();
+
+               post_redraw();
+
+            }
+            else
+            {
+
+               if (m_sizeInitialResizeOffset.cx() == 0
+                  && sizeOffset.cx() != 0)
+               {
+
+                  m_sizeInitialResizeOffset.cx() = sizeOffset.cx();
+                  m_sizeInitialResizeOffset.cy() = 0;
+
+               }
+               else if (m_sizeInitialResizeOffset.cy() == 0
+                  && sizeOffset.cy() != 0)
+               {
+
+                  m_sizeInitialResizeOffset.cy() = sizeOffset.cy();
+                  m_sizeInitialResizeOffset.cx() = 0;
+
+               }
+
+               auto r = this->parent_client_rectangle();
+
+               bool bChanged = true;
+
+               if (m_sizeInitialResizeOffset.cx() > 0)
+               {
+
+                  r.right() += sizeOffset.cx();
+
+               }
+               else if (m_sizeInitialResizeOffset.cx() < 0)
+               {
+
+                  r.left() += sizeOffset.cx();
+
+               }
+               else if (m_sizeInitialResizeOffset.cy() > 0)
+               {
+
+                  r.bottom() += sizeOffset.cy();
+
+               }
+               else if (m_sizeInitialResizeOffset.cy() < 0)
+               {
+
+                  r.top() += sizeOffset.cy();
+
+               }
+               else
+               {
+
+                  bChanged = false;
+
+               }
+
+               if (bChanged)
+               {
+
+                  place(r);
+
+                  set_need_layout();
+
+                  set_need_redraw();
+
+                  post_redraw();
+
+               }
+
+            }
+
+            pmessage->m_bRet = true;
+
+         }
+
+      }
+
+      if (!m_bDefaultEditHandling && !m_bDefaultKeyboardMultipleSelectionHandling)
+      {
+
+         return;
+
+      }
 
       if (get_parent() == nullptr)
       {
@@ -22866,6 +23013,8 @@ namespace user
 
       }
 
+         
+
       ::string strType;
 
       strType = type(this).as_string();
@@ -22878,6 +23027,23 @@ namespace user
       }
 
       auto pmouse = pmessage->m_union.m_pmouse;
+
+      if (m_ekeyboardmode == ::user::e_keyboard_mode_reposition
+   || m_ekeyboardmode == ::user::e_keyboard_mode_resize)
+      {
+
+         auto pwindowing = windowing();
+
+         auto pcursor = pwindowing->get_cursor(::e_cursor_move);
+
+         user_mouse_set_cursor(pmouse, pcursor);
+
+         pmouse->m_bRet = true;
+
+         return;
+
+      }
+
 
       if (m_bBarDragScrollLeftButtonDown)
       {
@@ -24319,6 +24485,13 @@ namespace user
 
    bool interaction::keyboard_focus_is_focusable()
    {
+
+      if (m_ekeyboardmode != e_keyboard_mode_none)
+      {
+
+         return true;
+
+      }
 
       return false;
 

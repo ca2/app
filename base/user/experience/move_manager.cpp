@@ -222,79 +222,81 @@ namespace experience
 
       }
 
-      ASSERT(
-         pmouse->m_atom == e_message_mouse_move 
-         || pmouse->m_atom == e_message_non_client_mouse_move);
+      return false;
 
-      auto pwindowing = m_pframewindow->windowing();
+      //ASSERT(
+      //   pmouse->m_atom == e_message_mouse_move 
+      //   || pmouse->m_atom == e_message_non_client_mouse_move);
 
-      auto pcursor = pwindowing->get_cursor(e_cursor_arrow);
+      //auto pwindowing = m_pframewindow->windowing();
 
-      m_pframewindow->user_mouse_set_cursor(pmouse, pcursor);
+      //auto pcursor = pwindowing->get_cursor(e_cursor_arrow);
 
-      m_iConsiderMove++;
-
-      ////m_pframewindow->set_mouse_cursor(pcursor);
-
-      //if (!window_is_moving())
-      //{
-
-      //   return false;
-
-      //}
-
-      //pmouse->payload("flush_similar_messages") = true;
-
-      //auto pframewindow = m_pframewindow;
-
-      //auto pointMove = m_pointWindowOrigin + (pmouse->m_point - m_pointCursorOrigin);
-
-      //if (pframewindow->get_parent() != nullptr)
-      //{
-
-      //   pframewindow->screen_to_client()(pointMove);
-
-      //}
-
-      //if (pframewindow->find_i32("ysnap") > 1)
-      //{
-
-      //   pointMove.y() -= pointMove.y() % pframewindow->find_i32("ysnap");
-
-      //}
-
-      //m_pointMove = pointMove;
+      //m_pframewindow->user_mouse_set_cursor(pmouse, pcursor);
 
       //m_iConsiderMove++;
 
-      //{
+      //////m_pframewindow->set_mouse_cursor(pcursor);
 
-      //   //::user::lock_sketch_to_design lockSketchToDesign(pframewindow);
+      ////if (!window_is_moving())
+      ////{
 
-      //   auto edisplay = pframewindow->const_layout().sketch().display();
+      ////   return false;
 
-      //   if (::is_docking_appearance(edisplay))
-      //   {
+      ////}
 
-      //      pframewindow->m_pframe->defer_frame_placement_snapping();
+      ////pmouse->payload("flush_similar_messages") = true;
 
-      //   }
-      //   else
-      //   {
+      ////auto pframewindow = m_pframewindow;
 
-      //      pframewindow->set_position(pointMove);
+      ////auto pointMove = m_pointWindowOrigin + (pmouse->m_point - m_pointCursorOrigin);
 
-      //   }
+      ////if (pframewindow->get_parent() != nullptr)
+      ////{
 
-      //   pframewindow->set_need_redraw();
+      ////   pframewindow->screen_to_client()(pointMove);
 
-      //}
+      ////}
 
-      //pframewindow->post_redraw();
+      ////if (pframewindow->find_i32("ysnap") > 1)
+      ////{
 
-      pmouse->m_bRet = true;
+      ////   pointMove.y() -= pointMove.y() % pframewindow->find_i32("ysnap");
 
-      return true;
+      ////}
+
+      ////m_pointMove = pointMove;
+
+      ////m_iConsiderMove++;
+
+      ////{
+
+      ////   //::user::lock_sketch_to_design lockSketchToDesign(pframewindow);
+
+      ////   auto edisplay = pframewindow->const_layout().sketch().display();
+
+      ////   if (::is_docking_appearance(edisplay))
+      ////   {
+
+      ////      pframewindow->m_pframe->defer_frame_placement_snapping();
+
+      ////   }
+      ////   else
+      ////   {
+
+      ////      pframewindow->set_position(pointMove);
+
+      ////   }
+
+      ////   pframewindow->set_need_redraw();
+
+      ////}
+
+      ////pframewindow->post_redraw();
+
+      //pmouse->m_bRet = true;
+
+      //return true;
 
    }
 

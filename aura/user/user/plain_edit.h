@@ -291,11 +291,11 @@ namespace user
       void queue_selection_synchronization() override;
 
 
-      bool validate_context_offset(::point_i32 & point) override;
+      void constrain_context_offset(point_f64 & point, ::user::enum_layout elayout = ::user::e_layout_sketch) override;
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual void on_context_offset(::draw2d::graphics_pointer & pgraphics) override;
+      //virtual void on_context_offset(::draw2d::graphics_pointer & pgraphics) override;
 
       virtual void _001DeleteSel();
       virtual bool plain_edit_delete_sel(::draw2d::graphics_pointer& pgraphics, bool & bFullUpdate, index & iLineUpdate);
@@ -320,8 +320,8 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_context_menu);
       ////DECLARE_MESSAGE_HANDLER(on_message_set_cursor);
       DECLARE_MESSAGE_HANDLER(on_message_size);
-      DECLARE_MESSAGE_HANDLER(_001OnVScroll);
-      DECLARE_MESSAGE_HANDLER(_001OnHScroll);
+      DECLARE_MESSAGE_HANDLER(on_message_scroll_y);
+      DECLARE_MESSAGE_HANDLER(on_message_scroll_x);
       DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
       DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
       DECLARE_MESSAGE_HANDLER(on_message_left_button_double_click);
@@ -498,9 +498,9 @@ namespace user
 
       //virtual bool display(::e_display edisplay) override;
 
-      virtual void on_change_context_offset(::draw2d::graphics_pointer & pgraphics) override;
+      void on_context_offset_layout(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual ::size_f64 get_total_size() override;
+      //virtual ::size_f64 get_total_size(::user::enum_layout = ::user::e_layout_sketch) override;
 
       virtual ::payload get_payload();
 

@@ -4814,7 +4814,7 @@ namespace user
    }
 
 
-   bool element::horizontal_scrollbar_visible()
+   bool element::scroll_bar_x_visible(enum_layout elayout)
    {
 
       return false;
@@ -4822,7 +4822,7 @@ namespace user
    }
 
 
-   bool element::vertical_scrollbar_visible()
+   bool element::scroll_bar_y_visible(enum_layout elayout)
    {
 
       return false;

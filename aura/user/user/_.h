@@ -82,11 +82,11 @@ namespace user
 
    class toolbar;
 
-   class scroll_info;
+   //class scroll_state;
 
    class scroll_bar;
 
-   class scroll_data;
+   class scroll_state;
 
    class split_layout;
 
@@ -138,7 +138,7 @@ namespace user
    class scroll_bar;
    class split_layout;
    class style;
-   class scroll_info;
+   class scroll_state;
    //class window_map;
    //class system_interaction;
 

@@ -36,7 +36,7 @@ namespace user
       m_iLabelHeight = 18;
       m_ealign = e_align_top_left;
 
-      //m_pscrolldataVertical->m_bScrollEnable = true;
+      //m_pscrollstateVertical->m_bScrollEnable = true;
 
    }
 
@@ -394,15 +394,17 @@ namespace user
 
       auto pstyle = get_style(pgraphics);
 
-      auto rectangleX = this->raw_rectangle();
+      auto rectangle = this->raw_rectangle();
 
       pgraphics->set(get_font(pstyle));
 
-      rectangleX.offset(m_pointScroll);
+      auto pointContextOffset = get_context_offset();
 
-      pgraphics->fill_rectangle(rectangleX, get_color(pstyle, e_element_background));
+      rectangle.offset(pointContextOffset);
 
-      pgraphics->draw_inset_rectangle(rectangleX, argb(255, 192, 192, 192), 1.0);
+      pgraphics->fill_rectangle(rectangle, get_color(pstyle, e_element_background));
+
+      pgraphics->draw_inset_rectangle(rectangle, argb(255, 192, 192, 192), 1.0);
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
@@ -471,7 +473,7 @@ namespace user
 
          auto puseritem = user_item(pitem);
 
-         auto & rectangle1 = puseritem->m_rectangle;
+         auto rectangle1 = user_item_rectangle(puseritem, ::user::e_layout_design);
 
          if (!rectangleClient.intersects(rectangle1))
          {
@@ -765,21 +767,21 @@ namespace user
 
          }
 
-         puseritem->m_rectangle.left() = x;
-         puseritem->m_rectangle.right() = x + m_size.cx();
-         puseritem->m_rectangle.top() = y;
-         puseritem->m_rectangle.bottom() = y + m_size.cy();
+         puseritem->m_rectangle2.left() = x;
+         puseritem->m_rectangle2.right() = x + m_size.cx();
+         puseritem->m_rectangle2.top() = y;
+         puseritem->m_rectangle2.bottom() = y + m_size.cy();
 
          if (m_bLabel)
          {
 
-            puseritem->m_rectangle.bottom() += m_iLabelHeight;
+            puseritem->m_rectangle2.bottom() += m_iLabelHeight;
 
          }
 
-         x = puseritem->m_rectangle.right() + m_iMargin;
+         x = puseritem->m_rectangle2.right() + m_iMargin;
 
-         rectangleTotal.unite(rectangleTotal, puseritem->m_rectangle);
+         rectangleTotal.unite(rectangleTotal, puseritem->m_rectangle2);
 
       }
 
@@ -800,13 +802,13 @@ namespace user
 
       rectangleTotal.bottom() += m_iMargin;
 
-      m_sizeTotal = rectangleTotal.size();
+      set_total_size(rectangleTotal.size(), ::user::e_layout_design);
 
-      //m_pscrolldataVertical->m_iPage = rectangleX.height();
+      //m_pscrollstateVertical->m_iPage = rectangleX.height();
 
       ::user::scroll_base::on_layout(pgraphics);
 
-      on_change_impact_size(pgraphics);
+      //on_change_scroll_state(::user::e_layout_design);
 
    }
 

@@ -996,7 +996,7 @@
     <ClInclude Include="user\user\prodevian.h" />
     <ClInclude Include="user\user\scroll.h" />
     <ClInclude Include="user\user\scroll_bar.h" />
-    <ClInclude Include="user\user\scroll_info.h" />
+    <ClInclude Include="user\user\scroll_state.h" />
     <ClInclude Include="user\user\style.h" />
     <ClInclude Include="user\user\style_base.h" />
     <ClInclude Include="user\user\style_composite.h" />

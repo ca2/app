@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "interaction_child.h"
-#include "scroll_info.h"
+#include "scroll_state.h"
 #include "alpha_source.h"
 #include "interaction.h"
 #include "interaction_impl.h"
@@ -113,7 +113,7 @@ CLASS_DECL_AURA::rectangle_i32 bounding_box(const ::user::item * pitem)
    else
    {
 
-      return pitem->m_rectangle;
+      return pitem->m_rectangle2;
 
    }
 
@@ -289,6 +289,7 @@ namespace user
       //m_pinteractiondraw2d = nullptr;
 
       m_bLadingToLayout = false;
+      m_bContextOffsetLadingToLayout = false;
 
       m_bUpdateBuffer = false;
       m_bUpdateScreen = false;
@@ -419,8 +420,8 @@ namespace user
 
       //m_bEatsDoubleClick = true;
 
-      m_pointScroll.x() = 0;
-      m_pointScroll.y() = 0;
+      //m_pointScroll.x() = 0;
+      //m_pointScroll.y() = 0;
       //m_palphasource = nullptr;
 
       m_pform = nullptr;
@@ -898,6 +899,8 @@ namespace user
          }
 
       }
+
+      on_change_scroll_state(elayout);
 
       return true;
 
@@ -2002,7 +2005,7 @@ namespace user
 
       //auto * puseritem = user_item(pitem);
 
-      if (!item_rectangle(pitem))
+      if (!item_rectangle(pitem, ::user::e_layout_sketch))
       {
 
          if (!item_graphics_path(pitem))
@@ -3515,7 +3518,7 @@ namespace user
                      //if (puserinteractionpointeraChild->interaction_at(i).is_set())
                      {
 
-                       // synchronouslock.unlock();
+                        // synchronouslock.unlock();
 
                         puserinteraction->send_message(e_message_show_window, 0, 1);
 
@@ -3809,43 +3812,43 @@ namespace user
    }
 
 
-   void interaction::get_horizontal_scroll_info(scroll_info & info)
+   void interaction::synthesize_scroll_state_x(scroll_state & scrollstate, ::user::enum_layout elayout)
    {
 
-      ::size_i32 sizeTotal = get_total_size();
+      ::size_i32 sizeTotal = get_total_size(elayout);
 
-      auto sizePage = get_page_size();
+      auto sizePage = get_page_size(elayout);
 
-      auto pointOffset = get_context_offset();
+      auto pointOffset = get_context_offset(elayout);
 
-      info.nMin = 0;
-      info.nMax = (::i32)sizeTotal.cx();
-      info.nPage = (::i32)sizePage.cx();
-      info.nPos = pointOffset.x();
-      info.nTrackPos = pointOffset.x();
+      scrollstate.m_dMinimum = 0.;
+      scrollstate.m_dMaximum = sizeTotal.cx();
+      scrollstate.m_dPage = sizePage.cx();
+      scrollstate.m_dPosition = pointOffset.x();
+      scrollstate.m_dTrackingPosition = pointOffset.x();
 
    }
 
 
-   void interaction::get_vertical_scroll_info(scroll_info & info)
+   void interaction::synthesize_scroll_state_y(scroll_state & scrollstate, ::user::enum_layout elayout)
    {
 
-      auto sizeTotal = get_total_size();
+      auto sizeTotal = get_total_size(elayout);
 
-      auto sizePage = get_page_size();
+      auto sizePage = get_page_size(elayout);
 
-      auto pointOffset = get_context_offset();
+      auto pointOffset = get_context_offset(elayout);
 
-      info.nMin = 0;
-      info.nMax = (::i32)sizeTotal.cy();
-      info.nPage = (::i32)sizePage.cy();
-      info.nPos = pointOffset.y();
-      info.nTrackPos = pointOffset.y();
+      scrollstate.m_dMinimum = 0.;
+      scrollstate.m_dMaximum = sizeTotal.cy();
+      scrollstate.m_dPage = sizePage.cy();
+      scrollstate.m_dPosition = pointOffset.y();
+      scrollstate.m_dTrackingPosition = pointOffset.y();
 
    }
 
 
-   void interaction::layout_scroll_bar(::draw2d::graphics_pointer & pgraphics)
+   void interaction::layout_scroll_bar(::user::enum_layout elayout)
    {
 
    }
@@ -3931,15 +3934,15 @@ namespace user
 
       {
 
-      synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization());
 
-      if (!m_puserinteractionpointeraChild)
-      {
+         if (!m_puserinteractionpointeraChild)
+         {
 
-         return;
+            return;
 
-      }
-      m_puserinteractionpointeraChild->erase_interaction(puserinteraction);
+         }
+         m_puserinteractionpointeraChild->erase_interaction(puserinteraction);
 
       }
 
@@ -4188,10 +4191,10 @@ namespace user
       //if (m_puserinteractionpointeraChild)
       {
 
-//         auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
+         //         auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
 
-  //       for (i32 i = 0; i < puserinteractionpointeraChild->interaction_count(); i++)
-  for(auto & pinteraction: children)
+           //       for (i32 i = 0; i < puserinteractionpointeraChild->interaction_count(); i++)
+         for (auto & pinteraction : children)
          {
 
             //auto pinteraction = puserinteractionpointeraChild->interaction_at(i);
@@ -4218,18 +4221,18 @@ namespace user
 
             }
 
- //           synchronouslock.lock();
-//
-            //try
-            //{
+            //           synchronouslock.lock();
+           //
+                       //try
+                       //{
 
-            //   pinteraction->destroy();
+                       //   pinteraction->destroy();
 
-            //}
-            //catch (...)
-            //{
+                       //}
+                       //catch (...)
+                       //{
 
-            //}
+                       //}
 
          }
 
@@ -4481,17 +4484,17 @@ namespace user
    }
 
 
-   ::point_i32 interaction::get_parent_accumulated_scroll(enum_layout elayout)
+   ::point_f64 interaction::get_parent_accumulated_scroll(enum_layout elayout)
    {
 
-      ::point_i32 pointScroll;
+      ::point_f64 pointScroll;
 
       auto puserinteraction = get_parent();
 
       while (::is_set(puserinteraction))
       {
 
-         auto pointChildScroll = puserinteraction->get_context_offset();
+         auto pointChildScroll = puserinteraction->get_context_offset(elayout);
 
          if (puserinteraction->m_bParentScrollX)
          {
@@ -4518,10 +4521,10 @@ namespace user
    }
 
 
-   ::point_i32 interaction::get_accumulated_scroll(enum_layout elayout)
+   ::point_f64 interaction::get_accumulated_scroll(enum_layout elayout)
    {
 
-      ::point_i32 pointScroll;
+      ::point_f64 pointScroll;
 
       auto puserinteraction = this;
 
@@ -4555,10 +4558,10 @@ namespace user
    }
 
 
-   ::point_i32 interaction::get_scroll(enum_layout elayout)
+   ::point_f64 interaction::get_scroll(enum_layout elayout)
    {
 
-      ::point_i32 pointScroll;
+      ::point_f64 pointScroll;
 
       auto puserinteraction = this;
 
@@ -5056,25 +5059,53 @@ namespace user
    }
 
 
-   void interaction::on_context_offset(::draw2d::graphics_pointer & pgraphics)
+   void interaction::on_context_offset_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::point_i32 pointOffset;
+      //::point_i32 pointOffset;
 
-      if (m_puserinteractionParent != nullptr)
-      {
+      //if (m_puserinteractionParent != nullptr)
+      //{
 
-         pointOffset = layout().layout().origin();
+      //   pointOffset = layout().layout().origin();
 
-      }
+      //}
 
-      auto pointContextOffset = get_context_offset();
+      //auto pointContextOffset = get_context_offset();
 
-      auto offset = pointOffset - pointContextOffset;
+      //auto offset = pointOffset - pointContextOffset;
 
-      pgraphics->offset_origin((::i32)offset.cx(), (::i32)offset.cy());
+      //pgraphics->offset_origin((::i32)offset.cx(), (::i32)offset.cy());
 
    }
+
+
+   //void interaction::on_context_offset(::draw2d::graphics_pointer & pgraphics)
+   //{
+
+   //   ::point_i32 pointOffset;
+
+   //   if (m_puserinteractionParent != nullptr)
+   //   {
+
+   //      pointOffset = layout().layout().origin();
+
+   //      if (pointOffset.y() == 31)
+   //      {
+
+   //         information() << "31";
+
+   //      }
+
+   //   }
+
+   //   auto pointContextOffset = get_context_offset();
+
+   //   auto offset = pointOffset - pointContextOffset;
+
+   //   pgraphics->offset_origin((::i32)offset.cx(), (::i32)offset.cy());
+
+   //}
 
 
    ::particle * interaction::mutex_draw()
@@ -5124,13 +5155,13 @@ namespace user
    void interaction::_001DrawChildren(::draw2d::graphics_pointer & pgraphics)
    {
 
-      point_i32 pointScroll = m_pointScroll;
+      //point_i32 pointContextOffset = get_context_offset();
 
       //point_i32 pointDragScroll = m_pointDragScroll;
 
-      bool bParentScrollX = false;
+      //bool bParentScrollX = false;
 
-      bool bParentScrollY = false;
+      //bool bParentScrollY = false;
 
       try
       {
@@ -5232,7 +5263,10 @@ namespace user
 
                      //synchronouslock.unlock();
 
+                     ::draw2d::save_context savecontext(pgraphics);
+
                      pinteraction->defer_do_graphics(pgraphics);
+
 
                      //synchronouslock.lock();
 
@@ -5288,19 +5322,19 @@ namespace user
 
       //pgraphics->offset_origin(pointScroll.x(), pointScroll.y());
 
-      if (bParentScrollX && pointScroll.x())
-      {
+      //if (bParentScrollX && pointContextOffset.x())
+      //{
 
-         pgraphics->offset_origin(pointScroll.x(), 0);
+      //   pgraphics->offset_origin(pointContextOffset.x(), 0);
 
-      }
+      //}
 
-      if (bParentScrollY && pointScroll.y())
-      {
+      //if (bParentScrollY && pointContextOffset.y())
+      //{
 
-         pgraphics->offset_origin(0, pointScroll.y());
+      //   pgraphics->offset_origin(0, pointContextOffset.y());
 
-      }
+      //}
 
    }
 
@@ -5869,6 +5903,15 @@ namespace user
 
          }
 
+         if (m_bContextOffsetLadingToLayout)
+         {
+
+            on_context_offset_layout(pgraphics);
+
+            m_bLadingToLayout = false;
+
+         }
+
       }
 
       if (pgraphics->m_egraphics & e_graphics_layout)
@@ -6060,19 +6103,19 @@ namespace user
 
       ::point_i32 pointOffset;
 
-      if (m_puserinteractionParent != nullptr)
-      {
+      //if (m_puserinteractionParent != nullptr)
+      //{
 
-         pointOffset = layout().layout().origin();
+      //   pointOffset = layout().layout().origin();
 
-      }
+      //}
 
-      if (!pointOffset.is_null())
-      {
+      //if (!pointOffset.is_null())
+      //{
 
-         pgraphics->offset_origin(pointOffset.x(), pointOffset.y());
+      //   pgraphics->offset_origin(pointOffset.x(), pointOffset.y());
 
-      }
+      //}
 
       try
       {
@@ -6098,13 +6141,12 @@ namespace user
 
       }
 
-      if (!pointOffset.is_null())
-      {
+      //if (!pointOffset.is_null())
+      //{
 
-         pgraphics->offset_origin(-pointOffset.x(), -pointOffset.y());
+      //   pgraphics->offset_origin(-pointOffset.x(), -pointOffset.y());
 
-      }
-
+      //}
 
       m_bUpdateBuffer = true;
 
@@ -6235,30 +6277,78 @@ namespace user
 
       {
 
-         ::draw2d::save_context savecontext(pgraphics);
-
          if (pgraphics->m_bInheritDraw)
          {
 
-            point_i32 pointScroll = m_pointScroll;
+            //point_f64 pointScroll = get_context_offset();
 
-            if (!pointScroll.is_null())
-            {
+            //if (!pointScroll.is_null())
+            //{
 
-               pgraphics->offset_origin(-pointScroll.x(), -pointScroll.y());
+            //   pgraphics->offset_origin(-pointScroll.x(), -pointScroll.y());
 
-            }
+            //}
 
             if (m_bOnDraw && should_draw())
             {
 
                pgraphics->m_dFontFactor = 1.0;
 
+               ::draw2d::save_context savecontext(pgraphics);
+
+               //on_context_offset(pgraphics);
+
+               {
+
+                  ::point_i32 pointOffset;
+
+                  if (m_puserinteractionParent != nullptr)
+                  {
+
+                     pointOffset = layout().layout().origin();
+
+                     if (pointOffset.y() == 31)
+                     {
+
+                        information() << "31";
+
+                     }
+
+                  }
+
+                  pgraphics->offset_origin((::i32)pointOffset.x(), (::i32)pointOffset.y());
+
+               }
+
+               {
+
+                  auto pointContextOffset = get_context_offset();
+
+                  auto offset = -pointContextOffset;
+
+                  pgraphics->offset_origin((::i32)offset.x(), (::i32)offset.y());
+
+               }
+
                try
                {
 
                   auto type = ::type(this);
 
+                  ::string strType = type.as_string();
+
+                  if (strType.case_insensitive_contains("pane_impact"))
+                  {
+
+                     information() << "pane_impact";
+
+                  }
+                  else if (strType.case_insensitive_contains("app_core_store::impact"))
+                  {
+
+                     information() << "app_core_store::impact";
+
+                  }
 
                   //if (pgraphics->m_bDraw)
                   //{
@@ -6317,9 +6407,13 @@ namespace user
 
                      ::draw2d::save_context savecontextThis(pgraphics);
 
-                     //auto rectangleX = this->rectangle();
+                     //{
 
-                     //pgraphics->offset_origin(rectangleX.left(), rectangleX.top());
+                     //   auto rectangleClient = this->client2_rectangle();
+
+                     //   pgraphics->offset_origin(rectangleClient.left(), rectangleClient.top());
+
+                     //}
 
                      try
                      {
@@ -6335,111 +6429,114 @@ namespace user
 
                      }
 
-                  }
-
-               }
-               catch (...)
-               {
-
-               }
-
-            }
-
-         }
-
-         try
-         {
-
-            ///synchronous_lock synchronouslock(this->synchronization());
-
-            //if (m_puserinteractionpointeraChild && m_puserinteractionpointeraChild->has_interaction())
-            {
-
-               //::draw2d::save_context savecontext(pgraphics);
-
-               //synchronouslock.unlock();
-
-               try
-               {
-
-                  _001DrawChildren(pgraphics);
-
-               }
-               catch (...)
-               {
-
-                  information() << "Exception: interaction::_000OnDraw _001DrawChildren %s"
-                     << ::type(this).as_string();
-
-               }
-
-               //synchronouslock.lock();
-
-            }
-
-         }
-         catch (...)
-         {
-
-         }
-
-         if (pgraphics->m_bInheritDraw && should_draw())
-         {
-
-            try
-            {
-
-               if (m_bOverdraw)
-               {
-
-                  {
-
-                     auto t1 = ::time::now();
-
-                     _008CallOnDraw(pgraphics);
-
-                     auto d1 = t1.elapsed();
-
-#ifdef VERBOSE_LOG
-
-                     if (d1 > 50_ms)
+                     try
                      {
 
-                        auto type = ::type(this);
+                        ///synchronous_lock synchronouslock(this->synchronization());
 
-                        CATEGORY_INFORMATION(prodevian, "(more than 50ms)(E) " << type.m_strName << "::_008CallOnDraw took " <<
-                           d1.integral_millisecond() << "::time.\n");
+                        //if (m_puserinteractionpointeraChild && m_puserinteractionpointeraChild->has_interaction())
+                        {
+
+                           //::draw2d::save_context savecontext(pgraphics);
+
+                           //synchronouslock.unlock();
+
+                           try
+                           {
+
+                              _001DrawChildren(pgraphics);
+
+                           }
+                           catch (...)
+                           {
+
+                              information() << "Exception: interaction::_000OnDraw _001DrawChildren %s"
+                                 << ::type(this).as_string();
+
+                           }
+
+                           //synchronouslock.lock();
+
+                        }
+
+                     }
+                     catch (...)
+                     {
 
                      }
 
+                  }
+
+                  if (pgraphics->m_bInheritDraw && should_draw())
+                  {
+
+                     try
+                     {
+
+                        if (m_bOverdraw)
+                        {
+
+                           {
+
+                              auto t1 = ::time::now();
+
+                              _008CallOnDraw(pgraphics);
+
+                              auto d1 = t1.elapsed();
+
+#ifdef VERBOSE_LOG
+
+                              if (d1 > 50_ms)
+                              {
+
+                                 auto type = ::type(this);
+
+                                 CATEGORY_INFORMATION(prodevian, "(more than 50ms)(E) " << type.m_strName << "::_008CallOnDraw took " <<
+                                    d1.integral_millisecond() << "::time.\n");
+
+                              }
+
 #endif
+
+                           }
+
+                        }
+
+                        try
+                        {
+
+                           _001OnNcPostDraw(pgraphics);
+
+                        }
+                        catch (...)
+                        {
+
+
+
+                        }
+
+                     }
+                     catch (...)
+                     {
+
+                     }
+
+
+                  }
+
+                        }
+               catch (...)
+               {
+
+               }
+
+                     }
 
                   }
 
                }
 
             }
-            catch (...)
-            {
-
-            }
-
-            try
-            {
-
-               _001OnNcPostDraw(pgraphics);
-
-            }
-            catch (...)
-            {
-
-            }
-
-         }
-
-      }
-
-   }
 
 
    void interaction::_008OnDraw(::draw2d::graphics_pointer & pgraphics)
@@ -6936,18 +7033,18 @@ namespace user
 
 #ifdef WINDOWS_DESKTOP
 
-         auto pthread = m_pthreadUserInteraction;
+      auto pthread = m_pthreadUserInteraction;
 
-         if (::is_null(pthread))
-         {
+      if (::is_null(pthread))
+      {
 
-            procedure();
+         procedure();
 
-            return;
+         return;
 
-         }
+      }
 
-         pthread->post_procedure(procedure);
+      pthread->post_procedure(procedure);
 
 #else
 
@@ -11796,7 +11893,7 @@ namespace user
 
       m_bPendingChildrenZorder = false;
 
-   }
+            }
 
 
 #undef EXTRA_DESIGN_REPOSITION_LOG
@@ -12034,7 +12131,7 @@ namespace user
 
          on_layout(pgraphics);
 
-         on_change_impact_size(pgraphics);
+         //on_change_sketch_scroll_state();
 
          auto pappearance = get_appearance();
 
@@ -13004,6 +13101,13 @@ namespace user
 
          auto puseritem = user_item(pitem);
 
+         if (puseritem->m_euseritemflag & ::user::e_item_flag_rectangle_callback)
+         {
+
+            continue;
+
+         }
+
          if (pitem && pitem->m_item.m_eelement != ::e_element_item)
          {
 
@@ -13014,7 +13118,7 @@ namespace user
 
                auto rectangle = this->rectangle(pitem->m_item.m_eelement);
 
-               puseritem->m_rectangle = rectangle;
+               puseritem->m_rectangle2 = rectangle;
 
             }
 
@@ -13193,6 +13297,15 @@ namespace user
       m_bClipRectangle = false;
 
       layout_tooltip();
+
+      auto strType = ::type(this).as_string();
+
+      if (strType.case_insensitive_contains("scroll_bar"))
+      {
+
+         information() << "on_reposition scroll_bar";
+
+      }
 
    }
 
@@ -15367,7 +15480,7 @@ namespace user
       // else
       // {
 
-          __defer_construct_new(m_puserinteractionpointeraChild);
+      __defer_construct_new(m_puserinteractionpointeraChild);
 
       // }
 
@@ -17697,16 +17810,16 @@ namespace user
 
       }
 
-      if (::is_set(pgraphics) && elayout == ::user::e_layout_layout)
+      auto iLayout = (::i32)elayout;
+
+      while (iLayout >= 0)
       {
 
-         layout().sketch().m_size = sizeNew;
+         layout().m_statea[iLayout].m_size = sizeNew;
 
-         layout().lading().m_size = sizeNew;
+         layout().m_statea[iLayout].m_point2 = pointNew;
 
-         layout().sketch().m_point2 = pointNew;
-
-         layout().lading().m_point2 = pointNew;
+         iLayout--;
 
       }
 
@@ -19114,7 +19227,7 @@ namespace user
    }
 
 
-   scroll_bar * interaction::get_horizontal_scroll_bar()
+   scroll_bar * interaction::get_scroll_bar_x()
    {
 
       return nullptr;
@@ -19122,7 +19235,7 @@ namespace user
    }
 
 
-   scroll_bar * interaction::get_vertical_scroll_bar()
+   scroll_bar * interaction::get_scroll_bar_y()
    {
 
       return nullptr;
@@ -19130,130 +19243,195 @@ namespace user
    }
 
 
-   scroll_data * interaction::get_horizontal_scroll_data()
+   scroll_state interaction::get_scroll_state_x(::user::enum_layout elayout)
    {
 
-      return nullptr;
+      return {};
 
    }
 
 
-   scroll_data * interaction::get_vertical_scroll_data()
+   scroll_state interaction::get_scroll_state_y(::user::enum_layout elayout)
    {
 
-      return nullptr;
+      return {};
 
    }
 
 
-   void interaction::offset_context_offset(::draw2d::graphics_pointer & pgraphics, int x, int y)
+   void interaction::set_scroll_state_x(const scroll_state & scrollstate, ::user::enum_layout elayout)
    {
-
-      auto pointOffset = get_context_offset();
-
-      set_context_offset(pgraphics, pointOffset.x() + x, pointOffset.y() + y);
 
    }
 
 
-   void interaction::offset_context_offset_x(::draw2d::graphics_pointer & pgraphics, int x)
+   void interaction::set_scroll_state_y(const scroll_state & scrollstate, ::user::enum_layout elayout)
    {
-
-      offset_context_offset(pgraphics, x, 0);
 
    }
 
 
-   void interaction::offset_context_offset_y(::draw2d::graphics_pointer & pgraphics, int y)
+   //void interaction::offset_context_offset(::draw2d::graphics_pointer & pgraphics, int x, int y)
+   void interaction::offset_context_offset(const ::size_f64 & size, ::user::enum_layout elayout)
    {
 
-      offset_context_offset(pgraphics, 0, y);
+      auto pointOffset = get_context_offset(elayout);
+
+      pointOffset += size;
+
+      set_context_offset(pointOffset, elayout);
 
    }
 
 
-   void interaction::set_context_offset(::draw2d::graphics_pointer & pgraphics, int x, int y)
+   //void interaction::offset_context_offset_x(::draw2d::graphics_pointer & pgraphics, ::f64 cx)
+   void interaction::offset_context_offset_x(::f64 cx, ::user::enum_layout elayout)
    {
 
-      ::point_i32 pointOffset(x, y);
+      auto x = get_context_offset_x(elayout);
 
-      //if (pointOffset == (m_pointScroll + m_pointDragScroll))
-      if (pointOffset == m_pointScroll)
-      {
+      x += cx;
 
-         return;
+      set_context_offset_x(x, elayout);
 
-      }
+   }
 
-      if (!validate_context_offset(pointOffset))
-      {
 
-         return;
+   //   void interaction::offset_context_offset_y(::draw2d::graphics_pointer & pgraphics, int y)
+   void interaction::offset_context_offset_y(::f64 cy, ::user::enum_layout elayout)
+   {
 
-      }
+      auto y = get_context_offset_y(elayout);
 
-      m_pointScroll = pointOffset;
+      y += cy;
+
+      set_context_offset_y(y, elayout);
+
+   }
+
+
+
+   //void interaction::set_context_offset(::draw2d::graphics_pointer & pgraphics, int x, int y)
+   void interaction::set_context_offset(const ::point_f64 & pointOffset, ::user::enum_layout elayout)
+   {
+
+      //auto point = pointOffset;
+
+      ////if (pointOffset == (m_pointScroll + m_pointDragScroll))
+      //if (point == get_context_offset(elayout))
+      //{
+
+      //   return;
+
+      //}
+
+      //constrain_context_offset(point, elayout);
+      ////{
+
+      ////   return;
+
+      ////}
+
+      //m_pointScroll = pointOffset;
+
+      on_change_context_offset(elayout);
+
+   }
+
+
+   void interaction::on_change_context_offset(::user::enum_layout elayout)
+   {
 
       m_bClipRectangle = false;
 
-      on_change_context_offset(pgraphics);
-
-   }
-
-
-   bool interaction::validate_context_offset(point_i32 & point)
-   {
-
-      if (point == m_pointScroll)
-      {
-
-         return false;
-
-      }
-
-      return true;
-
-   }
-
-
-   void interaction::set_context_offset_x(::draw2d::graphics_pointer & pgraphics, int x)
-   {
-
-      set_context_offset(pgraphics, x, (::i32)get_context_offset().y());
-
-   }
-
-
-   void interaction::set_context_offset_y(::draw2d::graphics_pointer & pgraphics, int y)
-   {
-
-      set_context_offset(pgraphics, (::i32)get_context_offset().x(), y);
-
-   }
-
-
-   void interaction::on_change_context_offset(::draw2d::graphics_pointer & pgraphics)
-   {
-
-      //set_need_redraw();
-
       set_reposition();
 
+      layout_scroll_bar(elayout);
+
    }
 
 
-   point_i32 interaction::get_context_offset()
+   void interaction::constrain_context_offset(point_f64 & point, ::user::enum_layout elayout)
+   {
+
+      //if (point == m_pointScroll)
+      //{
+
+      //   return false;
+
+      //}
+
+      //return true;
+
+   }
+
+
+   //void interaction::set_context_offset_x(::draw2d::graphics_pointer & pgraphics, int x)
+   //{
+
+   //   set_context_offset(pgraphics, x, (::i32)get_context_offset().y());
+
+   //}
+
+
+   //void interaction::set_context_offset_y(::draw2d::graphics_pointer & pgraphics, int y)
+   //{
+
+   //   set_context_offset(pgraphics, (::i32)get_context_offset().x(), y);
+
+   //}
+
+
+   //void interaction::on_context_offset_layout(::draw2d::graphics_pointer & pgraphics)
+   //{
+
+   //   ////set_need_redraw();
+
+   //   //set_reposition();
+
+   //}
+
+
+   point_f64 interaction::get_context_offset(::user::enum_layout elayout)
    {
 
       //::point_i32 point = m_pointScroll + m_pointDragScroll;
-      ::point_i32 point = m_pointScroll;
+      //::point_i32 point = m_pointScroll;
 
-      return point;
+      //return point;
+
+      return {};
 
    }
 
 
-   size_f64 interaction::get_total_size()
+   ::f64 interaction::get_context_offset_x(::user::enum_layout elayout)
+   {
+
+      //::point_i32 point = m_pointScroll + m_pointDragScroll;
+      //::point_i32 point = m_pointScroll;
+
+      //return point;
+
+      return {};
+
+   }
+
+
+   ::f64 interaction::get_context_offset_y(::user::enum_layout elayout)
+   {
+
+      //::point_i32 point = m_pointScroll + m_pointDragScroll;
+      //::point_i32 point = m_pointScroll;
+
+      //return point;
+
+      return {};
+
+   }
+
+
+   size_f64 interaction::get_total_size(::user::enum_layout elayout)
    {
 
       auto rectangleX = this->rectangle();
@@ -19262,7 +19440,8 @@ namespace user
 
    }
 
-   void interaction::set_total_size(const ::size_f64 & size)
+
+   void interaction::set_total_size(const ::size_f64 & size, ::user::enum_layout elayout)
    {
 
       throw ::interface_only();
@@ -19270,7 +19449,7 @@ namespace user
    }
 
 
-   void interaction::set_page_size(const ::size_f64 & size)
+   void interaction::set_page_size(const ::size_f64 & size, ::user::enum_layout elayout)
    {
 
       throw ::interface_only();
@@ -19278,28 +19457,82 @@ namespace user
    }
 
 
-   void interaction::on_change_impact_size(::draw2d::graphics_pointer & pgraphics)
+   //void interaction::set_context_offset(const ::point_f64 & point, ::user::enum_layout elayout)
+   //{
+
+   //   throw ::interface_only();
+
+   //}
+
+
+   void interaction::set_scroll_tracking_x(::f64 x, ::user::enum_layout elayout)
+   {
+
+      throw ::interface_only();
+
+   }
+
+
+   void interaction::set_scroll_tracking_y(::f64 x, ::user::enum_layout elayout)
+   {
+
+      throw ::interface_only();
+
+   }
+
+
+
+   void interaction::set_context_offset_x(::f64 x, ::user::enum_layout elayout)
+   {
+
+      throw ::interface_only();
+
+   }
+
+
+   void interaction::set_context_offset_y(::f64 x, ::user::enum_layout elayout)
+   {
+
+      throw ::interface_only();
+
+   }
+
+
+   void interaction::on_would_change_total_size(::user::enum_layout elayout)
+   {
+
+
+   }
+
+
+   void interaction::on_change_scroll_state(::user::enum_layout elayout)
    {
 
    }
 
 
-   size_f64 interaction::get_page_size()
+   //void interaction::on_context_offset_layout(::draw2d::graphics_pointer & pgraphics)
+   //{
+
+   //}
+
+
+   size_f64 interaction::get_page_size(::user::enum_layout elayout)
    {
 
-      auto rectangleX = this->rectangle();
+      auto rectangleX = this->rectangle(elayout);
 
       return rectangleX.size();
 
    }
 
 
-   point_i32 interaction::get_ascendant_context_offset()
+   point_f64 interaction::get_ascendant_context_offset()
    {
 
       ::pointer<::user::interaction> puser = get_parent();
 
-      point_i32 point;
+      point_f64 point;
 
       while (puser.is_set())
       {
@@ -19329,14 +19562,16 @@ namespace user
 
    }
 
-   int interaction::get_final_x_scroll_bar_width()
+
+   int interaction::get_final_scroll_bar_x_thickness(::user::enum_layout elayout)
    {
 
       return 0;
 
    }
 
-   int interaction::get_final_y_scroll_bar_width()
+
+   int interaction::get_final_scroll_bar_y_thickness(::user::enum_layout elayout)
    {
 
       return 0;
@@ -19352,7 +19587,7 @@ namespace user
    }
 
 
-   point_i32 interaction::get_parent_context_offset()
+   point_f64 interaction::get_parent_context_offset()
    {
 
       ::user::interaction * puser = get_parent();
@@ -19360,11 +19595,11 @@ namespace user
       if (puser == nullptr)
       {
 
-         return ::point_i32();
+         return {};
 
       }
 
-      ::point_i32 pointParentAccumulated;
+      ::point_f64 pointParentAccumulated;
 
       if (puser != NULL)
       {
@@ -21118,9 +21353,9 @@ namespace user
 
       rectangle = this->rectangle();
 
-      rectangle.right() += get_final_y_scroll_bar_width();
+      rectangle.right() += get_final_scroll_bar_x_thickness();
 
-      rectangle.bottom() += get_final_x_scroll_bar_width();
+      rectangle.bottom() += get_final_scroll_bar_y_thickness();
 
       return true;
 
@@ -22467,8 +22702,8 @@ namespace user
 
       }
 
-      if ((m_bEnableHorizontalBarDragScroll && _001HasHorizontalBarDragScrolling())
-          || (m_bEnableVerticalBarDragScroll && _001HasVerticalBarDragScrolling()))
+      if ((m_bEnableHorizontalBarDragScroll && _001HasBarXDragScrolling())
+          || (m_bEnableVerticalBarDragScroll && _001HasBarYDragScrolling()))
       {
 
          m_pointBarDragScrollLeftButtonDown = pmouse->m_pointHost;
@@ -23013,7 +23248,7 @@ namespace user
 
       }
 
-         
+
 
       ::string strType;
 
@@ -24051,12 +24286,14 @@ namespace user
 
          auto * puseritem = user_item(pitemOldHover);
 
-         if (puseritem->m_rectangle.is_set())
+         auto rectangle = user_item_rectangle(puseritem, ::user::e_layout_sketch);
+
+         if (rectangle.is_set())
          {
 
-            information() << "interaction::on_message_mouse_leave : " << puseritem->m_rectangle;
+            information() << "interaction::on_message_mouse_leave : " << rectangle;
 
-            set_need_redraw({ puseritem->m_rectangle });
+            set_need_redraw({ rectangle });
 
             post_redraw();
 
@@ -24244,7 +24481,9 @@ namespace user
       else
       {
 
-         if (puseritem->m_rectangle.contains(point))
+         auto rectangle = user_item_rectangle(puseritem, ::user::e_layout_sketch);
+
+         if (rectangle.contains(point))
          {
 
             return true;
@@ -24353,7 +24592,7 @@ namespace user
 
                auto puseritem = user_item(pitemResize);
 
-               puseritem->m_rectangle = rectangleResize;
+               puseritem->m_rectangle2 = rectangleResize;
 
                //return pitemHitTest;
 
@@ -24416,7 +24655,7 @@ namespace user
 
                auto puseritem = user_item(pitemClient);
 
-               puseritem->m_rectangle = rectangleX;
+               puseritem->m_rectangle2 = rectangleX;
 
                //return pitemHitTest;
 
@@ -26236,7 +26475,30 @@ namespace user
    }
 
 
-   status < rectangle_i32 > interaction::item_rectangle(::item * pitem)
+   ::rectangle_f64 interaction::user_item_rectangle(::user::item * puseritem, ::user::enum_layout elayout)
+   {
+
+      if (puseritem->m_euseritemflag & ::user::e_item_flag_rectangle_callback)
+      {
+
+         return _user_item_rectangle(puseritem, elayout);
+
+      }
+
+      return puseritem->m_rectangle2;
+
+   }
+   
+   
+   ::rectangle_f64 interaction::_user_item_rectangle(::user::item * puseritem, ::user::enum_layout elayout)
+   {
+
+      return puseritem->m_rectangle2;
+
+   }
+
+
+   status < rectangle_i32 > interaction::item_rectangle(::item * pitem, ::user::enum_layout elayout)
    {
 
       if (!::is_item_set(pitem))
@@ -26248,7 +26510,9 @@ namespace user
 
       auto puseritem = user_item(pitem);
 
-      return puseritem->m_rectangle;
+      auto rectangle = user_item_rectangle(puseritem, elayout);
+
+      return ::rectangle_i32(rectangle);
 
    }
 
@@ -26872,7 +27136,7 @@ namespace user
 
 
 
-} // namespace user
+         } // namespace user
 
 
 ::point_i32 g_pointAuraTopRight;

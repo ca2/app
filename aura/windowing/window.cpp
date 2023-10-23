@@ -138,12 +138,14 @@ namespace windowing
 
          }
 
-         if (pmessagePost->m_atom == e_message_vscroll)
+         if (pmessagePost->m_atom == e_message_scroll_y)
          {
 
-            ::informationf("vscroll");
+            ::informationf("e_message_scroll_y");
 
-         } else if (pmessagePost->m_atom == e_message_text_composition)
+
+         } 
+         else if (pmessagePost->m_atom == e_message_text_composition)
          {
 
             ::informationf("message text composition");

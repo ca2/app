@@ -401,8 +401,8 @@ namespace user
 
       virtual bool keyboard_focus_is_focusable() override;
 
-      DECLARE_MESSAGE_HANDLER(_001OnVScroll);
-      DECLARE_MESSAGE_HANDLER(_001OnHScroll);
+      DECLARE_MESSAGE_HANDLER(on_message_scroll_y);
+      DECLARE_MESSAGE_HANDLER(on_message_scroll_x);
 
       virtual void _thread_data_update_visible_subitem() override;
 

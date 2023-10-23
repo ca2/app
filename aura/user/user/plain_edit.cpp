@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "plain_edit.h"
-#include "scroll_data.h"
+#include "scroll_state.h"
 #include "style.h"
 #include "user.h"
 #include "copydesk.h"
@@ -206,9 +206,9 @@ namespace user
 
       m_bDefaultParentMouseMessageHandling = true;
 
-      m_pscrolldataHorizontal->m_bScrollEnable = false;
+      m_pscrolllayoutX->m_scrollstatea[::user::e_layout_sketch].m_bScrollEnable = false;
 
-      m_pscrolldataVertical->m_bScrollEnable = false;
+      m_pscrolllayoutY->m_scrollstatea[::user::e_layout_sketch].m_bScrollEnable = false;
 
       m_dy = -1;
       m_iImpactOffset = 0;
@@ -307,8 +307,8 @@ namespace user
       //MESSAGE_LINK(e_message_kill_focus, pchannel, this, &::user::plain_edit::on_message_kill_focus);
 
 
-      MESSAGE_LINK(e_message_vscroll, pchannel, this, &::user::plain_edit::_001OnVScroll);
-      MESSAGE_LINK(e_message_hscroll, pchannel, this, &::user::plain_edit::_001OnHScroll);
+      MESSAGE_LINK(e_message_scroll_y, pchannel, this, &::user::plain_edit::on_message_scroll_y);
+      MESSAGE_LINK(e_message_scroll_x, pchannel, this, &::user::plain_edit::on_message_scroll_x);
 
 
 
@@ -396,32 +396,32 @@ namespace user
    }
 
 
-   void plain_edit::on_context_offset(::draw2d::graphics_pointer & pgraphics)
+   //void plain_edit::on_context_offset(::draw2d::graphics_pointer & pgraphics)
+   //{
+
+   //   ::user::interaction::on_context_offset(pgraphics);
+
+   //}
+
+
+   void plain_edit::constrain_context_offset(::point_f64 & point, ::user::enum_layout elayout)
    {
 
-      ::user::interaction::on_context_offset(pgraphics);
+      ::user::scroll_base::constrain_context_offset(point);
+      //{
 
-   }
+      //   return false;
 
-
-   bool plain_edit::validate_context_offset(::point_i32 & point)
-   {
-
-      if (!::user::scroll_base::validate_context_offset(point))
-      {
-
-         return false;
-
-      }
+      //}
 
       if (!m_bMultiLine)
       {
 
-         point.y() = 0;
+         point.y() = 0.;
 
       }
 
-      return true;
+      ///return true;
 
    }
 
@@ -444,7 +444,7 @@ namespace user
 
       auto rectangleBackground = rectangleX;
 
-      rectangleBackground.offset(m_pointScroll);
+      rectangleBackground.offset(get_context_offset());
 
       auto crEditBackground = get_color(pstyle, e_element_background);
 
@@ -1131,30 +1131,30 @@ namespace user
 
             host_to_client()(pointCursor);
 
-            ::rectangle_i32 rectangleActiveClient;
+            ::rectangle_i32 rectangleClient;
 
-            GetActiveClientRect(rectangleActiveClient);
+            rectangleClient = client2_rectangle();
 
-            if (pointCursor.x() < rectangleActiveClient.left())
+            if (pointCursor.x() < rectangleClient.left())
             {
 
                scroll_left_line();
 
             }
-            else if (pointCursor.x() > rectangleActiveClient.right())
+            else if (pointCursor.x() > rectangleClient.right())
             {
 
                scroll_right_line();
 
             }
 
-            if (pointCursor.y() < rectangleActiveClient.top())
+            if (pointCursor.y() < rectangleClient.top())
             {
 
                scroll_up_line();
 
             }
-            else if (pointCursor.y() > rectangleActiveClient.bottom())
+            else if (pointCursor.y() > rectangleClient.bottom())
             {
 
                scroll_down_line();
@@ -1596,7 +1596,7 @@ namespace user
       if (xContext != get_context_offset().x())
       {
 
-         set_context_offset_x(pgraphics, (int)xContext);
+         set_context_offset_x(xContext);
 
       }
 
@@ -1741,20 +1741,20 @@ namespace user
 
       auto rectangleX = this->rectangle();
 
-      int xVisibleStart = m_pointScroll.x();
+      auto xVisibleStart = get_context_offset_x(::user::e_layout_design);
 
-      int xVisibleEnd = xVisibleStart + rectangleX.width() - iBorder * 2;
+      auto xVisibleEnd = xVisibleStart + rectangleX.width() - iBorder * 2.;
 
       if (x < xVisibleStart)
       {
 
-         m_pointScroll.x() = x;
+         set_context_offset_x(x);
 
       }
       else if (x > xVisibleEnd)
       {
 
-         m_pointScroll.x() = x - rectangleX.width() + iBorder * 2;
+         set_context_offset_x(x - rectangleX.width() + iBorder * 2.);
 
       }
 
@@ -1775,7 +1775,7 @@ namespace user
       if (!m_bMultiLine)
       {
 
-         set_context_offset_y(pgraphics, 0);
+         set_context_offset_y(0);
 
       }
       else
@@ -1785,24 +1785,24 @@ namespace user
 
          GetFocusRect(rectangleX);
 
-         int iCurrentPageTop = get_context_offset().y();
+         auto currentPageTop = get_context_offset_y(::user::e_layout_design);
 
-         int iCurrentPageBottom = get_context_offset().y() + rectangleX.height();
+         auto currentPageBottom = get_context_offset_y(::user::e_layout_design) + rectangleX.height();
 
-         index iLineTop = (::index)(iLine * m_dLineHeight);
+         auto lineTop = iLine * m_dLineHeight;
 
-         index iLineBottom = ((::index)((iLine + 1) * m_dLineHeight));
+         auto lineBottom = (iLine + 1) * m_dLineHeight;
 
-         if (iLineTop < iCurrentPageTop)
+         if (lineTop < currentPageTop)
          {
 
-            set_context_offset_y(pgraphics, (int)iLineTop);
+            set_context_offset_y(lineTop, ::user::e_layout_design);
 
          }
-         else if (iLineBottom >= iCurrentPageBottom)
+         else if (lineBottom >= currentPageBottom)
          {
 
-            set_context_offset_y(pgraphics, ((int)iLineBottom - rectangleX.height()) + (int)(m_dLineHeight / 4.0));
+            set_context_offset_y((lineBottom - rectangleX.height()) + (m_dLineHeight / 4.0), ::user::e_layout_design);
 
          }
 
@@ -1821,10 +1821,11 @@ namespace user
    }
 
 
-   void plain_edit::on_change_context_offset(::draw2d::graphics_pointer & pgraphics)
+   //void plain_edit::on_change_context_offset(::draw2d::graphics_pointer & pgraphics)
+   void plain_edit::on_context_offset_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      scroll_base::on_change_context_offset(pgraphics);
+      scroll_base::on_context_offset_layout(pgraphics);
 
       plain_edit_on_calc_offset(pgraphics);
 
@@ -2533,7 +2534,7 @@ namespace user
       //
       //      m_dLineHeight = metric.get_line_spacing();
       //
-      //      m_pscrolldataVertical->m_iLine = (::i32) m_dLineHeight;
+      //      m_pscrollstateVertical->m_iLine = (::i32) m_dLineHeight;
       //
       //      if (m_dLineHeight <= 0)
       //      {
@@ -2879,7 +2880,7 @@ namespace user
       //
       //      }
       //
-      //      m_pscrolldataVertical->m_iLine = (int) m_dLineHeight;
+      //      m_pscrollstateVertical->m_iLine = (int) m_dLineHeight;
       //
       //      on_change_impact_size(pgraphics);
       //
@@ -3507,6 +3508,8 @@ namespace user
 
 //}
 
+      ::user::enum_layout elayout = ::user::e_layout_design;
+
       size_f64 size;
 
       string strLineGraphics;
@@ -3543,6 +3546,8 @@ namespace user
          const ::ansi_character * pszNext = pszStart;
 
          f64_array & daExtent = m_daExtent[m_iCurrentPageLineStart + i];
+
+         auto sizeTotal = get_total_size(elayout);
 
          if (daExtent.get_size() <= 0)
          {
@@ -3593,15 +3598,16 @@ namespace user
             }
 
 
-            if (size.cx() > m_sizeTotal.cx())
+            if (size.cx() > sizeTotal.cx())
             {
 
-               m_sizeTotal.cx() = (i32)size.cx();
+               sizeTotal.cx() = size.cx();
 
             }
 
          }
 
+         set_total_size(sizeTotal, elayout);
 
       }
 
@@ -4098,8 +4104,7 @@ namespace user
 
       auto pointOffset = get_context_offset();
 
-      px -= (rectangleX.left() - pointOffset.x());
-
+      px -= (::i32) (rectangleX.left() - pointOffset.x());
 
       if (px <= 0)
       {
@@ -4349,10 +4354,16 @@ namespace user
 
       m_ptree->m_peditfile->seek(0, ::e_seek_set);
 
-      if (m_sizeTotal.cx() <= 0)
+      ::user::enum_layout elayout = ::user::e_layout_design;
+
+      auto sizeTotal = get_total_size(elayout);
+
+      if (sizeTotal.cx() <= 0)
       {
 
-         m_sizeTotal.cx() = 200;
+         sizeTotal.cx() = 200;
+
+         set_total_size(sizeTotal, elayout);
 
       }
 
@@ -4517,10 +4528,16 @@ namespace user
 
       m_ptree->m_peditfile->seek(iOffset, ::e_seek_set);
 
-      if (m_sizeTotal.cx() <= 0)
+      ::user::enum_layout elayout = ::user::e_layout_design;
+
+      auto sizeTotal = get_total_size(elayout);
+
+      if (sizeTotal.cx() <= 0)
       {
 
-         m_sizeTotal.cx() = 200;
+         sizeTotal.cx() = 200;
+
+         set_total_size(sizeTotal, elayout);
 
       }
 
@@ -7059,7 +7076,7 @@ namespace user
 
       ::point_i32 pointOffset = get_context_offset();
 
-      set_context_offset_y(pgraphics, (int)(pointOffset.y() - m_dLineHeight));
+      set_context_offset_y(pointOffset.y() - m_dLineHeight, ::user::e_layout_design);
 
       double dHeight = 0.;
 
@@ -7770,7 +7787,7 @@ namespace user
    }
 
 
-   void plain_edit::_001OnVScroll(::message::message * pmessage)
+   void plain_edit::on_message_scroll_y(::message::message * pmessage)
    {
 
    }
@@ -7784,7 +7801,7 @@ namespace user
    }
 
 
-   void plain_edit::_001OnHScroll(::message::message * pmessage)
+   void plain_edit::on_message_scroll_x(::message::message * pmessage)
    {
 
       UNREFERENCED_PARAMETER(pmessage);
@@ -8168,12 +8185,12 @@ namespace user
    }
 
 
-   size_f64 plain_edit::get_total_size()
-   {
+   //size_f64 plain_edit::get_total_size(::user::enum_layout elayout)
+   //{
 
-      return m_sizeTotal;
+   //   return m_sizeaTotal[elayout];
 
-   }
+   //}
 
 
    ::payload plain_edit::get_payload()

@@ -98,8 +98,8 @@ namespace userfs
       void handle(::topic * ptopic, ::context * pcontext) override;
       bool pre_create_window(::user::system * pusersystem) override;
 
-      DECLARE_MESSAGE_HANDLER(_001OnHScroll);
-      DECLARE_MESSAGE_HANDLER(_001OnVScroll);
+      DECLARE_MESSAGE_HANDLER(on_message_scroll_x);
+      DECLARE_MESSAGE_HANDLER(on_message_scroll_y);
       DECLARE_MESSAGE_HANDLER(_001OnFileRename);
       DECLARE_MESSAGE_HANDLER(_001OnUpdateFileRename);
       DECLARE_MESSAGE_HANDLER(on_message_show_window);

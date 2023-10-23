@@ -503,6 +503,8 @@ namespace message
 
    scroll::scroll()
    {
+      
+      m_dPosition = F64_MOST_NEGATIVE;
 
    }
 

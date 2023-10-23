@@ -39,7 +39,7 @@ namespace user
 
       //class layout_state *                      m_pstate;
       //class layout_state                        m_statea[5];
-      class layout_state                        m_statea[7];
+      class layout_state                        m_statea[::user::e_layout_maximum_count];
       //struct layout_state                     m_stateRequest2;
       //struct layout_state                     m_stateProcess2;
       //struct layout_state                     m_stateOffScreen;

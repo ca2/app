@@ -12,6 +12,7 @@
 #include "acme/constant/message.h"
 #include "acme/primitive/data/listener.h"
 #include "acme/filesystem/filesystem/file_context.h"
+#include "aura/graphics/draw2d/graphics.h"
 #include "aura/user/user/interaction_array.h"
 #include "aura/message/user.h"
 #include "base/platform/application.h"
@@ -1367,6 +1368,30 @@ namespace user
          m_bLadingToLayout = false;
 
          layout_layout(pgraphics);
+
+      }
+
+      //on_context_offset(pgraphics);
+
+      {
+
+         ::point_i32 pointOffset;
+
+         if (m_puserinteractionParent != nullptr)
+         {
+
+            pointOffset = const_layout().layout().origin();
+
+            if (pointOffset.y() == 31)
+            {
+
+               information() << "31";
+
+            }
+
+         }
+
+         pgraphics->offset_origin((::i32)pointOffset.x(), (::i32)pointOffset.y());
 
       }
 

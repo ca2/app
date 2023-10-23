@@ -146,8 +146,8 @@ namespace filemanager
       void _017UpdateZipList(const ::string & pcsz, const ::action_context & action_context);
 
 
-      DECLARE_MESSAGE_HANDLER(_001OnHScroll);
-      DECLARE_MESSAGE_HANDLER(_001OnVScroll);
+      DECLARE_MESSAGE_HANDLER(on_message_scroll_x);
+      DECLARE_MESSAGE_HANDLER(on_message_scroll_y);
 
 
       virtual void _001InitializeFormPreData() override;

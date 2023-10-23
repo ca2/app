@@ -125,11 +125,11 @@ namespace simple_ui
 
       /*if(m_iLineHeight == 0)
       {
-         pgraphics->offset_origin(-m_scrolldata.m_pointScroll.x(),m_scrolldata.m_pointScroll.y());
+         pgraphics->offset_origin(-m_scrollstate.m_pointScroll.x(),m_scrollstate.m_pointScroll.y());
       }
       else
       {
-         pgraphics->offset_origin(-m_scrolldata.m_pointScroll.x(),-(m_scrolldata.m_pointScroll.y() % m_iLineHeight));
+         pgraphics->offset_origin(-m_scrollstate.m_pointScroll.x(),-(m_scrollstate.m_pointScroll.y() % m_iLineHeight));
       }*/
 
 

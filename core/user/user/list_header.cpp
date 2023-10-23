@@ -967,7 +967,7 @@ namespace user
    }
 
 
-   ::point_i32 list_header::get_parent_context_offset()
+   ::point_f64 list_header::get_parent_context_offset()
    {
 
       ::pointer<::user::interaction>puser = get_parent();
@@ -975,7 +975,7 @@ namespace user
       if (puser.is_null())
       {
 
-         return point_i32(0, 0);
+         return {};
 
       }
 
@@ -984,7 +984,7 @@ namespace user
       if (puser.is_null())
       {
 
-         return point_i32(0, 0);
+         return {};
 
       }
 

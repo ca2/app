@@ -88,9 +88,9 @@ namespace user
 
       list::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_vscroll, pchannel, this, &form_list::_001OnVScroll);
+      MESSAGE_LINK(e_message_scroll_y, pchannel, this, &form_list::on_message_scroll_y);
 
-      MESSAGE_LINK(e_message_hscroll, pchannel, this, &form_list::_001OnHScroll);
+      MESSAGE_LINK(e_message_scroll_x, pchannel, this, &form_list::on_message_scroll_x);
 
    }
 
@@ -1065,7 +1065,7 @@ namespace user
    }
 
 
-   void form_list::_001OnVScroll(::message::message * pmessage)
+   void form_list::on_message_scroll_y(::message::message * pmessage)
    {
 
       pmessage->previous();
@@ -1082,7 +1082,7 @@ namespace user
    }
 
 
-   void form_list::_001OnHScroll(::message::message * pmessage)
+   void form_list::on_message_scroll_x(::message::message * pmessage)
    {
 
       pmessage->previous();

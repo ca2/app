@@ -23,7 +23,7 @@ namespace user
 
       auto pstyle = puserinteraction->get_style(pgraphics);
 
-      ::rectangle_f64 rectangle(useritem.m_rectangle);
+      auto rectangle = puserinteraction->user_item_rectangle(&useritem, ::user::e_layout_design);
 
       auto color = puserinteraction->get_color(pstyle, ::e_element_background);
 
@@ -91,7 +91,9 @@ namespace user
 
       auto pstyle = puserinteraction->get_style(pgraphics);
 
-      ::rectangle_f64 rectangle(useritem.m_rectangle);
+      auto rectangle = puserinteraction->user_item_rectangle(&useritem, ::user::e_layout_design);
+
+      //::rectangle_f64 rectangle(useritem.m_rectangle);
 
       auto color = puserinteraction->get_color(pstyle, ::e_element_background);
 
@@ -134,7 +136,9 @@ namespace user
 
       auto pstyle = puserinteraction->get_style(pgraphics);
 
-      ::rectangle_f64 rectangle(useritem.m_rectangle);
+      auto rectangle = puserinteraction->user_item_rectangle(&useritem, ::user::e_layout_design);
+
+      //::rectangle_f64 rectangle(useritem.m_rectangle);
 
       auto color = puserinteraction->get_color(pstyle, ::e_element_background);
 
@@ -205,7 +209,9 @@ namespace user
 
       auto pstyle = puserinteraction->get_style(pgraphics);
 
-      ::rectangle_f64 rectangle(useritem.m_rectangle);
+      auto rectangle = puserinteraction->user_item_rectangle(&useritem, ::user::e_layout_design);
+
+      //::rectangle_f64 rectangle(useritem.m_rectangle);
 
       auto color = puserinteraction->get_color(pstyle, ::e_element_background);
 

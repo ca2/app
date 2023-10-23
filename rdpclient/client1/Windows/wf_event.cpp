@@ -383,7 +383,7 @@ void wf_sizing(wfContext* wfc, WPARAM wParam, LPARAM lParam)
 //					DefWindowProc(hWnd, Msg, wParam, lParam);
 //				break;
 //
-//			case e_message_hscroll:
+//			case e_message_scroll_x:
 //				{
 //					int xDelta;     // xDelta = new_pos - current_pos  
 //					int xNewPos;    // memory_new position 
@@ -455,7 +455,7 @@ void wf_sizing(wfContext* wfc, WPARAM wParam, LPARAM lParam)
 //				}
 //				break;
 //
-//				case e_message_vscroll:
+//				case e_message_scroll_y:
 //				{ 
 //					int xDelta = 0; 
 //					int yDelta;     // yDelta = new_pos - current_pos 

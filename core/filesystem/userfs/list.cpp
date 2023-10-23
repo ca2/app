@@ -52,8 +52,8 @@ namespace userfs
 
       ::user::form_list_impact::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_hscroll, pchannel, this, &list::_001OnHScroll);
-      MESSAGE_LINK(e_message_vscroll, pchannel, this, &list::_001OnVScroll);
+      MESSAGE_LINK(e_message_scroll_x, pchannel, this, &list::on_message_scroll_x);
+      MESSAGE_LINK(e_message_scroll_y, pchannel, this, &list::on_message_scroll_y);
       MESSAGE_LINK(e_message_show_window, pchannel, this, &list::on_message_show_window);
       MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &list::on_message_create);
       MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &list::on_message_left_button_double_click);
@@ -653,7 +653,7 @@ namespace userfs
    //   }
    //}
 
-   void list::_001OnVScroll(::message::message * pmessage)
+   void list::on_message_scroll_y(::message::message * pmessage)
    {
       //      ::pointer<::message::scroll>pscroll(pmessage);
       //m_iCreateImageListStep = pscroll->m_nPos;
@@ -661,7 +661,7 @@ namespace userfs
       pmessage->m_bRet = false;
    }
 
-   void list::_001OnHScroll(::message::message * pmessage)
+   void list::on_message_scroll_x(::message::message * pmessage)
    {
       pmessage->m_bRet = false;
    }

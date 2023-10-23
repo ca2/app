@@ -249,26 +249,33 @@ namespace user
    }
 
 
-   void form_list_impact::set_context_offset(::draw2d::graphics_pointer & pgraphics, int x, int y)
+   //void form_list_impact::set_context_offset(::draw2d::graphics_pointer & pgraphics, int x, int y)
+   //{
+
+   //   ::user::list_impact::set_context_offset(pgraphics, x, y);
+
+   //}
+
+   void form_list_impact::set_context_offset(const ::point_f64 & point, ::user::enum_layout elayout)
    {
 
-      ::user::list_impact::set_context_offset(pgraphics, x, y);
+      ::user::list_impact::set_context_offset(point, elayout);
 
    }
 
 
-   ::point_i32 form_list_impact::get_context_offset()
+   ::point_f64 form_list_impact::get_context_offset(::user::enum_layout elayout)
    {
 
-      return ::user::list_impact::get_context_offset();
+      return ::user::list_impact::get_context_offset(elayout);
 
    }
 
 
-   ::size_f64 form_list_impact::get_total_size()
+   ::size_f64 form_list_impact::get_total_size(::user::enum_layout elayout)
    {
 
-      return ::user::list_impact::get_total_size();
+      return ::user::list_impact::get_total_size(elayout);
 
    }
 

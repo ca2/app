@@ -11,7 +11,7 @@
 #include "aura/graphics/image/list.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/user/user/primitive_impl.h"
-#include "aura/user/user/scroll_data.h"
+#include "aura/user/user/scroll_state.h"
 #include "base/user/user/impact.h"
 #include "base/user/user/document.h"
 
@@ -924,8 +924,8 @@ namespace user
       MESSAGE_LINK(e_message_right_button_down, pchannel, this, &tree::on_message_right_button_down);
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &tree::on_message_mouse_move);
       MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &tree::on_message_mouse_leave);
-      MESSAGE_LINK(e_message_hscroll, pchannel, this, &tree::_001OnHScroll);
-      MESSAGE_LINK(e_message_vscroll, pchannel, this, &tree::_001OnVScroll);
+      MESSAGE_LINK(e_message_scroll_x, pchannel, this, &tree::on_message_scroll_x);
+      MESSAGE_LINK(e_message_scroll_y, pchannel, this, &tree::on_message_scroll_y);
       MESSAGE_LINK(e_message_change_experience, pchannel, this, &tree::_001OnChangeExperience);
       //      //MESSAGE_LINK(e_message_timer         , pchannel, this, &tree::_001OnTimer);
 
@@ -964,20 +964,26 @@ namespace user
    }
 
 
-   void tree::on_change_impact_size(::draw2d::graphics_pointer & pgraphics)
+   void tree::on_would_change_total_size(::user::enum_layout elayout)
    {
 
-      ::size_f64 sizeTotal;
+      auto scrollstatex = get_scroll_state_x(elayout);
 
-      sizeTotal.cx() = m_iCurrentImpactWidth;
+      auto scrollstatey = get_scroll_state_x(elayout);
 
-      sizeTotal.cy() = (::i32)(get_proper_item_count() * _001GetItemHeight());
+      scrollstatex.set_dimension(m_iCurrentImpactWidth);
 
-      m_pscrolldataVertical->m_iLine = (::i32)m_dItemHeight;
+      scrollstatey.set_dimension(get_proper_item_count() * _001GetItemHeight());
 
-      set_total_size(sizeTotal);
+      scrollstatey.m_dLine = m_dItemHeight;
 
-      ::user::scroll_base::on_change_impact_size(pgraphics);
+      set_scroll_state_x(scrollstatex);
+
+      set_scroll_state_y(scrollstatex);
+
+      on_change_scroll_state(elayout);
+
+      //::user::scroll_base::on_change_sketch_scroll_state();
 
    }
 
@@ -1114,24 +1120,24 @@ namespace user
             if (iObscured > 0)
             {
 
-               index iNewScroll = (i32)(pointOffset.y() + iObscured * _001GetItemHeight());
+               auto dNewScroll = pointOffset.y() + iObscured * _001GetItemHeight();
 
-               if (iNewScroll > (iParentIndex * _001GetItemHeight()))
+               if (dNewScroll > (iParentIndex * _001GetItemHeight()))
                {
 
-                  iNewScroll = (::index)(iParentIndex * _001GetItemHeight());
+                  dNewScroll = iParentIndex * _001GetItemHeight();
 
                }
 
-               queue_graphics_call([this, iNewScroll](::draw2d::graphics_pointer & pgraphics)
-                  {
+               //queue_graphics_call([this, iNewScroll](::draw2d::graphics_pointer & pgraphics)
+                 // {
 
 
-                     set_context_offset_y(pgraphics, (int)maximum(iNewScroll, 0));
+                     set_context_offset_y(maximum(dNewScroll, 0.));
 
-                  });
+                  //});
                //            _001SetYScroll(maximum(iNewScroll, 0), false);
-               //m_pscrollbarVertical->_001SetScrollPos(pointOffset.y());
+               //m_pscrollbarY->_001SetScrollPos(pointOffset.y());
             }
          }
       }
@@ -1228,7 +1234,7 @@ namespace user
    }
 
 
-   void tree::_001OnVScroll(::message::message * pmessage)
+   void tree::on_message_scroll_y(::message::message * pmessage)
    {
 
       pmessage->previous();
@@ -1237,7 +1243,7 @@ namespace user
    }
 
 
-   void tree::_001OnHScroll(::message::message * pmessage)
+   void tree::on_message_scroll_x(::message::message * pmessage)
    {
 
       pmessage->previous();
@@ -1255,12 +1261,12 @@ namespace user
    }
 
 
-   void tree::on_change_context_offset(::draw2d::graphics_pointer & pgraphics)
+   void tree::on_context_offset_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
       m_pitemFirstVisible = CalcFirstVisibleItem(m_iFirstVisibleItemProperIndex);
 
-      ::user::scroll_base::on_change_context_offset(pgraphics);
+      ::user::scroll_base::on_context_offset_layout(pgraphics);
 
       //      auto psession = get_session();
       //
@@ -1321,17 +1327,21 @@ namespace user
 
       m_pitemFirstVisible = CalcFirstVisibleItem(m_iFirstVisibleItemProperIndex);
 
-      size_f64 sizeTotal;
+      auto scrollstatex = get_scroll_state_x(::user::e_layout_design);
 
-      sizeTotal.cx() = m_iCurrentImpactWidth;
+      auto scrollstatey = get_scroll_state_y(::user::e_layout_design);
 
-      sizeTotal.cy() = _001CalcTotalImpactHeight();
+      scrollstatex.set_dimension(m_iCurrentImpactWidth);
 
-      set_total_size(sizeTotal);
+      scrollstatey.set_dimension(_001CalcTotalImpactHeight());
 
-      on_change_impact_size(pgraphics);
+      set_scroll_state_x(scrollstatex, ::user::e_layout_design);
 
-      on_change_context_offset(pgraphics);
+      set_scroll_state_y(scrollstatey, ::user::e_layout_design);
+
+      on_change_scroll_state(::user::e_layout_design);
+
+      //on_change_context_offset(pgraphics);
 
    }
 
@@ -1504,8 +1514,6 @@ namespace user
 
       synchronous_lock synchronouslock(m_ptreedata ? m_ptreedata->synchronization() : nullptr);
 
-      index nOffset;
-
       if (_001GetItemHeight() == 0)
       {
 
@@ -1522,9 +1530,9 @@ namespace user
 
       auto pointOffset = get_context_offset();
 
-      int iItemHeight = (int)(_001GetItemHeight());
+      auto dItemHeight = _001GetItemHeight();
 
-      nOffset = pointOffset.y() / iItemHeight;
+      auto dOffset = pointOffset.y() / dItemHeight;
 
       ::data::tree_item * pitem = nullptr;
 
@@ -1546,14 +1554,14 @@ namespace user
 
          pitem = pitemNext;
 
-         if (nOffset <= 0)
+         if (dOffset <= 0.)
          {
 
             return pitem;
 
          }
 
-         nOffset--;
+         dOffset-= 1.0;
 
          iProperIndex++;
 
@@ -2286,14 +2294,14 @@ namespace user
 
          index iNewScrollIndex = iIndex;
 
-         int iy = (int)(maximum(iNewScrollIndex, 0) * m_dItemHeight);
+         auto dy = maximum(iNewScrollIndex, 0) * m_dItemHeight;
 
-         queue_graphics_call([this, iy](::draw2d::graphics_pointer & pgraphics)
-            {
+         //queue_graphics_call([this, iy](::draw2d::graphics_pointer & pgraphics)
+         //   {
 
-               set_context_offset_y(pgraphics, iy);
+               set_context_offset_y(dy);
 
-            });
+      //});
 
          set_need_layout();
 
@@ -2325,10 +2333,10 @@ namespace user
    }
 
 
-   void tree::on_context_offset(::draw2d::graphics_pointer & pgraphics)
-   {
+   //void tree::on_context_offset(::draw2d::graphics_pointer & pgraphics)
+   //{
 
-   }
+   //}
 
 
 } // namespace aura

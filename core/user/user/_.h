@@ -79,7 +79,7 @@ namespace user
 
    class control_bar;
 
-   class scroll_info;
+   class scroll_state;
 
    class controller;
 

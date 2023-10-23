@@ -27,7 +27,7 @@ namespace user
 
       e_item_flag_none = 0,
       e_item_flag_drawn = 0x800000,
-
+      e_item_flag_rectangle_callback = 0x4000,
 
    };
 
@@ -336,7 +336,7 @@ namespace user
       ::point_i32                   m_pointHost;
       ::point_i32                   m_pointClient;
       ::point_i32                   m_pointHitTest;
-      ::rectangle_i32               m_rectangle;
+      ::rectangle_i32               m_rectangle2;
       ::user::e_item                m_eitem;
       ::pointer < ::particle >      m_pparticle;
       ::user::e_zorder              m_ezorder;
@@ -366,7 +366,7 @@ namespace user
          m_pointHost = item.m_pointHost;
          m_pointClient = item.m_pointClient;
          m_pointHitTest = item.m_pointHitTest;
-         m_rectangle = item.m_rectangle;
+         m_rectangle2 = item.m_rectangle2;
          //m_uFlags = itemdataadditions.m_uFlags;
          m_pparticle = item.m_pparticle;
          m_ppath = item.m_ppath;

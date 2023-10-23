@@ -597,10 +597,10 @@
     <ClCompile Include="user\user\run_application.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\horizontal_scroll_base.cpp">
+    <ClCompile Include="user\user\scroll_base_x.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\vertical_scroll_base.cpp">
+    <ClCompile Include="user\user\scroll_base_y.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\auto_refresh.cpp">
@@ -688,6 +688,9 @@
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\_string.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\scroll_base.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
   </ItemGroup>
@@ -891,9 +894,6 @@
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\scroll_bar.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\scroll_info.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\shell.h">
@@ -1532,13 +1532,13 @@
     <ClInclude Include="user\user\scroll_base.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\scroll_data.h">
+    <ClInclude Include="user\user\scroll_state.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\horizontal_scroll_base.h">
+    <ClInclude Include="user\user\scroll_base_x.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\vertical_scroll_base.h">
+    <ClInclude Include="user\user\scroll_base_y.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\alpha_source.h">
@@ -1683,6 +1683,9 @@
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\form_handler.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\aaa_scroll_design.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
   </ItemGroup>

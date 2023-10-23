@@ -1475,7 +1475,7 @@ namespace user
       if (pActiveImpact != nullptr)
       {
          // trans const MESSAGE* pMsg = GetCurrentMessage();
-         // trans pActiveImpact->SendMessage(e_message_hscroll, pMsg->wParam, pMsg->lParam);
+         // trans pActiveImpact->SendMessage(e_message_scroll_x, pMsg->wParam, pMsg->lParam);
       }
    }
 
@@ -1485,7 +1485,7 @@ namespace user
       if (pActiveImpact != nullptr)
       {
          // trans      const MESSAGE* pMsg = GetCurrentMessage();
-         // trans      pActiveImpact->SendMessage(e_message_vscroll, pMsg->wParam, pMsg->lParam);
+         // trans      pActiveImpact->SendMessage(e_message_scroll_y, pMsg->wParam, pMsg->lParam);
       }
    }
    */

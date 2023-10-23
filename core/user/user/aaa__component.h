@@ -46,7 +46,7 @@
 //   class scroll_bar;
 //   class split_layout;
 //   class style;
-//   class scroll_info;
+//   class scroll_state;
 //   class window_map;
 //   using style_pointer = ::pointer<style>
 //   class system_interaction_impl;

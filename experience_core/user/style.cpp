@@ -833,7 +833,7 @@ namespace experience_core
 
       ::rectangle_i32 rectangleScroll;
 
-      bool bScroll = ptab->_001HasHorizontalBarDragScrolling();
+      bool bScroll = ptab->_001HasBarXDragScrolling();
 
       if (bScroll)
       {
@@ -1895,7 +1895,7 @@ namespace experience_core
 
       }
 
-      auto statusrectangleTrack = pscrollbar->get_track_rectangle();
+      auto statusrectangleTrack = pscrollbar->get_track_rectangle(::user::e_layout_design);
 
       //::rectangle_i32 rectangleWindow;
 
@@ -2035,11 +2035,11 @@ namespace experience_core
          if (bSimple)
          {
 
-            int iSize = statusrectangleTrack.size().get_normal_dimension(pbar->m_eorientation) * 6 / 8;
+            auto dSize = statusrectangleTrack.size().get_normal_dimension(pbar->m_eorientation) * 6 / 8;
 
-            rectangleMachineThumb.top_left() = statusrectangleTrack.top_left() + pbar->m_sizeTrackOffset - ::size_i32(iSize / 2, iSize / 2);
+            rectangleMachineThumb.top_left() = statusrectangleTrack.top_left() + pbar->m_sizeTrackOffset - ::size_f64(dSize / 2.0, dSize / 2.0);
 
-            rectangleMachineThumb.bottom_right() = rectangleMachineThumb.top_left() + ::size_i32(iSize, iSize);
+            rectangleMachineThumb.bottom_right() = rectangleMachineThumb.top_left() + ::size_f64(dSize, dSize);
 
             ::rectangle_i32 rectangleIntersect;
 
@@ -2047,7 +2047,7 @@ namespace experience_core
 
             i32 iArea = (i32)(maximum(1, rectangleIntersect.area()));
 
-            rectangleMachineThumb.inflate(1 + iSize * (iSize * iSize) * 4 / (iArea * 5), 1 + iSize * (iSize * iSize) * 2 / (iArea * 3));
+            rectangleMachineThumb.inflate(1 + dSize * (dSize * dSize) * 4 / (iArea * 5), 1 + dSize * (dSize * dSize) * 2 / (iArea * 3));
 
             pbar->draw_mac_thumb_simple(pgraphics, rectangleMachineThumb, statusrectangleTrack, uchAlpha);
 
@@ -2055,11 +2055,11 @@ namespace experience_core
          else
          {
 
-            int iSize = statusrectangleTrack.size().get_normal_dimension(pbar->m_eorientation);
+            auto dSize = statusrectangleTrack.size().get_normal_dimension(pbar->m_eorientation);
 
-            rectangleMachineThumb.top_left() = statusrectangleTrack.top_left() + pbar->m_sizeTrackOffset - ::size_i32(iSize / 2, iSize / 2);
+            rectangleMachineThumb.top_left() = statusrectangleTrack.top_left() + pbar->m_sizeTrackOffset - ::size_f64(dSize / 2., dSize / 2.);
 
-            rectangleMachineThumb.bottom_right() = rectangleMachineThumb.top_left() + ::size_i32(iSize, iSize);
+            rectangleMachineThumb.bottom_right() = rectangleMachineThumb.top_left() + ::size_f64(dSize, dSize);
 
             rectangleMachineThumb.assign_normal(statusrectangleTrack, pbar->m_eorientation);
 

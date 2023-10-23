@@ -26,7 +26,7 @@
 #include "aura/user/user/scroll_bar.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/image/list2.h"
-#include "aura/user/user/scroll_data.h"
+#include "aura/user/user/scroll_state.h"
 #include "aura/message/user.h"
 #include "aura/windowing/window.h"
 #include "axis/platform/system.h"
@@ -140,8 +140,8 @@ namespace user
       ::user::mesh::install_message_routing(pchannel);
 
       MESSAGE_LINK(e_message_size, pchannel, this, &list2::on_message_size);
-      MESSAGE_LINK(e_message_vscroll, pchannel, this, &list2::_001OnVScroll);
-      MESSAGE_LINK(e_message_hscroll, pchannel, this, &list2::_001OnHScroll);
+      MESSAGE_LINK(e_message_scroll_y, pchannel, this, &list2::on_message_scroll_y);
+      MESSAGE_LINK(e_message_scroll_x, pchannel, this, &list2::on_message_scroll_x);
       MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &list2::on_message_mouse_leave);
 
       MESSAGE_LINK(e_message_left_button_down, pchannel, this, &list2::on_message_left_button_down);
@@ -1292,7 +1292,7 @@ namespace user
 
             rectangle = pitem->m_pdrawlistitem->m_rectangleItem;
 
-            m_pscrolldataVertical->m_iLine = (::i32)m_dItemHeight;
+            m_pscrollstateVertical->m_iLine = (::i32)m_dItemHeight;
 
             rectangle.top() = 0;
 
@@ -6948,7 +6948,7 @@ namespace user
    }
 
 
-   void list2::_001OnVScroll(::message::message* pmessage)
+   void list2::on_message_scroll_y(::message::message* pmessage)
    {
 
       pmessage->previous();
@@ -6956,7 +6956,7 @@ namespace user
    }
 
 
-   void list2::_001OnHScroll(::message::message* pmessage)
+   void list2::on_message_scroll_x(::message::message* pmessage)
    {
       //      ::pointer<::message::scroll>pscroll(pmessage);
 

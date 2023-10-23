@@ -18,10 +18,10 @@ namespace user
       //m_bParentScrollX = false;
       //m_bParentScrollY = false;
 
-      m_scrollinfo.nMin    = 0;
-      m_scrollinfo.nMax    = 100;
-      m_scrollinfo.nPage   = 10;
-      m_scrollinfo.nPos    = 0;
+      //m_pscrolllayout->m_pscrolllayout->m_scrollstatea[::user::e_layout_sketch].m_dMinimum = 0.;
+      //m_pscrolllayout->m_pscrolllayout->m_scrollstatea[::user::e_layout_sketch].m_dMaximum = 100.;
+      //m_pscrolllayout->m_pscrolllayout->m_scrollstatea[::user::e_layout_sketch].m_dPage = 10.;
+      //m_pscrolllayout->m_pscrolllayout->m_scrollstatea[::user::e_layout_sketch].m_dPosition = 0.;
 
       m_econtroltype = e_control_type_scroll_bar;
 
@@ -35,7 +35,7 @@ namespace user
 
 
 
-   ::point_i32 scroll_bar::get_parent_accumulated_scroll(enum_layout elayout)
+   ::point_f64 scroll_bar::get_parent_accumulated_scroll(enum_layout elayout)
    {
 
       //auto pparent = get_parent();
@@ -61,7 +61,6 @@ namespace user
    }
 
 
-
    void scroll_bar::post_scroll_message(enum_scroll_command ecommand)
    {
 
@@ -72,26 +71,26 @@ namespace user
       if(m_bTracking)
       {
 
-         pscroll->m_nPos = m_scrollinfo.nTrackPos;
+         pscroll->m_dPosition = m_pscrolllayout->m_scrollstatea[::user::e_layout_sketch].m_dTrackingPosition;
 
       }
       else
       {
 
-         pscroll->m_nPos = m_scrollinfo.nPos;
+         pscroll->m_dPosition = m_pscrolllayout->m_scrollstatea[::user::e_layout_sketch].m_dPosition;
 
       }
 
       if(m_eorientation == e_orientation_horizontal)
       {
 
-         pscroll->m_atom = e_message_hscroll;
+         pscroll->m_atom = e_message_scroll_x;
 
       }
       else
       {
 
-         pscroll->m_atom = e_message_vscroll;
+         pscroll->m_atom = e_message_scroll_y;
 
       }
 
@@ -112,7 +111,7 @@ namespace user
    //}
 
 
-   point_i32 scroll_bar::get_ascendant_context_offset()
+   point_f64 scroll_bar::get_ascendant_context_offset()
    {
 
       if (::is_null(get_parent()))
@@ -127,7 +126,7 @@ namespace user
    }
 
 
-   point_i32 scroll_bar::get_parent_context_offset()
+   point_f64 scroll_bar::get_parent_context_offset()
    {
 
       return {};
@@ -135,7 +134,7 @@ namespace user
    }
 
 
-   ::status < ::rectangle_i32 > scroll_bar::get_track_rectangle()
+   ::status < ::rectangle_f64 > scroll_bar::get_track_rectangle(::user::enum_layout elayout)
    {
 
       return error_interface_only;
@@ -243,10 +242,10 @@ namespace user
    }
 
 
-   ::i32 scroll_bar::scrollbar_width()
+   ::f64 scroll_bar::scroll_bar_thickness(::user::enum_layout elayout)
    {
 
-      return 16;
+      return m_pscrolllayout->m_scrollstatea[elayout].m_dThickness;
 
    }
 

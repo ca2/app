@@ -74,8 +74,8 @@ namespace filemanager
 
       ::userfs::list::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_hscroll, pchannel, this, &file_list::_001OnHScroll);
-      MESSAGE_LINK(e_message_vscroll, pchannel, this, &file_list::_001OnVScroll);
+      MESSAGE_LINK(e_message_scroll_x, pchannel, this, &file_list::on_message_scroll_x);
+      MESSAGE_LINK(e_message_scroll_y, pchannel, this, &file_list::on_message_scroll_y);
       MESSAGE_LINK(e_message_right_button_up, pchannel, this, &file_list::on_message_context_menu);
       MESSAGE_LINK(e_message_show_window, pchannel, this, &file_list::on_message_show_window);
       MESSAGE_LINK(e_message_set_focus, pchannel, this, &file_list::on_message_set_focus);
@@ -1097,7 +1097,7 @@ namespace filemanager
 
       }
 
-      m_pointScroll = {0,0};
+      set_context_offset({0,0});
 
       string_array straStrictOrder;
 
@@ -1266,12 +1266,16 @@ namespace filemanager
 
       clear_selection();
 
-      queue_graphics_call([this](::draw2d::graphics_pointer & pgraphics)
-         {
+      //queue_graphics_call([this](::draw2d::graphics_pointer & pgraphics)
+        // {
 
-            set_context_offset(pgraphics, 0, 0);
+           // set_context_offset(pgraphics, 0, 0);
 
-         });
+      //set_context_offset(pgraphics, 0, 0);
+
+      set_context_offset({});
+
+         //});
 
       set_need_layout();
 
@@ -1769,7 +1773,7 @@ namespace filemanager
    //}
 
 
-   void file_list::_001OnVScroll(::message::message * pmessage)
+   void file_list::on_message_scroll_y(::message::message * pmessage)
    {
 
       //::pointer<::message::scroll>pscroll(pmessage);
@@ -1783,7 +1787,7 @@ namespace filemanager
    }
 
 
-   void file_list::_001OnHScroll(::message::message * pmessage)
+   void file_list::on_message_scroll_x(::message::message * pmessage)
    {
 
       pmessage->m_bRet = false;

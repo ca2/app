@@ -835,8 +835,8 @@ namespace user
       virtual void on_after_impact_update();
 
 
-      virtual bool horizontal_scrollbar_visible();
-      virtual bool vertical_scrollbar_visible();
+      virtual bool scroll_bar_x_visible(enum_layout elayout = e_layout_design);
+      virtual bool scroll_bar_y_visible(enum_layout elayout = e_layout_design);
 
 
       virtual ::trace_statement & raw_trace_statement_prefix(::trace_statement & statement) const;

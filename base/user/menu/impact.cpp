@@ -356,13 +356,13 @@ namespace user
 
       auto puseritem = user_item(pmenuitem);
 
-      puseritem->m_rectangle.top() = (::i32)( y + (iMenuItemIndex + iSep) * iHeight);
+      puseritem->m_rectangle2.top() = (::i32)( y + (iMenuItemIndex + iSep) * iHeight);
 
-      puseritem->m_rectangle.bottom() = puseritem->m_rectangle.top() + iHeight;
+      puseritem->m_rectangle2.bottom() = puseritem->m_rectangle2.top() + iHeight;
 
-      puseritem->m_rectangle.left() = x;
+      puseritem->m_rectangle2.left() = x;
 
-      puseritem->m_rectangle.right() = x + w;
+      puseritem->m_rectangle2.right() = x + w;
 
       return puseritem;
 
@@ -383,7 +383,7 @@ namespace user
 
          auto puseritemPopup = user_item(pmenuitemPopup);
 
-         if (puseritemPopup->m_rectangle.contains(point))
+         if (puseritemPopup->m_rectangle2.contains(point))
          {
 
             return pmenuitemPopup;
@@ -397,7 +397,7 @@ namespace user
 
             auto puseritem = user_item(pmenuitem);
 
-            if (puseritem->m_rectangle.contains(point))
+            if (puseritem->m_rectangle2.contains(point))
             {
 
                return pmenuitem;
@@ -492,15 +492,15 @@ namespace user
 
          pgraphics->set(m_ppen);
 
-         draw_header_rectangle(pgraphics, puseritemPopup->m_rectangle);
+         draw_header_rectangle(pgraphics, puseritemPopup->m_rectangle2);
 
          pgraphics->set_text_color(argb(255, 0, 0, 0));
 
-         pgraphics->text_out(puseritemPopup->m_rectangle.left() + 10, puseritemPopup->m_rectangle.top() + 5, strTitle);
+         pgraphics->text_out(puseritemPopup->m_rectangle2.left() + 10, puseritemPopup->m_rectangle2.top() + 5, strTitle);
 
          iPos++;
 
-         ::rectangle_i32 rectanglePopupTotal = puseritemPopup->m_rectangle;
+         ::rectangle_i32 rectanglePopupTotal = puseritemPopup->m_rectangle2;
 
          for (int j = 0; j < pmenuitemPopup->m_pmenuitema->get_count(); j++)
          {
@@ -513,7 +513,7 @@ namespace user
 
             auto puseritem = layout_user_item_by_index(iPos);
 
-            rectanglePopupTotal.unite(rectanglePopupTotal, puseritem->m_rectangle);
+            rectanglePopupTotal.unite(rectanglePopupTotal, puseritem->m_rectangle2);
 
             pgraphics->set(m_ppen);
 
@@ -540,7 +540,7 @@ namespace user
 
                   pgraphics->set(m_pbrushBkHoverSel);
 
-                  draw_item_rectangle_hover_sel001(pgraphics, puseritem->m_rectangle);
+                  draw_item_rectangle_hover_sel001(pgraphics, puseritem->m_rectangle2);
 
                }
                else
@@ -548,7 +548,7 @@ namespace user
 
                   pgraphics->set(m_pbrushBkSel);
 
-                  draw_item_rectangle_hover001(pgraphics, puseritem->m_rectangle);
+                  draw_item_rectangle_hover001(pgraphics, puseritem->m_rectangle2);
 
                }
 
@@ -558,13 +558,13 @@ namespace user
 
                pgraphics->set(m_pbrushBkSel);
 
-               draw_item_rectangle_sel001(pgraphics, puseritem->m_rectangle);
+               draw_item_rectangle_sel001(pgraphics, puseritem->m_rectangle2);
 
             }
             else
             {
 
-               draw_item_rectangle(pgraphics, puseritem->m_rectangle);
+               draw_item_rectangle(pgraphics, puseritem->m_rectangle2);
 
             }
 
@@ -583,7 +583,7 @@ namespace user
 
             }
 
-            pgraphics->text_out(puseritem->m_rectangle.left() + 10, puseritem->m_rectangle.top() + 5, strItemTitle);
+            pgraphics->text_out(puseritem->m_rectangle2.left() + 10, puseritem->m_rectangle2.top() + 5, strItemTitle);
 
             pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
@@ -594,8 +594,8 @@ namespace user
 
                pgraphics->set(m_ppenBkSel);
 
-               pgraphics->set_current_point(puseritem->m_rectangle.left() + 1, puseritem->m_rectangle.top());
-               pgraphics->line_to(puseritem->m_rectangle.left() + 1, puseritem->m_rectangle.bottom() - 1);
+               pgraphics->set_current_point(puseritem->m_rectangle2.left() + 1, puseritem->m_rectangle2.top());
+               pgraphics->line_to(puseritem->m_rectangle2.left() + 1, puseritem->m_rectangle2.bottom() - 1);
 
                pimage1 = m_pimageMap[atom];
 
@@ -612,8 +612,8 @@ namespace user
 
                ::rectangle_i32 rectangleDib;
 
-               rectangleDib.left() = puseritem->m_rectangle.right() - pimage1->width() - 10;
-               rectangleDib.top() = puseritem->m_rectangle.top() + (puseritem->m_rectangle.height() - pimage1->height()) / 2;
+               rectangleDib.left() = puseritem->m_rectangle2.right() - pimage1->width() - 10;
+               rectangleDib.top() = puseritem->m_rectangle2.top() + (puseritem->m_rectangle2.height() - pimage1->height()) / 2;
                rectangleDib.set_size(pimage1->width(), pimage1->height());
 
                image_source imagesource(pimage1);
@@ -645,7 +645,7 @@ namespace user
 
          pgraphics->set(m_ppen);
 
-         draw_header_separator(pgraphics, puseritem->m_rectangle.bottom_left(), puseritem->m_rectangle.bottom_right());
+         draw_header_separator(pgraphics, puseritem->m_rectangle2.bottom_left(), puseritem->m_rectangle2.bottom_right());
 
          iPos++;
 
@@ -660,7 +660,7 @@ namespace user
 
             auto puseritem = layout_user_item_by_index(iPos);
 
-            draw_item_separator(pgraphics, puseritem->m_rectangle.bottom_left(), puseritem->m_rectangle.bottom_right());
+            draw_item_separator(pgraphics, puseritem->m_rectangle2.bottom_left(), puseritem->m_rectangle2.bottom_right());
 
             iPos++;
 

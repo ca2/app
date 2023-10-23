@@ -450,7 +450,7 @@ namespace user
       bool on_impact_update() override;
 
 
-      virtual void on_change_impact_size(::draw2d::graphics_pointer & pgraphics) override;
+      void on_would_change_total_size(::user::enum_layout elayout = ::user::e_layout_sketch) override;
 
 
       virtual void  _001OnInitialize();
@@ -515,8 +515,8 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_right_button_up);
       DECLARE_MESSAGE_HANDLER(on_message_key_down);
       DECLARE_MESSAGE_HANDLER(on_message_create);
-      DECLARE_MESSAGE_HANDLER(_001OnVScroll);
-      DECLARE_MESSAGE_HANDLER(_001OnHScroll);
+      DECLARE_MESSAGE_HANDLER(on_message_scroll_y);
+      DECLARE_MESSAGE_HANDLER(on_message_scroll_x);
       DECLARE_MESSAGE_HANDLER(_001OnUpdateMeshImpactAutoArrange);
       DECLARE_MESSAGE_HANDLER(_001OnMeshImpactAutoArrange);
 
@@ -582,7 +582,7 @@ namespace user
 
       virtual i32 get_wheel_scroll_delta() override;
 
-      virtual void on_change_context_offset(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void on_context_offset_layout(::draw2d::graphics_pointer & pgraphics) override;
 
       bool keyboard_focus_is_focusable() override;
 
@@ -591,9 +591,9 @@ namespace user
 
       virtual void  defer_create_mesh_data();
 
-      virtual ::point_i32 get_context_offset() override;
+      ::point_f64 get_context_offset(::user::enum_layout elayout = ::user::e_layout_sketch) override;
 
-      virtual ::size_f64 get_page_size() override;
+      ::size_f64 get_page_size(::user::enum_layout elayout = ::user::e_layout_sketch) override;
 
       virtual string  _001GetItemId(index iStrictItem);
       virtual index  _001GetItemById(const ::string & pszChar);

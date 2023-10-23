@@ -1484,7 +1484,7 @@ namespace user
    bool style::get_int(::user::interaction * pinteraction, int & i, ::user::enum_int eint, ::user::enum_state estate)
    {
 
-      if(eint == e_int_scroll_bar_width)
+      if(eint == e_int_scroll_bar_thickness)
       {
 
          i = 16;

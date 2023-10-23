@@ -794,7 +794,7 @@ namespace user
 
       auto ptabdata = get_data();
 
-      if (_001HasHorizontalBarDragScrolling())
+      if (_001HasBarXDragScrolling())
       {
 
          float fDensity = 1.0f;
@@ -1185,7 +1185,7 @@ namespace user
 
       ::rectangle_i32 rectangleScroll;
 
-      bool bScroll = _001HasHorizontalBarDragScrolling();
+      bool bScroll = _001HasBarXDragScrolling();
 
       if (bScroll)
       {
@@ -1277,7 +1277,7 @@ namespace user
 
                ppane->m_pitemClose->m_item.m_iItem = iIndex;
 
-               user_item(ppane)->m_rectangle = rectangle;
+               user_item(ppane)->m_rectangle2 = rectangle;
 
                return ppane->m_pitemClose;
 
@@ -1293,7 +1293,7 @@ namespace user
 
                ppane->m_item.m_iItem = iIndex;
 
-               user_item(ppane)->m_rectangle = rectangle;
+               user_item(ppane)->m_rectangle2 = rectangle;
 
                return ppane;
                //return __new(::item(e_element_tab, iIndex));

@@ -85,7 +85,9 @@ namespace user
 
       void update_drawing_objects();
 
-      void on_change_impact_size(::draw2d::graphics_pointer & pgraphics) override;
+
+      void on_would_change_total_size(::user::enum_layout elayout = ::user::e_layout_sketch) override;
+
 
       void _001OnTreeDataChange();
       ::pointer<::data::tree_item>CalcFirstVisibleItem(index & iProperIndex);
@@ -124,7 +126,7 @@ namespace user
 
       virtual i32 get_wheel_scroll_delta() override;
 
-      virtual void on_change_context_offset(::draw2d::graphics_pointer & pgraphics) override;
+      void on_context_offset_layout(::draw2d::graphics_pointer & pgraphics) override;
 
       ::pointer<::image_list>get_image_list();
 
@@ -138,8 +140,8 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_right_button_up);
       void _001OnTimer(::timer * ptimer) override;
       DECLARE_MESSAGE_HANDLER(on_message_create);
-      DECLARE_MESSAGE_HANDLER(_001OnVScroll);
-      DECLARE_MESSAGE_HANDLER(_001OnHScroll);
+      DECLARE_MESSAGE_HANDLER(on_message_scroll_y);
+      DECLARE_MESSAGE_HANDLER(on_message_scroll_x);
       DECLARE_MESSAGE_HANDLER(_001OnChangeExperience);
 
 
@@ -188,7 +190,7 @@ namespace user
 
       //virtual ::size_f64 get_total_size() override;
 
-      void on_context_offset(::draw2d::graphics_pointer & pgraphics) override;
+      //void on_context_offset(::draw2d::graphics_pointer & pgraphics) override;
 
 
    };

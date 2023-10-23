@@ -448,7 +448,7 @@ list(APPEND library_source
    user/user/scroll.h
    user/user/scroll_bar.cpp
    user/user/scroll_bar.h
-   user/user/scroll_info.h
+   user/user/scroll_state.h
    user/user/shell.cpp
    user/user/shell.h
    user/user/still.cpp
@@ -477,10 +477,10 @@ list(APPEND library_source
    user/user/windowing.h
    user/user/zorder.cpp
    user/user/zorder.h
-   user/user/horizontal_scroll_base.cpp
-   user/user/horizontal_scroll_base.h
-   user/user/vertical_scroll_base.cpp
-   user/user/vertical_scroll_base.h
+   user/user/scroll_base_x.cpp
+   user/user/scroll_base_x.h
+   user/user/scroll_base_y.cpp
+   user/user/scroll_base_y.h
    user/user/visual_state.cpp
    user/user/visual_state.h
    #windowing/buffer.cpp

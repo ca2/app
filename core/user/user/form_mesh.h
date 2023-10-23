@@ -91,8 +91,8 @@ namespace user
       DECLARE_MESSAGE_HANDLER(_001OnNotify);
       DECLARE_MESSAGE_HANDLER(_001OnMessageNotify);
 
-      DECLARE_MESSAGE_HANDLER(_001OnVScroll);
-      DECLARE_MESSAGE_HANDLER(_001OnHScroll);
+      DECLARE_MESSAGE_HANDLER(on_message_scroll_y);
+      DECLARE_MESSAGE_HANDLER(on_message_scroll_x);
       DECLARE_MESSAGE_HANDLER(on_message_key_down);
 
       virtual bool _001OnMouseActivate(::user::interaction_impl * pDesktopWnd,::u32 nHitTest,const ::atom & atom,lresult & iResult);

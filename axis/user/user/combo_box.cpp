@@ -549,7 +549,7 @@ namespace user
 
             auto puseritem = user_item(pitem);
             
-            puseritem->m_rectangle = rectangleElement;
+            puseritem->m_rectangle2 = rectangleElement;
 
             return pitem;
 
@@ -566,7 +566,7 @@ namespace user
 
          auto puseritem = user_item(pitem);
             
-         puseritem->m_rectangle = rectangleElement;
+         puseritem->m_rectangle2 = rectangleElement;
 
          return pitem;
 

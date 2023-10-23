@@ -144,7 +144,7 @@ namespace user
       index & iItem);
 
 
-      ::point_i32 get_parent_context_offset() override;
+      ::point_f64 get_parent_context_offset() override;
 
       // Message Handlers
    protected:

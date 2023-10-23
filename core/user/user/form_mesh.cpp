@@ -181,7 +181,7 @@ namespace user
    }
 
 
-   void form_mesh::_001OnVScroll(::message::message * pmessage)
+   void form_mesh::on_message_scroll_y(::message::message * pmessage)
    {
 
       pmessage->previous();
@@ -198,7 +198,7 @@ namespace user
    }
 
 
-   void form_mesh::_001OnHScroll(::message::message * pmessage)
+   void form_mesh::on_message_scroll_x(::message::message * pmessage)
    {
 
       pmessage->previous();

@@ -2,8 +2,8 @@
 
 
 #include "interaction_layout.h"
-//#include "graphics_thread.h"
 #include "drawable.h"
+#include "scroll_state.h"
 #include "acme/exception/status.h"
 #include "acme/user/user/drag_client.h"
 #include "acme/primitive/collection/string_map.h"
@@ -182,6 +182,7 @@ namespace user
       bool                                      m_bDerivedHeight;
 
       bool                                      m_bLadingToLayout;
+      bool                                      m_bContextOffsetLadingToLayout;
       bool                                      m_bTransparent;
       bool                                      m_bCreated;
       bool                                      m_bSubclassed;
@@ -364,7 +365,7 @@ namespace user
       ::atom                                    m_atomImpact;
       ::status < ::color::color >               m_statuscolorBackground;
       ::status < ::color::color >               m_statuscolorText;
-      point_i32                                 m_pointScroll;
+      //point_i32                                 m_pointScroll;
       double                                    m_dItemHeight;
       point_i32                                 m_pointMoveCursor;
       class ::time                              m_timeLastFullUpdate;
@@ -644,10 +645,15 @@ namespace user
       inline bool is_full_screen() { return m_bFullScreen; }
       virtual bool _is_full_screen();
 
+      
       virtual bool get_element_rectangle(::rectangle_i32 & rectangle, enum_element eelement);
+      
+      
+      virtual ::rectangle_f64 user_item_rectangle(::user::item * puseritem, ::user::enum_layout elayout);
+      virtual ::rectangle_f64 _user_item_rectangle(::user::item * puseritem, ::user::enum_layout elayout);
 
 
-      virtual status < rectangle_i32 > item_rectangle(::item * pitem);
+      virtual status < rectangle_i32 > item_rectangle(::item * pitem, ::user::enum_layout elayout);
       virtual ::draw2d::path_pointer item_graphics_path(::item * pitem);
 
 
@@ -2043,37 +2049,61 @@ namespace user
       virtual void get_rect_normal(::rectangle_i32* prectangle);
 
 
-      virtual ::user::scroll_bar* get_horizontal_scroll_bar();
-      virtual ::user::scroll_bar* get_vertical_scroll_bar();
 
-      virtual ::user::scroll_data* get_horizontal_scroll_data();
-      virtual ::user::scroll_data* get_vertical_scroll_data();
-
-
-      virtual void set_context_offset_x(::draw2d::graphics_pointer & pgraphics, int x);
-      virtual void set_context_offset_y(::draw2d::graphics_pointer & pgraphics, int y);
-      virtual void set_context_offset(::draw2d::graphics_pointer & pgraphics, int x, int y);
-      virtual void offset_context_offset_x(::draw2d::graphics_pointer & pgraphics, int x);
-      virtual void offset_context_offset_y(::draw2d::graphics_pointer & pgraphics, int y);
-      virtual void offset_context_offset(::draw2d::graphics_pointer & pgraphics, int x, int y);
-      virtual bool validate_context_offset(point_i32& point);
-      virtual void on_change_context_offset(::draw2d::graphics_pointer & pgraphics);
-      virtual void on_context_offset(::draw2d::graphics_pointer & pgraphics);
-      virtual ::point_i32 get_context_offset();
-      virtual ::size_f64 get_total_size();
-      virtual void on_change_impact_size(::draw2d::graphics_pointer & pgraphics);
-      virtual ::size_f64 get_page_size();
-      virtual void set_total_size(const ::size_f64& size);
-      virtual void set_page_size(const ::size_f64& size);
-      virtual ::point_i32 get_parent_accumulated_scroll(enum_layout elayout = e_layout_design);
-      virtual ::point_i32 get_accumulated_scroll(enum_layout elayout = e_layout_design);
-      virtual ::point_i32 get_scroll(enum_layout elayout = e_layout_design);
-      virtual ::point_i32 get_parent_context_offset();
-      virtual ::point_i32 get_ascendant_context_offset();
+      //virtual void set_context_offset_x(::draw2d::graphics_pointer & pgraphics, int x);
+      //virtual void set_context_offset_y(::draw2d::graphics_pointer & pgraphics, int y);
+      //virtual void set_context_offset(::draw2d::graphics_pointer & pgraphics, int x, int y);
+      //virtual void on_change_context_offset(::draw2d::graphics_pointer & pgraphics);
+      //virtual void on_context_offset(::draw2d::graphics_pointer & pgraphics);
+      virtual ::size_f64 get_total_size(::user::enum_layout elayout = ::user::e_layout_design);
+      virtual ::size_f64 get_page_size(::user::enum_layout elayout = ::user::e_layout_design);
+      virtual ::point_f64 get_context_offset(::user::enum_layout elayout = ::user::e_layout_design);
+      virtual ::f64 get_context_offset_x(::user::enum_layout elayout = ::user::e_layout_design);
+      virtual ::f64 get_context_offset_y(::user::enum_layout elayout = ::user::e_layout_design);
+      virtual void on_would_change_total_size(::user::enum_layout elayout = ::user::e_layout_sketch);
+      virtual void on_change_scroll_state(::user::enum_layout elayout = ::user::e_layout_sketch);
+      virtual void set_total_size(const ::size_f64 & size, ::user::enum_layout = ::user::e_layout_sketch);
+      virtual void set_page_size(const ::size_f64& size, ::user::enum_layout = ::user::e_layout_sketch);
+      virtual void set_context_offset(const ::point_f64 & point, ::user::enum_layout = ::user::e_layout_sketch);
+      virtual void set_scroll_tracking_x(::f64 x, ::user::enum_layout = ::user::e_layout_sketch);
+      virtual void set_scroll_tracking_y(::f64 y, ::user::enum_layout = ::user::e_layout_sketch);
+      virtual void set_context_offset_x(::f64 x, ::user::enum_layout = ::user::e_layout_sketch);
+      virtual void set_context_offset_y(::f64 y, ::user::enum_layout = ::user::e_layout_sketch);
+      virtual void offset_context_offset(const ::size_f64 & size, ::user::enum_layout = ::user::e_layout_sketch);
+      virtual void offset_context_offset_x(::f64 cx, ::user::enum_layout = ::user::e_layout_sketch);
+      virtual void offset_context_offset_y(::f64 cy, ::user::enum_layout = ::user::e_layout_sketch);
+      virtual void constrain_context_offset(point_f64 & point, ::user::enum_layout elayout = ::user::e_layout_sketch);
+      virtual void on_change_context_offset(::user::enum_layout elayout = ::user::e_layout_sketch);
+      virtual void on_context_offset_layout(::draw2d::graphics_pointer & pgraphics);
+      //virtual void on_context_offset(::draw2d::graphics_pointer & pgraphics);
+      virtual ::point_f64 get_parent_accumulated_scroll(enum_layout elayout = e_layout_design);
+      virtual ::point_f64 get_accumulated_scroll(enum_layout elayout = e_layout_design);
+      virtual ::point_f64 get_scroll(enum_layout elayout = e_layout_design);
+      virtual ::point_f64 get_parent_context_offset();
+      virtual ::point_f64 get_ascendant_context_offset();
       virtual void get_margin_rect(::rectangle_i32* prectMargin);
 
-      virtual int get_final_x_scroll_bar_width();
-      virtual int get_final_y_scroll_bar_width();
+      virtual int get_final_scroll_bar_x_thickness(::user::enum_layout elayout = ::user::e_layout_sketch);
+      virtual int get_final_scroll_bar_y_thickness(::user::enum_layout elayout = ::user::e_layout_sketch);
+
+
+      virtual void synthesize_scroll_state_x(scroll_state & scrollstate, ::user::enum_layout elayout = ::user::e_layout_sketch);
+      virtual void synthesize_scroll_state_y(scroll_state & scrollstate, ::user::enum_layout elayout = ::user::e_layout_sketch);
+      //virtual void layout_scroll_bar(::draw2d::graphics_pointer & pgraphics);
+      virtual void layout_scroll_bar(::user::enum_layout elayout = ::user::e_layout_sketch);
+
+      virtual ::user::scroll_bar * get_scroll_bar_x();
+      virtual ::user::scroll_bar * get_scroll_bar_y();
+
+      virtual scroll_state get_scroll_state_x(::user::enum_layout elayout = ::user::e_layout_sketch);
+      virtual scroll_state get_scroll_state_y(::user::enum_layout elayout = ::user::e_layout_sketch);
+
+      virtual void set_scroll_state_x(const scroll_state & scrollstate, ::user::enum_layout elayout = ::user::e_layout_sketch);
+      virtual void set_scroll_state_y(const scroll_state & scrollstate, ::user::enum_layout elayout = ::user::e_layout_sketch);
+
+      inline bool _001HasBarXDragScrolling() const { return m_pointBarDragScrollMax.x() > 0; }
+      inline bool _001HasBarYDragScrolling() const { return m_pointBarDragScrollMax.y() > 0; }
+
 
       //virtual double get_x_scroll();
       //virtual double get_y_scroll();
@@ -2131,9 +2161,6 @@ namespace user
       virtual ::color::hls get_sel_color();
       
 
-      virtual void get_horizontal_scroll_info(scroll_info& info);
-      virtual void get_vertical_scroll_info(scroll_info& info);
-      virtual void layout_scroll_bar(::draw2d::graphics_pointer & pgraphics);
 
 
       //void handle(::topic * ptopic, ::context * pcontext) override;
@@ -2614,8 +2641,6 @@ namespace user
       //template < typename GEOMETRY >
       //inline GEOMETRY _001ClientToHostNoScroll(const GEOMETRY& s, enum_layout elayout = e_layout_design) const { GEOMETRY g; _client_to_host_no_scroll(g, s); return g; }
 
-      inline bool _001HasHorizontalBarDragScrolling() const { return m_pointBarDragScrollMax.x() > 0; }
-      inline bool _001HasVerticalBarDragScrolling() const { return m_pointBarDragScrollMax.y() > 0; }
       
       
 //      virtual void pick_single_file(

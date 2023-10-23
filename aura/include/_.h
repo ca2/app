@@ -1113,7 +1113,7 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 //////   class split_layout;
 //////   class style_rect;
 //////   class scroll_bar;
-//////   class scroll_data;
+//////   class scroll_state;
 //////
 //////
 //////   //using color_map = map < e_color, e_color, ::color::color, ::color::color >;
@@ -1164,7 +1164,7 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 //   class split_layout;
 //   class style_rect;
 //   class scroll_bar;
-//   class scroll_data;
+//   class scroll_state;
 //   class style;
 //   class box;
 //   class interaction_array;

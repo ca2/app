@@ -5,7 +5,7 @@
 #include "acme/handler/item.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/user/user/content.h"
-#include "aura/user/user/scroll_data.h"
+#include "aura/user/user/scroll_state.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/write_text/font_enumeration_item.h"
 #include "aura/graphics/write_text/font_list.h"
@@ -39,8 +39,7 @@ namespace user
 
       m_bFirstShown = false;
       m_atomImpact = FONTSEL_IMPACT;
-      m_pscrolldataVertical = __new(::user::scroll_data);
-      m_pscrolldataVertical->m_bScrollEnable = true;
+      m_pscrolllayoutY->m_scrollstatea[::user::e_layout_sketch].m_bScrollEnable = true;
       m_bEnsureVisible = false;
       m_bDefaultClickHandling = true;
       m_bDefaultMouseHoverHandling = true;
@@ -424,12 +423,12 @@ namespace user
 
          rectangleImpact = this->rectangle();
 
-         rectangleImpact.offset(m_pointScroll);
+         rectangleImpact.offset(get_context_offset(::user::e_layout_sketch));
 
          if (!rectangleImpact.contains(rectangle))
          {
 
-            m_pointScroll.y() = (rectangle.top() + rectangle.bottom() - rectangleImpact.height()) / 2;
+            set_context_offset_y((rectangle.top() + rectangle.bottom() - rectangleImpact.height()) / 2);
 
          }
 
@@ -463,7 +462,7 @@ namespace user
 
       auto pstyle = get_style(pgraphics);
 
-      int iScrollBarWidth = get_int(pstyle, e_int_scroll_bar_width);
+      int iScrollBarWidth = get_int(pstyle, e_int_scroll_bar_thickness);
 
       //if (m_pfontlist->get_font_list_type() != ::write_text::e_font_list_wide)
       //{
@@ -492,9 +491,9 @@ namespace user
 
       m_pfontlist->set_client_rectangle(rectangleFontList);
 
-      m_sizeTotal = m_pfontlist->m_size;
+      set_total_size(m_pfontlist->m_size, ::user::e_layout_design);
 
-      on_change_impact_size(pgraphics);
+      //on_change_sketch_scroll_state();
 
    }
 
@@ -733,7 +732,7 @@ namespace user
 
          ::pointer < ::write_text::font_list_item > pfontlistitem = m_pfontlist->m_pfontlistdata->item_at(iItem);
 
-         m_pointScroll.y() = pfontlistitem->m_box[0].m_rectangle.top();
+         set_context_offset_y(pfontlistitem->m_box[0].m_rectangle.top());
 
       }
       else

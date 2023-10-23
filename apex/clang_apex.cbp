@@ -2890,7 +2890,7 @@
 		<Unit filename="user/user/scroll.h" />
 		<Unit filename="user/user/scroll_bar.cpp" />
 		<Unit filename="user/user/scroll_bar.h" />
-		<Unit filename="user/user/scroll_info.h" />
+		<Unit filename="user/user/scroll_state.h" />
 		<Unit filename="user/user/shell.cpp" />
 		<Unit filename="user/user/shell.h" />
 		<Unit filename="user/user/simple_impact.cpp" />

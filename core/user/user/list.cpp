@@ -28,7 +28,7 @@
 #include "aura/user/user/scroll_bar.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/image/list.h"
-#include "aura/user/user/scroll_data.h"
+#include "aura/user/user/scroll_state.h"
 #include "aura/message/user.h"
 #include "aura/windowing/window.h"
 #include "axis/platform/system.h"
@@ -142,8 +142,8 @@ namespace user
       ::user::mesh::install_message_routing(pchannel);
 
       MESSAGE_LINK(e_message_size, pchannel, this, &list::on_message_size);
-      MESSAGE_LINK(e_message_vscroll, pchannel, this, &list::_001OnVScroll);
-      MESSAGE_LINK(e_message_hscroll, pchannel, this, &list::_001OnHScroll);
+      MESSAGE_LINK(e_message_scroll_y, pchannel, this, &list::on_message_scroll_y);
+      MESSAGE_LINK(e_message_scroll_x, pchannel, this, &list::on_message_scroll_x);
       MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &list::on_message_mouse_leave);
 
       MESSAGE_LINK(e_message_left_button_down, pchannel, this, &list::on_message_left_button_down);
@@ -1117,7 +1117,7 @@ namespace user
 
       LayoutHeaderCtrl();
 
-      on_change_impact_size(pgraphics);
+      on_would_change_total_size(::user::e_layout_design);
 
       LayoutHeaderCtrl();
 
@@ -1257,7 +1257,9 @@ namespace user
    void list::on_after_impact_update()
    {
 
-      m_pointScroll.Null();
+      //m_pointScroll.Null();
+
+      set_context_offset({});
 
       // changing the scroll causes reposition of child elements
 
@@ -1266,7 +1268,7 @@ namespace user
    }
 
 
-   void list::on_change_impact_size(::draw2d::graphics_pointer & pgraphics)
+   void list::on_change_scroll_state(::user::enum_layout elayout)
    {
 
       auto iItemCount = m_nItemCount;
@@ -1367,7 +1369,7 @@ namespace user
 
             rectangle = pitem->m_pdrawlistitem->m_rectangleItem;
 
-            m_pscrolldataVertical->m_iLine = (::i32) m_dItemHeight;
+            m_pscrolllayoutY->m_scrollstatea[::user::e_layout_sketch].m_dLine = m_dItemHeight;
 
             rectangle.top() = 0;
 
@@ -1428,7 +1430,7 @@ namespace user
 
       set_total_size(rectangle.size());
 
-      ::user::scroll_base::on_change_impact_size(pgraphics);
+      ::user::scroll_base::on_change_scroll_state(elayout);
 
    }
 
@@ -2487,7 +2489,7 @@ namespace user
          if(m_iItemWidth > 0)
          {
 
-            iColumn = (point.x() + pointOffset.x()) / m_iItemWidth;
+            iColumn = (::i32) ((point.x() + pointOffset.x()) / m_iItemWidth);
 
          }
 
@@ -2574,25 +2576,25 @@ namespace user
 
          auto pointOffset = get_context_offset();
 
-         index ix = (index)(point.x() + pointOffset.x());
+         auto dx = point.x() + pointOffset.x();
 
-         ix = (index)maximum(pointOffset.x(), ix);
+         dx = maximum(pointOffset.x(), dx);
 
-         ix = (index)minimum(rectangleX.right(), ix);
+         dx = minimum(rectangleX.right(), dx);
 
-         ix = (index)maximum(rectangleX.left(), ix);
+         dx = maximum(rectangleX.left(), dx);
 
-         ix /= iItemSize;
+         dx /= iItemSize;
 
-         index iy = point.y() + pointOffset.y();
+         auto dy = point.y() + pointOffset.y();
 
-         iy = maximum(pointOffset.y(), iy);
+         dy = maximum(pointOffset.y(), dy);
 
-         iy = maximum(rectangleX.top(), iy);
+         dy = maximum(rectangleX.top(), dy);
 
-         iy /= iItemSize;
+         dy /= iItemSize;
 
-         iItemParam = iy * (maximum(1, rectangleX.width() / iItemSize)) + ix;
+         iItemParam =  (::index) (dy * (maximum(1, rectangleX.width() / iItemSize)) + dx);
 
          return true;
 
@@ -6099,16 +6101,16 @@ namespace user
              iItem >= pointOffset.y() / m_dItemHeight + m_nDisplayCount))
       {
 
-         pointOffset.y() = (::i32)(iItem * m_dItemHeight);
+         pointOffset.y() = iItem * m_dItemHeight;
 
-         queue_graphics_call([this, pointOffset](::draw2d::graphics_pointer & pgraphics)
-            {
+         //queue_graphics_call([this, pointOffset](::draw2d::graphics_pointer & pgraphics)
+           // {
 
-               set_context_offset_y(pgraphics, pointOffset.y());
+               set_context_offset_y(pointOffset.y());
 
-               on_change_context_offset(pgraphics);
+              // on_change_context_offset(pgraphics);
 
-            });
+            //});
 
          if (bRedraw)
          {
@@ -6130,16 +6132,17 @@ namespace user
 
          auto pointOffset = get_context_offset();
 
-         pointOffset.y() = (::i32)(iItem * m_dItemHeight);
+         pointOffset.y() = iItem * m_dItemHeight;
 
-         queue_graphics_call([this, pointOffset](::draw2d::graphics_pointer & pgraphics)
-            {
+         //queue_graphics_call([this, pointOffset](::draw2d::graphics_pointer & pgraphics)
+           // {
 
-               set_context_offset_y(pgraphics, pointOffset.y());
+         set_context_offset_y(pointOffset.y());
+               //set_context_offset_y(pgraphics, pointOffset.y());
 
-               on_change_context_offset(pgraphics);
+              // on_change_context_offset(pgraphics);
 
-            });
+            //});
 
          if (bRedraw)
          {
@@ -6180,12 +6183,12 @@ namespace user
 
          pointOffset.y() = (::i32)(iyScroll * m_dItemHeight);
 
-         queue_graphics_call([this](::draw2d::graphics_pointer & pgraphics)
-            {
+         //queue_graphics_call([this](::draw2d::graphics_pointer & pgraphics)
+           // {
 
-               on_change_context_offset(pgraphics);
+               //on_change_context_offset(pgraphics);
 
-            });
+            //});
 
          item.set_lower_bound(iyScroll);
 
@@ -6373,12 +6376,14 @@ namespace user
 
       SetTimer(0xfffffffe, 50_ms, nullptr);
 
-      queue_graphics_call([this](::draw2d::graphics_pointer & pgraphics)
-         {
+      //queue_graphics_call([this](::draw2d::graphics_pointer & pgraphics)
+        // {
 
-            set_context_offset(pgraphics, 0, 0);
+            //set_context_offset(pgraphics, 0, 0);
 
-         });
+      set_context_offset({});
+
+         //});
 
       m_efilterstate = FilterStateFilter;
 
@@ -6847,7 +6852,9 @@ namespace user
    }
 
 
-   void list::on_change_context_offset(::draw2d::graphics_pointer & pgraphics)
+   //void list::on_change_context_offset(::draw2d::graphics_pointer & pgraphics)
+   //void list::on_change_context_offset()
+   void list::on_context_offset_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
       synchronous_lock synchronouslock(this->synchronization());
@@ -6877,7 +6884,7 @@ namespace user
 
          ::rectangle_i32 rectangleScroll;
 
-         auto pscrollbar = get_horizontal_scroll_bar();
+         auto pscrollbar = get_scroll_bar_x();
 
          if (pscrollbar)
          {
@@ -6898,7 +6905,9 @@ namespace user
 
             }
 
-            m_pointScroll.y() = point.y();
+            //m_pointScroll.y() = point.y();
+
+            set_context_offset_y(point.y());
 
             m_iTopDisplayIndex = _001CalcDisplayTopIndex();
 
@@ -6918,14 +6927,13 @@ namespace user
 
       update_hover(pmouse, ::user::e_zorder_any);
 
-      ::user::scroll_base::on_change_context_offset(pgraphics);
+      ::user::scroll_base::on_context_offset_layout(pgraphics);
 
       set_need_redraw();
 
       post_redraw();
 
    }
-
 
 
    //::draw2d::pen * list::_001GetPenHighlight()
@@ -7100,7 +7108,7 @@ namespace user
    }
 
 
-   void list::_001OnVScroll(::message::message * pmessage)
+   void list::on_message_scroll_y(::message::message * pmessage)
    {
 
       pmessage->previous();
@@ -7108,7 +7116,7 @@ namespace user
    }
 
 
-   void list::_001OnHScroll(::message::message * pmessage)
+   void list::on_message_scroll_x(::message::message * pmessage)
    {
       //      ::pointer<::message::scroll>pscroll(pmessage);
 
@@ -7660,10 +7668,10 @@ namespace user
    //}
 
 
-   void list::on_context_offset(::draw2d::graphics_pointer & pgraphics)
-   {
+   //void list::on_context_offset(::draw2d::graphics_pointer & pgraphics)
+   //{
 
-   }
+   //}
 
 
    void list::_001OnClip(::draw2d::graphics_pointer & pgraphics)

@@ -13,7 +13,7 @@
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "acme/platform/timer.h"
-#include "aura/user/user/scroll_data.h"
+#include "aura/user/user/scroll_state.h"
 #include "aura/user/user/interaction_impl.h"
 #include "aura/message/user.h"
 #include "aura/user/user/user.h"
@@ -652,18 +652,18 @@ namespace user
    void list_box::ensure_item_visible_by_index(index iItem)
    {
 
-      if (m_pscrollbarVertical != nullptr
-         && m_pscrolldataVertical->m_bHasScroll
+      if (m_pscrollbarY != nullptr
+         && m_pscrolllayoutY->m_scrollstatea[::user::e_layout_sketch].m_bHasScroll
          && iItem >= 0 && iItem < m_pcombo->_001GetListCount())
       {
 
-         m_pointScroll.y() = (::i32) (iItem * _001GetItemHeight());
+         set_context_offset_y((::f64) (iItem * _001GetItemHeight()));
 
       }
       else
       {
 
-         m_pointScroll.y() = 0;
+         set_context_offset_y(0.);
 
       }
 
@@ -686,7 +686,6 @@ namespace user
             set_need_redraw();
 
             post_redraw();
-
 
          }
 

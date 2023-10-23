@@ -69,29 +69,34 @@ namespace user
 
       // }
 
-      virtual ::point_i32 get_context_offset() override
+      virtual ::point_f64 get_context_offset(::user::enum_layout elayout = ::user::e_layout_sketch) override
       {
 
-         auto pointOffset = BASE::get_context_offset();
+         auto pointOffset = BASE::get_context_offset(elayout);
 
-         pointOffset.x() += m_rectangleMargin.left();
-
-         pointOffset.y() += m_rectangleMargin.top();
+         pointOffset += m_rectangleMargin.top_left();
 
          return pointOffset;
 
       }
 
 
-      void set_context_offset(::draw2d::graphics_pointer & pgraphics, int x,int y) override
+      //void set_context_offset(::draw2d::graphics_pointer & pgraphics, int x,int y) override
+      //{
+
+      //   BASE::set_context_offset(pgraphics, x - m_rectangleMargin.left(), y - m_rectangleMargin.top());
+
+      //}
+
+      
+      void set_context_offset(const ::point_f64 & point, ::user::enum_layout elayout = e_layout_sketch) override
       {
 
-         BASE::set_context_offset(pgraphics, x - m_rectangleMargin.left(), y - m_rectangleMargin.top());
+         BASE::set_context_offset(point - m_rectangleMargin.top_left(), elayout);
 
       }
 
-
-      virtual ::size_f64 get_total_size() override
+      virtual ::size_f64 get_total_size(::user::enum_layout elayout = ::user::e_layout_sketch) override
       {
 
          auto s = BASE::get_total_size();

@@ -1427,7 +1427,7 @@
 		<Unit filename="/home/camilo/solution/basis/source/app/aura/user/user/scroll_bar.h">
 			<Option target="aura"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/source/app/aura/user/user/scroll_info.h">
+		<Unit filename="/home/camilo/solution/basis/source/app/aura/user/user/scroll_state.h">
 			<Option target="aura"/>
 		</Unit>
 		<Unit filename="/home/camilo/solution/basis/source/app/aura/user/user/shell.cpp">

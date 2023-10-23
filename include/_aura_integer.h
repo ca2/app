@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include <limits.h>
+
+
 using i8 = int8_t;
 using i16 = int16_t;
 using i32 = int32_t;
@@ -47,6 +50,11 @@ TARGET throw_cast(SOURCE src)
 #define I64_MINIMUM	(-9223372036854775807L - 1)
 #define U64_MAXIMUM	(18446744073709551615UL)
 
+#define F32_MOST_NEGATIVE	(-FLT_MAX)
+#define F32_MAXIMUM  (FLT_MAX)
+
+#define F64_MOST_NEGATIVE	(-DBL_MAX)
+#define F64_MAXIMUM  (DBL_MAX)
 
 
 using i32_bool = ::i32;

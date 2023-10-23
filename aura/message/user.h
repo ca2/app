@@ -117,7 +117,7 @@ namespace message
 
 
       enum_scroll_command    m_ecommand;
-      i32                        m_nPos;
+      f64                    m_dPosition;
 #ifdef WINDOWS_DESKTOP
       ::oswindow              m_oswindowScrollBar;
 #endif
@@ -125,7 +125,7 @@ namespace message
 
 
       scroll();
-      virtual ~scroll();
+      ~scroll() override;
 
       // using ::user::message::set;
 

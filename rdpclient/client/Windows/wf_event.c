@@ -391,7 +391,7 @@ LRESULT CALLBACK wf_event_proc(HWND hWnd, UINT Msg, WPARAM wParam,
 
 				break;
 
-			case e_message_hscroll:
+			case e_message_scroll_x:
 				{
 					int xDelta;     // xDelta = new_pos - current_pos
 					int xNewPos;    // new position
@@ -460,7 +460,7 @@ LRESULT CALLBACK wf_event_proc(HWND hWnd, UINT Msg, WPARAM wParam,
 				}
 				break;
 
-			case e_message_vscroll:
+			case e_message_scroll_y:
 				{
 					int xDelta = 0;
 					int yDelta;     // yDelta = new_pos - current_pos

@@ -392,8 +392,8 @@ namespace user
    void list_box::_001EnsureVisible(index iItem)
    {
 
-      if (m_pscrollbarVertical != nullptr
-         && m_pscrolldataVertical->m_bScroll
+      if (m_pscrollbarY != nullptr
+         && m_pscrollstateVertical->m_bScroll
          && iItem >= 0 && iItem < m_pcombo->_001GetListCount())
       {
 

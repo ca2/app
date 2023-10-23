@@ -2082,8 +2082,8 @@ namespace linux
 //      {
 //      // normal messages (just wparam, lparam through OnWndMsg)
 //
-//      case e_message_hscroll:
-//      case e_message_vscroll:
+//      case e_message_scroll_x:
+//      case e_message_scroll_y:
 //      case WM_PARENTNOTIFY:
 //      case WM_DRAWITEM:
 //      case e_message_measure_item:

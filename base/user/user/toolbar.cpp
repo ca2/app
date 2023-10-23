@@ -1874,7 +1874,7 @@ namespace user
 
       auto puseritem = user_item(main_content().item_at(iItem));
 
-      ::status < ::rectangle_i32 > statusrectangle = puseritem->m_rectangle;
+      ::status < ::rectangle_i32 > statusrectangle = puseritem->m_rectangle2;
 
       statusrectangle.m_estatus = ::success;
 

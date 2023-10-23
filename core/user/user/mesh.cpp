@@ -186,8 +186,8 @@ namespace user
       bool bList = dynamic_cast <list *> (this) != nullptr;
 
       MESSAGE_LINK(e_message_size, pchannel, this,&mesh::on_message_size);
-      MESSAGE_LINK(e_message_vscroll, pchannel, this,&mesh::_001OnVScroll);
-      MESSAGE_LINK(e_message_hscroll, pchannel, this,&mesh::_001OnHScroll);
+      MESSAGE_LINK(e_message_scroll_y, pchannel, this,&mesh::on_message_scroll_y);
+      MESSAGE_LINK(e_message_scroll_x, pchannel, this,&mesh::on_message_scroll_x);
       MESSAGE_LINK(e_message_mouse_leave, pchannel, this,&mesh::on_message_mouse_leave);
 
       if (!bList)
@@ -1008,7 +1008,7 @@ namespace user
 
       m_nDisplayCount   = _001CalcDisplayItemCount();
 
-      on_change_impact_size(pgraphics);
+      on_would_change_total_size(::user::e_layout_design);
 
 
 
@@ -1245,31 +1245,36 @@ namespace user
    }
 
 
-   void mesh::on_change_impact_size(::draw2d::graphics_pointer & pgraphics)
+   void mesh::on_would_change_total_size(::user::enum_layout elayout)
    {
 
-      ::size_i32 sizeTotal = get_total_size();
+      auto scrollstatex = get_scroll_state_x(elayout);
+
+      auto scrollstatey = get_scroll_state_y(elayout);
+
+      //::size_i32 sizeTotal = get_total_size(::user::e_layout_sketch);
 
       if(m_eview == impact_grid)
       {
 
-         sizeTotal.cy() = (::i32) m_nColumnCount;
-         sizeTotal.cx() = (::i32) m_nItemCount;
+         scrollstatey.set_dimension((::i32) m_nColumnCount);
+         scrollstatex.set_dimension((::i32) m_nItemCount);
 
       }
       else if(m_eview == impact_list)
       {
+
          if(m_nItemCount == 0)
          {
-            sizeTotal.cy() = 0;
-            sizeTotal.cx() = 0;
+            scrollstatey.set_dimension((::i32)0);
+            scrollstatex.set_dimension((::i32)0);
          }
          else
          {
 
-            auto rectangleX = this->rectangle();
+            auto rectangle = this->rectangle();
 
-            sizeTotal.cy() = rectangleX.height();
+            scrollstatey.set_dimension(rectangle.height());
 
             auto pitemFirst = get_item(0);
 
@@ -1280,16 +1285,16 @@ namespace user
             if (m_dItemHeight <= 0)
             {
 
-               sizeTotal.cx() = rectangleX.right();
+               scrollstatex.set_dimension(rectangle.right());
 
             }
             else
             {
 
-               sizeTotal.cx() = (::i32) minimum(
+               scrollstatex.set_dimension((::i32) minimum(
                        m_nItemCount * pitemFirst->m_pdrawlistitem->m_rectangleItem.width() * m_dItemHeight /
-                       rectangleX.height()
-                       + pitemFirst->m_pdrawlistitem->m_rectangleItem.width(), I32_MAXIMUM);
+                       rectangle.height()
+                       + pitemFirst->m_pdrawlistitem->m_rectangleItem.width(), I32_MAXIMUM));
 
             }
 
@@ -1299,8 +1304,8 @@ namespace user
       {
          if(m_nItemCount == 0)
          {
-            sizeTotal.cy() = 0;
-            sizeTotal.cx() = 0;
+            scrollstatey.set_dimension(0);
+            scrollstatex.set_dimension(0);
          }
          else
          {
@@ -1340,12 +1345,14 @@ namespace user
             //}
             index_item_rectangle(*pitemLast);
 
-//            itemLast.m_rectangleItem.right()     -= (m_scrolldata.m_rectangleMargin.left() + m_scrolldata.m_rectangleMargin.right());
-            //          itemLast.m_rectangleItem.bottom()    -= (m_scrolldata.m_rectangleMargin.top() + m_scrolldata.m_rectangleMargin.bottom());
+//            itemLast.m_rectangleItem.right()     -= (m_scrollstate.m_rectangleMargin.left() + m_scrollstate.m_rectangleMargin.right());
+            //          itemLast.m_rectangleItem.bottom()    -= (m_scrollstate.m_rectangleMargin.top() + m_scrollstate.m_rectangleMargin.bottom());
 
             rectangle.unite(pitemFirst->m_pdrawlistitem->m_rectangleItem,pitemLast->m_pdrawlistitem->m_rectangleItem);
 
-            sizeTotal = rectangle.size();
+            scrollstatex.set_dimension(rectangle.size().cx());
+
+            scrollstatey.set_dimension(rectangle.size().cy());
 
          }
 
@@ -1388,9 +1395,18 @@ namespace user
 
          //rectangle.unite(rectangle,itemTopRight.m_rectangleItem);
 
-         sizeTotal = rectangle.size();
+         scrollstatex.set_dimension(rectangle.size().cx());
+
+         scrollstatey.set_dimension(rectangle.size().cy());
 
       }
+
+      set_scroll_state_x(scrollstatex, elayout);
+
+      set_scroll_state_y(scrollstatey, elayout);
+
+      on_change_scroll_state(elayout);
+
 
 //      ::user::box::on_change_impact_size();
 
@@ -1889,40 +1905,41 @@ namespace user
 
       if(m_eview == impact_report || m_eview == impact_grid)
       {
-         index iy = point.y() + pointScroll.y();
 
-         index iItem = -1;
+         auto dy = point.y() + pointScroll.y();
+
+         auto dItem = -1.;
 
          if (m_dItemHeight != 0)
          {
 
-            iItem = (::index) (iy / m_dItemHeight);
+            dItem = dy / m_dItemHeight;
 
          }
 
-         if (iItem < 0)
+         if (dItem < 0.)
          {
 
             return false;
 
          }
 
-         iItem--;
+         dItem-=1.0;
 
-         if(iItem < 0)
+         if(dItem < 0.0)
             return false;
          //}
 
          if(m_bFilter1)
          {
-            if(iItem >= m_piaFilterMesh->get_count())
+            if((::index) dItem >= m_piaFilterMesh->get_count())
                return false;
          }
 
-         if(iItem >= m_nItemCount)
+         if((::index) dItem >= m_nItemCount)
             return false;
 
-         iItemParam = (index)iItem;
+         iItemParam = (index)dItem;
 
          return true;
       }
@@ -1984,23 +2001,23 @@ namespace user
             rectangleX.top() += m_rectangleTopText.height();
          }
 //         index iIconSize = maximum(32,m_columna[0]->m_sizeIcon.cy());
-         index iIconSize = 32;
-         index iItemSize = iIconSize * 2;
+         auto dIconSize = 32.0;
+         auto dItemSize = dIconSize * 2;
 
-         index ix = (index)(point.x() + pointScroll.x());
-         ix = (index)maximum(pointScroll.x(),ix);
-         ix = (index)minimum(rectangleX.right(),ix);
-         ix = (index)maximum(rectangleX.left(),ix);
-         ix /= iItemSize;
+         auto dx = point.x() + pointScroll.x();
+         dx = maximum(pointScroll.x(),dx);
+         dx = minimum(rectangleX.right(),dx);
+         dx = maximum(rectangleX.left(),dx);
+         dx /= dItemSize;
 
-         index iy = point.y() + pointScroll.y();
-         iy = maximum(pointScroll.y(),iy);
-         iy = maximum(rectangleX.top(),iy);
-         iy /= iItemSize;
+         auto dy = point.y() + pointScroll.y();
+         dy = maximum(pointScroll.y(),dy);
+         dy = maximum(rectangleX.top(),dy);
+         dy /= dItemSize;
 
          //if(m_flags.has(flag_auto_arrange))
          {
-            iItemParam = iy * (maximum(1,rectangleX.width() / iItemSize)) + ix;
+            iItemParam = (::index) ( dy * (maximum(1,rectangleX.width() / dItemSize)) + dx);
          }
          //else
          {
@@ -2013,6 +2030,7 @@ namespace user
 
       return false;
    }
+
 
    void mesh::_001GetGroupRect(::user::draw_mesh_group * pdrawmeshgroup)
    {
@@ -4505,14 +4523,15 @@ namespace user
       if(iItem < pointScroll.y() || (m_dItemHeight > 0 && iItem >= pointScroll.y() / m_dItemHeight + m_nDisplayCount))
       {
 
-         int iy = (int) (iItem * m_dItemHeight);
+         auto dy = iItem * m_dItemHeight;
 
-         queue_graphics_call([this, iy](::draw2d::graphics_pointer & pgraphics)
-            {
+         //queue_graphics_call([this, iy](::draw2d::graphics_pointer & pgraphics)
+           // {
 
-               set_context_offset_y(pgraphics, iy);
+               //set_context_offset_y(pgraphics, iy);
+         set_context_offset_y(dy);
 
-            });
+            //});
 
          if(bRedraw)
          {
@@ -4534,14 +4553,15 @@ namespace user
       if(iItem < m_nItemCount)
       {
 
-         int iy = (int) (iItem * m_dItemHeight);
+         auto dy = iItem * m_dItemHeight;
 
-         queue_graphics_call([this, iy](::draw2d::graphics_pointer & pgraphics)
-            {
+         //queue_graphics_call([this, iy](::draw2d::graphics_pointer & pgraphics)
+           // {
 
-               set_context_offset_y(pgraphics, iy);
+              // set_context_offset_y(pgraphics, iy);
+         set_context_offset_y(dy);
 
-            });
+            //});
 
          if(bRedraw)
          {
@@ -4573,16 +4593,17 @@ namespace user
       {
          item_range item;
 
-         int iy = (int)(iyScroll * m_dItemHeight);
+         auto dy = iyScroll * m_dItemHeight;
 
-         queue_graphics_call([this, iy](::draw2d::graphics_pointer & pgraphics)
-            {
+         //queue_graphics_call([this, iy](::draw2d::graphics_pointer & pgraphics)
+           // {
 
-               set_context_offset_y(pgraphics, iy);
+         set_context_offset_y(dy);
+              // set_context_offset_y(pgraphics, iy);
 
-               on_change_context_offset(pgraphics);
+             //  on_change_context_offset(pgraphics);
 
-            });
+            //});
 
          item.set_lower_bound((index)iyScroll);
          item.set_upper_bound(minimum((index)(iyScroll + m_nDisplayCount - 1), (index)(m_nItemCount - 1)));
@@ -4787,12 +4808,12 @@ namespace user
 
       SetTimer(0xfffffffe,50_ms,nullptr);
 
-      queue_graphics_call([this](::draw2d::graphics_pointer & pgraphics)
-         {
+      //queue_graphics_call([this](::draw2d::graphics_pointer & pgraphics)
+      //   {
 
-            set_context_offset(pgraphics, 0, 0);
+      //      set_context_offset(pgraphics, 0, 0);
 
-         });
+      //   });
 
       m_efilterstate = FilterStateFilter;
 
@@ -4802,7 +4823,9 @@ namespace user
 
       auto pgraphics = pdraw2d->create_memory_graphics(this);
 
-      on_change_impact_size(pgraphics);
+      //on_change_sketch_scroll_state();
+
+      set_context_offset({ 0, 0 });
 
       set_need_layout();
 
@@ -4855,7 +4878,9 @@ namespace user
 
       auto pgraphics = pdraw2d->create_memory_graphics(this);
 
-      on_change_impact_size(pgraphics);
+      //on_change_scroll_state();
+
+      on_would_change_total_size();
 
       set_need_layout();
 
@@ -4988,12 +5013,14 @@ namespace user
 
       }
 
-      queue_graphics_call([this](::draw2d::graphics_pointer & pgraphics)
-         {
+      //queue_graphics_call([this](::draw2d::graphics_pointer & pgraphics)
+        // {
 
-            set_context_offset(pgraphics, 0, 0);
+            //set_context_offset(pgraphics, 0, 0);
 
-         });
+      set_context_offset({});
+
+         //});
 
       m_efilterstate = FilterStateFilter;
 
@@ -5003,7 +5030,11 @@ namespace user
 
       auto pgraphics = pdraw2d->create_memory_graphics(this);
 
-      on_change_impact_size(pgraphics);
+      //
+      // 
+      // on_change_sketch_scroll_state();
+
+      on_would_change_total_size();
 
       set_need_layout();
 
@@ -5306,7 +5337,7 @@ namespace user
    //   if(m_eview == impact_grid && m_dItemHeight > 0)
    //   {
 
-   //      return rectangle_i32(m_scrolldata.m_rectangleMargin.left(),m_scrolldata.m_rectangleMargin.top()/m_dItemHeight, m_scrolldata.m_rectangleMargin.right(),m_scrolldata.m_rectangleMargin.bottom() / m_dItemHeight);
+   //      return rectangle_i32(m_scrollstate.m_rectangleMargin.left(),m_scrollstate.m_rectangleMargin.top()/m_dItemHeight, m_scrollstate.m_rectangleMargin.right(),m_scrollstate.m_rectangleMargin.bottom() / m_dItemHeight);
 
    //   }
    //   else
@@ -5319,7 +5350,7 @@ namespace user
    //}
 
 
-   void mesh::on_change_context_offset(::draw2d::graphics_pointer & pgraphics)
+   void mesh::on_context_offset_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
 //      ::user::interaction::on_change_context_offset();
@@ -5628,7 +5659,7 @@ namespace user
    }
 
 
-   void mesh::_001OnVScroll(::message::message * pmessage)
+   void mesh::on_message_scroll_y(::message::message * pmessage)
    {
 
       ::pointer<::message::scroll>pscroll(pmessage);
@@ -5654,13 +5685,13 @@ namespace user
 
                m_nItemCount = minimum(m_nGridItemCount,m_nItemCount + (::count)(sizePage.cy() / m_dItemHeight));
 
-               auto psystem = acmesystem()->m_paurasystem;
+               //auto psystem = acmesystem()->m_paurasystem;
 
-               auto pdraw2d = psystem->draw2d();
+               //auto pdraw2d = psystem->draw2d();
 
-               auto pgraphics = pdraw2d->create_memory_graphics(this);
+               //auto pgraphics = pdraw2d->create_memory_graphics(this);
 
-               on_change_impact_size(pgraphics);
+               //on_change_sketch_scroll_state();
 
             }
 
@@ -5670,7 +5701,7 @@ namespace user
 
    }
 
-   void mesh::_001OnHScroll(::message::message * pmessage)
+   void mesh::on_message_scroll_x(::message::message * pmessage)
    {
 
       ::pointer<::message::scroll>pscroll(pmessage);
@@ -5696,13 +5727,13 @@ namespace user
 /// 
                m_nColumnCount = m_nGridColumnCount;
 
-               auto psystem = acmesystem()->m_paurasystem;
+               //auto psystem = acmesystem()->m_paurasystem;
 
-               auto pdraw2d = psystem->draw2d();
+               //auto pdraw2d = psystem->draw2d();
 
-               auto pgraphics = pdraw2d->create_memory_graphics(this);
+               //auto pgraphics = pdraw2d->create_memory_graphics(this);
 
-               on_change_impact_size(pgraphics);
+               //on_change_impact_size(pgraphics);
 
             }
 
@@ -6383,10 +6414,10 @@ namespace user
    }
 
 
-   ::point_i32 mesh::get_context_offset()
+   ::point_f64 mesh::get_context_offset(::user::enum_layout elayout)
    {
 
-      return ::user::interaction::get_context_offset();
+      return ::user::interaction::get_context_offset(elayout);
 
    }
 
@@ -6411,14 +6442,14 @@ namespace user
 
    //      this->rectangle(&rectangleImpactClient);
 
-   //      m_scrolldata.m_sizePage.cx() = rectangleImpactClient.size().cx();
+   //      m_scrollstate.m_sizePage.cx() = rectangleImpactClient.size().cx();
 
-   //      m_scrolldata.m_sizePage.cy() = rectangleImpactClient.size().cy() / m_dItemHeight;
+   //      m_scrollstate.m_sizePage.cy() = rectangleImpactClient.size().cy() / m_dItemHeight;
 
-   //      if(m_scrolldata.m_pointScroll.y() > (m_sizeTotal.cy() - m_scrolldata.m_sizePage.cy()))
+   //      if(m_scrollstate.m_pointScroll.y() > (m_sizeTotal.cy() - m_scrollstate.m_sizePage.cy()))
    //      {
 
-   //         m_scrolldata.m_pointScroll.y() = (m_sizeTotal.cy() - m_scrolldata.m_sizePage.cy());
+   //         m_scrollstate.m_pointScroll.y() = (m_sizeTotal.cy() - m_scrollstate.m_sizePage.cy());
 
    //      }
 
@@ -6442,7 +6473,7 @@ namespace user
    //}
 
 
-   size_f64 mesh::get_page_size()
+   size_f64 mesh::get_page_size(::user::enum_layout elayout)
    {
 
       if(m_eview == impact_grid && m_dItemHeight > 0)

@@ -326,16 +326,26 @@ public:
    
    }
 
-   rectangle_type & inflate(UNIT_TYPE x, UNIT_TYPE y)  { this->left() -= x; this->right() += y; this->top() -= x; this->bottom() += y; return *this; }
-   rectangle_type & inflate(const SIZE_TYPE & size)  { this->left() -= size.cx(); this->right() += size.cy(); this->top() -= size.cx(); this->bottom() += size.cy(); return *this; }
-   rectangle_type & deflate(UNIT_TYPE x, UNIT_TYPE y)  { this->left() += x; this->right() -= y; this->top() += x; this->bottom() -= y; return *this; }
-   rectangle_type & deflate(const SIZE_TYPE & size)  { this->left() += size.cx(); this->right() -= size.cy(); this->top() += size.cx(); this->bottom() -= size.cy(); return *this; }
+   template < primitive_number NUMBERX, primitive_number NUMBERY >
+   rectangle_type & inflate(NUMBERX x, NUMBERY y)  { this->left() = (UNIT_TYPE) (this->left() - x); this->right() = (UNIT_TYPE) (this->right() + x); this->top() = (UNIT_TYPE)(this->top() - y); this->bottom() = (UNIT_TYPE)(this->bottom() + y); return *this; }
+   template < primitive_size SIZE >
+   rectangle_type & inflate(const SIZE & size)  { return inflate(size.cx(), size.cy());  }
+   template < primitive_number NUMBERX, primitive_number NUMBERY >
+   rectangle_type & deflate(NUMBERX x, NUMBERY y) { return inflate(-x, -y); }
+   template < primitive_size SIZE >
+   rectangle_type & deflate(const SIZE & size)  { return deflate(size.cx(), size.cy()); }
 
-   rectangle_type & offset(UNIT_TYPE x, UNIT_TYPE y)  { return offset_x(x).offset_y(y); }
-   rectangle_type & offset_x(UNIT_TYPE x)  { this->left() += x; this->right() += x; return *this; }
-   rectangle_type & offset_y(UNIT_TYPE y)  { this->top() += y; this->bottom() += y; return *this; }
-   rectangle_type & inflate(UNIT_TYPE u)  { return inflate(u, u); }
-   rectangle_type & deflate(UNIT_TYPE u)  { return deflate(u, u); }
+   template < primitive_number NUMBERX, primitive_number NUMBERY >
+   rectangle_type & offset(NUMBERX x, NUMBERY y)  { return offset_x(x).offset_y(y); }
+
+   template < primitive_number NUMBER >
+   rectangle_type & offset_x(NUMBER x)  { this->left() = (UNIT_TYPE) (this->left() + x); this->right() = (UNIT_TYPE) (this->right() + x); return *this; }
+   template < primitive_number NUMBER >
+   rectangle_type & offset_y(NUMBER y)  { this->top() = (UNIT_TYPE) (this->top() + y); this->bottom() = (UNIT_TYPE) (this->bottom() + y); return *this; }
+   template < primitive_number NUMBER >
+   rectangle_type & inflate(NUMBER u)  { return inflate(u, u); }
+   template < primitive_number NUMBER >
+   rectangle_type & deflate(NUMBER u)  { return deflate(u, u); }
 
    template < primitive_point POINT >
    rectangle_type & offset(const POINT & point)  { return offset_x(point.x()).offset_y(point.y()); }

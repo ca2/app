@@ -72,8 +72,8 @@ namespace user
       void get_selection(const ::scoped_string & scopedstrDataKey,::string_array & stra) override;
       DECLARE_MESSAGE_HANDLER(_001OnMessageNotify);
 
-      DECLARE_MESSAGE_HANDLER(_001OnVScroll);
-      DECLARE_MESSAGE_HANDLER(_001OnHScroll);
+      DECLARE_MESSAGE_HANDLER(on_message_scroll_y);
+      DECLARE_MESSAGE_HANDLER(on_message_scroll_x);
       DECLARE_MESSAGE_HANDLER(on_message_key_down);
 
       void on_update_item_count() override;

@@ -387,7 +387,7 @@
     <ClInclude Include="user\user\form_callback.h" />
     <ClInclude Include="user\user\frame.h" />
     <ClInclude Include="user\user\graphics_call.h" />
-    <ClInclude Include="user\user\horizontal_scroll_base.h" />
+    <ClInclude Include="user\user\scroll_base_x.h" />
     <ClInclude Include="user\user\interaction.h" />
     <ClInclude Include="user\user\interaction_child.h" />
     <ClInclude Include="user\user\interaction_impl.h" />
@@ -419,8 +419,8 @@
     <ClInclude Include="user\user\scroll.h" />
     <ClInclude Include="user\user\scroll_bar.h" />
     <ClInclude Include="user\user\scroll_base.h" />
-    <ClInclude Include="user\user\scroll_data.h" />
-    <ClInclude Include="user\user\scroll_info.h" />
+    <ClInclude Include="user\user\scroll_state.h" />
+    <ClInclude Include="user\user\scroll_state.h" />
     <ClInclude Include="user\user\shell.h" />
     <ClInclude Include="user\user\still.h" />
     <ClInclude Include="user\user\style.h" />
@@ -433,7 +433,7 @@
     <ClInclude Include="user\user\text_composition_composite.h" />
     <ClInclude Include="user\user\tool_window.h" />
     <ClInclude Include="user\user\user.h" />
-    <ClInclude Include="user\user\vertical_scroll_base.h" />
+    <ClInclude Include="user\user\scroll_base_y.h" />
     <ClInclude Include="user\user\visual_state.h" />
     <ClInclude Include="user\user\wait_cursor.h" />
     <ClInclude Include="user\user\windowing.h" />
@@ -612,7 +612,7 @@
     <ClCompile Include="user\user\form_callback.cpp" />
     <ClCompile Include="user\user\form_handler.cpp" />
     <ClCompile Include="user\user\frame.cpp" />
-    <ClCompile Include="user\user\horizontal_scroll_base.cpp" />
+    <ClCompile Include="user\user\scroll_base_x.cpp" />
     <ClCompile Include="user\user\interaction.cpp" />
     <ClCompile Include="user\user\interaction_array.cpp" />
     <ClCompile Include="user\user\interaction_child.cpp" />
@@ -648,7 +648,7 @@
     <ClCompile Include="user\user\text_composition_composite.cpp" />
     <ClCompile Include="user\user\tool_window.cpp" />
     <ClCompile Include="user\user\user.cpp" />
-    <ClCompile Include="user\user\vertical_scroll_base.cpp" />
+    <ClCompile Include="user\user\scroll_base_y.cpp" />
     <ClCompile Include="user\user\visual_state.cpp" />
     <ClCompile Include="user\user\wait_cursor.cpp" />
     <ClCompile Include="user\user\windowing.cpp" />

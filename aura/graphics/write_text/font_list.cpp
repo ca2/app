@@ -693,7 +693,7 @@ namespace write_text
 
          pbox->set_text_box_init();
 
-         m_size.cx() = maximum(m_size.cx(), s.cx());
+         m_size.cx() = (::i32) maximum(m_size.cx(), s.cx());
 
       }
 

@@ -235,7 +235,7 @@ namespace user
       void on_after_impact_update() override;
 
 
-      void on_change_impact_size(::draw2d::graphics_pointer & pgraphics) override;
+      void on_change_scroll_state(::user::enum_layout elayout = ::user::e_layout_sketch) override;
 
 
       void _001OnInitialize() override;
@@ -383,22 +383,22 @@ namespace user
       EImpact _001GetImpact() override;
 
 
-      virtual i32 get_wheel_scroll_delta() override;
+      i32 get_wheel_scroll_delta() override;
 
-      virtual void on_change_context_offset(::draw2d::graphics_pointer & pgraphics) override;
+      void on_context_offset_layout(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual bool keyboard_focus_is_focusable() override;
+      bool keyboard_focus_is_focusable() override;
 
-      DECLARE_MESSAGE_HANDLER(_001OnVScroll);
-      DECLARE_MESSAGE_HANDLER(_001OnHScroll);
+      DECLARE_MESSAGE_HANDLER(on_message_scroll_y);
+      DECLARE_MESSAGE_HANDLER(on_message_scroll_x);
 
-      virtual void _thread_data_update_visible_subitem() override;
+      void _thread_data_update_visible_subitem() override;
 
-      virtual void defer_create_mesh_data() override;
+      void defer_create_mesh_data() override;
 
-      virtual void on_context_offset(::draw2d::graphics_pointer & pgraphics) override;
+      //void on_context_offset(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual void _001OnClip(::draw2d::graphics_pointer & pgraphics) override;
+      void _001OnClip(::draw2d::graphics_pointer & pgraphics) override;
 
       //virtual bool this->rectangle(::rectangle_i32 * prectangle) override;
 

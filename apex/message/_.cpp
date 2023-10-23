@@ -112,8 +112,8 @@ namespace message
       {
       case e_message_size:
          return e_prototype_size;
-      case e_message_hscroll:
-      case e_message_vscroll:
+      case e_message_scroll_x:
+      case e_message_scroll_y:
          return e_prototype_scroll;
       case e_message_create:
       case e_message_non_client_create:

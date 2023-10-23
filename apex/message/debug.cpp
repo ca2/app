@@ -58,8 +58,8 @@
 //else __msg_entry(e_message_key_last)      //            0x0109
 //else __msg_entry(e_message_command)      //             0x0111
 //else __msg_entry(e_message_timer)      //             0x0113
-//else __msg_entry(e_message_hscroll)      //             0x0114
-//else __msg_entry(e_message_vscroll)      //             0x0115
+//else __msg_entry(e_message_scroll_x)      //             0x0114
+//else __msg_entry(e_message_scroll_y)      //             0x0115
 //else __msg_entry(e_message_initialize_menu_popup)      //             0x0117
 //#ifdef WINDOWS
 //   else __msg_entry(WM_SETREDRAW)

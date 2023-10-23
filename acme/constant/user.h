@@ -58,6 +58,7 @@ namespace user
 
       e_layout_count_child = e_layout_design + 1,
       e_layout_count_owner = e_layout_window + 1,
+      e_layout_maximum_count = e_layout_normal + 1,
 
    };
 
@@ -182,7 +183,7 @@ namespace user
       e_int_top_level_drawing_order,
       e_int_button_press_shift_cx,
       e_int_button_press_shift_cy,
-      e_int_scroll_bar_width,
+      e_int_scroll_bar_thickness,
 
    };
 

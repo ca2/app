@@ -46,8 +46,8 @@ enum enum_message : ::i32
    e_message_uni_char = 265,
    e_message_key_last = 265,
 
-   e_message_hscroll = 0x0114,
-   e_message_vscroll = 0x0115,
+   e_message_scroll_x = 0x0114,
+   e_message_scroll_y = 0x0115,
 
    e_message_non_client_create    =                 0x0081,
    e_message_non_client_destroy    =                0x0082,

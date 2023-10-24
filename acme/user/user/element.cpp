@@ -646,7 +646,7 @@ namespace user
    //}
 
 
-   void element::add_auto_refresh(::matter * pmatter)
+   void element::add_auto_refresh(::particle * pparticle)
    {
 
       //return false;
@@ -654,7 +654,7 @@ namespace user
    }
 
 
-   void element::erase_auto_refresh(::matter * pmatter)
+   void element::erase_auto_refresh(::particle * pparticle)
    {
 
       //return false;
@@ -662,7 +662,7 @@ namespace user
    }
 
 
-   bool element::is_auto_refresh(const ::matter * pmatter) const
+   bool element::is_auto_refresh(const ::particle * pparticle) const
    {
 
       return false;

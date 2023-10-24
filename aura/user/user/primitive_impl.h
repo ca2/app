@@ -134,9 +134,9 @@ namespace user
       virtual void track_mouse_leave();
 
 
-      virtual void add_auto_refresh(::matter* pmatter);
-      virtual void erase_auto_refresh(::matter* pmatter);
-      virtual bool is_auto_refresh(const ::matter* pmatter) const;
+      virtual void add_auto_refresh(::particle* pparticle);
+      virtual void erase_auto_refresh(::particle * pparticle);
+      virtual bool is_auto_refresh(const ::particle * pparticle) const;
 
 
       //virtual void auto_refresh_stop();

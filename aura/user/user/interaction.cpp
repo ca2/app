@@ -6729,7 +6729,7 @@ namespace user
    }
 
 
-   void interaction::add_auto_refresh(::matter * pmatter)
+   void interaction::add_auto_refresh(::particle * pparticle)
    {
 
       auto phostwindow = get_host_window();
@@ -6743,12 +6743,12 @@ namespace user
 
       auto pprimitiveimpl = phostwindow->m_pprimitiveimpl;
 
-      return pprimitiveimpl->add_auto_refresh(pmatter);
+      return pprimitiveimpl->add_auto_refresh(pparticle);
 
    }
 
 
-   void interaction::erase_auto_refresh(::matter * pmatter)
+   void interaction::erase_auto_refresh(::particle * pparticle)
    {
 
       if (get_wnd() == nullptr || get_wnd()->m_pprimitiveimpl == nullptr)
@@ -6758,12 +6758,12 @@ namespace user
 
       }
 
-      get_wnd()->m_pprimitiveimpl->erase_auto_refresh(pmatter);
+      get_wnd()->m_pprimitiveimpl->erase_auto_refresh(pparticle);
 
    }
 
 
-   bool interaction::is_auto_refresh(const ::matter * pmatter) const
+   bool interaction::is_auto_refresh(const ::particle * pparticle) const
    {
 
       auto pwnd = ((interaction *)
@@ -6776,7 +6776,7 @@ namespace user
 
       }
 
-      return pwnd->m_pprimitiveimpl->is_auto_refresh(pmatter);
+      return pwnd->m_pprimitiveimpl->is_auto_refresh(pparticle);
 
    }
 

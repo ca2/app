@@ -1483,14 +1483,16 @@ namespace user
       //}
 
 
-   void interaction_impl::add_auto_refresh(::matter * pmatter)
+   void interaction_impl::add_auto_refresh(::particle * pparticle)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      auto bAdded = m_matteraProdevian.add_unique(pmatter);
+      bool bWasEmpty = m_particleaAutoRefresh.is_empty();
 
-      if (bAdded)
+      bool bAdded = m_particleaAutoRefresh.add_unique(pparticle);
+
+      if (bAdded && bWasEmpty)
       {
 
          m_puserinteraction->set_need_redraw();
@@ -1502,33 +1504,25 @@ namespace user
    }
 
 
-   void interaction_impl::erase_auto_refresh(::matter * pmatter)
+   void interaction_impl::erase_auto_refresh(::particle * pparticle)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      bool bRemoved = m_matteraProdevian.erase(pmatter) > 0;
-
-      if (bRemoved)
-      {
-
-         m_puserinteraction->set_need_redraw();
-
-         m_puserinteraction->post_redraw();
-
-      }
+      m_particleaAutoRefresh.erase(pparticle);
 
    }
 
 
-   bool interaction_impl::is_auto_refresh(const ::matter * pmatter) const
+   bool interaction_impl::is_auto_refresh(const ::particle * pparticle) const
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      return m_matteraProdevian.contains(pmatter);
+      return m_particleaAutoRefresh.contains(pparticle);
 
    }
+
 
    void interaction_impl::mouse_hover_add(::user::interaction * pinterface)
    {

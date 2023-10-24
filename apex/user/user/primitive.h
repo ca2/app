@@ -69,9 +69,9 @@ namespace user
       enum_control_type get_control_type() const override;
 
 
-      void add_auto_refresh(::matter * pmatter) override;
-      void erase_auto_refresh(::matter * pmatter) override;
-      bool is_auto_refresh(const ::matter * pmatter) const override;
+      void add_auto_refresh(::particle * pparticle) override;
+      void erase_auto_refresh(::particle * pparticle) override;
+      bool is_auto_refresh(const ::particle * pparticle) const override;
 
       void display(::e_display edisplay = e_display_default, ::e_activation eactivation = e_activation_default) override;
 

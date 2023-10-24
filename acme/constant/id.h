@@ -320,6 +320,8 @@ enum enum_id : ::uptr
    id_content,
 
    id_on_activate,
+   id_new_item_installing,
+   id_item_finished_installing,
 
 };
 

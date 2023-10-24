@@ -599,21 +599,21 @@ namespace user
    }
 
 
-   void primitive_impl::add_auto_refresh(::matter* pmatter)
+   void primitive_impl::add_auto_refresh(::particle * pparticle)
    {
 
 
    }
 
 
-   void primitive_impl::erase_auto_refresh(::matter* pmatter)
+   void primitive_impl::erase_auto_refresh(::particle * pparticle)
    {
 
 
    }
 
 
-   bool primitive_impl::is_auto_refresh(const ::matter* pmatter) const
+   bool primitive_impl::is_auto_refresh(const ::particle * pparticle) const
    {
 
       return false;

@@ -751,7 +751,7 @@ namespace user
    //}
 
 
-   void primitive::add_auto_refresh(::matter * pmatter)
+   void primitive::add_auto_refresh(::particle * pparticle)
    {
 
       //return false;
@@ -759,7 +759,7 @@ namespace user
    }
 
 
-   void primitive::erase_auto_refresh(::matter * pmatter)
+   void primitive::erase_auto_refresh(::particle * pparticle)
    {
 
       //return false;
@@ -767,7 +767,7 @@ namespace user
    }
 
 
-   bool primitive::is_auto_refresh(const ::matter * pmatter) const
+   bool primitive::is_auto_refresh(const ::particle * pparticle) const
    {
 
       return false;

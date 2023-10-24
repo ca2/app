@@ -148,9 +148,9 @@ namespace user
       virtual enum_control_type get_control_type() const;
 
 
-      virtual void add_auto_refresh(::matter * pmatter);
-      virtual void erase_auto_refresh(::matter * pmatter);
-      virtual bool is_auto_refresh(const ::matter * pmatter) const;
+      virtual void add_auto_refresh(::particle * pparticle);
+      virtual void erase_auto_refresh(::particle * pparticle);
+      virtual bool is_auto_refresh(const ::particle * pparticle) const;
 
       virtual void display(::e_display edisplay = e_display_default, ::e_activation eactivation = e_activation_default);
 

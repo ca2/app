@@ -252,15 +252,18 @@ namespace user
 
       auto rectangle = this->rectangle(elayout);
 
-      auto sizeTotal = get_total_size(elayout);
+      //auto sizeTotal = get_total_size(elayout);
 
-      auto pointOffset = get_context_offset(elayout);
+      //auto pointOffset = get_context_offset(elayout);
+      rectangle.right() -= get_final_scroll_bar_x_thickness(elayout);
 
-      rectangle.right() = (::i32)(rectangle.left() + minimum(::width(rectangle), sizeTotal.cx() - m_pscrolllayoutX->m_scrollstatea[elayout].m_dPage - pointOffset.x()));
+      rectangle.bottom() -= get_final_scroll_bar_y_thickness(elayout);
 
-      rectangle.bottom() = (::i32)(rectangle.top() + minimum(::height(rectangle), sizeTotal.cy() - m_pscrolllayoutY->m_scrollstatea[elayout].m_dPage - pointOffset.y()));
+      //rectangle.right() -= (::i32)(rectangle.left() + minimum(::width(rectangle), sizeTotal.cx() - m_pscrolllayoutX->m_scrollstatea[elayout].m_dPage - pointOffset.x()));
 
-      return true;
+      //rectangle.bottom() -= (::i32)(rectangle.top() + minimum(::height(rectangle), sizeTotal.cy() - m_pscrolllayoutY->m_scrollstatea[elayout].m_dPage - pointOffset.y()));
+
+      return rectangle;
 
    }
 

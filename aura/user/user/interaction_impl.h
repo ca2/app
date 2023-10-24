@@ -108,7 +108,7 @@ namespace user
       class ::time                              m_timeLastExposureAddUp;
       ::pointer<::user::graphics_thread>        m_pgraphicsthread;
       ::pointer<::user::thread>                 m_puserthread;
-      pointer_array < ::matter >                m_matteraProdevian;
+      pointer_array < ::particle >              m_particleaAutoRefresh;
       string                                    m_strBitmapSource;
       ::pointer<::windowing::windowing>         m_pwindowing;
       ::frequency                               m_frequencyProdevianFramesPerSecond;
@@ -305,10 +305,10 @@ namespace user
       //virtual void mouse_hover_step(const __status < ::point_i32 > & statusPointCursor);
 
 
-      void add_auto_refresh(::matter * pmatter) override;
-      void erase_auto_refresh(::matter * pmatter) override;
-      bool is_auto_refresh(const ::matter * pmatter) const override;
-      inline bool has_auto_refresh() const noexcept { return m_matteraProdevian.has_element(); }
+      void add_auto_refresh(::particle * pparticle) override;
+      void erase_auto_refresh(::particle * pparticle) override;
+      bool is_auto_refresh(const ::particle * pparticle) const override;
+      inline bool has_auto_refresh() const noexcept { return m_particleaAutoRefresh.has_element(); }
 
       //void auto_refresh_stop() override;
 

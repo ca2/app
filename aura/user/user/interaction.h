@@ -951,9 +951,9 @@ namespace user
       inline bool is_auto_refresh() const { return is_auto_refresh(this); }
 
 
-      void add_auto_refresh(::matter * pmatter) override;
-      void erase_auto_refresh(::matter * pmatter) override;
-      bool is_auto_refresh(const ::matter * pmatter) const override;
+      void add_auto_refresh(::particle * pparticle) override;
+      void erase_auto_refresh(::particle * pparticle) override;
+      bool is_auto_refresh(const ::particle * pparticle) const override;
       bool has_auto_refresh() const noexcept;
 
 

@@ -15,6 +15,7 @@ public:
    ::payload                        m_payload;
    ::image_pointer                  m_pimage;
    ::pointer<context_image>         m_pcontextimage;
+   ::function < void(image *) >     m_functionLoaded;
 
 
    load_image(context_image * pcontextimage);

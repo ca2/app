@@ -40,6 +40,13 @@ void load_image::run()
 
       //return pimage->m_estatus;
 
+      if (m_functionLoaded)
+      {
+
+         m_functionLoaded(pimage);
+
+      }
+
       return;
 
    }
@@ -52,6 +59,13 @@ void load_image::run()
    }
    catch (...)
    {
+
+   }
+
+   if (m_functionLoaded)
+   {
+
+      m_functionLoaded(pimage);
 
    }
 

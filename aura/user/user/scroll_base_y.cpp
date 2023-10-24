@@ -25,7 +25,7 @@ namespace user
       m_pscrolllayoutY->m_scrollstatea[::user::e_layout_sketch].m_bHasScroll = false;
       m_pscrolllayoutY->m_scrollstatea[::user::e_layout_sketch].m_dPage = 0.;
       m_pscrolllayoutY->m_scrollstatea[::user::e_layout_sketch].m_dLine = 60.;
-      m_pscrolllayoutY->m_scrollstatea[::user::e_layout_sketch].m_dWheel = 3.;
+      m_pscrolllayoutY->m_scrollstatea[::user::e_layout_sketch].m_dWheel = 120.;
       m_pscrolllayoutY->m_scrollstatea[::user::e_layout_sketch].m_bScrollEnable = true;
 
    }
@@ -204,73 +204,79 @@ namespace user
    void scroll_base_y::on_message_scroll_y(::message::message * pmessage)
    {
 
-      //::pointer<::message::scroll>pscroll(pmessage);
+      ::pointer<::message::scroll>pscroll(pmessage);
 
-      //queue_graphics_call([this, pscroll](::draw2d::graphics_pointer & pgraphics)
-      //   {
+      ::user::enum_layout elayout = ::user::e_layout_sketch;
 
-      //      if (pscroll->m_ecommand == e_scroll_command_line_up)
-      //      {
+      ::f64 Δ = 0.0;
 
-      //         auto Δ = m_scrollstateY->m_iLine;
+      auto y = get_context_offset_y(elayout);
 
-      //         set_context_offset_y(pgraphics, (::i32)(get_context_offset().y() - Δ));
+      if (pscroll->m_ecommand == e_scroll_command_line_up)
+      {
 
-      //      }
-      //      else if (pscroll->m_ecommand == e_scroll_command_wheel_up)
-      //      {
+         Δ = -m_pscrolllayoutY->m_scrollstatea[elayout].m_dLine;
 
-      //         auto Δ = m_pscrollstateVertical->m_iWheel;
+      }
+      else if (pscroll->m_ecommand == e_scroll_command_wheel_up)
+      {
 
-      //         set_context_offset_y(pgraphics, (::i32)(get_context_offset().y() - Δ));
+         Δ = -m_pscrolllayoutY->m_scrollstatea[elayout].m_dWheel;
 
-      //      }
-      //      else if (pscroll->m_ecommand == e_scroll_command_page_up)
-      //      {
+      }
+      else if (pscroll->m_ecommand == e_scroll_command_page_up)
+      {
 
-      //         set_context_offset_y(pgraphics, (::i32)(get_context_offset().y() - m_pscrollstateVertical->m_iPage));
+         Δ = -m_pscrolllayoutY->m_scrollstatea[elayout].m_dPage;
 
-      //      }
-      //      else if (pscroll->m_ecommand == e_scroll_command_page_down)
-      //      {
+      }
+      else if (pscroll->m_ecommand == e_scroll_command_page_down)
+      {
 
-      //         set_context_offset_y(pgraphics, (::i32)(get_context_offset().y() + m_pscrollstateVertical->m_iPage));
+         Δ = m_pscrolllayoutY->m_scrollstatea[elayout].m_dPage;
 
-      //      }
-      //      else if (pscroll->m_ecommand == e_scroll_command_line_down)
-      //      {
+      }
+      else if (pscroll->m_ecommand == e_scroll_command_wheel_down)
+      {
 
-      //         auto iLine = m_pscrollstateVertical->m_iLine;
+         Δ = m_pscrolllayoutY->m_scrollstatea[elayout].m_dWheel;
 
-      //         set_context_offset_y(pgraphics, (::i32)(get_context_offset().y() + iLine));
+      }
+      else if (pscroll->m_ecommand == e_scroll_command_line_down)
+      {
 
-      //      }
-      //      else if (pscroll->m_ecommand == e_scroll_command_wheel_down)
-      //      {
+         Δ = m_pscrolllayoutY->m_scrollstatea[elayout].m_dLine;
 
-      //         auto Δ = m_pscrollstateVertical->m_iWheel;
+      }
+      else if (pscroll->m_ecommand == e_scroll_command_thumb_track)
+      {
 
-      //         set_context_offset_y(pgraphics, (::i32)(get_context_offset().y() + Δ));
+         Δ = pscroll->m_dPosition - y;
 
-      //      }
-      //      else if (pscroll->m_ecommand == e_scroll_command_thumb_track)
-      //      {
+      }
+      else if (pscroll->m_ecommand == e_scroll_command_thumb_position)
+      {
 
-      //         set_context_offset_y(pgraphics, pscroll->m_nPos);
+         Δ = pscroll->m_dPosition - y;
 
-      //      }
-      //      else if (pscroll->m_ecommand == e_scroll_command_thumb_position)
-      //      {
+      }
 
-      //         set_context_offset_y(pgraphics, pscroll->m_nPos);
+      if (fabs(Δ) > 0.001)
+      {
 
-      //      }
+         y += Δ;
 
-      //   });
+         constrain_context_offset_y(y, elayout);
 
-      set_need_redraw();
+         set_context_offset_y(y, elayout);
 
-      post_redraw();
+         on_change_context_offset(elayout);
+
+         set_need_redraw();
+
+         post_redraw();
+
+      }
 
    }
 
@@ -279,7 +285,7 @@ namespace user
    i32 scroll_base_y::get_wheel_scroll_delta()
    {
 
-      return (::i32) m_pscrolllayoutY->m_scrollstatea[::user::e_layout_sketch].m_dWheel;
+      return (::i32)m_pscrolllayoutY->m_scrollstatea[::user::e_layout_sketch].m_dWheel;
 
    }
 
@@ -319,7 +325,7 @@ namespace user
          for (; Δ > 0; Δ -= 120)
          {
 
-            m_pscrollbarY->post_scroll_message(e_scroll_command_line_up);
+            m_pscrollbarY->post_scroll_message(e_scroll_command_wheel_up);
 
          }
 
@@ -330,7 +336,7 @@ namespace user
          for (; Δ < 0; Δ += 120)
          {
 
-            m_pscrollbarY->post_scroll_message(e_scroll_command_line_down);
+            m_pscrollbarY->post_scroll_message(e_scroll_command_wheel_down);
 
          }
 
@@ -557,7 +563,7 @@ namespace user
 
       auto scrollstatey = get_scroll_state_y(elayout);
 
-      scrollstatey.m_dThickness = (::f64) get_int(pstyle, e_int_scroll_bar_thickness);
+      scrollstatey.m_dThickness = (::f64)get_int(pstyle, e_int_scroll_bar_thickness);
 
       auto rectangleX = this->rectangle();
 
@@ -618,7 +624,7 @@ namespace user
 
       //return m_pscrollstateVertical->m_bScroll && m_pscrollstateVertical->m_bScrollEnable ? m_pscrollstateVertical->m_iWidth : 0;
 
-      return (::i32) m_pscrolllayoutY->m_scrollstatea[elayout].m_dThickness;
+      return (::i32)m_pscrolllayoutY->m_scrollstatea[elayout].m_dThickness;
 
    }
 
@@ -722,12 +728,12 @@ namespace user
 
       send_scroll_y_message(e_scroll_command_thumb_position, iPosition);
 
-  /*    queue_graphics_call([this, nPos](::draw2d::graphics_pointer & pgraphics)
-         {
+      /*    queue_graphics_call([this, nPos](::draw2d::graphics_pointer & pgraphics)
+             {
 
-            set_context_offset_y(pgraphics, nPos);
+                set_context_offset_y(pgraphics, nPos);
 
-         });*/
+             });*/
 
    }
 

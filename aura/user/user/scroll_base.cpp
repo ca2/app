@@ -321,12 +321,6 @@ namespace user
 
       on_change_scroll_state(elayout);
 
-      //on_change_scroll_state(elayout);
-
-//      m_sizeaTotal[elayout].cy() = size.cy();
-
-      //return ::success;
-
    }
 
 

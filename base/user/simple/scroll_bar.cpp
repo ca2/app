@@ -575,15 +575,9 @@ void simple_scroll_bar::set_scroll_tracking_position(const ::point_f64 & point, 
 
    ::f64 dPos = 0.;
 
-   //::size_i32 sizeTrack;
-
    auto sizeTrack = get_track_size(elayout);
 
    auto sizeScrollWindow = this->size();
-
-   //auto pstyle = get_style();
-
-   //int iScrollBarThickness = get_int(pstyle, ::user::e_int_scroll_bar_thickness);
 
    auto dScrollBarThickness = scroll_bar_thickness();
 
@@ -635,24 +629,22 @@ void simple_scroll_bar::set_scroll_tracking_position(const ::point_f64 & point, 
 
    }
 
-   if (m_bTracking)
-   {
+   //if (m_bTracking)
+   //{
 
-      m_pscrolllayout->m_scrollstatea[elayout].m_dTrackingPosition = dPos;
+   //   m_pscrolllayout->m_scrollstatea[elayout].m_dTrackingPosition = dPos;
 
-   }
-   else
-   {
+   //}
+   //else
+   //{
 
-      m_pscrolllayout->m_scrollstatea[elayout].m_dPosition = dPos;
+   //   m_pscrolllayout->m_scrollstatea[elayout].m_dPosition = dPos;
 
-   }
+   //}
 
-   //update_rectangles(elayout);
+   post_scroll_message(e_scroll_command_thumb_track, dPos);
 
-   m_puserinteractionScrollBase->on_change_context_offset(elayout);
-
-   //return true;
+   //m_puserinteractionScrollBase->on_change_context_offset(elayout);
 
 }
 
@@ -2278,30 +2270,9 @@ bool simple_scroll_bar::drag_shift(::item * pitem, ::user::mouse * pmouse)
    if (pitem->m_item.m_eelement == e_element_scrollbar_trackbar)
    {
 
-      //auto pdrag = drag(pitem);
-
-      //auto pmouse = pdrag->m_pmouse;
-
-      //auto point = pmouse->m_point - m_sizeTrackOffset - get_parent_accumulated_scroll();
-
       auto point = drag_point(pitem, pmouse);
 
-      //screen_to_client()(point);
-
-      //queue_graphics_call([this, point](::draw2d::graphics_pointer & pgraphics)
-        // {
-
       set_scroll_tracking_position(point);
-
-      post_scroll_message(e_scroll_command_thumb_track);
-
-         //});
-
-      set_need_redraw();
-
-      post_redraw();
-
-      //pmouse->m_lresult = 1;
 
       auto pcursor = get_mouse_cursor(e_cursor_arrow);
 

@@ -39,7 +39,7 @@ namespace user
       void install_message_routing(::channel * pchannel) override;
 
 
-      virtual ::rectangle_i32 client2_rectangle(enum_layout elayout = e_layout_design);
+      virtual ::rectangle_i32 client2_rectangle(enum_layout elayout = e_layout_design) override;
 
 
       bool GetFocusRect(::rectangle_i32 & rectangle) override;

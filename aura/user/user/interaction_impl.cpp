@@ -2341,14 +2341,24 @@ namespace user
 
       }
 
-      if (pmessage->m_bRet)
+      if (!pmessage->m_bRet)
       {
-
-         return;
-
+         
+         default_window_procedure(pmessage);
+         
       }
+      
+      if(pmessage->m_atom == e_message_create)
+      {
+         
+         if (m_puserinteraction->m_procedureOnAfterCreate)
+         {
 
-      default_window_procedure(pmessage);
+            m_puserinteraction->post_message(e_message_pos_create);
+
+         }
+         
+      }
 
    }
 

@@ -338,14 +338,14 @@ public:
    template < primitive_number NUMBERX, primitive_number NUMBERY >
    rectangle_type & offset(NUMBERX x, NUMBERY y)  { return offset_x(x).offset_y(y); }
 
-   template < primitive_number NUMBER >
-   rectangle_type & offset_x(NUMBER x)  { this->left() = (UNIT_TYPE) (this->left() + x); this->right() = (UNIT_TYPE) (this->right() + x); return *this; }
-   template < primitive_number NUMBER >
-   rectangle_type & offset_y(NUMBER y)  { this->top() = (UNIT_TYPE) (this->top() + y); this->bottom() = (UNIT_TYPE) (this->bottom() + y); return *this; }
-   template < primitive_number NUMBER >
-   rectangle_type & inflate(NUMBER u)  { return inflate(u, u); }
-   template < primitive_number NUMBER >
-   rectangle_type & deflate(NUMBER u)  { return deflate(u, u); }
+   template < primitive_number NUMBERX >
+   rectangle_type & offset_x(NUMBERX x)  { this->left() = (UNIT_TYPE) (this->left() + x); this->right() = (UNIT_TYPE) (this->right() + x); return *this; }
+   template < primitive_number NUMBERY >
+   rectangle_type & offset_y(NUMBERY y)  { this->top() = (UNIT_TYPE) (this->top() + y); this->bottom() = (UNIT_TYPE) (this->bottom() + y); return *this; }
+   template < primitive_number NUMBERN >
+   rectangle_type & inflate(NUMBERN n)  { return inflate(n, n); }
+   template < primitive_number NUMBERN >
+   rectangle_type & deflate(NUMBERN n)  { return deflate(n, n); }
 
    template < primitive_point POINT >
    rectangle_type & offset(const POINT & point)  { return offset_x(point.x()).offset_y(point.y()); }

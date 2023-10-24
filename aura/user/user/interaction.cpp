@@ -7309,13 +7309,6 @@ namespace user
 
       }
 
-      if (m_procedureOnAfterCreate)
-      {
-
-         post_message(e_message_pos_create);
-
-      }
-
    }
 
 

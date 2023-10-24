@@ -4871,8 +4871,13 @@ namespace user
       m_pwindowing = m_puserinteraction->windowing();
 
       ::pointer < ::user::thread > puserthread = m_puserinteraction->m_pthreadUserInteraction;
-
-      puserthread->m_oswindow = window()->m_oswindow;
+      
+      if(puserthread)
+      {
+         
+         puserthread->m_oswindow = window()->m_oswindow;
+         
+      }
 
       if (m_puserinteraction->m_ewindowflag & e_window_flag_graphical)
       {

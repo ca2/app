@@ -185,9 +185,9 @@ namespace api_ca2
    ::e_status api::on_html_response(::string & strHtml, const ::string & strUrl, const ::property_set & setPost)
    {
 
-      auto psystem = acmesystem();
+      //auto psystem = acmesystem();
 
-      auto pdatetime = psystem->datetime();
+      //auto pdatetime = psystem->datetime();
 
       strHtml += "<html>";
       strHtml += "<head>";

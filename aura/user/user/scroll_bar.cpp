@@ -61,25 +61,27 @@ namespace user
    }
 
 
-   void scroll_bar::post_scroll_message(enum_scroll_command ecommand)
+   void scroll_bar::post_scroll_message(enum_scroll_command ecommand, ::f64 dPosition)
    {
 
       auto pscroll = __new(::message::scroll);
 
       pscroll->m_ecommand = ecommand;
 
-      if(m_bTracking)
-      {
+      pscroll->m_dPosition = dPosition;
 
-         pscroll->m_dPosition = m_pscrolllayout->m_scrollstatea[::user::e_layout_sketch].m_dTrackingPosition;
+      //if(m_bTracking)
+      //{
 
-      }
-      else
-      {
+      //   pscroll->m_dPosition = m_pscrolllayout->m_scrollstatea[::user::e_layout_sketch].m_dTrackingPosition;
 
-         pscroll->m_dPosition = m_pscrolllayout->m_scrollstatea[::user::e_layout_sketch].m_dPosition;
+      //}
+      //else
+      //{
 
-      }
+      //   pscroll->m_dPosition = m_pscrolllayout->m_scrollstatea[::user::e_layout_sketch].m_dPosition;
+
+      //}
 
       if(m_eorientation == e_orientation_horizontal)
       {

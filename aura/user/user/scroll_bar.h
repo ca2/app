@@ -38,7 +38,7 @@ namespace user
 
       ::point_f64 get_parent_accumulated_scroll(enum_layout elayout = e_layout_design) override;
 
-      virtual void post_scroll_message(enum_scroll_command ecommand);
+      virtual void post_scroll_message(enum_scroll_command ecommand, ::f64 dPosition = F64_MOST_NEGATIVE);
 
       virtual ::point_f64 get_parent_context_offset() override;
       virtual ::point_f64 get_ascendant_context_offset() override;

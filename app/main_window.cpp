@@ -215,11 +215,11 @@ namespace app_app
 
             int iSize = (int)(::sin(angle) * 25.0 + 64.0);
 
-            pitemClose->m_rectangle = this->rectangle();
+            pitemClose->m_rectangle2 = this->rectangle();
 
-            pitemClose->m_rectangle.left() = pitemClose->m_rectangle.right() - iSize;
+            pitemClose->m_rectangle2.left() = pitemClose->m_rectangle2.right() - iSize;
 
-            pitemClose->m_rectangle.bottom() = pitemClose->m_rectangle.top() + iSize;
+            pitemClose->m_rectangle2.bottom() = pitemClose->m_rectangle2.top() + iSize;
 
 //            auto pmouse = __create_new < ::message::mouse >();
 //
@@ -232,24 +232,24 @@ namespace app_app
             if (::is_set(pitemZoom))
             {
 
-               pitemZoom->m_rectangle = this->rectangle();
+               pitemZoom->m_rectangle2 = this->rectangle();
 
-               pitemZoom->m_rectangle.right() = pitemClose->m_rectangle.left();
+               pitemZoom->m_rectangle2.right() = pitemClose->m_rectangle2.left();
 
-               pitemZoom->m_rectangle.bottom() = pitemClose->m_rectangle.bottom();
+               pitemZoom->m_rectangle2.bottom() = pitemClose->m_rectangle2.bottom();
 
-               pitemZoom->m_rectangle.left() = pitemZoom->m_rectangle.right() - iSize;
+               pitemZoom->m_rectangle2.left() = pitemZoom->m_rectangle2.right() - iSize;
 
                if (::is_set(pitemIcon))
                {
 
-                  pitemIcon->m_rectangle = this->rectangle();
+                  pitemIcon->m_rectangle2 = this->rectangle();
 
-                  pitemIcon->m_rectangle.right() = pitemZoom->m_rectangle.left();
+                  pitemIcon->m_rectangle2.right() = pitemZoom->m_rectangle2.left();
 
-                  pitemIcon->m_rectangle.bottom() = pitemClose->m_rectangle.bottom();
+                  pitemIcon->m_rectangle2.bottom() = pitemClose->m_rectangle2.bottom();
 
-                  pitemIcon->m_rectangle.left() = pitemIcon->m_rectangle.right() - iSize;
+                  pitemIcon->m_rectangle2.left() = pitemIcon->m_rectangle2.right() - iSize;
 
                }
 

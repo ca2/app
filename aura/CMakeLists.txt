@@ -448,6 +448,7 @@ list(APPEND library_source
    user/user/scroll.h
    user/user/scroll_bar.cpp
    user/user/scroll_bar.h
+   user/user/scroll_base.cpp
    user/user/scroll_state.h
    user/user/shell.cpp
    user/user/shell.h

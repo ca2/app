@@ -1537,6 +1537,7 @@ list(APPEND library_source
    platform/object_type_counter.h
    platform/printf.h
    platform/profiler.h
+   platform/release_time.h
    platform/sequence.cpp
    platform/sequencer.h
    platform/serial.h
@@ -1561,7 +1562,6 @@ list(APPEND library_source
    platform/uint32_muldiv.h
    platform/uint64_muldiv.h
    platform/user_parent.h
-   platform/version.h
    primitive/api/api.h
    primitive/api/api_rotate.h
    primitive/collection/__payload_array.h

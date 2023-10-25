@@ -4000,7 +4000,7 @@ pacmedirectory->create("/ca2core");
 
          strParam = " -c '" + strCmd + "'";
 
-         information(strParam);
+         informationf(strParam);
 
          auto psystem = acmesystem();
 

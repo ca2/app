@@ -122,8 +122,8 @@ list(APPEND library_source
    filesystem/filemanager/save_as_impact.h
    filesystem/filemanager/tab_impact.cpp
    filesystem/filemanager/tab_impact.h
-   filesystem/filemanager/tree.cpp
-   filesystem/filemanager/tree.h
+   filesystem/filemanager/tree_data.cpp
+   filesystem/filemanager/tree_data.h
    #filesystem/filemanager/update_hint.cpp
    #filesystem/filemanager/update_hint.h
    filesystem/filemanager/impact.cpp
@@ -155,8 +155,8 @@ list(APPEND library_source
    filesystem/userfs/list_item_array.h
    filesystem/userfs/main_impact.cpp
    filesystem/userfs/main_impact.h
-   filesystem/userfs/tree.cpp
-   filesystem/userfs/tree.h
+   filesystem/userfs/tree_data.cpp
+   filesystem/userfs/tree_data.h
    filesystem/userfs/userfs.cpp
    filesystem/userfs/userfs.h
    filesystem/_impl.h
@@ -291,10 +291,11 @@ list(APPEND library_source
    user/rich_text/format_tool.h
    user/rich_text/global.cpp
    user/rich_text/global.h
-   user/rich_text/layout.h
+   #user/rich_text/layout.h
    user/rich_text/line.cpp
    user/rich_text/line.h
    user/rich_text/rich_text.h
+   user/rich_text/selection.cpp
    user/rich_text/span.cpp
    user/rich_text/span.h
    user/rich_text/text_format.cpp

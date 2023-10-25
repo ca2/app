@@ -149,9 +149,21 @@ void nano_window_implementation::_display_console()
 
       char ch;
 
-      scanf("%c", &ch);
+      auto iReturnCount = scanf("%c", &ch);
 
-      ch = character_tolower(ch);
+      if(iReturnCount >= 1)
+      {
+
+         ch = character_tolower(ch);
+
+      }
+      else
+      {
+
+         ch = '\0';
+
+      }
+
 
       iButton = -1;
 

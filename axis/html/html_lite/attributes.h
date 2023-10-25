@@ -283,11 +283,17 @@ public:
          const ::count nElemCount = rSource.getCount();
          if (nElemCount)
          {
+
             if ((m_parrAttrib = memory_new CElemAttrArray) == nullptr)
+            {
+
                throw ::exception(error_no_memory);
 
+            }
+
             LiteHTMLElemAttr   *pItem = nullptr;
-            m_parrAttrib->allocate(nElemCount);
+
+            m_parrAttrib->set_size(nElemCount);
 
             /** DEEP COPY BEGIN */
             for (i32 iElem = 0; iElem < nElemCount; iElem++)

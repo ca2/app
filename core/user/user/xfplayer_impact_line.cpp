@@ -165,7 +165,7 @@ void xfplayer_impact_line::add_char(::wide_character wch, strsize & index)
    if (m_iaPosition.get_size() < index + 2)
    {
 
-      m_iaPosition.allocate(m_iaPosition.get_size() + 10);
+      m_iaPosition.set_size(m_iaPosition.get_size() + 10);
 
    }
 
@@ -181,7 +181,7 @@ void xfplayer_impact_line::add_char(::wide_character wch, strsize & index, ::wri
    index++;
    if (m_iaPosition.get_size() < index + 2)
    {
-      m_iaPosition.allocate(m_iaPosition.get_size() + 10);
+      m_iaPosition.set_size(m_iaPosition.get_size() + 10);
    }
    m_str += wch;
    ASSERT(m_str.length() - 1 == index);

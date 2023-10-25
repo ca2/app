@@ -1185,7 +1185,7 @@ namespace user
       {
          index iStart = m_pmeshlayout->m_iaDisplayToStrict.get_count();
          index iEnd = m_nItemCount - 1;
-         m_pmeshlayout->m_iaDisplayToStrict.allocate((::count) m_nItemCount);
+         m_pmeshlayout->m_iaDisplayToStrict.set_size((::count) m_nItemCount);
          for(index iStrict = iStart; iStrict <= iEnd; iStrict++)
          {
             m_pmeshlayout->m_iaDisplayToStrict.set_at((::index) iStrict, (::index) iStrict);

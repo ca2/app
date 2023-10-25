@@ -590,12 +590,14 @@ return this->element_at(end);
 
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
-inline TYPE & array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::add_new_at(::index iIndex, ::count nCount)
+inline TYPE & array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::add_new_at(::index i, ::count c)
 {
+   
+   this->raw_allocate_at(i, c);
+   
+   ALLOCATOR::construct_count(this->m_begin + i, c);
 
-   this->make_room_at(iIndex, nCount);
-
-   return this->element_at(iIndex);
+   return this->element_at(i);
 
 }
 

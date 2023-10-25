@@ -53,19 +53,19 @@ public:
    ::i64    m_iWidth;
 
 
-   ::count set_size(::count w, ::count h, ::count nGrowBy = -1)
+   ::count set_size(::count w, ::count h)
    {
 
       m_iWidth = w;
 
-      return BASE_ARRAY::set_size(w * h, nGrowBy);
+      return BASE_ARRAY::set_size(w * h);
 
    }
 
-   ::count set_size(::size_i32 size, ::count nGrowBy = -1)
+   ::count set_size(::size_i32 size)
    {
 
-      return this->set_size(size.cx(), size.cy(), nGrowBy);
+      return this->set_size(size.cx(), size.cy());
 
    }
 

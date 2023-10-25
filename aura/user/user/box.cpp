@@ -225,7 +225,7 @@ namespace user
 
          string strDataKey = get_data_key(window_data_key_modifier());
 
-         SaveWindowRectangle(strDataKey);
+         save_window_display_and_layout(strDataKey);
 
       }
 
@@ -260,7 +260,7 @@ namespace user
 
       auto strDataKey = get_data_key(window_data_key_modifier());
 
-      bLoad = LoadWindowRectangle(strDataKey);
+      bLoad = load_window_display_and_layout(strDataKey);
 
       if (!bLoad)
       {
@@ -343,7 +343,7 @@ namespace user
    }
 
 
-   bool box::LoadWindowRectangle(const ::scoped_string & strDataKey)
+   bool box::load_window_display_and_layout(const ::scoped_string & strDataKey)
    {
 
       if (!m_bAutomaticallyStoreWindowRectangle)
@@ -409,7 +409,7 @@ namespace user
 
          ::e_display edisplayForRestore = edisplay;
 
-         information() << "user::box::LoadWindowRectangle " << edisplay;
+         information() << "user::box::load_window_display_and_layout " << edisplay;
 
          switch(edisplayForRestore)
          {
@@ -597,7 +597,7 @@ namespace user
    }
 
 
-   void box::SaveWindowRectangle(const ::scoped_string & strDataKey)
+   void box::save_window_display_and_layout(const ::scoped_string & strDataKey)
    {
 
       if (!m_bAutomaticallyStoreWindowRectangle)
@@ -607,7 +607,7 @@ namespace user
 
       }
 
-      if (const_layout().sketch().display() == ::e_display_none)
+      if (m_windowdisplayandlayout.m_edisplay == ::e_display_none)
       {
 
          return;
@@ -622,81 +622,83 @@ namespace user
          papp->datastream()->get(strDataKey, m_windowdisplayandlayoutStore);
 
       }
+      
+      m_windowdisplayandlayoutStore = m_windowdisplayandlayout;
 
-      auto windowrect = m_windowdisplayandlayoutStore;
-
-      bool bGot = m_windowdisplayandlayoutStore.m_edisplay != e_display_undefined;
-
-      windowrect.m_edisplay = const_layout().sketch().display();
-
-      windowrect.m_eappearance = const_layout().sketch().appearance();
-
-      window_rectangle(windowrect.m_rectangleWindow, e_layout_sketch);
-
-      auto edisplay = windowrect.m_edisplay;
-
-      if (bGot &&
-            (edisplay == ::e_display_zoomed
-             || edisplay == ::e_display_full_screen
-             || edisplay == ::e_display_iconic))
-      {
-
-      }
-      else if (bGot && is_docking_appearance(windowrect.m_edisplay))
-      {
-
-         windowrect.m_rectangleSnapped = windowrect.m_rectangleWindow;
-
-      }
-      else if (windowrect.m_rectangleWindow.size() == m_rectangleRestoreCompact.size())
-      {
-
-         windowrect.m_rectangleCompact = windowrect.m_rectangleWindow;
-
-         windowrect.m_edisplay = e_display_compact;
-
-      }
-      else if (windowrect.m_rectangleWindow.size() == m_rectangleRestoreBroad.size())
-      {
-
-         windowrect.m_rectangleBroad = windowrect.m_rectangleWindow;
-
-         windowrect.m_edisplay = e_display_broad;
-
-      }
-      else
-      {
-
-         windowrect.m_rectangleNormal = windowrect.m_rectangleWindow;
-
-         windowrect.m_edisplay = e_display_normal;
-
-      }
-
-      if (windowrect.m_rectangleNormal.width() < get_window_minimum_size().cx()
-         || windowrect.m_rectangleNormal.height() < get_window_minimum_size().cy())
-      {
-
-         if (windowrect.m_rectangleWindow.width() > get_window_minimum_size().cx()
-            && windowrect.m_rectangleWindow.height() > get_window_minimum_size().cy())
-         {
-
-            windowrect.m_rectangleNormal = windowrect.m_rectangleWindow;
-
-         }
-
-      }
+//      auto windowrect = m_windowdisplayandlayoutStore;
+//
+//      bool bGot = m_windowdisplayandlayoutStore.m_edisplay != e_display_undefined;
+//
+//      windowrect.m_edisplay = const_layout().sketch().display();
+//
+//      windowrect.m_eappearance = const_layout().sketch().appearance();
+//
+//      window_rectangle(windowrect.m_rectangleWindow, e_layout_sketch);
+//
+//      auto edisplay = windowrect.m_edisplay;
+//
+//      if (bGot &&
+//            (edisplay == ::e_display_zoomed
+//             || edisplay == ::e_display_full_screen
+//             || edisplay == ::e_display_iconic))
+//      {
+//
+//      }
+//      else if (bGot && is_docking_appearance(windowrect.m_edisplay))
+//      {
+//
+//         windowrect.m_rectangleSnapped = windowrect.m_rectangleWindow;
+//
+//      }
+//      else if (windowrect.m_rectangleWindow.size() == m_rectangleRestoreCompact.size())
+//      {
+//
+//         windowrect.m_rectangleCompact = windowrect.m_rectangleWindow;
+//
+//         windowrect.m_edisplay = e_display_compact;
+//
+//      }
+//      else if (windowrect.m_rectangleWindow.size() == m_rectangleRestoreBroad.size())
+//      {
+//
+//         windowrect.m_rectangleBroad = windowrect.m_rectangleWindow;
+//
+//         windowrect.m_edisplay = e_display_broad;
+//
+//      }
+//      else
+//      {
+//
+//         windowrect.m_rectangleNormal = windowrect.m_rectangleWindow;
+//
+//         windowrect.m_edisplay = e_display_normal;
+//
+//      }
+//
+//      if (windowrect.m_rectangleNormal.width() < get_window_minimum_size().cx()
+//         || windowrect.m_rectangleNormal.height() < get_window_minimum_size().cy())
+//      {
+//
+//         if (windowrect.m_rectangleWindow.width() > get_window_minimum_size().cx()
+//            && windowrect.m_rectangleWindow.height() > get_window_minimum_size().cy())
+//         {
+//
+//            windowrect.m_rectangleNormal = windowrect.m_rectangleWindow;
+//
+//         }
+//
+//      }
 
       ::pointer<::aura::application>papp = get_app();
 
-      papp->datastream()->set(strDataKey, windowrect);
+      papp->datastream()->set(strDataKey, m_windowdisplayandlayoutStore);
       //{
 
       //   return false;
 
       //}
 
-      m_windowdisplayandlayoutStore = windowrect;
+      //m_windowdisplayandlayoutStore = windowrect;
 
       //return true;
 

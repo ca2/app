@@ -80,8 +80,8 @@ namespace user
       virtual string window_data_key_modifier();
 
       virtual bool FancyLoadWindowRectangle(const ::scoped_string & strDataKey, bool bForceRestore = false, bool bInitialFramePosition = false);
-      virtual bool LoadWindowRectangle(const ::scoped_string & strDataKey);
-      virtual void SaveWindowRectangle(const ::scoped_string & strDataKey);
+      virtual bool load_window_display_and_layout(const ::scoped_string & strDataKey);
+      virtual void save_window_display_and_layout(const ::scoped_string & strDataKey);
 
 
       ::rectangle_i32 get_window_normal_stored_rectangle() override;

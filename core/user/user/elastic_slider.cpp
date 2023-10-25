@@ -15,7 +15,7 @@ namespace user
    elastic_slider::elastic_slider()
    {
 
-      m_daScalar.allocate(100);
+      m_daScalar.set_size(100);
       m_daScalar.set(0.0);
 
       m_bSlide = false;

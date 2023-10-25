@@ -66,12 +66,18 @@ fixed_alloc_sync::fixed_alloc_sync(::u32 nAllocSize, ::u32 nBlockSize, i32 iShar
 {
 
    m_i = 0;
+   
    m_iShareCount = iShareCount;
-   m_allocptra.allocate(iShareCount);
+   
+   m_allocptra.set_size(iShareCount);
+   
    m_criticalsectiona.set_size(iShareCount);
+   
    for(i32 i = 0; i < m_allocptra.get_count(); i++)
    {
+      
       m_allocptra[i] = memory_new fixed_alloc_no_sync(nAllocSize + sizeof(i32), nBlockSize);
+      
    }
 
 }
@@ -151,13 +157,19 @@ fixed_alloc::fixed_alloc(::u32 nAllocSize, ::u32 nBlockSize)
 //#endif
 
    if(iShareCount <= 0)
+   {
+      
       iShareCount = 4;
+      
+   }
 
-   m_allocptra.allocate(iShareCount);
+   m_allocptra.set_size(iShareCount);
 
    for(i32 i = 0; i < m_allocptra.get_count(); i++)
    {
+      
       m_allocptra[i] = memory_new fixed_alloc_sync(nAllocSize + sizeof(i32), nBlockSize, 12);
+      
    }
 
    m_iShareCount = iShareCount;

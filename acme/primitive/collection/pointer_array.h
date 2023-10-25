@@ -165,9 +165,9 @@ public:
 
       ::index nIndex = this->size();
 
-      this->allocate(nIndex + 1);
+      this->allocate(nIndex + 1, false, false, &p);
 
-      this->last().reset(p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+      //this->last().reset(p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
 
       return nIndex;
 
@@ -179,13 +179,14 @@ public:
 
       ::index nIndex = this->size();
 
-      this->allocate(nIndex + 1);
+      this->allocate(nIndex + 1, false, true, nullptr);
 
-      this->last() = ::transfer(p);
+      ::new (this->m_begin + nIndex) ::pointer < T >(::transfer(p));
 
       return nIndex;
 
    }
+   
 
    template < container_type CONTAINER >
    ::index append(const CONTAINER & a)

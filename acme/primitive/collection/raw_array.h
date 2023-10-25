@@ -165,15 +165,18 @@ public:
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
 inline ::count raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::erase_all()
 {
-   return this->allocate(0, -1);
+   
+   return this->allocate(0, false, false, nullptr);
+   
 }
 
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
-void raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::
-clear()
+void raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::clear()
 {
+   
    erase_all();
+   
 }
 
 
@@ -191,6 +194,7 @@ inline TYPE& raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::get_at(:
 {
 
    return get_data()[nIndex];
+   
 }
 
 
@@ -256,7 +260,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_e
 inline TYPE * raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::add_new(::count count)
 {
 
-   this->allocate(this->size() + count);
+   this->allocate(this->size() + count, false, true, nullptr);
 
    return this->m_begin + (this->get_size() - count);
 
@@ -267,7 +271,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_e
 inline TYPE & raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::add_new()
 {
 
-   this->allocate(this->size() + 1);
+   this->allocate(this->size() + 1, false, true, nullptr);
 
    return this->last();
 
@@ -423,7 +427,7 @@ raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::~raw_array()
 //      delete[] (::u8*)m_begin;
 //      m_begin     = nullptr;
 //      m_nSize     = 0;
-//      m_nMaxSize  = 0;
+//      m_countAllocation  = 0;
 //   }
 //
 //}
@@ -467,7 +471,7 @@ raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::~raw_array()
 //      throw ::exception(error_bad_argument);
 //
 //   if (nGrowBy >= 0)
-//      m_nGrowBy = nGrowBy;  // set memory_new size_i32
+//      m_countAddUp = nGrowBy;  // set memory_new size_i32
 //
 //   if (nNewSize == 0)
 //   {
@@ -479,18 +483,18 @@ raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::~raw_array()
 //         delete[] (::u8*)m_begin;
 //         m_begin = nullptr;
 //      }
-//      m_nSize = m_nMaxSize = 0;
+//      m_nSize = m_countAllocation = 0;
 //   }
 //   else if (m_begin == nullptr)
 //   {
 //      // create buffer big enough to hold number of requested elements or
-//      // m_nGrowBy elements, whichever is larger.
+//      // m_countAddUp elements, whichever is larger.
 //#ifdef SIZE_T_MAX
 //      if(nNewSize > SIZE_T_MAX/sizeof(TYPE))
 //         throw ::exception(error_no_memory);
 //      ASSERT(nNewSize <= SIZE_T_MAX/sizeof(TYPE));    // no overflow
 //#endif
-//      ::count nAllocSize = maximum(nNewSize, m_nGrowBy);
+//      ::count nAllocSize = maximum(nNewSize, m_countAddUp);
 ////
 //      m_begin = (TYPE*) memory_new ::u8[(size_t)nAllocSize * sizeof(TYPE)];
 //      //memory_set((void *)m_begin, 0, (size_t)nAllocSize * sizeof(TYPE));
@@ -498,9 +502,9 @@ raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::~raw_array()
 //  //       ::memory_new( (void *)( m_begin + i ) ) TYPE;
 //////#define memory_new ACME_NEW
 //      m_nSize = nNewSize;
-//      m_nMaxSize = nAllocSize;
+//      m_countAllocation = nAllocSize;
 //   }
-//   else if (nNewSize <= m_nMaxSize)
+//   else if (nNewSize <= m_countAllocation)
 //   {
 //      // it fits
 //      if (nNewSize > m_nSize)
@@ -523,7 +527,7 @@ raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::~raw_array()
 //   else
 //   {
 //      // otherwise, grow aaa_base_array
-//      nGrowBy = m_nGrowBy;
+//      nGrowBy = m_countAddUp;
 //      if (nGrowBy == 0)
 //      {
 //         // heuristically determine growth when nGrowBy == 0
@@ -532,14 +536,14 @@ raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::~raw_array()
 //         nGrowBy = (nGrowBy < 4) ? 4 : ((nGrowBy > 1024) ? 1024 : nGrowBy);
 //      }
 //      ::count nNewMax;
-//      if (nNewSize < m_nMaxSize + nGrowBy)
-//         nNewMax = m_nMaxSize + nGrowBy;  // granularity
+//      if (nNewSize < m_countAllocation + nGrowBy)
+//         nNewMax = m_countAllocation + nGrowBy;  // granularity
 //      else
 //         nNewMax = nNewSize;  // no slush
 //
-//      ASSERT(nNewMax >= m_nMaxSize);  // no wrap around
+//      ASSERT(nNewMax >= m_countAllocation);  // no wrap around
 //
-//      if(nNewMax  < m_nMaxSize)
+//      if(nNewMax  < m_countAllocation)
 //         throw ::exception(error_bad_argument);
 //
 //#ifdef SIZE_T_MAX
@@ -564,7 +568,7 @@ raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::~raw_array()
 //      delete[] (::u8*)m_begin;
 //      m_begin = pNewData;
 //      m_nSize = nNewSize;
-//      m_nMaxSize = nNewMax;
+//      m_countAllocation = nNewMax;
 //   }
 //   return countOld;
 //}
@@ -576,7 +580,7 @@ raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::~raw_array()
 //{
 //   ASSERT_VALID(this);
 //
-//   if (m_nSize != m_nMaxSize)
+//   if (m_nSize != m_countAllocation)
 //   {
 //      // shrink to desired size_i32
 //#ifdef SIZE_T_MAX
@@ -594,7 +598,7 @@ raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::~raw_array()
 //      // get rid of old stuff (note: no destructors called)
 //      delete[] (::u8*)m_begin;
 //      m_begin = pNewData;
-//      m_nMaxSize = m_nSize;
+//      m_countAllocation = m_nSize;
 //   }
 //}
 
@@ -695,16 +699,16 @@ TYPE & raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::insert_at(::in
 //   {
 //
 //      ASSERT(this->m_nSize == 0);
-//      ASSERT(this->m_nMaxSize >= 0);
+//      ASSERT(this->m_countAllocation >= 0);
 //
 //   }
 //   else
 //   {
 //
 //      ASSERT(this->m_nSize >= 0);
-//      ASSERT(this->m_nMaxSize >= 0);
-//      ASSERT(this->m_nSize <= this->m_nMaxSize);
-//      ASSERT(is_memory_segment_ok(this->m_begin, (::memsize_cast) this->m_nMaxSize * sizeof(TYPE)));
+//      ASSERT(this->m_countAllocation >= 0);
+//      ASSERT(this->m_nSize <= this->m_countAllocation);
+//      ASSERT(is_memory_segment_ok(this->m_begin, (::memsize_cast) this->m_countAllocation * sizeof(TYPE)));
 //
 //   }
 //
@@ -847,14 +851,14 @@ inline raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & raw_array < T
    {
       this->destroy();
 
-      this->m_nGrowBy = a.m_nGrowBy;
+      this->m_countAddUp = a.m_countAddUp;
       this->m_begin = a.m_begin;
       this->m_end = a.m_end;
-      this->m_nMaxSize = a.m_nMaxSize;
+      this->m_countAllocation = a.m_countAllocation;
 
       a.m_begin = nullptr;
       a.m_end = nullptr;
-      a.m_nMaxSize = 0;
+      a.m_countAllocation = 0;
 
    }
 
@@ -1084,15 +1088,15 @@ inline raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & raw_array < T
 ////   matter(a.get_app())
 //{
 //
-//   this->m_nGrowBy = a.m_nGrowBy;
+//   this->m_countAddUp = a.m_countAddUp;
 //   this->m_begin = a.m_begin;
 //   this->m_nSize = a.m_nSize;
-//   this->m_nMaxSize = a.m_nMaxSize;
+//   this->m_countAllocation = a.m_countAllocation;
 //
-//   //a.m_nGrowBy = 0;
+//   //a.m_countAddUp = 0;
 //   a.m_begin = nullptr;
 //   //a.m_nSize = 0;
-//   //a.m_nMaxSize = 0;
+//   //a.m_countAllocation = 0;
 //
 //}
 //
@@ -1144,7 +1148,7 @@ inline raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & raw_array < T
 ////      delete[] (::u8*)m_begin;
 ////      m_begin     = nullptr;
 ////      m_nSize     = 0;
-////      m_nMaxSize  = 0;
+////      m_countAllocation  = 0;
 ////   }
 ////
 ////}
@@ -1188,7 +1192,7 @@ inline raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & raw_array < T
 ////      throw ::exception(error_bad_argument);
 ////
 ////   if (nGrowBy >= 0)
-////      m_nGrowBy = nGrowBy;  // set memory_new size_i32
+////      m_countAddUp = nGrowBy;  // set memory_new size_i32
 ////
 ////   if (nNewSize == 0)
 ////   {
@@ -1200,18 +1204,18 @@ inline raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & raw_array < T
 ////         delete[] (::u8*)m_begin;
 ////         m_begin = nullptr;
 ////      }
-////      m_nSize = m_nMaxSize = 0;
+////      m_nSize = m_countAllocation = 0;
 ////   }
 ////   else if (m_begin == nullptr)
 ////   {
 ////      // create buffer big enough to hold number of requested elements or
-////      // m_nGrowBy elements, whichever is larger.
+////      // m_countAddUp elements, whichever is larger.
 ////#ifdef SIZE_T_MAX
 ////      if(nNewSize > SIZE_T_MAX/sizeof(TYPE))
 ////         throw ::exception(error_no_memory);
 ////      ASSERT(nNewSize <= SIZE_T_MAX/sizeof(TYPE));    // no overflow
 ////#endif
-////      ::count nAllocSize = maximum(nNewSize, m_nGrowBy);
+////      ::count nAllocSize = maximum(nNewSize, m_countAddUp);
 //////
 ////      m_begin = (TYPE*) memory_new ::u8[(size_t)nAllocSize * sizeof(TYPE)];
 ////      //memory_set((void *)m_begin, 0, (size_t)nAllocSize * sizeof(TYPE));
@@ -1219,9 +1223,9 @@ inline raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & raw_array < T
 ////  //       ::memory_new( (void *)( m_begin + i ) ) TYPE;
 ////////#define memory_new ACME_NEW
 ////      m_nSize = nNewSize;
-////      m_nMaxSize = nAllocSize;
+////      m_countAllocation = nAllocSize;
 ////   }
-////   else if (nNewSize <= m_nMaxSize)
+////   else if (nNewSize <= m_countAllocation)
 ////   {
 ////      // it fits
 ////      if (nNewSize > m_nSize)
@@ -1244,7 +1248,7 @@ inline raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & raw_array < T
 ////   else
 ////   {
 ////      // otherwise, grow aaa_base_array
-////      nGrowBy = m_nGrowBy;
+////      nGrowBy = m_countAddUp;
 ////      if (nGrowBy == 0)
 ////      {
 ////         // heuristically determine growth when nGrowBy == 0
@@ -1253,14 +1257,14 @@ inline raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & raw_array < T
 ////         nGrowBy = (nGrowBy < 4) ? 4 : ((nGrowBy > 1024) ? 1024 : nGrowBy);
 ////      }
 ////      ::count nNewMax;
-////      if (nNewSize < m_nMaxSize + nGrowBy)
-////         nNewMax = m_nMaxSize + nGrowBy;  // granularity
+////      if (nNewSize < m_countAllocation + nGrowBy)
+////         nNewMax = m_countAllocation + nGrowBy;  // granularity
 ////      else
 ////         nNewMax = nNewSize;  // no slush
 ////
-////      ASSERT(nNewMax >= m_nMaxSize);  // no wrap around
+////      ASSERT(nNewMax >= m_countAllocation);  // no wrap around
 ////
-////      if(nNewMax  < m_nMaxSize)
+////      if(nNewMax  < m_countAllocation)
 ////         throw ::exception(error_bad_argument);
 ////
 ////#ifdef SIZE_T_MAX
@@ -1285,7 +1289,7 @@ inline raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & raw_array < T
 ////      delete[] (::u8*)m_begin;
 ////      m_begin = pNewData;
 ////      m_nSize = nNewSize;
-////      m_nMaxSize = nNewMax;
+////      m_countAllocation = nNewMax;
 ////   }
 ////   return countOld;
 ////}
@@ -1297,7 +1301,7 @@ inline raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & raw_array < T
 ////{
 ////   ASSERT_VALID(this);
 ////
-////   if (m_nSize != m_nMaxSize)
+////   if (m_nSize != m_countAllocation)
 ////   {
 ////      // shrink to desired size_i32
 ////#ifdef SIZE_T_MAX
@@ -1315,7 +1319,7 @@ inline raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & raw_array < T
 ////      // get rid of old stuff (note: no destructors called)
 ////      delete[] (::u8*)m_begin;
 ////      m_begin = pNewData;
-////      m_nMaxSize = m_nSize;
+////      m_countAllocation = m_nSize;
 ////   }
 ////}
 //
@@ -1414,16 +1418,16 @@ inline raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & raw_array < T
 ////   {
 ////
 ////      ASSERT(this->m_nSize == 0);
-////      ASSERT(this->m_nMaxSize >= 0);
+////      ASSERT(this->m_countAllocation >= 0);
 ////
 ////   }
 ////   else
 ////   {
 ////
 ////      ASSERT(this->m_nSize >= 0);
-////      ASSERT(this->m_nMaxSize >= 0);
-////      ASSERT(this->m_nSize <= this->m_nMaxSize);
-////      ASSERT(is_memory_segment_ok(this->m_begin, (::memsize_cast) this->m_nMaxSize * sizeof(TYPE)));
+////      ASSERT(this->m_countAllocation >= 0);
+////      ASSERT(this->m_nSize <= this->m_countAllocation);
+////      ASSERT(is_memory_segment_ok(this->m_begin, (::memsize_cast) this->m_countAllocation * sizeof(TYPE)));
 ////
 ////   }
 ////
@@ -1553,10 +1557,10 @@ inline raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & raw_array < T
 //   {
 //      this->destroy();
 //
-//      this->m_nGrowBy = a.m_nGrowBy;
+//      this->m_countAddUp = a.m_countAddUp;
 //      this->m_begin = a.m_begin;
 //      this->m_nSize = a.m_nSize;
-//      this->m_nMaxSize = a.m_nMaxSize;
+//      this->m_countAllocation = a.m_countAllocation;
 //
 //      a.m_begin = nullptr;
 //

@@ -179,10 +179,14 @@ namespace user
       m_pinsert = nullptr;
 
       m_bColorerTake5 = false;
+      
+      m_straLines.m_countAddUp = 100;
 
-      m_straLines.set_size(10, 100);
+      m_straLines.set_size(10);
+      
+      m_daExtent.m_countAddUp = 100;
 
-      m_daExtent.set_size(10, 100);
+      m_daExtent.set_size(10);
 
       m_iTabWidth = 3;
 

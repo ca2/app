@@ -22,7 +22,7 @@ void color_array::create_web_palette()
    const u32 STANDARD_PALETTE[] = {00,51,102,153,204,255};
    const i32 STANDARD_COLOR_SIZE = 6;
 //   const ::i32 STANDARD_PALETTE_VAL_DIF = 51;
-   allocate(216);
+   set_size(216);
 //   u32 dwColorMapTable[216] = {0};
    i32 nColorMapIdx = 0;
    for(i32 nBlueIdx = 0; nBlueIdx < STANDARD_COLOR_SIZE; ++nBlueIdx)

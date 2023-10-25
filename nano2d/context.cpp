@@ -1927,15 +1927,39 @@ void TransformSkewX(float* t, float a)
 		//float vals[] = { ::nano2d::e_command_move_to, x, y };
 		//context::__appendCommands)(ctx, vals, NANO2D_COUNTOF(vals));
 		//move_to(x, y);
+      move_to({x, y});
 	}
 
-	void context::line_to(float x, float y)
+
+   void context::move_to(const ::point_f32 & p)
+   {
+      //float vals[] = { ::nano2d::e_command_move_to, x, y };
+      //context::__appendCommands)(ctx, vals, NANO2D_COUNTOF(vals));
+      //move_to(x, y);
+      move_to(p.x(), p.y());
+      
+   }
+
+   
+   void context::line_to(float x, float y)
 	{
 		/*float vals[] = { ::nano2d::e_command_line_to, x, y };
 		context::__appendCommands)(ctx, vals, NANO2D_COUNTOF(vals));*/
 
-		//line_to(x, y);
+      line_to({x, y});
+      
 	}
+
+
+   void context::line_to(const ::point_f32 & p)
+   {
+      /*float vals[] = { ::nano2d::e_command_line_to, x, y };
+      context::__appendCommands)(ctx, vals, NANO2D_COUNTOF(vals));*/
+
+      line_to(p.x(), p.y());
+      
+   }
+
 
 	void context::bezier_to(float c1x, float c1y, float c2x, float c2y, float x, float y)
 	{

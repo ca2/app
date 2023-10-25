@@ -19,7 +19,7 @@ CLASS_DECL_AURA::user::e_mouse user_key_to_user_mouse(::user::e_key ekeyButton)
    if (ekeyButton == ::user::e_key_right_button)
    {
 
-      emouse |= ::user::e_mouse_left_button;
+      emouse |= ::user::e_mouse_right_button;
 
    }
    

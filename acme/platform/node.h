@@ -768,6 +768,8 @@ namespace acme
 
       virtual void speak(const ::scoped_string& scopedstr);
 
+      virtual ::string operating_system_application_version();
+      
 
    };
 

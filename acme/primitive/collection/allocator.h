@@ -39,6 +39,25 @@ inline void copy_construct_count(TYPE * p, ::count c, const TYPE & t)
 }
 
 
+template < typename TYPE >
+inline void copy_construct_count(TYPE * p, ::count c, const TYPE * psource)
+{
+
+   while (c > 0)
+   {
+
+      new(p)TYPE(*psource);
+
+      p++;
+      
+      psource++;
+
+      c--;
+
+   }
+
+}
+
 
 
 
@@ -330,7 +349,22 @@ namespace allocator
          while (c > 0)
          {
             copy(pdst, &src);
+            pdst++;
             c--;
+         }
+
+      }
+
+      
+      inline static void copy_construct_count(TYPE * pdst, ::count c, const TYPE * psrc)
+      {
+
+         while (c > 0)
+         {
+            copy(pdst, psrc);
+            c--;
+            pdst++;
+            psrc++;
          }
 
       }
@@ -400,8 +434,22 @@ namespace allocator
 
          while (c > 0)
          {
-            copy(pdst, &src);
+            ::new (pdst) TYPE(src);
+            pdst++;
             c--;
+         }
+
+      }
+
+      inline static void copy_construct_count(TYPE * pdst, ::count c, const TYPE * psrc)
+      {
+
+         while (c > 0)
+         {
+            ::new (pdst) TYPE(*psrc);
+            c--;
+            pdst++;
+            psrc++;
          }
 
       }
@@ -492,6 +540,20 @@ namespace allocator
 
       }
 
+      inline static void copy_construct_count(TYPE * pdst, ::count c, const TYPE * psrc)
+      {
+
+         /*   while (c > 0)
+            {
+               copy(pdst, &src);
+               c--;
+          psrc++;
+            }*/
+
+         throw_exception(error_not_supported);
+
+      }
+
 
 #if MEMDLEAK  || defined(__MCRTDBG)
       inline static TYPE * alloc(::count c, const ::scoped_string & scopedstrFile, int iLine)
@@ -572,11 +634,25 @@ namespace allocator
          while (c > 0)
          {
             copy(pdst, &src);
+            pdst++;
             c--;
          }
 
       }
 
+
+      inline static void copy_construct_count(TYPE * pdst, ::count c, const TYPE * psrc)
+      {
+
+         while (c > 0)
+         {
+            copy(pdst, psrc);
+            c--;
+            pdst++;
+            psrc++;
+         }
+
+      }
 
 #if MEMDLEAK || defined(__MCRTDBG)
       inline static TYPE * alloc(::count c, const ::scoped_string & scopedstrFile, int iLine)
@@ -654,7 +730,21 @@ namespace allocator
          while (c > 0)
          {
             copy(pdst, &src);
+            pdst++;
             c--;
+         }
+
+      }
+
+      inline static void copy_construct_count(TYPE * pdst, ::count c, const TYPE * psrc)
+      {
+
+         while (c > 0)
+         {
+            copy(pdst, psrc);
+            c--;
+            pdst++;
+            psrc++;
          }
 
       }
@@ -736,7 +826,22 @@ namespace allocator
          while (c > 0)
          {
             copy(pdst, &src);
+            pdst++;
             c--;
+         }
+
+      }
+
+      
+      inline static void copy_construct_count(TYPE * pdst, ::count c, const TYPE * psrc)
+      {
+
+         while (c > 0)
+         {
+            copy(pdst, psrc);
+            pdst++;
+            c--;
+            psrc++;
          }
 
       }
@@ -817,7 +922,22 @@ namespace allocator
          while (c > 0)
          {
             copy(pdst, &src);
+            pdst++;
             c--;
+         }
+
+      }
+
+      
+      inline static void copy_construct_count(TYPE * pdst, ::count c, const TYPE * psrc)
+      {
+
+         while (c > 0)
+         {
+            copy(pdst, psrc);
+            c--;
+            pdst++;
+            psrc++;
          }
 
       }

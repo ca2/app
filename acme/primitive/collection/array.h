@@ -353,9 +353,9 @@ inline ::index array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::add_item(
 
    auto nIndex = this->size();
 
-   this->allocate(nIndex + 1);
+   this->allocate(nIndex + 1, false, false, &newElement);
 
-   this->last() = newElement;
+   //this->last() = newElement;
 
    return nIndex;
 
@@ -482,23 +482,14 @@ array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::~array()
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
 inline ::index array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::append(const array& src)
 {
-   // ASSERT_VALID(this);
-   ASSERT(this != &src);   // cannot append to itself
+   
+   auto countOld = this->size();
+   
+   this->allocate(countOld + src.size(), false, true, nullptr);
 
-   if (this == &src)
-   {
+   ALLOCATOR::copy_construct_count(this->m_begin + countOld, src.size(), src.m_begin);
 
-      throw_exception(error_bad_argument);
-
-   }
-
-   ::count nOldSize = this->size();
-
-   this->allocate(this->size() + src.size());
-
-   CopyElements<TYPE>(&this->m_begin[nOldSize], src.m_begin, src.size());
-
-   return nOldSize;
+   return countOld;
 
 }
 
@@ -511,12 +502,16 @@ inline void array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::copy(const ar
 
    if(this != &src)
    {
+      
+      this->erase_all();
+      
+      this->append(src);
 
-      auto nSrcSize = src.size();
-
-      this->allocate(nSrcSize);
-
-      CopyElements<TYPE>(this->m_begin,src.m_begin, nSrcSize);
+//      auto nSrcSize = src.size();
+//
+//      this->allocate(nSrcSize);
+//
+//      CopyElements<TYPE>(this->m_begin,src.m_begin, nSrcSize);
 
    }
 

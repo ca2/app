@@ -1385,6 +1385,8 @@ namespace nanoui
 
    void Screen::move_window_to_front(Window* window)
    {
+      
+      synchronous_lock lock(m_puserinteraction->synchronization());
 
       if (!m_children.contains(window))
       {

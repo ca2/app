@@ -19,16 +19,25 @@ namespace mathematics
       seed(624, 0);
    }
 
+   
    void random_number_generator::seed(i32 iTwistLen, u32 seed)
    {
+      
       iTwistLen = maximum(TWIST_IA + 10, iTwistLen);
-      m_uinta.allocate(iTwistLen);
+      
+      m_uinta.set_size(iTwistLen);
+      
       m_uinta[0]= seed & 0xffffffffUL;
+      
       for (i32 i = 1; i < m_uinta.get_count(); i++)
       {
+         
          m_uinta[i] = (1812433253UL * (m_uinta[i - 1] ^ (m_uinta[i - 1] >> 30)) + i);
+         
       }
+      
    }
+
 
 /* generates a random number on [0,0xffffffff]-interval */
    u32 random_number_generator::get()

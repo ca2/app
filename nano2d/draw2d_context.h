@@ -135,8 +135,12 @@ namespace nano2d
       float text_bounds(float x, float y, const ::scoped_string & scopedstr, float * bounds) override;
       void text_metrics(float * ascender, float * descender, float * lineh) override;
 
+      using ::nano2d::context::move_to;
       void move_to(float x, float y) override;
+      using ::nano2d::context::line_to;
       void line_to(float x, float y) override;
+
+
 
 
       void rectangle(float x, float y, float w, float h) override;

@@ -29,14 +29,15 @@ namespace text
          m_atomSchema = "_std"; // "std"
          m_atomLocale = "_std"; // "std"
 
-         m_idaLocale.allocate(0, 256);
-         m_idaSchema.allocate(0, 256);
+         m_idaLocale.m_countAddUp = 256;
+         m_idaSchema.m_countAddUp = 256;
 
          m_bSchemaOnly = false;
          m_bAddAlternateStyle = true;
 
       }
 
+   
       locale_schema::locale_schema(const locale_schema& ls)
       {
 
@@ -708,8 +709,8 @@ namespace text
          if (bRTLLayout)
          {
 
-            idaLocaleAdd1.allocate(0, 256);
-            idaSchemaAdd1.allocate(0, 256);
+            idaLocaleAdd1.m_countAddUp = 256;
+            idaSchemaAdd1.m_countAddUp = 256;
 
             if (m_idaLocale.get_count() > 256)
             {

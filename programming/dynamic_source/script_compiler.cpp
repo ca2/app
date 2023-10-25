@@ -2806,9 +2806,9 @@ ch_else:
       m_plibraryLib->open(m_strLibraryPath);
       // return;
 
-      m_ftaLibCreation.allocate(m_straLibSourcePath.get_size());
-      m_ftaLibAccess.allocate(m_straLibSourcePath.get_size());
-      m_ftaLibModified.allocate(m_straLibSourcePath.get_size());
+      m_ftaLibCreation.set_size(m_straLibSourcePath.get_size());
+      m_ftaLibAccess.set_size(m_straLibSourcePath.get_size());
+      m_ftaLibModified.set_size(m_straLibSourcePath.get_size());
 
       for(i32 i = 0; i < m_straLibSourcePath.get_size(); i++)
       {

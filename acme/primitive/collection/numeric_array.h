@@ -609,7 +609,7 @@ const TYPE & tMin)
 
    ::index i;
    TYPE tStart = tMin - tOffset;
-   this->allocate(a.get_size());
+   this->set_size(a.get_size());
    TYPE t;
    for(i = 0; i < a.get_size()
          && a.get_at(i) <= tStart; i++)
@@ -631,7 +631,7 @@ const numeric_array < TYPE, m_etypeContainer > & array2)
 {
    ASSERT(array1.get_size() == array2.get_size());
    ::index i;
-   this->allocate(array1.get_size());
+   this->set_size(array1.get_size());
    TYPE t;
    for(i = 0; i < array1.get_size(); i++)
    {
@@ -648,7 +648,7 @@ const TYPE & tMax)
    ::index i;
    TYPE t;
    TYPE it;
-   this->allocate(a.get_size());
+   this->set_size(a.get_size());
    if(a.get_size() > 0)
    {
       TYPE tLast = a[0];

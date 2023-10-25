@@ -11,7 +11,7 @@ namespace file
    listing::listing()
    {
 
-      m_nGrowBy = 128;
+      m_countAddUp = 128;
 
       m_eflag = ::file::e_flag_file_or_folder;
 
@@ -24,7 +24,7 @@ namespace file
       path_array(listing)
    {
       
-      m_nGrowBy = 128;
+      m_countAddUp = 128;
       
    }
 

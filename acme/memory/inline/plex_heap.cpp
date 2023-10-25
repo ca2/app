@@ -88,11 +88,13 @@ plex_heap_alloc::plex_heap_alloc(memsize nAllocSize, ::u32 nBlockSize)
 
    i32 iShareCount = 1;
 
-   allocate(iShareCount);
+   set_size(iShareCount);
 
    for(i32 i = 0; i < get_count(); i++)
    {
+      
       set_at(i, new plex_heap_alloc_sync(nAllocSize, nBlockSize));
+      
    }
 
    m_iShareCount = iShareCount;

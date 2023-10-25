@@ -10,6 +10,11 @@ using iptr = i32;
 using uptr = u32;
 
 
+#define IPTR_MAXIMUM I32_MAXIMUM
+#define UPTR_MAXIMUM U32_MAXIMUM
+#define IPTR_MINIMUM I32_MINIMUM
+
+
 #elif OSBIT == 64
 
 
@@ -26,6 +31,9 @@ using uptr = u32;
 using iptr = i64;
 using uptr = u64;
 
+#define IPTR_MAXIMUM I64_MAXIMUM
+#define UPTR_MAXIMUM U64_MAXIMUM
+#define IPTR_MINIMUM I64_MINIMUM
 
 // #endif
 

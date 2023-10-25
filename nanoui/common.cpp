@@ -361,32 +361,32 @@ void CLASS_DECL_NANOUI load_image_directory(::nano2d::context * pcontext, ::arra
 
 
 
-void Object::inc_ref(){
-   //m_ref_count++;
-   increment_reference_count();
-}
-
-void Object::dec_ref(bool dealloc)  {
-   if (dealloc)
-   {
-      release();
-
-   }
-   else
-   {
-
-      decrement_reference_count();
-
-   }
-   //--m_ref_count;
-   //if (m_ref_count == 0 && dealloc) {
-   //   delete this;
-   //}
-   //else if (m_ref_count < 0) {
-   //   fprintf(stderr, "Internal error: %p: object reference count < 0!\n", this);
-   //   abort();
-   //}
-}
+//void Object::inc_ref(){
+//   //m_ref_count++;
+//   increment_reference_count();
+//}
+//
+//void Object::dec_ref(bool dealloc)  {
+//   if (dealloc)
+//   {
+//      release();
+//
+//   }
+//   else
+//   {
+//
+//      decrement_reference_count();
+//
+//   }
+//   //--m_ref_count;
+//   //if (m_ref_count == 0 && dealloc) {
+//   //   delete this;
+//   //}
+//   //else if (m_ref_count < 0) {
+//   //   fprintf(stderr, "Internal error: %p: object reference count < 0!\n", this);
+//   //   abort();
+//   //}
+//}
 
 Object::~Object() { }
 

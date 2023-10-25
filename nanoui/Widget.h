@@ -293,7 +293,7 @@ namespace nanoui
        * since the constructor of \::pointer Widget automatically
        * adds the current pwidget to its parent
        */
-      virtual void add_child(::index iIndex, Widget* pwidget);
+      virtual void insert_child_at(::index iIndex, Widget* pwidget);
 
       /// Convenience function which appends a pwidget at the end
       void add_child(Widget* pwidget);

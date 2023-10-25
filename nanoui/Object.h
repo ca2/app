@@ -35,20 +35,20 @@ namespace nanoui
       //Object(const Object &) : m_ref_count(0) {}
       Object(const Object &) {}
 
-      /// Return the current reference count
-      ::count ref_count() const { return m_countReference; };
-      //int ref_count() const { return 1; };
-
-      /// Increase the object's reference count by one
-      void inc_ref();
-
-      /** \brief Decrease the reference count of
-       * the object and possibly deallocate it.
-       *
-       * The object will automatically be deallocated once
-       * the reference count reaches zero.
-       */
-      void dec_ref(bool dealloc = true);
+//      /// Return the current reference count
+//      ::count ref_count() const { return m_countReference; };
+//      //int ref_count() const { return 1; };
+//
+//      /// Increase the object's reference count by one
+//      void inc_ref();
+//
+//      /** \brief Decrease the reference count of
+//       * the object and possibly deallocate it.
+//       *
+//       * The object will automatically be deallocated once
+//       * the reference count reaches zero.
+//       */
+//      void dec_ref(bool dealloc = true);
    protected:
       /** \brief Virtual protected deconstructor.
        * (Will only be called by \::pointer ::pointer)

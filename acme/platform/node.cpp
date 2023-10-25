@@ -3308,6 +3308,13 @@ return false;
    }
 
 
+   ::string node::operating_system_application_version()
+   {
+      
+      return "";
+      
+   }
+
 
 } // namespace acme
 

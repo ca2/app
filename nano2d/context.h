@@ -344,9 +344,12 @@ namespace nano2d
 
 		// Starts new sub-path with specified point as first point.
 		virtual void move_to(float x, float y);
+      virtual void move_to(const ::point_f32 & p);
 
 		// Adds line segment from the last point in the path to the specified point.
 		virtual void line_to(float x, float y);
+      virtual void line_to(const ::point_f32 & p);
+
 
 		// Adds cubic bezier segment from last point in the path via two control points to the specified point.
 		virtual void bezier_to(float c1x, float c1y, float c2x, float c2y, float x, float y);

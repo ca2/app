@@ -56,17 +56,17 @@ namespace nanoui
       //      return;
       //   }
 
-      for (auto pchild : m_children) 
-      {
-
-         if (pchild)
-         {
-         
-            pchild->dec_ref();
-
-         }
-
-      }
+//      for (auto pchild : m_children) 
+//      {
+//
+//         if (pchild)
+//         {
+//         
+//            pchild->dec_ref();
+//
+//         }
+//
+//      }
 
    }
 
@@ -322,11 +322,13 @@ namespace nanoui
 
    Widget* Widget::find_widget(const point_i32& p)
    {
+      
+      auto size = m_children.get_count();
 
-      for (auto it = m_children.get_upper_bound(); it >= 0; it--)
+      for (auto iIndex = m_children.get_upper_bound(); iIndex >= 0; iIndex--)
       {
 
-         Widget* pchild = m_children[it];
+         Widget* pchild = m_children[iIndex];
 
          auto posChild = pchild->m_pos;
 
@@ -609,20 +611,54 @@ namespace nanoui
    }
 
 
-   void Widget::add_child(::index iIndex, Widget* pwidget)
+   void Widget::insert_child_at(::index iIndex, Widget * pwidget)
    {
+      
+      if(::is_null(pwidget))
+      {
+         
+         throw ::exception(error_bad_argument);
+         
+      }
+
+      if(iIndex < 0)
+      {
+         
+         throw ::exception(error_bad_argument);
+         
+      }
+
       synchronous_lock lock(screen()->m_puserinteraction->synchronization());
+
+      if(iIndex > child_count())
+      {
+         
+         throw ::exception(error_bad_argument);
+         
+      }
+
       //m_iHoverCandidateChildStart = -1;
+      
       //m_iHoverCandidateChildEnd = -1;
-      ASSERT(iIndex <= child_count());
+      
+      //ASSERT(iIndex <= child_count());
+      
       m_children.insert_at(iIndex, pwidget);
-      pwidget->inc_ref();
+      
+      //pwidget->inc_ref();
+      
       pwidget->set_parent(this);
+      
       pwidget->set_theme(m_ptheme);
+      
    }
 
-   void Widget::add_child(Widget* pwidget) {
-      add_child(child_count(), pwidget);
+
+   void Widget::add_child(Widget * pwidget)
+   {
+   
+      insert_child_at(child_count(), pwidget);
+      
    }
 
 
@@ -680,7 +716,7 @@ namespace nanoui
 
       m_children.erase_at(iIndex);
 
-      pwidget->dec_ref();
+      //pwidget->dec_ref();
 
    }
 

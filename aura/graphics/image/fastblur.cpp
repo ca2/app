@@ -273,7 +273,7 @@ namespace draw2d
       //    i32 scan      = m_p->scan;
       i32 div       = radius + radius + 1;
       m_iRadius         = radius;
-      m_uchaDiv.allocate(256 * div);
+      m_uchaDiv.set_size(256 * div);
       u8 * dv         = m_uchaDiv.get_data();
 
       m_size.cx()         = cx;

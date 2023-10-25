@@ -495,6 +495,7 @@
 		9AB3DCC7278360390025099F /* item.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AB3DCC3278360390025099F /* item.h */; };
 		9ABA65A228B5CDB90063B976 /* _impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9ABA65A028B5CDB80063B976 /* _impl.h */; };
 		9ABA65A328B5CDB90063B976 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9ABA65A128B5CDB80063B976 /* _.h */; };
+		9ABBB68A2AE9BE2E007611C5 /* window_display_and_layout.h in Headers */ = {isa = PBXBuildFile; fileRef = 9ABBB6892AE9BE2D007611C5 /* window_display_and_layout.h */; };
 		9AC2CCC326533BB700CC8096 /* context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC2CCBE26533BB600CC8096 /* context.cpp */; };
 		9AC2CCC426533BB700CC8096 /* message_queue.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC2CCBF26533BB600CC8096 /* message_queue.h */; };
 		9AC2CCC526533BB700CC8096 /* context.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC2CCC026533BB600CC8096 /* context.h */; };
@@ -996,6 +997,7 @@
 		9ABA65A528B5D1710063B976 /* _.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		9ABA65A628B5D3F80063B976 /* _.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		9ABA65AB28B5DD920063B976 /* _.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
+		9ABBB6892AE9BE2D007611C5 /* window_display_and_layout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = window_display_and_layout.h; sourceTree = "<group>"; };
 		9AC2CCBE26533BB600CC8096 /* context.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = context.cpp; sourceTree = "<group>"; };
 		9AC2CCBF26533BB600CC8096 /* message_queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = message_queue.h; sourceTree = "<group>"; };
 		9AC2CCC026533BB600CC8096 /* context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = context.h; sourceTree = "<group>"; };
@@ -1576,6 +1578,7 @@
 				9A979D8628C82B1C0013DC54 /* visual_state.h */,
 				9A92300E27EACA3A00B5A78D /* wait_cursor.cpp */,
 				9A92303927EACA3B00B5A78D /* wait_cursor.h */,
+				9ABBB6892AE9BE2D007611C5 /* window_display_and_layout.h */,
 				9A92306127EACA3B00B5A78D /* windowing.cpp */,
 				9A92304A27EACA3B00B5A78D /* windowing.h */,
 				9A979D8428C82B1B0013DC54 /* zorder.cpp */,
@@ -1984,6 +1987,7 @@
 				9A5498672A2C00320052BAB6 /* holdee.h in Headers */,
 				9A92312127EACF2100B5A78D /* cursor.h in Headers */,
 				9A979D8928C82B1C0013DC54 /* plain_edit_style.h in Headers */,
+				9ABBB68A2AE9BE2E007611C5 /* window_display_and_layout.h in Headers */,
 				9AC2CE4526533BFC00CC8096 /* timeout.h in Headers */,
 				9A750F9C282B90B700C4861B /* box.h in Headers */,
 				9A750F7B282B90B700C4861B /* notify_icon.h in Headers */,

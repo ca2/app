@@ -29,6 +29,8 @@ namespace user
 
       m_flagNonClient -= e_non_client_focus_rect;
 
+      m_ewindowflag += ::e_window_flag_miniaturizable;
+
       m_bEnableDragClient = true;
 
       m_bEnableDragResize = true;
@@ -101,7 +103,7 @@ namespace user
             tool().add_item(pitemMinimize);
 
             user_item(pitemMinimize)->m_ezorder = e_zorder_front;
-
+            
          }
 
       }

@@ -464,7 +464,7 @@ namespace user
 
       //void enable_drag_move();
 
-      virtual void set_restored_rectangle(const ::rectangle_i32 & rectangleRestored);
+//      virtual void set_restored_rectangle(const ::rectangle_i32 & rectangleRestored);
 
       /// <summary>
       ///  

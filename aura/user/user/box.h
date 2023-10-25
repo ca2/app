@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "window_rectangle.h"
+#include "window_display_and_layout.h"
 #include "app/aura/user/user/interaction.h"
 
 
@@ -17,8 +17,8 @@ namespace user
 
       string                        m_strDisplay;
       //::string                      m_strDataKey2;
-      class window_rectangle        m_windowrectangle;
-      class window_rectangle        m_windowrectangleStore;
+      window_display_and_layout     m_windowdisplayandlayout;
+      window_display_and_layout     m_windowdisplayandlayoutStore;
 
 
       box();

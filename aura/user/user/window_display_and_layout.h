@@ -11,8 +11,8 @@ namespace user
 {
 
 
-   class CLASS_DECL_AURA window_rectangle :
-      public raw_block < window_rectangle >
+   class CLASS_DECL_AURA window_display_and_layout :
+      public raw_block < window_display_and_layout >
    {
    public:
 

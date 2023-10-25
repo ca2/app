@@ -99,7 +99,7 @@ namespace experience
 
       }
 
-      auto edisplayNormal = m_pframewindow->m_windowrectangle.m_edisplayLastNormal;
+      auto edisplayNormal = m_pframewindow->m_windowdisplayandlayout.m_edisplayLastNormal;
 
       int cxQuarterWorkspace = rectangleWorkspace.width() / 4;
 

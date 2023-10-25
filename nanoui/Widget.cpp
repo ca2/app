@@ -323,7 +323,7 @@ namespace nanoui
    Widget* Widget::find_widget(const point_i32& p)
    {
       
-      auto size = m_children.get_count();
+      //auto size = m_children.get_count();
 
       for (auto iIndex = m_children.get_upper_bound(); iIndex >= 0; iIndex--)
       {
@@ -712,7 +712,7 @@ namespace nanoui
 
       }
 
-      Widget* pwidget = m_children[iIndex];
+      //Widget* pwidget = m_children[iIndex];
 
       m_children.erase_at(iIndex);
 

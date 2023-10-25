@@ -1447,7 +1447,7 @@ namespace experience
 
          //auto sizeMinimum = m_pframewindow->get_window_minimum_size();
 
-         //auto sizeMove = m_pframewindow->m_windowrectangle.m_rectangleRestored.size().maximum(sizeMinimum);
+         //auto sizeMove = m_pframewindow->m_windowdisplayandlayout.m_rectangleRestored.size().maximum(sizeMinimum);
 
          //rectangleRequest.set(pointMove, sizeMove);
 
@@ -1483,7 +1483,7 @@ namespace experience
       information() << "get_best_zoneing returned : " << iWorkspace << ", edisplay : " << edisplay;
 
       if (edisplay != edisplaySketch ||
-         (::is_docking_appearance(edisplay) && iWorkspace != m_pframewindow->m_windowrectangle.m_iWorkspace))
+         (::is_docking_appearance(edisplay) && iWorkspace != m_pframewindow->m_windowdisplayandlayout.m_iWorkspace))
       {
 
          if (m_pframewindow->const_layout().m_timeLastLadingToLayout.elapsed() < 800_ms)
@@ -1538,11 +1538,11 @@ namespace experience
          if (is_docking_appearance(edisplay))
          {
 
-            m_pframewindow->m_windowrectangle.m_rectangleSnapped = rectangle;
+            m_pframewindow->m_windowdisplayandlayout.m_rectangleSnapped = rectangle;
 
          }
 
-         m_pframewindow->m_windowrectangle.m_iWorkspace = iWorkspace;
+         m_pframewindow->m_windowdisplayandlayout.m_iWorkspace = iWorkspace;
 
          m_pframewindow->const_layout().sketch().display() = edisplay;
 
@@ -1553,9 +1553,9 @@ namespace experience
          if (m_pframewindow->size_manager()->window_is_sizing())
          {
 
-            //m_pframewindow->m_windowrectangle.XXXm_rectangleNormal = rectangle;
+            //m_pframewindow->m_windowdisplayandlayout.XXXm_rectangleNormal = rectangle;
 
-            m_pframewindow->m_windowrectangle.m_rectangleSnapped = rectangle;
+            m_pframewindow->m_windowdisplayandlayout.m_rectangleSnapped = rectangle;
 
             m_pframewindow->place(rectangle);
 
@@ -1563,7 +1563,7 @@ namespace experience
          else if (m_pframewindow->move_manager()->window_is_moving())
          {
 
-            m_pframewindow->m_windowrectangle.m_rectangleSnapped = rectangle;
+            m_pframewindow->m_windowdisplayandlayout.m_rectangleSnapped = rectangle;
 
             m_pframewindow->place(rectangle);
 

@@ -566,10 +566,10 @@ namespace user
    }
 
 
-   void interaction::set_restored_rectangle(const ::rectangle_i32 & rectangleRestored)
-   {
-
-   }
+//   void interaction::set_restored_rectangle(const ::rectangle_i32 & rectangleRestored)
+//   {
+//
+//   }
 
 
    bool interaction::set_position(const ::point_i32 & point, enum_layout elayout, ::draw2d::graphics * pgraphics)
@@ -18779,8 +18779,8 @@ namespace user
    //   m_stateProcess2.reset();
    //   m_state2.reset();
    //   m_stateWindow3.reset();
-   //   m_windowrectangle.reset();
-   //   m_windowrectangleStore.reset();
+   //   m_windowdisplayandlayout.reset();
+   //   m_windowdisplayandlayoutStore.reset();
 
    //}
 
@@ -20919,7 +20919,7 @@ namespace user
    void interaction::_001OnDeiconify(::e_display edisplayPrevious)
    {
 
-      if (edisplayPrevious == ::e_display_iconic)
+      if (!windowing()->is_screen_visible(edisplayPrevious))
       {
 
          display(::e_display_normal);
@@ -21038,12 +21038,16 @@ namespace user
             {
 
                information() << "window is like maximized - going to display e_display_normal";
+               
+               auto rectangleWindowNormalStored = this->get_window_normal_stored_rectangle();
 
-               auto & sizeWindow = layout().window().m_size;
+               place(rectangleWindowNormalStored);
 
                display(e_display_normal);
+               
+//               information() << "window is like maximized - going to display_previous";
 
-               set_need_layout();
+//               display_previous();
 
             }
             else
@@ -21053,9 +21057,13 @@ namespace user
 
                display(e_display_zoomed);
 
-               set_need_layout();
-
             }
+            
+            set_need_layout();
+            
+            set_need_redraw();
+            
+            post_redraw();
 
             return true;
 

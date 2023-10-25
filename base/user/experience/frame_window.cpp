@@ -294,7 +294,7 @@ namespace experience
 
                      pkey->m_bRet = true;
 
-                     good_move(&m_windowrectangle.m_rectangleNormal);
+                     good_move(&m_windowdisplayandlayout.m_rectangleNormal);
 
                      display(e_display_normal);
 
@@ -1120,10 +1120,10 @@ namespace experience
    void frame_window::display_previous_restore()
    {
 
-      if (::is_screen_visible(m_windowrectangle.m_edisplayPrevious))
+      if (::is_screen_visible(m_windowdisplayandlayout.m_edisplayPrevious))
       {
 
-         return display(m_windowrectangle.m_edisplayPrevious);
+         return display(m_windowdisplayandlayout.m_edisplayPrevious);
 
       }
       else
@@ -2771,16 +2771,16 @@ namespace experience
       if (equivalence_sink(edisplay) != e_display_normal)
       {
 
-         if (equivalence_sink(m_windowrectangle.m_edisplayPrevious) == e_display_normal)
+         if (equivalence_sink(m_windowdisplayandlayout.m_edisplayPrevious) == e_display_normal)
          {
 
-            display_normal(m_windowrectangle.m_edisplayPrevious, e_activation_default);
+            display_normal(m_windowdisplayandlayout.m_edisplayPrevious, e_activation_default);
 
          }
          else
          {
 
-            display_normal(m_windowrectangle.m_edisplayLastNormal, e_activation_default);
+            display_normal(m_windowdisplayandlayout.m_edisplayLastNormal, e_activation_default);
 
          }
 
@@ -2788,10 +2788,10 @@ namespace experience
       else if(edisplay == e_display_broad)
       {
 
-         //if (m_windowrectangle.m_rectangleRestored.size() == m_sizeRestore)
+         //if (m_windowdisplayandlayout.m_rectangleRestored.size() == m_sizeRestore)
          //{
 
-         //good_restore(nullptr, m_windowrectangle.m_rectangleCompact, true, e_activation_default, e_zorder_top, e_display_compact);
+         //good_restore(nullptr, m_windowdisplayandlayout.m_rectangleCompact, true, e_activation_default, e_zorder_top, e_display_compact);
 
          display_normal(e_display_compact, e_activation_default);
 
@@ -2799,7 +2799,7 @@ namespace experience
 //         else
   //       {
 
-      //      good_move(m_windowrectangle.m_rectangleRestored);
+      //      good_move(m_windowdisplayandlayout.m_rectangleRestored);
 
     //     }
 
@@ -2807,20 +2807,20 @@ namespace experience
       else if (edisplay == e_display_compact)
       {
 
-         auto sizeRectangleNormal = m_windowrectangle.m_rectangleNormal;
+         auto sizeRectangleNormal = m_windowdisplayandlayout.m_rectangleNormal;
 
          if (sizeRectangleNormal == m_rectangleRestoreCompact.size())
          {
 
             display_normal(e_display_broad, e_activation_default);
 
-            //good_restore(nullptr, m_windowrectangle.m_rectangleBroad, true, e_activation_default, e_zorder_top, e_display_broad);
+            //good_restore(nullptr, m_windowdisplayandlayout.m_rectangleBroad, true, e_activation_default, e_zorder_top, e_display_broad);
 
          }
          else
          {
 
-            //good_restore(nullptr, m_windowrectangle.m_rectangleNormal, true, e_activation_default, e_zorder_top, e_display_normal);
+            //good_restore(nullptr, m_windowdisplayandlayout.m_rectangleNormal, true, e_activation_default, e_zorder_top, e_display_normal);
 
             display_normal(e_display_normal, e_activation_default);
 
@@ -2830,7 +2830,7 @@ namespace experience
       else
       {
 
-         //good_restore(nullptr, m_windowrectangle.m_rectangleBroad, true, e_activation_default, e_zorder_top, e_display_broad);
+         //good_restore(nullptr, m_windowdisplayandlayout.m_rectangleBroad, true, e_activation_default, e_zorder_top, e_display_broad);
 
          display_normal(e_display_broad, e_activation_default);
 

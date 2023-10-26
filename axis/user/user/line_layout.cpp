@@ -167,12 +167,14 @@ namespace user
                   bChanged = true;
 
                }
+               
+               auto sizeItem = puserinteraction->size(e_layout_sketch);
 
-               iMaximumNormal = ::maximum(iMaximumNormal, puserinteraction->size(e_layout_sketch).get_normal_dimension(m_eorientation));
+               iMaximumNormal = ::maximum(iMaximumNormal, sizeItem.get_normal_dimension(m_eorientation));
 
                point.set_dimension(m_eorientation,
                   point.get_dimension(m_eorientation) +
-                  puserinteraction->size(e_layout_sketch).get_dimension(m_eorientation)
+                  sizeItem.get_dimension(m_eorientation)
                   + m_iPadding);
 
                //synchronouslock.lock();

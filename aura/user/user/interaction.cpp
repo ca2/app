@@ -6208,6 +6208,13 @@ namespace user
       scoped_restore(pgraphics->m_bInheritDraw);
 
       auto pszType = typeid(*this).name();
+      
+      if(::string(pszType).case_insensitive_contains("line_layout"))
+      {
+         
+         information() << "interaction::_000OnDraw line_layout";
+         
+      }
 
       if (pgraphics->m_bInheritDraw && !(pgraphics->m_egraphics & e_graphics_draw))
       {
@@ -6289,7 +6296,7 @@ namespace user
 
             //}
 
-            if (m_bOnDraw && should_draw())
+            if (should_draw())
             {
 
                pgraphics->m_dFontFactor = 1.0;
@@ -6332,138 +6339,143 @@ namespace user
 
                try
                {
-
-                  auto type = ::type(this);
-
-                  ::string strType = type.as_string();
-
-                  if (strType.case_insensitive_contains("pane_impact"))
+                  
+                  if(m_bOnDraw)
                   {
-
-                     information() << "pane_impact";
-
-                  }
-                  else if (strType.case_insensitive_contains("app_core_store::impact"))
-                  {
-
-                     information() << "app_core_store::impact";
-
-                  }
-
-                  //if (pgraphics->m_bDraw)
-                  //{
-
-#ifdef __DEBUG
-
-                  auto timeStart = ::time::now();
-
-#endif //__DEBUG
-
-                  //{
-
-                  //   auto pinteraction = get_wnd();
-
-                  //   if (pinteraction)
-                  //   {
-
-                  //}
-
-                  //}
-
-                  //if (is_top_level())
-                  //{
-
-                  _001OnNcClip(pgraphics);
-
-                  //}
-
-                  //auto pstyle = get_style(pgraphics);
-
-                  _001OnNcDraw(pgraphics);
-
-                  //         if (type.name().contains("waven::impact"))
-                  //         {
-                  //
-                  //            informationf("waven::impact");
-                  //         }
-                  //         else if(strType.case_insensitive_contains("menu_list_impact"))
-                  //         {
-                  //
-                  //            informationf("menu_list_impact");
-                  //
-                  //         }
-                  //   if (!is_custom_draw() && pgraphics->m_pnext == nullptr)
-                  //   {
-
-                  //      set_context_org(pgraphics);
-
-                  //   }
-
-                  //}
-                  ////         ::point_i32 pointParentOffset = get_parent_context_offset();
-                  ////
-                  ////         pgraphics->offset_origin(-pointParentOffset.x(), -pointParentOffset.y());
-                  {
-
-                     ::draw2d::save_context savecontextThis(pgraphics);
-
+                     
+                     auto type = ::type(this);
+                     
+                     ::string strType = type.as_string();
+                     
+                     if (strType.case_insensitive_contains("pane_impact"))
+                     {
+                        
+                        information() << "pane_impact";
+                        
+                     }
+                     else if (strType.case_insensitive_contains("app_core_store::impact"))
+                     {
+                        
+                        information() << "app_core_store::impact";
+                        
+                     }
+                     
+                     //if (pgraphics->m_bDraw)
                      //{
-
-                     //   auto rectangleClient = this->client2_rectangle();
-
-                     //   pgraphics->offset_origin(rectangleClient.left(), rectangleClient.top());
-
+                     
+#ifdef __DEBUG
+                     
+                     auto timeStart = ::time::now();
+                     
+#endif //__DEBUG
+                     
+                     //{
+                     
+                     //   auto pinteraction = get_wnd();
+                     
+                     //   if (pinteraction)
+                     //   {
+                     
                      //}
-
-                     try
+                     
+                     //}
+                     
+                     //if (is_top_level())
+                     //{
+                     
+                     _001OnNcClip(pgraphics);
+                     
+                     //}
+                     
+                     //auto pstyle = get_style(pgraphics);
+                     
+                     _001OnNcDraw(pgraphics);
+                     
+                     //         if (type.name().contains("waven::impact"))
+                     //         {
+                     //
+                     //            informationf("waven::impact");
+                     //         }
+                     //         else if(strType.case_insensitive_contains("menu_list_impact"))
+                     //         {
+                     //
+                     //            informationf("menu_list_impact");
+                     //
+                     //         }
+                     //   if (!is_custom_draw() && pgraphics->m_pnext == nullptr)
+                     //   {
+                     
+                     //      set_context_org(pgraphics);
+                     
+                     //   }
+                     
+                     //}
+                     ////         ::point_i32 pointParentOffset = get_parent_context_offset();
+                     ////
+                     ////         pgraphics->offset_origin(-pointParentOffset.x(), -pointParentOffset.y());
                      {
-
-                        _001DrawThis(pgraphics);
-
-                     }
-                     catch (...)
-                     {
-
-                        information() << "Exception: interaction::_000OnDraw _001DrawThis %s"
+                        
+                        ::draw2d::save_context savecontextThis(pgraphics);
+                        
+                        //{
+                        
+                        //   auto rectangleClient = this->client2_rectangle();
+                        
+                        //   pgraphics->offset_origin(rectangleClient.left(), rectangleClient.top());
+                        
+                        //}
+                        
+                        try
+                        {
+                           
+                           _001DrawThis(pgraphics);
+                           
+                        }
+                        catch (...)
+                        {
+                           
+                           information() << "Exception: interaction::_000OnDraw _001DrawThis %s"
                            << ::type(this).as_string();
-
+                           
+                        }
+                        
                      }
+                     
+                  }
 
-                     try
+                  try
+                  {
+
+                     ///synchronous_lock synchronouslock(this->synchronization());
+
+                     //if (m_puserinteractionpointeraChild && m_puserinteractionpointeraChild->has_interaction())
                      {
 
-                        ///synchronous_lock synchronouslock(this->synchronization());
+                        //::draw2d::save_context savecontext(pgraphics);
 
-                        //if (m_puserinteractionpointeraChild && m_puserinteractionpointeraChild->has_interaction())
+                        //synchronouslock.unlock();
+
+                        try
                         {
 
-                           //::draw2d::save_context savecontext(pgraphics);
+                           _001DrawChildren(pgraphics);
 
-                           //synchronouslock.unlock();
+                        }
+                        catch (...)
+                        {
 
-                           try
-                           {
-
-                              _001DrawChildren(pgraphics);
-
-                           }
-                           catch (...)
-                           {
-
-                              information() << "Exception: interaction::_000OnDraw _001DrawChildren %s"
-                                 << ::type(this).as_string();
-
-                           }
-
-                           //synchronouslock.lock();
+                           information() << "Exception: interaction::_000OnDraw _001DrawChildren %s"
+                              << ::type(this).as_string();
 
                         }
 
-                     }
-                     catch (...)
-                     {
+                        //synchronouslock.lock();
 
                      }
+
+                  }
+                  catch (...)
+                  {
 
                   }
 

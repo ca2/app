@@ -557,8 +557,6 @@
 		9AD5ED5A2AE79DA4008CCFE1 /* scroll_base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AD5ED582AE79D90008CCFE1 /* scroll_base.cpp */; };
 		9ADB6CA328D12AF000608B22 /* command.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ADB6C9F28D12AEB00608B22 /* command.cpp */; };
 		9ADB6CA428D12AF100608B22 /* command.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ADB6C9F28D12AEB00608B22 /* command.cpp */; };
-		9ADB6CA528D12AF700608B22 /* shared_commnand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ADB6C9E28D12AEB00608B22 /* shared_commnand.cpp */; };
-		9ADB6CA628D12AFB00608B22 /* shared.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ADB6CA028D12AEB00608B22 /* shared.cpp */; };
 		9ADDBBF12A4025DC00C53EEB /* render.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ADDBBE02A4025DC00C53EEB /* render.cpp */; };
 		9ADDBBF22A4025DC00C53EEB /* program.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ADDBBE12A4025DC00C53EEB /* program.cpp */; };
 		9ADDBBF32A4025DC00C53EEB /* shader.h in Headers */ = {isa = PBXBuildFile; fileRef = 9ADDBBE22A4025DC00C53EEB /* shader.h */; };
@@ -1056,11 +1054,7 @@
 		9ACFE56228497F8700911485 /* windowing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = windowing.cpp; sourceTree = "<group>"; };
 		9AD19A0F2512B8CB00B4C44A /* timer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = timer.cpp; sourceTree = "<group>"; };
 		9AD5ED582AE79D90008CCFE1 /* scroll_base.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = scroll_base.cpp; sourceTree = "<group>"; };
-		9ADB6C9D28D12AEB00608B22 /* shared_command.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = shared_command.h; sourceTree = "<group>"; };
-		9ADB6C9E28D12AEB00608B22 /* shared_commnand.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = shared_commnand.cpp; sourceTree = "<group>"; };
 		9ADB6C9F28D12AEB00608B22 /* command.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = command.cpp; sourceTree = "<group>"; };
-		9ADB6CA028D12AEB00608B22 /* shared.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = shared.cpp; sourceTree = "<group>"; };
-		9ADB6CA128D12AEB00608B22 /* shared.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = shared.h; sourceTree = "<group>"; };
 		9ADB6CA228D12AEB00608B22 /* command.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = command.h; sourceTree = "<group>"; };
 		9ADDBBE02A4025DC00C53EEB /* render.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = render.cpp; sourceTree = "<group>"; };
 		9ADDBBE12A4025DC00C53EEB /* program.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = program.cpp; sourceTree = "<group>"; };
@@ -1592,10 +1586,6 @@
 			children = (
 				9ADB6C9F28D12AEB00608B22 /* command.cpp */,
 				9ADB6CA228D12AEB00608B22 /* command.h */,
-				9ADB6C9D28D12AEB00608B22 /* shared_command.h */,
-				9ADB6C9E28D12AEB00608B22 /* shared_commnand.cpp */,
-				9ADB6CA028D12AEB00608B22 /* shared.cpp */,
-				9ADB6CA128D12AEB00608B22 /* shared.h */,
 				9ABA65A628B5D3F80063B976 /* _.h */,
 			);
 			path = menu;
@@ -2385,7 +2375,6 @@
 				9A92315927EAE40F00B5A78D /* form_callback.cpp in Sources */,
 				9A92315A27EAE40F00B5A78D /* form.cpp in Sources */,
 				9A92315B27EAE40F00B5A78D /* frame.cpp in Sources */,
-				9ADB6CA528D12AF700608B22 /* shared_commnand.cpp in Sources */,
 				9A92315C27EAE40F00B5A78D /* interaction_child.cpp in Sources */,
 				9A92315D27EAE40F00B5A78D /* interaction_impl.cpp in Sources */,
 				9A92315E27EAE40F00B5A78D /* interaction_layout.cpp in Sources */,
@@ -2500,7 +2489,6 @@
 				9A8FCD902651AFAB00C0D8A1 /* write_text.cpp in Sources */,
 				9A92312427EACF2100B5A78D /* load_image.cpp in Sources */,
 				9A92313227EACF2100B5A78D /* imaging.cpp in Sources */,
-				9ADB6CA628D12AFB00608B22 /* shared.cpp in Sources */,
 				9A1FB51128712FAC0042849A /* path_simple_optimization.cpp in Sources */,
 				9A5ECD4028CCC3940084D354 /* item.cpp in Sources */,
 				9A92312E27EACF2100B5A78D /* meta.cpp in Sources */,

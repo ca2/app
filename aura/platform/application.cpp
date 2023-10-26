@@ -5537,46 +5537,22 @@ namespace aura
 
          ::atom idCommand(pszCommand);
 
-         ::pointer<::user::interaction>pinteraction = m_puserinteractionMain.get();
+         ::message::command command(idCommand);
 
-         if(pinteraction)
+         auto puserinteractionMain = m_puserinteractionMain;
+
+         puserinteractionMain->route_command(&command);
+
+         if(command.m_bRet)
          {
-
-            pinteraction->host_post([pinteraction, idCommand]()
-            {
-
-               ::message::command command(idCommand);
-
-               pinteraction->route_command(&command);
-
-            });
 
             return true;
-
-         }
-         else
-         {
-
-            ::message::command command;
-
-            command.m_atom = idCommand;
-
-            auto puserinteractionMain = m_puserinteractionMain;
-
-            puserinteractionMain->route_command(&command);
-
-            if(command.m_bRet)
-            {
-
-               return true;
-
-            }
 
          }
 
       }
 
-      return false;
+      return ::aqua::application::on_application_menu_action(pszCommand);
 
    }
 

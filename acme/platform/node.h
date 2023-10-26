@@ -545,8 +545,6 @@ namespace acme
       //CLASS_DECL_ACME string ca2_command_line();
 
 
-
-
       //virtual int process_get_status();
       //virtual void process_set_status(int iStatus);
       //virtual int * process_get_pargc();
@@ -770,6 +768,9 @@ namespace acme
 
       virtual ::string operating_system_application_version();
       
+
+      virtual void application_handle(long long l, void * p);
+
 
    };
 

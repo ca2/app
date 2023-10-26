@@ -3316,6 +3316,13 @@ return false;
    }
 
 
+   void node::application_handle(long long l, void * p)
+   {
+      
+      
+   }
+
+
 } // namespace acme
 
 

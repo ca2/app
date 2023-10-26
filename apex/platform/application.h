@@ -51,7 +51,7 @@ namespace apex
 
       bool                                         m_bReadStringTable;
 
-      ::pointer<application_menu>                  m_pappmenu;
+      ::pointer<::apex::menu>                      m_pmenuMain;
 
       //::pointer<::game::game>                    m_pgame;
 
@@ -367,7 +367,7 @@ namespace apex
 
       //virtual bool is_local_data() override;
 
-      application_menu & applicationmenu();
+      ::apex::menu * main_menu() override;
 
 
       virtual ::file::path appconfig_folder();

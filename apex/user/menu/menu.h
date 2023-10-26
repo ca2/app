@@ -9,6 +9,9 @@
 #pragma once
 
 
+struct popup_flag_t{};
+
+
 namespace apex
 {
 
@@ -29,14 +32,26 @@ namespace apex
       };
       
       
-      string m_strName;
-      string m_strId;
-      string m_strMacosAccelerator;
-      string m_strDescription;
+      bool        m_bPopup = false;
+      string      m_strName;
+      string      m_strId;
+      string      m_strMacosAccelerator;
+      string      m_strDescription;
       
       menu();
+      menu(string strName, popup_flag_t);
       menu(string strName, string strId="", string strMacosAccelerator="", string strDescription="");
 
+      
+      ::index find_child_with_name(const char * pszName) const;
+      
+      bool is_popup() const
+      {
+         
+         return this->has_elements() || m_bPopup;
+         
+      }
+      
       
    };
 

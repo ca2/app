@@ -6113,7 +6113,7 @@ namespace apex
          
          pmenuApp->add(__new(menu("separator", "", "", "")));
          
-         pmenuApp->add(__new(menu("Quit " + m_strAppName, "quit_application", "", "")));
+         pmenuApp->add(__new(menu("Quit " + m_strAppName, "app_exit", "", "")));
          
       }
 

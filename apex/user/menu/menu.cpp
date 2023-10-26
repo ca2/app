@@ -21,6 +21,15 @@ namespace apex
       
    }
    
+
+   menu::menu(string strName, popup_flag_t) :
+      m_strName(strName),
+      m_bPopup(true)
+   {
+      
+      
+   }
+
    
    menu::menu(string strName, string strId, string strMacosAccelerator, string strDescription) :
    m_strName(strName),
@@ -40,6 +49,21 @@ m_strDescription(strDescription)
 //   }
 
 //   
+
+
+   ::index menu::find_child_with_name(const char * pszName) const
+   {
+      
+      return predicate_find_first([pszName](auto & pitem)
+                                  {
+         
+         return pitem->m_strName == pszName;
+         
+      });
+      
+   }
+
+
 } // namespace apex
 //
 //

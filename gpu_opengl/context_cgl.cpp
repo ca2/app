@@ -7,9 +7,11 @@
 //
 
 #include "framework.h"
-
-#include <OpenGL/OpenGL.h>
+#include "buffer.h"
 #include "context_cgl.h"
+#include "opengl.h"
+#include "aura/graphics/image/image.h"
+#include "aura/platform/system.h"
 
 
 namespace opengl
@@ -44,16 +46,18 @@ namespace opengl
    void context_cgl::_create_offscreen_buffer(const ::size_i32 & size)
    {
 
-      auto pgpu = psystem->get_gpu();
+      auto pgpu = acmesystem()->m_paurasystem->get_gpu();
 
       ::pointer<opengl>popengl = pgpu;
 
       if (::is_null(popengl))
       {
 
-         return ::error_failed;
+         return;
 
       }
+      
+      m_itaskGpu = ::current_itask();
       
 //      unsigned long target = GL_TEXTURE_2D;
 //
@@ -92,7 +96,8 @@ namespace opengl
       {
          
          kCGLPFANoRecovery,
-         kCGLPFAAccelerated,
+         //kCGLPFAAccelerated,
+         //kCGLPFAOffScreen,
          kCGLPFAOpenGLProfile,
          (CGLPixelFormatAttribute)kCGLOGLPVersion_3_2_Core,
          kCGLPFAColorSize, (CGLPixelFormatAttribute)32,
@@ -116,12 +121,14 @@ namespace opengl
       
       GLint NumFormats = 0;
       
-      error = CGLChoosePixelFormat(AttribList, &PixelFormat, &NumFormats);
+      auto error = CGLChoosePixelFormat(AttribList, &PixelFormat, &NumFormats);
       
       if(error != kCGLNoError)
       {
          
-         return ::error_failed;
+         //return ::error_failed;
+         
+         return;
          
       }
 
@@ -130,7 +137,9 @@ namespace opengl
       if(error != kCGLNoError)
       {
          
-         return ::error_failed;
+         //return ::error_failed;
+         
+         return;
          
       }
 
@@ -139,29 +148,42 @@ namespace opengl
       if(error != kCGLNoError)
       {
          
-         return ::error_failed;
+         //return ::error_failed;
+         
+         return;
          
       }
 
-      ::e_status estatus = make_current();
+      make_current();
+      //::e_status estatus = make_current();
 
-      if(!estatus)
-      {
-         
-         return estatus;
-         
-      }
+//      if(!estatus)
+//      {
+//         
+//         //return estatus;
+//         
+//         return;
+//         
+//      }
+      
+      auto cx = context::m_pbuffer->m_pimage->width();
+      auto cy = context::m_pbuffer->m_pimage->height();
+      auto scan = context::m_pbuffer->m_pimage->m_iScan;
+      auto data=context::m_pbuffer->m_pimage->get_data();
 
-      error = CGLSetOffScreen(m_context, m_pimage->width(), m_pimage->height(), m_pimage->m_iScan, m_pimage->get_data()) ;
+      error = CGLSetOffScreen(m_context, cx,
+                              cy, scan, data) ;
 
       if(error != kCGLNoError)
       {
          
-         return ::error_failed;
+         //return ::error_failed;
+         
+         return;
          
       }
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -171,18 +193,20 @@ namespace opengl
 
       CGLError error = CGLSetCurrentContext(m_context);
       
-      bool bMakeCurrentOk = error != kCGLNoError;
+      bool bMakeCurrentOk = error == kCGLNoError;
 
       if (!bMakeCurrentOk)
       {
 
          printf("eglMakeCurrent failed!\n");
 
-         return ::error_failed;
+         //return ::error_failed;
+         
+         return;
 
       }
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -195,11 +219,11 @@ namespace opengl
       if(error != kCGLNoError)
       {
 
-         return ::error_failed;
+         //return ::error_failed;
          
       }
       
-      return ::success;
+      //return ::success;
 
    }
 
@@ -232,9 +256,9 @@ namespace opengl
 
       }
 
-      auto pFind = stra.find_first_begins_ci("out vec4 ");
+      auto iFind = stra.find_first_begins_ci("out vec4 ");
 
-      if(::is_set(pFind))
+      if(::found(iFind))
       {
 
          stra[iFind] = "out vec4 fragmentColor;";
@@ -247,8 +271,12 @@ namespace opengl
 
       }
 
-      stra.replace("gl_FragColor", "fragmentColor");
-
+      for(auto & str : stra)
+      {
+      
+         str.find_replace("gl_FragColor", "fragmentColor");
+         
+      }
    }
 
 

@@ -40,7 +40,8 @@
 		9A8B64E624CCAAFC00A93185 /* context_fbo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8B64E424CCAAFC00A93185 /* context_fbo.cpp */; };
 		9A8B64E724CCAAFC00A93185 /* context_fbo.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8B64E524CCAAFC00A93185 /* context_fbo.h */; };
 		9A8B64F724CCEBBF00A93185 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8B64F624CCEBBF00A93185 /* CoreGraphics.framework */; };
-		9ADDBC322A4159F700C53EEB /* glad.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ADDBC192A41594200C53EEB /* glad.dylib */; };
+		9ABBB6F82AEB9E7F007611C5 /* context_cgl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ABBB6F72AEB9E7E007611C5 /* context_cgl.cpp */; };
+		9ABBB6FA2AEB9F58007611C5 /* context_cgl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9ABBB6F92AEB9F58007611C5 /* context_cgl.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -162,6 +163,8 @@
 		9A8B64F224CCC11400A93185 /* context_glx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = context_glx.cpp; sourceTree = "<group>"; };
 		9A8B64F424CCE39F00A93185 /* context_win32.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = context_win32.cpp; sourceTree = "<group>"; };
 		9A8B64F624CCEBBF00A93185 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		9ABBB6F72AEB9E7E007611C5 /* context_cgl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = context_cgl.cpp; sourceTree = "<group>"; };
+		9ABBB6F92AEB9F58007611C5 /* context_cgl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = context_cgl.h; sourceTree = "<group>"; };
 		9ADD666526B6264900D11298 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		9ADD666926B6266800D11298 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
 		9ADDBC122A41594200C53EEB /* glad.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = glad.xcodeproj; path = ../../../port/graphics3d/glad/glad.xcodeproj; sourceTree = "<group>"; };
@@ -191,7 +194,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A7992F42A53A52900261F46 /* libassimp.dylib in Frameworks */,
-				9ADDBC322A4159F700C53EEB /* glad.dylib in Frameworks */,
 				9A6A479B2660E6E2004ED97A /* libacme.dylib in Frameworks */,
 				9A6A479D2660E6E2004ED97A /* libapex.dylib in Frameworks */,
 				9A8B64F724CCEBBF00A93185 /* CoreGraphics.framework in Frameworks */,
@@ -224,6 +226,8 @@
 		9A204A2E2433C68300D45614 /* gpu_opengl */ = {
 			isa = PBXGroup;
 			children = (
+				9ABBB6F92AEB9F58007611C5 /* context_cgl.h */,
+				9ABBB6F72AEB9E7E007611C5 /* context_cgl.cpp */,
 				9A54A6242A2D626E0052BAB6 /* _____debug.xcconfig */,
 				9A54A6212A2D626E0052BAB6 /* _____release.xcconfig */,
 				9A204A662433C68300D45614 /* _.h */,
@@ -311,6 +315,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A8B646C24CBE90100A93185 /* context.h in Headers */,
+				9ABBB6FA2AEB9F58007611C5 /* context_cgl.h in Headers */,
 				9A1DDEC629A9EEB500C9C80E /* assimp.h in Headers */,
 				9A204A6F2433C68300D45614 /* factory_exchange.h in Headers */,
 				9A8B646724CBE90100A93185 /* opengl.h in Headers */,
@@ -508,6 +513,7 @@
 				9A204A6E2433C68300D45614 /* framework.cpp in Sources */,
 				9A8B647124CBE90100A93185 /* context.cpp in Sources */,
 				9A8B646624CBE90100A93185 /* image_opengl.cpp in Sources */,
+				9ABBB6F82AEB9E7F007611C5 /* context_cgl.cpp in Sources */,
 				9A204A742433C68300D45614 /* _factory.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

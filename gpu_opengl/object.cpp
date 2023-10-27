@@ -37,14 +37,16 @@ const char * opengl_error_string(int iError)
       case  GL_OUT_OF_MEMORY:
   
          return "GL_OUT_OF_MEMORY";
-
+#ifdef GL_STACK_UNDERFLOW
       case GL_STACK_UNDERFLOW:
      
          return "GL_STACK_UNDERFLOW";
-
+#endif
+#ifdef GL_STACK_OVERFLOW
       case GL_STACK_OVERFLOW:
          
          return "GL_STACK_OVERFLOW";
+#endif
       default:
          return "Unknown GL Error";
          

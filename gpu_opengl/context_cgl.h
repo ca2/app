@@ -9,6 +9,10 @@
 #pragma once
 
 
+#include "context.h"
+
+#include <OpenGL/OpenGL.h>
+
 namespace opengl
 {
 

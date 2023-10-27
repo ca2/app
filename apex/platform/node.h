@@ -58,7 +58,7 @@ namespace apex
       //virtual void defer_create_main_menu(const string_array & straParent, const string_array & straMenu, const string_array & straId);
       
 
-      virtual void set_application_menu(application_menu * pmenu, ::apex::application * papp);
+//      virtual void set_main_menu(application_menu * pmenu, ::apex::application * papp);
 
 
       virtual ::file::path get_desktop_file_path(::apex::application * papp);
@@ -68,6 +68,9 @@ namespace apex
 
 
       virtual void start_node() override;
+      
+      
+      virtual void application_handle(long long l, void * p);
 
 
       void on_operating_system_user_theme_change() override;

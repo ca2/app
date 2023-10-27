@@ -62,9 +62,9 @@ namespace opengl
       CGLPixelFormatAttribute AttribList[] =
       {
 
-         kCGLPFADisplayMask,(CGLPixelFormatAttribute) 0,
+//         kCGLPFADisplayMask,(CGLPixelFormatAttribute) 0,
 //         kCGLPFANoRecovery,
-//         kCGLPFADoubleBuffer,
+         kCGLPFADoubleBuffer,
 //         kCGLPFAAccelerated,(CGLPixelFormatAttribute)1,
 //         kCGLPFAOpenGLProfile, (CGLPixelFormatAttribute)kCGLOGLPVersion_GL3_Core,
 //         kCGLPFAColorSize, (CGLPixelFormatAttribute)24,
@@ -73,19 +73,25 @@ namespace opengl
 //         kCGLPFAStencilSize,(CGLPixelFormatAttribute)8,
 //         (CGLPixelFormatAttribute)0
 //
-         kCGLPFAOpenGLProfile, (CGLPixelFormatAttribute)kCGLOGLPVersion_GL4_Core,
+         //kCGLPFAOpenGLProfile, (CGLPixelFormatAttribute)kCGLOGLPVersion_GL4_Core,
+         kCGLPFAOpenGLProfile, (CGLPixelFormatAttribute)kCGLOGLPVersion_GL3_Core,
+//         kCGLPFAOpenGLProfile, (CGLPixelFormatAttribute)kCGLOGLPVersion_GL3_2_Core,
          kCGLPFAColorSize, (CGLPixelFormatAttribute)32,
-         //kCGLPFAAlphaSize, (CGLPixelFormatAttribute)8,
-         //kCGLPFADepthSize, (CGLPixelFormatAttribute)16,
+         kCGLPFAAlphaSize, (CGLPixelFormatAttribute)8,
+         kCGLPFADepthSize, (CGLPixelFormatAttribute)16,
          //kCGLPFAStencilSize, (CGLPixelFormatAttribute)8,
          //kCGLPFAAccelerated,
-         kCGLPFADoubleBuffer,
-         (CGLPixelFormatAttribute)0
+         //kCGLPFAOffScreen, (CGLPixelFormatAttribute)1,
+         //kCGLPFADoubleBuffer,
+         //(CGLPixelFormatAttribute)1
+         (CGLPixelFormatAttribute) 0
       };
 
       CGDirectDisplayID display = CGMainDisplayID();
 
-      AttribList[1] = (CGLPixelFormatAttribute)CGDisplayIDToOpenGLDisplayMask (display);
+      auto displayMask= CGDisplayIDToOpenGLDisplayMask (display);
+      
+//      AttribList[1] =(CGLPixelFormatAttribute)displayMask;
       
       CGLPixelFormatObj PixelFormat = nullptr;
       
@@ -192,7 +198,8 @@ namespace opengl
       glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_framebuffer);
       glGenRenderbuffersEXT(1, &m_renderbuffer);
       glBindRenderbufferEXT(GL_RENDERBUFFER_EXT, m_renderbuffer);
-      glRenderbufferStorageEXT(GL_RENDERBUFFER_EXT, GL_RGBA8, imageWidth, imageHeight);
+//      glRenderbufferStorageEXT(GL_RENDERBUFFER_EXT, GL_RGBA8, imageWidth, imageHeight);
+      glRenderbufferStorageEXT(GL_RENDERBUFFER_EXT, GL_RGBA, imageWidth, imageHeight);
       glFramebufferRenderbufferEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT, GL_RENDERBUFFER_EXT, m_renderbuffer);
       
       GLenum status = glCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT);
@@ -394,7 +401,8 @@ namespace opengl
 //
 //      }
       
-      glRenderbufferStorageEXT(GL_RENDERBUFFER_EXT, GL_RGBA8, size.cx(), size.cy());
+//      glRenderbufferStorageEXT(GL_RENDERBUFFER_EXT, GL_RGBA8, size.cx(), size.cy());
+      glRenderbufferStorageEXT(GL_RENDERBUFFER_EXT, GL_RGBA, size.cx(), size.cy());
 
       glViewport(0, 0, size.cx(), size.cy());
       
@@ -405,8 +413,12 @@ namespace opengl
 
    void context_fbo::prepare_for_gpu_read()
    {
+      
+      CGLFlushDrawable(m_context);
    
 //      return ::success;
+      
+      //
       
    }
 

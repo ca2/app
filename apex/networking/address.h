@@ -14,8 +14,9 @@ namespace networking
    public:
 
       void * m_p2;
-
-
+      ::string  m_strName;
+      
+      
       address();
       //address(const address& address);
       ////address(i32 family, ::networking::port_t port = 0);

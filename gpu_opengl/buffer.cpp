@@ -34,24 +34,35 @@ namespace opengl
 
       m_pimage->map();
 
-      glReadBuffer(GL_FRONT);
-      
-      int cx = m_pimage->m_size.cx();
+      auto cx = m_pimage->m_size.cx();
 
-      int cy = m_pimage->m_size.cy();
+      auto cy = m_pimage->m_size.cy();
+      
+      auto data = m_pimage->m_pimage32Raw;
+      
+      
       
 #if defined(__APPLE__) || defined(ANDROID)
 
-      glReadPixels(
-         0, 0,
-         cx, cy,
-         GL_RGBA,
-         GL_UNSIGNED_BYTE,
-         m_pimage->m_pimage32Raw);
+      if(data != nullptr)
+      {
+         glReadBuffer(GL_FRONT);
+
+
+         glReadPixels(
+                      0, 0,
+                      cx, cy,
+                      GL_RGBA,
+                      GL_UNSIGNED_BYTE,
+                      data);
+         
+      }
 
       //m_pimage->mult_alpha();
 
 #elif defined(LINUX)
+      glReadBuffer(GL_FRONT);
+      
 
       glReadPixels(
          0, 0,
@@ -63,7 +74,9 @@ namespace opengl
       //m_pimage->mult_alpha();
       
 #else
+      glReadBuffer(GL_FRONT);
       
+
       glReadnPixels(
          0, 0,
          cx, cy,

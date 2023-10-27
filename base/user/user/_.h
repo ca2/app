@@ -7,7 +7,7 @@
 #include "_constant.h"
 
 
-class application_menu;
+//class application_menu;
 
 
 namespace user

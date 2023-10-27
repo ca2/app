@@ -1,6 +1,5 @@
 #include "framework.h"
 #include "application.h"
-#include "application_menu.h"
 #include "session.h"
 #include "system.h"
 #include "os_context.h"
@@ -34,6 +33,7 @@
 #include "apex/interprocess/communication.h"
 #include "apex/interprocess/target.h"
 #include "apex/interprocess/task.h"
+#include "apex/user/menu/menu.h"
 #include "apex/database/_binary_stream.h"
 #include "acme/filesystem/filesystem/dir_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
@@ -335,17 +335,17 @@ namespace apex
 
 
 
-   application_menu & application::applicationmenu()
+   ::apex::menu * application::main_menu()
    {
 
-      if (m_pappmenu.is_null())
+      if (m_pmenuMain.is_null())
       {
 
-         m_pappmenu = __new(application_menu);
+         m_pmenuMain = __new(::apex::menu);
 
       }
 
-      return *m_pappmenu;
+      return m_pmenuMain;
 
    }
 
@@ -388,6 +388,10 @@ namespace apex
          }
 
       }
+      
+#else
+      
+      acmenode()->application_handle(id_application_menu_update, nullptr);
 
 #endif
 
@@ -2810,8 +2814,15 @@ namespace apex
    }
 
 
-   bool application::on_application_menu_action(const ::string & pszCommand)
+   bool application::on_application_menu_action(const ::string & strCommand)
    {
+      
+      if(strCommand == "display_about")
+      {
+         
+         show_about_box();
+         
+      }
 
       return false;
 
@@ -6086,11 +6097,41 @@ namespace apex
 
       error() <<"1.1";
 
-      index i = applicationmenu().get_count();
+      auto pmenuMain = main_menu();
+      
+      pmenuMain->erase_all();
+      
+      using namespace ::apex;
+      
+      {
+         
+         auto pmenuApp = __new(menu(m_strAppName, "", "", ""));
+         
+         pmenuMain->add(pmenuApp);
+         
+         pmenuApp->add(__new(menu("About " + m_strAppName, "display_about", "", "")));
+         
+         pmenuApp->add(__new(menu("separator", "", "", "")));
+         
+         pmenuApp->add(__new(menu("Quit " + m_strAppName, "app_exit", "", "")));
+         
+      }
+
+      {
+         
+         auto pmenuView = __new(menu("View", "", "", ""));
+         
+         pmenuMain->add(pmenuView);
+         
+         pmenuView->add(__new(menu("Transparent Frame", "transparent_frame", "", "")));
+         
+      }
 
       //applicationmenu().add_item(i++, _("Transparent Frame"), "transparent_frame");
 
-      applicationmenu().add_item(i++, "Transparent Frame", "transparent_frame");
+//      applicationmenu()->add_item(i++, "About " + m_strAppName, "show_about", "", "Show About");
+//
+//      applicationmenu()->add_item(i++, "Transparent Frame", "transparent_frame", "Ctrl+Shift+T", "Toggle Transparent Frame");
 
       application_menu_update();
 

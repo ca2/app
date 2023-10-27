@@ -197,10 +197,10 @@ namespace apex
 //   }
 
 
-   void node::set_application_menu(::application_menu * pmenu, ::apex::application * papp)
-   {
-
-   }
+//   void node::set_application_menu(::apex::ication_menu * pmenu, ::apex::application * papp)
+//   {
+//
+//   }
 
 
    ::file::path node::get_desktop_file_path(::apex::application * papp)
@@ -236,6 +236,12 @@ namespace apex
       //return estatus;
 
 
+   }
+
+
+   void node::application_handle(long long l, void * p)
+   {
+   
    }
 
 

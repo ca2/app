@@ -13,10 +13,10 @@
 #include "apex/database/_binary_stream.h"
 #include "apex/database/change_event.h"
 #include "acme/filesystem/filesystem/file_context.h"
-#include "apex/platform/application_menu.h"
 #include "apex/platform/node.h"
 #include "apex/platform/savings.h"
 #include "apex/platform/system.h"
+#include "apex/user/menu/menu.h"
 #include "aqua/xml/document.h"
 #include "aura/user/user/interaction_array.h"
 #include "aura/graphics/draw2d/graphics.h"
@@ -196,14 +196,14 @@ void simple_frame_window::on_update_notify_icon_menu_top(::index & iNotifyIconIt
 
    auto papp = auraapplication();
 
-   auto c = papp->applicationmenu().get_count();
+   auto c = papp->main_menu()->get_count();
 
    for (auto i = 0; i < c; i++)
    {
 
-      auto & item = papp->applicationmenu()[i];
+      auto pitem = papp->main_menu()->element_at(i);
 
-      m_pnotifyicon->notify_icon_insert_item(false, iNotifyIconItem, item.m_strName, item.m_strId);
+      m_pnotifyicon->notify_icon_insert_item(false, iNotifyIconItem, pitem->m_strName, pitem->m_strId);
 
    }
 

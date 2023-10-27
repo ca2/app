@@ -173,7 +173,7 @@ namespace opengl
    void opengl::defer_init_glew()
    {
 
-#if !defined(LINUX)
+#if !defined(LINUX) && !defined(__APPLE__)
 
       gladLoadGL();
 

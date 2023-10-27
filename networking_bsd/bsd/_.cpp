@@ -43,21 +43,21 @@ string bsd_socket_error(int iBsdSocketError)
 namespace networking_bsd
 {
 
-
-   ::pointer < ::item_array > networking::list_computers()
-   {
-
-      return {};
-
-   }
-
-
-   ::pointer < ::item_array > networking::list_network_interfaces()
-   {
-
-      return {};
-
-   }
+//
+//   ::pointer < ::item_array > networking::list_computers()
+//   {
+//
+//      return {};
+//
+//   }
+//
+//
+//   ::pointer < ::item_array > networking::list_network_interfaces()
+//   {
+//
+//      return {};
+//
+//   }
 
 
 } // namespace networking_bsd

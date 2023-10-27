@@ -115,10 +115,10 @@ namespace aura
    }
 
 
-   void node::set_application_menu(::application_menu * pmenu, ::apex::application * papp)
-   {
-
-   }
+//   void node::set_application_menu(::application_menu * pmenu, ::apex::application * papp)
+//   {
+//
+//   }
 
 
    ::windowing::windowing * node::windowing()

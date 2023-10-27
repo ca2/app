@@ -79,10 +79,10 @@ namespace opengl
 
 #if defined(__APPLE__)
 
-      glGenVertexArraysAPPLE(1, &m_VAO);
+      glGenVertexArrays(1, &m_VAO);
       glGenBuffers(1, &m_VBO);
       // bind the Vertex Array Object first, then bind and set vertex buffer(s), and then configure vertex attributes(s).
-      glBindVertexArrayAPPLE(m_VAO);
+      glBindVertexArray(m_VAO);
 
       //#elif defined(ANDROID)
       //

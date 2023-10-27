@@ -6,6 +6,9 @@
 
 
 class main_hold_base;
+namespace apex{
+class menu;
+} // namespace apex
 
 
 #include "application_base.h"
@@ -92,6 +95,8 @@ namespace acme
       virtual void start_application(::request* prequest);
       
       //virtual void on_initialize_application();
+      
+      virtual ::apex::menu * main_menu();
 
       using ::acme::context::factory;
 

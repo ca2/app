@@ -337,14 +337,85 @@ public:
    virtual ::trace_statement fatal() const;
 
 
-   virtual void trace(enum_trace_level etracelevel, const ::ansi_character * pszFormat, ...) const;
+   virtual void tracef(enum_trace_level etracelevel, const ::ansi_character * pszFormat, ...) const;
 
-   virtual void format_trace(enum_trace_level etracelevel, const ::ansi_character * pszFormat, va_list & arguments) const;
+   virtual void formatf_trace(enum_trace_level etracelevel, const ::ansi_character * pszFormat, va_list & arguments) const;
 
    virtual void informationf(const ::ansi_character * pszFormat, ...) const;
    virtual void warningf(const ::ansi_character * pszFormat, ...) const;
    virtual void errorf(const ::ansi_character * pszFormat, ...) const;
    virtual void fatalf(const ::ansi_character * pszFormat, ...) const;
+
+
+
+   // With help from speccylad(twitch)/turd(discord) 2023-10-27 ~09:00 BRT
+   template<typename... Ts>
+   void trace(enum_trace_level etracelevel, const std::format_string<Ts...> fmt, Ts&&... args) const
+   {
+
+      auto statement = ::transfer(log_statement());
+
+      statement(etracelevel)(trace_category());
+
+      statement.format_output(fmt, ::std::forward<Ts>(args)...);
+
+   }
+
+   // With help from speccylad(twitch)/turd(discord) 2023-10-27 ~09:00 BRT
+   template<typename... Ts>
+   void information(const std::format_string<Ts...> fmt, Ts&&... args) const
+   {
+      trace(e_trace_level_information, fmt, ::std::forward<Ts>(args)...);
+   }
+   // With help from speccylad(twitch)/turd(discord) 2023-10-27 ~09:00 BRT
+   template<typename... Ts>
+   void warning(const std::format_string<Ts...> fmt, Ts&&... args) const
+   {
+      trace(e_trace_level_warning, fmt, ::std::forward<Ts>(args)...);
+   }
+   // With help from speccylad(twitch)/turd(discord) 2023-10-27 ~09:00 BRT
+   template<typename... Ts>
+   void error(const std::format_string<Ts...> fmt, Ts&&... args) const
+   {
+      trace(e_trace_level_error, fmt, ::std::forward<Ts>(args)...);
+   }
+   // With help from speccylad(twitch)/turd(discord) 2023-10-27 ~09:00 BRT
+   template<typename... Ts>
+   void fatal(const std::format_string<Ts...> fmt, Ts&&... args) const
+   {
+      trace(e_trace_level_fatal, fmt, ::std::forward<Ts>(args)...);
+   }
+
+
+
+   void trace(enum_trace_level etracelevel, const ::scoped_string & scopedstr) const
+   {
+
+      auto statement = ::transfer(log_statement());
+
+      statement(etracelevel)(trace_category());
+
+      statement << scopedstr;
+
+   }
+
+
+   void information(const scoped_string & scopedstr) const
+   {
+      trace(e_trace_level_information, scopedstr);
+   }
+   void warning(const scoped_string & scopedstr) const
+   {
+      trace(e_trace_level_warning, scopedstr);
+   }
+   void error(const scoped_string & scopedstr) const
+   {
+      trace(e_trace_level_error, scopedstr);
+   }
+   void fatal(const scoped_string & scopedstr) const
+   {
+      trace(e_trace_level_fatal, scopedstr);
+   }
 
    //virtual trace_statement trace_log_warning() << ;
    //virtual trace_statement trace_log_error() << ;
@@ -794,6 +865,111 @@ CLASS_DECL_ACME void informationf(const ::ansi_character * pszFormat, ...);
 CLASS_DECL_ACME void warningf(const ::ansi_character * pszFormat, ...);
 CLASS_DECL_ACME void errorf(const ::ansi_character * pszFormat, ...);
 CLASS_DECL_ACME void fatalf(const ::ansi_character * pszFormat, ...);
+
+
+inline void information(const ::scoped_string & scopedstr)
+{
+
+   auto statement = log_statement();
+
+   statement(e_trace_level_information);
+
+   statement << scopedstr;
+
+}
+
+
+inline void warning(const ::scoped_string & scopedstr)
+{
+
+   auto statement = log_statement();
+
+   statement(e_trace_level_warning);
+
+   statement << scopedstr;
+
+}
+
+
+inline void error(const ::scoped_string & scopedstr)
+{
+
+   auto statement = log_statement();
+
+   statement(e_trace_level_error);
+
+   statement << scopedstr;
+
+}
+
+
+
+inline void fatal(const ::scoped_string & scopedstr)
+{
+
+   auto statement = log_statement();
+
+   statement(e_trace_level_fatal);
+
+   statement << scopedstr;
+
+}
+
+
+
+// With help from speccylad(twitch)/turd(discord) 2023-10-27 ~09:00 BRT
+template<typename... Ts>
+inline void information(const std::format_string<Ts...> fmt, Ts&&... args)
+{
+
+   auto statement = log_statement();
+
+   statement(e_trace_level_information);
+
+   statement.format_output(fmt, std::forward<Ts>(args)...);
+
+}
+
+
+// With help from speccylad(twitch)/turd(discord) 2023-10-27 ~09:00 BRT
+template<typename... Ts>
+inline void warning(const std::format_string<Ts...> fmt, Ts&&... args)
+{
+
+   auto statement = log_statement();
+
+   statement(e_trace_level_warning);
+
+   statement.format_output(fmt, std::forward<Ts>(args)...);
+
+}
+
+// With help from speccylad(twitch)/turd(discord) 2023-10-27 ~09:00 BRT
+template<typename... Ts>
+void error(const std::format_string<Ts...> fmt, Ts&&... args)
+{
+
+   auto statement = log_statement();
+
+   statement(e_trace_level_error);
+
+   statement.format_output(fmt, std::forward<Ts>(args)...);
+
+}
+
+
+// With help from speccylad(twitch)/turd(discord) 2023-10-27 ~09:00 BRT
+template<typename... Ts>
+void fatal(const std::format_string<Ts...> fmt, Ts&&... args)
+{
+
+   auto statement = log_statement();
+
+   statement(e_trace_level_fatal);
+
+   statement.format_output(fmt, std::forward<Ts>(args)...);
+
+}
 
 
 inline bool is_ok(const ::particle * pconstparticle)

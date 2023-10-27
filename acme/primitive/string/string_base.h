@@ -7,6 +7,7 @@
 #include "string_range.h"
 #include "mutable_string_range.h"
 #include "acme/memory/string_memory_allocator.h"
+#include <format>
 
 
 
@@ -59,6 +60,7 @@ public:
    //string_base(const ::ansi_character * psz);
    //string_base(const ::wd16_character * psz);
    //string_base(const ::wd32_character * psz);
+   string_base(const ::std::string & str) : string_base(str.c_str()) { }
    string_base(const ::ansi_string & ansistr) : NATURAL_POINTER(e_no_initialize) { construct5(ansistr); }
    string_base(const ::wd16_string & wd16str) : NATURAL_POINTER(e_no_initialize) { construct5(wd16str); }
    string_base(const ::wd32_string & wd32str) : NATURAL_POINTER(e_no_initialize) { construct5(wd32str); }
@@ -1264,6 +1266,24 @@ public:
 
    string_base & append_formatf_arguments(const CHARACTER * pszFormat, va_list args);
 
+
+   template<typename... Ts>
+   string_base & format(const std::format_string<Ts...> fmt, Ts&&... args) 
+   {
+      
+      return this->operator=(std::format(fmt, std::forward<Ts>(args)...));
+
+   }
+
+   template<typename... Ts>
+   string_base & append_format(const std::format_string<Ts...> fmt, Ts&&... args)
+   {
+
+      return this->operator +=(std::format(fmt, std::forward<Ts>(args)...));
+
+   }
+
+
    //void FormatMessage(const CHARACTER * pszFormat, ...);
 
 
@@ -1707,3 +1727,54 @@ inline string & operator <<(string & str, INTEGRAL i)
 
 
 using a_string_function = ::function < ::string(void) >;
+
+
+
+
+// Created by speccylad(twitch)/turd(discord) trasncript by camilo on
+// 2023-10-19 23:26 <3ThomasBorregaardSorensen!!
+#pragma once
+
+
+#include <format>
+
+
+
+//template <> 
+//struct std::formatter<::string> :
+//   public std::formatter<std::string>
+//{
+//
+//   template<typename Context>
+//   auto format(const ::string& s, Context& ctx) const
+//   {
+//
+//      return std::formatter<string>::format(std::format("{}", s.c_str()), ctx);
+//   }
+//
+//};
+
+
+// Simple specialization for strings in the Ca2 framework.
+// This just uses ::string::c_str() to format.
+template<>
+struct std::formatter<::string> : std::formatter<std::string> {
+   template<class FormatContext>
+   auto format(const ::string & value, FormatContext & fc) const
+   {
+      return std::formatter<std::string>::format(value.c_str(), fc);
+   }
+};
+
+
+template<typename ...Args>
+[[nodiscard]] inline ::string
+format(const std::format_string<Args...> fmt, Args&&... args) noexcept
+{
+
+   return ::string(std::format<Args...>(fmt, std::forward<Args>(args)...).c_str());
+
+}
+
+
+

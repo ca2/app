@@ -861,19 +861,19 @@ class tracer * particle::tracer() const
 }
 
 
-void particle::format_trace(enum_trace_level etracelevel, const ::ansi_character * pszFormat, va_list & arguments) const
+void particle::formatf_trace(enum_trace_level etracelevel, const ::ansi_character * pszFormat, va_list & arguments) const
 {
 
    auto statement = ::transfer(log_statement());
 
    statement(etracelevel)(trace_category());
 
-   statement.format_output_arguments(pszFormat, arguments);
+   statement.formatf_output_arguments(pszFormat, arguments);
 
 }
 
 
-void particle::trace(enum_trace_level etracelevel, const ::ansi_character * pszFormat, ...) const
+void particle::tracef(enum_trace_level etracelevel, const ::ansi_character * pszFormat, ...) const
 {
 
     va_list arguments;
@@ -886,7 +886,7 @@ void particle::trace(enum_trace_level etracelevel, const ::ansi_character * pszF
 
        statement(etracelevel)(trace_category());
 
-       statement.format_output_arguments(pszFormat, arguments);
+       statement.formatf_output_arguments(pszFormat, arguments);
 
     }
 
@@ -902,7 +902,7 @@ void particle::informationf(const ::ansi_character * pszFormat, ...) const
 
    va_start(arguments, pszFormat);
 
-   format_trace(e_trace_level_information, pszFormat, arguments);
+   formatf_trace(e_trace_level_information, pszFormat, arguments);
 
    va_end(arguments);
 
@@ -916,7 +916,7 @@ void particle::warningf(const ::ansi_character * pszFormat, ...) const
 
    va_start(arguments, pszFormat);
 
-   format_trace(e_trace_level_warning, pszFormat, arguments);
+   formatf_trace(e_trace_level_warning, pszFormat, arguments);
 
    va_end(arguments);
 
@@ -930,7 +930,7 @@ void particle::errorf(const ::ansi_character * pszFormat, ...) const
 
    va_start(arguments, pszFormat);
 
-   format_trace(e_trace_level_error, pszFormat, arguments);
+   formatf_trace(e_trace_level_error, pszFormat, arguments);
 
    va_end(arguments);
 
@@ -944,7 +944,7 @@ void particle::fatalf(const ::ansi_character * pszFormat, ...) const
 
    va_start(arguments, pszFormat);
 
-   format_trace(e_trace_level_fatal, pszFormat, arguments);
+   formatf_trace(e_trace_level_fatal, pszFormat, arguments);
 
    va_end(arguments);
 
@@ -2354,7 +2354,7 @@ void informationf(const ::ansi_character * pszFormat, ...)
 
       statement(e_trace_level_information);
 
-      statement.format_output_arguments(pszFormat, arguments);
+      statement.formatf_output_arguments(pszFormat, arguments);
 
    }
 
@@ -2376,7 +2376,7 @@ void warningf(const ::ansi_character * pszFormat, ...)
 
       statement(e_trace_level_warning);
 
-      statement.format_output_arguments(pszFormat, arguments);
+      statement.formatf_output_arguments(pszFormat, arguments);
 
    }
 
@@ -2398,7 +2398,7 @@ void errorf(const ::ansi_character * pszFormat, ...)
 
       statement(e_trace_level_error);
 
-      statement.format_output_arguments(pszFormat, arguments);
+      statement.formatf_output_arguments(pszFormat, arguments);
 
    }
 
@@ -2420,7 +2420,7 @@ void fatalf(const ::ansi_character * pszFormat, ...)
 
       statement(e_trace_level_fatal);
 
-      statement.format_output_arguments(pszFormat, arguments);
+      statement.formatf_output_arguments(pszFormat, arguments);
 
    }
 

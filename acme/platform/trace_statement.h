@@ -63,9 +63,30 @@ public:
    }
 
 
-   void format_output_arguments(const ::ansi_character * psz, va_list & arguments);
+   void formatf_output_arguments(const ::ansi_character * psz, va_list & arguments);
 
-   trace_statement & operator()(const ::ansi_character * pszFormat, ...);
+
+   template<typename... Ts>
+   void format_output(const std::format_string<Ts...> fmt, Ts&&... args)
+   {
+
+      string str;
+
+      str.format(fmt, ::std::forward < Ts >(args)...);
+
+      operator << (str);
+
+   }
+
+   //trace_statement & operator()(const ::ansi_character * pszFormat, ...);
+
+   template<typename... Ts>
+   trace_statement & operator()(const std::format_string<Ts...> fmt, Ts&&... args)
+   {
+
+      return format_output(fmt, ::std::forward < Ts >(args)...);
+
+   }
 
 
    //void format_output_arguments(const ::ansi_character * psz, va_list & arguments)

@@ -597,13 +597,6 @@ inline TYPE & array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::add_new_at
 
    ALLOCATOR::construct_count(this->m_begin + i, c);
 
-<<<<<<< Updated upstream
-=======
-   this->raw_allocate_at(i, c);
-
-   ALLOCATOR::construct_count(this->m_begin + i, c);
-
->>>>>>> Stashed changes
    return this->element_at(i);
 
 }

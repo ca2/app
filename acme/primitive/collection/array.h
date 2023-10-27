@@ -12,14 +12,14 @@ class array :
 {
 public:
 
-   
-   using THIS_ARRAY =  array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >;
 
-   
-   using BASE_TYPE = TYPE ;
+   using THIS_ARRAY = array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >;
+
+
+   using BASE_TYPE = TYPE;
    using BASE_ARG_TYPE = ARG_TYPE;
 
-   
+
    using BASE_ARRAY = ::array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >;
 
 
@@ -27,8 +27,8 @@ public:
    using const_iterator = typename BASE_ARRAY::const_iterator;
 
    using ITERATOR_RANGE = typename BASE_ARRAY::array_range;
-   
-   using CONST_RANGE = typename BASE_ARRAY::CONST_RANGE ;
+
+   using CONST_RANGE = typename BASE_ARRAY::CONST_RANGE;
    using CONST_RAW_RANGE = typename BASE_ARRAY::CONST_RAW_RANGE;
 
    using BASE_ARRAY::BASE_ARRAY;
@@ -53,14 +53,14 @@ public:
    array & operator = (std::initializer_list < TYPE > initializer_list)
    {
       this->clear();
-      for (auto& item : initializer_list) this->add(item);
+      for (auto & item : initializer_list) this->add(item);
       return *this;
    }
 
 
 
-   inline const TYPE& get_at(::index nIndex) const;
-   inline TYPE& get_at(::index nIndex);
+   inline const TYPE & get_at(::index nIndex) const;
+   inline TYPE & get_at(::index nIndex);
    inline void set_at(::index nIndex, ARG_TYPE newElement);
 
 
@@ -74,11 +74,11 @@ public:
 
 
    inline ::index add(ARG_TYPE newElement);
-   inline ::count append(const array& src);
+   inline ::count append(const array & src);
 
 
    template < primitive_container CONTAINER >
-      inline ::count append(const CONTAINER& container)
+   inline ::count append(const CONTAINER & container)
    {
 
       return BASE_ARRAY::append(container);
@@ -102,7 +102,7 @@ public:
 
 
 
-   inline void copy(const array& src);
+   inline void copy(const array & src);
 
    inline TYPE & add_new(::count c = 1);
 
@@ -113,17 +113,17 @@ public:
    inline array & operator << (ARG_TYPE newElement) { add(newElement); return *this; }
 
 
-    //that transfer elements around
-   //inline ::index insert_at(::index nIndex, ARG_TYPE newElement, ::count nCount = 1);
-   //void _001RemoveIndexes(index_array & ia);
-   //void erase_indexes(const index_array & ia); // erase indexes from ::index array upper bound to ::index array lower bound
-   //void erase_descending_indexes(const index_array & ia); // erase indexes from ::index array lower bound to ::index array upper bound
-   //::index insert_at(::index nStartIndex, array* pNewArray);
+   //that transfer elements around
+  //inline ::index insert_at(::index nIndex, ARG_TYPE newElement, ::count nCount = 1);
+  //void _001RemoveIndexes(index_array & ia);
+  //void erase_indexes(const index_array & ia); // erase indexes from ::index array upper bound to ::index array lower bound
+  //void erase_descending_indexes(const index_array & ia); // erase indexes from ::index array lower bound to ::index array upper bound
+  //::index insert_at(::index nStartIndex, array* pNewArray);
 
    using array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::operator=;
    //inline array & operator = (const array & src);
    //inline array & operator = (array && a);
-   
+
 
 
    //inline ::index find_first(ARG_TYPE t, ::index (* pfnCompare)(ARG_TYPE, ARG_TYPE), ::index start = 0, ::index last = -1) const;
@@ -144,12 +144,12 @@ public:
 
       ::index iEnd;
 
-      if(nCount < 0)
+      if (nCount < 0)
          iEnd = this->get_upper_bound(nCount);
       else
          iEnd = iStart + nCount - 1;
 
-      for(::index i = iStart; i <= iEnd; i++)
+      for (::index i = iStart; i <= iEnd; i++)
       {
 
          a.add(this->element_at(i));
@@ -234,7 +234,7 @@ public:
       for (; i <= iIndex && i < this->get_size(); i++)
       {
 
-         auto& element = this->element_at(i);
+         auto & element = this->element_at(i);
 
          if (predicate(element))
          {
@@ -275,7 +275,7 @@ public:
 
 
    template < typename ITERABLE >
-   array_base< TYPE, ARG_TYPE,  ALLOCATOR > & copy_iter(const ITERABLE & iterable)
+   array_base< TYPE, ARG_TYPE, ALLOCATOR > & copy_iter(const ITERABLE & iterable)
    {
 
       this->set_size(0, maximum(__iterable_count(iterable), 17));
@@ -302,8 +302,8 @@ class nodefctr_array :
 public:
 
 
-   nodefctr_array(::count nGrowBy = 32) : array < TYPE, ARG_TYPE, ::constructor::nodef < TYPE > > (nGrowBy) {}
-   nodefctr_array(const array <TYPE, ARG_TYPE> & a) : array < TYPE, ARG_TYPE, ::constructor::nodef < TYPE >  > (a) {}
+   nodefctr_array(::count nGrowBy = 32) : array < TYPE, ARG_TYPE, ::constructor::nodef < TYPE > >(nGrowBy) {}
+   nodefctr_array(const array <TYPE, ARG_TYPE> & a) : array < TYPE, ARG_TYPE, ::constructor::nodef < TYPE >  >(a) {}
    //nodefctr_array(::count n) : array < TYPE, ARG_TYPE, ::constructor::nodef < TYPE > > (n) {}
    virtual ~nodefctr_array() {}
 
@@ -314,7 +314,7 @@ public:
 
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
-inline TYPE& array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::get_at(::index nIndex)
+inline TYPE & array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::get_at(::index nIndex)
 {
 
    ASSERT(nIndex >= 0 && nIndex < this->size());
@@ -325,7 +325,7 @@ inline TYPE& array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::get_at(::in
 
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
-inline const TYPE& array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::get_at(::index nIndex) const
+inline const TYPE & array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::get_at(::index nIndex) const
 {
 
    ASSERT(nIndex >= 0 && nIndex < this->size());
@@ -446,10 +446,10 @@ array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::array(const array & a) :
 
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
-array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > :: array(enum_create_new, ::count n)
+array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::array(enum_create_new, ::count n)
 {
 
-this->allocate(n);
+   this->set_size(n);
 
 }
 
@@ -458,14 +458,14 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_e
 array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::array(::count n, ARG_TYPE t)
 {
 
-while (n > 0)
-{
+   while (n > 0)
+   {
 
-add(t);
+      add(t);
 
-n--;
+      n--;
 
-}
+   }
 
 }
 
@@ -480,11 +480,11 @@ array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::~array()
 
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
-inline ::index array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::append(const array& src)
+inline ::index array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::append(const array & src)
 {
-   
+
    auto countOld = this->size();
-   
+
    this->allocate(countOld + src.size(), false, true, nullptr);
 
    ALLOCATOR::copy_construct_count(this->m_begin + countOld, src.size(), src.m_begin);
@@ -495,23 +495,23 @@ inline ::index array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::append(co
 
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
-inline void array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::copy(const array& src)
+inline void array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::copy(const array & src)
 {
 
    ASSERT(this != &src);
 
-   if(this != &src)
+   if (this != &src)
    {
-      
+
       this->erase_all();
-      
+
       this->append(src);
 
-//      auto nSrcSize = src.size();
-//
-//      this->allocate(nSrcSize);
-//
-//      CopyElements<TYPE>(this->m_begin,src.m_begin, nSrcSize);
+      //      auto nSrcSize = src.size();
+      //
+      //      this->allocate(nSrcSize);
+      //
+      //      CopyElements<TYPE>(this->m_begin,src.m_begin, nSrcSize);
 
    }
 
@@ -525,7 +525,7 @@ template < container_type CONTAINER >
 inline array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::operator += (const CONTAINER & container)
 {
 
-   if(&container == this)
+   if (&container == this)
    {
 
       array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > aCopy(container);
@@ -563,18 +563,18 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_e
 inline TYPE & array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::add_new(::count c)
 {
 
-if (c <= 0)
-{
+   if (c <= 0)
+   {
 
-throw_exception(error_bad_argument);
+      throw_exception(error_bad_argument);
 
-}
+   }
 
-auto end = this->size();
+   auto end = this->size();
 
-this->set_size(end + c);
+   this->set_size(end + c);
 
-return this->element_at(end);
+   return this->element_at(end);
 
 }
 
@@ -597,6 +597,13 @@ inline TYPE & array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::add_new_at
    
    ALLOCATOR::construct_count(this->m_begin + i, c);
 
+<<<<<<< Updated upstream
+=======
+   this->raw_allocate_at(i, c);
+
+   ALLOCATOR::construct_count(this->m_begin + i, c);
+
+>>>>>>> Stashed changes
    return this->element_at(i);
 
 }

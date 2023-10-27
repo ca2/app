@@ -1428,7 +1428,7 @@ namespace user
 
       }
 
-      set_total_size(rectangle.size());
+      //set_total_size(rectangle.size());
 
       ::user::scroll_base::on_change_scroll_state(elayout);
 

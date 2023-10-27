@@ -771,6 +771,12 @@ namespace acme
 
       virtual void application_handle(long long l, void * p);
 
+#if defined(BSD_UNIX)
+      
+      virtual void arp_a(void *p, void(*callback)(void * p, ::u32 uIp, const char * status));
+      
+#endif
+      
 
    };
 

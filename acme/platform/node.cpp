@@ -3318,9 +3318,20 @@ return false;
 
    void node::application_handle(long long l, void * p)
    {
+
+      
+   }
+
+
+#if defined(BSD_UNIX)
+
+   void node::arp_a(void *p, void(*callback)(void * addr, ::u32 uIp, const char * status))
+   {
       
       
    }
+
+#endif
 
 
 } // namespace acme

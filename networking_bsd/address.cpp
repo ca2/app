@@ -96,7 +96,7 @@ namespace networking_bsd
    void address::set_address(const in6_addr& a, ::networking::port_t port)
    {
 
-      ::zero(this, sizeof(u.m_sa));
+      ::zero(&u.m_sa, sizeof(u.m_sa));
 
       m_iLen = -1;
       
@@ -116,7 +116,7 @@ namespace networking_bsd
    void address::set_address(const sockaddr_in6& sa, int iLen)
    {
 
-      ::zero(this, sizeof(u.m_sa));
+      ::zero(&u.m_sa, sizeof(u.m_sa));
 
       if (sa.sin6_family != AF_INET6)
       {
@@ -143,7 +143,7 @@ namespace networking_bsd
    void address::set_address(const in_addr& a, ::networking::port_t port)
    {
 
-      ::zero(this, sizeof(u.m_sa));
+      ::zero(&u.m_sa, sizeof(u.m_sa));
 
       m_iLen = -1;
 
@@ -163,7 +163,7 @@ namespace networking_bsd
    void address::set_address(const sockaddr_in& sa)
    {
 
-      //::zero(this, sizeof(u.m_sa));
+      ::zero(&u.m_sa, sizeof(u.m_sa));
 
       u.m_addr = sa;
 
@@ -193,7 +193,7 @@ namespace networking_bsd
 //   void address::set_address(const string & host, ::networking::port_t port)
 //   {
 //
-//      ::zero(this, sizeof(address));
+//      ::zero(&u.m_sa, sizeof(u.m_sa));
 //
 //#ifdef BSD_STYLE_SOCKETS
 //
@@ -230,7 +230,7 @@ namespace networking_bsd
 //
 //#ifdef BSD_STYLE_SOCKETS
 //
-//      ::zero(this, sizeof(u.m_sa));
+//      ::zero(&u.m_sa, sizeof(u.m_sa));
 //
 //      m_iLen = -1;
 //

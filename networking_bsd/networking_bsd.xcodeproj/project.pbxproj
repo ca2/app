@@ -37,6 +37,9 @@
 		9A818E4C2A71D978008F470C /* ip_enum.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0F8AA128D1166C002601B1 /* ip_enum.cpp */; };
 		9A818E4D2A71D978008F470C /* client_context_map.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0F89C028D1166C002601B1 /* client_context_map.cpp */; };
 		9A81FBE227518CAF003F38EC /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A81FBE127518CAF003F38EC /* libacme.dylib */; };
+		9ABBB6B92AEB31FB007611C5 /* list_network_interfaces.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ABBB6B72AEB31FA007611C5 /* list_network_interfaces.cpp */; };
+		9ABBB6BB2AEB3210007611C5 /* list_computers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ABBB6BA2AEB3210007611C5 /* list_computers.cpp */; };
+		9ABBB6BD2AEB456D007611C5 /* bsd_list_computers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ABBB6BC2AEB456C007611C5 /* bsd_list_computers.cpp */; };
 		9ADB6CB328D13FC900608B22 /* address.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0F8AAA28D1166C002601B1 /* address.cpp */; };
 		9ADB6CB428D13FCA00608B22 /* address.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0F8AAA28D1166C002601B1 /* address.cpp */; };
 		9ADB6CB528D13FE200608B22 /* initializer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0F89BD28D1166C002601B1 /* initializer.cpp */; };
@@ -226,6 +229,9 @@
 		9A81FBE127518CAF003F38EC /* libacme.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A8E9ED6282A33D2005FF778 /* libios_acme.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libios_acme.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AA14DBB282A17C600B1621E /* libios_networking_bsd.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_networking_bsd.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		9ABBB6B72AEB31FA007611C5 /* list_network_interfaces.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = list_network_interfaces.cpp; sourceTree = "<group>"; };
+		9ABBB6BA2AEB3210007611C5 /* list_computers.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = list_computers.cpp; sourceTree = "<group>"; };
+		9ABBB6BC2AEB456C007611C5 /* bsd_list_computers.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bsd_list_computers.cpp; sourceTree = "<group>"; };
 		9AC019342748A002006BEBCC /* libnetworking_bsd.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libnetworking_bsd.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AC019DC2748A7D4006BEBCC /* apex.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = apex.xcodeproj; path = ../apex/apex.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -422,6 +428,9 @@
 		9A0F8AF528D1170B002601B1 /* bsd */ = {
 			isa = PBXGroup;
 			children = (
+				9ABBB6BC2AEB456C007611C5 /* bsd_list_computers.cpp */,
+				9ABBB6BA2AEB3210007611C5 /* list_computers.cpp */,
+				9ABBB6B72AEB31FA007611C5 /* list_network_interfaces.cpp */,
 				9A0F8AF628D1170B002601B1 /* _.cpp */,
 				9A0F8AF728D1170B002601B1 /* _.h */,
 			);
@@ -675,8 +684,11 @@
 				9ADB6CB728D13FE700608B22 /* context.cpp in Sources */,
 				9ADB6CC728D140F700608B22 /* socket_handler.cpp in Sources */,
 				9ADB6CCD28D1412F00608B22 /* socket.cpp in Sources */,
+				9ABBB6BD2AEB456D007611C5 /* bsd_list_computers.cpp in Sources */,
 				9ADB6CC928D1411200608B22 /* stream_socket.cpp in Sources */,
 				9ADB6CF028D1481900608B22 /* _factory.cpp in Sources */,
+				9ABBB6B92AEB31FB007611C5 /* list_network_interfaces.cpp in Sources */,
+				9ABBB6BB2AEB3210007611C5 /* list_computers.cpp in Sources */,
 				9ADB6CC528D140EF00608B22 /* socket.cpp in Sources */,
 				9ADB6CBF28D1401900608B22 /* tcp_socket.cpp in Sources */,
 				9ADB6CC328D1402400608B22 /* listen_socket.cpp in Sources */,

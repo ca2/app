@@ -1735,10 +1735,10 @@ using a_string_function = ::function < ::string(void) >;
 
 // Created by speccylad(twitch)/turd(discord) trasncript by camilo on
 // 2023-10-19 23:26 <3ThomasBorregaardSorensen!!
-#pragma once
+//#pragma once
 
 
-#include <format>
+//#include <format>
 
 
 

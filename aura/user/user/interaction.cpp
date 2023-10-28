@@ -9011,7 +9011,7 @@ namespace user
          if (pmessage->m_bRet)
          {
             
-            return pmessage->m_lresult;
+            return;
             
          }
          

@@ -1,3 +1,9 @@
+#pragma once
+
+
+#if defined(__STD_FORMAT__)
+
+
 // Created by speccylad(twitch)/turd(discord) 2023-10-27 ~09:00 BRT
 
 #include <format>
@@ -25,14 +31,14 @@
 // done as I assume there's good reason.
 
 //template<typename... Ts>
-//_FMT_DEF ::string format(const std::format_string<Ts...> fmt, Ts&&... args) {
+//inline ::string format(const std::format_string<Ts...> fmt, Ts&&... args) {
 //    return ::string(std::format(fmt, std::forward<Ts>(args)...));
 //}
 
 
 // print formatted output to std::cout without a newline
 template<typename... Ts>
-_FMT_DEF void print(const std::format_string<Ts...> fmt, Ts&&... args) {
+inline void print(const std::format_string<Ts...> fmt, Ts&&... args) {
     const auto _Fmtd = std::format(fmt, std::forward<Ts>(args)...);
     std::cout << _Fmtd;
 }
@@ -40,7 +46,7 @@ _FMT_DEF void print(const std::format_string<Ts...> fmt, Ts&&... args) {
 
 // print formatted output to std::cout with a newline
 template<typename... Ts>
-_FMT_DEF void println(const std::format_string<Ts...> fmt, Ts&&... args) {
+inline void println(const std::format_string<Ts...> fmt, Ts&&... args) {
     const auto _Fmtd = std::format(fmt, std::forward<Ts>(args)...);
     std::cout << _Fmtd << '\n';
 }
@@ -48,17 +54,20 @@ _FMT_DEF void println(const std::format_string<Ts...> fmt, Ts&&... args) {
 
 // print formatted output to std::cerr without a newline
 template<typename... Ts>
-_FMT_DEF void eprint(const std::format_string<Ts...> fmt, Ts&&... args) {
+inline void eprint(const std::format_string<Ts...> fmt, Ts&&... args) {
     const auto _Fmtd = std::format(fmt, std::forward<Ts>(args)...);
     std::cerr << _Fmtd;
 }
 
 // print formatted output to std::cerr with a newline
 template<typename... Ts>
-_FMT_DEF void eprintln(const std::format_string<Ts...> fmt, Ts&&... args) {
+inline void eprintln(const std::format_string<Ts...> fmt, Ts&&... args) {
     const auto _Fmtd = std::format(fmt, std::forward<Ts>(args)...);
     std::cerr << _Fmtd << '\n';
 }
 
-#undef _FMT_DEF
+
+#endif // __STD_FORMAT__
+
+
 

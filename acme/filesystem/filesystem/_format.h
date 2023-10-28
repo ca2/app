@@ -3,6 +3,8 @@
 #pragma once
 
 
+#ifdef __STD_FORMAT__
+
 #include "path.h"
 #include "acme/format.h"
 
@@ -29,3 +31,6 @@ namespace std
 
 } // namespace std
 
+
+
+#endif // __STD_FORMAT__

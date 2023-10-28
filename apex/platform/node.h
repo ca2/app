@@ -67,10 +67,10 @@ namespace apex
       virtual void defer_notify_startup_complete();
 
 
-      virtual void start_node() override;
+      void start_node() override;
       
       
-      virtual void application_handle(long long l, void * p);
+      void application_handle(long long l, void * p) override;
 
 
       void on_operating_system_user_theme_change() override;

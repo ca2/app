@@ -6,6 +6,10 @@
 
 // Created by speccylad(twitch)/turd(discord) 2023-10-27 ~09:00 BRT
 
+
+#ifdef __STD_FORMAT__
+
+
 #include <format>
 #include <iostream>
 #include <string>
@@ -13,7 +17,6 @@
 
 #include "framework.h"
 
-#define _FMT_DEF inline
 //
 //// Simple specialization for strings in the Ca2 framework.
 //// This just uses ::string::c_str() to format.

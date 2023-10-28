@@ -95,10 +95,12 @@ namespace user
       // void assert_ok() const override;
 //      virtual void dump(dump_context & dc) const override;
 
-      
+      //lresult send_create_message() override;
+
+
       virtual bool create_bars();
-
-
+      
+      
       void install_message_routing(::channel * pchannel) override;
 
       virtual ::atom get_topic_impact_id();

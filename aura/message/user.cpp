@@ -86,38 +86,38 @@ namespace message
    }
 
 
-   ::user::system * create::get_user_system()
-   {
-
-      return m_pusersystem;
-
-   }
-
-
-   ::request * create::get_request()
-   {
-
-      auto pusersystem = get_user_system();
-
-      if (::is_null(pusersystem))
-      {
-
-         return nullptr;
-
-      }
-
-      auto prequest = pusersystem->m_prequest;
-
-      if (::is_null(prequest))
-      {
-
-         return nullptr;
-
-      }
-
-      return prequest;
-
-   }
+//   ::user::system * create::get_user_system()
+//   {
+//
+//      return m_pusersystem;
+//
+//   }
+//
+//
+//   ::request * create::get_request()
+//   {
+//
+//      auto pusersystem = get_user_system();
+//
+//      if (::is_null(pusersystem))
+//      {
+//
+//         return nullptr;
+//
+//      }
+//
+//      auto prequest = pusersystem->m_prequest;
+//
+//      if (::is_null(prequest))
+//      {
+//
+//         return nullptr;
+//
+//      }
+//
+//      return prequest;
+//
+//   }
 
 
    //::user::system * create::get_user_create()
@@ -146,21 +146,21 @@ namespace message
    //}
 
 
-   ::particle * create::get_impact_data()
-   {
-
-      auto pusersystem = get_user_system();
-
-      if (!pusersystem)
-      {
-
-         return nullptr;
-
-      }
-
-      return pusersystem->m_pimpactdata;
-
-   }
+//   ::particle * create::get_impact_data()
+//   {
+//
+//      auto pusersystem = get_user_system();
+//
+//      if (!pusersystem)
+//      {
+//
+//         return nullptr;
+//
+//      }
+//
+//      return pusersystem->m_pimpactdata;
+//
+//   }
 
 
    activate::activate()

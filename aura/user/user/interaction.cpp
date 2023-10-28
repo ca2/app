@@ -8869,17 +8869,49 @@ namespace user
    //}
 
 
-   lresult interaction::send(::message::message * pmessage)
+//   lresult interaction::send_message(::message::message * pmessage)
+//   {
+//
+//      message_handler(pmessage);
+//
+//      return pmessage->m_lresult;
+//
+//   }
+
+
+
+
+   lresult interaction::send_message(const ::atom & atom, wparam wparam, lparam lparam, const ::point_i32 & point)
    {
 
-      message_handler(pmessage);
+      if (m_pprimitiveimpl == nullptr)
+      {
 
-      return pmessage->m_lresult;
+         return 0;
+
+      }
+
+      return m_pprimitiveimpl->send_message(atom, wparam, lparam);
 
    }
 
 
-   void interaction::post(::message::message * pmessage)
+   lresult interaction::send_message(::message::message * pmessage)
+   {
+
+      if (m_pprimitiveimpl == nullptr)
+      {
+
+         return 0;
+
+      }
+
+      return m_pprimitiveimpl->send_message(pmessage);
+
+   }
+
+
+   void interaction::post_message(::message::message * pmessage)
    {
 
       if (pmessage->m_atom == e_message_key_down)
@@ -8897,25 +8929,25 @@ namespace user
          pusermessage->m_pchannel = this;
 
       }
+      
+      ::pointer < ::message::message > pmessagePost(pmessage);
 
-      m_pthreadUserInteraction->post(pmessage);
-
-   }
-
-
-   lresult interaction::send_message(const ::atom & atom, wparam wparam, lparam lparam, const ::point_i32 & point)
-   {
-
-      if (m_pprimitiveimpl == nullptr)
-      {
-
-         return 0;
-
-      }
-
-      return m_pprimitiveimpl->send_message(atom, wparam, lparam);
+      m_pthreadUserInteraction->post_procedure([this, pmessagePost]()
+                                     {
+         
+         send_message(pmessagePost);
+         
+      });
 
    }
+
+
+//   lresult interaction::send_create_message()
+//   {
+//   
+//      return send_message(e_message_create);
+//      
+//   }
 
 
    lresult interaction::message_call(const ::atom & atom, wparam wparam, lparam lparam, const ::point_i32 & point)
@@ -8945,6 +8977,40 @@ namespace user
 
       return m_pprimitiveimpl->message_call(pmessage);
 
+   }
+
+
+   void interaction::on_message(::message::message * pmessage)
+{
+      
+      if (layout().is_moving())
+      {
+         
+         informationf("moving: skip walk pre translate tree");
+         
+      }
+      else if (layout().is_sizing())
+      {
+         
+         informationf("sizing: skip walk pre translate tree");
+         
+      }
+      else
+      {
+         
+         walk_pre_translate_tree(pmessage);
+         
+         if (pmessage->m_bRet)
+         {
+            
+            return pmessage->m_lresult;
+            
+         }
+         
+      }
+      
+      m_pprimitiveimpl->message_handler(pmessage);
+      
    }
 
 
@@ -23585,13 +23651,13 @@ namespace user
 
             pmouseUp1->m_atom = e_message_left_button_up;
 
-            get_wnd()->post(pmouseUp1);
+            get_wnd()->post_message(pmouseUp1);
 
             ::pointer<::message::mouse> pmouseDown2 = this->create_new_clone(pmouse);
 
             pmouseDown2->m_atom = e_message_left_button_down;
 
-            get_wnd()->post(pmouseDown2);
+            get_wnd()->post_message(pmouseDown2);
 
             preempt(100_ms);
 
@@ -23599,7 +23665,7 @@ namespace user
 
             pmouseUp2->m_atom = e_message_left_button_up;
 
-            get_wnd()->post(pmouseUp2);
+            get_wnd()->post_message(pmouseUp2);
 
             pmouse->m_bRet = true;
 

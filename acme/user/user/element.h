@@ -321,10 +321,13 @@ namespace user
       //virtual bool post(::message::message * pmessage);
 
       virtual lresult send_message(const ::atom & atom, wparam wparam = {}, lparam lparam = 0, const ::point_i32 & point = {});
+      
+      virtual lresult send_message(::message::message * pmessage);
 
       virtual lresult message_call(const ::atom & atom, wparam wparam = {}, lparam lparam = 0, const ::point_i32 & point = {});
       virtual lresult message_call(::message::message * pmessage);
 
+      virtual void on_message(::message::message * pmessage);
 
 #ifdef LINUX
 

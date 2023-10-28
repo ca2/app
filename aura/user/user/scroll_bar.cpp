@@ -98,7 +98,7 @@ namespace user
 
       ::pointer<::user::interaction>puiParent = get_parent();
 
-      puiParent->post(pscroll);
+      puiParent->post_message(pscroll);
 
    }
 

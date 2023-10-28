@@ -993,6 +993,14 @@ namespace user
    }
 
 
+   lresult element::send_message(::message::message * pmessage)
+   {
+
+      return message_call(pmessage);
+
+   }
+
+
    lresult element::message_call(const ::atom & atom, wparam wparam, lparam lparam, const ::point_i32 & point)
    {
 
@@ -1008,6 +1016,12 @@ namespace user
 
    }
 
+
+   void element::on_message(::message::message * pmessage)
+   {
+      
+      
+   }
 
 #ifdef LINUX
 

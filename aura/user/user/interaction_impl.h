@@ -210,13 +210,13 @@ namespace user
 
       virtual ::pointer< ::mutex > draw_mutex();
 
-      virtual ::user::interaction_impl * get_user_interaction_impl() override;
+      ::user::interaction_impl * get_user_interaction_impl() override;
 
-      virtual void post(::message::message* pusermessage) override;
+      void post_message(::message::message* pusermessage) override;
 
 
-      virtual void set_bitmap_source(const string& strBitmapSource) override;
-      virtual void clear_bitmap_source() override;
+      void set_bitmap_source(const string& strBitmapSource) override;
+      void clear_bitmap_source() override;
 
 
       virtual void update_graphics_resources();
@@ -425,6 +425,8 @@ namespace user
 #endif   // WINVER >= 0x0500
 
       lresult send_message(const ::atom& atom, ::wparam wParam = 0, ::lparam lParam = 0, const ::point_i32 & point = {}) override;
+
+      lresult send_message(::message::message * pmessage) override;
 
 
 //#ifdef LINUX

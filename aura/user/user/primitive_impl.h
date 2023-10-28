@@ -119,7 +119,7 @@ namespace user
       //\virtual void on_resize(const ::size_i32 & size);
 
 
-      virtual void post(::message::message* pusermessage);
+      
 
       virtual void set_bitmap_source(const string& strBitmapSource);
       virtual void clear_bitmap_source();
@@ -161,14 +161,16 @@ namespace user
       
       virtual ::lresult send_message(const ::atom& atom, ::wparam wparam = 0, ::lparam lparam = 0, const ::point_i32 & point = {});
 
-      
+      virtual ::lresult send_message(::message::message * pmessage);
+
       using ::channel::message_handler;
 
       virtual void message_handler(const ::atom & atom, wparam wparam = 0, lparam lparam = 0);
 
      
       virtual void post_message(const ::atom& atom, wparam wparam = 0, ::lparam lparam = 0);
-
+      
+      virtual void post_message(::message::message* pusermessage);
 
       //virtual void set_window_text(const ::string& pszString);
 

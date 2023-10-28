@@ -4269,7 +4269,7 @@ namespace user
 
                       pmessage->m_pointHost = point;
 
-                      post(pmessage);
+                      post_message(pmessage);
 
                   }
 

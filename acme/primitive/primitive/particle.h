@@ -347,7 +347,8 @@ public:
    virtual void fatalf(const ::ansi_character * pszFormat, ...) const;
 
 
-
+#if defined(__STD_FORMAT__)
+   
    // With help from speccylad(twitch)/turd(discord) 2023-10-27 ~09:00 BRT
    template<typename... Ts>
    void trace(enum_trace_level etracelevel, const std::format_string<Ts...> fmt, Ts&&... args) const
@@ -387,6 +388,8 @@ public:
    }
 
 
+#endif
+   
 
    void trace(enum_trace_level etracelevel, const ::scoped_string & scopedstr) const
    {
@@ -916,6 +919,8 @@ inline void fatal(const ::scoped_string & scopedstr)
 }
 
 
+#if defined(__STD_FORMAT__)
+
 
 // With help from speccylad(twitch)/turd(discord) 2023-10-27 ~09:00 BRT
 template<typename... Ts>
@@ -970,6 +975,9 @@ void fatal(const std::format_string<Ts...> fmt, Ts&&... args)
    statement.format_output(fmt, std::forward<Ts>(args)...);
 
 }
+
+
+#endif
 
 
 inline bool is_ok(const ::particle * pconstparticle)

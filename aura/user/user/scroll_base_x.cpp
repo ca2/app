@@ -430,7 +430,7 @@ namespace user
 
       pscroll->m_atom = e_message_scroll_x;
 
-      send(pscroll);
+      send_message(pscroll);
 
    }
 

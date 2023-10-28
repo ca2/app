@@ -358,6 +358,20 @@ namespace user
 //   }
 
 
+//   lresult frame_window::send_create_message()
+//   {
+//      
+//      auto pcreate = __create_new < ::message::create >();
+//      
+//      pcreate->m_atom = e_message_create;
+//      
+//      pcreate->m_pusersystem = m_pusersystem;
+//      
+//      return send_message(pcreate);
+//   
+//   }
+
+
    bool frame_window::create_bars()
    {
 

@@ -3315,7 +3315,7 @@ namespace user
 
                       pmessage->m_pointHost = pmouse->m_pointHost;
 
-                      post(pmessage);
+                      post_message(pmessage);
 
                   }
 

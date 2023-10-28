@@ -3705,35 +3705,19 @@ namespace user
    {
 
       auto pmessage = m_puserinteraction->get_message(atom, wparam, lparam);
+      
+      auto lresult = send_message(pmessage);
+      
+      return lresult;
 
-      if (m_puserinteraction->layout().is_moving())
-      {
+   }
 
-         informationf("moving: skip walk pre translate tree");
 
-      }
-      else if (m_puserinteraction->layout().is_sizing())
-      {
-
-         informationf("sizing: skip walk pre translate tree");
-
-      }
-      else
-      {
-
-         m_puserinteraction->walk_pre_translate_tree(pmessage);
-
-         if (pmessage->m_bRet)
-         {
-
-            return pmessage->m_lresult;
-
-         }
-
-      }
-
-      message_handler(pmessage);
-
+   lresult interaction_impl::send_message(::message::message * pmessage)
+   {
+      
+      m_puserinteraction->on_message(pmessage);
+      
       return pmessage->m_lresult;
 
    }
@@ -7418,7 +7402,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
    }
 
 
-   void interaction_impl::post(::message::message * pmessage)
+   void interaction_impl::post_message(::message::message * pmessage)
    {
 
       //if (m_puserthread)
@@ -7444,7 +7428,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 
       //return 
 
-      m_puserinteraction->post(pmessage);
+      m_puserinteraction->post_message(pmessage);
 
       //return true;
 

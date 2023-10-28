@@ -1436,18 +1436,23 @@ namespace user
       //virtual void ModifyStyle(u32 dwRemove, u32 dwAdd, ::u32 nFlags = 0) override;
       //virtual void ModifyStyleEx(u32 dwRemove, u32 dwAdd, ::u32 nFlags = 0) override;
 
-      using ::user::primitive::send;
-      virtual lresult send(::message::message* pmessage) override;
-      void post(::message::message* pmessage) override;
-      virtual lresult send_message(const ::atom & atom, wparam wparam = 0, lparam lparam = 0, const ::point_i32 & point = {}) override;
+      void post_message(::message::message* pmessage) override;
+      
+      lresult send_message(const ::atom & atom, wparam wparam = 0, lparam lparam = 0, const ::point_i32 & point = {}) override;
+      lresult send_message(::message::message* pmessage) override;
 
-      virtual lresult message_call(const ::atom & atom, wparam wparam = 0, lparam lparam = 0, const ::point_i32 & point = {}) override;
-      virtual lresult message_call(::message::message * pmessage) override;
+      //virtual lresult send_create_message();
 
+      lresult message_call(const ::atom & atom, wparam wparam = 0, lparam lparam = 0, const ::point_i32 & point = {}) override;
+      lresult message_call(::message::message * pmessage) override;
+
+      
+      void on_message(::message::message * pmessage) override;
+      
 
 #ifdef LINUX
 
-      virtual lresult send_x11_event(void* pevent) override; // XEvent *
+      lresult send_x11_event(void* pevent) override; // XEvent *
 
 #endif
 

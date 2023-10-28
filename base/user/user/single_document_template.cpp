@@ -105,7 +105,7 @@ namespace user
          prequest->payload("document").release();
 
       }
-
+      
       //bool bMakeVisible = prequest->payload("make_visible_boolean") || prequest->m_bMakeVisible;
       //   ::pointer<::user::interaction>puserinteractionParent = prequest->payload("parent_user_interaction").cast < ::user::interaction > ();
       //   ::pointer<::user::impact>pviewAlloc = prequest->payload("allocation_impact").cast < ::user::impact > ();

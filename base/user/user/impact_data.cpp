@@ -134,21 +134,21 @@ namespace user
 }
 
 
-CLASS_DECL_BASE::user::impact_data * __impact_data(::message::create * pmessagecreate)
-{
-
-   auto pimpactdata = ::is_set(pmessagecreate) ? pmessagecreate->get_impact_data() : nullptr;
-
-   if (!pimpactdata)
-   {
-
-      return nullptr;
-
-   }
-
-   return dynamic_cast <::user::impact_data *>(pimpactdata);
-
-}
+//CLASS_DECL_BASE::user::impact_data * __impact_data(::message::create * pmessagecreate)
+//{
+//
+//   auto pimpactdata = ::is_set(pmessagecreate) ? pmessagecreate->get_impact_data() : nullptr;
+//
+//   if (!pimpactdata)
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
+//   return dynamic_cast <::user::impact_data *>(pimpactdata);
+//
+//}
 
 
 

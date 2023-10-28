@@ -1065,10 +1065,10 @@ namespace user
    }
 
 
-   lresult primitive::send(::message::message * pmessage)
+   lresult primitive::send_message(::message::message * pmessage)
    {
 
-      message_handler(pmessage);
+      on_message(pmessage);
 
       return pmessage->m_lresult;
 
@@ -1078,7 +1078,7 @@ namespace user
    // pmessage object should be allocated with memory_new in
    // base or derived object and will be delete after
    // handling
-   void primitive::post(::message::message * pmessage)
+   void primitive::post_message(::message::message * pmessage)
    {
 
       throw ::interface_only();
@@ -1096,6 +1096,14 @@ namespace user
    }
 
 
+//   lresult primitive::send_message(::message::message * pmessage)
+//   {
+//
+//      return message_call(pmessage);
+//
+//   }
+
+
    lresult primitive::message_call(const ::atom & atom, wparam wparam, lparam lparam, const ::point_i32& point)
    {
 
@@ -1109,6 +1117,13 @@ namespace user
 
       return 0;
 
+   }
+
+
+   void primitive::on_message(::message::message * pmessage)
+   {
+   
+   
    }
 
 

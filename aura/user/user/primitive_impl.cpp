@@ -535,7 +535,7 @@ namespace user
    }
 
 
-   void primitive_impl::post(::message::message* pmessage)
+   void primitive_impl::post_message(::message::message* pmessage)
    {
 
       if (!m_puserinteraction)
@@ -545,7 +545,7 @@ namespace user
 
       }
 
-      m_puserinteraction->post(pmessage);
+      m_puserinteraction->post_message(pmessage);
 
    }
 
@@ -684,6 +684,14 @@ namespace user
    {
 
       return message_call(atom, wparam, lparam, point);
+
+   }
+
+
+   lresult primitive_impl::send_message(::message::message * pmessage)
+   {
+
+      return message_call(pmessage);
 
    }
 
@@ -2395,8 +2403,7 @@ namespace user
 
       //return message_call(pmessage);
 
-      post(pmessage);
-
+      post_message(pmessage);
 
    }
 

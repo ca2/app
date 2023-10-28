@@ -6,10 +6,12 @@
 #include "acme/handler/item.h"
 #include "acme/primitive/geometry2d/_text_stream.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/user/user/system.h"
 #include "aura/windowing/windowing.h"
 #include "aura/windowing/window.h"
 #include "aura/windowing/display.h"
 #include "aura/message/user.h"
+#include "base/platform/application.h"
 #include "base/platform/session.h"
 #include "base/user/user/user.h"
 #include "department.h"
@@ -1535,6 +1537,52 @@ namespace experience
       {
 
          disable_dock();
+
+      }
+      
+      if(m_pusersystem && m_pusersystem->m_bWindowFrame)
+      {
+
+         m_bWindowFrame = true;
+
+      }
+      
+      auto papp = get_app();
+      
+      if (m_bWindowFrame.undefined())
+      {
+
+         auto & bApplicationExperienceMainFrame = papp->m_bExperienceMainFrame;
+
+         if (bApplicationExperienceMainFrame.is_set())
+         {
+
+            if (get_parent() == nullptr)
+            {
+
+               m_bWindowFrame = bApplicationExperienceMainFrame;
+
+            }
+            else
+            {
+
+               m_bWindowFrame = false;
+
+            }
+
+         }
+         else if(windowing()->is_sandboxed())
+         {
+            
+            m_bWindowFrame = false;
+            
+         }
+         else
+         {
+
+            m_bWindowFrame = get_parent() == nullptr || wfi_has_up_down();
+
+         }
 
       }
 

@@ -4,6 +4,7 @@
 #include "acme/constant/message.h"
 #include "acme/handler/request.h"
 #include "aura/message/user.h"
+#include "aura/user/user/system.h"
 #include "base/platform/application.h"
 #include "base/user/experience/frame.h"
 
@@ -51,21 +52,62 @@ void simple_main_frame::on_message_create(::message::message * pmessage)
       papp->m_puserinteractionMain = this;
 
    }
+   
+//   if(m_pusersystem 
+//      && m_pusersystem->m_prequest
+//      && m_pusersystem->m_prequest->m_payloadArguments.is_true("window_frame"))
+//   {
+//
+//      m_bWindowFrame = true;
+//
+//   }
+//   else
+//   {
+//
+//      m_bWindowFrame = papp->m_bExperienceMainFrame;
+//
+//   }
+//   
+//   
+//   if (m_bWindowFrame.undefined())
+//   {
+//
+//      auto & bApplicationExperienceMainFrame = papp->m_bExperienceMainFrame;
+//
+//      if (bApplicationExperienceMainFrame.is_set())
+//      {
+//
+//         if (get_parent() == nullptr)
+//         {
+//
+//            m_bWindowFrame = bApplicationExperienceMainFrame;
+//
+//         }
+//         else
+//         {
+//
+//            m_bWindowFrame = false;
+//
+//         }
+//
+//      }
+//      else
+//      {
+//
+//#if defined(UNIVERSAL_WINDOWS) || defined(APPLE_IOS) || defined(ANDROID)
+//
+//         m_bWindowFrame = false;
+//
+//#else
+//
+//         m_bWindowFrame = get_parent() == nullptr || wfi_has_up_down();
+//
+//#endif
+//
+//      }
+//
+//   }
 
-   auto prequest= pcreate->get_request();
-
-   if (prequest && prequest->m_payloadArguments.is_true("window_frame"))
-   {
-
-      m_bWindowFrame = true;
-
-   }
-   else
-   {
-
-      m_bWindowFrame = papp->m_bExperienceMainFrame;
-
-   }
 
    if (papp->is_true("opaque"))
    {

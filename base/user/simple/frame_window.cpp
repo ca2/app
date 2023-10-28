@@ -783,98 +783,87 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
 
    }
 
-   ::pointer<::message::create>pcreate(pmessage);
-
-   auto prequest = (::request *)pcreate->get_request();
-
-   if (::is_set(prequest))
-   {
-
-      ::pointer<::user::system>pusersystem = prequest->m_pmatterUserPayload;
-
-      if (pusersystem)
-      {
-
-         if (pusersystem->m_bWindowFrame.is_set())
-         {
-
-            m_bWindowFrame = pusersystem->m_bWindowFrame;
-
-         }
-
-         //if (acmesystem()->m_papexsystem->m_bPreferNoFrameWindow)
-         //{
-
-         //   m_bWindowFrame = false;
-
-         //}
-
-      }
-
-   }
-   //else
-   //{
-
-   //   m_bWindowFrame = acmesystem()->m_papexsystem->m_bExperienceMainFrame;
-
-   //}
-
-   //::pointer<::user::place_holder>pplaceholder = get_parent();
-
-   //if (pplaceholder != nullptr)
-   //{
-
-   //   ::pointer<::user::place_holder_container>pcontainer = pplaceholder->get_parent();
-
-   //   if (pcontainer != nullptr)
-   //   {
-
-   //      pcontainer->on_place_hold(this, pplaceholder);
-
-   //   }
-
-   //}
+//   if (m_pusersystem
+//       && m_pusersystem->m_bWindowFrame)
+//   {
+//
+//            m_bWindowFrame = pusersystem->m_bWindowFrame;
+//
+//         }
+//
+//         //if (acmesystem()->m_papexsystem->m_bPreferNoFrameWindow)
+//         //{
+//
+//         //   m_bWindowFrame = false;
+//
+//         //}
+//
+//      }
+//
+//   }
+//   //else
+//   //{
+//
+//   //   m_bWindowFrame = acmesystem()->m_papexsystem->m_bExperienceMainFrame;
+//
+//   //}
+//
+//   //::pointer<::user::place_holder>pplaceholder = get_parent();
+//
+//   //if (pplaceholder != nullptr)
+//   //{
+//
+//   //   ::pointer<::user::place_holder_container>pcontainer = pplaceholder->get_parent();
+//
+//   //   if (pcontainer != nullptr)
+//   //   {
+//
+//   //      pcontainer->on_place_hold(this, pplaceholder);
+//
+//   //   }
+//
+//   //}
 
    auto papp = get_app();
 
-   if (m_bWindowFrame.undefined())
-   {
-
-      auto & bApplicationExperienceMainFrame = papp->m_bExperienceMainFrame;
-
-      if (bApplicationExperienceMainFrame.is_set())
-      {
-
-         if (get_parent() == nullptr)
-         {
-
-            m_bWindowFrame = bApplicationExperienceMainFrame;
-
-         }
-         else
-         {
-
-            m_bWindowFrame = false;
-
-         }
-
-      }
-      else
-      {
-
-#if defined(UNIVERSAL_WINDOWS) || defined(APPLE_IOS) || defined(ANDROID)
-
-         m_bWindowFrame = false;
-
-#else
-
-         m_bWindowFrame = get_parent() == nullptr || wfi_has_up_down();
-
-#endif
-
-      }
-
-   }
+//   if (m_bWindowFrame.undefined())
+//   {
+//
+//      auto & bApplicationExperienceMainFrame = papp->m_bExperienceMainFrame;
+//
+//      if (bApplicationExperienceMainFrame.is_set())
+//      {
+//
+//         if (get_parent() == nullptr)
+//         {
+//
+//            m_bWindowFrame = bApplicationExperienceMainFrame;
+//
+//         }
+//         else
+//         {
+//
+//            m_bWindowFrame = false;
+//
+//         }
+//
+//      }
+//      else
+//      {
+//
+//#if defined(UNIVERSAL_WINDOWS) || defined(APPLE_IOS) || defined(ANDROID)
+//
+//         m_bWindowFrame = false;
+//
+//#else
+//
+//         m_bWindowFrame = get_parent() == nullptr || wfi_has_up_down();
+//
+//#endif
+//
+//      }
+//
+//   }
 
    //if (acmesystem()->m_papexsystem->m_bPreferNoFrameWindow)
    //{

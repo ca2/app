@@ -7,8 +7,6 @@
 #include "string_range.h"
 #include "mutable_string_range.h"
 #include "acme/memory/string_memory_allocator.h"
-#include <format>
-
 
 
 template < typename ITERATOR_TYPE >
@@ -60,7 +58,7 @@ public:
    //string_base(const ::ansi_character * psz);
    //string_base(const ::wd16_character * psz);
    //string_base(const ::wd32_character * psz);
-   string_base(const ::std::string & str) : string_base(str.c_str()) { }
+   //string_base(const ::std::string & str) : string_base(str.c_str()) { }
    string_base(const ::ansi_string & ansistr) : NATURAL_POINTER(e_no_initialize) { construct5(ansistr); }
    string_base(const ::wd16_string & wd16str) : NATURAL_POINTER(e_no_initialize) { construct5(wd16str); }
    string_base(const ::wd32_string & wd32str) : NATURAL_POINTER(e_no_initialize) { construct5(wd32str); }
@@ -1266,9 +1264,11 @@ public:
 
    string_base & append_formatf_arguments(const CHARACTER * pszFormat, va_list args);
 
+   
+#if defined(__STD_FORMAT__)
 
    template<typename... Ts>
-   string_base & format(const std::format_string<Ts...> fmt, Ts&&... args) 
+   string_base & format(const ::std::format_string<Ts...> fmt, Ts&&... args)
    {
       
       return this->operator=(std::format(fmt, std::forward<Ts>(args)...));
@@ -1283,6 +1283,8 @@ public:
 
    }
 
+   
+#endif
 
    //void FormatMessage(const CHARACTER * pszFormat, ...);
 
@@ -1755,6 +1757,8 @@ using a_string_function = ::function < ::string(void) >;
 //};
 
 
+#if defined(__STD_FORMAT__)
+
 // Simple specialization for strings in the Ca2 framework.
 // This just uses ::string::c_str() to format.
 template<>
@@ -1775,6 +1779,9 @@ format(const std::format_string<Args...> fmt, Args&&... args) noexcept
    return ::string(std::format<Args...>(fmt, std::forward<Args>(args)...).c_str());
 
 }
+
+
+#endif
 
 
 

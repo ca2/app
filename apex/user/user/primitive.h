@@ -261,14 +261,18 @@ namespace user
       void host_post(const ::procedure & procedure) override;
 
 
-      virtual lresult send(::message::message * pmessage);
-      virtual void post(::message::message * pmessage);
+//      virtual lresult send(::message::message * pmessage);
+      virtual void post_message(::message::message * pmessage);
 
       lresult send_message(const ::atom & atom, wparam wparam = 0, lparam lparam = 0, const ::point_i32 & point = {}) override;
+      lresult send_message(::message::message * pmessage) override;
 
       lresult message_call(const ::atom & atom, wparam wparam = 0, lparam lparam = 0, const ::point_i32 & point = {}) override;
       lresult message_call(::message::message * pmessage) override;
 
+      
+      void on_message(::message::message * pmessage) override;
+      
 
 #ifdef LINUX
 

@@ -22,7 +22,7 @@ namespace message
    public:
 
 
-      ::pointer<::user::system>      m_pusersystem;
+      //::pointer<::user::system>      m_pusersystem;
 
 
       create();
@@ -34,11 +34,11 @@ namespace message
 
       virtual void failed(const ::string & pcszErrorMessage);
 
-      ::request * get_request();
-
-      ::user::system * get_user_system();
-
-      ::particle * get_impact_data();
+//      ::request * get_request();
+//
+//      ::user::system * get_user_system();
+//
+//      ::particle * get_impact_data();
 
 
    };

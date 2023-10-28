@@ -12,6 +12,7 @@
 #include "apex/database/selection.h"
 #include "aura/user/user/form_callback.h"
 #include "aura/message/user.h"
+#include "aura/user/user/system.h"
 #include "axis/platform/application.h"
 #include "axis/platform/session.h"
 #include "axis/platform/system.h"
@@ -1111,7 +1112,7 @@ namespace user
 
       ::pointer<::message::create>pmessagecreate(pmessage);
 
-      auto prequest = (::request *) pmessagecreate->get_request();
+      auto prequest = m_pusersystem->m_prequest;
 
       if(::is_set(prequest))
       {

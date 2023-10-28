@@ -734,6 +734,9 @@
     <ClInclude Include="subject\_impl.h" />
     <ClInclude Include="update.h" />
     <ClInclude Include="user.h" />
+    <ClInclude Include="user\menu\command.h" />
+    <ClInclude Include="user\menu\menu.h" />
+    <ClInclude Include="user\menu\shared.h" />
     <ClInclude Include="user\user\aaa_const_key.h" />
     <ClInclude Include="user\user\command.h" />
     <ClInclude Include="user\user\language.h" />
@@ -870,7 +873,6 @@
     <ClCompile Include="platform\api_client.cpp" />
     <ClCompile Include="platform\api_client_base.cpp" />
     <ClCompile Include="platform\application.cpp" />
-    <ClCompile Include="platform\application_menu.cpp" />
     <ClCompile Include="platform\app_launcher.cpp" />
     <ClCompile Include="platform\assert_running_task.cpp" />
     <ClCompile Include="platform\console_application.cpp" />
@@ -895,6 +897,9 @@
     <ClCompile Include="progress\listener.cpp" />
     <ClCompile Include="progress\progress.cpp" />
     <ClCompile Include="progress\real.cpp" />
+    <ClCompile Include="user\menu\commnand.cpp" />
+    <ClCompile Include="user\menu\menu.cpp" />
+    <ClCompile Include="user\menu\shared.cpp" />
     <ClCompile Include="user\user\language.cpp" />
     <ClCompile Include="user\user\language_map.cpp" />
     <ClCompile Include="user\user\message.cpp" />

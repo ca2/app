@@ -185,6 +185,12 @@
     <Filter Include="Header Files\input">
       <UniqueIdentifier>{c01eca55-fa23-40a4-9970-6137292e8b05}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\user\menu">
+      <UniqueIdentifier>{ac66f5d3-84f5-438d-924b-696f46934615}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\user\menu">
+      <UniqueIdentifier>{eb3f29bb-b76e-4704-8f67-0aa4d6a86a4e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -329,9 +335,6 @@
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="platform\application.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\application_menu.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="platform\assert_running_task.cpp">
@@ -588,6 +591,15 @@
     </ClCompile>
     <ClCompile Include="input\input.cpp">
       <Filter>Source Files\input</Filter>
+    </ClCompile>
+    <ClCompile Include="user\menu\commnand.cpp">
+      <Filter>Source Files\user\menu</Filter>
+    </ClCompile>
+    <ClCompile Include="user\menu\menu.cpp">
+      <Filter>Source Files\user\menu</Filter>
+    </ClCompile>
+    <ClCompile Include="user\menu\shared.cpp">
+      <Filter>Source Files\user\menu</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1445,6 +1457,15 @@
     </ClInclude>
     <ClInclude Include="input\input.h">
       <Filter>Header Files\input</Filter>
+    </ClInclude>
+    <ClInclude Include="user\menu\shared.h">
+      <Filter>Header Files\user\menu</Filter>
+    </ClInclude>
+    <ClInclude Include="user\menu\menu.h">
+      <Filter>Header Files\user\menu</Filter>
+    </ClInclude>
+    <ClInclude Include="user\menu\command.h">
+      <Filter>Header Files\user\menu</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

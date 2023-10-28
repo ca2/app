@@ -177,6 +177,12 @@
     <Filter Include="Header Files\input">
       <UniqueIdentifier>{dabf8456-ce9f-474e-979e-aa1119f6f857}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\user\menu">
+      <UniqueIdentifier>{b4d1d491-80b0-4676-a1a8-efe46562062d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\user\menu">
+      <UniqueIdentifier>{36634d76-b0ab-4fbe-bd7c-b52fc2e7e46a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\filesystem.h">
@@ -962,6 +968,15 @@
     <ClInclude Include="input\input.h">
       <Filter>Header Files\input</Filter>
     </ClInclude>
+    <ClInclude Include="user\menu\shared.h">
+      <Filter>Header Files\user\menu</Filter>
+    </ClInclude>
+    <ClInclude Include="user\menu\menu.h">
+      <Filter>Header Files\user\menu</Filter>
+    </ClInclude>
+    <ClInclude Include="user\menu\command.h">
+      <Filter>Header Files\user\menu</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="filesystem\file\set.cpp">
@@ -1010,9 +1025,6 @@
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="platform\application.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\application_menu.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="platform\session.cpp">
@@ -1371,6 +1383,15 @@
     </ClCompile>
     <ClCompile Include="input\input.cpp">
       <Filter>Source Files\input</Filter>
+    </ClCompile>
+    <ClCompile Include="user\menu\commnand.cpp">
+      <Filter>Source Files\user\menu</Filter>
+    </ClCompile>
+    <ClCompile Include="user\menu\menu.cpp">
+      <Filter>Source Files\user\menu</Filter>
+    </ClCompile>
+    <ClCompile Include="user\menu\shared.cpp">
+      <Filter>Source Files\user\menu</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

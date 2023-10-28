@@ -1784,4 +1784,22 @@ format(const std::format_string<Args...> fmt, Args&&... args) noexcept
 #endif
 
 
+[[nodiscard]] inline ::string formatf(const char * pszFormat, ...) noexcept
+{
+   
+   ::string str;
+   
+   va_list argList;
+
+   va_start(argList, pszFormat);
+
+   str.formatf_arguments(pszFormat, argList);
+
+   va_end(argList);
+
+   return ::transfer(str);
+
+}
+
+
 

@@ -2940,8 +2940,15 @@ namespace user
 
    ::rectangle_i32 frame_window::hosting_rectangle(::user::enum_layout elayout)
    {
-
-      return m_rectangleHosting;
+      
+      if(m_bWindowFrame)
+      {
+         
+         return m_rectangleHosting;
+         
+      }
+      
+      return ::user::main_window::hosting_rectangle(elayout);
 
    }
 

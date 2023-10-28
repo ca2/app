@@ -1494,7 +1494,7 @@ TYPE * array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::raw_allocate_
    
    this->allocate(newSize, false, true, nullptr);
    
-   ::acme::memmove_s(this->m_begin + i + nMove, (size_t) (nMove * sizeof(TYPE)), this->m_begin + i, (size_t) (nMove * sizeof(TYPE)));
+   ::acme::memmove_s(this->m_begin + i + c, (size_t) (nMove * sizeof(TYPE)), this->m_begin + i, (size_t) (nMove * sizeof(TYPE)));
 
    return this->m_begin + i;
    

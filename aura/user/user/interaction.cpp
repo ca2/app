@@ -856,10 +856,18 @@ namespace user
 
       auto sizeMin = get_window_minimum_size();
 
-      if (size.cx() < sizeMin.cx() || size.cy() < sizeMin.cy())
+      if (size.cx() < sizeMin.cx())
+      {
+         
+         size.cx() = sizeMin.cx();
+         
+         
+      }
+      
+      if(size.cy() < sizeMin.cy())
       {
 
-         return false;
+         size.cy() = sizeMin.cy();
 
       }
 

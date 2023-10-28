@@ -246,7 +246,7 @@ namespace user
          if(iIndex < m_notifyiconitema.get_upper_bound())
          {
 
-            if(m_notifyiconitema[iIndex + 1]->m_strId == "separator")
+            if(m_notifyiconitema[iIndex]->m_strId == "separator")
             {
 
                // Don't add consecutive <separator>

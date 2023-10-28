@@ -41,7 +41,7 @@ namespace user
 
 
       notify_icon_listener();
-      virtual ~notify_icon_listener();
+      ~notify_icon_listener() override;
 
 
       //virtual void OnNotifyIconMessage(::u32 uNotifyIcon, ::u32 message);

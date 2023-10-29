@@ -897,7 +897,7 @@
     <ClCompile Include="progress\listener.cpp" />
     <ClCompile Include="progress\progress.cpp" />
     <ClCompile Include="progress\real.cpp" />
-    <ClCompile Include="user\menu\commnand.cpp" />
+    <ClCompile Include="user\menu\command.cpp" />
     <ClCompile Include="user\menu\menu.cpp" />
     <ClCompile Include="user\menu\shared.cpp" />
     <ClCompile Include="user\user\language.cpp" />

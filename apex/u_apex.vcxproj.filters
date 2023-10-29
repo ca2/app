@@ -592,7 +592,7 @@
     <ClCompile Include="input\input.cpp">
       <Filter>Source Files\input</Filter>
     </ClCompile>
-    <ClCompile Include="user\menu\commnand.cpp">
+    <ClCompile Include="user\menu\command.cpp">
       <Filter>Source Files\user\menu</Filter>
     </ClCompile>
     <ClCompile Include="user\menu\menu.cpp">

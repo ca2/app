@@ -310,7 +310,6 @@ namespace user
       ::user::interaction *                     m_puserinteractionTopLevel;
       ::user::frame *                           m_puserframeTopLevel;
       ::user::frame *                           m_puserframeParent;
-      ::windowing::window *                     m_pwindow;
       bool                                      m_bAutoResize;
 
 
@@ -392,6 +391,7 @@ namespace user
       // references
       ::pointer<::file::insert_item>            m_pitemComposing;
       ::pointer<::thread>                       m_pthreadUserInteraction;
+      ::pointer<::windowing::window>            m_pwindow;
       ::pointer<::user::interaction>            m_puserinteractionParent;
       ::pointer<::user::interaction>            m_pupdowntarget;
       ::task_pointer                            m_ptaskModal;
@@ -430,7 +430,7 @@ namespace user
 
       void user_interaction_common_construct();
 
-      virtual void on_create_user_interaction();
+      //virtual void on_create_user_interaction();
 
       void on_initialize_particle() override;
 
@@ -525,7 +525,14 @@ namespace user
          //fFontSize = pgraphics->m_puserinteraction->get_window()->dpiy((float)m_dFontSize);
 
 
-      //::windowing::window * window();
+      //inline oswindow get_oswindow() const { return m_oswindow; }
+      //virtual bool attach(::windowing::window * pwindow_New) override;
+      ::oswindow detach_window() override;
+
+
+      ::windowing::window * window() override;
+      virtual ::windowing::window * _window();
+      virtual void * get_os_data();
 
       ::windowing::windowing * windowing();
 
@@ -1861,17 +1868,9 @@ namespace user
       //virtual void _001OnDeferPaintLayeredWindowBackground(::draw2d::graphics_pointer & pgraphics) override;
 
 
-      //inline oswindow get_oswindow() const { return m_oswindow; }
-      //virtual bool attach(::windowing::window * pwindow_New) override;
-      ::oswindow detach_window() override;
-
-
-      ::windowing::window * window() override;
-      //virtual ::windowing::window * _window() override;
 
       virtual ::user::copydesk * copydesk();
 
-      virtual void* get_os_data();
 
 
       virtual bool can_merge(::user::interaction* pinteraction);

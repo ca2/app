@@ -2237,7 +2237,7 @@ namespace windowing
    }
 
 
-   void window::defer_show_system_menu(::message::mouse * pmouse)
+   void window::defer_show_system_menu(const ::point_i32 & pointAbsolute)
    {
 
    }

@@ -575,7 +575,7 @@ namespace user
    void frame::display_previous_restore()
    {
 
-      //return ::success;
+      ::user::box::display_previous_restore();
 
    }
 
@@ -583,6 +583,7 @@ namespace user
    void frame::display_system_minimize()
    {
 
+      ::user::box::display_system_minimize();
 
    }
 

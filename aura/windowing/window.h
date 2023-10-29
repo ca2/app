@@ -429,7 +429,7 @@ namespace windowing
       ::string get_window_text() override;
 
 
-      virtual void defer_show_system_menu(::message::mouse * pmouse);
+      virtual void defer_show_system_menu(const ::point_i32 & pointAbsolute);
 
 
    };

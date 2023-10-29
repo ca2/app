@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "main_window.h"
 #include "acme/constant/id.h"
+#include "acme/constant/message.h"
 #include "acme/handler/item.h"
 #include "acme/user/user/tool.h"
 #include "aura/windowing/window.h"
@@ -61,6 +62,8 @@ namespace user
 
       ::user::frame::install_message_routing(pchannel);
 
+      MESSAGE_LINK(e_message_create, pchannel, this, &main_window::on_message_create);
+
       //install_click_default_mouse_handling(pchannel);
       
       //install_hover_default_mouse_handling(pchannel);
@@ -68,7 +71,50 @@ namespace user
    }
 
 
-   void main_window::on_create_user_interaction()
+   //void main_window::on_create_user_interaction()
+   //{
+
+   //   defer_set_icon();
+
+   //   if (m_bEnableDefaultControlBox && should_show_platform_control_box())
+   //   {
+
+   //      {
+
+   //         auto pitemClose = __new(::item(::e_element_close_button, ::id_close_app));
+
+   //         tool().add_item(pitemClose);
+
+   //         user_item(pitemClose)->m_ezorder = e_zorder_front;
+
+   //      }
+
+   //      {
+
+   //         auto pitemMaximize = __new(::item(::e_element_maximize_button, ::id_maximize));
+
+   //         tool().add_item(pitemMaximize);
+
+   //         user_item(pitemMaximize)->m_ezorder = e_zorder_front;
+
+   //      }
+
+   //      {
+
+   //         auto pitemMinimize = __new(::item(::e_element_minimize_button, ::id_minimize));
+
+   //         tool().add_item(pitemMinimize);
+
+   //         user_item(pitemMinimize)->m_ezorder = e_zorder_front;
+   //         
+   //      }
+
+   //   }
+
+   //}
+
+
+   void main_window::on_message_create(::message::message * pmessage)
    {
 
       defer_set_icon();

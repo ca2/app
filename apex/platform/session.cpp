@@ -1052,6 +1052,19 @@ namespace apex
    bool session::is_key_pressed(::user::enum_key ekey)
    {
 
+      {
+
+         bool bPressed = false;
+
+         if (acmenode()->m_papexnode->is_key_pressed(&bPressed, ekey))
+         {
+
+            return bPressed;
+
+         }
+
+      }
+
       synchronous_lock synchronouslock(this->synchronization());
 
       if (m_pmapKeyPressed == nullptr)

@@ -615,18 +615,18 @@ namespace user
 
       color_selector::on_after_hover_color_change();
 
-      //if (has_handler())
-      //{
+      if (has_handler())
+      {
 
-      //   auto ptopic = create_topic(::id_after_change_cur_hover);
+         auto ptopic = create_topic(::id_after_change_cur_hover);
 
-      //   ptopic->m_puserelement = this;
+         ptopic->m_puserelement = this;
 
-      //   ptopic->m_actioncontext = ::e_source_user;
+         ptopic->m_actioncontext = ::e_source_user;
 
-      //   route(ptopic);
+         route(ptopic);
 
-      //}
+      }
 
       set_need_redraw();
 

@@ -455,7 +455,6 @@ namespace user
       m_puserinteractionTopLevel = nullptr;
       m_puserframeTopLevel = nullptr;
       m_puserframeParent = nullptr;
-      m_pwindow = nullptr;
       m_bFullScreen = false;
 
       //      printf("interaction::common_construct - m_pwindow (0x%" PRI0xPTR ")\n", (uptr) m_pwindow);
@@ -1013,6 +1012,14 @@ namespace user
 
 
    ::windowing::window * interaction::window()
+   {
+
+      return m_pwindow;
+
+   }
+
+
+   ::windowing::window * interaction::_window()
    {
 
       auto puserinteractionTopLevel = ((interaction *)this)->_top_level();
@@ -2775,8 +2782,8 @@ namespace user
    void interaction::install_message_routing(::channel * pchannel)
    {
 
-      MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &interaction::on_message_create);
-      MESSAGE_LINK(MESSAGE_DESTROY, pchannel, this, &interaction::on_message_destroy);
+      MESSAGE_LINK(e_message_create, pchannel, this, &interaction::on_message_create);
+      MESSAGE_LINK(e_message_destroy, pchannel, this, &interaction::on_message_destroy);
       MESSAGE_LINK(e_message_pos_create, pchannel, this, &interaction::on_message_after_create);
       MESSAGE_LINK(e_message_text_composition, pchannel, this, &interaction::_001OnTextComposition);
 
@@ -6951,11 +6958,12 @@ namespace user
    }
 
 
-   void interaction::on_create_user_interaction()
-   {
+   //void interaction::on_create_user_interaction()
+   //{
 
+   //   m_pwindow = _window();
 
-   }
+   //}
 
 
    bool interaction::is_branch_current() const
@@ -6974,10 +6982,7 @@ namespace user
 
       return itaskCurrent == itaskUserInteraction;
 
-
    }
-
-
 
 
    //::item_pointer interaction::get_user_item(::item * pitem)
@@ -7222,7 +7227,7 @@ namespace user
 
       psignal->add_handler(this);
 
-      on_create_user_interaction();
+      //on_create_user_interaction();
 
       auto pcursor = get_mouse_cursor();
 
@@ -10713,7 +10718,7 @@ namespace user
 
       {
 
-         synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
+         synchronous_lock synchronouslock(m_pwindow ? m_pwindow->m_pparticleChildrenSynchronization : nullptr);
 
          if (m_puserinteractionpointeraChild) m_puserinteractionpointeraChild->destroy();
 
@@ -10756,7 +10761,7 @@ namespace user
 
       {
 
-         synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
+         synchronous_lock synchronouslock(m_pwindow ? m_pwindow->m_pparticleChildrenSynchronization : nullptr);
 
          m_puserinteractionpointeraChild.release();
 
@@ -10774,7 +10779,7 @@ namespace user
       m_pupdowntarget.release();
       m_ptaskModal.release();
       m_puserinteractionOwner.release();
-
+      m_pwindow.release();
       //return ::success;
 
    }
@@ -15622,7 +15627,7 @@ namespace user
 
       m_puserframeTopLevel = _top_level_frame();
 
-      m_pwindow = window();
+      m_pwindow = _window();
 
 #ifdef REPORT_OFFSET
 

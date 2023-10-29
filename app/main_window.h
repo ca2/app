@@ -27,9 +27,13 @@ namespace app_app
 
 
 
+      void install_message_routing(::channel * pchannel) override;
 
 
-      virtual void on_create_user_interaction() override;
+      DECLARE_MESSAGE_HANDLER(on_message_create);
+
+
+      //virtual void on_create_user_interaction() override;
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 

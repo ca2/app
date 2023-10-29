@@ -551,6 +551,14 @@ namespace apex
 
    }
 
+   
+   bool node::is_key_pressed(bool * pbPressed, ::user::enum_key ekey)
+   {
+
+      return false;
+
+   }
+
 
 } // namespace apex
 

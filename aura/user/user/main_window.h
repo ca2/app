@@ -24,7 +24,10 @@ namespace user
       void install_message_routing(::channel* pchannel) override;
 
 
-      void on_create_user_interaction() override;
+      DECLARE_MESSAGE_HANDLER(on_message_create);
+
+
+      //void on_create_user_interaction() override;
       
       
       void input_client_rectangle(::rectangle_i32 & rectangle, enum_layout elayout = e_layout_sketch) override;

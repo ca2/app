@@ -24,9 +24,10 @@ namespace app_message_box
       void install_message_routing(::channel * pchannel) override;
 
 
+      DECLARE_MESSAGE_HANDLER(on_message_create);
       DECLARE_MESSAGE_HANDLER(on_message_close);
 
-      virtual void on_create_user_interaction() override;
+      //virtual void on_create_user_interaction() override;
 
       //virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 

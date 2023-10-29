@@ -544,7 +544,7 @@ namespace apex
    }
 
 
-   ::pointer < ::input::input > node::get_input()
+   ::pointer < ::input::input > node::create_input()
    {
 
       return __create < ::input::input > ();

@@ -64,6 +64,7 @@ namespace windowing
       bool                                      m_bActiveWindow;
       bool                                      m_bKeyboardFocus;
       ::pointer < class placement_log >         m_pplacementlog;
+      ::pointer < ::particle >                  m_pparticleChildrenSynchronization;
 
       window();
       ~window() override;

@@ -2098,7 +2098,7 @@ pacmedirectory->create("/ca2core");
       if(!m_pinput)
       {
 
-         auto pinput = acmenode()->m_papexnode->get_input();
+         auto pinput = acmenode()->m_papexnode->create_input();
 
          m_pinput = pinput;
 

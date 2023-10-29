@@ -7,6 +7,7 @@
 #include "acme/constant/message.h"
 #include "acme/exception/interface_only.h"
 #include "acme/parallelization/asynchronous.h"
+#include "acme/platform/node.h"
 #include "acme/platform/system.h"
 #include "acme/primitive/geometry2d/_text_stream.h"
 #include "acme/user/user/_text_stream.h"
@@ -63,6 +64,8 @@ namespace windowing
       auto puser = psession->user();
 
       puser->on_initialize_window_object();
+
+      m_pparticleChildrenSynchronization = acmenode()->create_mutex();
 
    }
 

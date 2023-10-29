@@ -341,11 +341,10 @@ list(APPEND library_source
    #user/menu/_menu.h
    user/menu/command.cpp
    user/menu/command.h
-   user/menu/shared.cpp
-   user/menu/shared.h
-   user/menu/shared_commnand.cpp
-   user/menu/shared_command.h
-
+   #user/menu/shared.cpp
+   #user/menu/shared.h
+   #user/menu/shared_commnand.cpp
+   #user/menu/shared_command.h
    #user/micro/message_box.cpp
    #user/micro/message_box.h
    user/user/_.cpp

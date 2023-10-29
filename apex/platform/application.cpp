@@ -371,29 +371,29 @@ namespace apex
    void application::application_menu_update()
    {
 
-#ifdef LINUX
-
-      auto psystem = acmesystem()->m_papexsystem;
-
-      if (acmeapplication()->m_bGtkApp)
-      {
-
-         auto pnode = psystem->node();
-
-         if (pnode)
-         {
-
-            pnode->set_application_menu(m_pappmenu, this);
-
-         }
-
-      }
-      
-#else
-      
+//#ifdef LINUX
+//
+//      auto psystem = acmesystem()->m_papexsystem;
+//
+//      if (acmeapplication()->m_bGtkApp)
+//      {
+//
+//         auto pnode = psystem->node();
+//
+//         if (pnode)
+//         {
+//
+//            pnode->set_application_menu(m_pappmenu, this);
+//
+//         }
+//
+//      }
+//
+//#else
+//
       acmenode()->application_handle(id_application_menu_update, nullptr);
-
-#endif
+//
+//#endif
 
    }
 

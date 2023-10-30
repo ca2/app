@@ -35,8 +35,8 @@ namespace user
       m_bBreak = false;
       m_puserinteraction = nullptr;
       m_pmenuitema = __new(menu_item_ptra(this));
-      m_iLevel       = 0;
-      m_bPopup       = false;
+      m_iLevel = 0;
+      m_bPopup = false;
       m_item.m_eelement = e_element_item;
 
    }
@@ -57,16 +57,16 @@ namespace user
 
       ::count iItemCount = straCommand.get_count();
 
-      if(straCommandTitle.get_size() < straCommand.get_size())
+      if (straCommandTitle.get_size() < straCommand.get_size())
          return false;
 
-      for(i32 i = 0; i < iItemCount; i++)
+      for (i32 i = 0; i < iItemCount; i++)
       {
          string strCommand = straCommand[i];
          string strCommandTitle = straCommandTitle[i];
          auto pitemNewChild = __new(menu_item);
          pitemNewChild->m_bPopup = false;
-         if(strCommand.is_empty())
+         if (strCommand.is_empty())
          {
             pitemNewChild->m_atom = "separator";
             m_iSeparatorCount++;
@@ -109,12 +109,29 @@ namespace user
    bool menu_item::load_menu(::xml::node * pnode)
    {
 
-      m_iSeparatorCount       = 0;
-      m_iFullHeightItemCount  = 0;
+      m_iSeparatorCount = 0;
+      m_iFullHeightItemCount = 0;
 
       return load_menu(pnode, m_iLevel);
 
    }
+
+
+   menu_item * menu_item::separator()
+   {
+
+   auto pitem = __create_new<menu_item>();
+
+   pitem->m_atom = "separator";
+
+   pitem->m_pmenu = m_pmenu;
+
+   add_item(pitem);
+
+   return pitem;
+
+}
+
 
 
    bool menu_item::load_menu(::xml::node * pnode, i32 iLevel)

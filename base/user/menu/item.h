@@ -44,6 +44,7 @@ namespace user
 
 
       void add_item(menu_item * pitem);
+      menu_item * separator();
       bool create_menu(const string_array & straCommand, const string_array & straCommandTitle);
       bool load_menu(::xml::node * pxmlnode);
       bool load_menu(::xml::node * pxmlnode, i32 iLevel);

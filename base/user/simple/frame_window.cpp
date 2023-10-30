@@ -16,7 +16,7 @@
 #include "apex/platform/node.h"
 #include "apex/platform/savings.h"
 #include "apex/platform/system.h"
-#include "apex/user/menu/menu.h"
+#include "apex/platform/application_menu.h"
 #include "aqua/xml/document.h"
 #include "aura/user/user/interaction_array.h"
 #include "aura/graphics/draw2d/graphics.h"
@@ -184,9 +184,98 @@ void simple_frame_window::on_update_notify_icon_menu_header(::index & iNotifyIco
 
    auto papp = auraapplication();
 
+   auto puser = papp->get_session()->user()->m_pbaseuser;
+
    auto strAppTitle = papp->application_title();
 
-   m_pnotifyicon->notify_icon_insert_item(true, iNotifyIconItem, strAppTitle, "notify_icon_topic");
+   auto pmenu = m_pnotifyicon->menu();
+
+   pmenu->stock_item_at(iNotifyIconItem, strAppTitle, "notify_icon_topic");
+
+   if (papp->application_menu()->has_element())
+   {
+
+      ::index iIndexSource;
+
+      if (papp->application_menu()->first()->m_strName == strAppTitle)
+      {
+
+         if (papp->application_menu()->first()->is_popup())
+         {
+
+            auto ppopupApp = papp->application_menu()->first();
+
+            pmenu->separator_at(iNotifyIconItem);
+            
+            for (::index iIndexPopup = 0; iIndexPopup < ppopupApp->count(); iIndexPopup++)
+            {
+
+               if (iIndexPopup + 1 < ppopupApp->count())
+               {
+
+                  if (ppopupApp->element_at(iIndexPopup)->is_separator()
+                     && ppopupApp->element_at(iIndexPopup + 1)->m_strId == "app_exit")
+                  {
+
+                     if (iIndexPopup + 1 == ppopupApp->upper_bound())
+                     {
+
+                        break;
+
+                     }
+                     else if (ppopupApp->element_at(iIndexPopup + 2)->is_separator())
+                     {
+
+                        iIndexPopup += 2;
+
+                     }
+
+                  }
+
+               }
+
+               auto pitem = ppopupApp->element_at(iIndexPopup);
+
+               if (pitem->m_strId == "app_exit")
+               {
+
+                  continue;
+
+               }
+
+               pmenu->insert_at(iNotifyIconItem++, pitem);
+
+            }
+
+            pmenu->separator_at(iNotifyIconItem);
+
+         }
+
+         iIndexSource = 1;
+
+      }
+      else
+      {
+
+         iIndexSource = 0;
+
+      }
+
+      for (; iIndexSource < papp->application_menu()->count(); iIndexSource++)
+      {
+
+         auto papplicationmenu = papp->application_menu()->element_at(iIndexSource);
+
+         pmenu->insert_at(iNotifyIconItem++, papplicationmenu);
+
+      }
+
+   }
+   else
+   {
+
+   }
+
 
 }
 
@@ -196,16 +285,18 @@ void simple_frame_window::on_update_notify_icon_menu_top(::index & iNotifyIconIt
 
    auto papp = auraapplication();
 
-   auto c = papp->main_menu()->get_count();
+   //auto c = papp->application_menu()->get_count();
 
-   for (auto i = 0; i < c; i++)
-   {
+   //auto papplicationmenu = papp->application_menu();
 
-      auto pitem = papp->main_menu()->element_at(i);
+   //for (auto i = 0; i < c; i++)
+   //{
 
-      m_pnotifyicon->notify_icon_insert_item(false, iNotifyIconItem, pitem->m_strName, pitem->m_strId);
+   //      auto pitem = papp->main_menu()->element_at(i);
 
-   }
+     // m_pnotifyicon->menu()->insert_at(0, papplicationmenu); // notify_icon_insert_item(false, iNotifyIconItem, pitem->m_strName, pitem->m_strId);
+
+//   }
 
 }
 
@@ -226,10 +317,10 @@ void simple_frame_window::on_update_notify_icon_menu_bottom(::index & iNotifyIco
       && m_pframe->get_control_box()->has_button(::experience::e_button_transparent_frame))
    {
 
-      m_pnotifyicon->notify_icon_insert_item(true, iNotifyIconItem, "separator");
+      m_pnotifyicon->menu()->separator_at(iNotifyIconItem);
 
       //m_pnotifyicon->notify_icon_insert_item(iNotifyIconItem, _("Transparent Frame"), "transparent_frame");
-      m_pnotifyicon->notify_icon_insert_item(true, iNotifyIconItem, "Transparent Frame", "transparent_frame");
+      m_pnotifyicon->menu()->stock_item_at(iNotifyIconItem, "Transparent Frame", "transparent_frame");
 
    }
 
@@ -239,10 +330,10 @@ void simple_frame_window::on_update_notify_icon_menu_bottom(::index & iNotifyIco
 void simple_frame_window::on_update_notify_icon_menu_footer(::index & iNotifyIconItem)
 {
 
-   m_pnotifyicon->notify_icon_insert_item(true, iNotifyIconItem, "separator");
+   m_pnotifyicon->menu()->separator_at(iNotifyIconItem);
 
    //m_pnotifyicon->notify_icon_insert_item(iNotifyIconItem, _("Exit"), "app_exit");
-   m_pnotifyicon->notify_icon_insert_item(true, iNotifyIconItem, "Exit", "app_exit");
+   m_pnotifyicon->menu()->stock_item_at(iNotifyIconItem, "Exit", "app_exit");
 
 }
 
@@ -3338,13 +3429,13 @@ void simple_frame_window::handle(::topic * ptopic, ::context * pcontext)
 
          auto pointCursor = windowing()->display()->get_mouse_cursor_position();
 
-         string strXml = notification_area_get_xml_menu();
+         auto pmenu = m_pnotifyicon->menu();
 
          auto psession = get_session();
 
          auto puser = psession->baseuser();
 
-         puser->track_popup_xml_menu(this, strXml, 0, pointCursor, size_i32(), m_pnotifyicon);
+         puser->track_popup_menu(this, pmenu, 0, pointCursor, size_i32(), m_pnotifyicon);
 
       }
       else if (ptopic->m_atom == ::id_left_button_double_click)
@@ -4276,34 +4367,34 @@ void simple_frame_window::notification_area_action(const ::string & pszId)
 }
 
 
-string simple_frame_window::notification_area_get_xml_menu()
-{
-
-   auto pxmldocument = __create_new < ::xml::document >();
-
-   pxmldocument->create_root("menu");
-
-   for (auto & pitem : m_pnotifyicon->m_notifyiconitema)
-   {
-
-      if (pitem->m_strId == "separator")
-      {
-
-         pxmldocument->root()->add_child("separator");
-
-      }
-      else
-      {
-
-         pxmldocument->root()->add_child("item", { "id", pitem->m_strId }, pitem->m_strName);
-
-      }
-
-   }
-
-   return pxmldocument->get_xml();
-
-}
+//string simple_frame_window::notification_area_get_xml_menu()
+//{
+//
+//   auto pxmldocument = __create_new < ::xml::document >();
+//
+//   pxmldocument->create_root("menu");
+//
+//   for (auto & pitem : m_pnotifyicon->m_notifyiconitema)
+//   {
+//
+//      if (pitem->m_strId == "separator")
+//      {
+//
+//         pxmldocument->root()->add_child("separator");
+//
+//      }
+//      else
+//      {
+//
+//         pxmldocument->root()->add_child("item", { "id", pitem->m_strId }, pitem->m_strName);
+//
+//      }
+//
+//   }
+//
+//   return pxmldocument->get_xml();
+//
+//}
 
 
 void simple_frame_window::_on_configure_notify_unlocked(const ::rectangle_i32 & rectangle)

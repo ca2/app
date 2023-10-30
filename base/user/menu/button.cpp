@@ -455,6 +455,21 @@ namespace user
    }
 
 
+   bool menu_button::on_click(::item * pitem)
+   {
+
+      if (get_parent()->on_click(m_pmenuitem))
+      {
+
+         return true;
+
+      }
+
+      return false;
+
+   }
+
+
 } // namespace user
 
 

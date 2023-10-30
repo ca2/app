@@ -133,7 +133,7 @@ namespace acme
    }
 
 
-::apex::menu * application::main_menu()
+::application_menu * application::application_menu()
 {
  
    return nullptr;

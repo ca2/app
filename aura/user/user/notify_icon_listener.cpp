@@ -71,95 +71,105 @@ namespace user
    //}
 
 
-   int notify_icon_listener::_get_notification_area_action_count()
+   //int notify_icon_listener::_get_notification_area_action_count()
+   //{
+
+   //   return (int) m_notifyiconitema.get_count();
+
+   //}
+
+
+   //const char * notify_icon_listener::_get_notification_area_action_name(int iItem)
+   //{
+
+   //   if (iItem < 0 || iItem >= m_notifyiconitema.get_count())
+   //   {
+
+   //      return nullptr;
+
+   //   }
+
+   //   auto & pitem = m_notifyiconitema[iItem];
+
+   //   return pitem->m_strName.c_str();
+
+   //}
+
+
+   //const char * notify_icon_listener::_get_notification_area_action_id(int iItem)
+   //{
+
+   //   if (iItem < 0 || iItem >= m_notifyiconitema.get_count())
+   //   {
+
+   //      return nullptr;
+
+   //   }
+
+   //   auto & pitem = m_notifyiconitema[iItem];
+
+   //   return pitem->m_strId.c_str();
+
+   //}
+
+
+   //const char * notify_icon_listener::_get_notification_area_action_label(int iItem)
+   //{
+
+   //   if (iItem < 0 || iItem >= m_notifyiconitema.get_count())
+   //   {
+
+   //      return nullptr;
+
+   //   }
+
+   //   auto & pitem = m_notifyiconitema[iItem];
+
+   //   return pitem->m_strLabel.c_str();
+
+   //}
+
+
+   //const char * notify_icon_listener::_get_notification_area_action_accelerator(int iItem)
+   //{
+
+   //   if (iItem < 0 || iItem >= m_notifyiconitema.get_count())
+   //   {
+
+   //      return nullptr;
+
+   //   }
+
+   //   auto & pitem = m_notifyiconitema[iItem];
+
+   //   return pitem->m_strAccelerator.c_str();
+
+   //}
+
+
+   //const char * notify_icon_listener::_get_notification_area_action_description(int iItem)
+   //{
+
+   //   if (iItem < 0 || iItem >= m_notifyiconitema.get_count())
+   //   {
+
+   //      return nullptr;
+
+   //   }
+
+   //   auto & pitem = m_notifyiconitema[iItem];
+
+   //   return pitem->m_strDescription.c_str();
+
+   //}
+
+
+   ::application_menu * notify_icon_listener::menu()
    {
 
-      return (int) m_notifyiconitema.get_count();
+      __defer_construct_new(m_papplicationmenu);
 
-   }
-
-
-   const char * notify_icon_listener::_get_notification_area_action_name(int iItem)
-   {
-
-      if (iItem < 0 || iItem >= m_notifyiconitema.get_count())
-      {
-
-         return nullptr;
-
-      }
-
-      auto & pitem = m_notifyiconitema[iItem];
-
-      return pitem->m_strName.c_str();
-
-   }
-
-
-   const char * notify_icon_listener::_get_notification_area_action_id(int iItem)
-   {
-
-      if (iItem < 0 || iItem >= m_notifyiconitema.get_count())
-      {
-
-         return nullptr;
-
-      }
-
-      auto & pitem = m_notifyiconitema[iItem];
-
-      return pitem->m_strId.c_str();
-
-   }
-
-
-   const char * notify_icon_listener::_get_notification_area_action_label(int iItem)
-   {
-
-      if (iItem < 0 || iItem >= m_notifyiconitema.get_count())
-      {
-
-         return nullptr;
-
-      }
-
-      auto & pitem = m_notifyiconitema[iItem];
-
-      return pitem->m_strLabel.c_str();
-
-   }
-
-
-   const char * notify_icon_listener::_get_notification_area_action_accelerator(int iItem)
-   {
-
-      if (iItem < 0 || iItem >= m_notifyiconitema.get_count())
-      {
-
-         return nullptr;
-
-      }
-
-      auto & pitem = m_notifyiconitema[iItem];
-
-      return pitem->m_strAccelerator.c_str();
-
-   }
-
-
-   const char * notify_icon_listener::_get_notification_area_action_description(int iItem)
-   {
-
-      if (iItem < 0 || iItem >= m_notifyiconitema.get_count())
-      {
-
-         return nullptr;
-
-      }
-
-      auto & pitem = m_notifyiconitema[iItem];
-
-      return pitem->m_strDescription.c_str();
+      return m_papplicationmenu;
 
    }
 
@@ -170,107 +180,107 @@ namespace user
    }
 
 
-   notify_icon_listener::item::item()
-   {
+   //notify_icon_listener::item::item()
+   //{
 
-   }
+   //}
 
-   notify_icon_listener::item::item(string strName, string strId, string strLabel, string strAccelerator, string strDescription)
-   {
+   //notify_icon_listener::item::item(string strName, string strId, string strLabel, string strAccelerator, string strDescription)
+   //{
 
-      m_strName = strName.if_empty(m_strId);
+   //   m_strName = strName.if_empty(m_strId);
 
-      m_strId = strId.if_empty(m_strName);
+   //   m_strId = strId.if_empty(m_strName);
 
-      m_strLabel = strLabel.if_empty(m_strId);
+   //   m_strLabel = strLabel.if_empty(m_strId);
 
-      m_strAccelerator = strAccelerator.if_empty(m_strId);
+   //   m_strAccelerator = strAccelerator.if_empty(m_strId);
 
-      m_strDescription = strDescription.if_empty(m_strName);
+   //   m_strDescription = strDescription.if_empty(m_strName);
 
-   }
-
-
-   notify_icon_listener::item:: ~item()
-   {
-
-   }
+   //}
 
 
-   bool notify_icon_listener::notify_icon_insert_item(bool bStockItem, index & iIndex, string strName, string strId, string strLabel, string strAccelerator, string strDescription)
-   {
+   //notify_icon_listener::item:: ~item()
+   //{
 
-      if (iIndex < 0 || iIndex > m_notifyiconitema.get_count())
-      {
-
-         return false;
-
-      }
+   //}
 
 
-      for(auto & pitem : m_notifyiconitema)
-      {
+   //bool notify_icon_listener::notify_icon_insert_item(bool bStockItem, index & iIndex, string strName, string strId, string strLabel, string strAccelerator, string strDescription)
+   //{
 
-         if(pitem->m_strId == "separator")
-         {
+   //   if (iIndex < 0 || iIndex > m_notifyiconitema.get_count())
+   //   {
 
+   //      return false;
 
-         }
-         else if(pitem->m_strId == strId)
-         {
-
-            // Don't add item with duplicated atom
-            return false;
-
-         }
-
-      }
-
-      if(strId == "separator")
-      {
-
-         if(iIndex > 0)
-         {
-
-            if(m_notifyiconitema[iIndex - 1]->m_strId == "separator")
-            {
-
-               // Don't add consecutive <separator>
-
-               return false;
-
-            }
-
-         }
-
-         if(iIndex < m_notifyiconitema.get_upper_bound())
-         {
-
-            if(m_notifyiconitema[iIndex]->m_strId == "separator")
-            {
-
-               // Don't add consecutive <separator>
-
-               return false;
-
-            }
-
-         }
+   //   }
 
 
-      }
+   //   for(auto & pitem : m_notifyiconitema)
+   //   {
 
-      auto pitem = __new(item(strName, strId, strLabel, strAccelerator, strDescription));
+   //      if(pitem->m_strId == "separator")
+   //      {
 
-      pitem->m_bStockItem = bStockItem;
 
-      m_notifyiconitema.insert_at(iIndex, pitem);
+   //      }
+   //      else if(pitem->m_strId == strId)
+   //      {
 
-      iIndex++;
+   //         // Don't add item with duplicated atom
+   //         return false;
 
-      return true;
+   //      }
 
-   }
+   //   }
+
+   //   if(strId == "separator")
+   //   {
+
+   //      if(iIndex > 0)
+   //      {
+
+   //         if(m_notifyiconitema[iIndex - 1]->m_strId == "separator")
+   //         {
+
+   //            // Don't add consecutive <separator>
+
+   //            return false;
+
+   //         }
+
+   //      }
+
+   //      if(iIndex < m_notifyiconitema.get_upper_bound())
+   //      {
+
+   //         if(m_notifyiconitema[iIndex]->m_strId == "separator")
+   //         {
+
+   //            // Don't add consecutive <separator>
+
+   //            return false;
+
+   //         }
+
+   //      }
+
+
+   //   }
+
+   //   auto pitem = __new(item(strName, strId, strLabel, strAccelerator, strDescription));
+
+   //   pitem->m_bStockItem = bStockItem;
+
+   //   m_notifyiconitema.insert_at(iIndex, pitem);
+
+   //   iIndex++;
+
+   //   return true;
+
+   //}
 
 
 } // namespace user

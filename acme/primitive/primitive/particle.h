@@ -523,7 +523,22 @@ public:
    template < typename TYPE >
    inline ::pointer<TYPE>__create_new();
 
-   
+   template < typename TYPE >
+   inline TYPE*__initialize(TYPE * p)
+   {
+      p->initialize(this);
+      return p;
+
+   }
+
+   template < typename TYPE >
+   inline ::pointer < TYPE > __initialize(::pointer < TYPE > && p)
+   {
+      p.m_p->initialize(this);
+      return ::transfer(p);
+
+   }
+
    template < typename T >
    ::pointer < T > create_clone(const ::pointer < T > & psource)
    {

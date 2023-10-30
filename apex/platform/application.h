@@ -51,7 +51,8 @@ namespace apex
 
       bool                                         m_bReadStringTable;
 
-      ::pointer<::apex::menu>                      m_pmenuMain;
+      ::pointer<class ::application_menu>          m_papplicationmenu;
+      //::pointer<::apex::menu>                 m_pmainmenu;
 
       //::pointer<::game::game>                    m_pgame;
 
@@ -367,7 +368,7 @@ namespace apex
 
       //virtual bool is_local_data() override;
 
-      ::apex::menu * main_menu() override;
+      class ::application_menu * application_menu() override;
 
 
       virtual ::file::path appconfig_folder();
@@ -687,6 +688,7 @@ namespace apex
 
       DECLARE_MESSAGE_HANDLER(on_message_app_exit);
       DECLARE_MESSAGE_HANDLER(on_message_close);
+      DECLARE_MESSAGE_HANDLER(on_command_display_about);
       //virtual bool _001OnAgreeExit();
 
 

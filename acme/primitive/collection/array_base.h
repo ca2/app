@@ -788,8 +788,9 @@ public:
    
 
    TYPE & insert_at(::index nIndex, const TYPE & newElement, ::count nCount = 1);
-   TYPE * insert_at(::index nStartIndex, const array_base * pNewArray);
    TYPE * insert_at(::index nStartIndex, const TYPE * p, ::count nCount = 1);
+
+   TYPE * insert_array_at(::index nStartIndex, const array_base * pNewArray);
 
 
    ::index erase_at(::index nIndex, ::count nCount = 1);
@@ -1515,15 +1516,6 @@ TYPE & array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::insert_at(::i
 
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
-TYPE * array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::insert_at(::index i, const array_base * p)
-{
-   
-   return this->insert_at(i, p->m_begin, p->size());
-
-}
-
-
-template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
 TYPE * array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::insert_at(::index i, const TYPE * pelements, ::count c)
 {
 
@@ -1532,6 +1524,15 @@ TYPE * array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::insert_at(::i
    ALLOCATOR::copy_construct_count(p, c, pelements);
  
    return p;
+
+}
+
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+TYPE * array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::insert_array_at(::index i, const array_base * p)
+{
+
+   return this->insert_at(i, p->m_begin, p->size());
 
 }
 

@@ -17,7 +17,7 @@ namespace user
 
 
       menu_button();
-      virtual ~menu_button();
+      ~menu_button() override;
 
 
       virtual void initialize_menu_interaction(menu_item* pitem) override;
@@ -46,6 +46,8 @@ namespace user
 
       ::color::color _001GetButtonBackgroundColor() override;
 
+
+      bool on_click(::item * pitem) override;
 
    };
 

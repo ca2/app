@@ -10,11 +10,11 @@
 #pragma once
 
 
-namespace apex
-{
+//namespace user
+//{
 
 
-   class CLASS_DECL_APEX menu_command :
+   class CLASS_DECL_APEX application_menu_command :
    virtual public ::particle
    {
    public: // re-implementations only
@@ -23,7 +23,7 @@ namespace apex
       int * m_pestatus;
       
       
-      menu_command(int* pestatus);
+      application_menu_command(int* pestatus);
       
       virtual void enable(bool bOn = true);
       
@@ -40,7 +40,7 @@ namespace apex
    };
 
 
-} // namespace apex
+//} // namespace apex
 
 
 

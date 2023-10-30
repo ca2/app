@@ -53,12 +53,12 @@ namespace user
       void on_command(::message::command * pcommand) override;
 
 
-      virtual int _get_notification_area_action_count() override;
-      virtual const char * _get_notification_area_action_name(int iIndex) override;
-      virtual const char * _get_notification_area_action_id(int iIndex) override;
-      virtual const char * _get_notification_area_action_label(int iIndex) override;
-      virtual const char * _get_notification_area_action_accelerator(int iIndex) override;
-      virtual const char * _get_notification_area_action_description(int iIndex) override;
+      //virtual int _get_notification_area_action_count() override;
+      //virtual const char * _get_notification_area_action_name(int iIndex) override;
+      //virtual const char * _get_notification_area_action_id(int iIndex) override;
+      //virtual const char * _get_notification_area_action_label(int iIndex) override;
+      //virtual const char * _get_notification_area_action_accelerator(int iIndex) override;
+      //virtual const char * _get_notification_area_action_description(int iIndex) override;
       virtual void call_notification_area_action(const ::scoped_string & scopedstrId) override;
 
 

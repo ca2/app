@@ -281,8 +281,6 @@ namespace user
       MESSAGE_LINK(WM_USER + 1122, pchannel, this, &tab_impact::_001OnMenuMessage);
       MESSAGE_LINK(e_message_set_focus, pchannel, this, &tab_impact::on_message_set_focus);
 
-      add_command_handler("display_about", { this, &tab_impact::on_command_display_about });
-
    }
 
 
@@ -1100,38 +1098,43 @@ namespace user
 
          __defer_construct_new(pmenu->m_pmenuitem);
 
-         pmenu->m_pmenuitem->m_pmenu = pmenu;
+         get_session()->user()->m_pbaseuser->from_application_menu(
+            pmenu->m_pmenuitem,
+            pframe->notify_icon()->menu(),
+            pmenu);
 
-         if (!pmenu->m_pmenuitem->m_pmenuitema)
-         {
+         //pmenu->m_pmenuitem->m_pmenu = pmenu;
 
-            pmenu->m_pmenuitem->m_pmenuitema = __new(::user::menu_item_ptra(pmenu->m_pmenuitem));
+         //if (!pmenu->m_pmenuitem->m_pmenuitema)
+         //{
 
-         }
+         //   pmenu->m_pmenuitem->m_pmenuitema = __new(::user::menu_item_ptra(pmenu->m_pmenuitem));
 
-         for(::index i = 0; i < pframe->notify_icon()->m_notifyiconitema.get_count(); i++)
-         {
+         //}
 
-            auto pnotifyiconitem = pframe->notify_icon()->m_notifyiconitema[i];
+         //for(::index i = 0; i < pframe->notify_icon()->m_notifyiconitema.get_count(); i++)
+         //{
 
-            if (pnotifyiconitem->m_bStockItem)
-            {
+         //   auto pnotifyiconitem = pframe->notify_icon()->m_notifyiconitema[i];
 
-               continue;
+         //   if (pnotifyiconitem->m_bStockItem)
+         //   {
 
-            }
+         //      continue;
 
-            auto pmenuitem = __create_new < menu_item >();
+         //   }
 
-            pmenuitem->m_pmenu = pmenu;
+         //   auto pmenuitem = __create_new < menu_item >();
 
-            pmenuitem->m_atom = pnotifyiconitem->m_strId;
+         //   pmenuitem->m_pmenu = pmenu;
 
-            pmenuitem->m_strTitle = pnotifyiconitem->m_strName;
+         //   pmenuitem->m_atom = pnotifyiconitem->m_strId;
 
-            pmenu->m_pmenuitem->m_pmenuitema->add(pmenuitem);
+         //   pmenuitem->m_strTitle = pnotifyiconitem->m_strName;
 
-         }
+         //   pmenu->m_pmenuitem->m_pmenuitema->add(pmenuitem);
+
+         //}
 
          pmenu->add_handler(pframe);
 

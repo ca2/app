@@ -686,8 +686,8 @@
     <ClCompile Include="networking\sockets\webserver\httpd_socket.cpp" />
     <ClCompile Include="networking\sockets\websocket_client.cpp" />
     <ClCompile Include="platform\api_client_base.cpp" />
-    <ClCompile Include="user\menu\command.cpp" />
-    <ClCompile Include="user\menu\menu.cpp" />
+    <ClCompile Include="platform\application_menu.cpp" />
+    <ClCompile Include="platform\application_menu_command.cpp" />
     <ClCompile Include="user\menu\shared.cpp" />
     <ClCompile Include="user\user\language.cpp" />
     <ClCompile Include="user\user\language_map.cpp" />
@@ -910,6 +910,7 @@
     <ClInclude Include="platform\application_heap.h" />
     <ClInclude Include="platform\application_impl.h" />
     <ClInclude Include="platform\application_menu.h" />
+    <ClInclude Include="platform\application_menu_command.h" />
     <ClInclude Include="platform\application_signal_details.h" />
     <ClInclude Include="platform\app_consumer.h" />
     <ClInclude Include="platform\app_launcher.h" />
@@ -947,9 +948,8 @@
     <ClInclude Include="progress\real.h" />
     <ClInclude Include="progress\_.h" />
     <ClInclude Include="aaa_user.h" />
-    <ClInclude Include="user\menu\command.h" />
-    <ClInclude Include="user\menu\menu.h" />
-    <ClInclude Include="user\menu\shared.h" />
+    <ClInclude Include="user\menu\main_menu_command.h" />
+    <ClInclude Include="user\menu\main_menu.h" />
     <ClInclude Include="user\user\aaa_const_key.h" />
     <ClInclude Include="user\user\command.h" />
     <ClInclude Include="user\user\language.h" />

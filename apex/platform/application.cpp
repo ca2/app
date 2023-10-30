@@ -33,7 +33,7 @@
 #include "apex/interprocess/communication.h"
 #include "apex/interprocess/target.h"
 #include "apex/interprocess/task.h"
-#include "apex/user/menu/menu.h"
+#include "apex/platform/application_menu.h"
 #include "apex/database/_binary_stream.h"
 #include "acme/filesystem/filesystem/dir_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
@@ -335,17 +335,19 @@ namespace apex
 
 
 
-   ::apex::menu * application::main_menu()
+   ::application_menu * application::application_menu()
    {
 
-      if (m_pmenuMain.is_null())
+      if (__defer_construct_new(m_papplicationmenu))
       {
 
-         m_pmenuMain = __new(::apex::menu);
+         m_papplicationmenu->m_strName = application_title();
+
+         m_papplicationmenu->m_bPopup = true;
 
       }
 
-      return m_pmenuMain;
+      return m_papplicationmenu;
 
    }
 
@@ -548,6 +550,7 @@ namespace apex
 
       add_command_handler("app_exit", { this, &application::on_message_app_exit });
       add_command_handler("switch_context_theme", { this, &application::_001OnSwitchContextTheme });
+      add_command_handler("display_about", { this, &application::on_command_display_about });
 
    }
 
@@ -4968,6 +4971,16 @@ namespace apex
    }
 
 
+   void application::on_command_display_about(::message::message * pmessage)
+   {
+
+      pmessage->m_bRet = true;
+
+      show_about_box();
+
+   }
+
+
    bool application::is_equal_file_path(const ::file::path & path1Param, const ::file::path & path2Param)
    {
 
@@ -6097,33 +6110,33 @@ namespace apex
 
       error() <<"1.1";
 
-      auto pmenuMain = main_menu();
+      auto papplicationmenu = application_menu();
       
-      pmenuMain->erase_all();
+      papplicationmenu->erase_all();
       
       using namespace ::apex;
       
       {
          
-         auto pmenuApp = __new(menu(m_strAppName, "", "", ""));
+         auto ppopupApp = papplicationmenu->popup(application_title());
          
-         pmenuMain->add(pmenuApp);
+         //pmenuMain->add(pmenuApp);
          
-         pmenuApp->add(__new(menu("About " + m_strAppName, "display_about", "", "")));
+         ppopupApp->item("About " + application_title(), "display_about", "", "");
          
-         pmenuApp->add(__new(menu("separator", "", "", "")));
+         ppopupApp->separator();
          
-         pmenuApp->add(__new(menu("Quit " + m_strAppName, "app_exit", "", "")));
+         ppopupApp->item("Quit " + application_title(), "app_exit", "", "");
          
       }
 
       {
          
-         auto pmenuView = __new(menu("View", "", "", ""));
+         auto ppopupView = papplicationmenu->popup("View");
          
-         pmenuMain->add(pmenuView);
+         //ppopupView->add(pmenuView);
          
-         pmenuView->add(__new(menu("Transparent Frame", "transparent_frame", "", "")));
+         ppopupView->item("Transparent Frame", "transparent_frame", "", "");
          
       }
 

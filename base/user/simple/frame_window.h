@@ -266,7 +266,7 @@ public:
 
    virtual void notification_area_action(const ::string & pszId);
 
-   virtual string notification_area_get_xml_menu();
+   //virtual string notification_area_get_xml_menu();
 
    void on_update_notify_icon_menu(::index & iNotifyIconIndex) override;
 

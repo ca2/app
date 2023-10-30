@@ -3878,7 +3878,7 @@ namespace user
    ::pointer_array < ::user::interaction > interaction::synchronized_get_children()
    {
 
-      synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
+      synchronous_lock synchronouslock(m_pwindow ? m_pwindow->m_pparticleChildrenSynchronization : nullptr);
 
       if (!m_puserinteractionpointeraChild)
       {

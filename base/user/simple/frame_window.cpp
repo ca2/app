@@ -214,7 +214,7 @@ void simple_frame_window::on_update_notify_icon_menu_header(::index & iNotifyIco
                {
 
                   if (ppopupApp->element_at(iIndexPopup)->is_separator()
-                     && ppopupApp->element_at(iIndexPopup + 1)->m_strId == "app_exit")
+                     && ppopupApp->element_at(iIndexPopup + 1)->m_atom == "app_exit")
                   {
 
                      if (iIndexPopup + 1 == ppopupApp->upper_bound())
@@ -236,7 +236,7 @@ void simple_frame_window::on_update_notify_icon_menu_header(::index & iNotifyIco
 
                auto pitem = ppopupApp->element_at(iIndexPopup);
 
-               if (pitem->m_strId == "app_exit")
+               if (pitem->m_atom == "app_exit")
                {
 
                   continue;

@@ -137,7 +137,7 @@ namespace user
 
          size.cx() += pitem->m_iLevel * g_base_menu_indent;
 
-         if(pitem->IsPopup())
+         if(pitem->is_popup())
             size.cx() += 12 + 16;
 
          if(size.cy() > iMaxHeight)

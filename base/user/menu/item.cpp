@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "acme/constant/id.h"
 #include "base/platform/application.h"
 #include "aqua/xml/document.h"
 #include "aura/graphics/image/context_image.h"
@@ -68,7 +69,7 @@ namespace user
          pitemNewChild->m_bPopup = false;
          if (strCommand.is_empty())
          {
-            pitemNewChild->m_atom = "separator";
+            pitemNewChild->m_atom = id_separator;
             m_iSeparatorCount++;
          }
          else
@@ -122,7 +123,7 @@ namespace user
 
    auto pitem = __create_new<menu_item>();
 
-   pitem->m_atom = "separator";
+   pitem->m_atom = id_separator;
 
    pitem->m_pmenu = m_pmenu;
 
@@ -146,7 +147,7 @@ namespace user
       if(pnode->get_name() == "separator")
       {
 
-         m_atom = "separator";
+         m_atom = id_separator;
 
          if(m_pmenu->m_pmenuParent != nullptr)
          {
@@ -287,6 +288,7 @@ namespace user
 
    }
 
+
    bool menu_item::create_buttons(::draw2d::graphics_pointer & pgraphics, menu * pmenu)
    {
 
@@ -295,7 +297,14 @@ namespace user
       for (i32 iItem = 0; iItem < m_pmenuitema->get_size(); iItem++)
       {
 
-         ::pointer<menu_item>pitem = m_pmenuitema->element_at(iItem);
+         auto pitem = m_pmenuitema->element_at(iItem);
+
+         if (pitem->is_separator())
+         {
+
+            continue;
+
+         }
 
          ::pointer<::user::interaction>pinteraction = pitem->m_puserinteraction;
 
@@ -358,10 +367,18 @@ namespace user
    }
 
 
-   bool menu_item::IsPopup()
+   bool menu_item::is_popup() const
    {
 
-      return m_pmenuitema.is_set() && m_pmenuitema->get_count() > 0;
+      return m_bPopup || m_pmenuitema.is_set() && m_pmenuitema->get_count() > 0;
+
+   }
+
+
+   bool menu_item::is_separator() const
+   {
+
+      return m_atom == id_separator;
 
    }
 
@@ -380,7 +397,7 @@ namespace user
    }
 
 
-   menu_item * menu_item::find(atom atom)
+   menu_item * menu_item::find(const atom & atom)
    {
 
       if(m_pmenuitema.is_null())
@@ -394,18 +411,19 @@ namespace user
    }
 
 
-   void menu_item::OnAddRef()
-   {
+   //void menu_item::OnAddRef()
+   //{
 
-   }
+   //}
 
 
-   void menu_item::OnRelease()
-   {
+   //void menu_item::OnRelease()
+   //{
 
-   }
+   //}
 
-   menu_item * menu_item_ptra::find(atom atom)
+
+   menu_item * menu_item_ptra::find(const ::atom & atom)
    {
 
       menu_item * pitemFind;

@@ -212,7 +212,7 @@ namespace user
 
       size.cx() += rectanglePadding.left();
 
-      if (m_pmenuitem->IsPopup())
+      if (m_pmenuitem->is_popup())
       {
 
          size.cx() += rectanglePadding.left();

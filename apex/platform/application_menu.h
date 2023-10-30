@@ -36,25 +36,30 @@ struct popup_flag_t{};
       
       bool        m_bPopup = false;
       string      m_strName;
-      string      m_strId;
+      ::atom      m_atom;
       string      m_strLabel;
       string      m_strAccelerator;
       string      m_strDescription;
       bool        m_bStockItem = false;
       
       application_menu();
-      application_menu(string strName, popup_flag_t);
-      application_menu(bool bStockItem, string strName, string strId="", string strMacosAccelerator="", string strDescription="");
+      application_menu(const ::scoped_string & scopedstrName, popup_flag_t);
+      application_menu(
+         bool bStockItem,
+         const ::scoped_string & scopedstrName, 
+         const ::atom & atom = {},
+         const ::scoped_string & scopedstrAccelerator = {},
+         const ::scoped_string & scopedstrDescription = {});
 
 
-      virtual application_menu * popup_at(::index & iIndex, string strName);
-      virtual application_menu * popup(string strName);
-      virtual application_menu * _item_at(::index & iIndex, bool bStockItem, string strName, string strId = "", string strMacosAccelerator = "", string strDescription = "");
-      virtual application_menu * _item(bool bStockItem, string strName, string strId = "", string strMacosAccelerator = "", string strDescription = "");
-      virtual application_menu * item_at(::index & iIndex, string strName, string strId = "", string strMacosAccelerator = "", string strDescription = "");
-      virtual application_menu * stock_item_at(::index & iIndex, string strName, string strId = "", string strMacosAccelerator = "", string strDescription = "");
-      virtual application_menu * item(string strName, string strId = "", string strMacosAccelerator = "", string strDescription = "");
-      virtual application_menu * stock_item(string strName, string strId = "", string strMacosAccelerator = "", string strDescription = "");
+      virtual application_menu * popup_at(::index & iIndex, const ::scoped_string & scopedstrName);
+      virtual application_menu * popup(const ::scoped_string & scopedstrName);
+      virtual application_menu * _item_at(::index & iIndex, bool bStockItem, const ::scoped_string & scopedstrName, const ::atom & atom = {}, const ::scoped_string & scopedstrMacosAccelerator = {}, const ::scoped_string & scopedstrDescription = {});
+      virtual application_menu * _item(bool bStockItem, const ::scoped_string & scopedstrName, const ::atom & atom = {}, const ::scoped_string & scopedstrMacosAccelerator = {}, const ::scoped_string & scopedstrDescription = {});
+      virtual application_menu * item_at(::index & iIndex, const ::scoped_string & scopedstrName, const ::atom & atom = {}, const ::scoped_string & scopedstrMacosAccelerator = {}, const ::scoped_string & scopedstrDescription = {});
+      virtual application_menu * stock_item_at(::index & iIndex, const ::scoped_string & scopedstrName, const ::atom & atom = {}, const ::scoped_string & scopedstrMacosAccelerator = {}, const ::scoped_string & scopedstrDescription = {});
+      virtual application_menu * item(const ::scoped_string & scopedstrName, const ::atom & atom = {}, const ::scoped_string & scopedstrMacosAccelerator = {}, const ::scoped_string & scopedstrDescription = {});
+      virtual application_menu * stock_item(const ::scoped_string & scopedstrName, const ::atom & atom = {}, const ::scoped_string & scopedstrMacosAccelerator = {}, const ::scoped_string & scopedstrDescription = {});
       virtual application_menu * separator_at(::index & iIndex);
       virtual application_menu * separator();
 
@@ -71,7 +76,7 @@ struct popup_flag_t{};
       bool is_separator() const
       {
 
-         return this->m_strId == "separator";
+         return this->m_atom == "separator";
 
       }
 
@@ -84,7 +89,7 @@ struct popup_flag_t{};
 //   public:
 //      
 //
-//      void add_item(index iIndex, string strName, string strId, string strMacosAccelerator, string strDescription);
+//      void add_item(index iIndex, const ::scoped_string & scopedstrName, const ::atom & atom, const ::scoped_string & scopedstrMacosAccelerator, const ::scoped_string & scopedstrDescription);
 //
 //      
 //   };

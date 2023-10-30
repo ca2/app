@@ -9,7 +9,7 @@
 
 #include "framework.h"
 #include "application_menu.h"
-
+#include "acme/constant/id.h"
 
 
 //namespace apex
@@ -22,8 +22,8 @@ application_menu::application_menu()
    }
    
 
-application_menu::application_menu(string strName, popup_flag_t) :
-      m_strName(strName),
+application_menu::application_menu(const ::scoped_string & scopedstrName, popup_flag_t) :
+      m_strName(scopedstrName),
       m_bPopup(true)
    {
       
@@ -31,18 +31,18 @@ application_menu::application_menu(string strName, popup_flag_t) :
    }
 
    
-application_menu::application_menu(bool bStockItem, string strName, string strId, string strAccelerator, string strDescription) :
+application_menu::application_menu(bool bStockItem, const ::scoped_string & scopedstrName, const ::atom & atom, const ::scoped_string & scopedstrAccelerator, const ::scoped_string & scopedstrDescription) :
    m_bStockItem(bStockItem),
-   m_strName(strName),
-   m_strId(strId),
-   m_strAccelerator(strAccelerator),
-   m_strDescription(strDescription)
+   m_strName(scopedstrName),
+   m_atom(atom),
+   m_strAccelerator(scopedstrAccelerator),
+   m_strDescription(scopedstrDescription)
    {
       
    }
    
    
-//   void application_menu::add_item(index iIndex, string strName, string strId, string strMacosAccelerator, string strDescription)
+//   void application_menu::add_item(index iIndex, const ::scoped_string & scopedstrName, const ::atom & atom, const ::scoped_string & scopedstrMacosAccelerator, const ::scoped_string & scopedstrDescription)
 //   {
 //      
 //      this->set_at_grow(iIndex, application_menu_item(strName, strId, strMacosAccelerator, strDescription));
@@ -51,11 +51,11 @@ application_menu::application_menu(bool bStockItem, string strName, string strId
 
 //   
 
-application_menu * application_menu::popup_at(::index & iIndex, string strName)
+application_menu * application_menu::popup_at(::index & iIndex, const ::scoped_string & scopedstrName)
 {
 
    auto ppopup = 
-      __initialize(__new(::application_menu(strName, popup_flag_t{})));
+      __initialize(__new(::application_menu(scopedstrName, popup_flag_t{})));
 
    this->insert_at(iIndex++, ppopup);
 
@@ -64,13 +64,13 @@ application_menu * application_menu::popup_at(::index & iIndex, string strName)
 }
 
 
-application_menu * application_menu::popup(string strName)
+application_menu * application_menu::popup(const ::scoped_string & scopedstrName)
 {
 
-   auto iIndex = this->predicate_find_first([&strName](auto pmenu)
+   auto iIndex = this->predicate_find_first([&scopedstrName](auto pmenu)
       {
 
-         return pmenu->is_popup() && pmenu->m_strName == strName;
+         return pmenu->is_popup() && pmenu->m_strName == scopedstrName;
 
          });
 
@@ -83,18 +83,18 @@ application_menu * application_menu::popup(string strName)
       
    iIndex = this->count();
 
-   auto ppopup = popup_at(iIndex, strName);
+   auto ppopup = popup_at(iIndex, scopedstrName);
 
    return ppopup;
 
 }
 
 
-application_menu * application_menu::_item_at(::index & i, bool bStockItem, string strName, string strId, string strMacosAccelerator, string strDescription)
+application_menu * application_menu::_item_at(::index & i, bool bStockItem, const ::scoped_string & scopedstrName, const ::atom & atom, const ::scoped_string & scopedstrAccelerator, const ::scoped_string & scopedstrDescription)
 {
 
    auto papplicationmenuItem =
-      __initialize(__new(::application_menu(bStockItem, strName, strId, strMacosAccelerator, strDescription)));
+      __initialize(__new(::application_menu(bStockItem, scopedstrName, atom, scopedstrAccelerator, scopedstrDescription)));
 
    this->insert_at(i++, papplicationmenuItem);
 
@@ -103,61 +103,61 @@ application_menu * application_menu::_item_at(::index & i, bool bStockItem, stri
 }
 
 
-application_menu * application_menu::_item(bool bStockItem, string strName, string strId, string strAccelerator, string strDescription)
+application_menu * application_menu::_item(bool bStockItem, const ::scoped_string & scopedstrName, const ::atom & atom, const ::scoped_string & scopedstrAccelerator, const ::scoped_string & scopedstrDescription)
 {
 
    auto iIndex = this->count();
 
-   auto pitem = _item_at(iIndex, bStockItem, strName, strId, strAccelerator, strDescription);
+   auto pitem = _item_at(iIndex, bStockItem, scopedstrName, atom, scopedstrAccelerator, scopedstrDescription);
       //__initialize(__new(::application_menu(bStockItem, strName, strId, strMacosAccelerator, strDescription)));
 
    return pitem;
 
    //this->insert_at(i, papplicationmenuItem);
 
-   return pitem;
+   //return pitem;
 
 }
 
 
-application_menu * application_menu::item_at(::index & iIndex, string strName, string strId, string strAccelerator, string strDescription)
+application_menu * application_menu::item_at(::index & iIndex, const ::scoped_string & scopedstrName, const ::atom & atom, const ::scoped_string & scopedstrAccelerator, const ::scoped_string & scopedstrDescription)
 {
 
-   auto pitem = _item_at(iIndex, false, strName, strId, strAccelerator, strDescription);
+   auto pitem = _item_at(iIndex, false, scopedstrName, atom, scopedstrAccelerator, scopedstrDescription);
 
    return pitem;
 
 }
 
 
-application_menu * application_menu::stock_item_at(::index & iIndex, string strName, string strId, string strAccelerator, string strDescription)
+application_menu * application_menu::stock_item_at(::index & iIndex, const ::scoped_string & scopedstrName, const ::atom & atom, const ::scoped_string & scopedstrAccelerator, const ::scoped_string & scopedstrDescription)
 {
 
-   auto pitem = _item_at(iIndex, true, strName, strId, strAccelerator, strDescription);
+   auto pitem = _item_at(iIndex, true, scopedstrName, atom, scopedstrAccelerator, scopedstrDescription);
 
    return pitem;
 
 }
 
 
-application_menu * application_menu::item(string strName, string strId, string strAccelerator, string strDescription)
-{
-
-   auto iIndex = this->count();
-
-   auto pitem = item_at(iIndex, strName, strId, strAccelerator, strDescription);
-
-   return pitem;
-
-}
-
-
-application_menu * application_menu::stock_item(string strName, string strId, string strAccelerator, string strDescription)
+application_menu * application_menu::item(const ::scoped_string & scopedstrName, const ::atom & atom, const ::scoped_string & scopedstrAccelerator, const ::scoped_string & scopedstrDescription)
 {
 
    auto iIndex = this->count();
 
-   auto pitem = stock_item_at(iIndex, strName, strId, strAccelerator, strDescription);
+   auto pitem = item_at(iIndex, scopedstrName, atom, scopedstrAccelerator, scopedstrDescription);
+
+   return pitem;
+
+}
+
+
+application_menu * application_menu::stock_item(const ::scoped_string & scopedstrName, const ::atom & atom, const ::scoped_string & scopedstrAccelerator, const ::scoped_string & scopedstrDescription)
+{
+
+   auto iIndex = this->count();
+
+   auto pitem = stock_item_at(iIndex, scopedstrName, atom, scopedstrAccelerator, scopedstrDescription);
 
    return pitem;
 
@@ -167,7 +167,7 @@ application_menu * application_menu::stock_item(string strName, string strId, st
 application_menu * application_menu::separator_at(::index & i)
 {
 
-   auto pseparator = item_at(i, "", "separator");
+   auto pseparator = item_at(i, {}, id_separator);
 
    return pseparator;
 

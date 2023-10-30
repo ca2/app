@@ -323,6 +323,7 @@ enum enum_id : ::uptr
    id_new_item_installing,
    id_item_finished_installing,
    id_application_menu_update,
+   id_separator,
 
 };
 

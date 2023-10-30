@@ -1937,25 +1937,63 @@ namespace user
 
          index iColumn = 0;
 
+         ::i32 iMaximumButtonHeight = 0;
+
+         // Calculate buttons sizes
+
          for (i32 i = 0; i < pmenuitema->get_size(); i++)
          {
 
-            string strButtonText = pmenuitema->element_at(i)->m_puserinteraction->get_window_text();
+            auto pmenuitem = pmenuitema->element_at(i);
 
-            pmenuitema->element_at(i)->m_iColumn = (int)iColumn;
+            auto puserinteraction = pmenuitem->m_puserinteraction;
 
-            size = pmenuitema->element_at(i)->m_puserinteraction->get_preferred_size(pgraphics);
+            string strButtonText = puserinteraction->get_window_text();
 
-            information() << "button text and size : \"" << strButtonText << "\", " << size;
+            if (puserinteraction)
+            {
 
-            pmenuitema->element_at(i)->m_rectangleUi.left() = x;
-            pmenuitema->element_at(i)->m_rectangleUi.right() = x + size.cx();
-            pmenuitema->element_at(i)->m_rectangleUi.top() = y;
-            pmenuitema->element_at(i)->m_rectangleUi.bottom() = y + size.cy();
+               size = puserinteraction->get_preferred_size(pgraphics);
+
+               information() << "button text and size : \"" << strButtonText << "\", " << size;
+
+               pmenuitem->m_rectangleUi.left() = 0;
+               pmenuitem->m_rectangleUi.top() = 0;
+               pmenuitem->m_rectangleUi.set_size(size);
+
+               iMaximumButtonHeight = maximum(iMaximumButtonHeight, size.cy());
+
+            }
+
+         }
+
+         ::i32 iSeparatorHeight = iMaximumButtonHeight / 3;
+
+         ::i32 iRow = 0;
+
+         for (i32 i = 0; i < pmenuitema->get_size(); i++)
+         {
+
+            auto pmenuitem = pmenuitema->element_at(i);
+
+            pmenuitem->m_rectangleUi.move_to(x, y);
+
+            size = pmenuitem->m_rectangleUi.size();
+
+            if (!pmenuitem->m_puserinteraction)
+            {
+
+               pmenuitem->m_rectangleUi.set_height(iSeparatorHeight);
+
+               size.cy() = iSeparatorHeight;
+
+            }
+
+            pmenuitem->m_iColumn = iColumn;
+
+            pmenuitem->m_iRow = iRow;
 
             y += size.cy();
-
-            m_iaColumnHeight[iColumn] = y;
 
             if (size.cx() > m_iaColumnWidth[iColumn])
             {
@@ -1963,6 +2001,10 @@ namespace user
                m_iaColumnWidth[iColumn] = size.cx();
 
             }
+
+            m_iaColumnHeight[iColumn] = y;
+
+            iRow++;
 
             if (pmenuitema->element_at(i)->m_bBreak)
             {
@@ -1973,6 +2015,8 @@ namespace user
 
                iColumn++;
 
+               iRow = 0;
+
                m_iaColumnWidth.add(0);
 
                m_iaColumnHeight.add(yClose);
@@ -1982,6 +2026,89 @@ namespace user
             }
 
          }
+
+         for (i32 i = 0; i < pmenuitema->get_size(); i++)
+         {
+
+            auto pmenuitem = pmenuitema->element_at(i);
+
+            if (!pmenuitem->m_puserinteraction)
+            {
+
+               pmenuitem->m_rectangleUi.set_width(m_iaColumnWidth[pmenuitem->m_iColumn]);
+
+            }
+
+         }
+
+         //::size_i32 sizeSeparator;
+
+         //for (i32 i = 0; i < pmenuitema->get_size(); i++)
+         //{
+
+         //   string strButtonText = pmenuitema->element_at(i)->m_puserinteraction->get_window_text();
+
+         //   pmenuitema->element_at(i)->m_iColumn = (int)iColumn;
+
+         //   auto puserinteraction = pmenuitema->element_at(i)->m_puserinteraction;
+
+         //   if (puserinteraction)
+         //   {
+
+         //      size = pmenuitema->element_at(i)->m_puserinteraction->get_preferred_size(pgraphics);
+
+         //      information() << "button text and size : \"" << strButtonText << "\", " << size;
+
+         //      if (sizeSeparator.is_empty())
+         //      {
+
+         //         sizeSeparator.cx() = 
+
+         //         sizeSeparator.cy() = size.cy() / 2;
+
+         //      }
+
+         //   }
+         //   else
+         //   {
+
+
+         //   }
+
+         //   pmenuitema->element_at(i)->m_rectangleUi.left() = x;
+         //   pmenuitema->element_at(i)->m_rectangleUi.right() = x + size.cx();
+         //   pmenuitema->element_at(i)->m_rectangleUi.top() = y;
+         //   pmenuitema->element_at(i)->m_rectangleUi.bottom() = y + size.cy();
+
+         //   y += size.cy();
+
+         //   m_iaColumnHeight[iColumn] = y;
+
+         //   if (size.cx() > m_iaColumnWidth[iColumn])
+         //   {
+
+         //      m_iaColumnWidth[iColumn] = size.cx();
+
+         //   }
+
+         //   if (pmenuitema->element_at(i)->m_bBreak)
+         //   {
+
+         //      x += m_iaColumnWidth[iColumn];
+
+         //      y = yClose;
+
+         //      iColumn++;
+
+         //      m_iaColumnWidth.add(0);
+
+         //      m_iaColumnHeight.add(yClose);
+
+         //      iColumn = m_iaColumnWidth.get_upper_bound();
+
+         //   }
+
+         //}
 
          m_size.cx() = (int)(m_iaColumnWidth.get_sum()
                      + rectangleMargin.left() + rectangleMargin.right()

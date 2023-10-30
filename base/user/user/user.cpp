@@ -1083,7 +1083,7 @@ namespace base
       {
 
          pmenuitem->m_pmenu = pmenu;
-         pmenuitem->m_atom = papplicationmenu->m_strId;
+         pmenuitem->m_atom = papplicationmenu->m_atom;
          pmenuitem->m_strTitle = papplicationmenu->m_strName;
 
       }
@@ -1261,18 +1261,20 @@ namespace base
    bool user::track_popup_menu(::user::interaction * pinteraction, ::user::menu_item * pitem, i32 iFlags, const ::point_i32 & point, const ::size_i32 & sizeMinimum, ::channel * pchannelNotify)
    {
 
-      ::pointer<::user::menu>pmenu = __create <  ::user::menu  >();
+      __defer_construct(pitem->m_pmenu);
 
-      pmenu->m_pmenuitem = pitem;
+      //::pointer<::user::menu>pmenu = __create <  ::user::menu  >();
 
-      pmenu->m_sizeMinimum = sizeMinimum;
+      pitem->m_pmenu->m_pmenuitem = pitem;
 
-      pmenu->hints(iFlags, point);
+      pitem->m_pmenu->m_sizeMinimum = sizeMinimum;
 
-      if (!pmenu->track_popup_menu(pchannelNotify, pinteraction))
+      pitem->m_pmenu->hints(iFlags, point);
+
+      if (!pitem->m_pmenu->track_popup_menu(pchannelNotify, pinteraction))
       {
 
-         pmenu.release();
+         pitem->m_pmenu.release();
 
          return false;
 

@@ -2807,7 +2807,7 @@ namespace experience
    }
 
 
-   void frame_window::frame_experience_restore()
+   void frame_window::frame_experience_restore(::e_activation eactivation)
    {
 
       calculate_broad_and_compact_restore();
@@ -2822,13 +2822,13 @@ namespace experience
          if (equivalence_sink(m_windowdisplayandlayout.m_edisplayPrevious) == e_display_normal)
          {
 
-            display_normal(m_windowdisplayandlayout.m_edisplayPrevious, e_activation_default);
+            display_normal(m_windowdisplayandlayout.m_edisplayPrevious, eactivation);
 
          }
          else
          {
 
-            display_normal(m_windowdisplayandlayout.m_edisplayLastNormal, e_activation_default);
+            display_normal(m_windowdisplayandlayout.m_edisplayLastNormal, eactivation);
 
          }
 
@@ -2841,7 +2841,7 @@ namespace experience
 
          //good_restore(nullptr, m_windowdisplayandlayout.m_rectangleCompact, true, e_activation_default, e_zorder_top, e_display_compact);
 
-         display_normal(e_display_compact, e_activation_default);
+         display_normal(e_display_compact, eactivation);
 
          //}
 //         else
@@ -2860,7 +2860,7 @@ namespace experience
          if (sizeRectangleNormal == m_rectangleRestoreCompact.size())
          {
 
-            display_normal(e_display_broad, e_activation_default);
+            display_normal(e_display_broad, eactivation);
 
             //good_restore(nullptr, m_windowdisplayandlayout.m_rectangleBroad, true, e_activation_default, e_zorder_top, e_display_broad);
 
@@ -2870,7 +2870,7 @@ namespace experience
 
             //good_restore(nullptr, m_windowdisplayandlayout.m_rectangleNormal, true, e_activation_default, e_zorder_top, e_display_normal);
 
-            display_normal(e_display_normal, e_activation_default);
+            display_normal(e_display_normal, eactivation);
 
          }
 
@@ -2880,7 +2880,7 @@ namespace experience
 
          //good_restore(nullptr, m_windowdisplayandlayout.m_rectangleBroad, true, e_activation_default, e_zorder_top, e_display_broad);
 
-         display_normal(e_display_broad, e_activation_default);
+         display_normal(e_display_broad, eactivation);
 
       }
 

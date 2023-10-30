@@ -907,7 +907,7 @@ namespace user
 
 
 
-      virtual void frame_experience_restore();
+      virtual void frame_experience_restore(::e_activation eactivation = ::e_activation_default);
       
       virtual ::user::notify_icon * notify_icon();
 

@@ -18213,14 +18213,14 @@ namespace user
    }
 
 
-   void interaction::frame_experience_restore()
+   void interaction::frame_experience_restore(::e_activation eactivation)
    {
 
       //throw ::interface_only();
 
       //display_previous();
 
-      display(e_display_normal);
+      display(e_display_normal, eactivation);
 
    }
 
@@ -18292,16 +18292,16 @@ namespace user
 
       }
 
+      order_top();
+
       if (!is_window_screen_visible())
       {
 
-         frame_experience_restore();
+         frame_experience_restore(e_activation_set_foreground);
 
       }
       else
       {
-
-         order_top();
 
          display(e_display_normal, e_activation_set_foreground);
 

@@ -230,9 +230,7 @@ namespace base
 
          auto & pfactory = acmesystem()->factory(strLibrary);
 
-         auto pformhandler = pfactory->create <::user::form_handler>();
-
-         pformhandler->initialize(this);
+         auto pformhandler = pfactory->create <::user::form_handler>(this);
 
          pformhandler->design_form(pparent);
 

@@ -1669,7 +1669,7 @@ namespace windowing
    }
 
 
-   void window::window_update_screen_buffer()
+   void window::__update_graphics_buffer()
    {
 
    }
@@ -1919,7 +1919,7 @@ namespace windowing
    //}
 
 
-   void window::window_do_update_screen()
+   void window::window_update_screen()
    {
 
       auto puserinteraction = m_puserinteractionimpl->m_puserinteraction;

@@ -4930,68 +4930,6 @@ namespace user
    void interaction_impl::on_message_create(::message::message * pmessage)
    {
 
-      string strType = ::type(m_puserinteraction).name();
-
-      m_pwindowing = m_puserinteraction->windowing();
-
-      ::pointer < ::user::thread > puserthread = m_puserinteraction->m_pthreadUserInteraction;
-      
-      if(puserthread)
-      {
-         
-         puserthread->m_oswindow = window()->m_oswindow;
-         
-      }
-
-      if (m_puserinteraction->m_ewindowflag & e_window_flag_graphical)
-      {
-
-         if (::is_set(m_pgraphicsthread))
-         {
-
-            m_pgraphicsthread->set_auto_refresh_frames_per_second(get_prodevian_frames_per_second());
-
-            m_pgraphicsthread->set_nominal_frames_per_second(get_nominal_frames_per_second());
-
-            pmessage->previous();
-
-            m_pgraphicsthread->graphics_thread_reset(m_puserinteraction);
-
-         }
-
-         if (m_puserinteraction)
-         {
-
-            if (!m_puserinteraction->m_bMessageWindow)
-            {
-
-               m_pcsDisplay = memory_new(critical_section);
-
-               information() << "interaction_impl m_pgraphics alloc : " << strType;
-
-               update_graphics_resources();
-
-               information() << "interaction_impl on _create_window : " << strType;
-
-            }
-
-            if (m_pgraphicsthread && m_puserinteraction->is_graphical())
-            {
-
-               m_pgraphicsthread->graphics_thread_reset(m_puserinteraction);
-
-            }
-
-         }
-
-         if (m_pgraphicsthread)
-         {
-
-            m_pgraphicsthread->defer_create_graphics_thread();
-
-         }
-
-      }
 
    }
 
@@ -5112,6 +5050,70 @@ namespace user
       fflush(stdout);
 
 #endif
+      
+      string strType = ::type(m_puserinteraction).name();
+
+      m_pwindowing = m_puserinteraction->windowing();
+
+      ::pointer < ::user::thread > puserthread = m_puserinteraction->m_pthreadUserInteraction;
+      
+      if(puserthread)
+      {
+         
+         puserthread->m_oswindow = window()->m_oswindow;
+         
+      }
+
+      if (m_puserinteraction->m_ewindowflag & e_window_flag_graphical)
+      {
+
+         if (::is_set(m_pgraphicsthread))
+         {
+
+            m_pgraphicsthread->set_auto_refresh_frames_per_second(get_prodevian_frames_per_second());
+
+            m_pgraphicsthread->set_nominal_frames_per_second(get_nominal_frames_per_second());
+
+            pmessage->previous();
+
+            m_pgraphicsthread->graphics_thread_reset(m_puserinteraction);
+
+         }
+
+         if (m_puserinteraction)
+         {
+
+            if (!m_puserinteraction->m_bMessageWindow)
+            {
+
+               m_pcsDisplay = memory_new(critical_section);
+
+               information() << "interaction_impl m_pgraphics alloc : " << strType;
+
+               update_graphics_resources();
+
+               information() << "interaction_impl on _create_window : " << strType;
+
+            }
+
+            if (m_pgraphicsthread && m_puserinteraction->is_graphical())
+            {
+
+               m_pgraphicsthread->graphics_thread_reset(m_puserinteraction);
+
+            }
+
+         }
+
+         if (m_pgraphicsthread)
+         {
+
+            m_pgraphicsthread->defer_create_graphics_thread();
+
+         }
+
+      }
+
 
    }
 
@@ -5360,17 +5362,6 @@ namespace user
          m_bDoingGraphics = false;
 
       };
-
-      if (!(m_puserinteraction->m_ewindowflag & e_window_flag_window_created))
-      {
-
-         set_need_redraw();
-
-         post_redraw();
-
-         return;
-
-      }
 
 #if TIME_REPORTING
 

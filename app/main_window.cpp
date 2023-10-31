@@ -46,7 +46,7 @@ namespace app_app
    void main_window::install_message_routing(::channel * pchannel)
    {
 
-      ::user::frame::install_message_routing(pchannel);
+      ::user::main_window::install_message_routing(pchannel);
 
       MESSAGE_LINK(e_message_create, pchannel, this, &main_window::on_message_create);
 

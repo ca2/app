@@ -1371,6 +1371,16 @@ namespace user
 
       virtual void create_host(enum_parallelization eparallelization) override;
       virtual void create_child(::user::interaction * pparent) override;
+      
+      
+      virtual void on_finished_window_creation();
+      
+      
+      /// returns true if set_need_redraw was posted
+      virtual bool defer_post_pending_set_need_redraw();
+      
+      /// returns true if set_need_redraw was posted
+      virtual bool post_pending_set_need_redraw();
 
       // virtual bool create_interaction(const ::string & pszClassName, const ::string & pszWindowName, u32 uStyle, ::user::interaction * puiParent, ::request * prequest = nullptr) override;
 

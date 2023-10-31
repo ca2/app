@@ -43,7 +43,7 @@ namespace experience
 
       }
 
-      auto pexperience = pfactory->create <::experience::experience>();
+      auto pexperience = pfactory->create <::experience::experience>(this);
 
       if(pexperience == nullptr)
       {

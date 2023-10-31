@@ -49,13 +49,13 @@ namespace app_app
 
       pmainwindow->display(e_display_normal);
 
-      pmainwindow->create_main_window();
+      pmainwindow->create_main_window_asynchronously();
 
-      pmainwindow->set_need_layout();
-
-      pmainwindow->set_need_redraw();
-
-      pmainwindow->post_redraw();
+//      pmainwindow->set_need_layout();
+//
+//      pmainwindow->set_need_redraw();
+//
+//      pmainwindow->post_redraw();
 
    }
 

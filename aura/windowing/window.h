@@ -363,7 +363,7 @@ namespace windowing
       virtual void show_task(bool bShowTask);
 
 
-      virtual void window_update_screen_buffer();
+      virtual void __update_graphics_buffer();
       //virtual void window_request_presentation();
 
       //virtual void _window_request_presentation_locked();
@@ -408,7 +408,7 @@ namespace windowing
 
       //virtual void window_do_graphics_thread_step();
 
-      virtual void window_do_update_screen();
+      virtual void window_update_screen();
 
       virtual bool defer_perform_entire_reposition_process();
 

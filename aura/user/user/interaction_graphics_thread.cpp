@@ -888,6 +888,21 @@ namespace user
          return false;
 
       }
+      
+      if (!(puserinteractionimpl->m_puserinteraction->m_ewindowflag & e_window_flag_window_created))
+      {
+
+         // please, set_need_redraw and post_redraw after window creation...
+         
+         //set_need_redraw();
+
+         //post_redraw();
+
+         return true;
+
+      }
+
+
 
       puserinteractionimpl->do_graphics();
 
@@ -910,7 +925,7 @@ namespace user
 
       }
 
-      m_puserinteraction->m_pinteractionimpl->m_pwindow->window_do_update_screen();
+      m_puserinteraction->m_pinteractionimpl->m_pwindow->window_update_screen();
 
       //m_puserinteraction->m_bLockSketchToDesign = false;
 
@@ -1021,7 +1036,7 @@ namespace user
 
       profiling_on_before_update_screen();
 
-      m_pimpl->m_pwindow->window_update_screen_buffer();
+      m_pimpl->m_pwindow->__update_graphics_buffer();
 
       profiling_on_after_update_screen();
 

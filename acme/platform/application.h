@@ -15,6 +15,7 @@ class application_menu;
 #include "application_base.h"
 #include "application_exit.h"
 #include "application_flags.h"
+#include "application_menu_callback.h"
 #include "context.h"
 #include "acme/primitive/text/text.h"
 
@@ -27,7 +28,8 @@ namespace acme
       virtual public application_base,
       virtual public APPLICATION_FLAGS,
       virtual public ::acme::context,
-      virtual public ::application_exit
+      virtual public ::application_exit,
+      virtual public ::application_menu_callback
    {
    public:
 

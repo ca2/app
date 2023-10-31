@@ -1493,6 +1493,7 @@ namespace user
 
       virtual void defer_do_graphics(::draw2d::graphics_pointer & pgraphics);
       virtual void defer_do_layout(::draw2d::graphics_pointer & pgraphics);
+      void _000TopCallOnLayout(::draw2d::graphics_pointer& pgraphics);
       void _000TopCallOnDraw(::draw2d::graphics_pointer & pgraphics);
       void _000CallOnDraw(::draw2d::graphics_pointer & pgraphics) override;
       void _000OnDraw(::draw2d::graphics_pointer & pgraphics) override;

@@ -4,6 +4,8 @@
 #include "acme/operating_system/console.h"
 #include "acme/_operating_system.h"
 
+#include <ShlObj.h>
+
 
 string CLASS_DECL_ACME windows_get_short_file_name(const string & strPath)
 {
@@ -105,7 +107,15 @@ CLASS_DECL_ACME ::file::path get_module_path(HMODULE hmodule)
 // }
 
 
+CLASS_DECL_ACME::file::path home_folder_path()
+{
 
+   wchar_t path[MAX_PATH + 1];
+   zero(path);
+   ::SHGetSpecialFolderPathW(HWND_DESKTOP, path, CSIDL_PROFILE, FALSE);
+   return path;
+
+}
 
 
 

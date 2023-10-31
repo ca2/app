@@ -25,7 +25,12 @@ namespace user
       for (auto & predrawitem : redrawitema)
       {
 
-         m_rectangleaNeedRedraw.append(predrawitem->m_rectanglea);
+         if (predrawitem->m_rectanglea.has_element())
+         {
+
+            m_rectangleaNeedRedraw.append(predrawitem->m_rectanglea);
+
+         }
 
          if (predrawitem->m_functiona.has_element())
          {

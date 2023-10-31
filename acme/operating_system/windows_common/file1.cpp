@@ -235,6 +235,8 @@ CLASS_DECL_ACME::file::enum_type get_file_system_item_type(const ::file::path & 
 }
 
 
+
+
 bool safe_file_exists(const ::file::path & path)
 {
 

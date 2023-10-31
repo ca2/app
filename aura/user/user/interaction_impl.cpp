@@ -4129,8 +4129,17 @@ namespace user
 
 #endif
 
+      bool bFullRedraw = false;
+
       for (auto & predraw : m_redrawitema)
       {
+
+         if (predraw->m_rectanglea.is_empty())
+         {
+
+            return;
+
+         }
 
          bool bContainsAll = true;
 
@@ -4138,6 +4147,15 @@ namespace user
 
          for (auto & rectangle : rectangleaHostNeedRedraw)
          {
+
+            if (rectangle.is_null())
+            {
+
+               bFullRedraw = true;
+
+               break;
+
+            }
 
             bool bContainsAny = false;
 
@@ -4177,7 +4195,13 @@ namespace user
 
          }
 
-         if (bContainsAll)
+         if (bFullRedraw)
+         {
+
+            break;
+
+         }
+         else if (bContainsAll)
          {
 
             if (function)
@@ -4190,6 +4214,7 @@ namespace user
             return;
 
          }
+
          //else if (rectangleaUnion.size() == rectangleaHostNeedRedraw.size())
          //{
 
@@ -4214,6 +4239,51 @@ namespace user
       {
 
          //informationf("set_need_redraw on doing graphics");
+
+      }
+
+      if (bFullRedraw)
+      {
+
+         if (m_redrawitema.is_empty())
+         {
+
+            auto predrawitem = __create_new<redraw_item>();
+
+            if (function)
+            {
+
+               predrawitem->m_functiona.add(function);
+
+            }
+
+            m_redrawitema.add(predrawitem);
+
+         }
+         else
+         {
+
+            for (index i = m_redrawitema.get_upper_bound(); i >= 1; i--)
+            {
+
+               m_redrawitema.first()->m_functiona.append(m_redrawitema[i]->m_functiona);
+
+               m_redrawitema.erase_at(i);
+
+            }
+
+            m_redrawitema.first()->m_rectanglea.clear();
+
+            if (function)
+            {
+
+               m_redrawitema.first()->m_functiona.add(function);
+
+            }
+
+         }
+
+         return;
 
       }
 
@@ -5504,10 +5574,14 @@ namespace user
 
              }*/
 
+information() << "do_graphics(A)";
+
 update_graphics_resources();
 
 if (bDraw && m_pgraphics.is_null())
 {
+
+   information() << "do_graphics exit(A1)";
 
    return;
 
@@ -5520,6 +5594,8 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
    || has_flag(e_flag_destroying)
    || has_finishing_flag())
 {
+
+   information() << "do_graphics exit(A2)";
 
    return;
 
@@ -5870,8 +5946,8 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 
                   //            pgraphics->fill_solid_rectangle({ 0, 0, 200, 200 }, ::color::green);
 
-
-                  m_puserinteraction->_000TopCallOnDraw(pgraphics);
+                  information() << "defer_do_graphics _000TopCallOnLayout";
+                  m_puserinteraction->_000TopCallOnLayout(pgraphics);
 
                   //m_puserinteraction->_000CallOnDraw(pgraphics);
 
@@ -5948,6 +6024,8 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
          if (!pbufferitem)
          {
 
+            information() << "defer_do_graphics !pbufferitem";
+
             return;
 
          }
@@ -5963,6 +6041,8 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 
          if (has_destroying_flag())
          {
+
+            information() << "defer_do_graphics has_destroying_flag()";
 
             return;
 
@@ -5985,7 +6065,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
                         //for(index i = 0; i < iSeverity * 20; i++)
                         //{
 
-            informationf("m_pgraphics->on_begin_draw FAILED (1)\n");
+            information() << "m_pgraphics->on_begin_draw FAILED (1)";
 
             //}
 
@@ -6140,6 +6220,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
                   //            pgraphics->fill_solid_rectangle({ 0, 0, 200, 200 }, ::color::green);
 
 
+                  information() << "defer_do_graphics _000TopCallOnDraw";
                   m_puserinteraction->_000TopCallOnDraw(pgraphics);
 
                   //m_puserinteraction->_000CallOnDraw(pgraphics);
@@ -6171,6 +6252,13 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
                }
 
                m_pgraphics->m_bNewBuffer = true;
+
+            }
+            else
+            {
+
+
+               information() << "defer_do_graphics !m_puserinteraction";
 
             }
 

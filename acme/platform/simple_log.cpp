@@ -12,6 +12,8 @@
 #include <unistd.h>
 #endif
 
+static bool g_bPrintfIfDebuggerIsNotAttached = false;
+
 string get_status_message(const ::e_status & estatus);
 
 
@@ -206,6 +208,19 @@ simple_log::simple_log()
    m_bWithTimePrefix = true;
    m_bDisplayRelativeTime = true;
 
+   ::file::path pathTrace;
+
+   auto pathHome = home_folder_path();
+
+   pathTrace = pathHome / "trace_using_printf.txt";
+
+   if (file_exists(pathTrace))
+   {
+
+      g_bPrintfIfDebuggerIsNotAttached = true;
+
+   }
+
 #ifdef _DEBUG
 
    //information() << "Starting Simple Alog";
@@ -320,7 +335,7 @@ void simple_log::print(::trace_statement & tracestatement, bool bFlush)
 
       auto papplication = acmeapplication();
 
-      if (papplication && papplication->m_bConsole)
+      if ((papplication && papplication->m_bConsole) || (!::is_debugger_attached() && g_bPrintfIfDebuggerIsNotAttached))
       {
 
          if (tracestatement.m_etracelevel == e_trace_level_information)

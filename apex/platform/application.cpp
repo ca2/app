@@ -6132,21 +6132,21 @@ namespace apex
          
       }
 
-      {
-         
-         auto ppopupView = papplicationmenu->popup("View");
-         
-         //ppopupView->add(pmenuView);
-         
-         ppopupView->item("Transparent Frame", "transparent_frame", "", "");
-         
-      }
-
-      //applicationmenu().add_item(i++, _("Transparent Frame"), "transparent_frame");
-
-//      applicationmenu()->add_item(i++, "About " + m_strAppName, "show_about", "", "Show About");
+//      {
+//         
+//         auto ppopupView = papplicationmenu->popup("View");
+//         
+//         //ppopupView->add(pmenuView);
+//         
+//         ppopupView->item("Transparent Frame", "transparent_frame", "", "");
+//         
+//      }
 //
-//      applicationmenu()->add_item(i++, "Transparent Frame", "transparent_frame", "Ctrl+Shift+T", "Toggle Transparent Frame");
+//      //applicationmenu().add_item(i++, _("Transparent Frame"), "transparent_frame");
+//
+////      applicationmenu()->add_item(i++, "About " + m_strAppName, "show_about", "", "Show About");
+////
+////      applicationmenu()->add_item(i++, "Transparent Frame", "transparent_frame", "Ctrl+Shift+T", "Toggle Transparent Frame");
 
       application_menu_update();
 

@@ -5,6 +5,7 @@
 #include "acme/constant/user_key.h"
 #include "acme/handler/item.h"
 #include "acme/primitive/geometry2d/_text_stream.h"
+#include "apex/platform/application_menu.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/user/user/system.h"
 #include "aura/windowing/windowing.h"
@@ -1584,6 +1585,25 @@ namespace experience
 
          }
 
+      }
+      
+      if(m_bWindowFrame)
+      {
+         
+         auto papplicationmenu = acmeapplication()->application_menu();
+         
+         {
+            
+            auto ppopupView = papplicationmenu->popup("View");
+            
+            //ppopupView->add(pmenuView);
+            
+            ppopupView->item("Transparent Frame", "transparent_frame", "", "");
+            
+         }
+
+         acmeapplication()->m_papexapplication->application_menu_update();
+         
       }
 
    }

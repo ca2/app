@@ -143,11 +143,35 @@ application_menu * application_menu::stock_item_at(::index & iIndex, const ::sco
 application_menu * application_menu::item(const ::scoped_string & scopedstrName, const ::atom & atom, const ::scoped_string & scopedstrAccelerator, const ::scoped_string & scopedstrDescription)
 {
 
-   auto iIndex = this->count();
+   auto iIndex = this->predicate_find_first([&atom](auto pmenu)
+      {
 
-   auto pitem = item_at(iIndex, scopedstrName, atom, scopedstrAccelerator, scopedstrDescription);
+         return !pmenu->is_popup() && pmenu->m_atom == atom;
 
-   return pitem;
+         });
+   
+   if (iIndex >= 0)
+   {
+
+      auto pitem = element_at(iIndex);
+      
+      pitem->m_strName = scopedstrName;
+      pitem->m_strAccelerator = scopedstrAccelerator;
+      pitem->m_strDescription = scopedstrDescription;
+      
+      return pitem;
+
+   }
+   else
+   {
+      
+      iIndex = this->count();
+      
+      auto pitem = item_at(iIndex, scopedstrName, atom, scopedstrAccelerator, scopedstrDescription);
+      
+      return pitem;
+      
+   }
 
 }
 

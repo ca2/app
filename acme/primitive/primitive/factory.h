@@ -198,7 +198,7 @@ namespace factory
       inline pointer< ::factory::factory_item_base < ORIGIN_TYPE > > create_reusable_factory_item();
 
       template < typename ORIGIN_TYPE >
-      inline ::pointer<ORIGIN_TYPE>create();
+      inline ::pointer<ORIGIN_TYPE>create(::particle * pparticle);
 
       void merge(const ::factory::factory* pfactory);
 
@@ -229,7 +229,7 @@ namespace factory
       inline void __raw_construct(::pointer<ORIGIN_TYPE> & p);
 
 
-      virtual ::pointer < ::particle > create(const ::string & strType);
+      virtual ::pointer < ::particle > create(const ::string & strType, ::particle * pparticle);
 
 
       virtual bool has_type(const ::string & strType) const;

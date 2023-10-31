@@ -256,7 +256,7 @@ namespace acme
 
          }
 
-         auto p = pfactory->create< BASE_TYPE >();
+         auto p = pfactory->create< BASE_TYPE >(this);
 
          if (!p)
          {

@@ -166,7 +166,7 @@ api_client_base::~api_client_base()
 
    }
 
-   auto papi = pfactory->create < ::api >();
+   auto papi = pfactory->create < ::api >(this);
 
    if (!papi)
    {

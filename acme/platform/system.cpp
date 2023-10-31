@@ -2548,7 +2548,7 @@ namespace acme
             if (pfactory)
             {
 
-               papp = pfactory->create < ::acme::application >();
+               papp = pfactory->create < ::acme::application >(this);
 
                if (!papp)
                {

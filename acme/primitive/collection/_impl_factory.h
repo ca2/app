@@ -50,7 +50,7 @@ namespace factory
 
 
     template < typename ORIGIN_TYPE >
-    inline ::pointer<ORIGIN_TYPE>factory::create()
+    inline ::pointer<ORIGIN_TYPE>factory::create(::particle * pparticle)
     {
 
        auto pfactoryinterface = get_factory_item < ORIGIN_TYPE >();
@@ -62,7 +62,11 @@ namespace factory
 
        }
 
-       return pfactoryinterface->create_particle();
+       auto p = pfactoryinterface->create_particle();
+       
+       p->initialize(pparticle);
+       
+       return p;
 
     }
 

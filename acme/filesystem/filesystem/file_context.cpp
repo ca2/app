@@ -3144,7 +3144,7 @@ folder_pointer file_context::get_folder(::file::file *pfile, const ::scoped_stri
 
    }
 
-   auto pfolder = pfactory->create < ::folder >();
+   auto pfolder = pfactory->create < ::folder >(this);
 
    if (!pfolder)
    {

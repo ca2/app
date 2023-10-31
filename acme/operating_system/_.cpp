@@ -39,14 +39,14 @@ app_factory::app_factory(PFN_factory pfnFactory)
 }
 
 
-::pointer<::acme::application>app_factory::new_app()
+::pointer<::acme::application>app_factory::new_app(::particle * pparticle)
 {
 
    auto pfactory = __new(::factory::factory);
 
    g_pfnFactoryApp(pfactory);
 
-   auto papp = pfactory->create<::acme::application>();
+   auto papp = pfactory->create<::acme::application>(pparticle);
 
    return papp;
 

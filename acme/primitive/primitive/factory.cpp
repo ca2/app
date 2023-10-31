@@ -947,8 +947,7 @@ namespace factory
 {
 
 
-
-   ::pointer < ::particle > factory::create(const ::string & strType)
+   ::pointer < ::particle > factory::create(const ::string & strType, ::particle * pparticle)
    {
 
       //auto psystem = acmesystem();

@@ -4074,7 +4074,7 @@ namespace user
             if (pprimitiveimpl)
             {
 
-               synchronous_lock synchronouslock(pprimitiveimpl->synchronization());
+               _synchronous_lock synchronouslock(pprimitiveimpl->synchronization());
 
                pprimitiveimpl->m_userinteractionaMouseHover.erase(this);
 
@@ -4086,7 +4086,7 @@ namespace user
 
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization());
 
          auto pthread = get_thread();
 

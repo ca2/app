@@ -1,9 +1,8 @@
 #pragma once
 
 
-//#include "acme/primitive/collection/pointer_array.h"
+#include "acme/platform/application_menu_callback.h"
 #include "apex/platform/application_menu.h"
-#include "apex/user/user/notify_icon_bridge.h"
 
 
 namespace user
@@ -11,8 +10,8 @@ namespace user
 
 
    class CLASS_DECL_AURA notify_icon_listener :
-      //virtual public ::user_notify_icon_bridge
-      virtual public ::particle
+      virtual public ::particle,
+      virtual public ::application_menu_callback
    {
    public:
 
@@ -65,7 +64,7 @@ namespace user
       //virtual const char * _get_notification_area_action_label(int iIndex);
       //virtual const char * _get_notification_area_action_accelerator(int iIndex);
       //virtual const char * _get_notification_area_action_description(int iIndex);
-      virtual void call_notification_area_action(const ::scoped_string & pszId);
+      bool on_application_menu_action(const ::atom & atom) override;
 
 
       //virtual bool notify_icon_insert_item(bool bStockItem, index & iIndex, string strName, string strId = "", string strLabel = "", string strAccelerator = "", string strDescription = "");

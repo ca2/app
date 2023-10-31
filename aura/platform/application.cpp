@@ -5529,15 +5529,13 @@ namespace aura
    //}
 
 
-   bool application::on_application_menu_action(const ::string & pszCommand)
+   bool application::on_application_menu_action(const ::atom & atom)
    {
 
       if (m_puserinteractionMain != nullptr)
       {
 
-         ::atom idCommand(pszCommand);
-
-         ::message::command command(idCommand);
+         ::message::command command(atom);
 
          auto puserinteractionMain = m_puserinteractionMain;
 
@@ -5552,7 +5550,7 @@ namespace aura
 
       }
 
-      return ::aqua::application::on_application_menu_action(pszCommand);
+      return ::aqua::application::on_application_menu_action(atom);
 
    }
 

@@ -174,7 +174,7 @@ namespace user
    }
 
 
-   void notify_icon_listener::call_notification_area_action(const ::scoped_string & pszId)
+   bool notify_icon_listener::on_application_menu_action(const ::atom &atom)
    {
 
    }

@@ -221,6 +221,8 @@ namespace acme
 
       virtual void show_about_box();
 
+      bool on_application_menu_action(const ::atom & atom) override;
+      
 
    };
 

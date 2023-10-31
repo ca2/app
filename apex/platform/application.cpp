@@ -2817,17 +2817,19 @@ namespace apex
    }
 
 
-   bool application::on_application_menu_action(const ::string & strCommand)
+   bool application::on_application_menu_action(const ::atom & atom)
    {
       
-      if(strCommand == "display_about")
+      if(atom == "display_about")
       {
          
          show_about_box();
          
+         return true;
+         
       }
 
-      return false;
+      return ::acme::application::on_application_menu_action(atom);
 
    }
 
@@ -9992,18 +9994,26 @@ namespace apex
 
    }
 
+   
+//   bool application::on_application_menu_action(const ::atom & atom)
+//   {
+//      
+//      return false;
+//   
+//   }
+
 
 } // namespace apex
 
 
-void application_on_menu_action(void * pApplication, const char * pszCommand)
-{
-
-   auto papp = (::acme::application *)pApplication;
-
-   papp->m_papexapplication->on_application_menu_action(pszCommand);
-
-}
+//void application_on_menu_action(void * pApplication, const char * pszCommand)
+//{
+//
+//   auto papp = (::acme::application *)pApplication;
+//
+//   papp->m_papexapplication->on_application_menu_action(pszCommand);
+//
+//}
 
 
 

@@ -251,7 +251,7 @@ namespace apex
       void os_native_bergedge_start() override;
 
 
-      virtual bool on_application_menu_action(const ::string & pszCommand);
+      //virtual bool on_application_menu_action(const ::string & pszCommand);
 
 
       virtual void term();
@@ -1084,7 +1084,9 @@ namespace apex
       bool _handle_uri(const ::string & strUri) override;
       //bool on_interprocess_handle(const ::scoped_string & scopedstrUri) override;
 
-
+      bool on_application_menu_action(const ::atom & atom) override;
+      
+      
    };
 
 

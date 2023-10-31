@@ -133,10 +133,8 @@ namespace user
    //}
 
 
-   void notify_icon::call_notification_area_action(const ::scoped_string & scopedstr)
+   bool notify_icon::on_application_menu_action(const ::atom &atom)
    {
-
-      ::atom atom(scopedstr);
 
       auto pcommand = __new(::message::command(atom));
 

@@ -1561,6 +1561,14 @@ namespace acme
 
    }
 
+   
+   bool application::on_application_menu_action(const ::atom & atom)
+   {
+   
+      return false;
+   
+   }
+
 
 } // namespace acme
 

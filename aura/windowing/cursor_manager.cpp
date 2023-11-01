@@ -263,7 +263,7 @@ namespace windowing
 
       auto pcontext = pobjectContext->m_pcontext;
 
-      ::file::path pathArrow = dir()->matter(pathMatter / "arrow.png");
+      ::file::path pathArrow = pcontext->dir()->matter(pathMatter / "arrow.png");
       
       if(pathArrow.is_empty())
       {

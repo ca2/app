@@ -60,13 +60,13 @@ namespace app_message_box
 
       m_pmainwindow->display(e_display_normal);
 
-      m_pmainwindow->create_main_window();
+      m_pmainwindow->create_main_window_asynchronously();
 
-      m_pmainwindow->set_need_layout();
-
-      m_pmainwindow->set_need_redraw();
-
-      m_pmainwindow->post_redraw();
+//      m_pmainwindow->set_need_layout();
+//
+//      m_pmainwindow->set_need_redraw();
+//
+//      m_pmainwindow->post_redraw();
 
    }
 

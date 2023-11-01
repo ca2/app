@@ -224,7 +224,7 @@ namespace userex
 
       auto & pfactory = acmesystem()->factory(strLibrary);
 
-      auto phandler = pfactory->create <handler>();
+      auto phandler = pfactory->create <handler>(this);
 
       phandler->initialize(this);
 

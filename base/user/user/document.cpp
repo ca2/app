@@ -2089,7 +2089,7 @@ namespace user
       for (auto & pimpact : m_impacta)
       {
 
-         ASSERT_VALID(pimpact);
+         //ASSERT_VALID(pimpact);
 
          if (!ptopic || pimpact != ptopic->m_psender)
          {

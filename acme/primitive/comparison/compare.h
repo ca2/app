@@ -209,16 +209,24 @@ namespace comparison
 
 
 template < typename TYPE, typename MINIMUM, typename MAXIMUM >
-constexpr auto constrain(TYPE t, MINIMUM tMinimum, MAXIMUM tMaximum)
+[[nodiscard]]constexpr auto constrained(TYPE t, MINIMUM tMinimum, MAXIMUM tMaximum)
 {
    
    return minimum(tMaximum, maximum(tMinimum, t));
 
 }
 
+template < typename TYPE, typename MINIMUM, typename MAXIMUM >
+constexpr TYPE & constrain(TYPE & t, MINIMUM tMinimum, MAXIMUM tMaximum)
+{
+   
+   return t = constrained(t, tMinimum, tMaximum);
+
+}
+
 
 template < typename TYPE, typename MINIMUM, typename MAXIMUM >
-constexpr auto sort_constrain(TYPE t, MINIMUM tMinimum, MAXIMUM tMaximum)
+[[nodiscard]]constexpr auto sort_constrained(TYPE t, MINIMUM tMinimum, MAXIMUM tMaximum)
 {
 
    return tMinimum < tMaximum ? constrain(tMinimum, tMaximum) : constrain(tMaximum, tMinimum);
@@ -226,8 +234,18 @@ constexpr auto sort_constrain(TYPE t, MINIMUM tMinimum, MAXIMUM tMaximum)
 }
 
 
+template < typename TYPE, typename MINIMUM, typename MAXIMUM >
+constexpr TYPE & sort_constrain(TYPE & t, MINIMUM tMinimum, MAXIMUM tMaximum)
+{
+
+   return t = sort_constrained(t, tMinimum, tMaximum);
+
+}
+
+
+
 template < typename TYPE >
-constexpr auto constrain_u16(TYPE t)
+[[nodiscard]]constexpr auto u16_constrained(TYPE t)
 {
 
    return (::u16) constrain(t, 0, UINT16_MAX);
@@ -236,7 +254,7 @@ constexpr auto constrain_u16(TYPE t)
 
 
 template < typename TYPE >
-constexpr ::u32 constrain_u32(TYPE t)
+[[nodiscard]]constexpr ::u32 u32_constrained(TYPE t)
 {
 
    return (::u32) constrain(t, 0, UINT32_MAX);

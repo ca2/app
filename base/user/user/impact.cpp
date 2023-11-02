@@ -901,7 +901,14 @@ namespace user
 
       ::pointer<::request>pcreate(e_create_new, this);
 
-      auto pusersystem = __create_new < ::user::system >();
+      ::pointer < ::user::system > pusersystem = m_pusersystem;
+      
+      if(!pusersystem)
+      {
+         
+         pusersystem = __create_new < ::user::system >();
+         
+      }
 
       pcreate->m_pmatterUserPayload = pusersystem;
 

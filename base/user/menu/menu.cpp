@@ -1989,7 +1989,7 @@ namespace user
 
             }
 
-            pmenuitem->m_iColumn = iColumn;
+            pmenuitem->m_iColumn = (::i32) iColumn;
 
             pmenuitem->m_iRow = iRow;
 

@@ -201,6 +201,8 @@ void api::defer_api()
       {
 
          m_eventResponse.wait();
+         
+         information() << "api::defer_api got the response";
 
       }
       else

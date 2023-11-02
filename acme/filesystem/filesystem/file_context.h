@@ -32,6 +32,7 @@ public:
    
    //virtual void update_module_path();
 
+   virtual ::string get_configuration_text(const ::scoped_string & scopedConfigurationFile);
 
    virtual void calculate_main_resource_memory();
 

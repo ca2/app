@@ -59,22 +59,26 @@ namespace programming
       //}
 
 
-      if(pathProjectDir.has_char())
+      if(pathProjectDir.is_empty())
       {
-
-         m_pintegrationcontext->m_pathProjectDir = pathProjectDir;
-
+         
+         throw ::exception(error_bad_argument);
+         
       }
-      else
-      {
 
-         ::file::path path;
-
-         path = __FILE__;
-
-         m_pintegrationcontext->m_pathProjectDir = path.folder();
-
-      }
+      m_pintegrationcontext->m_pathProjectFolder = pathProjectDir;
+//
+//      }
+//      else
+//      {
+//
+//         ::file::path path;
+//
+//         path = __FILE__;
+//
+//         m_pintegrationcontext->m_pathProjectFolder = path.folder();
+//
+//      }
 
 
 #if MEMDLEAK
@@ -95,7 +99,7 @@ namespace programming
 
 #endif
 
-      m_strDynamicSourceStageFolder = dir()->install() / m_strDynamicSourceStage;
+      m_strDynamicSourceStageFolder = m_pintegrationcontext->m_pathBuildFolder / m_strDynamicSourceStage;
 
       //return estatus;
 
@@ -186,7 +190,7 @@ namespace programming
 //
 //#endif
 //
-//      m_strTime = dir()->install() / ("time-" OPERATING_SYSTEM_NAME);
+//      m_strTime = m_pintegrationcontext->m_pathBuildFolder / ("time-" OPERATING_SYSTEM_NAME);
 //
 //#ifdef WINDOWS_DESKTOP
 //
@@ -263,17 +267,17 @@ namespace programming
 
       m_pintegrationcontext->prepare_compile_and_link_environment();
 
-      dir()->create(dir()->install() / m_strDynamicSourceStage / "front");
+      dir()->create(m_pintegrationcontext->m_pathBuildFolder / m_strDynamicSourceStage / "front");
 
       string str;
 
       string strItem;
 
-      strItem = dir()->install() / m_strDynamicSourceStage / m_pintegrationcontext->m_strStagePlatform;
+      strItem = m_pintegrationcontext->m_pathBuildFolder / m_strDynamicSourceStage / m_pintegrationcontext->m_strStagePlatform;
 
       str = str + strItem + ";";
 
-      strItem = dir()->install() / m_strDynamicSourceStage / m_pintegrationcontext->m_strStagePlatform / "dynamic_source\\library";
+      strItem = m_pintegrationcontext->m_pathBuildFolder / m_strDynamicSourceStage / m_pintegrationcontext->m_strStagePlatform / "dynamic_source\\library";
 
       str = str + strItem + ";";
 
@@ -377,14 +381,14 @@ namespace programming
 //#endif
 
       //   ::file::path strFolder;
-      //   strFolder = dir()->install();
+      //   strFolder = m_pintegrationcontext->m_pathBuildFolder;
       //   if (!string_ends(strFolder, "/") && !string_ends(strFolder, "\\"))
       //      strFolder += "/";
       //   string strTemplate;
       //   string strSource = "platform/time-" OPERATING_SYSTEM_NAME"/dynamic_source/";
       //   strSource += lpcszSource;
       //
-      ::file::path pathN = m_pintegrationcontext->m_pathProjectDir;
+      ::file::path pathN = m_pintegrationcontext->m_pathProjectFolder;
       pathN -= 3;
       string strN = pathN;
       strN.find_replace("\\", "/");
@@ -404,12 +408,12 @@ namespace programming
       //   str.replace("%VS_VARS%", m_strEnv);
       //   str.replace("%VS_VARS_PLAT2%", m_strPlat2);
       //
-      //   string strV(dir()->install());
+      //   string strV(m_pintegrationcontext->m_pathBuildFolder);
       //   strV.replace("\\", "/");
       //   if (!string_ends(strV, "/") && !string_ends(strV, "\\"))
       //      strV += "/";
       //   str.replace("%CA2_ROOT%", strV);
-      //   str.replace("%PROJECT_DIR%", m_pathProjectDir);
+      //   str.replace("%PROJECT_DIR%", m_pathProjectFolder);
       //   str.replace("%NETNODE_ROOT%", strN);
       //   str.replace("%SDK1%", m_strSdk1);
       //   string strDest = m_strDynamicSourceStage / "front" / lpcszDest;
@@ -563,7 +567,7 @@ namespace programming
    //pacmedirectory->system() / "env.txt");
 
       ::file::path strFolder;
-      strFolder = dir()->install();
+      strFolder = m_pintegrationcontext->m_pathBuildFolder;
       if (!string_ends(strFolder, "/") && !string_ends(strFolder, "\\"))
          strFolder += "/";
       string strTemplate;
@@ -586,7 +590,7 @@ namespace programming
       file()->path().eat_end_level(strVars, 2, "/");
       strVars += "vc/bin/vcvars32.bat";*/
 
-      string strV(dir()->install());
+      string strV(m_pintegrationcontext->m_pathBuildFolder);
       strV.find_replace("\\", "/");
       if (!string_ends(strV, "/") && !string_ends(strV, "\\"))
          strV += "/";

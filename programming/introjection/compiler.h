@@ -28,7 +28,7 @@ namespace introjection
 //
 //#endif
 
-      //::file::path                              m_pathProjectDir;
+      //::file::path                              m_pathProjectFolder;
       //string                                    m_strDynamicSourceConfiguration;
       //::file::path                              m_strDynamicSourceStage;
       //::file::path                              m_strDynamicSourceStageFolder;

@@ -17,7 +17,8 @@ namespace integration
       bool              m_bMsys;
 
 
-      ::file::path      m_pathProjectDir;
+      ::file::path      m_pathProjectFolder;
+      ::file::path      m_pathBuildFolder;
 
 
       ::string          m_strVs;

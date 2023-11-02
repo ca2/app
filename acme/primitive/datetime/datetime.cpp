@@ -423,21 +423,37 @@ namespace datetime
    }
 
 
-   ::earth::time datetime::international::parse_str(const string & str)
+   ::earth::time datetime::international::parse_str(const string& str)
    {
 
       ::property_set set;
 
       parse_str(str, set);
 
-      return {
-         set["year"].as_i32(),
-         set["month"].as_i32(),
-         set["day"].as_i32(),
-         set["hour"].as_i32(),
-         set["minute"].as_i32(),
-         set["second"].as_i32()
-      };
+      auto year = set["year"].as_i32();
+      auto month = set["month"].as_i32();
+      auto day = set["day"].as_i32();
+      auto hour = set["hour"].as_i32();
+      auto minute = set["minute"].as_i32();
+      auto second = set["second"].as_i32();
+
+      if (year <= 0
+         && month <= 0
+         && day <= 0
+         && hour <= 0
+         && minute <= 0
+         && second <= 0
+         )
+      {
+
+         return {};
+
+      }
+
+
+
+
+      return { year, month, day, hour, minute, second };
 
    }
 

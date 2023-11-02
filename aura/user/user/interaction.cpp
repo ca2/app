@@ -4206,27 +4206,29 @@ namespace user
 
             //synchronous_lock slChildren(::user::pointer < ::mutex >_children());
 
-            synchronous_lock synchronouslock(puserinteractionParent->synchronization());
+            puserinteractionParent->on_erase_child(this);
 
-            auto puserinteractionpointeraChild = __new(
-               ::user::interaction_array(*puserinteractionParent->m_puserinteractionpointeraChild));
+            //synchronous_lock synchronouslock(puserinteractionParent->synchronization());
 
-            if (puserinteractionParent->m_bUserElementOk)
-            {
+            //auto puserinteractionpointeraChild = __new(
+            //   ::user::interaction_array(*puserinteractionParent->m_puserinteractionpointeraChild));
 
-               puserinteractionParent->on_erase_child(this);
+            //if (puserinteractionParent->m_bUserElementOk)
+            //{
 
-               puserinteractionpointeraChild->erase_interaction(this);
+            //   puserinteractionParent->on_erase_child(this);
 
-               puserinteractionParent->m_puserinteractionpointeraChild = puserinteractionpointeraChild;
+            //   puserinteractionpointeraChild->erase_interaction(this);
 
-            }
-            else
-            {
+            //   puserinteractionParent->m_puserinteractionpointeraChild = puserinteractionpointeraChild;
 
-               informationf("Parent being destroyed");
+            //}
+            //else
+            //{
 
-            }
+            //   informationf("Parent being destroyed");
+
+            //}
 
          }
          catch (...)

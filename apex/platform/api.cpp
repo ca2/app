@@ -312,6 +312,10 @@ void api::_api_get(::string & strNetworkPayload, const ::scoped_string & scopeds
       if (iTry >= 3)
       {
 
+         m_bAuthenticated = false;
+
+         m_bAuthenticating = false;
+
          throw exception(error_failed);
 
       }

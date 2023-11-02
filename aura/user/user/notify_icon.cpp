@@ -142,6 +142,8 @@ namespace user
 
 //      m_plistener->call_notification_area_action(pszId);
 
+      return pcommand->m_bRet;
+
    }
 
 

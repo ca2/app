@@ -177,6 +177,8 @@ namespace user
    bool notify_icon_listener::on_application_menu_action(const ::atom &atom)
    {
 
+      return false;
+
    }
 
 

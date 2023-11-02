@@ -62,7 +62,23 @@ int __node_is_debugger_attached()
 void output_debug_string(const ::scoped_string & scopedstrOutputString)
 {
    
-   fwrite(scopedstrOutputString.begin(), 1, scopedstrOutputString.size(), stdout);
+   if(scopedstrOutputString.size() > 1024)
+   {
+   
+      fwrite(scopedstrOutputString.begin(), 1, 128, stdout);
+      if(scopedstrOutputString[scopedstrOutputString.size() -1] =='\n')
+      {
+         
+         printf("...line with %d bytes truncated to 128 bytes...",scopedstrOutputString.size() );
+         
+      }
+      fwrite("\n", 1, 1, stdout);
+      
+   }
+   else
+   {
+      fwrite(scopedstrOutputString.begin(), 1, scopedstrOutputString.size(), stdout);
+   }
 
 //   string strOutputString(pszOutputString);
 //

@@ -496,17 +496,17 @@ namespace interprocess
 
       string strAppId(strApp);
 
-      strAppId.find_replace("\\", "-");
-
-      strAppId.find_replace("/", "-");
-
-      strAppId.find_replace("-", "-");
+//      strAppId.find_replace("\\", "-");
+//
+      strAppId.find_replace("/", ".");
+//
+//      strAppId.find_replace("-", "-");
 
       strKey = strAppId;
 
 #ifdef MACOS
 
-      strKey += "/" + ::as_string(idPid.as_i32());
+      strKey += "." + ::as_string(idPid.as_i32());
 
 #endif
 

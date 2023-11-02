@@ -318,15 +318,19 @@ inline void __raw_construct_new(::pointer<TYPE> & ptype)
 
 
 template < typename TYPE >
-inline void __defer_raw_construct_new(::pointer<TYPE> & ptype)
+inline bool __defer_raw_construct_new(::pointer<TYPE> & ptype)
 {
 
-   if(!ptype)
+   if(ptype.is_null())
    {
 
       __raw_construct_new(ptype);
+      
+      return ptype.is_set();
 
    }
+   
+   return false;
 
 }
 

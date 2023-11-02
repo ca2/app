@@ -1760,16 +1760,16 @@ namespace apex
 
       defer_interprocess_communication();
 
-      if (m_bInterprocessCommunication)
-      {
-
-         __raw_construct_new(m_pinterprocesscommunication);
-         
-         //m_pinterprocesscommunication->m_p= create_interprocess_communication(OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_NOTE("::application::init_instance"));
-
-         m_pinterprocesscommunication->initialize_interprocess_communication(this, m_strAppId);
-
-      }
+//      if (m_bInterprocessCommunication)
+//      {
+//
+//         __raw_construct_new(m_pinterprocesscommunication);
+//         
+//         //m_pinterprocesscommunication->m_p= create_interprocess_communication(OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_NOTE("::application::init_instance"));
+//
+//         m_pinterprocesscommunication->initialize_interprocess_communication(this, m_strAppId);
+//
+//      }
 
       information() << "apex::application::init_application .1";
 
@@ -2201,12 +2201,15 @@ namespace apex
       if (m_bInterprocessCommunication)
       {
 
-         __raw_construct_new(m_pinterprocesscommunication);
-
-         //m_pinterprocesscommunication->m_p= create_interprocess_communication(OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_NOTE("::application::init_instance"));
-
-         m_pinterprocesscommunication->initialize_interprocess_communication(this, m_strAppId);
-
+         if(__defer_raw_construct_new(m_pinterprocesscommunication))
+         {
+            
+            //m_pinterprocesscommunication->m_p= create_interprocess_communication(OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_NOTE("::application::init_instance"));
+            
+            m_pinterprocesscommunication->initialize_interprocess_communication(this, m_strAppId);
+            
+         }
+         
       }
 
    }

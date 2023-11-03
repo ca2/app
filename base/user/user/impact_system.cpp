@@ -185,9 +185,14 @@ namespace user
 
          pusersystem = __new(::user::system);
 
-         pusersystem->m_prequest = prequest;
-
          prequest->m_pmatterUserPayload = pusersystem;
+
+      }
+      
+      if(!pusersystem->m_prequest)
+      {
+       
+         pusersystem->m_prequest = prequest;
 
       }
 

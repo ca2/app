@@ -143,7 +143,7 @@ namespace introjection
 //
 //      path = THIS_FILE;
 //
-//      m_pathProjectDir = path.folder();
+//      m_pathProjectFolder = path.folder();
 //
 //#if MEMDLEAK
 //
@@ -163,7 +163,7 @@ namespace introjection
 //
 //#endif
 //
-//      m_strDynamicSourceStageFolder = dir()->install() / m_strDynamicSourceStage;
+//      m_strDynamicSourceStageFolder = m_pintegrationcontext->m_pathBuildFolder / m_strDynamicSourceStage;
 //
 
       m_strRepos = pszRepos;
@@ -286,7 +286,7 @@ namespace introjection
 //
 //      }
 //
-//      m_strTime = dir()->install() / "time";
+//      m_strTime = m_pintegrationcontext->m_pathBuildFolder / "time";
 //
 //      //m_strContext = "C:\\Program Files\\Microsoft SDKs\\Windows\\v7.1\\Bin\\SetEnv.cmd";
 //
@@ -358,17 +358,17 @@ namespace introjection
 //      //   m_strDynamicSourceConfiguration  + "_libl" + m_strPlat1 + ".bat");
 //#endif
 //
-//      dir()->create(dir()->install() / m_strDynamicSourceStage / "front");
+//      dir()->create(m_pintegrationcontext->m_pathBuildFolder / m_strDynamicSourceStage / "front");
 //
 //      //#ifdef WINDOWS
 //      //      string vars1batSrc;
 //      //      string vars2batSrc;
 //      //      string vars1batDst;
 //      //      string vars2batDst;
-//      //      vars1batSrc = dir()->install()/"platform/stage/introjection/vc_vars.bat";
-//      //      vars2batSrc = dir()->install()/"platform/stage/introjection/vc_vars_query_registry.bat";
-//      //      vars1batDst = dir()->install()/ m_strDynamicSourceStage / "front"/"vc_vars.bat";
-//      //      vars2batDst = dir()->install()/m_strDynamicSourceStage /"front"/"vc_vars_query_registry.bat";
+//      //      vars1batSrc = m_pintegrationcontext->m_pathBuildFolder/"platform/stage/introjection/vc_vars.bat";
+//      //      vars2batSrc = m_pintegrationcontext->m_pathBuildFolder/"platform/stage/introjection/vc_vars_query_registry.bat";
+//      //      vars1batDst = m_pintegrationcontext->m_pathBuildFolder/ m_strDynamicSourceStage / "front"/"vc_vars.bat";
+//      //      vars2batDst = m_pintegrationcontext->m_pathBuildFolder/m_strDynamicSourceStage /"front"/"vc_vars_query_registry.bat";
 //      //      try
 //      //      {
 //      //         pcontext->m_papexcontext->file()->copy(vars1batDst, vars1batSrc, false);
@@ -409,10 +409,10 @@ namespace introjection
 //      string str;
 //      string strItem;
 //
-//      strItem = dir()->install() / m_strDynamicSourceStage / m_strStagePlatform;
+//      strItem = m_pintegrationcontext->m_pathBuildFolder / m_strDynamicSourceStage / m_strStagePlatform;
 //      str = str + strItem + ";";
 //
-//      strItem = dir()->install() / m_strDynamicSourceStage / m_strStagePlatform / "introjection\\library";
+//      strItem = m_pintegrationcontext->m_pathBuildFolder / m_strDynamicSourceStage / m_strStagePlatform / "introjection\\library";
 //      str = str + strItem + ";";
 //
 //      //auto psystem = acmesystem();
@@ -517,14 +517,14 @@ namespace introjection
 //
 //      ::file::path strFolder;
 //
-//      strFolder = dir()->install();
+//      strFolder = m_pintegrationcontext->m_pathBuildFolder;
 //      if(!string_ends(strFolder,"/") && !string_ends(strFolder,"\\"))
 //         strFolder += "/";
 //      string strTemplate;
 //      string strSource = "platform/time/dynamic_source/";
 //      strSource += lpcszSource;
 //
-//      ::file::path pathN = m_pathProjectDir;
+//      ::file::path pathN = m_pathProjectFolder;
 //      pathN -= 3;
 //      string strN = pathN;
 //      strN.find_replace("\\", "/");
@@ -544,12 +544,12 @@ namespace introjection
 //      str.find_replace("%VS_VARS%",m_strContext);
 //      str.find_replace("%VS_VARS_PLAT2%",m_strPlat2);
 //
-//      string strV(dir()->install());
+//      string strV(m_pintegrationcontext->m_pathBuildFolder);
 //      strV.find_replace("\\","/");
 //      if(!string_ends(strV,"/") && !string_ends(strV,"\\"))
 //         strV += "/";
 //      str.find_replace("%CA2_ROOT%",strV);
-//      str.find_replace("%PROJECT_DIR%", m_pathProjectDir);
+//      str.find_replace("%PROJECT_DIR%", m_pathProjectFolder);
 //      str.find_replace("%NETNODE_ROOT%",strN);
 //      str.find_replace("%SDK1%",m_strSdk1);
 //      string strDest = m_strDynamicSourceStage / "front" / lpcszDest;
@@ -722,7 +722,7 @@ pacmedirectory->create("/var/tmp/ca2/intermediate");
 
       //strName.find_replace("/", "\\");
       //string strFolder;
-      //strFolder = dir()->install();
+      //strFolder = m_pintegrationcontext->m_pathBuildFolder;
       //::file::path strB;
       ::file::path strO;
       ::file::path strP;
@@ -1029,7 +1029,7 @@ pacmedirectory->create("/var/tmp/ca2/intermediate");
       dir()->create(strL.folder());
       dir()->create(m_strTime / "intermediate" / m_pintegrationcontext->m_strPlatform / m_strDynamicSourceConfiguration /  m_strRepos / m_strProjectName / strTransformName);
 
-      ::file::path pathN = m_pintegrationcontext->m_pathProjectDir;
+      ::file::path pathN = m_pintegrationcontext->m_pathProjectFolder;
 
       pathN -= 3;
 
@@ -1042,11 +1042,11 @@ pacmedirectory->create("/var/tmp/ca2/intermediate");
       string strBuildCmd;
 
 #if defined(LINUX) || defined(FREEBSD)
-      strBuildCmd = dir()->install() / "operating_system/operating_system-linux/stage/_introjection" / m_strApp / (m_strDynamicSourceConfiguration + "_c" + m_pintegrationcontext->m_strPlatform + ".bash");
+      strBuildCmd = m_pintegrationcontext->m_pathBuildFolder / "operating_system/operating_system-linux/stage/_introjection" / m_strApp / (m_strDynamicSourceConfiguration + "_c" + m_pintegrationcontext->m_strPlatform + ".bash");
 #elif defined(__APPLE__)
-      strBuildCmd.formatf(dir()->install() / "operating_system/operating_system-macos/_stage/introjection" / m_strApp / (m_strDynamicSourceConfiguration + "_c" + m_pintegrationcontext->m_strPlatform + ".bat"));
+      strBuildCmd.formatf(m_pintegrationcontext->m_pathBuildFolder / "operating_system/operating_system-macos/_stage/introjection" / m_strApp / (m_strDynamicSourceConfiguration + "_c" + m_pintegrationcontext->m_strPlatform + ".bat"));
 #else
-      strBuildCmd.formatf(dir()->install() / "operating_system/operating_system-windows/_stage/introjection" / m_strApp / m_pintegrationcontext->payload("vstools").as_string() / (m_strDynamicSourceConfiguration + "_c_" + m_pintegrationcontext->m_strPlatform + ".bat"));
+      strBuildCmd.formatf(m_pintegrationcontext->m_pathBuildFolder / "operating_system/operating_system-windows/_stage/introjection" / m_strApp / m_pintegrationcontext->payload("vstools").as_string() / (m_strDynamicSourceConfiguration + "_c_" + m_pintegrationcontext->m_strPlatform + ".bat"));
 #endif
 
       str = pcontext->m_papexcontext->file()->as_string(strBuildCmd);
@@ -1055,12 +1055,12 @@ pacmedirectory->create("/var/tmp/ca2/intermediate");
       str.find_replace("%ITEM_TITLE%",strTransformName.name());
       str.find_replace("%ITEM_DIR%",::str::find_replace("\\","/",string(strTransformName.folder())) + "/");
       str.find_replace("%LIBS_LIBS%",m_strLibsLibs);
-      auto pathInstall = dir()->install();
+      auto pathInstall = m_pintegrationcontext->m_pathBuildFolder;
       str.find_replace("%CA2_ROOT%", ::string(pathInstall) + "/");
 
       m_pintegrationcontext->prepare_compilation_script(str);
 
-      string strElem = dir()->install();
+      string strElem = m_pintegrationcontext->m_pathBuildFolder;
 
       strElem.find_replace("\\","/");
 
@@ -1108,13 +1108,13 @@ pacmedirectory->create("/var/tmp/ca2/intermediate");
 
 #ifdef LINUX
 
-      string strTargetPath =  dir()->install() /"time" / m_pintegrationcontext->m_strPlatform / m_strDynamicSourceConfiguration / plibrary->m_pathScript.title();
+      string strTargetPath =  m_pintegrationcontext->m_pathBuildFolder /"time" / m_pintegrationcontext->m_strPlatform / m_strDynamicSourceConfiguration / plibrary->m_pathScript.title();
       strTargetPath.case_insensitive_ends_eat(".cpp");
       strTargetPath.case_insensitive_ends_eat(".so");
 
 #else
 
-      string strTargetPath = dir()->install() / "time-windows" / m_pintegrationcontext->m_strPlatform / m_strDynamicSourceConfiguration / strT2 ;
+      string strTargetPath = m_pintegrationcontext->m_pathBuildFolder / "time-windows" / m_pintegrationcontext->m_strPlatform / m_strDynamicSourceConfiguration / strT2 ;
       strTargetPath.case_insensitive_ends_eat(".cpp");
       strTargetPath.case_insensitive_ends_eat(".dll");
 
@@ -1143,7 +1143,7 @@ pacmedirectory->create("/var/tmp/ca2/intermediate");
 
       pcontext->m_papexcontext->file()->put_text(strCmdCompile, str);
 
-      process->create_child_process(str,true,m_pintegrationcontext->m_pathProjectDir,::e_priority_highest);
+      process->create_child_process(str,true,m_pintegrationcontext->m_pathProjectFolder,::e_priority_highest);
 
 #endif
 
@@ -1264,9 +1264,9 @@ auto tickStart = ::time::now();
 #ifndef MACOS
 
 #if defined(LINUX) || defined(FREEBSD)
-         strBuildCmd.formatf(dir()->install() / "operating_system/operating_system-linux/_stage/introjection" / m_strApp / (m_strDynamicSourceConfiguration + "_l" + m_pintegrationcontext->m_strPlatform + ".bash"));
+         strBuildCmd.formatf(m_pintegrationcontext->m_pathBuildFolder / "operating_system/operating_system-linux/_stage/introjection" / m_strApp / (m_strDynamicSourceConfiguration + "_l" + m_pintegrationcontext->m_strPlatform + ".bash"));
 #else
-         strBuildCmd.formatf(dir()->install() / "operating_system/operating_system-windows/_stage/introjection" / m_strApp / m_pintegrationcontext->payload("vstools").as_string() / (m_strDynamicSourceConfiguration + "_l_" + m_pintegrationcontext->m_strPlatform + ".bat"));
+         strBuildCmd.formatf(m_pintegrationcontext->m_pathBuildFolder / "operating_system/operating_system-windows/_stage/introjection" / m_strApp / m_pintegrationcontext->payload("vstools").as_string() / (m_strDynamicSourceConfiguration + "_l_" + m_pintegrationcontext->m_strPlatform + ".bat"));
 #endif
 
          str = pcontext->m_papexcontext->file()->as_string(strBuildCmd);
@@ -1278,7 +1278,7 @@ auto tickStart = ::time::now();
          str.find_replace("%LIBS_LIBS%",m_strLibsLibs);
          str.find_replace("%HMH_LCTVWILD_PDB_PATH%",strHmhLctvWildPdbPath);
 
-//         auto pathInstall = dir()->install();
+//         auto pathInstall = m_pintegrationcontext->m_pathBuildFolder;
          str.find_replace("%CA2_ROOT%", ::string(pathInstall) + "/");
 
          //str.find_replace("%CA2_ROOT%",strElem);
@@ -1297,7 +1297,7 @@ auto tickStart = ::time::now();
          //#else
          //         strTargetPath.case_insensitive_ends_eat(".dll");
          //#endif
-         //         strTargetPath = dir()->install() /
+         //         strTargetPath = m_pintegrationcontext->m_pathBuildFolder /
          str.find_replace("%TARGET_PATH%",strTargetPath);
 
          pcontext->m_papexcontext->file()->put_text(strCmdLink, str);
@@ -1324,7 +1324,7 @@ auto tickStart = ::time::now();
 
 #else
 
-         process->create_child_process(str,true, m_pintegrationcontext->m_pathProjectDir,::e_priority_highest);
+         process->create_child_process(str,true, m_pintegrationcontext->m_pathProjectFolder,::e_priority_highest);
 #endif
 #else
 

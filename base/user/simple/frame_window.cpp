@@ -184,7 +184,7 @@ void simple_frame_window::on_update_notify_icon_menu_header(::index & iNotifyIco
 
    auto papp = auraapplication();
 
-   auto puser = papp->get_session()->user()->m_pbaseuser;
+   //auto puser = papp->get_session()->user()->m_pbaseuser;
 
    auto strAppTitle = papp->application_title();
 
@@ -283,7 +283,7 @@ void simple_frame_window::on_update_notify_icon_menu_header(::index & iNotifyIco
 void simple_frame_window::on_update_notify_icon_menu_top(::index & iNotifyIconItem)
 {
 
-   auto papp = auraapplication();
+   //auto papp = auraapplication();
 
    //auto c = papp->application_menu()->get_count();
 

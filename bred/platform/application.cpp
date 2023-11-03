@@ -76,7 +76,7 @@ namespace bred
    ::file::path application::get_main_weather_file_path(const ::scoped_string & scopedstringAspect)
    {
 
-      return acmedirectory()->roaming() / "weather" / (scopedstringAspect + ".txt");
+      return acmedirectory()->roaming() / "user/weather" / (scopedstringAspect + ".txt");
 
    }
 

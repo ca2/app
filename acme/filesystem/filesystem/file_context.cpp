@@ -757,6 +757,29 @@ string file_context::as_string(const ::payload & payloadFile)
 }
 
 
+::string file_context::get_configuration_text(const ::scoped_string &scopedConfigurationFile)
+{
+   
+   ::string str;
+   
+   try
+   {
+      
+      str = as_string(acmedirectory()->config() / scopedConfigurationFile);
+      
+   }
+   catch(...)
+   {
+    
+      information() << "get_configuration_text failed!! : \"" << scopedConfigurationFile << "\"";
+      
+   }
+   
+   return str;
+   
+}
+
+
 string file_context::safe_get_string(const ::payload & payloadFile, ::e_status * pestatus)
 {
 

@@ -370,7 +370,8 @@ namespace user
    bool menu_item::is_popup() const
    {
 
-      return m_bPopup || m_pmenuitema.is_set() && m_pmenuitema->get_count() > 0;
+      return m_bPopup 
+      || (m_pmenuitema.is_set() && m_pmenuitema->has_element());
 
    }
 

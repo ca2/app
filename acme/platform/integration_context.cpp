@@ -150,7 +150,7 @@ namespace integration
       // introjection/compiler
       //str.find_replace("%VS_VARS%", m_strContext);
       //str.find_replace("%VS_VARS_PLAT2%", m_strPlat2);
-      //str.find_replace("%PROJECT_DIR%", m_pathProjectDir);
+      //str.find_replace("%PROJECT_DIR%", m_pathProjectFolder);
       //str.find_replace("%PLATFORM%",m_strPlatform);
       //str.find_replace("%STAGEPLATFORM%",m_strStagePlatform);
 
@@ -161,7 +161,7 @@ namespace integration
       // programming/compiler
 //      str.find_replace("%VS_VARS%", m_strContext);
 //      str.find_replace("%VS_VARS_PLAT2%", m_strPlat2);
-//      str.find_replace("%PROJECT_DIR%", m_pathProjectDir);
+//      str.find_replace("%PROJECT_DIR%", m_pathProjectFolder);
 //      str.find_replace("%SDK1%", m_strSdk1);
 
 
@@ -173,7 +173,7 @@ namespace integration
 //      //      str.find_replace("%LIBPLATFORM%", m_strLibPlatform);
 //      str.find_replace("%SDK1%",m_strSdk1);
 
-      str.find_replace("%PROJECT_DIR%", m_pathProjectDir);
+      str.find_replace("%PROJECT_DIR%", m_pathProjectFolder);
 
       str.find_replace("%PLATFORM%", m_strPlatform);
 
@@ -187,7 +187,7 @@ namespace integration
 
 //      str.find_replace("%VS_VARS%",m_strContext);
 //      str.find_replace("%VS_VARS_PLAT2%",m_strPlat2);
-//      str.find_replace("%PROJECT_DIR%", m_pathProjectDir);
+//      str.find_replace("%PROJECT_DIR%", m_pathProjectFolder);
 //      str.find_replace("%PLATFORM%",m_strPlatform);
 //      str.find_replace("%STAGEPLATFORM%",m_strStagePlatform);
 //      //      str.find_replace("%LIBPLATFORM%", m_strLibPlatform);
@@ -225,7 +225,7 @@ namespace integration
 //      str.find_replace("%LIBPLATFORM%",m_strLibPlatform);
 //      str.find_replace("%SDK1%",m_strSdk1);
 
-      str.find_replace("%PROJECT_DIR%", m_pathProjectDir);
+      str.find_replace("%PROJECT_DIR%", m_pathProjectFolder);
 
       str.find_replace("%PLATFORM%", m_strPlatform);
 

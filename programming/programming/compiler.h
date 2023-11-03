@@ -24,7 +24,7 @@ namespace programming
       ::pointer < ::integration::context >      m_pintegrationcontext;
 
       //::pointer < ::integration::context >    m_pintegrationcontext;
-      //::file::path                            m_pathProjectDir;
+      //::file::path                            m_pathProjectFolder;
       string                                    m_strDynamicSourceConfiguration;
       ::file::path                              m_strDynamicSourceStage;
       ::file::path                              m_strDynamicSourceStageFolder;
@@ -57,7 +57,7 @@ namespace programming
       ~compiler() override;
 
 
-      virtual void initialize_programming_compiler(::particle * pparticle, const ::file::path & pathProjectDir = "");
+      virtual void initialize_programming_compiler(::particle * pparticle, const ::file::path & pathProjectDir);
 
       virtual void prepare_compile_and_link_environment();
 

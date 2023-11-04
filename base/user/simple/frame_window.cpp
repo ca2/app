@@ -1308,7 +1308,7 @@ bool simple_frame_window::pre_create_window(::user::system * pusersystem)
 
          //post_redraw();
 
-         prequest->m_bMakeVisible = false;
+         prequest->m_egraphicsoutputpurpose -= ::graphics::e_output_purpose_screen;
 
          //pusersystem->m_createstruct.style &= ~WS_VISIBLE;
 
@@ -2233,14 +2233,22 @@ bool simple_frame_window::LoadFrame(const ::string & pszMatter, u32 dwDefaultSty
 
    //bCreated = 
 
-   if (pusersystem->m_prequest && !pusersystem->m_prequest->m_bMakeVisible)
+//   if (pusersystem->m_prequest && !(pusersystem->m_prequest->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_screen))
+//   {
+//
+//      hide();
+//
+//   }
+
+   if(!::experience::frame_window::LoadFrame(pszMatter, dwDefaultStyle,puiParent,  pusersystem))
    {
 
-      hide();
+
+      return false;
 
    }
 
-   create_interaction(puiParent, atom());
+   //create_interaction(puiParent, atom());
 
    if (bLoadImplRect)
    {
@@ -2263,7 +2271,7 @@ bool simple_frame_window::LoadFrame(const ::string & pszMatter, u32 dwDefaultSty
 
    }
 
-   if (pusersystem->m_prequest->m_bMakeVisible)
+   if (pusersystem->m_prequest->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_screen)
    {
 
       initial_frame_display();

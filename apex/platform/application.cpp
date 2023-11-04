@@ -831,7 +831,12 @@ namespace apex
 
       m_prequest = prequest;
 
-      prequest->m_bMakeVisible = prequest->payload("auto_start").as_i32() != 1;
+      if(prequest->payload("auto_start").is_true())
+      {
+
+         prequest->m_egraphicsoutputpurpose -= ::graphics::e_output_purpose_screen;
+
+      }
 
       if (is_service())
       {

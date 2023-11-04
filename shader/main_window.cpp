@@ -137,7 +137,9 @@ namespace app_shader
 //
 //      }
 
-      top_level()->set_fps_interest();
+//      top_level()->set_fps_interest();
+      add_graphical_output_purpose(this, ::graphics::e_output_purpose_screen_fps);
+
 
       switch_shader();
 

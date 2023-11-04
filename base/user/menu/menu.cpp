@@ -1623,12 +1623,12 @@ namespace user
       }
 
 
-      bool menu::has_pending_graphical_update()
-      {
-
-         return ::user::interaction::has_pending_graphical_update();
-
-      }
+//      bool menu::has_pending_graphical_update()
+//      {
+//
+//         return ::user::interaction::has_pending_graphical_update();
+//
+//      }
 
 
 

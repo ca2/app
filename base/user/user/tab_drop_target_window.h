@@ -34,7 +34,7 @@ namespace user
 
       DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
 
-      bool has_pending_graphical_update() override;
+      //bool has_pending_graphical_update() override;
 
    };
 

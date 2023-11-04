@@ -93,7 +93,12 @@ namespace user
       if (prequest->m_payloadOptions.has_property("visible"))
       {
 
-         prequest->m_bMakeVisible = prequest->m_payloadOptions["visible"].is_true();
+         if(prequest->m_payloadOptions["visible"].is_true())
+         {
+
+            prequest->m_egraphicsoutputpurpose |= ::graphics::e_output_purpose_screen;
+
+         }
 
       }
 
@@ -210,7 +215,12 @@ namespace user
       if (prequest)
       {
 
-         prequest->m_bMakeVisible = prequest->payload("make_visible_boolean").get_bool() || prequest->m_bMakeVisible;
+         if(prequest->payload("make_visible_boolean").is_true())
+         {
+
+            prequest->m_egraphicsoutputpurpose |= ::graphics::e_output_purpose_screen;
+
+         }
 
       }
 

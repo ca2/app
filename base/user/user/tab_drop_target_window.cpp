@@ -152,12 +152,12 @@ namespace user
    }
 
 
-   bool tab_drop_target_window::has_pending_graphical_update()
-   {
-
-      return true;
-
-   }
+//   bool tab_drop_target_window::has_pending_graphical_update()
+//   {
+//
+//      return true;
+//
+//   }
 
 
 } // namespace user

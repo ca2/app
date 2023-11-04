@@ -1044,7 +1044,7 @@ namespace user
          m_pimpactsystem->prepare_frame(
             this,
             puserdocument,
-            m_pusersystem->m_prequest->m_bMakeVisible);
+            m_pusersystem->m_prequest->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_screen);
 
       }
 
@@ -1105,7 +1105,7 @@ namespace user
    }
 
 
-   bool frame_window::LoadFrame(const ::string & pszMatter, u32 dwDefaultStyle, ::user::interaction * puiParent, ::user::system * pcreate)
+   bool frame_window::LoadFrame(const ::string & pszMatter, u32 dwDefaultStyle, ::user::interaction * puiParent, ::user::system * pusersystem)
    {
 
       UNREFERENCED_PARAMETER(puiParent);
@@ -1139,9 +1139,21 @@ namespace user
 
       }
 
+//      if(pusersystem)
+//      {
+//
+//         if(pusersystem->m_prequest)
+//         {
+//
+//            add(pusersystem->m_prequest);
+//
+//         }
+//
+//      }
+
       //m_bLockSketchToDesign = true;
 
-      set_display(e_display_none);
+      ///set_display(e_display_none);
 
       informationf("\nm_bLayoutEnable false");
 
@@ -1189,8 +1201,12 @@ namespace user
       // load accelerator resource
       //   LoadAccelTable(MAKEINTRESOURCE(nIDResource));
 
-      if (pcreate == nullptr)   // send initial update
-         send_message_to_descendants(e_message_system_update, ID_INITIAL_UPDATE, (lparam)0, true, true);
+      if (!pusersystem || !pusersystem->m_prequest)   // send initial update
+      {
+
+         send_message_to_descendants(e_message_system_update, ID_INITIAL_UPDATE, (lparam) 0, true, true);
+
+      }
 
       return true;
 

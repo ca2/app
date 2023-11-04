@@ -16,8 +16,12 @@
 #endif
 
 
+#include "acme/graphics/graphics/output_purpose.h"
+
+
 class CLASS_DECL_ACME request :
-   virtual public ::object
+   virtual public ::object,
+   virtual public ::graphics::output_purpose
 {
 public:
 
@@ -32,7 +36,7 @@ public:
    string                           m_strExtra;
    ::e_status                       m_estatus;
 
-   bool                             m_bMakeVisible;
+   //bool                             m_bMakeVisible;
    bool                             m_bTransparentBackground;
    bool                             m_bExperienceMainFrame;
    bool                             m_bOuterPopupAlertLike;

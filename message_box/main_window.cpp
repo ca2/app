@@ -30,7 +30,7 @@ namespace app_message_box
    void main_window::install_message_routing(::channel * pchannel)
    {
 
-      ::user::main_window::install_message_routing(pchannel);
+      ::app_app::main_window::install_message_routing(pchannel);
 
       MESSAGE_LINK(e_message_create, pchannel, this, &main_window::on_message_create);
       MESSAGE_LINK(e_message_close, pchannel, this, &main_window::on_message_close);

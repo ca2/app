@@ -24,23 +24,23 @@ namespace graphics
 {
 
 
-   class CLASS_DECL_AURA output_purpose :
+   class CLASS_DECL_ACME output_purpose :
       virtual public particle
    {
    public:
 
 
-      enum_output_purpose     m_epurpose;
+      e_output_purpose     m_egraphicsoutputpurpose;
 
-      ::pointer<::particle>   m_pparticle;
+      ::pointer<::particle>   m_pparticleGraphicalOutputPurposeOriginator;
 
 
       output_purpose(enum_output_purpose
-      epurpose = e_output_purpose_none
+      eoutputpurpose = e_output_purpose_none
       );
       output_purpose(::particle
-      * pparticle,
-      enum_output_purpose epurpose
+      * pparticleGraphicalOutputPurposeOriginator,
+      enum_output_purpose eoutputpurpose
       );
 
 

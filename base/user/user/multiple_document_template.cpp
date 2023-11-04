@@ -97,7 +97,7 @@ namespace user
 
       prequest->payload("document") = (::object *) nullptr;
 
-      bool bMakeVisible = prequest->m_bMakeVisible;
+      //bool bMakeVisible = prequest->m_bMakeVisible;
 
       ::pointer<::user::document>pdocument = create_new_document(prequest);
 
@@ -154,8 +154,12 @@ namespace user
          set_default_title(pdocument);
 
          // avoid creating temporary compound file when starting up invisible
-         if (!bMakeVisible)
+         if (!(prequest->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_screen))
+         {
+
             pdocument->m_bEmbedded = true;
+
+         }
 
          pdocument->m_bNew = true;
 
@@ -204,7 +208,7 @@ namespace user
 
       }
 
-      prepare_frame(pFrame, pdocument, bMakeVisible);
+      prepare_frame(pFrame, pdocument, prequest->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_screen);
 
       prequest->payload("document") = pdocument;
 

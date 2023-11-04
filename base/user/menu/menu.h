@@ -119,7 +119,7 @@ namespace user
 
       //::pointer<::user::menu_item>get_menu_item(::user::interaction * pinteraction);
 
-      bool has_pending_graphical_update() override;
+      //bool has_pending_graphical_update() override;
 
       virtual bool create_menu(const string_array & straCommand, const string_array & straCommandTitle);
 

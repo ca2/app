@@ -12,13 +12,14 @@
 //#include "aura/graphics/graphics/_graphics.h"
 #include "acme/constant/message.h"
 #include "acme/exception/interface_only.h"
+#include "acme/graphics/graphics/output_purpose.h"
+#include "acme/handler/request.h"
 #include "acme/parallelization/mutex.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/keep.h"
 #include "acme/platform/node.h"
 #include "acme/primitive/geometry2d/_text_stream.h"
 #include "aura/graphics/graphics/graphics.h"
-#include "aura/graphics/graphics/output_purpose.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "acme/platform/scoped_restore.h"
@@ -873,6 +874,8 @@ namespace user
 
 #endif
 
+      add(puserinteraction->m_pusersystem->m_prequest);
+
       bool bNewOwnThread = true;
 
       bool bProdevianThread = true;
@@ -1494,7 +1497,7 @@ namespace user
 
       }
 
-      if(pgraphicaloutputpurpose->m_epurpose == ::graphics::e_output_purpose_none)
+      if(pgraphicaloutputpurpose->m_egraphicsoutputpurpose == ::graphics::e_output_purpose_none)
       {
 
          return;
@@ -1529,10 +1532,10 @@ namespace user
    }
 
 
-   void interaction_impl::add_graphical_output_purpose(::particle * pparticle, ::graphics::enum_output_purpose epurpose)
+   void interaction_impl::add_graphical_output_purpose(::particle * pparticleGraphicalOutputPurposeOriginator, ::graphics::enum_output_purpose epurpose)
    {
 
-      if(::is_null(pparticle))
+      if(::is_null(pparticleGraphicalOutputPurposeOriginator))
       {
 
          return;
@@ -1546,7 +1549,7 @@ namespace user
 
       }
 
-      auto poutputpurpose = __new(::graphics::output_purpose(pparticle, epurpose));
+      auto poutputpurpose = __new(::graphics::output_purpose(pparticleGraphicalOutputPurposeOriginator, epurpose));
 
       this->add(poutputpurpose);
 
@@ -1564,31 +1567,31 @@ namespace user
    }
 
 
-   void interaction_impl::erase_graphical_output_purpose(::particle * pparticle)
+   void interaction_impl::erase_graphical_output_purpose(::particle * pparticleGraphicalOutputPurposeOriginator)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      m_graphicaloutputpurposea.predicate_erase([pparticle](auto ppurpose)
+      m_graphicaloutputpurposea.predicate_erase([pparticleGraphicalOutputPurposeOriginator](auto ppurpose)
                                                 {
 
-         return ppurpose->m_pparticle == pparticle;
+         return ppurpose->m_pparticleGraphicalOutputPurposeOriginator == pparticleGraphicalOutputPurposeOriginator;
 
                                                 });
 
    }
 
 
-   bool interaction_impl::does_particle_has_fps_purpose(const ::particle * pparticle) const
+   bool interaction_impl::does_particle_has_fps_purpose(const ::particle * pparticleGraphicalOutputPurposeOriginator) const
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      return m_graphicaloutputpurposea.predicate_contains([pparticle](auto ppurpose)
+      return m_graphicaloutputpurposea.predicate_contains([pparticleGraphicalOutputPurposeOriginator](auto ppurpose)
                                                           {
 
-                                                             return ppurpose->m_pparticle == pparticle
-                                                                    && ppurpose->m_epurpose &
+                                                             return ppurpose->m_pparticleGraphicalOutputPurposeOriginator == pparticleGraphicalOutputPurposeOriginator
+                                                                    && ppurpose->m_egraphicsoutputpurpose &
                                                                        ::graphics::e_output_purpose_fps;
 
                                                           });
@@ -9276,7 +9279,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
       for(auto & ppurpose : m_graphicaloutputpurposea)
       {
 
-         if(ppurpose->m_epurpose & ::graphics::e_output_purpose_screen)
+         if(ppurpose->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_screen)
          {
 
             return true;
@@ -9308,7 +9311,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
       for(auto & ppurpose : m_graphicaloutputpurposea)
       {
 
-         if(ppurpose->m_epurpose & ::graphics::e_output_purpose_fps)
+         if(ppurpose->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_fps)
          {
 
             return true;

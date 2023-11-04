@@ -33,21 +33,21 @@ namespace graphics
 {
 
 
-   output_purpose::output_purpose(enum_output_purpose epurpose) :
-      m_pparticle(this),
-      m_epurpose(epurpose)
+   output_purpose::output_purpose(enum_output_purpose eoutputpurpose) :
+      m_pparticleGraphicalOutputPurposeOriginator(this),
+      m_egraphicsoutputpurpose(eoutputpurpose)
    {
 
 
    }
 
 
-   output_purpose::output_purpose(::particle * pparticle, enum_output_purpose epurpose) :
-      m_pparticle(pparticle),
-      m_epurpose(epurpose)
+   output_purpose::output_purpose(::particle * pparticleGraphicalOutputPurposeOriginator, enum_output_purpose eoutputpurpose) :
+      m_pparticleGraphicalOutputPurposeOriginator(pparticleGraphicalOutputPurposeOriginator),
+      m_egraphicsoutputpurpose(eoutputpurpose)
    {
 
-      initialize(pparticle);
+      initialize(pparticleGraphicalOutputPurposeOriginator);
 
    }
 

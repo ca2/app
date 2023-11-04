@@ -1119,12 +1119,12 @@ namespace user
    }
 
 
-   bool list_box::has_pending_graphical_update()
-   {
-
-      return m_bNeedRedraw;
-
-   }
+//   bool list_box::has_pending_graphical_update()
+//   {
+//
+//      return m_bNeedRedraw;
+//
+//   }
 
 
    void list_box::on_drop_down(const ::rectangle_i32 & rectangleWindow, const ::size_i32 & sizeFull)

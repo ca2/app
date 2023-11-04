@@ -236,6 +236,9 @@ list(APPEND library_source
    graphics/draw2d/color_array.cpp
    graphics/draw2d/color_array.h
    graphics/draw2d/os_font_name.cpp
+   graphics/graphics/_.h
+   graphics/graphics/output_purpose.cpp
+   graphics/graphics/output_purpose.h
    graphics/image/image32.cpp
    graphics/image/image32.h
    graphics/image/image32_array.cpp

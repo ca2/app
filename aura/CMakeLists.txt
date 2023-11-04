@@ -137,8 +137,8 @@ list(APPEND library_source
    graphics/graphics/monitor.cpp
    graphics/graphics/multiple_buffer.cpp
    graphics/graphics/multiple_buffer.h
-   graphics/graphics/output_purpose.cpp
-   graphics/graphics/output_purpose.h
+   #graphics/graphics/output_purpose.cpp
+   #graphics/graphics/output_purpose.h
    graphics/graphics/target.cpp
    graphics/graphics/target.h
    graphics/graphics/window.h

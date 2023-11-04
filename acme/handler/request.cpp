@@ -10,7 +10,9 @@
 request::request()
 {
 
-   m_bMakeVisible = true;
+   //m_bMakeVisible = true;
+   m_egraphicsoutputpurpose = ::graphics::e_output_purpose_screen;
+
    common_construct();
 
 }
@@ -127,7 +129,13 @@ void request::create_common_construct(const ::payload & varOptions, ::user::elem
    m_bExperienceMainFrame              = false;
    m_bOuterPopupAlertLike              = false;
    m_bHold                             = true;
-   m_bMakeVisible                      = m_payloadOptions.is_property_true("visible", true);
+
+   if(m_payloadOptions.is_property_true("screen_graphical_output_purpose", true))
+   {
+
+      m_egraphicsoutputpurpose |= ::graphics::e_output_purpose_screen;
+
+   }
 
 }
 

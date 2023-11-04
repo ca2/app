@@ -58,12 +58,18 @@ namespace app_app
 
 #if !STEPPY_DEBUG
 
-      if (!is_sandboxed())
+      if (is_sandboxed())
+      {
+
+         add_graphical_output_purpose(this, ::graphics::e_output_purpose_screen);
+
+      }
+      else
       {
 
          //set_fps_interest();
 
-         //add_graphical_output_purpose(this, ::graphics::e_output_purpose_screen_fps);
+         add_graphical_output_purpose(this, ::graphics::e_output_purpose_screen_fps);
 
       }
 

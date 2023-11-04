@@ -684,7 +684,7 @@ enum enum_window_flag : i64
    e_window_flag_active = 1 << 3,
    e_window_flag_redraw_in_queue = 1 << 4,
    //e_window_flag_visual_changed = 1 << 5,
-   e_window_flag_auto_refresh_on_show = 1 << 6,
+   e_window_flag_fps_interest_on_show = 1 << 6,
    e_window_flag_on_show_window_visible = 1 << 7,
    e_window_flag_on_show_window_screen_visible = 1 << 8,
    e_window_flag_satellite_window = 1 << 9,

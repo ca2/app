@@ -117,7 +117,7 @@ namespace user
       //::pointer<::message::message>get_message(const ::atom & atom, wparam wparam, lparam lparam) override;
       void destroy() override;
 
-      virtual ::user::interaction * get_host_window();
+      virtual ::user::interaction * get_host_user_interaction();
 
       virtual ::user::form * get_form();
 
@@ -148,9 +148,9 @@ namespace user
       virtual enum_control_type get_control_type() const;
 
 
-      virtual void add_auto_refresh(::particle * pparticle);
-      virtual void erase_auto_refresh(::particle * pparticle);
-      virtual bool is_auto_refresh(const ::particle * pparticle) const;
+      virtual void add_fps_interest(::particle * pparticle);
+      virtual void erase_fps_interest(::particle * pparticle);
+      virtual bool is_fps_interest(const ::particle * pparticle) const;
 
       virtual void display(::e_display edisplay = e_display_default, ::e_activation eactivation = e_activation_default);
 
@@ -246,7 +246,7 @@ namespace user
       virtual void design_down();
       virtual void design_up();
 
-      virtual void auto_refresh_stop();
+      virtual void fps_interest_stop();
 
 
 
@@ -586,7 +586,7 @@ namespace user
       virtual void keep_alive(::object * pliveobject = nullptr);
 
 
-      virtual bool has_pending_graphical_update();
+      //virtual bool has_pending_graphical_update();
       virtual void on_after_graphical_update();
 
 

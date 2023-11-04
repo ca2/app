@@ -137,7 +137,7 @@ namespace app_shader
 //
 //      }
 
-      top_level()->set_auto_refresh();
+      top_level()->set_fps_interest();
 
       switch_shader();
 

@@ -1,8 +1,6 @@
 // First insertion 2022-08-25 04:50 <3ThomasBorregaardSorensen!!
 #pragma once
 
-
-
 namespace user
 {
 

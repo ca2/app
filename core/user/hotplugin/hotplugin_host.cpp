@@ -89,7 +89,7 @@ namespace hotplugin
    }
 
 
-   oswindow host::get_host_window()
+   oswindow host::get_host_user_interaction()
    {
 
       return nullptr;

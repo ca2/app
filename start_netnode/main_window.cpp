@@ -44,7 +44,7 @@ namespace app_app
       if (!is_sandboxed())
       {
 
-         set_auto_refresh();
+         set_fps_interest();
 
       }
 

@@ -69,7 +69,7 @@ namespace user
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      auto pwindowimpl = get_window_impl();
+      auto pwindowimpl = get_host_user_interaction_impl();
 
       pwindowimpl->m_pitemLButtonDown = hit_test(pmouse, ::user::e_zorder_any);
 
@@ -83,7 +83,7 @@ namespace user
 
       auto pitem = hit_test(pmouse, ::user::e_zorder_any);
 
-      auto pwindowimpl = get_window_impl();
+      auto pwindowimpl = get_host_user_interaction_impl();
 
       if(pitem == pwindowimpl->m_pitemLButtonDown)
       {

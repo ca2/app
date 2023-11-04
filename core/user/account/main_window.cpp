@@ -29,7 +29,7 @@ namespace account
 
 #else
 
-      //set_auto_refresh(false);
+      //set_fps_interest(false);
 
 #endif
 

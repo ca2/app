@@ -47,15 +47,20 @@ namespace app_app
 
       auto pmainwindow = __create_new < ::app_app::main_window >();
 
-      pmainwindow->display(e_display_normal);
+      //pmainwindow->display(e_display_normal);
+
+//      pmainwindow->m_procedureOnAfterCreate = [pmainwindow]()
+//      {
+//
+//         //pmainwindow->set_need_layout();
+//
+//         pmainwindow->set_need_redraw();
+//
+//         pmainwindow->post_redraw();
+//
+//      };
 
       pmainwindow->create_main_window_asynchronously();
-
-//      pmainwindow->set_need_layout();
-//
-//      pmainwindow->set_need_redraw();
-//
-//      pmainwindow->post_redraw();
 
    }
 

@@ -153,7 +153,7 @@ namespace user
    }
 
 
-   ::user::interaction * element::get_host_window()
+   ::user::interaction * element::get_host_user_interaction()
    {
 
       //if (get_session() == nullptr
@@ -646,7 +646,7 @@ namespace user
    //}
 
 
-   void element::add_auto_refresh(::particle * pparticle)
+   void element::add_fps_interest(::particle * pparticle)
    {
 
       //return false;
@@ -654,7 +654,7 @@ namespace user
    }
 
 
-   void element::erase_auto_refresh(::particle * pparticle)
+   void element::erase_fps_interest(::particle * pparticle)
    {
 
       //return false;
@@ -662,7 +662,7 @@ namespace user
    }
 
 
-   bool element::is_auto_refresh(const ::particle * pparticle) const
+   bool element::is_fps_interest(const ::particle * pparticle) const
    {
 
       return false;
@@ -2540,7 +2540,7 @@ namespace user
    //void element::set_config_per_second(::frequency dConfigFps)
    //{
 
-   //   //get_host_window()->m_pimpl->set_config_per_second(dConfigFps);
+   //   //get_host_user_interaction()->m_pimpl->set_config_per_second(dConfigFps);
 
    //}
 
@@ -2548,7 +2548,7 @@ namespace user
    //::frequency element::get_config_per_second()
    //{
 
-   //   //return get_host_window()->m_pimpl->get_config_per_second();
+   //   //return get_host_user_interaction()->m_pimpl->get_config_per_second();
 
    //}
 
@@ -2556,7 +2556,7 @@ namespace user
    //::frequency element::get_output_per_second()
    //{
 
-   //   //auto pinteraction = get_host_window();
+   //   //auto pinteraction = get_host_user_interaction();
 
    //   //if (pinteraction == nullptr)
    //   //{
@@ -2888,7 +2888,7 @@ namespace user
    //::user::element * element::get_keyboard_focus()
    //{
 
-   //   auto puserinteractionHost = get_host_window();
+   //   auto puserinteractionHost = get_host_user_interaction();
 
    //   if (::is_null(puserinteractionHost))
    //   {
@@ -3529,12 +3529,12 @@ namespace user
       //}
 
 
-   bool element::has_pending_graphical_update()
-   {
-
-      return false;
-
-   }
+//   bool element::has_pending_graphical_update()
+//   {
+//
+//      return false;
+//
+//   }
 
 
    void element::on_after_graphical_update()
@@ -3577,7 +3577,7 @@ namespace user
    //}
 
 
-   void element::auto_refresh_stop()
+   void element::fps_interest_stop()
    {
 
 

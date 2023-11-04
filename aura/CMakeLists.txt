@@ -137,6 +137,8 @@ list(APPEND library_source
    graphics/graphics/monitor.cpp
    graphics/graphics/multiple_buffer.cpp
    graphics/graphics/multiple_buffer.h
+   graphics/graphics/output_purpose.cpp
+   graphics/graphics/output_purpose.h
    graphics/graphics/target.cpp
    graphics/graphics/target.h
    graphics/graphics/window.h
@@ -363,9 +365,6 @@ list(APPEND library_source
    #user/user/_user.h
    user/user/alpha_source.cpp
    user/user/alpha_source.h
-        user/user/auto_refresh.cpp
-        user/user/auto_refresh.h
-
    user/user/box.cpp
    user/user/box.h
    user/user/button.cpp

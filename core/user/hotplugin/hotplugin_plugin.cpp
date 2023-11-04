@@ -147,11 +147,11 @@ namespace hotplugin
       }
    }
 
-   oswindow plugin::get_host_window()
+   oswindow plugin::get_host_user_interaction()
    {
       if(m_phost != nullptr)
       {
-         return m_phost->get_host_window();
+         return m_phost->get_host_user_interaction();
       }
       return nullptr;
    }

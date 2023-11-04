@@ -376,114 +376,80 @@ namespace user
    }
 
 
-   bool graphics_thread::defer_process_redraw_message()
+   bool graphics_thread::wait_for_redraw_message()
    {
 
-      m_bAutoRefresh = false;
-
+      while(::task_get_run())
       {
 
-         synchronous_lock synchronouslock(m_puserinteraction->synchronization());
+         m_puserinteraction->m_ewindowflag -= e_window_flag_redraw_in_queue;
 
-         ASSERT(!(m_puserinteraction->m_ewindowflag & e_window_flag_embedded_graphics_thread_if_child));
+         get_message(&m_message, nullptr, 0, 0);
 
-         m_bAutoRefresh = m_puserinteraction->has_auto_refresh();
-
-         if (!m_puserinteraction
-            || !m_puserinteraction->m_pinteractionimpl)
+         if (m_message.m_atom == e_message_quit)
          {
+
+            ::string strType = type(m_puserinteraction).name();
+
+            information()(e_trace_category_graphics_thread) << "Graphics Thread has quit!! " << strType;
 
             return false;
 
          }
 
-         if (!m_puserinteraction->m_pinteractionimpl->m_bOfflineRender)
+         if (m_message.m_atom == e_message_redraw)
          {
 
-            if (m_puserinteraction->const_layout().window().display() == e_display_iconic)
-            {
-
-               m_bAutoRefresh = false;
-
-            }
-            else if (m_puserinteraction->const_layout().window().display() == e_display_notify_icon)
-            {
-
-               m_bAutoRefresh = false;
-
-            }
-            else if (!::is_visible(m_puserinteraction->const_layout().design().display()))
-            {
-
-               m_bAutoRefresh = false;
-
-            }
+            return true;
 
          }
 
-      }
+         //dispatch_message(&m_message);
 
-      if (!(m_puserinteraction->m_ewindowflag & e_window_flag_embedded_graphics_thread_if_child))
-      {
-
-         if (!m_bAutoRefresh)
+         while (peek_message(&m_message, nullptr, 0, 0, true))
          {
 
-            m_puserinteraction->m_ewindowflag -= e_window_flag_redraw_in_queue;
+//            if (m_message.m_atom == e_message_redraw)
+//            {
+//
+//               iRedrawMessageCount++;
+//
+//            }
 
-            get_message(&m_message, nullptr, 0, 0);
-
-            if(m_message.m_atom == e_message_quit)
-            {
-
-               ::string strType = type(m_puserinteraction).name();
-
-               information()(e_trace_category_graphics_thread) << "Graphics Thread has quit!! " << strType;
-
-               return false;
-
-            }
-
-            int iRedrawMessageCount = 0;
-
-            if(m_message.m_atom == e_message_redraw)
-            {
-
-               iRedrawMessageCount++;
-
-            }
-
-            while (peek_message(&m_message, nullptr, 0, 0, true))
-            {
-
-               if (m_message.m_atom == e_message_redraw)
-               {
-
-                  iRedrawMessageCount++;
-
-               }
-
-            }
+         }
 
 #ifdef EXTRA_PRODEVIAN_ITERATION_LOG
 
-            information() << "Skipped e_message_redraw count "+ as_string(iRedrawMessageCount) + "\n";
+         information() << "Skipped e_message_redraw count "+ as_string(iRedrawMessageCount) + "\n";
 
 #endif
 
-            if (iRedrawMessageCount <= 0)
-            {
+//         if (iRedrawMessageCount <= 0)
+//         {
+//
+//            return true;
+//
+//         }
 
-               return true;
+      }
 
-            }
+      return false;
 
-         }
-         else //if(!m_bAutoRefresh)
+   }
+
+
+   bool graphics_thread::clear_message_queue()
+   {
+
+      while (peek_message(&m_message, NULL, 0, 0, true))
+      {
+
+         if(m_message.m_atom == e_message_quit)
          {
 
-            while (peek_message(&m_message, NULL, 0, 0, true))
-            {
+            return false;
+
+         }
 
 //               if (m_message.m_atom == e_message_null)
 //               {
@@ -498,7 +464,97 @@ namespace user
 //
 //               }
 
+      }
+
+      return true;
+
+   }
+
+
+   bool graphics_thread::defer_process_redraw_message()
+   {
+
+      //m_bFps = false;
+
+      {
+
+         synchronous_lock synchronouslock(m_puserinteraction->synchronization());
+
+         ASSERT(!(m_puserinteraction->m_ewindowflag & e_window_flag_embedded_graphics_thread_if_child));
+
+         m_bFps = m_puserinteraction->has_fps_output_purpose();
+
+         if (!m_puserinteraction
+            || !m_puserinteraction->m_pinteractionimpl)
+         {
+
+            return false;
+
+         }
+
+//         if (!m_puserinteraction->m_pinteractionimpl->m_bOfflineRender)
+//         {
+//
+////            if (m_puserinteraction->const_layout().window().display() == e_display_iconic)
+////            {
+////
+////               m_bAutoRefresh = false;
+////
+////            }
+////            else if (m_puserinteraction->const_layout().window().display() == e_display_notify_icon)
+////            {
+////
+////               m_bAutoRefresh = false;
+////
+////            }
+////            else if (!::is_visible(m_puserinteraction->const_layout().design().display()))
+////            {
+////
+////               m_bAutoRefresh = false;
+////
+////            }
+//
+//         }
+
+      }
+
+      if (!(m_puserinteraction->m_ewindowflag & e_window_flag_embedded_graphics_thread_if_child))
+      {
+
+         //if (!m_bAutoRefresh)
+         if (m_puserinteraction->has_fps_output_purpose())
+         {
+
+            if(!clear_message_queue())
+            {
+
+               return false;
+
             }
+
+         }
+         else //if(!m_bAutoRefresh)
+         {
+
+            wait_for_redraw_message();
+
+//            while (peek_message(&m_message, NULL, 0, 0, true))
+//            {
+//
+////               if (m_message.m_atom == e_message_null)
+////               {
+////
+////                  return true;
+////
+////               }
+////               else if (m_message.m_atom != e_message_redraw)
+////               {
+////
+////                  return true;
+////
+////               }
+//
+//            }
 
          }
 
@@ -699,7 +755,8 @@ namespace user
          // - It has graphics_thread mode (FPS drawing);
          // - Or it is going to wait because a frame was already drawn an instant ago due on-request-drawing (cool down).
 
-         auto timeFrame = m_bAutoRefresh ? m_timePostRedrawProdevian : m_timePostRedrawNominal ;
+         auto timeFrame = m_puserinteraction->has_fps_output_purpose()
+            ? m_timePostRedrawProdevian : m_timePostRedrawNominal ;
 
          //i64 i2 = get_nanos();
 
@@ -902,21 +959,24 @@ namespace user
 
       }
 
+      if(m_puserinteraction->has_graphical_output_purpose())
+      {
 
+         puserinteractionimpl->do_graphics();
 
-      puserinteractionimpl->do_graphics();
+         //m_puserinteraction->m_pinteractionimpl->do_graphics(e_graphics_draw);
 
-      //m_puserinteraction->m_pinteractionimpl->do_graphics(e_graphics_draw);
+         m_puserinteraction->on_after_graphical_update();
 
-      m_puserinteraction->on_after_graphical_update();
-      
-      m_puserinteraction->m_bNeedRedraw = false;
+         m_puserinteraction->m_bNeedRedraw = false;
 
-      //graphics_thread_do_layout();
+         //graphics_thread_do_layout();
 
-      //graphics_thread_update_buffer();
+         //graphics_thread_update_buffer();
 
-      //m_puserinteraction->m_bLockSketchToDesign = true;df
+         //m_puserinteraction->m_bLockSketchToDesign = true;df
+
+      }
 
       if(!wait_to_present())
       {
@@ -925,7 +985,12 @@ namespace user
 
       }
 
-      m_puserinteraction->m_pinteractionimpl->m_pwindow->window_update_screen();
+      if(m_puserinteraction->has_screen_output_purpose())
+      {
+
+         m_puserinteraction->m_pinteractionimpl->m_pwindow->window_update_screen();
+
+      }
 
       //m_puserinteraction->m_bLockSketchToDesign = false;
 
@@ -1471,7 +1536,7 @@ namespace user
    }
 
 
-   void graphics_thread::set_auto_refresh_frames_per_second(::frequency frequencyProdevianFramesPerSecond)
+   void graphics_thread::set_fps_interest_frames_per_second(::frequency frequencyProdevianFramesPerSecond)
    {
 
       m_timePostRedrawProdevian = 1.0 / frequencyProdevianFramesPerSecond;
@@ -1490,7 +1555,7 @@ namespace user
    void graphics_thread::set_per_second(::frequency frequencyFramesPerSecond)
    {
 
-      set_auto_refresh_frames_per_second(frequencyFramesPerSecond);
+      set_fps_interest_frames_per_second(frequencyFramesPerSecond);
 
       set_nominal_frames_per_second(frequencyFramesPerSecond);
 

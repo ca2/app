@@ -84,7 +84,7 @@ namespace hotplugin
       virtual void         redraw();
       virtual void         post_message(const ::atom & atom, wparam wparam, lparam lparam);
 
-      virtual oswindow         get_host_window();
+      virtual oswindow         get_host_user_interaction();
 
       /*
       using ::user::interaction::client_to_screen;

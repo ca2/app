@@ -1550,7 +1550,7 @@ namespace user
    void toolbar::on_message_left_button_double_click(::message::message * pmessage)
    {
 
-      auto pwindowimpl = get_window_impl();
+      auto pwindowimpl = get_host_user_interaction_impl();
 
       if (::is_set(pwindowimpl->m_pitemLButtonDown) && pwindowimpl->m_pitemLButtonDown->m_item.m_iItem >= 0)
       {

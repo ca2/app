@@ -784,7 +784,7 @@
     <ClCompile Include="user\user\plain_text_data.cpp" />
     <ClCompile Include="user\user\plain_text_tree.cpp" />
     <ClCompile Include="user\user\primitive_impl.cpp" />
-    <ClCompile Include="user\user\auto_refresh.cpp" />
+    <ClCompile Include="user\user\fps_interest.cpp" />
     <ClCompile Include="user\user\progress.cpp" />
     <ClCompile Include="user\user\range.cpp" />
     <ClCompile Include="user\user\redraw.cpp" />
@@ -1107,7 +1107,7 @@
     <ClInclude Include="user\user\plain_edit_style.h" />
     <ClInclude Include="user\user\plain_text_data.h" />
     <ClInclude Include="user\user\primitive_impl.h" />
-    <ClInclude Include="user\user\auto_refresh.h" />
+    <ClInclude Include="user\user\fps_interest.h" />
     <ClInclude Include="user\user\progress.h" />
     <ClInclude Include="user\user\range.h" />
     <ClInclude Include="user\user\redraw.h" />

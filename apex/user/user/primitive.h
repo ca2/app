@@ -41,7 +41,7 @@ namespace user
       void create_message_queue(const ::string & lpszName) override;
 
 
-      ::user::interaction * get_host_window() override;
+      ::user::interaction * get_host_user_interaction() override;
 
       ::user::form * get_form() override;
 
@@ -69,9 +69,9 @@ namespace user
       enum_control_type get_control_type() const override;
 
 
-      void add_auto_refresh(::particle * pparticle) override;
-      void erase_auto_refresh(::particle * pparticle) override;
-      bool is_auto_refresh(const ::particle * pparticle) const override;
+      void add_fps_interest(::particle * pparticle) override;
+      void erase_fps_interest(::particle * pparticle) override;
+      bool is_fps_interest(const ::particle * pparticle) const override;
 
       void display(::e_display edisplay = e_display_default, ::e_activation eactivation = e_activation_default) override;
 
@@ -181,7 +181,7 @@ namespace user
       void design_down() override;
       void design_up() override;
 
-      void auto_refresh_stop() override;
+      void fps_interest_stop() override;
 
       virtual void design_window_minimize(::e_activation eactivation);
       virtual void design_window_maximize();
@@ -545,7 +545,7 @@ namespace user
       void keep_alive(::object * pliveobject = nullptr) override;
 
 
-      bool has_pending_graphical_update() override;
+      //bool has_pending_graphical_update() override;
       void on_after_graphical_update() override;
 
       void set_bitmap_source(const string & strBitmapSource) override;

@@ -45,6 +45,7 @@ namespace user
       virtual public ::user::drawable,
       virtual public ::timer_callback,
       virtual public ::user::drag_client
+      //, virtual public ::graphics::output_purpose
    {
    public:
 
@@ -157,7 +158,7 @@ namespace user
       
       bool                                      m_bCompositedFrameWindow;
       bool                                      m_bEdgeGestureDisableTouchWhenFullscreen;
-      bool                                      m_bVisible;
+      //bool                                      m_bScreenVisible;
       bool                                      m_bMouseHoverOnCapture;
 
       enum_keyboard_mode                        m_ekeyboardmode;
@@ -538,9 +539,9 @@ namespace user
 
       virtual ::windowing::display * get_display();
 
-      virtual ::user::interaction * get_host_window() override;
+      virtual ::user::interaction * get_host_user_interaction() override;
 
-      virtual ::user::interaction_impl * get_window_impl();
+      virtual ::user::interaction_impl * get_host_user_interaction_impl();
 
       virtual ::user::enum_state get_user_state();
 
@@ -614,9 +615,31 @@ namespace user
       void user_post(const ::procedure & procedure) override;
 
 
-      inline void auto_refresh_on_show() { m_ewindowflag |= e_window_flag_auto_refresh_on_show; }
-      inline void clear_auto_refresh_on_show() { m_ewindowflag -= e_window_flag_auto_refresh_on_show; }
-      inline bool is_auto_refresh_on_show() { return m_ewindowflag & e_window_flag_auto_refresh_on_show; }
+      //inline void fps_interest_on_show() { m_ewindowflag |= e_window_flag_fps_interest_on_show; }
+      //inline void clear_fps_interest_on_show() { m_ewindowflag -= e_window_flag_fps_interest_on_show; }
+      //inline bool is_fps_interest_on_show() { return m_ewindowflag & e_window_flag_fps_interest_on_show; }
+
+
+      virtual void add(::graphics::output_purpose * poutputpurpose);
+      virtual void erase(::graphics::output_purpose * poutputpurpose);
+      virtual void add_graphical_output_purpose(::particle * pparticle, ::graphics::enum_output_purpose epurpose);
+      virtual void erase_graphical_output_purpose(::particle * pparticle);
+      //virtual ::graphics::enum_output_purpose most_demanding_graphical_output_purpose() const;
+      virtual bool has_screen_output_purpose() const;
+      virtual bool has_graphical_output_purpose() const;
+      virtual bool has_fps_output_purpose() const;
+
+//
+//      inline void set_fps_interest() { return add_fps_interest(this); }
+//      inline void clear_fps_interest() { return erase_fps_interest(this); }
+//      inline bool is_fps_interest() const { return is_fps_interest(this); }
+//
+//
+//      void add_fps_interest(::particle * pparticle) override;
+//      void erase_fps_interest(::particle * pparticle) override;
+//      bool is_fps_interest(const ::particle * pparticle) const override;
+//      bool has_fps_interest() const noexcept;
+//
 
       //inline void visual_changed() { m_ewindowflag |= e_window_flag_visual_changed; }
       //inline void clear_visual_changed() { m_ewindowflag -= e_window_flag_visual_changed; }
@@ -785,7 +808,7 @@ namespace user
       //void window_move(i32 x, i32 y) override;
 
 
-      //auto auto_refresh() { return __new(::auto_refresh(this)); }
+      //auto fps_interest() { return __new(::fps_interest(this)); }
 
       virtual bool should_save_window_rectangle();
       
@@ -953,21 +976,13 @@ namespace user
       virtual ::rectangle_i32 outer_frame();
 
 
-      inline void set_auto_refresh() { return add_auto_refresh(this); }
-      inline void clear_auto_refresh() { return erase_auto_refresh(this); }
-      inline bool is_auto_refresh() const { return is_auto_refresh(this); }
-
-
-      void add_auto_refresh(::particle * pparticle) override;
-      void erase_auto_refresh(::particle * pparticle) override;
-      bool is_auto_refresh(const ::particle * pparticle) const override;
-      bool has_auto_refresh() const noexcept;
-
-
       virtual bool is_frame_window();
       virtual bool is_impact();
       bool is_this_visible(enum_layout elayout = e_layout_design) override;
+      //bool is_this_screen_visible() override;
       virtual bool should_draw();
+
+//      virtual bool is_there_graphics_output_interest() const;
 
       virtual bool sketch_on_display();
 
@@ -2255,7 +2270,7 @@ namespace user
 
       //virtual void mouse_hover_move(bool& bPointInside, point_i32& pointLast);
 
-      bool has_pending_graphical_update() override;
+      //bool has_pending_graphical_update() override;
 
       virtual void enable_transparent_mouse_events(bool bEnable = true);
 
@@ -2479,7 +2494,7 @@ namespace user
 
 
       //virtual void post_procedure(const ::procedure & procedure) override;
-      //virtual void auto_refresh_post_procedure(const ::procedure & procedure);
+      //virtual void fps_interest_post_procedure(const ::procedure & procedure);
 
 
       //void send_procedure(const ::procedure & procedure) override;

@@ -120,7 +120,7 @@ namespace user
       if(puserinteractionOwner)
       {
 
-         auto puserinteractionHost = puserinteractionOwner->get_host_window();
+         auto puserinteractionHost = puserinteractionOwner->get_host_user_interaction();
 
          if (puserinteractionHost)
          {
@@ -347,7 +347,7 @@ namespace user
       if(puserinteractionOwner)
       {
 
-         auto puserinteractionHost = puserinteractionOwner->get_host_window();
+         auto puserinteractionHost = puserinteractionOwner->get_host_user_interaction();
 
          if(puserinteractionHost)
          {

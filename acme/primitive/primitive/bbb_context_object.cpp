@@ -356,7 +356,7 @@ void object::process_exit_status(const ::e_status & estatus)
 
 
    // ::user::primitive* get_user_interaction_host();
-   // ::user::interaction * get_host_window();
+   // ::user::interaction * get_host_user_interaction();
 
 
        void object::dev_log(string str) const

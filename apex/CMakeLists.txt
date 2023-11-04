@@ -444,8 +444,10 @@ list(APPEND apex_source
    #platform/application_exit.h
    platform/application_heap.h
    platform/application_impl.h
-   #platform/application_menu.cpp
-   #platform/application_menu.h
+   platform/application_menu.cpp
+   platform/application_menu.h
+   platform/application_menu_command.cpp
+   platform/application_menu_command.h
    platform/application_signal_details.h
    platform/assert_running_task.cpp
    platform/assert_running_task.h
@@ -532,10 +534,10 @@ list(APPEND apex_source
    progress/_.h
    template/list.h
    user/_.h
-   user/menu/menu.cpp
-   user/menu/menu.h
-   user/menu/command.cpp
-   user/menu/command.h
+#   user/menu/menu.cpp
+ #  user/menu/menu.h
+  # user/menu/command.cpp
+   #user/menu/command.h
    user/menu/
    user/user/_.h
    #user/_const_key.h
@@ -551,7 +553,7 @@ list(APPEND apex_source
    user/user/language_map.h
    user/user/message.cpp
    user/user/message.h
-   user/user/notify_icon_bridge.h
+   #user/user/notify_icon_bridge.h
    user/user/primitive.cpp
    user/user/primitive.h
    version/version.config.h

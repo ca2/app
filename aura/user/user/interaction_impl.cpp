@@ -18,6 +18,7 @@
 #include "acme/platform/node.h"
 #include "acme/primitive/geometry2d/_text_stream.h"
 #include "aura/graphics/graphics/graphics.h"
+#include "aura/graphics/graphics/output_purpose.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "acme/platform/scoped_restore.h"
@@ -106,7 +107,7 @@ namespace user
 
       m_pinteractionimpl = this;
 
-      m_bOfflineRender = false;
+      //m_bOfflineRender = false;
 
       m_iState1 = 0;
 
@@ -1483,16 +1484,30 @@ namespace user
       //}
 
 
-   void interaction_impl::add_auto_refresh(::particle * pparticle)
+   void interaction_impl::add(::graphics::output_purpose * pgraphicaloutputpurpose)
    {
+
+      if(::is_null(pgraphicaloutputpurpose))
+      {
+
+         return;
+
+      }
+
+      if(pgraphicaloutputpurpose->m_epurpose == ::graphics::e_output_purpose_none)
+      {
+
+         return;
+
+      }
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      bool bWasEmpty = m_particleaAutoRefresh.is_empty();
+      bool bHadNoInterest = !has_graphical_output_purpose();
 
-      bool bAdded = m_particleaAutoRefresh.add_unique(pparticle);
+      bool bAdded = m_graphicaloutputpurposea.add_unique(pgraphicaloutputpurpose);
 
-      if (bAdded && bWasEmpty)
+      if (bAdded && bHadNoInterest)
       {
 
          m_puserinteraction->set_need_redraw();
@@ -1504,22 +1519,79 @@ namespace user
    }
 
 
-   void interaction_impl::erase_auto_refresh(::particle * pparticle)
+   void interaction_impl::erase(::graphics::output_purpose * pgraphicaloutputpurpose)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      m_particleaAutoRefresh.erase(pparticle);
+      m_graphicaloutputpurposea.erase(pgraphicaloutputpurpose);
 
    }
 
 
-   bool interaction_impl::is_auto_refresh(const ::particle * pparticle) const
+   void interaction_impl::add_graphical_output_purpose(::particle * pparticle, ::graphics::enum_output_purpose epurpose)
+   {
+
+      if(::is_null(pparticle))
+      {
+
+         return;
+
+      }
+
+      if(epurpose == ::graphics::e_output_purpose_none)
+      {
+
+         return;
+
+      }
+
+      auto poutputpurpose = __new(::graphics::output_purpose(pparticle, epurpose));
+
+      this->add(poutputpurpose);
+
+//      bool bAdded = m_graphicaloutputpurposea.add();
+//
+//      if (bAdded && bHadNoInterest)
+//      {
+//
+//         m_puserinteraction->set_need_redraw();
+//
+//         m_puserinteraction->post_redraw();
+//
+//      }
+
+   }
+
+
+   void interaction_impl::erase_graphical_output_purpose(::particle * pparticle)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      return m_particleaAutoRefresh.contains(pparticle);
+      m_graphicaloutputpurposea.predicate_erase([pparticle](auto ppurpose)
+                                                {
+
+         return ppurpose->m_pparticle == pparticle;
+
+                                                });
+
+   }
+
+
+   bool interaction_impl::does_particle_has_fps_purpose(const ::particle * pparticle) const
+   {
+
+      _synchronous_lock synchronouslock(this->synchronization());
+
+      return m_graphicaloutputpurposea.predicate_contains([pparticle](auto ppurpose)
+                                                          {
+
+                                                             return ppurpose->m_pparticle == pparticle
+                                                                    && ppurpose->m_epurpose &
+                                                                       ::graphics::e_output_purpose_fps;
+
+                                                          });
 
    }
 
@@ -2355,6 +2427,13 @@ namespace user
          {
 
             m_puserinteraction->post_message(e_message_pos_create);
+
+         }
+
+         if(m_puserinteraction->m_setneedredrawa.has_element())
+         {
+
+            m_puserinteraction->post_redraw();
 
          }
          
@@ -3464,8 +3543,8 @@ namespace user
    //    else
    //    {
 
-   //       //stop_auto_refresh();
-   //       //child_post_quit("auto_refresh");
+   //       //stop_fps_interest();
+   //       //child_post_quit("fps_interest");
 
    //    }
 
@@ -5070,7 +5149,7 @@ namespace user
          if (::is_set(m_pgraphicsthread))
          {
 
-            m_pgraphicsthread->set_auto_refresh_frames_per_second(get_prodevian_frames_per_second());
+            m_pgraphicsthread->set_fps_interest_frames_per_second(get_prodevian_frames_per_second());
 
             m_pgraphicsthread->set_nominal_frames_per_second(get_nominal_frames_per_second());
 
@@ -6318,7 +6397,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
          if (::is_set(m_puserinteraction) && m_puserinteraction->is_graphical())
          {
 
-            m_pgraphicsthread->set_auto_refresh_frames_per_second(m_frequencyProdevianFramesPerSecond);
+            m_pgraphicsthread->set_fps_interest_frames_per_second(m_frequencyProdevianFramesPerSecond);
 
          }
 
@@ -7372,7 +7451,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 
    //   }
 
-   //   ::user::interaction * pinteraction = pprimitive->get_host_window();
+   //   ::user::interaction * pinteraction = pprimitive->get_host_user_interaction();
 
    //   if (pinteraction == nullptr)
    //   {
@@ -7456,7 +7535,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 
       //}
 
-      //::user::interaction * pinteractionHost = puserinteraction->get_host_window();
+      //::user::interaction * pinteractionHost = puserinteraction->get_host_user_interaction();
 
       //if (::is_null(pinteractionHost))
       //{
@@ -9159,6 +9238,92 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
    }
 
 
+//   bool interaction_impl::is_there_graphics_output_interest() const
+//   {
+//
+//      return m_particleaAutoRefresh;
+//
+//   }
+
+
+//   ::graphics::enum_output_purpose interaction_impl::most_demanding_graphical_output_purpose() const
+//   {
+//
+//      ::graphics::enum_output_purpose epurposeMostDemanding = ::graphics::e_output_purpose_none;
+//
+//      for(auto & ppurpose : m_graphicaloutputpurposea)
+//      {
+//
+//         if(ppurpose->m_epurpose > epurposeMostDemanding)
+//         {
+//
+//            epurposeMostDemanding = ppurpose->m_epurpose;
+//
+//         }
+//
+//      }
+//
+//      return epurposeMostDemanding;
+//
+//   }
+
+
+   bool interaction_impl::has_screen_output_purpose() const
+   {
+
+      //::graphics::enum_output_purpose epurposeMostDemanding = ::graphics::e_output_purpose_none;
+
+      for(auto & ppurpose : m_graphicaloutputpurposea)
+      {
+
+         if(ppurpose->m_epurpose & ::graphics::e_output_purpose_screen)
+         {
+
+            return true;
+
+         }
+
+      }
+
+      //return epurposeMostDemanding;
+
+      return false;
+
+   }
+
+
+   bool interaction_impl::has_graphical_output_purpose() const
+   {
+
+      return m_graphicaloutputpurposea.has_element();
+
+   }
+
+
+   bool interaction_impl::has_fps_output_purpose() const
+   {
+
+      //::graphics::enum_output_purpose epurposeMostDemanding = ::graphics::e_output_purpose_none;
+
+      for(auto & ppurpose : m_graphicaloutputpurposea)
+      {
+
+         if(ppurpose->m_epurpose & ::graphics::e_output_purpose_fps)
+         {
+
+            return true;
+
+         }
+
+      }
+
+      //return epurposeMostDemanding;
+
+      return false;
+
+   }
+
+
    bool interaction_impl::is_this_visible(enum_layout elayout)
    {
 
@@ -9169,12 +9334,12 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 
       }
 
-      if (m_bOfflineRender)
-      {
-
-         return true;
-
-      }
+//      if (m_bOfflineRender)
+//      {
+//
+//         return true;
+//
+//      }
 
       if (!(m_puserinteraction->m_ewindowflag & e_window_flag_is_window))
       {
@@ -9196,6 +9361,13 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
          return false;
 
       }
+
+//      if(!m_puserinteraction->m_bVisible)
+//      {
+//
+//         return false;
+//
+//      }
 
       return true;
 

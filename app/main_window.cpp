@@ -61,7 +61,9 @@ namespace app_app
       if (!is_sandboxed())
       {
 
-         set_auto_refresh();
+         //set_fps_interest();
+
+         //add_graphical_output_purpose(this, ::graphics::e_output_purpose_screen_fps);
 
       }
 

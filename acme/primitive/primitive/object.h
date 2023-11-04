@@ -841,7 +841,7 @@ public:
 
 
    //virtual ::user::primitive* get_user_interaction_host();
-   //virtual ::user::interaction * get_host_window();
+   //virtual ::user::interaction * get_host_user_interaction();
 
 
    //virtual void dev_log(string str) const;

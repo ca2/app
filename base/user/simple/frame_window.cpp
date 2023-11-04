@@ -1336,7 +1336,7 @@ void simple_frame_window::on_layout(::draw2d::graphics_pointer & pgraphics)
    //if (!papp->m_bExperienceMainFrame && get_parent() == nullptr)
    //{
 
-   //   auto rectangle = get_host_window()->rectangle();
+   //   auto rectangle = get_host_user_interaction()->rectangle();
 
    //   place(rectangle);
 

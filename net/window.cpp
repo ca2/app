@@ -31,7 +31,7 @@ namespace app_net
 
       main_window::on_create_user_interaction();
 
-      set_auto_refresh();
+      set_fps_interest();
 
 #ifdef WINDOWS_DESKTOP
 

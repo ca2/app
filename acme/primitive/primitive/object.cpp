@@ -272,7 +272,7 @@ string object::as_string() const
 //}
 
 
-//::user::interaction * object::get_host_window()
+//::user::interaction * object::get_host_user_interaction()
 //{
 //
 //   if (m_psession.is_null())
@@ -2960,7 +2960,7 @@ void object::call_run()
 
 
 // ::user::primitive* get_user_interaction_host();
-// ::user::interaction * get_host_window();
+// ::user::interaction * get_host_user_interaction();
 
 
 //void object::dev_log(string str) const

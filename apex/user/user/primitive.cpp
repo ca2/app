@@ -247,7 +247,7 @@ namespace user
    //}
 
 
-   ::user::interaction* primitive::get_host_window()
+   ::user::interaction* primitive::get_host_user_interaction()
    {
 
       //if (get_session() == nullptr
@@ -751,7 +751,7 @@ namespace user
    //}
 
 
-   void primitive::add_auto_refresh(::particle * pparticle)
+   void primitive::add_fps_interest(::particle * pparticle)
    {
 
       //return false;
@@ -759,7 +759,7 @@ namespace user
    }
 
 
-   void primitive::erase_auto_refresh(::particle * pparticle)
+   void primitive::erase_fps_interest(::particle * pparticle)
    {
 
       //return false;
@@ -767,7 +767,7 @@ namespace user
    }
 
 
-   bool primitive::is_auto_refresh(const ::particle * pparticle) const
+   bool primitive::is_fps_interest(const ::particle * pparticle) const
    {
 
       return false;
@@ -2681,7 +2681,7 @@ namespace user
    //void primitive::set_config_per_second(double dConfigFps)
    //{
 
-   //   //get_host_window()->m_pimpl->set_config_per_second(dConfigFps);
+   //   //get_host_user_interaction()->m_pimpl->set_config_per_second(dConfigFps);
 
    //}
 
@@ -2689,7 +2689,7 @@ namespace user
    //::frequency primitive::get_config_per_second()
    //{
 
-   //   //return get_host_window()->m_pimpl->get_config_per_second();
+   //   //return get_host_user_interaction()->m_pimpl->get_config_per_second();
 
    //}
 
@@ -2697,7 +2697,7 @@ namespace user
    //::frequency primitive::get_output_per_second()
    //{
 
-   //   //auto pinteraction = get_host_window();
+   //   //auto pinteraction = get_host_user_interaction();
 
    //   //if (pinteraction == nullptr)
    //   //{
@@ -3029,7 +3029,7 @@ namespace user
    //::user::primitive * primitive::get_keyboard_focus()
    //{
 
-   //   auto puserinteractionHost = get_host_window();
+   //   auto puserinteractionHost = get_host_user_interaction();
 
    //   if (::is_null(puserinteractionHost))
    //   {
@@ -3554,12 +3554,12 @@ namespace user
    //}
 
 
-   bool primitive::has_pending_graphical_update()
-   {
-
-      return false;
-
-   }
+//   bool primitive::has_pending_graphical_update()
+//   {
+//
+//      return false;
+//
+//   }
 
 
    void primitive::on_after_graphical_update()
@@ -3679,7 +3679,7 @@ namespace user
    //}
 
 
-   void primitive::auto_refresh_stop()
+   void primitive::fps_interest_stop()
    {
 
 

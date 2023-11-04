@@ -740,7 +740,7 @@ namespace aura
 ////
 ////      }
 ////
-////      ::user::interaction * pinteraction = pprimitive->get_host_window();
+////      ::user::interaction * pinteraction = pprimitive->get_host_user_interaction();
 ////
 ////      if (::is_null(pinteraction))
 ////      {
@@ -894,7 +894,7 @@ namespace aura
 //
 //      }
 //
-//      ::user::interaction * pinteraction = pprimitive->get_host_window();
+//      ::user::interaction * pinteraction = pprimitive->get_host_user_interaction();
 //
 //      if (pinteraction == nullptr)
 //      {
@@ -903,7 +903,7 @@ namespace aura
 //
 //      }
 //
-//      ::user::interaction * puiImpl = pinteraction->get_host_window();
+//      ::user::interaction * puiImpl = pinteraction->get_host_user_interaction();
 //
 //      if (puiImpl == nullptr)
 //      {
@@ -1061,7 +1061,7 @@ namespace aura
 //
 //      }
 //
-//      ::user::interaction * puiImpl = pprimitive->get_host_window();
+//      ::user::interaction * puiImpl = pprimitive->get_host_user_interaction();
 //
 //      if (puiImpl == nullptr)
 //      {

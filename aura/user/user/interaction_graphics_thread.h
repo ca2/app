@@ -70,7 +70,8 @@ namespace user
 
       //bool                                      m_bUpdateBufferUpdateWindowPending;
 
-   bool m_bAutoRefresh;
+      bool                                      m_bFps;
+
 
       graphics_thread();
       ~graphics_thread() override;
@@ -102,6 +103,11 @@ namespace user
       //bool exclusive_mode_update_screen();
       void post_redraw();
 
+      /// returns false if got quit message
+      virtual bool wait_for_redraw_message();
+      /// returns false if got quit message
+      virtual bool clear_message_queue();
+      /// returns false if got quit message
       virtual bool defer_process_redraw_message();
 
       virtual bool wait_to_present();
@@ -113,7 +119,7 @@ namespace user
       void defer_graphics_thread_step();
 
       // Fps for when graphics_thread is active or there is any active graphics_thread object
-      void set_auto_refresh_frames_per_second(::frequency frequencyProdevianFramesPerSecond);
+      void set_fps_interest_frames_per_second(::frequency frequencyProdevianFramesPerSecond);
 
       // Fps for when graphics_thread is not active and there is no active graphics_thread object
       void set_nominal_frames_per_second(::frequency frequencyNominalFramesPerSecond);

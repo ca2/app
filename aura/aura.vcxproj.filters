@@ -603,7 +603,7 @@
     <ClCompile Include="user\user\scroll_base_y.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\auto_refresh.cpp">
+    <ClCompile Include="user\user\fps_interest.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\drawable.cpp">
@@ -881,7 +881,7 @@
     <ClInclude Include="user\user\primitive_impl.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\auto_refresh.h">
+    <ClInclude Include="user\user\fps_interest.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\progress.h">

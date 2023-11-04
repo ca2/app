@@ -634,6 +634,14 @@ namespace user
    }
 
 
+//   bool interaction_child::is_there_graphics_output_interest() const
+//   {
+//
+//      return true;
+//
+//   }
+
+
 //   void interaction_child::_window_show_change_visibility_unlocked(::e_display edisplay, ::e_activation eactivation)
 //   {
 //

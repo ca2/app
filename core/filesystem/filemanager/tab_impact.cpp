@@ -71,7 +71,7 @@ namespace filemanager
 
          ::pointer<::request>prequest(e_create, this);
 
-         prequest->m_bMakeVisible = false;
+         prequest->m_egraphicsoutputpurpose -= ::graphics::e_output_purpose_screen;
 
          prequest->m_puserelementParent = pimpactdata->m_pplaceholder;
 
@@ -133,7 +133,7 @@ namespace filemanager
 
          ::pointer<::request>prequest(e_create, this);
 
-         prequest->m_bMakeVisible = false;
+         prequest->m_egraphicsoutputpurpose -= ::graphics::e_output_purpose_screen;
 
          prequest->m_puserelementParent = this;
 
@@ -176,7 +176,7 @@ namespace filemanager
 
          ::pointer<::request>prequest(e_create, this);
 
-         prequest->m_bMakeVisible = true;
+         prequest->m_egraphicsoutputpurpose |= ::graphics::e_output_purpose_screen;
 
          prequest->m_puserelementParent = pimpactdata->m_pplaceholder;
 

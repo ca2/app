@@ -288,6 +288,14 @@ namespace user
 
       //}
 
+
+      pframe->m_procedureOnAfterCreate=[this, pdocument, pframe, prequest]()
+      {
+
+         on_request_continuation(pdocument, pframe, prequest);
+
+      };
+
       ::pointer<::user::interaction>puserinteractionParent = prequest->m_puserelementParent;
 
       // create memory_new from resource
@@ -380,6 +388,12 @@ namespace user
 
    }
 
+
+   void impact_system::on_request_continuation(::user::document * pdocument, ::user::frame_window * pframewindow, ::request * prequest)
+   {
+
+
+   }
 
 
    void impact_system::on_idle()

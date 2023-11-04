@@ -25,6 +25,7 @@ namespace user
       virtual ::count get_document_count() const override;
       virtual ::user::document * get_document(index index = 0) const override;
       virtual void on_request(::request * prequest) override;
+      void on_request_continuation(::user::document * pdocument, ::user::frame_window * pframewindow, ::request * prequest) override;
       virtual void set_default_title(::user::document * pdocument) override;
 
       // virtual void dump(dump_context &) const override;

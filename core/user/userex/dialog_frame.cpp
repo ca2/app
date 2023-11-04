@@ -189,12 +189,12 @@ namespace userex
    }
 
 
-   bool dialog_frame::has_pending_graphical_update()
-   {
-
-      return m_bNeedRedraw;
-
-   }
+//   bool dialog_frame::has_pending_graphical_update()
+//   {
+//
+//      return m_bNeedRedraw;
+//
+//   }
 
 
    //bool dialog_frame::get_translucency(::user::enum_translucency & etranslucency, ::enum_element eelement, ::user::interaction * pinteraction)

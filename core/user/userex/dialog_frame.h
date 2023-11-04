@@ -34,7 +34,7 @@ namespace userex
       //::user::enum_translucency get_translucency(::user::style * pstyle) override;
       ::experience::frame * frame_experience() override;
 
-      bool has_pending_graphical_update() override;
+      //bool has_pending_graphical_update() override;
 
 
       DECLARE_MESSAGE_HANDLER(on_message_create);

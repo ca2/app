@@ -119,9 +119,13 @@ namespace user
 
       ::pointer<::user::frame_window>pFrame;
 
-      bool bCreated = false;      // => doc and frame created
+//      bool bCreated = false;      // => doc and frame created
+//
+//      bool bWasModified = false;
 
-      bool bWasModified = false;
+      prequest->m_bDocumentAndFrameCreated = false;
+
+      prequest->m_bDocumentWasModified = false;
 
       if (m_pdocument.is_set())
       {
@@ -155,7 +159,7 @@ namespace user
          
          ASSERT(pFrame == nullptr);     // will be created below
          
-         bCreated = true;
+         prequest->m_bDocumentAndFrameCreated = true;
          
       }
 
@@ -174,7 +178,7 @@ namespace user
       if (pFrame == nullptr)
       {
 
-         ASSERT(bCreated);
+         ASSERT(prequest->m_bDocumentAndFrameCreated);
 
          // create frame - set as main ::user::document frame
          bool bAutoDelete = pdocument->m_bAutoDelete;
@@ -208,21 +212,30 @@ namespace user
 
       }
 
-      ASSERT_VALID(pFrame);
 
-      bool bMakeVisible = true;
-      
-      if (prequest)
-      {
+   }
 
-         if(prequest->payload("make_visible_boolean").is_true())
-         {
 
-            prequest->m_egraphicsoutputpurpose |= ::graphics::e_output_purpose_screen;
+   void single_document_template::on_request_continuation(::user::document * pdocument, ::user::frame_window * pframewindow, ::request * prequest)
+   {
 
-         }
+      ASSERT_VALID(pframewindow);
 
-      }
+      information() << "single_document_template::on_request_continuation";
+
+//      bool bMakeVisible = true;
+//
+//      if (prequest)
+//      {
+//
+//         if(prequest->payload("make_visible_boolean").is_true())
+//         {
+//
+//            prequest->m_egraphicsoutputpurpose |= ::graphics::e_output_purpose_screen;
+//
+//         }
+//
+//      }
 
       ::payload payloadFile = prequest->get_file();
 
@@ -233,7 +246,7 @@ namespace user
          set_default_title(pdocument);
 
          // avoid creating temporary compound file when starting up invisible
-         if (!bMakeVisible)
+         if (!(prequest->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_screen))
          {
 
             pdocument->m_bEmbedded = true;
@@ -245,10 +258,10 @@ namespace user
             // user has been alerted to what failed in on_new_document
             warning()(e_trace_category_appmsg) << "::user::document::on_new_document returned false.\n";
 
-            if (bCreated)
+            if (prequest->m_bDocumentAndFrameCreated)
             {
 
-               pFrame->destroy_window();    // will destroy ::user::document
+               pframewindow->destroy_window();    // will destroy ::user::document
 
             }
 
@@ -267,7 +280,7 @@ namespace user
          wait_cursor wait(prequest);
 
          // open an existing ::user::document
-         bWasModified = pdocument->is_modified();
+         prequest->m_bDocumentWasModified = pdocument->is_modified();
          pdocument->set_modified_flag(false);  // not dirty for open
 
          if (!on_open_document(pdocument, prequest))
@@ -275,16 +288,16 @@ namespace user
             // user has been alerted to what failed in on_open_document
             warning()(e_trace_category_appmsg) << "::user::document::on_open_document returned false.\n";
 
-            if (bCreated)
+            if (prequest->m_bDocumentAndFrameCreated)
             {
 
-               pFrame->destroy_window();    // will destroy ::user::document
+               pframewindow->destroy_window();    // will destroy ::user::document
 
             }
             else if (!pdocument->is_modified())
             {
                // original ::user::document is untouched
-               pdocument->set_modified_flag(bWasModified);
+               pdocument->set_modified_flag(prequest->m_bDocumentWasModified);
             }
             else
             {
@@ -294,7 +307,7 @@ namespace user
                if (!pdocument->on_new_document())
                {
                   warning()(e_trace_category_appmsg)<< "Error: on_new_document failed after trying "
-                        "to open a ::user::document - trying to continue.\n";
+                                                       "to open a ::user::document - trying to continue.\n";
                   // assume we can continue
                }
             }
@@ -313,7 +326,7 @@ namespace user
       if(!prequest->m_bHold)
       {
 
-         pFrame->payload("should_not_be_automatically_holded_on_initial_update_frame") = true;
+         pframewindow->payload("should_not_be_automatically_holded_on_initial_update_frame") = true;
 
       }
 
@@ -324,14 +337,14 @@ namespace user
 //
 //      }
 
- /*     auto papp = get_app();
+      /*     auto papp = get_app();
 
-      if (papp)
-      {
+           if (papp)
+           {
 
-         papp->defer_process_activation_message();
+              papp->defer_process_activation_message();
 
-      }*/
+           }*/
 
       if (prequest)
       {

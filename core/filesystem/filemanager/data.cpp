@@ -150,7 +150,7 @@ namespace filemanager
 
          bool bMakeVisible = m_bMakeVisible;
 
-         if (!bMakeVisible && ::is_set(m_prequest) && m_prequest->m_bMakeVisible)
+         if (!bMakeVisible && ::is_set(m_prequest) && (m_prequest->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_screen))
          {
 
             bMakeVisible = true;

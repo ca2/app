@@ -36,6 +36,9 @@ public:
    string                           m_strExtra;
    ::e_status                       m_estatus;
 
+   bool                             m_bDocumentAndFrameCreated = false;
+   bool                             m_bDocumentWasModified = false;
+
    //bool                             m_bMakeVisible;
    bool                             m_bTransparentBackground;
    bool                             m_bExperienceMainFrame;

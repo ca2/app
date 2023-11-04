@@ -1149,7 +1149,7 @@ namespace core
 
       ::pointer<::request>prequest(e_create_new, pinteraction.m_p);
 
-      prequest->m_bMakeVisible = false;
+      prequest->m_egraphicsoutputpurpose -= ::graphics::e_output_purpose_screen;
 
       prequest->m_bHold = false;
 

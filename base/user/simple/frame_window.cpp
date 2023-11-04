@@ -2240,6 +2240,20 @@ bool simple_frame_window::LoadFrame(const ::string & pszMatter, u32 dwDefaultSty
 //
 //   }
 
+   if (bLoadImplRect)
+   {
+
+      m_ewindowflag += e_window_flag_load_window_rect_on_impl;
+
+   }
+
+   if (pusersystem->m_prequest->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_screen)
+   {
+
+      initial_frame_display();
+
+   }
+
    if(!::experience::frame_window::LoadFrame(pszMatter, dwDefaultStyle,puiParent,  pusersystem))
    {
 
@@ -2250,12 +2264,6 @@ bool simple_frame_window::LoadFrame(const ::string & pszMatter, u32 dwDefaultSty
 
    //create_interaction(puiParent, atom());
 
-   if (bLoadImplRect)
-   {
-
-      m_ewindowflag += e_window_flag_load_window_rect_on_impl;
-
-   }
 
    //if (!bCreated)
    //{
@@ -2264,19 +2272,19 @@ bool simple_frame_window::LoadFrame(const ::string & pszMatter, u32 dwDefaultSty
 
    //}
 
-   if (pusersystem == nullptr)   // send initial update
-   {
+   //if (pusersystem == nullptr)   // send initial update
+   //{
 
-      send_message_to_descendants(e_message_system_update, ID_INITIAL_UPDATE, (lparam)0, true, true);
+     // send_message_to_descendants(e_message_system_update, ID_INITIAL_UPDATE, (lparam)0, true, true);
 
-   }
+   //}
 
-   if (pusersystem->m_prequest->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_screen)
-   {
-
-      initial_frame_display();
-
-   }
+//   if (pusersystem->m_prequest->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_screen)
+//   {
+//
+//      initial_frame_display();
+//
+//   }
 
    return true;
 

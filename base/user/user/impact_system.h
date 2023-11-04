@@ -114,6 +114,7 @@ namespace user
       virtual void pre_close_all_documents();
       virtual void close_all_documents(bool bEndSession);
       virtual void on_request(::request * prequest) override = 0;
+      virtual void on_request_continuation(::user::document * pdocument, ::user::frame_window * pframewindow, ::request * prequest);
       // open named file
       // if pszPathName == nullptr => create memory_new file with this type
 

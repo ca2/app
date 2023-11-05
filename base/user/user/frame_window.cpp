@@ -1158,7 +1158,7 @@ namespace user
 
       ///set_display(e_display_none);
 
-      informationf("\nm_bLayoutEnable false");
+      //informationf("\nm_bLayoutEnable false");
 
       //auto pusersystem = __new(::user::system (0L, nullptr, m_strFrameTitle, dwDefaultStyle, rectangleFrame, pcreate));
 
@@ -1170,7 +1170,7 @@ namespace user
       //}
 
 
-         if (pusersystem->m_atom.is_set())
+   if (pusersystem->m_atom.is_set())
    {
 
       ::string strAtom = pusersystem->m_atom.as_string();
@@ -1183,8 +1183,6 @@ namespace user
       }
 
    }
-
-   UNREFERENCED_PARAMETER(puiParent);
 
    m_strMatterHelp = pszMatter;    // ID for help context (+HID_BASE_RESOURCE)
 
@@ -1201,12 +1199,12 @@ namespace user
 
    //::pointer<::user::place_holder>pholder;
 
-   if (puiParent != nullptr && (pholder = puiParent).is_set())
-   {
-
-      rectangleFrame = pholder->rectangle();
-
-   }
+//   if (puiParent != nullptr && (pholder = puiParent).is_set())
+//   {
+//
+//      rectangleFrame = pholder->rectangle();
+//
+//   }
 
    //m_bLockSketchToDesign = true;
 
@@ -1237,8 +1235,8 @@ namespace user
 
          rectangleFrame = const_layout().state(::user::e_layout_sketch).parent_raw_rectangle();
 
-         information() << "simple_frame_window::LoadFrame rectangleFrame : " << rectangleFrame;
-         information() << "simple_frame_window::LoadFrame edisplay : " << const_layout().sketch().display();
+         information() << "LoadFrame rectangleFrame : " << rectangleFrame;
+         information() << "LoadFrame edisplay : " << const_layout().sketch().display();
 
          if (wfi_has_up_down())
          {
@@ -1287,18 +1285,18 @@ namespace user
 
       //pusersystem->set_rect(rectangleFrame);
 
-      informationf("(2) simple_frame_window::LoadFrame rectangleFrame (l=%d, t=%d) (w=%d, h=%d)", rectangleFrame.left(), rectangleFrame.top(), rectangleFrame.width(), rectangleFrame.height());
-      informationf("(2) simple_frame_window::LoadFrame edisplay=%s", ::string(::as_string((int)const_layout().sketch().display().eflag())).c_str());
+      information() << "LoadFrame (2) rectangleFrame : " << rectangleFrame;
+      information() << "LoadFrame (2) sketch.edisplay : " << const_layout().sketch().display();
 
 
    }
 
-   if (puiParent != nullptr)
-   {
-
-      //pusersystem->m_createstruct.style |= WS_CHILD;
-
-   }
+//   if (puiParent != nullptr)
+//   {
+//
+//      //pusersystem->m_createstruct.style |= WS_CHILD;
+//
+//   }
 
    m_bEnableSaveWindowRect2 = false;
 
@@ -1333,35 +1331,49 @@ namespace user
 
       initial_frame_display();
 
+      if(pusersystem->m_prequest->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_screen)
+      {
+
+         if(!const_layout().sketch().is_screen_visible())
+         {
+
+            information() << "LoadFrame sketch !is_screen_visible going to display_normal (1)";
+
+            display_normal(e_display_normal, e_activation_set_foreground);
+
+         }
+
+      }
+
    }
 
-      if (puiParent)
-      {
+   if (puiParent)
+   {
 
-         create_child(puiParent);
+      create_child(puiParent);
 
-         //if (!create_child(puiParent))
-         //{
+      //if (!create_child(puiParent))
+      //{
 
-         //   return false;
+      //   return false;
 
-         //}
+      //}
 
-      }
-      else
-      {
+   }
+   else
+   {
 
-         create_host(e_parallelization_synchronous);
+      create_host(e_parallelization_asynchronous);
 
-         //if (!create_host())
-         //{
+      //if (!create_host())
+      //{
 
-         //   return false;
+      //   return false;
 
-         //}
+      //}
 
 
-      }
+   }
 
       /* trans   // save the default menu handle
       ASSERT(get_handle() != nullptr);
@@ -1370,16 +1382,10 @@ namespace user
       // load accelerator resource
       //   LoadAccelTable(MAKEINTRESOURCE(nIDResource));
 
-      if (!pusersystem || !pusersystem->m_prequest)   // send initial update
-      {
-
-         send_message_to_descendants(e_message_system_update, ID_INITIAL_UPDATE, (lparam) 0, true, true);
-
-      }
 
       return true;
 
-      return false;
+//      return false;
 
       // only do this once
       //   ASSERT_VALID_IDR(nIDResource);

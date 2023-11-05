@@ -8,6 +8,7 @@
 #include "system.h"
 #include "interaction.h"
 #include "acme/constant/id.h"
+#include "acme/graphics/graphics/output_purpose.h"
 #include "acme/platform/scoped_restore.h"
 #include "aura/platform/application.h"
 
@@ -75,6 +76,28 @@ namespace user
 
       //m_bAutoWindowFrame = true;
       //m_bWindowFrame = false;
+
+   }
+
+
+   void system::add(::graphics::output_purpose * pgraphicsoutputpurpose)
+   {
+
+      if(::is_null(pgraphicsoutputpurpose))
+      {
+
+         return;
+
+      }
+
+      if(pgraphicsoutputpurpose->m_egraphicsoutputpurpose == ::graphics::e_output_purpose_none)
+      {
+
+         return;
+
+      }
+
+      m_graphicsoutputpurposea.add(pgraphicsoutputpurpose);
 
    }
 

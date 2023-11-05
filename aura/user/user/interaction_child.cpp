@@ -100,6 +100,22 @@ namespace user
 
          m_puserinteraction->on_after_set_parent();
 
+         if(m_puserinteraction->m_puserinteractionOwner)
+         {
+
+            m_puserinteraction->on_set_owner(m_puserinteraction->m_puserinteractionOwner);
+
+            ::user::primitive * puiRet = set_owner(m_puserinteraction->m_puserinteractionOwner);
+
+            if (m_puserinteraction->m_ewindowflag & e_window_flag_satellite_window)
+            {
+
+               m_puserinteraction->m_pthreadUserInteraction = m_puserinteraction->m_puserinteractionOwner->m_pthreadUserInteraction;
+
+            }
+
+         }
+
          install_message_routing(m_puserinteraction);
 
          if (m_puserinteraction->m_ewindowflag & e_window_flag_load_window_rect_on_impl)

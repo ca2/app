@@ -949,6 +949,7 @@ namespace user
       if (!(puserinteractionimpl->m_puserinteraction->m_ewindowflag & e_window_flag_window_created))
       {
 
+         information() << "graphics_thread_iteration !e_window_flag_window_created";
          // please, set_need_redraw and post_redraw after window creation...
          
          //set_need_redraw();
@@ -961,6 +962,8 @@ namespace user
 
       if(m_puserinteraction->has_graphical_output_purpose())
       {
+
+         information() << "graphics_thread_iteration has_graphical_output_purpose";
 
          puserinteractionimpl->do_graphics();
 
@@ -987,6 +990,8 @@ namespace user
 
       if(m_puserinteraction->has_screen_output_purpose())
       {
+
+         information() << "graphics_thread_iteration has_screen_output_purpose";
 
          m_puserinteraction->m_pinteractionimpl->m_pwindow->window_update_screen();
 

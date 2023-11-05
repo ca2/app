@@ -1386,6 +1386,7 @@ namespace user
 
       virtual void create_host(enum_parallelization eparallelization) override;
       virtual void create_child(::user::interaction * pparent) override;
+      virtual void defer_create_interaction(::user::interaction * puserinteractionParent, const ::atom & atom = nullptr);
       
       
       virtual void on_finished_window_creation();
@@ -1809,6 +1810,8 @@ namespace user
 
       ::user::primitive * set_parent(::user::primitive * pinteraction) override;
       ::user::primitive * set_owner(::user::primitive * pinteraction) override;
+
+      virtual void __defer_set_owner_to_impl();
 
       void on_add_owned(::user::primitive * pprimitive) override;
 

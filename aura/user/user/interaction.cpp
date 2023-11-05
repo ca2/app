@@ -19,6 +19,7 @@
 #include "acme/constant/message_prototype.h"
 #include "acme/constant/simple_command.h"
 #include "acme/exception/interface_only.h"
+#include "acme/graphics/graphics/output_purpose.h"
 #include "acme/handler/item.h"
 #include "acme/platform/keep.h"
 #include "acme/parallelization/synchronous_lock.h"
@@ -834,14 +835,14 @@ namespace user
    bool interaction::on_set_position(::point_i32 & point, enum_layout elayout)
    {
 
-      information() << "on_set_position : " << point;
-
       if (point == const_layout().m_statea[elayout].origin())
       {
 
          return false;
 
       }
+
+      information() << "on_set_position : " << point;
 
       return true;
 
@@ -859,8 +860,7 @@ namespace user
       {
          
          size.cx() = sizeMin.cx();
-         
-         
+
       }
       
       if(size.cy() < sizeMin.cy())
@@ -906,6 +906,8 @@ namespace user
          }
 
       }
+
+      information() << "on_set_size : " << size;
 
       on_change_scroll_state(elayout);
 
@@ -1734,21 +1736,29 @@ namespace user
 
          m_setneedredrawa.add({ rectangleaNeedRedraw, function, bAscendants });
 
-         if (!this->is_window_screen_visible(e_layout_sketch))
-         {
-
-            information() << "set_need_redraw !this->is_window_screen_visible(e_layout_sketch)";
-
-         }
-
          if (!m_pprimitiveimpl)
          {
 
-            information() << "set_need_redraw !m_pprimitiveimpl";
+            if (!this->is_window_screen_visible(e_layout_sketch))
+            {
+
+               information() << "set_need_redraw !m_pprimitiveimpl and !sketch.visible m_setneedredrawa.add...";
+
+            }
+            else
+            {
+
+               information() << "set_need_redraw !m_pprimitiveimpl m_setneedredrawa.add...";
+
+            }
 
          }
+         else if (!this->is_window_screen_visible(e_layout_sketch))
+         {
 
-         information() << "set_need_redraw m_setneedredrawa.add...";
+            information() << "set_need_redraw !sketch.visible m_setneedredrawa.add...";
+
+         }
 
          return;
 
@@ -6976,10 +6986,28 @@ namespace user
    void interaction::add(::graphics::output_purpose * poutputpurpose)
    {
 
+      if(::is_null(poutputpurpose))
+      {
+
+         return;
+
+      }
+
+      if(poutputpurpose->m_egraphicsoutputpurpose == ::graphics::e_output_purpose_none)
+      {
+
+         return;
+
+      }
+
       auto pimplHost = get_host_user_interaction_impl();
 
       if(!pimplHost)
       {
+
+         __defer_construct_new(m_pusersystem);
+
+         m_pusersystem->add(poutputpurpose);
 
          return;
 
@@ -6992,6 +7020,13 @@ namespace user
 
    void interaction::erase(::graphics::output_purpose * poutputpurpose)
    {
+
+      if(::is_null(poutputpurpose))
+      {
+
+         return;
+
+      }
 
       auto pimplHost = get_host_user_interaction_impl();
 
@@ -7010,10 +7045,28 @@ namespace user
    void interaction::add_graphical_output_purpose(::particle * pparticle, ::graphics::enum_output_purpose epurpose)
    {
 
+      if(::is_null(pparticle))
+      {
+
+         return;
+
+      }
+
+      if(epurpose == ::graphics::e_output_purpose_none)
+      {
+
+         return;
+
+      }
+
       auto pimplHost = get_host_user_interaction_impl();
 
       if(!pimplHost)
       {
+
+         __defer_construct_new(m_pusersystem);
+
+         m_pusersystem->add(__new(::graphics::output_purpose(pparticle, epurpose)));
 
          return;
 
@@ -9818,12 +9871,16 @@ namespace user
    void interaction::create_host(enum_parallelization eparallelization)
    {
 
+      information() << "interaction::create_host(1)";
+
       if (is_window())
       {
 
          start_destroying_window();
 
       }
+
+      information() << "interaction::create_host(2)";
 
       auto psession = get_session();
 
@@ -9833,10 +9890,14 @@ namespace user
 
       auto pwindowHost = pwindowing->get_application_host_window();
 
+      information() << "interaction::create_host(3)";
+
       m_ewindowflag += e_window_flag_top_level;
 
       if (::is_set(pwindowHost))
       {
+
+         information() << "interaction::create_host(3A)";
 
          create_child(pwindowHost->m_puserinteractionimpl->m_puserinteraction);
 
@@ -9866,6 +9927,8 @@ namespace user
 
       ::pointer<interaction_impl> pprimitiveimplNew;
 
+      information() << "interaction::create_host(4)";
+
       //auto rectangle(this->screen_rectangle());
 
       /* auto psession = get_session();
@@ -9883,6 +9946,8 @@ namespace user
        //auto estatus =
 
       __construct(pprimitiveimplNew);
+
+      information() << "interaction::create_host(5)";
 
       /*        if (!estatus)
               {
@@ -10202,6 +10267,44 @@ namespace user
       //}
 
       //return estatus;
+
+   }
+
+
+   void interaction::defer_create_interaction(::user::interaction * puserinteractionParent, const ::atom & atom)
+   {
+
+      if(!is_window())
+      {
+
+         create_interaction(puserinteractionParent, atom);
+
+      }
+      else
+      {
+
+         if (m_atom != atom)
+         {
+
+            m_atom = atom;
+
+         }
+
+         if (get_parent() != puserinteractionParent)
+         {
+
+            set_parent(puserinteractionParent);
+
+         }
+
+         if(m_procedureOnAfterCreate)
+         {
+
+            m_procedureOnAfterCreate();
+
+         }
+
+      }
 
    }
 
@@ -11491,20 +11594,13 @@ namespace user
    ::user::primitive * interaction::set_owner(::user::primitive * pprimitive)
    {
 
-      if (m_pprimitiveimpl == nullptr)
+      auto puserinteractionOwnerOld = m_puserinteractionOwner;
+
+      if (::is_set(puserinteractionOwnerOld)
+         && puserinteractionOwnerOld != pprimitive)
       {
 
-         return nullptr;
-
-      }
-
-      auto puserinteractionOwner = m_puserinteractionOwner;
-
-      if (::is_set(puserinteractionOwner)
-         && puserinteractionOwner != pprimitive)
-      {
-
-         auto puserinteractionpointeraOwned = puserinteractionOwner->m_puserinteractionpointeraOwned;
+         auto puserinteractionpointeraOwned = puserinteractionOwnerOld->m_puserinteractionpointeraOwned;
 
          if (::is_set(puserinteractionpointeraOwned))
          {
@@ -11528,18 +11624,31 @@ namespace user
 
       m_puserinteractionOwner->on_add_owned(this);
 
-      ::user::primitive * puiRet = m_pprimitiveimpl->set_owner(pprimitive);
+      __defer_set_owner_to_impl();
 
-      if (m_ewindowflag & e_window_flag_satellite_window)
+      return puserinteractionOwnerOld;
+
+   }
+
+
+   void interaction::__defer_set_owner_to_impl()
+   {
+
+      if(m_pprimitiveimpl)
       {
 
-         m_pthreadUserInteraction = m_puserinteractionOwner->m_pthreadUserInteraction;
+         on_set_owner(m_puserinteractionOwner);
+
+         m_pprimitiveimpl->set_owner(m_puserinteractionOwner);
+
+         if (m_ewindowflag & e_window_flag_satellite_window)
+         {
+
+            m_pthreadUserInteraction = m_puserinteractionOwner->m_pthreadUserInteraction;
+
+         }
 
       }
-
-      on_set_owner(m_puserinteractionOwner);
-
-      return puiRet;
 
    }
 

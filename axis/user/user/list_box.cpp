@@ -1130,127 +1130,126 @@ namespace user
    void list_box::on_drop_down(const ::rectangle_i32 & rectangleWindow, const ::size_i32 & sizeFull)
    {
 
+      //lock_sketch_to_design lockSketchToDesign(this);
+
+      ::rectangle_i32 rectangleMonitor;
+
+      ::index i = get_best_monitor(&rectangleMonitor, rectangleWindow);
+
+      ::rectangle_i32 rectangleList;
+
+      rectangleList.left() = rectangleWindow.left();
+      rectangleList.right() = rectangleWindow.left() + maximum(rectangleWindow.width(), sizeFull.cx());
+      rectangleList.top() = rectangleWindow.bottom();
+      rectangleList.bottom() = rectangleWindow.bottom() + sizeFull.cy();
+
+      information() << "on_drop_down (1) : " << rectangleList;
+
+      if (i < 0)
       {
 
-         //lock_sketch_to_design lockSketchToDesign(this);
+         m_pcombo->get_parent()->window_rectangle(rectangleMonitor);
 
-         ::rectangle_i32 rectangleMonitor;
+      }
 
-         ::index i = get_best_monitor(&rectangleMonitor, rectangleWindow);
+      information() << "on_drop_down (2) : " << rectangleList;
 
-         ::rectangle_i32 rectangleList;
+      if (rectangleList.bottom() > rectangleMonitor.bottom() - m_iBorder)
+      {
 
-         rectangleList.left() = rectangleWindow.left();
-         rectangleList.right() = rectangleWindow.left() + maximum(rectangleWindow.width(), sizeFull.cx());
-         rectangleList.top() = rectangleWindow.bottom();
-         rectangleList.bottom() = rectangleWindow.bottom() + sizeFull.cy();
+         rectangleList.bottom() = rectangleMonitor.bottom() - m_iBorder;
 
-         information() << "on_drop_down (1) : " << rectangleList;
+         ::rectangle_i32 rectangleListOver;
 
-         if (i < 0)
+         rectangleListOver.left() = rectangleList.left();
+         rectangleListOver.right() = rectangleList.right();
+         rectangleListOver.bottom() = rectangleWindow.top();
+         rectangleListOver.top() = rectangleWindow.top() - sizeFull.cy();
+
+         if (rectangleListOver.top() < rectangleMonitor.top() + m_iBorder)
          {
 
-            m_pcombo->get_parent()->window_rectangle(rectangleMonitor);
+            rectangleListOver.move_to(rectangleListOver.left(), rectangleMonitor.top());
 
          }
 
-         if (rectangleList.bottom() > rectangleMonitor.bottom() - m_iBorder)
+
+         if (rectangleListOver.bottom() > rectangleMonitor.bottom() - m_iBorder)
          {
 
-            rectangleList.bottom() = rectangleMonitor.bottom() - m_iBorder;
-
-            ::rectangle_i32 rectangleListOver;
-
-            rectangleListOver.left() = rectangleList.left();
-            rectangleListOver.right() = rectangleList.right();
-            rectangleListOver.bottom() = rectangleWindow.top();
-            rectangleListOver.top() = rectangleWindow.top() - sizeFull.cy();
-
-            if (rectangleListOver.top() < rectangleMonitor.top() + m_iBorder)
-            {
-
-               rectangleListOver.move_to(rectangleListOver.left(), rectangleMonitor.top());
-
-            }
-
-
-            if (rectangleListOver.bottom() > rectangleMonitor.bottom() - m_iBorder)
-            {
-
-               rectangleListOver.bottom() = rectangleMonitor.bottom() - m_iBorder;
-
-            }
-
-            rectangleList = rectangleListOver;
+            rectangleListOver.bottom() = rectangleMonitor.bottom() - m_iBorder;
 
          }
 
-         if (rectangleList.right() > rectangleMonitor.right() - m_iBorder)
-         {
+         rectangleList = rectangleListOver;
 
-            rectangleList.offset(rectangleMonitor.right() - (rectangleList.right() - m_iBorder), 0);
+      }
 
-         }
+      if (rectangleList.right() > rectangleMonitor.right() - m_iBorder)
+      {
 
-         if (rectangleList.left() < rectangleMonitor.left())
-         {
+         rectangleList.offset(rectangleMonitor.right() - (rectangleList.right() - m_iBorder), 0);
 
-            rectangleList.move_left_to(0);
+      }
 
-         }
+      if (rectangleList.left() < rectangleMonitor.left())
+      {
 
-         m_pcombo->m_pitemHover = current_item();
+         rectangleList.move_left_to(0);
 
-         if (!::is_set(m_pcombo->m_pitemHover))
-         {
+      }
 
-            m_pcombo->m_pitemHover = __new(::item(0));
+      information() << "on_drop_down (3) : " << rectangleList;
 
-         }
+      m_pcombo->m_pitemHover = current_item();
 
-         ensure_item_visible_by_index(::item_index(m_pcombo->m_pitemHover));
+      information() << "on_drop_down (4) : " << rectangleList;
 
-         if (i < 0)
-         {
+      if (!::is_set(m_pcombo->m_pitemHover))
+      {
 
-            m_pcombo->get_parent()->screen_to_client()(rectangleList);
+         m_pcombo->m_pitemHover = __new(::item(0));
 
-         }
+      }
 
-         if (!is_window())
-         {
+      information() << "on_drop_down (5) : " << rectangleList;
 
-            m_puserinteractionOwner = m_pcombo;
+      ensure_item_visible_by_index(::item_index(m_pcombo->m_pitemHover));
 
-            order_top_most();
+      information() << "on_drop_down (6) : " << rectangleList;
 
-            set_tool_window();
+      if (i < 0)
+      {
 
-            m_bTransparent = true;
+         m_pcombo->get_parent()->screen_to_client()(rectangleList);
 
-            display();
+      }
 
-            place(::rectangle_i32(rectangleList).inflate(m_iBorder));
+      information() << "on_drop_down (7) : " << rectangleList;
 
-            create_interaction(i >= 0 ? nullptr : m_pcombo->get_parent());
-            //if (!)
-            //{
+      //if (!is_window())
+      //{
 
-            //   m_pcombo->m_plistbox.release();
+      m_puserinteractionOwner = m_pcombo;
 
-            //   throw ::exception(error_resource);
+      information() << "on_drop_down (8) : " << rectangleList;
 
-            //}
+      order_top_most();
 
-            set_owner(m_pcombo);
+      set_tool_window();
 
-         }
-         else
-         {
+      m_bTransparent = true;
 
-            place(::rectangle_i32(rectangleList).inflate(m_iBorder));
+      information() << "on_drop_down (9) : " << rectangleList;
 
-         }
+      display();
+
+      place(::rectangle_i32(rectangleList).inflate(m_iBorder));
+
+      information() << "on_drop_down (10) : " << rectangleList;
+
+      m_procedureOnAfterCreate=[this]()
+      {
 
          order_top_most();
 
@@ -1268,9 +1267,52 @@ namespace user
 
          set_need_redraw();
 
-      }
+         post_redraw();
 
-      post_redraw();
+         information() << "on_drop_down (22)";
+
+      };
+
+      set_owner(m_pcombo);
+
+      defer_create_interaction(i >= 0 ? nullptr : m_pcombo->get_parent());
+         //if (!)
+         //{
+
+         //   m_pcombo->m_plistbox.release();
+
+         //   throw ::exception(error_resource);
+
+         //}
+
+         //information() << "on_drop_down (11) : " << rectangleList;
+
+//      }
+//      else
+//      {
+//
+//         place(::rectangle_i32(rectangleList).inflate(m_iBorder));
+//
+//         order_top_most();
+//
+//         display(e_display_normal);
+//
+//         set_activation(e_activation_no_activate);
+//
+//         auto & window_state = const_layout().sketch();
+//
+//         string str;
+//
+//         str.formatf("%d", window_state.m_edisplay.m_eenum);
+//
+//         set_need_layout();
+//
+//         set_need_redraw();
+//
+//         post_redraw();
+//
+//      }
+
 
    }
 

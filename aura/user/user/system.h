@@ -53,6 +53,7 @@ namespace user
       ::pointer<::user::primitive>              m_puserprimitiveLastImpact;
       ::pointer<::user::primitive>              m_puserprimitiveCurrentFrame;
       ::pointer<::matter>                       m_pimpactdata;
+      ::pointer_array<::graphics::output_purpose>     m_graphicsoutputpurposea;
 
 
       system(const system&);
@@ -71,6 +72,8 @@ namespace user
       //   ::create* pcreate = nullptr);
 
       void create_common_construct();
+
+      void add(::graphics::output_purpose * pgraphicsoutputpurpose);
 
       //void set_class_name(const ::string & pszClassName);
 

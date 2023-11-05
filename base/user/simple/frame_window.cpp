@@ -2089,147 +2089,147 @@ void simple_frame_window::_001OnActivate(::message::message * pmessage)
 bool simple_frame_window::LoadFrame(const ::string & pszMatter, u32 dwDefaultStyle, ::user::interaction * puiParent, ::user::system * pusersystem)
 {
 
-   if (pusersystem->m_atom.is_set())
-   {
+//   if (pusersystem->m_atom.is_set())
+//   {
+//
+//      ::string strAtom = pusersystem->m_atom.as_string();
+//
+//      if (strAtom.has_char())
+//      {
+//
+//         m_atom = strAtom;
+//
+//      }
+//
+//   }
+//
+//   UNREFERENCED_PARAMETER(puiParent);
 
-      ::string strAtom = pusersystem->m_atom.as_string();
+//   m_strMatterHelp = pszMatter;    // ID for help context (+HID_BASE_RESOURCE)
+//
+//   auto papp = get_app();
 
-      if (strAtom.has_char())
-      {
+//   if (puiParent == nullptr)
+//   {
+//
+//      puiParent = papp->get_request_parent_ui(this, pusersystem);
+//
+//   }
 
-         m_atom = strAtom;
-
-      }
-
-   }
-
-   UNREFERENCED_PARAMETER(puiParent);
-
-   m_strMatterHelp = pszMatter;    // ID for help context (+HID_BASE_RESOURCE)
-
-   auto papp = get_app();
-
-   if (puiParent == nullptr)
-   {
-
-      puiParent = papp->get_request_parent_ui(this, pusersystem);
-
-   }
-
-   ::rectangle_i32 rectangleFrame;
-
-   ::pointer<::user::place_holder>pholder;
-
-   if (puiParent != nullptr && (pholder = puiParent).is_set())
-   {
-
-      rectangleFrame = pholder->rectangle();
-
-   }
+//   ::rectangle_i32 rectangleFrame;
+//
+//   ::pointer<::user::place_holder>pholder;
+//
+//   if (puiParent != nullptr && (pholder = puiParent).is_set())
+//   {
+//
+//      rectangleFrame = pholder->rectangle();
+//
+//   }
 
    //m_bLockSketchToDesign = true;
 
-   if (puiParent == nullptr || wfi_has_up_down())
-   {
+//   if (puiParent == nullptr || wfi_has_up_down())
+//   {
+//
+//      if (wfi_has_up_down() && ::is_set(puiParent) && puiParent->m_bWfiUpDownTarget)
+//      {
+//
+//         m_pupdowntarget = puiParent;
+//
+//      }
+//
+//      if (should_save_window_rectangle())
+//      {
+//
+//         //bool bForceRestore = false;
+//
+//         //bool bInitialFramePosition = true;
+//
+//         //m_puserinteractionParent = puiParent;
+//
+//         //WindowDataLoadWindowRectangle(bForceRestore, bInitialFramePosition);
+//
+//         //_001FancyInitialFramePlacement();
+//
+//         initial_frame_placement();
+//
+//         rectangleFrame = const_layout().state(::user::e_layout_sketch).parent_raw_rectangle();
+//
+//         information() << "simple_frame_window::LoadFrame rectangleFrame : " << rectangleFrame;
+//         information() << "simple_frame_window::LoadFrame edisplay : " << const_layout().sketch().display();
+//
+//         if (wfi_has_up_down())
+//         {
+//
+//            if (m_eupdown == e_updown_up)
+//            {
+//
+//               puiParent = nullptr;
+//
+//            }
+//            else if (m_eupdown == e_updown_down)
+//            {
+//
+//               ::pointer<::user::document>pdocument = pusersystem->m_pdocumentCurrent;
+//
+//               ::pointer<::user::impact_host>pimpacthost;
+//
+//               if (pimpacthost.is_set())
+//               {
+//
+//                  puiParent = pimpacthost->updown_target_get_place_holder(this, pdocument);
+//
+//               }
+//
+//            }
+//
+//         }
+//
+//      }
+//
+//      if (is_top_level())
+//      {
+//
+//         if (m_ewindowflag & e_window_flag_main_frame)
+//         {
+//
+//            display(e_display_zoomed);
+//
+//            //  psession->get_main_workspace(rectangleFrame);
+//
+//         }
+//
+//      }
+//
+//      rectangleFrame = const_layout().state(::user::e_layout_sketch).parent_raw_rectangle();
+//
+//      //pusersystem->set_rect(rectangleFrame);
+//
+//      informationf("(2) simple_frame_window::LoadFrame rectangleFrame (l=%d, t=%d) (w=%d, h=%d)", rectangleFrame.left(), rectangleFrame.top(), rectangleFrame.width(), rectangleFrame.height());
+//      informationf("(2) simple_frame_window::LoadFrame edisplay=%s", ::string(::as_string((int)const_layout().sketch().display().eflag())).c_str());
+//
+//
+//   }
 
-      if (wfi_has_up_down() && ::is_set(puiParent) && puiParent->m_bWfiUpDownTarget)
-      {
-
-         m_pupdowntarget = puiParent;
-
-      }
-
-      if (should_save_window_rectangle())
-      {
-
-         //bool bForceRestore = false;
-
-         //bool bInitialFramePosition = true;
-
-         //m_puserinteractionParent = puiParent;
-
-         //WindowDataLoadWindowRectangle(bForceRestore, bInitialFramePosition);
-
-         //_001FancyInitialFramePlacement();
-
-         initial_frame_placement();
-
-         rectangleFrame = const_layout().state(::user::e_layout_sketch).parent_raw_rectangle();
-
-         information() << "simple_frame_window::LoadFrame rectangleFrame : " << rectangleFrame;
-         information() << "simple_frame_window::LoadFrame edisplay : " << const_layout().sketch().display();
-
-         if (wfi_has_up_down())
-         {
-
-            if (m_eupdown == e_updown_up)
-            {
-
-               puiParent = nullptr;
-
-            }
-            else if (m_eupdown == e_updown_down)
-            {
-
-               ::pointer<::user::document>pdocument = pusersystem->m_pdocumentCurrent;
-
-               ::pointer<::user::impact_host>pimpacthost;
-
-               if (pimpacthost.is_set())
-               {
-
-                  puiParent = pimpacthost->updown_target_get_place_holder(this, pdocument);
-
-               }
-
-            }
-
-         }
-
-      }
-
-      if (is_top_level())
-      {
-
-         if (m_ewindowflag & e_window_flag_main_frame)
-         {
-
-            display(e_display_zoomed);
-
-            //  psession->get_main_workspace(rectangleFrame);
-
-         }
-
-      }
-
-      rectangleFrame = const_layout().state(::user::e_layout_sketch).parent_raw_rectangle();
-
-      //pusersystem->set_rect(rectangleFrame);
-
-      informationf("(2) simple_frame_window::LoadFrame rectangleFrame (l=%d, t=%d) (w=%d, h=%d)", rectangleFrame.left(), rectangleFrame.top(), rectangleFrame.width(), rectangleFrame.height());
-      informationf("(2) simple_frame_window::LoadFrame edisplay=%s", ::string(::as_string((int)const_layout().sketch().display().eflag())).c_str());
-
-
-   }
-
-   if (puiParent != nullptr)
-   {
-
-      //pusersystem->m_createstruct.style |= WS_CHILD;
-
-   }
-
-   m_bEnableSaveWindowRect2 = false;
-
-   bool bLoadImplRect = m_ewindowflag & e_window_flag_load_window_rect_on_impl;
-
-   m_ewindowflag -= e_window_flag_load_window_rect_on_impl;
+//   if (puiParent != nullptr)
+//   {
+//
+//      //pusersystem->m_createstruct.style |= WS_CHILD;
+//
+//   }
+//
+//   m_bEnableSaveWindowRect2 = false;
+//
+//   bool bLoadImplRect = m_ewindowflag & e_window_flag_load_window_rect_on_impl;
+//
+//   m_ewindowflag -= e_window_flag_load_window_rect_on_impl;
 
    //bool bCreated = create_window_ex(pusersystem, puiParent, m_atom);
 
    //bool bCreated;
 
-   m_pusersystem = pusersystem;
+//   m_pusersystem = pusersystem;
 
    //bCreated = 
 
@@ -2240,19 +2240,19 @@ bool simple_frame_window::LoadFrame(const ::string & pszMatter, u32 dwDefaultSty
 //
 //   }
 
-   if (bLoadImplRect)
-   {
-
-      m_ewindowflag += e_window_flag_load_window_rect_on_impl;
-
-   }
-
-   if (pusersystem->m_prequest->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_screen)
-   {
-
-      initial_frame_display();
-
-   }
+//   if (bLoadImplRect)
+//   {
+//
+//      m_ewindowflag += e_window_flag_load_window_rect_on_impl;
+//
+//   }
+//
+//   if (pusersystem->m_prequest->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_screen)
+//   {
+//
+//      initial_frame_display();
+//
+//   }
 
    if(!::experience::frame_window::LoadFrame(pszMatter, dwDefaultStyle,puiParent,  pusersystem))
    {

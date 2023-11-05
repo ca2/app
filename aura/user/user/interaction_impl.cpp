@@ -874,7 +874,23 @@ namespace user
 
 #endif
 
-      add(puserinteraction->m_pusersystem->m_prequest);
+      auto pusersystem = puserinteraction->m_pusersystem;
+
+      if(pusersystem)
+      {
+
+         add(pusersystem->m_prequest);
+
+         for(auto & poutputpurpose : pusersystem->m_graphicsoutputpurposea)
+         {
+
+            information() << "adding graphical output_purpose from user::system";
+
+            add(poutputpurpose);
+
+         }
+
+      }
 
       bool bNewOwnThread = true;
 

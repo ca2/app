@@ -327,6 +327,9 @@
     <Filter Include="Header Files\windowing">
       <UniqueIdentifier>{b785409f-1afc-4463-8064-03b729958250}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\graphics\graphics">
+      <UniqueIdentifier>{3609adeb-0973-4694-b509-befeee4d69be}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\filesystem.h">
@@ -4791,6 +4794,9 @@
     </ClCompile>
     <ClCompile Include="graphics\image\image32_array.cpp">
       <Filter>Source Files\graphics\image</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\graphics\output_purpose.cpp">
+      <Filter>Source Files\graphics\graphics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

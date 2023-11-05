@@ -603,9 +603,6 @@
     <ClCompile Include="user\user\scroll_base_y.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\fps_interest.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\user\drawable.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>

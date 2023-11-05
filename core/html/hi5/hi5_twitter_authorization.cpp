@@ -110,7 +110,7 @@ namespace hi5
 
          auto psystem = acmesystem()->m_paurasystem;
 
-         prequest->m_bMakeVisible = false;
+         prequest->m_egraphicsoutputpurpose -= ::graphics::e_output_purpose_screen;
          prequest->m_puserelementParent = psystem->cast < ::user::interaction >("top_parent");
          prequest->m_bOuterPopupAlertLike = true;
 

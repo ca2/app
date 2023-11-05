@@ -603,12 +603,12 @@ namespace account
    }
 
 
-   bool main_window::has_pending_graphical_update()
-   {
+   //bool main_window::has_pending_graphical_update()
+   //{
 
-      return is_window_visible();
+   //   return is_window_visible();
 
-   }
+   //}
 
 
 } // namespace account

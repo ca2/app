@@ -797,7 +797,7 @@ namespace dynamic_source
       file()->put_text_utf8(pathCompiler, strCompiler);
 
 #ifdef WINDOWS
-      process->create_child_process(strCompiler,true, pathCa2Root/ "source/app-core/netnode_dynamic_source_script",::e_priority_highest);
+      process->create_child_process(strCompiler,true, m_pintegrationcontext->m_pathProjectFolder / "source/app-core/netnode_dynamic_source_script",::e_priority_highest);
 #else
       process->create_child_process(strCompiler,true,m_pintegrationcontext->m_pathProjectFolder,::e_priority_highest);
 #endif

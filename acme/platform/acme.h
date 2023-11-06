@@ -8,6 +8,7 @@
 
 
 #include "acme/_operating_system.h"
+#include "platform.h"
 
 
 namespace acme
@@ -19,13 +20,15 @@ namespace acme
    public:
 
 
-      ::acme::application * m_pacmeapplication;
+      ::pointer < ::acme::application >   m_pacmeapplication;
 
 
       ::critical_section m_criticalsectionSystemHeap;
 
 
       ::critical_section m_criticalsectionChannel;
+
+      bool m_bConsole;
 
 
       ::critical_section* channel_critical_section()
@@ -117,13 +120,13 @@ namespace acme
 
 
 
-      class ::time                     m_timeStart;
+      class ::time                        m_timeStart;
 
-      ::pointer < ::sub_system >       m_psubsystem;
-      ::memory_counter *               m_pmemorycounter;
+      ::pointer < ::platform::platform >  m_pplatform;
+      ::memory_counter *                  m_pmemorycounter;
 
 
-      bool                             m_bOutputDebugString;
+      bool                                m_bOutputDebugString;
 
 
       acme();
@@ -139,10 +142,10 @@ namespace acme
       void initialize(int argc, platform_char** argv, platform_char** envp);
 #endif
 
-      void acme_initialize();
+      //void acme_initialize();
       void acme_construct();
       void acme_destruct();
-      void acme_finalize();
+      //void acme_finalize();
 
 
       void initialize_memory_counter();
@@ -224,7 +227,38 @@ namespace acme
       //void add_release_on_end(::particle* pparticle);
 
 
+      //virtual ::platform::platform * __get_platform();
+
+
    };
+
+
+   //template < typename APPLICATION > 
+   //class acme_impl :
+   //   virtual public ::acme::acme
+   //{
+   //public:
+
+
+   //   ::platform::platform_impl < typename APPLICATION::SYSTEM >        m_platform;
+
+   //   ::platform::platform * __get_platform() override { return &m_platform; }
+
+   //   APPLICATION new_application() override 
+   //   { 
+   //   
+   //      return new APPLICATION; 
+   //   
+   //   }
+
+   //   acme_impl()
+   //   {
+
+   //      acme_initialize();
+
+   //   }
+
+   //};
 
    
 } // namespace acme

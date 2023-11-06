@@ -650,7 +650,7 @@ namespace apex
    bool session::on_get_task_name(string& strTaskName)
    {
 
-      if (acmeapplication()->m_bConsole)
+      if (acmeapplication()->is_console())
       {
 
          return false;

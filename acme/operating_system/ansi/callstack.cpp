@@ -139,7 +139,7 @@ namespace acme
    string node::get_callstack(const ::scoped_string & strFormat, i32 iSkip, void *caller_address, int iCount)
    {
 
-      auto psynchronization = ::acme::acme::g_pacme->m_psubsystem->acmesystem()->synchronization();
+      auto psynchronization = ::acme::acme::g_pacme->m_pplatform->acmesystem()->synchronization();
 
       synchronous_lock sl(psynchronization);
 

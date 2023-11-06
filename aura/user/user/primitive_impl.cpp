@@ -2822,7 +2822,8 @@ namespace user
    //}
 
 
-   void primitive_impl::create_host(::user::interaction * puserinteraction, enum_parallelization eparallelization)
+   //void primitive_impl::create_host(::user::interaction * puserinteraction, enum_parallelization eparallelization)
+   void primitive_impl::create_host(::user::interaction * puserinteraction)
    {
 
       //return false;

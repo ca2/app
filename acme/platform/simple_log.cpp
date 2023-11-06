@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "simple_log.h"
 #include "trace.h"
+#include "acme/platform/acme.h"
 #include "acme/platform/application.h"
 #include "acme/platform/debug.h"
 #include "acme/platform/system.h"
@@ -335,7 +336,7 @@ void simple_log::print(::trace_statement & tracestatement, bool bFlush)
 
       auto papplication = acmeapplication();
 
-      if ((papplication && papplication->m_bConsole) || (!::is_debugger_attached() && g_bPrintfIfDebuggerIsNotAttached))
+      if ((papplication && papplication->is_console()) || (!::is_debugger_attached() && g_bPrintfIfDebuggerIsNotAttached))
       {
 
          if (tracestatement.m_etracelevel == e_trace_level_information)

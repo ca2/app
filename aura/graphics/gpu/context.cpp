@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "context.h"
-#include "buffer.h"
+#include "cpu_buffer.h"
 //#include "_.h"
 //#include "_gpu.h"
 #include "acme/exception/interface_only.h"
@@ -230,11 +230,13 @@ namespace gpu
 
       }
 
-      __construct(m_pbuffer);
+      __defer_construct(m_pcpubuffer);
 
-      m_pbuffer->m_pimage = m_pcontext->m_pauracontext->create_image(size);
+      //m_pbuffer->m_pimage = m_pcontext->m_pauracontext->create_image(size);
 
-      if (m_pbuffer->m_pimage->nok())
+      m_pcpubuffer->m_pixmap.create(m_pcpubuffer->m_memory, size);
+
+      if (m_pcpubuffer->m_pixmap.nok())
       {
 
          throw ::exception(error_resource);
@@ -268,16 +270,16 @@ namespace gpu
    void context::resize_offscreen_buffer(const ::size_i32& size)
    {
 
-      if(!m_pbuffer)
+      if(!m_pcpubuffer)
       {
 
          return create_offscreen_buffer(size);
 
       }
 
-      synchronous_lock synchronouslock(m_pbuffer->synchronization());
+      synchronous_lock synchronouslock(m_pcpubuffer->synchronization());
 
-      m_pbuffer->m_pimage->create(size);
+      m_pcpubuffer->m_pixmap.create(m_pcpubuffer->m_memory, size);
 
       //return ::success_none;
 

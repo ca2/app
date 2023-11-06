@@ -8,18 +8,18 @@
 #pragma once
 
 
-class plane_system :
-   virtual public ::particle
-{
-public:
-   
-   
-///   virtual bool hanld(const ::scoped_string & scopedstrUrl, const ::function < void(bool) > & functionSucceeded) = 0;
-   
-};
-
-
-CLASS_DECL_ACME ::plane_system * get_plane_system();
-
-
-
+//class plane_system :
+//   virtual public ::particle
+//{
+//public:
+//   
+//   
+/////   virtual bool hanld(const ::scoped_string & scopedstrUrl, const ::function < void(bool) > & functionSucceeded) = 0;
+//   
+//};
+//
+//
+//CLASS_DECL_ACME ::plane_system * get_plane_system();
+//
+//
+//

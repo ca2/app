@@ -361,10 +361,10 @@ void particle::on_initialize_particle()
 }
 
 
-::sub_system * particle::subsystem()
+::platform::platform * particle::platform()
 {
 
-   return m_pcontext->acmesystem()->m_psubsystem;
+   return m_pcontext->acmesystem()->m_pplatform;
 
 }
 
@@ -453,7 +453,7 @@ void particle::on_initialize_particle()
 ::factory::factory_pointer & particle::factory()
 {
 
-   return ::acme::acme::g_pacme->m_psubsystem->factory();
+   return ::acme::acme::g_pacme->m_pplatform->factory();
 
 }
 
@@ -461,7 +461,7 @@ void particle::on_initialize_particle()
 ::factory::factory_pointer & particle::factory(const ::string & strLibrary)
 {
 
-   return acmesystem()->m_psubsystem->factory(strLibrary);
+   return acmesystem()->m_pplatform->factory(strLibrary);
 
 }
 
@@ -469,7 +469,7 @@ void particle::on_initialize_particle()
 ::factory::factory_pointer& particle::factory(const ::string& strComponent, const ::string& strImplementation)
 {
 
-   return acmesystem()->m_psubsystem->factory(strComponent, strImplementation);
+   return acmesystem()->m_pplatform->factory(strComponent, strImplementation);
 
 }
 
@@ -773,7 +773,7 @@ class tracer * particle::tracer() const
       if (::is_set(pacme))
       {
 
-         auto psubsystem = pacme->m_psubsystem;
+         auto psubsystem = pacme->m_pplatform;
 
          if (::is_set(psubsystem))
          {
@@ -2288,7 +2288,7 @@ CLASS_DECL_ACME class tracer * tracer()
    if (!ptask)
    {
 
-      return ::acme::acme::g_pacme->m_psubsystem->m_pcontext;
+      return ::acme::acme::g_pacme->m_pplatform->m_pcontext;
 
    }
 

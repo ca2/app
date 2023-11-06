@@ -216,7 +216,7 @@ void main_asynchronous(const ::procedure & procedure)
 
     };
 
-    ::acme::acme::g_pacme->m_psubsystem->acmesystem()->windowing_post(predicate);
+    ::acme::acme::g_pacme->m_pplatform->acmesystem()->windowing_post(predicate);
 
 }
 

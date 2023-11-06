@@ -624,10 +624,19 @@ namespace user
    {
 
       information() << "frame::initial_frame_display";
-      
-      display();
 
-      set_activation(e_activation_set_foreground);
+      if (!const_layout().sketch().is_screen_visible())
+      {
+
+         display_normal(e_display_normal, e_activation_set_foreground);
+
+      }
+      else
+      {
+
+         set_activation(e_activation_set_foreground);
+
+      }
 
       set_need_redraw();
       

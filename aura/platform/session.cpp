@@ -311,7 +311,7 @@ namespace aura
    bool session::on_get_task_name(string& strThreadName)
    {
 
-      if (acmeapplication()->m_bConsole)
+      if (acmeapplication()->is_console())
       {
 
          return false;

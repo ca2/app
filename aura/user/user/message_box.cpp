@@ -155,7 +155,9 @@ namespace user
 
       //auto estatus = 
       
-      create_host(e_parallelization_synchronous);
+      //create_host(e_parallelization_synchronous);
+
+      create_host();
 
       //if (!estatus)
       //{

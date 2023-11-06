@@ -291,7 +291,7 @@ namespace acme
 //
 //   }
 //
-//   auto psystem = ::acme::acme::g_pacme->m_psubsystem->acmesystem();
+//   auto psystem = ::acme::acme::g_pacme->m_pplatform->acmesystem();
 //
 //   psystem->windowing_post(procedure);
 //

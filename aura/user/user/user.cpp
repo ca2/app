@@ -13,6 +13,7 @@
 #include "acme/constant/message.h"
 #include "acme/constant/simple_command.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/platform/acme.h"
 #include "acme/platform/system_setup.h"
 #include "acme/primitive/collection/_container.h"
 #include "apex/message/simple_command.h"
@@ -28,11 +29,11 @@
 #include "aura/platform/node.h"
 
 
-::pointer< ::mutex > g_pmutexUser = nullptr;
-
-
-CLASS_DECL_AURA void initialize_user_mutex();
-CLASS_DECL_AURA void finalize_user_mutex();
+::mutex * g_pmutexUser = nullptr;
+//
+//
+//CLASS_DECL_AURA void initialize_user_mutex();
+//CLASS_DECL_AURA void finalize_user_mutex();
 
 
 //::critical_section g_criticalsectionChildren;
@@ -58,7 +59,7 @@ namespace user
       m_pbaseuser = nullptr;
       m_pbreduser = nullptr;
       m_pcoreuser = nullptr;
-      ::initialize_user_mutex();
+      //::initialize_user_mutex();
       //initialize_children_mutex();
 
       m_bOnInitializeWindowObject = false;
@@ -70,7 +71,9 @@ namespace user
    {
 
       //finalize_children_mutex();
-      ::finalize_user_mutex();
+      //::finalize_user_mutex();
+      g_pmutexUser = nullptr;
+      m_pmutexUser.release();
 
    }
 
@@ -84,6 +87,12 @@ namespace user
 
 
       ::acme::department::initialize(pparticle);
+
+
+      m_pmutexUser = acmenode()->create_mutex();
+
+      g_pmutexUser = m_pmutexUser;
+
 
       //if (!estatus)
       //{
@@ -1547,34 +1556,34 @@ CLASS_DECL_AURA ::particle * user_synchronization()
 }
 
 
-CLASS_DECL_AURA void initialize_user_mutex()
-{
-
-   if(g_pmutexUser)
-   {
-
-      return;
-
-   }
-
-   g_pmutexUser = ::acme::acme::g_pacme->m_psubsystem->acmesystem()->node()->create_mutex();
-
-}
-
-
-CLASS_DECL_AURA void finalize_user_mutex()
-{
-
-   if(!g_pmutexUser)
-   {
-
-      return;
-
-   }
-
-   g_pmutexUser.release();
-
-}
-
+//CLASS_DECL_AURA void initialize_user_mutex()
+//{
+//
+//   if(g_pmutexUser)
+//   {
+//
+//      return;
+//
+//   }
+//
+//   g_pmutexUser = ::acme::acme::g_pacme->m_pplatform->acmesystem()->node()->create_mutex();
+//
+//}
+//
+//
+//CLASS_DECL_AURA void finalize_user_mutex()
+//{
+//
+//   if(!g_pmutexUser)
+//   {
+//
+//      return;
+//
+//   }
+//
+//   g_pmutexUser.release();
+//
+//}
+//
 
 

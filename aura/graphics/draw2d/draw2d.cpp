@@ -299,6 +299,22 @@ namespace draw2d
    }
 
 
+   bool draw2d::graphics_context_supports_single_buffer_mode()
+   {
+
+      return true;
+
+   }
+
+
+   bool draw2d::graphics_context_does_full_redraw()
+   {
+
+      return false;
+
+   }
+
+
    enum_format draw2d::file_extension_to_format(const ::payload & payloadFile)
    {
 

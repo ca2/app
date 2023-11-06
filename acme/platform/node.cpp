@@ -279,20 +279,22 @@ namespace acme
    }
 
 
-   ::pointer < ::particle > node::create_quit_particle(::pointer<::acme::node> &  pnode, ::pointer<::acme::system> & psystem)
+   //::pointer < ::particle > node::create_quit_particle(::pointer<::acme::node> &  pnode, ::pointer<::acme::system> & psystem)
+   //{
+   //   
+   //   return nullptr;
+   //   
+   //}
+
+
+   void node::node_main()
    {
       
-      return nullptr;
-      
-   }
+      //m_pparticleQuit = create_quit_particle(pnode);
 
+      auto psystem = acmesystem();
 
-   void node::implement(::pointer<::acme::node>& pnode, ::pointer<::acme::system> & psystem)
-   {
-      
-      m_pparticleQuit = create_quit_particle(pnode, psystem);
-
-      if(psystem->m_pfnImplement || psystem->m_pacmeapplication->m_bConsole)
+      if(psystem->m_pfnImplement || psystem->m_pacmeapplication->is_console())
       {
          
          psystem->init_task();
@@ -354,10 +356,13 @@ namespace acme
    }
 
 
-   void node::start_application(::pointer<::acme::node>& pnode, ::pointer<::acme::system>& psystem)
+   //void node::start_application(::pointer<::acme::node>& pnode, ::pointer<::acme::system>& psystem)
+   void node::start_application(::pointer<::acme::node> & pnode)
    {
 
-      m_pparticleQuit = create_quit_particle(pnode, psystem);
+      //m_pparticleQuit = create_quit_particle(pnode, psystem);
+
+      auto psystem = acmesystem();
 
       //if (psystem->m_pfnImplement)
       {

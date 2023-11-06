@@ -121,7 +121,7 @@ namespace aura
       m_bGtkApp = false;
 #endif
 
-      m_bConsole = false;
+      //m_bConsole = false;
       m_pappParent = nullptr;
 
       m_bSimpleMessageLoop = false;

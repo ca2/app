@@ -325,7 +325,8 @@ namespace user
 
          pinteraction->m_bMessageWindow = true;
 
-         create_host(pinteraction, e_parallelization_synchronous);
+         //create_host(pinteraction, e_parallelization_synchronous);
+         create_host(pinteraction);
 
       }
 
@@ -530,7 +531,8 @@ namespace user
    }
 
 
-   void interaction_impl::operating_system_create_host(enum_parallelization eparallelization)
+   //void interaction_impl::operating_system_create_host(enum_parallelization eparallelization)
+   void interaction_impl::operating_system_create_host()
    {
 
       //      auto pwindowMain = acmesystem()->m_paurasystem->m_pwindowMain;
@@ -629,7 +631,9 @@ namespace user
       //      }
       //      else
 
-      _create_window(eparallelization);
+      //_create_window(eparallelization);
+
+      _create_window();
 
       //      if(bOk)
       //      {
@@ -651,7 +655,8 @@ namespace user
    }
 
 
-   void interaction_impl::_create_window(::enum_parallelization eparallelization)
+   //void interaction_impl::_create_window(::enum_parallelization eparallelization)
+   void interaction_impl::_create_window()
    {
 
       {
@@ -692,18 +697,18 @@ namespace user
             };
 
 
-         if (eparallelization == e_parallelization_asynchronous)
-         {
+         //if (eparallelization == e_parallelization_asynchronous)
+         //{
 
-            user_post(procedure);
+            ///user_post(procedure);
 
-         }
-         else
-         {
+         //}
+         //else
+         //{
 
             user_send(procedure);
 
-         }
+         //}
 
 
          //});
@@ -859,7 +864,8 @@ namespace user
    }
 
 
-   void interaction_impl::create_host(::user::interaction * puserinteraction, enum_parallelization eparallelization)
+   //void interaction_impl::create_host(::user::interaction * puserinteraction, enum_parallelization eparallelization)
+   void interaction_impl::create_host(::user::interaction * puserinteraction)
    {
 
       m_puserinteraction = puserinteraction;
@@ -1010,7 +1016,9 @@ namespace user
          information() << "interaction_impl::create_host user thread branch";
 
          //if (!m_puserthread->begin_synch())
-         m_puserthread->branch(eparallelization);
+         //m_puserthread->branch(eparallelization);
+        // m_puserthread->branch(e_parallelization_synchronous);
+         m_puserthread->branch(e_parallelization_synchronous);
          //{
 
          //   __release(m_pgraphicsthread);
@@ -1123,7 +1131,9 @@ namespace user
 
          //}
 
-         operating_system_create_host(eparallelization);
+         //operating_system_create_host(eparallelization);
+
+         operating_system_create_host();
 
          ////if (!native_create_host())
          //{
@@ -1567,18 +1577,20 @@ namespace user
 
       auto poutputpurpose = __new(::graphics::output_purpose(pparticleGraphicalOutputPurposeOriginator, epurpose));
 
+      bool bHadGraphicalOutputPurpose = m_puserinteraction->has_graphical_output_purpose();
+
       this->add(poutputpurpose);
 
-//      bool bAdded = m_graphicaloutputpurposea.add();
-//
-//      if (bAdded && bHadNoInterest)
-//      {
-//
-//         m_puserinteraction->set_need_redraw();
-//
-//         m_puserinteraction->post_redraw();
-//
-//      }
+      bool bHasGraphicalOutputPurpose = m_puserinteraction->has_graphical_output_purpose();
+
+      if (bHasGraphicalOutputPurpose && !bHadGraphicalOutputPurpose)
+      {
+
+         m_puserinteraction->set_need_redraw();
+
+         m_puserinteraction->post_redraw();
+
+      }
 
    }
 
@@ -2449,12 +2461,23 @@ namespace user
 
          }
 
-         if(m_puserinteraction->m_setneedredrawa.has_element())
+         if(has_screen_output_purpose())
          {
+
+            m_puserinteraction->set_need_layout();
+
+            m_puserinteraction->set_need_redraw();
 
             m_puserinteraction->post_redraw();
 
          }
+
+         //if(m_puserinteraction->m_setneedredrawa.has_element())
+         //{
+
+         //   m_puserinteraction->post_redraw();
+
+         //}
          
       }
 
@@ -5948,20 +5971,36 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 
             //pgraphics->set_origin(0., 0.);
 
+
             {
 
                _synchronous_lock synchronouslock(synchronization());
 
-               pgraphics->__construct_new(pgraphics->m_puserredraw);
-
-               pgraphics->user_redraw()->m_pgraphics = pgraphics;
-
-               pgraphics->user_redraw()->initialize_and_transfer(m_redrawitema);
-
-               if (m_redrawitema.has_element())
+               if (pgraphics->__defer_construct_new(pgraphics->m_puserredraw))
                {
 
-                  throw "what?!?!";
+                  if (acmesystem()->m_paurasystem->draw2d()->graphics_context_does_full_redraw())
+                  {
+
+                     pgraphics->m_puserredraw->m_bEnabled = false;
+
+                  }
+
+               }
+
+               if (pgraphics->m_puserredraw->m_bEnabled)
+               {
+
+                  pgraphics->user_redraw()->m_pgraphics = pgraphics;
+
+                  pgraphics->user_redraw()->initialize_and_transfer(m_redrawitema);
+
+                  if (m_redrawitema.has_element())
+                  {
+
+                     throw "what?!?!";
+
+                  }
 
                }
 

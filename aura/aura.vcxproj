@@ -678,7 +678,7 @@
     <ClCompile Include="graphics\draw2d\_.cpp" />
     <ClCompile Include="graphics\draw3d\ortho.cpp" />
     <ClCompile Include="graphics\gpu\approach.cpp" />
-    <ClCompile Include="graphics\gpu\buffer.cpp" />
+    <ClCompile Include="graphics\gpu\cpu_buffer.cpp" />
     <ClCompile Include="graphics\gpu\context.cpp" />
     <ClCompile Include="graphics\gpu\object.cpp" />
     <ClCompile Include="graphics\gpu\program.cpp" />
@@ -888,7 +888,7 @@
     <ClInclude Include="graphics\draw3d\_.h" />
     <ClInclude Include="graphics\gpu\aaaa_gpu.h" />
     <ClInclude Include="graphics\gpu\approach.h" />
-    <ClInclude Include="graphics\gpu\buffer.h" />
+    <ClInclude Include="graphics\gpu\cpu_buffer.h" />
     <ClInclude Include="graphics\gpu\context.h" />
     <ClInclude Include="graphics\gpu\object.h" />
     <ClInclude Include="graphics\gpu\program.h" />

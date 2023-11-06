@@ -75,7 +75,7 @@
 //
 //                            };
 //
-//   auto psystem = ::acme::acme::g_pacme->m_psubsystem->acmesystem();
+//   auto psystem = ::acme::acme::g_pacme->m_pplatform->acmesystem();
 //
 //   psystem->windowing_post(predicate);
 //
@@ -124,7 +124,7 @@ void wayland_process_messages();
 void _do_tasks()
 {
 
-   auto psystem = ::acme::acme::g_pacme->m_psubsystem->acmesystem();
+   auto psystem = ::acme::acme::g_pacme->m_pplatform->acmesystem();
 
    if(psystem->m_ewindowing == e_windowing_wayland)
    {

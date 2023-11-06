@@ -227,7 +227,8 @@ namespace user
       void create_interaction(::user::interaction * puserinteractionParent, const ::atom & atom = nullptr) override;
 
 
-      void create_host(enum_parallelization eparallelization) override;
+      //void create_host(enum_parallelization eparallelization) override;
+      void create_host() override;
       void create_child(::user::interaction * puserinteractionParent) override;
       void create_control(::user::interaction * puserinteractionParent, const ::atom & atom) override;
 

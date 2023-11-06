@@ -22,7 +22,7 @@ namespace opengl
       ATOM                          m_atomClass;
 
 #endif
-      bool                          m_bGlewInit;
+      bool                          m_bGpuLibraryInit;
 
 
       //HGLRC                         m_hrc;
@@ -50,7 +50,7 @@ namespace opengl
 
       int fread(void * data, int c, int s ,::file::file* pfile);
 
-      virtual void defer_init_glew() override;
+      virtual void defer_init_gpu_library() override;
 
       //virtual void draw();
       //virtual void start();

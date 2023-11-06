@@ -838,7 +838,6 @@
     <ClInclude Include="filesystem\watcher\watcher.h" />
     <ClInclude Include="filesystem\watcher\_.h" />
     <ClInclude Include="filesystem\_.h" />
-    <ClInclude Include="filesyste\filesyste\_format.h" />
     <ClInclude Include="format.h" />
     <ClInclude Include="_iostream.h" />
     <ClInclude Include="graphics\draw2d\color32.h" />
@@ -1130,7 +1129,7 @@
     <ClCompile Include="platform\serial.cpp" />
     <ClCompile Include="platform\session.cpp" />
     <ClCompile Include="platform\simple_log.cpp" />
-    <ClCompile Include="platform\sub_system.cpp" />
+    <ClCompile Include="platform\platform.cpp" />
     <ClCompile Include="platform\system.cpp" />
     <ClCompile Include="platform\system_setup.cpp" />
     <ClCompile Include="platform\text.cpp" />
@@ -1776,7 +1775,7 @@
     <ClInclude Include="platform\simple_log.h" />
     <ClInclude Include="platform\status.h" />
     <ClInclude Include="platform\string_exchange.h" />
-    <ClInclude Include="platform\sub_system.h" />
+    <ClInclude Include="platform\platform.h" />
     <ClInclude Include="platform\system.h" />
     <ClInclude Include="platform\system_setup.h" />
     <ClInclude Include="platform\text.h" />

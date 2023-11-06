@@ -4,7 +4,7 @@
 
 #include "acme/platform/auto_pointer.h"
 #include "aura/graphics/draw2d/draw2d.h"
-
+#include "gpu_opengl/context.h"
 
 namespace draw2d_opengl
 {
@@ -31,14 +31,16 @@ namespace draw2d_opengl
       //};
 
 
-      ATOM m_atomClass;
+      //ATOM m_atomClass;
 
 
 
       //__creatable_from_base(draw2d, ::draw2d::draw2d);
       //string_map < ::pointer<private_font >>m_mapPrivateFont;
 
-      bool        m_bGlewInitialized;
+      //bool        m_bGladInitialized;
+
+      //::pointer<::opengl::context>          m_popenglcontext;
 
 
       draw2d();
@@ -48,7 +50,11 @@ namespace draw2d_opengl
       void initialize(::particle * pparticle) override;
 
 
-      void defer_initialize_glew();
+      bool graphics_context_supports_single_buffer_mode() override;
+      bool graphics_context_does_full_redraw() override;
+
+
+      //void defer_initialize_glad();
 
 
       virtual string write_text_get_default_implementation_name() override;

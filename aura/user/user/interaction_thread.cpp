@@ -272,7 +272,9 @@ namespace user
 
       //estatus =
       
-      m_pimpl->operating_system_create_host(e_parallelization_asynchronous);
+      //m_pimpl->operating_system_create_host(e_parallelization_asynchronous);
+
+      m_pimpl->operating_system_create_host();
 
       ///*if(!estatus)
       //{*/

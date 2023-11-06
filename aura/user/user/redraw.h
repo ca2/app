@@ -27,10 +27,12 @@ namespace user
    {
    public:
 
-
+      bool                             m_bEnabled = true;
       ::draw2d::graphics_pointer       m_pgraphics;
       ::rectangle_i32_array            m_rectangleaNeedRedraw;
 
+
+      void initialize(::particle * pparticle) override;
 
       void clear();
       void initialize_and_transfer(pointer_array < redraw_item > & redrawitema);

@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "context_win32.h"
 #include "opengl.h"
-#include "buffer.h"
+#include "cpu_buffer.h"
 #include "aura/graphics/gpu/approach.h"
 #include "aura/graphics/image/image.h"
 #include "aura/platform/system.h"
@@ -35,186 +35,215 @@ namespace opengl
    }
 
    
-   HWND context_win32::_create_offscreen_window(const ::size_i32 & size)
+   void context_win32::_create_offscreen_window(const ::size_i32 & size)
    {
-
-      LPCTSTR lpClassName = L"draw2d_opengl_offscreen_buffer_window";
-      LPCTSTR lpWindowName = L"draw2d_opengl_offscreen_buffer_window";
-      //::u32 dwStyle = WS_CAPTION | WS_POPUPWINDOW; // | WS_VISIBLE
-      ::u32 dwExStyle = 0;
-      ::u32 dwStyle = WS_OVERLAPPEDWINDOW;
-      dwStyle |= WS_POPUP;
-      //dwStyle |= WS_VISIBLE;
-      //dwStyle |= WS_SYSMENU | WS_MINIMIZEBOX | WS_MAXIMIZEBOX;
-      dwStyle &= ~WS_CAPTION;
-      //dwStyle = 0;
-      dwStyle &= ~WS_THICKFRAME;
-      dwStyle &= ~WS_BORDER;
-      int x = 0;
-      int y = 0;
-      int nWidth = size.cx();
-      int nHeight = size.cy();
-      HWND hWndParent = nullptr;
-      HMENU hMenu = nullptr;
-      HINSTANCE hInstance = ::GetModuleHandleW(L"gpu_opengl.dll");
-      LPVOID lpParam = nullptr;
-
-      HWND hwnd = CreateWindowExW(dwExStyle, lpClassName, lpWindowName, dwStyle, x, y, nWidth, nHeight, hWndParent, hMenu, hInstance, lpParam);
-
-      if (!hwnd)
+      if (::IsWindow(m_hwnd))
       {
 
-         informationf("MS GDI - CreateWindow failed");
+         if (!::SetWindowPos(m_hwnd,
+            nullptr, 0, 0,
+            size.cx()
+            , size.cy(), SWP_NOMOVE | SWP_NOZORDER | SWP_NOACTIVATE
+            | SWP_NOCOPYBITS | SWP_NOSENDCHANGING
+            | SWP_NOREPOSITION | SWP_NOREDRAW))
+         {
 
-         informationf("last-error code: %d\n", GetLastError());
+            information() << "SetWindowPos Failed";
 
-         throw ::exception(error_failed);
+         }
+
+
+         //return m_hwnd;
+
+      }
+      else
+      {
+
+         LPCTSTR lpClassName = L"draw2d_opengl_offscreen_buffer_window";
+         LPCTSTR lpWindowName = L"draw2d_opengl_offscreen_buffer_window";
+         //::u32 dwStyle = WS_CAPTION | WS_POPUPWINDOW; // | WS_VISIBLE
+         ::u32 dwExStyle = 0;
+         ::u32 dwStyle = WS_OVERLAPPEDWINDOW;
+         dwStyle |= WS_POPUP;
+         //dwStyle |= WS_VISIBLE;
+         //dwStyle |= WS_SYSMENU | WS_MINIMIZEBOX | WS_MAXIMIZEBOX;
+         dwStyle &= ~WS_CAPTION;
+         //dwStyle = 0;
+         dwStyle &= ~WS_THICKFRAME;
+         dwStyle &= ~WS_BORDER;
+         int x = 0;
+         int y = 0;
+         int nWidth = size.cx();
+         int nHeight = size.cy();
+         HWND hWndParent = nullptr;
+         HMENU hMenu = nullptr;
+         HINSTANCE hInstance = ::GetModuleHandleW(L"gpu_opengl.dll");
+         LPVOID lpParam = nullptr;
+
+         m_hwnd = CreateWindowExW(dwExStyle, lpClassName, lpWindowName, dwStyle, x, y, nWidth, nHeight, hWndParent, hMenu, hInstance, lpParam);
+
+         if (!m_hwnd)
+         {
+
+            informationf("MS GDI - CreateWindow failed");
+
+            informationf("last-error code: %d\n", GetLastError());
+
+            throw ::exception(error_failed);
+
+         }
+
+         //return m_hwnd;
 
       }
 
-      return hwnd;
 
    }
 
-   
-   void context_win32::_create_window_buffer(void * pHwnd)
+
+
+   void context_win32::_create_window_buffer()
    {
 
-      HWND hwnd = (HWND)pHwnd;
-
-      auto psystem = acmesystem()->m_paurasystem;
-
-      auto pgpu = psystem->get_gpu();
-
-      ::pointer < ::opengl::opengl > popengl = pgpu;
-
-      if (!popengl->m_atomClass)
+      if (!m_hdc || !m_hdc || !m_hrc)
       {
 
-         informationf("MS GDI - RegisterClass failed");
 
-         informationf("last-error code: %d\n", GetLastError());
+         auto psystem = acmesystem()->m_paurasystem;
 
-         throw ::exception(error_failed);
+         auto pgpu = psystem->get_gpu();
+
+         ::pointer < ::opengl::opengl > popengl = pgpu;
+
+         if (!popengl->m_atomClass)
+         {
+
+            informationf("MS GDI - RegisterClass failed");
+
+            informationf("last-error code: %d\n", GetLastError());
+
+            throw ::exception(error_failed);
+
+         }
+
+         // create WGL context, make current
+
+         PIXELFORMATDESCRIPTOR pixformat;
+
+         int chosenformat;
+
+         HDC hdc = GetDC(m_hwnd);
+
+         if (!hdc)
+         {
+
+            informationf("MS GDI - GetDC failed");
+
+            informationf("last-error code: %d\n", GetLastError());
+
+            throw ::exception(error_failed);
+
+         }
+
+         zero(pixformat);
+         pixformat.nSize = sizeof(pixformat);
+         pixformat.nVersion = 1;
+         pixformat.dwFlags = PFD_DRAW_TO_WINDOW | PFD_SUPPORT_OPENGL | PFD_DOUBLEBUFFER;
+         pixformat.iPixelType = PFD_TYPE_RGBA;
+         pixformat.cColorBits = 32;
+         pixformat.cRedShift = 16;
+         pixformat.cGreenShift = 8;
+         pixformat.cBlueShift = 0;
+         pixformat.cAlphaShift = 24;
+         pixformat.cAlphaBits = 8;
+         pixformat.cDepthBits = 24;
+         pixformat.cStencilBits = 8;
+
+         chosenformat = ChoosePixelFormat(hdc, &pixformat);
+
+         if (chosenformat == 0)
+         {
+
+            informationf("MS GDI - ChoosePixelFormat failed");
+
+            informationf("last-error code: %d\n", GetLastError());
+
+            ReleaseDC(m_hwnd, hdc);
+
+            throw ::exception(error_failed);
+
+         }
+
+         bool spfok = SetPixelFormat(hdc, chosenformat, &pixformat);
+
+         if (!spfok)
+         {
+
+            informationf("MS GDI - SetPixelFormat failed");
+
+            informationf("last-error code: %d\n", GetLastError());
+
+            ReleaseDC(m_hwnd, hdc);
+
+            throw ::exception(error_failed);
+
+         }
+
+         HGLRC hglrc = wglCreateContext(hdc);
+
+         if (!hglrc)
+         {
+
+            informationf("MS WGL - wglCreateContext failed");
+
+            informationf("last-error code: %d\n", GetLastError());
+
+            ReleaseDC(m_hwnd, hdc);
+
+            throw ::exception(error_failed);
+
+         }
+
+         bool bMakeCurrentOk = wglMakeCurrent(hdc, hglrc);
+
+         if (!bMakeCurrentOk)
+         {
+
+            informationf("MS WGL - wglMakeCurrent failed");
+
+            informationf("last-error code: %d\n", GetLastError());
+
+            ReleaseDC(m_hwnd, hdc);
+
+            throw ::exception(error_failed);
+
+         }
+
+
+         popengl->defer_init_gpu_library();
+
+         auto pszVersion = (const char *)glGetString(GL_VERSION);
+         //::e_status estatus = 
+
+
+         //if (!estatus)
+         //{
+
+         //   ReleaseDC(window, hdc);
+
+         //   return estatus;
+
+         //}
+
+         m_hwnd = m_hwnd;
+         m_hdc = hdc;
+         m_hrc = hglrc;
 
       }
-
-      // create WGL context, make current
-
-      PIXELFORMATDESCRIPTOR pixformat;
-
-      int chosenformat;
-
-      HDC hdc = GetDC(hwnd);
-
-      if (!hdc)
-      {
-
-         informationf("MS GDI - GetDC failed");
-
-         informationf("last-error code: %d\n", GetLastError());
-
-         throw ::exception(error_failed);
-
-      }
-
-      zero(pixformat);
-      pixformat.nSize = sizeof(pixformat);
-      pixformat.nVersion = 1;
-      pixformat.dwFlags = PFD_DRAW_TO_WINDOW | PFD_SUPPORT_OPENGL | PFD_DOUBLEBUFFER;
-      pixformat.iPixelType = PFD_TYPE_RGBA;
-      pixformat.cColorBits = 32;
-      pixformat.cRedShift = 16;
-      pixformat.cGreenShift = 8;
-      pixformat.cBlueShift = 0;
-      pixformat.cAlphaShift = 24;
-      pixformat.cAlphaBits = 8;
-      pixformat.cDepthBits = 24;
-      pixformat.cStencilBits = 8;
-
-      chosenformat = ChoosePixelFormat(hdc, &pixformat);
-
-      if (chosenformat == 0)
-      {
-
-         informationf("MS GDI - ChoosePixelFormat failed");
-
-         informationf("last-error code: %d\n", GetLastError());
-
-         ReleaseDC(hwnd, hdc);
-
-         throw ::exception(error_failed);
-
-      }
-
-      bool spfok = SetPixelFormat(hdc, chosenformat, &pixformat);
-
-      if (!spfok)
-      {
-
-         informationf("MS GDI - SetPixelFormat failed");
-
-         informationf("last-error code: %d\n", GetLastError());
-
-         ReleaseDC(hwnd, hdc);
-
-         throw ::exception(error_failed);
-
-      }
-
-      HGLRC hglrc = wglCreateContext(hdc);
-
-      if (!hglrc)
-      {
-
-         informationf("MS WGL - wglCreateContext failed");
-
-         informationf("last-error code: %d\n", GetLastError());
-
-         ReleaseDC(hwnd, hdc);
-
-         throw ::exception(error_failed);
-
-      }
-
-      bool bMakeCurrentOk = wglMakeCurrent(hdc, hglrc);
-
-      if (!bMakeCurrentOk)
-      {
-
-         informationf("MS WGL - wglMakeCurrent failed");
-
-         informationf("last-error code: %d\n", GetLastError());
-
-         ReleaseDC(hwnd, hdc);
-
-         throw ::exception(error_failed);
-
-      }
-
-
-      popengl->defer_init_glew();
-
-      auto pszVersion = (const char *)glGetString(GL_VERSION);
-      //::e_status estatus = 
-
-
-      //if (!estatus)
-      //{
-
-      //   ReleaseDC(window, hdc);
-
-      //   return estatus;
-
-      //}
-
-      m_hwnd = hwnd;
-      m_hdc = hdc;
-      m_hrc = hglrc;
 
       RECT rectClient;
 
-      ::GetClientRect(hwnd, &rectClient);
+      ::GetClientRect(m_hwnd, &rectClient);
 
       m_size = { rectClient.right - rectClient.left,
          rectClient.bottom - rectClient.top };
@@ -231,9 +260,9 @@ namespace opengl
    void context_win32::_create_offscreen_buffer(const ::size_i32& size)
    {
 
-      HWND hwnd = _create_offscreen_window(size);
+      _create_offscreen_window(size);
       
-      _create_window_buffer(hwnd);
+      _create_window_buffer();
 
    }
 
@@ -241,20 +270,20 @@ namespace opengl
    void context_win32::resize_offscreen_buffer(const ::size_i32& size)
    {
 
-      if (!m_pbuffer)
+      //if (!m_pcpubuffer)
       {
 
-         return create_offscreen_buffer(size);
+         create_offscreen_buffer(size);
 
       }
 
-      m_pbuffer->m_pimage->create(size);
+      ///m_pcpubuffer->m_pixmap.create(m_pcpubuffer->m_memory, size);
 
-#ifdef WINDOWS_DESKTOP
-
-      ::SetWindowPos(m_hwnd, 0, 0, 0, size.cx(), size.cy(), SWP_NOZORDER | SWP_NOMOVE | SWP_HIDEWINDOW);
-
-#else
+//#ifdef WINDOWS_DESKTOP
+//
+//      ::SetWindowPos(m_hwnd, 0, 0, 0, size.cx(), size.cy(), SWP_NOZORDER | SWP_NOMOVE | SWP_HIDEWINDOW);
+//
+//#else
 
 //      destroy_offscreen_buffer();
 //
@@ -265,7 +294,7 @@ namespace opengl
 //
 //      }
 
-#endif
+//#endif
 
       make_current();
 

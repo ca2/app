@@ -2,7 +2,7 @@
 #pragma once
 
 
-#include "sub_system.h"
+#include "platform.h"
 //#include "acme.h"
 #include "context.h"
 #include "plane_system.h"
@@ -19,14 +19,15 @@ namespace acme
 
    class CLASS_DECL_ACME system :
       //virtual public ::object,
-      virtual public ::acme::context,
+      virtual public ::acme::context
+      //,
       //virtual public ::task,
-      virtual public ::plane_system
+      //virtual public ::plane_system
    {
    public:
 
       //::APPLICATION_FLAGS                      m_applicationflags;
-      sub_system *                                                      m_psubsystem;
+      ::platform::platform * m_pplatform;
 
 
       ::apex::system* m_papexsystem;

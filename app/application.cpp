@@ -60,7 +60,7 @@ namespace app_app
 //
 //      };
 
-      pmainwindow->create_main_window_asynchronously();
+      pmainwindow->create_main_window();
 
    }
 
@@ -68,9 +68,9 @@ namespace app_app
    string application::draw2d_get_default_implementation_name()
    {
 
-      //return acmesystem()->implementation_name("draw2d", "opengl");
+      return acmesystem()->implementation_name("draw2d", "opengl");
       //return acmesystem()->implementation_name("draw2d", "gdiplus");
-      return ::aura::application::draw2d_get_default_implementation_name();
+      //return ::aura::application::draw2d_get_default_implementation_name();
 
    }
 

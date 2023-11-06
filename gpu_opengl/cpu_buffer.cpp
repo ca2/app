@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "buffer.h"
+#include "cpu_buffer.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "aura/graphics/image/image.h"
 
@@ -8,39 +8,41 @@ namespace opengl
 {
 
 
-   buffer::buffer()
+   cpu_buffer::cpu_buffer()
    {
 
    }
 
 
-   buffer::~buffer()
+   cpu_buffer::~cpu_buffer()
    {
 
    }
 
 
-   void buffer::gpu_read()
+   void cpu_buffer::gpu_read()
    {
 
       synchronous_lock synchronouslock(this->synchronization());
 
-      if (m_pimage.nok())
+      if (m_pixmap.nok())
       {
 
          return;
 
       }
 
-      m_pimage->map();
+      //m_pixmap.map();
 
-      auto cx = m_pimage->m_size.cx();
+      auto cx = m_pixmap.m_size.cx();
 
-      auto cy = m_pimage->m_size.cy();
+      auto cy = m_pixmap.m_size.cy();
+
+      //auto sizeNeeded = cx * cy * 4;
+
+      //m_pixmap.create(m_memory, sizeNeeded);
       
-      auto data = m_pimage->m_pimage32Raw;
-      
-      
+      auto data = m_memory.data();
       
 #if defined(__APPLE__) || defined(ANDROID)
 
@@ -58,7 +60,7 @@ namespace opengl
          
       }
 
-      //m_pimage->mult_alpha();
+      //m_pixmap.mult_alpha();
 
 #elif defined(LINUX)
       glReadBuffer(GL_FRONT);
@@ -69,9 +71,9 @@ namespace opengl
          cx, cy,
          GL_BGRA,
          GL_UNSIGNED_BYTE,
-         m_pimage->m_pimage32Raw);
+         m_pixmap.m_pimage32Raw);
       
-      //m_pimage->mult_alpha();
+      //m_pixmap.mult_alpha();
       
 #else
       glReadBuffer(GL_FRONT);
@@ -83,7 +85,7 @@ namespace opengl
          GL_BGRA,
          GL_UNSIGNED_BYTE,
          cx * cy * 4,
-         m_pimage->m_pimage32Raw);
+         data);
 
       int iError = glGetError();
 
@@ -94,39 +96,58 @@ namespace opengl
 
       }
 
-      //memset(m_pimage->m_pimage32Raw, 127, cx * cy * 4 / 8);
+      //memset(m_pixmap.m_pimage32Raw, 127, cx * cy * 4);
 
 #endif
-      
-      m_pimage->mult_alpha();
+
+      {
+
+         auto dst = (::u8 *)data;
+         auto size = cx * cy;
+
+         while (size > 0)
+         {
+            dst[0] = u8_clip(((i32)dst[0] * (i32)dst[3]) / 255);
+            dst[1] = u8_clip(((i32)dst[1] * (i32)dst[3]) / 255);
+            dst[2] = u8_clip(((i32)dst[2] * (i32)dst[3]) / 255);
+            dst += 4;
+            size--;
+         }
+
+      }
+
+      //::copy_image32(m_pixmap.m_pimage32,
+      //   cx, cy,
+      //   m_pixmap.m_iScan,
+      //   (const ::image32_t*) data, cx * 4);
 
    }
 
 
-   void buffer::gpu_write()
+   void cpu_buffer::gpu_write()
    {
 
       synchronous_lock synchronouslock(this->synchronization());
 
-      if (m_pimage.ok())
+      if (m_pixmap.nok())
       {
 
          return;
 
       }
 
-      m_pimage->map();
-
+ //     m_pixmap.map();
+      //
 //      glDrawPixels(
-//         m_pimage->m_size.cx(), m_pimage->m_size.cy(),
+//         m_pixmap.m_size.cx(), m_pixmap.m_size.cy(),
 //         GL_BGRA,
 //         GL_UNSIGNED_BYTE,
-//         m_pimage->m_pimage32Raw);
+//         m_pixmap.m_pimage32Raw);
       
       glTexImage2D(GL_TEXTURE_2D, 0, 0, 0,
-                   m_pimage->m_size.cx(), m_pimage->m_size.cy(),
+                   m_pixmap.m_size.cx(), m_pixmap.m_size.cy(),
                    GL_RGBA, GL_UNSIGNED_BYTE,
-                   m_pimage->m_pimage32Raw);
+                   m_pixmap.m_pimage32Raw);
 
    }
 

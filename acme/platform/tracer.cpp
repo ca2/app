@@ -92,7 +92,7 @@ tracer::~tracer()
 //   //if (!ptask)
 //   //{
 //
-//   //   ptask = ::acme::acme::g_pacme->m_psubsystem->m_pacmesystem;
+//   //   ptask = ::acme::acme::g_pacme->m_pplatform->m_pacmesystem;
 //
 //   //}
 //

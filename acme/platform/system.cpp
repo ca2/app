@@ -138,7 +138,7 @@ namespace acme
 
       ::acme::context::on_initialize_particle();
 
-      ::plane_system::on_initialize_particle();
+      //::plane_system::on_initialize_particle();
 
    }
 
@@ -146,9 +146,9 @@ namespace acme
    void system::initialize_system()
    {
 
-      m_psubsystem = ::acme::acme::g_pacme->m_psubsystem;
+      m_pplatform = ::acme::acme::g_pacme->m_pplatform;
 
-      m_psubsystem->initialize(this);
+      m_pplatform->initialize(this);
 
       ::output_debug_string("Going to create simple log\n");
 
@@ -190,7 +190,7 @@ namespace acme
       //
       //      //pacmeapplication->m_nCmdShow = nCmdShow;
       //
-      //      //pacmeapplication->m_bConsole = false;
+      //      //pacmeapplication->is_console() = false;
       //
       //      //int iExitCode = pacmeapplication->main_loop();
       //
@@ -300,7 +300,7 @@ namespace acme
       run();
 
 
-      if (acmeapplication()->m_bConsole)
+      if (acmeapplication()->is_console())
       {
 
          acmeapplication()->main();
@@ -1805,10 +1805,10 @@ namespace acme
 
 #if !defined(WINDOWS)
 
-         for (::index iArgument = 1; iArgument < m_psubsystem->m_argc; iArgument++)
+         for (::index iArgument = 1; iArgument < m_pplatform->m_argc; iArgument++)
          {
 
-            ::string strArgument = m_psubsystem->m_argv[iArgument];
+            ::string strArgument = m_pplatform->m_argv[iArgument];
 
             prequest->get_property_set()._008AddArgument(strArgument);
 
@@ -2074,10 +2074,10 @@ namespace acme
       if (etracelevel > e_trace_level_information)
       {
 
-         for (int i = 0; i < m_psubsystem->get_argument_count1(); i++)
+         for (int i = 0; i < m_pplatform->get_argument_count1(); i++)
          {
 
-            string strArg = m_psubsystem->get_argument1(i);
+            string strArg = m_pplatform->get_argument1(i);
 
             if (strArg == "verbose")
             {
@@ -2469,7 +2469,7 @@ namespace acme
       if (!papp)
       {
 
-         if (strAppId.is_empty() || acmeapplication()->m_bConsole)
+         if (strAppId.is_empty() || acmeapplication()->is_console())
          {
 
             papp = __create < ::acme::application >();
@@ -2495,7 +2495,7 @@ namespace acme
 
             //auto psystem = acmesystem()->m_papexsystem;
 
-            auto & plibrary = m_psubsystem->library(strLibrary);
+            auto & plibrary = m_pplatform->library(strLibrary);
 
             if (!plibrary)
             {

@@ -88,21 +88,6 @@ namespace draw2d_opengl
       m_bitmapinfo.bmiHeader.biSizeImage     = iStride  * size.cy();
 
       __construct(m_pbitmap);
-      __construct(m_pgraphics);
-
-      if(m_pbitmap.m_p == nullptr)
-      {
-
-         m_size.cx()       = 0;
-
-         m_size.cy()       = 0;
-
-         m_iScan     = 0;
-
-         //return false;
-
-      }
-
 
       image32_t * pimage32 = nullptr;
       m_pbitmap->create_bitmap(nullptr, size, (void **)&pimage32, &iStride);
@@ -124,11 +109,6 @@ namespace draw2d_opengl
 
       }
 
-      m_pgraphics->set(m_pbitmap);
-
-      m_pgraphics->create_memory_graphics(size);
-
-      m_pgraphics->m_pimage = this;
 
       this->init(size, pimage32, iStride);
 
@@ -142,6 +122,46 @@ namespace draw2d_opengl
 
    }
 
+   bool image::host(::pixmap * ppixmap)
+   {
+
+      if (::is_null(ppixmap) || ppixmap->nok())
+      {
+
+         return false;
+
+      }
+         
+      
+
+      if (ppixmap->m_pimage32Raw == m_pimage32Raw
+         && m_size == ppixmap->m_size)
+      {
+
+         return true;
+
+      }
+
+      memcpy((::pixmap *) this, ppixmap, sizeof(::pixmap));
+
+      //__construct(m_pbitmap);
+      __defer_construct(m_pgraphics);
+      //m_pgraphics->set(m_pbitmap);
+
+      m_pgraphics->create_memory_graphics(ppixmap->m_size);
+
+
+      m_eflagElement = DEFAULT_CREATE_IMAGE_FLAG;
+
+      m_pgraphics->m_pimage = this;
+
+      set_ok_flag();
+
+      m_estatus = ::success;
+
+      return true;
+
+   }
 
    void image::dc_select(bool bSelect)
    {
@@ -2375,18 +2395,53 @@ namespace draw2d_opengl
    ::draw2d::graphics * image::_get_graphics() const
    {
 
-      if (!m_pgraphics)
+      if (m_pgraphics)
       {
 
-         return nullptr;
+         return m_pgraphics;
 
       }
 
-      unmap();
+      //::draw2d::graphics * image::_get_graphics()
+      //{
 
-      m_pgraphics->set(m_pbitmap);
+  /*       if (m_pgraphics)
+         {
 
-      return m_pgraphics;
+            return pgraphics;
+
+         }*/
+
+         if (!m_pbitmap)
+         {
+
+      /*      m_size.cx() = 0;
+
+            m_size.cy() = 0;
+
+            m_iScan = 0;*/
+
+            return m_pgraphics;
+
+         }
+
+         ((image *)this)->__construct(((image*)this)->m_pgraphics);
+
+
+         ((image *)this)->m_pgraphics->set(m_pbitmap);
+
+         ((image *)this)->m_pgraphics->create_memory_graphics(m_size);
+
+         ((image *)this)->m_pgraphics->m_pimage = (image *) this;
+
+         return m_pgraphics;
+
+
+      //unmap();
+
+      //m_pgraphics->set(m_pbitmap);
+
+      //return m_pgraphics;
 
    }
 
@@ -2686,6 +2741,8 @@ namespace draw2d_opengl
 
    void image::map(bool bApplyTransform) const
    {
+
+      return;
 
       if (m_bMapped)
       {

@@ -33,7 +33,7 @@ namespace core
 
       m_pcoreapplication = this;
 
-      m_strAppId = "app-complex/drawing";
+      //m_strAppId = "app-complex/drawing";
 
       factory()->add_factory_item < ::core::system, ::acme::system >();
       factory()->add_factory_item < ::core::session, ::acme::session >();

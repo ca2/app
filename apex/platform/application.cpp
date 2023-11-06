@@ -5262,8 +5262,8 @@ namespace apex
       if (!is_service())
       {
 
-         if ((m_bConsole && m_bCreateAppShorcut.is_set_true())
-            || (!m_bConsole && m_bCreateAppShorcut.is_true_or_undefined()))
+         if ((is_console() && m_bCreateAppShorcut.is_set_true())
+            || (!is_console() && m_bCreateAppShorcut.is_true_or_undefined()))
          {
 
             on_create_app_shortcut();

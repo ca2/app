@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "task.h"
 #include "manual_reset_event.h"
-////#include "acme/exception/exception.h"
+#include "acme/platform/acme.h"
 #include "acme/platform/application.h"
 #include "acme/platform/system.h"
 #include "acme/exception/exit.h"
@@ -2261,7 +2261,7 @@ task_guard::~task_guard()
 ::index task_index(itask_t itask)
 {
 
-   synchronous_lock sl(::acme::acme::g_pacme->m_psubsystem->acmesystem()->synchronization());
+   synchronous_lock sl(::acme::acme::g_pacme->m_pplatform->acmesystem()->synchronization());
 
    auto iThreadIndex = g_iaThreadIndex.find_first(itask);
 

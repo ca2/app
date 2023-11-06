@@ -68,6 +68,8 @@ namespace user
 
       atom get_impact_id() override;
 
+      virtual ::user::place_holder * place_holder_by_id(const ::atom & atom);
+
       ::user::interaction * get_impact_uie() override;
 
       virtual ::user::impact_data * get_impact_creator_data();

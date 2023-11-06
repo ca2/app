@@ -23,15 +23,35 @@ namespace experience_core
    }
 
 
+
+   void control_box::_001OnNcClip(::draw2d::graphics_pointer & pgraphics)
+   {
+
+      ::experience::control_box::_001OnNcClip(pgraphics);
+
+   }
+
+
+   void control_box::_001OnClip(::draw2d::graphics_pointer & pgraphics)
+   {
+
+      ::experience::control_box::_001OnClip(pgraphics);
+
+   }
+
+
    void control_box::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
+//      ::experience::control_box::_001OnNcDraw(pgraphics);
 
    }
 
 
    void control_box::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
+
+      //return;
 
       if((top_level()->frame_is_transparent() && !top_level()->is_active_window()) || !top_level_frame()->m_bShowControlBox)
       {

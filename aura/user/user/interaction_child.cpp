@@ -206,6 +206,13 @@ namespace user
             
          }
 
+         if (m_puserinteraction->m_procedureOnAfterCreate)
+         {
+
+            m_puserinteraction->m_procedureOnAfterCreate();
+
+         }
+
       //}
       //catch (...)
       //{

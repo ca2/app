@@ -7,7 +7,7 @@
 //#include "acme/primitive/collection/string_array.h"
 //#include "acme/primitive/primitive/payload.h"
 #include "acme/platform/acme.h"
-#include "acme/platform/sub_system.h"
+#include "acme/platform/platform.h"
 #include "acme/platform/system.h"
 
 
@@ -707,19 +707,19 @@ CLASS_DECL_ACME ::task * get_task()
       if (::is_set(pacme))
       {
 
-         auto psubsystem =  pacme->m_psubsystem;
+         auto pplatform =  pacme->m_pplatform;
 
-         if(::is_set(psubsystem))
+         if(::is_set(pplatform))
          {
 
-            auto psystem = psubsystem->acmesystem();
+            auto psystem = pplatform->acmesystem();
 
             if(::is_set(psystem))
             {
 
                t_ptask = new ::task();
 
-               t_ptask->initialize(psubsystem->acmesystem());
+               t_ptask->initialize(pplatform->acmesystem());
 
             }
 

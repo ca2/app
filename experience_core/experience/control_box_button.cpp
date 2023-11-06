@@ -27,8 +27,10 @@ namespace experience_core
    }
 
 
-   void control_box_button::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
+   void control_box_button::_001OnNcClip(::draw2d::graphics_pointer & pgraphics)
    {
+
+      ::experience::button::_001OnNcClip(pgraphics);
 
    }
 
@@ -41,8 +43,18 @@ namespace experience_core
    }
 
 
+   void control_box_button::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
+   {
+
+      //::experience::button::_001OnNcDraw(pgraphics);
+
+   }
+
+
    void control_box_button::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
+
+      //return;
 
 #ifdef VERBOSE_LOG
 

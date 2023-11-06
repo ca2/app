@@ -282,7 +282,7 @@ namespace apex
    bool system::on_get_task_name(string& strTaskName)
    {
 
-      if (acmeapplication()->m_bConsole)
+      if (acmeapplication()->is_console())
       {
 
          return false;
@@ -952,14 +952,14 @@ pacmedirectory->create("/ca2core");
 
       {
 
-         string strExecutable = subsystem()->get_executable();
+         string strExecutable = platform()->get_executable();
 
          string_array straArguments;
 
-         for (int i = 0; i < subsystem()->get_argument_count1(); i++)
+         for (int i = 0; i < platform()->get_argument_count1(); i++)
          {
 
-            string strArgument = subsystem()->get_argument1(i);
+            string strArgument = platform()->get_argument1(i);
 
             straArguments.add(strArgument);
 
@@ -981,10 +981,10 @@ pacmedirectory->create("/ca2core");
 
          string_array straEnv;
 #ifdef WINDOWS_DESKTOP
-         if (subsystem()->m_wenvp)
+         if (platform()->m_wenvp)
          {
 
-            for (auto wenv = subsystem()->m_wenvp; *wenv != 0; wenv++)
+            for (auto wenv = platform()->m_wenvp; *wenv != 0; wenv++)
             {
 
                auto thisEnv = *wenv;
@@ -996,10 +996,10 @@ pacmedirectory->create("/ca2core");
          }
          else
 #endif
-            if (subsystem()->m_envp)
+            if (platform()->m_envp)
          {
 
-            for (auto env = subsystem()->m_envp; *env != 0; env++)
+            for (auto env = platform()->m_envp; *env != 0; env++)
             {
 
                auto thisEnv = *env;
@@ -1384,7 +1384,7 @@ pacmedirectory->create("/ca2core");
 
       //}
 
-      //if (acmeapplication()->m_bConsole)
+      //if (acmeapplication()->is_console())
       //{
 
          //estatus = 
@@ -1728,7 +1728,7 @@ pacmedirectory->create("/ca2core");
    //void system::post_request(::request* prequest)
    //{
 
-   //   auto straArguments = subsystem()->get_arguments();
+   //   auto straArguments = platform()->get_arguments();
 
    //   if (straArguments.has_element())
    //   {
@@ -4802,7 +4802,7 @@ namespace apex
 
       process_init();
 
-      if (acmeapplication()->m_bConsole)
+      if (acmeapplication()->is_console())
       {
 
          acmeapplication()->main();

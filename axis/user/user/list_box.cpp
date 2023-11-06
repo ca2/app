@@ -1242,38 +1242,38 @@ namespace user
 
       information() << "on_drop_down (9) : " << rectangleList;
 
-      display();
+      order_top_most();
+
+      display(e_display_normal);
+
+      set_activation(e_activation_no_activate);
 
       place(::rectangle_i32(rectangleList).inflate(m_iBorder));
 
       information() << "on_drop_down (10) : " << rectangleList;
 
-      m_procedureOnAfterCreate=[this]()
-      {
+      //m_procedureOnAfterCreate=[this]()
+      //{
 
-         order_top_most();
+      //   //auto & window_state = const_layout().sketch();
 
-         display(e_display_normal);
+      //   //string str;
 
-         set_activation(e_activation_no_activate);
+      //   //str.formatf("%d", window_state.m_edisplay.m_eenum);
 
-         auto & window_state = const_layout().sketch();
+      //   set_need_layout();
 
-         string str;
+      //   set_need_redraw();
 
-         str.formatf("%d", window_state.m_edisplay.m_eenum);
+      //   post_redraw();
 
-         set_need_layout();
+      //   information() << "on_drop_down (22)";
 
-         set_need_redraw();
-
-         post_redraw();
-
-         information() << "on_drop_down (22)";
-
-      };
+      //};
 
       set_owner(m_pcombo);
+
+      add_graphical_output_purpose(this, ::graphics::e_output_purpose_screen);
 
       defer_create_interaction(i >= 0 ? nullptr : m_pcombo->get_parent());
          //if (!)

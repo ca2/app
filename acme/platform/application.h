@@ -11,6 +11,7 @@ class main_hold_base;
 //} // namespace apex
 class application_menu;
 
+namespace acme { class acme;  }
 
 #include "application_base.h"
 #include "application_exit.h"
@@ -25,7 +26,7 @@ namespace acme
 
 
    class CLASS_DECL_ACME application :
-      virtual public application_base,
+//      virtual public application_base,
       virtual public APPLICATION_FLAGS,
       virtual public ::acme::context,
       virtual public ::application_exit,
@@ -41,6 +42,8 @@ namespace acme
       ::base::application* m_pbaseapplication;
       ::bred::application* m_pbredapplication;
       ::core::application* m_pcoreapplication;
+
+      ::acme::acme *                                 m_pacme;
 
       //::APPLICATION_FLAGS                      m_applicationflags;
       ::pointer<main_hold_base>                      m_pmainholdbase;
@@ -64,7 +67,7 @@ namespace acme
 
       // END FROM ::main (Now main2 : merge)
 
-
+      ::pointer < ::platform::platform >              m_pplatform;
       string                                          m_strAppId;
       string                                          m_strAppName;
       string                                          m_strRoot;
@@ -92,6 +95,15 @@ namespace acme
       virtual ::string release_time();
 
 
+      virtual void initialize_application();
+
+
+      virtual bool is_console() const;
+
+
+      virtual ::i32 application_main();
+
+
       void initialize(::particle * pparticle) override;
 
       
@@ -105,7 +117,7 @@ namespace acme
 
       virtual ::factory::factory_pointer& factory() override;
 
-      virtual void implement_application();
+      //virtual void implement_application();
 
       virtual void initialize_application_flags();
 

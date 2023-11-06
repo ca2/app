@@ -138,7 +138,7 @@ namespace acme
 
       auto psystem = acmesystem();
 
-      critical_section_lock synchronouslock(&psystem->m_psubsystem->m_criticalsection);
+      critical_section_lock synchronouslock(&psystem->m_pplatform->m_criticalsection);
 
       m_strMessage.empty();
 
@@ -245,7 +245,7 @@ namespace acme
       if (m_strName.has_char())
       {
 
-         subsystem()->m_mapLibrary[m_strName] = this;
+         platform()->m_mapLibrary[m_strName] = this;
 
       }
 
@@ -494,7 +494,7 @@ namespace acme
 
       }
 
-      critical_section_lock synchronouslock(&::acme::acme::g_pacme->m_psubsystem->m_criticalsection);
+      critical_section_lock synchronouslock(&::acme::acme::g_pacme->m_pplatform->m_criticalsection);
 
       try
       {
@@ -910,7 +910,7 @@ namespace acme
 
       auto psystem = acmesystem();
 
-      critical_section_lock synchronouslock(&psystem->m_psubsystem->m_criticalsection);
+      critical_section_lock synchronouslock(&psystem->m_pplatform->m_criticalsection);
 
       return acmesystem()->operating_system_library_raw_get(m_plibrary,scopedstrEntryName);
 

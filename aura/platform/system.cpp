@@ -1150,7 +1150,7 @@ namespace aura
 
       auto psystem = acmesystem();
 
-      critical_section_lock synchronouslock(&m_psubsystem->m_criticalsection);
+      critical_section_lock synchronouslock(&m_pplatform->m_criticalsection);
 
       ///estatus = 
       

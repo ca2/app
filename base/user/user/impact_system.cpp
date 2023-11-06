@@ -289,12 +289,12 @@ namespace user
       //}
 
 
-      pframe->m_procedureOnAfterCreate=[this, pdocument, pframe, prequest]()
-      {
+      //pframe->m_procedureOnAfterCreate=[this, pdocument, pframe, prequest]()
+      //{
 
-         on_request_continuation(pdocument, pframe, prequest);
+      //   on_request_continuation(pdocument, pframe, prequest);
 
-      };
+      //};
 
       ::pointer<::user::interaction>puserinteractionParent = prequest->m_puserelementParent;
 

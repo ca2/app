@@ -500,7 +500,9 @@ namespace user
 
       m_pdroptargetwindow->m_bTransparent = true;
 
-      m_pdroptargetwindow->create_host(e_parallelization_synchronous);
+      //m_pdroptargetwindow->create_host(e_parallelization_synchronous);
+
+      m_pdroptargetwindow->create_host();
 
       m_pdroptargetwindow->order(e_zorder_top_most);
 
@@ -1283,6 +1285,32 @@ namespace user
    {
 
       return m_pimpactdata;
+
+   }
+
+
+   ::user::place_holder * tab_impact::place_holder_by_id(const ::atom & atom)
+   {
+
+      auto ppane = get_tab_by_id(atom);
+
+      if (::is_null(ppane))
+      {
+
+         return nullptr;
+
+      }
+
+      if (!ppane->m_pplaceholder)
+      {
+
+         auto pplaceholder = get_new_place_holder(get_data()->m_rectangleHosting);
+
+         ppane->m_pplaceholder = pplaceholder;
+
+      }
+
+      return ppane->m_pplaceholder;
 
    }
 

@@ -651,7 +651,7 @@
     <ClCompile Include="graphics\gpu\approach.cpp">
       <Filter>Source Files\graphics\gpu</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\gpu\buffer.cpp">
+    <ClCompile Include="graphics\gpu\cpu_buffer.cpp">
       <Filter>Source Files\graphics\gpu</Filter>
     </ClCompile>
     <ClCompile Include="graphics\gpu\context.cpp">
@@ -1640,7 +1640,7 @@
     <ClInclude Include="graphics\gpu\approach.h">
       <Filter>Header Files\graphics\gpu</Filter>
     </ClInclude>
-    <ClInclude Include="graphics\gpu\buffer.h">
+    <ClInclude Include="graphics\gpu\cpu_buffer.h">
       <Filter>Header Files\graphics\gpu</Filter>
     </ClInclude>
     <ClInclude Include="graphics\gpu\context.h">

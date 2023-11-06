@@ -19,9 +19,10 @@ namespace gpu
       //bool                                m_bPendingShaderUpdate;
       //string                              m_strProjection;
       //string                              m_strFragment;
-      ::pointer<::gpu::context>              m_pgpucontext;
-      //::pointer<::gpu::program>           m_pprogram;
-      rectangle_i32                          m_rectangle;
+      ::pointer<::gpu::context>             m_pgpucontext;
+      ::image_pointer                       m_pimageFromGpu;
+      ::pointer<::gpu::program>             m_pgpuprogram;
+      rectangle_i32                         m_rectangle;
       //string                              m_strFont1;
       //string_map < ::image_pointer >      m_pimagemap;
       //::image_pointer                     m_pimage1;
@@ -77,14 +78,16 @@ namespace gpu
 
       //virtual void draw();
 
-      virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
+      virtual void draw();
+      virtual void read_to_cpu_buffer();
+      virtual void to_draw2d_graphics(::draw2d::graphics_pointer & pgraphics);
 
-      virtual void start_drawing(context * pgpucontext);
-      virtual void global_transform(context * pgpucontext);
-      virtual void draw(context * pgpucontext);
+      virtual void on_start_drawing(context * pgpucontext);
+      virtual void on_global_transform(context * pgpucontext);
+      virtual void on_draw(context * pgpucontext);
       //virtual void render();
 
-
+      
 
 
    };

@@ -3,30 +3,30 @@
 //
 #pragma once
 
-
-#include "acme.h"
-
-
-namespace acme
-{
-
-
-   class CLASS_DECL_ACME application_base
-   {
-   public:
-
-
-      ::acme::acme         m_acme;
-
-
-      application_base();
-      virtual ~application_base();
-
-
-   };
-
-
-} // namespace acme
-
-
-
+//
+//#include "acme.h"
+//
+//
+//namespace acme
+//{
+//
+//
+//   class CLASS_DECL_ACME application_base
+//   {
+//   public:
+//
+//
+//      //::acme::acme         m_acme;
+//
+//
+//      application_base();
+//      virtual ~application_base();
+//
+//
+//   };
+//
+//
+//} // namespace acme
+//
+//
+//

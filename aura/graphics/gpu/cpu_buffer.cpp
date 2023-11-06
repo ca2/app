@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "buffer.h"
+#include "cpu_buffer.h"
 #include "aura/graphics/image/image.h"
 //#include "_.h"
 //#include "_gpu.h"
@@ -10,7 +10,7 @@ namespace gpu
 {
 
 
-   buffer::buffer()
+   cpu_buffer::cpu_buffer()
    {
 
       defer_create_synchronization();
@@ -18,16 +18,16 @@ namespace gpu
    }
 
 
-   buffer::~buffer()
+   cpu_buffer::~cpu_buffer()
    {
 
    }
 
 
-   void buffer::gpu_read()
+   void cpu_buffer::gpu_read()
    {
 
-      if (m_pimage->nok())
+      if (m_pixmap.nok())
       {
 
          return;
@@ -38,10 +38,10 @@ namespace gpu
    }
 
 
-   void buffer::gpu_write()
+   void cpu_buffer::gpu_write()
    {
 
-      if (m_pimage->nok())
+      if (m_pixmap.nok())
       {
 
          return;

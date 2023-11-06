@@ -43,7 +43,17 @@ namespace acme
    application::application()
    {
 
-      m_acme.m_pacmeapplication = this;
+      m_pacme = ::acme::acme::g_pacme;
+
+      if (!m_pacme->m_pacmeapplication)
+      {
+
+         m_pacme->m_pacmeapplication = this;
+
+      }
+
+      //m_acme.m_pacmeapplication = this;
+      //m_acme.m_pacmeapplication = this;
 
       m_pacmeapplication = this;
       m_papexapplication = nullptr;
@@ -77,6 +87,24 @@ namespace acme
          }*/
          //   ::acme::finalize_system();
 
+   }
+
+
+   //::i32 application::application_main()
+   //{
+
+   //   implement_application();
+
+   //   return m_iExitCode;
+
+   //}
+
+
+   bool application::is_console() const
+   { 
+      
+      return m_pacme->m_bConsole; 
+   
    }
 
 
@@ -149,13 +177,37 @@ namespace acme
    ::factory::factory_pointer& application::factory()
    {
 
-      return ::acme::acme::g_pacme->m_psubsystem->factory();
+      return ::acme::acme::g_pacme->m_pplatform->factory();
 
    }
 
 
-   void application::implement_application()
+   void application::initialize_application()
    {
+
+      if (!m_pplatform)
+      {
+
+         m_pplatform = m_pacme->m_pplatform;
+
+         m_pplatform->defer_initialize_platform();
+
+      }
+
+      if (!m_pacmesystem)
+      {
+
+         m_pacmesystem = m_pplatform->m_psystem;
+
+      }
+
+   }
+
+
+   ::i32 application::application_main()
+   {
+
+      initialize_application();
 
       output_debug_string("acme::application implement_application\n");
 
@@ -169,7 +221,7 @@ namespace acme
 
       string strAppId;
 
-      if (!m_bConsole)
+      if (!is_console())
       {
 
          strAppId = m_strAppId;
@@ -190,25 +242,25 @@ namespace acme
 
       //main.m_bAudio = main_hold_base::is_audio_enabled();
 
-      auto pfactoryitem = ::acme::acme::g_pacme->m_psubsystem->m_pfactory->get_factory_item<::acme::system>();
+      //auto pfactoryitem = ::acme::acme::g_pacme->m_pplatform->m_pfactory->get_factory_item<::acme::system>();
 
-      ::pointer<::acme::system> psystem = pfactoryitem->create_particle();
+      //::pointer<::acme::system> psystem = pfactoryitem->create_particle();
 
-      ::set_task(psystem);
+      ::set_task(m_pacmesystem);
 
-      psystem->initialize_system();
+      m_pacmesystem->initialize_system();
 
       information() << "acme implement_application system_construct";
 
-      psystem->system_construct(this);
+      m_pacmesystem->system_construct(this);
 
       information() << "acme implement_application create_os_node";
 
-      psystem->create_os_node();
+      m_pacmesystem->create_os_node();
 
-      auto pnode = psystem->node();
+      auto pnode = m_pacmesystem->node();
 
-      pnode->implement(pnode, psystem);
+      pnode->node_main();
 
       //pnode->start_application(pnode, psystem);
 
@@ -246,6 +298,7 @@ namespace acme
 
       //}
 
+      return m_iExitCode;
 
    }
 
@@ -260,17 +313,10 @@ namespace acme
 
       }
 
-      if (m_bConsole.undefined())
-      {
-
-         m_bConsole = false;
-
-      }
-
       if (m_bDraw2d.undefined())
       {
 
-         m_bDraw2d = !m_bConsole;
+         m_bDraw2d = !is_console();
 
       }
 
@@ -284,35 +330,35 @@ namespace acme
       if (m_bUser.undefined())
       {
 
-         m_bUser = !m_bConsole;
+         m_bUser = !is_console();
 
       }
 
       if (m_bUserEx.undefined())
       {
 
-         m_bUserEx = !m_bConsole;
+         m_bUserEx = !is_console();
 
       }
 
       if (m_bImaging.undefined())
       {
 
-         m_bImaging = !m_bConsole;
+         m_bImaging = !is_console();
 
       }
 
       if (m_bCrypto.undefined())
       {
 
-         m_bCrypto = !m_bConsole;
+         m_bCrypto = !is_console();
 
       }
 
       if (m_bResource.undefined())
       {
 
-         //m_bResource = !m_bConsole;
+         //m_bResource = !is_console();
 
          m_bResource = true;
 
@@ -323,7 +369,7 @@ namespace acme
       if (m_bGdiplus.undefined())
       {
 
-         m_bGdiplus = !m_bConsole;
+         m_bGdiplus = !is_console();
 
       }
 
@@ -334,7 +380,7 @@ namespace acme
       if (m_bGtkApp.undefined())
       {
 
-         m_bGtkApp = !m_bConsole;
+         m_bGtkApp = !is_console();
 
       }
 
@@ -347,7 +393,7 @@ namespace acme
 
       }
 
-      if (m_bConsole)
+      if (is_console())
       {
 
          if (m_bSession.undefined())
@@ -358,7 +404,7 @@ namespace acme
          }
 
       }
-      else // !m_bConsole
+      else // !is_console()
       {
 
          if (m_bSession.undefined())
@@ -434,7 +480,7 @@ namespace acme
 
 #ifdef WINDOWS_DESKTOP
 
-         m_pathModule = ::get_module_path((HMODULE)::acme::acme::g_pacme->m_psubsystem->m_hinstanceThis);
+         m_pathModule = ::get_module_path((HMODULE)::acme::acme::g_pacme->m_pplatform->m_hinstanceThis);
 
 #elif defined(ANDROID)
 

@@ -901,7 +901,14 @@ class acme_path;
 class acme_directory;
 
 
-class sub_system;
+namespace platform
+{
+   
+   
+   class platform;
+
+
+} // namespace platform
 
 
 class dir_context;

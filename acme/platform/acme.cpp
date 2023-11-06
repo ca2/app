@@ -2,7 +2,7 @@
 #include "acme.h"
 #include "system.h"
 #include "library.h"
-#include "sub_system.h"
+#include "platform.h"
 #include "acme/memory/counter.h"
 #include "acme/parallelization/mutex.h"
 #include "acme/platform/_synchronization.h"
@@ -211,10 +211,18 @@ namespace acme
    acme::acme()
    {
 
+      m_bConsole = false;
       g_pacme = this;
       m_pacmeapplication = nullptr;
       m_pmemorycounter = nullptr;
       m_bOutputDebugString = true;
+
+      initialize_memory_counter();
+
+      acme_construct();
+
+      ::__raw_construct_new(m_pplatform);
+
 
    }
 
@@ -222,32 +230,30 @@ namespace acme
    acme::~acme()
    {
 
-      
-   }
+      m_pacmeapplication.release();
 
-
-   void acme::acme_initialize()
-   {
-
-      initialize_memory_counter();
-
-      acme_construct();
-
-      ::__raw_construct_new(m_psubsystem);
-
-   }
-     
-
-   void acme::acme_finalize()
-   {
-
-      m_psubsystem.release();
+      m_pplatform.release();
 
       acme_destruct();
 
       finalize_memory_counter();
 
+      
    }
+
+
+   //void acme::acme_initialize()
+   //{
+
+
+   //}
+   //  
+
+   //void acme::acme_finalize()
+   //{
+
+
+   //}
 
 
 #if defined(WINDOWS)  && defined(UNICODE)
@@ -256,18 +262,18 @@ namespace acme
    void acme::initialize(int argc, wchar_t* argv[], wchar_t* envp[])
    {
 
-      m_psubsystem->m_argc = argc;
-      m_psubsystem->m_wargv = argv;
-      m_psubsystem->m_wenvp = envp;
+      m_pplatform->m_argc = argc;
+      m_pplatform->m_wargv = argv;
+      m_pplatform->m_wenvp = envp;
 
    }
 
    void acme::initialize(HINSTANCE hinstanceThis, HINSTANCE hinstancePrev, CHAR* pCmdLine, int nCmdShow)
    {
 
-      m_psubsystem->m_hinstanceThis = hinstanceThis;
-      m_psubsystem->m_hinstancePrev = hinstancePrev;
-      m_psubsystem->m_nCmdShow = nCmdShow;
+      m_pplatform->m_hinstanceThis = hinstanceThis;
+      m_pplatform->m_hinstancePrev = hinstancePrev;
+      m_pplatform->m_nCmdShow = nCmdShow;
 
    }
 
@@ -277,9 +283,9 @@ namespace acme
    void acme::initialize(int argc, platform_char** argv, platform_char** envp)
    {
 
-      m_psubsystem->m_argc = argc;
-      m_psubsystem->m_argv = argv;
-      m_psubsystem->m_envp = envp;
+      m_pplatform->m_argc = argc;
+      m_pplatform->m_argv = argv;
+      m_pplatform->m_envp = envp;
 
    }
 #endif

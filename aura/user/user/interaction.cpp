@@ -2396,7 +2396,9 @@ namespace user
 
          }
 
-         pprimitiveimplNew->create_host(this, e_parallelization_synchronous);
+         //pprimitiveimplNew->create_host(this, e_parallelization_synchronous);
+
+         pprimitiveimplNew->create_host(this);
 
          on_after_set_parent();
 
@@ -4722,6 +4724,13 @@ namespace user
    {
 
       if (!pgraphics->m_pgraphicsgraphics->is_single_buffer_mode())
+      {
+
+         return;
+
+      }
+
+      if (acmesystem()->m_paurasystem->draw2d()->graphics_context_does_full_redraw())
       {
 
          return;
@@ -9038,7 +9047,7 @@ namespace user
    ::user::interaction * interaction::get_child_by_id(const atom & atom, index iItem, i32 iLevel)
    {
 
-      synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
+      synchronous_lock synchronouslock(m_pwindow ? m_pwindow->m_pparticleChildrenSynchronization : nullptr);
 
       auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
 
@@ -9868,7 +9877,8 @@ namespace user
    //}
 
 
-   void interaction::create_host(enum_parallelization eparallelization)
+   //void interaction::create_host(enum_parallelization eparallelization)
+   void interaction::create_host()
    {
 
       information() << "interaction::create_host(1)";
@@ -9973,7 +9983,9 @@ namespace user
               //pusersystem->m_createstruct.hwndParent = ::is_set(puserinteractionParent) ? puserinteractionParent->get_safe_handle() : nullptr;
 
 
-      pprimitiveimplNew->create_host(this, eparallelization);
+      //pprimitiveimplNew->create_host(this, eparallelization);
+      // 
+      pprimitiveimplNew->create_host(this);
       //if (!pprimitiveimplNew->create_host(this))
       //{
 
@@ -10280,31 +10292,31 @@ namespace user
          create_interaction(puserinteractionParent, atom);
 
       }
-      else
-      {
+      //else
+      //{
 
-         if (m_atom != atom)
-         {
+      //   if (m_atom != atom)
+      //   {
 
-            m_atom = atom;
+      //      m_atom = atom;
 
-         }
+      //   }
 
-         if (get_parent() != puserinteractionParent)
-         {
+      //   if (get_parent() != puserinteractionParent)
+      //   {
 
-            set_parent(puserinteractionParent);
+      //      set_parent(puserinteractionParent);
 
-         }
+      //   }
 
-         if(m_procedureOnAfterCreate)
-         {
+      //   if(m_procedureOnAfterCreate)
+      //   {
 
-            m_procedureOnAfterCreate();
+      //      m_procedureOnAfterCreate();
 
-         }
+      //   }
 
-      }
+      //}
 
    }
 
@@ -18866,6 +18878,13 @@ namespace user
       if (!bWindowVisible || dOccludedOpaqueRate > 0.025 || bIconic)
       {
 
+         if (!has_graphical_output_purpose())
+         {
+
+            add_graphical_output_purpose(this, ::graphics::e_output_purpose_screen);
+
+         }
+
          if (bDisplayPreviousOnRestore)
          {
 
@@ -25492,6 +25511,8 @@ namespace user
 
    void interaction::_001OnNcPostDraw(::draw2d::graphics_pointer & pgraphics)
    {
+
+      //return;
 
       if (m_flagNonClient.has(e_non_client_focus_rect) && keyboard_focus_is_focusable())
       {

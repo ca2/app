@@ -15,6 +15,16 @@
 #include "acme/primitive/primitive/e_flag.h"
 
 
+namespace platform
+{
+
+   
+   class platform;
+
+
+} // namespace platform
+
+
 class tracer;
 
 class extended_topic;
@@ -155,7 +165,7 @@ public:
    ::acme::context* acmecontext();
    ::apex::context* apexcontext();
    ::aura::context* auracontext();
-   ::sub_system * subsystem();
+   ::platform::platform * platform();
    ::datetime::datetime * datetime();
    ::url::url * url();
    ::crypto::crypto * crypto();

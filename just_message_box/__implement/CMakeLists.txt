@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.16)
 project(_app_just_message_box CXX)
 
 
-add_executable(${PROJECT_NAME} application.cpp)
+add_executable(${PROJECT_NAME} application_main.cpp)
 
 
 list(APPEND executable_references

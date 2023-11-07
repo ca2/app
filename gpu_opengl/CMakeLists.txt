@@ -8,8 +8,8 @@ list(APPEND library_source
         _factory.cpp
         assimp.cpp
         assimp.h
-        buffer.cpp
-        buffer.h
+        cpu_buffer.cpp
+        cpu_buffer.h
         context.cpp
         context.h
         framework.cpp

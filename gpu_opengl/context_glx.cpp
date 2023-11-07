@@ -170,7 +170,7 @@ namespace opengl
 
       //estatus =
       //
-      popengl->defer_init_glew();
+      popengl->defer_init_gpu_library();
 
 //      if (!estatus)
 //      {

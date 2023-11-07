@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.16)
 project(_app_shader CXX)
 
 
-add_executable(${PROJECT_NAME} application.cpp)
+add_executable(${PROJECT_NAME} application_main.cpp)
 
 
 list(APPEND executable_references

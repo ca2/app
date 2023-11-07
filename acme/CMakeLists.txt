@@ -437,8 +437,8 @@ list(APPEND library_source
    platform/serial.cpp
    platform/session.cpp
    platform/session.h
-   platform/sub_system.cpp
-   platform/sub_system.h
+   platform/platform.cpp
+   platform/platform.h
    platform/system.cpp
    platform/system_setup.cpp
    platform/system_setup.h

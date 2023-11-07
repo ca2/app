@@ -3,7 +3,7 @@ project(_app_integration CXX)
 
 
 
-add_executable(${PROJECT_NAME} application.cpp)
+add_executable(${PROJECT_NAME} application_main.cpp)
 
 
 if(${LINUX} OR ${FREEBSD})

@@ -101,14 +101,16 @@ list(APPEND library_source
    graphics/gpu/_.h
    graphics/gpu/approach.cpp
    graphics/gpu/approach.h
-   graphics/gpu/buffer.cpp
-   graphics/gpu/buffer.h
+   graphics/gpu/cpu_buffer.cpp
+   graphics/gpu/cpu_buffer.h
    graphics/gpu/context.cpp
    graphics/gpu/context.h
    graphics/gpu/object.cpp
    graphics/gpu/object.h
    graphics/gpu/program.cpp
    graphics/gpu/program.h
+   graphics/gpu/render.cpp
+   graphics/gpu/render.h
    graphics/gpu/shader.cpp
    graphics/gpu/shader.h
    #graphics/graphics/asset/control_box_button.cpp

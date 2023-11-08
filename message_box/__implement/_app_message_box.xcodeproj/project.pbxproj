@@ -31,6 +31,7 @@
 		9A8F4DBF2A26D5C800097EE1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9A8F4D922A26D5C600097EE1 /* InfoPlist.strings */; };
 		9A8F4DC02A26D5C800097EE1 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A8F4D942A26D5C600097EE1 /* MainMenu.xib */; };
 		9A8F4DC12A26D5C800097EE1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A8F4D962A26D5C600097EE1 /* Images.xcassets */; };
+		9A9A158D2AFC23B900FA9BEB /* libdarwin.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A9A158B2AFC23B800FA9BEB /* libdarwin.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9AB15BD829A8796500DFDF90 /* libacme_darwin.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AB15BD429A8796500DFDF90 /* libacme_darwin.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9AB15BDA29A8796600DFDF90 /* libapex_darwin.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AB15BD529A8796500DFDF90 /* libapex_darwin.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9AB15BDC29A8796600DFDF90 /* libaura_darwin.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AB15BD629A8796500DFDF90 /* libaura_darwin.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -159,6 +160,13 @@
 			remoteGlobalIDString = 078C35451921758600354453;
 			remoteInfo = ios_simple_drawing_simple_drawingTests;
 		};
+		9A9A15852AFC239100FA9BEB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AC01D672748C46A006BEBCC /* crypto_openssl.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9AC97ECF2A71B2A700B1BCF3;
+			remoteInfo = static_crypto_openssl;
+		};
 		9AB3DE7C278385AD0025099F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9A46D36726785A9C000B22D0 /* app_message_box.xcodeproj */;
@@ -228,6 +236,7 @@
 				9A46D37F26785B51000B22D0 /* libacme_apple.dylib in Embed Libraries */,
 				9A46D39826785B84000B22D0 /* libaura_apple.dylib in Embed Libraries */,
 				9A46D38E26785B63000B22D0 /* libaqua.dylib in Embed Libraries */,
+				9A9A158D2AFC23B900FA9BEB /* libdarwin.dylib in Embed Libraries */,
 				9A46D39626785B84000B22D0 /* libaura.dylib in Embed Libraries */,
 				9A46D3A026785B85000B22D0 /* libidn.dylib in Embed Libraries */,
 			);
@@ -286,6 +295,7 @@
 		9A8F4DB32A26D5C700097EE1 /* application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = application.cpp; sourceTree = "<group>"; };
 		9A8F4DB42A26D5C700097EE1 /* shared_app_message_box.vcxproj.user */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = shared_app_message_box.vcxproj.user; sourceTree = "<group>"; };
 		9A8F4DBB2A26D5C700097EE1 /* _____debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "_____debug.xcconfig"; path = "../_____debug.xcconfig"; sourceTree = "<group>"; };
+		9A9A158B2AFC23B800FA9BEB /* libdarwin.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libdarwin.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AB15BD429A8796500DFDF90 /* libacme_darwin.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme_darwin.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AB15BD529A8796500DFDF90 /* libapex_darwin.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libapex_darwin.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AB15BD629A8796500DFDF90 /* libaura_darwin.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaura_darwin.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -484,6 +494,7 @@
 			children = (
 				9AC01D6C2748C46A006BEBCC /* libcrypto_openssl.dylib */,
 				9A1FB53C28713D320042849A /* libios_crypto_openssl.a */,
+				9A9A15862AFC239100FA9BEB /* libstatic_crypto_openssl.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -508,6 +519,7 @@
 		9ADF1D2922C16DBB00456537 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9A9A158B2AFC23B800FA9BEB /* libdarwin.dylib */,
 				9AB15BD429A8796500DFDF90 /* libacme_darwin.dylib */,
 				9AB15BD529A8796500DFDF90 /* libapex_darwin.dylib */,
 				9AB15BD629A8796500DFDF90 /* libaura_darwin.dylib */,
@@ -736,6 +748,13 @@
 			fileType = wrapper.cfbundle;
 			path = ios_simple_drawing_simple_drawingTests.xctest;
 			remoteRef = 9A8F4DB92A26D5C700097EE1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9A9A15862AFC239100FA9BEB /* libstatic_crypto_openssl.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libstatic_crypto_openssl.dylib;
+			remoteRef = 9A9A15852AFC239100FA9BEB /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		9AC01D6C2748C46A006BEBCC /* libcrypto_openssl.dylib */ = {

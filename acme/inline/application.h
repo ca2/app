@@ -125,7 +125,7 @@ int main(int argc, char * argv[], char * envp[])
 
 //   acme::acme acme;
 //
-//   auto psubsystem = __new(subsystem);
+//   auto pplatform = __new(subsystem);
 //
 //   auto pmainhold = __new(main_hold);
 

@@ -299,10 +299,25 @@ void api::_api_get(::string & strNetworkPayload, const ::scoped_string & scopeds
       _api_get(str, scopedstrUrl, set);
 
       ::payload payload;
+      
+      bool bOk = false;
+      
+      try 
+      {
+         
+         payload.parse_network_payload(str);
+         
+         bOk = true;
+         
+      } 
+      catch (...)
+      {
+         
+         bOk = false;
+         
+      }
 
-      payload.parse_network_payload(str);
-
-      if (is_api_get_ok(scopedstrUrl, str, payload, set))
+      if (bOk && is_api_get_ok(scopedstrUrl, str, payload, set))
       {
 
          return payload;

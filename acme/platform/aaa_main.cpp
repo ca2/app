@@ -393,7 +393,7 @@ extern thread_local ::task_pointer t_pthread;
 //
 //      common_construct();
 //
-//      m_psubsystem = __new(::sub_system(this));
+//      m_pplatform = __new(::sub_system(this));
 //
 //   }
 

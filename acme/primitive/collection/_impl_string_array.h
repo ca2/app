@@ -4,6 +4,8 @@
 #pragma once
 
 
+#include "acme/primitive/string/c/ancient/_c.h"
+
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 template < typename PRED >
@@ -3940,7 +3942,7 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
       else
       {
 
-         psz = strdup(element_at(i));
+         psz = libc_strdup(element_at(i));
 
       }
 

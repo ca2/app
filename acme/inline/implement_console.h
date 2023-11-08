@@ -110,7 +110,7 @@ int main(int argc, char ** argv, char ** envp)
 
 //   //sub_system subsystem(&acme);
 //
-//   //acme.m_psubsystem = &subsystem;
+//   //acme.m_pplatform = &subsystem;
 //
 //   //subsystem.m_pacme = &acme;
 //   subsystem.m_argc = argc;

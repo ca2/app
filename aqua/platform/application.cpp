@@ -70,7 +70,7 @@ namespace aqua
    //void application::on_initialize_application(::main* pmain)
    //{
 
-   //   pmain->m_psubsystem->factory()->add_factory_item< ::aqua::system, ::acme::system >();
+   //   pmain->m_pplatform->factory()->add_factory_item< ::aqua::system, ::acme::system >();
 
    //}
 

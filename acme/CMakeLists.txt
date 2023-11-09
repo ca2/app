@@ -1930,6 +1930,7 @@ endif ()
 if(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
 
    if(${WAYLAND})
+list(APPEND library_source
       operating_system/wayland/nano/_nano.cpp
       operating_system/wayland/nano/_.h
       operating_system/wayland/nano/display.cpp
@@ -1951,7 +1952,7 @@ if(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
       operating_system/wayland/wayland-xdg_wm_base.h
       operating_system/wayland/xfree86_key.h
       operating_system/wayland/xkb_input.cpp
-      operating_system/wayland/xkb_input.h
+      operating_system/wayland/xkb_input.h)
    endif()
 
    list(APPEND library_source

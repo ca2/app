@@ -2490,8 +2490,12 @@ elseif(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
    #//target_compile_options\([A-Za-z0-9_)]+\s+PRIVATE\s+\$\{PKGCONFIG_CFLAGS\}\)
 
    #if(USE_PKGCONFIG)
+if(${WAYLAND})
+   list(APPEND extra_pkg_modules wayland-client wayland-server wayland-cursor)
+endif()
+
    list(APPEND extra_pkg_modules
-      xkbcommon x11 xrender xi xext libstartup-notification-1.0 wayland-client wayland-server wayland-cursor)
+      xkbcommon x11 xrender xi xext libstartup-notification-1.0)
    pkg_check_modules(PKGCONFIG cairo freetype2 libidn ${extra_pkg_modules})
    #endif()
    target_compile_options(${PROJECT_NAME} PRIVATE $<$<COMPILE_LANGUAGE:CXX>:-fpermissive  ${EXTRA_CXX_TARGET_COMPILER_OPTIONS}>)

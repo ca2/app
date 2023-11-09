@@ -2478,7 +2478,7 @@ if (MSVC)
    target_link_libraries(acme PRIVATE zlib dbghelp imagehlp dwmapi Setupapi Windowscodecs Winmm ws2_32 Crypt32 Normaliz version Secur32 gdiplus Shlwapi Imm32.lib)
 
 
-elseif (${LINUX} OR ${FREEBSD})
+elseif (${LINUX} OR ${FREEBSD} OR ${OPENBSD})
 
    target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
 

@@ -34,6 +34,16 @@ set(HAS_AUDIO_SYSTEM FALSE)
 set(CURL_NANO_HTTP FALSE)
 
 
+# In include(source/_.cmake) set variables like below
+#set(INCLUDE_DRAW2D_CAIRO TRUE)
+#set(INCLUDE_IMAGING_FREEIMAGE TRUE)
+#set(INCLUDE_AUDIO TRUE)
+include(source/_.cmake)
+
+
+include(operating_system/_.cmake)
+
+
 if(${PLATFORM_NAME} STREQUAL "freebsd")
    set(FREEBSD TRUE)
    set(OPENBSD FALSE)
@@ -70,18 +80,6 @@ else()
    set(LINUX FALSE)
    set(DISTRO "(NotApplicable)")
 endif()
-
-
-# In include(source/_.cmake) set variables like below
-#set(INCLUDE_DRAW2D_CAIRO TRUE)
-#set(INCLUDE_IMAGING_FREEIMAGE TRUE)
-#set(INCLUDE_AUDIO TRUE)
-include(source/_.cmake)
-
-
-include(operating_system/_.cmake)
-
-
 
 
 add_subdirectory(source/app)

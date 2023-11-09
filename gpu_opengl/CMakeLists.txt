@@ -33,7 +33,7 @@ if (WIN32)
 endif ()
 
 
-if (${LINUX} OR ${FREEBSD})
+if(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
     list(APPEND library_source
             context_egl.cpp
             context_egl.h
@@ -63,7 +63,7 @@ list(APPEND library_references
         )
 
 
-if (${LINUX} OR ${FREEBSD})
+if(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
 
     list(APPEND library_references
             aura_posix
@@ -108,7 +108,7 @@ if (MSVC)
     target_link_libraries(gpu_opengl PRIVATE ${library_references})
 
 
-elseif (${LINUX} OR ${FREEBSD})
+elseif(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
 
    target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
 

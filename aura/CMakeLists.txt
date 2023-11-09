@@ -1357,7 +1357,7 @@ if (MSVC)
    target_link_options(aura PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/aura.lib")
    target_link_options(aura PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/aura.def")
    target_link_libraries(aura PRIVATE acme apex aqua zlib libcrypto libssl dwrite d2d1 d3d11 dxgi Dxva2 dbghelp imagehlp dwmapi Setupapi Windowscodecs Winmm ws2_32 Crypt32 Normaliz version Secur32 gdiplus Shlwapi Imm32)
-elseif (${LINUX} OR ${FREEBSD})
+elseif(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
 
    target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
 

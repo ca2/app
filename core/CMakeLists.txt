@@ -1031,7 +1031,7 @@ if (MSVC)
    target_link_libraries(core PRIVATE ${library_references})
 
 
-elseif (${LINUX} OR ${FREEBSD})
+elseif(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
 
    target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
 

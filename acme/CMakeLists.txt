@@ -1927,7 +1927,7 @@ if (${CURL_NANO_HTTP})
 endif ()
 
 
-if (${LINUX} OR ${FREEBSD})
+if(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
 
    list(APPEND library_source
       operating_system/cairo/nano/_nano.cpp
@@ -2431,7 +2431,7 @@ if (LINUX OR APPLE OR SOLARIS OR FREEBSD)
 endif ()
 
 
-if (${LINUX} OR ${FREEBSD})
+if(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
 
 
    list(APPEND library_source
@@ -2442,7 +2442,7 @@ if (${LINUX} OR ${FREEBSD})
 endif ()
 
 
-if (${LINUX} OR ${FREEBSD})
+if(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
 
 
    list(APPEND library_source
@@ -2478,7 +2478,7 @@ if (MSVC)
    target_link_libraries(acme PRIVATE zlib dbghelp imagehlp dwmapi Setupapi Windowscodecs Winmm ws2_32 Crypt32 Normaliz version Secur32 gdiplus Shlwapi Imm32.lib)
 
 
-elseif (${LINUX} OR ${FREEBSD} OR ${OPENBSD})
+elseif(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
 
    target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
 

@@ -44,7 +44,7 @@ if (MSVC)
     target_link_libraries(api_ca2 PRIVATE ws2_32 winmm shlwapi)
 
 
-elseif(${LINUX} OR ${FREEBSD})
+elseif(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
 
 
     target_compile_options(api_ca2 PRIVATE $<$<COMPILE_LANGUAGE:CXX>:-fpermissive  ${EXTRA_CXX_TARGET_COMPILER_OPTIONS}>)

@@ -4,7 +4,7 @@
 #include "acme/user/nano/display.h"
 #include "acme/platform/acme.h"
 #include "acme/platform/node.h"
-#include "acme/platform/sub_system.h"
+#include "acme/platform/platform.h"
 #include "acme/platform/system.h"
 
 

@@ -773,12 +773,12 @@ class tracer * particle::tracer() const
       if (::is_set(pacme))
       {
 
-         auto psubsystem = pacme->m_pplatform;
+         auto pplatform = pacme->m_pplatform;
 
-         if (::is_set(psubsystem))
+         if (::is_set(pplatform))
          {
 
-            auto pcontext = psubsystem->m_pcontext;
+            auto pcontext = pplatform->m_pcontext;
 
             if (::is_set(pcontext))
             {

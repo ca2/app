@@ -76,7 +76,7 @@ namespace acme
       /*   if (g_p == this)
          {
 
-            m_pmain->m_psubsystem.release();
+            m_pmain->m_pplatform.release();
 
             ::acme::del(m_pmain);
 

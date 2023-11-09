@@ -119,6 +119,8 @@ void dir_system::init_system()
    //}
 
    ::string strAppId = acmedirectory()->appid();
+   
+   information() << "dir_system::init_system strAppId : " << strAppId;
 
    m_pathDefaultAppData = compute_default_app_data_path();
 
@@ -146,11 +148,11 @@ void dir_system::init_system()
    //if (strAppFolder.is_empty())
    //{
 
-      strAppFolder = _002Underscore(acmeapplication()->m_strAppId);
+      //strAppFolder = _002Underscore(acmeapplication()->m_strAppId);
 
    //}
 
-   //m_pathDefaultAppData /= strAppFolder;
+   m_pathDefaultAppData /= strAppFolder;
 
    //m_strCa2DefaultAppData /= psystem->get_system_platform();
 
@@ -181,6 +183,8 @@ void dir_system::init_system()
       m_pathAppData = m_pathDefaultAppData;
       
    }
+   
+   information() << "m_pathAppData : " << m_pathAppData;
 
 }
 

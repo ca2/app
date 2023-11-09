@@ -11,7 +11,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/node.h"
 #include "acme/platform/acme.h"
-#include "acme/platform/sub_system.h"
+#include "acme/platform/platform.h"
 #include "acme/platform/system.h"
 #include <execinfo.h>
 #include <cxxabi.h>

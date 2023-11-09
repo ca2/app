@@ -10,7 +10,9 @@
 #include "acme/primitive/string/str.h"
 #include <sys/wait.h>
 #include <unistd.h>
+#if !defined(OPENBSD)
 #include <wordexp.h>
+#endif
 #include <fcntl.h>
 
 

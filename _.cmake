@@ -75,9 +75,11 @@ endif()
 
 if(${PLATFORM_NAME} STREQUAL "linux")
    set(LINUX TRUE)
+   set(WAYLAND TRUE)
    add_compile_definitions(LINUX)
 else()
    set(LINUX FALSE)
+   set(WAYLAND FALSE)
    set(DISTRO "(NotApplicable)")
 endif()
 

@@ -1929,6 +1929,31 @@ endif ()
 
 if(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
 
+   if(${WAYLAND})
+      operating_system/wayland/nano/_nano.cpp
+      operating_system/wayland/nano/_.h
+      operating_system/wayland/nano/display.cpp
+      operating_system/wayland/nano/display.h
+      operating_system/wayland/nano/display_base.cpp
+      operating_system/wayland/nano/display_base.h
+      operating_system/wayland/nano/event_listener.h
+      operating_system/wayland/nano/window.h
+      operating_system/wayland/nano/window.cpp
+      operating_system/wayland/nano/window_base.cpp
+      operating_system/wayland/nano/window_base.h
+      operating_system/wayland/_.h
+      operating_system/wayland/_.cpp
+      operating_system/wayland/wayland-gtk_shell1.c
+      operating_system/wayland/wayland-gtk_shell1.h
+      operating_system/wayland/wayland-xdg_activation_v1.c
+      operating_system/wayland/wayland-xdg_activation_v1.h
+      operating_system/wayland/wayland-xdg_wm_base.c
+      operating_system/wayland/wayland-xdg_wm_base.h
+      operating_system/wayland/xfree86_key.h
+      operating_system/wayland/xkb_input.cpp
+      operating_system/wayland/xkb_input.h
+   endif()
+
    list(APPEND library_source
       operating_system/cairo/nano/_nano.cpp
       operating_system/cairo/nano/device.cpp
@@ -1955,28 +1980,6 @@ if(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
       operating_system/xcb/nano/window.cpp
       operating_system/xcb/_.h
       operating_system/xcb/_.cpp
-      operating_system/wayland/nano/_nano.cpp
-      operating_system/wayland/nano/_.h
-      operating_system/wayland/nano/display.cpp
-      operating_system/wayland/nano/display.h
-      operating_system/wayland/nano/display_base.cpp
-      operating_system/wayland/nano/display_base.h
-      operating_system/wayland/nano/event_listener.h
-      operating_system/wayland/nano/window.h
-      operating_system/wayland/nano/window.cpp
-      operating_system/wayland/nano/window_base.cpp
-      operating_system/wayland/nano/window_base.h
-      operating_system/wayland/_.h
-      operating_system/wayland/_.cpp
-      operating_system/wayland/wayland-gtk_shell1.c
-      operating_system/wayland/wayland-gtk_shell1.h
-      operating_system/wayland/wayland-xdg_activation_v1.c
-      operating_system/wayland/wayland-xdg_activation_v1.h
-      operating_system/wayland/wayland-xdg_wm_base.c
-      operating_system/wayland/wayland-xdg_wm_base.h
-      operating_system/wayland/xfree86_key.h
-      operating_system/wayland/xkb_input.cpp
-      operating_system/wayland/xkb_input.h
 
 
       )

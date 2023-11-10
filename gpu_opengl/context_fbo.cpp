@@ -87,9 +87,9 @@ namespace opengl
          (CGLPixelFormatAttribute) 0
       };
 
-      CGDirectDisplayID display = CGMainDisplayID();
+      //CGDirectDisplayID display = CGMainDisplayID();
 
-      auto displayMask= CGDisplayIDToOpenGLDisplayMask (display);
+      //auto displayMask= CGDisplayIDToOpenGLDisplayMask (display);
       
 //      AttribList[1] =(CGLPixelFormatAttribute)displayMask;
       

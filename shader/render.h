@@ -64,7 +64,7 @@ namespace app_shader
 
       virtual void _001OnDraw1Through3(::draw2d::graphics_pointer & pgraphics);
 
-      virtual void on_layout(::draw2d::graphics_pointer & pgraphics);
+      void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
       virtual void defer_load_fragment(const ::string & pszPath);
 

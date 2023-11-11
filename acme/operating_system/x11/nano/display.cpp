@@ -300,7 +300,7 @@ namespace x11
    display * display::get(::particle * pparticle, bool bBranch, Display * pdisplay)
    {
 
-      critical_section_lock lock(::acme::acme::g_pacme->globals_critical_section());
+      critical_section_lock lock(pparticle->platform()->globals_critical_section());
 
       if (g_p == nullptr)
       {

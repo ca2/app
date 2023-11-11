@@ -25,8 +25,11 @@ namespace hardware
 
 
       virtual void initialize_device_group(enum_device edevice, devices * pdevices);
+      virtual void finalize_device_group();
 
 
+      virtual void on_device_plugged();
+      virtual void on_device_unplugged();
       virtual void on_device_list_updated();
 
 

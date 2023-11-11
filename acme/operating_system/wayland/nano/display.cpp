@@ -355,7 +355,7 @@ namespace wayland
 //   display * display::get(::particle * pparticle, bool bBranch, ::wl_display * pwldisplay)
 //   {
 //
-//      critical_section_lock lock(::acme::acme::g_pacme->globals_critical_section());
+//      critical_section_lock lock(::platform::get()->globals_critical_section());
 //
 //      if (g_p == nullptr)
 //      {

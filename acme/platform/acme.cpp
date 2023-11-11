@@ -270,12 +270,12 @@ namespace acme
 #else
 
 
-   void acme::initialize(int argc, platform_char** argv, platform_char** envp)
+   void initialize(int argc, platform_char** argv, platform_char** envp)
    {
 
-      m_pplatform->m_argc = argc;
-      m_pplatform->m_argv = argv;
-      m_pplatform->m_envp = envp;
+      ::platform::get()->m_argc = argc;
+      ::platform::get()->m_argv = argv;
+      ::platform::get()->m_envp = envp;
 
    }
 #endif

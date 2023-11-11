@@ -88,7 +88,7 @@ int main(int argc, char * argv[], char * envp[])
 
    ::acme::acme acme;
 
-   //if (::acme::acme::g_pacme->m_pacmeapplication->has_finishing_flag())
+   //if (::platform::get()->m_pacmeapplication->has_finishing_flag())
    //{
 
    //   return ::acme::acme::g_pacme->m_pacmeapplication->m_iExitCode;
@@ -96,18 +96,22 @@ int main(int argc, char * argv[], char * envp[])
    //}
 
 #if defined(WINDOWS)
+
    ::acme::initialize(hinstanceThis, hinstancePrev, pCmdLine, nCmdShow);
+
 #else
+
    ::acme::initialize(argc, argv, envp);
+
 #endif
 
 #if defined(LINUX) || defined(FREEBSD) || defined(RASPBERRYPIOS)
 
-   acme.m_pplatform->set_resource_block(_binary__matter_zip_start, _binary__matter_zip_end);
+   ::platform::get()->set_resource_block(_binary__matter_zip_start, _binary__matter_zip_end);
 
 #elif defined(ANDROID)
 
-   acme.m_pplatform->set_resource_block(p1, p2);
+   ::platform::get()->set_resource_block(p1, p2);
 
 #endif
 

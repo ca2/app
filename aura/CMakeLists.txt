@@ -235,6 +235,8 @@ list(APPEND library_source
    graphics/write_text/write_text.h
    graphics/_.h
    graphics/_impl.h
+   hardware/device_group.cpp
+   hardware/device_group.h
    hardware/device_listener.cpp
    hardware/device_listener.h
    hardware/devices.cpp

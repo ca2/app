@@ -32,6 +32,14 @@ namespace hardware
    }
 
 
+   void device_group::finalize_device_group()
+   {
+
+
+      
+   }
+
+
    void device_group::on_device_list_updated()
    {
 
@@ -41,6 +49,35 @@ namespace hardware
       {
 
          pdevicelistener->on_device_nodes_changed();
+
+      }
+
+   }
+
+   void device_group::on_device_plugged()
+   {
+
+      m_pdevices->update_device_list(m_edevice);
+
+      for (auto & pdevicelistener : *this)
+      {
+
+         pdevicelistener->on_device_plugged(m_edevice);
+
+      }
+
+   }
+
+
+   void device_group::on_device_unplugged()
+   {
+
+      m_pdevices->update_device_list(m_edevice);
+
+      for (auto & pdevicelistener : *this)
+      {
+
+         pdevicelistener->on_device_unplugged(m_edevice);
 
       }
 

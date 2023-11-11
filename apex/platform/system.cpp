@@ -3990,9 +3990,9 @@ pacmedirectory->create("/ca2core");
 
          informationf(strParam);
 
-         auto psystem = system();
+         //auto psystem = system();
 
-         auto pnode = psystem->node();
+         auto pnode = node();
 
          pnode->call_async(shell, strParam, pathDir, e_display_default, false);
 

@@ -102,7 +102,7 @@ namespace user
 
       //string strTitle(pszTitle);
 
-      //auto psystem = acmesystem()->m_pbasesystem;
+      //auto psystem = system()->m_pbasesystem;
 
       //auto pxml = psystem->xml();
 

@@ -54,10 +54,10 @@ namespace networking
 
       m_psocketthread->m_strIp = "127.0.0.1";
 
-      if (acmeapplication()->m_papexapplication->m_strNetworkingApplicationHostname.has_char())
+      if (m_strHostname.has_char())
       {
 
-         m_psocketthread->m_strCat = "matter://certificate/" + acmeapplication()->m_papexapplication->m_strNetworkingApplicationHostname + ".cat";
+         m_psocketthread->m_strCat = "matter://certificate/" + m_strHostname + ".cat";
 
       }
 
@@ -118,9 +118,9 @@ namespace networking
    ::e_status application::on_html_response(::string & strHtml, const ::string& strUrl, const ::property_set& setPost)
    {
 
-      string strRequestScript = acmesystem()->url()->get_script(strUrl);
+      string strRequestScript = system()->url()->get_script(strUrl);
 
-      string strServer = acmesystem()->url()->get_server(strUrl);
+      string strServer = system()->url()->get_server(strUrl);
 
       if (strServer.is_empty())
       {
@@ -168,7 +168,7 @@ namespace networking
 
       }
 
-      auto psystem = acmesystem();
+      auto psystem = system();
 
       auto pdatetime = psystem->datetime();
 

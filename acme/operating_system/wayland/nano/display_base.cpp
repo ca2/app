@@ -877,7 +877,7 @@ namespace wayland
 //
 //           });
 
-                               //bool bBranch = !acmesession()->m_paurasession->user()->m_pdesktopenvironment->m_bUnhook;
+                               //bool bBranch = !session()->m_paurasession->user()->m_pdesktopenvironment->m_bUnhook;
 
 //      m_px11display->m_bUnhook = bUnhook;
 
@@ -1643,7 +1643,7 @@ namespace wayland
 
       synchronous_lock synchronouslock(this->synchronization());
 
-//      ::pointer < ::xkb_input::xkb_input > pxkbinput = acmesystem()->m_papexsystem->m_pinput;
+//      ::pointer < ::xkb_input::xkb_input > pxkbinput = system()->m_papexsystem->m_pinput;
 //
 //      if(pxkbinput)
 //      {

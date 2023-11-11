@@ -59,7 +59,7 @@ namespace windowing
    ::rectangle_i32 monitor::monitor_rectangle()
    {
 
-      auto psession = acmesession()->m_paurasession;
+      auto psession = session()->m_paurasession;
 
       auto pdesktopenvironment = psession->user()->m_pdesktopenvironment;
 
@@ -119,7 +119,7 @@ namespace windowing
 
       }
 
-      auto psession = acmesession()->m_paurasession;
+      auto psession = session()->m_paurasession;
 
       auto pdesktopenvironment = psession->user()->m_pdesktopenvironment;
 

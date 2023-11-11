@@ -1477,9 +1477,6 @@
     <ClCompile Include="user\user\scroll_base_x.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\fps_interest.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\user\run_application.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
@@ -1522,7 +1519,7 @@
     <ClCompile Include="graphics\gpu\approach.cpp">
       <Filter>Source Files\graphics\gpu</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\gpu\buffer.cpp">
+    <ClCompile Include="graphics\gpu\cpu_buffer.cpp">
       <Filter>Source Files\graphics\gpu</Filter>
     </ClCompile>
     <ClCompile Include="graphics\gpu\context.cpp">

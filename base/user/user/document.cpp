@@ -96,9 +96,9 @@ namespace user
    ::base::application* document::get_app()
    {
 
-      auto pacmeapplication = acmeapplication();
+      auto papplication = application();
 
-      return ::is_set(pacmeapplication) ? pacmeapplication->m_pbaseapplication : nullptr;
+      return ::is_set(papplication) ? papplication->m_pbaseapplication : nullptr;
 
    }
 
@@ -106,7 +106,7 @@ namespace user
    ::base::session* document::get_session()
    {
 
-      auto pacmesession = acmesession();
+      auto pacmesession = session();
 
       return ::is_set(pacmesession) ? pacmesession->m_pbasesession : nullptr;
 
@@ -116,7 +116,7 @@ namespace user
    ::base::system* document::get_system()
    {
 
-      auto pacmesystem = acmesystem();
+      auto pacmesystem = system();
 
       return ::is_set(pacmesystem) ? pacmesystem->m_pbasesystem : nullptr;
 
@@ -797,7 +797,7 @@ namespace user
       else if (payloadFile.cast < ::file::file>() != nullptr)
       {
 
-         auto psystem = acmesystem()->m_pbasesystem;
+         auto psystem = system()->m_pbasesystem;
 
          auto pdatetime = psystem->datetime();
 

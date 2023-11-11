@@ -43,7 +43,7 @@ namespace networking
    void email::prepare_headers()
    {
 
-      auto psystem = acmesystem();
+      auto psystem = system();
 
       auto pbase64 = psystem->base64();
 

@@ -189,7 +189,7 @@
 //
 //#ifdef ANDROID
 //
-//         strName = ::file::path(acmesystem()->m_pandroidinitdata->m_pszCacheDir) / "var/tmp" / strName;
+//         strName = ::file::path(system()->m_pandroidinitdata->m_pszCacheDir) / "var/tmp" / strName;
 //
 //#else
 //
@@ -205,7 +205,7 @@
 //
 //      }
 //
-//               auto psystem = acmesystem();
+//               auto psystem = system();
 //
 //         auto pacmedirectory = psystem->m_pacmedirectory;
 //
@@ -272,7 +272,7 @@
 //
 //#ifdef ANDROID
 //
-//         path = acmesystem()->m_pacmedirectory->system() / "tmp/ca2/lock/mutex" / string(pstrName);
+//         path = system()->m_pacmedirectory->system() / "tmp/ca2/lock/mutex" / string(pstrName);
 //
 //#else
 //
@@ -286,7 +286,7 @@
 //
 //#ifdef ANDROID
 //
-//         path =  acmesystem()->m_pacmedirectory->system() / "home/user/ca2/lock/mutex" / string(pstrName);
+//         path =  system()->m_pacmedirectory->system() / "home/user/ca2/lock/mutex" / string(pstrName);
 //
 //#elif defined __APPLE__
 //
@@ -307,7 +307,7 @@
 //
 //      path /= pstrName;
 //
-//      acmesystem()->m_pacmedirectory->create(path.folder());
+//      system()->m_pacmedirectory->create(path.folder());
 //
 //      m_iFd = open(path, O_RDWR | O_CREAT, S_IRWXU);
 //
@@ -365,7 +365,7 @@
 //
 //      path /= pstrName;
 //
-//               auto psystem = acmesystem();
+//               auto psystem = system();
 //
 //         auto pacmedirectory = psystem->m_pacmedirectory;
 //

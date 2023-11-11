@@ -481,7 +481,7 @@ namespace apex
 ////         try
 ////         {
 ////
-////                     auto psystem = acmesystem();
+////                     auto psystem = system();
 //
 ////         auto pacmedirectory = psystem->m_pacmedirectory;
 ////
@@ -550,7 +550,7 @@ namespace apex
 ////
 ////#if !defined(UNIVERSAL_WINDOWS)
 ////
-////         auto psystem = acmesystem()->m_papexsystem;
+////         auto psystem = system()->m_papexsystem;
 ////
 ////         if (is_debugger_attached() && !psystem->has_apex_application_factory())
 ////         {
@@ -664,7 +664,7 @@ namespace apex
    void log::process_init()
    {
 
-      //auto psystem = acmesystem()->m_papexsystem;
+      //auto psystem = system()->m_papexsystem;
 
       //if (is_debugger_attached() && !psystem->has_apex_application_factory())
       //{

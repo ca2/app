@@ -91,9 +91,7 @@ namespace aura
          if (strEncoding.case_insensitive_order("base64") == 0)
          {
 
-            auto psystem = acmesystem();
-
-            auto pbase64 = psystem->base64();
+            auto pbase64 = base64();
 
             index iBase64 = iEncoding + 1;
 
@@ -5030,7 +5028,7 @@ namespace user
 
       index iLineUpdate = -1;
 
-      auto psystem = acmesystem()->m_paurasystem;
+      auto psystem = system()->m_paurasystem;
 
       auto pdraw2d = psystem->draw2d();
 
@@ -5138,7 +5136,7 @@ namespace user
       if (_001ReplaceSel(pszText, bFullUpdate, iLineUpdate))
       {
 
-         auto psystem = acmesystem()->m_paurasystem;
+         auto psystem = system()->m_paurasystem;
 
          auto pdraw2d = psystem->draw2d();
 
@@ -7458,7 +7456,7 @@ namespace user
 
       plain_edit_undo();
 
-      auto psystem = acmesystem()->m_paurasystem;
+      auto psystem = system()->m_paurasystem;
 
       auto pdraw2d = psystem->draw2d();
 
@@ -7587,7 +7585,7 @@ namespace user
 
             m_base64map.erase_all();
 
-            auto psystem = acmesystem()->m_paurasystem;
+            auto psystem = system()->m_paurasystem;
 
             psystem->_001AddPacks(m_base64map, str);
 
@@ -8305,7 +8303,7 @@ namespace user
 
       on_before_change_text();
 
-      auto psystem = acmesystem()->m_paurasystem;
+      auto psystem = system()->m_paurasystem;
 
       psystem->_001AddPacks(m_base64map, strText);
 
@@ -8585,7 +8583,7 @@ namespace user
          if (iHint == id_set_file)
          {
 
-            auto psystem = acmesystem()->m_paurasystem;
+            auto psystem = system()->m_paurasystem;
 
             auto pdraw2d = psystem->draw2d();
 

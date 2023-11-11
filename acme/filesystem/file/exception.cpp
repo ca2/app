@@ -190,7 +190,7 @@ namespace file
       //
       //               if( OpenedFileInfo.dwPID == 4 )// system process
       //               {
-      //                  stInfo.csProcess = L"acmesystem()";
+      //                  stInfo.csProcess = L"system()";
       //               }
       //               else
       //               {

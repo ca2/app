@@ -73,7 +73,7 @@ extern char * g_pszDemangle;
 #endif
 
 
-//extern ::pointer< ::mutex > acmesystem()->g_mutexLibrary;
+//extern ::pointer< ::mutex > system()->g_mutexLibrary;
 
 //extern __LPFN_MAIN_DEFERRED_RUN g_main_deferred_run;
 
@@ -422,7 +422,7 @@ extern thread_local ::task_pointer t_pthread;
 
 
 
-   //::critical_section acmesystem()->g_mutexLibrary;
+   //::critical_section system()->g_mutexLibrary;
 
    //__LPFN_MAIN_DEFERRED_RUN g_main_deferred_run;
 
@@ -1251,7 +1251,7 @@ extern thread_local ::task_pointer t_pthread;
       //try
       //{
 
-      //   synchronous_lock synchronouslock(acmesystem()->g_mutexLibrary);
+      //   synchronous_lock synchronouslock(system()->g_mutexLibrary);
 
       //   g_pmapLibCall->erase_all();
 
@@ -1265,9 +1265,9 @@ extern thread_local ::task_pointer t_pthread;
       //try
       //{
 
-      //   synchronous_lock synchronouslock(acmesystem()->g_mutexLibrary);
+      //   synchronous_lock synchronouslock(system()->g_mutexLibrary);
 
-      //   acmesystem()->g_mapLibrary.erase_all();
+      //   system()->g_mapLibrary.erase_all();
 
       //}
       //catch (...)

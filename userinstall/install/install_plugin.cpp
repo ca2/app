@@ -56,12 +56,12 @@ namespace install
 
 #endif
 
-      if(acmefile()->exists(         auto psystem = acmesystem();
+      if(acmefile()->exists(         auto psystem = system();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
 pacmedirectory->system() / "config\\plugin\\version.txt"))
-         strVersion = acmefile()->as_string(         auto psystem = acmesystem();
+         strVersion = acmefile()->as_string(         auto psystem = system();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 

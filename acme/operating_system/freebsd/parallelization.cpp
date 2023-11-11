@@ -194,7 +194,7 @@ _semtimedop(int semid, struct sembuf *array, size_t nops, struct
 }
 
 
-CLASS_DECL_ACME ::acme::system * acmesystem();
+CLASS_DECL_ACME ::acme::system * system();
 
 
 void main_asynchronous(const ::procedure & procedure)
@@ -216,7 +216,7 @@ void main_asynchronous(const ::procedure & procedure)
 
     };
 
-    ::acme::acme::g_pacme->m_pplatform->acmesystem()->windowing_post(predicate);
+    ::platform::get()->system()->windowing_post(predicate);
 
 }
 

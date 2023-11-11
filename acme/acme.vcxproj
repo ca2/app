@@ -1232,6 +1232,7 @@
     <ClCompile Include="primitive\string\c\ancient\ansi_impl.cpp" />
     <ClCompile Include="primitive\string\c\ancient\wd16_impl.cpp" />
     <ClCompile Include="primitive\string\c\ancient\wd32_impl.cpp" />
+    <ClCompile Include="primitive\string\c\ancient\_c.cpp" />
     <ClCompile Include="primitive\string\c\coupling_impl.cpp" />
     <ClCompile Include="primitive\string\c\extension\ansi_impl.cpp" />
     <ClCompile Include="primitive\string\c\extension\wd16_impl.cpp" />

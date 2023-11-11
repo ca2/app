@@ -35,7 +35,7 @@ void operating_system_initialize_nano(::factory::factory * pfactory)
 
    auto edesktop = get_edesktop();
 
-   auto psystem = pfactory->acmesystem();
+   auto psystem = pfactory->system();
 
    if(psystem->node()->is_wayland())
    {

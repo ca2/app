@@ -25,7 +25,7 @@ typedef ::acme::system * aura_system_ptr;
 struct plane_system
 {
    
-   aura_system_ptr    acmesystem();
+   aura_system_ptr    system();
    
    plane_system();
    

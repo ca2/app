@@ -519,7 +519,7 @@ bool dir_context::_enumerate(::file::listing& listing)
    else if (task_flag().is_set(e_task_flag_compress_is_dir) && (listing.m_pathFinal.case_insensitive_ends(".zip") || ::str::find_file_extension("zip:", listing.m_pathFinal) >= 0))
    {
 
-      auto& pfactory = acmesystem()->folder_factory();
+      auto& pfactory = system()->folder_factory();
 
       if (!pfactory)
       {
@@ -597,7 +597,7 @@ bool dir_context::_enumerate(::file::listing& listing)
 //   else if (::task_flag().is_set(e_task_flag_compress_is_dir) && (string_ends_ci(listing.m_pathUser, ".zip") || ::str::find_file_extension("zip:", listing.m_pathUser) >= 0))
 //   {
 //
-//      auto & pfactory = acmesystem()->folder_factory();
+//      auto & pfactory = system()->folder_factory();
 //
 //      if (!pfactory)
 //      {
@@ -900,7 +900,7 @@ bool dir_context::is_cached(bool& bIs, const ::file::path& path)
   //    bHasSubFolder = zip.has_sub_folder(path);
 
 
-      auto& pfactory = acmesystem()->folder_factory();
+      auto& pfactory = system()->folder_factory();
 
       if (!pfactory)
       {
@@ -1008,7 +1008,7 @@ bool dir_context::is(const ::file::path& pathParam)
 
    ::file::path path;
 
-   auto psystem = acmesystem()->m_papexsystem;
+   auto psystem = system()->m_papexsystem;
 
    if (pathParam.case_insensitive_begins("appmatter://"))
    {
@@ -1098,7 +1098,7 @@ bool dir_context::__is(const ::file::path& path, bool& bDir)
 
       bool bHasSubFolder;
 
-      auto& pfactory = acmesystem()->folder_factory();
+      auto& pfactory = system()->folder_factory();
 
       if (!pfactory)
       {
@@ -1172,7 +1172,7 @@ bool dir_context::name_is(const ::file::path& strPath)
    {
       bool bHasSubFolder;
 
-      auto& pfactory = acmesystem()->folder_factory();
+      auto& pfactory = system()->folder_factory();
 
       if (!pfactory)
       {
@@ -1670,7 +1670,7 @@ bool dir_context::name_is(const ::file::path& strPath)
 
    synchronous_lock synchronouslock(this->synchronization());
 
-   auto psystem = acmesystem()->m_papexsystem;
+   auto psystem = system()->m_papexsystem;
 
    return psystem->m_pdirsystem->m_pathInstall;
 
@@ -1682,7 +1682,7 @@ bool dir_context::name_is(const ::file::path& strPath)
 
    synchronous_lock synchronouslock(this->synchronization());
 
-   auto psystem = acmesystem()->m_papexsystem;
+   auto psystem = system()->m_papexsystem;
 
    return psystem->m_pdirsystem->m_pathCa2Config;
 
@@ -1694,7 +1694,7 @@ bool dir_context::name_is(const ::file::path& strPath)
 
    synchronous_lock synchronouslock(this->synchronization());
 
-   auto psystem = acmesystem()->m_papexsystem;
+   auto psystem = system()->m_papexsystem;
 
    return psystem->m_pdirsystem->m_pathHome;
 
@@ -1718,9 +1718,9 @@ bool dir_context::name_is(const ::file::path& strPath)
 
    //synchronous_lock synchronouslock(this->synchronization());
 
-   auto pacmeapplication = acmeapplication();
+   auto papplication = application();
 
-   return pacmeapplication->get_module_folder();
+   return papplication->get_module_folder();
 
 }
 
@@ -1730,7 +1730,7 @@ bool dir_context::name_is(const ::file::path& strPath)
 //
 //   synchronous_lock synchronouslock(this->synchronization());
 //
-//   auto psystem = acmesystem()->m_papexsystem;
+//   auto psystem = system()->m_papexsystem;
 //
 //   return psystem->m_pdirsystem->m_pathCa2Module;
 //
@@ -1844,7 +1844,7 @@ void dir_context::get_matter_locator(string_array& straMatterLocator, bool bIncl
 bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& listing, ::file::e_flag eflag, enum_depth edepth)
 {
 
-   auto psystem = acmesystem()->m_papexsystem;
+   auto psystem = system()->m_papexsystem;
 
    synchronous_lock synchronouslock(psystem->m_pmutexMatter);
 
@@ -1911,7 +1911,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
          // todo: keep cache timeout information;
 
-         auto psystem = acmesystem();
+         auto psystem = system();
 
          auto purl = psystem->url();
 
@@ -1994,7 +1994,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 //
 //   ::file::path strDir = matter(str, true);
 //
-//   auto psystem = acmesystem()->m_papexsystem;
+//   auto psystem = system()->m_papexsystem;
 //
 //   if (psystem->m_pdirsystem->m_bMatterFromHttpCache)
 //   {
@@ -2091,7 +2091,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
    }
 
-   auto psystem = acmesystem()->m_papexsystem;
+   auto psystem = system()->m_papexsystem;
 
    if (psystem->m_pdirsystem->m_bMatterFromHttpCache)
    {
@@ -2173,10 +2173,10 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
    //::text::context * ptextcontext = nullptr;
 
-   //if (acmeapplication()->m_bSession)
+   //if (application()->m_bSession)
    //{
 
-   //   ptextcontext = acmesession()->text_context();
+   //   ptextcontext = session()->text_context();
 
    //}
 
@@ -2236,7 +2236,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
       string strCandidate = stra.implode("|");
 
-      auto psystem = acmesystem();
+      auto psystem = system();
 
       auto purl = psystem->url();
 
@@ -2537,7 +2537,7 @@ ret:
 
    }
 
-   auto psystem = acmesystem()->m_papexsystem;
+   auto psystem = system()->m_papexsystem;
 
    ::file::path path = psystem->local_get_matter_cache_path(
       ::file::path(strRepo) / "_matter" / strApp / "_std" / "_std" / pathRel);
@@ -2556,7 +2556,7 @@ ret:
 
    string strPlatform(scopedstrPlatform);
 
-   auto psystem = acmesystem()->m_papexsystem;
+   auto psystem = system()->m_papexsystem;
 
    if (strPlatform.is_empty())
    {
@@ -2597,7 +2597,7 @@ ret:
    if (strLocale.is_empty())
    {
 
-      strLocale = acmesession()->m_strLocale;
+      strLocale = session()->m_strLocale;
 
    }
 
@@ -2606,7 +2606,7 @@ ret:
    if (strSchema.is_empty())
    {
 
-      strSchema = acmesession()->m_strSchema;
+      strSchema = session()->m_strSchema;
 
    }
 
@@ -2635,7 +2635,7 @@ ret:
    if (strAppId.is_empty())
    {
 
-      strAppId = acmeapplication()->m_strAppId;
+      strAppId = application()->m_strAppId;
 
    }
 
@@ -2834,7 +2834,7 @@ bool dir_context::is_inside(const ::file::path& pszDir, const ::file::path& pszP
 ::file::watcher& dir_context::watcher()
 {
 
-   auto psystem = acmesystem()->m_papexsystem;
+   auto psystem = system()->m_papexsystem;
 
    return *psystem->m_pdirsystem->m_pfilewatcher;
 
@@ -3047,14 +3047,14 @@ bool dir_context::is_inside(const ::file::path& pszDir, const ::file::path& pszP
 ::file::path dir_context::dropbox_app()
 {
 
-   if (!acmesystem())
+   if (!system())
    {
 
-      throw ::exception(error_wrong_state, "acmesystem() is null");
+      throw ::exception(error_wrong_state, "system() is null");
 
    }
 
-   auto papplication = acmeapplication();
+   auto papplication = application();
 
    if (papplication)
    {
@@ -3080,7 +3080,7 @@ bool dir_context::is_inside(const ::file::path& pszDir, const ::file::path& pszP
 ::file::path dir_context::standalone()
 {
 
-   return acmedirectory()->roaming() / acmeapplication()->m_strStandalone;
+   return acmedirectory()->roaming() / application()->m_strStandalone;
 
 }
 

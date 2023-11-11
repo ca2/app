@@ -318,7 +318,7 @@ void memory_base::erase_offset()
 //   if (size() > 0)
 //   {
 //
-//      acmesystem()->math().random_bytes(data(), size());
+//      system()->math().random_bytes(data(), size());
 //
 //   }
 //

@@ -460,7 +460,7 @@ namespace sockets_bsd
       if(!skip_socks && addrSocks4.has_char() && GetSocks4Port())
       {
          
-         auto paddressSocks4 = acmesystem()->m_papexsystem->networking()->create_address(addrSocks4);
+         auto paddressSocks4 = system()->m_papexsystem->networking()->create_address(addrSocks4);
 
          ::pointer < ::networking_bsd::address > pnetworkingbsdaddressSocks4 = paddressSocks4;
 
@@ -563,7 +563,7 @@ namespace sockets_bsd
 
       SetCloseAndDelete(false);
 
-      auto pnetworking = acmesystem()->m_papexsystem->networking();
+      auto pnetworking = system()->m_papexsystem->networking();
 
       ::networking::address_pointer paddress;
 
@@ -2139,7 +2139,7 @@ namespace sockets_bsd
 
       string strId = m_strCat;
 
-      auto psystem = acmesystem()->m_papexsystem;
+      auto psystem = system()->m_papexsystem;
 
       if (strId.case_insensitive_begins("cat://"))
       {
@@ -2280,7 +2280,7 @@ namespace sockets_bsd
    void tcp_socket::InitializeContext(const string & context, const SSL_METHOD * pmethod)
    {
 
-      auto pnetworking2 = __SystemNetworking(acmesystem());
+      auto pnetworking2 = __SystemNetworking(system());
 
       ssl_client_context_map & clientcontextmap = pnetworking2->m_clientcontextmap;
 
@@ -2508,9 +2508,9 @@ namespace sockets_bsd
          synchronous_lock synchronouslock(this->synchronization());
          int i;
 
-         //auto psystem = acmesystem()->m_papexsystem;
+         //auto psystem = system()->m_papexsystem;
 
-         auto pnetworking2 = __SystemNetworking(acmesystem());
+         auto pnetworking2 = __SystemNetworking(system());
 
 
          int cnt = sizeof(pnetworking2->m_baTicketKey) / SSL_SESSION_TICKET_KEY_SIZE;

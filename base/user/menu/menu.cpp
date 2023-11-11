@@ -272,7 +272,7 @@ namespace user
    bool menu::load_xml_menu(const ::payload & payload)
    {
 
-      acmesystem()->m_paquasystem->_xml();
+      system()->m_paquasystem->_xml();
 
       auto pxmldocument = __create_new < ::xml::document >();
 
@@ -439,7 +439,7 @@ namespace user
 
       information() << "::user::menu::initialize_user_menu";
 
-      auto psystem = acmesystem()->m_paurasystem;
+      auto psystem = system()->m_paurasystem;
 
       auto pdraw2d = psystem->draw2d();
 
@@ -683,7 +683,7 @@ namespace user
 
             //   }
 
-            //   auto psystem = acmesystem()->m_paurasystem;
+            //   auto psystem = system()->m_paurasystem;
 
             //   auto pdraw2d = psystem->draw2d();
 
@@ -1874,7 +1874,7 @@ namespace user
 
          }
 
-         //auto psystem = acmesystem()->m_paurasystem;
+         //auto psystem = system()->m_paurasystem;
 
          //auto pdraw2d = psystem->draw2d();
 

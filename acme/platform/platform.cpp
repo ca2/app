@@ -4,6 +4,7 @@
 #include "acme.h"
 #include "simple_log.h"
 //#include "acme.h"
+#include "acme/memory/counter.h"
 #include "acme/parallelization/manual_reset_event.h"
 ////#include "acme/exception/exception.h"
 #include "acme/platform/context.h"
@@ -12,6 +13,7 @@
 #include "acme/platform/system.h"
 ////#include "acme/exception/exception.h"
 #include "acme/parallelization/task.h"
+#include "acme/_operating_system.h"
 //
 //
 //namespace acme
@@ -31,8 +33,19 @@ namespace platform
 {
 
 
+   ::platform::platform * platform::s_pplatform = nullptr;
+
+
    platform::platform()
    {
+
+      s_pplatform = this;
+
+      m_timeStart.Now();
+
+
+      initialize_memory_counter();
+
 
       // One of first time to set a main user thread
 
@@ -40,11 +53,28 @@ namespace platform
 
       factory_initialize();
 
+
+
+      m_bConsole = false;
+      //m_pacmeapplication = nullptr;
+      m_pmemorycounter = nullptr;
+      m_bOutputDebugString = true;
+
+#ifdef WINDOWS
+
+      ::platform::get()->m_strCommandLine = ::GetCommandLineW();
+
+#endif
+
    }
 
 
    platform::~platform()
    {
+
+      m_pacmeapplication.release();
+
+      delete_all_release_on_end();
 
       factory_terminate();
 
@@ -75,14 +105,46 @@ namespace platform
          for (auto & poperatingsystemlibrary : operatingsystemlibrarya)
          {
 
-            acmesystem()->operating_system_library_close(poperatingsystemlibrary);
+            system()->operating_system_library_close(poperatingsystemlibrary);
 
          }
 
       }
 
+      finalize_memory_counter();
+
+      s_pplatform = nullptr;
+
    }
 
+
+   void platform::initialize_memory_counter()
+   {
+
+      if (!m_pmemorycounter)
+      {
+
+         m_pmemorycounter = new ::memory_counter();
+
+      }
+
+   }
+
+
+   void platform::finalize_memory_counter()
+   {
+
+      ::acme::del(m_pmemorycounter);
+
+   }
+
+
+   ::memory_counter * platform::get_memory_counter()
+   {
+
+      return m_pmemorycounter;
+
+   }
 
 
 
@@ -568,7 +630,7 @@ namespace platform
 
          }
 
-         plibrary = acmesystem()->__create_new < ::acme::library >();
+         plibrary = system()->__create_new < ::acme::library >();
 
          plibrary->m_strName = strLibrary;
 
@@ -625,7 +687,7 @@ namespace platform
          if (pfnFactory)
          {
 
-            pfactory = acmesystem()->__create_new < ::factory::factory >();
+            pfactory = system()->__create_new < ::factory::factory >();
 
             pfnFactory(pfactory);
 
@@ -684,7 +746,7 @@ namespace platform
    ////
    ////      }
    ////
-   ////      plibrary = acmesystem()->__create_new < ::acme::library >();
+   ////      plibrary = system()->__create_new < ::acme::library >();
    ////
    ////      plibrary->m_strName = strLibrary;
    ////
@@ -713,7 +775,7 @@ namespace platform
    void platform::factory_terminate()
    {
 
-      critical_section_lock synchronouslock(::acme::acme::g_pacme->factory_critical_section());
+      critical_section_lock synchronouslock(factory_critical_section());
 
       m_pfactory->erase_all();
 
@@ -849,6 +911,40 @@ namespace platform
 
    }
 
+   
+   void platform::delete_all_release_on_end()
+   {
+
+      critical_section_lock criticalsectionlock(globals_critical_section());
+
+      //m_pelementaddraReleaseOnEnd->erase_all();
+
+     // ::acme::del(m_pelementaddraReleaseOnEnd);
+
+      //if (is_set(::acme::g_pelementaddraReleaseOnEnd))
+   //   {
+   //
+   //      for (auto pmatter : ::acme::g_elementaddraReleaseOnEnd)
+   //      {
+   //
+   //         ::acme::del(pmatter);
+   //
+   //      }
+   //
+   //      ::acme::del(::acme::g_pelementaddraReleaseOnEnd);
+   //
+   //   }
+
+   }
+
+   class ::time platform::start_nanosecond()
+   {
+
+      return m_timeStart;
+
+   }
+
+
 
 } // namespace platform
 
@@ -870,7 +966,7 @@ namespace platform
 CLASS_DECL_ACME::factory::factory * get_system_factory()
 {
 
-   return ::acme::acme::g_pacme->m_pplatform->m_pfactory;
+   return ::platform::get()->m_pfactory;
 
 }
 

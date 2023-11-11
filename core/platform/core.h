@@ -14,7 +14,7 @@ namespace core
 
       inline ::core::application* get_app() const;
       inline ::core::session* get_session() const;
-      inline ::core::system* acmesystem() const;
+      inline ::core::system* system() const;
       inline ::core::user* user() const;
 
 

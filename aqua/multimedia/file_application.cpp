@@ -45,7 +45,7 @@ namespace multimedia
       if (strPath.case_insensitive_begins("rtp://") || strPath.case_insensitive_begins("rtprx://"))
       {
 
-         auto psystem = acmesystem()->m_paquasystem;
+         auto psystem = system()->m_paquasystem;
 
          return psystem->audio()->get_rtp_file(strPath);
 

@@ -334,7 +334,7 @@ namespace account
 
          float fMargin = (height(rectangleX) * ((1.0f - 0.7f) / 2.0f));*/
 
-         //auto psystem = acmesystem()->m_paurasystem;
+         //auto psystem = system()->m_paurasystem;
 
          //auto pnode = psystem->node();
 
@@ -386,7 +386,7 @@ namespace account
 
             m_peditPassword->_001GetText(strText);
 
-            auto psystem = acmesystem()->m_paurasystem;
+            auto psystem = system()->m_paurasystem;
 
             strText = psystem->crypto()->nessie(strText);
 

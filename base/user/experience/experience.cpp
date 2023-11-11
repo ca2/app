@@ -23,9 +23,9 @@ namespace experience
    ::base::application * experience::get_app()
    {
 
-      auto pacmeapplication = acmeapplication();
+      auto papplication = application();
       
-      return ::is_set(pacmeapplication) ? pacmeapplication->m_pbaseapplication : nullptr;
+      return ::is_set(papplication) ? papplication->m_pbaseapplication : nullptr;
    
    }
 
@@ -33,7 +33,7 @@ namespace experience
    ::base::session * experience::get_session()
    {
       
-      auto pacmesession = acmesession();
+      auto pacmesession = session();
 
       return ::is_set(pacmesession) ? pacmesession->m_pbasesession : nullptr;
 
@@ -43,7 +43,7 @@ namespace experience
    ::base::system * experience::get_system()
    {
       
-      auto pacmesystem = acmesystem();
+      auto pacmesystem = system();
 
       return ::is_set(pacmesystem) ? pacmesystem->m_pbasesystem : nullptr;
 

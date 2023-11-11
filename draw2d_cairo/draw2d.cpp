@@ -921,7 +921,7 @@ namespace draw2d_cairo
 //
 //      string strSystemFonts = pcontext->m_papexcontext->file()->as_string("/system/etc/system_fonts.xml");
 //
-//            auto psystem = acmesystem()->m_paurasystem;
+//            auto psystem = system()->m_paurasystem;
 
       //auto pxml = psystem->xml();
 
@@ -1459,7 +1459,7 @@ namespace draw2d_cairo
 
       ::file::path path = pcontext->defer_process_path(pathFile);
 
-      auto pmemorypointer = acmesystem()->m_paurasystem->draw2d()->write_text()->get_file_memory(pcontext, path);
+      auto pmemorypointer = system()->m_paurasystem->draw2d()->write_text()->get_file_memory(pcontext, path);
 
       return private_ftface_from_memory(*pmemorypointer, pathFile);
 

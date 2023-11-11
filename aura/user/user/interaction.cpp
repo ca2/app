@@ -4506,7 +4506,7 @@ namespace user
       if (get_parent() == nullptr)
       {
 
-         if (acmeapplication()->m_bImaging)
+         if (application()->m_bImaging)
             //if (!window()->defer_set_icon())
          {
 
@@ -4730,7 +4730,7 @@ namespace user
 
       }
 
-      if (acmesystem()->m_paurasystem->draw2d()->graphics_context_does_full_redraw())
+      if (system()->m_paurasystem->draw2d()->graphics_context_does_full_redraw())
       {
 
          return;
@@ -7649,7 +7649,7 @@ namespace user
 
       //}
 
-      auto psystem = acmesystem()->m_paurasystem;
+      auto psystem = system()->m_paurasystem;
 
       auto psignal = psystem->get_signal(id_user_style_change);
 
@@ -10076,7 +10076,7 @@ namespace user
 
       }
 
-      if (::is_null(acmesystem()))
+      if (::is_null(system()))
       {
 
          initialize(puserinteractionParent);
@@ -12927,7 +12927,7 @@ namespace user
 
       }
 
-      //auto psession = acmesession()->m_paurasession;
+      //auto psession = session()->m_paurasession;
 
       //if (::is_set(psession))
       //{
@@ -16788,7 +16788,7 @@ namespace user
    ::draw2d::graphics_pointer interaction::create_memory_graphics()
    {
 
-      auto psystem = acmesystem()->m_paurasystem;
+      auto psystem = system()->m_paurasystem;
 
       auto pdraw2d = psystem->draw2d();
 
@@ -21853,7 +21853,7 @@ namespace user
       while (has_pending_redraw_flags())
       {
 
-         acmesystem()->do_events();
+         system()->do_events();
 
          sleep(5_ms);
 
@@ -27668,7 +27668,7 @@ namespace user
    //::aura::system * interactionacmesystem()
    //{
 
-   //   return acmesystem() ? acmesystem()->m_paurasystem : nullptr;
+   //   return system() ? system()->m_paurasystem : nullptr;
 
    //}
 

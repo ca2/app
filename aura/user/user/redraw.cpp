@@ -16,7 +16,7 @@ namespace user
 
       ::particle::initialize(pparticle);
 
-      m_bEnabled = !acmesystem()->m_paurasystem->draw2d()->graphics_context_does_full_redraw();
+      m_bEnabled = !system()->m_paurasystem->draw2d()->graphics_context_does_full_redraw();
 
    }
 

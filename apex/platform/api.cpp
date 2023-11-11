@@ -447,7 +447,7 @@ void api::_api_get(::string & strNetworkPayload, const ::scoped_string & scopeds
 
       memory mDst;
 
-      auto psystem = acmesystem()->m_papexsystem;
+      auto psystem = system()->m_papexsystem;
 
       auto pcrypto = psystem->crypto();
 
@@ -461,7 +461,7 @@ void api::_api_get(::string & strNetworkPayload, const ::scoped_string & scopeds
    string api::base64urlencodeNoPadding(memory m)
    {
 
-      auto psystem = acmesystem();
+      auto psystem = system();
 
       auto pbase64 = psystem->base64();
 

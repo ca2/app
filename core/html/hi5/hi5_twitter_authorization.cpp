@@ -65,7 +65,7 @@ namespace hi5
          m_bAuth = bAuth;
          m_strForm = pszForm;
 
-         auto psystem = acmesystem()->m_pcoresystem;
+         auto psystem = system()->m_pcoresystem;
 
          m_ptemplatePane = memory_new ::user::single_document_template(
             "system/auth",
@@ -108,7 +108,7 @@ namespace hi5
 
          ::pointer<::request>prequest(e_create, this);
 
-         auto psystem = acmesystem()->m_paurasystem;
+         auto psystem = system()->m_paurasystem;
 
          prequest->m_egraphicsoutputpurpose -= ::graphics::e_output_purpose_screen;
          prequest->m_puserelementParent = psystem->cast < ::user::interaction >("top_parent");

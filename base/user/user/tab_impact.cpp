@@ -57,10 +57,10 @@ namespace user
 
       pdata->m_pcallback = this;
 
-      if (!acmeapplication()->m_pbaseapplication->m_ptabimpactBase)
+      if (!application()->m_pbaseapplication->m_ptabimpactBase)
       {
 
-         acmeapplication()->m_pbaseapplication->m_ptabimpactBase = this;
+         application()->m_pbaseapplication->m_ptabimpactBase = this;
 
       }
 
@@ -925,7 +925,7 @@ namespace user
             auto functionHandler = [this](auto puserinteraction)
                {
 
-                  acmeapplication()->m_pbaseapplication->create_options_impact(puserinteraction);
+                  application()->m_pbaseapplication->create_options_impact(puserinteraction);
 
                };
 
@@ -940,7 +940,7 @@ namespace user
             auto functionHandler = [this](auto puserinteraction)
                {
 
-                  acmeapplication()->m_pbaseapplication->create_about_impact(puserinteraction);
+                  application()->m_pbaseapplication->create_about_impact(puserinteraction);
 
                };
 
@@ -1089,7 +1089,7 @@ namespace user
 
       }
 
-      acmeapplication()->m_pbaseapplication->on_after_prepare_impact_menu(pmenu);
+      application()->m_pbaseapplication->on_after_prepare_impact_menu(pmenu);
 
       auto pframe = top_level_frame();
 

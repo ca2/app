@@ -93,7 +93,7 @@
 //void menu_shared::on_idle_update()
 //{
 //
-//   auto psession = acmesession()->m_paurasession;
+//   auto psession = session()->m_paurasession;
 //   
 //   auto puser = psession->user();
 //   
@@ -183,7 +183,7 @@
 //::string menu_shared::application_name()
 //{
 //   
-//   return acmeapplication()->get_application_name();
+//   return application()->get_application_name();
 //   
 //}
 //

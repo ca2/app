@@ -34,7 +34,7 @@ namespace universal_windows
 
       ::pointer < ::mutex >                                     m_pmutex;
 
-      //::acme::system *                          acmesystem();
+      //::acme::system *                          system();
 
       //::acme::application *                     m_pacmeapplication;
 
@@ -141,7 +141,7 @@ namespace universal_windows
    {
    internal:
 
-      ::acme::system * acmesystem();
+      ::acme::system * system();
 
       string m_strId;
 

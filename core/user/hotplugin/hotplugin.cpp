@@ -40,7 +40,7 @@ namespace hotplugin
 
 //         g_paxissystem = memory_new ::axis::system(nullptr, );
 
-//         if(acmefile()->exists(         auto psystem = acmesystem();
+//         if(acmefile()->exists(         auto psystem = system();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -50,7 +50,7 @@ pacmedirectory->system() / "config\\plugin\\npca2_beg_debug_box.txt"))
 //            debug_box("hotplugin boxmain NP_Initialize","ZZZzzz hotplugin box",e_message_box_ok);
 
 //         }
-//         if(acmefile()->exists(         auto psystem = acmesystem();
+//         if(acmefile()->exists(         auto psystem = system();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 

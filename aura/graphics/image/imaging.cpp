@@ -99,7 +99,7 @@ i32                 cy)
    ::size_f64                   sizeText;
    ::rectangle_i32                  rectangleText;
 
-   auto psession = acmesession();
+   auto psession = session();
 
 //   if(crShadow == (::color::color)-1)
 //      crShadow = crButtonShadow;
@@ -4942,7 +4942,7 @@ const ::color::color & color)
 
    }
 
-   auto psystem = acmesystem()->m_paurasystem;
+   auto psystem = system()->m_paurasystem;
 
    auto pdraw2d = psystem->draw2d();
 
@@ -5141,7 +5141,7 @@ void imaging::spread__32CC(::image * pimageDst, ::image * pimageSrc,i32 iRadius,
    i32 iRadius2 = iRadius * iRadius;
    i32 r2;
 
-   auto psystem = acmesystem()->m_paurasystem;
+   auto psystem = system()->m_paurasystem;
 
    auto pdraw2d = psystem->draw2d();
 
@@ -5149,7 +5149,7 @@ void imaging::spread__32CC(::image * pimageDst, ::image * pimageSrc,i32 iRadius,
 
    auto & pmemory = pdraw2d->m_alpha_spread__32CC_filterMap[iRadius];
 
-   acmesystem()->__construct_new(pmemory);
+   system()->__construct_new(pmemory);
 
    if (pmemory->size() != iFilterArea)
    {

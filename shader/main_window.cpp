@@ -234,7 +234,7 @@ namespace app_shader
 
                     psaveimage->m_eformat = ::draw2d::e_format_png;
 
-                    auto psystem = acmesystem()->m_paurasystem;
+                    auto psystem = system()->m_paurasystem;
 
                     auto pdatetime = psystem->m_pdatetime;
 

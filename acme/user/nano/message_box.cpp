@@ -317,7 +317,7 @@ void nano_message_box::on_create()
 //}
 
 
-//CLASS_DECL_ACME ::acme::system * acmesystem();
+//CLASS_DECL_ACME ::acme::system * system();
 
 
 CLASS_DECL_ACME ::atom message_box_synchronous(::particle * pparticle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails)
@@ -334,7 +334,7 @@ CLASS_DECL_ACME ::atom message_box_synchronous(::particle * pparticle, const ::s
 
 #if defined(UNIVERSAL_WINDOWS)
 
-   if(pparticle->acmeapplication()->m_bConsole || !is_ui_possible())
+   if(pparticle->platform()->m_bConsole || !is_ui_possible())
    {
 
       return message_box_for_console(scopedstrMessage, scopedstrTitle, emessagebox, scopedstrDetails);
@@ -445,7 +445,7 @@ CLASS_DECL_ACME void message_box_asynchronous(::function < void(const ::atom & a
 
 #if defined(UNIVERSAL_WINDOWS)
 
-   if(pparticle->acmeapplication()->m_bConsole || !is_ui_possible())
+   if(pparticle->platform()->m_bConsole || !is_ui_possible())
    {
 
       auto result = message_box_for_console(scopedstrMessage, scopedstrTitle, emessagebox, scopedstrDetails);

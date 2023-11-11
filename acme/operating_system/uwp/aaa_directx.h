@@ -35,7 +35,7 @@ namespace universal_windows
 
 
       bool                             m_b3D;
-      ::acme::system *                 acmesystem();
+      ::acme::system *                 system();
       ::pointer < ::mutex >                          m_pmutexDc;
       size                             m_size;
       ::user::interaction_impl *       m_pimpl;

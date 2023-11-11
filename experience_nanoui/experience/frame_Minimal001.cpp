@@ -254,7 +254,7 @@ SizingNone:;
 
          GetBorderRectangle(rectangleX, &rectangle, eside);
 
-         //auto psystem = acmesystem()->m_paurasystem;
+         //auto psystem = system()->m_paurasystem;
 
          pgraphics->fill_rectangle(rectangle, crMoveableBorder & 0.5_opacity);
 
@@ -1452,7 +1452,7 @@ SizingNone:;
 //
 //         GetBorderRectangle(rectangleX, &rectangle, eside);
 //
-//         auto psystem = acmesystem()->m_paurasystem;
+//         auto psystem = system()->m_paurasystem;
 //
 //         pgraphics->fill_rectangle(rectangle, crMoveableBorder & 0.5_opacity);
 //

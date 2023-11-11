@@ -221,7 +221,7 @@ bool file_set_line_dup(const ::file::path & path, index iLine, const ::scoped_st
 
    ::file::path path(pszPath);
 
-            auto psystem = acmesystem();
+            auto psystem = system();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 

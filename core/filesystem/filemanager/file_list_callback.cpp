@@ -45,7 +45,7 @@ namespace filemanager
       m_pimagelistSubItemHover->add(image_payload(this, "matter://filemanager/check_off_16.png"));
       m_pimagelistSubItemHover->add(image_payload(this, "matter://filemanager/check_on_16.png"));
 
-      auto psystem = acmesystem()->m_pcoresystem;
+      auto psystem = system()->m_pcoresystem;
 
       psystem->imaging().change_hue(
       m_pimagelistNormal,

@@ -172,7 +172,7 @@ namespace gpu
    void context::create_window_buffer(void * pHwnd)
    {
 
-      ::pointer<::aura::system>psystem = acmesystem();
+      ::pointer<::aura::system>psystem = system();
 
       auto pgpu = psystem->get_gpu();
 
@@ -219,7 +219,7 @@ namespace gpu
    void context::create_offscreen_buffer(const ::size_i32& size)
    {
 
-      ::pointer<::aura::system>psystem = acmesystem();
+      ::pointer<::aura::system>psystem = system();
 
       auto pgpu = psystem->get_gpu();
 
@@ -478,7 +478,7 @@ namespace gpu
    image_data context::image32(const ::payload & payloadFile)
    {
 
-      auto pimage = acmeapplication()->context_image()->get_image(payloadFile, { .sync = true, .cache = false });
+      auto pimage = application()->context_image()->get_image(payloadFile, { .sync = true, .cache = false });
 
       class image_data image32;
 
@@ -521,7 +521,7 @@ namespace gpu
    image_data context::image24(const ::payload & payloadFile)
    {
 
-      auto pimage = acmeapplication()->context_image()->get_image(payloadFile, { .sync = true, .cache = false });
+      auto pimage = application()->context_image()->get_image(payloadFile, { .sync = true, .cache = false });
 
       class image_data image24;
 

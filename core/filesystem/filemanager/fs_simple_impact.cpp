@@ -180,7 +180,7 @@ namespace filemanager
 
             string strUrl;
 
-            auto psystem = acmesystem();
+            auto psystem = system();
 
             auto purl = psystem->url();
             

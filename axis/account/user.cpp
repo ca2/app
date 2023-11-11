@@ -275,7 +275,7 @@ namespace account
 
       ::pointer<credentials>pcredentials = __new(credentials);
 
-      auto psession = acmesession()->m_paxissession;
+      auto psession = session()->m_paxissession;
 
       pcredentials->initialize_account_credentials(this, psession->account()->storage());
 
@@ -482,7 +482,7 @@ namespace account
 
             auto authenticationElapsed = minimum(authenticationRequestElapsed, authenticationDoneElapsed);
 
-            auto psession = acmesession()->m_paxissession;
+            auto psession = session()->m_paxissession;
 
             auto authenticationTimeout = psession->account()->get_session_timeout();
 

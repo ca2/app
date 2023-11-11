@@ -262,7 +262,7 @@ namespace user
       //if (m_bCreateNativeWindowOnInteractionThread)
       //{
 
-      auto psession = acmesession()->m_paurasession;
+      auto psession = session()->m_paurasession;
 
       auto puser = psession->user();
 

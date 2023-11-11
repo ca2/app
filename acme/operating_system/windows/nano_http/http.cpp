@@ -79,7 +79,7 @@ namespace windows
 
          }
 
-         ::string strServer = acmesystem()->url()->get_server(scopedstrUrl);
+         ::string strServer = system()->url()->get_server(scopedstrUrl);
 
          http_connect httpconnect(httpsession, strServer);
 
@@ -90,7 +90,7 @@ namespace windows
 
          }
 
-         ::string strObject = acmesystem()->url()->get_object(scopedstrUrl);
+         ::string strObject = system()->url()->get_object(scopedstrUrl);
 
          http_get httpget(httpconnect, strObject);
 

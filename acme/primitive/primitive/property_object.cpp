@@ -379,7 +379,7 @@ void property_object::on_catch_all_exception()
 //   auto pimage = __create_image();
 //
 //
-//   //acmesystem()->imaging().start_traits(acmesystem()->imaging(), pimage);
+//   //system()->imaging().start_traits(system()->imaging(), pimage);
 //
 //}
 

@@ -702,7 +702,7 @@ namespace html
             {
                if(ansi_compare_ci("font-family", rangeName) == 0)
                {
-                  auto psystem = acmesystem()->m_paurasystem;
+                  auto psystem = system()->m_paurasystem;
                   auto pnode = psystem->node();
                   str = pnode->font_name(e_font_serif);
                   return true;
@@ -726,7 +726,7 @@ namespace html
             {
                if(ansi_compare_ci("font-family", rangeName) == 0)
                {
-                  auto psystem = acmesystem()->m_paurasystem;
+                  auto psystem = system()->m_paurasystem;
                   auto pnode = psystem->node();
 
                   str = pnode->font_name(e_font_serif);
@@ -751,7 +751,7 @@ namespace html
             {
                if(ansi_compare_ci("font-family", rangeName) == 0)
                {
-                  auto psystem = acmesystem()->m_paurasystem;
+                  auto psystem = system()->m_paurasystem;
                   auto pnode = psystem->node();
 
                   str = pnode->font_name(e_font_serif);
@@ -776,7 +776,7 @@ namespace html
             {
                if(ansi_compare_ci("font-family", rangeName) == 0)
                {
-                  auto psystem = acmesystem()->m_paurasystem;
+                  auto psystem = system()->m_paurasystem;
                   auto pnode = psystem->node();
 
                   str = pnode->font_name(e_font_serif);

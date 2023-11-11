@@ -80,7 +80,7 @@ namespace user
 
       spgraphics->CreateCompatibleDC(nullptr);
 
-      auto psystem = acmesystem()->m_pbasesystem;
+      auto psystem = system()->m_pbasesystem;
 
       class imaging & imaging = psystem->imaging();
 

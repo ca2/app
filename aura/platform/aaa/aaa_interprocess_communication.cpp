@@ -489,7 +489,7 @@ started:
 
 #ifdef LINUX
 
-      strKey =          auto psystem = acmesystem();
+      strKey =          auto psystem = system();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -515,7 +515,7 @@ pacmedirectory->system() / "inteprocess_channel" / strApp / as_string(idPid);
 
 #else
 
-      strKey =          auto psystem = acmesystem();
+      strKey =          auto psystem = system();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 

@@ -93,7 +93,7 @@ namespace sockets
          else*/
       {
 
-         auto psystem = acmesystem();
+         auto psystem = system();
 
          auto pbase64 = psystem->base64();
 
@@ -252,7 +252,7 @@ namespace sockets
 
       string strId = m_strCat;
 
-      auto psystem = acmesystem()->m_papexsystem;
+      auto psystem = system()->m_papexsystem;
 
       if (strId.case_insensitive_begins("cat://"))
       {

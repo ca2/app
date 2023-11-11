@@ -50,7 +50,7 @@ nano_window::nano_window()
 nano_window::~nano_window()
 {
 
-   acmesystem()->m_pnano->m_nanowindowa.erase_item(this);
+   system()->m_pnano->m_nanowindowa.erase_item(this);
 
 }
 
@@ -72,7 +72,7 @@ void nano_window::on_initialize_particle()
 
    m_pimplementation->m_pinterface = this;
    
-   acmesystem()->m_pnano->m_nanowindowa.add(this);
+   system()->m_pnano->m_nanowindowa.add(this);
 
 }
 
@@ -729,7 +729,7 @@ void nano_window::display_temporary_file_with_text(const ::string & str)
 
    string strAppId;
 
-   strAppId = acmeapplication()->m_strAppId;
+   strAppId = application()->m_strAppId;
 
    ::file::path pathFolder = acmedirectory()->home() / "application" / strAppId / "details";
 

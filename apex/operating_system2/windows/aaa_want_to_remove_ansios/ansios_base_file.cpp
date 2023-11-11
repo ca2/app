@@ -84,7 +84,7 @@ int_bool acmefile()->put_contents(const ::file::path & path, const char * conten
 
    bool bOk = false;
 
-            auto psystem = acmesystem();
+            auto psystem = system();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 

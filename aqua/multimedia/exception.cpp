@@ -48,7 +48,7 @@ namespace multimedia
       else if (m_eexception == e_exception_multimedia)
       {
 
-         str = "Multimedia acmesystem() Error";
+         str = "Multimedia system() Error";
 
       }
       else if (m_eexception == e_exception_midi)

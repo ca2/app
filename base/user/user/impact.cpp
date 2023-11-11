@@ -798,9 +798,9 @@ namespace user
    ::base::application* impact::get_app()
    {
 
-      auto pacmeapplication = acmeapplication();
+      auto papplication = application();
 
-      return ::is_set(pacmeapplication) ? pacmeapplication->m_pbaseapplication : nullptr;
+      return ::is_set(papplication) ? papplication->m_pbaseapplication : nullptr;
 
    }
 
@@ -808,7 +808,7 @@ namespace user
    ::base::session* impact::get_session()
    {
 
-      auto pacmesession = acmesession();
+      auto pacmesession = session();
 
       return ::is_set(pacmesession) ? pacmesession->m_pbasesession : nullptr;
 
@@ -818,7 +818,7 @@ namespace user
    ::base::system* impact::get_system()
    {
 
-      auto pacmesystem = acmesystem();
+      auto pacmesystem = system();
 
       return ::is_set(pacmesystem) ? pacmesystem->m_pbasesystem : nullptr;
 

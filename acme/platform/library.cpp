@@ -136,7 +136,7 @@ namespace acme
    void library::open(const ::file::path & path)
    {
 
-      auto psystem = acmesystem();
+      auto psystem = system();
 
       critical_section_lock synchronouslock(&psystem->m_pplatform->m_criticalsection);
 
@@ -178,7 +178,7 @@ namespace acme
 
          //KEEP(s_plibraryLoading, this, nullptr);
 
-         m_plibrary = acmesystem()->operating_system_library_open(path, m_strMessage);
+         m_plibrary = system()->operating_system_library_open(path, m_strMessage);
 
       //}
             
@@ -265,7 +265,7 @@ namespace acme
    //bool library::open_library(string strTitle)
    //{
 
-   //   auto psystem = acmesystem();
+   //   auto psystem = system();
 
    //   synchronous_lock synchronouslock(&psystem->m_pmutexRawLibrary);
 
@@ -418,7 +418,7 @@ namespace acme
    //   if (m_strCa2Name.has_char())
    //   {
 
-   //      acmesystem()->m_mapLibrary[m_strCa2Name] = this;
+   //      system()->m_mapLibrary[m_strCa2Name] = this;
 
    //   }
 
@@ -440,7 +440,7 @@ namespace acme
 
       return m_strName;
 
-//      auto psystem = acmesystem();
+//      auto psystem = system();
 //
 //      synchronous_lock synchronouslock(&psystem->m_pmutexLibrary);
 //
@@ -494,7 +494,7 @@ namespace acme
 
       }
 
-      critical_section_lock synchronouslock(&::acme::acme::g_pacme->m_pplatform->m_criticalsection);
+      critical_section_lock synchronouslock(&::platform::get()->m_criticalsection);
 
       try
       {
@@ -519,7 +519,7 @@ namespace acme
 
                   }
 
-                  bOk = acmesystem()->operating_system_library_close(m_plibrary);
+                  bOk = system()->operating_system_library_close(m_plibrary);
 
                   m_plibrary = nullptr;
 
@@ -551,7 +551,7 @@ namespace acme
 //   string library::get_app_id(const ::scoped_string & scopedstrAppName)
 //   {
 //
-//      auto psystem = acmesystem();
+//      auto psystem = system();
 //
 //      synchronous_lock synchronouslock(&psystem->m_pmutexRawLibrary);
 //
@@ -611,7 +611,7 @@ namespace acme
 //   string library::get_app_name(const ::scoped_string & scopedstrAppId)
 //   {
 //
-//      auto psystem = acmesystem();
+//      auto psystem = system();
 //
 //      synchronous_lock synchronouslock(&psystem->m_pmutexRawLibrary);
 //
@@ -673,7 +673,7 @@ namespace acme
    //::pointer<::object>library::new_application(const ::string & strAppId)
    //{
 
-   //   auto psystem = acmesystem();
+   //   auto psystem = system();
 
    //   synchronous_lock synchronouslock(&psystem->m_pmutexRawLibrary);
 
@@ -768,7 +768,7 @@ namespace acme
 //   void library::get_app_list(string_array & stra)
 //   {
 //
-//      auto psystem = acmesystem();
+//      auto psystem = system();
 //
 //      synchronous_lock synchronouslock(&psystem->m_pmutexLibrary);
 //
@@ -841,7 +841,7 @@ namespace acme
    //bool library::contains_app(const ::scoped_string & scopedstrAppId)
    //{
 
-   //   auto psystem = acmesystem();
+   //   auto psystem = system();
 
    //   synchronous_lock synchronouslock(&psystem->m_pmutexLibrary);
 
@@ -857,7 +857,7 @@ namespace acme
    //string library::get_root()
    //{
 
-   //   //auto psystem = acmesystem();
+   //   //auto psystem = system();
 
    //   //synchronous_lock synchronouslock(&psystem->m_pmutexLibrary);
 
@@ -876,7 +876,7 @@ namespace acme
    //void library::get_create_impact_id_list(::array < ::atom > & ida)
    //{
 
-   //   auto psystem = acmesystem();
+   //   auto psystem = system();
 
    //   synchronous_lock synchronouslock(&psystem->m_pmutexLibrary);
 
@@ -888,7 +888,7 @@ namespace acme
    bool library::is_opened()
    {
 
-      //auto psystem = acmesystem();
+      //auto psystem = system();
 
       //synchronous_lock synchronouslock(&psystem->m_pmutexLibrary);
 
@@ -908,11 +908,11 @@ namespace acme
    void * library::raw_get(const ::scoped_string & scopedstrEntryName)
    {
 
-      auto psystem = acmesystem();
+      auto psystem = system();
 
       critical_section_lock synchronouslock(&psystem->m_pplatform->m_criticalsection);
 
-      return acmesystem()->operating_system_library_raw_get(m_plibrary,scopedstrEntryName);
+      return system()->operating_system_library_raw_get(m_plibrary,scopedstrEntryName);
 
    }
 

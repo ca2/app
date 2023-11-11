@@ -15,9 +15,9 @@ namespace apex
    void application::enable_service()
    {
 
-      //auto estatus = acmesystem()->m_papexsystem->os_context()->enable_service();
+      //auto estatus = system()->m_papexsystem->os_context()->enable_service();
 
-      acmesystem()->m_papexsystem->os_context()->enable_service();
+      system()->m_papexsystem->os_context()->enable_service();
 
       //if (!estatus)
       //{

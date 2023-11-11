@@ -17,7 +17,7 @@ namespace app_integration
    void render::draw_arc(::draw2d::graphics_pointer & pgraphics, rectangle_i32& r, angle angleStart, angle angleAngle, bool bPath)
    {
 
-      auto psystem = acmesystem()->m_paurasystem;
+      auto psystem = system()->m_paurasystem;
 
       auto pdraw2d = psystem->draw2d();
 

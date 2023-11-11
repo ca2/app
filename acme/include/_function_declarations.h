@@ -7,7 +7,6 @@
 //
 //CLASS_DECL_ACME void set_last_status(const ::e_status& estatus);
 
-
 CLASS_DECL_ACME i64 ansi_to_i64(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, i32 iBase);
 
 CLASS_DECL_ACME i64 ansi_to_i64(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, i32 iBase);
@@ -29,7 +28,7 @@ CLASS_DECL_ACME void windowing_output_debug_string(const ::scoped_string & scope
 CLASS_DECL_ACME void throw_encoding_exception(const ::scoped_string & scopedstrMessage);
 
 
-//CLASS_DECL_ACME::acme::system* acmesystem();
+//CLASS_DECL_ACME::acme::system* system();
 
 
 //inline bool __enum_is_failed(const ::e_status& e);

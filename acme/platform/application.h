@@ -35,20 +35,19 @@ namespace acme
    public:
 
 
-      ::apex::application* m_papexapplication;
-      ::aqua::application* m_paquaapplication;
-      ::aura::application* m_pauraapplication;
-      ::axis::application* m_paxisapplication;
-      ::base::application* m_pbaseapplication;
-      ::bred::application* m_pbredapplication;
-      ::core::application* m_pcoreapplication;
+      mutable ::apex::application* m_papexapplication;
+      mutable ::aqua::application* m_paquaapplication;
+      mutable ::aura::application* m_pauraapplication;
+      mutable ::axis::application* m_paxisapplication;
+      mutable ::base::application* m_pbaseapplication;
+      mutable ::bred::application* m_pbredapplication;
+      mutable ::core::application* m_pcoreapplication;
 
-      ::acme::acme *                                 m_pacme;
+      //mutable ::platform::platform *               m_pplatform;
 
       //::APPLICATION_FLAGS                      m_applicationflags;
-      ::pointer<main_hold_base>                      m_pmainholdbase;
+      ::pointer<main_hold_base>                    m_pmainholdbase;
       // FROM ::main (Now main2)
-      string                                          m_strCommandLine;
 
 
       bool                                            m_bModulePath = false;
@@ -67,7 +66,7 @@ namespace acme
 
       // END FROM ::main (Now main2 : merge)
 
-      ::pointer < ::platform::platform >              m_pplatform;
+      //::pointer < ::platform::platform >              m_pplatform;
       string                                          m_strAppId;
       string                                          m_strAppName;
       string                                          m_strRoot;
@@ -113,9 +112,9 @@ namespace acme
       
       virtual class ::application_menu * application_menu();
 
-      using ::acme::context::factory;
+//      using ::acme::context::factory;
 
-      virtual ::factory::factory_pointer& factory() override;
+//      virtual ::factory::factory_pointer& factory() const override;
 
       //virtual void implement_application();
 

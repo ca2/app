@@ -281,6 +281,12 @@
     <Filter Include="Header Files\windowing">
       <UniqueIdentifier>{87eb3338-1614-4fc9-9f60-4acdaf39a7d0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\operating_system\shared_posix\NewFilter1">
+      <UniqueIdentifier>{2afd37da-6c1a-44c6-957f-3752e7e3d9f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics\graphics">
+      <UniqueIdentifier>{f596a5d1-075d-4e91-aa1b-e65906253c34}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -1198,7 +1204,7 @@
     <ClCompile Include="platform\string_exchange.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="platform\sub_system.cpp">
+    <ClCompile Include="platform\platform.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="user\user\drag_client.cpp">
@@ -1584,6 +1590,12 @@
     </ClCompile>
     <ClCompile Include="graphics\image\image32_array.cpp">
       <Filter>Source Files\graphics\image</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\string\c\ancient\_c.cpp">
+      <Filter>Source Files\primitive\string\c\ancient</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\graphics\output_purpose.cpp">
+      <Filter>Source Files\graphics\graphics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -3923,6 +3935,12 @@
     </ClInclude>
     <ClInclude Include="windowing\window_base.h">
       <Filter>Header Files\windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\platform.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\acme_initialize.h">
+      <Filter>Header Files\operating_system</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -105,7 +105,7 @@ namespace acme
 
       strMessage += strError;
 
-      path = acmeapplication()->get_module_folder() / strPath;
+      path = application()->get_module_folder() / strPath;
 
       try
       {
@@ -124,7 +124,7 @@ namespace acme
 
       strMessage += strError;
 
-      path = "\\\\?\\" + string(acmeapplication()->get_module_folder() / strPath);
+      path = "\\\\?\\" + string(application()->get_module_folder() / strPath);
 
       try
       {
@@ -328,7 +328,7 @@ namespace acme
 
       strMessage += strError;
 
-      path = acmeapplication()->get_module_folder() / strPath;
+      path = application()->get_module_folder() / strPath;
 
       try
       {
@@ -347,7 +347,7 @@ namespace acme
 
       strMessage += strError;
 
-      path = "\\\\?\\" + string(acmeapplication()->get_module_folder() / strPath);
+      path = "\\\\?\\" + string(application()->get_module_folder() / strPath);
 
       try
       {

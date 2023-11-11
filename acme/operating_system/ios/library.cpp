@@ -3,7 +3,7 @@
 #include <dlfcn.h>
 
 
-//CLASS_DECL_ACME ::acme::system * acmesystem();
+//CLASS_DECL_ACME ::acme::system * system();
 
 namespace acme
 {
@@ -19,7 +19,7 @@ void * system::operating_system_library_touch(const ::file::path & path, string 
 void * system::operating_system_node_library_open(const ::file::path & path, string & strMessage)
 {
    
-   auto psystem = acmesystem();
+   auto psystem = system();
 
    string strPath(pszPath);
 

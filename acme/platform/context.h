@@ -64,7 +64,7 @@ namespace acme
       ::acme_path * acmepath();
       ::acme_directory * acmedirectory();
       ::acme::node * acmenode();
-      inline ::acme::system * acmesystem() { return m_pacmesystem; }
+      inline ::acme::system * system() { return m_pacmesystem; }
 
 
       inline ::os_context* os_context() { return m_poscontext; }

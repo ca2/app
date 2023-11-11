@@ -5,7 +5,6 @@
 DO_FACTORY(REFERENCE_FACTORY)
 #endif
 
-
 int application_main();
 
 #include "_main_hold.h"
@@ -30,6 +29,8 @@ void acme_system_term();
 
 #endif
 #include "acme/platform/platform.h"
+#include "acme/operating_system/acme_initialize.h"
+
 
 //#ifdef WINDOWS
 //CLASS_DECL_ACME void set_argc_argv_envp(int argc, wchar_t ** argv, wchar_t ** envp);
@@ -84,9 +85,9 @@ int main(int argc, char ** argv, char ** envp)
    }
 #endif
 
-   acme.initialize(argc, argv, envp);
+   ::acme::initialize(argc, argv, envp);
 
-   acme.m_bConsole = true;
+   ::platform::get()->m_bConsole = true;
 
    //::acme::acme::g_pacme->m_pacmeapplication->m_bConsole = true;
 

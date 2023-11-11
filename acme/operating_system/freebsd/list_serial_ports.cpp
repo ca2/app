@@ -158,7 +158,7 @@ namespace serial
 
       unsigned int device_number = 0;
 
-      auto psystem = pmatter->acmesystem();
+      auto psystem = pmatter->system();
 
       auto pacmefile = psystem->m_pacmefile;
 

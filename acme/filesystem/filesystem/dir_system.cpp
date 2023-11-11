@@ -37,7 +37,7 @@ void dir_system::initialize(::particle * pparticle)
 
    //}
 
-   //auto psystem = acmesystem();
+   //auto psystem = system();
 
    //m_pathModule = psystem->m_pacmedirectory->module();
 
@@ -58,7 +58,7 @@ void dir_system::init_system()
 //
    m_pathInstall = acmedirectory()->install();
 
-   //auto psystem = acmesystem()->m_papexsystem;
+   //auto psystem = system()->m_papexsystem;
 
    //auto pfile = psystem->m_pfilesystem;
 
@@ -68,7 +68,7 @@ void dir_system::init_system()
 
 //   m_pathModule = pathModuleFolder;
 
-   //m_pathModule = acmeapplication()->get_module_folder();
+   //m_pathModule = application()->get_module_folder();
 
 //   auto pathCa2Module = pfile->m_pathCa2Module;
 //
@@ -76,27 +76,27 @@ void dir_system::init_system()
 //
 //   m_pathCa2Module = pathCa2ModuleFolder;
 
-   //auto psystem = acmesystem()->m_papexsystem;
+   //auto psystem = system()->m_papexsystem;
 
    auto pacmedirectory = acmedirectory();
 
    #if defined(__APPLE__) || (defined(DEBUG)) || defined(ANDROID) || defined(UNIVERSAL_WINDOWS)
 
-   if ( pacmedirectory->is(acmesystem()->side_get_matter_path("app/_matter/main")))
+   if ( pacmedirectory->is(system()->side_get_matter_path("app/_matter/main")))
    {
 
-      m_pathLocalAppMatterFolder = acmesystem()->side_get_matter_path("");
+      m_pathLocalAppMatterFolder = system()->side_get_matter_path("");
 
-      m_pathLocalAppMatterCacheFolder = acmesystem()->local_get_matter_cache_path();
+      m_pathLocalAppMatterCacheFolder = system()->local_get_matter_cache_path();
 
    }
    else
 #endif
    {
 
-      m_pathLocalAppMatterFolder = acmesystem()->local_get_matter_path();
+      m_pathLocalAppMatterFolder = system()->local_get_matter_path();
 
-      m_pathLocalAppMatterCacheFolder = acmesystem()->local_get_matter_cache_path();
+      m_pathLocalAppMatterCacheFolder = system()->local_get_matter_cache_path();
 
    }
 
@@ -148,7 +148,7 @@ void dir_system::init_system()
    //if (strAppFolder.is_empty())
    //{
 
-      //strAppFolder = _002Underscore(acmeapplication()->m_strAppId);
+      //strAppFolder = _002Underscore(application()->m_strAppId);
 
    //}
 
@@ -160,14 +160,14 @@ void dir_system::init_system()
 
    ::file::path pathAppData;
 
-   //auto psystem = acmesystem()->m_papexsystem;
+   //auto psystem = system()->m_papexsystem;
 
-   if (acmesystem()->has_property("app_folder"))
+   if (system()->has_property("app_folder"))
    {
 
       //pathAppData = psystem->payload("app_folder");
 
-      pathAppData = acmesystem()->payload("app_folder");
+      pathAppData = system()->payload("app_folder");
 
    }
 
@@ -203,7 +203,7 @@ void dir_system::init_system()
 //
 //   //auto & context = Context;
 //
-//   auto psystem = acmesystem()->m_papexsystem;
+//   auto psystem = system()->m_papexsystem;
 //
 //   auto pfile = psystem->m_pfilesystem;
 //

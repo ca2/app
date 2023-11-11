@@ -65,7 +65,7 @@ void nano_window_implementation::nano_window_on_create()
 
    acmenode()->fetch_user_color();
 
-   acmesystem()->add_signal_handler({ e_use, this }, id_operating_system_user_color_change);
+   system()->add_signal_handler({ e_use, this }, id_operating_system_user_color_change);
    
    create_drawing_objects();
 

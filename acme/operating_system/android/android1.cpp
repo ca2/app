@@ -8,7 +8,7 @@
 ::file::path dir_ca2_module()
 {
 
-   auto psystem = ::acme::acme::g_pacme->m_pplatform->acmesystem();
+   auto psystem = ::platform::get()->system();
 
    return psystem->m_pacmedirectory->module();
 

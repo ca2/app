@@ -171,7 +171,7 @@ namespace ios
    bool dir_context::is(const ::file::path & path)
    {
 
-      if(         auto psystem = acmesystem();
+      if(         auto psystem = system();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -261,7 +261,7 @@ pacmedirectory->is(path))
 
             }
 
-            if(!         auto psystem = acmesystem();
+            if(!         auto psystem = system();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 

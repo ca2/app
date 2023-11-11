@@ -55,7 +55,7 @@ namespace draw2d_opengl
       ::draw2d::draw2d::initialize(pparticle);
 
 
-      acmesystem()->m_paurasystem->create_gpu();
+      system()->m_paurasystem->create_gpu();
       //if (!estatus)
       //{
 
@@ -149,7 +149,7 @@ namespace draw2d_opengl
 
    //   pfont->m_pcollection = new Gdiplus::PrivateFontCollection();
 
-   //   auto pmemory = acmesystem()->m_paurasystem->draw2d()->write_text()->get_file_memory(pcontext, path);
+   //   auto pmemory = system()->m_paurasystem->draw2d()->write_text()->get_file_memory(pcontext, path);
 
    //   if (pmemory->has_data())
    //   {
@@ -207,7 +207,7 @@ namespace draw2d_opengl
       //ZeroMemory(&wc, sizeof(wc));
       //wc.style = CS_OWNDC;
       //wc.lpfnWndProc = opengl_window_proc;
-      //wc.hInstance = (HINSTANCE) acmesystem()->m_pplatform->m_hinstanceThis;
+      //wc.hInstance = (HINSTANCE) system()->m_pplatform->m_hinstanceThis;
       //wc.lpszClassName = L"draw2d_opengl_offscreen_buffer_window";
       //m_atomClass = RegisterClassW(&wc);
 

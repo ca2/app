@@ -299,18 +299,18 @@ i64 oswindow_id(oswindow w)
 //::file::path get_module_folder(::particle * pparticle)
 //{
 //   
-//   pparticle->acmesystem()->m_pplatform-
+//   pparticle->system()->m_pplatform-
 //
 //   critical_section_lock criticalsectionlock()
 //   
-//   if(!pparticle->acmesystem()->m_pplatform->m_bModuleFolder)
+//   if(!pparticle->system()->m_pplatform->m_bModuleFolder)
 //   {
 //      
-//      pparticle->acmesystem()->m_pplatform->m_pathModuleFolder = ::get_module_path(pparticle).folder();
+//      pparticle->system()->m_pplatform->m_pathModuleFolder = ::get_module_path(pparticle).folder();
 //      
 //   }
 //   
-//   return pparticle->acmesystem()->m_pplatform->m_pathModuleFolder;
+//   return pparticle->system()->m_pplatform->m_pathModuleFolder;
 //   
 //}
 
@@ -549,7 +549,7 @@ void * apple_get_application_delegate(void * pApplication)
 
    auto papp = (::acme::application *)pApplication;
 
-   return papp->acmesystem()->m_pplatform->m_pApplicationDelegate;
+   return papp->system()->m_pplatform->m_pApplicationDelegate;
 
 }
 
@@ -559,7 +559,7 @@ void apple_set_application_delegate(void * pApplication, void * pDelegate)
 
    auto papp = (::acme::application *)pApplication;
 
-   papp->acmesystem()->m_pplatform->m_pApplicationDelegate = pDelegate;
+   papp->system()->m_pplatform->m_pApplicationDelegate = pDelegate;
 
 }
 

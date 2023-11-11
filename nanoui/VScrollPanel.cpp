@@ -227,7 +227,7 @@ namespace nanoui
 
          auto addPercent = pagePercent * wheelScrollPercent * y / wheelScrollUnit;
 
-         screen()->acmeapplication()->fork([this, p, addPercent]()
+         screen()->application()->fork([this, p, addPercent]()
                {
 
                   auto addUp = addPercent;

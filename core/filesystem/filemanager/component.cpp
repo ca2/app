@@ -1243,7 +1243,7 @@ namespace filemanager
    ::core::session * component::get_session()
    {
 
-      auto pacmesession = acmesession();
+      auto pacmesession = session();
 
       return ::is_set(pacmesession) ? pacmesession->m_pcoresession : nullptr;
 

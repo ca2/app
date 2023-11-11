@@ -121,7 +121,7 @@ namespace filemanager
 
       ::user::split_impact::handle(ptopic, pcontext);
 
-      auto psystem = acmesystem()->m_paurasystem;
+      auto psystem = system()->m_paurasystem;
 
       auto pdocumentSubject = ptopic->cast < ::user::document >(id_document);
 
@@ -245,7 +245,7 @@ namespace filemanager
 
                }
 
-               //auto psystem = acmesystem();
+               //auto psystem = system();
 
                auto pdatetime = psystem->datetime();
 

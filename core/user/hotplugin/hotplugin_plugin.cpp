@@ -772,7 +772,7 @@ namespace hotplugin
          //   m_pcolorref = (u32 *)get_map_failed();
          //}
 
-                  auto psystem = acmesystem();
+                  auto psystem = system();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 

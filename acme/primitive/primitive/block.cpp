@@ -84,7 +84,7 @@ block & block::from_base64(const ::scoped_string & scopedstr) const
    ::base64 base64;
 
    base64.decode(*this, scopedstr);
-   //acmesystem()->m_pbase64->decode(*this, psz, iSize);
+   //system()->m_pbase64->decode(*this, psz, iSize);
 
    return (block &)*this;
 

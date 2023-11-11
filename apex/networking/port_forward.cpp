@@ -304,7 +304,7 @@ namespace networking
 //		   "New number of mappings = %d \n"
 //		   "It is recommended to update your list of mappings", lNewNumberOfEntries );
 //
-//      //auto psystem = acmesystem()->m_papexsystem;
+//      //auto psystem = system()->m_papexsystem;
 //
 //      //message_box(tempStr,"Change Detected in Number of Port Mappings",e_message_box_ok | e_message_box_icon_exclamation);
 //
@@ -322,7 +322,7 @@ namespace networking
 //		   "New IP address = %s \n"
 //		   "It is recommended to update your list of mappings", pszNewExternalIPAddress);
 //
-//      auto psystem = acmesystem()->m_papexsystem;
+//      auto psystem = system()->m_papexsystem;
 //
 //      //message_box(tempStr,"Change Detected in External IP Address",e_message_box_ok | e_message_box_icon_exclamation);
 //

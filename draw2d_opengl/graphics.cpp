@@ -210,7 +210,7 @@ namespace draw2d_opengl
       if (!m_pgpucontext)
       {
          return false;
-         //auto psystem = acmesystem()->m_paurasystem;
+         //auto psystem = system()->m_paurasystem;
 
          //auto pgpu = psystem->get_gpu();
 
@@ -3687,7 +3687,7 @@ namespace draw2d_opengl
    ::draw2d_opengl::draw2d * graphics::draw2d_opengl()
    {
 
-      return dynamic_cast < ::draw2d_opengl::draw2d * >(acmesystem()->m_paurasystem->draw2d());
+      return dynamic_cast < ::draw2d_opengl::draw2d * >(system()->m_paurasystem->draw2d());
 
    }
 

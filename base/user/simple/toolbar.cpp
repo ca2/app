@@ -733,7 +733,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
    auto estyle = tool_item_style(iItem);
 
-   auto psession = acmesession()->m_pbasesession;
+   auto psession = session()->m_pbasesession;
 
    auto puser = psession->baseuser();
 
@@ -1810,7 +1810,7 @@ void simple_toolbar::on_message_non_client_calculate_size(::message::message * p
 
    bool bHorz = (m_dwStyle & CBRS_ORIENT_HORZ) != 0;
 
-   auto psystem = acmesystem()->m_paurasystem;
+   auto psystem = system()->m_paurasystem;
 
    auto pdraw2d = psystem->draw2d();
 

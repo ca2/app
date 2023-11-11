@@ -597,14 +597,14 @@ namespace xcb
 
       information() << "xcb nano display::init_task";
 
-      if(acmesystem()->m_ewindowing == e_windowing_none)
+      if(system()->m_ewindowing == e_windowing_none)
       {
 
          set_main_user_thread();
 
          information() << "xcb nano display::init_task setting e_windowing_xcb";
 
-         acmesystem()->m_ewindowing = e_windowing_xcb;
+         system()->m_ewindowing = e_windowing_xcb;
 
       }
 
@@ -633,7 +633,7 @@ namespace xcb
       if(!m_pconnection)
       {
 
-         m_pconnection = (xcb_connection_t *) acmesystem()->m_pnode->get_os_xcb_connection();
+         m_pconnection = (xcb_connection_t *) system()->m_pnode->get_os_xcb_connection();
 
          information() << "xcb nano display::init_task setting get_os_xcb_connection : " << (::iptr) m_pconnection;
 
@@ -1164,7 +1164,7 @@ namespace xcb
 //
 //         pwindowing->m_bFirstWindowMap = true;
 //
-//         auto psystem = acmesystem()->m_paurasystem;
+//         auto psystem = system()->m_paurasystem;
 //
 //         auto pnode = psystem->node();
 //

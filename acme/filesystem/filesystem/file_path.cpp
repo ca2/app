@@ -923,7 +923,7 @@ bool file_path_normalize_inline(string & strPath, enum_path & epath)
 
       bUrl = false;
 
-      //strPath = ::file::path(acmesystem()->url().::url::decode(strPath.substr(7)));
+      //strPath = ::file::path(system()->url().::url::decode(strPath.substr(7)));
       strPath = ::file::path(::url::decode(strPath.substr(7)));
 
       return bCertainlySyntathicallyDir;

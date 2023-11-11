@@ -389,7 +389,7 @@ namespace filemanager
                || pathFilemanagerProject.extension().case_insensitive_order("component") != 0)
          {
 
-            m_pathFilemanagerProject =          auto psystem = acmesystem();
+            m_pathFilemanagerProject =          auto psystem = system();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 

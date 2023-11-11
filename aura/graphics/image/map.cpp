@@ -19,7 +19,7 @@
    if (pimage->is_null())
    {
 
-      acmesystem()->__construct(pimage);
+      system()->__construct(pimage);
 
       pimage->create(key.m_size);
 
@@ -90,7 +90,7 @@ image_pointer & size_image::get(const ::size_i32 & size, bool & bExists)
    if (pimage->is_null())
    {
 
-      acmesystem()->__construct(pimage);
+      system()->__construct(pimage);
       
       pimage->create(size);
 

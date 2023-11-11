@@ -96,7 +96,7 @@ namespace apex
    //class apex;
 
 
-   //inline system * acmesystem() { return (system *) acmesystem()->layer(LAYERED_APEX); }
+   //inline system * system() { return (system *) system()->layer(LAYERED_APEX); }
 
 
 } // namespace apex

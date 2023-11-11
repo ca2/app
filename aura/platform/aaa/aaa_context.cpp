@@ -431,7 +431,7 @@ string context::defer_get_file_title(string strParam)
    else if (path.case_insensitive_begins_eat("usersystem://"))
    {
 
-      path =          auto psystem = acmesystem();
+      path =          auto psystem = system();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -830,7 +830,7 @@ string context::http_get(const ::string & strUrl, ::property_set & set)
 ::handle::ini context::local_ini()
 {
 
-   ::file::path pathFolder =          auto psystem = acmesystem();
+   ::file::path pathFolder =          auto psystem = system();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -957,7 +957,7 @@ string context::http_get(const ::string & pszUrl)
 bool context::sys_set(string strPath, string strValue)
 {
 
-   return file()->put_text_utf8(         auto psystem = acmesystem();
+   return file()->put_text_utf8(         auto psystem = system();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -969,7 +969,7 @@ pacmedirectory->config() / strPath, strValue);
 string context::sys_get(string strPath, string strDefault)
 {
 
-   string strValue = file()->as_string(         auto psystem = acmesystem();
+   string strValue = file()->as_string(         auto psystem = system();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 

@@ -53,7 +53,7 @@ namespace aqua
       if (!m_paudiomixeruser)
       {
 
-         auto pfactory = acmesystem()->factory("audio_mixer_user", "base");
+         auto pfactory = system()->factory("audio_mixer_user", "base");
 
          pfactory->__construct(this, m_paudiomixeruser);
 

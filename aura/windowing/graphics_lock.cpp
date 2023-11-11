@@ -13,9 +13,9 @@ namespace windowing
 //
 ////#ifdef UNIVERSAL_WINDOWS
 ////
-////      acmesystem() = pinteraction->acmesystem();
+////      system() = pinteraction->system();
 ////
-////      ::pointer<::aura::system>psystem = acmesystem();
+////      ::pointer<::aura::system>psystem = system();
 ////
 ////      auto pdraw2d = psystem->draw2d();
 ////
@@ -35,7 +35,7 @@ namespace windowing
 ////
 ////      //m_D2DMultitask->Leave();
 ////
-////      ::pointer<::aura::system>psystem = acmesystem();
+////      ::pointer<::aura::system>psystem = system();
 ////
 ////      auto pdraw2d = psystem->draw2d();
 ////

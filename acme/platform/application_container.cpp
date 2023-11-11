@@ -300,7 +300,7 @@ namespace acme
       //else
       //{
 
-      auto psystem = acmesystem();
+      auto psystem = system();
 
       if (::is_set(psystem->m_pacmeapplication))
       {
@@ -458,9 +458,9 @@ namespace acme
    //
    //      ::file::path pathExe = acmefile()->module();
    //
-   //      auto psystem = acmesystem()->m_papexsystem;
+   //      auto psystem = system()->m_papexsystem;
    //
-   //      if (!acmesystem()->m_papexsystem->m_papexnode->is_application_installed(pathExe, strApp, strBuild, psystem->get_system_platform(),
+   //      if (!system()->m_papexsystem->m_papexnode->is_application_installed(pathExe, strApp, strBuild, psystem->get_system_platform(),
    //         psystem->get_system_configuration(), strLocale, strSchema))
    //      {
    //

@@ -63,9 +63,9 @@ namespace sockets
 
       //}
 
-      m_request.acmesystem() = acmesystem();
+      m_request.system() = system();
 
-      m_response.acmesystem() = acmesystem();
+      m_response.system() = system();
 
       //return estatus;
 
@@ -279,7 +279,7 @@ namespace sockets
 
             string strRequestUri = pa.getword();
 
-            auto psystem = acmesystem();
+            auto psystem = system();
 
             auto purl = psystem->url();
 

@@ -22,7 +22,7 @@ namespace operating_system
    }
 
 
-   void main_window::from_application(application * papplication)
+   void main_window::from_application(::operating_system::application * papplication)
    {
 
       throw interface_only();

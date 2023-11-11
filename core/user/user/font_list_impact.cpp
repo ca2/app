@@ -31,9 +31,9 @@ namespace user
    //::core::application * font_list_impact::get_app()
    //{
 
-   //   auto pacmeapplication = acmeapplication();
+   //   auto papplication = application();
 
-   //   return ::is_set(pacmeapplication) ? pacmeapplication->m_pcoreapplication : nullptr;
+   //   return ::is_set(papplication) ? papplication->m_pcoreapplication : nullptr;
 
    //}
 
@@ -41,7 +41,7 @@ namespace user
    //::core::session * font_list_impact::get_session()
    //{
 
-   //   auto pacmesession = acmesession();
+   //   auto pacmesession = session();
 
    //   return ::is_set(pacmesession) ? pacmesession->m_pcoresession : nullptr;
 
@@ -51,7 +51,7 @@ namespace user
    //::core::system * font_list_impact::get_system()
    //{
 
-   //   auto pacmesystem = acmesystem();
+   //   auto pacmesystem = system();
 
    //   return ::is_set(pacmesystem) ? pacmesystem->m_pcoresystem : nullptr;
 

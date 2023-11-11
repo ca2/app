@@ -30,7 +30,7 @@ matter::~matter()
 //   if (m_eobject & e_object_any_hook && m_pcontext)
 //   {
 //
-//      acmesystem()->erase_from_any_hook(this);
+//      system()->erase_from_any_hook(this);
 //
 //   }
 
@@ -52,7 +52,7 @@ matter::~matter()
 //void matter::initialize_matter(::matter* pmatter)
 //{
 //
-//   acmesystem() = pmatter->acmesystem();
+//   system() = pmatter->system();
 //
 //   //return ::success;
 //
@@ -248,7 +248,7 @@ bool matter::is_ready_to_quit() const
 ////   else
 ////   {
 //
-//     auto ptask = acmesystem()->branch(__routine([this](){this->operator()();}));
+//     auto ptask = system()->branch(__routine([this](){this->operator()();}));
 //
 //     if(!ptask)
 //     {
@@ -415,7 +415,7 @@ void matter::delete_this()
 //void matter::__tracea(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstr) const
 //{
 //
-//   acmesystem()->__tracea(elevel, pszFunction, pszFile, iLine, psz);
+//   system()->__tracea(elevel, pszFunction, pszFile, iLine, psz);
 //
 //}
 //
@@ -770,7 +770,7 @@ bool matter::handle_call(::payload & payload, const ::string & strObject, const 
 //
 //   auto ptopic = __new(::topic(atom));
 //
-//   ptopic->m_pcontext = acmesystem();
+//   ptopic->m_pcontext = system();
 //
 //   return ::transfer(ptopic);
 //
@@ -910,7 +910,7 @@ void matter::__send_procedure(const ::function < void(const ::procedure &) > & f
 //::acme::system * matteracmesystem() const
 //{
 //
-//   return ((matter*)this)->acmesystem();
+//   return ((matter*)this)->system();
 //
 //}
 

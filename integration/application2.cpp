@@ -44,7 +44,7 @@ namespace console
          void main() override
          {
 
-            auto psystem = acmesystem();
+            auto psystem = system();
 
             auto pplatform = psystem->m_pplatform;
 

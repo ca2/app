@@ -67,8 +67,8 @@ namespace acme
       // END FROM ::main (Now main2)
 
 
-      //::pointer<::acme::application>     acmeapplication();
-      // ::pointer<::acme::application>     acmeapplication();
+      //::pointer<::acme::application>     application();
+      // ::pointer<::acme::application>     application();
 
 
       //::pointer<main_hold_base>                                         m_pmainholdbase;
@@ -616,7 +616,7 @@ namespace acme
 
       //}
 
-//#define LIBCALL(library, entry)  (acmesystem()->lib(#library)->get<decltype(&entry)>(#entry))
+//#define LIBCALL(library, entry)  (system()->lib(#library)->get<decltype(&entry)>(#entry))
 
 
       virtual ::string implementation_name(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation);

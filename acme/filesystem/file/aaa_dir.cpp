@@ -51,13 +51,13 @@ bool windows_file_find_is_dots(WIN32_FIND_DATAW & data);
 
 #if defined(UNIVERSAL_WINDOWS)
 
-#pragma push_macro("acmesystem()")
+#pragma push_macro("system()")
 
-#undef acmesystem()
+#undef system()
 
 using namespace ::winrt::Windowsacmesystem();
 
-#pragma pop_macro("acmesystem()")
+#pragma pop_macro("system()")
 
 #endif
 
@@ -695,7 +695,7 @@ namespace dir
 
             FormatMessage(FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM, nullptr, dwError, 0, (char *)&pszError, 8, nullptr);
 
-            //informationf("         auto psystem = acmesystem();
+            //informationf("         auto psystem = system();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -1474,7 +1474,7 @@ pacmedirectory->create CreateDirectoryW last error(%d)=%s", dwError, pszError);
 extern "C" int make_path(const ::scoped_string & scopedstr)
 {
 
-   return          auto psystem = acmesystem();
+   return          auto psystem = system();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 

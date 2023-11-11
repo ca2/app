@@ -209,9 +209,9 @@ namespace crypto
          memory storage;
          key(storage);
 
-         //auto psystem = acmesystem()->m_papexsystem;
+         //auto psystem = system()->m_papexsystem;
 
-         auto psystem = acmesystem();
+         auto psystem = system();
 
          auto pbase64 = psystem->base64();
 
@@ -240,7 +240,7 @@ namespace crypto
 
       //   storageDecrypt.from_string(pszDecrypt);
 
-      //   auto psystem = acmesystem();
+      //   auto psystem = system();
 
       //   auto pbase64 = psystem->base64();
 
@@ -264,7 +264,7 @@ namespace crypto
 
       //   memory storageKey;
 
-      //   auto psystem = acmesystem();
+      //   auto psystem = system();
 
       //   auto pbase64 = psystem->base64();
 

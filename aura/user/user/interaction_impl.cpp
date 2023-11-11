@@ -535,12 +535,12 @@ namespace user
    void interaction_impl::operating_system_create_host()
    {
 
-      //      auto pwindowMain = acmesystem()->m_paurasystem->m_pwindowMain;
+      //      auto pwindowMain = system()->m_paurasystem->m_pwindowMain;
       //
       //      if (pwindowMain && !pwindowMain->m_puserinteractionimpl)
       //      {
       //
-      //         m_pwindow = acmesystem()->m_paurasystem->m_pwindowMain;
+      //         m_pwindow = system()->m_paurasystem->m_pwindowMain;
       //
       //         m_pwindow->m_puserinteractionimpl = this;
       //
@@ -561,10 +561,10 @@ namespace user
       //
       //         //}
       //
-      //         if (!acmesystem()->m_paurasystem->m_pwindowMain)
+      //         if (!system()->m_paurasystem->m_pwindowMain)
       //         {
       //
-      //            acmesystem()->m_paurasystem->m_pwindowMain = m_pwindow;
+      //            system()->m_paurasystem->m_pwindowMain = m_pwindow;
       //
       //         }
       //
@@ -721,12 +721,12 @@ namespace user
    void interaction_impl::native_create_host_alternate()
    {
 
-      //      auto pwindowMain = acmesystem()->m_paurasystem->m_pwindowMain;
+      //      auto pwindowMain = system()->m_paurasystem->m_pwindowMain;
       //
       //      if (pwindowMain && !pwindowMain->m_puserinteractionimpl)
       //      {
       //
-      //         m_pwindow = acmesystem()->m_paurasystem->m_pwindowMain;
+      //         m_pwindow = system()->m_paurasystem->m_pwindowMain;
       //
       //         m_pwindow->m_puserinteractionimpl = this;
       //
@@ -747,10 +747,10 @@ namespace user
       //
       //         //}
       //
-      //         if (!acmesystem()->m_paurasystem->m_pwindowMain)
+      //         if (!system()->m_paurasystem->m_pwindowMain)
       //         {
       //
-      //            acmesystem()->m_paurasystem->m_pwindowMain = m_pwindow;
+      //            system()->m_paurasystem->m_pwindowMain = m_pwindow;
       //
       //         }
       //
@@ -2557,7 +2557,7 @@ namespace user
       //         if(m_puserinteraction != nullptr && m_puserinteraction->get_session()  != nullptr && m_puserinteraction->get_session() != get_session())
       //         {
       //
-      //            auto psystem = acmesystem();
+      //            auto psystem = system();
       //
       //            auto psession = psystem->node();
       //
@@ -5716,7 +5716,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 
       //::size_i32 sizeDrawn;
 
-      //single_lock synchronouslockObjects(acmesystem()->m_paurasystem->draw2d()->get_object_list_mutex());
+      //single_lock synchronouslockObjects(system()->m_paurasystem->draw2d()->get_object_list_mutex());
 
       //if (!synchronouslockObjects.lock(0_s))
       //{
@@ -5724,7 +5724,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
       //   return;
 
       //}
-      //single_lock synchronouslockImages(acmesystem()->m_paurasystem->draw2d()->get_image_list_mutex());
+      //single_lock synchronouslockImages(system()->m_paurasystem->draw2d()->get_image_list_mutex());
 
       //if (!synchronouslockImages.lock(0_s))
       //{
@@ -5732,7 +5732,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
       //   return;
 
       //}
-      //single_lock synchronouslockGraphicsContext(acmesystem()->m_paurasystem->draw2d()->get_graphics_context_list_mutex());
+      //single_lock synchronouslockGraphicsContext(system()->m_paurasystem->draw2d()->get_graphics_context_list_mutex());
 
       //if (!synchronouslockGraphicsContext.lock(0_s))
       //{
@@ -5979,7 +5979,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
                if (pgraphics->__defer_construct_new(pgraphics->m_puserredraw))
                {
 
-                  if (acmesystem()->m_paurasystem->draw2d()->graphics_context_does_full_redraw())
+                  if (system()->m_paurasystem->draw2d()->graphics_context_does_full_redraw())
                   {
 
                      pgraphics->m_puserredraw->m_bEnabled = false;

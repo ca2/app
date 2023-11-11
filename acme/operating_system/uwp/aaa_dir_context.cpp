@@ -65,7 +65,7 @@ namespace universal_windows
       //#endif
 
 
-      auto pdocument =       auto psystem = acmesystem()->m_paurasystem;
+      auto pdocument =       auto psystem = system()->m_paurasystem;
 
       auto pxml = psystem->xml();
 
@@ -107,7 +107,7 @@ namespace universal_windows
 
       mk(m_pdirsystem->m_strTimeFolder / "time");
 
-      m_pdirsystem->m_pathHome =          auto psystem = acmesystem();
+      m_pdirsystem->m_pathHome =          auto psystem = system();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 

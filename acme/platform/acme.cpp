@@ -3,7 +3,6 @@
 #include "system.h"
 #include "library.h"
 #include "platform.h"
-#include "acme/memory/counter.h"
 #include "acme/parallelization/mutex.h"
 #include "acme/platform/_synchronization.h"
 #include "acme/primitive/primitive/malloc.h"
@@ -11,7 +10,7 @@
 
 
 #include "acme/_operating_system.h"
-
+#include "acme/operating_system/acme_initialize.h"
 
 #include "acme/operating_system/ansi/binreloc.h"
 
@@ -140,7 +139,7 @@ namespace mathematics
 //extern natural_meta_data < string_meta_data < ::wd32_character > > * g_pwd32stringNil;
 
 
-static void delete_all_release_on_end();
+//static void delete_all_release_on_end();
 
 void os_term_run_routinea();
 
@@ -206,23 +205,18 @@ extern thread_local ::task_pointer t_pthread;
 namespace acme
 {
 
-   acme * acme::g_pacme = nullptr;
+
+   static void acme_construct();
+
+   static void acme_destruct();
+
 
    acme::acme()
    {
 
-      m_bConsole = false;
-      g_pacme = this;
-      m_pacmeapplication = nullptr;
-      m_pmemorycounter = nullptr;
-      m_bOutputDebugString = true;
-
-      initialize_memory_counter();
-
       acme_construct();
 
-      ::__raw_construct_new(m_pplatform);
-
+      ::platform::platform::s_pplatform = memory_new ::platform::platform();
 
    }
 
@@ -230,14 +224,9 @@ namespace acme
    acme::~acme()
    {
 
-      m_pacmeapplication.release();
-
-      m_pplatform.release();
+      ::acme::del(::platform::platform::s_pplatform);
 
       acme_destruct();
-
-      finalize_memory_counter();
-
       
    }
 
@@ -259,21 +248,22 @@ namespace acme
 #if defined(WINDOWS)  && defined(UNICODE)
 
 
-   void acme::initialize(int argc, wchar_t* argv[], wchar_t* envp[])
+   void initialize(int argc, wchar_t* argv[], wchar_t* envp[])
    {
 
-      m_pplatform->m_argc = argc;
-      m_pplatform->m_wargv = argv;
-      m_pplatform->m_wenvp = envp;
+      ::platform::get()->m_argc = argc;
+      ::platform::get()->m_wargv = argv;
+      ::platform::get()->m_wenvp = envp;
 
    }
 
-   void acme::initialize(HINSTANCE hinstanceThis, HINSTANCE hinstancePrev, CHAR* pCmdLine, int nCmdShow)
+
+   void initialize(HINSTANCE hinstanceThis, HINSTANCE hinstancePrev, CHAR* pCmdLine, int nCmdShow)
    {
 
-      m_pplatform->m_hinstanceThis = hinstanceThis;
-      m_pplatform->m_hinstancePrev = hinstancePrev;
-      m_pplatform->m_nCmdShow = nCmdShow;
+      ::platform::get()->m_hinstanceThis = hinstanceThis;
+      ::platform::get()->m_hinstancePrev = hinstancePrev;
+      ::platform::get()->m_nCmdShow = nCmdShow;
 
    }
 
@@ -315,7 +305,7 @@ namespace acme
 
 
 
-   //::critical_section acmesystem()->g_mutexLibrary;
+   //::critical_section system()->g_mutexLibrary;
 
    //__LPFN_MAIN_DEFERRED_RUN g_main_deferred_run;
 
@@ -604,10 +594,8 @@ namespace acme
 //   }
 
 
-   void acme::acme_construct()
+   void acme_construct()
    {
-
-      m_timeStart.Now();
 
       initialize_memory_management();
 
@@ -1056,7 +1044,7 @@ namespace acme
    }
 
 
-   void acme::acme_destruct()
+   void acme_destruct()
    {
 
 
@@ -1142,7 +1130,7 @@ namespace acme
       //try
       //{
 
-      //   synchronous_lock synchronouslock(acmesystem()->g_mutexLibrary);
+      //   synchronous_lock synchronouslock(system()->g_mutexLibrary);
 
       //   g_pmapLibCall->erase_all();
 
@@ -1156,9 +1144,9 @@ namespace acme
       //try
       //{
 
-      //   synchronous_lock synchronouslock(acmesystem()->g_mutexLibrary);
+      //   synchronous_lock synchronouslock(system()->g_mutexLibrary);
 
-      //   acmesystem()->g_mapLibrary.erase_all();
+      //   system()->g_mapLibrary.erase_all();
 
       //}
       //catch (...)
@@ -1350,8 +1338,6 @@ namespace acme
 #endif
 
 
-      delete_all_release_on_end();
-
       //::finalize_sequence_critical_section();
 
       //::acme::del(g_criticalsectionGlobal);
@@ -1402,36 +1388,8 @@ namespace acme
    }
 
 
-   ::memory_counter* g_pmemorycounter = nullptr;
+   //::memory_counter* g_pmemorycounter = nullptr;
 
-
-   void acme::initialize_memory_counter()
-   {
-
-      if (!m_pmemorycounter)
-      {
-
-         m_pmemorycounter = new ::memory_counter();
-
-      }
-
-   }
-
-
-   void acme::finalize_memory_counter()
-   {
-
-      ::acme::del(m_pmemorycounter);
-
-   }
-
-
-   ::memory_counter* acme::get_memory_counter()
-   {
-
-      return g_pmemorycounter;
-
-   }
 
 
 
@@ -1646,30 +1604,6 @@ namespace acme
 
 
 
-void acme::delete_all_release_on_end()
-{
-
-   critical_section_lock criticalsectionlock(globals_critical_section());
-
-   //m_pelementaddraReleaseOnEnd->erase_all();
-
-  // ::acme::del(m_pelementaddraReleaseOnEnd);
-
-   //if (is_set(::acme::g_pelementaddraReleaseOnEnd))
-//   {
-//
-//      for (auto pmatter : ::acme::g_elementaddraReleaseOnEnd)
-//      {
-//
-//         ::acme::del(pmatter);
-//
-//      }
-//
-//      ::acme::del(::acme::g_pelementaddraReleaseOnEnd);
-//
-//   }
-
-}
 
 //
 //void acme::add_release_on_end(::particle * pparticle)
@@ -1692,14 +1626,7 @@ void acme::delete_all_release_on_end()
 //namespace acme
 //{
 
-
-   class ::time acme::start_nanosecond()
-   {
-
-      return m_timeStart;
-
-   }
-
+ 
 //
 //} // namespace acme
 
@@ -2045,3 +1972,8 @@ CLASS_DECL_ACME::e_status get_last_status()
 //   *ppointer = pparticle;
 //
 //}
+
+
+
+
+

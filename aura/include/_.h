@@ -48,7 +48,7 @@ namespace aura
    class node;
 
 
-//   inline system * acmesystem() { return acmesystem()->layer(LAYERED_AURA); }
+//   inline system * system() { return system()->layer(LAYERED_AURA); }
 
 
 } // namespace aura

@@ -122,7 +122,7 @@ namespace macos
    void nano_window::create()
    {
       
-      apple_defer_nano_application_create(acmesystem());
+      apple_defer_nano_application_create(system());
       
       m_pwindowbridge = __new(nano_window_bridge);
 

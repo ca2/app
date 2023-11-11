@@ -53,7 +53,7 @@
 
 
 
-//CLASS_DECL_ACME ::acme::system * acmesystem();
+//CLASS_DECL_ACME ::acme::system * system();
 
 
 //void main_asynchronous(const ::procedure & procedure)
@@ -75,7 +75,7 @@
 //
 //                            };
 //
-//   auto psystem = ::acme::acme::g_pacme->m_pplatform->acmesystem();
+//   auto psystem = ::platform::get()->system();
 //
 //   psystem->windowing_post(predicate);
 //
@@ -124,7 +124,7 @@ void wayland_process_messages();
 void _do_tasks()
 {
 
-   auto psystem = ::acme::acme::g_pacme->m_pplatform->acmesystem();
+   auto psystem = ::platform::get()->system();
 
    if(psystem->m_ewindowing == e_windowing_wayland)
    {

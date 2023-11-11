@@ -49,6 +49,9 @@ namespace platform
    public:
 
 
+      static platform * s_pplatform;
+
+
       ::critical_section                              m_criticalsection;
 
       ::e_display                                     m_edisplay;
@@ -88,6 +91,115 @@ namespace platform
       ::pointer < ::acme::system >                    m_psystem;
 
       int                                             m_iProcessStatus = 0;
+
+
+
+      ::pointer < ::acme::application >   m_pacmeapplication;
+
+
+      ::critical_section m_criticalsectionSystemHeap;
+
+
+      ::critical_section m_criticalsectionChannel;
+
+      bool m_bConsole;
+
+
+      ::critical_section * channel_critical_section()
+      {
+
+         return &m_criticalsectionChannel;
+
+      }
+
+
+      ::critical_section m_criticalsectionMessageDispatch;
+
+
+      ::critical_section * message_dispatch_critical_section()
+      {
+
+         return &m_criticalsectionMessageDispatch;
+
+      }
+
+
+#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(FREEBSD)
+
+      ::critical_section m_criticalsectionTz;
+
+      ::critical_section m_criticalsectionThreadHandleLock;
+
+#endif // defined(LINUX) || defined(__APPLE__)
+
+
+      ::critical_section m_criticalsectionGlobals;
+
+
+      ::critical_section m_criticalsectionRefDbg;
+
+      ::critical_section m_criticalsectionFactory;
+
+
+
+#if !defined(WINDOWS)
+
+      ::critical_section m_criticalsectionDemangle;
+
+
+#endif
+
+
+      //::critical_section m_criticalsectionSystemHeap;
+
+
+#ifdef WINDOWS
+
+
+      ::critical_section m_criticalsectionSymDbgHelp;
+
+
+#endif
+
+
+      //::critical_section m_criticalsectionMessageDispatch;
+      //
+      //
+      //::critical_section * message_dispatch_critical_section() { return &m_criticalsectionMessageDispatch; }
+      //
+
+
+
+
+#ifdef ANDROID
+
+      ::critical_section m_criticalsectionOutputDebugStringA;
+
+
+#endif
+
+
+      //#ifdef __APPLE__
+      //
+      //
+      //      ::critical_section m_criticalsectionCvt;
+      //
+      //
+      //      ::critical_section* cvt_critical_section() { return &m_criticalsectionCvt; }
+      //
+      //#endif
+
+
+
+
+      class ::time                        m_timeStart;
+
+      ::memory_counter *                  m_pmemorycounter;
+
+
+      bool                                m_bOutputDebugString;
+
+      string                                          m_strCommandLine;
 
 
       platform();
@@ -139,6 +251,10 @@ namespace platform
       void factory_terminate();
 
 
+      void delete_all_release_on_end();
+
+
+
       ::factory::factory_pointer & factory();
       ::factory::factory_pointer & factory(const ::string & strLibrary);
       ::factory::factory_pointer & factory(const ::string & strComponent, const ::string & strImplementation);
@@ -181,7 +297,79 @@ namespace platform
 
       virtual ::pointer<::factory::factory> & impact_factory(const ::string & strComponent, const ::string & strImplementation);
 
+      void initialize_memory_counter();
+      void finalize_memory_counter();
+
+      ::memory_counter * get_memory_counter();
+
+
+
       //virtual ::acme::system * __get_system() = 0;
+      class ::time start_nanosecond();
+
+
+
+      ::particle * ui_destroyed_synchronization();
+
+
+
+#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(FREEBSD)
+
+      ::critical_section * tz_critical_section() { return &m_criticalsectionTz; }
+
+      ::critical_section * thread_handle_lock_critical_section() { return &m_criticalsectionThreadHandleLock; }
+
+
+#endif // defined(LINUX) || defined(__APPLE__)
+
+      critical_section * globals_critical_section() { return &m_criticalsectionGlobals; }
+
+
+
+      critical_section * ref_dbm_critical_section() { return &m_criticalsectionRefDbg; }
+
+
+
+      critical_section * factory_critical_section() { return &m_criticalsectionFactory; }
+
+
+
+
+#if !defined(WINDOWS)
+
+      ::critical_section * demangle_critical_section() { return &m_criticalsectionDemangle; }
+
+
+#endif
+
+      //::critical_section* system_heap_critical_section() { return &m_criticalsectionSystemHeap; }
+
+#ifdef WINDOWS
+
+
+
+      ::critical_section * sym_dbm_help_critical_section() { return &m_criticalsectionSymDbgHelp; }
+
+
+#endif
+
+
+#ifdef ANDROID
+
+
+      ::critical_section * output_debum_strinm_a_critical_section() { return &m_criticalsectionOutputDebugStringA; }
+
+#endif
+
+#ifdef __APPLE__
+
+
+      //::critical_section m_criticalsectionCvt;
+
+
+      ::critical_section * cvt_critical_section();
+
+#endif
 
 
    };
@@ -200,6 +388,22 @@ namespace platform
 
 
    //};
+
+
+   //namespace platform
+   //{
+
+
+      inline ::platform::platform * get()
+      {
+
+
+         return ::platform::platform::s_pplatform;
+
+
+      }
+
+
 
 
 } // namespace platform

@@ -235,7 +235,7 @@ namespace networking_bsd
    string networking_bsd::get_http_post_boundary()
    {
 
-      auto psystem = acmesystem()->m_papexsystem;
+      auto psystem = system()->m_papexsystem;
 
       single_lock lock(m_pmutexHttpPostBoundary, true);
 

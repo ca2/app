@@ -111,7 +111,7 @@ namespace write_text
       else
       {
 
-         auto pfactory = acmesystem()->factory("font_enumeration", strFontBranch);
+         auto pfactory = system()->factory("font_enumeration", strFontBranch);
 
          pfontenumeration = __create < ::write_text::font_enumeration >(pfactory);
 

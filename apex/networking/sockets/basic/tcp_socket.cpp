@@ -1795,7 +1795,7 @@ return true;
    //void tcp_socket::InitializeContext(const string & context, const SSL_METHOD * pmethod)
    //{
 
-   //   auto psystem = acmesystem()->m_papexsystem;
+   //   auto psystem = system()->m_papexsystem;
 
    //   ssl_client_context_map & clientcontextmap = psystem->sockets().m_clientcontextmap;
 
@@ -2008,7 +2008,7 @@ return true;
 //         synchronous_lock synchronouslock(this->synchronization());
 //         int i;
 //
-//         auto psystem = acmesystem()->m_papexsystem;
+//         auto psystem = system()->m_papexsystem;
 //
 //         int cnt = sizeof(psystem->sockets().m_baTicketKey) / SSL_SESSION_TICKET_KEY_SIZE;
 //         m_ticketkeya.set_size(cnt);

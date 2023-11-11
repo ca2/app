@@ -335,7 +335,7 @@ void signal::post_destroy_all()
 class ::time signal::poll_time()
 {
 
-   return acmesystem()->get_update_poll_time(m_atom);
+   return system()->get_update_poll_time(m_atom);
 
 }
 

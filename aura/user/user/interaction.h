@@ -452,7 +452,7 @@ namespace user
       //const class control_descriptor& descriptor();
       ::aura::application * get_app();
       ::aura::session * get_session();
-      //::aura::system * acmesystem();
+      //::aura::system * system();
       ::aura::context * context();
 
       bool _001CanEnterScreenSaver() override;

@@ -55,7 +55,7 @@ namespace factory
    ::pointer < ::particle > factory::create(const ::string & strType)
    {
 
-      //auto psystem = acmesystem();
+      //auto psystem = system();
 
       //synchronous_lock synchronouslock(&psystem->m_pmutexLibrary);
 
@@ -102,7 +102,7 @@ namespace factory
    bool factory::has_type(const ::string & strType) const
    {
 
-      //auto psystem = acmesystem();
+      //auto psystem = system();
 
       //synchronous_lock synchronouslock(&psystem->m_pmutexLibrary);
 

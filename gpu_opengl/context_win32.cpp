@@ -109,7 +109,7 @@ namespace opengl
       {
 
 
-         auto psystem = acmesystem()->m_paurasystem;
+         auto psystem = system()->m_paurasystem;
 
          auto pgpu = psystem->get_gpu();
 

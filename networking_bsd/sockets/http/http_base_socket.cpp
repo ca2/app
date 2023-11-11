@@ -338,7 +338,7 @@ namespace sockets
             if (response().m_strFile.has_char())
             {
 
-               acmesystem()->compress(pfile, file()->get_reader(response().m_strFile), "zlib");
+               system()->compress(pfile, file()->get_reader(response().m_strFile), "zlib");
 
                response().m_strFile.empty();
 
@@ -348,7 +348,7 @@ namespace sockets
 
                response().file()->seek_to_begin();
 
-               acmesystem()->compress(pfile, response().file(), "zlib");
+               system()->compress(pfile, response().file(), "zlib");
 
             }
 
@@ -405,7 +405,7 @@ namespace sockets
       
       strReferer = inheader("referer");
 
-      string strServer = acmesystem()->url()->get_server(strReferer);
+      string strServer = system()->url()->get_server(strReferer);
 
       string_array straAllowedOrigin;
 
@@ -503,9 +503,9 @@ namespace sockets
 
             auto preader = file()->get_reader(pcsz);
 
-            //if (!acmesystem()->uncompress(response().file(), preader, "zlib"))
+            //if (!system()->uncompress(response().file(), preader, "zlib"))
 
-            acmesystem()->uncompress(response().file(), preader, "zlib");
+            system()->uncompress(response().file(), preader, "zlib");
             //{
 
                response().file()->from_begin(preader);
@@ -644,7 +644,7 @@ namespace sockets
                      break;
                }
 
-               auto psystem = acmesystem();
+               auto psystem = system();
 
                auto pbase64 = psystem->base64();
                

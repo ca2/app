@@ -695,7 +695,7 @@ namespace datetime
    string datetime::get_week_day_str(const ::text::context * pcontext, i32 iWeekDay) // 1 - domingo
    {
       
-      return acmesystem()->texttable()->get(pcontext, "datetimestr_weekday_long[" + ::as_string(iWeekDay - 1) + "]");
+      return system()->texttable()->get(pcontext, "datetimestr_weekday_long[" + ::as_string(iWeekDay - 1) + "]");
 
    }
 
@@ -703,7 +703,7 @@ namespace datetime
    string datetime::get_tiny_week_day_str(const ::text::context * pcontext, i32 iWeekDay) // 1 - domingo
    {
 
-      return acmesystem()->texttable()->get(pcontext, "datetimestr_weekday_tiny[" + ::as_string(iWeekDay - 1) + "]");
+      return system()->texttable()->get(pcontext, "datetimestr_weekday_tiny[" + ::as_string(iWeekDay - 1) + "]");
 
    }
 
@@ -711,7 +711,7 @@ namespace datetime
    string datetime::get_month_str(const ::text::context * pcontext, i32 iMonth)
    {
    
-      return acmesystem()->texttable()->get(pcontext, "datetimestr_month[" + ::as_string(iMonth - 1) + "]");
+      return system()->texttable()->get(pcontext, "datetimestr_month[" + ::as_string(iMonth - 1) + "]");
 
    }
 
@@ -719,7 +719,7 @@ namespace datetime
    string datetime::get_short_month_str(const ::text::context * pcontext, i32 iMonth)
    {
 
-      return acmesystem()->texttable()->get(pcontext, "datetimestr_month_short[" + ::as_string(iMonth - 1) + "]");
+      return system()->texttable()->get(pcontext, "datetimestr_month_short[" + ::as_string(iMonth - 1) + "]");
 
    }
 
@@ -1698,7 +1698,7 @@ namespace datetime
 
       auto pdatetime = datetime();
 
-      auto pcre1 = acmesystem()->compile_pcre("^\\s*((\\d+)\\s*/\\s*(\\d+))((\\d|$)?!)");
+      auto pcre1 = system()->compile_pcre("^\\s*((\\d+)\\s*/\\s*(\\d+))((\\d|$)?!)");
 
       auto presult = pcre1->run(str);
 

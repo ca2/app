@@ -22,7 +22,7 @@ DO_FACTORY(REFERENCE_FACTORY)
 #if !defined(CUBE)
 #include "acme/memory/_new.inl"
 #endif
-
+#include "acme/operating_system/acme_initialize.h"
 
 //DECLARE_APPLICATION(APPLICATION);
 
@@ -96,9 +96,9 @@ int main(int argc, char * argv[], char * envp[])
    //}
 
 #if defined(WINDOWS)
-   acme.initialize(hinstanceThis, hinstancePrev, pCmdLine, nCmdShow);
+   ::acme::initialize(hinstanceThis, hinstancePrev, pCmdLine, nCmdShow);
 #else
-   acme.initialize(argc, argv, envp);
+   ::acme::initialize(argc, argv, envp);
 #endif
 
 #if defined(LINUX) || defined(FREEBSD) || defined(RASPBERRYPIOS)

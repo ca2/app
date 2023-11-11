@@ -497,7 +497,7 @@ namespace user
 //
 //         m_strText = str;
 //
-//         auto psystem = acmesystem()->m_paurasystem;
+//         auto psystem = system()->m_paurasystem;
 //
 //         auto pdraw2d = psystem->draw2d();
 //
@@ -830,7 +830,7 @@ namespace user
 
          psession->on_show_user_input_popup(m_plistbox);
 
-         auto psystem = acmesystem()->m_paurasystem;
+         auto psystem = system()->m_paurasystem;
 
          auto pdraw2d = psystem->draw2d();
 

@@ -282,7 +282,7 @@ namespace apex
    bool system::on_get_task_name(string& strTaskName)
    {
 
-      if (acmeapplication()->is_console())
+      if (application()->is_console())
       {
 
          return false;
@@ -316,32 +316,32 @@ namespace apex
    void system::process_init()
    {
 
-      if (!acmeapplication()->m_bShowApplicationInformation)
+      if (!application()->m_bShowApplicationInformation)
       {
 
          string strShowApplicationInformation;
 
-         if (is_command_line_parameter_true(strShowApplicationInformation, acmeapplication()->m_strCommandLine, "show_application_information"))
+         if (is_command_line_parameter_true(strShowApplicationInformation, platform()->m_strCommandLine, "show_application_information"))
          {
 
-            acmeapplication()->m_bShowApplicationInformation = true;
+            application()->m_bShowApplicationInformation = true;
 
          }
 
       }
 
-      auto psystem = acmesystem();
+      //auto psystem = system();
 
-      if (!psystem)
-      {
+      //if (!psystem)
+      //{
 
-         return;
+      //   return;
 
-         //on_result(error_failed);
+      //   //on_result(error_failed);
 
-         //return false;
+      //   //return false;
 
-      }
+      //}
 
       //   psystem->common_construct();
 
@@ -349,14 +349,14 @@ namespace apex
 
       //debug_context_object(psystem);
 
-      psystem->initialize(psystem);
+      initialize(this);
 
       //set_object(psystem);
 
 
       // what could influence time before Main?
       // cold start (never previously called program and its Dlls...)?
-      psystem->m_timeMainStart = m_timeStart;
+      m_timeMainStart = m_timeStart;
 
       //xxdebug_box("box1", "box1", e_message_box_icon_information);
    //
@@ -567,7 +567,7 @@ namespace apex
 
 #if !defined(ANDROID) && !defined(APPLE_IOS)
 
-      if (!acmeapplication()->is_service() || acmeapplication()->m_papexapplication->is_user_service())
+      if (!application()->is_service() || application()->m_papexapplication->is_user_service())
       {
 
          m_pmutexUserAppData = acmenode()->create_local_named_mutex(this, false, "ca2.UserAppData");
@@ -613,7 +613,7 @@ namespace apex
       //return estatus;
 
 
-      acmeapplication()->initialize_application_flags();
+      application()->initialize_application_flags();
 
 
 
@@ -783,7 +783,7 @@ namespace apex
 
                   string str("installing or unstalling as root : getuid() %d", uid);
 
-                           auto psystem = acmesystem();
+                           auto psystem = system();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -940,9 +940,9 @@ pacmedirectory->create("/ca2core");
 
       string strPid = ::as_string(pid);
 
-      //auto psystem = acmesystem();
+      //auto psystem = system();
 
-      auto pdatetime = psystem->datetime();
+      auto pdatetime = datetime();
 
       string strLogTime = pdatetime->international().get_date_time_for_file_with_no_spaces();
 
@@ -967,7 +967,7 @@ pacmedirectory->create("/ca2core");
 
          string strCmd = strExecutable + " " + straArguments.implode("\n");
 
-         string strAppId = acmeapplication()->m_strAppId;
+         string strAppId = application()->m_strAppId;
 
          string strCmdLineDumpFileName = strAppId / (strLogTime + "-pid" + strPid + "-command_line.txt");
 
@@ -1012,7 +1012,7 @@ pacmedirectory->create("/ca2core");
 
          string strEnv = straEnv.implode("\n");
 
-         string strAppId = acmeapplication()->m_strAppId;
+         string strAppId = application()->m_strAppId;
 
          string strEnvDumpFileName = strAppId / strLogTime + "-pid" + strPid + "-environment_variables.txt";
 
@@ -1080,7 +1080,7 @@ pacmedirectory->create("/ca2core");
 
       //}
 
-      if (acmeapplication()->m_bCrypto)
+      if (application()->m_bCrypto)
       {
 
          auto & pfactoryCrypto = factory("crypto", "openssl");
@@ -1119,7 +1119,7 @@ pacmedirectory->create("/ca2core");
 
       //estatus = 
 
-      if (acmeapplication()->m_bNetworking || acmeapplication()->m_bNetworking.undefined())
+      if (application()->m_bNetworking || application()->m_bNetworking.undefined())
       {
 
          initialize_networking();
@@ -1135,7 +1135,7 @@ pacmedirectory->create("/ca2core");
 
       //}
 
-      if (acmeapplication()->m_bResource)
+      if (application()->m_bResource)
       {
 
          bool bMatterFromHttpCache = false;
@@ -1384,7 +1384,7 @@ pacmedirectory->create("/ca2core");
 
       //}
 
-      //if (acmeapplication()->is_console())
+      //if (application()->is_console())
       //{
 
          //estatus = 
@@ -1402,10 +1402,10 @@ pacmedirectory->create("/ca2core");
       //else
       //{
 
-      if (acmeapplication()->m_bSession)
+      if (application()->m_bSession)
       {
 
-         acmesession()->branch_synchronously();
+         session()->branch_synchronously();
 
       }
          //{
@@ -1428,10 +1428,10 @@ pacmedirectory->create("/ca2core");
 
       //}
 
-      if (acmeapplication()->m_bSession)
+      if (application()->m_bSession)
       {
 
-         auto psession = acmesession();
+         auto psession = session();
 
          psession->m_ptextcontext->defer_ok(m_ptexttable);
 
@@ -1701,15 +1701,15 @@ pacmedirectory->create("/ca2core");
 
       //   auto prequest = __create_new< ::request>();
 
-      //   string strAppId = acmeapplication()->m_strAppId;
+      //   string strAppId = application()->m_strAppId;
 
       //   if (strAppId.is_empty())
       //   {
 
-      //      if (acmeapplication())
+      //      if (application())
       //      {
 
-      //         strAppId = acmeapplication()->m_strAppId;
+      //         strAppId = application()->m_strAppId;
 
       //      }
 
@@ -1739,7 +1739,7 @@ pacmedirectory->create("/ca2core");
    //   else
    //   {
 
-   //      string strCommandLine = acmeapplication()->m_strCommandLine;
+   //      string strCommandLine = application()->m_strCommandLine;
 
    //      prequest->initialize_command_line2(strCommandLine);
 
@@ -1815,7 +1815,7 @@ pacmedirectory->create("/ca2core");
 
          string strMoreDetails;
 
-         strMoreDetails = "command line: " + string(acmeapplication()->m_strCommandLine) + "\n\n";
+         strMoreDetails = "command line: " + string(platform()->m_strCommandLine) + "\n\n";
 
          exception_message_box(exception, strMoreDetails);
 
@@ -1829,7 +1829,7 @@ pacmedirectory->create("/ca2core");
    ::acme::application* system::get_main_app()
    {
 
-      return acmeapplication();
+      return application();
 
    }
 
@@ -1863,13 +1863,13 @@ pacmedirectory->create("/ca2core");
 //
 //      //}
 //
-//      __refer(acmeapplication(), pappStartup);
+//      __refer(application(), pappStartup);
 //
-//      acmeapplication()->initialize(this);
+//      application()->initialize(this);
 //
-//      acmeapplication()->get_property_set().merge(get_property_set());
+//      application()->get_property_set().merge(get_property_set());
 //
-//      set_main_struct(*acmeapplication());
+//      set_main_struct(*application());
 
       //return estatus;
 
@@ -1899,7 +1899,7 @@ pacmedirectory->create("/ca2core");
    string system::get_application_server_name()
    {
 
-      string strApplicationServerName = acmeapplication()->m_strAppId;
+      string strApplicationServerName = application()->m_strAppId;
 
       strApplicationServerName.replace_with(".", "/");
 
@@ -1987,7 +1987,7 @@ pacmedirectory->create("/ca2core");
 
    //   synchronous_lock synchronouslock(m_pmutexThread);
 
-   //   for (auto& pair : acmesystem()->m_threadidmap)
+   //   for (auto& pair : system()->m_threadidmap)
    //   {
 
    //      try
@@ -3030,14 +3030,12 @@ pacmedirectory->create("/ca2core");
 
       ::acme::application* papplication = nullptr;
 
-      auto psession = acmesession();
+      auto psession = session();
 
       if (psession == nullptr)
       {
 
-         auto psystem = acmesystem();
-
-         papplication = psystem->acmeapplication();
+         papplication = application();
 
       }
       else
@@ -3202,12 +3200,12 @@ pacmedirectory->create("/ca2core");
 
       prequest->m_payloadFile = pszFile;
 
-      auto papplication = acmeapplication();
+      auto papplication = application();
 
       if (!papplication)
       {
 
-         papplication = acmeapplication();
+         papplication = application();
 
       }
 
@@ -3346,9 +3344,7 @@ pacmedirectory->create("/ca2core");
    void system::on_extra(string str)
    {
 
-      auto psystem = acmesystem();
-
-      auto purl = psystem->url();
+      auto purl = url();
 
       string strProtocol = purl->get_protocol(str);
 
@@ -3452,9 +3448,7 @@ pacmedirectory->create("/ca2core");
    string system::get_user_language()
    {
 
-      auto psystem = acmesystem()->m_papexsystem;
-
-      return psystem->standalone_setting("current_language");
+      return standalone_setting("current_language");
 
    }
 
@@ -3462,11 +3456,9 @@ pacmedirectory->create("/ca2core");
    void system::set_user_language(::apex::application* papp, index iSel)
    {
 
-      auto psystem = acmesystem()->m_papexsystem;
+      auto psession = session();
 
-      auto psession = psystem->acmesession();
-
-      auto papexapplication = psession->acmeapplication()->m_papexapplication;
+      auto papexapplication = psession->application()->m_papexapplication;
 
       auto puserlanguagemap = papexapplication->m_puserlanguagemap;
 
@@ -3503,17 +3495,15 @@ pacmedirectory->create("/ca2core");
    void system::set_user_language(::apex::application* papp, string strLang)
    {
 
-      auto psystem = acmesystem()->m_papexsystem;
+      auto psession = session();
 
-      auto psession = psystem->acmesession();
-
-      auto papexapplication = psession->acmeapplication()->m_papexapplication;
+      auto papexapplication = psession->application()->m_papexapplication;
 
       auto puserlanguagemap = papexapplication->m_puserlanguagemap;
 
       puserlanguagemap->set_language(papp, strLang);
 
-      psystem->set_standalone_setting("current_language", strLang);
+      set_standalone_setting("current_language", strLang);
 
    }
 
@@ -3945,9 +3935,7 @@ pacmedirectory->create("/ca2core");
 
             strParam += " " + acmefile()->as_string(acmedirectory()->localconfig() / "app-core/commander/chrome.txt");
 
-            auto psystem = acmesystem();
-
-            auto pnode = psystem->node();
+            auto pnode = node();
 
             pnode->call_async(path, strParam, pathDir, e_display_default, false);
 
@@ -3971,7 +3959,7 @@ pacmedirectory->create("/ca2core");
 
          argv.add(nullptr);
 
-         auto psystem = acmesystem();
+         auto psystem = system();
 
          auto purl = psystem->url();
 
@@ -4002,7 +3990,7 @@ pacmedirectory->create("/ca2core");
 
          informationf(strParam);
 
-         auto psystem = acmesystem();
+         auto psystem = system();
 
          auto pnode = psystem->node();
 
@@ -4049,9 +4037,7 @@ pacmedirectory->create("/ca2core");
 
       ::property_set set;
 
-      auto psystem = acmesystem();
-
-      auto pnode = psystem->node();
+      auto pnode = node();
 
       ::i32 iExitCode = 0;
 
@@ -4120,9 +4106,7 @@ pacmedirectory->create("/ca2core");
       if (!bFound)
       {
 
-         auto psystem = acmesystem();
-
-         auto pnode = psystem->node();
+         auto pnode = node();
 
          pnode->call_async(strBrowserPath, strParam, strBrowserDir, e_display_normal, false);
 
@@ -4291,9 +4275,7 @@ pacmedirectory->create("/ca2core");
    string system::crypto_md5_text(const ::string& str)
    {
 
-      auto psystem = acmesystem()->m_papexsystem;
-
-      auto pcrypto = psystem->crypto();
+      auto pcrypto = crypto();
 
       return pcrypto->md5(str);
 
@@ -4766,7 +4748,7 @@ namespace apex
    bool system::window_rectangle(::rectangle_i32* prectangle)
    {
 
-      if (::is_null(acmesession()))
+      if (::is_null(session()))
       {
 
          return false;
@@ -4802,10 +4784,10 @@ namespace apex
 
       process_init();
 
-      if (acmeapplication()->is_console())
+      if (application()->is_console())
       {
 
-         acmeapplication()->main();
+         application()->main();
 
       }
       else
@@ -4924,17 +4906,17 @@ namespace apex
    bool system::_handle_uri(const ::string & strUri)
    {
 
-      if (acmeapplication() && acmeapplication()->_handle_uri(strUri))
+      if (application() && application()->_handle_uri(strUri))
       {
 
          return true;
 
       }
 
-      if (!acmeapplication() || acmeapplication() != acmeapplication())
+      if (!application() || application() != application())
       {
 
-         if (acmeapplication() && acmeapplication()->_handle_uri(strUri))
+         if (application() && application()->_handle_uri(strUri))
          {
 
             return true;
@@ -4972,13 +4954,13 @@ namespace apex
       if (estatus == error_exit_session)
       {
 
-         pparticle->acmesession()->destroy();
+         pparticle->session()->destroy();
 
       }
       else if (estatus == error_exit_application)
       {
 
-         pparticle->acmesession()->destroy();
+         pparticle->session()->destroy();
 
       }
       else
@@ -5168,7 +5150,7 @@ string get_bundle_app_library_name();
       catch (...)
       {
 
-         acmeapplication()->m_bNetworking = false;
+         application()->m_bNetworking = false;
 
       }
 

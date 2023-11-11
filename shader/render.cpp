@@ -58,7 +58,7 @@ namespace app_shader
 
       //initialize_application_consumer();
 
-      auto psystem = acmesystem()->m_paurasystem;
+      auto psystem = system()->m_paurasystem;
 
       auto pgpu = psystem->get_gpu();
 
@@ -531,7 +531,7 @@ namespace app_shader
 
             pfont.create(this);
 
-            auto pnode = acmesystem()->m_paurasystem->node();
+            auto pnode = system()->m_paurasystem->node();
 
             auto strFontName = pnode->font_name(e_font_sans_ui);
 

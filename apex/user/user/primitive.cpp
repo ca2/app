@@ -1982,16 +1982,16 @@ namespace user
 
      }
 
-     if (::is_set(acmesession()))
+     if (::is_set(session()))
      {
 
-        if (this == acmesession()->m_papexsession->m_puserprimitiveHost)
+        if (this == session()->m_papexsession->m_puserprimitiveHost)
         {
 
            return true;
 
         }
-        else if (puiParent == acmesession()->m_papexsession->m_puserprimitiveHost)
+        else if (puiParent == session()->m_papexsession->m_puserprimitiveHost)
         {
 
            return true;

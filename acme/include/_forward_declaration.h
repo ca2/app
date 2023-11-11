@@ -908,6 +908,9 @@ namespace platform
    class platform;
 
 
+   inline ::platform::platform * get();
+
+
 } // namespace platform
 
 

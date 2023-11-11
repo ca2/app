@@ -73,7 +73,7 @@ bool ftpfs::fast_has_subdir(const ::file::path & path)
 
    dir_listing & dir = m_map[path];
 
-   auto psystem = acmesystem()->m_pcoresystem;
+   auto psystem = system()->m_pcoresystem;
 
    if (dir.m_timeLast.elapsed() < psystem->m_timeFileListingCache)
    {
@@ -96,7 +96,7 @@ bool ftpfs::has_subdir(const ::file::path & path)
 
       dir_listing & dir = m_map[path];
 
-      auto psystem = acmesystem();
+      auto psystem = system();
 
       if (dir.m_timeLast.timeout(psystem->m_timeFileListingCache))
       {
@@ -171,7 +171,7 @@ bool ftpfs::enumerate(::file::listing & listing)
 
       dir_listing & dir = m_map[listing.m_pathUser];
 
-      auto psystem = acmesystem()->m_paurasystem;
+      auto psystem = system()->m_paurasystem;
 
       if (dir.m_timeLast.timeout(psystem->m_timeFileListingCache))
       {
@@ -248,7 +248,7 @@ retry:
 
    string strPath;
 
-   auto psystem = acmesystem()->m_paurasystem;
+   auto psystem = system()->m_paurasystem;
 
    auto purl = psystem->url();
 
@@ -372,7 +372,7 @@ int ftpfs::is_dir(const ::file::path & path)
 
    dir_listing & dir = m_map[path.folder()];
 
-   auto psystem = acmesystem()->m_pcoresystem;
+   auto psystem = system()->m_pcoresystem;
 
    if (dir.m_timeLast.elapsed() > psystem->m_timeFileListingCache)
    {
@@ -447,7 +447,7 @@ retry:
 
       ::file::path pathTemp = file()->time(dir()->time());
 
-      auto psystem = acmesystem()->m_papexsystem;
+      auto psystem = system()->m_papexsystem;
 
       auto purl = psystem->url();
 
@@ -524,7 +524,7 @@ void ftpfs::defer_initialize(::ftp::client_socket ** ppclient, string strPath)
 
    auto plogon = __new(::ftp::logon);
 
-   auto psystem = acmesystem()->m_pcoresystem;
+   auto psystem = system()->m_pcoresystem;
 
    auto purl = psystem->url();
 

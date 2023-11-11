@@ -165,7 +165,7 @@ namespace user
 
       //}
 
-      acmesystem()->m_pnode->fetch_user_color();
+      system()->m_pnode->fetch_user_color();
 
       m_puserstyle->default_style_construct();
 
@@ -527,7 +527,7 @@ namespace user
 
       //::payload & varTopicQuey = psystem->commnam_varTopicQuery;
 
-      auto psystem = acmesystem()->m_paurasystem;
+      auto psystem = system()->m_paurasystem;
 
       bool bHasInstall = psystem->is_true("install");
 
@@ -939,7 +939,7 @@ namespace aura
          try
          {
 
-            auto psystem = acmesystem()->m_paurasystem;
+            auto psystem = system()->m_paurasystem;
 
             if (psystem)
             {
@@ -1449,7 +1449,7 @@ namespace user
 
       __construct(m_pdesktopenvironment);
 
-      auto psystem = acmesystem();
+      auto psystem = system();
 
       auto pacmenode = psystem->m_pacmenode;
 
@@ -1531,7 +1531,7 @@ namespace user
    //::aura::system * useracmesystem()
    //{
 
-   //   return ::is_set(acmesystem()) ? dynamic_cast <::aura::system *> (acmesystem()) : nullptr;
+   //   return ::is_set(system()) ? dynamic_cast <::aura::system *> (system()) : nullptr;
 
    //}
 
@@ -1566,7 +1566,7 @@ CLASS_DECL_AURA ::particle * user_synchronization()
 //
 //   }
 //
-//   g_pmutexUser = ::acme::acme::g_pacme->m_pplatform->acmesystem()->node()->create_mutex();
+//   g_pmutexUser = ::platform::get()->system()->node()->create_mutex();
 //
 //}
 //

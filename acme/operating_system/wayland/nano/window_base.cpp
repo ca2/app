@@ -473,7 +473,7 @@ namespace wayland
 //                                              &g_xdg_activation_token_v1_listener,
 //                                              this);
 //
-//         auto psystem = acmesystem()->m_papexsystem;
+//         auto psystem = system()->m_papexsystem;
 //
 //         string strApplicationServerName = psystem->get_application_server_name();
 //
@@ -773,7 +773,7 @@ namespace wayland
 
             information() << "xdg_toplevel_set_app_id (1)";
 
-            auto psystem = acmesystem();
+            auto psystem = system();
 
             string strApplicationServerName = psystem->get_application_server_name();
 

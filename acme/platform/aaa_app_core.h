@@ -53,7 +53,7 @@ public:
    PFN_DEFER_TERM                      m_pfnDeferTerm;
    ::duration                          m_durationStart;
    ::duration                          m_durationAfterApplicationFirstRequest;
-   //::apex::system *                  acmesystem();
+   //::apex::system *                  system();
    //::pointer<apex_main_data>        m_pmaindata;
    ::pointer<::acme::library>         m_plibrary;
    ::e_status                          m_estatusa[APP_CORE_MAXIMUM_STATUS_COUNT];

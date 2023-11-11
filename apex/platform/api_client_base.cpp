@@ -157,7 +157,7 @@ api_client_base::~api_client_base()
 ::pointer < ::api > api_client_base::create_api(const ::scoped_string & scopedstrImplementation, const ::scoped_string & scopedstrService)
 {
 
-   auto & pfactory = acmesystem()->factory("api", scopedstrImplementation);
+   auto & pfactory = system()->factory("api", scopedstrImplementation);
 
    if (!pfactory)
    {

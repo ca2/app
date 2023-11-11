@@ -24,7 +24,7 @@
 #undef MUTEX_NAMED_POSIX
 #undef MUTEX_NAMED_FD
 #define MUTEX_NAMED_FD // File Descriptor "Semaphore"
-//#define MUTEX_NAMED_VSEM // acmesystem() V Semaphore
+//#define MUTEX_NAMED_VSEM // system() V Semaphore
 #undef MUTEX_NAMED_VSEM
 
 #endif

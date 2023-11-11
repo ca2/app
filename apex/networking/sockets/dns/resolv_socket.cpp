@@ -116,16 +116,16 @@ namespace sockets
 
       //}
 
-//      acmesystem() = acmesystem();
+//      system() = system();
 //
-//      if (!acmesystem())
+//      if (!system())
 //      {
 //
 //         throw ::exception(error_resource);
 //
 //      }
 
-      m_pnetworking = acmesystem()->m_papexsystem->networking();
+      m_pnetworking = system()->m_papexsystem->networking();
 
       if (!m_pnetworking)
       {
@@ -142,7 +142,7 @@ namespace sockets
    void resolv_socket::destroy()
    {
 
-      //acmesystem().release();
+      //system().release();
 
       m_pnetworking.release();
 
@@ -170,14 +170,14 @@ namespace sockets
 
          //{
 
-         //   single_lock lock(&acmesystem()->networking()->m_pmutexResolvCache, true);
+         //   single_lock lock(&system()->networking()->m_pmutexResolvCache, true);
 
          //   string result;
 
-         //   if(acmesystem()->networking()->m_resolvcache[m_query].lookup(m_data, result))
+         //   if(system()->networking()->m_resolvcache[m_query].lookup(m_data, result))
          //   {
 
-         //      if (time(nullptr) - acmesystem()->networking()->m_resolvtimeout[m_query][m_data] < 3600) // ttl
+         //      if (time(nullptr) - system()->networking()->m_resolvtimeout[m_query][m_data] < 3600) // ttl
          //      {
 
          //         information() << " *** Returning cache for ["<< m_query <<"]["<< m_data <<"] = '"<< result <<"'";
@@ -235,10 +235,10 @@ namespace sockets
          //if (!m_cached)
          //{
 
-         //   single_lock lock(&acmesystem()->networking()->m_pmutexResolvCache, true);
+         //   single_lock lock(&system()->networking()->m_pmutexResolvCache, true);
          //   information() << " *** Update cache for ["<< m_query <<"]["<< m_data <<"] = '"<< value <<"'";
-         //   acmesystem()->networking()->m_resolvcache[m_query][m_data] = value;
-         //   acmesystem()->networking()->m_resolvtimeout[m_query][m_data] = time(nullptr);
+         //   system()->networking()->m_resolvcache[m_query][m_data] = value;
+         //   system()->networking()->m_resolvtimeout[m_query][m_data] = time(nullptr);
          //}
          m_parent = nullptr;
       }
@@ -251,10 +251,10 @@ namespace sockets
          // update cache
          if (!m_cached)
          {
-            //single_lock lock(&acmesystem()->networking()->m_pmutexResolvCache, true);
+            //single_lock lock(&system()->networking()->m_pmutexResolvCache, true);
             //information() << " *** Update cache for [" << m_query << "][" << m_data << "] = '" << value << "'";
-            //acmesystem()->networking()->m_resolvcache[m_query][m_data] = value;
-            //acmesystem()->networking()->m_resolvtimeout[m_query][m_data] = time(nullptr);
+            //system()->networking()->m_resolvcache[m_query][m_data] = value;
+            //system()->networking()->m_resolvtimeout[m_query][m_data] = time(nullptr);
          }
          m_parent = nullptr;
       }
@@ -269,10 +269,10 @@ namespace sockets
          // update cache
          if (!m_cached)
          {
-            //single_lock lock(&acmesystem()->networking()->m_pmutexResolvCache, true);
+            //single_lock lock(&system()->networking()->m_pmutexResolvCache, true);
             //information() << " *** Update cache for [" << m_query << "][" << m_data << "] = '" << value << "'";
-            //acmesystem()->networking()->m_resolvcache[m_query][m_data] = value;
-            //acmesystem()->networking()->m_resolvtimeout[m_query][m_data] = time(nullptr);
+            //system()->networking()->m_resolvcache[m_query][m_data] = value;
+            //system()->networking()->m_resolvtimeout[m_query][m_data] = time(nullptr);
          }
          m_parent = nullptr; // always use first ip in case there are several
       }
@@ -287,10 +287,10 @@ namespace sockets
          // update cache
          if (!m_cached)
          {
-            //single_lock lock(&acmesystem()->networking()->m_pmutexResolvCache, true);
+            //single_lock lock(&system()->networking()->m_pmutexResolvCache, true);
             //information() << " *** Update cache for [" << m_query << "][" << m_data << "] = '" << value << "'";
-            //acmesystem()->networking()->m_resolvcache[m_query][m_data] = value;
-            //acmesystem()->networking()->m_resolvtimeout[m_query][m_data] = time(nullptr);
+            //system()->networking()->m_resolvcache[m_query][m_data] = value;
+            //system()->networking()->m_resolvtimeout[m_query][m_data] = time(nullptr);
          }
          m_parent = nullptr;
       }
@@ -442,11 +442,11 @@ namespace sockets
          // update cache
          if (!m_cached)
          {
-            //single_lock lock(&acmesystem()->networking()->m_pmutexResolvCache, true);
+            //single_lock lock(&system()->networking()->m_pmutexResolvCache, true);
             //string value;
             //information() << " *** Update cache for ["<< m_query <<"][" << m_data << "] = '"<<value<<"'";
-            //acmesystem()->networking()->m_resolvcache[m_query][m_data] = value;
-            //acmesystem()->networking()->m_resolvtimeout[m_query][m_data] = time(nullptr);
+            //system()->networking()->m_resolvcache[m_query][m_data] = value;
+            //system()->networking()->m_resolvtimeout[m_query][m_data] = time(nullptr);
          }
          m_parent = nullptr;
       }

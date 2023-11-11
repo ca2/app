@@ -1486,7 +1486,7 @@ namespace experience_nanoui
 
       }
 
-      auto rectangleTrack = pscrollbar->get_track_rectangle();
+      auto rectangleTrack = pscrollbar->get_track_rectangle(::user::e_layout_design);
 
       ::rectangle_i32 rectangleWindow;
 

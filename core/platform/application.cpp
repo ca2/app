@@ -58,7 +58,7 @@ namespace core
    ::core::session * application::get_session()
    {
 
-      auto pacmesession = acmesession();
+      auto pacmesession = session();
 
       return ::is_set(pacmesession) ? pacmesession->m_pcoresession : nullptr;
 
@@ -68,7 +68,7 @@ namespace core
    ::core::system * application::get_system()
    {
 
-      auto pacmesystem = acmesystem();
+      auto pacmesystem = system();
 
       return ::is_set(pacmesystem) ? pacmesystem->m_pcoresystem : nullptr;
 
@@ -116,7 +116,7 @@ namespace core
       puser->will_use_impact_hint(COLORSEL_IMPACT);
       puser->will_use_impact_hint(FONTSEL_IMPACT);
 
-      auto psystem = acmesystem()->m_pcoresystem;
+      auto psystem = system()->m_pcoresystem;
 
       psystem->initialize_rich_text();
 
@@ -216,7 +216,7 @@ namespace core
 
       }
 
-      strOptionsHtml += acmesystem()->m_pnode->m_pauranode->system_options_html();
+      strOptionsHtml += system()->m_pnode->m_pauranode->system_options_html();
 
       strOptionsHtml += "</body>";
       strOptionsHtml += "</html>";
@@ -275,7 +275,7 @@ namespace core
 
       bool bCheck = false;
 
-      auto papplication = acmeapplication()->m_papexapplication;
+      auto papplication = m_papexapplication;
 
       bool bUserAutoStart = os_context()->is_user_auto_start(papplication->get_executable_appid());
 
@@ -286,7 +286,7 @@ namespace core
 
             bool bCheck = pcheck->bcheck();
 
-            auto papplication = acmeapplication()->m_papexapplication;
+            auto papplication = m_papexapplication;
 
             os_context()->register_user_auto_start(
                papplication->get_executable_appid(),

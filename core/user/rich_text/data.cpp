@@ -1046,7 +1046,7 @@ namespace user
             //if (parse_rtf_text(str))
             //{
 
-            //auto pfactory = acmesystem()->factory("text_format", "rtf");
+            //auto pfactory = system()->factory("text_format", "rtf");
 
             //auto ptextformat = __create< ::user::rich_text::text_format >(pfactory);
 
@@ -1072,7 +1072,7 @@ namespace user
 
             write_to_stream(binarystream);
 
-            //auto pfactory = acmesystem()->factory("text_format", "rtf");
+            //auto pfactory = system()->factory("text_format", "rtf");
 
             //auto ptextformat = __create< ::user::rich_text::text_format >(pfactory);
 
@@ -1088,7 +1088,7 @@ namespace user
       void data::read_from_stream(::binary_stream & binarystream)
       {
 
-         auto pfactory = acmesystem()->factory("text_format", "rtf");
+         auto pfactory = system()->factory("text_format", "rtf");
 
          auto ptextformat = __create< ::user::rich_text::text_format >(pfactory);
 
@@ -1100,7 +1100,7 @@ namespace user
       void data::write_to_stream(::binary_stream & binarystream)
       {
 
-         auto pfactory = acmesystem()->factory("text_format", "rtf");
+         auto pfactory = system()->factory("text_format", "rtf");
 
          auto ptextformat = __create< ::user::rich_text::text_format >(pfactory);
 

@@ -27,7 +27,7 @@
 //int_bool acmefile()->put_contents(const ::file::path & path, const char* contents, memsize len)
 //{
 //
-//            auto psystem = acmesystem();
+//            auto psystem = system();
 //
 //         auto pacmedirectory = psystem->m_pacmedirectory;
 //
@@ -1767,7 +1767,7 @@ HANDLE hfile_create(const char* lpcszFileName, ::u32 dwDesiredAcces, ::u32 dwSha
 ////int_bool acmefile()->put_contents(const ::file::path & path,const char * contents,::count len)
 ////{
 ////
-////            auto psystem = acmesystem();
+////            auto psystem = system();
 //
 //         auto pacmedirectory = psystem->m_pacmedirectory;
 //
@@ -2092,6 +2092,14 @@ filesize hfile_get_size(HANDLE h)
 //   return bOk;
 //
 //}
+
+
+CLASS_DECL_ACME::file::path home_folder_path()
+{
+
+   return {};
+
+}
 
 
 

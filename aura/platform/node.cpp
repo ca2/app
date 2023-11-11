@@ -50,7 +50,7 @@ namespace aura
 
       //message_box_factory();
 
-      //acmesystem()->m_pauranode = this;
+      //system()->m_pauranode = this;
 
       //return estatus;
 

@@ -156,7 +156,7 @@ namespace datetime
       string calendar::GetWeekDay(const ::text::context* pcontext, int32_t iWeekDay) // 1 - domingo
       {
 
-         auto psystem = acmesystem();
+         auto psystem = system();
 
          auto pdatetime = psystem->datetime();
 
@@ -168,7 +168,7 @@ namespace datetime
       string calendar::GetTinyWeekDay(const ::text::context* pcontext, int32_t iWeekDay) // 1 - domingo
       {
 
-         auto psystem = acmesystem();
+         auto psystem = system();
 
          auto pdatetime = psystem->datetime();
 
@@ -180,7 +180,7 @@ namespace datetime
       string calendar::GetMonth(const ::text::context* pcontext, int32_t iMonth)
       {
 
-         auto psystem = acmesystem();
+         auto psystem = system();
 
          auto pdatetime = psystem->datetime();
 

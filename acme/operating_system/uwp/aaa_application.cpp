@@ -17,7 +17,7 @@ namespace acme
    //   m_pthreadimpl.create(this);
    //   m_pthreadimpl->m_pthread = this;
 
-   //   acmesystem() = papp->acmesystem();
+   //   system() = papp->system();
 
    //   m_atomApp = m_atomSystemTopic = nullptr;
 

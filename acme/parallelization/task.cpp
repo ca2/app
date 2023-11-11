@@ -332,7 +332,7 @@ void task::main()
 
    __task_init();
 
-   if(defer_implement(acmesystem()))
+   if(defer_implement(system()))
    {
 
       return;
@@ -361,7 +361,7 @@ void task::main()
    catch(::exception & exception)
    {
 
-      message_box_synchronous(this, exception.m_strMessage, acmeapplication()->m_strAppId, e_message_box_ok, exception.m_strDetails);
+      message_box_synchronous(this, exception.m_strMessage, application()->m_strAppId, e_message_box_ok, exception.m_strDetails);
 
    }
    catch(...)
@@ -619,7 +619,7 @@ bool task::is_task_registered() const
    
    auto pcontext = m_pcontext;
 
-   return pcontext->acmesystem()->get_task_id(this) != 0;
+   return pcontext->system()->get_task_id(this) != 0;
 
 }
 
@@ -629,7 +629,7 @@ void task::register_task()
 
    auto pcontext = m_pcontext;
 
-   pcontext->acmesystem()->set_task(m_itask, this);
+   pcontext->system()->set_task(m_itask, this);
 
 }
 
@@ -639,7 +639,7 @@ void task::unregister_task()
 
    auto pcontext = m_pcontext;
 
-   pcontext->acmesystem()->unset_task(m_itask, this);
+   pcontext->system()->unset_task(m_itask, this);
 
 }
 
@@ -1484,7 +1484,7 @@ bool task::has_message() const
 //      if (::is_null(pobjectParentTask))
 //      {
 //
-//         pobjectParentTask = acmesystem();
+//         pobjectParentTask = system();
 //
 //      }
 //
@@ -2261,7 +2261,7 @@ task_guard::~task_guard()
 ::index task_index(itask_t itask)
 {
 
-   synchronous_lock sl(::acme::acme::g_pacme->m_pplatform->acmesystem()->synchronization());
+   synchronous_lock sl(::platform::get()->system()->synchronization());
 
    auto iThreadIndex = g_iaThreadIndex.find_first(itask);
 

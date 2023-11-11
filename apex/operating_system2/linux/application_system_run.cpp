@@ -106,13 +106,13 @@ CLASS_DECL_APEX i32 ca2_main();
 //   if (m_pmainstruct->m_bConsole)
 //   {
 //
-//      psystem->get_session()->set_context_app(psystem->acmeapplication());
+//      psystem->get_session()->set_context_app(psystem->application());
 //
-//      psystem->set_context_app(psystem->acmeapplication());
+//      psystem->set_context_app(psystem->application());
 //
-//      psystem->get_session()->set_context(psystem->acmeapplication());
+//      psystem->get_session()->set_context(psystem->application());
 //
-//      psystem->set_context(psystem->acmeapplication());
+//      psystem->set_context(psystem->application());
 //
 //   }
 //

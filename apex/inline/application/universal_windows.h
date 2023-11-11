@@ -40,7 +40,7 @@ RunBeforeMain go;
 //
 //   }
 //
-//   __bind(psystem, acmeapplication(), pappStartup);
+//   __bind(psystem, application(), pappStartup);
 //
 //   psystem->m_bConsole = false;
 //   application_common(psystem);

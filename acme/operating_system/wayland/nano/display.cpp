@@ -568,12 +568,12 @@ namespace wayland
 
       display_base::init_task();
 
-//      if(acmesystem()->m_ewindowing == e_windowing_none)
+//      if(system()->m_ewindowing == e_windowing_none)
 //      {
 //
 //         //set_main_user_thread();
 //
-//         acmesystem()->m_ewindowing = e_windowing_x11;
+//         system()->m_ewindowing = e_windowing_x11;
 //
 //      }
 ////

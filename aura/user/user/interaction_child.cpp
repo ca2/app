@@ -68,7 +68,7 @@ namespace user
 
          m_puserinteraction = pinteraction;
 
-         if (::is_null(acmesystem()))
+         if (::is_null(system()))
          {
 
             initialize(pprimitiveParent);

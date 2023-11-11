@@ -180,7 +180,7 @@ namespace acme
 
       ::i32_array iaPid2;
 
-      auto psystem = acmesystem();
+      auto psystem = system();
 
       auto pnode = psystem->node();
 
@@ -292,7 +292,7 @@ namespace acme
       
       //m_pparticleQuit = create_quit_particle(pnode);
 
-      auto psystem = acmesystem();
+      auto psystem = system();
 
       if(psystem->m_pfnImplement || psystem->m_pacmeapplication->is_console())
       {
@@ -319,7 +319,7 @@ namespace acme
 
             auto prequest = __create_new < ::request >();
 
-            prequest->initialize_command_line2(psystem->m_pacmeapplication->m_strCommandLine);
+            prequest->initialize_command_line2(platform()->m_strCommandLine);
 
             psystem->m_pacmeapplication->get_property_set().merge(prequest->get_property_set());
             
@@ -362,7 +362,7 @@ namespace acme
 
       //m_pparticleQuit = create_quit_particle(pnode, psystem);
 
-      auto psystem = acmesystem();
+      auto psystem = system();
 
       //if (psystem->m_pfnImplement)
       {
@@ -426,7 +426,7 @@ namespace acme
    string node::multimedia_audio_get_default_implementation_name()
    {
 
-      return acmesystem()->implementation_name("audio", "alsa");
+      return system()->implementation_name("audio", "alsa");
 
    }
 
@@ -434,7 +434,7 @@ namespace acme
    string node::multimedia_audio_mixer_get_default_implementation_name()
    {
 
-      return acmesystem()->implementation_name("audio_mixer", "alsa");
+      return system()->implementation_name("audio_mixer", "alsa");
 
    }
 
@@ -442,7 +442,7 @@ namespace acme
    string node::veriwell_multimedia_music_midi_get_default_implementation_name()
    {
 
-      return acmesystem()->implementation_name("music_midi", "alsa");
+      return system()->implementation_name("music_midi", "alsa");
 
    }
 
@@ -498,7 +498,7 @@ namespace acme
    void node::system_main()
    {
 
-      /* auto estatus =*/ acmesystem()->main();
+      /* auto estatus =*/ system()->main();
 
       //g_psystem->m_bIsReadyForUserInteraction = true;
       //if(!estatus)
@@ -534,7 +534,7 @@ namespace acme
 //   void node::implement(::pointer<::acme::node>& pnode, ::pointer<::acme::system> psystem)
 //   {
 //
-//      //      auto psystem = acmesystem();
+//      //      auto psystem = system();
 //      //
 //      //      auto estatus = psystem->main();
 //      //
@@ -1063,7 +1063,7 @@ namespace acme
    void node::on_operating_system_user_color_change()
    {
 
-      //auto psystem = acmesystem();
+      //auto psystem = system();
 
       //psystem->signal(id_operating_system_user_color_change);
 

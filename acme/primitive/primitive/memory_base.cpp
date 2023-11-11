@@ -141,25 +141,37 @@ void memory_base::set_size(memsize dwNewLength)
 
    }
 
-   if ((this->offset() + dwNewLength) <= this->storage_size())
    {
 
-      this->m_end = this->m_begin + dwNewLength;
+      auto sizeStorage = this->storage_size();
 
-      return;
+      if ((this->offset() + dwNewLength) <= sizeStorage)
+      {
+
+         this->m_end = this->m_begin + dwNewLength;
+
+         return;
+
+      }
 
    }
 
    erase_offset();
 
-   if(dwNewLength > this->storage_size())
    {
 
-      allocate_internal(dwNewLength);
+      auto sizeStorage = this->storage_size();
+
+      if (dwNewLength > sizeStorage)
+      {
+
+         allocate_internal(dwNewLength);
+
+      }
+
+      this->m_end = this->m_begin + dwNewLength;
 
    }
-
-   this->m_end = this->m_begin + dwNewLength;
 
 }
 

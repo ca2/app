@@ -489,9 +489,9 @@ namespace experience_core
       // draw frame border
       //
       ////////////////////
-
+#ifdef MORE_LOG
       information() << "rectangleNClient : " << rectangleNClient;
-
+#endif
       if(!pframewindow->layout().is_full_screen())
       {
 

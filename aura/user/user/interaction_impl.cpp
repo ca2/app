@@ -5685,9 +5685,9 @@ namespace user
                 bDraw = true;
 
              }*/
-
+#ifdef MORE_LOG
 information() << "do_graphics(A)";
-
+#endif
 update_graphics_resources();
 
 if (bDraw && m_pgraphics.is_null())
@@ -6073,8 +6073,9 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
                   pgraphics->m_bInheritDraw = false;
 
                   //            pgraphics->fill_solid_rectangle({ 0, 0, 200, 200 }, ::color::green);
-
+#ifdef MORE_LOG
                   information() << "defer_do_graphics _000TopCallOnLayout";
+#endif
                   m_puserinteraction->_000TopCallOnLayout(pgraphics);
 
                   //m_puserinteraction->_000CallOnDraw(pgraphics);
@@ -6348,7 +6349,9 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
                   //            pgraphics->fill_solid_rectangle({ 0, 0, 200, 200 }, ::color::green);
 
 
+#ifdef MORE_LOG
                   information() << "defer_do_graphics _000TopCallOnDraw";
+#endif
                   m_puserinteraction->_000TopCallOnDraw(pgraphics);
 
                   //m_puserinteraction->_000CallOnDraw(pgraphics);

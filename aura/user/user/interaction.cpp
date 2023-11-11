@@ -1736,6 +1736,8 @@ namespace user
 
          m_setneedredrawa.add({ rectangleaNeedRedraw, function, bAscendants });
 
+#ifdef MORE_LOG
+
          if (!m_pprimitiveimpl)
          {
 
@@ -1756,16 +1758,19 @@ namespace user
          else if (!this->is_window_screen_visible(e_layout_sketch))
          {
 
+
+
             information() << "set_need_redraw !sketch.visible m_setneedredrawa.add...";
 
          }
-
+#endif
          return;
 
       }
 
+#ifdef MORE_LOG
       information() << "set_need_redraw (1)";
-
+#endif
       //if(m_pdragCurrent && m_pdragCurrent->m_eelement == e_element_resize)
       //{
 
@@ -15098,8 +15103,9 @@ namespace user
 
    void interaction::track_mouse_hover()
    {
-
+#ifdef MORE_LOG
       information() << "interaction::track_mouse_hover";
+#endif
 
       //      synchronous_lock synchronouslock(this->synchronization());
 

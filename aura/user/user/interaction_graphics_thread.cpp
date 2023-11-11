@@ -963,7 +963,9 @@ namespace user
       if(m_puserinteraction->has_graphical_output_purpose())
       {
 
+#ifdef MORE_LOG
          information() << "graphics_thread_iteration has_graphical_output_purpose";
+#endif
 
          puserinteractionimpl->do_graphics();
 
@@ -991,7 +993,9 @@ namespace user
       if(m_puserinteraction->has_screen_output_purpose())
       {
 
+#ifdef MORE_LOG
          information() << "graphics_thread_iteration has_screen_output_purpose";
+#endif
 
          m_puserinteraction->m_pinteractionimpl->m_pwindow->window_update_screen();
 

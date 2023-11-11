@@ -199,6 +199,7 @@
     <ClInclude Include="graphics\write_text\_shape.h" />
     <ClInclude Include="graphics\_.h" />
     <ClInclude Include="hardware\devices.h" />
+    <ClInclude Include="hardware\device_group.h" />
     <ClInclude Include="hardware\device_listener.h" />
     <ClInclude Include="include\objc.h" />
     <ClInclude Include="include\objcpp.h" />
@@ -498,6 +499,7 @@
     <ClCompile Include="graphics\write_text\true_type_font_utilities.cpp" />
     <ClCompile Include="graphics\write_text\write_text.cpp" />
     <ClCompile Include="hardware\devices.cpp" />
+    <ClCompile Include="hardware\device_group.cpp" />
     <ClCompile Include="hardware\device_listener.cpp" />
     <ClCompile Include="message\timer.cpp" />
     <ClCompile Include="message\user.cpp" />

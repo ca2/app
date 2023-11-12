@@ -781,7 +781,12 @@ namespace acme
       
 #endif
       
+      virtual bool is_application_running_good_effort(const ::scoped_string & scopedstrRepos, const ::scoped_string & scopedstrApp);
 
+
+      virtual bool are_framework_shared_libraries_busy(const ::scoped_string & scopedstrRepos, const ::scoped_string & scopedstrApp);
+      
+      
    };
 
 

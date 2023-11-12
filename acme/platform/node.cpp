@@ -3339,6 +3339,53 @@ return false;
 #endif
 
 
+bool node::is_application_running_good_effort(const ::scoped_string & scopedstrRepos, const ::scoped_string & scopedstrApp)
+{
+   
+   return are_framework_shared_libraries_busy(scopedstrRepos, scopedstrApp);
+   
+}
+
+
+bool node::are_framework_shared_libraries_busy(const ::scoped_string & scopedstrRepos, const ::scoped_string & scopedstrApp)
+{
+
+   string_array stra;
+
+   stra.add(acmenode()->library_file_name("acme"));
+   stra.add(acmenode()->library_file_name("apex"));
+   stra.add(acmenode()->library_file_name("aqua"));
+   stra.add(acmenode()->library_file_name("aura"));
+
+   ::file::path_array patha;
+
+   ::file::path pathBin = acmedirectory()->roaming() / scopedstrRepos / scopedstrApp / "x64";
+
+   patha = pathBin / stra;
+
+   auto pathaSystem = acmenode()->modules_paths();
+
+   for (auto & pathSystem : pathaSystem)
+   {
+
+      for (auto & path : patha)
+      {
+
+         if (acmepath()->real_path_is_same(pathSystem, path))
+         {
+
+            return true;
+
+         }
+
+      }
+
+   }
+
+   return false;
+
+}
+
 } // namespace acme
 
 

@@ -614,7 +614,6 @@
     <ClCompile Include="handler\context.cpp" />
     <ClCompile Include="handler\manager.cpp" />
     <ClCompile Include="handler\signal.cpp" />
-    <ClCompile Include="handler\source.cpp" />
     <ClCompile Include="input\input.cpp" />
     <ClCompile Include="interprocess\base.cpp" />
     <ClCompile Include="interprocess\call.cpp" />
@@ -709,7 +708,6 @@
     <ClInclude Include="handler\promise.h" />
     <ClInclude Include="handler\promise1.h" />
     <ClInclude Include="handler\signal.h" />
-    <ClInclude Include="handler\source.h" />
     <ClInclude Include="handler\_.h" />
     <ClInclude Include="handler\_impl.h" />
     <ClInclude Include="inline\implement\ansi.h" />

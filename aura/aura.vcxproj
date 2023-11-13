@@ -733,6 +733,7 @@
     <ClCompile Include="graphics\write_text\write_text.cpp" />
     <ClCompile Include="graphics\write_text\_shape.cpp" />
     <ClCompile Include="hardware\devices.cpp" />
+    <ClCompile Include="hardware\device_group.cpp" />
     <ClCompile Include="hardware\device_listener.cpp" />
     <ClCompile Include="message\command.cpp" />
     <ClCompile Include="message\timer.cpp" />
@@ -971,6 +972,7 @@
     <ClInclude Include="graphics\_.h" />
     <ClInclude Include="graphics\_impl.h" />
     <ClInclude Include="hardware\devices.h" />
+    <ClInclude Include="hardware\device_group.h" />
     <ClInclude Include="hardware\device_listener.h" />
     <ClInclude Include="hardware\_.h" />
     <ClInclude Include="hardware\_constant.h" />

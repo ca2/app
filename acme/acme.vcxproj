@@ -682,6 +682,7 @@
     <ClCompile Include="handler\item_container.cpp" />
     <ClCompile Include="handler\item_container_map.cpp" />
     <ClCompile Include="handler\request.cpp" />
+    <ClCompile Include="handler\source.cpp" />
     <ClCompile Include="handler\topic.cpp" />
     <ClInclude Include="aaa_id.h" />
     <ClInclude Include="acme.h" />
@@ -839,6 +840,7 @@
     <ClInclude Include="filesystem\watcher\_.h" />
     <ClInclude Include="filesystem\_.h" />
     <ClInclude Include="format.h" />
+    <ClInclude Include="handler\source.h" />
     <ClInclude Include="_iostream.h" />
     <ClInclude Include="graphics\draw2d\color32.h" />
     <ClInclude Include="graphics\draw2d\color_array.h" />

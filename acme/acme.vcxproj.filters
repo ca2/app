@@ -3467,6 +3467,9 @@
     <ClInclude Include="_stdio.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="handler\source.h">
+      <Filter>Header Files\handler</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\bit.cpp">
@@ -4797,6 +4800,9 @@
     </ClCompile>
     <ClCompile Include="primitive\string\c\ancient\_c.cpp">
       <Filter>Source Files\primitive\string\c\ancient</Filter>
+    </ClCompile>
+    <ClCompile Include="handler\source.cpp">
+      <Filter>Source Files\handler</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -353,8 +353,8 @@ public:
    inline atom(enum_timer etimer);
    inline atom(enum_dialog_result edialogresult);
    inline atom(enum_happening eevent);
-   //inline atom(e_check echeck);
-   //inline atom(e_status estatus);
+   inline atom(enum_check echeck);
+   inline atom(enum_status estatus);
 
    inline atom(enum_type etypeAdd, const atom & atom);
    inline atom(const atom & atom);

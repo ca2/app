@@ -52,6 +52,8 @@ namespace user
 
       m_bDefaultMouseHoverHandling = true;
 
+      m_bDefaultParentMouseMessageHandling = true;
+
       //m_bPendingKillFocusHiding = false;
 
       m_ewindowflag += e_window_flag_satellite_window;
@@ -96,7 +98,7 @@ namespace user
       MESSAGE_LINK(e_message_non_client_left_button_down, pchannel, (::user::interaction *)this, &interaction::on_message_left_button_down);
       MESSAGE_LINK(e_message_middle_button_down, pchannel, this, &list_box::on_message_middle_button_down);
       MESSAGE_LINK(e_message_right_button_down, pchannel, this, &list_box::on_message_right_button_down);
-      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &list_box::on_message_mouse_move);
+      //MESSAGE_LINK(e_message_mouse_move, pchannel, this, &list_box::on_message_mouse_move);
       MESSAGE_LINK(e_message_show_window, pchannel, this, &list_box::on_message_show_window);
 
    }
@@ -463,6 +465,8 @@ namespace user
 #endif
 
             estate += ::user::e_state_hover;
+
+            information() << "hover_item : " << iItem;
 
          }
 
@@ -1019,28 +1023,28 @@ namespace user
    }
 
 
-   void list_box::on_message_mouse_move(::message::message * pmessage)
-   {
+   //void list_box::on_message_mouse_move(::message::message * pmessage)
+   //{
 
-      UNREFERENCED_PARAMETER(pmessage);
-      //auto pmouse = pmessage->m_union.m_pmouse;
+   //   UNREFERENCED_PARAMETER(pmessage);
+   //   //auto pmouse = pmessage->m_union.m_pmouse;
 
-      //pmessage->m_bRet = true;
+   //   //pmessage->m_bRet = true;
 
-      //auto point = screen_to_client(pmouse->m_point);
+   //   //auto point = screen_to_client(pmouse->m_point);
 
-      //auto itemHover = hit_test(pmouse);
+   //   //auto itemHover = hit_test(pmouse);
 
-      //if (itemHover != m_pcombo->m_pitemHover)
-      //{
+   //   //if (itemHover != m_pcombo->m_pitemHover)
+   //   //{
 
-      //   m_pcombo->m_pitemHover = itemHover.m_iItem;
+   //   //   m_pcombo->m_pitemHover = itemHover.m_iItem;
 
-      //   set_need_redraw();
+   //   //   set_need_redraw();
 
-      //}
+   //   //}
 
-   }
+   //}
 
 
    void list_box::on_message_close(::message::message * pmessage)
@@ -1099,7 +1103,24 @@ namespace user
          if (rectangleItem.contains(point))
          {
 
-            return new_item_with_index(iItem);
+            __defer_construct_new(main_content().m_pitema);
+
+            auto & pitemNew = this->main_content().m_pitema->element_at_grow(iItem);
+
+            if (__defer_construct_new(pitemNew))
+            {
+
+               pitemNew->m_item.m_eelement = e_element_item;
+
+               pitemNew->m_item.m_iItem = iItem;
+
+            }
+
+            auto puseritem = user_item(pitemNew);
+
+            puseritem->m_rectangle2 = rectangleItem;
+
+            return pitemNew;
 
          }
 

@@ -6592,7 +6592,7 @@ namespace user
                      if (pointOffset.y() == 31)
                      {
 
-                        information() << "31";
+                        //information() << "31";
 
                      }
 
@@ -14664,6 +14664,13 @@ namespace user
 
    bool interaction::has_keyboard_focus()
    {
+
+      if (!is_window())
+      {
+
+         return false;
+
+      }
 
       auto pwindowThis = window();
 

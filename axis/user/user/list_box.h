@@ -77,7 +77,7 @@ namespace user
       //DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
       DECLARE_MESSAGE_HANDLER(on_message_middle_button_down);
       DECLARE_MESSAGE_HANDLER(on_message_right_button_down);
-      DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
+      //DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
 
 
       void on_set_keyboard_focus() override;

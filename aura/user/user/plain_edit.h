@@ -211,6 +211,10 @@ namespace user
       bool                                m_bPassword;
       bool                                m_bEnterKeyOnPaste;
       bool                                m_bLMouseDown;
+      //bool                                m_bLeftButtonDownIsSelectingAll;
+      bool                                m_bNewFocus;
+      class ::time                        m_timeNewFocus;
+      class ::time                        m_timeLeftButtonDown;
       bool                                m_bRMouseDown;
       point_i32                           m_pointSelStart;
       class ::time                          m_timeCaretPeriod;

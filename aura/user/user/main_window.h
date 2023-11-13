@@ -39,7 +39,9 @@ namespace user
       ::index get_preferred_restore(::rectangle_i32 & rectanglePreferredRestore) override;
 
 
-      virtual void create_main_window_asynchronously();
+      //virtual void create_main_window_asynchronously();
+
+      virtual void create_main_window();
 
 
       bool should_redraw_on_mouse_activate() override;

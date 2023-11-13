@@ -62,7 +62,7 @@ namespace user
 
       //}
 
-      auto psystem = acmesystem()->m_paurasystem;
+      auto psystem = system()->m_paurasystem;
 
 //      SET_ENUM_TEXT(e_key_0);
 //      SET_ENUM_TEXT(e_key_1);
@@ -273,7 +273,7 @@ namespace user
    ::user::enum_key keyboard::wparam_to_userkey(wparam wparam)
    {
       
-      auto psystem = acmesystem()->m_paurasystem;
+      auto psystem = system()->m_paurasystem;
    
       auto psession = psystem->get_session();
       
@@ -562,7 +562,7 @@ namespace user
 //#ifdef WINDOWS_DESKTOP
 //
 //
-//      string strOverride = acmefile()->as_string(         auto psystem = acmesystem();
+//      string strOverride = acmefile()->as_string(         auto psystem = system();
 
 //         auto pacmedirectory = psystem->m_pacmedirectory;
 //

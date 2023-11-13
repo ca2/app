@@ -1845,7 +1845,7 @@ namespace url
       if (m_straPublicDomainExtension.is_empty())
       {
 
-         acmesystem()->get_public_internet_domain_extension_list(m_straPublicDomainExtension);
+         system()->get_public_internet_domain_extension_list(m_straPublicDomainExtension);
 
       }
 
@@ -2510,13 +2510,13 @@ void openURL(const string& url_str)
 //
 //   credentials.m_bInteractive = bInteractive;
 //
-//   //strUsername = acmefile()->as_string(         auto psystem = acmesystem();
+//   //strUsername = acmefile()->as_string(         auto psystem = system();
 //
 //         auto pacmedirectory = psystem->m_pacmedirectory;
 //
 //pacmedirectory->system() / "config\\user.txt");
 ////
-////   //strPassword = acmefile()->as_string(         auto psystem = acmesystem();
+////   //strPassword = acmefile()->as_string(         auto psystem = system();
 //
 //         auto pacmedirectory = psystem->m_pacmedirectory;
 //
@@ -3082,13 +3082,13 @@ int ui_open_url(const ::ansi_character * psz);
 //
 //   credentials.m_bInteractive = bInteractive;
 //
-//   //strUsername = acmefile()->as_string(         auto psystem = acmesystem();
+//   //strUsername = acmefile()->as_string(         auto psystem = system();
 
    /*      auto pacmedirectory = psystem->m_pacmedirectory;
 
 pacmedirectory->system() / "config\\user.txt")*/;
 //
-//   //strPassword = acmefile()->as_string(         auto psystem = acmesystem();
+//   //strPassword = acmefile()->as_string(         auto psystem = system();
 //
 //         auto pacmedirectory = psystem->m_pacmedirectory;
 //

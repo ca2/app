@@ -73,7 +73,7 @@ namespace acme
       :: IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)::node *  m_pAuraPlatform;
       
       
-      ::pointer < ::particle >                              m_pparticleQuit;
+      //::pointer < ::particle >                              m_pparticleQuit;
 
 
       //::pointer < ::particle >                              m_pparticleStandardIOSynchronization;
@@ -156,12 +156,16 @@ namespace acme
       virtual void initialize(::particle * pparticle) override;
       
       
-      virtual ::pointer < ::particle > create_quit_particle(::pointer<::acme::node>& pnode, ::pointer<::acme::system>& psystem);
-      
-      
-      virtual void implement(::pointer<::acme::node>& pnode, ::pointer<::acme::system> & psystem);
+      //virtual ::pointer < ::particle > create_quit_particle(::pointer<::acme::node>& pnode);
 
-      virtual void start_application(::pointer<::acme::node>& pnode, ::pointer<::acme::system>& psystem);
+      //virtual ::pointer < ::particle > create_quit_particle();
+      
+      
+      ///virtual void implement(::pointer<::acme::node>& pnode, ::pointer<::acme::system> & psystem);
+
+      virtual void node_main();
+
+      virtual void start_application(::pointer<::acme::node> & pnode);
 
 
       virtual void acme_application_main(::acme::system * psystem);
@@ -777,7 +781,12 @@ namespace acme
       
 #endif
       
+      virtual bool is_application_running_good_effort(const ::scoped_string & scopedstrRepos, const ::scoped_string & scopedstrApp);
 
+
+      virtual bool are_framework_shared_libraries_busy(const ::scoped_string & scopedstrRepos, const ::scoped_string & scopedstrApp);
+      
+      
    };
 
 

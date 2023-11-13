@@ -183,7 +183,7 @@ namespace freedesktop
 
       ::file::path path;
 
-      auto psystem = acmesystem();
+      auto psystem = system();
 
       auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -305,7 +305,7 @@ namespace freedesktop
 
       //pathLaunch = pacmedirectory->home() / ".config/ca2/bin" / (strName + ".sh");
 
-      auto psystem = acmesystem();
+      auto psystem = system();
 
       auto pacmedirectory = psystem->m_pacmedirectory;
 

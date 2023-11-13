@@ -25,10 +25,10 @@ namespace opengl
       ~context_win32() override;
 
 
-      virtual HWND _create_offscreen_window(const ::size_i32 & size);
+      virtual void _create_offscreen_window(const ::size_i32 & size);
 
 
-      void _create_window_buffer(void * pHwnd) override;
+      virtual void _create_window_buffer();
       void _create_offscreen_buffer(const ::size_i32& size) override;
       void resize_offscreen_buffer(const ::size_i32& size) override;
       void destroy_offscreen_buffer() override;

@@ -182,10 +182,10 @@ void object::process_exit_status(const ::e_status & estatus)
       //
       //#endif
 
-      if (!acmesystem())
+      if (!system())
       {
 
-         acmesystem() = pparticle->acmesystem();
+         system() = pparticle->system();
 
       }
 
@@ -225,10 +225,10 @@ void object::process_exit_status(const ::e_status & estatus)
             m_pcontext = m_psession;
 
          }
-         else if (acmesystem())
+         else if (system())
          {
 
-            m_pcontext = acmesystem();
+            m_pcontext = system();
 
          }
 
@@ -562,10 +562,10 @@ void object::delete_this()
 
        }
 
-       if (acmesystem() && (::property_object*)acmesystem() != (::property_object *) this)
+       if (system() && (::property_object*)system() != (::property_object *) this)
        {
 
-          return acmesystem();
+          return system();
 
        }
 

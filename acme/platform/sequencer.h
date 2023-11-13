@@ -5,6 +5,7 @@
 #include "acme/parallelization/manual_reset_event.h"
 #include "acme/parallelization/critical_section.h"
 #include "acme/user/user/conversation.h"
+#include "acme/platform/context.h"
 
 
 template < typename SEQUENCE >
@@ -183,17 +184,31 @@ void sequencer < SEQUENCE > ::on_sequence()
 
    }
 
-   while (m_stepa.has_element())
+   if(m_stepa.has_element())
    {
+      
+      ::pointer < sequencer < SEQUENCE > > psequencer(this);
 
       auto step = m_stepa.pop_first();
 
       lock.unlock();
+      
+      m_pcontext->post_procedure(
+                                                 [this, step, psequencer]
+                                                 {
+                                                    
+                                                    step(m_psequence);
 
-      step(m_psequence);
+                                                    psequencer->on_sequence();
+                                                    
+                                                 });
 
-      lock.lock();
-
+   }
+   else
+   {
+      
+      m_psequence.release();
+      
    }
 
 }
@@ -216,7 +231,7 @@ void sequencer < SEQUENCE > ::on_sequence()
 //
 //   increment_reference_count();
 //
-//   acmesystem()->fork(__routine([this]()
+//   system()->fork(__routine([this]()
 //      {
 //
 //         auto pHold = ::pointer_transfer(this);

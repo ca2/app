@@ -303,7 +303,7 @@ namespace programming
       string strLog;
 
 
-      ::pointer<::apex::application>papp = acmeapplication();
+      ::pointer<::apex::application>papp = application();
 
 
 //#ifdef WINDOWS
@@ -350,7 +350,7 @@ namespace programming
 //
 //      acmefile()->put_contents(pacmedirectory->system() / "env.bat", "@call " + strBuildCmd + "\r\n@set");
 //
-//      auto psystem = acmesystem();
+//      auto psystem = system();
 //
 //      auto pnode = psystem->node();
 //
@@ -441,7 +441,7 @@ namespace programming
       //   set_thread_priority(::e_priority_highest);
       //   process->prop("inherit") = false;
       //
-      //   ::file::path pathCommand =          auto psystem = acmesystem();
+      //   ::file::path pathCommand =          auto psystem = system();
 
       //         auto pacmedirectory = psystem->m_pacmedirectory;
       //
@@ -560,7 +560,7 @@ namespace programming
       //
       stra.add_lines(strLog);
 
-      //string strEnv = acmefile()->as_string(         auto psystem = acmesystem();
+      //string strEnv = acmefile()->as_string(         auto psystem = system();
 
    //         auto pacmedirectory = psystem->m_pacmedirectory;
    //

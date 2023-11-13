@@ -409,10 +409,14 @@ namespace apex
 
       void system_id_update(::i64 iUpdate, ::i64 iPayload) override;
 
-      void add_handler(::matter * pmatter, bool bPriority = false) override;
+      //void add_handler(::particle * pmatter, bool bPriority = false) override;
 
       void add_signal_handler(const ::signal_handler& signalhandler, const ::atom & atomSignal) override;
 
+      void erase_signal_handler(::signal_handler::base * pbase) override;
+
+      //void erase_signal_handlers(::particle * pparticle) override;
+      
       void route_command(::message::command * pcommand, bool bRouteToKeyDescendant) override;
 
       void handle(::topic * ptopic, ::context * pcontext) override;

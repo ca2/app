@@ -146,6 +146,7 @@ public:
    virtual void draw_frame_and_control_box_over(::draw2d::graphics_pointer & pgraphics);
 
    void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+   void _001DrawChildren(::draw2d::graphics_pointer & pgraphics) override;
    virtual void draw_frame(::draw2d::graphics_pointer & pgraphics);
 
 

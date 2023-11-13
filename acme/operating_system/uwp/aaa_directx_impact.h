@@ -32,7 +32,7 @@ namespace universal_windows
       bool        m_bTextCompositionActive;
       wide_string  m_strText;
       wide_string  m_strNewText;
-      ::acme::system* acmesystem();
+      ::acme::system* system();
 
       Agile < ::winrt::Windows::UI::Core::CoreWindow > m_window;
 

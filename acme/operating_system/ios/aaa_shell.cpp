@@ -642,7 +642,7 @@ namespace ios
 ////
 ////                     string strIcon;
 ////
-////                     strIcon =          auto psystem = acmesystem();
+////                     strIcon =          auto psystem = system();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -1321,7 +1321,7 @@ pacmedirectory->config() / "ios/app_theme" / m_strShellThemePrefix + strExtensio
 //
 //      unicode_to_utf8(strPath, lpcszPath);
 //
-//      if (         auto psystem = acmesystem();
+//      if (         auto psystem = system();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -2007,7 +2007,7 @@ pacmedirectory->is(strPath))
 
       string strPath(lpcszPath);
 
-      if (         auto psystem = acmesystem();
+      if (         auto psystem = system();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 

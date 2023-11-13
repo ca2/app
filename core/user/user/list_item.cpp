@@ -519,7 +519,7 @@ namespace user
 
                m_pitem->m_pmesh->m_plist->__defer_construct(pimage2);
 
-               auto psystem = m_pitem->m_pmesh->m_plist->acmesystem()->m_paurasystem;
+               auto psystem = m_pitem->m_pmesh->m_plist->system()->m_paurasystem;
 
                auto pdraw2d = psystem->draw2d();
 

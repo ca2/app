@@ -875,7 +875,7 @@ namespace nanoui
          return true;
       try {
 
-         auto pregex = screen()->acmesystem()->create_regular_expression("pcre2", format);
+         auto pregex = screen()->system()->create_regular_expression("pcre2", format);
 
          //::string straResult;
          auto presult = pregex->run(input);

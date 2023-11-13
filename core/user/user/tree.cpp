@@ -38,9 +38,9 @@ namespace user
    ::core::application* tree::get_app()
    {
 
-      auto pacmeapplication = acmeapplication();
+      auto papplication = application();
 
-      return ::is_set(pacmeapplication) ? pacmeapplication->m_pcoreapplication : nullptr;
+      return ::is_set(papplication) ? papplication->m_pcoreapplication : nullptr;
 
    }
 
@@ -48,7 +48,7 @@ namespace user
    ::core::session* tree::get_session()
    {
 
-      auto pacmesession = acmesession();
+      auto pacmesession = session();
 
       return ::is_set(pacmesession) ? pacmesession->m_pcoresession : nullptr;
 
@@ -58,7 +58,7 @@ namespace user
    ::core::system* tree::get_system()
    {
 
-      auto pacmesystem = acmesystem();
+      auto pacmesystem = system();
 
       return ::is_set(pacmesystem) ? pacmesystem->m_pcoresystem : nullptr;
 
@@ -937,7 +937,7 @@ namespace user
    
       //      style_context context(this);
 
-      auto psystem = acmesystem()->m_paurasystem;
+      auto psystem = system()->m_paurasystem;
 
       auto pdraw2d = psystem->draw2d();
 
@@ -1621,7 +1621,7 @@ namespace user
 
       auto iIndent = _001GetIndentation();
 
-      //auto psystem = acmesystem()->m_paurasystem;
+      //auto psystem = system()->m_paurasystem;
 
       //auto pdraw2d = psystem->draw2d();
 

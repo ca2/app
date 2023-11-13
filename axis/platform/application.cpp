@@ -470,7 +470,7 @@ namespace axis
 
          ////data_pulse_change({ "ca2.savings", true }, nullptr);
 
-         //auto psystem = acmesystem()->m_paurasystem;
+         //auto psystem = system()->m_paurasystem;
 
          //psystem->appa_load_string_table();
 
@@ -726,7 +726,7 @@ namespace axis
          if (!is_session() && !is_system())
          {
 
-            auto psystem = acmesystem()->m_paurasystem;
+            auto psystem = system()->m_paurasystem;
 
             if (psystem != nullptr)
             {
@@ -1401,10 +1401,10 @@ namespace axis
 
          string strType = ::type(this).name();
 
-         //if(::is_set(acmesystem()))
+         //if(::is_set(system()))
          //{
 
-         //   acmesystem()->add_reference(this);
+         //   system()->add_reference(this);
 
          //}
 
@@ -1639,7 +1639,7 @@ namespace axis
 
    //   }
 
-   //   /*     if (!acmesystem()->m_phtml->initialize())
+   //   /*     if (!system()->m_phtml->initialize())
    //        {
 
    //           return false;

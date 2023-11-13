@@ -187,7 +187,7 @@ namespace user
 
       ::channel::destroy();
 
-      ::source::destroy();
+      //::source::destroy();
 
       ::manager::destroy();
 
@@ -2822,7 +2822,8 @@ namespace user
    //}
 
 
-   void primitive_impl::create_host(::user::interaction * puserinteraction, enum_parallelization eparallelization)
+   //void primitive_impl::create_host(::user::interaction * puserinteraction, enum_parallelization eparallelization)
+   void primitive_impl::create_host(::user::interaction * puserinteraction)
    {
 
       //return false;
@@ -3052,7 +3053,7 @@ namespace user
    //::aura::system * primitive_implacmesystem()
    //{
 
-   //   return acmesystem() ? acmesystem()->m_paurasystem : nullptr;
+   //   return system() ? system()->m_paurasystem : nullptr;
 
    //}
 

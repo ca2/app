@@ -371,20 +371,20 @@ inline atom::atom(enum_happening eevent) :
 }
 
 
-//inline atom::atom(::e_check echeck) :
-//        m_etype(e_type_check),
-//        m_i((::iptr)echeck) // used m_i to reset 64-bit field
-//{
-//
-//}
-//
-//
-//inline atom::atom(::e_status estatus) :
-//        m_etype(e_type_status),
-//        m_i((::iptr)estatus) // used m_i to reset 64-bit field
-//{
-//
-//}
+inline atom::atom(enum_check echeck) :
+        m_etype(e_type_check),
+        m_i((::iptr)echeck) // used m_i to reset 64-bit field
+{
+
+}
+
+
+inline atom::atom(enum_status estatus) :
+        m_etype(e_type_status),
+        m_i((::iptr)estatus) // used m_i to reset 64-bit field
+{
+
+}
 
 
 // This constructor shouldn't change the primitive type of

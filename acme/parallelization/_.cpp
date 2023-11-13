@@ -7,7 +7,7 @@
 //#include "acme/primitive/collection/string_array.h"
 //#include "acme/primitive/primitive/payload.h"
 #include "acme/platform/acme.h"
-#include "acme/platform/sub_system.h"
+#include "acme/platform/platform.h"
 #include "acme/platform/system.h"
 
 
@@ -61,7 +61,7 @@ namespace parallelization
 
    //   //return s_piaThread2->contains(atom);
 
-   //   return acmesystem()->get_task(atom) != nullptr;
+   //   return system()->get_task(atom) != nullptr;
 
    //}
 
@@ -69,7 +69,7 @@ namespace parallelization
    //bool thread_registered(::thread * pthread)
    //{
 
-   //   return acmesystem()->get_thread_id(pthread) != 0;
+   //   return system()->get_thread_id(pthread) != 0;
 
    //}
 
@@ -77,7 +77,7 @@ namespace parallelization
    //void thread_register(itask_t itask, ::thread * pthread)
    //{
 
-   //   acmesystem()->set_thread(itask, pthread);
+   //   system()->set_thread(itask, pthread);
 
    //}
 
@@ -109,9 +109,9 @@ namespace parallelization
 
    //   }
 
-   //   synchronous_lock synchronouslock(acmesystem()->m_pmutexThread);
+   //   synchronous_lock synchronouslock(system()->m_pmutexThread);
 
-   //   for (auto & pair : acmesystem()->m_threadidmap)
+   //   for (auto & pair : system()->m_threadidmap)
    //   {
 
    //      try
@@ -140,9 +140,9 @@ namespace parallelization
    //void post_quit_to_all_threads()
    //{
 
-   //   synchronous_lock synchronouslock(acmesystem()->m_pmutexThread);
+   //   synchronous_lock synchronouslock(system()->m_pmutexThread);
 
-   //   for (auto& pair : acmesystem()->m_threadidmap)
+   //   for (auto& pair : system()->m_threadidmap)
    //   {
 
    //      try
@@ -274,7 +274,7 @@ namespace parallelization
 //      {
 //         ////////// and have short life, so it is safe to keep it running
 //         //return true;
-//         return acmesystem()->task_get_run();
+//         return system()->task_get_run();
 //
 //      }
 //
@@ -702,26 +702,19 @@ CLASS_DECL_ACME ::task * get_task()
    if (!t_ptask)
    {
 
-      auto pacme = ::acme::acme::g_pacme;
+      auto pplatform =  ::platform::get();
 
-      if (::is_set(pacme))
+      if(::is_set(pplatform))
       {
 
-         auto psubsystem =  pacme->m_psubsystem;
+         auto psystem = pplatform->system();
 
-         if(::is_set(psubsystem))
+         if(::is_set(psystem))
          {
 
-            auto psystem = psubsystem->acmesystem();
+            t_ptask = new ::task();
 
-            if(::is_set(psystem))
-            {
-
-               t_ptask = new ::task();
-
-               t_ptask->initialize(psubsystem->acmesystem());
-
-            }
+            t_ptask->initialize(pplatform->system());
 
          }
 

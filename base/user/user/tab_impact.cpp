@@ -57,10 +57,10 @@ namespace user
 
       pdata->m_pcallback = this;
 
-      if (!acmeapplication()->m_pbaseapplication->m_ptabimpactBase)
+      if (!application()->m_pbaseapplication->m_ptabimpactBase)
       {
 
-         acmeapplication()->m_pbaseapplication->m_ptabimpactBase = this;
+         application()->m_pbaseapplication->m_ptabimpactBase = this;
 
       }
 
@@ -500,7 +500,9 @@ namespace user
 
       m_pdroptargetwindow->m_bTransparent = true;
 
-      m_pdroptargetwindow->create_host(e_parallelization_synchronous);
+      //m_pdroptargetwindow->create_host(e_parallelization_synchronous);
+
+      m_pdroptargetwindow->create_host();
 
       m_pdroptargetwindow->order(e_zorder_top_most);
 
@@ -923,7 +925,7 @@ namespace user
             auto functionHandler = [this](auto puserinteraction)
                {
 
-                  acmeapplication()->m_pbaseapplication->create_options_impact(puserinteraction);
+                  application()->m_pbaseapplication->create_options_impact(puserinteraction);
 
                };
 
@@ -938,7 +940,7 @@ namespace user
             auto functionHandler = [this](auto puserinteraction)
                {
 
-                  acmeapplication()->m_pbaseapplication->create_about_impact(puserinteraction);
+                  application()->m_pbaseapplication->create_about_impact(puserinteraction);
 
                };
 
@@ -1087,7 +1089,7 @@ namespace user
 
       }
 
-      acmeapplication()->m_pbaseapplication->on_after_prepare_impact_menu(pmenu);
+      application()->m_pbaseapplication->on_after_prepare_impact_menu(pmenu);
 
       auto pframe = top_level_frame();
 
@@ -1287,6 +1289,32 @@ namespace user
    }
 
 
+   ::user::place_holder * tab_impact::place_holder_by_id(const ::atom & atom)
+   {
+
+      auto ppane = get_tab_by_id(atom);
+
+      if (::is_null(ppane))
+      {
+
+         return nullptr;
+
+      }
+
+      if (!ppane->m_pplaceholder)
+      {
+
+         auto pplaceholder = get_new_place_holder(get_data()->m_rectangleHosting);
+
+         ppane->m_pplaceholder = pplaceholder;
+
+      }
+
+      return ppane->m_pplaceholder;
+
+   }
+
+
    ::user::interaction * tab_impact::get_impact_uie()
    {
 
@@ -1388,7 +1416,7 @@ namespace user
             if (pointOffset.y() == 31)
             {
 
-               information() << "31";
+               //information() << "31";
 
             }
 

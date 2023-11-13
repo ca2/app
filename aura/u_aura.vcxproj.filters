@@ -1002,6 +1002,9 @@
     <ClInclude Include="user\user\scroll_state.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
+    <ClInclude Include="hardware\device_group.h">
+      <Filter>Header Files\hardware</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="graphics\draw2d\draw2d.inl">
@@ -1477,9 +1480,6 @@
     <ClCompile Include="user\user\scroll_base_x.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\fps_interest.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\user\run_application.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
@@ -1522,7 +1522,7 @@
     <ClCompile Include="graphics\gpu\approach.cpp">
       <Filter>Source Files\graphics\gpu</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\gpu\buffer.cpp">
+    <ClCompile Include="graphics\gpu\cpu_buffer.cpp">
       <Filter>Source Files\graphics\gpu</Filter>
     </ClCompile>
     <ClCompile Include="graphics\gpu\context.cpp">
@@ -1560,6 +1560,9 @@
     </ClCompile>
     <ClCompile Include="user\user\scroll_base.cpp">
       <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="hardware\device_group.cpp">
+      <Filter>Source Files\hardware</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -68,7 +68,7 @@ namespace user
 
          m_puserinteraction = pinteraction;
 
-         if (::is_null(acmesystem()))
+         if (::is_null(system()))
          {
 
             initialize(pprimitiveParent);
@@ -204,6 +204,13 @@ namespace user
             
             m_puserinteraction->send_message(e_message_create);
             
+         }
+
+         if (m_puserinteraction->m_procedureOnAfterCreate)
+         {
+
+            m_puserinteraction->m_procedureOnAfterCreate();
+
          }
 
       //}

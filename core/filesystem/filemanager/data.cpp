@@ -276,7 +276,7 @@ namespace filemanager
 
       string strPath;
 
-      ::pointer<::core::application>papp = pparticle->acmeapplication();
+      ::pointer<::core::application>papp = pparticle->application();
 
       auto pcontext = m_pcontext;
 
@@ -357,7 +357,7 @@ namespace filemanager
 
       string strPath(path);
 
-      ::pointer<::core::application>papp = pparticle->acmeapplication();
+      ::pointer<::core::application>papp = pparticle->application();
 
       if (string_begins(path, "uifs://")
          || string_begins(path, "fs://"))

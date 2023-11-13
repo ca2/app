@@ -7,7 +7,6 @@
 #include "acme/user/user/text.h"
 #include "acme/user/user/element.h"
 #include "apex/handler/manager.h"
-#include "apex/handler/source.h"
 #include "apex/message/channel.h"
 
 
@@ -18,7 +17,7 @@ namespace user
    class CLASS_DECL_APEX primitive :
       virtual public ::user::element,
       virtual public ::channel,
-      virtual public ::source,
+      //virtual public ::source,
       virtual public ::manager
       //, virtual public ::user::container
    {
@@ -227,7 +226,8 @@ namespace user
       void create_interaction(::user::interaction * puserinteractionParent, const ::atom & atom = nullptr) override;
 
 
-      void create_host(enum_parallelization eparallelization) override;
+      //void create_host(enum_parallelization eparallelization) override;
+      void create_host() override;
       void create_child(::user::interaction * puserinteractionParent) override;
       void create_control(::user::interaction * puserinteractionParent, const ::atom & atom) override;
 
@@ -472,7 +472,7 @@ namespace user
       //virtual enum_type get_window_type() override;
 
 
-      virtual void add_child_handler(const ::signal_handler & signalhandler, const ::atom & idChild, bool bPriority = false) override;
+      virtual void add_child_handler(::particle * pparticle, const ::atom & atomChild, bool bPriority = false) override;
 
 
       virtual void on_simple_command(::message::simple_command * psimplecommand);

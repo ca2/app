@@ -2,6 +2,7 @@
 #include "window.h"
 #include "acme/operating_system/universal_windows/_winrt_foundation.h"
 #include "acme/platform/application.h"
+#include "acme/platform/platform.h"
 #include "acme/user/nano/button.h"
 #include "acme/user/nano/window.h"
 
@@ -32,7 +33,7 @@ namespace universal_windows
    void nano_window::create()
    {
 
-      if (acmeapplication()->m_bConsole)
+      if (platform()->m_bConsole)
       {
 
          _console_create();
@@ -73,7 +74,7 @@ namespace universal_windows
    void nano_window::display()
    {
 
-      if (acmeapplication()->m_bConsole)
+      if (platform()->m_bConsole)
       {
 
          _display_console();

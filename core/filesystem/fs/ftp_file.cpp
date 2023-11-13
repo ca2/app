@@ -68,7 +68,7 @@ retry:
 
    }
 
-   auto psystem = acmesystem()->m_papexsystem;
+   auto psystem = system()->m_papexsystem;
 
    auto purl = psystem->url();
 

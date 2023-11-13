@@ -49,10 +49,10 @@ namespace sandbox_windowing
 
       ::pointer<::sandbox_windowing::window>pwindow;
 
-      if (::is_null(acmesystem()->m_paurasystem->m_pwindowMain->m_puserinteractionimpl))
+      if (::is_null(system()->m_paurasystem->m_pwindowMain->m_puserinteractionimpl))
       {
 
-         pwindow = acmesystem()->m_paurasystem->m_pwindowMain;
+         pwindow = system()->m_paurasystem->m_pwindowMain;
 
       }
       else
@@ -173,7 +173,8 @@ namespace sandbox_windowing
 
       m_phostinteraction->place(*lpcrect);
 
-      m_phostinteraction->create_host(e_parallelization_synchronous);
+      //m_phostinteraction->create_host(e_parallelization_synchronous);
+      m_phostinteraction->create_host();
 
       m_phostinteraction->display();
 
@@ -196,7 +197,7 @@ namespace sandbox_windowing
    //   void windowing::start()
    //   {
    //
-   //      auto psystem = acmesystem()->m_papexsystem;
+   //      auto psystem = system()->m_papexsystem;
    //
    //      if (psystem->m_bUser)
    //      {

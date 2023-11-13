@@ -147,7 +147,7 @@ namespace networking
 
       }
 
-      auto psystem = acmesystem();
+      auto psystem = system();
 
       auto purl = psystem->url();
 

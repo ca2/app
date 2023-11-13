@@ -73,7 +73,7 @@ bool on_init_timer_thread()
 }
 
 
-//CLASS_DECL_ACME ::acme::system * acmesystem();
+//CLASS_DECL_ACME ::acme::system * system();
 
 
 CLASS_DECL_ACME void main_asynchronous(const ::procedure & procedure)

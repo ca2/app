@@ -80,7 +80,7 @@ namespace apex
    void node::main()
    {
    
-      auto psystem = acmesystem();
+      auto psystem = system();
       
       //auto estatus = 
       
@@ -103,7 +103,7 @@ namespace apex
 
       string strFooter__;
 
-      if (acmeapplication()->m_bAudio)
+      if (application()->m_bAudio)
       {
 
          ::payload payload;
@@ -116,7 +116,7 @@ namespace apex
 
          ::string strMember = "add_pane_tab_impact_handler_library";
 
-         acmeapplication()->_handle_call(payload, strObject, strMember, propertyset);
+         application()->_handle_call(payload, strObject, strMember, propertyset);
 
          strFooter__ += "<br/>";
          strFooter__ += "<br/>";
@@ -221,7 +221,7 @@ namespace apex
    void node::start_node()
    {
 
-      auto psystem = acmesystem()->m_papexsystem;
+      auto psystem = system()->m_papexsystem;
 
       //auto estatus = 
       psystem->on_start_system();
@@ -248,7 +248,7 @@ namespace apex
    void node::on_operating_system_user_theme_change()
    {
 
-      auto psystem = acmesystem()->m_papexsystem;
+      auto psystem = system()->m_papexsystem;
 
       psystem->signal(id_operating_system_user_theme_change);
 
@@ -258,7 +258,7 @@ namespace apex
    void node::on_operating_system_user_color_change()
    {
 
-      auto psystem = acmesystem()->m_papexsystem;
+      auto psystem = system()->m_papexsystem;
 
       psystem->signal(id_operating_system_user_color_change);
 
@@ -268,7 +268,7 @@ namespace apex
    void node::on_operating_system_font_list_change()
    {
 
-      auto psystem = acmesystem()->m_papexsystem;
+      auto psystem = system()->m_papexsystem;
 
       psystem->signal(id_operating_system_font_list_change);
 

@@ -182,7 +182,7 @@ void simple_frame_window::on_update_notify_icon_menu(::index & iNotifyIconItem)
 void simple_frame_window::on_update_notify_icon_menu_header(::index & iNotifyIconItem)
 {
 
-   auto papp = auraapplication();
+   auto papp = application();
 
    //auto puser = papp->get_session()->user()->m_pbaseuser;
 
@@ -882,7 +882,7 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
 //
 //         }
 //
-//         //if (acmesystem()->m_papexsystem->m_bPreferNoFrameWindow)
+//         //if (system()->m_papexsystem->m_bPreferNoFrameWindow)
 //         //{
 //
 //         //   m_bWindowFrame = false;
@@ -895,7 +895,7 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
 //   //else
 //   //{
 //
-//   //   m_bWindowFrame = acmesystem()->m_papexsystem->m_bExperienceMainFrame;
+//   //   m_bWindowFrame = system()->m_papexsystem->m_bExperienceMainFrame;
 //
 //   //}
 //
@@ -956,7 +956,7 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
 //
 //   }
 
-   //if (acmesystem()->m_papexsystem->m_bPreferNoFrameWindow)
+   //if (system()->m_papexsystem->m_bPreferNoFrameWindow)
    //{
 
    //   m_bWindowFrame = false;
@@ -1098,7 +1098,7 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
                         {
 
                           //auto papp = get_app();
-                     //auto psystem = acmesystem()->m_papexsystem;
+                     //auto psystem = system()->m_papexsystem;
 
                      //auto estatus =
 
@@ -1845,7 +1845,7 @@ void simple_frame_window::on_message_close(::message::message * pmessage)
 #ifdef LINUX
       //if(is_window_visible())
 
-      auto psystem = acmesystem()->m_papexsystem;
+      auto psystem = system()->m_papexsystem;
 
       auto pnode = psystem->node();
 
@@ -2363,7 +2363,7 @@ void simple_frame_window::on_frame_position()
 //bool simple_frame_window::_001FancyInitialFramePlacement(bool bForceRestore)
 //{
 //
-//   //if (acmesystem()->m_papexsystem->m_bPreferNoFrameWindow)
+//   //if (system()->m_papexsystem->m_bPreferNoFrameWindow)
 //   //{
 //
 //   //   set_need_layout();
@@ -2802,11 +2802,17 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
    // glxxx
 
+   
+
    //return;
 
    pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
    pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+
+   //pgraphics->fill_solid_rectangle(::rectangle_f64_dimension(10, 10, 200, 200), ::argb(127, 0, 0, 255));
+
+   //return;
 
    auto pstyle = get_style(pgraphics);
 
@@ -2817,7 +2823,7 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
       //printf("simplefrmwnd : " + ::type(this).name() + " : blur_background");
 
-      //auto psystem = acmesystem()->m_pbasesystem;
+      //auto psystem = system()->m_pbasesystem;
 
 //      class imaging & imaging = psystem->imaging();
 
@@ -2917,8 +2923,19 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
    //printf("simplefrmwnd : " + ::type(this).name() + " : draw_frame");
 
+//   pgraphics->fill_solid_rectangle(::rectangle_f64_dimension(100, 100, 200, 200), ::argb(127, 0, 255, 0));
+
+   //return;
+
    draw_frame(pgraphics);
 
+}
+
+
+void simple_frame_window::_001DrawChildren(::draw2d::graphics_pointer & pgraphics)
+{
+
+   ::experience::frame_window::_001DrawChildren(pgraphics);
 
 }
 

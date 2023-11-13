@@ -6,7 +6,7 @@ namespace gpu
 {
 
 
-   class buffer;
+   class cpu_buffer;
    class context;
    class shader;
    class program;

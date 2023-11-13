@@ -1,9 +1,9 @@
 #pragma once
 
 
+//#include "apme/handler/source.h"
 #include "apex/message/channel.h"
 #include "apex/handler/manager.h"
-#include "apex/handler/source.h"
 #include "acme/primitive/geometry2d/rectangle_array.h"
 #include "acme/primitive/collection/int_map.h"
 #include "acme/platform/auto_pointer.h"
@@ -15,7 +15,7 @@ namespace user
 
    class CLASS_DECL_AURA primitive_impl :
       virtual public ::channel,
-      virtual public ::source,
+      //virtual public ::source,
       virtual public ::manager
       //, virtual public ::graphics::output_purpose
    {
@@ -62,7 +62,7 @@ namespace user
       
       ::aura::application* get_app();
       ::aura::session* get_session();
-      //::aura::system* acmesystem();
+      //::aura::system* system();
 
 
 
@@ -82,7 +82,9 @@ namespace user
 
 
 
-      virtual void create_host(::user::interaction * puserinteraction, enum_parallelization eparallelization);
+      //virtual void create_host(::user::interaction * puserinteraction, enum_parallelization eparallelization);
+
+      virtual void create_host(::user::interaction * puserinteraction);
       virtual void create_child(::user::interaction * puserinteraction, ::user::primitive * puserprimitiveParent);
 
 

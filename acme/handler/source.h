@@ -6,13 +6,13 @@
 
 
 /// source is originator of subjects
-class CLASS_DECL_APEX source :
+class CLASS_DECL_ACME source :
    virtual public ::object
 {
 public:
 
 
-   pointer < comparable_array < ::signal_handler > > m_psignalhandlera;
+   pointer_array < ::particle >     m_particlea;
 
 
    source();
@@ -22,13 +22,13 @@ public:
    inline bool has_handler() const
    {
 
-      return m_psignalhandlera && m_psignalhandlera->has_element();
+      return m_particlea.has_element();
 
    }
 
-   virtual void add_signal_handler(const ::signal_handler& signalhandler, bool bPriority = false);
+//   virtual void add_signal_handler(const ::signal_handler& signalhandler, bool bPriority = false);
 
-   virtual void add_handler(::matter * pmatter, bool bPriority = false);
+   virtual void add_handler(::particle * pmatter, bool bPriority = false);
 
    void route(::topic * ptopic, ::context * pcontext = nullptr);
 

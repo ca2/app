@@ -37,7 +37,7 @@ void debug_object_event_promisse_predicate()
 //void system_call_update_wallpaper_changed()
 //{
 //
-//   acmesystem()->call_subject(id_wallpaper_changed);
+//   system()->call_subject(id_wallpaper_changed);
 //
 //}
 //
@@ -45,7 +45,7 @@ void debug_object_event_promisse_predicate()
 //void system_call_update_app_activated()
 //{
 //
-//   acmesystem()->call_subject(id_app_activated);
+//   system()->call_subject(id_app_activated);
 //
 //}
 //
@@ -53,13 +53,13 @@ void debug_object_event_promisse_predicate()
 //void system_call_update_app_activated()
 //{
 //
-//   acmesystem()->process_subject(id_app_activated);
+//   system()->process_subject(id_app_activated);
 //
 //}
 //void system_call_update_app_changed_occlusion_state()
 //{
 //
-//   acmesystem()->call_subject(id_app_changed_occlusion_state);
+//   system()->call_subject(id_app_changed_occlusion_state);
 //
 //}
 

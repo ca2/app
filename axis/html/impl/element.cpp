@@ -215,7 +215,7 @@ namespace html
          if (has_link())
          {
 
-            auto psession = acmesession()->m_paurasession;
+            auto psession = session()->m_paurasession;
 
             auto puser = psession->user();
 

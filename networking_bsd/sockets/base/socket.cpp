@@ -971,7 +971,7 @@ namespace sockets_bsd
    void base_socket::SetSocks4Host(const string & host)
    {
 
-      //auto pnetworking = acmesystem()->m_papexsystem->networking();
+      //auto pnetworking = system()->m_papexsystem->networking();
 
       //paddressdepartment->convert(m_socks4_host, host);
 
@@ -2794,7 +2794,7 @@ bool base_socket::SetSoNosigpipe(bool x)
    string base_socket::get_short_description()
    {
 
-      auto pnetworking = acmesystem()->m_papexsystem->networking();
+      auto pnetworking = system()->m_papexsystem->networking();
 
       return pnetworking->canonical_name(GetRemoteAddress());
 
@@ -2808,7 +2808,7 @@ bool base_socket::SetSoNosigpipe(bool x)
 
       synchronous_lock synchronouslock(this->synchronization());
 
-      if (m_psslcontext->m_pclientcontext->acmesession() != nullptr)
+      if (m_psslcontext->m_pclientcontext->session() != nullptr)
       {
 
          m_psslcontext->m_pclientcontext.release();

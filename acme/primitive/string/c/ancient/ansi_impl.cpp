@@ -1,6 +1,5 @@
 #include "framework.h"
-
-
+#include <string.h>
 
 
 CLASS_DECL_ACME ::ansi_character __ansicharlowered(i32 i) { return i >= 'A' && i <='Z' ? i - 'A' + 'a' : i; }
@@ -617,4 +616,6 @@ CLASS_DECL_ACME void make_upper(::ansi_character * psz)
    }
 
 }
+
+
 

@@ -20,7 +20,7 @@
 
       class ::time                     m_timeStart;
       
-      ::pointer < ::sub_system >       m_psubsystem;
+      ::pointer < ::sub_system >       m_pplatform;
 
 #if defined(WINDOWS)  && defined(UNICODE)
       main(int argc, wchar_t* wargv[], wchar_t* wenvp[]);

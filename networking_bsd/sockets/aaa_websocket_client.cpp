@@ -561,7 +561,7 @@ namespace networking_bsd
 
          generate_random_bytes(m.get_data(), m.get_size());
 
-         auto psystem = acmesystem();
+         auto psystem = system();
 
          auto pbase64 = psystem->base64();
 
@@ -679,7 +679,7 @@ namespace networking_bsd
 
                memory mem2;
 
-               auto psystem = acmesystem()->m_papexsystem;
+               auto psystem = system()->m_papexsystem;
 
                auto pbase64 = psystem->base64();
 

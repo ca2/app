@@ -284,7 +284,7 @@ namespace xml
    void node::LoadDocType(::ansi_range & rangeXml, parse_info * pparseinfo)
    {
 
-      auto pxml = acmesystem()->xml();
+      auto pxml = system()->xml();
 
       if (pparseinfo == nullptr)
       {
@@ -399,7 +399,7 @@ namespace xml
       if(pparseinfo == nullptr)
       {
 
-         pparseinfo = acmesystem()->xml()->m_pparseinfoDefault;
+         pparseinfo = system()->xml()->m_pparseinfoDefault;
 
       }
 
@@ -553,7 +553,7 @@ namespace xml
       if (pparseinfo == nullptr)
       {
 
-         pparseinfo = acmesystem()->xml()->m_pparseinfoDefault;
+         pparseinfo = system()->xml()->m_pparseinfoDefault;
 
       }
 
@@ -627,7 +627,7 @@ namespace xml
 //      if (pparseinfo == nullptr)
 //      {
 //
-//         pparseinfo = acmesystem()->xml()->m_pparseinfoDefault;
+//         pparseinfo = system()->xml()->m_pparseinfoDefault;
 //
 //      }
 //
@@ -769,7 +769,7 @@ namespace xml
       if (pparseinfo == nullptr)
       {
 
-         pparseinfo = acmesystem()->xml()->m_pparseinfoDefault;
+         pparseinfo = system()->xml()->m_pparseinfoDefault;
 
       }
 
@@ -836,7 +836,7 @@ namespace xml
       if (pparseinfo == nullptr)
       {
 
-         pparseinfo = acmesystem()->xml()->m_pparseinfoDefault;
+         pparseinfo = system()->xml()->m_pparseinfoDefault;
 
       }
 
@@ -899,7 +899,7 @@ namespace xml
       if (pparseinfo == nullptr)
       {
 
-         pparseinfo = acmesystem()->xml()->m_pparseinfoDefault;
+         pparseinfo = system()->xml()->m_pparseinfoDefault;
 
       }
 
@@ -1046,7 +1046,7 @@ namespace xml
          if (pparseinfo == nullptr)
          {
 
-            pparseinfo = acmesystem()->xml()->m_pparseinfoDefault;
+            pparseinfo = system()->xml()->m_pparseinfoDefault;
 
          }
 
@@ -1444,7 +1444,7 @@ namespace xml
       if(opt == nullptr)
       {
 
-         opt = ((node *) this)->acmesystem()->xml()->m_poptionDefault;
+         opt = ((node *) this)->system()->xml()->m_poptionDefault;
 
       }
 
@@ -1499,7 +1499,7 @@ namespace xml
                ostring += ' ';
             }
 
-            auto pxml = ((node*)this)->acmesystem()->m_pxml;
+            auto pxml = ((node*)this)->system()->m_pxml;
 
             for (auto & pproperty : m_set)
             {
@@ -1535,7 +1535,7 @@ namespace xml
       //if (m_set.has_elements())
         // ostring += ' ';
 
-      auto pxml = ((node*)this)->acmesystem()->xml();
+      auto pxml = ((node*)this)->system()->xml();
 
       for (auto & pproperty : m_set)
       {
@@ -1677,7 +1677,7 @@ namespace xml
 
       if(opt == nullptr)
       {
-         opt = ((node*)this)->acmesystem()->xml()->m_poptionDefault;
+         opt = ((node*)this)->system()->xml()->m_poptionDefault;
       }
 
       if( m_enode == ::data::e_node_xml_document )

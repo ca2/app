@@ -272,7 +272,7 @@ namespace user
    bool menu::load_xml_menu(const ::payload & payload)
    {
 
-      acmesystem()->m_paquasystem->_xml();
+      system()->m_paquasystem->_xml();
 
       auto pxmldocument = __create_new < ::xml::document >();
 
@@ -439,7 +439,7 @@ namespace user
 
       information() << "::user::menu::initialize_user_menu";
 
-      auto psystem = acmesystem()->m_paurasystem;
+      auto psystem = system()->m_paurasystem;
 
       auto pdraw2d = psystem->draw2d();
 
@@ -590,7 +590,9 @@ namespace user
          //if (!create_window_ex(pusersystem, puiParent))
          //if (!create_host())
 
-         create_host(e_parallelization_asynchronous);
+         //create_host(e_parallelization_asynchronous);
+         // 
+         create_host();
          //{
 
          //   return false;
@@ -681,7 +683,7 @@ namespace user
 
             //   }
 
-            //   auto psystem = acmesystem()->m_paurasystem;
+            //   auto psystem = system()->m_paurasystem;
 
             //   auto pdraw2d = psystem->draw2d();
 
@@ -705,6 +707,7 @@ namespace user
 
          };
 
+      add_graphical_output_purpose(this, ::graphics::e_output_purpose_screen);
 
       if (!create_menu(pchannelNotify, puiParent))
       {
@@ -1871,7 +1874,7 @@ namespace user
 
          }
 
-         //auto psystem = acmesystem()->m_paurasystem;
+         //auto psystem = system()->m_paurasystem;
 
          //auto pdraw2d = psystem->draw2d();
 
@@ -1946,7 +1949,16 @@ namespace user
 
             auto pmenuitem = pmenuitema->element_at(i);
 
+            if(pmenuitem->is_separator())
+            {
+
+               continue;
+
+            }
+
             auto puserinteraction = pmenuitem->m_puserinteraction;
+
+
 
             string strButtonText = puserinteraction->get_window_text();
 
@@ -2136,7 +2148,14 @@ namespace user
             pmenuitema->element_at(i)->m_rectangleUi.right() =
                pmenuitema->element_at(i)->m_rectangleUi.left() + m_iaColumnWidth[pitem->m_iColumn];
 
-            pbasestyle->prepare_menu(pgraphics, pitem);
+            if (pitem->is_separator())
+            {
+
+               continue;
+
+            }
+
+               pbasestyle->prepare_menu(pgraphics, pitem);
 
             //pitem->m_rectangleUi.right() = maximum(pitem->m_rectangleUi.right(), pitem->m_rectangleUi.left() + m_sizeMinimum.cx());
 

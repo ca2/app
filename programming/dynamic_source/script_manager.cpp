@@ -1337,7 +1337,7 @@ namespace dynamic_source
 
       single_lock synchronouslock(m_pmutexRsa, true);
 
-      auto psystem = acmesystem()->m_paurasystem;
+      auto psystem = system()->m_paurasystem;
 
       auto pcrypto = psystem->crypto();
 
@@ -1365,7 +1365,7 @@ namespace dynamic_source
    void script_manager::calc_rsa_key()
    {
 
-      auto psystem = acmesystem()->m_paurasystem;
+      auto psystem = system()->m_paurasystem;
 
       auto pcrypto = psystem->crypto();
 

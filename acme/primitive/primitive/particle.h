@@ -15,6 +15,16 @@
 #include "acme/primitive/primitive/e_flag.h"
 
 
+namespace platform
+{
+
+   
+   class platform;
+
+
+} // namespace platform
+
+
 class tracer;
 
 class extended_topic;
@@ -59,8 +69,8 @@ struct PARTICLE :
 {
 
 
-   ::acme::context *                   m_pcontext;
-   ::ptr < ::particle >                m_pparticleSynchronization;
+   mutable ::acme::context *           m_pcontext;
+   mutable ::ptr < ::particle >        m_pparticleSynchronization;
 
 
    PARTICLE() : 
@@ -142,39 +152,47 @@ public:
    virtual void on_initialize_particle();
 
 
-   ::acme::application * acmeapplication();
-   ::acme::session * acmesession();
-   ::aura::application* auraapplication();
+   ::acme::application * application() const;
+   ::acme::session * session() const;
+   ::acme::system * system() const;
+
+   //::aura::application* auraapplication() const;
 
 
-   ::acme_file * acmefile();
-   ::acme_path * acmepath();
-   ::acme_directory * acmedirectory();
-   ::acme::node * acmenode();
-   ::acme::system * acmesystem();
-   ::acme::context* acmecontext();
-   ::apex::context* apexcontext();
-   ::aura::context* auracontext();
-   ::sub_system * subsystem();
-   ::datetime::datetime * datetime();
-   ::url::url * url();
-   ::crypto::crypto * crypto();
-   ::nano::nano* nano();
-   ::os_context * os_context();
+   inline ::platform::platform * platform() const
+   {
+
+      return ::platform::get();
+
+   }
 
 
-   ::apex::application * apexapplication();
+   ::acme_file * acmefile() const;
+   ::acme_path * acmepath() const;
+   ::acme_directory * acmedirectory() const;
+   ::acme::node * acmenode() const;
+   ::acme::context* acmecontext() const;
+   ::apex::context* apexcontext() const;
+   ::aura::context* auracontext() const;
+   ::datetime::datetime * datetime() const;
+   ::url::url * url() const;
+   ::crypto::crypto * crypto() const;
+   ::nano::nano* nano() const;
+   ::os_context * os_context() const;
 
 
-   ::dir_context * dir();
-   ::dir_system * dirsystem();
-   ::file_context * file();
-   ::file_system * filesystem();
+   ::apex::application * apexapplication()  const;
 
 
-   virtual ::factory::factory_pointer & factory();
-   virtual ::factory::factory_pointer & factory(const ::string& strLibrary);
-   virtual ::factory::factory_pointer & factory(const ::string& strComponent, const ::string& strImplementation);
+   ::dir_context * dir() const;
+   ::dir_system * dirsystem() const;
+   ::file_context * file() const;
+   ::file_system * filesystem() const;
+
+
+   virtual ::factory::factory_pointer & factory() const;
+   virtual ::factory::factory_pointer & factory(const ::string& strLibrary) const;
+   virtual ::factory::factory_pointer & factory(const ::string& strComponent, const ::string& strImplementation) const;
    //::factory::factory* factory(const ::atom& atom);
 
    //virtual void handle(::topic * ptopic, ::context * pcontext);

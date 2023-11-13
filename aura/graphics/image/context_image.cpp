@@ -175,7 +175,7 @@ image_pointer context_image::path_image(const ::file::path & path)
 void context_image::_save_to_file(const ::payload & payloadFile, image * pimage, const ::payload & varOptions)
 {
 
-   auto psystem = acmesystem()->m_paurasystem;
+   auto psystem = system()->m_paurasystem;
 
    auto pdraw2d = psystem->draw2d();
 
@@ -1169,7 +1169,7 @@ void context_image::_os_load_image(::image * pimage, memory & memory)
 
    synchronous_lock synchronouslock(image_synchronization());
 
-   auto & pimage = acmesystem()->m_paurasystem->m_mapImage[path];
+   auto & pimage = system()->m_paurasystem->m_mapImage[path];
 
    if (!pimage)
    {

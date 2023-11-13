@@ -98,9 +98,9 @@ namespace base
    ::base::application * user::get_app()
    {
 
-      auto pacmeapplication = acmeapplication();
+      auto papplication = application();
 
-      return ::is_set(pacmeapplication) ? pacmeapplication->m_pbaseapplication : nullptr;
+      return ::is_set(papplication) ? papplication->m_pbaseapplication : nullptr;
 
    }
 
@@ -108,7 +108,7 @@ namespace base
    ::base::session * user::get_session()
    {
 
-      auto pacmesession = acmesession();
+      auto pacmesession = session();
 
       return ::is_set(pacmesession) ? pacmesession->m_pbasesession : nullptr;
 
@@ -118,7 +118,7 @@ namespace base
    ::base::system * user::get_system()
    {
 
-      auto pacmesystem = acmesystem();
+      auto pacmesystem = system();
 
       return ::is_set(pacmesystem) ? pacmesystem->m_pbasesystem : nullptr;
 
@@ -265,7 +265,7 @@ namespace base
 
       //::payload & varTopicQuey = psystem->commnam_varTopicQuery;
 
-      auto psystem = acmesystem()->m_pbasesystem;
+      auto psystem = system()->m_pbasesystem;
 
       bool bHasInstall = psystem->is_true("install");
 
@@ -1463,7 +1463,7 @@ namespace base
 
          output_error_message("Failed to find/open 'experience' library.\n\nSome reasons:\n   - No 'experience' library present;\n   - Failure to open any suitable 'experience' library.", nullptr, e_message_box_ok);
 
-         throw ::exit_exception(::error_exit_system, acmesystem());
+         throw ::exit_exception(::error_exit_system, system());
 
       }
 
@@ -1637,7 +1637,7 @@ namespace base
 
       }
 
-      auto papp = pparticle->acmeapplication();
+      auto papp = pparticle->application();
 
       if (papp == nullptr)
       {
@@ -1651,7 +1651,7 @@ namespace base
          else if (pcallback != nullptr)
          {
 
-            papp = pcallback->get_app();
+            papp = pcallback->application();
 
          }
          else

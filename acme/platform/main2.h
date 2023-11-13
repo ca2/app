@@ -28,7 +28,7 @@
 //   //LPFN_MAIN_RUNNER                 m_mainrunnera[64];
 //
 //   //string                            m_strCommandLine;
-//   //::apex::system *                  acmesystem();
+//   //::apex::system *                  system();
 //   //::pointer<apex_main_data>        m_pmaindata;
 //   //::pointer<::acme::library>         m_plibrary;
 //   //array < ::e_status >                m_estatusa;
@@ -138,7 +138,7 @@
 //   //   ::pointer<::apex::application>get_new_application(::object* pparticle);
 //   //   ::pointer<::apex::application>get_new_application(::object* pparticle, const ::scoped_string & scopedstrAppId);
 //
-//   virtual void initialize_application(::acme::application* pacmeapplication, ::particle* pparticle);
+//   virtual void initialize_application(::acme::application* papplication, ::particle* pparticle);
 //
 //
 //};
@@ -146,7 +146,7 @@
 //
 //class subsystem;
 //
-//CLASS_DECL_ACME void __main(::acme::application* pacmeapplication);
+//CLASS_DECL_ACME void __main(::acme::application* papplication);
 //
 //
 //namespace acme

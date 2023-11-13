@@ -740,7 +740,7 @@ namespace tts_sapi
 
          }
 
-         auto paudio = acmesystem()->m_paquasystem->audio();
+         auto paudio = system()->m_paquasystem->audio();
 
          paudio->play_audio(pfile, bSync);
 
@@ -943,7 +943,7 @@ namespace tts_sapi
 
          }
 
-         auto paudio = acmesystem()->m_paquasystem->audio();
+         auto paudio = system()->m_paquasystem->audio();
 
          paudio->play_audio(pfile, bSync);
 

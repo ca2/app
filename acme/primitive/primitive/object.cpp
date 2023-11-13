@@ -745,12 +745,12 @@ void object::destruct()
 }
 
 
-void object::system(const ::string & strProjectName)
-{
-
-   UNREFERENCED_PARAMETER(strProjectName);
-
-}
+//void object::system(const ::string & strProjectName)
+//{
+//
+//   UNREFERENCED_PARAMETER(strProjectName);
+//
+//}
 
 
 void object::run()
@@ -771,7 +771,7 @@ void object::run()
 //   if (estatus == error_pending)
 //   {
 //
-//      //acmesystem()->add_pending_finish(this);
+//      //system()->add_pending_finish(this);
 //
 //      return estatus;
 //
@@ -1810,7 +1810,7 @@ void object::top_handle_exception(const ::exception& e)
    if (e.estatus().is_exit_status())
    {
 
-      acmesystem()->process_exit_status(this, e.estatus());
+      system()->process_exit_status(this, e.estatus());
 
    }
 
@@ -1823,7 +1823,7 @@ void object::top_handle_exception(const ::exception& e)
 //   if (estatus == error_exit_system)
 //   {
 //
-//      acmesystem()->finish();
+//      system()->finish();
 //
 //   }
 //   else if (estatus == error_exit_session)
@@ -1994,7 +1994,7 @@ void object::sleep(const class time & time)
 
       }
 
-      if (acmesystem() && acmesystem()->has_finishing_flag())
+      if (system() && system()->has_finishing_flag())
       {
 
          throw ::exception(error_exit_system);
@@ -2043,7 +2043,7 @@ void object::sleep(const class time & time)
 
       }
 
-      if (acmesystem() && acmesystem()->has_finishing_flag())
+      if (system() && system()->has_finishing_flag())
       {
 
          throw ::exception(error_exit_system);
@@ -2304,7 +2304,7 @@ void object::install_message_routing(::channel* pchannel)
 //::pointer<::handle::ini>object::appini()
 //{
 //
-//   return __new(::handle::ini(         auto psystem = acmesystem();
+//   return __new(::handle::ini(         auto psystem = system();
 
 //         auto pacmedirectory = psystem->m_pacmedirectory;
 //
@@ -2474,7 +2474,7 @@ void call_sync(const ::procedure_array& methoda)
 //pointer< ::extended::sequence < ::conversation > > object::message_box(::user::interaction * puserinteraction, const ::string & strMessage, const ::string & strTitle, const ::e_message_box& emessagebox)
 //{
 //
-//   auto psystem = acmesystem();
+//   auto psystem = system();
 //
 //   auto psequence = psystem->message_box(puserinteraction, strMessage, strTitle, emessagebox);
 //
@@ -2754,10 +2754,10 @@ void object::initialize(::particle * pparticle)
 
    ::property_object::initialize(pparticle);
 
-//   if (!acmesystem())
+//   if (!system())
 //   {
 //
-//      acmesystem() = pparticle->acmesystem();
+//      system() = pparticle->system();
 //
 //   }
 //
@@ -2813,10 +2813,10 @@ void object::initialize(::particle * pparticle)
    //      m_pcontext = m_psession;
 
    //   }
-   //   else if (acmesystem())
+   //   else if (system())
    //   {
 
-   //      m_pcontext = acmesystem();
+   //      m_pcontext = system();
 
    //   }
 
@@ -2828,7 +2828,7 @@ void object::initialize(::particle * pparticle)
    if(::is_null(m_pparticleContext))
    {
 
-      m_pparticleContext = acmeapplication();
+      m_pparticleContext = application();
 
    }
 
@@ -3166,10 +3166,10 @@ void object::call_run()
 //
 //   }
 //
-//   if (acmesystem() && (::property_object*)acmesystem() != (::property_object*)this)
+//   if (system() && (::property_object*)system() != (::property_object*)this)
 //   {
 //
-//      return acmesystem();
+//      return system();
 //
 //   }
 //
@@ -3709,7 +3709,7 @@ bool object::IsSerializable() const
 //
 //   //return m_pcontext && m_pcontext->m_pacmeapplication ? m_pcontext->m_pacmeapplication : nullptr;
 //   
-//   return ((::object *)this)->::matter::acmeapplication();
+//   return ((::object *)this)->::matter::application();
 //
 //}
 //

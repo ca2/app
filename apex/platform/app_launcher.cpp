@@ -59,7 +59,7 @@ namespace apex
    string app_launcher::get_executable_path()
    {
 
-      auto psystem = acmesystem();
+      auto psystem = system();
 
       auto pnode = psystem->node();
 
@@ -165,7 +165,7 @@ namespace apex
 //
 //      ::file::path path = get_executable_path();
 //      
-//      auto psystem = acmesystem();
+//      auto psystem = system();
 //      
 //      auto pnode = psystem->node();
 //
@@ -221,7 +221,7 @@ namespace apex
 ////
 ////      string strParams = get_params();
 //
-//      auto psystem = acmesystem();
+//      auto psystem = system();
 //
 //      auto pnode = psystem->node();
 //

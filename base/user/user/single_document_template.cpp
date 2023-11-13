@@ -118,7 +118,7 @@ namespace user
 
       ::pointer<::user::document>pdocument;
 
-      ::pointer<::user::frame_window>pFrame;
+      ::pointer<::user::frame_window>pframe;
 
 //      bool bCreated = false;      // => doc and frame created
 //
@@ -143,13 +143,13 @@ namespace user
 
          ::user::impact * pimpact = pdocument->get_impact();
 
-         pFrame = pimpact->parent_frame();
+         pframe = pimpact->parent_frame();
 
-         ASSERT(pFrame != nullptr);
+         ASSERT(pframe != nullptr);
 
-         ASSERT_KINDOF(frame_window, pFrame);
+         ASSERT_KINDOF(frame_window, pframe);
 
-         ASSERT_VALID(pFrame);
+         ASSERT_VALID(pframe);
 
       }
       else
@@ -158,7 +158,7 @@ namespace user
          // create a memory_new ::user::document
          pdocument = create_new_document(prequest);
          
-         ASSERT(pFrame == nullptr);     // will be created below
+         ASSERT(pframe == nullptr);     // will be created below
          
          prequest->m_bDocumentAndFrameCreated = true;
          
@@ -174,9 +174,11 @@ namespace user
 
       }
 
+      prequest->payload("document") = pdocument;
+
       ASSERT(pdocument == m_pdocument);
 
-      if (pFrame == nullptr)
+      if (pframe == nullptr)
       {
 
          ASSERT(prequest->m_bDocumentAndFrameCreated);
@@ -187,13 +189,13 @@ namespace user
          pdocument->m_bAutoDelete = false;
 
          // don't destroy if something goes wrong
-         pFrame = create_new_frame(pdocument, nullptr, prequest);
+         pframe = create_new_frame(pdocument, nullptr, prequest);
 
          pdocument->m_bAutoDelete = bAutoDelete;
 
-         //auto psystem = acmesystem()->m_pbasesystem;
+         //auto psystem = system()->m_pbasesystem;
 
-         if (!pFrame)
+         if (!pframe)
          {
 
             //auto& result = psystem->m_estatus;
@@ -212,39 +214,34 @@ namespace user
          }
 
       }
+      //else
+      //{
 
-
-   }
-
-
-   void single_document_template::on_request_continuation(::user::document * pdocument, ::user::frame_window * pframewindow, ::request * prequest)
-   {
-
-      ASSERT_VALID(pframewindow);
+      ASSERT_VALID(pframe);
 
       //if (! || !pusersystem->m_prequest)   // send initial update
       //{
 
-        pframewindow->send_message_to_descendants(e_message_system_update, ID_INITIAL_UPDATE, (lparam) 0, true, true);
+      pframe->send_message_to_descendants(e_message_system_update, ID_INITIAL_UPDATE, (lparam)0, true, true);
 
       //}
 
 
       information() << "single_document_template::on_request_continuation";
 
-//      bool bMakeVisible = true;
-//
-//      if (prequest)
-//      {
-//
-//         if(prequest->payload("make_visible_boolean").is_true())
-//         {
-//
-//            prequest->m_egraphicsoutputpurpose |= ::graphics::e_output_purpose_screen;
-//
-//         }
-//
-//      }
+      //      bool bMakeVisible = true;
+      //
+      //      if (prequest)
+      //      {
+      //
+      //         if(prequest->payload("make_visible_boolean").is_true())
+      //         {
+      //
+      //            prequest->m_egraphicsoutputpurpose |= ::graphics::e_output_purpose_screen;
+      //
+      //         }
+      //
+      //      }
 
       ::payload payloadFile = prequest->get_file();
 
@@ -270,7 +267,7 @@ namespace user
             if (prequest->m_bDocumentAndFrameCreated)
             {
 
-               pframewindow->destroy_window();    // will destroy ::user::document
+               pframe->destroy_window();    // will destroy ::user::document
 
             }
 
@@ -300,7 +297,7 @@ namespace user
             if (prequest->m_bDocumentAndFrameCreated)
             {
 
-               pframewindow->destroy_window();    // will destroy ::user::document
+               pframe->destroy_window();    // will destroy ::user::document
 
             }
             else if (!pdocument->is_modified())
@@ -315,8 +312,8 @@ namespace user
 
                if (!pdocument->on_new_document())
                {
-                  warning()(e_trace_category_appmsg)<< "Error: on_new_document failed after trying "
-                                                       "to open a ::user::document - trying to continue.\n";
+                  warning()(e_trace_category_appmsg) << "Error: on_new_document failed after trying "
+                     "to open a ::user::document - trying to continue.\n";
                   // assume we can continue
                }
             }
@@ -330,30 +327,30 @@ namespace user
 
       }
 
-//      thread* pThread = ::get_task();
+      //      thread* pThread = ::get_task();
 
-      if(!prequest->m_bHold)
+      if (!prequest->m_bHold)
       {
 
-         pframewindow->payload("should_not_be_automatically_holded_on_initial_update_frame") = true;
+         pframe->payload("should_not_be_automatically_holded_on_initial_update_frame") = true;
 
       }
 
-//      if(bCreated)
-//      {
-//
-//         prepare_frame(pFrame,pdocument,bMakeVisible);
-//
-//      }
+      //      if(bCreated)
+      //      {
+      //
+      //         prepare_frame(pFrame,pdocument,bMakeVisible);
+      //
+      //      }
 
-      /*     auto papp = get_app();
+            /*     auto papp = get_app();
 
-           if (papp)
-           {
+                 if (papp)
+                 {
 
-              papp->defer_process_activation_message();
+                    papp->defer_process_activation_message();
 
-           }*/
+                 }*/
 
       if (prequest)
       {
@@ -370,7 +367,166 @@ namespace user
 
       prequest->m_estatus = ::success;
 
+//      }
+
+
    }
+
+
+//   void single_document_template::on_request_continuation(::user::document * pdocument, ::user::frame_window * pframewindow, ::request * prequest)
+//   {
+//
+//      ASSERT_VALID(pframewindow);
+//
+//      //if (! || !pusersystem->m_prequest)   // send initial update
+//      //{
+//
+//        pframewindow->send_message_to_descendants(e_message_system_update, ID_INITIAL_UPDATE, (lparam) 0, true, true);
+//
+//      //}
+//
+//
+//      information() << "single_document_template::on_request_continuation";
+//
+////      bool bMakeVisible = true;
+////
+////      if (prequest)
+////      {
+////
+////         if(prequest->payload("make_visible_boolean").is_true())
+////         {
+////
+////            prequest->m_egraphicsoutputpurpose |= ::graphics::e_output_purpose_screen;
+////
+////         }
+////
+////      }
+//
+//      ::payload payloadFile = prequest->get_file();
+//
+//      if (payloadFile.is_empty() || payloadFile.is_numeric())
+//      {
+//
+//         // create a memory_new ::user::document
+//         set_default_title(pdocument);
+//
+//         // avoid creating temporary compound file when starting up invisible
+//         if (!(prequest->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_screen))
+//         {
+//
+//            pdocument->m_bEmbedded = true;
+//
+//         }
+//
+//         if (!pdocument->on_new_document())
+//         {
+//            // user has been alerted to what failed in on_new_document
+//            warning()(e_trace_category_appmsg) << "::user::document::on_new_document returned false.\n";
+//
+//            if (prequest->m_bDocumentAndFrameCreated)
+//            {
+//
+//               pframewindow->destroy_window();    // will destroy ::user::document
+//
+//            }
+//
+//            return;
+//
+//         }
+//
+//         pdocument->m_bOpened = true;
+//
+//         pdocument->id_update_all_impacts(id_incoming_document);
+//
+//      }
+//      else
+//      {
+//
+//         wait_cursor wait(prequest);
+//
+//         // open an existing ::user::document
+//         prequest->m_bDocumentWasModified = pdocument->is_modified();
+//         pdocument->set_modified_flag(false);  // not dirty for open
+//
+//         if (!on_open_document(pdocument, prequest))
+//         {
+//            // user has been alerted to what failed in on_open_document
+//            warning()(e_trace_category_appmsg) << "::user::document::on_open_document returned false.\n";
+//
+//            if (prequest->m_bDocumentAndFrameCreated)
+//            {
+//
+//               pframewindow->destroy_window();    // will destroy ::user::document
+//
+//            }
+//            else if (!pdocument->is_modified())
+//            {
+//               // original ::user::document is untouched
+//               pdocument->set_modified_flag(prequest->m_bDocumentWasModified);
+//            }
+//            else
+//            {
+//               // we corrupted the original ::user::document
+//               set_default_title(pdocument);
+//
+//               if (!pdocument->on_new_document())
+//               {
+//                  warning()(e_trace_category_appmsg)<< "Error: on_new_document failed after trying "
+//                                                       "to open a ::user::document - trying to continue.\n";
+//                  // assume we can continue
+//               }
+//            }
+//            return;        // open failed
+//         }
+//         pdocument->m_bOpened = true;
+//         pdocument->set_path_name(payloadFile);
+//         pdocument->update_title();
+//         pdocument->id_update_all_impacts(ID_INCOMING_DOCUMENT);
+//
+//
+//      }
+//
+////      thread* pThread = ::get_task();
+//
+//      if(!prequest->m_bHold)
+//      {
+//
+//         pframewindow->payload("should_not_be_automatically_holded_on_initial_update_frame") = true;
+//
+//      }
+//
+////      if(bCreated)
+////      {
+////
+////         prepare_frame(pFrame,pdocument,bMakeVisible);
+////
+////      }
+//
+//      /*     auto papp = get_app();
+//
+//           if (papp)
+//           {
+//
+//              papp->defer_process_activation_message();
+//
+//           }*/
+//
+//      if (prequest)
+//      {
+//
+//         prequest->payload("document") = pdocument;
+//
+//      }
+//      else
+//      {
+//
+//         //prequest->payload("document") = pdocument;
+//
+//      }
+//
+//      prequest->m_estatus = ::success;
+//
+//   }
 
 
    void single_document_template::set_default_title(::user::document * pdocument)

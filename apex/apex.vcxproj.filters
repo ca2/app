@@ -746,9 +746,6 @@
     <ClInclude Include="platform\app_consumer.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="handler\source.h">
-      <Filter>Header Files\handler</Filter>
-    </ClInclude>
     <ClInclude Include="handler\signal.h">
       <Filter>Header Files\handler</Filter>
     </ClInclude>
@@ -1244,9 +1241,6 @@
       <Filter>Source Files\handler</Filter>
     </ClCompile>
     <ClCompile Include="handler\signal.cpp">
-      <Filter>Source Files\handler</Filter>
-    </ClCompile>
-    <ClCompile Include="handler\source.cpp">
       <Filter>Source Files\handler</Filter>
     </ClCompile>
     <ClCompile Include="networking\netserver\socket.cpp">

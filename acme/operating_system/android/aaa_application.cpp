@@ -141,7 +141,7 @@ namespace acme
    string application::multimedia_audio_get_default_implementation_name()
    {
 
-      return acmesystem()->implementation_name("audio", "opensles");
+      return system()->implementation_name("audio", "opensles");
 
    }
 
@@ -149,7 +149,7 @@ namespace acme
    string application::multimedia_audio_mixer_get_default_implementation_name()
    {
 
-      return acmesystem()->implementation_name("audio_mixer", "opensles");
+      return system()->implementation_name("audio_mixer", "opensles");
 
    }
 

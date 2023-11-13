@@ -566,7 +566,7 @@ namespace write_text
          if (!pgraphics)
          {
 
-            auto psystem = acmesystem()->m_paurasystem;
+            auto psystem = system()->m_paurasystem;
 
             auto pdraw2d = psystem->draw2d();
 
@@ -714,7 +714,7 @@ namespace write_text
 
       //}
 
-      auto psystem = acmesystem()->m_papexsystem;
+      auto psystem = system()->m_papexsystem;
 
       auto psignal = psystem->get_signal(id_operating_system_user_color_change);
 
@@ -743,7 +743,7 @@ namespace write_text
       if (eid == id_font_enumeration)
       {
 
-         auto psystem = acmesystem()->m_paurasystem;
+         auto psystem = system()->m_paurasystem;
 
          auto pdraw2d = psystem->draw2d();
 
@@ -785,7 +785,7 @@ namespace write_text
       else if (eid == id_operating_system_user_color_change)
       {
 
-         auto psystem = acmesystem();
+         auto psystem = system();
 
          auto pnode = psystem->node();
 
@@ -836,7 +836,7 @@ namespace write_text
 
       {
 
-         auto psystem = acmesystem()->m_paurasystem;
+         auto psystem = system()->m_paurasystem;
 
          auto pdraw2d = psystem->draw2d();
 
@@ -1069,7 +1069,7 @@ namespace write_text
       auto procedure1 = [this, pfontlistdata, bSameSize](index iOrder, index iStart, index iCount, index iScan)
       {
 
-         auto psystem = acmesystem()->m_paurasystem;
+         auto psystem = system()->m_paurasystem;
 
          auto pdraw2d = psystem->draw2d();
 

@@ -222,7 +222,7 @@ namespace userex
    void pane_tab_impact::add_pane_tab_impact_handler_library(const ::string & strLibrary)
    {
 
-      auto & pfactory = acmesystem()->factory(strLibrary);
+      auto & pfactory = system()->factory(strLibrary);
 
       auto phandler = pfactory->create <handler>(this);
 
@@ -236,9 +236,9 @@ namespace userex
    ::core::application* pane_tab_impact::get_app()
    {
 
-      auto pacmeapplication = acmeapplication();
+      auto papplication = application();
 
-      return ::is_set(pacmeapplication) ? pacmeapplication->m_pcoreapplication : nullptr;
+      return ::is_set(papplication) ? papplication->m_pcoreapplication : nullptr;
 
    }
 
@@ -246,7 +246,7 @@ namespace userex
    ::core::session* pane_tab_impact::get_session()
    {
 
-      auto pacmesession = acmesession();
+      auto pacmesession = session();
 
       return ::is_set(pacmesession) ? pacmesession->m_pcoresession : nullptr;
 
@@ -256,7 +256,7 @@ namespace userex
    ::core::system* pane_tab_impact::get_system()
    {
 
-      auto pacmesystem = acmesystem();
+      auto pacmesystem = system();
 
       return ::is_set(pacmesystem) ? pacmesystem->m_pcoresystem : nullptr;
 
@@ -582,7 +582,7 @@ namespace userex
 
       ::acme::library * plibrary = nullptr;
 
-      auto psystem = acmesystem()->m_paurasystem;
+      auto psystem = system()->m_paurasystem;
 
 //      if(pimpactdata->m_atom.is_text() && psystem->m_idmapCreateImpactLibrary.lookup(pimpactdata->m_atom,plibrary) && plibrary != nullptr)
 //      {

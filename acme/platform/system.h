@@ -2,10 +2,10 @@
 #pragma once
 
 
-#include "sub_system.h"
+#include "platform.h"
 //#include "acme.h"
 #include "context.h"
-#include "plane_system.h"
+//#include "plane_system.h"
 #include "application_flags.h"
 //#include "acme/memory/counter.h"
 #include "acme/parallelization/_types.h"
@@ -19,14 +19,15 @@ namespace acme
 
    class CLASS_DECL_ACME system :
       //virtual public ::object,
-      virtual public ::acme::context,
+      virtual public ::acme::context
+      //,
       //virtual public ::task,
-      virtual public ::plane_system
+      //virtual public ::plane_system
    {
    public:
 
       //::APPLICATION_FLAGS                      m_applicationflags;
-      sub_system *                                                      m_psubsystem;
+      ::platform::platform * m_pplatform;
 
 
       ::apex::system* m_papexsystem;
@@ -66,8 +67,8 @@ namespace acme
       // END FROM ::main (Now main2)
 
 
-      //::pointer<::acme::application>     acmeapplication();
-      // ::pointer<::acme::application>     acmeapplication();
+      //::pointer<::acme::application>     application();
+      // ::pointer<::acme::application>     application();
 
 
       //::pointer<main_hold_base>                                         m_pmainholdbase;
@@ -518,9 +519,13 @@ namespace acme
       
       void handle(::topic* ptopic, ::context* pcontext) override;
 
-      virtual void add_handler(::matter * pmatter, bool bPriority = false);
+      //virtual void add_handler(::particle * pmatter, bool bPriority = false);
 
       virtual void add_signal_handler(const ::signal_handler& signalhandler, const ::atom & atomSignal);
+      
+      virtual void erase_signal_handler(::signal_handler::base * pbase);
+
+      //virtual void erase_signal_handlers(::particle * ppparticle);
 
       virtual void node_will_finish_launching();
 
@@ -615,7 +620,7 @@ namespace acme
 
       //}
 
-//#define LIBCALL(library, entry)  (acmesystem()->lib(#library)->get<decltype(&entry)>(#entry))
+//#define LIBCALL(library, entry)  (system()->lib(#library)->get<decltype(&entry)>(#entry))
 
 
       virtual ::string implementation_name(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation);

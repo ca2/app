@@ -252,7 +252,7 @@ namespace draw2d
 
       //}
 
-      if (acmeapplication()->m_bWriteText)
+      if (application()->m_bWriteText)
       {
 
          initialize_write_text();
@@ -295,6 +295,22 @@ namespace draw2d
       //}
 
       //return true;
+
+   }
+
+
+   bool draw2d::graphics_context_supports_single_buffer_mode()
+   {
+
+      return true;
+
+   }
+
+
+   bool draw2d::graphics_context_does_full_redraw()
+   {
+
+      return false;
 
    }
 
@@ -422,7 +438,7 @@ namespace draw2d
 
       auto psaveimage = __new(save_image);
 
-      auto psystem = acmesystem()->m_paurasystem;
+      auto psystem = system()->m_paurasystem;
 
       auto pdraw2d = psystem->draw2d();
 
@@ -431,7 +447,7 @@ namespace draw2d
       if (eformat != ::draw2d::e_format_none)
       {
 
-         ::pointer<::aura::system>psystem = acmesystem();
+         ::pointer<::aura::system>psystem = system();
 
          eformat = pdraw2d->file_extension_to_format(payloadFile.as_file_path());
 
@@ -669,7 +685,7 @@ void draw2d::emboss_predicate(
 
       pimage->get_graphics()->offset_origin(-rectangleCache.left() + rectangle.left(), -rectangleCache.top() + rectangle.top());
 
-      auto psystem = acmesystem()->m_paurasystem;
+      auto psystem = system()->m_paurasystem;
 
       pimageBlur->create(size);
 
@@ -1361,7 +1377,7 @@ void draw2d::emboss_predicate(
 
       //}
 
-      auto psystem = acmesystem();
+      auto psystem = system();
 
       //estatus = 
 
@@ -1431,7 +1447,7 @@ void draw2d::emboss_predicate(
       if (strImplementationName.has_char())
       {
 
-         ::pointer<::aura::system>psystem = acmesystem();
+         ::pointer<::aura::system>psystem = system();
 
          auto & pfactoryWriteText = psystem->factory("write_text", strImplementationName);
 
@@ -1451,17 +1467,17 @@ void draw2d::emboss_predicate(
 
 #ifdef WINDOWS
 
-         strImplementationName = acmesystem()->implementation_name("write_text", "gdiplus");
+         strImplementationName = system()->implementation_name("write_text", "gdiplus");
 
 #else
 
-         strImplementationName = acmesystem()->implementation_name("write_text", "pango");
+         strImplementationName = system()->implementation_name("write_text", "pango");
 
 #endif
 
       }
 
-      auto psystem = acmesystem();
+      auto psystem = system();
 
       auto & pfactoryWriteText = psystem->factory("write_text", strImplementationName);
 
@@ -1475,10 +1491,10 @@ void draw2d::emboss_predicate(
 
 #ifdef WINDOWS_DESKTOP
 
-      if (strImplementationName != acmesystem()->implementation_name("write_text", "gdiplus"))
+      if (strImplementationName != system()->implementation_name("write_text", "gdiplus"))
       {
 
-         ::pointer<::aura::system>psystem = acmesystem();
+         ::pointer<::aura::system>psystem = system();
 
          auto & pfactoryWriteText = psystem->factory("write_text", "gdiplus");
 
@@ -1492,10 +1508,10 @@ void draw2d::emboss_predicate(
       }
 
 
-      if (strImplementationName != acmesystem()->implementation_name("write_text", "direct2d"))
+      if (strImplementationName != system()->implementation_name("write_text", "direct2d"))
       {
 
-         ::pointer<::aura::system>psystem = acmesystem();
+         ::pointer<::aura::system>psystem = system();
 
          auto & pfactoryWriteText = psystem->factory("write_text", "direct2d");
 
@@ -1511,10 +1527,10 @@ void draw2d::emboss_predicate(
 
 #endif
 
-      if (strImplementationName != acmesystem()->implementation_name("write_text", "pango"))
+      if (strImplementationName != system()->implementation_name("write_text", "pango"))
       {
 
-         auto psystem = acmesystem();
+         auto psystem = system();
 
          auto & pfactoryWriteText = psystem->factory("write_text", "pango");
 

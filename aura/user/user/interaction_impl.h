@@ -238,7 +238,9 @@ namespace user
       void set_tool_window(bool bSet) override;
 
 
-      void create_host(::user::interaction * pinteraction, enum_parallelization eparallelization) override;
+      //void create_host(::user::interaction * pinteraction, enum_parallelization eparallelization) override;
+
+      void create_host(::user::interaction * pinteraction) override;
 
       virtual ::color::color screen_pixel(int x, int y) const;
       void interaction_post(const ::procedure & procedure) override;
@@ -402,9 +404,12 @@ namespace user
 
       //virtual bool create_host();
 
-      virtual void operating_system_create_host(::enum_parallelization eparrallelization);
+      //virtual void operating_system_create_host(::enum_parallelization eparrallelization);
 
-      virtual void _create_window(::enum_parallelization eparrallelization);
+      virtual void operating_system_create_host();
+
+      //virtual void _create_window(::enum_parallelization eparrallelization);
+      virtual void _create_window();
 
       virtual void native_create_host_alternate();
 

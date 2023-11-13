@@ -13,7 +13,7 @@
 ::file::path macos_app_path(string strApp)
 {
 
-   ::file::path path =          auto psystem = acmesystem();
+   ::file::path path =          auto psystem = system();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -346,7 +346,7 @@ bool launch_command(const char * const pszCommand)
    
    strParams.formatf("-c \"screen -d -m %s\"", strCommand.c_str());
    
-   if (call_async("/bin/bash", strParams,          auto psystem = acmesystem();
+   if (call_async("/bin/bash", strParams,          auto psystem = system();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 

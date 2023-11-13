@@ -1430,7 +1430,7 @@ string & property::get_network_arguments(::string & str) const
 //  if(opt == ((::xml::disp_option *) 1))
 //  {
 //
-//     opt = acmesystem()->xml().m_poptionDefault;
+//     opt = system()->xml().m_poptionDefault;
 //
 //  }
 //

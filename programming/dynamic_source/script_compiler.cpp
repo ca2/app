@@ -384,7 +384,7 @@ namespace dynamic_source
 
       strMillis.release_buffer();
 
-      auto psystem = acmesystem()->m_paurasystem;
+      auto psystem = system()->m_paurasystem;
 
       auto pdatetime = psystem->datetime();
 
@@ -797,7 +797,7 @@ namespace dynamic_source
       file()->put_text_utf8(pathCompiler, strCompiler);
 
 #ifdef WINDOWS
-      process->create_child_process(strCompiler,true, pathCa2Root/ "source/app-core/netnode_dynamic_source_script",::e_priority_highest);
+      process->create_child_process(strCompiler,true, m_pintegrationcontext->m_pathProjectFolder / "source/app-core/netnode_dynamic_source_script",::e_priority_highest);
 #else
       process->create_child_process(strCompiler,true,m_pintegrationcontext->m_pathProjectFolder,::e_priority_highest);
 #endif
@@ -1327,7 +1327,7 @@ namespace dynamic_source
       if(::str::case_insensitive_find("netnode_persistent_ui_str", strTransfer) >= 0)
          return;
 
-      //auto psystem = acmesystem()->m_paurasystem;
+      //auto psystem = system()->m_paurasystem;
 
       if(m_straSync.get_count() > 1)
       {
@@ -2970,7 +2970,7 @@ ch_else:
 
       synchronous_lock synchronouslock(m_pmanager->synchronization());
 
-      auto psystem = acmesystem()->m_paurasystem;
+      auto psystem = system()->m_paurasystem;
 
       psystem->texttable()->set(pszTopic,idLocale,idSchema,psz);
 

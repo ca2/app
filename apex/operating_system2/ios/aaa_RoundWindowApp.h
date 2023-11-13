@@ -16,7 +16,7 @@
    
 @public
    
-   struct plane_system * acmesystem();
+   struct plane_system * system();
    
 }
 

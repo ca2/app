@@ -1304,7 +1304,7 @@ namespace user
    ::axis::system * form_control::get_system()
    {
 
-      auto pacmesystem = acmesystem();
+      auto pacmesystem = system();
       
       return ::is_set(pacmesystem) ? pacmesystem->m_paxissystem : nullptr; 
    
@@ -1706,28 +1706,29 @@ namespace user
 
       if(m_pcallback != nullptr)
       {
-
+         
          auto pextendedtopic = __new(::extended_topic(id_timer));
-
+         
          pextendedtopic->m_puserelement = this;
-
+         
          pextendedtopic->m_uiEvent = ptimer->m_uEvent;
-
+         
          pextendedtopic->m_etimer = ptimer->m_etimer;
-
+         
          auto papp = get_app();
-
+         
          papp->route(pextendedtopic);
-
+         
          if(pextendedtopic->m_bRet)
          {
-
+            
             return;
-
+            
          }
-
-         m_pcallback->route(pextendedtopic);
-
+         
+         //m_pcallback->route(pextendedtopic);
+         route(pextendedtopic);
+         
       }
 
 //      if(ptimer->m_uEvent == 24)

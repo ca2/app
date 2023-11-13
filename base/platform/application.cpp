@@ -169,7 +169,7 @@ namespace base
    ::base::system * application::get_system()
    {
 
-      auto pacmesystem = acmesystem();
+      auto pacmesystem = system();
 
       return ::is_set(pacmesystem) ? pacmesystem->m_pbasesystem : nullptr;
 
@@ -179,7 +179,7 @@ namespace base
    ::base::session * application::get_session()
    {
 
-      auto pacmesession = acmesession();
+      auto pacmesession = session();
 
       return ::is_set(pacmesession) ? pacmesession->m_pbasesession : nullptr;
 
@@ -189,7 +189,7 @@ namespace base
    ::base::system * session::get_system()
    {
 
-      auto pacmesystem = acmesystem();
+      auto pacmesystem = system();
 
       return ::is_set(pacmesystem) ? pacmesystem->m_pbasesystem : nullptr;
 
@@ -228,7 +228,7 @@ namespace base
       for (auto & strLibrary : m_straOptionsFormMakerLibrary)
       {
 
-         auto & pfactory = acmesystem()->factory(strLibrary);
+         auto & pfactory = system()->factory(strLibrary);
 
          auto pformhandler = pfactory->create <::user::form_handler>(this);
 
@@ -260,9 +260,9 @@ namespace base
 
       //bool bCheck = false;
 
-      auto papplication = acmeapplication()->m_papexapplication;
+//      auto papplication = m_papexapplication;
 
-      bool bUserAutoStart = os_context()->is_user_auto_start(papplication->get_executable_appid());
+      bool bUserAutoStart = os_context()->is_user_auto_start(get_executable_appid());
 
       pcheckbox->_001SetCheck(bUserAutoStart, ::e_source_initialize);
 
@@ -271,7 +271,7 @@ namespace base
 
          bool bCheck = pcheck->bcheck();
 
-         auto papplication = acmeapplication()->m_papexapplication;
+         auto papplication = m_papexapplication;
 
          os_context()->register_user_auto_start(
             papplication->get_executable_appid(),

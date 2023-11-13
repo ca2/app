@@ -43,6 +43,8 @@ public:
    
    void display();
    
+   void hide();
+   
    virtual void on_left_button_up(int xHost, int yHost, int xAbsolute, int yAbsolute);
 
    virtual void on_left_button_down(int xHost, int yHost, int xAbsolute, int yAbsolute);

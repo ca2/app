@@ -1428,7 +1428,7 @@ namespace user
 
       bool bHorz = (m_dwStyle & CBRS_ORIENT_HORZ) != 0;
 
-      auto psystem = acmesystem()->m_paurasystem;
+      auto psystem = system()->m_paurasystem;
 
       auto pdraw2d = psystem->draw2d();
 

@@ -55,7 +55,7 @@ namespace aura
    void context::defer_initialize_context_image()
    {
 
-      if (acmeapplication()->m_bImaging)
+      if (application()->m_bImaging)
       {
 
          try
@@ -400,7 +400,7 @@ namespace aura
 //   ::file::path context::side_get_matter_path(string strMatter)
 //   {
 //
-//      auto psystem = acmesystem()->m_papexsystem;
+//      auto psystem = system()->m_papexsystem;
 //
 //      auto pdirsystem = psystem->m_pdirsystem;
 //
@@ -423,7 +423,7 @@ namespace aura
 //      if (::str::case_insensitive_begins_eat((string&)path, "appmatter://"))
 //      {
 //
-//         auto psystem = acmesystem()->m_papexsystem;
+//         auto psystem = system()->m_papexsystem;
 //
 //         ::file::path pathCache = psystem->m_pdirsystem->m_pathLocalAppMatterFolder / path;
 //
@@ -493,7 +493,7 @@ namespace aura
 //
 //         }
 //
-//         //auto psystem = acmesystem()->m_papexsystem;
+//         //auto psystem = system()->m_papexsystem;
 //
 //         if (!psystem->m_pdirsystem->m_bMatterFromHttpCache)
 //         {
@@ -768,7 +768,7 @@ namespace aura
 //      else
 //      {
 //
-//         auto psystem = acmesystem()->m_papexsystem;
+//         auto psystem = system()->m_papexsystem;
 //
 //         if (psystem)
 //         {
@@ -800,7 +800,7 @@ namespace aura
 //      else
 //      {
 //
-//         auto psystem = acmesystem()->m_papexsystem;
+//         auto psystem = system()->m_papexsystem;
 //
 //         if (psystem)
 //         {

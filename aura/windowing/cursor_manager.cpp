@@ -173,7 +173,7 @@ namespace windowing
 
       auto path = pathParam;
 
-      if (acmeapplication()->m_bImaging)
+      if (application()->m_bImaging)
       {
 
          pcursor->set_file_path(path);
@@ -651,7 +651,7 @@ namespace windowing
    //::aura::system* cursor_manageracmesystem()
    //{
 
-   //   return ::is_set(acmesystem()) ? acmesystem()->m_paurasystem : nullptr;
+   //   return ::is_set(system()) ? system()->m_paurasystem : nullptr;
 
    //}
 

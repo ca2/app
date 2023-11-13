@@ -250,7 +250,7 @@ namespace draw2d_cairo
 
       //}
 
-      auto psystem = acmesystem();
+      auto psystem = system();
 
       auto pnode = psystem->node();
 

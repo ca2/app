@@ -1225,7 +1225,9 @@ namespace user
 
          //estatus = create_host();
 
-         create_host(e_parallelization_synchronous);
+         //create_host(e_parallelization_synchronous);
+
+         create_host();
 
       }
       else
@@ -1248,7 +1250,8 @@ namespace user
 
 
    //bool element::create_window_ex(::pointer<::user::system>pcs, ::user::interaction * puiParent, const ::atom & atom)
-   void element::create_host(enum_parallelization eparallelization)
+   //void element::create_host(enum_parallelization eparallelization)
+   void element::create_host()
    {
 
       //throw ::interface_only();
@@ -3608,7 +3611,7 @@ namespace user
    }
 
 
-   void element::add_child_handler(const ::signal_handler & signalhandler, const ::atom & idChild, bool bPriority)
+   void element::add_child_handler(::particle * pparticle, const ::atom & atomChild, bool bPriority)
    {
 
       throw ::interface_only();

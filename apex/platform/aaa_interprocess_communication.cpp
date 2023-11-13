@@ -465,13 +465,13 @@ bool interprocess_intercommunication::on_interprocess_receive(::inteprocess::han
 //   }
    
    
-   string strObject = acmesystem()->url()->get_server(strUrl);
+   string strObject = system()->url()->get_server(strUrl);
    
-   string strMember = acmesystem()->url()->get_script(strUrl);
+   string strMember = system()->url()->get_script(strUrl);
    
    strMember.trim_left("/");
    
-   string strNetworkArguments = acmesystem()->url()->get_query(strUrl);
+   string strNetworkArguments = system()->url()->get_query(strUrl);
    
    ::property_set propertyset;
    
@@ -632,7 +632,7 @@ atom_array interprocess_intercommunication::get_pid(const ::string & strApp)
 
 #if defined(LINUX) || defined(MACOS) || defined(FREEBSD)
 
-   auto psystem = acmesystem();
+   auto psystem = system();
    
    auto pnode = psystem->node();
    
@@ -673,7 +673,7 @@ repeat:
 
    ::i32_array iaPid2;
 
-   auto psystem = acmesystem();
+   auto psystem = system();
 
    auto pnode = psystem->node();
 
@@ -740,7 +740,7 @@ repeat:
 void interprocess_intercommunication::defer_add_module(const ::string & strModule, const ::atom & idPid)
 {
    
-   auto psystem = acmesystem();
+   auto psystem = system();
    
    auto pnode = psystem->node();
 

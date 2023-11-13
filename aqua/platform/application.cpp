@@ -70,7 +70,7 @@ namespace aqua
    //void application::on_initialize_application(::main* pmain)
    //{
 
-   //   pmain->m_psubsystem->factory()->add_factory_item< ::aqua::system, ::acme::system >();
+   //   pmain->m_pplatform->factory()->add_factory_item< ::aqua::system, ::acme::system >();
 
    //}
 
@@ -78,12 +78,12 @@ namespace aqua
    void application::exit_application()
    {
 
-      if (acmesystem()->m_paquasystem->m_pmultimedia)
+      if (system()->m_paquasystem->m_pmultimedia)
       {
 
          //auto estatus = 
          
-         acmesystem()->m_paquasystem->m_pmultimedia->exit_application();
+         system()->m_paquasystem->m_pmultimedia->exit_application();
 
          //if (!estatus)
          //{
@@ -115,7 +115,7 @@ namespace aqua
 
       ::apex::application::init2();
 
-      acmesystem()->m_paquasystem->defer_audio();
+      system()->m_paquasystem->defer_audio();
 
    }
 
@@ -179,7 +179,7 @@ namespace aqua
    //LPWAVEOUT application::waveout_open(int iChannel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback)
    //{
 
-   //   acmesystem()-
+   //   system()-
 
    //}
 
@@ -187,7 +187,7 @@ namespace aqua
    //::aqua::system* applicationacmesystem()
    //{
 
-   //   return dynamic_cast <::aqua::system*> (acmesystem());
+   //   return dynamic_cast <::aqua::system*> (system());
 
    //}
 

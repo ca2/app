@@ -38,7 +38,7 @@
 //   void **              m_ositema;
 //   int  *               m_statusa;
 //   int                  m_iCount;
-//   //::acme::system *     acmesystem();
+//   //::acme::system *     system();
 //
 //   menu_shared();
 //   ~menu_shared() override;

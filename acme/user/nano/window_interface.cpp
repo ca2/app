@@ -134,7 +134,7 @@ bool nano_window_interface::defer_perform_entire_reposition_process()
 ::shift_i32 nano_window_interface::client_to_screen()
 {
 
-   if(acmesystem()->m_ewindowing == e_windowing_wayland)
+   if(system()->m_ewindowing == e_windowing_wayland)
    {
 
       return {};

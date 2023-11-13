@@ -108,7 +108,7 @@ bool machine_event_central::is_close_application()
 
    m_pmachineevent->read(&data);
 
-   auto psystem = acmesystem()->m_papexsystem;
+   auto psystem = system()->m_papexsystem;
 
    psystem->process_machine_event_data(&data);
 

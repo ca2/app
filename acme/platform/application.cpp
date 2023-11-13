@@ -10,6 +10,7 @@
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/node.h"
+#include "acme/platform/platform.h"
 #include "acme/platform/sequencer.h"
 #include "acme/platform/system.h"
 #include "acme/platform/session.h"
@@ -43,7 +44,15 @@ namespace acme
    application::application()
    {
 
-      m_acme.m_pacmeapplication = this;
+      if (!::platform::platform::s_pplatform->m_pacmeapplication)
+      {
+
+         ::platform::platform::s_pplatform->m_pacmeapplication = this;
+
+      }
+
+      //m_acme.m_pacmeapplication = this;
+      //m_acme.m_pacmeapplication = this;
 
       m_pacmeapplication = this;
       m_papexapplication = nullptr;
@@ -66,7 +75,7 @@ namespace acme
       /*   if (g_p == this)
          {
 
-            m_pmain->m_psubsystem.release();
+            m_pmain->m_pplatform.release();
 
             ::acme::del(m_pmain);
 
@@ -77,6 +86,24 @@ namespace acme
          }*/
          //   ::acme::finalize_system();
 
+   }
+
+
+   //::i32 application::application_main()
+   //{
+
+   //   implement_application();
+
+   //   return m_iExitCode;
+
+   //}
+
+
+   bool application::is_console() const
+   { 
+      
+      return platform()->m_bConsole;
+   
    }
 
 
@@ -100,11 +127,6 @@ namespace acme
 
       }
 
-#ifdef WINDOWS
-
-      m_strCommandLine = ::GetCommandLineW();
-
-#endif
 
    }
 
@@ -146,16 +168,33 @@ namespace acme
 
    //}
 
-   ::factory::factory_pointer& application::factory()
+   //::factory::factory_pointer& application::factory()
+   //{
+
+   //   return ::platform::get()->factory();
+
+   //}
+
+
+   void application::initialize_application()
    {
 
-      return ::acme::acme::g_pacme->m_psubsystem->factory();
+      ::platform::get()->defer_initialize_platform();
+
+      if (!m_pacmesystem)
+      {
+
+         m_pacmesystem = ::platform::get()->m_psystem;
+
+      }
 
    }
 
 
-   void application::implement_application()
+   ::i32 application::application_main()
    {
+
+      initialize_application();
 
       output_debug_string("acme::application implement_application\n");
 
@@ -169,7 +208,7 @@ namespace acme
 
       string strAppId;
 
-      if (!m_bConsole)
+      if (!is_console())
       {
 
          strAppId = m_strAppId;
@@ -190,25 +229,25 @@ namespace acme
 
       //main.m_bAudio = main_hold_base::is_audio_enabled();
 
-      auto pfactoryitem = ::acme::acme::g_pacme->m_psubsystem->m_pfactory->get_factory_item<::acme::system>();
+      //auto pfactoryitem = ::platform::get()->m_pfactory->get_factory_item<::acme::system>();
 
-      ::pointer<::acme::system> psystem = pfactoryitem->create_particle();
+      //::pointer<::acme::system> psystem = pfactoryitem->create_particle();
 
-      ::set_task(psystem);
+      ::set_task(m_pacmesystem);
 
-      psystem->initialize_system();
+      m_pacmesystem->initialize_system();
 
       information() << "acme implement_application system_construct";
 
-      psystem->system_construct(this);
+      m_pacmesystem->system_construct(this);
 
       information() << "acme implement_application create_os_node";
 
-      psystem->create_os_node();
+      m_pacmesystem->create_os_node();
 
-      auto pnode = psystem->node();
+      auto pnode = m_pacmesystem->node();
 
-      pnode->implement(pnode, psystem);
+      pnode->node_main();
 
       //pnode->start_application(pnode, psystem);
 
@@ -246,6 +285,7 @@ namespace acme
 
       //}
 
+      return m_iExitCode;
 
    }
 
@@ -260,17 +300,10 @@ namespace acme
 
       }
 
-      if (m_bConsole.undefined())
-      {
-
-         m_bConsole = false;
-
-      }
-
       if (m_bDraw2d.undefined())
       {
 
-         m_bDraw2d = !m_bConsole;
+         m_bDraw2d = !is_console();
 
       }
 
@@ -284,35 +317,35 @@ namespace acme
       if (m_bUser.undefined())
       {
 
-         m_bUser = !m_bConsole;
+         m_bUser = !is_console();
 
       }
 
       if (m_bUserEx.undefined())
       {
 
-         m_bUserEx = !m_bConsole;
+         m_bUserEx = !is_console();
 
       }
 
       if (m_bImaging.undefined())
       {
 
-         m_bImaging = !m_bConsole;
+         m_bImaging = !is_console();
 
       }
 
       if (m_bCrypto.undefined())
       {
 
-         m_bCrypto = !m_bConsole;
+         m_bCrypto = !is_console();
 
       }
 
       if (m_bResource.undefined())
       {
 
-         //m_bResource = !m_bConsole;
+         //m_bResource = !is_console();
 
          m_bResource = true;
 
@@ -323,7 +356,7 @@ namespace acme
       if (m_bGdiplus.undefined())
       {
 
-         m_bGdiplus = !m_bConsole;
+         m_bGdiplus = !is_console();
 
       }
 
@@ -334,7 +367,7 @@ namespace acme
       if (m_bGtkApp.undefined())
       {
 
-         m_bGtkApp = !m_bConsole;
+         m_bGtkApp = !is_console();
 
       }
 
@@ -347,7 +380,7 @@ namespace acme
 
       }
 
-      if (m_bConsole)
+      if (is_console())
       {
 
          if (m_bSession.undefined())
@@ -358,7 +391,7 @@ namespace acme
          }
 
       }
-      else // !m_bConsole
+      else // !is_console()
       {
 
          if (m_bSession.undefined())
@@ -370,7 +403,7 @@ namespace acme
 
       }
 
-      //string strAppId = acmeapplication()->m_strAppId;
+      //string strAppId = application()->m_strAppId;
 
    }
 
@@ -434,7 +467,7 @@ namespace acme
 
 #ifdef WINDOWS_DESKTOP
 
-         m_pathModule = ::get_module_path((HMODULE)::acme::acme::g_pacme->m_psubsystem->m_hinstanceThis);
+         m_pathModule = ::get_module_path((HMODULE)::platform::get()->m_hinstanceThis);
 
 #elif defined(ANDROID)
 
@@ -907,10 +940,10 @@ namespace acme
 
       matter_locator_locale_schema_matter(stra, straMatterLocator, strLocale, strSchema);
 
-      if (acmeapplication()->m_bSession)
+      if (m_bSession)
       {
 
-         auto psession = acmesession();
+         auto psession = session();
 
          auto ptextcontext = psession->text_context();
 
@@ -1089,7 +1122,7 @@ namespace acme
       //
       //copy(message, msg);
       //
-      //auto psystem = acmesystem()->m_papexsystem;
+      //auto psystem = system()->m_papexsystem;
       //
       //if (!is_system() && is_true("SessionSynchronizedInput"))
       //{
@@ -1178,9 +1211,9 @@ namespace acme
 
       }
 
-      //auto psystem = acmesystem()->m_papexsystem;
+      //auto psystem = system()->m_papexsystem;
 
-      //      auto psystem = acmesystem();
+      //      auto psystem = system();
       //
       //      psystem->install_progress_add_up();
 
@@ -1222,7 +1255,7 @@ namespace acme
       try
       {
 
-         auto psystem = acmesystem();
+         auto psystem = system();
 
          //if (!is_system() && !is_session())
          {
@@ -1382,7 +1415,7 @@ namespace acme
    void application::init_application()
    {
 
-      auto psystem = acmesystem();
+      auto psystem = system();
 
       information() << "apex::application::init_application";
 
@@ -1578,7 +1611,7 @@ void* application_system(void* pApplication)
 
    auto papp = (::acme::application*)pApplication;
 
-   return papp->acmesystem();
+   return papp->system();
 
 }
 

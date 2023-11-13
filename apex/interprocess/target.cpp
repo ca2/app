@@ -214,13 +214,13 @@ namespace interprocess
    //   //   }
 
 
-   //   string strObject = acmesystem()->url()->get_server(strUri);
+   //   string strObject = system()->url()->get_server(strUri);
 
-   //   string strMember = acmesystem()->url()->get_script(strUri);
+   //   string strMember = system()->url()->get_script(strUri);
 
    //   strMember.trim_left("/");
 
-   //   string strNetworkArguments = acmesystem()->url()->get_query(strUri);
+   //   string strNetworkArguments = system()->url()->get_query(strUri);
 
    //   ::property_set propertyset;
 

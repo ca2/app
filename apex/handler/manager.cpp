@@ -86,7 +86,7 @@ class ::signal * manager::get_signal(const ::atom & atom, const ::action_context
 
       psignal->m_pparticle = this;
 
-      auto psystem = acmesystem();
+      auto psystem = system();
 
       psignal->m_timeSleep = psystem->get_update_poll_time(atom);
 
@@ -130,6 +130,68 @@ class ::signal * manager::get_signal(const ::atom & atom, const ::action_context
    return psignal;
 
 }
+
+
+void manager::add_signal_handler(const ::signal_handler& signalhandler, const ::atom& atomSignal)
+{
+
+   auto psignal = get_signal(atomSignal);
+
+   if (::is_null(psignal))
+   {
+
+      throw ::exception(error_resource);
+
+   }
+
+   psignal->add_signal_handler(signalhandler);
+
+}
+
+
+//void manager::erase_signal_handler(const ::signal_handler& signalhandler)
+//{
+//   
+//   synchronous_lock synchronouslock(this->synchronization());
+//
+//   if (!m_psignalmap)
+//   {
+//      
+//      return;
+//      
+//   }
+//   
+//   for(auto & pair : *m_psignalmap)
+//   {
+//   
+//      pair.m_element2->erase_signal_handler(signalhandler);
+//   
+//   }
+//   
+//}
+
+
+//void manager::erase_signal_handlers(::particle * pparticle)
+//{
+//   
+//   synchronous_lock synchronouslock(this->synchronization());
+//
+//   if (!m_psignalmap)
+//   {
+//      
+//      return;
+//      
+//   }
+//   
+//   for(auto & pair : *m_psignalmap)
+//   {
+//   
+//      pair.m_element2->erase_signal_handlers(pparticle);
+//   
+//   }
+//   
+//}
+
 
 
 //   ::topic::subject_pointer manager::fork_subject(const ::atom & atom)
@@ -358,7 +420,7 @@ void manager::destroy_signal_handling()
 }
 
 
-void manager::erase_signal_handler(const ::signal_handler& signalhandler)
+void manager::erase_signal_handler(const ::signal_handler::base * pbase)
 {
 
    synchronous_lock synchronouslock(this->synchronization());
@@ -367,10 +429,35 @@ void manager::erase_signal_handler(const ::signal_handler& signalhandler)
 
    //auto & begin = values.begin();
 
+   if (!m_psignalmap)
+   {
+      
+      return;
+      
+   }
+
    for (auto & psignal : m_psignalmap->payloads())
    {
 
-      psignal->m_signalhandlercontext.erase_item(signalhandler);
+      while(true)
+      {
+      
+         auto p = psignal->m_signalhandlercontext.predicate_find([pbase](auto & iterator)
+                                                                 {
+            return iterator->m_element1.m_pbase == pbase;
+            
+         });
+         
+         if(!p)
+         {
+            
+            break;
+            
+         }
+         
+         psignal->m_signalhandlercontext.erase(p);
+         
+      }
 
    }
 
@@ -387,7 +474,7 @@ void manager::__s_erase_signal_handler(const ::signal_handler& signalhandler)
 
       auto & pmanager = passociation.element();
 
-      pmanager->erase_signal_handler(signalhandler);
+      pmanager->erase_signal_handler(signalhandler.m_pbase);
 
    }
 

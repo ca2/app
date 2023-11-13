@@ -52,7 +52,9 @@ namespace user
 
       m_bDefaultMouseHoverHandling = true;
 
-      m_bPendingKillFocusHiding = false;
+      m_bDefaultParentMouseMessageHandling = true;
+
+      //m_bPendingKillFocusHiding = false;
 
       m_ewindowflag += e_window_flag_satellite_window;
 
@@ -87,8 +89,8 @@ namespace user
 
       MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &list_box::on_message_create);
       MESSAGE_LINK(MESSAGE_DESTROY, pchannel, this, &list_box::on_message_destroy);
-      MESSAGE_LINK(e_message_set_focus, pchannel, this, &list_box::on_message_set_focus);
-      MESSAGE_LINK(e_message_kill_focus, pchannel, this, &list_box::on_message_kill_focus);
+      //MESSAGE_LINK(e_message_set_focus, pchannel, this, &list_box::on_message_set_focus);
+      //MESSAGE_LINK(e_message_kill_focus, pchannel, this, &list_box::on_message_kill_focus);
       MESSAGE_LINK(MESSAGE_CLOSE, pchannel, this, &list_box::on_message_close);
       MESSAGE_LINK(e_message_mouse_activate, pchannel, this, &list_box::_001OnMouseActivate);
       MESSAGE_LINK(e_message_key_down, pchannel, this, &list_box::on_message_key_down);
@@ -96,7 +98,7 @@ namespace user
       MESSAGE_LINK(e_message_non_client_left_button_down, pchannel, (::user::interaction *)this, &interaction::on_message_left_button_down);
       MESSAGE_LINK(e_message_middle_button_down, pchannel, this, &list_box::on_message_middle_button_down);
       MESSAGE_LINK(e_message_right_button_down, pchannel, this, &list_box::on_message_right_button_down);
-      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &list_box::on_message_mouse_move);
+      //MESSAGE_LINK(e_message_mouse_move, pchannel, this, &list_box::on_message_mouse_move);
       MESSAGE_LINK(e_message_show_window, pchannel, this, &list_box::on_message_show_window);
 
    }
@@ -464,6 +466,8 @@ namespace user
 
             estate += ::user::e_state_hover;
 
+            information() << "hover_item : " << iItem;
+
          }
 
          if (::is_item_set(pitemCurrent) && pitemCurrent->m_item.m_iItem == iItem)
@@ -673,25 +677,25 @@ namespace user
    void list_box::_001OnTimer(::timer* ptimer)
    {
    
-      if (ptimer->m_etimer == e_timer_kill_focus)
-      {
+      //if (ptimer->m_etimer == e_timer_kill_focus)
+      //{
 
-         if (m_bPendingKillFocusHiding)
-         {
-            
-            m_bPendingKillFocusHiding = false;
+      //   if (m_bPendingKillFocusHiding)
+      //   {
+      //      
+      //      m_bPendingKillFocusHiding = false;
 
-            hide();
+      //      hide();
 
-            set_need_redraw();
+      //      set_need_redraw();
 
-            post_redraw();
+      //      post_redraw();
 
-         }
+      //   }
 
-         KillTimer(e_timer_kill_focus);
+      //   KillTimer(e_timer_kill_focus);
 
-      }
+      //}
 
       ::user::scroll_base::_001OnTimer(ptimer);
    
@@ -776,8 +780,10 @@ namespace user
    }
 
 
-   void list_box::on_message_kill_focus(::message::message * pmessage)
+   void list_box::on_kill_keyboard_focus()
    {
+
+      m_timeKillFocus.Now();
 
       if (m_pcombo)
       {
@@ -787,11 +793,13 @@ namespace user
          if (!bGoingToShow)
          {
 
-            m_timeKillFocus.Now();
+            hide();
 
-            m_bPendingKillFocusHiding = true;
+            
+            //se
+            //m_bPendingKillFocusHiding = true;
 
-            set_timer(e_timer_kill_focus, 300_ms);
+            //set_timer(e_timer_kill_focus, 300_ms);
 
             //::pointer<::message::kill_focus>pkillfocus(pmessage);
 
@@ -838,7 +846,7 @@ namespace user
    }
 
 
-   void list_box::on_message_set_focus(::message::message * pmessage)
+   void list_box::on_set_keyboard_focus()
    {
 
       if (m_pcombo)
@@ -1015,28 +1023,28 @@ namespace user
    }
 
 
-   void list_box::on_message_mouse_move(::message::message * pmessage)
-   {
+   //void list_box::on_message_mouse_move(::message::message * pmessage)
+   //{
 
-      UNREFERENCED_PARAMETER(pmessage);
-      //auto pmouse = pmessage->m_union.m_pmouse;
+   //   UNREFERENCED_PARAMETER(pmessage);
+   //   //auto pmouse = pmessage->m_union.m_pmouse;
 
-      //pmessage->m_bRet = true;
+   //   //pmessage->m_bRet = true;
 
-      //auto point = screen_to_client(pmouse->m_point);
+   //   //auto point = screen_to_client(pmouse->m_point);
 
-      //auto itemHover = hit_test(pmouse);
+   //   //auto itemHover = hit_test(pmouse);
 
-      //if (itemHover != m_pcombo->m_pitemHover)
-      //{
+   //   //if (itemHover != m_pcombo->m_pitemHover)
+   //   //{
 
-      //   m_pcombo->m_pitemHover = itemHover.m_iItem;
+   //   //   m_pcombo->m_pitemHover = itemHover.m_iItem;
 
-      //   set_need_redraw();
+   //   //   set_need_redraw();
 
-      //}
+   //   //}
 
-   }
+   //}
 
 
    void list_box::on_message_close(::message::message * pmessage)
@@ -1095,7 +1103,24 @@ namespace user
          if (rectangleItem.contains(point))
          {
 
-            return new_item_with_index(iItem);
+            __defer_construct_new(main_content().m_pitema);
+
+            auto & pitemNew = this->main_content().m_pitema->element_at_grow(iItem);
+
+            if (__defer_construct_new(pitemNew))
+            {
+
+               pitemNew->m_item.m_eelement = e_element_item;
+
+               pitemNew->m_item.m_iItem = iItem;
+
+            }
+
+            auto puseritem = user_item(pitemNew);
+
+            puseritem->m_rectangle2 = rectangleItem;
+
+            return pitemNew;
 
          }
 
@@ -1242,38 +1267,38 @@ namespace user
 
       information() << "on_drop_down (9) : " << rectangleList;
 
-      display();
+      order_top_most();
+
+      display(e_display_normal);
+
+      set_activation(e_activation_no_activate);
 
       place(::rectangle_i32(rectangleList).inflate(m_iBorder));
 
       information() << "on_drop_down (10) : " << rectangleList;
 
-      m_procedureOnAfterCreate=[this]()
-      {
+      //m_procedureOnAfterCreate=[this]()
+      //{
 
-         order_top_most();
+      //   //auto & window_state = const_layout().sketch();
 
-         display(e_display_normal);
+      //   //string str;
 
-         set_activation(e_activation_no_activate);
+      //   //str.formatf("%d", window_state.m_edisplay.m_eenum);
 
-         auto & window_state = const_layout().sketch();
+      //   set_need_layout();
 
-         string str;
+      //   set_need_redraw();
 
-         str.formatf("%d", window_state.m_edisplay.m_eenum);
+      //   post_redraw();
 
-         set_need_layout();
+      //   information() << "on_drop_down (22)";
 
-         set_need_redraw();
-
-         post_redraw();
-
-         information() << "on_drop_down (22)";
-
-      };
+      //};
 
       set_owner(m_pcombo);
+
+      add_graphical_output_purpose(this, ::graphics::e_output_purpose_screen);
 
       defer_create_interaction(i >= 0 ? nullptr : m_pcombo->get_parent());
          //if (!)
@@ -1313,6 +1338,7 @@ namespace user
 //
 //      }
 
+      set_keyboard_focus();
 
    }
 

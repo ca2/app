@@ -525,7 +525,7 @@ namespace linux
 
          unicode_to_utf8(strPath, lpcszPath);
 
-         if (         auto psystem = acmesystem();
+         if (         auto psystem = system();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 

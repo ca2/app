@@ -560,7 +560,9 @@ namespace user
 
                         m_pcolorselectorpopupForeground->m_puserinteractionOwner = this;
 
-                        m_pcolorselectorpopupForeground->create_host(::e_parallelization_asynchronous);
+                        //m_pcolorselectorpopupForeground->create_host(::e_parallelization_asynchronous);
+
+                        m_pcolorselectorpopupForeground->create_host();
 
                      }
                      else

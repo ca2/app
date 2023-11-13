@@ -34,6 +34,7 @@ namespace draw2d_opengl
       virtual ::draw2d::bitmap_pointer get_bitmap() const;
       virtual ::draw2d::bitmap_pointer detach_bitmap();
 
+      //virtual ::draw2d::graphics * get_graphics();
 
       bool host(const ::pixmap* ppixmap);
 
@@ -48,6 +49,8 @@ namespace draw2d_opengl
       virtual void create(::draw2d::graphics* pgraphics);
 
       void destroy() override;
+
+      bool host(::pixmap * ppixmap) override;
 
       bool from(::draw2d::graphics * pgraphics);
       //bool from(point_i32 ptDest, ::draw2d::graphics * pgraphics, const ::point_i32 & point, ::size_i32 sz);

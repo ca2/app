@@ -89,7 +89,7 @@ string salt(::ca::application * papp, const ::string & pszSourceSalt, string_arr
       } 
       string strModule; 
       ex1::file_system_pointer fs(pparticle);
-      string strModuleFolder(papp->acmesystem()->get_ca2_module_folder());
+      string strModuleFolder(papp->system()->get_ca2_module_folder());
       fs->FullPath(strModuleFolder, strModuleFolder);
       for(::u32 dw = 0; dw < (dwNeeded / sizeof(HMODULE)); dw++)
       { 
@@ -103,7 +103,7 @@ string salt(::ca::application * papp, const ::string & pszSourceSalt, string_arr
             {
                 return ""; 
             }
-            string strHash = papp->acmesystem()->file36().md5(strModule); 
+            string strHash = papp->system()->file36().md5(strModule); 
             if(!straSourceHash.contains(strHash)) 
             {
                 return "";
@@ -116,7 +116,7 @@ string salt(::ca::application * papp, const ::string & pszSourceSalt, string_arr
    }
    string strSalt;
    #include "../../../time/salt.inl"
-   return papp->acmesystem()->crypt().md5(strSalt);
+   return papp->system()->crypt().md5(strSalt);
 }
 
 

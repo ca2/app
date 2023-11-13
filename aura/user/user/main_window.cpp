@@ -235,7 +235,8 @@ namespace user
    }
 
 
-   void main_window::create_main_window_asynchronously()
+   ///void main_window::create_main_window_asynchronously()
+   void main_window::create_main_window()
    {
 
       //::rectangle_i32 rectangleWindow;
@@ -254,7 +255,9 @@ namespace user
 
       //bool bOk = 
       
-      create_host(e_parallelization_asynchronous);
+      //create_host(e_parallelization_asynchronous);
+
+      create_host();
 
       //if (!bOk)
       //{

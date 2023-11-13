@@ -6,7 +6,7 @@
 #include "aura/graphics/gpu/approach.h"
 #include "aura/graphics/gpu/context.h"
 #include "aura/graphics/gpu/program.h"
-#include "aura/graphics/gpu/buffer.h"
+#include "aura/graphics/gpu/cpu_buffer.h"
 #include <math.h>
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/image/image.h"
@@ -58,16 +58,16 @@ namespace app_shader
 
       //initialize_application_consumer();
 
-      auto psystem = acmesystem()->m_paurasystem;
+      auto psystem = system()->m_paurasystem;
 
       auto pgpu = psystem->get_gpu();
 
-      m_pcontext = pgpu->create_context(this);
+      m_pgpucontext = pgpu->create_context(this);
 
-      if (m_pcontext)
+      if (m_pgpucontext)
       {
 
-         m_pcontext->initialize(this);
+         m_pgpucontext->initialize(this);
 
       }
 
@@ -108,10 +108,10 @@ namespace app_shader
 
       }
 
-      if (m_pcontext)
+      if (m_pgpucontext)
       {
 
-         m_pcontext->resize_offscreen_buffer(m_rectangle.size());
+         m_pgpucontext->resize_offscreen_buffer(m_rectangle.size());
 
       }
       
@@ -136,7 +136,7 @@ namespace app_shader
 
       //auto papp = get_app();
 
-      //auto pcontext = ::object::m_pcontext;
+      //auto pcontext = ::object::m_pgpucontext;
 
       //dir()->ls_pattern(listing, "dropbox://shader/simple shader/", { "*.frag" });
 
@@ -146,7 +146,7 @@ namespace app_shader
       //   if (path.name().case_insensitive_begins(pszPathPrefix))
       //   {
 
-      m_strFragment = m_pcontext->load_fragment(pszPathPrefix, m_eshadersource);
+      m_strFragment = m_pgpucontext->load_fragment(pszPathPrefix, m_eshadersource);
 
       //      break;
 
@@ -192,14 +192,14 @@ namespace app_shader
       if(m_strProjection.is_empty())
       {
 
-         m_strProjection = m_pcontext->_001GetIntroProjection();
+         m_strProjection = m_pgpucontext->_001GetIntroProjection();
 
       }
 
       if(m_strFragment.is_empty())
       {
 
-         m_strFragment = m_pcontext->_001GetIntroFragment();
+         m_strFragment = m_pgpucontext->_001GetIntroFragment();
 
       }
 
@@ -209,28 +209,28 @@ namespace app_shader
 
       string strFragment = m_strFragment;
 
-      ::gpu::context_lock lock(m_pcontext);
+      ::gpu::context_lock lock(m_pgpucontext);
 
-      m_pcontext->make_current();
+      m_pgpucontext->make_current();
 
-      if (!m_pprogram)
+      if (!m_pgpuprogram)
       {
 
          //estatus = 
          
-         ::__construct(this, m_pprogram);
+         ::__construct(this, m_pgpuprogram);
 
       }
 
-      m_pcontext->translate_shader(strProjection);
+      m_pgpucontext->translate_shader(strProjection);
 
-      m_pcontext->translate_shader(strFragment);
+      m_pgpucontext->translate_shader(strFragment);
 
       //if (::succeeded(estatus))
       //{
 
          //estatus = 
-         m_pprogram->create_program(this, strProjection, strFragment);
+         m_pgpuprogram->create_program(this, strProjection, strFragment);
 
       //}
 
@@ -240,9 +240,9 @@ namespace app_shader
 
       //strDataId = m_pinteraction->m_atom;
 
-      m_pcontext->m_pprogram = m_pprogram;
+      m_pgpucontext->m_pprogram = m_pgpuprogram;
 
-      m_pcontext->draw();
+      m_pgpucontext->draw();
 
       //unsigned int texture1;
 
@@ -266,38 +266,38 @@ namespace app_shader
    void render::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
       
-      if(!m_pcontext)
+      if(!m_pgpucontext)
       {
          
          return;
          
       }
       
-      if(!m_pcontext->m_bCreated)
+      if(!m_pgpucontext->m_bCreated)
       {
        
          return;
          
       }
 
-      ::gpu::context_lock lock(m_pcontext);
+      ::gpu::context_lock lock(m_pgpucontext);
 
       defer_update_shader();
 
-      if (m_pcontext &&
-        ::is_set(m_pcontext->m_pprogram) &&
-       m_pcontext->m_pbuffer && m_pcontext->m_pbuffer->m_pimage.ok())
+      if (m_pgpucontext &&
+        ::is_set(m_pgpucontext->m_pprogram) &&
+       m_pgpucontext->m_pcpubuffer && m_pgpucontext->m_pcpubuffer->m_pixmap.is_ok())
       {
 
-         single_lock slImage(m_pcontext->m_pbuffer->synchronization());
+         single_lock slImage(m_pgpucontext->m_pcpubuffer->synchronization());
 
          {
 
-            ::gpu::context_lock lock(m_pcontext);
+            ::gpu::context_lock lock(m_pgpucontext);
 
-            m_pcontext->make_current();
+            m_pgpucontext->make_current();
 
-            m_pcontext->start_drawing();
+            m_pgpucontext->start_drawing();
 
             {
 
@@ -307,23 +307,23 @@ namespace app_shader
 
                auto pointCursor = m_puserinteraction->mouse_cursor_position();
 
-               float x = (float) pointCursor.x();
+               float x = (float)pointCursor.x();
 
-               float y = (float) pointCursor.y();
+               float y = (float)pointCursor.y();
 
-               m_pcontext->m_pprogram->m_pshader->setVec2("mouse", x, y);
-               m_pcontext->m_pprogram->m_pshader->setVec2("iMouse", x, y);
+               m_pgpucontext->m_pprogram->m_pshader->setVec2("mouse", x, y);
+               m_pgpucontext->m_pprogram->m_pshader->setVec2("iMouse", x, y);
 
             }
 
             {
 
-               float cx = (float) m_pcontext->m_pbuffer->m_pimage->width();
+               float cx = (float)m_pgpucontext->m_pcpubuffer->m_pixmap.width();
 
-               float cy = (float) m_pcontext->m_pbuffer->m_pimage->height();
+               float cy = (float)m_pgpucontext->m_pcpubuffer->m_pixmap.height();
 
-               m_pcontext->m_pprogram->m_pshader->setVec2("resolution", cx, cy);
-               m_pcontext->m_pprogram->m_pshader->setVec2("iResolution", cx, cy);
+               m_pgpucontext->m_pprogram->m_pshader->setVec2("resolution", cx, cy);
+               m_pgpucontext->m_pprogram->m_pshader->setVec2("iResolution", cx, cy);
 
             }
 
@@ -331,53 +331,18 @@ namespace app_shader
 
                auto dTime = m_timeStart.elapsed().floating_second();
 
-               float time = (float) dTime;
+               float time = (float)dTime;
 
-               m_pcontext->m_pprogram->m_pshader->setFloat("time", time);
-               m_pcontext->m_pprogram->m_pshader->setFloat("iTime", time);
+               m_pgpucontext->m_pprogram->m_pshader->setFloat("time", time);
+               m_pgpucontext->m_pprogram->m_pshader->setFloat("iTime", time);
 
             }
 
-            m_pcontext->render();
-
-            m_pcontext->prepare_for_gpu_read();
-
-            slImage.lock();
-
-            m_pcontext->m_pbuffer->gpu_read();
+            m_pgpucontext->render();
 
          }
 
-#if !defined(__APPLE__)
-
-         ::geometry2d::matrix matrixOriginal;
-
-         pgraphics->get(matrixOriginal);
-
-         ::geometry2d::matrix matrix(matrixOriginal);
-
-         matrix.scale(1.0, -1.0);
-
-         matrix.translate(0, m_rectangle.height());
-
-         pgraphics->set(matrix);
-
-#endif
-
-
-         image_source imagesource(m_pcontext->m_pbuffer->m_pimage);
-
-         image_drawing_options imagedrawingoptions(m_rectangle);
-
-         image_drawing imagedrawing(imagedrawingoptions, imagesource);
-
-         pgraphics->draw(imagedrawing);
-
-#if !defined(__APPLE__)
-
-         pgraphics->set(matrixOriginal);
-
-#endif
+         to_draw2d_graphics(pgraphics);
 
       }
 
@@ -513,21 +478,21 @@ namespace app_shader
    void render::_001OnDrawError(::draw2d::graphics_pointer & pgraphics)
    {
 
-      if (!m_pprogram)
+      if (!m_pgpuprogram)
       {
 
          return;
 
       }
 
-      if (m_pprogram->m_pshader->m_strError.is_empty())
+      if (m_pgpuprogram->m_pshader->m_strError.is_empty())
       {
 
          return;
 
       }
 
-      string strError = m_pprogram->m_pshader->m_strError;
+      string strError = m_pgpuprogram->m_pshader->m_strError;
 
       auto pathShader = m_strShaderPath;
 
@@ -566,7 +531,7 @@ namespace app_shader
 
             pfont.create(this);
 
-            auto pnode = acmesystem()->m_paurasystem->node();
+            auto pnode = system()->m_paurasystem->node();
 
             auto strFontName = pnode->font_name(e_font_sans_ui);
 

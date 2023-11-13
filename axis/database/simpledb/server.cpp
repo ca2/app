@@ -63,7 +63,7 @@ namespace simpledb
 
       //}
 
-      auto & pfactoryDatabase = acmesystem()->factory("database", "sqlite3");
+      auto & pfactoryDatabase = system()->factory("database", "sqlite3");
 
       //if(!pfactoryDatabase)
       //{

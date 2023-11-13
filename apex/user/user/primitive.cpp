@@ -1330,7 +1330,8 @@ namespace user
       {
 
          //estatus =
-         create_host(e_parallelization_synchronous);
+         //create_host(e_parallelization_synchronous);
+         create_host();
 
       }
       else
@@ -1354,7 +1355,8 @@ namespace user
 
 
    //bool primitive::create_window_ex(::pointer<::user::system>pcs, ::user::interaction * puiParent, const ::atom & atom)
-   void primitive::create_host(enum_parallelization eparallelization)
+   //void primitive::create_host(enum_parallelization eparallelization)
+   void primitive::create_host()
    {
 
       throw ::interface_only();
@@ -1980,16 +1982,16 @@ namespace user
 
      }
 
-     if (::is_set(acmesession()))
+     if (::is_set(session()))
      {
 
-        if (this == acmesession()->m_papexsession->m_puserprimitiveHost)
+        if (this == session()->m_papexsession->m_puserprimitiveHost)
         {
 
            return true;
 
         }
-        else if (puiParent == acmesession()->m_papexsession->m_puserprimitiveHost)
+        else if (puiParent == session()->m_papexsession->m_puserprimitiveHost)
         {
 
            return true;
@@ -3710,10 +3712,10 @@ namespace user
    }
 
 
-   void primitive::add_child_handler(const ::signal_handler& signalhandler, const ::atom & idChild, bool bPriority)
+   void primitive::add_child_handler(::particle * pparticle, const ::atom & atomChild, bool bPriority)
    {
 
-      auto pchild = get_primitive_by_id(idChild);
+      auto pchild = get_primitive_by_id(atomChild);
 
       if (::is_null(pchild))
       {
@@ -3723,7 +3725,7 @@ namespace user
       }
 
       //auto estatus = 
-      pchild->m_puserprimitive->add_signal_handler(signalhandler, bPriority);
+      pchild->m_puserprimitive->add_handler(pparticle, bPriority);
 
       //if (!estatus)
       //{

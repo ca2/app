@@ -142,20 +142,20 @@ console::console(int argc, char * argv[])
 
 #endif
 
-   acmesystem() = __new(::aura::system());
+   system() = __new(::aura::system());
 
-   acmesystem()->construct_system(this, argc, argv, pszCommandLine);
+   system()->construct_system(this, argc, argv, pszCommandLine);
 
    //m_pmaindata->m_pappcore = __new(app_core(m_pmaindata));
 
-   if (!acmesystem()->system_beg())
+   if (!system()->system_beg())
    {
 
       throw ::exception("The application didn't started.");
 
    }
 
-   bool bOk = acmesystem()->system_ini();
+   bool bOk = system()->system_ini();
 
    if (!bOk)
    {
@@ -164,7 +164,7 @@ console::console(int argc, char * argv[])
 
    }
 
-   acmesystem()->start();
+   system()->start();
 
 
 }
@@ -173,7 +173,7 @@ console::console(int argc, char * argv[])
 console::~console()
 {
 
-   //acmesystem()->system_end();
+   //system()->system_end();
 
 }
 

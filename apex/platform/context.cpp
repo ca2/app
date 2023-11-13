@@ -61,7 +61,7 @@ namespace apex
 
       string strConfiguration(scopedstrConfiguration);
 
-      auto psystem = acmesystem()->m_papexsystem;
+      auto psystem = system()->m_papexsystem;
 
       if (strConfiguration.is_empty())
       {
@@ -478,7 +478,7 @@ namespace apex
       else if (_001IsProtocol(path, "dropbox-app:/"))
       {
 
-         auto papplication = acmeapplication();
+         auto papplication = application();
 
          if (!papplication || papplication->m_strAppId.is_empty())
          {

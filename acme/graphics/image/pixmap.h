@@ -110,6 +110,19 @@ struct pixmap
 
    inline bool is_ok() const { return ::is_set(this) && area() > 0; }
 
+   inline bool nok() const { return !is_ok(); }
+
+   inline bool create(::memory & memory, const ::size_i32 & size)
+   {
+      m_iScan = size.cx() * 4;
+      memory.set_size(m_iScan * size.cy());
+      m_sizeRaw = size;
+      m_size = size;
+      m_pimage32Raw = (::image32_t*) memory.data();
+      m_pimage32 = (::image32_t *)memory.data();
+      return true;
+   }
+
    inline ::rectangle_i32 rectangle() const { return ::rectangle_i32(m_point, m_size); }
 
    inline ::rectangle_i32 rectangle(const ::point_i32 & point) const { return ::rectangle_i32(point, m_size); }
@@ -170,6 +183,7 @@ struct pixmap
 
    }
 
+   void mult_alpha();
 
 };
 

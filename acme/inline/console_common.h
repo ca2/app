@@ -23,7 +23,7 @@
 //
 //      iError = 0;
 //
-//      //if (acmesystem()->is_true("show_application_information"))
+//      //if (system()->is_true("show_application_information"))
 //      //{
 //
 //      //   printf("return code is %d", iStatus);
@@ -32,7 +32,7 @@
 //
 //   }
 //
-//   //acmesystem()->system_end();
+//   //system()->system_end();
 //
 //   return iError;
 //

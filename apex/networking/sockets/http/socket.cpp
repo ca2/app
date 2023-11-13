@@ -280,7 +280,7 @@ namespace sockets
 
             string strRequestUri = pa.getword();
 
-            auto psystem = acmesystem();
+            auto psystem = system();
 
             auto purl = psystem->url();
 

@@ -151,7 +151,7 @@ namespace draw2d
       if(::is_null(m_pimagemap))
       {
 
-         m_pimagemap = acmesystem()->__create_new < size_image >();
+         m_pimagemap = system()->__create_new < size_image >();
 
       }
 

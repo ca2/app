@@ -22,9 +22,11 @@ namespace experience_core
 
       //virtual ::item_pointer on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;
 
-      virtual void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics) override;
-      virtual void _001OnClip(::draw2d::graphics_pointer & pgraphics) override;
-      virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      void _001OnNcClip(::draw2d::graphics_pointer & pgraphics) override;
+      void _001OnClip(::draw2d::graphics_pointer & pgraphics) override;
+
+      void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics) override;
+      void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
       void install_message_routing(::channel * pchannel) override;
 

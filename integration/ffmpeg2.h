@@ -37,7 +37,7 @@ namespace console
 
             build_library::run();
 
-            acmeapplication()->fork([])
+            application()->fork([])
 
             compile("Win32", "Debug");
             compile("Win32", "Release");

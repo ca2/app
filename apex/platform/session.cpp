@@ -104,7 +104,7 @@ namespace apex
    session::~session()
    {
 
-      //if(acmesystem()->m_etracelevel >= e_trace_level_information)
+      //if(system()->m_etracelevel >= e_trace_level_information)
       {
 
          informationf("apex::session::~session()");
@@ -138,7 +138,7 @@ namespace apex
       //set_context_session(this);
 
 
-      auto psystem = acmesystem()->m_papexsystem;
+      auto psystem = system()->m_papexsystem;
 
       if (psystem != nullptr)
       {
@@ -382,7 +382,7 @@ namespace apex
    ::color::color session::get_default_color(::color::color color)
    {
 
-      auto psystem = acmesystem()->m_papexsystem;
+      auto psystem = system()->m_papexsystem;
 
       auto pnode = psystem->node();
 
@@ -640,7 +640,7 @@ namespace apex
    void session::process_term()
    {
 
-      auto psystem = acmesystem()->m_papexsystem;
+      auto psystem = system()->m_papexsystem;
 
       psystem->post_message(e_message_erase_session, m_iEdge);
 
@@ -650,7 +650,7 @@ namespace apex
    bool session::on_get_task_name(string& strTaskName)
    {
 
-      if (acmeapplication()->m_bConsole)
+      if (application()->is_console())
       {
 
          return false;
@@ -665,7 +665,7 @@ namespace apex
    void session::on_request(::request * prequest)
    {
 
-      auto psystem = acmesystem()->m_papexsystem;
+      auto psystem = system()->m_papexsystem;
 
       if (prequest->m_ecommand == e_command_protocol)
       {
@@ -756,7 +756,7 @@ namespace apex
 
       }
 
-      auto psystem = acmesystem();
+      auto psystem = system();
 
       auto purl = psystem->url();
 
@@ -866,7 +866,7 @@ namespace apex
 
    //         handle_exception(e);
 
-   //         //if (!acmesystem()->on_run_exception(esp))
+   //         //if (!system()->on_run_exception(esp))
    //         //{
 
    //         //   if (!App(this).on_run_exception(esp))
@@ -1326,7 +1326,7 @@ ret:
 
       //information() << "apex::session::init2 .1";
 
-      if (acmeapplication()->m_bUser)
+      if (application()->m_bUser)
       {
 
          //if (!m_paccount)
@@ -2094,10 +2094,10 @@ namespace apex
 
       }
 
-      if (acmesystem())
+      if (system())
       {
 
-         acmesystem()->m_papexsystem->route_command(pcommand, false);
+         system()->m_papexsystem->route_command(pcommand, false);
 
       }
 

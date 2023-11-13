@@ -101,14 +101,16 @@ list(APPEND library_source
    graphics/gpu/_.h
    graphics/gpu/approach.cpp
    graphics/gpu/approach.h
-   graphics/gpu/buffer.cpp
-   graphics/gpu/buffer.h
+   graphics/gpu/cpu_buffer.cpp
+   graphics/gpu/cpu_buffer.h
    graphics/gpu/context.cpp
    graphics/gpu/context.h
    graphics/gpu/object.cpp
    graphics/gpu/object.h
    graphics/gpu/program.cpp
    graphics/gpu/program.h
+   graphics/gpu/render.cpp
+   graphics/gpu/render.h
    graphics/gpu/shader.cpp
    graphics/gpu/shader.h
    #graphics/graphics/asset/control_box_button.cpp
@@ -233,6 +235,8 @@ list(APPEND library_source
    graphics/write_text/write_text.h
    graphics/_.h
    graphics/_impl.h
+   hardware/device_group.cpp
+   hardware/device_group.h
    hardware/device_listener.cpp
    hardware/device_listener.h
    hardware/devices.cpp
@@ -1355,7 +1359,7 @@ if (MSVC)
    target_link_options(aura PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/aura.lib")
    target_link_options(aura PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/aura.def")
    target_link_libraries(aura PRIVATE acme apex aqua zlib libcrypto libssl dwrite d2d1 d3d11 dxgi Dxva2 dbghelp imagehlp dwmapi Setupapi Windowscodecs Winmm ws2_32 Crypt32 Normaliz version Secur32 gdiplus Shlwapi Imm32)
-elseif (${LINUX} OR ${FREEBSD})
+elseif(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
 
    target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
 

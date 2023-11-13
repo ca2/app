@@ -53,7 +53,7 @@ namespace userpresence
 //
 //      }
 
-      if(!acmesystem()->is_true("do_not_initialize_user_presence"))
+      if(!system()->is_true("do_not_initialize_user_presence"))
       {
          // xxx
          // defer_initialize_user_presence();
@@ -142,7 +142,7 @@ namespace userpresence
    void department::_001OnTimer(::timer * ptimer)
    {
 
-      auto psession = acmesession()->m_pbasesession;
+      auto psession = session()->m_pbasesession;
 
       if(psession->account()->get_user() != nullptr)
       {

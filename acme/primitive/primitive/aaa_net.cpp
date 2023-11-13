@@ -461,13 +461,13 @@ void openURL(const string &url_str)
 //
 //   credentials.m_bInteractive = bInteractive;
 //
-//   //strUsername = acmefile()->as_string(         auto psystem = acmesystem();
+//   //strUsername = acmefile()->as_string(         auto psystem = system();
 //
 //         auto pacmedirectory = psystem->m_pacmedirectory;
 //
 //pacmedirectory->system() / "config\\user.txt");
 ////
-////   //strPassword = acmefile()->as_string(         auto psystem = acmesystem();
+////   //strPassword = acmefile()->as_string(         auto psystem = system();
 //
 //         auto pacmedirectory = psystem->m_pacmedirectory;
 //
@@ -1029,13 +1029,13 @@ int ui_open_url(const ::scoped_string & scopedstr);
 //
 //   credentials.m_bInteractive = bInteractive;
 //
-//   //strUsername = acmefile()->as_string(         auto psystem = acmesystem();
+//   //strUsername = acmefile()->as_string(         auto psystem = system();
 
    /*      auto pacmedirectory = psystem->m_pacmedirectory;
 
 pacmedirectory->system() / "config\\user.txt")*/;
 //
-//   //strPassword = acmefile()->as_string(         auto psystem = acmesystem();
+//   //strPassword = acmefile()->as_string(         auto psystem = system();
 //
 //         auto pacmedirectory = psystem->m_pacmedirectory;
 //

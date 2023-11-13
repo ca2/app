@@ -360,7 +360,7 @@ void LiteHTMLElemAttr::putValue(::lite_html_reader * preader, const ::string & p
 
    string strChar;
 
-   ::pointer<::axis::system>psystem = preader->acmesystem();
+   ::pointer<::axis::system>psystem = preader->system();
 
    do
    {

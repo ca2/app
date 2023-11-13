@@ -246,7 +246,7 @@ namespace apex
       if(pacmedirectory->is(path))
       {
 
-         auto psystem = acmesystem();
+         auto psystem = system();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
          

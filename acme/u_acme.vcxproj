@@ -677,6 +677,7 @@
     <ClInclude Include="memory\__string.h" />
     <ClInclude Include="memory\__unaligned_memory_allocate.h" />
     <ClInclude Include="memory\_____heap_namespace.h" />
+    <ClInclude Include="operating_system\acme_initialize.h" />
     <ClInclude Include="operating_system\application.h" />
     <ClInclude Include="operating_system\argcargv.h" />
     <ClInclude Include="operating_system\chronometer.h" />
@@ -765,6 +766,7 @@
     <ClInclude Include="platform\object_reference_count_debug_impl.h" />
     <ClInclude Include="platform\object_type_counter.h" />
     <ClInclude Include="platform\options.h" />
+    <ClInclude Include="platform\platform.h" />
     <ClInclude Include="platform\predicate_function_pointer.h" />
     <ClInclude Include="platform\predicate_holder.h" />
     <ClInclude Include="platform\predicate_process.h" />
@@ -1408,6 +1410,7 @@
     <ClCompile Include="graphics\draw2d\color_array.cpp" />
     <ClCompile Include="graphics\draw2d\os_font_name.cpp" />
     <ClCompile Include="graphics\draw2d\_.cpp" />
+    <ClCompile Include="graphics\graphics\output_purpose.cpp" />
     <ClCompile Include="graphics\image\image32.cpp" />
     <ClCompile Include="graphics\image\image32_array.cpp" />
     <ClCompile Include="graphics\image\pixmap.cpp" />
@@ -1757,7 +1760,7 @@
     <ClCompile Include="platform\session.cpp" />
     <ClCompile Include="platform\simple_log.cpp" />
     <ClCompile Include="platform\string_exchange.cpp" />
-    <ClCompile Include="platform\sub_system.cpp" />
+    <ClCompile Include="platform\platform.cpp" />
     <ClCompile Include="platform\system.cpp" />
     <ClCompile Include="platform\system_setup.cpp" />
     <ClCompile Include="platform\text.cpp" />
@@ -1869,6 +1872,7 @@
     <ClCompile Include="primitive\string\c\ancient\ansi_impl.cpp" />
     <ClCompile Include="primitive\string\c\ancient\wd16_impl.cpp" />
     <ClCompile Include="primitive\string\c\ancient\wd32_impl.cpp" />
+    <ClCompile Include="primitive\string\c\ancient\_c.cpp" />
     <ClCompile Include="primitive\string\c\coupling_impl.cpp" />
     <ClCompile Include="primitive\string\c\extension\ansi_impl.cpp" />
     <ClCompile Include="primitive\string\c\extension\wd16_impl.cpp" />

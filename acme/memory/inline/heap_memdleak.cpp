@@ -726,7 +726,7 @@ void memdleak_dump()
    information(sz);
    informationf(" memory leaks.");
 
-   //acmefile()->put_contents(         auto psystem = acmesystem();
+   //acmefile()->put_contents(         auto psystem = system();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 

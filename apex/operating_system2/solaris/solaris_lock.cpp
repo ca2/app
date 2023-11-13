@@ -90,7 +90,7 @@ vsstring _ca_get_file_name(const ::scoped_string & scopedstrName, bool bCreate, 
    str.replace("\\", "/");
    str.replace("::", "_");
 
-            auto psystem = acmesystem();
+            auto psystem = system();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 

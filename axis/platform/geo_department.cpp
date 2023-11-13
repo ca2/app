@@ -114,27 +114,27 @@ namespace geo
 
             }
 
-            //pcontext->m_papexcontext->file()->to_array(m_straCity,          auto psystem = acmesystem();
+            //pcontext->m_papexcontext->file()->to_array(m_straCity,          auto psystem = system();
 
    //         auto pacmedirectory = psystem->m_pacmedirectory;
    //
    //pacmedirectory->system() / "weather-cit.bin");
-            //pcontext->m_papexcontext->file()->to_array(m_straCityLo,          auto psystem = acmesystem();
+            //pcontext->m_papexcontext->file()->to_array(m_straCityLo,          auto psystem = system();
 
    //         auto pacmedirectory = psystem->m_pacmedirectory;
    //
    //pacmedirectory->system() / "weather-cil.bin");
-            //pcontext->m_papexcontext->file()->to_array(m_iaIds,          auto psystem = acmesystem();
+            //pcontext->m_papexcontext->file()->to_array(m_iaIds,          auto psystem = system();
 
    //         auto pacmedirectory = psystem->m_pacmedirectory;
    //
    //pacmedirectory->system() / "weather-ids.bin");
-            //pcontext->m_papexcontext->file()->to_array(m_daLon,          auto psystem = acmesystem();
+            //pcontext->m_papexcontext->file()->to_array(m_daLon,          auto psystem = system();
 
    //         auto pacmedirectory = psystem->m_pacmedirectory;
    //
    //pacmedirectory->system() / "weather-lon.bin");
-            //pcontext->m_papexcontext->file()->to_array(m_daLat,          auto psystem = acmesystem();
+            //pcontext->m_papexcontext->file()->to_array(m_daLat,          auto psystem = system();
 
    //         auto pacmedirectory = psystem->m_pacmedirectory;
    //
@@ -581,7 +581,7 @@ namespace geo
 
       string strUrl = "http://api.openweathermap.org/data/2.5/weather?atom=" + ::as_string(pcity->m_iId) + "&APPID=" + string(pszId);
 
-      auto psystem = acmesystem()->m_paxissystem;
+      auto psystem = system()->m_paxissystem;
 
       string strGetUrl = "https://ca2.software/api/account/openweather?request=" + ::url::encode(strUrl);
 
@@ -621,7 +621,7 @@ namespace geo
    bool  department::locality_sunset(string strCountry, string strLocality, int& iRise, int& iSet)
    {
 
-      auto psystem = acmesystem()->m_paxissystem;
+      auto psystem = system()->m_paxissystem;
 
       auto pcity = psystem->geo().openweather_find_city(strLocality + ", " + strCountry);
 
@@ -688,7 +688,7 @@ namespace geo
 
       //    double dLon;
 
-      auto psystem = acmesystem()->m_paxissystem;
+      auto psystem = system()->m_paxissystem;
 
       auto pcity = psystem->geo().openweather_find_city(strQ);
 

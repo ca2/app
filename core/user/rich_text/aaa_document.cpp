@@ -77,7 +77,7 @@
 //
 //            auto pdata = pedit->m_pdata;
 //
-//            auto pfactory = acmesystem()->factory("text_format", "rtf");
+//            auto pfactory = system()->factory("text_format", "rtf");
 //
 //            auto ptextformat = __create< ::user::rich_text::text_format >(pfactory);
 //
@@ -102,7 +102,7 @@
 //
 //         auto pdata = pedit->m_pdata;
 //
-//         auto pfactory = acmesystem()->factory("text_format", "rtf");
+//         auto pfactory = system()->factory("text_format", "rtf");
 //
 //         auto ptextformat = __create< ::user::rich_text::text_format >(pfactory);
 //

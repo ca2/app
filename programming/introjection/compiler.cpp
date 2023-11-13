@@ -386,7 +386,7 @@ namespace introjection
 //      //
 //      //#endif
 //
-//      auto psystem = acmesystem()->m_paurasystem;
+//      auto psystem = system()->m_paurasystem;
 //
 //#ifdef UNIVERSAL_WINDOWS
 //
@@ -415,7 +415,7 @@ namespace introjection
 //      strItem = m_pintegrationcontext->m_pathBuildFolder / m_strDynamicSourceStage / m_strStagePlatform / "introjection\\library";
 //      str = str + strItem + ";";
 //
-//      //auto psystem = acmesystem();
+//      //auto psystem = system();
 //
 //      auto pnode = psystem->node();
 //
@@ -476,7 +476,7 @@ namespace introjection
 //
 //      acmefile()->put_contents(pacmedirectory->system() / "env.bat","@call " + strBuildCmd + "\r\n@set");
 //
-//      auto psystem = acmesystem();
+//      auto psystem = system();
 //
 //      auto pnode = psystem->node();
 //
@@ -704,7 +704,7 @@ namespace introjection
 
       }
 
-               auto psystem = acmesystem();
+               auto psystem = system();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 

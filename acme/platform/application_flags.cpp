@@ -271,10 +271,10 @@ APPLICATION_FLAGS::APPLICATION_FLAGS()
 ////
 ////#endif
 //
-//      if (!acmeapplication() && pmain->acmeapplication())
+//      if (!application() && pmain->application())
 //      {
 //
-//         acmeapplication() = pmain->acmeapplication();
+//         application() = pmain->application();
 //
 //      }
 //
@@ -1018,8 +1018,8 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 //
 //   //psystem = __move_transfer(apex_create_apex_system());
 //
-//   //auto psystem = acmesystem()->m_papexsystem;
-//   auto psystem = acmesystem();
+//   //auto psystem = system()->m_papexsystem;
+//   auto psystem = system();
 //
 //   if (!psystem)
 //   {
@@ -1663,10 +1663,10 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 ////}
 //
 //
-//void main::initialize_application(::acme::application * pacmeapplication, ::particle * pparticle)
+//void main::initialize_application(::acme::application * papplication, ::particle * pparticle)
 //{
 //
-//   pacmeapplication->initialize(pparticle);
+//   papplication->initialize(pparticle);
 //
 //}
 //

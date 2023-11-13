@@ -924,7 +924,7 @@ void nano_window::_update_window()
 //   while(message_loop_step())
 //   {
 //
-//      acmesystem()->m_pnode->run_posted_routines();
+//      system()->m_pnode->run_posted_routines();
 //
 //   }
 //

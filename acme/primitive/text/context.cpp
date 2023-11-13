@@ -1079,7 +1079,7 @@ namespace text
 
    //   get(straCandidate,idRoot);
 
-   //   auto psystem = acmesystem();
+   //   auto psystem = system();
 
    //   for(i32 i = 0; i < straCandidate.get_count(); i++)
    //   {

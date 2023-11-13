@@ -5,30 +5,30 @@
 #include "application_base.h"
 #include "acme.h"
 
-
-namespace acme
-{
-
-
-   application_base::application_base()
-   {
-
-      m_acme.acme_initialize();
-
-   }
-
-
-   application_base::~application_base()
-   {
-
-      //::acme::acme::g_pacme->acme_finalize();
-
-      //::acme::acme::g_pacme->~acme();
-
-   }
-
-
-} // namespace acme
-
-
-
+//
+//namespace acme
+//{
+//
+//
+//   application_base::application_base()
+//   {
+//
+//      m_acme.acme_initialize();
+//
+//   }
+//
+//
+//   application_base::~application_base()
+//   {
+//
+//      //::acme::acme::g_pacme->acme_finalize();
+//
+//      //::acme::acme::g_pacme->~acme();
+//
+//   }
+//
+//
+//} // namespace acme
+//
+//
+//

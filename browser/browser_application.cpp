@@ -65,7 +65,7 @@ namespace browser
 
          ::DeleteFileW(szRelative);
 
-                  auto psystem = acmesystem();
+                  auto psystem = system();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 

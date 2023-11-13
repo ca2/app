@@ -458,8 +458,7 @@ namespace experience_nanoui
 
       ::rectangle_i32 rectangleScroll;
 
-      bool bScroll = ptab->_001HasHorizontalBarDragScrolling()
-         || ptab->_001HasVerticalBarDragScrolling();
+      bool bScroll = ptab->_001HasBarXDragScrolling() || ptab->_001HasBarYDragScrolling();
 
       if(bScroll)
       {
@@ -1487,7 +1486,7 @@ namespace experience_nanoui
 
       }
 
-      auto rectangleTrack = pscrollbar->get_track_rectangle();
+      auto rectangleTrack = pscrollbar->get_track_rectangle(::user::e_layout_design);
 
       ::rectangle_i32 rectangleWindow;
 

@@ -167,7 +167,7 @@ bool file_context::exists(const ::file::path &pathParam)
 
       }
 
-      return acmesystem()->http_get_type(path, pvarQuery, set);
+      return system()->http_get_type(path, pvarQuery, set);
 
    }
 
@@ -240,7 +240,7 @@ bool file_context::exists(const ::file::path &pathParam)
 
       }
 
-      return acmesystem()->http_get_type(path, pvarQuery, set);
+      return system()->http_get_type(path, pvarQuery, set);
 
    }
 
@@ -367,7 +367,7 @@ bool file_context::exists(const ::file::path &pathParam)
 ::file::path file_context::module()
 {
 
-   auto psystem = acmesystem();
+   auto psystem = system();
 
    auto pfilesystem = psystem->m_pfilesystem;
 
@@ -379,7 +379,7 @@ bool file_context::exists(const ::file::path &pathParam)
 //::file::path file_context::ca2module()
 //{
 //
-//   auto psystem = acmesystem();
+//   auto psystem = system();
 //
 //   return psystem->m_pfilesystem->m_pathCa2Module;
 //
@@ -405,7 +405,7 @@ file_context::time(const ::file::path &psz, i32 iMaxLevel, const string &pszPref
                    bool bTryDelete)
 {
 
-   auto psystem = acmesystem();
+   auto psystem = system();
 
    synchronous_lock lockMachineEvent(psystem->synchronization());
 
@@ -1332,10 +1332,10 @@ void file_context::calculate_main_resource_memory()
 ::block file_context::get_main_resource_block()
 {
 
-   if(subsystem()->m_blockMatter.is_set())
+   if(platform()->m_blockMatter.is_set())
    {
 
-      return subsystem()->m_blockMatter;
+      return platform()->m_blockMatter;
 
    }
 
@@ -1368,7 +1368,7 @@ void file_context::calculate_main_resource_memory()
 
       synchronous_lock synchronouslock(this->synchronization());
 
-      auto & pfactory = acmesystem()->folder_factory();
+      auto & pfactory = system()->folder_factory();
 
       if (m_bFolderResourceCalculated)
       {
@@ -1399,7 +1399,7 @@ void file_context::calculate_main_resource_memory()
 
       auto pfile = __new(::memory_file(pmemory));
 
-      acmesystem()->m_pfactoryFolder->__construct(m_pcontext, m_pfolderResource);
+      system()->m_pfactoryFolder->__construct(m_pcontext, m_pfolderResource);
 
       m_pfolderResource->initialize(this);
 
@@ -1664,7 +1664,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
 
    }
 
-   auto psystem = acmesystem();
+   auto psystem = system();
 
    auto pacmefile = psystem->m_pacmefile;
 
@@ -2451,7 +2451,7 @@ file_pointer file_context::get(const ::file::path &name)
 
       strIndex.formatf("%08x\\", i);
 
-      strTempFile = m_pcontext->acmesystem()->m_pdirsystem->m_pathUpload / (strTime + strIndex + pathCurrent);
+      strTempFile = m_pcontext->system()->m_pdirsystem->m_pathUpload / (strTime + strIndex + pathCurrent);
 
       if (!exists(strTempFile))
       {
@@ -2462,7 +2462,7 @@ file_pointer file_context::get(const ::file::path &name)
 
       string strMessage;
 
-      auto psystem = acmesystem();
+      auto psystem = system();
 
       auto pdatetime = psystem->datetime();
 
@@ -2834,7 +2834,7 @@ string file_context::get_hash(const ::payload &payloadFile, enum_hash ehash)
 
    mem.set_size(1024 * 256);
 
-   auto psystem = acmesystem();
+   auto psystem = system();
 
    auto pcrypto = psystem->crypto();
 
@@ -2913,7 +2913,7 @@ void file_context::get_last_write_time(file_time_t *pfile_time, const string &st
 void file_context::init_system()
 {
 
-//   auto psystem = acmesystem();
+//   auto psystem = system();
 //
 //   auto estatus = psystem->m_pfilesystem->update_module_path();
 //
@@ -3126,7 +3126,7 @@ file_pointer file_context::data_get_file(string strData, ::file::e_open eopen)
 
             ::pointer<memory_file>pmemoryfile = __new(memory_file());
 
-            auto psystem = acmesystem();
+            auto psystem = system();
 
             auto pbase64 = psystem->base64();
 
@@ -3158,7 +3158,7 @@ file_pointer file_context::data_get_file(string strData, ::file::e_open eopen)
 folder_pointer file_context::get_folder(::file::file *pfile, const ::scoped_string & scopedstrImplementation, ::file::e_open eopen)
 {
 
-   auto & pfactory = acmesystem()->folder_factory();
+   auto & pfactory = system()->folder_factory();
 
    if (!pfactory)
    {
@@ -3225,7 +3225,7 @@ file_pointer file_context::http_get_file(const ::payload &payloadFile, ::file::e
 
    ::url_domain domain;
 
-   auto psystem = acmesystem();
+   auto psystem = system();
 
    auto purl = psystem->url();
 
@@ -3291,9 +3291,9 @@ file_pointer file_context::http_get_file(const ::payload &payloadFile, ::file::e
    while_predicateicate_Sleep(60 * 1000, [&]()
    {
 
-      synchronous_lock synchronouslock(acmesystem()->m_pmutexHttpDownload);
+      synchronous_lock synchronouslock(system()->m_pmutexHttpDownload);
 
-      return acmesystem()->m_straHttpDownloading.contains(path) || acmesystem()->m_straHttpExists.contains(path);
+      return system()->m_straHttpDownloading.contains(path) || system()->m_straHttpExists.contains(path);
 
       });/* .failed())
    {
@@ -3305,7 +3305,7 @@ file_pointer file_context::http_get_file(const ::payload &payloadFile, ::file::e
 
    {
 
-      synchronous_lock synchronouslock(acmesystem()->m_pmutexHttpDownload);
+      synchronous_lock synchronouslock(system()->m_pmutexHttpDownload);
 
       if (path.flags().is_clear(::file::e_flag_bypass_cache) && acmefile()->exists(pathCache))
       {
@@ -3332,9 +3332,9 @@ file_pointer file_context::http_get_file(const ::payload &payloadFile, ::file::e
    if (bSaveCache)
    {
 
-      synchronous_lock synchronouslock(acmesystem()->m_pmutexHttpDownload);
+      synchronous_lock synchronouslock(system()->m_pmutexHttpDownload);
 
-      acmesystem()->m_straHttpDownloading.add(path);
+      system()->m_straHttpDownloading.add(path);
 
    }
 
@@ -3352,7 +3352,7 @@ file_pointer file_context::http_get_file(const ::payload &payloadFile, ::file::e
    if (bSaveCache)
    {
 
-      synchronous_lock synchronouslock(acmesystem()->m_pmutexHttpDownload);
+      synchronous_lock synchronouslock(system()->m_pmutexHttpDownload);
 
       try
       {
@@ -3372,7 +3372,7 @@ file_pointer file_context::http_get_file(const ::payload &payloadFile, ::file::e
       try
       {
 
-         acmesystem()->m_straHttpDownloading.erase(path);
+         system()->m_straHttpDownloading.erase(path);
 
       }
       catch (...)
@@ -4246,7 +4246,7 @@ void file_context::touch(const ::file::path &path)
 //void file_context::update_module_path()
 //{
 //
-//   auto psystem = acmesystem();
+//   auto psystem = system();
 //
 //   auto estatus = psystem->m_pfilesystem->update_module_path();
 //
@@ -4326,7 +4326,7 @@ void file_context::unzip_to_folder(const ::file::path & pathFolder, const ::file
 
    auto pfileZip = get_reader(pathZip);
 
-   auto pfolder = acmesystem()->create < ::folder >("folder", "zip");
+   auto pfolder = system()->create < ::folder >("folder", "zip");
 
    pfolder->initialize(m_pcontext);
 

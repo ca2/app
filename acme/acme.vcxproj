@@ -682,6 +682,7 @@
     <ClCompile Include="handler\item_container.cpp" />
     <ClCompile Include="handler\item_container_map.cpp" />
     <ClCompile Include="handler\request.cpp" />
+    <ClCompile Include="handler\source.cpp" />
     <ClCompile Include="handler\topic.cpp" />
     <ClInclude Include="aaa_id.h" />
     <ClInclude Include="acme.h" />
@@ -838,8 +839,8 @@
     <ClInclude Include="filesystem\watcher\watcher.h" />
     <ClInclude Include="filesystem\watcher\_.h" />
     <ClInclude Include="filesystem\_.h" />
-    <ClInclude Include="filesyste\filesyste\_format.h" />
     <ClInclude Include="format.h" />
+    <ClInclude Include="handler\source.h" />
     <ClInclude Include="_iostream.h" />
     <ClInclude Include="graphics\draw2d\color32.h" />
     <ClInclude Include="graphics\draw2d\color_array.h" />
@@ -1130,7 +1131,7 @@
     <ClCompile Include="platform\serial.cpp" />
     <ClCompile Include="platform\session.cpp" />
     <ClCompile Include="platform\simple_log.cpp" />
-    <ClCompile Include="platform\sub_system.cpp" />
+    <ClCompile Include="platform\platform.cpp" />
     <ClCompile Include="platform\system.cpp" />
     <ClCompile Include="platform\system_setup.cpp" />
     <ClCompile Include="platform\text.cpp" />
@@ -1233,6 +1234,7 @@
     <ClCompile Include="primitive\string\c\ancient\ansi_impl.cpp" />
     <ClCompile Include="primitive\string\c\ancient\wd16_impl.cpp" />
     <ClCompile Include="primitive\string\c\ancient\wd32_impl.cpp" />
+    <ClCompile Include="primitive\string\c\ancient\_c.cpp" />
     <ClCompile Include="primitive\string\c\coupling_impl.cpp" />
     <ClCompile Include="primitive\string\c\extension\ansi_impl.cpp" />
     <ClCompile Include="primitive\string\c\extension\wd16_impl.cpp" />
@@ -1776,7 +1778,7 @@
     <ClInclude Include="platform\simple_log.h" />
     <ClInclude Include="platform\status.h" />
     <ClInclude Include="platform\string_exchange.h" />
-    <ClInclude Include="platform\sub_system.h" />
+    <ClInclude Include="platform\platform.h" />
     <ClInclude Include="platform\system.h" />
     <ClInclude Include="platform\system_setup.h" />
     <ClInclude Include="platform\text.h" />

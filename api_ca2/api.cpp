@@ -81,7 +81,7 @@ namespace api_ca2
 
          //#ifdef APPLE_IOS
          //
-         //         strUrl += "&redirect_uri=" + acmesystem()->url()->::url::encode(strAppLogin + "localhost/redirect");
+         //         strUrl += "&redirect_uri=" + system()->url()->::url::encode(strAppLogin + "localhost/redirect");
          //
          //#endif
 
@@ -185,7 +185,7 @@ namespace api_ca2
    ::e_status api::on_html_response(::string & strHtml, const ::string & strUrl, const ::property_set & setPost)
    {
 
-      //auto psystem = acmesystem();
+      //auto psystem = system();
 
       //auto pdatetime = psystem->datetime();
 
@@ -198,7 +198,7 @@ namespace api_ca2
       strHtml += "</head>";
       strHtml += "<body style=\"font-family:'Fira Code', monospace;\">";
 
-      string strAppState = acmesystem()->url()->get_param(strUrl, "appstate");
+      string strAppState = system()->url()->get_param(strUrl, "appstate");
 
       if (defer_account_token(strAppState))
       {

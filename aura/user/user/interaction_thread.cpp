@@ -262,7 +262,7 @@ namespace user
       //if (m_bCreateNativeWindowOnInteractionThread)
       //{
 
-      auto psession = acmesession()->m_paurasession;
+      auto psession = session()->m_paurasession;
 
       auto puser = psession->user();
 
@@ -272,7 +272,9 @@ namespace user
 
       //estatus =
       
-      m_pimpl->operating_system_create_host(e_parallelization_asynchronous);
+      //m_pimpl->operating_system_create_host(e_parallelization_asynchronous);
+
+      m_pimpl->operating_system_create_host();
 
       ///*if(!estatus)
       //{*/

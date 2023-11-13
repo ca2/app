@@ -79,7 +79,9 @@ namespace user
                      m_prichtextformattool->set_owner(this);
                   };
 
-               m_prichtextformattool->create_host(e_parallelization_asynchronous);
+               //m_prichtextformattool->create_host(e_parallelization_asynchronous);
+
+               m_prichtextformattool->create_host();
 
                
 

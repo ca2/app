@@ -222,7 +222,7 @@ void simple_scroll_bar::on_message_left_button_down(::message::message * pmessag
 
    //}
 
-   //auto psystem = acmesystem()->m_paurasystem;
+   //auto psystem = system()->m_paurasystem;
 
    //auto pdraw2d = psystem->draw2d();
 
@@ -288,7 +288,7 @@ void simple_scroll_bar::on_message_left_button_up(::message::message * pmessage)
 
    //   point = point - m_sizeTrackOffset - get_parent_accumulated_scroll();
 
-   //   //auto psystem = acmesystem()->m_paurasystem;
+   //   //auto psystem = system()->m_paurasystem;
 
    //   //auto pdraw2d = psystem->draw2d();
 
@@ -834,7 +834,7 @@ void simple_scroll_bar::_001OnTimer(::timer * ptimer)
    else if (ptimer->m_uEvent == ((uptr)this) + 1)
    {
 
-      auto psystem = acmesystem()->m_paurasystem;
+      auto psystem = system()->m_paurasystem;
 
       auto pdraw2d = psystem->draw2d();
 
@@ -1441,7 +1441,10 @@ public:
 
       //if(create_window_ex(pusersystem))
       //if(create_host())
-      create_host(e_parallelization_synchronous);
+      //create_host(e_parallelization_synchronous);
+      // 
+      // 
+      create_host();
       //{
 
       //   informationf("created trw");

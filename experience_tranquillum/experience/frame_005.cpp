@@ -70,7 +70,7 @@ namespace experience_tranquillum
 
       auto pframewindow = m_pframewindow;
 
-      auto psystem = acmesystem()->m_paurasystem;
+      auto psystem = system()->m_paurasystem;
 
       auto pdraw2d = psystem->draw2d();
 

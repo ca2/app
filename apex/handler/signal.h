@@ -48,7 +48,9 @@ public:
 
    virtual void add_signal_handler(const signal_handler& signalhandler);
 
-   virtual void erase_handler(const signal_handler& signalhandler);
+   virtual void erase_signal_handler(const signal_handler& signalhandler);
+   
+   //virtual void erase_signal_handlers(::particle * pparticle);
 
    virtual void set_modified();
 

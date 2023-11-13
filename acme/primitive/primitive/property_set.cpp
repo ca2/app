@@ -5,7 +5,7 @@
 //#include "acme/filesystem/file/file.h"
 //#include "acme/networking/as_string.h"
 #include "acme/platform/acme.h"
-#include "acme/platform/sub_system.h"
+#include "acme/platform/platform.h"
 //#include "acme/primitive/primitive/payload.h"
 #include "acme/primitive/string/command_line.h"
 #include "acme/primitive/string/str.h"
@@ -971,7 +971,7 @@ void property_set::parse_network_payload(const ::string & strNetworkPayload)
 
 #ifdef LINUX
 
-   uselocale(::acme::acme::g_pacme->m_psubsystem->m_localeC);
+   uselocale(::platform::get()->m_localeC);
 
 #endif
 
@@ -986,7 +986,7 @@ void property_set::parse_network_payload(const ::string & strNetworkPayload)
 //{
 //
 //#ifdef LINUX
-//   uselocale(::acme::acme::g_pacme->m_psubsystem->m_localeC);
+//   uselocale(::platform::get()->m_localeC);
 //#endif
 //
 //   parse_network_payload(pszJson, pszJson + strlen(pszJson) - 1);
@@ -999,7 +999,7 @@ void property_set::parse_network_payload(::ansi_range & range)
 
 
 #ifdef LINUX
-   uselocale(::acme::acme::g_pacme->m_psubsystem->m_localeC);
+   uselocale(::platform::get()->m_localeC);
 #endif
 
    range.consume_spaces(0);

@@ -678,7 +678,7 @@
     <ClCompile Include="graphics\draw2d\_.cpp" />
     <ClCompile Include="graphics\draw3d\ortho.cpp" />
     <ClCompile Include="graphics\gpu\approach.cpp" />
-    <ClCompile Include="graphics\gpu\buffer.cpp" />
+    <ClCompile Include="graphics\gpu\cpu_buffer.cpp" />
     <ClCompile Include="graphics\gpu\context.cpp" />
     <ClCompile Include="graphics\gpu\object.cpp" />
     <ClCompile Include="graphics\gpu\program.cpp" />
@@ -733,6 +733,7 @@
     <ClCompile Include="graphics\write_text\write_text.cpp" />
     <ClCompile Include="graphics\write_text\_shape.cpp" />
     <ClCompile Include="hardware\devices.cpp" />
+    <ClCompile Include="hardware\device_group.cpp" />
     <ClCompile Include="hardware\device_listener.cpp" />
     <ClCompile Include="message\command.cpp" />
     <ClCompile Include="message\timer.cpp" />
@@ -888,7 +889,7 @@
     <ClInclude Include="graphics\draw3d\_.h" />
     <ClInclude Include="graphics\gpu\aaaa_gpu.h" />
     <ClInclude Include="graphics\gpu\approach.h" />
-    <ClInclude Include="graphics\gpu\buffer.h" />
+    <ClInclude Include="graphics\gpu\cpu_buffer.h" />
     <ClInclude Include="graphics\gpu\context.h" />
     <ClInclude Include="graphics\gpu\object.h" />
     <ClInclude Include="graphics\gpu\program.h" />
@@ -971,6 +972,7 @@
     <ClInclude Include="graphics\_.h" />
     <ClInclude Include="graphics\_impl.h" />
     <ClInclude Include="hardware\devices.h" />
+    <ClInclude Include="hardware\device_group.h" />
     <ClInclude Include="hardware\device_listener.h" />
     <ClInclude Include="hardware\_.h" />
     <ClInclude Include="hardware\_constant.h" />

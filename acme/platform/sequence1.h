@@ -53,9 +53,9 @@ public:
 //   if (!m_pfuture)
 //   {
 //
-//      acmesystem()->__construct_new(m_pfuture);
+//      system()->__construct_new(m_pfuture);
 //       
-//      m_pfuture->acmesystem() = acmesystem();
+//      m_pfuture->system() = system();
 //
 //      m_pfuture->m_p = this;
 //

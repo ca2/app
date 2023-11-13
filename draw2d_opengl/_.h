@@ -2,6 +2,7 @@
 
 
 #include "aura/_.h"
+#include "gpu_opengl/_.h"
 
 
 #ifdef _DRAW2D_OPENGL_STATIC

@@ -1590,7 +1590,7 @@ namespace experience
       if(m_bWindowFrame)
       {
          
-         auto papplicationmenu = acmeapplication()->application_menu();
+         auto papplicationmenu = application()->application_menu();
          
          {
             
@@ -1602,7 +1602,7 @@ namespace experience
             
          }
 
-         acmeapplication()->m_papexapplication->application_menu_update();
+         application()->m_papexapplication->application_menu_update();
          
       }
 
@@ -2377,7 +2377,7 @@ namespace experience
 
       }
 
-      auto psystem = acmesystem()->m_pbasesystem;
+      auto psystem = system()->m_pbasesystem;
 
       double dMargin = psystem->m_dDpi * 0.75 * (1.0 - sqrt((double)rectangle.area() / (double)rectangleWorkspace.area()));
 

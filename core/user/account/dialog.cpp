@@ -672,12 +672,12 @@ auto pwindowing = windowing();
    }
 
 
-   bool dialog::has_pending_graphical_update()
-   {
+   //bool dialog::has_pending_graphical_update()
+   //{
 
-      return is_window_visible();
+   //   return is_window_visible();
 
-   }
+   //}
 
 
 } // namespace account

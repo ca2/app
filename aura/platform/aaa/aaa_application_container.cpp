@@ -227,10 +227,10 @@ application_array application_container::get_applicationa()
    else
    {
 
-      if (::auraacmesystem()->acmeapplication().is_set())
+      if (::auraacmesystem()->application().is_set())
       {
 
-         if (::auraacmesystem()->acmeapplication()->m_strAppId != strAppId)
+         if (::auraacmesystem()->application()->m_strAppId != strAppId)
          {
 
             informationf("Wrong papp Data Type");
@@ -239,9 +239,9 @@ application_array application_container::get_applicationa()
 
          }
 
-         papp = ::auraacmesystem()->acmeapplication();
+         papp = ::auraacmesystem()->application();
 
-         ::auraacmesystem()->acmeapplication().release();
+         ::auraacmesystem()->application().release();
 
       }
       else

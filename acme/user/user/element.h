@@ -3,10 +3,11 @@
 
 
 #include "command_update_target.h"
+#include "acme/filesystem/filesystem/file_dialog.h"
+#include "acme/handler/source.h"
 #include "acme/platform/conversation_message.h"
 #include "acme/primitive/geometry2d/rectangle.h"
 #include "acme/primitive/geometry2d/rectangle_array.h"
-#include "acme/filesystem/filesystem/file_dialog.h"
 #include "drag_client.h"
 
 
@@ -37,7 +38,8 @@ namespace user
    class CLASS_DECL_ACME element :
       virtual public ::user::command_update_target,
       virtual public ::conversation_message,
-      virtual public ::user::drag_client
+      virtual public ::user::drag_client,
+      virtual public ::source
    {
    public:
 
@@ -283,7 +285,8 @@ namespace user
       virtual void create_interaction(::user::interaction * puserinteractionParent, const ::atom & atom = nullptr);
 
 
-      virtual void create_host(enum_parallelization eparallelization);
+      //virtual void create_host(enum_parallelization eparallelization);
+      virtual void create_host();
       virtual void create_child(::user::interaction * puserinteractionParent);
       virtual void create_control(::user::interaction * puserinteractionParent, const ::atom & atom);
 
@@ -528,10 +531,7 @@ namespace user
       virtual enum_window_type get_window_type();
 
 
-      virtual void add_child_handler(const ::signal_handler& signalhandler, const ::atom & idChild, bool bPriority = false);
-
-
-
+      virtual void add_child_handler(::particle * pparticle, const ::atom & atomChild, bool bPriority = false);
 
 
       virtual bool is_selected(::data::item * pitem);

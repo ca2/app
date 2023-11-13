@@ -40,7 +40,7 @@ namespace operating_system
 
 #ifndef WINDOWS
 
-      auto psystem = acmesystem();
+      auto psystem = system();
 
       auto pnode = psystem->node();
 
@@ -103,7 +103,7 @@ namespace operating_system
 
 #ifndef UNIVERSAL_WINDOWS
 
-      auto psystem = acmesystem();
+      auto psystem = system();
 
       auto pnode = psystem->node();
 

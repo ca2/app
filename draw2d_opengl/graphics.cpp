@@ -9,6 +9,8 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/parallelization/task.h"
 #include "acme/primitive/mathematics/mathematics.h"
+#include "aura/graphics/gpu/approach.h"
+#include "aura/graphics/gpu/cpu_buffer.h"
 #include "aura/graphics/write_text/font_enumeration_item.h"
 #include "aura/user/user/interaction.h"
 
@@ -82,15 +84,15 @@ namespace draw2d_opengl
    graphics::graphics()
    {
 
-      m_hrc = nullptr;
-      m_hwnd = nullptr;
-      m_hglrc = nullptr;
+      //m_hrc = nullptr;
+      //m_hwnd = nullptr;
+      //m_hglrc = nullptr;
       m_pointTranslate = ::point_i32();
       m_bPrinting = false;
       m_pimageAlphaBlend = nullptr;
       m_size.set(0, 0);
-      m_hdc = nullptr;
-      m_hdcGraphics = nullptr;
+      //m_hdc = nullptr;
+      //m_hdcGraphics = nullptr;
       m_ewritetextrendering = ::write_text::e_rendering_anti_alias_grid_fit;
       m_dFontFactor = 1.0;
 
@@ -128,6 +130,25 @@ namespace draw2d_opengl
 
    }
 
+#ifdef __DEBUG
+
+   int64_t graphics::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+   {
+
+      return ::particle::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+
+   }
+
+
+   int64_t graphics::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+   {
+
+      return ::particle::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+
+   }
+
+
+#endif
 
    //bool graphics::IsPrinting() const
    //{
@@ -180,144 +201,168 @@ namespace draw2d_opengl
    bool graphics::opengl_create_offscreen_buffer(const ::size_i32 & size)
    {
 
-      if (draw2d_opengl()->m_atomClass == 0) {
-         informationf("MS GDI - RegisterClass failed");
-         informationf("last-error code: %d\n", GetLastError());
-         return false;
-      }
-
-
-      LPCTSTR lpClassName = L"draw2d_opengl_offscreen_buffer_window";
-      LPCTSTR lpWindowName = L"draw2d_opengl_offscreen_buffer_window";
-      //::u32 dwStyle = WS_CAPTION | WS_POPUPWINDOW; // | WS_VISIBLE
-      ::u32 dwExStyle = 0;
-      ::u32 dwStyle = WS_OVERLAPPEDWINDOW;
-      dwStyle |= WS_POPUP;
-      //dwStyle |= WS_VISIBLE;
-      //dwStyle |= WS_SYSMENU | WS_MINIMIZEBOX | WS_MAXIMIZEBOX;
-      dwStyle &= ~WS_CAPTION;
-      //dwStyle = 0;
-      dwStyle &= ~WS_THICKFRAME;
-      dwStyle &= ~WS_BORDER;
-      int x = 0;
-      int y = 0;
-      int nWidth = size.cx();
-      int nHeight = size.cy();
-      HWND hWndParent = nullptr;
-      HMENU hMenu = nullptr;
-      ///HINSTANCE hInstance = psystem->m_hinstance;
-      LPVOID lpParam = nullptr;
-
-      //HWND window = CreateWindowExW(dwExStyle, lpClassName, lpWindowName, dwStyle, x, y,  nWidth, nHeight, hWndParent, hMenu, hInstance, lpParam);
-      HWND window = CreateWindowExW(dwExStyle, lpClassName, lpWindowName, dwStyle, x, y, nWidth, nHeight, hWndParent, hMenu, nullptr, lpParam);
-
-      if (window == nullptr) 
-      {
-         informationf("MS GDI - CreateWindow failed");
-         informationf("last-error code: %d\n", GetLastError());
-         return false;
-      }
-
-      // create WGL context, make current
-
-      PIXELFORMATDESCRIPTOR pixformat;
-      int chosenformat;
-      HDC hdc = GetDC(window);
-      if (hdc == nullptr)
-      {
-         informationf("MS GDI - GetDC failed");
-         informationf("last-error code: %d\n", GetLastError());
-         return false;
-      }
-
-      ZeroMemory(&pixformat, sizeof(pixformat));
-      pixformat.nSize = sizeof(pixformat);
-      pixformat.nVersion = 1;
-      pixformat.dwFlags = PFD_DRAW_TO_WINDOW | PFD_SUPPORT_OPENGL | PFD_DOUBLEBUFFER;
-      pixformat.iPixelType = PFD_TYPE_RGBA;
-      pixformat.cColorBits = 24;
-      pixformat.cAlphaBits = 8;
-      pixformat.cDepthBits = 24;
-      pixformat.cStencilBits = 8;
-
-      chosenformat = ChoosePixelFormat(hdc, &pixformat);
-      if (chosenformat == 0) 
-      {
-         informationf("MS GDI - ChoosePixelFormat failed");
-         informationf("last-error code: %d\n", GetLastError());
-         return false;
-      }
-
-      bool spfok = SetPixelFormat(hdc, chosenformat, &pixformat);
-      if (!spfok) 
-      {
-         informationf("MS GDI - SetPixelFormat failed");
-         informationf("last-error code: %d\n", GetLastError());
-         return false;
-      }
-
-      HGLRC hglrcTime = wglCreateContext(hdc);
-      if (hglrcTime == nullptr)
-      {
-         informationf("MS WGL - wglCreateContext failed");
-         informationf("last-error code: %d\n", GetLastError());
-         ReleaseDC(m_hwnd, m_hdc);
-         return false;
-      }
-
-      bool okMakeCurrent = wglMakeCurrent(hdc, hglrcTime);
-      if (!okMakeCurrent)
-      {
-         informationf("MS WGL - wglMakeCurrent failed");
-         informationf("last-error code: %d\n", GetLastError());
-         return false;
-      }
-      //glfwInit();
-      // ... <snip> ... setup a window and a context
-      
-      auto wglCurrentContext = wglGetCurrentContext();
-
-      // Load all OpenGL functions using the glfw loader function
-      // If you use SDL you can use: https://wiki.libsdl.org/SDL_GL_GetProcAddress
-      //if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
-      //   std::cout << "Failed to initialize OpenGL context" << std::endl;
-      //   return -1;
+      //if (!draw2d_opengl()->m_popenglcontext) {
+      //   informationf("MS GDI - RegisterClass failed");
+      //   informationf("last-error code: %d\n", GetLastError());
+      //   return false;
       //}
-      if (!gladLoadWGL(hdc))
-      {
-         // Problem: glewInit failed, something is seriously wrong.
-         informationf("gladLoadWGL failed");
-         //return false;
-         //throw resource_exception();
 
+      if (!m_pgpucontext)
+      {
          return false;
+         //auto psystem = system()->m_paurasystem;
+
+         //auto pgpu = psystem->get_gpu();
+
+         //m_pgpucontextOpenGL = pgpu->create_context(this);
+
+         //if (m_pgpucontextOpenGL)
+         //{
+
+         //   m_pgpucontextOpenGL->initialize(this);
+
+         //}
 
       }
-      int attribs[] =
-      {
-         WGL_CONTEXT_MAJOR_VERSION_ARB, 3,
-         WGL_CONTEXT_MINOR_VERSION_ARB, 1,
-         WGL_CONTEXT_FLAGS_ARB, 0,
-         WGL_CONTEXT_PROFILE_MASK_ARB,
-         WGL_CONTEXT_COREPROFILE_BIT_ARB, 0
-      };
 
-      //PFNWGLCREATECONTEXTATTRIBSARBPROC wglCreateContextAttribsARB = NULL;
-      //wglCreateContextAttribsARB = (PFNWGLCREATECONTEXTATTRIBSARBPROC)wglGetProcAddress("wglCreateContextAttribsARB");
+      //if (__defer_construct(m_pgpucontextOpenGL))
+      //{
 
-      auto hglrc =  wglCreateContextAttribsARB(hdc, 0, attribs);
-      wglMakeCurrent(nullptr, nullptr);
-      wglDeleteContext(hglrcTime);
-         wglMakeCurrent(hdc, m_hglrc);
-      //draw2d_opengl()->defer_initialize_glew();
-      
-      //draw2d_opengl()->defer_initialize_glew();
+         m_pgpucontext->create_offscreen_buffer(size);
+
+      //}
+
+      //LPCTSTR lpClassName = L"draw2d_opengl_offscreen_buffer_window";
+      //LPCTSTR lpWindowName = L"draw2d_opengl_offscreen_buffer_window";
+      ////::u32 dwStyle = WS_CAPTION | WS_POPUPWINDOW; // | WS_VISIBLE
+      //::u32 dwExStyle = 0;
+      //::u32 dwStyle = WS_OVERLAPPEDWINDOW;
+      //dwStyle |= WS_POPUP;
+      ////dwStyle |= WS_VISIBLE;
+      ////dwStyle |= WS_SYSMENU | WS_MINIMIZEBOX | WS_MAXIMIZEBOX;
+      //dwStyle &= ~WS_CAPTION;
+      ////dwStyle = 0;
+      //dwStyle &= ~WS_THICKFRAME;
+      //dwStyle &= ~WS_BORDER;
+      //int x = 0;
+      //int y = 0;
+      //int nWidth = size.cx();
+      //int nHeight = size.cy();
+      //HWND hWndParent = nullptr;
+      //HMENU hMenu = nullptr;
+      /////HINSTANCE hInstance = psystem->m_hinstance;
+      //LPVOID lpParam = nullptr;
+
+      ////HWND window = CreateWindowExW(dwExStyle, lpClassName, lpWindowName, dwStyle, x, y,  nWidth, nHeight, hWndParent, hMenu, hInstance, lpParam);
+      //HWND window = CreateWindowExW(dwExStyle, lpClassName, lpWindowName, dwStyle, x, y, nWidth, nHeight, hWndParent, hMenu, nullptr, lpParam);
+
+      //if (window == nullptr) 
+      //{
+      //   informationf("MS GDI - CreateWindow failed");
+      //   informationf("last-error code: %d\n", GetLastError());
+      //   return false;
+      //}
+
+      //// create WGL context, make current
+
+      //PIXELFORMATDESCRIPTOR pixformat;
+      //int chosenformat;
+      //HDC hdc = GetDC(window);
+      //if (hdc == nullptr)
+      //{
+      //   informationf("MS GDI - GetDC failed");
+      //   informationf("last-error code: %d\n", GetLastError());
+      //   return false;
+      //}
+
+      //ZeroMemory(&pixformat, sizeof(pixformat));
+      //pixformat.nSize = sizeof(pixformat);
+      //pixformat.nVersion = 1;
+      //pixformat.dwFlags = PFD_DRAW_TO_WINDOW | PFD_SUPPORT_OPENGL | PFD_DOUBLEBUFFER;
+      //pixformat.iPixelType = PFD_TYPE_RGBA;
+      //pixformat.cColorBits = 24;
+      //pixformat.cAlphaBits = 8;
+      //pixformat.cDepthBits = 24;
+      //pixformat.cStencilBits = 8;
+
+      //chosenformat = ChoosePixelFormat(hdc, &pixformat);
+      //if (chosenformat == 0) 
+      //{
+      //   informationf("MS GDI - ChoosePixelFormat failed");
+      //   informationf("last-error code: %d\n", GetLastError());
+      //   return false;
+      //}
+
+      //bool spfok = SetPixelFormat(hdc, chosenformat, &pixformat);
+      //if (!spfok) 
+      //{
+      //   informationf("MS GDI - SetPixelFormat failed");
+      //   informationf("last-error code: %d\n", GetLastError());
+      //   return false;
+      //}
+
+      //HGLRC hglrcTime = wglCreateContext(hdc);
+      //if (hglrcTime == nullptr)
+      //{
+      //   informationf("MS WGL - wglCreateContext failed");
+      //   informationf("last-error code: %d\n", GetLastError());
+      //   ReleaseDC(m_hwnd, m_hdc);
+      //   return false;
+      //}
+
+      //bool okMakeCurrent = wglMakeCurrent(hdc, hglrcTime);
+      //if (!okMakeCurrent)
+      //{
+      //   informationf("MS WGL - wglMakeCurrent failed");
+      //   informationf("last-error code: %d\n", GetLastError());
+      //   return false;
+      //}
+      ////glfwInit();
+      //// ... <snip> ... setup a window and a context
+      //
+      //auto wglCurrentContext = wglGetCurrentContext();
+
+      //// Load all OpenGL functions using the glfw loader function
+      //// If you use SDL you can use: https://wiki.libsdl.org/SDL_GL_GetProcAddress
+      ////if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
+      ////   std::cout << "Failed to initialize OpenGL context" << std::endl;
+      ////   return -1;
+      ////}
+      //if (!gladLoadWGL(hdc))
+      //{
+      //   // Problem: glewInit failed, something is seriously wrong.
+      //   informationf("gladLoadWGL failed");
+      //   //return false;
+      //   //throw resource_exception();
+
+      //   return false;
+
+      //}
+      //int attribs[] =
+      //{
+      //   WGL_CONTEXT_MAJOR_VERSION_ARB, 3,
+      //   WGL_CONTEXT_MINOR_VERSION_ARB, 1,
+      //   WGL_CONTEXT_FLAGS_ARB, 0,
+      //   WGL_CONTEXT_PROFILE_MASK_ARB,
+      //   WGL_CONTEXT_COREPROFILE_BIT_ARB, 0
+      //};
+
+      ////PFNWGLCREATECONTEXTATTRIBSARBPROC wglCreateContextAttribsARB = NULL;
+      ////wglCreateContextAttribsARB = (PFNWGLCREATECONTEXTATTRIBSARBPROC)wglGetProcAddress("wglCreateContextAttribsARB");
+
+      //auto hglrc =  wglCreateContextAttribsARB(hdc, 0, attribs);
+      //wglMakeCurrent(nullptr, nullptr);
+      //wglDeleteContext(hglrcTime);
+      //   wglMakeCurrent(hdc, m_hglrc);
+      ////draw2d_opengl()->defer_initialize_glew();
+      //
+      ////draw2d_opengl()->defer_initialize_glew();
 
 
-      m_hwnd = window;
-      m_hdc = hdc;
-      m_hglrc = hglrc;
-      m_size = size;
+      //m_hwnd = window;
+      //m_hdc = hdc;
+      //m_hglrc = hglrc;
+      //m_size = size;
 
       ::opengl::resize(size);
 
@@ -329,21 +374,21 @@ namespace draw2d_opengl
    bool graphics::opengl_delete_offscreen_buffer()
    {
 
-      if (m_hglrc == NULL && m_hdc == NULL && m_hwnd == NULL)
-      {
+      //if (m_hglrc == NULL && m_hdc == NULL && m_hwnd == NULL)
+      //{
 
-         return true;
+      //   return true;
 
-      }
+      //}
 
-      wglMakeCurrent(nullptr, nullptr);
-      wglDeleteContext(m_hglrc);
-      ::ReleaseDC(m_hwnd, m_hdc);
-      ::DestroyWindow(m_hwnd);
+      //wglMakeCurrent(nullptr, nullptr);
+      //wglDeleteContext(m_hglrc);
+      //::ReleaseDC(m_hwnd, m_hdc);
+      //::DestroyWindow(m_hwnd);
       m_size.set(0, 0);
-      m_hglrc = NULL;
-      m_hwnd = NULL;
-      m_hdc = NULL;
+      //m_hglrc = NULL;
+      //m_hwnd = NULL;
+      //m_hdc = NULL;
       return true;
 
    }
@@ -2214,7 +2259,7 @@ namespace draw2d_opengl
    i32 graphics::StartDoc(LPDOCINFO lpDocInfo)
    {
 
-      ASSERT(m_hdc != nullptr);
+      //ASSERT(m_hdc != nullptr);
 
       //return ::StartDoc(m_hdc, lpDocInfo);
       return 0;
@@ -2255,7 +2300,7 @@ namespace draw2d_opengl
    i32 graphics::SetAbortProc(bool (CALLBACK* lpfn)(HDC, i32))
    {
 
-      ASSERT(m_hdc != nullptr);
+      //ASSERT(m_hdc != nullptr);
 
       //return ::SetAbortProc(m_hdc, (ABORTPROC)lpfn);
       return 0;
@@ -2266,7 +2311,7 @@ namespace draw2d_opengl
    i32 graphics::AbortDoc()
    {
 
-      ASSERT(m_hdc != nullptr);
+      //ASSERT(m_hdc != nullptr);
 
       //return ::AbortDoc(m_hdc);
       return 0;
@@ -2277,7 +2322,7 @@ namespace draw2d_opengl
    i32 graphics::EndDoc()
    {
 
-      ASSERT(m_hdc != nullptr);
+      //ASSERT(m_hdc != nullptr);
 
       //return ::EndDoc(m_hdc);
       return 0;
@@ -2465,7 +2510,7 @@ namespace draw2d_opengl
    i32 graphics::Escape(i32 nEscape, i32 nInputSize, __in_bcount(nInputSize) const char * lpszInputData,  i32 nOutputSize, __out_bcount(nOutputSize) char * lpszOutputData)
    {
       // ASSERT(m_hdc != nullptr);
-      return ::ExtEscape(m_hdc, nEscape, nInputSize, lpszInputData, nOutputSize, lpszOutputData);
+      //return ::ExtEscape(m_hdc, nEscape, nInputSize, lpszInputData, nOutputSize, lpszOutputData);
       return 0;
 
    }
@@ -2582,8 +2627,9 @@ namespace draw2d_opengl
       // ASSERT(m_hdc != nullptr);
       float fMiterLimit;
       //VERIFY(::GetMiterLimit(m_hdc, &fMiterLimit));
-      ::GetMiterLimit(m_hdc, &fMiterLimit);
-      return fMiterLimit;
+      //::GetMiterLimit(m_hdc, &fMiterLimit);
+      //;;; return fMiterLimit;
+      return 0.f;
    }
 
 
@@ -2603,7 +2649,7 @@ namespace draw2d_opengl
    {
       // ASSERT(m_hdc != nullptr);
       ///return ::SetMiterLimit(m_hdc, fMiterLimit, nullptr) != false;
-      ::SetMiterLimit(m_hdc, fMiterLimit, nullptr);
+      //::SetMiterLimit(m_hdc, fMiterLimit, nullptr);
 
    }
 
@@ -3553,12 +3599,12 @@ namespace draw2d_opengl
 
       //}
 
-      if (m_hdc != nullptr)
-      {
+      //if (m_hdc != nullptr)
+      //{
 
-         //::ReleaseDC(m_hwnd, m_hdc);
+      //   //::ReleaseDC(m_hwnd, m_hdc);
 
-      }
+      //}
 
       //return true;
 
@@ -3641,7 +3687,7 @@ namespace draw2d_opengl
    ::draw2d_opengl::draw2d * graphics::draw2d_opengl()
    {
 
-      return dynamic_cast < ::draw2d_opengl::draw2d * >(acmesystem()->m_paurasystem->draw2d());
+      return dynamic_cast < ::draw2d_opengl::draw2d * >(system()->m_paurasystem->draw2d());
 
    }
 
@@ -3900,7 +3946,7 @@ namespace draw2d_opengl
    //}
 
 
-   void graphics::set(const ::geometry2d::matrix & matrix)
+   void graphics::_set(const ::geometry2d::matrix & matrix)
    {
 
       thread_select();
@@ -5287,14 +5333,15 @@ namespace draw2d_opengl
          ::draw2d::graphics::set_alpha_mode(ealphamode);
          if(m_ealphamode == ::draw2d::e_alpha_mode_blend)
          {
-            glEnable(GL_BLEND);
             //glColorMask(false, false, false, true);
             //glColorMask(true, true, true, false);
+            glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
             //glBlendFunc(GL_SRC_ALPHA, GL_SRC_ALPHA);
-            //glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+            //glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
             //glBlendFunc(GL_ZERO, GL_SRC_ALPHA);
-            glBlendEquationSeparate(GL_FUNC_ADD, GL_FUNC_ADD);
-            glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ZERO, GL_ONE);
+            //glBlendEquationSeparate(GL_FUNC_ADD, GL_FUNC_ADD);
+            // glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ONE, GL_ZERO);
+            glEnable(GL_BLEND);
             //glDisable(GL_DEPTH_TEST);
             //glDepthFunc(GL_NEVER);
          }
@@ -5312,6 +5359,13 @@ namespace draw2d_opengl
       }
 
       //return true;
+
+   }
+
+
+   void graphics::_draw_raw(const ::rectangle_f64 & rectangleTarget, ::image * pimage, const image_drawing_options & imagedrawingoptionsParam, const ::point_f64 & pointSrc)
+   {
+
 
    }
 
@@ -5607,30 +5661,30 @@ namespace draw2d_opengl
    }
 
 
-   HDC graphics::get_hdc()
-   {
+   //HDC graphics::get_hdc()
+   //{
 
-      if(m_hdc != nullptr)
-         return m_hdc;
+   //   if(m_hdc != nullptr)
+   //      return m_hdc;
 
-      ////if(m_pgraphics == nullptr)
-      //   return nullptr;
+   //   ////if(m_pgraphics == nullptr)
+   //   //   return nullptr;
 
-      //return m_pgraphics->GetHDC();
+   //   //return m_pgraphics->GetHDC();
 
-      return nullptr;
+   //   return nullptr;
 
-   }
+   //}
 
-   void graphics::release_hdc(HDC hdc)
-   {
+   //void graphics::release_hdc(HDC hdc)
+   //{
 
-      if(m_hdc != nullptr)
-         return;
+   //   if(m_hdc != nullptr)
+   //      return;
 
-      //m_pgraphics->ReleaseHDC(hdc);
+   //   //m_pgraphics->ReleaseHDC(hdc);
 
-   }
+   //}
 
 
    //void graphics::enum_fonts(::write_text::font_enumeration_item_array& itema)
@@ -5784,20 +5838,50 @@ namespace draw2d_opengl
 
       m_z = 0.f;
 
-      glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
-      glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+      glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+      glClear(GL_COLOR_BUFFER_BIT);
+      //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+      //glClear(GL_COLOR_BUFFER_BIT);
+      //glEnable(GL_BLEND);
+      //glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+      //memcpy(&m_pgpucontext->m_pbuffer->m_pixmap, (::pixmap *)m_pimage, sizeof(::pixmap));
 
       //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+      //m_pgpucontext->start_drawing();
+
+      ///glEnable(GL_DEPTH_TEST);
 
    }
 
 
+   void graphics::initialize(::particle * pparticle)
+   {
+
+      ::draw2d::graphics::initialize(pparticle);
+
+      ::gpu::render::initialize(pparticle);
+
+   }
+
    void graphics::on_end_draw(oswindow wnd)
    {
 
-      //glFlush();
+      glFlush();
+      //glFinish();
+      //glDisable(GL_BLEND);
 
       //SwapBuffers(m_hdc);
+
+      //m_pgpucontextOpenGL->render
+
+      //dr();
+
+      read_to_cpu_buffer();
+
+      m_pimage->map();
+
+      ::copy_image32(m_pimage, &m_pgpucontext->m_pcpubuffer->m_pixmap);
 
    }
 
@@ -5811,7 +5895,9 @@ namespace draw2d_opengl
          return;
       }
 
-      wglMakeCurrent(m_hdc, m_hglrc);
+      //wglMakeCurrent(m_hdc, m_hglrc);
+
+      m_pgpucontext->make_current();
 
       thread_graphics(this);
 
@@ -5821,12 +5907,28 @@ namespace draw2d_opengl
    bool graphics::_is_ok() const
    {
 
-      return ::is_set(this) & ::is_set(m_hglrc);
+      //return ::is_set(this) & ::is_set(m_hglrc);
+
+      return ::is_set(this) && m_pgpucontext;
 
    }
 
 
 
+
+   void graphics::intersect_clip(const ::rectangle_f64 & rectangle)
+   {
+
+
+   }
+
+
+   void graphics::intersect_clip(const ::draw2d::clip_group & clipgroup)
+   {
+
+
+
+   }
 
 
 } // namespace draw2d_opengl
@@ -5929,8 +6031,7 @@ namespace opengl
       glEnd();
    }
 
-
-
+   
 
 } // namespace opengl
 

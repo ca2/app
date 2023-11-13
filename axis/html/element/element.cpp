@@ -139,7 +139,7 @@ namespace html
 
       }
 
-      auto psession = phtmldata->acmesession()->m_paxissession;
+      auto psession = phtmldata->session()->m_paxissession;
 
       auto puser = psession->user();
 
@@ -988,7 +988,7 @@ namespace html
                     m_pdata->m_pcoredata->m_strPathName.case_insensitive_begins("https://"))
             {
 
-               auto psystem = acmesystem()->m_paurasystem;
+               auto psystem = system()->m_paurasystem;
 
                auto purl = psystem->url();
 
@@ -1798,7 +1798,7 @@ namespace html
       if (m_phtmlbase->get_type() == ::html::base::type_value)
       {
 
-         auto psession = phtmldata->m_pcoredata->acmesession()->m_paxissession;
+         auto psession = phtmldata->m_pcoredata->session()->m_paxissession;
 
          auto puser = psession->user();
 
@@ -1834,7 +1834,7 @@ namespace html
          if (m_elementalptra.get_size() <= 0)
          {
 
-            auto psession = phtmldata->m_pcoredata->acmesession()->m_paxissession;
+            auto psession = phtmldata->m_pcoredata->session()->m_paxissession;
 
             auto puser = psession->user();
 

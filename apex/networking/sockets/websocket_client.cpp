@@ -577,7 +577,7 @@ namespace sockets
 
          generate_random_bytes(m.data(), m.size());
 
-         auto psystem = acmesystem();
+         auto psystem = system();
 
          auto pbase64 = psystem->base64();
 
@@ -695,7 +695,7 @@ namespace sockets
 
                memory mem2;
 
-               auto psystem = acmesystem()->m_papexsystem;
+               auto psystem = system()->m_papexsystem;
 
                auto pbase64 = psystem->base64();
 

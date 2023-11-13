@@ -1556,7 +1556,7 @@ end_processing_adding:
                      if (psocket->Retain() && !psocket->Lost())
                      {
 
-                        auto psystem = acmesystem()->m_papexsystem;
+                        auto psystem = system()->m_papexsystem;
 
                         synchronous_lock synchronouslock(__SystemNetworking(psystem)->m_pmutexPool);
 
@@ -2039,7 +2039,7 @@ end_processing_adding:
    ::pointer<base_socket_handler::pool_socket>socket_handler::FindConnection(i32 type, const string & protocol, ::networking::address * ad)
    {
 
-      auto pnetworking2 = __SystemNetworking(acmesystem());
+      auto pnetworking2 = __SystemNetworking(system());
 
       synchronous_lock synchronouslock(pnetworking2->m_pmutexPool);
 

@@ -2,6 +2,7 @@
 
 
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/gpu/render.h"
 
 
 //struct OffscreenContext
@@ -19,7 +20,8 @@ namespace draw2d_opengl
    class draw2d;
 
    class CLASS_DECL_DRAW2D_OPENGL graphics :
-      virtual public ::draw2d::graphics
+      virtual public ::draw2d::graphics,
+      virtual public ::gpu::render
    {
    public:
 
@@ -27,21 +29,29 @@ namespace draw2d_opengl
       //::plusplus::Graphics *         m_pgraphics;
       //::plusplus::GraphicsPath *     m_ppath;
       //::plusplus::GraphicsPath *     m_ppathPaint;
-      HGLRC                         m_hglrc;
-      HDC                           m_hdc;
-      HWND                          m_hwnd;
+      //HGLRC                         m_hglrc;
+      //HDC                           m_hdc;
+      //HWND                          m_hwnd;
       ::size_i32                        m_size;
-      HDC                           m_hdcGraphics;
+      //HDC                           m_hdcGraphics;
       float                         m_z;
       point_i32                         m_pointTranslate;
       // bool                                      m_bFont;
       ::size_i32                    m_sizeWindow;
-      HGLRC m_hrc;
+      //HGLRC m_hrc;
+
+      //::pointer<::gpu::context>          m_pgpucontextOpenGL;
+
 
       graphics();
       ~graphics() override;
 
+#ifdef _DEBUG
+         int64_t increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
+      int64_t decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
+#endif
 
+      void initialize(::particle * pparticle) override;
       //plusplus::Graphics & g()
       //{
       //   if(m_pgraphics == nullptr)
@@ -81,7 +91,7 @@ namespace draw2d_opengl
       ::draw2d::bitmap *  get_current_bitmap() override;
 
 
-
+      void _draw_raw(const ::rectangle_f64 & rectangleTarget, ::image * pimage, const image_drawing_options & imagedrawingoptionsParam, const ::point_f64 & pointSrc) override;
 
       //plusplus::Pen *       gl2d_pen();
       //plusplus::Brush *     gl2d_brush();
@@ -92,8 +102,8 @@ namespace draw2d_opengl
       u32 SetLayout(u32 dwLayout);
 
 
-      HDC get_hdc();
-      void release_hdc(HDC hdc);
+      //HDC get_hdc();
+      //void release_hdc(HDC hdc);
 
 
       virtual double get_dpix() const;
@@ -256,7 +266,7 @@ namespace draw2d_opengl
       //  bool LineTo(const ::point_i32 & point);
       void polyline(const ::point_f64* ppoints,::count nCount) override;
 
-      void set(const ::geometry2d::matrix & matrix) override;
+      void _set(const ::geometry2d::matrix & matrix) override;
 
       //using ::draw2d::graphics::Arc;
       //bool arc(double x1, double y1, double x2, double y2,i32 x3,i32 y3,i32 x4,i32 y4);
@@ -528,8 +538,9 @@ namespace draw2d_opengl
       //void draw_inset_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & color, double dWidth, const ::e_border & eborder = e_border_all) override;
       //void frame_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & color, const ::e_border & eborder = e_border_all) override;
 
+      void intersect_clip(const ::draw2d::clip_group & clipgroup) override;
+      void intersect_clip(const ::rectangle_f64 & rectangle) override;
 
-      
    public:
 //      // void assert_ok() const override;
 //      // void dump(dump_context & dumpcontext) const override;
@@ -587,10 +598,12 @@ namespace draw2d_opengl
 
       void on_begin_draw() override;
       void on_end_draw(oswindow wnd) override;
+      //void on_end_draw() override;
 
       
       bool _is_ok() const override;
 
+      
 
    };
 

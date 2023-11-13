@@ -265,7 +265,7 @@ namespace write_text
    string font::get_font_descriptor_face()
    {
       
-      return acmesystem()->m_paurasystem->draw2d()->write_text()->get_font_descriptor_face(m_fontdescriptor);
+      return system()->m_paurasystem->draw2d()->write_text()->get_font_descriptor_face(m_fontdescriptor);
       
    }
 

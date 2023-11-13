@@ -81,7 +81,7 @@ void ifs_file::get_file_data()
 
    string strUrl;
 
-   auto psystem = acmesystem();
+   auto psystem = system();
 
    auto purl = psystem->url();
 
@@ -106,7 +106,7 @@ void ifs_file::set_file_data()
 
    string strUrl;
 
-   auto psystem = acmesystem();
+   auto psystem = system();
 
    auto purl = psystem->url();
 

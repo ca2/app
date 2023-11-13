@@ -25,8 +25,8 @@ namespace xml
    {
 
       m_pdocument            = this;
-//      m_pparseinfo      = ::is_set(pparseinfo) ? pparseinfo : acmesystem()->m_pxml->m_pparseinfoDefault.m_p;
-//      m_pentitiesHash   = ::is_set(pentitiesHash) ? pentitiesHash : acmesystem()->m_pxml->m_pentitiesHashDefault.m_p;
+//      m_pparseinfo      = ::is_set(pparseinfo) ? pparseinfo : system()->m_pxml->m_pparseinfoDefault.m_p;
+//      m_pentitiesHash   = ::is_set(pentitiesHash) ? pentitiesHash : system()->m_pxml->m_pentitiesHashDefault.m_p;
       m_pedit           = nullptr;
 
    }
@@ -62,7 +62,7 @@ namespace xml
    //   
    //   string str;
 
-   //   auto psystem = acmesystem()->m_paurasystem;
+   //   auto psystem = system()->m_paurasystem;
 
    //   str = file()->as_string(psz);
 
@@ -157,7 +157,7 @@ namespace xml
 //      if (pparseinfo == nullptr)
 //      {
 //
-//         pparseinfo = acmesystem()->xml()->m_pparseinfoDefault;
+//         pparseinfo = system()->xml()->m_pparseinfoDefault;
 //
 //      }
 //

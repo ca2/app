@@ -20,7 +20,7 @@ int_bool acmefile()->exists(const ::file::path & path1)
 int_bool acmefile()->put_contents(const ::file::path & path,const char * contents,count len)
 {
 
-            auto psystem = acmesystem();
+            auto psystem = system();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -1724,7 +1724,7 @@ bool get_file_time(::winrt::Windows::Storage::StorageFile ^ file,LPFILETIME lpCr
 //int_bool acmefile()->put_contents(const ::file::path & path,const char * contents,::count len)
 //{
 //
-//            auto psystem = acmesystem();
+//            auto psystem = system();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 

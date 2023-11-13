@@ -86,7 +86,7 @@ namespace windowing
 
       ::aura::application* get_app();
       ::aura::session* get_session();
-      //::aura::system* acmesystem();
+      //::aura::system* system();
 
 
       void install_message_routing(::channel * pchannel) override;

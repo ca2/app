@@ -11,7 +11,7 @@ class CLASS_DECL_APEX console :
 public:
 
    class apex_apex                  m_apex;
-   ::pointer<::apex::system>        acmesystem();
+   ::pointer<::apex::system>        system();
    //::pointer<::apex::application>   m_pacmeapplication;
 
    console(int argc, wchar_t * argv[]);

@@ -1374,7 +1374,7 @@ namespace user
 
       }
 
-      auto psystem = acmesystem()->m_pbasesystem;
+      auto psystem = system()->m_pbasesystem;
 
       if (psystem->has_property("no_tabs"))
       {

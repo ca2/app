@@ -107,7 +107,7 @@ CLASS_DECL_APEX int_bool dir_appdata(char * psz,size_t size)
 
 int dir_mk(const ::scoped_string & scopedstr)
 {
-   return          auto psystem = acmesystem();
+   return          auto psystem = system();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 

@@ -675,7 +675,7 @@ namespace dynamic_source
       void script_interface::uri_set_var(string & strUrl, const ::string & pszUrl, const ::string & pszKey, ::payload payload)
       {
 
-         auto psystem = acmesystem();
+         auto psystem = system();
 
          auto purl = psystem->url();
 
@@ -687,7 +687,7 @@ namespace dynamic_source
       void script_interface::uri_set_param(string & strUrl, const ::string & pszUrl, const ::string & pszKey, const string & strParam)
       {
 
-         auto psystem = acmesystem();
+         auto psystem = system();
 
          auto purl = psystem->url();
 
@@ -699,7 +699,7 @@ namespace dynamic_source
       string script_interface::query_get_param(const ::string & pszUrl, const ::string & pszKey)
       {
 
-         auto psystem = acmesystem();
+         auto psystem = system();
 
          auto purl = psystem->url();
 
@@ -711,7 +711,7 @@ namespace dynamic_source
       ::payload script_interface::query_get_var(const ::string & pszUrl, const ::string & pszKey)
       {
 
-         auto psystem = acmesystem();
+         auto psystem = system();
 
          auto purl = psystem->url();
 

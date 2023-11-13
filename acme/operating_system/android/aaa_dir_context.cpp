@@ -999,13 +999,13 @@ namespace android
 
       m_pdirsystem->m_pathInstall = pathInstall;
 
-      //nodeos_set_home(         auto psystem = acmesystem();
+      //nodeos_set_home(         auto psystem = system();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
 pacmedirectory->system() / "home");
 
-      //nodeos_set_temp(         auto psystem = acmesystem();
+      //nodeos_set_temp(         auto psystem = system();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -1105,7 +1105,7 @@ pacmedirectory->system() / "temp");
          CSIDL_COMMON_APPDATA,
          false);*/
 
-      str =          auto psystem = acmesystem();
+      str =          auto psystem = system();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 

@@ -41,6 +41,18 @@ void application::open_by_module_path(const ::scoped_string & scopedstr)
    }
 
 
+   void application::open_by_app_id(const ::scoped_string & scopedstrRepos,
+                            const ::scoped_string & scopedstrApp)
+   {
+      
+      m_strRepos = scopedstrRepos;
+      
+      m_strApp = scopedstrApp;
+      
+   }
+
+
+
    void application::post_close()
    {
 

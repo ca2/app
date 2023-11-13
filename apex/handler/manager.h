@@ -37,7 +37,12 @@ public:
 
 
    virtual class ::signal * get_signal(const ::atom& atom, const ::action_context& actioncontext = ::action_context());
+   
+   virtual void add_signal_handler(const ::signal_handler& signalhandler, const ::atom & atomSignal);
+   
+   virtual void erase_signal_handler(const ::signal_handler::base * pbase);
 
+   //virtual void erase_signal_handlers(::particle * ppparticle);
 
    // <3ThomasBorregaardSorensen handle...!!
    virtual void signal(const ::atom & atom, const ::action_context & actioncontext = ::action_context());
@@ -49,7 +54,7 @@ public:
    virtual void destroy_signal_handling();
 
 
-   virtual void erase_signal_handler(const ::signal_handler & signalhandler);
+//   virtual void erase_signal_handler(const ::signal_handler & signalhandler);
 
 
    static bool __s_may_run_signal_handling();

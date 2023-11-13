@@ -145,7 +145,7 @@ namespace earth
       time(::earth::gregorian_time(filetime), timeshift)
    {
 
-      //auto pnode = acmesystem()->node();
+      //auto pnode = system()->node();
 
       //file_time_to_earth_time(this, filetime);
 
@@ -156,7 +156,7 @@ namespace earth
       time(::earth::gregorian_time(systemtime), timeshift)
    {
 
-      //auto pnode = acmesystem()->node();
+      //auto pnode = system()->node();
 
       //file_time_to_earth_time(this, filetime);
 
@@ -880,7 +880,7 @@ CLASS_DECL_ACME SYSTEMTIME __SYSTEMTIME(const ::earth::time & time)
 //file_time __file_time(const ::earth::time & time)
 //{
 //
-//   auto pnode = acmesystem()->node();
+//   auto pnode = system()->node();
 //
 //   SYSTEMTIME systemtime;
 //

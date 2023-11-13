@@ -1331,7 +1331,7 @@ namespace user
 
       initial_frame_display();
 
-      if(pusersystem->m_prequest->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_screen)
+      //if(pusersystem->m_prequest->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_screen)
       {
 
          if(!const_layout().sketch().is_screen_visible())
@@ -1363,7 +1363,9 @@ namespace user
    else
    {
 
-      create_host(e_parallelization_asynchronous);
+      //create_host(e_parallelization_asynchronous);
+
+      create_host();
 
       //if (!create_host())
       //{
@@ -1372,6 +1374,15 @@ namespace user
 
       //}
 
+
+   }
+
+   if (pusersystem->m_prequest->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_screen)
+   {
+
+      set_need_redraw();
+
+      post_redraw();
 
    }
 
@@ -2776,9 +2787,9 @@ namespace user
    ::base::application* frame_window::get_app()
    {
 
-      auto pacmeapplication = acmeapplication();
+      auto papplication = application();
 
-      return ::is_set(pacmeapplication) ? pacmeapplication->m_pbaseapplication : nullptr;
+      return ::is_set(papplication) ? papplication->m_pbaseapplication : nullptr;
 
    }
 
@@ -2786,7 +2797,7 @@ namespace user
    ::base::session* frame_window::get_session()
    {
 
-      auto pacmesession = acmesession();
+      auto pacmesession = session();
 
       return ::is_set(pacmesession) ? pacmesession->m_pbasesession : nullptr;
 
@@ -2796,7 +2807,7 @@ namespace user
    ::base::system* frame_window::get_system()
    {
 
-      auto pacmesystem = acmesystem();
+      auto pacmesystem = system();
 
       return ::is_set(pacmesystem) ? pacmesystem->m_pbasesystem : nullptr;
 

@@ -988,6 +988,8 @@ namespace user
          information() << "graphics_thread_iteration has_graphical_output_purpose";
 #endif
 
+         //information() << "graphics_thread_iteration has_graphical_output_purpose";
+
          puserinteractionimpl->do_graphics();
 
          //m_puserinteraction->m_pinteractionimpl->do_graphics(e_graphics_draw);

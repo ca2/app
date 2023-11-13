@@ -104,8 +104,13 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_show_window);
       DECLARE_MESSAGE_HANDLER(on_message_move);
 
-      virtual void _001ShowDropDown(bool bShow = true);
-      virtual void _001ToggleDropDown();
+      /// @brief 
+      /// @param bShow 
+      /// @return true if drop down list box was displayed 
+      virtual bool _001ShowDropDown(bool bShow = true);
+      /// @brief 
+      /// @return  true if drop down list box was displayed 
+      virtual bool _001ToggleDropDown();
 
 
       void on_set_keyboard_focus() override;

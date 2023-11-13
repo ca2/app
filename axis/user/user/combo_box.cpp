@@ -718,10 +718,12 @@ namespace user
 
          }
 
+         bool bDropDownListBoxShown = false;
+
          if (m_plistbox.is_null() || timeLastVisibilityChangeElapsed > 300_ms)
          {
 
-            _001ToggleDropDown();
+            bDropDownListBoxShown = _001ToggleDropDown();
 
          }
          else if (!m_plistbox->const_layout().sketch().is_screen_visible())
@@ -731,7 +733,14 @@ namespace user
 
          }
 
-         set_keyboard_focus();
+         if (!bDropDownListBoxShown)
+         {
+
+            set_keyboard_focus();
+
+            set_active_window();
+
+         }
 
          set_need_redraw();
 
@@ -794,7 +803,7 @@ namespace user
    }
 
 
-   void combo_box::_001ToggleDropDown()
+   bool combo_box::_001ToggleDropDown()
    {
 
       defer_create_list_box();
@@ -802,14 +811,21 @@ namespace user
       if (m_plistbox.is_set())
       {
 
-         _001ShowDropDown(!m_plistbox->is_window_visible(::user::e_layout_sketch));
+         if (_001ShowDropDown(!m_plistbox->is_window_visible(::user::e_layout_sketch)))
+         {
+
+            return true;
+
+         }
 
       }
+
+      return false;
 
    }
 
 
-   void combo_box::_001ShowDropDown(bool bShow)
+   bool combo_box::_001ShowDropDown(bool bShow)
    {
 
       if (m_plistbox)
@@ -846,6 +862,8 @@ namespace user
 
          m_plistbox->on_drop_down(rectangleWindow, m_sizeFull);
 
+         return true;
+
       }
       else
       {
@@ -861,11 +879,9 @@ namespace user
 
          }
 
-         set_keyboard_focus();
-
-         set_active_window();
-
       }
+
+      return false;
 
    }
 

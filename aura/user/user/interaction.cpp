@@ -3044,6 +3044,24 @@ namespace user
 
       m_layout.m_statea[elayout].m_edisplay = edisplay;
 
+      if (::type(this) == "user::list_box")
+      {
+
+         if (!windowing()->is_screen_visible(edisplay))
+         {
+
+            information() << "hiding user::list_box";
+
+         }
+         else
+         {
+
+            information() << "showing user::list_box";
+
+         }
+
+      }
+
    }
 
 
@@ -6001,6 +6019,12 @@ namespace user
             //information() << "should_perform_layout control_box_button";
 
          }
+         else if (strType.contains("user::list_box"))
+         {
+
+            information() << "_000TopCallOnLayout user::list_box";
+
+         }
 
          perform_layout(pgraphics);
 
@@ -6398,6 +6422,13 @@ namespace user
          information() << "interaction::_000OnDraw line_layout";
          
       }
+      else if (::string(pszType).case_insensitive_contains("user::list_box"))
+      {
+
+         information() << "interaction::_000OnDraw user::list_box";
+
+      }
+
 
       if (!pgraphics->m_bInheritDraw)
       {
@@ -6472,6 +6503,12 @@ namespace user
          ::string strType = ::type(this).name();
 
          if (strType.case_insensitive_contains("impact"))
+         {
+
+            information() << "Not draw (!needs_to_draw)!?!?!";
+
+         }
+         else if (strType.case_insensitive_contains("user::list_box"))
          {
 
             information() << "Not draw (!needs_to_draw)!?!?!";
@@ -12743,7 +12780,21 @@ namespace user
       if (!is_this_visible())
       {
 
+         if (::type(this) == "user::list_box")
+         {
+
+            information() << "interaction::layout_layout";
+
+         }
+
          return false;
+
+      }
+
+      if (::type(this) == "user::list_box")
+      {
+
+         information() << "interaction::layout_layout";
 
       }
 
@@ -15195,6 +15246,15 @@ namespace user
 
    void interaction::sketch_to_lading()
    {
+
+      if (::type(this) == "user::list_box")
+      {
+
+         information() << "interaction::layout_layout";
+
+      }
+
+
 
       _synchronous_lock synchronouslock(this->synchronization());
 

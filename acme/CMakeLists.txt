@@ -258,6 +258,8 @@ list(APPEND library_source
    handler/topic.h
    handler/request.cpp
    handler/request.h
+   handler/source.cpp
+   handler/source.h
    #include/_.cpp
    #include/path.h        #primitive/collection/comparable_array.cpp
    #memory/alloc.cpp

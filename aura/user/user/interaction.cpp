@@ -3440,18 +3440,13 @@ namespace user
       if(m_ewindowflag & e_window_flag_window_created)
       {
          
-         if (::is_screen_visible(layout().sketch().display()))
+         if(post_pending_set_need_redraw())
          {
-            
-            if(post_pending_set_need_redraw())
-            {
                
-               return true;
+            return true;
                
-            }
-            
          }
-         
+            
       }
       
       return false;
@@ -3461,32 +3456,32 @@ namespace user
 
    bool interaction::post_pending_set_need_redraw()
    {
-      
-      synchronous_lock synchronouslock(this->synchronization());
 
-      if (m_setneedredrawa.has_element())
       {
 
-         for (auto & setneedredraw : m_setneedredrawa)
+         synchronous_lock synchronouslock(this->synchronization());
+
+         if (m_setneedredrawa.has_element() && ::is_screen_visible(layout().sketch().display()))
          {
 
-            set_need_redraw(setneedredraw.m_rectangleaNeedRedraw, nullptr,
-                            setneedredraw.m_function, setneedredraw.m_bAscendants);
+            for (auto & setneedredraw : m_setneedredrawa)
+            {
+
+               set_need_redraw(setneedredraw.m_rectangleaNeedRedraw, nullptr,
+                                 setneedredraw.m_function, setneedredraw.m_bAscendants);
+
+            }
 
          }
 
          m_setneedredrawa.clear();
 
-         synchronouslock.unlock();
-
-         post_redraw();
-         
-         return true;
-
       }
-      
-      return false;
-      
+
+      post_redraw();
+         
+      return true;
+
    }
 
 

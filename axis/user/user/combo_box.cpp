@@ -828,12 +828,12 @@ namespace user
    bool combo_box::_001ShowDropDown(bool bShow)
    {
 
-      if (m_plistbox)
-      {
+      //if (m_plistbox)
+      //{
 
-         m_plistbox->m_bPendingKillFocusHiding = false;
+      //   m_plistbox->m_bPendingKillFocusHiding = false;
 
-      }
+      //}
 
       if(bShow)
       {

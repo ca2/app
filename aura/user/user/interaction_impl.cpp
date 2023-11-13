@@ -7042,14 +7042,16 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 
       //      on_final_set_keyboard_focus();
       //
-      //      if (m_puserinteraction->m_ewindowflag & e_window_flag_focus)
-      //      {
+      //if (m_puserinteraction->m_ewindowflag & e_window_flag_focus)
+      //{
+      //   
+      //   return;
       //
-      //         return;
+      //}
       //
-      //      }
-      //
-      //      m_puserinteraction->m_ewindowflag |= e_window_flag_focus;
+      //m_puserinteraction->m_ewindowflag |= e_window_flag_focus;
+
+      on_final_set_keyboard_focus();
 
    }
 
@@ -7141,9 +7143,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
          if (m_puserinteractionKeyboardFocusRequest == m_puserinteractionToKillKeyboardFocus)
          {
 
-            m_puserinteractionKeyboardFocusRequest.release();
-
-            return;
+            m_puserinteractionToKillKeyboardFocus.release();
 
          }
 
@@ -7154,11 +7154,20 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 
             information() << "on_final_set_keyboard_focus : (2)";
 
+            auto puserinteractionKeyboardFocusOld = m_puserinteractionKeyboardFocus;
+
             m_puserinteractionKeyboardFocus = m_puserinteractionKeyboardFocusRequest;
 
             m_puserinteractionKeyboardFocusRequest = nullptr;
 
             auto puserinteractionKeyboardFocus = m_puserinteractionKeyboardFocus;
+
+            if (puserinteractionKeyboardFocusOld)
+            {
+
+               puserinteractionKeyboardFocusOld->on_kill_keyboard_focus();
+
+            }
 
             if (puserinteractionKeyboardFocus)
             {
@@ -7249,14 +7258,14 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 
       ::pointer<::message::kill_keyboard_focus>pkillkeyboardfocus(pmessage);
 
-      if (!(m_puserinteraction->m_ewindowflag & e_window_flag_focus))
-      {
+      //if (!(m_puserinteraction->m_ewindowflag & e_window_flag_focus))
+      //{
 
-         return;
+      //   return;
 
-      }
+      //}
 
-      m_puserinteraction->m_ewindowflag -= e_window_flag_focus;
+      //m_puserinteraction->m_ewindowflag -= e_window_flag_focus;
 
       on_final_kill_keyboard_focus();
 
@@ -7271,32 +7280,18 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 
       information() << "on_final_kill_keyboard_focus";
 
-      if (m_puserinteractionToKillKeyboardFocus)
+      auto puserinteractionKeyboardFocus = m_puserinteractionKeyboardFocus;
+
+      m_puserinteractionKeyboardFocusRequest.release();
+
+      m_puserinteractionKeyboardFocus.release();
+
+      synchronouslock.unlock();
+
+      if(puserinteractionKeyboardFocus)
       {
 
-         if (m_puserinteractionKeyboardFocusRequest == m_puserinteractionToKillKeyboardFocus)
-         {
-
-            m_puserinteractionToKillKeyboardFocus.release();
-
-            return;
-
-         }
-
-         auto pinteraction = m_puserinteractionToKillKeyboardFocus;
-
-         if (m_puserinteractionKeyboardFocus == pinteraction)
-         {
-
-            m_puserinteractionKeyboardFocus.release();
-
-         }
-
-         m_puserinteractionToKillKeyboardFocus = nullptr;
-
-         synchronouslock.unlock();
-
-         pinteraction->on_kill_keyboard_focus();
+         puserinteractionKeyboardFocus->on_kill_keyboard_focus();
 
       }
 

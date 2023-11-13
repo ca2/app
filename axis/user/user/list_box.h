@@ -16,7 +16,7 @@ namespace user
 
       bool                                m_bCaseSensitiveMatch;
       class ::time                            m_timeKillFocus;
-      bool                                m_bPendingKillFocusHiding;
+      //bool                                m_bPendingKillFocusHiding;
       bool                                m_bMovingComboBox;
       bool                                m_bComboList;
       ::pointer<combo_box>               m_pcombo;
@@ -66,8 +66,8 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_create);
       DECLARE_MESSAGE_HANDLER(on_message_destroy);
       DECLARE_MESSAGE_HANDLER(on_message_show_window);
-      DECLARE_MESSAGE_HANDLER(on_message_set_focus);
-      DECLARE_MESSAGE_HANDLER(on_message_kill_focus);
+      //DECLARE_MESSAGE_HANDLER(on_message_set_focus);
+      //DECLARE_MESSAGE_HANDLER(on_message_kill_focus);
       DECLARE_MESSAGE_HANDLER(on_message_close);
       DECLARE_MESSAGE_HANDLER(_001OnActivate);
       DECLARE_MESSAGE_HANDLER(_001OnMouseActivate);
@@ -79,6 +79,9 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_right_button_down);
       DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
 
+
+      void on_set_keyboard_focus() override;
+      void on_kill_keyboard_focus() override;
 
       ::item_pointer on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;
 

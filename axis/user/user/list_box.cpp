@@ -52,7 +52,7 @@ namespace user
 
       m_bDefaultMouseHoverHandling = true;
 
-      m_bPendingKillFocusHiding = false;
+      //m_bPendingKillFocusHiding = false;
 
       m_ewindowflag += e_window_flag_satellite_window;
 
@@ -87,8 +87,8 @@ namespace user
 
       MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &list_box::on_message_create);
       MESSAGE_LINK(MESSAGE_DESTROY, pchannel, this, &list_box::on_message_destroy);
-      MESSAGE_LINK(e_message_set_focus, pchannel, this, &list_box::on_message_set_focus);
-      MESSAGE_LINK(e_message_kill_focus, pchannel, this, &list_box::on_message_kill_focus);
+      //MESSAGE_LINK(e_message_set_focus, pchannel, this, &list_box::on_message_set_focus);
+      //MESSAGE_LINK(e_message_kill_focus, pchannel, this, &list_box::on_message_kill_focus);
       MESSAGE_LINK(MESSAGE_CLOSE, pchannel, this, &list_box::on_message_close);
       MESSAGE_LINK(e_message_mouse_activate, pchannel, this, &list_box::_001OnMouseActivate);
       MESSAGE_LINK(e_message_key_down, pchannel, this, &list_box::on_message_key_down);
@@ -673,25 +673,25 @@ namespace user
    void list_box::_001OnTimer(::timer* ptimer)
    {
    
-      if (ptimer->m_etimer == e_timer_kill_focus)
-      {
+      //if (ptimer->m_etimer == e_timer_kill_focus)
+      //{
 
-         if (m_bPendingKillFocusHiding)
-         {
-            
-            m_bPendingKillFocusHiding = false;
+      //   if (m_bPendingKillFocusHiding)
+      //   {
+      //      
+      //      m_bPendingKillFocusHiding = false;
 
-            hide();
+      //      hide();
 
-            set_need_redraw();
+      //      set_need_redraw();
 
-            post_redraw();
+      //      post_redraw();
 
-         }
+      //   }
 
-         KillTimer(e_timer_kill_focus);
+      //   KillTimer(e_timer_kill_focus);
 
-      }
+      //}
 
       ::user::scroll_base::_001OnTimer(ptimer);
    
@@ -776,8 +776,10 @@ namespace user
    }
 
 
-   void list_box::on_message_kill_focus(::message::message * pmessage)
+   void list_box::on_kill_keyboard_focus()
    {
+
+      m_timeKillFocus.Now();
 
       if (m_pcombo)
       {
@@ -787,11 +789,13 @@ namespace user
          if (!bGoingToShow)
          {
 
-            m_timeKillFocus.Now();
+            hide();
 
-            m_bPendingKillFocusHiding = true;
+            
+            //se
+            //m_bPendingKillFocusHiding = true;
 
-            set_timer(e_timer_kill_focus, 300_ms);
+            //set_timer(e_timer_kill_focus, 300_ms);
 
             //::pointer<::message::kill_focus>pkillfocus(pmessage);
 
@@ -838,7 +842,7 @@ namespace user
    }
 
 
-   void list_box::on_message_set_focus(::message::message * pmessage)
+   void list_box::on_set_keyboard_focus()
    {
 
       if (m_pcombo)
@@ -1313,6 +1317,7 @@ namespace user
 //
 //      }
 
+      set_keyboard_focus();
 
    }
 

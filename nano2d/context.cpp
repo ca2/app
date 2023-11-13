@@ -2624,6 +2624,13 @@ void TransformSkewX(float* t, float a)
 	void context::text_box(float x, float y, ::nano2d::text_box * ptextbox)
 	{
 
+		if (::is_null(ptextbox))
+		{
+
+			return;
+
+		}
+
 		//text(x, y, string, end);
 		// throw_todo();
 		//::nano2d::state * state = __getState();

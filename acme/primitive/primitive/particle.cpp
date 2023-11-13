@@ -361,6 +361,14 @@ void particle::on_initialize_particle()
 }
 
 
+::context_image* particle::context_image() const
+{
+
+   return m_pcontext ? m_pcontext->context_image() : nullptr;
+
+}
+
+
 //::platform::platform * particle::platform() const
 //{
 //

@@ -72,8 +72,8 @@ namespace user
 
       //finalize_children_mutex();
       //::finalize_user_mutex();
-      g_pmutexUser = nullptr;
-      m_pmutexUser.release();
+      //g_pmutexUser = nullptr;
+      //m_pmutexUser.release();
 
    }
 
@@ -91,7 +91,7 @@ namespace user
 
       m_pmutexUser = acmenode()->create_mutex();
 
-      g_pmutexUser = m_pmutexUser;
+      //g_pmutexUser = m_pmutexUser;
 
 
       //if (!estatus)
@@ -1551,7 +1551,61 @@ namespace user
 CLASS_DECL_AURA ::particle * user_synchronization()
 {
 
-   return g_pmutexUser;
+   auto pplatform = platform::get();
+
+   if (::is_null(pplatform))
+   {
+
+      return nullptr;
+
+   }
+
+   auto psystem = pplatform->system();
+
+   if (::is_null(psystem))
+   {
+
+      return nullptr;
+
+   }
+
+   auto psession = psystem->session();
+
+   if (::is_null(psession))
+   {
+
+      return nullptr;
+
+   }
+
+   auto paurasession = psession->m_paurasession;
+
+   if (::is_null(paurasession))
+   {
+
+      return nullptr;
+
+   }
+
+   auto puser = paurasession->user();
+
+   if (::is_null(puser))
+   {
+
+      return nullptr;
+
+   }
+
+   auto pmutexUser = puser->m_pmutexUser;
+
+   if (::is_null(pmutexUser))
+   {
+
+      return nullptr;
+
+   }
+
+   return pmutexUser;
 
 }
 

@@ -174,6 +174,7 @@ public:
    ::acme::context* acmecontext() const;
    ::apex::context* apexcontext() const;
    ::aura::context* auracontext() const;
+   ::context_image* context_image() const;
    ::datetime::datetime * datetime() const;
    ::url::url * url() const;
    ::crypto::crypto * crypto() const;

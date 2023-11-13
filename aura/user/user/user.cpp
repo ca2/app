@@ -28,11 +28,11 @@
 #include "aura/platform/node.h"
 
 
-::pointer< ::mutex > g_pmutexUser = nullptr;
+//::pointer< ::mutex > g_pmutexUser = nullptr;
 
 
-CLASS_DECL_AURA void initialize_user_mutex();
-CLASS_DECL_AURA void finalize_user_mutex();
+//CLASS_DECL_AURA void initialize_user_mutex();
+//CLASS_DECL_AURA void finalize_user_mutex();
 
 
 //::critical_section g_criticalsectionChildren;

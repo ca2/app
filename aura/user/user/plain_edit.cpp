@@ -32,6 +32,7 @@
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "acme/platform/timer.h"
+#include "acme/user/user/tool.h"
 #include "apex/filesystem/file/edit_file.h"
 #include "aura/windowing/text_editor_interface.h"
 #include "aura/windowing/windowing.h"
@@ -1900,9 +1901,11 @@ namespace user
 
             }
 
-            m_pitemHover = __new(::item(e_element_client));
+            m_pitemHover = tool().item(e_element_client);
 
          }
+
+         pmessage->m_bRet = true;
 
       }
 

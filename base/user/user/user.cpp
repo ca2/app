@@ -1651,7 +1651,7 @@ namespace base
          else if (pcallback != nullptr)
          {
 
-            papp = pcallback->get_app();
+            papp = pcallback->application();
 
          }
          else

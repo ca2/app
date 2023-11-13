@@ -16,7 +16,9 @@ namespace operating_system
 
 
       ::process_identifier       m_processidentifier;
-
+      ::string                   m_strRepos;
+      ::string                   m_strApp;
+      
 
       application();
       ~application() override;
@@ -26,6 +28,9 @@ namespace operating_system
 
       virtual void open_by_module_path(const ::scoped_string & scopedstr);
 
+      virtual void open_by_app_id(const ::scoped_string & scopedstrRepos,
+                                  const ::scoped_string & scopedstrApp);
+      
       virtual void post_close();
 
       virtual void post_exit();

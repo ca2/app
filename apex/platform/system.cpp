@@ -3959,16 +3959,14 @@ pacmedirectory->create("/ca2core");
 
          argv.add(nullptr);
 
-         auto psystem = system();
-
-         auto purl = psystem->url();
+         auto purl = url();
 
          string strApp = ::url::decode(path);
 
          // 0x00010000 NSWorkspaceLaunchAsync
          // 0x00080000 NSWorkspaceLaunchNewInstance
 
-         auto pnode = psystem->node();
+         auto pnode = node();
 
          pnode->launch_app(strApp, argv.data(), 0x00010000 | 0x00080000);
 
@@ -4841,28 +4839,50 @@ namespace apex
    }
 
 
-   void system::add_handler(::matter* pmatter, bool bPriority)
-   {
-
-      ::apex::context::add_handler(pmatter, bPriority);
-
-   }
-
+//   void system::add_handler(::matter* pmatter, bool bPriority)
+//   {
+//
+//      ::apex::context::add_handler(pmatter, bPriority);
+//
+//   }
 
    void system::add_signal_handler(const ::signal_handler& signalhandler, const ::atom& atomSignal)
    {
+   
+      ::manager::add_signal_handler(signalhandler, atomSignal);
+      
+   }
 
-      auto psignal = get_signal(atomSignal);
+//   void system::add_signal_handler(const ::signal_handler& signalhandler, const ::atom& atomSignal)
+//   {
+//
+//      auto psignal = get_signal(atomSignal);
+//
+//      if (::is_null(psignal))
+//      {
+//
+//         throw ::exception(error_resource);
+//
+//      }
+//
+//      psignal->add_signal_handler(signalhandler);
+//
+//   }
 
-      if (::is_null(psignal))
-      {
 
-         throw ::exception(error_resource);
+//   void system::add_signal_handler(const ::signal_handler& signalhandler, const ::atom& atomSignal)
+//   {
+//
+//      manager::add_signal_handler(signalhandler, atomSignal);
+//      
+//   }
 
-      }
 
-      psignal->add_signal_handler(signalhandler);
-
+   void system::erase_signal_handler(::signal_handler::base * pbase)
+   {
+      
+      manager::erase_signal_handler(pbase);
+   
    }
 
 

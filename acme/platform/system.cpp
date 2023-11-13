@@ -2239,11 +2239,11 @@ namespace acme
    }
 
 
-   void system::add_handler(::matter * pmatter, bool bPriority)
-   {
-
-
-   }
+//   void system::add_handler(::matter * pmatter, bool bPriority)
+//   {
+//
+//
+//   }
 
 
    void system::add_signal_handler(const ::signal_handler & signalhandler, const ::atom & atomSignal)
@@ -2251,6 +2251,18 @@ namespace acme
 
 
    }
+
+
+   void system::erase_signal_handler(::signal_handler::base * pbase)
+   {
+      
+   }
+
+
+//   void system::erase_signal_handlers(::particle * pparticle)
+//   {
+//      
+//   }
 
 
    void system::node_will_finish_launching()

@@ -485,6 +485,9 @@
 		9A9B9B3128483DC3005CA950 /* text_editor_interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A9B9B2F28483DC3005CA950 /* text_editor_interface.cpp */; };
 		9A9B9B3228483DC3005CA950 /* text_editor_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9B9B3028483DC3005CA950 /* text_editor_interface.h */; };
 		9A9B9B3D284856B5005CA950 /* text_editor_interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A9B9B2F28483DC3005CA950 /* text_editor_interface.cpp */; };
+		9A9DB9802B00D354003DA614 /* device_group.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A9DB97D2B00D353003DA614 /* device_group.cpp */; };
+		9A9DB9812B00D354003DA614 /* device_group.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A9DB97D2B00D353003DA614 /* device_group.cpp */; };
+		9A9DB9822B00D354003DA614 /* device_group.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9DB97F2B00D353003DA614 /* device_group.h */; };
 		9AA3F7D12A946637004283CA /* interaction_graphics_thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AA3F7CF2A946637004283CA /* interaction_graphics_thread.cpp */; };
 		9AA3F7D22A946637004283CA /* interaction_graphics_thread.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AA3F7D02A946637004283CA /* interaction_graphics_thread.h */; };
 		9AAD4727249EC7F600B23B86 /* application.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AAD4726249EC7F600B23B86 /* application.h */; };
@@ -978,6 +981,8 @@
 		9A98A6151771D67E000AE16E /* libaura.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libaura.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A9B9B2F28483DC3005CA950 /* text_editor_interface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = text_editor_interface.cpp; sourceTree = "<group>"; };
 		9A9B9B3028483DC3005CA950 /* text_editor_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = text_editor_interface.h; sourceTree = "<group>"; };
+		9A9DB97D2B00D353003DA614 /* device_group.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = device_group.cpp; sourceTree = "<group>"; };
+		9A9DB97F2B00D353003DA614 /* device_group.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = device_group.h; sourceTree = "<group>"; };
 		9AA3F7CF2A946637004283CA /* interaction_graphics_thread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = interaction_graphics_thread.cpp; sourceTree = "<group>"; };
 		9AA3F7D02A946637004283CA /* interaction_graphics_thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = interaction_graphics_thread.h; sourceTree = "<group>"; };
 		9AAD4726249EC7F600B23B86 /* application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = application.h; sourceTree = "<group>"; };
@@ -1376,10 +1381,12 @@
 			children = (
 				9A85D3832A2FEAD800116726 /* _.h */,
 				9A85D3842A2FEAD800116726 /* _constant.h */,
-				9A75C6A2283D6E6400EC37F2 /* devices.h */,
+				9A9DB97D2B00D353003DA614 /* device_group.cpp */,
+				9A9DB97F2B00D353003DA614 /* device_group.h */,
+				9A75C6A5283D6E6400EC37F2 /* device_listener.cpp */,
 				9A75C6A3283D6E6400EC37F2 /* device_listener.h */,
 				9A75C6A4283D6E6400EC37F2 /* devices.cpp */,
-				9A75C6A5283D6E6400EC37F2 /* device_listener.cpp */,
+				9A75C6A2283D6E6400EC37F2 /* devices.h */,
 			);
 			path = hardware;
 			sourceTree = "<group>";
@@ -1824,6 +1831,7 @@
 				9A750F69282B90B600C4861B /* check_box.h in Headers */,
 				9A92311A27EACF2100B5A78D /* frame.h in Headers */,
 				9A1E1D7122F0AF69004243B8 /* console.h in Headers */,
+				9A9DB9822B00D354003DA614 /* device_group.h in Headers */,
 				9AE6379126700C1A005F3412 /* font_list_item.h in Headers */,
 				9A750F7E282B90B700C4861B /* interaction_scaler.h in Headers */,
 				9AC2CEDE2653455600CC8096 /* display.h in Headers */,
@@ -2304,6 +2312,7 @@
 				9A1FBB7F2872A99D0042849A /* path_simple_optimization.cpp in Sources */,
 				9A201B2F247733DA00A31CBF /* _.cpp in Sources */,
 				9A201B39247733DA00A31CBF /* user.cpp in Sources */,
+				9A9DB9812B00D354003DA614 /* device_group.cpp in Sources */,
 				9A750F50282B8FDF00C4861B /* _shape.cpp in Sources */,
 				9A8FCD942651AFAB00C0D8A1 /* fonts.cpp in Sources */,
 				9A750F55282B906100C4861B /* interaction_array.cpp in Sources */,
@@ -2381,6 +2390,7 @@
 				9A797B6A2A5389CD00261F46 /* placement_log.cpp in Sources */,
 				9A9B9B3128483DC3005CA950 /* text_editor_interface.cpp in Sources */,
 				9A92316E27EAE41000B5A78D /* primitive_impl.cpp in Sources */,
+				9A9DB9802B00D354003DA614 /* device_group.cpp in Sources */,
 				9A92316F27EAE41000B5A78D /* progress.cpp in Sources */,
 				9A92317027EAE41000B5A78D /* range.cpp in Sources */,
 				9A979D9A28C82B1C0013DC54 /* run_application.cpp in Sources */,

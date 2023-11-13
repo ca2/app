@@ -278,7 +278,7 @@ void signal::add_signal_handler(const ::signal_handler& signalhandler)
 }
 
 
-void signal::erase_handler(const ::signal_handler & signalhandler)
+void signal::erase_signal_handler(const ::signal_handler & signalhandler)
 {
 
    synchronous_lock synchronouslock(this->synchronization());
@@ -286,6 +286,35 @@ void signal::erase_handler(const ::signal_handler & signalhandler)
    m_signalhandlercontext.erase_item(signalhandler);
 
 }
+
+
+//void signal::erase_signal_handlers(::particle * pparticle)
+//{
+//
+//   synchronous_lock synchronouslock(this->synchronization());
+//
+//   while(true)
+//   {
+//      
+//      auto p = m_signalhandlercontext.predicate_find(
+//                                                     [pparticle](auto & pair)
+//                                                     {
+//                                                        
+//                                                        return pair.m_element2.m_pbase == pparticle;
+//                                                        
+//                                                     });
+//    if(!p)
+//    {
+//       
+//       break;
+//       
+//    }
+//      
+//      m_signalhandlercontext.erase(p);
+//    
+//   }
+//
+//}
 
 
 void signal::set_modified()

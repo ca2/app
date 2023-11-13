@@ -882,19 +882,19 @@ namespace html
       
       //auto & set = pset->propset();
 
-      if (::is_set(m_pform))
-      {
-
-         auto pformcallback = m_pform->get_form_callback();
-
-         if (::is_set(pformcallback))
-         {
-
-            pformcallback->property_set_replace(str);
-
-         }
-
-      }
+//      if (::is_set(m_pform))
+//      {
+//
+//         auto pformcallback = m_pform->get_form_callback();
+//
+//         if (::is_set(pformcallback))
+//         {
+//
+//            pformcallback->property_set_replace(str);
+//
+//         }
+//
+//      }
       
       property_set_replace(str);
       

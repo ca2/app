@@ -519,9 +519,13 @@ namespace acme
       
       void handle(::topic* ptopic, ::context* pcontext) override;
 
-      virtual void add_handler(::matter * pmatter, bool bPriority = false);
+      //virtual void add_handler(::particle * pmatter, bool bPriority = false);
 
       virtual void add_signal_handler(const ::signal_handler& signalhandler, const ::atom & atomSignal);
+      
+      virtual void erase_signal_handler(::signal_handler::base * pbase);
+
+      //virtual void erase_signal_handlers(::particle * ppparticle);
 
       virtual void node_will_finish_launching();
 

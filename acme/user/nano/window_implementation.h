@@ -42,6 +42,7 @@ public:
 
    virtual void on_create();
 
+   virtual void nano_window_on_destroy();
 
    virtual void _console_create();
 

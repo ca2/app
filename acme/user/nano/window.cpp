@@ -138,6 +138,15 @@ void nano_window::on_create()
 
 void nano_window::destroy()
 {
+    
+   if (m_pimplementation)
+   {
+
+      m_pimplementation->destroy();
+      
+      m_pimplementation.release();
+
+   }
    
    if(m_functionClose)
    {
@@ -151,14 +160,11 @@ void nano_window::destroy()
 
       m_psequencer->on_sequence();
 
-   }
-
-   if (m_pimplementation)
-   {
-
-      m_pimplementation->destroy();
+      m_psequencer.release();
 
    }
+   
+   system()->m_pnano->m_nanowindowa.erase(this);
    
 }
 
@@ -167,6 +173,14 @@ void nano_window::display()
 {
 
    m_pimplementation->display();
+
+}
+
+
+void nano_window::hide()
+{
+
+   m_pimplementation->hide();
 
 }
 

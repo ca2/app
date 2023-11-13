@@ -3712,10 +3712,10 @@ namespace user
    }
 
 
-   void primitive::add_child_handler(const ::signal_handler& signalhandler, const ::atom & idChild, bool bPriority)
+   void primitive::add_child_handler(::particle * pparticle, const ::atom & atomChild, bool bPriority)
    {
 
-      auto pchild = get_primitive_by_id(idChild);
+      auto pchild = get_primitive_by_id(atomChild);
 
       if (::is_null(pchild))
       {
@@ -3725,7 +3725,7 @@ namespace user
       }
 
       //auto estatus = 
-      pchild->m_puserprimitive->add_signal_handler(signalhandler, bPriority);
+      pchild->m_puserprimitive->add_handler(pparticle, bPriority);
 
       //if (!estatus)
       //{

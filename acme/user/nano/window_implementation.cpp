@@ -74,6 +74,14 @@ void nano_window_implementation::nano_window_on_create()
 }
 
 
+void nano_window_implementation::nano_window_on_destroy()
+{
+   
+   system()->erase_signal_handler(this);
+   
+}
+
+
 void nano_window_implementation::on_create()
 {
 

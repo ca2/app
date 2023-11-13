@@ -2271,7 +2271,7 @@ return false;
    pointer< ::sequencer < ::conversation > > node::create_message_box_sequencer(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
    {
 
-      auto psequencer = __new(::sequencer < ::conversation >());
+      auto psequencer = __create_new< ::sequencer < ::conversation > >();
 
       auto pmessagebox = create_new_message_box_conversation();
 
@@ -2289,7 +2289,7 @@ return false;
    pointer< ::sequencer < ::conversation > > node::create_message_sequencer(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
    {
 
-      auto psequencer = __new(::sequencer < ::conversation >());
+      auto psequencer = __create_new < ::sequencer < ::conversation > >();
 
       auto pmessage = create_new_message_conversation();
 

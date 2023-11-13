@@ -35,7 +35,7 @@ namespace userex
          
       }
 
-      m_timeDelay = fetch_property("message_box_timeout")->time();
+      //m_timeDelay = fetch_property("message_box_timeout")->time();
       
       wait_message_dialog::on_show(pszMatter);
       
@@ -44,7 +44,7 @@ namespace userex
 
    bool message_box::on_timeout()
    {
-      m_atom = "ok";
+      //m_atom = "ok";
       return wait_message_dialog::on_timeout();
    }
 

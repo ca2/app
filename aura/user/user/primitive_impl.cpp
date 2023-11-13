@@ -187,7 +187,7 @@ namespace user
 
       ::channel::destroy();
 
-      ::source::destroy();
+      //::source::destroy();
 
       ::manager::destroy();
 

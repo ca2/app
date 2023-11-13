@@ -78,6 +78,8 @@ public:
    void create() override;
 
    void display() override;
+    
+   void hide() override;
 
    void message_loop() override;
 

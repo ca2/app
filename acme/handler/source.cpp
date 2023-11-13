@@ -19,29 +19,56 @@ source::~source()
 }
 
 
-void source::add_handler(::matter* pmatter, bool bPriority)
+//void source::add_handler(::particle * pparticle, bool bPriority)
+//{
+//   return add_signal_handler(::signal_handler( {e_use, pparticle}), bPriority);
+//
+//
+//}
+//
+//
+//void source::add_signal_handler(const ::signal_handler& signalhandler, bool bPriority)
+//{
+//
+//   __defer_construct_new(m_psignalhandlera);
+//
+//   if (bPriority)
+//   {
+//
+//      m_psignalhandlera->insert_unique_at(0, signalhandler);
+//
+//   }
+//   else
+//   {
+//
+//      m_psignalhandlera->add_unique(signalhandler);
+//
+//   }
+//
+//}
+
+
+
+void source::add_handler(::particle * pparticle, bool bPriority)
 {
 
-   return add_signal_handler(::signal_handler( {e_use, pmatter}), bPriority);
-
-}
-
-
-void source::add_signal_handler(const ::signal_handler& signalhandler, bool bPriority)
-{
-
-   __defer_construct_new(m_psignalhandlera);
+   if(m_particlea.contains(pparticle))
+   {
+      
+      return;
+      
+   }
 
    if (bPriority)
    {
 
-      m_psignalhandlera->insert_unique_at(0, signalhandler);
+      m_particlea.insert_at(0, pparticle);
 
    }
    else
    {
 
-      m_psignalhandlera->add_unique(signalhandler);
+      m_particlea.add(pparticle);
 
    }
 
@@ -93,16 +120,16 @@ void source::add_signal_handler(const ::signal_handler& signalhandler, bool bPri
 void source::route(::topic * ptopic, ::context * pcontext)
 {
 
-   if (m_psignalhandlera)
+   //if (m_psignalhandlera)
    {
 
-      for (auto & signalhandler : *m_psignalhandlera)
+      for (auto & pparticle : m_particlea)
       {
 
          try
          {
 
-            signalhandler(ptopic, pcontext);
+            pparticle->handle(ptopic, pcontext);
 
          }
          catch (...)

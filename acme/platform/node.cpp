@@ -251,6 +251,14 @@ namespace acme
    }
 
 
+   ::enum_id node::key_command(::user::enum_key ekey, ::user::key_state* pkeystate)
+   {
+
+      return ::id_none;
+
+   }
+
+
    ::pointer < ::particle > node::create_mutex()
    {
 

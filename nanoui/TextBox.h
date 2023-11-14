@@ -128,6 +128,12 @@ namespace nanoui
       bool keyboard_event(::user::enum_key ekey, int scancode, int action, const ::user::e_key& ekeyModifiers, const ::string& strText) override;
       bool keyboard_character_event(unsigned int codepoint) override;
 
+      virtual bool on_command(const ::atom& atom);
+      virtual void edit_select_all();
+      virtual void edit_copy();
+      virtual void edit_cut();
+      virtual void edit_paste();
+
       size_i32 preferred_size(::nano2d::context* pcontext, bool bRecalcTextSize = true) override;
       void draw(::nano2d::context* pcontext) override;
    protected:

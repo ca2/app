@@ -1083,6 +1083,14 @@ namespace acme
    }
 
 
+   ::enum_id application::key_command(::user::enum_key ekey, ::user::key_state * pkeystate)
+   {
+
+      return acmenode()->key_command(ekey, pkeystate);
+
+   }
+
+
    void application::on_before_launching()
    {
 

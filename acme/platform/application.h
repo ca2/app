@@ -159,6 +159,7 @@ namespace acme
 
       virtual int main_loop();
 
+      virtual ::enum_id key_command(::user::enum_key ekey, ::user::key_state * pkeystate);
       
       virtual void on_before_launching();
       virtual void os_native_bergedge_start();

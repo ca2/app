@@ -656,6 +656,13 @@ namespace nanoui
 
    void Widget::add_child(Widget * pwidget)
    {
+
+      if (!pwidget->m_pcontext)
+      {
+
+         pwidget->initialize(this);
+
+      }
    
       insert_child_at(child_count(), pwidget);
       

@@ -2240,4 +2240,14 @@ template < typename ARGUMENT >
 using argument_of = typename argument_of_struct < ARGUMENT >::type;
 
 
+namespace user
+{
+
+   
+   class key_state;
+
+
+} // namespace user
+
+
 

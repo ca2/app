@@ -324,6 +324,10 @@ enum enum_id : ::uptr
    id_item_finished_installing,
    id_application_menu_update,
    id_separator,
+   id_edit_copy,
+   id_edit_cut,
+   id_edit_paste,
+   id_edit_select_all,
 
 };
 

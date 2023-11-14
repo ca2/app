@@ -24,6 +24,7 @@
 #include "trace.h"
 
 
+
 CLASS_DECL_ACME const char * callstack_default_format();
 
 using enum_application_capability_array = ::comparable_array < enum_application_capability >;
@@ -143,6 +144,7 @@ namespace acme
       virtual ::process_identifier_array module_list_file_processes_identifiers(const ::scoped_string & scopedstr);
 
 
+      virtual ::enum_id key_command(::user::enum_key ekey, ::user::key_state* pkeystate);
       //idaPid = pnode->(path, false);
 
 

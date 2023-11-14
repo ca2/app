@@ -463,7 +463,7 @@ namespace nanoui
 
       //}
 
-      auto children = m_children;
+      auto & children = m_children;
 
       for (auto i = iStart; i <= iEnd; i++)
       {

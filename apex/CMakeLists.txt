@@ -108,8 +108,8 @@ list(APPEND apex_source
    #handler/routine.cpp
    handler/signal.cpp
    handler/signal.h
-   handler/source.cpp
-   handler/source.h
+   #handler/source.cpp
+   #handler/source.h
    #include/_.cpp
    #include/_.h
    include/_c.h

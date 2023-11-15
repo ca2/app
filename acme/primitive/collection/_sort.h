@@ -9,6 +9,23 @@ namespace sort
 {
 
 
+   template<typename A, typename B>
+   constexpr bool sort(A & a, B & b)
+   {
+
+      if (b < a)
+      {
+
+         swap(a, b);
+
+         return true;
+
+      }
+
+      return false;
+
+   }
+
    template<class TYPE>
    static iptr NumericCompare(const TYPE * pointA, const TYPE * pointB);
 

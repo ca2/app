@@ -62,7 +62,9 @@ namespace filemanager
 
       if(pimpactdata->m_atom.is_null())
       {
+
          return;
+
       }
       else if (pimpactdata->m_atom == "add_location"
                || pimpactdata->m_atom == "replace_name"
@@ -206,6 +208,7 @@ namespace filemanager
          //::pointer<document>pdocument = ::user::__document(pcreate);
 
          //::pointer<simple_frame_window>puserinteractionTopLevel;
+
          ::pointer<document>pdocument = get_document();
 
          create_impact < impact >(pimpactdata);
@@ -245,7 +248,7 @@ namespace filemanager
             if(bPathIsDir)
             {
 
-               pdocument->filemanager_initialize(true, false);
+               //pdocument->filemanager_initialize(true, false);
 
                pdocument->browse(pathFolder, ::e_source_initialize);
 
@@ -253,9 +256,15 @@ namespace filemanager
             else
             {
 
-               pdocument->filemanager_initialize(true, true);
+               pdocument->browse_initial_path(::e_source_initialize);
 
             }
+            // else
+            // {
+            //
+            //    pdocument->filemanager_initialize(true, true);
+            //
+            // }
 
             pimpact->set_need_layout();
 

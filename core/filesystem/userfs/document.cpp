@@ -90,8 +90,12 @@ namespace userfs
 
       }
 
+      information() << "::userfs::document::browse pitem user path : " << m_pathFolder;
+
       if(m_listingRoot.is_empty())
       {
+
+         information() << "::userfs::document getting root listing";
 
          ::file::listing listing;
 
@@ -102,6 +106,13 @@ namespace userfs
             synchronous_lock synchronouslock(fs_data()->synchronization());
 
             m_listingRoot = listing;
+
+         }
+
+         for(auto & path : m_listingRoot)
+         {
+
+            information() << "::userfs::document root listing : " << path;
 
          }
 

@@ -89,7 +89,7 @@ namespace filemanager
       string get_initial_browse_path(const ::string & pszDefault = nullptr);
 
 
-      virtual void browse(const ::string & pcsz, const ::action_context & action_context);
+      virtual void browse(const ::file::path & path, const ::action_context & action_context);
 
       virtual bool browse(::pointer<::file::item>item, const ::action_context & action_context) override;
 
@@ -143,9 +143,9 @@ namespace filemanager
       void PopImpacts();
       void CreateImpacts();
       void OpenFolder(::file::item * item, const ::action_context & action_context);
-      void filemanager_initialize(bool bMakeVisible, bool bInitialBrowsePath = true);
-      void filemanager_initialize(bool bMakeVisible, const ::file::path & path);
-
+      void browse_initial_path(const ::action_context & action_context);
+      //void filemanager_initialize(bool bMakeVisible, const ::file::path & path);
+      void defer_initialize_filemanager();
 
       bool set_filemanager_data(::filemanager::data * pdata);
 
@@ -154,8 +154,8 @@ namespace filemanager
       
       //virtual ::user::toolbar * get_toolbar(::user::frame * pframe, bool bCreate) override;
 
-      virtual void start_full_browse(::pointer<::file::item>pitem, const ::action_context & action_context);
-      virtual void full_browse(::pointer<::file::item>pitem, const ::action_context & action_context);
+      virtual void __start_full_browse(::pointer<::file::item>pitem, const ::action_context & action_context);
+      virtual void __full_browse(::pointer<::file::item>pitem, const ::action_context & action_context);
 
 
    };

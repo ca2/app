@@ -1037,6 +1037,8 @@ list(APPEND library_source
    user/user/element.h
    user/user/e_window_flag.h
    user/user/item.h
+   user/user/key_state.cpp
+   user/user/key_state.h
    user/user/mouse.cpp
    user/user/mouse.h
    user/user/os_colors.cpp

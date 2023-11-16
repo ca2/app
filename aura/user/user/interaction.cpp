@@ -1697,6 +1697,8 @@ namespace user
 
       m_bNeedLayout = true;
 
+      //information() << "set_need_layout : " << acmenode()->get_callstack();
+
    }
 
 
@@ -15523,7 +15525,9 @@ namespace user
 
       }
 
-      bool bSize = sizeLading != sizeLayout || m_bNeedLayout;
+      //bool bSize = sizeLading != sizeLayout || m_bNeedLayout;
+
+      bool bSize = sizeLading != sizeLayout;
 
       ::string strType = typeid(*this).name();
 

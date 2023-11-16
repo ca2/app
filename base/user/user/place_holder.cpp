@@ -2,6 +2,7 @@
 #include "place_holder.h"
 #include "acme/constant/message.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/primitive/geometry2d/_text_stream.h"
 #include "aura/user/user/interaction_array.h"
 
 
@@ -363,21 +364,30 @@ namespace user
 
             //lock_sketch_to_design lockSketchToDesign(puiChild);
 
-            puiChild->place(rectangle);
+            information() << "rectangle : " << rectangle;
 
-            if (puserinteractionpointeraChild->interaction_count() == 1
-               && !puiChild->is_this_visible())
+            information() << "puiChild->parent_client_rectangle() : " << puiChild->parent_client_rectangle();
+
+            if(rectangle != puiChild->parent_client_rectangle())
             {
 
-               puiChild->display();
+               puiChild->place(rectangle);
+
+               if (puserinteractionpointeraChild->interaction_count() == 1
+                  && !puiChild->is_this_visible())
+               {
+
+                  puiChild->display();
+
+               }
+
+               puiChild->set_reposition();
+
+               puiChild->set_need_layout();
+
+               puiChild->set_need_redraw({rectangle}, pgraphics);
 
             }
-
-            puiChild->set_reposition();
-
-            puiChild->set_need_layout();
-
-            puiChild->set_need_redraw({rectangle}, pgraphics);
 
             synchronouslock.lock();
 

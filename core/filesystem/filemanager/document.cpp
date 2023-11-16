@@ -134,6 +134,8 @@ namespace filemanager
    bool document::browse(::pointer<::file::item>pitem, const ::action_context & context)
    {
 
+      defer_initialize_filemanager();
+
       if (m_pfsset->m_spafsdata.is_empty())
       {
 
@@ -452,10 +454,8 @@ namespace filemanager
    //}
 
 
-   void document::browse(const ::string & pszPath, const ::action_context & context)
+   void document::browse(const ::file::path & pathUser, const ::action_context & context)
    {
-
-      ::file::path pathUser = pszPath;
 
       auto pcontext = get_context();
 
@@ -638,6 +638,8 @@ namespace filemanager
    bool document::on_new_document()
    {
 
+      information() << "filemanager::document::on_new_document";
+
       if (!::user::document::on_new_document())
       {
 
@@ -647,12 +649,23 @@ namespace filemanager
 
       defer_check_manager_id();
 
-      if (!m_bInitialized)
-      {
+      //if (!m_bInitialized)
+      //{
 
-         filemanager_initialize(true, true);
+        // information() << "filemanager::document::on_new_document not yet initialized";
 
-      }
+      browse_initial_path(e_source_initialize);
+
+      //if (bMakeVisible)
+      //{
+
+        // auto ptopic = create_topic(id_pop);
+
+         //update_all_impacts(ptopic);
+
+      //}
+
+      //}
 
       return true;
 
@@ -663,24 +676,26 @@ namespace filemanager
    bool document::on_open_document(const ::payload & payloadFile)
    {
 
+      information() << "filemanager::document::on_open_document";
+
       auto path = payloadFile.as_file_path();
 
       path.trim();
 
-      defer_check_manager_id();
+      //defer_check_manager_id();
 
-      if (!m_bInitialized)
-      {
+      //if (!m_bInitialized)
+      //{
 
-         filemanager_initialize(true, false);
+        // filemanager_initialize();
 
-      }
+      //}
 
       string strManagerId;
 
       auto pcontext = m_pcontext->m_pauracontext;
 
-      m_path = filemanager_project_entry(strManagerId, payloadFile.as_string(), pcontext);
+      m_path = filemanager_project_entry(strManagerId, path, pcontext);
 
       defer_check_manager_id(strManagerId);
 
@@ -700,7 +715,7 @@ namespace filemanager
 //   }
 
 
-   void document::start_full_browse(::pointer<::file::item>pitem, const ::action_context & context)
+   void document::__start_full_browse(::pointer<::file::item>pitem, const ::action_context & context)
    {
 
       if (!fs_data()->is_zero_latency(pitem->final_path()))
@@ -719,14 +734,14 @@ namespace filemanager
       fork([this, pitem, context]()
       {
 
-         full_browse(pitem, context);
+         __full_browse(pitem, context);
 
       });
 
    }
 
 
-   void document::full_browse(::pointer<::file::item>pitem, const ::action_context & context)
+   void document::__full_browse(::pointer<::file::item>pitem, const ::action_context & context)
    {
 
       __task_guard(m_bFullBrowse);
@@ -754,7 +769,9 @@ namespace filemanager
    void document::OnFileManagerBrowse(const ::action_context & context)
    {
 
-      start_full_browse(m_pitem, context);
+      information() << "filemanager::document::OnFileManagerBrowse";
+
+      __start_full_browse(m_pitem, context);
 
       if (context.is_user_source())
       {
@@ -1106,8 +1123,17 @@ namespace filemanager
    }
 
 
-   void document::filemanager_initialize(bool bMakeVisible, const ::file::path & path)
+   void document::defer_initialize_filemanager()
    {
+
+      if(m_bInitialized)
+      {
+
+         return;
+
+      }
+
+      information() << "filemanager::document::filemanager_initialize";
 
       InitializeFileManager("filemanager");
 
@@ -1117,41 +1143,74 @@ namespace filemanager
 
       ptopic->payload(id_document) = this;
 
-      browse(path, ::e_source_database);
-
       update_all_impacts(ptopic);
 
-      if (bMakeVisible)
-      {
-
-         ::topic topic(id_pop);
-
-         update_all_impacts(&topic);
-
-      }
+      // browse(path, ::e_source_database);
+      //
+      // update_all_impacts(ptopic);
+      //
+      // if (bMakeVisible)
+      // {
+      //
+      //    ::topic topic(id_pop);
+      //
+      //    update_all_impacts(&topic);
+      //
+      // }
 
    }
 
 
-   void document::filemanager_initialize(bool bMakeVisible, bool bInitialBrowsePath)
+//    void document::filemanager_initialize(bool bMakeVisible, const ::file::path & path)
+//    {
+//
+//       filemanager_initialize();
+//
+//       //InitializeFileManager("filemanager");
+//
+//       //CreateImpacts();
+//
+//       //auto ptopic = create_topic(id_create_bars);
+//
+//       //ptopic->payload(id_document) = this;
+//
+//       browse(path, ::e_source_database);
+//
+// //      update_all_impacts(ptopic);
+//
+//       // if (bMakeVisible)
+//       // {
+//       //
+//       //    auto ptopic = create_topic(id_pop);
+//       //
+//       //    update_all_impacts(ptopic);
+//       //
+//       // }
+//
+//    }
+
+
+   void document::browse_initial_path(const ::action_context & action_context)
    {
 
-      CreateImpacts();
+      //CreateImpacts();
 
-      auto ptopic = create_topic(id_create_bars);
+      //auto ptopic = create_topic(id_create_bars);
 
-      ptopic->payload(id_document) = this;
+      //ptopic->payload(id_document) = this;
 
-      if (bInitialBrowsePath)
-      {
+      //::file::path pathInitialBrowse;
 
-         string str;
+      //if (bInitialBrowsePath)
+      //{
+
+         //string str;
 
          auto pfilemanagerdata = filemanager_data();
 
-         auto path = pfilemanagerdata->get_last_browse_path(this, pfilemanagerdata->m_pathDefault);
+         auto pathInitialBrowse = pfilemanagerdata->get_last_browse_path(this, pfilemanagerdata->m_pathDefault);
 
-         browse(path, ::e_source_initialize);
+         //browse(path, ::e_source_initialize);
 
 //         if (get_file.datastream()->get({true, "last_browse_folder"}, str))
 //         {
@@ -1208,7 +1267,9 @@ namespace filemanager
 
          //}
 
-      }
+      //}
+
+      browse(pathInitialBrowse, action_context);
 
       //ptopic->m_atom = ;
 

@@ -1378,37 +1378,6 @@ ret:
    void session::init()
    {
 
-      ::e_status estatus = ::success;
-
-      ::pointer<::fs::set>pfsset = m_pfsdata;
-
-      if (m_bIfs)
-      {
-
-         if (m_pfsdata.is_null())
-         {
-
-            __construct(m_pfsdata, __new(::fs::set));
-
-         }
-
-         pfsset = m_pfsdata;
-
-         if (pfsset.is_null())
-         {
-
-            pfsset->m_spafsdata.add_unique(m_pifs);
-
-            pfsset->m_spafsdata.add_unique(m_premotefs);
-
-         }
-
-         ::file::listing patha;
-
-         m_pfsdata->root_ones(patha);
-
-      }
-
       //return estatus;
 
    }

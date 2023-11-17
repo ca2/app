@@ -2,10 +2,12 @@
 #include "list_data.h"
 #include "list_item_array.h"
 #include "list_item.h"
+#include "data.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/primitive/data/listener.h"
 #include "acme/filesystem/filesystem/dir_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
+#include "apex/filesystem/fs/set.h"
 #include "aura/user/user/shell.h"
 #include "aura/user/user/interaction_array.h"
 #include "base/user/user/user.h"
@@ -144,7 +146,9 @@ namespace userfs
       if(psubitem->m_iSubItem == m_iNameSubItemText)
       {
 
-         if (psubitem->m_pitem->m_iItem < 0 || psubitem->m_pitem->m_iItem >= m_pitema->get_size())
+         auto c = m_pitema->get_size();
+
+         if (psubitem->m_pitem->m_iItem < 0 || psubitem->m_pitem->m_iItem >= c)
          {
 
             psubitem->m_bOk = false;
@@ -285,8 +289,110 @@ namespace userfs
    }
 
 
-   void list_data::update()
+   void list_data::update(::userfs::data * puserfsdata)
    {
+
+      //ASSERT(listingUser.get_count() == listingFinal.get_count());
+
+      //for (index i = 0; i < listingUser.get_count(); i++)
+      //{
+
+      //   ::file::path & pathFinal = listingFinal[i];
+
+      //   ::file::path & pathUser = listingUser[i];
+
+      //   if (pathFinal.m_iDir == 0)
+      //   {
+
+      //      pathUser.m_iDir = 0;
+
+      //      continue;
+
+      //   }
+
+      //   if (pathFinal.m_iDir < 0)
+      //   {
+
+      //      auto pathFolderCandidate = pathFinal;
+
+      //      pathFolderCandidate.flags() += ::file::e_flag_resolve_alias;
+
+      //      pathFinal.m_iDir = dir()->is(pathFolderCandidate) ? 1 : 0;
+
+      //   }
+
+      //   pathUser.m_iDir = pathFinal.m_iDir;
+
+      //   if (pathFinal.m_iDir == 0)
+      //   {
+
+      //      continue;
+
+      //   }
+
+      //   auto pathFolderUser = listingUser[i];
+
+      //   auto pathFolderFinal = listingFinal[i];
+
+      //   listingFolderUser.defer_add(pathFolderUser);
+
+      //   listingFolderFinal.defer_add(pathFolderFinal);
+
+      //   auto plistitem = __create_new<list_item>();
+
+      //   plistitem->m_pathFinal = pathFinal;
+
+      //   plistitem->m_pathUserl = pathFinal;
+
+      //   m_puserfslistdata->m_pitema->add_item();
+
+      //}
+
+      __construct_new(m_pitema);
+
+      auto & listingUser = puserfsdata->m_listingUser2;
+
+      auto & listingFinal = puserfsdata->m_listingFinal2;
+
+      for (index i = 0; i < listingUser.get_count(); i++)
+      {
+
+         ::file::path & pathFinal = listingFinal[i];
+
+         ::file::path & pathUser = listingUser[i];
+
+         auto plistitem = __create_new<list_item>();
+
+         plistitem->final_path_reference() = pathFinal;
+
+         plistitem->user_path_reference() = pathUser;
+
+         plistitem->m_strName = pathUser.name();
+
+         if (puserfsdata->m_pfsset->is_dir(pathFinal))
+         {
+
+            plistitem->m_flags += ::file::e_flag_folder;
+
+         }
+
+         m_pitema->add_item(plistitem);
+
+      }
+
+      m_pitema->predicate_sort([](auto pitem1, auto pitem2)
+         {
+
+            if (is_different(pitem1->IsFolder(), pitem2->IsFolder()))
+            {
+
+               return pitem1->IsFolder();
+
+            }
+
+            return (bool) ( pitem1->m_strName.case_insensitive_order(pitem2->m_strName) < 0);
+
+               });
 
    }
 

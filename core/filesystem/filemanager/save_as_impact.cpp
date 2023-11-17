@@ -84,8 +84,8 @@ namespace filemanager
                         SetDataInterface(&m_datainterface);
                         AddClient(&m_datainterface);
                         string str;
-                        str.formatf("file_list(%d,%d)", filemanager_data()->m_iTemplate, filemanager_data()->m_iDocument);
-                        if(filemanager_data()->m_bTransparentBackground)
+                        str.formatf("file_list(%d,%d)", get_document()->m_iTemplate, get_document()->m_iDocument);
+                        if(get_document()->m_bTransparentBackground)
                         {
                         ::user::list::m_etranslucency = ::user::list::e_translucency_present;
                         }

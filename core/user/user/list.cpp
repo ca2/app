@@ -2671,7 +2671,7 @@ namespace user
    }
 
 
-   void list::index_item_rectangle(::user::draw_list_item * pdrawitem)
+   void list::index_item_rectangle(::user::draw_mesh_item * pdrawitem)
    {
 
       if (pdrawitem->m_iDisplayItem < 0)
@@ -6854,7 +6854,7 @@ namespace user
 
    //void list::on_change_context_offset(::draw2d::graphics_pointer & pgraphics)
    //void list::on_change_context_offset()
-   void list::on_context_offset_layout(::draw2d::graphics_pointer & pgraphics)
+   void list::on_change_context_offset(::user::enum_layout elayout)
    {
 
       synchronous_lock synchronouslock(this->synchronization());
@@ -6927,7 +6927,7 @@ namespace user
 
       update_hover(pmouse, ::user::e_zorder_any);
 
-      ::user::scroll_base::on_context_offset_layout(pgraphics);
+      ::user::scroll_base::on_change_context_offset(elayout);
 
       set_need_redraw();
 

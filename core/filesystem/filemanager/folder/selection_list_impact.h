@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "impact_base.h"
+#include "core/filesystem/filemanager/impact_base.h"
 
 
 namespace filemanager
@@ -16,7 +16,7 @@ namespace filemanager
 
       ::pointer < ::user::tree >          m_pusertree;
       ::pointer < tree_data >             m_ptreedata;
-      ::pointer < folder_list_impact >    m_plistview;
+      ::pointer < folder::list_impact >    m_plistview;
       ::pointer < data >                  m_pdata;
 
 

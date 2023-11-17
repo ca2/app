@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "operation_child_frame.h"
+#include "child_frame.h"
 
 
 namespace filemanager

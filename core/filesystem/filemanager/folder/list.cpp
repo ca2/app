@@ -1,7 +1,6 @@
 #include "framework.h"
-#include "data.h"
-#include "document.h"
-#include "folder_list.h"
+////#include "data.h"
+#include "list.h"
 #include "acme/constant/message.h"
 #include "acme/filesystem/file/item.h"
 #include "acme/filesystem/filesystem/dir_context.h"
@@ -9,6 +8,8 @@
 #include "apex/platform/context.h"
 #include "aura/graphics/image/list.h"
 #include "aura/message/user.h"
+#include "core/filesystem/filemanager/data.h"
+#include "core/filesystem/filemanager/document.h"
 #include "core/user/user/list_column.h"
 #include "core/user/user/list_column_array.h"
 #include "core/user/user/mesh_item.h"
@@ -383,25 +384,25 @@ namespace filemanager
 
          ::color32_t color32 = ::color::transparent;
 
-         if (filemanager_document()->m_emode == ::userfs::e_mode_saving)
+         if (filemanager_data()->m_emode == ::userfs::e_mode_saving)
          {
 
             color32 = argb(190, 255, 180, 90);
 
          }
-         else if (filemanager_document()->m_emode == ::userfs::e_mode_import)
+         else if (filemanager_data()->m_emode == ::userfs::e_mode_import)
          {
 
             color32 = argb(190, 90, 177, 255);
 
          }
-         else if (filemanager_document()->m_emode == ::userfs::e_mode_export)
+         else if (filemanager_data()->m_emode == ::userfs::e_mode_export)
          {
 
             color32 = argb(190, 255, 255, 177);
 
          }
-         else if (filemanager_document()->m_emode == ::userfs::e_mode_import)
+         else if (filemanager_data()->m_emode == ::userfs::e_mode_import)
          {
 
             color32 = argb(190, 180, 255, 90);

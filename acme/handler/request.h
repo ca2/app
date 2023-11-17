@@ -55,6 +55,7 @@ public:
    bool                             m_bRunEmbedded;
    bool                             m_bRunAutomated;
    i32                              m_nCmdShow;
+   ::interlocked_count              m_countStack;
 
    // not ok for file_new
    //::payload                        m_payloadFile;
@@ -74,7 +75,8 @@ public:
    manual_reset_event               m_eventReady;
    ::request *                      m_prequest;
    string                           m_strCommandLine;
-
+   ::pointer < ::data::data >       m_pdata;
+   ::procedure_array                m_procedureaOnFinishRequest;
 
 
    request();
@@ -114,6 +116,7 @@ public:
    
    virtual void initialize_create(arguments arguments);
    virtual void initialize_create(string strAppId, ::payload payloadFile, const ::payload& varOptions = __visible(true), ::user::element * puiParent = nullptr, e_window_flag eflag = e_window_flag_none, ::atom = ::atom());
+   virtual void initialize_create(::data::data * pdata, const ::payload & varOptions = __visible(true), ::user::element * puiParent = nullptr, e_window_flag eflag = e_window_flag_none, ::atom = ::atom());
 
 
    void create_common_construct(const ::payload & varOptions, ::user::element * puiParent);

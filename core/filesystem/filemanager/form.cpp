@@ -49,65 +49,65 @@ namespace filemanager
             ::user::form_impact::get_document()->update_all_impacts(ptopic);
 
          }
-         else if(ptopic->user_interaction()->m_atom == "submit")
-         {
+         //else if(ptopic->user_interaction()->m_atom == "submit")
+         //{
 
-            if(m_strPath == "filemanager_add_location_lfs.xhtml")
-            {
-               
-               string_array stra;
+         //   if(m_strPath == "filemanager_add_location_lfs.xhtml")
+         //   {
+         //      
+         //      string_array stra;
 
-               auto papp = ::user::form_impact::get_app();
+         //      auto papp = ::user::form_impact::get_app();
 
-               papp->datastream()->get(filemanager_data()->m_strDataKeyStatic,stra);
+         //      papp->datastream()->get(get_document()->m_strDataKeyStatic,stra);
 
-               auto pinteraction = get_child_by_name("lfs");
+         //      auto pinteraction = get_child_by_name("lfs");
 
-               string str;
+         //      string str;
 
-               pinteraction->_001GetText(str);
+         //      pinteraction->_001GetText(str);
 
-               stra.add_unique(str);
-               papp->datastream()->set(filemanager_data()->m_strDataKeyStatic,stra);
+         //      stra.add_unique(str);
+         //      papp->datastream()->set(get_document()->m_strDataKeyStatic,stra);
 
-            }
-            else if(m_strPath == "filemanager_add_location_ftp.xhtml")
-            {
-            }
-            else if(m_atomCreator == "replace_name")
-            {
+         //   }
+         //   else if(m_strPath == "filemanager_add_location_ftp.xhtml")
+         //   {
+         //   }
+         //   else if(m_atomCreator == "replace_name")
+         //   {
 
-               auto ptopic = create_topic(id_replace_name);
+         //      auto ptopic = create_topic(id_replace_name);
 
-               auto pinteraction = get_child_by_name("find");
+         //      auto pinteraction = get_child_by_name("find");
 
-               pinteraction->_001GetText(ptopic->payload(id_find).string_reference());
+         //      pinteraction->_001GetText(ptopic->payload(id_find).string_reference());
 
-               pinteraction = get_child_by_name("replace");
+         //      pinteraction = get_child_by_name("replace");
 
-               pinteraction->_001GetText(ptopic->payload(id_replace).string_reference());
+         //      pinteraction->_001GetText(ptopic->payload(id_replace).string_reference());
 
-               auto pdocument =  filemanager_document();
+         //      auto pdocument =  filemanager_document();
 
-               pdocument->update_all_impacts(ptopic);
+         //      pdocument->update_all_impacts(ptopic);
 
-            }
-            else if (m_atomCreator == "new_folder")
-            {
-               
-               auto ptopic = create_topic(id_new_folder);
+         //   }
+         //   else if (m_atomCreator == "new_folder")
+         //   {
+         //      
+         //      auto ptopic = create_topic(id_new_folder);
 
-               auto pinteraction = get_child_by_name("name");
+         //      auto pinteraction = get_child_by_name("name");
 
-               pinteraction->_001GetText(__reference(ptopic->payload(id_text)));
+         //      pinteraction->_001GetText(__reference(ptopic->payload(id_text)));
 
-               auto pdocument = filemanager_document();
+         //      auto pdocument = filemanager_document();
 
-               pdocument->update_all_impacts(ptopic);
+         //      pdocument->update_all_impacts(ptopic);
 
-            }
+         //   }
 
-         }
+         //}
 
       }
 

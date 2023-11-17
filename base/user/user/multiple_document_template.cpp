@@ -6,6 +6,7 @@
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
 #include "acme/handler/request.h"
+#include "acme/platform/scoped_restore.h"
 #include "base/platform/application.h"
 
 
@@ -92,6 +93,38 @@ namespace user
 
    void multiple_document_template::on_request(::request * prequest)
    {
+
+      prequest->m_countStack++;
+
+      at_end_of_scope
+      {
+
+         prequest->m_countStack--;
+
+      if (prequest->m_countStack <= 0)
+      {
+
+         for (auto & procedure : prequest->m_procedureaOnFinishRequest)
+         {
+
+            try
+            {
+
+               procedure();
+
+            }
+            catch (...)
+            {
+
+
+            }
+
+         }
+
+         prequest->m_procedureaOnFinishRequest.clear();
+      };
+
+      };
 
       prequest->m_estatus = error_failed;
 

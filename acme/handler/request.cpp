@@ -5,6 +5,7 @@
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/platform/application.h"
+#include "acme/primitive/data/data.h"
 
 
 request::request()
@@ -105,6 +106,43 @@ void request::initialize_create(string strAppId, ::payload payloadFile, const ::
    //}
    
    m_payloadFile = payloadFile;
+
+   m_puserelementParent = puiParent;
+
+   ///return estatus;
+
+}
+
+
+void request::initialize_create(::data::data * pdata, const ::payload & varOptions, ::user::element * puiParent, e_window_flag ewindowflag, ::atom atom)
+{
+
+   m_ewindowflag = ewindowflag;
+
+   m_atom = atom;
+
+   create_common_construct(varOptions, puiParent);
+
+   //if (strAppId.has_char())
+   //{
+
+   //   m_strAppId = strAppId;
+
+   //}
+
+   //auto estatus = 
+   finish_initialization();
+
+   //if (!estatus)
+   //{
+   //   
+   //   return estatus;
+
+   //}
+
+   //m_payloadFile = payloadFile;
+
+   m_pdata = pdata;
 
    m_puserelementParent = puiParent;
 

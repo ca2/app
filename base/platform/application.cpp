@@ -49,6 +49,16 @@ namespace base
    }
 
 
+   ::pointer < ::data::data > application::create_default_new_document_data()
+   {
+
+      auto pdataNewDocument = __create_new < ::data::data >();
+
+      return pdataNewDocument;
+
+   }
+
+
    application::~application()
    {
 

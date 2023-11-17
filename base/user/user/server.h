@@ -18,6 +18,7 @@ namespace user
       server();
       ~server() override;
 
+      virtual ::user::document * open_data(::data::data * pdata, bool bMakeVisible = true, ::user::interaction * puiParent = nullptr, e_window_flag eflag = e_window_flag(), ::atom atom = ::atom());
 
       virtual ::user::document* open_new_document(::acme::application * pappOnBehalfOf, bool bMakeVisible = true, ::user::interaction* puiParent = nullptr, e_window_flag eflag = e_window_flag(), ::atom atom = ::atom());
 
@@ -25,7 +26,7 @@ namespace user
 
       virtual ::user::document* open_document_file(::acme::application * pappOnBehalfOf, ::payload payloadFile, bool bMakeVisible = true, ::user::interaction* puiParent = nullptr, e_window_flag eflag = e_window_flag(), ::atom atom = ::atom());
 
-      virtual ::user::document* create_subdocument(::user::impact_data* pimpactdata);
+      virtual ::user::document* create_subdocument(::user::impact_data* pimpactdata, ::data::data * pdata);
 
 
    };

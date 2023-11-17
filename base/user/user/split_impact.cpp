@@ -15,6 +15,9 @@ namespace user
 
       m_flagNonClient -= e_non_client_background;
 
+
+      m_bAutoCreate = true;
+
    }
 
 
@@ -56,10 +59,15 @@ namespace user
 
       pcreate->previous();
 
-      if (!(m_ewindowflag & e_window_flag_window_created))
+      if (m_bAutoCreate)
       {
 
-         create_split_impact();
+         if (!(m_ewindowflag & e_window_flag_window_created))
+         {
+
+            create_split_impact();
+
+         }
 
       }
 

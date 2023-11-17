@@ -1002,6 +1002,30 @@ namespace user
 
          m_pgraphicsthread = pgraphicsthread;
 
+         auto pusersystem = m_puserinteraction->m_pusersystem;
+
+         if (pusersystem)
+         {
+
+            auto prequest = pusersystem->m_prequest;
+
+            if (prequest)
+            {
+
+               pgraphicsthread->m_eventReady.ResetEvent();
+
+               prequest->m_procedureaOnFinishRequest.add(
+                  [pgraphicsthread]()
+                  {
+
+                     pgraphicsthread->m_eventReady.SetEvent();
+
+                  });
+
+            }
+
+         }
+
          m_pgraphicsthread->initialize_graphics_thread(this);
 
          m_puserinteraction->add_task(m_pgraphicsthread);

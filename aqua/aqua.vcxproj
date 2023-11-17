@@ -151,7 +151,6 @@
     <ClCompile Include="platform\session.cpp" />
     <ClCompile Include="platform\sha256.cpp" />
     <ClCompile Include="platform\system.cpp" />
-    <ClCompile Include="user\controller.cpp" />
     <ClCompile Include="xml\data.cpp" />
     <ClCompile Include="xml\disp_option.cpp" />
     <ClCompile Include="xml\document.cpp" />

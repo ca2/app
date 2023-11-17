@@ -12,6 +12,7 @@
 #include "aura/graphics/image/drawing.h"
 #include "aura/user/user/primitive_impl.h"
 #include "aura/user/user/scroll_state.h"
+#include "aura/user/user/style.h"
 #include "base/user/user/impact.h"
 #include "base/user/user/document.h"
 
@@ -70,7 +71,9 @@ namespace user
 
       __construct_new(m_pitemptraSelected);
 
-      m_bHoverStart = false;
+      m_bHover = false;
+      m_iHoverAlphaInit = 0;
+      m_iLeaveAlphaInit = 0;
 
       m_flagNonClient += ::user::interaction::e_non_client_hover_rect;
 
@@ -82,7 +85,10 @@ namespace user
       m_dItemHeight = 0.;
       m_iImageExpand = -1;
       m_iImageCollapse = -1;
-      m_uchHoverAlphaInit = 0;
+      m_iImageExpandDark = -1;
+      m_iImageCollapseDark = -1;
+      m_iHoverAlphaInit = 0;
+      m_iHoverAlpha = 0;
       m_ealignText = e_align_left_center;
       m_edrawtext = e_draw_text_none;
       m_evOpen.m_eflagElement += e_flag_alertable_wait;
@@ -150,6 +156,7 @@ namespace user
          {
 
             _001SetExpandImage("matter://list/expand.png");
+            _001SetExpandImageDark("matter://list/expand_dark.png");
 
             task_set_name(::type(this).name() + "::Expand");
 
@@ -182,6 +189,7 @@ namespace user
          {
 
             _001SetCollapseImage("matter://list/collapse.png");
+            _001SetCollapseImageDark("matter://list/collapse_dark.png");
 
             task_set_name(::type(this).name() + "::Open");
 
@@ -433,6 +441,8 @@ namespace user
 
       }
 
+      auto pstyle = ptree->get_style(data.m_pdc);
+
       ::pointer<::image_list>pimagelistTree = get_image_list();
 
       bool bSelected = ptree->is_selected(pitem.m_p);
@@ -441,8 +451,43 @@ namespace user
 
       data.m_pdc->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      if (m_uchHoverAlpha > 0)
+      double dTime = 0.3;
+
+      if (m_bHover)
       {
+
+         auto iAlpha = (::i32)(m_iHoverAlphaInit + m_timeHoverStart.elapsed().floating_second() * 255.f/ dTime);
+
+         m_iHoverAlpha = constrained(iAlpha, 0, 255);
+
+         if (m_iHoverAlpha >= 255)
+         {
+
+            erase_graphical_output_purpose(this);
+
+         }
+
+
+      }
+      else
+      {
+
+         auto iAlpha = (::i32)(m_iLeaveAlphaInit - m_timeLeaveStart.elapsed().floating_second() * 255.f/dTime);
+
+         m_iHoverAlpha = constrained(iAlpha, 0, 255);
+
+         if (m_iHoverAlpha <= 0)
+         {
+
+            erase_graphical_output_purpose(this);
+
+         }
+
+      }
+
+      if (m_iHoverAlpha > 0)
+      {
+
 
          if (ptree != nullptr && pimagelistTree.is_set() && data.m_pitem->m_dwState & ::data::e_tree_item_state_expandable)
          {
@@ -454,17 +499,38 @@ namespace user
             if (data.m_pitem->m_dwState & ::data::e_tree_item_state_expanded)
             {
 
-               iImage = (i32)ptree->m_iImageCollapse;
+               if (pstyle->m_bDarkMode)
+               {
+
+                  iImage = (i32)ptree->m_iImageCollapseDark;
+
+               }
+               else
+               {
+
+                  iImage = (i32)ptree->m_iImageCollapse;
+               }
 
             }
             else
             {
 
-               iImage = (i32)ptree->m_iImageExpand;
+               if (pstyle->m_bDarkMode)
+               {
+
+                  iImage = (i32)ptree->m_iImageExpandDark;
+
+               }
+               else
+               {
+
+                  iImage = (i32)ptree->m_iImageExpand;
+
+               }
 
             }
 
-            pimagelistTree->draw(data.m_pdc, iImage, rectangle.top_left(), 0, m_uchHoverAlpha);
+            pimagelistTree->draw(data.m_pdc, iImage, rectangle.top_left(), 0, m_iHoverAlpha);
 
          }
 
@@ -619,12 +685,20 @@ namespace user
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      //if (!m_bTrackMouseLeave)
+      if (!m_bHover)
       {
 
-         track_mouse_leave();
+         m_bHover = true;
+
+         m_iHoverAlphaInit = m_iHoverAlpha;
+
+         m_timeHoverStart.Now();
+
+         add_graphical_output_purpose(this, ::graphics::e_output_purpose_fps);
 
       }
+
+      track_mouse_leave();
 
       auto point = pmouse->m_pointHost;
 
@@ -640,7 +714,10 @@ namespace user
    void tree::on_message_mouse_leave(::message::message * pmessage)
    {
       m_pitemHover = nullptr;
-      set_need_redraw();
+      m_timeLeaveStart.Now();
+      m_iLeaveAlphaInit = m_iHoverAlpha;
+      add_graphical_output_purpose(this, ::graphics::e_output_purpose_fps);
+      m_bHover = false;
       pmessage->m_bRet = true;
    }
 
@@ -709,7 +786,7 @@ namespace user
 
       m_uiLButtonUpFlags = (::u32)pmouse->m_ebuttonstate;
 
-      m_pointLButtonUp = pmouse->m_pointAbsolute;
+      m_pointLButtonUp = pmouse->m_pointHost;
 
       perform_click();
 
@@ -1261,12 +1338,15 @@ namespace user
    }
 
 
-   void tree::on_context_offset_layout(::draw2d::graphics_pointer & pgraphics)
+   //void tree::on_context_offset_layout(::draw2d::graphics_pointer & pgraphics)
+   void tree::on_change_context_offset(::user::enum_layout elayout)
    {
 
       m_pitemFirstVisible = CalcFirstVisibleItem(m_iFirstVisibleItemProperIndex);
 
-      ::user::scroll_base::on_context_offset_layout(pgraphics);
+      //::user::scroll_base::on_context_offset_layout(pgraphics);
+
+      ::user::scroll_base::on_change_context_offset(elayout);
 
       //      auto psession = get_session();
       //
@@ -1440,6 +1520,22 @@ namespace user
    }
 
 
+   void tree::_001SetExpandImageDark(const ::string & pszMatter)
+   {
+
+      m_iImageExpandDark = m_pimagelist->add(image_payload(this, pszMatter));
+
+   }
+
+
+   void tree::_001SetCollapseImageDark(const ::string & pszMatter)
+   {
+
+      m_iImageCollapseDark = m_pimagelist->add(image_payload(this, pszMatter));
+
+   }
+
+
    ::count tree::_001GetVisibleItemCount()
    {
 
@@ -1454,7 +1550,7 @@ namespace user
 
       rectangle = this->rectangle();
 
-      return (::count)(rectangle.height() / _001GetItemHeight() - 1);
+      return (::count)(rectangle.height() / _001GetItemHeight() + 1);
 
    }
 
@@ -1554,14 +1650,14 @@ namespace user
 
          pitem = pitemNext;
 
+         dOffset-= 1.0;
+
          if (dOffset <= 0.)
          {
 
             return pitem;
 
          }
-
-         dOffset-= 1.0;
 
          iProperIndex++;
 

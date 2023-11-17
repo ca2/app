@@ -479,7 +479,7 @@ namespace core
 
       //estatus = 
 
-      initialize_filemanager_component(this);
+      //initialize_filemanager_component(this);
 
       //if (!estatus)
       //{
@@ -1726,7 +1726,7 @@ namespace core
 
          }
 
-         m_mapimpactsystem[FILEMANAGER_IMPACT] = filemanager(idImpact)->m_pimpactsystem;
+         //m_mapimpactsystem[FILEMANAGER_IMPACT] = filemanager(idImpact)->m_pimpactsystem;
 
          //add_factory_item <::user::color_impact >();
 

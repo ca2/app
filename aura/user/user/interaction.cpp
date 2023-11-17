@@ -381,13 +381,13 @@ namespace user
 
       m_bRedrawOnVisible = false;
 
-      m_bUpdateVisual = false;
+      //m_bUpdateVisual = false;
 
       m_bNeedPerformLayout = false;
 
       m_bNeedLayout = false;
 
-
+      //m_bNeedCheckChildrenLayout = false;
 
       //m_bLockLadingToLayout = false;
 
@@ -685,6 +685,8 @@ namespace user
 
       auto rectangleAfter = layoutstate.raw_rectangle();
 
+      m_bNeedPerformLayout = true;
+
       set_need_layout();
 
       if (get_parent() == nullptr)
@@ -740,6 +742,10 @@ namespace user
 
          m_layout.m_statea[elayout].m_size = size;
 
+         m_bNeedPerformLayout = true;
+
+         set_need_layout();
+
       }
 
    }
@@ -756,6 +762,10 @@ namespace user
       {
 
          m_layout.m_statea[elayout].m_size = size;
+
+         m_bNeedPerformLayout = true;
+
+         set_need_layout();
 
       }
 
@@ -783,6 +793,10 @@ namespace user
          m_layout.m_statea[elayout].set_visual_state_origin(point);
 
          m_layout.m_statea[elayout].m_size = size;
+
+         m_bNeedPerformLayout = true;
+
+         set_need_layout();
 
       }
 
@@ -1693,9 +1707,27 @@ namespace user
    void interaction::set_need_layout()
    {
 
-      m_bNeedPerformLayout = true;
+      //m_bNeedPerformLayout = true;
 
       m_bNeedLayout = true;
+
+      auto pinteraction = this;
+
+      while (true)
+      {
+
+         pinteraction = pinteraction->get_parent();
+
+         if (!pinteraction)
+         {
+
+            break;
+
+         }
+
+         //pinteraction->m_bNeedCheckChildrenLayout = true;
+
+      }
 
       //information() << "set_need_layout : " << acmenode()->get_callstack();
 
@@ -15538,12 +15570,12 @@ namespace user
 
       }
 
-      if (::is_screen_visible(layout().layout().display()))
-      {
+      //if (::is_screen_visible(layout().layout().display()))
+      //{
 
-         m_bNeedLayout = false;
+      //   m_bNeedLayout = false;
 
-      }
+      //}
 
       if (bSize)
       {
@@ -15654,7 +15686,7 @@ namespace user
 
       bool bChildrenZorder = check_children_zorder();
 
-      m_bUpdateVisual |= bDisplay || bZorder || bChildrenZorder || bSize || bActivation;
+      auto bUpdateVisual = bDisplay || bZorder || bChildrenZorder || bSize || bActivation || m_bNeedLayout;
 
       if (!bUpdateBuffer && ::is_set(get_parent()))
       {
@@ -15675,7 +15707,7 @@ namespace user
       bUpdateWindow = bDisplay || bZorder || bPosition;
 
       bool bDeferDisplay =
-         m_bUpdateVisual
+         bUpdateVisual
          || bPosition
          || !is_equivalent(layout().lading().display(), layout().layout().display());
 
@@ -15686,7 +15718,7 @@ namespace user
 
       }
 
-      if (m_bUpdateVisual)
+      if (bUpdateVisual)
       {
 
          if (bAppearance)
@@ -15704,7 +15736,7 @@ namespace user
          //
          //         }
          //
-         if (bSize)
+         if (bSize || m_bNeedLayout)
          {
 
             //::pointer<::user::interaction_impl>pprimitiveimpl = m_pprimitiveimpl;
@@ -15888,6 +15920,8 @@ namespace user
          layout_children_zorder();
 
       }
+
+      m_bNeedLayout = false;
 
    }
 
@@ -18555,6 +18589,8 @@ namespace user
          m_pinteractionimpl->m_pwindow->placement_log()->add({ pointNew, sizeNew });
 
       }
+
+      m_bNeedPerformLayout = true;
 
       set_need_layout();
 

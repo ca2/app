@@ -267,12 +267,12 @@ namespace userfs
    }
 
 
-   void tree_data::_017OpenFolder(::pointer<::file::item>pitem, const ::action_context & context)
-   {
+   //void tree_data::_017OpenFolder(::pointer<::file::item>pitem, const ::action_context & context)
+   //{
 
-      m_puserfsdocument->browse(pitem, context);
+   //   m_puserfsdocument->browse(pitem, context);
 
-   }
+   //}
 
 
    void tree_data::on_message_create(::message::message * pmessage)
@@ -437,15 +437,14 @@ namespace userfs
       return true;
    }
 
-   void tree_data::_001OnOpenItem(::data::tree_item * pitem, const ::action_context & context)
+   void tree_data::_001OnOpenItem(::data::tree_item * ptreeitem, const ::action_context & context)
    {
 
-      _017OpenFolder(__new(::file::item(*pitem->m_pdataitem.cast < ::userfs::item >())), context);
+      auto pitem = __new(::file::item(*ptreeitem->m_pdataitem.cast < ::userfs::item >()));
+
+      m_puserfsdocument->browse(pitem, context);
 
    }
-
-
-
 
 
    ::color::color tree_data::get_background_color()

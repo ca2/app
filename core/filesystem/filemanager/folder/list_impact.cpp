@@ -1,0 +1,275 @@
+// Refactor and Tidy core filemanager component a bit Fix ca2/app#61 by
+// camilo on 2023 - 11 - 16 03:54 < 3ThomasBorregaardSorensen!!
+#include "framework.h"
+#include "document.h"
+#include "list_impact.h"
+#include "list_data.h"
+////#include "data.h"
+#include "acme/handler/item.h"
+#include "acme/platform/context.h"
+#include "acme/platform/sequencer.h"
+#include "aura/user/user/check_box.h"
+#include "core/user/user/list_column.h"
+
+
+namespace filemanager
+{
+
+   namespace folder
+   {
+
+      list_impact::list_impact()
+      {
+
+         m_bRecursive = true;
+
+      }
+
+
+      list_impact::~list_impact()
+      {
+
+      }
+
+
+      void list_impact::install_message_routing(::channel * pchannel)
+      {
+
+         ::filemanager_impact_base::install_message_routing(pchannel);
+         ::simple_list_impact::install_message_routing(pchannel);
+
+      }
+
+
+      document * list_impact::get_document()
+      {
+
+         return dynamic_cast <class document *>(::user::impact::get_document());
+
+      }
+
+      void list_impact::initialize_folder_list_impact(string strDataKeyModifier, bool bRecursive)
+      {
+
+         m_bRecursive = bRecursive;
+
+         set_pending_column_update();
+
+         update_impact();
+
+         m_pfolderlistdata = __create_new < folder::list_data >();
+
+         m_pfolderlistdata->set_data_key_modifier(strDataKeyModifier);
+
+         set_data_interface(m_pfolderlistdata);
+
+         update_impact();
+
+      }
+
+
+      void list_impact::on_insert_columns()
+      {
+
+         {
+
+            auto pcolumn = new_list_column();
+
+            pcolumn->m_iWidth = 400;
+            pcolumn->m_iSubItem = 0;
+            pcolumn->m_text = m_pcontext->__text("text://filemanager/list_impact/folder_path/Folder Path");
+
+
+         }
+
+         if (m_bRecursive)
+         {
+
+            auto pcolumn = new_list_column();
+            pcolumn->m_atom = "check_recursive";
+            pcolumn->m_iWidth = 80;
+            pcolumn->m_iSubItem = 1;
+            pcolumn->m_text = m_pcontext->__text("text://filemanager/list_impact/recursive/Recursive");
+
+            auto pcheckbox = __create_new <  ::user::check_box >();
+            pcheckbox->m_atom = pcolumn->m_atom;
+            pcheckbox->add_function(::user::e_control_function_check_box);
+            _001AddControl(pcheckbox);
+
+         }
+
+      }
+
+
+      bool list_impact::add_unique(const string_array & stra)
+      {
+
+         if (stra.get_size() == 0)
+         {
+
+            return true;
+
+         }
+
+         auto pfolderlistdata = m_pfolderlistdata;
+
+         if (!pfolderlistdata->add_unique(stra))
+         {
+
+            return false;
+
+         }
+
+         update_impact();
+
+         return true;
+
+      }
+
+
+      bool list_impact::add_unique(const string_array & stra, ::i32_array & baRecursive)
+      {
+
+         if (stra.get_size() == 0)
+         {
+
+            return true;
+
+         }
+
+         auto pfolderlistdata = m_pfolderlistdata;
+
+         if (!pfolderlistdata->add_unique(stra, baRecursive))
+         {
+
+            return false;
+
+         }
+
+         update_impact();
+
+         return true;
+
+      }
+
+
+      bool list_impact::erase(const string_array & stra)
+      {
+
+         if (stra.get_size() == 0)
+         {
+
+            return true;
+
+         }
+
+         if (m_pfolderlistdata)
+         {
+
+            if (!m_pfolderlistdata->erase(stra))
+            {
+
+               return false;
+
+            }
+
+         }
+
+         update_impact();
+
+         return true;
+
+      }
+
+
+      void list_impact::GetSel(string_array & stra)
+      {
+
+         if (m_pfolderlistdata)
+         {
+
+            m_pfolderlistdata->GetSel(this, stra);
+
+         }
+
+
+      }
+
+
+      void list_impact::handle(::topic * ptopic, ::context * pcontext)
+      {
+
+         FILEMANAGER_SHOW_IMPACT::handle(ptopic, pcontext);
+
+         if (ptopic->m_atom == ID_INITIALIZE)
+         {
+
+            //if (filemanager_data()->m_bPassBk)
+            //{
+
+            //   ::user::list::m_bBackgroundBypass = true;
+
+            //}
+
+            auto pdocument = get_document();
+
+            initialize_folder_list_impact(
+               pdocument->m_atomFolderSelectionList,
+               pdocument->m_bEnableRecursiveFolderSelectionList);
+
+         }
+
+      }
+
+
+      void list_impact::on_check_save(::user::interaction * puserinteraction)
+      {
+
+         if (puserinteraction->m_atom == "check_recursive")
+         {
+
+            if (m_pfolderlistdata)
+            {
+
+               bool bCheck = puserinteraction->bcheck();
+
+               bool iItem = puserinteraction->m_item.m_iItem;
+
+               m_pfolderlistdata->set_recursive(iItem, bCheck);
+
+            }
+
+         }
+
+      }
+
+
+      void list_impact::on_check_load(::user::interaction * puserinteraction)
+      {
+
+         if (puserinteraction->m_atom == "check_recursive")
+         {
+
+            if (m_pfolderlistdata)
+            {
+
+               auto iItem = puserinteraction->m_item.m_iItem;
+
+               bool bCheck = m_pfolderlistdata->get_recursive(iItem);
+
+               puserinteraction->_001SetCheck(bCheck, ::e_source_sync);
+
+            }
+
+         }
+
+      }
+
+
+   } // namespace folder
+
+
+} // namespace filemanager
+
+
+

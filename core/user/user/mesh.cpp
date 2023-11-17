@@ -1234,6 +1234,8 @@ namespace user
       if (m_bPendingColumnUpdate)
       {
 
+         m_bPendingColumnUpdate = false;
+
          on_column_update();
 
       }
@@ -5350,7 +5352,7 @@ namespace user
    //}
 
 
-   void mesh::on_context_offset_layout(::draw2d::graphics_pointer & pgraphics)
+   void mesh::on_change_context_offset(::user::enum_layout elayout)
    {
 
 //      ::user::interaction::on_change_context_offset();
@@ -6417,7 +6419,7 @@ namespace user
    ::point_f64 mesh::get_context_offset(::user::enum_layout elayout)
    {
 
-      return ::user::interaction::get_context_offset(elayout);
+      return ::user::scroll_base::get_context_offset(elayout);
 
    }
 

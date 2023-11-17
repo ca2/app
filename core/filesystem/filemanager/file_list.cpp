@@ -6,14 +6,15 @@
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
 #include "acme/filesystem/file/item_array.h"
+#include "acme/filesystem/filesystem/dir_context.h"
+#include "acme/filesystem/filesystem/file_context.h"
 #include "acme/handler/item.h"
 #include "acme/platform/timer.h"
 #include "acme/primitive/collection/_array_binary_stream.h"
 #include "acme/primitive/collection/_container.h"
 #include "apex/database/_binary_stream.h"
-#include "acme/filesystem/filesystem/dir_context.h"
-#include "acme/filesystem/filesystem/file_context.h"
 #include "apex/filesystem/fs/data.h"
+#include "apex/filesystem/fs/set.h"
 #include "apex/platform/os_context.h"
 #include "aura/graphics/image/list.h"
 #include "aura/message/user.h"
@@ -515,12 +516,12 @@ namespace filemanager
    }
 
 
-   void file_list::_017OpenFolder(::pointer<::file::item>pitem, const ::action_context & context)
-   {
+   //void file_list::_017OpenFolder(::pointer<::file::item>pitem, const ::action_context & context)
+   //{
 
-      filemanager_document()->browse(pitem, context);
+   //   filemanager_data()->browse(pitem, context);
 
-   }
+   //}
 
 
    void file_list::_017OpenFile(const ::file::item_array & itema, const ::action_context & context)
@@ -1143,9 +1144,9 @@ namespace filemanager
 
          synchronous_lock lock(pparticleSynchronization);
 
-         ::file::listing & listingUser = get_document()->m_listingUser2;
+         ::file::listing & listingUser = filemanager_data()->m_listingUser2;
 
-         ::file::listing & listingFinal = get_document()->m_listingFinal2;
+         ::file::listing & listingFinal = filemanager_data()->m_listingFinal2;
 
          auto cItem = listingUser.get_size();
 
@@ -1370,8 +1371,8 @@ namespace filemanager
          
          auto puser = psession->m_puser->m_pcoreuser;
 
-         pcolumn->m_pimagelist = puser->shell()->GetImageList(filemanager_data()->m_iIconSize);
-         pcolumn->m_pimagelistHover = puser->shell()->GetImageListHover(filemanager_data()->m_iIconSize);
+         pcolumn->m_pimagelist = puser->shell()->GetImageList(get_document()->m_iIconSize);
+         pcolumn->m_pimagelistHover = puser->shell()->GetImageListHover(get_document()->m_iIconSize);
          pcolumn->m_iSubItem = m_iSelectionSubItem;
          i++;
       }
@@ -1416,16 +1417,17 @@ namespace filemanager
          else
          {
             m_iNameSubItemText = i;
-            pcolumn->m_iWidth = filemanager_data()->m_iIconSize;
+            pcolumn->m_iWidth = get_document()->m_iIconSize;
          }
-         fs_list()->m_iNameSubItemText = m_iNameSubItemText;
+         auto plistdata = fs_list();
+         plistdata->m_iNameSubItemText = m_iNameSubItemText;
          //pcolumn->m_bIcon                = true;
-         pcolumn->m_sizeIcon.cx() = filemanager_data()->m_iIconSize;
-         pcolumn->m_sizeIcon.cy() = filemanager_data()->m_iIconSize;
+         pcolumn->m_sizeIcon.cx() = get_document()->m_iIconSize;
+         pcolumn->m_sizeIcon.cy() = get_document()->m_iIconSize;
          pcolumn->m_text = pcontext->__text("file:Name");
          pcolumn->m_strDataKey = "FILE_MANAGER_ID_FILE_NAME";
          pcolumn->m_bEditOnSecondClick = true;
-         int iIconSize = filemanager_data()->m_iIconSize;
+         int iIconSize = get_document()->m_iIconSize;
 
          auto pcontext = m_pcontext;
          
@@ -1846,7 +1848,7 @@ namespace filemanager
          
          auto puser = psession->m_puser->m_pcoreuser;
 
-         return puser->shell()->GetImageList(filemanager_data()->m_iIconSize);
+         return puser->shell()->GetImageList(get_document()->m_iIconSize);
 
       }
 
@@ -1886,9 +1888,9 @@ namespace filemanager
    void file_list::_001InitializeFormPreData()
    {
 
-      ::filemanager::data * pdata = filemanager_data();
+      auto pfilemanagerdata = filemanager_data();
 
-      pdata->m_pcallback->on_file_manager_initialize_form_pre_data(pdata, GetDlgCtrlId(), this);
+      pfilemanagerdata->m_pfilemanagercallback->on_file_manager_initialize_form_pre_data(pfilemanagerdata, GetDlgCtrlId(), this);
 
    }
 
@@ -1970,23 +1972,23 @@ namespace filemanager
    //::color::color file_list::get_background_color()
    //{
 
-   //   if (filemanager_data() != nullptr && filemanager_data()->is_topic())
+   //   if (get_document() != nullptr && get_document()->is_topic())
    //   {
    //      return argb(255, 255, 255, 255);
    //      //::color32_t color32;
-   //      //if (filemanager_document()->m_emode == document::mode_saving)
+   //      //if (filemanager_data()->m_emode == document::mode_saving)
    //      //{
 
    //      //   color32 = argb(255, 255, 210, 180);
 
    //      //}
-   //      //else if (filemanager_document()->m_emode == document::mode_import)
+   //      //else if (filemanager_data()->m_emode == document::mode_import)
    //      //{
 
    //      //   color32 = argb(255, 180, 210, 255);
 
    //      //}
-   //      //else if (filemanager_document()->m_emode == document::mode_export)
+   //      //else if (filemanager_data()->m_emode == document::mode_export)
    //      //{
 
    //      //   color32 = argb(255, 255, 250, 210);
@@ -2104,37 +2106,37 @@ namespace filemanager
          update_impact();
 
       }
-      else if (!m_bStatic && ptopic->m_atom == id_synchronize_path)
+      else if (!m_bStatic && ptopic->m_atom == id_browse)
       {
 
-         if (ptopic->_extended_topic()->m_pfileitem->user_path() != filemanager_item()->user_path())
-         {
+         //if (ptopic->_extended_topic()->m_pfileitem->user_path() != filemanager_item()->user_path())
+         //{
 
-            return;
+         //   return;
 
-         }
+         //}
 
-         if (filemanager_data()->m_pholderFileList != nullptr)
-         {
+         //if (filemanager_data()->m_pholderFileList != nullptr)
+         //{
 
-            {
+         //   {
 
-               synchronous_lock synchronouslock(mutex_draw());
+         //      synchronous_lock synchronouslock(mutex_draw());
 
-               if (filemanager_data()->m_pholderFileList->m_puserinteractionpointeraChild->has_interaction())
-               {
+         //      if (filemanager_data()->m_pholderFileList->m_puserinteractionpointeraChild->has_interaction())
+         //      {
 
-                  filemanager_data()->m_pholderFileList->m_puserinteractionpointeraChild->interaction_at(0)->display(e_display_none);
+         //         filemanager_data()->m_pholderFileList->m_puserinteractionpointeraChild->interaction_at(0)->display(e_display_none);
 
-               }
+         //      }
 
-            }
+         //   }
 
-            filemanager_data()->m_pholderFileList->place_hold(this);
+         //   filemanager_data()->m_pholderFileList->place_hold(this);
 
-            filemanager_data()->m_pholderFileList->set_need_layout();
+         //   filemanager_data()->m_pholderFileList->set_need_layout();
 
-         }
+         //}
 
          data_get_DisplayToStrict();
 

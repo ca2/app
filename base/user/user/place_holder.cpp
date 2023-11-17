@@ -368,7 +368,7 @@ namespace user
 
             information() << "puiChild->parent_client_rectangle() : " << puiChild->parent_client_rectangle();
 
-            if(rectangle != puiChild->parent_client_rectangle())
+            //if(rectangle != puiChild->parent_client_rectangle())
             {
 
                puiChild->place(rectangle);
@@ -381,11 +381,11 @@ namespace user
 
                }
 
-               puiChild->set_reposition();
+               //puiChild->set_reposition();
 
-               puiChild->set_need_layout();
+               //puiChild->set_need_layout();
 
-               puiChild->set_need_redraw({rectangle}, pgraphics);
+               //puiChild->set_need_redraw({rectangle}, pgraphics);
 
             }
 

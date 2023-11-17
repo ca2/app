@@ -73,6 +73,8 @@ namespace user
 
       m_bUpdatingScreen = false;
 
+      m_eventReady.SetEvent();
+
 //#ifdef UNIVERSAL_WINDOWS
 //      m_bExclusiveMode = true;
 //#else
@@ -274,6 +276,8 @@ namespace user
    {
 
       //m_pimpl->m_puserinteraction->task_add(this);
+
+      m_eventReady.wait();
 
       m_synchronizationa.add(&m_evUpdateScreen);
 

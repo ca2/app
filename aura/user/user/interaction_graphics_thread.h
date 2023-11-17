@@ -31,6 +31,8 @@ namespace user
       class ::time                                m_timeStart;
       class ::time                                m_timeThisFrame;
 
+      manual_reset_event                           m_eventReady;
+
       class ::time                                m_timePostRedrawProdevian;
       class ::time                                m_timePostRedrawNominal;
 

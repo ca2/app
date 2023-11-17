@@ -43,6 +43,20 @@ namespace user
    }
 
 
+
+   void controller::id_update_all_impacts(const ::atom & atom)
+   {
+
+   }
+   //virtual void update_all_impacts(impact * pimpact, const ::atom & atom);
+   
+   void controller::update_all_impacts(::topic * ptopic)
+   {
+
+
+   }
+
+
 //   void controller::dump(dump_context&dumpcontext) const
 //   {
 //

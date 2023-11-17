@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "data.h"
 #include "thumbnail.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "document.h"
@@ -41,14 +42,14 @@ namespace filemanager
       if (m_iCurFile < 0)
       {
       }
-      else if (m_iCurFile == 0 && filemanager_document()->m_listingUser2.get_size() == 0)
+      else if (m_iCurFile == 0 && filemanager_data()->m_listingUser2.get_size() == 0)
       {
          pgraphics->text_out(10, 10, "No files in this directory");
       }
-      else if(m_iCurFile < filemanager_document()->m_listingUser2.get_size())
+      else if(m_iCurFile < filemanager_data()->m_listingUser2.get_size())
       {
 
-         pgraphics->text_out(10,10,filemanager_document()->m_listingUser2.title(m_iCurFile));
+         pgraphics->text_out(10,10,filemanager_data()->m_listingUser2.title(m_iCurFile));
 
       }
 
@@ -68,8 +69,8 @@ namespace filemanager
                      SetDataInterface(&m_datainterface);
                      AddClient(&m_datainterface);
                      string str;
-                     str.formatf("file_list(%d,%d)", filemanager_data()->m_iTemplate, filemanager_data()->m_iDocument);
-                     if(filemanager_data()->m_bTransparentBackground)
+                     str.formatf("file_list(%d,%d)", get_document()->m_iTemplate, get_document()->m_iDocument);
+                     if(get_document()->m_bTransparentBackground)
                      {
                      ::user::list::m_etranslucency = ::user::list::e_translucency_present;
                      }

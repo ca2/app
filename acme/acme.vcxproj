@@ -841,7 +841,9 @@
     <ClInclude Include="filesystem\_.h" />
     <ClInclude Include="format.h" />
     <ClInclude Include="handler\source.h" />
+    <ClInclude Include="user\user\controller.h" />
     <ClInclude Include="user\user\key_state.h" />
+    <ClInclude Include="user\_.h" />
     <ClInclude Include="_iostream.h" />
     <ClInclude Include="graphics\draw2d\color32.h" />
     <ClInclude Include="graphics\draw2d\color_array.h" />
@@ -1288,6 +1290,7 @@
     <ClCompile Include="user\nano\_nano.cpp" />
     <ClCompile Include="user\user\check.cpp" />
     <ClCompile Include="user\user\container.cpp" />
+    <ClCompile Include="user\user\controller.cpp" />
     <ClCompile Include="user\user\conversation.cpp" />
     <ClCompile Include="user\user\drag.cpp" />
     <ClCompile Include="user\user\drag_client.cpp" />

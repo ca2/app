@@ -205,11 +205,12 @@ namespace user
       bool                                      m_bNeedRedraw;
       boolean                                   m_bNeedPerformLayout;
       bool                                      m_bNeedLayout;
+      //bool                                      m_bNeedCheckChildrenLayout;
       bool                                      m_bReposition;
       bool                                      m_bUpdatingVisual;
       bool                                      m_bOnDraw;
 
-      bool                                      m_bUpdateVisual;
+      //bool                                      m_bUpdateVisual;
       bool                                      m_bMouseMovePending;
       bool                                      m_bNeedLoadFormData;
       bool                                      m_bNeedSaveFormData;

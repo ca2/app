@@ -596,8 +596,8 @@ namespace user
 
          rectangleClient.deflate(m_cxBorder,m_cyBorder);
 
-         if(rectangleClient != pplaceholder->parent_client_rectangle())
-         {
+         //if(rectangleClient != pplaceholder->parent_client_rectangle())
+         //{
 
             pplaceholder->place(rectangleClient, ::user::e_layout_layout, pgraphics);
 
@@ -607,26 +607,26 @@ namespace user
 
             //pplaceholder->m_rectangleClient.offset(-pplaceholder->m_rectangleClient.top_left());
 
-            if (pplaceholder->const_layout().sketch().is_visible())
-            {
+            //if (pplaceholder->const_layout().sketch().is_visible())
+            //{
 
-               pplaceholder->display();
+            //   pplaceholder->display();
 
-               pplaceholder->set_need_layout();
+            //   pplaceholder->set_need_layout();
 
-               pplaceholder->set_need_redraw({ rectangleClient });
+            //   pplaceholder->set_need_redraw({ rectangleClient });
 
-               //puserinteraction->post_redraw();
+            //   //puserinteraction->post_redraw();
 
-            }
-            else
-            {
+            //}
+            //else
+            //{
 
-               pplaceholder->hide();
+            //   pplaceholder->hide();
 
-            }
+            //}
 
-         }
+         //}
 
       }
 

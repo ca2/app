@@ -9,9 +9,14 @@ namespace filemanager
 {
 
 
-   class CLASS_DECL_CORE component :
+   class CLASS_DECL_CORE filemanager :
       virtual public ::object
    {
+   protected:
+
+
+      ::pointer<::user::multiple_document_template>      m_pimpactsystemFileManager;
+
    public:
 
 
@@ -19,15 +24,14 @@ namespace filemanager
 
       bool                                               m_bRestoring;
 
-
       ::pointer<::user::multiple_document_template>      m_pimpactsystemForm;
       ::pointer<::user::multiple_document_template>      m_pimpactsystemOperation;
 
-      ::file::path                                       m_pathFilemanagerProject;
+      //::file::path                                       m_pathFilemanagerProject;
 
 
-      component();
-      ~component() override;
+      filemanager();
+      ~filemanager() override;
 
 
       inline ::core::session* get_session();
@@ -37,8 +41,14 @@ namespace filemanager
 
       virtual void filemanager_finalize();
 
+      virtual ::user::multiple_document_template * impact_system();
 
-      ::pointer<data>filemanager_create_data(atom atom);
+
+
+      //vi::pointer<data> create_default_filemanager_data();
+
+      virtual ::pointer < ::filemanager::data > create_filemanager_data();
+
 
 
       atom_map < ::pointer<data >>& datamap() { return m_datamap; }
@@ -78,7 +88,7 @@ namespace filemanager
 
       //document * open_main(::aura::application * pappOnBehalfOf, ::atom atom = -1, ::request * prequest = nullptr, ::fs::data * pfsdata = nullptr, callback * pcallback = nullptr);
       //document * open_child(bool bMakeVisible = true, bool bTransparentBackground = false, ::pointer<::user::interaction>puiParent = nullptr, callback * pcallback = nullptr);
-      data * filemanager(atom atom = FILEMANAGER_IMPACT);
+      //data * filemanager_data(atom atom = FILEMANAGER_IMPACT);
       //document * get_list(atom atom);
       //document * get_folder_selection_list(atom atom);
 

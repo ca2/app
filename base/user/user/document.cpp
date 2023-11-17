@@ -193,7 +193,7 @@ namespace user
 
       //auto estatus = 
       
-      ::user::controller::on_destroy();
+      //::user::controller::on_destroy();
 
       /*if (estatus == ::error_pending)
       {
@@ -954,6 +954,31 @@ namespace user
    }
 
 
+   bool document::open_data(::data::data * pdata)
+   {
+
+      delete_contents();
+
+      if (!on_open_data(pdata))
+      {
+
+         return false;
+
+      }
+
+      m_bNew = false;
+
+      m_bModified = false;
+
+      //m_path = payloadFile.as_file_path();
+
+      //m_strTitle = m_path.name();
+
+      return true;
+
+   }
+
+
    bool document::defer_save_document()
    {
 
@@ -1034,6 +1059,79 @@ namespace user
          return false;
 
       }
+
+      return true;
+
+   }
+
+
+   bool document::on_open_data(::data::data *pdata)
+   {
+
+
+
+
+      //if (payloadFile.is_empty())
+      //{
+
+      //   return on_new_document();
+
+      //}
+
+      //auto pcontext = get_context();
+
+      //auto preader = pcontext->m_papexcontext->file()->get_reader(payloadFile, ::file::e_open_read | ::file::e_open_share_deny_write | ::file::e_open_binary);
+
+      //if (preader.nok())
+      //{
+
+      //   report_load_exception(payloadFile, preader, "__IDP_FAILED_TO_OPEN_DOC");
+
+      //   return false;
+
+      //}
+
+      //try
+      //{
+
+         //if (!on_open_document(preader.m_p))
+         //{
+
+         //   return false;
+
+         //}
+
+         //preader->close();
+         //if (m_pimpactsystem->m_typeatomData.has_char())
+      {
+
+         // auto pNew = __id_create((const ::atom &)m_pimpactsystem->m_typeatomData);
+
+         //auto pdata = create_data(0);
+
+         //pdata->initialize_data();
+
+         //auto preader = file()->get_reader(payloadFile);
+
+         //::binary_stream binarystream(preader);
+
+         //auto path = payloadFile.as_file_path();
+
+         //pdata->read_data(binarystream, path.all_extensions());
+
+         //set_data(0, pdata);
+
+         m_pdataIncoming = pdata;
+
+      }
+
+      //}
+      //catch (const ::exception &)
+      //{
+
+      //   report_load_exception(payloadFile, preader, "__IDP_FAILED_TO_OPEN_DOC");
+
+      //}
 
       return true;
 

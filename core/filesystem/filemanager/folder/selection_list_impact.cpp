@@ -1,11 +1,11 @@
 #include "framework.h"
-#include "folder_selection_list_impact.h"
-#include "document.h"
-#include "folder_list_impact.h"
-#include "tree_data.h"
+#include "list_impact.h"
+#include "selection_list_impact.h"
 #include "acme/constant/id.h"
 #include "acme/handler/item.h"
 #include "acme/platform/context.h"
+#include "core/filesystem/filemanager/document.h"
+#include "core/filesystem/filemanager/tree_data.h"
 #include "core/user/user/tree.h"
 
 
@@ -81,7 +81,7 @@ namespace filemanager
 
       }
 
-      m_plistview = create_impact < folder_list_impact >(get_document(), get_pane_holder(1));
+      m_plistview = create_impact < folder::list_impact >(get_document(), get_pane_holder(1));
 
       if(m_plistview == nullptr)
       {

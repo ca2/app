@@ -261,7 +261,7 @@ namespace apex
 
 
 
-
+      virtual void init_fs_set(::fs::set * pfsset);
       //virtual bool InitApplication();
 
 

@@ -78,7 +78,7 @@ namespace filemanager
       virtual void on_insert_columns() override;
 
       void _001OnTimer(::timer * ptimer) override;
-
+      virtual void add_path(const ::file::path & path, const ::scoped_string & scopedstrName);
 
       void install_message_routing(::channel * pchannel) override;
 
@@ -88,7 +88,7 @@ namespace filemanager
       virtual void _001OnItemCollapse(::data::tree_item * pitem, const ::action_context & action_context) override;
 
 
-      virtual void _017OpenFolder(::pointer<::file::item>pitem, const ::action_context & action_context) override;
+      //virtual void _017OpenFolder(::pointer<::file::item>pitem, const ::action_context & action_context) override;
 
 //#ifdef WINDOWS_DESKTOP
 //

@@ -23,6 +23,8 @@
 #include "acme/primitive/string/command_line.h"
 #include "acme/primitive/string/str.h"
 #include "acme/primitive/text/context.h"
+#include "apex/filesystem/fs/native.h"
+#include "apex/filesystem/fs/set.h"
 #include "apex/message/application.h"
 #include "acme/platform/release_time.h"
 #include "apex/platform/machine_event_data.h"
@@ -901,6 +903,44 @@ namespace apex
          prequest->m_eventReady.SetEvent();
 
       }
+
+   }
+
+   void application::init_fs_set(::fs::set * pfsset)
+   {
+
+      ::e_status estatus = ::success;
+
+      //if (m_bIfs)
+      //{
+
+      //   /*        if (m_pfsdata.is_null())
+      //           {
+
+      //              __construct(m_pfsdata, __new(::fs::set));
+
+      //           }*/
+
+      //           //       pfsset = m_pfsdata;
+
+      //   if (pfsset)
+      //   {
+
+      //      pfsset->m_spafsdata.add_unique(m_pifs);
+
+      //      pfsset->m_spafsdata.add_unique(m_premotefs);
+
+      //   }
+
+      //}
+
+      //::file::listing patha;
+
+      //pfsset->root_ones();
+
+      auto pnativefs = __create_new < ::fs::native>();
+
+      pfsset->m_spafsdata.add(pnativefs);
 
    }
 

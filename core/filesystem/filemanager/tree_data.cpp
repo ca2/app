@@ -815,8 +815,8 @@ _001SelectItem(pchild);
          pparent->sort_children([](auto p1, auto p2)
             {
 
-               return p1->m_pdataitem.cast < ::file::item>()->m_strName
-                  .case_insensitive_order(p2->m_pdataitem.cast < ::file::item>()->m_strName) < 0;
+               return p1->m_pdataitem.template cast < ::file::item>()->m_strName
+                  .case_insensitive_order(p2->m_pdataitem.template cast < ::file::item>()->m_strName) < 0;
 
 });
 
@@ -1190,6 +1190,8 @@ _001SelectItem(pchild);
 
    void tree_data::_001OnOpenItem(::data::tree_item * pitem, const ::action_context & context)
    {
+
+      information() << "tree_data::_001OnOpenItem";
 
       auto puserfsitem = pitem->m_pdataitem.cast < ::userfs::item > ();
 

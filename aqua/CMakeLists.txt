@@ -63,8 +63,8 @@ list(APPEND library_source
         platform/session.h
         platform/system.cpp
         platform/system.h
-        user/controller.cpp
-        user/controller.h
+#        user/controller.cpp
+#        user/controller.h
         xml/_.h
         xml/_constant.h
 

@@ -99,10 +99,13 @@ namespace userfs
 
    }
 
+
    bool document::browse(::pointer<::file::item>pitem, const ::action_context & context)
    {
 
       defer_initialize_filemanager();
+
+      information() << "::userfs::document::browse";
 
       filemanager_data()->browse(pitem, context);
 

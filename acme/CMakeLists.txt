@@ -1027,6 +1027,8 @@ list(APPEND library_source
    user/user/container.cpp
    user/user/container.h
    user/user/content.h
+   user/user/controller.cpp
+   user/user/controller.h
    user/user/conversation.cpp
    user/user/conversation.h
    user/user/drag.cpp

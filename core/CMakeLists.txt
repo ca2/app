@@ -38,15 +38,37 @@ list(APPEND library_source
    filesystem/filehandler/menu_library.h
    filesystem/filehandler/tree_interface.cpp
    filesystem/filehandler/tree_interface.h
-   filesystem/filemanager/_.cpp
+   filesystem/filemanager/folder/document.cpp
+   filesystem/filemanager/folder/document.h
+   filesystem/filemanager/folder/list.cpp
+   filesystem/filemanager/folder/list.h
+   filesystem/filemanager/folder/list_data.cpp
+   filesystem/filemanager/folder/list_data.h
+   filesystem/filemanager/folder/list_impact.cpp
+   filesystem/filemanager/folder/list_impact.h
+   filesystem/filemanager/folder/selection_list_impact.cpp
+   filesystem/filemanager/folder/selection_list_impact.h
+   filesystem/filemanager/operation/operation.cpp
+   filesystem/filemanager/operation/operation.h
+   filesystem/filemanager/operation/child_frame.cpp
+   filesystem/filemanager/operation/child_frame.h
+   filesystem/filemanager/operation/document.cpp
+   filesystem/filemanager/operation/document.h
+   filesystem/filemanager/operation/info_impact.cpp
+   filesystem/filemanager/operation/info_impact.h
+   filesystem/filemanager/operation/list_impact.cpp
+   filesystem/filemanager/operation/list_impact.h
+   filesystem/filemanager/operation/thread.cpp
+   filesystem/filemanager/operation/thread.h
+   filesystem/filemanager/operation/impact.cpp
+   filesystem/filemanager/operation/impact.h
+   #filesystem/filemanager/_.cpp
    filesystem/filemanager/_.h
    #filesystem/filemanager/_data.h
    #filesystem/filemanager/_filemanager.h
    #filesystem/filemanager/_tree.h
    filesystem/filemanager/child_frame.cpp
    filesystem/filemanager/child_frame.h
-   filesystem/filemanager/component.cpp
-   filesystem/filemanager/component.h
    #filesystem/filemanager/const.h
    filesystem/filemanager/context_menu.cpp
    filesystem/filemanager/context_menu.h
@@ -60,14 +82,8 @@ list(APPEND library_source
    filesystem/filemanager/file_list_callback.h
    filesystem/filemanager/file_properties_form.cpp
    filesystem/filemanager/file_properties_form.h
-   filesystem/filemanager/folder_list.cpp
-   filesystem/filemanager/folder_list.h
-   filesystem/filemanager/folder_list_data.cpp
-   filesystem/filemanager/folder_list_data.h
-   filesystem/filemanager/folder_list_impact.cpp
-   filesystem/filemanager/folder_list_impact.h
-   filesystem/filemanager/folder_selection_list_impact.cpp
-   filesystem/filemanager/folder_selection_list_impact.h
+   filesystem/filemanager/filemanager.cpp
+   filesystem/filemanager/filemanager.h
    filesystem/filemanager/form.cpp
    filesystem/filemanager/form.h
    filesystem/filemanager/form_child_frame.cpp
@@ -76,12 +92,12 @@ list(APPEND library_source
    #filesystem/filemanager/form_document.h
    filesystem/filemanager/frame.cpp
    filesystem/filemanager/frame.h
-   filesystem/filemanager/fs_simple_list_impact.cpp
-   filesystem/filemanager/fs_simple_list_impact.h
-   filesystem/filemanager/fs_simple_tree.cpp
-   filesystem/filemanager/fs_simple_tree.h
-   filesystem/filemanager/fs_simple_impact.cpp
-   filesystem/filemanager/fs_simple_impact.h
+   #filesystem/filemanager/fs_simple_list_impact.cpp
+   #filesystem/filemanager/fs_simple_list_impact.h
+   #filesystem/filemanager/fs_simple_tree.cpp
+   #filesystem/filemanager/fs_simple_tree.h
+   #filesystem/filemanager/fs_simple_impact.cpp
+   #filesystem/filemanager/fs_simple_impact.h
    filesystem/filemanager/icon.cpp
    filesystem/filemanager/icon.h
    filesystem/filemanager/iconoverlayer.cpp
@@ -96,20 +112,6 @@ list(APPEND library_source
    filesystem/filemanager/main_frame.h
    filesystem/filemanager/main_impact.cpp
    filesystem/filemanager/main_impact.h
-   filesystem/filemanager/operation.cpp
-   filesystem/filemanager/operation.h
-   filesystem/filemanager/operation_child_frame.cpp
-   filesystem/filemanager/operation_child_frame.h
-   filesystem/filemanager/operation_document.cpp
-   filesystem/filemanager/operation_document.h
-   filesystem/filemanager/operation_info_impact.cpp
-   filesystem/filemanager/operation_info_impact.h
-   filesystem/filemanager/operation_list_impact.cpp
-   filesystem/filemanager/operation_list_impact.h
-   filesystem/filemanager/operation_thread.cpp
-   filesystem/filemanager/operation_thread.h
-   filesystem/filemanager/operation_impact.cpp
-   filesystem/filemanager/operation_impact.h
    filesystem/filemanager/path_impact.cpp
    filesystem/filemanager/path_impact.h
    filesystem/filemanager/thumbnail.cpp
@@ -137,6 +139,8 @@ list(APPEND library_source
    filesystem/fs/ftpnet.cpp
    filesystem/fs/ftpnet.h
    filesystem/userfs/_.h
+   filesystem/userfs/data.cpp
+   filesystem/userfs/data.h
    #filesystem/userfs/_data.h
    #filesystem/userfs/_tree.h
    #filesystem/userfs/_userfs.h

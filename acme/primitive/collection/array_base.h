@@ -1359,7 +1359,9 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_e
    if (!prepare_first_in_count_last_out(first, in_count_out_last))
    {
 
-      throw_exception(error_bad_argument);
+      //throw_exception(error_bad_argument);
+
+      return -1;
 
    }
    

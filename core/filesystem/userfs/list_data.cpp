@@ -350,6 +350,8 @@ namespace userfs
 
       __construct_new(m_pitema);
 
+      information() << "::userfs::list update";
+
       auto & listingUser = puserfsdata->m_listingUser2;
 
       auto & listingFinal = puserfsdata->m_listingFinal2;
@@ -368,6 +370,8 @@ namespace userfs
          plistitem->user_path_reference() = pathUser;
 
          plistitem->m_strName = pathUser.name();
+
+         information() << "pathUser : " << pathUser;
 
          if (puserfsdata->m_pfsset->is_dir(pathFinal))
          {

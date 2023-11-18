@@ -198,6 +198,8 @@ namespace userfs
 
          auto pfilemanagerdata = m_pdocument->filemanager_data();
 
+         information() << "::userfs::list handle id_browse";
+
          plistdata->update(pfilemanagerdata);
 
          m_pmeshdata = plistdata;

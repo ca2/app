@@ -205,6 +205,8 @@ namespace user
 
                   auto pitem = m_treeitemaOpen.pop();
 
+                  information() << "user::tree has open item";
+
                   _001OnOpenItem(pitem, ::e_source_user);
 
                }
@@ -809,6 +811,8 @@ namespace user
 
       pitem = _001HitTest(point, eelement);
 
+      information() << "user::tree perform_click";
+
       if (pitem != nullptr)
       {
 
@@ -816,6 +820,8 @@ namespace user
          {
 
             synchronous_lock synchronouslock(this->synchronization());
+
+            information() << "user::tree perform_click expand_box";
 
             m_treeitemaExpand.add_unique(pitem);
 
@@ -826,6 +832,8 @@ namespace user
          {
 
             synchronous_lock synchronouslock(this->synchronization());
+
+            information() << "user::tree perform_click image or text";
 
             m_treeitemaOpen.add_unique(pitem);
 
@@ -1134,6 +1142,8 @@ namespace user
 
       }
 
+      information() << "tree::_001SelectItem going to set selection";
+
       selection_set(pitem);
 
       set_need_redraw();
@@ -1429,12 +1439,16 @@ namespace user
    void tree::_001OnOpenItem(::data::tree_item * pitem, const ::action_context & context)
    {
 
+      information() << "tree::_001OnOpenItem";
+
       if (context.contains(this))
       {
 
          return;
 
       }
+
+      information() << "tree::_001OnOpenItem going to select item";
 
       _001SelectItem(pitem);
 
@@ -2011,6 +2025,8 @@ namespace user
       m_pitemptraSelected->erase_all();
 
       m_pitemptraSelected->add(pitem);
+
+      information() << "m_pitemptraSelected add item";
 
       return bContains;
 

@@ -2138,6 +2138,8 @@ namespace filemanager
 
          //}
 
+         information() << "file_list handle id_browse";
+
          data_get_DisplayToStrict();
 
          update_impact();

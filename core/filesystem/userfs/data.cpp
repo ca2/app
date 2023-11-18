@@ -19,6 +19,7 @@ namespace userfs
 
    data::data()
    {
+
       m_bFullBrowse = false;
 
    }
@@ -273,6 +274,8 @@ namespace userfs
    void data::browse(const ::file::path & pathUser, const ::action_context & context)
    {
 
+      information() << "::userfs::data::browse";
+
       auto pcontext = get_context();
 
       ::file::path pathFinal = pcontext->m_papexcontext->defer_process_path(pathUser);
@@ -513,7 +516,7 @@ namespace userfs
 
          listingFolderFinal.defer_add(pathFolderFinal);
 
-         information() << "folder user" << pathFolderUser;
+         information() << "folder user : " << pathFolderUser;
 
          //auto plistitem = __create_new<list_item>();
 
@@ -566,8 +569,12 @@ namespace userfs
    void data::browse(::pointer<::file::item>pitem, const ::action_context & context)
    {
 
+      information() << "::userfs::data::browse pitem";
+
       if (!fs_data()->is_zero_latency(pitem->final_path()))
       {
+
+         information() << "::userfs::data::browse !is_zero_latency";
 
          auto ptopic = create_topic(ID_SYNCHRONIZE_PATH);
 

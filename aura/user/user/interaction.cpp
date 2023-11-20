@@ -13674,6 +13674,13 @@ namespace user
 
       }
 
+      if (!(m_ewindowflag & ::e_window_flag_window_created))
+      {
+
+         return false;
+
+      }
+
       m_pprimitiveimpl->top_down_prefix();
 
       if (m_bNeedPerformLayout)

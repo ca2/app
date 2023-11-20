@@ -1326,26 +1326,46 @@ namespace user
 
    }
 
-   if (pusersystem->m_prequest->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_screen)
+   if (::is_set(get_parent()))
    {
 
-      initial_frame_display();
-
-      //if(pusersystem->m_prequest->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_screen)
+      if (pusersystem->m_prequest->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_screen)
       {
 
-         if(!const_layout().sketch().is_screen_visible())
+         display();
+
+      }
+
+   }
+   else
+   {
+
+      if (pusersystem->m_prequest->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_screen)
+      {
+
+         initial_frame_display();
+
+         //if(pusersystem->m_prequest->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_screen)
          {
 
-            information() << "LoadFrame sketch !is_screen_visible going to display_normal (1)";
+            if (!const_layout().sketch().is_screen_visible())
+            {
 
-            display_normal(e_display_normal, e_activation_set_foreground);
+               information() << "LoadFrame sketch !is_screen_visible going to display_normal (1)";
+
+               display_normal(e_display_normal, e_activation_set_foreground);
+
+            }
 
          }
 
       }
 
    }
+
+   m_bNeedPerformLayout = true;
+
+   set_need_layout();
 
    if (puiParent)
    {

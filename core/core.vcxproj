@@ -646,6 +646,9 @@
     <ClCompile Include="filesystem\filemanager\form.cpp" />
     <ClCompile Include="filesystem\filemanager\form_child_frame.cpp" />
     <ClCompile Include="filesystem\filemanager\frame.cpp" />
+    <ClCompile Include="filesystem\filemanager\fs\simple\impact.cpp" />
+    <ClCompile Include="filesystem\filemanager\fs\simple\list_impact.cpp" />
+    <ClCompile Include="filesystem\filemanager\fs\simple\tree.cpp" />
     <ClCompile Include="filesystem\filemanager\icon.cpp" />
     <ClCompile Include="filesystem\filemanager\iconoverlayer.cpp" />
     <ClCompile Include="filesystem\filemanager\left_impact.cpp" />
@@ -667,6 +670,9 @@
     <ClInclude Include="filesystem\filemanager\folder\list_data.h" />
     <ClInclude Include="filesystem\filemanager\folder\list_impact.h" />
     <ClInclude Include="filesystem\filemanager\folder\selection_list_impact.h" />
+    <ClInclude Include="filesystem\filemanager\fs\simple\impact.h" />
+    <ClInclude Include="filesystem\filemanager\fs\simple\list_impact.h" />
+    <ClInclude Include="filesystem\filemanager\fs\simple\tree.h" />
     <ClInclude Include="filesystem\filemanager\operation\child_frame.h" />
     <ClInclude Include="filesystem\filemanager\operation\document.h" />
     <ClInclude Include="filesystem\filemanager\operation\impact.h" />

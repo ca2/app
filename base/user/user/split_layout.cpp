@@ -592,6 +592,8 @@ namespace user
 
          }
 
+         pplaceholder->m_bLockGraphicalUpdate = false;
+
          rectangleClient = rectanglePane;
 
          rectangleClient.deflate(m_cxBorder,m_cyBorder);

@@ -1,6 +1,6 @@
 #include "framework.h"
-#include "fs_simple_tree.h"
-#include "fs_simple_impact.h"
+#include "tree.h"
+#include "impact.h"
 #include "acme/primitive/data/listener.h"
 #include "acme/primitive/data/simple_item.h"
 #include "aura/graphics/image/list.h"

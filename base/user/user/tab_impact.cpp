@@ -843,6 +843,8 @@ namespace user
 
             }
 
+            m_pimpactdata->m_pplaceholder->m_bLockGraphicalUpdate = false;
+
             m_pimpactdata->m_pplaceholder->order(e_zorder_top);
 
             m_pimpactdata->m_pplaceholder->place(rectangleHosting);

@@ -153,6 +153,18 @@
     <Filter Include="Source Files\filesystem\filemanager\folder">
       <UniqueIdentifier>{a75b7251-5d41-4562-b9a6-a481a8e0f5fe}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\filesystem\filemanager\fs">
+      <UniqueIdentifier>{1ba954d6-ef76-499a-894f-84c8400d2a57}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\filesystem\filemanager\fs\simple">
+      <UniqueIdentifier>{3a235b18-aea3-4fc9-9f90-485c29051954}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\filesystem\filemanager\fs">
+      <UniqueIdentifier>{fa8fe405-e836-4929-bb91-37f4e3bc7f99}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\filesystem\filemanager\fs\simple">
+      <UniqueIdentifier>{05305853-dbe8-44bc-993b-be64a636dad0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\filesystem.h">
@@ -620,9 +632,6 @@
     <ClInclude Include="include\winrt.h">
       <Filter>Header Files\include</Filter>
     </ClInclude>
-    <ClInclude Include="_.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\_include.h">
       <Filter>Header Files\include</Filter>
     </ClInclude>
@@ -946,6 +955,18 @@
     </ClInclude>
     <ClInclude Include="filesystem\userfs\data.h">
       <Filter>Header Files\filesystem\userfs</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\fs\simple\impact.h">
+      <Filter>Header Files\filesystem\filemanager\fs\simple</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\fs\simple\list_impact.h">
+      <Filter>Header Files\filesystem\filemanager\fs\simple</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\fs\simple\tree.h">
+      <Filter>Header Files\filesystem\filemanager\fs\simple</Filter>
+    </ClInclude>
+    <ClInclude Include="_.h">
+      <Filter>Header Files\user</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1452,6 +1473,15 @@
     </ClCompile>
     <ClCompile Include="filesystem\userfs\data.cpp">
       <Filter>Source Files\filesystem\userfs</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\fs\simple\impact.cpp">
+      <Filter>Source Files\filesystem\filemanager\fs\simple</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\fs\simple\list_impact.cpp">
+      <Filter>Source Files\filesystem\filemanager\fs\simple</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\fs\simple\tree.cpp">
+      <Filter>Source Files\filesystem\filemanager\fs\simple</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

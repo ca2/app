@@ -1827,6 +1827,48 @@ namespace acme
    }
 
 
+   void system::canonical_system_main()
+   {
+
+      process_init();
+
+      if (application()->is_console())
+      {
+
+         application()->main();
+
+      }
+      else
+      {
+
+         // on canonical system on_start_system is called before main loop
+         on_start_system();
+
+         //auto estatus = 
+         main();
+
+         //if (!estatus)
+         //{
+
+         //   return estatus;
+
+         //}
+
+         //return estatus;
+
+      }
+
+      if (m_iExitCode == 0 && m_estatus.failed())
+      {
+
+         m_iExitCode = m_estatus.exit_code();
+
+      }
+
+
+   }
+
+
    void system::system_main()
    {
 

@@ -343,7 +343,9 @@ namespace acme
       
       //acme_application_main(pApplication, argc, argv);
       
-      acme_application_main(psystem);
+      //acme_application_main(psystem);
+
+      system_main();
       
       //return psystem->m_estatus;
       
@@ -506,7 +508,7 @@ namespace acme
    void node::system_main()
    {
 
-      /* auto estatus =*/ system()->main();
+      /* auto estatus =*/ system()->canonical_system_main();
 
       //g_psystem->m_bIsReadyForUserInteraction = true;
       //if(!estatus)

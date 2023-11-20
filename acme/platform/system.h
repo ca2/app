@@ -340,6 +340,8 @@ namespace acme
       virtual void defer_post_initial_request();
 
 
+      virtual void canonical_system_main();
+
       virtual void system_main();
 
 

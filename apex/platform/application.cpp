@@ -13,6 +13,7 @@
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/acme_path.h"
 #include "acme/handler/request.h"
+#include "acme/platform/scoped_restore.h"
 #include "acme/primitive/primitive/url.h"
 #include "acme/operating_system/process.h"
 #include "acme/parallelization/event.h"
@@ -833,6 +834,39 @@ namespace apex
 
       m_prequest = prequest;
 
+      prequest->m_countStack++;
+
+      at_end_of_scope
+      {
+
+         prequest->m_countStack--;
+
+         if (prequest->m_countStack <= 0)
+         {
+
+            for (auto & procedure : prequest->m_procedureaOnFinishRequest)
+            {
+
+               try
+               {
+
+                  procedure();
+
+               }
+               catch (...)
+               {
+
+
+               }
+
+            }
+
+            prequest->m_procedureaOnFinishRequest.clear();
+
+         };
+
+      };
+
       if(prequest->payload("auto_start").is_true())
       {
 
@@ -848,6 +882,7 @@ namespace apex
       }
       else
       {
+
 
          try
          {

@@ -1298,7 +1298,7 @@ namespace user
 
       ::pointer < ::data::data > pdata;
 
-      if (atom.m_etype == atom::e_type_integer && atom.m_i == 0)
+      if (atom.m_etype == atom::e_type_integer && atom.m_iLargest == 0)
       {
 
          auto & typeatomData = m_pimpactsystem->m_typeatomData;

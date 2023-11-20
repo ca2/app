@@ -295,73 +295,79 @@ namespace acme
    //}
 
 
-   void node::node_main()
+   void node::node_implement_main()
    {
-      
+
       //m_pparticleQuit = create_quit_particle(pnode);
 
       auto psystem = system();
 
-      if(psystem->m_pfnImplement || psystem->m_pacmeapplication->is_console())
+      psystem->init_task();
+
+      if (psystem->m_pacmeapplication->m_bSession)
       {
-         
-         psystem->init_task();
 
-         if (psystem->m_pacmeapplication->m_bSession)
-         {
+         psystem->m_pacmesession->init_task();
 
-            psystem->m_pacmesession->init_task();
-
-         }
-
-         psystem->m_pacmeapplication->init_task();
-
-         if(psystem->m_pfnImplement)
-         {
-            
-            (*psystem->m_pfnImplement)(psystem);
-            
-         }
-         else
-         {
-
-            auto prequest = __create_new < ::request >();
-
-            prequest->initialize_command_line2(platform()->m_strCommandLine);
-
-            psystem->m_pacmeapplication->get_property_set().merge(prequest->get_property_set());
-            
-            psystem->m_pacmeapplication->main();
-            
-         }
-
-         psystem->m_pnode.release();
-         
-         return;
-         
       }
-      
-      //acme_application_main(pApplication, argc, argv);
-      
-      //acme_application_main(psystem);
 
-      system_main();
-      
-      //return psystem->m_estatus;
-      
+      psystem->m_pacmeapplication->init_task();
 
-      //auto estatus =
-      
-      //::acme::apple::node::implement(pnode, psystem);
+      if (psystem->m_pfnImplement)
+      {
 
-   //         if(!estatus)
-   //         {
-   //
-   //            return estatus;
-   //
-   //         }
-   //
-   //         return estatus;
+         (*psystem->m_pfnImplement)(psystem);
+
+      }
+      else
+      {
+
+         auto prequest = __create_new < ::request >();
+
+         prequest->initialize_command_line2(platform()->m_strCommandLine);
+
+         psystem->m_pacmeapplication->get_property_set().merge(prequest->get_property_set());
+
+         psystem->m_pacmeapplication->main();
+
+      }
+
+      psystem->m_pnode.release();
+
+   }
+
+
+   void node::node_main()
+   {
+
+      auto psystem = system();
+
+      if (psystem->m_pfnImplement || psystem->m_pacmeapplication->is_console())
+      {
+
+         node_implement_main();
+
+      }
+
+      on_start_system();
+
+      on_system_main();
+
+   }
+
+
+   void node::on_start_system()
+   {
+
+      system()->defer_post_initial_request();
+
+   }
+
+
+   void node::on_system_main()
+   {
+
+      system()->main();
 
    }
 
@@ -2239,14 +2245,6 @@ return false;
       //throw ::interface_only();
 
       throw ::interface_only();
-
-   }
-
-
-   void node::on_start_system()
-   {
-
-      //return ::success;
 
    }
 

@@ -62,7 +62,7 @@ namespace app_message_box
 
       //m_pmainwindow->create_main_window_asynchronously();
 
-      m_pmainwindow->create_main_window();
+      m_pmainwindow->create_main_window(prequest);
 
 //      m_pmainwindow->set_need_layout();
 //

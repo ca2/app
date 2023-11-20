@@ -105,7 +105,7 @@ namespace user
 
       printf("base::user::initialize (2)\n");
 
-      create_windowing();
+      //create_windowing();
 
       //if (!estatus)
       //{

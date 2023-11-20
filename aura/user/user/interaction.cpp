@@ -9982,6 +9982,13 @@ namespace user
 
       auto puser = psession->user();
 
+      if(!puser->windowing())
+      {
+
+         puser->create_windowing();
+
+      }
+
       auto pwindowing = puser->windowing();
 
       auto pwindowHost = pwindowing->get_application_host_window();
@@ -19423,6 +19430,13 @@ namespace user
       auto psession = get_session();
 
       auto puser = psession->user();
+
+      if(!puser->windowing())
+      {
+
+         puser->create_windowing();
+
+      }
 
       auto pwindowing = puser->windowing();
 

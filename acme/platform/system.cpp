@@ -101,8 +101,6 @@ void initialize_nano_http();
 
 namespace acme
 {
-
-
    system::system()
    {
 
@@ -232,26 +230,26 @@ namespace acme
 
       factory()->initialize(this);
 
-//      //#ifdef LINUX
-//      //
-//      //      m_elinuxdistribution = e_linux_distribution_unknown;
-//      //
-//      //#endif
-//
-//      //m_edesktop = ::user::e_desktop_none;
-//
-//      information() << "initialize_system os_construct";
-//
-//      os_construct();
-//
-//      //system() = this;
-//
-//      //      if (g_psystem == nullptr)
-//      //      {
-//      //
-//      //         g_psystem = this;
-//      //
-//      //      }
+      //      //#ifdef LINUX
+      //      //
+      //      //      m_elinuxdistribution = e_linux_distribution_unknown;
+      //      //
+      //      //#endif
+      //
+      //      //m_edesktop = ::user::e_desktop_none;
+      //
+      //      information() << "initialize_system os_construct";
+      //
+      //      os_construct();
+      //
+      //      //system() = this;
+      //
+      //      //      if (g_psystem == nullptr)
+      //      //      {
+      //      //
+      //      //         g_psystem = this;
+      //      //
+      //      //      }
 
 
       information() << "initialize_system create nano";
@@ -280,6 +278,24 @@ namespace acme
       //}
 
       //return estatus;
+
+   }
+
+
+   void system::on_branch_system_from_main_thread_startup()
+   {
+
+      m_itask = 0;
+
+      m_htask = nullptr;
+
+      branch_synchronously();
+
+      // To pair freebsd.h/main platform_create_system memory_new system
+      // This should be safe here in this node_gtk::node
+      // because just above system() has begin_synch()
+      // so the running thread is holding references to the system() thread.
+      release();
 
    }
 
@@ -1768,7 +1784,7 @@ namespace acme
    void system::on_start_system()
    {
 
-      /*auto estatus =*/ m_pnode->on_start_system();
+      ////*auto estatus =*/ m_pnode->on_start_system();
 
       //if (!estatus)
       //{

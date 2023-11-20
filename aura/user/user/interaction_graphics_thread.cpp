@@ -275,6 +275,12 @@ namespace user
    void graphics_thread::run()
    {
 
+      string strType = ::type(m_puserinteraction).name();
+
+      ::task_set_name("graphics_thread," + strType);
+
+
+
       //m_pimpl->m_puserinteraction->task_add(this);
 
       m_eventReady.wait();
@@ -293,10 +299,6 @@ namespace user
          m_synchronizationa.add(&get_message_queue()->m_eventNewMessage);
 
       }
-
-      string strType = ::type(m_puserinteraction).name();
-
-      ::task_set_name("graphics_thread," + strType);
 
 //      if (strType.case_insensitive_contains("list_box"))
 //      {

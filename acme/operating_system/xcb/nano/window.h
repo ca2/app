@@ -67,9 +67,9 @@ namespace xcb
 
       ::e_status _raise_window();
 
-      //void message_loop() override;
+      //void aaa_message_loop() override;
 
-      //virtual bool message_loop_step();
+      //virtual bool aaa_message_loop_step();
 
       virtual void _draw(nano_device * pnanodevice);
 

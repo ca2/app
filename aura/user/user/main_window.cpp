@@ -3,9 +3,11 @@
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
 #include "acme/handler/item.h"
+#include "acme/handler/request.h"
 #include "acme/user/user/tool.h"
 #include "aura/windowing/window.h"
 #include "aura/platform/application.h"
+#include "aura/user/user/system.h"
 
 
 inline bool is_custom_size(enum_display edisplay)
@@ -236,8 +238,22 @@ namespace user
 
 
    ///void main_window::create_main_window_asynchronously()
-   void main_window::create_main_window()
+   void main_window::create_main_window(::request * prequest)
    {
+
+      if(::is_set(prequest))
+      {
+
+         if(!m_pusersystem)
+         {
+
+            __construct_new(m_pusersystem);
+
+         }
+
+         m_pusersystem->m_prequest = prequest;
+
+      }
 
       //::rectangle_i32 rectangleWindow;
 

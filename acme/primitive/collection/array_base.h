@@ -798,9 +798,9 @@ public:
    //::index allocate_at(::index nIndex, ::count nCount = 1);
 
 
-   TYPE pick_at(::index nIndex);
-   TYPE pick_first(::index nIndex = 0) { return ::transfer(pick_at(nIndex)); }
-   TYPE pick_last(::index nIndex = -1) { return ::transfer(pick_at(this->size() + nIndex)); }
+   TYPE && pick_at(::index nIndex);
+   TYPE && pick_first(::index nIndex = 0) { return ::transfer(pick_at(nIndex)); }
+   TYPE && pick_last(::index nIndex = -1) { return ::transfer(pick_at(this->size() + nIndex)); }
    array_base pick_at(::index nIndex, ::count nCount);
 
 
@@ -1743,7 +1743,7 @@ void array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::erase_descendin
 
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
-TYPE array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::pick_at(::index nIndex)
+TYPE && array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::pick_at(::index nIndex)
 {
 
    ::count nCount = 1;
@@ -1759,9 +1759,9 @@ TYPE array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::pick_at(::index
 
    ::count nMoveCount = this->size() - (nUpperBound);
 
-   auto t = this->m_begin[nIndex];
+   auto t = ::transfer(this->m_begin[nIndex]);
 
-   ALLOCATOR::destruct_count(this->m_begin + nIndex, nCount OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS);
+   //ALLOCATOR::destruct_count(this->m_begin + nIndex, nCount OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS);
 
    if (nMoveCount)
    {

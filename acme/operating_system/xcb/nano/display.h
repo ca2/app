@@ -131,9 +131,9 @@ namespace xcb
 
       virtual bool xcb_posted();
 
-      //void display_post(const ::procedure & procedure) override;
-      //void display_send(const ::procedure & procedure);
-      //bool display_posted_routine_step();
+      //void aaa_display_post(const ::procedure & procedure) override;
+      //void aaa_display_send(const ::procedure & procedure);
+      //bool aaa_display_posted_routine_step();
 
 
       virtual ::e_status _request_check(xcb_void_cookie_t cookie);

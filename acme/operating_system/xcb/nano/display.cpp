@@ -255,7 +255,7 @@ namespace xcb
    }
 
 
-//   void display::display_post(const ::procedure & procedure)
+//   void display::aaa_display_post(const ::procedure & procedure)
 //   {
 //
 //      defer_create_synchronization();
@@ -269,7 +269,7 @@ namespace xcb
 //   }
 
 
-//   bool display::display_posted_routine_step()
+//   bool display::aaa_display_posted_routine_step()
 //   {
 //
 //      synchronous_lock synchronouslock(this->synchronization());
@@ -306,7 +306,7 @@ namespace xcb
 //
 //      }
 //
-//      /*auto estatus = */ __send_procedure(this, &display::display_post, routine);
+//      /*auto estatus = */ __send_procedure(this, &display::aaa_display_post, routine);
 //
 //      //if(!estatus)
 //      //{

@@ -60,7 +60,7 @@ namespace app_app
 //
 //      };
 
-      pmainwindow->create_main_window();
+      pmainwindow->create_main_window(prequest);
 
    }
 

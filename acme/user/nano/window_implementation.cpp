@@ -321,7 +321,7 @@ void nano_window_implementation::handle(::topic * ptopic, ::context * pcontext)
 //
 //   nano_window::display();
 //
-//   message_loop();
+//  aaa_message_loop();
 //
 //   //});
 //
@@ -347,7 +347,7 @@ void nano_window_implementation::do_asynchronously()
          //if (!is_main_thread())
          //{
 
-         //   message_loop();
+         //   aaa_message_loop();
 
          //}
 
@@ -391,7 +391,7 @@ void nano_window_implementation::do_asynchronously()
 //
 //   nano_window::display();
 //
-//   message_loop();
+//   aaa_message_loop();
 //
 //   //});
 //
@@ -421,7 +421,7 @@ void nano_window_implementation::do_asynchronously()
 //
 //         nano_window::display();
 //
-//         message_loop();
+//         aaa_message_loop();
 //
 //      });
 //

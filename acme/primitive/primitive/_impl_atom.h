@@ -239,7 +239,7 @@ inline atom::atom()
 
    m_etype = e_type_null;
 
-   m_u = 0;
+   m_uLargest = 0;
 
 }
 
@@ -249,14 +249,14 @@ inline atom::atom(enum_type etype)
 
    m_etype = etype;
 
-   m_u = 0;
+   m_uLargest = 0;
 
 }
 
 
 inline atom::atom(enum_id eid) :
         m_etype(e_type_id),
-        m_i((::iptr) eid) // used m_i to reset 64-bit field
+        m_iLargest((::iptr) eid) // used m_iLargest to reset 64-bit field
 {
 
 }
@@ -264,7 +264,7 @@ inline atom::atom(enum_id eid) :
 
 inline atom::atom(enum_element eelement) :
    m_etype(e_type_element),
-   m_i((::iptr)eelement) // used m_i to reset 64-bit field
+   m_iLargest((::iptr)eelement) // used m_iLargest to reset 64-bit field
 {
 
 }
@@ -272,14 +272,14 @@ inline atom::atom(enum_element eelement) :
 
 //inline atom::atom(const ::e_command & ecommand) :
 //        m_etype(e_type_command),
-//        m_i((::iptr) ecommand) // used m_i to reset 64-bit field
+//        m_iLargest((::iptr) ecommand) // used m_iLargest to reset 64-bit field
 //{
 //
 //}
 
 
 inline atom::atom(ENUM_ID EID) :
-        atom((::enum_id)EID) // used m_i to reset 64-bit field
+        atom((::enum_id)EID) // used m_iLargest to reset 64-bit field
 {
 
 }
@@ -287,7 +287,7 @@ inline atom::atom(ENUM_ID EID) :
 
 inline atom::atom(enum_message emessage) :
         m_etype(e_type_message),
-        m_i((::iptr)emessage) // used m_i to reset 64-bit field
+        m_iLargest((::iptr)emessage) // used m_iLargest to reset 64-bit field
 {
 
 }
@@ -302,7 +302,7 @@ inline atom::atom(ENUM_MESSAGE EMESSAGE) :
 
 inline atom::atom(enum_impact eimpact) :
         m_etype(e_type_impact),
-        m_i((::iptr)eimpact) // used m_i to reset 64-bit field
+        m_iLargest((::iptr)eimpact) // used m_iLargest to reset 64-bit field
 {
 
 }
@@ -317,7 +317,7 @@ inline atom::atom(ENUM_IMPACT EIMPACT) :
 
 inline atom::atom(enum_property eproperty) :
         m_etype(e_type_property),
-        m_i((::iptr)eproperty) // used m_i to reset 64-bit field
+        m_iLargest((::iptr)eproperty) // used m_iLargest to reset 64-bit field
 {
 
 }
@@ -325,7 +325,7 @@ inline atom::atom(enum_property eproperty) :
 
 inline atom::atom(enum_factory efactory) :
         m_etype(e_type_factory),
-        m_i((::i64)efactory) // used m_i to reset 64-bit field
+        m_iLargest((::i64)efactory) // used m_iLargest to reset 64-bit field
 {
 
 }
@@ -333,7 +333,7 @@ inline atom::atom(enum_factory efactory) :
 
 inline atom::atom(enum_task_tool etasktool) :
         m_etype(e_type_task_tool),
-        m_i((::iptr)etasktool) // used m_i to reset 64-bit field
+        m_iLargest((::iptr)etasktool) // used m_iLargest to reset 64-bit field
 {
 
 }
@@ -341,7 +341,7 @@ inline atom::atom(enum_task_tool etasktool) :
 
 inline atom::atom(enum_timer etimer) :
         m_etype(e_type_timer),
-        m_i((::iptr)etimer) // used m_i to reset 64-bit field
+        m_iLargest((::iptr)etimer) // used m_iLargest to reset 64-bit field
 {
 
 }
@@ -357,7 +357,7 @@ inline atom::atom(enum_timer etimer) :
 
 inline atom::atom(enum_dialog_result edialogresult) :
         m_etype(e_type_dialog_result),
-        m_i((::iptr)edialogresult) // used m_i to reset 64-bit field
+        m_iLargest((::iptr)edialogresult) // used m_iLargest to reset 64-bit field
 {
 
 }
@@ -365,7 +365,7 @@ inline atom::atom(enum_dialog_result edialogresult) :
 
 inline atom::atom(enum_happening eevent) :
         m_etype(e_type_happening),
-        m_i((::iptr)eevent) // used m_i to reset 64-bit field
+        m_iLargest((::iptr)eevent) // used m_iLargest to reset 64-bit field
 {
 
 }
@@ -373,7 +373,7 @@ inline atom::atom(enum_happening eevent) :
 
 inline atom::atom(enum_check echeck) :
         m_etype(e_type_check),
-        m_i((::iptr)echeck) // used m_i to reset 64-bit field
+        m_iLargest((::iptr)echeck) // used m_iLargest to reset 64-bit field
 {
 
 }
@@ -381,7 +381,7 @@ inline atom::atom(enum_check echeck) :
 
 inline atom::atom(enum_status estatus) :
         m_etype(e_type_status),
-        m_i((::iptr)estatus) // used m_i to reset 64-bit field
+        m_iLargest((::iptr)estatus) // used m_iLargest to reset 64-bit field
 {
 
 }
@@ -405,7 +405,7 @@ inline atom::atom(enum_type etypeAdd, const ::atom & atom)
 
       m_etype = etypeAdd;
 
-      m_iBody = atom.m_iBody;
+      m_iLargest = atom.m_iLargest;
 
    }
    else
@@ -413,7 +413,7 @@ inline atom::atom(enum_type etypeAdd, const ::atom & atom)
 
       m_etype = etypeAdd;
 
-      m_iBody = 0;
+      m_iLargest = 0;
 
    }
 
@@ -434,7 +434,7 @@ inline atom::atom(const atom & atom)
    else
    {
 
-      m_u = atom.m_u;
+      m_uLargest = atom.m_uLargest;
       m_etype = atom.m_etype;
 
    }
@@ -485,7 +485,7 @@ inline atom::atom(SIGNED i)
 
    m_etype = e_type_integer;
 
-   m_i = (::iptr) i;
+   m_iLargest = (::iptr) i;
 
 }
 
@@ -496,7 +496,7 @@ inline atom::atom(UNSIGNED u)
 
    m_etype = e_type_integer;
 
-   m_u = u;
+   m_uLargest = u;
 
 }
 
@@ -507,7 +507,7 @@ inline atom::atom(ENUM e)
 
    m_etype = e_type_integer;
 
-   m_i = ::as_i64(e);
+   m_iLargest = ::as_i64(e);
 
 }
 
@@ -518,7 +518,7 @@ inline bool atom::operator == (const atom & atom) const
    return ::comparison::tuple
            (
                    [&]() { return m_etype == atom.m_etype; },
-                   [&]() { return is_text() ? (m_str == atom.m_str) : (m_iBody == atom.m_iBody); }
+                   [&]() { return is_text() ? (m_str == atom.m_str) : (m_iLargest == atom.m_iLargest); }
            );
 
 }
@@ -530,7 +530,7 @@ inline ::std::strong_ordering atom::operator <=>(const atom & atom) const
    return ::comparison::tuple
            (
                    [&]() { return m_etype <=> atom.m_etype; },
-                   [&]() { return is_text() ? (m_str <=> atom.m_str) : (m_iBody <=> atom.m_iBody); }
+                   [&]() { return is_text() ? (m_str <=> atom.m_str) : (m_iLargest <=> atom.m_iLargest); }
            );
 
 }
@@ -602,7 +602,7 @@ inline atom & atom::operator = (const atom & atom)
          else
          {
 
-            m_u = atom.m_u;
+            m_uLargest = atom.m_uLargest;
 
          }
 
@@ -627,7 +627,7 @@ inline atom & atom::operator = (const atom & atom)
       else
       {
 
-         m_u = atom.m_u;
+         m_uLargest = atom.m_uLargest;
 
       }
 
@@ -808,7 +808,7 @@ inline bool atom::operator == (INTEGRAL i) const
 return ::comparison::tuple
 (
 [&]() { return m_etype == e_type_integer; },
-[&]() { return m_i == i; }
+[&]() { return m_iLargest == i; }
 );
 
 }
@@ -821,7 +821,7 @@ inline ::std::strong_ordering atom::operator <=>(INTEGRAL i) const
 return ::comparison::tuple
 (
 [&]() { return m_etype <=> e_type_integer; },
-[&]() { return m_i <=> i; }
+[&]() { return m_iLargest <=> i; }
 );
 
 }
@@ -1249,7 +1249,7 @@ inline ::std::strong_ordering atom::operator <=>(::enum_happening ehappening) co
 inline ::i64 atom::as_i64() const
 {
 
-   return primitive_type() == e_type_integer ? m_i : 0x8000000000000000ll;
+   return primitive_type() == e_type_integer ? m_iLargest : 0x8000000000000000ll;
 
 }
 
@@ -1257,7 +1257,7 @@ inline ::i64 atom::as_i64() const
 inline ::iptr atom::as_iptr() const
 {
 
-   return primitive_type() == e_type_integer ? m_i : INTPTR_MIN;
+   return primitive_type() == e_type_integer ? m_iLargest : INTPTR_MIN;
 
 }
 
@@ -1307,7 +1307,7 @@ inline void atom::Empty()
 
    m_etype  = e_type_empty;
 
-   m_i      = 0;
+   m_iLargest      = 0;
 
 }
 
@@ -1555,7 +1555,7 @@ inline void from_string(::atom & atom, const ::ansi_character * psz)
 //
 //   m_etype = e_type_integer;
 //
-//   m_u = lparam.m_lparam;
+//   m_uLargest = lparam.m_lparam;
 //
 //}
 //
@@ -1736,7 +1736,7 @@ atom::atom(const PAYLOAD & payload)
 
    m_etype = e_type_integer;
 
-   m_u = 0;
+   m_uLargest = 0;
 
    if (payload.is_null())
    {

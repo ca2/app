@@ -1321,7 +1321,7 @@ namespace linux
    ::duration     tickLastPaint;
 
 
-   void interaction_impl::message_handler(::user::message * pusermessage)
+   void interaction_impl::aaa_message_handler(::user::message * pusermessage)
    {
 
       if(pusermessage->m_atom == e_message_timer)
@@ -1347,7 +1347,7 @@ namespace linux
 
          g_iMouseMove++;
 
-         //informationf("linux::interaction_impl::message_handler e_message_mouse_move");
+         //informationf("linux::aaa_interaction_impl::message_handler e_message_mouse_move");
          //printf("g_iMouseMove = %d\n", g_iMouseMove);
 
       }

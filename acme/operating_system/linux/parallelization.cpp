@@ -89,6 +89,8 @@ namespace acme
    void node::user_post(const ::procedure &procedure)
    {
 
+      information() << "acme::node::user_post going to display_post";
+
       ::nano::display::g_p->display_post(procedure);
 
    }

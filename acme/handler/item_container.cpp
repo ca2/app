@@ -281,66 +281,91 @@ bool item_container::contains_item(const ::atom & atom) const
 ::index item_container::item_index(const ::atom & atom) const
 {
 
+   //information() << "item_container::item_index";
+
+   if(atom.m_etype == ::atom::e_type_element && atom.m_eelement == e_element_resize)
+   {
+
+      //information() << "item_container::item_index e_element_resize";
+
+   }
+
    if (::is_null(m_pitema))
    {
+
+      //information() << "item_container::item_index m_pitema IS NULL";
 
       return -1;
 
    }
 
-   auto iIndex = atom.as_index();
+   //information() << "item_container::item_index m_pitema IS SET";
 
-   if (!m_pitema->is_index_ok(iIndex))
+   if (atom.m_etype == ::atom::e_type_integer)
    {
 
-      iIndex = -1;
+      //information() << "item_container::item_index atom.m_etype == ::atom::e_type_integer";
+
+      auto iItem = atom.as_index();
+
+      if (m_pitema->is_index_ok(iItem))
+      {
+
+         //information() << "item_container::item_index FOUND(A) : " << iItem;
+
+         return iItem;
+
+      }
+
+   }
+   else if (atom.m_etype == ::atom::e_type_element)
+   {
+
+      //information() << "item_container::item_index atom.m_etype == ::atom::e_type_element";
 
       for (::index iItem = 0; iItem < m_pitema->size(); iItem++)
       {
 
          auto pitem = (*m_pitema)[iItem];
 
-         if (atom.m_etype == ::atom::e_type_element)
+         if (pitem->m_item.m_eelement == atom.m_eelement)
          {
 
-            if (pitem->m_item.m_eelement == atom.m_eelement)
-            {
+            //information() << "item_container::item_index FOUND(B) : " << iItem;
 
-               iIndex = iItem;
-
-               break;
-
-            }
-
-         }
-         else
-         {
-
-            if (pitem->m_atom == atom)
-            {
-
-               iIndex = iItem;
-
-               break;
-
-            }
+            return iItem;
 
          }
 
       }
 
-      if (iIndex < 0)
+   }
+   else
+   {
+
+      //information() << "item_container::item_index searching for atom";
+
+      for (::index iItem = 0; iItem < m_pitema->size(); iItem++)
       {
 
-         // still not ok? couldn't find then, right?!...;
+         auto pitem = (*m_pitema)[iItem];
 
-         return -1;
+         if (pitem->m_atom == atom)
+         {
+
+            //information() << "item_container::item_index FOUND(D) : " << iItem;
+
+            return iItem;
+
+         }
 
       }
 
    }
 
-   return iIndex;
+   //information() << "item_container::item_index NOT FOUND";
+
+   return -1;
 
 }
 

@@ -292,7 +292,7 @@ void nano_window::handle(::topic* ptopic, ::context* pcontext)
    void nano_window::message_loop()
    {
 
- ///     while(message_loop_step())
+ ///     while(aaa_message_loop_step())
     //  {
 
       //}

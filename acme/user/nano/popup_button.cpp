@@ -112,7 +112,7 @@ void popup_button::initialize_popup_button(const ::string & strText, int x, int 
 
    //      nano_window::display();
 
-   //      message_loop();
+   //      aaa_message_loop();
 
    //   });
 

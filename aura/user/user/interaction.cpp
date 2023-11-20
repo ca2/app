@@ -6678,7 +6678,7 @@ namespace user
                      else if (strType.case_insensitive_contains("main_window"))
                      {
 
-                        information() << "_000OnDraw";
+                        //information() << "_000OnDraw";
 
                      }
 
@@ -7658,6 +7658,8 @@ namespace user
    void interaction::on_message_create(::message::message * pmessage)
    {
 
+      information() << "user::interaction::on_message_create";
+
       set_need_layout();
 
 //      if (::is_null(get_parent()))
@@ -7699,7 +7701,18 @@ namespace user
       if (m_bEnableDragResize)
       {
 
+         information() << "user::interaction::on_message_create enable drag resize";
+
          auto pitemResize = tool().defer_item(e_element_resize);
+
+         if(pitemResize->m_item.m_eelement == e_element_resize)
+         {
+
+            information() << "user::interaction::on_message_create enable drag resize yes, it is e_element_resize : " << (::iptr) pitemResize.m_p;
+
+         }
+
+         information() << "user::interaction::on_message_create enable drag resize m_item.m_iItem : " << pitemResize->m_item.m_iItem;
 
          enable_drag(pitemResize, e_zorder_front);
 
@@ -8927,6 +8940,8 @@ namespace user
 
          auto pdrag = drag(pitem);
 
+         //information() << "drag_hover e_element_resize";
+
          pdrag->m_ecursor = e_cursor_size_bottom_right;
 
          return true;
@@ -9451,7 +9466,7 @@ namespace user
       ::pointer < ::message::message > pmessagePost(pmessage);
 
       m_pthreadUserInteraction->post_procedure([this, pmessagePost]()
-                                     {
+      {
          
          send_message(pmessagePost);
          
@@ -9499,7 +9514,7 @@ namespace user
 
 
    void interaction::on_message(::message::message * pmessage)
-{
+   {
       
       if (layout().is_moving())
       {
@@ -16952,7 +16967,7 @@ namespace user
    }
 
 
-   //void interaction::set_mouse_cursor(::windowing::cursor * pcursor)
+   //void interaction::aaa_set_mouse_cursor(::windowing::cursor * pcursor)
    //{
 
    //   if (!m_pinteractionimpl)
@@ -16962,7 +16977,7 @@ namespace user
 
    //   }
 
-   //   if (!m_pinteractionimpl->set_mouse_cursor(pcursor))
+   //   if (!m_pinteractionimpl->aaa_set_mouse_cursor(pcursor))
    //   {
 
    //      return false;
@@ -24043,12 +24058,20 @@ namespace user
          //information() << "interaction::on_message_mouse_move font_list";
 
       }
+      else if (strType.contains("main_window"))
+      {
+
+         information() << "interaction::on_message_mouse_move main_window";
+
+      }
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
       if (m_ekeyboardmode == ::user::e_keyboard_mode_reposition
    || m_ekeyboardmode == ::user::e_keyboard_mode_resize)
       {
+
+         information() << "interaction::on_message_mouse_move some keyboard mode on";
 
          auto pwindowing = windowing();
 
@@ -24066,8 +24089,12 @@ namespace user
       if (m_bBarDragScrollLeftButtonDown)
       {
 
+         information() << "interaction::on_message_mouse_move m_bBarDragScrollLeftButtonDown";
+
          if (m_bEnableHorizontalBarDragScroll)
          {
+
+            information() << "interaction::on_message_mouse_move m_bEnableHorizontalBarDragScroll";
 
             m_bHorizontalBarDragScrollingActive = true;
 
@@ -24095,6 +24122,8 @@ namespace user
 
          if (m_bEnableVerticalBarDragScroll)
          {
+
+            information() << "interaction::on_message_mouse_move m_bEnableVerticalBarDragScroll";
 
             m_bVerticalBarDragScrollingActive = true;
 
@@ -24137,6 +24166,13 @@ namespace user
                information() << "e_cursor_size_bottom";
 
             }
+            else
+            {
+
+               information() << "(some cursor)";
+
+            }
+
 
          }
          else
@@ -24205,6 +24241,8 @@ namespace user
 
          //if (!pitemFront)
          //{
+
+         information() << "update_hover pmouse e_zorder_back";
 
          auto pitemBack = update_hover(pmouse, e_zorder_back);
 
@@ -25111,6 +25149,8 @@ namespace user
       if (!r.contains(pointClient))
       {
 
+         //information() << "hit_test !r.contains(pointClient)";
+
          auto pitemNone = __new(item(e_element_none));
 
          return pitemNone;
@@ -25147,8 +25187,12 @@ namespace user
       if (get_element_rectangle(rectangleXHitTest, e_element_client_hit_test))
       {
 
+         //information() << "hit_test got_element_rect client_hit_test";
+
          if (!rectangleXHitTest.contains(pointClient))
          {
+
+            //information() << "hit_test got_element_rect !rectangleXHitTest";
 
             return nullptr;
 
@@ -25244,6 +25288,13 @@ namespace user
    bool interaction::item_contains(::item * pitem, const ::point_i32 & point)
    {
 
+      // if(pitem->m_item.m_eelement == e_element_resize)
+      // {
+
+      //    information() << "item_contains e_element_resize pitem, iItem : " << (::iptr) pitem << ", " << pitem->m_item.m_iItem;
+
+      // }
+
       auto * puseritem = user_item(pitem);
 
       if (puseritem->m_ppath)
@@ -25266,8 +25317,23 @@ namespace user
 
          auto rectangle = user_item_rectangle(puseritem, ::user::e_layout_sketch);
 
+         // if(pitem->m_item.m_eelement == e_element_resize)
+         // {
+
+         //    information() << "user_item_rectangle e_element_resize r : " << rectangle;
+         //    information() << "user_item_rectangle e_element_resize r2 : " << puseritem->m_rectangle2;
+
+         // }
+
          if (rectangle.contains(point))
          {
+
+            // if(pitem->m_item.m_eelement == e_element_resize)
+            // {
+
+            //    information() << "user_item_rectangle e_element_resize contains point : " << point;
+
+            // }
 
             return true;
 
@@ -25300,6 +25366,7 @@ namespace user
       return nullptr;
 
    }
+
 
    ::item_pointer interaction::on_items_hit_test(const ::point_i32 & point, e_zorder ezorder, ::index iIdContainer, ::item_array * pitema)
    {
@@ -25339,6 +25406,13 @@ namespace user
          if (item_contains(pitem, pointScroll))
          {
 
+            // if(pitem->m_item.m_eelement == e_element_resize)
+            // {
+
+            //    information() << "on_items_hit_test e_element_resize item_contains";
+
+            // }
+
             return pitem;
 
          }
@@ -25355,15 +25429,34 @@ namespace user
 
       synchronous_lock synchronouslock(this->synchronization());
 
+      //information() << "defer_setup_default_bottom_right_resize_user_item";
+
       auto pitemResize = tool().item(e_element_resize);
 
       if (pitemResize)
       {
 
+         // if(pitemResize->m_item.m_eelement == e_element_resize)
+         // {
+
+         //    information() << "defer_setup_default_bottom_right_resize_user_item resize item OK pitemResize.m_p : " << (::iptr) pitemResize.m_p;
+
+         // }
+         // else
+         // {
+
+         //    information() << "defer_setup_default_bottom_right_resize_user_item resize item NOK pitemResize.m_p : " << (::iptr) pitemResize.m_p;
+
+         // }
+
+         // information() << "defer_setup_default_bottom_right_resize_user_item resize item iItem : " << pitemResize->m_item.m_iItem;
+
          auto pdragResize = drag(pitemResize);
 
          if (pdragResize)
          {
+
+            //information() << "defer_setup_default_bottom_right_resize_user_item resize drag";
 
             //auto pointScroll = point + m_pointScroll + m_pointBarDragScroll;
 
@@ -25376,6 +25469,8 @@ namespace user
                auto puseritem = user_item(pitemResize);
 
                puseritem->m_rectangle2 = rectangleResize;
+
+               //information() << "defer_setup_default_bottom_right_resize_user_item resize rectangle : " << rectangleResize;
 
                //return pitemHitTest;
 

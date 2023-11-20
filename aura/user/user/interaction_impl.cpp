@@ -1012,11 +1012,15 @@ namespace user
             if (prequest)
             {
 
+               information() << "pgraphicsthread->m_eventReady.ResetEvent();";
+
                pgraphicsthread->m_eventReady.ResetEvent();
 
                prequest->m_procedureaOnFinishRequest.add(
-                  [pgraphicsthread]()
+                  [this, pgraphicsthread]()
                   {
+
+                     information() << "pgraphicsthread->m_eventReady.SetEvent();";
 
                      pgraphicsthread->m_eventReady.SetEvent();
 
@@ -2387,6 +2391,8 @@ namespace user
 
          ::pointer<::message::mouse>pmouse = pmessage;
 
+         information() << "msghdl pwnd : " << (::iptr) pmouse->m_pwindow.m_p;
+
          on_mouse_message(pmouse);
 
          return;
@@ -2665,6 +2671,8 @@ namespace user
 
       pwindowing->set(pmouse, oswindow(), m_pwindow, pmouse->m_atom, pmouse->m_wparam, pmouse->m_lparam);
 
+      information() << "omousemsg pwnd : " << (::iptr) pmouse->m_pwindow.m_p;
+
       if (pmouse->m_atom == e_message_mouse_move)
       {
 
@@ -2763,6 +2771,8 @@ namespace user
 
          //information() << "on_mouse_message CAPTURED to object of type : " << strType;
 
+         information() << "omousemsg pwnd (B) : " << (::iptr) pmouse->m_pwindow.m_p;
+
          m_puserinteractionMouseCapture->route_as_parent_mouse_message(pmouse);
 
          information() << "on_mouse_message (capture): " << pmouse->m_pointAbsolute;
@@ -2782,7 +2792,13 @@ namespace user
 
          //information() << "on_mouse_message type : " << strType;
 
+         information() << "omousemsg this (F) : " << (::iptr) (::user::message *)pmouse;
+         information() << "omousemsg pwnd (F) : " << (::iptr) pmouse->m_pwindow.m_p;
+
          m_puserinteraction->on_mouse_message(pmouse);
+
+         information() << "omousemsg this (Q) : " << (::iptr) (::user::message *)pmouse;
+         information() << "omousemsg pwnd (Q) : " << (::iptr) pmouse->m_pwindow.m_p;
 
       }
 
@@ -4591,7 +4607,7 @@ namespace user
    //}
 
 
-   //void interaction_impl::set_mouse_cursor(enum_cursor ecursor)
+   //void interaction_impl::aaa_set_mouse_cursor(enum_cursor ecursor)
    //{
 
    //   auto psession = get_session();

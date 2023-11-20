@@ -1348,7 +1348,7 @@ namespace wayland
 //
 //   }
 //
-//   pdisplay->display_post([function]()
+//   pdisplay->aaa_display_post([function]()
 //                                    {
 //
 //                                       function();

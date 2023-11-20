@@ -719,7 +719,7 @@ void task::run_posted_procedures()
       do
       {
 
-         auto procedure = m_procedurea.pick_first();
+         auto procedure = ::transfer(m_procedurea.pick_first());
 
          synchronouslock.unlock();
 

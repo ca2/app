@@ -39,12 +39,12 @@ namespace user
    //}
 
 
-   //void mouse::set_mouse_cursor(::windowing::cursor* pcursor)
+   //void mouse::aaa_set_mouse_cursor(::windowing::cursor* pcursor)
    //{
 
    //   m_pcursor = pcursor;
 
-   //   ::information() << "mouse::set_mouse_cursor : " << pcursor->m_ecursor;
+   //   ::information() << "mouse::aaa_set_mouse_cursor : " << pcursor->m_ecursor;
 
    //}
 

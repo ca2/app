@@ -302,9 +302,6 @@ public:
    union
    {
 
-      ::iptr               m_iId;
-      ::uptr               m_u;
-      ::iptr               m_i;
       enum_id              m_eid;
       enum_impact          m_eimpact;
       enum_property        m_eproperty;
@@ -320,7 +317,8 @@ public:
       e_check              m_echeck;
       ::string             m_str;
       ::ansi_range         m_range;
-      ::iptr               m_iBody;
+      ::i64                m_iLargest;
+      ::u64                m_uLargest;
 
    };
 
@@ -390,10 +388,10 @@ public:
       }
       else
       {
-         m_u = atom.m_u;
+         m_uLargest = atom.m_uLargest;
       }
       atom.m_etype = e_type_integer; 
-      atom.m_u = 0; 
+      atom.m_uLargest = 0; 
    }
    ~atom()
    {
@@ -678,7 +676,7 @@ public:
 #define IMPLEMENT_ATOM_ENUMERATION(ENUMTYPE) \
    constexpr ::e_ ## ENUMTYPE as_e ## ENUMTYPE() const { return (m_etype == e_type_ ## ENUMTYPE) ? m_e ## ENUMTYPE : (::e_ ## ENUMTYPE) (::enum_ ## ENUMTYPE) 0; } \
    ::e_ ## ENUMTYPE & e ## ENUMTYPE ## _reference() { set_type(e_type_ ## ENUMTYPE); return m_e ## ENUMTYPE; } \
-   constexpr atom(const ::e_ ## ENUMTYPE & e):m_etype(e_type_ ## ENUMTYPE), m_i((::iptr)e) { }
+   constexpr atom(const ::e_ ## ENUMTYPE & e):m_etype(e_type_ ## ENUMTYPE), m_iLargest((::iptr)e) { }
 //   inline explicit payload(::enum_ ## ENUMTYPE e) { m_etype = ::e_type_enum_ ## ENUMTYPE; m_e ## ENUMTYPE = e; } \
 //   inline ::e_ ## ENUMTYPE e ## ENUMTYPE(::enum_ ## ENUMTYPE eDefault = enum_default < ::enum_ ## ENUMTYPE >()) const { return e < ::enum_ ## ENUMTYPE >(eDefault); } \
 //   inline operator ::e_ ## ENUMTYPE () const { return ::e_ ## ENUMTYPE(); } \
@@ -753,7 +751,7 @@ public:
          (
             is_text() ? 
             ::u32_hash(m_str.c_str()).m_u : 
-            ((((::u32)m_u) >> 8) & 0xffffffffu)
+            ((((::u32)m_uLargest) >> 8) & 0xffffffffu)
          ) 
       };
 

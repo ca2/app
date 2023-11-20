@@ -47,6 +47,8 @@ struct item_t
       //,m_iListItem(iListItem)
    {
    }
+
+   inline item_t(const ::item_t & item) = default;
    
    inline item_t(const ::item * pitem);
 
@@ -105,64 +107,65 @@ public:
    //item(enum_element eelement, ::index iItem = -1, ::index iSubItem = -1, ::index iListItem = -1, const ::u64 uFlags = e_flag_none) :
      // item(eelement, iItem, iSubItem, iListItem, uFlags) {}
 
-   item(const ::e_item_flag & eitemflag, enum_element eelement, ::index iItem = -1, ::index iSubItem = -1, ::index iListItem = -1, const ::atom & atom = ::atom::e_type_null) :
-      item(eelement, iItem, iSubItem, iListItem, atom, eitemflag) {}
+   
+   item(::enum_item_flag eitemflag, enum_element eelement, ::index iItem = -1, ::index iSubItem = -1, ::index iListItem = -1, const ::atom & atom = ::atom::e_type_null) :
+      item(eelement, iItem, iSubItem, iListItem, atom, eitemflag) 
+   {
+
+   }
 
    //item(const ::e_item_flag & eitemflag, enum_element eelement, ::index iItem = -1, const ::atom & atom = ::atom::e_type_null) :
      // item(eelement, iItem, atom, eitemflag) {}
 
    item(enum_element eelement, const ::atom & atom)
-      : item(eelement, -1, -1, -1, atom)
+      : item(eelement, atom.is_integer() ? atom.as_index() : -1, -1, -1, atom.is_integer() ? ::atom() : atom)
    {
 
    }
 
 
-   item(enum_element eelement, const enum_id & id)
-      : item(eelement, -1, -1, -1, id)
+   item(enum_element eelement, enum_id eid)
+      : item(eelement, -1, -1, -1, (const ::atom &) eid)
    {
 
    }
 
-   item(enum_element eelement = ::e_element_none, ::index iItem = -1, ::index iSubItem = -1, ::index iListItem = -1, const ::atom & atom = ::atom::e_type_null, const ::e_item_flag eitemflag = ::e_item_flag_none) :
-   m_item(eelement, iItem, iSubItem, iListItem)
-   //item(enum_element eelement = ::e_element_none, ::index iItem = -1, const ::atom & atom = ::atom::e_type_null, const ::e_item_flag eitemflag = ::e_item_flag_none) :
-   //m_item(eelement, iItem)
+
+   item(enum_element eelement = ::e_element_none, ::index iItem = -1, ::index iSubItem = -1, ::index iListItem = -1, const ::atom & atom = ::atom::e_type_null, ::enum_item_flag eitemflag = ::e_item_flag_none) :
+      m_item(eelement, iItem, iSubItem, iListItem),
+      m_eitem(e_item_none),
+      m_eitemflag(eitemflag)
    {
-
-      m_eitem = e_item_none;
-
-      m_eitemflag = eitemflag;
 
    }
 
 
-   item(const ::item_t & item, const ::e_item_flag eitemflag = ::e_item_flag_none) :
-      m_item(item)
+   item(const ::item_t & item, ::enum_item_flag eitemflag = ::e_item_flag_none) :
+      m_item(item),
+      m_eitem(e_item_none),
+      m_eitemflag(eitemflag)
    {
-
-      m_eitem = e_item_none;
-
-      m_eitemflag = eitemflag;
 
    }
 
 
-   item(::index iItem) :
-   m_item(e_element_none, iItem)
-   {
+   // item(::index iItem) :
+   // m_item(e_element_none, iItem)
+   // {
 
-      m_eitem = e_item_none;
+   //    m_eitem = e_item_none;
 
-      m_eitemflag = e_item_flag_none;
+   //    m_eitemflag = e_item_flag_none;
 
-   }
+   // }
 
 
    item(const item & item) :
       PARTICLE(item),
       particle(item),
       m_item(item.m_item),
+      m_eitem(item.m_eitem),
+      m_eitemflag(item.m_eitemflag),
       //item_base(item),
       //ITEM_DATA_ADDITIONS(item),
       //item_data(item),
@@ -176,6 +179,8 @@ public:
       PARTICLE(::transfer(item)),
       particle(::transfer(item)),
       m_item(::transfer(item.m_item)),
+      m_eitem(::transfer(item.m_eitem)),
+      m_eitemflag(::transfer(item.m_eitemflag)),
       //item_base(::transfer(item)),
       //ITEM_DATA_ADDITIONS(::transfer(item)),
       //item_data(::transfer(item)),
@@ -262,8 +267,8 @@ public:
    {
 
       m_item = item.m_item;
-      m_eitemflag = item.m_eitemflag;
       m_eitem = item.m_eitem;
+      m_eitemflag = item.m_eitemflag;
 
       //m_pgraphics = item.m_pgraphics;
 
@@ -308,7 +313,7 @@ public:
 
    bool in_element_range(enum_element eelement, int iCount) const { return m_item.m_eelement >= eelement && m_item.m_eelement < eelement + iCount; }
 
-   bool is_valid_item(::count c) const { return m_item.m_iItem >= 0 && m_item.m_iItem < c; }
+   //bool is_valid_item(::count c) const { return m_item.m_iItem >= 0 && m_item.m_iItem < c; }
    
    
    

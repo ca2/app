@@ -1262,7 +1262,7 @@ namespace user
 
       }
 
-      return __new(::item(e_hit_test_client));
+      return __new(::item(e_element_client));
 
    }
 

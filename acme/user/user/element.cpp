@@ -2629,7 +2629,7 @@ namespace user
    //}
 
 
-   //void element::set_mouse_cursor(::windowing::cursor * pcursor)
+   //void element::aaa_set_mouse_cursor(::windowing::cursor * pcursor)
    //{
 
    //   return success_none;

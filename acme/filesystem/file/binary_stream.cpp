@@ -201,7 +201,7 @@ binary_stream & binary_stream::operator <<(const atom & atom)
    else if (atom.m_etype == ::atom::e_type_integer)
    {
 
-      operator <<(atom.m_i);
+      operator <<(atom.m_iLargest);
 
    }
    else if (atom.m_etype >= ::atom::e_type_property)

@@ -14,7 +14,7 @@ enum enum_use
 
    e_use,
 
-}; // enum enum_base
+}; // enum enum_use
 
 
 enum enum_as_lparam
@@ -22,7 +22,7 @@ enum enum_as_lparam
 
    e_as_lparam,
 
-}; // enum enum_base
+}; // enum enum_as_lparam
 
 
 enum enum_timeout
@@ -63,7 +63,9 @@ public:
    function_common(enum_timeout, const class time& wait): m_timeTimeout(wait) {}
 
 
-   void timeout(const class time & timeWait)  { m_timeTimeout = timeWait;}
+   void timeout(const class time & timeWait)  { m_timeTimeout = timeWait; }
+
+
    class ::time timeout() const {return m_timeTimeout;}
 
 
@@ -153,42 +155,40 @@ public:
    }
 
 
-   function(const ptr < ::particle > & p) 
+   function(const ptr < ::particle > & p) :
+      m_pbase(p)
    {
-      m_pbase = p;
+
    }
 
 
-   function(ptr < ::particle > && p)
+   function(ptr < ::particle > && p) :
+      m_pbase(p)
    {
-      m_pbase = ::transfer(p);
+      
+
    }
 
 
-   function(enum_as_lparam, iptr iptr)
+   function(enum_as_lparam, iptr iptr) :
+      m_pbase((::particle *)iptr)
    {
-
-      m_pbase = (::particle *) iptr;
 
    }
 
 
    template < typename TYPE >
-   function(TYPE * p)
+   function(TYPE * p) :
+      m_pbase(p)
    {
-
-      m_pbase = p;
-
-      p->increment_reference_count();
 
    }
 
 
    template < typename PREDICATE >
-   function(PREDICATE predicateParam)
+   function(PREDICATE predicateParam) :
+      m_pbase(e_pointer_transfer, memory_new class predicate <PREDICATE >(predicateParam))
    {
-
-      m_pbase = memory_new class predicate <PREDICATE >(predicateParam);
 
    }
 
@@ -203,16 +203,16 @@ public:
    }
 
 
-   function(const function & function)
+   function(const function & function) :
+      m_pbase(function.m_pbase)
    {
-      m_pbase = function.m_pbase;
+
    }
 
 
-   function(function && function)
+   function(function && function) :
+      m_pbase(::transfer(function.m_pbase))
    {
-
-      m_pbase = ::transfer(function.m_pbase);
 
    }
 
@@ -222,12 +222,14 @@ public:
 
    }
 
+
    void operator()()
    {
 
       m_pbase->call_run();
 
    }
+
 
    void operator()() const
    {
@@ -246,7 +248,19 @@ public:
 
    }
 
-//
+
+   function & operator = (function && function)
+   {
+
+      m_pbase = ::transfer(function.m_pbase);
+
+      return *this;
+
+   }
+
+
+   
+   //
 //   function & operator = (function && function)
 //   {
 //
@@ -256,7 +270,7 @@ public:
 //
 //   }
 
-   operator bool() const { return ::is_set(this) && __pointer_is_set(m_pbase); }
+   explicit operator bool() const { return ::is_set(this) && __pointer_is_set(m_pbase); }
 
    bool operator !() const { return !this->operator bool(); }
 
@@ -321,11 +335,11 @@ public:
 
    }
 
-   template < typename PREDICATE >
-   function(PREDICATE predicateParam)
-   {
 
-      m_pbase.transfer(memory_new class predicate <PREDICATE >(predicateParam));
+   template < typename PREDICATE >
+   function(PREDICATE predicateParam) :
+      m_pbase(e_pointer_transfer, memory_new class predicate <PREDICATE >(predicateParam))
+   {
 
    }
 
@@ -366,16 +380,27 @@ public:
    function & operator = (PREDICATE predicateParam)
    {
 
-      m_pbase.transfer(memory_new class predicate <PREDICATE >(predicateParam));
+      m_pbase = ::transfer(memory_new class predicate <PREDICATE >(predicateParam));
 
       return *this;
 
    }
 
+
    function & operator = (const function & function)
    {
 
       m_pbase = function.m_pbase;
+
+      return *this;
+
+   }
+
+
+   function & operator = (function && function)
+   {
+
+      m_pbase = ::transfer(function.m_pbase);
 
       return *this;
 
@@ -391,14 +416,16 @@ public:
 
    }
 
-   operator bool() const { return __pointer_is_set(m_pbase); }
+   explicit operator bool() const { return __pointer_is_set(m_pbase); }
 
    bool operator !() const { return __pointer_is_null(m_pbase); }
 
 
-   
-   operator ::u32hash() const {
+   operator ::u32hash() const 
+   {
+
       return { (::u32)(::uptr)m_pbase.m_p };
+
    };
 
 
@@ -457,19 +484,17 @@ public:
    }
 
 
-   function(enum_use, base * pbase)
+   function(enum_use, base * pbase) :
+      m_pbase(pbase)
    {
-
-      m_pbase = pbase;
 
    }
 
 
    template < typename FUNCTION >
-   function(FUNCTION functionParam)
+   function(FUNCTION functionParam) :
+      m_pbase(e_pointer_transfer, memory_new class implementation < FUNCTION >(functionParam))
    {
-
-      m_pbase.transfer(memory_new class implementation < FUNCTION >(functionParam));
 
    }
 
@@ -511,7 +536,27 @@ public:
    function & operator = (FUNCTION functionParam)
    {
 
-      m_pbase.transfer ( memory_new class implementation <FUNCTION >(functionParam));
+      m_pbase = ::transfer( memory_new class implementation <FUNCTION >(functionParam));
+
+      return *this;
+
+   }
+
+
+   function & operator = (const function & function)
+   { 
+      
+      m_pbase = function.m_pbase; 
+      
+      return *this; 
+   
+   }
+
+
+   function & operator = (function && function)
+   {
+
+      m_pbase = ::transfer(function.m_pbase);
 
       return *this;
 
@@ -527,17 +572,19 @@ public:
 
    }
 
-   operator bool() const { return __pointer_is_set(m_pbase); }
+   explicit operator bool() const { return __pointer_is_set(m_pbase); }
 
    bool operator !() const { return __pointer_is_null(m_pbase); }
 
-   function & operator = (const function & function) { m_pbase = function.m_pbase; return *this; }
    bool operator == (const function & function) const { return m_pbase == function.m_pbase; }
-   bool operator != (const function & function) const { return !operator==(function); }
 
-   operator ::u32hash() const {
+   operator ::u32hash() const 
+   {
+
       return { (::u32)(::uptr)m_pbase.m_p };
+
    }
+
 
 };
 
@@ -595,19 +642,17 @@ public:
    }
 
 
-   function(enum_use, base * pbase)
+   function(enum_use, base * pbase) :
+      m_pbase(pbase)
    {
-
-      m_pbase = pbase;
 
    }
 
 
    template < typename FUNCTION >
-   function(FUNCTION functionParam)
+   function(FUNCTION functionParam) :
+      m_pbase(e_pointer_transfer, memory_new class implementation < FUNCTION >(functionParam))
    {
-
-      m_pbase.transfer(memory_new class implementation < FUNCTION >(functionParam));
 
    }
 
@@ -649,7 +694,7 @@ public:
    function & operator = (FUNCTION functionParam)
    {
 
-      m_pbase.transfer ( memory_new class implementation <FUNCTION >(functionParam));
+      m_pbase = ::transfer(memory_new class implementation <FUNCTION >(functionParam));
 
       return *this;
 
@@ -666,6 +711,26 @@ public:
    }
 
 
+   function & operator = (const function & function)
+   {
+      
+      m_pbase = function.m_pbase; 
+      
+      return *this; 
+   
+   }
+
+
+   function & operator = (function && function)
+   {
+      
+      m_pbase = ::transfer(function.m_pbase); 
+      
+      return *this; 
+   
+   }
+
+
    function & operator = (nullptr_t)
    {
 
@@ -675,13 +740,11 @@ public:
 
    }
 
-   operator bool() const { return __pointer_is_set(m_pbase.m_p); }
+   explicit operator bool() const { return __pointer_is_set(m_pbase.m_p); }
 
    bool operator !() const { return __pointer_is_null(m_pbase.m_p); }
 
-   function & operator = (const function & function) { m_pbase = function.m_pbase.m_p; return *this; }
    bool operator == (const function & function) const { return m_pbase == function.m_pbase; }
-   bool operator != (const function & function) const { return !operator==(function); }
 
 
    operator ::u32hash() const { return { (::u32)(::uptr)m_pbase.m_p }; }

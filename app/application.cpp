@@ -62,6 +62,10 @@ namespace app_app
 
       pmainwindow->create_main_window(prequest);
 
+      //pmainwindow->m_pthreadUserInteraction->m_procedurea.add([this]() {});
+
+      //pmainwindow->m_pthreadUserInteraction->run_posted_procedures();
+
    }
 
 

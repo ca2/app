@@ -76,7 +76,7 @@ namespace app_shader
 
       m_pmainwindow->display(e_display_normal);
 
-      m_pmainwindow->create_main_window();
+      m_pmainwindow->create_main_window(prequest);
 
 //      m_pmainwindow->set_need_layout();
 //

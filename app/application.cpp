@@ -47,7 +47,7 @@ namespace app_app
 
       auto pmainwindow = __create_new < ::app_app::main_window >();
 
-      //pmainwindow->display(e_display_normal);
+      pmainwindow->display(e_display_normal);
 
 //      pmainwindow->m_procedureOnAfterCreate = [pmainwindow]()
 //      {
@@ -61,6 +61,10 @@ namespace app_app
 //      };
 
       pmainwindow->create_main_window(prequest);
+
+      //pmainwindow->m_pthreadUserInteraction->m_procedurea.add([this]() {});
+
+      //pmainwindow->m_pthreadUserInteraction->run_posted_procedures();
 
    }
 

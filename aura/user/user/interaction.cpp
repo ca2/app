@@ -26165,7 +26165,7 @@ namespace user
       {
 
          if (!::is_null(puserinteraction->get_parent())
-         || windowing()->has_readily_gettable_absolute_coordinates())
+         || (windowing() && windowing()->has_readily_gettable_absolute_coordinates()))
          {
 
             point += puserinteraction->const_layout().origin(elayout);

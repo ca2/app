@@ -48,6 +48,12 @@ list(APPEND library_source
    filesystem/filemanager/folder/list_impact.h
    filesystem/filemanager/folder/selection_list_impact.cpp
    filesystem/filemanager/folder/selection_list_impact.h
+   filesystem/filemanager/fs/simple/impact.cpp
+   filesystem/filemanager/fs/simple/impact.h
+   filesystem/filemanager/fs/simple/list_impact.cpp
+   filesystem/filemanager/fs/simple/list_impact.h
+   filesystem/filemanager/fs/simple/tree.cpp
+   filesystem/filemanager/fs/simple/tree.h
    filesystem/filemanager/operation/operation.cpp
    filesystem/filemanager/operation/operation.h
    filesystem/filemanager/operation/child_frame.cpp

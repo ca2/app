@@ -9468,7 +9468,7 @@ namespace user
       m_pthreadUserInteraction->post_procedure([this, pmessagePost]()
       {
          
-         send_message(pmessage);
+         send_message(pmessagePost);
 
       });
 

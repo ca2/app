@@ -338,15 +338,15 @@ namespace message
       try
       {
 
-         information() << "mouse::~mouse this (X) : " << (::iptr) (::user::message *)this;
-         information() << "mouse::~mouse pwnd (X) : " << (::iptr) m_pwindow.m_p;
+         //information() << "mouse::~mouse this (X) : " << (::iptr) (::user::message *)this;
+         //information() << "mouse::~mouse pwnd (X) : " << (::iptr) m_pwindow.m_p;
 
          auto pwindow = window();
 
          if (::is_set(pwindow))
          {
 
-            information() << "::message::mouse::~mouse pwindow is_set";
+            //information() << "::message::mouse::~mouse pwindow is_set";
 
             pwindow->on_destruct_mouse_message(this);
 

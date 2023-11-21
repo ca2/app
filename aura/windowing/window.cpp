@@ -2060,7 +2060,7 @@ namespace windowing
    void window::on_destruct_mouse_message(::message::mouse * pmouse)
    {
 
-      information() << "on_destruct_mouse_message";
+      //information() << "on_destruct_mouse_message";
 
       if(::is_null(pmouse))
       {
@@ -2069,7 +2069,7 @@ namespace windowing
 
       }
 
-      information() << "pmouse set";
+      //information() << "pmouse set";
 
       try
       {
@@ -2100,7 +2100,7 @@ namespace windowing
             if(pcursor)
             {
 
-               information() << "got window cursor : " << pcursor->m_ecursor;
+               //information() << "got window cursor : " << pcursor->m_ecursor;
 
             }
 
@@ -2108,14 +2108,14 @@ namespace windowing
          else
          {
 
-            information() << "got mouse cursor : " << pcursor->m_ecursor;
+            //information() << "got mouse cursor : " << pcursor->m_ecursor;
 
          }
 
          if(pcursor)
          {
             
-            information() << "pcursor set";
+            //information() << "pcursor set";
 
             set_mouse_cursor(pcursor);
             

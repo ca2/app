@@ -24075,7 +24075,7 @@ namespace user
       else if (strType.contains("main_window"))
       {
 
-         information() << "interaction::on_message_mouse_move main_window";
+         //information() << "interaction::on_message_mouse_move main_window";
 
       }
 
@@ -24085,7 +24085,7 @@ namespace user
    || m_ekeyboardmode == ::user::e_keyboard_mode_resize)
       {
 
-         information() << "interaction::on_message_mouse_move some keyboard mode on";
+         //information() << "interaction::on_message_mouse_move some keyboard mode on";
 
          auto pwindowing = windowing();
 
@@ -24174,25 +24174,25 @@ namespace user
          if (user_mouse_get_cursor(pmouse))
          {
 
-            if (user_mouse_get_cursor(pmouse)->m_ecursor == e_cursor_size_bottom)
-            {
+            // if (user_mouse_get_cursor(pmouse)->m_ecursor == e_cursor_size_bottom)
+            // {
 
-               information() << "e_cursor_size_bottom";
+            //    information() << "e_cursor_size_bottom";
 
-            }
-            else
-            {
+            // }
+            // else
+            // {
 
-               information() << "(some cursor)";
+            //    information() << "(some cursor)";
 
-            }
+            // }
 
 
          }
          else
          {
 
-            information() << "(no cursor)";
+            //information() << "(no cursor)";
 
          }
 
@@ -24256,7 +24256,7 @@ namespace user
          //if (!pitemFront)
          //{
 
-         information() << "update_hover pmouse e_zorder_back";
+         //information() << "update_hover pmouse e_zorder_back";
 
          auto pitemBack = update_hover(pmouse, e_zorder_back);
 

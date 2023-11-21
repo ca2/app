@@ -902,6 +902,17 @@ namespace user
 
       ::rectangle_i32 rectangleMainMonitor;
 
+      if (!windowing())
+      {
+
+         auto psession = get_session();
+
+         auto puser = psession->user();
+
+         puser->create_windowing();
+
+      }
+
       auto pwindowing = windowing();
 
       auto pdisplay = pwindowing->display();

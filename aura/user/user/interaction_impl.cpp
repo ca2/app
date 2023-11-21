@@ -2391,7 +2391,7 @@ namespace user
 
          ::pointer<::message::mouse>pmouse = pmessage;
 
-         information() << "msghdl pwnd : " << (::iptr) pmouse->m_pwindow.m_p;
+         //information() << "msghdl pwnd : " << (::iptr) pmouse->m_pwindow.m_p;
 
          on_mouse_message(pmouse);
 
@@ -2671,7 +2671,7 @@ namespace user
 
       pwindowing->set(pmouse, oswindow(), m_pwindow, pmouse->m_atom, pmouse->m_wparam, pmouse->m_lparam);
 
-      information() << "omousemsg pwnd : " << (::iptr) pmouse->m_pwindow.m_p;
+      //information() << "omousemsg pwnd : " << (::iptr) pmouse->m_pwindow.m_p;
 
       if (pmouse->m_atom == e_message_mouse_move)
       {
@@ -2771,11 +2771,11 @@ namespace user
 
          //information() << "on_mouse_message CAPTURED to object of type : " << strType;
 
-         information() << "omousemsg pwnd (B) : " << (::iptr) pmouse->m_pwindow.m_p;
+         //information() << "omousemsg pwnd (B) : " << (::iptr) pmouse->m_pwindow.m_p;
 
          m_puserinteractionMouseCapture->route_as_parent_mouse_message(pmouse);
 
-         information() << "on_mouse_message (capture): " << pmouse->m_pointAbsolute;
+         //information() << "on_mouse_message (capture): " << pmouse->m_pointAbsolute;
 
          if (!pmouse->m_bRet && m_puserinteractionMouseCapture)
          {
@@ -2792,13 +2792,13 @@ namespace user
 
          //information() << "on_mouse_message type : " << strType;
 
-         information() << "omousemsg this (F) : " << (::iptr) (::user::message *)pmouse;
-         information() << "omousemsg pwnd (F) : " << (::iptr) pmouse->m_pwindow.m_p;
+         //information() << "omousemsg this (F) : " << (::iptr) (::user::message *)pmouse;
+         //information() << "omousemsg pwnd (F) : " << (::iptr) pmouse->m_pwindow.m_p;
 
          m_puserinteraction->on_mouse_message(pmouse);
 
-         information() << "omousemsg this (Q) : " << (::iptr) (::user::message *)pmouse;
-         information() << "omousemsg pwnd (Q) : " << (::iptr) pmouse->m_pwindow.m_p;
+         //information() << "omousemsg this (Q) : " << (::iptr) (::user::message *)pmouse;
+         //information() << "omousemsg pwnd (Q) : " << (::iptr) pmouse->m_pwindow.m_p;
 
       }
 

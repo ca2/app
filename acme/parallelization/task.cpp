@@ -719,11 +719,11 @@ void task::run_posted_procedures()
       do
       {
 
-         information() << "run_posted_procedures reference_count before_pick : " << (::iptr) m_procedurea.m_begin[0].m_pbase->m_countReference;
+         //information() << "run_posted_procedures reference_count before_pick : " << (::iptr) m_procedurea.m_begin[0].m_pbase->m_countReference;
 
          auto procedure = ::transfer(m_procedurea.pick_first());
 
-         information() << "run_posted_procedures reference_count : " << (::iptr) procedure->m_countReference;
+         //information() << "run_posted_procedures reference_count : " << (::iptr) procedure->m_countReference;
 
          synchronouslock.unlock();
 

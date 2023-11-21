@@ -9462,13 +9462,24 @@ namespace user
          pusermessage->m_pchannel = this;
 
       }
-      
-      ::pointer < ::message::message > pmessagePost(pmessage);
 
-      m_pthreadUserInteraction->post_procedure([this, pmessagePost]()
+      pmessage->increment_reference_count();
+
+      m_pthreadUserInteraction->post_procedure([this, pmessage]()
       {
          
-         send_message(pmessagePost);
+         try
+         {
+         
+            send_message(pmessage);
+
+         }
+         catch(...)
+         {
+
+            pmessage->release();
+
+         }
          
       });
 

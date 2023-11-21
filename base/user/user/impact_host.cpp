@@ -599,6 +599,15 @@ namespace user
 
       }
 
+      if (pimpactdata->m_pplaceholder)
+      {
+
+         pimpactdata->m_pplaceholder->display();
+
+         pimpactdata->m_pplaceholder->set_need_layout();
+
+      }
+
       return pimpactdata;
 
    }

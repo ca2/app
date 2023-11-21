@@ -460,6 +460,13 @@ namespace data
    tree_item * tree_item::get_previous()
    {
 
+      if (::is_null(m_pparent))
+      {
+
+         return nullptr;
+
+      }
+
       auto iFind = m_pparent->m_childrena.find_first(this);
 
       if (iFind > 0)

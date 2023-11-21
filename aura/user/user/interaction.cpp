@@ -9463,24 +9463,13 @@ namespace user
 
       }
 
-      pmessage->increment_reference_count();
+      ::pointer < ::message::message > pmessagePost(pmessage);
 
-      m_pthreadUserInteraction->post_procedure([this, pmessage]()
+      m_pthreadUserInteraction->post_procedure([this, pmessagePost]()
       {
          
-         try
-         {
-         
-            send_message(pmessage);
+         send_message(pmessage);
 
-         }
-         catch(...)
-         {
-
-            pmessage->release();
-
-         }
-         
       });
 
    }

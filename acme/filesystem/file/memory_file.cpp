@@ -45,7 +45,6 @@ memory_file::memory_file(memsize size) :
 
 memory_file::memory_file(const memory_file & m) :
    ::matter((const matter &)m),
-   file((const file &)m),
    memory_container((const memory_container &)m)
 {
 
@@ -57,7 +56,6 @@ memory_file::memory_file(const memory_file & m) :
 
 memory_file::memory_file(memory_file && m) :
    ::matter(::transfer(m)),
-   file(::transfer(m)),
    memory_container(::transfer(m))
 {
 

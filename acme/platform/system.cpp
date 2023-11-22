@@ -2193,7 +2193,7 @@ namespace acme
 #ifdef _DEBUG
 
 
-   i64 system::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
+   i64 system::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
    {
 
       return ::object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
@@ -2201,7 +2201,7 @@ namespace acme
    }
 
 
-   i64 system::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
+   i64 system::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
    {
 
       return ::object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);

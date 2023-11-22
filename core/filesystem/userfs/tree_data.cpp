@@ -65,7 +65,7 @@ namespace userfs
 
 #ifdef _DEBUG
 
-   i64 tree_data::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+   i64 tree_data::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
    {
 
       auto c = m_countReference++;
@@ -81,7 +81,7 @@ namespace userfs
    }
 
 
-   i64 tree_data::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+   i64 tree_data::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
    {
 
       auto c = m_countReference--;
@@ -102,7 +102,7 @@ namespace userfs
    }
 
 
-   i64 tree_data::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+   i64 tree_data::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
    {
 
       i64 i = decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);

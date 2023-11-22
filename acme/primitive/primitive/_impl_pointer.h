@@ -227,7 +227,7 @@ T * __dynamic_cast(const T2 * p)
 
 
 template < class T >
-inline pointer < T >& pointer < T > ::reset(const ::pointer < T > & pNew OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+inline pointer < T >& pointer < T > ::reset(const ::pointer < T > & pNew OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEFINITION)
 {
 
    if (pNew.is_null())
@@ -266,7 +266,7 @@ inline pointer < T >& pointer < T > ::reset(const ::pointer < T > & pNew OBJECT_
 
 template < class T >
 template < typename T2 >
-inline pointer < T > & pointer < T > ::reset (T2 * pNew OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+inline pointer < T > & pointer < T > ::reset (T2 * pNew OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEFINITION)
 {
 
    if (::is_null(pNew))
@@ -327,6 +327,7 @@ inline pointer < T > & pointer < T > ::reset (T2 * pNew OBJECT_REFERENCE_COUNT_D
 template < class T >
 inline pointer < T > & pointer < T > ::operator = (const pointer  & t)
 {
+
    if (this != &t)
    {
 
@@ -346,6 +347,7 @@ inline pointer < T > & pointer < T > ::operator = (const pointer  & t)
       ::release(pold REF_DBG_COMMA_POINTER);
 
    }
+
    return *this;
 
 }
@@ -410,7 +412,7 @@ inline ::particle * pointer < T > ::detach_particle()
 // cut and paste with very good capabilities of RealVNC for MacOS in OVH.fr/eu/pt cloud from Windows client.
 // slashes with ABNT 2 keyboard and even c cedilha working with RealVNC
 template < class T >
-inline i64 pointer <T>::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+inline i64 pointer <T>::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
 {
 
    m_p = nullptr;
@@ -422,7 +424,7 @@ inline i64 pointer <T>::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
 
 
 template < class T >
-inline i64 pointer <T>::global_release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+inline i64 pointer <T>::global_release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
 {
 
    auto i = ::global_release(m_pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
@@ -688,7 +690,7 @@ inline pointer < T >::pointer(lparam & lparam)
 
 
 template < class c_derived >
-inline i64 increment_reference_count(c_derived * pca OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+inline i64 increment_reference_count(c_derived * pca OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEFINITION)
 {
 
    if (::is_null(pca))
@@ -734,7 +736,7 @@ inline i64 increment_reference_count(c_derived *& pderived, const ::pointer<SOUR
 
 
 template < typename TYPE >
-inline i64 release(::pointer<TYPE>& pointer OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+inline i64 release(::pointer<TYPE>& pointer OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEFINITION)
 {
 
 return release(pointer.m_p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
@@ -743,7 +745,7 @@ return release(pointer.m_p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
 
 
 template < typename TYPE >
-inline i64 __finalize(::pointer<TYPE> pointer OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+inline i64 __finalize(::pointer<TYPE> pointer OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEFINITION)
 {
 
 if (!pointer) return -1;
@@ -756,7 +758,7 @@ return release(pointer.m_p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
 
 //
 //template < class REFERENCE >
-//inline i64 release(::pointer<REFERENCE>& preference OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//inline i64 release(::pointer<REFERENCE>& preference OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEFINITION)
 //{
 //
 //   return release(preference.m_p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);

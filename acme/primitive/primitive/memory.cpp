@@ -335,13 +335,13 @@ memory::~memory()
          if(m_bAligned)
          {
 
-            return (::u8 *)aligned_memory_allocate_debug((size_t)dwAllocation, 723, "thread://" + ::get_task_object_name() + "="+ ::get_task_object_debug() + ", memory://" + m_strTag, m_iLine;
+            return (::u8 *)::HEAP_NAMESPACE::aligned_memory_allocate_debug((size_t)dwAllocation, 723, "thread://" + ::get_task_object_name() + "="+ ::get_task_object_debug() + ", memory://" + m_strTag, m_iLine);
 
          }
          else
          {
 
-            return (::u8 *)memory_allocate_debug((size_t)dwAllocation, 723, "thread://" + ::get_task_object_name() + "="+ ::get_task_object_debug() + ", memory://"+m_strTag, m_iLine;
+            return (::u8 *)memory_allocate_debug((size_t)dwAllocation, 723, "thread://" + ::get_task_object_name() + "="+ ::get_task_object_debug() + ", memory://"+m_strTag, m_iLine);
 
          }
 
@@ -352,13 +352,13 @@ memory::~memory()
          if(m_bAligned)
          {
 
-            return (::u8 *)aligned_memory_allocate_debug((size_t)dwAllocation, 723, "thread://" + ::get_task_object_name() + ", memory://" + m_strTag, m_iLine;
+            return (::u8 *)::HEAP_NAMESPACE::aligned_memory_allocate_debug((size_t)dwAllocation, 723, "thread://" + ::get_task_object_name() + ", memory://" + m_strTag, m_iLine);
 
          }
          else
          {
 
-            return (::u8 *)memory_allocate_debug((size_t)dwAllocation, 723, "thread://" + ::get_task_object_name() + ", memory://"+m_strTag, m_iLine;
+            return (::u8 *)memory_allocate_debug((size_t)dwAllocation, 723, "thread://" + ::get_task_object_name() + ", memory://"+m_strTag, m_iLine);
 
          }
 
@@ -371,7 +371,7 @@ memory::~memory()
       if(m_bAligned)
       {
 
-         return (::u8 *)aligned_memory_allocate_debug((size_t)dwAllocation, 723, m_strTag, m_iLine);
+         return (::u8 *)::HEAP_NAMESPACE::aligned_memory_allocate_debug((size_t)dwAllocation, 723, m_strTag, m_iLine);
 
       }
       else
@@ -388,7 +388,7 @@ memory::~memory()
       if(m_bAligned)
       {
 
-         return (::u8 *)aligned_memory_allocate((size_t)dwAllocation);
+         return (::u8 *)::HEAP_NAMESPACE::aligned_memory_allocate((size_t)dwAllocation);
 
       }
       else

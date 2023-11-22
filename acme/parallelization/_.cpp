@@ -743,12 +743,12 @@ CLASS_DECL_ACME ::task * get_task()
 //}
 
 
-CLASS_DECL_ACME void set_task(task * ptask OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+CLASS_DECL_ACME void set_task(task * ptask OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEFINITION)
 {
 
    auto ptaskOld = t_ptask;
 
-   ::increment_reference_count(ptask);
+   ::increment_reference_count(ptask OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
 
    t_ptask = ptask;
 
@@ -761,19 +761,19 @@ CLASS_DECL_ACME void set_task(task * ptask OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PA
 
    }
 
-   ::release(ptaskOld);
+   ::release(ptaskOld OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
 
 }
 
 
-CLASS_DECL_ACME void task_release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+CLASS_DECL_ACME void task_release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
 {
 
    auto ptask = t_ptask;
 
    t_ptask = nullptr;
 
-   ::release(t_ptask);
+   ::release(t_ptask OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
 
 }
 

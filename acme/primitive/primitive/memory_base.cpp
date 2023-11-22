@@ -20,7 +20,7 @@ MEMORY::MEMORY()
 
 #if MEMDLEAK
 
-   m_iLine = 0;
+   //m_iLine = 0;
 
 #endif
 

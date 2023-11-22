@@ -21,11 +21,11 @@ void defer_delete(object_reference_count_debug* p);
 matter::~matter()
 {
 
-#if OBJECT_REFERENCE_COUNT_DEBUG
-
-   ::defer_delete(m_pobjrefdbg);
-
-#endif
+//#if OBJECT_REFERENCE_COUNT_DEBUG
+//
+//   ::defer_delete(m_pobjrefdbg);
+//
+//#endif
 //
 //   if (m_eobject & e_object_any_hook && m_pcontext)
 //   {

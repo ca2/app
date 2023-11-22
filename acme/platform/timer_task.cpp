@@ -21,7 +21,7 @@ timer_task::~timer_task()
 #ifdef _DEBUG
 
 
-i64 timer_task::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+i64 timer_task::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
 {
 
    return task::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
@@ -29,7 +29,7 @@ i64 timer_task::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETER
 }
 
 
-i64 timer_task::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+i64 timer_task::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
 {
 
    return task::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
@@ -37,7 +37,7 @@ i64 timer_task::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETER
 }
 
 
-i64 timer_task::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+i64 timer_task::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
 {
 
    return task::release(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);

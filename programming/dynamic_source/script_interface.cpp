@@ -61,7 +61,7 @@ namespace dynamic_source
          if (!m_pmain)
          {
 
-            tracking_note_assign(m_pmain, pinterface->m_pmain.get(), OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_NOTE("scptiface:init:referer://"+ m_strNote));
+            tracking_note_assign(m_pmain, pinterface->m_pmain.get() OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_NOTE("scptiface:init:referer://"+ m_strNote));
 
          }
 

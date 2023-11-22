@@ -378,7 +378,7 @@
 //
 //
 //template < class c_derived >
-//inline i64 increment_reference_count(c_derived * pca OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//inline i64 increment_reference_count(c_derived * pca OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEFINITION)
 //{
 //
 //   if (::is_null(pca))
@@ -423,7 +423,7 @@
 //
 //
 //template < class c_derived >
-//inline i64 release(c_derived *& pca OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//inline i64 release(c_derived *& pca OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEFINITION)
 //{
 //
 //   if (::is_null(pca))

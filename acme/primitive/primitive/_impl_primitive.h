@@ -5,7 +5,7 @@
 
 
 template < typename T >
-inline i64 release(T*& p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
+inline i64 release(T*& p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEFINITION)
 {
 
    if (::is_null(p))
@@ -49,7 +49,7 @@ inline i64 release(T*& p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
 
 
 template < typename T >
-inline i64 global_release(T*& p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
+inline i64 global_release(T*& p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEFINITION)
 {
 
    if (::is_null(p))
@@ -93,7 +93,7 @@ inline i64 global_release(T*& p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
 #if !defined(_DEBUG)
 
 
-inline i64 particle::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+inline i64 particle::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
 {
 
    auto c = ++m_countReference;
@@ -109,7 +109,7 @@ inline i64 particle::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARA
 }
 
 
-inline i64 particle::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+inline i64 particle::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
 {
 
    auto c = --m_countReference;
@@ -130,7 +130,7 @@ inline i64 particle::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARA
 }
 
 
-inline i64 particle::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+inline i64 particle::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
 {
 
    i64 i = decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);

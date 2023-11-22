@@ -51,14 +51,14 @@ bool simple_tab_document::on_open_document(const ::payload & payloadFile)
 
 #ifdef _DEBUG
 
-i64 simple_tab_document::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+i64 simple_tab_document::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
 {
 
    return  ::user::document::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
 }
 
-i64 simple_tab_document::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+i64 simple_tab_document::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
 {
 
    return  ::user::document::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);

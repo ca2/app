@@ -11,7 +11,7 @@ namespace dynamic_source
 
       m_pnetnodescriptmain = nullptr;
 
-      tracking_note_assign(m_pmain, this, OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_NOTE("this is annotation"));
+      tracking_note_assign(m_pmain, this OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_NOTE("this is annotation"));
 
    }
 
@@ -26,7 +26,7 @@ namespace dynamic_source
 #ifdef _DEBUG
 
 
-   ::i64 script_main::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+   ::i64 script_main::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
    {
 
       return script_interface::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
@@ -34,7 +34,7 @@ namespace dynamic_source
    }
 
 
-   ::i64 script_main::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+   ::i64 script_main::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
    {
 
       return script_interface::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);

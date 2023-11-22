@@ -21,10 +21,19 @@ CLASS_DECL_ACME void do_tasks();
 particle::~particle()
 {
 
+#if OBJECT_REFERENCE_COUNT_DEBUG
+
+   if (::is_set(m_pobjectreferencecountdebug))
+   {
+
+      delete m_pobjectreferencecountdebug;
+
+   }
+
+#endif
    //::release(m_pparticleSynchronization);
 
 }
-
 
 
 void particle::initialize(::particle * pparticle)
@@ -45,7 +54,7 @@ void particle::initialize(::particle * pparticle)
 #ifdef _DEBUG
 
 
-i64 particle::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+i64 particle::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
 {
 
    auto c = ++m_countReference;
@@ -61,7 +70,7 @@ i64 particle::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_
 }
 
 
-i64 particle::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+i64 particle::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
 {
 
    auto c = --m_countReference;
@@ -82,7 +91,7 @@ i64 particle::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_
 }
 
 
-i64 particle::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+i64 particle::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
 {
 
    i64 i = decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
@@ -1936,7 +1945,7 @@ void particle::set_library_name(const ::scoped_string & scopedstrLibraryName)
 //}
 
 
-//void particle::add_composite(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//void particle::add_composite(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEFINITION)
 //{
 //
 //   //throw ::not_implemented();
@@ -1950,7 +1959,7 @@ void particle::set_library_name(const ::scoped_string & scopedstrLibraryName)
 //}
 //
 //
-//void particle::add_reference(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//void particle::add_reference(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEFINITION)
 //{
 //
 //   //return ::success_none;
@@ -1958,7 +1967,7 @@ void particle::set_library_name(const ::scoped_string & scopedstrLibraryName)
 //}
 //
 //
-//void particle::release_composite2(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//void particle::release_composite2(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEFINITION)
 //{
 //
 //   //return ::success_none;
@@ -1966,7 +1975,7 @@ void particle::set_library_name(const ::scoped_string & scopedstrLibraryName)
 //}
 //
 //
-//void particle::finalize_composite(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//void particle::finalize_composite(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEFINITION)
 //{
 //
 //   //return ::success_none;
@@ -1974,7 +1983,7 @@ void particle::set_library_name(const ::scoped_string & scopedstrLibraryName)
 //}
 //
 //
-//void particle::release_reference(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//void particle::release_reference(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEFINITION)
 //{
 //
 //   //return ::success_none;

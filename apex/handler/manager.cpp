@@ -34,7 +34,7 @@ manager::~manager()
 //#error "manager::increment_reference_count is being compiled??"
 
 
-i64 manager::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+i64 manager::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
 {
 
    return ::property_object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
@@ -42,7 +42,7 @@ i64 manager::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_D
 }
 
 
-i64 manager::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+i64 manager::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
 {
 
    return ::property_object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
@@ -50,7 +50,7 @@ i64 manager::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_D
 }
 
 
-i64 manager::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+i64 manager::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
 {
 
    return ::property_object::release(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);

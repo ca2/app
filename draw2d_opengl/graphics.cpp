@@ -132,7 +132,7 @@ namespace draw2d_opengl
 
 #ifdef __DEBUG
 
-   int64_t graphics::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+   int64_t graphics::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
    {
 
       return ::particle::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
@@ -140,7 +140,7 @@ namespace draw2d_opengl
    }
 
 
-   int64_t graphics::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+   int64_t graphics::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
    {
 
       return ::particle::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);

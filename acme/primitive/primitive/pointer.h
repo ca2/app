@@ -11,7 +11,7 @@ CLASS_DECL_ACME ::factory::factory * get_system_factory();
 #define TEMPLATE_ARG __TEMPLATE_TYPE__ t = nullptr
 
 template < class c_derived >
-inline i64 increment_reference_count(c_derived * pca OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF);
+inline i64 increment_reference_count(c_derived * pca OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
 class particle;
 
@@ -82,7 +82,7 @@ public:
    inline pointer(enum_pointer_transfer, T2* p);
 
    template < class T2 >
-   inline pointer(const T2 * p)
+   inline pointer(const T2 * p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
    {
 
       if (::is_null(p))
@@ -101,7 +101,7 @@ public:
       if (::is_set(m_p))
       {
 
-         ::increment_reference_count(m_p);
+         ::increment_reference_count(m_p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
 
          m_pparticle = m_p;
 

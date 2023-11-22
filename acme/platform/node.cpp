@@ -45,8 +45,8 @@ namespace acme
 
       //m_bUserDarkMode = false;
 
-      m_bCallstackInitialized = false;
-      m_bUpdateCallstack = false;
+      m_bCallStackInitialized = false;
+      m_bUpdateCallStack = false;
 
       m_uNodeFlags = 0;
 
@@ -95,7 +95,7 @@ namespace acme
 #ifdef _DEBUG
 
 
-   i64 node::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
+   i64 node::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
    {
 
       return ::object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
@@ -103,7 +103,7 @@ namespace acme
    }
 
 
-   i64 node::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
+   i64 node::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
    {
 
       return ::object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);

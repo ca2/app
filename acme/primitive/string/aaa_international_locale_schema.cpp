@@ -722,12 +722,12 @@ restart:
 
       }
 
-      i64 locale_schema::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+      i64 locale_schema::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
       {
          return matter::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
       }
 
-      i64 locale_schema::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+      i64 locale_schema::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
       {
          return matter::release(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
       }

@@ -227,7 +227,7 @@ int_bool CLASS_DECL_ACME _001DefaultDllMain(hinstance hinstance, ::u32 dwReason,
             if (pnode)
             {
 
-               pnode->m_bUpdateCallstack = true;
+               pnode->m_bUpdateCallStack = true;
 
                //pnode->defer_initialize_callstack();
 

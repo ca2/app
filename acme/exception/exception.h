@@ -14,8 +14,8 @@ public:
 
    ::e_status                 m_estatus;
 
-   bool                       m_bDumpBackTrace;
-   string                     m_strCallstack;
+   bool                       m_bDumpCallStackTrace;
+   string                     m_strCallStackTrace;
    bool                       m_bHandled;
    bool                       m_bContinue;
    string                     m_strMessage; // Message for the user

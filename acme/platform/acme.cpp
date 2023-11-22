@@ -24,6 +24,37 @@ CLASS_DECL_ACME bool add_matter(::matter * pmatter);
 #include <xlocale.h>
 #endif
 
+namespace main_memory_allocate_heap
+{
+   CLASS_DECL_ACME void memdleak_init();
+   CLASS_DECL_ACME void memdleak_term();
+   CLASS_DECL_ACME void memdleak_dump();
+}
+namespace array_memory_allocate_heap
+{
+   CLASS_DECL_ACME void memdleak_init();
+   CLASS_DECL_ACME void memdleak_term();
+   CLASS_DECL_ACME void memdleak_dump();
+}
+namespace property_memory_allocate_heap
+{
+   CLASS_DECL_ACME void memdleak_init();
+   CLASS_DECL_ACME void memdleak_term();
+   CLASS_DECL_ACME void memdleak_dump();
+}
+namespace secondary_memory_allocate_heap
+{
+   CLASS_DECL_ACME void memdleak_init();
+   CLASS_DECL_ACME void memdleak_term();
+   CLASS_DECL_ACME void memdleak_dump();
+}
+namespace string_memory_allocate_heap
+{
+   CLASS_DECL_ACME void memdleak_init();
+   CLASS_DECL_ACME void memdleak_term();
+   CLASS_DECL_ACME void memdleak_dump();
+}
+
 
 #ifdef WINDOWS
 CLASS_DECL_ACME _locale_t get_c_locale();
@@ -94,6 +125,7 @@ extern _locale_t g_localeC;
 extern locale_t g_localeC;
 
 #endif
+
 
 
 extern ::nanosecond g_nanosecondFirst;
@@ -907,7 +939,11 @@ namespace acme
 
 #if MEMDLEAK
 
-      memdleak_init();
+      main_memory_allocate_heap::memdleak_init();
+      array_memory_allocate_heap::memdleak_init();
+      property_memory_allocate_heap::memdleak_init();
+      secondary_memory_allocate_heap::memdleak_init();
+      string_memory_allocate_heap::memdleak_init();
 
 #endif
 
@@ -1263,7 +1299,11 @@ namespace acme
 
 #if MEMDLEAK
 
-      memdleak_term();
+      main_memory_allocate_heap::memdleak_term();
+      array_memory_allocate_heap::memdleak_term();
+      property_memory_allocate_heap::memdleak_term();
+      secondary_memory_allocate_heap::memdleak_term();
+      string_memory_allocate_heap::memdleak_term();
 
 #endif
 
@@ -1348,7 +1388,7 @@ namespace acme
 
 #if MEMDLEAK
 
-      ::set_thread(nullptr);
+      ::set_task(nullptr);
 
 #ifdef __USE_BFD
 
@@ -1356,7 +1396,11 @@ namespace acme
 
 #endif
 
-      memdleak_dump();
+      main_memory_allocate_heap::memdleak_dump();
+      array_memory_allocate_heap::memdleak_dump();
+      property_memory_allocate_heap::memdleak_dump();
+      secondary_memory_allocate_heap::memdleak_dump();
+      string_memory_allocate_heap::memdleak_dump();
 
 #endif
 

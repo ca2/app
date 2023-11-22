@@ -167,7 +167,7 @@ public:
 
       this->allocate(nIndex + 1, false, false, &p);
 
-      //this->last().reset(p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+      this->last().reset(p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
 
       return nIndex;
 
@@ -205,22 +205,22 @@ public:
    //}
 
 
-   ::index add(const pointer < T > & p)
+   ::index add(const pointer < T > & p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
    {
 
-      return this->add_item(p);
+      return this->add_item(p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
 
    }
 
 
-   ::index add(pointer < T > && p)
+   ::index add(pointer < T > && p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
    {
 
-      return this->add_item(::transfer(p));
+      return this->add_item(::transfer(p) OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
 
    }
 
-   ::index add_non_null(T* p)
+   ::index add_non_null(T* p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
    {
 
       if (::is_null(p))
@@ -230,10 +230,21 @@ public:
 
       }
 
-      return this->add_item(p);
+      return this->add_item(p  OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
 
    }
 
+
+   void insert_at(::index i, T* p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
+   {
+
+      ::index nIndex = this->size();
+
+      comparable_array < ::pointer<T > >::insert_at(i, p);
+
+      this->element_at(i)->add_ref_history(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+
+   }
 
    bool insert_unique_at(::index i, T * p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
@@ -1735,7 +1746,7 @@ typedef pointer_array < matter > simple_object_pointera;
 
 
 template < typename T >
-bool pointer_array < T > ::insert_unique_at(::index i, T * p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
+bool pointer_array < T > ::insert_unique_at(::index i, T * p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEFINITION)
 {
 
    if (i < 0 || i > this->get_size())

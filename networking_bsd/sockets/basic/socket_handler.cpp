@@ -86,7 +86,7 @@ namespace sockets_bsd
 
 
 
-   i64 socket_handler::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
+   i64 socket_handler::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
    {
 
       return ::object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
@@ -94,7 +94,7 @@ namespace sockets_bsd
    }
 
 
-   i64 socket_handler::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
+   i64 socket_handler::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
    {
 
       return ::object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);

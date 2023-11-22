@@ -3,9 +3,9 @@
 ////#include "acme/exception/exception.h"
 #include "acme/handler/extended_topic.h"
 //#include "acme/update.h"
-#if OBJECT_REFERENCE_COUNT_DEBUG
-#include "acme/platform/obj_ref_debug_impl.h"
-#endif
+//#if OBJECT_REFERENCE_COUNT_DEBUG
+//#include "acme/platform/obj_ref_debug_impl.h"
+//#endif
 //#include "acme/constant/idpool.h"
 //#include "acme/primitive/text/_.h"
 #include "acme/primitive/primitive/set_bit.h"
@@ -27,7 +27,7 @@ object::~object()
 }
 
 
-i64 object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+i64 object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
 {
 
    auto c = m_countReference++;
@@ -43,7 +43,7 @@ i64 object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DE
 }
 
 
-i64 object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+i64 object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
 {
 
    auto c = --m_countReference;
@@ -64,7 +64,7 @@ i64 object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DE
 }
 
 
-i64 object::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+i64 object::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
 {
 
    i64 i = decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
@@ -104,7 +104,7 @@ string object::as_string() const
 }
 
 
-//void object::add_composite(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//void object::add_composite(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEFINITION)
 //{
 //
 //   _synchronous_lock synchronouslock(this->synchronization());
@@ -129,7 +129,7 @@ string object::as_string() const
 //}
 //
 //
-//void object::add_reference(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//void object::add_reference(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEFINITION)
 //{
 //
 //   _synchronous_lock synchronouslock(this->synchronization());
@@ -157,7 +157,7 @@ string object::as_string() const
 //}
 
 
-//void object::release_composite2(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//void object::release_composite2(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEFINITION)
 //{
 //
 //   if (::is_null(pelement))
@@ -186,7 +186,7 @@ string object::as_string() const
 //}
 //
 //
-//void object::finalize_composite(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//void object::finalize_composite(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEFINITION)
 //{
 //
 //   if (::is_null(pelement))
@@ -228,7 +228,7 @@ string object::as_string() const
 //}
 //
 //
-//void object::release_reference(::particle * pparticle  OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//void object::release_reference(::particle * pparticle  OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEFINITION)
 //{
 //
 //   if (::is_null(pelement))
@@ -2510,7 +2510,7 @@ void call_sync(const ::procedure_array& methoda)
 #ifdef _DEBUG
 
 
-//void object::set_context(::context* pcontext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//void object::set_context(::context* pcontext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEFINITION)
 //{
 //
 //   m_pcontext.reset(pcontext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
@@ -2518,7 +2518,7 @@ void call_sync(const ::procedure_array& methoda)
 //}
 //
 //
-//void object::set_context_thread(::thread* pthread OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//void object::set_context_thread(::thread* pthread OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEFINITION)
 //{
 //
 //   m_pthread.reset(pthread OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
@@ -2526,7 +2526,7 @@ void call_sync(const ::procedure_array& methoda)
 //}
 //
 //
-//void object::set_context_app(::apex::application* pappContext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//void object::set_context_app(::apex::application* pappContext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEFINITION)
 //{
 //
 //   m_papp.reset(pappContext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
@@ -2534,7 +2534,7 @@ void call_sync(const ::procedure_array& methoda)
 //}
 //
 //
-//void object::set_context_session(::apex::session* psessionContext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//void object::set_context_session(::apex::session* psessionContext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEFINITION)
 //{
 //
 //   m_psession.reset(psessionContext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
@@ -2542,7 +2542,7 @@ void call_sync(const ::procedure_array& methoda)
 //}
 //
 //
-////void object::set_context_system(::apex::system* psystemContext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+////void object::set_context_system(::apex::system* psystemContext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEFINITION)
 ////{
 ////
 ////   m_psystemContext.reset(psystemContext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
@@ -2579,7 +2579,7 @@ void call_sync(const ::procedure_array& methoda)
 //#ifdef _DEBUG
 //
 //
-//i64 object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
+//i64 object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
 //{
 //
 //   return property_object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
@@ -2587,7 +2587,7 @@ void call_sync(const ::procedure_array& methoda)
 //}
 //
 //
-//i64 object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
+//i64 object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
 //{
 //
 //   return property_object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
@@ -2606,7 +2606,7 @@ void call_sync(const ::procedure_array& methoda)
 //#else
 //
 //
-//i64 object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
+//i64 object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
 //{
 //
 //   return property_object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
@@ -2614,7 +2614,7 @@ void call_sync(const ::procedure_array& methoda)
 //}
 //
 //
-//i64 object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
+//i64 object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
 //{
 //
 //   return property_object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);

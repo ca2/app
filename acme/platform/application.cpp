@@ -1309,7 +1309,7 @@ namespace acme
       {
 
          message_box_synchronous(this, "Application failed to initialize (4). Unknown exception", m_strAppName, e_message_box_ok,
-            exception.m_strMessage + "\n\n" + exception.m_strDetails + "\n\n" + exception.m_strCallstack);
+            exception.m_strMessage + "\n\n" + exception.m_strDetails + "\n\n" + exception.m_strCallStackTrace);
 
          throw exception;
 

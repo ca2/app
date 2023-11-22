@@ -11,9 +11,9 @@
 
 
 
-extern ::critical_section * g_pmutgen;
-memdleak_block * s_pmemdleakList;
-extern thread_local memdleak_block * t_plastblock;
+//extern ::critical_section * g_pmutgen;
+//memdleak_block * s_pmemdleakList;
+//extern thread_local memdleak_block * t_plastblock;
 
 
 #endif
@@ -36,7 +36,7 @@ void * system_heap_alloc_normal(memsize size)
 }
 
 
-void * system_heap_alloc_debug(memsize size, int nBlockUse, const ::file::path & path, int iLine)
+void * system_heap_alloc_debug(memsize size, int nBlockUse, const char * pszFile, int iLine)
 {
 
 #if MEMDLEAK
@@ -93,7 +93,7 @@ memsize system_heap_alloc_size(void * p)
 #ifdef MEMDLEAK
 
 
-void * system_heap_realloc_debug(void * p,  memsize size, i32 nBlockUse, const ::file::path & path, i32 iLine)
+void * system_heap_realloc_debug(void * p,  memsize size, i32 nBlockUse, const char * pszFile, i32 iLine)
 {
 
 #if MEMDLEAK
@@ -258,73 +258,6 @@ else
 
 }
 
-#if MEMDLEAK
-
-
-::count get_mem_info(i32 ** ppiUse, const char *** ppszFile, const char *** ppszCallStack, u32 ** ppuiLine, memsize ** ppsize)
-{
-
-   //throw ::exception(error_failed, "plex_heap_alloc_array::get_mem_info member function is available only with \"memdleak\" builds - MEMDLEAK defined");
-
-
-   critical_section_lock lock(g_pmutgen);
-
-   memdleak_block * pblock = s_pmemdleakList;
-
-   ::count ca = 0;
-
-   while(pblock != nullptr)
-   {
-
-      ca++;
-
-      pblock = pblock->m_pnext;
-
-   }
-
-
-   i32 * piUse =(i32 *)  malloc(sizeof(i32) * ca);
-   const char ** pszFile = (const char **) malloc(sizeof(const char *) * ca);
-   const char ** pszCallStack = (const char **)malloc(sizeof(const char *) * ca);
-   u32 * puiLine =(u32 *)  malloc(sizeof(u32) * ca);
-   memsize * psize =(memsize *)  malloc(sizeof(memsize) * ca);
-
-   index i = 0;
-
-   pblock = s_pmemdleakList;
-
-   while(pblock != nullptr && i < ca)
-   {
-      piUse[i] = pblock->m_iBlockUse;
-      pszFile[i] = pblock->m_pszFileName== nullptr ? nullptr : _strdup(pblock->m_pszFileName);
-      pszCallStack[i] = pblock->m_iStack <= 0 ? nullptr :_strdup(::get_call_stack_trace(pblock->m_uaStack, pblock->m_iStack));
-      puiLine[i] = pblock->m_uiLine;
-      psize[i] = pblock->m_size;
-
-      i++;
-
-      pblock = pblock->m_pnext;
-
-
-
-   }
-
-   *ppiUse = piUse;
-   *ppszFile = pszFile;
-   *ppszCallStack = pszCallStack;
-   *ppuiLine = puiLine;
-   *ppsize = psize;
-
-
-   return ca;
-
-//#endif
-//
-//   return 0;
-
-}
-
-#endif // MEMDLEAK
 
 
 //typedef DWORD64[64]
@@ -402,5 +335,60 @@ void set_last_block_file_name(const ::scoped_string & scopedstr)
 
 }
 #endif
+
+
+
+int g_iGlobalMemdleakEnabled;
+
+
+CLASS_DECL_ACME int  global_memdleak_enabled()
+{
+
+   if (g_iGlobalMemdleakEnabled == 0)
+   {
+
+      bool bMemdleak = false;
+
+#ifdef WINDOWS
+
+      bMemdleak = ::file_exists("C:\\archive\\ca2\\config\\system\\memdleak.txt");
+
+#else
+
+      bMemdleak = ::acmefile()->exists("/archive/ca2/config/system/memdleak.txt");
+
+#endif
+
+      if (bMemdleak)
+      {
+
+         g_iGlobalMemdleakEnabled = 1;
+
+      }
+      else
+      {
+
+         if (MEMDLEAK_DEFAULT)
+         {
+
+            g_iGlobalMemdleakEnabled = 1;
+
+         }
+         else
+         {
+
+            g_iGlobalMemdleakEnabled = -1;
+
+         }
+
+      }
+
+   }
+
+   return g_iGlobalMemdleakEnabled == 1;
+
+}
+
+
 
 

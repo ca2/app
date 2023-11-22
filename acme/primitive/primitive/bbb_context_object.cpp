@@ -11,7 +11,7 @@ object::~object()
 #ifdef _DEBUG
 
 
-i64 object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
+i64 object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
 {
 
    return property_object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
@@ -19,7 +19,7 @@ i64 object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
 }
 
 
-i64 object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
+i64 object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
 {
 
    return property_object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
@@ -38,7 +38,7 @@ i64 object::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
 #else
 
 
-i64 object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
+i64 object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
 {
 
    return property_object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
@@ -46,7 +46,7 @@ i64 object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
 }
 
 
-i64 object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
+i64 object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
 {
 
    return property_object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);

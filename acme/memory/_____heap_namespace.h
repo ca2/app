@@ -11,6 +11,11 @@
 
 
 #include "acme/primitive/collection/atom_map.h"
+#include "acme/exception/__string.h"
+#include "acme/filesystem/filesystem/acme_directory.h"
+#include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/platform/platform.h"
+#include "acme/parallelization/synchronous_lock.h"
 
 
 #define __HEAP_NAMESPACE_PREFIX(name) __PREFIX_UNDERSCORE(HEAP_NAMESPACE_PREFIX,name)

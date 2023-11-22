@@ -36,7 +36,8 @@ namespace platform
    ::platform::platform * platform::s_pplatform = nullptr;
 
 
-   platform::platform()
+   platform::platform() :
+      particle(e_disable_ref_count)
    {
 
       s_pplatform = this;

@@ -89,7 +89,7 @@ namespace app_app
 #ifdef _DEBUG
 
 
-   int64_t application::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+   int64_t application::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
    {
 
       return ::object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
@@ -97,7 +97,7 @@ namespace app_app
    }
 
 
-   int64_t application::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+   int64_t application::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
    {
 
       return ::object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);

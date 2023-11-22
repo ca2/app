@@ -1,6 +1,6 @@
 #include "framework.h"
 //#include "acme/platform/acme.h"
-#include "object_reference_count_debug_impl.h"
+#include "object_reference_count_debug_.h"
 //#include "acme/primitive/primitive/matter.h"
 
 
@@ -55,9 +55,11 @@ string object_name(matter* p)
 
 }
 
+
 #if OBJECT_REFERENCE_COUNT_DEBUG
 
-void matter::add_ref_history(matter* p, const ::scoped_string & scopedstrObjRefDbg)
+
+void particle::add_ref_history(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
 {
 
    if (!::acme::g_bAcme)
@@ -67,7 +69,14 @@ void matter::add_ref_history(matter* p, const ::scoped_string & scopedstrObjRefD
 
    }
 
-   critical_section_lock synchronouslock(&::acme::g_csRefDbg);
+   if (!is_object_reference_count_debug_enabled())
+   {
+
+      return;
+
+   }
+
+   critical_section_lock synchronouslock(::platform::get() ? &::platform::get()->m_criticalsectionRefDbg : nullptr);
 
    if (g_bEnableObjRefDbg)
    {
@@ -86,15 +95,9 @@ void matter::add_ref_history(matter* p, const ::scoped_string & scopedstrObjRefD
 
          }
 
+         auto pobjectreferencecountdebug = object_reference_count_debug();
 
-         if (m_pobjrefdbg == nullptr)
-         {
-
-            m_pobjrefdbg = memory_new object_reference_count_debug;
-
-         }
-
-         string strNote = ::object_name(p);
+         string strNote = ::type(pReferer).name();
 
          if (::is_set(pszObjRefDbg))
          {
@@ -121,7 +124,7 @@ void matter::add_ref_history(matter* p, const ::scoped_string & scopedstrObjRefD
 
          }
 
-         m_pobjrefdbg->m_itema.add_item({ m_pobjrefdbg->m_iStep++, p, strNote });
+         pobjectreferencecountdebug->add(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
       }
       catch (...)
@@ -136,43 +139,55 @@ void matter::add_ref_history(matter* p, const ::scoped_string & scopedstrObjRefD
 }
 
 
-void matter::dec_ref_history(matter* p, const char* /*pszObjRefDbgNotUsedCurrently*/)
+void particle::dec_ref_history(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
 {
 
-   critical_section_lock synchronouslock(&::acme::g_csRefDbg);
-
-   if (::is_null(m_pobjrefdbg) || m_countReference <= 0 || m_pobjrefdbg->m_itema.isEmpty())
+   if (!::acme::g_bAcme)
    {
 
       return;
 
    }
 
-   ::auto pFind = m_pobjrefdbg->m_itema.predicate_find_last([p](auto& item) {return item.m_p == p; });
-
-   if (::is_set(pFind))
+   if (!is_object_reference_count_debug_enabled())
    {
 
-      m_pobjrefdbg->m_itema.erase_at(iFind);
+      return;
+
+   }
+
+   critical_section_lock synchronouslock(& ::platform::get()->m_criticalsectionRefDbg);
+
+   if (g_bEnableObjRefDbg)
+   {
+
+      m_pobjectreferencecountdebug->erase(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
    }
 
 }
 
 
-void matter::check_pending_releases()
+void particle::check_pending_releases()
 {
 
-   critical_section_lock synchronouslock(&::acme::g_csRefDbg);
+   critical_section_lock synchronouslock(&::platform::get()->m_criticalsectionRefDbg);
 
-   if (m_pobjrefdbg == nullptr)
+   if (!is_object_reference_count_debug_enabled())
    {
 
       return;
 
    }
 
-   if (m_pobjrefdbg->m_itema.has_element())
+   if (::is_null(m_pobjectreferencecountdebug))
+   {
+
+      return;
+
+   }
+
+   if (m_pobjectreferencecountdebug->m_itema.has_element())
    {
 
       ::informationf("\nThere are pending releases (m_countReference=" + as_string(m_countReference) + "):\n");
@@ -180,7 +195,7 @@ void matter::check_pending_releases()
       try
       {
 
-         ::informationf("For " + __type_name() + "(" + string(debug_note()) + ")\n");
+         ::informationf("For " + ::type(this).name() + "(" + string(debug_note()) + ")\n");
 
       }
       catch (...)
@@ -188,21 +203,21 @@ void matter::check_pending_releases()
 
       }
 
-      for (index iIndex = 0; iIndex < m_pobjrefdbg->m_itema.get_count(); iIndex++)
+      for (index iIndex = 0; iIndex < m_pobjectreferencecountdebug->m_itema.get_count(); iIndex++)
       {
 
-         auto& item = m_pobjrefdbg->m_itema[iIndex];
+         auto& item = m_pobjectreferencecountdebug->m_itema[iIndex];
 
          ::index iStep = item.m_iStep;
 
-         ::matter* pobj = item.m_p;
+         ::particle * pobj = item.m_preferer;
 
-         string str = item.m_strNote;
+         string str = item.m_strDebug;
 
          try
          {
 
-            ::information(::str::pad(as_string(iIndex), 4, " ", ::str::pad_left) + ": " + ::str::pad(as_string(iStep), 4, " ", ::str::pad_left) + ": " + str + "\n");
+            ::informationf("%4d: %4d %s", iIndex, iStep, str.c_str());
 
          }
          catch (...)
@@ -234,4 +249,26 @@ void matter::check_pending_releases()
 //}
 
 
+
+
+
+
+#if OBJECT_REFERENCE_COUNT_DEBUG
+
+object_reference_count_debug* particle::object_reference_count_debug()
+{
+
+   if (::is_null(m_pobjectreferencecountdebug) && is_object_reference_count_debug_enabled())
+   {
+
+      m_pobjectreferencecountdebug = new class object_reference_count_debug;
+
+   }
+
+   return m_pobjectreferencecountdebug;
+
+}
+
+
+#endif
 

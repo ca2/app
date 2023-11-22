@@ -783,7 +783,7 @@ namespace text
 
 #ifdef _DEBUG
 
-      i64 locale_schema::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+      i64 locale_schema::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
       {
 
          return particle::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
@@ -791,7 +791,7 @@ namespace text
       }
 
 
-      i64 locale_schema::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+      i64 locale_schema::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
       {
 
          return particle::release(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);

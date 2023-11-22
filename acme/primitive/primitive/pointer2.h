@@ -256,7 +256,7 @@
 //
 //template < class T >
 //template < typename T2 >
-//inline pointer < T > & pointer < T > ::reset (T2 * pNew OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//inline pointer < T > & pointer < T > ::reset (T2 * pNew OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEFINITION)
 //{
 //
 //   if (::is_null(pNew))
@@ -385,7 +385,7 @@
 //// cut and paste with very good capabilities of RealVNC for MacOS in OVH.fr/eu/pt cloud from Windows client.
 //// slashes with ABNT 2 keyboard and even c cedilha working with RealVNC
 //template < class T >
-//inline i64 pointer <T>::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+//inline i64 pointer <T>::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
 //{
 //
 //   m_p = nullptr;

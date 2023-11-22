@@ -1125,7 +1125,7 @@ inline ::pointer < T > pointer_transfer(T* p) { return { e_pointer_transfer, p }
 
 
 template < typename TYPE, typename T >
-void object_reference_count_debug_assign(::pointer<TYPE>& ptr, T * p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+void object_reference_count_debug_assign(::pointer<TYPE>& ptr, T * p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEFINITION)
 {
    
    auto pold = ptr.m_p;
@@ -1140,7 +1140,7 @@ void object_reference_count_debug_assign(::pointer<TYPE>& ptr, T * p OBJECT_REFE
 
 
 template < typename TYPE >
-void object_reference_count_debug_release(::pointer<TYPE>& ptr OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+void object_reference_count_debug_release(::pointer<TYPE>& ptr OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEFINITION)
 {
    
    object_reference_count_debug_release(ptr.m_p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
@@ -1149,7 +1149,7 @@ void object_reference_count_debug_release(::pointer<TYPE>& ptr OBJECT_REFERENCE_
 
 
 template < typename TYPE >
-void object_reference_count_debug_release(TYPE * & p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+void object_reference_count_debug_release(TYPE * & p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEFINITION)
 {
 
    release(p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
@@ -1229,7 +1229,7 @@ void object_reference_count_debug_release(TYPE * & p OBJECT_REFERENCE_COUNT_DEBU
 
 //
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void object::__construct(::pointer<BASE_TYPE> pcomposite, const SOURCE* psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//inline void object::__construct(::pointer<BASE_TYPE> pcomposite, const SOURCE* psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEFINITION)
 //{
 //
 //   pcomposite = psource;
@@ -1278,7 +1278,7 @@ void object_reference_count_debug_release(TYPE * & p OBJECT_REFERENCE_COUNT_DEBU
 //
 //
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void object::__construct(::pointer<BASE_TYPE> p, const ::pointer<SOURCE>psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//inline void object::__construct(::pointer<BASE_TYPE> p, const ::pointer<SOURCE>psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEFINITION)
 //{
 //
 //   /* return */ __construct(p, psource.get() OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
@@ -1287,7 +1287,7 @@ void object_reference_count_debug_release(TYPE * & p OBJECT_REFERENCE_COUNT_DEBU
 //
 //
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void object::__construct(::pointer<BASE_TYPE> p, const ptr < SOURCE > & psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//inline void object::__construct(::pointer<BASE_TYPE> p, const ptr < SOURCE > & psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEFINITION)
 //{
 //
 //   /* return */ __construct(p, psource.get() OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);

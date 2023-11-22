@@ -79,7 +79,7 @@ namespace app_shader
 #ifdef _DEBUG
 
 
-   int64_t render::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+   int64_t render::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
    {
 
       return ::particle::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
@@ -87,7 +87,7 @@ namespace app_shader
    }
 
 
-   int64_t render::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+   int64_t render::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
    {
 
       return ::particle::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);

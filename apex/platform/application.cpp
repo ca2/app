@@ -406,7 +406,7 @@ namespace apex
    void application::destroy()
    {
 
-      m_puserlanguagemap.release(OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS);
+      m_puserlanguagemap.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
 
       //auto estatus = 
       ::apex::context::destroy();
@@ -3293,7 +3293,9 @@ namespace apex
       auto psystem = system()->m_papexsystem;
 
       //estatus = 
-      m_puserlanguagemap = __new(::user::language_map OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_NOTE("::application::init1"));
+      m_puserlanguagemap = __new(::user::language_map);
+      m_puserlanguagemap->add_ref_history(OBJECT_REFERENCE_COUNT_DEBUG_THIS_NOTE("::application::init1"));
+
 
       //if (!estatus)
       //{

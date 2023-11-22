@@ -95,7 +95,7 @@ namespace user
 #ifdef _DEBUG
 
 
-   i64 thread::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+   i64 thread::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
    {
 
       return ::thread::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
@@ -103,7 +103,7 @@ namespace user
    }
 
 
-   i64 thread::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+   i64 thread::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
    {
 
       return ::thread::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
@@ -111,7 +111,7 @@ namespace user
    }
 
 
-   i64 thread::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+   i64 thread::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
    {
 
       return ::thread::release(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);

@@ -26,7 +26,7 @@ signal::~signal()
 #ifdef _DEBUG
 
 
-i64 signal::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+i64 signal::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
 {
 
    return ::topic::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
@@ -34,7 +34,7 @@ i64 signal::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DE
 }
 
 
-i64 signal::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+i64 signal::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
 {
 
    return ::topic::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
@@ -42,7 +42,7 @@ i64 signal::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DE
 }
 
 
-i64 signal::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+i64 signal::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
 {
 
    return ::topic::release(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);

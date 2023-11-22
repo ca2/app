@@ -1,10 +1,8 @@
-#include "framework.h"
-#include "acme/exception/__string.h"
-#include "acme/platform/platform.h"
-#include "acme/parallelization/synchronous_lock.h"
 
+::count get_mem_info(i32** ppiUse, const char*** ppszFile, const char*** ppszCallStack, u32** ppuiLine, memsize** ppsize);
 
 #if !defined(MCHECK) && !defined(__VLD) && !defined(__MCRTDBG) && MEMDLEAK
+
 
 
 #include "heap_memory.h"
@@ -19,14 +17,13 @@
 
 #define MEMDLEAK_DEFAULT 1
 
-int g_iGlobalMemdleakEnabled;
 
 
 thread_local  ::iptr t_iMemdleak;
 
-::particle * g_pmutgen = nullptr;
+::critical_section * g_pmutgen = nullptr;
 
-extern memdleak_block * s_pmemdleakList;
+memdleak_block * s_pmemdleakList;
 
 thread_local  memdleak_block * t_plastblock;
 
@@ -38,7 +35,7 @@ void memdleak_term();
 
 
 
-void * aligned_memory_allocate(size_t size, memsize align)
+void * aligned_memory_allocate(memsize size, memsize align)
 {
 
    void * p;
@@ -53,12 +50,12 @@ void * aligned_memory_allocate(size_t size, memsize align)
 
 }
 
-void * unaligned_memory_allocate(size_t size)
+void * unaligned_memory_allocate(memsize size)
 {
 
    void * p;
 
-   size_t nAllocSize = sizeof(memdleak_block) + size;
+   memsize nAllocSize = sizeof(memdleak_block) + size;
 
    memdleak_block * pblock;
 
@@ -73,8 +70,8 @@ void * unaligned_memory_allocate(size_t size)
 #else
       //string strCallStack;
       //::exception_engine().xxxstack_trace(1);
-      pblock->m_iStack = sizeof(pblock->m_uaStack) / sizeof(pblock->m_uaStack[0]);
-      ::get_call_stack_frames(pblock->m_uaStack, pblock->m_iStack);
+      pblock->m_iStack = sizeof(pblock->m_stacka) / sizeof(pblock->m_stacka[0]);
+      ::get_call_stack_frames(pblock->m_stacka, pblock->m_iStack);
       pblock->m_pszFileName = nullptr;
       //pblock->m_pszFileName = strdup(pszFileName); // not trackable, at least think so certainly causes memory leak
 #endif
@@ -83,7 +80,7 @@ void * unaligned_memory_allocate(size_t size)
 
    pblock->m_size = nAllocSize;
 
-   synchronous_lock lock(g_pmutgen);
+   critical_section_lock lock(g_pmutgen);
 
    pblock->m_pprevious = nullptr;
 
@@ -111,7 +108,7 @@ void * unaligned_memory_allocate(size_t size)
 }
 
 
-void * aligned_memory_allocate_debug(size_t size, i32 nBlockUse, const char * szFileName, i32 nLine, memsize align)
+void * aligned_memory_allocate_debug(memsize size, i32 nBlockUse, const char * szFileName, i32 nLine, memsize align)
 {
 
    void * p;
@@ -128,7 +125,7 @@ void * aligned_memory_allocate_debug(size_t size, i32 nBlockUse, const char * sz
 }
 
 
-void * unaligned_memory_allocate_debug(size_t size, i32 nBlockUse, const char * szFileName, i32 nLine)
+void * unaligned_memory_allocate_debug(memsize size, i32 nBlockUse, const char * szFileName, i32 nLine)
 {
 
    void * p;
@@ -168,7 +165,7 @@ void * memory_allocate(memsize size)
 }
 
 
-void * memory_allocate_no_track(size_t size)
+void * memory_allocate_no_track(memsize size)
 {
 
 
@@ -188,7 +185,7 @@ void * memory_allocate_no_track(size_t size)
 
 
 
-void * memory_calloc(size_t size, size_t bytes)
+void * memory_calloc(memsize size, memsize bytes)
 {
 
    return memory_allocate(size * bytes);
@@ -196,7 +193,7 @@ void * memory_calloc(size_t size, size_t bytes)
 }
 
 
-void * memory_allocate_debug(size_t nSize, i32 nBlockUse, const char * szFileName, i32 nLine)
+void * memory_allocate_debug(memsize nSize, i32 nBlockUse, const char * szFileName, i32 nLine)
 {
 
    return unaligned_memory_allocate_debug(nSize, nBlockUse, szFileName, nLine);
@@ -204,7 +201,7 @@ void * memory_allocate_debug(size_t nSize, i32 nBlockUse, const char * szFileNam
 }
 
 
-void * memory_reallocate(void * pmemory, size_t nSize)
+void * memory_reallocate(void * pmemory, memsize nSize)
 {
 
    return memory_reallocate_debug(pmemory, nSize, 0, nullptr, -1);
@@ -215,14 +212,14 @@ void * memory_reallocate(void * pmemory, size_t nSize)
 
 
 
-void * memory_reallocate_debug(void * pmemory, size_t size, i32 nBlockUse, const char * szFileName, i32 nLine)
+void * memory_reallocate_debug(void * pmemory, memsize size, i32 nBlockUse, const char * szFileName, i32 nLine)
 {
 
-   size_t nAllocSize = size + sizeof(memdleak_block);
+   memsize nAllocSize = size + sizeof(memdleak_block);
 
    memdleak_block * pblock = &((memdleak_block *)pmemory)[-1];
 
-   synchronous_lock lock(g_pmutgen);
+   critical_section_lock lock(g_pmutgen);
    if (s_pmemdleakList == pblock)
    {
       s_pmemdleakList = s_pmemdleakList->m_pnext;
@@ -263,7 +260,7 @@ void * memory_reallocate_debug(void * pmemory, size_t size, i32 nBlockUse, const
    //if (pblock->m_puiStack)
    // class ::system_heap_free((void *)pblock->m_puiStack);
 
-   size_t * psizeNew = nullptr;
+   memsize * psizeNew = nullptr;
 
    pblock = (memdleak_block *) ::system_heap_realloc(pblock, size + sizeof(memdleak_block));
 
@@ -314,8 +311,8 @@ void * memory_reallocate_debug(void * pmemory, size_t size, i32 nBlockUse, const
 #else
       //string strCallStack;
       //::exception_engine().xxxstack_trace(1);
-      pblock->m_iStack = sizeof(pblock->m_uaStack) / sizeof(pblock->m_uaStack[0]);
-      ::get_call_stack_frames(pblock->m_uaStack, pblock->m_iStack);
+      pblock->m_iStack = sizeof(pblock->m_stacka) / sizeof(pblock->m_stacka[0]);
+      ::get_call_stack_frames(pblock->m_stacka, pblock->m_iStack);
       pblock->m_pszFileName = nullptr;
       //pblock->m_pszFileName = strdup(pszFileName); // not trackable, at least think so certainly causes memory leak
 #endif
@@ -371,7 +368,7 @@ void memory_free_debug(void * pmemory, i32 iBlockType)
 
    memdleak_block * pblock = &((memdleak_block *)pmemory)[-1];
 
-   synchronous_lock lock(g_pmutgen);
+   critical_section_lock lock(g_pmutgen);
 
    if (s_pmemdleakList == pblock)
    {
@@ -404,7 +401,7 @@ void memory_free_debug(void * pmemory, i32 iBlockType)
 
 
 
-size_t memory_size(void * pmemory)
+memsize memory_size(void * pmemory)
 {
 
    return memory_size_debug(pmemory, _NORMAL_BLOCK);
@@ -412,7 +409,7 @@ size_t memory_size(void * pmemory)
 }
 
 
-size_t memory_size_debug(void * pmemory, i32 iBlockType)
+memsize memory_size_debug(void * pmemory, i32 iBlockType)
 {
 
 
@@ -420,6 +417,254 @@ size_t memory_size_debug(void * pmemory, i32 iBlockType)
 
    return pblock->m_size;
 
+
+}
+
+
+
+
+#undef memory_allocate
+
+
+void* _memory_allocate(memsize size)
+{
+
+   //#if defined(__APPLE__) || defined(RASPBERRYPIOS) || defined(WINDOWS)
+
+   return aligned_memory_allocate(size);
+
+   //#else
+
+   //   return unaligned_memory_allocate(size);
+
+   //#endif
+
+}
+
+
+void* _memory_allocate_no_track(memsize size)
+{
+
+   //#if defined(__APPLE__) || defined(RASPBERRYPIOS)
+
+   return aligned_memory_allocate(size);
+
+   //#else
+
+   //   return unaligned_memory_allocate(size);
+
+   //#endif
+
+}
+
+
+void* _memory_count_allocate(memsize size, memsize bytes)
+{
+
+   return memory_allocate(size * bytes);
+
+}
+
+
+void* _memory_allocate_debug(memsize nSize, i32 nBlockUse, const char* szFileName, i32 nLine)
+{
+
+   // return unaligned_memory_allocate_debug(nSize, nBlockUse, szFileName, nLine);
+
+   return aligned_memory_allocate_debug(nSize, nBlockUse, szFileName, nLine);
+
+}
+
+
+void* _memory_reallocate(void* pmemory, memsize nSize)
+{
+
+   return _memory_reallocate_debug(pmemory, nSize, 0, nullptr, -1);
+
+}
+
+
+void* _memory_reallocate_debug(void* pmemory, memsize size, i32 nBlockUse, const char* szFileName, i32 nLine)
+{
+
+   if (pmemory == nullptr)
+   {
+
+      return _memory_allocate_debug(size, nBlockUse, szFileName, nLine);
+
+   }
+
+   heap_memory* pheapmemory = heap_memory_get(pmemory);
+
+   if (pheapmemory->m_ememoryheap != HEAP_ENUMERATE)
+   {
+
+      return manage_memory_reallocate(pheapmemory->m_ememoryheap, pmemory, size);
+
+   }
+
+   ::u8 blockuse = pheapmemory->m_blockuse;
+
+   memsize sizeOld = pheapmemory->m_size;
+
+   ::u8 align = pheapmemory->m_align;
+
+   void* p = heap_memory_base_get(pmemory);
+
+   if (blockuse == 0) // aligned
+   {
+
+      p = g_pheap->_realloc(
+         p,
+         heap_memory_aligned_provision_get_size(size, align),
+         heap_memory_aligned_provision_get_size(sizeOld, align),
+         align);
+
+   }
+   else if (blockuse == 1) // unaligned
+   {
+
+      //TODO: to do the dbg version
+
+      p = g_pheap->_realloc(
+         p,
+         heap_memory_unaligned_provision_get_size(size),
+         heap_memory_unaligned_provision_get_size(sizeOld),
+         0);
+
+   }
+   else if (blockuse == 128) // aligned
+   {
+
+      p = system_heap_realloc(
+         p,
+         (size_t)heap_memory_aligned_provision_get_size(size, align));
+
+   }
+   else if (blockuse == 129) // unaligned
+   {
+
+      //TODO: to do the dbg version
+
+      p = system_heap_realloc(
+         p,
+         (size_t)heap_memory_unaligned_provision_get_size(size));
+
+   }
+   else if (blockuse == 2) // aligned
+   {
+
+      p = g_pheap->realloc_debug(
+         p,
+         heap_memory_aligned_provision_get_size(size, align),
+         heap_memory_aligned_provision_get_size(sizeOld, align),
+         align, nBlockUse, szFileName, nLine);
+
+   }
+   else if (blockuse == 3) // unaligned
+   {
+
+      //TODO: to do the dbg version
+
+      p = g_pheap->realloc_debug(
+         p,
+         heap_memory_unaligned_provision_get_size(size),
+         heap_memory_unaligned_provision_get_size(sizeOld),
+         0, nBlockUse, szFileName, nLine);
+
+   }
+   else if (blockuse == 130) // aligned
+   {
+
+      p = system_heap_realloc(
+         p,
+         (size_t)heap_memory_aligned_provision_get_size(size, align));
+
+   }
+   else if (blockuse == 131) // unaligned
+   {
+
+      //TODO: to do the dbg version
+
+      p = system_heap_realloc(
+         p,
+         (size_t)heap_memory_unaligned_provision_get_size(size));
+
+   }
+   else
+   {
+
+      throw ::exception(error_exception);
+
+   }
+
+   if (p == nullptr)
+   {
+
+      return nullptr;
+
+   }
+
+   if (blockuse == 0 || blockuse == 2 || blockuse == 128 || blockuse == 130) // aligned
+   {
+
+      return heap_memory_aligned(p, size, blockuse, align, HEAP_ENUMERATE);
+
+   }
+   else if (blockuse == 1 || blockuse == 3 || blockuse == 129 || blockuse == 131) // unaligned
+   {
+
+      return heap_memory_unaligned(p, size, blockuse, HEAP_ENUMERATE);
+
+   }
+   else
+   {
+
+      throw ::exception(error_exception);
+
+   }
+
+   return nullptr;
+
+}
+
+
+void _memory_free(void* pmemory)
+{
+
+   return _memory_free_debug(pmemory, 0);
+
+}
+
+
+void _memory_free_debug(void* pmemory, i32 iBlockType)
+{
+
+   system_heap_free(pmemory);
+
+}
+
+
+memsize _memory_size(void* pmemory)
+{
+
+   return _memory_size_debug(pmemory, _NORMAL_BLOCK);
+
+}
+
+
+memsize _memory_size_debug(void* pmemory, i32 iBlockType)
+{
+
+#ifdef WINDOWS
+
+   return _msize(pmemory);
+
+#else
+
+   return malloc_size(pmemory);
+
+#endif
 
 }
 
@@ -461,54 +706,6 @@ CLASS_DECL_ACME void memdleak_enable(int enable)
 
    }
 
-
-}
-
-CLASS_DECL_ACME int  global_memdleak_enabled()
-{
-
-   if (g_iGlobalMemdleakEnabled == 0)
-   {
-
-      bool bMemdleak = false;
-
-#ifdef WINDOWS
-
-      bMemdleak = ::file_exists("C:\\archive\\ca2\\config\\system\\memdleak.txt");
-
-#else
-
-      bMemdleak = ::acmefile()->exists("/archive/ca2/config/system/memdleak.txt");
-
-#endif
-
-      if (bMemdleak)
-      {
-
-         g_iGlobalMemdleakEnabled = 1;
-
-      }
-      else
-      {
-
-         if (MEMDLEAK_DEFAULT)
-         {
-
-            g_iGlobalMemdleakEnabled = 1;
-
-         }
-         else
-         {
-
-            g_iGlobalMemdleakEnabled = -1;
-
-         }
-
-      }
-
-   }
-
-   return g_iGlobalMemdleakEnabled == 1;
 
 }
 
@@ -707,7 +904,7 @@ void memdleak_dump()
 #if FAST_STACK_TRACE
          information(::exception_engine().xxxstack_trace(pblock->m_puiStack + 1, pblock->m_iStack));
 #else
-         information(::exception_engine().xxxstack_trace(pblock->m_puiStack, pblock->m_iStack));
+         information(::get_call_stack_trace(pblock->m_stacka, pblock->m_iStack));
 #endif
       }
       pblock = pblock->m_pnext;
@@ -719,7 +916,7 @@ void memdleak_dump()
    information(sz);
    informationf(" memory leaks.");
 
-   auto pacmedirectory = ::platform::get()->acmedirectory(();
+   auto pacmedirectory = ::platform::get()->acmedirectory();
 
    ::platform::get()->acmefile()->put_contents(pacmedirectory->system() / "m.html", get_mem_info_report1());
 
@@ -734,7 +931,7 @@ void memdleak_dump()
 void memdleak_init()
 {
 
-   g_pmutgen = memory_new ::pointer < ::mutex >();
+   g_pmutgen = memory_new ::critical_section;
 
 }
 
@@ -749,5 +946,75 @@ void memdleak_term()
 
 
 #endif
+
+
+
+#if MEMDLEAK
+
+
+::count get_mem_info(i32** ppiUse, const char*** ppszFile, const char*** ppszCallStack, u32** ppuiLine, memsize** ppsize)
+{
+
+   //throw ::exception(error_failed, "plex_heap_alloc_array::get_mem_info member function is available only with \"memdleak\" builds - MEMDLEAK defined");
+
+
+   critical_section_lock lock(g_pmutgen);
+
+   memdleak_block* pblock = s_pmemdleakList;
+
+   ::count ca = 0;
+
+   while (pblock != nullptr)
+   {
+
+      ca++;
+
+      pblock = pblock->m_pnext;
+
+   }
+
+
+   i32* piUse = (i32*)malloc(sizeof(i32) * ca);
+   const char** pszFile = (const char**)malloc(sizeof(const char*) * ca);
+   const char** pszCallStack = (const char**)malloc(sizeof(const char*) * ca);
+   u32* puiLine = (u32*)malloc(sizeof(u32) * ca);
+   memsize* psize = (memsize*)malloc(sizeof(memsize) * ca);
+
+   index i = 0;
+
+   pblock = s_pmemdleakList;
+
+   while (pblock != nullptr && i < ca)
+   {
+      piUse[i] = pblock->m_iBlockUse;
+      pszFile[i] = pblock->m_pszFileName == nullptr ? nullptr : _strdup(pblock->m_pszFileName);
+      pszCallStack[i] = pblock->m_iStack <= 0 ? nullptr : _strdup(::get_call_stack_trace(pblock->m_stacka, pblock->m_iStack));
+      puiLine[i] = pblock->m_uiLine;
+      psize[i] = pblock->m_size;
+
+      i++;
+
+      pblock = pblock->m_pnext;
+
+
+
+   }
+
+   *ppiUse = piUse;
+   *ppszFile = pszFile;
+   *ppszCallStack = pszCallStack;
+   *ppuiLine = puiLine;
+   *ppsize = psize;
+
+
+   return ca;
+
+   //#endif
+   //
+   //   return 0;
+
+}
+
+#endif // MEMDLEAK
 
 

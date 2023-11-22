@@ -11,10 +11,10 @@ template < typename TYPE, typename T >
 void assign(::pointer<TYPE>& ptr, T * p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
 template < typename TYPE >
-void release(::pointer<TYPE>& ptr OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+::i64 release(::pointer<TYPE>& ptr OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
 template < typename TYPE >
-void release(TYPE *& p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+::i64 release(TYPE *& p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
 
 #endif

@@ -609,6 +609,7 @@
     <ClCompile Include="email.cpp" />
     <ClCompile Include="exception\assert.cpp" />
     <ClCompile Include="exception\bad_file_format.cpp" />
+    <ClCompile Include="exception\call_stack.cpp" />
     <ClCompile Include="exception\no_memory.cpp" />
     <ClCompile Include="exception\extended_status.cpp" />
     <ClCompile Include="exception\interface_only.cpp" />
@@ -841,6 +842,8 @@
     <ClInclude Include="filesystem\_.h" />
     <ClInclude Include="format.h" />
     <ClInclude Include="handler\source.h" />
+    <ClInclude Include="platform\simple_array.h" />
+    <ClInclude Include="platform\_object_reference_count_debug.h" />
     <ClInclude Include="user\user\controller.h" />
     <ClInclude Include="user\user\key_state.h" />
     <ClInclude Include="user\_.h" />
@@ -1763,8 +1766,8 @@
     <ClInclude Include="platform\nanosecond_timer.h" />
     <ClInclude Include="platform\node.h" />
     <ClInclude Include="platform\number.h" />
-    <ClInclude Include="platform\object_reference_count_debug.h" />
-    <ClInclude Include="platform\object_reference_count_debug_impl.h" />
+    <ClInclude Include="platform\object_reference_count_debug_.h" />
+    <ClInclude Include="platform\aaa_object_reference_count_debug_impl.h" />
     <ClInclude Include="platform\object_type_counter.h" />
     <ClInclude Include="platform\options.h" />
     <ClInclude Include="platform\plane_system.h" />

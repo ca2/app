@@ -1619,10 +1619,10 @@
     <ClInclude Include="platform\number.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="platform\object_reference_count_debug.h">
+    <ClInclude Include="platform\object_reference_count_debug_.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="platform\object_reference_count_debug_impl.h">
+    <ClInclude Include="platform\aaa_object_reference_count_debug_impl.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\object_type_counter.h">
@@ -3479,6 +3479,12 @@
     <ClInclude Include="user\user\controller.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
+    <ClInclude Include="platform\simple_array.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\_object_reference_count_debug.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\bit.cpp">
@@ -4818,6 +4824,9 @@
     </ClCompile>
     <ClCompile Include="user\user\controller.cpp">
       <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\call_stack.cpp">
+      <Filter>Source Files\exception</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

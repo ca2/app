@@ -142,7 +142,7 @@ namespace sockets
 #ifdef _DEBUG
 
 
-   ::i64 socket_thread::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+   ::i64 socket_thread::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
    {
 
       return ::task::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
@@ -150,7 +150,7 @@ namespace sockets
    }
 
 
-   ::i64 socket_thread::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+   ::i64 socket_thread::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
    {
 
       return ::task::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);

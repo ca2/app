@@ -100,7 +100,7 @@
 
 
 #include "acme/memory/allocation.h"
-#include "acme/platform/object_reference_count_debug.h"
+#include "acme/platform/_object_reference_count_debug.h"
 #include "acme/platform/object_type_counter.h"
 #include "acme/memory/memory_allocate.h"
 #include "acme/primitive/primitive/_c_memory.h"

@@ -557,7 +557,7 @@ void* task::s_os_task(void* p)
       if (ptask->m_countReference > 1)
       {
 
-         __check_pending_releases(ptask);
+         ptask->check_pending_releases();
 
       }
 
@@ -2320,7 +2320,7 @@ CLASS_DECL_ACME::string get_task_object_name()
 CLASS_DECL_ACME::string get_task_object_debug()
 {
 
-   return ::get_task_object_debug();
+   return ::get_task()->m_pszDebug;
 
 }
 

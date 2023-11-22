@@ -3180,7 +3180,7 @@ namespace user
 
       information() << "interaction_layout::display e_display_iconic";
 
-      information() << acmenode()->get_callstack();
+      information() << acmenode()->get_call_stack_trace();
 
 #endif
 

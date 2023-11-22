@@ -185,7 +185,7 @@ namespace user
    }
 
 
-   i64 default_message_box::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+   i64 default_message_box::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
    {
 
       return ::user::interaction::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
@@ -193,7 +193,7 @@ namespace user
    }
 
 
-   i64 default_message_box::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+   i64 default_message_box::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
    {
 
       return ::user::interaction::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
@@ -201,7 +201,7 @@ namespace user
    }
 
 
-   i64 default_message_box::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+   i64 default_message_box::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
    {
 
       return ::user::interaction::release(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);

@@ -221,7 +221,7 @@ namespace apex
 #ifdef _DEBUG
 
 
-   i64 system::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
+   i64 system::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
    {
 
       return ::acme::system::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
@@ -229,7 +229,7 @@ namespace apex
    }
 
 
-   i64 system::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
+   i64 system::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
    {
 
       return ::acme::system::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
@@ -1786,7 +1786,7 @@ pacmedirectory->create("/ca2core");
          if (m_countReference > 1)
          {
 
-            __check_pending_releases(this);
+            check_pending_releases();
 
          }
 

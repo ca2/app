@@ -49,7 +49,7 @@ namespace userex
 
 
 #ifdef _DEBUG
-   i64 progress_control::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+   i64 progress_control::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
    {
 
       i64 i = ::progress::real::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);

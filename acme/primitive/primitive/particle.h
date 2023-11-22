@@ -37,6 +37,8 @@ CLASS_DECL_ACME ::factory::factory * get_system_factory();
 
 CLASS_DECL_ACME class tracer * tracer();
 
+
+
 //struct PARTICLE
 //{
 //public:
@@ -83,10 +85,22 @@ struct PARTICLE :
 };
 
 
+enum enum_disable_ref_count
+{
+   e_disable_ref_count
+};
+
 #include "acme/platform/trace_statement.h"
 
 
 using particle_pointer = ::pointer < ::particle >;
+
+
+
+//#if OBJECT_REFERENCE_COUNT_DEBUG
+//#include "acme/platform/object_reference_count_debug.h"
+//#endif
+
 
 
 // ThomasBorregaardSorensen!! Like handlers : now particle with handle::handlers*
@@ -100,6 +114,7 @@ public:
 
 
 #if OBJECT_REFERENCE_COUNT_DEBUG
+   inline particle(enum_disable_ref_count) : m_countReference(1) { _disable_object_reference_count_debug_enabled(); }
    inline particle() { increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_THIS OBJECT_REFERENCE_COUNT_DEBUG_COMMA_NOTE("Initial Reference")); }
 #else
    inline particle() : m_countReference(1) { }
@@ -110,7 +125,6 @@ public:
 
 
    virtual void initialize(::particle * pparticle);
-
 
 #ifdef _DEBUG
 
@@ -125,6 +139,30 @@ public:
    inline i64 release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
 
 #endif
+
+
+#ifdef OBJECT_REFERENCE_COUNT_DEBUG
+
+   class object_reference_count_debug * m_pobjectreferencecountdebug = nullptr;
+
+   class object_reference_count_debug * object_reference_count_debug();
+
+   bool is_object_reference_count_debug_enabled() const 
+   {
+      return m_pobjectreferencecountdebug != (class object_reference_count_debug* ) 1;
+   }
+
+   void _disable_object_reference_count_debug_enabled()
+   {
+      m_pobjectreferencecountdebug = (class object_reference_count_debug*)1;
+   }
+
+   void add_ref_history(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
+   void dec_ref_history(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
+   void check_pending_releases();
+
+#endif
+
 
    virtual void delete_this();
 
@@ -736,8 +774,8 @@ public:
 //class optional_interaction4 : virtual public ::particle { OPTIONAL_INTERACTION_BODY };
 //
 
-template < typename T >
-inline i64 release(T*& p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+//template < typename T >
+//inline i64 release(T*& p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF);
 //{
 //
 //   if (::is_null(p))
@@ -825,7 +863,7 @@ inline i64 global_release(T*& p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 //#if !defined(_DEBUG)
 //
 //
-//i64 particle::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+//i64 particle::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
 //{
 //
 //   auto c = ++m_countReference;
@@ -841,7 +879,7 @@ inline i64 global_release(T*& p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 //}
 //
 //
-//i64 particle::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+//i64 particle::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
 //{
 //
 //   auto c = --m_countReference;
@@ -862,7 +900,7 @@ inline i64 global_release(T*& p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 //}
 //
 //
-//i64 particle::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+//i64 particle::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
 //{
 //
 //   i64 i = decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);

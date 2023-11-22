@@ -60,7 +60,7 @@ namespace database
 
 #if MEMDLEAK
 
-      mem.m_strTag = "memory://member=database::server::data_server_load(1)";
+      //mem.m_strTag = "memory://member=database::server::data_server_load(1)";
 
 #endif
 

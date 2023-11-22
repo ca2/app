@@ -38,7 +38,7 @@ namespace apex
 #ifdef _DEBUG
 
 
-   i64 node::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
+   i64 node::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
    {
 
       return acme::node::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
@@ -46,7 +46,7 @@ namespace apex
    }
 
 
-   i64 node::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
+   i64 node::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
    {
 
       return acme::node::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);

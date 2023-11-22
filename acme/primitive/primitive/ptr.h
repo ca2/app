@@ -178,7 +178,7 @@ class ptr
    //}
    //
    //
-   void release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+   void release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
    {
       
       auto p = m_p;

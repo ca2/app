@@ -1,7 +1,7 @@
 // added error_code::get_string by camilo on 2022-09-29 22:10 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 //#include "exception.h"
-#include "callstack.h"
+//#include "callstack.h"
 //#include "acme/primitive/string/as_string.h"
 #include "acme/filesystem/file/exception.h"
 #include "acme/operating_system/process.h"

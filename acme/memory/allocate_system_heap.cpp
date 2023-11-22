@@ -1,5 +1,7 @@
 #include "framework.h"
+#include "acme/exception/__string.h"
 #include "acme/exception/no_memory.h"
+#include "acme/parallelization/synchronous_lock.h"
 
 
 #include "memory/os_alloc.h"
@@ -8,9 +10,10 @@
 #if MEMDLEAK
 
 
-extern ::pointer< ::mutex > g_pmutgen;
+
+extern ::critical_section * g_pmutgen;
 memdleak_block * s_pmemdleakList;
-extern thread_pointer < memdleak_block > t_plastblock;
+extern thread_local memdleak_block * t_plastblock;
 
 
 #endif
@@ -248,23 +251,23 @@ else
 
       }
    */
-   ::os_free(p);
+   ::__operating_system_memory_free(p);
 }
 
 #endif
 
 }
 
+#if MEMDLEAK
+
 
 ::count get_mem_info(i32 ** ppiUse, const char *** ppszFile, const char *** ppszCallStack, u32 ** ppuiLine, memsize ** ppsize)
 {
 
-#if MEMDLEAK
-
-   throw ::exception(::exception("plex_heap_alloc_array::get_mem_info member function is available only with \"memdleak\" builds - MEMDLEAK defined"));
+   //throw ::exception(error_failed, "plex_heap_alloc_array::get_mem_info member function is available only with \"memdleak\" builds - MEMDLEAK defined");
 
 
-   synchronous_lock lock(g_pmutgen);
+   critical_section_lock lock(g_pmutgen);
 
    memdleak_block * pblock = s_pmemdleakList;
 
@@ -294,9 +297,9 @@ else
    {
       piUse[i] = pblock->m_iBlockUse;
       pszFile[i] = pblock->m_pszFileName== nullptr ? nullptr : _strdup(pblock->m_pszFileName);
-      pszCallStack[i] = pblock->m_iStack <= 0 ? nullptr :_strdup(::exception_engine().xxxstack_trace(pblock->m_puiStack, pblock->m_iStack));
+      pszCallStack[i] = pblock->m_iStack <= 0 ? nullptr :_strdup(::get_call_stack_trace(pblock->m_uaStack, pblock->m_iStack));
       puiLine[i] = pblock->m_uiLine;
-      psize] = pblock->m_size;
+      psize[i] = pblock->m_size;
 
       i++;
 
@@ -315,11 +318,15 @@ else
 
    return ca;
 
-#endif
-
-   return 0;
+//#endif
+//
+//   return 0;
 
 }
+
+#endif // MEMDLEAK
+
+
 //typedef DWORD64[64]
 //::count get_mem_info2(i32 ** ppiUse, const char *** ppszFile, DWORD64 ** ppuiStack[64], i64 ** ppiStack, i32 ** ppiLine, i64 ** ppiSize)
 //{

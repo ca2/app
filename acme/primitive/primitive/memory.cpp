@@ -329,19 +329,19 @@ memory::~memory()
    if(m_strTag.has_char() && ::get_task() != nullptr)
    {
 
-      if(::get_task()->m_strDebug.has_char())
+      if(::get_task_object_debug().has_char())
       {
 
          if(m_bAligned)
          {
 
-            return (::u8 *)aligned_memory_allocate_debug((size_t)dwAllocation, 723, "thread://" + typeid(*::get_task()).name()) + "="+ ::get_task()->m_strDebug + ", memory://" + m_strTag, m_iLine;
+            return (::u8 *)aligned_memory_allocate_debug((size_t)dwAllocation, 723, "thread://" + ::get_task_object_name() + "="+ ::get_task_object_debug() + ", memory://" + m_strTag, m_iLine;
 
          }
          else
          {
 
-            return (::u8 *)memory_allocate_debug((size_t)dwAllocation, 723, "thread://" + typeid(*::get_task()).name()) + "="+ ::get_task()->m_strDebug + ", memory://"+m_strTag, m_iLine;
+            return (::u8 *)memory_allocate_debug((size_t)dwAllocation, 723, "thread://" + ::get_task_object_name() + "="+ ::get_task_object_debug() + ", memory://"+m_strTag, m_iLine;
 
          }
 
@@ -352,13 +352,13 @@ memory::~memory()
          if(m_bAligned)
          {
 
-            return (::u8 *)aligned_memory_allocate_debug((size_t)dwAllocation, 723, "thread://" + typeid(*::get_task()).name()) + ", memory://" + m_strTag, m_iLine;
+            return (::u8 *)aligned_memory_allocate_debug((size_t)dwAllocation, 723, "thread://" + ::get_task_object_name() + ", memory://" + m_strTag, m_iLine;
 
          }
          else
          {
 
-            return (::u8 *)memory_allocate_debug((size_t)dwAllocation, 723, "thread://" + typeid(*::get_task()).name()) + ", memory://"+m_strTag, m_iLine;
+            return (::u8 *)memory_allocate_debug((size_t)dwAllocation, 723, "thread://" + ::get_task_object_name() + ", memory://"+m_strTag, m_iLine;
 
          }
 

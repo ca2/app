@@ -53,7 +53,7 @@ namespace dynamic_source
 
       //}
 
-      ::pointer<script_interface>pinterface = pparticle;
+      auto pinterface = dynamic_cast <script_interface * >(pparticle);
 
       if (pinterface)
       {

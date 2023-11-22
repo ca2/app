@@ -184,7 +184,7 @@ void* MEMORY_DECL operator new(size_t nSize, i32 nType, const char* pszFileName,
 
 #if MEMDLEAK
 
-   return ace_memory_alloc(nSize);
+   return memory_allocate(nSize);
 
 #else
 

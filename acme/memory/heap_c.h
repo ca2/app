@@ -46,8 +46,8 @@ CLASS_DECL_ACME void       memdleak_dump();
 #if MEMDLEAK || defined(__MCRTDBG)
 
 
-CLASS_DECL_ACME void *     system_heap_alloc_debug(memsize size, int nBlockUse, const ::scoped_string & scopedstrFile, int iLine);
-CLASS_DECL_ACME void *     system_heap_realloc_debug(void * p, memsize size, int nBlockUse, const ::scoped_string & scopedstrFile, int iLine);
+CLASS_DECL_ACME void *     system_heap_alloc_debug(memsize size, int nBlockUse, const char * pszFile, int iLine);
+CLASS_DECL_ACME void *     system_heap_realloc_debug(void * p, memsize size, int nBlockUse, const char * pszFile, int iLine);
 
 
 #endif

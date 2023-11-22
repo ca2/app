@@ -13,8 +13,14 @@ CLASS_DECL_ACME bool throw_parsing_exception(const ::scoped_string & scopedstrMe
 CLASS_DECL_ACME bool throw_network_payload_parsing_exception(const ::scoped_string & scopedstrMessage);
 
 
+CLASS_DECL_ACME void get_call_stack_frames(::uptr* pui, int & c);
 
 
+#if MEMDLEAK
+
+::count get_mem_info(i32** ppiUse, const char*** ppszFile, const char*** ppszCallStack, u32** ppuiLine, memsize** ppsize);
+
+#endif
 
 
 #if defined(NNDEBUG) && !defined(___NO_DEBUG_CRT)

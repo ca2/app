@@ -2804,7 +2804,7 @@
     <ClInclude Include="exception\call_stack.h">
       <Filter>Header Files\exception</Filter>
     </ClInclude>
-    <ClInclude Include="exception\callstack.h">
+    <ClInclude Include="exception\aaa_callstack.h">
       <Filter>Header Files\exception</Filter>
     </ClInclude>
     <ClInclude Include="exception\cancel.h">

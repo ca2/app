@@ -1,4 +1,7 @@
 #include "framework.h"
+#include "acme/exception/__string.h"
+#include "acme/platform/platform.h"
+#include "acme/parallelization/synchronous_lock.h"
 
 
 #if !defined(MCHECK) && !defined(__VLD) && !defined(__MCRTDBG) && MEMDLEAK
@@ -6,9 +9,10 @@
 
 #include "heap_memory.h"
 
-#ifdef WINDOWS_DESKTOP
-#include <mmsystem.h>
-#endif // WINDOWS_DESKTOP
+
+//#ifdef WINDOWS_DESKTOP
+//#include <mmsystem.h>
+//#endif // WINDOWS_DESKTOP
 
 
 
@@ -18,16 +22,13 @@
 int g_iGlobalMemdleakEnabled;
 
 
+thread_local  ::iptr t_iMemdleak;
 
-extern class ::exception_engine * g_pexceptionengine;
-
-thread_int_ptr < iptr > t_iMemdleak;
-
-::pointer< ::mutex > g_pmutgen = nullptr;
+::particle * g_pmutgen = nullptr;
 
 extern memdleak_block * s_pmemdleakList;
 
-thread_pointer < memdleak_block > t_plastblock;
+thread_local  memdleak_block * t_plastblock;
 
 void memdleak_init();
 void memdleak_term();
@@ -61,27 +62,24 @@ void * unaligned_memory_allocate(size_t size)
 
    memdleak_block * pblock;
 
-   pblock = (memdleak_block *) class ::system_heap_alloc(nAllocSize);
+   pblock = (memdleak_block *) ::system_heap_alloc(nAllocSize);
 
    pblock->m_iBlockUse = 0;
 
-   if (g_pexceptionengine == nullptr)
-   {
+#if !MEMDLEAK_CALL_STACK
 //      pblock->m_puiStack = nullptr;
       pblock->m_iStack = 0;
       pblock->m_pszFileName = nullptr;
-   }
-   else
-   {
+#else
       //string strCallStack;
       //::exception_engine().xxxstack_trace(1);
-      pblock->m_iStack = sizeof(pblock->m_puiStack) / sizeof(pblock->m_puiStack[0]);
-      ::exception_engine().backtrace(pblock->m_puiStack, pblock->m_iStack);
+      pblock->m_iStack = sizeof(pblock->m_uaStack) / sizeof(pblock->m_uaStack[0]);
+      ::get_call_stack_frames(pblock->m_uaStack, pblock->m_iStack);
       pblock->m_pszFileName = nullptr;
       //pblock->m_pszFileName = strdup(pszFileName); // not trackable, at least think so certainly causes memory leak
-   }
+#endif
 
-   ::acme::set_maximum(pblock->m_uiLine);
+   //::acme::set_maximum(pblock->m_uiLine);
 
    pblock->m_size = nAllocSize;
 
@@ -267,11 +265,12 @@ void * memory_reallocate_debug(void * pmemory, size_t size, i32 nBlockUse, const
 
    size_t * psizeNew = nullptr;
 
-   pblock = (memdleak_block *) class ::system_heap_realloc(pblock, size + sizeof(memdleak_block));
+   pblock = (memdleak_block *) ::system_heap_realloc(pblock, size + sizeof(memdleak_block));
+
    if (nAllocSize > pblock->m_size)
    {
 
-      zero(&((::u8*)pblock)[pblock->m_size], nAllocSize - pblock.m_size);
+      zero(&((::u8*)pblock)[pblock->m_size], nAllocSize - pblock->m_size);
 
    }
    //pblock->m_iBlockUse = nBlockUse;
@@ -308,23 +307,20 @@ void * memory_reallocate_debug(void * pmemory, size_t size, i32 nBlockUse, const
    //s_pmemdleakList = pblock;
    pblock->m_iBlockUse = nBlockUse;
 
-   if (g_pexceptionengine == nullptr)
-   {
+#if !MEMDLEAK_CALL_STACK
       //      pblock->m_puiStack = nullptr;
       pblock->m_iStack = 0;
       pblock->m_pszFileName = nullptr;
-   }
-   else
-   {
+#else
       //string strCallStack;
       //::exception_engine().xxxstack_trace(1);
-      pblock->m_iStack = sizeof(pblock->m_puiStack) / sizeof(pblock->m_puiStack[0]);
-      ::exception_engine().backtrace(pblock->m_puiStack, pblock->m_iStack);
+      pblock->m_iStack = sizeof(pblock->m_uaStack) / sizeof(pblock->m_uaStack[0]);
+      ::get_call_stack_frames(pblock->m_uaStack, pblock->m_iStack);
       pblock->m_pszFileName = nullptr;
       //pblock->m_pszFileName = strdup(pszFileName); // not trackable, at least think so certainly causes memory leak
-   }
+#endif
 
-   ::acme::set_maximum(pblock->m_uiLine);
+   //::acme::set_maximum(pblock->m_uiLine);
 
    pblock->m_size = nAllocSize;
 
@@ -402,8 +398,7 @@ void memory_free_debug(void * pmemory, i32 iBlockType)
    //if (pblock->m_puiStack)
    // class ::system_heap_free((void *)pblock->m_puiStack);
 
-   return class ::system_heap_free(pblock);
-
+   return ::system_heap_free(pblock);
 
 }
 
@@ -479,9 +474,7 @@ CLASS_DECL_ACME int  global_memdleak_enabled()
 
 #ifdef WINDOWS
 
-      u32 dwFileAttributes = windows_get_file_attributes(L"C:\\archive\\ca2\\config\\system\\memdleak.txt");
-
-      bMemdleak = dwFileAttributes != INVALID_FILE_ATTRIBUTES && (dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) == 0;
+      bMemdleak = ::file_exists("C:\\archive\\ca2\\config\\system\\memdleak.txt");
 
 #else
 
@@ -555,7 +548,7 @@ string get_mem_info_report1()
    const char ** pszFile = nullptr;
    const char ** pszCallStack = nullptr;
    u32 * puiLine = nullptr;
-   size_t * psize = nullptr;
+   memsize * psize = nullptr;
 
    try
    {
@@ -714,7 +707,7 @@ void memdleak_dump()
 #if FAST_STACK_TRACE
          information(::exception_engine().xxxstack_trace(pblock->m_puiStack + 1, pblock->m_iStack));
 #else
-         information(::exception_engine().xxxstack_trace(pblock->m_puiStack, pblock->m_iStack));
+         information(get_call_stack_trace(pblock->m_uaStack, pblock->m_iStack));
 #endif
       }
       pblock = pblock->m_pnext;
@@ -726,11 +719,10 @@ void memdleak_dump()
    information(sz);
    informationf(" memory leaks.");
 
-   //acmefile()->put_contents(         auto psystem = acmesystem();
+   auto pacmedirectory = ::platform::get()->acmedirectory(();
 
-         auto pacmedirectory = psystem->m_pacmedirectory;
+   ::platform::get()->acmefile()->put_contents(pacmedirectory->system() / "m.html", get_mem_info_report1());
 
-pacmedirectory->system() / "m.html", get_mem_info_report1());
 }
 
 #undef print

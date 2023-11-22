@@ -132,10 +132,10 @@ void array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::free_extra()
          }
 #else
 
-         if (::get_task()->m_strDebug.has_char())
+         if (::get_task_object_debug().has_char())
          {
 
-            pNewData = ALLOCATOR::alloc(m_nSize, ::get_task()->m_strDebug, 0);
+            pNewData = ALLOCATOR::alloc(m_nSize, ::get_task_object_debug(), 0);
 
          }
          else
@@ -563,10 +563,10 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_e
 
 #else
 
-         if (::get_task()->m_strDebug.has_char())
+         if (::get_task_object_debug().has_char())
          {
 
-            m_pData = ALLOCATOR::alloc(nAllocSize, ::get_task()->m_strDebug, ::get_task()->m_iLine);
+            m_pData = ALLOCATOR::alloc(nAllocSize, ::get_task_object_debug(), ::get_task()->m_iLine);
 
          }
          else
@@ -654,10 +654,10 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_e
 
 #else
 
-      if (::get_task()->m_strDebug.has_char())
+      if (::get_task_object_debug().has_char())
       {
 
-         pNewData = ALLOCATOR::alloc(nNewMax, ::get_task()->m_strDebug, ::get_task()->m_iLine);
+         pNewData = ALLOCATOR::alloc(nNewMax, ::get_task_object_debug(), ::get_task()->m_iLine);
 
       }
       else
@@ -777,16 +777,16 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_e
 
 #else
 
-         if (::get_task()->m_strDebug.has_char())
+         if (::get_task_object_debug().has_char())
          {
 
-            m_pData = ALLOCATOR::alloc(nAllocSize, "thread://" + typeid(*::get_task()).name()) + ", " + ::get_task()->m_strDebug + ", " + string(__FILE__), __LINE__;
+            m_pData = ALLOCATOR::alloc(nAllocSize, "thread://" + ::get_task_object_name() + ", " + ::get_task_object_debug() + ", " + string(__FILE__), __LINE__;
 
          }
          else
          {
 
-            m_pData = ALLOCATOR::alloc(nAllocSize, "thread://" + typeid(*::get_task()).name()) + ", " + string(__FILE__), __LINE__;
+            m_pData = ALLOCATOR::alloc(nAllocSize, "thread://" + ::get_task_object_name() + ", " + string(__FILE__), __LINE__;
 
          }
 
@@ -924,16 +924,16 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_e
 
 #else
 
-         if (::get_task()->m_strDebug.has_char())
+         if (::get_task_object_debug().has_char())
          {
 
-            pNewData = ALLOCATOR::alloc(nNewMax, "thread://" + typeid(*::get_task()).name()) + ", " + ::get_task()->m_strDebug + ", " + string(__FILE__), __LINE__;
+            pNewData = ALLOCATOR::alloc(nNewMax, "thread://" + ::get_task_object_name() + ", " + ::get_task_object_debug() + ", " + string(__FILE__), __LINE__;
 
          }
          else
          {
 
-            pNewData = ALLOCATOR::alloc(nNewMax, "thread://" + typeid(*::get_task()).name()) + ", " + string(__FILE__), __LINE__;
+            pNewData = ALLOCATOR::alloc(nNewMax, "thread://" + ::get_task_object_name() + ", " + string(__FILE__), __LINE__;
 
          }
 

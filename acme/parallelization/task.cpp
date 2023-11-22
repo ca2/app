@@ -2303,3 +2303,22 @@ void do_tasks()
 
 
 
+
+
+CLASS_DECL_ACME::string get_task_object_name()
+{
+
+   return ::type(::get_task()).name();
+
+}
+
+
+CLASS_DECL_ACME::string get_task_object_debug()
+{
+
+   return ::get_task_object_debug();
+
+}
+
+
+

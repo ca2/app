@@ -5,10 +5,11 @@
 #include "allocator.h"
 #include "acme/platform/common.h"
 
-
 //using tiny_index_array = tiny_array <::index>;
 
 
+CLASS_DECL_ACME ::string get_task_object_name();
+CLASS_DECL_ACME ::string get_task_object_debug();
 
 
 #define __default_array_array_base(TYPE) ::array_base < TYPE, const TYPE &, ::allocator::def < TYPE > >
@@ -1425,10 +1426,10 @@ void array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::free_extra()
          }
 #else
 
-         if (::get_task()->m_strDebug.has_char())
+         if (::get_task_object_debug().has_char())
          {
 
-            pNewData = ALLOCATOR::alloc(this->size(), ::get_task()->m_strDebug, 0);
+            pNewData = ALLOCATOR::alloc(this->size(), ::get_task_object_debug(), 0);
 
          }
          else
@@ -1869,10 +1870,10 @@ array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > array_base < TYPE, AR
 //
 //#else
 //
-//         if (::get_task()->m_strDebug.has_char())
+//         if (::get_task_object_debug().has_char())
 //         {
 //
-//            this->m_begin = ALLOCATOR::alloc(nAllocSize, ::get_task()->m_strDebug, ::get_task()->m_iLine);
+//            this->m_begin = ALLOCATOR::alloc(nAllocSize, ::get_task_object_debug(), ::get_task()->m_iLine);
 //
 //         }
 //         else
@@ -1960,10 +1961,10 @@ array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > array_base < TYPE, AR
 //
 //#else
 //
-//      if (::get_task()->m_strDebug.has_char())
+//      if (::get_task_object_debug().has_char())
 //      {
 //
-//         pNewData = ALLOCATOR::alloc(nNewMax, ::get_task()->m_strDebug, ::get_task()->m_iLine);
+//         pNewData = ALLOCATOR::alloc(nNewMax, ::get_task_object_debug(), ::get_task()->m_iLine);
 //
 //      }
 //      else
@@ -2047,16 +2048,16 @@ void array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::reserve(::count
 
 #else
 
-         if (::get_task()->m_strDebug.has_char())
+         if (::get_task_object_debug().has_char())
          {
 
-            this->m_begin = ALLOCATOR::alloc(newAllocationSize, "thread://" + typeid(*::get_task()).name()) + ", " + ::get_task()->m_strDebug + ", " + string(__FILE__), __LINE__;
+            this->m_begin = ALLOCATOR::alloc(newAllocationSize, "thread://" + ::get_task_object_name() + ", " + ::get_task_object_debug() + ", " + string(__FILE__), __LINE__);
 
          }
          else
          {
 
-            this->m_begin = ALLOCATOR::alloc(newAllocationSize, "thread://" + typeid(*::get_task()).name()) + ", " + string(__FILE__), __LINE__;
+            this->m_begin = ALLOCATOR::alloc(newAllocationSize, "thread://" + ::get_task_object_name() + ", " + string(__FILE__), __LINE__);
 
          }
 
@@ -2133,16 +2134,16 @@ void array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::reserve(::count
 
 #else
 
-         if (::get_task()->m_strDebug.has_char())
+         if (::get_task_object_debug().has_char())
          {
 
-            pNewData = ALLOCATOR::alloc(newAllocationSize, "thread://" + typeid(*::get_task()).name()) + ", " + ::get_task()->m_strDebug + ", " + string(__FILE__), __LINE__;
+            pNewData = ALLOCATOR::alloc(newAllocationSize, "thread://" + ::get_task_object_name() + ", " + ::get_task_object_debug() + ", " + string(__FILE__), __LINE__);
 
          }
          else
          {
 
-            pNewData = ALLOCATOR::alloc(newAllocationSize, "thread://" + typeid(*::get_task()).name()) + ", " + string(__FILE__), __LINE__;
+            pNewData = ALLOCATOR::alloc(newAllocationSize, "thread://" + ::get_task_object_name() + ", " + string(__FILE__), __LINE__);
 
          }
 
@@ -2259,16 +2260,16 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_e
 
 #else
 
-         if (::get_task()->m_strDebug.has_char())
+         if (::get_task_object_debug().has_char())
          {
 
-            this->m_begin = ALLOCATOR::alloc(nAllocSize, "thread://" + typeid(*::get_task()).name()) + ", " + ::get_task()->m_strDebug + ", " + string(__FILE__), __LINE__;
+            this->m_begin = ALLOCATOR::alloc(nAllocSize, "thread://" + ::get_task_object_name() + ", " + ::get_task_object_debug() + ", " + string(__FILE__), __LINE__);
 
          }
          else
          {
 
-            this->m_begin = ALLOCATOR::alloc(nAllocSize, "thread://" + typeid(*::get_task()).name()) + ", " + string(__FILE__), __LINE__;
+            this->m_begin = ALLOCATOR::alloc(nAllocSize, "thread://" + ::get_task_object_name() + ", " + string(__FILE__), __LINE__);
 
          }
 
@@ -2394,28 +2395,28 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_e
          if(::get_task()->m_strFile.has_char())
          {
 
-            pNewData = ALLOCATOR::alloc(nNewMax, ::get_task()->m_strFile,::get_task()->m_iLine);
+            pNewData = ALLOCATOR::alloc(countNewAllocation, ::get_task()->m_strFile,::get_task()->m_iLine);
 
          }
          else
          {
 
-            pNewData = ALLOCATOR::alloc(nNewMax, __FILE__, __LINE__);
+            pNewData = ALLOCATOR::alloc(countNewAllocation, __FILE__, __LINE__);
 
          }
 
 #else
 
-         if (::get_task()->m_strDebug.has_char())
+         if (::get_task_object_debug().has_char())
          {
 
-            pNewData = ALLOCATOR::alloc(nNewMax, "thread://" + typeid(*::get_task()).name()) + ", " + ::get_task()->m_strDebug + ", " + string(__FILE__), __LINE__;
+            pNewData = ALLOCATOR::alloc(countNewAllocation, "thread://" + ::get_task_object_name() + ", " + ::get_task_object_debug() + ", " + string(__FILE__), __LINE__);
 
          }
          else
          {
 
-            pNewData = ALLOCATOR::alloc(nNewMax, "thread://" + typeid(*::get_task()).name()) + ", " + string(__FILE__), __LINE__;
+            pNewData = ALLOCATOR::alloc(countNewAllocation, "thread://" + ::get_task_object_name() + ", " + string(__FILE__), __LINE__);
 
          }
 
@@ -2425,7 +2426,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_e
       else
       {
 
-         pNewData = ALLOCATOR::alloc(nNewMax, __FILE__, __LINE__);
+         pNewData = ALLOCATOR::alloc(countNewAllocation, __FILE__, __LINE__);
 
       }
 
@@ -2551,16 +2552,16 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_e
 //
 //#else
 //
-//         if (::get_task()->m_strDebug.has_char())
+//         if (::get_task_object_debug().has_char())
 //         {
 //
-//            this->m_begin = ALLOCATOR::alloc(nAllocSize, "thread://" + typeid(*::get_task()).name()) + ", " + ::get_task()->m_strDebug + ", " + string(__FILE__), __LINE__;
+//            this->m_begin = ALLOCATOR::alloc(nAllocSize, "thread://" + ::get_task_object_name() + ", " + ::get_task_object_debug() + ", " + string(__FILE__), __LINE__;
 //
 //         }
 //         else
 //         {
 //
-//            this->m_begin = ALLOCATOR::alloc(nAllocSize, "thread://" + typeid(*::get_task()).name()) + ", " + string(__FILE__), __LINE__;
+//            this->m_begin = ALLOCATOR::alloc(nAllocSize, "thread://" + ::get_task_object_name() + ", " + string(__FILE__), __LINE__;
 //
 //         }
 //
@@ -2698,16 +2699,16 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_e
 //
 //#else
 //
-//         if (::get_task()->m_strDebug.has_char())
+//         if (::get_task_object_debug().has_char())
 //         {
 //
-//            pNewData = ALLOCATOR::alloc(nNewMax, "thread://" + typeid(*::get_task()).name()) + ", " + ::get_task()->m_strDebug + ", " + string(__FILE__), __LINE__;
+//            pNewData = ALLOCATOR::alloc(nNewMax, "thread://" + ::get_task_object_name() + ", " + ::get_task_object_debug() + ", " + string(__FILE__), __LINE__;
 //
 //         }
 //         else
 //         {
 //
-//            pNewData = ALLOCATOR::alloc(nNewMax, "thread://" + typeid(*::get_task()).name()) + ", " + string(__FILE__), __LINE__;
+//            pNewData = ALLOCATOR::alloc(nNewMax, "thread://" + ::get_task_object_name() + ", " + string(__FILE__), __LINE__;
 //
 //         }
 //

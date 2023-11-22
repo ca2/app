@@ -773,7 +773,7 @@
     <ClInclude Include="exception\assert.h" />
     <ClInclude Include="exception\bad_file_format.h" />
     <ClInclude Include="exception\bad_unit_exception.h" />
-    <ClInclude Include="exception\callstack.h" />
+    <ClInclude Include="exception\aaa_callstack.h" />
     <ClInclude Include="exception\call_stack.h" />
     <ClInclude Include="exception\cancel.h" />
     <ClInclude Include="exception\debug.h" />

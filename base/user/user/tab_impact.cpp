@@ -787,6 +787,10 @@ namespace user
 
       if (!ptabdata->m_bNoClient)
       {
+         
+         m_pimpactdata->m_pplaceholder->order(e_zorder_top);
+
+         m_pimpactdata->m_pplaceholder->display();
 
          ::user::impact * pimpact = nullptr;
 
@@ -833,6 +837,17 @@ namespace user
       auto papp = get_app();
 
       papp->on_change_cur_sel(this);
+      
+      if(m_pimpactdata->m_pplaceholder)
+      {
+         
+         if(m_pimpactdata->m_pplaceholder->m_bLockGraphicalUpdate)
+         {
+            
+            m_pimpactdata->m_pplaceholder->m_bLockGraphicalUpdate = false;
+         }
+         
+      }
 
    }
 
@@ -948,6 +963,14 @@ namespace user
             information() << "::user::tab_impact::on_change_cur_sel Going to call prepare_impact_menu";
             
             prepare_impact_menu(pmenu);
+            
+            //m_bNeedPerformLayout = true;
+            
+            //pmenu->get_parent()->m_bNeedPerformLayout = true;
+            
+            pmenu->m_bNeedPerformLayout = true;
+            
+            //pmenu->get_parent()->set_need_layout();
             
          }
          
@@ -1573,13 +1596,7 @@ namespace user
 
             }
 
-            m_pimpactdata->m_pplaceholder->m_bLockGraphicalUpdate = false;
-
-            m_pimpactdata->m_pplaceholder->order(e_zorder_top);
-
             m_pimpactdata->m_pplaceholder->place(rectangleHosting);
-
-            m_pimpactdata->m_pplaceholder->display();
 
             //         m_pimpactdata->m_pplaceholder->set_need_redraw();
             //

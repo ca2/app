@@ -602,7 +602,11 @@ namespace user
       if (pimpactdata->m_pplaceholder)
       {
 
-         pimpactdata->m_pplaceholder->display();
+         //pimpactdata->m_pplaceholder->m_bLockGraphicalUpdate = false;
+
+         m_bNeedPerformLayout = true;
+         
+         pimpactdata->m_pplaceholder->m_bNeedPerformLayout = true;
 
          pimpactdata->m_pplaceholder->set_need_layout();
 

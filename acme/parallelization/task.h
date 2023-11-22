@@ -6,7 +6,9 @@
 //#include "acme/primitive/primitive/function.h"
 //#include "acme/primitive/primitive/object.h"
 //#include "acme/primitive/collection/procedure_array.h"
+#include "acme/handler/source.h"
 #include "acme/platform/implementable.h"
+
 
 class locale;
 
@@ -23,7 +25,8 @@ class CLASS_DECL_ACME task :
    virtual public object,
    //virtual public synchronization_object,
    virtual public acme::implementable,
-   virtual public tracer
+   virtual public tracer,
+   virtual public ::source
 {
 public:
 

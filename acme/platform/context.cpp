@@ -147,16 +147,16 @@ namespace acme
 
       //}
 
-      //m_papexsystem = acmesystem()->m_papexsystem;
-      //m_paurasystem = acmesystem()->m_paurasystem;
-      //m_pbasesystem = acmesystem()->m_pbasesystem;
-      //m_pbredsystem = acmesystem()->m_pbredsystem;
-      //m_pcoresystem = acmesystem()->m_pcoresystem;
+      //m_papexsystem = system()->m_papexsystem;
+      //m_paurasystem = system()->m_paurasystem;
+      //m_pbasesystem = system()->m_pbasesystem;
+      //m_pbredsystem = system()->m_pbredsystem;
+      //m_pcoresystem = system()->m_pcoresystem;
 
       if (is_system())
       {
 
-         auto psystem = acmesystem()->m_papexsystem;
+         auto psystem = system()->m_papexsystem;
 
          //m_papexsession->initialize(psystem);
 
@@ -420,16 +420,16 @@ namespace acme
          get_app()->locale_schema_matter(stra, straMatterLocator, strLocale, strSchema);
 
       }
-      else if (acmesession()->m_papexsession)
+      else if (session()->m_papexsession)
       {
 
-         acmesession()->locale_schema_matter(stra, straMatterLocator, strLocale, strSchema);
+         session()->locale_schema_matter(stra, straMatterLocator, strLocale, strSchema);
 
       }
       else
       {
 
-         auto psystem = acmesystem();
+         auto psystem = system();
 
          if (psystem)
          {
@@ -452,16 +452,16 @@ namespace acme
          return get_app()->get_locale_schema_dir();
 
       }
-      else if (acmesession())
+      else if (session())
       {
 
-         return acmesession()->get_locale_schema_dir();
+         return session()->get_locale_schema_dir();
 
       }
       else
       {
 
-         auto psystem = acmesystem();
+         auto psystem = system();
 
          if (psystem)
          {
@@ -534,7 +534,7 @@ namespace acme
    ::file::path context::side_get_matter_path(string strMatter)
    {
 
-      auto psystem = acmesystem();
+      auto psystem = system();
 
       auto pdirsystem = psystem->m_pdirsystem;
 
@@ -557,7 +557,7 @@ namespace acme
       if (path.case_insensitive_begins_eat("appmatter:/"))
       {
 
-         auto psystem = acmesystem();
+         auto psystem = system();
 
          ::file::path pathCache = psystem->m_pdirsystem->m_pathLocalAppMatterFolder / path;
 
@@ -628,7 +628,7 @@ namespace acme
 
          }
 
-         //auto psystem = acmesystem()->m_papexsystem;
+         //auto psystem = system()->m_papexsystem;
 
          if (!psystem->m_pdirsystem->m_bMatterFromHttpCache)
          {
@@ -907,7 +907,7 @@ namespace acme
 
          ::nano::http_response httpresponse(set, memory);
 
-         acmesystem()->nano_http()->memory(scopedstrUrl, httpresponse);
+         system()->nano_http()->memory(scopedstrUrl, httpresponse);
 
          return ::transfer(memory);
 

@@ -48,7 +48,7 @@ namespace opengl
    void context_fbo::_create_offscreen_buffer(const ::size_i32 & size)
    {
 
-      auto pgpu = acmesystem()->m_paurasystem->get_gpu();
+      auto pgpu = system()->m_paurasystem->get_gpu();
 
       ::pointer<opengl>popengl = pgpu;
 
@@ -87,9 +87,9 @@ namespace opengl
          (CGLPixelFormatAttribute) 0
       };
 
-      CGDirectDisplayID display = CGMainDisplayID();
+      //CGDirectDisplayID display = CGMainDisplayID();
 
-      auto displayMask= CGDisplayIDToOpenGLDisplayMask (display);
+      //auto displayMask= CGDisplayIDToOpenGLDisplayMask (display);
       
 //      AttribList[1] =(CGLPixelFormatAttribute)displayMask;
       

@@ -11,7 +11,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/node.h"
 #include "acme/platform/acme.h"
-#include "acme/platform/sub_system.h"
+#include "acme/platform/platform.h"
 #include "acme/platform/system.h"
 #include <execinfo.h>
 #include <cxxabi.h>
@@ -139,7 +139,7 @@ namespace acme
    string node::get_callstack(const ::scoped_string & strFormat, i32 iSkip, void *caller_address, int iCount)
    {
 
-      auto psynchronization = ::acme::acme::g_pacme->m_psubsystem->acmesystem()->synchronization();
+      auto psynchronization = ::platform::get()->system()->synchronization();
 
       synchronous_lock sl(psynchronization);
 

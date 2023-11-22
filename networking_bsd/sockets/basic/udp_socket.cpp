@@ -59,7 +59,7 @@ namespace sockets_bsd
    i32 udp_socket::Bind(const string & intf, ::networking::port_t &port, i32 range)
    {
 
-      auto paddress = acmesystem()->m_papexsystem->networking()->create_address(intf, port);
+      auto paddress = system()->m_papexsystem->networking()->create_address(intf, port);
 //      paddress->set_address(intf, port);
 
       //::networking::address ad(intf, port);
@@ -172,7 +172,7 @@ namespace sockets_bsd
       //::networking::address ad(host, port);
 
 
-      auto paddress = acmesystem()->m_papexsystem->networking()->create_address(host, port);
+      auto paddress = system()->m_papexsystem->networking()->create_address(host, port);
       //      paddress->set_address(intf, port);
 
             //::networking::address ad(intf, port);
@@ -266,7 +266,7 @@ namespace sockets_bsd
    void udp_socket::SendToBuf(const string & h, ::networking::port_t p, const char *data, i32 len, i32 flags)
    {
       
-      auto paddress = acmesystem()->m_papexsystem->networking()->create_address(h, p);
+      auto paddress = system()->m_papexsystem->networking()->create_address(h, p);
       //      paddress->set_address(intf, port);
 
             //::networking::address ad(intf, port);
@@ -777,7 +777,7 @@ namespace sockets_bsd
       //{
       //   ::memory_copy(&x.imr_multiaddr.s_addr, &addr, sizeof(addr));
 
-      //   auto psystem = acmesystem()->m_papexsystem;
+      //   auto psystem = system()->m_papexsystem;
 
       //   paddressdepartment->convert(addr,  local_if);
 

@@ -5,6 +5,7 @@
 #include "acme/constant/user_key.h"
 #include "acme/handler/item.h"
 #include "acme/primitive/geometry2d/_text_stream.h"
+#include "apex/platform/application_menu.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/user/user/system.h"
 #include "aura/windowing/windowing.h"
@@ -1585,6 +1586,25 @@ namespace experience
          }
 
       }
+      
+      if(m_bWindowFrame)
+      {
+         
+         auto papplicationmenu = application()->application_menu();
+         
+         {
+            
+            auto ppopupView = papplicationmenu->popup("View");
+            
+            //ppopupView->add(pmenuView);
+            
+            ppopupView->item("Transparent Frame", "transparent_frame", "", "");
+            
+         }
+
+         application()->m_papexapplication->application_menu_update();
+         
+      }
 
    }
 
@@ -1871,7 +1891,7 @@ namespace experience
          if (pitem->m_item.m_eelement == e_element_title_bar)
          {
 
-            window()->defer_show_system_menu(pmouse);
+            window()->defer_show_system_menu(pmouse->m_pointAbsolute);
 
          }
 
@@ -2357,7 +2377,7 @@ namespace experience
 
       }
 
-      auto psystem = acmesystem()->m_pbasesystem;
+      auto psystem = system()->m_pbasesystem;
 
       double dMargin = psystem->m_dDpi * 0.75 * (1.0 - sqrt((double)rectangle.area() / (double)rectangleWorkspace.area()));
 
@@ -2807,7 +2827,7 @@ namespace experience
    }
 
 
-   void frame_window::frame_experience_restore()
+   void frame_window::frame_experience_restore(::e_activation eactivation)
    {
 
       calculate_broad_and_compact_restore();
@@ -2822,13 +2842,13 @@ namespace experience
          if (equivalence_sink(m_windowdisplayandlayout.m_edisplayPrevious) == e_display_normal)
          {
 
-            display_normal(m_windowdisplayandlayout.m_edisplayPrevious, e_activation_default);
+            display_normal(m_windowdisplayandlayout.m_edisplayPrevious, eactivation);
 
          }
          else
          {
 
-            display_normal(m_windowdisplayandlayout.m_edisplayLastNormal, e_activation_default);
+            display_normal(m_windowdisplayandlayout.m_edisplayLastNormal, eactivation);
 
          }
 
@@ -2841,7 +2861,7 @@ namespace experience
 
          //good_restore(nullptr, m_windowdisplayandlayout.m_rectangleCompact, true, e_activation_default, e_zorder_top, e_display_compact);
 
-         display_normal(e_display_compact, e_activation_default);
+         display_normal(e_display_compact, eactivation);
 
          //}
 //         else
@@ -2860,7 +2880,7 @@ namespace experience
          if (sizeRectangleNormal == m_rectangleRestoreCompact.size())
          {
 
-            display_normal(e_display_broad, e_activation_default);
+            display_normal(e_display_broad, eactivation);
 
             //good_restore(nullptr, m_windowdisplayandlayout.m_rectangleBroad, true, e_activation_default, e_zorder_top, e_display_broad);
 
@@ -2870,7 +2890,7 @@ namespace experience
 
             //good_restore(nullptr, m_windowdisplayandlayout.m_rectangleNormal, true, e_activation_default, e_zorder_top, e_display_normal);
 
-            display_normal(e_display_normal, e_activation_default);
+            display_normal(e_display_normal, eactivation);
 
          }
 
@@ -2880,7 +2900,7 @@ namespace experience
 
          //good_restore(nullptr, m_windowdisplayandlayout.m_rectangleBroad, true, e_activation_default, e_zorder_top, e_display_broad);
 
-         display_normal(e_display_broad, e_activation_default);
+         display_normal(e_display_broad, eactivation);
 
       }
 

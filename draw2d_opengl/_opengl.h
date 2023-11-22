@@ -4,13 +4,18 @@
 
 #undef USUAL_OPERATING_SYSTEM_SUPPRESSIONS
 #include "acme/_operating_system.h"
+
+#ifdef WINDOWS_DESKTOP
 #define GLAD_GLAPI_EXPORT
 #include "glad.h"
+#else
 //#include <GL/gl.h>
 //#include <GL/glu.h>
 //#include <GL/glext.h>
 #ifdef LINUX
 #include <GL/glx.h>
+#endif
+
 #endif
 
 //#include "factory_exchange.h"

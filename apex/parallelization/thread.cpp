@@ -354,7 +354,7 @@ void thread::term_task()
    case id_system:
    {
 
-      //auto psystem = acmesystem()->m_papexsystem;
+      //auto psystem = system()->m_papexsystem;
 
       //if (psystem)
       //{
@@ -498,7 +498,7 @@ void thread::task_osterm()
 
    __set_thread_off();
 
-   //acmesystem()->m_papexsystem->m_papexnode->thread_finalize(this);
+   //system()->m_papexsystem->m_papexnode->thread_finalize(this);
 
    //::e_status estatus = m_result.m_estatus;
 
@@ -1863,16 +1863,16 @@ void thread::main()
          if (defer_implement(m_pcontext))
          {
 
-            //estatus = acmesystem()->m_estatus;
+            //estatus = system()->m_estatus;
 
          }
 
          // !!!!This should be done in acme::node!!!!
-         //else if (acmeapplication()->m_bConsole)
+         //else if (application()->m_bConsole)
          // !!!!This should be done in acme::node!!!!
          //{ // !!!!This should be done in acme::node!!!!
          // !!!!This should be done in acme::node!!!!
-         //   acmeapplication()->main();
+         //   application()->main();
          // !!!!This should be done in acme::node!!!!
          //}// !!!!This should be done in acme::node!!!!
          // !!!!This should be done in acme::node!!!!
@@ -2015,7 +2015,7 @@ void thread::init_task()
 
    //}
 
-   //auto psystem = acmesystem()->m_papexsystem;
+   //auto psystem = system()->m_papexsystem;
 
    //if (m_atomContextReference == id_none && psystem && psystem != this)
    //{
@@ -2145,7 +2145,7 @@ void thread::dispatch_thread_message(::message::message * pusermessage)
 //
 //   }
 //
-//   return acmesystem()->is_task_on(itask) ?
+//   return system()->is_task_on(itask) ?
 //          synchronization_result(e_synchronization_result_timed_out) :
 //          synchronization_result(e_synchronization_result_signaled_base);
 //
@@ -2197,10 +2197,10 @@ void thread::session_pre_translate_message(::message::message * pmessage)
       if(get_app() != nullptr)
       {
 
-         if(get_app()->acmesession() != nullptr)
+         if(get_app()->session() != nullptr)
          {
 
-            get_app()->acmesession()->m_papexsession->pre_translate_message(pmessage);
+            get_app()->session()->m_papexsession->pre_translate_message(pmessage);
 
             if(pmessage->m_bRet)
             {
@@ -2228,7 +2228,7 @@ void thread::system_pre_translate_message(::message::message * pmessage)
    try
    {
 
-      auto psystem = acmesystem()->m_papexsystem;
+      auto psystem = system()->m_papexsystem;
 
       if(psystem != nullptr)
       {
@@ -2676,7 +2676,7 @@ void thread::__os_initialize()
 //
 //#endif
 
-   //acmesystem()->m_papexsystem->m_papexnode->node_thread_initialize(this);
+   //system()->m_papexsystem->m_papexnode->node_thread_initialize(this);
 
 }
 
@@ -2684,7 +2684,7 @@ void thread::__os_initialize()
 void thread::__os_finalize()
 {
 
-   //acmesystem()->m_papexsystem->m_papexnode->node_thread_finalize(this);
+   //system()->m_papexsystem->m_papexnode->node_thread_finalize(this);
 
 }
 
@@ -2785,7 +2785,7 @@ void thread::task_osinit()
 
       processor_cache_oriented_set_thread_memory_pool(0); // set default handler cache oriented thread memory pool index to 0 ("zero") (The First One)
 
-      //acmesystem()->m_papexsystem->m_papexnode->parallelization_initialize();
+      //system()->m_papexsystem->m_papexnode->parallelization_initialize();
 
    }
 
@@ -2893,7 +2893,7 @@ void thread::__set_thread_off()
 
    auto atom = ::current_itask();
 
-   acmesystem()->set_task_off(::current_itask());
+   system()->set_task_off(::current_itask());
 
    //::set_task(nullptr);
 
@@ -2963,7 +2963,7 @@ namespace apex
 
       //}
 
-//      auto psystem = acmesystem()->m_papexsystem;
+//      auto psystem = system()->m_papexsystem;
 //
 //      psystem->m_papexsystem->post_to_all_threads(atom, wparam, lparam);
 
@@ -4262,7 +4262,7 @@ bool thread::process_message()
          //if(msg.lParam)
          {
 
-            //auto psystem = acmesystem()->m_papexsystem;
+            //auto psystem = system()->m_papexsystem;
 
             //auto ptopic = psystem->new_subject(message);
 
@@ -4354,7 +4354,7 @@ bool thread::process_message()
          pmessage = get_app()->m_papexapplication->get_message(&message);
 
       }
-      else if(acmesession())
+      else if(session())
       {
 
          pmessage = acmenode()->m_papexnode->get_message(&message);

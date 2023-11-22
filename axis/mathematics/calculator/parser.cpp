@@ -84,9 +84,11 @@ namespace calculator
 
          top_node->m_ptoken      = m_scanner.m_ptoken;
          top_node->m_pelement1   = pelement1;
-         top_node->m_pelement2   = expr(term(factor()));
+         //top_node->m_pelement2   = expr(term(factor()));
+         top_node->m_pelement2   = term(factor());
+         //top_node->m_pelement2 = expr(term(factor()));
 
-         return top_node;
+         return expr(top_node);
 
       }
 
@@ -110,9 +112,9 @@ namespace calculator
          top_node                = new_node();
          top_node->m_ptoken      = m_scanner.m_ptoken;
          top_node->m_pelement1   = m_pelement1;
-         top_node->m_pelement2   = term(factor());
+         top_node->m_pelement2   = factor();
 
-         return top_node;
+         return term(top_node);
 
       }
 

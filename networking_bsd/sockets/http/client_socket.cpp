@@ -206,7 +206,7 @@ namespace sockets
       if (m_host.is_empty())
       {
 
-         auto psystem = acmesystem();
+         auto psystem = system();
 
          auto purl = psystem->url();
 
@@ -354,7 +354,7 @@ namespace sockets
 
          m_memoryfile.seek_to_begin();
 
-         acmesystem()->uncompress(&memoryfile, &m_memoryfile, "zlib");
+         system()->uncompress(&memoryfile, &m_memoryfile, "zlib");
 
          m_memoryfile = memoryfile;
 
@@ -581,7 +581,7 @@ namespace sockets
 
       m_request.attr("url") = url;
 
-      auto psystem = acmesystem();
+      auto psystem = system();
 
       auto purl = psystem->url();
 

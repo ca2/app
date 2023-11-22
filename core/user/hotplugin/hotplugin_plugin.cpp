@@ -147,11 +147,11 @@ namespace hotplugin
       }
    }
 
-   oswindow plugin::get_host_window()
+   oswindow plugin::get_host_user_interaction()
    {
       if(m_phost != nullptr)
       {
-         return m_phost->get_host_window();
+         return m_phost->get_host_user_interaction();
       }
       return nullptr;
    }
@@ -772,7 +772,7 @@ namespace hotplugin
          //   m_pcolorref = (u32 *)get_map_failed();
          //}
 
-                  auto psystem = acmesystem();
+                  auto psystem = system();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 

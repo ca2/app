@@ -150,7 +150,7 @@ namespace xml
       if (opt == nullptr)
       {
 
-         opt = acmesystem()->xml()->m_poptionDefault;
+         opt = system()->xml()->m_poptionDefault;
 
       }
 

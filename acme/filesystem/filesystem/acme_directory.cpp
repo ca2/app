@@ -214,7 +214,7 @@ string acme_directory::system_short_name()
 ::string acme_directory::appid()
 {
 
-   return acmeapplication()->m_strAppId;
+   return application()->m_strAppId;
 
 }
 
@@ -505,9 +505,9 @@ void acme_directory::set_path_install_folder(const string & strPath)
 
    //return m_pathModuleFolder;
 
-   auto pacmeapplication = acmeapplication();
+   auto papplication = application();
 
-   return pacmeapplication->get_module_folder();
+   return papplication->get_module_folder();
 
 }
 

@@ -25,7 +25,7 @@ namespace aqua
       void common_construct();
 
 
-      //inline ::aqua::system* acmesystem();
+      //inline ::aqua::system* system();
 
 
       void initialize(::particle * pparticle) override;

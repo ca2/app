@@ -110,7 +110,7 @@ namespace user
    bool form_impact::open_document(const ::payload & payloadFile)
    {
 
-      auto psystem = acmesystem()->m_pbasesystem;
+      auto psystem = system()->m_pbasesystem;
 
       psystem->defer_create_html();
 

@@ -2,11 +2,23 @@
 #include "framework.h"
 #include "redraw.h"
 #include "aura/graphics/draw2d/clip.h"
+#include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/platform/system.h"
 
 
 namespace user
 {
+
+
+   void redraw::initialize(::particle * pparticle)
+   {
+
+      ::particle::initialize(pparticle);
+
+      m_bEnabled = !system()->m_paurasystem->draw2d()->graphics_context_does_full_redraw();
+
+   }
 
 
    void redraw::clear()
@@ -25,7 +37,12 @@ namespace user
       for (auto & predrawitem : redrawitema)
       {
 
-         m_rectangleaNeedRedraw.append(predrawitem->m_rectanglea);
+         if (predrawitem->m_rectanglea.has_element())
+         {
+
+            m_rectangleaNeedRedraw.append(predrawitem->m_rectanglea);
+
+         }
 
          if (predrawitem->m_functiona.has_element())
          {

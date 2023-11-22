@@ -46,6 +46,9 @@ namespace base
 
       virtual void initialize(::particle * pparticle) override;
 
+      
+      virtual ::pointer < ::data::data > create_default_new_document_data();
+
 
 //      // void assert_ok() const override;
 //      // void dump(dump_context & dumpcontext) const override;

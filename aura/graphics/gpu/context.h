@@ -76,7 +76,7 @@ namespace gpu
       ::size_i32                           m_size;
       float                            m_z;
       point_i32                            m_pointTranslate;
-      ::pointer<::gpu::buffer>        m_pbuffer;
+      ::pointer<::gpu::cpu_buffer>        m_pcpubuffer;
       ::pointer<::gpu::program>       m_pprogram;
       bool                             m_bCreated;
       ::draw3d::matrix                 m_matrixProjection;

@@ -1,10 +1,12 @@
 #pragma once
 
 
-//#include "acme/primitive/collection/pointer_array.h"
+
 #include "acme/primitive/data/container.h"
-#include "aqua/user/controller.h"
+#include "acme/user/user/controller.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "apex/handler/manager.h"
+#include "apex/message/channel.h"
 
 
 namespace user
@@ -13,6 +15,8 @@ namespace user
 
    class CLASS_DECL_BASE document :
       virtual public ::user::controller,
+      virtual public ::channel,
+      virtual public ::manager,
       virtual public ::data::data_container_base
    {
    public:
@@ -267,9 +271,9 @@ namespace user
       //};
 
       // Update Impacts (simple update - DAG only)
-      void id_update_all_impacts(const ::atom & atom);
-      void update_all_impacts(impact * pimpact, const ::atom & atom);
-      virtual void update_all_impacts(::topic * ptopic);
+      void id_update_all_impacts(const ::atom & atom) override;
+      virtual void update_all_impacts(impact * pimpact, const ::atom & atom);
+      virtual void update_all_impacts(::topic * ptopic) override;
 
 
       void handle(::topic * ptopic, ::context * pcontext) override;
@@ -289,6 +293,8 @@ namespace user
       virtual bool defer_save_document();
 
       // File helpers
+      virtual bool open_data(::data::data * pdata);
+      virtual bool on_open_data(::data::data * pdata);
       virtual bool on_new_document();
       virtual bool on_open_document(const ::payload & payloadFile);
       virtual bool on_open_document(::file::file * pfile);

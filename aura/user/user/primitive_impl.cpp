@@ -187,7 +187,7 @@ namespace user
 
       ::channel::destroy();
 
-      ::source::destroy();
+      //::source::destroy();
 
       ::manager::destroy();
 
@@ -599,29 +599,29 @@ namespace user
    }
 
 
-   void primitive_impl::add_auto_refresh(::particle * pparticle)
-   {
+//   void primitive_impl::add_fps_interest(::particle * pparticle)
+//   {
+//
+//
+//   }
+//
+//
+//   void primitive_impl::erase_fps_interest(::particle * pparticle)
+//   {
+//
+//
+//   }
+//
+//
+//   bool primitive_impl::is_fps_interest(const ::particle * pparticle) const
+//   {
+//
+//      return false;
+//
+//   }
 
 
-   }
-
-
-   void primitive_impl::erase_auto_refresh(::particle * pparticle)
-   {
-
-
-   }
-
-
-   bool primitive_impl::is_auto_refresh(const ::particle * pparticle) const
-   {
-
-      return false;
-
-   }
-
-
-//   void primitive_impl::auto_refresh_stop()
+//   void primitive_impl::fps_interest_stop()
 //   {
 //
 //
@@ -642,6 +642,95 @@ namespace user
       return false;
 
    }
+
+
+   void primitive_impl::add(::graphics::output_purpose * poutputpurpose)
+   {
+
+
+
+   }
+
+
+   void primitive_impl::erase(::graphics::output_purpose * poutputpurpose)
+   {
+
+
+
+   }
+
+
+
+   void primitive_impl::add_graphical_output_purpose(::particle * pparticle, ::graphics::enum_output_purpose epurpose)
+   {
+
+
+   }
+
+
+
+   void primitive_impl::erase_graphical_output_purpose(::particle * pparticle)
+   {
+
+
+   }
+
+
+   bool primitive_impl::does_particle_has_fps_purpose(const ::particle * pparticle) const
+   {
+
+      return false;
+
+   }
+
+
+//   ::graphics::enum_output_purpose primitive_impl::most_demanding_graphical_output_purpose() const
+//   {
+//
+//      return ::graphics::e_output_purpose_none;
+//
+//   }
+
+
+   bool primitive_impl::has_screen_output_purpose() const
+   {
+
+      return false;
+
+   }
+
+
+   bool primitive_impl::has_graphical_output_purpose() const
+   {
+
+      return false;
+
+   }
+
+
+//   bool primitive_impl::has_graphical_output_purpose() const
+//   {
+//
+//      return false;
+//
+//   }
+
+
+   bool primitive_impl::has_fps_output_purpose() const
+   {
+
+      return false;
+
+   }
+
+
+
+//   bool primitive_impl::has_graphical_output_purpose() const
+//   {
+//
+//      return false;
+//
+//   }
 
 
    void primitive_impl::pre_subclass_window()
@@ -1989,7 +2078,7 @@ namespace user
    //void primitive_impl::set_capture(::user::interaction * pinteraction)
    //{
 
-   //   return get_host_window()->set_capture(pinteraction);
+   //   return get_host_user_interaction()->set_capture(pinteraction);
 
    //}
 
@@ -2014,7 +2103,7 @@ namespace user
    //void primitive_impl::set_keyboard_focus(::user::interaction * pinteraction)
    //{
 
-   //   return get_host_window()->set_keyboard_focus(pinteraction);
+   //   return get_host_user_interaction()->set_keyboard_focus(pinteraction);
 
    //}
 
@@ -2104,15 +2193,15 @@ namespace user
    }
 
 
-   //void primitive_impl::defer_start_auto_refresh()
+   //void primitive_impl::defer_start_fps_interest()
    //{
 
-   //   m_puserinteraction->post_simple_command(e_simple_command_defer_start_auto_refresh);
+   //   m_puserinteraction->post_simple_command(e_simple_command_defer_start_fps_interest);
 
    //}
 
 
-   //void primitive_impl::_defer_start_auto_refresh()
+   //void primitive_impl::_defer_start_fps_interest()
    //{
 
    //}
@@ -2229,7 +2318,7 @@ namespace user
 
       }
 
-      ::user::interaction * pinteraction = puserinteraction->get_host_window();
+      ::user::interaction * pinteraction = puserinteraction->get_host_user_interaction();
 
       if (!pinteraction)
       {
@@ -2268,7 +2357,7 @@ namespace user
 
       }
 
-      ::user::interaction * pinteraction = puserinteraction->get_host_window();
+      ::user::interaction * pinteraction = puserinteraction->get_host_user_interaction();
 
       if (pinteraction != nullptr)
       {
@@ -2681,7 +2770,7 @@ namespace user
 
    //   }
 
-   //   ::pointer<::user::interaction>pinteraction = m_puserinteraction->get_host_window();
+   //   ::pointer<::user::interaction>pinteraction = m_puserinteraction->get_host_user_interaction();
 
    //   if (pinteraction.is_null())
    //   {
@@ -2733,7 +2822,8 @@ namespace user
    //}
 
 
-   void primitive_impl::create_host(::user::interaction * puserinteraction, enum_parallelization eparallelization)
+   //void primitive_impl::create_host(::user::interaction * puserinteraction, enum_parallelization eparallelization)
+   void primitive_impl::create_host(::user::interaction * puserinteraction)
    {
 
       //return false;
@@ -2963,7 +3053,7 @@ namespace user
    //::aura::system * primitive_implacmesystem()
    //{
 
-   //   return acmesystem() ? acmesystem()->m_paurasystem : nullptr;
+   //   return system() ? system()->m_paurasystem : nullptr;
 
    //}
 

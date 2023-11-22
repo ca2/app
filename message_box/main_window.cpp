@@ -30,9 +30,26 @@ namespace app_message_box
    void main_window::install_message_routing(::channel * pchannel)
    {
 
-      ::user::main_window::install_message_routing(pchannel);
+      ::app_app::main_window::install_message_routing(pchannel);
 
-      MESSAGE_LINK(MESSAGE_CLOSE, pchannel, this, &main_window::on_message_close);
+      MESSAGE_LINK(e_message_create, pchannel, this, &main_window::on_message_create);
+      MESSAGE_LINK(e_message_close, pchannel, this, &main_window::on_message_close);
+
+   }
+
+
+   void main_window::on_message_create(::message::message * pmessage)
+   {
+
+      //::app_app::main_window::on_create_user_interaction();
+
+      __construct(m_pbuttonShowMessageBox);
+
+      m_pbuttonShowMessageBox->create_child(this);
+
+      m_pbuttonShowMessageBox->set_window_text("Show message box");
+
+      m_pbuttonShowMessageBox->add_handler(this);
 
    }
 
@@ -65,22 +82,6 @@ namespace app_message_box
          });
 
       psequencer->do_asynchronously();
-
-   }
-
-
-   void main_window::on_create_user_interaction()
-   {
-
-      ::app_app::main_window::on_create_user_interaction();
-
-      __construct(m_pbuttonShowMessageBox);
-
-      m_pbuttonShowMessageBox->create_child(this);
-
-      m_pbuttonShowMessageBox->set_window_text("Show message box");
-
-      m_pbuttonShowMessageBox->add_handler(this);
 
    }
 

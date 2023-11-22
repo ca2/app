@@ -645,7 +645,7 @@ namespace android
 
       string strSystemFonts = file()->as_string("/system/etc/system_fonts.xml");
 
-            auto psystem = acmesystem()->m_paurasystem;
+            auto psystem = system()->m_paurasystem;
 
       auto pxml = psystem->xml();
 

@@ -50,12 +50,12 @@ payload_array::~payload_array()
 index payload_array::add(const ::payload & payload)
 {
 
-   if(payload.is_empty())
-   {
+   //if(payload.is_empty())
+   //{
 
-      return -1;
+   //   return -1;
 
-   }
+   //}
 
    return BASE_ARRAY::add(payload);
 

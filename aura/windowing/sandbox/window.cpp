@@ -84,7 +84,7 @@ namespace sandbox_windowing
       if (!(pimpl->m_puserinteraction->m_ewindowflag & e_window_flag_satellite_window))
       {
 
-         auto psystem = acmesystem()->m_papexsystem;
+         auto psystem = system()->m_papexsystem;
 
          string strApplicationServerName = psystem->get_application_server_name();
 
@@ -92,7 +92,7 @@ namespace sandbox_windowing
 
          //         XClassHint * pupdate = XAllocClassHint();
          //
-         //         auto psystem = acmesystem()->m_papexsystem;
+         //         auto psystem = system()->m_papexsystem;
          //
          //         string strApplicationServerName = psystem->get_application_server_name();
          //
@@ -389,7 +389,7 @@ namespace sandbox_windowing
 
    //      pwindowing->m_bFirstWindowMap = true;
 
-   //      auto psystem = acmesystem()->m_papexsystem;
+   //      auto psystem = system()->m_papexsystem;
 
    //      auto pnode = psystem->node();
 
@@ -713,7 +713,7 @@ namespace sandbox_windowing
 
    //   synchronous_lock synchronouslock(user_synchronization());
 
-   //   auto psystem = acmesystem()->m_papexsystem;
+   //   auto psystem = system()->m_papexsystem;
 
    //   auto pnode = psystem->node();
 

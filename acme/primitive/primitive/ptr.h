@@ -44,6 +44,7 @@ class ptr
       
       if(m_p)
       {
+
          m_p->increment_reference_count();
     
       }
@@ -56,12 +57,8 @@ class ptr
       
       m_p = ptr.m_p;
       
-      if(m_p)
-      {
-         m_p->increment_reference_count();
-      }
-      
       ptr.m_p = nullptr;
+
    }
    
    
@@ -108,7 +105,7 @@ class ptr
          if(__pointer_is_set(pOld))
          {
          
-            pOld->decrement_reference_count();
+            pOld->release();
          
          }
          
@@ -119,30 +116,25 @@ class ptr
    }
    
    
-   ::ptr < TYPE > & operator = (::ptr < TYPE > & p)
+   ::ptr < TYPE > & operator = (const ::ptr < TYPE > & p)
    {
       
-      if(m_p == p.m_p)
+      auto pOld = m_p;
+         
+      if(pOld != p.m_p)
       {
-      
-         auto pOld = m_p;
-         
-         if(pOld != p)
-         {
           
-            p->increment_reference_count();
+         p.m_p->increment_reference_count();
             
-            m_p = p.m_p;
+         m_p = p.m_p;
             
-            if(__pointer_is_set(pOld))
-            {
+         if(__pointer_is_set(pOld))
+         {
             
-               pOld->decrement_reference_count();
+            pOld->release();
                
-            }
-            
          }
-         
+            
       }
       
       return *this;
@@ -150,16 +142,42 @@ class ptr
    }
    
    
-   ptr & transfer(TYPE * p)
+   ::ptr < TYPE > & operator = (::ptr < TYPE > && p)
    {
-      
-      m_p = p;
-      
+
+      auto pOld = m_p;
+
+      if (pOld != p.m_p)
+      {
+
+         m_p = p.m_p;
+
+         p.m_p = nullptr;
+
+         if (__pointer_is_set(pOld))
+         {
+
+            pOld->release();
+
+         }
+
+      }
+
       return *this;
-      
+
    }
-   
-   
+
+
+   //ptr & transfer(TYPE * p)
+   //{
+   //   
+   //   m_p = p;
+   //   
+   //   return *this;
+   //   
+   //}
+   //
+   //
    void release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
    {
       

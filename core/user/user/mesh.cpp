@@ -151,9 +151,9 @@ namespace user
    ::core::application* mesh::get_app()
    {
 
-      auto pacmeapplication = acmeapplication();
+      auto papplication = application();
 
-      return ::is_set(pacmeapplication) ? pacmeapplication->m_pcoreapplication : nullptr;
+      return ::is_set(papplication) ? papplication->m_pcoreapplication : nullptr;
 
    }
 
@@ -161,7 +161,7 @@ namespace user
    ::core::session* mesh::get_session()
    {
 
-      auto pacmesession = acmesession();
+      auto pacmesession = session();
 
       return ::is_set(pacmesession) ? pacmesession->m_pcoresession : nullptr;
 
@@ -171,7 +171,7 @@ namespace user
    ::core::system* mesh::get_system()
    {
 
-      auto pacmesystem = acmesystem();
+      auto pacmesystem = system();
 
       return ::is_set(pacmesystem) ? pacmesystem->m_pcoresystem : nullptr;
 
@@ -1203,7 +1203,7 @@ namespace user
 
       set_need_redraw();
 
-      //auto psystem = acmesystem()->m_paurasystem;
+      //auto psystem = system()->m_paurasystem;
 
       //auto pdraw2d = psystem->draw2d();
 
@@ -1233,6 +1233,8 @@ namespace user
 
       if (m_bPendingColumnUpdate)
       {
+
+         m_bPendingColumnUpdate = false;
 
          on_column_update();
 
@@ -4248,7 +4250,7 @@ namespace user
 
       m_strTopText = pcwsz;
 
-      auto psystem = acmesystem()->m_paurasystem;
+      auto psystem = system()->m_paurasystem;
 
       auto pdraw2d = psystem->draw2d();
 
@@ -4817,7 +4819,7 @@ namespace user
 
       m_efilterstate = FilterStateFilter;
 
-      auto psystem = acmesystem()->m_paurasystem;
+      auto psystem = system()->m_paurasystem;
 
       auto pdraw2d = psystem->draw2d();
 
@@ -4872,7 +4874,7 @@ namespace user
 
       }
 
-      auto psystem = acmesystem()->m_paurasystem;
+      auto psystem = system()->m_paurasystem;
 
       auto pdraw2d = psystem->draw2d();
 
@@ -5024,7 +5026,7 @@ namespace user
 
       m_efilterstate = FilterStateFilter;
 
-      auto psystem = acmesystem()->m_paurasystem;
+      auto psystem = system()->m_paurasystem;
 
       auto pdraw2d = psystem->draw2d();
 
@@ -5071,7 +5073,7 @@ namespace user
 
       //m_pregexFilter1->setPositionMoves(1);
 
-      auto psystem = acmesystem()->m_paxissystem;
+      auto psystem = system()->m_paxissystem;
 
       m_pregexFilter1 = psystem->compile_pcre("/.*" + stra.implode(".*") + ".*/i");
 
@@ -5099,7 +5101,7 @@ namespace user
    void mesh::_001OnMeshHeaderItemDblClk(index iHeaderItem)
    {
       
-      auto psystem = acmesystem()->m_paurasystem;
+      auto psystem = system()->m_paurasystem;
 
       auto pdraw2d = psystem->draw2d();
 
@@ -5350,7 +5352,7 @@ namespace user
    //}
 
 
-   void mesh::on_context_offset_layout(::draw2d::graphics_pointer & pgraphics)
+   void mesh::on_change_context_offset(::user::enum_layout elayout)
    {
 
 //      ::user::interaction::on_change_context_offset();
@@ -5685,7 +5687,7 @@ namespace user
 
                m_nItemCount = minimum(m_nGridItemCount,m_nItemCount + (::count)(sizePage.cy() / m_dItemHeight));
 
-               //auto psystem = acmesystem()->m_paurasystem;
+               //auto psystem = system()->m_paurasystem;
 
                //auto pdraw2d = psystem->draw2d();
 
@@ -5727,7 +5729,7 @@ namespace user
 /// 
                m_nColumnCount = m_nGridColumnCount;
 
-               //auto psystem = acmesystem()->m_paurasystem;
+               //auto psystem = system()->m_paurasystem;
 
                //auto pdraw2d = psystem->draw2d();
 
@@ -6231,7 +6233,7 @@ namespace user
 
             //::aura::application * get_app() = m_pmesh->get_app();
 
-            auto psystem = m_pitem->m_pmesh->acmesystem()->m_paurasystem;
+            auto psystem = m_pitem->m_pmesh->system()->m_paurasystem;
 
             psystem->imaging().channel_spread_set_color(pimage2->get_graphics(),{}, size, pimage1->get_graphics(),{},0,2,argb(192,192,192,192));
             pimage1->clear(::color::transparent);
@@ -6417,7 +6419,7 @@ namespace user
    ::point_f64 mesh::get_context_offset(::user::enum_layout elayout)
    {
 
-      return ::user::interaction::get_context_offset(elayout);
+      return ::user::scroll_base::get_context_offset(elayout);
 
    }
 

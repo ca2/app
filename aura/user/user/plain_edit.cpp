@@ -32,6 +32,7 @@
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "acme/platform/timer.h"
+#include "acme/user/user/tool.h"
 #include "apex/filesystem/file/edit_file.h"
 #include "aura/windowing/text_editor_interface.h"
 #include "aura/windowing/windowing.h"
@@ -91,9 +92,7 @@ namespace aura
          if (strEncoding.case_insensitive_order("base64") == 0)
          {
 
-            auto psystem = acmesystem();
-
-            auto pbase64 = psystem->base64();
+            auto pbase64 = base64();
 
             index iBase64 = iEncoding + 1;
 
@@ -169,6 +168,8 @@ namespace user
       m_bCaretVisible = false;
 
       m_iInputConnectionBatch = 0;
+
+      m_bNewFocus = false;
 
       m_bEnterKeyOnPaste = false;
 
@@ -455,6 +456,8 @@ namespace user
       pgraphics->fill_rectangle(rectangleBackground, crEditBackground);
 
       bool bComposing = ::is_set(m_pitemComposing);
+
+      bool bShowSelection = bComposing || has_keyboard_focus();
 
       strsize iComposeBeg = -1;
 
@@ -750,17 +753,22 @@ namespace user
 
             }
 
-            if (iCurLineSelEnd > iCurLineSelBeg)
+            if (bShowSelection)
             {
 
-               pgraphics->fill_rectangle(
-                  ::rectangle_f64_dimension((double)((double)left + x1),
-                     (double)y,
-                     (double)minimum(x2 - x1, (double)rectangleX.right() - ((double)left + x1)),
-                     (double)minimum((double)m_dLineHeight, (double)rectangleX.bottom() - y)),
-                  crBkSel);
+               if (iCurLineSelEnd > iCurLineSelBeg)
+               {
 
-               pgraphics->set(pbrushTextSel);
+                  pgraphics->fill_rectangle(
+                     ::rectangle_f64_dimension((double)((double)left + x1),
+                        (double)y,
+                        (double)minimum(x2 - x1, (double)rectangleX.right() - ((double)left + x1)),
+                        (double)minimum((double)m_dLineHeight, (double)rectangleX.bottom() - y)),
+                     crBkSel);
+
+                  pgraphics->set(pbrushTextSel);
+
+               }
 
             }
 
@@ -1863,7 +1871,7 @@ namespace user
 
          set_default_mouse_cursor(pcursor);
 
-         if (m_bLMouseDown)
+         if (m_bLMouseDown && !m_bNewFocus)
          {
 
             ::point_i32 point = pmouse->m_pointHost;
@@ -1902,9 +1910,11 @@ namespace user
 
             }
 
-            m_pitemHover = __new(::item(e_element_client));
+            m_pitemHover = tool().item(e_element_client);
 
          }
+
+         pmessage->m_bRet = true;
 
       }
 
@@ -1931,14 +1941,29 @@ namespace user
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
+      m_timeLeftButtonDown.Now();
+
       if (plain_edit_is_enabled())
       {
+
+         if (m_bNewFocus)
+         {
+
+            if (m_timeLeftButtonDown > m_timeNewFocus
+               && (m_timeLeftButtonDown - m_timeNewFocus) > 300_ms)
+            {
+
+               m_bNewFocus = false;
+
+            }
+
+         }
 
          pmouse->previous();
 
          ::point_i32 point = pmouse->m_pointHost;
 
-         screen_to_client()(point);
+         host_to_client()(point);
 
          {
 
@@ -1950,20 +1975,33 @@ namespace user
 
             set_mouse_capture();
 
-            queue_graphics_call([this, point](::draw2d::graphics_pointer & pgraphics)
+            if (!m_bNewFocus)
             {
 
-               auto iSelBeg = plain_edit_char_hit_test(pgraphics, point);
+               queue_graphics_call([this, point](::draw2d::graphics_pointer & pgraphics)
+               {
 
-               auto iSelEnd = iSelBeg;
-               
-               informationf("LeftButtonDown(%d,%d)-queue_graphics_call", iSelBeg, iSelEnd);
+                     ::strsize iBegNew = -1;
+                     ::strsize iEndNew = -1;
 
-               _001SetSel(iSelBeg, iSelEnd);
+                     ::strsize iBegOld = -1;
+                     ::strsize iEndOld = -1;
 
-               m_iColumn = plain_edit_sel_to_column_x(pgraphics, m_ptree->m_iSelEnd, m_iColumnX);
+                     _001GetSel(iBegOld, iEndOld);
 
-            });
+                     iBegNew = plain_edit_char_hit_test(pgraphics, point);
+
+                     iEndNew = iBegNew;
+
+                     informationf("LeftButtonDown(%d,%d)-queue_graphics_call", iBegNew, iEndNew);
+
+                     _001SetSel(iBegNew, iEndNew);
+
+                     m_iColumn = plain_edit_sel_to_column_x(pgraphics, m_ptree->m_iSelEnd, m_iColumnX);
+
+               });
+
+            }
 
 #if defined(WINDOWS_DESKTOP)
 
@@ -1999,7 +2037,7 @@ namespace user
 
       defer_release_mouse_capture();
 
-      if (m_bLMouseDown)
+      if (m_bLMouseDown && !m_bNewFocus)
       {
 
          ::point_i32 point = pmouse->m_pointHost;
@@ -2014,6 +2052,8 @@ namespace user
             });
 
       }
+
+      m_bNewFocus = false;
 
       set_need_redraw();
 
@@ -5030,7 +5070,7 @@ namespace user
 
       index iLineUpdate = -1;
 
-      auto psystem = acmesystem()->m_paurasystem;
+      auto psystem = system()->m_paurasystem;
 
       auto pdraw2d = psystem->draw2d();
 
@@ -5138,7 +5178,7 @@ namespace user
       if (_001ReplaceSel(pszText, bFullUpdate, iLineUpdate))
       {
 
-         auto psystem = acmesystem()->m_paurasystem;
+         auto psystem = system()->m_paurasystem;
 
          auto pdraw2d = psystem->draw2d();
 
@@ -7458,7 +7498,7 @@ namespace user
 
       plain_edit_undo();
 
-      auto psystem = acmesystem()->m_paurasystem;
+      auto psystem = system()->m_paurasystem;
 
       auto pdraw2d = psystem->draw2d();
 
@@ -7587,7 +7627,7 @@ namespace user
 
             m_base64map.erase_all();
 
-            auto psystem = acmesystem()->m_paurasystem;
+            auto psystem = system()->m_paurasystem;
 
             psystem->_001AddPacks(m_base64map, str);
 
@@ -7892,6 +7932,17 @@ namespace user
          m_bCaretVisible = true;
 
       }
+
+      m_bNewFocus = true;
+
+      m_timeNewFocus.Now();
+
+      strsize iBegAll = 0;
+
+      strsize iEndAll = _001GetTextLength();
+
+      _001SetSel(iBegAll, iEndAll);
+
 
 #ifdef WINDOWS_DESKTOP
 
@@ -8305,7 +8356,7 @@ namespace user
 
       on_before_change_text();
 
-      auto psystem = acmesystem()->m_paurasystem;
+      auto psystem = system()->m_paurasystem;
 
       psystem->_001AddPacks(m_base64map, strText);
 
@@ -8585,7 +8636,7 @@ namespace user
          if (iHint == id_set_file)
          {
 
-            auto psystem = acmesystem()->m_paurasystem;
+            auto psystem = system()->m_paurasystem;
 
             auto pdraw2d = psystem->draw2d();
 

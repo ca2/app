@@ -99,6 +99,22 @@ namespace base
 
       virtual ::pointer<::user::menu_interaction>create_menu_button(::user::style * pstyle, ::user::menu_item * pitem);
 
+      
+      virtual ::pointer<::user::menu_item > menu_item_from_application_menu(::application_menu * papplicationmenu, ::user::menu * pmenu);
+
+      
+      virtual ::pointer<::user::menu_item > popup_menu_item_from_application_menu(::application_menu * papplicationmenu, ::user::menu * pmenu);
+
+
+      virtual void from_application_menu(::user::menu_item * pmenuitem, ::application_menu * papplicationmenu, ::user::menu * pmenu);
+
+      virtual void popup_from_application_menu(::user::menu_item * pmenuitem, ::application_menu * papplicationmenu, ::user::menu * pmenu);
+
+
+      virtual bool track_popup_menu(::user::interaction * pinteraction, ::application_menu * papplicationmenu, i32 iFlags, ::channel * pchannelNotify = nullptr);
+      virtual bool track_popup_menu(::user::interaction * pinteraction, ::application_menu * papplicationmenu, i32 iFlags, ::message::message * pmessage, ::channel * pchannelNotify = nullptr);
+      virtual bool track_popup_menu(::user::interaction * pinteraction, ::application_menu * papplicationmenu, i32 iFlags, const ::point_i32 & point, ::channel * pchannelNotify = nullptr);
+      virtual bool track_popup_menu(::user::interaction * pinteraction, ::application_menu * papplicationmenu, i32 iFlags, const ::point_i32 & point, const ::size_i32 & sizeMinimum = ::size_i32(), ::channel * pchannelNotify = nullptr);
 
       virtual bool track_popup_menu(::user::interaction* pinteraction, ::user::menu_item* pitem, i32 iFlags, ::channel* pchannelNotify = nullptr);
       //virtual ::pointer<::user::menu>track_popup_xml_menu_text(::user::interaction* pinteraction, string strXml, i32 iFlags, ::channel* pchannelNotify = nullptr);
@@ -107,6 +123,7 @@ namespace base
       //virtual ::pointer<::user::menu>track_popup_xml_menu_text(::user::interaction* pinteraction, string strXml, i32 iFlags, ::message::message* pmessage, ::channel* pchannelNotify = nullptr);
       //virtual ::pointer<::user::menu>track_popup_xml_matter_menu(::user::interaction* pinteraction, const ::string & pszMatter, i32 iFlags, ::message::message* pmessage, ::channel* pchannelNotify = nullptr);
       virtual bool track_popup_menu(::user::interaction* pinteraction, ::user::menu_item* pitem, i32 iFlags, const ::point_i32& point, ::channel* pchannelNotify = nullptr);
+      virtual bool track_popup_menu(::user::interaction * pinteraction, ::user::menu_item * pitem, i32 iFlags, const ::point_i32 & point, const ::size_i32 & sizeMinimum, ::channel * pchannelNotify = nullptr);
       virtual ::pointer<::user::menu>track_popup_xml_menu(::user::interaction* pinteraction, const ::string & strXml, i32 iFlags, const ::point_i32& point, const ::size_i32& sizeMinimum = ::size_i32(), ::channel * pchannelNotify = nullptr);
       //virtual ::pointer<::user::menu>track_popup_xml_matter_menu(::user::interaction* pinteraction, const ::string & pszMatter, i32 iFlags, const ::point_i32& pointParam, ::channel* pchannelNotify = nullptr);
       //virtual ::pointer<::user::menu>track_popup_xml_menu_file(::user::interaction* pinteraction, ::payload varXmlFile, i32 iFlags, const ::point_i32& point, const ::size_i32& sizeMinimum = ::size_i32(), ::channel* pchannelNotify = nullptr);

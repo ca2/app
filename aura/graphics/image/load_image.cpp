@@ -4,7 +4,7 @@
 #include "context_image.h"
 
 
-load_image::load_image(context_image * pcontextimage) :
+load_image::load_image(::context_image * pcontextimage) :
    m_pcontextimage(pcontextimage)
 {
 

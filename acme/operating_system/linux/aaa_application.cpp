@@ -472,7 +472,7 @@ namespace acme
    string application::multimedia_audio_get_default_implementation_name()
    {
 
-      return acmesystem()->implementation_name("audio", "alsa");
+      return system()->implementation_name("audio", "alsa");
 
    }
 
@@ -480,7 +480,7 @@ namespace acme
    string application::multimedia_audio_mixer_get_default_implementation_name()
    {
 
-      return acmesystem()->implementation_name("audio_mixer", "alsa");
+      return system()->implementation_name("audio_mixer", "alsa");
 
    }
 
@@ -488,7 +488,7 @@ namespace acme
    string application::veriwell_multimedia_music_midi_get_default_implementation_name()
    {
 
-      return acmesystem()->implementation_name("music_midi", "alsa");
+      return system()->implementation_name("music_midi", "alsa");
 
    }
 

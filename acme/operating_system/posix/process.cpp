@@ -10,7 +10,9 @@
 #include "acme/primitive/string/str.h"
 #include <sys/wait.h>
 #include <unistd.h>
+#if !defined(OPENBSD)
 #include <wordexp.h>
+#endif
 #include <fcntl.h>
 
 
@@ -289,7 +291,7 @@ namespace acme
 critical_section * get_pid_cs()
 {
 
-   critical_section_lock cs(::acme::acme::g_pacme->globals_critical_section());
+   critical_section_lock cs(::platform::get()->globals_critical_section());
 
    if(g_pcsPid2 == nullptr)
    {

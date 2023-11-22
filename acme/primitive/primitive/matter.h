@@ -40,15 +40,15 @@ public:
 
 
 //#if OBJECT_REFERENCE_COUNT_DEBUG
-//   inline matter() : m_pmutex(nullptr), m_pobjrefdbg(nullptr), m_countReference(0), m_uObject(0), acmesystem()(nullptr) { increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_THIS OBJECT_REFERENCE_COUNT_DEBUG_COMMA_NOTE("Initial Reference")); }
-//   inline matter(const eobject& eobject) : m_pmutex(nullptr), m_pobjrefdbg(nullptr), m_countReference(0), m_eobject(eobject), m_uObject(0), acmesystem()(nullptr) { increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_THIS OBJECT_REFERENCE_COUNT_DEBUG_COMMA_NOTE("Initial Reference (2)")); }
-//   inline matter(const matter& matter) : m_pmutex(nullptr), m_pobjrefdbg(nullptr), m_countReference(0), m_eobject(matter.m_eobject), m_uObject(0), acmesystem()(nullptr) { if (matter.m_pmutex) defer_create_synchronization(); increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_THIS OBJECT_REFERENCE_COUNT_DEBUG_COMMA_NOTE("Initial Reference (3)")); }
-//   inline matter(matter&& matter) : m_pmutex(matter.m_pmutex), m_pobjrefdbg(matter.m_pobjrefdbg), m_countReference(matter.m_countReference), m_eobject(matter.m_eobject), m_uObject(0), acmesystem()(nullptr) { matter.m_pmutex = nullptr; matter.m_pobjrefdbg = nullptr; }
+//   inline matter() : m_pmutex(nullptr), m_pobjrefdbg(nullptr), m_countReference(0), m_uObject(0), system()(nullptr) { increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_THIS OBJECT_REFERENCE_COUNT_DEBUG_COMMA_NOTE("Initial Reference")); }
+//   inline matter(const eobject& eobject) : m_pmutex(nullptr), m_pobjrefdbg(nullptr), m_countReference(0), m_eobject(eobject), m_uObject(0), system()(nullptr) { increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_THIS OBJECT_REFERENCE_COUNT_DEBUG_COMMA_NOTE("Initial Reference (2)")); }
+//   inline matter(const matter& matter) : m_pmutex(nullptr), m_pobjrefdbg(nullptr), m_countReference(0), m_eobject(matter.m_eobject), m_uObject(0), system()(nullptr) { if (matter.m_pmutex) defer_create_synchronization(); increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_THIS OBJECT_REFERENCE_COUNT_DEBUG_COMMA_NOTE("Initial Reference (3)")); }
+//   inline matter(matter&& matter) : m_pmutex(matter.m_pmutex), m_pobjrefdbg(matter.m_pobjrefdbg), m_countReference(matter.m_countReference), m_eobject(matter.m_eobject), m_uObject(0), system()(nullptr) { matter.m_pmutex = nullptr; matter.m_pobjrefdbg = nullptr; }
 //#else
-//   inline matter() : m_pmutex(nullptr), m_countReference(1), m_uObject(0), acmesystem()(nullptr) { }
-//   inline matter(const eobject& eobject) : m_pmutex(nullptr), m_countReference(1), m_eobject(eobject), m_uObject(0), acmesystem()(nullptr) { }
-//   inline matter(const matter& matter) : m_pmutex(nullptr), m_countReference(1), m_eobject(matter.m_eobject), m_uObject(0), acmesystem()(nullptr) { if (matter.m_pmutex) defer_create_synchronization(); }
-//   inline matter(matter&& matter) : m_pmutex(matter.m_pmutex), m_countReference(matter.m_countReference), m_eobject(matter.m_eobject), m_uObject(0), acmesystem()(nullptr) { matter.m_pmutex = nullptr; }
+//   inline matter() : m_pmutex(nullptr), m_countReference(1), m_uObject(0), system()(nullptr) { }
+//   inline matter(const eobject& eobject) : m_pmutex(nullptr), m_countReference(1), m_eobject(eobject), m_uObject(0), system()(nullptr) { }
+//   inline matter(const matter& matter) : m_pmutex(nullptr), m_countReference(1), m_eobject(matter.m_eobject), m_uObject(0), system()(nullptr) { if (matter.m_pmutex) defer_create_synchronization(); }
+//   inline matter(matter&& matter) : m_pmutex(matter.m_pmutex), m_countReference(matter.m_countReference), m_eobject(matter.m_eobject), m_uObject(0), system()(nullptr) { matter.m_pmutex = nullptr; }
 //#endif
 
 //#if OBJECT_REFERENCE_COUNT_DEBUG
@@ -120,7 +120,7 @@ public:
 
 
    //::acme::context * get_context() const { return (::acme::context *) m_pcontext; }
-   //::acme::system * acmesystem() const;
+   //::acme::system * system() const;
 
    inline ::acme::application * get_app() { return _get_app(); }
 
@@ -318,15 +318,19 @@ inline void __raw_construct_new(::pointer<TYPE> & ptype)
 
 
 template < typename TYPE >
-inline void __defer_raw_construct_new(::pointer<TYPE> & ptype)
+inline bool __defer_raw_construct_new(::pointer<TYPE> & ptype)
 {
 
-   if(!ptype)
+   if(ptype.is_null())
    {
 
       __raw_construct_new(ptype);
+      
+      return ptype.is_set();
 
    }
+   
+   return false;
 
 }
 

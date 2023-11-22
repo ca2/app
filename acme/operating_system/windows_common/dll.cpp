@@ -217,7 +217,7 @@ int_bool CLASS_DECL_ACME _001DefaultDllMain(hinstance hinstance, ::u32 dwReason,
       if (ptask)
       {
 
-         auto psystem = ::get_task()->acmesystem();
+         auto psystem = ::get_task()->system();
 
          if (psystem)
          {

@@ -14,6 +14,7 @@
 #include "framework.h"
 #include "TextBox.h"
 //#include <regex>
+#include "acme/constant/id.h"
 #include "acme/constant/message.h"
 #include "acme/constant/user_key.h"
 #include "acme/regular_expression/regular_expression.h"
@@ -86,6 +87,9 @@ namespace nanoui
    {
 
       size_i32 size(0, (int)(font_size() * 1.4f));
+
+      pcontext->font_size(font_size());
+      pcontext->font_face("sans");
 
       float uw = 0;
       if (m_iUnitImage > 0) {
@@ -657,6 +661,73 @@ namespace nanoui
    }
 
 
+   void TextBox::edit_select_all()
+   {
+
+      m_iSelectionStart = 0;
+
+      m_iSelectionEnd = (int)m_strValueEdit.length();
+
+   }
+
+
+   void TextBox::edit_cut()
+   {
+
+      copy_selection();
+
+      delete_selection();
+
+   }
+
+
+   void TextBox::edit_copy()
+   {
+
+      copy_selection();
+
+   }
+
+
+   void TextBox::edit_paste()
+   {
+
+      delete_selection();
+
+      paste_from_clipboard();
+
+   }
+
+
+   bool TextBox::on_command(const ::atom& atom)
+   {
+
+      bool bHandled = true;
+
+      switch (atom.as_iptr())
+      {
+      case ::id_edit_select_all:
+         edit_select_all();
+         break;
+      case ::id_edit_cut:
+         edit_cut();
+         break;
+      case ::id_edit_copy:
+         edit_copy();
+         break;
+      case ::id_edit_paste:
+         edit_paste();
+         break;
+      default:
+         bHandled = false;
+         break;
+      }
+
+      return bHandled;
+
+   }
+
+
    bool TextBox::keyboard_event(::user::enum_key ekey, int /* scancode */, int action, const ::user::e_key& ekeyModifiers, const ::string& strText)
    {
 
@@ -669,7 +740,15 @@ namespace nanoui
          if (action == ::e_message_key_down)
          {
 
-            if (ekey == ::user::e_key_left)
+            auto eid = application()->key_command(ekey, session());
+
+            if (eid != id_none)
+            {
+
+               on_command(eid);
+
+            }
+            else if (ekey == ::user::e_key_left)
             {
 
                if (m_iSelectionEnd > 0)
@@ -778,36 +857,6 @@ namespace nanoui
                }
 
             }
-            else if (ekey == ::user::e_key_a && psession->is_key_pressed(::user::e_key_system_command))
-            {
-
-               m_iSelectionStart = 0;
-
-               m_iSelectionEnd = (int)m_strValueEdit.length();
-
-            }
-            else if (ekey == ::user::e_key_x && psession->is_key_pressed(::user::e_key_system_command))
-            {
-
-               copy_selection();
-
-               delete_selection();
-
-            }
-            else if (ekey == ::user::e_key_c && psession->is_key_pressed(::user::e_key_system_command))
-            {
-
-               copy_selection();
-
-            }
-            else if (ekey == ::user::e_key_v && psession->is_key_pressed(::user::e_key_system_command))
-            {
-
-               delete_selection();
-
-               paste_from_clipboard();
-
-            }
 
             m_bValidFormat = (m_strValueEdit == "") || check_format(m_strValueEdit, m_strFormat);
 
@@ -875,7 +924,7 @@ namespace nanoui
          return true;
       try {
 
-         auto pregex = screen()->acmesystem()->create_regular_expression("pcre2", format);
+         auto pregex = screen()->system()->create_regular_expression("pcre2", format);
 
          //::string straResult;
          auto presult = pregex->run(input);

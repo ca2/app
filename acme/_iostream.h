@@ -7,7 +7,7 @@
 // Created by speccylad(twitch)/turd(discord) 2023-10-27 ~09:00 BRT
 
 
-#ifdef __STD_FORMAT__
+//#ifdef __STD_FORMAT__
 
 
 #include <format>

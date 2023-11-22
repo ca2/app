@@ -1,7 +1,7 @@
 //#include "application_common.h"
 //#include "__apps.inl"
 
-
+::i32 application_main();
 
 #include "acme/_operating_system.h"
 #include "acme/platform/system_setup.h"
@@ -22,7 +22,7 @@ DO_FACTORY(REFERENCE_FACTORY)
 #if !defined(CUBE)
 #include "acme/memory/_new.inl"
 #endif
-
+#include "acme/operating_system/acme_initialize.h"
 
 //DECLARE_APPLICATION(APPLICATION);
 
@@ -86,41 +86,50 @@ int main(int argc, char * argv[], char * envp[])
 #endif
 {
 
-   if (::acme::acme::g_pacme->m_pacmeapplication->has_finishing_flag())
-   {
+   ::acme::acme acme;
 
-      return ::acme::acme::g_pacme->m_pacmeapplication->m_iExitCode;
+   //if (::platform::get()->m_pacmeapplication->has_finishing_flag())
+   //{
 
-   }
+   //   return ::acme::acme::g_pacme->m_pacmeapplication->m_iExitCode;
+
+   //}
 
 #if defined(WINDOWS)
-   ::acme::acme::g_pacme->initialize(hinstanceThis, hinstancePrev, pCmdLine, nCmdShow);
+
+   ::acme::initialize(hinstanceThis, hinstancePrev, pCmdLine, nCmdShow);
+
 #else
-   ::acme::acme::g_pacme->initialize(argc, argv, envp);
+
+   ::acme::initialize(argc, argv, envp);
+
 #endif
 
 #if defined(LINUX) || defined(FREEBSD) || defined(RASPBERRYPIOS)
 
-   ::acme::acme::g_pacme->m_psubsystem->set_resource_block(_binary__matter_zip_start, _binary__matter_zip_end);
+   ::platform::get()->set_resource_block(_binary__matter_zip_start, _binary__matter_zip_end);
 
 #elif defined(ANDROID)
 
-   ::acme::acme::g_pacme->m_psubsystem->set_resource_block(p1, p2);
+   ::platform::get()->set_resource_block(p1, p2);
 
 #endif
 
+   auto iExitCode = application_main();
+
+   return iExitCode;
    //::acme::sub_application::g_p->m_pacmeapplicationSub->m_bConsole = true;
 
    ////   application.m_applicationflags.m_bConsole = true;
 ////
 ////
-   ::acme::acme::g_pacme->m_pacmeapplication->implement_application();
+   //::acme::acme::g_pacme->m_pacmeapplication->implement_application();
 
-   return ::acme::acme::g_pacme->m_pacmeapplication->m_iExitCode;
+   //return ::acme::acme::g_pacme->m_pacmeapplication->m_iExitCode;
 
 //   acme::acme acme;
 //
-//   auto psubsystem = __new(subsystem);
+//   auto pplatform = __new(subsystem);
 //
 //   auto pmainhold = __new(main_hold);
 

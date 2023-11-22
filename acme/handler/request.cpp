@@ -5,12 +5,15 @@
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/platform/application.h"
+#include "acme/primitive/data/data.h"
 
 
 request::request()
 {
 
-   m_bMakeVisible = true;
+   //m_bMakeVisible = true;
+   m_egraphicsoutputpurpose = ::graphics::e_output_purpose_screen;
+
    common_construct();
 
 }
@@ -111,6 +114,43 @@ void request::initialize_create(string strAppId, ::payload payloadFile, const ::
 }
 
 
+void request::initialize_create(::data::data * pdata, const ::payload & varOptions, ::user::element * puiParent, e_window_flag ewindowflag, ::atom atom)
+{
+
+   m_ewindowflag = ewindowflag;
+
+   m_atom = atom;
+
+   create_common_construct(varOptions, puiParent);
+
+   //if (strAppId.has_char())
+   //{
+
+   //   m_strAppId = strAppId;
+
+   //}
+
+   //auto estatus = 
+   finish_initialization();
+
+   //if (!estatus)
+   //{
+   //   
+   //   return estatus;
+
+   //}
+
+   //m_payloadFile = payloadFile;
+
+   m_pdata = pdata;
+
+   m_puserelementParent = puiParent;
+
+   ///return estatus;
+
+}
+
+
 request::~request()
 {
 
@@ -127,7 +167,13 @@ void request::create_common_construct(const ::payload & varOptions, ::user::elem
    m_bExperienceMainFrame              = false;
    m_bOuterPopupAlertLike              = false;
    m_bHold                             = true;
-   m_bMakeVisible                      = m_payloadOptions.is_property_true("visible", true);
+
+   if(m_payloadOptions.is_property_true("screen_graphical_output_purpose", true))
+   {
+
+      m_egraphicsoutputpurpose |= ::graphics::e_output_purpose_screen;
+
+   }
 
 }
 

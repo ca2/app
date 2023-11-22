@@ -65,12 +65,20 @@ void nano_window_implementation::nano_window_on_create()
 
    acmenode()->fetch_user_color();
 
-   acmesystem()->add_signal_handler({ e_use, this }, id_operating_system_user_color_change);
+   system()->add_signal_handler({ e_use, this }, id_operating_system_user_color_change);
    
    create_drawing_objects();
 
    on_create();
 
+}
+
+
+void nano_window_implementation::nano_window_on_destroy()
+{
+   
+   system()->erase_signal_handler(this);
+   
 }
 
 
@@ -313,7 +321,7 @@ void nano_window_implementation::handle(::topic * ptopic, ::context * pcontext)
 //
 //   nano_window::display();
 //
-//   message_loop();
+//  aaa_message_loop();
 //
 //   //});
 //
@@ -339,7 +347,7 @@ void nano_window_implementation::do_asynchronously()
          //if (!is_main_thread())
          //{
 
-         //   message_loop();
+         //   aaa_message_loop();
 
          //}
 
@@ -383,7 +391,7 @@ void nano_window_implementation::do_asynchronously()
 //
 //   nano_window::display();
 //
-//   message_loop();
+//   aaa_message_loop();
 //
 //   //});
 //
@@ -413,7 +421,7 @@ void nano_window_implementation::do_asynchronously()
 //
 //         nano_window::display();
 //
-//         message_loop();
+//         aaa_message_loop();
 //
 //      });
 //

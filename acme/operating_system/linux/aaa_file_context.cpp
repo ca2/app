@@ -99,7 +99,7 @@ namespace linux
 
       ::file::path pathNetworkPayload;
 
-      pathNetworkPayload =          auto psystem = acmesystem();
+      pathNetworkPayload =          auto psystem = system();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 

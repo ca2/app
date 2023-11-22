@@ -102,9 +102,7 @@ namespace core
       if (ftpFileStatus.m_timeModification > 0)
       {
 
-         auto psystem = acmesystem();
-
-         auto pdatetime = psystem->datetime();
+         auto pdatetime = datetime();
 
          ftpFileStatus.m_strModificationTime = pdatetime->international().get_date_time(ftpFileStatus.m_timeModification);
 

@@ -50,7 +50,7 @@
 //
 //      }
 //
-//      psystem->__refer(psystem->acmeapplication(), pappStartup);
+//      psystem->__refer(psystem->application(), pappStartup);
 //
 //      psystem->m_bConsole = false;
 //
@@ -58,7 +58,7 @@
 //
 //      psystem->m_bConsole = true;
 //
-//      acmesystem() = psystem;
+//      system() = psystem;
 //
 //   }
 //
@@ -76,7 +76,7 @@
 //
 //      common_construct();
 //
-//      acmesystem()->system_construct(argc, argv, envp);
+//      system()->system_construct(argc, argv, envp);
 //
 //      init();
 //
@@ -88,7 +88,7 @@
 //
 //      common_construct();
 //
-//      acmesystem()->system_construct(argc, argv, envp);
+//      system()->system_construct(argc, argv, envp);
 //
 //      init();
 //
@@ -98,13 +98,13 @@
 //   void init()
 //   {
 //
-//      m_estatus = (void) acmesystem()->inline_init();
+//      m_estatus = (void) system()->inline_init();
 //
-//      auto papp = acmesystem()->m_papexsystem->acmeapplication();
+//      auto papp = system()->m_papexsystem->application();
 //
-//      __refer(acmesystem()->m_papexsystem->acmeapplication(), acmesystem()->m_papexsystem->acmeapplication().get());
+//      __refer(system()->m_papexsystem->application(), system()->m_papexsystem->application().get());
 //
-//      __unbind(acmesystem()->m_papexsystem, acmeapplication() OBJECT_REFERENCE_COUNT_DEBUG_COMMA_P_NOTE(acmesystem(), ""));
+//      __unbind(system()->m_papexsystem, application() OBJECT_REFERENCE_COUNT_DEBUG_COMMA_P_NOTE(system(), ""));
 //
 //   }
 //
@@ -112,9 +112,9 @@
 //   int result()
 //   {
 //
-//      auto estatus = acmesystem()->inline_term();
+//      auto estatus = system()->inline_term();
 //
-//      ::acme::del(acmesystem());
+//      ::acme::del(system());
 //
 //      return estatus;
 //
@@ -124,7 +124,7 @@
 //   ~console()
 //   {
 //
-//      if (acmesystem())
+//      if (system())
 //      {
 //
 //         result();

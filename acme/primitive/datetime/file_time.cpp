@@ -267,7 +267,7 @@ CLASS_DECL_ACME bool file_modified_timeout(const ::file::path & path, int iSecon
 //
 //      file_time file_time;
 //
-//      auto pnode = acmesystem()->node();
+//      auto pnode = system()->node();
 //
 //      pnode->get_system_time_as_file_time(&file_time.m_filetime);
 //

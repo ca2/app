@@ -150,7 +150,7 @@ namespace integration
       // introjection/compiler
       //str.find_replace("%VS_VARS%", m_strContext);
       //str.find_replace("%VS_VARS_PLAT2%", m_strPlat2);
-      //str.find_replace("%PROJECT_DIR%", m_pathProjectDir);
+      //str.find_replace("%PROJECT_DIR%", m_pathProjectFolder);
       //str.find_replace("%PLATFORM%",m_strPlatform);
       //str.find_replace("%STAGEPLATFORM%",m_strStagePlatform);
 
@@ -161,7 +161,7 @@ namespace integration
       // programming/compiler
 //      str.find_replace("%VS_VARS%", m_strContext);
 //      str.find_replace("%VS_VARS_PLAT2%", m_strPlat2);
-//      str.find_replace("%PROJECT_DIR%", m_pathProjectDir);
+//      str.find_replace("%PROJECT_DIR%", m_pathProjectFolder);
 //      str.find_replace("%SDK1%", m_strSdk1);
 
 
@@ -173,7 +173,7 @@ namespace integration
 //      //      str.find_replace("%LIBPLATFORM%", m_strLibPlatform);
 //      str.find_replace("%SDK1%",m_strSdk1);
 
-      str.find_replace("%PROJECT_DIR%", m_pathProjectDir);
+      str.find_replace("%PROJECT_DIR%", m_pathProjectFolder);
 
       str.find_replace("%PLATFORM%", m_strPlatform);
 
@@ -187,7 +187,7 @@ namespace integration
 
 //      str.find_replace("%VS_VARS%",m_strContext);
 //      str.find_replace("%VS_VARS_PLAT2%",m_strPlat2);
-//      str.find_replace("%PROJECT_DIR%", m_pathProjectDir);
+//      str.find_replace("%PROJECT_DIR%", m_pathProjectFolder);
 //      str.find_replace("%PLATFORM%",m_strPlatform);
 //      str.find_replace("%STAGEPLATFORM%",m_strStagePlatform);
 //      //      str.find_replace("%LIBPLATFORM%", m_strLibPlatform);
@@ -225,7 +225,7 @@ namespace integration
 //      str.find_replace("%LIBPLATFORM%",m_strLibPlatform);
 //      str.find_replace("%SDK1%",m_strSdk1);
 
-      str.find_replace("%PROJECT_DIR%", m_pathProjectDir);
+      str.find_replace("%PROJECT_DIR%", m_pathProjectFolder);
 
       str.find_replace("%PLATFORM%", m_strPlatform);
 
@@ -270,7 +270,7 @@ namespace integration
 
       path = this->prepare_path(m_pathFolder / m_pathBase / m_pathPlatformConfiguration / "source");
 
-      if (acmeapplication()->payload("no-source-clean").is_true())
+      if (application()->payload("no-source-clean").is_true())
       {
 
          if (acmedirectory()->is(path))
@@ -304,7 +304,7 @@ namespace integration
 
       }
 
-      if(!acmeapplication()->payload("no-prefix-clean").is_true())
+      if(!application()->payload("no-prefix-clean").is_true())
       {
 
          string strPath;
@@ -340,7 +340,7 @@ namespace integration
 
             property_set set;
 
-            acmesystem()->url()->defer_raw_http(set);
+            system()->url()->defer_raw_http(set);
 
             set["disable_common_name_cert_check"] = true;
 
@@ -362,7 +362,7 @@ namespace integration
 
             information() << "Uncompressing...";
 
-            acmesystem()->uncompress(pmemoryFileTar, pmemoryFileTarGz, "zlib");
+            system()->uncompress(pmemoryFileTar, pmemoryFileTarGz, "zlib");
 
             pmemoryFileTar->seek_to_begin();
 

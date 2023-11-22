@@ -6,14 +6,17 @@
 
 
 class main_hold_base;
-namespace apex{
-class menu;
-} // namespace apex
+//namespace apex{
+//class menu;
+//} // namespace apex
+class application_menu;
 
+namespace acme { class acme;  }
 
 #include "application_base.h"
 #include "application_exit.h"
 #include "application_flags.h"
+#include "application_menu_callback.h"
 #include "context.h"
 #include "acme/primitive/text/text.h"
 
@@ -23,26 +26,28 @@ namespace acme
 
 
    class CLASS_DECL_ACME application :
-      virtual public application_base,
+//      virtual public application_base,
       virtual public APPLICATION_FLAGS,
       virtual public ::acme::context,
-      virtual public ::application_exit
+      virtual public ::application_exit,
+      virtual public ::application_menu_callback
    {
    public:
 
 
-      ::apex::application* m_papexapplication;
-      ::aqua::application* m_paquaapplication;
-      ::aura::application* m_pauraapplication;
-      ::axis::application* m_paxisapplication;
-      ::base::application* m_pbaseapplication;
-      ::bred::application* m_pbredapplication;
-      ::core::application* m_pcoreapplication;
+      mutable ::apex::application* m_papexapplication;
+      mutable ::aqua::application* m_paquaapplication;
+      mutable ::aura::application* m_pauraapplication;
+      mutable ::axis::application* m_paxisapplication;
+      mutable ::base::application* m_pbaseapplication;
+      mutable ::bred::application* m_pbredapplication;
+      mutable ::core::application* m_pcoreapplication;
+
+      //mutable ::platform::platform *               m_pplatform;
 
       //::APPLICATION_FLAGS                      m_applicationflags;
-      ::pointer<main_hold_base>                      m_pmainholdbase;
+      ::pointer<main_hold_base>                    m_pmainholdbase;
       // FROM ::main (Now main2)
-      string                                          m_strCommandLine;
 
 
       bool                                            m_bModulePath = false;
@@ -61,7 +66,7 @@ namespace acme
 
       // END FROM ::main (Now main2 : merge)
 
-
+      //::pointer < ::platform::platform >              m_pplatform;
       string                                          m_strAppId;
       string                                          m_strAppName;
       string                                          m_strRoot;
@@ -89,6 +94,15 @@ namespace acme
       virtual ::string release_time();
 
 
+      virtual void initialize_application();
+
+
+      virtual bool is_console() const;
+
+
+      virtual ::i32 application_main();
+
+
       void initialize(::particle * pparticle) override;
 
       
@@ -96,13 +110,13 @@ namespace acme
       
       //virtual void on_initialize_application();
       
-      virtual ::apex::menu * main_menu();
+      virtual class ::application_menu * application_menu();
 
-      using ::acme::context::factory;
+//      using ::acme::context::factory;
 
-      virtual ::factory::factory_pointer& factory() override;
+//      virtual ::factory::factory_pointer& factory() const override;
 
-      virtual void implement_application();
+      //virtual void implement_application();
 
       virtual void initialize_application_flags();
 
@@ -145,6 +159,7 @@ namespace acme
 
       virtual int main_loop();
 
+      virtual ::enum_id key_command(::user::enum_key ekey, ::user::key_state * pkeystate);
       
       virtual void on_before_launching();
       virtual void os_native_bergedge_start();
@@ -218,6 +233,8 @@ namespace acme
 
       virtual void show_about_box();
 
+      bool on_application_menu_action(const ::atom & atom) override;
+      
 
    };
 

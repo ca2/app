@@ -97,12 +97,16 @@ CLASS_DECL_ACME void task_set_name(htask_t htask, const char * pszName)
 
 #endif
 
-   if (!bOk1)
+#ifdef _DEBUG
+
+   if (!bOk1 && ::is_debugger_attached())
    {
 
       throw ::exception(error_failed);
 
    }
+
+#endif
 
 }
 

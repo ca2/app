@@ -154,7 +154,7 @@
 //
 //   bool bOk = false;
 //
-//            auto psystem = acmesystem();
+//            auto psystem = system();
 //
 //         auto pacmedirectory = psystem->m_pacmedirectory;
 //
@@ -1231,4 +1231,12 @@ void std_out_buffer::write(const void * pdata, memsize nCount)
 
 //#endif
 
+}
+
+
+::file::path home_folder_path()
+{
+   
+   return getenv("HOME");
+   
 }

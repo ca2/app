@@ -70,7 +70,7 @@ namespace http
 
       set["app"] = get_app();
 
-      auto psystem = acmesystem();
+      auto psystem = system();
 
       auto purl = psystem->url();
 
@@ -249,7 +249,7 @@ namespace http
 
       }
 
-      auto psystem = acmesystem();
+      auto psystem = system();
 
       auto purl = psystem->url();
 
@@ -791,7 +791,7 @@ namespace http
 
       string strHost;
 
-      auto psystem = acmesystem();
+      auto psystem = system();
 
       auto purl = psystem->url();
 
@@ -1146,7 +1146,7 @@ namespace http
       // Format of script name example "context://server.com/the rain.mp3" => "context://server.com/the%20rain.mp3"
       {
 
-         auto psystem = acmesystem();
+         auto psystem = system();
 
          auto purl = psystem->url();
 
@@ -1162,7 +1162,7 @@ namespace http
 
       property_set setQuery;
 
-      auto psystem = acmesystem();
+      auto psystem = system();
 
       auto purl = psystem->url();
 
@@ -1283,7 +1283,7 @@ namespace http
 //
 //      }
 //
-//      auto psystem = acmesystem();
+//      auto psystem = system();
 //
 //      auto purl = psystem->url();
 //
@@ -1773,7 +1773,7 @@ namespace http
 
       //KEEP(ptask->payload("work_url"), scopedstrUrl);
 
-      auto psystem = acmesystem()->m_papexsystem;
+      auto psystem = system()->m_papexsystem;
 
       if (!psystem->networking())
       {
@@ -1895,7 +1895,7 @@ namespace http
 
 //      bool bSessionAccount = !set.is_true("raw_http") && ::is_set(get_session()) && ::is_set(psession->account());
 
-      bool bSessionAccount = !set.is_true("raw_http") && ::is_set(acmesession()) ;
+      bool bSessionAccount = !set.is_true("raw_http") && ::is_set(session()) ;
 
 //      single_lock slFontopus(bSessionAccount ? psession->account()->mutex() : nullptr);
 
@@ -2669,7 +2669,7 @@ namespace http
 
       ::url_domain domain;
 
-      auto psystem = acmesystem();
+      auto psystem = system();
 
       auto purl = psystem->url();
 
@@ -2682,9 +2682,9 @@ namespace http
 
          property_set& set = pmessage->get_property_set();
 
-         single_lock synchronouslock(acmesystem()->m_pmutexHttpDownload, true);
+         single_lock synchronouslock(system()->m_pmutexHttpDownload, true);
 
-         if (!(acmesystem()->m_straHttpDownloading.contains(strUrl)) && !exists(pmessageMessage->m_strUrl, set))
+         if (!(system()->m_straHttpDownloading.contains(strUrl)) && !exists(pmessageMessage->m_strUrl, set))
          {
 
             synchronouslock.unlock();
@@ -2839,14 +2839,14 @@ namespace http
    ::file::enum_type context::get_type(const ::scoped_string & scopedstrUrl, ::property_set & set)
    {
 
-      single_lock synchronouslock(acmesystem()->m_pmutexHttpDownload, true);
+      single_lock synchronouslock(system()->m_pmutexHttpDownload, true);
 
       i32 iStatusCode = 0;
 
       try
       {
 
-         while (acmesystem()->m_straHttpExists.contains(scopedstrUrl))
+         while (system()->m_straHttpExists.contains(scopedstrUrl))
          {
 
             synchronouslock.unlock();
@@ -2857,7 +2857,7 @@ namespace http
 
          }
 
-         acmesystem()->m_straHttpExists.add(scopedstrUrl);
+         system()->m_straHttpExists.add(scopedstrUrl);
 
          synchronouslock.unlock();
 
@@ -2867,7 +2867,7 @@ namespace http
 
          ::url_domain domain;
 
-         auto psystem = acmesystem();
+         auto psystem = system();
 
          auto purl = psystem->url();
 
@@ -2887,7 +2887,7 @@ namespace http
 
             synchronouslock.lock();
 
-            acmesystem()->m_straHttpExists.erase(scopedstrUrl);
+            system()->m_straHttpExists.erase(scopedstrUrl);
 
             return ::file::e_type_doesnt_exist;
 
@@ -2903,7 +2903,7 @@ namespace http
 
       }
 
-      acmesystem()->m_straHttpExists.erase(scopedstrUrl);
+      system()->m_straHttpExists.erase(scopedstrUrl);
 
       bool bExists = iStatusCode == 200;
 
@@ -2921,7 +2921,7 @@ namespace http
 
       ::url_domain domain;
 
-      auto psystem = acmesystem();
+      auto psystem = system();
 
       auto purl = psystem->url();
 

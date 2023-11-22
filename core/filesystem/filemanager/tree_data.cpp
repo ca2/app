@@ -3,13 +3,15 @@
 #include "document.h"
 #include "data.h"
 #include "context_menu.h"
-#include "acme/platform/application.h"
+#include "acme/constant/id.h"
 #include "acme/constant/message.h"
+#include "acme/platform/application.h"
 #include "acme/platform/session.h"
 #include "acme/platform/system.h"
 #include "acme/platform/timer.h"
 #include "acme/filesystem/filesystem/dir_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
+#include "apex/filesystem/fs/set.h"
 #include "apex/platform/context.h"
 #include "aura/graphics/image/list.h"
 #include "aura/user/user/shell.h"
@@ -39,9 +41,9 @@ namespace filemanager
    ::core::application* tree_data::get_app()
    {
 
-      auto pacmeapplication = acmeapplication();
+      auto papplication = application();
 
-      return ::is_set(pacmeapplication) ? pacmeapplication->m_pcoreapplication : nullptr;
+      return ::is_set(papplication) ? papplication->m_pcoreapplication : nullptr;
 
    }
 
@@ -49,7 +51,7 @@ namespace filemanager
    ::core::session* tree_data::get_session()
    {
 
-      auto pacmesession = acmesession();
+      auto pacmesession = session();
 
       return pacmesession ? pacmesession->m_pcoresession : nullptr;
 
@@ -59,7 +61,7 @@ namespace filemanager
    ::core::system* tree_data::get_system()
    {
 
-      auto pacmesystem = acmesystem();
+      auto pacmesystem = system();
 
       return ::is_set(pacmesystem) ? pacmesystem->m_pcoresystem : nullptr;
 
@@ -174,6 +176,8 @@ namespace filemanager
 
       }
 
+      auto pitemParent = find_item_by_user_path(pathUser);
+
       ::file::listing listing;
 
       ::file::listing listingFinal;
@@ -194,6 +198,12 @@ namespace filemanager
          path.m_iDir = 1;
 
       }
+      else if (pathUser.is_empty())
+      {
+
+         filemanager_data()->fs_data()->root_ones(listing);
+
+      }
       else
       {
 
@@ -205,15 +215,44 @@ namespace filemanager
 
       }
 
-      for (auto & item : listing)
+      for (::index i = 0; i < listing.size(); i++)
       {
+
+         ::string strTitle;
+         
+         if (i < listing.m_straTitle.size())
+         {
+
+            strTitle = listing.m_straTitle[i];
+
+         }
+
+         auto & item = listing[i];
 
          ::file::path pathFinal = pcontext->m_papexcontext->defer_process_path(item);
 
-         if(pathFinal.m_iDir >= 0)
+         if(pathFinal.m_iDir > 0)
          {
 
-            listingFinal.defer_add(pathFinal);
+            auto pathUser = pitemParent->m_pdataitem.cast <::file::item>()->user_path() /
+               item.name();
+            //listingFinal.defer_add(pathFinal);
+
+            if (strTitle.is_empty())
+            {
+
+               strTitle = pathUser.name();
+
+               if (strTitle.is_empty())
+               {
+
+                  strTitle = pathUser;
+
+               }
+
+            }
+
+            add_path(pathUser, strTitle);
 
          }
 
@@ -257,294 +296,445 @@ namespace filemanager
 
    void tree_data::browse_sync(const ::action_context & context)
    {
+      
+      // add root items
 
-      auto pparticleSynchronization = m_usertreea.has_elements() ? m_usertreea[0]->synchronization() : nullptr;
-
-      synchronous_lock synchronouslock(pparticleSynchronization);
-
-      auto pcontext = get_context();
-
-      auto pointOffset = get_context_offset();
-
-      ::file::path pathUser = filemanager_path();
-
-      // Add parent path ascendant tree_data items
       {
 
-         ::file::path path = filemanager_path();
+         ::file::listing & listing = filemanager_data()->m_listingRoot2;
 
-         ::pointer<::userfs::item>pitemChild;
-
-         if (dir()->is(pathUser))
+         for (::index i = 0; i < listing.size(); i++)
          {
 
-            ::data::tree_item * ptreeitemParent = get_base_item();
+            ::string strTitle = listing.m_straTitle[i];
 
-            ::file::path_array patha;
+            auto & item = listing[i];
 
-            ascendants_path(pathUser, patha);
-
-            for (auto & pathAscendant : patha)
+            if (strTitle.is_empty())
             {
 
-               ::pointer<::data::tree_item>ptreeitemChild = find_item_by_user_path(pathAscendant);
+               strTitle = item.name();
 
-               string strName;
-
-               strName = pcontext->m_papexcontext->defer_get_file_title(pathAscendant);
-
-               if (pathAscendant.has_char() && strName.has_char())
+               if (strTitle.is_empty())
                {
 
-                  if (ptreeitemChild == nullptr)
-                  {
-
-                     pitemChild = __new(::userfs::item(this));
-
-                     pitemChild->set_user_path(pathAscendant);
-
-                     pitemChild->set_final_path(pcontext->m_papexcontext->defer_process_path(pathAscendant));
-
-                     pitemChild->m_strName = strName;
-
-                     pitemChild->m_flags.add(::file::e_flag_folder);
-
-                     ptreeitemChild = insert_item(pitemChild, ::data::e_relative_last_child, ptreeitemParent);
-
-                     if (pitemChild->m_flags.has(::file::e_flag_has_subfolder))
-                     {
-
-                        ptreeitemChild->m_dwState |= ::data::e_tree_item_state_expandable;
-
-                     }
-
-                  }
-                  else
-                  {
-
-                     ptreeitemChild->set_parent(ptreeitemParent);
-
-                  }
-
-               }
-
-               ptreeitemParent = ptreeitemChild;
-
-            }
-
-         }
-
-      }
-
-      // Add child folder-like tree_data items
-      {
-
-         ::file::path path = filemanager_path();
-
-         //::data::tree_item * ptreeitemChild;
-
-         ::data::tree_item * ptreeitemParent = find_item_by_user_path(pathUser);
-
-         if (ptreeitemParent == nullptr)
-         {
-
-            ptreeitemParent = get_base_item();
-
-         }
-
-         ::file::listing & listingUser = m_puserfsdocument->m_listingFolderUser2;
-
-         ::file::listing & listingFinal = m_puserfsdocument->m_listingFolderFinal2;
-
-         pointer_array < ::data::tree_item > childrenNew;
-
-         auto cListingUser = listingUser.get_count();
-
-         for(index i = 0; i < cListingUser; i++)
-         {
-
-            ::file::path pathUser = listingUser[i];
-
-            ::pointer<::data::tree_item>ptreeitemChild = find_item_by_user_path(pathUser);
-
-            if (ptreeitemChild.is_null())
-            {
-
-               ptreeitemChild = __new(::data::tree_item);
-
-               ptreeitemChild->m_ptree = this;
-
-               ptreeitemChild->m_pparent = ptreeitemParent;
-
-            }
-            else
-            {
-
-               ptreeitemChild->set_parent(ptreeitemParent);
-
-            }
-
-            ::file::path pathFinal = listingFinal[i];
-
-            string strName;
-
-            strName = pcontext->m_papexcontext->defer_get_file_title(pathUser);
-
-            auto pitemChild = ptreeitemChild->m_pdataitem.cast < ::userfs::item >();
-
-            if (!pitemChild)
-            {
-
-               pitemChild = __new(::userfs::item(this));
-
-               ptreeitemChild->m_pdataitem = pitemChild;
-
-            }
-
-            pitemChild->set_user_path(pathUser);
-
-            pitemChild->set_final_path(pcontext->m_papexcontext->defer_process_path(pathFinal));
-
-            pitemChild->m_strName = strName;
-
-            pitemChild->m_flags.add(::file::e_flag_folder);
-
-            if (pitemChild->m_flags.has(::file::e_flag_has_subfolder))
-            {
-
-               ptreeitemChild->m_dwState |= ::data::e_tree_item_state_expandable;
-
-            }
-
-            childrenNew.add_unique(ptreeitemChild);
-
-         }
-
-         if (childrenNew.get_count() <= 80)
-         {
-
-            list_set_children(ptreeitemParent, childrenNew);
-
-         }
-
-      }
-
-
-      {
-
-         if (!context.is_user_source())
-         {
-
-            //knowledge("", context, true);
-
-            if (pathUser.has_char())
-            {
-
-               ::file::path_array filepatha;
-
-               ascendants_path(pathUser, filepatha);
-
-               for (index i = 0; i < filepatha.get_size(); i++)
-               {
-
-                  ::file::path pathUser = filepatha[i];
-
-                  knowledge(pathUser, context, true);
+                  strTitle = item;
 
                }
 
             }
 
-         }
-
-         if (filemanager_data() != nullptr && filemanager_data()->m_ptreeFileTreeMerge != nullptr
-               && !(dynamic_cast <::user::tree_data *> (filemanager_data()->m_ptreeFileTreeMerge))->m_ptree->contains(this))
-         {
-
-            filemanager_data()->m_ptreeFileTreeMerge->m_ptreedata->insert_item(this, ::data::e_relative_first_child);
+            add_path(item, strTitle);
 
          }
 
       }
+
+      // add folder ascendants
 
       {
 
-         string_array straChildItem;
+         ::file::path_array patha;
 
-         string str;
+         ascendants_path(filemanager_item()->user_path(), patha);
 
-         //::file::listing & listingUser = ::userfs::tree_data::get_document()->m_listingFolderUser2;
-
-         //::file::listing & listingFinal = ::userfs::tree_data::get_document()->m_listingFolderFinal2;
-
-         if (!context.is(::e_source_system))
+         for (auto & path : patha)
          {
 
-            //filemanager_tree_insert(filepath, listingUser, listingFinal, context, true);
-
-            _017EnsureVisible(pathUser, context);
-
-            ::pointer<::data::tree_item>ptreeitem = find_item_by_user_path(pathUser);
-
-            _001SelectItem(ptreeitem);
-
-            auto iMaxLevel = ptreeitem ? ptreeitem->m_iLevel + 2 : -1;
-
-            // erase level 3 with that aren't expanded.
-
-            while (ptreeitem)
-            {
-
-               ::pointer<::data::tree_item>ptreeitemNext = ptreeitem->get_child_next_or_parent();
-
-               if (ptreeitem->m_iLevel >= iMaxLevel && !ptreeitem->is_expanded())
-               {
-
-                  list_erase_all(ptreeitem);
-
-                  if(::is_set(ptreeitem->m_pparent))
-                  {
-
-                     list_erase(ptreeitem->m_pparent, ptreeitem);
-
-                  }
-
-               }
-
-               ptreeitem = ptreeitemNext;
-
-            }
-
-            _001OnTreeDataChange();
+            add_path(path, "");
 
          }
 
-         arrange(::fs::arrange_by_name);
+      }
 
-         //if (m_usertreea.has_elements())
-         //{
 
-         //   _polishing_start(m_usertreea[0]);
+      // add sibling folders
 
-         //}
+      {
+
+         ::file::listing & listingUser = filemanager_data()->m_listingFolderUser2;
+
+         for (auto & path : listingUser)
+         {
+
+            add_path(path, "");
+
+         }
 
       }
 
-      //queue_graphics_call([this, pointOffset](::draw2d::graphics_pointer & pgraphics)
-        // {
 
-//            set_context_offset(pgraphics, pointOffset.x(), pointOffset.y());
+      //auto pparticleSynchronization = m_usertreea.has_elements() ? m_usertreea[0]->synchronization() : nullptr;
 
-         //});
+      //synchronous_lock synchronouslock(pparticleSynchronization);
 
-      set_context_offset(pointOffset);
+      //auto pcontext = get_context();
+
+      //auto pointOffset = get_context_offset();
+
+      //::file::path pathUser = filemanager_path();
+
+      //// Add parent path ascendant tree_data items
+      //{
+
+      //   ::file::path path = filemanager_path();
+
+      //   ::pointer<::userfs::item>pitemChild;
+
+      //   if (dir()->is(pathUser))
+      //   {
+
+      //      ::data::tree_item * ptreeitemParent = get_base_item();
+
+      //      ::file::path_array patha;
+
+      //      ascendants_path(pathUser, patha);
+
+      //      for (auto & pathAscendant : patha)
+      //      {
+
+      //         ::pointer<::data::tree_item>ptreeitemChild = find_item_by_user_path(pathAscendant);
+
+      //         string strName;
+
+      //         strName = pcontext->m_papexcontext->defer_get_file_title(pathAscendant);
+
+      //         if (pathAscendant.has_char() && strName.has_char())
+      //         {
+
+      //            if (ptreeitemChild == nullptr)
+      //            {
+
+      //               pitemChild = __new(::userfs::item(this));
+
+      //               pitemChild->set_user_path(pathAscendant);
+
+      //               pitemChild->set_final_path(pcontext->m_papexcontext->defer_process_path(pathAscendant));
+
+      //               pitemChild->m_strName = strName;
+
+      //               pitemChild->m_flags.add(::file::e_flag_folder);
+
+      //               ptreeitemChild = insert_item(pitemChild, ::data::e_relative_last_child, ptreeitemParent);
+
+      //               if (pitemChild->m_flags.has(::file::e_flag_has_subfolder))
+      //               {
+
+      //                  ptreeitemChild->m_dwState |= ::data::e_tree_item_state_expandable;
+
+      //               }
+
+      //            }
+      //            else
+      //            {
+
+      //               ptreeitemChild->set_parent(ptreeitemParent);
+
+      //            }
+
+      //         }
+
+      //         ptreeitemParent = ptreeitemChild;
+
+      //      }
+
+      //   }
+
+      //}
+
+      //// Add child folder-like tree_data items
+      //{
+
+      //   ::file::path path = filemanager_path();
+
+      //   //::data::tree_item * ptreeitemChild;
+
+      //   ::data::tree_item * ptreeitemParent = find_item_by_user_path(pathUser);
+
+      //   if (ptreeitemParent == nullptr)
+      //   {
+
+      //      ptreeitemParent = get_base_item();
+
+      //   }
+
+      //   ::file::listing & listingUser = filemanager_data()->m_listingFolderUser2;
+
+      //   ::file::listing & listingFinal = filemanager_data()->m_listingFolderFinal2;
+
+      //   pointer_array < ::data::tree_item > childrenNew;
+
+      //   auto cListingUser = listingUser.get_count();
+
+      //   for(index i = 0; i < cListingUser; i++)
+      //   {
+
+      //      ::file::path pathUser = listingUser[i];
+
+      //      ::pointer<::data::tree_item>ptreeitemChild = find_item_by_user_path(pathUser);
+
+      //      if (ptreeitemChild.is_null())
+      //      {
+
+      //         ptreeitemChild = __new(::data::tree_item);
+
+      //         ptreeitemChild->m_ptree = this;
+
+      //         ptreeitemChild->m_pparent = ptreeitemParent;
+
+      //      }
+      //      else
+      //      {
+
+      //         ptreeitemChild->set_parent(ptreeitemParent);
+
+      //      }
+
+      //      ::file::path pathFinal = listingFinal[i];
+
+      //      string strName;
+
+      //      strName = pcontext->m_papexcontext->defer_get_file_title(pathUser);
+
+      //      auto pitemChild = ptreeitemChild->m_pdataitem.cast < ::userfs::item >();
+
+      //      if (!pitemChild)
+      //      {
+
+      //         pitemChild = __new(::userfs::item(this));
+
+      //         ptreeitemChild->m_pdataitem = pitemChild;
+
+      //      }
+
+      //      pitemChild->set_user_path(pathUser);
+
+      //      pitemChild->set_final_path(pcontext->m_papexcontext->defer_process_path(pathFinal));
+
+      //      pitemChild->m_strName = strName;
+
+      //      pitemChild->m_flags.add(::file::e_flag_folder);
+
+      //      if (pitemChild->m_flags.has(::file::e_flag_has_subfolder))
+      //      {
+
+      //         ptreeitemChild->m_dwState |= ::data::e_tree_item_state_expandable;
+
+      //      }
+
+      //      childrenNew.add_unique(ptreeitemChild);
+
+      //   }
+
+      //   if (childrenNew.get_count() <= 80)
+      //   {
+
+      //      list_set_children(ptreeitemParent, childrenNew);
+
+      //   }
+
+      //}
+
+
+      //// Add root immediate children folder-like tree_data items
+      //{
+
+      //   // ::file::path path = filemanager_path();
+
+      //   //::data::tree_item * ptreeitemChild;
+
+      //   auto ptreeitemParent = get_base_item();
+
+      //  pointer_array < ::data::tree_item > childrenNew;
+
+      //   auto cListingUser = listingUser.get_count();
+
+      //   for (index i = 0; i < cListingUser; i++)
+      //   {
+
+      //      ::file::path pathUser = listingUser[i];
+
+      //      ::pointer<::data::tree_item>ptreeitemChild = find_item_by_user_path(pathUser);
+
+      //      if (ptreeitemChild.is_null())
+      //      {
+
+      //         ptreeitemChild = __new(::data::tree_item);
+
+      //         ptreeitemChild->m_ptree = this;
+
+      //         ptreeitemChild->m_pparent = ptreeitemParent;
+
+      //      }
+      //      else
+      //      {
+
+      //         ptreeitemChild->set_parent(ptreeitemParent);
+
+      //      }
+
+      //      string strName;
+
+      //      strName = pcontext->m_papexcontext->defer_get_file_title(pathUser);
+
+      //      auto pitemChild = ptreeitemChild->m_pdataitem.cast < ::userfs::item >();
+
+      //      if (!pitemChild)
+      //      {
+
+      //         pitemChild = __new(::userfs::item(this));
+
+      //         ptreeitemChild->m_pdataitem = pitemChild;
+
+      //      }
+
+      //      pitemChild->set_user_path(pathUser);
+
+      //      //pitemChild->set_final_path(pcontext->m_papexcontext->defer_process_path(pathFinal));
+
+      //      pitemChild->m_strName = strName;
+
+      //      pitemChild->m_flags.add(::file::e_flag_folder);
+
+      //      if (pitemChild->m_flags.has(::file::e_flag_has_subfolder))
+      //      {
+
+      //         ptreeitemChild->m_dwState |= ::data::e_tree_item_state_expandable;
+
+      //      }
+
+      //      childrenNew.add_unique(ptreeitemChild);
+
+      //   }
+
+      //   if (childrenNew.get_count() <= 80)
+      //   {
+
+      //      list_set_children(ptreeitemParent, childrenNew);
+
+      //   }
+
+      //}
+
+//      {
+//
+//         if (!context.is_user_source())
+//         {
+//
+//            //knowledge("", context, true);
+//
+//            if (pathUser.has_char())
+//            {
+//
+//               ::file::path_array filepatha;
+//
+//               ascendants_path(pathUser, filepatha);
+//
+//               for (index i = 0; i < filepatha.get_size(); i++)
+//               {
+//
+//                  ::file::path pathUser = filepatha[i];
+//
+//                  knowledge(pathUser, context, true);
+//
+//               }
+//
+//            }
+//
+//         }
+//
+//         //if (get_document() != nullptr && get_document()->m_ptreeFileTreeMerge != nullptr
+//         //      && !(dynamic_cast <::user::tree_data *> (get_document()->m_ptreeFileTreeMerge))->m_ptree->contains(this))
+//         //{
+//
+//         //   get_document()->m_ptreeFileTreeMerge->m_ptreedata->insert_item(this, ::data::e_relative_first_child);
+//
+//         //}
+//
+//      }
+//
+//      {
+//
+//         string_array straChildItem;
+//
+//         string str;
+//
+//         //::file::listing & listingUser = ::userfs::tree_data::filemanager_data()->m_listingFolderUser2;
+//
+//         //::file::listing & listingFinal = ::userfs::tree_data::filemanager_data()->m_listingFolderFinal2;
+//
+//         if (!context.is(::e_source_system))
+//         {
+//
+//            //filemanager_tree_insert(filepath, listingUser, listingFinal, context, true);
+//
+//            _017EnsureVisible(pathUser, context);
+//
+//            ::pointer<::data::tree_item>ptreeitem = find_item_by_user_path(pathUser);
+//
+//            _001SelectItem(ptreeitem);
+//
+//            auto iMaxLevel = ptreeitem ? ptreeitem->m_iLevel + 2 : -1;
+//
+//            // erase level 3 with that aren't expanded.
+//
+//            while (ptreeitem)
+//            {
+//
+//               ::pointer<::data::tree_item>ptreeitemNext = ptreeitem->get_child_next_or_parent();
+//
+//               if (ptreeitem->m_iLevel >= iMaxLevel && !ptreeitem->is_expanded())
+//               {
+//
+//                  list_erase_all(ptreeitem);
+//
+//                  if(::is_set(ptreeitem->m_pparent))
+//                  {
+//
+//                     list_erase(ptreeitem->m_pparent, ptreeitem);
+//
+//                  }
+//
+//               }
+//
+//               ptreeitem = ptreeitemNext;
+//
+//            }
+//
+//            _001OnTreeDataChange();
+//
+//         }
+//
+//         arrange(::fs::arrange_by_name);
+//
+//         //if (m_usertreea.has_elements())
+//         //{
+//
+//         //   _polishing_start(m_usertreea[0]);
+//
+//         //}
+//
+//      }
+//
+//      //queue_graphics_call([this, pointOffset](::draw2d::graphics_pointer & pgraphics)
+//        // {
+//
+////            set_context_offset(pgraphics, pointOffset.x(), pointOffset.y());
+//
+//         //});
+//
+      //set_context_offset(pointOffset);
+
+auto path = filemanager_data()->m_pitem->user_path();
+::pointer<::data::tree_item>pchild = find_item_by_user_path(path);
+_001SelectItem(pchild);
 
       auto puser = baseuser();
 
       if (::is_null(m_pimagelist))
       {
 
-         __construct(m_pimagelist, puser->shell()->GetImageList(filemanager_data()->m_iIconSize));;
+         __construct(m_pimagelist, puser->shell()->GetImageList(get_document()->m_iIconSize));;
 
       }
 
@@ -561,6 +751,256 @@ namespace filemanager
    void tree_data::on_insert_columns()
    {
 
+   }
+
+
+   void tree_data::add_path(const ::file::path & pathAdd, const ::scoped_string & scopedstrName)
+   {
+
+      ::file::path_array patha;
+
+      ascendants_path(pathAdd, patha);
+
+      auto pparent = get_base_item();
+
+      for (::index i = 0; i < patha.get_size(); i++)
+      {
+
+         auto & path = patha[i];
+
+         ::pointer<::data::tree_item>pchild = find_item_by_user_path(path);
+
+         if (!pchild)
+         {
+
+            auto pitemNew = __new(::userfs::item(this));
+
+            pitemNew->set_user_path(path);
+
+            pitemNew->set_final_path(m_pcontext->m_papexcontext->defer_process_path(path));
+
+            if (filemanager_data()->fs_data()->is_dir(pitemNew->final_path()))
+            {
+
+               pitemNew->m_flags |= ::file::e_flag_folder;
+
+            }
+
+            if (i == patha.get_upper_bound() && scopedstrName.has_char())
+            {
+
+               pitemNew->m_strName = scopedstrName;
+
+            }
+            else
+            {
+
+               pitemNew->m_strName = path.name();
+
+            }
+
+            pchild = insert_item(pitemNew, ::data::e_relative_last_child, pparent);
+
+            if (filemanager_data()->fs_data()->has_subdir(pitemNew->final_path()))
+            {
+
+               pchild->m_dwState |= ::data::e_tree_item_state_expandable;
+
+            }
+
+         }
+
+         pparent = pchild;
+
+         pparent->sort_children([](auto p1, auto p2)
+            {
+
+               return p1->m_pdataitem.template cast < ::file::item>()->m_strName
+                  .case_insensitive_order(p2->m_pdataitem.template cast < ::file::item>()->m_strName) < 0;
+
+});
+
+      }
+
+
+
+
+   //auto pparticleSynchronization = m_usertreea.has_elements() ? m_usertreea[0]->synchronization() : nullptr;
+
+   //synchronous_lock synchronouslock(pparticleSynchronization);
+
+   //auto pcontext = get_context();
+
+   //auto pointOffset = get_context_offset();
+
+   //::file::path pathUser = filemanager_path();
+
+   //// Add parent path ascendant tree_data items
+   //{
+
+   //   ::file::path path = filemanager_path();
+
+   //   ::pointer<::userfs::item>pitemChild;
+
+   //   if (dir()->is(pathUser))
+   //   {
+
+   //      ::data::tree_item * ptreeitemParent = get_base_item();
+
+   //      ::file::path_array patha;
+
+   //      ascendants_path(pathUser, patha);
+
+   //      for (auto & pathAscendant : patha)
+   //      {
+
+   //         ::pointer<::data::tree_item>ptreeitemChild = find_item_by_user_path(pathAscendant);
+
+   //         string strName;
+
+   //         strName = pcontext->m_papexcontext->defer_get_file_title(pathAscendant);
+
+   //         if (pathAscendant.has_char() && strName.has_char())
+   //         {
+
+   //            if (ptreeitemChild == nullptr)
+   //            {
+
+   //               pitemChild = __new(::userfs::item(this));
+
+   //               pitemChild->set_user_path(pathAscendant);
+
+   //               pitemChild->set_final_path(pcontext->m_papexcontext->defer_process_path(pathAscendant));
+
+   //               pitemChild->m_strName = strName;
+
+   //               pitemChild->m_flags.add(::file::e_flag_folder);
+
+   //               ptreeitemChild = insert_item(pitemChild, ::data::e_relative_last_child, ptreeitemParent);
+
+   //               if (pitemChild->m_flags.has(::file::e_flag_has_subfolder))
+   //               {
+
+   //                  ptreeitemChild->m_dwState |= ::data::e_tree_item_state_expandable;
+
+   //               }
+
+   //            }
+   //            else
+   //            {
+
+   //               ptreeitemChild->set_parent(ptreeitemParent);
+
+   //            }
+
+   //         }
+
+   //         ptreeitemParent = ptreeitemChild;
+
+   //      }
+
+   //   }
+
+   //}
+
+   //// Add child folder-like tree_data items
+   //{
+
+   //   ::file::path path = filemanager_path();
+
+   //   //::data::tree_item * ptreeitemChild;
+
+   //   ::data::tree_item * ptreeitemParent = find_item_by_user_path(pathUser);
+
+   //   if (ptreeitemParent == nullptr)
+   //   {
+
+   //      ptreeitemParent = get_base_item();
+
+   //   }
+
+   //   ::file::listing & listingUser = filemanager_data()->m_listingFolderUser2;
+
+   //   ::file::listing & listingFinal = filemanager_data()->m_listingFolderFinal2;
+
+   //   pointer_array < ::data::tree_item > childrenNew;
+
+   //   auto cListingUser = listingUser.get_count();
+
+   //   for(index i = 0; i < cListingUser; i++)
+   //   {
+
+   //      ::file::path pathUser = listingUser[i];
+
+   //      ::pointer<::data::tree_item>ptreeitemChild = find_item_by_user_path(pathUser);
+
+   //      if (ptreeitemChild.is_null())
+   //      {
+
+   //         ptreeitemChild = __new(::data::tree_item);
+
+   //         ptreeitemChild->m_ptree = this;
+
+   //         ptreeitemChild->m_pparent = ptreeitemParent;
+
+   //      }
+   //      else
+   //      {
+
+   //         ptreeitemChild->set_parent(ptreeitemParent);
+
+   //      }
+
+   //      ::file::path pathFinal = listingFinal[i];
+
+   //      string strName;
+
+   //      strName = pcontext->m_papexcontext->defer_get_file_title(pathUser);
+
+   //      auto pitemChild = ptreeitemChild->m_pdataitem.cast < ::userfs::item >();
+
+   //      if (!pitemChild)
+   //      {
+
+   //         pitemChild = __new(::userfs::item(this));
+
+   //         ptreeitemChild->m_pdataitem = pitemChild;
+
+   //      }
+
+   //      pitemChild->set_user_path(pathUser);
+
+   //      pitemChild->set_final_path(pcontext->m_papexcontext->defer_process_path(pathFinal));
+
+   //      pitemChild->m_strName = strName;
+
+   //      pitemChild->m_flags.add(::file::e_flag_folder);
+
+   //      if (pitemChild->m_flags.has(::file::e_flag_has_subfolder))
+   //      {
+
+   //         ptreeitemChild->m_dwState |= ::data::e_tree_item_state_expandable;
+
+   //      }
+
+   //      childrenNew.add_unique(ptreeitemChild);
+
+   //   }
+
+   //   if (childrenNew.get_count() <= 80)
+   //   {
+
+   //      list_set_children(ptreeitemParent, childrenNew);
+
+   //   }
+
+   //}
+
+
+   //// Add root immediate children folder-like tree_data items
+   //{
+
+   
    }
 
 
@@ -751,21 +1191,23 @@ namespace filemanager
    void tree_data::_001OnOpenItem(::data::tree_item * pitem, const ::action_context & context)
    {
 
+      information() << "tree_data::_001OnOpenItem";
+
       auto puserfsitem = pitem->m_pdataitem.cast < ::userfs::item > ();
 
       auto pfileitem = __new(::file::item(*puserfsitem));
 
-      _017OpenFolder(pfileitem, context);
+      filemanager_document()->browse(pfileitem, context);
 
    }
 
 
-   void tree_data::_017OpenFolder(::pointer<::file::item>pitem, const ::action_context & context)
-   {
+   //void tree_data::_017OpenFolder(::pointer<::file::item>pitem, const ::action_context & context)
+   //{
 
-      filemanager_document()->browse(pitem,context);
+   //   filemanager_data()->browse(pitem,context);
 
-   }
+   //}
 
 
    void tree_data::_001OnTimer(::timer * ptimer)
@@ -867,6 +1309,39 @@ namespace filemanager
    {
 
       ::filemanager_impact_base::handle(ptopic, pcontext);
+
+      if (ptopic->m_atom == id_browse)
+      {
+
+         auto pfilemanagerdata = filemanager_data();
+
+         auto pitem = pfilemanagerdata->m_pitem;
+
+         if (pitem)
+         {
+
+            auto path = pitem->user_path();
+
+            browse_sync(ptopic->m_actioncontext);
+            //while (true)
+            //{
+
+            //   knowledge(path, ptopic->m_actioncontext, true);
+
+            //   if (path.is_empty())
+            //   {
+
+            //      break;
+
+            //   }
+
+            //   path = path.folder();
+
+            //}
+
+         }
+         
+      }
 
    }
 

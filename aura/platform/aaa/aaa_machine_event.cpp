@@ -88,7 +88,7 @@ bool machine_event::write(machine_event_data * pdata)
    try
    {
 
-               auto psystem = acmesystem();
+               auto psystem = system();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 

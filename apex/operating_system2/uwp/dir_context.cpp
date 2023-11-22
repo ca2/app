@@ -103,7 +103,7 @@ namespace universal_windows
 
       mk(m_pdirsystem->m_strTimeFolder / "time");
 
-      m_pdirsystem->m_pathHome =          auto psystem = acmesystem();
+      m_pdirsystem->m_pathHome =          auto psystem = system();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 

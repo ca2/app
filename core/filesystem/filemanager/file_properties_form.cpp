@@ -67,7 +67,7 @@ namespace filemanager
 
       auto prequest = __create_new< ::request >();
 
-      prequest->m_bMakeVisible = false;
+      prequest->m_egraphicsoutputpurpose -= ::graphics::e_output_purpose_screen;
 
       prequest->m_puserelementParent = puserinteractionParent;
 

@@ -205,7 +205,7 @@ void handler_manager::on_start_loop()
 //   if (m_bSingleThread)
 //   {
 //
-//      auto psystem = acmesystem();
+//      auto psystem = system();
 //
 //      auto pnode = psystem->node();
 //

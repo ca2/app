@@ -83,7 +83,7 @@ namespace app_build
 
       //set_local_data();
 
-      auto psession = acmesession()->m_paurasession;
+      auto psession = session()->m_paurasession;
 
       auto puser = psession->user()->m_pcoreuser;
 

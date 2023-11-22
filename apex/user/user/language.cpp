@@ -123,7 +123,7 @@ namespace user
 //
 //      string strLang = m_strLanguageCode;
 //      
-//      auto psystem = acmesystem()->m_papexsystem;
+//      auto psystem = system()->m_papexsystem;
 //
 //      ::file::path pathCa2 = psystem->m_pdirsystem->m_pathCa2;
 //

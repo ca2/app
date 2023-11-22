@@ -121,7 +121,7 @@ namespace aura
       m_bGtkApp = false;
 #endif
 
-      m_bConsole = false;
+      //m_bConsole = false;
       m_pappParent = nullptr;
 
       m_bSimpleMessageLoop = false;
@@ -440,7 +440,7 @@ namespace aura
    //void application::call_request(::request * prequest)
    //{
 
-   //   auto psystem = acmesystem()->m_papexsystem;
+   //   auto psystem = system()->m_papexsystem;
 
    //   if (psystem->payload("exit_on_application_call_request").is_true())
    //   {
@@ -515,7 +515,7 @@ namespace aura
 
    //         //         memory m;
 
-   //         //         auto psystem = acmesystem();
+   //         //         auto psystem = system();
 
    //         //         auto pbase64 = psystem->base64();
 
@@ -601,7 +601,7 @@ namespace aura
 
    //      }
 
-   //      auto psystem = acmesystem()->m_paurasystem;
+   //      auto psystem = system()->m_paurasystem;
 
    //      // Verry Sory for the per request overhead here for the needed information of only first request
    //      if (::is_set(psystem) && psystem->m_timeAfterApplicationFirstRequest.is_null())
@@ -1628,7 +1628,7 @@ namespace aura
 
       //}
       
-      auto psignal = acmesystem()->m_papexsystem->get_signal(id_app_activated);
+      auto psignal = system()->m_papexsystem->get_signal(id_app_activated);
       
       psignal->add_handler(this);
 
@@ -1756,7 +1756,7 @@ namespace aura
    void application::do_install()
    {
 
-      auto psystem = acmesystem()->m_paurasystem;
+      auto psystem = system()->m_paurasystem;
 
 
       on_install();
@@ -1792,7 +1792,7 @@ namespace aura
 
       string strLicense = get_license_id();
 
-      auto psystem = acmesystem()->m_paurasystem;
+      auto psystem = system()->m_paurasystem;
 
       bool bHasInstall = psystem->is_true("install");
 
@@ -1886,11 +1886,11 @@ retry_license:
 
 // #ifdef WINDOWS_DESKTOP
 
-//          auto psystem = acmesystem()->m_paurasystem;
+//          auto psystem = system()->m_paurasystem;
 
 //          string strModuleName = psystem->file()->module();
 
-//          acmesystem()->m_pnode->install_crash_dump_reporting(strModuleName);
+//          system()->m_pnode->install_crash_dump_reporting(strModuleName);
 
 // #endif
 
@@ -2099,7 +2099,7 @@ retry_license:
 
       //}
 
-      auto psystem = acmesystem()->m_paurasystem;
+      auto psystem = system()->m_paurasystem;
 
       //if (psystem->m_bImaging)
       //{
@@ -3162,7 +3162,7 @@ retry_license:
 //      while (!acmefile()->exists(utf8(wstr.c_str())) && iRetry > 0)
 //      {
 //
-//                  auto psystem = acmesystem();
+//                  auto psystem = system();
 
 //         auto pacmedirectory = psystem->m_pacmedirectory;
 //
@@ -3371,7 +3371,7 @@ retry_license:
    void application::add_user_interaction(::user::interaction * puserinteraction)
    {
 
-      auto psession = acmesession()->m_paurasession;
+      auto psession = session()->m_paurasession;
 
       if (puserinteraction == psession->m_puserprimitiveHost)
       {
@@ -3941,7 +3941,7 @@ retry_license:
    void application::on_initial_frame_position(::user::frame * pframe)
    {
 
-      auto psystem = acmesystem()->m_paurasystem;
+      auto psystem = system()->m_paurasystem;
 
       psystem->on_initial_frame_position(pframe);
 
@@ -4469,10 +4469,10 @@ retry_license:
 
    //      string strType = ::type(this).name();
 
-   //      //if(::is_set(acmesystem()))
+   //      //if(::is_set(system()))
    //      //{
 
-   //      //   acmesystem()->add_reference(this);
+   //      //   system()->add_reference(this);
 
    //      //}
 
@@ -4757,7 +4757,7 @@ retry_license:
 
          update_appmatter(psession, pszRoot, pszRelative, strLocale, strSchema);
 
-         auto psystem = acmesystem()->m_paurasystem;
+         auto psystem = system()->m_paurasystem;
 
          psystem->install_progress_add_up();
 
@@ -4795,7 +4795,7 @@ retry_license:
          strUrl = "http://stage-server.ca2.software/api/spaignition/download?authnone&configuration=stage&stage=";
       }
 
-      auto psystem = acmesystem();
+      auto psystem = system();
 
       auto purl = psystem->url();
 
@@ -4985,7 +4985,7 @@ retry_license:
 
          m_iWaitCursorCount = 0;
 
-         auto psystem = acmesystem();
+         auto psystem = system();
 
          auto pnode = psystem->node()->m_papexnode;
 
@@ -5003,7 +5003,7 @@ retry_license:
          if (m_iWaitCursorCount > 0)
          {
 
-            auto psystem = acmesystem();
+            auto psystem = system();
 
             auto pnode = psystem->node()->m_papexnode;
 
@@ -5013,7 +5013,7 @@ retry_license:
 
          m_iWaitCursorCount = 0;
 
-         auto psystem = acmesystem();
+         auto psystem = system();
 
          auto pnode = psystem->node()->m_papexnode;
 
@@ -5030,7 +5030,7 @@ retry_license:
 
          m_iWaitCursorCount++;
 
-         auto psystem = acmesystem();
+         auto psystem = system();
 
          auto pnode = psystem->node()->m_papexnode;
 
@@ -5529,15 +5529,13 @@ namespace aura
    //}
 
 
-   bool application::on_application_menu_action(const ::string & pszCommand)
+   bool application::on_application_menu_action(const ::atom & atom)
    {
 
       if (m_puserinteractionMain != nullptr)
       {
 
-         ::atom idCommand(pszCommand);
-
-         ::message::command command(idCommand);
+         ::message::command command(atom);
 
          auto puserinteractionMain = m_puserinteractionMain;
 
@@ -5552,7 +5550,7 @@ namespace aura
 
       }
 
-      return ::aqua::application::on_application_menu_action(pszCommand);
+      return ::aqua::application::on_application_menu_action(atom);
 
    }
 
@@ -7656,9 +7654,9 @@ namespace aura
          if (is_false("session_start"))
          {
 
-            //acmesystem()->set_finish(acmesystem());
+            //system()->set_finish(system());
 
-            acmesystem()->set_finish();
+            system()->set_finish();
 
          }
 
@@ -7666,7 +7664,7 @@ namespace aura
       else
       {
 
-         acmesystem()->destroy();
+         system()->destroy();
 
       }
 
@@ -7705,7 +7703,7 @@ namespace aura
          if (is_false("session_start"))
          {
 
-            acmesystem()->destroy();
+            system()->destroy();
 
          }
 
@@ -7713,7 +7711,7 @@ namespace aura
       else
       {
 
-         acmesystem()->destroy();
+         system()->destroy();
 
       }
 
@@ -8942,7 +8940,7 @@ namespace aura
    //void application::on_initial_frame_position(::user::frame* pframe)
    //{
 
-   //   auto psystem = acmesystem()->m_papexsystem;
+   //   auto psystem = system()->m_papexsystem;
 
    //   psystem->on_initial_frame_position(pframe);
 
@@ -8953,7 +8951,7 @@ namespace aura
    //::aura::system * applicationacmesystem()
    //{
 
-   //   return ::is_set(acmesystem()) ? dynamic_cast <::aura::system *> (acmesystem()) : nullptr;
+   //   return ::is_set(system()) ? dynamic_cast <::aura::system *> (system()) : nullptr;
 
    //}
 
@@ -9016,7 +9014,7 @@ namespace aura
    ::user::user * application::aurauser()
    {
 
-      return acmesession()->m_paurasession->user();
+      return session()->m_paurasession->user();
 
    }
 

@@ -44,7 +44,7 @@
     <ClInclude Include="context.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="buffer.h">
+    <ClInclude Include="cpu_buffer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="_library.h">
@@ -91,7 +91,7 @@
     <ClCompile Include="context.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="buffer.cpp">
+    <ClCompile Include="cpu_buffer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="object.cpp">

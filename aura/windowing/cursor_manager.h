@@ -26,7 +26,7 @@ namespace windowing
 
       inline ::aura::application* get_app();
       inline ::aura::session* get_session();
-      //inline ::aura::system* acmesystem();
+      //inline ::aura::system* system();
 
 
       void load_hotspot(const ::file::path & pszDir);

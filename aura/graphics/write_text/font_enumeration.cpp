@@ -70,7 +70,7 @@ namespace write_text
       else if (ptopic->m_atom == id_operating_system_font_list_change)
       {
 
-         ::pointer<::aura::system>psystem = acmesystem();
+         ::pointer<::aura::system>psystem = system();
 
          psystem->signal(id_operating_system_font_list_change);
 
@@ -114,7 +114,7 @@ namespace write_text
 
       double dMaxSimilarity = 0.2;
 
-      auto psystem = acmesystem()->m_paurasystem;
+      auto psystem = system()->m_paurasystem;
 
       auto * pdraw2d = psystem->draw2d();
 
@@ -173,7 +173,7 @@ namespace write_text
       else
       {
 
-         auto psystem = acmesystem()->m_paurasystem;
+         auto psystem = system()->m_paurasystem;
 
          auto pdraw2d = psystem->draw2d();
 
@@ -199,7 +199,7 @@ namespace write_text
 
       pitema = __new(::write_text::font_enumeration_item_array);
 
-      auto psystem = acmesystem()->m_paurasystem;
+      auto psystem = system()->m_paurasystem;
 
       auto pdraw2d = psystem->draw2d();
 
@@ -242,7 +242,7 @@ namespace write_text
 
       pitema = __new(::write_text::font_enumeration_item_array);
 
-      auto psystem = acmesystem()->m_paurasystem;
+      auto psystem = system()->m_paurasystem;
 
       auto pdraw2d = psystem->draw2d();
 

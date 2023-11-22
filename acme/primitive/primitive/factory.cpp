@@ -9,7 +9,7 @@
 
 
 
-//CLASS_DECL_ACME ::acme::system * acmesystem();
+//CLASS_DECL_ACME ::acme::system * system();
 
 
 namespace factory
@@ -246,7 +246,7 @@ CLASS_DECL_ACME bool safe_free_memory(void * ptype)
 //
 //   strLibrary = stra.implode("_");
 //
-//   auto plibrary = acmesystem()->get_library(strLibrary);
+//   auto plibrary = system()->get_library(strLibrary);
 //
 //   plibrary->add_factory_item();
 //
@@ -947,11 +947,10 @@ namespace factory
 {
 
 
-
-   ::pointer < ::particle > factory::create(const ::string & strType)
+   ::pointer < ::particle > factory::create(const ::string & strType, ::particle * pparticle)
    {
 
-      //auto psystem = acmesystem();
+      //auto psystem = system();
 
       //synchronous_lock synchronouslock(&psystem->m_pmutexLibrary);
 
@@ -998,7 +997,7 @@ namespace factory
    bool factory::has_type(const ::string & strType) const
    {
 
-      //auto psystem = acmesystem();
+      //auto psystem = system();
 
       //synchronous_lock synchronouslock(&psystem->m_pmutexLibrary);
 

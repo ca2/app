@@ -44,7 +44,7 @@ namespace file
 //      if (str.case_insensitive_begins_eat("Local\\"))
 //      {
 //
-//         path /=          auto psystem = acmesystem();
+//         path /=          auto psystem = system();
 
 //         auto pacmedirectory = psystem->m_pacmedirectory;
 //

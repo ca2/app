@@ -293,7 +293,7 @@ namespace apex
 
       virtual ::user::e_key key_modifiers();
       
-      virtual bool is_key_pressed(::user::enum_key ekey);
+      bool is_key_pressed(::user::enum_key ekey) override;
 
       virtual void set_key_pressed(::user::enum_key ekey, bool bPressed);
 

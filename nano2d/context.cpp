@@ -230,6 +230,48 @@ namespace nano2d
 		return &m_params;
 	}
 
+
+	void context::get_maximum_width_and_row_height(float& fMaximumWidth, float& fRowHeight, const string_array& straLines)
+	{
+
+		float bounds[4];
+
+		for (int i = 0; i < straLines.get_size(); i++)
+		{
+
+			string strLabel = straLines[i];
+
+			if (strLabel.has_char())
+			{
+
+				text_bounds(0, 0, strLabel, bounds);
+
+				auto w = bounds[2] - bounds[0];
+
+				if (w > fMaximumWidth)
+				{
+
+					fMaximumWidth = w;
+
+				}
+
+				auto h = bounds[3] - bounds[1];
+
+				if (h > fRowHeight)
+				{
+
+					fRowHeight = h;
+
+				}
+
+			}
+
+
+		}
+
+	}
+
+
 	//
 	//void context::DeleteInternal()
 	//{
@@ -2623,6 +2665,13 @@ void TransformSkewX(float* t, float a)
 
 	void context::text_box(float x, float y, ::nano2d::text_box * ptextbox)
 	{
+
+		if (::is_null(ptextbox))
+		{
+
+			return;
+
+		}
 
 		//text(x, y, string, end);
 		// throw_todo();

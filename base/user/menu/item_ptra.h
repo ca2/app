@@ -16,10 +16,11 @@ namespace user
 
 
       menu_item_ptra(menu_item * pitemParent);
-      virtual ~menu_item_ptra();
+      ~menu_item_ptra() override;
 
 
-      menu_item * find(atom atom);
+      menu_item * find(const atom & atom);
+
 
    };
 

@@ -173,7 +173,7 @@ namespace windowing
 
       auto path = pathParam;
 
-      if (acmeapplication()->m_bImaging)
+      if (application()->m_bImaging)
       {
 
          pcursor->set_file_path(path);
@@ -263,7 +263,7 @@ namespace windowing
 
       auto pcontext = pobjectContext->m_pcontext;
 
-      ::file::path pathArrow = dir()->matter(pathMatter / "arrow.png");
+      ::file::path pathArrow = pcontext->dir()->matter(pathMatter / "arrow.png");
       
       if(pathArrow.is_empty())
       {
@@ -651,7 +651,7 @@ namespace windowing
    //::aura::system* cursor_manageracmesystem()
    //{
 
-   //   return ::is_set(acmesystem()) ? acmesystem()->m_paurasystem : nullptr;
+   //   return ::is_set(system()) ? system()->m_paurasystem : nullptr;
 
    //}
 

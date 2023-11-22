@@ -592,36 +592,43 @@ namespace user
 
          }
 
+         pplaceholder->m_bLockGraphicalUpdate = false;
+
          rectangleClient = rectanglePane;
 
          rectangleClient.deflate(m_cxBorder,m_cyBorder);
 
-         pplaceholder->order(e_zorder_top);
+         //if(rectangleClient != pplaceholder->parent_client_rectangle())
+         //{
 
-         pplaceholder->place(rectangleClient, ::user::e_layout_layout, pgraphics);
+            pplaceholder->place(rectangleClient, ::user::e_layout_layout, pgraphics);
 
-         //pplaceholder->m_rectangleClient = rectangleClient;
+            pplaceholder->order(e_zorder_top);
 
-         //pplaceholder->m_rectangleClient.offset(-pplaceholder->m_rectangleClient.top_left());
+            //pplaceholder->m_rectangleClient = rectangleClient;
 
-         if (pplaceholder->const_layout().sketch().is_visible())
-         {
+            //pplaceholder->m_rectangleClient.offset(-pplaceholder->m_rectangleClient.top_left());
 
-            pplaceholder->display();
+            //if (pplaceholder->const_layout().sketch().is_visible())
+            //{
 
-            pplaceholder->set_need_layout();
+            //   pplaceholder->display();
 
-            pplaceholder->set_need_redraw({ rectangleClient });
+            //   pplaceholder->set_need_layout();
 
-            //puserinteraction->post_redraw();
+            //   pplaceholder->set_need_redraw({ rectangleClient });
 
-         }
-         else
-         {
+            //   //puserinteraction->post_redraw();
 
-            pplaceholder->hide();
+            //}
+            //else
+            //{
 
-         }
+            //   pplaceholder->hide();
+
+            //}
+
+         //}
 
       }
 

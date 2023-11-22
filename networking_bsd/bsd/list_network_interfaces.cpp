@@ -29,7 +29,7 @@ namespace networking_bsd
       ::pointer < ::item_array > pitema;
 
       __defer_construct_new(pitema);
-      
+
 //      enum 
 //      {
 //          IFACE_IPv4 = (1<<0),
@@ -38,8 +38,8 @@ namespace networking_bsd
 //      };
 
       struct ifaddrs *curr, *list = NULL;
-      
-      int result = 0;
+
+//      int result = 0;
 
 //      if (!name || !(*name)) 
 //      {
@@ -52,9 +52,11 @@ namespace networking_bsd
 
        if (getifaddrs(&list) == -1)
        {
-          
+
+          information() << "getifaddrs failed";
+
           return {};
-          
+
        }
 
        for (curr = list; curr != NULL; curr = curr->ifa_next)
@@ -75,21 +77,25 @@ namespace networking_bsd
 //          }
 
           ::string strName(curr->ifa_name);
-          
+
           strName.trim();
-          
+
           if(strName.is_empty())
           {
-             
+
              continue;
-             
+
           }
+
+          information() << "Interface Name : " << strName;
 
          auto paddress = __create_new<::networking_bsd::address>();
 
          paddress->set_address(*curr->ifa_addr);
 
          paddress->m_strName = strName;
+
+         paddress->m_item.m_eelement = e_element_item;
 
          pitema->add(paddress);
 

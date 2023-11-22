@@ -55,7 +55,7 @@ namespace hotplugin
 
       virtual void post_message(const ::atom & atom, wparam wparam, lparam lparam) override;
 
-      virtual oswindow get_host_window() override;
+      virtual oswindow get_host_user_interaction() override;
 
       //using ::hotplugin::plugin::window_rectangle;
       //virtual bool window_rectangle(::rectangle_i64 * prectangle) override;

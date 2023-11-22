@@ -429,7 +429,7 @@ namespace user
 //
 //      size.cx() += rectanglePadding.left();
 
-      if (m_pmenuitem->IsPopup())
+      if (m_pmenuitem->is_popup())
       {
 
          auto pstyle = get_style(pgraphics);
@@ -451,6 +451,21 @@ namespace user
 //      pcalcsize->m_size = size;
 
       return size;
+
+   }
+
+
+   bool menu_button::on_click(::item * pitem)
+   {
+
+      if (get_parent()->on_click(m_pmenuitem))
+      {
+
+         return true;
+
+      }
+
+      return false;
 
    }
 

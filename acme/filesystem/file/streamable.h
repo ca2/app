@@ -48,6 +48,13 @@ namespace file
    public:
 
 
+
+      streamable() {}
+
+
+      streamable(streamable && streamable) = delete;
+
+
       virtual enum_status _open(const ::scoped_string & scopedstrFilePath, const ::file::enum_open & eopen);
 
       void translate(filesize offset, ::enum_seek eseek) override;

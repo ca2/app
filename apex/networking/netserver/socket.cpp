@@ -162,7 +162,7 @@ namespace netserver
       if (key == "location" && straValue.get_count() >= 1)
       {
 
-         auto psystem = acmesystem();
+         auto psystem = system();
 
          auto purl = psystem->url();
 

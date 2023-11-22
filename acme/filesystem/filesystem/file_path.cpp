@@ -614,10 +614,42 @@ CLASS_DECL_ACME string defer_solve_relative(const ::scoped_string & scopedstrRel
 
    auto pFolderLastCharacter = range.rear_skip_any_character_in("\\/");
 
-   if(pFolderLastCharacter)
+   if(pFolderLastCharacter < p)
    {
 
-      p = pFolderLastCharacter + 1;
+      if (pFolderLastCharacter > scopedstrPath.begin())
+      {
+
+         if (pFolderLastCharacter[-1] == ':')
+         {
+
+            auto rangeBeforeColon = scopedstrPath(0, pFolderLastCharacter - 1);
+
+            auto pSlashBeforeColon = rangeBeforeColon.rear_find_first_character_in("\\/");
+
+            if (!pSlashBeforeColon)
+            {
+
+               if (p == scopedstrPath.end() - 1)
+               {
+
+                  return {};
+
+               }
+               else
+               {
+
+                  return scopedstrPath(0, p + 1);
+
+               }
+
+            }
+
+         }
+
+      }
+
+      p = pFolderLastCharacter;
 
    }
 
@@ -923,7 +955,7 @@ bool file_path_normalize_inline(string & strPath, enum_path & epath)
 
       bUrl = false;
 
-      //strPath = ::file::path(acmesystem()->url().::url::decode(strPath.substr(7)));
+      //strPath = ::file::path(system()->url().::url::decode(strPath.substr(7)));
       strPath = ::file::path(::url::decode(strPath.substr(7)));
 
       return bCertainlySyntathicallyDir;

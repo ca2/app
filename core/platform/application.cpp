@@ -9,6 +9,7 @@
 #include "aura/user/user/check_box.h"
 #include "aura/user/user/still.h"
 #include "axis/user/user/line_layout.h"
+#include "core/filesystem/filemanager/filemanager.h"
 #include "core/user/user/user.h"
 #include "core/user/userex/progress.h"
 #include "core/user/userex/pane_tab_impact.h"
@@ -33,7 +34,7 @@ namespace core
 
       m_pcoreapplication = this;
 
-      m_strAppId = "app-complex/drawing";
+      //m_strAppId = "app-complex/drawing";
 
       factory()->add_factory_item < ::core::system, ::acme::system >();
       factory()->add_factory_item < ::core::session, ::acme::session >();
@@ -58,7 +59,7 @@ namespace core
    ::core::session * application::get_session()
    {
 
-      auto pacmesession = acmesession();
+      auto pacmesession = session();
 
       return ::is_set(pacmesession) ? pacmesession->m_pcoresession : nullptr;
 
@@ -68,7 +69,7 @@ namespace core
    ::core::system * application::get_system()
    {
 
-      auto pacmesystem = acmesystem();
+      auto pacmesystem = system();
 
       return ::is_set(pacmesystem) ? pacmesystem->m_pcoresystem : nullptr;
 
@@ -116,7 +117,7 @@ namespace core
       puser->will_use_impact_hint(COLORSEL_IMPACT);
       puser->will_use_impact_hint(FONTSEL_IMPACT);
 
-      auto psystem = acmesystem()->m_pcoresystem;
+      auto psystem = system()->m_pcoresystem;
 
       psystem->initialize_rich_text();
 
@@ -216,12 +217,31 @@ namespace core
 
       }
 
-      strOptionsHtml += acmesystem()->m_pnode->m_pauranode->system_options_html();
+      strOptionsHtml += system()->m_pnode->m_pauranode->system_options_html();
 
       strOptionsHtml += "</body>";
       strOptionsHtml += "</html>";
 
       return strOptionsHtml;
+
+   }
+
+
+   ::filemanager::filemanager * application::filemanager() const
+   {
+
+      auto & pfilemanager = ((application *)this)->m_pfilemanager;
+
+      if (!pfilemanager)
+      {
+
+         ((application *)this)->__construct_new(pfilemanager);
+
+         pfilemanager->initialize_filemanager_component(((application *)this));
+
+      }
+
+      return pfilemanager;
 
    }
 
@@ -275,7 +295,7 @@ namespace core
 
       bool bCheck = false;
 
-      auto papplication = acmeapplication()->m_papexapplication;
+      auto papplication = m_papexapplication;
 
       bool bUserAutoStart = os_context()->is_user_auto_start(papplication->get_executable_appid());
 
@@ -286,7 +306,7 @@ namespace core
 
             bool bCheck = pcheck->bcheck();
 
-            auto papplication = acmeapplication()->m_papexapplication;
+            auto papplication = m_papexapplication;
 
             os_context()->register_user_auto_start(
                papplication->get_executable_appid(),

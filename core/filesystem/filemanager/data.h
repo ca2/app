@@ -2,7 +2,7 @@
 
 
 
-#include "acme/primitive/data/data.h"
+#include "core/filesystem/userfs/data.h"
 #include "apex/database/key.h"
 #include "acme/primitive/primitive/action_context.h"
 
@@ -22,7 +22,7 @@ namespace filemanager
 
 
    class CLASS_DECL_CORE data :
-      virtual public ::data::data
+      virtual public ::userfs::data
    {
    public:
 
@@ -39,14 +39,14 @@ namespace filemanager
       ::file::path                           m_filepath;
       bool                                   m_bMakeVisible;
       bool                                   m_bTransparentBackground;
-      ::user::interaction *                  m_puserinteractionParent;
+      //::user::interaction *                  m_puserinteractionParent;
       ::pointer<::fs::data>                  m_pfsdata;
-      callback *                             m_pcallback;
+      ::pointer < ::filemanager::callback >  m_pfilemanagercallback;
       //bool bMakeVisible = true, bool bTransparentBackground = false, ::pointer<::user::interaction>puiParent = nullptr, ::fs::data * pfsdata = nullptr, ::pointer<data>data = nullptr, callback * pcallback = nullptr
-      ::user::multiple_document_template *   m_pimpactsystem;
+      //::user::multiple_document_template *   m_pimpactsystem;
       ::write_text::font_pointer             m_pfont;
-      ::user::document *                     m_pdocumentTopic;
-      ::filemanager::document *              m_pdocument;
+      ::pointer < ::user::document >         m_pdocumentTopic;
+      ::pointer < ::filemanager::document >  m_pfilemanagerdocument;
       string                                 m_strTitle;
       ::type_atom                            m_typeatomFileList;
       // callback *                          m_pfilemanager;
@@ -100,14 +100,19 @@ namespace filemanager
       virtual void initialize_filemanager_data(::particle * pparticle);
 
       
-      bool open(::apex::application * pappOnBehalfOf = nullptr, ::file::path path = "", const ::action_context & action_context = ::e_source_system);
-      
+      //bool open(::apex::application * pappOnBehalfOf = nullptr, ::file::path path = "", const ::action_context & action_context = ::e_source_system);
+      void browse_initial_path(const ::action_context & action_context);
+      //virtual void __browse_initial_path(const ::action_context & action_context);
       
       //::filemanager::document * open(::file::path path = "");
       //virtual ::filemanager::document * document();
       
 
-      virtual bool do_prompt_file_name(::payload & payloadFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument);
+      //virtual bool do_prompt_file_name(::payload & payloadFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument);
+
+      //virtual bool open_document(::user::document * pdocument);
+
+      virtual void save_document(::user::document * pdocument);
 
 
       //virtual void defer_update_data_key() override;

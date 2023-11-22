@@ -263,7 +263,7 @@ namespace aura
 
       //}
 
-      auto psystem = acmesystem()->m_paurasystem;
+      auto psystem = system()->m_paurasystem;
 
       if(psystem->m_bAvoidFirstResponder)
       {
@@ -311,7 +311,7 @@ namespace aura
    bool session::on_get_task_name(string& strThreadName)
    {
 
-      if (acmeapplication()->m_bConsole)
+      if (application()->is_console())
       {
 
          return false;
@@ -372,7 +372,7 @@ namespace aura
 
       }
 
-      auto psystem = acmesystem();
+      auto psystem = system();
 
       auto purl = psystem->url();
 
@@ -740,7 +740,7 @@ namespace aura
 ////
 ////      }
 ////
-////      ::user::interaction * pinteraction = pprimitive->get_host_window();
+////      ::user::interaction * pinteraction = pprimitive->get_host_user_interaction();
 ////
 ////      if (::is_null(pinteraction))
 ////      {
@@ -894,7 +894,7 @@ namespace aura
 //
 //      }
 //
-//      ::user::interaction * pinteraction = pprimitive->get_host_window();
+//      ::user::interaction * pinteraction = pprimitive->get_host_user_interaction();
 //
 //      if (pinteraction == nullptr)
 //      {
@@ -903,7 +903,7 @@ namespace aura
 //
 //      }
 //
-//      ::user::interaction * puiImpl = pinteraction->get_host_window();
+//      ::user::interaction * puiImpl = pinteraction->get_host_user_interaction();
 //
 //      if (puiImpl == nullptr)
 //      {
@@ -1061,7 +1061,7 @@ namespace aura
 //
 //      }
 //
-//      ::user::interaction * puiImpl = pprimitive->get_host_window();
+//      ::user::interaction * puiImpl = pprimitive->get_host_user_interaction();
 //
 //      if (puiImpl == nullptr)
 //      {
@@ -1807,7 +1807,7 @@ namespace aura
 
       information() << "aura::session .2";
 
-      if (acmeapplication()->m_bUser)
+      if (application()->m_bUser)
       {
 
          information() << "aura::session m_bUser";
@@ -2521,7 +2521,7 @@ namespace aura
    //::aura::system * sessionacmesystem()
    //{
 
-   //   return ::is_set(acmesystem()) ? acmesystem()->m_paurasystem : nullptr;
+   //   return ::is_set(system()) ? system()->m_paurasystem : nullptr;
 
    //}
 

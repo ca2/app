@@ -270,7 +270,7 @@ namespace experience
 
       m_pframewindow->user_mouse_set_cursor(pmouse, pcursor);
 
-      //m_pframewindow->set_mouse_cursor(pcursor);
+      //m_pframewindow->aaa_set_mouse_cursor(pcursor);
 
       pmouse->m_lresult = 1;
 
@@ -294,7 +294,7 @@ namespace experience
    //   if (m_eframeSizing != e_frame_none)
    //   {
 
-   //      auto psession = acmesession()->m_paurasession;
+   //      auto psession = session()->m_paurasession;
 
    //      auto puser = psession->user();
 
@@ -339,7 +339,7 @@ namespace experience
 
    //      auto ecursor = translate(m_eframeCursor);
 
-   //      auto psession = acmesession()->m_paurasession;
+   //      auto psession = session()->m_paurasession;
 
    //      auto puser = psession->user();
 

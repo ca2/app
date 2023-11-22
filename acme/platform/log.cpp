@@ -61,7 +61,7 @@ void log::initialize(::particle * pparticle)
 
    //return estatus;
 
-   ::acme::acme::g_pacme->m_bOutputDebugString = m_bLog;
+   platform()->m_bOutputDebugString = m_bLog;
 
 
 }
@@ -118,6 +118,6 @@ bool log::get_extended_log()
 bool is_verbose_log()
 {
 
-   return ::acme::acme::g_pacme->m_pacmeapplication->m_bVerbose.is_set_true();
+   return ::platform::platform::s_pplatform->m_pacmeapplication->m_bVerbose.is_set_true();
 
 }

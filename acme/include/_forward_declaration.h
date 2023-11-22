@@ -901,7 +901,17 @@ class acme_path;
 class acme_directory;
 
 
-class sub_system;
+namespace platform
+{
+   
+   
+   class platform;
+
+
+   inline ::platform::platform * get();
+
+
+} // namespace platform
 
 
 class dir_context;
@@ -2228,6 +2238,16 @@ struct argument_of_struct < TYPE * >
 
 template < typename ARGUMENT >
 using argument_of = typename argument_of_struct < ARGUMENT >::type;
+
+
+namespace user
+{
+
+   
+   class key_state;
+
+
+} // namespace user
 
 
 

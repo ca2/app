@@ -145,9 +145,9 @@ namespace core
    ::core::application * user::get_app()
    {
 
-      auto pacmeapplication = acmeapplication();
+      auto papplication = application();
 
-      return ::is_set(pacmeapplication) ? pacmeapplication->m_pcoreapplication : nullptr;
+      return ::is_set(papplication) ? papplication->m_pcoreapplication : nullptr;
 
    }
 
@@ -155,7 +155,7 @@ namespace core
    ::core::session * user::get_session()
    {
 
-      auto pacmesession = acmesession();
+      auto pacmesession = session();
 
       return ::is_set(pacmesession) ? pacmesession->m_pcoresession : nullptr;
 
@@ -165,7 +165,7 @@ namespace core
    ::core::system * user::get_system()
    {
 
-      auto pacmesystem = acmesystem();
+      auto pacmesystem = system();
 
       return ::is_set(pacmesystem) ? pacmesystem->m_pcoresystem : nullptr;
 
@@ -298,7 +298,7 @@ namespace core
       factory()->add_factory_item <menu_frame >();
       //factory()->add_factory_item <menu_impact >();
 
-      auto psystem = acmesystem()->m_paurasystem;
+      auto psystem = system()->m_paurasystem;
 
       auto typeinfo = psystem->get_simple_frame_window_type_info();
 
@@ -479,7 +479,7 @@ namespace core
 
       //estatus = 
 
-      initialize_filemanager_component(this);
+      //initialize_filemanager_component(this);
 
       //if (!estatus)
       //{
@@ -1072,7 +1072,7 @@ namespace core
    //::pointer<::form_document>user::create_child_form(::particle * pparticle, ::user::form_callback * pcallback, ::pointer<::user::interaction>puserinteractionParent, ::payload payload, ::payload varArgs)
    //{
 
-   //   auto papp = pparticle->acmeapplication();
+   //   auto papp = pparticle->application();
 
    //   if (papp == nullptr)
    //   {
@@ -1149,7 +1149,7 @@ namespace core
 
       ::pointer<::request>prequest(e_create_new, pinteraction.m_p);
 
-      prequest->m_bMakeVisible = false;
+      prequest->m_egraphicsoutputpurpose -= ::graphics::e_output_purpose_screen;
 
       prequest->m_bHold = false;
 
@@ -1726,7 +1726,7 @@ namespace core
 
          }
 
-         m_mapimpactsystem[FILEMANAGER_IMPACT] = filemanager(idImpact)->m_pimpactsystem;
+         //m_mapimpactsystem[FILEMANAGER_IMPACT] = filemanager(idImpact)->m_pimpactsystem;
 
          //add_factory_item <::user::color_impact >();
 
@@ -1796,7 +1796,7 @@ namespace core
          fork([this]()
          {
 
-            auto psystem = acmesystem()->m_paurasystem;
+            auto psystem = system()->m_paurasystem;
 
             auto pdraw2d = psystem->draw2d();
 

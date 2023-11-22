@@ -247,7 +247,7 @@ namespace user
    //}
 
 
-   ::user::interaction* primitive::get_host_window()
+   ::user::interaction* primitive::get_host_user_interaction()
    {
 
       //if (get_session() == nullptr
@@ -751,7 +751,7 @@ namespace user
    //}
 
 
-   void primitive::add_auto_refresh(::particle * pparticle)
+   void primitive::add_fps_interest(::particle * pparticle)
    {
 
       //return false;
@@ -759,7 +759,7 @@ namespace user
    }
 
 
-   void primitive::erase_auto_refresh(::particle * pparticle)
+   void primitive::erase_fps_interest(::particle * pparticle)
    {
 
       //return false;
@@ -767,7 +767,7 @@ namespace user
    }
 
 
-   bool primitive::is_auto_refresh(const ::particle * pparticle) const
+   bool primitive::is_fps_interest(const ::particle * pparticle) const
    {
 
       return false;
@@ -1330,7 +1330,8 @@ namespace user
       {
 
          //estatus =
-         create_host(e_parallelization_synchronous);
+         //create_host(e_parallelization_synchronous);
+         create_host();
 
       }
       else
@@ -1354,7 +1355,8 @@ namespace user
 
 
    //bool primitive::create_window_ex(::pointer<::user::system>pcs, ::user::interaction * puiParent, const ::atom & atom)
-   void primitive::create_host(enum_parallelization eparallelization)
+   //void primitive::create_host(enum_parallelization eparallelization)
+   void primitive::create_host()
    {
 
       throw ::interface_only();
@@ -1980,16 +1982,16 @@ namespace user
 
      }
 
-     if (::is_set(acmesession()))
+     if (::is_set(session()))
      {
 
-        if (this == acmesession()->m_papexsession->m_puserprimitiveHost)
+        if (this == session()->m_papexsession->m_puserprimitiveHost)
         {
 
            return true;
 
         }
-        else if (puiParent == acmesession()->m_papexsession->m_puserprimitiveHost)
+        else if (puiParent == session()->m_papexsession->m_puserprimitiveHost)
         {
 
            return true;
@@ -2681,7 +2683,7 @@ namespace user
    //void primitive::set_config_per_second(double dConfigFps)
    //{
 
-   //   //get_host_window()->m_pimpl->set_config_per_second(dConfigFps);
+   //   //get_host_user_interaction()->m_pimpl->set_config_per_second(dConfigFps);
 
    //}
 
@@ -2689,7 +2691,7 @@ namespace user
    //::frequency primitive::get_config_per_second()
    //{
 
-   //   //return get_host_window()->m_pimpl->get_config_per_second();
+   //   //return get_host_user_interaction()->m_pimpl->get_config_per_second();
 
    //}
 
@@ -2697,7 +2699,7 @@ namespace user
    //::frequency primitive::get_output_per_second()
    //{
 
-   //   //auto pinteraction = get_host_window();
+   //   //auto pinteraction = get_host_user_interaction();
 
    //   //if (pinteraction == nullptr)
    //   //{
@@ -3029,7 +3031,7 @@ namespace user
    //::user::primitive * primitive::get_keyboard_focus()
    //{
 
-   //   auto puserinteractionHost = get_host_window();
+   //   auto puserinteractionHost = get_host_user_interaction();
 
    //   if (::is_null(puserinteractionHost))
    //   {
@@ -3554,12 +3556,12 @@ namespace user
    //}
 
 
-   bool primitive::has_pending_graphical_update()
-   {
-
-      return false;
-
-   }
+//   bool primitive::has_pending_graphical_update()
+//   {
+//
+//      return false;
+//
+//   }
 
 
    void primitive::on_after_graphical_update()
@@ -3679,7 +3681,7 @@ namespace user
    //}
 
 
-   void primitive::auto_refresh_stop()
+   void primitive::fps_interest_stop()
    {
 
 
@@ -3710,10 +3712,10 @@ namespace user
    }
 
 
-   void primitive::add_child_handler(const ::signal_handler& signalhandler, const ::atom & idChild, bool bPriority)
+   void primitive::add_child_handler(::particle * pparticle, const ::atom & atomChild, bool bPriority)
    {
 
-      auto pchild = get_primitive_by_id(idChild);
+      auto pchild = get_primitive_by_id(atomChild);
 
       if (::is_null(pchild))
       {
@@ -3723,7 +3725,7 @@ namespace user
       }
 
       //auto estatus = 
-      pchild->m_puserprimitive->add_signal_handler(signalhandler, bPriority);
+      pchild->m_puserprimitive->add_handler(pparticle, bPriority);
 
       //if (!estatus)
       //{

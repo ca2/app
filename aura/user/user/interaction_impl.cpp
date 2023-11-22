@@ -12,6 +12,8 @@
 //#include "aura/graphics/graphics/_graphics.h"
 #include "acme/constant/message.h"
 #include "acme/exception/interface_only.h"
+#include "acme/graphics/graphics/output_purpose.h"
+#include "acme/handler/request.h"
 #include "acme/parallelization/mutex.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/keep.h"
@@ -106,7 +108,7 @@ namespace user
 
       m_pinteractionimpl = this;
 
-      m_bOfflineRender = false;
+      //m_bOfflineRender = false;
 
       m_iState1 = 0;
 
@@ -323,7 +325,8 @@ namespace user
 
          pinteraction->m_bMessageWindow = true;
 
-         create_host(pinteraction, e_parallelization_synchronous);
+         //create_host(pinteraction, e_parallelization_synchronous);
+         create_host(pinteraction);
 
       }
 
@@ -528,15 +531,16 @@ namespace user
    }
 
 
-   void interaction_impl::operating_system_create_host(enum_parallelization eparallelization)
+   //void interaction_impl::operating_system_create_host(enum_parallelization eparallelization)
+   void interaction_impl::operating_system_create_host()
    {
 
-      //      auto pwindowMain = acmesystem()->m_paurasystem->m_pwindowMain;
+      //      auto pwindowMain = system()->m_paurasystem->m_pwindowMain;
       //
       //      if (pwindowMain && !pwindowMain->m_puserinteractionimpl)
       //      {
       //
-      //         m_pwindow = acmesystem()->m_paurasystem->m_pwindowMain;
+      //         m_pwindow = system()->m_paurasystem->m_pwindowMain;
       //
       //         m_pwindow->m_puserinteractionimpl = this;
       //
@@ -557,10 +561,10 @@ namespace user
       //
       //         //}
       //
-      //         if (!acmesystem()->m_paurasystem->m_pwindowMain)
+      //         if (!system()->m_paurasystem->m_pwindowMain)
       //         {
       //
-      //            acmesystem()->m_paurasystem->m_pwindowMain = m_pwindow;
+      //            system()->m_paurasystem->m_pwindowMain = m_pwindow;
       //
       //         }
       //
@@ -627,7 +631,9 @@ namespace user
       //      }
       //      else
 
-      _create_window(eparallelization);
+      //_create_window(eparallelization);
+
+      _create_window();
 
       //      if(bOk)
       //      {
@@ -649,7 +655,8 @@ namespace user
    }
 
 
-   void interaction_impl::_create_window(::enum_parallelization eparallelization)
+   //void interaction_impl::_create_window(::enum_parallelization eparallelization)
+   void interaction_impl::_create_window()
    {
 
       {
@@ -690,18 +697,18 @@ namespace user
             };
 
 
-         if (eparallelization == e_parallelization_asynchronous)
-         {
+         //if (eparallelization == e_parallelization_asynchronous)
+         //{
 
-            user_post(procedure);
+            ///user_post(procedure);
 
-         }
-         else
-         {
+         //}
+         //else
+         //{
 
             user_send(procedure);
 
-         }
+         //}
 
 
          //});
@@ -714,12 +721,12 @@ namespace user
    void interaction_impl::native_create_host_alternate()
    {
 
-      //      auto pwindowMain = acmesystem()->m_paurasystem->m_pwindowMain;
+      //      auto pwindowMain = system()->m_paurasystem->m_pwindowMain;
       //
       //      if (pwindowMain && !pwindowMain->m_puserinteractionimpl)
       //      {
       //
-      //         m_pwindow = acmesystem()->m_paurasystem->m_pwindowMain;
+      //         m_pwindow = system()->m_paurasystem->m_pwindowMain;
       //
       //         m_pwindow->m_puserinteractionimpl = this;
       //
@@ -740,10 +747,10 @@ namespace user
       //
       //         //}
       //
-      //         if (!acmesystem()->m_paurasystem->m_pwindowMain)
+      //         if (!system()->m_paurasystem->m_pwindowMain)
       //         {
       //
-      //            acmesystem()->m_paurasystem->m_pwindowMain = m_pwindow;
+      //            system()->m_paurasystem->m_pwindowMain = m_pwindow;
       //
       //         }
       //
@@ -857,7 +864,8 @@ namespace user
    }
 
 
-   void interaction_impl::create_host(::user::interaction * puserinteraction, enum_parallelization eparallelization)
+   //void interaction_impl::create_host(::user::interaction * puserinteraction, enum_parallelization eparallelization)
+   void interaction_impl::create_host(::user::interaction * puserinteraction)
    {
 
       m_puserinteraction = puserinteraction;
@@ -871,6 +879,24 @@ namespace user
       m_puserinteraction->m_ewindowflag |= e_window_flag_postpone_visual_update;
 
 #endif
+
+      auto pusersystem = puserinteraction->m_pusersystem;
+
+      if(pusersystem)
+      {
+
+         add(pusersystem->m_prequest);
+
+         for(auto & poutputpurpose : pusersystem->m_graphicsoutputpurposea)
+         {
+
+            information() << "adding graphical output_purpose from user::system";
+
+            add(poutputpurpose);
+
+         }
+
+      }
 
       bool bNewOwnThread = true;
 
@@ -976,6 +1002,34 @@ namespace user
 
          m_pgraphicsthread = pgraphicsthread;
 
+         auto pusersystem = m_puserinteraction->m_pusersystem;
+
+         if (pusersystem)
+         {
+
+            auto prequest = pusersystem->m_prequest;
+
+            if (prequest)
+            {
+
+               information() << "pgraphicsthread->m_eventReady.ResetEvent();";
+
+               pgraphicsthread->m_eventReady.ResetEvent();
+
+               prequest->m_procedureaOnFinishRequest.add(
+                  [this, pgraphicsthread]()
+                  {
+
+                     information() << "pgraphicsthread->m_eventReady.SetEvent();";
+
+                     pgraphicsthread->m_eventReady.SetEvent();
+
+                  });
+
+            }
+
+         }
+
          m_pgraphicsthread->initialize_graphics_thread(this);
 
          m_puserinteraction->add_task(m_pgraphicsthread);
@@ -990,7 +1044,9 @@ namespace user
          information() << "interaction_impl::create_host user thread branch";
 
          //if (!m_puserthread->begin_synch())
-         m_puserthread->branch(eparallelization);
+         //m_puserthread->branch(eparallelization);
+        // m_puserthread->branch(e_parallelization_synchronous);
+         m_puserthread->branch(e_parallelization_synchronous);
          //{
 
          //   __release(m_pgraphicsthread);
@@ -1103,7 +1159,9 @@ namespace user
 
          //}
 
-         operating_system_create_host(eparallelization);
+         //operating_system_create_host(eparallelization);
+
+         operating_system_create_host();
 
          ////if (!native_create_host())
          //{
@@ -1483,16 +1541,30 @@ namespace user
       //}
 
 
-   void interaction_impl::add_auto_refresh(::particle * pparticle)
+   void interaction_impl::add(::graphics::output_purpose * pgraphicaloutputpurpose)
    {
+
+      if(::is_null(pgraphicaloutputpurpose))
+      {
+
+         return;
+
+      }
+
+      if(pgraphicaloutputpurpose->m_egraphicsoutputpurpose == ::graphics::e_output_purpose_none)
+      {
+
+         return;
+
+      }
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      bool bWasEmpty = m_particleaAutoRefresh.is_empty();
+      bool bHadNoInterest = !has_graphical_output_purpose();
 
-      bool bAdded = m_particleaAutoRefresh.add_unique(pparticle);
+      bool bAdded = m_graphicaloutputpurposea.add_unique(pgraphicaloutputpurpose);
 
-      if (bAdded && bWasEmpty)
+      if (bAdded && bHadNoInterest)
       {
 
          m_puserinteraction->set_need_redraw();
@@ -1504,22 +1576,81 @@ namespace user
    }
 
 
-   void interaction_impl::erase_auto_refresh(::particle * pparticle)
+   void interaction_impl::erase(::graphics::output_purpose * pgraphicaloutputpurpose)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      m_particleaAutoRefresh.erase(pparticle);
+      m_graphicaloutputpurposea.erase(pgraphicaloutputpurpose);
 
    }
 
 
-   bool interaction_impl::is_auto_refresh(const ::particle * pparticle) const
+   void interaction_impl::add_graphical_output_purpose(::particle * pparticleGraphicalOutputPurposeOriginator, ::graphics::enum_output_purpose epurpose)
+   {
+
+      if(::is_null(pparticleGraphicalOutputPurposeOriginator))
+      {
+
+         return;
+
+      }
+
+      if(epurpose == ::graphics::e_output_purpose_none)
+      {
+
+         return;
+
+      }
+
+      auto poutputpurpose = __new(::graphics::output_purpose(pparticleGraphicalOutputPurposeOriginator, epurpose));
+
+      bool bHadGraphicalOutputPurpose = m_puserinteraction->has_graphical_output_purpose();
+
+      this->add(poutputpurpose);
+
+      bool bHasGraphicalOutputPurpose = m_puserinteraction->has_graphical_output_purpose();
+
+      if (bHasGraphicalOutputPurpose && !bHadGraphicalOutputPurpose)
+      {
+
+         m_puserinteraction->set_need_redraw();
+
+         m_puserinteraction->post_redraw();
+
+      }
+
+   }
+
+
+   void interaction_impl::erase_graphical_output_purpose(::particle * pparticleGraphicalOutputPurposeOriginator)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      return m_particleaAutoRefresh.contains(pparticle);
+      m_graphicaloutputpurposea.predicate_erase([pparticleGraphicalOutputPurposeOriginator](auto ppurpose)
+                                                {
+
+         return ppurpose->m_pparticleGraphicalOutputPurposeOriginator == pparticleGraphicalOutputPurposeOriginator;
+
+                                                });
+
+   }
+
+
+   bool interaction_impl::does_particle_has_fps_purpose(const ::particle * pparticleGraphicalOutputPurposeOriginator) const
+   {
+
+      _synchronous_lock synchronouslock(this->synchronization());
+
+      return m_graphicaloutputpurposea.predicate_contains([pparticleGraphicalOutputPurposeOriginator](auto ppurpose)
+                                                          {
+
+                                                             return ppurpose->m_pparticleGraphicalOutputPurposeOriginator == pparticleGraphicalOutputPurposeOriginator
+                                                                    && ppurpose->m_egraphicsoutputpurpose &
+                                                                       ::graphics::e_output_purpose_fps;
+
+                                                          });
 
    }
 
@@ -2260,6 +2391,8 @@ namespace user
 
          ::pointer<::message::mouse>pmouse = pmessage;
 
+         //information() << "msghdl pwnd : " << (::iptr) pmouse->m_pwindow.m_p;
+
          on_mouse_message(pmouse);
 
          return;
@@ -2357,6 +2490,24 @@ namespace user
             m_puserinteraction->post_message(e_message_pos_create);
 
          }
+
+         if(has_screen_output_purpose())
+         {
+
+            m_puserinteraction->set_need_layout();
+
+            m_puserinteraction->set_need_redraw();
+
+            m_puserinteraction->post_redraw();
+
+         }
+
+         //if(m_puserinteraction->m_setneedredrawa.has_element())
+         //{
+
+         //   m_puserinteraction->post_redraw();
+
+         //}
          
       }
 
@@ -2436,7 +2587,7 @@ namespace user
       //         if(m_puserinteraction != nullptr && m_puserinteraction->get_session()  != nullptr && m_puserinteraction->get_session() != get_session())
       //         {
       //
-      //            auto psystem = acmesystem();
+      //            auto psystem = system();
       //
       //            auto psession = psystem->node();
       //
@@ -2519,6 +2670,8 @@ namespace user
       auto pwindowing = windowing();
 
       pwindowing->set(pmouse, oswindow(), m_pwindow, pmouse->m_atom, pmouse->m_wparam, pmouse->m_lparam);
+
+      //information() << "omousemsg pwnd : " << (::iptr) pmouse->m_pwindow.m_p;
 
       if (pmouse->m_atom == e_message_mouse_move)
       {
@@ -2618,9 +2771,11 @@ namespace user
 
          //information() << "on_mouse_message CAPTURED to object of type : " << strType;
 
+         //information() << "omousemsg pwnd (B) : " << (::iptr) pmouse->m_pwindow.m_p;
+
          m_puserinteractionMouseCapture->route_as_parent_mouse_message(pmouse);
 
-         information() << "on_mouse_message (capture): " << pmouse->m_pointAbsolute;
+         //information() << "on_mouse_message (capture): " << pmouse->m_pointAbsolute;
 
          if (!pmouse->m_bRet && m_puserinteractionMouseCapture)
          {
@@ -2637,7 +2792,13 @@ namespace user
 
          //information() << "on_mouse_message type : " << strType;
 
+         //information() << "omousemsg this (F) : " << (::iptr) (::user::message *)pmouse;
+         //information() << "omousemsg pwnd (F) : " << (::iptr) pmouse->m_pwindow.m_p;
+
          m_puserinteraction->on_mouse_message(pmouse);
+
+         //information() << "omousemsg this (Q) : " << (::iptr) (::user::message *)pmouse;
+         //information() << "omousemsg pwnd (Q) : " << (::iptr) pmouse->m_pwindow.m_p;
 
       }
 
@@ -3464,8 +3625,8 @@ namespace user
    //    else
    //    {
 
-   //       //stop_auto_refresh();
-   //       //child_post_quit("auto_refresh");
+   //       //stop_fps_interest();
+   //       //child_post_quit("fps_interest");
 
    //    }
 
@@ -4129,8 +4290,17 @@ namespace user
 
 #endif
 
+      bool bFullRedraw = false;
+
       for (auto & predraw : m_redrawitema)
       {
+
+         if (predraw->m_rectanglea.is_empty())
+         {
+
+            return;
+
+         }
 
          bool bContainsAll = true;
 
@@ -4138,6 +4308,15 @@ namespace user
 
          for (auto & rectangle : rectangleaHostNeedRedraw)
          {
+
+            if (rectangle.is_null())
+            {
+
+               bFullRedraw = true;
+
+               break;
+
+            }
 
             bool bContainsAny = false;
 
@@ -4177,7 +4356,13 @@ namespace user
 
          }
 
-         if (bContainsAll)
+         if (bFullRedraw)
+         {
+
+            break;
+
+         }
+         else if (bContainsAll)
          {
 
             if (function)
@@ -4190,6 +4375,7 @@ namespace user
             return;
 
          }
+
          //else if (rectangleaUnion.size() == rectangleaHostNeedRedraw.size())
          //{
 
@@ -4214,6 +4400,51 @@ namespace user
       {
 
          //informationf("set_need_redraw on doing graphics");
+
+      }
+
+      if (bFullRedraw)
+      {
+
+         if (m_redrawitema.is_empty())
+         {
+
+            auto predrawitem = __create_new<redraw_item>();
+
+            if (function)
+            {
+
+               predrawitem->m_functiona.add(function);
+
+            }
+
+            m_redrawitema.add(predrawitem);
+
+         }
+         else
+         {
+
+            for (index i = m_redrawitema.get_upper_bound(); i >= 1; i--)
+            {
+
+               m_redrawitema.first()->m_functiona.append(m_redrawitema[i]->m_functiona);
+
+               m_redrawitema.erase_at(i);
+
+            }
+
+            m_redrawitema.first()->m_rectanglea.clear();
+
+            if (function)
+            {
+
+               m_redrawitema.first()->m_functiona.add(function);
+
+            }
+
+         }
+
+         return;
 
       }
 
@@ -4376,7 +4607,7 @@ namespace user
    //}
 
 
-   //void interaction_impl::set_mouse_cursor(enum_cursor ecursor)
+   //void interaction_impl::aaa_set_mouse_cursor(enum_cursor ecursor)
    //{
 
    //   auto psession = get_session();
@@ -4860,68 +5091,6 @@ namespace user
    void interaction_impl::on_message_create(::message::message * pmessage)
    {
 
-      string strType = ::type(m_puserinteraction).name();
-
-      m_pwindowing = m_puserinteraction->windowing();
-
-      ::pointer < ::user::thread > puserthread = m_puserinteraction->m_pthreadUserInteraction;
-      
-      if(puserthread)
-      {
-         
-         puserthread->m_oswindow = window()->m_oswindow;
-         
-      }
-
-      if (m_puserinteraction->m_ewindowflag & e_window_flag_graphical)
-      {
-
-         if (::is_set(m_pgraphicsthread))
-         {
-
-            m_pgraphicsthread->set_auto_refresh_frames_per_second(get_prodevian_frames_per_second());
-
-            m_pgraphicsthread->set_nominal_frames_per_second(get_nominal_frames_per_second());
-
-            pmessage->previous();
-
-            m_pgraphicsthread->graphics_thread_reset(m_puserinteraction);
-
-         }
-
-         if (m_puserinteraction)
-         {
-
-            if (!m_puserinteraction->m_bMessageWindow)
-            {
-
-               m_pcsDisplay = memory_new(critical_section);
-
-               information() << "interaction_impl m_pgraphics alloc : " << strType;
-
-               update_graphics_resources();
-
-               information() << "interaction_impl on _create_window : " << strType;
-
-            }
-
-            if (m_pgraphicsthread && m_puserinteraction->is_graphical())
-            {
-
-               m_pgraphicsthread->graphics_thread_reset(m_puserinteraction);
-
-            }
-
-         }
-
-         if (m_pgraphicsthread)
-         {
-
-            m_pgraphicsthread->defer_create_graphics_thread();
-
-         }
-
-      }
 
    }
 
@@ -5042,6 +5211,70 @@ namespace user
       fflush(stdout);
 
 #endif
+      
+      string strType = ::type(m_puserinteraction).name();
+
+      m_pwindowing = m_puserinteraction->windowing();
+
+      ::pointer < ::user::thread > puserthread = m_puserinteraction->m_pthreadUserInteraction;
+      
+      if(puserthread)
+      {
+         
+         puserthread->m_oswindow = window()->m_oswindow;
+         
+      }
+
+      if (m_puserinteraction->m_ewindowflag & e_window_flag_graphical)
+      {
+
+         if (::is_set(m_pgraphicsthread))
+         {
+
+            m_pgraphicsthread->set_fps_interest_frames_per_second(get_prodevian_frames_per_second());
+
+            m_pgraphicsthread->set_nominal_frames_per_second(get_nominal_frames_per_second());
+
+            pmessage->previous();
+
+            m_pgraphicsthread->graphics_thread_reset(m_puserinteraction);
+
+         }
+
+         if (m_puserinteraction)
+         {
+
+            if (!m_puserinteraction->m_bMessageWindow)
+            {
+
+               m_pcsDisplay = memory_new(critical_section);
+
+               information() << "interaction_impl m_pgraphics alloc : " << strType;
+
+               update_graphics_resources();
+
+               information() << "interaction_impl on _create_window : " << strType;
+
+            }
+
+            if (m_pgraphicsthread && m_puserinteraction->is_graphical())
+            {
+
+               m_pgraphicsthread->graphics_thread_reset(m_puserinteraction);
+
+            }
+
+         }
+
+         if (m_pgraphicsthread)
+         {
+
+            m_pgraphicsthread->defer_create_graphics_thread();
+
+         }
+
+      }
+
 
    }
 
@@ -5291,17 +5524,6 @@ namespace user
 
       };
 
-      if (!(m_puserinteraction->m_ewindowflag & e_window_flag_window_created))
-      {
-
-         set_need_redraw();
-
-         post_redraw();
-
-         return;
-
-      }
-
 #if TIME_REPORTING
 
       ::time timeStart;
@@ -5503,11 +5725,15 @@ namespace user
                 bDraw = true;
 
              }*/
-
+#ifdef MORE_LOG
+information() << "do_graphics(A)";
+#endif
 update_graphics_resources();
 
 if (bDraw && m_pgraphics.is_null())
 {
+
+   information() << "do_graphics exit(A1)";
 
    return;
 
@@ -5521,6 +5747,8 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
    || has_finishing_flag())
 {
 
+   information() << "do_graphics exit(A2)";
+
    return;
 
 }
@@ -5528,7 +5756,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 
       //::size_i32 sizeDrawn;
 
-      //single_lock synchronouslockObjects(acmesystem()->m_paurasystem->draw2d()->get_object_list_mutex());
+      //single_lock synchronouslockObjects(system()->m_paurasystem->draw2d()->get_object_list_mutex());
 
       //if (!synchronouslockObjects.lock(0_s))
       //{
@@ -5536,7 +5764,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
       //   return;
 
       //}
-      //single_lock synchronouslockImages(acmesystem()->m_paurasystem->draw2d()->get_image_list_mutex());
+      //single_lock synchronouslockImages(system()->m_paurasystem->draw2d()->get_image_list_mutex());
 
       //if (!synchronouslockImages.lock(0_s))
       //{
@@ -5544,7 +5772,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
       //   return;
 
       //}
-      //single_lock synchronouslockGraphicsContext(acmesystem()->m_paurasystem->draw2d()->get_graphics_context_list_mutex());
+      //single_lock synchronouslockGraphicsContext(system()->m_paurasystem->draw2d()->get_graphics_context_list_mutex());
 
       //if (!synchronouslockGraphicsContext.lock(0_s))
       //{
@@ -5783,20 +6011,36 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 
             //pgraphics->set_origin(0., 0.);
 
+
             {
 
                _synchronous_lock synchronouslock(synchronization());
 
-               pgraphics->__construct_new(pgraphics->m_puserredraw);
-
-               pgraphics->user_redraw()->m_pgraphics = pgraphics;
-
-               pgraphics->user_redraw()->initialize_and_transfer(m_redrawitema);
-
-               if (m_redrawitema.has_element())
+               if (pgraphics->__defer_construct_new(pgraphics->m_puserredraw))
                {
 
-                  throw "what?!?!";
+                  if (system()->m_paurasystem->draw2d()->graphics_context_does_full_redraw())
+                  {
+
+                     pgraphics->m_puserredraw->m_bEnabled = false;
+
+                  }
+
+               }
+
+               if (pgraphics->m_puserredraw->m_bEnabled)
+               {
+
+                  pgraphics->user_redraw()->m_pgraphics = pgraphics;
+
+                  pgraphics->user_redraw()->initialize_and_transfer(m_redrawitema);
+
+                  if (m_redrawitema.has_element())
+                  {
+
+                     throw "what?!?!";
+
+                  }
 
                }
 
@@ -5869,9 +6113,10 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
                   pgraphics->m_bInheritDraw = false;
 
                   //            pgraphics->fill_solid_rectangle({ 0, 0, 200, 200 }, ::color::green);
-
-
-                  m_puserinteraction->_000TopCallOnDraw(pgraphics);
+#ifdef MORE_LOG
+                  information() << "defer_do_graphics _000TopCallOnLayout";
+#endif
+                  m_puserinteraction->_000TopCallOnLayout(pgraphics);
 
                   //m_puserinteraction->_000CallOnDraw(pgraphics);
 
@@ -5948,6 +6193,8 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
          if (!pbufferitem)
          {
 
+            information() << "defer_do_graphics !pbufferitem";
+
             return;
 
          }
@@ -5963,6 +6210,8 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 
          if (has_destroying_flag())
          {
+
+            information() << "defer_do_graphics has_destroying_flag()";
 
             return;
 
@@ -5985,7 +6234,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
                         //for(index i = 0; i < iSeverity * 20; i++)
                         //{
 
-            informationf("m_pgraphics->on_begin_draw FAILED (1)\n");
+            information() << "m_pgraphics->on_begin_draw FAILED (1)";
 
             //}
 
@@ -6140,6 +6389,9 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
                   //            pgraphics->fill_solid_rectangle({ 0, 0, 200, 200 }, ::color::green);
 
 
+#ifdef MORE_LOG
+                  information() << "defer_do_graphics _000TopCallOnDraw";
+#endif
                   m_puserinteraction->_000TopCallOnDraw(pgraphics);
 
                   //m_puserinteraction->_000CallOnDraw(pgraphics);
@@ -6171,6 +6423,13 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
                }
 
                m_pgraphics->m_bNewBuffer = true;
+
+            }
+            else
+            {
+
+
+               information() << "defer_do_graphics !m_puserinteraction";
 
             }
 
@@ -6239,7 +6498,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
          if (::is_set(m_puserinteraction) && m_puserinteraction->is_graphical())
          {
 
-            m_pgraphicsthread->set_auto_refresh_frames_per_second(m_frequencyProdevianFramesPerSecond);
+            m_pgraphicsthread->set_fps_interest_frames_per_second(m_frequencyProdevianFramesPerSecond);
 
          }
 
@@ -6823,14 +7082,16 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 
       //      on_final_set_keyboard_focus();
       //
-      //      if (m_puserinteraction->m_ewindowflag & e_window_flag_focus)
-      //      {
+      //if (m_puserinteraction->m_ewindowflag & e_window_flag_focus)
+      //{
+      //   
+      //   return;
       //
-      //         return;
+      //}
       //
-      //      }
-      //
-      //      m_puserinteraction->m_ewindowflag |= e_window_flag_focus;
+      //m_puserinteraction->m_ewindowflag |= e_window_flag_focus;
+
+      on_final_set_keyboard_focus();
 
    }
 
@@ -6922,9 +7183,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
          if (m_puserinteractionKeyboardFocusRequest == m_puserinteractionToKillKeyboardFocus)
          {
 
-            m_puserinteractionKeyboardFocusRequest.release();
-
-            return;
+            m_puserinteractionToKillKeyboardFocus.release();
 
          }
 
@@ -6935,11 +7194,20 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 
             information() << "on_final_set_keyboard_focus : (2)";
 
+            auto puserinteractionKeyboardFocusOld = m_puserinteractionKeyboardFocus;
+
             m_puserinteractionKeyboardFocus = m_puserinteractionKeyboardFocusRequest;
 
             m_puserinteractionKeyboardFocusRequest = nullptr;
 
             auto puserinteractionKeyboardFocus = m_puserinteractionKeyboardFocus;
+
+            if (puserinteractionKeyboardFocusOld)
+            {
+
+               puserinteractionKeyboardFocusOld->on_kill_keyboard_focus();
+
+            }
 
             if (puserinteractionKeyboardFocus)
             {
@@ -7030,14 +7298,14 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 
       ::pointer<::message::kill_keyboard_focus>pkillkeyboardfocus(pmessage);
 
-      if (!(m_puserinteraction->m_ewindowflag & e_window_flag_focus))
-      {
+      //if (!(m_puserinteraction->m_ewindowflag & e_window_flag_focus))
+      //{
 
-         return;
+      //   return;
 
-      }
+      //}
 
-      m_puserinteraction->m_ewindowflag -= e_window_flag_focus;
+      //m_puserinteraction->m_ewindowflag -= e_window_flag_focus;
 
       on_final_kill_keyboard_focus();
 
@@ -7052,32 +7320,18 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 
       information() << "on_final_kill_keyboard_focus";
 
-      if (m_puserinteractionToKillKeyboardFocus)
+      auto puserinteractionKeyboardFocus = m_puserinteractionKeyboardFocus;
+
+      m_puserinteractionKeyboardFocusRequest.release();
+
+      m_puserinteractionKeyboardFocus.release();
+
+      synchronouslock.unlock();
+
+      if(puserinteractionKeyboardFocus)
       {
 
-         if (m_puserinteractionKeyboardFocusRequest == m_puserinteractionToKillKeyboardFocus)
-         {
-
-            m_puserinteractionToKillKeyboardFocus.release();
-
-            return;
-
-         }
-
-         auto pinteraction = m_puserinteractionToKillKeyboardFocus;
-
-         if (m_puserinteractionKeyboardFocus == pinteraction)
-         {
-
-            m_puserinteractionKeyboardFocus.release();
-
-         }
-
-         m_puserinteractionToKillKeyboardFocus = nullptr;
-
-         synchronouslock.unlock();
-
-         pinteraction->on_kill_keyboard_focus();
+         puserinteractionKeyboardFocus->on_kill_keyboard_focus();
 
       }
 
@@ -7293,7 +7547,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 
    //   }
 
-   //   ::user::interaction * pinteraction = pprimitive->get_host_window();
+   //   ::user::interaction * pinteraction = pprimitive->get_host_user_interaction();
 
    //   if (pinteraction == nullptr)
    //   {
@@ -7377,7 +7631,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 
       //}
 
-      //::user::interaction * pinteractionHost = puserinteraction->get_host_window();
+      //::user::interaction * pinteractionHost = puserinteraction->get_host_user_interaction();
 
       //if (::is_null(pinteractionHost))
       //{
@@ -9080,6 +9334,92 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
    }
 
 
+//   bool interaction_impl::is_there_graphics_output_interest() const
+//   {
+//
+//      return m_particleaAutoRefresh;
+//
+//   }
+
+
+//   ::graphics::enum_output_purpose interaction_impl::most_demanding_graphical_output_purpose() const
+//   {
+//
+//      ::graphics::enum_output_purpose epurposeMostDemanding = ::graphics::e_output_purpose_none;
+//
+//      for(auto & ppurpose : m_graphicaloutputpurposea)
+//      {
+//
+//         if(ppurpose->m_epurpose > epurposeMostDemanding)
+//         {
+//
+//            epurposeMostDemanding = ppurpose->m_epurpose;
+//
+//         }
+//
+//      }
+//
+//      return epurposeMostDemanding;
+//
+//   }
+
+
+   bool interaction_impl::has_screen_output_purpose() const
+   {
+
+      //::graphics::enum_output_purpose epurposeMostDemanding = ::graphics::e_output_purpose_none;
+
+      for(auto & ppurpose : m_graphicaloutputpurposea)
+      {
+
+         if(ppurpose->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_screen)
+         {
+
+            return true;
+
+         }
+
+      }
+
+      //return epurposeMostDemanding;
+
+      return false;
+
+   }
+
+
+   bool interaction_impl::has_graphical_output_purpose() const
+   {
+
+      return m_graphicaloutputpurposea.has_element();
+
+   }
+
+
+   bool interaction_impl::has_fps_output_purpose() const
+   {
+
+      //::graphics::enum_output_purpose epurposeMostDemanding = ::graphics::e_output_purpose_none;
+
+      for(auto & ppurpose : m_graphicaloutputpurposea)
+      {
+
+         if(ppurpose->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_fps)
+         {
+
+            return true;
+
+         }
+
+      }
+
+      //return epurposeMostDemanding;
+
+      return false;
+
+   }
+
+
    bool interaction_impl::is_this_visible(enum_layout elayout)
    {
 
@@ -9090,12 +9430,12 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 
       }
 
-      if (m_bOfflineRender)
-      {
-
-         return true;
-
-      }
+//      if (m_bOfflineRender)
+//      {
+//
+//         return true;
+//
+//      }
 
       if (!(m_puserinteraction->m_ewindowflag & e_window_flag_is_window))
       {
@@ -9117,6 +9457,13 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
          return false;
 
       }
+
+//      if(!m_puserinteraction->m_bVisible)
+//      {
+//
+//         return false;
+//
+//      }
 
       return true;
 

@@ -68,7 +68,7 @@ namespace user
 
          m_puserinteraction = pinteraction;
 
-         if (::is_null(acmesystem()))
+         if (::is_null(system()))
          {
 
             initialize(pprimitiveParent);
@@ -99,6 +99,22 @@ namespace user
          m_puserinteraction->on_set_parent(pprimitiveParent);
 
          m_puserinteraction->on_after_set_parent();
+
+         if(m_puserinteraction->m_puserinteractionOwner)
+         {
+
+            m_puserinteraction->on_set_owner(m_puserinteraction->m_puserinteractionOwner);
+
+            ::user::primitive * puiRet = set_owner(m_puserinteraction->m_puserinteractionOwner);
+
+            if (m_puserinteraction->m_ewindowflag & e_window_flag_satellite_window)
+            {
+
+               m_puserinteraction->m_pthreadUserInteraction = m_puserinteraction->m_puserinteractionOwner->m_pthreadUserInteraction;
+
+            }
+
+         }
 
          install_message_routing(m_puserinteraction);
 
@@ -188,6 +204,13 @@ namespace user
             
             m_puserinteraction->send_message(e_message_create);
             
+         }
+
+         if (m_puserinteraction->m_procedureOnAfterCreate)
+         {
+
+            m_puserinteraction->m_procedureOnAfterCreate();
+
          }
 
       //}
@@ -632,6 +655,14 @@ namespace user
       return true;
 
    }
+
+
+//   bool interaction_child::is_there_graphics_output_interest() const
+//   {
+//
+//      return true;
+//
+//   }
 
 
 //   void interaction_child::_window_show_change_visibility_unlocked(::e_display edisplay, ::e_activation eactivation)

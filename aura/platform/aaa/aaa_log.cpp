@@ -44,7 +44,7 @@ namespace aura
 
 #else
 
-      ::file::path pathTrace =          auto psystem = acmesystem();
+      ::file::path pathTrace =          auto psystem = system();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -179,7 +179,7 @@ pacmedirectory->system() / "trace.txt";
 
       m_bInitialized = true;
 
-      if (file_is_true_dup(         auto psystem = acmesystem();
+      if (file_is_true_dup(         auto psystem = system();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -480,7 +480,7 @@ pacmedirectory->system() / "log.txt"))
          try
          {
 
-                     auto psystem = acmesystem();
+                     auto psystem = system();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -557,7 +557,7 @@ pacmedirectory->create(::file_path_folder(m_strLogPath));
 
                   sleep(1_s);
 
-                  if (!acmepath()->app_module().case_insensitive_contains("logviewer") && acmefile()->exists(         auto psystem = acmesystem();
+                  if (!acmepath()->app_module().case_insensitive_contains("logviewer") && acmefile()->exists(         auto psystem = system();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 

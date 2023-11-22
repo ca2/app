@@ -13,6 +13,7 @@
 #include "acme/constant/message.h"
 #include "acme/constant/simple_command.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/platform/acme.h"
 #include "acme/platform/system_setup.h"
 #include "acme/primitive/collection/_container.h"
 #include "apex/message/simple_command.h"
@@ -28,11 +29,11 @@
 #include "aura/platform/node.h"
 
 
-::pointer< ::mutex > g_pmutexUser = nullptr;
+//::pointer< ::mutex > g_pmutexUser = nullptr;
 
 
-CLASS_DECL_AURA void initialize_user_mutex();
-CLASS_DECL_AURA void finalize_user_mutex();
+//CLASS_DECL_AURA void initialize_user_mutex();
+//CLASS_DECL_AURA void finalize_user_mutex();
 
 
 //::critical_section g_criticalsectionChildren;
@@ -58,7 +59,7 @@ namespace user
       m_pbaseuser = nullptr;
       m_pbreduser = nullptr;
       m_pcoreuser = nullptr;
-      ::initialize_user_mutex();
+      //::initialize_user_mutex();
       //initialize_children_mutex();
 
       m_bOnInitializeWindowObject = false;
@@ -70,7 +71,9 @@ namespace user
    {
 
       //finalize_children_mutex();
-      ::finalize_user_mutex();
+      //::finalize_user_mutex();
+      //g_pmutexUser = nullptr;
+      //m_pmutexUser.release();
 
    }
 
@@ -85,6 +88,12 @@ namespace user
 
       ::acme::department::initialize(pparticle);
 
+
+      m_pmutexUser = acmenode()->create_mutex();
+
+      //g_pmutexUser = m_pmutexUser;
+
+
       //if (!estatus)
       //{
 
@@ -96,7 +105,7 @@ namespace user
 
       printf("base::user::initialize (2)\n");
 
-      create_windowing();
+      //create_windowing();
 
       //if (!estatus)
       //{
@@ -156,7 +165,7 @@ namespace user
 
       //}
 
-      acmesystem()->m_pnode->fetch_user_color();
+      system()->m_pnode->fetch_user_color();
 
       m_puserstyle->default_style_construct();
 
@@ -518,7 +527,7 @@ namespace user
 
       //::payload & varTopicQuey = psystem->commnam_varTopicQuery;
 
-      auto psystem = acmesystem()->m_paurasystem;
+      auto psystem = system()->m_paurasystem;
 
       bool bHasInstall = psystem->is_true("install");
 
@@ -930,7 +939,7 @@ namespace aura
          try
          {
 
-            auto psystem = acmesystem()->m_paurasystem;
+            auto psystem = system()->m_paurasystem;
 
             if (psystem)
             {
@@ -1440,7 +1449,7 @@ namespace user
 
       __construct(m_pdesktopenvironment);
 
-      auto psystem = acmesystem();
+      auto psystem = system();
 
       auto pacmenode = psystem->m_pacmenode;
 
@@ -1522,7 +1531,7 @@ namespace user
    //::aura::system * useracmesystem()
    //{
 
-   //   return ::is_set(acmesystem()) ? dynamic_cast <::aura::system *> (acmesystem()) : nullptr;
+   //   return ::is_set(system()) ? dynamic_cast <::aura::system *> (system()) : nullptr;
 
    //}
 
@@ -1542,39 +1551,93 @@ namespace user
 CLASS_DECL_AURA ::particle * user_synchronization()
 {
 
-   return g_pmutexUser;
+   auto pplatform = platform::get();
 
-}
-
-
-CLASS_DECL_AURA void initialize_user_mutex()
-{
-
-   if(g_pmutexUser)
+   if (::is_null(pplatform))
    {
 
-      return;
+      return nullptr;
 
    }
 
-   g_pmutexUser = ::acme::acme::g_pacme->m_psubsystem->acmesystem()->node()->create_mutex();
+   auto psystem = pplatform->system();
 
-}
-
-
-CLASS_DECL_AURA void finalize_user_mutex()
-{
-
-   if(!g_pmutexUser)
+   if (::is_null(psystem))
    {
 
-      return;
+      return nullptr;
 
    }
 
-   g_pmutexUser.release();
+   auto psession = psystem->session();
+
+   if (::is_null(psession))
+   {
+
+      return nullptr;
+
+   }
+
+   auto paurasession = psession->m_paurasession;
+
+   if (::is_null(paurasession))
+   {
+
+      return nullptr;
+
+   }
+
+   auto puser = paurasession->user();
+
+   if (::is_null(puser))
+   {
+
+      return nullptr;
+
+   }
+
+   auto pmutexUser = puser->m_pmutexUser;
+
+   if (::is_null(pmutexUser))
+   {
+
+      return nullptr;
+
+   }
+
+   return pmutexUser;
 
 }
 
+
+//CLASS_DECL_AURA void initialize_user_mutex()
+//{
+//
+//   if(g_pmutexUser)
+//   {
+//
+//      return;
+//
+//   }
+//
+//   g_pmutexUser = ::platform::get()->system()->node()->create_mutex();
+//
+//}
+//
+//
+//CLASS_DECL_AURA void finalize_user_mutex()
+//{
+//
+//   if(!g_pmutexUser)
+//   {
+//
+//      return;
+//
+//   }
+//
+//   g_pmutexUser.release();
+//
+//}
+//
 
 

@@ -156,7 +156,7 @@ namespace windowing
 
       synchronouslock.unlock();
 
-      __construct(m_pcursormanager);
+      __defer_construct(m_pcursormanager);
 
       m_pcursormanager->set_cursor_set_from_matter(pobjectContext, pathDir);
 

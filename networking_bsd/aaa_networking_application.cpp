@@ -156,7 +156,7 @@ void networking_application::add_handler(const ::string& strPrefix, networking_a
 ::e_status networking_application::on_html_response(::string & strHtml, const ::string& strUrl, const ::property_set& setPost)
 {
 
-   string strRequestScript = acmesystem()->url()->get_script(strUrl);
+   string strRequestScript = system()->url()->get_script(strUrl);
 
    for (auto& assoc : m_maphandler)
    {
@@ -188,7 +188,7 @@ void networking_application::add_handler(const ::string& strPrefix, networking_a
 
    }
 
-   auto psystem = acmesystem();
+   auto psystem = system();
 
    auto pdatetime = psystem->datetime();
 

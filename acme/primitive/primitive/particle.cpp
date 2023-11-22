@@ -273,7 +273,7 @@ void particle::on_initialize_particle()
 //}
 
 
-::acme::application * particle::acmeapplication()
+::acme::application * particle::application() const
 {
 
    return m_pcontext ? m_pcontext->m_pacmeapplication : nullptr;
@@ -281,15 +281,15 @@ void particle::on_initialize_particle()
 }
 
 
-::aura::application * particle::auraapplication()
-{
+//::aura::application * particle::auraapplication() const
+//{
+//
+//   return m_pcontext && m_pcontext->m_pacmeapplication ? m_pcontext->m_pacmeapplication->m_pauraapplication : nullptr;
+//
+//}
 
-   return m_pcontext && m_pcontext->m_pacmeapplication ? m_pcontext->m_pacmeapplication->m_pauraapplication : nullptr;
 
-}
-
-
-::acme::session* particle::acmesession()
+::acme::session* particle::session() const
 {
 
    return m_pcontext ? m_pcontext->m_pacmesession : nullptr;
@@ -297,7 +297,7 @@ void particle::on_initialize_particle()
 }
 
 
-::acme_file * particle::acmefile()
+::acme_file * particle::acmefile() const
 {
 
    return m_pcontext->acmefile();
@@ -305,7 +305,7 @@ void particle::on_initialize_particle()
 }
 
 
-::acme_path * particle::acmepath()
+::acme_path * particle::acmepath() const
 {
 
    return m_pcontext->acmepath();
@@ -313,7 +313,7 @@ void particle::on_initialize_particle()
 }
 
 
-::acme_directory * particle::acmedirectory()
+::acme_directory * particle::acmedirectory() const
 {
 
    return m_pcontext->acmedirectory();
@@ -321,7 +321,7 @@ void particle::on_initialize_particle()
 }
 
 
-::acme::node * particle::acmenode()
+::acme::node * particle::acmenode() const
 {
 
    return m_pcontext->acmenode();
@@ -329,15 +329,15 @@ void particle::on_initialize_particle()
 }
 
 
-::acme::system * particle::acmesystem()
+::acme::system * particle::system() const
 {
 
-   return ::is_set(m_pcontext) ? m_pcontext->acmesystem() : nullptr;
+   return ::is_set(m_pcontext) ? m_pcontext->system() : nullptr;
 
 }
 
 
-::acme::context* particle::acmecontext()
+::acme::context* particle::acmecontext() const
 {
 
    return m_pcontext;
@@ -345,7 +345,7 @@ void particle::on_initialize_particle()
 }
 
 
-::apex::context* particle::apexcontext()
+::apex::context* particle::apexcontext() const
 {
 
    return m_pcontext ? m_pcontext->m_papexcontext : nullptr;
@@ -353,7 +353,7 @@ void particle::on_initialize_particle()
 }
 
 
-::aura::context* particle::auracontext()
+::aura::context* particle::auracontext() const
 {
 
    return m_pcontext ? m_pcontext->m_pauracontext : nullptr;
@@ -361,31 +361,39 @@ void particle::on_initialize_particle()
 }
 
 
-::sub_system * particle::subsystem()
+::context_image* particle::context_image() const
 {
 
-   return m_pcontext->acmesystem()->m_psubsystem;
+   return m_pcontext ? m_pcontext->context_image() : nullptr;
 
 }
 
 
-::datetime::datetime* particle::datetime()
+//::platform::platform * particle::platform() const
+//{
+//
+//   return m_pcontext->platform();
+//
+//}
+
+
+::datetime::datetime* particle::datetime() const
 {
 
-   return acmesystem()->datetime();
+   return system()->datetime();
 
 }
 
 
-::url::url* particle::url()
+::url::url* particle::url() const
 {
 
-   return acmesystem()->url();
+   return system()->url();
 
 }
 
 
-::os_context * particle::os_context()
+::os_context * particle::os_context() const
 {
 
    return m_pcontext->os_context();
@@ -393,32 +401,32 @@ void particle::on_initialize_particle()
 }
 
 
-::nano::nano * particle::nano()
+::nano::nano * particle::nano() const
 {
 
-   return acmesystem()->nano();
+   return system()->nano();
 
 }
 
-::crypto::crypto* particle::crypto()
+::crypto::crypto* particle::crypto() const
 {
 
-   return acmesystem()->crypto();
-
-}
-
-
-::apex::application * particle::apexapplication()
-{
-
-   auto pacmeapplication = acmeapplication();
-
-   return ::is_set(pacmeapplication) ? pacmeapplication->m_papexapplication : nullptr;
+   return system()->crypto();
 
 }
 
 
-::dir_context * particle::dir()
+::apex::application * particle::apexapplication() const
+{
+
+   auto papplication = application();
+
+   return ::is_set(papplication) ? papplication->m_papexapplication : nullptr;
+
+}
+
+
+::dir_context * particle::dir() const
 {
 
    return m_pcontext->dir();
@@ -426,7 +434,7 @@ void particle::on_initialize_particle()
 }
 
 
-::dir_system * particle::dirsystem()
+::dir_system * particle::dirsystem() const
 {
 
    return m_pcontext->dirsystem();
@@ -434,7 +442,7 @@ void particle::on_initialize_particle()
 }
 
 
-::file_context * particle::file()
+::file_context * particle::file() const
 {
 
    return m_pcontext->file();
@@ -442,7 +450,7 @@ void particle::on_initialize_particle()
 }
 
 
-::file_system * particle::filesystem()
+::file_system * particle::filesystem() const
 {
 
    return m_pcontext->filesystem();
@@ -450,26 +458,26 @@ void particle::on_initialize_particle()
 }
 
 
-::factory::factory_pointer & particle::factory()
+::factory::factory_pointer & particle::factory() const
 {
 
-   return ::acme::acme::g_pacme->m_psubsystem->factory();
+   return platform()->factory();
 
 }
 
 
-::factory::factory_pointer & particle::factory(const ::string & strLibrary)
+::factory::factory_pointer & particle::factory(const ::string & strLibrary) const
 {
 
-   return acmesystem()->m_psubsystem->factory(strLibrary);
+   return platform()->factory(strLibrary);
 
 }
 
 
-::factory::factory_pointer& particle::factory(const ::string& strComponent, const ::string& strImplementation)
+::factory::factory_pointer& particle::factory(const ::string& strComponent, const ::string& strImplementation) const
 {
 
-   return acmesystem()->m_psubsystem->factory(strComponent, strImplementation);
+   return platform()->factory(strComponent, strImplementation);
 
 }
 
@@ -768,25 +776,18 @@ class tracer * particle::tracer() const
    if (!ptask)
    {
 
-      auto pacme = ::acme::acme::g_pacme;
+      auto pplatform = ::platform::get();
 
-      if (::is_set(pacme))
+      if (::is_set(pplatform))
       {
 
-         auto psubsystem = pacme->m_psubsystem;
+         auto pcontext = pplatform->m_pcontext;
 
-         if (::is_set(psubsystem))
+         if (::is_set(pcontext))
          {
 
-            auto pcontext = psubsystem->m_pcontext;
 
-            if (::is_set(pcontext))
-            {
-
-
-               return pcontext;
-
-            }
+            return pcontext;
 
          }
 
@@ -1220,7 +1221,7 @@ void particle::_wait()
    if (::is_null(ptask))
    {
 
-      ptask = acmesystem();
+      ptask = system();
 
    }
 
@@ -1290,7 +1291,7 @@ void particle::_wait()
    if (::is_null(ptask))
    {
 
-      ptask = acmesystem();
+      ptask = system();
 
    }
 
@@ -1651,7 +1652,7 @@ bool particle::is_branch_current() const
 ::extended_topic_pointer create_extended_topic(::particle * pparticleCall, const ::atom & atom)
 {
 
-   return ::transfer(pparticleCall->acmesystem()->create_extended_topic(atom));
+   return ::transfer(pparticleCall->system()->create_extended_topic(atom));
 
 }
 
@@ -1662,7 +1663,7 @@ CLASS_DECL_ACME void __call(::particle * pparticle, const ::atom & atom, i64 wPa
    if (::is_null(pparticleCall))
    {
 
-      auto psystem = pparticle->acmesystem();
+      auto psystem = pparticle->system();
 
       auto ptopic = psystem->create_topic(atom);
 
@@ -1858,7 +1859,7 @@ void particle::set_timeout(const class time & timeTimeout)
 ::user::user * particle::aurauser()
 {
 
-   return ::is_set(acmeapplication()) ? acmeapplication()->aurauser() : nullptr;
+   return ::is_set(application()) ? application()->aurauser() : nullptr;
 
 }
 
@@ -1866,7 +1867,7 @@ void particle::set_timeout(const class time & timeTimeout)
 ::axis::user * particle::axisuser()
 {
 
-   return ::is_set(acmeapplication()) ? acmeapplication()->axisuser() : nullptr;
+   return ::is_set(application()) ? application()->axisuser() : nullptr;
 
 }
 
@@ -1874,7 +1875,7 @@ void particle::set_timeout(const class time & timeTimeout)
 ::base::user * particle::baseuser()
 {
 
-   return ::is_set(acmeapplication()) ? acmeapplication()->baseuser() : nullptr;
+   return ::is_set(application()) ? application()->baseuser() : nullptr;
 
 }
 
@@ -1882,7 +1883,7 @@ void particle::set_timeout(const class time & timeTimeout)
 ::bred::user * particle::breduser()
 {
 
-   return ::is_set(acmeapplication()) ? acmeapplication()->breduser() : nullptr;
+   return ::is_set(application()) ? application()->breduser() : nullptr;
 
 }
 
@@ -1890,7 +1891,7 @@ void particle::set_timeout(const class time & timeTimeout)
 ::core::user * particle::coreuser()
 {
 
-   return ::is_set(acmeapplication()) ? acmeapplication()->coreuser() : nullptr;
+   return ::is_set(application()) ? application()->coreuser() : nullptr;
 
 }
 
@@ -2072,7 +2073,7 @@ void particle::destroy()
    //if (estatus == error_pending)
    //{
 
-   //   //acmesystem()->add_pending_finish(this);
+   //   //system()->add_pending_finish(this);
 
    //   return estatus;
 
@@ -2083,7 +2084,7 @@ void particle::destroy()
    ////if (estatus == error_pending)
    ////{
 
-   ////   //acmesystem()->add_pending_finish(this);
+   ////   //system()->add_pending_finish(this);
 
    ////   return estatus;
 
@@ -2193,7 +2194,7 @@ void particle::kick_idle()
 pointer < ::sequencer < ::conversation > > particle::message_box(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails)
 {
 
-   return acmesystem()->nano()->message_box(strMessage, strTitle, emessagebox, strDetails);
+   return system()->nano()->message_box(strMessage, strTitle, emessagebox, strDetails);
 
 }
 
@@ -2201,7 +2202,7 @@ pointer < ::sequencer < ::conversation > > particle::message_box(const ::string&
 pointer < ::sequencer < ::conversation > > particle::exception_message_box(const ::exception& exception, const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails)
 {
 
-   return acmesystem()->nano()->exception_message_box(exception, strMessage, strTitle, emessagebox, strDetails);
+   return system()->nano()->exception_message_box(exception, strMessage, strTitle, emessagebox, strDetails);
 
 }
 
@@ -2209,7 +2210,7 @@ pointer < ::sequencer < ::conversation > > particle::exception_message_box(const
 pointer < ::sequencer < ::conversation > > particle::message_console(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails)
 {
 
-   return acmesystem()->nano()->message_console(strMessage, strTitle, emessagebox, strDetails);
+   return system()->nano()->message_console(strMessage, strTitle, emessagebox, strDetails);
 
 }
 
@@ -2217,7 +2218,7 @@ pointer < ::sequencer < ::conversation > > particle::message_console(const ::str
 pointer < ::sequencer < ::conversation > > particle::exception_message_console(const ::exception& exception, const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails)
 {
 
-   return acmesystem()->nano()->exception_message_console(exception, strMessage, strTitle, emessagebox, strDetails);
+   return system()->nano()->exception_message_console(exception, strMessage, strTitle, emessagebox, strDetails);
 
 }
 
@@ -2225,7 +2226,7 @@ pointer < ::sequencer < ::conversation > > particle::exception_message_console(c
 void particle::app_post(const ::procedure & procedure)
 {
 
-   acmeapplication()->post_procedure(procedure);
+   application()->post_procedure(procedure);
 
 }
 
@@ -2233,7 +2234,7 @@ void particle::app_post(const ::procedure & procedure)
 ::task_pointer particle::app_fork(const ::procedure & procedure)
 {
 
-   return acmeapplication()->fork(procedure);
+   return application()->fork(procedure);
 
 }
 
@@ -2288,7 +2289,7 @@ CLASS_DECL_ACME class tracer * tracer()
    if (!ptask)
    {
 
-      return ::acme::acme::g_pacme->m_psubsystem->m_pcontext;
+      return ::platform::get()->m_pcontext;
 
    }
 

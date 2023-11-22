@@ -55,6 +55,35 @@ namespace macos
    }
 
 
+#ifdef _DEBUG
+
+
+i64 nano_window::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+{
+
+return ::property_object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+
+}
+
+
+i64 nano_window::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+{
+
+return ::property_object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+
+}
+
+
+i64 nano_window::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+{
+
+return ::property_object::release(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+
+}
+
+
+#endif
+
    void nano_window::on_initialize_particle()
    {
 
@@ -122,7 +151,7 @@ namespace macos
    void nano_window::create()
    {
       
-      apple_defer_nano_application_create(acmesystem());
+      apple_defer_nano_application_create(system());
       
       m_pwindowbridge = __new(nano_window_bridge);
 
@@ -223,6 +252,14 @@ void nano_window::handle(::topic* ptopic, ::context* pcontext)
    }
 
 
+   void nano_window::hide()
+   {
+
+      m_pwindowbridge->hide();
+
+   }
+
+
    void nano_window::set_active()
    {
 
@@ -255,7 +292,7 @@ void nano_window::handle(::topic* ptopic, ::context* pcontext)
    void nano_window::message_loop()
    {
 
- ///     while(message_loop_step())
+ ///     while(aaa_message_loop_step())
     //  {
 
       //}
@@ -283,6 +320,8 @@ void nano_window::handle(::topic* ptopic, ::context* pcontext)
    {
 
       m_pwindowbridge->stop();
+      
+      nano_window_on_destroy();
 
    }
 

@@ -120,7 +120,7 @@ memory::memory(void * pdata, memsize iCount)
 
    this->m_sizeStorage = iCount;
    this->m_dAllocationRateUp = 0.0;
-   this->m_dwAllocationAddUp = 0;
+   this->m_dwAllocationAddUp = 4096;
 
    this->m_pcontainer = nullptr;
 
@@ -146,7 +146,7 @@ memory::memory(const void* pdata, memsize iCount)
 
    this->m_sizeStorage = iCount;
    this->m_dAllocationRateUp = 0.0;
-   this->m_dwAllocationAddUp = 0;
+   this->m_dwAllocationAddUp = 4096;
 
    this->m_pcontainer = nullptr;
 
@@ -242,7 +242,7 @@ memory::memory(memory_container * pcontainer, const void * pdata, memsize size)
 
    this->m_sizeStorage = size;
    this->m_dAllocationRateUp = 0.0;
-   this->m_dwAllocationAddUp = 0;
+   this->m_dwAllocationAddUp = 4096;
 
    this->m_pcontainer = pcontainer;
 

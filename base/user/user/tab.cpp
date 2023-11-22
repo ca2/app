@@ -1374,7 +1374,7 @@ namespace user
 
       }
 
-      auto psystem = acmesystem()->m_pbasesystem;
+      auto psystem = system()->m_pbasesystem;
 
       if (psystem->has_property("no_tabs"))
       {
@@ -1510,7 +1510,7 @@ namespace user
 
       if (m_ewindowflag & ::e_window_flag_window_created)
       {
-
+         
          set_need_redraw();
 
          post_redraw();
@@ -3165,6 +3165,7 @@ namespace user
       return m_pdata->m_rectangleHosting;
 
    }
+
 
 
 } // namespace base

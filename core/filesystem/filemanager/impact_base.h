@@ -12,9 +12,9 @@ class CLASS_DECL_CORE filemanager_impact_base :
 public:
 
 
-   bool                          m_bEditConnectInit;
-   ::fs::data *                  m_pfsdata;
-   ::filemanager::document *     m_pfilemanagerdocument;
+   bool                                      m_bEditConnectInit;
+   //::fs::data *                  m_pfsdata;
+   //::pointer < ::filemanager::document >     m_pfilemanagerdocument;
 
 
    filemanager_impact_base();
@@ -27,9 +27,10 @@ public:
    ::core::system* get_system();
 
    ::filemanager::document * get_document();
+   virtual ::filemanager::data * filemanager_data();
 
 
-   void initialize_impact(::user::document * pdocument) override;
+   //void initialize_impact(::user::document * pdocument) override;
 
 
    void install_message_routing(::channel * pchannel) override;
@@ -39,9 +40,9 @@ public:
    ::file::path filemanager_path();
 
    
-   virtual ::filemanager::document * filemanager_document() { return m_pfilemanagerdocument; }
-   virtual ::filemanager::data *                   filemanager_data();
-   ::fs::data * fs_data() { return m_pfsdata; }
+   virtual ::filemanager::document * filemanager_document();
+   //virtual ::filemanager::data *                   filemanager_data();
+   virtual ::fs::set * fs_data();
    //::filemanager::document * get_document() { return m_pfilemanagerdocument; }
 
 
@@ -59,6 +60,7 @@ public:
    DECLARE_MESSAGE_HANDLER(_001OnUpdateEditPaste);
    DECLARE_MESSAGE_HANDLER(_001OnOperationDocMessage);
 
+   virtual ::filemanager::filemanager * filemanager();
 
 };
 
@@ -105,11 +107,12 @@ public:
 
    }
 
-   inline ::fs::data * fs_data() { return ::filemanager_impact_base::fs_data(); }
+   ::fs::set * fs_data() { return ::filemanager_impact_base::fs_data(); }
 
    ::core::application* get_app() { return ::filemanager_impact_base::get_app(); }
 
    ::filemanager::document* get_document() { return ::filemanager_impact_base::get_document(); }
+
 
 
 };

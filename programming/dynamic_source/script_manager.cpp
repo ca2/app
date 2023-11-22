@@ -1337,7 +1337,7 @@ namespace dynamic_source
 
       single_lock synchronouslock(m_pmutexRsa, true);
 
-      auto psystem = acmesystem()->m_paurasystem;
+      auto psystem = system()->m_paurasystem;
 
       auto pcrypto = psystem->crypto();
 
@@ -1365,7 +1365,7 @@ namespace dynamic_source
    void script_manager::calc_rsa_key()
    {
 
-      auto psystem = acmesystem()->m_paurasystem;
+      auto psystem = system()->m_paurasystem;
 
       auto pcrypto = psystem->crypto();
 
@@ -1764,11 +1764,11 @@ namespace dynamic_source
 
 #ifdef WINDOWS
 
-      return dir()->install() / m_pcompiler->m_strDynamicSourceStage / m_pcompiler->m_pintegrationcontext->m_strPlatform / m_pcompiler->m_strDynamicSourceConfiguration / "dynamic_source" / strTransformName.folder() / strScript + strModifier + ".dll";
+      return m_pcompiler->m_pintegrationcontext->m_pathBuildFolder / m_pcompiler->m_strDynamicSourceStage / m_pcompiler->m_pintegrationcontext->m_strPlatform / m_pcompiler->m_strDynamicSourceConfiguration / "dynamic_source" / strTransformName.folder() / strScript + strModifier + ".dll";
 
 #else
 
-      return dir()->install() / m_pcompiler->m_strDynamicSourceStage / m_pcompiler->m_pintegrationcontext->m_strStagePlatform / m_pcompiler->m_strDynamicSourceConfiguration / "dynamic_source" / strTransformName.folder() / strScript + strModifier + ".so";
+      return m_pcompiler->m_pintegrationcontext->m_pathBuildFolder / m_pcompiler->m_strDynamicSourceStage / m_pcompiler->m_pintegrationcontext->m_strStagePlatform / m_pcompiler->m_strDynamicSourceConfiguration / "dynamic_source" / strTransformName.folder() / strScript + strModifier + ".so";
 
 #endif
 

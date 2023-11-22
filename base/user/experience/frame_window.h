@@ -94,7 +94,7 @@ namespace experience
 
       void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
 
-      void frame_experience_restore() override;
+      void frame_experience_restore(::e_activation eactivation = ::e_activation_default) override;
 
       virtual void on_start_layout_experience(enum_layout_experience elayoutexperience) override;
       virtual void on_end_layout_experience(enum_layout_experience elayoutexperience) override;

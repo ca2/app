@@ -3,10 +3,11 @@
 
 
 #include "command_update_target.h"
+#include "acme/filesystem/filesystem/file_dialog.h"
+#include "acme/handler/source.h"
 #include "acme/platform/conversation_message.h"
 #include "acme/primitive/geometry2d/rectangle.h"
 #include "acme/primitive/geometry2d/rectangle_array.h"
-#include "acme/filesystem/filesystem/file_dialog.h"
 #include "drag_client.h"
 
 
@@ -37,7 +38,8 @@ namespace user
    class CLASS_DECL_ACME element :
       virtual public ::user::command_update_target,
       virtual public ::conversation_message,
-      virtual public ::user::drag_client
+      virtual public ::user::drag_client,
+      virtual public ::source
    {
    public:
 
@@ -117,7 +119,7 @@ namespace user
       //::pointer<::message::message>get_message(const ::atom & atom, wparam wparam, lparam lparam) override;
       void destroy() override;
 
-      virtual ::user::interaction * get_host_window();
+      virtual ::user::interaction * get_host_user_interaction();
 
       virtual ::user::form * get_form();
 
@@ -148,9 +150,9 @@ namespace user
       virtual enum_control_type get_control_type() const;
 
 
-      virtual void add_auto_refresh(::particle * pparticle);
-      virtual void erase_auto_refresh(::particle * pparticle);
-      virtual bool is_auto_refresh(const ::particle * pparticle) const;
+      virtual void add_fps_interest(::particle * pparticle);
+      virtual void erase_fps_interest(::particle * pparticle);
+      virtual bool is_fps_interest(const ::particle * pparticle) const;
 
       virtual void display(::e_display edisplay = e_display_default, ::e_activation eactivation = e_activation_default);
 
@@ -246,7 +248,7 @@ namespace user
       virtual void design_down();
       virtual void design_up();
 
-      virtual void auto_refresh_stop();
+      virtual void fps_interest_stop();
 
 
 
@@ -283,7 +285,8 @@ namespace user
       virtual void create_interaction(::user::interaction * puserinteractionParent, const ::atom & atom = nullptr);
 
 
-      virtual void create_host(enum_parallelization eparallelization);
+      //virtual void create_host(enum_parallelization eparallelization);
+      virtual void create_host();
       virtual void create_child(::user::interaction * puserinteractionParent);
       virtual void create_control(::user::interaction * puserinteractionParent, const ::atom & atom);
 
@@ -528,10 +531,7 @@ namespace user
       virtual enum_window_type get_window_type();
 
 
-      virtual void add_child_handler(const ::signal_handler& signalhandler, const ::atom & idChild, bool bPriority = false);
-
-
-
+      virtual void add_child_handler(::particle * pparticle, const ::atom & atomChild, bool bPriority = false);
 
 
       virtual bool is_selected(::data::item * pitem);
@@ -586,7 +586,7 @@ namespace user
       virtual void keep_alive(::object * pliveobject = nullptr);
 
 
-      virtual bool has_pending_graphical_update();
+      //virtual bool has_pending_graphical_update();
       virtual void on_after_graphical_update();
 
 

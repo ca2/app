@@ -10,6 +10,9 @@
 #include "acme/primitive/geometry2d/rectangle.h"
 
 
+//class ::graphics::output_purpose;
+
+
 CLASS_DECL_ACME ::critical_section * children_critical_section();
 
 
@@ -192,7 +195,7 @@ namespace user
 } // namespace user
 
 
-class auto_refresh;
+class fps_interest;
 
 
 namespace experience

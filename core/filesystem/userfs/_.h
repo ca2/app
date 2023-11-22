@@ -16,6 +16,8 @@ namespace userfs
 
    class document;
 
+   class data;
+
 
 
    class userfs;

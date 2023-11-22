@@ -75,7 +75,7 @@ image::image()
 image::~image()
 {
    
-   auto psystem = acmesystem();
+   auto psystem = system();
 
    if (::is_set(psystem))
    {
@@ -104,7 +104,7 @@ image::~image()
 void image::on_initialize_particle()
 {
 
-   acmesystem()->m_paurasystem->draw2d()->add_image(this);
+   system()->m_paurasystem->draw2d()->add_image(this);
 
    ::particle::on_initialize_particle();
 
@@ -1835,7 +1835,7 @@ void image::fork_blend(const ::point_i32& pointDstParam, ::image* pimageSrc, con
 
    }
 
-   ::pointer<::aura::system>psystem = acmesystem();
+   ::pointer<::aura::system>psystem = system();
 
    auto pgroup = psystem->task_group();
 
@@ -9776,14 +9776,14 @@ save_image::save_image()
 //save_image::save_image(::matter * pmatter, const ::payload & payloadFile, const ::payload & varOptions)
 //{
 //
-//   ::pointer<::aura::system>psystem = acmesystem();
+//   ::pointer<::aura::system>psystem = system();
 //
 //   auto eformat = pdraw2d->text_to_format(varOptions["format"]);
 //
 //   if (eformat != ::draw2d::e_format_none)
 //   {
 //
-//      ::pointer<::aura::system>psystem = acmesystem();
+//      ::pointer<::aura::system>psystem = system();
 //
 //      eformat = pdraw2d->file_extension_to_format(payloadFile.get_file_path());
 //

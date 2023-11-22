@@ -5,6 +5,7 @@
 //#include "acme/primitive/geometry2d/_geometry2d.h"
 #include "acme/primitive/geometry2d/rectangle.h"
 #include "apex/platform/app_consumer.h"
+#include "aura/graphics/gpu/render.h"
 
 
 namespace app_shader
@@ -12,7 +13,7 @@ namespace app_shader
 
 
    class CLASS_DECL_APP_SHADER render :
-      virtual public app_consumer < application >
+      virtual public app_consumer < application, ::gpu::render >
    {
    public:
 
@@ -21,15 +22,16 @@ namespace app_shader
       bool                                m_bUpdateShader;
       string                              m_strProjection;
       string                              m_strFragment;
-      ::pointer<::gpu::context>          m_pcontext;
-      ::pointer<::gpu::program>          m_pprogram;
-      rectangle_i32                       m_rectangle;
+      //::pointer<::gpu::context>           m_pgpucontext;
+      //::pointer<::gpu::program>           m_pgpuprogram;
+      ::image_pointer                     m_pimageFromGpu;
+      //rectangle_i32                       m_rectangle;
       string                              m_strFont1;
       string_map < ::image_pointer >      m_pimagemap;
       ::image_pointer                     m_pimage1;
       ::image_pointer                     m_pimage2;
       ::color::hls                        m_hlsText;
-      class ::time                          m_timeStart;
+      class ::time                        m_timeStart;
       ::gpu::enum_shader_source           m_eshadersource;
       ::image_pointer                     m_pimageLabel;
       string                              m_strLastLabel;
@@ -62,7 +64,7 @@ namespace app_shader
 
       virtual void _001OnDraw1Through3(::draw2d::graphics_pointer & pgraphics);
 
-      virtual void on_layout(::draw2d::graphics_pointer & pgraphics);
+      void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
       virtual void defer_load_fragment(const ::string & pszPath);
 

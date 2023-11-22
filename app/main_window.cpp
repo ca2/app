@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "main_window.h"
+#include "acme/constant/message.h"
 #include "acme/handler/item.h"
 #include "acme/platform/node.h"
 #include "acme/user/user/tool.h"
@@ -42,17 +43,33 @@ namespace app_app
    }
 
 
-   void main_window::on_create_user_interaction()
+   void main_window::install_message_routing(::channel * pchannel)
    {
 
-      ::user::main_window::on_create_user_interaction();
+      ::user::main_window::install_message_routing(pchannel);
+
+      MESSAGE_LINK(e_message_create, pchannel, this, &main_window::on_message_create);
+
+   }
+
+
+   void main_window::on_message_create(::message::message * pmessage)
+   {
 
 #if !STEPPY_DEBUG
 
-      if (!is_sandboxed())
+      if (is_sandboxed())
       {
 
-         set_auto_refresh();
+         add_graphical_output_purpose(this, ::graphics::e_output_purpose_screen);
+
+      }
+      else
+      {
+
+         //set_fps_interest();
+
+         add_graphical_output_purpose(this, ::graphics::e_output_purpose_screen_fps);
 
       }
 

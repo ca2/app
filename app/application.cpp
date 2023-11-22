@@ -49,13 +49,22 @@ namespace app_app
 
       pmainwindow->display(e_display_normal);
 
-      pmainwindow->create_main_window();
+//      pmainwindow->m_procedureOnAfterCreate = [pmainwindow]()
+//      {
+//
+//         //pmainwindow->set_need_layout();
+//
+//         pmainwindow->set_need_redraw();
+//
+//         pmainwindow->post_redraw();
+//
+//      };
 
-      pmainwindow->set_need_layout();
+      pmainwindow->create_main_window(prequest);
 
-      pmainwindow->set_need_redraw();
+      //pmainwindow->m_pthreadUserInteraction->m_procedurea.add([this]() {});
 
-      pmainwindow->post_redraw();
+      //pmainwindow->m_pthreadUserInteraction->run_posted_procedures();
 
    }
 
@@ -63,8 +72,8 @@ namespace app_app
    string application::draw2d_get_default_implementation_name()
    {
 
-      //return acmesystem()->implementation_name("draw2d", "opengl");
-      //return acmesystem()->implementation_name("draw2d", "gdiplus");
+      //return system()->implementation_name("draw2d", "opengl");
+      //return system()->implementation_name("draw2d", "gdiplus");
       return ::aura::application::draw2d_get_default_implementation_name();
 
    }

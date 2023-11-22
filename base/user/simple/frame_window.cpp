@@ -16,7 +16,7 @@
 #include "apex/platform/node.h"
 #include "apex/platform/savings.h"
 #include "apex/platform/system.h"
-#include "apex/user/menu/menu.h"
+#include "apex/platform/application_menu.h"
 #include "aqua/xml/document.h"
 #include "aura/user/user/interaction_array.h"
 #include "aura/graphics/draw2d/graphics.h"
@@ -182,11 +182,100 @@ void simple_frame_window::on_update_notify_icon_menu(::index & iNotifyIconItem)
 void simple_frame_window::on_update_notify_icon_menu_header(::index & iNotifyIconItem)
 {
 
-   auto papp = auraapplication();
+   auto papp = application();
+
+   //auto puser = papp->get_session()->user()->m_pbaseuser;
 
    auto strAppTitle = papp->application_title();
 
-   m_pnotifyicon->notify_icon_insert_item(true, iNotifyIconItem, strAppTitle, "notify_icon_topic");
+   auto pmenu = m_pnotifyicon->menu();
+
+   pmenu->stock_item_at(iNotifyIconItem, strAppTitle, "notify_icon_topic");
+
+   if (papp->application_menu()->has_element())
+   {
+
+      ::index iIndexSource;
+
+      if (papp->application_menu()->first()->m_strName == strAppTitle)
+      {
+
+         if (papp->application_menu()->first()->is_popup())
+         {
+
+            auto ppopupApp = papp->application_menu()->first();
+
+            pmenu->separator_at(iNotifyIconItem);
+            
+            for (::index iIndexPopup = 0; iIndexPopup < ppopupApp->count(); iIndexPopup++)
+            {
+
+               if (iIndexPopup + 1 < ppopupApp->count())
+               {
+
+                  if (ppopupApp->element_at(iIndexPopup)->is_separator()
+                     && ppopupApp->element_at(iIndexPopup + 1)->m_atom == "app_exit")
+                  {
+
+                     if (iIndexPopup + 1 == ppopupApp->upper_bound())
+                     {
+
+                        break;
+
+                     }
+                     else if (ppopupApp->element_at(iIndexPopup + 2)->is_separator())
+                     {
+
+                        iIndexPopup += 2;
+
+                     }
+
+                  }
+
+               }
+
+               auto pitem = ppopupApp->element_at(iIndexPopup);
+
+               if (pitem->m_atom == "app_exit")
+               {
+
+                  continue;
+
+               }
+
+               pmenu->insert_at(iNotifyIconItem++, pitem);
+
+            }
+
+            pmenu->separator_at(iNotifyIconItem);
+
+         }
+
+         iIndexSource = 1;
+
+      }
+      else
+      {
+
+         iIndexSource = 0;
+
+      }
+
+      for (; iIndexSource < papp->application_menu()->count(); iIndexSource++)
+      {
+
+         auto papplicationmenu = papp->application_menu()->element_at(iIndexSource);
+
+         pmenu->insert_at(iNotifyIconItem++, papplicationmenu);
+
+      }
+
+   }
+   else
+   {
+
+   }
+
 
 }
 
@@ -194,18 +283,20 @@ void simple_frame_window::on_update_notify_icon_menu_header(::index & iNotifyIco
 void simple_frame_window::on_update_notify_icon_menu_top(::index & iNotifyIconItem)
 {
 
-   auto papp = auraapplication();
+   //auto papp = auraapplication();
 
-   auto c = papp->main_menu()->get_count();
+   //auto c = papp->application_menu()->get_count();
 
-   for (auto i = 0; i < c; i++)
-   {
+   //auto papplicationmenu = papp->application_menu();
 
-      auto pitem = papp->main_menu()->element_at(i);
+   //for (auto i = 0; i < c; i++)
+   //{
 
-      m_pnotifyicon->notify_icon_insert_item(false, iNotifyIconItem, pitem->m_strName, pitem->m_strId);
+   //      auto pitem = papp->main_menu()->element_at(i);
 
-   }
+     // m_pnotifyicon->menu()->insert_at(0, papplicationmenu); // notify_icon_insert_item(false, iNotifyIconItem, pitem->m_strName, pitem->m_strId);
+
+//   }
 
 }
 
@@ -226,10 +317,10 @@ void simple_frame_window::on_update_notify_icon_menu_bottom(::index & iNotifyIco
       && m_pframe->get_control_box()->has_button(::experience::e_button_transparent_frame))
    {
 
-      m_pnotifyicon->notify_icon_insert_item(true, iNotifyIconItem, "separator");
+      m_pnotifyicon->menu()->separator_at(iNotifyIconItem);
 
       //m_pnotifyicon->notify_icon_insert_item(iNotifyIconItem, _("Transparent Frame"), "transparent_frame");
-      m_pnotifyicon->notify_icon_insert_item(true, iNotifyIconItem, "Transparent Frame", "transparent_frame");
+      m_pnotifyicon->menu()->stock_item_at(iNotifyIconItem, "Transparent Frame", "transparent_frame");
 
    }
 
@@ -239,10 +330,10 @@ void simple_frame_window::on_update_notify_icon_menu_bottom(::index & iNotifyIco
 void simple_frame_window::on_update_notify_icon_menu_footer(::index & iNotifyIconItem)
 {
 
-   m_pnotifyicon->notify_icon_insert_item(true, iNotifyIconItem, "separator");
+   m_pnotifyicon->menu()->separator_at(iNotifyIconItem);
 
    //m_pnotifyicon->notify_icon_insert_item(iNotifyIconItem, _("Exit"), "app_exit");
-   m_pnotifyicon->notify_icon_insert_item(true, iNotifyIconItem, "Exit", "app_exit");
+   m_pnotifyicon->menu()->stock_item_at(iNotifyIconItem, "Exit", "app_exit");
 
 }
 
@@ -791,7 +882,7 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
 //
 //         }
 //
-//         //if (acmesystem()->m_papexsystem->m_bPreferNoFrameWindow)
+//         //if (system()->m_papexsystem->m_bPreferNoFrameWindow)
 //         //{
 //
 //         //   m_bWindowFrame = false;
@@ -804,7 +895,7 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
 //   //else
 //   //{
 //
-//   //   m_bWindowFrame = acmesystem()->m_papexsystem->m_bExperienceMainFrame;
+//   //   m_bWindowFrame = system()->m_papexsystem->m_bExperienceMainFrame;
 //
 //   //}
 //
@@ -865,7 +956,7 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
 //
 //   }
 
-   //if (acmesystem()->m_papexsystem->m_bPreferNoFrameWindow)
+   //if (system()->m_papexsystem->m_bPreferNoFrameWindow)
    //{
 
    //   m_bWindowFrame = false;
@@ -1007,7 +1098,7 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
                         {
 
                           //auto papp = get_app();
-                     //auto psystem = acmesystem()->m_papexsystem;
+                     //auto psystem = system()->m_papexsystem;
 
                      //auto estatus =
 
@@ -1217,7 +1308,7 @@ bool simple_frame_window::pre_create_window(::user::system * pusersystem)
 
          //post_redraw();
 
-         prequest->m_bMakeVisible = false;
+         prequest->m_egraphicsoutputpurpose -= ::graphics::e_output_purpose_screen;
 
          //pusersystem->m_createstruct.style &= ~WS_VISIBLE;
 
@@ -1245,7 +1336,7 @@ void simple_frame_window::on_layout(::draw2d::graphics_pointer & pgraphics)
    //if (!papp->m_bExperienceMainFrame && get_parent() == nullptr)
    //{
 
-   //   auto rectangle = get_host_window()->rectangle();
+   //   auto rectangle = get_host_user_interaction()->rectangle();
 
    //   place(rectangle);
 
@@ -1754,7 +1845,7 @@ void simple_frame_window::on_message_close(::message::message * pmessage)
 #ifdef LINUX
       //if(is_window_visible())
 
-      auto psystem = acmesystem()->m_papexsystem;
+      auto psystem = system()->m_papexsystem;
 
       auto pnode = psystem->node();
 
@@ -1998,165 +2089,181 @@ void simple_frame_window::_001OnActivate(::message::message * pmessage)
 bool simple_frame_window::LoadFrame(const ::string & pszMatter, u32 dwDefaultStyle, ::user::interaction * puiParent, ::user::system * pusersystem)
 {
 
-   if (pusersystem->m_atom.is_set())
-   {
+//   if (pusersystem->m_atom.is_set())
+//   {
+//
+//      ::string strAtom = pusersystem->m_atom.as_string();
+//
+//      if (strAtom.has_char())
+//      {
+//
+//         m_atom = strAtom;
+//
+//      }
+//
+//   }
+//
+//   UNREFERENCED_PARAMETER(puiParent);
 
-      ::string strAtom = pusersystem->m_atom.as_string();
+//   m_strMatterHelp = pszMatter;    // ID for help context (+HID_BASE_RESOURCE)
+//
+//   auto papp = get_app();
 
-      if (strAtom.has_char())
-      {
+//   if (puiParent == nullptr)
+//   {
+//
+//      puiParent = papp->get_request_parent_ui(this, pusersystem);
+//
+//   }
 
-         m_atom = strAtom;
-
-      }
-
-   }
-
-   UNREFERENCED_PARAMETER(puiParent);
-
-   m_strMatterHelp = pszMatter;    // ID for help context (+HID_BASE_RESOURCE)
-
-   auto papp = get_app();
-
-   if (puiParent == nullptr)
-   {
-
-      puiParent = papp->get_request_parent_ui(this, pusersystem);
-
-   }
-
-   ::rectangle_i32 rectangleFrame;
-
-   ::pointer<::user::place_holder>pholder;
-
-   if (puiParent != nullptr && (pholder = puiParent).is_set())
-   {
-
-      rectangleFrame = pholder->rectangle();
-
-   }
+//   ::rectangle_i32 rectangleFrame;
+//
+//   ::pointer<::user::place_holder>pholder;
+//
+//   if (puiParent != nullptr && (pholder = puiParent).is_set())
+//   {
+//
+//      rectangleFrame = pholder->rectangle();
+//
+//   }
 
    //m_bLockSketchToDesign = true;
 
-   if (puiParent == nullptr || wfi_has_up_down())
-   {
+//   if (puiParent == nullptr || wfi_has_up_down())
+//   {
+//
+//      if (wfi_has_up_down() && ::is_set(puiParent) && puiParent->m_bWfiUpDownTarget)
+//      {
+//
+//         m_pupdowntarget = puiParent;
+//
+//      }
+//
+//      if (should_save_window_rectangle())
+//      {
+//
+//         //bool bForceRestore = false;
+//
+//         //bool bInitialFramePosition = true;
+//
+//         //m_puserinteractionParent = puiParent;
+//
+//         //WindowDataLoadWindowRectangle(bForceRestore, bInitialFramePosition);
+//
+//         //_001FancyInitialFramePlacement();
+//
+//         initial_frame_placement();
+//
+//         rectangleFrame = const_layout().state(::user::e_layout_sketch).parent_raw_rectangle();
+//
+//         information() << "simple_frame_window::LoadFrame rectangleFrame : " << rectangleFrame;
+//         information() << "simple_frame_window::LoadFrame edisplay : " << const_layout().sketch().display();
+//
+//         if (wfi_has_up_down())
+//         {
+//
+//            if (m_eupdown == e_updown_up)
+//            {
+//
+//               puiParent = nullptr;
+//
+//            }
+//            else if (m_eupdown == e_updown_down)
+//            {
+//
+//               ::pointer<::user::document>pdocument = pusersystem->m_pdocumentCurrent;
+//
+//               ::pointer<::user::impact_host>pimpacthost;
+//
+//               if (pimpacthost.is_set())
+//               {
+//
+//                  puiParent = pimpacthost->updown_target_get_place_holder(this, pdocument);
+//
+//               }
+//
+//            }
+//
+//         }
+//
+//      }
+//
+//      if (is_top_level())
+//      {
+//
+//         if (m_ewindowflag & e_window_flag_main_frame)
+//         {
+//
+//            display(e_display_zoomed);
+//
+//            //  psession->get_main_workspace(rectangleFrame);
+//
+//         }
+//
+//      }
+//
+//      rectangleFrame = const_layout().state(::user::e_layout_sketch).parent_raw_rectangle();
+//
+//      //pusersystem->set_rect(rectangleFrame);
+//
+//      informationf("(2) simple_frame_window::LoadFrame rectangleFrame (l=%d, t=%d) (w=%d, h=%d)", rectangleFrame.left(), rectangleFrame.top(), rectangleFrame.width(), rectangleFrame.height());
+//      informationf("(2) simple_frame_window::LoadFrame edisplay=%s", ::string(::as_string((int)const_layout().sketch().display().eflag())).c_str());
+//
+//
+//   }
 
-      if (wfi_has_up_down() && ::is_set(puiParent) && puiParent->m_bWfiUpDownTarget)
-      {
-
-         m_pupdowntarget = puiParent;
-
-      }
-
-      if (should_save_window_rectangle())
-      {
-
-         //bool bForceRestore = false;
-
-         //bool bInitialFramePosition = true;
-
-         //m_puserinteractionParent = puiParent;
-
-         //WindowDataLoadWindowRectangle(bForceRestore, bInitialFramePosition);
-
-         //_001FancyInitialFramePlacement();
-
-         initial_frame_placement();
-
-         rectangleFrame = const_layout().state(::user::e_layout_sketch).parent_raw_rectangle();
-
-         information() << "simple_frame_window::LoadFrame rectangleFrame : " << rectangleFrame;
-         information() << "simple_frame_window::LoadFrame edisplay : " << const_layout().sketch().display();
-
-         if (wfi_has_up_down())
-         {
-
-            if (m_eupdown == e_updown_up)
-            {
-
-               puiParent = nullptr;
-
-            }
-            else if (m_eupdown == e_updown_down)
-            {
-
-               ::pointer<::user::document>pdocument = pusersystem->m_pdocumentCurrent;
-
-               ::pointer<::user::impact_host>pimpacthost;
-
-               if (pimpacthost.is_set())
-               {
-
-                  puiParent = pimpacthost->updown_target_get_place_holder(this, pdocument);
-
-               }
-
-            }
-
-         }
-
-      }
-
-      if (is_top_level())
-      {
-
-         if (m_ewindowflag & e_window_flag_main_frame)
-         {
-
-            display(e_display_zoomed);
-
-            //  psession->get_main_workspace(rectangleFrame);
-
-         }
-
-      }
-
-      rectangleFrame = const_layout().state(::user::e_layout_sketch).parent_raw_rectangle();
-
-      //pusersystem->set_rect(rectangleFrame);
-
-      informationf("(2) simple_frame_window::LoadFrame rectangleFrame (l=%d, t=%d) (w=%d, h=%d)", rectangleFrame.left(), rectangleFrame.top(), rectangleFrame.width(), rectangleFrame.height());
-      informationf("(2) simple_frame_window::LoadFrame edisplay=%s", ::string(::as_string((int)const_layout().sketch().display().eflag())).c_str());
-
-
-   }
-
-   if (puiParent != nullptr)
-   {
-
-      //pusersystem->m_createstruct.style |= WS_CHILD;
-
-   }
-
-   m_bEnableSaveWindowRect2 = false;
-
-   bool bLoadImplRect = m_ewindowflag & e_window_flag_load_window_rect_on_impl;
-
-   m_ewindowflag -= e_window_flag_load_window_rect_on_impl;
+//   if (puiParent != nullptr)
+//   {
+//
+//      //pusersystem->m_createstruct.style |= WS_CHILD;
+//
+//   }
+//
+//   m_bEnableSaveWindowRect2 = false;
+//
+//   bool bLoadImplRect = m_ewindowflag & e_window_flag_load_window_rect_on_impl;
+//
+//   m_ewindowflag -= e_window_flag_load_window_rect_on_impl;
 
    //bool bCreated = create_window_ex(pusersystem, puiParent, m_atom);
 
    //bool bCreated;
 
-   m_pusersystem = pusersystem;
+//   m_pusersystem = pusersystem;
 
    //bCreated = 
 
-   if (pusersystem->m_prequest && !pusersystem->m_prequest->m_bMakeVisible)
+//   if (pusersystem->m_prequest && !(pusersystem->m_prequest->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_screen))
+//   {
+//
+//      hide();
+//
+//   }
+
+//   if (bLoadImplRect)
+//   {
+//
+//      m_ewindowflag += e_window_flag_load_window_rect_on_impl;
+//
+//   }
+//
+//   if (pusersystem->m_prequest->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_screen)
+//   {
+//
+//      initial_frame_display();
+//
+//   }
+
+   if(!::experience::frame_window::LoadFrame(pszMatter, dwDefaultStyle,puiParent,  pusersystem))
    {
 
-      hide();
+
+      return false;
 
    }
 
-   create_interaction(puiParent, atom());
+   //create_interaction(puiParent, atom());
 
-   if (bLoadImplRect)
-   {
-
-      m_ewindowflag += e_window_flag_load_window_rect_on_impl;
-
-   }
 
    //if (!bCreated)
    //{
@@ -2165,19 +2272,19 @@ bool simple_frame_window::LoadFrame(const ::string & pszMatter, u32 dwDefaultSty
 
    //}
 
-   if (pusersystem == nullptr)   // send initial update
-   {
+   //if (pusersystem == nullptr)   // send initial update
+   //{
 
-      send_message_to_descendants(e_message_system_update, ID_INITIAL_UPDATE, (lparam)0, true, true);
+     // send_message_to_descendants(e_message_system_update, ID_INITIAL_UPDATE, (lparam)0, true, true);
 
-   }
+   //}
 
-   if (pusersystem->m_prequest->m_bMakeVisible)
-   {
-
-      initial_frame_display();
-
-   }
+//   if (pusersystem->m_prequest->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_screen)
+//   {
+//
+//      initial_frame_display();
+//
+//   }
 
    return true;
 
@@ -2256,7 +2363,7 @@ void simple_frame_window::on_frame_position()
 //bool simple_frame_window::_001FancyInitialFramePlacement(bool bForceRestore)
 //{
 //
-//   //if (acmesystem()->m_papexsystem->m_bPreferNoFrameWindow)
+//   //if (system()->m_papexsystem->m_bPreferNoFrameWindow)
 //   //{
 //
 //   //   set_need_layout();
@@ -2695,11 +2802,17 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
    // glxxx
 
+   
+
    //return;
 
    pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
    pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+
+   //pgraphics->fill_solid_rectangle(::rectangle_f64_dimension(10, 10, 200, 200), ::argb(127, 0, 0, 255));
+
+   //return;
 
    auto pstyle = get_style(pgraphics);
 
@@ -2710,7 +2823,7 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
       //printf("simplefrmwnd : " + ::type(this).name() + " : blur_background");
 
-      //auto psystem = acmesystem()->m_pbasesystem;
+      //auto psystem = system()->m_pbasesystem;
 
 //      class imaging & imaging = psystem->imaging();
 
@@ -2810,8 +2923,19 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
    //printf("simplefrmwnd : " + ::type(this).name() + " : draw_frame");
 
+//   pgraphics->fill_solid_rectangle(::rectangle_f64_dimension(100, 100, 200, 200), ::argb(127, 0, 255, 0));
+
+   //return;
+
    draw_frame(pgraphics);
 
+}
+
+
+void simple_frame_window::_001DrawChildren(::draw2d::graphics_pointer & pgraphics)
+{
+
+   ::experience::frame_window::_001DrawChildren(pgraphics);
 
 }
 
@@ -3338,13 +3462,13 @@ void simple_frame_window::handle(::topic * ptopic, ::context * pcontext)
 
          auto pointCursor = windowing()->display()->get_mouse_cursor_position();
 
-         string strXml = notification_area_get_xml_menu();
+         auto pmenu = m_pnotifyicon->menu();
 
          auto psession = get_session();
 
          auto puser = psession->baseuser();
 
-         puser->track_popup_xml_menu(this, strXml, 0, pointCursor, size_i32(), m_pnotifyicon);
+         puser->track_popup_menu(this, pmenu, 0, pointCursor, size_i32(), m_pnotifyicon);
 
       }
       else if (ptopic->m_atom == ::id_left_button_double_click)
@@ -4276,34 +4400,34 @@ void simple_frame_window::notification_area_action(const ::string & pszId)
 }
 
 
-string simple_frame_window::notification_area_get_xml_menu()
-{
-
-   auto pxmldocument = __create_new < ::xml::document >();
-
-   pxmldocument->create_root("menu");
-
-   for (auto & pitem : m_pnotifyicon->m_notifyiconitema)
-   {
-
-      if (pitem->m_strId == "separator")
-      {
-
-         pxmldocument->root()->add_child("separator");
-
-      }
-      else
-      {
-
-         pxmldocument->root()->add_child("item", { "id", pitem->m_strId }, pitem->m_strName);
-
-      }
-
-   }
-
-   return pxmldocument->get_xml();
-
-}
+//string simple_frame_window::notification_area_get_xml_menu()
+//{
+//
+//   auto pxmldocument = __create_new < ::xml::document >();
+//
+//   pxmldocument->create_root("menu");
+//
+//   for (auto & pitem : m_pnotifyicon->m_notifyiconitema)
+//   {
+//
+//      if (pitem->m_strId == "separator")
+//      {
+//
+//         pxmldocument->root()->add_child("separator");
+//
+//      }
+//      else
+//      {
+//
+//         pxmldocument->root()->add_child("item", { "id", pitem->m_strId }, pitem->m_strName);
+//
+//      }
+//
+//   }
+//
+//   return pxmldocument->get_xml();
+//
+//}
 
 
 void simple_frame_window::_on_configure_notify_unlocked(const ::rectangle_i32 & rectangle)

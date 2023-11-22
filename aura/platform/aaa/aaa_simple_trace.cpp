@@ -123,7 +123,7 @@ CLASS_DECL_AURA bool memory_counter_on()
    if (g_iMemoryCountersStartable && g_iMemoryCounters < 0)
    {
 
-      g_iMemoryCounters = acmefile()->exists(         auto psystem = acmesystem();
+      g_iMemoryCounters = acmefile()->exists(         auto psystem = system();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -156,7 +156,7 @@ CLASS_DECL_AURA::file::path memory_counter_base_path()
 
 #if defined(UNIVERSAL_WINDOWS)
 
-      string strBasePath =          auto psystem = acmesystem();
+      string strBasePath =          auto psystem = system();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -166,7 +166,7 @@ pacmedirectory->system() / "memory_counters";
 
       ::file::path strModule = module_path_from_pid(getpid());
 
-      string strBasePath =          auto psystem = acmesystem();
+      string strBasePath =          auto psystem = system();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 

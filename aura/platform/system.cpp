@@ -686,9 +686,9 @@ namespace aura
 
       //}
 
-      //acmeapplication() = get_new_application(get_session(), m_XstrAppId);
+      //application() = get_new_application(get_session(), m_XstrAppId);
 
-      //if (!acmeapplication())
+      //if (!application())
       //{
 
       //   output_error_message("Failed to allocate papp!!");
@@ -697,9 +697,9 @@ namespace aura
 
       //}
 
-      //set_main_struct(*acmeapplication());
+      //set_main_struct(*application());
 
-      //string strAppId = acmeapplication()->m_XstrAppId;
+      //string strAppId = application()->m_XstrAppId;
 
       //auto pcommand = get_command();
 
@@ -882,7 +882,7 @@ namespace aura
 //
 //                  string str("installing or unstalling as root : getuid() %d", uid);
 //
-//                           auto psystem = acmesystem();
+//                           auto psystem = system();
 
 //         auto pacmedirectory = psystem->m_pacmedirectory;
 //
@@ -1111,7 +1111,7 @@ namespace aura
 
       //}
 
-      if (acmeapplication()->m_bImaging)
+      if (application()->m_bImaging)
       {
 
          try
@@ -1148,9 +1148,9 @@ namespace aura
 
       }
 
-      auto psystem = acmesystem();
+      //auto psystem = system();
 
-      critical_section_lock synchronouslock(&m_psubsystem->m_criticalsection);
+      critical_section_lock synchronouslock(&m_pplatform->m_criticalsection);
 
       ///estatus = 
       
@@ -1176,7 +1176,7 @@ namespace aura
 
       string strImplementationName;
 
-      strImplementationName = acmeapplication()->m_pauraapplication->draw2d_get_default_implementation_name();
+      strImplementationName = application()->m_pauraapplication->draw2d_get_default_implementation_name();
 
       if (strImplementationName.has_char())
       {
@@ -1196,7 +1196,7 @@ namespace aura
 
       }
 
-      path = acmedirectory()->roaming()/acmeapplication()->m_strAppId / "draw2d.txt";
+      path = acmedirectory()->roaming()/application()->m_strAppId / "draw2d.txt";
 
       strImplementationName = acmefile()->as_string(path);
 
@@ -1717,11 +1717,11 @@ namespace aura
       //
       //         ::file::path pathLocal = local_get_matter_path("app/_matter/main");
       //
-      //         bool bFileSystemMatter =          auto psystem = acmesystem();
+      //         bool bFileSystemMatter =          auto psystem = system();
 //
 //         auto pacmedirectory = psystem->m_pacmedirectory;
 //
-//pacmedirectory->is(pathSide) ||          auto psystem = acmesystem();
+//pacmedirectory->is(pathSide) ||          auto psystem = system();
 //
 //         auto pacmedirectory = psystem->m_pacmedirectory;
 //
@@ -1941,7 +1941,7 @@ namespace aura
       //try
       //{
 
-      //   auto psystem = acmesystem()->m_paurasystem;
+      //   auto psystem = system()->m_paurasystem;
 
       //   synchronous_lock synchronouslock(m_pmutexLibrary2);
 
@@ -3801,7 +3801,7 @@ namespace aura
    void system::on_initial_frame_position(::user::frame * pframe)
    {
 
-      if(acmeapplication()->m_bExperienceMainFrame)
+      if(application()->m_bExperienceMainFrame)
       {
 
 //#ifdef UNIVERSAL_WINDOWS
@@ -4228,7 +4228,7 @@ namespace aura
 //
 //            }
 //
-//            strParam += " " + acmefile()->as_string(         auto psystem = acmesystem();
+//            strParam += " " + acmefile()->as_string(         auto psystem = system();
 
 //         auto pacmedirectory = psystem->m_pacmedirectory;
 //
@@ -4246,7 +4246,7 @@ namespace aura
 //
 //         sa.add("--user-data-dir=" + pathProfile + "");
 //
-//         string strChrome = acmefile()->as_string(         auto psystem = acmesystem();
+//         string strChrome = acmefile()->as_string(         auto psystem = system();
 
 //         auto pacmedirectory = psystem->m_pacmedirectory;
 //
@@ -4275,7 +4275,7 @@ namespace aura
 //
 //         strParam += "--user-data-dir=\"" + pathProfile + "\"";
 //
-//         strParam += " " + acmefile()->as_string(         auto psystem = acmesystem();
+//         strParam += " " + acmefile()->as_string(         auto psystem = system();
 
 //         auto pacmedirectory = psystem->m_pacmedirectory;
 //
@@ -5252,7 +5252,7 @@ namespace aura
   //            //else
   //            //{
   //
-  //            //   set("parent_system") = papp->acmesystem();
+  //            //   set("parent_system") = papp->system();
   //
   //            //}
   //
@@ -5418,7 +5418,7 @@ namespace aura
    {
 
 
-      if (acmeapplication()->m_bDraw2d)
+      if (application()->m_bDraw2d)
       {
 
          initialize_draw2d();
@@ -5434,7 +5434,7 @@ namespace aura
 
       //auto estatus =
 
-      if (acmeapplication()->m_bImaging)
+      if (application()->m_bImaging)
       {
 
          __construct_new(m_pimaging);
@@ -5472,7 +5472,7 @@ namespace aura
 //   void system::node_will_finish_launching()
 //   {
 //
-//      auto pnode = acmesession()->m_paurasession;
+//      auto pnode = session()->m_paurasession;
 //
 //      auto puser = psession->user();
 //
@@ -5486,7 +5486,7 @@ namespace aura
 //   void system::windowing_post_quit()
 //   {
 //   
-//      auto psession = acmesession()->m_paurasession;
+//      auto psession = session()->m_paurasession;
 //
 //      auto puser = psession->user();
 //
@@ -6844,11 +6844,11 @@ namespace aura
 //   void system::windowing_send(const ::procedure & procedure)
 //   {
 //
-//      if (::is_null(acmeapplication())
-//         || ::is_null(acmeapplication()->m_pauraapplication)
-//         || ::is_null(acmeapplication()->m_pauraapplication->get_session())
-//         || ::is_null(acmeapplication()->m_pauraapplication->get_session()->user())
-//         || ::is_null(acmeapplication()->m_pauraapplication->get_session()->user()->windowing())
+//      if (::is_null(application())
+//         || ::is_null(application()->m_pauraapplication)
+//         || ::is_null(application()->m_pauraapplication->get_session())
+//         || ::is_null(application()->m_pauraapplication->get_session()->user())
+//         || ::is_null(application()->m_pauraapplication->get_session()->user()->windowing())
 //         )
 //      {
 //
@@ -6856,7 +6856,7 @@ namespace aura
 //
 //      }
 //
-//      auto pwindowing = acmeapplication()->m_pauraapplication->get_session()->user()->windowing();
+//      auto pwindowing = application()->m_pauraapplication->get_session()->user()->windowing();
 //
 //      pwindowing->windowing_send(procedure);
 //
@@ -6866,11 +6866,11 @@ namespace aura
 //   void system::windowing_post(const ::procedure & procedure)
 //   {
 //
-//      if(::is_null(acmeapplication())
-//         || ::is_null(acmeapplication()->m_pauraapplication)
-//            || ::is_null(acmeapplication()->m_pauraapplication->get_session())
-//               || ::is_null(acmeapplication()->m_pauraapplication->get_session()->user())
-//                  || ::is_null(acmeapplication()->m_pauraapplication->get_session()->user()->windowing())
+//      if(::is_null(application())
+//         || ::is_null(application()->m_pauraapplication)
+//            || ::is_null(application()->m_pauraapplication->get_session())
+//               || ::is_null(application()->m_pauraapplication->get_session()->user())
+//                  || ::is_null(application()->m_pauraapplication->get_session()->user()->windowing())
 //               )
 //      {
 //
@@ -6878,7 +6878,7 @@ namespace aura
 //
 //      }
 //
-//      auto pwindowing = acmeapplication()->m_pauraapplication->get_session()->user()->windowing();
+//      auto pwindowing = application()->m_pauraapplication->get_session()->user()->windowing();
 //
 //      pwindowing->windowing_post(procedure);
 //

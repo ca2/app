@@ -68,6 +68,8 @@ namespace user
 
       atom get_impact_id() override;
 
+      virtual ::user::place_holder * place_holder_by_id(const ::atom & atom);
+
       ::user::interaction * get_impact_uie() override;
 
       virtual ::user::impact_data * get_impact_creator_data();
@@ -121,7 +123,7 @@ namespace user
       void _001OnRemoveTab(class tab_pane * ptab) override;
 
       virtual void prepare_form(const ::atom & atom, ::form_document * pformdocument);
-
+      void on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics) override;
 
    };
 

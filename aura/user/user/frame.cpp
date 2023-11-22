@@ -53,7 +53,7 @@ namespace user
       MESSAGE_LINK(e_message_application_exit, pchannel, this, &frame::on_message_application_exit);
       MESSAGE_LINK(e_message_key_down, pchannel, this, &frame::on_message_key_down);
 
-      acmesystem()->add_signal_handler({ e_use, this }, id_operating_system_user_color_change);
+      system()->add_signal_handler({ e_use, this }, id_operating_system_user_color_change);
 //#ifdef WINDOWS_DESKTOP
 //
 //      if (is_frame_window())
@@ -575,7 +575,7 @@ namespace user
    void frame::display_previous_restore()
    {
 
-      //return ::success;
+      ::user::box::display_previous_restore();
 
    }
 
@@ -583,6 +583,7 @@ namespace user
    void frame::display_system_minimize()
    {
 
+      ::user::box::display_system_minimize();
 
    }
 
@@ -623,10 +624,19 @@ namespace user
    {
 
       information() << "frame::initial_frame_display";
-      
-      display();
 
-      set_activation(e_activation_set_foreground);
+      if (!const_layout().sketch().is_screen_visible())
+      {
+
+         display_normal(e_display_normal, e_activation_set_foreground);
+
+      }
+      else
+      {
+
+         set_activation(e_activation_set_foreground);
+
+      }
 
       set_need_redraw();
       

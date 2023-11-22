@@ -14,7 +14,7 @@ namespace file
 
 #else
 
-      ::file::path pathSystemShortName =          auto psystem = acmesystem();
+      ::file::path pathSystemShortName =          auto psystem = system();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 

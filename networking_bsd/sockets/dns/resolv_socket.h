@@ -26,7 +26,7 @@ namespace sockets
       bool                                            m_cached;
 
 
-      ::pointer<::apex::system>                      acmesystem();
+      ::pointer<::apex::system>                      system();
       ::pointer<class ::networking::address_department>      m_paddressdepartment;
 
 

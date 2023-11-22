@@ -9,15 +9,16 @@
 
 
 class nano_window_bridge;
+@class ns_nano_impact;
 
 
 @interface ns_nano_window : NSWindow
 {
 @public
    
-   nano_window_bridge *       m_pwindowbridge;
-   NSView *                   m_pimpactChild;
-   NSWindowController *       m_pwindowcontroller;
+   nano_window_bridge *       m_pnanowindowbridge;
+   ns_nano_impact *           m_pnsnanoimpact;
+   //NSWindowController *       m_pwindowcontroller;
 
 }
 @end

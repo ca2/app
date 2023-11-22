@@ -918,17 +918,17 @@ void nano_window::_update_window()
 
 
 
-//void nano_window::message_loop()
+//void nano_window::aaa_message_loop()
 //{
 //
-//   while(message_loop_step())
+//   while(aaa_message_loop_step())
 //   {
 //
-//      acmesystem()->m_pnode->run_posted_routines();
+//      system()->m_pnode->run_posted_routines();
 //
 //   }
 //
-//   informationf("nano_window::message_loop exit");
+//   informationf("nano_window::aaa_message_loop exit");
 //
 //}
 

@@ -151,7 +151,7 @@ namespace user
       inline bool window_is_minimal() { return ::window_is_minimal(display_state()); }
 
 
-      inline void auto_refresh_on_show() { m_ewindowflag |= e_window_flag_auto_prodevian_on_show; }
+      inline void fps_interest_on_show() { m_ewindowflag |= e_window_flag_auto_prodevian_on_show; }
       inline void clear_auto_prodevian_on_show() { m_ewindowflag -= e_window_flag_auto_prodevian_on_show; }
       inline bool is_auto_prodevian_on_show() { return m_ewindowflag & e_window_flag_auto_prodevian_on_show; }
 

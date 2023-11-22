@@ -19,7 +19,7 @@ public:
 
    // A exception class is meant to be a small utility/tool class.
    // m_bLog -> too much managing (micro-managing and also big-managing)
-   // from utility/tool small class of the Logging acmesystem()->
+   // from utility/tool small class of the Logging system()->
    // General-ever Log can be done by final handlers at Main Loop and crash handlers
    // Log can be supressed or translated at optional middle-stack handlers.
    // bool                    m_bLog;

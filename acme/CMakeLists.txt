@@ -236,6 +236,9 @@ list(APPEND library_source
    graphics/draw2d/color_array.cpp
    graphics/draw2d/color_array.h
    graphics/draw2d/os_font_name.cpp
+   graphics/graphics/_.h
+   graphics/graphics/output_purpose.cpp
+   graphics/graphics/output_purpose.h
    graphics/image/image32.cpp
    graphics/image/image32.h
    graphics/image/image32_array.cpp
@@ -255,6 +258,8 @@ list(APPEND library_source
    handler/topic.h
    handler/request.cpp
    handler/request.h
+   handler/source.cpp
+   handler/source.h
    #include/_.cpp
    #include/path.h        #primitive/collection/comparable_array.cpp
    #memory/alloc.cpp
@@ -434,8 +439,8 @@ list(APPEND library_source
    platform/serial.cpp
    platform/session.cpp
    platform/session.h
-   platform/sub_system.cpp
-   platform/sub_system.h
+   platform/platform.cpp
+   platform/platform.h
    platform/system.cpp
    platform/system_setup.cpp
    platform/system_setup.h
@@ -1022,6 +1027,8 @@ list(APPEND library_source
    user/user/container.cpp
    user/user/container.h
    user/user/content.h
+   user/user/controller.cpp
+   user/user/controller.h
    user/user/conversation.cpp
    user/user/conversation.h
    user/user/drag.cpp
@@ -1032,6 +1039,8 @@ list(APPEND library_source
    user/user/element.h
    user/user/e_window_flag.h
    user/user/item.h
+   user/user/key_state.cpp
+   user/user/key_state.h
    user/user/mouse.cpp
    user/user/mouse.h
    user/user/os_colors.cpp
@@ -1924,7 +1933,33 @@ if (${CURL_NANO_HTTP})
 endif ()
 
 
-if (${LINUX} OR ${FREEBSD})
+if(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
+
+   if(${WAYLAND})
+list(APPEND library_source
+      operating_system/wayland/nano/_nano.cpp
+      operating_system/wayland/nano/_.h
+      operating_system/wayland/nano/display.cpp
+      operating_system/wayland/nano/display.h
+      operating_system/wayland/nano/display_base.cpp
+      operating_system/wayland/nano/display_base.h
+      operating_system/wayland/nano/event_listener.h
+      operating_system/wayland/nano/window.h
+      operating_system/wayland/nano/window.cpp
+      operating_system/wayland/nano/window_base.cpp
+      operating_system/wayland/nano/window_base.h
+      operating_system/wayland/_.h
+      operating_system/wayland/_.cpp
+      operating_system/wayland/wayland-gtk_shell1.c
+      operating_system/wayland/wayland-gtk_shell1.h
+      operating_system/wayland/wayland-xdg_activation_v1.c
+      operating_system/wayland/wayland-xdg_activation_v1.h
+      operating_system/wayland/wayland-xdg_wm_base.c
+      operating_system/wayland/wayland-xdg_wm_base.h
+      operating_system/wayland/xfree86_key.h
+      operating_system/wayland/xkb_input.cpp
+      operating_system/wayland/xkb_input.h)
+   endif()
 
    list(APPEND library_source
       operating_system/cairo/nano/_nano.cpp
@@ -1952,28 +1987,6 @@ if (${LINUX} OR ${FREEBSD})
       operating_system/xcb/nano/window.cpp
       operating_system/xcb/_.h
       operating_system/xcb/_.cpp
-      operating_system/wayland/nano/_nano.cpp
-      operating_system/wayland/nano/_.h
-      operating_system/wayland/nano/display.cpp
-      operating_system/wayland/nano/display.h
-      operating_system/wayland/nano/display_base.cpp
-      operating_system/wayland/nano/display_base.h
-      operating_system/wayland/nano/event_listener.h
-      operating_system/wayland/nano/window.h
-      operating_system/wayland/nano/window.cpp
-      operating_system/wayland/nano/window_base.cpp
-      operating_system/wayland/nano/window_base.h
-      operating_system/wayland/_.h
-      operating_system/wayland/_.cpp
-      operating_system/wayland/wayland-gtk_shell1.c
-      operating_system/wayland/wayland-gtk_shell1.h
-      operating_system/wayland/wayland-xdg_activation_v1.c
-      operating_system/wayland/wayland-xdg_activation_v1.h
-      operating_system/wayland/wayland-xdg_wm_base.c
-      operating_system/wayland/wayland-xdg_wm_base.h
-      operating_system/wayland/xfree86_key.h
-      operating_system/wayland/xkb_input.cpp
-      operating_system/wayland/xkb_input.h
 
 
       )
@@ -2428,7 +2441,7 @@ if (LINUX OR APPLE OR SOLARIS OR FREEBSD)
 endif ()
 
 
-if (${LINUX} OR ${FREEBSD})
+if(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
 
 
    list(APPEND library_source
@@ -2439,7 +2452,7 @@ if (${LINUX} OR ${FREEBSD})
 endif ()
 
 
-if (${LINUX} OR ${FREEBSD})
+if(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
 
 
    list(APPEND library_source
@@ -2475,7 +2488,7 @@ if (MSVC)
    target_link_libraries(acme PRIVATE zlib dbghelp imagehlp dwmapi Setupapi Windowscodecs Winmm ws2_32 Crypt32 Normaliz version Secur32 gdiplus Shlwapi Imm32.lib)
 
 
-elseif (${LINUX} OR ${FREEBSD})
+elseif(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
 
    target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
 
@@ -2483,8 +2496,12 @@ elseif (${LINUX} OR ${FREEBSD})
    #//target_compile_options\([A-Za-z0-9_)]+\s+PRIVATE\s+\$\{PKGCONFIG_CFLAGS\}\)
 
    #if(USE_PKGCONFIG)
+if(${WAYLAND})
+   list(APPEND extra_pkg_modules wayland-client wayland-server wayland-cursor)
+endif()
+
    list(APPEND extra_pkg_modules
-      xkbcommon x11 xrender xi xext libstartup-notification-1.0 wayland-client wayland-server wayland-cursor)
+      xkbcommon x11 xrender xi xext libstartup-notification-1.0)
    pkg_check_modules(PKGCONFIG cairo freetype2 libidn ${extra_pkg_modules})
    #endif()
    target_compile_options(${PROJECT_NAME} PRIVATE $<$<COMPILE_LANGUAGE:CXX>:-fpermissive  ${EXTRA_CXX_TARGET_COMPILER_OPTIONS}>)

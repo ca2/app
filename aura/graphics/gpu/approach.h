@@ -45,7 +45,7 @@ namespace gpu
       virtual ::pointer < context > create_context(::particle * pparticle);
 
 
-      virtual void defer_init_glew();
+      virtual void defer_init_gpu_library();
 
       //virtual void draw();
       //virtual void start();

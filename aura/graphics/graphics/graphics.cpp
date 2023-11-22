@@ -261,7 +261,9 @@ namespace graphics
    void graphics::set_bitmap_source(const string & strBitmapSource)
    {
 
-      throw ::interface_only();
+      information() << "GRAPHICS::SET_BITMAP_SOURCE NOT Implemented";
+      information() << "GRAPHICS::SET_BITMAP_SOURCE NOT Implemented";
+      information() << "GRAPHICS::SET_BITMAP_SOURCE NOT Implemented";
 
    }
 

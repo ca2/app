@@ -576,7 +576,7 @@ namespace sockets
      throw interface_only();
 
      return -1;
-//     i32 n = acmesystem()->m_papexsystem->networking()->_select(this, wait);
+//     i32 n = system()->m_papexsystem->networking()->_select(this, wait);
 //
 //
 //     auto tick2 = ::time::now();
@@ -1304,7 +1304,7 @@ namespace sockets
 //                    if (psocket->Retain() && !psocket->Lost())
 //                    {
 //
-//                       auto psystem = acmesystem()->m_papexsystem;
+//                       auto psystem = system()->m_papexsystem;
 //
 //                       synchronous_lock synchronouslock(&psystem->sockets().m_pmutexPool);
 //
@@ -1785,7 +1785,7 @@ namespace sockets
    //::pointer<base_socket_handler::pool_socket_id>socket_handler::FindConnection(i32 type, const string & protocol, ::networking::address * ad)
    //{
 
-   //   auto psystem = acmesystem()->m_papexsystem;
+   //   auto psystem = system()->m_papexsystem;
 
    //   synchronous_lock synchronouslock(&psystem->sockets().m_pmutexPool);
 

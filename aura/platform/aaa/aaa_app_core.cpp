@@ -518,13 +518,13 @@ void app_core::system_init()
 
    //xxdebug_box("box1", "box1", e_message_box_icon_information);
 
-   ::file::path pathOutputDebugString =          auto psystem = acmesystem();
+   ::file::path pathOutputDebugString =          auto psystem = system();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
 pacmedirectory->system() / strAppId / "information.txt" ;
 
-   ::file::path pathGlobalOutputDebugString =          auto psystem = acmesystem();
+   ::file::path pathGlobalOutputDebugString =          auto psystem = system();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -550,7 +550,7 @@ void app_core::set_command_line(const ::string & psz)
 
    m_strCommandLine = psz;
 
-   ::file::path pathFolder =          auto psystem = acmesystem();
+   ::file::path pathFolder =          auto psystem = system();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -1726,13 +1726,13 @@ bool app_core::has_aura_application_factory() const
 //   if (m_pmainstruct && m_pmainstruct->m_bConsole)
 //   {
 //
-//      ::auraacmesystem()->get_session()->set_context_app(::auraacmesystem()->acmeapplication());
+//      ::auraacmesystem()->get_session()->set_context_app(::auraacmesystem()->application());
 //
-//      ::auraacmesystem()->set_context_app(::auraacmesystem()->acmeapplication());
+//      ::auraacmesystem()->set_context_app(::auraacmesystem()->application());
 //
-//      ::auraacmesystem()->get_session()->set_context(::auraacmesystem()->acmeapplication());
+//      ::auraacmesystem()->get_session()->set_context(::auraacmesystem()->application());
 //
-//      ::auraacmesystem()->set_context(::auraacmesystem()->acmeapplication());
+//      ::auraacmesystem()->set_context(::auraacmesystem()->application());
 //
 //   }
 //

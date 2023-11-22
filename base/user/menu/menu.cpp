@@ -57,7 +57,7 @@ namespace user
       m_puserinteractionParent = nullptr;
       m_pchannelNotify = nullptr;
       m_pmenuParent = nullptr;
-      m_psubmenu = nullptr;
+      //m_psubmenu = nullptr;
       m_iHoverSubMenu = -1;
       m_bInline = false;
       m_bMenuOk = false;
@@ -69,10 +69,10 @@ namespace user
    }
 
 
-   menu::menu(::user::menu_item * pitem)
+   menu::menu(::user::menu_item * pmenuitem)
    {
 
-      m_pmenuitem = pitem;
+      m_pmenuitem = pmenuitem;
 
       m_ewindowflag += e_window_flag_arbitrary_positioning;
 
@@ -83,14 +83,14 @@ namespace user
       m_iHoverSubMenu = -1;
       m_puserinteractionParent = nullptr;
       m_pchannelNotify = nullptr;
-      m_pmenuParent = nullptr;
-      m_psubmenu = nullptr;
+      m_pmenuParent = pmenuitem->m_pmenu;
+      //m_psubmenu = nullptr;
       m_bAutoDelete = true;
       m_bOwnItem = false;
       m_bInline = false;
       m_bMenuOk = false;
 
-      
+
 
    }
 
@@ -154,7 +154,7 @@ namespace user
       if (m_pmenuitem.is_null())
       {
 
-         m_pmenuitem = __create <  menu_item  > ();
+         m_pmenuitem = __create <  menu_item  >();
 
       }
 
@@ -215,9 +215,9 @@ namespace user
 //
       {
 
-        // synchronous_lock synchronouslock(mutex_children());
+         // synchronous_lock synchronouslock(mutex_children());
 
-         // m_uiptraChild.interactiona().erase_all();
+          // m_uiptraChild.interactiona().erase_all();
 
          synchronous_lock synchronouslock(this->synchronization());
 
@@ -238,7 +238,7 @@ namespace user
       if (m_pmenuitem.is_null())
       {
 
-         m_pmenuitem = __create <  menu_item  > ();
+         m_pmenuitem = __create <  menu_item  >();
 
       }
 
@@ -251,7 +251,7 @@ namespace user
 
       m_bCloseButton = pnode->attribute("close_button").is_empty() ||
 
-                       (bool)pnode->attribute("close_button").is_true();
+         (bool)pnode->attribute("close_button").is_true();
 
 
       m_pmenuitem->m_pmenu = this;
@@ -272,7 +272,7 @@ namespace user
    bool menu::load_xml_menu(const ::payload & payload)
    {
 
-      acmesystem()->m_paquasystem->_xml();
+      system()->m_paquasystem->_xml();
 
       auto pxmldocument = __create_new < ::xml::document >();
 
@@ -282,7 +282,7 @@ namespace user
          pxmldocument->load(payload);
 
       }
-      catch(const ::exception & exception)
+      catch (const ::exception & exception)
       {
 
          auto psequencer = nano()->exception_message_console(exception);
@@ -348,10 +348,10 @@ namespace user
       if (m_pmenuParent != nullptr)
       {
 
-         if (m_pmenuParent->m_psubmenu == this)
+         if (m_pmenuParent->m_pmenuSubMenu == this)
          {
 
-            m_pmenuParent->m_psubmenu.release();
+            m_pmenuParent->m_pmenuSubMenu.release();
 
          }
          else
@@ -363,12 +363,12 @@ namespace user
 
       }
 
-      if (m_psubmenu.is_set())
+      if (m_pmenuSubMenu)
       {
 
-         m_psubmenu->start_destroying_window();
+         m_pmenuSubMenu->start_destroying_window();
 
-         m_psubmenu.release();
+         m_pmenuSubMenu.release();
 
       }
 
@@ -402,7 +402,7 @@ namespace user
 
       m_pitemClose.release();
 
-      m_psubmenu.release();
+      m_pmenuSubMenu.release();
 
       m_pmenuitemSub.release();
 
@@ -422,7 +422,7 @@ namespace user
 
       information() << "::user::menu::defer_initialize_user_menu";
 
-      if(!m_pmenuitem)
+      if (!m_pmenuitem)
       {
 
          return;
@@ -439,7 +439,7 @@ namespace user
 
       information() << "::user::menu::initialize_user_menu";
 
-      auto psystem = acmesystem()->m_paurasystem;
+      auto psystem = system()->m_paurasystem;
 
       auto pdraw2d = psystem->draw2d();
 
@@ -512,7 +512,7 @@ namespace user
    }
 
 
-   bool menu::create_menu(::channel* pchannelNotify, ::user::interaction * puiParent)
+   bool menu::create_menu(::channel * pchannelNotify, ::user::interaction * puiParent)
    {
 
       if (m_pmenuitem.is_null())
@@ -524,7 +524,7 @@ namespace user
 
       m_puserinteractionOwner = puiParent;
 
-      information() << "::user::menu::create_menu parent window: " << (::iptr) m_puserinteractionOwner.m_p;
+      information() << "::user::menu::create_menu parent window: " << (::iptr)m_puserinteractionOwner.m_p;
 
       ::string strType;
 
@@ -560,13 +560,13 @@ namespace user
       if (!is_window())
       {
 
-//         int iStyleEx = 0;
-//
-//         if (puiParent == nullptr)
-//         {
-//
-//
-//         }
+         //         int iStyleEx = 0;
+         //
+         //         if (puiParent == nullptr)
+         //         {
+         //
+         //
+         //         }
 
          set_tool_window();
 
@@ -590,7 +590,9 @@ namespace user
          //if (!create_window_ex(pusersystem, puiParent))
          //if (!create_host())
 
-         create_host(e_parallelization_asynchronous);
+         //create_host(e_parallelization_asynchronous);
+         // 
+         create_host();
          //{
 
          //   return false;
@@ -650,7 +652,7 @@ namespace user
 
       //display();
 
-      display(e_display_normal,  e_activation_set_foreground | e_activation_for_context_menu);
+      display(e_display_normal, e_activation_set_foreground | e_activation_for_context_menu);
 
       set_need_layout();
 
@@ -668,30 +670,30 @@ namespace user
    {
 
       m_procedureOnAfterCreate = [this]()
-      {
+         {
 
-      //   information() << "m_procedureOnAfterInitializeUserMenu menu::track_popup_menu.";
+            //   information() << "m_procedureOnAfterInitializeUserMenu menu::track_popup_menu.";
 
-      //   if (!m_bPositionHint)
-      //   {
+            //   if (!m_bPositionHint)
+            //   {
 
-      //      auto pointCursor = mouse_cursor_position();
+            //      auto pointCursor = mouse_cursor_position();
 
-      //      m_pointPositionHint = pointCursor;
+            //      m_pointPositionHint = pointCursor;
 
-      //   }
+            //   }
 
-      //   auto psystem = acmesystem()->m_paurasystem;
+            //   auto psystem = system()->m_paurasystem;
 
-      //   auto pdraw2d = psystem->draw2d();
+            //   auto pdraw2d = psystem->draw2d();
 
-      //   auto pgraphics = pdraw2d->create_memory_graphics(this);
+            //   auto pgraphics = pdraw2d->create_memory_graphics(this);
 
-      //   m_pointTrack = m_pointPositionHint;
+            //   m_pointTrack = m_pointPositionHint;
 
-      //   layout_menu(pgraphics);
+            //   layout_menu(pgraphics);
 
-      //   m_bMenuOk = true;
+            //   m_bMenuOk = true;
 
             display(e_display_normal, e_activation_set_foreground | e_activation_for_context_menu);
 
@@ -703,8 +705,9 @@ namespace user
 
             post_redraw();
 
-      };
+         };
 
+      add_graphical_output_purpose(this, ::graphics::e_output_purpose_screen);
 
       if (!create_menu(pchannelNotify, puiParent))
       {
@@ -1008,7 +1011,14 @@ namespace user
       if (!m_bInline && !ptopic->m_bRet)
       {
 
-         post_message(MESSAGE_CLOSE);
+         post_message(e_message_close);
+
+         if (m_pmenuParent)
+         {
+
+            m_pmenuParent->defer_close();
+
+         }
 
       }
 
@@ -1018,1024 +1028,1229 @@ namespace user
    void menu::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if (ptopic->m_atom == ::id_click)
-      {
+      //if (ptopic->m_atom == ::id_click)
+      //{
 
-         auto puserinteractionTopic = ptopic->user_interaction();
+      //   auto puserinteractionTopic = ptopic->user_interaction();
 
-         if (m_pitemClose.is_set() && puserinteractionTopic == m_pitemClose->m_puserinteraction)
-         {
+      //   if (m_pitemClose.is_set() && puserinteractionTopic == m_pitemClose->m_puserinteraction)
+      //   {
 
-            defer_close();
+      //      defer_close();
 
-         }
-         else
-         {
+      //   }
+      //   else
+      //   {
 
-            ::pointer<::user::menu_item>pitem = ptopic->user_interaction()->m_pmenuitem;
+      //      ::pointer<::user::menu_item>pitem = ptopic->user_interaction()->m_pmenuitem;
 
-            if (pitem != nullptr && !pitem->m_bPopup)
-            {
+      //      on_click(pitem);
 
-               if (ptopic->user_interaction()->m_atom.begins("syscommand::"))
-               {
+      //   }
 
-                  auto pchannelNotify = get_notify_channel();
-
-                  if (::is_set(pchannelNotify))
-                  {
-
-                     //::message::command command(ptopic->user_element_id());
-
-                     //puiTarget->_001SendCommand(&command);
-
-                     pchannelNotify->handle_command(ptopic->user_interaction()->m_atom);
-
-                  }
-
-               }
-               else
-               {
-
-                  auto pchannelNotify = m_pchannelNotify;
-
-                  atom idCommand = ptopic->user_interaction()->m_atom;
-
-                  idCommand = translate_property_id(idCommand);
-
-                  defer_close();
-
-                  // this may be destroyed by MESSAGE_CLOSE above
-
-                  if (::is_set(pchannelNotify))
-                  {
-
-                     ::message::command command(idCommand);
-
-                     command.m_actioncontext = ptopic->m_actioncontext;
-
-                     pchannelNotify->_001SendCommand(&command);
-
-                     ptopic->m_bRet = command.m_bRet;
-
-                     if (ptopic->m_bRet)
-                     {
-
-                        return;
-
-                     }
-
-                  }
-
-               }
-
-            }
-
-         }
-
-      }
-//      else if (ptopic->m_atom == ::id_mouse_enter)
-//      {
-//
-//         if (m_pitemClose.is_set()
-//               && ptopic->user_interaction() != m_pitemClose->m_puserinteraction)
-//         {
-//
-//            if (!m_bInline)
-//            {
-//
-//               if (ptopic->user_interaction()->m_pmenuitem != m_pmenuitemSub)
-//               {
-//
-//                  {
-//
-//                     ::pointer<::user::menu_item>pitem = ptopic->user_interaction()->m_pmenuitem;
-//
-//                     if (pitem)
-//                     {
-//
-//                        if (pitem->m_bPopup)
-//                        {
-//
-//                           if (m_psubmenu != nullptr)
-//                           {
-//
-//                              m_psubmenu->start_destroying_window();
-//
-//                              m_psubmenu = nullptr;
-//
-//                              m_pmenuitemSub = nullptr;
-//
-//                           }
-//
-//                           m_pmenuitemSub = pitem;
-//
-//                           m_psubmenu = __new(menu(pitem));
-//
-//                           m_psubmenu->initialize(this);
-//
-//                           m_psubmenu->m_pmenuParent = this;
-//
-//                           ::rectangle_i32 rectangle;
-//
-//                           ptopic->user_interaction()->window_rectangle(rectangle);
-//
-//                           m_psubmenu->update_position(rectangle.top_right());
-//
-//                           m_psubmenu->track_popup_menu(m_pchannelNotify);
-//
-//                        }
-//                        else
-//                        {
-//
-//                           ::topic topic;
-//
-//                           topic.m_atom = ::id_menu_hover;
-//
-//                           topic.m_atom = pitem->m_atom;
-//
-//                           ::user::interaction * puiTarget = get_target_window();
-//
-//                           if (puiTarget == nullptr)
-//                           {
-//
-//                              return;
-//
-//                           }
-//
-//                           return puiTarget->route(&topic);
-//
-//                        }
-//
-//                     }
-//
-//                  }
-//
-//               }
-//
-//            }
-//
-//         }
-//
-//         ptopic->m_bRet = true;
-//
-//         return;
-//
-//      }
-//      else if (ptopic->m_atom == ::id_mouse_leave)
-//      {
-//         if (ptopic->user_element_id() == m_atomTimerMenu)
-//         {
-//            KillTimer(e_timer_menu);
-//            m_atomTimerMenu.is_empty();
-//         }
-//
-//         ptopic->m_bRet = true;
-//
-//         return;
-//
-//      }
+      //}
+      ////      else if (ptopic->m_atom == ::id_mouse_enter)
+      ////      {
+      ////
+      ////         if (m_pitemClose.is_set()
+      ////               && ptopic->user_interaction() != m_pitemClose->m_puserinteraction)
+      ////         {
+      ////
+      ////            if (!m_bInline)
+      ////            {
+      ////
+      ////               if (ptopic->user_interaction()->m_pmenuitem != m_pmenuitemSub)
+      ////               {
+      ////
+      ////                  {
+      ////
+      ////                     ::pointer<::user::menu_item>pitem = ptopic->user_interaction()->m_pmenuitem;
+      ////
+      ////                     if (pitem)
+      ////                     {
+      ////
+      ////                        if (pitem->m_bPopup)
+      ////                        {
+      ////
+      ////                           if (m_psubmenu != nullptr)
+      ////                           {
+      ////
+      ////                              m_psubmenu->start_destroying_window();
+      ////
+      ////                              m_psubmenu = nullptr;
+      ////
+      ////                              m_pmenuitemSub = nullptr;
+      ////
+      ////                           }
+      ////
+      ////                           m_pmenuitemSub = pitem;
+      ////
+      ////                           m_psubmenu = __new(menu(pitem));
+      ////
+      ////                           m_psubmenu->initialize(this);
+      ////
+      ////                           m_psubmenu->m_pmenuParent = this;
+      ////
+      ////                           ::rectangle_i32 rectangle;
+      ////
+      ////                           ptopic->user_interaction()->window_rectangle(rectangle);
+      ////
+      ////                           m_psubmenu->update_position(rectangle.top_right());
+      ////
+      ////                           m_psubmenu->track_popup_menu(m_pchannelNotify);
+      ////
+      ////                        }
+      ////                        else
+      ////                        {
+      ////
+      ////                           ::topic topic;
+      ////
+      ////                           topic.m_atom = ::id_menu_hover;
+      ////
+      ////                           topic.m_atom = pitem->m_atom;
+      ////
+      ////                           ::user::interaction * puiTarget = get_target_window();
+      ////
+      ////                           if (puiTarget == nullptr)
+      ////                           {
+      ////
+      ////                              return;
+      ////
+      ////                           }
+      ////
+      ////                           return puiTarget->route(&topic);
+      ////
+      ////                        }
+      ////
+      ////                     }
+      ////
+      ////                  }
+      ////
+      ////               }
+      ////
+      ////            }
+      ////
+      ////         }
+      ////
+      ////         ptopic->m_bRet = true;
+      ////
+      ////         return;
+      ////
+      ////      }
+      ////      else if (ptopic->m_atom == ::id_mouse_leave)
+      ////      {
+      ////         if (ptopic->user_element_id() == m_atomTimerMenu)
+      ////         {
+      ////            KillTimer(e_timer_menu);
+      ////            m_atomTimerMenu.is_empty();
+      ////         }
+      ////
+      ////         ptopic->m_bRet = true;
+      ////
+      ////         return;
+      ////
+      ////      }
 
       ::user::interaction::handle(ptopic, pcontext);
 
    }
 
 
-   void menu::_001OnTimer(::timer * ptimer)
+   bool menu::on_click(::item * pitem)
    {
 
-      ::user::interaction::_001OnTimer(ptimer);
+      ::pointer<::user::menu_item>pmenuitem = pitem;
 
-      ::pointer<::user::menu_item>pitemThis = get_menu_item();
-
-      if (pitemThis == nullptr)
+      if (pmenuitem)
       {
+
+         if (pmenuitem->m_bPopup)
+         {
+
+            m_pmenuitemClick = pmenuitem;
+
+            set_timer(e_timer_menu, 100_ms);
+
+            return true;
+
+         }
+         else
+         {
+
+            if (pmenuitem->m_atom.begins("syscommand::"))
+            {
+
+               auto pchannelNotify = get_notify_channel();
+
+               if (::is_set(pchannelNotify))
+               {
+
+                  //::message::command command(ptopic->user_element_id());
+
+                  //puiTarget->_001SendCommand(&command);
+
+                  pchannelNotify->handle_command(pmenuitem->m_atom);
+
+               }
+
+            }
+            else
+            {
+
+               auto pchannelNotify = m_pchannelNotify;
+
+               atom idCommand = pmenuitem->m_atom;
+
+               idCommand = translate_property_id(idCommand);
+
+               defer_close();
+
+               // this may be destroyed by MESSAGE_CLOSE above
+
+               if (::is_set(pchannelNotify))
+               {
+
+                  ::message::command command(idCommand);
+
+                  //auto puseritem = user_item(pitem);
+
+                  //command.m_actioncontext = puseritem->M_ac
+
+                  pchannelNotify->_001SendCommand(&command);
+
+                  //ptopic->m_bRet = command.m_bRet;
+
+                  if (command.m_bRet)
+                  {
+
+                     return true;
+
+                  }
+
+               }
+
+            }
+
+         }
+
+      }
+
+      return false;
+
+   }
+
+
+      void menu::_001OnTimer(::timer * ptimer)
+      {
+
+         ::user::interaction::_001OnTimer(ptimer);
+
+         ::pointer<::user::menu_item>pitemThis = get_menu_item();
+
+         if (pitemThis == nullptr)
+         {
+
+            return;
+
+         }
+
+         ::pointer<::user::menu_item_ptra>pmenuitema = pitemThis->m_pmenuitema;
+
+         if (ptimer->m_uEvent == e_timer_menu)
+         {
+            KillTimer(e_timer_menu);
+            //if (m_atomSubMenu.has_char())
+            //{
+            //   m_psubmenu->send_message(MESSAGE_CLOSE);
+            //   m_psubmenu = nullptr;
+            //   m_atomSubMenu.is_empty();
+            //}
+            
+            if (m_pmenuSubMenu)
+            {
+               
+               m_pmenuSubMenu->post_message(MESSAGE_CLOSE);
+               
+               m_pmenuSubMenu = nullptr;
+               //m_pitemSubMenu.release();
+
+            }
+
+            if (m_pmenuitemClick)
+            {
+
+               //m_atomSubMenu = m_atomTimerMenu;
+
+               m_pmenuSubMenu = __initialize(__new(::user::menu(m_pmenuitemClick)));
+
+               ::rectangle_i32 rectangle;
+
+               m_pmenuitemClick->m_puserinteraction->window_rectangle(rectangle);
+
+               m_pmenuSubMenu->update_position(rectangle.top_right());
+
+               m_pmenuSubMenu->track_popup_menu(m_pchannelNotify, this);
+
+               m_pmenuitemClick = nullptr;
+
+            }
+
+//m_atomTimerMenu.is_empty();
+
+
+            //}
+            //if (m_atomTimerMenu.has_char())
+            //{
+
+            //   m_atomSubMenu = m_atomTimerMenu;
+
+            //   m_psubmenu = __new(menu(pmenuitema->find(m_atomTimerMenu)));
+
+            //   m_psubmenu->initialize(this);
+
+            //   ::rectangle_i32 rectangle;
+
+            //   pmenuitema->find(m_atomTimerMenu)->m_puserinteraction->window_rectangle(rectangle);
+
+            //   m_psubmenu->update_position(rectangle.top_right());
+
+            //   m_psubmenu->track_popup_menu(m_pchannelNotify, this);
+
+            //}
+
+            //m_atomTimerMenu.is_empty();
+
+         }
+         else if (ptimer->m_uEvent == ::e_timer_command_probe)
+         {
+
+            {
+
+               synchronous_lock synchronouslock(this->synchronization());
+
+               update_command(m_pmenuitem);
+
+            }
+
+            //if(pmenuitema != nullptr)
+            //{
+            //   ::message::command commandui(this);
+            //   commandui.m_pitema          = pmenuitema;
+            //   for(i32 i = 0; i < pmenuitema->get_size(); i++)
+            //   {
+            //
+            //      commandui.m_iIndex    = i;
+            //      commandui.m_atom        = pmenuitema->element_at(i)->m_atom;
+            //      commandui.m_pOther    = pmenuitema->element_at(i)->m_puserinteraction;
+            //
+            //      ::pointer<::user::interaction>puiTarget = get_target_window();
+            //
+            //      if(puiTarget != nullptr)
+            //      {
+            //         /* xxx if(puserinteractionParent->on_command(0,
+            //          MAKELONG((i32)CN_UPDATE_::message::command, e_message_command+WM_REFLECT_BASE),
+            //          &commandui, nullptr))
+            //          continue;*/
+            //         if(puiTarget->_001SendUpdateCmdUi(&commandui))
+            //            continue;
+            //      }
+            //   }
+            //}
+         }
+
+
+      }
+
+
+      void menu::on_message_create(::message::message * pmessage)
+      {
+
+         information() << "::user::menu::on_messsage_create";
+
+         /// descriptor().set_control_type(e_control_type_menu);
+
+         pmessage->previous();
+
+         UNREFERENCED_PARAMETER(pmessage);
+
+         //create_color(color_background, argb(84 + 77, 185, 184, 177));
+
+         //create_translucency(::user::e_translucency_present;
+
+         defer_initialize_user_menu();
+
+      }
+
+
+
+      //    void menu::_001OnIdleUpdateCmdUI(::message::message * pmessage)
+      //    {
+      //       UNREFERENCED_PARAMETER(pmessage);
+      //       //      ::pointer<::user::message>pusermessage(pmessage);
+
+      //       ::pointer<::user::menu_item>pitemThis = get_item();
+
+      //       ::pointer<::user::menu_item_ptra>pmenuitema = pitemThis->m_spmenuitema;
+
+      //       if(pmenuitema != nullptr)
+      //       {
+      //          ::message::command commandui(this);
+      //          commandui.m_pitema          = pmenuitema;
+      //          for(i32 i = 0; i < pmenuitema->get_size(); i++)
+      //          {
+
+      //             commandui.m_iIndex    = i;
+      //             commandui.m_atom        = pmenuitema->element_at(i)->m_atom;
+      //             commandui.m_pOther    = pmenuitema->element_at(i)->m_puserinteraction;
+
+      //             ::pointer<::user::interaction>puserinteractionParent = m_puiNotify;
+      //             if(puserinteractionParent != nullptr)
+      //             {
+      //                /*
+      //                 if(puserinteractionParent->on_command(0,
+      //                 MAKELONG((i32)CN_UPDATE_::message::command, e_message_command+WM_REFLECT_BASE),
+      //                 &commandui, nullptr))
+      //                 continue;
+      //                 */
+
+      //                if(puserinteractionParent->_001SendUpdateCmdUi(&commandui))
+      //                   continue;
+      //             }
+
+      //          }
+      //       }
+      //    }
+
+
+      void menu::_001OnEnable(::message::message * pmessage)
+      {
+         UNREFERENCED_PARAMETER(pmessage);
+      }
+
+
+      void menu::_001OnNcCreate(::message::message * pmessage)
+      {
+
+         ::pointer<::user::message>pusermessage(pmessage);
+
+         pusermessage->m_bRet = true;
+
+         pusermessage->m_lresult = 1;
+
+      }
+
+
+      void menu::_001OnNcActivate(::message::message * /*pmessage */)
+      {
+
+         //::pointer<::message::nc_activate>pncactivate(pmessage);
+
+   //#ifdef WINDOWS_DESKTOP
+   //
+   //      if (::IsIconic(get_handle()))
+   //      {
+   //
+   //         pncactivate->m_bRet = false;
+   //
+   //      }
+   //      else
+   //      {
+   //
+   //         pncactivate->m_lresult = false;
+   //
+   //         pncactivate->m_bRet = true;
+   //
+   //
+   //      }
+   //
+   //#else
+   //
+   //      pncactivate->m_lresult = true;
+   //
+   //      pncactivate->m_bRet = true;
+   //
+   //#endif
+
+      }
+
+
+      void menu::_001OnActivate(::message::message * pmessage)
+      {
+
+         ::pointer<::message::activate>pactivate(pmessage);
+
+         pactivate->m_lresult = 0;
+
+         pactivate->m_bRet = true;
+
+      }
+
+
+      void menu::_001OnMouseActivate(::message::message * pmessage)
+      {
+
+         ::pointer<::message::mouse_activate>pmouseactivate(pmessage);
+
+         pmouseactivate->m_lresult = e_mouse_activate_no_activate;
+
+         pmouseactivate->m_bRet = true;
+
+      }
+
+
+      size_i32 menu::get_window_minimum_size()
+      {
+
+         return m_sizeMinimum;
+
+      }
+
+
+      void menu::on_message_non_client_calculate_size(::message::message * pmessage)
+      {
+
+         ///::pointer<::user::message>pusermessage(pmessage);
+
+         pmessage->previous();
 
          return;
 
-      }
-
-      ::pointer<::user::menu_item_ptra>pmenuitema = pitemThis->m_pmenuitema;
-
-      if (ptimer->m_uEvent == e_timer_menu)
-      {
-         KillTimer(e_timer_menu);
-         if (m_atomSubMenu.has_char())
-         {
-            m_psubmenu->send_message(MESSAGE_CLOSE);
-            m_psubmenu = nullptr;
-            m_atomSubMenu.is_empty();
-         }
-
-         if (m_atomTimerMenu.has_char())
-         {
-
-            m_atomSubMenu = m_atomTimerMenu;
-
-            m_psubmenu = __new(menu(pmenuitema->find(m_atomTimerMenu)));
-
-            m_psubmenu->initialize(this);
-
-            ::rectangle_i32 rectangle;
-
-            pmenuitema->find(m_atomTimerMenu)->m_puserinteraction->window_rectangle(rectangle);
-
-            m_psubmenu->update_position(rectangle.top_right());
-
-            m_psubmenu->track_popup_menu(m_pchannelNotify, this);
-
-         }
-
-         m_atomTimerMenu.is_empty();
-
-      }
-      else if (ptimer->m_uEvent == ::e_timer_command_probe)
-      {
-
-         {
-
-            synchronous_lock synchronouslock(this->synchronization());
-
-            update_command(m_pmenuitem);
-
-         }
-
-         //if(pmenuitema != nullptr)
+         //if (pusermessage->m_wparam == true)
          //{
-         //   ::message::command commandui(this);
-         //   commandui.m_pitema          = pmenuitema;
-         //   for(i32 i = 0; i < pmenuitema->get_size(); i++)
-         //   {
-         //
-         //      commandui.m_iIndex    = i;
-         //      commandui.m_atom        = pmenuitema->element_at(i)->m_atom;
-         //      commandui.m_pOther    = pmenuitema->element_at(i)->m_puserinteraction;
-         //
-         //      ::pointer<::user::interaction>puiTarget = get_target_window();
-         //
-         //      if(puiTarget != nullptr)
-         //      {
-         //         /* xxx if(puserinteractionParent->on_command(0,
-         //          MAKELONG((i32)CN_UPDATE_::message::command, e_message_command+WM_REFLECT_BASE),
-         //          &commandui, nullptr))
-         //          continue;*/
-         //         if(puiTarget->_001SendUpdateCmdUi(&commandui))
-         //            continue;
-         //      }
-         //   }
+
+         //   pusermessage->m_bRet = true;
+         //   pusermessage->set_lresult(0);
+
          //}
+         //else
+         //{
+
+         //   ::rectangle_i32 * prectangle = (::rectangle_i32 *)pusermessage->m_lparam.m_lparam;
+
+         //   prectangle->left() = m_pointTrack.x();
+
+         //   prectangle->top() = m_pointTrack.y();
+
+         //   prectangle->right() = prectangle->left() + maximum(::user::interaction::get_window_minimum_size().cx(), m_size.cx());
+
+         //   prectangle->bottom() = prectangle->left() + maximum(::user::interaction::get_window_minimum_size().cy(), m_size.cy());
+
+         //   pusermessage->m_bRet = true;
+         //   pusermessage->set_lresult(0);
+
+         //}
+
       }
 
 
-   }
+      void menu::on_message_close(::message::message * pmessage)
+      {
+
+         if (!m_bInline)
+         {
+
+            if (m_pmenuParent != nullptr)
+            {
+
+               m_pmenuParent->post_message(MESSAGE_CLOSE);
+
+            }
+
+            //DestroyWindow();
+            set_finish();
+
+         }
+
+         pmessage->m_bRet = true;
+
+      }
 
 
-   void menu::on_message_create(::message::message * pmessage)
-   {
-
-      information() << "::user::menu::on_messsage_create";
-
-      /// descriptor().set_control_type(e_control_type_menu);
-
-      pmessage->previous();
-
-      UNREFERENCED_PARAMETER(pmessage);
-
-      //create_color(color_background, argb(84 + 77, 185, 184, 177));
-
-      //create_translucency(::user::e_translucency_present;
-
-      defer_initialize_user_menu();
-
-   }
+      bool menu::pre_create_window(::user::system * pusersystem)
+      {
 
 
+         return true;
 
-   //    void menu::_001OnIdleUpdateCmdUI(::message::message * pmessage)
-   //    {
-   //       UNREFERENCED_PARAMETER(pmessage);
-   //       //      ::pointer<::user::message>pusermessage(pmessage);
-
-   //       ::pointer<::user::menu_item>pitemThis = get_item();
-
-   //       ::pointer<::user::menu_item_ptra>pmenuitema = pitemThis->m_spmenuitema;
-
-   //       if(pmenuitema != nullptr)
-   //       {
-   //          ::message::command commandui(this);
-   //          commandui.m_pitema          = pmenuitema;
-   //          for(i32 i = 0; i < pmenuitema->get_size(); i++)
-   //          {
-
-   //             commandui.m_iIndex    = i;
-   //             commandui.m_atom        = pmenuitema->element_at(i)->m_atom;
-   //             commandui.m_pOther    = pmenuitema->element_at(i)->m_puserinteraction;
-
-   //             ::pointer<::user::interaction>puserinteractionParent = m_puiNotify;
-   //             if(puserinteractionParent != nullptr)
-   //             {
-   //                /*
-   //                 if(puserinteractionParent->on_command(0,
-   //                 MAKELONG((i32)CN_UPDATE_::message::command, e_message_command+WM_REFLECT_BASE),
-   //                 &commandui, nullptr))
-   //                 continue;
-   //                 */
-
-   //                if(puserinteractionParent->_001SendUpdateCmdUi(&commandui))
-   //                   continue;
-   //             }
-
-   //          }
-   //       }
-   //    }
+      }
 
 
-   void menu::_001OnEnable(::message::message * pmessage)
-   {
-      UNREFERENCED_PARAMETER(pmessage);
-   }
+      ::pointer<::user::menu_item>menu::get_menu_item()
+      {
+
+         return m_pmenuitem;
+
+      }
 
 
-   void menu::_001OnNcCreate(::message::message * pmessage)
-   {
+      //::pointer<::user::menu_item>menu::get_menu_item(::user::interaction * pinteraction)
+      //{
 
-      ::pointer<::user::message>pusermessage(pmessage);
+      //   ::pointer<::user::interaction>pbutton = pinteraction;
 
-      pusermessage->m_bRet = true;
+      //   if (pbutton.is_null())
+      //   {
 
-      pusermessage->m_lresult = 1;
+      //      return nullptr;
 
-   }
+      //   }
+
+      //   return pbutton->m_pmenuitem;
+
+      //}
 
 
-   void menu::_001OnNcActivate(::message::message * /*pmessage */)
-   {
+      ::channel * menu::get_notify_channel()
+      {
 
-      //::pointer<::message::nc_activate>pncactivate(pmessage);
+         return m_pchannelNotify;
 
-//#ifdef WINDOWS_DESKTOP
-//
-//      if (::IsIconic(get_handle()))
+         //auto pchannelNotify = m_pchannelNotify;
+
+         //if (::is_null(pchannelNotify))
+         //{
+
+         //   return nullptr;
+
+         //}
+
+         //if (dynamic_cast <::user::frame *> (puiTarget) == nullptr)
+         //{
+
+         //   puiTarget = puiTarget->get_parent_frame();
+
+         //}
+
+         //return puiTarget;
+
+      }
+
+
+//      bool menu::has_pending_graphical_update()
 //      {
 //
-//         pncactivate->m_bRet = false;
+//         return ::user::interaction::has_pending_graphical_update();
 //
 //      }
-//      else
-//      {
-//
-//         pncactivate->m_lresult = false;
-//
-//         pncactivate->m_bRet = true;
-//
-//
-//      }
-//
-//#else
-//
-//      pncactivate->m_lresult = true;
-//
-//      pncactivate->m_bRet = true;
-//
-//#endif
-
-   }
 
 
-   void menu::_001OnActivate(::message::message * pmessage)
-   {
 
-      ::pointer<::message::activate>pactivate(pmessage);
-
-      pactivate->m_lresult = 0;
-
-      pactivate->m_bRet = true;
-
-   }
-
-
-   void menu::_001OnMouseActivate(::message::message * pmessage)
-   {
-
-      ::pointer<::message::mouse_activate>pmouseactivate(pmessage);
-
-      pmouseactivate->m_lresult = e_mouse_activate_no_activate;
-
-      pmouseactivate->m_bRet = true;
-
-   }
-
-
-   size_i32 menu::get_window_minimum_size()
-   {
-
-      return m_sizeMinimum;
-
-   }
-
-
-   void menu::on_message_non_client_calculate_size(::message::message * pmessage)
-   {
-
-      ///::pointer<::user::message>pusermessage(pmessage);
-
-      pmessage->previous();
-
-      return;
-
-      //if (pusermessage->m_wparam == true)
-      //{
-
-      //   pusermessage->m_bRet = true;
-      //   pusermessage->set_lresult(0);
-
-      //}
-      //else
-      //{
-
-      //   ::rectangle_i32 * prectangle = (::rectangle_i32 *)pusermessage->m_lparam.m_lparam;
-
-      //   prectangle->left() = m_pointTrack.x();
-
-      //   prectangle->top() = m_pointTrack.y();
-
-      //   prectangle->right() = prectangle->left() + maximum(::user::interaction::get_window_minimum_size().cx(), m_size.cx());
-
-      //   prectangle->bottom() = prectangle->left() + maximum(::user::interaction::get_window_minimum_size().cy(), m_size.cy());
-
-      //   pusermessage->m_bRet = true;
-      //   pusermessage->set_lresult(0);
-
-      //}
-
-   }
-
-
-   void menu::on_message_close(::message::message * pmessage)
-   {
-
-      if (!m_bInline)
+      void menu::update_command(menu_item * pitemParent)
       {
 
-         if (m_pmenuParent != nullptr)
-         {
-
-            m_pmenuParent->post_message(MESSAGE_CLOSE);
-
-         }
-
-         //DestroyWindow();
-         set_finish();
-
-      }
-
-      pmessage->m_bRet = true;
-
-   }
-
-
-   bool menu::pre_create_window(::user::system * pusersystem)
-   {
-
-
-      return true;
-
-   }
-
-
-   ::pointer<::user::menu_item>menu::get_menu_item()
-   {
-
-      return m_pmenuitem;
-
-   }
-
-
-   //::pointer<::user::menu_item>menu::get_menu_item(::user::interaction * pinteraction)
-   //{
-
-   //   ::pointer<::user::interaction>pbutton = pinteraction;
-
-   //   if (pbutton.is_null())
-   //   {
-
-   //      return nullptr;
-
-   //   }
-
-   //   return pbutton->m_pmenuitem;
-
-   //}
-
-
-   ::channel * menu::get_notify_channel()
-   {
-
-      return m_pchannelNotify;
-
-      //auto pchannelNotify = m_pchannelNotify;
-
-      //if (::is_null(pchannelNotify))
-      //{
-
-      //   return nullptr;
-
-      //}
-
-      //if (dynamic_cast <::user::frame *> (puiTarget) == nullptr)
-      //{
-
-      //   puiTarget = puiTarget->get_parent_frame();
-
-      //}
-
-      //return puiTarget;
-
-   }
-
-
-   bool menu::has_pending_graphical_update()
-   {
-
-      return ::user::interaction::has_pending_graphical_update();
-
-   }
-
-
-
-   void menu::update_command(menu_item * pitemParent)
-   {
-
-      if (m_pchannelNotify == nullptr)
-      {
-
-         return;
-
-      }
-
-      if (pitemParent == nullptr)
-      {
-
-         return;
-
-      }
-
-      if (pitemParent->m_pmenuitema == nullptr)
-      {
-
-         return;
-
-      }
-
-      auto pmenucommand = __create_new< ::user::menu_command>();
-
-      pmenucommand->m_pitema = pitemParent->m_pmenuitema;
-
-      pmenucommand->m_iCount = pitemParent->m_pmenuitema->get_size();
-
-      for (pmenucommand->m_iIndex = 0; pmenucommand->m_iIndex < pmenucommand->m_iCount; pmenucommand->m_iIndex++)
-      {
-
-         ::pointer<menu_item>pitem = pitemParent->m_pmenuitema->element_at(pmenucommand->m_iIndex);
-
-         if (pitem->m_atom.is_empty())
-         {
-
-            continue;
-
-         }
-
-         pmenucommand->m_commandtargetptraHandle.clear();
-
-         pmenucommand->m_atom = pitem->m_atom;
-
-         pmenucommand->m_puiOther = pitem->m_puserinteraction;
-
-         if (m_pchannelNotify.is_null())
+         if (m_pchannelNotify == nullptr)
          {
 
             return;
 
          }
 
-         try
-         {
-
-            m_pchannelNotify->_001SendCommandProbe(pmenucommand);
-
-         }
-         catch (...)
+         if (pitemParent == nullptr)
          {
 
             return;
 
          }
 
-      }
-
-      for (pmenucommand->m_iIndex = 0; pmenucommand->m_iIndex < pmenucommand->m_iCount; pmenucommand->m_iIndex++)
-      {
-
-         ::pointer<menu_item>pitem = pitemParent->m_pmenuitema->element_at(pmenucommand->m_iIndex);
-
-         pmenucommand->m_atom = pitem->m_atom;
-
-         pmenucommand->m_puiOther = pitem->m_puserinteraction;
-
-         if (pitem->m_pmenu != nullptr)
-         {
-
-            pitem->m_pmenu->update_command(pitem);
-
-         }
-
-      }
-      if (pmenucommand->m_bEnableChanged || pmenucommand->m_bRadioChanged)
-      {
-
-         set_need_redraw();
-
-      }
-
-   }
-
-
-   ::pointer<::user::menu_interaction>menu::create_menu_button(::draw2d::graphics_pointer & pgraphics, menu_item * pitem)
-   {
-
-      auto pstyle = get_style(pgraphics);
-
-      ::pointer<::base::session>psession = get_session();
-
-      auto puser = psession->baseuser();
-
-      auto pinteraction = puser->create_menu_button(pstyle, pitem);
-
-      if (!pinteraction)
-      {
-
-         return nullptr;
-
-      }
-
-      //auto estatus = 
-      pinteraction->initialize(this);
-
-      //if (!estatus)
-      //{
-
-      //   return nullptr;
-
-      //}
-
-      pinteraction->m_pmatterCommandHandler = this;
-      
-      pinteraction->add_handler(this);
-
-      return pinteraction;
-
-   }
-
-
-   // <3ThomasBorregaardSorensen__!! (I need to suck you, back, middle, front .20211031)
-   void menu::route_command(::message::command* pcommand, bool bRouteToKeyDescendant)
-   {
-
-      if(m_pchannelNotify)
-      {
-
-         m_pchannelNotify->route_command(pcommand, bRouteToKeyDescendant);
-
-         if (pcommand->m_bRet)
+         if (pitemParent->m_pmenuitema == nullptr)
          {
 
             return;
 
          }
 
+         auto pmenucommand = __create_new< ::user::menu_command>();
+
+         pmenucommand->m_pitema = pitemParent->m_pmenuitema;
+
+         pmenucommand->m_iCount = pitemParent->m_pmenuitema->get_size();
+
+         for (pmenucommand->m_iIndex = 0; pmenucommand->m_iIndex < pmenucommand->m_iCount; pmenucommand->m_iIndex++)
+         {
+
+            ::pointer<menu_item>pitem = pitemParent->m_pmenuitema->element_at(pmenucommand->m_iIndex);
+
+            if (pitem->m_atom.is_empty())
+            {
+
+               continue;
+
+            }
+
+            pmenucommand->m_commandtargetptraHandle.clear();
+
+            pmenucommand->m_atom = pitem->m_atom;
+
+            pmenucommand->m_puiOther = pitem->m_puserinteraction;
+
+            if (m_pchannelNotify.is_null())
+            {
+
+               return;
+
+            }
+
+            try
+            {
+
+               m_pchannelNotify->_001SendCommandProbe(pmenucommand);
+
+            }
+            catch (...)
+            {
+
+               return;
+
+            }
+
+         }
+
+         for (pmenucommand->m_iIndex = 0; pmenucommand->m_iIndex < pmenucommand->m_iCount; pmenucommand->m_iIndex++)
+         {
+
+            ::pointer<menu_item>pitem = pitemParent->m_pmenuitema->element_at(pmenucommand->m_iIndex);
+
+            pmenucommand->m_atom = pitem->m_atom;
+
+            pmenucommand->m_puiOther = pitem->m_puserinteraction;
+
+            if (pitem->m_pmenu != nullptr)
+            {
+
+               pitem->m_pmenu->update_command(pitem);
+
+            }
+
+         }
+         if (pmenucommand->m_bEnableChanged || pmenucommand->m_bRadioChanged)
+         {
+
+            set_need_redraw();
+
+         }
+
       }
 
-      ::user::interaction::route_command(pcommand, bRouteToKeyDescendant);
 
-   }
-
-
-
-   // <3ThomasBorregaardSorensen__!! (I need to suck you, back, middle, front)
-   void menu::handle_command(const ::atom& atom)
-   {
-
-      if (m_pmatterCommandHandler)
+      ::pointer<::user::menu_interaction>menu::create_menu_button(::draw2d::graphics_pointer & pgraphics, menu_item * pitem)
       {
 
-         defer_close();
+         auto pstyle = get_style(pgraphics);
+
+         ::pointer<::base::session>psession = get_session();
+
+         auto puser = psession->baseuser();
+
+         auto pinteraction = puser->create_menu_button(pstyle, pitem);
+
+         if (!pinteraction)
+         {
+
+            return nullptr;
+
+         }
 
          //auto estatus = 
-         
-         m_pmatterCommandHandler->handle_command(atom);
+         pinteraction->initialize(this);
 
          //if (!estatus)
          //{
 
-         //   return estatus;
+         //   return nullptr;
 
          //}
 
-         //return estatus;
+         pinteraction->m_pmatterCommandHandler = this;
+
+         pinteraction->add_handler(this);
+
+         return pinteraction;
 
       }
 
-      //return ::error_failed;
 
-   }
-
-
-   void menu::on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics)
-   {
-
-      ::pointer<::user::menu_item>pitem = get_menu_item();
-
-      if(!pitem)
+      // <3ThomasBorregaardSorensen__!! (I need to suck you, back, middle, front .20211031)
+      void menu::route_command(::message::command * pcommand, bool bRouteToKeyDescendant)
       {
 
-         return;
-
-      }
-
-      ::point_i32 point;
-
-      if(get_parent() == nullptr)
-      {
-
-         information() << "menu::on_perform_top_down_layout top level menu";
-
-         if (!m_bPositionHint)
+         if (m_pchannelNotify)
          {
 
-            auto pointCursor = mouse_cursor_position();
+            m_pchannelNotify->route_command(pcommand, bRouteToKeyDescendant);
 
-            m_pointPositionHint = pointCursor;
+            if (pcommand->m_bRet)
+            {
+
+               return;
+
+            }
 
          }
 
-         //auto pgraphics = pdraw2d->create_memory_graphics(this);
+         ::user::interaction::route_command(pcommand, bRouteToKeyDescendant);
 
-         m_pointTrack = m_pointPositionHint;
+      }
 
-         //void menu::layout_menu(::draw2d::graphics_pointer & pgraphics)
+
+
+      // <3ThomasBorregaardSorensen__!! (I need to suck you, back, middle, front)
+      void menu::handle_command(const ::atom & atom)
+      {
+
+         if (m_pmatterCommandHandler)
+         {
+
+            defer_close();
+
+            //auto estatus = 
+
+            m_pmatterCommandHandler->handle_command(atom);
+
+            //if (!estatus)
+            //{
+
+            //   return estatus;
+
+            //}
+
+            //return estatus;
+
+         }
+
+         //return ::error_failed;
+
+      }
+
+
+      void menu::on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics)
+      {
+
+         ::pointer<::user::menu_item>pitem = get_menu_item();
+
+         if (!pitem)
+         {
+
+            return;
+
+         }
+
+         ::point_i32 point;
+
+         if (get_parent() == nullptr)
+         {
+
+            information() << "menu::on_perform_top_down_layout top level menu";
+
+            if (!m_bPositionHint)
+            {
+
+               auto pointCursor = mouse_cursor_position();
+
+               m_pointPositionHint = pointCursor;
+
+            }
+
+            //auto pgraphics = pdraw2d->create_memory_graphics(this);
+
+            m_pointTrack = m_pointPositionHint;
+
+            //void menu::layout_menu(::draw2d::graphics_pointer & pgraphics)
+            //{
+
+            point = m_pointTrack;
+
+            if (get_parent() != nullptr)
+            {
+
+               get_parent()->screen_to_client()(m_pointTrack);
+
+            }
+
+         }
+         else
+         {
+
+            information() << "menu::on_perform_top_down_layout child menu";
+
+         }
+
+         //auto psystem = system()->m_paurasystem;
+
+         //auto pdraw2d = psystem->draw2d();
+
+         auto pstyle = get_style(pgraphics);
+
+         pgraphics->set(get_font(pstyle));
+
+         auto metrics = pgraphics->get_text_metrics();
+
+         auto dMaxHeight = metrics.get_line_height();
+
+         m_dItemHeight = dMaxHeight;
+
+         m_dCheckBoxSize = dMaxHeight;
+
+         m_dHeaderHeight = dMaxHeight;
+
+         ::pointer<::user::menu_item_ptra>pmenuitema = pitem->m_pmenuitema;
+
+         auto rectangleMargin = get_margin(pstyle);
+
+         auto rectangleBorder = get_border(pstyle);
+
+         auto rectanglePadding = get_padding(pstyle);
+
+         //int iElementPadding = rectanglePadding.left();
+
+         int x = (int)(rectangleMargin.left() + rectangleBorder.left() + rectanglePadding.left());
+
+         int y = (int)(rectangleMargin.top() + rectangleBorder.top() + rectanglePadding.top());
+
+         //class calc_size calcsize;
+
+         //calcsize.m_pgraphics = pgraphics;
+
+         ::size_i32 size;
+
+         if (m_bCloseButton)
+         {
+
+            size = m_pitemClose->m_puserinteraction->get_preferred_size(pgraphics);
+
+            information() << "close_button size : " << size;
+
+            m_pitemClose->m_rectangleUi.left() = x;
+            m_pitemClose->m_rectangleUi.right() = x + size.cx();
+            m_pitemClose->m_rectangleUi.top() = y;
+            m_pitemClose->m_rectangleUi.bottom() = y + size.cy();
+
+            y += size.cy();
+
+         }
+
+         int yClose = y;
+
+         m_iaColumnWidth.set_size(1);
+
+         m_iaColumnHeight.set_size(1);
+
+         m_iaColumnWidth[0] = size.cx();
+
+         m_iaColumnHeight[0] = yClose;
+
+         index iColumn = 0;
+
+         ::i32 iMaximumButtonHeight = 0;
+
+         // Calculate buttons sizes
+
+         for (i32 i = 0; i < pmenuitema->get_size(); i++)
+         {
+
+            auto pmenuitem = pmenuitema->element_at(i);
+
+            if(pmenuitem->is_separator())
+            {
+
+               continue;
+
+            }
+
+            auto puserinteraction = pmenuitem->m_puserinteraction;
+
+
+
+            string strButtonText = puserinteraction->get_window_text();
+
+            if (puserinteraction)
+            {
+
+               size = puserinteraction->get_preferred_size(pgraphics);
+
+               information() << "button text and size : \"" << strButtonText << "\", " << size;
+
+               pmenuitem->m_rectangleUi.left() = 0;
+               pmenuitem->m_rectangleUi.top() = 0;
+               pmenuitem->m_rectangleUi.set_size(size);
+
+               iMaximumButtonHeight = maximum(iMaximumButtonHeight, size.cy());
+
+            }
+
+         }
+
+         ::i32 iSeparatorHeight = iMaximumButtonHeight / 3;
+
+         ::i32 iRow = 0;
+
+         for (i32 i = 0; i < pmenuitema->get_size(); i++)
+         {
+
+            auto pmenuitem = pmenuitema->element_at(i);
+
+            pmenuitem->m_rectangleUi.move_to(x, y);
+
+            size = pmenuitem->m_rectangleUi.size();
+
+            if (!pmenuitem->m_puserinteraction)
+            {
+
+               pmenuitem->m_rectangleUi.set_height(iSeparatorHeight);
+
+               size.cy() = iSeparatorHeight;
+
+            }
+
+            pmenuitem->m_iColumn = (::i32) iColumn;
+
+            pmenuitem->m_iRow = iRow;
+
+            y += size.cy();
+
+            if (size.cx() > m_iaColumnWidth[iColumn])
+            {
+
+               m_iaColumnWidth[iColumn] = size.cx();
+
+            }
+
+            m_iaColumnHeight[iColumn] = y;
+
+            iRow++;
+
+            if (pmenuitema->element_at(i)->m_bBreak)
+            {
+
+               x += m_iaColumnWidth[iColumn];
+
+               y = yClose;
+
+               iColumn++;
+
+               iRow = 0;
+
+               m_iaColumnWidth.add(0);
+
+               m_iaColumnHeight.add(yClose);
+
+               iColumn = m_iaColumnWidth.get_upper_bound();
+
+            }
+
+         }
+
+         for (i32 i = 0; i < pmenuitema->get_size(); i++)
+         {
+
+            auto pmenuitem = pmenuitema->element_at(i);
+
+            if (!pmenuitem->m_puserinteraction)
+            {
+
+               pmenuitem->m_rectangleUi.set_width(m_iaColumnWidth[pmenuitem->m_iColumn]);
+
+            }
+
+         }
+
+         //::size_i32 sizeSeparator;
+
+         //for (i32 i = 0; i < pmenuitema->get_size(); i++)
          //{
 
-         point = m_pointTrack;
+         //   string strButtonText = pmenuitema->element_at(i)->m_puserinteraction->get_window_text();
 
-         if (get_parent() != nullptr)
+         //   pmenuitema->element_at(i)->m_iColumn = (int)iColumn;
+
+         //   auto puserinteraction = pmenuitema->element_at(i)->m_puserinteraction;
+
+         //   if (puserinteraction)
+         //   {
+
+         //      size = pmenuitema->element_at(i)->m_puserinteraction->get_preferred_size(pgraphics);
+
+         //      information() << "button text and size : \"" << strButtonText << "\", " << size;
+
+         //      if (sizeSeparator.is_empty())
+         //      {
+
+         //         sizeSeparator.cx() = 
+
+         //         sizeSeparator.cy() = size.cy() / 2;
+
+         //      }
+
+         //   }
+         //   else
+         //   {
+
+
+         //   }
+
+         //   pmenuitema->element_at(i)->m_rectangleUi.left() = x;
+         //   pmenuitema->element_at(i)->m_rectangleUi.right() = x + size.cx();
+         //   pmenuitema->element_at(i)->m_rectangleUi.top() = y;
+         //   pmenuitema->element_at(i)->m_rectangleUi.bottom() = y + size.cy();
+
+         //   y += size.cy();
+
+         //   m_iaColumnHeight[iColumn] = y;
+
+         //   if (size.cx() > m_iaColumnWidth[iColumn])
+         //   {
+
+         //      m_iaColumnWidth[iColumn] = size.cx();
+
+         //   }
+
+         //   if (pmenuitema->element_at(i)->m_bBreak)
+         //   {
+
+         //      x += m_iaColumnWidth[iColumn];
+
+         //      y = yClose;
+
+         //      iColumn++;
+
+         //      m_iaColumnWidth.add(0);
+
+         //      m_iaColumnHeight.add(yClose);
+
+         //      iColumn = m_iaColumnWidth.get_upper_bound();
+
+         //   }
+
+         //}
+
+         m_size.cx() = (int)(m_iaColumnWidth.get_sum()
+                     + rectangleMargin.left() + rectangleMargin.right()
+                     + rectangleBorder.left() + rectangleBorder.right()
+                     + rectanglePadding.left() + rectanglePadding.right());
+
+         m_size.cy() = (int)(m_iaColumnHeight.get_maximum_value()
+                     + rectangleMargin.top() + rectangleMargin.bottom()
+                     + rectangleBorder.top() + rectangleBorder.bottom()
+                     + rectanglePadding.top() + rectanglePadding.bottom());
+
+         m_size.cx() = maximum(m_sizeMinimum.cx(), m_size.cx());
+
+         m_size.cy() = maximum(m_sizeMinimum.cy(), m_size.cy());
+
+         ::count iItemCount = pmenuitema->get_size();
+
+         ::pointer<::base::style>pbasestyle = pstyle;
+
+         for (i32 i = 0; i < iItemCount; i++)
          {
 
-            get_parent()->screen_to_client()(m_pointTrack);
+            ::user::menu_item * pitem = pmenuitema->element_at(i);
 
-         }
+            pmenuitema->element_at(i)->m_rectangleUi.right() =
+               pmenuitema->element_at(i)->m_rectangleUi.left() + m_iaColumnWidth[pitem->m_iColumn];
 
-      }
-      else
-      {
-
-         information() << "menu::on_perform_top_down_layout child menu";
-
-      }
-
-      //auto psystem = acmesystem()->m_paurasystem;
-
-      //auto pdraw2d = psystem->draw2d();
-
-      auto pstyle = get_style(pgraphics);
-
-      pgraphics->set(get_font(pstyle));
-
-      auto metrics = pgraphics->get_text_metrics();
-
-      auto dMaxHeight = metrics.get_line_height();
-
-      m_dItemHeight = dMaxHeight;
-
-      m_dCheckBoxSize = dMaxHeight;
-
-      m_dHeaderHeight = dMaxHeight;
-
-      ::pointer<::user::menu_item_ptra>pmenuitema = pitem->m_pmenuitema;
-
-      auto rectangleMargin = get_margin(pstyle);
-
-      auto rectangleBorder = get_border(pstyle);
-
-      auto rectanglePadding = get_padding(pstyle);
-
-      //int iElementPadding = rectanglePadding.left();
-
-      int x = (int) (rectangleMargin.left() + rectangleBorder.left() + rectanglePadding.left());
-
-      int y = (int) (rectangleMargin.top() + rectangleBorder.top() + rectanglePadding.top());
-
-      //class calc_size calcsize;
-
-      //calcsize.m_pgraphics = pgraphics;
-
-      ::size_i32 size;
-
-      if (m_bCloseButton)
-      {
-
-         size = m_pitemClose->m_puserinteraction->get_preferred_size(pgraphics);
-
-         information() << "close_button size : " << size;
-
-         m_pitemClose->m_rectangleUi.left() = x;
-         m_pitemClose->m_rectangleUi.right() = x + size.cx();
-         m_pitemClose->m_rectangleUi.top() = y;
-         m_pitemClose->m_rectangleUi.bottom() = y + size.cy();
-
-         y += size.cy();
-
-      }
-
-      int yClose = y;
-
-      m_iaColumnWidth.set_size(1);
-
-      m_iaColumnHeight.set_size(1);
-
-      m_iaColumnWidth[0] = size.cx();
-
-      m_iaColumnHeight[0] = yClose;
-
-      index iColumn = 0;
-
-      for (i32 i = 0; i < pmenuitema->get_size(); i++)
-      {
-
-         string strButtonText = pmenuitema->element_at(i)->m_puserinteraction->get_window_text();
-
-         pmenuitema->element_at(i)->m_iColumn = (int) iColumn;
-
-         size = pmenuitema->element_at(i)->m_puserinteraction->get_preferred_size(pgraphics);
-
-         information() << "button text and size : \"" << strButtonText << "\", " << size;
-
-         pmenuitema->element_at(i)->m_rectangleUi.left() = x;
-         pmenuitema->element_at(i)->m_rectangleUi.right() = x + size.cx();
-         pmenuitema->element_at(i)->m_rectangleUi.top() = y;
-         pmenuitema->element_at(i)->m_rectangleUi.bottom() = y + size.cy();
-
-         y += size.cy();
-
-         m_iaColumnHeight[iColumn] = y;
-
-         if (size.cx() > m_iaColumnWidth[iColumn])
-         {
-
-            m_iaColumnWidth[iColumn] = size.cx();
-
-         }
-
-         if (pmenuitema->element_at(i)->m_bBreak)
-         {
-
-            x += m_iaColumnWidth[iColumn];
-
-            y = yClose;
-
-            iColumn++;
-
-            m_iaColumnWidth.add(0);
-
-            m_iaColumnHeight.add(yClose);
-
-            iColumn = m_iaColumnWidth.get_upper_bound();
-
-         }
-
-      }
-
-      m_size.cx() = (int) (m_iaColumnWidth.get_sum()
-                  + rectangleMargin.left() + rectangleMargin.right()
-                  + rectangleBorder.left() + rectangleBorder.right()
-                  + rectanglePadding.left() + rectanglePadding.right());
-
-      m_size.cy() = (int) (m_iaColumnHeight.get_maximum_value()
-                  + rectangleMargin.top() + rectangleMargin.bottom()
-                  + rectangleBorder.top() + rectangleBorder.bottom()
-                  + rectanglePadding.top() + rectanglePadding.bottom());
-
-      m_size.cx() = maximum(m_sizeMinimum.cx(), m_size.cx());
-
-      m_size.cy() = maximum(m_sizeMinimum.cy(), m_size.cy());
-
-      ::count iItemCount = pmenuitema->get_size();
-
-      ::pointer<::base::style>pbasestyle = pstyle;
-
-      for (i32 i = 0; i < iItemCount; i++)
-      {
-
-         ::user::menu_item * pitem = pmenuitema->element_at(i);
-
-         pmenuitema->element_at(i)->m_rectangleUi.right() =
-            pmenuitema->element_at(i)->m_rectangleUi.left() + m_iaColumnWidth[pitem->m_iColumn];
-
-         pbasestyle->prepare_menu(pgraphics, pitem);
-
-         //pitem->m_rectangleUi.right() = maximum(pitem->m_rectangleUi.right(), pitem->m_rectangleUi.left() + m_sizeMinimum.cx());
-
-         pitem->m_puserinteraction->place(pitem->m_rectangleUi);
-
-         pitem->m_puserinteraction->display();
-
-      }
-
-      if (m_bCloseButton)
-      {
-
-         if (pbasestyle)
-         {
-
-            pbasestyle->prepare_menu(pgraphics, m_pitemClose);
-
-         }
-
-         m_pitemClose->m_puserinteraction->place(m_pitemClose->m_rectangleUi);
-
-         m_pitemClose->m_puserinteraction->display();
-
-      }
-
-      if(get_parent() == nullptr)
-      {
-
-         ::rectangle_i32 rectangleWindow;
-
-         rectangleWindow.left() = point.x();
-         rectangleWindow.top() = point.y();
-         rectangleWindow.right() = rectangleWindow.left() + m_size.cx();
-         rectangleWindow.bottom() = rectangleWindow.top() + m_size.cy();
-
-         ::rectangle_i32 rectangleMonitor;
-
-         auto iMonitor = get_best_monitor(&rectangleMonitor, rectangleWindow);
-            
-         if(iMonitor >= 0)
-         {
-
-            rectangleMonitor.deflate(16, 16);
-
-            if (rectangleWindow.left() < rectangleMonitor.left())
+            if (pitem->is_separator())
             {
 
-               rectangleWindow.offset(rectangleMonitor.left() - rectangleWindow.left(), 0);
-
-            }
-            else if (rectangleWindow.right() > rectangleMonitor.right())
-            {
-
-               rectangleWindow.offset(rectangleMonitor.right() - rectangleWindow.right(), 0);
+               continue;
 
             }
 
-            if (rectangleWindow.top() < rectangleMonitor.top())
-            {
+               pbasestyle->prepare_menu(pgraphics, pitem);
 
-               rectangleWindow.offset(0, rectangleMonitor.top() - rectangleWindow.top());
+            //pitem->m_rectangleUi.right() = maximum(pitem->m_rectangleUi.right(), pitem->m_rectangleUi.left() + m_sizeMinimum.cx());
 
-            }
-            else if (rectangleWindow.bottom() > rectangleMonitor.bottom())
-            {
+            pitem->m_puserinteraction->place(pitem->m_rectangleUi);
 
-               rectangleWindow.offset(0, rectangleMonitor.bottom() - rectangleWindow.bottom());
-
-            }
+            pitem->m_puserinteraction->display();
 
          }
 
-         //order(e_zorder_top_most);
+         if (m_bCloseButton)
+         {
 
-         information() << "::user::menu::layout_menu place : " << rectangleWindow;
+            if (pbasestyle)
+            {
 
-         place(rectangleWindow);
+               pbasestyle->prepare_menu(pgraphics, m_pitemClose);
 
-         //display(e_display_normal, e_activation_no_activate);
+            }
 
+            m_pitemClose->m_puserinteraction->place(m_pitemClose->m_rectangleUi);
+
+            m_pitemClose->m_puserinteraction->display();
+
+         }
+
+         if (get_parent() == nullptr)
+         {
+
+            ::rectangle_i32 rectangleWindow;
+
+            rectangleWindow.left() = point.x();
+            rectangleWindow.top() = point.y();
+            rectangleWindow.right() = rectangleWindow.left() + m_size.cx();
+            rectangleWindow.bottom() = rectangleWindow.top() + m_size.cy();
+
+            ::rectangle_i32 rectangleMonitor;
+
+            auto iMonitor = get_best_monitor(&rectangleMonitor, rectangleWindow);
+
+            if (iMonitor >= 0)
+            {
+
+               rectangleMonitor.deflate(16, 16);
+
+               if (rectangleWindow.left() < rectangleMonitor.left())
+               {
+
+                  rectangleWindow.offset(rectangleMonitor.left() - rectangleWindow.left(), 0);
+
+               }
+               else if (rectangleWindow.right() > rectangleMonitor.right())
+               {
+
+                  rectangleWindow.offset(rectangleMonitor.right() - rectangleWindow.right(), 0);
+
+               }
+
+               if (rectangleWindow.top() < rectangleMonitor.top())
+               {
+
+                  rectangleWindow.offset(0, rectangleMonitor.top() - rectangleWindow.top());
+
+               }
+               else if (rectangleWindow.bottom() > rectangleMonitor.bottom())
+               {
+
+                  rectangleWindow.offset(0, rectangleMonitor.bottom() - rectangleWindow.bottom());
+
+               }
+
+            }
+
+            //order(e_zorder_top_most);
+
+            information() << "::user::menu::layout_menu place : " << rectangleWindow;
+
+            place(rectangleWindow);
+
+            //display(e_display_normal, e_activation_no_activate);
+
+
+         }
+         else
+         {
+
+            set_size(m_size);
+
+         }
+
+         m_bMenuOk = true;
 
       }
-      else
-      {
-
-         set_size(m_size);
-
-      }
-
-      m_bMenuOk = true;
-
-   }
 
 
-} // namespace user
+   } // namespace user
 
 
 

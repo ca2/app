@@ -700,7 +700,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="assimp.h" />
-    <ClInclude Include="buffer.h" />
+    <ClInclude Include="cpu_buffer.h" />
     <ClInclude Include="context.h" />
     <ClInclude Include="context_egl.h" />
     <ClInclude Include="context_glx.h" />
@@ -716,7 +716,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="assimp.cpp" />
-    <ClCompile Include="buffer.cpp" />
+    <ClCompile Include="cpu_buffer.cpp" />
     <ClCompile Include="context.cpp" />
     <ClCompile Include="context_egl.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">true</ExcludedFromBuild>

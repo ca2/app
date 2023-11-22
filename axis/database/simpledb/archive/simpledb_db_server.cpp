@@ -116,7 +116,7 @@ bool db_server::initialize()
 
    ::file::path str;
 
-   //str =          auto psystem = acmesystem();
+   //str =          auto psystem = system();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 

@@ -3,6 +3,7 @@
 #include "acme/parallelization/mutex.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "aura/graphics/image/image.h"
+#include "aura/windowing/window.h"
 
 
 namespace graphics
@@ -266,6 +267,25 @@ namespace graphics
 
       if (is_single_buffer_mode())
       {
+
+         if (get_buffer_item())
+         {
+
+            if (get_buffer_item()->m_pimage2)
+            {
+
+               if (get_buffer_item()->m_pimage2->m_pgraphics)
+               {
+
+                  get_buffer_item()->m_pimage2->m_pgraphics->on_end_draw(
+
+                  m_pwindow->oswindow());
+
+               }
+
+            }
+
+         }
 
          m_iCurrentBuffer = 0;
 

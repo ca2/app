@@ -37,7 +37,7 @@ namespace opengl
    opengl::opengl()
    {
 
-      m_bGlewInit = false;
+      m_bGpuLibraryInit = false;
 
 #ifdef WINDOWS_DESKTOP
 
@@ -170,12 +170,21 @@ namespace opengl
    }
 
 
-   void opengl::defer_init_glew()
+   void opengl::defer_init_gpu_library()
    {
+
+      if (m_bGpuLibraryInit)
+      {
+
+         return;
+
+      }
 
 #if !defined(LINUX) && !defined(__APPLE__)
 
       gladLoadGL();
+
+      m_bGpuLibraryInit = true;
 
 #endif
 

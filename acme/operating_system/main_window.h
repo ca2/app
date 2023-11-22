@@ -19,7 +19,7 @@ namespace operating_system
       ~main_window() override;
 
 
-      virtual void from_application(application * papplication);
+      virtual void from_application(::operating_system::application * papplication);
 
       virtual void post_close();
 

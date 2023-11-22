@@ -5,7 +5,7 @@
 DO_FACTORY(REFERENCE_FACTORY)
 #endif
 
-
+int application_main();
 
 #include "_main_hold.h"
 ////#include "acme/exception/exception.h"
@@ -28,7 +28,9 @@ void acme_system_term();
 #include "acme/operating_system/console.inl"
 
 #endif
-#include "acme/platform/sub_system.h"
+#include "acme/platform/platform.h"
+#include "acme/operating_system/acme_initialize.h"
+
 
 //#ifdef WINDOWS
 //CLASS_DECL_ACME void set_argc_argv_envp(int argc, wchar_t ** argv, wchar_t ** envp);
@@ -41,9 +43,6 @@ void acme_system_term();
 
 
 
-
-
-void implement(::acme::context * pcontext);
 
 
 namespace acme
@@ -62,6 +61,13 @@ int wmain(int argc, wchar_t* argv[], wchar_t* envp[])
 int main(int argc, char ** argv, char ** envp)
 #endif
 {
+
+   ::acme::acme acme;
+
+   
+
+   //::acme::acme_impl < ::SYSTEM_NAMESPACE::system > acme;
+
 #define DEEP_DEBUG
 #ifdef DEEP_DEBUG
    printf("argc=%d\n", argc);
@@ -79,28 +85,33 @@ int main(int argc, char ** argv, char ** envp)
    }
 #endif
 
-   ::acme::acme::g_pacme->initialize(argc, argv, envp);
+   ::acme::initialize(argc, argv, envp);
 
-   ::acme::acme::g_pacme->m_pacmeapplication->m_bConsole = true;
+   ::platform::get()->m_bConsole = true;
 
-   string_array stra{ "StringNumber1", "StringNumber2", "StringNumber5" };
+   //::acme::acme::g_pacme->m_pacmeapplication->m_bConsole = true;
 
-   string str4("StringNumber4");
+   //string_array stra{ "StringNumber1", "StringNumber2", "StringNumber5" };
 
-   stra.insert_at(2, str4);
+   //string str4("StringNumber4");
+
+   //stra.insert_at(2, str4);
 
 
    ////   application.m_applicationflags.m_bConsole = true;
 ////
 ////
-   ::acme::acme::g_pacme->m_pacmeapplication->implement_application();
+   //::acme::acme::g_pacme->m_pacmeapplication->implement_application();
+   int iExitCode = application_main();
 
-   return ::acme::acme::g_pacme->m_pacmeapplication->m_iExitCode;
+   //return ::acme::acme::g_pacme->m_pacmeapplication->m_iExitCode;
+
+   return iExitCode;
 
 
 //   //sub_system subsystem(&acme);
 //
-//   //acme.m_psubsystem = &subsystem;
+//   //acme.m_pplatform = &subsystem;
 //
 //   //subsystem.m_pacme = &acme;
 //   subsystem.m_argc = argc;

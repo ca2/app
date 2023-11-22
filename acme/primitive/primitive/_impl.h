@@ -1029,11 +1029,11 @@ inline ::pointer < T > pointer_transfer(T* p) { return { e_pointer_transfer, p }
 //
 //   }
 //
-//   auto pgroup = acmesystem()->task_group(epriority);
+//   auto pgroup = system()->task_group(epriority);
 //
 //   synchronous_lock slGroup(pgroup->synchronization());
 //
-//   ///   auto ptool = acmesystem()->task_tool(op_fork_count);
+//   ///   auto ptool = system()->task_tool(op_fork_count);
 //
 //   if (pgroup == nullptr || pgroup->get_count() <= 1)
 //   {

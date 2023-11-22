@@ -86,7 +86,7 @@ namespace usernet
    void network_configuration::on_show()
    {
 
-      auto pcontext = get_context();
+      //auto pcontext = get_context();
 
       if(!m_pdocument->on_open_document(dir()->matter("system/network/configuration/proxy.xhtml")))
       {
@@ -95,7 +95,7 @@ namespace usernet
 
       xml::document doc;
 
-      doc.load(pcontext->m_papexcontext->file()->as_string(dir()->appdata() / "proxy.xml"));
+      doc.load(file()->as_string(dir()->appdata() / "proxy.xml"));
          
       string strProxy(doc.root()->attribute("server").as_string());
 
@@ -117,7 +117,7 @@ namespace usernet
    void network_configuration::handle(::topic * ptopic, ::context * )
    {
 
-      auto pcontext = get_context();
+      //auto pcontext = get_context();
 
       if(ptopic->m_atom == ::id_click)
       {
@@ -134,7 +134,7 @@ namespace usernet
             if(strServer.length() == 0)
             {
 
-               pcontext->m_papexcontext->file()->erase(dir()->appdata()/ "proxy.xml");
+               file()->erase(dir()->appdata()/ "proxy.xml");
 
             }
             else
@@ -154,7 +154,7 @@ namespace usernet
 
                doc.root()->set_attribute("port", strPort);
 
-               pcontext->m_papexcontext->file()->put_text(dir()->appdata()/"proxy.xml", doc.get_xml());
+               file()->put_text(dir()->appdata()/"proxy.xml", doc.get_xml());
 
             }
 

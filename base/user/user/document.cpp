@@ -96,9 +96,9 @@ namespace user
    ::base::application* document::get_app()
    {
 
-      auto pacmeapplication = acmeapplication();
+      auto papplication = application();
 
-      return ::is_set(pacmeapplication) ? pacmeapplication->m_pbaseapplication : nullptr;
+      return ::is_set(papplication) ? papplication->m_pbaseapplication : nullptr;
 
    }
 
@@ -106,7 +106,7 @@ namespace user
    ::base::session* document::get_session()
    {
 
-      auto pacmesession = acmesession();
+      auto pacmesession = session();
 
       return ::is_set(pacmesession) ? pacmesession->m_pbasesession : nullptr;
 
@@ -116,7 +116,7 @@ namespace user
    ::base::system* document::get_system()
    {
 
-      auto pacmesystem = acmesystem();
+      auto pacmesystem = system();
 
       return ::is_set(pacmesystem) ? pacmesystem->m_pbasesystem : nullptr;
 
@@ -193,7 +193,7 @@ namespace user
 
       //auto estatus = 
       
-      ::user::controller::on_destroy();
+      //::user::controller::on_destroy();
 
       /*if (estatus == ::error_pending)
       {
@@ -797,7 +797,7 @@ namespace user
       else if (payloadFile.cast < ::file::file>() != nullptr)
       {
 
-         auto psystem = acmesystem()->m_pbasesystem;
+         auto psystem = system()->m_pbasesystem;
 
          auto pdatetime = psystem->datetime();
 
@@ -954,6 +954,31 @@ namespace user
    }
 
 
+   bool document::open_data(::data::data * pdata)
+   {
+
+      delete_contents();
+
+      if (!on_open_data(pdata))
+      {
+
+         return false;
+
+      }
+
+      m_bNew = false;
+
+      m_bModified = false;
+
+      //m_path = payloadFile.as_file_path();
+
+      //m_strTitle = m_path.name();
+
+      return true;
+
+   }
+
+
    bool document::defer_save_document()
    {
 
@@ -1034,6 +1059,79 @@ namespace user
          return false;
 
       }
+
+      return true;
+
+   }
+
+
+   bool document::on_open_data(::data::data *pdata)
+   {
+
+
+
+
+      //if (payloadFile.is_empty())
+      //{
+
+      //   return on_new_document();
+
+      //}
+
+      //auto pcontext = get_context();
+
+      //auto preader = pcontext->m_papexcontext->file()->get_reader(payloadFile, ::file::e_open_read | ::file::e_open_share_deny_write | ::file::e_open_binary);
+
+      //if (preader.nok())
+      //{
+
+      //   report_load_exception(payloadFile, preader, "__IDP_FAILED_TO_OPEN_DOC");
+
+      //   return false;
+
+      //}
+
+      //try
+      //{
+
+         //if (!on_open_document(preader.m_p))
+         //{
+
+         //   return false;
+
+         //}
+
+         //preader->close();
+         //if (m_pimpactsystem->m_typeatomData.has_char())
+      {
+
+         // auto pNew = __id_create((const ::atom &)m_pimpactsystem->m_typeatomData);
+
+         //auto pdata = create_data(0);
+
+         //pdata->initialize_data();
+
+         //auto preader = file()->get_reader(payloadFile);
+
+         //::binary_stream binarystream(preader);
+
+         //auto path = payloadFile.as_file_path();
+
+         //pdata->read_data(binarystream, path.all_extensions());
+
+         //set_data(0, pdata);
+
+         m_pdataIncoming = pdata;
+
+      }
+
+      //}
+      //catch (const ::exception &)
+      //{
+
+      //   report_load_exception(payloadFile, preader, "__IDP_FAILED_TO_OPEN_DOC");
+
+      //}
 
       return true;
 
@@ -1200,7 +1298,7 @@ namespace user
 
       ::pointer < ::data::data > pdata;
 
-      if (atom.m_etype == atom::e_type_integer && atom.m_i == 0)
+      if (atom.m_etype == atom::e_type_integer && atom.m_iLargest == 0)
       {
 
          auto & typeatomData = m_pimpactsystem->m_typeatomData;
@@ -2089,7 +2187,7 @@ namespace user
       for (auto & pimpact : m_impacta)
       {
 
-         ASSERT_VALID(pimpact);
+         //ASSERT_VALID(pimpact);
 
          if (!ptopic || pimpact != ptopic->m_psender)
          {

@@ -34,7 +34,7 @@ namespace experience
 
       string strExperience = experience_name(strExperienceRequest);
 
-      auto & pfactory = acmesystem()->factory("experience", strExperience);
+      auto & pfactory = system()->factory("experience", strExperience);
 
       if (!pfactory)
       {
@@ -43,7 +43,7 @@ namespace experience
 
       }
 
-      auto pexperience = pfactory->create <::experience::experience>();
+      auto pexperience = pfactory->create <::experience::experience>(this);
 
       if(pexperience == nullptr)
       {
@@ -81,7 +81,7 @@ namespace experience
 
          {
 
-            auto psystem = acmesystem()->m_pbasesystem;
+            auto psystem = system()->m_pbasesystem;
 
             auto strExperience = psystem->payload("experience").as_string();
 
@@ -91,7 +91,7 @@ namespace experience
 
          {
 
-            auto papp = pparticle->acmeapplication();
+            auto papp = pparticle->application();
 
             {
 
@@ -190,7 +190,7 @@ namespace experience
          if (pexperienceSelected.is_null())
          {
 
-            auto psystem = acmesystem()->m_pbasesystem;
+            auto psystem = system()->m_pbasesystem;
 
             throw exit_exception(::error_exit_system, psystem, "no experience_* plugin installed");
 

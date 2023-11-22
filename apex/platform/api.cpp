@@ -201,6 +201,8 @@ void api::defer_api()
       {
 
          m_eventResponse.wait();
+         
+         information() << "api::defer_api got the response";
 
       }
       else
@@ -297,10 +299,25 @@ void api::_api_get(::string & strNetworkPayload, const ::scoped_string & scopeds
       _api_get(str, scopedstrUrl, set);
 
       ::payload payload;
+      
+      bool bOk = false;
+      
+      try 
+      {
+         
+         payload.parse_network_payload(str);
+         
+         bOk = true;
+         
+      } 
+      catch (...)
+      {
+         
+         bOk = false;
+         
+      }
 
-      payload.parse_network_payload(str);
-
-      if (is_api_get_ok(scopedstrUrl, str, payload, set))
+      if (bOk && is_api_get_ok(scopedstrUrl, str, payload, set))
       {
 
          return payload;
@@ -311,6 +328,10 @@ void api::_api_get(::string & strNetworkPayload, const ::scoped_string & scopeds
 
       if (iTry >= 3)
       {
+
+         m_bAuthenticated = false;
+
+         m_bAuthenticating = false;
 
          throw exception(error_failed);
 
@@ -426,7 +447,7 @@ void api::_api_get(::string & strNetworkPayload, const ::scoped_string & scopeds
 
       memory mDst;
 
-      auto psystem = acmesystem()->m_papexsystem;
+      auto psystem = system()->m_papexsystem;
 
       auto pcrypto = psystem->crypto();
 
@@ -440,7 +461,7 @@ void api::_api_get(::string & strNetworkPayload, const ::scoped_string & scopeds
    string api::base64urlencodeNoPadding(memory m)
    {
 
-      auto psystem = acmesystem();
+      auto psystem = system();
 
       auto pbase64 = psystem->base64();
 

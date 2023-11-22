@@ -15,7 +15,7 @@ struct CLASS_DECL_ACME APPLICATION_FLAGS // : public ::acme::reference
    ::boolean                       m_bCrypto;
    ::boolean                       m_bLocalization;
    ::boolean                       m_bNetworking;
-   ::boolean                       m_bConsole;
+   //::boolean                       m_bConsole;
    ::boolean                       m_bSession;
    ::boolean                       m_bCreateAppShorcut;
    ::boolean                       m_bDraw2d;

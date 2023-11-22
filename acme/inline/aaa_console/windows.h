@@ -10,18 +10,18 @@ namespace acme
 
       
       void m_estatus;
-      //::pointer<::acme::system>acmesystem();
+      //::pointer<::acme::system>system();
 
    //   void create_system()
    //   {
    //
    //      acme_ref();
    //
-   //      //acmesystem() = ::pointer_transfer(platform_create_system(::GetModuleHandle(NULL)));
+   //      //system() = ::pointer_transfer(platform_create_system(::GetModuleHandle(NULL)));
    //
-   ////      acmesystem() = __new(::acme::system());
+   ////      system() = __new(::acme::system());
    //
-   //      //acmesystem()->console_initialize();
+   //      //system()->console_initialize();
    //
    //
    //
@@ -32,7 +32,7 @@ namespace acme
 
          //create_system();
 
-         //application_common(acmesystem());
+         //application_common(system());
 
       }
 
@@ -42,7 +42,7 @@ namespace acme
 
          common_construct();
          
-         //acmesystem()->system_construct(argc, argv);
+         //system()->system_construct(argc, argv);
 
          init();
 
@@ -54,7 +54,7 @@ namespace acme
 
          common_construct();
 
-         //acmesystem()->system_construct(argc, argv);
+         //system()->system_construct(argc, argv);
 
          init();
 
@@ -64,7 +64,7 @@ namespace acme
       void init()
       {
 
-         //m_estatus = (void) acmesystem()->inline_init();
+         //m_estatus = (void) system()->inline_init();
 
          m_estatus = ::success;
 
@@ -78,9 +78,9 @@ namespace acme
 
          ::i32 iErrorStatus = m_estatus.error_status();
 
-         //acmesystem()->inline_term();
+         //system()->inline_term();
 
-         //acmesystem().release();
+         //system().release();
 
          return iErrorStatus;
 
@@ -90,7 +90,7 @@ namespace acme
       ~console()
       {
 
-         //if (acmesystem())
+         //if (system())
          //{
 
          //   result();

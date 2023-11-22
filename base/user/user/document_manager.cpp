@@ -715,7 +715,7 @@ namespace user
       if (!do_prompt_file_name(prequest->m_payloadFile, "" /*__IDS_OPENFILE */, 0 /*OFN_HIDEREADONLY | OFN_FILEMUSTEXIST*/, true, nullptr, nullptr))
          return; // open cancelled
 
-      auto psession = acmesession();
+      auto psession = session();
 
       psession->post_request(prequest);
       // if returns nullptr, the ::account::user has already been alerted

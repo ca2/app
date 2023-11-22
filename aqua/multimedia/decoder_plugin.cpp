@@ -24,7 +24,7 @@ namespace multimedia
    ::pointer<decoder>decoder_plugin::NewDecoder()
    {
 
-      auto pdecoder = m_pfactory->create < ::multimedia::decoder >();
+      auto pdecoder = m_pfactory->create < ::multimedia::decoder >(this);
 
       if (!pdecoder)
       {
@@ -71,7 +71,7 @@ namespace multimedia
 //
       //m_plibrary.create(this);
 
-      auto psystem = acmesystem()->m_paquasystem;
+      auto psystem = system()->m_paquasystem;
 
       m_pfactory = psystem->factory(strTitle);
 

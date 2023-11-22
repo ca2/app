@@ -457,7 +457,7 @@ namespace user
       if (pgraphics.is_null())
       {
 
-         auto psystem = acmesystem()->m_paurasystem;
+         auto psystem = system()->m_paurasystem;
 
          auto pdraw2d = psystem->draw2d();
 
@@ -837,7 +837,7 @@ namespace user
 
       auto pstyle = get_style(pgraphics);
 
-      auto psystem = acmesystem()->m_paurasystem;
+      auto psystem = system()->m_paurasystem;
 
       if (get_translucency(pstyle) >= e_translucency_present)
       {
@@ -1262,7 +1262,7 @@ namespace user
 
       }
 
-      return __new(::item(e_hit_test_client));
+      return __new(::item(e_element_client));
 
    }
 

@@ -170,7 +170,7 @@ namespace input
       if(estatus != ::success)
       {
 
-         throw ::exception(error_not_supported, "mouse message handling not enabled for the application : " + acmeapplication()->application_name());
+         throw ::exception(error_not_supported, "mouse message handling not enabled for the application : " + application()->application_name());
 
       }
 
@@ -187,7 +187,7 @@ namespace input
       if(estatus != ::success)
       {
 
-         throw ::exception(error_not_supported, "keyboard message handling not enabled for the application : " + acmeapplication()->application_name());
+         throw ::exception(error_not_supported, "keyboard message handling not enabled for the application : " + application()->application_name());
 
       }
 

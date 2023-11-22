@@ -61,7 +61,7 @@ namespace windowing
 
       //}
 
-      auto psystem = acmesystem()->m_paurasystem;
+      auto psystem = system()->m_paurasystem;
 
       if (psystem != nullptr)
       {
@@ -685,7 +685,7 @@ namespace windowing
 
       ::e_display edisplayPrevious = *pedisplay;
 
-      auto psystem = acmesystem()->m_paurasystem;
+      auto psystem = system()->m_paurasystem;
 
       double dMargin = psystem->m_paurasystem->m_dDpi;
 
@@ -1667,7 +1667,7 @@ namespace windowing
    string_array display::get_wallpaper()
    {
 
-      auto psession = acmesession();
+      auto psession = session();
 
       ::count iMonitorCount = get_monitor_count();
 
@@ -1718,7 +1718,7 @@ namespace windowing
 
       }
 
-      auto psession = acmesession();
+      auto psession = session();
 
       ::count iMonitorCount = get_monitor_count();
 

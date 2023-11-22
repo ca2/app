@@ -2,6 +2,7 @@
 #include "frame_window.h"
 #include "document.h"
 #include "impact.h"
+#include "impact_host.h"
 #include "impact_system.h"
 #include "toolbar.h"
 #include "acme/constant/id.h"
@@ -19,6 +20,7 @@
 #include "acme/platform/sequencer.h"
 #include "acme/primitive/geometry2d/_text_stream.h"
 #include "acme/user/nano/nano.h"
+#include "acme/user/user/_text_stream.h"
 #include "apex/message/simple_command.h"
 #include "apex/platform/savings.h"
 #include "aura/graphics/graphics/graphics.h"
@@ -31,6 +33,7 @@
 #include "aura/user/user/style.h"
 #include "aura/user/user/system.h"
 #include "base/user/user/place_holder.h"
+#include "base/platform/application.h"
 #include "base/platform/session.h"
 
 
@@ -1044,7 +1047,7 @@ namespace user
          m_pimpactsystem->prepare_frame(
             this,
             puserdocument,
-            m_pusersystem->m_prequest->m_bMakeVisible);
+            m_pusersystem->m_prequest->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_screen);
 
       }
 
@@ -1105,7 +1108,7 @@ namespace user
    }
 
 
-   bool frame_window::LoadFrame(const ::string & pszMatter, u32 dwDefaultStyle, ::user::interaction * puiParent, ::user::system * pcreate)
+   bool frame_window::LoadFrame(const ::string & pszMatter, u32 dwDefaultStyle, ::user::interaction * puiParent, ::user::system * pusersystem)
    {
 
       UNREFERENCED_PARAMETER(puiParent);
@@ -1139,11 +1142,23 @@ namespace user
 
       }
 
+//      if(pusersystem)
+//      {
+//
+//         if(pusersystem->m_prequest)
+//         {
+//
+//            add(pusersystem->m_prequest);
+//
+//         }
+//
+//      }
+
       //m_bLockSketchToDesign = true;
 
-      set_display(e_display_none);
+      ///set_display(e_display_none);
 
-      informationf("\nm_bLayoutEnable false");
+      //informationf("\nm_bLayoutEnable false");
 
       //auto pusersystem = __new(::user::system (0L, nullptr, m_strFrameTitle, dwDefaultStyle, rectangleFrame, pcreate));
 
@@ -1154,33 +1169,242 @@ namespace user
 
       //}
 
-      if (puiParent)
+
+   if (pusersystem->m_atom.is_set())
+   {
+
+      ::string strAtom = pusersystem->m_atom.as_string();
+
+      if (strAtom.has_char())
       {
 
-         create_child(puiParent);
-
-         //if (!create_child(puiParent))
-         //{
-
-         //   return false;
-
-         //}
+         m_atom = strAtom;
 
       }
-      else
+
+   }
+
+   m_strMatterHelp = pszMatter;    // ID for help context (+HID_BASE_RESOURCE)
+
+   auto papp = get_app();
+
+   if (puiParent == nullptr)
+   {
+
+      puiParent = papp->get_request_parent_ui(this, pusersystem);
+
+   }
+
+   //::rectangle_i32 rectangleFrame;
+
+   //::pointer<::user::place_holder>pholder;
+
+//   if (puiParent != nullptr && (pholder = puiParent).is_set())
+//   {
+//
+//      rectangleFrame = pholder->rectangle();
+//
+//   }
+
+   //m_bLockSketchToDesign = true;
+
+   if (puiParent == nullptr || wfi_has_up_down())
+   {
+
+      if (wfi_has_up_down() && ::is_set(puiParent) && puiParent->m_bWfiUpDownTarget)
       {
 
-         create_host(e_parallelization_synchronous);
-
-         //if (!create_host())
-         //{
-
-         //   return false;
-
-         //}
-
+         m_pupdowntarget = puiParent;
 
       }
+
+      if (should_save_window_rectangle())
+      {
+
+         //bool bForceRestore = false;
+
+         //bool bInitialFramePosition = true;
+
+         //m_puserinteractionParent = puiParent;
+
+         //WindowDataLoadWindowRectangle(bForceRestore, bInitialFramePosition);
+
+         //_001FancyInitialFramePlacement();
+
+         initial_frame_placement();
+
+         rectangleFrame = const_layout().state(::user::e_layout_sketch).parent_raw_rectangle();
+
+         information() << "LoadFrame rectangleFrame : " << rectangleFrame;
+         information() << "LoadFrame edisplay : " << const_layout().sketch().display();
+
+         if (wfi_has_up_down())
+         {
+
+            if (m_eupdown == e_updown_up)
+            {
+
+               puiParent = nullptr;
+
+            }
+            else if (m_eupdown == e_updown_down)
+            {
+
+               ::pointer<::user::document>pdocument = pusersystem->m_pdocumentCurrent;
+
+               ::pointer<::user::impact_host>pimpacthost;
+
+               if (pimpacthost.is_set())
+               {
+
+                  puiParent = pimpacthost->updown_target_get_place_holder(this, pdocument);
+
+               }
+
+            }
+
+         }
+
+      }
+
+      if (is_top_level())
+      {
+
+         if (m_ewindowflag & e_window_flag_main_frame)
+         {
+
+            display(e_display_zoomed);
+
+            //  psession->get_main_workspace(rectangleFrame);
+
+         }
+
+      }
+
+      rectangleFrame = const_layout().state(::user::e_layout_sketch).parent_raw_rectangle();
+
+      //pusersystem->set_rect(rectangleFrame);
+
+      information() << "LoadFrame (2) rectangleFrame : " << rectangleFrame;
+      information() << "LoadFrame (2) sketch.edisplay : " << const_layout().sketch().display();
+
+
+   }
+
+//   if (puiParent != nullptr)
+//   {
+//
+//      //pusersystem->m_createstruct.style |= WS_CHILD;
+//
+//   }
+
+   m_bEnableSaveWindowRect2 = false;
+
+   bool bLoadImplRect = m_ewindowflag & e_window_flag_load_window_rect_on_impl;
+
+   m_ewindowflag -= e_window_flag_load_window_rect_on_impl;
+
+   //bool bCreated = create_window_ex(pusersystem, puiParent, m_atom);
+
+   //bool bCreated;
+
+   m_pusersystem = pusersystem;
+
+   //bCreated =
+
+//   if (pusersystem->m_prequest && !(pusersystem->m_prequest->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_screen))
+//   {
+//
+//      hide();
+//
+//   }
+
+   if (bLoadImplRect)
+   {
+
+      m_ewindowflag += e_window_flag_load_window_rect_on_impl;
+
+   }
+
+   if (::is_set(get_parent()))
+   {
+
+      if (pusersystem->m_prequest->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_screen)
+      {
+
+         display();
+
+      }
+
+   }
+   else
+   {
+
+      if (pusersystem->m_prequest->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_screen)
+      {
+
+         initial_frame_display();
+
+         //if(pusersystem->m_prequest->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_screen)
+         {
+
+            if (!const_layout().sketch().is_screen_visible())
+            {
+
+               information() << "LoadFrame sketch !is_screen_visible going to display_normal (1)";
+
+               display_normal(e_display_normal, e_activation_set_foreground);
+
+            }
+
+         }
+
+      }
+
+   }
+
+   m_bNeedPerformLayout = true;
+
+   set_need_layout();
+
+   if (puiParent)
+   {
+
+      create_child(puiParent);
+
+      //if (!create_child(puiParent))
+      //{
+
+      //   return false;
+
+      //}
+
+   }
+   else
+   {
+
+      //create_host(e_parallelization_asynchronous);
+
+      create_host();
+
+      //if (!create_host())
+      //{
+
+      //   return false;
+
+      //}
+
+
+   }
+
+   if (pusersystem->m_prequest->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_screen)
+   {
+
+      set_need_redraw();
+
+      post_redraw();
+
+   }
 
       /* trans   // save the default menu handle
       ASSERT(get_handle() != nullptr);
@@ -1189,12 +1413,10 @@ namespace user
       // load accelerator resource
       //   LoadAccelTable(MAKEINTRESOURCE(nIDResource));
 
-      if (pcreate == nullptr)   // send initial update
-         send_message_to_descendants(e_message_system_update, ID_INITIAL_UPDATE, (lparam)0, true, true);
 
       return true;
 
-      return false;
+//      return false;
 
       // only do this once
       //   ASSERT_VALID_IDR(nIDResource);
@@ -2585,9 +2807,9 @@ namespace user
    ::base::application* frame_window::get_app()
    {
 
-      auto pacmeapplication = acmeapplication();
+      auto papplication = application();
 
-      return ::is_set(pacmeapplication) ? pacmeapplication->m_pbaseapplication : nullptr;
+      return ::is_set(papplication) ? papplication->m_pbaseapplication : nullptr;
 
    }
 
@@ -2595,7 +2817,7 @@ namespace user
    ::base::session* frame_window::get_session()
    {
 
-      auto pacmesession = acmesession();
+      auto pacmesession = session();
 
       return ::is_set(pacmesession) ? pacmesession->m_pbasesession : nullptr;
 
@@ -2605,7 +2827,7 @@ namespace user
    ::base::system* frame_window::get_system()
    {
 
-      auto pacmesystem = acmesystem();
+      auto pacmesystem = system();
 
       return ::is_set(pacmesystem) ? pacmesystem->m_pbasesystem : nullptr;
 

@@ -228,7 +228,7 @@ namespace acme
 
       }
 
-      acmesystem()->post_procedure(procedure);
+      system()->post_procedure(procedure);
 
    }
 

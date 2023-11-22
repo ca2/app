@@ -86,7 +86,7 @@ namespace handle
    //localini::localini(::particle * pparticle)
    //{
 
-   //   auto preader = Ctx(pparticle).file()->get_reader(         auto psystem = acmesystem();
+   //   auto preader = Ctx(pparticle).file()->get_reader(         auto psystem = system();
 
 //         auto pacmedirectory = psystem->m_pacmedirectory;
 //

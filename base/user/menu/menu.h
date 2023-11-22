@@ -20,6 +20,7 @@ namespace user
       ::size_i32                             m_sizeMinimum;
       ::pointer<menu>                       m_pmenuParent;
       ::pointer<menu_item>                  m_pmenuitem;
+      ::pointer<menu_item>                  m_pmenuitemClick;
       ///::pointer<::user::interaction>        m_puserinteractionParent;
       ::pointer<::channel>                  m_pchannelNotify;
 //#ifdef WINDOWS_DESKTOP
@@ -31,11 +32,12 @@ namespace user
       bool                                   m_bAutoDelete;
       double                                 m_dHeaderHeight;
       ::pointer<::user::menu_item>          m_pitemClose;
-      atom                                     m_atomSubMenu;
+      //atom                                     m_atomSubMenu;
+      //::pointer<::user::menu_item>          m_pitemSubMenu;
       i32                                    m_iHoverSubMenu;
       u32                                    m_dwOut;
-      ::pointer<menu>                       m_psubmenu;
-      atom                                     m_atomTimerMenu;
+      ::pointer<menu>                       m_pmenuSubMenu;
+      //atom                                     m_atomTimerMenu;
       point_i32                              m_pointTrack;
       point_i32                              m_pointPositionHint;
       int                                    m_iFlags;
@@ -107,6 +109,8 @@ namespace user
 
       void handle(::topic * ptopic, ::context * pcontext) override;
 
+      bool on_click(::item * pitem) override;
+
       bool pre_create_window(::user::system * pusersystem) override;
 
       void install_message_routing(::channel * pchannel) override;
@@ -115,7 +119,7 @@ namespace user
 
       //::pointer<::user::menu_item>get_menu_item(::user::interaction * pinteraction);
 
-      bool has_pending_graphical_update() override;
+      //bool has_pending_graphical_update() override;
 
       virtual bool create_menu(const string_array & straCommand, const string_array & straCommandTitle);
 

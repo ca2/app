@@ -552,9 +552,9 @@ namespace crypto_openssl
    //   memory storage;
    //   key(storage);
 
-   //   //auto psystem = acmesystem()->m_papexsystem;
+   //   //auto psystem = system()->m_papexsystem;
 
-   //   auto psystem = acmesystem();
+   //   auto psystem = system();
 
    //   auto pbase64 = psystem->base64();
 
@@ -575,7 +575,7 @@ namespace crypto_openssl
    //   }
    //   storageDecrypt.from_string(pszDecrypt);
 
-   //   auto psystem = acmesystem();
+   //   auto psystem = system();
 
    //   auto pbase64 = psystem->base64();
 
@@ -599,7 +599,7 @@ namespace crypto_openssl
 
    //   memory storageKey;
 
-   //   auto psystem = acmesystem();
+   //   auto psystem = system();
 
    //   auto pbase64 = psystem->base64();
 

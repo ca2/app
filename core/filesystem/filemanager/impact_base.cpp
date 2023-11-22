@@ -3,9 +3,9 @@
 #include "document.h"
 #include "tab_impact.h"
 #include "data.h"
-#include "operation_document.h"
-#include "operation_thread.h"
-#include "operation.h"
+#include "operation/document.h"
+#include "operation/thread.h"
+#include "operation/operation.h"
 #include "acme/constant/id.h"
 #include "acme/filesystem/file/item.h"
 #include "acme/platform/application.h"
@@ -21,8 +21,8 @@ filemanager_impact_base::filemanager_impact_base()
 {
 
    m_bEditConnectInit = false;
-   m_pfsdata = nullptr;
-   m_pfilemanagerdocument = nullptr;
+   //m_pfsdata = nullptr;
+   //m_pfilemanagerdocument = nullptr;
 
 }
 
@@ -36,9 +36,9 @@ filemanager_impact_base::~filemanager_impact_base()
 ::core::application* filemanager_impact_base::get_app()
 {
 
-   auto pacmeapplication = acmeapplication();
+   auto papplication = application();
 
-   return ::is_set(pacmeapplication) ? pacmeapplication->m_pcoreapplication : nullptr;
+   return ::is_set(papplication) ? papplication->m_pcoreapplication : nullptr;
 
 }
 
@@ -46,7 +46,7 @@ filemanager_impact_base::~filemanager_impact_base()
 ::core::session* filemanager_impact_base::get_session()
 {
 
-   auto pacmesession = acmesession();
+   auto pacmesession = session();
 
    return ::is_set(pacmesession) ? pacmesession->m_pcoresession : nullptr;
 
@@ -56,7 +56,7 @@ filemanager_impact_base::~filemanager_impact_base()
 ::core::system* filemanager_impact_base::get_system()
 {
 
-   auto pacmesystem = acmesystem();
+   auto pacmesystem = system();
 
    return ::is_set(pacmesystem) ? pacmesystem->m_pcoresystem : nullptr;
 
@@ -71,16 +71,24 @@ filemanager_impact_base::~filemanager_impact_base()
 }
 
 
-void filemanager_impact_base::initialize_impact(::user::document * pdocument)
+::filemanager::data * filemanager_impact_base::filemanager_data()
 {
 
-   ::user::impact::initialize_impact(pdocument);
-
-   m_pfilemanagerdocument = dynamic_cast <::filemanager::document *>(pdocument);
-
-   m_pfsdata = m_pfilemanagerdocument->fs_data();
+   return filemanager_document()->filemanager_data();
 
 }
+
+
+//void filemanager_impact_base::initialize_impact(::user::document * pdocument)
+//{
+//
+//   ::user::impact::initialize_impact(pdocument);
+//
+//   //m_pfilemanagerdocument = pdocument;
+//
+//   //m_pfsdata = filemanager_data()->fs_data();
+//
+//}
 
 
 void filemanager_impact_base::install_message_routing(::channel * pchannel)
@@ -129,6 +137,28 @@ void filemanager_impact_base::install_message_routing(::channel * pchannel)
 
 }
 
+
+::filemanager::document * filemanager_impact_base::filemanager_document()
+{
+   
+   return dynamic_cast < ::filemanager::document *>(::user::impact::get_document()); 
+
+}
+
+
+//virtual ::filemanager::data *                   filemanager_data();
+::fs::set * filemanager_impact_base::fs_data() 
+{
+   
+   return filemanager_data()->fs_data(); 
+
+}
+
+
+::filemanager::filemanager * filemanager_impact_base::filemanager()
+{
+   return get_app()->filemanager(); 
+}
 //
 //::filemanager::document * filemanager_impact_base::filemanager_document()
 //{
@@ -138,18 +168,18 @@ void filemanager_impact_base::install_message_routing(::channel * pchannel)
 //}
 
 
-::filemanager::data * filemanager_impact_base::filemanager_data()
-{
-
-   return  filemanager_document()->filemanager_data();
-
-}
+//::filemanager::data * filemanager_impact_base::get_document()
+//{
+//
+//   return  filemanager_document()->get_document();
+//
+//}
 
 
 void filemanager_impact_base::_001Refresh()
 {
 
-   filemanager_document()->browse(filemanager_item(),::e_source_sync);
+   filemanager_document()->_001Refresh();
 
 }
 
@@ -229,7 +259,7 @@ void filemanager_impact_base::_001OnEditPaste(::message::message * pmessage)
 
       bool bDeleteOriginOnSuccessfulCopy = eop == ::user::copydesk::e_op_cut;
 
-      auto atomFileManager = filemanager_data()->m_atom;
+      auto atomFileManager = get_document()->m_atom;
 
       ptabimpact->filemanager_document(atomFileManager)->get_operation_doc(true)->m_poperationthread->queue_copy(listing, strDir, nullptr, true, false, bDeleteOriginOnSuccessfulCopy, this, WM_APP + 1024, 4096);
 
@@ -271,23 +301,23 @@ void filemanager_impact_base::handle(::topic * ptopic, ::context * pcontext)
    if (ptopic->m_atom == id_initialize)
    {
 
-      if (filemanager_document() == ptopic->cast < ::user::document >(ID_DOCUMENT))
-      {
+      //if (filemanager_document() == ptopic->cast < ::user::document >(ID_DOCUMENT))
+      //{
 
-         ::pointer<::database::client>pclient = parent_frame();
+      //   //::pointer<::database::client>pclient = parent_frame();
 
-         if (pclient != nullptr && !::string(pclient->m_atom).contains("::frame"))
-         {
+      //   //if (pclient != nullptr && !::string(pclient->m_atom).contains("::frame"))
+      //   //{
 
-            string str;
+      //   //   string str;
 
-            str.formatf("frame(%s)", ::string(filemanager_data()->m_atom).c_str());
+      //   //   str.formatf("frame(%s)", ::string(get_document()->m_atom).c_str());
 
-            pclient->set_data_key_modifier(str);
+      //   //   pclient->set_data_key_modifier(str);
 
-         }
+      //   //}
 
-      }
+      //}
 
    }
    else if (ptopic->m_atom == id_synchronize_path)

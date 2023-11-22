@@ -328,7 +328,7 @@ namespace account
 
          float fMargin = (height(rectangleX) * ((1.0f - 0.7f) / 2.0f));*/
 
-         //auto psystem = acmesystem()->m_pcoresystem;
+         //auto psystem = system()->m_pcoresystem;
 
          //auto pnode = psystem->node();
 
@@ -400,7 +400,7 @@ namespace account
          if(!m_bCred)
          {
 
-            auto psystem = acmesystem()->m_paurasystem;
+            auto psystem = system()->m_paurasystem;
 
             strText = psystem->crypto()->nessie(strText);
 

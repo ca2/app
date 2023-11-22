@@ -79,70 +79,70 @@ namespace user
    }
 
 
-   int notify_icon::_get_notification_area_action_count()
+   //int notify_icon::_get_notification_area_action_count()
+   //{
+
+   //   //return m_plistener->_get_notification_area_action_count();
+   //   return (int) m_notifyiconitema.get_count();
+
+   //}
+
+
+   //const char * notify_icon::_get_notification_area_action_name(int iIndex)
+   //{
+
+   //   //return m_plistener->_get_notification_area_action_name(iIndex);
+   //   return m_notifyiconitema[iIndex]->m_strName;
+
+   //}
+
+
+   //const char * notify_icon::_get_notification_area_action_id(int iIndex)
+   //{
+
+   //   //return m_plistener->_get_notification_area_action_id(iIndex);
+   //   return m_notifyiconitema[iIndex]->m_strId;
+
+   //}
+
+
+   //const char * notify_icon::_get_notification_area_action_label(int iIndex)
+   //{
+
+   //   //return m_plistener->_get_notification_area_action_label(iIndex);
+   //   return m_notifyiconitema[iIndex]->m_strLabel;
+
+   //}
+
+
+   //const char * notify_icon::_get_notification_area_action_accelerator(int iIndex)
+   //{
+
+   //   //return m_plistener->_get_notification_area_action_accelerator(iIndex);
+   //   return m_notifyiconitema[iIndex]->m_strAccelerator;
+
+   //}
+
+
+   //const char * notify_icon::_get_notification_area_action_description(int iIndex)
+   //{
+
+   //   //return m_plistener->_get_notification_area_action_description(iIndex);
+   //   return m_notifyiconitema[iIndex]->m_strDescription;
+
+   //}
+
+
+   bool notify_icon::on_application_menu_action(const ::atom &atom)
    {
-
-      //return m_plistener->_get_notification_area_action_count();
-      return (int) m_notifyiconitema.get_count();
-
-   }
-
-
-   const char * notify_icon::_get_notification_area_action_name(int iIndex)
-   {
-
-      //return m_plistener->_get_notification_area_action_name(iIndex);
-      return m_notifyiconitema[iIndex]->m_strName;
-
-   }
-
-
-   const char * notify_icon::_get_notification_area_action_id(int iIndex)
-   {
-
-      //return m_plistener->_get_notification_area_action_id(iIndex);
-      return m_notifyiconitema[iIndex]->m_strId;
-
-   }
-
-
-   const char * notify_icon::_get_notification_area_action_label(int iIndex)
-   {
-
-      //return m_plistener->_get_notification_area_action_label(iIndex);
-      return m_notifyiconitema[iIndex]->m_strLabel;
-
-   }
-
-
-   const char * notify_icon::_get_notification_area_action_accelerator(int iIndex)
-   {
-
-      //return m_plistener->_get_notification_area_action_accelerator(iIndex);
-      return m_notifyiconitema[iIndex]->m_strAccelerator;
-
-   }
-
-
-   const char * notify_icon::_get_notification_area_action_description(int iIndex)
-   {
-
-      //return m_plistener->_get_notification_area_action_description(iIndex);
-      return m_notifyiconitema[iIndex]->m_strDescription;
-
-   }
-
-
-   void notify_icon::call_notification_area_action(const ::scoped_string & scopedstr)
-   {
-
-      ::atom atom(scopedstr);
 
       auto pcommand = __new(::message::command(atom));
 
       route_command(pcommand);
 
 //      m_plistener->call_notification_area_action(pszId);
+
+      return pcommand->m_bRet;
 
    }
 

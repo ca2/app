@@ -300,7 +300,7 @@ namespace x11
    display * display::get(::particle * pparticle, bool bBranch, Display * pdisplay)
    {
 
-      critical_section_lock lock(::acme::acme::g_pacme->globals_critical_section());
+      critical_section_lock lock(pparticle->platform()->globals_critical_section());
 
       if (g_p == nullptr)
       {
@@ -461,6 +461,8 @@ namespace x11
 
       bool bHandled2;
 
+      information() << "x11::nano::display::message_loop";
+
       while (::task_get_run())
       {
 
@@ -506,12 +508,12 @@ namespace x11
    void display::init_task()
    {
 
-      if(acmesystem()->m_ewindowing == e_windowing_none)
+      if(system()->m_ewindowing == e_windowing_none)
       {
 
          //set_main_user_thread();
 
-         acmesystem()->m_ewindowing = e_windowing_x11;
+         system()->m_ewindowing = e_windowing_x11;
 
       }
 
@@ -585,6 +587,8 @@ namespace x11
    {
 
       ::task_set_name("x11:display:run");
+
+      information() << "x11::display::run";
 
       set_main_user_thread();
 

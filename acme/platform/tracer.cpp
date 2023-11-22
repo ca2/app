@@ -92,7 +92,7 @@ tracer::~tracer()
 //   //if (!ptask)
 //   //{
 //
-//   //   ptask = ::acme::acme::g_pacme->m_psubsystem->m_pacmesystem;
+//   //   ptask = ::platform::get()->m_pacmesystem;
 //
 //   //}
 //
@@ -177,7 +177,7 @@ void tracer::flush(trace_statement & tracestatement)
       if(ptask)
       {
 
-         plogger = ::get_task()->acmesystem()->m_plogger;
+         plogger = ::get_task()->system()->m_plogger;
 
       }
 

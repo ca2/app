@@ -233,9 +233,6 @@
     <ClInclude Include="filesystem\fs\link.h">
       <Filter>Header Files\filesystem\fs</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\fs\native_fs.h">
-      <Filter>Header Files\filesystem\fs</Filter>
-    </ClInclude>
     <ClInclude Include="filesystem\fs\net.h">
       <Filter>Header Files\filesystem\fs</Filter>
     </ClInclude>
@@ -746,9 +743,6 @@
     <ClInclude Include="platform\app_consumer.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="handler\source.h">
-      <Filter>Header Files\handler</Filter>
-    </ClInclude>
     <ClInclude Include="handler\signal.h">
       <Filter>Header Files\handler</Filter>
     </ClInclude>
@@ -968,14 +962,17 @@
     <ClInclude Include="input\input.h">
       <Filter>Header Files\input</Filter>
     </ClInclude>
-    <ClInclude Include="user\menu\shared.h">
+    <ClInclude Include="user\menu\main_menu.h">
       <Filter>Header Files\user\menu</Filter>
     </ClInclude>
-    <ClInclude Include="user\menu\menu.h">
+    <ClInclude Include="user\menu\main_menu_command.h">
       <Filter>Header Files\user\menu</Filter>
     </ClInclude>
-    <ClInclude Include="user\menu\command.h">
-      <Filter>Header Files\user\menu</Filter>
+    <ClInclude Include="platform\application_menu_command.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\fs\native.h">
+      <Filter>Header Files\filesystem\fs</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1246,9 +1243,6 @@
     <ClCompile Include="handler\signal.cpp">
       <Filter>Source Files\handler</Filter>
     </ClCompile>
-    <ClCompile Include="handler\source.cpp">
-      <Filter>Source Files\handler</Filter>
-    </ClCompile>
     <ClCompile Include="networking\netserver\socket.cpp">
       <Filter>Source Files\networking\netserver</Filter>
     </ClCompile>
@@ -1384,14 +1378,14 @@
     <ClCompile Include="input\input.cpp">
       <Filter>Source Files\input</Filter>
     </ClCompile>
-    <ClCompile Include="user\menu\commnand.cpp">
-      <Filter>Source Files\user\menu</Filter>
-    </ClCompile>
-    <ClCompile Include="user\menu\menu.cpp">
-      <Filter>Source Files\user\menu</Filter>
-    </ClCompile>
     <ClCompile Include="user\menu\shared.cpp">
       <Filter>Source Files\user\menu</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\application_menu_command.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\application_menu.cpp">
+      <Filter>Source Files\platform</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

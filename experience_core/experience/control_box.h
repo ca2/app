@@ -18,10 +18,13 @@ namespace experience_core
       ~control_box() override;
 
 
-      virtual void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics) override;
-      virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      void _001OnNcClip(::draw2d::graphics_pointer & pgraphics) override;
+      void _001OnClip(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual void install_message_routing(::channel *pframewindow) override;
+      void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics) override;
+      void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+
+      void install_message_routing(::channel *pframewindow) override;
 
 
       DECLARE_MESSAGE_HANDLER(on_message_show_window);

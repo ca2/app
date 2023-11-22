@@ -22,11 +22,16 @@ namespace apex
 } // namespace apex
 
 
-class application_menu_item;
-//class application_menu;
-namespace apex{
-class menu;
-} // namespace apex
+//namespace user
+//{
+
+   //class application_menu_item;
+   class application_menu;
+
+  // class main_menu;
+
+
+//} // namespace apex
 
 
 namespace input

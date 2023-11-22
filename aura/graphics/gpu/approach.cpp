@@ -37,7 +37,7 @@ namespace gpu
    }
 
 
-   void approach::defer_init_glew()
+   void approach::defer_init_gpu_library()
    {
 
       //return ::success;

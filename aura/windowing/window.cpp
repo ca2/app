@@ -7,6 +7,7 @@
 #include "acme/constant/message.h"
 #include "acme/exception/interface_only.h"
 #include "acme/parallelization/asynchronous.h"
+#include "acme/platform/node.h"
 #include "acme/platform/system.h"
 #include "acme/primitive/geometry2d/_text_stream.h"
 #include "acme/user/user/_text_stream.h"
@@ -63,6 +64,8 @@ namespace windowing
       auto puser = psession->user();
 
       puser->on_initialize_window_object();
+
+      m_pparticleChildrenSynchronization = acmenode()->create_mutex();
 
    }
 
@@ -1666,7 +1669,7 @@ namespace windowing
    }
 
 
-   void window::window_update_screen_buffer()
+   void window::__update_graphics_buffer()
    {
 
    }
@@ -1911,12 +1914,12 @@ namespace windowing
    //::aura::system* windowacmesystem()
    //{
 
-   //   return acmesystem() ? acmesystem()->m_paurasystem : nullptr;
+   //   return system() ? system()->m_paurasystem : nullptr;
 
    //}
 
 
-   void window::window_do_update_screen()
+   void window::window_update_screen()
    {
 
       auto puserinteraction = m_puserinteractionimpl->m_puserinteraction;
@@ -2057,12 +2060,16 @@ namespace windowing
    void window::on_destruct_mouse_message(::message::mouse * pmouse)
    {
 
+      //information() << "on_destruct_mouse_message";
+
       if(::is_null(pmouse))
       {
 
          return;
 
       }
+
+      //information() << "pmouse set";
 
       try
       {
@@ -2090,24 +2097,26 @@ namespace windowing
 
             pcursor = get_mouse_cursor();
 
-//            if(pcursor)
-//            {
-//
-//               information() << "got window cursor : " << pcursor->m_ecursor;
-//
-//            }
+            if(pcursor)
+            {
+
+               //information() << "got window cursor : " << pcursor->m_ecursor;
+
+            }
 
          }
-//         else
-//         {
-//
-//            information() << "got mouse cursor : " << pcursor->m_ecursor;
-//
-//         }
+         else
+         {
+
+            //information() << "got mouse cursor : " << pcursor->m_ecursor;
+
+         }
 
          if(pcursor)
          {
             
+            //information() << "pcursor set";
+
             set_mouse_cursor(pcursor);
             
          }
@@ -2129,7 +2138,7 @@ namespace windowing
 //      try
 //      {
 //
-//         set_mouse_cursor(pmouse->m_pcursor);
+//         aaaset_mouse_cursor(pmouse->m_pcursor);
 //
 //      }
 //      catch(...)
@@ -2234,7 +2243,7 @@ namespace windowing
    }
 
 
-   void window::defer_show_system_menu(::message::mouse * pmouse)
+   void window::defer_show_system_menu(const ::point_i32 & pointAbsolute)
    {
 
    }

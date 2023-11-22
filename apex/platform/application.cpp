@@ -13,6 +13,7 @@
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/acme_path.h"
 #include "acme/handler/request.h"
+#include "acme/platform/scoped_restore.h"
 #include "acme/primitive/primitive/url.h"
 #include "acme/operating_system/process.h"
 #include "acme/parallelization/event.h"
@@ -23,6 +24,8 @@
 #include "acme/primitive/string/command_line.h"
 #include "acme/primitive/string/str.h"
 #include "acme/primitive/text/context.h"
+#include "apex/filesystem/fs/native.h"
+#include "apex/filesystem/fs/set.h"
 #include "apex/message/application.h"
 #include "acme/platform/release_time.h"
 #include "apex/platform/machine_event_data.h"
@@ -33,7 +36,7 @@
 #include "apex/interprocess/communication.h"
 #include "apex/interprocess/target.h"
 #include "apex/interprocess/task.h"
-#include "apex/user/menu/menu.h"
+#include "apex/platform/application_menu.h"
 #include "apex/database/_binary_stream.h"
 #include "acme/filesystem/filesystem/dir_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
@@ -329,23 +332,25 @@ namespace apex
    //void application::on_initialize_application(::main* pmain)
    //{
 
-   //   pmain->m_psubsystem->factory()->add_factory_item< ::apex::system, ::acme::system >();
+   //   pmain->m_pplatform->factory()->add_factory_item< ::apex::system, ::acme::system >();
 
    //}
 
 
 
-   ::apex::menu * application::main_menu()
+   ::application_menu * application::application_menu()
    {
 
-      if (m_pmenuMain.is_null())
+      if (__defer_construct_new(m_papplicationmenu))
       {
 
-         m_pmenuMain = __new(::apex::menu);
+         m_papplicationmenu->m_strName = application_title();
+
+         m_papplicationmenu->m_bPopup = true;
 
       }
 
-      return m_pmenuMain;
+      return m_papplicationmenu;
 
    }
 
@@ -371,29 +376,29 @@ namespace apex
    void application::application_menu_update()
    {
 
-#ifdef LINUX
-
-      auto psystem = acmesystem()->m_papexsystem;
-
-      if (acmeapplication()->m_bGtkApp)
-      {
-
-         auto pnode = psystem->node();
-
-         if (pnode)
-         {
-
-            pnode->set_application_menu(m_pappmenu, this);
-
-         }
-
-      }
-      
-#else
-      
+//#ifdef LINUX
+//
+//      auto psystem = system()->m_papexsystem;
+//
+//      if (application()->m_bGtkApp)
+//      {
+//
+//         auto pnode = psystem->node();
+//
+//         if (pnode)
+//         {
+//
+//            pnode->set_application_menu(m_pappmenu, this);
+//
+//         }
+//
+//      }
+//
+//#else
+//
       acmenode()->application_handle(id_application_menu_update, nullptr);
-
-#endif
+//
+//#endif
 
    }
 
@@ -455,7 +460,7 @@ namespace apex
    //   void application::show_wait_cursor(bool bShow)
    //   {
    //
-   //      auto psystem = acmesystem()->m_papexsystem;
+   //      auto psystem = system()->m_papexsystem;
    //
    //      auto papexnode = psystem->m_papexnode;
    //
@@ -548,6 +553,7 @@ namespace apex
 
       add_command_handler("app_exit", { this, &application::on_message_app_exit });
       add_command_handler("switch_context_theme", { this, &application::_001OnSwitchContextTheme });
+      add_command_handler("display_about", { this, &application::on_command_display_about });
 
    }
 
@@ -711,7 +717,7 @@ namespace apex
 
    //   do_request(pcreate);
 
-   //   //auto psystem = acmesystem()->m_papexsystem;
+   //   //auto psystem = system()->m_papexsystem;
 
    //   //if (pcreate->m_ecommand == ::command_protocol)
    //   //{
@@ -828,7 +834,45 @@ namespace apex
 
       m_prequest = prequest;
 
-      prequest->m_bMakeVisible = prequest->payload("auto_start").as_i32() != 1;
+      prequest->m_countStack++;
+
+      at_end_of_scope
+      {
+
+         prequest->m_countStack--;
+
+         if (prequest->m_countStack <= 0)
+         {
+
+            for (auto & procedure : prequest->m_procedureaOnFinishRequest)
+            {
+
+               try
+               {
+
+                  procedure();
+
+               }
+               catch (...)
+               {
+
+
+               }
+
+            }
+
+            prequest->m_procedureaOnFinishRequest.clear();
+
+         };
+
+      };
+
+      if(prequest->payload("auto_start").is_true())
+      {
+
+         prequest->m_egraphicsoutputpurpose -= ::graphics::e_output_purpose_screen;
+
+      }
 
       if (is_service())
       {
@@ -838,6 +882,7 @@ namespace apex
       }
       else
       {
+
 
          try
          {
@@ -862,7 +907,7 @@ namespace apex
 
          }
 
-         auto psystem = acmesystem()->m_papexsystem;
+         auto psystem = system()->m_papexsystem;
 
          // Verry Sory for the per request overhead here for the needed information of only first request
          if (::is_set(psystem) && psystem->m_timeAfterApplicationFirstRequest <= 0_s)
@@ -893,6 +938,44 @@ namespace apex
          prequest->m_eventReady.SetEvent();
 
       }
+
+   }
+
+   void application::init_fs_set(::fs::set * pfsset)
+   {
+
+      ::e_status estatus = ::success;
+
+      //if (m_bIfs)
+      //{
+
+      //   /*        if (m_pfsdata.is_null())
+      //           {
+
+      //              __construct(m_pfsdata, __new(::fs::set));
+
+      //           }*/
+
+      //           //       pfsset = m_pfsdata;
+
+      //   if (pfsset)
+      //   {
+
+      //      pfsset->m_spafsdata.add_unique(m_pifs);
+
+      //      pfsset->m_spafsdata.add_unique(m_premotefs);
+
+      //   }
+
+      //}
+
+      //::file::listing patha;
+
+      //pfsset->root_ones();
+
+      auto pnativefs = __create_new < ::fs::native>();
+
+      pfsset->m_spafsdata.add(pnativefs);
 
    }
 
@@ -1394,7 +1477,7 @@ namespace apex
 
          handle_exception(e);
 
-         acmesession()->set_finish();
+         session()->set_finish();
 
          throw e;
 
@@ -1757,16 +1840,16 @@ namespace apex
 
       defer_interprocess_communication();
 
-      if (m_bInterprocessCommunication)
-      {
-
-         __raw_construct_new(m_pinterprocesscommunication);
-         
-         //m_pinterprocesscommunication->m_p= create_interprocess_communication(OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_NOTE("::application::init_instance"));
-
-         m_pinterprocesscommunication->initialize_interprocess_communication(this, m_strAppId);
-
-      }
+//      if (m_bInterprocessCommunication)
+//      {
+//
+//         __raw_construct_new(m_pinterprocesscommunication);
+//         
+//         //m_pinterprocesscommunication->m_p= create_interprocess_communication(OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_NOTE("::application::init_instance"));
+//
+//         m_pinterprocesscommunication->initialize_interprocess_communication(this, m_strAppId);
+//
+//      }
 
       information() << "apex::application::init_application .1";
 
@@ -2032,7 +2115,7 @@ namespace apex
 
          //data_pulse_change({ "ca2.savings", true }, nullptr);
 
-         auto psystem = acmesystem()->m_papexsystem;
+         auto psystem = system()->m_papexsystem;
 
          psystem->appa_load_string_table();
 
@@ -2176,7 +2259,7 @@ namespace apex
 
             //data_pulse_change({ "ca2.savings", true }, nullptr);
 
-            auto psystem = acmesystem()->m_papexsystem;
+            auto psystem = system()->m_papexsystem;
 
             psystem->appa_load_string_table();
 
@@ -2198,12 +2281,15 @@ namespace apex
       if (m_bInterprocessCommunication)
       {
 
-         __raw_construct_new(m_pinterprocesscommunication);
-
-         //m_pinterprocesscommunication->m_p= create_interprocess_communication(OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_NOTE("::application::init_instance"));
-
-         m_pinterprocesscommunication->initialize_interprocess_communication(this, m_strAppId);
-
+         if(__defer_raw_construct_new(m_pinterprocesscommunication))
+         {
+            
+            //m_pinterprocesscommunication->m_p= create_interprocess_communication(OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_NOTE("::application::init_instance"));
+            
+            m_pinterprocesscommunication->initialize_interprocess_communication(this, m_strAppId);
+            
+         }
+         
       }
 
    }
@@ -2255,7 +2341,7 @@ namespace apex
    //   //
    //   //copy(message, msg);
    //   //
-   //   //auto psystem = acmesystem()->m_papexsystem;
+   //   //auto psystem = system()->m_papexsystem;
    //   //
    //   //if (!is_system() && is_true("SessionSynchronizedInput"))
    //   //{
@@ -2344,9 +2430,9 @@ namespace apex
 
    //   }
 
-   //   //auto psystem = acmesystem()->m_papexsystem;
+   //   //auto psystem = system()->m_papexsystem;
 
-   //   //      auto psystem = acmesystem();
+   //   //      auto psystem = system();
    //   //
    //   //      psystem->install_progress_add_up();
 
@@ -2388,7 +2474,7 @@ namespace apex
    //   try
    //   {
 
-   //      auto psystem = acmesystem();
+   //      auto psystem = system();
 
    //      //if (!is_system() && !is_session())
    //      {
@@ -2525,7 +2611,7 @@ namespace apex
    void application::do_install()
    {
 
-      auto psystem = acmesystem()->m_papexsystem;
+      auto psystem = system()->m_papexsystem;
 
       //if (!on_install())
       on_install();
@@ -2560,7 +2646,7 @@ namespace apex
 
       //::payload & varTopicQuey = psystem->m_varTopicQuery;
 
-      auto psystem = acmesystem()->m_papexsystem;
+      auto psystem = system()->m_papexsystem;
 
       bool bHasInstall = psystem->is_true("install");
 
@@ -2587,7 +2673,7 @@ namespace apex
 
          i32 iRetry = 1;
 
-         auto psession = acmesession()->m_papexsession;
+         auto psession = session()->m_papexsession;
 
       retry_license:
 
@@ -2659,7 +2745,7 @@ namespace apex
 
          // #ifdef WINDOWS_DESKTOP
 
-         // acmesystem()->m_pnode->install_crash_dump_reporting(file()->module().name());
+         // system()->m_pnode->install_crash_dump_reporting(file()->module().name());
 
          // #endif
 
@@ -2716,7 +2802,7 @@ namespace apex
 
       }
 
-      auto psystem = acmesystem()->m_papexsystem;
+      auto psystem = system()->m_papexsystem;
 
       synchronous_lock synchronouslock(psystem->m_pmutexSystemAppData);
 
@@ -2744,7 +2830,7 @@ namespace apex
 
          string strSchema = straSchema[i];
 
-         acmesystem()->m_pacmenode->m_papexnode->set_application_installed(pathExe, strId, strBuild, psystem->get_system_platform(), psystem->get_system_configuration(), strLocale, strSchema);
+         system()->m_pacmenode->m_papexnode->set_application_installed(pathExe, strId, strBuild, psystem->get_system_platform(), psystem->get_system_configuration(), strLocale, strSchema);
 
       }
 
@@ -2814,17 +2900,19 @@ namespace apex
    }
 
 
-   bool application::on_application_menu_action(const ::string & strCommand)
+   bool application::on_application_menu_action(const ::atom & atom)
    {
       
-      if(strCommand == "display_about")
+      if(atom == "display_about")
       {
          
          show_about_box();
          
+         return true;
+         
       }
 
-      return false;
+      return ::acme::application::on_application_menu_action(atom);
 
    }
 
@@ -2860,7 +2948,7 @@ namespace apex
 
       add_matter_locator(this);
 
-      auto psystem = acmesystem()->m_papexsystem;
+      auto psystem = system()->m_papexsystem;
 
       if (!m_bAppHasInstallerChangedProtected)
       {
@@ -3005,10 +3093,10 @@ namespace apex
    {
 
 
-      if (::is_set(acmesession()))
+      if (::is_set(session()))
       {
 
-         acmesession()->m_papexsession->post_message(e_message_erase_application, 0, this);
+         session()->m_papexsession->post_message(e_message_erase_application, 0, this);
 
       }
 
@@ -3035,7 +3123,7 @@ namespace apex
 
       }
 
-      auto psystem = acmesystem()->m_papexsystem;
+      auto psystem = system()->m_papexsystem;
       try
       {
 
@@ -3073,7 +3161,7 @@ namespace apex
    //void application::init_application()
    //{
 
-   //   auto psystem = acmesystem()->m_papexsystem;
+   //   auto psystem = system()->m_papexsystem;
 
    //   information() << "apex::application::init_application";
 
@@ -3202,7 +3290,7 @@ namespace apex
 
       //}
 
-      auto psystem = acmesystem()->m_papexsystem;
+      auto psystem = system()->m_papexsystem;
 
       //estatus = 
       m_puserlanguagemap = __new(::user::language_map OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_NOTE("::application::init1"));
@@ -3250,7 +3338,7 @@ namespace apex
 
       }*/
 
-      if (acmeapplication()->m_bLocalization)
+      if (m_bLocalization)
       {
 
          string strLocale;
@@ -3644,7 +3732,7 @@ namespace apex
 
       bool bResourceException = false;
 
-      auto psystem = acmesystem();
+      auto psystem = system();
 
       auto pnode = psystem->node();
 
@@ -3886,7 +3974,7 @@ namespace apex
    string application::get_local_mutex_name()
    {
 
-      return acmesystem()->m_pnode->get_local_mutex_name(get_mutex_name_gen());
+      return system()->m_pnode->get_local_mutex_name(get_mutex_name_gen());
 
    }
 
@@ -3894,7 +3982,7 @@ namespace apex
    string application::get_local_id_mutex_name()
    {
 
-      return acmesystem()->m_pnode->get_local_id_mutex_name(get_mutex_name_gen(), get_local_mutex_id());
+      return system()->m_pnode->get_local_id_mutex_name(get_mutex_name_gen(), get_local_mutex_id());
 
    }
 
@@ -3902,7 +3990,7 @@ namespace apex
    string application::get_global_mutex_name()
    {
 
-      return acmesystem()->m_pnode->get_global_mutex_name(get_mutex_name_gen());
+      return system()->m_pnode->get_global_mutex_name(get_mutex_name_gen());
 
    }
 
@@ -3910,7 +3998,7 @@ namespace apex
    string application::get_global_id_mutex_name()
    {
 
-      return acmesystem()->m_pnode->get_global_id_mutex_name(get_mutex_name_gen(), get_global_mutex_id());
+      return system()->m_pnode->get_global_id_mutex_name(get_mutex_name_gen(), get_global_mutex_id());
 
    }
 
@@ -3944,7 +4032,7 @@ namespace apex
       try
       {
 
-         auto psystem = acmesystem()->m_papexsystem;
+         auto psystem = system()->m_papexsystem;
 
          if (m_pinterprocesscommunication)
          {
@@ -4001,7 +4089,7 @@ namespace apex
    {
 
       //bool bContinue = false;
-      auto psystem = acmesystem()->m_papexsystem;
+      auto psystem = system()->m_papexsystem;
       try
       {
 
@@ -4371,7 +4459,7 @@ namespace apex
 
       string strMessage;
 
-      auto psystem = acmesystem();
+      auto psystem = system();
 
       auto pdatetime = psystem->m_pdatetime;
 
@@ -4588,7 +4676,7 @@ namespace apex
    void application::register_application_as_spa_file_type_handler()
    {
 
-      auto psystem = acmesystem();
+      auto psystem = system();
 
       auto pnode = psystem->node();
 
@@ -4968,6 +5056,16 @@ namespace apex
    }
 
 
+   void application::on_command_display_about(::message::message * pmessage)
+   {
+
+      pmessage->m_bRet = true;
+
+      show_about_box();
+
+   }
+
+
    bool application::is_equal_file_path(const ::file::path & path1Param, const ::file::path & path2Param)
    {
 
@@ -5205,7 +5303,7 @@ namespace apex
 
       string strAppId = m_strAppId;
 
-      auto psystem = acmesystem()->m_papexsystem;
+      auto psystem = system()->m_papexsystem;
 
       string strNetworkPayload = file()->safe_get_string(acmedirectory()->config() / strAppId / +"http.network_payload");
 
@@ -5225,7 +5323,7 @@ namespace apex
 
       }
 
-      acmesystem()->m_pacmenode->m_papexnode->set_last_run_application_path(strAppId);
+      system()->m_pacmenode->m_papexnode->set_last_run_application_path(strAppId);
 
       acmenode()->m_papexnode->on_start_application(this);
 
@@ -5239,8 +5337,8 @@ namespace apex
       if (!is_service())
       {
 
-         if ((m_bConsole && m_bCreateAppShorcut.is_set_true())
-            || (!m_bConsole && m_bCreateAppShorcut.is_true_or_undefined()))
+         if ((is_console() && m_bCreateAppShorcut.is_set_true())
+            || (!is_console() && m_bCreateAppShorcut.is_true_or_undefined()))
          {
 
             on_create_app_shortcut();
@@ -5596,10 +5694,10 @@ namespace apex
 
       string strType = ::type(this).name();
 
-      //if(::is_set(acmesystem()))
+      //if(::is_set(system()))
       //{
 
-      //   acmesystem()->add_reference(this);
+      //   system()->add_reference(this);
 
       //}
 
@@ -5978,7 +6076,7 @@ namespace apex
 
    //   }
 
-   //   /*     if (!acmesystem()->m_phtml->initialize())
+   //   /*     if (!system()->m_phtml->initialize())
    //        {
 
    //           return false;
@@ -6097,41 +6195,41 @@ namespace apex
 
       error() <<"1.1";
 
-      auto pmenuMain = main_menu();
+      auto papplicationmenu = application_menu();
       
-      pmenuMain->erase_all();
+      papplicationmenu->erase_all();
       
       using namespace ::apex;
       
       {
          
-         auto pmenuApp = __new(menu(m_strAppName, "", "", ""));
+         auto ppopupApp = papplicationmenu->popup(application_title());
          
-         pmenuMain->add(pmenuApp);
+         //pmenuMain->add(pmenuApp);
          
-         pmenuApp->add(__new(menu("About " + m_strAppName, "display_about", "", "")));
+         ppopupApp->item("About " + application_title(), "display_about", "", "");
          
-         pmenuApp->add(__new(menu("separator", "", "", "")));
+         ppopupApp->separator();
          
-         pmenuApp->add(__new(menu("Quit " + m_strAppName, "app_exit", "", "")));
-         
-      }
-
-      {
-         
-         auto pmenuView = __new(menu("View", "", "", ""));
-         
-         pmenuMain->add(pmenuView);
-         
-         pmenuView->add(__new(menu("Transparent Frame", "transparent_frame", "", "")));
+         ppopupApp->item("Quit " + application_title(), "app_exit", "", "");
          
       }
 
-      //applicationmenu().add_item(i++, _("Transparent Frame"), "transparent_frame");
-
-//      applicationmenu()->add_item(i++, "About " + m_strAppName, "show_about", "", "Show About");
+//      {
+//         
+//         auto ppopupView = papplicationmenu->popup("View");
+//         
+//         //ppopupView->add(pmenuView);
+//         
+//         ppopupView->item("Transparent Frame", "transparent_frame", "", "");
+//         
+//      }
 //
-//      applicationmenu()->add_item(i++, "Transparent Frame", "transparent_frame", "Ctrl+Shift+T", "Toggle Transparent Frame");
+//      //applicationmenu().add_item(i++, _("Transparent Frame"), "transparent_frame");
+//
+////      applicationmenu()->add_item(i++, "About " + m_strAppName, "show_about", "", "Show About");
+////
+////      applicationmenu()->add_item(i++, "Transparent Frame", "transparent_frame", "Ctrl+Shift+T", "Toggle Transparent Frame");
 
       application_menu_update();
 
@@ -6263,7 +6361,7 @@ namespace apex
    void application::update_appmatter(::pointer<::sockets::http_session>& psession, const ::file::path & pszRoot, const string & pszRelative)
    {
 
-      auto psystem = acmesystem()->m_papexsystem;
+      auto psystem = system()->m_papexsystem;
 
       auto plocaleschema = __create_new < ::text::international::locale_schema >();
 
@@ -6320,7 +6418,7 @@ namespace apex
          strUrl = "http://stage-server.ca2.software/api/spaignition/download?authnone&configuration=stage&stage=";
       }
 
-      auto psystem = acmesystem();
+      auto psystem = system();
 
       auto purl = psystem->url();
 
@@ -6410,7 +6508,7 @@ namespace apex
 
       }
 
-      if (acmesession() == nullptr)
+      if (session() == nullptr)
       {
 
          return false;
@@ -6502,7 +6600,7 @@ namespace apex
 
          m_iWaitCursorCount = 0;
 
-         auto psystem = acmesystem();
+         auto psystem = system();
 
          auto pnode = psystem->node()->m_papexnode;
 
@@ -6520,7 +6618,7 @@ namespace apex
          if (m_iWaitCursorCount > 0)
          {
 
-            auto psystem = acmesystem();
+            auto psystem = system();
 
             auto pnode = psystem->node()->m_papexnode;
 
@@ -6530,7 +6628,7 @@ namespace apex
 
          m_iWaitCursorCount = 0;
 
-         auto psystem = acmesystem();
+         auto psystem = system();
 
          auto pnode = psystem->node()->m_papexnode;
 
@@ -6547,7 +6645,7 @@ namespace apex
 
          m_iWaitCursorCount++;
 
-         auto psystem = acmesystem();
+         auto psystem = system();
 
          auto pnode = psystem->node()->m_papexnode;
 
@@ -6779,7 +6877,7 @@ namespace apex
 
          ::property_set set;
 
-         auto psystem = acmesystem();
+         auto psystem = system();
 
          auto pnode = psystem->node();
 
@@ -9150,7 +9248,7 @@ namespace apex
    bool application::on_run_install()
    {
 
-      auto psystem = acmesystem()->m_papexsystem;
+      auto psystem = system()->m_papexsystem;
 
       if (m_strId == "session" || m_strAppName == "session")
       {
@@ -9341,7 +9439,7 @@ namespace apex
    void application::set_title(const ::string & pszTitle)
    {
 
-      auto psession = acmesession()->m_papexsession;
+      auto psession = session()->m_papexsession;
 
       psession->set_app_title(m_strAppName, pszTitle);
 
@@ -9738,10 +9836,10 @@ namespace apex
          try
          {
 
-            if (acmesession())
+            if (session())
             {
 
-               auto psession = acmesession();
+               auto psession = session();
 
                psession->destroy();
 
@@ -9763,7 +9861,7 @@ namespace apex
          try
          {
 
-            auto psystem = acmesystem()->m_papexsystem;
+            auto psystem = system()->m_papexsystem;
 
             if (psystem)
             {
@@ -9786,7 +9884,7 @@ namespace apex
    //pointer< ::extended::future < ::conversation > > application::message_box(const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox)
    //{
    //
-   //   auto psystem = acmesystem()->m_papexsystem;
+   //   auto psystem = system()->m_papexsystem;
    //
    //   return psystem->_message_box(this, pszMessage, pszTitle, emessagebox);
    //
@@ -9796,9 +9894,9 @@ namespace apex
    string application::get_version()
    {
 
-      auto psystem = acmesystem()->m_papexsystem;
+      auto psystem = system()->m_papexsystem;
 
-      auto papex = psystem->acmesession()->m_pacmenode->m_papexnode;
+      auto papex = psystem->session()->m_pacmenode->m_papexnode;
 
       return papex->get_version();
 
@@ -9808,7 +9906,7 @@ namespace apex
    void application::_001InitializeShellOpen()
    {
 
-      auto psystem = acmesystem()->m_papexsystem;
+      auto psystem = system()->m_papexsystem;
 
       auto papex = psystem->m_pacmenode->m_papexnode;
 
@@ -9926,7 +10024,7 @@ namespace apex
 
          //preempt(25_s);
 
-         acmeapplication()->payload("activation.note1") = "m_pinterprocesscommunication was null for uri=\"" + strUri + "\"";
+         payload("activation.note1") = "m_pinterprocesscommunication was null for uri=\"" + strUri + "\"";
 
          add_activation_message(strUri);
 
@@ -9979,18 +10077,26 @@ namespace apex
 
    }
 
+   
+//   bool application::on_application_menu_action(const ::atom & atom)
+//   {
+//      
+//      return false;
+//   
+//   }
+
 
 } // namespace apex
 
 
-void application_on_menu_action(void * pApplication, const char * pszCommand)
-{
-
-   auto papp = (::acme::application *)pApplication;
-
-   papp->m_papexapplication->on_application_menu_action(pszCommand);
-
-}
+//void application_on_menu_action(void * pApplication, const char * pszCommand)
+//{
+//
+//   auto papp = (::acme::application *)pApplication;
+//
+//   papp->m_papexapplication->on_application_menu_action(pszCommand);
+//
+//}
 
 
 

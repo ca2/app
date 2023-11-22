@@ -130,7 +130,10 @@ namespace apex
       void load_character_set_default_sample_text() override;
 
 
-      virtual ::pointer < ::input::input > get_input();
+      virtual ::pointer < ::input::input > create_input();
+
+
+      virtual bool is_key_pressed(bool * pbPressed, ::user::enum_key ekey);
 
 
    };

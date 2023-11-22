@@ -31,7 +31,8 @@ namespace user
       ::pointer<::user::menu>          m_pmenu;
       string                           m_strTitle;
       ::rectangle_i32                  m_rectangleUi;
-      int                              m_iColumn;
+      ::i32                            m_iColumn;
+      ::i32                            m_iRow;
       ::pointer<::image>               m_pimage;
       //::pointer<::item_array>          m_pmenuitema;
 
@@ -44,20 +45,24 @@ namespace user
 
 
       void add_item(menu_item * pitem);
+      menu_item * separator();
       bool create_menu(const string_array & straCommand, const string_array & straCommandTitle);
       bool load_menu(::xml::node * pxmlnode);
       bool load_menu(::xml::node * pxmlnode, i32 iLevel);
 
-      virtual void OnAddRef();
-      virtual void OnRelease();
+      //virtual void OnAddRef();
+      //virtual void OnRelease();
 
 
       virtual bool create_buttons(::draw2d::graphics_pointer& pgraphics, menu * pmenu);
       virtual bool contains_menu_item(menu_item * pitem, bool bRecursive = true) const;
 
-      bool IsPopup();
-      menu_item * find(atom atom);
+      
+      virtual bool is_popup() const;
+      virtual bool is_separator() const;
 
+      
+      virtual menu_item * find(const ::atom & atom);
 
 
    };

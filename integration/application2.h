@@ -49,14 +49,14 @@ namespace console
          void main() override
          {
 
-            auto psystem = acmesystem();
+            auto psystem = system();
 
-            auto psubsystem = psystem->m_psubsystem;
+            auto pplatform = psystem->m_pplatform;
 
-            for (int i = 0; i < psubsystem->get_argument_count1(); i++)
+            for (int i = 0; i < pplatform->get_argument_count1(); i++)
             {
 
-               string strArgument = psubsystem->get_argument1(i);
+               string strArgument = pplatform->get_argument1(i);
 
                if (strArgument.case_insensitive_equals("ffmpeg"))
                {

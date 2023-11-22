@@ -31,13 +31,13 @@
 @implementation ns_nano_impact
 
 
-- (id) initWithFrame: (NSRect) frame andns_nano_window: (ns_nano_window *) pnanowindow
+- (id) initWithFrame: (NSRect) frame and_nano_window_bridge: (nano_window_bridge *) pnanowindowbridge
 {
 
    self                 = [super initWithFrame:frame];
    
    
-   m_pnanowindow        = pnanowindow;
+   m_pnanowindowbridge  = pnanowindowbridge;
    
    m_bLShift            = false;
    m_bRShift            = false;
@@ -131,7 +131,7 @@
 - (void) mouseUp: (NSEvent *) event
 {
 
-   nano_window_bridge * p = m_pnanowindow->m_pwindowbridge;
+   nano_window_bridge * p = m_pnanowindowbridge;
    
    if(p == NULL)
    {
@@ -160,7 +160,7 @@
 - (void) mouseMoved: (NSEvent *) event
 {
 
-   nano_window_bridge * p = m_pnanowindow->m_pwindowbridge;
+   nano_window_bridge * p = m_pnanowindowbridge;
    
    if(p == NULL)
    {
@@ -191,7 +191,7 @@
 - (void) mouseDragged: (NSEvent *) event
 {
 
-   nano_window_bridge * p = m_pnanowindow->m_pwindowbridge;
+   nano_window_bridge * p = m_pnanowindowbridge;
    
    if(p == NULL)
    {
@@ -220,7 +220,7 @@
 - (void) mouseDown: (NSEvent *) event
 {
    
-   nano_window_bridge * p = m_pnanowindow->m_pwindowbridge;
+   nano_window_bridge * p = m_pnanowindowbridge;
    
    if(p == NULL)
    {
@@ -249,7 +249,7 @@
 - (void) rightMouseUp: (NSEvent *) event
 {
 
-   nano_window_bridge * p = m_pnanowindow->m_pwindowbridge;
+   nano_window_bridge * p = m_pnanowindowbridge;
    
    if(p == NULL)
    {
@@ -278,7 +278,7 @@
 - (void) rightMouseDown: (NSEvent *) event
 {
    
-   nano_window_bridge * p = m_pnanowindow->m_pwindowbridge;
+   nano_window_bridge * p = m_pnanowindowbridge;
    
    if(p == NULL)
    {
@@ -329,7 +329,7 @@
 - (void) drawRect: (NSRect) rect
 {
 
-   nano_window_bridge * p = m_pnanowindow->m_pwindowbridge;
+   nano_window_bridge * p = m_pnanowindowbridge;
    
    if(p == NULL)
    {
@@ -407,12 +407,12 @@
       
    }
    
-   if(![m_pnanowindow isKeyWindow])
-   {
-      
-      [m_pnanowindow makeKeyWindow];
-      
-   }
+//   if(![m_pnanowindowbridge isKeyWindow])
+//   {
+//      
+//      [m_pnanowindowbridge makeKeyWindow];
+//      
+//   }
    
    return YES;
    
@@ -448,7 +448,7 @@ m_f = true; \
 - (void)keyDown:(NSEvent *)event
 {
 
-   nano_window_bridge * p = m_pnanowindow->m_pwindowbridge;
+   nano_window_bridge * p = m_pnanowindowbridge;
      
    if(p == NULL)
    {
@@ -539,7 +539,7 @@ m_f = true; \
    
    NSString * characters;
    
-   nano_window_bridge * p = m_pnanowindow->m_pwindowbridge;
+   nano_window_bridge * p = m_pnanowindowbridge;
    
    if(p == NULL)
    {
@@ -564,7 +564,7 @@ m_f = true; \
 - (void)flagsChanged:(NSEvent *)event
 {
 
-   nano_window_bridge * p = m_pnanowindow->m_pwindowbridge;
+   nano_window_bridge * p = m_pnanowindowbridge;
    
    if(p == NULL)
    {

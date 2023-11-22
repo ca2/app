@@ -17,7 +17,7 @@ namespace apex
    //   m_pthreadimpl.create(this);
    //   m_pthreadimpl->m_pthread = this;
 
-   //   acmesystem() = papp->acmesystem();
+   //   system() = papp->system();
 
    //   m_atomApp = m_atomSystemTopic = nullptr;
 
@@ -339,7 +339,7 @@ namespace apex
    string application::veriwell_multimedia_music_midi_get_default_implementation_name()
    {
 
-      return acmesystem()->implementation_name("music_midi", "winrt");
+      return system()->implementation_name("music_midi", "winrt");
 
    }
 
@@ -355,7 +355,7 @@ namespace apex
    string application::multimedia_audio_get_default_implementation_name()
    {
 
-      return acmesystem()->implementation_name("audio", "xaudio");
+      return system()->implementation_name("audio", "xaudio");
 
    }
 

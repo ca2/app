@@ -115,11 +115,13 @@ namespace draw2d
 
       inline class ::write_text::write_text * write_text() { return m_pwritetext; }
 
+
+      virtual bool graphics_context_supports_single_buffer_mode();
+      virtual bool graphics_context_does_full_redraw();
+
       //#ifdef WINDOWS
         //    ::draw2d_direct2d::plugin * direct2d();
       //#endif
-
-
 
       enum_format file_extension_to_format(const ::payload & payloadFile);
       enum_format text_to_format(string str);

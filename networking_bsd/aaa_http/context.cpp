@@ -46,7 +46,7 @@ namespace http
 
       set["app"] = get_app();
 
-      auto psystem = acmesystem();
+      auto psystem = system();
 
       auto purl = psystem->url();
 
@@ -223,7 +223,7 @@ namespace http
 
       }
 
-      auto psystem = acmesystem();
+      auto psystem = system();
 
       auto purl = psystem->url();
 
@@ -753,7 +753,7 @@ namespace http
 
       string strHost;
 
-      auto psystem = acmesystem();
+      auto psystem = system();
 
       auto purl = psystem->url();
 
@@ -1108,7 +1108,7 @@ namespace http
       // Format of script name example "context://server.com/the rain.mp3" => "context://server.com/the%20rain.mp3"
       {
 
-         auto psystem = acmesystem();
+         auto psystem = system();
 
          auto purl = psystem->url();
 
@@ -1124,7 +1124,7 @@ namespace http
 
       property_set setQuery;
 
-      auto psystem = acmesystem();
+      auto psystem = system();
 
       auto purl = psystem->url();
 
@@ -1245,7 +1245,7 @@ namespace http
 
       }
 
-      auto psystem = acmesystem();
+      auto psystem = system();
 
       auto purl = psystem->url();
 
@@ -1735,7 +1735,7 @@ namespace http
 
       //KEEP(ptask->payload("work_url"), pszUrl);
 
-      auto psystem = acmesystem()->m_papexsystem;
+      auto psystem = system()->m_papexsystem;
 
       auto purl = psystem->url();
 
@@ -2564,7 +2564,7 @@ namespace http
 
       ::url_domain domain;
 
-      auto psystem = acmesystem();
+      auto psystem = system();
 
       auto purl = psystem->url();
 
@@ -2755,7 +2755,7 @@ namespace http
 
          ::url_domain domain;
 
-         auto psystem = acmesystem();
+         auto psystem = system();
 
          auto purl = psystem->url();
 
@@ -2809,7 +2809,7 @@ namespace http
 
       ::url_domain domain;
 
-      auto psystem = acmesystem();
+      auto psystem = system();
 
       auto purl = psystem->url();
 

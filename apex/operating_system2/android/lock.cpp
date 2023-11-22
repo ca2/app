@@ -91,7 +91,7 @@ string _ca_get_file_name(const ::scoped_string & scopedstrName, bool bCreate, i3
    str.find_replace("\\", "/");
    str.find_replace("::", "_");
 
-   auto psystem = acmesystem();
+   auto psystem = system();
 
    auto pacmedirectory = psystem->m_pacmedirectory;
 

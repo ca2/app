@@ -497,8 +497,8 @@ void app_core::system_init()
 
    //psystem = __move_transfer(apex_create_apex_system());
 
-   //auto psystem = acmesystem()->m_papexsystem;
-   auto psystem = acmesystem();
+   //auto psystem = system()->m_papexsystem;
+   auto psystem = system();
 
    if (!psystem)
    {

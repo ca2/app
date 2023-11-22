@@ -66,7 +66,7 @@ namespace account
          
       }
 
-      auto psystem = acmesystem();
+      auto psystem = system();
 
       auto purl = psystem->url();
 
@@ -84,7 +84,7 @@ namespace account
       
       path = path_prefix(strToken);
 
-      auto psystem = acmesystem()->m_papexsystem;
+      auto psystem = system()->m_papexsystem;
       
       path /= psystem->crypto()->md5(strToken + strKey);
 
@@ -113,7 +113,7 @@ namespace account
       
       path = path_prefix(strToken);
       
-      auto psystem = acmesystem()->m_papexsystem;
+      auto psystem = system()->m_papexsystem;
 
       auto pacmedirectory = psystem->m_pacmedirectory;
 

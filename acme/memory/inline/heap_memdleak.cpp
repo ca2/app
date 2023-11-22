@@ -707,7 +707,7 @@ void memdleak_dump()
 #if FAST_STACK_TRACE
          information(::exception_engine().xxxstack_trace(pblock->m_puiStack + 1, pblock->m_iStack));
 #else
-         information(get_call_stack_trace(pblock->m_uaStack, pblock->m_iStack));
+         information(::exception_engine().xxxstack_trace(pblock->m_puiStack, pblock->m_iStack));
 #endif
       }
       pblock = pblock->m_pnext;

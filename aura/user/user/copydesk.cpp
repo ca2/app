@@ -47,7 +47,7 @@ namespace user
 
       m_pwindow = pwindow;
 
-      auto psystem = acmesystem()->m_paurasystem;
+      auto psystem = system()->m_paurasystem;
 
       auto pnode = psystem->node();
       
@@ -234,7 +234,7 @@ namespace user
 
             ::pointer<::aura::application>papp = get_app();
 
-            auto psystem = acmesystem()->m_paurasystem;
+            auto psystem = system()->m_paurasystem;
 
             auto pcontext = m_pcontext->m_pauracontext;
 
@@ -309,7 +309,7 @@ namespace user
 
                      pcontext->m_papexcontext->file()->as_memory(payloadFile, mem);
 
-                     auto psystem = acmesystem();
+                     auto psystem = system();
 
                      auto pbase64 = psystem->base64();
 

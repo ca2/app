@@ -40,7 +40,7 @@ namespace user
 
       //}
 
-      auto psystem = acmesystem()->m_paurasystem;
+      auto psystem = system()->m_paurasystem;
 
       auto psignal = psystem->get_signal(id_operating_system_user_color_change);
 
@@ -60,7 +60,7 @@ namespace user
       //if (is_different(m_bDarkMode, bDarkMode))
       {
 
-         auto psystem = acmesystem();
+         auto psystem = system();
 
          auto pnode = psystem->node();
 
@@ -71,7 +71,7 @@ namespace user
 
          //m_bDarkMode = bDarkMode;
 
-         //auto psystem = acmesystem();
+         //auto psystem = system();
 
          //psystem->m_papexsystem->signal(id_user_style_change);
 
@@ -85,7 +85,7 @@ namespace user
 
    //   return
 
-   //   //auto psystem = acmesystem();
+   //   //auto psystem = system();
 
    //   //auto pnode = psystem->node();
 

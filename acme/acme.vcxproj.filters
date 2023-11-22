@@ -327,6 +327,9 @@
     <Filter Include="Header Files\windowing">
       <UniqueIdentifier>{b785409f-1afc-4463-8064-03b729958250}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\graphics\graphics">
+      <UniqueIdentifier>{3609adeb-0973-4694-b509-befeee4d69be}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\filesystem.h">
@@ -1778,7 +1781,7 @@
     <ClInclude Include="primitive\primitive\e_check.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="platform\sub_system.h">
+    <ClInclude Include="platform\platform.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="primitive\string\aaa_string_type.h">
@@ -3449,9 +3452,6 @@
     <ClInclude Include="constant\user_key.h">
       <Filter>Header Files\constant</Filter>
     </ClInclude>
-    <ClInclude Include="filesyste\filesyste\_format.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="format.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -3466,6 +3466,18 @@
     </ClInclude>
     <ClInclude Include="_stdio.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="handler\source.h">
+      <Filter>Header Files\handler</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\key_state.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\_.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\controller.h">
+      <Filter>Header Files\user\user</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -4330,7 +4342,7 @@
     <ClCompile Include="primitive\primitive\atom.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
-    <ClCompile Include="platform\sub_system.cpp">
+    <ClCompile Include="platform\platform.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="platform\tracer.cpp">
@@ -4791,6 +4803,21 @@
     </ClCompile>
     <ClCompile Include="graphics\image\image32_array.cpp">
       <Filter>Source Files\graphics\image</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\graphics\output_purpose.cpp">
+      <Filter>Source Files\graphics\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\string\c\ancient\_c.cpp">
+      <Filter>Source Files\primitive\string\c\ancient</Filter>
+    </ClCompile>
+    <ClCompile Include="handler\source.cpp">
+      <Filter>Source Files\handler</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\key_state.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\controller.cpp">
+      <Filter>Source Files\user\user</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

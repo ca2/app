@@ -25,7 +25,7 @@
 //   if (::is_null(pmatter))
 //   {
 //
-//      auto psystem = acmesystem();
+//      auto psystem = system();
 //
 //      auto ptopic = psystem->create_topic(atom);
 //

@@ -33,7 +33,7 @@ namespace userfs
 
       ::userfs::list_item * item(index i);
 
-      virtual void update();
+      virtual void update(::userfs::data * puserfsdata);
 
       void _001GetSubItemText(::user::mesh_subitem * psubitem) override;
 

@@ -241,7 +241,7 @@ namespace simpledb
 
             strUrl = "https://ca2.software" + strApi + "?key=";
 
-            auto psystem = acmesystem();
+            auto psystem = system();
 
             auto purl = psystem->url();
 
@@ -269,7 +269,7 @@ namespace simpledb
 
             auto pdatetime = psystem->datetime();
 
-            auto ptextcontext = acmesession()->text_context();
+            auto ptextcontext = session()->text_context();
 
             ::earth::time timeListing(pdatetime->from_string(ptextcontext, strListingTime));
 

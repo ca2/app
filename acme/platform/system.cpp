@@ -101,8 +101,6 @@ void initialize_nano_http();
 
 namespace acme
 {
-
-
    system::system()
    {
 
@@ -138,7 +136,7 @@ namespace acme
 
       ::acme::context::on_initialize_particle();
 
-      ::plane_system::on_initialize_particle();
+      //::plane_system::on_initialize_particle();
 
    }
 
@@ -146,9 +144,9 @@ namespace acme
    void system::initialize_system()
    {
 
-      m_psubsystem = ::acme::acme::g_pacme->m_psubsystem;
+      m_pplatform = ::platform::get();
 
-      m_psubsystem->initialize(this);
+      m_pplatform->initialize(this);
 
       ::output_debug_string("Going to create simple log\n");
 
@@ -174,31 +172,31 @@ namespace acme
       //
       //      //   auto papp = ::app_factory::new_app();
       //
-      //      //pacmeapplication->m_argc = __argc;
+      //      //papplication->m_argc = __argc;
       //
-      //      //pacmeapplication->m_argv = __argv;
+      //      //papplication->m_argv = __argv;
       //
-      //      //pacmeapplication->m_wargv = __wargv;
+      //      //papplication->m_wargv = __wargv;
       //
-      //      //pacmeapplication->m_envp = *__p__environ();
+      //      //papplication->m_envp = *__p__environ();
       //
-      //      //pacmeapplication->m_wenvp = *__p__wenviron();
+      //      //papplication->m_wenvp = *__p__wenviron();
       //
-      //      //pacmeapplication->m_hinstanceThis = hinstanceThis;
+      //      //papplication->m_hinstanceThis = hinstanceThis;
       //
-      //      //pacmeapplication->m_hinstancePrev = hinstancePrev;
+      //      //papplication->m_hinstancePrev = hinstancePrev;
       //
-      //      //pacmeapplication->m_nCmdShow = nCmdShow;
+      //      //papplication->m_nCmdShow = nCmdShow;
       //
-      //      //pacmeapplication->m_bConsole = false;
+      //      //papplication->is_console() = false;
       //
-      //      //int iExitCode = pacmeapplication->main_loop();
+      //      //int iExitCode = papplication->main_loop();
       //
       //      //return iExitCode;
       //
       //#elif !defined(UNIVERSAL_WINDOWS)
       //
-      //      //pacmeapplication->set_args(g_argc, g_argv, g_envp);
+      //      //papplication->set_args(g_argc, g_argv, g_envp);
       //
       //#endif
       //
@@ -232,26 +230,26 @@ namespace acme
 
       factory()->initialize(this);
 
-//      //#ifdef LINUX
-//      //
-//      //      m_elinuxdistribution = e_linux_distribution_unknown;
-//      //
-//      //#endif
-//
-//      //m_edesktop = ::user::e_desktop_none;
-//
-//      information() << "initialize_system os_construct";
-//
-//      os_construct();
-//
-//      //acmesystem() = this;
-//
-//      //      if (g_psystem == nullptr)
-//      //      {
-//      //
-//      //         g_psystem = this;
-//      //
-//      //      }
+      //      //#ifdef LINUX
+      //      //
+      //      //      m_elinuxdistribution = e_linux_distribution_unknown;
+      //      //
+      //      //#endif
+      //
+      //      //m_edesktop = ::user::e_desktop_none;
+      //
+      //      information() << "initialize_system os_construct";
+      //
+      //      os_construct();
+      //
+      //      //system() = this;
+      //
+      //      //      if (g_psystem == nullptr)
+      //      //      {
+      //      //
+      //      //         g_psystem = this;
+      //      //
+      //      //      }
 
 
       information() << "initialize_system create nano";
@@ -284,6 +282,24 @@ namespace acme
    }
 
 
+   void system::on_branch_system_from_main_thread_startup()
+   {
+
+      m_itask = 0;
+
+      m_htask = nullptr;
+
+      branch_synchronously();
+
+      // To pair freebsd.h/main platform_create_system memory_new system
+      // This should be safe here in this node_gtk::node
+      // because just above system() has begin_synch()
+      // so the running thread is holding references to the system() thread.
+      release();
+
+   }
+
+
    void system::main()
    {
 
@@ -300,10 +316,10 @@ namespace acme
       run();
 
 
-      if (acmeapplication()->m_bConsole)
+      if (application()->is_console())
       {
 
-         acmeapplication()->main();
+         application()->main();
 
       }
 
@@ -887,7 +903,7 @@ namespace acme
    //}
 
 
-   //CLASS_DECL_ACME class system * acmesystem()
+   //CLASS_DECL_ACME class system * system()
    //{
    //
    //   return ::g_psystem;
@@ -1013,13 +1029,13 @@ namespace acme
 
       //}
 
-      //acmeapplication() = pappStartup;
+      //application() = pappStartup;
 
       m_pacmeapplication->initialize(this);
 
       m_pacmeapplication->get_property_set().merge(get_property_set());
 
-      //*((::APPLICATION_FLAGS *)this) = *acmeapplication();
+      //*((::APPLICATION_FLAGS *)this) = *application();
 
       process_init();
 
@@ -1108,7 +1124,7 @@ namespace acme
    void system::init2()
    {
 
-      if (acmeapplication()->m_bSession)
+      if (application()->m_bSession)
       {
 
          //return ::success;
@@ -1168,7 +1184,7 @@ namespace acme
 
    //   }
 
-   //   auto psystem = acmesystem();
+   //   auto psystem = system();
 
    //   synchronous_lock synchronouslock(&psystem->m_pmutexLibrary2);
 
@@ -1218,7 +1234,7 @@ namespace acme
 
    //   strImplementation.case_insensitive_begins_eat(strComponent);
 
-   //   auto psystem = acmesystem();
+   //   auto psystem = system();
 
    //   synchronous_lock synchronouslock(&psystem->m_pmutexContainerizedLibrary);
 
@@ -1735,7 +1751,7 @@ namespace acme
    void system::on_request(::request * prequest)
    {
 
-      auto psession = acmesession();
+      auto psession = session();
 
       if (psession == nullptr)
       {
@@ -1758,7 +1774,7 @@ namespace acme
       if (estatus == error_exit_system)
       {
 
-         pparticle->acmesystem()->set_finish();
+         pparticle->system()->set_finish();
 
       }
 
@@ -1768,7 +1784,7 @@ namespace acme
    void system::on_start_system()
    {
 
-      /*auto estatus =*/ m_pnode->on_start_system();
+      ////*auto estatus =*/ m_pnode->on_start_system();
 
       //if (!estatus)
       //{
@@ -1792,9 +1808,9 @@ namespace acme
 
          auto prequest = __create_new< ::request>();
 
-         auto strCommandLine = acmeapplication()->m_strCommandLine;
+         auto strCommandLine = platform()->m_strCommandLine;
 
-         prequest->m_strAppId = acmeapplication()->m_strAppId;
+         prequest->m_strAppId = application()->m_strAppId;
 
          ::string strApp;
 
@@ -1805,10 +1821,10 @@ namespace acme
 
 #if !defined(WINDOWS)
 
-         for (::index iArgument = 1; iArgument < m_psubsystem->m_argc; iArgument++)
+         for (::index iArgument = 1; iArgument < m_pplatform->m_argc; iArgument++)
          {
 
-            ::string strArgument = m_psubsystem->m_argv[iArgument];
+            ::string strArgument = m_pplatform->m_argv[iArgument];
 
             prequest->get_property_set()._008AddArgument(strArgument);
 
@@ -1818,11 +1834,53 @@ namespace acme
 
          payload("command_line_arg0") = strApp;
 
-         acmeapplication()->get_property_set().merge(prequest->get_property_set());
+         application()->get_property_set().merge(prequest->get_property_set());
 
          post_request(prequest);
 
       }
+
+   }
+
+
+   void system::canonical_system_main()
+   {
+
+      process_init();
+
+      if (application()->is_console())
+      {
+
+         application()->main();
+
+      }
+      else
+      {
+
+         // on canonical system on_start_system is called before main loop
+         on_start_system();
+
+         //auto estatus = 
+         main();
+
+         //if (!estatus)
+         //{
+
+         //   return estatus;
+
+         //}
+
+         //return estatus;
+
+      }
+
+      if (m_iExitCode == 0 && m_estatus.failed())
+      {
+
+         m_iExitCode = m_estatus.exit_code();
+
+      }
+
 
    }
 
@@ -1941,7 +1999,7 @@ namespace acme
    void system::report_system_instance()
    {
 
-      string strAppId = acmeapplication()->m_strAppId;
+      string strAppId = application()->m_strAppId;
 
       if (strAppId.has_char())
       {
@@ -1962,7 +2020,7 @@ namespace acme
 
 #ifdef ANDROID
 
-         pathFolder = acmesystem()->m_pathCacheDirectory;
+         pathFolder = system()->m_pathCacheDirectory;
 
 #else
 
@@ -1976,7 +2034,7 @@ namespace acme
 
          ::file::path path = pathFolder / (strModifier + "_command_line.txt");
 
-         acmefile()->put_contents(path, acmeapplication()->m_strCommandLine);
+         acmefile()->put_contents(path, platform()->m_strCommandLine);
 
          ::file::path pathExecutable = acmefile()->module();
 
@@ -2074,10 +2132,10 @@ namespace acme
       if (etracelevel > e_trace_level_information)
       {
 
-         for (int i = 0; i < m_psubsystem->get_argument_count1(); i++)
+         for (int i = 0; i < m_pplatform->get_argument_count1(); i++)
          {
 
-            string strArg = m_psubsystem->get_argument1(i);
+            string strArg = m_pplatform->get_argument1(i);
 
             if (strArg == "verbose")
             {
@@ -2225,10 +2283,10 @@ namespace acme
       else if (ptopic->m_atom == id_app_activated)
       {
 
-         if (::is_set(acmeapplication()))
+         if (::is_set(application()))
          {
 
-            acmeapplication()->handle(ptopic, pcontext);
+            application()->handle(ptopic, pcontext);
 
          }
 
@@ -2239,11 +2297,11 @@ namespace acme
    }
 
 
-   void system::add_handler(::matter * pmatter, bool bPriority)
-   {
-
-
-   }
+//   void system::add_handler(::matter * pmatter, bool bPriority)
+//   {
+//
+//
+//   }
 
 
    void system::add_signal_handler(const ::signal_handler & signalhandler, const ::atom & atomSignal)
@@ -2253,6 +2311,18 @@ namespace acme
    }
 
 
+   void system::erase_signal_handler(::signal_handler::base * pbase)
+   {
+      
+   }
+
+
+//   void system::erase_signal_handlers(::particle * pparticle)
+//   {
+//      
+//   }
+
+
    void system::node_will_finish_launching()
    {
 
@@ -2260,7 +2330,7 @@ namespace acme
       //
       //   pnode->_will_finish_launching();
 
-      //   auto pnode = acmesession()->m_paurasession;
+      //   auto pnode = session()->m_paurasession;
       //
       //   auto puser = psession->user();
       //
@@ -2469,7 +2539,7 @@ namespace acme
       if (!papp)
       {
 
-         if (strAppId.is_empty() || acmeapplication()->m_bConsole)
+         if (strAppId.is_empty() || application()->is_console())
          {
 
             papp = __create < ::acme::application >();
@@ -2486,16 +2556,16 @@ namespace acme
 
             strLibrary.replace_with("_", "-");
 
-            if (acmeapplication()->m_bVerbose)
+            if (application()->m_bVerbose)
             {
 
                ::informationf("\n\n::apex::session::get_new_application assembled library path " + strLibrary + "\n\n");
 
             }
 
-            //auto psystem = acmesystem()->m_papexsystem;
+            //auto psystem = system()->m_papexsystem;
 
-            auto & plibrary = m_psubsystem->library(strLibrary);
+            auto & plibrary = m_pplatform->library(strLibrary);
 
             if (!plibrary)
             {
@@ -2514,7 +2584,7 @@ namespace acme
 
             }
 
-            if (acmeapplication()->m_bVerbose)
+            if (application()->m_bVerbose)
             {
 
                ::informationf("\n\n::apex::session::get_new_application Found library : " + strLibrary + "\n\n");
@@ -2534,7 +2604,7 @@ namespace acme
             //
             //          }
 
-            if (acmeapplication()->m_bVerbose)
+            if (application()->m_bVerbose)
             {
 
                ::informationf("\n\n::apex::session::get_new_application Opened library : " + strLibrary + "\n\n");
@@ -2548,7 +2618,7 @@ namespace acme
             if (pfactory)
             {
 
-               papp = pfactory->create < ::acme::application >();
+               papp = pfactory->create < ::acme::application >(this);
 
                if (!papp)
                {
@@ -2864,7 +2934,7 @@ namespace acme
 } // namespace acme
 
 
-//CLASS_DECL_ACME::acme::system * acmesystem()
+//CLASS_DECL_ACME::acme::system * system()
 //{
 
   // return g_psystem;
@@ -2875,7 +2945,7 @@ namespace acme
 //CLASS_DECL_ACME class ::plane_system * get_plane_system()
 //{
 //
-//   return acmesystem();
+//   return system();
 //
 ////}
 //
@@ -2883,7 +2953,7 @@ namespace acme
 //CLASS_DECL_ACME string get_latest_deployment_number(const ::string & strBranch)
 //{
 //
-//   return acmesystem()->get_latest_deployment_number(strBranch);
+//   return system()->get_latest_deployment_number(strBranch);
 //
 //}
 
@@ -3057,7 +3127,7 @@ void system_on_open_file(void * pSystem, const char * pszFile)
 CLASS_DECL_ACME task_pointer fork(::particle * pparticle, const ::procedure & procedure)
 {
 
-   return pparticle->acmesystem()->fork(procedure);
+   return pparticle->system()->fork(procedure);
 
 }
 

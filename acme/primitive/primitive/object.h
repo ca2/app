@@ -67,7 +67,7 @@ public:
    //::task_pointer                                 m_pthread;
    //::pointer<::apex::application>                           m_pacmeapplication;
    //::pointer<::apex::session>                         m_psession;
-   //::pointer<::acme::system>                          acmesystem();
+   //::pointer<::acme::system>                          system();
    //::acme::context *                                     m_pcontext;
 
 
@@ -112,7 +112,7 @@ public:
 #endif
 
 
-   //inline ::acme::system* acmesystem() const;
+   //inline ::acme::system* system() const;
 
    //inline element_array * _composite_array() { return m_pcompositea; }
    //inline element_array * _reference_array() { return m_preferencea; }
@@ -402,7 +402,7 @@ public:
 
    virtual void destruct();
 
-   static void system(const ::string & pszProjectName);
+   //static void system(const ::string & pszProjectName);
 
    //virtual void enable_application_events(bool bEnable = true);
 
@@ -841,7 +841,7 @@ public:
 
 
    //virtual ::user::primitive* get_user_interaction_host();
-   //virtual ::user::interaction * get_host_window();
+   //virtual ::user::interaction * get_host_user_interaction();
 
 
    //virtual void dev_log(string str) const;

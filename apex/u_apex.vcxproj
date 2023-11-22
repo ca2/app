@@ -793,7 +793,6 @@
     <ClCompile Include="handler\context.cpp" />
     <ClCompile Include="handler\manager.cpp" />
     <ClCompile Include="handler\signal.cpp" />
-    <ClCompile Include="handler\source.cpp" />
     <ClCompile Include="input\input.cpp" />
     <ClCompile Include="interprocess\base.cpp" />
     <ClCompile Include="interprocess\call.cpp" />
@@ -873,6 +872,8 @@
     <ClCompile Include="platform\api_client.cpp" />
     <ClCompile Include="platform\api_client_base.cpp" />
     <ClCompile Include="platform\application.cpp" />
+    <ClCompile Include="platform\application_menu.cpp" />
+    <ClCompile Include="platform\application_menu_command.cpp" />
     <ClCompile Include="platform\app_launcher.cpp" />
     <ClCompile Include="platform\assert_running_task.cpp" />
     <ClCompile Include="platform\console_application.cpp" />
@@ -897,8 +898,6 @@
     <ClCompile Include="progress\listener.cpp" />
     <ClCompile Include="progress\progress.cpp" />
     <ClCompile Include="progress\real.cpp" />
-    <ClCompile Include="user\menu\commnand.cpp" />
-    <ClCompile Include="user\menu\menu.cpp" />
     <ClCompile Include="user\menu\shared.cpp" />
     <ClCompile Include="user\user\language.cpp" />
     <ClCompile Include="user\user\language_map.cpp" />

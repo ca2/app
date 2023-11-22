@@ -108,9 +108,9 @@ namespace user
    ::core::application* list2::get_app()
    {
 
-      auto pacmeapplication = acmeapplication();
+      auto papplication = application();
 
-      return ::is_set(pacmeapplication) ? pacmeapplication->m_pcoreapplication : nullptr;
+      return ::is_set(papplication) ? papplication->m_pcoreapplication : nullptr;
 
    }
 
@@ -118,7 +118,7 @@ namespace user
    ::core::session* list2::get_session()
    {
 
-      auto pacmesession = acmesession();
+      auto pacmesession = session();
 
       return ::is_set(pacmesession) ? pacmesession->m_pcoresession : nullptr;
 
@@ -128,7 +128,7 @@ namespace user
    ::core::system* list2::get_system()
    {
 
-      auto pacmesystem = acmesystem();
+      auto pacmesystem = system();
 
       return ::is_set(pacmesystem) ? pacmesystem->m_pcoresystem : nullptr;
 
@@ -1585,7 +1585,7 @@ namespace user
 
       }
 
-      auto psystem = acmesystem()->m_paurasystem;
+      auto psystem = system()->m_paurasystem;
 
       auto pdraw2d = psystem->draw2d();
 
@@ -5609,7 +5609,7 @@ namespace user
 
       m_strTopText = pcwsz;
 
-      auto psystem = acmesystem()->m_paurasystem;
+      auto psystem = system()->m_paurasystem;
 
       auto pdraw2d = psystem->draw2d();
 
@@ -6443,7 +6443,7 @@ namespace user
 
       //m_pregexFilter1->setPositionMoves(1);
 
-      auto psystem = acmesystem()->m_paxissystem;
+      auto psystem = system()->m_paxissystem;
 
       m_pregexFilter1 = psystem->compile_pcre("/.*" + stra.implode(".*") + ".*/i");
 
@@ -6479,7 +6479,7 @@ namespace user
    void list2::_001OnListHeaderItemDblClk(index iHeaderItem)
    {
 
-      auto psystem = acmesystem()->m_paurasystem;
+      auto psystem = system()->m_paurasystem;
 
       auto pdraw2d = psystem->draw2d();
 

@@ -51,7 +51,8 @@ namespace apex
 
       bool                                         m_bReadStringTable;
 
-      ::pointer<::apex::menu>                      m_pmenuMain;
+      ::pointer<class ::application_menu>          m_papplicationmenu;
+      //::pointer<::apex::menu>                 m_pmainmenu;
 
       //::pointer<::game::game>                    m_pgame;
 
@@ -250,7 +251,7 @@ namespace apex
       void os_native_bergedge_start() override;
 
 
-      virtual bool on_application_menu_action(const ::string & pszCommand);
+      //virtual bool on_application_menu_action(const ::string & pszCommand);
 
 
       virtual void term();
@@ -260,7 +261,7 @@ namespace apex
 
 
 
-
+      virtual void init_fs_set(::fs::set * pfsset);
       //virtual bool InitApplication();
 
 
@@ -367,7 +368,7 @@ namespace apex
 
       //virtual bool is_local_data() override;
 
-      ::apex::menu * main_menu() override;
+      class ::application_menu * application_menu() override;
 
 
       virtual ::file::path appconfig_folder();
@@ -687,6 +688,7 @@ namespace apex
 
       DECLARE_MESSAGE_HANDLER(on_message_app_exit);
       DECLARE_MESSAGE_HANDLER(on_message_close);
+      DECLARE_MESSAGE_HANDLER(on_command_display_about);
       //virtual bool _001OnAgreeExit();
 
 
@@ -1082,7 +1084,9 @@ namespace apex
       bool _handle_uri(const ::string & strUri) override;
       //bool on_interprocess_handle(const ::scoped_string & scopedstrUri) override;
 
-
+      bool on_application_menu_action(const ::atom & atom) override;
+      
+      
    };
 
 

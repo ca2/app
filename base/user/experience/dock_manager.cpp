@@ -371,7 +371,7 @@ namespace experience
 
       auto pbutton = dock_button();
 
-      auto pwindowimpl = m_pframewindow->get_window_impl();
+      auto pwindowimpl = m_pframewindow->get_host_user_interaction_impl();
 
       pwindowimpl->m_puiLastLButtonDown = pbutton;
 

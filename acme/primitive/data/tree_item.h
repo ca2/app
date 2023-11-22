@@ -233,15 +233,16 @@ namespace data
 
       };
 
-      ::pointer<tree_item>            m_phead; // first child
-      ::pointer<tree_item>            m_ptail; // last child
-      ::pointer<tree_item>            m_pprevious;
-      ::pointer<tree_item>            m_pnext;
-      ::pointer<tree_item>            m_pparent;
+      //::pointer<tree_item>            m_phead; // first child
+      //::pointer<tree_item>            m_ptail; // last child
+      //::pointer<tree_item>            m_pprevious;
+      //::pointer<tree_item>            m_pnext;
+      ::pointer<tree_item>             m_pparent;
+      ::pointer_array<tree_item>       m_childrena;
       index                            m_iIndexHint;
       tree *                           m_ptree;
       index                            m_iLevel;
-      ::pointer<::data::item>         m_pdataitem;
+      ::pointer<::data::item>          m_pdataitem;
       uptr                             m_dwUser;
       u32                              m_dwState;
       uptr                             m_dwMetaData;
@@ -311,7 +312,7 @@ namespace data
       void sort_children(PRED pred)
       {
 
-         list_sort(this, pred);
+         m_childrena.predicate_sort(pred);
 
       }
 

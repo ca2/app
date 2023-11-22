@@ -139,7 +139,7 @@ namespace experience_core
 
       auto pframewindow = m_pframewindow;
 
-      auto psystem = acmesystem()->m_paurasystem;
+      auto psystem = system()->m_paurasystem;
 
       auto imaging = psystem->imaging();
 
@@ -497,13 +497,13 @@ namespace experience_core
 
       auto pframewindow = m_pframewindow;
 
-      auto psystem = acmesystem()->m_paurasystem;
+      //auto psystem = system()->m_paurasystem;
 
-      auto pdraw2d = psystem->draw2d();
+      //auto pdraw2d = psystem->draw2d();
 
-      auto pgraphics = pdraw2d->create_memory_graphics(m_pframewindow);
+      //auto pgraphics = pdraw2d->create_memory_graphics(m_pframewindow);
 
-      auto pstyle = pframewindow->get_style(pgraphics);
+      auto pstyle = pframewindow->get_style();
 
       m_ppenText1->create_solid(1, pframewindow->get_color(pstyle, ::e_element_button_text));
       m_ppenFace1->create_solid(1, pframewindow->get_color(pstyle, ::e_element_button_background));

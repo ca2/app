@@ -16,10 +16,12 @@
 #include "base/user/form/impact.h"
 #include "base/user/user/tab_data.h"
 #include "base/user/user/impact_system.h"
+#include "base/user/user/multiple_document_template.h"
 #include "core/user/user/font_list.h"
 #include "core/user/user/user.h"
 #include "core/filesystem/filemanager/document.h"
 #include "core/filesystem/filemanager/data.h"
+#include "core/filesystem/filemanager/filemanager.h"
 #include "core/platform/application.h"
 #include "core/platform/session.h"
 #include "core/user/account/impact.h"
@@ -222,9 +224,9 @@ namespace userex
    void pane_tab_impact::add_pane_tab_impact_handler_library(const ::string & strLibrary)
    {
 
-      auto & pfactory = acmesystem()->factory(strLibrary);
+      auto & pfactory = system()->factory(strLibrary);
 
-      auto phandler = pfactory->create <handler>();
+      auto phandler = pfactory->create <handler>(this);
 
       phandler->initialize(this);
 
@@ -236,9 +238,9 @@ namespace userex
    ::core::application* pane_tab_impact::get_app()
    {
 
-      auto pacmeapplication = acmeapplication();
+      auto papplication = application();
 
-      return ::is_set(pacmeapplication) ? pacmeapplication->m_pcoreapplication : nullptr;
+      return ::is_set(papplication) ? papplication->m_pcoreapplication : nullptr;
 
    }
 
@@ -246,7 +248,7 @@ namespace userex
    ::core::session* pane_tab_impact::get_session()
    {
 
-      auto pacmesession = acmesession();
+      auto pacmesession = session();
 
       return ::is_set(pacmesession) ? pacmesession->m_pcoresession : nullptr;
 
@@ -256,7 +258,7 @@ namespace userex
    ::core::system* pane_tab_impact::get_system()
    {
 
-      auto pacmesystem = acmesystem();
+      auto pacmesystem = system();
 
       return ::is_set(pacmesystem) ? pacmesystem->m_pcoresystem : nullptr;
 
@@ -582,7 +584,7 @@ namespace userex
 
       ::acme::library * plibrary = nullptr;
 
-      auto psystem = acmesystem()->m_paurasystem;
+      auto psystem = system()->m_paurasystem;
 
 //      if(pimpactdata->m_atom.is_text() && psystem->m_idmapCreateImpactLibrary.lookup(pimpactdata->m_atom,plibrary) && plibrary != nullptr)
 //      {
@@ -718,59 +720,65 @@ namespace userex
 
          pimpactdata->m_eflag.add(::user::e_flag_tool_impact);
 
-         auto pfilemanagerdata = cast < ::filemanager::data >("data." + pimpactdata->m_atom);
+         //auto pfilemanagerdata = cast < ::filemanager::data >("data." + pimpactdata->m_atom);
 
-         auto pcontext = m_pcontext;
-         
-         auto psession = pcontext->m_pacmesession->m_paurasession;
-         
-         auto puser = psession->m_puser->m_pcoreuser;
+         //auto pcontext = m_pcontext;
+         //
+         //auto psession = pcontext->m_pacmesession->m_paurasession;
+         //
+         //auto puser = psession->m_puser->m_pcoreuser;
 
-         if (pfilemanagerdata.is_null())
-         {
+         //if (pfilemanagerdata.is_null())
+         //{
 
-            pfilemanagerdata = puser->filemanager(pimpactdata->m_atom);
+         //   pfilemanagerdata = puser->filemanager(pimpactdata->m_atom);
 
-         }
+         //}
 
-         if (find_i32("filemanager_icon_size") > 0)
+         auto pfilemanager = application()->m_pcoreapplication->filemanager();
+
+         auto pfilemanagerdata = pfilemanager->create_filemanager_data();
+
+         pfilemanager->impact_system()->create_subdocument(pimpactdata, pfilemanagerdata);
+
+   /*      if (find_i32("filemanager_icon_size") > 0)
          {
 
             pfilemanagerdata->m_iIconSize = find_i32("filemanager_icon_size");
 
-         }
+         }*/
 
-         pfilemanagerdata->m_puserinteractionParent = pimpactdata->m_pplaceholder;
+         //pfilemanagerdata->m_puserinteractionParent = pimpactdata->m_pplaceholder;
 
          //pfilemanagerdata->m_atom = pimpactdata->m_atom;
 
-         if (has_property("filemanager_toolbar")
-               && payload("filemanager_toolbar").m_etype == ::e_type_property_set)
-         {
+         //if (has_property("filemanager_toolbar")
+         //      && payload("filemanager_toolbar").m_etype == ::e_type_property_set)
+         //{
 
-            auto & set = payload("filemanager_toolbar");
+         //   auto & set = payload("filemanager_toolbar");
 
-            if (set[::userfs::e_mode_normal].is_set())
-               pfilemanagerdata->m_setToolbar[::userfs::e_mode_normal] = set[::userfs::e_mode_normal];
-            else
-               pfilemanagerdata->m_setToolbar[::userfs::e_mode_normal] = "filemanager_toolbar.xml";
+         //   if (set[::userfs::e_mode_normal].is_set())
+         //      pfilemanagerdata->m_setToolbar[::userfs::e_mode_normal] = set[::userfs::e_mode_normal];
+         //   else
+         //      pfilemanagerdata->m_setToolbar[::userfs::e_mode_normal] = "filemanager_toolbar.xml";
 
-            if (set[::userfs::e_mode_saving].is_set())
-               pfilemanagerdata->m_setToolbar[::userfs::e_mode_saving] = set[::userfs::e_mode_saving];
-            else
-               pfilemanagerdata->m_setToolbar[::userfs::e_mode_saving] = "filemanager_saving_toolbar.xml";
+         //   if (set[::userfs::e_mode_saving].is_set())
+         //      pfilemanagerdata->m_setToolbar[::userfs::e_mode_saving] = set[::userfs::e_mode_saving];
+         //   else
+         //      pfilemanagerdata->m_setToolbar[::userfs::e_mode_saving] = "filemanager_saving_toolbar.xml";
 
-            if (set[::userfs::e_mode_import].is_set())
-               pfilemanagerdata->m_setToolbar[::userfs::e_mode_import] = set[::userfs::e_mode_import];
-            else
-               pfilemanagerdata->m_setToolbar[::userfs::e_mode_import] = "filemanager_import_toolbar.xml";
+         //   if (set[::userfs::e_mode_import].is_set())
+         //      pfilemanagerdata->m_setToolbar[::userfs::e_mode_import] = set[::userfs::e_mode_import];
+         //   else
+         //      pfilemanagerdata->m_setToolbar[::userfs::e_mode_import] = "filemanager_import_toolbar.xml";
 
-            if (set[::userfs::e_mode_export].is_set())
-               pfilemanagerdata->m_setToolbar[::userfs::e_mode_export] = set[::userfs::e_mode_export];
-            else
-               pfilemanagerdata->m_setToolbar[::userfs::e_mode_export] = "filemanager_export_toolbar.xml";
+         //   if (set[::userfs::e_mode_export].is_set())
+         //      pfilemanagerdata->m_setToolbar[::userfs::e_mode_export] = set[::userfs::e_mode_export];
+         //   else
+         //      pfilemanagerdata->m_setToolbar[::userfs::e_mode_export] = "filemanager_export_toolbar.xml";
 
-         }
+         //}
 //         else
 //         {
 //
@@ -781,41 +789,43 @@ namespace userex
 //
 //         }
 
-         if(pfilemanagerdata->m_prequest.is_null())
-         {
+         //if(pfilemanagerdata->m_prequest.is_null())
+         //{
 
-            pfilemanagerdata->m_prequest = __create_new< ::request>();
+         //   pfilemanagerdata->m_prequest = __create_new< ::request>();
 
-            pfilemanagerdata->m_prequest->finish_initialization();
+         //   pfilemanagerdata->m_prequest->finish_initialization();
 
-         }
+         //}
 
-         pfilemanagerdata->open();
+         //pfilemanagerdata->open();
 
-         ::pointer<::filemanager::document>pdocument = pfilemanagerdata->m_pdocument;
 
-         if(pdocument != nullptr)
-         {
 
-            m_mapFileManager[pimpactdata->m_atom] = pdocument;
+         //::pointer<::filemanager::document>pdocument = pfilemanagerdata->m_pdocument;
 
-            ::pointer<::user::impact>pimpact = pdocument->get_impact();
+         //if(pdocument != nullptr)
+         //{
 
-            if(pimpact != nullptr)
-            {
+         //   m_mapFileManager[pimpactdata->m_atom] = pdocument;
 
-               ::pointer<::user::frame_window>pframe = pimpact->parent_frame();
+         //   ::pointer<::user::impact>pimpact = pdocument->get_impact();
 
-               if(pframe != nullptr)
-               {
+         //   if(pimpact != nullptr)
+         //   {
 
-                  pimpactdata->m_pdocument = pdocument;
+         //      ::pointer<::user::frame_window>pframe = pimpact->parent_frame();
 
-               }
+         //      if(pframe != nullptr)
+         //      {
 
-            }
+         //         pimpactdata->m_pdocument = pdocument;
 
-         }
+         //      }
+
+         //   }
+
+         //}
 
       }
       //else if(pimpactdata->m_atom == "tabbed_file_manager")

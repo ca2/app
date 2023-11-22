@@ -113,9 +113,9 @@ namespace experience
    ::base::application * frame::get_app()
    {
 
-      auto pacmeapplication = acmeapplication();
+      auto papplication = application();
 
-      return ::is_set(pacmeapplication) ? pacmeapplication->m_pbaseapplication : nullptr;
+      return ::is_set(papplication) ? papplication->m_pbaseapplication : nullptr;
 
    }
 
@@ -123,7 +123,7 @@ namespace experience
    ::base::session * frame::get_session()
    {
 
-      auto pacmesession = acmesession();
+      auto pacmesession = session();
 
       return ::is_set(pacmesession) ? pacmesession->m_pbasesession : nullptr;
 
@@ -133,7 +133,7 @@ namespace experience
    ::base::system * frame::get_system()
    {
 
-      auto pacmesystem = acmesystem();
+      auto pacmesystem = system();
 
       return ::is_set(pacmesystem) ? pacmesystem->m_pbasesystem : nullptr;
 
@@ -1096,9 +1096,9 @@ namespace experience
          if (!m_pcontrolbox)
          {
 
-            __construct(m_pcontrolbox, m_pexperience->m_pfactory->create < ::experience::control_box >());
+            m_pcontrolbox = m_pexperience->m_pfactory->create < ::experience::control_box >(this);
 
-            m_pcontrolbox->initialize(this);
+            //m_pcontrolbox->initialize(this);
 
             m_pcontrolbox->m_pframewindow = m_pframewindow;
 

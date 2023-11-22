@@ -270,7 +270,7 @@ namespace html
 
       ::html::reader reader;
 
-      phtmlreader->m_phtml = acmesystem()->m_paxissystem->m_phtml;
+      phtmlreader->m_phtml = system()->m_paxissystem->m_phtml;
 
       phtmlreader->setEventHandler(&reader);
 
@@ -560,7 +560,7 @@ namespace html
    
       string strUrl(pszUrl);
 
-      auto psystem = acmesystem()->m_paurasystem;
+      auto psystem = system()->m_paurasystem;
 
       if (strUrl.contains(":"))
       {
@@ -574,7 +574,7 @@ namespace html
          m_strPathName.begins("https://"))
       {
 
-         auto psystem = acmesystem();
+         auto psystem = system();
 
          auto purl = psystem->url();
 
@@ -882,19 +882,19 @@ namespace html
       
       //auto & set = pset->propset();
 
-      if (::is_set(m_pform))
-      {
-
-         auto pformcallback = m_pform->get_form_callback();
-
-         if (::is_set(pformcallback))
-         {
-
-            pformcallback->property_set_replace(str);
-
-         }
-
-      }
+//      if (::is_set(m_pform))
+//      {
+//
+//         auto pformcallback = m_pform->get_form_callback();
+//
+//         if (::is_set(pformcallback))
+//         {
+//
+//            pformcallback->property_set_replace(str);
+//
+//         }
+//
+//      }
       
       property_set_replace(str);
       

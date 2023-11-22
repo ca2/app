@@ -6,6 +6,7 @@
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
 #include "acme/handler/request.h"
+#include "acme/platform/scoped_restore.h"
 #include "base/platform/application.h"
 
 
@@ -93,11 +94,43 @@ namespace user
    void multiple_document_template::on_request(::request * prequest)
    {
 
+      prequest->m_countStack++;
+
+      at_end_of_scope
+      {
+
+         prequest->m_countStack--;
+
+      if (prequest->m_countStack <= 0)
+      {
+
+         for (auto & procedure : prequest->m_procedureaOnFinishRequest)
+         {
+
+            try
+            {
+
+               procedure();
+
+            }
+            catch (...)
+            {
+
+
+            }
+
+         }
+
+         prequest->m_procedureaOnFinishRequest.clear();
+      };
+
+      };
+
       prequest->m_estatus = error_failed;
 
       prequest->payload("document") = (::object *) nullptr;
 
-      bool bMakeVisible = prequest->m_bMakeVisible;
+      //bool bMakeVisible = prequest->m_bMakeVisible;
 
       ::pointer<::user::document>pdocument = create_new_document(prequest);
 
@@ -154,8 +187,12 @@ namespace user
          set_default_title(pdocument);
 
          // avoid creating temporary compound file when starting up invisible
-         if (!bMakeVisible)
+         if (!(prequest->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_screen))
+         {
+
             pdocument->m_bEmbedded = true;
+
+         }
 
          pdocument->m_bNew = true;
 
@@ -204,7 +241,7 @@ namespace user
 
       }
 
-      prepare_frame(pFrame, pdocument, bMakeVisible);
+      prepare_frame(pFrame, pdocument, prequest->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_screen);
 
       prequest->payload("document") = pdocument;
 

@@ -1001,7 +1001,7 @@ namespace user
 
    //   property_set set;
 
-   //   //auto purl = acmesystem()->url();
+   //   //auto purl = system()->url();
 
    //   //strGetUrl = "https://api.ca2.software/account/openweather?request=" + ::url::encode(strUrl);
 
@@ -1086,7 +1086,7 @@ namespace user
 
    //   property_set set;
 
-   //   //auto purl = acmesystem()->url();
+   //   //auto purl = system()->url();
 
    //   //strGetUrl = "https://api.ca2.software/account/openweather?request=" + ::url::encode(strUrl);
 
@@ -1123,7 +1123,7 @@ namespace user
 
    //   property_set set;
 
-   //   //auto purl = acmesystem()->url();
+   //   //auto purl = system()->url();
 
    //   //strGetUrl = "https://api.ca2.software/account/openweather?request=" + ::url::encode(strUrl);
 

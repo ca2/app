@@ -1331,13 +1331,13 @@ namespace wayland
 #define MAXSTR 1000
 
 
-//CLASS_DECL_ACME ::acme::system * acmesystem();
+//CLASS_DECL_ACME ::acme::system * system();
 //
 //
 //void x11_asynchronous(::procedure function)
 //{
 //
-//   auto psystem = acmesystem();
+//   auto psystem = system();
 //
 //   auto pdisplay = ::x11::display::get(psystem);
 //
@@ -1348,7 +1348,7 @@ namespace wayland
 //
 //   }
 //
-//   pdisplay->display_post([function]()
+//   pdisplay->aaa_display_post([function]()
 //                                    {
 //
 //                                       function();

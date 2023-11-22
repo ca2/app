@@ -456,7 +456,7 @@ namespace acme
    string application::draw2d_get_default_implementation_name()
    {
 
-      return acmesystem()->implementation_name("draw2d", "cairo");
+      return system()->implementation_name("draw2d", "cairo");
 
    }
 
@@ -464,7 +464,7 @@ namespace acme
    string application::multimedia_audio_get_default_implementation_name()
    {
 
-      return acmesystem()->implementation_name("audio", "alsa");
+      return system()->implementation_name("audio", "alsa");
 
    }
 
@@ -472,7 +472,7 @@ namespace acme
    string application::multimedia_audio_mixer_get_default_implementation_name()
    {
 
-      return acmesystem()->implementation_name("audio", "xaudio");
+      return system()->implementation_name("audio", "xaudio");
 
    }
 

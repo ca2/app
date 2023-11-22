@@ -72,7 +72,7 @@ namespace account
 
       ::pointer<::account::user>puser;
 
-      auto psystem = acmesystem();
+      auto psystem = system();
 
       auto purl = psystem->url();
 
@@ -201,7 +201,7 @@ namespace account
 
       synchronouslock.unlock();
 
-      auto psession = acmesession()->m_paxissession;
+      auto psession = session()->m_paxissession;
 
       for(auto & pair : map)
       {
@@ -230,7 +230,7 @@ namespace account
 
       auto pathUrl = pathUrlParam;
 
-      auto psession = acmesession()->m_paxissession;
+      auto psession = session()->m_paxissession;
 
       if(pathUrl.is_empty())
       {
@@ -239,7 +239,7 @@ namespace account
 
       }
 
-      auto psystem = acmesystem();
+      auto psystem = system();
 
       auto purl = psystem->url();
 
@@ -270,7 +270,7 @@ namespace account
    bool user_array::is_authenticated(const ::file::path & pathUrl, bool bInteractive)
    {
 
-      ::pointer<::axis::application>papp = acmeapplication()->m_paxisapplication;
+      ::pointer<::axis::application>papp = application()->m_paxisapplication;
 
       auto puser = papp->get_user(pathUrl, true, bInteractive);
 

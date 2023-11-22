@@ -57,7 +57,7 @@ namespace parallelization
 
    //   //return s_piaThread2->contains(atom);
 
-   //   auto psystem = acmesystem()->m_papexsystem;
+   //   auto psystem = system()->m_papexsystem;
 
    //   return psystem->get_task(atom) != nullptr;
 
@@ -83,7 +83,7 @@ namespace parallelization
    //void thread_unregister(itask_t itask, ::task * ptask)
    //{
 
-   //   auto psystem = acmesystem()->m_papexsystem;
+   //   auto psystem = system()->m_papexsystem;
 
    //   psystem->unset_task(itask, ptask);
 
@@ -107,7 +107,7 @@ namespace parallelization
 
    //   }
 
-   //   auto psystem = acmesystem()->m_papexsystem;
+   //   auto psystem = system()->m_papexsystem;
 
    //   synchronous_lock synchronouslock(&psystem->m_pmutexTask);
 
@@ -142,7 +142,7 @@ namespace parallelization
    void post_quit_to_all_threads(::acme::system * psystem)
    {
 
-      //auto psystem = acmesystem()->m_papexsystem;
+      //auto psystem = system()->m_papexsystem;
 
       synchronous_lock synchronouslock(psystem->m_pmutexTask);
 
@@ -546,7 +546,7 @@ namespace apex
          try
          {
 
-            auto psystem = acmesystem()->m_papexsystem;
+            auto psystem = m_papexsystem;
 
             if (::is_set(psystem) && psystem != this)
             {
@@ -556,7 +556,7 @@ namespace apex
                try
                {
 
-                  auto psession = acmesession();
+                  auto psession = session();
 
                   if (::is_set(psession))
                   {
@@ -1075,7 +1075,7 @@ void thread_ptra::wait(const class time & timeWait, ::particle & particleSynchro
 
    }
 
-   auto psessionContext = acmesession()->m_papexsession;
+   auto psessionContext = session()->m_papexsession;
 
    if (psessionContext != this && ::is_set(psessionContext))
    {
@@ -1084,7 +1084,7 @@ void thread_ptra::wait(const class time & timeWait, ::particle & particleSynchro
 
    }
 
-   auto psystemContext = acmesystem();
+   auto psystemContext = system();
 
    if (psystemContext != (::task*) this && ::is_set(psystemContext))
    {

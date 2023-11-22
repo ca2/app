@@ -137,7 +137,9 @@ namespace app_shader
 //
 //      }
 
-      top_level()->set_auto_refresh();
+//      top_level()->set_fps_interest();
+      add_graphical_output_purpose(this, ::graphics::e_output_purpose_screen_fps);
+
 
       switch_shader();
 
@@ -232,7 +234,7 @@ namespace app_shader
 
                     psaveimage->m_eformat = ::draw2d::e_format_png;
 
-                    auto psystem = acmesystem()->m_paurasystem;
+                    auto psystem = system()->m_paurasystem;
 
                     auto pdatetime = psystem->m_pdatetime;
 

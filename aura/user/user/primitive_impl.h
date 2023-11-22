@@ -1,9 +1,9 @@
 #pragma once
 
 
+//#include "apme/handler/source.h"
 #include "apex/message/channel.h"
 #include "apex/handler/manager.h"
-#include "apex/handler/source.h"
 #include "acme/primitive/geometry2d/rectangle_array.h"
 #include "acme/primitive/collection/int_map.h"
 #include "acme/platform/auto_pointer.h"
@@ -15,8 +15,9 @@ namespace user
 
    class CLASS_DECL_AURA primitive_impl :
       virtual public ::channel,
-      virtual public ::source,
+      //virtual public ::source,
       virtual public ::manager
+      //, virtual public ::graphics::output_purpose
    {
    public:
 
@@ -61,7 +62,7 @@ namespace user
       
       ::aura::application* get_app();
       ::aura::session* get_session();
-      //::aura::system* acmesystem();
+      //::aura::system* system();
 
 
 
@@ -81,7 +82,9 @@ namespace user
 
 
 
-      virtual void create_host(::user::interaction * puserinteraction, enum_parallelization eparallelization);
+      //virtual void create_host(::user::interaction * puserinteraction, enum_parallelization eparallelization);
+
+      virtual void create_host(::user::interaction * puserinteraction);
       virtual void create_child(::user::interaction * puserinteraction, ::user::primitive * puserprimitiveParent);
 
 
@@ -134,18 +137,39 @@ namespace user
       virtual void track_mouse_leave();
 
 
-      virtual void add_auto_refresh(::particle* pparticle);
-      virtual void erase_auto_refresh(::particle * pparticle);
-      virtual bool is_auto_refresh(const ::particle * pparticle) const;
+
+      virtual void add(::graphics::output_purpose * poutputpurpose);
+      virtual void erase(::graphics::output_purpose * poutputpurpose);
+      virtual void add_graphical_output_purpose(::particle * pparticle, ::graphics::enum_output_purpose epurpose);
+      virtual void erase_graphical_output_purpose(::particle * pparticle);
+      virtual bool does_particle_has_fps_purpose(const ::particle * pparticle) const;
+      //virtual ::graphics::enum_output_purpose most_demanding_graphical_output_purpose() const;
+      virtual bool has_screen_output_purpose() const;
+      virtual bool has_graphical_output_purpose() const;
+      virtual bool has_fps_output_purpose() const;
+
+      //virtual void add_fps_interest(::particle* pparticle);
+      //virtual void erase_fps_interest(::particle * pparticle);
+      //virtual bool is_fps_interest(const ::particle * pparticle) const;
 
 
-      //virtual void auto_refresh_stop();
+      //virtual void fps_interest_stop();
 
 
       virtual ::user::primitive* set_owner(::user::primitive* pprimitiveOwner);
 
 
       virtual bool has_pending_redraw_flags();
+
+
+//      virtual void add(::graphics::output_purpose * pgraphicaloutputpurpose);
+//      virtual void add_graphical_output_interest(::particle * pparticle, ::graphics::enum_output_purpose epurpose);
+//      virtual void erase_graphical_output_interest(::particle * pparticle);
+//      virtual bool does_particle_has_fps_interest(const ::particle * pparticle) const;
+//      virtual ::graphics::enum_output_purpose most_demanding_graphical_output_purpose() const;
+//      virtual bool has_screen_graphical_output_purpose() const;
+//      virtual bool has_graphical_output_purpose() const;
+//      virtual bool has_fps_graphical_output_purpose() const;
 
 
       virtual void pre_subclass_window();
@@ -412,8 +436,8 @@ namespace user
       //void start_destroying_window();
 
 
-      //virtual void defer_start_auto_refresh();
-      //virtual void _defer_start_auto_refresh();
+      //virtual void defer_start_fps_interest();
+      //virtual void _defer_start_fps_interest();
 
 
       virtual void mouse_hover_add(::user::interaction * pinterface);

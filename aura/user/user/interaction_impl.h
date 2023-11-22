@@ -61,6 +61,9 @@ class native_window;
 #endif
 
 
+
+
+
 namespace user
 {
 
@@ -82,7 +85,7 @@ namespace user
       bool                                      m_bEatSizeEvent;
       bool                                      m_bEatMoveEvent;
       bool                                      m_bTransparentMouseEvents;
-      bool                                      m_bOfflineRender;
+      //bool                                      m_bOfflineRender;
 
       bool                                      m_bCursorRedraw;
       bool                                      m_bLockWindowUpdate;
@@ -108,7 +111,7 @@ namespace user
       class ::time                              m_timeLastExposureAddUp;
       ::pointer<::user::graphics_thread>        m_pgraphicsthread;
       ::pointer<::user::thread>                 m_puserthread;
-      pointer_array < ::particle >              m_particleaAutoRefresh;
+      pointer_array < ::graphics::output_purpose > m_graphicaloutputpurposea;
       string                                    m_strBitmapSource;
       ::pointer<::windowing::windowing>         m_pwindowing;
       ::frequency                               m_frequencyProdevianFramesPerSecond;
@@ -229,11 +232,15 @@ namespace user
       void process_message();
 
 
+      //bool is_there_graphics_output_interest() const override;
+
 
       void set_tool_window(bool bSet) override;
 
 
-      void create_host(::user::interaction * pinteraction, enum_parallelization eparallelization) override;
+      //void create_host(::user::interaction * pinteraction, enum_parallelization eparallelization) override;
+
+      void create_host(::user::interaction * pinteraction) override;
 
       virtual ::color::color screen_pixel(int x, int y) const;
       void interaction_post(const ::procedure & procedure) override;
@@ -304,13 +311,17 @@ namespace user
 
       //virtual void mouse_hover_step(const __status < ::point_i32 > & statusPointCursor);
 
+      void add(::graphics::output_purpose * pgraphicaloutputpurpose) override;
+      void erase(::graphics::output_purpose * pgraphicaloutputpurpose) override;
+      void add_graphical_output_purpose(::particle * pparticle, ::graphics::enum_output_purpose epurpose) override;
+      void erase_graphical_output_purpose(::particle * pparticle) override;
+      bool does_particle_has_fps_purpose(const ::particle * pparticle) const override;
+      //::graphics::enum_output_purpose most_demanding_graphical_output_purpose() const override;
+      bool has_screen_output_purpose() const override;
+      bool has_graphical_output_purpose() const override;
+      bool has_fps_output_purpose() const override;
 
-      void add_auto_refresh(::particle * pparticle) override;
-      void erase_auto_refresh(::particle * pparticle) override;
-      bool is_auto_refresh(const ::particle * pparticle) const override;
-      inline bool has_auto_refresh() const noexcept { return m_particleaAutoRefresh.has_element(); }
-
-      //void auto_refresh_stop() override;
+      //void fps_interest_stop() override;
 
 
       //virtual ::user::interaction * get_owner();
@@ -393,9 +404,12 @@ namespace user
 
       //virtual bool create_host();
 
-      virtual void operating_system_create_host(::enum_parallelization eparrallelization);
+      //virtual void operating_system_create_host(::enum_parallelization eparrallelization);
 
-      virtual void _create_window(::enum_parallelization eparrallelization);
+      virtual void operating_system_create_host();
+
+      //virtual void _create_window(::enum_parallelization eparrallelization);
+      virtual void _create_window();
 
       virtual void native_create_host_alternate();
 

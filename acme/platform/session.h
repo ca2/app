@@ -9,6 +9,7 @@
 
 #include "context.h"
 #include "application_container.h"
+#include "acme/user/user/key_state.h"
 
 
 namespace acme
@@ -17,7 +18,8 @@ namespace acme
 
    class CLASS_DECL_ACME session :
       virtual public ::acme::context,
-      virtual public ::acme::application_container
+      virtual public ::acme::application_container,
+      virtual public ::user::key_state
    {
    public:
 

@@ -71,7 +71,7 @@ namespace user
 
       on_font_enumeration();
 
-      acmesystem()->add_handler(this);
+      system()->add_handler(this);
 
    }
 

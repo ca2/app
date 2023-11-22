@@ -49,10 +49,10 @@ namespace sandbox_windowing
 
       ::pointer<::sandbox_windowing::window>pwindow;
 
-      if (::is_null(acmesystem()->m_paurasystem->m_pwindowMain->m_puserinteractionimpl))
+      if (::is_null(system()->m_paurasystem->m_pwindowMain->m_puserinteractionimpl))
       {
 
-         pwindow = acmesystem()->m_paurasystem->m_pwindowMain;
+         pwindow = system()->m_paurasystem->m_pwindowMain;
 
       }
       else
@@ -173,7 +173,8 @@ namespace sandbox_windowing
 
       m_phostinteraction->place(*lpcrect);
 
-      m_phostinteraction->create_host(e_parallelization_synchronous);
+      //m_phostinteraction->create_host(e_parallelization_synchronous);
+      m_phostinteraction->create_host();
 
       m_phostinteraction->display();
 
@@ -196,7 +197,7 @@ namespace sandbox_windowing
    //   void windowing::start()
    //   {
    //
-   //      auto psystem = acmesystem()->m_papexsystem;
+   //      auto psystem = system()->m_papexsystem;
    //
    //      if (psystem->m_bUser)
    //      {
@@ -246,57 +247,57 @@ namespace sandbox_windowing
    //}
 
 
-   bool windowing::x11_runnable_step()
-   {
+   // bool windowing::aaa_x11_runnable_step()
+   // {
 
-      bool bHandled = false;
+   //    bool bHandled = false;
 
-      //if (m_pdisplay)
-      //{
+   //    //if (m_pdisplay)
+   //    //{
 
-      //   if (m_pdisplay->m_px11display)
-      //   {
+   //    //   if (m_pdisplay->m_px11display)
+   //    //   {
 
-      //      while (m_pdisplay->m_px11display->x11_posted())
-      //      {
+   //    //      while (m_pdisplay->m_px11display->aaa_x11_posted())
+   //    //      {
 
-      //         bHandled = true;
+   //    //         bHandled = true;
 
-      //      }
+   //    //      }
 
-      //   }
+   //    //   }
 
-      //}
+   //    //}
 
-      synchronous_lock synchronouslock(this->synchronization());
+   //    synchronous_lock synchronouslock(this->synchronization());
 
-      if (m_procedurelist.is_empty())
-      {
+   //    if (m_procedurelist.is_empty())
+   //    {
 
-         return bHandled;
+   //       return bHandled;
 
-      }
+   //    }
 
-      do
-      {
+   //    do
+   //    {
 
-         {
+   //       {
 
-            auto routine = m_procedurelist.pick_head();
+   //          auto routine = m_procedurelist.pick_head();
 
-            synchronouslock.unlock();
+   //          synchronouslock.unlock();
 
-            routine();
+   //          routine();
 
-         }
+   //       }
 
-         synchronouslock.lock();
+   //       synchronouslock.lock();
 
-      } while (m_procedurelist.has_element());
+   //    } while (m_procedurelist.has_element());
 
-      return true;
+   //    return true;
 
-   }
+   // }
 
 
    //::windowing::display* windowing::display()

@@ -254,13 +254,13 @@ namespace interprocess
       //   }
 
 
-      string strObject = acmesystem()->url()->get_server(strUri);
+      string strObject = system()->url()->get_server(strUri);
 
-      string strMember = acmesystem()->url()->get_script(strUri);
+      string strMember = system()->url()->get_script(strUri);
 
       strMember.trim_left("/");
 
-      string strNetworkArguments = acmesystem()->url()->get_query(strUri);
+      string strNetworkArguments = system()->url()->get_query(strUri);
 
       ::property_set propertyset;
 
@@ -268,11 +268,11 @@ namespace interprocess
 
       ::payload payloadReply;
 
-      acmeapplication()->payload("activation.object") = strObject;
+      application()->payload("activation.object") = strObject;
 
-      acmeapplication()->payload("activation.member") = strMember;
+      application()->payload("activation.member") = strMember;
 
-      acmeapplication()->payload("activation.network_arguments") = strNetworkArguments;
+      application()->payload("activation.network_arguments") = strNetworkArguments;
 
       bool bShouldContinueTryingToHandle = _handle_call(payloadReply, strObject, strMember, propertyset);
 
@@ -496,17 +496,17 @@ namespace interprocess
 
       string strAppId(strApp);
 
-      strAppId.find_replace("\\", "-");
-
-      strAppId.find_replace("/", "-");
-
-      strAppId.find_replace("-", "-");
+//      strAppId.find_replace("\\", "-");
+//
+      strAppId.find_replace("/", ".");
+//
+//      strAppId.find_replace("-", "-");
 
       strKey = strAppId;
 
 #ifdef MACOS
 
-      strKey += "/" + ::as_string(idPid.as_i32());
+      strKey += "." + ::as_string(idPid.as_i32());
 
 #endif
 
@@ -668,13 +668,13 @@ namespace interprocess
    //   //   }
 
 
-   //   string strObject = acmesystem()->url()->get_server(strUrl);
+   //   string strObject = system()->url()->get_server(strUrl);
 
-   //   string strMember = acmesystem()->url()->get_script(strUrl);
+   //   string strMember = system()->url()->get_script(strUrl);
 
    //   strMember.trim_left("/");
 
-   //   string strNetworkArguments = acmesystem()->url()->get_query(strUrl);
+   //   string strNetworkArguments = system()->url()->get_query(strUrl);
 
    //   ::property_set propertyset;
 
@@ -843,7 +843,7 @@ namespace interprocess
 
       ::atom_array idaPid;
 
-      auto psystem = acmesystem();
+      auto psystem = system();
 
       auto pnode = psystem->node();
 
@@ -890,7 +890,7 @@ namespace interprocess
    void communication::defer_add_module(const ::string & strModule, const ::atom & idPid)
    {
 
-      auto psystem = acmesystem();
+      auto psystem = system();
 
       auto pnode = psystem->node();
 

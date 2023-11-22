@@ -15,6 +15,7 @@
 #include "acme/platform/system_setup.h"
 #include "acme/handler/request.h"
 #include "acme/user/nano/nano.h"
+#include "apex/platform/application_menu.h"
 #include "aura/graphics/image/image.h"
 #include "aura/message/user.h"
 #include "aura/windowing/window.h"
@@ -64,7 +65,7 @@ namespace base
       //auto estatus =
 
       printf("base::user::initialize\n");
-      
+
       ::axis::user::initialize(pparticle);
 
       //if (!estatus)
@@ -77,7 +78,7 @@ namespace base
       //estatus =
 
       printf("base::user::initialize (2)\n");
-      
+
       ::user::document_manager_container::initialize(pparticle);
 
       //if (!estatus)
@@ -94,30 +95,30 @@ namespace base
    }
 
 
-   ::base::application* user::get_app()
+   ::base::application * user::get_app()
    {
 
-      auto pacmeapplication = acmeapplication();
+      auto papplication = application();
 
-      return ::is_set(pacmeapplication) ? pacmeapplication->m_pbaseapplication : nullptr;
+      return ::is_set(papplication) ? papplication->m_pbaseapplication : nullptr;
 
    }
 
 
-   ::base::session* user::get_session()
+   ::base::session * user::get_session()
    {
 
-      auto pacmesession = acmesession();
+      auto pacmesession = session();
 
       return ::is_set(pacmesession) ? pacmesession->m_pbasesession : nullptr;
 
    }
 
 
-   ::base::system* user::get_system()
+   ::base::system * user::get_system()
    {
 
-      auto pacmesystem = acmesystem();
+      auto pacmesystem = system();
 
       return ::is_set(pacmesystem) ? pacmesystem->m_pbasesystem : nullptr;
 
@@ -152,8 +153,8 @@ namespace base
       factory()->add_factory_item <::user::tab_impact >();
 
       factory()->add_factory_item < ::user::form_impact >();
-      
-      
+
+
       factory()->add_factory_item <simple_toolbar >();
       factory()->add_factory_item <simple_toolbar, ::user::toolbar >();
 
@@ -203,7 +204,7 @@ namespace base
 
 
       //auto estatus = 
-      
+
       __construct_new(m_pmenucentral);
 
       //if (!estatus)
@@ -264,7 +265,7 @@ namespace base
 
       //::payload & varTopicQuey = psystem->commnam_varTopicQuery;
 
-      auto psystem = acmesystem()->m_pbasesystem;
+      auto psystem = system()->m_pbasesystem;
 
       bool bHasInstall = psystem->is_true("install");
 
@@ -311,7 +312,7 @@ namespace base
          ::acme::department::term();
 
       }
-      catch(...)
+      catch (...)
       {
 
       }
@@ -335,7 +336,7 @@ namespace base
    void user::destroy()
    {
 
-      for (auto& style : m_mapUserStyle.payloads())
+      for (auto & style : m_mapUserStyle.payloads())
       {
 
          style.release();
@@ -345,7 +346,7 @@ namespace base
       m_mapUserStyle.erase_all();
 
       //auto estatus = 
-      
+
       ::axis::user::destroy();
 
       //return estatus;
@@ -385,14 +386,14 @@ namespace base
    }
 
 
-   void user::SendMessageToWindows(const ::atom & atom,wparam wparam,lparam lparam)
+   void user::SendMessageToWindows(const ::atom & atom, wparam wparam, lparam lparam)
    {
 
       //auto pappBase = get_app();
 
       auto psession = get_session();
 
-      for (auto& pappApex : psession->m_applicationa)
+      for (auto & pappApex : psession->m_applicationa)
       {
 
          ::pointer<::base::application>pappItem = pappApex;
@@ -420,57 +421,57 @@ namespace base
    }
 
 
-//   ::user::front_end_schema * GetUfeSchema(::particle * pparticle)
-//   {
-//
-//      if (papp == nullptr)
-//      {
-//
-//         return nullptr;
-//
-//      }
-//
-//      if (papp->m_psession == nullptr)
-//      {
-//
-//         return nullptr;
-//
-//      }
-//
-//      if (papp->m_psession->m_puser == nullptr)
-//      {
-//
-//         return nullptr;
-//
-//      }
-//
-//      return Sess(papp).user()->GetUfeSchema();
-//
-//   }
-//
-//
-//   ::user::front_end * GetUfe(::particle * pparticle)
-//   {
-//
-//      return Sess(papp).user()->GetUfe();
-//
-//   }
+   //   ::user::front_end_schema * GetUfeSchema(::particle * pparticle)
+   //   {
+   //
+   //      if (papp == nullptr)
+   //      {
+   //
+   //         return nullptr;
+   //
+   //      }
+   //
+   //      if (papp->m_psession == nullptr)
+   //      {
+   //
+   //         return nullptr;
+   //
+   //      }
+   //
+   //      if (papp->m_psession->m_puser == nullptr)
+   //      {
+   //
+   //         return nullptr;
+   //
+   //      }
+   //
+   //      return Sess(papp).user()->GetUfeSchema();
+   //
+   //   }
+   //
+   //
+   //   ::user::front_end * GetUfe(::particle * pparticle)
+   //   {
+   //
+   //      return Sess(papp).user()->GetUfe();
+   //
+   //   }
 
 
-//   ::user::front_end_schema * user::GetUfeSchema()
-//   {
-//
-//      return m_pufeschema;
-//
-//   }
-//
-//
-//   ::user::front_end * user::GetUfe()
-//   {
-//
-//      return m_pufe;
-//
-//   }
+   //   ::user::front_end_schema * user::GetUfeSchema()
+   //   {
+   //
+   //      return m_pufeschema;
+   //
+   //   }
+   //
+   //
+   //   ::user::front_end * user::GetUfe()
+   //   {
+   //
+   //      return m_pufe;
+   //
+   //   }
 
 
    ::type_atom user::controltype_to_typeinfo(::user::enum_control_type econtroltype)
@@ -481,7 +482,7 @@ namespace base
    }
 
 
-   ::pointer<::user::menu_interaction>user::create_menu_button(::user::style* pstyle, ::user::menu_item* pmenuitem)
+   ::pointer<::user::menu_interaction>user::create_menu_button(::user::style * pstyle, ::user::menu_item * pmenuitem)
    {
 
       auto pmenubutton = __new(::user::menu_button);
@@ -506,29 +507,29 @@ namespace base
    }
 
 
-//   ::pointer<::user::impact>user::get_impact()
-//   {
-//
-//      return nullptr;
-//
-//   }
+   //   ::pointer<::user::impact>user::get_impact()
+   //   {
+   //
+   //      return nullptr;
+   //
+   //   }
 
 
-//   ::user::style * user::get_user_style()
-//   {
-//
-//      retu
-//
-//   }
+   //   ::user::style * user::get_user_style()
+   //   {
+   //
+   //      retu
+   //
+   //   }
 
 
 #ifdef WINDOWS_DESKTOP
 
 
-   CLASS_DECL_BASE ::pointer<::user::interaction>create_virtual_window(::particle * pparticle, u32 dwExStyle, const ::string & pClassName, const ::string & lpWindowName, u32 uStyle, const ::rectangle_i32 & rectangle, ::user::interaction * puiParent, atom atom, hinstance hInstance, void * pParam);
+   CLASS_DECL_BASE::pointer<::user::interaction>create_virtual_window(::particle * pparticle, u32 dwExStyle, const ::string & pClassName, const ::string & lpWindowName, u32 uStyle, const ::rectangle_i32 & rectangle, ::user::interaction * puiParent, atom atom, hinstance hInstance, void * pParam);
 
 
-   CLASS_DECL_BASE ::pointer<::user::interaction>create_virtual_window(::particle * pparticle, u32 dwExStyle, const ::string & pClassName, const ::string & pWindowName, u32 uStyle, ::user::interaction * puiParent, hinstance hInstance, void * pParam)
+   CLASS_DECL_BASE::pointer<::user::interaction>create_virtual_window(::particle * pparticle, u32 dwExStyle, const ::string & pClassName, const ::string & pWindowName, u32 uStyle, ::user::interaction * puiParent, hinstance hInstance, void * pParam)
    {
 
       UNREFERENCED_PARAMETER(dwExStyle);
@@ -545,7 +546,7 @@ namespace base
       //if(pinteraction->create_child(puiParent))
       //{
 
-         return pinteraction;
+      return pinteraction;
 
       //}
 
@@ -1038,7 +1039,126 @@ namespace base
 
    //}
 
-   bool user::track_popup_menu(::user::interaction* pinteraction, ::user::menu_item * pitem, i32 iFlags, ::channel* pchannelNotify)
+   ::pointer<::user::menu_item > user::menu_item_from_application_menu(::application_menu * papplicationmenu, ::user::menu * pmenu)
+   {
+
+      auto pmenuitem = __create_new < ::user::menu_item >();
+
+      from_application_menu(pmenuitem, papplicationmenu, pmenu);
+
+      return pmenuitem;
+
+   }
+
+
+   ::pointer<::user::menu_item > user::popup_menu_item_from_application_menu(::application_menu * papplicationmenu, ::user::menu * pmenu)
+   {
+
+      auto pmenuitem = __create_new < ::user::menu_item >();
+
+      popup_from_application_menu(pmenuitem, papplicationmenu, pmenu);
+
+      return pmenuitem;
+
+   }
+
+
+   void user::from_application_menu(::user::menu_item * pmenuitem, ::application_menu * papplicationmenu, ::user::menu * pmenu)
+   {
+
+      if (papplicationmenu->is_separator())
+      {
+
+         pmenuitem->m_pmenu = pmenu;
+         pmenuitem->m_atom = "separator";
+
+      }
+      else if (papplicationmenu->is_popup())
+      {
+
+         popup_from_application_menu(pmenuitem, papplicationmenu, pmenu);
+
+      }
+      else
+      {
+
+         pmenuitem->m_pmenu = pmenu;
+         pmenuitem->m_atom = papplicationmenu->m_atom;
+         pmenuitem->m_strTitle = papplicationmenu->m_strName;
+
+      }
+
+   }
+
+
+   void user::popup_from_application_menu(::user::menu_item * pmenuitem, ::application_menu * papplicationmenu, ::user::menu * pmenu)
+   {
+
+      pmenuitem->m_pmenu = pmenu;
+      pmenuitem->m_strTitle = papplicationmenu->m_strName;
+      pmenuitem->m_bPopup = true;
+
+      for (auto & pitem : *papplicationmenu)
+      {
+
+         auto pmenuitemChild = menu_item_from_application_menu(pitem, pmenu);
+
+         pmenuitem->add_item(pmenuitemChild);
+
+      }
+
+   }
+
+
+   bool user::track_popup_menu(::user::interaction * pinteraction, ::application_menu * papplicationmenu, i32 iFlags, ::channel * pchannelNotify)
+   {
+
+      ::pointer<::user::menu>pmenu = __create <  ::user::menu  >();
+
+      auto pmenuitem = menu_item_from_application_menu(papplicationmenu, pmenu);
+
+      return track_popup_menu(pinteraction, pmenuitem, iFlags, pchannelNotify);
+
+   }
+
+
+   bool user::track_popup_menu(::user::interaction * pinteraction, ::application_menu * papplicationmenu, i32 iFlags, ::message::message * pmessage, ::channel * pchannelNotify)
+   {
+
+      ::pointer<::user::menu>pmenu = __create <  ::user::menu  >();
+
+      auto pmenuitem = menu_item_from_application_menu(papplicationmenu, pmenu);
+
+      return track_popup_menu(pinteraction, pmenuitem, iFlags, pmessage, pchannelNotify);
+
+   }
+
+
+   bool user::track_popup_menu(::user::interaction * pinteraction, ::application_menu * papplicationmenu, i32 iFlags, const ::point_i32 & point, ::channel * pchannelNotify)
+   {
+
+      ::pointer<::user::menu>pmenu = __create <  ::user::menu  >();
+
+      auto pmenuitem = menu_item_from_application_menu(papplicationmenu, pmenu);
+
+      return track_popup_menu(pinteraction, pmenuitem, iFlags, point, pchannelNotify);
+
+   }
+
+
+   bool user::track_popup_menu(::user::interaction * pinteraction, ::application_menu * papplicationmenu, i32 iFlags, const ::point_i32 & point, const ::size_i32 & sizeMinimum, ::channel * pchannelNotify)
+   {
+
+      ::pointer<::user::menu>pmenu = __create <  ::user::menu  >();
+
+      auto pmenuitem = menu_item_from_application_menu(papplicationmenu, pmenu);
+
+      return track_popup_menu(pinteraction, pmenuitem, iFlags, point, sizeMinimum, pchannelNotify);
+
+   }
+
+
+   bool user::track_popup_menu(::user::interaction * pinteraction, ::user::menu_item * pitem, i32 iFlags, ::channel * pchannelNotify)
    {
 
       //::point_i32 point;
@@ -1077,7 +1197,7 @@ namespace base
 
 
 
-   bool user::track_popup_menu(::user::interaction* pinteraction, ::user::menu_item * pitem, i32 iFlags, ::message::message * pmessage, ::channel* pchannelNotify)
+   bool user::track_popup_menu(::user::interaction * pinteraction, ::user::menu_item * pitem, i32 iFlags, ::message::message * pmessage, ::channel * pchannelNotify)
    {
 
       auto pmouse = pmessage->m_union.m_pmouse;
@@ -1117,10 +1237,10 @@ namespace base
    //}
 
 
-   bool user::track_popup_menu(::user::interaction* pinteraction, ::user::menu_item * pitem, i32 iFlags, const ::point_i32 & point, ::channel* pchannelNotify)
+   bool user::track_popup_menu(::user::interaction * pinteraction, ::user::menu_item * pitem, i32 iFlags, const ::point_i32 & point, ::channel * pchannelNotify)
    {
 
-      ::pointer<::user::menu>pmenu = __create <  ::user::menu  > ();
+      ::pointer<::user::menu>pmenu = __create <  ::user::menu  >();
 
       pmenu->m_pmenuitem = pitem;
 
@@ -1138,10 +1258,37 @@ namespace base
    }
 
 
-   ::pointer<::user::menu>user::track_popup_xml_menu(::user::interaction* pinteraction, const ::string & strXml, i32 iFlags, const ::point_i32 & point, const ::size_i32 & sizeMinimum, ::channel* pchannelNotify)
+   bool user::track_popup_menu(::user::interaction * pinteraction, ::user::menu_item * pitem, i32 iFlags, const ::point_i32 & point, const ::size_i32 & sizeMinimum, ::channel * pchannelNotify)
    {
 
-      ::pointer<::user::menu>pmenu = pinteraction->__create <  ::user::menu  > ();
+      __defer_construct(pitem->m_pmenu);
+
+      //::pointer<::user::menu>pmenu = __create <  ::user::menu  >();
+
+      pitem->m_pmenu->m_pmenuitem = pitem;
+
+      pitem->m_pmenu->m_sizeMinimum = sizeMinimum;
+
+      pitem->m_pmenu->hints(iFlags, point);
+
+      if (!pitem->m_pmenu->track_popup_menu(pchannelNotify, pinteraction))
+      {
+
+         pitem->m_pmenu.release();
+
+         return false;
+
+      }
+
+      return true;
+
+   }
+
+
+   ::pointer<::user::menu>user::track_popup_xml_menu(::user::interaction * pinteraction, const ::string & strXml, i32 iFlags, const ::point_i32 & point, const ::size_i32 & sizeMinimum, ::channel * pchannelNotify)
+   {
+
+      ::pointer<::user::menu>pmenu = pinteraction->__create <  ::user::menu  >();
 
       pmenu->m_sizeMinimum = sizeMinimum;
 
@@ -1268,10 +1415,10 @@ namespace base
    }
 
 
-   ::user::style_pointer user::get_user_style(const ::string & pszExperienceLibrary, ::apex::application* papp)
+   ::user::style_pointer user::get_user_style(const ::string & pszExperienceLibrary, ::apex::application * papp)
    {
 
-      auto& pstyle = m_mapUserStyle[pszExperienceLibrary];
+      auto & pstyle = m_mapUserStyle[pszExperienceLibrary];
 
       if (!pstyle)
       {
@@ -1287,7 +1434,7 @@ namespace base
    }
 
 
-   ::user::style_pointer user::instantiate_user_style(const ::string & strExperience, ::apex::application* papp)
+   ::user::style_pointer user::instantiate_user_style(const ::string & strExperience, ::apex::application * papp)
    {
 
       auto pexperience = experience()->experience(papp, strExperience);
@@ -1314,9 +1461,9 @@ namespace base
       if (!pstyle)
       {
 
-         output_error_message("Failed to find/open 'experience' library.\n\nSome reasons:\n   - No 'experience' library present;\n   - Failure to open any suitable 'experience' library.",nullptr, e_message_box_ok);
+         output_error_message("Failed to find/open 'experience' library.\n\nSome reasons:\n   - No 'experience' library present;\n   - Failure to open any suitable 'experience' library.", nullptr, e_message_box_ok);
 
-         throw ::exit_exception(::error_exit_system, acmesystem());
+         throw ::exit_exception(::error_exit_system, system());
 
       }
 
@@ -1332,7 +1479,7 @@ namespace base
    }
 
 
-   void user::on_frame_window_drop_files(::user::interaction* pinteraction, ::file::path_array& patha)
+   void user::on_frame_window_drop_files(::user::interaction * pinteraction, ::file::path_array & patha)
    {
 
 
@@ -1384,7 +1531,7 @@ namespace base
 
       ::pointer<::request>prequest(e_create, this);
 
-      prequest->m_bMakeVisible = true;
+      prequest->m_egraphicsoutputpurpose |= ::graphics::e_output_purpose_screen;
 
       prequest->m_puserelementParent = puserelementParent;
 
@@ -1429,7 +1576,7 @@ namespace base
 
       ::pointer<::request>prequest(e_create, this);
 
-      prequest->m_bMakeVisible = false;
+      prequest->m_egraphicsoutputpurpose -= ::graphics::e_output_purpose_screen;
 
       prequest->m_puserelementParent = puserelementParent;
 
@@ -1490,7 +1637,7 @@ namespace base
 
       }
 
-      auto papp = pparticle->acmeapplication();
+      auto papp = pparticle->application();
 
       if (papp == nullptr)
       {
@@ -1504,7 +1651,7 @@ namespace base
          else if (pcallback != nullptr)
          {
 
-            papp = pcallback->get_app();
+            papp = pcallback->application();
 
          }
          else
@@ -1518,7 +1665,7 @@ namespace base
 
       auto prequest = __create_new< ::request >();
 
-      prequest->m_bMakeVisible = false;
+      prequest->m_egraphicsoutputpurpose -= ::graphics::e_output_purpose_screen;
 
       prequest->m_puserelementParent = puserelementParent;
 
@@ -1644,7 +1791,7 @@ namespace base
 
          auto prequest = ::__create_new < ::request >(pparticle);
 
-         prequest->m_bMakeVisible = false;
+         prequest->m_egraphicsoutputpurpose -= ::graphics::e_output_purpose_screen;
 
          prequest->m_puserelementParent = puserelementParent;
 
@@ -1717,7 +1864,7 @@ namespace base
          if (!m_puserstyle)
          {
 
-            error() <<"aura::session::defer_instantiate_user_theme";
+            error() << "aura::session::defer_instantiate_user_theme";
 
             throw ::exception(error_resource);
 
@@ -1728,11 +1875,11 @@ namespace base
    }
 
 
-//   ::user::menu_central* user::menu()
+   //   ::user::menu_central* user::menu()
 
 
 
-   //__namespace_object_factory(user, ::system_setup::flag_object_user);
+      //__namespace_object_factory(user, ::system_setup::flag_object_user);
 
    ::pointer<::user::plain_edit>user::create_calculator_edit()
    {

@@ -52,7 +52,7 @@ namespace user
    //::aura::system *formacmesystem()
    //{
 
-   //   return ::is_set(acmesystem()) ? acmesystem()->m_paurasystem : nullptr;
+   //   return ::is_set(system()) ? system()->m_paurasystem : nullptr;
 
 
    //}

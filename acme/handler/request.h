@@ -16,8 +16,12 @@
 #endif
 
 
+#include "acme/graphics/graphics/output_purpose.h"
+
+
 class CLASS_DECL_ACME request :
-   virtual public ::object
+   virtual public ::object,
+   virtual public ::graphics::output_purpose
 {
 public:
 
@@ -32,7 +36,10 @@ public:
    string                           m_strExtra;
    ::e_status                       m_estatus;
 
-   bool                             m_bMakeVisible;
+   bool                             m_bDocumentAndFrameCreated = false;
+   bool                             m_bDocumentWasModified = false;
+
+   //bool                             m_bMakeVisible;
    bool                             m_bTransparentBackground;
    bool                             m_bExperienceMainFrame;
    bool                             m_bOuterPopupAlertLike;
@@ -48,6 +55,7 @@ public:
    bool                             m_bRunEmbedded;
    bool                             m_bRunAutomated;
    i32                              m_nCmdShow;
+   ::interlocked_count              m_countStack;
 
    // not ok for file_new
    //::payload                        m_payloadFile;
@@ -67,7 +75,8 @@ public:
    manual_reset_event               m_eventReady;
    ::request *                      m_prequest;
    string                           m_strCommandLine;
-
+   ::pointer < ::data::data >       m_pdata;
+   ::procedure_array                m_procedureaOnFinishRequest;
 
 
    request();
@@ -107,6 +116,7 @@ public:
    
    virtual void initialize_create(arguments arguments);
    virtual void initialize_create(string strAppId, ::payload payloadFile, const ::payload& varOptions = __visible(true), ::user::element * puiParent = nullptr, e_window_flag eflag = e_window_flag_none, ::atom = ::atom());
+   virtual void initialize_create(::data::data * pdata, const ::payload & varOptions = __visible(true), ::user::element * puiParent = nullptr, e_window_flag eflag = e_window_flag_none, ::atom = ::atom());
 
 
    void create_common_construct(const ::payload & varOptions, ::user::element * puiParent);

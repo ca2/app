@@ -7,7 +7,7 @@
 //
 
 #include "framework.h"
-#include "buffer.h"
+#include "cpu_buffer.h"
 #include "context_cgl.h"
 #include "opengl.h"
 #include "aura/graphics/image/image.h"
@@ -46,7 +46,7 @@ namespace opengl
    void context_cgl::_create_offscreen_buffer(const ::size_i32 & size)
    {
 
-      auto pgpu = acmesystem()->m_paurasystem->get_gpu();
+      auto pgpu = system()->m_paurasystem->get_gpu();
 
       ::pointer<opengl>popengl = pgpu;
 
@@ -166,10 +166,10 @@ namespace opengl
 //         
 //      }
       
-      auto cx = context::m_pbuffer->m_pimage->width();
-      auto cy = context::m_pbuffer->m_pimage->height();
-      auto scan = context::m_pbuffer->m_pimage->m_iScan;
-      auto data=context::m_pbuffer->m_pimage->get_data();
+      auto cx = context::m_pcpubuffer->m_pixmap.width();
+      auto cy = context::m_pcpubuffer->m_pixmap.height();
+      auto scan = context::m_pcpubuffer->m_pixmap.m_iScan;
+      auto data=context::m_pcpubuffer->m_pixmap.m_pimage32;
 
       error = CGLSetOffScreen(m_context, cx,
                               cy, scan, data) ;

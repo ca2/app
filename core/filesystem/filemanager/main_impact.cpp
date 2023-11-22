@@ -18,6 +18,8 @@ namespace filemanager
    main_impact::main_impact()
    {
 
+      m_bAutoCreate = false;
+
       //m_ppropform = nullptr;
 
       //m_flag
@@ -109,7 +111,8 @@ namespace filemanager
 
       //pleftview->create_impacts();
 
-      m_pfilelist = create_pane_impact(filemanager_data()->m_typeatomFileList, 1);
+      //m_pfilelist = create_pane_impact(get_document()->m_typeatomFileList, 1);
+      m_pfilelist = create_pane_impact(::type < file_list >(), 1);
 
       if(m_pfilelist == nullptr)
       {
@@ -191,10 +194,19 @@ namespace filemanager
 
       ::user::split_impact::handle(ptopic, pcontext);
 
-      if (ptopic->m_atom == ID_INCOMING_DOCUMENT)
+      if (ptopic->m_atom == id_initialize)
+      {
+
+         create_split_impact();
+
+      }
+      else if (ptopic->m_atom == ID_INCOMING_DOCUMENT)
       {
 
          informationf("filemanager::main_impact ::update_open_document");
+
+
+
 
       }
 

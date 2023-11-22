@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "simple_log.h"
 #include "trace.h"
+#include "acme/platform/acme.h"
 #include "acme/platform/application.h"
 #include "acme/platform/debug.h"
 #include "acme/platform/system.h"
@@ -11,6 +12,8 @@
 #include <sys/types.h>
 #include <unistd.h>
 #endif
+
+static bool g_bPrintfIfDebuggerIsNotAttached = false;
 
 string get_status_message(const ::e_status & estatus);
 
@@ -138,7 +141,7 @@ CLASS_DECL_ACME void __trace(enum_trace_level elevel, const ::scoped_string & sc
 //   if (g_iMemoryCountersStartable && g_iMemoryCounters < 0)
 //   {
 //
-//      g_iMemoryCounters = acmefile()->exists(         auto psystem = acmesystem();
+//      g_iMemoryCounters = acmefile()->exists(         auto psystem = system();
 
 //         auto pacmedirectory = psystem->m_pacmedirectory;
 //
@@ -171,7 +174,7 @@ CLASS_DECL_ACME void __trace(enum_trace_level elevel, const ::scoped_string & sc
 //
 //#if defined(UNIVERSAL_WINDOWS)
 //
-//      string strBasePath =          auto psystem = acmesystem();
+//      string strBasePath =          auto psystem = system();
 
 //         auto pacmedirectory = psystem->m_pacmedirectory;
 //
@@ -181,7 +184,7 @@ CLASS_DECL_ACME void __trace(enum_trace_level elevel, const ::scoped_string & sc
 //
 //      ::file::path strModule = module_path_from_pid(getpid());
 //
-//      string strBasePath =          auto psystem = acmesystem();
+//      string strBasePath =          auto psystem = system();
 
 //         auto pacmedirectory = psystem->m_pacmedirectory;
 //
@@ -205,6 +208,19 @@ simple_log::simple_log()
    m_bReallySimple = true;
    m_bWithTimePrefix = true;
    m_bDisplayRelativeTime = true;
+
+   ::file::path pathTrace;
+
+   auto pathHome = home_folder_path();
+
+   pathTrace = pathHome / "trace_using_printf.txt";
+
+   if (file_exists(pathTrace))
+   {
+
+      g_bPrintfIfDebuggerIsNotAttached = true;
+
+   }
 
 #ifdef _DEBUG
 
@@ -271,7 +287,7 @@ void simple_log::print(::trace_statement & tracestatement, bool bFlush)
          if(m_bDisplayRelativeTime)
          {
 
-            auto Δtime = timeNow - ::acme::acme::g_pacme->m_timeStart;
+            auto Δtime = timeNow - ::platform::get()->m_timeStart;
 
             ::earth::time_span earthtimepan(Δtime);
 
@@ -318,9 +334,9 @@ void simple_log::print(::trace_statement & tracestatement, bool bFlush)
 
       }
 
-      auto papplication = acmeapplication();
+      auto papplication = application();
 
-      if (papplication && papplication->m_bConsole)
+      if ((papplication && papplication->is_console()) || (!::is_debugger_attached() && g_bPrintfIfDebuggerIsNotAttached))
       {
 
          if (tracestatement.m_etracelevel == e_trace_level_information)

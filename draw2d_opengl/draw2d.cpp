@@ -31,8 +31,8 @@ namespace draw2d_opengl
    draw2d::draw2d()
    {
 
-      m_atomClass = NULL;
-      m_bGlewInitialized = false;
+      //m_atomClass = NULL;
+      //m_bGladInitialized = false;
 
    }
 
@@ -54,6 +54,8 @@ namespace draw2d_opengl
 
       ::draw2d::draw2d::initialize(pparticle);
 
+
+      system()->m_paurasystem->create_gpu();
       //if (!estatus)
       //{
 
@@ -81,30 +83,46 @@ namespace draw2d_opengl
    }
 
 
-   void draw2d::defer_initialize_glew()
+   bool draw2d::graphics_context_supports_single_buffer_mode()
    {
 
-      if (m_bGlewInitialized)
-      {
-
-         return;
-
-      }
-
-
-
-      if(!gladLoadGL())
-      {
-         // Problem: glewInit failed, something is seriously wrong.
-         informationf("gladLoadGL failed");
-         //return false;
-         throw resource_exception();
-      }
-
-      m_bGlewInitialized = true;
-
+      return true;
 
    }
+
+
+   bool draw2d::graphics_context_does_full_redraw()
+   {
+
+      return true;
+
+   }
+
+
+   //void draw2d::defer_initialize_glad()
+   //{
+
+   //   if (m_bGladInitialized)
+   //   {
+
+   //      return;
+
+   //   }
+
+
+
+   //   if(!gladLoadGL())
+   //   {
+   //      // Problem: glewInit failed, something is seriously wrong.
+   //      informationf("gladLoadGL failed");
+   //      //return false;
+   //      throw resource_exception();
+   //   }
+
+   //   m_bGladInitialized = true;
+
+
+   //}
 
 
    string draw2d::write_text_get_default_implementation_name()
@@ -131,7 +149,7 @@ namespace draw2d_opengl
 
    //   pfont->m_pcollection = new Gdiplus::PrivateFontCollection();
 
-   //   auto pmemory = acmesystem()->m_paurasystem->draw2d()->write_text()->get_file_memory(pcontext, path);
+   //   auto pmemory = system()->m_paurasystem->draw2d()->write_text()->get_file_memory(pcontext, path);
 
    //   if (pmemory->has_data())
    //   {
@@ -176,27 +194,32 @@ namespace draw2d_opengl
    int  draw2d::opengl_init()
    {
 
-      if (m_atomClass)
-      {
+      //__construct(m_popenglcontext);
 
-         return true;
+      //if (m_atomClass)
+      //{
 
-      }
+      //   return true;
 
-      WNDCLASSW wc;
-      ZeroMemory(&wc, sizeof(wc));
-      wc.style = CS_OWNDC;
-      wc.lpfnWndProc = opengl_window_proc;
-      wc.hInstance = (HINSTANCE) acmesystem()->m_psubsystem->m_hinstanceThis;
-      wc.lpszClassName = L"draw2d_opengl_offscreen_buffer_window";
-      m_atomClass = RegisterClassW(&wc);
+      //}
 
-      if (!m_atomClass)
-      {
+      //WNDCLASSW wc;
+      //ZeroMemory(&wc, sizeof(wc));
+      //wc.style = CS_OWNDC;
+      //wc.lpfnWndProc = opengl_window_proc;
+      //wc.hInstance = (HINSTANCE) system()->m_pplatform->m_hinstanceThis;
+      //wc.lpszClassName = L"draw2d_opengl_offscreen_buffer_window";
+      //m_atomClass = RegisterClassW(&wc);
 
-         return false;
+      //if (!m_atomClass)
+      //{
 
-      }
+      //   return false;
+
+      //}
+
+      //defer_initialize_glad();
+
       return true;
 
    }

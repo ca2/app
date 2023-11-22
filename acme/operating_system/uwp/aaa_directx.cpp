@@ -246,7 +246,7 @@ namespace universal_windows
       {
          OnChangeDpi(dpi);
 
-         //         ::acmeacmesystem()->acmesystem()->m_possystemwindow->m_bWindowSizeChange = true;
+         //         ::acmeacmesystem()->system()->m_possystemwindow->m_bWindowSizeChange = true;
 
       }));
 
@@ -302,10 +302,10 @@ namespace universal_windows
          if (m_size.area() > 0)
          {
 
-            ::fork(acmesystem(), [this]()
+            ::fork(system(), [this]()
             {
 
-               acmesystem()->on_graphics_ready();
+               system()->on_graphics_ready();
 
             });
 
@@ -778,7 +778,7 @@ namespace universal_windows
 
    //   dc->attach((ID2D1DeviceContext *) m_pd2d1devicecontext.Get());
 
-   //   auto pimpl = acmesession()->m_puserinteractionHost->m_pimpl;
+   //   auto pimpl = session()->m_puserinteractionHost->m_pimpl;
 
    //   //throw_todo();
 

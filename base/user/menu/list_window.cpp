@@ -22,6 +22,7 @@ namespace user
       m_bOwnItem = false;
       m_bAutoClose = true;
       m_bInline = true;
+      m_bExtendOnParentHostingArea = true;
 
    }
 
@@ -137,7 +138,7 @@ namespace user
 
          size.cx() += pitem->m_iLevel * g_base_menu_indent;
 
-         if(pitem->IsPopup())
+         if(pitem->is_popup())
             size.cx() += 12 + 16;
 
          if(size.cy() > iMaxHeight)
@@ -229,6 +230,8 @@ namespace user
 
    void menu_list_window::on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics)
    {
+      
+      ::user::interaction::on_perform_top_down_layout(pgraphics);
 
       if (!m_bMenuOk)
       {
@@ -254,8 +257,11 @@ namespace user
       }
 
       ::rectangle_i32 rectangleX;
+      
+      ::string strType = ::type(get_parent());
 
-      rectangleX = get_parent()->rectangle();
+      auto rectangleParentX = get_parent()->rectangle(e_layout_layout);
+      rectangleX = this->rectangle(e_layout_layout);
 
       pgraphics->set_font(this, ::e_element_none);
 

@@ -107,7 +107,7 @@ namespace axis
 
       m_pimplPendingFocus2             = nullptr;
 
-      auto psystem = acmesystem()->m_paurasystem;
+      auto psystem = system()->m_paurasystem;
 
       if (psystem != nullptr)
       {
@@ -232,7 +232,7 @@ namespace axis
 
    //         handle_exception(pe);
 
-   //         //if (!acmesystem()->on_run_exception(esp))
+   //         //if (!system()->on_run_exception(esp))
    //         //{
 
    //         //   if (!App(this).on_run_exception(esp))

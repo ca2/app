@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "tab_impact.h"
 #include "form.h"
-#include "operation_document.h"
+#include "operation/document.h"
 #include "data.h"
 #include "document.h"
 #include "acme/constant/id.h"
@@ -14,6 +14,8 @@
 #include "aura/platform/session.h"
 #include "base/user/user/frame_window.h"
 #include "base/user/user/multiple_document_template.h"
+#include "core/platform/application.h"
+#include "core/filesystem/filemanager/filemanager.h"
 #include "core/user/user/user.h"
 
 
@@ -62,206 +64,223 @@ namespace filemanager
 
       if(pimpactdata->m_atom.is_null())
       {
+
          return;
-      }
-      else if (pimpactdata->m_atom == "add_location"
-               || pimpactdata->m_atom == "replace_name"
-               || pimpactdata->m_atom == "new_folder")
-      {
-
-         ::pointer<::request>prequest(e_create, this);
-
-         prequest->m_bMakeVisible = false;
-
-         prequest->m_puserelementParent = pimpactdata->m_pplaceholder;
-
-         auto pcontext = m_pcontext;
-         
-         auto psession = pcontext->m_pacmesession->m_paurasession;
-         
-         auto puser = psession->m_puser->m_pcoreuser;
-
-         puser->m_pimpactsystemForm->request(prequest);
-
-         ::pointer<::user::document>pdocument = ::user::__document(prequest);
-
-         if (pdocument == nullptr)
-         {
-
-            return;
-
-         }
-
-         form * pformview = pdocument->get_typed_impact < form >();
-
-         auto ptopic = create_topic(ID_BROWSE);
-
-         if (pimpactdata->m_atom == "new_folder")
-         {
-
-            ptopic->payload(ID_FORM) = "matter://filemanager/new_folder.html";
-
-         }
-         if (pimpactdata->m_atom == "replace_name")
-         {
-
-            ptopic->payload(ID_FORM) = "matter://filemanager/replace_name_in_file_system.html";
-
-         }
-         else if (pimpactdata->m_atom == "add_location")
-         {
-
-            ptopic->payload(ID_FORM) = "matter://filemanager/add_location_1.html";
-
-         }
-
-         ptopic->payload("creator") = pimpactdata->m_atom;
-
-         pdocument->update_all_impacts(ptopic);
-
-         //ptopic->m_pcontext = ptopic->context(id_after_browse);
-
-         ptopic->m_atom = id_after_browse;
-
-         pdocument->update_all_impacts(ptopic);
-
-         pimpactdata->m_pdocument = pdocument;
 
       }
-      else if(pimpactdata->m_atom == "filemanager::operation")
+      //else if (pimpactdata->m_atom == "add_location"
+      //         || pimpactdata->m_atom == "replace_name"
+      //         || pimpactdata->m_atom == "new_folder")
+      //{
+
+      //   ::pointer<::request>prequest(e_create, this);
+
+      //   prequest->m_egraphicsoutputpurpose -= ::graphics::e_output_purpose_screen;
+
+      //   prequest->m_puserelementParent = pimpactdata->m_pplaceholder;
+
+      //   auto pcontext = m_pcontext;
+      //   
+      //   auto psession = pcontext->m_pacmesession->m_paurasession;
+      //   
+      //   auto puser = psession->m_puser->m_pcoreuser;
+
+      //   puser->m_pimpactsystemForm->request(prequest);
+
+      //   ::pointer<::user::document>pdocument = ::user::__document(prequest);
+
+      //   if (pdocument == nullptr)
+      //   {
+
+      //      return;
+
+      //   }
+
+      //   form * pformview = pdocument->get_typed_impact < form >();
+
+      //   auto ptopic = create_topic(ID_BROWSE);
+
+      //   if (pimpactdata->m_atom == "new_folder")
+      //   {
+
+      //      ptopic->payload(ID_FORM) = "matter://filemanager/new_folder.html";
+
+      //   }
+      //   if (pimpactdata->m_atom == "replace_name")
+      //   {
+
+      //      ptopic->payload(ID_FORM) = "matter://filemanager/replace_name_in_file_system.html";
+
+      //   }
+      //   else if (pimpactdata->m_atom == "add_location")
+      //   {
+
+      //      ptopic->payload(ID_FORM) = "matter://filemanager/add_location_1.html";
+
+      //   }
+
+      //   ptopic->payload("creator") = pimpactdata->m_atom;
+
+      //   pdocument->update_all_impacts(ptopic);
+
+      //   //ptopic->m_pcontext = ptopic->context(id_after_browse);
+
+      //   ptopic->m_atom = id_after_browse;
+
+      //   pdocument->update_all_impacts(ptopic);
+
+      //   pimpactdata->m_pdocument = pdocument;
+
+      //}
+      //else if(pimpactdata->m_atom == "filemanager::operation")
+      //{
+
+      //   ::pointer<::request>prequest(e_create, this);
+
+      //   prequest->m_egraphicsoutputpurpose -= ::graphics::e_output_purpose_screen;
+
+      //   prequest->m_puserelementParent = this;
+
+      //   auto pcontext = m_pcontext;
+      //   
+      //   auto psession = pcontext->m_pacmesession->m_paurasession;
+      //   
+      //   auto puser = psession->m_puser->m_pcoreuser;
+
+      //   puser->m_pimpactsystemOperation->request(prequest);
+
+      //   ::pointer<operation_document>pdocument = ::user::__document(prequest);
+
+      //   if (pdocument == nullptr)
+      //   {
+
+      //      return;
+
+      //   }
+
+      //   auto pimpact = pdocument->get_impact(0);
+
+      //   pimpactdata->m_puserinteraction = pimpact->parent_frame();
+
+      //   pimpactdata->m_pdocument = pdocument;
+
+      //}
+      //else
       {
 
-         ::pointer<::request>prequest(e_create, this);
+         auto pfilemanagerdata = application()->m_pcoreapplication->
+            filemanager()->create_filemanager_data();
 
-         prequest->m_bMakeVisible = false;
+         application()->m_pcoreapplication->
+            filemanager()->impact_system()->create_subdocument(
+               pimpactdata,
+               pfilemanagerdata);
 
-         prequest->m_puserelementParent = this;
-
-         auto pcontext = m_pcontext;
-         
-         auto psession = pcontext->m_pacmesession->m_paurasession;
-         
-         auto puser = psession->m_puser->m_pcoreuser;
-
-         puser->m_pimpactsystemOperation->request(prequest);
-
-         ::pointer<operation_document>pdocument = ::user::__document(prequest);
-
-         if (pdocument == nullptr)
-         {
-
-            return;
-
-         }
-
-         auto pimpact = pdocument->get_impact(0);
-
-         pimpactdata->m_puserinteraction = pimpact->parent_frame();
-
-         pimpactdata->m_pdocument = pdocument;
-
-      }
-      else
-      {
-
-         auto pfilemanagerdata  = __new(::filemanager::data);
-
-         pfilemanagerdata->m_pcallback = get_document();
-
-         //pfilemanagerdata->m_pfilemanagertemplate = puser->filemanager();
-
-         pfilemanagerdata->m_bFileSize = true;
-
-         pfilemanagerdata->m_bTransparentBackground = true;
-
-         ::pointer<::request>prequest(e_create, this);
-
-         prequest->m_bMakeVisible = true;
-
-         prequest->m_puserelementParent = pimpactdata->m_pplaceholder;
-
-         prequest->payload("filemanager::data") = pfilemanagerdata;
-
-         string str = pimpactdata->m_atom;
-
-         str.case_insensitive_begins_eat("verifile://");
-
-         ::file::path pathFolder = str;
-
-         string strVarFile;
-
-         if (get_document()->m_strManagerId.has_char())
-         {
-
-            strVarFile = get_document()->m_strManagerId + ":" + pathFolder;
-
-         }
-
-         prequest->m_payloadFile = strVarFile;
-
-         //puser->filemanager()->m_pimpactsystemChild->m_bQueueDocumentOpening = false;
-
-         //puser->filemanager()->m_pimpactsystemChild->do_request(pcreate);
-
-         //::pointer<document>pdocument = ::user::__document(pcreate);
-
-         //::pointer<simple_frame_window>puserinteractionTopLevel;
-         ::pointer<document>pdocument = get_document();
-
-         create_impact < impact >(pimpactdata);
-
-         auto pcontext = get_context();
-
-         if(pdocument != nullptr)
-         {
-
-            m_mapFileManager[pimpactdata->m_atom] = pdocument;
-
-//            pdocument->filemanager_data()->m_iTemplate = puser->filemanager()->m_iTemplate;
-
-            //          pdocument->filemanager_data()->m_iDocument = puser->filemanager()->m_iNextDocument++;
-
-            ::pointer<::user::impact>pimpact = pdocument->get_impact(0);
-
-            auto pframe = (pimpact->parent_frame());
-
-            bool bPathIsDir = false;
-
-            task_flag().set(e_task_flag_resolve_alias);
-
-            try
-            {
-
-               bPathIsDir = pathFolder.has_char() && dir()->is(pathFolder);
-
-            }
-            catch (...)
-            {
-
-            }
-
-            task_flag().clear(e_task_flag_resolve_alias);
-
-            if(bPathIsDir)
-            {
-
-               pdocument->filemanager_initialize(true, false);
-
-               pdocument->browse(pathFolder, ::e_source_initialize);
-
-            }
-            else
-            {
-
-               pdocument->filemanager_initialize(true, true);
-
-            }
-
-            pimpact->set_need_layout();
-
-         }
-
-         set_need_layout();
+//         auto pdocument  = __new(::filemanager::data);
+//
+//         pdocument->m_pcallback = get_document();
+//
+//         //pdocument->m_pfilemanagertemplate = puser->filemanager();
+//
+//         pdocument->m_bFileSize = true;
+//
+//         pdocument->m_bTransparentBackground = true;
+//
+//         ::pointer<::request>prequest(e_create, this);
+//
+//         prequest->m_egraphicsoutputpurpose |= ::graphics::e_output_purpose_screen;
+//
+//         prequest->m_puserelementParent = pimpactdata->m_pplaceholder;
+//
+//         prequest->payload("filemanager::data") = pdocument;
+//
+//         string str = pimpactdata->m_atom;
+//
+//         str.case_insensitive_begins_eat("verifile://");
+//
+//         ::file::path pathFolder = str;
+//
+//         string strVarFile;
+//
+//         if (get_document()->m_strManagerId.has_char())
+//         {
+//
+//            strVarFile = get_document()->m_strManagerId + ":" + pathFolder;
+//
+//         }
+//
+//         prequest->m_payloadFile = strVarFile;
+//
+//         //puser->filemanager()->m_pimpactsystemChild->m_bQueueDocumentOpening = false;
+//
+//         //puser->filemanager()->m_pimpactsystemChild->do_request(pcreate);
+//
+//         //::pointer<document>pdocument = ::user::__document(pcreate);
+//
+//         //::pointer<simple_frame_window>puserinteractionTopLevel;
+//
+//         ::pointer<document>pdocument = get_document();
+//
+//         create_impact < impact >(pimpactdata);
+//
+//         auto pcontext = get_context();
+//
+//         if(pdocument != nullptr)
+//         {
+//
+//            m_mapFileManager[pimpactdata->m_atom] = pdocument;
+//
+////            pdocument->get_document()->m_iTemplate = puser->filemanager()->m_iTemplate;
+//
+//            //          pdocument->get_document()->m_iDocument = puser->filemanager()->m_iNextDocument++;
+//
+//            ::pointer<::user::impact>pimpact = pdocument->get_impact(0);
+//
+//            auto pframe = (pimpact->parent_frame());
+//
+//            bool bPathIsDir = false;
+//
+//            task_flag().set(e_task_flag_resolve_alias);
+//
+//            try
+//            {
+//
+//               bPathIsDir = pathFolder.has_char() && dir()->is(pathFolder);
+//
+//            }
+//            catch (...)
+//            {
+//
+//            }
+//
+//            task_flag().clear(e_task_flag_resolve_alias);
+//
+//            if(bPathIsDir)
+//            {
+//
+//               //pdocument->filemanager_initialize(true, false);
+//
+//               pdocument->browse(pathFolder, ::e_source_initialize);
+//
+//            }
+//            else
+//            {
+//
+//               pdocument->browse_initial_path(::e_source_initialize);
+//
+//            }
+//            // else
+//            // {
+//            //
+//            //    pdocument->filemanager_initialize(true, true);
+//            //
+//            // }
+//
+//            pimpact->set_need_layout();
+//
+//         }
+//
+//         set_need_layout();
 
       }
 
@@ -320,7 +339,7 @@ namespace filemanager
 
             //               string str;
             //
-            //               str.formatf("(%d,%d)",filemanager_document().filemanager_data()->m_iTemplate,filemanager_document().filemanager_data()->m_iDocument);
+            //               str.formatf("(%d,%d)",filemanager_document().get_document()->m_iTemplate,filemanager_document().get_document()->m_iDocument);
             //
             //               ::pointer<::database::client>pclient = get_parent_frame();
             //

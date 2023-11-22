@@ -29,7 +29,7 @@ namespace account
 
 #else
 
-      //set_auto_refresh(false);
+      //set_fps_interest(false);
 
 #endif
 
@@ -284,7 +284,9 @@ namespace account
 
       //auto pusersystem = __new(::user::system (0, nullptr, nullptr, 0, rectangleFontopus));
 
-      create_host(e_parallelization_synchronous);
+      //create_host(e_parallelization_synchronous);
+
+      create_host();
 
       //if (!create_host())
       //{
@@ -603,12 +605,12 @@ namespace account
    }
 
 
-   bool main_window::has_pending_graphical_update()
-   {
+   //bool main_window::has_pending_graphical_update()
+   //{
 
-      return is_window_visible();
+   //   return is_window_visible();
 
-   }
+   //}
 
 
 } // namespace account

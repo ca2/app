@@ -622,7 +622,10 @@
     <ClInclude Include="handler\extended_topic.h" />
     <ClInclude Include="handler\handler.h" />
     <ClInclude Include="handler\item.h" />
+    <ClInclude Include="handler\item_container.h" />
+    <ClInclude Include="handler\item_container_map.h" />
     <ClInclude Include="handler\request.h" />
+    <ClInclude Include="handler\source.h" />
     <ClInclude Include="handler\topic.h" />
     <ClInclude Include="include\aaa_forward_declaration.h" />
     <ClInclude Include="include\_acme.h" />
@@ -677,6 +680,7 @@
     <ClInclude Include="memory\__string.h" />
     <ClInclude Include="memory\__unaligned_memory_allocate.h" />
     <ClInclude Include="memory\_____heap_namespace.h" />
+    <ClInclude Include="operating_system\acme_initialize.h" />
     <ClInclude Include="operating_system\application.h" />
     <ClInclude Include="operating_system\argcargv.h" />
     <ClInclude Include="operating_system\chronometer.h" />
@@ -765,6 +769,7 @@
     <ClInclude Include="platform\object_reference_count_debug_impl.h" />
     <ClInclude Include="platform\object_type_counter.h" />
     <ClInclude Include="platform\options.h" />
+    <ClInclude Include="platform\platform.h" />
     <ClInclude Include="platform\predicate_function_pointer.h" />
     <ClInclude Include="platform\predicate_holder.h" />
     <ClInclude Include="platform\predicate_process.h" />
@@ -848,6 +853,7 @@
     <ClInclude Include="user\user\drag_move.h" />
     <ClInclude Include="user\user\element.h" />
     <ClInclude Include="user\user\ewindowflag.h" />
+    <ClInclude Include="user\user\key_state.h" />
     <ClInclude Include="user\user\mouse.h" />
     <ClInclude Include="user\user\os_colors.h" />
     <ClInclude Include="user\user\os_theme_colors.h" />
@@ -1408,6 +1414,7 @@
     <ClCompile Include="graphics\draw2d\color_array.cpp" />
     <ClCompile Include="graphics\draw2d\os_font_name.cpp" />
     <ClCompile Include="graphics\draw2d\_.cpp" />
+    <ClCompile Include="graphics\graphics\output_purpose.cpp" />
     <ClCompile Include="graphics\image\image32.cpp" />
     <ClCompile Include="graphics\image\image32_array.cpp" />
     <ClCompile Include="graphics\image\pixmap.cpp" />
@@ -1417,6 +1424,7 @@
     <ClCompile Include="handler\item_container.cpp" />
     <ClCompile Include="handler\item_container_map.cpp" />
     <ClCompile Include="handler\request.cpp" />
+    <ClCompile Include="handler\source.cpp" />
     <ClCompile Include="handler\topic.cpp" />
     <ClCompile Include="memory\allocate_processor_cache_oriented.cpp" />
     <ClCompile Include="memory\allocate_system_heap.cpp" />
@@ -1757,7 +1765,7 @@
     <ClCompile Include="platform\session.cpp" />
     <ClCompile Include="platform\simple_log.cpp" />
     <ClCompile Include="platform\string_exchange.cpp" />
-    <ClCompile Include="platform\sub_system.cpp" />
+    <ClCompile Include="platform\platform.cpp" />
     <ClCompile Include="platform\system.cpp" />
     <ClCompile Include="platform\system_setup.cpp" />
     <ClCompile Include="platform\text.cpp" />
@@ -1869,6 +1877,7 @@
     <ClCompile Include="primitive\string\c\ancient\ansi_impl.cpp" />
     <ClCompile Include="primitive\string\c\ancient\wd16_impl.cpp" />
     <ClCompile Include="primitive\string\c\ancient\wd32_impl.cpp" />
+    <ClCompile Include="primitive\string\c\ancient\_c.cpp" />
     <ClCompile Include="primitive\string\c\coupling_impl.cpp" />
     <ClCompile Include="primitive\string\c\extension\ansi_impl.cpp" />
     <ClCompile Include="primitive\string\c\extension\wd16_impl.cpp" />
@@ -1943,10 +1952,12 @@
     <ClCompile Include="user\nano\_nano.cpp" />
     <ClCompile Include="user\user\check.cpp" />
     <ClCompile Include="user\user\container.cpp" />
+    <ClCompile Include="user\user\controller.cpp" />
     <ClCompile Include="user\user\conversation.cpp" />
     <ClCompile Include="user\user\drag.cpp" />
     <ClCompile Include="user\user\drag_client.cpp" />
     <ClCompile Include="user\user\element.cpp" />
+    <ClCompile Include="user\user\key_state.cpp" />
     <ClCompile Include="user\user\mouse.cpp" />
     <ClCompile Include="user\user\os_colors.cpp" />
     <ClCompile Include="user\user\os_theme_colors.cpp" />

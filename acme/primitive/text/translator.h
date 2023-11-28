@@ -11,7 +11,8 @@ namespace text
 
 
    class CLASS_DECL_ACME translator :
-      virtual public ::object
+      virtual public ::object,
+      public ::allocator::accessor < translator >
    {
    public:
 

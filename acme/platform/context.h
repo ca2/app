@@ -14,6 +14,9 @@ namespace acme
    public:
 
 
+      ::platform::platform *                          m_pplatform;
+
+
       ::apex::context *                               m_papexcontext;
       ::aura::context *                               m_pauracontext;
 
@@ -42,6 +45,11 @@ namespace acme
 
       context();
       ~context() override;
+
+
+      virtual void on_set_platform();
+
+      virtual void set_platform(::platform::platform * pplatform);
 
 
       void initialize(::particle * pparticle) override;

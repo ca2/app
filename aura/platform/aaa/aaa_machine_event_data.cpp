@@ -42,7 +42,7 @@ void blob::read(FILE * file)
    else
    {
 
-      m_pchData = (char *) memory_allocate(m_sizet);
+      m_pchData = (char *) ::heap::management::memory(::heap::e_memory_main)->allocate(m_sizet);
 
       size_t sRead = 0;
 

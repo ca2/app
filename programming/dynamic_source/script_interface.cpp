@@ -61,7 +61,7 @@ namespace dynamic_source
          if (!m_pmain)
          {
 
-            tracking_note_assign(m_pmain, pinterface->m_pmain.get() OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_NOTE("scptiface:init:referer://"+ m_strNote));
+            tracking_note_assign(m_pmain, pinterface->m_pmain.get() REFERENCING_DEBUGGING_COMMA_THIS_NOTE("scptiface:init:referer://"+ m_strNote));
 
          }
 
@@ -87,9 +87,9 @@ namespace dynamic_source
 
    //   auto estatus = ::html_file::destroy();
 
-   //   m_pmain.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
-   //   m_pinstanceParent2.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
-   //   m_pscript2.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
+   //   m_pmain.release(REFERENCING_DEBUGGING_THIS);
+   //   m_pinstanceParent2.release(REFERENCING_DEBUGGING_THIS);
+   //   m_pscript2.release(REFERENCING_DEBUGGING_THIS);
 
    //   return estatus;
 
@@ -102,9 +102,9 @@ namespace dynamic_source
       
       ::html_file::destroy();
 
-      m_pmain.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
-      m_pinstanceParent2.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
-      m_pscript2.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
+      m_pmain.release(REFERENCING_DEBUGGING_THIS);
+      m_pinstanceParent2.release(REFERENCING_DEBUGGING_THIS);
+      m_pscript2.release(REFERENCING_DEBUGGING_THIS);
 
       //return estatus;
 

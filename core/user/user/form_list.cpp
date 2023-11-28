@@ -121,7 +121,7 @@ namespace user
             if (pinteraction->get_control_type() == ::user::e_control_type_button)
             {
 
-               auto pextendedtopic = __new(::extended_topic(id_click));
+               auto pextendedtopic = __allocate< ::extended_topic >(id_click);
 
                pextendedtopic->m_puserelement = pinteraction;
 
@@ -208,7 +208,7 @@ namespace user
             if (pinteraction->get_control_type() == ::user::e_control_type_button)
             {
 
-               auto pextendedtopic = __new(::extended_topic(::id_click));
+               auto pextendedtopic = __allocate< ::extended_topic >(::id_click);
 
                pextendedtopic->m_puserelement = pinteraction;
 
@@ -805,7 +805,7 @@ namespace user
 
             auto iFind = pcombo->_001FindListText(psubitem->m_strText);
 
-            pcombo->set_current_item(__new(::item(::e_element_item, iFind)), ::e_source_sync);
+            pcombo->set_current_item(__allocate< ::item >(::e_element_item, iFind), ::e_source_sync);
 
          }
 
@@ -1311,7 +1311,7 @@ namespace user
 
       ::rectangle_i32 rectangle;
 
-      //auto pitem = __new(draw_list_item(this));
+      //auto pitem = __allocate< draw_list_item >(this);
 
       return ::is_subitem(m_pitemControl, pinteraction->m_item.m_iSubItem);
 

@@ -11,7 +11,7 @@
 
 #include "gdiplus.h"
 #include <ddeml.h>
-//#define memory_new ACME_NEW
+
 
 
 void __term_threading();
@@ -93,7 +93,7 @@ CLASS_DECL_APEX i32 __cdecl _memory_type(const void* p);
 ////    if(FAILED(hr))
 ////    {
 //
-////       ::informationf("Failed to ::CoInitializeEx(nullptr, COINIT_MULTITHREADED) at __node_pre_init");
+////       ::acme::get()->platform()->informationf("Failed to ::CoInitializeEx(nullptr, COINIT_MULTITHREADED) at __node_pre_init");
 //
 ////       return false;
 //

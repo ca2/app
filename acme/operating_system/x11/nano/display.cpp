@@ -305,7 +305,7 @@ namespace x11
       if (g_p == nullptr)
       {
 
-         auto p = memory_new display;
+         auto p = __new< display >();
 
          p->initialize(pparticle);
 

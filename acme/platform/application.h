@@ -94,16 +94,22 @@ namespace acme
       virtual ::string release_time();
 
 
-      virtual void initialize_application();
+      virtual void initialize_application(::platform::platform * pplatform);
 
 
       virtual bool is_console() const;
 
 
-      virtual ::i32 application_main();
+      virtual ::i32 application_main(::platform::platform * pplatform);
+
+      
+      void on_set_platform() override;
 
 
-      void initialize(::particle * pparticle) override;
+      void on_initialize_particle() override;
+
+
+      //void initialize(::particle * pparticle) override;
 
       
       virtual void start_application(::request* prequest);

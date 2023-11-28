@@ -490,7 +490,7 @@ namespace user
 
       create_tab_by_id(::user::tab::index_id(pchannel->get_data()->m_iClickTab));
 
-      m_pdroptargetwindow = __new(tab_drop_target_window());
+      m_pdroptargetwindow = __allocate< tab_drop_target_window >();
 
       m_pdroptargetwindow->initialize_tab_drop_target_window(this, (i32)pchannel->get_data()->m_iClickTab);
 
@@ -1064,7 +1064,7 @@ namespace user
          //if (!pmenu->m_pmenuitem->m_pmenuitema)
          //{
 
-         //   pmenu->m_pmenuitem->m_pmenuitema = __new(::user::menu_item_ptra(pmenu->m_pmenuitem));
+         //   pmenu->m_pmenuitem->m_pmenuitema = __allocate< ::user::menu_item_ptra >(pmenu->m_pmenuitem);
 
          //}
 

@@ -658,7 +658,7 @@ void binary_stream::read_payload_body(::payload & payload, enum_type etype)
 
       //__exchange_load_array(*this, (property_set &) payload);
 
-//#define memory_new ACME_NEW
+
 
    }
    break;

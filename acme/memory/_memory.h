@@ -8,34 +8,7 @@ CLASS_DECL_ACME const void * memory_find(const void* l, memsize l_len, const voi
 #if defined(_WIN32) || defined(FREEBSD) || defined(__APPLE__)
 
 
-inline const void * _memory_find(const void* l, memsize l_len, const void* s, memsize s_len)
-{
-
-   const ::u8* cur;
-
-   const ::u8* last;
-
-   const ::u8* cl = (const ::u8*)l;
-   const ::u8* cs = (const ::u8*)s;
-
-   /* the last position where its possible to find "s" in "l" */
-   last = cl + l_len - s_len;
-
-   for (cur = cl; cur <= last; cur++)
-   {
-
-      if (cur[0] == cs[0] && _memory_order(cur, cs, s_len) == 0)
-      {
-
-         return (const void *) cur;
-
-      }
-
-   }
-
-   return nullptr;
-
-}
+const void * _memory_find(const void * l, memsize l_len, const void * s, memsize s_len);
 
 #else
 
@@ -93,6 +66,67 @@ inline const void * memory_find_u8(const void* l, int i, memsize len)
     return _memory_find_u8(l, i, len);
 
 }
+
+
+
+
+#pragma once
+
+
+
+CLASS_DECL_ACME void * memory_set(void * p, i32 i, memsize iSize);
+CLASS_DECL_ACME void * memory_and(void * p, const void * point1, const void * point2, memsize iSize);
+CLASS_DECL_ACME void * memory_copy(void * dst, const void * src, memsize iSize);
+CLASS_DECL_ACME void * memory_transfer(void * dst, const void * src, memsize iSize);
+CLASS_DECL_ACME::wide_character * wide_memory_copy(::wide_character * dst, const ::wide_character * src, memsize iSize);
+
+CLASS_DECL_ACME void * reverse_memory(void * p, memsize iSize);
+CLASS_DECL_ACME void * reverse_memory_copy(void * p, const void * point1, memsize iSize);
+
+
+CLASS_DECL_ACME::std::strong_ordering memory_order(const void * sz1, const void * sz2, memsize iSize);
+
+CLASS_DECL_ACME::std::strong_ordering _memory_order(const void * p1, const void * p2, memsize size);
+
+
+#ifdef __cplusplus
+
+
+inline void * zero(void * p, memsize size) { memory_set(p, 0, size); return p; }
+
+
+inline bool is_zero(const void * p, memsize iSize)
+{
+
+   u8 * pb = (u8 *)p;
+
+   while (*pb == '\0' && iSize > 0)
+   {
+
+      pb++;
+
+      iSize--;
+
+   }
+
+   return iSize == 0;
+
+}
+
+
+
+
+//#define zero(array) (::zero(array, sizeof(array)))
+
+
+
+#endif
+
+
+
+
+
+
 
 
 

@@ -21,26 +21,26 @@ timer_task::~timer_task()
 #ifdef _DEBUG
 
 
-i64 timer_task::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
+i64 timer_task::increment_reference_count(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
 {
 
-   return task::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+   return task::increment_reference_count(REFERENCING_DEBUGGING_ARGS);
 
 }
 
 
-i64 timer_task::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
+i64 timer_task::decrement_reference_count(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
 {
 
-   return task::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+   return task::decrement_reference_count(REFERENCING_DEBUGGING_ARGS);
 
 }
 
 
-i64 timer_task::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
+i64 timer_task::release(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
 {
 
-   return task::release(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+   return task::release(REFERENCING_DEBUGGING_ARGS);
 
 }
 
@@ -63,7 +63,7 @@ void timer_task::initialize_timer(::particle * pparticle, ::acme::timer_array * 
 
    m_bRunning = false;
 
-   m_ptimera.reset(ptimera OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_FUNCTION_LINE);
+   m_ptimera.reset(ptimera REFERENCING_DEBUGGING_COMMA_THIS_FUNCTION_FILE_LINE);
 
    if (m_ptimera)
    {
@@ -298,7 +298,7 @@ void timer_task::destroy()
 
             m_ptimera->erase_timer(this);
 
-            m_ptimera.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
+            m_ptimera.release();
 
          }
 

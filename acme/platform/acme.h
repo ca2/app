@@ -7,19 +7,12 @@
 #pragma once
 
 
-//#include "acme/_operating_system.h"
-//#include "platform.h"
+#include "acme/primitive/primitive/pointer.h"
+#include "acme/parallelization/critical_section.h"
 
+class task_message_queue;
 
-namespace platform
-{
-
-
-   class platform;
-
-
-} // namespace platform
-
+class referencing_debugging;
 
 namespace acme
 {
@@ -30,57 +23,69 @@ namespace acme
    public:
 
 
-//      ::pointer < ::platform::platform >     m_pplatform;
+      inline static ::acme::acme *           s_pacme;
+      ::pointer < ::task_message_queue >     m_ptaskmessagequeue;
+      ::pointer < ::platform::platform >     m_pplatform;
+      ::heap::management *                   m_pheapmanagement;
 
+
+#if REFERENCING_DEBUGGING 
+
+
+      ::referencing_debugging *              m_preferencingdebugging;
+
+#endif
 
       acme();
       ~acme();
 
 
-      //void acme_construct();
-      //void acme_destruct();
+#if defined(WINDOWS) && defined(UNICODE)
+
+      void initialize(int argc, wchar_t * argv[], wchar_t * envp[]);
+
+      void initialize(hinstance hinstanceThis, hinstance hinstancePrev, wchar_t * pCmdLine, int nCmdShow);
+
+#else
+
+      void initialize(int argc, platform_char ** argv, platform_char ** envp);
+
+#endif
+
+
+#if REFERENCING_DEBUGGING
+
+      void initialize_referencing_debugging();
+//      void dump_pending_releases();
+
+#endif
+
+
+      ::platform::platform * platform() { return m_pplatform; }
+      ::heap::management * heap() { return m_pheapmanagement; }
+      ::task_message_queue * task_message_queue() { return m_ptaskmessagequeue; }
 
 
 
+   protected:
+      
+      void acme_construct();
+      void acme_destruct();
 
 
+      void initialize_memory_management();
+      void finalize_memory_management();
 
-      //void add_release_on_end(::particle* pparticle);
 
-
-      //virtual ::platform::platform * __get_platform();
-
+      void initialize_message_queue();
+      void finalize_message_queue();
 
    };
 
 
-   //template < typename APPLICATION > 
-   //class acme_impl :
-   //   virtual public ::acme::acme
-   //{
-   //public:
+   inline ::acme::acme * get() { return ::acme::acme::s_pacme; }
 
-
-   //   ::platform::platform_impl < typename APPLICATION::SYSTEM >        m_platform;
-
-   //   ::platform::platform * __get_platform() override { return &m_platform; }
-
-   //   APPLICATION new_application() override 
-   //   { 
-   //   
-   //      return new APPLICATION; 
-   //   
-   //   }
-
-   //   acme_impl()
-   //   {
-
-   //      acme_initialize();
-
-   //   }
-
-   //};
-
-   
 } // namespace acme
+
+
 

@@ -29,9 +29,10 @@ inline pointer < T > ::pointer(std::nullptr_t):
 
 }
 
+
 template < class T >
 template < typename T2 >
-inline pointer < T > ::pointer(enum_pointer_transfer, T2 * p)
+inline pointer < T > ::pointer(transfer_t, T2 * p)
 {
 
    if(::is_set(p))
@@ -66,17 +67,53 @@ inline pointer < T > ::pointer(enum_pointer_transfer, T2 * p)
 
 }
 
+template < class T >
+template < typename ...Args >
+pointer < T >::pointer(allocate_t, Args &&... args)
+{
+
+   auto p = __new < T >(::std::forward<Args>(args)...);
+
+//#if REFERENCING_DEBUGGING
+//
+//   task_on_after_new_particle(p);
+//
+//#endif
+
+   m_p = dynamic_cast <T *> (p);
+
+   m_pparticle = m_p;
+
+   if (::is_null(m_p))
+   {
+
+      ::release(p);
+
+      m_p = nullptr;
+
+      m_pparticle = nullptr;
+
+      throw_resource_exception("OBJECT * p is not of type T (pointer < T >).");
+
+   }
+
+}
+
+
 
 template < class T >
 inline pointer < T > ::pointer(const pointer & t) :
-        m_p(t.m_p),
-        m_pparticle(t.m_pparticle)
+   m_p(t.m_p),
+   m_pparticle(t.m_pparticle)
+#if REFERENCING_DEBUGGING
+   ,m_referer(t.m_referer)
+#endif
 {
 
    if (::is_set(m_p))
    {
 
-      m_pparticle->increment_reference_count();
+      m_pparticle->increment_reference_count(REFERENCING_DEBUGGING_P_FUNCTION_FILE_LINE(m_referer.m_cstringType));
 
    }
 
@@ -86,12 +123,16 @@ inline pointer < T > ::pointer(const pointer & t) :
 template < class T >
 inline pointer < T > ::pointer(pointer && t) :
 m_p(t.m_p),
-m_pparticle(t.m_pparticle)
+m_pparticle(t.m_pparticle),
+m_estatus(t.m_estatus),
+m_referer(t.m_referer)
 {
 
 t.m_p = nullptr;
 
 t.m_pparticle = nullptr;
+
+t.m_referer = nullptr;
 
 }
 
@@ -114,7 +155,7 @@ template < class T >
 inline pointer < T > ::~pointer()
 {
 
-   release();
+   release(m_referer);
 
 }
 
@@ -227,13 +268,13 @@ T * __dynamic_cast(const T2 * p)
 
 
 template < class T >
-inline pointer < T >& pointer < T > ::reset(const ::pointer < T > & pNew OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEFINITION)
+inline pointer < T >& pointer < T > ::reset(const ::pointer < T > & pNew REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
 {
 
    if (pNew.is_null())
    {
 
-      ::release(m_pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+      ::release(m_pparticle REFERENCING_DEBUGGING_COMMA_ARGS);
 
       m_p = nullptr;
 
@@ -243,7 +284,7 @@ inline pointer < T >& pointer < T > ::reset(const ::pointer < T > & pNew OBJECT_
 
       auto pparticleOld = m_pparticle;
 
-      pNew.m_pparticle->increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      pNew.m_pparticle->increment_reference_count(REFERENCING_DEBUGGING_ARGS);
 
       m_p = pNew.m_p;
 
@@ -252,7 +293,7 @@ inline pointer < T >& pointer < T > ::reset(const ::pointer < T > & pNew OBJECT_
       if (::is_set(pparticleOld))
       {
 
-         ::release(pparticleOld OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+         ::release(pparticleOld REFERENCING_DEBUGGING_COMMA_ARGS);
 
       }
 
@@ -266,7 +307,7 @@ inline pointer < T >& pointer < T > ::reset(const ::pointer < T > & pNew OBJECT_
 
 template < class T >
 template < typename T2 >
-inline pointer < T > & pointer < T > ::reset (T2 * pNew OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEFINITION)
+inline pointer < T > & pointer < T > ::reset (T2 * pNew REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
 {
 
    if (::is_null(pNew))
@@ -274,7 +315,7 @@ inline pointer < T > & pointer < T > ::reset (T2 * pNew OBJECT_REFERENCE_COUNT_D
 
       m_pparticle = nullptr;
 
-      ::release(m_p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+      release();
 
    }
    else
@@ -282,17 +323,19 @@ inline pointer < T > & pointer < T > ::reset (T2 * pNew OBJECT_REFERENCE_COUNT_D
 
       T* p;
 
-      p = dynamic_cast < T * >(pNew);
+      p = dynamic_cast < T * >((non_const < T2 > *) pNew);
 
       if (m_p != p)
       {
 
          auto pOld = m_p;
 
+         auto refererOld = ::transfer(m_referer);
+
          if (::is_set(p))
          {
 
-            p->increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+            p->increment_reference_count(REFERENCING_DEBUGGING_ARGS);
 
             m_p = p;
 
@@ -311,7 +354,7 @@ inline pointer < T > & pointer < T > ::reset (T2 * pNew OBJECT_REFERENCE_COUNT_D
          if (::is_set(pOld))
          {
 
-            ::release(pOld OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+            ::release(pOld REFERENCING_DEBUGGING_COMMA_P(refererOld));
 
          }
 
@@ -412,22 +455,25 @@ inline ::particle * pointer < T > ::detach_particle()
 // cut and paste with very good capabilities of RealVNC for MacOS in OVH.fr/eu/pt cloud from Windows client.
 // slashes with ABNT 2 keyboard and even c cedilha working with RealVNC
 template < class T >
-inline i64 pointer <T>::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
+inline i64 pointer <T>::release(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
 {
 
    m_p = nullptr;
 
-   return ::release(m_pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+   ASSERT(referer == m_referer);
+
+   return ::release(m_pparticle REFERENCING_DEBUGGING_COMMA_ARGS);
 
 }
 
 
-
 template < class T >
-inline i64 pointer <T>::global_release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
+inline i64 pointer <T>::global_release(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
 {
 
-   auto i = ::global_release(m_pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+   ASSERT(referer == m_referer);
+
+   auto i = ::global_release(m_pparticle REFERENCING_DEBUGGING_COMMA_ARGS);
 
    if (!m_pparticle)
    {
@@ -690,7 +736,7 @@ inline pointer < T >::pointer(lparam & lparam)
 
 
 template < class c_derived >
-inline i64 increment_reference_count(c_derived * pca OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEFINITION)
+inline i64 increment_reference_count(c_derived * pca REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
 {
 
    if (::is_null(pca))
@@ -700,7 +746,7 @@ inline i64 increment_reference_count(c_derived * pca OBJECT_REFERENCE_COUNT_DEBU
 
    }
 
-   return pca->increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+   return pca->increment_reference_count(REFERENCING_DEBUGGING_ARGS);
 
 }
 
@@ -736,32 +782,32 @@ inline i64 increment_reference_count(c_derived *& pderived, const ::pointer<SOUR
 
 
 template < typename TYPE >
-inline i64 release(::pointer<TYPE>& pointer OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEFINITION)
+inline i64 release(::pointer<TYPE>& pointer REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
 {
 
-return release(pointer.m_p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+return release(pointer.m_p REFERENCING_DEBUGGING_COMMA_ARGS);
 
 }
 
 
 template < typename TYPE >
-inline i64 __finalize(::pointer<TYPE> pointer OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEFINITION)
+inline i64 __finalize(::pointer<TYPE> pointer REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
 {
 
 if (!pointer) return -1;
 
 pointer->destroy();
 
-return release(pointer.m_p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+return release(pointer.m_p REFERENCING_DEBUGGING_COMMA_ARGS);
 
 }
 
 //
 //template < class REFERENCE >
-//inline i64 release(::pointer<REFERENCE>& preference OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEFINITION)
+//inline i64 release(::pointer<REFERENCE>& preference REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
 //{
 //
-//   return release(preference.m_p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+//   return release(preference.m_p REFERENCING_DEBUGGING_COMMA_ARGS);
 //
 //}
 
@@ -845,13 +891,13 @@ inline pointer < T > & pointer < T >::defer_assign_to(T2 * & p)
 
 template < class T >
 template < typename OBJECT >
-inline pointer < T > & pointer < T >::defer_create_new(OBJECT * pparticle)
+inline pointer < T > & pointer < T >::defer_create_new(OBJECT * pparticle REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
 {
 
    if (is_null())
    {
 
-      create_new < T >(pparticle);
+      create_new < T >(pparticle REFERENCING_DEBUGGING_COMMA_ARGS);
 
    }
 
@@ -862,10 +908,12 @@ inline pointer < T > & pointer < T >::defer_create_new(OBJECT * pparticle)
 
 template < class T >
 template < typename OBJECT >
-inline pointer < T > & pointer < T >::create_new(OBJECT * pparticle)
+inline pointer < T > & pointer < T >::create_new(OBJECT * pparticle REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
 {
 
-   auto p = __new(T);
+   auto p = __allocate< T >();
+
+   p.set_referer(REFERENCING_DEBUGGING_ARGS);
 
    if (p)
    {
@@ -932,15 +980,40 @@ void __destroy_and_release(pointer < T >& p)
 
 template < class T >
 template < typename T2 >
-inline pointer < T > ::pointer(const ptr < T2 >& t) :
-        m_p(t.m_p),
-        m_pparticle(t.m_p)
+inline pointer < T > ::pointer(const ptr < T2 >& t) 
 {
 
-   if (::is_set(m_p))
+   if (::is_null(t.m_p))
    {
 
-      m_pparticle->increment_reference_count();
+      m_p = nullptr;
+
+      m_pparticle = nullptr;
+
+   }
+   else
+   {
+
+      auto p = dynamic_cast <T *>(t.m_p);
+
+      if (::is_null(p))
+      {
+
+         m_p = nullptr;
+
+         m_pparticle = nullptr;
+
+      }
+      else
+      {
+
+         p->increment_reference_count();
+
+         m_p = p;
+
+         m_pparticle = p;
+
+      }
 
    }
 
@@ -949,15 +1022,40 @@ inline pointer < T > ::pointer(const ptr < T2 >& t) :
 
 template < class T >
 template < typename T2 >
-inline pointer < T > ::pointer(ptr < T2 >&& t) :
-        m_p(t.m_p),
-        m_pparticle(t.m_p)
+inline pointer < T > ::pointer(ptr < T2 >&& t)
 {
 
-   if (::is_set(m_p))
+   if (::is_null(t.m_p))
    {
 
-      m_pparticle->increment_reference_count();
+      m_p = nullptr;
+
+      m_pparticle = nullptr;
+
+   }
+   else
+   {
+
+      auto p = dynamic_cast <T *>(t.m_p);
+
+      if (::is_null(p))
+      {
+
+         m_p = nullptr;
+
+         m_pparticle = nullptr;
+
+      }
+      else
+      {
+
+         m_p = p;
+
+         m_pparticle = p;
+
+         t.m_p = nullptr;
+
+      }
 
    }
 
@@ -971,14 +1069,37 @@ inline pointer < T >& pointer < T > ::operator = (const ptr < T2 >& t)
 
    auto pold = m_pparticle;
 
-   m_p = dynamic_cast <T*>(t.m_p);
-
-   m_pparticle = t.m_p;
-
-   if (::is_set(m_p))
+   if (::is_null(t.m_p))
    {
 
-      m_pparticle->increment_reference_count();
+      m_p = nullptr;
+
+      m_pparticle = nullptr;
+
+   }
+   else
+   {
+
+      auto p = dynamic_cast <T *>(t.m_p);
+
+      if (::is_null(p))
+      {
+
+         m_p = nullptr;
+
+         m_pparticle = nullptr;
+
+      }
+      else
+      {
+
+         p->increment_reference_count();
+
+         m_p = p;
+
+         m_pparticle = p;
+
+      }
 
    }
 
@@ -996,11 +1117,39 @@ inline pointer < T >& pointer < T > ::operator = (ptr < T2 >&& t)
 
    auto pOld = m_pparticle;
 
-   m_p = t.m_p;
+   if (::is_null(t.m_p))
+   {
 
-   m_pparticle = t.m_p;
+      m_p = nullptr;
 
-   t.m_p = nullptr;
+      m_pparticle = nullptr;
+
+   }
+   else
+   {
+
+      auto p = dynamic_cast <T *>(t.m_p);
+
+      if (::is_null(p))
+      {
+
+         m_p = nullptr;
+
+         m_pparticle = nullptr;
+
+      }
+      else
+      {
+
+         m_pparticle = p;
+
+         m_p = p;
+
+         t.m_p = nullptr;
+
+      }
+
+   }
 
    ::release(pOld REF_DBG_COMMA_POINTER);
 
@@ -1009,16 +1158,113 @@ inline pointer < T >& pointer < T > ::operator = (ptr < T2 >&& t)
 }
 
 
+template < class T >
+template < typename T2 >
+inline pointer < T > & pointer < T > ::operator = (const pointer < T2 > & t)
+{
+
+   auto pOld = m_pparticle;
+
+   if (::is_null(t.m_p))
+   {
+
+      m_p = nullptr;
+
+      m_pparticle = nullptr;
+
+   }
+   else
+   {
+
+      auto p = dynamic_cast <T *>(t.m_p);
+
+      if (::is_null(p))
+      {
+
+         m_p = nullptr;
+
+         m_pparticle = nullptr;
+
+      }
+      else
+      {
+
+         p->increment_reference_count();
+
+         m_pparticle = t.m_pparticle;
+
+         m_p = p;
+
+      }
+
+   }
+
+   ::release(pOld REF_DBG_COMMA_POINTER);
+
+   return *this;
+
+}
+
+
+template < class T >
+template < typename T2 >
+inline pointer < T > & pointer < T > ::operator = (pointer < T2 > && t)
+{
+
+   auto pOld = m_pparticle;
+
+   if (::is_null(t.m_p))
+   {
+
+      m_p = nullptr;
+
+      m_pparticle = nullptr;
+
+   }
+   else
+   {
+
+      auto p = dynamic_cast <T *>(t.m_p);
+
+      if (::is_null(p))
+      {
+
+         m_p = nullptr;
+
+         m_pparticle = nullptr;
+
+      }
+      else
+      {
+
+         m_pparticle = t.m_pparticle;
+
+         m_p = p;
+
+         t.m_p = nullptr;
+
+         t.m_pparticle = nullptr;
+
+      }
+
+   }
+
+   ::release(pOld REF_DBG_COMMA_POINTER);
+
+   return *this;
+
+}
+
 
 template < typename T >
 template < typename PARTICLE >
-inline pointer < T >& pointer<T> ::defer_create(PARTICLE* pparticle, ::factory::factory* pfactory)
+inline pointer < T >& pointer<T> ::defer_create(PARTICLE* pparticle, ::factory::factory* pfactory REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
 {
 
    if (is_null())
    {
 
-      operator=(pparticle->template __create < T >());
+      operator=(pparticle->template __create < T >(pfactory REFERENCING_DEBUGGING_COMMA_ARGS));
 
    }
 
@@ -1029,7 +1275,7 @@ inline pointer < T >& pointer<T> ::defer_create(PARTICLE* pparticle, ::factory::
 
 
 template < typename TYPE >
-inline ::pointer<TYPE> __create_new(::particle* pparticle)
+inline ::pointer<TYPE> __create_new(::particle* pparticle REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
 {
 
    if (::is_null(pparticle))
@@ -1039,7 +1285,9 @@ inline ::pointer<TYPE> __create_new(::particle* pparticle)
 
    }
 
-   auto p = __new(TYPE());
+   auto p = __allocate< TYPE >();
+
+   p.set_referer(REFERENCING_DEBUGGING_ARGS);
 
    if (p)
    {
@@ -1057,7 +1305,7 @@ template < typename TYPE >
 inline void __construct_new(::particle* pparticle, ::pointer<TYPE>& p)
 {
 
-   p = __new(TYPE);
+   p = __allocate< TYPE >();
 
    if (!p)
    {
@@ -1080,44 +1328,44 @@ inline void copy(::pointer < TARGET > & pTarget, const ::pointer < SOURCE > & pS
 }
 
 
-template < typename T >
-template < class T2 >
-inline pointer < T > & pointer < T >::operator = (::pointer<T2>&& t)
-{
-
-   auto pOld = m_p;
-
-   if (::is_set(t.m_p))
-   {
-
-      m_p = dynamic_cast <T *>(t.m_p);
-
-      m_pparticle = t.m_pparticle;
-
-      if (::is_set(m_p))
-      {
-
-         t.m_p = nullptr;
-
-         t.m_pparticle = nullptr;
-
-      }
-
-   }
-   else
-   {
-
-      m_p = nullptr;
-
-      m_pparticle = nullptr;
-
-   }
-
-   ::release(pOld);
-
-   return *this;
-
-}
+//template < typename T >
+//template < class T2 >
+//inline pointer < T > & pointer < T >::operator = (::pointer<T2>&& t)
+//{
+//
+//   auto pOld = m_p;
+//
+//   if (::is_set(t.m_p))
+//   {
+//
+//      m_p = dynamic_cast <T *>(t.m_p);
+//
+//      m_pparticle = t.m_pparticle;
+//
+//      if (::is_set(m_p))
+//      {
+//
+//         t.m_p = nullptr;
+//
+//         t.m_pparticle = nullptr;
+//
+//      }
+//
+//   }
+//   else
+//   {
+//
+//      m_p = nullptr;
+//
+//      m_pparticle = nullptr;
+//
+//   }
+//
+//   ::release(pOld);
+//
+//   return *this;
+//
+//}
 
 
 template < typename T >

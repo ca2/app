@@ -96,7 +96,7 @@ namespace nanoui
 
 
       /**
-       * Create a memory_new Screen instance
+       * Create a new Screen instance
        *
        * \param size
        *     Size in pixels at 96 dpi (on high-DPI screens, the actual resolution

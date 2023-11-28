@@ -34,8 +34,8 @@ typedef char PRBool;
 #define PR_TRUE  1
 #define nsnull   nullptr
 
-#define PR_MALLOC memory_allocate
-#define PR_FREEIF memory_free
+#define PR_MALLOC ::heap::management::memory(::heap::e_memory_main)->allocate
+#define PR_FREEIF ::heap::management::memory(::heap::e_memory_main)->free
 
 
 #define NS_ASSERTION(a,b) { if (!(a)) { puts(b); abort(); } }

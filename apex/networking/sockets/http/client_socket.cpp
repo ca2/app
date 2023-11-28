@@ -244,7 +244,7 @@ namespace sockets
       m_pfile = nullptr;
       m_iFinalSize = -1;
 
-      memory_counter_increment(this);
+      //memory_counter_increment(this);
 
    }
 

@@ -34,8 +34,8 @@ namespace app_shader
 #ifdef _DEBUG
 
 
-      virtual int64_t increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
-      virtual int64_t decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
+      virtual int64_t increment_reference_count(REFERENCING_DEBUGGING_PARAMETERS) override;
+      virtual int64_t decrement_reference_count(REFERENCING_DEBUGGING_PARAMETERS) override;
 
 
 #endif

@@ -10,6 +10,8 @@
 #include "acme/platform/application.h"
 #include "acme/platform/context.h"
 #include "acme/platform/node.h"
+#include "acme/platform/reference_item_array.h"
+#include "acme/platform/session.h"
 #include "acme/platform/system.h"
 #include "acme/user/nano/nano.h"
 //#include "acme/primitive/primitive/payload.h"
@@ -18,26 +20,86 @@
 CLASS_DECL_ACME void do_tasks();
 
 
-particle::~particle()
+#if REFERENCING_DEBUGGING
+
+
+bool g_bDefaultEnableObjectReferenceCountDebug = false;
+
+
+//CLASS_DECL_ACME void on_construct_particle(::particle * pparticle);
+
+
+particle::particle() :
+   m_countReference(1)
 {
 
-#if OBJECT_REFERENCE_COUNT_DEBUG
-
-   if (::is_set(m_pobjectreferencecountdebug))
+#if REFERENCING_DEBUGGING
+   
+   if (!g_bDefaultEnableObjectReferenceCountDebug)
    {
 
-      delete m_pobjectreferencecountdebug;
+      disable_referencing_debugging();
 
    }
 
+   ::allocator::on_construct_particle(this);
+
 #endif
-   //::release(m_pparticleSynchronization);
+
+}
+
+
+//particle::particle(disable_referencing_debugging_t) :
+//   m_countReference(1)
+//{
+//
+//#if REFERENCING_DEBUGGING
+//
+//   disable_referencing_debugging();
+//
+//#endif
+//
+//   ::allocator::on_construct_particle(this);
+//
+//}
+
+
+#endif
+
+
+particle::~particle()
+{
+
+#if REFERENCING_DEBUGGING
+   {
+
+      //auto p = ::transfer(m_preferenceitema);
+
+      //m_preferenceitema.release();
+
+      ::allocator::on_destruct_particle(this);
+
+//      ::acme::del(m_preferenceitema);
+
+   }
+#endif
 
 }
 
 
 void particle::initialize(::particle * pparticle)
 {
+
+//#if REFERENCING_DEBUGGING
+//
+//   if (is_referencing_debugging_enabled())
+//   {
+//
+//      m_preferenceitema->initialize_reference_item_array(::acme::get()->m_preferencingdebugging);
+//
+//   }
+//
+//#endif
 
    if (!m_pcontext)
    {
@@ -54,14 +116,14 @@ void particle::initialize(::particle * pparticle)
 #ifdef _DEBUG
 
 
-i64 particle::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
+i64 particle::increment_reference_count(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
 {
 
    auto c = ++m_countReference;
 
-#if OBJECT_REFERENCE_COUNT_DEBUG
+#if REFERENCING_DEBUGGING
 
-   add_ref_history(pReferer, pszObjRefDbg);
+   add_reference_item(REFERENCING_DEBUGGING_ARGS);
 
 #endif
 
@@ -70,17 +132,17 @@ i64 particle::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_
 }
 
 
-i64 particle::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
+i64 particle::decrement_reference_count(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
 {
 
    auto c = --m_countReference;
 
-#if OBJECT_REFERENCE_COUNT_DEBUG
+#if REFERENCING_DEBUGGING
 
    if (c > 0)
    {
 
-      dec_ref_history(pReferer, pszObjRefDbg);
+      erase_reference_item(REFERENCING_DEBUGGING_ARGS);
 
    }
 
@@ -91,10 +153,31 @@ i64 particle::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_
 }
 
 
-i64 particle::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
+i64 particle::replace_reference(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
 {
 
-   i64 i = decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+   auto c = m_countReference;
+
+#if REFERENCING_DEBUGGING
+
+   if (c > 0)
+   {
+
+      m_preferenceitema->replace_item(REFERENCING_DEBUGGING_ARGS);
+
+   }
+
+#endif
+
+   return c;
+
+}
+
+
+i64 particle::release(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
+{
+
+   i64 i = decrement_reference_count(REFERENCING_DEBUGGING_ARGS);
 
    if (i == 0)
    {
@@ -114,27 +197,18 @@ i64 particle::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
 void particle::set_synchronization(::particle *pparticleSynchronization)
 {
 
-   if (::is_set(pparticleSynchronization))
-   {
-
-      pparticleSynchronization->increment_reference_count();
-
-   }
-
-   m_pparticleSynchronization.release();
-
    m_pparticleSynchronization = pparticleSynchronization;
 
 }
 
 
-void particle::defer_create_synchronization()
+void particle::defer_create_synchronization(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
 {
 
    if (!m_pparticleSynchronization)
    {
 
-      set_synchronization(::__create< ::mutex >(this));
+      set_synchronization(__create< ::mutex >(nullptr REFERENCING_DEBUGGING_COMMA_ARGS));
 
    }
 
@@ -220,6 +294,21 @@ const char * particle::topic_text() const
 //}
 
 
+::platform::platform * particle::platform() const
+{
+
+   return ::is_set(m_pcontext) ? m_pcontext->m_pplatform : _platform();
+
+}
+
+
+class ::platform::platform * particle::_platform() const
+{
+
+   return ::acme::get()->m_pplatform;
+
+}
+
 
 enum_type particle::get_payload_type() const
 {
@@ -263,6 +352,7 @@ void particle::delete_this()
 
 void particle::on_initialize_particle()
 {
+
 
 
 }
@@ -334,6 +424,56 @@ void particle::on_initialize_particle()
 {
 
    return m_pcontext->acmenode();
+
+}
+
+
+::mathematics::mathematics * particle::mathematics() const
+{
+
+   auto psystem = system();
+
+   return ::is_set(psystem) ? psystem->mathematics() : nullptr;
+
+}
+
+
+class ::imaging * particle::imaging() const
+{
+
+   auto psystem = system();
+
+   return ::is_set(psystem) ? psystem->imaging() : nullptr;
+
+}
+
+
+class ::user::user * particle::user() const
+{
+
+   auto psession = session();
+
+   return ::is_set(psession) ? psession->user() : nullptr;
+
+}
+
+
+class ::draw2d::draw2d * particle::draw2d() const
+{
+
+   auto psystem = system();
+
+   return ::is_set(psystem) ? psystem->draw2d() : nullptr;
+
+}
+
+
+class ::write_text::write_text * particle::write_text() const
+{
+
+   auto psystem = system();
+
+   return ::is_set(psystem) ? psystem->write_text() : nullptr;
 
 }
 
@@ -785,7 +925,7 @@ class tracer * particle::tracer() const
    if (!ptask)
    {
 
-      auto pplatform = ::platform::get();
+      auto pplatform = this->platform();
 
       if (::is_set(pplatform))
       {
@@ -1434,7 +1574,7 @@ bool particle::_wait(const class time & timeWait)
 //
 //         pmutex->m_strThread = ::task_get_name();
 //         pmutex->m_itask = ::current_itask();
-//         ::informationf("");
+//         ::acme::get()->platform()->informationf("");
 //
 //      }
 //
@@ -1649,7 +1789,7 @@ bool particle::is_branch_current() const
 ::topic_pointer create_topic(::particle * pparticleCall, const ::atom & atom)
 {
 
-   auto ptopic = __new(::topic(atom));
+   auto ptopic = __allocate< ::topic >(atom);
    
    ptopic->initialize(pparticleCall);
 
@@ -1945,7 +2085,7 @@ void particle::set_library_name(const ::scoped_string & scopedstrLibraryName)
 //}
 
 
-//void particle::add_composite(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEFINITION)
+//void particle::add_composite(::particle * pparticle REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
 //{
 //
 //   //throw ::not_implemented();
@@ -1959,7 +2099,7 @@ void particle::set_library_name(const ::scoped_string & scopedstrLibraryName)
 //}
 //
 //
-//void particle::add_reference(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEFINITION)
+//void particle::add_reference(::particle * pparticle REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
 //{
 //
 //   //return ::success_none;
@@ -1967,7 +2107,7 @@ void particle::set_library_name(const ::scoped_string & scopedstrLibraryName)
 //}
 //
 //
-//void particle::release_composite2(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEFINITION)
+//void particle::release_composite2(::particle * pparticle REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
 //{
 //
 //   //return ::success_none;
@@ -1975,7 +2115,7 @@ void particle::set_library_name(const ::scoped_string & scopedstrLibraryName)
 //}
 //
 //
-//void particle::finalize_composite(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEFINITION)
+//void particle::finalize_composite(::particle * pparticle REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
 //{
 //
 //   //return ::success_none;
@@ -1983,7 +2123,7 @@ void particle::set_library_name(const ::scoped_string & scopedstrLibraryName)
 //}
 //
 //
-//void particle::release_reference(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEFINITION)
+//void particle::release_reference(::particle * pparticle REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
 //{
 //
 //   //return ::success_none;
@@ -2172,7 +2312,7 @@ void particle::kick_idle()
 }
 
 
- ::pointer<particle>particle::__id_create(const ::atom & atom, ::factory::factory * pfactory)
+ ::pointer<particle>particle::__id_create(const ::atom & atom, ::factory::factory * pfactory REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
 {
 
    auto pfactoryitem = pfactory->get_factory_item(atom);
@@ -2184,7 +2324,7 @@ void particle::kick_idle()
 
    }
 
-   auto p = pfactoryitem->create_particle();
+   auto p = pfactoryitem->create_particle(REFERENCING_DEBUGGING_ARGS);
 
    if (!p)
    {
@@ -2289,154 +2429,22 @@ void particle::user_post(const ::procedure & procedure)
 //
 //}
 
-
-CLASS_DECL_ACME class tracer * tracer()
-{
-
-   auto ptask = get_task();
-
-   if (!ptask)
-   {
-
-      return ::platform::get()->m_pcontext;
-
-   }
-
-   return ptask;
-
-}
-
-
-
-
-
-
-CLASS_DECL_ACME ::trace_statement log_statement()
-{
-
-   return ::transfer(trace_statement(tracer())((::particle *)nullptr));
-
-}
-
-
-::trace_statement information()
-{
-
-   return ::transfer(trace_statement(tracer())(e_trace_level_information));
-
-}
-
-
-::trace_statement warning()
-{
-
-   return ::transfer(trace_statement(tracer())(e_trace_level_warning));
-
-}
-
-
-::trace_statement error()
-{
-
-   return ::transfer(trace_statement(tracer())(e_trace_level_error));
-
-}
-
-
-::trace_statement fatal()
-{
-
-   return ::transfer(trace_statement(tracer())(e_trace_level_fatal));
-
-}
-
-
-void informationf(const ::ansi_character * pszFormat, ...)
-{
-
-   va_list arguments;
-
-   va_start(arguments, pszFormat);
-
-   {
-
-      auto statement = log_statement();
-
-      statement(e_trace_level_information);
-
-      statement.formatf_output_arguments(pszFormat, arguments);
-
-   }
-
-   va_end(arguments);
-
-}
-
-
-void warningf(const ::ansi_character * pszFormat, ...)
-{
-
-   va_list arguments;
-
-   va_start(arguments, pszFormat);
-
-   {
-
-      auto statement = log_statement();
-
-      statement(e_trace_level_warning);
-
-      statement.formatf_output_arguments(pszFormat, arguments);
-
-   }
-
-   va_end(arguments);
-
-}
-
-
-void errorf(const ::ansi_character * pszFormat, ...)
-{
-
-   va_list arguments;
-
-   va_start(arguments, pszFormat);
-
-   {
-
-      auto statement = log_statement();
-
-      statement(e_trace_level_error);
-
-      statement.formatf_output_arguments(pszFormat, arguments);
-
-   }
-
-   va_end(arguments);
-
-}
-
-
-void fatalf(const ::ansi_character * pszFormat, ...)
-{
-
-   va_list arguments;
-
-   va_start(arguments, pszFormat);
-
-   {
-
-      auto statement = log_statement();
-
-      statement(e_trace_level_fatal);
-
-      statement.formatf_output_arguments(pszFormat, arguments);
-
-   }
-
-   va_end(arguments);
-
-}
+//
+//CLASS_DECL_ACME class tracer * tracer()
+//{
+//
+//   auto ptask = get_task();
+//
+//   if (!ptask)
+//   {
+//
+//      return this->platform()->m_pcontext;
+//
+//   }
+//
+//   return ptask;
+//
+//}
 
 
 void particle::process_owned_procedure_list(::procedure_list & procedurelist, bool & bHandled)

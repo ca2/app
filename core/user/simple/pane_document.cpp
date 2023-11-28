@@ -51,17 +51,17 @@ bool simple_pane_document::on_open_document(const ::payload & payloadFile)
 
 #ifdef _DEBUG
 
-i64 simple_pane_document::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
+i64 simple_pane_document::increment_reference_count(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
 {
 
-   return  ::user::document::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+   return  ::user::document::increment_reference_count(REFERENCING_DEBUGGING_ARGS);
 
 }
 
-i64 simple_pane_document::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
+i64 simple_pane_document::decrement_reference_count(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
 {
 
-   return  ::user::document::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+   return  ::user::document::decrement_reference_count(REFERENCING_DEBUGGING_ARGS);
 
 }
 

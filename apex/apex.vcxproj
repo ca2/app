@@ -613,6 +613,7 @@
     </ClCompile>
     <ClCompile Include="handler\context.cpp" />
     <ClCompile Include="handler\manager.cpp" />
+    <ClCompile Include="handler\manager_room.cpp" />
     <ClCompile Include="handler\signal.cpp" />
     <ClCompile Include="input\input.cpp" />
     <ClCompile Include="interprocess\base.cpp" />
@@ -706,6 +707,7 @@
     <ClInclude Include="handler\context.h" />
     <ClInclude Include="handler\manager.h" />
     <ClInclude Include="handler\aaa_predicate.h" />
+    <ClInclude Include="handler\manager_room.h" />
     <ClInclude Include="handler\promise.h" />
     <ClInclude Include="handler\promise1.h" />
     <ClInclude Include="handler\signal.h" />

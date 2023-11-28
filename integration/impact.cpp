@@ -53,18 +53,18 @@ namespace app_integration
 #ifdef _DEBUG
 
 
-   int64_t impact::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
+   int64_t impact::increment_reference_count(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
    {
 
-      return  ::user::impact::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      return  ::user::impact::increment_reference_count(REFERENCING_DEBUGGING_ARGS);
 
    }
 
 
-   int64_t impact::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
+   int64_t impact::decrement_reference_count(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
    {
 
-      return  ::user::impact::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      return  ::user::impact::decrement_reference_count(REFERENCING_DEBUGGING_ARGS);
 
    }
 

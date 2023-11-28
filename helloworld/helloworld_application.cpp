@@ -88,7 +88,7 @@ namespace helloworld
       ::user::single_document_template* pDocTemplate;
 
 
-      pDocTemplate = __new(::user::single_document_template(
+      pDocTemplate = __allocate < ::user::single_document_template >(
                              this,
                              "main",
                              ::type < document >(),
@@ -98,7 +98,7 @@ namespace helloworld
       add_document_template(pDocTemplate);
 
 
-      pDocTemplate = __new(::user::single_document_template(
+      pDocTemplate = __allocate < ::user::single_document_template >(
                              this,
                              "main",
                              ::type < document >(),
@@ -108,7 +108,7 @@ namespace helloworld
       add_document_template(pDocTemplate);
 
 
-      pDocTemplate = __new(::user::single_document_template(
+      pDocTemplate = __allocate < ::user::single_document_template >(
                              this,
                              "switcher",
                              ::type < document >(),
@@ -191,14 +191,14 @@ namespace helloworld
    i64 application::increment_reference_count()
    {
 
-      return ::object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      return ::object::increment_reference_count(REFERENCING_DEBUGGING_ARGS);
 
    }
 
    i64 application::decrement_reference_count()
    {
 
-      return ::object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      return ::object::decrement_reference_count(REFERENCING_DEBUGGING_ARGS);
 
    }
 
@@ -212,7 +212,7 @@ extern "C"
 ::acme::library * app_helloworld_get_new_library(::particle * pparticle)
 {
 
-   return memory_new ::apex::single_application_library < ::helloworld::application > (pparticle, "app/helloworld");
+   return __new< ::apex::single_application_library < ::helloworld::application >  >(pparticle, "app/helloworld");
 
 }
 

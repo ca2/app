@@ -285,7 +285,7 @@ inline ::string as_string(FLOATING f, const ::ansi_character * pszFormat)
 
 template < character_range CHARACTER_RANGE >
 payload::payload(const CHARACTER_RANGE & range) :
-   payload(e_no_initialize)
+   payload(no_initialize_t{})
 {
 
    m_etype = e_type_ansi_range;
@@ -401,8 +401,8 @@ namespace file
 
 
 
-template < typename TYPE, enum_type m_etypeContainer >
-inline void implode(const numeric_array < TYPE, m_etypeContainer > & a, string & str, const ::scoped_string & scopedstrSeparator, ::index start, ::count count)
+template < typename TYPE, enum_type t_etypeContainer >
+inline void implode(const numeric_array < TYPE, t_etypeContainer > & a, string & str, const ::scoped_string & scopedstrSeparator, ::index start, ::count count)
 {
    
    if(start < 0)
@@ -442,8 +442,8 @@ inline void implode(const numeric_array < TYPE, m_etypeContainer > & a, string &
 }
 
 
-template < typename TYPE, enum_type m_etypeContainer >
-inline string implode(const numeric_array < TYPE, m_etypeContainer > & a,const ::scoped_string & scopedstrSeparator, ::index start, ::count count)
+template < typename TYPE, enum_type t_etypeContainer >
+inline string implode(const numeric_array < TYPE, t_etypeContainer > & a,const ::scoped_string & scopedstrSeparator, ::index start, ::count count)
 {
    
    string str;
@@ -455,8 +455,8 @@ inline string implode(const numeric_array < TYPE, m_etypeContainer > & a,const :
 }
 
 
-template < typename TYPE, ::enum_type m_etypeContainer >
-string surround_and_implode(const numeric_array < TYPE, m_etypeContainer > & a, const ::scoped_string & scopedstrSeparator, const ::scoped_string & scopedstrPrefix, const ::scoped_string & scopedstrSuffix, ::index iStart, ::count iCount)
+template < typename TYPE, ::enum_type t_etypeContainer >
+string surround_and_implode(const numeric_array < TYPE, t_etypeContainer > & a, const ::scoped_string & scopedstrSeparator, const ::scoped_string & scopedstrPrefix, const ::scoped_string & scopedstrSuffix, ::index iStart, ::count iCount)
 {
    string str;
    string strSeparator(scopedstrSeparator);
@@ -1225,7 +1225,7 @@ template < typename ITERATOR_TYPE >
 //   if (iNewBufferSize > iBufferSize)
 //   {
 //
-//      *ppsz = (char *)memory_allocate(iNewBufferSize + 1);
+//      *ppsz = (char *)::heap::management::memory(::heap::e_memory_main)->allocate(iNewBufferSize + 1);
 //
 //   }
 //

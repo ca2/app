@@ -15,7 +15,7 @@ void debug_object_event_promisse_predicate()
 
    //::matter o;
 
-   //::matter * po = memory_new matter();
+   //::matter * po = __new< matter >();
 
    //// 2 arguments
    //o.treat(ok, po, [&](auto & result) { informationf("o += ok..."); return success; } };
@@ -134,7 +134,7 @@ CLASS_DECL_ACME void debug_print(const char * pszFormat, ...)
 
    str.formatf_arguments(pszFormat, args);
 
-   ::informationf(str);
+   ::acme::get()->platform()->informationf(str);
 
    va_end(args);
 

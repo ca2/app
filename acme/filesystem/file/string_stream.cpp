@@ -5,10 +5,10 @@
 
 //::pointer < string_buffer >   m_pfile;
 
-string_stream::string_stream() :
-   string_stream(__new(class string_buffer))
+string_stream::string_stream()
 {
 
+   m_pfile = ::transfer(new class string_buffer);
 
 }
 
@@ -17,6 +17,13 @@ string_stream::string_stream(const ::file_pointer & pfile)
 {
 
    m_pfile = pfile;
+
+}
+
+
+string_stream::string_stream(::file_pointer && pfile) :
+   write_text_stream(::transfer(pfile))
+{
 
 }
 

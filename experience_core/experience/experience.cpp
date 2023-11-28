@@ -90,31 +90,31 @@ namespace experience_core
       if(strSchema == "001")
       {
                
-         return memory_new ::experience_core::frame_001;
+         return __new< ::experience_core::frame_001 >();
 
       }
       else if(strSchema == "002")
       {
                
-         return memory_new ::experience_core::frame_002;
+         return __new< ::experience_core::frame_002 >();
 
       }
       else if(strSchema == "005")
       {
                
-         return memory_new ::experience_core::frame_005;
+         return __new< ::experience_core::frame_005 >();
 
       }
       else if(strSchema == "008")
       {
                
-         return memory_new ::experience_core::frame_008;
+         return __new< ::experience_core::frame_008 >();
 
       }
       else if(strSchema == "011")
       {
                
-         return memory_new ::experience_core::frame_011;
+         return __new< ::experience_core::frame_011 >();
 
       }
       else if (strSchema == "022")
@@ -126,7 +126,7 @@ namespace experience_core
       else if(strSchema == "Minimal001")
       {
 
-         return memory_new ::experience_core::frame_Minimal001;
+         return __new< ::experience_core::frame_Minimal001 >();
 
       }
 

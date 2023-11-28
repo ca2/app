@@ -893,7 +893,7 @@ class particle;
 //class element;
 class matter;
 class exception_translator;
-class counter;
+//class counter;
 //class type;
 
 class acme_file;
@@ -908,7 +908,7 @@ namespace platform
    class platform;
 
 
-   inline ::platform::platform * get();
+   //inline ::platform::platform * get();
 
 
 } // namespace platform

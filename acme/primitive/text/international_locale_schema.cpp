@@ -18,7 +18,7 @@ namespace text
       void create_rtl_map()
       {
 
-         g_pmapRTL = memory_new id_to_id;
+         g_pmapRTL = __new< id_to_id >();
 
       }
 
@@ -783,18 +783,18 @@ namespace text
 
 #ifdef _DEBUG
 
-      i64 locale_schema::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
+      i64 locale_schema::increment_reference_count(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
       {
 
-         return particle::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+         return particle::increment_reference_count(REFERENCING_DEBUGGING_ARGS);
 
       }
 
 
-      i64 locale_schema::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
+      i64 locale_schema::release(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
       {
 
-         return particle::release(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+         return particle::release(REFERENCING_DEBUGGING_ARGS);
 
       }
 

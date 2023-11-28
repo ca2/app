@@ -958,7 +958,7 @@ pacmedirectory->is(strPath))
 //
 //            }
 //
-//            image_key * pstore = memory_new image_key(imagekey);
+//            image_key * pstore = aaa_primitive_new image_key(imagekey);
 //
 //            {
 //

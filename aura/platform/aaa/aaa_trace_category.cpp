@@ -13,7 +13,7 @@ pointer_array < trace_category > * trace_category::s_ptracecategorya = nullptr;
 void trace_category_static_init()
 {
 
-   trace_category::s_ptracecategorya = memory_new pointer_array < trace_category >;
+   trace_category::s_ptracecategorya = aaa_primitive_new pointer_array < trace_category >;
 
    const ::scoped_string & scopedstra[] =
    {
@@ -71,7 +71,7 @@ void trace_category_static_init()
 
       const ::scoped_string & scopedstrCategory = *p;
 
-      auto pcategory = __new(trace_category(etracecategory, pszCategory));
+      auto pcategory = __allocate< trace_category >(etracecategory, pszCategory);
 
       trace_category::s_ptracecategorya->add(pcategory);
 

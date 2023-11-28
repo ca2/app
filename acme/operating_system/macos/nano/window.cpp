@@ -58,26 +58,26 @@ namespace macos
 #ifdef _DEBUG
 
 
-i64 nano_window::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
+i64 nano_window::increment_reference_count(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
 {
 
-return ::property_object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+return ::property_object::increment_reference_count(REFERENCING_DEBUGGING_ARGS);
 
 }
 
 
-i64 nano_window::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
+i64 nano_window::decrement_reference_count(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
 {
 
-return ::property_object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+return ::property_object::decrement_reference_count(REFERENCING_DEBUGGING_ARGS);
 
 }
 
 
-i64 nano_window::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
+i64 nano_window::release(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
 {
 
-return ::property_object::release(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+return ::property_object::release(REFERENCING_DEBUGGING_ARGS);
 
 }
 
@@ -153,7 +153,7 @@ return ::property_object::release(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
       
       apple_defer_nano_application_create(system());
       
-      m_pwindowbridge = __new(nano_window_bridge);
+      m_pwindowbridge = __allocate< nano_window_bridge >();
 
       CGRect cgrect;
       
@@ -541,7 +541,7 @@ void nano_window_bridge::on_char(int iChar)
 void nano_window_bridge::_on_draw_frame(CGContextRef cg, CGSize sizeFrame)
 {
    
-   ::pointer<quartz2d::nano_device>pnanodevice = __new(quartz2d::nano_device(cg));
+   ::pointer<quartz2d::nano_device>pnanodevice = __allocate< quartz2d::nano_device >(cg);
    
    m_pwindow->_draw(pnanodevice);
    

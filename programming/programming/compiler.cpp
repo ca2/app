@@ -284,7 +284,7 @@ namespace programming
 #ifdef WINDOWS_DESKTOP
 
       u32 dwSize = GetEnvironmentVariableW(L"PATH", nullptr, 0);
-      LPWSTR lpsz = memory_new wchar_t[dwSize + 1];
+      LPWSTR lpsz = __new_array< wchar_t >(dwSize + 1);
       dwSize = GetEnvironmentVariableW(L"PATH", lpsz, dwSize + 1);
       str += lpsz;
       delete lpsz;
@@ -452,7 +452,7 @@ namespace programming
       //#ifdef WINDOWS_DESKTOP
       //   {
       //      u32 dwSize = GetEnvironmentVariable("PATH", nullptr, 0);
-      //      char * lpsz = memory_new char[dwSize + 1];
+      //      char * lpsz = __new_array< char >(dwSize + 1);
       //      dwSize = GetEnvironmentVariable("PATH", lpsz, dwSize + 1);
       //      delete lpsz;
       //   }
@@ -526,7 +526,7 @@ namespace programming
       //   #ifdef WINDOWS_DESKTOP
       //   {
       //      u32 dwSize = GetEnvironmentVariable("PATH", nullptr, 0);
-      //      char * lpsz = memory_new char[dwSize + 1];
+      //      char * lpsz = __new_array< char >(dwSize + 1);
       //      dwSize = GetEnvironmentVariable("PATH", lpsz, dwSize + 1);
       //      delete lpsz;
       //   }

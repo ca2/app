@@ -20,6 +20,7 @@ public:
 
    string_stream();
    string_stream(const ::file_pointer & pfile);
+   string_stream(::file_pointer && pfile);
    string_stream(string_stream && stream);
    ~string_stream() override;
 

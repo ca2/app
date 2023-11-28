@@ -2,18 +2,34 @@
 
 
 #include "acme/primitive/primitive/ptr.h"
+#include "acme/platform/reference_referer.h"
 
 
-CLASS_DECL_ACME ::factory::factory * get_system_factory();
+struct transfer_t {};
+struct allocate_t {};
+
+//CLASS_DECL_ACME ::factory::factory * get_system_factory();
+
+
+//#if REFERENCING_DEBUGGING
+//
+//
+//CLASS_DECL_ACME::particle * task_get_top_track();
+//CLASS_DECL_ACME void task_on_new_particle(::particle * pparticle);
+//CLASS_DECL_ACME void task_on_after_new_particle(::particle * pparticle);
+//
+//
+//#endif
 
 
 #define TEMPLATE_TYPE typename __TEMPLATE_TYPE__ = nullptr_t
 #define TEMPLATE_ARG __TEMPLATE_TYPE__ t = nullptr
 
 template < class c_derived >
-inline i64 increment_reference_count(c_derived * pca OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+inline i64 increment_reference_count(c_derived * pca REFERENCING_DEBUGGING_COMMA_PARAMS);
 
 class particle;
+
 
 // ::ca::null_class back link to operational system oswindow.h
 //
@@ -32,14 +48,20 @@ public:
 
    using RAW_POINTER = TYPE *;
 
-   T *            m_p;
-   ::particle *   m_pparticle;
-   ::e_status     m_estatus;
+   T *                  m_p;
+   ::particle *         m_pparticle;
+   ::e_status           m_estatus;
+#if REFERENCING_DEBUGGING
+   reference_referer    m_referer;
+#endif
 
 
    inline pointer();
    inline pointer( std::nullptr_t);
    inline pointer(lparam& lparam);
+
+   template < typename ...Args >
+   pointer(allocate_t, Args &&... args);
 
    pointer(const pointer & t);
    pointer(pointer && t);
@@ -51,16 +73,18 @@ public:
 
 
    //inline _pointer < enum_create_new > :
-   //   m_p(memory_new T)
+   //   m_p(aaa_memory_new T)
    //{
 
    //}
 
    template < typename PARTICLE >
-   inline pointer(enum_create_new, PARTICLE * pparticle) :
-      m_p(memory_new T),
+   inline pointer(enum_create_new, PARTICLE * pparticle REFERENCING_DEBUGGING_COMMA_PARAMS) :
+      m_p(__new< T >()),
       m_pparticle(m_p)
    {
+
+      set_referer(REFERENCING_DEBUGGING_ARGS);
 
       m_p->initialize(pparticle);
 
@@ -68,21 +92,21 @@ public:
 
 
    template < typename PARTICLE >
-   inline pointer(enum_create, PARTICLE * pparticle, ::factory::factory * pfactory = ::get_system_factory()) :
+   inline pointer(enum_create, PARTICLE * pparticle, ::factory::factory * pfactory = nullptr REFERENCING_DEBUGGING_COMMA_PARAMS) :
       m_p(nullptr),
       m_pparticle(nullptr)
    {
 
-      create(pparticle, pfactory);
+      create(pparticle, pfactory  REFERENCING_DEBUGGING_COMMA_ARGS);
 
    }
 
 
    template < typename T2 >
-   inline pointer(enum_pointer_transfer, T2* p);
+   inline pointer(transfer_t, T2* p);
 
    template < class T2 >
-   inline pointer(const T2 * p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
+   inline pointer(const T2 * p REFERENCING_DEBUGGING_COMMA_PARAMS)
    {
 
       if (::is_null(p))
@@ -101,7 +125,7 @@ public:
       if (::is_set(m_p))
       {
 
-         ::increment_reference_count(m_p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+         ::increment_reference_count(m_p REFERENCING_DEBUGGING_COMMA_ARGS);
 
          m_pparticle = m_p;
 
@@ -178,9 +202,19 @@ public:
 
             m_pparticle = t.m_pparticle;
 
+            m_estatus = t.m_estatus;
+
+#if REFERENCING_DEBUGGING
+            m_referer = t.m_referer;
+#endif
+
             t.m_p = nullptr;
 
             t.m_pparticle = nullptr;
+
+#if REFERENCING_DEBUGGING
+            t.m_referer = nullptr;
+#endif
 
          }
          else
@@ -189,6 +223,10 @@ public:
             m_p = nullptr;
 
             m_pparticle = nullptr;
+
+#if REFERENCING_DEBUGGING
+            m_referer = nullptr;
+#endif
 
          }
 
@@ -199,6 +237,10 @@ public:
          m_p = nullptr;
 
          m_pparticle = nullptr;
+
+#if REFERENCING_DEBUGGING
+         m_referer = nullptr;
+#endif
 
       }
 
@@ -229,15 +271,59 @@ public:
    inline bool is_null() const;
    inline bool is_set() const;
 
+
+   template < class T2 >
+   inline pointer & operator = (T2 * p)
+   {
+
+      return reset(p);
+
+   }
+
+
    pointer & operator = (const pointer & t);
    pointer & operator = (pointer && t);
+
+
+   template < class T2 >
+   inline pointer & operator = (const ::pointer<T2> & t);
+   template < class T2 >
+   inline pointer & operator = (::pointer<T2> && t);
+
+
    template < typename T2 >
    pointer & operator = (const ptr < T2 > & p);
    template < typename T2 >
    pointer & operator = (ptr < T2 > && p);
 
+
+
    //template < typename VAR >
    //inline pointer & operator = (const payload_type < VAR > & payload);
+
+   void set_referer(REFERENCING_DEBUGGING_PARAMETERS)
+   {
+
+      m_referer = referer;
+
+   }
+
+   void on_initialize_particle()
+   {
+
+      m_pparticle->add_reference_item(m_referer);
+
+   }
+
+
+   void add_reference_item(REFERENCING_DEBUGGING_PARAMETERS)
+   {
+
+      set_referer(REFERENCING_DEBUGGING_ARGS);
+
+      m_pparticle->add_reference_item(REFERENCING_DEBUGGING_ARGS);
+
+   }
 
 
    //inline pointer& operator = (T * p)
@@ -247,14 +333,6 @@ public:
 
    //}
 
-
-   template < class T2 >
-   inline pointer & operator = (T2 * p)
-   {
-
-      return reset(p);
-
-   }
 
    //template < typename T2 >
    //inline pointer & operator = (const T2 * p)
@@ -282,22 +360,11 @@ public:
 
    //}
 
-   template < class T2 >
-   inline pointer & operator = (const ::pointer<T2>& t)
-   {
-
-      return operator = (t.m_p);
-
-   }
 
 
-   template < class T2 >
-   inline pointer & operator = (::pointer<T2>&& t);
+   inline i64 release(REFERENCING_DEBUGGING_PARAMETERS);
 
-
-   inline i64 release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
-
-   inline i64 global_release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
+   inline i64 global_release(REFERENCING_DEBUGGING_PARAMETERS);
 
    inline T * detach();
    inline ::particle * detach_particle();
@@ -345,7 +412,7 @@ public:
    //pointer & merge(const CONTAINER & pcontainer, const OBJECT & pparticle, const ATTRIBUTE & attribute)
    //{
 
-   //   auto pModified = __new(TYPE(*m_p));
+   //   auto pModified = __allocate< TYPE >(*m_p);
 
    //   pModified->apply(pparticle, attribute);
 
@@ -369,7 +436,7 @@ public:
 
    //   auto pOld = m_p;
 
-   //   m_p = memory_new TYPE(*pparticle);
+   //   m_p = __new< TYPE >(*pparticle);
 
    //   m_pparticle = m_p;
 
@@ -394,10 +461,10 @@ public:
 
    //}
 
-   inline pointer& reset(const ::pointer < T > & p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+   inline pointer& reset(const ::pointer < T > & p REFERENCING_DEBUGGING_COMMA_PARAMS);
 
    template < typename T2 >
-   inline pointer & reset(T2 * ptr OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+   inline pointer & reset(T2 * ptr REFERENCING_DEBUGGING_COMMA_PARAMS);
 
 
    inline bool operator ==(std::nullptr_t) const { return is_null(); }
@@ -428,19 +495,19 @@ public:
    //inline pointer < T > & create_new();
 
    template < typename OBJECT >
-   inline pointer < T > & defer_create_new(OBJECT * pparticle);
+   inline pointer < T > & defer_create_new(OBJECT * pparticle REFERENCING_DEBUGGING_COMMA_PARAMS);
 
    template < typename OBJECT >
-   inline pointer < T > & create_new(OBJECT * pparticle);
+   inline pointer < T > & create_new(OBJECT * pparticle REFERENCING_DEBUGGING_COMMA_PARAMS);
 
    template < typename OBJECT >
-   inline pointer < T > & defer_create(OBJECT * pparticle, ::factory::factory * pfactory = ::get_system_factory());
+   inline pointer < T > & defer_create(OBJECT * pparticle, ::factory::factory * pfactory = nullptr REFERENCING_DEBUGGING_COMMA_PARAMS);
 
    template < typename OBJECT >
-   inline pointer < T > & create(OBJECT * pparticle, ::factory::factory * pfactory = ::get_system_factory());
+   inline pointer < T > & create(OBJECT * pparticle, ::factory::factory * pfactory = nullptr REFERENCING_DEBUGGING_COMMA_PARAMS);
 
    template < typename T2 >
-   inline pointer < T > & clone(T2 * p);
+   inline pointer < T > & clone(T2 * p REFERENCING_DEBUGGING_COMMA_PARAMS);
 
    inline void run_and_release()
    {
@@ -576,15 +643,15 @@ inline void swap(::pointer<TYPE>& a, ::pointer<TYPE> & b)
 
 
 template < typename TYPE >
-inline ::pointer<TYPE>& defer_clone(::pointer<TYPE> & p);
+inline ::pointer<TYPE>& defer_clone(::pointer<TYPE> & p REFERENCING_DEBUGGING_COMMA_PARAMS);
 
 
 template < typename TYPE >
-ptr < TYPE > clone(TYPE * p);
+ptr < TYPE > clone(TYPE * p REFERENCING_DEBUGGING_COMMA_PARAMS);
 
 
 template < typename TYPE >
-inline ::pointer<TYPE> __create_new(::particle* pparticle);
+inline ::pointer<TYPE> __create_new(::particle* pparticle REFERENCING_DEBUGGING_COMMA_PARAMS);
 
 
 template < typename TARGET, typename SOURCE >
@@ -592,6 +659,24 @@ inline void copy(::pointer < TARGET > & pTarget, const ::pointer < SOURCE > & pS
 
 
 
+//template < typename T, typename ...Args >
+//::pointer < T > __allocate(Args &&... args)
+//{
+//
+//   ::pointer < T > p{ transfer_t{}, ::new T(::std::forward<Args>(args)...) };
+//
+//   task_on_after_new_particle(p);
+//
+//   return ::transfer(p);
+//
+//}
+
+
+//#else
+
+
+template < typename T, typename ...Args >
+::pointer < T > __allocate(Args &&... args);
 
 
 

@@ -7,7 +7,8 @@ namespace write_text
 
 
    class CLASS_DECL_AURA font_family :
-      virtual public ::particle
+      virtual public ::particle,
+      public ::allocator::accessor < font_family >
    {
    public:
 
@@ -23,7 +24,7 @@ namespace write_text
 
       font_family(const font_family & fontfamily);
 
-      friend class font_family_pointer;
+      friend class ::allocator::accessor < font_family >;
 
    public:
 
@@ -45,7 +46,8 @@ namespace write_text
 
 
    class CLASS_DECL_AURA font_family_pointer :
-      public ::pointer < font_family >
+      public ::pointer < font_family >,
+      public ::allocator::accessor < font_family >
    {
    public:
 

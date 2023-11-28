@@ -1024,7 +1024,7 @@ namespace file
 
 //template < typename ITERATOR_TYPE >
 //inline scoped_string_base < ITERATOR_TYPE >::scoped_string_base(const ::payload & payload) :
-//   m_str(e_no_initialize), RANGE(e_no_initialize)
+//   m_str(no_initialize_t{}), RANGE(no_initialize_t{})
 //{
 //
 //   m_str = payload.as_string();
@@ -1036,7 +1036,7 @@ namespace file
 
 //template <  >
 //inline scoped_string_base < const ::ansi_character * >::scoped_string_base(const ::payload & payload) :
-//   m_str(e_no_initialize), RANGE(e_no_initialize)
+//   m_str(no_initialize_t{}), RANGE(no_initialize_t{})
 //{
 //
 //   if (payload.has_string_reference())

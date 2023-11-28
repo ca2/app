@@ -339,7 +339,7 @@ inline int_bool critical_section::Unlock()
 ////
 ////   m_psimpleobject = (object *)psimpleobject;
 ////
-////   m_psimpleobject->increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+////   m_psimpleobject->increment_reference_count(REFERENCING_DEBUGGING_ARGS);
 ////
 ////}
 //

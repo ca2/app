@@ -321,7 +321,7 @@ namespace user
    ////      m_hInstImageWell = nullptr;
    //      //    m_hRsrcImageWell = nullptr;
    //
-   //      // tell common control toolbar about the memory_new bitmap
+   //      // tell common control toolbar about the new bitmap
    //      return AddReplaceBitmap(hbmImageWell);
    //   }
    //
@@ -388,7 +388,7 @@ namespace user
       //      if (pIDArray != nullptr)
       //
       //      {
-      //         // add memory_new buttons to the common control
+      //         // add new buttons to the common control
       //         index iImage = 0;
       //         for (index i = 0; i < nIDCount; i++)
       //         {
@@ -460,7 +460,7 @@ namespace user
    ////
    ////      VERIFY(default_window_procedure(TB_GETBUTTON, (WPARAM) nIndex, (LPARAM)&button));
    ////
-   ////      // prepare for old/memory_new button comparsion
+   ////      // prepare for old/aaa_memory_new button comparsion
    ////      button.bReserved[0] = 0;
    ////      button.bReserved[1] = 0;
    ////      // TBSTATE_ENABLED == e_tool_item_style_disabled so invert it
@@ -973,7 +973,7 @@ namespace user
       //         if (nCount != 0)
       //         {
       //            index i;
-      //            pData = memory_new TBBUTTON[nCount];
+      //            pData = __new_array< TBBUTTON >(nCount);
       //            for (i = 0; i < nCount; i++)
       //               _GetButton(i, &pData[i]);
       //         }
@@ -1287,17 +1287,17 @@ namespace user
 //      if (m_pStringMap != nullptr && m_pStringMap->lookup(wstrText, p))
 //         nString = (iptr)p;
 //
-//      // add memory_new string if not already in map
+//      // add new string if not already in map
 //      if (nString == -1)
 //      {
 //         // initialize map if necessary
 //         if (m_pStringMap == nullptr)
-//            m_pStringMap = memory_new string_to_ptr;
+//            m_pStringMap = __new< string_to_ptr >();
 //
 //         string str;
 //         str = pszText;
 //
-//         // add memory_new string to toolbar list
+//         // add new string to toolbar list
 //         string strTemp(str);
 //         throw ::interface_only();
 //         // xxx nString = (index)default_window_procedure(TB_ADDSTRINGW, 0, (LPARAM)(const ::string &)(const unichar *)strTemp);
@@ -1769,7 +1769,7 @@ namespace user
       //         if (nCount != 0)
       //         {
       //            index i;
-      //            pData = memory_new TBBUTTON[nCount];
+      //            pData = __new_array< TBBUTTON >(nCount);
       //            for (i = 0; i < nCount; i++)
       //               _GetButton(i, &pData[i]);
       //         }

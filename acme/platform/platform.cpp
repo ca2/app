@@ -29,24 +29,31 @@
 #endif
 
 
+#if REFERENCING_DEBUGGING
+
+
+extern bool g_bDefaultEnableObjectReferenceCountDebug;
+
+
+#endif
+
+
 namespace platform
 {
 
 
-   ::platform::platform * platform::s_pplatform = nullptr;
+   //::platform::platform * platform::s_pplatform = nullptr;
 
 
-   platform::platform() :
-      particle(e_disable_ref_count)
+   platform::platform(::acme::acme * pacme) :
+      m_pacme(pacme)
    {
 
-      s_pplatform = this;
+      disable_referencing_debugging();
 
       m_timeStart.Now();
 
-
-      initialize_memory_counter();
-
+      //initialize_memory_counter();
 
       // One of first time to set a main user thread
 
@@ -54,8 +61,7 @@ namespace platform
 
       factory_initialize();
 
-
-
+      m_bVerboseLog = true;
       m_bConsole = false;
       //m_pacmeapplication = nullptr;
       m_pmemorycounter = nullptr;
@@ -63,9 +69,11 @@ namespace platform
 
 #ifdef WINDOWS
 
-      ::platform::get()->m_strCommandLine = ::GetCommandLineW();
+      m_strCommandLine = ::GetCommandLineW();
 
 #endif
+
+      g_bDefaultEnableObjectReferenceCountDebug = true;
 
    }
 
@@ -73,7 +81,17 @@ namespace platform
    platform::~platform()
    {
 
-      m_pacmeapplication.release();
+      //if (::is_set(m_pacmeapplication))
+      //{
+
+      //   if (m_pacmeapplication->m_countReference > 0)
+      //   {
+
+      //      m_pacmeapplication->check
+
+      //   }
+
+      //}
 
       delete_all_release_on_end();
 
@@ -112,40 +130,86 @@ namespace platform
 
       }
 
-      finalize_memory_counter();
-
-      s_pplatform = nullptr;
+      //finalize_memory_counter();
 
    }
 
 
-   void platform::initialize_memory_counter()
+   //::platform::platform * platform::platform() const
+   //{
+
+   //   return ((platform *)this);
+
+   //}
+
+
+#if defined(WINDOWS)  && defined(UNICODE)
+
+
+   void platform::initialize(int argc, wchar_t * argv[], wchar_t * envp[])
    {
 
-      if (!m_pmemorycounter)
-      {
-
-         m_pmemorycounter = new ::memory_counter();
-
-      }
+      m_argc = argc;
+      m_wargv = argv;
+      m_wenvp = envp;
 
    }
 
 
-   void platform::finalize_memory_counter()
+   void platform::initialize(hinstance hinstanceThis, hinstance hinstancePrev, wchar_t * pCmdLine, int nCmdShow)
    {
 
-      ::acme::del(m_pmemorycounter);
+      m_hinstanceThis = hinstanceThis;
+      m_hinstancePrev = hinstancePrev;
+      m_strCommandLine = pCmdLine;
+      m_nCmdShow = nCmdShow;
 
    }
 
 
-   ::memory_counter * platform::get_memory_counter()
+#else
+
+
+   void platform::initialize(int argc, platform_char ** argv, platform_char ** envp)
    {
 
-      return m_pmemorycounter;
+      m_argc = argc;
+      m_argv = argv;
+      m_envp = envp;
 
    }
+
+
+#endif
+
+
+   //void platform::initialize_memory_counter()
+   //{
+
+   //   if (!m_pmemorycounter)
+   //   {
+
+   //      m_pmemorycounter = new ::memory_counter();
+
+   //   }
+
+   //}
+
+
+   //void platform::finalize_memory_counter()
+   //{
+
+   //   ::acme::del(m_pmemorycounter);
+
+   //}
+
+
+   //::memory_counter * platform::get_memory_counter()
+   //{
+
+   //   return m_pmemorycounter;
+
+   //}
 
 
 
@@ -211,6 +275,14 @@ namespace platform
          }
 
       return "";
+
+   }
+
+
+   bool platform::is_verbose_log() const
+   {
+
+      return m_bVerboseLog;
 
    }
 
@@ -488,11 +560,11 @@ namespace platform
       if (!m_psystem)
       {
 
-         __raw_construct(m_psystem);
+         __raw_construct(m_psystem, factory());
+
+         m_psystem->set_platform(this);
 
          initialize(m_psystem);
-
-         m_psystem->m_pplatform = this;
 
       }
 
@@ -508,11 +580,11 @@ namespace platform
 
       //__raw_construct_new(m_pcomponentfactorymap);
 
-      //m_pfactory = __new(::factory::factory());
+      //m_pfactory = __allocate< ::factory::factory >();
 
       m_pfactory->InitHashTable(16189);
 
-      //::acme::acme::g_pstaticstatic->m_pfactorya = memory_new factory_array();
+      //::acme::acme::g_pstaticstatic->m_pfactorya = __new< factory_array >();
 
 
 
@@ -964,12 +1036,12 @@ namespace platform
    //}
 
 
-CLASS_DECL_ACME::factory::factory * get_system_factory()
-{
-
-   return ::platform::get()->m_pfactory;
-
-}
+//CLASS_DECL_ACME::factory::factory * get_system_factory()
+//{
+//
+//   return this->platform()->m_pfactory;
+//
+//}
 
 
 

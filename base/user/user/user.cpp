@@ -485,7 +485,7 @@ namespace base
    ::pointer<::user::menu_interaction>user::create_menu_button(::user::style * pstyle, ::user::menu_item * pmenuitem)
    {
 
-      auto pmenubutton = __new(::user::menu_button);
+      auto pmenubutton = __allocate< ::user::menu_button >();
 
       pmenubutton->initialize_menu_interaction(pmenuitem);
 
@@ -539,7 +539,7 @@ namespace base
       UNREFERENCED_PARAMETER(hInstance);
       UNREFERENCED_PARAMETER(pParam);
 
-      auto pinteraction = __new(::user::interaction);
+      auto pinteraction = __allocate< ::user::interaction >();
 
       pinteraction->create_child(puiParent);
 
@@ -714,7 +714,7 @@ namespace base
    //session_docs * create_session_docs()
    //{
 
-   //   return memory_new session_docs();
+   //   return __new< session_docs >();
 
    //}
 
@@ -1501,7 +1501,7 @@ namespace base
       if (!pimpactsystem)
       {
 
-         pimpactsystem = __new(::user::multiple_document_template(
+         pimpactsystem = __allocate < ::user::multiple_document_template >(
             m_ptemplateForm->m_atom,
             m_ptemplateForm->m_typeatomDocument,
             m_ptemplateForm->m_typeatomFrame,
@@ -1755,7 +1755,7 @@ namespace base
 
             }
 
-            auto pimpactsystemNew = __new(::user::multiple_document_template(
+            auto pimpactsystemNew = __allocate < ::user::multiple_document_template >(
                m_ptemplateChildForm->m_atom,
                typeDocument,
                m_ptemplateChildForm->m_typeatomFrame,
@@ -1884,7 +1884,7 @@ namespace base
    ::pointer<::user::plain_edit>user::create_calculator_edit()
    {
 
-      return __new(::user::show < ::calculator::edit >());
+      return __allocate< ::user::show < ::calculator::edit > >();
 
    }
 

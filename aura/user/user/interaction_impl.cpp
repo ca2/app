@@ -594,7 +594,7 @@ namespace user
       else
       {
 
-         pusersystem = __new(::user::system);
+         pusersystem = __allocate< ::user::system >();
 
       }
 
@@ -780,7 +780,7 @@ namespace user
       else
       {
 
-         pusersystem = __new(::user::system);
+         pusersystem = __allocate< ::user::system >();
 
       }
 
@@ -957,7 +957,7 @@ namespace user
       //                      pusersystem->m_createstruct.cx(),
       //                      pusersystem->m_createstruct.cy()));
 
-      //auto psynca = __new(synchronization_array);
+      //auto psynca = __allocate< synchronization_array >();
 
       //::pointer<manual_reset_event>peventStartedUser;
 
@@ -985,7 +985,7 @@ namespace user
 
          m_puserinteraction->m_pthreadUserInteraction = m_puserthread;
 
-         //peventStartedUser = __new(manual_reset_event());
+         //peventStartedUser = __allocate< manual_reset_event >();
 
          //m_puserthread->m_peventStarted = peventStartedUser;
 
@@ -1181,7 +1181,7 @@ namespace user
 
       //   send_message(e_message_size, 0, MAKELPARAM(pusersystem->m_createstruct.cx(), pusersystem->m_createstruct.cy()));
 
-      //   m_puserinteraction->increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_THIS_FUNCTION_LINE);
+      //   m_puserinteraction->increment_reference_count(REFERENCING_DEBUGGING_THIS_FUNCTION_FILE_LINE);
 
       //   m_puserinteraction->m_ewindowflag |= ::e_window_flag_is_window;
 
@@ -1227,7 +1227,7 @@ namespace user
 //      //ASSERT(puiParent != nullptr);
 //      //ASSERT((uStyle & WS_POPUP) == 0);
 //
-//      //auto pusersystem = __new(::user::system);
+//      //auto pusersystem = __allocate< ::user::system >();
 //
 //      //pusersystem->m_createstruct.dwExStyle = 0;
 //
@@ -1407,7 +1407,7 @@ namespace user
       //   if (pmouse->m_atom == e_message_left_button_up)
       //   {
 
-      //      ::informationf("lbutton_up");
+      //      ::acme::get()->platform()->informationf("lbutton_up");
 
       //   }
 
@@ -1475,7 +1475,7 @@ namespace user
       //      if (pmouse->m_atom == e_message_left_button_up)
       //      {
 
-      //         ::informationf("lbutton_up");
+      //         ::acme::get()->platform()->informationf("lbutton_up");
 
       //      }
 
@@ -1510,7 +1510,7 @@ namespace user
       //      if (pmouse->m_atom == e_message_left_button_up)
       //      {
 
-      //         ::informationf("lbutton_up");
+      //         ::acme::get()->platform()->informationf("lbutton_up");
 
       //      }
 
@@ -1603,7 +1603,7 @@ namespace user
 
       }
 
-      auto poutputpurpose = __new(::graphics::output_purpose(pparticleGraphicalOutputPurposeOriginator, epurpose));
+      auto poutputpurpose = __allocate< ::graphics::output_purpose >(pparticleGraphicalOutputPurposeOriginator, epurpose);
 
       bool bHadGraphicalOutputPurpose = m_puserinteraction->has_graphical_output_purpose();
 
@@ -2278,7 +2278,7 @@ namespace user
       //         if(iDebugmessage_handlerTime > 20)
       //         {
       //
-      //            ::informationf("interaction_impl::message handler flooded?\n");
+      //            ::acme::get()->platform()->informationf("interaction_impl::message handler flooded?\n");
       //
       //         }
       //         else
@@ -2896,7 +2896,7 @@ namespace user
 //         if (strType.case_insensitive_contains("list_box"))
 //         {
 //
-//            ::informationf("list_box e_message_left_button_down");
+//            ::acme::get()->platform()->informationf("list_box e_message_left_button_down");
 //
 //         }
 //
@@ -2923,7 +2923,7 @@ namespace user
 //         if (strType.case_insensitive_contains("list_box"))
 //         {
 //
-//            ::informationf("list_box e_message_non_client_left_button_down");
+//            ::acme::get()->platform()->informationf("list_box e_message_non_client_left_button_down");
 //
 //         }
 //
@@ -2964,7 +2964,7 @@ namespace user
 //            if (strType.case_insensitive_contains("list_box"))
 //            {
 //
-//               //::informationf("list_box e_message_mouse_move");
+//               //::acme::get()->platform()->informationf("list_box e_message_mouse_move");
 //
 //            }
 //
@@ -5164,7 +5164,7 @@ namespace user
       if (::is_null(m_puserinteraction->m_pinteractionScaler))
       {
 
-         m_puserinteraction->m_pinteractionScaler = __new(::user::interaction_scaler());
+         m_puserinteraction->m_pinteractionScaler = __allocate< ::user::interaction_scaler >();
 
       }
 
@@ -5247,7 +5247,7 @@ namespace user
             if (!m_puserinteraction->m_bMessageWindow)
             {
 
-               m_pcsDisplay = memory_new(critical_section);
+               m_pcsDisplay = __new< critical_section >();
 
                information() << "interaction_impl m_pgraphics alloc : " << strType;
 

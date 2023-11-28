@@ -2,7 +2,6 @@
 #pragma once
 
 
-#include "signal.h"
 
 
 /// manager is originator of signals
@@ -14,12 +13,6 @@ public:
 
    ::pointer<signal_map>                                 m_psignalmap;
 
-   static ::critical_section                             s_criticalsection;
-   // todo implement keyset
-   // a hashmap of just the key (but not a value)
-   // like std::set?
-   static ::set < manager_pointer >                      s_managerset;
-   static bool                                           s_bDestroyAll;
 
 
    manager();
@@ -29,14 +22,15 @@ public:
 #ifdef _DEBUG
 
 
-   i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
-   i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
-   i64 release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
+   i64 increment_reference_count(REFERENCING_DEBUGGING_PARAMETERS) override;
+   i64 decrement_reference_count(REFERENCING_DEBUGGING_PARAMETERS) override;
+   i64 release(REFERENCING_DEBUGGING_PARAMETERS) override;
 
 #endif
 
 
-   virtual class ::signal * get_signal(const ::atom& atom, const ::action_context& actioncontext = ::action_context());
+   virtual class ::signal * get_signal(const ::atom& atom);
+   virtual class ::signal * get_signal(const ::atom & atom, const ::action_context & actioncontext);
    
    virtual void add_signal_handler(const ::signal_handler& signalhandler, const ::atom & atomSignal);
    
@@ -45,7 +39,8 @@ public:
    //virtual void erase_signal_handlers(::particle * ppparticle);
 
    // <3ThomasBorregaardSorensen handle...!!
-   virtual void signal(const ::atom & atom, const ::action_context & actioncontext = ::action_context());
+   virtual void signal(const ::atom & atom);
+   virtual void signal(const ::atom & atom, const ::action_context & actioncontext);
 
 
    virtual void on_property_changed(property * pproperty, const ::action_context & actioncontext) override;
@@ -57,13 +52,6 @@ public:
 //   virtual void erase_signal_handler(const ::signal_handler & signalhandler);
 
 
-   static bool __s_may_run_signal_handling();
-
-   static void __s_erase_signal_handler_from_any_source(const ::signal_handler& signalhandler);
-
-   static void __s_erase_signal_handler(const ::signal_handler& signalhandler);
-
-   static void __s_post_destroy_signal_handling();
 
 
 };

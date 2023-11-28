@@ -64,11 +64,11 @@ namespace turboc
 
    i64 edit_impact::increment_reference_count()
    {
-      return ::root::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      return ::root::increment_reference_count(REFERENCING_DEBUGGING_ARGS);
    }
    i64 edit_impact::decrement_reference_count()
    {
-      return ::root::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      return ::root::decrement_reference_count(REFERENCING_DEBUGGING_ARGS);
    }
 
 

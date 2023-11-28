@@ -80,17 +80,17 @@ namespace app_build
 #ifdef _DEBUG
 
 
-   i64 document::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
+   i64 document::increment_reference_count(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
    {
 
-      return  ::user::document::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      return  ::user::document::increment_reference_count(REFERENCING_DEBUGGING_ARGS);
 
    }
 
-   i64 document::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
+   i64 document::decrement_reference_count(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
    {
 
-      return  ::user::document::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      return  ::user::document::decrement_reference_count(REFERENCING_DEBUGGING_ARGS);
 
    }
 

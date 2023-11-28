@@ -11,7 +11,7 @@ namespace xml
    input_tree::input_tree(const ::string & strXml)
    {
 
-      m_pdocument = __new(::xml::document);
+      m_pdocument = __allocate< ::xml::document >();
 
       m_pdocument->load(strXml);
 
@@ -21,7 +21,7 @@ namespace xml
    input_tree::input_tree()
    {
 
-      m_pdocument = __new(::xml::document);
+      m_pdocument = __allocate< ::xml::document >();
 
    }
 
@@ -30,7 +30,7 @@ namespace xml
       tree_base(pschema)
    {
 
-      m_pdocument = __new(::xml::document);
+      m_pdocument = __allocate< ::xml::document >();
 
    }
 

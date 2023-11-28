@@ -269,7 +269,7 @@ void nano_window::create_drawing_objects()
    if (!m_pfont)
    {
 
-      __construct(m_pfont);
+      __construct(m_pfont, nullptr REFERENCING_DEBUGGING_COMMA_THIS_FUNCTION_FILE_LINE);
 
       m_pfont->m_iFontSize = m_iFontSize;
 
@@ -300,17 +300,17 @@ void nano_window::create_drawing_objects()
 
    }
 
-   m_pbrushWindow = ::nano::create_solid_brush(this, m_colorWindow);
+   m_pbrushWindow = ::nano::create_solid_brush(this, m_colorWindow REFERENCING_DEBUGGING_COMMA_THIS_FUNCTION_FILE_LINE);
 
-   m_pbrushText = ::nano::create_solid_brush(this, m_colorText);
+   m_pbrushText = ::nano::create_solid_brush(this, m_colorText REFERENCING_DEBUGGING_COMMA_THIS_FUNCTION_FILE_LINE);
 
-   m_pbrushHyperlink = ::nano::create_solid_brush(this, m_colorHyperlink);
+   m_pbrushHyperlink = ::nano::create_solid_brush(this, m_colorHyperlink REFERENCING_DEBUGGING_COMMA_THIS_FUNCTION_FILE_LINE);
 
-   m_pbrushHyperlinkHover = ::nano::create_solid_brush(this, m_colorHyperlinkHover);
+   m_pbrushHyperlinkHover = ::nano::create_solid_brush(this, m_colorHyperlinkHover REFERENCING_DEBUGGING_COMMA_THIS_FUNCTION_FILE_LINE);
 
-   m_ppenBorder = ::nano::create_pen(this, 1, m_colorText);
+   m_ppenBorder = ::nano::create_pen(this, 1, m_colorText REFERENCING_DEBUGGING_COMMA_THIS_FUNCTION_FILE_LINE);
 
-   m_ppenBorderFocus = ::nano::create_pen(this, 1, m_colorFocus);
+   m_ppenBorderFocus = ::nano::create_pen(this, 1, m_colorFocus REFERENCING_DEBUGGING_COMMA_THIS_FUNCTION_FILE_LINE);
 
 }
 
@@ -395,7 +395,7 @@ void nano_window::add_child(nano_child * pchild)
 void nano_window::add_button(const ::scoped_string & scopedstrText, enum_dialog_result edialogresult, char chLetter)
 {
 
-   auto pbutton = __new(nano_button);
+   auto pbutton = __allocate< nano_button >();
 
    pbutton->m_strText = scopedstrText;
    pbutton->m_atom = edialogresult;

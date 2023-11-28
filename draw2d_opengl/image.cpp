@@ -2736,7 +2736,7 @@ namespace draw2d_opengl
 //
 
 
-//#define memory_new ACME_NEW
+
 
 
    void image::map(bool bApplyTransform) const

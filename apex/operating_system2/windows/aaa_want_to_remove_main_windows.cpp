@@ -84,11 +84,11 @@
 //      mainstruct.m_bUserEx = true;
 //      mainstruct.m_bShowApplicationInformation = false;
 //
-//      auto psystem = __new(::apex::system());
+//      auto psystem = __allocate< ::apex::system >();
 //
 //      psystem->system_construct(&mainstruct, hinstance, hPrevInstance, pCmdLine, nCmdShow);
 //
-//      //pmaindata->m_pappcore = __new(app_core(pmaindata));
+//      //pmaindata->m_pappcore = __allocate< app_core >(pmaindata);
 //
 //      if (!psystem->system_beg())
 //      {

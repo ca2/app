@@ -228,7 +228,7 @@ namespace userex
       if (m_ptemplateTab == nullptr)
       {
 
-         m_ptemplateTab = __new(user::single_document_template(
+         m_ptemplateTab = __allocate < user::single_document_template >(
             "main",
             ::type < ::user::document >(),
             ::type < simple_child_frame >(),

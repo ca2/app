@@ -38,7 +38,7 @@ namespace message
    ::pointer < ::particle > __handler(PREDICATE predicate) 
    {
 
-      return __new(predicate_handler<PREDICATE>(predicate));
+      return __allocate< predicate_handler<PREDICATE> >(predicate);
 
    }
 

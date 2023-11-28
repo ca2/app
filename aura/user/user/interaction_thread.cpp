@@ -95,26 +95,26 @@ namespace user
 #ifdef _DEBUG
 
 
-   i64 thread::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
+   i64 thread::increment_reference_count(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
    {
 
-      return ::thread::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      return ::thread::increment_reference_count(REFERENCING_DEBUGGING_ARGS);
 
    }
 
 
-   i64 thread::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
+   i64 thread::decrement_reference_count(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
    {
 
-      return ::thread::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      return ::thread::decrement_reference_count(REFERENCING_DEBUGGING_ARGS);
 
    }
 
 
-   i64 thread::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
+   i64 thread::release(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
    {
 
-      return ::thread::release(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      return ::thread::release(REFERENCING_DEBUGGING_ARGS);
 
    }
 
@@ -534,13 +534,13 @@ namespace user
          else if(msg.m_atom == e_message_left_button_down)
          {
 
-            ::informationf("e_message_left_button_down");
+            ::acme::get()->platform()->informationf("e_message_left_button_down");
 
          }
          else if(msg.m_atom == e_message_left_button_up)
          {
 
-            ::informationf("e_message_left_button_up");
+            ::acme::get()->platform()->informationf("e_message_left_button_up");
 
          }
 
@@ -592,13 +592,13 @@ namespace user
                         if(msg.m_atom == e_message_left_button_down)
                         {
 
-                           ::informationf("e_message_left_button_down");
+                           ::acme::get()->platform()->informationf("e_message_left_button_down");
 
                         }
                         else if(msg.m_atom == e_message_left_button_up)
                         {
 
-                           ::informationf("e_message_left_button_up");
+                           ::acme::get()->platform()->informationf("e_message_left_button_up");
 
                         }
 
@@ -610,7 +610,7 @@ namespace user
                            if(pmessage->m_atom == e_message_left_button_down)
                            {
 
-                              ::informationf("e_message_left_button_down");
+                              ::acme::get()->platform()->informationf("e_message_left_button_down");
 
                            }
 

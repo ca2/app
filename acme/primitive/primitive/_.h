@@ -4,20 +4,6 @@
 #include "acme/user/user/_constant.h"
 
 
-#if OBJECT_REFERENCE_COUNT_DEBUG
-
-
-template < typename TYPE, typename T >
-void assign(::pointer<TYPE>& ptr, T * p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
-
-template < typename TYPE >
-::i64 release(::pointer<TYPE>& ptr OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
-
-template < typename TYPE >
-::i64 release(TYPE *& p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
-
-
-#endif
 
 
 namespace acme
@@ -77,6 +63,9 @@ CLASS_DECL_ACME void openURL(const string& url_str);
 
 
 #include "unit.h"
+
+
+class action_context;
 
 
 

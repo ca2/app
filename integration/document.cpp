@@ -66,17 +66,17 @@ namespace app_integration
 #ifdef _DEBUG
 
 
-   int64_t document::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
+   int64_t document::increment_reference_count(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
    {
 
-      return  ::user::document::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      return  ::user::document::increment_reference_count(REFERENCING_DEBUGGING_ARGS);
 
    }
 
-   int64_t document::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
+   int64_t document::decrement_reference_count(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
    {
 
-      return  ::user::document::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      return  ::user::document::decrement_reference_count(REFERENCING_DEBUGGING_ARGS);
 
    }
 

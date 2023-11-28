@@ -85,7 +85,7 @@ namespace user
 
       void add_visible(bool bAdd = true);
 
-      //inline auto get_rect() { ::rectangle_i32 rectangle(e_no_initialize); get_rect(&rectangle); return rectangle; }
+      //inline auto get_rect() { ::rectangle_i32 rectangle(no_initialize_t{}); get_rect(&rectangle); return rectangle; }
 
       ::pointer<::user::interaction>create_impact(::user::interaction * puserinteractionParent, const ::atom & atom);
 

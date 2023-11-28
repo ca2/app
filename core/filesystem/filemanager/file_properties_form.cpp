@@ -42,7 +42,7 @@ namespace filemanager
 
       //}
 
-      m_ptemplatePane = __new(::user::single_document_template(
+      m_ptemplatePane = __allocate < ::user::single_document_template >(
          "system/auth",
          ::type < ::user::document >(),
          ::type < simple_frame_window >(),

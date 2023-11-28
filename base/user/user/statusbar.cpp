@@ -177,18 +177,18 @@ namespace user
       //   ++pSBP;
       //}
 
-      // allocate memory_new elements
+      // allocate new elements
       //if (!::user::control_bar::AllocElements(nElements, cbElement))
       //   return false;
 
-      // construct memory_new elements
+      // construct new elements
       pSBP = _GetPanePtr(0);
       for (i = 0; i < m_panecompositea.get_count(); i++)
       {
-   #pragma push_macro("memory_new")
+   #pragma push_macro("new")
    
-         memory_new( &pSBP->strText ) string;
-   #pragma pop_macro("memory_new")
+         __new<  >( &pSBP->strText ) string;
+   #pragma pop_macro("new")
          ++pSBP;
       }*/
    /*   return true;
@@ -284,7 +284,7 @@ namespace user
 //            right += rgBorders[2];
 //         }
 //
-//         // set memory_new right edges for all panes
+//         // set new right edges for all panes
 //         default_window_procedure(SB_SETPARTS, (WPARAM) m_panecompositea.get_count(), (LPARAM)rgRights);
 //
 //      }

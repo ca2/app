@@ -420,7 +420,7 @@ namespace nanoui
    //
    //#if defined(NANOUI_USE_METAL)
    //   if (depth_buffer) {
-   //      m_depth_stencil_texture = memory_new Texture(
+   //      m_depth_stencil_texture = __new< Texture >(
    //         stencil_buffer ? Texture::PixelFormat::DepthStencil
    //         : Texture::PixelFormat::Depth,
    //         Texture::ComponentFormat::Float32,
@@ -502,7 +502,7 @@ namespace nanoui
    //      throw std::runtime_error("Could not initialize NanoVG!");
    //
    //   m_visible = glfwGetWindowAttrib(window, GLFW_VISIBLE) != 0;
-   //   set_theme(memory_new Theme(ctx));
+   //   set_theme(__new< Theme >(ctx));
    //   m_mouse_pos = sequence2_i32(0);
       //m_mouse_state = 
       //m_modifiers = ::user::e_key_none;
@@ -577,7 +577,7 @@ namespace nanoui
 
       m_pfontsink = m_puserinteraction->__create_new < ::nano2d::font_sink >();
 
-      set_theme(memory_new Theme());
+      set_theme(__new< Theme >());
 
    }
 

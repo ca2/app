@@ -255,7 +255,7 @@ namespace aura
       //   return *m_pgeometry;
 
       //}
-      inline  class imaging & imaging() { return *m_pimaging; }
+      //inline  class imaging & imaging() { return *m_pimaging; }
 
       //virtual ::sockets::sockets & sockets() { return *m_psockets; }
 
@@ -268,6 +268,9 @@ namespace aura
 
 
       inline class ::draw2d::draw2d                * draw2d() { return m_pdraw2d; }
+      
+      
+      class ::imaging * imaging() override;
 
 
       //inline ::url::url                     &  url()

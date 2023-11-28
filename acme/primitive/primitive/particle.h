@@ -32,10 +32,10 @@ class extended_topic;
 class trace_statement;
 
 
-CLASS_DECL_ACME ::factory::factory * get_system_factory();
+//CLASS_DECL_ACME ::factory::factory * get_system_factory();
 
 
-CLASS_DECL_ACME class tracer * tracer();
+//CLASS_DECL_ACME class tracer * tracer();
 
 
 
@@ -85,11 +85,6 @@ struct PARTICLE :
 };
 
 
-enum enum_disable_ref_count
-{
-   e_disable_ref_count
-};
-
 #include "acme/platform/trace_statement.h"
 
 
@@ -97,10 +92,15 @@ using particle_pointer = ::pointer < ::particle >;
 
 
 
-//#if OBJECT_REFERENCE_COUNT_DEBUG
-//#include "acme/platform/object_reference_count_debug.h"
+//#if REFERENCING_DEBUGGING
+//#include "acme/platform/reference_count_debug.h"
 //#endif
 
+
+class imaging;
+
+
+struct disable_referencing_debugging_t {};
 
 
 // ThomasBorregaardSorensen!! Like handlers : now particle with handle::handlers*
@@ -112,13 +112,17 @@ public:
 
    ::interlocked_count                 m_countReference;
 
-
-#if OBJECT_REFERENCE_COUNT_DEBUG
-   inline particle(enum_disable_ref_count) : m_countReference(1) { _disable_object_reference_count_debug_enabled(); }
-   inline particle() { increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_THIS OBJECT_REFERENCE_COUNT_DEBUG_COMMA_NOTE("Initial Reference")); }
+#if REFERENCING_DEBUGGING
+   particle();
 #else
-   inline particle() : m_countReference(1) { }
+   particle() : m_countReference(1) {}
 #endif
+   
+//
+//   particle(::particle * pparticleParent);
+//#else
+   //particle(::particle * pparticleParent);
+//#endif
 
 
    virtual ~particle();
@@ -128,38 +132,84 @@ public:
 
 #ifdef _DEBUG
 
-   virtual i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
-   virtual i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
-   virtual i64 release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
+
+   virtual i64 increment_reference_count(REFERENCING_DEBUGGING_PARAMETERS);
+   virtual i64 decrement_reference_count(REFERENCING_DEBUGGING_PARAMETERS);
+   virtual i64 replace_reference(REFERENCING_DEBUGGING_PARAMETERS);
+   virtual i64 release(REFERENCING_DEBUGGING_PARAMETERS);
+
 
 #else
 
-   inline i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
-   inline i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
-   inline i64 release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
+   
+   inline i64 increment_reference_count(REFERENCING_DEBUGGING_PARAMETERS);
+   inline i64 decrement_reference_count(REFERENCING_DEBUGGING_PARAMETERS);
+   inline i64 replace_reference(REFERENCING_DEBUGGING_PARAMETERS);
+   inline i64 release(REFERENCING_DEBUGGING_PARAMETERS);
+
 
 #endif
 
 
-#ifdef OBJECT_REFERENCE_COUNT_DEBUG
 
-   class object_reference_count_debug * m_pobjectreferencecountdebug = nullptr;
 
-   class object_reference_count_debug * object_reference_count_debug();
+#ifdef REFERENCING_DEBUGGING
 
-   bool is_object_reference_count_debug_enabled() const 
+protected:
+   
+   ::particle * m_pparticleTopTrack = nullptr;
+
+public:
+
+   ::particle * get_top_track() const;
+   void add_top_track(::particle * pparticle);
+   void erase_top_track(::particle * pparticle);
+   bool contains_top_track(::particle * pparticle) const;
+   bool find_top_track(::particle * pparticle, ::particle ** ppparticleParent) const;
+
+
+
+
+   class reference_item_array *  m_preferenceitema = nullptr;
+   bool                          m_bHeapAllocation = false;
+   void *                        m_pType = nullptr;
+   memsize                       m_sType = sizeof(::particle);
+
+
+   void set_size_type(memsize s) { m_sType = s; }
+
+   bool contains_object_in_address_space(::particle * pparticle) const
    {
-      return m_pobjectreferencecountdebug != (class object_reference_count_debug* ) 1;
+
+      return 
+         ::is_set(this->m_pType)
+         && this->m_sType >= sizeof(::particle)
+         && ((::u8 *)pparticle >= this->m_pType
+         && (((::u8 *)pparticle) + pparticle->m_sType)
+         <= (((::u8 *)this->m_pType) + this->m_sType));
+
    }
 
-   void _disable_object_reference_count_debug_enabled()
+   class reference_item_array * reference_itema();
+
+   bool is_referencing_debugging_enabled() const
    {
-      m_pobjectreferencecountdebug = (class object_reference_count_debug*)1;
+      
+      return !m_eflagElement.is(e_flag_no_referencing_debugging);
+
    }
 
-   void add_ref_history(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
-   void dec_ref_history(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
+   void disable_referencing_debugging();
+
+   //void add_initial_reference_item();
+   void add_reference_item(REFERENCING_DEBUGGING_PARAMETERS);
+   //void _add_reference_item(REFERENCING_DEBUGGING_PARAMETERS);
+   void erase_reference_item(REFERENCING_DEBUGGING_PARAMETERS);
    void check_pending_releases();
+
+#else
+
+   bool is_referencing_debugging_enabled() const { return false; }
 
 #endif
 
@@ -172,7 +222,7 @@ public:
 
    inline ::particle * synchronization() const { return ::is_set(this) ? m_pparticleSynchronization : nullptr; }
    void set_synchronization(::particle * pparticleSynchronization);
-   void defer_create_synchronization();
+   void defer_create_synchronization(REFERENCING_DEBUGGING_PARAMETERS);
 
 
 #ifdef WINDOWS
@@ -190,19 +240,29 @@ public:
    virtual void on_initialize_particle();
 
 
-   ::acme::application * application() const;
-   ::acme::session * session() const;
+   
+   class ::platform::platform * platform() const;
+
+   virtual class ::platform::platform * _platform() const;
+
+
+   ::mathematics::mathematics * mathematics() const;
+
+   class ::imaging * imaging() const;
+
+   class ::user::user * user() const;
+
+   class ::draw2d::draw2d * draw2d() const;
+
+   class ::write_text::write_text * write_text() const;
+
    ::acme::system * system() const;
+   ::acme::session * session() const;
+   ::acme::application * application() const;
 
    //::aura::application* auraapplication() const;
 
 
-   inline ::platform::platform * platform() const
-   {
-
-      return ::platform::get();
-
-   }
 
 
    ::acme_file * acmefile() const;
@@ -573,12 +633,12 @@ public:
 
 
    template < typename BASE_TYPE >
-   inline ::pointer<BASE_TYPE>__create(::factory::factory* pfactory = ::get_system_factory());
+   inline ::pointer<BASE_TYPE>__create(::factory::factory * pfactory = nullptr REFERENCING_DEBUGGING_COMMA_PARAMS);
 
-   ::pointer<particle>__id_create(const ::atom& atom, ::factory::factory* pfactory = ::get_system_factory());
+   ::pointer<particle>__id_create(const ::atom& atom, ::factory::factory * pfactory = nullptr REFERENCING_DEBUGGING_COMMA_PARAMS);
 
    template < typename TYPE >
-   inline ::pointer<TYPE>__create_new();
+   inline ::pointer<TYPE>__create_new(REFERENCING_DEBUGGING_PARAMETERS);
 
    template < typename TYPE >
    inline TYPE*__initialize(TYPE * p)
@@ -600,16 +660,16 @@ public:
    ::pointer < T > create_clone(const ::pointer < T > & psource)
    {
 
-      return this->create_clone(psource.m_p);
+      return this->create_clone(psource.m_p REFERENCING_DEBUGGING_COMMA_P_NOTE(psource.m_p, __FUNCTION_FILE_LINE__));
 
    }
 
 
    template < typename T >
-   ::pointer < T > create_clone(const T * pSource)
+   ::pointer < T > create_clone(const T * pSource REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
    {
 
-      auto p = this->__create< T >();
+      auto p = this->__create< T >(REFERENCING_DEBUGGING_ARGS);
 
       if (!p)
       {
@@ -626,19 +686,19 @@ public:
 
 
    template < typename T >
-   ::pointer < T > create_new_clone(const ::pointer < T > & psource)
+   ::pointer < T > create_new_clone(const ::pointer < T > & psource  REFERENCING_DEBUGGING_COMMA_PARAMS)
    {
 
-      return this->create_new_clone(psource.m_p);
+      return this->create_new_clone(psource.m_p  REFERENCING_DEBUGGING_COMMA_ARGS);
 
    }
 
 
    template < typename T >
-   ::pointer < T > create_new_clone(const T * pSource)
+   ::pointer < T > create_new_clone(const T * pSource REFERENCING_DEBUGGING_COMMA_PARAMS)
    {
 
-      auto p = this->__create_new< T >();
+      auto p = this->__create_new< T >(REFERENCING_DEBUGGING_ARGS);
 
       if (!p)
       {
@@ -665,29 +725,37 @@ public:
 
 
    //template < typename BASE_TYPE >
-   //inline void __raw_construct(::pointer<BASE_TYPE> & p, ::factory::factory * pfactory = ::get_system_factory());
+   //inline void __raw_construct(::pointer<BASE_TYPE> & p, ::factory::factory * pfactory = nullptr);
 
    template < typename BASE_TYPE >
-   inline bool __defer_construct(::pointer<BASE_TYPE>& ptype, ::factory::factory* pfactory = ::get_system_factory());
+   inline bool __defer_construct(::pointer<BASE_TYPE>& ptype, ::factory::factory * pfactory = nullptr REFERENCING_DEBUGGING_COMMA_PARAMS);
 
    template < typename TYPE >
-   inline bool __defer_construct_new(::pointer<TYPE>& ptype);
+   inline bool __defer_construct_new(::pointer<TYPE>& ptype REFERENCING_DEBUGGING_COMMA_PARAMS);
 
    template < typename BASE_TYPE >
-   inline void __construct(::pointer<BASE_TYPE>& ptype, ::factory::factory* pfactory = ::get_system_factory());
+   inline void __construct(::pointer<BASE_TYPE>& ptype, ::factory::factory * pfactory = nullptr REFERENCING_DEBUGGING_COMMA_PARAMS);
 
    template < typename BASE_TYPE, typename TYPE >
-   inline void __construct(::pointer<BASE_TYPE>& ptype, const ::pointer < TYPE >& p);
+   inline void __construct(::pointer<BASE_TYPE>& ptype, const ::pointer < TYPE >& p REFERENCING_DEBUGGING_COMMA_PARAMS);
 
    template < typename BASE_TYPE, typename TYPE >
-   inline void __construct(::pointer<BASE_TYPE>& ptype, TYPE* p);
+   inline void __construct(::pointer<BASE_TYPE>& ptype, TYPE* p REFERENCING_DEBUGGING_COMMA_PARAMS);
 
    template < typename BASE_TYPE >
-   inline void __id_construct(::pointer<BASE_TYPE>& ptype, const ::atom& atom, ::factory::factory* pfactory = ::get_system_factory());
+   inline void __id_construct(::pointer<BASE_TYPE>& ptype, const ::atom& atom, ::factory::factory * pfactory = nullptr REFERENCING_DEBUGGING_COMMA_PARAMS);
 
    template < typename TYPE >
-   inline void __construct_new(::pointer<TYPE>& ptype);
+   inline ::pointer < TYPE > __id_create(const ::atom & atom, ::factory::factory * pfactory REFERENCING_DEBUGGING_COMMA_PARAMS);
 
+   template < typename TYPE >
+   inline void __construct_new(::pointer<TYPE>& ptype REFERENCING_DEBUGGING_COMMA_PARAMS);
+
+   template < typename TYPE >
+   inline void __raw_construct(::pointer<TYPE> & p, ::factory::factory * pfactory = nullptr REFERENCING_DEBUGGING_COMMA_PARAMS);
+
+   template < typename BASE_TYPE >
+   inline ::pointer<BASE_TYPE> __raw_create(::factory::factory * pfactory = nullptr REFERENCING_DEBUGGING_COMMA_PARAMS);
 
    //virtual void to_string(string_exchange & str) const;
 
@@ -702,13 +770,13 @@ public:
    virtual void read_from_stream(::binary_stream & stream);
 
 
-   //virtual void add_composite(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
-   //virtual void add_reference(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+   //virtual void add_composite(::particle * pparticle REFERENCING_DEBUGGING_COMMA_PARAMS);
+   //virtual void add_reference(::particle * pparticle REFERENCING_DEBUGGING_COMMA_PARAMS);
 
 
-   //virtual void release_composite2(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
-   //virtual void finalize_composite(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
-   //virtual void release_reference(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+   //virtual void release_composite2(::particle * pparticle REFERENCING_DEBUGGING_COMMA_PARAMS);
+   //virtual void finalize_composite(::particle * pparticle REFERENCING_DEBUGGING_COMMA_PARAMS);
+   //virtual void release_reference(::particle * pparticle REFERENCING_DEBUGGING_COMMA_PARAMS);
 
 
    virtual void destroy();
@@ -775,7 +843,7 @@ public:
 //
 
 //template < typename T >
-//inline i64 release(T*& p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF);
+//inline i64 release(T*& p REFERENCING_DEBUGGING_COMMA_PARAMS_DEF);
 //{
 //
 //   if (::is_null(p))
@@ -796,20 +864,20 @@ public:
 //   catch (...)
 //   {
 //
-//      ::informationf("exception release p = nullptr; \n");
+//      ::acme::get()->platform()->informationf("exception release p = nullptr; \n");
 //
 //   }
 //
 //   try
 //   {
 //
-//      return pparticle->release(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+//      return pparticle->release(REFERENCING_DEBUGGING_ARGS);
 //
 //   }
 //   catch (...)
 //   {
 //
-//      ::informationf("exception release pparticle->release() \n");
+//      ::acme::get()->platform()->informationf("exception release pparticle->release() \n");
 //
 //   }
 //
@@ -819,7 +887,7 @@ public:
 
 
 template < typename T >
-inline i64 global_release(T*& p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+inline i64 global_release(T*& p REFERENCING_DEBUGGING_COMMA_PARAMS);
 //{
 //
 //   if (::is_null(p))
@@ -832,7 +900,7 @@ inline i64 global_release(T*& p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 //   try
 //   {
 //
-//      auto i = p->release(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+//      auto i = p->release(REFERENCING_DEBUGGING_ARGS);
 //
 //      if (i <= 0)
 //      {
@@ -847,7 +915,7 @@ inline i64 global_release(T*& p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 //   catch (...)
 //   {
 //
-//      ::informationf("exception release pparticle->release() \n");
+//      ::acme::get()->platform()->informationf("exception release pparticle->release() \n");
 //
 //   }
 //
@@ -863,12 +931,12 @@ inline i64 global_release(T*& p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 //#if !defined(_DEBUG)
 //
 //
-//i64 particle::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
+//i64 particle::increment_reference_count(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
 //{
 //
 //   auto c = ++m_countReference;
 //
-//#if OBJECT_REFERENCE_COUNT_DEBUG
+//#if REFERENCING_DEBUGGING
 //
 //   add_ref_history(pReferer, pszObjRefDbg);
 //
@@ -879,12 +947,12 @@ inline i64 global_release(T*& p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 //}
 //
 //
-//i64 particle::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
+//i64 particle::decrement_reference_count(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
 //{
 //
 //   auto c = --m_countReference;
 //
-//#if OBJECT_REFERENCE_COUNT_DEBUG
+//#if REFERENCING_DEBUGGING
 //
 //   if (c > 0)
 //   {
@@ -900,10 +968,10 @@ inline i64 global_release(T*& p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 //}
 //
 //
-//i64 particle::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
+//i64 particle::release(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
 //{
 //
-//   i64 i = decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+//   i64 i = decrement_reference_count(REFERENCING_DEBUGGING_ARGS);
 //
 //   if (i == 0)
 //   {
@@ -927,129 +995,129 @@ inline i64 global_release(T*& p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 //virtual trace_statement trace(enum_trace_level etracelevel);
 
 
-CLASS_DECL_ACME ::trace_statement log_statement();
+//CLASS_DECL_ACME ::trace_statement log_statement();
+//
+//
+//CLASS_DECL_ACME ::trace_statement information();
+//CLASS_DECL_ACME ::trace_statement warning();
+//CLASS_DECL_ACME ::trace_statement error();
+//CLASS_DECL_ACME ::trace_statement fatal();
+//
+//
+//CLASS_DECL_ACME void informationf(const ::ansi_character * pszFormat, ...);
+//CLASS_DECL_ACME void warningf(const ::ansi_character * pszFormat, ...);
+//CLASS_DECL_ACME void errorf(const ::ansi_character * pszFormat, ...);
+//CLASS_DECL_ACME void fatalf(const ::ansi_character * pszFormat, ...);
+//
+//
+//inline void information(const ::scoped_string & scopedstr)
+//{
+//
+//   auto statement = log_statement();
+//
+//   statement(e_trace_level_information);
+//
+//   statement << scopedstr;
+//
+//}
+//
+//
+//inline void warning(const ::scoped_string & scopedstr)
+//{
+//
+//   auto statement = log_statement();
+//
+//   statement(e_trace_level_warning);
+//
+//   statement << scopedstr;
+//
+//}
+//
+//
+//inline void error(const ::scoped_string & scopedstr)
+//{
+//
+//   auto statement = log_statement();
+//
+//   statement(e_trace_level_error);
+//
+//   statement << scopedstr;
+//
+//}
+//
+//
+//
+//inline void fatal(const ::scoped_string & scopedstr)
+//{
+//
+//   auto statement = log_statement();
+//
+//   statement(e_trace_level_fatal);
+//
+//   statement << scopedstr;
+//
+//}
 
 
-CLASS_DECL_ACME ::trace_statement information();
-CLASS_DECL_ACME ::trace_statement warning();
-CLASS_DECL_ACME ::trace_statement error();
-CLASS_DECL_ACME ::trace_statement fatal();
-
-
-CLASS_DECL_ACME void informationf(const ::ansi_character * pszFormat, ...);
-CLASS_DECL_ACME void warningf(const ::ansi_character * pszFormat, ...);
-CLASS_DECL_ACME void errorf(const ::ansi_character * pszFormat, ...);
-CLASS_DECL_ACME void fatalf(const ::ansi_character * pszFormat, ...);
-
-
-inline void information(const ::scoped_string & scopedstr)
-{
-
-   auto statement = log_statement();
-
-   statement(e_trace_level_information);
-
-   statement << scopedstr;
-
-}
-
-
-inline void warning(const ::scoped_string & scopedstr)
-{
-
-   auto statement = log_statement();
-
-   statement(e_trace_level_warning);
-
-   statement << scopedstr;
-
-}
-
-
-inline void error(const ::scoped_string & scopedstr)
-{
-
-   auto statement = log_statement();
-
-   statement(e_trace_level_error);
-
-   statement << scopedstr;
-
-}
-
-
-
-inline void fatal(const ::scoped_string & scopedstr)
-{
-
-   auto statement = log_statement();
-
-   statement(e_trace_level_fatal);
-
-   statement << scopedstr;
-
-}
-
-
-#if defined(__STD_FORMAT__)
-
-
-// With help from speccylad(twitch)/turd(discord) 2023-10-27 ~09:00 BRT
-template<typename... Ts>
-inline void information(const std::format_string<Ts...> fmt, Ts&&... args)
-{
-
-   auto statement = log_statement();
-
-   statement(e_trace_level_information);
-
-   statement.format_output(fmt, std::forward<Ts>(args)...);
-
-}
-
-
-// With help from speccylad(twitch)/turd(discord) 2023-10-27 ~09:00 BRT
-template<typename... Ts>
-inline void warning(const std::format_string<Ts...> fmt, Ts&&... args)
-{
-
-   auto statement = log_statement();
-
-   statement(e_trace_level_warning);
-
-   statement.format_output(fmt, std::forward<Ts>(args)...);
-
-}
-
-// With help from speccylad(twitch)/turd(discord) 2023-10-27 ~09:00 BRT
-template<typename... Ts>
-void error(const std::format_string<Ts...> fmt, Ts&&... args)
-{
-
-   auto statement = log_statement();
-
-   statement(e_trace_level_error);
-
-   statement.format_output(fmt, std::forward<Ts>(args)...);
-
-}
-
-
-// With help from speccylad(twitch)/turd(discord) 2023-10-27 ~09:00 BRT
-template<typename... Ts>
-void fatal(const std::format_string<Ts...> fmt, Ts&&... args)
-{
-
-   auto statement = log_statement();
-
-   statement(e_trace_level_fatal);
-
-   statement.format_output(fmt, std::forward<Ts>(args)...);
-
-}
-
-
-#endif
+//#if defined(__STD_FORMAT__)
+//
+//
+//// With help from speccylad(twitch)/turd(discord) 2023-10-27 ~09:00 BRT
+//template<typename... Ts>
+//inline void information(const std::format_string<Ts...> fmt, Ts&&... args)
+//{
+//
+//   auto statement = log_statement();
+//
+//   statement(e_trace_level_information);
+//
+//   statement.format_output(fmt, std::forward<Ts>(args)...);
+//
+//}
+//
+//
+//// With help from speccylad(twitch)/turd(discord) 2023-10-27 ~09:00 BRT
+//template<typename... Ts>
+//inline void warning(const std::format_string<Ts...> fmt, Ts&&... args)
+//{
+//
+//   auto statement = log_statement();
+//
+//   statement(e_trace_level_warning);
+//
+//   statement.format_output(fmt, std::forward<Ts>(args)...);
+//
+//}
+//
+//// With help from speccylad(twitch)/turd(discord) 2023-10-27 ~09:00 BRT
+//template<typename... Ts>
+//void error(const std::format_string<Ts...> fmt, Ts&&... args)
+//{
+//
+//   auto statement = log_statement();
+//
+//   statement(e_trace_level_error);
+//
+//   statement.format_output(fmt, std::forward<Ts>(args)...);
+//
+//}
+//
+//
+//// With help from speccylad(twitch)/turd(discord) 2023-10-27 ~09:00 BRT
+//template<typename... Ts>
+//void fatal(const std::format_string<Ts...> fmt, Ts&&... args)
+//{
+//
+//   auto statement = log_statement();
+//
+//   statement(e_trace_level_fatal);
+//
+//   statement.format_output(fmt, std::forward<Ts>(args)...);
+//
+//}
+//
+//
+//#endif
 
 
 inline bool is_ok(const ::particle * pconstparticle)
@@ -1060,6 +1128,105 @@ inline bool is_ok(const ::particle * pconstparticle)
    return ::is_set(pparticle) && pparticle->is_ok();
 
 }
+
+
+
+
+
+
+template < typename T >
+inline i64 release(T *& p REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
+{
+
+   if (::is_null(p))
+   {
+
+      return -1;
+
+   }
+
+   ::particle * pparticle = p;
+
+   try
+   {
+
+      p = nullptr;
+
+   }
+   catch (...)
+   {
+
+      ::acme::get()->platform()->informationf("exception release p = nullptr; \n");
+
+   }
+
+   try
+   {
+
+      return pparticle->release(REFERENCING_DEBUGGING_ARGS);
+
+   }
+   catch (...)
+   {
+
+      ::acme::get()->platform()->informationf("exception release pparticle->release() \n");
+
+   }
+
+   return -1;
+
+}
+
+
+template < typename T >
+inline i64 global_release(T *& p REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
+{
+
+   if (::is_null(p))
+   {
+
+      return -1;
+
+   }
+
+   try
+   {
+
+      auto i = p->release(REFERENCING_DEBUGGING_ARGS);
+
+      if (i <= 0)
+      {
+
+         p = nullptr;
+
+      }
+
+      return i;
+
+   }
+   catch (...)
+   {
+
+      ::acme::get()->platform()->informationf("exception release pparticle->release() \n");
+
+   }
+
+   return -1;
+
+}
+
+
+
+
+template < typename TYPE, typename T >
+void assign(::pointer<TYPE> & ptr, T * p REFERENCING_DEBUGGING_COMMA_PARAMS);
+
+template < typename TYPE >
+::i64 release(::pointer<TYPE> & ptr REFERENCING_DEBUGGING_COMMA_PARAMS);
+
+template < typename TYPE >
+::i64 release(TYPE *& p REFERENCING_DEBUGGING_COMMA_PARAMS);
+
 
 
 

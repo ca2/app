@@ -129,7 +129,7 @@ void freebsd_backtrace_symbol_parse(string & strSymbolName, string & strModule, 
 
       i32 status = 0;
 
-      auto psynchronization = ::platform::get()->system()->synchronization();
+      auto psynchronization = this->platform()->system()->synchronization();
 
       synchronous_lock sl(psynchronization);
 

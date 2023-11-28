@@ -132,7 +132,7 @@ namespace userex
       if(pmenu.is_null())
       {
 
-         pmenu = memory_new menu;
+         pmenu = __new< menu >();
 
          pmenu->m_atom = atom;
 

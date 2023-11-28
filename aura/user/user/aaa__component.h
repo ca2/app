@@ -467,7 +467,7 @@ class COleDataObject;   // forward object (see ::windows_definition::ole.h)
 //#include "slider.h"
 
 
-//#define memory_new AURA_NEW
+//#define aaa_primitive_new AURA_NEW
 
 //
 //

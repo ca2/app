@@ -2,6 +2,7 @@
 #include "nanosvg.h"
 #include "nanosvgrast.h"
 #include "image.h"
+#include "imaging.h"
 ////#include "acme/exception/exception.h"
 
 
@@ -11,7 +12,7 @@ void nsvg_rasterizer_set_output_format(NSVGrasterizer * prasterizer, int iRedLow
 double get_default_screen_dpi();
 
 
-bool nanosvg(::image * pimage, NSVGimage * psvgimage, int iRedLower)
+bool imaging::nanosvg(::image * pimage, void * pNSVGimage, int iRedLower)
 {
 
    NSVGrasterizer * rast = nsvgCreateRasterizer();
@@ -34,6 +35,8 @@ bool nanosvg(::image * pimage, NSVGimage * psvgimage, int iRedLower)
    ::image32_t * pdata = nullptr;
 
    int iScan = 0;
+
+   auto psvgimage = (NSVGimage *)pNSVGimage;
 
    {
 
@@ -111,7 +114,7 @@ void image::nanosvg(char * pszXml, double dDpi)
 
       map();
 
-      ::nanosvg(this, psvgimage, m_iRedLower);
+      imaging()->nanosvg(this, psvgimage, m_iRedLower);
 
       unmap();
 
@@ -158,7 +161,7 @@ void image::create_nanosvg(char * pszXml, double dDpi)
 
       map();
 
-      ::nanosvg(this, psvgimage, m_iRedLower);
+      imaging()->nanosvg(this, psvgimage, m_iRedLower);
 
       unmap();
 

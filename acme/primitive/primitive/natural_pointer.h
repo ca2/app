@@ -1,7 +1,9 @@
 #pragma once
 
 
-#include "acme/memory/memory_allocator.h"
+#include "acme/platform/acme.h"
+#include "acme/memory/allocator.h"
+#include "acme/memory/management.h"
 #include "acme/primitive/primitive/interlocked_count.h"
 
 
@@ -129,7 +131,7 @@ using nullptr_t = std::nullptr_t;
 #pragma pack(push,1)
 
 
-template < typename RANGE_TYPE, typename BASE_META_DATA, typename ALLOCATOR = memory_allocator >
+template < typename RANGE_TYPE, typename BASE_META_DATA, ::heap::enum_memory t_ememory >
 class natural_pointer :
    public RANGE_TYPE
 {
@@ -142,7 +144,7 @@ public:
    using iterator = typename RANGE_TYPE::iterator;
 
 
-   inline natural_pointer(enum_no_initialize) : RANGE_TYPE(e_no_initialize) { }
+   inline natural_pointer(no_initialize_t) : RANGE_TYPE(no_initialize_t{}) { }
    inline natural_pointer(enum_zero_initialize) : RANGE_TYPE(e_zero_initialize) { }
    inline natural_pointer(const natural_pointer & natural_pointer)
    {
@@ -158,7 +160,7 @@ public:
       RANGE_TYPE::operator = (::transfer(natural_pointer));
 
    }
-   inline natural_pointer() : natural_pointer(e_no_initialize)
+   inline natural_pointer() : natural_pointer(no_initialize_t{})
    {
 
       natural_pointer_default_construct();
@@ -171,6 +173,7 @@ public:
 
    }
 
+   inline static ::heap::memory * memory() { return ::heap::management::memory(t_ememory); }
 
    void destroy()
    {
@@ -267,7 +270,7 @@ public:
    inline static NATURAL_META_DATA * create_meta_data(::memsize sizeStorageInBytes)
    {
 
-      auto pmetadata = (natural_meta_data < BASE_META_DATA > *) ALLOCATOR::allocate(sizeStorageInBytes + sizeof(BASE_META_DATA));
+      auto pmetadata = (natural_meta_data < BASE_META_DATA > *) memory()->allocate(sizeStorageInBytes + sizeof(BASE_META_DATA));
 
       pmetadata->m_countReference.construct();
 
@@ -289,7 +292,7 @@ public:
    inline void static natural_destroy(NATURAL_META_DATA * pmetadata)
    {
 
-      ALLOCATOR::free(pmetadata);
+      memory()->free(pmetadata);
 
    }
 

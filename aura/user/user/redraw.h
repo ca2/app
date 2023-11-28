@@ -19,6 +19,17 @@ namespace user
       ::rectangle_i32_array               m_rectanglea;
       ::array < ::function <void() > >    m_functiona;
 
+
+      redraw_item();
+      ~redraw_item() override;
+
+#ifdef _DEBUG
+
+      i64 increment_reference_count(REFERENCING_DEBUGGING_PARAMETERS) override;
+      i64 decrement_reference_count(REFERENCING_DEBUGGING_PARAMETERS) override;
+
+#endif
+
    };
 
 

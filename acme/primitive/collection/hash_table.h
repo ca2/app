@@ -74,7 +74,7 @@ public:
          else
          {
 
-            m_ppHash = memory_new iterator[nHashSize];
+            m_ppHash = __new_array< iterator >(nHashSize);
 
             ENSURE(m_ppHash != nullptr);
 

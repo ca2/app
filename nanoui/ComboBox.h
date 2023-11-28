@@ -57,11 +57,11 @@ namespace nanoui
       /// Create an empty combo box
       ComboBox(Widget* parent);
 
-      /// Create a memory_new combo box with the given items
+      /// Create a new combo box with the given items
       ComboBox(Widget* parent, const ::string_array& items);
 
       /**
-       * \brief Create a memory_new combo box with the given items, providing both short and
+       * \brief Create a new combo box with the given items, providing both short and
        * long descriptive labels for each item
        */
       ComboBox(Widget* parent, const ::string_array& items,

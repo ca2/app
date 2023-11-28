@@ -369,7 +369,7 @@ namespace graphics
       //
       //         ::u8 a = p[3];
       //
-      //         //::informationf("argb " +as_string(r) + "," + as_string(g) + "," +as_string(b) + "," + as_string(a));
+      //         //::acme::get()->platform()->informationf("argb " +as_string(r) + "," + as_string(g) + "," +as_string(b) + "," + as_string(a));
       //
       //      }
 

@@ -10,6 +10,7 @@
 #include "style.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
+#include "acme/handler/topic.h"
 #include "acme/platform/sequencer.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/windowing/monitor.h"
@@ -33,11 +34,11 @@ namespace user
 
       common_construct();
 
-      auto pitemClient = __new(::item(e_element_client));
+      auto pitemClient = __allocate< ::item >(e_element_client);
 
       enable_drag(pitemClient, e_zorder_back);
 
-      auto pitemResize = __new(::item(e_element_resize));
+      auto pitemResize = __allocate< ::item >(e_element_resize);
 
       enable_drag(pitemResize, e_zorder_back);
 
@@ -95,7 +96,7 @@ namespace user
    void default_message_box::add_button(const ::string & strTitle, enum_dialog_result edialogresult)
    {
 
-      m_buttona.add(__new(::user::button(strTitle, edialogresult)));
+      m_buttona.add(__allocate< ::user::button >(strTitle, edialogresult));
 
       //return ::success;
 
@@ -105,7 +106,7 @@ namespace user
    pointer< ::sequencer < ::conversation > > default_message_box::show(::user::interaction * puserinteraction, const string& strMessageParam, const string& strTitle, const ::e_message_box& emessagebox)
    {
 
-      auto psequencer = __new(::sequencer <::conversation >());
+      auto psequencer = __allocate< ::sequencer <::conversation > >();
 
       psequencer->m_psequence = this;
 
@@ -123,7 +124,7 @@ namespace user
 
       m_stra.add_lines(strMessage);
 
-      m_pbuttonClose = __new(::user::button("", e_dialog_result_close));
+      m_pbuttonClose = __allocate< ::user::button >("", e_dialog_result_close);
 
       m_pbuttonClose->set_button_style(::user::button::e_style_stock_icon);
 
@@ -185,26 +186,26 @@ namespace user
    }
 
 
-   i64 default_message_box::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
+   i64 default_message_box::increment_reference_count(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
    {
 
-      return ::user::interaction::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      return ::user::interaction::increment_reference_count(REFERENCING_DEBUGGING_ARGS);
 
    }
 
 
-   i64 default_message_box::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
+   i64 default_message_box::decrement_reference_count(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
    {
 
-      return ::user::interaction::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      return ::user::interaction::decrement_reference_count(REFERENCING_DEBUGGING_ARGS);
 
    }
 
 
-   i64 default_message_box::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
+   i64 default_message_box::release(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
    {
 
-      return ::user::interaction::release(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      return ::user::interaction::release(REFERENCING_DEBUGGING_ARGS);
 
    }
 
@@ -389,7 +390,7 @@ namespace user
 
       pgraphics->m_pdraw2dhost = this;
 
-      m_pinteractionScaler = __new(::user::interaction_scaler);
+      m_pinteractionScaler = __allocate< ::user::interaction_scaler >();
 
       m_pinteractionScaler->on_display_change(this);
 

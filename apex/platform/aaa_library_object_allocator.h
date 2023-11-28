@@ -40,7 +40,7 @@
 //   virtual ::matter * new_object(::particle * pparticle) override
 //   {
 //
-//      return memory_new TYPE(pparticle);
+//      return aaa_primitive_new TYPE(pparticle);
 //
 //   }
 //

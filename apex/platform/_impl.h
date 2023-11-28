@@ -16,7 +16,7 @@
 //
 //      }
 //
-//      auto pappNew = __new(APP);
+//      auto pappNew = __allocate< APP >();
 //
 //      if(pappNew == nullptr)
 //      {
@@ -175,7 +175,7 @@
 //     if (proutea.is_null())
 //     {
 //
-//        proutea = __new(::message::route_array);
+//        proutea = __allocate< ::message::route_array >();
 //
 //     }
 //
@@ -256,7 +256,7 @@
 //     if (proutea.is_null())
 //     {
 //
-//        proutea = __new(::message::route_array);
+//        proutea = __allocate< ::message::route_array >();
 //
 //     }
 //
@@ -326,7 +326,7 @@
 //   while (c > 0)
 //   {
 //
-//      auto p = __new(TYPE(&a));
+//      auto p = __allocate< TYPE >(&a);
 //
 //      stream >> *p;
 //
@@ -378,7 +378,7 @@
 //
 //
 //template < class c_derived >
-//inline i64 increment_reference_count(c_derived * pca OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEFINITION)
+//inline i64 increment_reference_count(c_derived * pca REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
 //{
 //
 //   if (::is_null(pca))
@@ -388,7 +388,7 @@
 //
 //   }
 //
-//   return pca->increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+//   return pca->increment_reference_count(REFERENCING_DEBUGGING_ARGS);
 //
 //}
 //
@@ -423,7 +423,7 @@
 //
 //
 //template < class c_derived >
-//inline i64 release(c_derived *& pca OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEFINITION)
+//inline i64 release(c_derived *& pca REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
 //{
 //
 //   if (::is_null(pca))
@@ -449,7 +449,7 @@
 //   //catch (...)
 //   //{
 //
-//   //   ::informationf("exception release strdup(typeid(*p).name())\n");
+//   //   ::acme::get()->platform()->informationf("exception release strdup(typeid(*p).name())\n");
 //
 //   //}
 //
@@ -464,22 +464,22 @@
 //   catch (...)
 //   {
 //
-//      //::informationf("exception release pca = nullptr; (" + string(atom) + ")\n");
-//      ::informationf("exception release pca = nullptr; \n");
+//      //::acme::get()->platform()->informationf("exception release pca = nullptr; (" + string(atom) + ")\n");
+//      ::acme::get()->platform()->informationf("exception release pca = nullptr; \n");
 //
 //   }
 //
 //   try
 //   {
 //
-//      return ptr->release(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+//      return ptr->release(REFERENCING_DEBUGGING_ARGS);
 //
 //   }
 //   catch (...)
 //   {
 //
-//      //::informationf("exception release p->release() (" + string(atom) + ")\n");
-//      ::informationf("exception release p->release() \n");
+//      //::acme::get()->platform()->informationf("exception release p->release() (" + string(atom) + ")\n");
+//      ::acme::get()->platform()->informationf("exception release p->release() \n");
 //
 //   }
 //
@@ -494,7 +494,7 @@
 //   //   catch (...)
 //   //   {
 //   //
-//   //      ::informationf("exception release ::free(pszType)\n");
+//   //      ::acme::get()->platform()->informationf("exception release ::free(pszType)\n");
 //   //
 //   //   }
 //   //
@@ -506,28 +506,28 @@
 //
 //
 //template < class COMPOSITE >
-//inline i64 release(::pointer<COMPOSITE>& pcomposite OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
+//inline i64 release(::pointer<COMPOSITE>& pcomposite REFERENCING_DEBUGGING_COMMA_PARAMS)
 //{
 //
-//   return release(pcomposite.m_p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+//   return release(pcomposite.m_p REFERENCING_DEBUGGING_COMMA_ARGS);
 //
 //}
 //
 //
 //template < typename TYPE >
-//inline i64 release(::pointer<TYPE>& pointer OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
+//inline i64 release(::pointer<TYPE>& pointer REFERENCING_DEBUGGING_COMMA_PARAMS)
 //{
 //
-//   return release(pointer.m_p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+//   return release(pointer.m_p REFERENCING_DEBUGGING_COMMA_ARGS);
 //
 //}
 //
 //
 //template < class REFERENCE >
-//inline i64 release(::pointer<REFERENCE>& preference OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
+//inline i64 release(::pointer<REFERENCE>& preference REFERENCING_DEBUGGING_COMMA_PARAMS)
 //{
 //
-//   return release(preference.m_p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+//   return release(preference.m_p REFERENCING_DEBUGGING_COMMA_ARGS);
 //
 //}
 //

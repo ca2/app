@@ -44,17 +44,17 @@ void init_cairo_mutex()
 
    __raw_construct(g_pmutexFc);
 
-   g_pmapFontPath = memory_new string_to_string();
+   g_pmapFontPath = __new< string_to_string >();
 
 #endif
 
-   g_pmapFontFace = memory_new string_map < i32_map < FT_Face> > ();
+   g_pmapFontFace = __new< string_map < i32_map < FT_Face> >  >();
 
-   g_pmapCairoFontFace = memory_new string_map < cairo_font_face_t * > ();
+   g_pmapCairoFontFace = __new< string_map < cairo_font_face_t * >  >();
 
-   g_pmapFontError = memory_new string_to_int ();
+   g_pmapFontError = __new< string_to_int  >();
 
-   g_pmapFontError2 = memory_new string_to_int ();
+   g_pmapFontError2 = __new< string_to_int  >();
 
 }
 

@@ -701,7 +701,7 @@ namespace experience_lite
                pbar->prop("tracking_fade_in") = true;
                pbar->prop("tracking_fade_out") = false;
                pbar->prop("tracking_simple") = random(1, 2) == 1;
-               //prop("tracking_window") = __alloc(memory_new trw(this));
+               //prop("tracking_window") = __alloc(aaa_primitive_new trw(this));
             }
          }
          else

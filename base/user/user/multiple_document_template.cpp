@@ -183,7 +183,7 @@ namespace user
 
       if(!prequest->has_file())
       {
-         // create a memory_new ::user::document - with default ::user::document name
+         // create a new ::user::document - with default ::user::document name
          set_default_title(pdocument);
 
          // avoid creating temporary compound file when starting up invisible

@@ -285,7 +285,7 @@ namespace dynamic_source
 #ifdef WINDOWS_DESKTOP
 
       u32 dwSize = GetEnvironmentVariableW(L"PATH", nullptr, 0);
-      LPWSTR lpsz = memory_new wchar_t[dwSize + 1];
+      LPWSTR lpsz = __new_array< wchar_t >(dwSize + 1);
       dwSize = GetEnvironmentVariableW(L"PATH", lpsz, dwSize + 1);
       str += lpsz;
       delete lpsz;
@@ -309,7 +309,7 @@ namespace dynamic_source
       if (strName.case_insensitive_ends("\\auth3.ds"))
       {
 
-         ::informationf("compile auth3.ds");
+         ::acme::get()->platform()->informationf("compile auth3.ds");
 
       }
 
@@ -409,7 +409,7 @@ namespace dynamic_source
 
          string strCompileLogUnique2 = datetime()->format(INTERNATIONAL_DATE_TIME_FORMAT_FOR_FILE, timeNow);
 
-         ::informationf("Ops");
+         ::acme::get()->platform()->informationf("Ops");
 
       }
 
@@ -1236,7 +1236,7 @@ namespace dynamic_source
       strDest += "\r\n";
       strDest += "extern \"C\" __declspec(dllexport) dynamic_source::script_instance * __cdecl create_dynamic_source_script_instance ()\r\n";
       strDest += "{\r\n";
-      strDest += "   return memory_new " + m_pmanager->m_strNamespace + "_dynamic_source_script();\r\n";
+      strDest += "   return __new< " + m_pmanager->m_strNamespace + "_dynamic_source_script >();\r\n";
       strDest += "}\r\n";
       strDest += "\r\n";
       strDest += "void " + m_pmanager->m_strNamespace + "_dynamic_source_script::script_run()\r\n";
@@ -1387,7 +1387,7 @@ namespace dynamic_source
          return *p->element2();
       }
 
-      m_mapLib[pszLibrary] = __new(library(this));
+      m_mapLib[pszLibrary] = __allocate< library >(this);
 
       library & l = *m_mapLib[pszLibrary];
 

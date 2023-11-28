@@ -19,7 +19,7 @@ namespace sockets_bsd
       //,
       //base_socket(h)
       //,socket(h)
-      m_ibuf(memory_new char[ibufsz])
+      m_ibuf(__new_array< char >(ibufsz))
       , m_ibufsz(ibufsz)
       , m_bind_ok(false)
       , m_port(0)
@@ -44,12 +44,12 @@ namespace sockets_bsd
    {
       if (IsIpv6())
       {
-         auto paddress = __new(networking_bsd::address);
+         auto paddress = __allocate< networking_bsd::address >();
          paddress->set_family(AF_INET6, port);
          //::networking::address ad(AF_INET6, port);
          return Bind((in6_addr)paddress->u.m_addr6.sin6_addr, paddress->u.m_addr6.sin6_port, range);
       }
-      auto paddress = __new(networking_bsd::address);
+      auto paddress = __allocate< networking_bsd::address >();
       paddress->set_family(AF_INET, port);
 //      ::networking::address ad(AF_INET, port);
       return Bind((in_addr)  paddress->u.m_addr.sin_addr, paddress->u.m_addr.sin_port, range);
@@ -88,7 +88,7 @@ namespace sockets_bsd
 
    i32 udp_socket::Bind(in_addr a, ::networking::port_t &port, i32 range)
    {
-      auto paddress = __new(networking_bsd::address);
+      auto paddress = __allocate< networking_bsd::address >();
       paddress->set_address(a, port);
 
 //      ::networking::address ad(a, port);
@@ -98,7 +98,7 @@ namespace sockets_bsd
 
    i32 udp_socket::Bind(in6_addr a, ::networking::port_t &port, i32 range)
    {
-      auto paddress = __new(networking_bsd::address);
+      auto paddress = __allocate< networking_bsd::address >();
       paddress->set_address(a, port);
 
 //      ::networking::address ad(a, port);
@@ -157,7 +157,7 @@ namespace sockets_bsd
       
       //::networking::address ad(l, port);
 
-      auto paddress2 = __new(::networking_bsd::address);
+      auto paddress2 = __allocate< ::networking_bsd::address >();
 
       paddress2->set_address(l, port);
       
@@ -197,7 +197,7 @@ namespace sockets_bsd
 
       //::networking::address ad(a, port);
 
-      auto paddress2 = __new(::networking_bsd::address);
+      auto paddress2 = __allocate< ::networking_bsd::address >();
 
       paddress2->set_address(a, port);
 
@@ -280,7 +280,7 @@ namespace sockets_bsd
    void udp_socket::SendToBuf(const in_addr & a, ::networking::port_t p, const char *data, i32 len, i32 flags)
    {
 
-      auto paddress2 = __new(::networking_bsd::address);
+      auto paddress2 = __allocate< ::networking_bsd::address >();
 
       paddress2->set_address(a, p);
 
@@ -294,7 +294,7 @@ namespace sockets_bsd
    void udp_socket::SendToBuf(const in6_addr & a, ::networking::port_t p, const char *data, i32 len, i32 flags)
    {
 
-      auto paddress2 = __new(::networking_bsd::address);
+      auto paddress2 = __allocate< ::networking_bsd::address >();
 
       paddress2->set_address(a, p);
 

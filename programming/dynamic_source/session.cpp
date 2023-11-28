@@ -21,11 +21,11 @@ namespace dynamic_source
       ::text::international::locale_schema * pls = m_set["locale_schema"].cast < ::text::international::locale_schema > ();
       if(pls != nullptr)
       {
-         ::informationf("locale_schema.m_atomLocale=" + pls->m_atomLocale);
+         ::acme::get()->platform()->informationf("locale_schema.m_atomLocale=" + pls->m_atomLocale);
       }
       if(m_set.has_property("rsa_n"))
       {
-         ::informationf("rsa_n");
+         ::acme::get()->platform()->informationf("rsa_n");
       }
    }
 
@@ -65,17 +65,17 @@ namespace dynamic_source
 #ifdef _DEBUG
 
 
-   i64 session::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
+   i64 session::increment_reference_count(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
    {
 
-      return ::particle::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      return ::particle::increment_reference_count(REFERENCING_DEBUGGING_ARGS);
 
    }
 
-   i64 session::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
+   i64 session::decrement_reference_count(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
    {
 
-      return ::particle::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      return ::particle::decrement_reference_count(REFERENCING_DEBUGGING_ARGS);
 
    }
 

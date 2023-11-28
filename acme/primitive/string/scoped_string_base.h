@@ -46,7 +46,7 @@ public:
    scoped_string_base(const HAS_GET_STRING & has_get_string) : RANGE(e_zero_initialize) { this->str(has_get_string.get_string()); }
 
 //   template < primitive_character CHARACTER2 >
-//   scoped_string_base(CHARACTER2 character) : RANGE(e_no_initialize)
+//   scoped_string_base(CHARACTER2 character) : RANGE(no_initialize_t{})
 //   {
 //      if constexpr(sizeof(CHARACTER2) == 1 && sizeof(CHARACTER) == 1)
 //      {

@@ -17,7 +17,7 @@ public:
 
 
    shift_type() noexcept { this->Δx = (UNIT_TYPE)0; this->Δy = (UNIT_TYPE)0; }
-   shift_type(enum_no_initialize) noexcept {  }
+   shift_type(no_initialize_t) noexcept {  }
    shift_type(::std::nullptr_t) noexcept { this->Δx = (UNIT_TYPE)0; this->Δy = (UNIT_TYPE)0; }
    template < primitive_number X, primitive_number Y >
    shift_type(X x, Y y) noexcept { this->Δx = (UNIT_TYPE) x; this->Δy = (UNIT_TYPE) y; }

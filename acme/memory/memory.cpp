@@ -1,174 +1,261 @@
-// Created by camilo on 2022-02-06 10:27 <3ThomasBorregaardSorensen!!
+//Created by camilo on 2021-07-23 23:12 BRT <3ThomasBorregaardSorensen!!
 #include "framework.h"
-//#include "_memory.h"
+#include "heap.h"
+#include "memory.h"
+#include "acme/exception/interface_only.h"
+#include "acme/memory/c_malloc.h"
 
 
-//#ifdef WINDOWS
-/*
-* Find the first occurrence of the ::u8 string s in ::u8 string l.
-*/
-
-const void * memory_find(const void * l, memsize l_len, const void * s, memsize s_len)
-{
-   const ::u8* cl = (const ::u8*)l;
-   const ::u8* cs = (const ::u8*)s;
-
-   /* we need something to compare */
-   if (l_len == 0 || s_len == 0)
-      return nullptr;
-
-   /* "s" must be smaller or equal to "l" */
-   if (l_len < s_len)
-      return nullptr;
-
-   /* special case where s_len == 1 */
-   if (s_len == 1) {
-       return _memory_find_u8((void *) l, (int) *cs, l_len);
-
-   }
-
-   return _memory_find(l, l_len, s, s_len);
-
-}
-
-//#endif // #ifdef WINDOWS
-
-void * reverse_memchr(const void * l, int ch, size_t l_len)
+//#define HEAP_NAMESPACE_PREFIX main
+//#include "_____heap_namespace.h"
+//
+namespace heap
 {
 
-   char * end;
-
-   if (l_len <= 0)
+   //memory::memory(::heap::heap * pheap) :
+   //   m_pheap(pheap)
+   memory::memory()
    {
 
-      return nullptr;
+      //m_pheap = plex_heap_alloc_array::new_plex_heap_alloc_array(pallocator);
 
    }
 
-   end = (char *)l + l_len - 1;
 
-   while (end >= l)
+   memory::~memory()
    {
 
-      if (*end == ch)
-      {
+      ::c::malloc::destroy(m_pheap);
 
-         return end;
+      
+      //plex_heap_alloc_array::delete_plex_heap_alloc_array(m_pheap);
 
-      }
+      //m_pallocator->free(m_pheap);
 
    }
 
-   return nullptr;
-
-}
-
-
-/*
-* Find the last occurrence of the ::u8 string s in ::u8 string l.
-*/
-
-void * reverse_memmem(const void * l, size_t l_len, const void * s, size_t s_len)
-{
-
-   char * cur, * last;
-   const char * cl = (const char *)l;
-   const char * cs = (const char *)s;
-
-   /* we need something to compare */
-   if (l_len == 0 || s_len == 0)
-      return nullptr;
-
-   /* "s" must be smaller or equal to "l" */
-   if (l_len < s_len)
-      return nullptr;
-
-   /* special case where s_len == 1 */
-   if (s_len == 1)
-      return (void *) _memory_find_u8((const void *)l, (int)*cs, l_len);
-
-   /* the last position where its possible to find "s" in "l" */
-   last = (char *)cl + l_len - s_len;
-
-   for (cur = (char *)last; cur >= cl; cur--)
+   void memory::initialize_memory(::heap::heap * pheap)
+      
    {
 
-      if (cur[0] == cs[0] && _memory_order(cur, cs, s_len) == 0)
-      {
+      m_pheap = pheap;
 
-         return cur;
-
-      }
+      //m_pheap = plex_heap_alloc_array::new_plex_heap_alloc_array(pallocator);
 
    }
 
-   return nullptr;
 
-}
-
-
-
-
-
-void * reverse_byte_not_in_block(const void * l, size_t l_len, const void * s, size_t s_len)
-{
-
-   char * cur, * last, * curByte;
-   char * prev = nullptr;
-   const char * cl = (const char *)l;
-   const char * cs = (const char *)s;
-   const char * ends = (const char *)s + s_len;
-
-   /* we need something to compare */
-   if (l_len <= 0)
-      return nullptr;
-
-   /* the last position where its possible to find "s" in "l" */
-   last = (char *)cl + l_len - 1;
-
-   for (cur = (char *)last; cur >= cl; cur--)
+   void memory::start_memory()
    {
 
-      for (curByte = (char *)cs; curByte < ends; curByte++)
-      {
-
-         if (cur[0] == curByte[0])
-         {
-
-            return prev;
-
-         }
-
-      }
-
-      prev = cur;
+      m_pheap->start_heap();
 
    }
 
-   return prev;
 
-}
-
-
-CLASS_DECL_ACME::u32 __u32_hash(const ::scoped_string & scopedstr)
-{
-
-   ::u32 u = 0;
-
-   auto psz = scopedstr.begin();
-
-   while (psz < scopedstr.end())
+   void * memory::allocate(memsize size)
    {
 
-      u = (u << 5) + *psz;
-
-      psz++;
+      return m_pheap->allocate(size);
 
    }
 
-   return u;
 
-}
+   void * memory::count_allocate(::count count, memsize size)
+   {
 
+      return m_pheap->count_allocate(count, size);
+
+   }
+
+
+   void * memory::reallocate(void * p, memsize size)
+   {
+
+      return m_pheap->reallocate(p, size);
+
+   }
+
+
+   void memory::free(void * p)
+   {
+
+      return m_pheap->free(p);
+
+   }
+
+
+   bool memory::has_size() const
+   {
+
+      return true;
+
+   }
+
+
+   memsize memory::size(void * p)
+   {
+
+      return m_pheap->size(p);
+
+   }
+
+
+   void * memory::allocate_debug(memsize size, i32 nBlockUse, const char * szFileName, i32 nLine)
+   {
+
+      return m_pheap->allocate_debug(size, nBlockUse, szFileName,nLine);
+
+   }
+
+
+   void * memory::reallocate_debug(void * p, memsize size, i32 nBlockUse, const char * szFileName, i32 nLine)
+   {
+
+      return m_pheap->reallocate_debug(p, size, nBlockUse, szFileName, nLine);
+   }
+
+
+   void memory::free_debug(void * p, i32 nBlockUse)
+   {
+
+      return m_pheap->free_debug(p, nBlockUse);
+
+   }
+
+
+   memsize memory::size_debug(void * p, i32 nBlockUse)
+   {
+
+      return m_pheap->size_debug(p, nBlockUse);
+
+
+   }
+
+
+   void * memory::aligned_allocate(memsize s, memsize align)
+   {
+
+      return m_pheap->aligned_allocate(s, align);
+
+   }
+
+
+   void * memory::aligned_allocate_debug(memsize s, i32 nBlockUse, const char * szFileName, i32 nLine, memsize align)
+   {
+
+      return m_pheap->aligned_allocate_debug(s, nBlockUse, szFileName, nLine, align);
+
+   }
+
+
+   void * memory::unaligned_allocate(memsize s)
+   {
+
+      return m_pheap->unaligned_allocate(s);
+
+   }
+
+
+   void * memory::unaligned_allocate_debug(memsize s, i32 nBlockUse, const char * szFileName, i32 nLine)
+   {
+
+      return m_pheap->aligned_allocate_debug(s, nBlockUse, szFileName, nLine);
+
+   }
+
+
+   memory * management::_new_memory(enum_memory ememory)
+   {
+
+      return ::c::malloc::create< ::heap::memory >();
+
+   }
+
+   memory * management::new_memory(enum_memory ememory)
+   {
+
+      auto p = _new_memory(ememory);
+
+      p->initialize_memory(new_heap(::heap::e_heap_default, ememory));
+
+      return p;
+
+   }
+
+   //void memory::free_debug(void * p, i32 nBlockUse)
+   //{
+
+   //   return m_pheap->free_debug(p, nBlockUse);
+
+   //}
+
+
+   //memsize memory::size_debug(void * p, i32 nBlockUse)
+   //{
+
+   //   return m_pheap->size_debug(p, nBlockUse);
+
+   //}
+
+
+//   namespace HEAP_NAMESPACE
+//   {
+//
+//      void alloc_less_than_256()
+//      {
+//
+//
+//      }
+//
+//      void alloc_256_or_more()
+//      {
+//
+//
+//      }
+//
+//
+//      void on_plex_new_block(::u32 nAllocSize)
+//      {
+//
+//
+//      }
+//
+//
+//      void on_plex_heap_alloc(plex_heap_alloc * palloc)
+//      {
+//
+//         int iAllocSize = palloc->m_iAllocSize;
+//
+//         if (iAllocSize < 256)
+//         {
+//
+//            alloc_less_than_256();
+//
+//         }
+//         else
+//         {
+//
+//            alloc_256_or_more();
+//
+//         }
+//
+//      }
+//      void on_system_heap_alloc(memsize memsize)
+//      {
+//
+//
+//      }
+//
+////
+//   }
+////
+////
+////#include "namespace_heap.inl"
+////#include "heap_namespace.inl"
+//
+
+
+} // namespace heap
 
 

@@ -641,7 +641,7 @@ namespace user
       if (!m_pshell)
       {
 
-         //estatus = __construct(m_pshell, __new(::windows::shell));
+         //estatus = __construct(m_pshell, __allocate< ::windows::shell >());
          //estatus =
          __construct(m_pshell);
 
@@ -1008,7 +1008,7 @@ namespace aura
    //session_docs * create_session_docs()
    //{
 
-   //   return memory_new session_docs();
+   //   return __new< session_docs >();
 
    //}
 
@@ -1539,7 +1539,7 @@ namespace user
    ::pointer<::user::plain_edit>user::create_calculator_edit()
    {
 
-      return __new(::user::plain_edit);
+      return __allocate< ::user::plain_edit >();
 
    }
 
@@ -1548,66 +1548,66 @@ namespace user
 } // namespace user
 
 
-CLASS_DECL_AURA ::particle * user_synchronization()
-{
-
-   auto pplatform = platform::get();
-
-   if (::is_null(pplatform))
-   {
-
-      return nullptr;
-
-   }
-
-   auto psystem = pplatform->system();
-
-   if (::is_null(psystem))
-   {
-
-      return nullptr;
-
-   }
-
-   auto psession = psystem->session();
-
-   if (::is_null(psession))
-   {
-
-      return nullptr;
-
-   }
-
-   auto paurasession = psession->m_paurasession;
-
-   if (::is_null(paurasession))
-   {
-
-      return nullptr;
-
-   }
-
-   auto puser = paurasession->user();
-
-   if (::is_null(puser))
-   {
-
-      return nullptr;
-
-   }
-
-   auto pmutexUser = puser->m_pmutexUser;
-
-   if (::is_null(pmutexUser))
-   {
-
-      return nullptr;
-
-   }
-
-   return pmutexUser;
-
-}
+//CLASS_DECL_AURA ::particle * user_synchronization()
+//{
+//
+//   auto pplatform = platform::get();
+//
+//   if (::is_null(pplatform))
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
+//   auto psystem = pplatform->system();
+//
+//   if (::is_null(psystem))
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
+//   auto psession = psystem->session();
+//
+//   if (::is_null(psession))
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
+//   auto paurasession = psession->m_paurasession;
+//
+//   if (::is_null(paurasession))
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
+//   auto puser = paurasession->user();
+//
+//   if (::is_null(puser))
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
+//   auto pmutexUser = puser->m_pmutexUser;
+//
+//   if (::is_null(pmutexUser))
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
+//   return pmutexUser;
+//
+//}
 
 
 //CLASS_DECL_AURA void initialize_user_mutex()
@@ -1620,7 +1620,7 @@ CLASS_DECL_AURA ::particle * user_synchronization()
 //
 //   }
 //
-//   g_pmutexUser = ::platform::get()->system()->node()->create_mutex();
+//   g_pmutexUser = this->platform()->system()->node()->create_mutex();
 //
 //}
 //

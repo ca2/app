@@ -3,6 +3,7 @@
 #include "interaction.h"
 #include "acme/constant/id.h"
 #include "acme/platform/node.h"
+#include "apex/handler/signal.h"
 #include "aura/platform/system.h"
 
 

@@ -112,7 +112,7 @@ namespace networking_bsd
 //      }
 
 
-      //m_pajpaxissocketinit = memory_new AjpBaseSocket::Initializer;
+      //m_pajpaxissocketinit = aaa_primitive_new AjpBaseSocket::Initializer;
 
       m_countHttpPostBoundary = 0;
 
@@ -267,7 +267,7 @@ namespace networking_bsd
    ::pointer<::networking::address>networking_bsd::create_address(const ::string & strHostname)
    {
 
-      return __new(address(strHostname));
+      return __allocate< address >(strHostname);
 
    }
 

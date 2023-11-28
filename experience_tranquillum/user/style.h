@@ -22,17 +22,17 @@ namespace experience_tranquillum
       style();
       ~style() override;
 
-      //virtual i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override
+      //virtual i64 increment_reference_count(REFERENCING_DEBUGGING_PARAMETERS) override
       //{
 
-      //   return ::object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      //   return ::object::increment_reference_count(REFERENCING_DEBUGGING_ARGS);
 
       //}
 
-      //virtual i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override
+      //virtual i64 decrement_reference_count(REFERENCING_DEBUGGING_PARAMETERS) override
       //{
 
-      //   return ::object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      //   return ::object::decrement_reference_count(REFERENCING_DEBUGGING_ARGS);
 
       //}
 

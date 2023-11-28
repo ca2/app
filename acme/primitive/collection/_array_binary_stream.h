@@ -81,8 +81,8 @@ inline binary_stream & operator >>(binary_stream & stream, ::pointer_array < ITE
 }
 
 
-template < class TYPE, class ARG_TYPE = const TYPE &, class ALLOCATOR = allocator::nodef < TYPE >, ::enum_type m_etypeContainer >
-inline binary_stream & operator <<(binary_stream & stream, const ::array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & a)
+template < class TYPE, class ARG_TYPE = const TYPE &, class ALLOCATOR = allocator::nodef < TYPE >, ::enum_type t_etypeContainer >
+inline binary_stream & operator <<(binary_stream & stream, const ::array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & a)
 {
 
    ::count c = a.get_count();
@@ -156,8 +156,8 @@ inline binary_stream & operator >>(binary_stream & stream, ARRAY & a)
 }
 
 
-template < class TYPE, class ARG_TYPE = const TYPE &, class ALLOCATOR = allocator::nodef < TYPE >, ::enum_type m_etypeContainer >
-inline binary_stream & operator <<(binary_stream & stream, const ::raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & a)
+template < class TYPE, class ARG_TYPE = const TYPE &, class ALLOCATOR = allocator::nodef < TYPE >, ::enum_type t_etypeContainer >
+inline binary_stream & operator <<(binary_stream & stream, const ::raw_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & a)
 {
 
    ::count c = a.get_count();
@@ -171,8 +171,8 @@ inline binary_stream & operator <<(binary_stream & stream, const ::raw_array < T
 }
 
 
-template < class TYPE, class ARG_TYPE = const TYPE &, class ALLOCATOR = allocator::nodef < TYPE >, ::enum_type m_etypeContainer >
-inline binary_stream & operator >>(binary_stream & stream, ::raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & a)
+template < class TYPE, class ARG_TYPE = const TYPE &, class ALLOCATOR = allocator::nodef < TYPE >, ::enum_type t_etypeContainer >
+inline binary_stream & operator >>(binary_stream & stream, ::raw_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & a)
 {
 
    ::count c;

@@ -69,7 +69,7 @@ CLASS_DECL_ACME wstring gen_utf8_to_16(const ::scoped_string & scopedstr);
 //      wstring_data * pdata = (wstring_data *) (((u8 *) pwsz) - sizeof(count) - sizeof(count));
 //      if(pdata->m_iAllocation <= 0)
 //         return;
-//      ::memory_free(pdata);
+//      ::heap::management::memory(::heap::e_memory_main)->free(pdata);
 //
 //   }
 //
@@ -172,8 +172,8 @@ public:
    inline const unichar * c_str() const { return this->operator const unichar *();  }
 
 #if defined(UNIVERSAL_WINDOWS) && defined(__cplusplus_winrt)
-   inline operator String ^ () const { return ref memory_new String(operator const unichar *()); }
-   inline operator String ^ () { return ref memory_new String(operator const unichar *()); }
+   inline operator String ^ () const { return ref aaa_primitive_new String(operator const unichar *()); }
+   inline operator String ^ () { return ref aaa_primitive_new String(operator const unichar *()); }
 #endif
 
    inline wstring & operator += (unichar wch) { append(wch); return *this; }

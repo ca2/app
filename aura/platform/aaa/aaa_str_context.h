@@ -154,14 +154,14 @@
 //      textcontext();
 //      virtual ~textcontext();
 //
-//      virtual i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
+//      virtual i64 increment_reference_count(REFERENCING_DEBUGGING_PARAMETERS)
 //      {
-//         return ::object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+//         return ::object::increment_reference_count(REFERENCING_DEBUGGING_ARGS);
 //      }
 //
-//      virtual i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
+//      virtual i64 decrement_reference_count(REFERENCING_DEBUGGING_PARAMETERS)
 //      {
-//         return ::object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+//         return ::object::decrement_reference_count(REFERENCING_DEBUGGING_ARGS);
 //      }
 //
 //      inline void defer_ok(str * pstr)

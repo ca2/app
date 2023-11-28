@@ -42,9 +42,9 @@ public:
 
 #ifdef _DEBUG
 
-   virtual i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
-   virtual i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
-   virtual i64 release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
+   virtual i64 increment_reference_count(REFERENCING_DEBUGGING_PARAMETERS) override;
+   virtual i64 decrement_reference_count(REFERENCING_DEBUGGING_PARAMETERS) override;
+   virtual i64 release(REFERENCING_DEBUGGING_PARAMETERS) override;
 
 #endif
 

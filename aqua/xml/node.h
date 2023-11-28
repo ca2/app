@@ -12,12 +12,14 @@ namespace xml
 
 
    class CLASS_DECL_AQUA node :
-      virtual public ::data::node
+      virtual public ::data::node,
+      public ::allocator::accessor < ::xml::node >
    {
    protected:
 
 
-      friend class ::xml::document;
+      friend class ::allocator::accessor < ::xml::document >;
+      friend class ::allocator::accessor < ::xml::node >;
 
 
       // name and value

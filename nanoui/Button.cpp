@@ -548,7 +548,7 @@ namespace nanoui
       if (m_strCaption == "Load Presets")
       {
 
-         ::informationf("Drawing Load Presets");
+         ::acme::get()->platform()->informationf("Drawing Load Presets");
 
       }
 

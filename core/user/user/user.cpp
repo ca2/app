@@ -62,7 +62,7 @@
 //#endif
 
 
-//#define memory_new ACME_NEW
+
 
 
 //#ifdef WINDOWS_DESKTOP
@@ -302,7 +302,7 @@ namespace core
 
       auto typeinfo = psystem->get_simple_frame_window_type_info();
 
-      auto ptemplate = __new(::user::multiple_document_template(
+      auto ptemplate = __allocate < ::user::multiple_document_template >(
          "system/form",
          ::type < form_document >(),
          psystem->get_simple_frame_window_type_info(),
@@ -315,7 +315,7 @@ namespace core
 
       add_document_template(ptemplate);
 
-      ptemplate = __new(::user::multiple_document_template(
+      ptemplate = __allocate < ::user::multiple_document_template >(
          "system/form",
          ::type < form_document >(),
          get_simple_child_frame_type_info(),
@@ -327,7 +327,7 @@ namespace core
 
       add_document_template(m_ptemplateChildForm);
 
-      ptemplate = __new(::user::multiple_document_template(
+      ptemplate = __allocate < ::user::multiple_document_template >(
          "system/form",
          ::type < ::user::document >(),
          psystem->get_simple_frame_window_type_info(),
@@ -339,7 +339,7 @@ namespace core
 
       add_document_template(ptemplate);
 
-      auto pmultitemplate = memory_new::user::multiple_document_template(
+      auto pmultitemplate = __new< ::user::multiple_document_template >(
          "main",
          ::type < ::user::document >(),
          ::type < ::userex::dialog_frame >(),
@@ -1576,7 +1576,7 @@ namespace core
    //::pointer<::user::user>application::create_userex()
    //{
 
-   //   return __new(::user::user);
+   //   return __allocate< ::user::user >();
 
    //}
 
@@ -1584,7 +1584,7 @@ namespace core
    //i32 application::sync_message_box(::user::primitive * puiOwner, const ::string & pszMessage, ::u32 fuStyle)
    //{
 
-   //   ::informationf("\n\napp_message_box: " + string(pszMessage) + "\n\n");
+   //   ::acme::get()->platform()->informationf("\n\napp_message_box: " + string(pszMessage) + "\n\n");
 
    //   if (&Session == nullptr || psession->user() == nullptr)
    //      return ::base::application::sync_message_box(puiOwner, pszMessage, fuStyle);
@@ -1730,7 +1730,7 @@ namespace core
 
          //add_factory_item <::user::color_impact >();
 
-         //user()->m_mapimpactsystem[COLORSEL_IMPACT] = __new(::user::multiple_document_template(
+         //user()->m_mapimpactsystem[COLORSEL_IMPACT] = __allocate < ::user::multiple_document_template >(
          //   get_app(),
          //   "main",
          //   ::type < ::user::document >(),
@@ -1752,7 +1752,7 @@ namespace core
 
          factory()->add_factory_item <::user::color_selector_impact >();
 
-         auto ptemplate = __new(::user::multiple_document_template(
+         auto ptemplate = __allocate < ::user::multiple_document_template >(
             "main",
             ::type < ::user::document >(),
             ::type < ::simple_frame_window >(),
@@ -1781,7 +1781,7 @@ namespace core
          factory()->add_factory_item <::user::font_list_impact >();
          factory()->add_factory_item <::userex::font_impact >();
 
-         auto ptemplate = __new(::user::multiple_document_template(
+         auto ptemplate = __allocate < ::user::multiple_document_template >(
             "main",
             ::type < ::user::document >(),
             ::type < ::simple_frame_window >(),

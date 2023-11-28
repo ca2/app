@@ -531,9 +531,9 @@ namespace linux
    bool copydesk::_get_plain_text(string & str)
    {
 
-      ::pointer<clipboard_data>pdata = __new(clipboard_data(get_app(), clipboard_get_plain_text));
+      ::pointer<clipboard_data>pdata = __allocate< clipboard_data >(get_app(), clipboard_get_plain_text);
 
-      pdata->increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_P_NOTE(this, "copydesk::_get_plain_text"));
+      pdata->increment_reference_count(REFERENCING_DEBUGGING_P_NOTE(this, "copydesk::_get_plain_text"));
 
       auto idle_source = g_idle_source_new();
 
@@ -560,7 +560,7 @@ namespace linux
    bool copydesk::_has_plain_text()
    {
 
-      ::pointer<ovar>::payload(__new(ovar));
+      ::pointer<ovar>::payload(__allocate< ovar >());
 
       ::payload->m_var = false;
 
@@ -581,9 +581,9 @@ namespace linux
    bool copydesk::_has_filea()
    {
 
-      ::pointer<clipboard_data>pdata = __new(clipboard_data(get_app(), clipboard_get_file_target_count));
+      ::pointer<clipboard_data>pdata = __allocate< clipboard_data >(get_app(), clipboard_get_file_target_count);
 
-      pdata->increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_P_NOTE(this, "copydesk::_has_filea"));
+      pdata->increment_reference_count(REFERENCING_DEBUGGING_P_NOTE(this, "copydesk::_has_filea"));
 
       auto idle_source = g_idle_source_new();
 
@@ -606,9 +606,9 @@ namespace linux
    bool copydesk::_get_filea(::file::path_array & patha, e_op & eop)
    {
 
-      ::pointer<clipboard_data>pdata = __new(clipboard_data(get_app(), clipboard_get_patha));
+      ::pointer<clipboard_data>pdata = __allocate< clipboard_data >(get_app(), clipboard_get_patha);
 
-      pdata->increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_P_NOTE(this, "copydesk::_get_filea"));
+      pdata->increment_reference_count(REFERENCING_DEBUGGING_P_NOTE(this, "copydesk::_get_filea"));
 
       auto idle_source = g_idle_source_new();
 
@@ -635,9 +635,9 @@ namespace linux
    bool copydesk::_set_filea(const ::file::path_array & patha, e_op eop)
    {
 
-      ::pointer<clipboard_data>pdata = __new(clipboard_data(get_app(), clipboard_set_patha));
+      ::pointer<clipboard_data>pdata = __allocate< clipboard_data >(get_app(), clipboard_set_patha);
 
-      pdata->increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_P_NOTE(this, "copydesk::_set_filea"));
+      pdata->increment_reference_count(REFERENCING_DEBUGGING_P_NOTE(this, "copydesk::_set_filea"));
 
       pdata->m_eop = eop;
 
@@ -666,9 +666,9 @@ namespace linux
    bool copydesk::_desk_to_image(::image * pimage)
    {
 
-      ::pointer<clipboard_data>pdata = __new(clipboard_data(get_app(), clipboard_get_image));
+      ::pointer<clipboard_data>pdata = __allocate< clipboard_data >(get_app(), clipboard_get_image);
 
-      pdata->increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_P_NOTE(this, "copydesk::_desk_to_image"));
+      pdata->increment_reference_count(REFERENCING_DEBUGGING_P_NOTE(this, "copydesk::_desk_to_image"));
 
       pdata->m_pimage = __create_image();
 

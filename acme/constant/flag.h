@@ -53,6 +53,8 @@ enum enum_flag : u64
    e_flag_shared = 1ll << 34,
    e_flag_read_only = 1ll << 35,
    e_flag_owner = 1ll << 35,
+   e_flag_debug_mask = 1ll << 36 | 1ll << 37 | 1ll << 38 | 1ll << 39 | 1ll << 40 | 1ll << 41,
+   e_flag_no_referencing_debugging = 1ll << 42,
 
 };
 

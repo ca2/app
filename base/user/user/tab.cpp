@@ -1203,7 +1203,7 @@ namespace user
                if (rectangleScroll.contains(pointCursor))
                {
 
-                  return __new(::item(::e_element_tab_near_scroll, -1));
+                  return __allocate< ::item >(::e_element_tab_near_scroll, -1);
 
                }
 
@@ -1215,7 +1215,7 @@ namespace user
                if (rectangleScroll.contains(pointCursor))
                {
 
-                  return __new(::item(::e_element_tab_far_scroll, -1));
+                  return __allocate< ::item >(::e_element_tab_far_scroll, -1);
 
                }
 
@@ -1255,7 +1255,7 @@ namespace user
                      if (rectangleText.contains(point))
                      {
 
-                        return __new(::item((enum_element)((int)e_element_split + iTitle), iIndex));
+                        return __allocate< ::item >((enum_element)((int)e_element_split + iTitle), iIndex);
 
                      }
 
@@ -1296,7 +1296,7 @@ namespace user
                user_item(ppane)->m_rectangle2 = rectangle;
 
                return ppane;
-               //return __new(::item(e_element_tab, iIndex));
+               //return __allocate< ::item >(e_element_tab, iIndex);
 
             }
 
@@ -1304,7 +1304,7 @@ namespace user
 
       }
 
-      auto pitemNone = __new(::item(e_element_none));
+      auto pitemNone = __allocate< ::item >(e_element_none);
 
       return pitemNone;
 

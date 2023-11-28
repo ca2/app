@@ -1067,10 +1067,10 @@ namespace apex
 
       synchronous_lock synchronouslock(this->synchronization());
 
-      if (m_pmapKeyPressed == nullptr)
+      if (!m_pmapKeyPressed)
       {
 
-         m_pmapKeyPressed = memory_new ::map < ::user::enum_key, bool >;
+         __construct_new(m_pmapKeyPressed);
 
       }
 
@@ -1152,10 +1152,10 @@ ret:
 
       synchronous_lock synchronouslock(this->synchronization());
 
-      if (m_pmapKeyPressed == nullptr)
+      if (!m_pmapKeyPressed)
       {
 
-         m_pmapKeyPressed = memory_new ::map < ::user::enum_key, bool >;
+         __construct_new(m_pmapKeyPressed);
 
       }
 
@@ -1215,7 +1215,7 @@ ret:
 
       //   m_result.add(estatus);
 
-      //   informationf("Failed to create memory_new User Presence");
+      //   informationf("Failed to create new User Presence");
 
       //   return false;
 
@@ -1225,7 +1225,7 @@ ret:
       {
 
          //estatus = 
-         __construct(m_pifs, __new(ifs("")));
+         __construct(m_pifs, __allocate< ifs >(""));
 
          //if (!estatus)
          //{
@@ -1242,7 +1242,7 @@ ret:
       {
 
          //estatus = 
-         __construct(m_premotefs, __new(::fs::remote_native("")));
+         __construct(m_premotefs, __allocate< ::fs::remote_native >(""));
 
          //if (!estatus)
          //{
@@ -1258,7 +1258,7 @@ ret:
       //if (!m_pftpfs)
       //{
 
-      //   auto pftpfs = __new(ftpfs);
+      //   auto pftpfs = __allocate< ftpfs >();
 
       //   auto estatus = pftpfs->initialize_ftpfs(this, "");
 
@@ -1389,7 +1389,7 @@ ret:
       try
       {
 
-         ::acme::del(m_pmapKeyPressed);
+         m_pmapKeyPressed.release();
 
       }
       catch (...)
@@ -1631,7 +1631,7 @@ namespace apex
    bool session::InitializeLocalDataCentral()
    {
 
-      //m_pdatabase = memory_new nature::database(this);
+      //m_pdatabase = __new< nature::database >(this);
 
       //if(m_pdatabase == nullptr)
       //{

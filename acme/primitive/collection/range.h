@@ -190,7 +190,7 @@ public:
    e_range           m_erange = e_range_none;
 
 
-   constexpr range(enum_no_initialize)
+   constexpr range(no_initialize_t)
    {
    }
 

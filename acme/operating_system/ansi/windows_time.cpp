@@ -397,7 +397,7 @@ PLARGE_INTEGER Time)
 
    utc = time( nullptr );
 
-   critical_section_lock ml(::platform::get()->tz_critical_section());
+   critical_section_lock ml(this->platform()->tz_critical_section());
 //    RtlEnterCriticalSection( &TIME_tz_section );
    if (utc != last_utc)
    {
@@ -826,7 +826,7 @@ static i32 init_tz_info(RTL_TIME_ZONE_INFORMATION *tzi)
    time_t year_start, year_end, tmp, dlt = 0, iStandard = 0;
    i32 is_dst, current_is_dst;
 
-   critical_section_lock ml(::platform::get()->tz_critical_section());
+   critical_section_lock ml(this->platform()->tz_critical_section());
 //    RtlEnterCriticalSection( &TIME_tz_section );
 
    year_start = time(nullptr);
@@ -1001,7 +1001,7 @@ NTSTATUS NtSetSystemTime(const LARGE_INTEGER *NewTime, LARGE_INTEGER *OldTime)
 
    RtlTimeToSecondsSince1970( NewTime, &sec );
 
-   /* set the memory_new time */
+   /* set the new time */
    tv.tv_sec = sec;
    tv.tv_usec = 0;
 

@@ -17,6 +17,7 @@
 #include "acme/filesystem/filesystem/dir_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "apex/handler/signal.h"
 #include "apex/platform/node.h"
 #include "apex/interprocess/communication.h"
 #include "apex/interprocess/target.h"
@@ -112,9 +113,6 @@ namespace aura
    application::application()
    {
 
-      factory()->add_factory_item<::aura::system, ::acme::system>();
-      factory()->add_factory_item < ::aura::session, ::acme::session >();
-
       m_pauraapplication = this;
 #if defined(LINUX) || defined(FREEBSD)
       m_bSnLauncheeSetup = false;
@@ -172,7 +170,7 @@ namespace aura
       //m_pimaging = nullptr;
 
 
-      //m_phandler = __new(::handler(this));
+      //m_phandler = __allocate< ::handler >(this);
 
 
       //m_bAuraProcessInitialize = false;
@@ -215,6 +213,14 @@ namespace aura
 
 
    }
+
+
+   application::~application()
+   {
+
+   }
+
+
 
 
    void application::initialize(::particle * pparticle)
@@ -260,10 +266,17 @@ namespace aura
    }
 
 
-   application::~application()
+   void application::on_set_platform()
    {
 
+      ::aqua::application::on_set_platform();
+
+      factory()->add_factory_item<::aura::system, ::acme::system>();
+      factory()->add_factory_item < ::aura::session, ::acme::session >();
+
+
    }
+
 
 
    //::message::application::message::application(e_::message::application esignal)
@@ -282,7 +295,7 @@ namespace aura
    //   if(m_pappmenu.is_null())
    //   {
 
-   //      m_pappmenu = __new(application_menu);
+   //      m_pappmenu = __allocate< application_menu >();
 
    //   }
 
@@ -1763,7 +1776,7 @@ namespace aura
       //if (!on_install())
       //{
 
-      //   ::informationf("Failed at on_install : " + m_strAppId + "\n\n");
+      //   ::acme::get()->platform()->informationf("Failed at on_install : " + m_strAppId + "\n\n");
 
       //   psystem->m_result.add(error_failed);
 
@@ -2072,7 +2085,7 @@ retry_license:
    //   try
    //   {
 
-   //      return __new(::interprocess::communication(m_strAppName));
+   //      return __allocate< ::interprocess::communication >(m_strAppName);
 
    //   }
    //   catch (...)
@@ -3753,7 +3766,7 @@ retry_license:
 
    //   }
 
-   //   auto pusermessage = __new(::user::message);
+   //   auto pusermessage = __allocate< ::user::message >();
 
    //   if (!pusermessage)
    //   {
@@ -4235,7 +4248,7 @@ retry_license:
 
    //   //throw ::exception(todo("xml"));
 
-   //   //auto pdocument = __new(::xml::document);
+   //   //auto pdocument = __allocate< ::xml::document >();
 
    //   //if (!pdocument->load(atom) || !*pdocument)
    //   //{
@@ -5369,7 +5382,7 @@ retry_license:
       //::html::html * application::create_html()
       //{
 
-      //   return memory_new ::html::html(get_app());
+      //   return __new< ::html::html(get_app >());
 
       //}
 
@@ -7040,7 +7053,7 @@ namespace aura
    if (lResult == ERROR_SUCCESS)
    {
    ASSERT(dwType == REG_BINARY);
-   *ppData = memory_new ::u8[*pBytes];
+   *ppData = __new_array< ::u8 >(*pBytes);
    lResult = RegQueryValueEx(hSecKey, (char *)pszEntry, nullptr, &dwType,
 
    *ppData, &dwCount);
@@ -7068,7 +7081,7 @@ namespace aura
    ASSERT(str.length()%2 == 0);
    iptr nLen = str.length();
    *pBytes = ::u32(nLen)/2;
-   *ppData = memory_new ::u8[*pBytes];
+   *ppData = __new_array< ::u8 >(*pBytes);
    for (i32 i=0;i<nLen;i+=2)
    {
    (*ppData)[i/2] = (::u8)
@@ -7188,7 +7201,7 @@ namespace aura
    }
 
    // convert to string and write out
-   char * psz = memory_new char[nBytes*2+1];
+   char * psz = __new_array< char >(nBytes*2+1);
 
    ::u32 i;
    for (i = 0; i < nBytes; i++)
@@ -7965,7 +7978,7 @@ namespace aura
    }
 
 
-   void application::data_on_after_change(::database::client* pclient, const ::scoped_string & scopedstr, const ::payload & payload, ::topic * ptopic)
+   void application::data_on_after_change(::database::client* pclient, const ::scoped_string & scopedstr, ::topic * ptopic)
    {
 
    }
@@ -8046,7 +8059,7 @@ namespace aura
 //   ::pointer<::apex::application>application::create_platform(::apex::session* psession)
 //   {
 //
-//      return __new(::aura::session);
+//      return __allocate< ::aura::session >();
 //
 //   }
 
@@ -8567,7 +8580,7 @@ namespace aura
 
       }
 
-      pinteraction = __new(::account::simple_ui(this,strRequestUrl));
+      pinteraction = __allocate< ::account::simple_ui >(this,strRequestUrl);
 
       pinteraction->m_login.m_peditUser->set_window_text(strUsername);
 
@@ -8587,7 +8600,7 @@ namespace aura
    //::pointer<::user::user>application::create_user()
    //{
 
-   //   return __new(::user::user);
+   //   return __allocate< ::user::user >();
 
    //}
 

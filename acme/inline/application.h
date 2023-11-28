@@ -1,7 +1,7 @@
 //#include "application_common.h"
 //#include "__apps.inl"
 
-::i32 application_main();
+::i32 application_main(::platform::platform * pplatform);
 
 #include "acme/_operating_system.h"
 #include "acme/platform/system_setup.h"
@@ -78,7 +78,7 @@ void set_argc_argv_envp(int argc, char ** argv, char ** envp);
 int __implement();
 
 #if defined(WINDOWS)
-int WINAPI WinMain(HINSTANCE hinstanceThis, HINSTANCE hinstancePrev, CHAR* pCmdLine, int nCmdShow)
+int WINAPI wWinMain(HINSTANCE hinstanceThis, HINSTANCE hinstancePrev, WCHAR* pCmdLine, int nCmdShow)
 #elif defined(ANDROID)
 extern "C" int android_main(int argc, char* argv[], char* envp[], const char* p1, const char* p2)
 #else
@@ -88,7 +88,7 @@ int main(int argc, char * argv[], char * envp[])
 
    ::acme::acme acme;
 
-   //if (::platform::get()->m_pacmeapplication->has_finishing_flag())
+   //if (this->platform()->m_pacmeapplication->has_finishing_flag())
    //{
 
    //   return ::acme::acme::g_pacme->m_pacmeapplication->m_iExitCode;
@@ -97,25 +97,25 @@ int main(int argc, char * argv[], char * envp[])
 
 #if defined(WINDOWS)
 
-   ::acme::initialize(hinstanceThis, hinstancePrev, pCmdLine, nCmdShow);
+   acme.initialize(hinstanceThis, hinstancePrev, pCmdLine, nCmdShow);
 
 #else
 
-   ::acme::initialize(argc, argv, envp);
+   acme.initialize(argc, argv, envp);
 
 #endif
 
 #if defined(LINUX) || defined(FREEBSD) || defined(RASPBERRYPIOS)
 
-   ::platform::get()->set_resource_block(_binary__matter_zip_start, _binary__matter_zip_end);
+   acme.platform()->set_resource_block(_binary__matter_zip_start, _binary__matter_zip_end);
 
 #elif defined(ANDROID)
 
-   ::platform::get()->set_resource_block(p1, p2);
+   acme.platform()->set_resource_block(p1, p2);
 
 #endif
 
-   auto iExitCode = application_main();
+   auto iExitCode = application_main(acme.platform());
 
    return iExitCode;
    //::acme::sub_application::g_p->m_pacmeapplicationSub->m_bConsole = true;
@@ -129,9 +129,9 @@ int main(int argc, char * argv[], char * envp[])
 
 //   acme::acme acme;
 //
-//   auto pplatform = __new(subsystem);
+//   auto pplatform = __allocate< subsystem >();
 //
-//   auto pmainhold = __new(main_hold);
+//   auto pmainhold = __allocate< main_hold >();
 
 //   ::main acme;
 //
@@ -183,7 +183,7 @@ int main(int argc, char * argv[], char * envp[])
 //
 //   return iExitCode;
 //
-////   ///auto pmainhold = __new(main_hold);
+////   ///auto pmainhold = __allocate< main_hold >();
 ////
 ////   auto papp = IDENTIFIER_CONCATENATE(new_, APP)();
 ////

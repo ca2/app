@@ -67,9 +67,7 @@ namespace sockets
    socket_thread::socket_thread()
    {
 
-      auto iAllocatedSocketThreadCount = g_iSocketThread++;
-
-      ::information() << "::sockets::socket_thread currently allocated count = " << iAllocatedSocketThreadCount;
+      m_iAllocatedCount = g_iSocketThread++;
 
    }
 
@@ -110,10 +108,19 @@ namespace sockets
    socket_thread::~socket_thread()
    {
 
-      ::informationf("--->>>>>socket_thread::~SOCKET_thread\n");
+      ::acme::get()->platform()->informationf("--->>>>>socket_thread::~SOCKET_thread\n");
 
    }
 
+
+   void socket_thread::on_initialize_particle()
+   {
+
+      ::task::on_initialize_particle();
+
+      information() << "::sockets::socket_thread currently allocated count = " << m_iAllocatedCount;
+
+   }
 
    //void socket_thread::init_thread()
    //{
@@ -142,18 +149,18 @@ namespace sockets
 #ifdef _DEBUG
 
 
-   ::i64 socket_thread::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
+   ::i64 socket_thread::increment_reference_count(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
    {
 
-      return ::task::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      return ::task::increment_reference_count(REFERENCING_DEBUGGING_ARGS);
 
    }
 
 
-   ::i64 socket_thread::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
+   ::i64 socket_thread::decrement_reference_count(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
    {
 
-      return ::task::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      return ::task::decrement_reference_count(REFERENCING_DEBUGGING_ARGS);
 
    }
 
@@ -190,7 +197,7 @@ namespace sockets
       //if (phandler.get() != m_psocket->m_psockethandler.get())
       //{
 
-      //   //   ::informationf("");
+      //   //   ::acme::get()->platform()->informationf("");
 
       //   //}
       //   //else

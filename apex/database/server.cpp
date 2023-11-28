@@ -2,6 +2,7 @@
 #include "server.h"
 #include "acme/filesystem/file/binary_stream.h"
 #include "acme/filesystem/file/memory_file.h"
+#include "acme/handler/topic.h"
 #include "acme/parallelization/event.h"
 #include "apex/platform/context.h"
 
@@ -115,7 +116,7 @@ namespace database
    }
 
 
-   void server::on_after_data_change(client * pclient, const ::scoped_string & scopedstr, const ::payload & payload, ::topic * ptopic)
+   void server::on_after_data_change(client * pclient, const ::scoped_string & scopedstr, ::topic * ptopic)
    {
 
       //::database::change_event signal;
@@ -134,7 +135,7 @@ namespace database
 
          }
 
-         m_clienta.element_at(i)->data_on_after_change(pclient, scopedstr, payload, ptopic);
+         m_clienta.element_at(i)->data_on_after_change(pclient, scopedstr, ptopic);
 
       }
 

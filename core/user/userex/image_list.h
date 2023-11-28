@@ -36,13 +36,13 @@ namespace userex
 
       bool _001GetItemText(string & str, index iItem) override;
 #ifdef _DEBUG
-      i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override
+      i64 increment_reference_count(REFERENCING_DEBUGGING_PARAMETERS) override
       {
-         return ::object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+         return ::object::increment_reference_count(REFERENCING_DEBUGGING_ARGS);
       }
-      i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override
+      i64 decrement_reference_count(REFERENCING_DEBUGGING_PARAMETERS) override
       {
-         return ::object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+         return ::object::decrement_reference_count(REFERENCING_DEBUGGING_ARGS);
       }
 #endif
       void install_message_routing(::channel * pchannel) override;

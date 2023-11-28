@@ -75,7 +75,7 @@ namespace user
             if(pinteraction->get_control_type() == ::user::e_control_type_button)
             {
 
-               auto pextendedtopic = __new(::extended_topic(::id_click));
+               auto pextendedtopic = __allocate< ::extended_topic >(::id_click);
 
                pextendedtopic->m_puserelement         = pinteraction;
 

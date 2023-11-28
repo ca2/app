@@ -175,7 +175,7 @@ namespace user
       if (!::is_set(m_pitemHover))
       {
 
-         m_pitemHover = __new(::item(::e_element_client));
+         m_pitemHover = __allocate< ::item >(::e_element_client);
 
          set_need_redraw();
 

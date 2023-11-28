@@ -77,7 +77,7 @@ namespace factory
 
        critical_section_lock lock(&m_criticalsection);
 
-       auto pfactory = __new(::factory::factory_item< TYPE, ORIGIN_TYPE >());
+       auto pfactory = __allocate< ::factory::factory_item< TYPE, ORIGIN_TYPE > >();
 
        this->get_factory_item < ORIGIN_TYPE >() = pfactory;
 
@@ -178,7 +178,7 @@ namespace factory
     //      if (p && ::type(p).name()) == strText
     //      {
 
-    //         ::informationf("loading into existing matter of same class type (1)");
+    //         ::acme::get()->platform()->informationf("loading into existing matter of same class type (1)");
 
     //      }
     //      else
@@ -189,7 +189,7 @@ namespace factory
     //         if (!p)
     //         {
 
-    //            ::informationf("defer_new failed (1.1)");
+    //            ::acme::get()->platform()->informationf("defer_new failed (1.1)");
 
     //            stream.set_fail_bit();
 
@@ -197,7 +197,7 @@ namespace factory
     //         else if (::type(p).name()) != strText
     //         {
 
-    //            ::informationf("allocated matter type is different from streamed matter type (1.2)");
+    //            ::acme::get()->platform()->informationf("allocated matter type is different from streamed matter type (1.2)");
 
     //            stream.set_fail_bit();
 
@@ -214,7 +214,7 @@ namespace factory
     //      if (p && atom == ::type(p).name())
     //      {
 
-    //         ::informationf("loading into existing matter of same class type (2)");
+    //         ::acme::get()->platform()->informationf("loading into existing matter of same class type (2)");
 
     //      }
     //      else
@@ -225,13 +225,13 @@ namespace factory
     //         if (!p)
     //         {
 
-    //            ::informationf("stream::alloc_object_from_text failed (2.1)");
+    //            ::acme::get()->platform()->informationf("stream::alloc_object_from_text failed (2.1)");
 
     //         }
     //         else if (::type(p).name()) != atom.to_string()
     //         {
 
-    //            ::informationf("allocated matter type is different from streamed matter type (2.2)");
+    //            ::acme::get()->platform()->informationf("allocated matter type is different from streamed matter type (2.2)");
 
     //            stream.set_fail_bit();
 
@@ -287,8 +287,15 @@ namespace factory
 
 
 template < typename TYPE >
-inline void __raw_construct(::pointer<TYPE>& p, ::factory::factory* pfactory)
+inline void particle::__raw_construct(::pointer<TYPE>& p, ::factory::factory* pfactory REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
 {
+
+   if (::is_null(pfactory))
+   {
+
+      pfactory = this->factory();
+
+   }
 
    auto& pfactoryitem = pfactory->get_factory_item< TYPE >();
 
@@ -303,7 +310,7 @@ inline void __raw_construct(::pointer<TYPE>& p, ::factory::factory* pfactory)
 
    }
 
-   auto pparticleNew = pfactoryitem->create_particle();
+   auto pparticleNew = pfactoryitem->create_particle(REFERENCING_DEBUGGING_ARGS);
 
    if (!pparticleNew)
    {
@@ -316,9 +323,7 @@ inline void __raw_construct(::pointer<TYPE>& p, ::factory::factory* pfactory)
 
    }
 
-   p.release();
-
-   p = pparticleNew;
+   p = ::transfer(pparticleNew);
 
    if (!p)
    {
@@ -335,63 +340,92 @@ inline void __raw_construct(::pointer<TYPE>& p, ::factory::factory* pfactory)
 
 
 template < typename BASE_TYPE >
-inline ::pointer<BASE_TYPE> __raw_create(::factory::factory* pfactory)
+inline ::pointer<BASE_TYPE> particle::__raw_create(::factory::factory* pfactory REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
 {
 
    ::pointer<BASE_TYPE> p;
 
-   __raw_construct(p, pfactory);
+   __raw_construct(p, pfactory REFERENCING_DEBUGGING_COMMA_ARGS);
 
    return ::transfer(p);
 
 }
 
 
+//template < typename TYPE >
+//inline void __construct(::particle* pparticle, ::pointer<TYPE>& p, ::factory::factory* pfactory)
+//{
+//
+//   __raw_construct(p, pfactory);
+//
+//   p->initialize(pparticle);
+//
+//}
+//
+//
+//template < typename BASE_TYPE >
+//inline ::pointer < BASE_TYPE > __create(::particle* pparticle, ::factory::factory* pfactory)
+//{
+//
+//   ::pointer < BASE_TYPE > p;
+//
+//   __construct(pparticle, p, pfactory);
+//
+//   return p;
+//
+//}
+
+
 template < typename TYPE >
-inline void __construct(::particle* pparticle, ::pointer<TYPE>& p, ::factory::factory* pfactory)
-{
-
-   __raw_construct(p, pfactory);
-
-   p->initialize(pparticle);
-
-}
-
-
-template < typename BASE_TYPE >
-inline ::pointer < BASE_TYPE > __create(::particle* pparticle, ::factory::factory* pfactory)
-{
-
-   ::pointer < BASE_TYPE > p;
-
-   __construct(pparticle, p, pfactory);
-
-   return p;
-
-}
-
-
-template < typename TYPE >
-inline void __defer_construct(::particle* pparticle, ::pointer<TYPE>& p, ::factory::factory* pfactory)
+inline bool particle::__defer_construct(::pointer<TYPE>& p, ::factory::factory* pfactory REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
 {
 
    if (!p)
    {
 
-      __construct(pparticle, p, pfactory);
+      __construct(p, pfactory REFERENCING_DEBUGGING_COMMA_ARGS);
+
+      return true;
 
    }
+
+   return false;
 
 }
 
 
+//template < typename TYPE >
+//inline bool particle::__defer_construct(::pointer<TYPE>& p, ::factory::factory* pfactory)
+//{
+//
+//   if (!p)
+//   {
+//
+//      __construct(p, pfactory);
+//
+//      return true;
+//
+//   }
+//
+//   return false;
+//
+//}
+
+
 template < typename TYPE >
-inline void __id_construct(particle* pparticle, ::pointer<TYPE>& p, const ::atom& atom, ::factory::factory* pfactory)
+inline void particle::__id_construct(::pointer<TYPE>& p, const ::atom& atom, ::factory::factory * pfactory REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
 {
+
+   if (::is_null(pfactory))
+   {
+
+      pfactory = this->factory();
+
+   }
 
    auto& pfactoryitem = pfactory->get_factory_item(atom);
 
-   auto pparticleNew = pfactoryitem->create_particle();
+   auto pparticleNew = pfactoryitem->create_particle(REFERENCING_DEBUGGING_ARGS);
 
    //if (!pparticleNew)
    //{
@@ -413,7 +447,7 @@ inline void __id_construct(particle* pparticle, ::pointer<TYPE>& p, const ::atom
 
    //auto estatus =
 
-   p->initialize(pparticle);
+   p->initialize(this);
 
    //if (!estatus)
    //{
@@ -428,12 +462,19 @@ inline void __id_construct(particle* pparticle, ::pointer<TYPE>& p, const ::atom
 
 
 template < typename TYPE >
-inline ::pointer < TYPE > __id_create(particle* pparticle, const ::atom& atom, ::factory::factory* pfactory)
+inline ::pointer < TYPE > particle::__id_create(const ::atom& atom, ::factory::factory * pfactory REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
 {
+
+   if (::is_null(pfactory))
+   {
+
+      pfactory = this->factory();
+
+   }
 
    auto& pfactoryitem = pfactory->get_factory_item(atom);
 
-   auto pparticleNew = pfactoryitem->create_particle();
+   auto pparticleNew = pfactoryitem->create_particle(REFERENCING_DEBUGGING_ARGS);
 
    //if (!pparticleNew)
    //{
@@ -457,7 +498,7 @@ inline ::pointer < TYPE > __id_create(particle* pparticle, const ::atom& atom, :
 
    //auto estatus =
 
-   p->initialize(pparticle);
+   p->initialize(this);
 
    //if (!estatus)
    //{
@@ -475,10 +516,10 @@ inline ::pointer < TYPE > __id_create(particle* pparticle, const ::atom& atom, :
 
 template < class T >
 template < typename PARTICLE >
-inline pointer < T >& pointer < T >::create(PARTICLE* pparticle, ::factory::factory* pfactory)
+inline pointer < T >& pointer < T >::create(PARTICLE* pparticle, ::factory::factory* pfactory REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
 {
 
-   auto p = ::__create < T >(pparticle);
+   auto p = pparticle->__create < T >(pfactory REFERENCING_DEBUGGING_COMMA_ARGS);
 
    return operator =(p);
 

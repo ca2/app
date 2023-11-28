@@ -18,7 +18,8 @@ namespace windowing
 {
 
 
-   display::display()
+   display::display() :
+      m_pointCursor2(I32_MINIMUM)
    {
 
       m_pDisplay = nullptr;

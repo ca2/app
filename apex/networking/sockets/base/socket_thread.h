@@ -16,12 +16,16 @@ namespace sockets
    public:
 
 
-      ::pointer<socket_handler>       m_psockethandler;
-      //::pointer<base_socket>          m_psocket;
+      ::i64                            m_iAllocatedCount;
+      ::pointer<socket_handler>        m_psockethandler;
+      //::pointer<base_socket>         m_psocket;
 
 
       socket_thread();
       ~socket_thread() override;
+
+
+      void on_initialize_particle() override;
 
 
       //virtual void transfer(socket_map::association * passociation, socket_map * psocketmap = nullptr);
@@ -36,9 +40,9 @@ namespace sockets
 
 #ifdef _DEBUG
 
-      ::i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
+      ::i64 increment_reference_count(REFERENCING_DEBUGGING_PARAMETERS) override;
 
-      ::i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
+      ::i64 decrement_reference_count(REFERENCING_DEBUGGING_PARAMETERS) override;
 
 #endif
 

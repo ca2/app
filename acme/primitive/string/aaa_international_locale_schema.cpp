@@ -15,7 +15,7 @@ namespace str
       void create_rtl_map()
       {
 
-         g_pmapRTL = memory_new ::map < ::atom,const ::atom &,::atom,const ::atom & >();
+         g_pmapRTL = aaa_primitive_new ::map < ::atom,const ::atom &,::atom,const ::atom & >();
 
       }
 
@@ -722,14 +722,14 @@ restart:
 
       }
 
-      i64 locale_schema::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
+      i64 locale_schema::increment_reference_count(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
       {
-         return matter::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+         return matter::increment_reference_count(REFERENCING_DEBUGGING_ARGS);
       }
 
-      i64 locale_schema::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
+      i64 locale_schema::release(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
       {
-         return matter::release(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+         return matter::release(REFERENCING_DEBUGGING_ARGS);
       }
 
 

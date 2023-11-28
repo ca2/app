@@ -61,7 +61,7 @@ dir_context::dir_context()
 
    //   ::file::dir_context::g_pthis = this;
 
-   //   increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+   //   increment_reference_count(REFERENCING_DEBUGGING_ARGS);
 
    //}
 
@@ -1530,7 +1530,7 @@ bool dir_context::name_is(const ::file::path& strPath)
 //
 //         is_dir * pdir = this;
 //
-//         ::pointer<is_dir>pfind(__new(is_dir));
+//         ::pointer<is_dir>pfind(__allocate< is_dir >());
 //
 //         index iFind0 = 0;
 //         index iFind3 = 0;
@@ -1597,7 +1597,7 @@ bool dir_context::name_is(const ::file::path& strPath)
 //
 //                  pdir = pfind;
 //
-//                  pfind = __new(is_dir);
+//                  pfind = __allocate< is_dir >();
 //                  iFind0 = iFind3 + 1;
 //               }
 //            }

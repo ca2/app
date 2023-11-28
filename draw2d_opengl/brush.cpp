@@ -26,7 +26,7 @@ namespace draw2d_opengl
    //      delete m_pbrush;
    //   }
 
-   //   m_pbrush = memory_new plusplus::SolidBrush(plusplus::Color(color32_u8_opacity(crColor), color32_u8_red(crColor), color32_u8_green(crColor), color32_u8_blue(crColor)));
+   //   m_pbrush = __new< plusplus::SolidBrush(plusplus::Color(color32_u8_opacity(crColor), color32_u8_red(crColor), color32_u8_green(crColor), color32_u8_blue >(crColor)));
 
    //   return m_pbrush != nullptr;
    //      
@@ -127,7 +127,7 @@ namespace draw2d_opengl
    //   //   {
    //   //      try
    //   //      {
-   //   //         ((brush *) this)->m_pbrush = memory_new plusplus::SolidBrush(plusplus::Color(color32_u8_opacity(m_color), color32_u8_red(m_color), color32_u8_green(m_color), color32_u8_blue(m_color)));
+   //   //         ((brush *) this)->m_pbrush = __new< plusplus::SolidBrush(plusplus::Color(color32_u8_opacity(m_color), color32_u8_red(m_color), color32_u8_green(m_color), color32_u8_blue >(m_color)));
    //   //      }
    //   //      catch(...)
    //   //      {
@@ -137,7 +137,7 @@ namespace draw2d_opengl
    //   //   {
    //   //      try
    //   //      {
-   //   //         ((brush *) this)->m_pbrush = memory_new plusplus::LinearGradientBrush(
+   //   //         ((brush *) this)->m_pbrush = __new< plusplus::LinearGradientBrush >(
    //   //            plusplus::PointF((plusplus::REAL) m_point1.x(),(plusplus::REAL) m_point1.y()),
    //   //            plusplus::PointF((plusplus::REAL) m_point2.x(),(plusplus::REAL) m_point2.y()),
    //   //            plusplus::Color(color32_u8_opacity(m_color1), color32_u8_red(m_color1), color32_u8_green(m_color1), color32_u8_blue(m_color1)),
@@ -152,10 +152,10 @@ namespace draw2d_opengl
    //   //      try
    //   //      {
 
-   //   //         plusplus::GraphicsPath * gp = memory_new plusplus::GraphicsPath();
+   //   //         plusplus::GraphicsPath * gp = __new< plusplus::GraphicsPath >();
    //   //         gp->AddEllipse((plusplus::REAL) (m_point.x() - m_size.cx() / 2),(plusplus::REAL)(m_point.y() - m_size.cy() / 2),(plusplus::REAL) (m_size.cx()),(plusplus::REAL) (m_size.cy()));
 
-   //   //         plusplus::PathGradientBrush * pgb = memory_new plusplus::PathGradientBrush(gp);
+   //   //         plusplus::PathGradientBrush * pgb = __new< plusplus::PathGradientBrush >(gp);
 
    //   //         plusplus::Color c1(color32_u8_opacity(m_color1),color32_u8_red(m_color1),color32_u8_green(m_color1),color32_u8_blue(m_color1));
    //   //         plusplus::Color c2(color32_u8_opacity(m_color2),color32_u8_red(m_color2),color32_u8_green(m_color2),color32_u8_blue(m_color2));
@@ -176,7 +176,7 @@ namespace draw2d_opengl
    //   //   {
    //   //      try
    //   //      {
-   //   //         ((brush *) this)->m_pbrush = memory_new plusplus::SolidBrush(plusplus::Color(color32_u8_opacity(m_color), color32_u8_red(m_color), color32_u8_green(m_color), color32_u8_blue(m_color)));
+   //   //         ((brush *) this)->m_pbrush = __new< plusplus::SolidBrush(plusplus::Color(color32_u8_opacity(m_color), color32_u8_red(m_color), color32_u8_green(m_color), color32_u8_blue >(m_color)));
    //   //      }
    //   //      catch(...)
    //   //      {

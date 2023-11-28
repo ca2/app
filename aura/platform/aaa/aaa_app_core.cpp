@@ -251,7 +251,7 @@ void app_core::system_init()
 
       ::file::path pathModule = get_arg(m_iPathInstallFolderExeArg);
 
-      g_ppathInstallFolder = memory_new ::file::path(pathModule.folder(4));
+      g_ppathInstallFolder = aaa_primitive_new ::file::path(pathModule.folder(4));
 
    }
 
@@ -502,11 +502,11 @@ void app_core::system_init()
 
    //set_object(get_context_system());
 
-   auto pcreate = __new(::create(get_context_system()));
+   auto pcreate = __allocate< ::create >(get_context_system());
 
    pcreate->m_strAppId = strAppId;
 
-   pcreate->m_pcommandline = __new(command_line(get_context_system(), strCommandLine));
+   pcreate->m_pcommandline = __allocate< command_line >(get_context_system(), strCommandLine);
 
    //::auraacmesystem()->get_command()->add_create(pcreate);
 
@@ -609,7 +609,7 @@ pacmedirectory->ca2roaming() / "program";
 //
 //         string strLibrary = ::process::app_id_to_app_name(strAppId);
 //
-//         m_plibrary = __new(::acme::library);
+//         m_plibrary = __allocate< ::acme::library >();
 //
 //         m_plibrary->initialize(get_context_system());
 //
@@ -923,7 +923,7 @@ typedef DEFER_INIT * PFN_DEFER_INIT;
 //      aura_main_struct.m_bUser = true;
 //      aura_main_struct.m_bUserEx = true;
 //
-//      auto psystem = __new(::aura::system());
+//      auto psystem = __allocate< ::aura::system >();
 //
 //      psystem->system_construct(argc, argv);
 //
@@ -941,7 +941,7 @@ typedef DEFER_INIT * PFN_DEFER_INIT;
 //CLASS_DECL_AURA long aura_prefix(::aura::system * psystem)
 //{
 //
-//   //pmaindata->m_pappcore = __new(app_core(pmaindata));
+//   //pmaindata->m_pappcore = __allocate< app_core >(pmaindata);
 //
 //   if (!psystem->system_prep())
 //   {
@@ -965,7 +965,7 @@ typedef DEFER_INIT * PFN_DEFER_INIT;
 //CLASS_DECL_AURA long aura_fork(::aura::system * psystem, PFN_NEW_AURA_APPLICATION pfnNewAuraApplication)
 //{
 //
-//   //pmaindata->m_pappcore = __new(app_core(pmaindata));
+//   //pmaindata->m_pappcore = __allocate< app_core >(pmaindata);
 //
 //   if (!psystem->system_prep())
 //   {
@@ -1019,7 +1019,7 @@ struct heap_test_struct :
 };
 
 
-//#define memory_new ACME_NEW
+
 
 
 string_array get_c_args_from_string(const ::string & psz)
@@ -1721,7 +1721,7 @@ bool app_core::has_aura_application_factory() const
 //
 //   }
 //
-//   ::auraacmesystem()->increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
+//   ::auraacmesystem()->increment_reference_count(REFERENCING_DEBUGGING_THIS);
 //
 //   if (m_pmainstruct && m_pmainstruct->m_bConsole)
 //   {
@@ -1838,7 +1838,7 @@ bool app_core::has_aura_application_factory() const
       if (!plibrary)
       {
 
-         plibrary = memory_new ::acme::library();
+         plibrary = aaa_primitive_new ::acme::library();
 
          plibrary->m_strName = "";
 
@@ -1897,7 +1897,7 @@ bool app_core::has_aura_application_factory() const
          else
          {
 
-            //plibrary = __new(::acme::library);
+            //plibrary = __allocate< ::acme::library >();
 
             //plibrary->initialize_aura_library(pparticle, 0, nullptr);
 
@@ -1910,7 +1910,7 @@ bool app_core::has_aura_application_factory() const
             if (is_verbose())
             {
 
-               ::informationf("\n\n::aura::session::get_new_application assembled library path " + strLibrary + "\n\n");
+               ::acme::get()->platform()->informationf("\n\n::aura::session::get_new_application assembled library path " + strLibrary + "\n\n");
 
             }
 
@@ -1932,7 +1932,7 @@ bool app_core::has_aura_application_factory() const
             if (is_verbose())
             {
 
-               ::informationf("\n\n::aura::session::get_new_application Found library : " + strLibrary + "\n\n");
+               ::acme::get()->platform()->informationf("\n\n::aura::session::get_new_application Found library : " + strLibrary + "\n\n");
 
             }
 
@@ -1943,7 +1943,7 @@ bool app_core::has_aura_application_factory() const
 //          if (!plibrary->is_opened())
 //          {
 //
-//             ::informationf("\n\n::aura::session::get_new_application Failed to load library : " + strLibrary + "\n\n");
+//             ::acme::get()->platform()->informationf("\n\n::aura::session::get_new_application Failed to load library : " + strLibrary + "\n\n");
 //
 //             return nullptr;
 //
@@ -1952,14 +1952,14 @@ bool app_core::has_aura_application_factory() const
             if (is_verbose())
             {
 
-               ::informationf("\n\n::aura::session::get_new_application Opened library : " + strLibrary + "\n\n");
+               ::acme::get()->platform()->informationf("\n\n::aura::session::get_new_application Opened library : " + strLibrary + "\n\n");
 
             }
 
             //if (!plibrary->open_ca2_library())
             //{
 
-            //::informationf("\n\n::aura::session::get_new_application open_ca2_library failed(2) : " + strLibrary + "\n\n");
+            //::acme::get()->platform()->informationf("\n\n::aura::session::get_new_application open_ca2_library failed(2) : " + strLibrary + "\n\n");
 
             //return nullptr;
 
@@ -1968,11 +1968,11 @@ bool app_core::has_aura_application_factory() const
             //if (is_verbose())
             //{
 
-            //   ::informationf("\n\n\n|(5)----");
-            //   ::informationf("| app : " + strAppId + "\n");
-            //   ::informationf("|\n");
-            //   ::informationf("|\n");
-            //   ::informationf("|----");
+            //   ::acme::get()->platform()->informationf("\n\n\n|(5)----");
+            //   ::acme::get()->platform()->informationf("| app : " + strAppId + "\n");
+            //   ::acme::get()->platform()->informationf("|\n");
+            //   ::acme::get()->platform()->informationf("|\n");
+            //   ::acme::get()->platform()->informationf("|----");
 
             //}
 
@@ -1989,11 +1989,11 @@ bool app_core::has_aura_application_factory() const
 
       papp = library.get_new_application(::auraacmesystem()->get_session(), strAppId);
 
-      ::informationf("\n\n\n|(4)----");
-      ::informationf("| app : " + strAppId + "(papp=0x" + ::hex::upper_from((uptr)papp.m_p) + ")\n");
-      ::informationf("|\n");
-      ::informationf("|\n");
-      ::informationf("|----");
+      ::acme::get()->platform()->informationf("\n\n\n|(4)----");
+      ::acme::get()->platform()->informationf("| app : " + strAppId + "(papp=0x" + ::hex::upper_from((uptr)papp.m_p) + ")\n");
+      ::acme::get()->platform()->informationf("|\n");
+      ::acme::get()->platform()->informationf("|\n");
+      ::acme::get()->platform()->informationf("|----");
 
    }
 
@@ -2019,22 +2019,22 @@ bool app_core::has_aura_application_factory() const
    if (is_verbose())
    {
 
-      ::informationf("\n\n\n|(3)----");
-      ::informationf("| app : " + strAppId + "\n");
-      ::informationf("|\n");
-      ::informationf("|\n");
-      ::informationf("|----");
+      ::acme::get()->platform()->informationf("\n\n\n|(3)----");
+      ::acme::get()->platform()->informationf("| app : " + strAppId + "\n");
+      ::acme::get()->platform()->informationf("|\n");
+      ::acme::get()->platform()->informationf("|\n");
+      ::acme::get()->platform()->informationf("|----");
 
    }
 
    if (is_verbose())
    {
 
-      ::informationf("\n\n\n|(2)----");
-      ::informationf("| app : " + strAppId + "\n");
-      ::informationf("|\n");
-      ::informationf("|\n");
-      ::informationf("|----");
+      ::acme::get()->platform()->informationf("\n\n\n|(2)----");
+      ::acme::get()->platform()->informationf("| app : " + strAppId + "\n");
+      ::acme::get()->platform()->informationf("|\n");
+      ::acme::get()->platform()->informationf("|\n");
+      ::acme::get()->platform()->informationf("|----");
 
    }
 
@@ -2050,8 +2050,8 @@ bool app_core::has_aura_application_factory() const
    if (!papp->is_serviceable() || papp->is_user_service())
    {
 
-      ::auraacmesystem()->m_spmutexUserAppData = __new(::pointer < ::mutex >(e_create_new, false, "Local\\ca2.UserAppData"));
-      ::auraacmesystem()->m_spmutexSystemAppData = __new(::pointer < ::mutex >(e_create_new, false, "Local\\ca2.SystemAppData"));
+      ::auraacmesystem()->m_spmutexUserAppData = __allocate< ::pointer < ::mutex > >(e_create_new, false, "Local\\ca2.UserAppData");
+      ::auraacmesystem()->m_spmutexSystemAppData = __allocate< ::pointer < ::mutex > >(e_create_new, false, "Local\\ca2.SystemAppData");
 
    }
 
@@ -2060,11 +2060,11 @@ bool app_core::has_aura_application_factory() const
    if (is_verbose())
    {
 
-      ::informationf("\n\n\n|(1)----");
-      ::informationf("| app : " + strAppId + "\n");
-      ::informationf("|\n");
-      ::informationf("|\n");
-      ::informationf("|----");
+      ::acme::get()->platform()->informationf("\n\n\n|(1)----");
+      ::acme::get()->platform()->informationf("| app : " + strAppId + "\n");
+      ::acme::get()->platform()->informationf("|\n");
+      ::acme::get()->platform()->informationf("|\n");
+      ::acme::get()->platform()->informationf("|----");
 
    }
 

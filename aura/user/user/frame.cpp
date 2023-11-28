@@ -6,6 +6,7 @@
 #include "acme/constant/id.h"
 #include "acme/constant/user_key.h"
 #include "acme/exception/interface_only.h"
+#include "acme/handler/topic.h"
 #include "acme/parallelization/pool.h"
 #include "acme/constant/message.h"
 #include "aura/graphics/image/icon.h"
@@ -548,7 +549,6 @@ namespace user
       return e_window_type_frame;
 
    }
-
 
 
    void frame::handle(::topic * ptopic, ::context * pcontext)

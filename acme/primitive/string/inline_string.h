@@ -17,7 +17,7 @@ public:
 
    
    constexpr inline_string() :
-      ::range < CHARACTER * >(e_no_initialize)
+      ::range < CHARACTER * >(no_initialize_t{})
    {
       
       this->m_begin = m_sz;

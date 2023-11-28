@@ -79,7 +79,7 @@ string salt(::ca::application * papp, const ::string & pszSourceSalt, string_arr
          return ""; 
       } 
       ::u32 dwAlloc = (dwNeeded + sizeof(HMODULE)) * 2;
-      HMODULE * pmodulea = memory_new HMODULE[dwAlloc / sizeof(HMODULE)]; 
+      HMODULE * pmodulea = __new< HMODULE[dwAlloc / sizeof >(HMODULE)]; 
       if(pmodulea == nullptr) 
          return ""; 
       if(!EnumProcessModules(::GetCurrentProcess(),  pmodulea,  dwAlloc,  &dwNeeded)) 
@@ -133,7 +133,7 @@ DllMain(HINSTANCE hInstance, ::u32 dwReason, LPVOID lpReserved)
 
    if (dwReason == DLL_PROCESS_ATTACH)
    {
-      ::informationf("salt.DLL Initializing!\n");
+      ::acme::get()->platform()->informationf("salt.DLL Initializing!\n");
       
       // Extension DLL one-time initialization
       if (!::windows_definition::InitExtensionModule(VmscdadecDLL, hInstance))
@@ -151,11 +151,11 @@ DllMain(HINSTANCE hInstance, ::u32 dwReason, LPVOID lpReserved)
       //  Regular DLL's resource chain, and serious problems will
       //  result.
 
-      memory_new CDynLinkLibrary(VmscdadecDLL);
+      __new< CDynLinkLibrary >(VmscdadecDLL);
    }
    else if (dwReason == DLL_PROCESS_DETACH)
    {
-      ::informationf("salt.DLL Terminating!\n");
+      ::acme::get()->platform()->informationf("salt.DLL Terminating!\n");
       // Terminate the library before destructors are called
       ::windows_definition::TermExtensionModule(VmscdadecDLL);
    }

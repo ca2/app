@@ -3,7 +3,7 @@
 ////#include "acme/exception/exception.h"
 #include "acme/handler/extended_topic.h"
 //#include "acme/update.h"
-//#if OBJECT_REFERENCE_COUNT_DEBUG
+//#if REFERENCING_DEBUGGING
 //#include "acme/platform/obj_ref_debug_impl.h"
 //#endif
 //#include "acme/constant/idpool.h"
@@ -27,14 +27,14 @@ object::~object()
 }
 
 
-i64 object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
+i64 object::increment_reference_count(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
 {
 
    auto c = m_countReference++;
 
-#if OBJECT_REFERENCE_COUNT_DEBUG
+#if REFERENCING_DEBUGGING
 
-   add_ref_history(pReferer, pszObjRefDbg);
+   add_reference_item(REFERENCING_DEBUGGING_ARGS);
 
 #endif
 
@@ -43,17 +43,17 @@ i64 object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DE
 }
 
 
-i64 object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
+i64 object::decrement_reference_count(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
 {
 
    auto c = --m_countReference;
 
-#if OBJECT_REFERENCE_COUNT_DEBUG
+#if REFERENCING_DEBUGGING
 
    if (c >= 0)
    {
 
-      dec_ref_history(pReferer, pszObjRefDbg);
+      erase_reference_item(REFERENCING_DEBUGGING_ARGS);
 
    }
 
@@ -64,10 +64,10 @@ i64 object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DE
 }
 
 
-i64 object::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
+i64 object::release(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
 {
 
-   i64 i = decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+   i64 i = decrement_reference_count(REFERENCING_DEBUGGING_ARGS);
 
    if (i == 0)
    {
@@ -91,7 +91,7 @@ void object::create_object_meta()
 
    }
 
-   m_pmeta = memory_new object_meta();
+   m_pmeta = __new< object_meta >();
 
 }
 
@@ -104,14 +104,14 @@ string object::as_string() const
 }
 
 
-//void object::add_composite(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEFINITION)
+//void object::add_composite(::particle * pparticle REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
 //{
 //
 //   _synchronous_lock synchronouslock(this->synchronization());
 //
 //   __defer_construct_new(m_pcompositea);
 //
-//   if (!m_pcompositea->add_unique(pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS))
+//   if (!m_pcompositea->add_unique(pelement REFERENCING_DEBUGGING_COMMA_ARGS))
 //   {
 //
 //      throw ::exception(success_none);
@@ -129,14 +129,14 @@ string object::as_string() const
 //}
 //
 //
-//void object::add_reference(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEFINITION)
+//void object::add_reference(::particle * pparticle REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
 //{
 //
 //   _synchronous_lock synchronouslock(this->synchronization());
 //
 //   __defer_construct_new(m_preferencea);
 //
-//   m_preferencea->add_unique(pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+//   m_preferencea->add_unique(pelement REFERENCING_DEBUGGING_COMMA_ARGS);
 //
 //   if (m_preferencea->get_upper_bound() == 8)
 //   {
@@ -157,7 +157,7 @@ string object::as_string() const
 //}
 
 
-//void object::release_composite2(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEFINITION)
+//void object::release_composite2(::particle * pparticle REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
 //{
 //
 //   if (::is_null(pelement))
@@ -186,7 +186,7 @@ string object::as_string() const
 //}
 //
 //
-//void object::finalize_composite(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEFINITION)
+//void object::finalize_composite(::particle * pparticle REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
 //{
 //
 //   if (::is_null(pelement))
@@ -228,7 +228,7 @@ string object::as_string() const
 //}
 //
 //
-//void object::release_reference(::particle * pparticle  OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEFINITION)
+//void object::release_reference(::particle * pparticle  REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
 //{
 //
 //   if (::is_null(pelement))
@@ -290,7 +290,7 @@ string object::as_string() const
 ::extended_topic_pointer object::create_extended_topic(const ::atom & atom)
 {
 
-   auto pextendedtopic = __new(::extended_topic(atom));
+   auto pextendedtopic = __allocate< ::extended_topic >(atom);
 
    pextendedtopic->initialize(this);
 
@@ -840,15 +840,15 @@ void object::run()
 //
 //#endif
 //
-//   //m_pcontext.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
+//   //m_pcontext.release(REFERENCING_DEBUGGING_THIS);
 //
-//   //m_pthread.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
+//   //m_pthread.release(REFERENCING_DEBUGGING_THIS);
 //
-//   //m_papp.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
+//   //m_papp.release(REFERENCING_DEBUGGING_THIS);
 //
-//   //m_psession.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
+//   //m_psession.release(REFERENCING_DEBUGGING_THIS);
 //
-//   //m_psystemContext.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
+//   //m_psystemContext.release(REFERENCING_DEBUGGING_THIS);
 //
 //   //on_finalize();
 //
@@ -949,17 +949,17 @@ void object::add_task(::object* pobjectTask)
    if (strType.contains("prodevian"))
    {
 
-      ::informationf("task added to prodevian\n");
+      ::acme::get()->platform()->informationf("task added to prodevian\n");
 
    }
    else if (strType.contains("user::thread"))
    {
 
-      ::informationf("task added to user::thread\n");
+      ::acme::get()->platform()->informationf("task added to user::thread\n");
 
    }
 
-   m_pparticleaChildrenTask->add(pobjectTask);
+   m_pparticleaChildrenTask->add(pobjectTask REFERENCING_DEBUGGING_COMMA_THIS_FUNCTION_FILE_LINE);
 
    pobjectTask->m_pobjectParentTask = this;
 
@@ -1006,7 +1006,7 @@ void object::erase_task_and_set_task_new_parent(::object* pobjectTask, ::object 
    if (strType.contains("user::thread"))
    {
 
-      ::informationf("task added to user::thread\n");
+      ::acme::get()->platform()->informationf("task added to user::thread\n");
 
    }
 
@@ -1015,7 +1015,7 @@ void object::erase_task_and_set_task_new_parent(::object* pobjectTask, ::object 
    if (m_pparticleaChildrenTask->erase(pobjectTask) <= 0)
    {
 
-      ::informationf("not a child");
+      ::acme::get()->platform()->informationf("not a child");
 
    }
 
@@ -1102,7 +1102,7 @@ bool object::is_ascendant_task(::object * ptaskCandidateAscendant) const
    try
    {
 
-      auto p = m_pobjectParentTask;
+      auto p = m_pobjectParentTask.m_p;
 
       while(::is_set(p))
       {
@@ -1984,7 +1984,7 @@ void object::sleep(const class time & time)
          if (ptask->m_pevSleep.is_null())
          {
 
-            ptask->m_pevSleep = __new(manual_reset_event());
+            ptask->m_pevSleep = __allocate< manual_reset_event >();
 
             ptask->m_pevSleep->ResetEvent();
 
@@ -2304,7 +2304,7 @@ void object::install_message_routing(::channel* pchannel)
 //::pointer<::handle::ini>object::appini()
 //{
 //
-//   return __new(::handle::ini(         auto psystem = system();
+//   return __allocate < ::handle::ini >(         auto psystem = system();
 
 //         auto pacmedirectory = psystem->m_pacmedirectory;
 //
@@ -2346,9 +2346,9 @@ struct context_object_test_struct :
 //void debug_context_object(::object* pparticle)
 //{
 //
-//   auto p1 = __new(struct context_object_test_struct(pparticle));
+//   auto p1 = __allocate< struct context_object_test_struct >(pparticle);
 //
-//   auto p2 = __new(struct context_object_test_struct(pparticle));
+//   auto p2 = __allocate< struct context_object_test_struct >(pparticle);
 //
 //   p2 = p1;
 //
@@ -2510,42 +2510,42 @@ void call_sync(const ::procedure_array& methoda)
 #ifdef _DEBUG
 
 
-//void object::set_context(::context* pcontext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEFINITION)
+//void object::set_context(::context* pcontext REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
 //{
 //
-//   m_pcontext.reset(pcontext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+//   m_pcontext.reset(pcontext REFERENCING_DEBUGGING_COMMA_ARGS);
 //
 //}
 //
 //
-//void object::set_context_thread(::thread* pthread OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEFINITION)
+//void object::set_context_thread(::thread* pthread REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
 //{
 //
-//   m_pthread.reset(pthread OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+//   m_pthread.reset(pthread REFERENCING_DEBUGGING_COMMA_ARGS);
 //
 //}
 //
 //
-//void object::set_context_app(::apex::application* pappContext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEFINITION)
+//void object::set_context_app(::apex::application* pappContext REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
 //{
 //
-//   m_papp.reset(pappContext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+//   m_papp.reset(pappContext REFERENCING_DEBUGGING_COMMA_ARGS);
 //
 //}
 //
 //
-//void object::set_context_session(::apex::session* psessionContext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEFINITION)
+//void object::set_context_session(::apex::session* psessionContext REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
 //{
 //
-//   m_psession.reset(psessionContext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+//   m_psession.reset(psessionContext REFERENCING_DEBUGGING_COMMA_ARGS);
 //
 //}
 //
 //
-////void object::set_context_system(::apex::system* psystemContext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEFINITION)
+////void object::set_context_system(::apex::system* psystemContext REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
 ////{
 ////
-////   m_psystemContext.reset(psystemContext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+////   m_psystemContext.reset(psystemContext REFERENCING_DEBUGGING_COMMA_ARGS);
 ////
 ////}
 //
@@ -2579,26 +2579,26 @@ void call_sync(const ::procedure_array& methoda)
 //#ifdef _DEBUG
 //
 //
-//i64 object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
+//i64 object::increment_reference_count(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
 //{
 //
-//   return property_object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+//   return property_object::increment_reference_count(REFERENCING_DEBUGGING_ARGS);
 //
 //}
 //
 //
-//i64 object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
+//i64 object::decrement_reference_count(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
 //{
 //
-//   return property_object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+//   return property_object::decrement_reference_count(REFERENCING_DEBUGGING_ARGS);
 //
 //}
 //
 //
-//i64 object::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
+//i64 object::release(REFERENCING_DEBUGGING_PARAMETERS)
 //{
 //
-//   return property_object::release(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+//   return property_object::release(REFERENCING_DEBUGGING_ARGS);
 //
 //}
 //
@@ -2606,26 +2606,26 @@ void call_sync(const ::procedure_array& methoda)
 //#else
 //
 //
-//i64 object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
+//i64 object::increment_reference_count(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
 //{
 //
-//   return property_object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+//   return property_object::increment_reference_count(REFERENCING_DEBUGGING_ARGS);
 //
 //}
 //
 //
-//i64 object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
+//i64 object::decrement_reference_count(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
 //{
 //
-//   return property_object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+//   return property_object::decrement_reference_count(REFERENCING_DEBUGGING_ARGS);
 //
 //}
 //
 //
-//i64 object::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
+//i64 object::release(REFERENCING_DEBUGGING_PARAMETERS)
 //{
 //
-//   return property_object::release(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+//   return property_object::release(REFERENCING_DEBUGGING_ARGS);
 //
 //}
 //
@@ -2733,7 +2733,7 @@ void object::initialize(::particle * pparticle)
 
 #endif
 
-   //#if OBJECT_REFERENCE_COUNT_DEBUG
+   //#if REFERENCING_DEBUGGING
    //
    //   string strType = ::type(this).name();
    //
@@ -2794,7 +2794,7 @@ void object::initialize(::particle * pparticle)
    //if (!psystem)
    //{
 
-   //   set_context_system(::apex::get_system(pparticle) OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_FUNCTION_LINE);
+   //   set_context_system(::apex::get_system(pparticle) REFERENCING_DEBUGGING_COMMA_THIS_FUNCTION_FILE_LINE);
 
    //}
 
@@ -2922,11 +2922,11 @@ void object::initialize(::particle * pparticle)
 //}
 ////
 //#ifdef _DEBUG
-//    void set_context(::context* pcontext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
-//    void set_context_thread(::thread* pthread OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
-//    void set_context_app(::apex::application* pappContext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
-//    void set_context_session(::apex::session* psessionContext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
-//   // void set_context_system(::apex::system* psystemContext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+//    void set_context(::context* pcontext REFERENCING_DEBUGGING_COMMA_PARAMS);
+//    void set_context_thread(::thread* pthread REFERENCING_DEBUGGING_COMMA_PARAMS);
+//    void set_context_app(::apex::application* pappContext REFERENCING_DEBUGGING_COMMA_PARAMS);
+//    void set_context_session(::apex::session* psessionContext REFERENCING_DEBUGGING_COMMA_PARAMS);
+//   // void set_context_system(::apex::system* psystemContext REFERENCING_DEBUGGING_COMMA_PARAMS);
 //   // void set_context_user(::object * puserContext);
 //#else
 //   inline void set_context(::context* pcontext);
@@ -3012,10 +3012,10 @@ void object::call_run()
 //inline void __construct(::pointer<BASE_TYPE> pusermessage);
 
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void __construct(::pointer<BASE_TYPE> pusermessage, const SOURCE* psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+//inline void __construct(::pointer<BASE_TYPE> pusermessage, const SOURCE* psource REFERENCING_DEBUGGING_COMMA_PARAMS);
 
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void __construct(::pointer<BASE_TYPE> pusermessage, const ::pointer<SOURCE>psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+//inline void __construct(::pointer<BASE_TYPE> pusermessage, const ::pointer<SOURCE>psource REFERENCING_DEBUGGING_COMMA_PARAMS);
 
 //template < typename BASE_TYPE >
 //inline void __id_construct(::pointer<BASE_TYPE> pusermessage, const ::atom& atom);
@@ -3063,44 +3063,44 @@ void object::call_run()
 //inline void __construct_new(::pointer<TYPE> pusermessage);
 
 //template < typename BASE_TYPE >
-//inline void __release(::pointer<BASE_TYPE> pcomposite OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+//inline void __release(::pointer<BASE_TYPE> pcomposite REFERENCING_DEBUGGING_COMMA_PARAMS);
 
 //template < typename BASE_TYPE >
-//inline void __release(::pointer<BASE_TYPE> preference OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+//inline void __release(::pointer<BASE_TYPE> preference REFERENCING_DEBUGGING_COMMA_PARAMS);
 
 //template < typename SOURCE >
-//inline void release_reference(::pointer<SOURCE> psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+//inline void release_reference(::pointer<SOURCE> psource REFERENCING_DEBUGGING_COMMA_PARAMS);
 
 
-// void add_composite(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
-// void add_reference(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
+// void add_composite(::particle * pparticle REFERENCING_DEBUGGING_COMMA_PARAMS)
+// void add_reference(::particle * pparticle REFERENCING_DEBUGGING_COMMA_PARAMS)
 
 
-// void release_composite2(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
-// void finalize_composite(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
-// void release_reference(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
+// void release_composite2(::particle * pparticle REFERENCING_DEBUGGING_COMMA_PARAMS)
+// void finalize_composite(::particle * pparticle REFERENCING_DEBUGGING_COMMA_PARAMS)
+// void release_reference(::particle * pparticle REFERENCING_DEBUGGING_COMMA_PARAMS)
 
 
 //template < typename BASE_TYPE >
-//inline void add_composite(::pointer<BASE_TYPE> pcomposite OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+//inline void add_composite(::pointer<BASE_TYPE> pcomposite REFERENCING_DEBUGGING_COMMA_PARAMS);
 
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void __refer(::pointer<BASE_TYPE> preference, const SOURCE* psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+//inline void __refer(::pointer<BASE_TYPE> preference, const SOURCE* psource REFERENCING_DEBUGGING_COMMA_PARAMS);
 
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void __refer(::pointer<BASE_TYPE> preference, const ::pointer<SOURCE>psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+//inline void __refer(::pointer<BASE_TYPE> preference, const ::pointer<SOURCE>psource REFERENCING_DEBUGGING_COMMA_PARAMS);
 
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void __refer(::pointer<BASE_TYPE> preference, const ::primitive::member < SOURCE >& psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+//inline void __refer(::pointer<BASE_TYPE> preference, const ::primitive::member < SOURCE >& psource REFERENCING_DEBUGGING_COMMA_PARAMS);
 
 //template < typename SOURCE >
-//inline void add_reference(SOURCE* psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+//inline void add_reference(SOURCE* psource REFERENCING_DEBUGGING_COMMA_PARAMS);
 
 //template < typename SOURCE >
-//inline void add_reference(::pointer<SOURCE> psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+//inline void add_reference(::pointer<SOURCE> psource REFERENCING_DEBUGGING_COMMA_PARAMS);
 
 //template < typename SOURCE >
-//inline void add_reference(::pointer<SOURCE> psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+//inline void add_reference(::pointer<SOURCE> psource REFERENCING_DEBUGGING_COMMA_PARAMS);
 
 //void object::delete_this()
 //{
@@ -3693,7 +3693,7 @@ bool object::IsSerializable() const
 //   }
 //
 //
-//    //ptask = __new(predicate_task < PRED >(pparticle, pred));
+//    //ptask = __allocate< predicate_task < PRED > >(pparticle, pred);
 ////
 ////   ptask->branch();
 ////

@@ -23,7 +23,7 @@ public:
    using const_iterator = typename ARRAY_TYPE::const_iterator;
    
 
-   comparable_eq_array(enum_no_initialize):BASE_RANGE(e_no_initialize){}
+   comparable_eq_array(no_initialize_t):BASE_RANGE(no_initialize_t{}){}
    comparable_eq_array(nullptr_t):BASE_RANGE(nullptr){}
    comparable_eq_array():BASE_RANGE(){}
    comparable_eq_array(::std::initializer_list < TYPE > initializer_list) { this->add_initializer_list(initializer_list); }

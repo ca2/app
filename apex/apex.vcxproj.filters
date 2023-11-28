@@ -974,6 +974,9 @@
     <ClInclude Include="filesystem\fs\native.h">
       <Filter>Header Files\filesystem\fs</Filter>
     </ClInclude>
+    <ClInclude Include="handler\manager_room.h">
+      <Filter>Header Files\handler</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="filesystem\file\set.cpp">
@@ -1386,6 +1389,9 @@
     </ClCompile>
     <ClCompile Include="platform\application_menu.cpp">
       <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="handler\manager_room.cpp">
+      <Filter>Source Files\handler</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -29,3 +29,5 @@ inline int_bool address_overlaps(const void* pszDst, const void* pszSrc, strsize
 CLASS_DECL_ACME void* reverse_memchr(const void* l, int ch, std::size_t l_len);
 CLASS_DECL_ACME void* reverse_memmem(const void* l, std::size_t l_len, const void* s, std::size_t s_len);
 CLASS_DECL_ACME void* reverse_byte_not_in_block(const void* l, std::size_t l_len, const void* s, std::size_t s_len);
+
+

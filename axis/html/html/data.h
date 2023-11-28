@@ -23,8 +23,8 @@ public:
    virtual void initialize_html_data(::html_data * phtmldata);
 
 
-   i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
-   i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
+   i64 increment_reference_count(REFERENCING_DEBUGGING_PARAMETERS) override;
+   i64 decrement_reference_count(REFERENCING_DEBUGGING_PARAMETERS) override;
 
 
    virtual bool open_document(const ::payload & payloadFile);

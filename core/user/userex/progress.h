@@ -26,7 +26,7 @@ namespace userex
       ~progress_control() override;
 
 #ifdef _DEBUG
-      i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
+      i64 decrement_reference_count(REFERENCING_DEBUGGING_PARAMETERS) override;
 #endif
 
 
@@ -65,13 +65,13 @@ namespace userex
 //      // void assert_ok() const override;
 //      // void dump(dump_context & dumpcontext) const override;
 #ifdef _DEBUG
-      virtual i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override
+      virtual i64 increment_reference_count(REFERENCING_DEBUGGING_PARAMETERS) override
       {
-         return ::object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+         return ::object::increment_reference_count(REFERENCING_DEBUGGING_ARGS);
       }
-      virtual i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override
+      virtual i64 decrement_reference_count(REFERENCING_DEBUGGING_PARAMETERS) override
       {
-         return ::object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+         return ::object::decrement_reference_count(REFERENCING_DEBUGGING_ARGS);
       }
 #endif
       void install_message_routing(::channel * pchannel) override;

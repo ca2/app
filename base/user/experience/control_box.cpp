@@ -1203,9 +1203,9 @@ namespace experience
 //
 //               screen_to_client(rectangleFocus);
 //
-//               m_pshapeaClip->add_item(__new(rectangle_shape(rectangleFocus)));
+//               m_pshapeaClip->add_item(__allocate< rectangle_shape >(rectangleFocus));
 //
-//               m_pshapeaClip->add_item(__new(intersect_clip_shape));
+//               m_pshapeaClip->add_item(__allocate< intersect_clip_shape >());
 //
 //               pinteraction = pinteraction->get_parent();
 //

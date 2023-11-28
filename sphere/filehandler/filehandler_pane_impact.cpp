@@ -22,14 +22,14 @@ namespace filehandler
       m_pimpactdataOld              = nullptr;
 
       /*   ::user::single_document_template* pdoctemplate;
-      pdoctemplate = memory_new ::user::single_document_template(
+      pdoctemplate = __new< ::user::single_document_template >(
       IDR_ALBUM,
       ::type < MediaLibraryDoc >(),
       ::type < MediaLibraryChildFrame >(),
       ::type < ::mplite::library::impact >());
       m_pimpactsystemAlbum = pdoctemplate;
 
-      pdoctemplate = memory_new ::user::single_document_template(
+      pdoctemplate = __new< ::user::single_document_template >(
       IDR_ALBUM,
       ::type < OptionsDoc >(),
       ::type < OptionsChildFrame >(),
@@ -38,7 +38,7 @@ namespace filehandler
 
       m_pimpactsystemOptions = pdoctemplate;
 
-      pdoctemplate = memory_new ::user::single_document_template(
+      pdoctemplate = __new< ::user::single_document_template >(
       IDR_ALBUM,
       ::type < GoodMixerDoc >(),
       ::type < simple_child_frame >(),
@@ -155,7 +155,7 @@ namespace filehandler
          ::pointer<::user::impact>pimpact = (CreateImpact(&cc, 101, this));
          if(pimpact != nullptr)
          {
-         pimpactdata = memory_new ::user::impact_data();
+         pimpactdata = __new< ::user::impact_data >();
          pimpactdata->m_eview = eview;
          pimpactdata->m_pdocument = get_document();
          pimpactdata->m_puserinteraction = pimpact;

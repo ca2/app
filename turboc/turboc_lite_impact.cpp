@@ -42,11 +42,11 @@ namespace turboc
 
    i64 lite_impact::increment_reference_count()
    {
-      return ::root::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      return ::root::increment_reference_count(REFERENCING_DEBUGGING_ARGS);
    }
    i64 lite_impact::decrement_reference_count()
    {
-      return ::root::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      return ::root::decrement_reference_count(REFERENCING_DEBUGGING_ARGS);
    }
 
    void lite_impact::on_message_create(signal_details * pmessage)

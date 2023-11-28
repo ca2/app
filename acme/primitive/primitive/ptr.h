@@ -16,28 +16,40 @@
 template < typename TYPE >
 class ptr
 {
-  public:
+public:
+   
+   
    TYPE * m_p;
+#if REFERENCING_DEBUGGING
+   reference_referer m_referer;
+#endif
    
    ptr()
    {
+
       m_p = nullptr;
+
    }
    
    
-   ptr(TYPE * p)
+   ptr(TYPE * p REFERENCING_DEBUGGING_COMMA_PARAMS)
    {
+
       m_p = p;
       
       if(m_p)
       {
-         m_p->increment_reference_count();
+
+         m_referer = referer;
+
+         m_p->increment_reference_count(REFERENCING_DEBUGGING_ARGS);
+
       }
       
    }
    
    
-   ptr(const ptr & ptr)
+   ptr(const ptr & ptr REFERENCING_DEBUGGING_COMMA_PARAMS)
    {
       
       m_p = ptr.m_p;
@@ -45,27 +57,38 @@ class ptr
       if(m_p)
       {
 
-         m_p->increment_reference_count();
+         m_referer = referer;
+
+         m_p->increment_reference_count(REFERENCING_DEBUGGING_ARGS);
     
       }
       
    }
    
    
-   ptr(ptr && ptr)
+   ptr(ptr && ptr REFERENCING_DEBUGGING_COMMA_PARAMS)
    {
       
       m_p = ptr.m_p;
       
       ptr.m_p = nullptr;
 
+      m_referer = referer;
+
+//#if REFERENCING_DEBUGGING
+//
+//      m_p->replace_reference(REFERENCING_DEBUGGING_THIS_FUNCTION_FILE_LINE);
+//
+//#endif
+
    }
    
    
-   ptr(enum_pointer_transfer, TYPE * p)
+   ptr(enum_pointer_transfer, TYPE * p REFERENCING_DEBUGGING_COMMA_PARAMS)
    {
    
       m_p = p;
+      m_referer = referer;
       
    }
 
@@ -76,7 +99,7 @@ class ptr
       if(m_p)
       {
 
-         m_p->release();
+         m_p->release(REFERENCING_DEBUGGING_P(m_referer));
          
       }
       
@@ -97,17 +120,21 @@ class ptr
       
       if(pOld != p)
       {
+
+         auto refererNew = reference_referer(this, __FUNCTION_FILE_LINE__);
        
-         p->increment_reference_count();
+         p->increment_reference_count(REFERENCING_DEBUGGING_THIS_FUNCTION_FILE_LINE);
          
          m_p = p;
          
          if(__pointer_is_set(pOld))
          {
          
-            pOld->release();
+            pOld->release(m_referer);
          
          }
+
+         m_referer = refererNew;
          
       }
       
@@ -124,17 +151,21 @@ class ptr
       if(pOld != p.m_p)
       {
           
-         p.m_p->increment_reference_count();
+         auto refererNew = reference_referer(this, __FUNCTION_FILE_LINE__);
+
+         p.m_p->increment_reference_count(REFERENCING_DEBUGGING_THIS_FUNCTION_FILE_LINE);
             
          m_p = p.m_p;
             
-         if(__pointer_is_set(pOld))
+         if (__pointer_is_set(pOld))
          {
-            
-            pOld->release();
-               
+
+            pOld->release(m_referer);
+
          }
-            
+
+         m_referer = refererNew;
+
       }
       
       return *this;
@@ -150,6 +181,8 @@ class ptr
       if (pOld != p.m_p)
       {
 
+         auto refererNew = ::transfer(p.m_referer);
+
          m_p = p.m_p;
 
          p.m_p = nullptr;
@@ -157,9 +190,11 @@ class ptr
          if (__pointer_is_set(pOld))
          {
 
-            pOld->release();
+            pOld->release(m_referer);
 
          }
+
+         m_referer = ::transfer(refererNew);
 
       }
 
@@ -178,7 +213,7 @@ class ptr
    //}
    //
    //
-   void release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
+   void release()
    {
       
       auto p = m_p;
@@ -188,7 +223,7 @@ class ptr
       if(__pointer_is_set(p))
       {
    
-         p->release(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+         p->release(REFERENCING_DEBUGGING_P(m_referer));
          
       }
       

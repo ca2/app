@@ -338,15 +338,15 @@ void color::get_hls(double & h, double & l, double & s) const
 
    if(dHParam > 1.0)
    {
-      ::informationf("dHParam > 1.0");
+      ::acme::get()->platform()->informationf("dHParam > 1.0");
    }
    if(dLParam > 1.0)
    {
-      ::informationf("dLParam > 1.0");
+      ::acme::get()->platform()->informationf("dLParam > 1.0");
    }
    if(dSParam > 1.0)
    {
-      ::informationf("dSParam > 1.0");
+      ::acme::get()->platform()->informationf("dSParam > 1.0");
    }
    */
 }

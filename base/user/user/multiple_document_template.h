@@ -34,14 +34,14 @@ namespace user
       // virtual void dump(dump_context &) const override;
       // void assert_ok() const override;
 
-      //virtual i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override
+      //virtual i64 increment_reference_count(REFERENCING_DEBUGGING_PARAMETERS) override
       //{
-      //   return ::user::impact_system::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      //   return ::user::impact_system::increment_reference_count(REFERENCING_DEBUGGING_ARGS);
       //}
 
-      //virtual i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override
+      //virtual i64 decrement_reference_count(REFERENCING_DEBUGGING_PARAMETERS) override
       //{
-      //   return ::user::impact_system::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      //   return ::user::impact_system::decrement_reference_count(REFERENCING_DEBUGGING_ARGS);
       //}
 
    };

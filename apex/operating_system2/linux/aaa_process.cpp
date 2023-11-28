@@ -502,7 +502,7 @@ retry:
 //atom_array app_get_pid(const ::scoped_string & scopedstr)
 //{
 //
-//   ::informationf("os/linux_process.cpp app_get_pid (" + string(psz) + ")");
+//   ::acme::get()->platform()->informationf("os/linux_process.cpp app_get_pid (" + string(psz) + ")");
 //
 //   atom_array ia;
 //

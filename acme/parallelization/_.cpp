@@ -30,11 +30,11 @@ namespace parallelization
    //CLASS_DECL_ACME void init_multitasking()
    //{
 
-   //   //s_pcs2 = memory_new critical_section();
+   //   //s_pcs2 = __new< critical_section >();
 
-   //   //s_piaThread2 = memory_new comparable_eq_array<itask_t>;
+   //   //s_piaThread2 = aaa_memory_new comparable_eq_array<itask_t>;
 
-   //   //s_pthreadptra2 = memory_new pointer_array < thread >;
+   //   //s_pthreadptra2 = aaa_memory_new pointer_array < thread >;
 
    //   __node_init_multitasking();
 
@@ -702,7 +702,7 @@ CLASS_DECL_ACME ::task * get_task()
    if (!t_ptask)
    {
 
-      auto pplatform =  ::platform::get();
+      auto pplatform = ::acme::get()->platform();
 
       if(::is_set(pplatform))
       {
@@ -743,12 +743,12 @@ CLASS_DECL_ACME ::task * get_task()
 //}
 
 
-CLASS_DECL_ACME void set_task(task * ptask OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEFINITION)
+CLASS_DECL_ACME void set_task(task * ptask REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
 {
 
    auto ptaskOld = t_ptask;
 
-   ::increment_reference_count(ptask OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+   ::increment_reference_count(ptask REFERENCING_DEBUGGING_COMMA_ARGS);
 
    t_ptask = ptask;
 
@@ -761,19 +761,19 @@ CLASS_DECL_ACME void set_task(task * ptask OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PA
 
    }
 
-   ::release(ptaskOld OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+   ::release(ptaskOld REFERENCING_DEBUGGING_COMMA_ARGS);
 
 }
 
 
-CLASS_DECL_ACME void task_release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
+CLASS_DECL_ACME void task_release(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
 {
 
    auto ptask = t_ptask;
 
    t_ptask = nullptr;
 
-   ::release(t_ptask OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+   ::release(ptask REFERENCING_DEBUGGING_COMMA_ARGS);
 
 }
 
@@ -839,7 +839,7 @@ thread_local payload t_payloada[e_task_payload_count];
 //CLASS_DECL_ACME bool main_synchronous(const class time & time, const ::procedure & function)
 //{
 //
-//   auto pevent = __new(manual_reset_event);
+//   auto pevent = __allocate< manual_reset_event >();
 //
 //   main_asynchronous([ function, &pevent ]
 //   {

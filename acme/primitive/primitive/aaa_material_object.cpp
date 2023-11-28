@@ -73,9 +73,9 @@
 //
 //   ::property_object::destroy();
 //
-//   m_pmapPropertyProcedure.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
+//   m_pmapPropertyProcedure.release(REFERENCING_DEBUGGING_THIS);
 //
-//   m_pia.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
+//   m_pia.release(REFERENCING_DEBUGGING_THIS);
 //
 //}
 //

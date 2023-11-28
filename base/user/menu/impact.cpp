@@ -206,7 +206,7 @@ namespace user
       //if (!estatus)
       //{
 
-      //   pcreate->failed("Failed to create memory_new xml document for menu impact");
+      //   pcreate->failed("Failed to create new xml document for menu impact");
 
       //   return;
 
@@ -480,7 +480,7 @@ namespace user
 
          auto pmenuitemPopup = m_pmenuitem->m_pmenuitema->element_at(i);
 
-         ///main_content().add_item(__new(::item(::e_element_item, iPos, iMenu, -1)));
+         ///main_content().add_item(__allocate< ::item >(::e_element_item, iPos, iMenu, -1));
 
          string strTitle;
          
@@ -776,7 +776,7 @@ namespace user
 
          auto pmenuitemMenuBar = __create_new < menu_item >();
 
-         pmenuitemMenuBar->m_pmenuitema = __new(menu_item_ptra(pmenuitemMenuBar));
+         pmenuitemMenuBar->m_pmenuitema = __allocate< menu_item_ptra >(pmenuitemMenuBar);
 
          pmenuitemParent->add_item(pmenuitemMenuBar);
 

@@ -94,9 +94,9 @@ m_bDrag(false)
       if (!m_button_panel) 
       {
       
-         m_button_panel = memory_new Widget(this);
+         m_button_panel = __new< Widget >(this);
 
-         m_button_panel->set_layout(memory_new BoxLayout(e_orientation_horizontal, e_alignment_middle, 0, 4));
+         m_button_panel->set_layout(__new< BoxLayout >(e_orientation_horizontal, e_alignment_middle, 0, 4));
 
       }
 

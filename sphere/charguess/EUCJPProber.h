@@ -33,7 +33,7 @@
 
 class nsEUCJPProber: public nsCharSetProber {
 public:
-  nsEUCJPProber(void){mCodingSM = memory_new nsCodingStateMachine(&EUCJPSMModel);
+  nsEUCJPProber(void){mCodingSM = __new< nsCodingStateMachine >(&EUCJPSMModel);
                       Reset();};
   virtual ~nsEUCJPProber(void){delete mCodingSM;};
   nsProbingState HandleData(const ::string & aBuf, PR::u32 aLen);

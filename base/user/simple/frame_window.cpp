@@ -410,7 +410,7 @@ void simple_frame_window::install_message_routing(::channel * pchannel)
 void simple_frame_window::task_save_window_placement()
 {
 
-   ::informationf("_task_save_window_rect start\n");
+   ::acme::get()->platform()->informationf("_task_save_window_rect start\n");
 
    auto ptask = ::get_task();
 
@@ -471,7 +471,7 @@ void simple_frame_window::task_save_window_placement()
 
    }
 
-   ::informationf("_task_save_window_rect end\n");
+   ::acme::get()->platform()->informationf("_task_save_window_rect end\n");
 
 }
 

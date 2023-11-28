@@ -382,13 +382,13 @@ namespace user
                if (pcolumn->m_pimagelist)
                {
 
-                  slaImageList.add(__new(synchronous_lock(pcolumn->m_pimagelist)));
+                  slaImageList.add(__allocate< synchronous_lock >(pcolumn->m_pimagelist));
 
                }
                if (pcolumn->m_pimagelistHover)
                {
 
-                  slaImageList.add(__new(synchronous_lock(pcolumn->m_pimagelist)));
+                  slaImageList.add(__allocate< synchronous_lock >(pcolumn->m_pimagelist));
 
                }
 
@@ -497,7 +497,7 @@ namespace user
          if (!pgroup)
          {
 
-            auto pdrawgroup = __new(draw_list_group);
+            auto pdrawgroup = __allocate< draw_list_group >();
 
             pdrawgroup->initialize_draw_list_group(this);
 
@@ -1449,7 +1449,7 @@ namespace user
       if (!pitem)
       {
 
-         auto pdrawlistitem = __new(draw_list_item);
+         auto pdrawlistitem = __allocate< draw_list_item >();
 
          pdrawlistitem->initialize_draw_list_item(this);
 
@@ -1482,7 +1482,7 @@ namespace user
       if (!psubitem)
       {
 
-         auto pdrawlistsubitem = __new(draw_list_subitem);
+         auto pdrawlistsubitem = __allocate< draw_list_subitem >();
 
          pdrawlistsubitem->initialize_draw_list_subitem(*pitem);
 
@@ -1504,7 +1504,7 @@ namespace user
    ::pointer<list_column>list::new_list_column()
    {
 
-      auto pcolumn = __new(list_column());
+      auto pcolumn = __allocate< list_column >();
 
       m_pcolumna->add(pcolumn);
 
@@ -5651,7 +5651,7 @@ namespace user
       if (pcolumn->m_pimagelist == nullptr)
       {
 
-         pcolumn->m_pimagelist = __new(::image_list);
+         pcolumn->m_pimagelist = __allocate< ::image_list >();
 
       }
 
@@ -6970,7 +6970,7 @@ namespace user
    //::item_pointer list::update_hover(::user::mouse* pmouse, ::user::e_zorder ezorder)
    //{
 
-   //   auto pitemHitTest = __new(::item);
+   //   auto pitemHitTest = __allocate< ::item >();
    //   
    //   auto pointClient = screen_to_client().get(pmouse->m_point);
 
@@ -7659,7 +7659,7 @@ namespace user
    //void list::on_create_draw_item()
    //{
 
-   //   m_pdrawlistitem = memory_new draw_list_item(this);
+   //   m_pdrawlistitem = __new< draw_list_item >(this);
 
    //   m_pdrawlistitem->initialize(this);
 

@@ -28,24 +28,24 @@ namespace nanoui
 
       set_background_color(color);
 
-      m_ppopup->set_layout(memory_new GroupLayout());
+      m_ppopup->set_layout(__new< GroupLayout >());
 
       // initialize callback to do nothing; this is for users to hook into
-      // receiving a memory_new color value
+      // receiving a new color value
       m_callback = [](const ::color::color&) {};
       m_final_callback = [](const ::color::color&) {};
 
       // set the color wheel to the specified color
-      m_color_wheel = memory_new ColorWheel(m_ppopup, color);
+      m_color_wheel = __new< ColorWheel >(m_ppopup, color);
 
       // set the pick button to the specified color
-      m_pick_button = memory_new Button(m_ppopup, "Pick");
+      m_pick_button = __new< Button >(m_ppopup, "Pick");
       m_pick_button->set_background_color(color);
       m_pick_button->set_text_color(color.contrasting_color());
       m_pick_button->set_fixed_size({100, 20});
 
       // set the reset button to the specified color
-      m_reset_button = memory_new Button(m_ppopup, "Reset");
+      m_reset_button = __new< Button >(m_ppopup, "Reset");
       m_reset_button->set_background_color(color);
       m_reset_button->set_text_color(color.contrasting_color());
       m_reset_button->set_fixed_size({100, 20});

@@ -187,7 +187,7 @@ public:
 
    template < typename PREDICATE >
    function(PREDICATE predicateParam) :
-      m_pbase(e_pointer_transfer, memory_new class predicate <PREDICATE >(predicateParam))
+      m_pbase(e_pointer_transfer, __new< class predicate <PREDICATE > >(predicateParam))
    {
 
    }
@@ -338,7 +338,7 @@ public:
 
    template < typename PREDICATE >
    function(PREDICATE predicateParam) :
-      m_pbase(e_pointer_transfer, memory_new class predicate <PREDICATE >(predicateParam))
+      m_pbase(e_pointer_transfer, __new< class predicate <PREDICATE > >(predicateParam))
    {
 
    }
@@ -380,7 +380,7 @@ public:
    function & operator = (PREDICATE predicateParam)
    {
 
-      m_pbase = ::transfer(memory_new class predicate <PREDICATE >(predicateParam));
+      m_pbase = ::transfer(__new< class predicate <PREDICATE > >(predicateParam));
 
       return *this;
 
@@ -493,7 +493,7 @@ public:
 
    template < typename FUNCTION >
    function(FUNCTION functionParam) :
-      m_pbase(e_pointer_transfer, memory_new class implementation < FUNCTION >(functionParam))
+      m_pbase(e_pointer_transfer, __new< class implementation < FUNCTION > >(functionParam))
    {
 
    }
@@ -536,7 +536,7 @@ public:
    function & operator = (FUNCTION functionParam)
    {
 
-      m_pbase = ::transfer( memory_new class implementation <FUNCTION >(functionParam));
+      m_pbase = ::transfer( __new< class implementation <FUNCTION > >(functionParam));
 
       return *this;
 
@@ -651,7 +651,7 @@ public:
 
    template < typename FUNCTION >
    function(FUNCTION functionParam) :
-      m_pbase(e_pointer_transfer, memory_new class implementation < FUNCTION >(functionParam))
+      m_pbase(e_pointer_transfer, __new< class implementation < FUNCTION > >(functionParam))
    {
 
    }
@@ -694,7 +694,7 @@ public:
    function & operator = (FUNCTION functionParam)
    {
 
-      m_pbase = ::transfer(memory_new class implementation <FUNCTION >(functionParam));
+      m_pbase = ::transfer(__new< class implementation <FUNCTION > >(functionParam));
 
       return *this;
 

@@ -2,6 +2,7 @@
 #include "main_window.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
+#include "acme/handler/topic.h"
 #include "acme/platform/sequencer.h"
 #include "acme/platform/system.h"
 #include "acme/user/nano/nano.h"

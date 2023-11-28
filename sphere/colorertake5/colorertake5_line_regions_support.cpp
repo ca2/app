@@ -162,7 +162,7 @@ namespace colorertake5
          ln = lnn;
       }
 
-      LineRegion *lfirst = memory_new LineRegion(*schemeStack.last());
+      LineRegion *lfirst = __new< LineRegion(*schemeStack.last >());
       lfirst->start = 0;
       lfirst->end = -1;
       lfirst->next = nullptr;
@@ -181,7 +181,7 @@ namespace colorertake5
       if (!checkLine(lno))
          return;
 
-      LineRegion *lnew = memory_new LineRegion();
+      LineRegion *lnew = __new< LineRegion >();
       lnew->start = sx;
       lnew->end = ex;
       lnew->region = region;
@@ -205,7 +205,7 @@ namespace colorertake5
    {
       UNREFERENCED_PARAMETER(line);
       UNREFERENCED_PARAMETER(ex);
-      LineRegion * lr = memory_new LineRegion();
+      LineRegion * lr = __new< LineRegion >();
       lr->region = region;
       lr->scheme = scheme;
       lr->start = sx;
@@ -232,7 +232,7 @@ namespace colorertake5
       // we must skip transparent regions
       if (lr->region != nullptr)
       {
-         LineRegion *lr_add = memory_new LineRegion(*lr);
+         LineRegion *lr_add = __new< LineRegion >(*lr);
          flowBackground->end = lr_add->start;
          flowBackground = lr_add;
          addLineRegion(lno, lr_add);
@@ -253,7 +253,7 @@ namespace colorertake5
       // we have to skip transparent regions
       if (scheme_region != nullptr)
       {
-         LineRegion *lr = memory_new LineRegion(*schemeStack.last());
+         LineRegion *lr = __new< LineRegion(*schemeStack.last >());
          lr->start = ex;
          lr->end = -1;
          flowBackground->end = lr->start;

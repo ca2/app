@@ -67,7 +67,7 @@ namespace data
    {
       return _alloc001SimpleTreeItem.Alloc();
    }
-//#define memory_new ACME_NEW*/
+*/
 
 /*   void simple_item::operator delete(void * p)
    {

@@ -118,7 +118,7 @@ namespace app_integration
 
       ::base::application::init_instance();
 
-      auto pdoctemplate = __new(::user::single_document_template(
+      auto pdoctemplate = __allocate < ::user::single_document_template >(
                                "main",
                                ::type < document >(),
                                ::type < main_frame >(),
@@ -129,7 +129,7 @@ namespace app_integration
       add_document_template(pdoctemplate);
 
 
-      pdoctemplate = __new(::user::single_document_template(
+      pdoctemplate = __allocate < ::user::single_document_template >(
          "openssl",
          ::type < document >(),
          ::type < main_frame >(),
@@ -139,7 +139,7 @@ namespace app_integration
 
       add_document_template(pdoctemplate);
 
-      pdoctemplate = __new(::user::single_document_template(
+      pdoctemplate = __allocate < ::user::single_document_template >(
          "ffmpeg",
          ::type < document >(),
          ::type < main_frame >(),
@@ -234,18 +234,18 @@ namespace app_integration
 #ifdef _DEBUG
 
 
-   int64_t application::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
+   int64_t application::increment_reference_count(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
    {
 
-      return ::object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      return ::object::increment_reference_count(REFERENCING_DEBUGGING_ARGS);
 
    }
 
 
-   int64_t application::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEFINITION)
+   int64_t application::decrement_reference_count(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
    {
 
-      return ::object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      return ::object::decrement_reference_count(REFERENCING_DEBUGGING_ARGS);
 
    }
 

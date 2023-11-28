@@ -114,7 +114,7 @@ void dir_system::init_system()
    //if (m_pziputil == nullptr)
    //{
 
-   //   m_pziputil = memory_new ::zip::util();
+   //   m_pziputil = __new< ::zip::util >();
 
    //}
 

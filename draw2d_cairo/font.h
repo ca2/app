@@ -52,7 +52,7 @@ namespace draw2d_cairo
                   else
                   {
 
-                     ::informationf("pango_layout destructor: m_playout is not g_object");
+                     ::acme::get()->platform()->informationf("pango_layout destructor: m_playout is not g_object");
 
                   }
 
@@ -62,7 +62,7 @@ namespace draw2d_cairo
                else
                {
 
-                  //::informationf("pango_layout destructor: m_playout is nullptr\n");
+                  //::acme::get()->platform()->informationf("pango_layout destructor: m_playout is nullptr\n");
 
                }
 

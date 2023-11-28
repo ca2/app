@@ -12,20 +12,20 @@ CLASS_DECL_ACME::string call_stack_default_format()
 
 
 
-CLASS_DECL_ACME void get_call_stack_frames(void** stack, int & frame_count)
-{
-
-   ::platform::get()->acmenode()->get_call_stack_frames(stack, frame_count);
-
-}
-
-
-CLASS_DECL_ACME ::string get_call_stack_trace(void ** stack, int c, const char* pszFormat)
-{
-
-   return ::platform::get()->acmenode()->get_call_stack_trace(stack, c, pszFormat);
-
-}
+//CLASS_DECL_ACME void get_call_stack_frames(void** stack, int & frame_count)
+//{
+//
+//   this->platform()->acmenode()->get_call_stack_frames(stack, frame_count);
+//
+//}
+//
+//
+//CLASS_DECL_ACME ::string get_call_stack_trace(void ** stack, int c, const char* pszFormat)
+//{
+//
+//   return this->platform()->acmenode()->get_call_stack_trace(stack, c, pszFormat);
+//
+//}
 
 
 

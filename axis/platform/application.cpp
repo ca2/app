@@ -294,7 +294,7 @@ namespace axis
 ////
 ////            dappy(::type(this).name() + " : on_run failure : " + as_string(m_iErrorCode));
 ////
-////            ::informationf("application::main on_run termination failure\n");
+////            ::acme::get()->platform()->informationf("application::main on_run termination failure\n");
 ////
 ////         }
 //
@@ -1886,7 +1886,7 @@ namespace axis
    ::user::interaction* application::create_menu_interaction()
    {
 
-      return memory_new ::user::button;
+      return __new< ::user::button >();
 
    }
 //

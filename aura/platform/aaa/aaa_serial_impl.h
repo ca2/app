@@ -75,7 +75,7 @@ serial::serial(::particle * pparticle, const string & port, u32 baudrate, serial
    enum_byte_size ebytesize, enum_parity eparity, enum_stop_bit estopbit,
    enum_flow_control eflowcontrol)
    : ::object(pparticle),
-   pimpl_(__new(serial_impl(pparticle, port, baudrate, ebytesize, eparity, estopbit, eflowcontrol)))
+   pimpl_(__allocate< serial_impl >(pparticle, port, baudrate, ebytesize, eparity, estopbit, eflowcontrol))
 {
    pimpl_->setTimeout(timeout);
 }
@@ -159,7 +159,7 @@ size_t
 serial::read(string & buffer, size_t size)
 {
    scoped_read_lock lock(this->pimpl_);
-   u8 * buffer_ = memory_new u8[size];
+   u8 * buffer_ = aaa_primitive_new u8[size];
    size_t bytes_read = this->pimpl_->read(buffer_, size);
    buffer.append(reinterpret_cast<const char *>(buffer_), bytes_read);
    delete[] buffer_;

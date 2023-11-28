@@ -43,5 +43,5 @@ void MEMORY_DECL operator delete[](void * p, i32 nType, const char * pszFileName
 #endif
 
 
-//#define memory_new ACME_NEW
+
 

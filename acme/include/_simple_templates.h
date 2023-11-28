@@ -71,11 +71,11 @@
 //#include "acme/include/"
 //
 //
-//#include "acme/platform/object_reference_count_debug.h"
+//#include "acme/platform/reference_count_debug.h"
 //#include "acme/platform/object_type_counter.h"
 ////#include "acme/constant/_constant.h"
 //#include "acme/constant/id.h"
-//#include "acme/platform/object_reference_count_debug.h"
+//#include "acme/platform/reference_count_debug.h"
 //#include "acme/primitive/primitive/uid.h"
 //#include "acme/primitive/primitive/e_status.h"
 ////#include "acme/primitive/primitive/e_object.h"

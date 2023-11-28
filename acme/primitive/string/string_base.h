@@ -6,7 +6,9 @@
 #include "const_string_range.h"
 #include "string_range.h"
 #include "mutable_string_range.h"
-#include "acme/memory/string_memory_allocator.h"
+//#include "acme/memory/string_memory_allocator.h"
+
+#include "acme/memory/memory.h"
 
 
 template < typename ITERATOR_TYPE >
@@ -16,7 +18,7 @@ using string_natural_pointer =
    dereference <
    get_type_item_pointer < ITERATOR_TYPE >
    >
-   >, string_memory_allocator >;
+   >, ::heap::e_memory_string >;
 
 
 enum enum_canonical
@@ -50,7 +52,7 @@ public:
 
 
    string_base() { }
-   string_base(enum_no_initialize) : NATURAL_POINTER(e_no_initialize) { }
+   string_base(no_initialize_t) : NATURAL_POINTER(no_initialize_t{}) { }
    string_base(enum_zero_initialize) : NATURAL_POINTER(e_zero_initialize) { }
    string_base(nullptr_t) { }
    string_base(enum_for_moving) { }
@@ -59,11 +61,11 @@ public:
    //string_base(const ::wd16_character * psz);
    //string_base(const ::wd32_character * psz);
    //string_base(const ::std::string & str) : string_base(str.c_str()) { }
-   string_base(const ::ansi_string & ansistr) : NATURAL_POINTER(e_no_initialize) { construct5(ansistr); }
-   string_base(const ::wd16_string & wd16str) : NATURAL_POINTER(e_no_initialize) { construct5(wd16str); }
-   string_base(const ::wd32_string & wd32str) : NATURAL_POINTER(e_no_initialize) { construct5(wd32str); }
+   string_base(const ::ansi_string & ansistr) : NATURAL_POINTER(no_initialize_t{}) { construct5(ansistr); }
+   string_base(const ::wd16_string & wd16str) : NATURAL_POINTER(no_initialize_t{}) { construct5(wd16str); }
+   string_base(const ::wd32_string & wd32str) : NATURAL_POINTER(no_initialize_t{}) { construct5(wd32str); }
    string_base(string_base && str) :
-      NATURAL_POINTER(e_no_initialize) 
+      NATURAL_POINTER(no_initialize_t{}) 
    { 
       this->m_begin = str.m_begin; 
       this->m_end = str.m_end;
@@ -74,70 +76,70 @@ public:
 
 
 //   template<typed_range<::ansi_character *> RANGE>
-//   string_base(const RANGE & str) : NATURAL_POINTER(e_no_initialize) { construct2(str); }
+//   string_base(const RANGE & str) : NATURAL_POINTER(no_initialize_t{}) { construct2(str); }
 //   template<typed_range<const ::ansi_character *> RANGE>
-//   string_base(const RANGE & str) : NATURAL_POINTER(e_no_initialize) { construct2(str); }
+//   string_base(const RANGE & str) : NATURAL_POINTER(no_initialize_t{}) { construct2(str); }
 //   template<typed_range<::wd16_character *> RANGE>
-//   string_base(const RANGE & str) : NATURAL_POINTER(e_no_initialize) { construct2(str); }
+//   string_base(const RANGE & str) : NATURAL_POINTER(no_initialize_t{}) { construct2(str); }
 //   template<typed_range<const ::wd16_character *> RANGE>
-//   string_base(const RANGE & str) : NATURAL_POINTER(e_no_initialize) { construct2(str); }
+//   string_base(const RANGE & str) : NATURAL_POINTER(no_initialize_t{}) { construct2(str); }
 //   template<typed_range<::wd32_character *> RANGE>
-//   string_base(const RANGE & str) : NATURAL_POINTER(e_no_initialize) { construct2(str); }
+//   string_base(const RANGE & str) : NATURAL_POINTER(no_initialize_t{}) { construct2(str); }
 //   template<typed_range<const ::wd32_character *> RANGE>
-//   string_base(const RANGE & str) : NATURAL_POINTER(e_no_initialize) { construct2(str); }
+//   string_base(const RANGE & str) : NATURAL_POINTER(no_initialize_t{}) { construct2(str); }
 
 
    template<typed_range<::ansi_character *> RANGE>
-   explicit string_base(const RANGE & str) : NATURAL_POINTER(e_no_initialize) { construct5(str); }
+   explicit string_base(const RANGE & str) : NATURAL_POINTER(no_initialize_t{}) { construct5(str); }
    template<typed_range<::wd16_character *> RANGE>
-   explicit string_base(const RANGE & str) : NATURAL_POINTER(e_no_initialize) { construct5(str); }
+   explicit string_base(const RANGE & str) : NATURAL_POINTER(no_initialize_t{}) { construct5(str); }
    template<typed_range<::wd32_character *> RANGE>
-   explicit string_base(const RANGE & str) : NATURAL_POINTER(e_no_initialize) { construct5(str); }
+   explicit string_base(const RANGE & str) : NATURAL_POINTER(no_initialize_t{}) { construct5(str); }
 
 
    template<typed_range<const ::ansi_character *> RANGE>
-   explicit string_base(const RANGE & str) : NATURAL_POINTER(e_no_initialize) { construct5(str); }
+   explicit string_base(const RANGE & str) : NATURAL_POINTER(no_initialize_t{}) { construct5(str); }
    template<typed_range<const ::wd16_character *> RANGE>
-   explicit string_base(const RANGE & str) : NATURAL_POINTER(e_no_initialize) { construct5(str); }
+   explicit string_base(const RANGE & str) : NATURAL_POINTER(no_initialize_t{}) { construct5(str); }
    template<typed_range<const ::wd32_character *> RANGE>
-   explicit string_base(const RANGE & str) : NATURAL_POINTER(e_no_initialize) { construct5(str); }
+   explicit string_base(const RANGE & str) : NATURAL_POINTER(no_initialize_t{}) { construct5(str); }
 
 
 
 //   template<typed_range<::ansi_character *> RANGE>
-//   string_base(const RANGE & str) : NATURAL_POINTER(e_no_initialize) { construct2(str); }
+//   string_base(const RANGE & str) : NATURAL_POINTER(no_initialize_t{}) { construct2(str); }
 ////   template<typed_range<const ::ansi_character *> RANGE>
-////   string_base(const RANGE & str) : NATURAL_POINTER(e_no_initialize) { construct2(str, start, count); }
+////   string_base(const RANGE & str) : NATURAL_POINTER(no_initialize_t{}) { construct2(str, start, count); }
 //   template<typed_range<::wd16_character *> RANGE>
-//   string_base(const RANGE & str) : NATURAL_POINTER(e_no_initialize) { construct2(str); }
+//   string_base(const RANGE & str) : NATURAL_POINTER(no_initialize_t{}) { construct2(str); }
 ////   template<typed_range<const ::wd16_character *> RANGE>
-////   string_base(const RANGE & str) : NATURAL_POINTER(e_no_initialize) { construct2(str, start, count); }
+////   string_base(const RANGE & str) : NATURAL_POINTER(no_initialize_t{}) { construct2(str, start, count); }
 //   template<typed_range<::wd32_character *> RANGE>
-//   string_base(const RANGE & str) : NATURAL_POINTER(e_no_initialize) { construct2(str); }
+//   string_base(const RANGE & str) : NATURAL_POINTER(no_initialize_t{}) { construct2(str); }
 ////   template<typed_range<const ::wd32_character *> RANGE>
-////   string_base(const RANGE & str) : NATURAL_POINTER(e_no_initialize) { construct2(str, start, count); }
+////   string_base(const RANGE & str) : NATURAL_POINTER(no_initialize_t{}) { construct2(str, start, count); }
 
-   //   string_base(const ::const_ansi_range & ansirange) : NATURAL_POINTER(e_no_initialize){construct2(ansirange);}
-//   string_base(const ::const_wd16_range & wd16range) : NATURAL_POINTER(e_no_initialize){construct2(wd16range);}
-//   string_base(const ::const_wd32_range & wd32range) : NATURAL_POINTER(e_no_initialize){construct2(wd32range);}
-   string_base(const const_ansi_range & ansirange) : NATURAL_POINTER(e_no_initialize) { construct2(ansirange.begin(), ansirange.size()); }
-   string_base(const const_wd16_range & wd16range) : NATURAL_POINTER(e_no_initialize) { construct2(wd16range.begin(), wd16range.size()); }
-   string_base(const const_wd32_range & wd32range) : NATURAL_POINTER(e_no_initialize) { construct2(wd32range.begin(), wd32range.size()); }
-   //string_base(const const_ansi_range & ansirange, strsize len) : NATURAL_POINTER(e_no_initialize)  { construct2(ansirange, 0, len); }
-   //string_base(const const_wd16_range & wd16range, strsize len) : NATURAL_POINTER(e_no_initialize)  { construct2(wd16range, 0, len); }
-   //string_base(const const_wd32_range & wd32range, strsize len) : NATURAL_POINTER(e_no_initialize)  { construct2(wd32range, 0, len); }
-   //string_base(const const_ansi_range & ansirange, strsize len) : NATURAL_POINTER(e_no_initialize)  { construct2(ansirange, start, len); }
-   //string_base(const const_wd16_range & wd16range, strsize len) : NATURAL_POINTER(e_no_initialize)  { construct2(wd16range, start, len); }
+   //   string_base(const ::const_ansi_range & ansirange) : NATURAL_POINTER(no_initialize_t{}){construct2(ansirange);}
+//   string_base(const ::const_wd16_range & wd16range) : NATURAL_POINTER(no_initialize_t{}){construct2(wd16range);}
+//   string_base(const ::const_wd32_range & wd32range) : NATURAL_POINTER(no_initialize_t{}){construct2(wd32range);}
+   string_base(const const_ansi_range & ansirange) : NATURAL_POINTER(no_initialize_t{}) { construct2(ansirange.begin(), ansirange.size()); }
+   string_base(const const_wd16_range & wd16range) : NATURAL_POINTER(no_initialize_t{}) { construct2(wd16range.begin(), wd16range.size()); }
+   string_base(const const_wd32_range & wd32range) : NATURAL_POINTER(no_initialize_t{}) { construct2(wd32range.begin(), wd32range.size()); }
+   //string_base(const const_ansi_range & ansirange, strsize len) : NATURAL_POINTER(no_initialize_t{})  { construct2(ansirange, 0, len); }
+   //string_base(const const_wd16_range & wd16range, strsize len) : NATURAL_POINTER(no_initialize_t{})  { construct2(wd16range, 0, len); }
+   //string_base(const const_wd32_range & wd32range, strsize len) : NATURAL_POINTER(no_initialize_t{})  { construct2(wd32range, 0, len); }
+   //string_base(const const_ansi_range & ansirange, strsize len) : NATURAL_POINTER(no_initialize_t{})  { construct2(ansirange, start, len); }
+   //string_base(const const_wd16_range & wd16range, strsize len) : NATURAL_POINTER(no_initialize_t{})  { construct2(wd16range, start, len); }
    // 
    // 
-   //string_base(const const_wd32_range & wd32range, strsize len) : NATURAL_POINTER(e_no_initialize)  { construct2(wd32range, start, len); }
+   //string_base(const const_wd32_range & wd32range, strsize len) : NATURAL_POINTER(no_initialize_t{})  { construct2(wd32range, start, len); }
    string_base(const ::block block) : string_base((const CHARACTER *)block.begin(), (const CHARACTER *)block.end()) {}
     template < primitive_character CHARACTER2 >
     string_base(const CHARACTER2 * start, const CHARACTER2 * end) : string_base(start, end-start) {}
    template < primitive_character CHARACTER2 >
    string_base(const CHARACTER2 * start) : string_base(start, string_safe_length(start)) {}
    template < primitive_character CHARACTER2 >
-   string_base(const CHARACTER2 * start, strsize len) : string_base(e_no_initialize) { construct2(start, len); }
+   string_base(const CHARACTER2 * start, strsize len) : string_base(no_initialize_t{}) { construct2(start, len); }
 //   template < primitive_character CHARACTER2 >
 //   string_base(const CHARACTER2 * pszSource, strsize len);
    template < primitive_character CHARACTER2, strsize sizeMaximumLength >
@@ -290,7 +292,7 @@ public:
    //inline operator const CONST_STRING_RANGE & () const noexcept { return this->data(); }
 
 //#if defined(UNIVERSAL_WINDOWS)
-   //inline operator String ^ () const { return ref memory_new String(wd16_string(*this)); }
+   //inline operator String ^ () const { return ref __new< String(wd16_string >(*this)); }
 //#endif
 
    string_base to_string_base() const { return *this; }

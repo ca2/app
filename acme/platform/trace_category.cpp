@@ -15,7 +15,7 @@ pointer_array < trace_category > * trace_category::s_ptracecategorya = nullptr;
 void trace_category_static_init(::acme::system * psystem)
 {
 
-   trace_category::s_ptracecategorya = memory_new pointer_array < trace_category >;
+   trace_category::s_ptracecategorya = new pointer_array < trace_category >;
 
    const ::ansi_character * psza[] =
    {
@@ -73,7 +73,7 @@ void trace_category_static_init(::acme::system * psystem)
 
       const ::scoped_string & scopedstrCategory = *p;
 
-      auto pcategory = __new(trace_category(etracecategory, scopedstrCategory));
+      auto pcategory = __allocate< trace_category >(etracecategory, scopedstrCategory);
 
       pcategory->initialize(psystem);
 

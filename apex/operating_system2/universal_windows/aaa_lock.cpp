@@ -32,7 +32,7 @@ int _c_lock(const ::scoped_string & scopedstrName, void ** pdata)
    if(hmutex == INVALID_HANDLE_VALUE)
       return 0;
 
-   HANDLE * phandle = memory_new HANDLE;
+   HANDLE * phandle = aaa_primitive_new HANDLE;
    *phandle = hmutex;
    *pdata = phandle;
 

@@ -16,13 +16,13 @@ int_bool WINAPI DllMain(HINSTANCE hInstance, ::u32 dwReason, LPVOID lpReserved)
    if (dwReason == DLL_PROCESS_ATTACH)
    {
 
-      ::informationf("app_core_hellobase.dll :: initializing!\n");
+      ::acme::get()->platform()->informationf("app_core_hellobase.dll :: initializing!\n");
 
    }
    else if (dwReason == DLL_PROCESS_DETACH)
    {
 
-      ::informationf("app_core_hellobase.dll :: terminating!\n");
+      ::acme::get()->platform()->informationf("app_core_hellobase.dll :: terminating!\n");
 
    }
 

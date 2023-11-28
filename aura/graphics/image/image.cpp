@@ -9192,7 +9192,7 @@ void image::gradient_fill(::color::color color1, ::color::color color2, const po
 
       ::image_pointer pimage;
 
-      auto pmathematics = ::mathematics::mathematics();
+      auto pmathematics = mathematics();
 
       if (fabs(Δx) > fabs(Δy))
       {
@@ -10369,7 +10369,7 @@ CLASS_DECL_AURA void draw_freetype_bitmap(::image* m_p, i32 Δx, i32 Δy, void* 
 
    pimage->copy_from((::image *) this);
 
-   pimage->increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
+   pimage->increment_reference_count(REFERENCING_DEBUGGING_THIS);
 
    return pimage;
 
@@ -10427,11 +10427,11 @@ CLASS_DECL_AURA void draw_freetype_bitmap(::image* m_p, i32 Δx, i32 Δy, void* 
 http://www.sparkhound.com/blog/detect-image-file-types-through-::u8-arrays
 ::payload bmp = Encoding.ASCII.GetBytes("BM"); // BMP
 ::payload gif = Encoding.ASCII.GetBytes("GIF"); // GIF
-::payload png = memory_new ::u8[]{ 137, 80, 78, 71 }; // PNG
-::payload tiff = memory_new ::u8[]{ 73, 73, 42 }; // TIFF
-::payload tiff2 = memory_new ::u8[]{ 77, 80, 42 }; // TIFF
-::payload jpeg = memory_new ::u8[]{ 255, 216, 255, 224 }; // jpeg
-::payload jpeg2 = memory_new ::u8[]{ 255, 216, 255, 225 }; // jpeg canon
+::payload png = __new_array< ::u8 >(){ 137, 80, 78, 71 }; // PNG
+::payload tiff = __new_array< ::u8 >(){ 73, 73, 42 }; // TIFF
+::payload tiff2 = __new_array< ::u8 >(){ 77, 80, 42 }; // TIFF
+::payload jpeg = __new_array< ::u8 >(){ 255, 216, 255, 224 }; // jpeg
+::payload jpeg2 = __new_array< ::u8 >(){ 255, 216, 255, 225 }; // jpeg canon
 */
 
 

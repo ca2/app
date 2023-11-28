@@ -1,0 +1,123 @@
+// Created by camilo More work on 2023-11-22 22:40 <3ThomasBorregaardSorensen!!
+#include "framework.h"
+#include "acme.h"
+#include "reference_item_array.h"
+#include "referencing_debugging.h"
+
+
+referencing_debugging::referencing_debugging()
+{
+
+
+}
+
+
+referencing_debugging::~referencing_debugging()
+{
+
+
+}
+
+
+void referencing_debugging::add_item_array(::reference_item_array * pitema)
+{
+
+   critical_section_lock criticalsectionlock(&m_criticalsection);
+
+   m_item2a.add(pitema);
+
+}
+
+
+bool referencing_debugging::erase_item_array(::reference_item_array * pitema)
+{
+
+   critical_section_lock criticalsectionlock(&m_criticalsection);
+
+   auto iFind = m_item2a.erase_last(pitema);
+
+   if(iFind < 0)
+   {
+
+      throw ::exception(error_wrong_state, "reference_item_array wasn't in referencing_debugging");
+
+      return false;
+
+   }
+
+   return true;
+
+}
+
+
+void referencing_debugging::dump_pending_releases()
+{
+
+   auto c = m_item2a.size();
+
+   {
+
+      ::string strDump;
+
+      strDump.append_formatf("Inspected Items : %d\n", m_iCount);
+
+      strDump.append_formatf("Found %d items with pending releases.\n", c);
+
+      ::output_debug_string(strDump);
+
+   }
+
+   for (::index i = 0; i < c; i++)
+   {
+
+      auto p = m_item2a.element_at(i);
+
+      {
+
+         ::string strDump;
+
+         strDump.append_formatf("\n\n%d:\n", i);
+
+         try
+         {
+
+            p->dump_pending_releases(strDump);
+
+         }
+         catch (...)
+         {
+
+
+         }
+
+         ::output_debug_string(strDump);
+
+      }
+
+   }
+
+}
+
+
+namespace acme
+{
+
+
+   void acme::initialize_referencing_debugging()
+   {
+
+      m_preferencingdebugging = ::platform::raw_allocator::__new< referencing_debugging >();
+
+   }
+
+
+   //void acme::dump_pending_releases()
+   //{
+
+   //   m_preferencingdebugging->dump_pending_releases();
+
+   //}
+
+} // namespace acme
+
+

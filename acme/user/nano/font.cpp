@@ -28,10 +28,10 @@ namespace nano
 {
 
 
-   ::pointer<nano_font>create_point_font(::particle * pparticle, int iPoint, enum_font efont, bool bBold)
+   ::pointer<nano_font>create_point_font(::particle * pparticle, int iPoint, enum_font efont, bool bBold REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
    {
 
-      ::pointer<nano_font>pfont(e_create, pparticle);
+      ::pointer<nano_font>pfont(e_create, pparticle, nullptr REFERENCING_DEBUGGING_COMMA_ARGS);
 
       pfont->m_iFontSize = iPoint;
       pfont->m_strFontName = pparticle->acmenode()->font_name(efont);

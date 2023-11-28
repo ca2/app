@@ -43,7 +43,7 @@ namespace nanoui
    class CLASS_DECL_NANOUI Canvas : public Widget {
    public:
       /**
-       * Creates a memory_new Canvas pwidget
+       * Creates a new Canvas pwidget
        *
        * \param parent
        *     The parent pwidget

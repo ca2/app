@@ -193,14 +193,14 @@ bool string_buffer_base::unget_if(::ansi_character ch)
 ////      m_iAlloc = iSize + 1024;
 ////      if(m_psz == nullptr)
 ////      {
-////         m_psz = (char *)memory_allocate(m_iAlloc);
+////         m_psz = (char *)::heap::management::memory(::heap::e_memory_main)->allocate(m_iAlloc);
 ////         m_psz[0] = '\0';
 ////      }
 ////      else
 ////      {
 ////         if(m_iAlloc > 1024 * 1024)
 ////         {
-////            ::informationf("strange string buffer usage");
+////            ::acme::get()->platform()->informationf("strange string buffer usage");
 ////         }
 ////         m_psz = (char *)memory_reallocate(m_psz,m_iAlloc);
 ////      }

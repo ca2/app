@@ -254,7 +254,7 @@ void nano_window_implementation::handle(::topic * ptopic, ::context * pcontext)
 
    message_loop();
 
-   auto pmanualresetevent = __new(manual_reset_event);
+   auto pmanualresetevent = __allocate< manual_reset_event >();
 
    m_pinterface->m_psequencer->then([ pmanualresetevent](auto psequencer)
    {
@@ -263,7 +263,9 @@ void nano_window_implementation::handle(::topic * ptopic, ::context * pcontext)
 
    });
 
-   if(m_pinterface->m_payloadResult.is_new())
+   auto pinterface = m_pinterface;
+
+   if(pinterface->m_payloadResult.is_new())
    {
       
       pmanualresetevent->wait();
@@ -303,7 +305,7 @@ void nano_window_implementation::handle(::topic * ptopic, ::context * pcontext)
    //
    //   return idResult;
 
-   return m_pinterface->m_payloadResult;
+   return pinterface->m_payloadResult;
 
 }
 

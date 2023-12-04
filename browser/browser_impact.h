@@ -117,7 +117,7 @@ namespace browser
       void AddRef() const
       {
 
-         ((impact *)this)->increment_reference_count(REFERENCING_DEBUGGING_ARGS);
+         ((impact *)this)->increment_reference_count();
 
       }
 
@@ -209,13 +209,13 @@ namespace browser
 //      // void assert_ok() const override;
 //      // void dump(dump_context & dumpcontext) const override;
 
-      virtual i64 increment_reference_count(REFERENCING_DEBUGGING_PARAMETERS)
+      virtual i64 increment_reference_count()
       {
-         return ::object::increment_reference_count(REFERENCING_DEBUGGING_ARGS);
+         return ::object::increment_reference_count();
       }
-      virtual i64 decrement_reference_count(REFERENCING_DEBUGGING_PARAMETERS)
+      virtual i64 decrement_reference_count()
       {
-         return ::object::decrement_reference_count(REFERENCING_DEBUGGING_ARGS);
+         return ::object::decrement_reference_count();
       }
 
 

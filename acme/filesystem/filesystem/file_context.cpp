@@ -88,7 +88,9 @@ void file_context::initialize(::particle * pparticle)
 
    /*auto estatus = */ ::object::initialize(pparticle);
 
-   defer_create_synchronization(REFERENCING_DEBUGGING_THIS_FUNCTION_FILE_LINE);
+   ::allocator::add_referer({ this, __FUNCTION_FILE_LINE__ });
+
+   defer_create_synchronization();
 
    //if (!estatus)
    //{
@@ -3167,7 +3169,7 @@ folder_pointer file_context::get_folder(::file::file *pfile, const ::scoped_stri
 
    }
 
-   auto pfolder = pfactory->create < ::folder >(this);
+   auto pfolder = __create < ::folder >(pfactory);
 
    if (!pfolder)
    {

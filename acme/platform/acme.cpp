@@ -156,18 +156,6 @@ LARGE_INTEGER g_largeintegerFrequency;
 #endif
 
 
-namespace mathematics
-{
-
-
-   void initialize_mathematics();
-
-   void finalize_mathematics();
-
-
-} // namespace mathematics
-
-
 ::array < ::procedure > * g_proutineaOsTerm;
 
 //extern natural_meta_data < string_meta_data < ::ansi_character > > * g_pansistringNil;
@@ -290,7 +278,35 @@ namespace acme
 
 #endif
 
-      m_pplatform = __allocate< ::platform::platform >(this);
+      //::allocator::add_referer({ this, __FUNCTION_FILE_LINE__ });
+
+      {
+
+         REFDBG_THIS(this);
+
+         m_pplatform = __allocate< ::platform::platform >(this);
+
+      }
+
+      {
+
+         auto p = ::allocator::task_get_top_track();
+
+         ASSERT(p == nullptr);
+
+      }
+
+      m_pplatform->platform_initialize();
+
+      {
+
+         auto p = ::allocator::task_get_top_track();
+
+         ASSERT(p == nullptr);
+
+      }
+
+      acme_construct_platform_dependent();
 
       {
 
@@ -305,6 +321,12 @@ namespace acme
 
    acme::~acme()
    {
+
+      acme_destruct_platform_dependent();
+
+      m_pplatform->platform_finalize();
+
+      m_pplatform.release();
 
 #if REFERENCING_DEBUGGING
 
@@ -325,8 +347,6 @@ namespace acme
       //m_preferencingdebugging.release();
 
 #endif
-
-      m_pplatform.release();
 
       acme_destruct();
 
@@ -956,21 +976,9 @@ namespace acme
 
 #endif
 
-      ::mathematics::initialize_mathematics();
-
       //::atom_space::s_pidspace = __new< atom_space >();
 
 //      ::acme::idpool::init();
-
-      initialize_message_queue();
-
-      {
-
-         auto p = ::allocator::task_get_top_track();
-
-         ASSERT(p == nullptr);
-
-      }
 
       //
       //#ifdef ANDROID
@@ -1038,19 +1046,19 @@ namespace acme
 
 #endif
 
-      //factory_init();
+      ////factory_init();
 
-      g_paAura = __new < ::array < matter* > >();
+      //g_paAura = __new < ::array < matter* > >();
 
-      //::task_on_after_new_particle(g_paAura);
+      ////::task_on_after_new_particle(g_paAura);
 
-      {
+      //{
 
-         auto p = ::allocator::task_get_top_track();
+      //   auto p = ::allocator::task_get_top_track();
 
-         ASSERT(p == nullptr);
+      //   ASSERT(p == nullptr);
 
-      }
+      //}
 
 
       //g_pmapAura =aaa_memory_new ::map < void *,void *,::acme::application *,::acme::application * >;
@@ -1195,6 +1203,30 @@ namespace acme
          ASSERT(p == nullptr);
 
       }
+
+   }
+
+
+   void acme::acme_construct_platform_dependent()
+   {
+
+      initialize_message_queue();
+
+      {
+
+         auto p = ::allocator::task_get_top_track();
+
+         ASSERT(p == nullptr);
+
+      }
+
+   }
+
+
+   void acme::acme_destruct_platform_dependent()
+   {
+
+      finalize_message_queue();
 
    }
 
@@ -1466,11 +1498,7 @@ namespace acme
 
       //term_id_pool();
 
-      finalize_message_queue();
-
       //::acme::del(::atom_space::s_pidspace);
-
-      ::mathematics::finalize_mathematics();
 
 #if !defined(__MCRTDBG) && !MEMDLEAK
 
@@ -1910,8 +1938,6 @@ void acme::finalize_memory_management()
    //DO_FOR_ALL_HEAPS(FINALIZE_MEMORY_HEAP);
 
 }
-
-
 
 
 

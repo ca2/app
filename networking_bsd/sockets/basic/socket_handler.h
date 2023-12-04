@@ -73,8 +73,8 @@ namespace sockets_bsd
       ~socket_handler() override;
 
 
-      i64 increment_reference_count(REFERENCING_DEBUGGING_PARAMETERS) override;
-      i64 decrement_reference_count(REFERENCING_DEBUGGING_PARAMETERS) override;
+      i64 increment_reference_count() override;
+      i64 decrement_reference_count() override;
 
       void initialize(::particle * pparticle) override;
 

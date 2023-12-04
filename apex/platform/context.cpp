@@ -966,6 +966,17 @@ namespace apex
    void context::destroy()
    {
 
+      m_requestaPending.clear();
+
+      for (auto & r : m_requestaHistory)
+      {
+
+         r.defer_destroy();
+
+      }
+
+      m_requestaHistory.clear();
+
       ::thread::destroy();
 
       ::acme::context::destroy();

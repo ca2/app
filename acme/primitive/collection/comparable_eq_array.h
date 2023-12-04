@@ -72,7 +72,7 @@ public:
 
 
    bool add_unique(ARG_TYPE t);
-   ::count add_unique(const ARRAY_TYPE & a);
+   ::count append_unique(const ARRAY_TYPE & a);
    TYPE & insert_unique(ARG_TYPE t);
 
 
@@ -350,7 +350,7 @@ template <class TYPE, class ARG_TYPE, class ARRAY_TYPE >
 }
 
 template <class TYPE, class ARG_TYPE, class ARRAY_TYPE >
-::count comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::add_unique(const ARRAY_TYPE & a)
+::count comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::append_unique(const ARRAY_TYPE & a)
 {
 
    ::count ca = 0;

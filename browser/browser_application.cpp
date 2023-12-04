@@ -215,14 +215,14 @@ pacmedirectory->create(szRelative);  // or SHCreateDirectory(NULL, szCacheDir); 
    i64 application::increment_reference_count()
    {
 
-      return ::object::increment_reference_count(REFERENCING_DEBUGGING_ARGS);
+      return ::object::increment_reference_count();
 
    }
 
    i64 application::decrement_reference_count()
    {
 
-      return ::object::decrement_reference_count(REFERENCING_DEBUGGING_ARGS);
+      return ::object::decrement_reference_count();
 
    }
 

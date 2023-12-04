@@ -132,6 +132,7 @@ namespace user
 
       DECLARE_MESSAGE_HANDLER(on_message_application_exit);
       DECLARE_MESSAGE_HANDLER(on_message_key_down);
+      DECLARE_MESSAGE_HANDLER(on_message_destroy);
       ////DECLARE_MESSAGE_HANDLER(on_message_set_cursor);
 
 #ifdef WINDOWS_DESKTOP

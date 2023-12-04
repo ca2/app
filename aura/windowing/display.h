@@ -45,6 +45,7 @@ namespace windowing
 
 
       virtual void initialize_display(::windowing::windowing * pwindowing);
+      virtual void finalize_display();
 
       virtual iptr get_os_data() const;
 
@@ -53,7 +54,8 @@ namespace windowing
 
       virtual float get_dpi();
 
-      virtual void open();
+      virtual void open_display();
+      virtual void close_display();
 
       virtual bool set_main_monitor(index iMonitor);
       //virtual ::count get_monitor_count() //;

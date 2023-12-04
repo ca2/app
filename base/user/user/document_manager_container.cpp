@@ -82,7 +82,7 @@ namespace user
 
       }
 
-      //m_pdocmanager->increment_reference_count(REFERENCING_DEBUGGING_ARGS);
+      //m_pdocmanager->increment_reference_count();
 
       document_manager()->add_document_template(ptemplate);
 

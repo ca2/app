@@ -12,20 +12,242 @@ namespace allocator
 {
 
 
+   CLASS_DECL_ACME ::allocator::accessor * g_pacessorDefault;
+
+
    thread_local void * t_pStartConstruct = nullptr;
    thread_local memsize t_sStartConstruct = -1;
-   thread_local bool t_bStartConstructDisableReferencingDebugging = false;
+   //thread_local bool t_bStartConstructDisableReferencingDebugging = false;
    thread_local bool t_bStartConstructParticleAndHeapAllocation = true;
    thread_local ::particle * t_pparticleTrackAllocation = nullptr;
    thread_local bool t_bGoodStackTrackingStart = false;
+   thread_local ::reference_referer * t_preferencerefererTopic = nullptr;
+   thread_local ::reference_referer * t_preferencerefererReleaser = nullptr;
 
 
-   void __on_start_construct(void * p, memsize s, bool bDisableReferencingDebugging, bool bParticleAndHeapAllocation)
+   void set_referer(::reference_referer * preferer)
+   {
+
+      if (t_preferencerefererTopic)
+      {
+
+         throw "error_wrong_state set_referer";
+
+      }
+
+      t_preferencerefererTopic = preferer;
+
+   }
+
+
+   ::reference_referer * new_referer(const ::reference_referer & referer)
+   {
+
+      auto preferencereferer = ::platform::allocator::__new < reference_referer >(::transfer(referer));
+
+      return preferencereferer;
+
+   }
+
+
+   ::reference_referer * defer_add_referer(const ::reference_referer & referer)
+   {
+
+      auto preferencereferer = get_referer();
+
+      if(!preferencereferer)
+      {
+
+         preferencereferer = add_referer(referer);
+
+      }
+
+      return preferencereferer;
+
+   }
+
+
+   ::reference_referer * defer_get_referer(::particle * p, const ::reference_referer & referer)
+   {
+
+      if (referer.m_cstringType && !strcmp(referer.m_cstringType, "class pointer<class item>"))
+      {
+
+         ::string strDebugTitle = p->get_debug_title();
+
+         if (strDebugTitle.contains("e_element_none"))
+         {
+
+            output_debug_string("");
+
+         }
+
+      }
+
+      auto preferencereferer = get_referer();
+
+      if(!preferencereferer)
+      {
+
+         preferencereferer = add_referer(referer);
+
+      }
+
+      return preferencereferer;
+
+   }
+
+
+
+   ::reference_referer * add_referer(const ::reference_referer & referer)
+   {
+
+      auto preferencereferer = new_referer(::transfer(referer));
+
+      set_referer(preferencereferer);
+
+      return preferencereferer;
+
+   }
+
+
+   ::reference_referer * pop_referer()
+   {
+
+      auto preferer = t_preferencerefererTopic;
+
+      t_preferencerefererTopic = nullptr;
+
+      if (::is_null(preferer))
+      {
+
+         throw "error_wrong_state";
+
+      }
+
+      return preferer;
+
+   }
+
+
+   void defer_erase_referer()
+   {
+
+      auto preferer = t_preferencerefererTopic;
+
+      t_preferencerefererTopic = nullptr;
+
+      if (::is_set(preferer))
+      {
+
+         return erase_referer(preferer);
+
+      }
+
+   }
+
+
+   ::reference_referer * get_referer()
+   {
+
+      return t_preferencerefererTopic;
+
+   }
+
+
+   void erase_referer(::reference_referer * preferer)
+   {
+
+      ::platform::allocator::__delete(preferer);
+
+   }
+
+
+   void set_releaser(::reference_referer * preferer)
+   {
+
+      if (::is_null(preferer))
+      {
+
+         return;
+
+      }
+
+      //ASSERT(!t_preferencerefererReleaser);
+
+      if (t_preferencerefererReleaser)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      t_preferencerefererReleaser = preferer;
+
+   }
+
+
+   void add_releaser(::reference_referer * preferer)
+   {
+
+      //auto preferencereferer = ::platform::raw_allocator::__new < reference_referer >(::transfer(referer));
+
+      set_releaser(preferer);
+
+   }
+
+
+   ::reference_referer * pop_releaser()
+   {
+
+      auto preferer = t_preferencerefererReleaser;
+
+      t_preferencerefererReleaser = nullptr;
+
+      return preferer;
+
+   }
+
+
+   ::reference_referer * get_releaser()
+   {
+
+      return t_preferencerefererReleaser;
+
+   }
+
+
+   void defer_erase_releaser()
+   {
+
+      auto preleaser = t_preferencerefererReleaser;
+
+      if (::is_set(preleaser))
+      {
+
+         t_preferencerefererReleaser = nullptr;
+
+         erase_releaser(preleaser);
+
+      }
+
+   }
+
+
+   void erase_releaser(::reference_referer * preferer)
+   {
+
+      ::platform::allocator::__delete(preferer);
+
+   }
+
+
+   void __on_start_construct(void * p, memsize s, bool bParticleAndHeapAllocation)
    {
 
       t_pStartConstruct = p;
       t_sStartConstruct = s;
-      t_bStartConstructDisableReferencingDebugging = bDisableReferencingDebugging;
+      //t_bStartConstructDisableReferencingDebugging = bDisableReferencingDebugging;
       t_bStartConstructParticleAndHeapAllocation = bParticleAndHeapAllocation;
 
    }
@@ -44,11 +266,11 @@ namespace allocator
 
       pparticle->m_bHeapAllocation = t_bStartConstructParticleAndHeapAllocation;
 
-      bool bDisableReferencingDebugging = t_bStartConstructDisableReferencingDebugging;
+      bool bDisableReferencingDebugging = !pparticle->m_bHeapAllocation;
 
       t_pStartConstruct = nullptr;
       t_sStartConstruct = -1;
-      t_bStartConstructDisableReferencingDebugging = false;
+      //t_bStartConstructDisableReferencingDebugging = false;
       t_bStartConstructParticleAndHeapAllocation = false;
 
       if (!pparticle->m_bHeapAllocation)
@@ -73,7 +295,12 @@ namespace allocator
          if (::is_null(t_pparticleTrackAllocation))
          {
 
-            t_pparticleTrackAllocation = pparticle;
+            if (pparticle->m_bHeapAllocation)
+            {
+
+               t_pparticleTrackAllocation = pparticle;
+
+            }
 
             if (!pparticle->is_referencing_debugging_enabled())
             {
@@ -118,7 +345,7 @@ namespace allocator
                   bDisableReferencingDebugging = true;
 
                }
-               else
+               else if (pparticle->m_bHeapAllocation)
                {
 
                   pparticleTopTrack->add_top_track(pparticle);
@@ -141,11 +368,17 @@ namespace allocator
       if(pparticle->is_referencing_debugging_enabled())
       {
 
-         pparticle->m_preferenceitema = ::platform::raw_allocator::__new < reference_item_array >(pparticle, pparticleParent);
+         pparticle->m_preferenceitema = ::platform::allocator::__new < reference_item_array >(pparticle, pparticleParent);
 
          //on_after_construct_particle(pparticle->m_preferenceitema);
 
          pparticle->add_reference_item();
+
+      }
+      else
+      {
+
+         defer_erase_referer();
 
       }
 
@@ -217,8 +450,28 @@ namespace allocator
 
       t_pStartConstruct = nullptr;
       t_sStartConstruct = -1;
-      t_bStartConstructDisableReferencingDebugging = false;
+      //t_bStartConstructDisableReferencingDebugging = false;
       t_bStartConstructParticleAndHeapAllocation = false;
+
+   }
+
+
+   void __on_after_construct_particle(::particle * pparticle)
+   {
+
+      t_pStartConstruct = nullptr;
+      t_sStartConstruct = -1;
+      //t_bStartConstructDisableReferencingDebugging = false;
+      t_bStartConstructParticleAndHeapAllocation = false;
+
+      if (pparticle->m_preferenceitema)
+      {
+
+         pparticle->m_preferenceitema->m_strDebug = pparticle->get_debug_title();
+
+      }
+
+      refdbg_erase_top_track(pparticle);
 
    }
 
@@ -248,13 +501,78 @@ void particle::disable_referencing_debugging()
 
    m_eflagElement.set(e_flag_no_referencing_debugging);
 
+   //if (::is_set(::allocator::t_pparticleTrackAllocation))
+   //{
+
+   //   if (::allocator::t_pparticleTrackAllocation == this)
+   //   {
+
+   //      //::acme::get()->m_preferencingdebugging->m_item2a.erase_last(this);
+
+   //      ::allocator::t_pparticleTrackAllocation = nullptr;
+
+   //   }
+   //   else
+   //   {
+
+   //      ::particle * pparticleParent = ::allocator::t_pparticleTrackAllocation;
+
+   //      if (::allocator::t_pparticleTrackAllocation->find_top_track(this, &pparticleParent))
+   //      {
+
+   //         pparticleParent->erase_top_track(this);
+
+   //      }
+
+   //   }
+
+   //}
+
+   ::destruct_particle_reference_item_array(this);
+
+//   m_pparticleTopTrack = nullptr;
+
+}
+
+
+CLASS_DECL_ACME bool refdbg_add_top_track(::particle * pparticle)
+{
+
+   if (!::allocator::t_pparticleTrackAllocation)
+   {
+
+      ::allocator::t_pparticleTrackAllocation = pparticle;
+
+   }
+   else if (::allocator::t_pparticleTrackAllocation->contains_top_track(pparticle))
+   {
+
+      return false;
+
+   }
+   else
+   {
+
+      auto p = ::allocator::t_pparticleTrackAllocation->get_top_track();
+
+      p->add_top_track(pparticle);
+
+   }
+
+   return true;
+
+
+}
+
+
+CLASS_DECL_ACME void refdbg_erase_top_track(::particle * pparticle)
+{
+
    if (::is_set(::allocator::t_pparticleTrackAllocation))
    {
 
-      if (::allocator::t_pparticleTrackAllocation == this)
+      if (::allocator::t_pparticleTrackAllocation == pparticle)
       {
-
-         //::acme::get()->m_preferencingdebugging->m_item2a.erase_last(this);
 
          ::allocator::t_pparticleTrackAllocation = nullptr;
 
@@ -264,10 +582,10 @@ void particle::disable_referencing_debugging()
 
          ::particle * pparticleParent = ::allocator::t_pparticleTrackAllocation;
 
-         if (::allocator::t_pparticleTrackAllocation->find_top_track(this, &pparticleParent))
+         if (::allocator::t_pparticleTrackAllocation->find_top_track(pparticle, &pparticleParent))
          {
 
-            pparticleParent->erase_top_track(this);
+            pparticleParent->erase_top_track(pparticle);
 
          }
 
@@ -275,12 +593,22 @@ void particle::disable_referencing_debugging()
 
    }
 
-   ::destruct_particle_reference_item_array(this);
-
-   m_pparticleTopTrack = nullptr;
-
 }
 
+
+
+
+
+bool g_bIntermediateThreadReferencingDebugging = false;
+
+
+
+//::particle * __call__add_referer(const ::reference_referer & referer)
+//{
+//
+//   return ::acme::get()->platform()->__call__add_referer(referer);
+//
+//}
 
 
 

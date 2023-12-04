@@ -33,14 +33,14 @@
 ////#include <glib.h> // sudo apt-get install libglib2.0-dev
 //
 //
-////void x11_hook_init();
-////void x11_hook_term();
+////void aaa_x11_hook_init();
+////void aaa_x11_hook_term();
 //
 //
 //#endif
 
-//void trace_category_static_init();
-//void trace_category_static_term();
+//void aaa_trace_category_static_init();
+//void aaa_trace_category_static_term();
 
 
 //extern thread_local ::task_pointer t_pthread;
@@ -814,7 +814,7 @@ namespace aura
 //
 //      //del(psystem->g_mutexLibrary);
 //
-//      trace_category_static_term();
+//      aaa_trace_category_static_term();
 //
 //#if OBJECT_TYPE_COUNTER
 //
@@ -852,7 +852,7 @@ namespace aura
 //
 //      //::acme::del(g_pcsTrace);
 //
-//      trace_category_static_term();
+//      aaa_trace_category_static_term();
 //
 ////#ifdef ANDROID
 ////

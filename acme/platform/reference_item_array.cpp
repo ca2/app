@@ -69,7 +69,7 @@ reference_item_array::~reference_item_array()
    for (auto & preferenceitema : m_item2a)
    {
 
-      ::platform::raw_allocator::__delete(preferenceitema);
+      ::platform::allocator::__delete(preferenceitema);
 
    }
 
@@ -78,8 +78,13 @@ reference_item_array::~reference_item_array()
 
       if (::is_set(m_pparticleParent))
       {
+         
+         if (m_pparticleParent->m_preferenceitema)
+         {
 
-         m_pparticleParent->m_preferenceitema->erase_item_array(this);
+            m_pparticleParent->m_preferenceitema->erase_item_array(this);
+
+         }
 
       }
       else
@@ -162,15 +167,62 @@ bool reference_item_array::erase_item_array(::reference_item_array * pitema)
 //}
 
 
-void reference_item_array::add_item(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
+::reference_item * new_reference_item(::reference_item_array * parray)
 {
 
-   auto pitem = new reference_item(this);
+   auto p = malloc(sizeof(::reference_item));
+
+   auto preferenceitem = ::new(p) ::reference_item(parray);
+
+   return preferenceitem;
+
+}
+
+
+void delete_reference_item(::reference_item * preferenceitem)
+{
+
+   preferenceitem->~reference_item();
+
+   ::free(preferenceitem);
+
+}
+
+
+void reference_item_array::add_item()
+{
+
+   critical_section_lock criticalsectionlock(&::acme::get()->m_preferencingdebugging->m_criticalsection);
+
+   auto pitem = new_reference_item(this);
 
    pitem->m_iStep = m_iStep++;
-   pitem->m_referer = referer;
-   pitem->m_strDebug = referer.m_cstringDebug;
 
+   auto iSerial = m_iSerial;
+
+   if (iSerial == 148)
+   {
+
+      output_debug_string("iSerial == 148");
+
+   }
+
+
+   //auto iSerial = pitem->m_preferer->m_iSerial;
+
+   //if (iSerial == 148)
+   //{
+
+   //   output_debug_string("iSerial == 148");
+
+   //}
+
+
+   //pitem->m_referer = referer;
+   if (pitem->m_preferer)
+   {
+         pitem->m_strDebug = pitem->m_preferer->m_cstringDebug;
+   }
    m_bFirstReference = false;
 
    m_itema.add(pitem);
@@ -178,25 +230,29 @@ void reference_item_array::add_item(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
 }
 
 
-::index reference_item_array::find_item(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
+::index reference_item_array::find_item(reference_referer * preferer)
 {
 
-   if (::type(m_pparticle).name().contains("app_app::application"))
-   {
+   critical_section_lock criticalsectionlock(&::acme::get()->m_preferencingdebugging->m_criticalsection);
 
-      if (!referer)
+   //if (::type(m_pparticle).name().contains("app_app::application"))
+   //{
+
+   //   if (!referer)
+   //   {
+
+   //      output_debug_string("erase_item app_app::application (null) referer");
+
+   //   }
+
+   //}
+
+   auto iFind = m_itema.predicate_find_last([preferer](auto & pitem)
       {
 
-         output_debug_string("erase_item app_app::application (null) referer");
+         //return pitem->m_bOn && pitem->m_referer == referer;
 
-      }
-
-   }
-
-   auto iFind = m_itema.predicate_find_last([&referer](auto & pitem)
-      {
-
-         return pitem->m_bOn && pitem->m_referer == referer;
+         return pitem->m_preferer == preferer;
 
       });
 
@@ -205,24 +261,28 @@ void reference_item_array::add_item(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
 
       ::string strList;
 
-      for (auto & p : m_itema)
+      for (auto & preferenceitem : m_itema)
       {
          try
          {
 
             //strList += " - " + ::type(p->m_preferer).name();
 
-            strList += " : " + as_string(p->m_iStep) + ::string(" : ") + (p->m_bOn ? "On" : "Off");
+            //strList += " : " + as_string(p->m_iStep) + ::string(" : ") + (p->m_bOn ? "On" : "Off");
+
+            strList += " : " + as_string(preferenceitem->m_iStep);
 
             strList += "\n";
 
-            strList += p->m_strDebug + ": Increment";
+            //strList += p->m_strDebug + ": Increment";
+
+            strList += preferenceitem->m_strDebug;
 
             strList += "\n";
 
-            strList += p->m_strDebugDecrement + ": Decrement";
+            //strList += p->m_strDebugDecrement + ": Decrement";
 
-            strList += "\n";
+            //strList += "\n";
 
          }
          catch (...)
@@ -245,19 +305,29 @@ void reference_item_array::add_item(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
 }
 
 
-bool reference_item_array::erase_item(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
+bool reference_item_array::erase_item()
 {
 
-   auto iFind = find_item(REFERENCING_DEBUGGING_ARGS);
+   critical_section_lock criticalsectionlock(&::acme::get()->m_preferencingdebugging->m_criticalsection);
+
+   auto prefererRelease = ::allocator::pop_releaser();
+
+   auto iFind = find_item(prefererRelease);
 
    if (iFind >= 0)
    {
 
-      auto p = m_itema[iFind];
+      auto preferenceitem = m_itema.at(iFind);
 
-      p->m_bOn = false;
+      delete_reference_item(preferenceitem);
 
-      p->m_strDebugDecrement = referer.m_cstringDebug;
+      m_itema.erase_at(iFind);
+
+      //auto p = m_itema[iFind];
+
+      //p->m_bOn = false;
+
+      //p->m_strDebugDecrement = referer.m_cstringDebug;
 
    }
 
@@ -266,17 +336,19 @@ bool reference_item_array::erase_item(REFERENCING_DEBUGGING_PARAMETERS_DEFINITIO
 }
 
 
-bool reference_item_array::replace_item(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
+bool reference_item_array::replace_item(reference_item * preferenceitem)
 {
 
-   auto iFind = find_item(REFERENCING_DEBUGGING_ARGS);
+   critical_section_lock criticalsectionlock(&::acme::get()->m_preferencingdebugging->m_criticalsection);
+
+   auto iFind = find_item(preferenceitem->m_preferer);
 
    if (iFind >= 0)
    {
 
       auto p = m_itema[iFind];
 
-      p->m_strDebug = referer.m_cstringDebug;
+      p->m_strDebug = preferenceitem->m_preferer->m_cstringDebug;
 
    }
 
@@ -326,7 +398,7 @@ string object_name(matter* p)
 //   for (::index i = pitema->m_itema.size(); i < c; i++)
 //   {
 //
-//      _add_reference_item(REFERENCING_DEBUGGING_ARGS);
+//      _add_reference_item();
 //
 //   }
 //
@@ -336,7 +408,7 @@ string object_name(matter* p)
 
 
 
-void particle::add_reference_item(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
+void particle::add_reference_item()
 {
 
    critical_section_lock synchronouslock(&::acme::get()->m_preferencingdebugging->m_criticalsection);
@@ -344,9 +416,18 @@ void particle::add_reference_item(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
    if (!is_referencing_debugging_enabled())
    {
 
+      ::allocator::defer_erase_referer();
+
       return;
 
    }
+
+   //if (!m_bHeapAllocation)
+   //{
+
+   //   return;
+
+   //}
 
    auto pitema = reference_itema();
 
@@ -355,7 +436,7 @@ void particle::add_reference_item(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
 //   for (::index i = pitema->m_itema.size(); i < c; i++)
 //   {
 //
-//      _add_reference_item(REFERENCING_DEBUGGING_ARGS);
+//      _add_reference_item();
 //
 //   }
 //
@@ -364,7 +445,7 @@ void particle::add_reference_item(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
 //}
 //
 //
-//void particle::_add_reference_item(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
+//void particle::_add_reference_item()
 //{
 //
 //   auto pitema = m_preferenceitema.m_p;
@@ -374,55 +455,57 @@ void particle::add_reference_item(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
    try
    {
 
-      string strType = ::type(this).name();
-
-      if (strType == "pacman::game")
-      {
-
-         informationf("pacman::game");
-
-      }
-
-      if (pitema->m_bFirstReference)
-      {
-
-         pitema->m_strDebug = referer.m_cstringType;
-
-      }
-      else if (!pitema->m_strDebug.is_empty())
-      {
-
-         pitema->m_strDebug = "For " + ::type(this).name() + "(" + string(debug_note()) + ")";
-
-      }
-
-      string strRefererType;
-
-      strRefererType = referer.m_cstringType;
-
-      string strRefererDebug;
-
-      strRefererDebug = referer.m_cstringDebug;
-
-      if (strType == "pacman::game")
-      {
-
-         informationf("pacman::game");
-
-      }
-      else if (strType.case_insensitive_contains("session"))
-      {
-
-//            if (m_pobjrefdbg->m_iStep == 39)
-//            {
+//      string strType = ::type(this).name();
 //
-//               informationf("session");
+//      if (strType == "pacman::game")
+//      {
 //
-//            }
+//         informationf("pacman::game");
+//
+//      }
+//
+//      if (pitema->m_bFirstReference)
+//      {
+//
+//         pitema->m_strDebug = preferer->m_cstringType;
+//
+//      }
+//      else if (!pitema->m_strDebug.is_empty())
+//      {
+//
+//         pitema->m_strDebug = "For " + ::type(this).name() + "(" + string(debug_note()) + ")";
+//
+//      }
+//
+//      string strRefererType;
+//
+//      strRefererType = preferer->m_cstringType;
+//
+//      string strRefererDebug;
+//
+//      strRefererDebug = preferer->m_cstringDebug;
+//
+//      if (strType == "pacman::game")
+//      {
+//
+//         informationf("pacman::game");
+//
+//      }
+//      else if (strType.case_insensitive_contains("session"))
+//      {
+//
+////            if (m_pobjrefdbg->m_iStep == 39)
+////            {
+////
+////               informationf("session");
+////
+////            }
+//
+//      }
 
-      }
+      //pitema->add_item(preferenc);
 
-      pitema->add_item(REFERENCING_DEBUGGING_ARGS);
+      pitema->add_item();
 
    }
    catch (...)
@@ -433,13 +516,15 @@ void particle::add_reference_item(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
 }
 
 
-void particle::erase_reference_item(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
+void particle::erase_reference_item()
 {
 
    critical_section_lock synchronouslock(&::acme::get()->m_preferencingdebugging->m_criticalsection);
 
    if (!is_referencing_debugging_enabled())
    {
+
+      ::allocator::defer_erase_releaser();
 
       return;
 
@@ -454,7 +539,7 @@ void particle::erase_reference_item(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
 
    }
 
-   pitema->erase_item(REFERENCING_DEBUGGING_ARGS);
+   pitema->erase_item();
 
 }
 
@@ -505,14 +590,36 @@ void reference_item_array::dump_pending_releases(::string & strDump)
 
       ::index iStep = pitem->m_iStep;
 
-      auto & referer = pitem->m_referer;
+      ::index iSerial = pitem->m_iSerial;
+
+      auto preferer = pitem->m_preferer;
 
       string str = pitem->m_strDebug;
+
+      string str2;
 
       try
       {
 
-         strDump.append_formatf("%4d: %4d %s", iIndex, iStep, str.c_str());
+         if (pitem->m_preferer)
+         {
+
+            str2 += pitem->m_preferer->m_cstringType;
+
+            str2.append_formatf(" (%lld)", pitem->m_preferer->m_iSerial);
+
+         }
+
+      }
+      catch (...)
+      {
+
+      }
+
+      try
+      {
+
+         strDump.append_formatf("%4d: %4d (%7lld) %s: %s\n", iIndex, iStep, iSerial, str.c_str(), str2.c_str());
 
       }
       catch (...)
@@ -543,7 +650,14 @@ void reference_item_array::dump_pending_releases(::string & strDump)
 
 #if REFERENCING_DEBUGGING
 
-
+//::particle * particle::__call__add_referer(const ::reference_referer & referer) const
+//{
+//
+//   ::allocator::add_referer(referer);
+//
+//   return (::particle *)this;
+//
+//}
 
 void particle::add_top_track(::particle * pparticle)
 {
@@ -595,21 +709,28 @@ void particle::erase_top_track(::particle * pparticle)
       throw ::exception(error_wrong_state);
 
    }
-   
-   auto pNextTop = m_pparticleTopTrack->m_pparticleTopTrack;
 
-   if (::is_set(pNextTop))
+   if (pparticle == m_pparticleTopTrack)
    {
 
-      pNextTop->erase_top_track(pparticle);
-
-      return;
+      m_pparticleTopTrack = m_pparticleTopTrack->m_pparticleTopTrack;
 
    }
+   else
+   {
 
-   ASSERT(pparticle == m_pparticleTopTrack);
+      auto pNextTop = m_pparticleTopTrack->m_pparticleTopTrack;
 
-   m_pparticleTopTrack = m_pparticleTopTrack->m_pparticleTopTrack;
+      if (::is_set(pNextTop))
+      {
+
+         pNextTop->erase_top_track(pparticle);
+
+         return;
+
+      }
+
+   }
 
 }
 
@@ -641,6 +762,13 @@ bool particle::find_top_track(::particle * pparticle, ::particle ** pparticlePar
    if (m_pparticleTopTrack == pparticle)
    {
 
+      if (pparticleParent)
+      {
+
+         *pparticleParent = (::particle *)this;
+
+      }
+
       return true;
 
    }
@@ -648,11 +776,11 @@ bool particle::find_top_track(::particle * pparticle, ::particle ** pparticlePar
    if (pparticleParent)
    {
 
-      *pparticleParent = (::particle *) this;
+      *pparticleParent = (::particle *)this;
 
    }
 
-   return m_pparticleTopTrack->contains_top_track(pparticle);
+   return m_pparticleTopTrack->find_top_track(pparticle, pparticleParent);
 
 }
 
@@ -792,7 +920,7 @@ void destruct_particle_reference_item_array(::particle * pparticle)
 
       pparticle->m_preferenceitema = nullptr;
 
-      ::platform::raw_allocator::__delete(preferenceitema);
+      ::platform::allocator::__delete(preferenceitema);
 
    }
 
@@ -802,5 +930,9 @@ void destruct_particle_reference_item_array(::particle * pparticle)
 
 
 
+CLASS_DECL_ACME::critical_section * refdbg_cs()
+{
 
+   return &::acme::get()->m_preferencingdebugging->m_criticalsection;
 
+}

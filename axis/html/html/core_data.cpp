@@ -4,6 +4,7 @@
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
 #include "acme/constant/user_key.h"
+#include "acme/handler/topic.h"
 #include "acme/parallelization/task_keep.h"
 #include "acme/primitive/primitive/url.h"
 #include "acme/parallelization/synchronous_lock.h"
@@ -97,7 +98,7 @@ namespace html
    //i64 core_data::increment_reference_count()
    //{
 
-   //   return ::object::increment_reference_count(REFERENCING_DEBUGGING_ARGS);
+   //   return ::object::increment_reference_count();
 
    //}
 
@@ -105,7 +106,7 @@ namespace html
    //i64 core_data::decrement_reference_count()
    //{
 
-   //   return ::object::decrement_reference_count(REFERENCING_DEBUGGING_ARGS);
+   //   return ::object::decrement_reference_count();
 
    //}
 
@@ -298,7 +299,7 @@ namespace html
 
       }
 
-      m_pelement = ::pointer_transfer(memory_new ::html::element);
+      m_pelement = __allocate < ::html::element >();
 
       m_pelement->initialize_html_elemental(this);
 

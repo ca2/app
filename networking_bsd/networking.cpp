@@ -4,6 +4,7 @@
 #include "sockets/ssl/initializer.h"
 #include "acme/exception/interface_only.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/primitive/mathematics/mathematics.h"
 #include "acme/primitive/time/_binary_stream.h"
 #include "acme/primitive/string/parse.h"
 #include "acme/primitive/string/str.h"
@@ -154,7 +155,7 @@ namespace networking_bsd
 
       //::net::g_paddressdepartment = paddressdepartment;
 
-      generate_random_bytes(m_baTicketKey, sizeof(m_baTicketKey));
+      mathematics()->random(m_baTicketKey);
 
       m_psslinit = __create_new<::sockets_bsd::SSLInitializer>();
 

@@ -231,18 +231,18 @@ namespace apex
 #ifdef _DEBUG
 
 
-   i64 system::increment_reference_count(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
+   i64 system::increment_reference_count()
    {
 
-      return ::acme::system::increment_reference_count(REFERENCING_DEBUGGING_ARGS);
+      return ::acme::system::increment_reference_count();
 
    }
 
 
-   i64 system::decrement_reference_count(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
+   i64 system::decrement_reference_count()
    {
 
-      return ::acme::system::decrement_reference_count(REFERENCING_DEBUGGING_ARGS);
+      return ::acme::system::decrement_reference_count();
 
    }
 
@@ -900,6 +900,9 @@ pacmedirectory->create("/ca2core");
       //}
 
       //estatus = 
+
+      //::allocator::add_referer(REFERENCING_DEBUGGING_THIS_FUNCTION_FILE_LINE);
+
       __construct(m_pdirsystem);
 
       //if (!estatus)
@@ -1788,7 +1791,7 @@ pacmedirectory->create("/ca2core");
 
 #if REFERENCING_DEBUGGING
 
-      release(REFERENCING_DEBUGGING_P_NOTE(this, nullptr));
+      release();
 
       try
       {

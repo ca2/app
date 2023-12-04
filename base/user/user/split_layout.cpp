@@ -997,13 +997,13 @@ namespace user
       for(i = 0; i < iSplitBarCount; i++)
       {
 
-         m_splitbara.add_new(this);
+         auto & psplitbar = m_splitbara.add_new();
+         
+         __construct(psplitbar);
 
-         ::user::split_bar & splitbar = *m_splitbara.element_at(i);
+         psplitbar->m_iIndex = i;
 
-         splitbar.m_iIndex = i;
-
-         splitbar.create_child(this);
+         psplitbar->create_child(this);
 
          //if (!splitbar.create_child(this))
          //{

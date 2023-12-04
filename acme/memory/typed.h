@@ -3,7 +3,7 @@
 
 
 template < typename TYPE >
-inline void def_destruct(TYPE * pointer REFERENCING_DEBUGGING_COMMA_PARAMS)
+inline void def_destruct(TYPE * pointer)
 {
 
    pointer->~TYPE();
@@ -12,13 +12,12 @@ inline void def_destruct(TYPE * pointer REFERENCING_DEBUGGING_COMMA_PARAMS)
 
 
 template < typename TYPE >
-inline void def_destruct(::pointer<TYPE> pointer REFERENCING_DEBUGGING_COMMA_PARAMS)
+inline void def_destruct(::pointer<TYPE> pointer)
 {
 
-   pointer->release(REFERENCING_DEBUGGING_ARGS);
+   pointer->release();
 
 }
-
 
 
 template < typename TYPE >
@@ -150,25 +149,33 @@ namespace destructor
    {
    public:
 
-      inline  void destruct(TYPE * pointer REFERENCING_DEBUGGING_COMMA_PARAMS)
+      
+      inline void destruct(TYPE * pointer)
       {
 
-         def_destruct(pointer REFERENCING_DEBUGGING_COMMA_ARGS);
+         def_destruct(pointer);
+
       }
-      inline  void destruct_count(TYPE * pointer, ::count c REFERENCING_DEBUGGING_COMMA_PARAMS)
+
+
+      inline void destruct_count(TYPE * pointer, ::count c)
       {
+
          while (c > 0)
          {
-            def_destruct(pointer REFERENCING_DEBUGGING_COMMA_ARGS);
-            pointer++;
-            c--;
-         }
-      }
 
+            def_destruct(pointer);
+
+            pointer++;
+
+            c--;
+
+         }
+
+      }
 
 
    };
-
 
 
    template < typename TYPE >
@@ -176,11 +183,11 @@ namespace destructor
    {
    public:
 
-      inline  void destruct(TYPE * p REFERENCING_DEBUGGING_COMMA_PARAMS)
+      inline  void destruct(TYPE * p)
       {
          UNREFERENCED_PARAMETER(p);
       }
-      inline  void destruct_count(TYPE * p, ::count c REFERENCING_DEBUGGING_COMMA_PARAMS)
+      inline  void destruct_count(TYPE * p, ::count c)
       {
          UNREFERENCED_PARAMETER(p);
          UNREFERENCED_PARAMETER(c);
@@ -263,13 +270,20 @@ namespace typed
 
       }
 
-      inline  void destruct(TYPE * p REFERENCING_DEBUGGING_COMMA_PARAMS)
+      
+      inline void destruct(TYPE * p)
       {
-         destructor::nodef < TYPE >::destruct(p REFERENCING_DEBUGGING_COMMA_ARGS);
+         
+         destructor::nodef < TYPE >::destruct(p);
+
       }
-      inline  void destruct_count(TYPE * p, ::count c REFERENCING_DEBUGGING_COMMA_PARAMS)
+
+
+      inline void destruct_count(TYPE * p, ::count c)
       {
-         destructor::nodef < TYPE >::destruct_count(p, c REFERENCING_DEBUGGING_COMMA_ARGS);
+      
+         destructor::nodef < TYPE >::destruct_count(p, c);
+
       }
 
 
@@ -339,26 +353,38 @@ namespace typed
       protected copier::def<TYPE>,
       protected destructor::def<TYPE>
    {
-
    public:
 
+      
       inline  void construct(TYPE * p)
       {
+         
          constructor::def< TYPE >::construct(p);
+
       }
+
 
       inline  void construct_count(TYPE * p, ::count c)
       {
+      
          constructor::def< TYPE >::construct_count(p, c);
+
       }
 
-      inline  void destruct(TYPE * pointer REFERENCING_DEBUGGING_COMMA_PARAMS)
+
+      inline void destruct(TYPE * pointer)
       {
-         destructor::def< TYPE>::destruct(pointer REFERENCING_DEBUGGING_COMMA_ARGS);
+
+         destructor::def< TYPE>::destruct(pointer);
+
       }
-      inline  void destruct_count(TYPE * pointer, ::count c REFERENCING_DEBUGGING_COMMA_PARAMS)
+
+
+      inline  void destruct_count(TYPE * pointer, ::count c)
       {
-         destructor::def< TYPE>::destruct_count(pointer, c REFERENCING_DEBUGGING_COMMA_ARGS);
+
+         destructor::def< TYPE>::destruct_count(pointer, c);
+
       }
 
 
@@ -377,27 +403,38 @@ namespace typed
 
       }
 
+
       inline  void copy_construct_count(TYPE * pdst, ::count c, const TYPE & src)
       {
 
          while (c > 0)
          {
+
             ::new (pdst) TYPE(src);
+
             pdst++;
+
             c--;
+
          }
 
       }
+
 
       inline  void copy_construct_count(TYPE * pdst, ::count c, const TYPE * psrc)
       {
 
          while (c > 0)
          {
+
             ::new (pdst) TYPE(*psrc);
+
             c--;
+
             pdst++;
+
             psrc++;
+
          }
 
       }
@@ -454,18 +491,18 @@ namespace typed
       }
 
 
-      inline void destruct(TYPE * pointer REFERENCING_DEBUGGING_COMMA_PARAMS)
+      inline void destruct(TYPE * pointer)
       {
 
-         destructor::def< TYPE >::destruct(pointer REFERENCING_DEBUGGING_COMMA_ARGS);
+         destructor::def< TYPE >::destruct(pointer);
 
       }
 
 
-      inline void destruct_count(TYPE * pointer, ::count c REFERENCING_DEBUGGING_COMMA_PARAMS)
+      inline void destruct_count(TYPE * pointer, ::count c)
       {
 
-         destructor::def< TYPE >::destruct_count(pointer, c REFERENCING_DEBUGGING_COMMA_ARGS);
+         destructor::def< TYPE >::destruct_count(pointer, c);
 
       }
 
@@ -548,27 +585,38 @@ namespace typed
       public destructor::nodef< TYPE >,
       public copier::def< TYPE >
    {
-
    public:
+
 
       inline  void construct(TYPE * p)
       {
+
          constructor::nodef< TYPE >::construct(p);
+
       }
+
 
       inline  void construct_count(TYPE * p, ::count c)
       {
+
          constructor::nodef< TYPE >::construct_count(p, c);
 
       }
 
-      inline  void destruct(TYPE * pointer REFERENCING_DEBUGGING_COMMA_PARAMS)
+
+      inline  void destruct(TYPE * pointer)
       {
-         destructor::nodef< TYPE>::destruct(pointer REFERENCING_DEBUGGING_COMMA_ARGS);
+
+         destructor::nodef< TYPE>::destruct(pointer);
+
       }
-      inline  void destruct_count(TYPE * pointer, ::count c REFERENCING_DEBUGGING_COMMA_PARAMS)
+
+
+      inline  void destruct_count(TYPE * pointer, ::count c)
       {
-         destructor::nodef< TYPE>::destruct_count(pointer, c REFERENCING_DEBUGGING_COMMA_ARGS);
+
+         destructor::nodef< TYPE>::destruct_count(pointer, c);
+
       }
 
 
@@ -587,14 +635,19 @@ namespace typed
 
       }
 
+
       inline  void copy_construct_count(TYPE * pdst, ::count c, const TYPE & src)
       {
 
          while (c > 0)
          {
+
             copy(pdst, &src);
+
             pdst++;
+
             c--;
+
          }
 
       }
@@ -605,10 +658,15 @@ namespace typed
 
          while (c > 0)
          {
+
             copy(pdst, psrc);
+
             c--;
+
             pdst++;
+
             psrc++;
+
          }
 
       }
@@ -657,13 +715,20 @@ namespace typed
 
       }
 
-      inline  void destruct(TYPE * pointer REFERENCING_DEBUGGING_COMMA_PARAMS)
+
+      inline  void destruct(TYPE * pointer)
       {
-         destructor::nodef< TYPE>::destruct(pointer REFERENCING_DEBUGGING_COMMA_ARGS);
+
+         destructor::nodef< TYPE>::destruct(pointer);
+
       }
-      inline  void destruct_count(TYPE * pointer, ::count c REFERENCING_DEBUGGING_COMMA_PARAMS)
+
+
+      inline  void destruct_count(TYPE * pointer, ::count c)
       {
-         destructor::nodef< TYPE>::destruct_count(pointer, c REFERENCING_DEBUGGING_COMMA_ARGS);
+
+         destructor::nodef< TYPE>::destruct_count(pointer, c);
+
       }
 
 
@@ -753,13 +818,20 @@ namespace typed
 
       }
 
-      inline  void destruct(TYPE * p REFERENCING_DEBUGGING_COMMA_PARAMS)
+      
+      inline  void destruct(TYPE * p)
       {
-         destructor::nodef< TYPE>::destruct(p  REFERENCING_DEBUGGING_COMMA_ARGS);
+
+         destructor::nodef< TYPE>::destruct(p);
+
       }
-      inline  void destruct_count(TYPE * p, ::count c REFERENCING_DEBUGGING_COMMA_PARAMS)
+
+
+      inline  void destruct_count(TYPE * p, ::count c)
       {
-         destructor::nodef< TYPE>::destruct_count(p, c  REFERENCING_DEBUGGING_COMMA_ARGS);
+
+         destructor::nodef< TYPE>::destruct_count(p, c);
+
       }
 
 
@@ -778,14 +850,19 @@ namespace typed
 
       }
 
-      inline  void copy_construct_count(TYPE * pdst, ::count c, const TYPE & src)
+
+      inline void copy_construct_count(TYPE * pdst, ::count c, const TYPE & src)
       {
 
          while (c > 0)
          {
+
             copy(pdst, &src);
+
             pdst++;
+
             c--;
+
          }
 
       }
@@ -796,10 +873,15 @@ namespace typed
 
          while (c > 0)
          {
+            
             copy(pdst, psrc);
+
             pdst++;
+
             c--;
+
             psrc++;
+
          }
 
       }
@@ -846,13 +928,13 @@ namespace typed
    //
    //      }
    //
-   //      inline  void destruct(TYPE * p REFERENCING_DEBUGGING_COMMA_PARAMS)
+   //      inline  void destruct(TYPE * p)
    //      {
-   //         destructor::def< TYPE>::destruct(p REFERENCING_DEBUGGING_COMMA_ARGS);
+   //         destructor::def< TYPE>::destruct(p);
    //      }
-   //      inline  void destruct_count(TYPE * p, ::count c REFERENCING_DEBUGGING_COMMA_PARAMS)
+   //      inline  void destruct_count(TYPE * p, ::count c)
    //      {
-   //         destructor::def< TYPE>::destruct_count(p, c  REFERENCING_DEBUGGING_COMMA_ARGS);
+   //         destructor::def< TYPE>::destruct_count(p, c );
    //      }
    //
    //

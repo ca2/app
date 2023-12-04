@@ -190,6 +190,8 @@ public:
    }
 
 
+   ::string get_debug_title() const override;
+
    bool _is_set() const override;
 
    bool is_item_set() const { return m_atom.is_set() || m_item.m_eelement != ::e_element_none; }

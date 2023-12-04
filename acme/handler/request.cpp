@@ -354,6 +354,27 @@ void request::common_construct()
 }
 
 
+void request::destroy()
+{
+
+   m_puserelementParent.release();
+
+   m_puserelementAlloc.release();
+
+   m_pmatterUserPayload.release();
+
+   m_pcontextFork.release();
+
+   m_pdata.release();
+
+   m_procedureaOnFinishRequest.clear();
+
+   ::object::destroy();
+
+   output_purpose::destroy();
+
+}
+
 //request::~request()
 //{
 //}

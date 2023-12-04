@@ -26,6 +26,8 @@ void referencing_debugging::add_item_array(::reference_item_array * pitema)
 
    m_item2a.add(pitema);
 
+   m_iCount++;
+
 }
 
 
@@ -59,7 +61,9 @@ void referencing_debugging::dump_pending_releases()
 
       ::string strDump;
 
-      strDump.append_formatf("Inspected Items : %d\n", m_iCount);
+      strDump.append_formatf("\n\nrefdbg0--\n\n");
+
+      strDump.append_formatf("Inspected Top Level Items : %d\n", m_iCount);
 
       strDump.append_formatf("Found %d items with pending releases.\n", c);
 
@@ -106,7 +110,7 @@ namespace acme
    void acme::initialize_referencing_debugging()
    {
 
-      m_preferencingdebugging = ::platform::raw_allocator::__new< referencing_debugging >();
+      m_preferencingdebugging = ::platform::allocator::__new< referencing_debugging >();
 
    }
 

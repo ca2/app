@@ -156,18 +156,21 @@ namespace user
 
       //auto estatus = 
       
-      __construct_new(m_puserstyle);
+      if (__defer_construct_new(m_puserstyle))
+      {
 
-      //if (!estatus)
-      //{
+         //if (!estatus)
+         //{
 
-      //   return estatus;
+         //   return estatus;
 
-      //}
+         //}
 
-      system()->m_pnode->fetch_user_color();
+         system()->m_pnode->fetch_user_color();
 
-      m_puserstyle->default_style_construct();
+         m_puserstyle->default_style_construct();
+
+      }
 
       //return estatus;
 
@@ -573,8 +576,61 @@ namespace user
    void user::destroy()
    {
 
+
+      m_puserstyle.defer_destroy();
+
       //auto estatus =
       ::acme::department::destroy();
+
+      if (m_pdesktopenvironment)
+      {
+
+         m_pdesktopenvironment->destroy();
+
+      }
+
+      m_pdesktopenvironment.release();
+
+      if (m_pshell)
+      {
+
+         m_pshell->destroy();
+
+      }
+
+      m_pshell.release();
+
+      m_listRunnable.clear();
+
+      m_pmutexRunnable.release();
+
+      m_pmutexUser.release();
+
+      if (m_pwindowing)
+      {
+
+         m_pwindowing->finalize_windowing();
+
+      }
+
+      m_pwindowing.defer_destroy();
+
+      m_uiptraToolWindow.clear();
+
+      if (m_phtml)
+      {
+
+         m_phtml.m_pparticle->destroy();
+
+      }
+
+      m_phtml.release();
+
+      m_mapUserStyle.clear();
+
+      m_pmousefocusLButtonDown.release();
+
+      m_pmousefocusRButtonDown.release();
 
       //if (!estatus)
       //{
@@ -850,7 +906,7 @@ namespace user
    CLASS_DECL_AURA ::pointer<::user::interaction>create_virtual_window(::particle * pparticle, ::user::interaction * pinteractionParent)
    {
 
-      auto pinteraction = __create_new < ::user::interaction >(pparticle);
+      auto pinteraction = pparticle->__create_new < ::user::interaction >();
 
       pinteraction->create_child(pinteractionParent);
 

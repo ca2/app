@@ -757,6 +757,12 @@ bool property_object::contains(const property_set & set) const
 void property_object::defer_propset()
 {
 
+#if REFERENCING_DEBUGGING
+
+   refdbg_top_track refdbgtoptrack(this);
+
+#endif
+
    m_pcontext->__defer_construct_new(m_ppropertyset);
 
 }

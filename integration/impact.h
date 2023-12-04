@@ -40,8 +40,8 @@ namespace app_integration
 
 
 #ifdef _DEBUG
-      int64_t increment_reference_count(REFERENCING_DEBUGGING_PARAMETERS) override;
-      int64_t decrement_reference_count(REFERENCING_DEBUGGING_PARAMETERS) override;
+      int64_t increment_reference_count() override;
+      int64_t decrement_reference_count() override;
 #endif
 
 

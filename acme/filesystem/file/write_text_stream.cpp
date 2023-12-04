@@ -72,7 +72,7 @@ write_text_stream::write_text_stream(const ::file_pointer & pfile, write_text_st
    write_text_stream_struct(streamstruct) 
 {
 
-   m_pfile.reset(pfile REFERENCING_DEBUGGING_COMMA_WILD_FUNCTION_FILE_LINE);
+   m_pfile.reset(pfile);
 
 }
 
@@ -81,7 +81,7 @@ write_text_stream::write_text_stream(const ::file_pointer & pfile, write_text_st
 write_text_stream::~write_text_stream()
 {
 
-   m_pfile.release(REFERENCING_DEBUGGING_WILD_FUNCTION_FILE_LINE);
+   m_pfile.release();
 
 }
 

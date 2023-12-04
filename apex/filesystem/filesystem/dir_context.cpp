@@ -62,7 +62,7 @@ dir_context::dir_context()
 
    //   ::file::dir_context::g_pthis = this;
 
-   //   increment_reference_count(REFERENCING_DEBUGGING_ARGS);
+   //   increment_reference_count();
 
    //}
 

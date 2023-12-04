@@ -95,18 +95,18 @@ namespace acme
 #ifdef _DEBUG
 
 
-   i64 node::increment_reference_count(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
+   i64 node::increment_reference_count()
    {
 
-      return ::object::increment_reference_count(REFERENCING_DEBUGGING_ARGS);
+      return ::object::increment_reference_count();
 
    }
 
 
-   i64 node::decrement_reference_count(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
+   i64 node::decrement_reference_count()
    {
 
-      return ::object::decrement_reference_count(REFERENCING_DEBUGGING_ARGS);
+      return ::object::decrement_reference_count();
 
    }
 
@@ -2338,7 +2338,7 @@ return false;
     void node::add_application_capability(const ::enum_application_capability_array& ecapabilitya)
     {
 
-       m_eapplicationcapabilitya.add_unique(ecapabilitya);
+       m_eapplicationcapabilitya.append_unique(ecapabilitya);
 
        on_change_application_capability();
 

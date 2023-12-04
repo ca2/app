@@ -95,26 +95,26 @@ namespace user
 #ifdef _DEBUG
 
 
-   i64 thread::increment_reference_count(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
+   i64 thread::increment_reference_count()
    {
 
-      return ::thread::increment_reference_count(REFERENCING_DEBUGGING_ARGS);
+      return ::thread::increment_reference_count();
 
    }
 
 
-   i64 thread::decrement_reference_count(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
+   i64 thread::decrement_reference_count()
    {
 
-      return ::thread::decrement_reference_count(REFERENCING_DEBUGGING_ARGS);
+      return ::thread::decrement_reference_count();
 
    }
 
 
-   i64 thread::release(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
+   i64 thread::release()
    {
 
-      return ::thread::release(REFERENCING_DEBUGGING_ARGS);
+      return ::thread::release();
 
    }
 

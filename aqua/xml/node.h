@@ -2,6 +2,7 @@
 
 
 #include "acme/primitive/data/node.h"
+#include "acme/platform/allocator.h"
 
 
 namespace xml
@@ -12,14 +13,14 @@ namespace xml
 
 
    class CLASS_DECL_AQUA node :
-      virtual public ::data::node,
-      public ::allocator::accessor < ::xml::node >
+      virtual public ::data::node
+      //, public ::allocator::accessor < ::xml::node >
    {
-   protected:
+   public:
 
 
-      friend class ::allocator::accessor < ::xml::document >;
-      friend class ::allocator::accessor < ::xml::node >;
+      //friend ::allocator::accessor < ::xml::document >;
+      //friend ::allocator::accessor < ::xml::node >;
 
 
       // name and value

@@ -346,14 +346,14 @@ namespace experience
 
       auto_hide_on_message_create(pmessage);
 
-      m_pbrushButtonBack.create(this);
-      m_pbrushButtonBackSel.create(this);
-      m_pbrushButtonBackFocus.create(this);
-      m_pbrushButtonBackDisabled.create(this);
-      m_ppenButtonBack.create(this);
-      m_ppenButtonBackSel.create(this);
-      m_ppenButtonBackFocus.create(this);
-      m_ppenButtonBackDisabled.create(this);
+      __construct(m_pbrushButtonBack);
+      __construct(m_pbrushButtonBackSel);
+      __construct(m_pbrushButtonBackFocus);
+      __construct(m_pbrushButtonBackDisabled);
+      __construct(m_ppenButtonBack);
+      __construct(m_ppenButtonBackSel);
+      __construct(m_ppenButtonBackFocus);
+      __construct(m_ppenButtonBackDisabled);
 
 
       pmessage->previous();
@@ -368,7 +368,7 @@ namespace experience
       if (!m_pfontMarlett)
       {
 
-         m_pfontMarlett.create(this);
+         __construct(m_pfontMarlett);
 
          m_pfontMarlett->create_font("Marlett", 16_px);
 

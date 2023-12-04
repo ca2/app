@@ -8,7 +8,7 @@
 string_stream::string_stream()
 {
 
-   m_pfile = ::transfer(new class string_buffer);
+   m_pfile = __allocate < class string_buffer >();
 
 }
 

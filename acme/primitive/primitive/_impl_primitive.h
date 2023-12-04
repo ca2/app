@@ -9,7 +9,7 @@
 #if !defined(_DEBUG)
 
 
-inline i64 particle::increment_reference_count(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
+inline i64 particle::increment_reference_count()
 {
 
    auto c = ++m_countReference;
@@ -25,7 +25,7 @@ inline i64 particle::increment_reference_count(REFERENCING_DEBUGGING_PARAMETERS_
 }
 
 
-inline i64 particle::decrement_reference_count(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
+inline i64 particle::decrement_reference_count()
 {
 
    auto c = --m_countReference;
@@ -46,10 +46,10 @@ inline i64 particle::decrement_reference_count(REFERENCING_DEBUGGING_PARAMETERS_
 }
 
 
-inline i64 particle::release(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
+inline i64 particle::release()
 {
 
-   i64 i = decrement_reference_count(REFERENCING_DEBUGGING_ARGS);
+   i64 i = decrement_reference_count();
 
    if (i == 0)
    {
@@ -63,7 +63,7 @@ inline i64 particle::release(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
 }
 
 
-inline i64 particle::replace_reference(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
+inline i64 particle::replace_reference()
 {
 
    return m_countReference;

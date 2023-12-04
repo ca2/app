@@ -27,18 +27,18 @@ namespace user
 #ifdef _DEBUG
 
 
-   int64_t handler_impact::increment_reference_count(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
+   int64_t handler_impact::increment_reference_count()
    {
 
-      return ::object::increment_reference_count(REFERENCING_DEBUGGING_ARGS);
+      return ::object::increment_reference_count();
 
    }
 
 
-   int64_t handler_impact::decrement_reference_count(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
+   int64_t handler_impact::decrement_reference_count()
    {
 
-      return ::object::decrement_reference_count(REFERENCING_DEBUGGING_ARGS);
+      return ::object::decrement_reference_count();
 
    }
 

@@ -13,8 +13,8 @@
 //critical_section * g_pcsRefDbg = nullptr;
 
 reference_item::reference_item(::reference_item_array * pitema) :
-   m_pitema(pitema),
-   m_bOn(true)
+   m_pitema(pitema)
+   //,m_bOn(true)
 {
 
 }
@@ -23,6 +23,25 @@ reference_item::reference_item(::reference_item_array * pitema) :
 reference_item::~reference_item()
 {
 
+   if (::is_set(m_preferer))
+   {
+    
+      ::allocator::erase_referer(m_preferer);
+
+   }
+
+}
+
+interlocked_count g_interlockedcountNewReferenceItemSerial;
+
+CLASS_DECL_ACME::index new_reference_item_serial()
+{
+
+   auto i = (::i64) g_interlockedcountNewReferenceItemSerial;
+
+   g_interlockedcountNewReferenceItemSerial++;
+
+   return i;
 
 }
 
@@ -63,7 +82,7 @@ reference_item::~reference_item()
 //#if REFERENCING_DEBUGGING
 //
 //
-//void particle::add_ref_history(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
+//void particle::add_ref_history()
 //{
 //
 //   if (!::acme::g_bAcme)
@@ -143,7 +162,7 @@ reference_item::~reference_item()
 //
 //         }
 //
-//         pobjectreferencecountdebug->add(REFERENCING_DEBUGGING_ARGS);
+//         pobjectreferencecountdebug->add();
 //
 //      }
 //      catch (...)
@@ -158,7 +177,7 @@ reference_item::~reference_item()
 //}
 //
 //
-//void particle::dec_ref_history(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
+//void particle::dec_ref_history()
 //{
 //
 //   if (!::acme::g_bAcme)
@@ -180,7 +199,7 @@ reference_item::~reference_item()
 //   if (g_bEnableObjRefDbg)
 //   {
 //
-//      m_pobjectreferencecountdebug->erase(REFERENCING_DEBUGGING_ARGS);
+//      m_pobjectreferencecountdebug->erase();
 //
 //   }
 //

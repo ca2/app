@@ -21,7 +21,7 @@ public:
    
    TYPE * m_p;
 #if REFERENCING_DEBUGGING
-   reference_referer m_referer;
+   reference_referer * m_preferer;
 #endif
    
    ptr()
@@ -29,79 +29,101 @@ public:
 
       m_p = nullptr;
 
+      m_preferer = nullptr;
+
    }
    
    
-   ptr(TYPE * p REFERENCING_DEBUGGING_COMMA_PARAMS)
+   /// consumes a referer
+   ptr(TYPE * p)
    {
 
-      m_p = p;
-      
-      if(m_p)
+      if(p)
       {
 
-         m_referer = referer;
+         m_preferer = ::allocator::defer_get_referer(p, {this, __FUNCTION_FILE_LINE__});
 
-         m_p->increment_reference_count(REFERENCING_DEBUGGING_ARGS);
+         p->increment_reference_count();
+
+         m_p = p;
+
+      }
+      else
+      {
+
+         m_p = nullptr;
+
+         m_preferer = nullptr;
 
       }
       
    }
    
    
-   ptr(const ptr & ptr REFERENCING_DEBUGGING_COMMA_PARAMS)
+   /// consumes a referer
+   ptr(const ptr & ptr)
    {
       
-      m_p = ptr.m_p;
-      
-      if(m_p)
+      if(ptr.m_p)
       {
 
-         m_referer = referer;
+         m_preferer = ::allocator::defer_get_referer(ptr.m_p, {this, __FUNCTION_FILE_LINE__});
 
-         m_p->increment_reference_count(REFERENCING_DEBUGGING_ARGS);
+         ptr.m_p->increment_reference_count();
+
+         m_p = ptr.m_p;
     
       }
+      else
+      {
+
+         m_preferer = nullptr;
+
+         m_p = nullptr;
+
+      }
       
    }
    
    
-   ptr(ptr && ptr REFERENCING_DEBUGGING_COMMA_PARAMS)
+   /// referer is transferred ?
+   ptr(ptr && ptr)
    {
       
       m_p = ptr.m_p;
+
+      m_preferer = ptr.m_preferer;
       
       ptr.m_p = nullptr;
 
-      m_referer = referer;
-
-//#if REFERENCING_DEBUGGING
-//
-//      m_p->replace_reference(REFERENCING_DEBUGGING_THIS_FUNCTION_FILE_LINE);
-//
-//#endif
+      ptr.m_preferer = nullptr;
 
    }
    
    
-   ptr(enum_pointer_transfer, TYPE * p REFERENCING_DEBUGGING_COMMA_PARAMS)
-   {
-   
-      m_p = p;
-      m_referer = referer;
-      
-   }
+   ///// referer is transferred ?
+   //ptr(transfer_t, TYPE * p)
+   //{
+   //
+   //   m_p = p;
+   //   
+   //}
 
-   
+   ptr(const ::pointer < TYPE > & p);
+
+   ptr(::pointer < TYPE > && p);
+
+   template < typename T2 >
+   ptr(const ::pointer < T2 > & p);
+
+   template < typename T2 >
+   ptr(::pointer < T2 > && p);
+
+
    ~ptr()
    {
 
-      if(m_p)
-      {
-
-         m_p->release(REFERENCING_DEBUGGING_P(m_referer));
-         
-      }
+      release();
       
    }
    
@@ -117,24 +139,30 @@ public:
    {
       
       auto pOld = m_p;
-      
+
       if(pOld != p)
       {
 
-         auto refererNew = reference_referer(this, __FUNCTION_FILE_LINE__);
+         auto prefererOld = m_preferer;
+
+         //auto refererNew = reference_referer(this, __FUNCTION_FILE_LINE__);
+
+         auto prefererNew = ::allocator::defer_get_referer(p, { this, __FUNCTION_FILE_LINE__ });
        
-         p->increment_reference_count(REFERENCING_DEBUGGING_THIS_FUNCTION_FILE_LINE);
+         p->increment_reference_count();
          
          m_p = p;
          
          if(__pointer_is_set(pOld))
          {
+
+            ::allocator::add_releaser(prefererOld);
          
-            pOld->release(m_referer);
+            pOld->release();
          
          }
 
-         m_referer = refererNew;
+         m_preferer = prefererNew;
          
       }
       
@@ -150,21 +178,25 @@ public:
          
       if(pOld != p.m_p)
       {
-          
-         auto refererNew = reference_referer(this, __FUNCTION_FILE_LINE__);
 
-         p.m_p->increment_reference_count(REFERENCING_DEBUGGING_THIS_FUNCTION_FILE_LINE);
+         auto prefererOld = m_preferer;
+          
+         auto prefererNew = ::allocator::pop_referer();
+
+         p.m_p->increment_reference_count();
             
          m_p = p.m_p;
             
          if (__pointer_is_set(pOld))
          {
 
-            pOld->release(m_referer);
+            ::allocator::add_releaser(prefererOld);
+
+            pOld->release();
 
          }
 
-         m_referer = refererNew;
+         m_preferer = prefererNew;
 
       }
       
@@ -181,7 +213,9 @@ public:
       if (pOld != p.m_p)
       {
 
-         auto refererNew = ::transfer(p.m_referer);
+         auto prefererOld = m_preferer;
+
+         auto prefererNew = p.m_preferer;
 
          m_p = p.m_p;
 
@@ -190,11 +224,13 @@ public:
          if (__pointer_is_set(pOld))
          {
 
-            pOld->release(m_referer);
+            ::allocator::add_releaser(prefererOld);
+
+            pOld->release();
 
          }
 
-         m_referer = ::transfer(refererNew);
+         m_preferer = prefererNew;
 
       }
 
@@ -202,6 +238,15 @@ public:
 
    }
 
+   ptr & operator = (const ::pointer < TYPE > & p);
+
+   ptr & operator = (::pointer < TYPE > && p);
+
+   template < typename T2 >
+   ptr & operator = (const ::pointer < T2 > & p);
+
+   template < typename T2 >
+   ptr & operator = (::pointer < T2 > && p);
 
    //ptr & transfer(TYPE * p)
    //{
@@ -217,14 +262,25 @@ public:
    {
       
       auto p = m_p;
-      
-      m_p = nullptr;
-      
-      if(__pointer_is_set(p))
+
+      if (__pointer_is_set(p))
       {
-   
-         p->release(REFERENCING_DEBUGGING_P(m_referer));
-         
+
+         auto prefererReleaser = m_preferer;
+
+         m_p = nullptr;
+
+         m_preferer = nullptr;
+
+         if (__pointer_is_set(p))
+         {
+
+            ::allocator::add_releaser(prefererReleaser);
+
+            p->release();
+
+         }
+
       }
       
    }

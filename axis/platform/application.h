@@ -35,8 +35,11 @@ namespace axis
       application();
       ~application() override;
       
+      void on_set_platform() override;
 
       void initialize(::particle * pparticle) override;
+
+
 
 
 //      // void assert_ok() const override;

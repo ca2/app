@@ -65,17 +65,17 @@ namespace dynamic_source
 #ifdef _DEBUG
 
 
-   i64 session::increment_reference_count(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
+   i64 session::increment_reference_count()
    {
 
-      return ::particle::increment_reference_count(REFERENCING_DEBUGGING_ARGS);
+      return ::particle::increment_reference_count();
 
    }
 
-   i64 session::decrement_reference_count(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
+   i64 session::decrement_reference_count()
    {
 
-      return ::particle::decrement_reference_count(REFERENCING_DEBUGGING_ARGS);
+      return ::particle::decrement_reference_count();
 
    }
 

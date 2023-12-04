@@ -2,6 +2,7 @@
 #include "document.h"
 #include "impact.h"
 #include "acme/constant/id.h"
+#include "acme/handler/topic.h"
 #include "apex/platform/shell_launcher.h"
 #include "axis/html/user/form.h"
 #include "axis/html/html/data.h"

@@ -495,7 +495,7 @@ const char * memory_counter_id(T * pthis)
 
 
 template < typename T, typename ...Args >
-inline T * __new(Args &&... args)
+inline T * __call__new(Args &&... args)
 {
 
    auto p = ::platform::allocator::__new < T >(::std::forward < Args >(args)...);

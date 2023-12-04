@@ -5,6 +5,7 @@
 #include "pointer.h"
 #include "atom.h"
 #include "factory.h"
+#include "function.h"
 #include "acme/platform/tracer.h"
 
 
@@ -40,9 +41,9 @@ public:
 
 
 //#if REFERENCING_DEBUGGING
-//   inline matter() : m_pmutex(nullptr), m_pobjrefdbg(nullptr), m_countReference(0), m_uObject(0), system()(nullptr) { increment_reference_count(REFERENCING_DEBUGGING_THIS REFERENCING_DEBUGGING_COMMA_NOTE("Initial Reference")); }
-//   inline matter(const eobject& eobject) : m_pmutex(nullptr), m_pobjrefdbg(nullptr), m_countReference(0), m_eobject(eobject), m_uObject(0), system()(nullptr) { increment_reference_count(REFERENCING_DEBUGGING_THIS REFERENCING_DEBUGGING_COMMA_NOTE("Initial Reference (2)")); }
-//   inline matter(const matter& matter) : m_pmutex(nullptr), m_pobjrefdbg(nullptr), m_countReference(0), m_eobject(matter.m_eobject), m_uObject(0), system()(nullptr) { if (matter.m_pmutex) defer_create_synchronization(); increment_reference_count(REFERENCING_DEBUGGING_THIS REFERENCING_DEBUGGING_COMMA_NOTE("Initial Reference (3)")); }
+//   inline matter() : m_pmutex(nullptr), m_pobjrefdbg(nullptr), m_countReference(0), m_uObject(0), system()(nullptr) { increment_reference_count( REFERENCING_DEBUGGING_COMMA_NOTE("Initial Reference")); }
+//   inline matter(const eobject& eobject) : m_pmutex(nullptr), m_pobjrefdbg(nullptr), m_countReference(0), m_eobject(eobject), m_uObject(0), system()(nullptr) { increment_reference_count( REFERENCING_DEBUGGING_COMMA_NOTE("Initial Reference (2)")); }
+//   inline matter(const matter& matter) : m_pmutex(nullptr), m_pobjrefdbg(nullptr), m_countReference(0), m_eobject(matter.m_eobject), m_uObject(0), system()(nullptr) { if (matter.m_pmutex) defer_create_synchronization(); increment_reference_count( REFERENCING_DEBUGGING_COMMA_NOTE("Initial Reference (3)")); }
 //   inline matter(matter&& matter) : m_pmutex(matter.m_pmutex), m_pobjrefdbg(matter.m_pobjrefdbg), m_countReference(matter.m_countReference), m_eobject(matter.m_eobject), m_uObject(0), system()(nullptr) { matter.m_pmutex = nullptr; matter.m_pobjrefdbg = nullptr; }
 //#else
 //   inline matter() : m_pmutex(nullptr), m_countReference(1), m_uObject(0), system()(nullptr) { }
@@ -147,13 +148,13 @@ public:
    virtual void task_osterm();
 
 
-//   virtual void add_composite(::particle * pparticle REFERENCING_DEBUGGING_COMMA_PARAMS);
-//   virtual void add_reference(::particle * pparticle REFERENCING_DEBUGGING_COMMA_PARAMS);
+//   virtual void add_composite(::particle * pparticle);
+//   virtual void add_reference(::particle * pparticle);
 //
 //
-//   virtual void release_composite2(::particle * pparticle REFERENCING_DEBUGGING_COMMA_PARAMS);
-//   virtual void finalize_composite(::particle * pparticle REFERENCING_DEBUGGING_COMMA_PARAMS);
-//   virtual void release_reference(::particle * pparticle REFERENCING_DEBUGGING_COMMA_PARAMS);
+//   virtual void release_composite2(::particle * pparticle);
+//   virtual void finalize_composite(::particle * pparticle);
+//   virtual void release_reference(::particle * pparticle);
 
 
    //virtual void set_generic_object_name(const ::scoped_string & scopedstrName);
@@ -458,16 +459,16 @@ inline bool __defer_raw_construct_new(::pointer<TYPE> & ptype)
 
 
 template < typename BASE_TYPE, typename TYPE >
-inline void particle::__construct(::pointer<BASE_TYPE> & ptype, const ::pointer < TYPE > & p REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
+inline void particle::__call__construct(::pointer<BASE_TYPE> & ptype, const ::pointer < TYPE > & p)
 {
 
-   __construct(ptype, p.m_p REFERENCING_DEBUGGING_COMMA_ARGS);
+   __call__construct(ptype, p.m_p);
 
 }
 
 
 template < typename BASE_TYPE, typename TYPE >
-inline void particle::__construct(::pointer<BASE_TYPE> & ptype, TYPE * p REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
+inline void particle::__call__construct(::pointer<BASE_TYPE> & ptype, TYPE * p)
 {
 
    if (::is_null(p))
@@ -479,9 +480,7 @@ inline void particle::__construct(::pointer<BASE_TYPE> & ptype, TYPE * p REFEREN
 
    }
 
-   ptype.release();
-
-   ptype.reset(p REFERENCING_DEBUGGING_COMMA_ARGS);
+   ptype = p;
 
    if (::is_null(ptype))
    {
@@ -517,7 +516,7 @@ inline void particle::__construct(::pointer<BASE_TYPE> & ptype, TYPE * p REFEREN
 
 
 //template < typename BASE_TYPE >
-//inline void matter::__release(::pointer<BASE_TYPE> pcomposite REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
+//inline void matter::__release(::pointer<BASE_TYPE> pcomposite)
 //{
 //
 //   if (::is_set(pcomposite))
@@ -545,7 +544,7 @@ inline void particle::__construct(::pointer<BASE_TYPE> & ptype, TYPE * p REFEREN
 //
 //
 //template < typename BASE_TYPE >
-//inline void matter::__release(::pointer<BASE_TYPE> preference REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
+//inline void matter::__release(::pointer<BASE_TYPE> preference)
 //{
 //
 //   if (::is_set(preference))
@@ -559,7 +558,7 @@ inline void particle::__construct(::pointer<BASE_TYPE> & ptype, TYPE * p REFEREN
 //      //   if (m_preferencea->erase(preference.get()) >= 0)
 //      //   {
 //
-//            //preference->release(REFERENCING_DEBUGGING_ARGS);
+//            //preference->release();
 //
 //            preference.clear_member();
 //
@@ -581,7 +580,7 @@ inline void particle::__construct(::pointer<BASE_TYPE> & ptype, TYPE * p REFEREN
 //
 //
 //template < typename SOURCE >
-//inline void matter::__release(::pointer<SOURCE> psource REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
+//inline void matter::__release(::pointer<SOURCE> psource)
 //{
 //
 //   release_reference(psource.m_p);
@@ -593,25 +592,25 @@ inline void particle::__construct(::pointer<BASE_TYPE> & ptype, TYPE * p REFEREN
 
 
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void matter::__refer(::pointer<BASE_TYPE> preference, const ::pointer<SOURCE>psource  REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
+//inline void matter::__refer(::pointer<BASE_TYPE> preference, const ::pointer<SOURCE>psource )
 //{
 //
-//   __refer(preference, psource.get()  REFERENCING_DEBUGGING_COMMA_ARGS);
+//   __refer(preference, psource.get() );
 //
 //}
 //
 //
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void matter::__refer(::pointer<BASE_TYPE> preference, const ::primitive::member < SOURCE >& pmember REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
+//inline void matter::__refer(::pointer<BASE_TYPE> preference, const ::primitive::member < SOURCE >& pmember)
 //{
 //
-//   __refer(preference, pmember.get()  REFERENCING_DEBUGGING_COMMA_ARGS);
+//   __refer(preference, pmember.get() );
 //
 //}
 //
 //
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void matter::__refer(::pointer<BASE_TYPE> preference, const SOURCE* psource REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
+//inline void matter::__refer(::pointer<BASE_TYPE> preference, const SOURCE* psource)
 //{
 //
 //   preference = psource;
@@ -623,22 +622,22 @@ inline void particle::__construct(::pointer<BASE_TYPE> & ptype, TYPE * p REFEREN
 //
 //   }
 //
-//   add_reference(preference REFERENCING_DEBUGGING_COMMA_ARGS);
+//   add_reference(preference);
 //
 //}
 //
 //
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void matter::__defer_refer(::pointer<BASE_TYPE> preference, const ::pointer<SOURCE>psource  REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
+//inline void matter::__defer_refer(::pointer<BASE_TYPE> preference, const ::pointer<SOURCE>psource )
 //{
 //
-//   __defer_refer(preference, psource.get()  REFERENCING_DEBUGGING_COMMA_ARGS);
+//   __defer_refer(preference, psource.get() );
 //
 //}
 //
 //
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void matter::__defer_refer(::pointer<BASE_TYPE> preference, const SOURCE* psource REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
+//inline void matter::__defer_refer(::pointer<BASE_TYPE> preference, const SOURCE* psource)
 //{
 //
 //   if (preference.get() != psource)
@@ -651,7 +650,7 @@ inline void particle::__construct(::pointer<BASE_TYPE> & ptype, TYPE * p REFEREN
 //      if (preference)
 //      {
 //
-//         add_reference(preference REFERENCING_DEBUGGING_COMMA_ARGS);
+//         add_reference(preference);
 //
 //      }
 //
@@ -661,25 +660,25 @@ inline void particle::__construct(::pointer<BASE_TYPE> & ptype, TYPE * p REFEREN
 //
 //
 //template < typename SOURCE >
-//inline void matter::add_reference(::pointer<SOURCE> psource  REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
+//inline void matter::add_reference(::pointer<SOURCE> psource )
 //{
 //
-//   add_reference(psource.get() REFERENCING_DEBUGGING_COMMA_ARGS);
+//   add_reference(psource.get());
 //
 //}
 //
 //
 //template < typename SOURCE >
-//inline void matter::add_reference(::pointer<SOURCE> preference REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
+//inline void matter::add_reference(::pointer<SOURCE> preference)
 //{
 //
-//   add_reference(preference.get() REFERENCING_DEBUGGING_COMMA_ARGS);
+//   add_reference(preference.get());
 //
 //}
 //
 //
 //template < typename SOURCE >
-//inline void matter::add_reference(SOURCE* psource REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
+//inline void matter::add_reference(SOURCE* psource)
 //{
 //
 //   ::particle * pparticle = psource;
@@ -691,7 +690,7 @@ inline void particle::__construct(::pointer<BASE_TYPE> & ptype, TYPE * p REFEREN
 //
 //   }
 //
-//   add_reference(pelement REFERENCING_DEBUGGING_COMMA_ARGS);
+//   add_reference(pelement);
 //
 //}
 

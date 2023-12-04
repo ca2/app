@@ -88,5 +88,3 @@ inline memory_pointer create_memory() { return __allocate< ::memory >(); }
 
 
 
-
-

@@ -3,6 +3,8 @@
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
 #include "acme/filesystem/file/binary_stream.h"
+#include "acme/handler/topic.h"
+#include "acme/handler/extended_topic.h"
 #include "acme/include/_c_swap.h"
 #include "acme/platform/keep.h"
 #include "acme/handler/request.h"

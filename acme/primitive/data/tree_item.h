@@ -252,17 +252,17 @@ namespace data
       virtual ~tree_item();
 
 
-      virtual i64 increment_reference_count(REFERENCING_DEBUGGING_PARAMETERS)
+      virtual i64 increment_reference_count()
       {
 
-         return ::particle::increment_reference_count(REFERENCING_DEBUGGING_ARGS);
+         return ::particle::increment_reference_count();
 
       }
 
-      virtual i64 decrement_reference_count(REFERENCING_DEBUGGING_PARAMETERS)
+      virtual i64 decrement_reference_count()
       {
 
-         return ::particle::decrement_reference_count(REFERENCING_DEBUGGING_ARGS);
+         return ::particle::decrement_reference_count();
 
       }
 

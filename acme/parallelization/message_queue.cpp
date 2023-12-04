@@ -184,7 +184,7 @@ void message_queue::kick_idle()
 
          }
 
-         synchronouslock.lock();
+         synchronouslock._lock();
 
          m_eventNewMessage.ResetEvent();
 

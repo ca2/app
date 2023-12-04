@@ -38,7 +38,7 @@ namespace mathematics
    public:
 
 
-      math_os_data *  m_posdata;
+      ::pointer < math_os_data >  m_posdata;
 
 
       mathematics();
@@ -244,8 +244,11 @@ namespace mathematics
       //string gen_rand_alnum(strsize s);
       string random_alphanumeric(strsize s);
 
+      char random_char();
+      u8 random_u8();
       u32 random_u32();
       u64 random_u64();
+
       i32 rand_max();
 
 

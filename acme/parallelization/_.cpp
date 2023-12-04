@@ -685,7 +685,7 @@ void run_runnable(::matter * pmatter)
 //}
 
 
-thread_local ::task * t_ptask;
+thread_local ::pointer < ::task > t_ptask;
 
 
 CLASS_DECL_ACME ::task * _get_task()
@@ -712,7 +712,7 @@ CLASS_DECL_ACME ::task * get_task()
          if(::is_set(psystem))
          {
 
-            t_ptask = new ::task();
+            t_ptask = { transfer_t{}, new ::task() };
 
             t_ptask->initialize(pplatform->system());
 
@@ -743,12 +743,14 @@ CLASS_DECL_ACME ::task * get_task()
 //}
 
 
-CLASS_DECL_ACME void set_task(task * ptask REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
+CLASS_DECL_ACME void set_task(task * ptask)
 {
 
    auto ptaskOld = t_ptask;
 
-   ::increment_reference_count(ptask REFERENCING_DEBUGGING_COMMA_ARGS);
+   ::allocator::add_referer({ ::acme::get()->platform(), __FUNCTION_FILE_LINE__ });
+
+   //::increment_reference_count(ptask);
 
    t_ptask = ptask;
 
@@ -761,19 +763,21 @@ CLASS_DECL_ACME void set_task(task * ptask REFERENCING_DEBUGGING_COMMA_PARAMS_DE
 
    }
 
-   ::release(ptaskOld REFERENCING_DEBUGGING_COMMA_ARGS);
+   ::release(ptaskOld);
 
 }
 
 
-CLASS_DECL_ACME void task_release(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
+CLASS_DECL_ACME void task_release()
 {
 
-   auto ptask = t_ptask;
+   //auto ptask = t_ptask;
 
-   t_ptask = nullptr;
+   //t_ptask = nullptr;
 
-   ::release(ptask REFERENCING_DEBUGGING_COMMA_ARGS);
+   //::release(ptask);
+
+   t_ptask.release();
 
 }
 

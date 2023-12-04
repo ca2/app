@@ -5580,7 +5580,7 @@ namespace aura
 //
 //      //m_phtml = create_html();
 //
-//      //m_phtml->increment_reference_count(REFERENCING_DEBUGGING_ARGS);
+//      //m_phtml->increment_reference_count();
 //
 //      //if(m_phtml == nullptr)
 //      //   return false;
@@ -6828,6 +6828,8 @@ namespace aura
    void system::TermSystem()
    {
 
+      m_phardwaredevices.defer_destroy();
+
       ::aqua::system::TermSystem();
 
       if (m_pdraw2d)
@@ -6898,6 +6900,22 @@ namespace aura
    {
 
       return m_pnode ? m_pnode->m_pauranode : nullptr;
+
+   }
+
+
+   class ::draw2d::draw2d * system::draw2d() const
+   {
+
+      return m_pdraw2d;
+
+   }
+
+
+   class ::write_text::write_text * system::write_text() const
+   {
+
+      return m_pdraw2d->write_text();
 
    }
 

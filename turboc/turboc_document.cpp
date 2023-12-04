@@ -78,14 +78,14 @@ namespace turboc
    i64 document::increment_reference_count()
    {
 
-      return  ::aura::document::increment_reference_count(REFERENCING_DEBUGGING_ARGS);
+      return  ::aura::document::increment_reference_count();
 
    }
 
    i64 document::decrement_reference_count()
    {
 
-      return  ::aura::document::decrement_reference_count(REFERENCING_DEBUGGING_ARGS);
+      return  ::aura::document::decrement_reference_count();
 
    }
 

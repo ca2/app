@@ -96,13 +96,20 @@ namespace allocator
 
       }
 
-      inline  void destruct(TYPE * p REFERENCING_DEBUGGING_COMMA_PARAMS)
+      
+      inline  void destruct(TYPE * p)
       {
-         destructor::nodef < TYPE >::destruct(p REFERENCING_DEBUGGING_COMMA_ARGS);
+
+         destructor::nodef < TYPE >::destruct(p);
+
       }
-      inline  void destruct_count(TYPE * p, ::count c REFERENCING_DEBUGGING_COMMA_PARAMS)
+
+
+      inline  void destruct_count(TYPE * p, ::count c)
       {
-         destructor::nodef < TYPE >::destruct_count(p, c REFERENCING_DEBUGGING_COMMA_ARGS);
+
+         destructor::nodef < TYPE >::destruct_count(p, c);
+
       }
 
 
@@ -121,14 +128,19 @@ namespace allocator
 
       }
 
+
       inline void copy_construct_count(TYPE * pdst, ::count c, const TYPE & src)
       {
 
          while (c > 0)
          {
+
             copy(pdst, &src);
+
             pdst++;
+
             c--;
+
          }
 
       }
@@ -139,10 +151,15 @@ namespace allocator
 
          while (c > 0)
          {
+
             copy(pdst, psrc);
+
             c--;
+
             pdst++;
+
             psrc++;
+
          }
 
       }
@@ -172,26 +189,38 @@ namespace allocator
       protected copier::def<TYPE>,
       protected destructor::def<TYPE>
    {
-
    public:
+
 
       inline  void construct(TYPE * p)
       {
+
          constructor::def< TYPE >::construct(p);
+
       }
+
 
       inline  void construct_count(TYPE * p, ::count c)
       {
+
          constructor::def< TYPE >::construct_count(p, c);
+
       }
 
-      inline  void destruct(TYPE * pointer REFERENCING_DEBUGGING_COMMA_PARAMS)
+
+      inline  void destruct(TYPE * pointer)
       {
-         destructor::def< TYPE>::destruct(pointer REFERENCING_DEBUGGING_COMMA_ARGS);
+
+         destructor::def< TYPE>::destruct(pointer);
+
       }
-      inline  void destruct_count(TYPE * pointer, ::count c REFERENCING_DEBUGGING_COMMA_PARAMS)
+
+
+      inline  void destruct_count(TYPE * pointer, ::count c)
       {
-         destructor::def< TYPE>::destruct_count(pointer, c REFERENCING_DEBUGGING_COMMA_ARGS);
+
+         destructor::def< TYPE>::destruct_count(pointer, c);
+
       }
 
 
@@ -203,33 +232,43 @@ namespace allocator
       }
 
 
-      inline  void copy_count(TYPE * pdst, const TYPE * psrc, ::count c)
+      inline void copy_count(TYPE * pdst, const TYPE * psrc, ::count c)
       {
 
          copier::def< TYPE >::copy_count(pdst, psrc, c);
 
       }
 
-      inline  void copy_construct_count(TYPE * pdst, ::count c, const TYPE & src)
+
+      inline void copy_construct_count(TYPE * pdst, ::count c, const TYPE & src)
       {
 
          while (c > 0)
          {
+
             ::new (pdst) TYPE(src);
+
             pdst++;
+
             c--;
+
          }
 
       }
 
-      inline  void copy_construct_count(TYPE * pdst, ::count c, const TYPE * psrc)
+
+      inline void copy_construct_count(TYPE * pdst, ::count c, const TYPE * psrc)
       {
 
          while (c > 0)
          {
+
             ::new (pdst) TYPE(*psrc);
+
             c--;
+
             pdst++;
+
             psrc++;
          }
 
@@ -281,13 +320,20 @@ namespace allocator
          constructor::def< TYPE >::construct_count(p, c);
       }
 
-      inline  void destruct(TYPE * pointer REFERENCING_DEBUGGING_COMMA_PARAMS)
+
+      inline void destruct(TYPE * pointer)
       {
-         destructor::def< TYPE>::destruct(pointer REFERENCING_DEBUGGING_COMMA_ARGS);
+
+         destructor::def< TYPE>::destruct(pointer);
+
       }
-      inline  void destruct_count(TYPE * pointer, ::count c REFERENCING_DEBUGGING_COMMA_PARAMS)
+
+
+      inline void destruct_count(TYPE * pointer, ::count c)
       {
-         destructor::def< TYPE>::destruct_count(pointer, c REFERENCING_DEBUGGING_COMMA_ARGS);
+
+         destructor::def< TYPE>::destruct_count(pointer, c);
+
       }
 
 
@@ -307,7 +353,7 @@ namespace allocator
       }
 
 
-      inline  void copy_construct_count(TYPE * pdst, ::count c, const TYPE & src)
+      inline void copy_construct_count(TYPE * pdst, ::count c, const TYPE & src)
       {
 
          /*   while (c > 0)
@@ -320,7 +366,8 @@ namespace allocator
 
       }
 
-      inline  void copy_construct_count(TYPE * pdst, ::count c, const TYPE * psrc)
+
+      inline void copy_construct_count(TYPE * pdst, ::count c, const TYPE * psrc)
       {
 
          /*   while (c > 0)
@@ -349,7 +396,6 @@ namespace allocator
       //}
 
 
-
       //inline  void free(TYPE * p)
       //{
 
@@ -361,36 +407,45 @@ namespace allocator
    };
 
 
-
-
    template < typename TYPE >
    class nodef
    {
-
    public:
+
 
       inline  void construct(TYPE * p)
       {
+
          constructor::nodef< TYPE >::construct(p);
+
       }
 
-      inline  void construct_count(TYPE * p, ::count c)
+
+      inline void construct_count(TYPE * p, ::count c)
       {
+
          constructor::nodef< TYPE >::construct_count(p, c);
 
       }
 
-      inline  void destruct(TYPE * pointer REFERENCING_DEBUGGING_COMMA_PARAMS)
+
+      inline void destruct(TYPE * pointer)
       {
-         destructor::nodef< TYPE>::destruct(pointer REFERENCING_DEBUGGING_COMMA_ARGS);
-      }
-      inline  void destruct_count(TYPE * pointer, ::count c REFERENCING_DEBUGGING_COMMA_PARAMS)
-      {
-         destructor::nodef< TYPE>::destruct_count(pointer, c REFERENCING_DEBUGGING_COMMA_ARGS);
+
+         destructor::nodef< TYPE>::destruct(pointer);
+
       }
 
 
-      inline  void copy(TYPE * pdst, const TYPE * psrc)
+      inline  void destruct_count(TYPE * pointer, ::count c)
+      {
+
+         destructor::nodef< TYPE>::destruct_count(pointer, c);
+
+      }
+
+
+      inline void copy(TYPE * pdst, const TYPE * psrc)
       {
 
          copier::def< TYPE >::copy(pdst, psrc);
@@ -398,35 +453,45 @@ namespace allocator
       }
 
 
-      inline  void copy_count(TYPE * pdst, const TYPE * psrc, ::count c)
+      inline void copy_count(TYPE * pdst, const TYPE * psrc, ::count c)
       {
 
          copier::def< TYPE >::copy_count(pdst, psrc, c);
 
       }
 
+
       inline  void copy_construct_count(TYPE * pdst, ::count c, const TYPE & src)
       {
 
          while (c > 0)
          {
+
             copy(pdst, &src);
+
             pdst++;
+
             c--;
+
          }
 
       }
 
 
-      inline  void copy_construct_count(TYPE * pdst, ::count c, const TYPE * psrc)
+      inline void copy_construct_count(TYPE * pdst, ::count c, const TYPE * psrc)
       {
 
          while (c > 0)
          {
+
             copy(pdst, psrc);
+
             c--;
+
             pdst++;
+
             psrc++;
+
          }
 
       }
@@ -459,31 +524,42 @@ namespace allocator
    template < typename TYPE >
    class raw
    {
-
    public:
 
-      inline  void construct(TYPE * p)
+
+      inline void construct(TYPE * p)
       {
+
          constructor::nodef< TYPE >::construct(p);
+
       }
 
-      inline  void construct_count(TYPE * p, ::count c)
+
+      inline void construct_count(TYPE * p, ::count c)
       {
+
          constructor::nodef< TYPE >::construct_count(p, c);
 
       }
 
-      inline  void destruct(TYPE * pointer REFERENCING_DEBUGGING_COMMA_PARAMS)
+
+      inline void destruct(TYPE * pointer)
       {
-         destructor::nodef< TYPE>::destruct(pointer REFERENCING_DEBUGGING_COMMA_ARGS);
-      }
-      inline  void destruct_count(TYPE * pointer, ::count c REFERENCING_DEBUGGING_COMMA_PARAMS)
-      {
-         destructor::nodef< TYPE>::destruct_count(pointer, c REFERENCING_DEBUGGING_COMMA_ARGS);
+
+         destructor::nodef< TYPE>::destruct(pointer);
+
       }
 
 
-      inline  void copy(TYPE * pdst, const TYPE * psrc)
+      inline void destruct_count(TYPE * pointer, ::count c)
+      {
+
+         destructor::nodef< TYPE>::destruct_count(pointer, c);
+
+      }
+
+
+      inline void copy(TYPE * pdst, const TYPE * psrc)
       {
 
          memory_transfer(pdst, psrc, sizeof(TYPE));
@@ -491,34 +567,45 @@ namespace allocator
       }
 
 
-      inline  void copy_count(TYPE * pdst, const TYPE * psrc, ::count c)
+      inline void copy_count(TYPE * pdst, const TYPE * psrc, ::count c)
       {
 
          memory_transfer(pdst, psrc, sizeof(TYPE) * c);
 
       }
 
-      inline  void copy_construct_count(TYPE * pdst, ::count c, const TYPE & src)
+
+      inline void copy_construct_count(TYPE * pdst, ::count c, const TYPE & src)
       {
 
          while (c > 0)
          {
+
             copy(pdst, &src);
+
             pdst++;
+
             c--;
+
          }
 
       }
 
-      inline  void copy_construct_count(TYPE * pdst, ::count c, const TYPE * psrc)
+
+      inline void copy_construct_count(TYPE * pdst, ::count c, const TYPE * psrc)
       {
 
          while (c > 0)
          {
+
             copy(pdst, psrc);
+
             c--;
+
             pdst++;
+
             psrc++;
+
          }
 
       }
@@ -555,31 +642,42 @@ namespace allocator
       public destructor::nodef< TYPE>,
       public copier::def< TYPE >
    {
-
    public:
 
-      inline  void construct(TYPE * p)
+
+      inline void construct(TYPE * p)
       {
+
          constructor::zero< TYPE >::construct(p);
+
       }
 
-      inline  void construct_count(TYPE * p, ::count c)
+
+      inline void construct_count(TYPE * p, ::count c)
       {
+
          constructor::zero< TYPE >::construct_count(p, c);
 
       }
 
-      inline  void destruct(TYPE * p REFERENCING_DEBUGGING_COMMA_PARAMS)
+
+      inline  void destruct(TYPE * p)
       {
-         destructor::nodef< TYPE>::destruct(p  REFERENCING_DEBUGGING_COMMA_ARGS);
-      }
-      inline  void destruct_count(TYPE * p, ::count c REFERENCING_DEBUGGING_COMMA_PARAMS)
-      {
-         destructor::nodef< TYPE>::destruct_count(p, c  REFERENCING_DEBUGGING_COMMA_ARGS);
+
+         destructor::nodef< TYPE>::destruct(p);
+
       }
 
 
-      inline  void copy(TYPE * pdst, const TYPE * psrc)
+      inline void destruct_count(TYPE * p, ::count c)
+      {
+
+         destructor::nodef< TYPE>::destruct_count(p, c);
+
+      }
+
+
+      inline void copy(TYPE * pdst, const TYPE * psrc)
       {
 
          copier::def< TYPE >::copy(pdst, psrc);
@@ -587,35 +685,45 @@ namespace allocator
       }
 
 
-      inline  void copy_count(TYPE * pdst, const TYPE * psrc, ::count c)
+      inline void copy_count(TYPE * pdst, const TYPE * psrc, ::count c)
       {
 
          copier::def< TYPE >::copy_count(pdst, psrc, c);
 
       }
 
-      inline  void copy_construct_count(TYPE * pdst, ::count c, const TYPE & src)
+
+      inline void copy_construct_count(TYPE * pdst, ::count c, const TYPE & src)
       {
 
          while (c > 0)
          {
+
             copy(pdst, &src);
+
             pdst++;
+
             c--;
+
          }
 
       }
 
       
-      inline  void copy_construct_count(TYPE * pdst, ::count c, const TYPE * psrc)
+      inline void copy_construct_count(TYPE * pdst, ::count c, const TYPE * psrc)
       {
 
          while (c > 0)
          {
+
             copy(pdst, psrc);
+
             pdst++;
+
             c--;
+
             psrc++;
+
          }
 
       }
@@ -662,13 +770,13 @@ namespace allocator
 //
 //      }
 //
-//      inline  void destruct(TYPE * p REFERENCING_DEBUGGING_COMMA_PARAMS)
+//      inline  void destruct(TYPE * p)
 //      {
-//         destructor::def< TYPE>::destruct(p REFERENCING_DEBUGGING_COMMA_ARGS);
+//         destructor::def< TYPE>::destruct(p);
 //      }
-//      inline  void destruct_count(TYPE * p, ::count c REFERENCING_DEBUGGING_COMMA_PARAMS)
+//      inline  void destruct_count(TYPE * p, ::count c)
 //      {
-//         destructor::def< TYPE>::destruct_count(p, c  REFERENCING_DEBUGGING_COMMA_ARGS);
+//         destructor::def< TYPE>::destruct_count(p, c );
 //      }
 //
 //

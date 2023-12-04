@@ -1574,9 +1574,6 @@
     <ClInclude Include="platform\enum.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="platform\error.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
     <ClInclude Include="platform\exclusive.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
@@ -1641,9 +1638,6 @@
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\options.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\plane_system.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\predicate_holder.h">
@@ -3308,12 +3302,6 @@
     <ClInclude Include="operating_system\windows\nano_http\_nano_http.h">
       <Filter>Header Files\operating_system\windows\nano_http</Filter>
     </ClInclude>
-    <ClInclude Include="platform\nano_http_synchronous_source.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\nano_http_asynchronous_source.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
     <ClInclude Include="platform\integration_context.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
@@ -3488,7 +3476,7 @@
     <ClInclude Include="platform\simple_array.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="platform\_reference_count_debug.h">
+    <ClInclude Include="platform\_referencing_debugging.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\reference_item.h">
@@ -4982,6 +4970,9 @@
       <Filter>Source Files\parallelization</Filter>
     </ClCompile>
     <ClCompile Include="platform\allocator.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\reference_referer.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
   </ItemGroup>

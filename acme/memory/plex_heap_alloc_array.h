@@ -10,7 +10,7 @@ class CLASS_DECL_ACME plex_heap_alloc_array :
 protected:
 
    
-   friend class ::allocator::accessor < default_t, true >;
+   friend class ::allocator::accessor;
 
 
    plex_heap_alloc_array(::heap::allocator * pallocator, ::heap::enum_memory ememory);

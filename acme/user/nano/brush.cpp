@@ -25,10 +25,10 @@ namespace nano
 {
 
 
-   ::pointer<nano_brush> create_solid_brush(::particle * pparticle, color32_t color REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
+   ::pointer<nano_brush> create_solid_brush(::particle * pparticle, color32_t color)
    {
 
-      ::pointer<nano_brush> pbrush(e_create, pparticle, nullptr REFERENCING_DEBUGGING_COMMA_ARGS);
+      ::pointer<nano_brush> pbrush(e_create, pparticle, nullptr);
 
       pbrush->m_color = color;
 

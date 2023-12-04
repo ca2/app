@@ -96,12 +96,31 @@ concept typed_range = requires(T t, ITERATOR_TYPE iterator)
 };
 
 
+template < typename FROM, typename TO >
+concept castable_to =
+::std::is_convertible < FROM, TO >::value ||
+::std::is_convertible < FROM, const TO >::value;
+
+template < typename FROM, typename TO >
+concept non_castable_to = !castable_to < FROM, TO >;
+
+
+template < typename FROM, typename TO >
+concept pointer_castable_to =
+::std::is_convertible < ::decay < FROM > *, TO >::value;
+
+
+template < typename FROM, typename TO >
+concept pointer_not_castable_to = !pointer_castable_to < FROM, TO >;
 
 
 template < typename FROM, typename TO_POINTER >
 concept raw_pointer_castable =
 ::std::is_convertible < FROM, TO_POINTER * >::value ||
 ::std::is_convertible < FROM, const TO_POINTER * >::value;
+
+template < typename FROM, typename TO_POINTER >
+concept non_raw_pointer_castable = !raw_pointer_castable < FROM, TO_POINTER >;
 
 
 template < typename T >
@@ -572,7 +591,7 @@ concept non_particle = !a_particle < NON_PARTICLE >;
 
 
 template < typename T, typename ...Args >
-inline T * __new(Args &&... args);
+inline T * __call__new(Args &&... args);
 
 
 

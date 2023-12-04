@@ -7,6 +7,7 @@
 #include "dock_manager.h"
 #include "experience.h"
 #include "acme/constant/id.h"
+#include "acme/handler/topic.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/system.h"
 #include "acme/primitive/geometry2d/_text_stream.h"
@@ -1096,7 +1097,7 @@ namespace experience
          if (!m_pcontrolbox)
          {
 
-            m_pcontrolbox = m_pexperience->m_pfactory->create < ::experience::control_box >(this);
+            m_pcontrolbox = __create < ::experience::control_box >(m_pexperience->m_pfactory);
 
             //m_pcontrolbox->initialize(this);
 

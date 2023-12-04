@@ -25,8 +25,8 @@ namespace user
 
 #ifdef _DEBUG
 
-      i64 increment_reference_count(REFERENCING_DEBUGGING_PARAMETERS) override;
-      i64 decrement_reference_count(REFERENCING_DEBUGGING_PARAMETERS) override;
+      i64 increment_reference_count() override;
+      i64 decrement_reference_count() override;
 
 #endif
 

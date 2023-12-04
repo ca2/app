@@ -97,26 +97,26 @@ namespace user
 #ifdef _DEBUG
 
 
-   i64 graphics_thread::increment_reference_count(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
+   i64 graphics_thread::increment_reference_count()
    {
 
-      return ::thread::increment_reference_count(REFERENCING_DEBUGGING_ARGS);
+      return ::thread::increment_reference_count();
 
    }
 
 
-   i64 graphics_thread::decrement_reference_count(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
+   i64 graphics_thread::decrement_reference_count()
    {
 
-      return ::thread::decrement_reference_count(REFERENCING_DEBUGGING_ARGS);
+      return ::thread::decrement_reference_count();
 
    }
 
 
-   i64 graphics_thread::release(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
+   i64 graphics_thread::release()
    {
 
-      return ::thread::release(REFERENCING_DEBUGGING_ARGS);
+      return ::thread::release();
 
    }
 
@@ -647,7 +647,7 @@ namespace user
 //
 //      }
 //
-//      m_procedureUpdateScreen.m_pbase.release(REFERENCING_DEBUGGING_THIS);
+//      m_procedureUpdateScreen.m_pbase.release();
 
 //      if (m_procedureWindowShow)
 //      {
@@ -656,7 +656,7 @@ namespace user
 //
 //      }
 //
-//      m_procedureWindowShow.m_pbase.release(REFERENCING_DEBUGGING_THIS);
+//      m_procedureWindowShow.m_pbase.release();
 
    }
 

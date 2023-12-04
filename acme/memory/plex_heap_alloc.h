@@ -10,7 +10,7 @@ class CLASS_DECL_ACME plex_heap_alloc :
 protected:
 
    
-   friend class ::allocator::accessor < default_t, true >;
+   friend class ::allocator::accessor;
 
 
    plex_heap_alloc(::heap::allocator * pallocator, memsize nAllocSize, ::u32 nBlockSize = 64);

@@ -336,7 +336,7 @@ payload::payload(::u64 * pu) :
 
 payload::payload(const ::file::path & path) :
    m_etype(e_type_path),
-   m_ppath(new ::file::path_object(path))
+   m_ppath(__new< ::file::path_object>(path))
 {
 
 }
@@ -344,7 +344,7 @@ payload::payload(const ::file::path & path) :
 
 payload::payload(const string_array & stra) :
    m_etype(e_type_string_array),
-   m_pstra(new string_array(stra))
+   m_pstra(__new< string_array>(stra))
 {
 
 
@@ -353,7 +353,7 @@ payload::payload(const string_array & stra) :
 
 payload::payload(const ::i32_array & ia) :
    m_etype(e_type_i32_array),
-   m_pia(new ::i32_array(ia))
+   m_pia(__new<::i32_array>(ia))
 {
 
 }
@@ -361,7 +361,7 @@ payload::payload(const ::i32_array & ia) :
 
 payload::payload(const payload_array & payloada) :
    m_etype(e_type_payload_array),
-   m_ppayloada(new payload_array(payloada))
+   m_ppayloada(__new<payload_array>(payloada))
 {
 
 }
@@ -369,7 +369,7 @@ payload::payload(const payload_array & payloada) :
 
 payload::payload(const property_set & set) :
    m_etype(e_type_property_set),
-   m_ppropertyset(new property_set(set))
+   m_ppropertyset(__new<property_set>(set))
 {
 
 }
@@ -3693,7 +3693,7 @@ unsigned long payload::get_unsigned_long(unsigned long ulDefault) const
 
    }
 
-   return m_p;
+   return { use_t{}, m_p };
 
 }
 
@@ -5132,7 +5132,9 @@ property_set & payload::property_set_reference()
    else if (m_etype != e_type_property_set)
    {
 
-      auto pset = __new< property_set >();
+      m_preferer = ::allocator::defer_add_referer({ this, __FUNCTION_FILE_LINE__ });
+
+      auto pset = __call__allocate< property_set >();
 
       if (is_empty() || !get_bool())
       {
@@ -5157,6 +5159,8 @@ property_set & payload::property_set_reference()
    }
    else if (::is_null(m_ppropertyset))
    {
+
+      m_preferer = ::allocator::defer_add_referer({ this, __FUNCTION_FILE_LINE__ });
 
       m_ppropertyset = __new< property_set >();
 

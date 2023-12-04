@@ -15,6 +15,8 @@ pointer_array < trace_category > * trace_category::s_ptracecategorya = nullptr;
 void trace_category_static_init(::acme::system * psystem)
 {
 
+   refdbg_top_track holdtoptrack(psystem);
+
    trace_category::s_ptracecategorya = new pointer_array < trace_category >;
 
    const ::ansi_character * psza[] =

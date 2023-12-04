@@ -926,7 +926,7 @@ void context_image::_load_multi_frame_image(image * pimage, memory & memory)
 
    ::image_pointer pimageCompose;
 
-   pimageCompose.create(pimage);
+   pimage->__construct(pimageCompose);
 
    pimageCompose->set_ok_flag();
 

@@ -90,6 +90,8 @@ namespace user
       ::pointer<::user::interaction>create_impact(::user::interaction * puserinteractionParent, const ::atom & atom);
 
 
+      void destroy() override;
+
    };
 
 

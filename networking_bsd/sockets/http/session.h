@@ -30,18 +30,18 @@ namespace sockets
 
 
 
-      virtual i64 increment_reference_count(REFERENCING_DEBUGGING_PARAMETERS) override
+      virtual i64 increment_reference_count() override
       {
 
-         return http_client_socket::increment_reference_count(REFERENCING_DEBUGGING_ARGS);
+         return http_client_socket::increment_reference_count();
 
       }
 
 
-      virtual i64 decrement_reference_count(REFERENCING_DEBUGGING_PARAMETERS) override
+      virtual i64 decrement_reference_count() override
       {
 
-         return http_client_socket::decrement_reference_count(REFERENCING_DEBUGGING_ARGS);
+         return http_client_socket::decrement_reference_count();
 
       }
 

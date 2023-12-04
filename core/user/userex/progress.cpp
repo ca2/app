@@ -49,10 +49,10 @@ namespace userex
 
 
 #ifdef _DEBUG
-   i64 progress_control::decrement_reference_count(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
+   i64 progress_control::decrement_reference_count()
    {
 
-      i64 i = ::progress::real::decrement_reference_count(REFERENCING_DEBUGGING_ARGS);
+      i64 i = ::progress::real::decrement_reference_count();
 
       //if (i == 1 && m_pthread.is_set())
       //{

@@ -19,21 +19,49 @@ class reference_count_debug;
 
 
 #if REFERENCING_DEBUGGING
+
+
+#define REFDBG_THIS(p) auto refdbg_this = [p]() { return p; }
+
+#define __new __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__new
+#define __create __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__create
+#define __construct __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__construct
+#define __id_create __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__id_create
+#define __create_new __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__create_new
+#define __id_construct __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__id_construct
+#define __raw_construct __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__raw_construct
+#define __construct_new __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__construct_new
+#define __defer_construct __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__defer_construct
+#define __create_new_clone __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__create_new_clone
+#define __defer_construct_new __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__defer_construct_new
+
+
+#define __allocate __call__add_referer({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__allocate
+
+
 //#define REFERENCING_DEBUGGING_MAX_COUNT 256
-#define REFERENCING_DEBUGGING_ARGS referer
-#define REFERENCING_DEBUGGING_COMMA_ARGS , REFERENCING_DEBUGGING_ARGS
+//#define  referer
+//#define , 
 #define REF_DBG_POINTER nullptr
 #define REF_DBG_VAR nullptr
 #define REF_DBG_COMMA_POINTER , REF_DBG_POINTER
-#define REFERENCING_DEBUGGING_PARAMETERS_DEFINITION const reference_referer & referer
-#define REFERENCING_DEBUGGING_PARAMETERS const reference_referer & referer = nullptr
-#define REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION , REFERENCING_DEBUGGING_PARAMETERS_DEFINITION
-#define REFERENCING_DEBUGGING_COMMA_PARAMS , REFERENCING_DEBUGGING_PARAMETERS
+//#define  const reference_referer & referer
+//#define  const reference_referer & referer = nullptr
+//#define , 
+//#define , 
+#define REFERENCING_DEBUGGING_ARGUMENTS referer
+#define COMMA_REFERENCING_DEBUGGING_ARGUMENTS , REFERENCING_DEBUGGING_ARGUMENTS
+#define REFERENCING_DEBUGGING_ARGUMENTS_COMMA REFERENCING_DEBUGGING_ARGUMENTS ,
+#define REFERENCING_DEBUGGING_PARAMETERS_DEFINITION const ::reference_referer & referer
+#define COMMA_REFERENCING_DEBUGGING_PARAMETERS_DEFINITION , REFERENCING_DEBUGGING_PARAMETERS_DEFINITION
+#define REFERENCING_DEBUGGING_PARAMETERS_DECLARATION REFERENCING_DEBUGGING_PARAMETERS_DEFINITION = nullptr
+#define COMMA_REFERENCING_DEBUGGING_PARAMETERS_DECLARATION , REFERENCING_DEBUGGING_PARAMETERS_DECLARATION
+#define REFERENCING_DEBUGGING_PARAMETERS_DECLARATION_COMMA REFERENCING_DEBUGGING_PARAMETERS_DEFINITION ,
 #define REFERENCING_DEBUGGING_COMMA_NOTE(note) , {nullptr, note}
 #define REFERENCING_DEBUGGING_P(ptr) ptr
 #define REFERENCING_DEBUGGING_COMMA_P(ptr) , REFERENCING_DEBUGGING_P(ptr)
-#define REFERENCING_DEBUGGING_THIS (this)
-#define REFERENCING_DEBUGGING_COMMA_THIS , REFERENCING_DEBUGGING_THIS
+//#define  (this)
+#define REFERENCING_DEBUGGING_COMMA_THIS , 
 #define REFERENCING_DEBUGGING_WILD_NOTE(note) {nullptr, note}
 #define REFERENCING_DEBUGGING_WILD_FUNCTION_FILE_LINE REFERENCING_DEBUGGING_WILD_NOTE( __FUNCTION_FILE_LINE__ )
 #define REFERENCING_DEBUGGING_COMMA_WILD_NOTE(note) , REFERENCING_DEBUGGING_WILD_NOTE(note)
@@ -51,15 +79,18 @@ class reference_count_debug;
 #define tracking_named_release(...) reference_count_debug_release( __VA_ARGS__ )
 #define tracking_check_pending_releases(x) x->check_pending_releases()
 #else
-#define REFERENCING_DEBUGGING_ARGS
-#define REFERENCING_DEBUGGING_COMMA_ARGS
-#define REFERENCING_DEBUGGING_COMMA_PARAMS
-#define REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION
-#define REFERENCING_DEBUGGING_PARAMETERS_DEFINITION
-#define REFERENCING_DEBUGGING_PARAMETERS
+
+#define __construct_new(p) __call__construct_new(p)
+
+#define 
+#define
+#define
+#define
+#define 
+#define 
 #define REFERENCING_DEBUGGING_PTR(ptr)
-#define REFERENCING_DEBUGGING_THIS
-#define REFERENCING_DEBUGGING_THIS
+#define 
+#define 
 #define REFERENCING_DEBUGGING_COMMA_THIS
 #define REFERENCING_DEBUGGING_COMMA_NOTE(note)
 #define REFERENCING_DEBUGGING_THIS_NOTE(note)

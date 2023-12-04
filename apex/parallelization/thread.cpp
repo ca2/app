@@ -1640,7 +1640,45 @@ void thread::destroy()
 
    }
 
+
+   m_messagea.clear();
+
+   m_peventaWait.release();
+
+   m_emessageaGetLast.clear();
+
+   m_pobjectScript.release();
+
+   m_pevent1.release();
+
+   m_ptaskpool.release();
+
+   m_pfileinfo.release();
+
+   m_puserprimitiveActive.release();
+
+   m_puserprimitiveMain.release();
+
+   m_peventFinished.release();
+
+   m_peventReady.release();
+
+   m_peventSync.release();
+
+   m_peventStarted.release();
+
+   m_pmutexThreadUiPtra.release();
+
+   m_puserprimitiveaThread.release();
+
+   m_prequest.release();
+
+   m_pmessagequeue.defer_destroy();
+
+   ::task::destroy();
+
    ::channel::destroy();
+
 
    //auto pparticle = this;
 
@@ -2420,7 +2458,7 @@ size_t engine_symbol(char * sz, int n, DWORD_PTR * pdisplacement, DWORD_PTR dwAd
 //
 //      }
 //
-//      decrement_reference_count(REFERENCING_DEBUGGING_THIS);
+//      decrement_reference_count();
 //
 //      throw ::exception(error_resource);
 //
@@ -2780,7 +2818,7 @@ void thread::task_osinit()
       if (::_get_task() != this)
       {
 
-         ::set_task(this REFERENCING_DEBUGGING_COMMA_THIS_FUNCTION_FILE_LINE);
+         ::set_task(this);
 
       }
 

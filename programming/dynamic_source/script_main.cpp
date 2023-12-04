@@ -26,18 +26,18 @@ namespace dynamic_source
 #ifdef _DEBUG
 
 
-   ::i64 script_main::increment_reference_count(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
+   ::i64 script_main::increment_reference_count()
    {
 
-      return script_interface::increment_reference_count(REFERENCING_DEBUGGING_ARGS);
+      return script_interface::increment_reference_count();
 
    }
 
 
-   ::i64 script_main::decrement_reference_count(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
+   ::i64 script_main::decrement_reference_count()
    {
 
-      return script_interface::decrement_reference_count(REFERENCING_DEBUGGING_ARGS);
+      return script_interface::decrement_reference_count();
 
    }
 

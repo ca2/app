@@ -12,36 +12,36 @@ plex_heap_alloc_array::plex_heap_alloc_array(heap::allocator * pallocator, ::hea
 
    //disable_referencing_debugging();
 
-   add(::platform::raw_allocator::__allocator_base_new < plex_heap_alloc >(m_pallocator, m_pallocator, 32, 256));
-   add(::platform::raw_allocator::__allocator_base_new < plex_heap_alloc >(m_pallocator, m_pallocator, 64, 128));
-   add(::platform::raw_allocator::__allocator_base_new < plex_heap_alloc >(m_pallocator, m_pallocator, 128, 128));
-   add(::platform::raw_allocator::__allocator_base_new < plex_heap_alloc >(m_pallocator, m_pallocator, 256, 128));
-   add(::platform::raw_allocator::__allocator_base_new < plex_heap_alloc >(m_pallocator, m_pallocator, 512, 64));
-   add(::platform::raw_allocator::__allocator_base_new < plex_heap_alloc >(m_pallocator, m_pallocator, 1_KiB, 64));
-   add(::platform::raw_allocator::__allocator_base_new < plex_heap_alloc >(m_pallocator, m_pallocator, 2_KiB, 32));
-   add(::platform::raw_allocator::__allocator_base_new < plex_heap_alloc >(m_pallocator, m_pallocator, 4_KiB, 32));
-   add(::platform::raw_allocator::__allocator_base_new < plex_heap_alloc >(m_pallocator, m_pallocator, 8_KiB, 16));
-   add(::platform::raw_allocator::__allocator_base_new < plex_heap_alloc >(m_pallocator, m_pallocator, 16_KiB, 16));
+   add(::platform::allocator::__allocator_base_new < plex_heap_alloc >(m_pallocator, m_pallocator, 32, 256));
+   add(::platform::allocator::__allocator_base_new < plex_heap_alloc >(m_pallocator, m_pallocator, 64, 128));
+   add(::platform::allocator::__allocator_base_new < plex_heap_alloc >(m_pallocator, m_pallocator, 128, 128));
+   add(::platform::allocator::__allocator_base_new < plex_heap_alloc >(m_pallocator, m_pallocator, 256, 128));
+   add(::platform::allocator::__allocator_base_new < plex_heap_alloc >(m_pallocator, m_pallocator, 512, 64));
+   add(::platform::allocator::__allocator_base_new < plex_heap_alloc >(m_pallocator, m_pallocator, 1_KiB, 64));
+   add(::platform::allocator::__allocator_base_new < plex_heap_alloc >(m_pallocator, m_pallocator, 2_KiB, 32));
+   add(::platform::allocator::__allocator_base_new < plex_heap_alloc >(m_pallocator, m_pallocator, 4_KiB, 32));
+   add(::platform::allocator::__allocator_base_new < plex_heap_alloc >(m_pallocator, m_pallocator, 8_KiB, 16));
+   add(::platform::allocator::__allocator_base_new < plex_heap_alloc >(m_pallocator, m_pallocator, 16_KiB, 16));
 
 #if !MOBILE_PLATFORM
 
-   add(::platform::raw_allocator::__allocator_base_new < plex_heap_alloc >(m_pallocator, m_pallocator, 24_KiB, 16));
-   add(::platform::raw_allocator::__allocator_base_new < plex_heap_alloc >(m_pallocator, m_pallocator, 32_KiB, 16));
-   add(::platform::raw_allocator::__allocator_base_new < plex_heap_alloc >(m_pallocator, m_pallocator, 48_KiB, 16));
-   add(::platform::raw_allocator::__allocator_base_new < plex_heap_alloc >(m_pallocator, m_pallocator, 64_KiB, 16));
-   add(::platform::raw_allocator::__allocator_base_new < plex_heap_alloc >(m_pallocator, m_pallocator, 128_KiB, 16));
-   add(::platform::raw_allocator::__allocator_base_new < plex_heap_alloc >(m_pallocator, m_pallocator, 256_KiB, 8));
-   add(::platform::raw_allocator::__allocator_base_new < plex_heap_alloc >(m_pallocator, m_pallocator, 512_KiB, 8));
-   add(::platform::raw_allocator::__allocator_base_new < plex_heap_alloc >(m_pallocator, m_pallocator, 1_MiB, 4));
+   add(::platform::allocator::__allocator_base_new < plex_heap_alloc >(m_pallocator, m_pallocator, 24_KiB, 16));
+   add(::platform::allocator::__allocator_base_new < plex_heap_alloc >(m_pallocator, m_pallocator, 32_KiB, 16));
+   add(::platform::allocator::__allocator_base_new < plex_heap_alloc >(m_pallocator, m_pallocator, 48_KiB, 16));
+   add(::platform::allocator::__allocator_base_new < plex_heap_alloc >(m_pallocator, m_pallocator, 64_KiB, 16));
+   add(::platform::allocator::__allocator_base_new < plex_heap_alloc >(m_pallocator, m_pallocator, 128_KiB, 16));
+   add(::platform::allocator::__allocator_base_new < plex_heap_alloc >(m_pallocator, m_pallocator, 256_KiB, 8));
+   add(::platform::allocator::__allocator_base_new < plex_heap_alloc >(m_pallocator, m_pallocator, 512_KiB, 8));
+   add(::platform::allocator::__allocator_base_new < plex_heap_alloc >(m_pallocator, m_pallocator, 1_MiB, 4));
 
 
 
 #if OSBIT > 32
 
-   add(::platform::raw_allocator::__allocator_base_new < plex_heap_alloc >(m_pallocator, m_pallocator, 2_MiB, 2));
-   add(::platform::raw_allocator::__allocator_base_new < plex_heap_alloc >(m_pallocator, m_pallocator, 4_MiB, 2));
-   add(::platform::raw_allocator::__allocator_base_new < plex_heap_alloc >(m_pallocator, m_pallocator, 8_MiB, 2));
-   add(::platform::raw_allocator::__allocator_base_new < plex_heap_alloc >(m_pallocator, m_pallocator, 16_MiB, 2));
+   add(::platform::allocator::__allocator_base_new < plex_heap_alloc >(m_pallocator, m_pallocator, 2_MiB, 2));
+   add(::platform::allocator::__allocator_base_new < plex_heap_alloc >(m_pallocator, m_pallocator, 4_MiB, 2));
+   add(::platform::allocator::__allocator_base_new < plex_heap_alloc >(m_pallocator, m_pallocator, 8_MiB, 2));
+   add(::platform::allocator::__allocator_base_new < plex_heap_alloc >(m_pallocator, m_pallocator, 16_MiB, 2));
 
 #endif
 
@@ -58,7 +58,7 @@ plex_heap_alloc_array::~plex_heap_alloc_array()
    for (index i = this->get_upper_bound(); i >= 0; i--)
    {
 
-      ::platform::raw_allocator::__allocator_base_delete(m_pallocator, this->element_at(i));
+      ::platform::allocator::__allocator_base_delete(m_pallocator, this->element_at(i));
 
    }
 

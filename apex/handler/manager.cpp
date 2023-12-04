@@ -35,26 +35,26 @@ manager::~manager()
 //#error "manager::increment_reference_count is being compiled??"
 
 
-i64 manager::increment_reference_count(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
+i64 manager::increment_reference_count()
 {
 
-   return ::property_object::increment_reference_count(REFERENCING_DEBUGGING_ARGS);
+   return ::property_object::increment_reference_count();
 
 }
 
 
-i64 manager::decrement_reference_count(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
+i64 manager::decrement_reference_count()
 {
 
-   return ::property_object::decrement_reference_count(REFERENCING_DEBUGGING_ARGS);
+   return ::property_object::decrement_reference_count();
 
 }
 
 
-i64 manager::release(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
+i64 manager::release()
 {
 
-   return ::property_object::release(REFERENCING_DEBUGGING_ARGS);
+   return ::property_object::release();
 
 }
 

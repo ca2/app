@@ -284,7 +284,7 @@ public:
          if (nElemCount)
          {
 
-            if ((m_parrAttrib = memory_new CElemAttrArray) == nullptr)
+            if ((m_parrAttrib = __new < CElemAttrArray>()) == nullptr)
             {
 
                throw ::exception(error_no_memory);

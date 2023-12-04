@@ -277,7 +277,7 @@ namespace user
 
       synchronous_lock synchronouslock(this->synchronization());
 
-      auto cAddedCount = m_iaSize.add_unique(iaSize);
+      auto cAddedCount = m_iaSize.append_unique(iaSize);
 
       if (cAddedCount > 0)
       {

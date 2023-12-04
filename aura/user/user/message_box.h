@@ -111,9 +111,9 @@ namespace user
       void install_message_routing(::channel * pchannel) override;
 
 
-      i64 increment_reference_count(REFERENCING_DEBUGGING_PARAMETERS) override;
-      i64 decrement_reference_count(REFERENCING_DEBUGGING_PARAMETERS) override;
-      i64 release(REFERENCING_DEBUGGING_PARAMETERS) override;
+      i64 increment_reference_count() override;
+      i64 decrement_reference_count() override;
+      i64 release() override;
 
 
       void common_construct();

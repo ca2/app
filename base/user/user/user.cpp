@@ -1505,7 +1505,7 @@ namespace base
             m_ptemplateForm->m_atom,
             m_ptemplateForm->m_typeatomDocument,
             m_ptemplateForm->m_typeatomFrame,
-            typeatom));
+            typeatom);
 
          document_manager()->add_document_template(pimpactsystem);
 
@@ -1759,7 +1759,7 @@ namespace base
                m_ptemplateChildForm->m_atom,
                typeDocument,
                m_ptemplateChildForm->m_typeatomFrame,
-               typeatom));
+               typeatom);
 
             pimpactsystemNew->initialize(pparticle);
 
@@ -1789,7 +1789,7 @@ namespace base
 
          }
 
-         auto prequest = ::__create_new < ::request >(pparticle);
+         auto prequest = pparticle->__create_new < ::request >();
 
          prequest->m_egraphicsoutputpurpose -= ::graphics::e_output_purpose_screen;
 

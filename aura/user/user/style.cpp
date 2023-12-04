@@ -83,6 +83,16 @@ namespace user
    }
 
 
+   void style::destroy()
+   {
+
+      m_puserstyle.release();
+
+      style_base::destroy();
+
+   }
+
+
    void style::handle(::topic * ptopic, ::context * pcontext)
    {
 
@@ -394,7 +404,7 @@ namespace user
                   if (!ppen)
                   {
 
-                     ppen.create(this);
+                     __construct(ppen);
 
                      ppen->create_solid(1.0, bError ? argb(195, 255, 130, 120) : bHover ? argb(220, 120, 190, 255) : argb(220, 150, 190, 235));
 
@@ -416,7 +426,7 @@ namespace user
                   if (!ppen)
                   {
 
-                     ppen.create(this);
+                     __construct(ppen);
 
                      ppen->create_solid(1.0, bError ? argb(155, 255, 150, 140) : bHover ? argb(200, 140, 200, 255) : argb(200, 150, 210, 235));
 
@@ -455,7 +465,7 @@ namespace user
                   if (!ppen)
                   {
 
-                     ppen.create(this);
+                     __construct(ppen);
 
                      ppen->create_solid(1.0, bError ? argb(135, 255, 170, 160) : bHover ? argb(160, 160, 210, 255) : argb(160, 180, 220, 255));
 
@@ -698,7 +708,7 @@ namespace user
                   if (!ppen)
                   {
 
-                     ppen.create(this);
+                     __construct(ppen);
 
                      ppen->create_solid(1.0, bError ? argb(195, 255, 130, 120) : bHover ? argb(220, 120, 190, 255) : argb(220, 150, 190, 235));
 
@@ -720,7 +730,7 @@ namespace user
                   if (!ppen)
                   {
 
-                     ppen.create(this);
+                     __construct(ppen);
 
                      ppen->create_solid(1.0, bError ? argb(155, 255, 150, 140) : bHover ? argb(200, 140, 200, 255) : argb(200, 150, 210, 235));
 
@@ -759,7 +769,7 @@ namespace user
                   if (!ppen)
                   {
 
-                     ppen.create(this);
+                     __construct(ppen);
 
                      ppen->create_solid(1.0, bError ? argb(135, 255, 170, 160) : bHover ? argb(160, 160, 210, 255) : argb(160, 180, 220, 255));
 

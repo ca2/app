@@ -103,6 +103,9 @@ namespace acme
       task_map                                                 m_taskmap;
       task_id_map                                              m_taskidmap;
       ::pointer < ::particle >                                 m_pmutexTaskOn;
+
+
+      //::pointer < ::draw2d::draw2d  >                          m_pdraw2d;
       
       
       ::map < itask_t, itask_t >                               m_mapTaskOn;
@@ -178,10 +181,10 @@ namespace acme
 #ifdef _DEBUG
 
 
-      i64 increment_reference_count(REFERENCING_DEBUGGING_PARAMETERS) override;
+      i64 increment_reference_count() override;
 
 
-      i64 decrement_reference_count(REFERENCING_DEBUGGING_PARAMETERS) override;
+      i64 decrement_reference_count() override;
 
 
 #endif
@@ -226,6 +229,9 @@ namespace acme
 
       ::primitive::primitive * primitive() const { return m_pprimitive; }
 
+      virtual ::draw2d::draw2d * draw2d() const;
+      virtual ::write_text::write_text * write_text() const;
+
 
       virtual string get_system_platform();
       virtual string get_system_configuration();
@@ -268,7 +274,7 @@ namespace acme
 
          }
 
-         auto p = pfactory->create< BASE_TYPE >(this);
+         auto p = pfactory->__call__create< BASE_TYPE >(this);
 
          if (!p)
          {

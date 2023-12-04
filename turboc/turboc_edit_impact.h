@@ -23,9 +23,9 @@ namespace turboc
 
       bool keyboard_focus_is_focusable();
 
-      virtual i64 increment_reference_count(REFERENCING_DEBUGGING_PARAMETERS);
+      virtual i64 increment_reference_count();
 
-      virtual i64 decrement_reference_count(REFERENCING_DEBUGGING_PARAMETERS);
+      virtual i64 decrement_reference_count();
 
    };
 

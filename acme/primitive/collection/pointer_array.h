@@ -160,21 +160,21 @@ public:
    }
 
 
-   inline ::index add_item(const pointer < T > & p REFERENCING_DEBUGGING_COMMA_PARAMS)
+   /// consumes a referer
+   inline ::index add_item(const pointer < T > & p)
    {
 
       ::index nIndex = this->size();
 
       this->allocate(nIndex + 1, false, false, p);
 
-      this->last().add_reference_item(REFERENCING_DEBUGGING_ARGS);
-
       return nIndex;
 
    }
 
 
-   inline ::index add_item(pointer < T > && p REFERENCING_DEBUGGING_COMMA_PARAMS)
+   /// referer is transfered?
+   inline ::index add_item(pointer < T > && p)
    {
 
       ::index nIndex = this->size();
@@ -205,22 +205,26 @@ public:
    //}
 
 
-   ::index add(const pointer < T > & p REFERENCING_DEBUGGING_COMMA_PARAMS)
+   /// consumes a referer
+   ::index add(const pointer < T > & p)
    {
 
-      return this->add_item(p REFERENCING_DEBUGGING_COMMA_ARGS);
+      return this->add_item(p);
 
    }
 
 
-   ::index add(pointer < T > && p REFERENCING_DEBUGGING_COMMA_PARAMS)
+   /// referer is transferred?
+   ::index add(pointer < T > && p)
    {
 
-      return this->add_item(::transfer(p) REFERENCING_DEBUGGING_COMMA_ARGS);
+      return this->add_item(::transfer(p));
 
    }
 
-   ::index add_non_null(T* p REFERENCING_DEBUGGING_COMMA_PARAMS)
+
+   /// consumes a referer
+   ::index add_non_null(T* p)
    {
 
       if (::is_null(p))
@@ -230,26 +234,29 @@ public:
 
       }
 
-      return this->add_item(p  REFERENCING_DEBUGGING_COMMA_ARGS);
+      return this->add_item(p);
 
    }
 
 
-   void insert_at(::index i, T* p REFERENCING_DEBUGGING_COMMA_PARAMS)
+   /// consumes a referer
+   void insert_at(::index i, T* p)
    {
 
       ::index nIndex = this->size();
 
       comparable_array < ::pointer<T >, const T * >::insert_at(i, p);
 
-      this->element_at(i)->add_reference_item(REFERENCING_DEBUGGING_ARGS);
+      //this->element_at(i)->add_reference_item();
 
    }
 
-   bool insert_unique_at(::index i, T * p REFERENCING_DEBUGGING_COMMA_PARAMS);
+
+   bool insert_unique_at(::index i, T * p);
 
 
-   bool add_unique(T * p REFERENCING_DEBUGGING_COMMA_PARAMS)
+   /// consumes a referer
+   bool add_unique(T * p)
    {
 
       if (contains(p))
@@ -259,11 +266,12 @@ public:
 
       }
 
-      this->add_item(p REFERENCING_DEBUGGING_COMMA_ARGS);
+      this->add_item(p);
 
       return true;
 
    }
+
 
    template < typename TYPE >
    ::pointer<TYPE>find_first() const
@@ -419,15 +427,16 @@ public:
    }
 
    
-   ::count erase(T* p REFERENCING_DEBUGGING_COMMA_PARAMS)
+   /// consumes a releaser
+   ::count erase(T* p)
    {
 
-      return this->erase_item(p REFERENCING_DEBUGGING_COMMA_ARGS);
+      return this->erase_item(p);
 
    }
 
 
-   ::count erase_item(T * p REFERENCING_DEBUGGING_COMMA_PARAMS)
+   ::count erase_item(T * p)
    {
 
       ::count ca = 0;
@@ -1757,15 +1766,8 @@ typedef pointer_array < matter > object_pointera;
 typedef pointer_array < matter > simple_object_pointera;
 
 
-
-
-
-
-
-
-
 template < typename T >
-bool pointer_array < T > ::insert_unique_at(::index i, T * p REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
+bool pointer_array < T > ::insert_unique_at(::index i, T * p)
 {
 
    if (i < 0 || i > this->get_size())
@@ -1780,7 +1782,7 @@ bool pointer_array < T > ::insert_unique_at(::index i, T * p REFERENCING_DEBUGGI
    if (iFind < 0)
    {
 
-      this->insert_at(i, p REFERENCING_DEBUGGING_COMMA_ARGS);
+      this->insert_at(i, p);
 
       return true;
 

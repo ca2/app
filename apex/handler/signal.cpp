@@ -27,26 +27,26 @@ signal::~signal()
 #ifdef _DEBUG
 
 
-i64 signal::increment_reference_count(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
+i64 signal::increment_reference_count()
 {
 
-   return ::topic::increment_reference_count(REFERENCING_DEBUGGING_ARGS);
+   return ::topic::increment_reference_count();
 
 }
 
 
-i64 signal::decrement_reference_count(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
+i64 signal::decrement_reference_count()
 {
 
-   return ::topic::decrement_reference_count(REFERENCING_DEBUGGING_ARGS);
+   return ::topic::decrement_reference_count();
 
 }
 
 
-i64 signal::release(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
+i64 signal::release()
 {
 
-   return ::topic::release(REFERENCING_DEBUGGING_ARGS);
+   return ::topic::release();
 
 }
 
@@ -232,7 +232,7 @@ void signal::set_up_to_date(::context * pcontext)
 void signal::add_handler(::matter* pmatter)
 {
 
-   add_signal_handler(::signal_handler({ e_use, pmatter }));
+   add_signal_handler(::signal_handler({ use_t{}, pmatter }));
 
 }
 

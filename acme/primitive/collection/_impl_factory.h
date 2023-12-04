@@ -9,7 +9,7 @@ namespace factory
 
 
     template < typename TYPE, typename ORIGIN_TYPE >
-    inline ::pointer<ORIGIN_TYPE>reusable_factory_item < TYPE, ORIGIN_TYPE >::_create()
+    inline ::pointer<ORIGIN_TYPE>reusable_factory_item < TYPE, ORIGIN_TYPE >::__call__create()
     {
 
        {
@@ -31,7 +31,7 @@ namespace factory
 
        }
 
-       return factory_item < TYPE, ORIGIN_TYPE >::_call_new();
+       return factory_item < TYPE, ORIGIN_TYPE >::__call__new();
 
     }
 
@@ -50,7 +50,7 @@ namespace factory
 
 
     template < typename ORIGIN_TYPE >
-    inline ::pointer<ORIGIN_TYPE>factory::create(::particle * pparticle)
+    inline ::pointer<ORIGIN_TYPE>factory::__call__create(::particle * pparticle)
     {
 
        auto pfactoryinterface = get_factory_item < ORIGIN_TYPE >();
@@ -62,7 +62,7 @@ namespace factory
 
        }
 
-       auto p = pfactoryinterface->create_particle();
+       auto p = pfactoryinterface->__call__create_particle();
        
        p->initialize(pparticle);
        
@@ -87,10 +87,10 @@ namespace factory
 
 
     template < typename ORIGIN_TYPE >
-    inline void factory::__construct(::particle * pparticleInitializer, ::pointer < ORIGIN_TYPE > & p)
+    inline void factory::__call__construct(::particle * pparticleInitializer, ::pointer < ORIGIN_TYPE > & p)
     {
 
-       __raw_construct(p);
+       __call__raw_construct(p);
 
        p->initialize(pparticleInitializer);
 
@@ -98,9 +98,15 @@ namespace factory
 
 
     template < typename ORIGIN_TYPE >
-    inline void factory::__raw_construct(::pointer<ORIGIN_TYPE>  & p)
+    inline void factory::__call__raw_construct(::pointer<ORIGIN_TYPE>  & p)
     {
 
+//#if REFERENCING_DEBUGGING
+//
+//       ::allocator::add_referer(REFERENCING_DEBUGGING_ARGUMENTS);
+//
+//#endif
+//
        auto & pfactoryitem = get_factory_item < ORIGIN_TYPE >();
 
        if (!pfactoryitem)
@@ -116,14 +122,14 @@ namespace factory
 
        }
 
-       auto pparticle = ::transfer(pfactoryitem->create_particle());
+       auto pparticle = ::transfer(pfactoryitem->__call__create_particle());
 
        if (!pparticle)
        {
 
           ::string strMessage;
 
-          strMessage = "Couldn't create_particle for type \"" + ::type < ORIGIN_TYPE >().name() + "\"";
+          strMessage = "Couldn't __call__create_particle for type \"" + ::type < ORIGIN_TYPE >().name() + "\"";
 
           warningf(strMessage);
 
@@ -275,10 +281,21 @@ namespace factory
 
 
     template < typename BASE_TYPE >
-    inline void factory::__defer_construct(::particle * pparticle, ::pointer<BASE_TYPE> & ptype)
+    inline bool factory::__call__defer_construct(::particle * pparticle, ::pointer<BASE_TYPE> & ptype)
     {
 
-       ::__defer_construct(pparticle, ptype, this);
+       if (ptype)
+       {
+
+          ::allocator::defer_erase_referer();
+
+          return false;
+
+       }
+
+       pparticle->__call__construct(ptype, this);
+
+       return true;
 
     }
 
@@ -287,9 +304,25 @@ namespace factory
 
 
 template < typename TYPE >
-inline void particle::__raw_construct(::pointer<TYPE>& p, ::factory::factory* pfactory REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
+inline void particle__call__raw_construct2(REFERENCING_DEBUGGING_PARAMETERS_DECLARATION_COMMA ::pointer<TYPE> & p, ::factory::factory * pfactory)
 {
 
+#if REFERENCING_DEBUGGING
+
+   ::allocator::add_referer(REFERENCING_DEBUGGING_ARGUMENTS);
+
+#endif
+
+   __call_raw_construct(p, factory);
+
+}
+
+
+template < typename TYPE >
+inline void particle::__call__raw_construct(::pointer<TYPE>&p, ::factory::factory * pfactory)
+{
+
+   
    if (::is_null(pfactory))
    {
 
@@ -310,7 +343,7 @@ inline void particle::__raw_construct(::pointer<TYPE>& p, ::factory::factory* pf
 
    }
 
-   auto pparticleNew = pfactoryitem->create_particle(REFERENCING_DEBUGGING_ARGS);
+   auto pparticleNew = pfactoryitem->__call__create_particle();
 
    if (!pparticleNew)
    {
@@ -340,16 +373,18 @@ inline void particle::__raw_construct(::pointer<TYPE>& p, ::factory::factory* pf
 
 
 template < typename BASE_TYPE >
-inline ::pointer<BASE_TYPE> particle::__raw_create(::factory::factory* pfactory REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
+inline ::pointer<BASE_TYPE> particle::__raw_create(::factory::factory* pfactory)
 {
 
    ::pointer<BASE_TYPE> p;
 
-   __raw_construct(p, pfactory REFERENCING_DEBUGGING_COMMA_ARGS);
+   __raw_construct(p, pfactory);
 
    return ::transfer(p);
 
 }
+
+
 
 
 //template < typename TYPE >
@@ -377,19 +412,21 @@ inline ::pointer<BASE_TYPE> particle::__raw_create(::factory::factory* pfactory 
 
 
 template < typename TYPE >
-inline bool particle::__defer_construct(::pointer<TYPE>& p, ::factory::factory* pfactory REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
+inline bool particle::__call__defer_construct(::pointer<TYPE>& p, ::factory::factory* pfactory)
 {
 
-   if (!p)
+   if (p)
    {
 
-      __construct(p, pfactory REFERENCING_DEBUGGING_COMMA_ARGS);
+      ::allocator::defer_erase_referer();
 
-      return true;
+      return false;
 
    }
 
-   return false;
+   __call__construct(p, pfactory);
+
+   return true;
 
 }
 
@@ -413,7 +450,7 @@ inline bool particle::__defer_construct(::pointer<TYPE>& p, ::factory::factory* 
 
 
 template < typename TYPE >
-inline void particle::__id_construct(::pointer<TYPE>& p, const ::atom& atom, ::factory::factory * pfactory REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
+inline void particle::__call__id_construct(::pointer<TYPE>& p, const ::atom& atom, ::factory::factory * pfactory)
 {
 
    if (::is_null(pfactory))
@@ -425,7 +462,7 @@ inline void particle::__id_construct(::pointer<TYPE>& p, const ::atom& atom, ::f
 
    auto& pfactoryitem = pfactory->get_factory_item(atom);
 
-   auto pparticleNew = pfactoryitem->create_particle(REFERENCING_DEBUGGING_ARGS);
+   auto pparticleNew = pfactoryitem->__call__create_particle();
 
    //if (!pparticleNew)
    //{
@@ -462,7 +499,7 @@ inline void particle::__id_construct(::pointer<TYPE>& p, const ::atom& atom, ::f
 
 
 template < typename TYPE >
-inline ::pointer < TYPE > particle::__id_create(const ::atom& atom, ::factory::factory * pfactory REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
+inline ::pointer < TYPE > particle::__call__id_create(const ::atom& atom, ::factory::factory * pfactory)
 {
 
    if (::is_null(pfactory))
@@ -474,7 +511,7 @@ inline ::pointer < TYPE > particle::__id_create(const ::atom& atom, ::factory::f
 
    auto& pfactoryitem = pfactory->get_factory_item(atom);
 
-   auto pparticleNew = pfactoryitem->create_particle(REFERENCING_DEBUGGING_ARGS);
+   auto pparticleNew = pfactoryitem->__call__create_particle();
 
    //if (!pparticleNew)
    //{
@@ -514,16 +551,16 @@ inline ::pointer < TYPE > particle::__id_create(const ::atom& atom, ::factory::f
 }
 
 
-template < class T >
-template < typename PARTICLE >
-inline pointer < T >& pointer < T >::create(PARTICLE* pparticle, ::factory::factory* pfactory REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
-{
-
-   auto p = pparticle->__create < T >(pfactory REFERENCING_DEBUGGING_COMMA_ARGS);
-
-   return operator =(p);
-
-}
+//template < class T >
+//template < typename PARTICLE >
+//inline pointer < T >& pointer < T >::create(PARTICLE* pparticle, ::factory::factory* pfactory)
+//{
+//
+//   auto p = pparticle->__create < T >(pfactory);
+//
+//   return operator =(p);
+//
+//}
 
 
 

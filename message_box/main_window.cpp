@@ -35,6 +35,7 @@ namespace app_message_box
 
       MESSAGE_LINK(e_message_create, pchannel, this, &main_window::on_message_create);
       MESSAGE_LINK(e_message_close, pchannel, this, &main_window::on_message_close);
+      MESSAGE_LINK(e_message_destroy, pchannel, this, &main_window::on_message_destroy);
 
    }
 
@@ -51,6 +52,14 @@ namespace app_message_box
       m_pbuttonShowMessageBox->set_window_text("Show message box");
 
       m_pbuttonShowMessageBox->add_handler(this);
+
+   }
+
+
+   void main_window::on_message_destroy(::message::message * pmessage)
+   {
+
+      m_pbuttonShowMessageBox.release();
 
    }
 

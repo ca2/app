@@ -3,6 +3,42 @@
 #include "item.h"
 
 
+::string get_e_element_text(enum_element eelement)
+{
+
+   ::string str;
+
+   switch (eelement)
+   {
+   case e_element_none:
+      str = "e_element_none";
+      break;
+   case e_element_item:
+      str = "e_element_item";
+      break;
+   default:
+      str.formatf("(enum_element=%lld)", (::i64)eelement);
+      break;
+   }
+
+   return str;
+}
+
+::string item::get_debug_title() const
+{
+
+   auto strTitle = particle::get_debug_title();
+
+   strTitle.append_formatf("(%s, item=%lld)",
+      get_e_element_text(m_item.m_eelement).c_str(),
+      m_item.m_iItem);
+
+   return strTitle;
+
+
+}
+
+
 bool item::_is_set() const
 {
 

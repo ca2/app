@@ -11,6 +11,7 @@
 #include "acme/platform/context.h"
 #include "acme/platform/node.h"
 #include "acme/platform/reference_item_array.h"
+#include "acme/platform/referencing_debugging.h"
 #include "acme/platform/session.h"
 #include "acme/platform/system.h"
 #include "acme/user/nano/nano.h"
@@ -71,6 +72,7 @@ particle::~particle()
 {
 
 #if REFERENCING_DEBUGGING
+   m_pparticleSynchronization.release();
    {
 
       //auto p = ::transfer(m_preferenceitema);
@@ -89,6 +91,33 @@ particle::~particle()
 
 void particle::initialize(::particle * pparticle)
 {
+
+   //if (::is_set(pparticle))
+   //{
+
+   //   if (pparticle->m_preferenceitema)
+   //   {
+
+   //      if (m_preferenceitema)
+   //      {
+
+   //         if (!m_preferenceitema->m_pparticleParent)
+   //         {
+
+   //            pparticle->m_preferenceitema->m_item2a.add_item(m_preferenceitema);
+
+   //            m_preferenceitema->m_pparticleParent = pparticle;
+
+   //            ::acme::get()->m_preferencingdebugging->m_item2a.erase_last(m_preferenceitema);
+
+   //         }
+
+
+   //      }
+
+   //   }
+
+   //}
 
 //#if REFERENCING_DEBUGGING
 //
@@ -116,14 +145,20 @@ void particle::initialize(::particle * pparticle)
 #ifdef _DEBUG
 
 
-i64 particle::increment_reference_count(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
+i64 particle::increment_reference_count()
 {
+
+#if REFERENCING_DEBUGGING
+
+   critical_section_lock synchronouslock(&::acme::get()->m_preferencingdebugging->m_criticalsection);
+
+#endif
 
    auto c = ++m_countReference;
 
 #if REFERENCING_DEBUGGING
 
-   add_reference_item(REFERENCING_DEBUGGING_ARGS);
+   add_reference_item();
 
 #endif
 
@@ -132,17 +167,23 @@ i64 particle::increment_reference_count(REFERENCING_DEBUGGING_PARAMETERS_DEFINIT
 }
 
 
-i64 particle::decrement_reference_count(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
+i64 particle::decrement_reference_count()
 {
+
+#if REFERENCING_DEBUGGING
+   
+   critical_section_lock synchronouslock(&::acme::get()->m_preferencingdebugging->m_criticalsection);
+
+#endif
 
    auto c = --m_countReference;
 
 #if REFERENCING_DEBUGGING
 
-   if (c > 0)
+   if (c >= 0)
    {
 
-      erase_reference_item(REFERENCING_DEBUGGING_ARGS);
+      erase_reference_item();
 
    }
 
@@ -153,7 +194,7 @@ i64 particle::decrement_reference_count(REFERENCING_DEBUGGING_PARAMETERS_DEFINIT
 }
 
 
-i64 particle::replace_reference(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
+i64 particle::replace_reference()
 {
 
    auto c = m_countReference;
@@ -163,7 +204,9 @@ i64 particle::replace_reference(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
    if (c > 0)
    {
 
-      m_preferenceitema->replace_item(REFERENCING_DEBUGGING_ARGS);
+      throw ::exception(::error_failed);
+
+      //m_preferenceitema->replace_item();
 
    }
 
@@ -174,10 +217,10 @@ i64 particle::replace_reference(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
 }
 
 
-i64 particle::release(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
+i64 particle::release()
 {
 
-   i64 i = decrement_reference_count(REFERENCING_DEBUGGING_ARGS);
+   i64 i = decrement_reference_count();
 
    if (i == 0)
    {
@@ -202,13 +245,15 @@ void particle::set_synchronization(::particle *pparticleSynchronization)
 }
 
 
-void particle::defer_create_synchronization(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
+void particle::defer_create_synchronization()
 {
 
    if (!m_pparticleSynchronization)
    {
 
-      set_synchronization(__create< ::mutex >(nullptr REFERENCING_DEBUGGING_COMMA_ARGS));
+      refdbg_top_track toptrack(this);
+
+      set_synchronization(__create< ::mutex >(nullptr));
 
    }
 
@@ -338,6 +383,14 @@ void particle::delete_this()
 }
 
 
+::string particle::get_debug_title() const
+{
+
+   auto pparticle = (::particle *) this;
+
+   return ::type(*pparticle).name();
+
+}
 
 
 //void particle::initialize(::particle * pparticle)
@@ -2085,7 +2138,7 @@ void particle::set_library_name(const ::scoped_string & scopedstrLibraryName)
 //}
 
 
-//void particle::add_composite(::particle * pparticle REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
+//void particle::add_composite(::particle * pparticle)
 //{
 //
 //   //throw ::not_implemented();
@@ -2099,7 +2152,7 @@ void particle::set_library_name(const ::scoped_string & scopedstrLibraryName)
 //}
 //
 //
-//void particle::add_reference(::particle * pparticle REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
+//void particle::add_reference(::particle * pparticle)
 //{
 //
 //   //return ::success_none;
@@ -2107,7 +2160,7 @@ void particle::set_library_name(const ::scoped_string & scopedstrLibraryName)
 //}
 //
 //
-//void particle::release_composite2(::particle * pparticle REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
+//void particle::release_composite2(::particle * pparticle)
 //{
 //
 //   //return ::success_none;
@@ -2115,7 +2168,7 @@ void particle::set_library_name(const ::scoped_string & scopedstrLibraryName)
 //}
 //
 //
-//void particle::finalize_composite(::particle * pparticle REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
+//void particle::finalize_composite(::particle * pparticle)
 //{
 //
 //   //return ::success_none;
@@ -2123,7 +2176,7 @@ void particle::set_library_name(const ::scoped_string & scopedstrLibraryName)
 //}
 //
 //
-//void particle::release_reference(::particle * pparticle REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
+//void particle::release_reference(::particle * pparticle)
 //{
 //
 //   //return ::success_none;
@@ -2312,7 +2365,7 @@ void particle::kick_idle()
 }
 
 
- ::pointer<particle>particle::__id_create(const ::atom & atom, ::factory::factory * pfactory REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
+ ::pointer<particle>particle::__call__id_create(const ::atom & atom, ::factory::factory * pfactory)
 {
 
    auto pfactoryitem = pfactory->get_factory_item(atom);
@@ -2324,7 +2377,7 @@ void particle::kick_idle()
 
    }
 
-   auto p = pfactoryitem->create_particle(REFERENCING_DEBUGGING_ARGS);
+   auto p = pfactoryitem->__call__create_particle();
 
    if (!p)
    {
@@ -2472,10 +2525,30 @@ void particle::process_owned_procedure_list(::procedure_list & procedurelist, bo
 
       }
 
-      synchronouslock.lock();
+      synchronouslock._lock();
 
    }
    while(procedurelist.has_element());
+
+}
+
+
+::particle * particle::__call__add_referer2(const ::reference_referer & referer) const
+{
+
+   ::allocator::defer_add_referer(referer);
+
+   return (::particle *) this;
+
+}
+
+
+CLASS_DECL_ACME ::allocator::accessor * __call__add_referer(const ::reference_referer & referer)
+{
+
+   ::allocator::defer_add_referer(referer);
+
+   return ::allocator::g_pacessorDefault;
 
 }
 

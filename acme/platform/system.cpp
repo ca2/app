@@ -480,6 +480,8 @@ namespace acme
    void system::process_init()
    {
 
+      ::refdbg_top_track toptrack(this);
+
       //::acme::idpool::init(this);
 
       /// Create/Replace logger
@@ -829,7 +831,9 @@ namespace acme
 
       synchronous_lock synchronouslock(m_pmutexTask);
 
-      m_taskmap[itask].reset(ptask REFERENCING_DEBUGGING_COMMA_THIS_FUNCTION_FILE_LINE);
+      ::allocator::add_referer({ this, __FUNCTION_FILE_LINE__ });
+
+      m_taskmap[itask] = ptask;
 
       m_taskidmap[ptask] = itask;
 
@@ -2213,18 +2217,18 @@ namespace acme
 #ifdef _DEBUG
 
 
-   i64 system::increment_reference_count(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
+   i64 system::increment_reference_count()
    {
 
-      return ::object::increment_reference_count(REFERENCING_DEBUGGING_ARGS);
+      return ::object::increment_reference_count();
 
    }
 
 
-   i64 system::decrement_reference_count(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
+   i64 system::decrement_reference_count()
    {
 
-      return ::object::decrement_reference_count(REFERENCING_DEBUGGING_ARGS);
+      return ::object::decrement_reference_count();
 
    }
 
@@ -2543,7 +2547,7 @@ namespace acme
 
          papp = pelementApp;
 
-         papp.reset(papp.m_p REFERENCING_DEBUGGING_COMMA_THIS_FUNCTION_FILE_LINE);
+         //papp.reset(papp.m_p REFERENCING_DEBUGGING_COMMA_THIS_FUNCTION_FILE_LINE);
 
          if (papp)
          {
@@ -2638,7 +2642,7 @@ namespace acme
             if (pfactory)
             {
 
-               papp = pfactory->create < ::acme::application >(this);
+               papp = __create < ::acme::application >(pfactory);
 
                if (!papp)
                {
@@ -2819,6 +2823,15 @@ namespace acme
 
       ::task::destroy();
 
+      auto ptask = ::get_task();
+
+      if (ptask == this)
+      {
+
+         ::task_release();
+
+      }
+
    }
 
 
@@ -2959,6 +2972,23 @@ namespace acme
       return {};
 
    }
+
+
+   ::draw2d::draw2d * system::draw2d() const
+   {
+
+      return nullptr;
+
+   }
+
+
+   ::write_text::write_text * system::write_text() const
+   {
+
+      return nullptr;
+
+   }
+
 
 
 } // namespace acme

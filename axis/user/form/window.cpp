@@ -3,6 +3,8 @@
 #include "acme/constant/id.h"
 #include "acme/platform/keep.h"
 #include "acme/constant/message.h"
+#include "acme/handler/topic.h"
+#include "acme/handler/extended_topic.h"
 #include "acme/include/_c_swap.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "apex/database/selection.h"

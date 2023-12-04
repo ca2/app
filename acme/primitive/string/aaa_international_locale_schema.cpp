@@ -722,14 +722,14 @@ restart:
 
       }
 
-      i64 locale_schema::increment_reference_count(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
+      i64 locale_schema::increment_reference_count()
       {
-         return matter::increment_reference_count(REFERENCING_DEBUGGING_ARGS);
+         return matter::increment_reference_count();
       }
 
-      i64 locale_schema::release(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
+      i64 locale_schema::release()
       {
-         return matter::release(REFERENCING_DEBUGGING_ARGS);
+         return matter::release();
       }
 
 

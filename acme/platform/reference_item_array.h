@@ -40,16 +40,16 @@ public:
 
 
 
-   virtual void add_item(REFERENCING_DEBUGGING_PARAMETERS);
+   virtual void add_item();
    
    
-   virtual ::index find_item(REFERENCING_DEBUGGING_PARAMETERS);
+   virtual ::index find_item(reference_referer * preferer);
 
    
-   virtual bool erase_item(REFERENCING_DEBUGGING_PARAMETERS);
+   virtual bool erase_item();
 
 
-   virtual bool replace_item(REFERENCING_DEBUGGING_PARAMETERS);
+   virtual bool replace_item(reference_item * preferenceitem);
 
 
    virtual void dump_pending_releases(::string & strDump);

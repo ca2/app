@@ -1721,7 +1721,7 @@ bool app_core::has_aura_application_factory() const
 //
 //   }
 //
-//   ::auraacmesystem()->increment_reference_count(REFERENCING_DEBUGGING_THIS);
+//   ::auraacmesystem()->increment_reference_count();
 //
 //   if (m_pmainstruct && m_pmainstruct->m_bConsole)
 //   {

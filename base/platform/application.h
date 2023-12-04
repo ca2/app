@@ -43,8 +43,10 @@ namespace base
       application();
       ~application() override;
       
+      
+      void on_set_platform() override;
 
-      virtual void initialize(::particle * pparticle) override;
+      void initialize(::particle * pparticle) override;
 
       
       virtual ::pointer < ::data::data > create_default_new_document_data();

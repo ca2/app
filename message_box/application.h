@@ -30,8 +30,8 @@ namespace app_message_box
       virtual void on_request(::request * prequest) override;
 
 #ifdef _DEBUG
-      virtual int64_t increment_reference_count(REFERENCING_DEBUGGING_PARAMETERS) override;
-      virtual int64_t decrement_reference_count(REFERENCING_DEBUGGING_PARAMETERS) override;
+      virtual int64_t increment_reference_count() override;
+      virtual int64_t decrement_reference_count() override;
 #endif
 
 

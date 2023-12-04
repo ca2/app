@@ -2698,6 +2698,20 @@ namespace draw2d
 
       //return estatusOsData && estatusDestroy;
 
+      m_pdraw2dhost.release();
+
+      m_pbitmap.release();
+
+      m_pbrush.release();
+
+      m_ppen.release();
+
+      m_pfont.release();
+
+      m_pfontDevice.release();
+
+      m_puserredraw.release();
+
    }
 
 
@@ -4775,7 +4789,7 @@ namespace draw2d
          if (!pfontUnderline)
          {
 
-            pfontUnderline.create(this);
+            __construct(pfontUnderline);
 
             pfontUnderline->operator=(*get_current_font());
 

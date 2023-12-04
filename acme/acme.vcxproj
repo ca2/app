@@ -863,7 +863,7 @@
     <ClInclude Include="platform\reference_item.h" />
     <ClInclude Include="platform\simple_array.h" />
     <ClInclude Include="platform\tracing.h" />
-    <ClInclude Include="platform\_reference_count_debug.h" />
+    <ClInclude Include="platform\_referencing_debugging.h" />
     <ClInclude Include="primitive\primitive\primitive.h" />
     <ClInclude Include="primitive\string\c_string.h" />
     <ClInclude Include="primitive\time\__time.h" />
@@ -936,8 +936,6 @@
     <ClInclude Include="parallelization\retry.h" />
     <ClInclude Include="platform\integration_context.h" />
     <ClInclude Include="platform\nano_http.h" />
-    <ClInclude Include="platform\nano_http_asynchronous_source.h" />
-    <ClInclude Include="platform\nano_http_synchronous_source.h" />
     <ClInclude Include="platform\nano_http_response.h" />
     <ClInclude Include="platform\trace_statement.h" />
     <ClInclude Include="platform\_.h" />
@@ -1226,6 +1224,7 @@
     <ClCompile Include="platform\procedure.cpp" />
     <ClCompile Include="platform\procedure_array.cpp" />
     <ClCompile Include="platform\profiler.cpp" />
+    <ClCompile Include="platform\reference_referer.cpp" />
     <ClCompile Include="platform\referencing_debugging.cpp" />
     <ClCompile Include="platform\sequence.cpp" />
     <ClCompile Include="platform\serial.cpp" />
@@ -1837,7 +1836,6 @@
     <ClInclude Include="platform\department.h" />
     <ClInclude Include="platform\display.h" />
     <ClInclude Include="platform\enum.h" />
-    <ClInclude Include="platform\error.h" />
     <ClInclude Include="platform\exclusive.h" />
     <ClInclude Include="platform\factory.h" />
     <ClInclude Include="platform\filestream.h" />
@@ -1863,7 +1861,6 @@
     <ClInclude Include="platform\aaa_object_reference_count_debug_impl.h" />
     <ClInclude Include="platform\object_type_counter.h" />
     <ClInclude Include="platform\options.h" />
-    <ClInclude Include="platform\plane_system.h" />
     <ClInclude Include="platform\predicate_holder.h" />
     <ClInclude Include="platform\predicate_procedure.h" />
     <ClInclude Include="platform\predicate_process.h" />

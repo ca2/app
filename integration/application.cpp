@@ -234,18 +234,18 @@ namespace app_integration
 #ifdef _DEBUG
 
 
-   int64_t application::increment_reference_count(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
+   int64_t application::increment_reference_count()
    {
 
-      return ::object::increment_reference_count(REFERENCING_DEBUGGING_ARGS);
+      return ::object::increment_reference_count();
 
    }
 
 
-   int64_t application::decrement_reference_count(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
+   int64_t application::decrement_reference_count()
    {
 
-      return ::object::decrement_reference_count(REFERENCING_DEBUGGING_ARGS);
+      return ::object::decrement_reference_count();
 
    }
 

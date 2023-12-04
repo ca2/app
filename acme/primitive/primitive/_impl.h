@@ -31,7 +31,7 @@
 
 
 template < typename BASE_TYPE >
-inline ::pointer<BASE_TYPE>particle::__create(::factory::factory* pfactory REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
+inline ::pointer<BASE_TYPE>particle::__call__create(::factory::factory* pfactory)
 {
 
    if (::is_null(pfactory))
@@ -41,7 +41,7 @@ inline ::pointer<BASE_TYPE>particle::__create(::factory::factory* pfactory REFER
 
    }
 
-   auto pfactoryitem = pfactory->get_factory_item<BASE_TYPE>();
+   auto & pfactoryitem = pfactory->get_factory_item<BASE_TYPE>();
 
    if (!pfactoryitem)
    {
@@ -50,7 +50,7 @@ inline ::pointer<BASE_TYPE>particle::__create(::factory::factory* pfactory REFER
 
    }
 
-   auto p = pfactoryitem->create_particle(REFERENCING_DEBUGGING_ARGS);
+   auto p = pfactoryitem->__call__create_particle();
 
    if (!p)
    {
@@ -60,8 +60,6 @@ inline ::pointer<BASE_TYPE>particle::__create(::factory::factory* pfactory REFER
    }
 
    p->initialize(this);
-
-   p.on_initialize_particle();
 
    return p;
 
@@ -81,7 +79,7 @@ inline ::pointer<BASE_TYPE>particle::__create(::factory::factory* pfactory REFER
 //
 //   }
 //
-//   auto p = pfactoryitem->create_particle();
+//   auto p = pfactoryitem->__call__create_particle();
 //
 //   if (!p)
 //   {
@@ -98,17 +96,69 @@ inline ::pointer<BASE_TYPE>particle::__create(::factory::factory* pfactory REFER
 
 
 template < typename TYPE >
-inline ::pointer<TYPE>particle::__create_new(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
+inline ::pointer<TYPE>particle::__call__create_new()
 {
 
    //ASSERT(::is_set(this));
 
-   return ::__create_new<TYPE>(this REFERENCING_DEBUGGING_COMMA_ARGS);
+   //return __call__create_new<TYPE>(this);
+
+   //if (::is_null(pparticle))
+   //{
+
+   //   throw_exception(error_wrong_state);
+
+   //}
+
+   auto p = __call__allocate< TYPE >();
+
+   if (p)
+   {
+
+      p->initialize(this);
+
+   }
+
+   return ::transfer(p);
+
 
    //return p;
 
 }
 
+
+template < typename TYPE >
+inline ::pointer<TYPE>particle::__call__create_new_clone(TYPE * psrc)
+{
+
+   //ASSERT(::is_set(this));
+
+   //return __call__create_new<TYPE>(this);
+
+   //if (::is_null(pparticle))
+   //{
+
+   //   throw_exception(error_wrong_state);
+
+   //}
+
+   auto p = __call__allocate< TYPE >();
+
+   if (p)
+   {
+
+      p->initialize(this);
+
+   }
+
+   *p = *psrc;
+
+   return ::transfer(p);
+
+
+   //return p;
+
+}
 
 //template < class T >
 //template < typename TEMPLATER >
@@ -124,7 +174,7 @@ inline ::pointer<TYPE>particle::__create_new(REFERENCING_DEBUGGING_PARAMETERS_DE
 
 
 template < typename BASE_TYPE >
-inline void particle::__construct(::pointer<BASE_TYPE>& p, ::factory::factory * pfactory REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
+inline void particle::__call__construct(::pointer<BASE_TYPE>& p, ::factory::factory * pfactory)
 {
 
    if (::is_null(pfactory))
@@ -150,7 +200,7 @@ inline void particle::__construct(::pointer<BASE_TYPE>& p, ::factory::factory * 
 
    }
 
-   auto ptypeNew = pfactoryitem->create_particle(REFERENCING_DEBUGGING_ARGS);
+   auto ptypeNew = pfactoryitem->__call__create_particle();
 
    p = ::transfer(ptypeNew);
 
@@ -371,10 +421,16 @@ inline void particle::__construct(::pointer<BASE_TYPE>& p, ::factory::factory * 
 
 
 template < typename TYPE >
-inline void particle::__construct_new(::pointer<TYPE>& p REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
+inline void particle::__call__construct_new(::pointer<TYPE>& p)
 {
 
-   auto ptypeNew = __allocate< TYPE >();
+//#if REFERENCING_DEBUGGING
+//
+//   ::allocator::add_referer(REFERENCING_DEBUGGING_ARGUMENTS);
+//
+//#endif
+//
+   auto ptypeNew = __call__allocate< TYPE >();
 
    if (!ptypeNew)
    {
@@ -383,14 +439,45 @@ inline void particle::__construct_new(::pointer<TYPE>& p REFERENCING_DEBUGGING_C
 
    }
 
-   ptypeNew.set_referer(REFERENCING_DEBUGGING_ARGS);
+   p = ::transfer(ptypeNew);
 
-   p.reset(ptypeNew REFERENCING_DEBUGGING_COMMA_ARGS);
+   //ptypeNew.set_referer();
+
+   //p.reset(ptypeNew);
 
    p->initialize(this);
 
 }
 
+
+//template < typename TYPE >
+//inline void particle::__call__raw_construct(REFERENCING_DEBUGGING_PARAMETERS_DECLARATION_COMMA ::pointer<TYPE> & p)
+//{
+//
+//#if REFERENCING_DEBUGGING
+//
+//   ::allocator::add_referer(REFERENCING_DEBUGGING_ARGUMENTS);
+//
+//#endif
+//
+//   auto ptypeNew = __call__allocate< TYPE >();
+//
+//   if (!ptypeNew)
+//   {
+//
+//      throw ::no_memory();
+//
+//   }
+//
+//   p = ::transfer(ptypeNew);
+//
+//   //ptypeNew.set_referer();
+//
+//   //p.reset(ptypeNew);
+//
+//   p->initialize(this);
+//
+//}
 
 //
 //template < typename TYPE >
@@ -462,7 +549,7 @@ inline void particle::__construct_new(::pointer<TYPE>& p REFERENCING_DEBUGGING_C
 //         if (m_pcompositea->erase(pcomposite) >= 0)
 //         {
 //
-//            pcomposite->release(REFERENCING_DEBUGGING_THIS);
+//            pcomposite->release();
 //
 //            pcomposite.clear_member();
 //
@@ -492,7 +579,7 @@ inline void particle::__construct_new(::pointer<TYPE>& p REFERENCING_DEBUGGING_C
 //         if (m_preferencea->erase(preference.get()) >= 0)
 //         {
 //
-//            preference->release(REFERENCING_DEBUGGING_THIS);
+//            preference->release();
 //
 //            preference.clear_member();
 //
@@ -1150,34 +1237,34 @@ inline ::pointer < T > pointer_transfer(T* p) { return { transfer_t{}, p}; }
 
 
 template < typename TYPE, typename T >
-void reference_count_debug_assign(::pointer<TYPE>& ptr, T * p REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
+void reference_count_debug_assign(::pointer<TYPE>& ptr, T * p)
 {
    
    auto pold = ptr.m_p;
 
    ptr.m_p = p;
 
-   p->increment_reference_count(REFERENCING_DEBUGGING_ARGS);
+   p->increment_reference_count();
 
-   reference_count_debug_release(pold REFERENCING_DEBUGGING_COMMA_ARGS);
+   reference_count_debug_release(pold);
 
 }
 
 
 template < typename TYPE >
-void reference_count_debug_release(::pointer<TYPE>& ptr REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
+void reference_count_debug_release(::pointer<TYPE>& ptr)
 {
    
-   reference_count_debug_release(ptr.m_p REFERENCING_DEBUGGING_COMMA_ARGS);
+   reference_count_debug_release(ptr.m_p);
 
 }
 
 
 template < typename TYPE >
-void reference_count_debug_release(TYPE * & p REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
+void reference_count_debug_release(TYPE * & p)
 {
 
-   release(p REFERENCING_DEBUGGING_COMMA_ARGS);
+   release(p);
 
 }
 
@@ -1254,7 +1341,7 @@ void reference_count_debug_release(TYPE * & p REFERENCING_DEBUGGING_COMMA_PARAMS
 
 //
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void object::__construct(::pointer<BASE_TYPE> pcomposite, const SOURCE* psource REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
+//inline void object::__construct(::pointer<BASE_TYPE> pcomposite, const SOURCE* psource)
 //{
 //
 //   pcomposite = psource;
@@ -1276,7 +1363,7 @@ void reference_count_debug_release(TYPE * & p REFERENCING_DEBUGGING_COMMA_PARAMS
 //
 //   //}
 //
-//    add_composite(pcomposite REFERENCING_DEBUGGING_COMMA_ARGS);
+//    add_composite(pcomposite);
 //
 //   //return m_estatus;
 //
@@ -1303,19 +1390,19 @@ void reference_count_debug_release(TYPE * & p REFERENCING_DEBUGGING_COMMA_PARAMS
 //
 //
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void object::__construct(::pointer<BASE_TYPE> p, const ::pointer<SOURCE>psource REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
+//inline void object::__construct(::pointer<BASE_TYPE> p, const ::pointer<SOURCE>psource)
 //{
 //
-//   /* return */ __construct(p, psource.get() REFERENCING_DEBUGGING_COMMA_ARGS);
+//   /* return */ __construct(p, psource.get());
 //
 //}
 //
 //
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void object::__construct(::pointer<BASE_TYPE> p, const ptr < SOURCE > & psource REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
+//inline void object::__construct(::pointer<BASE_TYPE> p, const ptr < SOURCE > & psource)
 //{
 //
-//   /* return */ __construct(p, psource.get() REFERENCING_DEBUGGING_COMMA_ARGS);
+//   /* return */ __construct(p, psource.get());
 //
 //}
 //
@@ -1689,17 +1776,19 @@ void reference_count_debug_release(TYPE * & p REFERENCING_DEBUGGING_COMMA_PARAMS
 
 
 template < typename TYPE >
-inline bool particle::__defer_construct_new(::pointer<TYPE> & p REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
+inline bool particle::__call__defer_construct_new(::pointer<TYPE> & p)
 {
 
    if (::is_set(p))
    {
 
+      ::allocator::defer_erase_referer();
+
       return false;
 
    }
 
-   __construct_new(p REFERENCING_DEBUGGING_COMMA_ARGS);
+   __construct_new(p);
 
    return true;
 
@@ -1717,6 +1806,30 @@ constexpr ::e_status e_status::worst(const ::e_status & e) const
 constexpr ::i64 posix_time::minutes() const { return m_iSecond / 60; }
 constexpr ::i64 posix_time::hours() const { return m_iSecond / (60 * 60); }
 constexpr ::i64 posix_time::days() const { return m_iSecond / (24 * 60 * 60); }
+
+
+
+//template < typename T, typename ...Args >
+//inline ::pointer < T > particle::__call__allocate(Args &&... args)
+//{
+//
+//   auto p = ::transfer(
+//      ::platform::allocator::__call__allocate< T >(
+//         ::std::forward<Args>(args)...));
+//
+//   return ::transfer(p);
+//
+//}
+//
+
+//inline ::particle * particle::__call__add_referer(const ::reference_referer & referer) const
+//{
+//
+//   ::allocator::add_referer(referer);
+//
+//   return (::particle *)this;
+//
+//}
 
 
 

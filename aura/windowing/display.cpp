@@ -73,9 +73,21 @@ namespace windowing
 
       m_pwindowing = pwindowing;
 
-      open();
+      open_display();
 
       //return ::success;
+
+   }
+
+
+   void display::finalize_display()
+   {
+
+      close_display();
+
+      m_monitora.clear();
+
+      m_pwindowing.release();
 
    }
 
@@ -105,7 +117,15 @@ namespace windowing
    }
 
 
-   void display::open()
+   void display::open_display()
+   {
+
+      //return ::success;
+
+   }
+
+
+   void display::close_display()
    {
 
       //return ::success;

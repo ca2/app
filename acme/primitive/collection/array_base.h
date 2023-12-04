@@ -710,16 +710,16 @@ public:
    //::count set_size(::count nNewSize, ::count nGrowBy = -1); // does not call default constructors on new items/elements
    
    /// if bRaw is true does not call default constructors on new elements
-   template < non_same_as < TYPE > T2 >
-   ::count allocate(::count nNewSize, bool bShrink, bool bRaw, T2 p)
+   template < pointer_not_castable_to < TYPE * > P >
+   ::count allocate(::count nNewSize, bool bShrink, bool bRaw, P & p)
    {
       TYPE t(p);
       return _allocate(nNewSize, bShrink, bRaw, &t);
    }
-   template < same_as < TYPE > T2 >
-   ::count allocate(::count nNewSize, bool bShrink, bool bRaw, T2 type)
+   template < pointer_castable_to < TYPE * > T >
+   ::count allocate(::count nNewSize, bool bShrink, bool bRaw, T & t)
    {
-      return _allocate(nNewSize, bShrink, bRaw, &type);
+      return _allocate(nNewSize, bShrink, bRaw, &t);
    }
    ::count allocate(::count nNewSize, bool bShrink, bool bRaw)
    {
@@ -791,7 +791,7 @@ public:
 
    void on_construct_element(TYPE * p) { TYPED::construct(p); }
    void on_construct_element(TYPE * p, ::count c) { TYPED::construct_count(p, c); }
-   void on_destruct_element(TYPE * p REFERENCING_DEBUGGING_COMMA_PARAMS) { TYPED::destruct(p  REFERENCING_DEBUGGING_COMMA_ARGS); }
+   void on_destruct_element(TYPE * p) { TYPED::destruct(p); }
    void on_copy_element(::index i, const TYPE * p) { TYPED::copy(&this->m_begin[i], p); }
 
 
@@ -1025,7 +1025,7 @@ public:
    TYPE_IS_PTR merge_get_existing(const TYPE_IS_PTR & p, const OBJECT& pparticle, const ATTRIBUTE& attribute)
    {
 
-      auto pModified = __allocate< typename TYPE_IS_PTR::TYPE >(*p);
+      auto pModified = __call__allocate< typename TYPE_IS_PTR::TYPE >(*p);
 
       pModified->process(pparticle, attribute);
 
@@ -1437,7 +1437,7 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  :
 
    ::count nMoveCount = this->size() - in_count_out_last;
 
-   TYPED::destruct_count(this->m_begin + first, nCount REFERENCING_DEBUGGING_COMMA_THIS);
+   TYPED::destruct_count(this->m_begin + first, nCount);
 
    if(nMoveCount)
    {
@@ -1542,7 +1542,7 @@ void array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >
    if(this->m_begin != nullptr)
    {
 
-      TYPED::destruct_count(this->m_begin, this->size() REFERENCING_DEBUGGING_COMMA_THIS);
+      TYPED::destruct_count(this->m_begin, this->size());
 
       MEMORY::free(this->m_begin);
 
@@ -1864,7 +1864,7 @@ array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > arra
 
    array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > a(this->m_begin + nIndex, (size_t)nMoveCount);
 
-   TYPED::destruct_count(this->m_begin + nIndex, nCount REFERENCING_DEBUGGING_COMMA_THIS);
+   TYPED::destruct_count(this->m_begin + nIndex, nCount);
 
    if (nMoveCount)
    {
@@ -2278,7 +2278,7 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  :
       if(this->m_begin != nullptr)
       {
 
-         TYPED::destruct_count(this->m_begin, this->size()  REFERENCING_DEBUGGING_COMMA_THIS);
+         TYPED::destruct_count(this->m_begin, this->size());
          
          if(bShrink)
          {
@@ -2410,7 +2410,7 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  :
       else if(this->size() > nNewSize)
       {
 
-         TYPED::destruct_count(this->m_begin + nNewSize,this->size() - nNewSize REFERENCING_DEBUGGING_COMMA_THIS);
+         TYPED::destruct_count(this->m_begin + nNewSize,this->size() - nNewSize);
 
       }
 

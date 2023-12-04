@@ -4,6 +4,7 @@
 #include "acme/constant/message.h"
 #include "acme/constant/user_key.h"
 #include "acme/handler/item.h"
+#include "acme/handler/topic.h"
 #include "acme/primitive/collection/_array.h"
 #include "acme/user/user/content.h"
 #include "aura/graphics/image/drawing.h"
@@ -515,7 +516,7 @@ namespace user
                if (m_pimageaThumb->image_at(iImage)->is_null())
                {
 
-                  m_pimageaThumb->image_at(iImage).create(this);
+                  __construct(m_pimageaThumb->image_at(iImage));
 
                }
 

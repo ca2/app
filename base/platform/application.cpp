@@ -31,9 +31,17 @@ namespace base
       m_pbaseapplication = this;
 
 
+    
+
+   }
+
+
+   void application::on_set_platform()
+   {
+
+      ::axis::application::on_set_platform();
+
       factory()->add_factory_item< ::base::system, ::acme::system>();
-
-
 
    }
 
@@ -240,7 +248,7 @@ namespace base
 
          auto & pfactory = system()->factory(strLibrary);
 
-         auto pformhandler = pfactory->create <::user::form_handler>(this);
+         auto pformhandler = __create<::user::form_handler>(pfactory);
 
          pformhandler->design_form(pparent);
 

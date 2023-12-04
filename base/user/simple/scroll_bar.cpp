@@ -1071,10 +1071,10 @@ puiParent->SendMessage(e_message_scroll_y, MAKEWPARAM(e_scroll_command_LINEDOWN,
 void simple_scroll_bar::on_message_create(::message::message * pmessage)
 {
 
-   m_ppenDraw.create(this);
-   m_pbrushDraw.create(this);
-   m_pregionA.create(this); // regiao da primeira seta
-   m_pregionB.create(this); // regiao da segunda seta
+   __construct(m_ppenDraw);
+   __construct(m_pbrushDraw);
+   __construct(m_pregionA); // regiao da primeira seta
+   __construct(m_pregionB); // regiao da segunda seta
 
    auto pitemScrollbarTrackbar = __allocate< ::item >(::item_t{ e_element_scrollbar_trackbar });
 

@@ -17,7 +17,7 @@ class referencing_debugging;
 namespace acme
 {
 
-   
+
    class CLASS_DECL_ACME acme
    {
    public:
@@ -27,6 +27,8 @@ namespace acme
       ::pointer < ::task_message_queue >     m_ptaskmessagequeue;
       ::pointer < ::platform::platform >     m_pplatform;
       ::heap::management *                   m_pheapmanagement;
+
+
 
 
 #if REFERENCING_DEBUGGING 
@@ -73,12 +75,17 @@ namespace acme
       void acme_destruct();
 
 
+      void acme_construct_platform_dependent();
+      void acme_destruct_platform_dependent();
+
+
       void initialize_memory_management();
       void finalize_memory_management();
 
 
       void initialize_message_queue();
       void finalize_message_queue();
+
 
    };
 

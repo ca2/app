@@ -11,26 +11,26 @@ object::~object()
 #ifdef _DEBUG
 
 
-i64 object::increment_reference_count(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
+i64 object::increment_reference_count()
 {
 
-   return property_object::increment_reference_count(REFERENCING_DEBUGGING_ARGS);
+   return property_object::increment_reference_count();
 
 }
 
 
-i64 object::decrement_reference_count(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
+i64 object::decrement_reference_count()
 {
 
-   return property_object::decrement_reference_count(REFERENCING_DEBUGGING_ARGS);
+   return property_object::decrement_reference_count();
 
 }
 
 
-i64 object::release(REFERENCING_DEBUGGING_PARAMETERS)
+i64 object::release()
 {
 
-   return property_object::release(REFERENCING_DEBUGGING_ARGS);
+   return property_object::release();
 
 }
 
@@ -38,26 +38,26 @@ i64 object::release(REFERENCING_DEBUGGING_PARAMETERS)
 #else
 
 
-i64 object::increment_reference_count(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
+i64 object::increment_reference_count()
 {
 
-   return property_object::increment_reference_count(REFERENCING_DEBUGGING_ARGS);
+   return property_object::increment_reference_count();
 
 }
 
 
-i64 object::decrement_reference_count(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
+i64 object::decrement_reference_count()
 {
 
-   return property_object::decrement_reference_count(REFERENCING_DEBUGGING_ARGS);
+   return property_object::decrement_reference_count();
 
 }
 
 
-i64 object::release(REFERENCING_DEBUGGING_PARAMETERS)
+i64 object::release()
 {
 
-   return property_object::release(REFERENCING_DEBUGGING_ARGS);
+   return property_object::release();
 
 }
 
@@ -318,11 +318,11 @@ void object::process_exit_status(const ::e_status & estatus)
     }
 //
 //#ifdef _DEBUG
-//    void set_context(::context* pcontext REFERENCING_DEBUGGING_COMMA_PARAMS);
-//    void set_context_thread(::thread* pthread REFERENCING_DEBUGGING_COMMA_PARAMS);
-//    void set_context_app(::apex::application* pappContext REFERENCING_DEBUGGING_COMMA_PARAMS);
-//    void set_context_session(::apex::session* psessionContext REFERENCING_DEBUGGING_COMMA_PARAMS);
-//   // void set_context_system(::apex::system* psystemContext REFERENCING_DEBUGGING_COMMA_PARAMS);
+//    void set_context(::context* pcontext);
+//    void set_context_thread(::thread* pthread);
+//    void set_context_app(::apex::application* pappContext);
+//    void set_context_session(::apex::session* psessionContext);
+//   // void set_context_system(::apex::system* psystemContext);
 //   // void set_context_user(::object * puserContext);
 //#else
 //   inline void set_context(::context* pcontext);
@@ -408,10 +408,10 @@ void object::process_exit_status(const ::e_status & estatus)
    //inline void __construct(::pointer<BASE_TYPE> pusermessage);
 
    //template < typename BASE_TYPE, typename SOURCE >
-   //inline void __construct(::pointer<BASE_TYPE> pusermessage, const SOURCE* psource REFERENCING_DEBUGGING_COMMA_PARAMS);
+   //inline void __construct(::pointer<BASE_TYPE> pusermessage, const SOURCE* psource);
 
    //template < typename BASE_TYPE, typename SOURCE >
-   //inline void __construct(::pointer<BASE_TYPE> pusermessage, const ::pointer<SOURCE>psource REFERENCING_DEBUGGING_COMMA_PARAMS);
+   //inline void __construct(::pointer<BASE_TYPE> pusermessage, const ::pointer<SOURCE>psource);
 
    //template < typename BASE_TYPE >
    //inline void __id_construct(::pointer<BASE_TYPE> pusermessage, const ::atom& atom);
@@ -459,44 +459,44 @@ void object::process_exit_status(const ::e_status & estatus)
    //inline void __construct_new(::pointer<TYPE> pusermessage);
 
    //template < typename BASE_TYPE >
-   //inline void __release(::pointer<BASE_TYPE> pcomposite REFERENCING_DEBUGGING_COMMA_PARAMS);
+   //inline void __release(::pointer<BASE_TYPE> pcomposite);
 
    //template < typename BASE_TYPE >
-   //inline void __release(::pointer<BASE_TYPE> preference REFERENCING_DEBUGGING_COMMA_PARAMS);
+   //inline void __release(::pointer<BASE_TYPE> preference);
 
    //template < typename SOURCE >
-   //inline void release_reference(::pointer<SOURCE> psource REFERENCING_DEBUGGING_COMMA_PARAMS);
+   //inline void release_reference(::pointer<SOURCE> psource);
 
 
-   // void add_composite(::particle * pparticle REFERENCING_DEBUGGING_COMMA_PARAMS) 
-   // void add_reference(::particle * pparticle REFERENCING_DEBUGGING_COMMA_PARAMS) 
+   // void add_composite(::particle * pparticle) 
+   // void add_reference(::particle * pparticle) 
 
 
-   // void release_composite2(::particle * pparticle REFERENCING_DEBUGGING_COMMA_PARAMS) 
-   // void finalize_composite(::particle * pparticle REFERENCING_DEBUGGING_COMMA_PARAMS) 
-   // void release_reference(::particle * pparticle REFERENCING_DEBUGGING_COMMA_PARAMS) 
+   // void release_composite2(::particle * pparticle) 
+   // void finalize_composite(::particle * pparticle) 
+   // void release_reference(::particle * pparticle) 
 
 
    //template < typename BASE_TYPE >
-   //inline void add_composite(::pointer<BASE_TYPE> pcomposite REFERENCING_DEBUGGING_COMMA_PARAMS);
+   //inline void add_composite(::pointer<BASE_TYPE> pcomposite);
 
    //template < typename BASE_TYPE, typename SOURCE >
-   //inline void __refer(::pointer<BASE_TYPE> preference, const SOURCE* psource REFERENCING_DEBUGGING_COMMA_PARAMS);
+   //inline void __refer(::pointer<BASE_TYPE> preference, const SOURCE* psource);
 
    //template < typename BASE_TYPE, typename SOURCE >
-   //inline void __refer(::pointer<BASE_TYPE> preference, const ::pointer<SOURCE>psource REFERENCING_DEBUGGING_COMMA_PARAMS);
+   //inline void __refer(::pointer<BASE_TYPE> preference, const ::pointer<SOURCE>psource);
 
    //template < typename BASE_TYPE, typename SOURCE >
-   //inline void __refer(::pointer<BASE_TYPE> preference, const ::primitive::member < SOURCE >& psource REFERENCING_DEBUGGING_COMMA_PARAMS);
+   //inline void __refer(::pointer<BASE_TYPE> preference, const ::primitive::member < SOURCE >& psource);
 
    //template < typename SOURCE >
-   //inline void add_reference(SOURCE* psource REFERENCING_DEBUGGING_COMMA_PARAMS);
+   //inline void add_reference(SOURCE* psource);
 
    //template < typename SOURCE >
-   //inline void add_reference(::pointer<SOURCE> psource REFERENCING_DEBUGGING_COMMA_PARAMS);
+   //inline void add_reference(::pointer<SOURCE> psource);
 
    //template < typename SOURCE >
-   //inline void add_reference(::pointer<SOURCE> psource REFERENCING_DEBUGGING_COMMA_PARAMS);
+   //inline void add_reference(::pointer<SOURCE> psource);
 
 void object::delete_this()
 {

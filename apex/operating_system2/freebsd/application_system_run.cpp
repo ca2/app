@@ -101,7 +101,7 @@ CLASS_DECL_APEX i32 ca2_main();
 //
 //   auto psystem = ::apexacmesystem();
 //
-//   psystem->increment_reference_count(REFERENCING_DEBUGGING_ARGS);
+//   psystem->increment_reference_count();
 //
 //   if (m_pmainstruct->m_bConsole)
 //   {

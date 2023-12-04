@@ -2,8 +2,8 @@
 #include "trace_category.h"
 
 
-void trace_category_static_init();
-void trace_category_static_term();
+void aaa_trace_category_static_init();
+void aaa_trace_category_static_term();
 
 
 

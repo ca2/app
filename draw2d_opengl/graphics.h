@@ -47,8 +47,8 @@ namespace draw2d_opengl
       ~graphics() override;
 
 #ifdef _DEBUG
-         int64_t increment_reference_count(REFERENCING_DEBUGGING_PARAMETERS) override;
-      int64_t decrement_reference_count(REFERENCING_DEBUGGING_PARAMETERS) override;
+         int64_t increment_reference_count() override;
+      int64_t decrement_reference_count() override;
 #endif
 
       void initialize(::particle * pparticle) override;

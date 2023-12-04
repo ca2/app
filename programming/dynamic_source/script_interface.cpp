@@ -87,9 +87,9 @@ namespace dynamic_source
 
    //   auto estatus = ::html_file::destroy();
 
-   //   m_pmain.release(REFERENCING_DEBUGGING_THIS);
-   //   m_pinstanceParent2.release(REFERENCING_DEBUGGING_THIS);
-   //   m_pscript2.release(REFERENCING_DEBUGGING_THIS);
+   //   m_pmain.release();
+   //   m_pinstanceParent2.release();
+   //   m_pscript2.release();
 
    //   return estatus;
 
@@ -102,9 +102,9 @@ namespace dynamic_source
       
       ::html_file::destroy();
 
-      m_pmain.release(REFERENCING_DEBUGGING_THIS);
-      m_pinstanceParent2.release(REFERENCING_DEBUGGING_THIS);
-      m_pscript2.release(REFERENCING_DEBUGGING_THIS);
+      m_pmain.release();
+      m_pinstanceParent2.release();
+      m_pscript2.release();
 
       //return estatus;
 

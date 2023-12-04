@@ -31,9 +31,9 @@ namespace calculator
 
       bool keyboard_focus_is_focusable() override;
 
-      //virtual i64 increment_reference_count(REFERENCING_DEBUGGING_PARAMETERS) override;
+      //virtual i64 increment_reference_count() override;
 
-      //virtual i64 decrement_reference_count(REFERENCING_DEBUGGING_PARAMETERS) override;
+      //virtual i64 decrement_reference_count() override;
 
       virtual ::payload get_ex_value() override;
 

@@ -42,6 +42,23 @@ namespace hardware
    }
 
 
+   void device_listener::unregister_device_listener(enum_device edevice)
+   {
+
+      auto psystem = system()->m_paurasystem;
+
+      auto phardwaredevices = psystem->hardware_devices();
+
+      if (::is_set(phardwaredevices))
+      {
+
+         phardwaredevices->unregister_device_listener(this, edevice);
+
+      }
+
+   }
+
+
    void device_listener::on_device_nodes_changed()
    {
 

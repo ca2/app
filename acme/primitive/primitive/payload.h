@@ -141,6 +141,10 @@ public:
 
    };
 
+#ifdef REFERENCING_DEBUGGING
+   ::reference_referer * m_preferer = nullptr;
+#endif
+
 
    payload();
    payload(no_initialize_t) {}
@@ -1090,7 +1094,7 @@ public:
       if (!p)
       {
 
-         p = __allocate< T >();
+         p = __call__allocate< T >();
 
          operator =(p);
 

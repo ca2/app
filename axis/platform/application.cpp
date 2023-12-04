@@ -37,13 +37,23 @@ namespace axis
       m_paxisapplication = this;
       m_bInitializeDataCentral = true;
 
-      factory()->add_factory_item< ::axis::system, ::acme::system>();
-
    }
 
 
    application::~application()
    {
+
+   }
+
+
+   void application::on_set_platform()
+   {
+
+      ::aura::application::on_set_platform();
+
+      factory()->add_factory_item< ::axis::system, ::acme::system>();
+
+
 
    }
 

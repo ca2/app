@@ -49,8 +49,8 @@ namespace simple_ui
 
 //      virtual void on_select_user_style() override;
 
-      //virtual i64 increment_reference_count(REFERENCING_DEBUGGING_PARAMETERS) override;
-      //virtual i64 decrement_reference_count(REFERENCING_DEBUGGING_PARAMETERS) override;
+      //virtual i64 increment_reference_count() override;
+      //virtual i64 decrement_reference_count() override;
       
 
    };

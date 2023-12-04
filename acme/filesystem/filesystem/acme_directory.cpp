@@ -751,7 +751,7 @@ void acme_directory::_create2(const ::file::path & pathParam)
 
    }
 
-   __create(pathParam);
+   _create4(pathParam);
 
 }
 
@@ -1084,7 +1084,7 @@ bool acme_directory::_is(bool & bDir, const ::file::path & path)
 }
 
 
-void acme_directory::__create(const ::file::path & path)
+void acme_directory::_create4(const ::file::path & path)
 {
 
    ::create_directory(path);

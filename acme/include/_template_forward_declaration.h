@@ -449,7 +449,7 @@ inline ::pointer < T > pointer_transfer(T * p);
 
 
 template < typename T, typename ...Args >
-inline ::pointer < T > __allocate(Args &&... args);
+inline ::pointer < T > __call__allocate(Args &&... args);
 
 
 

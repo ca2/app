@@ -347,7 +347,9 @@ namespace windowing
    void window::destroy_window()
    {
 
-      throw ::interface_only();
+      m_pwindowing.release();
+
+      m_pwindowParent.release();
 
    }
 
@@ -1039,6 +1041,19 @@ namespace windowing
 
    void window::post_non_client_destroy()
    {
+
+      m_pplacementlog.release();
+      m_pparticleChildrenSynchronization.release();
+      m_pcursor.release();
+      m_pcopydesk.release();
+      m_pwindowing.release();
+      m_picon.release();
+      m_pwindowParent.release();
+      m_pmessagequeue.release();
+      m_puserinteractionimpl.release();
+      m_pdisplay.release();
+
+      ::channel::destroy();
 
    }
 

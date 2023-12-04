@@ -19,11 +19,25 @@ namespace c
       }
       string(const char * psz)
       {
-         m_psz = strdup(psz);
+         if (psz)
+         {
+            m_psz = strdup(psz);
+         }
+         else
+         {
+            m_psz = nullptr;
+         }
       }
       string(const string & str)
       {
-         m_psz = strdup(str.m_psz);
+         if (str.m_psz)
+         {
+            m_psz = strdup(str.m_psz);
+         }
+         else
+         {
+            m_psz = nullptr;
+         }
       }
       string(string && str)
       {
@@ -47,9 +61,12 @@ namespace c
          return *this;
       }
       string & operator = (const string & str) {
-         if (this != &str) {
+         if (m_psz != str.m_psz) {
             destroy();
-            m_psz = strdup(str.m_psz);
+            if (str.m_psz)
+            {
+               m_psz = strdup(str.m_psz);
+            }
          }
          return *this;
       }
@@ -57,12 +74,15 @@ namespace c
          if (psz != m_psz)
          {
             destroy();
-            m_psz = strdup(psz);
+            if (psz)
+            {
+               m_psz = strdup(psz);
+            }
          }
          return *this;
       }
-      string & operator = (string && str) {
-         if (this != &str) {
+      string & operator = (string && str) noexcept {
+         if (m_psz != str.m_psz) {
             destroy();
             auto psz = str.m_psz;
             str.m_psz = nullptr;

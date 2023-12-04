@@ -10,6 +10,7 @@
 #include "acme/handler/item.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/keep.h"
+#include "acme/handler/extended_topic.h"
 #include "acme/handler/request.h"
 #include "aura/graphics/image/context_image.h"
 #include "acme/primitive/data/listener.h"

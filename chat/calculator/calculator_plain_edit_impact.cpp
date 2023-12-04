@@ -324,11 +324,11 @@ namespace calculator
 
    i64 plain_edit_impact::increment_reference_count()
    {
-      return ::object::increment_reference_count(REFERENCING_DEBUGGING_ARGS);
+      return ::object::increment_reference_count();
    }
    i64 plain_edit_impact::decrement_reference_count()
    {
-      return ::object::decrement_reference_count(REFERENCING_DEBUGGING_ARGS);
+      return ::object::decrement_reference_count();
    }
 
 

@@ -322,7 +322,7 @@ CLASS_DECL_ACME ::task * get_task();
 
 
 //CLASS_DECL_ACME::task* get_task();
-CLASS_DECL_ACME void set_task(task * ptask REFERENCING_DEBUGGING_COMMA_PARAMS);
+CLASS_DECL_ACME void set_task(task * ptask);
 
 CLASS_DECL_ACME string get_task_name(::task * ptask);
 
@@ -375,6 +375,6 @@ inline void while_predicateicate_Sleep(int iTime, PRED pred)
 
 
 
-CLASS_DECL_ACME void task_release(REFERENCING_DEBUGGING_PARAMETERS);
+CLASS_DECL_ACME void task_release();
 
 

@@ -3,6 +3,7 @@
 // From Linux parallelization.cpp <3ThomasBorregaardSorensen!!
 //
 #include "framework.h"
+#if !defined(WINDOWS)
 #include "acme/parallelization/task.h"
 #if defined(FREEBSD)
 #undef _ANSI_SOURCE
@@ -156,3 +157,4 @@ void task_set_name(htask_t htask, const char * psz)
 
 
 
+#endif

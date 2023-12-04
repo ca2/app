@@ -9,7 +9,7 @@ namespace allocator
 {
 
 
-   CLASS_DECL_ACME void __on_start_construct(void * p, memsize s, bool bDisableReferencingDebugging, bool bParticleAndHeapAllocation);
+   CLASS_DECL_ACME void __on_start_construct(void * p, memsize s, bool bParticleAndHeapAllocation);
 
    CLASS_DECL_ACME::particle * task_get_top_track();
 
@@ -21,13 +21,15 @@ namespace allocator
 
    CLASS_DECL_ACME void on_destruct_particle(::particle * pparticle);
 
+   CLASS_DECL_ACME void __on_after_construct_particle(::particle * pparticle);
 
-   template < typename ALLOCATOR_ACCESSOR, bool t_bDisableReferencingDebugging = false >
+
+   //template < typename ALLOCATOR_ACCESSOR, bool t_bDisableReferencingDebugging = false >
    class accessor
    {
    public:
 
-      using ACCESSOR = ALLOCATOR_ACCESSOR;
+      //using ACCESSOR = ALLOCATOR_ACCESSOR;
 
       template < typename T, typename ...Args >
       static T * __accessor_on_construct(void * data, Args &&... args)
@@ -53,11 +55,16 @@ namespace allocator
       static inline PARTICLE * __on_construct(void * data, memsize s, Args &&... args)
       {
 
-         __on_start_construct(data, s, t_bDisableReferencingDebugging, true);
+         //__on_start_construct(data, s, t_bDisableReferencingDebugging, true);
+         __on_start_construct(data, s, true);
 
 #if REFERENCING_DEBUGGING
 
-         return __on_referencing_debugging_construct<PARTICLE>(data, s, ::std::forward<Args>(args)...);
+         auto p = __on_referencing_debugging_construct<PARTICLE>(data, s, ::std::forward<Args>(args)...);
+
+         __on_after_construct_particle(p);
+
+         return p;
 
 #else
 
@@ -72,11 +79,15 @@ namespace allocator
       inline static NON_PARTICLE * __on_construct(void * data, memsize s, Args &&... args)
       {
 
-         __on_start_construct(data, s, t_bDisableReferencingDebugging, false);
+         __on_start_construct(data, s, false);
 
 #if REFERENCING_DEBUGGING
 
-         return __on_referencing_debugging_construct<NON_PARTICLE>(data, s, ::std::forward<Args>(args)...);
+         auto p = __on_referencing_debugging_construct<NON_PARTICLE>(data, s, ::std::forward<Args>(args)...);
+
+         __on_after_construct();
+
+         return p;
 
 #else
 
@@ -95,7 +106,7 @@ namespace allocator
 
          auto p = __accessor_on_construct<PARTICLE>(data, ::std::forward<Args>(args)...);
 
-         on_after_construct_particle(p);
+         //on_after_construct_particle(p);
 
          return p;
 
@@ -113,6 +124,19 @@ namespace allocator
          return p;
 
       }
+
+
+      //template < non_particle NON_PARTICLE, typename ...Args >
+      //inline static NON_PARTICLE * __on_referencing_debugging_construct(void * data, memsize s, Args &&... args)
+      //{
+
+      //   //auto p = ::new(pdata) NON_PARTICLE(::std::forward<Args>(args)...);
+
+      //   auto p = __accessor_on_construct<NON_PARTICLE>(data, ::std::forward<Args>(args)...);
+
+      //   return p;
+
+      //}
 
 
       template < a_particle PARTICLE, typename ...Args >
@@ -158,9 +182,26 @@ namespace allocator
       static ::pointer < T > __allocator_base_allocate(::heap::allocator_base * pallocatorbase, Args &&... args)
       {
 
+         auto preferer = ::allocator::get_referer();
+
          auto p = __allocator_base_new< T >(pallocatorbase, ::std::forward < Args >(args)...);
+
+         pointer < T > pointer{ transfer_t{}, p };
+
+         if (!p->is_referencing_debugging_enabled())
+         {
+
+            pointer.m_preferer = nullptr;
+
+         }
+         else
+         {
+
+            pointer.m_preferer = preferer;
+
+         }
  
-         return { transfer_t{}, p };
+         return ::transfer(pointer);
 
       }
 
@@ -174,8 +215,6 @@ namespace allocator
          auto data = pallocatorbase->allocate(s);
 
          auto p = __on_construct< T >(data, s, ::std::forward < Args >(args)...);
-
-         __on_after_construct();
 
          return p;
 
@@ -270,7 +309,7 @@ namespace allocator
 
 
       template < typename T, typename ...Args >
-      ::pointer < T > static __allocate(Args &&... args)
+      ::pointer < T > static __call__allocate(Args &&... args)
       {
 
          auto p = ::transfer(__memory_allocate< T >(
@@ -278,6 +317,17 @@ namespace allocator
             ::std::forward<Args>(args)...));
 
          return ::transfer(p);
+
+      }
+
+
+      //accessor < ALLOCATOR_ACCESSOR, t_bDisableReferencingDebugging > * __call__add_referer(const ::reference_referer & referer) const
+      accessor * __call__add_referer(const ::reference_referer & referer) const
+      {
+
+         ::allocator::add_referer(referer);
+      
+         return (accessor *) this;
 
       }
 
@@ -321,6 +371,9 @@ namespace allocator
    };
 
 
+   CLASS_DECL_ACME extern ::allocator::accessor * g_pacessorDefault;
+
+
 } // namespace allocator
 
 
@@ -328,20 +381,20 @@ namespace platform
 {
 
 
-   using allocator = ::allocator::accessor < default_t >;
+   using allocator = ::allocator::accessor;
 
-   using raw_allocator = ::allocator::accessor < default_t, true >;
+   //using raw_allocator = ::allocator::accessor < default_t, true >;
 
 
 } // namespace platform
 
 
 template < typename T, typename ...Args >
-::pointer < T > __allocate(Args &&... args)
+::pointer < T > __call__allocate(Args &&... args)
 {
 
    auto p = ::transfer(
-      ::platform::allocator::__allocate< T >(
+      ::platform::allocator::__call__allocate< T >(
          ::std::forward<Args>(args)...));
 
    return ::transfer(p);

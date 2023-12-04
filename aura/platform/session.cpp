@@ -2116,7 +2116,7 @@ namespace aura
 
          }
 
-         m_puser.release();
+         m_puser.defer_destroy();
 
       }
 

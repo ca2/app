@@ -895,7 +895,7 @@ void node_set < NODE >::free_node(iterator iterator)
 
    }
 
-   delete iterator.get();
+   __delete(iterator.get());
 
    //iterator->m_next = this->m_pnodeFree;
 

@@ -13,6 +13,7 @@
 
 
 #include "acme/primitive/primitive/e_flag.h"
+#include "acme/platform/allocator.h"
 
 
 namespace platform
@@ -133,19 +134,19 @@ public:
 #ifdef _DEBUG
 
 
-   virtual i64 increment_reference_count(REFERENCING_DEBUGGING_PARAMETERS);
-   virtual i64 decrement_reference_count(REFERENCING_DEBUGGING_PARAMETERS);
-   virtual i64 replace_reference(REFERENCING_DEBUGGING_PARAMETERS);
-   virtual i64 release(REFERENCING_DEBUGGING_PARAMETERS);
+   virtual i64 increment_reference_count();
+   virtual i64 decrement_reference_count();
+   virtual i64 replace_reference();
+   virtual i64 release();
 
 
 #else
 
    
-   inline i64 increment_reference_count(REFERENCING_DEBUGGING_PARAMETERS);
-   inline i64 decrement_reference_count(REFERENCING_DEBUGGING_PARAMETERS);
-   inline i64 replace_reference(REFERENCING_DEBUGGING_PARAMETERS);
-   inline i64 release(REFERENCING_DEBUGGING_PARAMETERS);
+   inline i64 increment_reference_count();
+   inline i64 decrement_reference_count();
+   inline i64 replace_reference();
+   inline i64 release();
 
 
 #endif
@@ -155,18 +156,21 @@ public:
 
 #ifdef REFERENCING_DEBUGGING
 
+   ::particle * refdbg_this() const { return (::particle *)this; }
+
 protected:
    
    ::particle * m_pparticleTopTrack = nullptr;
 
 public:
 
+   ::reference_referer * m_prefererTransfer = nullptr;
+
    ::particle * get_top_track() const;
    void add_top_track(::particle * pparticle);
    void erase_top_track(::particle * pparticle);
    bool contains_top_track(::particle * pparticle) const;
    bool find_top_track(::particle * pparticle, ::particle ** ppparticleParent) const;
-
 
 
 
@@ -202,9 +206,9 @@ public:
    void disable_referencing_debugging();
 
    //void add_initial_reference_item();
-   void add_reference_item(REFERENCING_DEBUGGING_PARAMETERS);
-   //void _add_reference_item(REFERENCING_DEBUGGING_PARAMETERS);
-   void erase_reference_item(REFERENCING_DEBUGGING_PARAMETERS);
+   void add_reference_item();
+   //void _add_reference_item();
+   void erase_reference_item();
    void check_pending_releases();
 
 #else
@@ -216,13 +220,15 @@ public:
 
    virtual void delete_this();
 
+   virtual ::string get_debug_title() const;
+
 
    inline ::particle * trace_this() const { return (::particle *) this; }
 
 
    inline ::particle * synchronization() const { return ::is_set(this) ? m_pparticleSynchronization : nullptr; }
    void set_synchronization(::particle * pparticleSynchronization);
-   void defer_create_synchronization(REFERENCING_DEBUGGING_PARAMETERS);
+   void defer_create_synchronization();
 
 
 #ifdef WINDOWS
@@ -239,8 +245,6 @@ public:
    //virtual void initialize(::particle * pparticle);
    virtual void on_initialize_particle();
 
-
-   
    class ::platform::platform * platform() const;
 
    virtual class ::platform::platform * _platform() const;
@@ -633,12 +637,15 @@ public:
 
 
    template < typename BASE_TYPE >
-   inline ::pointer<BASE_TYPE>__create(::factory::factory * pfactory = nullptr REFERENCING_DEBUGGING_COMMA_PARAMS);
+   inline ::pointer<BASE_TYPE>__call__create(::factory::factory * pfactory = nullptr);
 
-   ::pointer<particle>__id_create(const ::atom& atom, ::factory::factory * pfactory = nullptr REFERENCING_DEBUGGING_COMMA_PARAMS);
+   ::pointer<particle>__call__id_create(const ::atom& atom, ::factory::factory * pfactory = nullptr);
 
    template < typename TYPE >
-   inline ::pointer<TYPE>__create_new(REFERENCING_DEBUGGING_PARAMETERS);
+   inline ::pointer<TYPE> __call__create_new();
+
+   template < typename TYPE >
+   inline ::pointer<TYPE> __call__create_new_clone(TYPE * p);
 
    template < typename TYPE >
    inline TYPE*__initialize(TYPE * p)
@@ -665,11 +672,15 @@ public:
    }
 
 
+   /// @brief consumes a referer
+   /// @tparam T 
+   /// @param pSource 
+   /// @return 
    template < typename T >
-   ::pointer < T > create_clone(const T * pSource REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
+   ::pointer < T > create_clone(const T * pSource)
    {
 
-      auto p = this->__create< T >(REFERENCING_DEBUGGING_ARGS);
+      auto p = this->__create< T >();
 
       if (!p)
       {
@@ -685,20 +696,22 @@ public:
    }
 
 
+   ///// consumes a referer
+   //template < typename T >
+   //::pointer < T > create_new_clone(const ::pointer < T > & psource )
+   //{
+
+   //   return this->create_new_clone(psource.m_p);
+
+   //}
+
+
+   /// consumes a referer
    template < typename T >
-   ::pointer < T > create_new_clone(const ::pointer < T > & psource  REFERENCING_DEBUGGING_COMMA_PARAMS)
+   ::pointer < T > __call__create_new_clone(const T * pSource)
    {
 
-      return this->create_new_clone(psource.m_p  REFERENCING_DEBUGGING_COMMA_ARGS);
-
-   }
-
-
-   template < typename T >
-   ::pointer < T > create_new_clone(const T * pSource REFERENCING_DEBUGGING_COMMA_PARAMS)
-   {
-
-      auto p = this->__create_new< T >(REFERENCING_DEBUGGING_ARGS);
+      auto p = this->__create_new< T >();
 
       if (!p)
       {
@@ -724,38 +737,42 @@ public:
    virtual void user_post(const ::procedure & procedure);
 
 
-   //template < typename BASE_TYPE >
-   //inline void __raw_construct(::pointer<BASE_TYPE> & p, ::factory::factory * pfactory = nullptr);
-
    template < typename BASE_TYPE >
-   inline bool __defer_construct(::pointer<BASE_TYPE>& ptype, ::factory::factory * pfactory = nullptr REFERENCING_DEBUGGING_COMMA_PARAMS);
+   inline bool __call__defer_construct(::pointer<BASE_TYPE>& ptype, ::factory::factory * pfactory = nullptr);
 
    template < typename TYPE >
-   inline bool __defer_construct_new(::pointer<TYPE>& ptype REFERENCING_DEBUGGING_COMMA_PARAMS);
+   inline bool __call__defer_construct_new(::pointer<TYPE>& ptype);
 
    template < typename BASE_TYPE >
-   inline void __construct(::pointer<BASE_TYPE>& ptype, ::factory::factory * pfactory = nullptr REFERENCING_DEBUGGING_COMMA_PARAMS);
+   inline void __call__construct(::pointer<BASE_TYPE>& ptype, ::factory::factory * pfactory = nullptr);
 
    template < typename BASE_TYPE, typename TYPE >
-   inline void __construct(::pointer<BASE_TYPE>& ptype, const ::pointer < TYPE >& p REFERENCING_DEBUGGING_COMMA_PARAMS);
+   inline void __call__construct(::pointer<BASE_TYPE>& ptype, const ::pointer < TYPE >& p);
 
    template < typename BASE_TYPE, typename TYPE >
-   inline void __construct(::pointer<BASE_TYPE>& ptype, TYPE* p REFERENCING_DEBUGGING_COMMA_PARAMS);
+   inline void __call__construct(::pointer<BASE_TYPE>& ptype, TYPE* p);
 
    template < typename BASE_TYPE >
-   inline void __id_construct(::pointer<BASE_TYPE>& ptype, const ::atom& atom, ::factory::factory * pfactory = nullptr REFERENCING_DEBUGGING_COMMA_PARAMS);
+   inline void __call__id_construct(::pointer<BASE_TYPE>& ptype, const ::atom& atom, ::factory::factory * pfactory = nullptr);
 
    template < typename TYPE >
-   inline ::pointer < TYPE > __id_create(const ::atom & atom, ::factory::factory * pfactory REFERENCING_DEBUGGING_COMMA_PARAMS);
+   inline ::pointer < TYPE > __call__id_create(const ::atom & atom, ::factory::factory * pfactory);
 
    template < typename TYPE >
-   inline void __construct_new(::pointer<TYPE>& ptype REFERENCING_DEBUGGING_COMMA_PARAMS);
+   inline void __call__construct_new(::pointer<TYPE>& ptype);
+
+   //template < typename TYPE >
+   //inline void __call__raw_construct2(REFERENCING_DEBUGGING_PARAMETERS_DECLARATION_COMMA ::pointer<TYPE> & p, ::factory::factory * pfactory = nullptr);
 
    template < typename TYPE >
-   inline void __raw_construct(::pointer<TYPE> & p, ::factory::factory * pfactory = nullptr REFERENCING_DEBUGGING_COMMA_PARAMS);
+   inline void __call__raw_construct(::pointer<TYPE> & p, ::factory::factory * pfactory = nullptr);
 
    template < typename BASE_TYPE >
-   inline ::pointer<BASE_TYPE> __raw_create(::factory::factory * pfactory = nullptr REFERENCING_DEBUGGING_COMMA_PARAMS);
+   inline ::pointer<BASE_TYPE> __raw_create(::factory::factory * pfactory = nullptr);
+
+
+
+   ::particle * __call__add_referer2(const ::reference_referer & referer) const;
 
    //virtual void to_string(string_exchange & str) const;
 
@@ -770,13 +787,13 @@ public:
    virtual void read_from_stream(::binary_stream & stream);
 
 
-   //virtual void add_composite(::particle * pparticle REFERENCING_DEBUGGING_COMMA_PARAMS);
-   //virtual void add_reference(::particle * pparticle REFERENCING_DEBUGGING_COMMA_PARAMS);
+   //virtual void add_composite(::particle * pparticle);
+   //virtual void add_reference(::particle * pparticle);
 
 
-   //virtual void release_composite2(::particle * pparticle REFERENCING_DEBUGGING_COMMA_PARAMS);
-   //virtual void finalize_composite(::particle * pparticle REFERENCING_DEBUGGING_COMMA_PARAMS);
-   //virtual void release_reference(::particle * pparticle REFERENCING_DEBUGGING_COMMA_PARAMS);
+   //virtual void release_composite2(::particle * pparticle);
+   //virtual void finalize_composite(::particle * pparticle);
+   //virtual void release_reference(::particle * pparticle);
 
 
    virtual void destroy();
@@ -809,7 +826,11 @@ public:
    virtual void process_owned_procedure_list(::procedure_list & procedurelist, bool & bHandled);
 
 
+   //template < typename T, typename ...Args >
+   //inline ::pointer < T > __call__allocate(Args &&... args);
 
+
+   //inline ::particle * __call__add_referer(const ::reference_referer & referer) const;
 
 
 };
@@ -871,7 +892,7 @@ public:
 //   try
 //   {
 //
-//      return pparticle->release(REFERENCING_DEBUGGING_ARGS);
+//      return pparticle->release();
 //
 //   }
 //   catch (...)
@@ -887,7 +908,7 @@ public:
 
 
 template < typename T >
-inline i64 global_release(T*& p REFERENCING_DEBUGGING_COMMA_PARAMS);
+inline i64 global_release(T*& p);
 //{
 //
 //   if (::is_null(p))
@@ -900,7 +921,7 @@ inline i64 global_release(T*& p REFERENCING_DEBUGGING_COMMA_PARAMS);
 //   try
 //   {
 //
-//      auto i = p->release(REFERENCING_DEBUGGING_ARGS);
+//      auto i = p->release();
 //
 //      if (i <= 0)
 //      {
@@ -931,7 +952,7 @@ inline i64 global_release(T*& p REFERENCING_DEBUGGING_COMMA_PARAMS);
 //#if !defined(_DEBUG)
 //
 //
-//i64 particle::increment_reference_count(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
+//i64 particle::increment_reference_count()
 //{
 //
 //   auto c = ++m_countReference;
@@ -947,7 +968,7 @@ inline i64 global_release(T*& p REFERENCING_DEBUGGING_COMMA_PARAMS);
 //}
 //
 //
-//i64 particle::decrement_reference_count(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
+//i64 particle::decrement_reference_count()
 //{
 //
 //   auto c = --m_countReference;
@@ -968,10 +989,10 @@ inline i64 global_release(T*& p REFERENCING_DEBUGGING_COMMA_PARAMS);
 //}
 //
 //
-//i64 particle::release(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
+//i64 particle::release()
 //{
 //
-//   i64 i = decrement_reference_count(REFERENCING_DEBUGGING_ARGS);
+//   i64 i = decrement_reference_count();
 //
 //   if (i == 0)
 //   {
@@ -1130,12 +1151,12 @@ inline bool is_ok(const ::particle * pconstparticle)
 }
 
 
-
-
-
-
+/// @brief consumes a releaser (a referer used to decrement reference count)
+/// @tparam T 
+/// @param p 
+/// @return 
 template < typename T >
-inline i64 release(T *& p REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
+inline i64 release(T *& p)
 {
 
    if (::is_null(p))
@@ -1163,7 +1184,7 @@ inline i64 release(T *& p REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
    try
    {
 
-      return pparticle->release(REFERENCING_DEBUGGING_ARGS);
+      return pparticle->release();
 
    }
    catch (...)
@@ -1178,8 +1199,12 @@ inline i64 release(T *& p REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
 }
 
 
+/// @brief consumes a releaser (a referer used to decrement reference count)
+/// @tparam T 
+/// @param p 
+/// @return 
 template < typename T >
-inline i64 global_release(T *& p REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
+inline i64 global_release(T *& p)
 {
 
    if (::is_null(p))
@@ -1192,7 +1217,7 @@ inline i64 global_release(T *& p REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
    try
    {
 
-      auto i = p->release(REFERENCING_DEBUGGING_ARGS);
+      auto i = p->release();
 
       if (i <= 0)
       {
@@ -1219,14 +1244,87 @@ inline i64 global_release(T *& p REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
 
 
 template < typename TYPE, typename T >
-void assign(::pointer<TYPE> & ptr, T * p REFERENCING_DEBUGGING_COMMA_PARAMS);
+void assign(::pointer<TYPE> & ptr, T * p);
 
 template < typename TYPE >
-::i64 release(::pointer<TYPE> & ptr REFERENCING_DEBUGGING_COMMA_PARAMS);
+::i64 release(::pointer<TYPE> & ptr);
 
 template < typename TYPE >
-::i64 release(TYPE *& p REFERENCING_DEBUGGING_COMMA_PARAMS);
+::i64 release(TYPE *& p);
 
+
+CLASS_DECL_ACME bool refdbg_add_top_track(::particle * pparticle);
+CLASS_DECL_ACME void refdbg_erase_top_track(::particle * pparticle);
+
+
+class refdbg_top_track
+{
+public:
+
+   ::particle * m_p;
+   refdbg_top_track(::particle * p)
+      
+   {
+      if (refdbg_add_top_track(p))
+      {
+         m_p = p;
+      }
+      else
+      {
+         m_p = nullptr;
+      }
+   }
+   ~refdbg_top_track()
+   {
+      if (m_p)
+      {
+         ::refdbg_erase_top_track(m_p);
+      }
+   }
+
+};
+
+
+//#if REFERENCING_DEBUGGING
+//
+//
+//namespace allocator
+//{
+//
+//
+//   CLASS_DECL_ACME ::reference_referer * aaa_defer_add_referer(const ::reference_referer & referer);
+//   CLASS_DECL_ACME ::reference_referer * aaa_add_referer(const ::reference_referer & referer);
+//   CLASS_DECL_ACME ::reference_referer * aaa_defer_get_referer(::particle * p, const ::reference_referer & referer);
+//   CLASS_DECL_ACME ::reference_referer * aaa_get_referer();
+//   CLASS_DECL_ACME ::reference_referer * aaa_pop_referer();
+//   CLASS_DECL_ACME void aaa_defer_erase_referer();
+//   CLASS_DECL_ACME void aaa_erase_referer(::reference_referer * preferer);
+//
+//
+//   CLASS_DECL_ACME void aaa_add_releaser(::reference_referer * preferer);
+//   CLASS_DECL_ACME::reference_referer * aaa_get_releaser();
+//   CLASS_DECL_ACME::reference_referer * aaa_pop_releaser();
+//   CLASS_DECL_ACME void aaa_defer_erase_releaser();
+//   CLASS_DECL_ACME void aaa_erase_releaser(::reference_referer * preferer);
+//
+//
+//} // namespace allocator
+//
+//
+//#endif
+
+
+inline ::particle * refdbg_this() { return (::particle *)::acme::get()->platform(); }
+
+namespace allocator
+{
+
+   class accessor;
+
+} // namespace allocator
+
+
+CLASS_DECL_ACME ::allocator::accessor * __call__add_referer(const ::reference_referer & referer);
 
 
 

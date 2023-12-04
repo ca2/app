@@ -149,18 +149,18 @@ namespace sockets
 #ifdef _DEBUG
 
 
-   ::i64 socket_thread::increment_reference_count(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
+   ::i64 socket_thread::increment_reference_count()
    {
 
-      return ::task::increment_reference_count(REFERENCING_DEBUGGING_ARGS);
+      return ::task::increment_reference_count();
 
    }
 
 
-   ::i64 socket_thread::decrement_reference_count(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
+   ::i64 socket_thread::decrement_reference_count()
    {
 
-      return ::task::decrement_reference_count(REFERENCING_DEBUGGING_ARGS);
+      return ::task::decrement_reference_count();
 
    }
 

@@ -6,12 +6,22 @@
 #include "acme/exception/interface_only.h"
 
 
+extern bool g_bDraw2dDisableReferencingDebugging;
+
+
 namespace draw2d
 {
 
 
    object::object()
    {
+
+      if (g_bDraw2dDisableReferencingDebugging)
+      {
+
+         disable_referencing_debugging();
+
+      }
 
       //m_estatus = success;
       //m_estatusLast = success;

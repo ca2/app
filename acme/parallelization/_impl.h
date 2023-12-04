@@ -11,7 +11,7 @@
 //
 //   m_psimpleobject = (matter *)psimpleobject;
 //
-//   m_psimpleobject->increment_reference_count(REFERENCING_DEBUGGING_ARGS);
+//   m_psimpleobject->increment_reference_count();
 //
 //}
 

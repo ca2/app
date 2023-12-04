@@ -61,7 +61,7 @@ dir_context::dir_context()
 
    //   ::file::dir_context::g_pthis = this;
 
-   //   increment_reference_count(REFERENCING_DEBUGGING_ARGS);
+   //   increment_reference_count();
 
    //}
 
@@ -529,7 +529,7 @@ bool dir_context::_enumerate(::file::listing& listing)
       else
       {
 
-         auto pfolder = pfactory->create < ::folder >(this);
+         auto pfolder = __create < ::folder >(pfactory);
 
          if (!pfolder)
          {
@@ -910,7 +910,7 @@ bool dir_context::is_cached(bool& bIs, const ::file::path& path)
       else
       {
 
-         auto pfolder = pfactory->create < ::folder >(this);
+         auto pfolder = __create<::folder >(pfactory);
 
          if (!pfolder)
          {
@@ -1108,7 +1108,7 @@ bool dir_context::__is(const ::file::path& path, bool& bDir)
       else
       {
 
-         auto pfolder = pfactory->create < ::folder >(this);
+         auto pfolder = __create< ::folder >(pfactory);
 
          if (!pfolder)
          {
@@ -1182,7 +1182,7 @@ bool dir_context::name_is(const ::file::path& strPath)
       else
       {
 
-         auto pfolder = pfactory->create < ::folder >(this);
+         auto pfolder = __create < ::folder >(pfactory);
 
          if (!pfolder)
          {

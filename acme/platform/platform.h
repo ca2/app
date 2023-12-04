@@ -222,6 +222,11 @@ namespace platform
 
 #endif
 
+
+      void platform_initialize();
+      void platform_finalize();
+
+
       void set_args(int argc, char ** argv, wchar_t ** wargv);
 
       string _get_argv(::index iArg) const;
@@ -385,8 +390,17 @@ namespace platform
 
 #endif
 
+      //pass_through_function m_passthroughfunction;
+
 
       ::index task_index(itask_t itask, bool bAddIfNotInList = false);
+
+
+      //pass_through_function &  __call__new_pass_through_function() { return m_passthroughfunction; }
+
+
+      //platform * __call__add_referer2(const ::reference_referer & referer) const;
+
 
 
    };

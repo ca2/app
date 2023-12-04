@@ -2306,7 +2306,7 @@ namespace sockets_bsd
       if (m_psslcontext->m_pclientcontext.is_null())
       {
 
-         m_psslcontext->m_pclientcontext = __allocate(ssl_client_context(meth_in != nullptr ? meth_in : TLS_server_method()));
+         m_psslcontext->m_pclientcontext = __allocate < ssl_client_context >(meth_in != nullptr ? meth_in : TLS_server_method());
 
          m_psslcontext->m_pclientcontext->initialize(m_pcontext);
 

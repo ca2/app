@@ -186,26 +186,26 @@ namespace user
    }
 
 
-   i64 default_message_box::increment_reference_count(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
+   i64 default_message_box::increment_reference_count()
    {
 
-      return ::user::interaction::increment_reference_count(REFERENCING_DEBUGGING_ARGS);
+      return ::user::interaction::increment_reference_count();
 
    }
 
 
-   i64 default_message_box::decrement_reference_count(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
+   i64 default_message_box::decrement_reference_count()
    {
 
-      return ::user::interaction::decrement_reference_count(REFERENCING_DEBUGGING_ARGS);
+      return ::user::interaction::decrement_reference_count();
 
    }
 
 
-   i64 default_message_box::release(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
+   i64 default_message_box::release()
    {
 
-      return ::user::interaction::release(REFERENCING_DEBUGGING_ARGS);
+      return ::user::interaction::release();
 
    }
 
@@ -384,7 +384,7 @@ namespace user
 
       ::draw2d::graphics_pointer pgraphics;
 
-      pgraphics.create(this);
+      __construct(pgraphics);
 
       pgraphics->create_memory_graphics();
 

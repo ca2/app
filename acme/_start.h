@@ -22,10 +22,12 @@
 #if REFERENCING_DEBUGGING
 
 #define REFDBG(...) __VA_ARGS__
+#define COMMA_REFDBG(...) , REFDBG(__VA_ARGS__)
 
 #else
 
-#define REFDBG(statement)
+#define REFDBG(...)
+#define COMMA_REFDBG(...)
 
 #endif
 

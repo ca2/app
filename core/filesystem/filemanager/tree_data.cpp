@@ -71,26 +71,26 @@ namespace filemanager
 #ifdef _DEBUG
 
 
-   i64 tree_data::increment_reference_count(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
+   i64 tree_data::increment_reference_count()
    {
 
-      return ::object::increment_reference_count(REFERENCING_DEBUGGING_ARGS);
+      return ::object::increment_reference_count();
 
    }
 
 
-   i64 tree_data::decrement_reference_count(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
+   i64 tree_data::decrement_reference_count()
    {
 
-      return ::object::decrement_reference_count(REFERENCING_DEBUGGING_ARGS);
+      return ::object::decrement_reference_count();
 
    }
 
 
-   i64 tree_data::release(REFERENCING_DEBUGGING_PARAMETERS)
+   i64 tree_data::release()
    {
 
-      return ::object::release(REFERENCING_DEBUGGING_ARGS);
+      return ::object::release();
 
    }
 

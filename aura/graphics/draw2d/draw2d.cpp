@@ -14,6 +14,10 @@
 #include "draw2d.h"
 #include "task_tool.h"
 
+
+bool g_bDraw2dDisableReferencingDebugging = true;
+
+
 //
 //
 //namespace aura

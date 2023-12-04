@@ -10,6 +10,7 @@
 #include "acme/platform/system.h"
 #include "acme/primitive/geometry2d/_text_stream.h"
 #include "acme/user/user/_text_stream.h"
+#include "apex/handler/signal.h"
 #include "apex/database/_binary_stream.h"
 #include "apex/database/change_event.h"
 #include "acme/filesystem/filesystem/file_context.h"

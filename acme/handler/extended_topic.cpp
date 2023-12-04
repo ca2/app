@@ -25,26 +25,26 @@ extended_topic::~extended_topic()
 #ifdef _DEBUG
 
 
-i64 extended_topic::increment_reference_count(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
+i64 extended_topic::increment_reference_count()
 {
 
-return ::property_object::increment_reference_count(REFERENCING_DEBUGGING_ARGS);
+return ::property_object::increment_reference_count();
 
 }
 
 
-i64 extended_topic::decrement_reference_count(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
+i64 extended_topic::decrement_reference_count()
 {
 
-return ::property_object::decrement_reference_count(REFERENCING_DEBUGGING_ARGS);
+return ::property_object::decrement_reference_count();
 
 }
 
 
-i64 extended_topic::release(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
+i64 extended_topic::release()
 {
 
-return ::property_object::release(REFERENCING_DEBUGGING_ARGS);
+return ::property_object::release();
 
 }
 

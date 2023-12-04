@@ -111,7 +111,7 @@
 
 
 #include "acme/memory/allocation.h"
-#include "acme/platform/_reference_count_debug.h"
+#include "acme/platform/_referencing_debugging.h"
 #include "acme/platform/object_type_counter.h"
 //#include "acme/memory/::heap::management::memory(::heap::e_memory_main)->allocate.h"
 //#include "acme/primitive/primitive/_c_memory.h"

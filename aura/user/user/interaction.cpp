@@ -1930,7 +1930,7 @@ namespace user
 //
 //      }
 
-      if (get_host_user_interaction()->m_pinteractionimpl->m_pgraphics->is_single_buffer_mode())
+      if (get_host_user_interaction()->m_pinteractionimpl->m_pgraphicsgraphics->is_single_buffer_mode())
       {
 
          auto * pinteraction = get_wnd();
@@ -4417,6 +4417,12 @@ namespace user
 
       //m_pdescriptor.release();
 
+      m_pwindow.release();
+
+      m_ptooltip.release();
+
+      m_pinteractionimpl.release();
+
    }
 
 
@@ -5322,7 +5328,7 @@ namespace user
 
       }
 
-      auto pgraphics = pinteractionimpl->m_pgraphics;
+      auto pgraphics = pinteractionimpl->m_pgraphicsgraphics;
 
       if (::is_null(pgraphics))
       {
@@ -11310,11 +11316,11 @@ namespace user
       if (m_pdrawcontext) m_pdrawcontext->destroy();
 
       //}
-      if (m_pusersystem) m_pusersystem->destroy();
+      m_pusersystem.defer_destroy();
       //      if (m_playout) m_playout->destroy();
-      if (m_pgraphicscalla) m_pgraphicscalla->destroy();
-      if (m_puserinteractionCustomWindowProc) m_puserinteractionCustomWindowProc->destroy();
-      if (m_puiLabel) m_puiLabel->destroy();
+      m_pgraphicscalla.defer_destroy();
+      m_puserinteractionCustomWindowProc.defer_destroy();
+      m_puiLabel.defer_destroy();
       //if (m_puseritema) m_puseritema->destroy_all();
       // tasks should not be destroyed in destroy
       //m_pform && m_pform != this && m_pform->destroy();
@@ -11365,6 +11371,8 @@ namespace user
       //m_pdrawableBackground.release();
       m_pprimitiveimpl.release();
       m_pinteractionimpl.release();
+
+      m_pinteractionScaler.defer_destroy();
 
       {
 
@@ -21168,6 +21176,25 @@ namespace user
    }
 
 
+   ::item_pointer interaction::stock_item(enum_element eelement)
+   {
+
+      auto pitem = tool().item(eelement);
+
+      if (!pitem)
+      {
+
+         tool().add_item(__allocate< ::item >(eelement));
+
+         pitem = tool().item(eelement);
+
+      }
+
+      return pitem;
+
+   }
+
+
    //item_pointer interaction::hover_item()
    //{
 
@@ -24410,13 +24437,13 @@ namespace user
          if (pitemLeftButtonDoubleClick->m_eitemflag & e_item_flag_double_click_as_second_click)
          {
 
-            ::pointer<::message::mouse> pmouseUp1 = this->create_new_clone(pmouse);
+            ::pointer<::message::mouse> pmouseUp1 = this->__create_new_clone(pmouse);
 
             pmouseUp1->m_atom = e_message_left_button_up;
 
             get_wnd()->post_message(pmouseUp1);
 
-            ::pointer<::message::mouse> pmouseDown2 = this->create_new_clone(pmouse);
+            ::pointer<::message::mouse> pmouseDown2 = this->__create_new_clone(pmouse);
 
             pmouseDown2->m_atom = e_message_left_button_down;
 
@@ -24424,7 +24451,7 @@ namespace user
 
             preempt(100_ms);
 
-            ::pointer<::message::mouse> pmouseUp2 = this->create_new_clone(pmouse);
+            ::pointer<::message::mouse> pmouseUp2 = this->__create_new_clone(pmouse);
 
             pmouseUp2->m_atom = e_message_left_button_up;
 
@@ -25172,7 +25199,7 @@ namespace user
 
          //information() << "hit_test !r.contains(pointClient)";
 
-         auto pitemNone = __allocate< item >(e_element_none);
+         auto pitemNone = stock_item(e_element_none);
 
          return pitemNone;
 
@@ -25299,7 +25326,8 @@ namespace user
       //
       //      }
 
-      auto pitemNone = __allocate< ::item >(e_element_none);
+
+      auto pitemNone = stock_item(e_element_none);
 
       return pitemNone;
 
@@ -25844,7 +25872,7 @@ namespace user
 
       //return;
 
-      for (auto [iIndex, pitemcontainer] : m_itemcontainermap)
+      for (auto & [iIndex, pitemcontainer] : m_itemcontainermap)
       {
 
          _001DrawItems(pgraphics, iIndex, pitemcontainer->m_pitema);

@@ -378,7 +378,7 @@
 //
 //
 //template < class c_derived >
-//inline i64 increment_reference_count(c_derived * pca REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
+//inline i64 increment_reference_count(c_derived * pca)
 //{
 //
 //   if (::is_null(pca))
@@ -388,7 +388,7 @@
 //
 //   }
 //
-//   return pca->increment_reference_count(REFERENCING_DEBUGGING_ARGS);
+//   return pca->increment_reference_count();
 //
 //}
 //
@@ -423,7 +423,7 @@
 //
 //
 //template < class c_derived >
-//inline i64 release(c_derived *& pca REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
+//inline i64 release(c_derived *& pca)
 //{
 //
 //   if (::is_null(pca))
@@ -472,7 +472,7 @@
 //   try
 //   {
 //
-//      return ptr->release(REFERENCING_DEBUGGING_ARGS);
+//      return ptr->release();
 //
 //   }
 //   catch (...)
@@ -506,28 +506,28 @@
 //
 //
 //template < class COMPOSITE >
-//inline i64 release(::pointer<COMPOSITE>& pcomposite REFERENCING_DEBUGGING_COMMA_PARAMS)
+//inline i64 release(::pointer<COMPOSITE>& pcomposite)
 //{
 //
-//   return release(pcomposite.m_p REFERENCING_DEBUGGING_COMMA_ARGS);
+//   return release(pcomposite.m_p);
 //
 //}
 //
 //
 //template < typename TYPE >
-//inline i64 release(::pointer<TYPE>& pointer REFERENCING_DEBUGGING_COMMA_PARAMS)
+//inline i64 release(::pointer<TYPE>& pointer)
 //{
 //
-//   return release(pointer.m_p REFERENCING_DEBUGGING_COMMA_ARGS);
+//   return release(pointer.m_p);
 //
 //}
 //
 //
 //template < class REFERENCE >
-//inline i64 release(::pointer<REFERENCE>& preference REFERENCING_DEBUGGING_COMMA_PARAMS)
+//inline i64 release(::pointer<REFERENCE>& preference)
 //{
 //
-//   return release(preference.m_p REFERENCING_DEBUGGING_COMMA_ARGS);
+//   return release(preference.m_p);
 //
 //}
 //

@@ -466,7 +466,7 @@ namespace account
 
       //*m_pploginDeferTranslate = this;
 
-      //increment_reference_count(REFERENCING_DEBUGGING_ARGS);
+      //increment_reference_count();
 
       //__begin_thread(get_app(),thread_proc_pre_login,get_app());
 

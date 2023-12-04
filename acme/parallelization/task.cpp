@@ -15,6 +15,9 @@
 #include "acme/_operating_system.h"
 
 
+extern bool g_bIntermediateThreadReferencingDebugging;
+
+
 bool on_init_thread();
 
 void on_term_thread();
@@ -438,6 +441,24 @@ void task::destroy()
 
 #endif
 
+   m_peventInitialization.release();
+
+   m_particleaHold.clear();
+
+   m_procedure.m_pbase.release();
+
+   m_pevSleep.release();
+
+   m_pcounter.release();
+
+   m_ptask.release();
+
+   m_procedureNext.m_pbase.release();
+
+   m_procedurea.clear();
+
+   m_plocale.release();
+
 }
 
 
@@ -505,15 +526,21 @@ void* task::s_os_task(void* p)
 
       ::task * ptask = (::task*)p;
 
-      ::set_task(ptask REFERENCING_DEBUGGING_COMMA_P_FUNCTION_FILE_LINE(ptask));
+      ::set_task(ptask);
 
       //ptask->release(REFERENCING_DEBUGGING_P_FUNCTION_LINE(ptask));
 
 #if defined(WINDOWS)
 
-      ptask->__defer_construct(ptask->m_pexceptiontranslator);
+      {
 
-      ptask->m_pexceptiontranslator->attach();
+         REFDBG_THIS(ptask);
+
+         ptask->__defer_construct(ptask->m_pexceptiontranslator);
+
+         ptask->m_pexceptiontranslator->attach();
+
+      }
 
 #endif
 
@@ -552,15 +579,20 @@ void* task::s_os_task(void* p)
 
       ///ptask->release();
 
-      ::task_release(REFERENCING_DEBUGGING_P_FUNCTION_FILE_LINE(ptask));
+      //::task_release(REFERENCING_DEBUGGING_P_FUNCTION_FILE_LINE(ptask));
 
 
 #if REFERENCING_DEBUGGING
 
-      if (ptask->m_countReference > 1)
+      if (g_bIntermediateThreadReferencingDebugging)
       {
 
-         ptask->check_pending_releases();
+         if (ptask->m_countReference > 1)
+         {
+
+            ptask->check_pending_releases();
+
+         }
 
       }
 
@@ -604,7 +636,7 @@ void* task::s_os_task(void* p)
 
       }
 
-      ::task_release(REFERENCING_DEBUGGING_P_NOTE(ptask, ""));
+      ::task_release();
 
    }
    catch (...)
@@ -1322,7 +1354,7 @@ bool task::has_message() const
 
       //}
 
-      decrement_reference_count(REFERENCING_DEBUGGING_THIS);
+      decrement_reference_count();
 
       throw ::exception(error_resource);
 

@@ -12,6 +12,7 @@
 #include "acme/primitive/datetime/datetime.h"
 #include "acme/primitive/primitive/_text_stream.h"
 #include "acme/filesystem/filesystem/file_context.h"
+#include "apex/handler/signal.h"
 #include "aura/user/user/wait_cursor.h"
 #include "aura/user/user/interaction_array.h"
 #include "base/platform/application.h"

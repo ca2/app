@@ -549,7 +549,7 @@ namespace write_text
 
          string str = pitem->m_strName;
 
-         pbox->m_pfont.create(this);
+         __construct(pbox->m_pfont);
 
          if (str.case_insensitive_order("GOUDY STOUT") == 0)
          {

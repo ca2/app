@@ -272,8 +272,6 @@ namespace mathematics
    mathematics::mathematics()
    {
 
-      m_posdata = __new< math_os_data >();
-
       //task_on_after_new_particle(m_posdata);
 
       // initial rng seed
@@ -287,7 +285,7 @@ namespace mathematics
    mathematics::~mathematics()
    {
 
-      ::acme::del(m_posdata);
+      m_posdata.release();
 
    }
 
@@ -304,7 +302,7 @@ namespace mathematics
 
       //}
 
-      m_posdata = m_pcontext->__create_new < math_os_data>();
+      __construct_new(m_posdata);
 
       //if (!estatus)
       //{
@@ -341,6 +339,37 @@ namespace mathematics
       return u;
 //#endif
 //
+   }
+
+   char mathematics::random_char()
+   {
+      //#if defined(UNIVERSAL_WINDOWS)
+      //      u64 uiLo = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
+      //      u64 uiHi = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
+      //      return uiLo | (uiHi << 32);
+      //#else
+      char ch = 0;
+      random({ e_as_block,ch });
+
+      return ch;
+      //#endif
+      //
+   }
+
+
+   u8 mathematics::random_u8()
+   {
+      //#if defined(UNIVERSAL_WINDOWS)
+      //      u64 uiLo = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
+      //      u64 uiHi = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
+      //      return uiLo | (uiHi << 32);
+      //#else
+      u8 u = 0;
+      random({ e_as_block,u });
+
+      return u;
+      //#endif
+      //
    }
 
 

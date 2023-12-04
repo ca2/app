@@ -188,6 +188,8 @@ namespace user
       if (m_pmutexDraw == nullptr)
       {
 
+         refdbg_top_track refdbgtoptrack(this);
+
          __construct(m_pmutexDraw);
 
       }
@@ -585,16 +587,21 @@ namespace user
 
       ::pointer<::user::system>pusersystem;
 
-      if (m_puserinteraction->m_pusersystem)
+      if (!m_puserinteraction->is_system_message_window())
       {
 
-         pusersystem = m_puserinteraction->m_pusersystem;
+         if (m_puserinteraction->m_pusersystem)
+         {
 
-      }
-      else
-      {
+            pusersystem = m_puserinteraction->m_pusersystem;
 
-         pusersystem = __allocate< ::user::system >();
+         }
+         else
+         {
+
+            pusersystem = __allocate< ::user::system >();
+
+         }
 
       }
 
@@ -1197,7 +1204,7 @@ namespace user
    ::color::color interaction_impl::screen_pixel(int x, int y) const
    {
 
-      if (::is_null(m_pgraphics))
+      if (::is_null(m_pgraphicsgraphics))
       {
 
          return color::transparent;
@@ -1208,7 +1215,7 @@ namespace user
 
       //information() << "screen_pixel window().origin() : " << origin;
 
-      return m_pgraphics->get_screen_item()->m_pimage2->pixel(x - origin.x(), y - origin.y());
+      return m_pgraphicsgraphics->get_screen_item()->m_pimage2->pixel(x - origin.x(), y - origin.y());
 
    }
 
@@ -1738,7 +1745,7 @@ namespace user
 
             pinteraction->message_handler(e_message_mouse_leave);
 
-            synchronouslock.lock();
+            synchronouslock._lock();
 
          }
 
@@ -1891,16 +1898,7 @@ namespace user
 
       }
 
-      if (m_pgraphics)
-      {
-
-         m_pgraphics->destroy_buffer();
-
-         m_pgraphics->destroy();
-
-      }
-
-      m_pgraphics.release();
+      m_pgraphicsgraphics.defer_destroy();
 
       UNREFERENCED_PARAMETER(pmessage);
 
@@ -1913,6 +1911,7 @@ namespace user
          m_userinteractionaMouseHover.erase_all();
 
       }
+
 
    }
 
@@ -1944,6 +1943,41 @@ namespace user
          pwindowthread->m_pimpl.release();
 
       }
+
+      m_pwindow.release();
+
+      m_puserinteractionKeyboardFocus.release();
+
+      m_puserinteractionKeyboardFocusRequest.release();
+
+      m_puserinteractionKeyboardGainingFocusIfAny.release();
+
+      m_puserinteractionMouseCapture.release();
+
+      m_puserinteractionToKillKeyboardFocus.release();
+
+      m_puserthread.release();
+
+      m_pgraphicsgraphics.release();
+
+      m_pgraphicsthread.release();
+
+      m_pwindowing.release();
+
+      m_graphicaloutputpurposea.clear();
+
+      if (m_pthreadMouseLeave)
+      {
+         m_pthreadMouseLeave->set_finish();
+
+      }
+      //m_pthreadMouseLeave.release();
+
+      m_messagelist.clear();
+
+      m_pelementSoftwareKeyboard.release();
+
+      m_pdraw2dgraphics.release();
 
    }
 
@@ -5730,7 +5764,7 @@ information() << "do_graphics(A)";
 #endif
 update_graphics_resources();
 
-if (bDraw && m_pgraphics.is_null())
+if (bDraw && m_pgraphicsgraphics.is_null())
 {
 
    information() << "do_graphics exit(A1)";
@@ -5895,7 +5929,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
       {
 
 
-         _synchronous_lock slGraphics(m_pgraphics->synchronization());
+         _synchronous_lock slGraphics(m_pgraphicsgraphics->synchronization());
 
          //windowing::graphics_lock graphicslock(m_pwindow);
 
@@ -5903,7 +5937,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 
 
 
-         auto pbufferitem = m_pgraphics->on_begin_draw(e_graphics_layout);
+         auto pbufferitem = m_pgraphicsgraphics->on_begin_draw(e_graphics_layout);
          //auto pparticleSynchronization = m_pgraphics->get_buffer_item()->m_pmutex;
 
          if (!pbufferitem)
@@ -5962,7 +5996,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 
             pgraphics->payload("set_transparent") = "";
 
-            pgraphics->m_pgraphicsgraphics = m_pgraphics;
+            pgraphics->m_pgraphicsgraphics = m_pgraphicsgraphics;
 
             pgraphics->m_pgraphicsbufferitem = pbufferitem;
 
@@ -6179,7 +6213,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
       {
 
 
-         _synchronous_lock slGraphics(m_pgraphics->synchronization());
+         _synchronous_lock slGraphics(m_pgraphicsgraphics->synchronization());
 
          //windowing::graphics_lock graphicslock(m_pwindow);
 
@@ -6187,7 +6221,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 
 
 
-         auto pbufferitem = m_pgraphics->on_begin_draw(e_graphics_draw);
+         auto pbufferitem = m_pgraphicsgraphics->on_begin_draw(e_graphics_draw);
          //auto pparticleSynchronization = m_pgraphics->get_buffer_item()->m_pmutex;
 
          if (!pbufferitem)
@@ -6252,7 +6286,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 
             pgraphics->payload("set_transparent") = "";
 
-            pgraphics->m_pgraphicsgraphics = m_pgraphics;
+            pgraphics->m_pgraphicsgraphics = m_pgraphicsgraphics;
 
             pgraphics->m_pgraphicsbufferitem = pbufferitem;
 
@@ -6415,14 +6449,14 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 
                //informationf("PrintBuffer (%d, %d)",  r.right(), r.bottom());
 
-               if (!m_pgraphics)
+               if (!m_pgraphicsgraphics)
                {
 
                   return;
 
                }
 
-               m_pgraphics->m_bNewBuffer = true;
+               m_pgraphicsgraphics->m_bNewBuffer = true;
 
             }
             else
@@ -6448,10 +6482,10 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 
             //}
 
-            if (m_pgraphics)
+            if (m_pgraphicsgraphics)
             {
 
-               m_pgraphics->on_end_draw();
+               m_pgraphicsgraphics->on_end_draw();
 
             }
 
@@ -6719,10 +6753,10 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 
       m_strBitmapSource = strBitmapSource;
 
-      if (m_pgraphics)
+      if (m_pgraphicsgraphics)
       {
 
-         m_pgraphics->set_bitmap_source(strBitmapSource);
+         m_pgraphicsgraphics->set_bitmap_source(strBitmapSource);
 
       }
 
@@ -6736,10 +6770,10 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 
       m_strBitmapSource.empty();
 
-      if (m_pgraphics)
+      if (m_pgraphicsgraphics)
       {
 
-         m_pgraphics->clear_bitmap_source();
+         m_pgraphicsgraphics->clear_bitmap_source();
 
       }
 
@@ -6753,12 +6787,12 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 
       single_lock synchronouslock(this->synchronization());
 
-      if (m_pgraphics.is_null())
+      if (m_pgraphicsgraphics.is_null())
       {
 
          //auto estatus =
 
-         __raw_construct(m_pgraphics);
+         __raw_construct(m_pgraphicsgraphics);
 
          //if (!estatus)
          //{
@@ -6767,10 +6801,10 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 
          //}
 
-         if (m_pgraphics)
+         if (m_pgraphicsgraphics)
          {
 
-            m_pgraphics->initialize_graphics_graphics(this);
+            m_pgraphicsgraphics->initialize_graphics_graphics(this);
 
          }
 
@@ -6886,12 +6920,12 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
       if (!has_destroying_flag())
       {
 
-         if (m_pgraphics)
+         if (m_pgraphicsgraphics)
          {
 
-            _synchronous_lock slGraphics(m_pgraphics->synchronization());
+            _synchronous_lock slGraphics(m_pgraphicsgraphics->synchronization());
 
-            auto pbufferitem = m_pgraphics->get_buffer_item();
+            auto pbufferitem = m_pgraphicsgraphics->get_buffer_item();
 
             _synchronous_lock synchronouslock(pbufferitem->m_pmutex);
 
@@ -7062,7 +7096,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
    ::graphics::graphics * interaction_impl::get_window_graphics()
    {
 
-      return m_pgraphics;
+      return m_pgraphicsgraphics;
 
    }
 
@@ -9179,7 +9213,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
    i64 interaction_impl::opaque_area(const ::rectangle_i32 & rect)
    {
 
-      auto pitem = m_pgraphics->get_screen_item();
+      auto pitem = m_pgraphicsgraphics->get_screen_item();
 
       _synchronous_lock synchronouslock(pitem->m_pmutex);
 
@@ -9201,7 +9235,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 
       m_puserinteraction->screen_to_client()(rectangle);
 
-      return m_pgraphics->_001GetTopLeftWeightedOpaqueArea(rectangle);
+      return m_pgraphicsgraphics->_001GetTopLeftWeightedOpaqueArea(rectangle);
 
    }
 
@@ -9209,7 +9243,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
    i64 interaction_impl::opaque_area()
    {
 
-      auto pitem = m_pgraphics->get_screen_item();
+      auto pitem = m_pgraphicsgraphics->get_screen_item();
 
       _synchronous_lock synchronouslock(pitem->m_pmutex);
 
@@ -9227,7 +9261,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
    i64 interaction_impl::_001GetTopLeftWeightedArea()
    {
 
-      auto pitem = m_pgraphics->get_screen_item();
+      auto pitem = m_pgraphicsgraphics->get_screen_item();
 
       _synchronous_lock synchronouslock(pitem->m_pmutex);
 
@@ -9237,7 +9271,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 
       m_puserinteraction->window_rectangle(rectangle);
 
-      if (::is_null(m_pgraphics))
+      if (::is_null(m_pgraphicsgraphics))
       {
 
          return 0;
@@ -9538,7 +9572,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
    void interaction_impl::android_fill_plasma(const void * pixels, int width, int height, int stride, ::i64 time_ms)
    {
 
-      auto pitem = m_pgraphics->get_screen_item();
+      auto pitem = m_pgraphicsgraphics->get_screen_item();
 
       _synchronous_lock synchronouslock(pitem->m_pmutex);
 

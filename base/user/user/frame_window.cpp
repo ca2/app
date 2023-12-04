@@ -10,6 +10,7 @@
 #include "acme/constant/simple_command.h"
 #include "acme/constant/user_key.h"
 #include "acme/handler/request.h"
+#include "acme/handler/topic.h"
 #include "acme/exception/interface_only.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/dir_context.h"
@@ -538,7 +539,7 @@ namespace user
 
                   //auto pparticleSynchronization = pimpl->m_pgraphics->get_draw_lock();
 
-                  auto pbufferitem = pimpl->m_pgraphics->on_begin_draw(e_graphics_draw);
+                  auto pbufferitem = pimpl->m_pgraphicsgraphics->on_begin_draw(e_graphics_draw);
 
                   synchronous_lock synchronouslock(pbufferitem->m_pmutex);
 

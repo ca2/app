@@ -73,9 +73,9 @@
 //
 //   ::property_object::destroy();
 //
-//   m_pmapPropertyProcedure.release(REFERENCING_DEBUGGING_THIS);
+//   m_pmapPropertyProcedure.release();
 //
-//   m_pia.release(REFERENCING_DEBUGGING_THIS);
+//   m_pia.release();
 //
 //}
 //

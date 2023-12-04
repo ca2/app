@@ -16,17 +16,30 @@
 #include "acme/_operating_system.h"
 //
 //
-//namespace acme
-//{
+namespace acme
+{
+   extern ::array < matter * > * g_paAura;
 //
 //
 //   CLASS_DECL_ACME extern ::acme::acme * g_p;
 //
 //
-//} // namespace acme
+} // namespace acme
 #ifdef CUBE
 #include "factory_function.h"
 #endif
+
+
+namespace mathematics
+{
+
+
+   void initialize_mathematics();
+
+   void finalize_mathematics();
+
+
+} // namespace mathematics
 
 
 #if REFERENCING_DEBUGGING
@@ -52,28 +65,6 @@ namespace platform
       disable_referencing_debugging();
 
       m_timeStart.Now();
-
-      //initialize_memory_counter();
-
-      // One of first time to set a main user thread
-
-      set_main_user_thread();
-
-      factory_initialize();
-
-      m_bVerboseLog = true;
-      m_bConsole = false;
-      //m_pacmeapplication = nullptr;
-      m_pmemorycounter = nullptr;
-      m_bOutputDebugString = true;
-
-#ifdef WINDOWS
-
-      m_strCommandLine = ::GetCommandLineW();
-
-#endif
-
-      g_bDefaultEnableObjectReferenceCountDebug = true;
 
    }
 
@@ -131,6 +122,80 @@ namespace platform
       }
 
       //finalize_memory_counter();
+
+   }
+
+
+   void platform::platform_initialize()
+   {
+
+      //initialize_memory_counter();
+
+      // One of first time to set a main user thread
+
+      set_main_user_thread();
+
+      factory_initialize();
+
+      ::mathematics::initialize_mathematics();
+
+      ////factory_init();
+
+::acme::g_paAura = __new < ::array < matter* > >();
+
+////::task_on_after_new_particle(g_paAura);
+
+{
+
+   auto p = ::allocator::task_get_top_track();
+
+   ASSERT(p == nullptr);
+
+}
+
+
+      m_bVerboseLog = true;
+      m_bConsole = false;
+      //m_pacmeapplication = nullptr;
+      m_pmemorycounter = nullptr;
+      m_bOutputDebugString = true;
+
+#ifdef WINDOWS
+
+      m_strCommandLine = ::GetCommandLineW();
+
+#endif
+
+      g_bDefaultEnableObjectReferenceCountDebug = true;
+
+   }
+
+
+   void platform::platform_finalize()
+   {
+
+      //initialize_memory_counter();
+
+      // One of first time to set a main user thread
+      ::mathematics::finalize_mathematics();
+
+      set_main_user_thread();
+
+      factory_initialize();
+
+      m_bVerboseLog = true;
+      m_bConsole = false;
+      //m_pacmeapplication = nullptr;
+      m_pmemorycounter = nullptr;
+      m_bOutputDebugString = true;
+
+#ifdef WINDOWS
+
+      m_strCommandLine = ::GetCommandLineW();
+
+#endif
+
+      g_bDefaultEnableObjectReferenceCountDebug = true;
 
    }
 
@@ -918,6 +983,8 @@ namespace platform
 
 #else
 
+      //::allocator::add_referer(REFERENCING_DEBUGGING_THIS_FUNCTION_FILE_LINE);
+
       auto plibrary = __create_new < ::acme::library >();
 
       //plibrary->initialize_matter(this);
@@ -1018,6 +1085,15 @@ namespace platform
    }
 
 
+   //::particle * platform::__call__add_referer2(const ::reference_referer & referer) const
+   //{
+
+   //   ::allocator::defer_add_referer(referer);
+
+   //   return (::particle *)this;
+
+   //}
+
 
 } // namespace platform
 
@@ -1042,6 +1118,5 @@ namespace platform
 //   return this->platform()->m_pfactory;
 //
 //}
-
 
 

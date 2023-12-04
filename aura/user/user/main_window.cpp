@@ -121,6 +121,8 @@ namespace user
 
       defer_set_icon();
 
+      refdbg_top_track refdbgtoptrack(this);
+
       if (m_bEnableDefaultControlBox && should_show_platform_control_box())
       {
 

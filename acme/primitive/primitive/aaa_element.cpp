@@ -134,7 +134,7 @@
 ////}
 //
 //
-////void element::add_composite(::particle * pparticle REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
+////void element::add_composite(::particle * pparticle)
 ////{
 ////
 ////   //throw ::not_implemented();
@@ -148,7 +148,7 @@
 ////}
 ////
 ////
-////void element::add_reference(::particle * pparticle REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
+////void element::add_reference(::particle * pparticle)
 ////{
 ////
 ////   //return ::success_none;
@@ -156,7 +156,7 @@
 ////}
 ////
 ////
-////void element::release_composite2(::particle * pparticle REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
+////void element::release_composite2(::particle * pparticle)
 ////{
 ////
 ////   //return ::success_none;
@@ -164,7 +164,7 @@
 ////}
 ////
 ////
-////void element::finalize_composite(::particle * pparticle REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
+////void element::finalize_composite(::particle * pparticle)
 ////{
 ////
 ////   //return ::success_none;
@@ -172,7 +172,7 @@
 ////}
 ////
 ////
-////void element::release_reference(::particle * pparticle REFERENCING_DEBUGGING_COMMA_PARAMS_DEFINITION)
+////void element::release_reference(::particle * pparticle)
 ////{
 ////
 ////   //return ::success_none;

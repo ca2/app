@@ -62,6 +62,17 @@ namespace factory
    }
 
 
+
+   factory * factory::__call__add_referer2(const ::reference_referer & referer) const
+   {
+
+      ::allocator::defer_add_referer(referer);
+
+      return (factory *)this;
+
+   }
+
+
    void factory::merge(const ::factory::factory* pfactory)
    {
 
@@ -948,7 +959,7 @@ namespace factory
 {
 
 
-   ::pointer < ::particle > factory::create(const ::string & strType, ::particle * pparticle)
+   ::pointer < ::particle > factory::__call__create(const ::string & strType, ::particle * pparticle)
    {
 
       //auto psystem = system();
@@ -990,7 +1001,7 @@ namespace factory
 
       //}
 
-      return pfactoryinterface->create_particle();
+      return pfactoryinterface->__call__create_particle();
 
    }
 

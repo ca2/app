@@ -58,26 +58,26 @@ namespace macos
 #ifdef _DEBUG
 
 
-i64 nano_window::increment_reference_count(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
+i64 nano_window::increment_reference_count()
 {
 
-return ::property_object::increment_reference_count(REFERENCING_DEBUGGING_ARGS);
+return ::property_object::increment_reference_count();
 
 }
 
 
-i64 nano_window::decrement_reference_count(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
+i64 nano_window::decrement_reference_count()
 {
 
-return ::property_object::decrement_reference_count(REFERENCING_DEBUGGING_ARGS);
+return ::property_object::decrement_reference_count();
 
 }
 
 
-i64 nano_window::release(REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
+i64 nano_window::release()
 {
 
-return ::property_object::release(REFERENCING_DEBUGGING_ARGS);
+return ::property_object::release();
 
 }
 

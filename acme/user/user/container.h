@@ -28,6 +28,9 @@ namespace user
       ~acme_container() override;
 
 
+      void destroy() override;
+
+
       bool _is_set() const override;
 
       

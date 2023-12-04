@@ -302,9 +302,9 @@ bool image::host(::pixmap* ppixmap)
 
    //destroy();
 
-   m_pbitmap.defer_create(this);
+   __defer_construct(m_pbitmap);
 
-   m_pgraphics.defer_create(this);
+   __defer_construct(m_pgraphics);
 
    //if (m_pbitmap.is_null())
    //{
@@ -579,7 +579,8 @@ void image::destroy()
    pixmap::unmap();
    clear_flag(e_flag_success);
    clear_flag(e_flag_failure);
-
+   m_pgraphics.defer_destroy();
+   m_pbitmap.defer_destroy();
    //return ::success;
 
 }
@@ -10369,7 +10370,7 @@ CLASS_DECL_AURA void draw_freetype_bitmap(::image* m_p, i32 Δx, i32 Δy, void* 
 
    pimage->copy_from((::image *) this);
 
-   pimage->increment_reference_count(REFERENCING_DEBUGGING_THIS);
+   pimage->increment_reference_count();
 
    return pimage;
 

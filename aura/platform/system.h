@@ -267,7 +267,9 @@ namespace aura
       //}
 
 
-      inline class ::draw2d::draw2d                * draw2d() { return m_pdraw2d; }
+      class ::draw2d::draw2d * draw2d() const override;
+
+      class ::write_text::write_text * write_text() const override;
       
       
       class ::imaging * imaging() override;

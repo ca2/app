@@ -487,7 +487,7 @@ CLASS_DECL_ACME void message_box_asynchronous(::function < void(const ::atom & a
    //main_asynchronous([ pmessagebox, pparticle ]()
    //{
 
-      auto pnanomessagebox = __create_new < nano_message_box >(pparticle);
+      auto pnanomessagebox = pparticle->__create_new < nano_message_box >();
    
       atom idResult;
    

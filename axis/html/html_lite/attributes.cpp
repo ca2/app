@@ -258,7 +258,7 @@ strsize LiteHTMLAttributes::parseFromStr(::lite_html_reader * preader, const ::s
       if (pcoll == nullptr)
       {
          // instantiate now
-         if ((pcoll = memory_new CElemAttrArray) == nullptr)
+         if ((pcoll = __new < CElemAttrArray>()) == nullptr)
             // out of memory?
          {
             //            TRACE0("(Error) LiteHTMLAttributes::parseFromStr: Out of memory.\n");
@@ -314,7 +314,7 @@ LiteHTMLElemAttr* LiteHTMLAttributes::addAttribute(const ::string & lpszName, co
    {
       if (m_parrAttrib == nullptr)
       {
-         if ((m_parrAttrib = memory_new CElemAttrArray) == nullptr)
+         if ((m_parrAttrib = __new < CElemAttrArray >()) == nullptr)
          {
             SAFE_DELETE_POINTER(pItem);
             //               TRACE0("(Error) LiteHTMLAttributes::addAttribute: Out of memory.\n");

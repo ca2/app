@@ -64,6 +64,7 @@ namespace write_text
       virtual void adapt_font_name(string & str);
       virtual bool has_font_name(const string& str);
 
+
       //void adapt_font_name(string& str)
       //{
 

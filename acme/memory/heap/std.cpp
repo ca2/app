@@ -40,7 +40,7 @@ namespace heap
       void start_heap()
       {
 
-         m_pallocarray = ::platform::raw_allocator::__allocator_base_new < plex_heap_alloc_array >(m_pallocator, m_pallocator, m_ememory);
+         m_pallocarray = ::platform::allocator::__allocator_base_new < plex_heap_alloc_array >(m_pallocator, m_pallocator, m_ememory);
 
       }
 

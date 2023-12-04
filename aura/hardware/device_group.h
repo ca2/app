@@ -33,6 +33,9 @@ namespace hardware
       virtual void on_device_list_updated();
 
 
+      virtual void erase(device_listener * pdevicelistener);
+
+
    };
 
 }

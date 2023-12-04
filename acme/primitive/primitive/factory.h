@@ -37,7 +37,7 @@ namespace factory
 
       virtual string __type_name() const = 0;
 
-      virtual ::pointer < ::particle > create_particle(REFERENCING_DEBUGGING_PARAMETERS) = 0;
+      virtual ::pointer < ::particle > __call__create_particle() = 0;
 
       virtual void return_back(::particle * pelement) = 0;
 
@@ -54,14 +54,18 @@ namespace factory
 
       string base_type_name() const override { return ::demangle(typeid(ORIGIN_TYPE).name()); }
 
-      virtual ::pointer<ORIGIN_TYPE> _create(REFERENCING_DEBUGGING_PARAMETERS) = 0;
+      virtual ::pointer<ORIGIN_TYPE> __call__create() = 0;
 
-      virtual ::pointer < ::particle > create_particle(REFERENCING_DEBUGGING_PARAMETERS) override
+
+      /// @brief consumes a referer
+      /// @return 
+      virtual ::pointer < ::particle > __call__create_particle() override
       {
 
-         return _create(REFERENCING_DEBUGGING_ARGS);
+         return __call__create();
 
       }
+
 
       virtual void return_back(::particle * pelement) override
       {
@@ -84,14 +88,13 @@ namespace factory
       string __type_name() const override { return ::demangle(typeid(TYPE).name()); }
 
 
-      ::pointer<ORIGIN_TYPE>_create(REFERENCING_DEBUGGING_PARAMETERS) override
+      /// consumes a referer
+      ::pointer<ORIGIN_TYPE>__call__create() override
       {
 
-         auto p = __allocate< TYPE >();
+         auto p = ::transfer(__call__allocate< TYPE >());
 
-         p.m_referer = referer;
-
-         return p;
+         return ::transfer(p);
             
       }
 
@@ -116,7 +119,7 @@ namespace factory
 
       }
 
-      ::pointer<ORIGIN_TYPE>_create() override;
+      ::pointer<ORIGIN_TYPE>__call__create() override;
 
       void return_back(ORIGIN_TYPE * p);
 
@@ -182,9 +185,13 @@ namespace factory
       //inline ::pointer<factory_item_interface>& get_factory_item(const ::atom& atom)
          
       template < typename BASE_TYPE >
-      inline void __defer_construct(::particle * pparticle, ::pointer<BASE_TYPE> &  ptype);
+      inline bool __call__defer_construct(::particle * pparticle, ::pointer<BASE_TYPE> &  ptype);
       template < typename TYPE, typename ORIGIN_TYPE>
       inline pointer< ::factory::factory_item_base < ORIGIN_TYPE > > _add_factory_item_from(const ::atom& atomSource);
+
+
+
+      factory * __call__add_referer2(const ::reference_referer & referer) const;
 
 
       //template < typename ORIGIN_TYPE >
@@ -202,7 +209,7 @@ namespace factory
       inline pointer< ::factory::factory_item_base < ORIGIN_TYPE > > create_reusable_factory_item();
 
       template < typename ORIGIN_TYPE >
-      inline ::pointer<ORIGIN_TYPE>create(::particle * pparticle);
+      inline ::pointer<ORIGIN_TYPE>__call__create(::particle * pparticle);
 
       void merge(const ::factory::factory* pfactory);
 
@@ -212,13 +219,13 @@ namespace factory
 
 
       template < typename ORIGIN_TYPE >
-      inline void __defer_raw_construct(::pointer<ORIGIN_TYPE> & p)
+      inline void __defer_raw_construct(REFERENCING_DEBUGGING_PARAMETERS_DECLARATION_COMMA ::pointer<ORIGIN_TYPE> & p)
       {
 
          if (::is_null(p))
          {
 
-            this->__raw_construct(p);
+            this->__raw_construct(REFERENCING_DEBUGGING_ARGUMENTS_COMMA p);
 
          }
 
@@ -226,14 +233,14 @@ namespace factory
 
 
       template < typename ORIGIN_TYPE >
-      inline void __construct(::particle * pparticleInitializer, ::pointer<ORIGIN_TYPE> & p);
+      inline void __call__construct(::particle * pparticleInitializer, ::pointer<ORIGIN_TYPE> & p);
 
 
       template < typename ORIGIN_TYPE >
-      inline void __raw_construct(::pointer<ORIGIN_TYPE> & p);
+      inline void __call__raw_construct(::pointer<ORIGIN_TYPE> & p);
 
 
-      virtual ::pointer < ::particle > create(const ::string & strType, ::particle * pparticle);
+      virtual ::pointer < ::particle > __call__create(const ::string & strType, ::particle * pparticle);
 
 
       virtual bool has_type(const ::string & strType) const;
@@ -344,7 +351,7 @@ namespace factory
 
 
 //    template < typename TYPE >
-//    ::pointer<TYPE>create();
+//    ::pointer<TYPE>__call__create();
 
 
 // } // namespace factory
@@ -447,7 +454,7 @@ namespace factory
 
 //
 //   template < typename TYPE, typename ORIGIN_TYPE >
-//   inline ::pointer<ORIGIN_TYPE>reusable_factory_item < TYPE, ORIGIN_TYPE >::_create()
+//   inline ::pointer<ORIGIN_TYPE>reusable_factory_item < TYPE, ORIGIN_TYPE >::__call__create()
 //   {
 //
 //      {
@@ -488,7 +495,7 @@ namespace factory
 
 
 //   template < typename ORIGIN_TYPE >
-//   inline ::pointer<ORIGIN_TYPE>factory::create()
+//   inline ::pointer<ORIGIN_TYPE>factory::__call__create()
 //   {
 //
 //      auto pfactoryinterface = get_factory_item < ORIGIN_TYPE >();
@@ -500,7 +507,7 @@ namespace factory
 //
 //      }
 //
-//      return pfactoryinterface->create_particle();
+//      return pfactoryinterface->__call__create_particle();
 //
 //   }
 
@@ -544,12 +551,12 @@ namespace factory
 //
 //      }
 //
-//      auto pparticle = ::transfer(pfactoryitem->create_particle());
+//      auto pparticle = ::transfer(pfactoryitem->__call__create_particle());
 //
 //      if (!pparticle)
 //      {
 //
-//         throw_exception(error_no_memory, "Couldn't create_particle for type \"" + __type_name<ORIGIN_TYPE>() + "\"");
+//         throw_exception(error_no_memory, "Couldn't __call__create_particle for type \"" + __type_name<ORIGIN_TYPE>() + "\"");
 //
 //      }
 //
@@ -777,7 +784,7 @@ namespace factory
 //
 //   }
 //
-//   auto pparticleNew = pfactoryitem->create_particle();
+//   auto pparticleNew = pfactoryitem->__call__create_particle();
 //
 //   if (!pparticleNew)
 //   {
@@ -845,8 +852,8 @@ inline ::pointer<BASE_TYPE> __raw_create(::factory::factory* pfactory);
 //}
 
 
-template < typename TYPE >
-inline void __defer_construct(::particle* pparticle, ::pointer<TYPE>& p, ::factory::factory* pfactory);
+//template < typename TYPE >
+//inline void __call__defer_construct(::particle* pparticle, ::pointer<TYPE>& p, ::factory::factory* pfactory);
 //{
 //
 //   if (!p)
@@ -869,7 +876,7 @@ inline void __defer_construct(::particle* pparticle, ::pointer<TYPE>& p, ::facto
 //
 //   auto& pfactoryitem = pfactory->get_factory_item(atom);
 //
-//   auto pparticleNew = pfactoryitem->create_particle();
+//   auto pparticleNew = pfactoryitem->__call__create_particle();
 //
 //   //if (!pparticleNew)
 //   //{
@@ -911,7 +918,7 @@ inline void __defer_construct(::particle* pparticle, ::pointer<TYPE>& p, ::facto
 //
 //   auto& pfactoryitem = pfactory->get_factory_item(atom);
 //
-//   auto pparticleNew = pfactoryitem->create_particle();
+//   auto pparticleNew = pfactoryitem->__call__create_particle();
 //
 //   //if (!pparticleNew)
 //   //{
@@ -953,7 +960,7 @@ inline void __defer_construct(::particle* pparticle, ::pointer<TYPE>& p, ::facto
 //
 //template < class T >
 //template < typename PARTICLE >
-//inline pointer < T >& pointer < T >::create(PARTICLE* pparticle, ::factory::factory* pfactory)
+//inline pointer < T >& pointer < T >::__call__create(PARTICLE* pparticle, ::factory::factory* pfactory)
 //{
 //
 //   auto p = ::__create < T >(pparticle);

@@ -425,7 +425,7 @@ namespace platform
    //{
 
 
-   //CLASS_DECL_ACME::platform::platform * get();
+   inline ::platform::platform * get() { return ::acme::get()->platform(); }
 
 
 } // namespace platform

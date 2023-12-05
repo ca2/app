@@ -27,14 +27,6 @@ namespace user
    }
 
 
-   void multiple_document_template::load_template()
-   {
-
-      impact_system::load_template();
-
-   }
-
-
    multiple_document_template::~multiple_document_template()
    {
 
@@ -51,6 +43,42 @@ namespace user
 
    }
 
+
+
+   void multiple_document_template::destroy()
+   {
+
+      for (auto & pdocument : m_docptra)
+      {
+         
+         try
+         {
+
+            pdocument.defer_destroy();
+
+         }
+         catch (...)
+         {
+
+
+         }
+
+      }
+
+      ::user::impact_system::destroy();
+
+   }
+
+
+   void multiple_document_template::load_impact_system()
+   {
+
+      impact_system::load_impact_system();
+
+   }
+
+
+   
 
    ::count multiple_document_template::get_document_count() const
    {

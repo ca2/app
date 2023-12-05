@@ -20,6 +20,16 @@ namespace experience
    }
 
 
+   void experience::destroy()
+   {
+
+      m_pfactory.release();
+
+      ::object::destroy();
+
+   }
+
+
    ::base::application * experience::get_app()
    {
 

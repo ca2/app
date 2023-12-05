@@ -51,6 +51,9 @@ namespace user
 
       virtual ::task_pool  * taskpool() override;
 
+
+      void destroy() override;
+
       //virtual bool is_os_host() const override;
 
       using box::get_style;

@@ -26,6 +26,16 @@ namespace base
    }
 
 
+   void style::destroy()
+   {
+
+      m_plibrary.release();
+
+      ::axis::style::destroy();
+
+   }
+
+
    ::base::application* style::get_app()
    {
 

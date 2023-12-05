@@ -764,7 +764,7 @@ void node_set < NODE >::erase_all()
 
          pnext = p + 1;
 
-         delete p.get();
+         __delete(p.get());
 
       }
 

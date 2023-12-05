@@ -23,7 +23,6 @@ class reference_count_debug;
 
 #define REFDBG_THIS(p) auto refdbg_this = [p]() { return p; }
 
-#define __new __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__new
 #define __create __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__create
 #define __construct __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__construct
 #define __id_create __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__id_create
@@ -36,6 +35,8 @@ class reference_count_debug;
 #define __defer_construct_new __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__defer_construct_new
 
 
+#define __new__prefix(x) __call__add_referer({ refdbg_this(), __FUNCTION_FILE_LINE__ }, &m_preferer)->
+#define __new __call__add_referer({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__new
 #define __allocate __call__add_referer({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__allocate
 
 

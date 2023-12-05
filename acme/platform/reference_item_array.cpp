@@ -223,7 +223,20 @@ void reference_item_array::add_item()
    {
          pitem->m_strDebug = pitem->m_preferer->m_cstringDebug;
    }
+   if (!m_bFirstAllocationInformation)
+   {
+      m_bFirstAllocationInformation = true;
+
+      m_strFirstAllocation = pitem->m_preferer->m_cstringType;
+      m_strFirstAllocation += "\n";
+      m_strFirstAllocation += pitem->m_preferer->m_cstringDebug;
+
+   }
    m_bFirstReference = false;
+
+
+
+
 
    m_itema.add(pitem);
 
@@ -582,6 +595,8 @@ void reference_item_array::dump_pending_releases(::string & strDump)
    strDump.append_formatf("Serial: %lld, m_iLastReferenceCount=%d\n", m_iSerial, m_iLastReferenceCount);
 
    strDump += m_strDebug + "\n";
+
+   strDump += m_strFirstAllocation + "\n";
  
    for (index iIndex = 0; iIndex < m_itema.get_count(); iIndex++)
    {
@@ -920,7 +935,7 @@ void destruct_particle_reference_item_array(::particle * pparticle)
 
       pparticle->m_preferenceitema = nullptr;
 
-      ::platform::allocator::__delete(preferenceitema);
+      delete preferenceitema;
 
    }
 

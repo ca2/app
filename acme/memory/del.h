@@ -166,15 +166,15 @@ namespace acme
    }
 
 
-   template<typename T>
-   inline T * reset(T *& p)
-   {
+   //template<typename T>
+   //inline T * reset(T *& p)
+   //{
 
-      ::acme::del(p);
+   //   ::acme::del(p);
 
-      return p = __new< T >();
+   //   return p = __new< T >();
 
-   }
+   //}
 
 
 } // namespace acme

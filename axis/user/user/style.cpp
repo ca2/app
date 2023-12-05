@@ -1089,7 +1089,14 @@ namespace axis
 
    }
 
+   void style::destroy()
+   {
 
+      m_pbrush001.release();
+
+      ::user::style::destroy();
+
+   }
 
    //void style::select_default()
    //{

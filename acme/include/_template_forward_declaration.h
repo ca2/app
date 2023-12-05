@@ -944,7 +944,7 @@ using inline_number_string = inline_string<char, 64>;
 
 
 template < typename T, typename ...Args >
-inline T * __new(Args &&... args);
+inline T * __call__new(Args &&... args);
 
 
 template < typename T >

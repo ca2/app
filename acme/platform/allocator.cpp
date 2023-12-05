@@ -4,7 +4,13 @@
 #include "reference_item_array.h"
 #include "referencing_debugging.h"
 
+thread_local bool t_bThisDebug12321575 = false;
+CLASS_DECL_ACME void set_ThisDebug12321575()
+{
 
+   t_bThisDebug12321575 = true;
+
+}
 void destruct_particle_reference_item_array(::particle * pparticle);
 
 
@@ -24,7 +30,6 @@ namespace allocator
    thread_local ::reference_referer * t_preferencerefererTopic = nullptr;
    thread_local ::reference_referer * t_preferencerefererReleaser = nullptr;
 
-
    void set_referer(::reference_referer * preferer)
    {
 
@@ -43,7 +48,7 @@ namespace allocator
    ::reference_referer * new_referer(const ::reference_referer & referer)
    {
 
-      auto preferencereferer = ::platform::allocator::__new < reference_referer >(::transfer(referer));
+      auto preferencereferer = ::platform::allocator::__call__new < reference_referer >(::transfer(referer));
 
       return preferencereferer;
 
@@ -163,13 +168,31 @@ namespace allocator
    }
 
 
+
+
    void set_releaser(::reference_referer * preferer)
    {
 
-      if (::is_null(preferer))
+      if (t_bThisDebug12321575)
       {
 
-         return;
+         if (::is_null(preferer))
+         {
+
+            return;
+
+         }
+
+      }
+      else
+      {
+
+         if (::is_null(preferer))
+         {
+
+            return;
+
+         }
 
       }
 
@@ -368,7 +391,7 @@ namespace allocator
       if(pparticle->is_referencing_debugging_enabled())
       {
 
-         pparticle->m_preferenceitema = ::platform::allocator::__new < reference_item_array >(pparticle, pparticleParent);
+         pparticle->m_preferenceitema = new reference_item_array (pparticle, pparticleParent);
 
          //on_after_construct_particle(pparticle->m_preferenceitema);
 

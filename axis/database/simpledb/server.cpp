@@ -273,6 +273,12 @@ namespace simpledb
 
       m_pdatabaseLocal.release();
 
+      m_pstorage.release();
+
+      m_pdatabaseUser.release();
+
+      m_psimpledb.release();
+
       //auto estatus = 
       
       ::database::server::destroy();

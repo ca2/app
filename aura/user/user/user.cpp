@@ -576,8 +576,27 @@ namespace user
    void user::destroy()
    {
 
-
       m_puserstyle.defer_destroy();
+
+
+      for (auto & pstyle : m_mapUserStyle.payloads())
+      {
+
+         try
+         {
+
+            pstyle.defer_destroy();
+
+         }
+         catch (...)
+         {
+
+         }
+
+      }
+      m_mapUserStyle.erase_all();
+
+
 
       //auto estatus =
       ::acme::department::destroy();

@@ -294,7 +294,7 @@ public:
    }
    
 
-   //operator u32hash() const { return { (::u32)(::uptr)m_p }; }
+   operator u32hash() const { return { (::u32)(::uptr)m_p }; }
 
 };
 

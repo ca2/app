@@ -1324,7 +1324,7 @@ namespace allocator
 } // namespace allocator
 
 
-CLASS_DECL_ACME ::allocator::accessor * __call__add_referer(const ::reference_referer & referer);
+CLASS_DECL_ACME ::allocator::accessor * __call__add_referer(const ::reference_referer & referer, ::reference_referer ** ppreferer = nullptr);
 
 
 

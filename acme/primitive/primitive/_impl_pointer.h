@@ -552,38 +552,38 @@ inline pointer < T > & pointer < T > ::operator = (pointer && t)
 }
 
 
-template < class T >
-inline T * pointer < T > ::detach()
-{
-
-   auto p = m_p;
-
-   m_p = nullptr;
-
-   m_pparticle = nullptr;
-
-   m_preferer = nullptr;
-
-   return p;
-
-}
-
-
-template < class T >
-inline ::particle * pointer < T > ::detach_particle()
-{
-
-   auto p = m_pparticle;
-
-   m_p = nullptr;
-
-   m_pparticle = nullptr;
-
-   m_preferer = nullptr;
-
-   return p;
-
-}
+//template < class T >
+//inline T * pointer < T > ::detach()
+//{
+//
+//   auto p = m_p;
+//
+//   m_p = nullptr;
+//
+//   m_pparticle = nullptr;
+//
+//   m_preferer = nullptr;
+//
+//   return p;
+//
+//}
+//
+//
+//template < class T >
+//inline ::particle * pointer < T > ::detach_particle()
+//{
+//
+//   auto p = m_pparticle;
+//
+//   m_p = nullptr;
+//
+//   m_pparticle = nullptr;
+//
+//   m_preferer = nullptr;
+//
+//   return p;
+//
+//}
 
 
 // cut and paste with very good capabilities of RealVNC for MacOS in OVH.fr/eu/pt cloud from Windows client.
@@ -592,66 +592,123 @@ template < class T >
 inline i64 pointer <T>::release()
 {
 
-   if (::is_null(m_p))
-   {
-
-      return -1;
-
-   }
-
-   m_p = nullptr;
-
+   ::particle * pparticle = nullptr;
    //ASSERT(referer == m_referer);
 
    //return ::release(m_pparticle);
 
-   auto preferer = m_preferer;
+   ::count c = -1;
 
-   m_preferer = nullptr;
+   ::index iSerial = -1;
 
-   ::allocator::add_releaser(preferer);
+   {
 
+      critical_section_lock synchronouslock(::refdbg_cs());
+
+      pparticle = m_pparticle;
+
+      auto preferer = m_preferer;
+
+      if (::is_null(m_p))
+      {
+
+         return -1;
+
+      }
+
+      m_p = nullptr;
+
+      m_pparticle = nullptr;
+
+      m_preferer = nullptr;
+
+      ::allocator::add_releaser(preferer);
+
+      if (::is_set(preferer))
+      {
+
+         iSerial = preferer->m_iSerial;
+
+      }
+
+      try
+      {
+
+         c = pparticle->decrement_reference_count();
+
+      }
+      catch (...)
+      {
+
+         ::acme::get()->platform()->informationf("exception release pparticle->release() \n");
+
+      }
+
+      if (::allocator::get_releaser() == preferer && preferer)
+      {
+
+         ::output_debug_string("releaser stacked but not consumed");
+
+      }
+
+   }
+
+   if (c == 0)
+   {
+
+      try
+      {
+
+         pparticle->delete_this();
+
+      }
+      catch (...)
+      {
+
+      }
+
+   }
    //if (preferer)
    //{
 
    //   ::output_debug_string("releaser stacked");
 
+   ////}
+
+   //auto i = ::release(m_pparticle);
+
+   //if (::allocator::get_releaser() == preferer && preferer)
+   //{
+
+   //   ::output_debug_string("releaser stacked but not consumed");
+
    //}
 
-   auto i = ::release(m_pparticle);
-
-   if (::allocator::get_releaser() == preferer && preferer)
-   {
-
-      ::output_debug_string("releaser stacked but not consumed");
-
-   }
-
-   return i;
+   return c;
 
 }
 
 
-template < class T >
-inline i64 pointer <T>::global_release()
-{
-
-   //ASSERT(referer == m_referer);
-
-   auto i = ::global_release(m_pparticle);
-
-   if (!m_pparticle)
-   {
-
-      m_p = nullptr;
-
-      m_preferer = nullptr;
-
-   }
-
-   return i;
-
-}
+//template < class T >
+//inline i64 pointer <T>::global_release()
+//{
+//
+//   //ASSERT(referer == m_referer);
+//
+//   auto i = ::global_release(m_pparticle);
+//
+//   if (!m_pparticle)
+//   {
+//
+//      m_p = nullptr;
+//
+//      m_preferer = nullptr;
+//
+//   }
+//
+//   return i;
+//
+//}
 
 
 template < class T1, class T2 >

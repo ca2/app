@@ -33,12 +33,12 @@ namespace user
       m_typeatomData = typeatomData;
       m_pAttachedFactory = nullptr;
 
-      load_template();
+      //load_impact_system();
 
    }
 
 
-   void impact_system::load_template()
+   void impact_system::load_impact_system()
    {
    }
 

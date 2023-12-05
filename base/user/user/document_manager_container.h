@@ -18,18 +18,31 @@ namespace user
 
 
       document_manager_container();
-      virtual ~document_manager_container();
+      ~document_manager_container();
 
 
       ::user::document_manager* document_manager();
 
 
 
-      virtual void initialize(::particle * pparticle) override;
+      void initialize(::particle * pparticle) override;
 
-      virtual void add_document_template(::user::impact_system* pimpactsystem);
+      void destroy() override;
 
 
+
+      virtual ::pointer<::user::impact_system> impact_system(const ::atom & atom);
+
+
+      template < typename T >
+      void add_impact_system(const ::atom & atom, ::pointer < T > && t)
+      {
+
+         document_manager()->__impact_system(atom) = ::transfer(t);
+
+         document_manager()->on_add_impact_system(atom);
+
+      }
 
    };
 

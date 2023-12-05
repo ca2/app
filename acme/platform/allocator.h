@@ -119,6 +119,8 @@ namespace allocator
 
          //auto p = ::new(pdata) NON_PARTICLE(::std::forward<Args>(args)...);
 
+         ::allocator::defer_erase_referer();
+
          auto p = __accessor_on_construct<NON_PARTICLE>(data, ::std::forward<Args>(args)...);
 
          return p;
@@ -333,7 +335,7 @@ namespace allocator
 
 
       template < typename T, typename ...Args >
-      inline static T * __new(Args &&... args)
+      inline static T * __call__new(Args &&... args)
       {
 
          auto p = __memory_new < T >(

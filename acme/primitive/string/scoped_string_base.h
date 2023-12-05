@@ -340,7 +340,7 @@ inline string_base < ITERATOR_TYPE > operator + (const scoped_string_base < ITER
 
 
 template<primitive_character CHARACTER>
-inline ::u32hash _scoped_string_u32_hash(::scoped_string_base<const CHARACTER *> scopedstr) 
+inline ::u32hash _scoped_string_u32_hash(const ::scoped_string_base<const CHARACTER *> & scopedstr) 
 {
 
    if (scopedstr.is_empty()) 
@@ -362,15 +362,15 @@ inline ::u32hash _scoped_string_u32_hash(::scoped_string_base<const CHARACTER *>
 
 
 template < >
-inline ::u32hash u32_hash < scoped_ansi_string >(scoped_ansi_string scopedstr);
+inline ::u32hash u32_hash < scoped_ansi_string >(const scoped_ansi_string & scopedstr);
 
 
 template < >
-inline ::u32hash u32_hash < scoped_wd16_string >(scoped_wd16_string scopedstr);
+inline ::u32hash u32_hash < scoped_wd16_string >(const scoped_wd16_string & scopedstr);
 
 
 template < >
-inline ::u32hash u32_hash < scoped_wd32_string >(scoped_wd32_string scopedstr);
+inline ::u32hash u32_hash < scoped_wd32_string >(const scoped_wd32_string & scopedstr);
 
 
 

@@ -21,6 +21,9 @@ namespace base
       ~style() override;
 
 
+      void destroy() override;
+
+
       ::base::application * get_app();
       ::base::session * get_session();
       ::base::system * get_system();

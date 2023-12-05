@@ -46,6 +46,8 @@ namespace data
       ~data_container_base() override;
 
 
+      void destroy() override;
+
       virtual bool set_data(const ::atom & atom, ::data::data * pdata);
       virtual bool add_data(::data::data * pdata);
       virtual bool erase_data(::data::data * pdata);

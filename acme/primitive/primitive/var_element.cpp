@@ -213,19 +213,55 @@ void payload::_set_element(::particle * pelement)
             return ::release(m_p);
          }
          case e_type_string_array:
+         {
+            auto prefererOld = m_preferer;
+            m_preferer = nullptr;
+            ::allocator::add_releaser(prefererOld);
             return ::release(m_pstra);
+         }
          case e_type_i32_array:
+         {
+            auto prefererOld = m_preferer;
+            m_preferer = nullptr;
+            ::allocator::add_releaser(prefererOld);
             return ::release(m_pia);
+         }
          case e_type_payload_array:
+         {
+            auto prefererOld = m_preferer;
+            m_preferer = nullptr;
+            ::allocator::add_releaser(prefererOld);
             return ::release(m_ppayloada);
+         }
          case e_type_property_set:
+         {
+            auto prefererOld = m_preferer;
+            m_preferer = nullptr;
+            ::allocator::add_releaser(prefererOld);
             return ::release(m_ppropertyset);
+         }
          case e_type_i64_array:
+         {
+            auto prefererOld = m_preferer;
+            m_preferer = nullptr;
+            ::allocator::add_releaser(prefererOld);
             return ::release(m_pi64a);
+         }
          case e_type_memory:
+         {
+            auto prefererOld = m_preferer;
+            m_preferer = nullptr;
+            ::allocator::add_releaser(prefererOld);
+
             return ::release(m_pmemory);
+         }
          case e_type_path:
+         {
+            auto prefererOld = m_preferer;
+            m_preferer = nullptr;
+            ::allocator::add_releaser(prefererOld);
             return ::release(m_ppath);
+         }
          default:
             return -1;
          };

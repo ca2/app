@@ -412,10 +412,10 @@ public:
 
    inline i64 release();
 
-   inline i64 global_release();
+   //inline i64 global_release();
 
-   inline T * detach();
-   inline ::particle * detach_particle();
+   inline ::pointer < T > detach() { return ::transfer(*this); }
+   //inline ::particle * detach_particle();
 
 
    template < class T2 >

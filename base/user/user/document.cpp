@@ -40,10 +40,6 @@ namespace user
 
       m_bAutoSaveModified = true;
 
-      m_pviewTopic = (::user::impact *) (iptr)0;
-
-      m_pimpactsystem = nullptr;
-
       m_bEmbedded = false;        // default to file-based document
 
       defer_create_synchronization();
@@ -81,17 +77,26 @@ namespace user
    }
 
 
-//   void document::assert_ok() const
-//   {
-//      ::object::assert_ok();
-//
-//      ::count count = get_impact_count();
-//      for (index index = 0; index < count; index++)
-//      {
-//         ::pointer<::user::impact>pimpact = get_impact(index);
-//         ASSERT_VALID(pimpact);
-//      }
-//   }
+   void document::destroy()
+   {
+
+      m_prequest.release();
+      m_pimpactsystem.release();
+      m_impacta.release();
+      m_pimpactTopic.release();
+
+
+      m_mapRoutine.clear();
+
+      m_pdataIncoming.release();
+
+
+      ::user::controller::destroy();
+      ::channel::destroy();
+      ::manager::destroy();
+      ::data::data_container_base::destroy();
+
+   }
 
 
    ::base::application* document::get_app()

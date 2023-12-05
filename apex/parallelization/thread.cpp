@@ -421,7 +421,7 @@ void thread::term_task()
 
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock _synchronouslock(this->synchronization());
 
       if (m_peventaWait)
       {
@@ -462,7 +462,7 @@ void thread::task_osterm()
 
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock _synchronouslock(this->synchronization());
 
       if (m_pevSleep.is_set())
       {

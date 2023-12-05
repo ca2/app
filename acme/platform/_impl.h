@@ -498,7 +498,7 @@ template < typename T, typename ...Args >
 inline T * __call__new(Args &&... args)
 {
 
-   auto p = ::platform::allocator::__new < T >(::std::forward < Args >(args)...);
+   auto p = ::platform::allocator::__call__new < T >(::std::forward < Args >(args)...);
 
    return p;
 

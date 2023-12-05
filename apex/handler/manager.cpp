@@ -61,6 +61,30 @@ i64 manager::release()
 
 #endif
 
+CLASS_DECL_ACME void set_ThisDebug12321575();
+
+
+void manager::destroy()
+{
+
+   ::string strType = ::type(this).name();
+
+   if (strType.contains("main_frame"))
+   {
+
+      set_ThisDebug12321575();
+
+      output_debug_string("");
+
+   }
+
+   m_psignalmap.release();
+
+   ::object::destroy();
+
+
+}
+
 
 class ::signal * manager::get_signal(const ::atom & atom)
 {

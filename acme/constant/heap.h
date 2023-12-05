@@ -6,7 +6,7 @@ namespace heap
 {
 
 
-   enum enum_memory
+   enum enum_memory : ::u8
    {
 
       e_memory_main,

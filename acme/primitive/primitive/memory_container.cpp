@@ -242,10 +242,10 @@ bool memory_container::attach(memory_base * pstorage)
 }
 
 
-memory_base * memory_container::detach()
+::pointer < memory_base > memory_container::detach()
 {
 
-   return m_pmemory.detach();
+   return ::transfer(m_pmemory);
 
 }
 

@@ -716,7 +716,7 @@ void simple_frame_window::on_message_destroy(::message::message * pmessage)
 }
 
 
-::experience::frame * simple_frame_window::frame_experience()
+::pointer < ::experience::frame > simple_frame_window::frame_experience()
 {
 
    auto psession = get_session();
@@ -807,7 +807,7 @@ void simple_frame_window::initialize_frame_window_experience()
    try
    {
 
-      pexperienceframe = ::pointer_transfer(frame_experience());
+      pexperienceframe = ::transfer(frame_experience());
 
    }
    catch (const ::exception &)

@@ -88,14 +88,16 @@ CLASS_DECL_ACME  void copy(::payload & payload, const ::string & str)
 
 
 payload::payload() :
-   m_etype(e_type_new)
+   m_etype(e_type_new),
+   m_preferer(nullptr)
 {
 
 }
 
 
 payload::payload(enum_type etype) :
-   m_etype(e_type_new)
+   m_etype(e_type_new),
+   m_preferer(nullptr)
 {
 
    set_type(etype, false);
@@ -134,7 +136,8 @@ payload::payload(enum_type etype) :
 
 
 payload::payload(std::nullptr_t) :
-   m_etype(e_type_null)
+   m_etype(e_type_null),
+   m_preferer(nullptr)
 {
 
 }
@@ -152,8 +155,11 @@ payload::payload(std::nullptr_t) :
 
 
 payload::payload(::particle * pelement) :
-   m_etype(e_type_new)
+   m_etype(e_type_new),
+   m_preferer(nullptr)
 {
+
+   m_preferer = ::allocator::defer_get_referer(::platform::get(), { this, __FUNCTION_FILE_LINE__ });
 
    operator = ((::particle *) pelement);
 
@@ -161,7 +167,8 @@ payload::payload(::particle * pelement) :
 
 
 payload::payload(const ::particle & particle) :
-   m_etype(e_type_new)
+   m_etype(e_type_new),
+   m_preferer(nullptr)
 {
 
    operator = (particle);
@@ -173,6 +180,7 @@ payload::payload(const ::particle & particle) :
 
 payload::payload(const ::ansi_character * start, const ::ansi_character * end) :
 m_etype(e_type_new),
+m_preferer(nullptr),
 m_str{ start, end }
 {
 }
@@ -180,6 +188,7 @@ m_str{ start, end }
 
 payload::payload(const ::ansi_character * psz) :
    m_etype(e_type_string),
+   m_preferer(nullptr),
    m_str(psz)
 {
 
@@ -187,6 +196,7 @@ payload::payload(const ::ansi_character * psz) :
 
 payload::payload(const ::string & str) :
    m_etype(e_type_string),
+   m_preferer(nullptr),
    m_str(str)
 {
 
@@ -196,6 +206,7 @@ payload::payload(const ::string & str) :
 
 payload::payload(const type_atom & typeatom):
    m_etype(e_type_atom),
+   m_preferer(nullptr),
    m_atom(typeatom)
 {
 
@@ -205,6 +216,7 @@ payload::payload(const type_atom & typeatom):
 
 payload::payload(::string * pstr) :
    m_etype(e_type_pstring),
+   m_preferer(nullptr),
    m_pstr(pstr)
 {
 
@@ -223,6 +235,7 @@ payload::payload(::string * pstr) :
 
 payload::payload(bool * pb) :
    m_etype(e_type_pbool),
+   m_preferer(nullptr),
    m_pb(pb)
 {
 
@@ -272,7 +285,8 @@ payload::payload(bool * pb) :
 #ifdef __APPLE__
 #ifdef OS64BIT
 
-payload::payload(long l)
+payload::payload(long l):
+m_preferer(nullptr)
 {
 
    m_etype = e_type_i64;
@@ -286,6 +300,7 @@ payload::payload(long l)
 
 payload::payload(::i32 * pi) :
    m_etype(e_type_pi32),
+   m_preferer(nullptr),
    m_pi32(pi)
 {
 
@@ -294,6 +309,7 @@ payload::payload(::i32 * pi) :
 
 payload::payload(::u32 * pu) :
    m_etype(e_type_pu32),
+   m_preferer(nullptr),
    m_pu32(pu)
 {
 
@@ -302,6 +318,7 @@ payload::payload(::u32 * pu) :
 
 payload::payload(::i64 * pi):
    m_etype(e_type_pi64),
+   m_preferer(nullptr),
    m_pi64(pi)
 {
 
@@ -310,6 +327,7 @@ payload::payload(::i64 * pi):
 
 payload::payload(::u64 * pu) :
    m_etype(e_type_pu64),
+   m_preferer(nullptr),
    m_pu64(pu)
 {
 
@@ -336,7 +354,7 @@ payload::payload(::u64 * pu) :
 
 payload::payload(const ::file::path & path) :
    m_etype(e_type_path),
-   m_ppath(__new< ::file::path_object>(path))
+   m_ppath(__new__prefix(&m_preferer)__call__new< ::file::path_object>(path))
 {
 
 }
@@ -344,7 +362,7 @@ payload::payload(const ::file::path & path) :
 
 payload::payload(const string_array & stra) :
    m_etype(e_type_string_array),
-   m_pstra(__new< string_array>(stra))
+   m_pstra(__new__prefix(&m_preferer)__call__new< string_array>(stra))
 {
 
 
@@ -353,7 +371,7 @@ payload::payload(const string_array & stra) :
 
 payload::payload(const ::i32_array & ia) :
    m_etype(e_type_i32_array),
-   m_pia(__new<::i32_array>(ia))
+   m_pia(__new__prefix(&m_preferer)__call__new<::i32_array>(ia))
 {
 
 }
@@ -361,7 +379,7 @@ payload::payload(const ::i32_array & ia) :
 
 payload::payload(const payload_array & payloada) :
    m_etype(e_type_payload_array),
-   m_ppayloada(__new<payload_array>(payloada))
+   m_ppayloada(__new__prefix(&m_preferer)__call__new<payload_array>(payloada))
 {
 
 }
@@ -369,14 +387,15 @@ payload::payload(const payload_array & payloada) :
 
 payload::payload(const property_set & set) :
    m_etype(e_type_property_set),
-   m_ppropertyset(__new<property_set>(set))
+   m_ppropertyset(__new__prefix(&m_preferer)__call__new<property_set>(set))
 {
 
 }
 
 
 payload::payload(const class ::payload & payload) :
-   m_etype(e_type_new)
+   m_etype(e_type_new),
+   m_preferer(nullptr)
 {
 
    operator = (payload);
@@ -386,6 +405,7 @@ payload::payload(const class ::payload & payload) :
 
 payload::payload(::payload * ppayload) :
    m_etype(e_type_payload_pointer),
+   m_preferer(nullptr),
    m_ppayload(ppayload)
 {
 
@@ -412,13 +432,15 @@ payload::payload(::payload * ppayload) :
 
 payload::payload(const ::property & property) :
    m_etype(e_type_property),
-   m_pproperty(new ::property(property))
+   m_preferer(nullptr),
+   m_pproperty(__new< ::property>(property))
 {
 
 }
 
 
-payload::payload(::property * pproperty)
+payload::payload(::property * pproperty):
+m_preferer(nullptr)
 {
 
    m_etype = e_type_new;
@@ -441,6 +463,7 @@ payload::payload(::property * pproperty)
 
 payload::payload(const ::atom & atom) :
    m_etype(e_type_atom),
+   m_preferer(nullptr),
    m_atom(atom)
 {
 
@@ -449,6 +472,7 @@ payload::payload(const ::atom & atom) :
 
 payload::payload(const class time & time) :
    m_etype(e_type_time),
+   m_preferer(nullptr),
    m_time(time)
 {
 
@@ -458,6 +482,7 @@ payload::payload(const class time & time) :
 
 payload::payload(class ::time * ptime) :
    m_etype(e_type_ptime),
+   m_preferer(nullptr),
    m_ptime(ptime)
 {
 
@@ -466,6 +491,7 @@ payload::payload(class ::time * ptime) :
 
 payload::payload(const ::earth::time & earthtime) :
    m_etype(e_type_earth_time),
+   m_preferer(nullptr),
    m_earthtime(earthtime)
 {
    
@@ -474,6 +500,7 @@ payload::payload(const ::earth::time & earthtime) :
 
 payload::payload(const ::color::color & color) :
    m_etype(e_type_color),
+   m_preferer(nullptr),
    m_color(color)
 {
 
@@ -482,6 +509,7 @@ payload::payload(const ::color::color & color) :
 
 payload::payload(const ::color::hls & hls) :
    m_etype(e_type_hls),
+   m_preferer(nullptr),
    m_hls(hls)
 {
 
@@ -5132,9 +5160,9 @@ property_set & payload::property_set_reference()
    else if (m_etype != e_type_property_set)
    {
 
-      m_preferer = ::allocator::defer_add_referer({ this, __FUNCTION_FILE_LINE__ });
+      auto prefererNew = ::allocator::defer_add_referer({ this, __FUNCTION_FILE_LINE__ });
 
-      auto pset = __call__allocate< property_set >();
+      auto psetNew = __call__new< property_set >();
 
       if (is_empty() || !get_bool())
       {
@@ -5146,7 +5174,7 @@ property_set & payload::property_set_reference()
          for (::i32 i = 0; i < array_get_count(); i++)
          {
 
-            pset->set_at(i, at(i));
+            psetNew->set_at(i, at(i));
 
          }
 
@@ -5154,7 +5182,9 @@ property_set & payload::property_set_reference()
 
       set_type(e_type_property_set, false);
 
-      m_ppropertyset = pset;
+      m_preferer = prefererNew;
+
+      m_ppropertyset = psetNew;
 
    }
    else if (::is_null(m_ppropertyset))

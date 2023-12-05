@@ -29,6 +29,9 @@ public:
 #endif
 
 
+   void destroy() override;
+
+
    virtual class ::signal * get_signal(const ::atom& atom);
    virtual class ::signal * get_signal(const ::atom & atom, const ::action_context & actioncontext);
    

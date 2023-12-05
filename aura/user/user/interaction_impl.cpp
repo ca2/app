@@ -877,7 +877,11 @@ namespace user
 
       m_puserinteraction = puserinteraction;
 
+      ::allocator::defer_add_referer({ this, __FUNCTION_FILE_LINE__ });
+
       m_puserinteraction->m_pprimitiveimpl = this;
+
+      ::allocator::defer_add_referer({ this, __FUNCTION_FILE_LINE__ });
 
       m_puserinteraction->m_pinteractionimpl = this;
 
@@ -997,6 +1001,8 @@ namespace user
          //m_puserthread->m_peventStarted = peventStartedUser;
 
       }
+
+      ::allocator::defer_add_referer({ this, __FUNCTION_FILE_LINE__ });
 
       m_puserthread->add_task(m_puserinteraction);
 

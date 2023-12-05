@@ -336,18 +336,31 @@ namespace base
    void user::destroy()
    {
 
-      for (auto & style : m_mapUserStyle.payloads())
-      {
 
-         style.release();
+      m_ptemplateForm.release();
 
-      }
+      m_ptemplateChildForm.release();
 
-      m_mapUserStyle.erase_all();
+      m_pmousefocusLButtonDown.release();
+
+      m_pmousefocusRButtonDown.release();
+
+      m_pmenucentral.release();
+
+      m_pexperience.release();
 
       //auto estatus = 
 
+
+
+
+      ::user::document_manager_container::destroy();
+
       ::axis::user::destroy();
+
+
+
+
 
       //return estatus;
 
@@ -1456,7 +1469,7 @@ namespace base
 
       pstyle->m_pfactory = pexperience->m_pfactory;
 
-      m_puserstyle = pstyle;
+      //m_puserstyle = pstyle;
 
       if (!pstyle)
       {
@@ -1496,18 +1509,18 @@ namespace base
 
       }
 
-      auto & pimpactsystem = m_mapimpactsystem[typeatom];
+      auto pimpactsystem = application()->m_pbaseapplication->impact_system(typeatom);
 
       if (!pimpactsystem)
       {
 
-         pimpactsystem = __allocate < ::user::multiple_document_template >(
-            m_ptemplateForm->m_atom,
-            m_ptemplateForm->m_typeatomDocument,
-            m_ptemplateForm->m_typeatomFrame,
-            typeatom);
-
-         document_manager()->add_document_template(pimpactsystem);
+         application()->m_pbaseapplication->add_impact_system(
+            m_ptemplateForm->m_atom, 
+            __allocate < ::user::multiple_document_template >(
+               m_ptemplateForm->m_atom,
+               m_ptemplateForm->m_typeatomDocument,
+               m_ptemplateForm->m_typeatomFrame,
+               typeatom));
 
       }
 
@@ -1741,7 +1754,7 @@ namespace base
 
          }
 
-         auto pimpactsystem = m_mapimpactsystem[typeatom];
+         auto pimpactsystem = application()->m_pbaseapplication->impact_system(typeatom);
 
          if (!pimpactsystem)
          {
@@ -1755,19 +1768,21 @@ namespace base
 
             }
 
-            auto pimpactsystemNew = __allocate < ::user::multiple_document_template >(
+            application()->m_pbaseapplication->add_impact_system(
+               m_ptemplateChildForm->m_atom,
+                   __allocate < ::user::multiple_document_template >(
                m_ptemplateChildForm->m_atom,
                typeDocument,
                m_ptemplateChildForm->m_typeatomFrame,
-               typeatom);
+               typeatom));
 
-            pimpactsystemNew->initialize(pparticle);
+           /* pimpactsystemNew->initialize(pparticle);
 
             pimpactsystem = pimpactsystemNew;
 
             m_mapimpactsystem[typeatom] = pimpactsystemNew;
 
-            document_manager()->add_document_template(pimpactsystem);
+            document_manager()->add_document_template(pimpactsystem);*/
 
          }
 

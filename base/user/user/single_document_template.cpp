@@ -34,6 +34,17 @@ namespace user
 #endif
    }
 
+
+   void single_document_template::destroy()
+   {
+
+      m_pdocument.release();
+
+      ::user::impact_system::destroy();
+
+   }
+
+
    ::count single_document_template::get_document_count() const
    {
       return (m_pdocument == nullptr) ? 0 : 1;

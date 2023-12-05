@@ -22,6 +22,8 @@ public:
    int                                                            m_iStep;
    ::particle *                                                   m_pparticle;
    ::particle *                                                   m_pparticleParent;
+   bool                                                           m_bFirstAllocationInformation = false;
+   ::string                                                       m_strFirstAllocation;
    ::string                                                       m_strDebug;
    bool                                                           m_bFirstReference;
    ::iptr                                                         m_iLastReferenceCount;
@@ -54,6 +56,19 @@ public:
 
    virtual void dump_pending_releases(::string & strDump);
 
+
+   void * operator new(size_t s)
+   {
+
+      return ::malloc(s);
+
+   }
+   void operator delete(void *p)
+   {
+
+      return ::free(p);
+
+   }
 
 };
 

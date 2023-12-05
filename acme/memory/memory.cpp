@@ -4,7 +4,7 @@
 #include "memory.h"
 #include "acme/exception/interface_only.h"
 #include "acme/memory/c_malloc.h"
-
+#include "acme/_operating_system.h"
 
 //#define HEAP_NAMESPACE_PREFIX main
 //#include "_____heap_namespace.h"
@@ -76,9 +76,39 @@ namespace heap
 
    }
 
+   ::i64 g_iDebugMemoryA = 0;
 
    void memory::free(void * p)
    {
+
+#if 0
+
+      auto i = g_iDebugMemoryA;
+
+      g_iDebugMemoryA++;
+
+      if (i >= 1510)
+      {
+
+         char sz[1024];
+         
+         sprintf(sz, "heap::memory::free %06lld 0x%016llx\n", i, p);
+
+         ::OutputDebugStringA(sz);
+
+      }
+      else
+      {
+
+         char sz[1024];
+
+         sprintf(sz, "heap::memory::free %06lld 0x%016llx\n", i, p);
+
+         ::OutputDebugStringA(sz);
+
+      }
+
+#endif
 
       return m_pheap->free(p);
 

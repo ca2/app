@@ -142,7 +142,7 @@ public:
    };
 
 #ifdef REFERENCING_DEBUGGING
-   ::reference_referer * m_preferer = nullptr;
+   ::reference_referer * m_preferer;
 #endif
 
 

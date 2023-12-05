@@ -23,7 +23,10 @@ namespace user
       ~multiple_document_template() override;
 
 
-      void load_template() override;
+      void destroy() override;
+
+
+      void load_impact_system() override;
       void add_document(::user::document * pDoc) override;
       void erase_document(::user::document * pDoc) override;
       ::count get_document_count() const override;

@@ -57,6 +57,16 @@ namespace base
    }
 
 
+   void application::destroy()
+   {
+
+      ::user::document_manager_container::destroy();
+
+      ::axis::application::destroy();
+
+   }
+
+
    ::pointer < ::data::data > application::create_default_new_document_data()
    {
 

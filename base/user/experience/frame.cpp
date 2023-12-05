@@ -110,6 +110,39 @@ namespace experience
 
    }
 
+#ifdef _DEBUG
+
+   i64 frame::increment_reference_count()
+   {
+
+      return ::object::increment_reference_count();
+
+   }
+
+
+   i64 frame::decrement_reference_count()
+   {
+
+      return ::object::decrement_reference_count();
+
+   }
+
+#endif
+
+
+   void frame::destroy()
+   {
+
+      m_pcontrolbox.release();
+
+      m_pexperience.release();
+
+      m_pframewindow.release();
+
+      ::object::destroy();
+
+   }
+
 
    ::base::application * frame::get_app()
    {

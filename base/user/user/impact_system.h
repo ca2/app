@@ -86,7 +86,7 @@ namespace user
       // void assert_ok() const override;
 
 
-      virtual void load_template();
+      virtual void load_impact_system();
 
       virtual ::count get_document_count() const = 0;
       virtual ::user::document * get_document(index index = 0) const = 0;

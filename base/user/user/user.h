@@ -39,7 +39,7 @@ namespace base
 
       ::pointer < ::experience::department >             m_pexperience;
 
-      atom_map < ::pointer < ::user::impact_system > >   m_mapimpactsystem;
+      //atom_map < ::pointer < ::user::impact_system > >   m_mapimpactsystem;
 
       //::user::impact_system * m_ptemplateHtmlChildForm1;
 

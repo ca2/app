@@ -379,68 +379,86 @@ namespace user
    }
    */
 
-   void document_manager::add_document_template(::user::impact_system * ptemplate)
+   void document_manager::on_add_impact_system(const ::atom & atom)
    {
       
-      ASSERT_VALID(ptemplate);
-      
-      if(m_templateptra.add_unique(ptemplate))
-      {
-         
-         ptemplate->initialize(this);
+      auto pimpactsystem = m_mapImpactSystem[atom];
 
-         ptemplate->load_template();
+      if (!pimpactsystem)
+      {
+
+         throw ::exception(error_wrong_state);
 
       }
+      
+      pimpactsystem->initialize(this);
+
+      pimpactsystem->load_impact_system();
       
       //add_composite(ptemplate);
 
    }
 
 
-   void document_manager::erase_document_template(::user::impact_system * ptemplate)
+   void document_manager::erase_impact_system(const ::atom & atom)
    {
 
-      ptemplate->close_all_documents(false);
+      auto pimpactsystem = m_mapImpactSystem[atom];
 
-      ::count c = m_templateptra.erase(ptemplate);
-
-      if (c <= 0)
+      if (!pimpactsystem)
       {
 
-         informationf("removing document template not managed by document manager");
+         throw ::exception(error_wrong_state);
 
       }
 
+      pimpactsystem->close_all_documents(false);
+
+      m_mapImpactSystem.erase_item(atom);
+
+      //if (c <= 0)
+      //{
+
+      //   informationf("removing document template not managed by document manager");
+
+      //}
+
 
    }
 
-   ::count document_manager::get_template_count() const
+   ::count document_manager::get_impact_system_count() const
    {
-      return m_templateptra.get_count();
+      return m_mapImpactSystem.get_count();
    }
 
 
-   ::user::impact_system * document_manager::get_template(index index) const
+   //::user::impact_system * document_manager::get_template(index index) const
+   //{
+
+   //   if(index < 0 || index >= m_templateptra.get_count())
+   //      return nullptr;
+
+   //   return m_templateptra.element_at(index);
+
+   //}
+
+   ::pointer < ::user::impact_system > & document_manager::__impact_system(const ::atom & atom)
    {
 
-      if(index < 0 || index >= m_templateptra.get_count())
-         return nullptr;
-
-      return m_templateptra.element_at(index);
+      return m_mapImpactSystem[atom];
 
    }
 
 
    bool document_manager::save_all_modified()
    {
-      ::count count = m_templateptra.get_count();
-      for(index index = 0; index < count; index++)
+      for(auto & pimpactsystem : m_mapImpactSystem.payloads())
       {
-         ::pointer<::user::impact_system>ptemplate = m_templateptra[index];
-         ASSERT_KINDOF(::user::impact_system, ptemplate);
-         if (!ptemplate->save_all_modified())
+         if (!pimpactsystem->save_all_modified())
+         {
             return false;
+
+         }
       }
       return true;
    }
@@ -450,17 +468,9 @@ namespace user
    void document_manager::pre_close_all_documents()
    {
 
-      ::count count = m_templateptra.get_count();
-
-      for(index index = 0; index < count; index++)
+      for (auto & pimpactsystem : m_mapImpactSystem.payloads())
       {
-
-         ::pointer<::user::impact_system>ptemplate = m_templateptra[index];
-
-         ASSERT_KINDOF(::user::impact_system, ptemplate);
-
-         ptemplate->pre_close_all_documents();
-
+         pimpactsystem->pre_close_all_documents();
       }
 
    }
@@ -471,23 +481,23 @@ namespace user
    void document_manager::close_all_documents(bool bEndApp)
    {
 
-      ::count count = m_templateptra.get_count();
+      //::count count = m_templateptra.get_count();
 
-      for(index index = 0; index < count; index++)
+      for(auto & pimpactsystem : m_mapImpactSystem.payloads())
       {
 
-         ::pointer<::user::impact_system>ptemplate = m_templateptra[index];
+         //::pointer<::user::impact_system>ptemplate = m_templateptra[index];
 
-         ASSERT_KINDOF(::user::impact_system, ptemplate);
+         //ASSERT_KINDOF(::user::impact_system, ptemplate);
 
-         ptemplate->close_all_documents(bEndApp);
+         pimpactsystem->close_all_documents(bEndApp);
 
       }
 
       if (bEndApp)
       {
 
-         m_templateptra.erase_all();
+         m_mapImpactSystem.clear();
 
       }
 
@@ -505,17 +515,16 @@ namespace user
 
    }
 
+
    ::count document_manager::get_document_count()
    {
-      // ::count all documents
-      ::count nCount = 0;
-      ::count count = m_templateptra.get_count();
-      for(index index = 0; index < count; index++)
+      ::count c = 0;
+      for (auto & pimpactsystem : m_mapImpactSystem.payloads())
       {
-         ::pointer<::user::impact_system>ptemplate = m_templateptra[index];
-         nCount += ptemplate->get_document_count();
+         //::pointer<::user::impact_system>ptemplate = m_templateptra[index];
+         c += pimpactsystem->get_document_count();
       }
-      return nCount;
+      return c;
    }
 
    bool document_manager::OnDDECommand(char * pszCommand)
@@ -773,7 +782,7 @@ namespace user
       }
 
       // find the highest confidence
-      ::count count = m_templateptra.get_count();
+      //::count count = m_templateptra.get_count();
 
       ::user::impact_system::Confidence bestMatch = ::user::impact_system::noAttempt;
 
@@ -808,18 +817,18 @@ namespace user
       ::aura::tcscpy_s(szPath, _countof(szPath), szLinkName);
       */
 
-      for(index index = 0; index < count; index++)
+      for(auto & pimpactsystem : m_mapImpactSystem.payloads())
       {
-         ::pointer<::user::impact_system>ptemplate = m_templateptra[index];
-         ASSERT_KINDOF(::user::impact_system, ptemplate);
+         //::pointer<::user::impact_system>ptemplate = m_templateptra[index];
+         //ASSERT_KINDOF(::user::impact_system, ptemplate);
 
          ::user::impact_system::Confidence match;
          ASSERT(pOpenDocument == nullptr);
-         match = ptemplate->MatchDocType(prequest->m_payloadFile, pOpenDocument);
+         match = pimpactsystem->MatchDocType(prequest->m_payloadFile, pOpenDocument);
          if (match > bestMatch)
          {
             bestMatch = match;
-            pBestTemplate = ptemplate;
+            pBestTemplate = pimpactsystem;
          }
          if (match == ::user::impact_system::yesAlreadyOpen)
             break;      // stop here
@@ -871,16 +880,18 @@ namespace user
    ::count document_manager::get_open_document_count()
    {
 
+    //  ::count nOpen = 0;
+
+  //    ::count count = m_templateptra.get_count();
+//
+
       ::count nOpen = 0;
-
-      ::count count = m_templateptra.get_count();
-
-      for(index index = 0; index < count; index++)
+      for (auto & pimpactsystem : m_mapImpactSystem.payloads())
       {
 
-         auto ptemplate = m_templateptra[index];
+         //auto ptemplate = m_templateptra[index];
 
-         nOpen += ptemplate->get_document_count();
+         nOpen += pimpactsystem->get_document_count();
 
       }
 
@@ -895,6 +906,33 @@ namespace user
    }
 
 
+
+   void document_manager::destroy()
+   {
+
+      for (auto & pimpactsystem : m_mapImpactSystem.payloads())
+      {
+
+         try
+         {
+
+            pimpactsystem.defer_destroy();
+
+         }
+         catch (...)
+         {
+
+         }
+
+      }
+
+      m_mapImpactSystem.clear();
+
+      ::object::destroy();
+
+   }
+
+
    void document_manager::_001OnFileNew()
    {
 
@@ -904,12 +942,10 @@ namespace user
    void document_manager::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      auto templateptra = m_templateptra;
-
-      for(auto & ptemplate : templateptra)
+      for(auto & pimpactsystem : m_mapImpactSystem.payloads())
       {
 
-         ptemplate->handle(ptopic, pcontext);
+         pimpactsystem->handle(ptopic, pcontext);
 
       }
 

@@ -55,6 +55,15 @@ namespace experience
       ~frame_window() override;
 
 
+
+#ifdef _DEBUG
+
+      i64 increment_reference_count() override;
+      i64 decrement_reference_count() override;
+
+#endif
+
+
       virtual ::pointer<::experience::experience>create_experience(const ::string & strExperience);
       virtual ::pointer<::experience::experience>experience(const ::string & strExperience);
       virtual ::pointer<::experience::frame>frame_experience(const ::string & strExperience, const ::string & strFrame, const ::string & strStyle = nullptr);
@@ -75,6 +84,8 @@ namespace experience
 
       ::item_pointer hit_test(::user::mouse * pmouse, ::user::e_zorder ezorder) override;
 
+
+      void destroy() override;
 
       bool is_window_resizing() override;
       bool is_window_repositioning() override;

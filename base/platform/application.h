@@ -48,6 +48,7 @@ namespace base
 
       void initialize(::particle * pparticle) override;
 
+      void destroy() override;
       
       virtual ::pointer < ::data::data > create_default_new_document_data();
 

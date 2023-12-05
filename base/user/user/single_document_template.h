@@ -20,6 +20,10 @@ namespace user
       single_document_template(const ::string & pszMatter, const ::type_atom & typeatomDocument, const ::type_atom & typeatomFrame, const ::type_atom & pImpactClass, const ::type_atom & typeatomData = {});
       ~single_document_template() override;
 
+
+      void destroy() override;
+
+
       virtual void add_document(::user::document * pDoc) override;
       virtual void erase_document(::user::document * pDoc) override;
       virtual ::count get_document_count() const override;

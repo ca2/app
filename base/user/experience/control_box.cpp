@@ -379,13 +379,33 @@ namespace experience
    }
 
 
+   void control_box::on_message_destroy(::message::message * pmessage)
+   {
+
+      m_pbrushButtonBack.release();
+      m_pbrushButtonBackSel.release();
+      m_pbrushButtonBackFocus.release();
+      m_pbrushButtonBackDisabled.release();
+      m_ppenButtonBack.release();
+      m_ppenButtonBackSel.release();
+      m_ppenButtonBackFocus.release();
+      m_ppenButtonBackDisabled.release();
+
+      m_pfontMarlett.release();
+
+      destroy_buttons();
+
+   }
+
+
    void control_box::install_message_routing(::channel * pframewindow)
    {
 
       ::user::interaction::install_message_routing(pframewindow);
 
       MESSAGE_LINK(e_message_show_window, pframewindow, this, &control_box::on_message_show_window);
-      MESSAGE_LINK(MESSAGE_CREATE, pframewindow, this, &control_box::on_message_create);
+      MESSAGE_LINK(e_message_create, pframewindow, this, &control_box::on_message_create);
+      MESSAGE_LINK(e_message_destroy, pframewindow, this, &control_box::on_message_destroy);
       MESSAGE_LINK(e_message_mouse_move, pframewindow, this, &control_box::on_message_mouse_move);
       MESSAGE_LINK(e_message_mouse_leave, pframewindow, this, &control_box::on_message_mouse_leave);
       MESSAGE_LINK(e_message_left_button_down, pframewindow, this, &control_box::on_message_left_button_down);
@@ -768,6 +788,32 @@ namespace experience
       return true;
 
    }
+
+
+   void control_box::destroy_buttons()
+   {
+
+      for (auto & pcontrolboxitem : m_itemmap.payloads())
+      {
+
+         if (pcontrolboxitem)
+         {
+
+            if (pcontrolboxitem->m_pbutton)
+            {
+
+               pcontrolboxitem->m_pbutton.release();
+
+            }
+
+         }
+
+         pcontrolboxitem.release();
+
+      }
+
+   }
+
 
 
    bool control_box::get_control_box_button_caption(enum_button ebutton, string & strCaption) const

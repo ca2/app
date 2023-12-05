@@ -189,6 +189,21 @@ namespace experience
    }
 
 
+
+#ifdef _DEBUG
+
+   i64 frame_window::increment_reference_count()
+   {
+      return ::user::frame_window::increment_reference_count();
+   }
+   i64 frame_window::decrement_reference_count()
+   {
+      return ::user::frame_window::decrement_reference_count();
+   }
+
+#endif
+
+
    void frame_window::pre_translate_message(::message::message * pmessage)
    {
 
@@ -2929,6 +2944,21 @@ namespace experience
       m_pframe->place_set_need_redraw(rectangleAfter, rectangleBefore, pgraphics);
    }
 
+
+   void frame_window::destroy()
+   {
+
+      m_pmovemanager.defer_destroy();
+      m_psizemanager.defer_destroy();
+      m_pdockmanager.defer_destroy();
+      m_pmenumanager.defer_destroy();
+
+      m_pframe.defer_destroy();
+
+
+      ::user::frame_window::destroy();
+
+   }
 
 } // namespace experience
 

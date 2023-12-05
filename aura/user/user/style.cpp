@@ -15,10 +15,6 @@ namespace user
    style::style()
    {
 
-      m_puserstyle = this;
-      m_pgraphics = nullptr;
-
-      default_style_construct();
 
    }
 
@@ -55,6 +51,11 @@ namespace user
       //auto estatus = 
       
       style_base::initialize(pparticle);
+      default_style_construct();
+
+
+      m_puserstyle = this;
+
 
       //if (!estatus)
       //{
@@ -86,7 +87,30 @@ namespace user
    void style::destroy()
    {
 
+      m_controlstyle.clear();
       m_puserstyle.release();
+      m_pfactory.release();
+
+      m_pfont.release();
+      m_pfontMenu.release();
+      m_pfontButton.release();
+      m_pfontList.release();
+      m_pfontTree.release();
+      m_pfontStill.release();
+      m_pfontEdit.release();
+      m_pfontCombo.release();
+
+      m_ppenFocusRect.release();
+      m_ppenFocusRect0.release();
+      m_ppenFocusRect1.release();
+      m_ppenFocusRect2.release();
+      m_ppenFocusRect3.release();
+      m_ppenFocusRect4.release();
+      m_ppenFocusRect5.release();
+      m_ppenFocusRect6.release();
+      m_ppenFocusRect7.release();
+      m_ppenFocusRect8.release();
+      m_ppenFocusRect9.release();
 
       style_base::destroy();
 

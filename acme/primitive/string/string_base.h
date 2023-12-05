@@ -1602,11 +1602,11 @@ inline ::u32hash u32_hash < const wide_string & >(const wide_string & widestr);
 
 
 template < >
-inline ::u32hash u32_hash < ansi_string >(ansi_string ansistr);
+inline ::u32hash u32_hash < ansi_string >(const ansi_string & ansistr);
 
 
 template < >
-inline ::u32hash u32_hash < wide_string >(wide_string widestr);
+inline ::u32hash u32_hash < wide_string >(const wide_string & widestr);
 
 
 template < primitive_character CHARACTER, character_range RANGE >

@@ -376,7 +376,7 @@ void particle::delete_this()
    if (!(m_eflagElement & e_flag_statically_allocated))
    {
 
-      delete this;
+      __delete(this);
 
    }
 
@@ -2543,10 +2543,17 @@ void particle::process_owned_procedure_list(::procedure_list & procedurelist, bo
 }
 
 
-CLASS_DECL_ACME ::allocator::accessor * __call__add_referer(const ::reference_referer & referer)
+CLASS_DECL_ACME ::allocator::accessor * __call__add_referer(const ::reference_referer & referer, ::reference_referer ** ppreferer)
 {
 
-   ::allocator::defer_add_referer(referer);
+   auto preferer = ::allocator::defer_add_referer(referer);
+
+   if (ppreferer)
+   {
+
+      *ppreferer = preferer;
+
+   }
 
    return ::allocator::g_pacessorDefault;
 

@@ -154,6 +154,15 @@ namespace user
    }
 
 
+   void frame::destroy()
+   {
+
+      m_puserstyle.defer_destroy();
+
+      ::user::box::destroy();
+
+   }
+
 //   bool frame::is_os_host() const
 //   {
 //

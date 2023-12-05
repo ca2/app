@@ -16,13 +16,16 @@ namespace experience
    public:
 
 
-      ::pointer<::factory::factory>      m_pfactory;
+      ::pointer<::factory::factory>       m_pfactory;
       property_set                        m_set;
       string                              m_strExperience;
 
 
       experience();
       ~experience() override;
+
+
+      void destroy() override;
 
 
       ::base::application * get_app();

@@ -11297,10 +11297,6 @@ namespace user
    void interaction::destroy()
    {
 
-      ::user::primitive::destroy();
-
-      ::user::drag_client::destroy();
-
       if (m_pprimitiveimpl.is_set())
       {
 
@@ -11404,6 +11400,10 @@ namespace user
       m_puserinteractionOwner.release();
       m_pwindow.release();
       //return ::success;
+      ::user::drag_client::destroy();
+      ::user::primitive::destroy();
+
+
 
    }
 

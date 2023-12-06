@@ -28,7 +28,7 @@ namespace primitive
 
       ::particle::on_initialize_particle();
 
-      if (system()->m_pmathematics)
+      if (!system()->m_pmathematics)
       {
 
          throw ::exception(error_wrong_state);

@@ -121,7 +121,11 @@ namespace user
 
       defer_set_icon();
 
+#if REFERENCING_DEBUGGING
+
       refdbg_top_track refdbgtoptrack(this);
+
+#endif
 
       if (m_bEnableDefaultControlBox && should_show_platform_control_box())
       {

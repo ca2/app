@@ -209,9 +209,14 @@ namespace dynamic_source
    bool ds_script::HasTimedOutLastBuild()
    {
       synchronous_lock synchronouslock(this->synchronization());
+
+      auto psystem = system();
+
+      auto pprimitive = psystem->primitive();
+
       return (m_timeLastBuildTime.elapsed()) > 
          m_pmanager->m_timeBuildInterval +
-         system()->primitive()->random(0_s, m_pmanager->m_timeTimeRandomInterval);
+         pprimitive->random(0_s, m_pmanager->m_timeTimeRandomInterval);
    }
 
    bool ds_script::HasCompileOrLinkError()
@@ -491,8 +496,6 @@ namespace dynamic_source
       {
 
       }
-
-      pinstance->initialize(this);
 
       pinstance->m_strNote = m_strName;
 

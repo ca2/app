@@ -5,9 +5,11 @@
 #include "draw2d.h"
 #include "acme/exception/interface_only.h"
 
+#if REFERENCING_DEBUGGING
 
 extern bool g_bDraw2dDisableReferencingDebugging;
 
+#endif
 
 namespace draw2d
 {
@@ -16,12 +18,16 @@ namespace draw2d
    object::object()
    {
 
+#if REFERENCING_DEBUGGING
+
       if (g_bDraw2dDisableReferencingDebugging)
       {
 
          disable_referencing_debugging();
 
       }
+
+#endif
 
       //m_estatus = success;
       //m_estatusLast = success;

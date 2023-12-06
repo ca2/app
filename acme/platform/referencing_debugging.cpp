@@ -1,5 +1,10 @@
 // Created by camilo More work on 2023-11-22 22:40 <3ThomasBorregaardSorensen!!
 #include "framework.h"
+
+
+#if REFERENCING_DEBUGGING
+
+
 #include "acme.h"
 #include "reference_item_array.h"
 #include "referencing_debugging.h"
@@ -129,5 +134,9 @@ namespace acme
    //}
 
 } // namespace acme
+
+
+#endif // REFERENCING_DEBUGGING
+
 
 

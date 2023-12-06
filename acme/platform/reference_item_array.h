@@ -7,6 +7,10 @@
 //
 #pragma once
 
+#if REFERENCING_DEBUGGING
+
+
+
 
 class reference_item;
 class referencing_debugging;
@@ -73,5 +77,5 @@ public:
 };
 
 
-
+#endif // REFERENCING_DEBUGGING
 

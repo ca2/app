@@ -67,6 +67,11 @@ namespace programming
       }
 
       m_pintegrationcontext->m_pathProjectFolder = pathProjectDir;
+
+
+      m_pintegrationcontext->m_pathBuildFolder = acmedirectory()->module() - 3;
+
+
 //
 //      }
 //      else
@@ -393,6 +398,9 @@ namespace programming
       string strN = pathN;
       strN.find_replace("\\", "/");
       strN += "/";
+
+
+
       //
       //
       //   //#ifdef _DEBUG

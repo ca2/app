@@ -384,6 +384,10 @@ namespace dynamic_source
 
       pmain->init1();
 
+      pinstance->m_pmain = pmain;
+
+      pdssocket->m_pscript = pinstance;
+
       pinstance->initialize(pmain);
 
       pinstance->run_property(ID_CREATE);
@@ -671,6 +675,8 @@ namespace dynamic_source
                   //pimpl->call_routine(CREATE_ROUTINE);
 
                   //pimpl->init1();
+
+                  pinstance->m_pmain = pmain;
 
                   pinstance->initialize(pimpl);
 

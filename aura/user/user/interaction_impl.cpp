@@ -188,7 +188,11 @@ namespace user
       if (m_pmutexDraw == nullptr)
       {
 
+#if REFERENCING_DEBUGGING
+
          refdbg_top_track refdbgtoptrack(this);
+
+#endif
 
          __construct(m_pmutexDraw);
 
@@ -877,11 +881,19 @@ namespace user
 
       m_puserinteraction = puserinteraction;
 
+#if REFERENCING_DEBUGGING
+
       ::allocator::defer_add_referer({ this, __FUNCTION_FILE_LINE__ });
+
+#endif
 
       m_puserinteraction->m_pprimitiveimpl = this;
 
+#if REFERENCING_DEBUGGING
+
       ::allocator::defer_add_referer({ this, __FUNCTION_FILE_LINE__ });
+
+#endif
 
       m_puserinteraction->m_pinteractionimpl = this;
 
@@ -1002,7 +1014,11 @@ namespace user
 
       }
 
+#if REFERENCING_DEBUGGING
+
       ::allocator::defer_add_referer({ this, __FUNCTION_FILE_LINE__ });
+
+#endif
 
       m_puserthread->add_task(m_puserinteraction);
 

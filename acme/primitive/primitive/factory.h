@@ -190,9 +190,12 @@ namespace factory
       inline pointer< ::factory::factory_item_base < ORIGIN_TYPE > > _add_factory_item_from(const ::atom& atomSource);
 
 
+#if REFERENCING_DEBUGGING
+
 
       factory * __call__add_referer2(const ::reference_referer & referer) const;
 
+#endif
 
       //template < typename ORIGIN_TYPE >
       //inline ::pointer<::factory::factory_item_interface>& get_factory_item_from(const ::atom & atomSource);

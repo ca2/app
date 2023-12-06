@@ -62,7 +62,11 @@ namespace platform
       m_pacme(pacme)
    {
 
+#if REFERENCING_DEBUGGING
+
       disable_referencing_debugging();
+
+#endif
 
       m_timeStart.Now();
 
@@ -144,6 +148,7 @@ namespace platform
 ::acme::g_paAura = __new < ::array < matter* > >();
 
 ////::task_on_after_new_particle(g_paAura);
+#if REFERENCING_DEBUGGING
 
 {
 
@@ -152,7 +157,7 @@ namespace platform
    ASSERT(p == nullptr);
 
 }
-
+#endif
 
       m_bVerboseLog = true;
       m_bConsole = false;
@@ -638,6 +643,8 @@ namespace platform
          m_psystem->set_platform(this);
 
          initialize(m_psystem);
+
+         m_psystem->on_initialize_particle();
 
       }
 

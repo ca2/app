@@ -61,11 +61,16 @@ i64 manager::release()
 
 #endif
 
+#if REFERENCING_DEBUGGING
+
 CLASS_DECL_ACME void set_ThisDebug12321575();
 
+#endif
 
 void manager::destroy()
 {
+
+#if REFERENCING_DEBUGGING
 
    ::string strType = ::type(this).name();
 
@@ -77,6 +82,8 @@ void manager::destroy()
       output_debug_string("");
 
    }
+
+#endif
 
    m_psignalmap.release();
 

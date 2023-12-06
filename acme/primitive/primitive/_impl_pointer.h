@@ -979,9 +979,10 @@ inline pointer < T >::pointer(lparam & lparam)
 #if REFERENCING_DEBUGGING
 
    m_preferer = m_pparticle->m_prefererTransfer;
-#endif
 
    m_pparticle->m_prefererTransfer = nullptr;
+
+#endif
    
    if(::is_null(m_p) && ::is_set(m_pparticle))
    {

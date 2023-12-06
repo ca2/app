@@ -30,9 +30,13 @@ public:
 
    /// posting/sending particle with referencing forking
    lparam(const ::particle * pelement);
+
+#if REFERENCING_DEBUGGING
+
    /// posting/sending particle with referencing transfer
    lparam(::particle * pelement, ::reference_referer * preferer);
 
+#endif
 
    /// posting/sending particle
    template < typename T >

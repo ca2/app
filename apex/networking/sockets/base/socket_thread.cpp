@@ -169,6 +169,7 @@ namespace sockets
 
    base_socket* socket_thread::get_socket() const
    {
+
       if (::is_null(m_psockethandler))
       {
 
@@ -178,14 +179,14 @@ namespace sockets
 
       return nullptr;
 
-      ////auto passociation = m_psockethandler->m_socketmap.m_passociationHead;
+      //auto passociation = m_psockethandler->m_socketmap.m_passociationHead;
 
-      ////if (::is_null(passociation))
-      ////{
+      //if (::is_null(passociation))
+      //{
 
-      ////   return nullptr;
+      //   return nullptr;
 
-      ////}
+      //}
 
       //return passociation->m_psocket;
 

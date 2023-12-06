@@ -135,20 +135,18 @@ namespace acme
    }
 
 
-   void system::on_initialize_particle()
+   void system::on_set_platform()
    {
 
-      ::acme::context::on_initialize_particle();
-
-      __defer_construct_new(m_pprimitive);
-
-      //::plane_system::on_initialize_particle();
+      ::acme::context::on_set_platform();
 
    }
 
 
-   void system::initialize_system()
+   void system::on_initialize_particle()
    {
+
+      ::acme::context::on_initialize_particle();
 
       ::output_debug_string("Going to create simple log\n");
 
@@ -227,6 +225,18 @@ namespace acme
       //m_pacme = nullptr;
       //m_pacmedirectory = nullptr;
       //m_pacmepath = nullptr;
+
+      __defer_construct_new(m_pmathematics);
+
+      __defer_construct_new(m_pprimitive);
+
+      //::plane_system::on_initialize_particle();
+
+   }
+
+
+   void system::initialize_system()
+   {
 
       information() << "initialize_system factory()->initialize";
 
@@ -353,8 +363,6 @@ namespace acme
    class ::mathematics::mathematics * system::mathematics()
    {
 
-      __defer_construct_new(m_pmathematics);
-
       return m_pmathematics;
 
    }
@@ -480,7 +488,11 @@ namespace acme
    void system::process_init()
    {
 
+#if REFERENCING_DEBUGGING
+
       ::refdbg_top_track toptrack(this);
+
+#endif
 
       //::acme::idpool::init(this);
 
@@ -2402,7 +2414,7 @@ namespace acme
    }
 
 
-   void system::new_compress(::compress ** ppcompress, const ::scoped_string & scopedstrImplementation)
+   ::pointer < ::compress > system::new_compress(const ::scoped_string & scopedstrImplementation)
    {
 
       auto pcompress = create < ::compress >("compress", scopedstrImplementation);
@@ -2414,16 +2426,12 @@ namespace acme
 
       }
 
-      *ppcompress = pcompress;
-
-      pcompress->increment_reference_count();
-
-      //return ::success;
+      return pcompress;
 
    }
 
 
-   void system::new_uncompress(::uncompress ** ppuncompress, const ::scoped_string & scopedstrImplementation)
+   ::pointer < ::uncompress > system::new_uncompress(const ::scoped_string & scopedstrImplementation)
    {
 
       auto puncompress = create < ::uncompress >("compress", scopedstrImplementation);
@@ -2435,20 +2443,20 @@ namespace acme
 
       }
 
-      *ppuncompress = puncompress;
+      /// *ppuncompress = puncompress;
 
-      puncompress->increment_reference_count();
+      //puncompress->increment_reference_count();
 
-      //return puncompress;
+      return puncompress;
 
    }
 
    void system::compress(const ::payload & payloadTarget, const ::payload & payloadSource, const ::scoped_string & scopedstrImplementation)
    {
 
-      ::pointer<::compress>pcompress;
+      ::pointer<::compress>pcompress = new_compress(scopedstrImplementation);
 
-      /*auto estatus =*/ new_compress(&pcompress.m_p, scopedstrImplementation);
+      ///*auto estatus =*/ new_compress(&pcompress.m_p, scopedstrImplementation);
 
       /*  if (!estatus)
        {
@@ -2478,9 +2486,9 @@ namespace acme
    void system::uncompress(const ::payload & payloadTarget, const ::payload & payloadSource, const ::scoped_string & scopedstrImplementation)
    {
 
-      ::pointer<::uncompress>puncompress;
+      ::pointer<::uncompress>puncompress = new_uncompress(scopedstrImplementation);
 
-      /*auto estatus = */ new_uncompress(&puncompress.m_p, scopedstrImplementation);
+      ///*auto estatus = */ new_uncompress(&puncompress.m_p, scopedstrImplementation);
 
       //if (!estatus)
       //{

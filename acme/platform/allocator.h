@@ -9,6 +9,9 @@ namespace allocator
 {
 
 
+#if REFERENCING_DEBUGGING
+
+
    CLASS_DECL_ACME void __on_start_construct(void * p, memsize s, bool bParticleAndHeapAllocation);
 
    CLASS_DECL_ACME::particle * task_get_top_track();
@@ -22,6 +25,9 @@ namespace allocator
    CLASS_DECL_ACME void on_destruct_particle(::particle * pparticle);
 
    CLASS_DECL_ACME void __on_after_construct_particle(::particle * pparticle);
+
+
+#endif
 
 
    //template < typename ALLOCATOR_ACCESSOR, bool t_bDisableReferencingDebugging = false >
@@ -56,21 +62,24 @@ namespace allocator
       {
 
          //__on_start_construct(data, s, t_bDisableReferencingDebugging, true);
+#if REFERENCING_DEBUGGING
          __on_start_construct(data, s, true);
-
+#endif
 #if REFERENCING_DEBUGGING
 
          auto p = __on_referencing_debugging_construct<PARTICLE>(data, s, ::std::forward<Args>(args)...);
 
          __on_after_construct_particle(p);
 
-         return p;
-
 #else
 
-         return __on_normal_construct<PARTICLE>(data, s, ::std::forward<Args>(args)...);
+         auto p = __on_normal_construct<PARTICLE>(data, s, ::std::forward<Args>(args)...);
 
 #endif
+
+         p->m_pAllocation = data;
+
+         return p;
 
       }
 
@@ -78,9 +87,10 @@ namespace allocator
       template < non_particle NON_PARTICLE, typename ...Args >
       inline static NON_PARTICLE * __on_construct(void * data, memsize s, Args &&... args)
       {
+#if REFERENCING_DEBUGGING
 
          __on_start_construct(data, s, false);
-
+#endif
 #if REFERENCING_DEBUGGING
 
          auto p = __on_referencing_debugging_construct<NON_PARTICLE>(data, s, ::std::forward<Args>(args)...);
@@ -150,7 +160,9 @@ namespace allocator
 
          auto p = __accessor_on_construct<PARTICLE>(data, ::std::forward<Args>(args)...);
 
+#if REFERENCING_DEBUGGING
          on_after_construct_particle(p);
+#endif
 
          return p;
 
@@ -262,6 +274,16 @@ namespace allocator
 
       }
 
+      template < typename T >
+      inline static void __allocator_base_delete(::heap::allocator_base* pallocatorbase, T* p, void * pAllocation)
+      {
+
+         __on_destruct(p);
+
+         pallocatorbase->free(pAllocation);
+
+      }
+
 
       template < typename T, typename ...Args >
       static ::pointer < T > __memory_allocate(::heap::enum_memory ememory, Args &&... args)
@@ -312,6 +334,17 @@ namespace allocator
 
       }
 
+      template < typename T >
+      static void __memory_delete(::heap::enum_memory ememory, T* p, void * pAllocation)
+      {
+
+         __allocator_base_delete< T >(
+            ::acme::get()->m_pheapmanagement->memory(ememory),
+            p,
+            pAllocation);
+
+      }
+
 
       template < typename T, typename ...Args >
       ::pointer < T > static __call__allocate(Args &&... args)
@@ -326,6 +359,8 @@ namespace allocator
       }
 
 
+#if REFERENCING_DEBUGGING
+
       //accessor < ALLOCATOR_ACCESSOR, t_bDisableReferencingDebugging > * __call__add_referer(const ::reference_referer & referer) const
       accessor * __call__add_referer(const ::reference_referer & referer) const
       {
@@ -338,6 +373,9 @@ namespace allocator
          return (accessor *) this;
 
       }
+
+
+#endif
 
 
       template < typename T, typename ...Args >
@@ -373,6 +411,17 @@ namespace allocator
          __memory_delete< T >(
             ::heap::e_memory_main,
             p);
+
+      }
+
+
+      template < typename T >
+      static void __delete(T* p, void * pAllocation)
+      {
+
+         __memory_delete< T >(
+            ::heap::e_memory_main,
+            p, pAllocation);
 
       }
 

@@ -34,7 +34,7 @@ namespace sockets
 
       //virtual void term_thread() override;
 
-      base_socket* get_socket() const;
+      virtual base_socket* get_socket() const;
 
       void run() override;
 

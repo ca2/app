@@ -269,7 +269,11 @@ void nano_window::create_drawing_objects()
    if (!m_pfont)
    {
 
+#if REFERENCING_DEBUGGING
+
       ::allocator::add_referer({this, __FUNCTION_FILE_LINE__});
+
+#endif
 
       __construct(m_pfont, nullptr);
 

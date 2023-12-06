@@ -84,7 +84,7 @@ namespace apex
 #endif
 
 
-      void initialize(::particle * pparticle) override;
+      void on_initialize_particle() override;
 
       void install_message_routing(::channel * pchannel) override;
 

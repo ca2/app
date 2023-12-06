@@ -951,7 +951,13 @@ template < typename T >
 inline T * __new_array(::count c);
 
 
+#if REFERENCING_DEBUGGING
+
+
 CLASS_DECL_ACME void __on_start_construct(void * p, memsize s);
+
+
+#endif
 
 
 

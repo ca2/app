@@ -259,7 +259,11 @@ void particle::defer_create_synchronization()
    if (!m_pparticleSynchronization)
    {
 
+#if REFERENCING_DEBUGGING
+
       refdbg_top_track toptrack(this);
+
+#endif
 
       set_synchronization(__create< ::mutex >(nullptr));
 
@@ -384,7 +388,7 @@ void particle::delete_this()
    if (!(m_eflagElement & e_flag_statically_allocated))
    {
 
-      __delete(this);
+      __delete(this, m_pAllocation);
 
    }
 
@@ -2541,6 +2545,9 @@ void particle::process_owned_procedure_list(::procedure_list & procedurelist, bo
 }
 
 
+#if REFERENCING_DEBUGGING
+
+
 ::particle * particle::__call__add_referer2(const ::reference_referer & referer) const
 {
 
@@ -2566,6 +2573,9 @@ CLASS_DECL_ACME ::allocator::accessor * __call__add_referer(const ::reference_re
    return ::allocator::g_pacessorDefault;
 
 }
+
+
+#endif
 
 
 

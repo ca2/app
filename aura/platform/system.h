@@ -50,17 +50,19 @@ namespace aura
 
       void common_construct();
 
-      virtual void  initialize(::particle * pparticle) override;
+      void on_set_platform() override;
 
-      virtual void on_add_session(::acme::session* papexsession) override;
+      void on_initialize_particle() override;
 
-      virtual void init() override;
+      void on_add_session(::acme::session* papexsession) override;
+
+      void init() override;
       //virtual void init_instance() override;
       //virtual void term_instance() override;
-      virtual void inline_init() override;
-      virtual void inline_term() override;
+      void inline_init() override;
+      void inline_term() override;
 
-      virtual void TermSystem() override;
+      void TermSystem() override;
 
       virtual void on_finish_launching();
 

@@ -747,6 +747,7 @@ namespace dynamic_source
       httpd_socket * script_interface::netnodesocket()
       {
 
+
          return m_pmain->m_psocket2;
 
       }

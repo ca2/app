@@ -26,6 +26,9 @@ lparam::lparam(const ::particle * pparticle)
 }
 
 
+#if REFERENCING_DEBUGGING
+
+
 /// posting/sending particle with referencing transfer
 lparam::lparam(::particle * pparticle, ::reference_referer * preferer)
 {
@@ -44,6 +47,9 @@ lparam::lparam(::particle * pparticle, ::reference_referer * preferer)
    m_lparam = (iptr)(void *)pparticle;
 
 }
+
+
+#endif
 
 
 

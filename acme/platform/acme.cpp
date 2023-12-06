@@ -287,6 +287,7 @@ namespace acme
          m_pplatform = __allocate< ::platform::platform >(this);
 
       }
+#if REFERENCING_DEBUGGING
 
       {
 
@@ -295,8 +296,9 @@ namespace acme
          ASSERT(p == nullptr);
 
       }
-
+#endif
       m_pplatform->platform_initialize();
+#if REFERENCING_DEBUGGING
 
       {
 
@@ -305,8 +307,9 @@ namespace acme
          ASSERT(p == nullptr);
 
       }
-
+#endif
       acme_construct_platform_dependent();
+#if REFERENCING_DEBUGGING
 
       {
 
@@ -315,7 +318,7 @@ namespace acme
          ASSERT(p == nullptr);
 
       }
-
+#endif
    }
 
 
@@ -717,6 +720,7 @@ namespace acme
    {
 
       initialize_memory_management();
+#if REFERENCING_DEBUGGING
 
       {
 
@@ -725,7 +729,7 @@ namespace acme
          ASSERT(p == nullptr);
 
       }
-
+#endif
       //static natural_meta_data < string_meta_data < ::ansi_character > > s_ansistringNil;
 
       //static natural_meta_data < string_meta_data < ::wd16_character > > s_wd16stringNil;
@@ -1154,6 +1158,7 @@ namespace acme
 
       //if (!__node_acme_pre_init())
       __node_acme_pre_init();
+#if REFERENCING_DEBUGGING
 
       {
 
@@ -1162,7 +1167,7 @@ namespace acme
          ASSERT(p == nullptr);
 
       }
-
+#endif
       //{
 
       //   throw ::exception(error_failed);
@@ -1195,6 +1200,7 @@ namespace acme
       //return true;
 
       //factory()->add_factory_item < ::acme::system >();
+#if REFERENCING_DEBUGGING
 
       {
 
@@ -1203,7 +1209,7 @@ namespace acme
          ASSERT(p == nullptr);
 
       }
-
+#endif
    }
 
 
@@ -1212,6 +1218,8 @@ namespace acme
 
       initialize_message_queue();
 
+#if REFERENCING_DEBUGGING
+
       {
 
          auto p = ::allocator::task_get_top_track();
@@ -1219,6 +1227,10 @@ namespace acme
          ASSERT(p == nullptr);
 
       }
+
+
+#endif
+
 
    }
 

@@ -13,6 +13,10 @@
 
 //#include "acme/primitive/collection/array.h"
 
+#if REFERENCING_DEBUGGING
+
+
+
 
 class reference_item_array;
 
@@ -41,6 +45,10 @@ public:
 
 
 };
+
+
+
+#endif // REFERENCING_DEBUGGING
 
 
 

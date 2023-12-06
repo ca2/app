@@ -19,7 +19,11 @@ namespace factory
    factory_item_interface::factory_item_interface()
    {
 
+#if REFERENCING_DEBUGGING
+
       disable_referencing_debugging();
+
+#endif
 
    }
 
@@ -61,6 +65,8 @@ namespace factory
 
    }
 
+#if REFERENCING_DEBUGGING
+
 
 
    factory * factory::__call__add_referer2(const ::reference_referer & referer) const
@@ -71,6 +77,9 @@ namespace factory
       return (factory *)this;
 
    }
+
+
+#endif
 
 
    void factory::merge(const ::factory::factory* pfactory)

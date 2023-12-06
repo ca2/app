@@ -141,8 +141,13 @@ public:
 
    };
 
-#ifdef REFERENCING_DEBUGGING
+
+#if REFERENCING_DEBUGGING
+
+   
    ::reference_referer * m_preferer;
+
+
 #endif
 
 

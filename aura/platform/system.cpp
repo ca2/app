@@ -119,14 +119,10 @@ namespace aura
 {
 
 
-
-
-
    system::system()
    {
 
       m_bAvoidFirstResponder = false;
-
 
       m_bMessageThread = true;
 
@@ -157,7 +153,6 @@ namespace aura
    void system::common_construct()
    {
 
-
       m_paurasystem = this;
 
       m_bSimpleMessageLoop = false;
@@ -175,17 +170,29 @@ namespace aura
    }
 
 
-   void system::initialize(::particle * pparticle)
+   void system::on_set_platform()
    {
 
-      //auto estatus = 
-      
-      ::aqua::system::initialize(pparticle);
+      ::aura::context::on_set_platform();
+
+      ::aqua::system::on_set_platform();
 
       factory()->add_factory_item < ::aura::session, ::apex::session >();
       //factory()->add_factory_item < ::aura::application, ::apex::application >();
       //factory()->add_factory_item < ::aura::idpool, ::acme::idpool >();
       factory()->add_factory_item < ::user::user >();
+
+
+   }
+
+
+   void system::on_initialize_particle()
+   {
+
+      //auto estatus = 
+      
+      ::aqua::system::on_initialize_particle();
+
 
 
       //if (!estatus)

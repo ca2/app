@@ -524,4 +524,11 @@ inline void __delete(T * p)
 
 }
 
+template < typename T >
+inline void __delete(T* p, void * pAllocation)
+{
+
+   ::platform::allocator::__delete < T >(p, pAllocation);
+
+}
 

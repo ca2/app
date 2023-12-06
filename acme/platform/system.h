@@ -169,6 +169,10 @@ namespace acme
       ~system() override;
       
 
+
+      void on_set_platform() override;
+
+
       void on_initialize_particle() override;
 
       
@@ -582,8 +586,8 @@ namespace acme
       //}
 
 
-      void new_compress(::compress ** ppcompress, const ::scoped_string & scopedstrImplementation);
-      void new_uncompress(::uncompress ** ppuncompress, const ::scoped_string & scopedstrImplementation);
+      ::pointer < ::compress>    new_compress(const ::scoped_string & scopedstrImplementation);
+      ::pointer < ::uncompress>  new_uncompress(const ::scoped_string & scopedstrImplementation);
 
 
       virtual void compress(const ::payload & payloadTarget, const ::payload & payloadSource, const ::scoped_string & scopedstrImplementation);

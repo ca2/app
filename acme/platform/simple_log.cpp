@@ -205,7 +205,11 @@ CLASS_DECL_ACME void __trace(enum_trace_level elevel, const ::scoped_string & sc
 simple_log::simple_log()
 {
 
+#if REFERENCING_DEBUGGING
+
    disable_referencing_debugging();
+
+#endif
 
    increment_reference_count();
 

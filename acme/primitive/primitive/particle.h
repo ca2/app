@@ -111,6 +111,7 @@ class CLASS_DECL_ACME particle :
 public:
 
 
+   void *                              m_pAllocation = nullptr;
    ::interlocked_count                 m_countReference;
 
 #if REFERENCING_DEBUGGING
@@ -155,7 +156,8 @@ public:
 
 
 
-#ifdef REFERENCING_DEBUGGING
+#if REFERENCING_DEBUGGING
+
 
    ::particle * refdbg_this() const { return (::particle *)this; }
 
@@ -772,8 +774,13 @@ public:
    inline ::pointer<BASE_TYPE> __raw_create(::factory::factory * pfactory = nullptr);
 
 
+#if REFERENCING_DEBUGGING
+
 
    ::particle * __call__add_referer2(const ::reference_referer & referer) const;
+
+
+#endif
 
    //virtual void to_string(string_exchange & str) const;
 
@@ -1254,36 +1261,6 @@ template < typename TYPE >
 ::i64 release(TYPE *& p);
 
 
-CLASS_DECL_ACME bool refdbg_add_top_track(::particle * pparticle);
-CLASS_DECL_ACME void refdbg_erase_top_track(::particle * pparticle);
-
-
-class refdbg_top_track
-{
-public:
-
-   ::particle * m_p;
-   refdbg_top_track(::particle * p)
-      
-   {
-      if (refdbg_add_top_track(p))
-      {
-         m_p = p;
-      }
-      else
-      {
-         m_p = nullptr;
-      }
-   }
-   ~refdbg_top_track()
-   {
-      if (m_p)
-      {
-         ::refdbg_erase_top_track(m_p);
-      }
-   }
-
-};
 
 
 //#if REFERENCING_DEBUGGING
@@ -1315,8 +1292,6 @@ public:
 //#endif
 
 
-inline ::particle * refdbg_this() { return (::particle *)::acme::get()->platform(); }
-
 namespace allocator
 {
 
@@ -1325,9 +1300,45 @@ namespace allocator
 } // namespace allocator
 
 
+#if REFERENCING_DEBUGGING
+
+CLASS_DECL_ACME bool refdbg_add_top_track(::particle* pparticle);
+CLASS_DECL_ACME void refdbg_erase_top_track(::particle* pparticle);
+
+
+class refdbg_top_track
+{
+public:
+
+   ::particle* m_p;
+   refdbg_top_track(::particle* p)
+
+   {
+      if (refdbg_add_top_track(p))
+      {
+         m_p = p;
+      }
+      else
+      {
+         m_p = nullptr;
+      }
+   }
+   ~refdbg_top_track()
+   {
+      if (m_p)
+      {
+         ::refdbg_erase_top_track(m_p);
+      }
+   }
+
+};
+
+
+inline ::particle* refdbg_this() { return (::particle*)::acme::get()->platform(); }
+
 CLASS_DECL_ACME ::allocator::accessor * __call__add_referer(const ::reference_referer & referer, ::reference_referer ** ppreferer = nullptr);
 
-
+#endif
 
 
 template < non_particle NON_PARTICLE >

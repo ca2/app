@@ -99,7 +99,7 @@ namespace sockets_bsd
 
       //m_psocket->SetSlaveHandler(m_psockethandler);
 
-      m_psockethandler->transfer(pnode, psocketmap);
+      m_psockethandler.cast < socket_handler>()->transfer(pnode, psocketmap);
 
       branch();
 
@@ -115,54 +115,56 @@ namespace sockets_bsd
 
    }
 
+//
+//   //void socket_thread::init_thread()
+//   //{
+//
+//   //   if (!::thread::init_thread())
+//   //   {
+//
+//   //      return false;
+//
+//   //   }
+//
+//
+//   //   return true;
+//
+//   //}
+//
+//
+//   //void socket_thread::term_thread()
+//   //{
+//
+//   //   ::thread::term_thread();
+//
+//   //}
+//
+//
+//#ifdef _DEBUG
+//
+//
+//   ::i64 socket_thread::increment_reference_count()
+//   {
+//
+//      return ::task::increment_reference_count();
+//
+//   }
+//
+//
+//   ::i64 socket_thread::decrement_reference_count()
+//   {
+//
+//      return ::task::decrement_reference_count();
+//
+//   }
+//
+//
+//#endif
 
-   //void socket_thread::init_thread()
-   //{
 
-   //   if (!::thread::init_thread())
-   //   {
-
-   //      return false;
-
-   //   }
-
-
-   //   return true;
-
-   //}
-
-
-   //void socket_thread::term_thread()
-   //{
-
-   //   ::thread::term_thread();
-
-   //}
-
-
-#ifdef _DEBUG
-
-
-   ::i64 socket_thread::increment_reference_count()
+   ::sockets::base_socket* socket_thread::get_socket() const
    {
 
-      return ::task::increment_reference_count();
-
-   }
-
-
-   ::i64 socket_thread::decrement_reference_count()
-   {
-
-      return ::task::decrement_reference_count();
-
-   }
-
-
-#endif
-
-   base_socket* socket_thread::get_socket() const
-   {
       if (::is_null(m_psockethandler))
       {
 
@@ -170,7 +172,9 @@ namespace sockets_bsd
 
       }
 
-      auto passociation = m_psockethandler->m_socketmap.m_begin;
+      ::pointer < socket_handler > psockethandler = m_psockethandler;
+
+      auto passociation = psockethandler->m_socketmap.m_begin;
 
       if (passociation.is_null())
       {
@@ -183,61 +187,62 @@ namespace sockets_bsd
 
    }
 
-   void socket_thread::run()
-   {
 
-      //if (phandler.get() != m_psocket->m_psockethandler.get())
-      //{
-
-      //   //   ::acme::get()->platform()->informationf("");
-
-      //   //}
-      //   //else
-      //   //{
-
-      //   phandler->add(m_psocket);
-
-      //}
-
-      try
-      {
-
-         while (task_get_run() && m_psockethandler->get_count())
-         {
-
-            try
-            {
-
-               m_psockethandler->select(1, 0);
-
-            }
-            catch (...)
-            {
-
-               break;
-
-            }
-
-         }
-
-      }
-      catch (...)
-      {
-
-      }
-
-      //m_psocket->m_psocketthread.release();
-
-      //m_psocket->destroy();
-
-      m_psockethandler->destroy();
-
-      destroy();
-
-      //return ::success;
-
-   }
-
+//   void socket_thread::run()
+//   {
+//
+//      //if (phandler.get() != m_psocket->m_psockethandler.get())
+//      //{
+//
+//      //   //   ::acme::get()->platform()->informationf("");
+//
+//      //   //}
+//      //   //else
+//      //   //{
+//
+//      //   phandler->add(m_psocket);
+//
+//      //}
+//
+//      try
+//      {
+//
+//         while (task_get_run() && m_psockethandler->get_count())
+//         {
+//
+//            try
+//            {
+//
+//               m_psockethandler->select(1, 0);
+//
+//            }
+//            catch (...)
+//            {
+//
+//               break;
+//
+//            }
+//
+//         }
+//
+//      }
+//      catch (...)
+//      {
+//
+//      }
+//
+//      //m_psocket->m_psocketthread.release();
+//
+//      //m_psocket->destroy();
+//
+//      m_psockethandler->destroy();
+//
+//      destroy();
+//
+//      //return ::success;
+//
+//   }
+//
 
 } // namespace sockets_bsd
 

@@ -196,13 +196,10 @@ namespace apex
    }
 
 
-   void system::on_set_platform()
-   {
+   //void system::on_set_platform()
+   //{
 
-      factory()->add_factory_item < ::apex::session, ::apex::session >();
-
-
-   }
+   //}
 
 
 
@@ -250,12 +247,24 @@ namespace apex
 #endif
 
 
-   void system::initialize(::particle * pparticle)
+   void system::on_set_platform()
    {
 
-      ::apex::context::initialize(pparticle);
+      apex::context::on_set_platform();
 
-      m_pcontext = this;
+      acme::system::on_set_platform();
+
+      factory()->add_factory_item < ::apex::session, ::apex::session >();
+
+   }
+
+
+   void system::on_initialize_particle()
+   {
+
+      ::apex::context::on_initialize_particle();
+
+      ::acme::system::on_initialize_particle();
 
    }
 
@@ -1317,10 +1326,9 @@ pacmedirectory->create("/ca2core");
    void system::compress(const ::payload & payloadTarget, const ::payload & payloadSource, const ::scoped_string & scopedstrImplementation)
    {
 
-      ::pointer<::compress>pcompress;
+      /*auto estatus =*/
 
-      /*auto estatus =*/ new_compress(&pcompress.m_p, scopedstrImplementation);
-
+      ::pointer<::compress>pcompress = new_compress(scopedstrImplementation);
       /*  if (!estatus)
       {
 
@@ -1351,7 +1359,9 @@ pacmedirectory->create("/ca2core");
 
       ::pointer<::uncompress>puncompress;
 
-      /*auto estatus = */ new_uncompress(&puncompress.m_p, scopedstrImplementation);
+      /*auto estatus = */ 
+      
+      new_uncompress(scopedstrImplementation);
 
       //if (!estatus)
       //{

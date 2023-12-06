@@ -2,6 +2,10 @@
 #pragma once
 
 
+#if REFERENCING_DEBUGGING
+
+
+
 #include "acme/platform/_c.h"
 #include "acme/primitive/primitive/interlocked_count.h"
 #include "acme/primitive/string/c_string.h"
@@ -128,6 +132,9 @@ public:
    }
 
 };
+
+
+#endif // REFERENCING_DEBUGGING
 
 
 

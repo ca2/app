@@ -31,14 +31,16 @@ namespace axis
 
 
       system();
-      virtual ~system();
+      ~system() override;
 
 
       void common_construct();
 
-      virtual void initialize(::particle * pparticle) override;
+      void on_set_platform() override;
 
-      virtual void on_add_session(::acme::session * papexsession) override;
+      void on_initialize_particle() override;
+
+      void on_add_session(::acme::session * papexsession) override;
 
       virtual void init() override;
       virtual void inline_init() override;

@@ -166,7 +166,11 @@ namespace platform
 
 #endif
 
+#if REFERENCING_DEBUGGING
+
       g_bDefaultEnableObjectReferenceCountDebug = true;
+
+#endif
 
    }
 
@@ -195,7 +199,11 @@ namespace platform
 
 #endif
 
+#if REFERENCING_DEBUGGING
+
       g_bDefaultEnableObjectReferenceCountDebug = true;
+
+#endif
 
    }
 

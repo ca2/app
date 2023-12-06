@@ -11,7 +11,7 @@ namespace dynamic_source
 
       m_pnetnodescriptmain = nullptr;
 
-      tracking_note_assign(m_pmain, this REFERENCING_DEBUGGING_COMMA_THIS_NOTE("this is annotation"));
+      //tracking_note_assign(m_pmain, this REFERENCING_DEBUGGING_COMMA_THIS_NOTE("this is annotation"));
 
    }
 

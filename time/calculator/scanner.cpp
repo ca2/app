@@ -847,7 +847,7 @@ namespace datetime
    token * scanner::look_ahead()
    {
       token * token;
-      token = aaa_memory_new class token;
+      token = new class token;
       if(token == NULL)
          throw ::exception(error_no_memory);
       while(ansi_char_isspace(*input))

@@ -1068,11 +1068,11 @@ pacmedirectory->create("/var/tmp/ca2/intermediate");
       string strHmhLctvWildPdbPath;
       string strRndTitle;
 
-      auto pmathematics = ::mathematics::mathematics();
+      auto pmathematics = this->mathematics();
 
-      pmathematics->gen_rand_alnum(strRndTitle.get_buffer(64),64);
+      strRndTitle = pmathematics->random_alphanumeric(64);
 
-      strRndTitle.release_buffer();
+      ///strRndTitle.release_buffer();
 
       auto pacmedirectory = acmedirectory();
 

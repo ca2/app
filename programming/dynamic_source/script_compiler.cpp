@@ -2803,7 +2803,7 @@ ch_else:
 
       single_lock slLibrary(m_pmutex, true);
 
-      m_plibraryLib.create(this);
+      __construct(m_plibraryLib);
 
       m_plibraryLib->open(m_strLibraryPath);
       // return;

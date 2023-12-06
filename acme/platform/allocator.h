@@ -68,7 +68,7 @@ namespace allocator
 
 #else
 
-         return __on_normal_particle_construct<PARTICLE>(data, s, ::std::forward<Args>(args)...);
+         return __on_normal_construct<PARTICLE>(data, s, ::std::forward<Args>(args)...);
 
 #endif
 
@@ -118,9 +118,10 @@ namespace allocator
       {
 
          //auto p = ::new(pdata) NON_PARTICLE(::std::forward<Args>(args)...);
+#if REFERENCING_DEBUGGING
 
          ::allocator::defer_erase_referer();
-
+#endif
          auto p = __accessor_on_construct<NON_PARTICLE>(data, ::std::forward<Args>(args)...);
 
          return p;
@@ -183,12 +184,14 @@ namespace allocator
       template < typename T, typename ...Args >
       static ::pointer < T > __allocator_base_allocate(::heap::allocator_base * pallocatorbase, Args &&... args)
       {
+#if REFERENCING_DEBUGGING
 
          auto preferer = ::allocator::get_referer();
-
+#endif
          auto p = __allocator_base_new< T >(pallocatorbase, ::std::forward < Args >(args)...);
 
          pointer < T > pointer{ transfer_t{}, p };
+#if REFERENCING_DEBUGGING
 
          if (!p->is_referencing_debugging_enabled())
          {
@@ -202,7 +205,7 @@ namespace allocator
             pointer.m_preferer = preferer;
 
          }
- 
+#endif
          return ::transfer(pointer);
 
       }
@@ -327,8 +330,11 @@ namespace allocator
       accessor * __call__add_referer(const ::reference_referer & referer) const
       {
 
+#if REFERENCING_DEBUGGING
+
+
          ::allocator::add_referer(referer);
-      
+#endif
          return (accessor *) this;
 
       }

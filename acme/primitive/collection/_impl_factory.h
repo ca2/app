@@ -287,7 +287,11 @@ namespace factory
        if (ptype)
        {
 
+#if REFERENCING_DEBUGGING
+
           ::allocator::defer_erase_referer();
+
+#endif
 
           return false;
 
@@ -304,7 +308,7 @@ namespace factory
 
 
 template < typename TYPE >
-inline void particle__call__raw_construct2(REFERENCING_DEBUGGING_PARAMETERS_DECLARATION_COMMA ::pointer<TYPE> & p, ::factory::factory * pfactory)
+inline void particle__call__raw_construct2( ::pointer<TYPE> & p, ::factory::factory * pfactory)
 {
 
 #if REFERENCING_DEBUGGING
@@ -418,7 +422,10 @@ inline bool particle::__call__defer_construct(::pointer<TYPE>& p, ::factory::fac
    if (p)
    {
 
+#if REFERENCING_DEBUGGING
+
       ::allocator::defer_erase_referer();
+#endif
 
       return false;
 

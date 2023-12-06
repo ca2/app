@@ -763,7 +763,7 @@ public:
    inline void __call__construct_new(::pointer<TYPE>& ptype);
 
    //template < typename TYPE >
-   //inline void __call__raw_construct2(REFERENCING_DEBUGGING_PARAMETERS_DECLARATION_COMMA ::pointer<TYPE> & p, ::factory::factory * pfactory = nullptr);
+   //inline void __call__raw_construct2( ::pointer<TYPE> & p, ::factory::factory * pfactory = nullptr);
 
    template < typename TYPE >
    inline void __call__raw_construct(::pointer<TYPE> & p, ::factory::factory * pfactory = nullptr);

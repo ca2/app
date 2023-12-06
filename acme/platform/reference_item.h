@@ -6,7 +6,7 @@
 //  More work on 2023-11-22 22:21 <3ThomasBorregaardSorensen!!
 //
 #pragma once
-
+#if   REFERENCING_DEBUGGING
 
 class reference_item_array;
 
@@ -35,5 +35,5 @@ public:
 };
 
 
-
+#endif
 

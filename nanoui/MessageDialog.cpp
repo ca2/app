@@ -37,7 +37,7 @@ namespace nanoui
       case Type::Question: icon = m_ptheme->m_efontawesomeMessageQuestion; break;
       case Type::Warning: icon = m_ptheme->m_efontawesomeMessageWarning; break;
       }
-      Label* icon_label = __new< Label(panel1, ::string(get_utf8_character >(icon)), "icons");
+      Label* icon_label = __new< Label>(panel1, ::string(get_utf8_character(icon)), "icons");
       icon_label->set_font_size(50);
       Widget* panelB = __new< Widget >(panel1);
       panelB->set_layout(__new< BoxLayout >(e_orientation_vertical,

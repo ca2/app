@@ -836,9 +836,9 @@ namespace acme
    {
 
       synchronous_lock synchronouslock(m_pmutexTask);
-
+#if   REFERENCING_DEBUGGING
       ::allocator::add_referer({ this, __FUNCTION_FILE_LINE__ });
-
+#endif
       m_taskmap[itask] = ptask;
 
       m_taskidmap[ptask] = itask;

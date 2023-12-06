@@ -127,9 +127,10 @@ public:
          m_p = nullptr;
 
          m_pparticle = nullptr;
+#if REFERENCING_DEBUGGING
 
          m_preferer = nullptr;
-
+#endif
          return;
 
       }
@@ -138,6 +139,7 @@ public:
 
       if (::is_set(pNew))
       {
+#if REFERENCING_DEBUGGING
 
          ::reference_referer * prefererNew = nullptr;
 
@@ -147,15 +149,16 @@ public:
             prefererNew = ::allocator::defer_get_referer(pNew, { this, __FUNCTION_FILE_LINE__ });
 
          }
-
+#endif
          pNew->increment_reference_count();
 
          m_p = pNew;
 
          m_pparticle = pNew;
+#if REFERENCING_DEBUGGING
 
          m_preferer = prefererNew;
-
+#endif
       }
       else
       {
@@ -163,9 +166,10 @@ public:
          m_pparticle = nullptr;
 
          m_p = nullptr;
+#if REFERENCING_DEBUGGING
 
          m_preferer = nullptr;
-
+#endif
       }
 
    }
@@ -259,9 +263,10 @@ public:
             m_p = nullptr;
 
             m_pparticle = nullptr;
+#if REFERENCING_DEBUGGING
 
             m_preferer = nullptr;
-
+#endif
          }
 
       }
@@ -271,9 +276,10 @@ public:
          m_p = nullptr;
 
          m_pparticle = nullptr;
+#if REFERENCING_DEBUGGING
 
          m_preferer = nullptr;
-
+#endif
       }
 
    }
@@ -699,7 +705,7 @@ ptr < TYPE > clone(TYPE * p);
 
 
 template < typename TYPE >
-inline ::pointer<TYPE> __call__create_new(REFERENCING_DEBUGGING_PARAMETERS_DECLARATION_COMMA ::particle* pparticle);
+inline ::pointer<TYPE> __call__create_new( ::particle* pparticle);
 
 
 template < typename TARGET, typename SOURCE >
@@ -737,12 +743,13 @@ ptr < TYPE >::ptr(const ::pointer < TYPE > & p)
    {
 
       m_p = nullptr;
+#if REFERENCING_DEBUGGING
       m_preferer = nullptr;
-
+#endif
    }
    else
    {
-
+#if REFERENCING_DEBUGGING
       ::reference_referer * prefererNew = nullptr;
 
       if (pNew->is_referencing_debugging_enabled())
@@ -751,13 +758,13 @@ ptr < TYPE >::ptr(const ::pointer < TYPE > & p)
          prefererNew = ::allocator::defer_get_referer(pNew, { this, __FUNCTION_FILE_LINE__ });
 
       }
-
+#endif
       pNew->increment_reference_count();
 
       m_p = pNew;
-
+#if REFERENCING_DEBUGGING
       m_preferer = prefererNew;
-
+#endif
    }
 
 }
@@ -772,14 +779,15 @@ ptr < TYPE >::ptr(::pointer < TYPE > && p)
    {
 
       m_p = nullptr;
+#if REFERENCING_DEBUGGING
       m_preferer = nullptr;
-
+#endif
    }
    else
    {
 
       m_p = pNew;
-
+#if REFERENCING_DEBUGGING
       if (!pNew->is_referencing_debugging_enabled())
       {
 
@@ -793,10 +801,13 @@ ptr < TYPE >::ptr(::pointer < TYPE > && p)
       }
 
       m_preferer = p.m_preferer;
+#endif
       p.m_p = nullptr;
       p.m_pparticle = nullptr;
       p.m_estatus = error_not_initialized;
+#if REFERENCING_DEBUGGING
       p.m_preferer = nullptr;
+#endif
 
    }
 }
@@ -812,13 +823,14 @@ ptr < TYPE >::ptr(const ::pointer < T2 > & p)
    {
 
       m_p = nullptr;
-
+#if REFERENCING_DEBUGGING
       m_preferer = nullptr;
-
+#endif
    }
    else
    {
-      
+#if REFERENCING_DEBUGGING
+
       ::reference_referer * prefererNew = nullptr;
 
       if (pNew->is_referencing_debugging_enabled())
@@ -827,12 +839,15 @@ ptr < TYPE >::ptr(const ::pointer < T2 > & p)
          prefererNew = ::allocator::defer_get_referer(pNew, { this, __FUNCTION_FILE_LINE__ });
 
       }
+#endif
 
       pNew->increment_reference_count();
       
       m_p = pNew;
+#if REFERENCING_DEBUGGING
 
       m_preferer = prefererNew;
+#endif
 
    }
 
@@ -849,14 +864,17 @@ ptr < TYPE >::ptr(::pointer < T2 > && p)
    {
 
       m_p = nullptr;
+#if REFERENCING_DEBUGGING
 
       m_preferer = nullptr;
+#endif
 
    }
    else
    {
 
       m_p = pNew;
+#if REFERENCING_DEBUGGING
 
       if (!pNew->is_referencing_debugging_enabled())
       {
@@ -871,15 +889,16 @@ ptr < TYPE >::ptr(::pointer < T2 > && p)
       }
 
       m_preferer = p.m_preferer;
-
+#endif
       p.m_p = nullptr;
 
       p.m_pparticle = nullptr;
 
       p.m_estatus = error_not_initialized;
+#if REFERENCING_DEBUGGING
 
       p.m_preferer = nullptr;
-
+#endif
    }
 }
 
@@ -903,19 +922,22 @@ ptr < TYPE > & ptr < TYPE >::operator =(const ::pointer < TYPE > & p)
       return *this;
 
    }
+#if REFERENCING_DEBUGGING
 
    auto prefererOld = m_preferer;
-
+#endif
    if (::is_null(pNew))
    {
 
       m_p = nullptr;
+#if REFERENCING_DEBUGGING
 
       m_preferer = nullptr;
-
+#endif
    }
    else
    {
+#if REFERENCING_DEBUGGING
 
       ::reference_referer * prefererNew = nullptr;
 
@@ -925,17 +947,21 @@ ptr < TYPE > & ptr < TYPE >::operator =(const ::pointer < TYPE > & p)
          prefererNew = ::allocator::defer_get_referer(pNew, { this, __FUNCTION_FILE_LINE__ });
 
       }
-
+#endif
       pNew->increment_reference_count();
 
       m_p = pNew;
+#if REFERENCING_DEBUGGING
 
       m_preferer = prefererNew;
-
+#endif
    }
 
    if (::is_set(pOld))
    {
+
+
+#if REFERENCING_DEBUGGING
 
       if (pOld->is_referencing_debugging_enabled())
       {
@@ -944,6 +970,7 @@ ptr < TYPE > & ptr < TYPE >::operator =(const ::pointer < TYPE > & p)
 
       }
 
+#endif
       pOld->release();
 
    }
@@ -967,30 +994,41 @@ ptr < TYPE > & ptr < TYPE >::operator =(::pointer < TYPE > && p)
       return *this;
 
    }
+#if REFERENCING_DEBUGGING
 
    auto prefererOld = m_preferer;
-
+#endif
    if (::is_null(pNew))
    {
 
       m_p = nullptr;
+#if REFERENCING_DEBUGGING
+
       m_preferer = nullptr;
+#endif
 
    }
    else
    {
 
       m_p = pNew;
+#if REFERENCING_DEBUGGING
+
       m_preferer = p.m_preferer;
+#endif
       p.m_p = nullptr;
       p.m_pparticle = nullptr;
       p.m_estatus = error_not_initialized;
+#if REFERENCING_DEBUGGING
+
       p.m_preferer = nullptr;
+#endif
 
    }
 
    if (::is_set(pOld))
    {
+#if REFERENCING_DEBUGGING
 
       if (pOld->is_referencing_debugging_enabled())
       {
@@ -998,7 +1036,7 @@ ptr < TYPE > & ptr < TYPE >::operator =(::pointer < TYPE > && p)
          ::allocator::add_releaser(prefererOld);
 
       }
-
+#endif
       pOld->release();
 
    }
@@ -1022,19 +1060,22 @@ ptr < TYPE > & ptr < TYPE >::operator =(const ::pointer < T2 > & p)
       return *this;
 
    }
+#if REFERENCING_DEBUGGING
 
    auto prefererOld = m_preferer;
-
+#endif
    if (::is_null(pNew))
    {
 
       m_p = nullptr;
+#if REFERENCING_DEBUGGING
 
       m_preferer = nullptr;
-
+#endif
    }
    else
    {
+#if REFERENCING_DEBUGGING
 
       ::reference_referer * prefererNew = nullptr;
 
@@ -1044,17 +1085,19 @@ ptr < TYPE > & ptr < TYPE >::operator =(const ::pointer < T2 > & p)
          prefererNew = ::allocator::defer_get_referer(pNew, { this, __FUNCTION_FILE_LINE__ });
 
       }
-
+#endif
       pNew->increment_reference_count();
 
       m_p = pNew;
+#if REFERENCING_DEBUGGING
 
       m_preferer = prefererNew;
-
+#endif
    }
 
    if (::is_set(pOld))
    {
+#if REFERENCING_DEBUGGING
 
       if (pOld->is_referencing_debugging_enabled())
       {
@@ -1062,7 +1105,7 @@ ptr < TYPE > & ptr < TYPE >::operator =(const ::pointer < T2 > & p)
          ::allocator::add_releaser(prefererOld);
 
       }
-
+#endif
       pOld->release();
 
    }
@@ -1087,29 +1130,41 @@ ptr < TYPE > & ptr < TYPE >::operator =(::pointer < T2 > && p)
 
    }
 
+#if REFERENCING_DEBUGGING
+
    auto prefererOld = m_preferer;
 
+#endif
    if (::is_null(pNew))
    {
 
       m_p = nullptr;
-      m_preferer = nullptr;
+#if REFERENCING_DEBUGGING
 
+      m_preferer = nullptr;
+#endif
    }
    else
    {
 
       m_p = pNew;
+#if REFERENCING_DEBUGGING
+
       m_preferer = p.m_preferer;
+#endif
       p.m_p = nullptr;
       p.m_pparticle = nullptr;
       p.m_estatus = error_not_initialized;
+#if REFERENCING_DEBUGGING
+
       p.m_preferer = nullptr;
+#endif
 
    }
 
    if (::is_set(pOld))
    {
+#if REFERENCING_DEBUGGING
 
       if (pOld->is_referencing_debugging_enabled())
       {
@@ -1117,7 +1172,7 @@ ptr < TYPE > & ptr < TYPE >::operator =(::pointer < T2 > && p)
          ::allocator::add_releaser(prefererOld);
 
       }
-
+#endif
       pOld->release();
 
    }

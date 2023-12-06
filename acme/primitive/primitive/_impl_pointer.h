@@ -138,12 +138,14 @@ inline pointer < T > ::pointer(const pointer & t)
       m_p = nullptr;
 
       m_pparticle = nullptr;
+#if REFERENCING_DEBUGGING
 
       m_preferer = nullptr;
-
+#endif
    }
    else
    {
+#if REFERENCING_DEBUGGING
 
       ::reference_referer * prefererNew = nullptr;
 
@@ -153,15 +155,16 @@ inline pointer < T > ::pointer(const pointer & t)
          prefererNew = ::allocator::defer_get_referer(pNew, { this, __FUNCTION_FILE_LINE__ });
 
       }
-
+#endif
       pNew->increment_reference_count();
 
       m_pparticle = pNew;
 
       m_p = t.m_p;
+#if REFERENCING_DEBUGGING
 
       m_preferer = prefererNew;
-
+#endif
    }
 
 }
@@ -171,16 +174,20 @@ template < class T >
 inline pointer < T > ::pointer(pointer && t) :
 m_p(t.m_p),
 m_pparticle(t.m_pparticle),
-m_estatus(t.m_estatus),
-m_preferer(t.m_preferer)
+m_estatus(t.m_estatus)
+#if REFERENCING_DEBUGGING
+
+,m_preferer(t.m_preferer)
+#endif
 {
 
 t.m_p = nullptr;
 
 t.m_pparticle = nullptr;
+#if REFERENCING_DEBUGGING
 
 t.m_preferer = nullptr;
-
+#endif
 }
 
 
@@ -379,10 +386,13 @@ inline pointer < T > & pointer < T > ::reset (T2 * p)
 
          auto pOld = m_p;
 
-         auto prefererOld = ::transfer(m_preferer);
+#if REFERENCING_DEBUGGING
 
+         auto prefererOld = ::transfer(m_preferer);
+#endif
          if (::is_set(pNew))
          {
+#if REFERENCING_DEBUGGING
 
             ::reference_referer * prefererNew = nullptr;
 
@@ -392,15 +402,16 @@ inline pointer < T > & pointer < T > ::reset (T2 * p)
                prefererNew = ::allocator::defer_get_referer(pNew, { this, __FUNCTION_FILE_LINE__ });
 
             }
-
+#endif
             pNew->increment_reference_count();
 
             m_p = pNew;
 
             m_pparticle = pNew;
+#if REFERENCING_DEBUGGING
 
             m_preferer = prefererNew;
-
+#endif
          }
          else
          {
@@ -409,12 +420,14 @@ inline pointer < T > & pointer < T > ::reset (T2 * p)
 
             m_pparticle = nullptr;
 
+#if REFERENCING_DEBUGGING
             m_preferer = nullptr;
-
+#endif
          }
 
          if (::is_set(pOld))
          {
+#if REFERENCING_DEBUGGING
 
             if (pOld->is_referencing_debugging_enabled())
             {
@@ -422,7 +435,7 @@ inline pointer < T > & pointer < T > ::reset (T2 * p)
                ::allocator::add_releaser(prefererOld);
 
             }
-
+#endif
             ::release(pOld);
 
          }
@@ -450,9 +463,10 @@ inline pointer < T > & pointer < T > ::operator = (const pointer & t)
    {
 
       auto pOld = m_pparticle;
+#if REFERENCING_DEBUGGING
 
       auto prefererOld = m_preferer;
-
+#endif
       auto pNew = t.m_pparticle;
 
       if (::is_null(pNew))
@@ -461,12 +475,14 @@ inline pointer < T > & pointer < T > ::operator = (const pointer & t)
          m_p = nullptr;
 
          m_pparticle = nullptr;
+#if REFERENCING_DEBUGGING
 
          m_preferer = nullptr;
-
+#endif
       }
       else
       {
+#if REFERENCING_DEBUGGING
 
          ::reference_referer * prefererNew = nullptr;
 
@@ -476,19 +492,23 @@ inline pointer < T > & pointer < T > ::operator = (const pointer & t)
             prefererNew = ::allocator::defer_get_referer(pNew, { this, __FUNCTION_FILE_LINE__ });
 
          }
+#endif
 
          pNew->increment_reference_count();
 
          m_p = t.m_p;
 
          m_pparticle = pNew;
+#if REFERENCING_DEBUGGING
 
          m_preferer = prefererNew;
+#endif
 
       }
 
       if (::is_set(pOld))
       {
+#if REFERENCING_DEBUGGING
 
          if (pOld->is_referencing_debugging_enabled())
          {
@@ -496,7 +516,7 @@ inline pointer < T > & pointer < T > ::operator = (const pointer & t)
             ::allocator::add_releaser(prefererOld);
 
          }
-
+#endif
          ::release(pOld);
 
       }
@@ -516,23 +536,27 @@ inline pointer < T > & pointer < T > ::operator = (pointer && t)
    {
 
       auto pOld = m_pparticle;
+#if REFERENCING_DEBUGGING
 
       auto prefererOld = m_preferer;
-
+#endif
       m_p               = t.m_p;
 
       m_pparticle       = t.m_pparticle;
+#if REFERENCING_DEBUGGING
 
       m_preferer        = t.m_preferer;
-
+#endif
       t.m_p             = nullptr;
 
       t.m_pparticle     = nullptr;
+#if REFERENCING_DEBUGGING
 
       t.m_preferer      = nullptr;
-
+#endif
       if (::is_set(pOld))
       {
+#if REFERENCING_DEBUGGING
 
          if (pOld->is_referencing_debugging_enabled())
          {
@@ -540,7 +564,7 @@ inline pointer < T > & pointer < T > ::operator = (pointer && t)
             ::allocator::add_releaser(prefererOld);
 
          }
-
+#endif
          ::release(pOld);
 
       }
@@ -602,13 +626,16 @@ inline i64 pointer <T>::release()
    ::index iSerial = -1;
 
    {
+#if REFERENCING_DEBUGGING
+
 
       critical_section_lock synchronouslock(::refdbg_cs());
-
+#endif
       pparticle = m_pparticle;
+#if REFERENCING_DEBUGGING
 
       auto preferer = m_preferer;
-
+#endif
       if (::is_null(m_p))
       {
 
@@ -619,18 +646,19 @@ inline i64 pointer <T>::release()
       m_p = nullptr;
 
       m_pparticle = nullptr;
+#if REFERENCING_DEBUGGING
 
       m_preferer = nullptr;
 
       ::allocator::add_releaser(preferer);
-
+#
       if (::is_set(preferer))
       {
 
          iSerial = preferer->m_iSerial;
 
       }
-
+#endif
       try
       {
 
@@ -643,6 +671,7 @@ inline i64 pointer <T>::release()
          ::acme::get()->platform()->informationf("exception release pparticle->release() \n");
 
       }
+#if REFERENCING_DEBUGGING
 
       if (::allocator::get_releaser() == preferer && preferer)
       {
@@ -650,7 +679,7 @@ inline i64 pointer <T>::release()
          ::output_debug_string("releaser stacked but not consumed");
 
       }
-
+#endif
    }
 
    if (c == 0)
@@ -947,12 +976,17 @@ inline pointer < T >::pointer(lparam & lparam)
    
    m_p = dynamic_cast <T *>(m_pparticle);
 
+#if REFERENCING_DEBUGGING
+
    m_preferer = m_pparticle->m_prefererTransfer;
+#endif
 
    m_pparticle->m_prefererTransfer = nullptr;
    
    if(::is_null(m_p) && ::is_set(m_pparticle))
    {
+
+#if REFERENCING_DEBUGGING
 
       if (::is_set(m_preferer))
       {
@@ -962,6 +996,7 @@ inline pointer < T >::pointer(lparam & lparam)
          m_preferer = nullptr;
 
       }
+#endif
 
       ::release(m_pparticle);
 
@@ -1227,8 +1262,10 @@ inline pointer < T > ::pointer(const ptr < T2 > & t)
 
       m_pparticle = nullptr;
 
-      m_preferer = nullptr;
+#if REFERENCING_DEBUGGING
 
+      m_preferer = nullptr;
+#endif
    }
    else
    {
@@ -1241,12 +1278,14 @@ inline pointer < T > ::pointer(const ptr < T2 > & t)
          m_p = nullptr;
 
          m_pparticle = nullptr;
+#if REFERENCING_DEBUGGING
 
          m_preferer = nullptr;
-
+#endif
       }
       else
       {
+#if REFERENCING_DEBUGGING
 
          ::reference_referer * prefererNew = nullptr;
 
@@ -1256,14 +1295,16 @@ inline pointer < T > ::pointer(const ptr < T2 > & t)
             prefererNew = ::allocator::defer_get_referer(pNew, { this, __FUNCTION_FILE_LINE__ });
 
          }
-
+#endif
          pNew->increment_reference_count();
 
          m_p = pNew;
 
          m_pparticle = pNew;
+#if REFERENCING_DEBUGGING
 
          m_preferer = prefererNew;
+#endif
 
       }
 
@@ -1283,8 +1324,10 @@ inline pointer < T > ::pointer(ptr < T2 > && t)
       m_p = nullptr;
 
       m_pparticle = nullptr;
+#if REFERENCING_DEBUGGING
 
       m_preferer = nullptr;
+#endif
 
    }
    else
@@ -1298,9 +1341,10 @@ inline pointer < T > ::pointer(ptr < T2 > && t)
          m_p = nullptr;
 
          m_pparticle = nullptr;
+#if REFERENCING_DEBUGGING
 
          m_preferer = nullptr;
-
+#endif
       }
       else
       {
@@ -1308,9 +1352,10 @@ inline pointer < T > ::pointer(ptr < T2 > && t)
          m_p = pNew;
 
          m_pparticle = pNew;
+#if REFERENCING_DEBUGGING
 
          m_preferer = t.m_preferer;
-
+#endif
          t.m_p = nullptr;
 
          t.m_preferer = nullptr;
@@ -1328,18 +1373,20 @@ inline pointer < T >& pointer < T > ::operator = (const ptr < T2 > & t)
 {
 
    auto pOld = m_pparticle;
+#if REFERENCING_DEBUGGING
 
    auto prefererOld = m_preferer;
-
+#endif
    if (::is_null(t.m_p))
    {
 
       m_p = nullptr;
 
       m_pparticle = nullptr;
+#if REFERENCING_DEBUGGING
 
       m_preferer = nullptr;
-
+#endif
    }
    else
    {
@@ -1358,12 +1405,14 @@ inline pointer < T >& pointer < T > ::operator = (const ptr < T2 > & t)
          m_p = nullptr;
 
          m_pparticle = nullptr;
+#if REFERENCING_DEBUGGING
 
          m_preferer = nullptr;
-
+#endif
       }
       else
       {
+#if REFERENCING_DEBUGGING
 
          ::reference_referer * prefererNew = nullptr;
 
@@ -1373,21 +1422,23 @@ inline pointer < T >& pointer < T > ::operator = (const ptr < T2 > & t)
             prefererNew = ::allocator::defer_get_referer(pNew, { this, __FUNCTION_FILE_LINE__ });
 
          }
-
+#endif
          pNew->increment_reference_count();
 
          m_p = pNew;
 
          m_pparticle = pNew;
+#if REFERENCING_DEBUGGING
 
          m_preferer = prefererNew;
-
+#endif
       }
 
    }
 
    if (::is_set(pOld))
    {
+#if REFERENCING_DEBUGGING
 
       if (pOld->is_referencing_debugging_enabled())
       {
@@ -1395,7 +1446,7 @@ inline pointer < T >& pointer < T > ::operator = (const ptr < T2 > & t)
          ::allocator::add_releaser(prefererOld);
 
       }
-
+#endif
       ::release(pOld);
 
    }
@@ -1409,9 +1460,10 @@ template < class T >
 template < typename T2 >
 inline pointer < T >& pointer < T > ::operator = (ptr < T2 > && t)
 {
+#if REFERENCING_DEBUGGING
 
    auto prefererOld = m_preferer;
-
+#endif
    auto pOld = m_pparticle;
 
    if (::is_null(t.m_p))
@@ -1420,9 +1472,10 @@ inline pointer < T >& pointer < T > ::operator = (ptr < T2 > && t)
       m_p = nullptr;
 
       m_pparticle = nullptr;
+#if REFERENCING_DEBUGGING
 
       m_preferer = nullptr;
-
+#endif
    }
    else
    {
@@ -1441,9 +1494,10 @@ inline pointer < T >& pointer < T > ::operator = (ptr < T2 > && t)
          m_p = nullptr;
 
          m_pparticle = nullptr;
+#if REFERENCING_DEBUGGING
 
          m_preferer = nullptr;
-
+#endif
       }
       else
       {
@@ -1451,9 +1505,10 @@ inline pointer < T >& pointer < T > ::operator = (ptr < T2 > && t)
          m_pparticle = pNew;
 
          m_p = pNew;
+#if REFERENCING_DEBUGGING
 
          m_preferer = t.m_preferer;
-
+#endif
          t.m_p = nullptr;
 
          t.m_preferer = nullptr;
@@ -1464,6 +1519,7 @@ inline pointer < T >& pointer < T > ::operator = (ptr < T2 > && t)
 
    if (::is_set(pOld))
    {
+#if REFERENCING_DEBUGGING
 
       if (pOld->is_referencing_debugging_enabled())
       {
@@ -1471,7 +1527,7 @@ inline pointer < T >& pointer < T > ::operator = (ptr < T2 > && t)
          ::allocator::add_releaser(prefererOld);
 
       }
-
+#endif
       ::release(pOld REF_DBG_COMMA_POINTER);
 
    }
@@ -1494,18 +1550,20 @@ inline pointer < T > & pointer < T > ::operator = (const pointer < T2 > & t)
       return *this;
 
    }
+#if REFERENCING_DEBUGGING
 
    auto prefererOld = m_preferer;
-
+#endif
    if (::is_null(t.m_p))
    {
 
       m_p = nullptr;
 
       m_pparticle = nullptr;
+#if REFERENCING_DEBUGGING
 
       m_preferer = nullptr;
-
+#endif
    }
    else
    {
@@ -1524,12 +1582,14 @@ inline pointer < T > & pointer < T > ::operator = (const pointer < T2 > & t)
          m_p = nullptr;
 
          m_pparticle = nullptr;
+#if REFERENCING_DEBUGGING
 
          m_preferer = nullptr;
-
+#endif
       }
       else
       {
+#if REFERENCING_DEBUGGING
 
          ::reference_referer * prefererNew = nullptr;
 
@@ -1540,20 +1600,24 @@ inline pointer < T > & pointer < T > ::operator = (const pointer < T2 > & t)
 
          }
 
+#endif
+
          pNew->increment_reference_count();
 
          m_pparticle = t.m_pparticle;
 
          m_p = pNew;
+#if REFERENCING_DEBUGGING
 
          m_preferer = prefererNew;
-
+#endif
       }
 
    }
 
    if (::is_set(pOld))
    {
+#if REFERENCING_DEBUGGING
 
       if (pOld->is_referencing_debugging_enabled())
       {
@@ -1561,7 +1625,7 @@ inline pointer < T > & pointer < T > ::operator = (const pointer < T2 > & t)
          ::allocator::add_releaser(prefererOld);
 
       }
-
+#endif
       ::release(pOld);
 
    }
@@ -1584,18 +1648,20 @@ inline pointer < T > & pointer < T > ::operator = (pointer < T2 > && t)
       return *this;
 
    }
+#if REFERENCING_DEBUGGING
 
    auto prefererOld = m_preferer;
-
+#endif
    if (::is_null(t.m_p))
    {
 
       m_p = nullptr;
 
       m_pparticle = nullptr;
+#if REFERENCING_DEBUGGING
 
       m_preferer = nullptr;
-
+#endif
    }
    else
    {
@@ -1614,9 +1680,10 @@ inline pointer < T > & pointer < T > ::operator = (pointer < T2 > && t)
          m_p = nullptr;
 
          m_pparticle = nullptr;
+#if REFERENCING_DEBUGGING
 
          m_preferer = nullptr;
-
+#endif
       }
       else
       {
@@ -1624,6 +1691,7 @@ inline pointer < T > & pointer < T > ::operator = (pointer < T2 > && t)
          m_pparticle = t.m_pparticle;
 
          m_p = pNew;
+#if REFERENCING_DEBUGGING
 
          if (!pNew->is_referencing_debugging_enabled())
          {
@@ -1638,19 +1706,21 @@ inline pointer < T > & pointer < T > ::operator = (pointer < T2 > && t)
          }
 
          m_preferer = t.m_preferer;
-
+#endif
          t.m_p = nullptr;
 
          t.m_pparticle = nullptr;
+#if REFERENCING_DEBUGGING
 
          t.m_preferer = nullptr;
-
+#endif
       }
 
    }
 
    if (::is_set(pOld))
    {
+#if REFERENCING_DEBUGGING
 
       if (pOld->is_referencing_debugging_enabled())
       {
@@ -1658,7 +1728,7 @@ inline pointer < T > & pointer < T > ::operator = (pointer < T2 > && t)
          ::allocator::add_releaser(prefererOld);
 
       }
-
+#endif
       ::release(pOld);
 
    }

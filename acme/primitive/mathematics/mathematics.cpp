@@ -682,7 +682,7 @@ namespace mathematics
    void mathematics::random(const ::block & block)
    {
 
-      ::mathematics::g_pmathematics->m_posdata->random(block);
+      m_posdata->random(block);
 
    }
 

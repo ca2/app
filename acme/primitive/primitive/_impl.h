@@ -451,7 +451,7 @@ inline void particle::__call__construct_new(::pointer<TYPE>& p)
 
 
 //template < typename TYPE >
-//inline void particle::__call__raw_construct(REFERENCING_DEBUGGING_PARAMETERS_DECLARATION_COMMA ::pointer<TYPE> & p)
+//inline void particle::__call__raw_construct( ::pointer<TYPE> & p)
 //{
 //
 //#if REFERENCING_DEBUGGING
@@ -1781,9 +1781,10 @@ inline bool particle::__call__defer_construct_new(::pointer<TYPE> & p)
 
    if (::is_set(p))
    {
+#if REFERENCING_DEBUGGING
 
       ::allocator::defer_erase_referer();
-
+#endif
       return false;
 
    }

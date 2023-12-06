@@ -1,6 +1,10 @@
 // Created by camilo on 2023-11-27 03:54 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "allocator.h"
+
+
+#if REFERENCING_DEBUGGING
+
 #include "reference_item_array.h"
 #include "referencing_debugging.h"
 
@@ -633,5 +637,7 @@ bool g_bIntermediateThreadReferencingDebugging = false;
 //
 //}
 
+
+#endif //  REFERENCING_DEBUGGING
 
 

@@ -57,7 +57,7 @@ class reference_count_debug;
 #define COMMA_REFERENCING_DEBUGGING_PARAMETERS_DEFINITION , REFERENCING_DEBUGGING_PARAMETERS_DEFINITION
 #define REFERENCING_DEBUGGING_PARAMETERS_DECLARATION REFERENCING_DEBUGGING_PARAMETERS_DEFINITION = nullptr
 #define COMMA_REFERENCING_DEBUGGING_PARAMETERS_DECLARATION , REFERENCING_DEBUGGING_PARAMETERS_DECLARATION
-#define REFERENCING_DEBUGGING_PARAMETERS_DECLARATION_COMMA REFERENCING_DEBUGGING_PARAMETERS_DEFINITION ,
+#define  REFERENCING_DEBUGGING_PARAMETERS_DEFINITION ,
 #define REFERENCING_DEBUGGING_COMMA_NOTE(note) , {nullptr, note}
 #define REFERENCING_DEBUGGING_P(ptr) ptr
 #define REFERENCING_DEBUGGING_COMMA_P(ptr) , REFERENCING_DEBUGGING_P(ptr)
@@ -81,17 +81,36 @@ class reference_count_debug;
 #define tracking_check_pending_releases(x) x->check_pending_releases()
 #else
 
-#define __construct_new(p) __call__construct_new(p)
 
-#define 
-#define
-#define
-#define
-#define 
-#define 
+#define REFDBG_THIS(p)
+
+#define __create __call__create
+#define __construct __call__construct
+#define __id_create __call__id_create
+#define __create_new __call__create_new
+#define __id_construct __call__id_construct
+#define __raw_construct __call__raw_construct
+#define __construct_new __call__construct_new
+#define __defer_construct __call__defer_construct
+#define __create_new_clone __call__create_new_clone
+#define __defer_construct_new __call__defer_construct_new
+
+
+#define __new__prefix(x) 
+#define __new __call__new
+#define __allocate __call__allocate
+
+//#define __construct_new(p) __call__construct_new(p)
+
+//#define 
+//#define
+//#define
+//#define
+//#define 
+//#define 
 #define REFERENCING_DEBUGGING_PTR(ptr)
-#define 
-#define 
+//#define 
+//#define 
 #define REFERENCING_DEBUGGING_COMMA_THIS
 #define REFERENCING_DEBUGGING_COMMA_NOTE(note)
 #define REFERENCING_DEBUGGING_THIS_NOTE(note)

@@ -87,9 +87,10 @@ void file_context::initialize(::particle * pparticle)
 {
 
    /*auto estatus = */ ::object::initialize(pparticle);
+#if REFERENCING_DEBUGGING
 
    ::allocator::add_referer({ this, __FUNCTION_FILE_LINE__ });
-
+#endif
    defer_create_synchronization();
 
    //if (!estatus)

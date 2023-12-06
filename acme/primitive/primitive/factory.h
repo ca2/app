@@ -219,13 +219,13 @@ namespace factory
 
 
       template < typename ORIGIN_TYPE >
-      inline void __defer_raw_construct(REFERENCING_DEBUGGING_PARAMETERS_DECLARATION_COMMA ::pointer<ORIGIN_TYPE> & p)
+      inline void __defer_raw_construct( ::pointer<ORIGIN_TYPE> & p)
       {
 
          if (::is_null(p))
          {
 
-            this->__raw_construct(REFERENCING_DEBUGGING_ARGUMENTS_COMMA p);
+            this->__raw_construct(p);
 
          }
 

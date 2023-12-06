@@ -747,9 +747,10 @@ CLASS_DECL_ACME void set_task(task * ptask)
 {
 
    auto ptaskOld = t_ptask;
+#if REFERENCING_DEBUGGING
 
    ::allocator::add_referer({ ::acme::get()->platform(), __FUNCTION_FILE_LINE__ });
-
+#endif
    //::increment_reference_count(ptask);
 
    t_ptask = ptask;

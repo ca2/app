@@ -1,6 +1,7 @@
 // Created by camilo More work on 2023-11-22 22:40 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "acme.h"
+#if   REFERENCING_DEBUGGING
 #include "reference_item.h"
 #include "reference_item_array.h"
 #include "referencing_debugging.h"
@@ -951,3 +952,9 @@ CLASS_DECL_ACME::critical_section * refdbg_cs()
    return &::acme::get()->m_preferencingdebugging->m_criticalsection;
 
 }
+
+
+#endif
+
+
+

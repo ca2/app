@@ -157,6 +157,8 @@ namespace nanoui
 
       void common_construct();
 
+      void destroy() override;
+
       void set_need_layout() override;
       //
       //   /// Get the window title bar caption

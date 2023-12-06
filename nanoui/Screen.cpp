@@ -581,6 +581,15 @@ namespace nanoui
 
    }
 
+   
+   void Screen::destroy()
+   {
+
+      Widget::destroy();
+      ::appearance::appearance::destroy();
+
+   }
+
 
    void Screen::set_need_layout()
    {

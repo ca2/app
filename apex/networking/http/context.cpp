@@ -524,6 +524,23 @@ namespace http
    }
 
 
+   void context::finalize()
+   {
+
+
+      m_pmutexPac.release();
+      m_mapPac.clear();
+      m_pmutexProxy.release();
+      m_mapProxy.clear();
+
+
+      http_system_destruct();
+
+      ::object::finalize();
+
+   }
+
+
    i32 context::auto_config_proxy_count()
    {
 

@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "document_manager.h"
+
+
 namespace user
 {
 

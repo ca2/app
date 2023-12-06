@@ -114,6 +114,27 @@ void dir_context::init_context()
    //return ::success;
 
 }
+void dir_context::term_context()
+{
+
+   //return ::success;
+
+}
+
+void dir_context::term_system()
+{
+
+   //return ::success;
+
+}
+
+
+void dir_context::finalize()
+{
+
+
+}
+
 
 
 inline bool myspace(char ch)

@@ -122,10 +122,10 @@ namespace user
 
       pmessage->previous();
 
-      if(get_document()->m_pviewTopic == nullptr)
+      if(get_document()->m_pimpactTopic == nullptr)
       {
 
-         get_document()->m_pviewTopic = this;
+         get_document()->m_pimpactTopic = this;
 
       }
 

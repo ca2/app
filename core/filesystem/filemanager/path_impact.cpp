@@ -4,6 +4,7 @@
 #include "data.h"
 #include "acme/constant/id.h"
 #include "acme/filesystem/file/item.h"
+#include "acme/handler/topic.h"
 #include "acme/platform/context.h"
 #include "acme/platform/keep.h"
 #include "apex/filesystem/fs/data.h"

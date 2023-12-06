@@ -189,6 +189,22 @@ void dir_system::init_system()
 }
 
 
+void dir_system::term_system()
+{
+
+   m_pfilewatcher.release();
+
+}
+
+
+void dir_system::finalize()
+{
+
+   ::object::finalize();
+
+}
+
+
 ::file::path dir_system::compute_default_app_data_path()
 {
 

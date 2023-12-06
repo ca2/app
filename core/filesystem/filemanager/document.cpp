@@ -12,6 +12,8 @@
 #include "acme/filesystem/watcher/action.h"
 #include "acme/filesystem/watcher/watcher.h"
 #include "acme/handler/request.h"
+#include "acme/handler/extended_topic.h"
+#include "acme/handler/topic.h"
 #include "acme/platform/keep.h"
 #include "acme/platform/system.h"
 #include "apex/filesystem/fs/set.h"

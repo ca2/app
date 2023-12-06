@@ -57,6 +57,16 @@ namespace base
    }
 
 
+   void application::process_term()
+   {
+
+      m_ptabimpactBase.release();
+
+      axis::application::process_term();
+
+   }
+
+
    void application::destroy()
    {
 

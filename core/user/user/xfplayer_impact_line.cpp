@@ -68,7 +68,7 @@ void xfplayer_impact_line::initialize_xfplayer_impact_line(xfplayer_impact_linea
    //   
    //}
    
-   m_pfont.create(this);
+   __construct(m_pfont);
 
    m_pContainer = pContainer;
    m_bEnhancedEmboss = true;
@@ -839,7 +839,7 @@ void xfplayer_impact_line::CalcCharsPositions(::draw2d::graphics_pointer & pgrap
    if (m_bColonPrefix)
    {
 
-      m_pfontPrefix.create(this);
+      __construct(m_pfontPrefix);
 
       *m_pfontPrefix = *m_pfont;
 
@@ -1432,7 +1432,7 @@ void xfplayer_impact_line::embossed_text_out(::draw2d::graphics_pointer & pgraph
 
       ::draw2d::pen_pointer ppen;
 
-      ppen.create(this);
+      __construct(ppen);
 
       ppen->create_solid(iWidth * 2, crOutline);
 
@@ -1499,9 +1499,9 @@ void xfplayer_impact_line::embossed_text_out(::draw2d::graphics_pointer & pgraph
 
          size = pgraphics->get_text_extent(m_strPrefix);
 
-         auto psystem = system()->m_pcoresystem;
+        /* auto psystem = system()->m_pcoresystem;
 
-         psystem->imaging().AlphaTextOut(pgraphics, iLeft, iTop + m_rectangle.height() - size.cy(), m_strPrefix, color32, dBlend);
+         psystem->*/imaging()->AlphaTextOut(pgraphics, iLeft, iTop + m_rectangle.height() - size.cy(), m_strPrefix, color32, dBlend);
 
          pgraphics->set(m_pfont);
 
@@ -1520,7 +1520,7 @@ void xfplayer_impact_line::embossed_text_out(::draw2d::graphics_pointer & pgraph
 
          }
 
-         psystem->imaging().AlphaTextOut(pgraphics, iLeft + iOffset, iTop, m_strRoot, color32, dBlend);
+         imaging()->AlphaTextOut(pgraphics, iLeft + iOffset, iTop, m_strRoot, color32, dBlend);
 
 
 
@@ -1530,9 +1530,9 @@ void xfplayer_impact_line::embossed_text_out(::draw2d::graphics_pointer & pgraph
 
          pgraphics->set(m_pfont);
 
-         auto psystem = system()->m_pcoresystem;
+         /*auto psystem = system()->m_pcoresystem;
 
-         psystem->imaging().AlphaTextOut(pgraphics, iLeft, iTop, scopedstr, color32, dBlend);
+         psystem->*/imaging()->AlphaTextOut(pgraphics, iLeft, iTop, scopedstr, color32, dBlend);
 
 
       }
@@ -1659,11 +1659,11 @@ void xfplayer_impact_line::CacheEmboss(::draw2d::graphics_pointer & pgraphics, c
 
    auto psystem = system()->m_pcoresystem;
 
-   psystem->imaging().channel_spread_set_color(pdcCache, {}, size, pdcCache, {}, 0, i32(maximum(1.0, m_floatRateX * 2.0 + 2)), argb(23, 23, 20, 23));
+   imaging()->channel_spread_set_color(pdcCache, {}, size, pdcCache, {}, 0, i32(maximum(1.0, m_floatRateX * 2.0 + 2)), argb(23, 23, 20, 23));
 
    pdcCache->set_alpha_mode(::draw2d::e_alpha_mode_blend);
-   psystem->imaging().channel_alpha_gray_blur(pdcCache, {}, size, pdcCache, {}, 0, i32(maximum(1.0, m_floatRateX * 2.5)));
-   psystem->imaging().channel_alpha_gray_blur(pdcCache, {}, size, pdcCache, {}, 0, i32(maximum(1.0, m_floatRateX * 2.5)));
+   imaging()->channel_alpha_gray_blur(pdcCache, {}, size, pdcCache, {}, 0, i32(maximum(1.0, m_floatRateX * 2.5)));
+   imaging()->channel_alpha_gray_blur(pdcCache, {}, size, pdcCache, {}, 0, i32(maximum(1.0, m_floatRateX * 2.5)));
 
    pimageCache->clear(::color::transparent);
 

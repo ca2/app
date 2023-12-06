@@ -8,6 +8,7 @@
 #include "document.h"
 #include "acme/constant/id.h"
 #include "acme/handler/item.h"
+#include "acme/handler/topic.h"
 #include "base/user/user/frame_window.h"
 
 

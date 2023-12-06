@@ -41,6 +41,7 @@
 #include "aura/graphics/image/icon.h"
 #include "aura/user/user/shell.h"
 #include "base/user/user/multiple_document_template.h"
+#include "base/user/user/user.h"
 #include "core/user/simple/form_impact.h"
 #include "core/user/user/tree.h"
 #include "core/platform/session.h"
@@ -76,9 +77,9 @@ namespace filemanager
 
       mem.set_size(get_manager_id_byte_len());
 
-      auto pmathematics = ::mathematics::mathematics();
+      //auto pmathematics = ::mathematics::mathematics();
 
-      pmathematics->random_bytes(mem.data(), mem.size());
+      pparticle->mathematics()->random(mem);
 
       return mem.to_hex().uppered();
 
@@ -269,28 +270,31 @@ namespace filemanager
       //   return estatus;
 
       //}
-
-      auto pmulti = __allocate < ::user::multiple_document_template >(
+      user()->m_pbaseuser->add_impact_system(
+         "filemanager",
+          __allocate < ::user::multiple_document_template >(
          "filemanager",
          __form_document_type(),
          ::type < form_child_frame >(),
          ::type < form >()));
 
-      __construct(m_pimpactsystemForm, pmulti);
+      //__construct(m_pimpactsystemForm, pmulti);
 
-      auto psession = get_session();
+    /*  auto psession = get_session();
 
-      psession->add_document_template(pmulti);
+      psession->add_document_template(pmulti);*/
 
-      auto psingle = __allocate < ::user::multiple_document_template >(
+      user()->m_pbaseuser->add_impact_system(
+         "filemanager_operation",
+      __allocate < ::user::multiple_document_template >(
          "filemanager",
          ::type < operation_document >(),
          ::type < operation_child_frame >(),
          ::type < operation_impact >()));
 
-      __construct(m_pimpactsystemOperation, psingle);
+      //__construct(m_pimpactsystemOperation, psingle);
 
-      psession->add_document_template(psingle);
+      //psession->add_document_template(psingle);
 
       //return true;
 
@@ -300,17 +304,17 @@ namespace filemanager
    void  filemanager::filemanager_finalize()
    {
 
-      if (m_pimpactsystemForm.is_set())
+      if (user()->m_pbaseuser->impact_system("filemanager"))
       {
 
-         m_pimpactsystemForm->close_all_documents(false);
+         user()->m_pbaseuser->impact_system("filemanager")->close_all_documents(false);
 
       }
 
-      if (m_pimpactsystemOperation.is_set())
+      if (user()->m_pbaseuser->impact_system("filemanager_operation"))
       {
 
-         m_pimpactsystemOperation->close_all_documents(false);
+         user()->m_pbaseuser->impact_system("filemanager_operation")->close_all_documents(false);
 
       }
 
@@ -323,15 +327,18 @@ namespace filemanager
       if (!m_pimpactsystemFileManager)
       {
 
-         m_pimpactsystemFileManager = __allocate < ::user::multiple_document_template >(
+         //m_pimpactsystemFileManager = 
+         user()->m_pbaseuser->add_impact_system(
+            "filemanager_filemanager",
+            __allocate < ::user::multiple_document_template >(
             "filemanager",
             ::type < document >(),
             ::type < frame >(),
             ::type < main_impact >()));
 
-         auto psession = get_session();
+         //auto psession = get_session();
 
-         psession->add_document_template(m_pimpactsystemFileManager);
+         //psession->add_document_template(m_pimpactsystemFileManager);
 
       }
 

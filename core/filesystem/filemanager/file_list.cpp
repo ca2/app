@@ -9,6 +9,7 @@
 #include "acme/filesystem/filesystem/dir_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "acme/handler/item.h"
+#include "acme/handler/topic.h"
 #include "acme/platform/timer.h"
 #include "acme/primitive/collection/_array_binary_stream.h"
 #include "acme/primitive/collection/_container.h"

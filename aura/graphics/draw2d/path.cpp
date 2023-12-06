@@ -134,6 +134,17 @@ namespace draw2d
    }
 
 
+   void path::destroy()
+   {
+
+      m_itema.clear();
+      m_ppathoptimization.release();
+
+      ::draw2d::object::destroy();
+
+   }
+
+
    bool path::has_current_point()
    {
 

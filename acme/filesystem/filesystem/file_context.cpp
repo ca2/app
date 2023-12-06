@@ -2939,6 +2939,50 @@ void file_context::init_context()
 }
 
 
+
+void file_context::term_context()
+{
+
+   //return ::success;
+
+}
+
+
+void file_context::term_system()
+{
+
+   //   auto psystem = system();
+   //
+   //   auto estatus = psystem->m_pfilesystem->update_module_path();
+   //
+   //   if (!estatus)
+   //   {
+   //
+   //      return estatus;
+   //
+   //   }
+   //
+      //return ::success;
+
+}
+
+
+
+void file_context::finalize()
+{
+
+   if (m_pfolderResource)
+   {
+
+      m_pfolderResource->finalize();
+
+   }
+
+   m_pfolderResource.release();
+
+
+}
+
 //bool file_context::prepare_output(::stream & outputstream, path & pathDownloading, const ::stream & os)
 //{
 

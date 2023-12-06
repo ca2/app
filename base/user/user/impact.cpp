@@ -899,7 +899,7 @@ namespace user
    ::pointer<::user::interaction>impact::create_impact(const ::type_atom & typeatom, ::user::document * pdocument, ::user::interaction * puserinteractionParent, const ::atom & atom, ::user::interaction * pviewLast, ::user::impact_data * pimpactdata)
    {
 
-      ::pointer<::request>pcreate(e_create_new, this);
+      ::pointer<::request>prequest;
 
       ::pointer < ::user::system > pusersystem = m_pusersystem;
       
@@ -909,8 +909,19 @@ namespace user
          pusersystem = __create_new < ::user::system >();
          
       }
+      if (pusersystem->m_prequest)
+      {
 
-      pcreate->m_pmatterUserPayload = pusersystem;
+         prequest= pusersystem->m_prequest;
+      }
+      else
+      {
+         __construct_new(pusersystem->m_prequest);
+
+         prequest = pusersystem->m_prequest;
+         prequest->m_pmatterUserPayload = pusersystem;
+
+      }
 
       if (::is_set(pimpactdata))
       {

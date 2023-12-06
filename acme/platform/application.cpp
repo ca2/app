@@ -764,6 +764,67 @@ namespace acme
    }
 
 
+   void application::init_task()
+   {
+
+      try
+      {
+
+         pre_run();
+         //{
+
+         //   return false;
+
+         //}
+
+      }
+      catch (const ::exception & e)
+      {
+
+         handle_exception(e);
+
+         session()->set_finish();
+
+         throw e;
+
+      }
+      catch (...)
+      {
+
+         //      return false;
+
+         throw ::exception(error_exception);
+
+      }
+
+      //return true;
+
+   }
+
+
+   void application::term_task()
+   {
+
+      information() << "acme::application::term_task";
+
+      m_timeHeartBeat.Now();
+
+      try
+      {
+
+         pos_run();
+
+      }
+      catch (...)
+      {
+
+      }
+
+      ::task::term_task();
+
+   }
+
+
    bool application::has_capability(enum_application_capability ecapability) const
    {
 
@@ -1546,6 +1607,222 @@ namespace acme
       //      m_bAuraInitializeInstanceResult = true;
 
       //return true;
+
+   }
+
+
+   void application::pos_run()
+   {
+
+      information() << "acme::application::pos_run";
+
+      try
+      {
+
+         m_timeHeartBeat.Now();
+
+         application_pos_run();
+
+         //xxdebug_box("pre_run 1 ok", "pre_run 1 ok", e_message_box_icon_information);
+
+      }
+      catch (...)
+      {
+
+         information() << "acme::application::pos_run exception.4";
+
+      }
+
+   }
+
+
+   void application::application_pos_run()
+   {
+
+      try
+      {
+
+         //if (!is_installing() && !is_unstalling())
+         {
+
+            term_instance();
+
+         }
+
+      }
+      catch (...)
+      {
+
+      }
+
+      try
+      {
+
+         term_application();
+
+      }
+      catch (...)
+      {
+
+      }
+
+      m_timeHeartBeat.Now();
+
+      try
+      {
+
+         process_term();
+
+      }
+      catch (...)
+      {
+
+      }
+
+      //try
+      //{
+      //
+      //TermApplication();
+      //
+      //}
+      //catch (...)
+      //{
+      //
+      //}
+
+
+   }
+
+
+   void application::term_instance()
+   {
+
+
+   }
+
+
+   void application::term3()
+   {
+
+
+   }
+
+
+   void application::term2()
+   {
+
+
+   }
+
+
+   void application::term1()
+   {
+
+
+   }
+
+
+   void application::term()
+   {
+
+
+   }
+
+
+
+
+   void application::term_application()
+   {
+
+      //try
+      //{
+
+      //   close(::apex::e_end_app);
+
+      //}
+      //catch (...)
+      //{
+
+      //}
+
+      //release_exclusive();
+
+      try
+      {
+
+         //try
+         //{
+
+         //   m_pinterprocesscommunication.release();
+
+         //}
+         //catch (...)
+         //{
+
+         //}
+
+         try
+         {
+
+            term();
+
+         }
+         catch (...)
+         {
+
+
+         }
+
+         try
+         {
+
+            term3();
+
+         }
+         catch (...)
+         {
+
+
+         }
+
+         try
+         {
+
+            term2();
+
+         }
+         catch (...)
+         {
+
+
+         }
+
+         try
+         {
+
+            term1();
+
+         }
+         catch (...)
+         {
+
+
+         }
+
+
+      }
+      catch (...)
+      {
+
+      }
+
+   }
+
+
+   void application::process_term()
+   {
+
+      finalize_context();
 
    }
 

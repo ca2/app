@@ -337,9 +337,9 @@ namespace base
    {
 
 
-      m_ptemplateForm.release();
+      //m_ptemplateForm.release();
 
-      m_ptemplateChildForm.release();
+      //m_ptemplateChildForm.release();
 
       m_pmousefocusLButtonDown.release();
 
@@ -1514,13 +1514,15 @@ namespace base
       if (!pimpactsystem)
       {
 
-         application()->m_pbaseapplication->add_impact_system(
-            m_ptemplateForm->m_atom, 
-            __allocate < ::user::multiple_document_template >(
-               m_ptemplateForm->m_atom,
-               m_ptemplateForm->m_typeatomDocument,
-               m_ptemplateForm->m_typeatomFrame,
-               typeatom));
+         throw ::exception(todo);
+
+         //application()->m_pbaseapplication->add_impact_system(
+         //   m_ptemplateForm->m_atom, 
+         //   __allocate < ::user::multiple_document_template >(
+         //      m_ptemplateForm->m_atom,
+         //      m_ptemplateForm->m_typeatomDocument,
+         //      m_ptemplateForm->m_typeatomFrame,
+         //      typeatom));
 
       }
 
@@ -1580,12 +1582,12 @@ namespace base
    ::pointer<::form_document> user::create_form(::particle * pparticle, ::user::form * pform, ::user::form_callback * pcallback, ::user::element * puserelementParent, const ::payload & payload, const ::payload & payloadArgs)
    {
 
-      if (m_ptemplateForm == nullptr)
-      {
+      //if (m_ptemplateForm == nullptr)
+      //{
 
-         return nullptr;
+      //   return nullptr;
 
-      }
+      //}
 
       ::pointer<::request>prequest(e_create, this);
 
@@ -1615,7 +1617,8 @@ namespace base
 
       }
 
-      m_ptemplateForm->request(prequest);
+      //m_ptemplateForm->request(prequest);
+      impact_system("form")->request(prequest);
 
       ::pointer<::form_document>pformdocument = ::user::__document(prequest);
 
@@ -1643,12 +1646,12 @@ namespace base
    ::pointer<::form_document>user::create_child_form(::particle * pparticle, ::user::form * pform, ::user::form_callback * pcallback, ::user::element * puserelementParent, const ::payload & payload, const ::payload & payloadArgs)
    {
 
-      if (m_ptemplateChildForm == nullptr)
-      {
+      //if (m_ptemplateChildForm == nullptr)
+      //{
 
-         return nullptr;
+      //   return nullptr;
 
-      }
+      //}
 
       auto papp = pparticle->application();
 
@@ -1706,7 +1709,9 @@ namespace base
 
       prequest->finish_initialization();
 
-      m_ptemplateChildForm->request(prequest);
+      //m_ptemplateChildForm->request(prequest);
+
+      impact_system("child_form")->request(prequest);
 
       ::pointer<::form_document>pformdocument = ::user::__document(prequest);
 
@@ -1759,7 +1764,7 @@ namespace base
          if (!pimpactsystem)
          {
 
-            auto typeDocument = m_ptemplateChildForm->m_typeatomDocument;
+            auto typeDocument = impact_system("child_form")->m_typeatomDocument;
 
             if (is_html_file(payload.as_file_path()))
             {
@@ -1768,13 +1773,15 @@ namespace base
 
             }
 
-            application()->m_pbaseapplication->add_impact_system(
-               m_ptemplateChildForm->m_atom,
-                   __allocate < ::user::multiple_document_template >(
-               m_ptemplateChildForm->m_atom,
-               typeDocument,
-               m_ptemplateChildForm->m_typeatomFrame,
-               typeatom));
+            throw ::exception(todo);
+
+            //add_impact_system(
+            //   m_ptemplateChildForm->m_atom,
+            //       __allocate < ::user::multiple_document_template >(
+            //   m_ptemplateChildForm->m_atom,
+            //   typeDocument,
+            //   m_ptemplateChildForm->m_typeatomFrame,
+            //   typeatom));
 
            /* pimpactsystemNew->initialize(pparticle);
 

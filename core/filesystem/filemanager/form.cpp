@@ -3,6 +3,7 @@
 #include "document.h"
 #include "data.h"
 #include "acme/constant/id.h"
+#include "acme/handler/topic.h"
 #include "acme/filesystem/file/item.h"
 #include "acme/primitive/collection/_array_binary_stream.h"
 #include "apex/database/_binary_stream.h"

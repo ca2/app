@@ -58,6 +58,8 @@ namespace acme
 
       virtual void initialize_context_1();
 
+      virtual void finalize_context();
+
 
       inline ::context_image* context_image() { return m_pcontextimage; }
 

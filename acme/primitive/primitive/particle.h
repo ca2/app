@@ -130,6 +130,7 @@ public:
 
 
    virtual void initialize(::particle * pparticle);
+   virtual void finalize();
 
 #ifdef _DEBUG
 
@@ -756,7 +757,7 @@ public:
    inline void __call__id_construct(::pointer<BASE_TYPE>& ptype, const ::atom& atom, ::factory::factory * pfactory = nullptr);
 
    template < typename TYPE >
-   inline ::pointer < TYPE > __call__id_create(const ::atom & atom, ::factory::factory * pfactory);
+   inline ::pointer < TYPE > __call__id_create(const ::atom & atom, ::factory::factory * pfactory = nullptr);
 
    template < typename TYPE >
    inline void __call__construct_new(::pointer<TYPE>& ptype);
@@ -1325,6 +1326,25 @@ namespace allocator
 
 
 CLASS_DECL_ACME ::allocator::accessor * __call__add_referer(const ::reference_referer & referer, ::reference_referer ** ppreferer = nullptr);
+
+
+
+
+template < non_particle NON_PARTICLE >
+class now_a_particle :
+   public NON_PARTICLE,
+   virtual public ::particle
+{
+public:
+
+   template < typename... Args >
+   now_a_particle(Args&&...  args) :
+      NON_PARTICLE(::std::forward<Args>(args)...)
+   {
+
+   }
+
+};
 
 
 

@@ -10,6 +10,7 @@
 #include "acme/constant/user_key.h"
 #include "acme/filesystem/file/memory_file.h"
 #include "acme/handler/item.h"
+#include "acme/handler/topic.h"
 #include "acme/platform/node.h"
 #include "acme/platform/timer.h"
 #include "acme/primitive/geometry2d/_binary_stream.h"
@@ -231,7 +232,7 @@ namespace user
 
          information() << "on_set_keyboard_focus";
 
-         information() << acmenode()->get_callstack();
+         information() << acmenode()->get_call_stack_trace();
 
          //UNREFERENCED_PARAMETER(pmessage);
 

@@ -4714,7 +4714,7 @@ retry_license:
    void application::term()
    {
 
-
+      aqua::application::term();
 
    }
 

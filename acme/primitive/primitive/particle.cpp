@@ -142,6 +142,14 @@ void particle::initialize(::particle * pparticle)
 }
 
 
+void particle::finalize()
+{
+
+
+
+}
+
+
 #ifdef _DEBUG
 
 

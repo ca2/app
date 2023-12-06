@@ -667,6 +667,12 @@ namespace acme
 
       m_pfactoryFolder.release();
 
+      m_pdirsystem.release();
+      m_pfilesystem.release();
+      m_pacmefile.release();
+      m_pacmedirectory.release();
+      m_pacmepath.release();
+
       //::acme::idpool::term();
 
       m_pnode->user_post_quit();

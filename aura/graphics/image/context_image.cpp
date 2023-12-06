@@ -53,6 +53,20 @@ void context_image::initialize(::particle * pparticle)
 }
 
 
+void context_image::finalize()
+{
+
+   m_mapIntPath.clear();
+   m_mapPathInt.clear();
+   m_mapPathImage.clear();
+   m_pparticleImageSynchronization.release();
+
+
+   ::object::finalize();
+
+}
+
+
 void context_image::on_destroy()
 {
 

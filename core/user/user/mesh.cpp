@@ -11,6 +11,7 @@
 #include "acme/constant/user_key.h"
 #include "acme/exception/interface_only.h"
 #include "acme/handler/item.h"
+#include "acme/handler/topic.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/primitive/collection/_range.h"
 #include "acme/primitive/data/listener.h"
@@ -3648,8 +3649,8 @@ namespace user
    {
 
 
-      m_ppenFocused.create(this);
-      m_ppenHighlight.create(this);
+      __construct(m_ppenFocused);
+      __construct(m_ppenHighlight);
 
       ::pointer<::message::create>pcreate(pmessage);
 
@@ -6235,11 +6236,11 @@ namespace user
 
             auto psystem = m_pitem->m_pmesh->system()->m_paurasystem;
 
-            psystem->imaging().channel_spread_set_color(pimage2->get_graphics(),{}, size, pimage1->get_graphics(),{},0,2,argb(192,192,192,192));
+            psystem->imaging()->channel_spread_set_color(pimage2->get_graphics(),{}, size, pimage1->get_graphics(),{},0,2,argb(192,192,192,192));
             pimage1->clear(::color::transparent);
-            psystem->imaging().channel_alpha_gray_blur(pimage1->get_graphics(),{}, size, pimage2->get_graphics(),{},0,1);
+            psystem->imaging()->channel_alpha_gray_blur(pimage1->get_graphics(),{}, size, pimage2->get_graphics(),{},0,1);
             pimage2->clear(::color::transparent);
-            psystem->imaging().channel_alpha_gray_blur(pimage2->get_graphics(),{}, size, pimage1->get_graphics(),{},0,1);
+            psystem->imaging()->channel_alpha_gray_blur(pimage2->get_graphics(),{}, size, pimage1->get_graphics(),{},0,1);
             pimage2->clear(::color::transparent);
 
             image_source imagesource(pimage2, rectangle_i32(1,1, m_rectangleText.width(), m_rectangleText.height()));

@@ -175,6 +175,52 @@ namespace apex
    }
 
 
+   void context::finalize_context()
+   {
+
+      if (m_poscontext)
+      {
+
+         try
+         {
+
+            m_poscontext->finalize();
+
+         }
+         catch (...)
+         {
+
+
+         }
+
+      }
+
+      if (m_phttp)
+      {
+
+         try
+         {
+
+            m_phttp->finalize();
+
+         }
+         catch (...)
+         {
+
+
+         }
+
+      }
+
+      m_poscontext.release();
+
+      m_phttp.release();
+
+      acme::context::finalize_context();
+
+   }
+
+
    void context::clear_cache()
    {
 

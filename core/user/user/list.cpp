@@ -12,6 +12,7 @@
 #include "acme/constant/user_key.h"
 #include "acme/exception/interface_only.h"
 #include "acme/handler/item.h"
+#include "acme/handler/topic.h"
 #include "acme/platform/keep.h"
 #include "acme/platform/timer.h"
 #include "acme/parallelization/synchronous_lock.h"
@@ -382,13 +383,13 @@ namespace user
                if (pcolumn->m_pimagelist)
                {
 
-                  slaImageList.add(__allocate< synchronous_lock >(pcolumn->m_pimagelist));
+                  slaImageList.add(__allocate< now_a_particle < synchronous_lock > >(pcolumn->m_pimagelist));
 
                }
                if (pcolumn->m_pimagelistHover)
                {
 
-                  slaImageList.add(__allocate< synchronous_lock >(pcolumn->m_pimagelist));
+                  slaImageList.add(__allocate< now_a_particle < synchronous_lock > >(pcolumn->m_pimagelist));
 
                }
 

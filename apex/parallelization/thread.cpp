@@ -1675,6 +1675,8 @@ void thread::destroy()
 
    m_pmessagequeue.defer_destroy();
 
+   ::manager::destroy();
+
    ::task::destroy();
 
    ::channel::destroy();

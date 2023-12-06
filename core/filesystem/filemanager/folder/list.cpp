@@ -5,6 +5,7 @@
 #include "acme/filesystem/file/item.h"
 #include "acme/filesystem/filesystem/dir_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
+#include "acme/handler/topic.h"
 #include "apex/platform/context.h"
 #include "aura/graphics/image/list.h"
 #include "aura/message/user.h"

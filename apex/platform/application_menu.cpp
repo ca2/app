@@ -251,7 +251,31 @@ application_menu * application_menu::separator()
 //
 //}
 
+   void application_menu::finalize()
+   {
 
+      for (auto & pmenu : *this)
+      {
+
+         try
+         {
+
+            pmenu->finalize();
+
+         }
+         catch (...)
+         {
+
+         }
+
+
+      }
+
+      ::pointer_array < application_menu >::clear();
+
+      ::pointer_array < application_menu >::finalize();
+
+   }
 //} // namespace apex
 //
 //

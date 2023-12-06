@@ -220,7 +220,7 @@ namespace acme
       //}
 
       //estatus = 
-      m_pfile->init_context();
+      m_pdir->init_context();
 
       //if(!estatus)
       //{
@@ -250,6 +250,70 @@ namespace acme
    void context::initialize_context_1()
    {
 
+
+   }
+
+
+   void context::finalize_context()
+   {
+
+      try
+      {
+         m_pdir->term_context();
+      }
+      catch (...)
+      {
+
+      }
+      try
+      {
+         m_pfile->term_context();
+      }
+      catch (...)
+      {
+
+      }
+      try
+      {
+         m_pdir->term_system();
+      }
+      catch (...)
+      {
+
+      }
+      try
+      {
+         m_pfile->term_system();
+      }
+      catch (...)
+      {
+
+      }
+
+      try
+      {
+         m_pdir->finalize();
+      }
+      catch (...)
+      {
+
+      }
+
+
+      try
+      {
+         m_pfile->finalize();
+      }
+      catch (...)
+      {
+
+      }
+
+      m_pdir.release();
+
+      m_pfile.release();
+
+      m_ptexttranslator.release();
 
    }
 

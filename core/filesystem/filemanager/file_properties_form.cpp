@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "file_properties_form.h"
 #include "acme/constant/id.h"
+#include "acme/handler/topic.h"
 #include "acme/filesystem/filesystem/dir_context.h"
 #include "acme/handler/request.h"
 #include "core/user/userex/pane_tab_impact.h"
@@ -42,7 +43,9 @@ namespace filemanager
 
       //}
 
-      m_ptemplatePane = __allocate < ::user::single_document_template >(
+      // m_ptemplatePane = 
+      user()->m_pbaseuser->add_impact_system("system/auth",
+         __allocate < ::user::single_document_template >(
          "system/auth",
          ::type < ::user::document >(),
          ::type < simple_frame_window >(),

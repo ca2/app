@@ -11411,6 +11411,8 @@ namespace user
    void interaction::post_non_client_destroy()
    {
 
+      finalize();
+
       {
 
          synchronous_lock synchronouslock(this->synchronization());

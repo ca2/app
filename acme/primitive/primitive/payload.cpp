@@ -1607,6 +1607,9 @@ class ::payload & payload::operator = (const class ::payload & payload)
       {
 
          m_p = payload.m_p; // raw copy, doesn't care for the right member
+
+         m_preferer = ::allocator::defer_add_referer({ this, __FUNCTION_FILE_LINE__ });
+
          increment_reference_count();
 
       }

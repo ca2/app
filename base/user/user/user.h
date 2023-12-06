@@ -22,8 +22,8 @@ namespace base
    public:
 
 
-      ::pointer < ::user::impact_system >                m_ptemplateForm;
-      ::pointer < ::user::impact_system >                m_ptemplateChildForm;
+      //::pointer < ::user::impact_system >                m_ptemplateForm;
+      //::pointer < ::user::impact_system >                m_ptemplateChildForm;
 
 
       ::pointer < ::user::primitive >                    m_pmousefocusLButtonDown;

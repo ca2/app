@@ -15,7 +15,7 @@
 #include "task_tool.h"
 
 
-bool g_bDraw2dDisableReferencingDebugging = true;
+bool g_bDraw2dDisableReferencingDebugging = false;
 
 
 //

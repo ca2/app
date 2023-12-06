@@ -4,6 +4,7 @@
 #include "acme/constant/message.h"
 #include "aura/graphics/image/context_image.h"
 #include "acme/handler/item.h"
+#include "acme/handler/topic.h"
 #include "acme/user/user/content.h"
 #include "aura/message/user.h"
 #include "aura/platform/context.h"

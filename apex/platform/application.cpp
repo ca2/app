@@ -1470,37 +1470,7 @@ namespace apex
    void application::init_task()
    {
 
-      try
-      {
-
-         pre_run();
-         //{
-
-         //   return false;
-
-         //}
-
-      }
-      catch (const ::exception & e)
-      {
-
-         handle_exception(e);
-
-         session()->set_finish();
-
-         throw e;
-
-      }
-      catch (...)
-      {
-
-         //      return false;
-
-         throw ::exception(error_exception);
-
-      }
-
-      //return true;
+      acme::application::init_task();
 
    }
 
@@ -1508,22 +1478,7 @@ namespace apex
    void application::term_task()
    {
 
-      information() << "apex::application::term_thread";
-
-      m_timeHeartBeat.Now();
-
-      try
-      {
-
-         pos_run();
-
-      }
-      catch (...)
-      {
-
-      }
-
-      ::thread::term_task();
+      acme::application::term_task();
 
    }
 
@@ -1813,24 +1768,7 @@ namespace apex
    void application::pos_run()
    {
 
-      information() << "apex::application::pos_run";
-
-      try
-      {
-
-         m_timeHeartBeat.Now();
-
-         application_pos_run();
-
-         //xxdebug_box("pre_run 1 ok", "pre_run 1 ok", e_message_box_icon_information);
-
-      }
-      catch (...)
-      {
-
-         information() << "apex::application::pos_run exception.4";
-
-      }
+      acme::application::pos_run();
 
    }
 
@@ -2323,6 +2261,7 @@ namespace apex
    void application::term_instance()
    {
 
+      acme::application::term_instance();
 
    }
 
@@ -2551,58 +2490,7 @@ namespace apex
    void application::application_pos_run()
    {
 
-      try
-      {
-
-         //if (!is_installing() && !is_unstalling())
-         {
-
-            term_instance();
-
-         }
-
-      }
-      catch (...)
-      {
-
-      }
-
-      try
-      {
-
-         term_application();
-
-      }
-      catch (...)
-      {
-
-      }
-
-      m_timeHeartBeat.Now();
-
-      try
-      {
-
-         process_term();
-
-      }
-      catch (...)
-      {
-
-      }
-
-      //try
-      //{
-      //
-      //TermApplication();
-      //
-      //}
-      //catch (...)
-      //{
-      //
-      //}
-
-
+      acme::application::application_pos_run();
 
    }
 
@@ -3121,16 +3009,16 @@ namespace apex
 
       }
 
-      try
-      {
+      //try
+      //{
 
-         release_exclusive();
+      //   release_exclusive();
 
-      }
-      catch (...)
-      {
+      //}
+      //catch (...)
+      //{
 
-      }
+      //}
 
       auto psystem = system()->m_papexsystem;
       try
@@ -3163,6 +3051,9 @@ namespace apex
       {
 
       }
+
+
+      acme::application::process_term();
 
    }
 
@@ -3436,6 +3327,8 @@ namespace apex
    void application::term1()
    {
 
+      acme::application::term1();
+
       //try
       //{
 
@@ -3489,6 +3382,7 @@ namespace apex
    void application::term2()
    {
 
+      acme::application::term2();
       //try
       //{
 
@@ -3548,6 +3442,7 @@ namespace apex
    void application::term3()
    {
 
+      acme::application::term3();
       //try
       //{
 
@@ -3603,53 +3498,53 @@ namespace apex
 
          }
 
-         try
-         {
+      //   try
+      //   {
 
-            term();
+      //      term();
 
-         }
-         catch (...)
-         {
-
-
-         }
-
-         try
-         {
-
-            term3();
-
-         }
-         catch (...)
-         {
+      //   }
+      //   catch (...)
+      //   {
 
 
-         }
+      //   }
 
-         try
-         {
+      //   try
+      //   {
 
-            term2();
+      //      term3();
 
-         }
-         catch (...)
-         {
-
-
-         }
-
-         try
-         {
-
-            term1();
-
-         }
-         catch (...)
-         {
+      //   }
+      //   catch (...)
+      //   {
 
 
-         }
+      //   }
+
+      //   try
+      //   {
+
+      //      term2();
+
+      //   }
+      //   catch (...)
+      //   {
+
+
+      //   }
+
+      //   try
+      //   {
+
+      //      term1();
+
+      //   }
+      //   catch (...)
+      //   {
+
+
+      //   }
 
 
       }
@@ -3657,6 +3552,8 @@ namespace apex
       {
 
       }
+
+      acme::application::term_application();
 
    }
 
@@ -6255,7 +6152,26 @@ namespace apex
    void application::term()
    {
 
+      try
+      {
 
+         if (m_papplicationmenu)
+         {
+
+            m_papplicationmenu->finalize();
+
+         }
+
+      }
+      catch (...)
+      {
+
+
+      }
+
+      m_papplicationmenu.release();
+
+      acme::application::term();
 
    }
 

@@ -47,6 +47,9 @@ namespace draw2d
       ~path() override;
 
 
+      void destroy() override;
+
+
       virtual bool has_current_point();
       virtual point_f64 get_current_point();
 

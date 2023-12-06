@@ -194,8 +194,8 @@ namespace ftp
    void command::info2::insert(enum_command enCommand, const string& strServerString, const string& strCompleteServerStringSyntax, ::u32 uNumberOfParameters,
                                ::u32 uNumberOfOptionalParameters, TSpecificationEnum enSpecification, enum_type enType)
    {
-      set_at(enCommand, __allocate < extended_info >(strServerString, strCompleteServerStringSyntax, uNumberOfParameters,
-                                uNumberOfOptionalParameters, enSpecification, enType)));
+      set_at(enCommand, new  extended_info (strServerString, strCompleteServerStringSyntax, uNumberOfParameters,
+                                uNumberOfOptionalParameters, enSpecification, enType));
    }
 
 

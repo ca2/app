@@ -1312,7 +1312,7 @@ const __ ## xxx ## _properties & xxx ## _properties() const {return *m_p ## xxx 
 inline void create_ ## xxx ## _properties() \
 { \
    if(::is_set(m_p ## xxx ## properties)) return; \
-   m_p ## xxx ## properties = __allocate(__ ## xxx ## _properties()); \
+   m_p ## xxx ## properties = __allocate<__ ## xxx ## _properties>(); \
    m_ppropertyset = m_p ## xxx ## properties; \
 } \
 ::pointer<__ ## xxx ## _properties> m_p ## xxx ## properties

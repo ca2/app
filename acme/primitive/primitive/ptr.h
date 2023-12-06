@@ -181,7 +181,7 @@ public:
 
          auto prefererOld = m_preferer;
           
-         auto prefererNew = ::allocator::pop_referer();
+         auto prefererNew = ::allocator::defer_add_referer({this, __FUNCTION_FILE_LINE__});
 
          p.m_p->increment_reference_count();
             

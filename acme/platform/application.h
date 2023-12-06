@@ -176,6 +176,11 @@ namespace acme
 
 
       virtual void init();
+      virtual void term();
+
+      virtual void term3();
+      virtual void term2();
+      virtual void term1();
 
 
       virtual void do_install();
@@ -187,6 +192,10 @@ namespace acme
 
 
       virtual void init_instance();
+      virtual void term_instance();
+
+      void init_task() override;
+      void term_task() override;
 
 
       virtual bool has_capability(enum_application_capability eapplicationcapability) const;
@@ -229,11 +238,17 @@ namespace acme
 
 
       virtual void process_init();
+      virtual void process_term();
 
       virtual void pre_run();
       virtual void application_pre_run();
 
+      virtual void pos_run();
+      virtual void application_pos_run();
+
       virtual void init_application();
+
+      virtual void term_application();
 
       virtual ::string_array get_about_box_lines();
 

@@ -13,16 +13,6 @@ namespace base
 {
 
 
-   enum e_end
-   {
-
-      end_close,
-      end_app,
-      end_session,
-      end_system
-
-   };
-
 
    class CLASS_DECL_BASE application :
       virtual public ::axis::application,
@@ -49,6 +39,9 @@ namespace base
       void initialize(::particle * pparticle) override;
 
       void destroy() override;
+
+
+      void process_term() override;
       
       virtual ::pointer < ::data::data > create_default_new_document_data();
 

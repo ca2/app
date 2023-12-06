@@ -69,7 +69,7 @@ namespace dynamic_source
 
       //}
 
-      m_pfileError.create_new(this);
+      __construct_new(m_pfileError);
 
       m_textstreamError.m_pfile = m_pfileError;
 

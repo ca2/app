@@ -4,6 +4,9 @@
 #pragma once
 
 
+#include "acme/platform/platform.h"
+
+
 #if REFERENCING_DEBUGGING
 #include "acme/platform/reference_item.h"
 #include "acme/platform/reference_item_array.h"
@@ -1856,6 +1859,117 @@ inline bool pointer < T > ::ok() const
    return is_set() && m_pparticle->is_ok();
 
 }
+
+
+template < typename T >
+inline bool pointer < T > ::defer_destroy()
+{
+
+   if (!this->is_set())
+   {
+
+      return false;
+
+   }
+
+   m_pparticle->destroy();
+
+   release();
+
+   return true;
+
+}
+
+
+/// @brief consumes a releaser (a referer used to decrement reference count)
+/// @tparam T
+/// @param p
+/// @return
+template < typename T >
+inline i64 release(T *& p)
+{
+
+   if (::is_null(p))
+   {
+
+      return -1;
+
+   }
+
+   ::particle * pparticle = p;
+
+   try
+   {
+
+      p = nullptr;
+
+   }
+   catch (...)
+   {
+
+      ::acme::get()->platform()->informationf("exception release p = nullptr; \n");
+
+   }
+
+   try
+   {
+
+      return pparticle->release();
+
+   }
+   catch (...)
+   {
+
+      ::acme::get()->platform()->informationf("exception release pparticle->release() \n");
+
+   }
+
+   return -1;
+
+}
+
+
+/// @brief consumes a releaser (a referer used to decrement reference count)
+/// @tparam T
+/// @param p
+/// @return
+template < typename T >
+inline i64 global_release(T *& p)
+{
+
+   if (::is_null(p))
+   {
+
+      return -1;
+
+   }
+
+   try
+   {
+
+      auto i = p->release();
+
+      if (i <= 0)
+      {
+
+         p = nullptr;
+
+      }
+
+      return i;
+
+   }
+   catch (...)
+   {
+
+      ::acme::get()->platform()->informationf("exception release pparticle->release() \n");
+
+   }
+
+   return -1;
+
+}
+
 
 
 

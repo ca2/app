@@ -1164,47 +1164,7 @@ inline bool is_ok(const ::particle * pconstparticle)
 /// @param p 
 /// @return 
 template < typename T >
-inline i64 release(T *& p)
-{
-
-   if (::is_null(p))
-   {
-
-      return -1;
-
-   }
-
-   ::particle * pparticle = p;
-
-   try
-   {
-
-      p = nullptr;
-
-   }
-   catch (...)
-   {
-
-      ::acme::get()->platform()->informationf("exception release p = nullptr; \n");
-
-   }
-
-   try
-   {
-
-      return pparticle->release();
-
-   }
-   catch (...)
-   {
-
-      ::acme::get()->platform()->informationf("exception release pparticle->release() \n");
-
-   }
-
-   return -1;
-
-}
+inline i64 release(T *& p);
 
 
 /// @brief consumes a releaser (a referer used to decrement reference count)
@@ -1212,43 +1172,7 @@ inline i64 release(T *& p)
 /// @param p 
 /// @return 
 template < typename T >
-inline i64 global_release(T *& p)
-{
-
-   if (::is_null(p))
-   {
-
-      return -1;
-
-   }
-
-   try
-   {
-
-      auto i = p->release();
-
-      if (i <= 0)
-      {
-
-         p = nullptr;
-
-      }
-
-      return i;
-
-   }
-   catch (...)
-   {
-
-      ::acme::get()->platform()->informationf("exception release pparticle->release() \n");
-
-   }
-
-   return -1;
-
-}
-
-
+inline i64 global_release(T *& p);
 
 
 template < typename TYPE, typename T >

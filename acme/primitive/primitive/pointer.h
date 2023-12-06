@@ -1,6 +1,7 @@
 #pragma once
 
 
+//#include "acme/primitive/primitive/particle.h"
 #include "acme/primitive/primitive/ptr.h"
 #include "acme/platform/reference_referer.h"
 
@@ -398,23 +399,7 @@ public:
 
    //}
 
-   inline bool defer_destroy()
-   {
-
-      if (!this->is_set())
-      {
-
-         return false;
-
-      }
-
-      m_pparticle->destroy();
-
-      release();
-
-      return true;
-
-   }
+   inline bool defer_destroy();
 
    inline i64 release();
 

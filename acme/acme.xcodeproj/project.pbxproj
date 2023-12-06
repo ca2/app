@@ -792,7 +792,6 @@
 		9A68AD0025114434008DABD2 /* heap_memory.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A4D92511442E008DABD2 /* heap_memory.h */; };
 		9A68AD0425114434008DABD2 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68A4E52511442E008DABD2 /* framework.cpp */; };
 		9A68AD3D25114434008DABD2 /* winrt.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A5272511442E008DABD2 /* winrt.h */; };
-		9A68AD3E25114434008DABD2 /* _c.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A5292511442E008DABD2 /* _c.h */; };
 		9A68AD3F25114434008DABD2 /* _c_bridge.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A52B2511442E008DABD2 /* _c_bridge.h */; };
 		9A68AD4025114434008DABD2 /* objc.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A52C2511442E008DABD2 /* objc.h */; };
 		9A68AD4225114434008DABD2 /* _include.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A52E2511442E008DABD2 /* _include.h */; };
@@ -2309,7 +2308,6 @@
 		9AD68E77251A753A00C0EBD7 /* callstack.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68AC2825114432008DABD2 /* callstack.h */; };
 		9AD68E79251A753A00C0EBD7 /* _global.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A54F2511442E008DABD2 /* _global.h */; };
 		9AD68E7A251A753A00C0EBD7 /* pair.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A5E72511442F008DABD2 /* pair.h */; };
-		9AD68E7B251A753A00C0EBD7 /* _c.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A5292511442E008DABD2 /* _c.h */; };
 		9AD68E7E251A753A00C0EBD7 /* text_stream.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A7C625114430008DABD2 /* text_stream.h */; };
 		9AD68E86251A753A00C0EBD7 /* ___serialization_draft001.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A78C2511442F008DABD2 /* ___serialization_draft001.h */; };
 		9AD68E8A251A753A00C0EBD7 /* streamable.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A7B325114430008DABD2 /* streamable.h */; };
@@ -3292,7 +3290,6 @@
 		9A68A4D92511442E008DABD2 /* heap_memory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = heap_memory.h; sourceTree = "<group>"; };
 		9A68A4E52511442E008DABD2 /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
 		9A68A5272511442E008DABD2 /* winrt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = winrt.h; sourceTree = "<group>"; };
-		9A68A5292511442E008DABD2 /* _c.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _c.h; sourceTree = "<group>"; };
 		9A68A52B2511442E008DABD2 /* _c_bridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _c_bridge.h; sourceTree = "<group>"; };
 		9A68A52C2511442E008DABD2 /* objc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = objc.h; sourceTree = "<group>"; };
 		9A68A52E2511442E008DABD2 /* _include.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _include.h; sourceTree = "<group>"; };
@@ -4852,7 +4849,7 @@
 				9A08416D2935C1F6009F7FF4 /* _acme.h */,
 				9A68A52B2511442E008DABD2 /* _c_bridge.h */,
 				9A08416E2935C1F6009F7FF4 /* _c_swap.h */,
-				9A68A5292511442E008DABD2 /* _c.h */,
+				9A08432D29366746009F7FF4 /* _c.h */,
 				9A0841762935C1FA009F7FF4 /* _configuration.h */,
 				9A0841732935C1F8009F7FF4 /* _enumeration.h */,
 				9A0841712935C1F7009F7FF4 /* _forward_declaration.h */,
@@ -4884,7 +4881,6 @@
 			children = (
 				9A08432F29366747009F7FF4 /* __string.h */,
 				9A68A56E2511442F008DABD2 /* _.cpp */,
-				9A08432D29366746009F7FF4 /* _c.h */,
 				9A68A54D2511442E008DABD2 /* _features.h */,
 				9A68A54F2511442E008DABD2 /* _global.h */,
 				9A68A53B2511442E008DABD2 /* _impl.h */,
@@ -6576,7 +6572,6 @@
 				9A7F3EE0274D543A00D914CC /* implement_console.h in Headers */,
 				9A68AD5E25114434008DABD2 /* _global.h in Headers */,
 				9A68ADEF25114435008DABD2 /* pair.h in Headers */,
-				9A68AD3E25114434008DABD2 /* _c.h in Headers */,
 				9A0843C029366D8F009F7FF4 /* __begin.h in Headers */,
 				9A0842C32935E695009F7FF4 /* aaa_raw_array_impl.h in Headers */,
 				9A68AFBA25114436008DABD2 /* text_stream.h in Headers */,
@@ -7565,7 +7560,6 @@
 				9AA8FFB027BA72A0008FF9AA /* parallelization.h in Headers */,
 				9AD68E7A251A753A00C0EBD7 /* pair.h in Headers */,
 				9A0842902935E694009F7FF4 /* atom_array.h in Headers */,
-				9AD68E7B251A753A00C0EBD7 /* _c.h in Headers */,
 				9A0843EC29366DF5009F7FF4 /* string.h in Headers */,
 				9AD68E7E251A753A00C0EBD7 /* text_stream.h in Headers */,
 				9A4EF4AD2AE35AAB0048F22F /* image32.h in Headers */,

@@ -22,8 +22,8 @@ namespace base
    public:
 
 
-      ::pointer < ::user::impact_system >                m_ptemplateForm;
-      ::pointer < ::user::impact_system >                m_ptemplateChildForm;
+      //::pointer < ::user::impact_system >                m_ptemplateForm;
+      //::pointer < ::user::impact_system >                m_ptemplateChildForm;
 
 
       ::pointer < ::user::primitive >                    m_pmousefocusLButtonDown;
@@ -39,7 +39,7 @@ namespace base
 
       ::pointer < ::experience::department >             m_pexperience;
 
-      atom_map < ::pointer < ::user::impact_system > >   m_mapimpactsystem;
+      //atom_map < ::pointer < ::user::impact_system > >   m_mapimpactsystem;
 
       //::user::impact_system * m_ptemplateHtmlChildForm1;
 

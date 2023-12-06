@@ -15,6 +15,7 @@
 #include "acme/filesystem/filesystem/dir_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "apex/filesystem/fs/data.h"
+#include "apex/filesystem/fs/set.h"
 #include "apex/platform/context.h"
 #include "aura/user/user/frame.h"
 
@@ -68,13 +69,13 @@ namespace filemanager
 
       auto pcontext = get_context();
 
-      if (strTitle.folder().has_char() && filemanager_document()->fs_data()->is_dir(strTitle.folder()))
+      if (strTitle.folder().has_char() && filemanager_data()->fs_data()->is_dir(strTitle.folder()))
       {
 
          strPath = strTitle;
 
       }
-      else if (filemanager_document()->fs_data()->is_dir(filemanager_item()->final_path()))
+      else if (filemanager_data()->fs_data()->is_dir(filemanager_item()->final_path()))
       {
 
          strPath = filemanager_item()->user_path() / strTitle;
@@ -93,7 +94,7 @@ namespace filemanager
 
       }
 
-      if (filemanager_document()->m_emode == ::userfs::e_mode_import)
+      if (filemanager_data()->m_emode == ::userfs::e_mode_import)
       {
 
          filemanager_data()->m_pdocumentTopic->open_document(strPath);
@@ -107,7 +108,7 @@ namespace filemanager
          if (bSave)
          {
 
-            if (filemanager_document()->fs_data()->acmefile()->exists(strPath))
+            if (filemanager_data()->fs_data()->acmefile()->exists(strPath))
             {
 
                //auto pfuture = __process([this, strPath](const ::payload & payload)
@@ -186,7 +187,7 @@ namespace filemanager
 
          //ptopic->m_atom = id_topic_saved;
 
-         //pupdate->m_pfileitem = __new(::file::item(path, path));
+         //pupdate->m_pfileitem = __allocate< ::file::item >(path, path);
 
       }
       else

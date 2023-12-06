@@ -4,27 +4,3 @@
 
 #include "acme/primitive/mathematics/_random.h"
 
-
-template < primitive_rectangle RECTANGLE >
-inline typename RECTANGLE::POINT_TYPE random_point(const RECTANGLE & r)
-{ 
-   
-   return { random(r.left(), r.right()), random(r.top(), r.bottom()) };
-
-}
-
-
-template < primitive_rectangle RECTANGLE >
-inline typename RECTANGLE::POINT_TYPE random_point(const RECTANGLE & r, double dRate)
-{ 
-   
-   auto rectangle = r; 
-   
-   rectangle.rate(dRate); 
-   
-   return random_point(rectangle); 
-
-}
-
-
-

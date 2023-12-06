@@ -4,6 +4,7 @@
 #include "tab_impact.h"
 #include "data.h"
 #include "child_frame.h"
+#include "filemanager.h"
 #include "acme/constant/id.h"
 #include "acme/filesystem/file/item.h"
 #include "acme/filesystem/file/item_array.h"
@@ -11,6 +12,8 @@
 #include "acme/filesystem/watcher/action.h"
 #include "acme/filesystem/watcher/watcher.h"
 #include "acme/handler/request.h"
+#include "acme/handler/extended_topic.h"
+#include "acme/handler/topic.h"
 #include "acme/platform/keep.h"
 #include "acme/platform/system.h"
 #include "apex/filesystem/fs/set.h"
@@ -32,7 +35,6 @@ namespace filemanager
 
       m_filewatchid = -1;
 
-      m_bFullBrowse = false;
 
       //m_pfilewatcherlistenerthread = nullptr;
 
@@ -66,7 +68,7 @@ namespace filemanager
    }
 
 
-   ::core::application* document::get_app()
+   ::core::application * document::get_app()
    {
 
       auto papplication = application();
@@ -76,7 +78,7 @@ namespace filemanager
    }
 
 
-   ::core::session* document::get_session()
+   ::core::session * document::get_session()
    {
 
       auto pacmesession = session();
@@ -86,7 +88,7 @@ namespace filemanager
    }
 
 
-   ::core::system* document::get_system()
+   ::core::system * document::get_system()
    {
 
       auto pacmesystem = system();
@@ -96,7 +98,7 @@ namespace filemanager
    }
 
 
-   bool document::do_prompt_file_name(::payload & payloadFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocumentOther)
+   bool document::do_prompt_file_name(::payload & payloadFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pfilemanagerdataOther)
    {
 
       UNREFERENCED_PARAMETER(nIDSTitle);
@@ -105,63 +107,308 @@ namespace filemanager
 
       ASSERT(bOpenFileDialog == false);
 
-      ::pointer<document>pdocument = this;
+      ::pointer<document>pfilemanagerdata = this;
 
-      tab_impact * pimpact = pdocument->get_typed_impact < tab_impact >();
+      tab_impact * pimpact = pfilemanagerdata->get_typed_impact < tab_impact >();
 
-//#ifdef WINDOWS_DESKTOP
-//      oswindow oswindowDesktop = ::get_desktop_window();
-//      ::rectangle_i32 rectangleOpen;
-//      ::GetWindowRect(oswindowDesktop, rectangleOpen);
-//      i32 iWidth = rectangleOpen.width();
-//      i32 iHeight = rectangleOpen.width();
-//      rectangleOpen.deflate(iWidth / 5, iHeight / 5);
-//      pimpact->get_parent_frame()->order(e_zorder_top);
-//      pimpact->get_parent_frame()->place(rectangleOpen);
-//      pimpact->get_parent_frame()->display();
-//
-//#endif
+      //#ifdef WINDOWS_DESKTOP
+      //      oswindow oswindowDesktop = ::get_desktop_window();
+      //      ::rectangle_i32 rectangleOpen;
+      //      ::GetWindowRect(oswindowDesktop, rectangleOpen);
+      //      i32 iWidth = rectangleOpen.width();
+      //      i32 iHeight = rectangleOpen.width();
+      //      rectangleOpen.deflate(iWidth / 5, iHeight / 5);
+      //      pimpact->get_parent_frame()->order(e_zorder_top);
+      //      pimpact->get_parent_frame()->place(rectangleOpen);
+      //      pimpact->get_parent_frame()->display();
+      //
+      //#endif
       pimpact->set_current_tab_by_id(1);
       pimpact->parent_frame()->set_need_redraw();
       pimpact->parent_frame()->RunModalLoop();
-      payloadFile = pdocument->m_strTopic;
+      payloadFile = pfilemanagerdata->m_strTopic;
       pimpact->parent_frame()->destroy_window();
       return true;
 
    }
 
 
-   bool document::browse(::pointer<::file::item>pitem, const ::action_context & context)
+
+   void document::on_file_manager_open_context_menu_folder(::pointer<::file::item> item, string_array & straCommand, string_array & straCommandTitle, const ::action_context & context)
    {
 
-      if (m_pfsset->m_spafsdata.is_empty())
+      auto pfilemanagerdata = filemanager_data();
+
+      ASSERT(pfilemanagerdata->m_pfilemanagercallback != nullptr);
+
+      if (pfilemanagerdata->m_pfilemanagercallback != nullptr)
       {
 
-         m_pfsset->m_spafsdata.erase_all();
-
-         auto psession = get_session();
-
-         m_pfsset->m_spafsdata.add(psession->fs());
-
-         ::file::listing listing;
-
-         m_pfsset->root_ones(listing);
+         pfilemanagerdata->m_pfilemanagercallback->on_file_manager_open_context_menu_folder(pfilemanagerdata, item, straCommand, straCommandTitle, context);
 
       }
 
-      string strOldPath;
+   }
 
-      if (m_pitem.is_set())
+
+   void document::on_file_manager_open_context_menu_file(const ::file::item_array & itema, const ::action_context & context)
+   {
+
+      auto pfilemanagerdata = filemanager_data();
+
+      ASSERT(pfilemanagerdata->m_pfilemanagercallback != nullptr);
+
+      if (pfilemanagerdata->m_pfilemanagercallback != nullptr)
       {
 
-         strOldPath = m_pitem->user_path();
+         pfilemanagerdata->m_pfilemanagercallback->on_file_manager_open_context_menu_file(pfilemanagerdata, itema, context);
+
+      }
+
+   }
+
+
+   void document::on_file_manager_open_context_menu(const ::action_context & context)
+   {
+
+      auto pfilemanagerdata = filemanager_data();
+
+      ASSERT(pfilemanagerdata->m_pfilemanagercallback != nullptr);
+
+      if (pfilemanagerdata->m_pfilemanagercallback != nullptr)
+      {
+
+         pfilemanagerdata->m_pfilemanagercallback->on_file_manager_open_context_menu(pfilemanagerdata, context);
+
+      }
+
+   }
+
+
+   void document::on_file_manager_open(const ::file::item_array & itema, const ::action_context & context)
+   {
+
+      auto pfilemanagerdata = filemanager_data();
+
+      //ASSERT(pfilemanagerdata->m_pfilemanagercallback != nullptr);
+
+      if (pfilemanagerdata->is_topic() && itema.get_count() == 1)
+      {
+
+         ::pointer<document>pdocument = this;
+
+         auto ptopic = create_topic(ID_TOPIC_OK);
+
+         ptopic->payload(ID_DOCUMENT) = pfilemanagerdata;
+
+         ptopic->_extended_topic()->m_pfileitem = itema.get_first_pointer();
+
+         pdocument->update_all_impacts(ptopic);
+
+         pfilemanagerdata->m_pdocumentTopic = nullptr;
+
+      }
+      else if (pfilemanagerdata->m_pfilemanagercallback != nullptr)
+      {
+
+         //::payload payloadFile;
+
+         //::payload varQuery;
+
+         //if (itema.get_count() == 2 && m_atom == "filemanager::main::left")
+         //{
+
+         //   {
+
+         //      //payloadFile = itema[0]->get_user_path();
+
+         //      //varQuery["::filemanager::atom"] = "filemanager::main::left";
+
+         //      pfilemanagerdata->m_pfilemanagercallback->on_file_manager_open(pfilemanagerdata, itema, context);
+
+         //   }
+
+         //   {
+
+         //      //payloadFile = itema[1]->get_user_path();
+
+         //      //varQuery["::filemanager::atom"] = "filemanager::main::right";
+
+         //      pfilemanagerdata->m_pfilemanagercallback->on_file_manager_open(pfilemanagerdata, itema, context);
+
+         //   }
+
+         //}
+         //else if (itema.get_count() == 2 && m_atom == "filemanager::main::right")
+         //{
+
+         //   {
+
+         //      //payloadFile = itema[0]->get_user_path();
+
+         //      //varQuery["::filemanager::atom"] = "filemanager::main::right";
+
+         //      pfilemanagerdata->m_pfilemanagercallback->on_file_manager_open(pfilemanagerdata, itema, context);
+
+         //   }
+
+         //   {
+
+         //      //payloadFile = itema[1]->get_user_path();
+
+         //      //varQuery["::filemanager::atom"] = "filemanager::main::left";
+
+         //      pfilemanagerdata->m_pfilemanagercallback->on_file_manager_open(pfilemanagerdata, itema, context);
+
+         //   }
+
+         //}
+         //else
+         //{
+
+         //   //payloadFile = itema.get_var_final_path();
+
+         //   //varQuery = itema.get_var_query();
+
+         //   //varQuery["::filemanager::atom"] = m_atom;
+
+         auto pcallback = pfilemanagerdata->m_pfilemanagercallback;
+
+         pcallback->on_file_manager_open(pfilemanagerdata, itema, context);
+
+         //         }
+
+      }
+      else if(itema.has_element())
+      {
+
+         auto prequest = __create_new <::request>();
+
+         prequest->m_payloadFile = itema[0]->user_path();
+
+         application()->request(prequest);
+
+      }
+
+   }
+
+
+   void document::on_file_manager_open_folder(::pointer<::file::item> item, const ::action_context & context)
+   {
+
+      auto pfilemanagerdata = filemanager_data();
+
+      ASSERT(pfilemanagerdata->m_pfilemanagercallback != nullptr);
+
+      if (pfilemanagerdata->m_pfilemanagercallback != nullptr)
+      {
+
+         pfilemanagerdata->m_pfilemanagercallback->on_file_manager_open_folder(pfilemanagerdata, item, context);
+
+      }
+
+   }
+
+
+   void document::on_file_manager_item_update(::message::command * pcommand, const ::file::item_array & itema)
+   {
+
+      auto pfilemanagerdata = filemanager_data();
+
+      ASSERT(pfilemanagerdata->m_pfilemanagercallback != nullptr);
+
+      if (pfilemanagerdata->m_pfilemanagercallback != nullptr)
+      {
+
+         pfilemanagerdata->m_pfilemanagercallback->on_file_manager_item_update(pfilemanagerdata, pcommand, itema);
+
+      }
+
+   }
+
+
+   void document::on_file_manager_item_command(const ::string & pszId, const ::file::item_array & itema)
+   {
+
+      auto pfilemanagerdata = filemanager_data();
+
+      ASSERT(pfilemanagerdata->m_pfilemanagercallback != nullptr);
+
+      if (pfilemanagerdata->m_pfilemanagercallback != nullptr)
+      {
+
+         pfilemanagerdata->m_pfilemanagercallback->on_file_manager_item_command(pfilemanagerdata, pszId, itema);
+
+      }
+
+   }
+
+
+   //void document::browse(::pointer<::file::item>item, const ::action_context & context)
+   //{
+
+   //   ASSERT(filemanager_document() != nullptr);
+
+   //   if (filemanager_document() != nullptr)
+   //   {
+
+   //      filemanager_data()->browse(item, context);
+
+   //   }
+
+   //}
+
+   
+   //void data::browse(const ::file::path & path, const ::action_context & context)
+   //{
+
+   //   ASSERT(filemanager_document() != nullptr);
+
+   //   if (filemanager_document() != nullptr)
+   //   {
+
+   //      filemanager_data()->browse(pcsz, context);
+
+
+   //   }
+
+   //}
+
+
+   void document::browse(const ::file::path & path, const ::action_context & context)
+   {
+
+       filemanager_data()->browse(path, context);
+
+   }
+
+
+   //void document::browse(const ::file::path & pathUser, const ::action_context & context)
+   //{
+
+   //   auto pcontext = get_context();
+
+   //   ::file::path pathFinal = pcontext->m_papexcontext->defer_process_path(pathUser);
+
+   //   ::pointer<::file::item>pitem = __allocate< ::file::item >(pathUser, pathFinal);
+
+   //   browse(pitem, context);
+
+   //}
+
+
+   bool document::browse(::pointer<::file::item>pitem, const ::action_context & context)
+   {
+
+      if (!::userfs::document::browse(pitem, context))
+      {
+
+         return false;
 
       }
 
       try
       {
-
-         m_pitem = __new(::file::item(*pitem));
 
          OnFileManagerBrowse(context + ::e_source_sync);
 
@@ -169,20 +416,20 @@ namespace filemanager
       catch (string & str)
       {
 
-         if (str == "uifs:// You have not logged in!")
-         {
+         //if (str == "uifs:// You have not logged in!")
+         //{
 
-            output_error_message("You have not logged in! Cannot access your User Intelligent File System - uifs://");
+         //   output_error_message("You have not logged in! Cannot access your User Intelligent File System - uifs://");
 
-            // assume can resume at least from this exception one time
+         //   // assume can resume at least from this exception one time
 
-            auto pcontext = get_context();
+         //   auto pcontext = get_context();
 
-            m_pitem = __new(::file::item(pcontext->m_papexcontext->defer_process_path(strOldPath), strOldPath));
+         //   m_pitem = __allocate< ::file::item >(pcontext->m_papexcontext->defer_process_path(strOldPath), strOldPath);
 
-            OnFileManagerBrowse(context + ::e_source_sync);
+         //   OnFileManagerBrowse(context + ::e_source_sync);
 
-         }
+         //}
 
          return false;
 
@@ -204,9 +451,9 @@ namespace filemanager
 
          auto pdir = dir();
 
-         auto& watcher = pdir->watcher();
+         auto & watcher = pdir->watcher();
 
-         m_filewatchid = watcher.add_watch(m_pitem->final_path(), this, false);
+         m_filewatchid = watcher.add_watch(filemanager_data()->m_pitem->final_path(), this, false);
 
       }
       catch (...)
@@ -221,251 +468,13 @@ namespace filemanager
    }
 
 
-   void document::on_file_manager_open_context_menu_folder(::pointer<::file::item> item, string_array & straCommand, string_array & straCommandTitle, const ::action_context & context)
-   {
 
-      auto pfilemanagerdata = filemanager_data();
 
-      ASSERT(pfilemanagerdata->m_pcallback != nullptr);
-
-      if (pfilemanagerdata->m_pcallback != nullptr)
-      {
-
-         pfilemanagerdata->m_pcallback->on_file_manager_open_context_menu_folder(pfilemanagerdata, item, straCommand, straCommandTitle, context);
-
-      }
-
-   }
-
-
-   void document::on_file_manager_open_context_menu_file(const ::file::item_array & itema, const ::action_context & context)
-   {
-
-      auto pfilemanagerdata = filemanager_data();
-
-      ASSERT(pfilemanagerdata->m_pcallback != nullptr);
-
-      if (pfilemanagerdata->m_pcallback != nullptr)
-      {
-
-         pfilemanagerdata->m_pcallback->on_file_manager_open_context_menu_file(pfilemanagerdata, itema, context);
-
-      }
-
-   }
-
-
-   void document::on_file_manager_open_context_menu(const ::action_context & context)
-   {
-
-      auto pfilemanagerdata = filemanager_data();
-
-      ASSERT(pfilemanagerdata->m_pcallback != nullptr);
-
-      if (pfilemanagerdata->m_pcallback != nullptr)
-      {
-
-         pfilemanagerdata->m_pcallback->on_file_manager_open_context_menu(pfilemanagerdata, context);
-
-      }
-
-   }
-
-
-   void document::on_file_manager_open(const ::file::item_array & itema, const ::action_context & context)
-   {
-
-      auto pfilemanagerdata = filemanager_data();
-
-      ASSERT(pfilemanagerdata->m_pcallback != nullptr);
-
-      if (pfilemanagerdata->is_topic() && itema.get_count() == 1)
-      {
-
-         ::pointer<document>pdocument = this;
-
-         auto ptopic = create_topic(ID_TOPIC_OK);
-
-         ptopic->payload(ID_DOCUMENT) = pdocument;
-
-         ptopic->_extended_topic()->m_pfileitem = itema.get_first_pointer();
-
-         pdocument->update_all_impacts(ptopic);
-
-         pfilemanagerdata->m_pdocumentTopic = nullptr;
-
-      }
-      else if (pfilemanagerdata->m_pcallback != nullptr)
-      {
-
-         //::payload payloadFile;
-
-         //::payload varQuery;
-
-         //if (itema.get_count() == 2 && m_atom == "filemanager::main::left")
-         //{
-
-         //   {
-
-         //      //payloadFile = itema[0]->get_user_path();
-
-         //      //varQuery["::filemanager::atom"] = "filemanager::main::left";
-
-         //      pfilemanagerdata->m_pcallback->on_file_manager_open(pfilemanagerdata, itema, context);
-
-         //   }
-
-         //   {
-
-         //      //payloadFile = itema[1]->get_user_path();
-
-         //      //varQuery["::filemanager::atom"] = "filemanager::main::right";
-
-         //      pfilemanagerdata->m_pcallback->on_file_manager_open(pfilemanagerdata, itema, context);
-
-         //   }
-
-         //}
-         //else if (itema.get_count() == 2 && m_atom == "filemanager::main::right")
-         //{
-
-         //   {
-
-         //      //payloadFile = itema[0]->get_user_path();
-
-         //      //varQuery["::filemanager::atom"] = "filemanager::main::right";
-
-         //      pfilemanagerdata->m_pcallback->on_file_manager_open(pfilemanagerdata, itema, context);
-
-         //   }
-
-         //   {
-
-         //      //payloadFile = itema[1]->get_user_path();
-
-         //      //varQuery["::filemanager::atom"] = "filemanager::main::left";
-
-         //      pfilemanagerdata->m_pcallback->on_file_manager_open(pfilemanagerdata, itema, context);
-
-         //   }
-
-         //}
-         //else
-         //{
-
-         //   //payloadFile = itema.get_var_final_path();
-
-         //   //varQuery = itema.get_var_query();
-
-         //   //varQuery["::filemanager::atom"] = m_atom;
-
-            auto pcallback = pfilemanagerdata->m_pcallback;
-
-            pcallback->on_file_manager_open(pfilemanagerdata, itema, context);
-
-//         }
-
-      }
-
-   }
-
-
-   void document::on_file_manager_open_folder(::pointer<::file::item> item, const ::action_context & context)
-   {
-
-      auto pfilemanagerdata = filemanager_data();
-
-      ASSERT(pfilemanagerdata->m_pcallback != nullptr);
-
-      if (pfilemanagerdata->m_pcallback != nullptr)
-      {
-
-         pfilemanagerdata->m_pcallback->on_file_manager_open_folder(pfilemanagerdata, item, context);
-
-      }
-
-   }
-
-
-   void document::on_file_manager_item_update(::message::command * pcommand, const ::file::item_array & itema)
-   {
-
-      auto pfilemanagerdata = filemanager_data();
-
-      ASSERT(pfilemanagerdata->m_pcallback != nullptr);
-
-      if (pfilemanagerdata->m_pcallback != nullptr)
-      {
-
-         pfilemanagerdata->m_pcallback->on_file_manager_item_update(pfilemanagerdata, pcommand, itema);
-
-      }
-
-   }
-
-
-   void document::on_file_manager_item_command(const ::string & pszId, const ::file::item_array & itema)
-   {
-
-      auto pfilemanagerdata = filemanager_data();
-
-      ASSERT(pfilemanagerdata->m_pcallback != nullptr);
-
-      if (pfilemanagerdata->m_pcallback != nullptr)
-      {
-
-         pfilemanagerdata->m_pcallback->on_file_manager_item_command(pfilemanagerdata, pszId, itema);
-
-      }
-
-   }
-
-
-   //void document::browse(::pointer<::file::item>item, const ::action_context & context)
-   //{
-
-   //   ASSERT(filemanager_document() != nullptr);
-
-   //   if (filemanager_document() != nullptr)
+   //   void document::assert_ok() const
    //   {
+   //
+   //      ::user::document::assert_ok();
 
-   //      filemanager_document()->browse(item, context);
-
-   //   }
-
-   //}
-
-   //void data::browse(const ::string & pcsz, const ::action_context & context)
-
-   //{
-
-   //   ASSERT(filemanager_document() != nullptr);
-
-   //   if (filemanager_document() != nullptr)
-   //   {
-
-   //      filemanager_document()->browse(pcsz, context);
-
-
-   //   }
-
-   //}
-
-
-   void document::browse(const ::string & pszPath, const ::action_context & context)
-   {
-
-      ::file::path pathUser = pszPath;
-
-      auto pcontext = get_context();
-
-      ::file::path pathFinal = pcontext->m_papexcontext->defer_process_path(pathUser);
-
-      ::pointer<::file::item>pitem = __new(::file::item(pathUser, pathFinal));
-
-      browse(pitem, context);
-
-   }
 
 
    void document::FileManagerOneLevelUp(const ::action_context & context)
@@ -478,9 +487,9 @@ namespace filemanager
 
       }
 
-      string strParent = filemanager_item()->user_path().parent();
+      auto pathParent = filemanager_item()->user_path().parent();
 
-      browse(strParent, context + ::e_source_sync);
+      browse(pathParent, context + ::e_source_sync);
 
    }
 
@@ -488,7 +497,7 @@ namespace filemanager
    ::file::item * document::filemanager_item()
    {
 
-      return m_pitem;
+      return filemanager_data()->m_pitem;
 
    }
 
@@ -501,12 +510,12 @@ namespace filemanager
    }
 
 
-   ::fs::data * document::fs_data()
-   {
+   //::fs::data * document::fs_data()
+   //{
 
-      return m_pfsset;
+   //   return m_pfsset;
 
-   }
+   //}
 
 
    document * document::get_main_document()
@@ -530,12 +539,12 @@ namespace filemanager
                if (pchildframe.is_set())
                {
 
-                  ::pointer<document>pdocument = pchildframe->get_active_document();
+                  ::pointer<document>pfilemanagerdata = pchildframe->get_active_document();
 
-                  if (pdocument.is_set())
+                  if (pfilemanagerdata.is_set())
                   {
 
-                     return pdocument;
+                     return pfilemanagerdata;
 
                   }
 
@@ -562,65 +571,65 @@ namespace filemanager
    }
 
 
-   void document::defer_check_manager_id(string strManagerId)
-   {
+   // void document::defer_check_manager_id(string strManagerId)
+   // {
 
-      auto pcontext = m_pcontext;
-      
-      auto psession = pcontext->m_pacmesession->m_pcoresession;
-      
-      auto puser = psession->m_puser->m_pcoreuser;
+   //    auto pcontext = m_pcontext;
+   //    
+   //    auto psession = pcontext->m_pacmesession->m_pcoresession;
+   //    
+   //    auto puser = psession->m_puser->m_pcoreuser;
 
-      if(puser->m_pathFilemanagerProject.has_char())
-      {
+   //    if(puser->m_pathFilemanagerProject.has_char())
+   //    {
 
-         if (!is_valid_manager_id(m_strManagerId) || is_valid_manager_id(strManagerId))
-         {
+   //       if (!is_valid_manager_id(m_strManagerId) || is_valid_manager_id(strManagerId))
+   //       {
 
-            if (is_valid_manager_id(strManagerId))
-            {
+   //          if (is_valid_manager_id(strManagerId))
+   //          {
 
-               m_strManagerId = strManagerId;
+   //             m_strManagerId = strManagerId;
 
-            }
-            else
-            {
+   //          }
+   //          else
+   //          {
 
-               m_strManagerId = create_manager_id(this);
+   //             m_strManagerId = create_manager_id(this);
 
-            }
+   //          }
 
-            //set_data_key_modifier(m_strManagerId);
+   //          //set_data_key_modifier(m_strManagerId);
 
-  /*          ::pointer<main_frame>pframe = get_impact()->get_typed_parent < main_frame >();
+   ///*          ::pointer<main_frame>pframe = get_impact()->get_typed_parent < main_frame >();
 
-            if (pframe.is_set() && !pframe->m_atom.to_string().contains("::frame"))
-            {
+   //          if (pframe.is_set() && !pframe->m_atom.to_string().contains("::frame"))
+   //          {
 
-               pframe->set_data_key_modifier(m_strManagerId);
+   //             pframe->set_data_key_modifier(m_strManagerId);
 
-            }*/
+   //          }*/
 
-         }
+   //       }
 
-         ::pointer<document>pdocument = get_main_document();
+   //       ::pointer<document>pfilemanagerdata = get_main_document();
 
-         if (pdocument.is_set() && pdocument.m_p != this && pdocument->m_strManagerId != m_strManagerId)
-         {
+   //       if (pfilemanagerdata.is_set() && pfilemanagerdata.m_p != this && pfilemanagerdata->m_strManagerId != m_strManagerId)
+   //       {
 
-            pdocument->defer_check_manager_id(m_strManagerId);
+   //          pfilemanagerdata->defer_check_manager_id(m_strManagerId);
 
-         }
+   //       }
 
-      }
+   //    }
 
-   }
+   // }
 
 
-   //critical_section * document::GetItemIdListCriticalSection()
-   //{
-   //   return &m_csItemIdListAbsolute;
-   //}
+    //critical_section * document::GetItemIdListCriticalSection()
+    //{
+    //   return &m_csItemIdListAbsolute;
+    //}
 
 
    void document::FileManagerTopicOK()
@@ -638,6 +647,8 @@ namespace filemanager
    bool document::on_new_document()
    {
 
+      information() << "filemanager::document::on_new_document";
+
       if (!::user::document::on_new_document())
       {
 
@@ -645,12 +656,120 @@ namespace filemanager
 
       }
 
-      defer_check_manager_id();
 
-      if (!m_bInitialized)
+      auto pfilemanagerdata = get_app()->filemanager()->create_filemanager_data();
+
+      if (!open_data(pfilemanagerdata))
       {
 
-         filemanager_initialize(true, true);
+         return false;
+
+      }
+
+      return true;
+
+      //defer_check_manager_id();
+
+      //if (!m_bInitialized)
+      //{
+
+        // information() << "filemanager::document::on_new_document not yet initialized";
+
+      //*browse_initial_path(e_source_initialize);
+
+      //if (bMakeVisible)
+      //{
+
+        // auto ptopic = create_topic(id_pop);
+
+         //update_all_impacts(ptopic);
+
+      //}
+
+      //}
+
+      //return true;
+
+   }
+
+
+
+   bool document::on_open_data(::data::data * pdata)
+   {
+
+      information() << "filemanager::document::on_open_data";
+
+      if (!::userfs::document::on_open_data(pdata))
+      {
+
+         return false;
+
+      }
+
+      //auto path = payloadFile.as_file_path();
+
+      //path.trim();
+
+      //defer_check_manager_id();
+
+      //if (!m_bInitialized)
+      //{
+
+        // filemanager_initialize();
+
+      //}
+
+      //string strManagerId;
+
+      //auto pcontext = m_pcontext->m_pauracontext;
+
+      //m_path = filemanager_project_entry(strManagerId, path, pcontext);
+
+      //    defer_check_manager_id(strManagerId);
+    ////
+      //return true;
+
+   //}
+
+      m_pfilemanagerdata = pdata;
+
+      if (!m_pfilemanagerdata->m_pitem)
+      {
+
+         browse_initial_path(::e_source_initialize);
+
+      }
+      else
+      {
+
+         browse(m_pfilemanagerdata->m_pitem, ::e_source_initialize);
+
+      }
+
+      auto pfilemanagerdata = filemanager_data();
+
+      if (pfilemanagerdata->m_emode == ::userfs::e_mode_saving)
+      {
+
+         auto pfilemanagerdataFilemanager = this;
+
+         {
+
+            auto pextendedtopic = create_topic(id_topic_start);
+
+            pextendedtopic->payload(id_document) = pfilemanagerdataFilemanager;
+
+            pfilemanagerdataFilemanager->update_all_impacts(pextendedtopic);
+
+         }
+
+         {
+
+            auto pextendedtopic = create_topic(id_create_bars);
+
+            pfilemanagerdataFilemanager->update_all_impacts(pextendedtopic);
+
+         }
 
       }
 
@@ -659,126 +778,59 @@ namespace filemanager
    }
 
 
-
-   bool document::on_open_document(const ::payload & payloadFile)
+   void document::browse_initial_path(const ::action_context & actioncontext)
    {
 
-      auto path = payloadFile.as_file_path();
+      defer_initialize_filemanager();
 
-      path.trim();
+      filemanager_data()->browse_initial_path(actioncontext);
 
-      defer_check_manager_id();
-
-      if (!m_bInitialized)
-      {
-
-         filemanager_initialize(true, false);
-
-      }
-
-      string strManagerId;
-
-      auto pcontext = m_pcontext->m_pauracontext;
-
-      m_path = filemanager_project_entry(strManagerId, payloadFile.as_string(), pcontext);
-
-      defer_check_manager_id(strManagerId);
-
-      return true;
+      //id_update_all_impacts(id_browse);
 
    }
 
+   //   void document::assert_ok() const
+   //   {
+   //      ::user::document::assert_ok();
+   //   }
+   //
+   //   void document::dump(dump_context & dumpcontext) const
+   //   {
+   //      ::user::document::dump(dumpcontext);
+   //   }
 
-//   void document::assert_ok() const
-//   {
-//      ::user::document::assert_ok();
-//   }
-//
-//   void document::dump(dump_context & dumpcontext) const
-//   {
-//      ::user::document::dump(dumpcontext);
-//   }
-
-
-   void document::start_full_browse(::pointer<::file::item>pitem, const ::action_context & context)
-   {
-
-      if (!fs_data()->is_zero_latency(pitem->final_path()))
-      {
-
-         auto ptopic = create_topic(ID_SYNCHRONIZE_PATH);
-
-         ptopic->m_actioncontext = context + ::e_source_sync + ::e_source_system;
-
-         ptopic->_extended_topic()->m_pfileitem = pitem;
-
-         update_all_impacts(ptopic);
-
-      }
-
-      fork([this, pitem, context]()
-      {
-
-         full_browse(pitem, context);
-
-      });
-
-   }
-
-
-   void document::full_browse(::pointer<::file::item>pitem, const ::action_context & context)
-   {
-
-      __task_guard(m_bFullBrowse);
-
-#define DBG_BROWSE_LOOP 1
-
-      for (index i = 0; i < DBG_BROWSE_LOOP; i++)
-      {
-
-         ::userfs::document::browse(pitem, context);
-
-      }
-
-      auto pextendedtopic = create_extended_topic(ID_SYNCHRONIZE_PATH);
-
-      pextendedtopic->m_pfileitem = pitem;
-
-      pextendedtopic->m_actioncontext = context + ::e_source_sync;
-
-      update_all_impacts(pextendedtopic);
-
-   }
 
 
    void document::OnFileManagerBrowse(const ::action_context & context)
    {
 
-      start_full_browse(m_pitem, context);
+      information() << "filemanager::document::OnFileManagerBrowse";
+
+      //browse(filemanager_data()->m_pitem, context);
 
       if (context.is_user_source())
       {
 
-         auto pcontext = m_pcontext;
-         
-         auto psession = pcontext->m_pacmesession->m_pcoresession;
-         
-         auto puser = psession->m_puser->m_pcoreuser;
+         //auto pcontext = m_pcontext;
+         //
+         //auto psession = pcontext->m_pacmesession->m_pcoresession;
+         //
+         //auto puser = psession->m_puser->m_pcoreuser;
 
          auto pfilemanagerdata = filemanager_data();
 
-         if (puser->m_pathFilemanagerProject.is_empty())
+         //         if (puser->m_pathFilemanagerProject.is_empty())
          {
 
-            pfilemanagerdata->set_last_browse_path(this, m_pitem->user_path());
+            pfilemanagerdata->set_last_browse_path(this, pfilemanagerdata->m_pitem->user_path());
 
          }
-         else
-         {
+         //else
+         //{
 
-            puser->filemanager_save_project();
+         //   puser->filemanager_save_project();
 
-         }
+         //}
 
       }
 
@@ -849,19 +901,19 @@ namespace filemanager
    void document::_001OnNewManager(::message::message * pmessage)
    {
 
-      auto prequest = __create_new <::request>();
+      //auto prequest = __create_new <::request>();
 
-      prequest->finish_initialization();
+      //prequest->finish_initialization();
 
-      auto pcontext = m_pcontext;
-      
-      auto psession = pcontext->m_pacmesession->m_pcoresession;
-      
-      auto puser = psession->m_puser->m_pcoreuser;
+      //auto pcontext = m_pcontext;
+      //
+      //auto psession = pcontext->m_pacmesession->m_pcoresession;
+      //
+      //auto puser = psession->m_puser->m_pcoreuser;
 
-      puser->add_filemanager("", prequest);
+      //puser->add_filemanager("", prequest);
 
-      pmessage->m_bRet = true;
+      //pmessage->m_bRet = true;
 
    }
 
@@ -881,33 +933,33 @@ namespace filemanager
    void document::_001OnDelManager(::message::message * pmessage)
    {
 
-      ::pointer<document>pdocument = this;
+      //::pointer<document>pfilemanagerdata = this;
 
-      ::pointer<impact>pimpact = get_typed_impact<impact>();
+      //::pointer<impact>pimpact = get_typed_impact<impact>();
 
-      if (pimpact.is_set())
-      {
+      //if (pimpact.is_set())
+      //{
 
-         ::pointer<tab_impact>ptabimpact = pimpact->get_typed_parent <tab_impact>();
+      //   ::pointer<tab_impact>ptabimpact = pimpact->get_typed_parent <tab_impact>();
 
-         if (ptabimpact.is_set())
-         {
+      //   if (ptabimpact.is_set())
+      //   {
 
-            pdocument = ptabimpact->get_document();
+      //      pfilemanagerdata = ptabimpact->get_document();
 
-         }
+      //   }
 
-      }
+      //}
 
-      auto pcontext = m_pcontext;
-      
-      auto psession = pcontext->m_pacmesession->m_pcoresession;
-      
-      auto puser = psession->m_puser->m_pcoreuser;
+      //auto pcontext = m_pcontext;
+      //
+      //auto psession = pcontext->m_pacmesession->m_pcoresession;
+      //
+      //auto puser = psession->m_puser->m_pcoreuser;
 
-      puser->erase_filemanager(pdocument.m_p);
+      //puser->erase_filemanager(pfilemanagerdata.m_p);
 
-      pmessage->m_bRet = true;
+      //pmessage->m_bRet = true;
 
    }
 
@@ -917,7 +969,7 @@ namespace filemanager
 
       ::pointer<::message::command>pcommand(pmessage);
 
-      if (m_pitem.is_null() || m_pitem->user_path().is_empty())
+      if (filemanager_data()->m_pitem.is_null() || filemanager_data()->m_pitem->user_path().is_empty())
       {
 
          pcommand->enable(false);
@@ -1052,7 +1104,9 @@ namespace filemanager
 
       UNREFERENCED_PARAMETER(pmessage);
 
-      if (m_emode == ::userfs::e_mode_saving || m_emode == ::userfs::e_mode_export)
+      auto emode = filemanager_data()->m_emode;
+
+      if (emode == ::userfs::e_mode_saving || emode == ::userfs::e_mode_export)
       {
 
          auto ptopic = create_topic(id_topic_ok);
@@ -1073,7 +1127,9 @@ namespace filemanager
 
       UNREFERENCED_PARAMETER(pmessage);
 
-      if (m_emode == ::userfs::e_mode_import)
+      auto emode = filemanager_data()->m_emode;
+
+      if (emode == ::userfs::e_mode_import)
       {
 
          auto ptopic = create_topic(id_topic_ok);
@@ -1092,7 +1148,9 @@ namespace filemanager
 
       UNREFERENCED_PARAMETER(pmessage);
 
-      if (m_emode == ::userfs::e_mode_saving)
+      auto emode = filemanager_data()->m_emode;
+
+      if (emode == ::userfs::e_mode_saving)
       {
 
          auto ptopic = create_topic(id_topic_ok);
@@ -1106,8 +1164,19 @@ namespace filemanager
    }
 
 
-   void document::filemanager_initialize(bool bMakeVisible, const ::file::path & path)
+   void document::defer_initialize_filemanager()
    {
+
+      if (m_bInitialized)
+      {
+
+         return;
+
+      }
+
+      m_bInitialized = true;
+
+      information() << "filemanager::document::filemanager_initialize";
 
       InitializeFileManager("filemanager");
 
@@ -1117,112 +1186,147 @@ namespace filemanager
 
       ptopic->payload(id_document) = this;
 
-      browse(path, ::e_source_database);
-
       update_all_impacts(ptopic);
 
-      if (bMakeVisible)
-      {
-
-         ::topic topic(id_pop);
-
-         update_all_impacts(&topic);
-
-      }
-
-   }
-
-
-   void document::filemanager_initialize(bool bMakeVisible, bool bInitialBrowsePath)
-   {
-
-      CreateImpacts();
-
-      auto ptopic = create_topic(id_create_bars);
-
-      ptopic->payload(id_document) = this;
-
-      if (bInitialBrowsePath)
-      {
-
-         string str;
-
-         auto pfilemanagerdata = filemanager_data();
-
-         auto path = pfilemanagerdata->get_last_browse_path(this, pfilemanagerdata->m_pathDefault);
-
-         browse(path, ::e_source_initialize);
-
-//         if (get_file.datastream()->get({true, "last_browse_folder"}, str))
-//         {
-//
-//            if (str == "machinefs://")
-//            {
-//
-//               atom idMachine;
-//
-//#ifdef LINUX
-//               idMachine = "Linux";
-//#elif defined(WINDOWS_DESKTOP)
-//               idMachine = "WindowsDesktop";
-//#elif defined(WINDOWS)
-//               idMachine = "Metrowin";
-//#elif defined(MACOS)
-//               idMachine = "macOS";
-//#elif defined(__APPLE__)
-//               idMachine = "iOS";
-//#endif
-//
-//               if (papp->datastream()->get({true, "last_browse_folder." + as_string(idMachine)}, str))
-//               {
-//
-//                  browse(str, ::e_source_database);
-//
-//               }
-//               else
-//               {
-//
-//                  browse("", ::e_source_system);
-//
-//               }
-//
-//            }
-//            else
-//            {
-//
-               //browse(str, ::e_source_database);
-
-//            }
-
-         //}
-         //else if (pfilemanagerdata->m_pathDefault.has_char())
-         //{
-
-         //   browse(pfilemanagerdata->m_pathDefault, ::e_source_initialize);
-
-         //}
-         //else
-         //{
-
-         //   browse("", ::e_source_system);
-
-         //}
-
-      }
-
-      //ptopic->m_atom = ;
-
-      //update_all_impacts(pupdate);
+      // browse(path, ::e_source_database);
+      //
+      // update_all_impacts(ptopic);
+      //
+      // if (bMakeVisible)
+      // {
+      //
+      //    ::topic topic(id_pop);
+      //
+      //    update_all_impacts(&topic);
+      //
+      // }
 
    }
 
 
-   void document::OpenFolder(::file::item * pitem, const ::action_context & context)
-   {
+   //    void document::filemanager_initialize(bool bMakeVisible, const ::file::path & path)
+   //    {
+   //
+   //       filemanager_initialize();
+   //
+   //       //InitializeFileManager("filemanager");
+   //
+   //       //CreateImpacts();
+   //
+   //       //auto ptopic = create_topic(id_create_bars);
+   //
+   //       //ptopic->payload(id_document) = this;
+   //
+   //       browse(path, ::e_source_database);
+   //
+   // //      update_all_impacts(ptopic);
+   //
+   //       // if (bMakeVisible)
+   //       // {
+   //       //
+   //       //    auto ptopic = create_topic(id_pop);
+   //       //
+   //       //    update_all_impacts(ptopic);
+   //       //
+   //       // }
+   //
+   //    }
 
-      browse(pitem, context);
 
-   }
+//   void document::browse_initial_path(const ::action_context & action_context)
+//   {
+//
+//      //CreateImpacts();
+//
+//      //auto ptopic = create_topic(id_create_bars);
+//
+//      //ptopic->payload(id_document) = this;
+//
+//      //::file::path pathInitialBrowse;
+//
+//      //if (bInitialBrowsePath)
+//      //{
+//
+//         //string str;
+//
+//      auto pfilemanagerdata = filemanager_data();
+//
+//      auto pathInitialBrowse = pfilemanagerdata->get_last_browse_path(this, pfilemanagerdata->m_pathDefault);
+//
+//      //browse(path, ::e_source_initialize);
+//
+////         if (get_file.datastream()->get({true, "last_browse_folder"}, str))
+////         {
+////
+////            if (str == "machinefs://")
+////            {
+////
+////               atom idMachine;
+////
+////#ifdef LINUX
+////               idMachine = "Linux";
+////#elif defined(WINDOWS_DESKTOP)
+////               idMachine = "WindowsDesktop";
+////#elif defined(WINDOWS)
+////               idMachine = "Metrowin";
+////#elif defined(MACOS)
+////               idMachine = "macOS";
+////#elif defined(__APPLE__)
+////               idMachine = "iOS";
+////#endif
+////
+////               if (papp->datastream()->get({true, "last_browse_folder." + as_string(idMachine)}, str))
+////               {
+////
+////                  browse(str, ::e_source_database);
+////
+////               }
+////               else
+////               {
+////
+////                  browse("", ::e_source_system);
+////
+////               }
+////
+////            }
+////            else
+////            {
+////
+//               //browse(str, ::e_source_database);
+//
+////            }
+//
+//         //}
+//         //else if (pfilemanagerdata->m_pathDefault.has_char())
+//         //{
+//
+//         //   browse(pfilemanagerdata->m_pathDefault, ::e_source_initialize);
+//
+//         //}
+//         //else
+//         //{
+//
+//         //   browse("", ::e_source_system);
+//
+//         //}
+//
+//      //}
+//
+//      browse(pathInitialBrowse, action_context);
+//
+//      //ptopic->m_atom = ;
+//
+//      //update_all_impacts(pupdate);
+//
+//   }
+
+
+   //void document::OpenFolder(::file::item * pitem, const ::action_context & context)
+   //{
+
+   //   browse(pitem, context);
+
+   //}
 
 
    void document::CreateImpacts()
@@ -1288,13 +1392,13 @@ namespace filemanager
          if (pfilemanagerdata != nullptr)
          {
 
-            if (pfilemanagerdata->m_pcallback != nullptr)
+            if (pfilemanagerdata->m_pfilemanagercallback != nullptr)
             {
 
-               if (pfilemanagerdata->m_pcallback->get_file_manager_item_callback(pfilemanagerdata, pcommand->m_atom, itema))
+               if (pfilemanagerdata->m_pfilemanagercallback->get_file_manager_item_callback(pfilemanagerdata, pcommand->m_atom, itema))
                {
 
-                  pfilemanagerdata->m_pcallback->on_file_manager_item_update(pfilemanagerdata, pcommand, itema);
+                  pfilemanagerdata->m_pfilemanagercallback->on_file_manager_item_update(pfilemanagerdata, pcommand, itema);
 
                   return true;
 
@@ -1311,7 +1415,7 @@ namespace filemanager
          if (pfilemanagerdata != nullptr)
          {
 
-            auto pcallback = pfilemanagerdata->m_pcallback;
+            auto pcallback = pfilemanagerdata->m_pfilemanagercallback;
 
             if (::is_set(pcallback))
             {
@@ -1366,7 +1470,7 @@ namespace filemanager
 
       //   }
 
-      //   return dynamic_cast < operation_document * > (ptabimpact->get("filemanager::operation")->m_pdocument);
+      //   return dynamic_cast < operation_document * > (ptabimpact->get("filemanager::operation")->m_pfilemanagerdata);
 
       //}
 
@@ -1394,17 +1498,17 @@ namespace filemanager
 
       pfilemanagerdata->m_pdocumentTopic = pdocument;
 
-      m_emode = ::userfs::e_mode_saving;
+      pfilemanagerdata->m_emode = ::userfs::e_mode_saving;
 
-      auto pdocumentFilemanager = this;
+      auto pfilemanagerdataFilemanager = this;
 
       {
 
          auto pextendedtopic = create_topic(id_topic_start);
 
-         pextendedtopic->payload(id_document) = pdocumentFilemanager;
+         pextendedtopic->payload(id_document) = pfilemanagerdataFilemanager;
 
-         pdocumentFilemanager->update_all_impacts(pextendedtopic);
+         pfilemanagerdataFilemanager->update_all_impacts(pextendedtopic);
 
       }
 
@@ -1412,7 +1516,7 @@ namespace filemanager
 
          auto pextendedtopic = create_topic(id_create_bars);
 
-         pdocumentFilemanager->update_all_impacts(pextendedtopic);
+         pfilemanagerdataFilemanager->update_all_impacts(pextendedtopic);
 
       }
 
@@ -1426,17 +1530,17 @@ namespace filemanager
 
       pfilemanagerdata->m_pdocumentTopic = pdocument;
 
-      m_emode = ::userfs::e_mode_import;
+      pfilemanagerdata->m_emode = ::userfs::e_mode_import;
 
-      auto pdocumentFilemanager = this;
+      auto pfilemanagerdataFilemanager = this;
 
       {
 
          auto ptopic = create_topic(id_topic_start);
 
-         ptopic->payload(id_document) = pdocumentFilemanager;
+         ptopic->payload(id_document) = pfilemanagerdataFilemanager;
 
-         pdocumentFilemanager->update_all_impacts(ptopic);
+         pfilemanagerdataFilemanager->update_all_impacts(ptopic);
 
       }
 
@@ -1444,7 +1548,7 @@ namespace filemanager
 
          ::topic topic(id_create_bars);
 
-         pdocumentFilemanager->update_all_impacts(&topic);
+         pfilemanagerdataFilemanager->update_all_impacts(&topic);
 
       }
 
@@ -1458,17 +1562,17 @@ namespace filemanager
 
       pfilemanagerdata->m_pdocumentTopic = pdocument;
 
-      m_emode = ::userfs::e_mode_export;
+      pfilemanagerdata->m_emode = ::userfs::e_mode_export;
 
-      auto pdocumentFilemanager = this;
+      auto pfilemanagerdataFilemanager = this;
 
       {
 
          auto ptopic = create_topic(id_topic_start);
 
-         ptopic->payload(id_document) = pdocumentFilemanager;
+         ptopic->payload(id_document) = pfilemanagerdataFilemanager;
 
-         pdocumentFilemanager->update_all_impacts(ptopic);
+         pfilemanagerdataFilemanager->update_all_impacts(ptopic);
 
       }
 
@@ -1476,7 +1580,7 @@ namespace filemanager
 
          ::topic topic(id_create_bars);
 
-         pdocumentFilemanager->update_all_impacts(&topic);
+         pfilemanagerdataFilemanager->update_all_impacts(&topic);
 
       }
 
@@ -1484,58 +1588,58 @@ namespace filemanager
 
 
 
-   void document::on_create(::request * prequest)
-   {
+   //void document::on_create(::request * prequest)
+   //{
 
-      ::user::document::on_create(prequest);
+   //   ::user::document::on_create(prequest);
 
-      m_pfilemanagerdata = prequest->cast < ::filemanager::data >("filemanager::data");
-      
-      auto pcontext = m_pcontext;
-      
-      auto psession = pcontext->m_pacmesession->m_pcoresession;
-      
-      auto puser = psession->m_puser->m_pcoreuser;
+   //   //m_pfilemanagerdata = prequest->cast < ::filemanager::data >("filemanager::data");
+   //   //
+   //   //auto pcontext = m_pcontext;
+   //   //
+   //   //auto psession = pcontext->m_pacmesession->m_pcoresession;
+   //   //
+   //   //auto puser = psession->m_puser->m_pcoreuser;
 
-      if (m_pfilemanagerdata.is_null())
-      {
+   //   //if (!m_pfilemanagerdata)
+   //   //{
 
-         m_pfilemanagerdata = puser->filemanager(prequest->m_atom);
+   //   //   m_pfilemanagerdata = puser->filemanager(prequest->m_atom);
 
-      }
+   //   //}
 
-      ASSERT(m_pfilemanagerdata.is_set());
+   //   //ASSERT(m_pfilemanagerdata.is_set());
 
-      //if (m_pfilemanagerdata.is_null())
-      //{
+   //   //if (m_pfilemanagerdata.is_null())
+   //   //{
 
-      //   //::pointer<manager_template>ptemplate = pcreate->prop("filemanager::template").cast < manager_template >();
+   //   //   //::pointer<manager_template>ptemplate = pcreate->prop("filemanager::template").cast < manager_template >();
 
-      //   //if (ptemplate.is_null())
-      //   //{
+   //   //   //if (ptemplate.is_null())
+   //   //   //{
 
-      //   //   ptemplate = puser->filemanager().m_ptemplate;
+   //   //   //   ptemplate = puser->filemanager().m_ptemplate;
 
-      //   //}
+   //   //   //}
 
-      //   if (ptemplate.is_null())
-      //   {
+   //   //   if (ptemplate.is_null())
+   //   //   {
 
-      //      m_pfilemanagerdata = __new(data(this));
+   //   //      m_pfilemanagerdata = __allocate< data >(this);
 
-      //   }
-      //   else
-      //   {
+   //   //   }
+   //   //   else
+   //   //   {
 
-      //      m_pfilemanagerdata = ptemplate->create_file_manager_data(pcreate);
+   //   //      m_pfilemanagerdata = ptemplate->create_file_manager_data(pcreate);
 
-      //   }
+   //   //   }
 
-      //}
+   //   //}
 
-      m_pfilemanagerdata->m_pdocument = this;
+   //   //m_pfilemanagerdata->m_pfilemanagerdata = this;
 
-   }
+   //}
 
 
    void document::on_request(::request * prequest)
@@ -1551,7 +1655,7 @@ namespace filemanager
    ::pointer<::filemanager::data>document::create_file_manager_data(::request * prequest)
    {
 
-      ::pointer<::filemanager::data>pfilemanagerdata(__new(data));
+      ::pointer<::filemanager::data>pfilemanagerdata(__allocate< data >());
 
       ::filemanager::callback * pcallback = nullptr;
 
@@ -1562,7 +1666,7 @@ namespace filemanager
 
       }
 
-      pfilemanagerdata->m_pcallback = pcallback != nullptr ? pcallback : this;
+      pfilemanagerdata->m_pfilemanagercallback = pcallback != nullptr ? pcallback : this;
 
       pfilemanagerdata->m_bTransparentBackground = prequest == nullptr ? true : prequest->m_bTransparentBackground;
 
@@ -1578,7 +1682,7 @@ namespace filemanager
 
       auto pfilemanagerdata = filemanager_data();
 
-      return pfilemanagerdata->m_setToolbar[m_emode];
+      return pfilemanagerdata->m_setToolbar[pfilemanagerdata->m_emode];
 
    }
 
@@ -1600,6 +1704,12 @@ namespace filemanager
    }
 
 
+   void document::_001Refresh()
+   {
+
+      browse(filemanager_item(), ::e_source_sync);
+
+   }
 
 
 } // namespace filemanager

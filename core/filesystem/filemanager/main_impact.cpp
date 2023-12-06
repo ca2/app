@@ -8,6 +8,7 @@
 #include "document.h"
 #include "acme/constant/id.h"
 #include "acme/handler/item.h"
+#include "acme/handler/topic.h"
 #include "base/user/user/frame_window.h"
 
 
@@ -17,6 +18,8 @@ namespace filemanager
 
    main_impact::main_impact()
    {
+
+      m_bAutoCreate = false;
 
       //m_ppropform = nullptr;
 
@@ -109,7 +112,8 @@ namespace filemanager
 
       //pleftview->create_impacts();
 
-      m_pfilelist = create_pane_impact(filemanager_data()->m_typeatomFileList, 1);
+      //m_pfilelist = create_pane_impact(get_document()->m_typeatomFileList, 1);
+      m_pfilelist = create_pane_impact(::type < file_list >(), 1);
 
       if(m_pfilelist == nullptr)
       {
@@ -133,7 +137,7 @@ namespace filemanager
       if(m_ppropform == nullptr)
       {
 
-         __construct(m_ppropform, __new(file_properties_form));
+         __construct(m_ppropform, __allocate< file_properties_form >());
 
       }
 
@@ -191,10 +195,19 @@ namespace filemanager
 
       ::user::split_impact::handle(ptopic, pcontext);
 
-      if (ptopic->m_atom == ID_INCOMING_DOCUMENT)
+      if (ptopic->m_atom == id_initialize)
+      {
+
+         create_split_impact();
+
+      }
+      else if (ptopic->m_atom == ID_INCOMING_DOCUMENT)
       {
 
          informationf("filemanager::main_impact ::update_open_document");
+
+
+
 
       }
 

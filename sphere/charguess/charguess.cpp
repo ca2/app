@@ -26,7 +26,7 @@
 extern "C" charguess_det CharGuessInit()
 {
 
-   nsUniversalDetector* det = memory_new nsUniversalDetector;
+   nsUniversalDetector* det = __new< nsUniversalDetector >();
 
    if (det != nullptr)
       return (charguess_det) det;

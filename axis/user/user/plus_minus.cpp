@@ -4,6 +4,7 @@
 #include "plus_minus.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
+#include "acme/handler/topic.h"
 #include "aura/message/user.h"
 #include "aura/user/user/button.h"
 #include "aura/user/user/still.h"

@@ -134,6 +134,17 @@ namespace draw2d
    }
 
 
+   void path::destroy()
+   {
+
+      m_itema.clear();
+      m_ppathoptimization.release();
+
+      ::draw2d::object::destroy();
+
+   }
+
+
    bool path::has_current_point()
    {
 
@@ -209,7 +220,7 @@ namespace draw2d
       //if (!m_pshapea)
       //{
 
-      //   m_pshapea = __new(shape_array < path>());
+      //   m_pshapea = __allocate< shape_array < path> >();
 
       //}
 
@@ -230,7 +241,7 @@ namespace draw2d
       //if (!m_pshapea)
       //{
 
-      //   m_pshapea = __new(shape_array < path>());
+      //   m_pshapea = __allocate< shape_array < path> >();
 
       //}
 
@@ -271,7 +282,7 @@ namespace draw2d
       //if (!m_pshapea)
       //{
 
-      //   m_pshapea = __new(shape_array < path>());
+      //   m_pshapea = __allocate< shape_array < path> >();
 
       //}
 
@@ -300,7 +311,7 @@ namespace draw2d
 //
 //      //pitem->m_rectangle = rectangle;
 //
-//      //auto parc = __new(arc_f64_shape< path >);
+//      //auto parc = __allocate< arc_f64_shape< path > >();
 //
 //      auto & arc = pitem->m_item;
 //
@@ -328,7 +339,7 @@ namespace draw2d
 //      //if (!m_pshapea)
 //      //{
 //
-//      //   m_pshapea = __new(shape_array < path>());
+//      //   m_pshapea = __allocate< shape_array < path> >();
 //
 //      //}
 //
@@ -387,7 +398,7 @@ namespace draw2d
 //      //if (!m_pshapea)
 //      //{
 //
-//      //   m_pshapea = __new(shape_array < path>());
+//      //   m_pshapea = __allocate< shape_array < path> >();
 //
 //      //}
 //
@@ -433,7 +444,7 @@ namespace draw2d
       //if (!m_pshapea)
       //{
 
-      //   m_pshapea = __new(shape_array < path>());
+      //   m_pshapea = __allocate< shape_array < path> >();
 
       //}
 
@@ -460,7 +471,7 @@ namespace draw2d
       //if (!m_pshapea)
       //{
 
-      //   m_pshapea = __new(shape_array < path>());
+      //   m_pshapea = __allocate< shape_array < path> >();
 
       //}
 
@@ -483,7 +494,7 @@ namespace draw2d
       //if (!m_pshapea)
       //{
 
-      //   m_pshapea = __new(shape_array < path>());
+      //   m_pshapea = __allocate< shape_array < path> >();
 
       //}
 
@@ -504,7 +515,7 @@ namespace draw2d
       //if (!m_pshapea)
       //{
 
-      //   m_pshapea = __new(shape_array < path>());
+      //   m_pshapea = __allocate< shape_array < path> >();
 
       //}
 
@@ -535,7 +546,7 @@ namespace draw2d
       //if (!m_pshapea)
       //{
 
-      //   m_pshapea = __new(shape_array < path>());
+      //   m_pshapea = __allocate< shape_array < path> >();
 
       //}
 
@@ -568,7 +579,7 @@ namespace draw2d
       //if (!m_pshapea)
       //{
 
-      //   m_pshapea = __new(shape_array < path>());
+      //   m_pshapea = __allocate< shape_array < path> >();
 
       //}
 
@@ -584,7 +595,7 @@ namespace draw2d
    bool path::add_line(const point_f64 & p1, const point_f64 & p2)
    {
 
-      //auto pline = __new(line_f64_shape< path>);
+      //auto pline = __allocate< line_f64_shape< path> >();
 
       auto pitem = __create_new < ::geometry2d::line_item >();
 
@@ -599,7 +610,7 @@ namespace draw2d
       //if (!m_pshapea)
       //{
 
-      //   m_pshapea = __new(shape_array < path>());
+      //   m_pshapea = __allocate< shape_array < path> >();
 
       //}
 
@@ -619,7 +630,7 @@ namespace draw2d
    bool path::add_line(const point_f64 & point)
    {
 
-      //auto pline = __new(line_f64_shape < path >);
+      //auto pline = __allocate< line_f64_shape < path > >();
 
       auto pitem = __create_new < ::geometry2d::line_item >();
 
@@ -634,7 +645,7 @@ namespace draw2d
       //if (!m_pshapea)
       //{
 
-      //   m_pshapea = __new(shape_array < path>());
+      //   m_pshapea = __allocate< shape_array < path> >();
 
       //}
 
@@ -666,7 +677,7 @@ namespace draw2d
       //if (!m_pshapea)
       //{
 
-      //   m_pshapea = __new(shape_array < path>());
+      //   m_pshapea = __allocate< shape_array < path> >();
 
       //}
 
@@ -682,7 +693,7 @@ namespace draw2d
    bool path::add_lines(const ::point_f64 * ppoint, ::count nCount)
    {
 
-      //auto plines = __new(lines_f64_shape < path >);
+      //auto plines = __allocate< lines_f64_shape < path > >();
 
       auto pitem = __create_new < ::geometry2d::lines_item >();
 
@@ -695,7 +706,7 @@ namespace draw2d
       //if (!m_pshapea)
       //{
 
-      //   m_pshapea = __new(shape_array < path>());
+      //   m_pshapea = __allocate< shape_array < path> >();
 
       //}
 
@@ -1901,7 +1912,7 @@ namespace draw2d
          //if(!m_pshapea)
          //{
 
-         //   m_pshapea = __new(shape_array <class path>());
+         //   m_pshapea = __allocate< shape_array <class path> >();
 
          //}
 

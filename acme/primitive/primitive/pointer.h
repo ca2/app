@@ -2,18 +2,34 @@
 
 
 #include "acme/primitive/primitive/ptr.h"
+#include "acme/platform/reference_referer.h"
 
 
-CLASS_DECL_ACME ::factory::factory * get_system_factory();
+//struct transfer_t {};
+
+
+//CLASS_DECL_ACME ::factory::factory * get_system_factory();
+
+
+//#if REFERENCING_DEBUGGING
+//
+//
+//CLASS_DECL_ACME::particle * task_get_top_track();
+//CLASS_DECL_ACME void task_on_new_particle(::particle * pparticle);
+//CLASS_DECL_ACME void task_on_after_new_particle(::particle * pparticle);
+//
+//
+//#endif
 
 
 #define TEMPLATE_TYPE typename __TEMPLATE_TYPE__ = nullptr_t
 #define TEMPLATE_ARG __TEMPLATE_TYPE__ t = nullptr
 
 template < class c_derived >
-inline i64 increment_reference_count(c_derived * pca OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF);
+inline i64 increment_reference_count(c_derived * pca);
 
 class particle;
+
 
 // ::ca::null_class back link to operational system oswindow.h
 //
@@ -32,14 +48,20 @@ public:
 
    using RAW_POINTER = TYPE *;
 
-   T *            m_p;
-   ::particle *   m_pparticle;
-   ::e_status     m_estatus;
+   T *                  m_p;
+   ::particle *         m_pparticle;
+   ::e_status           m_estatus;
+#if REFERENCING_DEBUGGING
+   reference_referer *  m_preferer = nullptr;
+#endif
 
 
    inline pointer();
    inline pointer( std::nullptr_t);
    inline pointer(lparam& lparam);
+
+   template < typename ...Args >
+   pointer(allocate_t, Args &&... args);
 
    pointer(const pointer & t);
    pointer(pointer && t);
@@ -51,36 +73,50 @@ public:
 
 
    //inline _pointer < enum_create_new > :
-   //   m_p(memory_new T)
+   //   m_p(aaa_memory_new T)
    //{
 
    //}
 
+
+   /// consumes a referer
    template < typename PARTICLE >
    inline pointer(enum_create_new, PARTICLE * pparticle) :
-      m_p(memory_new T),
-      m_pparticle(m_p)
-   {
-
-      m_p->initialize(pparticle);
-
-   }
-
-
-   template < typename PARTICLE >
-   inline pointer(enum_create, PARTICLE * pparticle, ::factory::factory * pfactory = ::get_system_factory()) :
       m_p(nullptr),
       m_pparticle(nullptr)
    {
 
-      create(pparticle, pfactory);
+      //m_preferer = ::allocator::get_referer();
+
+      REFDBG_THIS(this);
+
+      pparticle->__construct_new(*this);
 
    }
 
 
-   template < typename T2 >
-   inline pointer(enum_pointer_transfer, T2* p);
+   /// consumes a referer
+   template < typename PARTICLE >
+   inline pointer(enum_create, PARTICLE * pparticle, ::factory::factory * pfactory = nullptr) :
+      m_p(nullptr),
+      m_pparticle(nullptr)
+   {
 
+      //m_preferer = ::allocator::get_referer();
+
+      REFDBG_THIS(this);
+
+      pparticle->__construct(*this, pfactory);
+
+   }
+
+
+   /// referer is transferred?
+   template < typename T2 >
+   inline pointer(transfer_t, T2* p);
+
+
+   /// consumes a referer
    template < class T2 >
    inline pointer(const T2 * p)
    {
@@ -91,31 +127,55 @@ public:
          m_p = nullptr;
 
          m_pparticle = nullptr;
+#if REFERENCING_DEBUGGING
 
+         m_preferer = nullptr;
+#endif
          return;
 
       }
 
-      m_p = dynamic_cast <T *> ((T2 *)p);
+      auto pNew = dynamic_cast <T *> ((T2 *)p);
 
-      if (::is_set(m_p))
+      if (::is_set(pNew))
       {
+#if REFERENCING_DEBUGGING
 
-         ::increment_reference_count(m_p);
+         ::reference_referer * prefererNew = nullptr;
 
-         m_pparticle = m_p;
+         if (pNew->is_referencing_debugging_enabled())
+         {
 
+            prefererNew = ::allocator::defer_get_referer(pNew, { this, __FUNCTION_FILE_LINE__ });
+
+         }
+#endif
+         pNew->increment_reference_count();
+
+         m_p = pNew;
+
+         m_pparticle = pNew;
+#if REFERENCING_DEBUGGING
+
+         m_preferer = prefererNew;
+#endif
       }
       else
       {
 
          m_pparticle = nullptr;
 
+         m_p = nullptr;
+#if REFERENCING_DEBUGGING
+
+         m_preferer = nullptr;
+#endif
       }
 
    }
 
 
+   /// consumes a referer
    template < class T2 >
    inline pointer(const ::pointer<T2>& p) :
       pointer(p.m_p)
@@ -178,9 +238,23 @@ public:
 
             m_pparticle = t.m_pparticle;
 
+            m_estatus = t.m_estatus;
+
+#if REFERENCING_DEBUGGING
+
+            m_preferer = t.m_preferer;
+
+#endif
+
             t.m_p = nullptr;
 
             t.m_pparticle = nullptr;
+
+#if REFERENCING_DEBUGGING
+
+            t.m_preferer = nullptr;
+
+#endif
 
          }
          else
@@ -189,7 +263,10 @@ public:
             m_p = nullptr;
 
             m_pparticle = nullptr;
+#if REFERENCING_DEBUGGING
 
+            m_preferer = nullptr;
+#endif
          }
 
       }
@@ -199,7 +276,10 @@ public:
          m_p = nullptr;
 
          m_pparticle = nullptr;
+#if REFERENCING_DEBUGGING
 
+         m_preferer = nullptr;
+#endif
       }
 
    }
@@ -229,15 +309,59 @@ public:
    inline bool is_null() const;
    inline bool is_set() const;
 
+
+   template < class T2 >
+   inline pointer & operator = (T2 * p)
+   {
+
+      return reset(p);
+
+   }
+
+
    pointer & operator = (const pointer & t);
    pointer & operator = (pointer && t);
+
+
+   template < class T2 >
+   inline pointer & operator = (const ::pointer<T2> & t);
+   template < class T2 >
+   inline pointer & operator = (::pointer<T2> && t);
+
+
    template < typename T2 >
    pointer & operator = (const ptr < T2 > & p);
    template < typename T2 >
    pointer & operator = (ptr < T2 > && p);
 
+
+
    //template < typename VAR >
    //inline pointer & operator = (const payload_type < VAR > & payload);
+
+   //void set_referer()
+   //{
+
+   //   m_referer = referer;
+
+   //}
+
+   //void on_initialize_particle()
+   //{
+
+   //   m_pparticle->add_reference_item(m_referer);
+
+   //}
+
+
+   //void add_reference_item()
+   //{
+
+   //   set_referer();
+
+   //   m_pparticle->add_reference_item();
+
+   //}
 
 
    //inline pointer& operator = (T * p)
@@ -247,14 +371,6 @@ public:
 
    //}
 
-
-   template < class T2 >
-   inline pointer & operator = (T2 * p)
-   {
-
-      return reset(p);
-
-   }
 
    //template < typename T2 >
    //inline pointer & operator = (const T2 * p)
@@ -282,25 +398,30 @@ public:
 
    //}
 
-   template < class T2 >
-   inline pointer & operator = (const ::pointer<T2>& t)
+   inline bool defer_destroy()
    {
 
-      return operator = (t.m_p);
+      if (!this->is_set())
+      {
+
+         return false;
+
+      }
+
+      m_pparticle->destroy();
+
+      release();
+
+      return true;
 
    }
 
+   inline i64 release();
 
-   template < class T2 >
-   inline pointer & operator = (::pointer<T2>&& t);
+   //inline i64 global_release();
 
-
-   inline i64 release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
-
-   inline i64 global_release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
-
-   inline T * detach();
-   inline ::particle * detach_particle();
+   inline ::pointer < T > detach() { return ::transfer(*this); }
+   //inline ::particle * detach_particle();
 
 
    template < class T2 >
@@ -345,7 +466,7 @@ public:
    //pointer & merge(const CONTAINER & pcontainer, const OBJECT & pparticle, const ATTRIBUTE & attribute)
    //{
 
-   //   auto pModified = __new(TYPE(*m_p));
+   //   auto pModified = __allocate< TYPE >(*m_p);
 
    //   pModified->apply(pparticle, attribute);
 
@@ -369,7 +490,7 @@ public:
 
    //   auto pOld = m_p;
 
-   //   m_p = memory_new TYPE(*pparticle);
+   //   m_p = __new< TYPE >(*pparticle);
 
    //   m_pparticle = m_p;
 
@@ -394,10 +515,10 @@ public:
 
    //}
 
-   inline pointer& reset(const ::pointer < T > & p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+   inline pointer& reset(const ::pointer < T > & p);
 
    template < typename T2 >
-   inline pointer & reset(T2 * ptr OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+   inline pointer & reset(T2 * ptr);
 
 
    inline bool operator ==(std::nullptr_t) const { return is_null(); }
@@ -433,11 +554,11 @@ public:
    template < typename OBJECT >
    inline pointer < T > & create_new(OBJECT * pparticle);
 
-   template < typename OBJECT >
-   inline pointer < T > & defer_create(OBJECT * pparticle, ::factory::factory * pfactory = ::get_system_factory());
+   //template < typename OBJECT >
+   //inline pointer < T > & defer_create(OBJECT * pparticle, ::factory::factory * pfactory = nullptr);
 
-   template < typename OBJECT >
-   inline pointer < T > & create(OBJECT * pparticle, ::factory::factory * pfactory = ::get_system_factory());
+   //template < typename OBJECT >
+   //inline pointer < T > & create(OBJECT * pparticle, ::factory::factory * pfactory = nullptr);
 
    template < typename T2 >
    inline pointer < T > & clone(T2 * p);
@@ -584,7 +705,7 @@ ptr < TYPE > clone(TYPE * p);
 
 
 template < typename TYPE >
-inline ::pointer<TYPE> __create_new(::particle* pparticle);
+inline ::pointer<TYPE> __call__create_new( ::particle* pparticle);
 
 
 template < typename TARGET, typename SOURCE >
@@ -592,6 +713,473 @@ inline void copy(::pointer < TARGET > & pTarget, const ::pointer < SOURCE > & pS
 
 
 
+//template < typename T, typename ...Args >
+//::pointer < T > __allocate(Args &&... args)
+//{
+//
+//   ::pointer < T > p{ transfer_t{}, ::new T(::std::forward<Args>(args)...) };
+//
+//   task_on_after_new_particle(p);
+//
+//   return ::transfer(p);
+//
+//}
+
+
+//#else
+
+
+template < typename T, typename ...Args >
+::pointer < T > __call_allocate(Args &&... args);
+
+
+template < typename TYPE >
+ptr < TYPE >::ptr(const ::pointer < TYPE > & p)
+{
+
+   auto pNew = p.m_p;
+
+   if (::is_null(pNew))
+   {
+
+      m_p = nullptr;
+#if REFERENCING_DEBUGGING
+      m_preferer = nullptr;
+#endif
+   }
+   else
+   {
+#if REFERENCING_DEBUGGING
+      ::reference_referer * prefererNew = nullptr;
+
+      if (pNew->is_referencing_debugging_enabled())
+      {
+
+         prefererNew = ::allocator::defer_get_referer(pNew, { this, __FUNCTION_FILE_LINE__ });
+
+      }
+#endif
+      pNew->increment_reference_count();
+
+      m_p = pNew;
+#if REFERENCING_DEBUGGING
+      m_preferer = prefererNew;
+#endif
+   }
+
+}
+
+template < typename TYPE >
+ptr < TYPE >::ptr(::pointer < TYPE > && p)
+{
+
+   auto pNew = p.m_p;
+
+   if (::is_null(pNew))
+   {
+
+      m_p = nullptr;
+#if REFERENCING_DEBUGGING
+      m_preferer = nullptr;
+#endif
+   }
+   else
+   {
+
+      m_p = pNew;
+#if REFERENCING_DEBUGGING
+      if (!pNew->is_referencing_debugging_enabled())
+      {
+
+         if (p.m_preferer)
+         {
+
+            throw "error_wrong_state: "  __FUNCTION_FILE_LINE__;
+
+         }
+
+      }
+
+      m_preferer = p.m_preferer;
+#endif
+      p.m_p = nullptr;
+      p.m_pparticle = nullptr;
+      p.m_estatus = error_not_initialized;
+#if REFERENCING_DEBUGGING
+      p.m_preferer = nullptr;
+#endif
+
+   }
+}
+
+template < typename TYPE >
+template < typename T2 >
+ptr < TYPE >::ptr(const ::pointer < T2 > & p)
+{
+
+   auto pNew = dynamic_cast < TYPE * >((T2*)p.m_p);
+
+   if (::is_null(pNew))
+   {
+
+      m_p = nullptr;
+#if REFERENCING_DEBUGGING
+      m_preferer = nullptr;
+#endif
+   }
+   else
+   {
+#if REFERENCING_DEBUGGING
+
+      ::reference_referer * prefererNew = nullptr;
+
+      if (pNew->is_referencing_debugging_enabled())
+      {
+
+         prefererNew = ::allocator::defer_get_referer(pNew, { this, __FUNCTION_FILE_LINE__ });
+
+      }
+#endif
+
+      pNew->increment_reference_count();
+      
+      m_p = pNew;
+#if REFERENCING_DEBUGGING
+
+      m_preferer = prefererNew;
+#endif
+
+   }
+
+}
+
+template < typename TYPE >
+template < typename T2 >
+ptr < TYPE >::ptr(::pointer < T2 > && p)
+{
+
+   auto pNew = dynamic_cast < TYPE * >(p.m_p);
+
+   if (::is_null(pNew))
+   {
+
+      m_p = nullptr;
+#if REFERENCING_DEBUGGING
+
+      m_preferer = nullptr;
+#endif
+
+   }
+   else
+   {
+
+      m_p = pNew;
+#if REFERENCING_DEBUGGING
+
+      if (!pNew->is_referencing_debugging_enabled())
+      {
+
+         if (p.m_preferer)
+         {
+
+            throw "error_wrong_state: "  __FUNCTION_FILE_LINE__;
+
+         }
+
+      }
+
+      m_preferer = p.m_preferer;
+#endif
+      p.m_p = nullptr;
+
+      p.m_pparticle = nullptr;
+
+      p.m_estatus = error_not_initialized;
+#if REFERENCING_DEBUGGING
+
+      p.m_preferer = nullptr;
+#endif
+   }
+}
+
+
+
+
+
+
+
+template < typename TYPE >
+ptr < TYPE > & ptr < TYPE >::operator =(const ::pointer < TYPE > & p)
+{
+
+   auto pNew = p.m_p;
+
+   auto pOld = m_p;
+
+   if (pNew == m_p)
+   {
+
+      return *this;
+
+   }
+#if REFERENCING_DEBUGGING
+
+   auto prefererOld = m_preferer;
+#endif
+   if (::is_null(pNew))
+   {
+
+      m_p = nullptr;
+#if REFERENCING_DEBUGGING
+
+      m_preferer = nullptr;
+#endif
+   }
+   else
+   {
+#if REFERENCING_DEBUGGING
+
+      ::reference_referer * prefererNew = nullptr;
+
+      if (pNew->is_referencing_debugging_enabled())
+      {
+
+         prefererNew = ::allocator::defer_get_referer(pNew, { this, __FUNCTION_FILE_LINE__ });
+
+      }
+#endif
+      pNew->increment_reference_count();
+
+      m_p = pNew;
+#if REFERENCING_DEBUGGING
+
+      m_preferer = prefererNew;
+#endif
+   }
+
+   if (::is_set(pOld))
+   {
+
+
+#if REFERENCING_DEBUGGING
+
+      if (pOld->is_referencing_debugging_enabled())
+      {
+
+         ::allocator::add_releaser(prefererOld);
+
+      }
+
+#endif
+      pOld->release();
+
+   }
+
+   return *this;
+
+
+}
+
+template < typename TYPE >
+ptr < TYPE > & ptr < TYPE >::operator =(::pointer < TYPE > && p)
+{
+
+   auto pNew = p.m_p;
+
+   auto pOld = m_p;
+
+   if (pNew == m_p)
+   {
+
+      return *this;
+
+   }
+#if REFERENCING_DEBUGGING
+
+   auto prefererOld = m_preferer;
+#endif
+   if (::is_null(pNew))
+   {
+
+      m_p = nullptr;
+#if REFERENCING_DEBUGGING
+
+      m_preferer = nullptr;
+#endif
+
+   }
+   else
+   {
+
+      m_p = pNew;
+#if REFERENCING_DEBUGGING
+
+      m_preferer = p.m_preferer;
+#endif
+      p.m_p = nullptr;
+      p.m_pparticle = nullptr;
+      p.m_estatus = error_not_initialized;
+#if REFERENCING_DEBUGGING
+
+      p.m_preferer = nullptr;
+#endif
+
+   }
+
+   if (::is_set(pOld))
+   {
+#if REFERENCING_DEBUGGING
+
+      if (pOld->is_referencing_debugging_enabled())
+      {
+
+         ::allocator::add_releaser(prefererOld);
+
+      }
+#endif
+      pOld->release();
+
+   }
+
+   return *this;
+
+}
+
+template < typename TYPE >
+template < typename T2 >
+ptr < TYPE > & ptr < TYPE >::operator =(const ::pointer < T2 > & p)
+{
+
+   auto pNew = dynamic_cast <TYPE *>((T2 *)p.m_p);
+
+   auto pOld = m_p;
+
+   if (pNew == m_p)
+   {
+
+      return *this;
+
+   }
+#if REFERENCING_DEBUGGING
+
+   auto prefererOld = m_preferer;
+#endif
+   if (::is_null(pNew))
+   {
+
+      m_p = nullptr;
+#if REFERENCING_DEBUGGING
+
+      m_preferer = nullptr;
+#endif
+   }
+   else
+   {
+#if REFERENCING_DEBUGGING
+
+      ::reference_referer * prefererNew = nullptr;
+
+      if (pNew->is_referencing_debugging_enabled())
+      {
+
+         prefererNew = ::allocator::defer_get_referer(pNew, { this, __FUNCTION_FILE_LINE__ });
+
+      }
+#endif
+      pNew->increment_reference_count();
+
+      m_p = pNew;
+#if REFERENCING_DEBUGGING
+
+      m_preferer = prefererNew;
+#endif
+   }
+
+   if (::is_set(pOld))
+   {
+#if REFERENCING_DEBUGGING
+
+      if (pOld->is_referencing_debugging_enabled())
+      {
+
+         ::allocator::add_releaser(prefererOld);
+
+      }
+#endif
+      pOld->release();
+
+   }
+
+   return *this;
+
+}
+
+template < typename TYPE >
+template < typename T2 >
+ptr < TYPE > & ptr < TYPE >::operator =(::pointer < T2 > && p)
+{
+
+   auto pNew = dynamic_cast <TYPE *>((T2 *)p.m_p);
+
+   auto pOld = m_p;
+
+   if (pNew == m_p)
+   {
+
+      return *this;
+
+   }
+
+#if REFERENCING_DEBUGGING
+
+   auto prefererOld = m_preferer;
+
+#endif
+   if (::is_null(pNew))
+   {
+
+      m_p = nullptr;
+#if REFERENCING_DEBUGGING
+
+      m_preferer = nullptr;
+#endif
+   }
+   else
+   {
+
+      m_p = pNew;
+#if REFERENCING_DEBUGGING
+
+      m_preferer = p.m_preferer;
+#endif
+      p.m_p = nullptr;
+      p.m_pparticle = nullptr;
+      p.m_estatus = error_not_initialized;
+#if REFERENCING_DEBUGGING
+
+      p.m_preferer = nullptr;
+#endif
+
+   }
+
+   if (::is_set(pOld))
+   {
+#if REFERENCING_DEBUGGING
+
+      if (pOld->is_referencing_debugging_enabled())
+      {
+
+         ::allocator::add_releaser(prefererOld);
+
+      }
+#endif
+      pOld->release();
+
+   }
+
+   return *this;
+
+}
 
 
 

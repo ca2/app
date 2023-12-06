@@ -7,12 +7,12 @@
 
 
 
-int application_main()
+::i32 application_main(::platform::platform * pplatform)
 {
 
-   auto papplication = __new(app_message_box::application());
+   auto papplication = __allocate< app_message_box::application >();
 
-   int iExitCode = papplication->application_main();
+   int iExitCode = papplication->application_main(pplatform);
 
    return iExitCode;
 

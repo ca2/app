@@ -5,6 +5,7 @@
 #include "acme/handler/item.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
+#include "acme/handler/topic.h"
 #include "acme/platform/sequencer.h"
 #include "acme/primitive/geometry2d/_collection.h"
 #include "acme/user/nano/nano.h"
@@ -180,10 +181,10 @@ namespace user
 
       payload(FONTSEL_IMPACT) = true;
 
-      m_pbrushBkSel.create(this);
-      m_pbrushBkHoverSel.create(this);
-      m_ppenBkSel.create(this);
-      m_ppen.create(this);
+      __construct(m_pbrushBkSel);
+      __construct(m_pbrushBkHoverSel);
+      __construct(m_ppenBkSel);
+      __construct(m_ppen);
 
 
       m_pbrushBkHoverSel->create_solid(argb(255, 230, 230, 230));
@@ -206,7 +207,7 @@ namespace user
       //if (!estatus)
       //{
 
-      //   pcreate->failed("Failed to create memory_new xml document for menu impact");
+      //   pcreate->failed("Failed to create new xml document for menu impact");
 
       //   return;
 
@@ -228,11 +229,11 @@ namespace user
 
       m_pimageLogo = pcontextimage->load_image("matter://main/logo.png", { .cache = false });
 
-      m_pfontTitle.create(this);
+      __construct(m_pfontTitle);
 
       m_pfontTitle->create_font(e_font_sans_ui, 14_pt, 800);
 
-      m_pfont.create(this);
+      __construct(m_pfont);
 
       m_pfont->create_font(e_font_sans_ui, 14_pt, 400);
 
@@ -480,7 +481,7 @@ namespace user
 
          auto pmenuitemPopup = m_pmenuitem->m_pmenuitema->element_at(i);
 
-         ///main_content().add_item(__new(::item(::e_element_item, iPos, iMenu, -1)));
+         ///main_content().add_item(__allocate< ::item >(::e_element_item, iPos, iMenu, -1));
 
          string strTitle;
          
@@ -776,7 +777,7 @@ namespace user
 
          auto pmenuitemMenuBar = __create_new < menu_item >();
 
-         pmenuitemMenuBar->m_pmenuitema = __new(menu_item_ptra(pmenuitemMenuBar));
+         pmenuitemMenuBar->m_pmenuitema = __allocate< menu_item_ptra >(pmenuitemMenuBar);
 
          pmenuitemParent->add_item(pmenuitemMenuBar);
 

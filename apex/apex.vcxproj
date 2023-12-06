@@ -613,6 +613,7 @@
     </ClCompile>
     <ClCompile Include="handler\context.cpp" />
     <ClCompile Include="handler\manager.cpp" />
+    <ClCompile Include="handler\manager_room.cpp" />
     <ClCompile Include="handler\signal.cpp" />
     <ClCompile Include="input\input.cpp" />
     <ClCompile Include="interprocess\base.cpp" />
@@ -701,10 +702,12 @@
     <ClInclude Include="filesystem\file\action.h" />
     <ClInclude Include="filesystem\file\listener.h" />
     <ClInclude Include="filesystem\file\_constant.h" />
+    <ClInclude Include="filesystem\fs\native.h" />
     <ClInclude Include="filesystem\_.h" />
     <ClInclude Include="handler\context.h" />
     <ClInclude Include="handler\manager.h" />
     <ClInclude Include="handler\aaa_predicate.h" />
+    <ClInclude Include="handler\manager_room.h" />
     <ClInclude Include="handler\promise.h" />
     <ClInclude Include="handler\promise1.h" />
     <ClInclude Include="handler\signal.h" />
@@ -985,7 +988,6 @@
     <ClInclude Include="filesystem\fs\item.h" />
     <ClInclude Include="filesystem\fs\item_array.h" />
     <ClInclude Include="filesystem\fs\link.h" />
-    <ClInclude Include="filesystem\fs\native_fs.h" />
     <ClInclude Include="filesystem\fs\net.h" />
     <ClInclude Include="filesystem\fs\remote_native_file.h" />
     <ClInclude Include="filesystem\fs\remote_native_fs.h" />

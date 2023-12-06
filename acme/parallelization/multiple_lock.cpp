@@ -17,7 +17,7 @@
 
 
 
-//#define memory_new ACME_NEW
+
 
 
 multiple_lock::multiple_lock()

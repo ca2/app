@@ -20,8 +20,8 @@ namespace file
    public:
 
 
-      path_array() {};
-      ~path_array() override {};
+      path_array(){}
+      ~path_array() override {}
 
 
       virtual void patch_base_path(const ::file::path & pathBase);

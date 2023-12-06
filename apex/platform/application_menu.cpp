@@ -55,7 +55,7 @@ application_menu * application_menu::popup_at(::index & iIndex, const ::scoped_s
 {
 
    auto ppopup = 
-      __initialize(__new(::application_menu(scopedstrName, popup_flag_t{})));
+      __initialize(__allocate< ::application_menu >(scopedstrName, popup_flag_t{}));
 
    this->insert_at(iIndex++, ppopup);
 
@@ -94,7 +94,7 @@ application_menu * application_menu::_item_at(::index & i, bool bStockItem, cons
 {
 
    auto papplicationmenuItem =
-      __initialize(__new(::application_menu(bStockItem, scopedstrName, atom, scopedstrAccelerator, scopedstrDescription)));
+      __initialize(__allocate< ::application_menu >(bStockItem, scopedstrName, atom, scopedstrAccelerator, scopedstrDescription));
 
    this->insert_at(i++, papplicationmenuItem);
 
@@ -109,7 +109,7 @@ application_menu * application_menu::_item(bool bStockItem, const ::scoped_strin
    auto iIndex = this->count();
 
    auto pitem = _item_at(iIndex, bStockItem, scopedstrName, atom, scopedstrAccelerator, scopedstrDescription);
-      //__initialize(__new(::application_menu(bStockItem, strName, strId, strMacosAccelerator, strDescription)));
+      //__initialize(__allocate< ::application_menu >(bStockItem, strName, strId, strMacosAccelerator, strDescription));
 
    return pitem;
 
@@ -251,7 +251,31 @@ application_menu * application_menu::separator()
 //
 //}
 
+   void application_menu::finalize()
+   {
 
+      for (auto & pmenu : *this)
+      {
+
+         try
+         {
+
+            pmenu->finalize();
+
+         }
+         catch (...)
+         {
+
+         }
+
+
+      }
+
+      ::pointer_array < application_menu >::clear();
+
+      ::pointer_array < application_menu >::finalize();
+
+   }
 //} // namespace apex
 //
 //

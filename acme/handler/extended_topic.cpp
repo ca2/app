@@ -2,7 +2,7 @@
 // Changed to extended on 2022-02-04 18:08 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "extended_topic.h"
-#include "acme/platform/object_reference_count_debug.h"
+//#include "acme/platform/reference_count_debug.h"
 
 
 extended_topic::extended_topic(const ::atom & atom) :
@@ -25,26 +25,26 @@ extended_topic::~extended_topic()
 #ifdef _DEBUG
 
 
-i64 extended_topic::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+i64 extended_topic::increment_reference_count()
 {
 
-return ::property_object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+return ::property_object::increment_reference_count();
 
 }
 
 
-i64 extended_topic::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+i64 extended_topic::decrement_reference_count()
 {
 
-return ::property_object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+return ::property_object::decrement_reference_count();
 
 }
 
 
-i64 extended_topic::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+i64 extended_topic::release()
 {
 
-return ::property_object::release(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+return ::property_object::release();
 
 }
 

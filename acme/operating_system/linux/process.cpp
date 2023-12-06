@@ -59,7 +59,7 @@
 //      if(strExe.case_insensitive_ends("_app_core_clockverse"))
 //      {
 //
-//         ::informationf("app-core/clockverse");
+//         ::acme::get()->platform()->informationf("app-core/clockverse");
 //
 //      }
 //
@@ -79,7 +79,7 @@
 //      if(strExe.case_insensitive_ends("_app_core_clockverse"))
 //      {
 //
-//         ::informationf("app-core/clockverse");
+//         ::acme::get()->platform()->informationf("app-core/clockverse");
 //
 //      }
 //
@@ -525,7 +525,7 @@
 //      atom_array node::module_path_get_pid(const ::scoped_string & scopedstr)
 //      {
 //
-//         ::informationf("os/linux_process.cpp app_get_pid (" + string(psz) + ")");
+//         ::acme::get()->platform()->informationf("os/linux_process.cpp app_get_pid (" + string(psz) + ")");
 //
 //         atom_array ia;
 //

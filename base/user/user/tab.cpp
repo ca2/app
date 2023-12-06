@@ -10,6 +10,7 @@
 #include "acme/handler/item.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/keep.h"
+#include "acme/handler/extended_topic.h"
 #include "acme/handler/request.h"
 #include "aura/graphics/image/context_image.h"
 #include "acme/primitive/data/listener.h"
@@ -1203,7 +1204,7 @@ namespace user
                if (rectangleScroll.contains(pointCursor))
                {
 
-                  return __new(::item(::e_element_tab_near_scroll, -1));
+                  return __allocate< ::item >(::e_element_tab_near_scroll, -1);
 
                }
 
@@ -1215,7 +1216,7 @@ namespace user
                if (rectangleScroll.contains(pointCursor))
                {
 
-                  return __new(::item(::e_element_tab_far_scroll, -1));
+                  return __allocate< ::item >(::e_element_tab_far_scroll, -1);
 
                }
 
@@ -1255,7 +1256,7 @@ namespace user
                      if (rectangleText.contains(point))
                      {
 
-                        return __new(::item((enum_element)((int)e_element_split + iTitle), iIndex));
+                        return __allocate< ::item >((enum_element)((int)e_element_split + iTitle), iIndex);
 
                      }
 
@@ -1296,7 +1297,7 @@ namespace user
                user_item(ppane)->m_rectangle2 = rectangle;
 
                return ppane;
-               //return __new(::item(e_element_tab, iIndex));
+               //return __allocate< ::item >(e_element_tab, iIndex);
 
             }
 
@@ -1304,7 +1305,7 @@ namespace user
 
       }
 
-      auto pitemNone = __new(::item(e_element_none));
+      auto pitemNone = __allocate< ::item >(e_element_none);
 
       return pitemNone;
 
@@ -1510,7 +1511,7 @@ namespace user
 
       if (m_ewindowflag & ::e_window_flag_window_created)
       {
-
+         
          set_need_redraw();
 
          post_redraw();
@@ -3165,6 +3166,7 @@ namespace user
       return m_pdata->m_rectangleHosting;
 
    }
+
 
 
 } // namespace base

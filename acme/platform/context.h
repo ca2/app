@@ -14,6 +14,9 @@ namespace acme
    public:
 
 
+      ::platform::platform *                          m_pplatform;
+
+
       ::apex::context *                               m_papexcontext;
       ::aura::context *                               m_pauracontext;
 
@@ -44,11 +47,18 @@ namespace acme
       ~context() override;
 
 
+      virtual void on_set_platform();
+
+      virtual void set_platform(::platform::platform * pplatform);
+
+
       void initialize(::particle * pparticle) override;
 
       virtual void initialize_context();
 
       virtual void initialize_context_1();
+
+      virtual void finalize_context();
 
 
       inline ::context_image* context_image() { return m_pcontextimage; }

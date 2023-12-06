@@ -2,6 +2,10 @@
 // Created by camilo on 5/17/22 02:38 <3ThomasBorregaardSorensen!!
 //
 #include "framework.h"
+
+
+#if !defined(WINDOWS)
+
 #include "acme/platform/node.h"
 
 #include <cxxabi.h>
@@ -172,3 +176,7 @@ void backtrace_symbol_parse(string & strSymbolName, string & strAddress, char * 
 //
 //
 //
+
+#endif
+
+

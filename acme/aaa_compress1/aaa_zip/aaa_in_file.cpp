@@ -16,7 +16,7 @@ namespace zip
    in_file::in_file()
    {
 
-      m_punzfileinfo = memory_new unz_file_info;
+      m_punzfileinfo = aaa_primitive_new unz_file_info;
 
    }
 
@@ -79,7 +79,7 @@ namespace zip
 
       }
 
-      m_filea.add(__new(::zip::file()));
+      m_filea.add(__allocate< ::zip::file >());
 
       if(!m_filea.last()->zip_open(m_straPath[0]))
       {
@@ -95,7 +95,7 @@ namespace zip
       for(i = 1; i < m_straPath.get_size(); i++)
       {
 
-         m_infilea.add(__new(::zip::in_file));
+         m_infilea.add(__allocate< ::zip::in_file >());
 
          str = m_straPath[i];
 
@@ -110,7 +110,7 @@ namespace zip
 
          }
 
-         m_filea.add(__new(::zip::file));
+         m_filea.add(__allocate< ::zip::file >());
 
          if(!m_filea.last_pointer()->zip_open((file_pointer) m_infilea.last_pointer()))
          {
@@ -158,7 +158,7 @@ namespace zip
 
       m_straPrefix.erase_all();
 
-      m_filea.add(__new(::zip::file));
+      m_filea.add(__allocate< ::zip::file >());
 
       if(!m_filea.last_pointer()->unzip_open(pfile, iBufferLevel))
       {
@@ -174,7 +174,7 @@ namespace zip
       for(i = 0; i < m_straPath.get_upper_bound(); i++)
       {
 
-         m_infilea.add(__new(::zip::in_file));
+         m_infilea.add(__allocate< ::zip::in_file >());
 
          str = m_straPath[i];
 
@@ -189,7 +189,7 @@ namespace zip
 
          }
 
-         m_filea.add(__new(::zip::file()));
+         m_filea.add(__allocate< ::zip::file >());
 
          if(!m_filea.last_pointer()->unzip_open((file_pointer)m_infilea.last_pointer()))
          {

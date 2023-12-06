@@ -33,7 +33,7 @@ namespace universal_windows
 
       void display() override;
 
-      //void message_loop() override;
+      //void aaa_message_loop() override;
 
       //void draw(nano_device * pnanodevice) override;
 

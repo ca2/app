@@ -334,7 +334,7 @@ namespace graphics
       if (ppen2.is_null())
       {
 
-         ppen2.create(this);
+         __construct(ppen2);
 
          ppen2->create_solid(2.0, console_dos_color(edoscolor));
 
@@ -353,7 +353,7 @@ namespace graphics
       if (ppen1.is_null())
       {
 
-         ppen1.create(this);
+         __construct(ppen1);
 
          ppen1->create_solid(1.0, console_dos_color(edoscolor));
 

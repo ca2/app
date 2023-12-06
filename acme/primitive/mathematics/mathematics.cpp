@@ -198,12 +198,14 @@ namespace mathematics
 
 //#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
 
-      void generate_random_bytes(void * p, memsize s)
+      void random(const ::block & block)
       {
 
          critical_section_lock lock(&m_criticalsection);
 
-         u32 * pu = (u32 *) p;
+         u32 * pu = (u32 *) block.data();
+
+         auto s = block.size();
 
          while(s > 4)
          {
@@ -270,7 +272,7 @@ namespace mathematics
    mathematics::mathematics()
    {
 
-      m_posdata = memory_new math_os_data();
+      //task_on_after_new_particle(m_posdata);
 
       // initial rng seed
       m_dPi = atan(1.0) * 4.0;
@@ -283,7 +285,7 @@ namespace mathematics
    mathematics::~mathematics()
    {
 
-      ::acme::del(m_posdata);
+      m_posdata.release();
 
    }
 
@@ -300,7 +302,7 @@ namespace mathematics
 
       //}
 
-      m_posdata = m_pcontext->__create_new < math_os_data>();
+      __construct_new(m_posdata);
 
       //if (!estatus)
       //{
@@ -324,7 +326,7 @@ namespace mathematics
    }
 
 
-   u64 mathematics::gen_rand()
+   u64 mathematics::random_u64()
    {
 //#if defined(UNIVERSAL_WINDOWS)
 //      u64 uiLo = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
@@ -332,65 +334,135 @@ namespace mathematics
 //      return uiLo | (uiHi << 32);
 //#else
       u64 u = 0;
-      gen_rand(&u, sizeof(u));
+         random({ e_as_block,u });
+         
       return u;
 //#endif
 //
    }
 
-   void mathematics::random_bytes(void * buf, memsize dwLen)
+   char mathematics::random_char()
    {
+      //#if defined(UNIVERSAL_WINDOWS)
+      //      u64 uiLo = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
+      //      u64 uiHi = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
+      //      return uiLo | (uiHi << 32);
+      //#else
+      char ch = 0;
+      random({ e_as_block,ch });
 
-      gen_rand(buf, dwLen);
-
-   }
-
-   void mathematics::RandomBytes(void * buf, memsize dwLen)
-   {
-
-      random_bytes(buf, dwLen);
-
-   }
-
-
-   void mathematics::gen_rand(void * buf, memsize dwLen)
-   {
-
-      generate_random_bytes(buf, dwLen);
-
+      return ch;
+      //#endif
+      //
    }
 
 
-   string mathematics::random_string(strsize s)
+   u8 mathematics::random_u8()
    {
+      //#if defined(UNIVERSAL_WINDOWS)
+      //      u64 uiLo = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
+      //      u64 uiHi = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
+      //      return uiLo | (uiHi << 32);
+      //#else
+      u8 u = 0;
+      random({ e_as_block,u });
 
-      return gen_rand_alnum(s);
-
+      return u;
+      //#endif
+      //
    }
 
 
-   string mathematics::gen_rand_alnum(strsize s)
+   u32 mathematics::random_u32()
+   {
+      //#if defined(UNIVERSAL_WINDOWS)
+      //      u64 uiLo = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
+      //      u64 uiHi = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
+      //      return uiLo | (uiHi << 32);
+      //#else
+      u32 u = 0;
+      random({ e_as_block,u });
+
+      return u;
+      //#endif
+      //
+   }
+
+//   u64 mathematics::gen_rand()
+//   {
+////#if defined(UNIVERSAL_WINDOWS)
+////      u64 uiLo = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
+////      u64 uiHi = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
+////      return uiLo | (uiHi << 32);
+////#else
+//      u64 u = 0;
+//      gen_rand(&u, sizeof(u));
+//      return u;
+////#endif
+////
+//   }
+
+   //void mathematics::random_bytes(void * buf, memsize dwLen)
+   //{
+
+   //   gen_rand(buf, dwLen);
+
+   //}
+
+   //void mathematics::RandomBytes(void * buf, memsize dwLen)
+   //{
+
+   //   random_bytes(buf, dwLen);
+
+   //}
+
+
+   //void mathematics::gen_rand(void * buf, memsize dwLen)
+   //{
+
+   //   random({ buf, dwLen });
+
+   //}
+
+
+   string mathematics::random_alphanumeric(strsize s)
    {
 
-      string str;
+      ::string str;
 
-      char * psz = str.get_buffer(s);
+      auto p = str.get_buffer(s);
 
-      gen_rand_alnum(psz, s);
+      random_alphanumeric( p,s );
 
-      str.release_buffer(s);
+      str.release_buffer();
 
       return str;
 
    }
 
 
-   void mathematics::gen_rand_alnum(char * buf, memsize dwLen)
-   {
+   //string mathematics::gen_rand_alnum(strsize s)
+   //{
 
-      generate_random_alphanumeric(buf, dwLen);
+   //   string str;
 
-   }
+   //   char * psz = str.get_buffer(s);
+
+   //   gen_rand_alnum(psz, s);
+
+   //   str.release_buffer(s);
+
+   //   return str;
+
+   //}
+
+
+   //void mathematics::gen_rand_alnum(char * buf, memsize dwLen)
+   //{
+
+   //   generate_random_alphanumeric(buf, dwLen);
+
+   //}
 
 
 
@@ -590,7 +662,9 @@ namespace mathematics
       if (!g_pmathematics)
       {
 
-         g_pmathematics = memory_new class mathematics;
+         g_pmathematics = __new < class mathematics >();
+
+         //task_untrack___new(g_pmathematics);
 
       }
 
@@ -603,6 +677,64 @@ namespace mathematics
       ::acme::del(g_pmathematics);
 
    }
+
+
+   void mathematics::random(const ::block & block)
+   {
+
+      m_posdata->random(block);
+
+   }
+
+
+
+   void mathematics::random_alphanumeric(char * p, memsize s)
+   {
+
+      random({ p, s });
+
+      transform_alphanumeric(p, s);
+
+   }
+
+
+   void mathematics::transform_alphanumeric(void * p, memsize s)
+   {
+
+      u8 * pchar = (u8 *)p;
+
+      while (s > 0)
+      {
+
+         char ch = *pchar % 62;
+
+         if (ch <= 9)
+         {
+
+            *pchar = ch + '0';
+
+         }
+         else if (ch <= 35)
+         {
+
+            *pchar = ch - 10 + 'a';
+
+         }
+         else
+         {
+
+            *pchar = ch - 36 + 'A';
+
+         }
+
+         pchar++;
+
+         s--;
+
+      }
+
+   }
+
 
 
 } // namespace mathematics
@@ -648,65 +780,7 @@ namespace apex
 
 
 
+
 } // namespace mathematics
-
-
-
-
-CLASS_DECL_ACME void generate_random_bytes(void * p, memsize s)
-{
-
-   ::mathematics::g_pmathematics->m_posdata->generate_random_bytes(p, s);
-
-}
-
-
-
-CLASS_DECL_ACME void generate_random_alphanumeric(void * p, memsize s)
-{
-
-   generate_random_bytes(p, s);
-
-   transform_alphanumeric(p, s);
-
-}
-
-
-CLASS_DECL_ACME void transform_alphanumeric(void * p, memsize s)
-{
-
-   u8 * pchar = (u8 *) p;
-
-   while(s > 0)
-   {
-
-      char ch = *pchar % 62;
-
-      if (ch <= 9)
-      {
-
-         *pchar = ch + '0';
-
-      }
-      else if (ch <= 35)
-      {
-
-         *pchar = ch - 10 + 'a';
-
-      }
-      else
-      {
-
-         *pchar = ch - 36 + 'A';
-
-      }
-
-      pchar++;
-
-      s--;
-
-   }
-
-}
 
 

@@ -180,11 +180,11 @@ bool __os_term_thread()
 //   if (dwWakeMask & MWMO_ALERTABLE)
 //   {
 //
-//      HANDLE* ph = memory_new HANDLE[nCount + 1];
+//      HANDLE* ph = __new_array< HANDLE >(nCount + 1);
 //
 //      ::memory_copy(ph, pHandles, sizeof(HANDLE) * nCount);
 //
-//      ph[nCount] = (HANDLE)::get_message_queue(current_itask(), true)->m_eventNewMessage.hsync();
+//      ph[nCount] = (HANDLE)::aaa_get_message_queue(current_itask(), true)->m_eventNewMessage.hsync();
 //
 //      dwResult = ::WaitForMultipleObjectsEx(nCount + 1, ph, dwFlags & MWMO_WAITALL, dw::times, true);
 //
@@ -291,7 +291,7 @@ namespace acme
 //
 //   }
 //
-//   auto psystem = ::platform::get()->system();
+//   auto psystem = this->platform()->system();
 //
 //   psystem->windowing_post(procedure);
 //

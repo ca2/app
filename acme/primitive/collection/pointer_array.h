@@ -10,19 +10,19 @@
 
 template < class T >
 class pointer_array :
-   public pointer_array_process < comparable_array < ::pointer < T > >, T >
+   public pointer_array_process < comparable_array < ::pointer < T >, const T * >, T >
 {
 public:
 
-   using BASE_ARRAY = pointer_array_process < comparable_array < ::pointer < T > >, T >;
+   using BASE_ARRAY = pointer_array_process < comparable_array < ::pointer < T >, const T * > , T >;
 
    //using ref_iterator = typename ARRAY_BASE::ref_iterator;
    ///using ref_iterator_range = typename ARRAY_BASE::ref_iterator_range;
 
-   using comparable_array < ::pointer < T > >::operator &=;
-   using comparable_array < ::pointer < T > >::operator -=;
-   using comparable_array < ::pointer < T > >::operator |=;
-   using comparable_array < ::pointer < T > >::operator -;
+   using comparable_array < ::pointer < T >, const T * >::operator &=;
+   using comparable_array < ::pointer < T >, const T * >::operator -=;
+   using comparable_array < ::pointer < T >, const T * >::operator |=;
+   using comparable_array < ::pointer < T >, const T * >::operator -;
 //   using comparable_array < ::pointer<T > > ::operator ==;
 //   using comparable_array < ::pointer<T > > ::operator !=;
 
@@ -88,18 +88,18 @@ public:
    pointer < T >& add_new()
    {
 
-      return comparable_array < ::pointer<T > >::add_new();
+      return comparable_array < ::pointer<T >, const T * >::add_new();
 
    }
 
 
    template < typename OBJECT >
-   pointer < T > & add_new(OBJECT * pparticle)
+   pointer < T > & add_construct(OBJECT * pparticle)
    {
 
-      pointer < T > & p = comparable_array < ::pointer<T > >::add_new();
+      pointer < T > & p = comparable_array < ::pointer<T >, const T * >::add_new();
 
-      ::__construct(pparticle, p);
+      pparticle->__construct(p);
 
       return p;
 
@@ -109,7 +109,7 @@ public:
    ::count set_size(::count nNewSize, ::count nGrowBy = -1)
    {
 
-      return comparable_array < ::pointer<T > > :: set_size(nNewSize);
+      return comparable_array < ::pointer<T >, const T * > :: set_size(nNewSize);
 
    }
 
@@ -160,26 +160,26 @@ public:
    }
 
 
-   inline ::index add_item(const pointer < T > & p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
+   /// consumes a referer
+   inline ::index add_item(const pointer < T > & p)
    {
 
       ::index nIndex = this->size();
 
-      this->allocate(nIndex + 1, false, false, &p);
-
-      //this->last().reset(p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+      this->allocate(nIndex + 1, false, false, p);
 
       return nIndex;
 
    }
 
 
-   inline ::index add_item(pointer < T > && p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
+   /// referer is transfered?
+   inline ::index add_item(pointer < T > && p)
    {
 
       ::index nIndex = this->size();
 
-      this->allocate(nIndex + 1, false, true, nullptr);
+      this->allocate(nIndex + 1, false, true);
 
       ::new (this->m_begin + nIndex) ::pointer < T >(::transfer(p));
 
@@ -205,6 +205,7 @@ public:
    //}
 
 
+   /// consumes a referer
    ::index add(const pointer < T > & p)
    {
 
@@ -213,6 +214,7 @@ public:
    }
 
 
+   /// referer is transferred?
    ::index add(pointer < T > && p)
    {
 
@@ -220,6 +222,8 @@ public:
 
    }
 
+
+   /// consumes a referer
    ::index add_non_null(T* p)
    {
 
@@ -235,11 +239,24 @@ public:
    }
 
 
-   bool insert_unique_at(::index i, T * p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+   /// consumes a referer
+   void insert_at(::index i, T* p)
+   {
+
+      ::index nIndex = this->size();
+
+      comparable_array < ::pointer<T >, const T * >::insert_at(i, p);
+
+      //this->element_at(i)->add_reference_item();
+
+   }
 
 
+   bool insert_unique_at(::index i, T * p);
 
-   bool add_unique(T * p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
+
+   /// consumes a referer
+   bool add_unique(T * p)
    {
 
       if (contains(p))
@@ -249,11 +266,12 @@ public:
 
       }
 
-      this->add_item(p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+      this->add_item(p);
 
       return true;
 
    }
+
 
    template < typename TYPE >
    ::pointer<TYPE>find_first() const
@@ -409,15 +427,16 @@ public:
    }
 
    
-   ::count erase(T* p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
+   /// consumes a releaser
+   ::count erase(T* p)
    {
 
-      return this->erase_item(p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+      return this->erase_item(p);
 
    }
 
 
-   ::count erase_item(T * p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
+   ::count erase_item(T * p)
    {
 
       ::count ca = 0;
@@ -469,29 +488,49 @@ public:
 
 
    template < typename PRED >
-   pointer < T > predicate_erase_first(PRED pred, ::index iStart = 0)
+   ::index predicate_erase_first(PRED pred, ::index iStart = 0)
    {
 
       for (::index i = iStart; i < this->get_count(); i++)
       {
 
-         if (pred(this->m_pData[i]))
+         if (pred(this->m_begin[i]))
          {
-
-            pointer < T > sp = this->m_pData[i];
 
             this->erase_at(i);
 
-            return sp;
+            return i;
 
          }
 
       }
 
-      return nullptr;
+      return -1;
 
    }
 
+
+   template < typename PRED >
+   ::index predicate_erase_last(PRED pred, ::index iStart = 0)
+   {
+
+      for (::index i = this->get_upper_bound(); i >= 0; i--)
+      {
+
+         if (pred(this->m_begin[i]))
+         {
+
+            this->erase_at(i);
+
+            return i;
+
+         }
+
+      }
+
+      return -1;
+
+   }
 
    template < typename PRED >
    pointer < T > predicate_erase_all_get_first(PRED pred, ::index iStart = 0, ::index iEnd = -1)
@@ -548,7 +587,7 @@ public:
    const pointer < T > & sp_at(::index nIndex) const
    {
 
-      return this->comparable_array < ::pointer<T > > ::element_at(nIndex);
+      return this->comparable_array < ::pointer<T >, const T * > ::element_at(nIndex);
 
    }
 
@@ -556,7 +595,7 @@ public:
    pointer < T > & sp_at(::index nIndex)
    {
 
-      return this->comparable_array < ::pointer<T > > ::element_at(nIndex);
+      return this->comparable_array < ::pointer<T >, const T * > ::element_at(nIndex);
 
    }
 
@@ -595,7 +634,7 @@ public:
    T * get_first_pointer(::index n = 0) const
    {
 
-      return this->is_empty() ? nullptr : this->comparable_array < ::pointer<T > > ::first(n);
+      return this->is_empty() ? nullptr : this->comparable_array < ::pointer<T >, const T *> ::first(n);
 
    }
 
@@ -603,9 +642,9 @@ public:
    pointer < T > pop_first(::index n = 0)
    {
 
-      auto p = ::transfer(this->comparable_array < ::pointer<T > > ::first(n));
+      auto p = ::transfer(this->comparable_array < ::pointer<T >, const T * > ::first(n));
       
-      this->comparable_array < ::pointer<T > > ::erase_at(n);
+      this->comparable_array < ::pointer<T >, const T * > ::erase_at(n);
       
       return p;
 
@@ -615,7 +654,7 @@ public:
    pointer < T > & first_pointer(::index n = 0)
    {
 
-      return this->comparable_array < ::pointer<T > > ::first(n);
+      return this->comparable_array < ::pointer<T >, const T * > ::first(n);
 
    }
 
@@ -646,7 +685,7 @@ public:
    T * get_last_pointer(::index n = -1) const
    {
 
-      return this->is_empty() ? nullptr : this->comparable_array < ::pointer<T > > ::last(n);
+      return this->is_empty() ? nullptr : this->comparable_array < ::pointer<T >, const T * > ::last(n);
 
    }
 
@@ -654,7 +693,7 @@ public:
    pointer < T > & last_pointer(::index n = -1)
    {
 
-      return this->comparable_array < ::pointer<T > > ::last(n);
+      return this->comparable_array < ::pointer<T >, const T * > ::last(n);
 
    }
 
@@ -816,7 +855,7 @@ public:
    }
 
 
-   ::count erase_all(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
+   ::count erase_all()
    {
 
       for (::index i = 0; i < this->get_size(); i++)
@@ -830,7 +869,7 @@ public:
             if (p)
             {
 
-               p.release(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+               p.release();
 
             }
 
@@ -842,7 +881,7 @@ public:
 
       }
 
-      return comparable_array < ::pointer<T > > ::erase_all();
+      return comparable_array < ::pointer<T >, const T * > ::erase_all();
 
    }
 
@@ -902,7 +941,7 @@ public:
    inline pointer_array & operator = (pointer_array && a)
    {
 
-      comparable_array < ::pointer<T > > ::operator = (::transfer(a));
+      comparable_array < ::pointer<T >, const T * > ::operator = (::transfer(a));
 
       return *this;
 
@@ -932,7 +971,7 @@ public:
 //* pugixml parser - version 1.5
 //* --------------------------------------------------------
 //* Copyright (C) 2006-2014, by Arseny Kapoulkine (arseny.kapoulkine@gmail.com)
-//* Report bugs and download memory_new versions at http://pugixml.org/
+//* Report bugs and download new versions at http://pugixml.org/
 //*
 //* This library is distributed under the MIT License. See notice at the end
 //* of this file.
@@ -1727,15 +1766,8 @@ typedef pointer_array < matter > object_pointera;
 typedef pointer_array < matter > simple_object_pointera;
 
 
-
-
-
-
-
-
-
 template < typename T >
-bool pointer_array < T > ::insert_unique_at(::index i, T * p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
+bool pointer_array < T > ::insert_unique_at(::index i, T * p)
 {
 
    if (i < 0 || i > this->get_size())
@@ -1750,7 +1782,7 @@ bool pointer_array < T > ::insert_unique_at(::index i, T * p OBJECT_REFERENCE_CO
    if (iFind < 0)
    {
 
-      this->insert_at(i, p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+      this->insert_at(i, p);
 
       return true;
 

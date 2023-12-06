@@ -25,6 +25,20 @@ namespace user
    }
 
 
+
+   void acme_container::destroy()
+   {
+
+      m_useritemmap.clear();
+      m_pacmetool.release();
+      m_pacmecontentMain.release();
+      m_pitemHover.release();
+      m_pitemPressed.release();
+
+      item_container_map::destroy();
+
+   }
+
    bool acme_container::_is_set() const
    {
 
@@ -268,7 +282,7 @@ namespace user
    //::item_pointer acme_container::add_item(const ::item_t & item)
    //{
 
-   //   auto pitem = __new(::item(item));
+   //   auto pitem = __allocate< ::item >(item);
 
    //   pitem->initialize(this);
 

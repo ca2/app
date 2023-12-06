@@ -216,7 +216,7 @@ void main_asynchronous(const ::procedure & procedure)
 
     };
 
-    ::platform::get()->system()->windowing_post(predicate);
+    this->platform()->system()->windowing_post(predicate);
 
 }
 

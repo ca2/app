@@ -15,6 +15,7 @@ namespace core
 
 
       ::pointer<::userex::pane_tab_impact>     m_ppaneimpactCore;
+      ::pointer < ::filemanager::filemanager> m_pfilemanager;
 
 
       application();
@@ -42,6 +43,9 @@ namespace core
       virtual string prepare_impact_options_header();
       virtual string prepare_impact_options_main_body();
       virtual string prepare_impact_options_footer();
+
+
+      ::filemanager::filemanager * filemanager() const;
 
 
       void create_options_footer(::user::interaction * pparent) override;

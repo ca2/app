@@ -27,7 +27,7 @@
 #endif
 
 
-message_queue * get_message_queue(itask_t idthread, bool bCreate);
+//message_queue * aaa_get_message_queue(itask_t idthread, bool bCreate);
 
 
 //CLASS_DECL_ACME void thread_get_os_priority(i32 * piOsPolicy, sched_param * pparam, ::enum_priority epriority);
@@ -56,7 +56,7 @@ message_queue * get_message_queue(itask_t idthread, bool bCreate);
    if (dwWakeMask > 0)
    {
 
-      pmq = ::get_message_queue(current_itask(), false);
+      pmq = ::aaa_get_message_queue(current_itask(), false);
 
    }
 

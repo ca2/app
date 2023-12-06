@@ -28,6 +28,7 @@ namespace user
    CLASS_DECL_ACME string get_wallpaper(::index iIndex);
 
 
+   class controller;
 
 
 } // namespace user

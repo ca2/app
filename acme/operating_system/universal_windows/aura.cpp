@@ -21,15 +21,15 @@
 // {
 
 
-//    ::wait(::winrt::Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(::winrt::Windows::UI::Core::CoreDispatcherPriority::Normal, ref memory_new ::winrt::Windows::UI::Core::DispatchedHandler ([=]()
+//    ::wait(::winrt::Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(::winrt::Windows::UI::Core::CoreDispatcherPriority::Normal, ref __new< ::winrt::Windows::UI::Core::DispatchedHandler ([=] >()
 //    {
 
-//       ::winrt::Windows::UI::Popups::MessageDialog ^ msg = ref memory_new ::winrt::Windows::UI::Popups::MessageDialog(wstring(pszMessage), wstring(pszTitle));
+//       ::winrt::Windows::UI::Popups::MessageDialog ^ msg = ref __new< ::winrt::Windows::UI::Popups::MessageDialog(wstring(pszMessage), wstring >(pszTitle));
 
-// //UICommand^ continueCommand = ref memory_new UICommand(
+// //UICommand^ continueCommand = ref __new< UICommand >(
 //       //      "Try again",
-//       //    ref memory_new UICommandInvokedHandler(this, &CancelCommand::CommandInvokedHandler));
-//       ::winrt::Windows::UI::Popups::UICommand ^ upgradeCommand = ref memory_new ::winrt::Windows::UI::Popups::UICommand(
+//       //    ref __new< UICommandInvokedHandler >(this, &CancelCommand::CommandInvokedHandler));
+//       ::winrt::Windows::UI::Popups::UICommand ^ upgradeCommand = ref __new< ::winrt::Windows::UI::Popups::UICommand >(
 //             "OK");
 
 //       // Add the commands to the dialog
@@ -115,9 +115,9 @@ LPFN_RegGetValueW g_pfnRegGetValueW = nullptr;
 bool os_initialize()
 {
 
-   ::os_thread::s_pmutex = memory_new ::pointer < ::mutex >();
+   ::os_thread::s_pmutex = __new< ::pointer < ::mutex > >();
 
-   ::os_thread::s_pptra = memory_new simple_array < os_thread * > ();
+   ::os_thread::s_pptra = __new< simple_array < os_thread * >  >();
 
    //sleep(15 * 1000);
 
@@ -193,11 +193,11 @@ int_bool main_initialize()
       }
       */
 
-   //t_phtask = memory_new htask();
+   //t_phtask = __new< htask >();
 
    //t_phtask->m_bRun = true;
 
-   //currentThread = memory_new htask();
+   //currentThread = __new< htask >();
 
 
    return true;
@@ -419,7 +419,7 @@ string key_to_char(wparam wparam, lparam lparam)
 //
 //      }
 //
-//      ::informationf("Failed to ::CoInitializeEx(nullptr, COINIT_MULTITHREADED) at __node_pre_init");
+//      ::acme::get()->platform()->informationf("Failed to ::CoInitializeEx(nullptr, COINIT_MULTITHREADED) at __node_pre_init");
 //
 //      return false;
 //

@@ -79,7 +79,7 @@ namespace android
 
       ///**
       //* Unlock the window's drawing surface after previously locking it,
-      //* posting the memory_new buffer to the display.
+      //* posting the aaa_primitive_new buffer to the display.
       //*/
 
 

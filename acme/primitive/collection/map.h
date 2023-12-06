@@ -281,7 +281,7 @@ public:
    template < typename PAYLOAD2 >
    iterator find_payload(const PAYLOAD2 & payload) const;
 
-   //add a memory_new (item, value) node
+   //add a __new<  >(item, value) node
    iterator set_at(ARG_ITEM item, ARG_PAYLOAD newValue)
    {
 
@@ -294,7 +294,7 @@ public:
    }
 
 
-   //add a memory_new (item, value) node
+   //add a __new<  >(item, value) node
    void set_payload(const PAIR & pair)
    {
       
@@ -843,13 +843,13 @@ pair_map < PAIR >::new_node(ARG_ITEM item, ::u32 nHashBucket, ::u32 nHashValue)
    //   //   this->m_pnodeFree = iterator;
 
    //   //}
-   //   this->m_pnodeFree = memory_new node();
+   //   this->m_pnodeFree = __new< node >();
 
    //}
 
    //ENSURE(this->m_pnodeFree != nullptr);  // we must have something
 
-   auto p = memory_new node(item);
+   auto p = __new< node >(item);
 
    attach(p, nHashBucket, nHashValue);
 

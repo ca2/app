@@ -6,7 +6,7 @@
 #include "acme/platform/system.h"
 //#include "system_impl.h"
 
-CLASS_DECL_ACME bool is_verbose_log();
+//CLASS_DECL_ACME bool is_verbose_log();
 
 
 //typedef  void(*PFN_create_factory)();
@@ -235,7 +235,7 @@ namespace acme
 
       //information() << "acme::library::open success : " << m_strMessage;
       
-      if(is_verbose_log())
+      if(platform()->is_verbose_log())
       {
       
          information() << "acme::library::open success : \"" << m_strName << "\"";
@@ -494,7 +494,7 @@ namespace acme
 
       }
 
-      critical_section_lock synchronouslock(&::platform::get()->m_criticalsection);
+      critical_section_lock synchronouslock(&platform()->m_criticalsection);
 
       try
       {
@@ -512,7 +512,7 @@ namespace acme
                if (m_plibrary != nullptr)
                {
 
-                  if(is_verbose_log())
+                  if(platform()->is_verbose_log())
                   {
 
                      information() <<  "Closing library : " << m_strName << "\n";

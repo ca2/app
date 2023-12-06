@@ -233,15 +233,16 @@ namespace data
 
       };
 
-      ::pointer<tree_item>            m_phead; // first child
-      ::pointer<tree_item>            m_ptail; // last child
-      ::pointer<tree_item>            m_pprevious;
-      ::pointer<tree_item>            m_pnext;
-      ::pointer<tree_item>            m_pparent;
+      //::pointer<tree_item>            m_phead; // first child
+      //::pointer<tree_item>            m_ptail; // last child
+      //::pointer<tree_item>            m_pprevious;
+      //::pointer<tree_item>            m_pnext;
+      ::pointer<tree_item>             m_pparent;
+      ::pointer_array<tree_item>       m_childrena;
       index                            m_iIndexHint;
       tree *                           m_ptree;
       index                            m_iLevel;
-      ::pointer<::data::item>         m_pdataitem;
+      ::pointer<::data::item>          m_pdataitem;
       uptr                             m_dwUser;
       u32                              m_dwState;
       uptr                             m_dwMetaData;
@@ -251,17 +252,17 @@ namespace data
       virtual ~tree_item();
 
 
-      virtual i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
+      virtual i64 increment_reference_count()
       {
 
-         return ::particle::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+         return ::particle::increment_reference_count();
 
       }
 
-      virtual i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
+      virtual i64 decrement_reference_count()
       {
 
-         return ::particle::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+         return ::particle::decrement_reference_count();
 
       }
 
@@ -311,7 +312,7 @@ namespace data
       void sort_children(PRED pred)
       {
 
-         list_sort(this, pred);
+         m_childrena.predicate_sort(pred);
 
       }
 

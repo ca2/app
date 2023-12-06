@@ -50,7 +50,7 @@ namespace ftp
 
 
    output_stream::output_stream(const string& strEolCharacterSequence, const string& strStreamName) :
-      m_pimpl(memory_new implementation(strEolCharacterSequence, strStreamName))
+      m_pimpl(__new< implementation >(strEolCharacterSequence, strStreamName))
    {
    }
 

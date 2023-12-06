@@ -21,9 +21,9 @@ namespace hellobase
       virtual bool on_new_document();
       virtual bool on_open_document(const ::payload & payloadFile) override;
 
-      virtual i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
+      virtual i64 increment_reference_count();
 
-      virtual i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
+      virtual i64 decrement_reference_count();
 
 
    };

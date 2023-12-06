@@ -3,7 +3,7 @@
 ::aura::application * get_acid_app(::particle * pparticle)
 {
 
-   return memory_new ::helloaxis::application();
+   return __new< ::helloaxis::application >();
 
 }
 

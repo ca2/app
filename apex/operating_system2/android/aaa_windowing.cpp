@@ -76,8 +76,8 @@ oswindow_data::~oswindow_data()
 #define CA2_X11_WINDOW_LONG_STYLE "ca2_ccwarehouse_fontopu_window_long_style"
 #define CA2_X11_WINDOW_LONG_STYLE_EX "ca2_ccwarehouse_fontopu_window_long_style_ex"
 
-//oswindow_dataptra * oswindow_data::s_pdataptra = memory_new oswindow_dataptra;
-//::pointer< ::mutex > oswindow_data::s_pmutex = memory_new ::pointer < ::mutex >;
+//oswindow_dataptra * oswindow_data::s_pdataptra = aaa_primitive_new oswindow_dataptra;
+//::pointer< ::mutex > oswindow_data::s_pmutex = aaa_primitive_new ::pointer < ::mutex >;
 
 
 i32 oswindow_find_message_only_window(::user::interaction_impl * pimpl)
@@ -146,7 +146,7 @@ oswindow_data * oswindow_get_message_only_window(::user::interaction_impl * pimp
 
    }
 
-   ::oswindow_data * pdata = memory_new oswindow_data;
+   ::oswindow_data * pdata = aaa_primitive_new oswindow_data;
 
    pdata->m_bMessageOnlyWindow = true;
 
@@ -169,7 +169,7 @@ oswindow_data * oswindow_get(::user::interaction_impl * pimpl)
    if (::is_set(pFind))
       return ::oswindow_data::s_pdataptra->element_at(iFind);
 
-   ::oswindow_data * pdata = memory_new ::oswindow_data;
+   ::oswindow_data * pdata = aaa_primitive_new ::oswindow_data;
 
    pdata->m_bMessageOnlyWindow = false;
    pdata->m_pimpl = pimpl;
@@ -1145,7 +1145,7 @@ void _android_key(unsigned int message, int keyCode, int iUni)
    if (::apexacmesystem()->get_session()->m_puserinteractionHost == nullptr)
       return;
 
-   ::pointer<::message::key>pkey = __new(::message::key());
+   ::pointer<::message::key>pkey = __allocate< ::message::key >();
 
    pkey->m_atom = message;
 
@@ -1358,7 +1358,7 @@ namespace apex
       if (get_session() == nullptr || ::is_null(get_session()->m_puserinteractionHost))
          return;
 
-      ::pointer<::message::key>pkey = __new(::message::key());
+      ::pointer<::message::key>pkey = __allocate< ::message::key >();
 
       pkey->m_atom = e_message_key_down;
 
@@ -1426,9 +1426,9 @@ int_bool os_init_windowing()
 
    //set_DispatchMessage(&axis_DispatchMessage);
 
-   oswindow_data::s_pdataptra = memory_new oswindow_dataptra;
+   oswindow_data::s_pdataptra = aaa_primitive_new oswindow_dataptra;
 
-   oswindow_data::s_pmutex = memory_new ::pointer < ::mutex >;
+   oswindow_data::s_pmutex = aaa_primitive_new ::pointer < ::mutex >;
 
    return true;
 

@@ -188,7 +188,7 @@ namespace app_app
 
             double dFrequency = 1.0 / m_dBreathPeriod;
 
-            auto pmathematics = ::mathematics::mathematics();
+            auto pmathematics = mathematics();
 
             double omega = 2.0 * pmathematics->get_pi() * dFrequency;
 
@@ -218,7 +218,7 @@ namespace app_app
 
                dFrequency = 1.0 / m_dBreathPeriod;
 
-               auto pmathematics = ::mathematics::mathematics();
+               auto pmathematics = mathematics();
 
                omega = 2.0 * pmathematics->get_pi() * dFrequency;
 
@@ -303,7 +303,7 @@ namespace app_app
          if (m_iCloseButtonDraw > 1)
          {
 
-            //::informationf("output");
+            //::acme::get()->platform()->informationf("output");
 
          }
 

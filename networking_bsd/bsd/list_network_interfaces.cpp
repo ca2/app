@@ -103,7 +103,7 @@ namespace networking_bsd
 
       freeifaddrs(list);
 
-      //::informationf(strLog);
+      //::acme::get()->platform()->informationf(strLog);
 
       for (::index iItem = 0; iItem < pitema->size(); iItem++)
       {

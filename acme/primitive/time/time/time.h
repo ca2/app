@@ -1069,7 +1069,7 @@ constexpr posix_time time::GetTimeSpan() const
 //}
 
 
-CLASS_DECL_ACME class ::time random(const class ::time & d1, const class ::time & d2);
+//CLASS_DECL_ACME class ::time random(const class ::time & d1, const class ::time & d2);
 
 
 
@@ -1388,6 +1388,7 @@ constexpr void time::set(i64 i, enum_unit eunit)
    };
 
 }
+
 
 
 

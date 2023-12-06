@@ -45,7 +45,7 @@ UIWindow * __uiwindow(oswindow oswindow)
 //   if(::is_set(pFind))
 //      return g_poswindowdataptra->element_at(iFind);
 //
-//   ::oswindow_data * pdata = memory_new ::oswindow_data;
+//   ::oswindow_data * pdata = aaa_primitive_new ::oswindow_data;
 //
 //   pdata->m_nswindow    = window;
 //

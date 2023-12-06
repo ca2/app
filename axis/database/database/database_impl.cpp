@@ -197,7 +197,7 @@ namespace database
 
       }
 
-      auto pvara = __new(payload_array);
+      auto pvara = __allocate< payload_array >();
 
       for (index i = 0; i < pset->m_prowa->get_count(); i++)
       {

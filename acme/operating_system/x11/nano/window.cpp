@@ -486,7 +486,7 @@ namespace x11
 
             auto pdc = cairo_create(m_psurface);
 
-            m_pnanodevice = __new(::cairo::nano_device(pdc));
+            m_pnanodevice = __allocate< ::cairo::nano_device >(pdc);
 
          }
 
@@ -862,7 +862,7 @@ namespace x11
 //
 //   }
 //
-//   pdisplay->display_post([function]()
+//   pdisplay->aaa_display_post([function]()
 //                                    {
 //
 //                                       function();

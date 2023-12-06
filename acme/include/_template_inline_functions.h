@@ -202,14 +202,14 @@ constexpr auto as_absolute_unsigned(SIGNED i)
 //
 
 
-template < typename TYPE > inline TYPE*& __defer_new(TYPE*& p)
-{
-
-   if (!p) p = memory_new TYPE;
-
-   return p;
-
-}
+//template < typename TYPE > inline TYPE*& __defer_new(TYPE*& p)
+//{
+//
+//   if (!p) p = __new< TYPE >();
+//
+//   return p;
+//
+//}
 
 
 inline const ::particle * context_trace_object() { return general_trace_object(); }

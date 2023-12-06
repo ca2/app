@@ -197,7 +197,7 @@ namespace acme
          else
          {
 
-            m_p = (POINTER) ::memory_allocate(size);
+            m_p = (POINTER) ::heap::management::memory(::heap::e_memory_main)->allocate(size);
 
          }
 
@@ -219,7 +219,7 @@ namespace acme
 
          m_iSize = c * sizeof(*m_p);
 
-         m_p = memory_allocate(m_iSize);
+         m_p = ::heap::management::memory(::heap::e_memory_main)->allocate(m_iSize);
 
          if (m_p == nullptr)
          {
@@ -249,7 +249,7 @@ namespace acme
       void free()
       {
 
-         ::memory_free(m_p);
+         ::heap::management::memory(::heap::e_memory_main)->free(m_p);
 
          m_p = nullptr;
 

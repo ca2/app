@@ -95,4 +95,4 @@ target_include_directories(static_${PROJECT_NAME} PRIVATE ${library_include_dire
 
 
 
-target_compile_definitions(folder_zip PRIVATE _FOLDER_ZIP_LIBRARY)
+target_compile_definitions(folder_zip PRIVATE _folder_zip_project)

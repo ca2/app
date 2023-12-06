@@ -75,6 +75,34 @@ namespace aura
    }
 
 
+   void context::finalize()
+   {
+
+      if (m_pcontextimage)
+      {
+
+         try
+         {
+
+            m_pcontextimage->finalize();
+
+         }
+         catch (...)
+         {
+
+
+         }
+
+      }
+
+      m_pcontextimage.release();
+
+
+      apex::context::finalize();
+
+   }
+
+
    //pointer< ::extended::sequence < ::conversation > > context::message_box(::user::interaction * puserinteraction, const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox)
    //{
 

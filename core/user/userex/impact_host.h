@@ -54,7 +54,7 @@ namespace userex
       string_map < simple_frame_window * >      m_mapframe;
       atom_array                                  m_idaHandledImpacts;
 
-      ::pointer<::user::single_document_template>     m_ptemplateTab;
+      //::pointer<::user::single_document_template>     m_ptemplateTab;
 
       impact_host();
       ~impact_host() override;

@@ -4,6 +4,7 @@
 #include "acme/constant/message.h"
 #include "aura/graphics/image/context_image.h"
 #include "acme/handler/item.h"
+#include "acme/handler/topic.h"
 #include "acme/user/user/content.h"
 #include "aura/message/user.h"
 #include "aura/platform/context.h"
@@ -94,7 +95,7 @@ namespace userex
    ::userex::image_list_impact * group_image_list_impact::add_group(::atom idGroup, string strIcon, string strTitle, ::file::path pathFolder)
    {
 
-      ::pointer<group>pgroup = __new(group);
+      ::pointer<group>pgroup = __allocate< group >();
 
       pgroup->m_iIndex = m_groupa.get_size();
 

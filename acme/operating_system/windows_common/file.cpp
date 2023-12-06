@@ -289,7 +289,7 @@ namespace windows
          else if (lasterror == ERROR_NO_SYSTEM_RESOURCES)
          {
 
-            ::informationf("Insufficient system resources exist to complete the requested service. (::windows::file::flush_file_buffers())");
+            ::acme::get()->platform()->informationf("Insufficient system resources exist to complete the requested service. (::windows::file::flush_file_buffers())");
 
          }
          else

@@ -236,7 +236,7 @@ namespace http
 
                      }
 
-                     //                  cgi = memory_new CGI(current_name, val);
+                     //                  cgi = __new< CGI >(current_name, val);
                      //                  m_cgi.add(cgi);
 
                      m_setPost[current_name] = val;
@@ -316,7 +316,7 @@ namespace http
 
                         pfileUpload->close();
 
-                        //cgi = memory_new CGI(current_name,fn,fn);
+                        //cgi = __new< CGI >(current_name,fn,fn);
                         //m_cgi.add(cgi);
 
                         m_setPost[current_name]["name"]           = current_filename;

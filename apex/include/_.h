@@ -1185,7 +1185,7 @@ namespace xml
 //#include "apex/platform/system.h"
 
 
-//#define memory_new ACME_NEW
+
 
 
 //#include "apex/os/chronometer.h"

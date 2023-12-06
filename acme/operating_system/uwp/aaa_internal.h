@@ -5,7 +5,7 @@
 #include <GdiPlus.h>
 #include <Gdipluseffects.h>
 
-//#define memory_new ACME_NEW
+
 
 #include <wincrypt.h>
 

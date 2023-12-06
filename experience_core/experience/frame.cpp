@@ -141,7 +141,7 @@ namespace experience_core
 
       auto psystem = system()->m_paurasystem;
 
-      auto imaging = psystem->imaging();
+      auto pimaging = psystem->imaging();
 
       ::rectangle_i32 rectangleX(rectangleParam);
 
@@ -205,7 +205,7 @@ namespace experience_core
 
       //b = 
 
-      imaging.blur(pimage2, 2);
+      pimaging->blur(pimage2, 2);
 
       {
 
@@ -624,7 +624,7 @@ namespace experience_core
       if (eborder & e_border_top || eborder & e_border_left)
       {
 
-         ppen.create(this);
+         __construct(ppen);
 
          ppen->create_solid(1.0, colorTopLeft);
 
@@ -653,7 +653,7 @@ namespace experience_core
       if ((eborder & e_border_right || eborder & e_border_bottom) && (!ppen || ppen->m_color != colorBottomRight))
       {
 
-         ppen.create(this);
+         __construct(ppen);
 
          ppen->create_solid(1.0, colorBottomRight);
 

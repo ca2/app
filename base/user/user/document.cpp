@@ -12,6 +12,7 @@
 #include "acme/primitive/datetime/datetime.h"
 #include "acme/primitive/primitive/_text_stream.h"
 #include "acme/filesystem/filesystem/file_context.h"
+#include "apex/handler/signal.h"
 #include "aura/user/user/wait_cursor.h"
 #include "aura/user/user/interaction_array.h"
 #include "base/platform/application.h"
@@ -38,10 +39,6 @@ namespace user
       m_bNew = true;
 
       m_bAutoSaveModified = true;
-
-      m_pviewTopic = (::user::impact *) (iptr)0;
-
-      m_pimpactsystem = nullptr;
 
       m_bEmbedded = false;        // default to file-based document
 
@@ -80,17 +77,26 @@ namespace user
    }
 
 
-//   void document::assert_ok() const
-//   {
-//      ::object::assert_ok();
-//
-//      ::count count = get_impact_count();
-//      for (index index = 0; index < count; index++)
-//      {
-//         ::pointer<::user::impact>pimpact = get_impact(index);
-//         ASSERT_VALID(pimpact);
-//      }
-//   }
+   void document::destroy()
+   {
+
+      m_prequest.release();
+      m_pimpactsystem.release();
+      m_impacta.release();
+      m_pimpactTopic.release();
+
+
+      m_mapRoutine.clear();
+
+      m_pdataIncoming.release();
+
+
+      ::user::controller::destroy();
+      ::channel::destroy();
+      ::manager::destroy();
+      ::data::data_container_base::destroy();
+
+   }
 
 
    ::base::application* document::get_app()
@@ -193,7 +199,7 @@ namespace user
 
       //auto estatus = 
       
-      ::user::controller::on_destroy();
+      //::user::controller::on_destroy();
 
       /*if (estatus == ::error_pending)
       {
@@ -599,7 +605,7 @@ namespace user
    //   {
    //      ::pointer<::user::impact>pimpact = get_impact(index);
 
-   //      ptask = memory_new update;
+   //      ptask = __new< update >();
    //      ptask->m_pSender = pSender;
    //      ptask->m_lHint = lHint;
    //      ptask->m_pHint = pHint;
@@ -954,6 +960,31 @@ namespace user
    }
 
 
+   bool document::open_data(::data::data * pdata)
+   {
+
+      delete_contents();
+
+      if (!on_open_data(pdata))
+      {
+
+         return false;
+
+      }
+
+      m_bNew = false;
+
+      m_bModified = false;
+
+      //m_path = payloadFile.as_file_path();
+
+      //m_strTitle = m_path.name();
+
+      return true;
+
+   }
+
+
    bool document::defer_save_document()
    {
 
@@ -1034,6 +1065,79 @@ namespace user
          return false;
 
       }
+
+      return true;
+
+   }
+
+
+   bool document::on_open_data(::data::data *pdata)
+   {
+
+
+
+
+      //if (payloadFile.is_empty())
+      //{
+
+      //   return on_new_document();
+
+      //}
+
+      //auto pcontext = get_context();
+
+      //auto preader = pcontext->m_papexcontext->file()->get_reader(payloadFile, ::file::e_open_read | ::file::e_open_share_deny_write | ::file::e_open_binary);
+
+      //if (preader.nok())
+      //{
+
+      //   report_load_exception(payloadFile, preader, "__IDP_FAILED_TO_OPEN_DOC");
+
+      //   return false;
+
+      //}
+
+      //try
+      //{
+
+         //if (!on_open_document(preader.m_p))
+         //{
+
+         //   return false;
+
+         //}
+
+         //preader->close();
+         //if (m_pimpactsystem->m_typeatomData.has_char())
+      {
+
+         // auto pNew = __id_create((const ::atom &)m_pimpactsystem->m_typeatomData);
+
+         //auto pdata = create_data(0);
+
+         //pdata->initialize_data();
+
+         //auto preader = file()->get_reader(payloadFile);
+
+         //::binary_stream binarystream(preader);
+
+         //auto path = payloadFile.as_file_path();
+
+         //pdata->read_data(binarystream, path.all_extensions());
+
+         //set_data(0, pdata);
+
+         m_pdataIncoming = pdata;
+
+      }
+
+      //}
+      //catch (const ::exception &)
+      //{
+
+      //   report_load_exception(payloadFile, preader, "__IDP_FAILED_TO_OPEN_DOC");
+
+      //}
 
       return true;
 
@@ -1200,7 +1304,7 @@ namespace user
 
       ::pointer < ::data::data > pdata;
 
-      if (atom.m_etype == atom::e_type_integer && atom.m_i == 0)
+      if (atom.m_etype == atom::e_type_integer && atom.m_iLargest == 0)
       {
 
          auto & typeatomData = m_pimpactsystem->m_typeatomData;
@@ -1764,7 +1868,7 @@ namespace user
          if (!do_save(::payload(::e_type_empty)))
          {
 
-            warning()(e_trace_category_appmsg) << "Warning: File save with memory_new name failed.\n";
+            warning()(e_trace_category_appmsg) << "Warning: File save with new name failed.\n";
 
             return false;
 

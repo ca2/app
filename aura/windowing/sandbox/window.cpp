@@ -77,7 +77,7 @@ namespace sandbox_windowing
 
       pimpl->m_puserinteraction->m_pinteractionimpl = pimpl;
 
-      pimpl->m_puserinteraction->increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_P_NOTE(this, "native_create_window"));
+      pimpl->m_puserinteraction->increment_reference_count(REFERENCING_DEBUGGING_P_NOTE(this, "native_create_window"));
 
       auto papp = get_app();
 
@@ -535,7 +535,7 @@ namespace sandbox_windowing
    //
    //      }
    //
-   //      ::window *pdata = memory_new window;
+   //      ::window *pdata = __new< window >();
    //
    //      pdata->m_bMessageOnlyWindow = true;
    //      pdata->m_window = None;
@@ -586,7 +586,7 @@ namespace sandbox_windowing
    //   //
    //   //      }
    //   //
-   //   //      ::window *pdata = memory_new ::window;
+   //   //      ::window *pdata = __new< ::window >();
 
    //   m_bMessageOnlyWindow = false;
    //   //m_osdisplay = osdisplay_get(Display());

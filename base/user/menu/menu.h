@@ -57,17 +57,17 @@ namespace user
       //virtual void nextstyle(::user::style_context * pcontext) override;
       ::size_i32 get_window_minimum_size() override;
 
-      //virtual i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override
+      //virtual i64 increment_reference_count() override
       //{
 
-      //   return ::object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      //   return ::object::increment_reference_count();
 
       //}
 
-      //virtual i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override
+      //virtual i64 decrement_reference_count() override
       //{
 
-      //   return ::object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      //   return ::object::decrement_reference_count();
 
       //}
 

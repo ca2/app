@@ -31,6 +31,9 @@ namespace graphics
       ::draw2d::graphics_pointer g();
 
 
+      void destroy() override;
+
+
    };
 
 

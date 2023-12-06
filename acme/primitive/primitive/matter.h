@@ -5,6 +5,7 @@
 #include "pointer.h"
 #include "atom.h"
 #include "factory.h"
+#include "function.h"
 #include "acme/platform/tracer.h"
 
 
@@ -39,10 +40,10 @@ public:
 
 
 
-//#if OBJECT_REFERENCE_COUNT_DEBUG
-//   inline matter() : m_pmutex(nullptr), m_pobjrefdbg(nullptr), m_countReference(0), m_uObject(0), system()(nullptr) { increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_THIS OBJECT_REFERENCE_COUNT_DEBUG_COMMA_NOTE("Initial Reference")); }
-//   inline matter(const eobject& eobject) : m_pmutex(nullptr), m_pobjrefdbg(nullptr), m_countReference(0), m_eobject(eobject), m_uObject(0), system()(nullptr) { increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_THIS OBJECT_REFERENCE_COUNT_DEBUG_COMMA_NOTE("Initial Reference (2)")); }
-//   inline matter(const matter& matter) : m_pmutex(nullptr), m_pobjrefdbg(nullptr), m_countReference(0), m_eobject(matter.m_eobject), m_uObject(0), system()(nullptr) { if (matter.m_pmutex) defer_create_synchronization(); increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_THIS OBJECT_REFERENCE_COUNT_DEBUG_COMMA_NOTE("Initial Reference (3)")); }
+//#if REFERENCING_DEBUGGING
+//   inline matter() : m_pmutex(nullptr), m_pobjrefdbg(nullptr), m_countReference(0), m_uObject(0), system()(nullptr) { increment_reference_count( REFERENCING_DEBUGGING_COMMA_NOTE("Initial Reference")); }
+//   inline matter(const eobject& eobject) : m_pmutex(nullptr), m_pobjrefdbg(nullptr), m_countReference(0), m_eobject(eobject), m_uObject(0), system()(nullptr) { increment_reference_count( REFERENCING_DEBUGGING_COMMA_NOTE("Initial Reference (2)")); }
+//   inline matter(const matter& matter) : m_pmutex(nullptr), m_pobjrefdbg(nullptr), m_countReference(0), m_eobject(matter.m_eobject), m_uObject(0), system()(nullptr) { if (matter.m_pmutex) defer_create_synchronization(); increment_reference_count( REFERENCING_DEBUGGING_COMMA_NOTE("Initial Reference (3)")); }
 //   inline matter(matter&& matter) : m_pmutex(matter.m_pmutex), m_pobjrefdbg(matter.m_pobjrefdbg), m_countReference(matter.m_countReference), m_eobject(matter.m_eobject), m_uObject(0), system()(nullptr) { matter.m_pmutex = nullptr; matter.m_pobjrefdbg = nullptr; }
 //#else
 //   inline matter() : m_pmutex(nullptr), m_countReference(1), m_uObject(0), system()(nullptr) { }
@@ -51,7 +52,7 @@ public:
 //   inline matter(matter&& matter) : m_pmutex(matter.m_pmutex), m_countReference(matter.m_countReference), m_eobject(matter.m_eobject), m_uObject(0), system()(nullptr) { matter.m_pmutex = nullptr; }
 //#endif
 
-//#if OBJECT_REFERENCE_COUNT_DEBUG
+//#if REFERENCING_DEBUGGING
 //   inline matter() : m_pmutex(nullptr), m_estatus(e_status_none), m_ematter(e_element_none), m_uError(0), m_countReference(0), m_eobject(e_object_none), m_pcontext(nullptr), m_pobjrefdbg(nullptr) { }
 //   inline matter(const eobject& eobject) : m_pmutex(nullptr), m_estatus(e_status_none), m_ematter(e_element_none), m_uError(0), m_countReference(0), m_eobject(eobject), m_pcontext(nullptr), m_pobjrefdbg(nullptr) {  }
 //   inline matter(const matter& matter) : m_pmutex(nullptr), m_estatus(e_status_none), m_ematter(matter.m_ematter), m_uError(matter.m_uError), m_countReference(0), m_eobject(matter.m_eobject), m_pcontext(matter.m_pcontext), m_pobjrefdbg(nullptr) {  }
@@ -73,15 +74,6 @@ public:
    //virtual void  dump(dump_context& dumpcontext) const;
 
 
-#if OBJECT_REFERENCE_COUNT_DEBUG
-
-   object_reference_count_debug* m_pobjrefdbg;
-
-   void add_ref_history(matter* p, const ::scoped_string & scopedstrObjRefDbg);
-   void dec_ref_history(matter* p, const ::scoped_string & scopedstrObjRefDbgNotUsedCurrently);
-   void check_pending_releases();
-
-#endif
 
 
    virtual ::topic_pointer create_topic(const ::atom & atom);
@@ -156,13 +148,13 @@ public:
    virtual void task_osterm();
 
 
-//   virtual void add_composite(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
-//   virtual void add_reference(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+//   virtual void add_composite(::particle * pparticle);
+//   virtual void add_reference(::particle * pparticle);
 //
 //
-//   virtual void release_composite2(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
-//   virtual void finalize_composite(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
-//   virtual void release_reference(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+//   virtual void release_composite2(::particle * pparticle);
+//   virtual void finalize_composite(::particle * pparticle);
+//   virtual void release_reference(::particle * pparticle);
 
 
    //virtual void set_generic_object_name(const ::scoped_string & scopedstrName);
@@ -295,14 +287,14 @@ public:
 
 
 
-template < typename INTERMEDIATE, typename RELEASEE >
-inline void release(INTERMEDIATE*, RELEASEE* & p)
-{
-
-   ::release(p);
-
-}
-
+//template < typename INTERMEDIATE, typename RELEASEE >
+//inline void release(INTERMEDIATE*, RELEASEE* & p)
+//{
+//
+//   ::release(p);
+//
+//}
+//
 
 
 
@@ -311,7 +303,7 @@ template < typename TYPE >
 inline void __raw_construct_new(::pointer<TYPE> & ptype)
 {
 
-   ptype = memory_new TYPE;
+   ptype = __new< TYPE >();
 
 }
 
@@ -467,16 +459,16 @@ inline bool __defer_raw_construct_new(::pointer<TYPE> & ptype)
 
 
 template < typename BASE_TYPE, typename TYPE >
-inline void particle::__construct(::pointer<BASE_TYPE> & ptype, const ::pointer < TYPE > & p)
+inline void particle::__call__construct(::pointer<BASE_TYPE> & ptype, const ::pointer < TYPE > & p)
 {
 
-   __construct(ptype, p.m_p);
+   __call__construct(ptype, p.m_p);
 
 }
 
 
 template < typename BASE_TYPE, typename TYPE >
-inline void particle::__construct(::pointer<BASE_TYPE> & ptype, TYPE * p)
+inline void particle::__call__construct(::pointer<BASE_TYPE> & ptype, TYPE * p)
 {
 
    if (::is_null(p))
@@ -487,8 +479,6 @@ inline void particle::__construct(::pointer<BASE_TYPE> & ptype, TYPE * p)
       throw_exception(::error_null_pointer);
 
    }
-
-   ptype.release();
 
    ptype = p;
 
@@ -506,13 +496,13 @@ inline void particle::__construct(::pointer<BASE_TYPE> & ptype, TYPE * p)
 }
 
 
-template < typename TYPE >
-inline void particle::__id_construct(::pointer<TYPE> & p, const ::atom & atom, ::factory::factory * pfactory)
-{
-
-   ::__id_construct(this, p, atom, pfactory);
-
-}
+//template < typename TYPE >
+//inline void particle::__id_construct(::pointer<TYPE> & p, const ::atom & atom)
+//{
+//
+//   ::__id_construct(this, p, atom);
+//
+//}
 
 
 //
@@ -526,7 +516,7 @@ inline void particle::__id_construct(::pointer<TYPE> & p, const ::atom & atom, :
 
 
 //template < typename BASE_TYPE >
-//inline void matter::__release(::pointer<BASE_TYPE> pcomposite OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//inline void matter::__release(::pointer<BASE_TYPE> pcomposite)
 //{
 //
 //   if (::is_set(pcomposite))
@@ -554,7 +544,7 @@ inline void particle::__id_construct(::pointer<TYPE> & p, const ::atom & atom, :
 //
 //
 //template < typename BASE_TYPE >
-//inline void matter::__release(::pointer<BASE_TYPE> preference OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//inline void matter::__release(::pointer<BASE_TYPE> preference)
 //{
 //
 //   if (::is_set(preference))
@@ -568,7 +558,7 @@ inline void particle::__id_construct(::pointer<TYPE> & p, const ::atom & atom, :
 //      //   if (m_preferencea->erase(preference.get()) >= 0)
 //      //   {
 //
-//            //preference->release(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+//            //preference->release();
 //
 //            preference.clear_member();
 //
@@ -590,7 +580,7 @@ inline void particle::__id_construct(::pointer<TYPE> & p, const ::atom & atom, :
 //
 //
 //template < typename SOURCE >
-//inline void matter::__release(::pointer<SOURCE> psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//inline void matter::__release(::pointer<SOURCE> psource)
 //{
 //
 //   release_reference(psource.m_p);
@@ -602,25 +592,25 @@ inline void particle::__id_construct(::pointer<TYPE> & p, const ::atom & atom, :
 
 
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void matter::__refer(::pointer<BASE_TYPE> preference, const ::pointer<SOURCE>psource  OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//inline void matter::__refer(::pointer<BASE_TYPE> preference, const ::pointer<SOURCE>psource )
 //{
 //
-//   __refer(preference, psource.get()  OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+//   __refer(preference, psource.get() );
 //
 //}
 //
 //
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void matter::__refer(::pointer<BASE_TYPE> preference, const ::primitive::member < SOURCE >& pmember OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//inline void matter::__refer(::pointer<BASE_TYPE> preference, const ::primitive::member < SOURCE >& pmember)
 //{
 //
-//   __refer(preference, pmember.get()  OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+//   __refer(preference, pmember.get() );
 //
 //}
 //
 //
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void matter::__refer(::pointer<BASE_TYPE> preference, const SOURCE* psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//inline void matter::__refer(::pointer<BASE_TYPE> preference, const SOURCE* psource)
 //{
 //
 //   preference = psource;
@@ -632,22 +622,22 @@ inline void particle::__id_construct(::pointer<TYPE> & p, const ::atom & atom, :
 //
 //   }
 //
-//   add_reference(preference OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+//   add_reference(preference);
 //
 //}
 //
 //
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void matter::__defer_refer(::pointer<BASE_TYPE> preference, const ::pointer<SOURCE>psource  OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//inline void matter::__defer_refer(::pointer<BASE_TYPE> preference, const ::pointer<SOURCE>psource )
 //{
 //
-//   __defer_refer(preference, psource.get()  OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+//   __defer_refer(preference, psource.get() );
 //
 //}
 //
 //
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void matter::__defer_refer(::pointer<BASE_TYPE> preference, const SOURCE* psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//inline void matter::__defer_refer(::pointer<BASE_TYPE> preference, const SOURCE* psource)
 //{
 //
 //   if (preference.get() != psource)
@@ -660,7 +650,7 @@ inline void particle::__id_construct(::pointer<TYPE> & p, const ::atom & atom, :
 //      if (preference)
 //      {
 //
-//         add_reference(preference OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+//         add_reference(preference);
 //
 //      }
 //
@@ -670,25 +660,25 @@ inline void particle::__id_construct(::pointer<TYPE> & p, const ::atom & atom, :
 //
 //
 //template < typename SOURCE >
-//inline void matter::add_reference(::pointer<SOURCE> psource  OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//inline void matter::add_reference(::pointer<SOURCE> psource )
 //{
 //
-//   add_reference(psource.get() OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+//   add_reference(psource.get());
 //
 //}
 //
 //
 //template < typename SOURCE >
-//inline void matter::add_reference(::pointer<SOURCE> preference OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//inline void matter::add_reference(::pointer<SOURCE> preference)
 //{
 //
-//   add_reference(preference.get() OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+//   add_reference(preference.get());
 //
 //}
 //
 //
 //template < typename SOURCE >
-//inline void matter::add_reference(SOURCE* psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//inline void matter::add_reference(SOURCE* psource)
 //{
 //
 //   ::particle * pparticle = psource;
@@ -700,7 +690,7 @@ inline void particle::__id_construct(::pointer<TYPE> & p, const ::atom & atom, :
 //
 //   }
 //
-//   add_reference(pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+//   add_reference(pelement);
 //
 //}
 

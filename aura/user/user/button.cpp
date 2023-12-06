@@ -5,6 +5,7 @@
 #include "acme/constant/message.h"
 #include "acme/constant/user_key.h"
 #include "acme/handler/item.h" 
+#include "acme/handler/topic.h"
 #include "acme/platform/context.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/draw2d.h"
@@ -1170,13 +1171,13 @@ namespace user
       if(estyle == e_style_image || estyle == e_style_image_and_text)
       {
 
-         m_pbitmap = memory_new bitmap();
+         m_pbitmap = __new< bitmap >();
 
       }
       else if(estyle == e_style_list)
       {
 
-         m_plist = memory_new list();
+         m_plist = __new< list >();
 
          //m_plist->m_pimagelistNormal         = nullptr;
          //m_plist->m_pimagelistItemHover      = nullptr;

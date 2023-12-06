@@ -11,6 +11,42 @@ namespace user
 {
 
 
+   redraw_item::redraw_item()
+   {
+
+
+   }
+
+   
+   redraw_item::~redraw_item()
+   {
+
+
+   }
+
+
+#ifdef _DEBUG
+
+
+   i64 redraw_item::increment_reference_count()
+   {
+
+      return ::particle::increment_reference_count();
+
+   }
+
+
+   i64 redraw_item::decrement_reference_count()
+   {
+
+      return ::particle::decrement_reference_count();
+
+   }
+
+
+#endif
+
+
    void redraw::initialize(::particle * pparticle)
    {
 
@@ -167,7 +203,7 @@ namespace user
 
             ΔHostToClient(rectangleNeedRedraw);
 
-            auto prectangle = __new(::draw2d::clip_rectangle);
+            auto prectangle = __allocate< ::draw2d::clip_rectangle >();
 
             prectangle->m_item = rectangleNeedRedraw;
 

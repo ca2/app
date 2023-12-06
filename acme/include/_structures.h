@@ -2,6 +2,12 @@
 #pragma once
 
 
+struct use_t {};
+struct transfer_t {};
+struct allocate_t {};
+struct function_t {};
+
+
 struct i32_sz
 {
 

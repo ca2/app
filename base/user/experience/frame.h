@@ -47,12 +47,12 @@ namespace experience
       point_i32                              m_pointWindowIcon;
       ///point_i32                           m_pointMoveGripMinimal;
 
-      status < ::color::color >       m_colorMoveableBorder;
-      status < ::color::color >       m_colorMoveableBorderShadow;
+      status < ::color::color >              m_colorMoveableBorder;
+      status < ::color::color >              m_colorMoveableBorderShadow;
 
 
-      ::experience::experience *             m_pexperience;
-      ::experience::frame_window *           m_pframewindow;
+      ::pointer < ::experience::experience >    m_pexperience;
+      ::pointer < ::experience::frame_window >  m_pframewindow;
 
       ::pointer<control_box>              m_pcontrolbox;
 
@@ -80,6 +80,17 @@ namespace experience
 
       frame();
       ~frame() override;
+
+
+
+#ifdef _DEBUG
+
+      i64 increment_reference_count() override;
+      i64 decrement_reference_count() override;
+
+#endif
+
+      void destroy() override;
 
 
       ::base::application * get_app();

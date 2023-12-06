@@ -21,8 +21,8 @@ CLASS_DECL_ACME ::wd16_character *             wd16_concatenate(::wd16_character
 CLASS_DECL_ACME ::wd16_character *             wd16_copy(::wd16_character * dest, const ::wd16_character * cat);
 CLASS_DECL_ACME ::wd16_character *             wd16_count_copy(::wd16_character * dest, const ::wd16_character * cat, strsize iLen);
 CLASS_DECL_ACME strsize                wd16_length(const ::wd16_character * cat);
-CLASS_DECL_ACME ::wd16_character *             wd16_duplicate(const ::wd16_character * src); // ATTENTION - memory_allocate
-CLASS_DECL_ACME ::wd16_character *             wd16_count_duplicate(const ::wd16_character * src, strsize srclen); // ATTENTION - memory_allocate
+CLASS_DECL_ACME ::wd16_character *             wd16_duplicate(const ::wd16_character * src); // ATTENTION - ::heap::management::memory(::heap::e_memory_main)->allocate
+CLASS_DECL_ACME ::wd16_character *             wd16_count_duplicate(const ::wd16_character * src, strsize srclen); // ATTENTION - ::heap::management::memory(::heap::e_memory_main)->allocate
 CLASS_DECL_ACME const ::wd16_character *       wd16_find_string(const ::wd16_character * src, const ::wd16_character * find);
 CLASS_DECL_ACME const ::wd16_character *       wd16_find_string_case_insensitive(const ::wd16_character * src, const ::wd16_character * find);
 CLASS_DECL_ACME const ::wd16_character *       wd16_count_find_string(const ::wd16_character * src, const ::wd16_character * find, strsize iLen);

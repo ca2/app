@@ -166,7 +166,7 @@ virtual void initialize_factory() override                              \
 {
 
 
-#define CREATE_OBJECT_ENTRY(name, TYPE) m_allocatorptra.add(__new(library_object_allocator < TYPE >(name)));
+#define CREATE_OBJECT_ENTRY(name, TYPE) m_allocatorptra.add(__allocate< library_object_allocator < TYPE > >(name));
 
 #define END_CREATE_OBJECT }
 
@@ -181,7 +181,7 @@ virtual void initialize_factory() override                              \
 CLASS_DECL_EXPORT ::acme::library * libname ## _ ## get_new_library(::particle * pparticle) \
 { \
 \
-   return memory_new library(pparticle); \
+   return __new< library >(pparticle); \
  \
 } \
  \
@@ -211,7 +211,7 @@ CLASS_DECL_EXPORT ::acme::library * libname ## _ ## get_new_library(::particle *
 //
 //      }
 //      
-//      auto pfactoryitem = __new(::factory::factory_item< TYPE, BASE_TYPE >());
+//      auto pfactoryitem = __allocate< ::factory::factory_item< TYPE, BASE_TYPE > >();
 //
 //      factory_item < BASE_TYPE >(atomSource) = pfactoryitem;
 //

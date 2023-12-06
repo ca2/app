@@ -7,7 +7,7 @@ namespace sockets
    {
       UNREFERENCED_PARAMETER(pszTo);
       UNREFERENCED_PARAMETER(pszFrom);
-      /*m_psocket = memory_new
+      /*m_psocket = aaa_memory_new
       m_psocket->m_strTo = pszTo;
       m_psocket->m_strFrom = pszFrom;
       socket_handler handler(this);

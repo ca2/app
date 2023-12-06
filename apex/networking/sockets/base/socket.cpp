@@ -1228,7 +1228,7 @@ namespace sockets
 
    //   SetDetached();
 
-   //   auto psocketthread = __new(socket_thread);
+   //   auto psocketthread = __allocate< socket_thread >();
 
    //   psocketthread->transfer(passociation, psocketmap);
 

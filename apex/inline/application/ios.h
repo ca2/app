@@ -25,7 +25,7 @@ int main(int argc, char * argv[])
 
 //      {
 
-         auto psystem = __new(::apex::system());
+         auto psystem = __allocate< ::apex::system >();
          
          //psystem->application_initialize();
 

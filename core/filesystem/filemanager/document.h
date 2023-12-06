@@ -21,14 +21,11 @@ namespace filemanager
 
             ::file::watch_id                    m_filewatchid;
       ::pointer<::filemanager::data>            m_pfilemanagerdata;
-      ::pointer<::file::item>                     m_pitem;
       ::file::path                        m_strTopic;
-      bool                                m_bFullBrowse;
       string                              m_strManagerId;
-      ::userfs::enum_mode                 m_emode;
       bool                                m_bInitialized;
-
-
+///      ::pointer < ::user::document >         m_pdocumentTopic;
+      int m_iIconSize;
 
       document();
       ~document() override;
@@ -43,9 +40,9 @@ namespace filemanager
 //      // void dump(dump_context & dumpcontext) const override;
 
 
-      virtual ::fs::data *                         fs_data();
+      //virtual ::fs::data *                         fs_data();
       virtual ::file::item *                         filemanager_item();
-      virtual ::filemanager::data *                filemanager_data();
+      ::filemanager::data *                filemanager_data();
 
       virtual document * get_main_document();
 
@@ -70,7 +67,7 @@ namespace filemanager
       DECLARE_MESSAGE_HANDLER(_001OnNewFolder);
       DECLARE_MESSAGE_HANDLER(_001OnUpdateNewFolder);
 
-      virtual void defer_check_manager_id(string strNewManagerId = "");
+      //virtual void defer_check_manager_id(string strNewManagerId = "");
       virtual void on_request(::request * prequest) override;
 
       virtual bool do_prompt_file_name(::payload & payloadFile, string strTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument);
@@ -79,19 +76,24 @@ namespace filemanager
 
       //virtual void Initialize(i32 iTemplate, const ::string & pszMatter);
 
+      void browse_initial_path(const ::action_context & actioncontext) override;
 
       void OnFileManagerOpenFile(::filemanager::data * pdata, ::file::item_array & itema);
 
 
       virtual void InitializeFileManager(const ::string & pszMatter);
-
+      
+      
+      virtual void _001Refresh();
 
       string get_initial_browse_path(const ::string & pszDefault = nullptr);
 
+      virtual void browse(const ::file::path & path, const ::action_context & action_context);
+      virtual bool browse(::pointer<::file::item>pitem, const ::action_context & action_context);
 
-      virtual void browse(const ::string & pcsz, const ::action_context & action_context);
+      //virtual void browse(const ::file::path & path, const ::action_context & action_context);
 
-      virtual bool browse(::pointer<::file::item>item, const ::action_context & action_context) override;
+      //virtual bool browse(::pointer<::file::item>item, const ::action_context & action_context) override;
 
       virtual void on_file_manager_open_context_menu_folder(::pointer<::file::item> item, string_array & straCommand, string_array & straCommandTitle, const ::action_context & action_context);
       virtual void on_file_manager_open_context_menu_file(const ::file::item_array & itema, const ::action_context & action_context);
@@ -126,7 +128,7 @@ namespace filemanager
       void operator()(::file::action * paction) override;
 
 
-      virtual void on_create(::request * prequest) override;
+      //virtual void on_create(::request * prequest) override;
 
 
       operation_document * get_operation_doc(bool bSwitch);
@@ -136,16 +138,27 @@ namespace filemanager
       virtual void on_command_probe(::message::command * pcommand) override;
 
       bool on_new_document() override;
-      virtual bool on_open_document(const ::payload & payloadFile) override;
+      //virtual bool on_open_document(const ::payload & payloadFile) override;
+
+      virtual bool on_open_data(::data::data * pdata) override;
 
       virtual bool HandleDefaultFileManagerItemCmdMsg(::message::command * pcommand,::file::item_array & itema);
 
       void PopImpacts();
       void CreateImpacts();
-      void OpenFolder(::file::item * item, const ::action_context & action_context);
-      void filemanager_initialize(bool bMakeVisible, bool bInitialBrowsePath = true);
-      void filemanager_initialize(bool bMakeVisible, const ::file::path & path);
 
+
+
+      //void OpenFolder(::file::item * item, const ::action_context & action_context);
+//      void browse_initial_path(const ::action_context & action_context);
+      //virtual void browse_initial_path(const ::action_context & action_context);
+
+
+      //virtual void browse(const ::file::path & path, const ::action_context & action_context);
+      //virtual bool browse(::pointer<::file::item>pitem, const ::action_context & action_context);
+
+      //void filemanager_initialize(bool bMakeVisible, const ::file::path & path);
+       void defer_initialize_filemanager() override;
 
       bool set_filemanager_data(::filemanager::data * pdata);
 
@@ -154,8 +167,6 @@ namespace filemanager
       
       //virtual ::user::toolbar * get_toolbar(::user::frame * pframe, bool bCreate) override;
 
-      virtual void start_full_browse(::pointer<::file::item>pitem, const ::action_context & action_context);
-      virtual void full_browse(::pointer<::file::item>pitem, const ::action_context & action_context);
 
 
    };

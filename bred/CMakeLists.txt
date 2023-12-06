@@ -75,7 +75,7 @@ if (MSVC)
     target_compile_options(bred PRIVATE "/MD$<$<CONFIG:Debug>:d>")
     target_link_options(bred PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
     target_link_options(bred PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/bred.lib")
-    target_link_options(bred PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/bred.def")
+    #target_link_options(bred PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/bred.def")
     target_link_libraries(bred PRIVATE ${library_references})
 
 
@@ -104,7 +104,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories
 target_include_directories(static_${PROJECT_NAME} PRIVATE ${library_include_directories})
 
 
-target_compile_definitions(bred PRIVATE _BRED_LIBRARY)
+target_compile_definitions(${PROJECT_NAME} PRIVATE _${PROJECT_NAME}_project)
 target_compile_definitions(bred PRIVATE UNICODE)
 target_compile_definitions(bred PRIVATE _UNICODE)
 

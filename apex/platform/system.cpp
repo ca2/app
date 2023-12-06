@@ -55,8 +55,8 @@
 //#include "acme/platform/system_impl.h"
 #include "acme/primitive/string/base64.h"
 
-int file_put_contents(const ::file::path & path, const char* contents);;
-CLASS_DECL_ACME void exception_message_box(::particle* pparticle, ::exception& exception, const ::string& strMoreDetails);
+int file_put_contents(const ::file::path & path, const char * contents);;
+CLASS_DECL_ACME void exception_message_box(::particle * pparticle, ::exception & exception, const ::string & strMoreDetails);
 
 
 //extern ::apex::system* g_papexsystem;
@@ -68,9 +68,9 @@ CLASS_DECL_ACME void exception_message_box(::particle* pparticle, ::exception& e
 
 ///const ::string & g_pszMultimediaLibraryName = nullptr;
 
-void apex_system_update(const ::atom& atom, const ::payload& payload);
+void apex_system_update(const ::atom & atom, const ::payload & payload);
 
-void apex_system_set_modified(const ::atom& atom);
+void apex_system_set_modified(const ::atom & atom);
 
 
 // CLASS_DECL_APEX void multimedia_set_library_name(const ::string & psz)
@@ -100,7 +100,7 @@ extern "C"
 #include <sys/time.h>
 #endif
 
-CLASS_DECL_APEX void __simple_tracea(::particle* pparticle, enum_trace_level elevel, const ::string& pszFunction, const ::string& pszFile, i32 iLine, const ::string& psz);
+CLASS_DECL_APEX void __simple_tracea(::particle * pparticle, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, i32 iLine, const ::string & psz);
 
 
 #ifdef WINDOWS
@@ -118,7 +118,7 @@ void unit_test_primitive_var_apex_block();
 #endif
 
 
-void dappy(const ::string& psz);
+void dappy(const ::string & psz);
 
 
 //#ifdef WINDOWS_DESKTOP
@@ -151,18 +151,18 @@ namespace apex
    {
 
       m_papexsystem = this;
-      factory()->add_factory_item < ::apex::session, ::apex::session >();
-//      factory()->add_factory_item < ::apex::app_launcher >();
-//
-//      factory()->add_factory_item<::apex::log, ::logger>();
 
-      //factory()->add_factory_item < ::thread >();
+      //      factory()->add_factory_item < ::apex::app_launcher >();
+      //
+      //      factory()->add_factory_item<::apex::log, ::logger>();
 
-      //factory()->add_factory_item<::apex::idpool, ::acme::idpool >();
+            //factory()->add_factory_item < ::thread >();
 
-      //m_edisplay = e_display_default;
+            //factory()->add_factory_item<::apex::idpool, ::acme::idpool >();
 
-      //set_layer(LAYERED_APEX, this);
+            //m_edisplay = e_display_default;
+
+            //set_layer(LAYERED_APEX, this);
 
 #ifdef UNIVERSAL_WINDOWS
 
@@ -196,6 +196,13 @@ namespace apex
    }
 
 
+   //void system::on_set_platform()
+   //{
+
+   //}
+
+
+
    void system::common_construct()
    {
 
@@ -221,18 +228,18 @@ namespace apex
 #ifdef _DEBUG
 
 
-   i64 system::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
+   i64 system::increment_reference_count()
    {
 
-      return ::acme::system::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      return ::acme::system::increment_reference_count();
 
    }
 
 
-   i64 system::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
+   i64 system::decrement_reference_count()
    {
 
-      return ::acme::system::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      return ::acme::system::decrement_reference_count();
 
    }
 
@@ -240,17 +247,29 @@ namespace apex
 #endif
 
 
-   void system::initialize(::particle* pparticle)
+   void system::on_set_platform()
    {
 
-      ::apex::context::initialize(pparticle);
+      apex::context::on_set_platform();
 
-      m_pcontext = this;
+      acme::system::on_set_platform();
+
+      factory()->add_factory_item < ::apex::session, ::apex::session >();
 
    }
 
 
-   void system::install_message_routing(::channel* pchannel)
+   void system::on_initialize_particle()
+   {
+
+      ::apex::context::on_initialize_particle();
+
+      ::acme::system::on_initialize_particle();
+
+   }
+
+
+   void system::install_message_routing(::channel * pchannel)
    {
 
       ::apex::context::install_message_routing(pchannel);
@@ -260,7 +279,7 @@ namespace apex
    }
 
 
-   void system::locale_schema_matter(string_array& stra, const string_array& straMatterLocator, const ::string& strLocale, const ::string& strSchema)
+   void system::locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::string & strLocale, const ::string & strSchema)
    {
 
 
@@ -279,7 +298,7 @@ namespace apex
 
 
 
-   bool system::on_get_task_name(string& strTaskName)
+   bool system::on_get_task_name(string & strTaskName)
    {
 
       if (application()->is_console())
@@ -294,10 +313,10 @@ namespace apex
    }
 
 
-   ::pointer<::factory::factory>& system::node_factory()
+   ::pointer<::factory::factory> & system::node_factory()
    {
 
-      auto& pfactory = factory("apex", OPERATING_SYSTEM_NAME);
+      auto & pfactory = factory("apex", OPERATING_SYSTEM_NAME);
 
       if (!pfactory)
       {
@@ -376,34 +395,34 @@ namespace apex
       ::acme::system::process_init();
 
       __construct_new(m_pthreading);
-      
+
       thread::s_bAllocReady = true;
 
 
-//      ::earth::time timeNow = ::earth::time::now();
-//
-//      auto pnode = node();
-//
-//      if (pnode)
-//      {
-//
-//         if (timeNow.hour() >= 6 && timeNow.hour() <= 17)
-//         {
-//
-//            pnode->set_dark_mode(false);
-//
-//         }
-//         else
-//         {
-//
-//            pnode->set_dark_mode(true);
-//
-//         }
-//
-//      }
+      //      ::earth::time timeNow = ::earth::time::now();
+      //
+      //      auto pnode = node();
+      //
+      //      if (pnode)
+      //      {
+      //
+      //         if (timeNow.hour() >= 6 && timeNow.hour() <= 17)
+      //         {
+      //
+      //            pnode->set_dark_mode(false);
+      //
+      //         }
+      //         else
+      //         {
+      //
+      //            pnode->set_dark_mode(true);
+      //
+      //         }
+      //
+      //      }
 
 
-      //set_callstack_mask({ get_callstack_mask(), callstack_fork_global});
+            //set_callstack_mask({ get_callstack_mask(), callstack_fork_global});
 
 #if !defined(UNIVERSAL_WINDOWS) && !defined(ANDROID)
 
@@ -890,6 +909,9 @@ pacmedirectory->create("/ca2core");
       //}
 
       //estatus = 
+
+      //::allocator::add_referer(REFERENCING_DEBUGGING_THIS_FUNCTION_FILE_LINE);
+
       __construct(m_pdirsystem);
 
       //if (!estatus)
@@ -997,18 +1019,18 @@ pacmedirectory->create("/ca2core");
          else
 #endif
             if (platform()->m_envp)
-         {
-
-            for (auto env = platform()->m_envp; *env != 0; env++)
             {
 
-               auto thisEnv = *env;
+               for (auto env = platform()->m_envp; *env != 0; env++)
+               {
 
-               straEnv.add(thisEnv);
+                  auto thisEnv = *env;
+
+                  straEnv.add(thisEnv);
+
+               }
 
             }
-
-         }
 
          string strEnv = straEnv.implode("\n");
 
@@ -1028,7 +1050,7 @@ pacmedirectory->create("/ca2core");
       //
       //         strCurrentWorkingDirectory = get_current_directory_name();
       //
-      //         ::informationf("\nCurrent Working Directory : " + strCurrentWorkingDirectory);
+      //         ::acme::get()->platform()->informationf("\nCurrent Working Directory : " + strCurrentWorkingDirectory);
       //
       //      }
 
@@ -1146,7 +1168,7 @@ pacmedirectory->create("/ca2core");
 
          if (pfile)
          {
-            
+
             information() << "found Thomas Borregaard Sørensen.dedicatory";
 
             bMatterFromResource = true;
@@ -1304,10 +1326,9 @@ pacmedirectory->create("/ca2core");
    void system::compress(const ::payload & payloadTarget, const ::payload & payloadSource, const ::scoped_string & scopedstrImplementation)
    {
 
-      ::pointer<::compress>pcompress;
+      /*auto estatus =*/
 
-      /*auto estatus =*/ new_compress(&pcompress.m_p, scopedstrImplementation);
-
+      ::pointer<::compress>pcompress = new_compress(scopedstrImplementation);
       /*  if (!estatus)
       {
 
@@ -1338,7 +1359,9 @@ pacmedirectory->create("/ca2core");
 
       ::pointer<::uncompress>puncompress;
 
-      /*auto estatus = */ new_uncompress(&puncompress.m_p, scopedstrImplementation);
+      /*auto estatus = */ 
+      
+      new_uncompress(scopedstrImplementation);
 
       //if (!estatus)
       //{
@@ -1408,17 +1431,17 @@ pacmedirectory->create("/ca2core");
          session()->branch_synchronously();
 
       }
-         //{
+      //{
 
-         //   informationf("\nFailed to begin_synch the session (::apex::session or ::apex::session derived)");
+      //   informationf("\nFailed to begin_synch the session (::apex::session or ::apex::session derived)");
 
-         //   return false;
-
-         //}
+      //   return false;
 
       //}
 
-      //estatus = 
+   //}
+
+   //estatus = 
       __construct_new(m_ptexttable);
 
       //if (!m_ptexttable || !estatus)
@@ -1776,9 +1799,9 @@ pacmedirectory->create("/ca2core");
 
       ::apex::context::inline_term();
 
-#if OBJECT_REFERENCE_COUNT_DEBUG
+#if REFERENCING_DEBUGGING
 
-      release(OBJECT_REFERENCE_COUNT_DEBUG_P_NOTE(this, nullptr));
+      release();
 
       try
       {
@@ -1786,7 +1809,7 @@ pacmedirectory->create("/ca2core");
          if (m_countReference > 1)
          {
 
-            __check_pending_releases(this);
+            check_pending_releases();
 
          }
 
@@ -1810,7 +1833,7 @@ pacmedirectory->create("/ca2core");
          ::apex::context::__task_init();
 
       }
-      catch (exception& exception)
+      catch (exception & exception)
       {
 
          string strMoreDetails;
@@ -1826,7 +1849,7 @@ pacmedirectory->create("/ca2core");
    }
 
 
-   ::acme::application* system::get_main_app()
+   ::acme::application * system::get_main_app()
    {
 
       return application();
@@ -1886,7 +1909,7 @@ pacmedirectory->create("/ca2core");
    }
 
 
-   void system::on_message_erase_session(::message::message* pmessage)
+   void system::on_message_erase_session(::message::message * pmessage)
    {
 
       auto iEdge = pmessage->m_wparam;
@@ -2084,7 +2107,7 @@ pacmedirectory->create("/ca2core");
    }
 
 
-   ::apex::node* system::node()
+   ::apex::node * system::node()
    {
 
       return m_pnode ? m_pnode->m_papexnode : nullptr;
@@ -2095,7 +2118,7 @@ pacmedirectory->create("/ca2core");
    ::input::input * system::input()
    {
 
-      if(!m_pinput)
+      if (!m_pinput)
       {
 
          auto pinput = acmenode()->m_papexnode->create_input();
@@ -2131,7 +2154,7 @@ pacmedirectory->create("/ca2core");
    }
 
 
-   ::u32 system::os_post_to_all_threads(const ::atom& atom, wparam wparam, lparam lparam)
+   ::u32 system::os_post_to_all_threads(const ::atom & atom, wparam wparam, lparam lparam)
    {
 
       post_to_all_threads(atom, wparam, lparam);
@@ -2149,7 +2172,7 @@ pacmedirectory->create("/ca2core");
    }
 
 
-   i32 system::_001OnDebugReport(i32 i1, const ::string& psz1, i32 i2, const ::string& psz2, const ::string& psz3, va_list args)
+   i32 system::_001OnDebugReport(i32 i1, const ::string & psz1, i32 i2, const ::string & psz2, const ::string & psz3, va_list args)
    {
 
       return _debug_logging_report(i1, psz1, i2, psz2, psz3, args);
@@ -2157,7 +2180,7 @@ pacmedirectory->create("/ca2core");
    }
 
 
-   i32 system::_debug_logging_report(i32 iReportType, const ::string& strFileName, i32 iLineNumber, const ::string& strModuleName, const char * pszFormat, va_list list)
+   i32 system::_debug_logging_report(i32 iReportType, const ::string & strFileName, i32 iLineNumber, const ::string & strModuleName, const char * pszFormat, va_list list)
    {
 
       //if(!m_ptracelog || !m_ptracelog->m_bExtendedLog)
@@ -2245,7 +2268,7 @@ pacmedirectory->create("/ca2core");
    }
 
 
-   bool system::assert_failed_line(const ::string& pszFileName, i32 iLine)
+   bool system::assert_failed_line(const ::string & pszFileName, i32 iLine)
    {
 
       UNREFERENCED_PARAMETER(pszFileName);
@@ -2257,7 +2280,7 @@ pacmedirectory->create("/ca2core");
    }
 
 
-   bool system::on_assert_failed_line(const ::string& pszFileName, i32 iLine)
+   bool system::on_assert_failed_line(const ::string & pszFileName, i32 iLine)
    {
 
       UNREFERENCED_PARAMETER(pszFileName);
@@ -2287,11 +2310,11 @@ pacmedirectory->create("/ca2core");
    //
    //#ifdef UNIVERSAL_WINDOWS
    //
-   //         m_spmutexOpenweatherCity = __new(::pointer < ::mutex >());
+   //         m_spmutexOpenweatherCity = __allocate< ::pointer < ::mutex > >();
    //
    //#else
    //
-   //         m_spmutexOpenweatherCity = __new(::pointer < ::mutex >(e_create_new, false, "Global\\ca2_weather_city"));
+   //         m_spmutexOpenweatherCity = __allocate< ::pointer < ::mutex > >(e_create_new, false, "Global\\ca2_weather_city");
    //
    //#endif
    //
@@ -2358,7 +2381,7 @@ pacmedirectory->create("/ca2core");
 
 
 
-   machine_event_central& system::machine_event_central()
+   machine_event_central & system::machine_event_central()
    {
       return *m_pmachineeventcentral;
    }
@@ -2385,7 +2408,7 @@ pacmedirectory->create("/ca2core");
 //}
 
 
-   ::operating_system::department& system::operating_system()
+   ::operating_system::department & system::operating_system()
    {
 
       return *m_poperatingsystem;
@@ -2393,7 +2416,7 @@ pacmedirectory->create("/ca2core");
    }
 
 
-   void system::initialize_log(const ::string& pszId)
+   void system::initialize_log(const ::string & pszId)
    {
 
       //if (m_ptracelog)
@@ -2444,7 +2467,7 @@ pacmedirectory->create("/ca2core");
    }
 
 
-   void system::appa_set_locale(const ::string& pszLocale, const ::action_context& context)
+   void system::appa_set_locale(const ::string & pszLocale, const ::action_context & context)
    {
 
       //retry_single_lock rsl(mutex(),::time(100),::time(100));
@@ -2461,7 +2484,7 @@ pacmedirectory->create("/ca2core");
    }
 
 
-   void system::appa_set_schema(const ::string& pszStyle, const ::action_context& context)
+   void system::appa_set_schema(const ::string & pszStyle, const ::action_context & context)
    {
 
       //retry_single_lock rsl(mutex(),::time(100),::time(100));
@@ -2479,7 +2502,7 @@ pacmedirectory->create("/ca2core");
 
 
 
-   bool system::assert_running_global(const ::string& pszAppName, const ::string& pszId)
+   bool system::assert_running_global(const ::string & pszAppName, const ::string & pszId)
    {
 
       if (string(pszId).has_char())
@@ -2518,7 +2541,7 @@ pacmedirectory->create("/ca2core");
             delete pmutex;
          }
          return true;
-         }
+      }
       else
       {
          //HANDLE h = ::OpenMutex(SYNCHRONIZE, false, get_global_mutex_name(pszAppName));
@@ -2551,9 +2574,9 @@ pacmedirectory->create("/ca2core");
          }
          return true;
       }
-      }
+   }
 
-   bool system::assert_running_local(const ::string& pszAppName, const ::string& pszId)
+   bool system::assert_running_local(const ::string & pszAppName, const ::string & pszId)
    {
       string strAppName(pszAppName);
       string strId(pszId);
@@ -2681,9 +2704,9 @@ pacmedirectory->create("/ca2core");
    }
 
 
-   
 
-   void system::on_request(::request* prequest)
+
+   void system::on_request(::request * prequest)
    {
 
       ::acme::system::on_request(prequest);
@@ -2727,7 +2750,7 @@ pacmedirectory->create("/ca2core");
    //      return true;
    //#endif
    //
-   //      /*      m_spfilehandler(memory_new ::apex::filehandler::handler(this));*/
+   //      /*      m_spfilehandler(__new< ::apex::filehandler::handler >(this));*/
    //
    ////      m_mapAppLibrary.erase_all();
    ////
@@ -2737,11 +2760,11 @@ pacmedirectory->create("/ca2core");
    ////
    ////      ::file::path pathCa2Module = dir()->ca2module();
    ////
-   ////      ::informationf("\n\n::apex::system::find_applications_to_cache\n\n");
+   ////      ::acme::get()->platform()->informationf("\n\n::apex::system::find_applications_to_cache\n\n");
    ////
-   ////      ::informationf("ca2 module folder : " + pathCa2Module);
+   ////      ::acme::get()->platform()->informationf("ca2 module folder : " + pathCa2Module);
    ////
-   ////      ::informationf("\n\n\n");
+   ////      ::acme::get()->platform()->informationf("\n\n\n");
    ////
    ////      straTitle.ls_pattern(pathCa2Module, { "*.*" });
    ////
@@ -2762,7 +2785,7 @@ pacmedirectory->create("/ca2core");
    ////               continue;
    ////            }
    ////
-   ////            ::informationf("library("+as_string(i)+") : " + strLibraryId+"\n\n");
+   ////            ::acme::get()->platform()->informationf("library("+as_string(i)+") : " + strLibraryId+"\n\n");
    ////
    ////            map_application_library(strLibraryId);
    ////
@@ -2835,7 +2858,7 @@ pacmedirectory->create("/ca2core");
    //      //if(!library.open_library())
    //      //{
    //
-   //      //   ::informationf("::system::map_application_library open_ca2_library(2) Failed :" + string(pszLibrary) + "\n\n");
+   //      //   ::acme::get()->platform()->informationf("::system::map_application_library open_ca2_library(2) Failed :" + string(pszLibrary) + "\n\n");
    //
    //      //   return false;
    //
@@ -2943,7 +2966,7 @@ pacmedirectory->create("/ca2core");
 
    }
 
-   bool system::android_get_user_wallpaper(string& strUrl)
+   bool system::android_get_user_wallpaper(string & strUrl)
    {
 
       //operating_system_driver::get().m_bGetUserWallpaper = true;
@@ -3028,7 +3051,7 @@ pacmedirectory->create("/ca2core");
 
       }
 
-      ::acme::application* papplication = nullptr;
+      ::acme::application * papplication = nullptr;
 
       auto psession = session();
 
@@ -3043,7 +3066,7 @@ pacmedirectory->create("/ca2core");
 
          auto appptra = psession->get_applicationa();
 
-         appptra.predicate_erase([](auto& papp)
+         appptra.predicate_erase([](auto & papp)
             {
 
                return papp->is_system() || papp->is_session();
@@ -3189,7 +3212,7 @@ pacmedirectory->create("/ca2core");
    }
 
 
-   void system::on_open_file(const ::string& pszFile)
+   void system::on_open_file(const ::string & pszFile)
    {
 
       //file_put_contents("/Users/camilo/debug/on_open_file.txt", pszFile);
@@ -3453,7 +3476,7 @@ pacmedirectory->create("/ca2core");
    }
 
 
-   void system::set_user_language(::apex::application* papp, index iSel)
+   void system::set_user_language(::apex::application * papp, index iSel)
    {
 
       auto psession = session();
@@ -3492,7 +3515,7 @@ pacmedirectory->create("/ca2core");
    }
 
 
-   void system::set_user_language(::apex::application* papp, string strLang)
+   void system::set_user_language(::apex::application * papp, string strLang)
    {
 
       auto psession = session();
@@ -3508,7 +3531,7 @@ pacmedirectory->create("/ca2core");
    }
 
 
-   void system::process_machine_event_data(machine_event_data* pdata)
+   void system::process_machine_event_data(machine_event_data * pdata)
    {
 
       if (pdata->m_fixed.m_bRequestCloseApplication)
@@ -3666,21 +3689,21 @@ pacmedirectory->create("/ca2core");
 #if defined(UNIVERSAL_WINDOWS)
 
 
-         string* pstrNew = memory_new string(strUrl);
+         string * pstrNew = __new< string >(strUrl);
 
          ::winrt::Windows::ApplicationModel::Core::CoreApplication::MainImpact->CoreWindow->Dispatcher->RunAsync(::winrt::Windows::UI::Core::CoreDispatcherPriority::Normal,
-            ref memory_new::winrt::Windows::UI::Core::DispatchedHandler([pstrNew]()
+            ref __new< ::winrt::Windows::UI::Core::DispatchedHandler([pstrNew] >()
                {
 
-                  ::winrt::Windows::Foundation::Uri^ uri = ref memory_new::winrt::Windows::Foundation::Uri(*pstrNew);
+                  ::winrt::Windows::Foundation::Uri ^ uri = ref __new< ::winrt::Windows::Foundation::Uri >(*pstrNew);
 
-         delete pstrNew;
+                  delete pstrNew;
 
-         LauncherOptions^ options = ref memory_new LauncherOptions();
+                  LauncherOptions ^ options = ref __new< LauncherOptions >();
 
-         options->TreatAsUntrusted = false;
+                  options->TreatAsUntrusted = false;
 
-         Launcher::LaunchUriAsync(uri, options);
+                  Launcher::LaunchUriAsync(uri, options);
 
                }));
 
@@ -3705,7 +3728,7 @@ pacmedirectory->create("/ca2core");
             try
             {
 
-               ::free((void*)::operating_system_driver::get()->m_pszOpenUrl);
+               ::free((void *)::operating_system_driver::get()->m_pszOpenUrl);
 
             }
             catch (...)
@@ -4019,7 +4042,7 @@ pacmedirectory->create("/ca2core");
 
          return;
 
-   }
+      }
 
       ::file::path pathDir;
 
@@ -4043,7 +4066,7 @@ pacmedirectory->create("/ca2core");
 
 #endif
 
-      }
+   }
 
 
 
@@ -4071,7 +4094,7 @@ pacmedirectory->create("/ca2core");
       if (strUrl.has_char())
       {
 
-         strParam += " -memory_new-tab \"" + strUrl + "\"";
+         strParam += " -new-tab \"" + strUrl + "\"";
 
       }
 
@@ -4199,7 +4222,7 @@ pacmedirectory->create("/ca2core");
    //   if (threadgroupa.is_empty())
    //   {
 
-   //      auto pgroup = __new(::task_group(this, epriority));
+   //      auto pgroup = __allocate< ::task_group >(this, epriority);
 
    //      threadgroupa.add(pgroup);
 
@@ -4220,7 +4243,7 @@ pacmedirectory->create("/ca2core");
    //   if (threadtoola.is_empty())
    //   {
 
-   //      auto ptool = __new(::task_tool);
+   //      auto ptool = __allocate< ::task_tool >();
 
    //      ptool->m_atom = etool;
 
@@ -4270,7 +4293,7 @@ pacmedirectory->create("/ca2core");
    }
 
 
-   string system::crypto_md5_text(const ::string& str)
+   string system::crypto_md5_text(const ::string & str)
    {
 
       auto pcrypto = crypto();
@@ -4288,7 +4311,7 @@ pacmedirectory->create("/ca2core");
    //}
 
 
-   } // namespace apex
+} // namespace apex
 
 
 
@@ -4297,34 +4320,34 @@ pacmedirectory->create("/ca2core");
 
 
 
-   //#include "base/node/_node.h"
+//#include "base/node/_node.h"
 
 
-   //#ifdef WINDOWS_DESKTOP
-   //#elif defined(UNIVERSAL_WINDOWS)
-   //#include "apex/operating_system/universal_windows/_universal_windows.h"
-   //#endif
+//#ifdef WINDOWS_DESKTOP
+//#elif defined(UNIVERSAL_WINDOWS)
+//#include "apex/operating_system/universal_windows/_universal_windows.h"
+//#endif
 
 
-   //#if !defined(WINDOWS) && !defined(MACOS)
-   //#include <ft2build.h>
-   //#include FT_FREETYPE_H
-   //#endif
-
-
-
+//#if !defined(WINDOWS) && !defined(MACOS)
+//#include <ft2build.h>
+//#include FT_FREETYPE_H
+//#endif
 
 
 
-   //#ifdef CUBE
-   //
-   //extern "C" DECLARE_NEW_APEX_LIBRARY(experience);
-   //
-   //#endif
+
+
+
+//#ifdef CUBE
+//
+//extern "C" DECLARE_NEW_APEX_LIBRARY(experience);
+//
+//#endif
 
 #ifdef WINDOWS
 
-//#define memory_new ACME_NEW
+
 #endif
 
 //#ifdef LINUX
@@ -4341,7 +4364,7 @@ namespace apex
 {
 
 
-   CLASS_DECL_APEX void black_body(float* r, float* g, float* b, ::u32 dwTemp);
+   CLASS_DECL_APEX void black_body(float * r, float * g, float * b, ::u32 dwTemp);
 
 
    void system::discard_to_factory(::pointer<object>pca)
@@ -4352,7 +4375,7 @@ namespace apex
    }
 
 
-   ::pointer<::data::node>system::load_xml(const ::string& pszXml)
+   ::pointer<::data::node>system::load_xml(const ::string & pszXml)
    {
 
       throw ::interface_only();
@@ -4387,7 +4410,7 @@ namespace apex
 
    //}
 
-   void system::on_map_application_library(::acme::library& library)
+   void system::on_map_application_library(::acme::library & library)
    {
 
       throw ::exception(todo, "filehandler");
@@ -4419,15 +4442,15 @@ namespace apex
 #endif
 
 
-   ::apex::history& system::hist()
+   ::apex::history & system::hist()
    {
 
       return *m_phistory;
 
-      }
+   }
 
 
-   void system::set_history(::apex::history* phistory)
+   void system::set_history(::apex::history * phistory)
    {
 
       //auto estatus = 
@@ -4515,7 +4538,7 @@ namespace apex
    //}
 
 
-   void system::on_allocation_error(const ::string& str, ::object* pparticle)
+   void system::on_allocation_error(const ::string & str, ::object * pparticle)
    {
 
       string strMessage;
@@ -4538,7 +4561,7 @@ namespace apex
 
 
    //bool system::sync_load_url(string& str, const ::string & pszUrl, ::account::user* puser, ::http::cookies* pcookies)
-   bool system::sync_load_url(string& str, const ::string& pszUrl, ::http::cookies* pcookies)
+   bool system::sync_load_url(string & str, const ::string & pszUrl, ::http::cookies * pcookies)
 
    {
 
@@ -4743,7 +4766,7 @@ namespace apex
 #ifdef UNIVERSAL_WINDOWS
 
 
-   bool system::window_rectangle(::rectangle_i32* prectangle)
+   bool system::window_rectangle(::rectangle_i32 * prectangle)
    {
 
       if (::is_null(session()))
@@ -4780,37 +4803,37 @@ namespace apex
    void system::main()
    {
 
-      process_init();
+      //process_init();
 
-      if (application()->is_console())
-      {
+      //if (application()->is_console())
+      //{
 
-         application()->main();
+      //   application()->main();
 
-      }
-      else
-      {
+      //}
+      //else
+      //{
 
          //auto estatus = 
-         ::thread::main();
+      ::thread::main();
 
-         //if (!estatus)
-         //{
+      //if (!estatus)
+      //{
 
-         //   return estatus;
+      //   return estatus;
 
-         //}
+      //}
 
-         //return estatus;
+      //return estatus;
 
-      }
+   //}
 
-      if (m_iExitCode == 0 && m_estatus.failed())
-      {
+      //if (m_iExitCode == 0 && m_estatus.failed())
+      //{
 
-         m_iExitCode = m_estatus.exit_code();
+      //   m_iExitCode = m_estatus.exit_code();
 
-      }
+      //}
 
    }
 
@@ -4823,7 +4846,7 @@ namespace apex
    //}
 
 
-   void system::hist_hist(const ::string& psz)
+   void system::hist_hist(const ::string & psz)
    {
 
       hist().hist(psz);
@@ -4839,54 +4862,54 @@ namespace apex
    }
 
 
-//   void system::add_handler(::matter* pmatter, bool bPriority)
-//   {
-//
-//      ::apex::context::add_handler(pmatter, bPriority);
-//
-//   }
+   //   void system::add_handler(::matter* pmatter, bool bPriority)
+   //   {
+   //
+   //      ::apex::context::add_handler(pmatter, bPriority);
+   //
+   //   }
 
-   void system::add_signal_handler(const ::signal_handler& signalhandler, const ::atom& atomSignal)
+   void system::add_signal_handler(const ::signal_handler & signalhandler, const ::atom & atomSignal)
    {
-   
+
       ::manager::add_signal_handler(signalhandler, atomSignal);
-      
+
    }
 
-//   void system::add_signal_handler(const ::signal_handler& signalhandler, const ::atom& atomSignal)
-//   {
-//
-//      auto psignal = get_signal(atomSignal);
-//
-//      if (::is_null(psignal))
-//      {
-//
-//         throw ::exception(error_resource);
-//
-//      }
-//
-//      psignal->add_signal_handler(signalhandler);
-//
-//   }
+   //   void system::add_signal_handler(const ::signal_handler& signalhandler, const ::atom& atomSignal)
+   //   {
+   //
+   //      auto psignal = get_signal(atomSignal);
+   //
+   //      if (::is_null(psignal))
+   //      {
+   //
+   //         throw ::exception(error_resource);
+   //
+   //      }
+   //
+   //      psignal->add_signal_handler(signalhandler);
+   //
+   //   }
 
 
-//   void system::add_signal_handler(const ::signal_handler& signalhandler, const ::atom& atomSignal)
-//   {
-//
-//      manager::add_signal_handler(signalhandler, atomSignal);
-//      
-//   }
+   //   void system::add_signal_handler(const ::signal_handler& signalhandler, const ::atom& atomSignal)
+   //   {
+   //
+   //      manager::add_signal_handler(signalhandler, atomSignal);
+   //      
+   //   }
 
 
    void system::erase_signal_handler(::signal_handler::base * pbase)
    {
-      
+
       manager::erase_signal_handler(pbase);
-   
+
    }
 
 
-   void system::route_command(::message::command* pcommand, bool bRouteToKeyDescendant)
+   void system::route_command(::message::command * pcommand, bool bRouteToKeyDescendant)
    {
 
       command_handler(pcommand);
@@ -4908,7 +4931,7 @@ namespace apex
    }
 
 
-   void system::handle(::topic* ptopic, ::context* pcontext)
+   void system::handle(::topic * ptopic, ::context * pcontext)
    {
 
       acme::system::handle(ptopic, pcontext);
@@ -4968,7 +4991,7 @@ namespace apex
    }
 
 
-   void system::process_exit_status(::object* pparticle, const ::e_status& estatus)
+   void system::process_exit_status(::object * pparticle, const ::e_status & estatus)
    {
 
       if (estatus == error_exit_session)
@@ -5015,7 +5038,7 @@ namespace apex
    }
 
 
-   void system::system_construct(::acme::application* papplication)
+   void system::system_construct(::acme::application * papplication)
    {
 
       ::acme::system::system_construct(papplication);
@@ -5029,45 +5052,45 @@ namespace apex
 
 #ifdef __APPLE__
 
-string get_bundle_app_library_name();
+   string get_bundle_app_library_name();
 
 #endif
 
 
 
 
-//pointer <  >::apex::session* platform_create_session()
-//{
-//
-//   auto pstaticsetup = ::system_setup::get_first(::system_setup::flag_system, "");
-//
-//   if (!pstaticsetup)
-//   {
-//
-//      return nullptr;
-//
-//   }
-//
-//   auto pelement = pstaticsetup->create_element();
-//
-//   if (!pelement)
-//   {
-//
-//      return nullptr;
-//
-//   }
-//
-//   return pelement();
-//
-//}
+   //pointer <  >::apex::session* platform_create_session()
+   //{
+   //
+   //   auto pstaticsetup = ::system_setup::get_first(::system_setup::flag_system, "");
+   //
+   //   if (!pstaticsetup)
+   //   {
+   //
+   //      return nullptr;
+   //
+   //   }
+   //
+   //   auto pelement = pstaticsetup->create_element();
+   //
+   //   if (!pelement)
+   //   {
+   //
+   //      return nullptr;
+   //
+   //   }
+   //
+   //   return pelement();
+   //
+   //}
 
 
-//
-//void apex_application_main(int argc, char* argv[], const ::string & pszCommandLine);
+   //
+   //void apex_application_main(int argc, char* argv[], const ::string & pszCommandLine);
 
 
 
-   void system::application_main(int argc, char* argv[], const ::string& pszCommandLine)
+   void system::application_main(int argc, char * argv[], const ::string & pszCommandLine)
    {
 
       //apex_application_main(argc, argv, pszCommandLine);
@@ -5131,7 +5154,7 @@ string get_bundle_app_library_name();
 
          ::e_status estatus = ::success_none;
 
-         auto& pfactoryNetworking = factory("networking", "bsd");
+         auto & pfactoryNetworking = factory("networking", "bsd");
 
          //if (!pfactoryCrypto)
          //{

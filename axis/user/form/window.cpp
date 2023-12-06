@@ -3,6 +3,8 @@
 #include "acme/constant/id.h"
 #include "acme/platform/keep.h"
 #include "acme/constant/message.h"
+#include "acme/handler/topic.h"
+#include "acme/handler/extended_topic.h"
 #include "acme/include/_c_swap.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "apex/database/selection.h"
@@ -34,7 +36,7 @@ namespace user
 //   index form_window::_001AddControl(::user::interaction * pinteractionParent, const ::atom & atom)
 //   {
 //
-//      //index indexNew = m_controldescriptorset.add(memory_new class control_descriptor(descriptorParam));
+//      //index indexNew = m_controldescriptorset.add(__new< class control_descriptor >(descriptorParam));
 //
 //      m_controldescriptorset.add(pdescriptor);
 //
@@ -52,7 +54,7 @@ namespace user
 //            /*xxx            CTransparentStatic * pstatic = (CTransparentStatic *) window::FromHandlePermanent(pform->get_child_by_id(pinteraction->m_atom)->GetSafeoswindow_());
 //                        if(pstatic == nullptr || !base_class < CTransparentStatic >::bases(pstatic))
 //                        {
-//                           pstatic = memory_new CTransparentStatic;
+//                           pstatic = __new< CTransparentStatic >();
 //                           VERIFY(pstatic->subclass_window(pform->get_child_by_id(pinteraction->m_atom)->GetSafeoswindow_()));
 //                        }
 //                        pinteraction->m_unionwndptr.m_pstatic = pstatic;*/

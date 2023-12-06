@@ -75,7 +75,7 @@
 //
 //                            };
 //
-//   auto psystem = ::platform::get()->system();
+//   auto psystem = this->platform()->system();
 //
 //   psystem->windowing_post(predicate);
 //
@@ -88,6 +88,8 @@ namespace acme
 
    void node::user_post(const ::procedure &procedure)
    {
+
+      information() << "acme::node::user_post going to display_post";
 
       ::nano::display::g_p->display_post(procedure);
 
@@ -124,7 +126,7 @@ void wayland_process_messages();
 void _do_tasks()
 {
 
-   auto psystem = ::platform::get()->system();
+   auto psystem = this->platform()->system();
 
    if(psystem->m_ewindowing == e_windowing_wayland)
    {

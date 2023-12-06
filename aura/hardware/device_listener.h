@@ -22,6 +22,7 @@ namespace hardware
 
 
       virtual void register_device_listener(enum_device edevice);
+      virtual void unregister_device_listener(enum_device edevice);
 
       virtual void on_device_nodes_changed();
 

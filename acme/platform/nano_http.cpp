@@ -33,7 +33,7 @@ namespace nano
    void http::memory(const ::scoped_string & scopedstrUrl, ::nano::http_response & httpresponse, const class ::time & timeTimeout)
    {
       
-      auto pasynchronoushttpresponse = __new(asynchronous_http_response(httpresponse));
+      auto pasynchronoushttpresponse = __allocate< asynchronous_http_response >(httpresponse);
 
       pasynchronoushttpresponse->initialize(this);
       
@@ -86,7 +86,7 @@ void operating_system_initialize_nano_http(::factory::factory * pfactory);
 bool g_bNanoInitializeHttp = false;
 
 
-CLASS_DECL_ACME void initialize_nano_http()
+CLASS_DECL_ACME void initialize_nano_http(::factory::factory * pfactory)
 {
 
    if(g_bNanoInitializeHttp)
@@ -96,7 +96,7 @@ CLASS_DECL_ACME void initialize_nano_http()
 
    }
 
-   operating_system_initialize_nano_http(::get_system_factory());
+   operating_system_initialize_nano_http(pfactory);
 
    g_bNanoInitializeHttp = true;
 

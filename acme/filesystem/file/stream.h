@@ -99,17 +99,17 @@ inline void __exchange_array(::binary_stream & s, const ARRAY & array) { __excha
 
 inline void __exchange(::binary_stream & s, const ::file::path_array & patha) { __exchange_array(s, patha); }
 
-template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
-inline void __exchange(::binary_stream & s, const ::array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & array) { __exchange_array(s, (::array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > &)array); }
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_etypeContainer >
+inline void __exchange(::binary_stream & s, const ::array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & array) { __exchange_array(s, (::array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > &)array); }
 
-template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
-inline void __exchange(::binary_stream & s, const ::raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & array) { __exchange_array(s, (::raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > &)array); }
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_etypeContainer >
+inline void __exchange(::binary_stream & s, const ::raw_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & array) { __exchange_array(s, (::raw_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > &)array); }
 
-template < typename TYPE, ::enum_type m_etypeContainer = e_type_element >
-inline void __exchange(::binary_stream & s, const ::numeric_array < TYPE, m_etypeContainer > & array) { __exchange_array(s, (::numeric_array < TYPE, m_etypeContainer > &) array); }
+template < typename TYPE, ::enum_type t_etypeContainer = e_type_element >
+inline void __exchange(::binary_stream & s, const ::numeric_array < TYPE, t_etypeContainer > & array) { __exchange_array(s, (::numeric_array < TYPE, t_etypeContainer > &) array); }
 
-template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-inline void __exchange(::binary_stream & s, const ::string_array_base < Type, RawType, m_etypeContainer > & array) { __exchange_array(s, (::string_array_base < Type, RawType, m_etypeContainer > &) array); }
+template < typename Type, typename RawType, ::enum_type t_etypeContainer >
+inline void __exchange(::binary_stream & s, const ::string_array_base < Type, RawType, t_etypeContainer > & array) { __exchange_array(s, (::string_array_base < Type, RawType, t_etypeContainer > &) array); }
 
 template < typename ARRAY >
 inline void __exchange_save_array(::binary_stream & s, ARRAY & array);
@@ -117,17 +117,17 @@ inline void __exchange_save_array(::binary_stream & s, ARRAY & array);
 template < typename ARRAY >
 inline void __exchange_load_array(::binary_stream & s, ARRAY & array);
 
-template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
-inline void __exchange(::binary_stream & s, ::array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & array);
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_etypeContainer >
+inline void __exchange(::binary_stream & s, ::array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & array);
 
-template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
-inline void __exchange(::binary_stream & s, ::raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & array);
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_etypeContainer >
+inline void __exchange(::binary_stream & s, ::raw_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & array);
 
-template < typename TYPE, ::enum_type m_etypeContainer = e_type_element >
-inline void __exchange(::binary_stream & s, ::numeric_array < TYPE, m_etypeContainer > & array);
+template < typename TYPE, ::enum_type t_etypeContainer = e_type_element >
+inline void __exchange(::binary_stream & s, ::numeric_array < TYPE, t_etypeContainer > & array);
 
-template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-inline void __exchange(::binary_stream & s, ::string_array_base < Type, RawType, m_etypeContainer > & array);*/
+template < typename Type, typename RawType, ::enum_type t_etypeContainer >
+inline void __exchange(::binary_stream & s, ::string_array_base < Type, RawType, t_etypeContainer > & array);*/
 
 
 #define FIRST_VERSION 0

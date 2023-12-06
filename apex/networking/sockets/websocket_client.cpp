@@ -2,6 +2,7 @@
 #include "websocket_client.h"
 #include "acme/exception/interface_only.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/primitive/mathematics/mathematics.h"
 #include "acme/primitive/string/base64.h"
 #include "acme/crypto/crypto.h"
 //#include "apex/id.h"
@@ -575,7 +576,7 @@ namespace sockets
 
          m.set_size(16);
 
-         generate_random_bytes(m.data(), m.size());
+         mathematics()->random(m);
 
          auto psystem = system();
 
@@ -1022,7 +1023,7 @@ namespace sockets
                else
                {
 
-                  ::informationf("ws_buffering");
+                  ::acme::get()->platform()->informationf("ws_buffering");
 
                }
 

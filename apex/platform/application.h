@@ -169,6 +169,8 @@ namespace apex
       void initialize(::particle * pparticle) override;
 
 
+      void on_set_platform() override;
+
       //void on_initialize_application(::main* pmain) override;
       //// void assert_ok() const override;
       //// void dump(dump_context & dumpcontext) const override;
@@ -261,7 +263,7 @@ namespace apex
 
 
 
-
+      virtual void init_fs_set(::fs::set * pfsset);
       //virtual bool InitApplication();
 
 
@@ -600,19 +602,19 @@ namespace apex
       //virtual string get_mutex_name_gen();
 
       /// return true if this instance might continue execution
-      /// bHandled true if some action was done in response to this memory_new additional instance creation
+      /// bHandled true if some action was done in response to this new additional instance creation
       virtual void on_exclusive_instance_conflict(bool & bHandled, enum_exclusive_instance eexclusive, string strId);
 
       /// return true if this instance might continue execution
-      /// bHandled true if some action was done in response to this memory_new additional instance creation
+      /// bHandled true if some action was done in response to this new additional instance creation
       virtual void on_exclusive_instance_local_conflict(bool & bHandled);
 
       /// return true if this instance might continue execution
-/// bHandled true if some action was done in response to this memory_new additional instance creation
+/// bHandled true if some action was done in response to this new additional instance creation
       virtual void on_exclusive_instance_local_conflict_id(bool & bHandled, string strId);
 
       /// return true if the external additional instance might continue execution
-      /// bHandled true if some action was done in response to the external memory_new additional instance creation
+      /// bHandled true if some action was done in response to the external aaa_memory_new additional instance creation
       virtual void on_additional_local_instance(bool & bHandled, string strModule, int iPid, string strCommandLine);
 
       virtual void on_new_instance(string strModule, const ::atom & idPid);
@@ -1041,7 +1043,7 @@ namespace apex
       virtual void userfs_process_init();
 
 
-      virtual void data_on_after_change(::database::client * pclient, const ::scoped_string & scopedstr, const ::payload & payload, ::topic * ptopic) override;
+      void data_on_after_change(::database::client * pclient, const ::scoped_string & scopedstr, ::topic * ptopic) override;
 
 
       virtual void report_error(const ::exception & e, int iMessageFlags, const ::string & pszTopic);

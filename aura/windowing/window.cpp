@@ -144,14 +144,14 @@ namespace windowing
          if (pmessagePost->m_atom == e_message_scroll_y)
          {
 
-            ::informationf("e_message_scroll_y");
+            ::acme::get()->platform()->informationf("e_message_scroll_y");
 
 
          } 
          else if (pmessagePost->m_atom == e_message_text_composition)
          {
 
-            ::informationf("message text composition");
+            ::acme::get()->platform()->informationf("message text composition");
 
          }
 
@@ -347,7 +347,9 @@ namespace windowing
    void window::destroy_window()
    {
 
-      throw ::interface_only();
+      m_pwindowing.release();
+
+      m_pwindowParent.release();
 
    }
 
@@ -1039,6 +1041,19 @@ namespace windowing
 
    void window::post_non_client_destroy()
    {
+
+      m_pplacementlog.release();
+      m_pparticleChildrenSynchronization.release();
+      m_pcursor.release();
+      m_pcopydesk.release();
+      m_pwindowing.release();
+      m_picon.release();
+      m_pwindowParent.release();
+      m_pmessagequeue.release();
+      m_puserinteractionimpl.release();
+      m_pdisplay.release();
+
+      ::channel::destroy();
 
    }
 
@@ -2060,12 +2075,16 @@ namespace windowing
    void window::on_destruct_mouse_message(::message::mouse * pmouse)
    {
 
+      //information() << "on_destruct_mouse_message";
+
       if(::is_null(pmouse))
       {
 
          return;
 
       }
+
+      //information() << "pmouse set";
 
       try
       {
@@ -2093,24 +2112,26 @@ namespace windowing
 
             pcursor = get_mouse_cursor();
 
-//            if(pcursor)
-//            {
-//
-//               information() << "got window cursor : " << pcursor->m_ecursor;
-//
-//            }
+            if(pcursor)
+            {
+
+               //information() << "got window cursor : " << pcursor->m_ecursor;
+
+            }
 
          }
-//         else
-//         {
-//
-//            information() << "got mouse cursor : " << pcursor->m_ecursor;
-//
-//         }
+         else
+         {
+
+            //information() << "got mouse cursor : " << pcursor->m_ecursor;
+
+         }
 
          if(pcursor)
          {
             
+            //information() << "pcursor set";
+
             set_mouse_cursor(pcursor);
             
          }
@@ -2132,7 +2153,7 @@ namespace windowing
 //      try
 //      {
 //
-//         set_mouse_cursor(pmouse->m_pcursor);
+//         aaaset_mouse_cursor(pmouse->m_pcursor);
 //
 //      }
 //      catch(...)

@@ -49,8 +49,9 @@ namespace platform
    public:
 
 
-      static platform * s_pplatform;
+      //static platform * s_pplatform;
 
+      ::acme::acme *                                  m_pacme;
 
       ::critical_section                              m_criticalsection;
 
@@ -92,9 +93,12 @@ namespace platform
 
       int                                             m_iProcessStatus = 0;
 
+      ::critical_section                              m_criticalsectionTask;
+      ::index_array                                   m_iaTaskIndex;
+      bool                                            m_bVerboseLog;
 
 
-      ::pointer < ::acme::application >   m_pacmeapplication;
+      ::acme::application * m_pacmeapplication;
 
 
       ::critical_section m_criticalsectionSystemHeap;
@@ -135,8 +139,6 @@ namespace platform
 
       ::critical_section m_criticalsectionGlobals;
 
-
-      ::critical_section m_criticalsectionRefDbg;
 
       ::critical_section m_criticalsectionFactory;
 
@@ -202,10 +204,27 @@ namespace platform
       string                                          m_strCommandLine;
 
 
-      platform();
+      platform(::acme::acme * pacme);
       ~platform();
 
 
+      using particle::initialize;
+
+#if defined(WINDOWS) && defined(UNICODE)
+
+      void initialize(int argc, wchar_t * argv[], wchar_t * envp[]);
+
+      void initialize(hinstance hinstanceThis, hinstance hinstancePrev, wchar_t * pCmdLine, int nCmdShow);
+
+#else
+
+      void initialize(int argc, platform_char ** argv, platform_char ** envp);
+
+#endif
+
+
+      void platform_initialize();
+      void platform_finalize();
 
 
       void set_args(int argc, char ** argv, wchar_t ** wargv);
@@ -222,6 +241,8 @@ namespace platform
       wchar_t ** get_wargv();
 
 #endif
+
+      bool is_verbose_log() const;
 
       inline ::count _get_argc() const { return m_argc; }
 
@@ -254,6 +275,8 @@ namespace platform
       void delete_all_release_on_end();
 
 
+      ::acme::acme * acme() const { return ((platform *)this)->m_pacme; }
+
 
       ::factory::factory_pointer & factory();
       ::factory::factory_pointer & factory(const ::string & strLibrary);
@@ -276,7 +299,7 @@ namespace platform
       void add_factory_item(const ::atom & atom)
       {
 
-         set_factory(atom, __new(::factory::factory_item < TYPE, BASE >()));
+         set_factory(atom, __allocate< ::factory::factory_item < TYPE, BASE > >());
 
       }
 
@@ -297,10 +320,10 @@ namespace platform
 
       virtual ::pointer<::factory::factory> & impact_factory(const ::string & strComponent, const ::string & strImplementation);
 
-      void initialize_memory_counter();
-      void finalize_memory_counter();
+      //void initialize_memory_counter();
+      //void finalize_memory_counter();
 
-      ::memory_counter * get_memory_counter();
+      //::memory_counter * get_memory_counter();
 
 
 
@@ -323,10 +346,6 @@ namespace platform
 #endif // defined(LINUX) || defined(__APPLE__)
 
       critical_section * globals_critical_section() { return &m_criticalsectionGlobals; }
-
-
-
-      critical_section * ref_dbm_critical_section() { return &m_criticalsectionRefDbg; }
 
 
 
@@ -371,6 +390,18 @@ namespace platform
 
 #endif
 
+      //pass_through_function m_passthroughfunction;
+
+
+      ::index task_index(itask_t itask, bool bAddIfNotInList = false);
+
+
+      //pass_through_function &  __call__new_pass_through_function() { return m_passthroughfunction; }
+
+
+      //platform * __call__add_referer2(const ::reference_referer & referer) const;
+
+
 
    };
 
@@ -394,16 +425,7 @@ namespace platform
    //{
 
 
-      inline ::platform::platform * get()
-      {
-
-
-         return ::platform::platform::s_pplatform;
-
-
-      }
-
-
+   inline ::platform::platform * get() { return ::acme::get()->platform(); }
 
 
 } // namespace platform

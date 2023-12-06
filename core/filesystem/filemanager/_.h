@@ -1,3 +1,4 @@
+// Changed by camilo on 2023-11-16 05:40 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -16,8 +17,13 @@ namespace filemanager
    class file_list;
    class file_list_callback;
    class file_properties_form;
-   class folder_list_data;
-   class folder_list_impact;
+   namespace folder
+
+   {
+      class list_data;
+      class list_impact;
+
+   }
    class tree_data;
    class operation_list_impact;
    class operation_info_impact;
@@ -33,6 +39,9 @@ namespace filemanager
 
 
    class thumbnail;
+
+
+   class filemanager;
 
 
    namespace fs

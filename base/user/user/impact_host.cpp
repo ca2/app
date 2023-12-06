@@ -131,7 +131,7 @@ namespace user
    void impact_host::add_impact_kit2(::user::impact_kit * pimpactkit)
    {
 
-      // try to find exclusive id for the memory_new impact kit
+      // try to find exclusive id for the new impact kit
 
       while (find_impact_kit(pimpactkit->m_atom))
       {
@@ -430,7 +430,7 @@ namespace user
    impact_data * impact_host::new_impact_data(const atom & atom)
    {
 
-      auto pimpactdata  = __new(::user::impact_data(atom));
+      auto pimpactdata  = __allocate< ::user::impact_data >(atom);
 
       m_impactdatamap[atom] = pimpactdata;
 
@@ -596,6 +596,19 @@ namespace user
       {
 
          return nullptr;
+
+      }
+
+      if (pimpactdata->m_pplaceholder)
+      {
+
+         //pimpactdata->m_pplaceholder->m_bLockGraphicalUpdate = false;
+
+         m_bNeedPerformLayout = true;
+         
+         pimpactdata->m_pplaceholder->m_bNeedPerformLayout = true;
+
+         pimpactdata->m_pplaceholder->set_need_layout();
 
       }
 

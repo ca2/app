@@ -13,7 +13,6 @@
 		9A2819B025242523009FA9CB /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A28192E25242523009FA9CB /* framework.cpp */; };
 		9A2819B925242523009FA9CB /* id.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A28193A25242523009FA9CB /* id.h */; };
 		9A2819BA25242523009FA9CB /* controller.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A28193D25242523009FA9CB /* controller.h */; };
-		9A2819BB25242523009FA9CB /* controller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A28193E25242523009FA9CB /* controller.cpp */; };
 		9A2819BC25242523009FA9CB /* xmlite.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A28194125242523009FA9CB /* xmlite.h */; };
 		9A2819BD25242523009FA9CB /* output_tree.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A28194225242523009FA9CB /* output_tree.h */; };
 		9A2819BE25242523009FA9CB /* _impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A28194325242523009FA9CB /* _impl.h */; };
@@ -189,7 +188,6 @@
 		9A81895C2A71CC42008F470C /* output_tree.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A28194225242523009FA9CB /* output_tree.h */; };
 		9A81895E2A71CC42008F470C /* tree_base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A28195125242523009FA9CB /* tree_base.cpp */; };
 		9A81895F2A71CC42008F470C /* node.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A28195425242523009FA9CB /* node.cpp */; };
-		9A8189602A71CC42008F470C /* controller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A28193E25242523009FA9CB /* controller.cpp */; };
 		9A8189612A71CC42008F470C /* tree_schema.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A28196C25242523009FA9CB /* tree_schema.cpp */; };
 		9A8189622A71CC42008F470C /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A28198D25242523009FA9CB /* _.cpp */; };
 		9A8189632A71CC42008F470C /* data.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A28195825242523009FA9CB /* data.cpp */; };
@@ -295,7 +293,6 @@
 		9A8E9E89282A3210005FF778 /* output_tree.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A28194225242523009FA9CB /* output_tree.h */; };
 		9A8E9E8B282A3210005FF778 /* tree_base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A28195125242523009FA9CB /* tree_base.cpp */; };
 		9A8E9E8C282A3210005FF778 /* node.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A28195425242523009FA9CB /* node.cpp */; };
-		9A8E9E8E282A3210005FF778 /* controller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A28193E25242523009FA9CB /* controller.cpp */; };
 		9A8E9E8F282A3210005FF778 /* tree_schema.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A28196C25242523009FA9CB /* tree_schema.cpp */; };
 		9A8E9E90282A3210005FF778 /* data.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A28195825242523009FA9CB /* data.cpp */; };
 		9A8E9E92282A3210005FF778 /* estamira.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A2E624E252588430001CC7E /* estamira.cpp */; };
@@ -416,7 +413,6 @@
 		9A28192E25242523009FA9CB /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
 		9A28193A25242523009FA9CB /* id.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = id.h; sourceTree = "<group>"; };
 		9A28193D25242523009FA9CB /* controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = controller.h; sourceTree = "<group>"; };
-		9A28193E25242523009FA9CB /* controller.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = controller.cpp; sourceTree = "<group>"; };
 		9A28194125242523009FA9CB /* xmlite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xmlite.h; sourceTree = "<group>"; };
 		9A28194225242523009FA9CB /* output_tree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = output_tree.h; sourceTree = "<group>"; };
 		9A28194325242523009FA9CB /* _impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _impl.h; sourceTree = "<group>"; };
@@ -623,7 +619,6 @@
 		9A28193C25242523009FA9CB /* user */ = {
 			isa = PBXGroup;
 			children = (
-				9A28193E25242523009FA9CB /* controller.cpp */,
 				9A28193D25242523009FA9CB /* controller.h */,
 			);
 			path = user;
@@ -1189,7 +1184,6 @@
 			files = (
 				9A2819CC25242523009FA9CB /* tree_base.cpp in Sources */,
 				9A2819CF25242523009FA9CB /* node.cpp in Sources */,
-				9A2819BB25242523009FA9CB /* controller.cpp in Sources */,
 				9A2819E725242523009FA9CB /* tree_schema.cpp in Sources */,
 				9ABFEA6E2850E44A008FF906 /* _.cpp in Sources */,
 				9A2819D325242523009FA9CB /* data.cpp in Sources */,
@@ -1236,7 +1230,6 @@
 			files = (
 				9A81895E2A71CC42008F470C /* tree_base.cpp in Sources */,
 				9A81895F2A71CC42008F470C /* node.cpp in Sources */,
-				9A8189602A71CC42008F470C /* controller.cpp in Sources */,
 				9A8189612A71CC42008F470C /* tree_schema.cpp in Sources */,
 				9A8189622A71CC42008F470C /* _.cpp in Sources */,
 				9A8189632A71CC42008F470C /* data.cpp in Sources */,
@@ -1283,7 +1276,6 @@
 			files = (
 				9A8E9E8B282A3210005FF778 /* tree_base.cpp in Sources */,
 				9A8E9E8C282A3210005FF778 /* node.cpp in Sources */,
-				9A8E9E8E282A3210005FF778 /* controller.cpp in Sources */,
 				9A8E9E8F282A3210005FF778 /* tree_schema.cpp in Sources */,
 				9ABFEA6F2850E44C008FF906 /* _.cpp in Sources */,
 				9A8E9E90282A3210005FF778 /* data.cpp in Sources */,

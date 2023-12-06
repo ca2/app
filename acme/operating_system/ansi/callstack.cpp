@@ -7,6 +7,10 @@
 //  Copyright (c) 2022 Camilo Sasuke Thomas Borregaard Soerensen. All rights reserved.
 //
 #include "framework.h"
+
+#if !defined(WINDOWS)
+
+
 #include "callstack.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/node.h"
@@ -139,7 +143,7 @@ namespace acme
    string node::get_callstack(const ::scoped_string & strFormat, i32 iSkip, void *caller_address, int iCount)
    {
 
-      auto psynchronization = ::platform::get()->system()->synchronization();
+      auto psynchronization = this->platform()->system()->synchronization();
 
       synchronous_lock sl(psynchronization);
 
@@ -164,3 +168,4 @@ namespace acme
 
 
 
+#endif

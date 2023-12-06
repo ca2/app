@@ -92,7 +92,7 @@ tracer::~tracer()
 //   //if (!ptask)
 //   //{
 //
-//   //   ptask = ::platform::get()->m_pacmesystem;
+//   //   ptask = this->platform()->m_pacmesystem;
 //
 //   //}
 //

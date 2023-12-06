@@ -8,10 +8,14 @@
 #include "acme/exception/interface_only.h"
 #include "acme/exception/translator.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/parallelization/task_message_queue.h"
 
 
 #include "acme/exception/_text_stream.h"
 #include "acme/_operating_system.h"
+
+
+extern bool g_bIntermediateThreadReferencingDebugging;
 
 
 bool on_init_thread();
@@ -30,7 +34,7 @@ CLASS_DECL_ACME void _do_tasks();
 #endif
 
 
-CLASS_DECL_ACME void clear_message_queue(itask_t idthread);
+//CLASS_DECL_ACME void aaa_clear_message_queue(itask_t idthread);
 
 
 CLASS_DECL_ACME void exception_message_box(::particle * pparticle, ::exception & exception, const ::string & strMoreDetails);
@@ -78,7 +82,7 @@ task::~task()
    auto strThreadName = ::task_get_name();
    auto itask = ::current_itask();
 
-   ::informationf("Task destructor : " + strThreadName + " : (" + ::as_string(itask) + ")\n");
+   ::acme::get()->platform()->informationf("Task destructor : " + strThreadName + " : (" + ::as_string(itask) + ")\n");
 
 #endif
 
@@ -437,6 +441,24 @@ void task::destroy()
 
 #endif
 
+   m_peventInitialization.release();
+
+   m_particleaHold.clear();
+
+   m_procedure.m_pbase.release();
+
+   m_pevSleep.release();
+
+   m_pcounter.release();
+
+   m_ptask.release();
+
+   m_procedureNext.m_pbase.release();
+
+   m_procedurea.clear();
+
+   m_plocale.release();
+
 }
 
 
@@ -504,15 +526,21 @@ void* task::s_os_task(void* p)
 
       ::task * ptask = (::task*)p;
 
-      ::set_task(ptask OBJECT_REFERENCE_COUNT_DEBUG_COMMA_P_FUNCTION_LINE(ptask));
+      ::set_task(ptask);
 
-      //ptask->release(OBJECT_REFERENCE_COUNT_DEBUG_P_FUNCTION_LINE(ptask));
+      //ptask->release(REFERENCING_DEBUGGING_P_FUNCTION_LINE(ptask));
 
 #if defined(WINDOWS)
 
-      ptask->__defer_construct(ptask->m_pexceptiontranslator);
+      {
 
-      ptask->m_pexceptiontranslator->attach();
+         REFDBG_THIS(ptask);
+
+         ptask->__defer_construct(ptask->m_pexceptiontranslator);
+
+         ptask->m_pexceptiontranslator->attach();
+
+      }
 
 #endif
 
@@ -543,7 +571,7 @@ void* task::s_os_task(void* p)
 
       }
 
-      clear_message_queue(ptask->m_itask);
+      ::acme::get()->m_ptaskmessagequeue->clear_message_queue(ptask->m_itask);
 
       ptask->set_flag(e_flag_task_terminated);
 
@@ -551,13 +579,20 @@ void* task::s_os_task(void* p)
 
       ///ptask->release();
 
+      //::task_release(REFERENCING_DEBUGGING_P_FUNCTION_FILE_LINE(ptask));
 
-#if OBJECT_REFERENCE_COUNT_DEBUG
 
-      if (ptask->m_countReference > 1)
+#if REFERENCING_DEBUGGING
+
+      if (g_bIntermediateThreadReferencingDebugging)
       {
 
-         __check_pending_releases(ptask);
+         if (ptask->m_countReference > 1)
+         {
+
+            ptask->check_pending_releases();
+
+         }
 
       }
 
@@ -601,7 +636,7 @@ void* task::s_os_task(void* p)
 
       }
 
-      ::task_release(OBJECT_REFERENCE_COUNT_DEBUG_P_NOTE(ptask, ""));
+      ::task_release();
 
    }
    catch (...)
@@ -719,7 +754,11 @@ void task::run_posted_procedures()
       do
       {
 
-         auto procedure = m_procedurea.pick_first();
+         //information() << "run_posted_procedures reference_count before_pick : " << (::iptr) m_procedurea.m_begin[0].m_pbase->m_countReference;
+
+         auto procedure = ::transfer(m_procedurea.pick_first());
+
+         //information() << "run_posted_procedures reference_count : " << (::iptr) procedure->m_countReference;
 
          synchronouslock.unlock();
 
@@ -744,7 +783,7 @@ void task::run_posted_procedures()
 //
 //   synchronous_lock synchronouslock(this->synchronization());
 //
-//   notify_array().add_item(pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_FUNCTION_LINE);
+//   notify_array().add_item(pelement REFERENCING_DEBUGGING_COMMA_THIS_FUNCTION_FILE_LINE);
 //
 //}
 //
@@ -757,7 +796,7 @@ void task::run_posted_procedures()
 //   if (m_pnotifya)
 //   {
 //
-//      m_pnotifya->erase_item(pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS);
+//      m_pnotifya->erase_item(pelement REFERENCING_DEBUGGING_COMMA_THIS);
 //
 //   }
 //
@@ -1115,7 +1154,7 @@ bool task::has_message() const
    //}
 
    // __task_procedure() should release this (pelement)
-   //increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_THIS_FUNCTION_LINE);
+   //increment_reference_count(REFERENCING_DEBUGGING_THIS_FUNCTION_FILE_LINE);
 
    m_bIsRunning = true;
 
@@ -1290,14 +1329,14 @@ bool task::has_message() const
    //if (::is_set(pparticle) && pparticle != this)
    //{
 
-   //   pparticle->add_composite(this OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_FUNCTION_LINE);
+   //   pparticle->add_composite(this REFERENCING_DEBUGGING_COMMA_THIS_FUNCTION_FILE_LINE);
 
    //}
 
    //if (bSynchInitialization)
    {
 
-      m_peventInitialization = __new(manual_reset_event());
+      m_peventInitialization = __allocate< manual_reset_event >();
 
    }
 
@@ -1315,7 +1354,7 @@ bool task::has_message() const
 
       //}
 
-      decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
+      decrement_reference_count();
 
       throw ::exception(error_resource);
 
@@ -1463,7 +1502,7 @@ bool task::has_message() const
 //   //}
 //
 //   // __task_procedure() should release this (pelement)
-//   //increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_THIS_FUNCTION_LINE);
+//   //increment_reference_count(REFERENCING_DEBUGGING_THIS_FUNCTION_FILE_LINE);
 //
 //   m_bIsRunning = true;
 //
@@ -1590,7 +1629,7 @@ bool task::task_sleep(const class time & timeWait)
 //void task::branch(::particle * pparticle, ::enum_priority epriority, ::u32 nStackSize, u32 uCreateFlags ARG_SEC_ATTRS)
 //{
 //
-//   auto ptask = __new(task);
+//   auto ptask = __allocate< task >();
 //
 //   ptask->branch(pelement, epriority, nStackSize, uCreateFlags ADD_PARAM_SEC_ATTRS);
 //
@@ -1689,7 +1728,7 @@ CLASS_DECL_ACME bool __task_sleep(task* ptask, const class time & timeWait)
          if (ptask->m_pevSleep.is_null())
          {
 
-            ptask->m_pevSleep = __new(manual_reset_event());
+            ptask->m_pevSleep = __allocate< manual_reset_event >();
 
             ptask->m_pevSleep->ResetEvent();
 
@@ -2254,25 +2293,35 @@ task_guard::~task_guard()
 //}
 
 
+namespace platform
+{
 
-::index_array g_iaThreadIndex;
+   
+   ::index platform::task_index(itask_t itask, bool bAddIfNotInList)
+   {
+
+      critical_section_lock sl(&m_criticalsectionTask);
+
+      auto iTaskIndex = m_iaTaskIndex.find_first(itask);
+
+      if (bAddIfNotInList && iTaskIndex < 0)
+      {
+
+         iTaskIndex = m_iaTaskIndex.add(itask);
+
+      }
+
+      return iTaskIndex;
+
+   }
+
+}
 
 
 ::index task_index(itask_t itask)
 {
 
-   synchronous_lock sl(::platform::get()->system()->synchronization());
-
-   auto iThreadIndex = g_iaThreadIndex.find_first(itask);
-
-   if(iThreadIndex < 0)
-   {
-
-      iThreadIndex = g_iaThreadIndex.add(itask);
-
-   }
-
-   return iThreadIndex;
+   return ::acme::get()->m_pplatform->task_index(itask);
 
 }
 
@@ -2298,6 +2347,25 @@ void do_tasks()
       ptask->do_events();
 
    }
+
+}
+
+
+
+
+
+CLASS_DECL_ACME::string get_task_object_name()
+{
+
+   return ::type(::get_task()).name();
+
+}
+
+
+CLASS_DECL_ACME::string get_task_object_debug()
+{
+
+   return ::get_task()->m_pszDebug;
 
 }
 

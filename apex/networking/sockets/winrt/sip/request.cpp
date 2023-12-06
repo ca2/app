@@ -46,7 +46,7 @@ namespace sip
       UNREFERENCED_PARAMETER(sz);
       m_file.Truncate(0);
       /*if (!m_file.get())
-         m_file = std::auto_ptr<IFile>(memory_new MemFile);
+         m_file = std::auto_ptr<IFile>(aaa_memory_new MemFile);
    DEBUG_ONLY(   else
          informationf("Body data file already opened");*/
    }

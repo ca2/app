@@ -87,7 +87,7 @@ namespace draw2d
       ::pointer<::task>                     m_ptask;
       bool                                   m_bDraw;
 
-      image_pointer                          m_pimage;
+      image *                                m_pimage = nullptr;
       ::draw2d::bitmap_pointer               m_pbitmap;
       ::draw2d::pen_pointer                  m_ppen;
       ::draw2d::brush_pointer                m_pbrush;

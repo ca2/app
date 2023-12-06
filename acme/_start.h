@@ -19,6 +19,19 @@
 #include "include/_setup.h"
 
 
+#if REFERENCING_DEBUGGING
+
+#define REFDBG(...) __VA_ARGS__
+#define COMMA_REFDBG(...) , REFDBG(__VA_ARGS__)
+
+#else
+
+#define REFDBG(...)
+#define COMMA_REFDBG(...)
+
+#endif
+
+
 #include "__standard_type.h"
 #include "acme/include/_operating_system.h"
 #include "acme/include/_macro.h"
@@ -181,11 +194,11 @@ typedef i64 filesize;
 #endif
 
 
-#if defined(DEBUG) && !defined(NO_ACME_MEMORY_MANAGEMENT)
-#define memory_new new(__FILE__, __LINE__)
-#else
-#define memory_new new
-#endif
+//#if defined(DEBUG) && !defined(NO_ACME_MEMORY_MANAGEMENT)
+//#define __new< new >(__FILE__, __LINE__)
+//#else
+//#define memory_new new
+//#endif
 
 
 #include "acme/memory/_new.h"

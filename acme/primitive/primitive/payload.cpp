@@ -89,6 +89,9 @@ CLASS_DECL_ACME  void copy(::payload & payload, const ::string & str)
 
 payload::payload() :
    m_etype(e_type_new)
+#if REFERENCING_DEBUGGING
+   ,m_preferer(nullptr)
+#endif
 {
 
 }
@@ -96,6 +99,10 @@ payload::payload() :
 
 payload::payload(enum_type etype) :
    m_etype(e_type_new)
+#if REFERENCING_DEBUGGING
+   , m_preferer(nullptr)
+#endif
+
 {
 
    set_type(etype, false);
@@ -135,6 +142,9 @@ payload::payload(enum_type etype) :
 
 payload::payload(std::nullptr_t) :
    m_etype(e_type_null)
+#if REFERENCING_DEBUGGING
+   , m_preferer(nullptr)
+#endif
 {
 
 }
@@ -153,7 +163,16 @@ payload::payload(std::nullptr_t) :
 
 payload::payload(::particle * pelement) :
    m_etype(e_type_new)
+#if REFERENCING_DEBUGGING
+   , m_preferer(nullptr)
+#endif
 {
+
+#if REFERENCING_DEBUGGING
+
+   m_preferer = ::allocator::defer_get_referer(::platform::get(), { this, __FUNCTION_FILE_LINE__ });
+
+#endif
 
    operator = ((::particle *) pelement);
 
@@ -162,6 +181,9 @@ payload::payload(::particle * pelement) :
 
 payload::payload(const ::particle & particle) :
    m_etype(e_type_new)
+#if REFERENCING_DEBUGGING
+   , m_preferer(nullptr)
+#endif
 {
 
    operator = (particle);
@@ -172,22 +194,31 @@ payload::payload(const ::particle & particle) :
 
 
 payload::payload(const ::ansi_character * start, const ::ansi_character * end) :
-m_etype(e_type_new),
-m_str{ start, end }
+m_etype(e_type_new)
+#if REFERENCING_DEBUGGING
+, m_preferer(nullptr)
+#endif
+,m_str{ start, end }
 {
 }
 
 
 payload::payload(const ::ansi_character * psz) :
-   m_etype(e_type_string),
-   m_str(psz)
+   m_etype(e_type_string)
+#if REFERENCING_DEBUGGING
+   , m_preferer(nullptr)
+#endif
+   ,m_str(psz)
 {
 
 }
 
 payload::payload(const ::string & str) :
-   m_etype(e_type_string),
-   m_str(str)
+   m_etype(e_type_string)
+#if REFERENCING_DEBUGGING
+   , m_preferer(nullptr)
+#endif
+   ,m_str(str)
 {
 
 
@@ -195,8 +226,11 @@ payload::payload(const ::string & str) :
 
 
 payload::payload(const type_atom & typeatom):
-   m_etype(e_type_atom),
-   m_atom(typeatom)
+   m_etype(e_type_atom)
+#if REFERENCING_DEBUGGING
+   , m_preferer(nullptr)
+#endif
+   ,m_atom(typeatom)
 {
 
 
@@ -204,8 +238,11 @@ payload::payload(const type_atom & typeatom):
 
 
 payload::payload(::string * pstr) :
-   m_etype(e_type_pstring),
-   m_pstr(pstr)
+   m_etype(e_type_pstring)
+#if REFERENCING_DEBUGGING
+   , m_preferer(nullptr)
+#endif
+   ,m_pstr(pstr)
 {
 
 }
@@ -222,8 +259,11 @@ payload::payload(::string * pstr) :
 
 
 payload::payload(bool * pb) :
-   m_etype(e_type_pbool),
-   m_pb(pb)
+   m_etype(e_type_pbool)
+#if REFERENCING_DEBUGGING
+   , m_preferer(nullptr)
+#endif
+   ,m_pb(pb)
 {
 
 }
@@ -272,7 +312,8 @@ payload::payload(bool * pb) :
 #ifdef __APPLE__
 #ifdef OS64BIT
 
-payload::payload(long l)
+payload::payload(long l):
+m_preferer(nullptr)
 {
 
    m_etype = e_type_i64;
@@ -285,32 +326,44 @@ payload::payload(long l)
 
 
 payload::payload(::i32 * pi) :
-   m_etype(e_type_pi32),
-   m_pi32(pi)
+   m_etype(e_type_pi32)
+#if REFERENCING_DEBUGGING
+   , m_preferer(nullptr)
+#endif
+   ,m_pi32(pi)
 {
 
 }
 
 
 payload::payload(::u32 * pu) :
-   m_etype(e_type_pu32),
-   m_pu32(pu)
+   m_etype(e_type_pu32)
+#if REFERENCING_DEBUGGING
+   , m_preferer(nullptr)
+#endif
+   ,m_pu32(pu)
 {
 
 }
 
 
 payload::payload(::i64 * pi):
-   m_etype(e_type_pi64),
-   m_pi64(pi)
+   m_etype(e_type_pi64)
+#if REFERENCING_DEBUGGING
+   , m_preferer(nullptr)
+#endif
+   ,m_pi64(pi)
 {
 
 }
 
 
 payload::payload(::u64 * pu) :
-   m_etype(e_type_pu64),
-   m_pu64(pu)
+   m_etype(e_type_pu64)
+#if REFERENCING_DEBUGGING
+   , m_preferer(nullptr)
+#endif
+   ,m_pu64(pu)
 {
 
 }
@@ -336,7 +389,7 @@ payload::payload(::u64 * pu) :
 
 payload::payload(const ::file::path & path) :
    m_etype(e_type_path),
-   m_ppath(new ::file::path_object(path))
+   m_ppath(__new__prefix(&m_preferer)__call__new< ::file::path_object>(path))
 {
 
 }
@@ -344,7 +397,7 @@ payload::payload(const ::file::path & path) :
 
 payload::payload(const string_array & stra) :
    m_etype(e_type_string_array),
-   m_pstra(new string_array(stra))
+   m_pstra(__new__prefix(&m_preferer)__call__new< string_array>(stra))
 {
 
 
@@ -353,7 +406,7 @@ payload::payload(const string_array & stra) :
 
 payload::payload(const ::i32_array & ia) :
    m_etype(e_type_i32_array),
-   m_pia(new ::i32_array(ia))
+   m_pia(__new__prefix(&m_preferer)__call__new<::i32_array>(ia))
 {
 
 }
@@ -361,7 +414,7 @@ payload::payload(const ::i32_array & ia) :
 
 payload::payload(const payload_array & payloada) :
    m_etype(e_type_payload_array),
-   m_ppayloada(new payload_array(payloada))
+   m_ppayloada(__new__prefix(&m_preferer)__call__new<payload_array>(payloada))
 {
 
 }
@@ -369,7 +422,7 @@ payload::payload(const payload_array & payloada) :
 
 payload::payload(const property_set & set) :
    m_etype(e_type_property_set),
-   m_ppropertyset(new property_set(set))
+   m_ppropertyset(__new__prefix(&m_preferer)__call__new<property_set>(set))
 {
 
 }
@@ -377,6 +430,9 @@ payload::payload(const property_set & set) :
 
 payload::payload(const class ::payload & payload) :
    m_etype(e_type_new)
+#if REFERENCING_DEBUGGING
+   , m_preferer(nullptr)
+#endif
 {
 
    operator = (payload);
@@ -385,8 +441,11 @@ payload::payload(const class ::payload & payload) :
 
 
 payload::payload(::payload * ppayload) :
-   m_etype(e_type_payload_pointer),
-   m_ppayload(ppayload)
+   m_etype(e_type_payload_pointer)
+#if REFERENCING_DEBUGGING
+   , m_preferer(nullptr)
+#endif
+   ,m_ppayload(ppayload)
 {
 
 }
@@ -411,14 +470,20 @@ payload::payload(::payload * ppayload) :
 
 
 payload::payload(const ::property & property) :
-   m_etype(e_type_property),
-   m_pproperty(new ::property(property))
+   m_etype(e_type_property)
+#if REFERENCING_DEBUGGING
+   , m_preferer(nullptr)
+#endif
+   ,m_pproperty(__new< ::property>(property))
 {
 
 }
 
 
 payload::payload(::property * pproperty)
+#if REFERENCING_DEBUGGING
+   : m_preferer(nullptr)
+#endif
 {
 
    m_etype = e_type_new;
@@ -440,16 +505,22 @@ payload::payload(::property * pproperty)
 
 
 payload::payload(const ::atom & atom) :
-   m_etype(e_type_atom),
-   m_atom(atom)
+   m_etype(e_type_atom)
+#if REFERENCING_DEBUGGING
+   , m_preferer(nullptr)
+#endif
+   ,m_atom(atom)
 {
 
 }
 
 
 payload::payload(const class time & time) :
-   m_etype(e_type_time),
-   m_time(time)
+   m_etype(e_type_time)
+#if REFERENCING_DEBUGGING
+   , m_preferer(nullptr)
+#endif
+   ,m_time(time)
 {
 
 
@@ -457,32 +528,44 @@ payload::payload(const class time & time) :
 
 
 payload::payload(class ::time * ptime) :
-   m_etype(e_type_ptime),
-   m_ptime(ptime)
+   m_etype(e_type_ptime)
+#if REFERENCING_DEBUGGING
+   , m_preferer(nullptr)
+#endif
+   ,m_ptime(ptime)
 {
 
 }
 
 
 payload::payload(const ::earth::time & earthtime) :
-   m_etype(e_type_earth_time),
-   m_earthtime(earthtime)
+   m_etype(e_type_earth_time)
+#if REFERENCING_DEBUGGING
+   , m_preferer(nullptr)
+#endif
+   ,m_earthtime(earthtime)
 {
    
 }
 
 
 payload::payload(const ::color::color & color) :
-   m_etype(e_type_color),
-   m_color(color)
+   m_etype(e_type_color)
+#if REFERENCING_DEBUGGING
+   , m_preferer(nullptr)
+#endif
+   ,m_color(color)
 {
 
 }
 
 
 payload::payload(const ::color::hls & hls) :
-   m_etype(e_type_hls),
-   m_hls(hls)
+   m_etype(e_type_hls)
+#if REFERENCING_DEBUGGING
+   , m_preferer(nullptr)
+#endif
+   ,m_hls(hls)
 {
 
 }
@@ -1579,6 +1662,13 @@ class ::payload & payload::operator = (const class ::payload & payload)
       {
 
          m_p = payload.m_p; // raw copy, doesn't care for the right member
+
+#if REFERENCING_DEBUGGING
+
+         m_preferer = ::allocator::defer_add_referer({ this, __FUNCTION_FILE_LINE__ });
+
+#endif
+
          increment_reference_count();
 
       }
@@ -2029,7 +2119,7 @@ class ::payload & payload::operator = (class time * ptime)
 
       set_type(e_type_memory, false);
 
-      m_pmemory = memory_new ::memory(block);
+      m_pmemory = __new< ::memory >(block);
 
    }
 
@@ -3693,7 +3783,7 @@ unsigned long payload::get_unsigned_long(unsigned long ulDefault) const
 
    }
 
-   return m_p;
+   return { use_t{}, m_p };
 
 }
 
@@ -4310,13 +4400,13 @@ class ::memory & payload::memory_reference()
 
       set_type(e_type_memory, false);
 
-      m_pmemory = memory_new ::memory();
+      m_pmemory = __new< ::memory >();
 
    }
    else if(::is_null(m_pmemory))
    {
 
-      m_pmemory = memory_new ::memory();
+      m_pmemory = __new< ::memory >();
 
    }
 
@@ -4358,7 +4448,7 @@ class ::memory & payload::memory_reference()
    else if (m_etype != ::e_type_path)
    {
 
-      auto ppath = memory_new ::file::path_object();
+      auto ppath = __new< ::file::path_object >();
 
       ppath->assign_range(as_file_path());
 
@@ -4429,7 +4519,7 @@ string_array payload::stra() const
    else if (::is_null(m_pstra))
    {
 
-      //m_pstra = memory_new string_array();
+      //m_pstra = __new< string_array >();
 
       return string_array();
 
@@ -4458,7 +4548,7 @@ string_array & payload::string_array_reference()
    else if (m_etype != e_type_string_array)
    {
 
-      auto pstra = memory_new string_array();
+      auto pstra = __new< string_array >();
 
       try
       {
@@ -4486,7 +4576,7 @@ string_array & payload::string_array_reference()
    else if(::is_null(m_pstra))
    {
 
-      m_pstra = memory_new string_array();
+      m_pstra = __new< string_array >();
 
    }
 
@@ -4566,7 +4656,7 @@ i32_array & payload::i32_array_reference()
    else if(m_etype != e_type_i32_array)
    {
 
-      auto pia = memory_new ::i32_array();
+      auto pia = __new< ::i32_array >();
 
       try
       {
@@ -4594,7 +4684,7 @@ i32_array & payload::i32_array_reference()
    else if (::is_null(m_pia))
    {
 
-      m_pia = memory_new ::i32_array();
+      m_pia = __new< ::i32_array >();
 
    }
 
@@ -4651,7 +4741,7 @@ i64_array payload::i64a() const
    else if (::is_null(m_pi64a))
    {
 
-      //m_pi64a = memory_new i64_array();
+      //m_pi64a = __new< i64_array >();
       return i64_array();
 
    }
@@ -4679,7 +4769,7 @@ i64_array payload::i64a() const
    else if(m_etype != e_type_i64_array)
    {
 
-      auto pia64  = memory_new i64_array();
+      auto pia64  = __new< i64_array >();
 
       try
       {
@@ -4707,7 +4797,7 @@ i64_array payload::i64a() const
    else if(::is_null(m_pi64a))
    {
 
-      m_pi64a = memory_new i64_array();
+      m_pi64a = __new< i64_array >();
 
    }
 
@@ -4984,7 +5074,7 @@ payload_array payload::payloada() const
    else if (::is_null(m_ppayloada))
    {
 
-      //m_ppayloada = memory_new payload_array();
+      //m_ppayloada = __new< payload_array >();
 
       return payload_array();
 
@@ -5013,7 +5103,7 @@ payload_array & payload::payload_array_reference ()
    else if(m_etype != e_type_payload_array)
    {
 
-      auto pvara  = memory_new payload_array();
+      auto pvara  = __new< payload_array >();
 
       try
       {
@@ -5048,7 +5138,7 @@ payload_array & payload::payload_array_reference ()
    else if (::is_null(m_ppayloada))
    {
 
-      m_ppayloada = memory_new payload_array();
+      m_ppayloada = __new< payload_array >();
 
    }
 
@@ -5103,7 +5193,7 @@ property_set payload::propset() const
    else if (::is_null(m_ppropertyset))
    {
 
-      //m_ppropertyset = memory_new property_set();
+      //m_ppropertyset = __new< property_set >();
 
       return property_set();
 
@@ -5132,7 +5222,13 @@ property_set & payload::property_set_reference()
    else if (m_etype != e_type_property_set)
    {
 
-      auto pset = memory_new property_set();
+#if REFERENCING_DEBUGGING
+
+      auto prefererNew = ::allocator::defer_add_referer({ this, __FUNCTION_FILE_LINE__ });
+
+#endif
+
+      auto psetNew = __call__new< property_set >();
 
       if (is_empty() || !get_bool())
       {
@@ -5144,7 +5240,7 @@ property_set & payload::property_set_reference()
          for (::i32 i = 0; i < array_get_count(); i++)
          {
 
-            pset->set_at(i, at(i));
+            psetNew->set_at(i, at(i));
 
          }
 
@@ -5152,13 +5248,25 @@ property_set & payload::property_set_reference()
 
       set_type(e_type_property_set, false);
 
-      m_ppropertyset = pset;
+#if REFERENCING_DEBUGGING
+
+      m_preferer = prefererNew;
+
+#endif
+
+      m_ppropertyset = psetNew;
 
    }
    else if (::is_null(m_ppropertyset))
    {
 
-      m_ppropertyset = memory_new property_set();
+#if REFERENCING_DEBUGGING
+
+      m_preferer = ::allocator::defer_add_referer({ this, __FUNCTION_FILE_LINE__ });
+
+#endif
+
+      m_ppropertyset = __new< property_set >();
 
    }
 
@@ -5460,7 +5568,7 @@ property & payload::get_property(const ::atom & atom)
 
    }
 
-   auto pproperty = memory_new ::property(atom);
+   auto pproperty = __new< ::property >(atom);
 
    auto payload = *this;
 
@@ -7401,13 +7509,13 @@ void payload_skip_network_payload(::ansi_range & range)
    else if (*range.m_begin == ']')
    {
 
-      ::informationf("");
+      ::acme::get()->platform()->informationf("");
 
    }
    else if (*range.m_begin == '\0')
    {
 
-      ::informationf("");
+      ::acme::get()->platform()->informationf("");
 
    }
    else
@@ -7507,7 +7615,7 @@ void payload::parse_network_payload(::ansi_range & range)
    else if (*range.m_begin == ']')
    {
 
-      ::informationf("");
+      ::acme::get()->platform()->informationf("");
 
       //pszJson++;
 
@@ -7515,7 +7623,7 @@ void payload::parse_network_payload(::ansi_range & range)
    else if (*range.m_begin == '\0')
    {
 
-      ::informationf("");
+      ::acme::get()->platform()->informationf("");
 
    }
    else
@@ -7536,7 +7644,7 @@ void payload::parse_network_payload(::ansi_range & range)
    if (range.is_empty())
    {
       
-      ::informationf("");
+      ::acme::get()->platform()->informationf("");
 
       return ::e_type_new;
 
@@ -7544,7 +7652,7 @@ void payload::parse_network_payload(::ansi_range & range)
    else if (*range.m_begin == '\0')
    {
 
-      ::informationf("");
+      ::acme::get()->platform()->informationf("");
 
       return ::e_type_new;
 
@@ -7671,7 +7779,7 @@ void payload::parse_network_payload(::ansi_range & range)
    }
    else if (*range.m_begin == ']')
    {
-      ::informationf("");
+      ::acme::get()->platform()->informationf("");
       return ::e_type_new;
    }
    else
@@ -8500,7 +8608,7 @@ void payload::null()
    else
    {
 
-      auto ppath = memory_new ::file::path_object(as_file_path());
+      auto ppath = __new< ::file::path_object >(as_file_path());
 
       ppath->flags() |= eflag;
 

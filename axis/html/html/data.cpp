@@ -45,18 +45,18 @@ void html_data::initialize_html_data(::html_data * phtmldata)
 }
 
 
-i64 html_data::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+i64 html_data::increment_reference_count()
 {
 
-   return ::object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+   return ::object::increment_reference_count();
 
 }
 
 
-i64 html_data::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+i64 html_data::decrement_reference_count()
 {
 
-   return ::object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+   return ::object::decrement_reference_count();
 
 }
 

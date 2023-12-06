@@ -118,7 +118,7 @@ static int ssl_tlsext_ticket_key_evp_cb(SSL* s, unsigned char key_name[16],
    ::sockets_bsd::tcp_socket *c = (::sockets_bsd::tcp_socket *) SSL_get_app_data2(s);
    ssl_ticket_key key;
    int is_current_key;
-   if (enc)   /* create memory_new session */
+   if (enc)   /* create new session */
    {
       if (current_session_key(c, &key))
       {
@@ -164,7 +164,7 @@ static int ssl_tlsext_ticket_key_cb(SSL *s, unsigned char key_name[16], unsigned
    ::sockets_bsd::tcp_socket *c = (::sockets_bsd::tcp_socket *) SSL_get_app_data2(s);
    ssl_ticket_key key;
    int is_current_key;
-   if (enc)   /* create memory_new session */
+   if (enc)   /* create new session */
    {
       if (current_session_key(c, &key))
       {
@@ -348,7 +348,7 @@ namespace sockets_bsd
 
       auto paddress2 = __Address(paddress);
       
-      auto paddressBind2 = __new(::networking_bsd::address);
+      auto paddressBind2 = __allocate< ::networking_bsd::address >();
 
       paddressBind2->set_family(paddress2->get_family());
 
@@ -420,7 +420,7 @@ namespace sockets_bsd
 
       ::pointer < ::networking_bsd::address > pnetworkingbsdaddressBind = paddressBind;
 
-      // if not, create memory_new connection
+      // if not, create new connection
       SOCKET s = CreateSocket(pnetworkingbsdaddress->get_family(),SOCK_STREAM,"tcp");
 
       if(s == INVALID_SOCKET)
@@ -623,7 +623,7 @@ namespace sockets_bsd
 
       ::pointer < ::networking_bsd::address > pnetworkingbsdaddress = paddress;
 
-      auto paddressLocal = __new(::networking_bsd::address);
+      auto paddressLocal = __allocate< ::networking_bsd::address >();
 
       paddressLocal->set_family(pnetworkingbsdaddress->get_family());
 
@@ -1418,7 +1418,7 @@ namespace sockets_bsd
 
             }
 
-            m_obuf_top = __new(output(TCP_OUTPUT_CAPACITY));
+            m_obuf_top = __allocate< output >(TCP_OUTPUT_CAPACITY);
 
          }
 
@@ -2286,7 +2286,7 @@ namespace sockets_bsd
 
       ::pointer<ssl_client_context>psslclientcontext = clientcontextmap.get_context(context, pmethod);
 
-      m_psslcontext = __new(ssl_context());
+      m_psslcontext = __allocate< ssl_context >();
 
       m_psslcontext->m_pclientcontext = psslclientcontext;
 
@@ -2299,14 +2299,14 @@ namespace sockets_bsd
       if (m_psslcontext.is_null())
       {
 
-         m_psslcontext = __new(ssl_context());
+         m_psslcontext = __allocate< ssl_context >();
 
       }
 
       if (m_psslcontext->m_pclientcontext.is_null())
       {
 
-         m_psslcontext->m_pclientcontext = __new (ssl_client_context(meth_in != nullptr ? meth_in : TLS_server_method()));
+         m_psslcontext->m_pclientcontext = __allocate < ssl_client_context >(meth_in != nullptr ? meth_in : TLS_server_method());
 
          m_psslcontext->m_pclientcontext->initialize(m_pcontext);
 

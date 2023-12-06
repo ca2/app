@@ -45,8 +45,8 @@ namespace acme
 
       //m_bUserDarkMode = false;
 
-      m_bCallstackInitialized = false;
-      m_bUpdateCallstack = false;
+      m_bCallStackInitialized = false;
+      m_bUpdateCallStack = false;
 
       m_uNodeFlags = 0;
 
@@ -95,18 +95,18 @@ namespace acme
 #ifdef _DEBUG
 
 
-   i64 node::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
+   i64 node::increment_reference_count()
    {
 
-      return ::object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      return ::object::increment_reference_count();
 
    }
 
 
-   i64 node::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
+   i64 node::decrement_reference_count()
    {
 
-      return ::object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      return ::object::decrement_reference_count();
 
    }
 
@@ -295,71 +295,79 @@ namespace acme
    //}
 
 
-   void node::node_main()
+   void node::node_implement_main()
    {
-      
+
       //m_pparticleQuit = create_quit_particle(pnode);
 
       auto psystem = system();
 
-      if(psystem->m_pfnImplement || psystem->m_pacmeapplication->is_console())
+      psystem->init_task();
+
+      if (psystem->m_pacmeapplication->m_bSession)
       {
-         
-         psystem->init_task();
 
-         if (psystem->m_pacmeapplication->m_bSession)
-         {
+         psystem->m_pacmesession->init_task();
 
-            psystem->m_pacmesession->init_task();
-
-         }
-
-         psystem->m_pacmeapplication->init_task();
-
-         if(psystem->m_pfnImplement)
-         {
-            
-            (*psystem->m_pfnImplement)(psystem);
-            
-         }
-         else
-         {
-
-            auto prequest = __create_new < ::request >();
-
-            prequest->initialize_command_line2(platform()->m_strCommandLine);
-
-            psystem->m_pacmeapplication->get_property_set().merge(prequest->get_property_set());
-            
-            psystem->m_pacmeapplication->main();
-            
-         }
-
-         psystem->m_pnode.release();
-         
-         return;
-         
       }
-      
-      //acme_application_main(pApplication, argc, argv);
-      
-      acme_application_main(psystem);
-      
-      //return psystem->m_estatus;
-      
 
-      //auto estatus =
-      
-      //::acme::apple::node::implement(pnode, psystem);
+      psystem->m_pacmeapplication->init_task();
 
-   //         if(!estatus)
-   //         {
-   //
-   //            return estatus;
-   //
-   //         }
-   //
-   //         return estatus;
+      if (psystem->m_pfnImplement)
+      {
+
+         (*psystem->m_pfnImplement)(psystem);
+
+      }
+      else
+      {
+
+         auto prequest = __create_new < ::request >();
+
+         prequest->initialize_command_line2(platform()->m_strCommandLine);
+
+         psystem->m_pacmeapplication->get_property_set().merge(prequest->get_property_set());
+
+         psystem->m_pacmeapplication->main();
+
+      }
+
+      psystem->m_pnode.release();
+
+   }
+
+
+   void node::node_main()
+   {
+
+      auto psystem = system();
+
+      if (psystem->m_pfnImplement || psystem->m_pacmeapplication->is_console())
+      {
+
+         node_implement_main();
+
+      }
+
+      on_start_system();
+
+      on_system_main();
+
+   }
+
+
+   void node::on_start_system()
+   {
+
+      system()->defer_post_initial_request();
+
+   }
+
+
+   void node::on_system_main()
+   {
+
+      system()->main();
 
    }
 
@@ -506,7 +514,7 @@ namespace acme
    void node::system_main()
    {
 
-      /* auto estatus =*/ system()->main();
+      /* auto estatus =*/ system()->canonical_system_main();
 
       //g_psystem->m_bIsReadyForUserInteraction = true;
       //if(!estatus)
@@ -644,7 +652,7 @@ namespace acme
    }
 
 
-   //__new(::pointer < ::mutex >(this, false, "Local\\ca2-appmatter")
+   //__allocate < ::pointer < ::mutex > >(this, false, "Local\\ca2-appmatter")
 
    ::pointer < ::mutex > node::create_local_named_mutex(::particle * pparticleContext, bool bInitialOwner, const ::string & strName, security_attributes * psecurityattributes)
    {
@@ -685,7 +693,7 @@ namespace acme
 
       return open_global_named_mutex(pparticleContext, strName);
 
-   //__new(::install::pointer < ::mutex >(this, process_platform_name())
+   //__allocate< ::install::pointer < ::mutex > >(this, process_platform_name()
 
    }
 
@@ -1024,13 +1032,13 @@ namespace acme
       if (m_bDarkMode)
       {
 
-         ::informationf("background_color :: Dark\n");
+         ::acme::get()->platform()->informationf("background_color :: Dark\n");
 
       }
       else
       {
 
-         ::informationf("background_color :: Lite\n");
+         ::acme::get()->platform()->informationf("background_color :: Lite\n");
 
       }
 
@@ -1241,7 +1249,7 @@ namespace acme
 //      CLASS_DECL_ACME bool main_synchronous(const class time & time, const ::procedure & function)
 //      {
 
-         auto pevent = __new(manual_reset_event);
+         auto pevent = __allocate< manual_reset_event >();
 
          user_post([ procedure, pevent ]
                            {
@@ -2241,14 +2249,6 @@ return false;
    }
 
 
-   void node::on_start_system()
-   {
-
-      //return ::success;
-
-   }
-
-
    void node::create_app_shortcut(::acme::application * papp)
    {
 
@@ -2269,7 +2269,7 @@ return false;
    ::pointer<::conversation>node::create_new_message_box_conversation()
    {
 
-      initialize_nano_window();
+      initialize_nano_window(factory());
 
       return __create_new < ::nano_message_box >();
 
@@ -2338,7 +2338,7 @@ return false;
     void node::add_application_capability(const ::enum_application_capability_array& ecapabilitya)
     {
 
-       m_eapplicationcapabilitya.add_unique(ecapabilitya);
+       m_eapplicationcapabilitya.append_unique(ecapabilitya);
 
        on_change_application_capability();
 

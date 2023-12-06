@@ -1,6 +1,6 @@
 #include "framework.h"
-
 #include "acme/constant/id.h"
+#include "acme/handler/topic.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "style.h"
@@ -15,10 +15,6 @@ namespace user
    style::style()
    {
 
-      m_puserstyle = this;
-      m_pgraphics = nullptr;
-
-      default_style_construct();
 
    }
 
@@ -55,6 +51,11 @@ namespace user
       //auto estatus = 
       
       style_base::initialize(pparticle);
+      default_style_construct();
+
+
+      m_puserstyle = this;
+
 
       //if (!estatus)
       //{
@@ -79,6 +80,39 @@ namespace user
       }
 
       //return estatus;
+
+   }
+
+
+   void style::destroy()
+   {
+
+      m_controlstyle.clear();
+      m_puserstyle.release();
+      m_pfactory.release();
+
+      m_pfont.release();
+      m_pfontMenu.release();
+      m_pfontButton.release();
+      m_pfontList.release();
+      m_pfontTree.release();
+      m_pfontStill.release();
+      m_pfontEdit.release();
+      m_pfontCombo.release();
+
+      m_ppenFocusRect.release();
+      m_ppenFocusRect0.release();
+      m_ppenFocusRect1.release();
+      m_ppenFocusRect2.release();
+      m_ppenFocusRect3.release();
+      m_ppenFocusRect4.release();
+      m_ppenFocusRect5.release();
+      m_ppenFocusRect6.release();
+      m_ppenFocusRect7.release();
+      m_ppenFocusRect8.release();
+      m_ppenFocusRect9.release();
+
+      style_base::destroy();
 
    }
 
@@ -394,7 +428,7 @@ namespace user
                   if (!ppen)
                   {
 
-                     ppen.create(this);
+                     __construct(ppen);
 
                      ppen->create_solid(1.0, bError ? argb(195, 255, 130, 120) : bHover ? argb(220, 120, 190, 255) : argb(220, 150, 190, 235));
 
@@ -416,7 +450,7 @@ namespace user
                   if (!ppen)
                   {
 
-                     ppen.create(this);
+                     __construct(ppen);
 
                      ppen->create_solid(1.0, bError ? argb(155, 255, 150, 140) : bHover ? argb(200, 140, 200, 255) : argb(200, 150, 210, 235));
 
@@ -455,7 +489,7 @@ namespace user
                   if (!ppen)
                   {
 
-                     ppen.create(this);
+                     __construct(ppen);
 
                      ppen->create_solid(1.0, bError ? argb(135, 255, 170, 160) : bHover ? argb(160, 160, 210, 255) : argb(160, 180, 220, 255));
 
@@ -698,7 +732,7 @@ namespace user
                   if (!ppen)
                   {
 
-                     ppen.create(this);
+                     __construct(ppen);
 
                      ppen->create_solid(1.0, bError ? argb(195, 255, 130, 120) : bHover ? argb(220, 120, 190, 255) : argb(220, 150, 190, 235));
 
@@ -720,7 +754,7 @@ namespace user
                   if (!ppen)
                   {
 
-                     ppen.create(this);
+                     __construct(ppen);
 
                      ppen->create_solid(1.0, bError ? argb(155, 255, 150, 140) : bHover ? argb(200, 140, 200, 255) : argb(200, 150, 210, 235));
 
@@ -759,7 +793,7 @@ namespace user
                   if (!ppen)
                   {
 
-                     ppen.create(this);
+                     __construct(ppen);
 
                      ppen->create_solid(1.0, bError ? argb(135, 255, 170, 160) : bHover ? argb(160, 160, 210, 255) : argb(160, 180, 220, 255));
 
@@ -1003,7 +1037,7 @@ namespace user
    //   if (userstyle()->m_mapColor.is_null())
    //   {
 
-   //      userstyle()->m_mapColor = __new(color_map);
+   //      userstyle()->m_mapColor = __allocate< color_map >();
 
    //   }
 
@@ -1020,7 +1054,7 @@ namespace user
   //    if (userstyle()->m_mapFont.is_null())
   //    {
 
-  //       userstyle()->m_mapFont = __new(font_map);
+  //       userstyle()->m_mapFont = __allocate< font_map >();
 
   //    }
 
@@ -1106,7 +1140,7 @@ namespace user
    //   if (userstyle()->m_mapTranslucency.is_null())
    //   {
 
-   //      userstyle()->m_mapTranslucency = __new(translucency_map);
+   //      userstyle()->m_mapTranslucency = __allocate< translucency_map >();
 
    //   }
 
@@ -1123,7 +1157,7 @@ namespace user
    //   if (userstyle()->m_mapFlag.is_null())
    //   {
 
-   //      userstyle()->m_mapFlag = __new(translucency_map);
+   //      userstyle()->m_mapFlag = __allocate< translucency_map >();
 
    //   }
 
@@ -1188,7 +1222,7 @@ namespace user
    //   if (userstyle()->m_mapRect.is_null())
    //   {
 
-   //      userstyle()->m_mapRect = __new(rect_map);
+   //      userstyle()->m_mapRect = __allocate< rect_map >();
 
    //   }
 
@@ -1221,7 +1255,7 @@ namespace user
    //   if (userstyle()->m_mapInt.is_null())
    //   {
 
-   //      userstyle()->m_mapInt = __new(::user::i32_map);
+   //      userstyle()->m_mapInt = __allocate< ::user::i32_map >();
 
    //   }
 
@@ -1238,7 +1272,7 @@ namespace user
    //   if (userstyle()->m_mapDouble.is_null())
    //   {
 
-   //      userstyle()->m_mapDouble = __new(::user::double_map);
+   //      userstyle()->m_mapDouble = __allocate< ::user::double_map >();
 
    //   }
 
@@ -1550,7 +1584,7 @@ namespace user
    //      if (spuserstyle.is_null())
    //      {
 
-   //         spuserstyle = __new(style(this));
+   //         spuserstyle = __allocate< style >(this);
 
    //      }
 

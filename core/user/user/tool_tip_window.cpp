@@ -4,7 +4,7 @@
 #include "acme/constant/message.h"
 #include "acme/constant/timer.h"
 #include "acme/exception/interface_only.h"
-#include "acme/primitive/geometry2d/_random.h"
+#include "acme/primitive/geometry2d/geometry.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/windowing/windowing.h"
 #include "aura/windowing/display.h"
@@ -373,7 +373,7 @@ namespace user
 
    //   m_pfont->create_point_font(pnode->font_name(e_font_sans), 10.0);
 
-   //   auto pusersystem = __new(::user::system);
+   //   auto pusersystem = __allocate< ::user::system >();
 
    //   return create_window_ex(pusersystem, nullptr, atom) != 0;
 
@@ -660,7 +660,7 @@ namespace user
          
          ::geometry::deflate(rectangle, 0.5, 0.0, 0.0, 0.5);
 
-         point =  random_point(rectangle);
+         point = system()->geometry()->random_point(rectangle);
 
          break;
       default:

@@ -83,7 +83,7 @@ namespace nano2d
    void draw2d_context::_create_new_state()
    {
 
-      m_pstate = __new(state(m_pgraphics));
+      m_pstate = __allocate< state >(m_pgraphics);
 
       m_pstate->initialize(m_pgraphics);
 

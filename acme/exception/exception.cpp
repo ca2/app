@@ -1,7 +1,7 @@
 // added error_code::get_string by camilo on 2022-09-29 22:10 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 //#include "exception.h"
-#include "callstack.h"
+//#include "callstack.h"
 //#include "acme/primitive/string/as_string.h"
 #include "acme/filesystem/file/exception.h"
 #include "acme/operating_system/process.h"
@@ -33,7 +33,7 @@ exception(estatus, {::error_code(e_error_code_type_unknown, 0)}, pszMessage, psz
 
 
 //#else
-exception::exception(const ::e_status & estatus, const ::array < error_code > & errorcodea, const char * pszMessage, const char * pszDetails, i32 iSkip, void * caller_address):
+exception::exception(const ::e_status & estatus, const ::array_non_particle < error_code > & errorcodea, const char * pszMessage, const char * pszDetails, i32 iSkip, void * caller_address):
 m_errorcodea(errorcodea)
 //#endif
 {
@@ -68,7 +68,7 @@ m_errorcodea(errorcodea)
          if(pnode)
          {
 
-            m_strCallstack = pnode->get_callstack(callstack_default_format(), iSkip, caller_address);
+            m_strCallStackTrace = pnode->get_call_stack_trace(call_stack_default_format(), iSkip, caller_address);
 
          }
 
@@ -80,7 +80,7 @@ m_errorcodea(errorcodea)
 
 #endif
 
-   m_bDumpBackTrace = true;
+   m_bDumpCallStackTrace = true;
 
    m_estatus.defer_failed(error_exception);
 
@@ -140,7 +140,7 @@ string exception::get_consolidated_details() const
    
    strConsolidatedDetails += "\n";
    
-   strConsolidatedDetails += m_strCallstack;
+   strConsolidatedDetails += m_strCallStackTrace;
 
    return strConsolidatedDetails;
 
@@ -455,10 +455,10 @@ CLASS_DECL_ACME void exception_message_box(::particle * pparticle, ::exception &
 
    }
 
-   if (exception.m_strCallstack.has_char())
+   if (exception.m_strCallStackTrace.has_char())
    {
 
-      strDetails += "\n\n" + string(exception.m_strCallstack);
+      strDetails += "\n\n" + string(exception.m_strCallStackTrace);
 
    }
 
@@ -506,16 +506,6 @@ CLASS_DECL_ACME void throw_todo()
 
 }
 
-
-
-
-
-CLASS_DECL_ACME const char * callstack_default_format()
-{ 
-   
-   return "%f(%l) %s\n"; 
-
-}
 
 
 CLASS_DECL_ACME void copy(::string& str, const ::exception& exception)

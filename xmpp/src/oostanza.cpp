@@ -55,7 +55,7 @@ Stanza::~Stanza()
 
 Stanza *Stanza::create(Context *ctx)
 {
-    return memory_new (ctx) Stanza(ctx);
+    return __new< (ctx) Stanza >(ctx);
 }
 
 void Stanza::release()

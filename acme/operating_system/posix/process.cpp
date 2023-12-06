@@ -83,7 +83,7 @@
 //
 //      wordexp(pszCommandLine, &we, 0);
 //
-//      char ** argv = memory_new char *[we.we_wordc+1];
+//      char ** argv = __new_array< char * >(we.we_wordc+1);
 //
 //      memcpy(argv, we.we_wordv, we.we_wordc * sizeof(char*));
 //
@@ -291,12 +291,12 @@ namespace acme
 critical_section * get_pid_cs()
 {
 
-   critical_section_lock cs(::platform::get()->globals_critical_section());
+   critical_section_lock cs(this->platform()->globals_critical_section());
 
    if(g_pcsPid2 == nullptr)
    {
 
-      g_pcsPid2 = memory_new critical_section();
+      g_pcsPid2 = __new< critical_section >();
 
    }
 

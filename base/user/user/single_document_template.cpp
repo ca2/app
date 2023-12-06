@@ -5,6 +5,7 @@
 #include "frame_window.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
+#include "acme/platform/scoped_restore.h"
 #include "acme/handler/request.h"
 #include "apex/platform/application.h"
 #include "aura/user/user/wait_cursor.h"
@@ -32,6 +33,17 @@ namespace user
          warning()(e_trace_category_appmsg) << "Warning: destroying single_document_template with live ::user::document.";
 #endif
    }
+
+
+   void single_document_template::destroy()
+   {
+
+      m_pdocument.release();
+
+      ::user::impact_system::destroy();
+
+   }
+
 
    ::count single_document_template::get_document_count() const
    {
@@ -80,9 +92,42 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
    // single_document_template commands
 
-   // if lpszPathName == nullptr => create memory_new file of this type
+   // if lpszPathName == nullptr => create new file of this type
    void single_document_template::on_request(::request * prequest)
    {
+
+      prequest->m_countStack++;
+
+      at_end_of_scope
+      {
+
+         prequest->m_countStack--;
+
+      if (prequest->m_countStack <= 0)
+      {
+
+         for (auto & procedure : prequest->m_procedureaOnFinishRequest)
+         {
+
+            try
+            {
+
+               procedure();
+
+            }
+            catch (...)
+            {
+
+
+            }
+
+         }
+
+         prequest->m_procedureaOnFinishRequest.clear();
+      };
+
+      };
+
 
       if (prequest->m_atom.is_null())
       {
@@ -155,7 +200,7 @@ namespace user
       else
       {
          
-         // create a memory_new ::user::document
+         // create a new ::user::document
          pdocument = create_new_document(prequest);
          
          ASSERT(pframe == nullptr);     // will be created below
@@ -248,7 +293,7 @@ namespace user
       if (payloadFile.is_empty() || payloadFile.is_numeric())
       {
 
-         // create a memory_new ::user::document
+         // create a new ::user::document
          set_default_title(pdocument);
 
          // avoid creating temporary compound file when starting up invisible
@@ -407,7 +452,7 @@ namespace user
 //      if (payloadFile.is_empty() || payloadFile.is_numeric())
 //      {
 //
-//         // create a memory_new ::user::document
+//         // create a new ::user::document
 //         set_default_title(pdocument);
 //
 //         // avoid creating temporary compound file when starting up invisible

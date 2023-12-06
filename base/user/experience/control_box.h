@@ -91,10 +91,13 @@ namespace experience
       DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
       DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
       DECLARE_MESSAGE_HANDLER(on_message_mouse_leave);
-      void _001OnTimer(::timer * ptimer) override;
       DECLARE_MESSAGE_HANDLER(on_message_create);
+      DECLARE_MESSAGE_HANDLER(on_message_destroy);
       DECLARE_MESSAGE_HANDLER(on_message_move);
       DECLARE_MESSAGE_HANDLER(on_message_size);
+
+
+      void _001OnTimer(::timer * ptimer) override;
 
       void on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics) override;
 
@@ -123,6 +126,7 @@ namespace experience
       virtual bool has_button(enum_button ebutton) const;
       virtual bool hide_button(enum_button ebutton, bool bHide = true);
       virtual bool create_buttons();
+      virtual void destroy_buttons();
       virtual bool update_control_box_button(enum_button ebutton);
       virtual void update_control_box_buttons();
       virtual bool create_button(enum_button ebutton);

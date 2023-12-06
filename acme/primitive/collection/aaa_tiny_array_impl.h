@@ -20,7 +20,7 @@ void tiny_array < TYPE > ::allocate(::i32 iCount)
       if (m_iAllocation <= 0)
       {
 
-         auto p = (TYPE *) memory_allocate(sizeof(TYPE) * iCount);
+         auto p = (TYPE *) ::heap::management::memory(::heap::e_memory_main)->allocate(sizeof(TYPE) * iCount);
 
          ::zero(p, sizeof(TYPE) * iCount);
 
@@ -63,7 +63,7 @@ void tiny_array < TYPE > ::free()
    if (m_iAllocation > 0)
    {
 
-      memory_free(m_p);
+      ::heap::management::memory(::heap::e_memory_main)->free(m_p);
 
    }
 

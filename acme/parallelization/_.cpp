@@ -30,11 +30,11 @@ namespace parallelization
    //CLASS_DECL_ACME void init_multitasking()
    //{
 
-   //   //s_pcs2 = memory_new critical_section();
+   //   //s_pcs2 = __new< critical_section >();
 
-   //   //s_piaThread2 = memory_new comparable_eq_array<itask_t>;
+   //   //s_piaThread2 = aaa_memory_new comparable_eq_array<itask_t>;
 
-   //   //s_pthreadptra2 = memory_new pointer_array < thread >;
+   //   //s_pthreadptra2 = aaa_memory_new pointer_array < thread >;
 
    //   __node_init_multitasking();
 
@@ -685,7 +685,7 @@ void run_runnable(::matter * pmatter)
 //}
 
 
-thread_local ::task * t_ptask;
+thread_local ::pointer < ::task > t_ptask;
 
 
 CLASS_DECL_ACME ::task * _get_task()
@@ -702,7 +702,7 @@ CLASS_DECL_ACME ::task * get_task()
    if (!t_ptask)
    {
 
-      auto pplatform =  ::platform::get();
+      auto pplatform = ::acme::get()->platform();
 
       if(::is_set(pplatform))
       {
@@ -712,7 +712,7 @@ CLASS_DECL_ACME ::task * get_task()
          if(::is_set(psystem))
          {
 
-            t_ptask = new ::task();
+            t_ptask = { transfer_t{}, new ::task() };
 
             t_ptask->initialize(pplatform->system());
 
@@ -743,12 +743,15 @@ CLASS_DECL_ACME ::task * get_task()
 //}
 
 
-CLASS_DECL_ACME void set_task(task * ptask OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+CLASS_DECL_ACME void set_task(task * ptask)
 {
 
    auto ptaskOld = t_ptask;
+#if REFERENCING_DEBUGGING
 
-   ::increment_reference_count(ptask);
+   ::allocator::add_referer({ ::acme::get()->platform(), __FUNCTION_FILE_LINE__ });
+#endif
+   //::increment_reference_count(ptask);
 
    t_ptask = ptask;
 
@@ -766,14 +769,16 @@ CLASS_DECL_ACME void set_task(task * ptask OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PA
 }
 
 
-CLASS_DECL_ACME void task_release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+CLASS_DECL_ACME void task_release()
 {
 
-   auto ptask = t_ptask;
+   //auto ptask = t_ptask;
 
-   t_ptask = nullptr;
+   //t_ptask = nullptr;
 
-   ::release(t_ptask);
+   //::release(ptask);
+
+   t_ptask.release();
 
 }
 
@@ -839,7 +844,7 @@ thread_local payload t_payloada[e_task_payload_count];
 //CLASS_DECL_ACME bool main_synchronous(const class time & time, const ::procedure & function)
 //{
 //
-//   auto pevent = __new(manual_reset_event);
+//   auto pevent = __allocate< manual_reset_event >();
 //
 //   main_asynchronous([ function, &pevent ]
 //   {

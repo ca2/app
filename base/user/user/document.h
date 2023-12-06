@@ -1,10 +1,12 @@
 #pragma once
 
 
-//#include "acme/primitive/collection/pointer_array.h"
+
 #include "acme/primitive/data/container.h"
-#include "aqua/user/controller.h"
+#include "acme/user/user/controller.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "apex/handler/manager.h"
+#include "apex/message/channel.h"
 
 
 namespace user
@@ -13,6 +15,8 @@ namespace user
 
    class CLASS_DECL_BASE document :
       virtual public ::user::controller,
+      virtual public ::channel,
+      virtual public ::manager,
       virtual public ::data::data_container_base
    {
    public:
@@ -29,14 +33,14 @@ namespace user
       bool                                m_bNew;
       bool                                m_bCustomOpen;
 
-      ::pointer<::user::impact_system>      m_pimpactsystem;
-      pointer_array < ::user::impact >        m_impacta;
-      ::user::impact *                          m_pviewTopic;
+      ::pointer<::user::impact_system>    m_pimpactsystem;
+      pointer_array < ::user::impact >    m_impacta;
+      ::pointer < ::user::impact >        m_pimpactTopic;
 
       bool                                m_bAutoSaveModified;
 
       string                              m_strSaveFileExtension;
-      atom_map < ::procedure_array >          m_mapRoutine;
+      atom_map < ::procedure_array >      m_mapRoutine;
       bool                                m_bToolbar;
       ::pointer < ::data::data >          m_pdataIncoming;
 
@@ -45,8 +49,8 @@ namespace user
       ~document() override;
 
 
-      //void dump(dump_context &) const override;
-      // void assert_ok() const override;
+      void destroy() override;
+
 
       ::pointer < ::data::data > create_data(const ::atom & atom) override;
 
@@ -267,9 +271,9 @@ namespace user
       //};
 
       // Update Impacts (simple update - DAG only)
-      void id_update_all_impacts(const ::atom & atom);
-      void update_all_impacts(impact * pimpact, const ::atom & atom);
-      virtual void update_all_impacts(::topic * ptopic);
+      void id_update_all_impacts(const ::atom & atom) override;
+      virtual void update_all_impacts(impact * pimpact, const ::atom & atom);
+      virtual void update_all_impacts(::topic * ptopic) override;
 
 
       void handle(::topic * ptopic, ::context * pcontext) override;
@@ -289,6 +293,8 @@ namespace user
       virtual bool defer_save_document();
 
       // File helpers
+      virtual bool open_data(::data::data * pdata);
+      virtual bool on_open_data(::data::data * pdata);
       virtual bool on_new_document();
       virtual bool on_open_document(const ::payload & payloadFile);
       virtual bool on_open_document(::file::file * pfile);

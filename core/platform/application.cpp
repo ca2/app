@@ -9,6 +9,7 @@
 #include "aura/user/user/check_box.h"
 #include "aura/user/user/still.h"
 #include "axis/user/user/line_layout.h"
+#include "core/filesystem/filemanager/filemanager.h"
 #include "core/user/user/user.h"
 #include "core/user/userex/progress.h"
 #include "core/user/userex/pane_tab_impact.h"
@@ -222,6 +223,25 @@ namespace core
       strOptionsHtml += "</html>";
 
       return strOptionsHtml;
+
+   }
+
+
+   ::filemanager::filemanager * application::filemanager() const
+   {
+
+      auto & pfilemanager = ((application *)this)->m_pfilemanager;
+
+      if (!pfilemanager)
+      {
+
+         ((application *)this)->__construct_new(pfilemanager);
+
+         pfilemanager->initialize_filemanager_component(((application *)this));
+
+      }
+
+      return pfilemanager;
 
    }
 

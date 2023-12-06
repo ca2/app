@@ -73,6 +73,8 @@ namespace user
 
       m_bUpdatingScreen = false;
 
+      m_eventReady.SetEvent();
+
 //#ifdef UNIVERSAL_WINDOWS
 //      m_bExclusiveMode = true;
 //#else
@@ -95,26 +97,26 @@ namespace user
 #ifdef _DEBUG
 
 
-   i64 graphics_thread::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+   i64 graphics_thread::increment_reference_count()
    {
 
-      return ::thread::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      return ::thread::increment_reference_count();
 
    }
 
 
-   i64 graphics_thread::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+   i64 graphics_thread::decrement_reference_count()
    {
 
-      return ::thread::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      return ::thread::decrement_reference_count();
 
    }
 
 
-   i64 graphics_thread::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+   i64 graphics_thread::release()
    {
 
-      return ::thread::release(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      return ::thread::release();
 
    }
 
@@ -273,7 +275,15 @@ namespace user
    void graphics_thread::run()
    {
 
+      string strType = ::type(m_puserinteraction).name();
+
+      ::task_set_name("graphics_thread," + strType);
+
+
+
       //m_pimpl->m_puserinteraction->task_add(this);
+
+      m_eventReady.wait();
 
       m_synchronizationa.add(&m_evUpdateScreen);
 
@@ -289,10 +299,6 @@ namespace user
          m_synchronizationa.add(&get_message_queue()->m_eventNewMessage);
 
       }
-
-      string strType = ::type(m_puserinteraction).name();
-
-      ::task_set_name("graphics_thread," + strType);
 
 //      if (strType.case_insensitive_contains("list_box"))
 //      {
@@ -641,7 +647,7 @@ namespace user
 //
 //      }
 //
-//      m_procedureUpdateScreen.m_pbase.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
+//      m_procedureUpdateScreen.m_pbase.release();
 
 //      if (m_procedureWindowShow)
 //      {
@@ -650,7 +656,7 @@ namespace user
 //
 //      }
 //
-//      m_procedureWindowShow.m_pbase.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
+//      m_procedureWindowShow.m_pbase.release();
 
    }
 
@@ -660,9 +666,9 @@ namespace user
 
       m_evUpdateScreen.SetEvent();
 
-      m_puserinteraction.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
+      m_puserinteraction.release();
 
-      m_pimpl.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
+      m_pimpl.release();
 
       m_synchronizationa.clear();
 
@@ -760,7 +766,7 @@ namespace user
 
          //i64 i2 = get_nanos();
 
-         // calculates the next/memory_new frame atom
+         // calculates the next/aaa_memory_new frame atom
          //m_iFrameId = (m_timeNow + timeFrame - 1) / (timeFrame);
 
          //m_timeNextFrame = m_iFrameId * timeFrame;

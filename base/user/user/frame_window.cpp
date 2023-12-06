@@ -10,6 +10,7 @@
 #include "acme/constant/simple_command.h"
 #include "acme/constant/user_key.h"
 #include "acme/handler/request.h"
+#include "acme/handler/topic.h"
 #include "acme/exception/interface_only.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/dir_context.h"
@@ -538,7 +539,7 @@ namespace user
 
                   //auto pparticleSynchronization = pimpl->m_pgraphics->get_draw_lock();
 
-                  auto pbufferitem = pimpl->m_pgraphics->on_begin_draw(e_graphics_draw);
+                  auto pbufferitem = pimpl->m_pgraphicsgraphics->on_begin_draw(e_graphics_draw);
 
                   synchronous_lock synchronouslock(pbufferitem->m_pmutex);
 
@@ -669,7 +670,7 @@ namespace user
       if (!m_bHelpMode)
       return;
 
-      // only post memory_new WM_EXITHELPMODE message if one doesn't already exist
+      // only post new WM_EXITHELPMODE message if one doesn't already exist
       //  in the queue.
       MESSAGE msg;
       if (!::PeekMessage(&msg, get_handle(), WM_EXITHELPMODE, WM_EXITHELPMODE,
@@ -944,7 +945,7 @@ namespace user
 
    //   m_strFrameTitle = pszWindowName;    // save title for later
 
-   //   auto pusersystem = __new(::user::system (dwExStyle, pszClassName, pszWindowName, uStyle, rectangle, pcreate));
+   //   auto pusersystem = __allocate< ::user::system  >(dwExStyle, pszClassName, pszWindowName, uStyle, rectangle, pcreate);
 
    //   if (!::user::interaction::create_window_ex(pusersystem, puiParent, pcreate->m_atom))
    //   {
@@ -1160,7 +1161,7 @@ namespace user
 
       //informationf("\nm_bLayoutEnable false");
 
-      //auto pusersystem = __new(::user::system (0L, nullptr, m_strFrameTitle, dwDefaultStyle, rectangleFrame, pcreate));
+      //auto pusersystem = __allocate< ::user::system  >(0L, nullptr, m_strFrameTitle, dwDefaultStyle, rectangleFrame, pcreate);
 
       //if (!create_window_ex(pusersystem, puiParent, pcreate->m_atom))
       //{
@@ -1326,26 +1327,46 @@ namespace user
 
    }
 
-   if (pusersystem->m_prequest->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_screen)
+   if (::is_set(get_parent()))
    {
 
-      initial_frame_display();
-
-      //if(pusersystem->m_prequest->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_screen)
+      if (pusersystem->m_prequest->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_screen)
       {
 
-         if(!const_layout().sketch().is_screen_visible())
+         display();
+
+      }
+
+   }
+   else
+   {
+
+      if (pusersystem->m_prequest->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_screen)
+      {
+
+         initial_frame_display();
+
+         //if(pusersystem->m_prequest->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_screen)
          {
 
-            information() << "LoadFrame sketch !is_screen_visible going to display_normal (1)";
+            if (!const_layout().sketch().is_screen_visible())
+            {
 
-            display_normal(e_display_normal, e_activation_set_foreground);
+               information() << "LoadFrame sketch !is_screen_visible going to display_normal (1)";
+
+               display_normal(e_display_normal, e_activation_set_foreground);
+
+            }
 
          }
 
       }
 
    }
+
+   m_bNeedPerformLayout = true;
+
+   set_need_layout();
 
    if (puiParent)
    {
@@ -1779,7 +1800,7 @@ namespace user
       ////if (bStayActive)
       ////   pTopLevel->m_nFlags |= WF_STAYACTIVE;
 
-      //// synchronization floating windows to the memory_new state
+      //// synchronization floating windows to the new state
       //NotifyFloatingWindows(bStayActive ? FS_ACTIVATE : FS_DEACTIVATE);
 
       // get active ::user::impact (use active frame if no active ::user::impact)
@@ -2296,7 +2317,7 @@ namespace user
 
    //   }
 
-   //   m_nIDLastMessage = (::u32)wParam;    // memory_new ID (or 0)
+   //   m_nIDLastMessage = (::u32)wParam;    // __new< ID  >(or 0)
 
    //   m_nIDTracking = (::u32)wParam;       // so F1 on toolbar buttons work
 
@@ -2934,13 +2955,13 @@ namespace user
 //      if (type.name().contains("app_veriwell_keyboard") && type.name().contains("main_frame"))
 //      {
 //
-//         //::informationf("app_veriwell_keyboard::main_frame");
+//         //::acme::get()->platform()->informationf("app_veriwell_keyboard::main_frame");
 //
 //      }
 //      else if(type.name().contains("simple_child_frame"))
 //      {
 //
-//         //::informationf("simple_child_frame");
+//         //::acme::get()->platform()->informationf("simple_child_frame");
 //
 //      }
 //

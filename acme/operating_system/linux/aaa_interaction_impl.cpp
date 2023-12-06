@@ -315,7 +315,7 @@ namespace linux
             if(m_px11data.is_null())
             {
 
-               m_px11data = __new(x11data);
+               m_px11data = __allocate< x11data >();
 
             }
 
@@ -452,7 +452,7 @@ namespace linux
 
             m_puserinteraction->m_pimpl = this;
 
-            m_puserinteraction->increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_P_NOTE(this, "native_create_window"));
+            m_puserinteraction->increment_reference_count(REFERENCING_DEBUGGING_P_NOTE(this, "native_create_window"));
 
             auto papp = get_app();
 
@@ -1321,7 +1321,7 @@ namespace linux
    ::duration     tickLastPaint;
 
 
-   void interaction_impl::message_handler(::user::message * pusermessage)
+   void interaction_impl::aaa_message_handler(::user::message * pusermessage)
    {
 
       if(pusermessage->m_atom == e_message_timer)
@@ -1347,7 +1347,7 @@ namespace linux
 
          g_iMouseMove++;
 
-         //informationf("linux::interaction_impl::message_handler e_message_mouse_move");
+         //informationf("linux::aaa_interaction_impl::message_handler e_message_mouse_move");
          //printf("g_iMouseMove = %d\n", g_iMouseMove);
 
       }
@@ -1375,7 +1375,7 @@ namespace linux
          if(iDebugmessage_handlerTime > 20)
          {
 
-            ::informationf("interaction_impl::message handler flooded?\n");
+            ::acme::get()->platform()->informationf("interaction_impl::message handler flooded?\n");
 
          }
          else
@@ -3225,7 +3225,7 @@ namespace linux
 
       UNREFERENCED_PARAMETER(bRedraw);
 
-      //ASSERT(::is_window((oswindow) get_handle())); m_pfont = memory_new ::write_text::font(*pfont);
+      //ASSERT(::is_window((oswindow) get_handle())); m_pfont = aaa_primitive_new ::write_text::font(*pfont);
 
    }
 

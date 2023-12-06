@@ -201,7 +201,7 @@ binary_stream & binary_stream::operator <<(const atom & atom)
    else if (atom.m_etype == ::atom::e_type_integer)
    {
 
-      operator <<(atom.m_i);
+      operator <<(atom.m_iLargest);
 
    }
    else if (atom.m_etype >= ::atom::e_type_property)
@@ -658,7 +658,7 @@ void binary_stream::read_payload_body(::payload & payload, enum_type etype)
 
       //__exchange_load_array(*this, (property_set &) payload);
 
-//#define memory_new ACME_NEW
+
 
    }
    break;

@@ -101,7 +101,7 @@ string get_callstack(const ::scoped_string & scopedstrFormat = callstack_default
 
    }
 
-   auto pcallstack = __new(callstack(pszFormat, (int)iSkip, caller_address, (int)iCount));
+   auto pcallstack = __allocate< callstack >(pszFormat, (int)iSkip, caller_address, (int)iCount);
 
    return pcallstack;
 

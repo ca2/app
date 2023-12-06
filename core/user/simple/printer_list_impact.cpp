@@ -99,9 +99,9 @@ bool simple_printer_list_impact::on_click(::item * pitem)
 
    ::pointer<::user::print_task>pprinttask;
 
-   pprinttask.create(this);
+   __construct(pprinttask);
 
-   pprinttask->increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
+   pprinttask->increment_reference_count();
 
    auto papp = get_app();
 

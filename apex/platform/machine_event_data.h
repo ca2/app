@@ -1,29 +1,31 @@
 #pragma once
 
-
-class CLASS_DECL_APEX blob
-{
-public:
-
-   memsize   m_sizet;
-   char *   m_pchData;
-
-
-   blob();
-   ~blob();
-   
-   void read(FILE * file);
-   void write(FILE * file);
-   
-   blob & operator = (const ::scoped_string & scopedstr);
-   
-   
-};
+//
+//class CLASS_DECL_APEX blob
+//{
+//public:
+//
+//   memsize   m_sizet;
+//   char *   m_pchData;
+//
+//
+//   blob();
+//   ~blob();
+//   
+//   void read(FILE * file);
+//   void write(FILE * file);
+//   
+//   blob & operator = (const ::scoped_string & scopedstr);
+//   
+//   
+//};
+//
 
 
 class CLASS_DECL_APEX machine_event_data
 {
 public:
+
    
    class CLASS_DECL_APEX fixed
    {
@@ -39,11 +41,12 @@ public:
    };
    
    
-   fixed    m_fixed;
-   blob     m_blobCommand;
+   fixed          m_fixed;
+   ::memory       m_memoryCommand;
 
-   void read(FILE * file);
-   void write(FILE * file);
+
+   void read(::file::readable * preadable);
+   void write(::file::writable * pwritable);
    
    
 };

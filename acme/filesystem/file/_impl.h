@@ -90,8 +90,8 @@
 ////inline binary_stream & binary_stream::operator >> (e_set_loading) { set_loading(); return *this; }
 //
 //
-////template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
-////binary_stream & binary_stream::operator << (const array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & a)
+////template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_etypeContainer >
+////binary_stream & binary_stream::operator << (const array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & a)
 ////{
 //
 ////   ::count c = a.get_count();
@@ -105,8 +105,8 @@
 ////}
 //
 //
-////template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
-////binary_stream & binary_stream::operator >> (array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & a)
+////template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_etypeContainer >
+////binary_stream & binary_stream::operator >> (array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & a)
 ////{
 //
 ////   ::count c = 0;
@@ -696,29 +696,29 @@
 //}
 //
 //
-//template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
-//inline void __exchange(::binary_stream & binary_stream, ::array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & array)
+//template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_etypeContainer >
+//inline void __exchange(::binary_stream & binary_stream, ::array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & array)
 //{
 //   __exchange_array(binary_stream, array);
 //}
 //
 //
-//template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
-//inline void __exchange(::binary_stream & binary_stream, ::raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & array)
+//template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_etypeContainer >
+//inline void __exchange(::binary_stream & binary_stream, ::raw_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & array)
 //{
 //   __exchange_array(binary_stream, array);
 //}
 //
 //
-//template < typename TYPE, ::enum_type m_etypeContainer >
-//inline void __exchange(::binary_stream & binary_stream, ::numeric_array < TYPE, m_etypeContainer > & array)
+//template < typename TYPE, ::enum_type t_etypeContainer >
+//inline void __exchange(::binary_stream & binary_stream, ::numeric_array < TYPE, t_etypeContainer > & array)
 //{
 //   __exchange_array(binary_stream, array);
 //}
 //
 //
-//template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-//inline void __exchange(::binary_stream & binary_stream, ::string_array_base < Type, RawType, m_etypeContainer > & array)
+//template < typename Type, typename RawType, ::enum_type t_etypeContainer >
+//inline void __exchange(::binary_stream & binary_stream, ::string_array_base < Type, RawType, t_etypeContainer > & array)
 //{
 //   __exchange_array(binary_stream, array);
 //}
@@ -743,7 +743,7 @@
 //}
 //
 //
-//inline payload_stream::payload_stream() : m_ppayload(memory_new ::payload) {}
+//inline payload_stream::payload_stream() : m_ppayload(aaa_memory_new ::payload) {}
 //inline payload_stream::payload_stream(::payload * pvar) : m_ppayload(pvar) {}
 //
 //inline ::payload & payload_stream::payload() { return *m_ppayload; }
@@ -751,7 +751,7 @@
 //
 ////void payload_stream::write_object(const ::atom & atom, ::atom & idFactory, ::particle * pparticle)
 ////{
-////   payload_stream binary_stream(memory_new ::payload(&payload()[atom].propset()));
+////   payload_stream binary_stream(__new< ::payload(&payload()[atom].propset >()));
 ////   binary_stream.exchange("", idFactory);
 ////   pparticle->exchange(binary_stream);
 ////}
@@ -759,7 +759,7 @@
 ////
 ////::pointer<::matter>payload_stream::read_object(const ::atom & atom)
 ////{
-////   payload_stream binary_stream(memory_new ::payload(&payload()[atom].propset()));
+////   payload_stream binary_stream(__new< ::payload(&payload()[atom].propset >()));
 ////   ::atom idFactory;
 ////   binary_stream.exchange("", idFactory);
 ////   auto pparticle = __id_create<::matter>(idFactory);

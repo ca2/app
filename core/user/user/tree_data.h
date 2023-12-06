@@ -17,7 +17,7 @@ namespace user
    {
    public:
       ::pointer<::data::tree_item>    m_pitem;
-      ::draw2d::graphics *             m_pdc;
+      ::pointer < ::draw2d::graphics >             m_pdc;
       index                            m_iItem;
       index                            m_iIndentation;
       double                           m_dItemHeight;

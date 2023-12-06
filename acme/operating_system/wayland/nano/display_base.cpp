@@ -885,7 +885,7 @@ namespace wayland
 
 //m_px11display = ::x11::display::get(this, false, px11displayGdk);
 
-// Using another memory_new and different X11 Display connection apart from Gtk.
+// Using another new and different X11 Display connection apart from Gtk.
 //m_px11display = ::x11::display::get(this, false);
 
 //if (::is_null(m_px11display))
@@ -1068,7 +1068,7 @@ namespace wayland
    ::wayland::nano_window_base * display_base::_get_keyboard_focus()
    {
 
-//      auto ppropertyobject = __new(::property_object);
+//      auto ppropertyobject = __allocate< ::property_object >();
 //
 //      auto predicate = [this, ppropertyobject]()
 //      {
@@ -1937,7 +1937,7 @@ namespace wayland
       if (s_pdisplaybase == nullptr)
       {
 
-         auto p = memory_new ::wayland::display;
+         auto p = __new< ::wayland::display >();
 
          p->initialize(pparticle);
 

@@ -80,7 +80,7 @@ public:
    //}
 
    //// streaming uses the ordering/sequence and versioning "to omit" the atom
-   //// reordering or adding/excluding members leads to memory_new format
+   //// reordering or adding/excluding members leads to new format
    //// up-to-date is the only readily-fastly-effortless safe one for streaming
    //// atom-value pairs are safe about reordering/adding/excluding members at most? scenarios
    //template < typename TYPE >

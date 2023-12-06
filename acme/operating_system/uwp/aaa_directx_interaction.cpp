@@ -101,7 +101,7 @@ namespace universal_windows
    ::user::interaction* create_host_window()
    {
 
-      return memory_new directx_interaction();
+      return aaa_primitive_new directx_interaction();
 
    }
 

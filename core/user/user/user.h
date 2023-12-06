@@ -2,7 +2,7 @@
 
 
 #include "base/user/user/user.h"
-#include "core/filesystem/filemanager/component.h"
+//#include "core/filesystem/filemanager/component.h"
 
 
 namespace core
@@ -10,18 +10,19 @@ namespace core
 
 
    class CLASS_DECL_CORE user :
-      virtual public ::base::user,
-      virtual public ::filemanager::component
+      virtual public ::base::user
+      //,
+      //virtual public ::filemanager::component
    {
    public:
 
 
 
-      ::user::impact_system *                      m_ptemplatePlaceHolder;
+      //::user::impact_system *                      m_ptemplatePlaceHolder;
 
 
 
-      ::user::multiple_document_template *         m_ptemplateProgress2;
+      //::user::multiple_document_template *         m_ptemplateProgress2;
 
 
       //map < ::type, ::user::impact_system * >      m_mapTemplate;
@@ -212,7 +213,7 @@ namespace core
       virtual void initialize(::particle * pparticle) override;
 
 
-      virtual bool do_prompt_file_name(::payload& payloadFile, string strTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument, const atom & atomFileManager = "file_manager_save");
+      //virtual bool do_prompt_file_name(::payload& payloadFile, string strTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument, const atom & atomFileManager = "file_manager_save");
 
 
       virtual void initialize_userex();

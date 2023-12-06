@@ -1,18 +1,19 @@
 #include "framework.h"
 #include "manager.h"
+#include "signal.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/node.h"
 #include "acme/platform/system.h"
-//#include "acme/primitive/collection/set.h"
+#include "acme/primitive/primitive/action_context.h"
 
 
-::critical_section manager::s_criticalsection;
+//::critical_section manager::s_criticalsection;
    
 
-::set<manager_pointer > manager::s_managerset;
+//::set<manager_pointer > manager::s_managerset;
 
 
-bool manager::s_bDestroyAll = false;
+//bool manager::s_bDestroyAll = false;
 
 
 manager::manager()
@@ -34,31 +35,70 @@ manager::~manager()
 //#error "manager::increment_reference_count is being compiled??"
 
 
-i64 manager::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+i64 manager::increment_reference_count()
 {
 
-   return ::property_object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+   return ::property_object::increment_reference_count();
 
 }
 
 
-i64 manager::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+i64 manager::decrement_reference_count()
 {
 
-   return ::property_object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+   return ::property_object::decrement_reference_count();
 
 }
 
 
-i64 manager::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+i64 manager::release()
 {
 
-   return ::property_object::release(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+   return ::property_object::release();
 
 }
 
 
 #endif
+
+#if REFERENCING_DEBUGGING
+
+CLASS_DECL_ACME void set_ThisDebug12321575();
+
+#endif
+
+void manager::destroy()
+{
+
+#if REFERENCING_DEBUGGING
+
+   ::string strType = ::type(this).name();
+
+   if (strType.contains("main_frame"))
+   {
+
+      set_ThisDebug12321575();
+
+      output_debug_string("");
+
+   }
+
+#endif
+
+   m_psignalmap.release();
+
+   ::object::destroy();
+
+
+}
+
+
+class ::signal * manager::get_signal(const ::atom & atom)
+{
+
+   return get_signal(atom, ::action_context());
+
+}
 
 
 class ::signal * manager::get_signal(const ::atom & atom, const ::action_context& actioncontext)
@@ -69,7 +109,7 @@ class ::signal * manager::get_signal(const ::atom & atom, const ::action_context
    if (!m_psignalmap)
    {
 
-      m_psignalmap = __new(signal_map);
+      m_psignalmap = __allocate< signal_map >();
 
    }
 
@@ -80,7 +120,7 @@ class ::signal * manager::get_signal(const ::atom & atom, const ::action_context
    if (!psignal)
    {
 
-      psignal = __new(class ::signal(atom, this));
+      psignal = __allocate< class ::signal >(atom, this);
 
       psignal->initialize(this);
 
@@ -204,13 +244,6 @@ void manager::add_signal_handler(const ::signal_handler& signalhandler, const ::
 //   }
 
 
-void manager::__s_erase_signal_handler_from_any_source(const ::signal_handler& signalhandler)
-{
-
-   ::manager::__s_erase_signal_handler(signalhandler);
-
-}
-
 
 //   void manager::deliver(const ::atom &atom)
 //   {
@@ -264,6 +297,14 @@ void manager::__s_erase_signal_handler_from_any_source(const ::signal_handler& s
 //      process(ptopic);
 //
 //   }
+
+
+void manager::signal(const ::atom & atom)
+{
+
+   signal(atom, {});
+
+}
 
    
 void manager::signal(const ::atom & atom, const ::action_context & actioncontext)
@@ -464,54 +505,9 @@ void manager::erase_signal_handler(const ::signal_handler::base * pbase)
 }
 
 
-void manager::__s_erase_signal_handler(const ::signal_handler& signalhandler)
-{
-
-   critical_section_lock synchronouslock(&s_criticalsection);
-
-   for (auto & passociation : s_managerset)
-   {
-
-      auto & pmanager = passociation.element();
-
-      pmanager->erase_signal_handler(signalhandler.m_pbase);
-
-   }
-
-}
-
-
-void manager::__s_post_destroy_signal_handling()
-{
-
-   s_bDestroyAll = true;
-
-}
-
-
-
-bool manager::__s_may_run_signal_handling()
-{
-
-   if (s_bDestroyAll)
-   {
-
-      return false;
-
-   }
-
-   if (!::task_get_run())
-   {
-
-      return false;
-
-   }
-
-   return true;
-
-}
 
 //} // namespace promise
+
 
 
 

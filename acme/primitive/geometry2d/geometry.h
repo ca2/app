@@ -1,8 +1,7 @@
 #pragma once
 
 
-//#include "acme/primitive/geometry2d/_geometry2d.h"
-
+#include "acme/primitive/mathematics/mathematics.h"
 
 
 namespace geometry
@@ -49,6 +48,30 @@ namespace geometry
 
       //void RandomPoint(::point_i32 * ppoint, const ::rectangle_i32 & rectangle);
       void deflate(::rectangle_i32 * prectangle, double dLeftRate, double dRightRate, double dTopRate, double dBottomRate);
+
+
+      template < primitive_rectangle RECTANGLE >
+      inline typename RECTANGLE::POINT_TYPE random_point(const RECTANGLE & r)
+      {
+
+         return { mathematics()->random(r.left(), r.right()), mathematics()->random(r.top(), r.bottom()) };
+
+      }
+
+
+      template < primitive_rectangle RECTANGLE >
+      inline typename RECTANGLE::POINT_TYPE random_point(const RECTANGLE & r, double dRate)
+      {
+
+         auto rectangle = r;
+
+         rectangle.rate(dRate);
+
+         return random_point(rectangle);
+
+      }
+
+
 
 
 

@@ -27,14 +27,14 @@ public:
 };
 
 
-template < class TYPE, class ARG_TYPE, class ALLOCATOR, ::enum_type m_etypeContainer >
+template < class TYPE, class ARG_TYPE, class ALLOCATOR, ::enum_type t_etypeContainer >
 class array_2d :
-   virtual public ::array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >
+   virtual public ::array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >
 {
 public:
 
 
-   using BASE_ARRAY = ::array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >;
+   using BASE_ARRAY = ::array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >;
    using row = ::row < TYPE, ARG_TYPE >;
 
 

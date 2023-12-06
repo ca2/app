@@ -31,25 +31,25 @@
             if(string(pszClass) == "experience")
             {
 
-               return memory_new experience(pparticle);
+               return __new< experience >(pparticle);
 
             }
             else if(string(pszClass) == "control_box")
             {
 
-               return memory_new control_box(pparticle);
+               return __new< control_box >(pparticle);
 
             }
             else if(string(pszClass) == "control_box_button")
             {
 
-               return memory_new button(pparticle);
+               return __new< button >(pparticle);
 
             }
             else if(string(pszClass) == "user_theme")
             {
 
-               return memory_new ::experience_lite::theme(pparticle);
+               return __new< ::experience_lite::theme >(pparticle);
 
             }
             else
@@ -78,7 +78,7 @@ extern "C"
 ::acme::library * experience_lite_get_new_library(::particle * pparticle)
 {
 
-   return memory_new ::user::experience::experience_lite::library(pparticle);
+   return __new< ::user::experience::experience_lite::library >(pparticle);
 
 }
 
@@ -89,7 +89,7 @@ extern "C"
 extern "C"
 ::acme::library * get_new_library(::particle * pparticle)
 {
-   return memory_new ::user::experience::experience_lite::library (pparticle);
+   return __new< ::user::experience::experience_lite::library  >(pparticle);
 }
 
 #endif

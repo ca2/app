@@ -14,7 +14,11 @@
 }
 
 
-CLASS_DECL_NETWORKING_BSD bool defer_initialize_operating_system_networking()
+namespace networking_bsd
+{
+
+
+bool networking::defer_initialize_operating_system_networking()
 {
 
    return true;
@@ -22,7 +26,7 @@ CLASS_DECL_NETWORKING_BSD bool defer_initialize_operating_system_networking()
 }
 
 
-CLASS_DECL_NETWORKING_BSD bool defer_finalize_operating_system_networking()
+bool networking::defer_finalize_operating_system_networking()
 {
 
 
@@ -30,6 +34,9 @@ CLASS_DECL_NETWORKING_BSD bool defer_finalize_operating_system_networking()
    return true;
 
 }
+
+
+} // namespace networking_bsd
 
 
 string bsd_socket_error(int iBsdSocketError)

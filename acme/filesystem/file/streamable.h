@@ -14,6 +14,8 @@ namespace file
    public:
 
 
+      virtual ~readable() {}
+
       virtual memsize read(void * p, ::memsize s);
 
       inline memsize read(const ::block & block) { return read(block.data(), block.size()); }
@@ -27,6 +29,9 @@ namespace file
    class CLASS_DECL_ACME writable
    {
    public:
+
+
+      virtual ~writable() {}
 
 
       virtual void write(const void * p, ::memsize s);
@@ -46,6 +51,13 @@ namespace file
       virtual public writable
    {
    public:
+
+
+
+      streamable() {}
+
+
+      streamable(streamable && streamable) = delete;
 
 
       virtual enum_status _open(const ::scoped_string & scopedstrFilePath, const ::file::enum_open & eopen);

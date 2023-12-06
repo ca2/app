@@ -13,7 +13,7 @@ public:
 
 
    bits() { m_natural = 0; }
-   bits(enum_no_initialize) {}
+   bits(no_initialize_t) {}
    bits(NATURAL n) : m_natural(n) { }
    bits(std::nullptr_t) { m_natural = 0; }
 

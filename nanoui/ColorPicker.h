@@ -33,7 +33,7 @@ namespace nanoui
       ::function<void(const ::color::color&)> m_callback;
 
       /**
-       * The callback to execute when a memory_new ::color::color is selected on the ColorWheel
+       * The callback to execute when a new ::color::color is selected on the ColorWheel
        * **and** the user clicks the \::pointer nanoui::ColorPicker::m_pick_button or
        * \::pointer nanoui::ColorPicker::m_reset_button.
        */
@@ -51,13 +51,13 @@ namespace nanoui
        * The ::color::color of this Button will not affect \::pointer nanoui::ColorPicker::color::color
        * until the user has actively selected by clicking this pick button.
        * Similarly, the \::pointer nanoui::ColorPicker::m_callback function is only
-       * called when a user selects a memory_new ::color::color using by clicking this Button.
+       * called when a user selects a new ::color::color using by clicking this Button.
        */
       Button* m_pick_button;
 
       /**
        * Remains the ::color::color of the active ::color::color selection, until the user picks a
-       * memory_new ::color::color on the ColorWheel **and** selects the
+       * new ::color::color on the ColorWheel **and** selects the
        * \::pointer nanoui::ColorPicker::m_pick_button.  The default value for the
        * caption of this Button is ``"Reset"``.  You can change it using
        * \::pointer nanoui::ColorPicker::set_reset_button_caption if you need.
@@ -93,14 +93,14 @@ namespace nanoui
       }
 
       /**
-       * The callback to execute when a memory_new ::color::color is selected on the ColorWheel
+       * The callback to execute when a new ::color::color is selected on the ColorWheel
        * **and** the user clicks the \::pointer nanoui::ColorPicker::m_pick_button or
        * \::pointer nanoui::ColorPicker::m_reset_button.
        */
       ::function<void(const ::color::color&)> final_callback() const { return m_final_callback; }
 
       /**
-       * The callback to execute when a memory_new ::color::color is selected on the ColorWheel
+       * The callback to execute when a new ::color::color is selected on the ColorWheel
        * **and** the user clicks the \::pointer nanoui::ColorPicker::m_pick_button or
        * \::pointer nanoui::ColorPicker::m_reset_button.
        */

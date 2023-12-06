@@ -66,7 +66,7 @@ void main_asynchronous(const ::procedure & procedure)
 
    };
 
-   auto psystem = ::platform::get()->system();
+   auto psystem = this->platform()->system();
 
    psystem->acmenode()->user_post(predicate);
 

@@ -2,6 +2,7 @@
 #include "home_impact.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
+#include "acme/handler/topic.h"
 #include "base/user/user/document.h"
 #include "aura/user/user/frame.h"
 #include "aura/message/user.h"
@@ -110,10 +111,10 @@ namespace userex
 
       pmessage->previous();
 
-      if (get_document()->m_pviewTopic == nullptr)
+      if (get_document()->m_pimpactTopic == nullptr)
       {
 
-         get_document()->m_pviewTopic = this;
+         get_document()->m_pimpactTopic = this;
 
       }
 

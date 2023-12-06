@@ -28,7 +28,7 @@ void message_box_synchronous(oswindow oswindow, const ::scoped_string & scopedst
    
    string strDetails(pszDetails);
 
-   auto pevent = __new(manual_reset_event);
+   auto pevent = __allocate< manual_reset_event >();
    
    auto eresult = (::enum_dialog_result) ui_MessageBoxA(strMessage, strHeader, emessagebox, strDetails, [function, pevent](enum_dialog_result eresult)
                                                         {

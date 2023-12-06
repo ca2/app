@@ -36,7 +36,7 @@ namespace sockets
       //::apexacmesystem()->math().random_bytes(m_baTicketKey, sizeof(m_baTicketKey));
 
 
-      //m_psslinit = memory_new ::sockets::SSLInitializer(this);
+      //m_psslinit = __new< ::sockets::SSLInitializer >(this);
 
       m_spnet = __create_new<::sockets::net>();
       //m_spnet.create(this);
@@ -68,7 +68,7 @@ namespace sockets
 
       //m_spportforward.create();
 
-      //m_pajpaxissocketinit = memory_new AjpBaseSocket::Initializer;
+      //m_pajpaxissocketinit = __new< AjpBaseSocket::Initializer >();
 
       m_countHttpPostBoundary = 0;
 
@@ -80,7 +80,7 @@ namespace sockets
    //bool sockets::init1()
    //{
 
-   //   m_spnet = __new(::sockets::net(this));
+   //   m_spnet = __allocate< ::sockets::net >(this);
    //   //m_spnet.create(this);
 
    //   if(m_spnet.is_null())
@@ -106,7 +106,7 @@ namespace sockets
    //      /*            add_factory_item < ::sockets::ipv4_address  > ();
    //               add_factory_item < ::sockets::ipv6_address  > ();*/
 
-   //      m_pajpbasesocketinit = memory_new AjpBaseSocket::Initializer;
+   //      m_pajpbasesocketinit = __new< AjpBaseSocket::Initializer >();
    //   }
 
    //   m_countHttpPostBoundary = 0;

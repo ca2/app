@@ -17,7 +17,7 @@ public:
    //double      m_d; // seconds
 
 
-   constexpr time(enum_no_initialize) {}
+   constexpr time(no_initialize_t) {}
    constexpr time():time(0, 0) {}
    constexpr time(::i64 iSecond, ::i64 iNanosecond)  {m_iSecond = iSecond; m_iNanosecond = iNanosecond; normalize();}
    constexpr time(zero_t)  :time(0, 0) {}

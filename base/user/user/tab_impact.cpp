@@ -10,6 +10,7 @@
 #include "tab_drop_target_window.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
+#include "acme/handler/topic.h"
 #include "acme/primitive/data/listener.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "aura/graphics/draw2d/graphics.h"
@@ -490,7 +491,7 @@ namespace user
 
       create_tab_by_id(::user::tab::index_id(pchannel->get_data()->m_iClickTab));
 
-      m_pdroptargetwindow = __new(tab_drop_target_window());
+      m_pdroptargetwindow = __allocate< tab_drop_target_window >();
 
       m_pdroptargetwindow->initialize_tab_drop_target_window(this, (i32)pchannel->get_data()->m_iClickTab);
 
@@ -723,8 +724,6 @@ namespace user
 
       auto ptabdata = get_data();
 
-      ::rectangle_i32 rectangleHosting = ptabdata->m_rectangleHosting;
-
       if (m_pimpactdataOld
          && m_pimpactdataOld->m_eflag & ::user::e_flag_hide_on_kill_focus
          && m_pimpactdataOld->m_atom != MENU_IMPACT
@@ -789,73 +788,10 @@ namespace user
 
       if (!ptabdata->m_bNoClient)
       {
+         
+         m_pimpactdata->m_pplaceholder->order(e_zorder_top);
 
-         ::rectangle_i32 rectangleX;
-
-         rectangleX = m_pimpactdata->m_pplaceholder->rectangle();
-
-         if (!rectangleHosting.is_empty())
-         {
-
-            {
-
-               auto pchild = m_pimpactdata->m_pplaceholder;
-
-               ::string strType = ::type(pchild).name();
-
-               if (strType.case_insensitive_contains("place_holder"))
-               {
-
-                  if (pchild->m_puserinteractionpointeraChild
-                     && pchild->m_puserinteractionpointeraChild->has_interaction())
-                  {
-
-                     auto puserinteractionChild = pchild->m_puserinteractionpointeraChild->first_interaction();
-
-                     ::string strTypePlaceHolderChild = ::type(puserinteractionChild).name();
-
-                     if (strTypePlaceHolderChild.case_insensitive_contains("simple_frame_window"))
-                     {
-
-                        auto puserinteractionChild2 = puserinteractionChild->m_puserinteractionpointeraChild->first_interaction();
-
-                        ::string strTypePlaceHolderChild2 = ::type(puserinteractionChild2).name();
-
-                        if (strTypePlaceHolderChild2.case_insensitive_contains("font_impact"))
-                        {
-
-                           information() << "going to display " << strTypePlaceHolderChild2;
-
-                           if (m_puserinteractionpointeraChild->contains_interaction(pchild))
-                           {
-
-                              //information() << "tab impact has font_list place_holder as child window";
-
-                           }
-
-                        }
-
-                     }
-
-                  }
-
-               }
-
-            }
-
-            m_pimpactdata->m_pplaceholder->order(e_zorder_top);
-
-            m_pimpactdata->m_pplaceholder->place(rectangleHosting);
-
-            m_pimpactdata->m_pplaceholder->display();
-
-            //         m_pimpactdata->m_pplaceholder->set_need_redraw();
-            //
-            //         m_pimpactdata->m_pplaceholder->set_need_layout();
-            //
-            //         m_pimpactdata->m_pplaceholder->post_redraw();
-
-         }
+         m_pimpactdata->m_pplaceholder->display();
 
          ::user::impact * pimpact = nullptr;
 
@@ -902,6 +838,17 @@ namespace user
       auto papp = get_app();
 
       papp->on_change_cur_sel(this);
+      
+      if(m_pimpactdata->m_pplaceholder)
+      {
+         
+         if(m_pimpactdata->m_pplaceholder->m_bLockGraphicalUpdate)
+         {
+            
+            m_pimpactdata->m_pplaceholder->m_bLockGraphicalUpdate = false;
+         }
+         
+      }
 
    }
 
@@ -1018,6 +965,14 @@ namespace user
             
             prepare_impact_menu(pmenu);
             
+            //m_bNeedPerformLayout = true;
+            
+            //pmenu->get_parent()->m_bNeedPerformLayout = true;
+            
+            pmenu->m_bNeedPerformLayout = true;
+            
+            //pmenu->get_parent()->set_need_layout();
+            
          }
          
          return;
@@ -1110,7 +1065,7 @@ namespace user
          //if (!pmenu->m_pmenuitem->m_pmenuitema)
          //{
 
-         //   pmenu->m_pmenuitem->m_pmenuitema = __new(::user::menu_item_ptra(pmenu->m_pmenuitem));
+         //   pmenu->m_pmenuitem->m_pmenuitema = __allocate< ::user::menu_item_ptra >(pmenu->m_pmenuitem);
 
          //}
 
@@ -1577,5 +1532,87 @@ namespace user
    }
 
 
+   void tab_impact::on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics)
+   {
+
+      ::user::tab::on_perform_top_down_layout(pgraphics);
+
+      auto ptabdata = get_data();
+
+      if (!ptabdata->m_bNoClient)
+      {
+
+         ::rectangle_i32 rectangleHosting = ptabdata->m_rectangleHosting;
+
+         ::rectangle_i32 rectangleX;
+
+         rectangleX = m_pimpactdata->m_pplaceholder->rectangle();
+
+         if (!rectangleHosting.is_empty())
+         {
+
+            {
+
+               auto pchild = m_pimpactdata->m_pplaceholder;
+
+               ::string strType = ::type(pchild).name();
+
+               if (strType.case_insensitive_contains("place_holder"))
+               {
+
+                  if (pchild->m_puserinteractionpointeraChild
+                     && pchild->m_puserinteractionpointeraChild->has_interaction())
+                  {
+
+                     auto puserinteractionChild = pchild->m_puserinteractionpointeraChild->first_interaction();
+
+                     ::string strTypePlaceHolderChild = ::type(puserinteractionChild).name();
+
+                     if (strTypePlaceHolderChild.case_insensitive_contains("simple_frame_window"))
+                     {
+
+                        auto puserinteractionChild2 = puserinteractionChild->m_puserinteractionpointeraChild->first_interaction();
+
+                        ::string strTypePlaceHolderChild2 = ::type(puserinteractionChild2).name();
+
+                        if (strTypePlaceHolderChild2.case_insensitive_contains("font_impact"))
+                        {
+
+                           information() << "going to display " << strTypePlaceHolderChild2;
+
+                           if (m_puserinteractionpointeraChild->contains_interaction(pchild))
+                           {
+
+                              //information() << "tab impact has font_list place_holder as child window";
+
+                           }
+
+                        }
+
+                     }
+
+                  }
+
+               }
+
+            }
+
+            m_pimpactdata->m_pplaceholder->place(rectangleHosting);
+
+            //         m_pimpactdata->m_pplaceholder->set_need_redraw();
+            //
+            //         m_pimpactdata->m_pplaceholder->set_need_layout();
+            //
+            //         m_pimpactdata->m_pplaceholder->post_redraw();
+
+         }
+
+      }
+
+   }
+
+
 } // namespace user
+
+
 

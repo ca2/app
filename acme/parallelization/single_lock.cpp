@@ -3,10 +3,12 @@
 ////#include "acme/exception/exception.h"
 
 
-single_lock::single_lock(::particle * pparticleSynchronization, bool bInitialLock)
+single_lock::single_lock(::particle * pparticleSynchronization, bool bInitialLock) :
+   m_pparticleSynchronization(pparticleSynchronization),
+   m_bLocked(false)
 {
 
-   m_pparticleSynchronization = pparticleSynchronization;
+   //m_pparticleSynchronization = pparticleSynchronization;
 
    //if (::is_set(m_pparticleSynchronization))
    //{
@@ -15,7 +17,7 @@ single_lock::single_lock(::particle * pparticleSynchronization, bool bInitialLoc
 
    //}
 
-   set_own_synchronization_flag();
+   //set_own_synchronization_flag();
 
    if (bInitialLock)
    {
@@ -30,7 +32,7 @@ single_lock::single_lock(::particle * pparticleSynchronization, bool bInitialLoc
 single_lock::~single_lock()
 {
 
-   if (has_acquired_flag())
+   if (m_bLocked)
    {
 
       unlock();
@@ -39,7 +41,23 @@ single_lock::~single_lock()
 
    // ::release(m_pparticleSynchronization);
 
-   clear_own_synchronization_flag();
+   //clear_own_synchronization_flag();
+
+}
+
+
+void single_lock::_lock()
+{ 
+   
+   _wait(); 
+
+}
+
+
+bool single_lock::lock(const class ::time & timeWait)
+{ 
+   
+   return this->wait(timeWait).failed(); 
 
 }
 
@@ -57,7 +75,7 @@ void single_lock::_wait()
    }
 
 
-   if (has_acquired_flag())
+   if (m_bLocked)
    {
 
       throw ::exception(error_wrong_state);
@@ -79,7 +97,7 @@ void single_lock::_wait()
 
    //m_bAcquired = estatus.signaled();
 
-      set_acquired_flag();
+      m_bLocked = true;
 
    //return estatus;
 
@@ -91,7 +109,7 @@ bool single_lock::_wait(const class time & timeWait)
 
    //::e_status estatus(signaled_base);
 
-   if (has_acquired_flag())
+   if (m_bLocked)
    {
 
       throw ::exception(error_wrong_state);
@@ -128,7 +146,9 @@ bool single_lock::_wait(const class time & timeWait)
       }
 
 
-   set_acquired_flag();
+   //m_bLocked = true;
+
+      m_bLocked = true;
 
 
 
@@ -142,7 +162,7 @@ bool single_lock::_wait(const class time & timeWait)
 ::e_status single_lock::wait()
 {
 
-   if(has_acquired_flag())
+   if(m_bLocked)
    {
 
       throw ::exception(error_wrong_state);
@@ -174,7 +194,7 @@ bool single_lock::_wait(const class time & timeWait)
    if(estatus)
    {
 
-      set_acquired_flag();
+      m_bLocked = true;
 
    }
 
@@ -186,7 +206,7 @@ bool single_lock::_wait(const class time & timeWait)
 ::e_status single_lock::wait(const class time & timeWait)
 {
 
-   if(has_acquired_flag())
+   if(m_bLocked)
    {
 
       throw ::exception(error_wrong_state);
@@ -218,7 +238,7 @@ bool single_lock::_wait(const class time & timeWait)
    if (estatus)
    {
 
-      set_acquired_flag();
+      m_bLocked = true;
 
    }
 
@@ -237,7 +257,7 @@ void single_lock::unlock()
 
    }
 
-   if (!has_acquired_flag())
+   if (!m_bLocked)
    {
 
       throw ::exception(error_wrong_state);
@@ -246,7 +266,7 @@ void single_lock::unlock()
 
    m_pparticleSynchronization->unlock();
 
-   clear_acquired_flag();
+   m_bLocked = false;
 
    // successfully unlocking means it isn't acquired
    //return !m_bAcquired;
@@ -259,7 +279,7 @@ void single_lock::unlock(::i32 lCount, ::i32 * pPrevCount /* = nullptr */)
 
    ASSERT(m_pparticleSynchronization != nullptr);
 
-   if (!has_acquired_flag())
+   if (!m_bLocked)
    {
 
       throw ::exception(error_wrong_state);
@@ -270,7 +290,7 @@ void single_lock::unlock(::i32 lCount, ::i32 * pPrevCount /* = nullptr */)
 
    m_pparticleSynchronization->unlock(lCount, pPrevCount);
 
-   set_acquired_flag();
+   m_bLocked = true;
 
    //}
 
@@ -283,22 +303,24 @@ void single_lock::unlock(::i32 lCount, ::i32 * pPrevCount /* = nullptr */)
 bool single_lock::is_locked() const
 {
 
-   return has_acquired_flag();
+   return m_bLocked;
 
 }
 
 
-_single_lock::_single_lock(::particle * pparticleSynchronization, bool bInitialLock)
+_single_lock::_single_lock(::particle * pparticleSynchronization, bool bInitialLock) :
+   m_pparticleSynchronization(pparticleSynchronization),
+   m_bLocked(false)
 {
 
-   m_pparticleSynchronization = pparticleSynchronization;
+   //if (::is_set(m_pparticleSynchronization))
+   //{
 
-   if (::is_set(m_pparticleSynchronization))
-   {
+   //   ::allocator::defer_get_referer()
 
-      m_pparticleSynchronization->increment_reference_count();
+   //   m_pparticleSynchronization->increment_reference_count();
 
-   }
+   //}
 
    if (bInitialLock)
    {
@@ -320,12 +342,18 @@ _single_lock::~_single_lock()
 }
 
 
+
+void _single_lock::_lock() { _wait(); }
+//bool _single_lock::lock() { return wait().failed(); }
+
+
+
 void _single_lock::_wait()
 {
 
    //::e_status estatus(signaled_base);
 
-   if (has_acquired_flag())
+   if (m_bLocked)
    {
 
       throw ::exception(error_wrong_state);
@@ -358,7 +386,7 @@ void _single_lock::_wait()
 
    //throw ::exception(
 
-   set_acquired_flag();
+   m_bLocked = true;
 
    ///return estatus;
 
@@ -370,7 +398,7 @@ bool _single_lock::_wait(const class time & timeWait)
 
    //::e_status estatus(signaled_base);
 
-   if (has_acquired_flag())
+   if (m_bLocked)
    {
 
       throw ::exception(error_wrong_state);
@@ -409,7 +437,7 @@ bool _single_lock::_wait(const class time & timeWait)
    if(bOk)
    {
 
-      set_acquired_flag();
+      m_bLocked = true;
 
    }
 
@@ -431,7 +459,7 @@ void _single_lock::unlock()
 
    }
 
-   if (!has_acquired_flag())
+   if (!m_bLocked)
    {
 
       return;
@@ -446,7 +474,7 @@ void _single_lock::unlock()
    m_pparticleSynchronization->unlock();
       //{
 
-         clear_acquired_flag();
+         m_bLocked = false;
 
       //}
 
@@ -469,7 +497,7 @@ void _single_lock::unlock(::i32 lCount, ::i32 * pPrevCount /* = nullptr */)
 
    //ASSERT(m_psync != nullptr);
 
-   if (has_acquired_flag())
+   if (m_bLocked)
    {
 
       throw ::exception(error_wrong_state);
@@ -480,7 +508,7 @@ void _single_lock::unlock(::i32 lCount, ::i32 * pPrevCount /* = nullptr */)
 
    m_pparticleSynchronization->unlock(lCount, pPrevCount);
 
-   set_acquired_flag();
+   m_bLocked = true;
 
 //   }
 
@@ -493,7 +521,7 @@ void _single_lock::unlock(::i32 lCount, ::i32 * pPrevCount /* = nullptr */)
 bool _single_lock::is_locked() const
 {
 
-   return has_acquired_flag();
+   return m_bLocked;
 
 }
 

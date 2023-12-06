@@ -57,6 +57,7 @@ namespace apex
       bool                                               m_bSystemSynchronizedScreen;
 
       
+      ::pointer < ::manager_room >           m_pmanagerroom;
 
       ::pointer<class ::apex::history>                m_phistory;
 
@@ -65,22 +66,25 @@ namespace apex
       ~system() override;
 
 
+      void on_set_platform() override;
+
+
       void common_construct();
 
 
 #ifdef _DEBUG
 
 
-      i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
+      i64 increment_reference_count() override;
 
 
-      i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
+      i64 decrement_reference_count() override;
 
 
 #endif
 
 
-      void initialize(::particle * pparticle) override;
+      void on_initialize_particle() override;
 
       void install_message_routing(::channel * pchannel) override;
 
@@ -106,6 +110,8 @@ namespace apex
 
       virtual void __task_init() override;
 
+
+      class ::manager_room * manager_room() override;
 
       virtual ::acme::application * get_main_app() override;
 
@@ -393,7 +399,6 @@ namespace apex
 
       // void assert_ok() const override;
       //void dump(dump_context& action_context) const override;
-
 
       void     main() override;
 

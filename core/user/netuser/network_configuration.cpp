@@ -2,6 +2,7 @@
 #include "acme/constant/id.h"
 #include "acme/filesystem/filesystem/dir_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
+#include "acme/handler/topic.h"
 #include "aqua/xml/document.h"
 #include "base/user/user/document.h"
 #include "base/user/form/impact.h"

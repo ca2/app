@@ -3,6 +3,7 @@
 #include "acme/handler/item.h"
 #include "acme/platform/node.h"
 #include "acme/primitive/mathematics/_random.h"
+#include "acme/primitive/mathematics/mathematics.h"
 #include "acme/user/user/content.h"
 #include "apex/platform/savings.h"
 #include "aura/graphics/draw2d/pen.h"
@@ -50,7 +51,7 @@ namespace experience_core
       if (::is_null(m_pfont))
       {
 
-         m_pfont.create(this);
+         __construct(m_pfont);
 
          //auto pnode = acmenode();
 
@@ -1940,7 +1941,7 @@ namespace experience_core
                pbar->payload("tracking_start_time") = (class ::time)now_t{} + dRate * periodFadeIn;
                pbar->payload("tracking_fade_in") = true;
                pbar->payload("tracking_fade_out") = false;
-               pbar->payload("tracking_simple") = random(1, 2) == 1;
+               pbar->payload("tracking_simple") = mathematics()->random(1, 2) == 1;
 
             }
 

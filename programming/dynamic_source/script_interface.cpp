@@ -53,7 +53,7 @@ namespace dynamic_source
 
       //}
 
-      ::pointer<script_interface>pinterface = pparticle;
+      auto pinterface = dynamic_cast <script_interface * >(pparticle);
 
       if (pinterface)
       {
@@ -61,7 +61,7 @@ namespace dynamic_source
          if (!m_pmain)
          {
 
-            tracking_note_assign(m_pmain, pinterface->m_pmain.get(), OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_NOTE("scptiface:init:referer://"+ m_strNote));
+            //tracking_note_assign(m_pmain, pinterface->m_pmain.get() REFERENCING_DEBUGGING_COMMA_THIS_NOTE("scptiface:init:referer://"+ m_strNote));
 
          }
 
@@ -87,9 +87,9 @@ namespace dynamic_source
 
    //   auto estatus = ::html_file::destroy();
 
-   //   m_pmain.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
-   //   m_pinstanceParent2.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
-   //   m_pscript2.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
+   //   m_pmain.release();
+   //   m_pinstanceParent2.release();
+   //   m_pscript2.release();
 
    //   return estatus;
 
@@ -102,9 +102,9 @@ namespace dynamic_source
       
       ::html_file::destroy();
 
-      m_pmain.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
-      m_pinstanceParent2.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
-      m_pscript2.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
+      m_pmain.release();
+      m_pinstanceParent2.release();
+      m_pscript2.release();
 
       //return estatus;
 
@@ -746,6 +746,7 @@ namespace dynamic_source
 
       httpd_socket * script_interface::netnodesocket()
       {
+
 
          return m_pmain->m_psocket2;
 

@@ -8,7 +8,7 @@
 
 
 memory_file::memory_file() :
-   memory_container(__new(class memory()))
+   memory_container(__allocate< class ::memory >())
 {
 
    m_position = 0;
@@ -19,7 +19,7 @@ memory_file::memory_file() :
 
 
 memory_file::memory_file(::file::e_open eopen) :
-   memory_container(__new(class memory()))
+   memory_container(__allocate< class ::memory >())
 {
 
    m_eopen = eopen;
@@ -45,7 +45,6 @@ memory_file::memory_file(memsize size) :
 
 memory_file::memory_file(const memory_file & m) :
    ::matter((const matter &)m),
-   file((const file &)m),
    memory_container((const memory_container &)m)
 {
 
@@ -57,7 +56,6 @@ memory_file::memory_file(const memory_file & m) :
 
 memory_file::memory_file(memory_file && m) :
    ::matter(::transfer(m)),
-   file(::transfer(m)),
    memory_container(::transfer(m))
 {
 
@@ -909,7 +907,7 @@ memory_file & memory_file::operator = (const memory_file & file)
 CLASS_DECL_ACME memory_file_pointer create_memory_file()
 {
    
-   return __new(::memory_file); 
+   return __allocate< ::memory_file >(); 
 
 }
 
@@ -917,7 +915,7 @@ CLASS_DECL_ACME memory_file_pointer create_memory_file()
 CLASS_DECL_ACME memory_file_pointer create_memory_file(::memory_base & memory)
 {
    
-   return __new(::memory_file(memory)); 
+   return __allocate< ::memory_file >(memory); 
 
 }
 
@@ -925,7 +923,7 @@ CLASS_DECL_ACME memory_file_pointer create_memory_file(::memory_base & memory)
 CLASS_DECL_ACME memory_file_pointer create_memory_file(const ::block & block)
 {
    
-   return __new(::memory_file(block)); 
+   return __allocate< ::memory_file >(block); 
 
 }
 
@@ -933,7 +931,7 @@ CLASS_DECL_ACME memory_file_pointer create_memory_file(const ::block & block)
 CLASS_DECL_ACME memory_file_pointer create_memory_file_as_copy(const memory & memory) 
 {
    
-   return __new(::memory_file(__new(::memory(memory)))); 
+   return __allocate< ::memory_file >(__allocate< ::memory >(memory)); 
 
 }
 

@@ -42,6 +42,8 @@ namespace user
       ::pointer<::image_list>                   m_pimagelist;
       index                                     m_iImageCollapse;
       index                                     m_iImageExpand;
+      index                                     m_iImageCollapseDark;
+      index                                     m_iImageExpandDark;
       ::draw2d::brush_pointer                   m_pbrushTextSelected;
       ::draw2d::brush_pointer                   m_pbrushTextSelectedHighlight;
       ::draw2d::brush_pointer                   m_pbrushTextHighlight;
@@ -50,11 +52,14 @@ namespace user
       status < ::color::color >                 m_colorTreeBackground;
 
       bool                                      m_bPendingDrawingObjectsUpdate;
-      bool                                      m_bHoverStart;
+
+      bool                                      m_bHover;
       class ::time                              m_timeHoverStart;
-      class ::time                              m_timeHoverEnd;
-      ::u8                                      m_uchHoverAlpha;
-      ::u8                                      m_uchHoverAlphaInit;
+      ::i32                                     m_iHoverAlpha;
+      ::i32                                     m_iHoverAlphaInit;
+      class ::time                              m_timeLeaveStart;
+      ::i32                                     m_iLeaveAlphaInit;
+
       manual_reset_event                        m_evExpand;
       manual_reset_event                        m_evOpen;
       ptr_array < ::data::tree_item >           m_treeitemaExpand;
@@ -100,6 +105,8 @@ namespace user
       count _001GetVisibleItemCount();
       void _001SetCollapseImage(const ::string & pszMatter);
       void _001SetExpandImage(const ::string & pszMatter);
+      void _001SetCollapseImageDark(const ::string & pszMatter);
+      void _001SetExpandImageDark(const ::string & pszMatter);
       void update_tree_hover();
       void update_tree_hover(point_i32 point);
       virtual void _001OnOpenItem(::data::tree_item * pitem, const ::action_context & action_context);
@@ -126,7 +133,9 @@ namespace user
 
       virtual i32 get_wheel_scroll_delta() override;
 
-      void on_context_offset_layout(::draw2d::graphics_pointer & pgraphics) override;
+      //void on_context_offset_layout(::draw2d::graphics_pointer & pgraphics) override;
+
+      void on_change_context_offset(::user::enum_layout elayout) override;
 
       ::pointer<::image_list>get_image_list();
 

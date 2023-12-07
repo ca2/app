@@ -29,7 +29,7 @@
 #include "framework.h"
 
 #if defined(_MSC_VER) && defined(__DEBUG)
-#	define memory_new DEBUG_NEW
+#	define aaa_memory_new DEBUG_NEW
 #endif //__DEBUG
 
 //const char *code = "::payload a = 5; if (a==5) a=4; else a=3;";
@@ -49,7 +49,7 @@ void js_dump(CScriptVar *UNUSED(v), void *userdata) {
 
 int main(int UNUSED(argc), char **UNUSED(argv))
 {
-  tinyjs *js = memory_new tinyjs();
+  tinyjs *js = __new< tinyjs >();
   /* add the functions from TinyJS_Functions.cpp */
   registerFunctions(js);
   /* Add a native function */

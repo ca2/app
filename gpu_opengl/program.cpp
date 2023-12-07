@@ -28,7 +28,7 @@ namespace opengl
 
       //::e_status estatus = 
       
-      ::__construct(pparticle, m_pshader);
+      pparticle->__construct(m_pshader);
 
       //if (!estatus)
       //{

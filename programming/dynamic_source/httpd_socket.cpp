@@ -9,7 +9,7 @@ namespace dynamic_source
    httpd_socket::httpd_socket()
    {
 
-      m_posdataNetnodeSocket = nullptr;
+      //m_posdataNetnodeSocket = nullptr;
 
       m_iCa2FetchMode = 0;
 

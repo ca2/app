@@ -113,7 +113,7 @@ namespace sockets
 ////      }
 //
 //
-//      //m_pajpaxissocketinit = memory_new AjpBaseSocket::Initializer;
+//      //m_pajpaxissocketinit = __new< AjpBaseSocket::Initializer >();
 //
 //      m_countHttpPostBoundary = 0;
 //

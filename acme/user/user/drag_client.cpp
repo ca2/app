@@ -28,19 +28,23 @@ namespace user
    void drag_client::destroy()
    {
 
+      ::user::acme_container::destroy();
+
       for (auto & pair : m_mapDrag)
       {
 
          if (::is_set(pair.payload()))
          {
 
-            pair.payload()->destroy();
+            pair.payload().defer_destroy();
 
          }
 
       }
 
       m_mapDrag.clear();
+
+      m_pdragCurrent.release();
 
    }
 

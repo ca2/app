@@ -1,6 +1,6 @@
 // Created by camilo on 2022-09-10 13:40 <3ThomasBorregaardSorensen!!
 #include "framework.h"
-
+#include "networking_bsd/networking.h"
 
 
 static int g_iWsaStartupError;
@@ -8,73 +8,72 @@ static WSADATA g_wsadata = {};
 static bool g_bWsaStartup = false;
 
 
-
-
-CLASS_DECL_NETWORKING_BSD bool defer_initialize_operating_system_networking()
+namespace networking_bsd
 {
-
-   ::u8 byteHi = 2;
-
-   ::u8 byteLo = 2;
-
-   if (!g_bWsaStartup)
+   bool networking::defer_initialize_operating_system_networking()
    {
 
-      /* Use the MAKEWORD(lowbyte, highbyte) macro declared in Windef.h */
-      ::u16 wVersionRequested = MAKEWORD(byteHi, byteLo);
+      ::u8 byteHi = 2;
 
-      g_iWsaStartupError = WSAStartup(wVersionRequested, &g_wsadata);
+      ::u8 byteLo = 2;
 
-   }
+      if (!g_bWsaStartup)
+      {
 
-   if (g_iWsaStartupError != 0)
-   {
+         /* Use the MAKEWORD(lowbyte, highbyte) macro declared in Windef.h */
+         ::u16 wVersionRequested = MAKEWORD(byteHi, byteLo);
 
-      informationf("Failed to initialize Winsock.dll!\n");
+         g_iWsaStartupError = WSAStartup(wVersionRequested, &g_wsadata);
 
-      return false;
+      }
 
-   }
+      if (g_iWsaStartupError != 0)
+      {
 
-   if (lower_u8(g_wsadata.wVersion) < byteHi || (lower_u8(g_wsadata.wVersion) == byteHi && HIBYTE(g_wsadata.wVersion) < 2))
-   {
+         informationf("Failed to initialize Winsock.dll!\n");
 
-      informationf("Could not find a usable version of Winsock.dll!\n");
+         return false;
 
-      WSACleanup();
+      }
 
-      return false;
+      if (lower_u8(g_wsadata.wVersion) < byteHi || (lower_u8(g_wsadata.wVersion) == byteHi && HIBYTE(g_wsadata.wVersion) < 2))
+      {
 
-   }
-   else
-   {
+         informationf("Could not find a usable version of Winsock.dll!\n");
+
+         WSACleanup();
+
+         return false;
+
+      }
+      else
+      {
 
 #ifdef DEBUG
 
-      informationf("The Winsock 2.2 dll was found. OK.\n");
+         informationf("The Winsock 2.2 dll was found. OK.\n");
 
 #endif
 
+      }
+
+      return true;
+
    }
 
-   return true;
 
-}
-
-
-CLASS_DECL_NETWORKING_BSD bool defer_finalize_operating_system_networking()
-{
+   bool networking::defer_finalize_operating_system_networking()
+   {
 
 
-   WSACleanup();
+      WSACleanup();
 
-   return true;
+      return true;
 
-}
-
-
+   }
 
 
+} // namespace networking_bsd
 
 
 

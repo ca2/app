@@ -114,7 +114,7 @@ BOOL CProcessEnvReader::ReadEnvironmentBlock(HANDLE hProcess,_ENVSTRING_t& stEnv
       }
 
       // Allocate buffer for to copy the block
-      pchBuffEnvString = memory_new UCHAR[nReadbleSize];
+      pchBuffEnvString = aaa_primitive_new UCHAR[nReadbleSize];
       memory_set(pchBuffEnvString,0,sizeof(UCHAR)* nReadbleSize);
 
       // Read the environment block
@@ -275,7 +275,7 @@ void CProcessEnvReader::LoadIconFromProcess(HANDLE hProcess,HICON& hIconSmall,HI
 void CProcessEnvReader::ConvertUnicodeToMBCS(const ::wide_character * pStringToConvert,int nLen,string& csMBCSStr)
 
 {
-   char* buff = memory_new char[nLen + 1];
+   char* buff = aaa_primitive_new char[nLen + 1];
 
    WideCharToMultiByte2(CP_ACP,0,pStringToConvert,-1,
 

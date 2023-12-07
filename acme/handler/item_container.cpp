@@ -259,7 +259,7 @@ bool item_container::contains_item(const ::atom & atom) const
 ::item_pointer item_container::add_item(enum_element eelement, ::index iItem)
 {
 
-   auto pitem = __new(::item(eelement, iItem));
+   auto pitem = __allocate< ::item >(eelement, iItem);
 
    pitem->initialize(this);
 

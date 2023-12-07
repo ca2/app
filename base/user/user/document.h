@@ -33,14 +33,14 @@ namespace user
       bool                                m_bNew;
       bool                                m_bCustomOpen;
 
-      ::pointer<::user::impact_system>      m_pimpactsystem;
-      pointer_array < ::user::impact >        m_impacta;
-      ::user::impact *                          m_pviewTopic;
+      ::pointer<::user::impact_system>    m_pimpactsystem;
+      pointer_array < ::user::impact >    m_impacta;
+      ::pointer < ::user::impact >        m_pimpactTopic;
 
       bool                                m_bAutoSaveModified;
 
       string                              m_strSaveFileExtension;
-      atom_map < ::procedure_array >          m_mapRoutine;
+      atom_map < ::procedure_array >      m_mapRoutine;
       bool                                m_bToolbar;
       ::pointer < ::data::data >          m_pdataIncoming;
 
@@ -49,8 +49,8 @@ namespace user
       ~document() override;
 
 
-      //void dump(dump_context &) const override;
-      // void assert_ok() const override;
+      void destroy() override;
+
 
       ::pointer < ::data::data > create_data(const ::atom & atom) override;
 

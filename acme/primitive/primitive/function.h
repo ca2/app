@@ -6,7 +6,7 @@
 
 #include "acme/primitive/primitive/ptr.h"
 
-#include  "acme/primitive/primitive/particle.h"
+#include "acme/primitive/primitive/particle.h"
 
 
 enum enum_use
@@ -83,6 +83,14 @@ class function :
 
 };
 
+//template < typename FUNCTION >
+//class function_receptor :
+//   public function < FUNCTION >
+//{
+//
+//};
+
+
 //template <  typename RETURN_TYPE, typename... TYPES>
 //class function_type < RETURN_TYPE(TYPES...) >
 //{
@@ -110,7 +118,7 @@ public:
 
 
    template < typename ELEMENT >
-   class predicate :
+   class implementation :
       virtual public base
    {
    public:
@@ -119,8 +127,8 @@ public:
       ELEMENT m_element;
 
 
-      predicate(ELEMENT element) :
-         m_element(element)
+      implementation(ELEMENT && element) :
+         m_element(::transfer(element))
       {
 
       }
@@ -177,17 +185,30 @@ public:
    }
 
 
-   template < typename TYPE >
-   function(TYPE * p) :
+   function(use_t, base * p) :
       m_pbase(p)
    {
 
    }
 
 
+   //function(transfer_t, base * p) :
+   //   m_pbase(transfer_t{}, p)
+   //{
+
+   //}
+
+
+   //template < typename PREDICATE >
+   //function(function_t, PREDICATE predicateParam) :
+   //   m_pbase(transfer_t{}, __allocate< class implementation <PREDICATE > >(predicateParam))
+   //{
+
+   //}
+
    template < typename PREDICATE >
    function(PREDICATE predicateParam) :
-      m_pbase(e_pointer_transfer, memory_new class predicate <PREDICATE >(predicateParam))
+      m_pbase(__allocate< class implementation <PREDICATE > >(::transfer(predicateParam)))
    {
 
    }
@@ -282,6 +303,21 @@ public:
    
 
 };
+//
+//template < >
+//class function_receptor < void() > :
+//   public function < void() >
+//{
+//public:
+//
+//   template < typename FUNCTION >
+//   function_receptor(FUNCTION function) :
+//      function < void() >(transfer_t{}, function)
+//   {
+//   }
+//
+//
+//};
 
 
 template < typename RETURN_TYPE >
@@ -302,7 +338,7 @@ public:
 
 
    template < typename PREDICATE >
-   class predicate :
+   class implementation :
       public base
    {
    public:
@@ -311,8 +347,8 @@ public:
       PREDICATE m_predicate;
 
 
-      predicate(PREDICATE predicate) :
-         m_predicate(predicate)
+      implementation(PREDICATE && implementation) :
+         m_predicate(::transfer(implementation))
       {
 
       }
@@ -336,9 +372,36 @@ public:
    }
 
 
+   function(use_t, base * p) :
+      m_pbase(p)
+   {
+
+   }
+
+
+   //function(transfer_t, base * p) :
+   //   m_pbase(transfer_t{}, p)
+   //{
+
+   //}
+
+
+   //template < typename PREDICATE >
+   //function(function_t, PREDICATE predicateParam) :
+   //   m_pbase(transfer_t{}, __allocate< class implementation <PREDICATE > >(predicateParam))
+   //{
+
+   //}
+
    template < typename PREDICATE >
    function(PREDICATE predicateParam) :
-      m_pbase(e_pointer_transfer, memory_new class predicate <PREDICATE >(predicateParam))
+      m_pbase(__allocate< class implementation <PREDICATE > >(::transfer(predicateParam)))
+   {
+
+   }
+
+   function(function && function) :
+      m_pbase(::transfer(function.m_pbase))
    {
 
    }
@@ -346,13 +409,6 @@ public:
 
    function(const function & function) :
       m_pbase(function.m_pbase)
-   {
-
-   }
-
-
-   function(function && function) :
-      m_pbase(::transfer(function.m_pbase))
    {
 
    }
@@ -380,7 +436,7 @@ public:
    function & operator = (PREDICATE predicateParam)
    {
 
-      m_pbase = ::transfer(memory_new class predicate <PREDICATE >(predicateParam));
+      m_pbase = ::transfer(__allocate< class implementation <PREDICATE > >(::transfer(predicateParam)));
 
       return *this;
 
@@ -431,6 +487,22 @@ public:
 
 };
 
+//
+//template < typename RETURN_TYPE >
+//class function_receptor < RETURN_TYPE() > :
+//   public function < RETURN_TYPE() >
+//{
+//public:
+//
+//   template < typename FUNCTION >
+//   function_receptor(FUNCTION function) :
+//      function < RETURN_TYPE() >(transfer_t{}, function)
+//   {
+//   }
+//
+//
+//};
+
 
 
 template < typename RETURN_TYPE, typename... TYPES >
@@ -458,8 +530,8 @@ public:
 
       PREDICATE m_predicate;
 
-      implementation(PREDICATE predicate) :
-         m_predicate(predicate)
+      implementation(PREDICATE && implementation) :
+         m_predicate(::transfer(implementation))
       {
 
       }
@@ -484,20 +556,33 @@ public:
    }
 
 
-   function(enum_use, base * pbase) :
-      m_pbase(pbase)
+   function(use_t, base * p) :
+      m_pbase(p)
    {
 
    }
+
+
+   //function(transfer_t, base * p) :
+   //   m_pbase(transfer_t{}, p)
+   //{
+
+   //}
 
 
    template < typename FUNCTION >
    function(FUNCTION functionParam) :
-      m_pbase(e_pointer_transfer, memory_new class implementation < FUNCTION >(functionParam))
+      m_pbase(__allocate< class implementation < FUNCTION > >(::transfer(functionParam)))
    {
 
    }
 
+   //template < typename FUNCTION >
+   //function(function_t, FUNCTION functionParam) :
+   //   m_pbase(transfer_t{}, __allocate< class implementation < FUNCTION > >(functionParam))
+   //{
+
+   //}
 
    function(const function & function) :
       m_pbase(function.m_pbase)
@@ -536,7 +621,7 @@ public:
    function & operator = (FUNCTION functionParam)
    {
 
-      m_pbase = ::transfer( memory_new class implementation <FUNCTION >(functionParam));
+      m_pbase = ::transfer( __allocate< class implementation <FUNCTION > >(::transfer(functionParam)));
 
       return *this;
 
@@ -588,6 +673,21 @@ public:
 
 };
 
+//
+//template < typename RETURN_TYPE, typename... TYPES >
+//class function_receptor < RETURN_TYPE(TYPES...) > :
+//   public function <  RETURN_TYPE(TYPES...) >
+//{
+//public:
+//
+//   template < typename FUNCTION >
+//   function_receptor(FUNCTION function) :
+//      function <  RETURN_TYPE(TYPES...) >(transfer_t{}, function)
+//   {
+//   }
+//
+//
+//};
 
 
 
@@ -616,8 +716,8 @@ public:
 
       PREDICATE m_predicate;
 
-      implementation(PREDICATE predicate) :
-         m_predicate(predicate)
+      implementation(PREDICATE && implementation) :
+         m_predicate(::transfer(implementation))
       {
 
       }
@@ -642,20 +742,33 @@ public:
    }
 
 
-   function(enum_use, base * pbase) :
-      m_pbase(pbase)
+   function(use_t, base * p) :
+      m_pbase(p)
    {
 
    }
 
+
+   //function(transfer_t, base * p) :
+   //   m_pbase(transfer_t{}, p)
+   //{
+
+   //}
+
+
+   //template < typename FUNCTION >
+   //function(function_t, FUNCTION functionParam) :
+   //   m_pbase(transfer_t{}, __allocate< class implementation < FUNCTION > >(functionParam))
+   //{
+
+   //}
 
    template < typename FUNCTION >
    function(FUNCTION functionParam) :
-      m_pbase(e_pointer_transfer, memory_new class implementation < FUNCTION >(functionParam))
+      m_pbase(__allocate< class implementation < FUNCTION > >(::transfer(functionParam)))
    {
 
    }
-
 
    function(const function & function) :
       m_pbase(function.m_pbase)
@@ -694,7 +807,7 @@ public:
    function & operator = (FUNCTION functionParam)
    {
 
-      m_pbase = ::transfer(memory_new class implementation <FUNCTION >(functionParam));
+      m_pbase = ::transfer(__allocate< class implementation <FUNCTION > >(::transfer(functionParam)));
 
       return *this;
 
@@ -746,11 +859,25 @@ public:
 
    bool operator == (const function & function) const { return m_pbase == function.m_pbase; }
 
-
    operator ::u32hash() const { return { (::u32)(::uptr)m_pbase.m_p }; }
 
 };
 
+//
+//template < typename... types >
+//class function_receptor < void(types...) > :
+//   public function <  void(types...) >
+//{
+//public:
+//
+//   template < typename function >
+//   function_receptor(function function) :
+//      function <  void(types...) >(transfer_t{}, function)
+//   {
+//   }
+//
+//
+//};
 
 
 

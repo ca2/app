@@ -3,6 +3,7 @@
 #include "top_edit_impact.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
+#include "acme/handler/topic.h"
 #include "acme/platform/message.h"
 #include "acme/filesystem/filesystem/listing.h"
 #include "apex/database/_binary_stream.h"

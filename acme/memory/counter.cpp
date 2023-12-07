@@ -10,90 +10,107 @@
 
 
 
-
-
-bool memory_counter::is_enabled()
-{
-
-   return m_iMemoryCountersStartable && m_iMemoryCounters;
-
-}
-
-
-void memory_counter::initialize(::particle * pparticle)
-{
-
-   ::particle::initialize(pparticle);
-
-   if (m_iMemoryCountersStartable && m_iMemoryCounters < 0)
-   {
-
-      m_iMemoryCounters = pparticle->acmefile()->exists(pparticle->acmedirectory()->config() / "system/memory_counters.txt") ? 1 : 0;
-
-      //if (g_iMemoryCounters)
-      //{
-
-      //   //g_pmutexMemoryCounters = memory_new ::pointer < ::mutex >(e_create_new, false, "Global\\ca2_memory_counters");
-      //   //__construct(pparticle, g_pmutexMemoryCounters);
-
-      //   __construct_new(pparticle, g_pmapMemoryCounter);
-
-      //}
-
-   }
-
-   //return true;
-
-}
-
-
-//::file::path memory_counter_base_path(::matter* pmatter)
+//
+//
+//bool particle_tracker::is_enabled()
 //{
 //
-//   if (g_iMemoryCountersStartable && g_pMemoryCounters == nullptr)
-//   {
-//
-//      g_pMemoryCounters = memory_new ::file::path();
-//
-//#if defined(UNIVERSAL_WINDOWS)
-//
-//      string strBasePath = pmatter->acmedirectory()->system() / "memory_counters";
-//
-//#else
-//
-//      ::file::path strModule = module_path_from_pid(get_current_process_id());
-//
-//      string strBasePath = pmatter->acmedirectory()->system() / "memory_counters" / strModule.title() / as_string(get_current_process_id());
-//
-//#endif
-//
-//      * g_pMemoryCounters = strBasePath;
-//
-//   }
-//
-//   return *g_pMemoryCounters;
+//   return m_iMemoryCountersStartable && m_iMemoryCounters;
 //
 //}
 //
 //
+//void particle_tracker::initialize(::particle * pparticle)
+//{
+//
+//   ::particle::initialize(pparticle);
+//
+//   if (m_iMemoryCountersStartable && m_iMemoryCounters < 0)
+//   {
+//
+//      m_iMemoryCounters = pparticle->acmefile()->exists(pparticle->acmedirectory()->config() / "system/particle_trackers.txt") ? 1 : 0;
+//
+//      //if (g_iMemoryCounters)
+//      //{
+//
+//      //   //g_pmutexMemoryCounters = __new< ::pointer < ::mutex > >(e_create_new, false, "Global\\ca2_particle_trackers");
+//      //   //__construct(pparticle, g_pmutexMemoryCounters);
+//
+//      //   __construct_new(pparticle, g_pmapMemoryCounter);
+//
+//      //}
+//
+//   }
+//
+//   //return true;
+//
+//}
+//
+//
+////::file::path particle_tracker_base_path(::matter* pmatter)
+////{
+////
+////   if (g_iMemoryCountersStartable && g_pMemoryCounters == nullptr)
+////   {
+////
+////      g_pMemoryCounters = __new< ::file::path >();
+////
+////#if defined(UNIVERSAL_WINDOWS)
+////
+////      string strBasePath = pmatter->acmedirectory()->system() / "particle_trackers";
+////
+////#else
+////
+////      ::file::path strModule = module_path_from_pid(get_current_process_id());
+////
+////      string strBasePath = pmatter->acmedirectory()->system() / "particle_trackers" / strModule.title() / as_string(get_current_process_id());
+////
+////#endif
+////
+////      * g_pMemoryCounters = strBasePath;
+////
+////   }
+////
+////   return *g_pMemoryCounters;
+////
+////}
+////
+////
+////
+//
+//void particle_tracker::increment_by_name(const ::scoped_string & scopedstr)
+//{
+//
+//   critical_section_lock lock(&m_criticalsection);
+//
+//   m_mapMemoryCounter[scopedstr]++;
+//
+//}
+//
+//
+//void particle_tracker::decrement_by_name(const ::scoped_string & scopedstr)
+//{
+//
+//   critical_section_lock lock(&m_criticalsection);
+//
+//   m_mapMemoryCounter[scopedstr]--;
+//
+//}
 //
 
-void memory_counter::increment_by_name(const ::scoped_string & scopedstr)
+
+
+
+CLASS_DECL_ACME void increment_particle_counter(::particle * pparticle)
 {
 
-   critical_section_lock lock(&m_criticalsection);
-
-   m_mapMemoryCounter[scopedstr]++;
 
 }
 
 
-void memory_counter::decrement_by_name(const ::scoped_string & scopedstr)
+CLASS_DECL_ACME void decrement_particle_counter(::particle * pparticle)
 {
 
-   critical_section_lock lock(&m_criticalsection);
-
-   m_mapMemoryCounter[scopedstr]--;
 
 }
 

@@ -84,13 +84,13 @@ void * system::operating_system_library_open(const ::file::path & pathParam, str
 
    }
 
-   //::informationf("\n\nGoing to dlopen: \"" + strPath + "\"");
+   //::acme::get()->platform()->informationf("\n\nGoing to dlopen: \"" + strPath + "\"");
    
    auto pathModuleFolder = ::get_module_folder();
 
    path = pathModuleFolder / strPath;
 
-   //::informationf("\nFirst path to try: \"" + path + "\"");
+   //::acme::get()->platform()->informationf("\nFirst path to try: \"" + path + "\"");
 
    void * plibrary = dlopen(path, RTLD_LOCAL | RTLD_LAZY);
 
@@ -165,7 +165,7 @@ finished:
       if(has_verbose_flag())
       {
          
-         ::informationf("\n" + strMessage + "\n\n");
+         ::acme::get()->platform()->informationf("\n" + strMessage + "\n\n");
          
       }
 
@@ -175,7 +175,7 @@ finished:
 
       strMessage = "__node_library_open : Failed with : " + strMessage;
       
-      ::informationf("\n" + strMessage + "\n\n");
+      ::acme::get()->platform()->informationf("\n" + strMessage + "\n\n");
 
    }
 
@@ -236,7 +236,7 @@ void * system::operating_system_library_open_ca2(const ::file::path & pathParam,
       if(has_verbose_flag())
       {
          
-         ::informationf("\n\n" + strMessage + "\n\n");
+         ::acme::get()->platform()->informationf("\n\n" + strMessage + "\n\n");
          
       }
       
@@ -250,7 +250,7 @@ void * system::operating_system_library_open_ca2(const ::file::path & pathParam,
 
       strMessage = "__node_library_open_ca2 : " + strPath + " with the error: \"" + strError + "\"";
 
-      ::informationf("\n\n" + strMessage + "\n\n");
+      ::acme::get()->platform()->informationf("\n\n" + strMessage + "\n\n");
 
    }
 

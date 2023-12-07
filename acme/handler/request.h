@@ -141,6 +141,7 @@ public:
 
    //inline ::user::system * get_user_create() { return __user_system2(m_pusersystem); }
 
+   void destroy() override;
 
 };
 

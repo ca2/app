@@ -10,6 +10,7 @@
 #include "tab_drop_target_window.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
+#include "acme/handler/topic.h"
 #include "acme/primitive/data/listener.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "aura/graphics/draw2d/graphics.h"
@@ -490,7 +491,7 @@ namespace user
 
       create_tab_by_id(::user::tab::index_id(pchannel->get_data()->m_iClickTab));
 
-      m_pdroptargetwindow = __new(tab_drop_target_window());
+      m_pdroptargetwindow = __allocate< tab_drop_target_window >();
 
       m_pdroptargetwindow->initialize_tab_drop_target_window(this, (i32)pchannel->get_data()->m_iClickTab);
 
@@ -1064,7 +1065,7 @@ namespace user
          //if (!pmenu->m_pmenuitem->m_pmenuitema)
          //{
 
-         //   pmenu->m_pmenuitem->m_pmenuitema = __new(::user::menu_item_ptra(pmenu->m_pmenuitem));
+         //   pmenu->m_pmenuitem->m_pmenuitema = __allocate< ::user::menu_item_ptra >(pmenu->m_pmenuitem);
 
          //}
 

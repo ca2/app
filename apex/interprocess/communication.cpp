@@ -342,7 +342,7 @@ namespace interprocess
       if (strApp == "app-core/clockverse")
       {
 
-         ::informationf("app-core/clockverse");
+         ::acme::get()->platform()->informationf("app-core/clockverse");
 
       }
 
@@ -723,7 +723,7 @@ namespace interprocess
    ::pointer<::interprocess::task>communication::create_task(::interprocess::call * pcall, const ::atom & idPid)
    {
 
-      auto pobjectTask = __new(::interprocess::task(pcall, idPid, m_iTaskSeed++));
+      auto pobjectTask = __allocate< ::interprocess::task >(pcall, idPid, m_iTaskSeed++);
 
       synchronous_lock synchronouslock(this->synchronization());
 
@@ -749,7 +749,7 @@ namespace interprocess
    ::pointer<::interprocess::call>communication::create_call(const ::string & strApp, const ::string & strObject, const ::string & strMember)
    {
 
-      return __new(::interprocess::call(this, strApp, strObject, strMember));
+      return __allocate< ::interprocess::call >(this, strApp, strObject, strMember);
 
    }
 

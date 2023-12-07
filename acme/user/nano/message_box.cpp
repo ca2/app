@@ -68,7 +68,7 @@ void nano_message_box::defer_create_details_still()
    if (m_strDetails.has_char())
    {
 
-      m_pstillDetails = __new(nano_still);
+      m_pstillDetails = __allocate< nano_still >();
 
       m_pstillDetails->m_atom = "details";
 
@@ -291,7 +291,7 @@ void nano_message_box::on_create()
 //pointer< ::sequence < ::conversation > > nano_message_box::display(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox)
 //{
 //
-//   auto psequence = __new(::sequence <::conversation >());
+//   auto psequence = __allocate< ::sequence <::conversation > >();
 //
 //   psequence->m_p = this;
 //
@@ -318,12 +318,51 @@ void nano_message_box::on_create()
 
 
 //CLASS_DECL_ACME ::acme::system * system();
+#ifdef WINDOWS_DESKTOP
+CLASS_DECL_ACME int message_box_to_windows_message_box(enum_message_box emessagebox);
+CLASS_DECL_ACME enum_dialog_result windows_message_box_result_to_dialog_result(int iResult);
+#endif
+
+#ifdef MACOS
+
+enum_dialog_result ns_alert_box(const char * pszMessage, const char * pszTitle, enum_message_box emessagebox);
+
+#endif
 
 
 CLASS_DECL_ACME ::atom message_box_synchronous(::particle * pparticle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails)
 {
 
-   initialize_nano_window();
+   if (::is_null(pparticle))
+   {
+
+#ifdef WINDOWS_DESKTOP
+      auto iType = message_box_to_windows_message_box(emessagebox);
+      ::wstring wstrMessage(scopedstrMessage);
+      ::wstring wstrTitle(scopedstrTitle);
+
+      auto iRet = ::MessageBoxW(nullptr, wstrMessage, wstrTitle, iType);
+
+      auto edialogresult = windows_message_box_result_to_dialog_result(iRet );
+
+      return edialogresult;
+
+#elif defined(MACOS)
+      
+      ::string strMessage(scopedstrMessage);
+      ::string strTitle(scopedstrTitle);
+      
+      auto edialogresult = ns_alert_box(strMessage, strTitle, emessagebox);
+      
+      return edialogresult;
+      
+#else
+      real_message_box_fallback();
+#endif
+
+   }
+
+   initialize_nano_window(pparticle->factory());
 
    if (::is_null(pparticle))
    {
@@ -353,7 +392,7 @@ CLASS_DECL_ACME ::atom message_box_synchronous(::particle * pparticle, const ::s
    
    auto atomResult = psequencer->do_synchronously();
    
-//   auto pmanualresetevent = __new(manual_reset_event);
+//   auto pmanualresetevent = __allocate< manual_reset_event >();
 //   
 //   atom atomResult;
 //   
@@ -426,7 +465,7 @@ public:
 CLASS_DECL_ACME void message_box_asynchronous(::function < void(const ::atom & atom) > function, ::particle * pparticle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails)
 {
 
-   auto pmessagebox = __new(message_box);
+   auto pmessagebox = __allocate< message_box >();
 
    pmessagebox->m_pobject = pparticle;
    pmessagebox->initialize_conversation(scopedstrMessage,scopedstrTitle, emessagebox, scopedstrDetails);
@@ -434,7 +473,7 @@ CLASS_DECL_ACME void message_box_asynchronous(::function < void(const ::atom & a
    //pparticle->fork([pmessagebox]()
    //{
 
-   initialize_nano_window();
+   initialize_nano_window(pparticle->factory());
 
    if (::is_null(pparticle))
    {
@@ -465,7 +504,7 @@ CLASS_DECL_ACME void message_box_asynchronous(::function < void(const ::atom & a
    //main_asynchronous([ pmessagebox, pparticle ]()
    //{
 
-      auto pnanomessagebox = __create_new < nano_message_box >(pparticle);
+      auto pnanomessagebox = pparticle->__create_new < nano_message_box >();
    
       atom idResult;
    

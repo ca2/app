@@ -151,7 +151,7 @@ namespace apex
    {
 
       m_papexsystem = this;
-      factory()->add_factory_item < ::apex::session, ::apex::session >();
+
       //      factory()->add_factory_item < ::apex::app_launcher >();
       //
       //      factory()->add_factory_item<::apex::log, ::logger>();
@@ -196,6 +196,13 @@ namespace apex
    }
 
 
+   //void system::on_set_platform()
+   //{
+
+   //}
+
+
+
    void system::common_construct()
    {
 
@@ -221,18 +228,18 @@ namespace apex
 #ifdef _DEBUG
 
 
-   i64 system::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
+   i64 system::increment_reference_count()
    {
 
-      return ::acme::system::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      return ::acme::system::increment_reference_count();
 
    }
 
 
-   i64 system::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
+   i64 system::decrement_reference_count()
    {
 
-      return ::acme::system::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      return ::acme::system::decrement_reference_count();
 
    }
 
@@ -240,12 +247,24 @@ namespace apex
 #endif
 
 
-   void system::initialize(::particle * pparticle)
+   void system::on_set_platform()
    {
 
-      ::apex::context::initialize(pparticle);
+      apex::context::on_set_platform();
 
-      m_pcontext = this;
+      acme::system::on_set_platform();
+
+      factory()->add_factory_item < ::apex::session, ::apex::session >();
+
+   }
+
+
+   void system::on_initialize_particle()
+   {
+
+      ::apex::context::on_initialize_particle();
+
+      ::acme::system::on_initialize_particle();
 
    }
 
@@ -890,6 +909,9 @@ pacmedirectory->create("/ca2core");
       //}
 
       //estatus = 
+
+      //::allocator::add_referer(REFERENCING_DEBUGGING_THIS_FUNCTION_FILE_LINE);
+
       __construct(m_pdirsystem);
 
       //if (!estatus)
@@ -1028,7 +1050,7 @@ pacmedirectory->create("/ca2core");
       //
       //         strCurrentWorkingDirectory = get_current_directory_name();
       //
-      //         ::informationf("\nCurrent Working Directory : " + strCurrentWorkingDirectory);
+      //         ::acme::get()->platform()->informationf("\nCurrent Working Directory : " + strCurrentWorkingDirectory);
       //
       //      }
 
@@ -1304,10 +1326,9 @@ pacmedirectory->create("/ca2core");
    void system::compress(const ::payload & payloadTarget, const ::payload & payloadSource, const ::scoped_string & scopedstrImplementation)
    {
 
-      ::pointer<::compress>pcompress;
+      /*auto estatus =*/
 
-      /*auto estatus =*/ new_compress(&pcompress.m_p, scopedstrImplementation);
-
+      ::pointer<::compress>pcompress = new_compress(scopedstrImplementation);
       /*  if (!estatus)
       {
 
@@ -1338,7 +1359,9 @@ pacmedirectory->create("/ca2core");
 
       ::pointer<::uncompress>puncompress;
 
-      /*auto estatus = */ new_uncompress(&puncompress.m_p, scopedstrImplementation);
+      /*auto estatus = */ 
+      
+      new_uncompress(scopedstrImplementation);
 
       //if (!estatus)
       //{
@@ -1776,9 +1799,9 @@ pacmedirectory->create("/ca2core");
 
       ::apex::context::inline_term();
 
-#if OBJECT_REFERENCE_COUNT_DEBUG
+#if REFERENCING_DEBUGGING
 
-      release(OBJECT_REFERENCE_COUNT_DEBUG_P_NOTE(this, nullptr));
+      release();
 
       try
       {
@@ -1786,7 +1809,7 @@ pacmedirectory->create("/ca2core");
          if (m_countReference > 1)
          {
 
-            __check_pending_releases(this);
+            check_pending_releases();
 
          }
 
@@ -2287,11 +2310,11 @@ pacmedirectory->create("/ca2core");
    //
    //#ifdef UNIVERSAL_WINDOWS
    //
-   //         m_spmutexOpenweatherCity = __new(::pointer < ::mutex >());
+   //         m_spmutexOpenweatherCity = __allocate< ::pointer < ::mutex > >();
    //
    //#else
    //
-   //         m_spmutexOpenweatherCity = __new(::pointer < ::mutex >(e_create_new, false, "Global\\ca2_weather_city"));
+   //         m_spmutexOpenweatherCity = __allocate< ::pointer < ::mutex > >(e_create_new, false, "Global\\ca2_weather_city");
    //
    //#endif
    //
@@ -2727,7 +2750,7 @@ pacmedirectory->create("/ca2core");
    //      return true;
    //#endif
    //
-   //      /*      m_spfilehandler(memory_new ::apex::filehandler::handler(this));*/
+   //      /*      m_spfilehandler(__new< ::apex::filehandler::handler >(this));*/
    //
    ////      m_mapAppLibrary.erase_all();
    ////
@@ -2737,11 +2760,11 @@ pacmedirectory->create("/ca2core");
    ////
    ////      ::file::path pathCa2Module = dir()->ca2module();
    ////
-   ////      ::informationf("\n\n::apex::system::find_applications_to_cache\n\n");
+   ////      ::acme::get()->platform()->informationf("\n\n::apex::system::find_applications_to_cache\n\n");
    ////
-   ////      ::informationf("ca2 module folder : " + pathCa2Module);
+   ////      ::acme::get()->platform()->informationf("ca2 module folder : " + pathCa2Module);
    ////
-   ////      ::informationf("\n\n\n");
+   ////      ::acme::get()->platform()->informationf("\n\n\n");
    ////
    ////      straTitle.ls_pattern(pathCa2Module, { "*.*" });
    ////
@@ -2762,7 +2785,7 @@ pacmedirectory->create("/ca2core");
    ////               continue;
    ////            }
    ////
-   ////            ::informationf("library("+as_string(i)+") : " + strLibraryId+"\n\n");
+   ////            ::acme::get()->platform()->informationf("library("+as_string(i)+") : " + strLibraryId+"\n\n");
    ////
    ////            map_application_library(strLibraryId);
    ////
@@ -2835,7 +2858,7 @@ pacmedirectory->create("/ca2core");
    //      //if(!library.open_library())
    //      //{
    //
-   //      //   ::informationf("::system::map_application_library open_ca2_library(2) Failed :" + string(pszLibrary) + "\n\n");
+   //      //   ::acme::get()->platform()->informationf("::system::map_application_library open_ca2_library(2) Failed :" + string(pszLibrary) + "\n\n");
    //
    //      //   return false;
    //
@@ -3666,17 +3689,17 @@ pacmedirectory->create("/ca2core");
 #if defined(UNIVERSAL_WINDOWS)
 
 
-         string * pstrNew = memory_new string(strUrl);
+         string * pstrNew = __new< string >(strUrl);
 
          ::winrt::Windows::ApplicationModel::Core::CoreApplication::MainImpact->CoreWindow->Dispatcher->RunAsync(::winrt::Windows::UI::Core::CoreDispatcherPriority::Normal,
-            ref memory_new::winrt::Windows::UI::Core::DispatchedHandler([pstrNew]()
+            ref __new< ::winrt::Windows::UI::Core::DispatchedHandler([pstrNew] >()
                {
 
-                  ::winrt::Windows::Foundation::Uri ^ uri = ref memory_new::winrt::Windows::Foundation::Uri(*pstrNew);
+                  ::winrt::Windows::Foundation::Uri ^ uri = ref __new< ::winrt::Windows::Foundation::Uri >(*pstrNew);
 
                   delete pstrNew;
 
-                  LauncherOptions ^ options = ref memory_new LauncherOptions();
+                  LauncherOptions ^ options = ref __new< LauncherOptions >();
 
                   options->TreatAsUntrusted = false;
 
@@ -4071,7 +4094,7 @@ pacmedirectory->create("/ca2core");
       if (strUrl.has_char())
       {
 
-         strParam += " -memory_new-tab \"" + strUrl + "\"";
+         strParam += " -new-tab \"" + strUrl + "\"";
 
       }
 
@@ -4199,7 +4222,7 @@ pacmedirectory->create("/ca2core");
    //   if (threadgroupa.is_empty())
    //   {
 
-   //      auto pgroup = __new(::task_group(this, epriority));
+   //      auto pgroup = __allocate< ::task_group >(this, epriority);
 
    //      threadgroupa.add(pgroup);
 
@@ -4220,7 +4243,7 @@ pacmedirectory->create("/ca2core");
    //   if (threadtoola.is_empty())
    //   {
 
-   //      auto ptool = __new(::task_tool);
+   //      auto ptool = __allocate< ::task_tool >();
 
    //      ptool->m_atom = etool;
 
@@ -4324,7 +4347,7 @@ pacmedirectory->create("/ca2core");
 
 #ifdef WINDOWS
 
-//#define memory_new ACME_NEW
+
 #endif
 
 //#ifdef LINUX

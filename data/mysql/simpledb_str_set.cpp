@@ -242,7 +242,7 @@ matter(pserver->get_app()),
 m_pmutex(pserver->get_app())
 {
 
-   m_pcore = memory_new db_str_set_core(pserver);
+   m_pcore = __new< db_str_set_core >(pserver);
 
 }
 
@@ -452,7 +452,7 @@ bool db_str_set::save(const ::string & lpKey, const ::string & lpcsz)
       if(m_pcore->m_pqueue == nullptr)
       {
 
-         m_pcore->m_pqueue = memory_new db_str_sync_queue(this);
+         m_pcore->m_pqueue = __new< db_str_sync_queue >(this);
          m_pcore->m_pqueue->m_ppropertyset = this;
          m_pcore->m_pqueue->begin();
 

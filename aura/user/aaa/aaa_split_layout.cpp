@@ -177,7 +177,7 @@ namespace user
          if(m_panea[i].is_null())
          {
 
-            m_panea[i] = __new(::user::split_pane);
+            m_panea[i] = __allocate< ::user::split_pane >();
 
             m_panea(i).m_bFixedSize =  false;
 
@@ -916,7 +916,7 @@ namespace user
 
       }
 
-      m_panea.insert_at(iIndex, memory_new Pane);
+      m_panea.insert_at(iIndex, aaa_primitive_new Pane);
 
       ASSERT(iIndex >= 0);
 

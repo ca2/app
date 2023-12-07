@@ -14,11 +14,11 @@
 //      switch (ehash)
 //      {
 //      case e_hash_md5:
-//         return __new(hasher < MD5_CTX, e_hash_md5 > ());
+//         return __allocate< hasher < MD5_CTX, e_hash_md5 >  >();
 //      case e_hash_sha1:
-//         return __new(hasher < SHA_CTX, e_hash_sha1>());
+//         return __allocate< hasher < SHA_CTX, e_hash_sha1> >();
 //      case e_hash_sha256:
-//         return __new(hasher < SHA256_CTX, e_hash_sha256 >());
+//         return __allocate< hasher < SHA256_CTX, e_hash_sha256 > >();
 //      default:
 //         return nullptr;
 //      }

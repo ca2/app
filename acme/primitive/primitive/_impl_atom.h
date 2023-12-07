@@ -190,7 +190,7 @@ inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator =
 
 //template < typename ITERATOR_TYPE >
 //inline scoped_string_base < ITERATOR_TYPE >::scoped_string_base(const ::atom & atom) :
-//   m_str(e_no_initialize), RANGE(e_no_initialize)
+//   m_str(no_initialize_t{}), RANGE(no_initialize_t{})
 //{
 //
 //   m_str = atom.as_string();
@@ -202,7 +202,7 @@ inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator =
 
 //template < >
 //inline scoped_string_base < const ::ansi_character * >::scoped_string_base(const ::atom & atom) :
-//   m_str(e_no_initialize), RANGE(e_no_initialize)
+//   m_str(no_initialize_t{}), RANGE(no_initialize_t{})
 //{
 //
 //   if (atom.is_text())

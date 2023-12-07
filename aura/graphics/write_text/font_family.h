@@ -8,6 +8,7 @@ namespace write_text
 
    class CLASS_DECL_AURA font_family :
       virtual public ::particle
+      //, public ::allocator::accessor < font_family >
    {
    public:
 
@@ -16,14 +17,14 @@ namespace write_text
       ::string          m_strFamilyName;
       ::string          m_strBranch;
 
-   protected:
+   //protected:
       font_family(enum_font efont);
 
       font_family(const ::scoped_string & scopedstrFamilyName, const ::scoped_string & scopedstrBranch = {});
 
       font_family(const font_family & fontfamily);
 
-      friend class font_family_pointer;
+      friend class ::allocator::accessor;
 
    public:
 
@@ -45,7 +46,8 @@ namespace write_text
 
 
    class CLASS_DECL_AURA font_family_pointer :
-      public ::pointer < font_family >
+      public ::pointer < font_family >//,
+      //public ::allocator::accessor < font_family >
    {
    public:
 

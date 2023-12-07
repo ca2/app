@@ -215,7 +215,7 @@ strsize ansi_to_wd32(::wd32_character* pwsz, const ::ansi_character * psz, strsi
 
    strsize s = ansi_to_wd32_len(input, input_size);
 
-   ::wd32_character* v = (::wd32_character*)memory_allocate(sizeof(::wd32_character) * (s + 1));
+   ::wd32_character* v = (::wd32_character*)::heap::management::memory(::heap::e_memory_main)->allocate(sizeof(::wd32_character) * (s + 1));
 
    ansi_to_wd32(v, input, s);
 

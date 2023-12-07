@@ -1037,7 +1037,7 @@ if (MSVC)
    target_compile_options(core PRIVATE "/bigobj")
    target_link_options(core PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
    target_link_options(core PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/core.lib")
-   target_link_options(core PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/core.def")
+   #target_link_options(core PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/core.def")
    target_link_libraries(core PRIVATE ${library_references})
 
 
@@ -1068,7 +1068,8 @@ target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories
 target_include_directories(static_${PROJECT_NAME} PRIVATE ${library_include_directories})
 
 
-target_compile_definitions(core PRIVATE _CORE_LIBRARY)
+target_compile_definitions(${PROJECT_NAME} PRIVATE _${PROJECT_NAME}_project)
+
 
 
 

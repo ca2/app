@@ -41,8 +41,8 @@ public:
 };
 
 
-CLASS_DECL_ACME message_queue * get_message_queue(itask_t atom, bool bCreate);
-CLASS_DECL_ACME void clear_message_queue(itask_t idthread);
+//CLASS_DECL_ACME message_queue * aaa_get_message_queue(itask_t atom, bool bCreate);
+//CLASS_DECL_ACME void aaa_clear_message_queue(itask_t idthread);
 
 void _c_simple_message_loop();
 

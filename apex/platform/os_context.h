@@ -15,6 +15,8 @@ public:
    ~os_context() override;
 
 
+   void finalize() override;
+
    virtual string get_command_line();
 
    virtual void reboot();

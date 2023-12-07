@@ -41,7 +41,7 @@ namespace datetime
 
       //estatus = 
       
-      ::__construct_new(this, m_pscanner);
+      __construct_new(m_pscanner);
 
       //if (!estatus)
       //{
@@ -69,7 +69,7 @@ namespace datetime
    element * parser::new_node()
    {
 
-      auto pelement = __new(::datetime::element);
+      auto pelement = __allocate< ::datetime::element >();
       
       m_elementa.add(pelement);
 

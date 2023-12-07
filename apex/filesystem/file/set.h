@@ -17,8 +17,8 @@ namespace file
    public:
 
 
-      ::pointer<::file::path_array>    m_ppathaSearch;
-      ::pointer<bool_array>            m_pbaRecursive;
+      ::pointer< ::file::path_array >  m_ppathaSearch;
+      ::pointer< bool_array >          m_pbaRecursive;
       string_array                     m_straFilter;
       ::file::listing                  m_listing;
       ::file::listing                  m_listingAddUp;

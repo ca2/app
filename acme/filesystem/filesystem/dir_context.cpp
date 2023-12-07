@@ -61,7 +61,7 @@ dir_context::dir_context()
 
    //   ::file::dir_context::g_pthis = this;
 
-   //   increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+   //   increment_reference_count();
 
    //}
 
@@ -114,6 +114,27 @@ void dir_context::init_context()
    //return ::success;
 
 }
+void dir_context::term_context()
+{
+
+   //return ::success;
+
+}
+
+void dir_context::term_system()
+{
+
+   //return ::success;
+
+}
+
+
+void dir_context::finalize()
+{
+
+
+}
+
 
 
 inline bool myspace(char ch)
@@ -529,7 +550,7 @@ bool dir_context::_enumerate(::file::listing& listing)
       else
       {
 
-         auto pfolder = pfactory->create < ::folder >(this);
+         auto pfolder = __create < ::folder >(pfactory);
 
          if (!pfolder)
          {
@@ -910,7 +931,7 @@ bool dir_context::is_cached(bool& bIs, const ::file::path& path)
       else
       {
 
-         auto pfolder = pfactory->create < ::folder >(this);
+         auto pfolder = __create<::folder >(pfactory);
 
          if (!pfolder)
          {
@@ -1108,7 +1129,7 @@ bool dir_context::__is(const ::file::path& path, bool& bDir)
       else
       {
 
-         auto pfolder = pfactory->create < ::folder >(this);
+         auto pfolder = __create< ::folder >(pfactory);
 
          if (!pfolder)
          {
@@ -1182,7 +1203,7 @@ bool dir_context::name_is(const ::file::path& strPath)
       else
       {
 
-         auto pfolder = pfactory->create < ::folder >(this);
+         auto pfolder = __create < ::folder >(pfactory);
 
          if (!pfolder)
          {
@@ -1530,7 +1551,7 @@ bool dir_context::name_is(const ::file::path& strPath)
 //
 //         is_dir * pdir = this;
 //
-//         ::pointer<is_dir>pfind(__new(is_dir));
+//         ::pointer<is_dir>pfind(__allocate< is_dir >());
 //
 //         index iFind0 = 0;
 //         index iFind3 = 0;
@@ -1597,7 +1618,7 @@ bool dir_context::name_is(const ::file::path& strPath)
 //
 //                  pdir = pfind;
 //
-//                  pfind = __new(is_dir);
+//                  pfind = __allocate< is_dir >();
 //                  iFind0 = iFind3 + 1;
 //               }
 //            }

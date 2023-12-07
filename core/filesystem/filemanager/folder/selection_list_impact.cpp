@@ -3,6 +3,7 @@
 #include "selection_list_impact.h"
 #include "acme/constant/id.h"
 #include "acme/handler/item.h"
+#include "acme/handler/topic.h"
 #include "acme/platform/context.h"
 #include "core/filesystem/filemanager/document.h"
 #include "core/filesystem/filemanager/tree_data.h"

@@ -5,6 +5,7 @@
 #include "context_menu.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
+#include "acme/handler/topic.h"
 #include "acme/platform/application.h"
 #include "acme/platform/session.h"
 #include "acme/platform/system.h"
@@ -71,26 +72,26 @@ namespace filemanager
 #ifdef _DEBUG
 
 
-   i64 tree_data::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
+   i64 tree_data::increment_reference_count()
    {
 
-      return ::object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      return ::object::increment_reference_count();
 
    }
 
 
-   i64 tree_data::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
+   i64 tree_data::decrement_reference_count()
    {
 
-      return ::object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      return ::object::decrement_reference_count();
 
    }
 
 
-   i64 tree_data::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
+   i64 tree_data::release()
    {
 
-      return ::object::release(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      return ::object::release();
 
    }
 
@@ -405,7 +406,7 @@ namespace filemanager
       //            if (ptreeitemChild == nullptr)
       //            {
 
-      //               pitemChild = __new(::userfs::item(this));
+      //               pitemChild = __allocate< ::userfs::item >(this);
 
       //               pitemChild->set_user_path(pathAscendant);
 
@@ -476,7 +477,7 @@ namespace filemanager
       //      if (ptreeitemChild.is_null())
       //      {
 
-      //         ptreeitemChild = __new(::data::tree_item);
+      //         ptreeitemChild = __allocate< ::data::tree_item >();
 
       //         ptreeitemChild->m_ptree = this;
 
@@ -501,7 +502,7 @@ namespace filemanager
       //      if (!pitemChild)
       //      {
 
-      //         pitemChild = __new(::userfs::item(this));
+      //         pitemChild = __allocate< ::userfs::item >(this);
 
       //         ptreeitemChild->m_pdataitem = pitemChild;
 
@@ -559,7 +560,7 @@ namespace filemanager
       //      if (ptreeitemChild.is_null())
       //      {
 
-      //         ptreeitemChild = __new(::data::tree_item);
+      //         ptreeitemChild = __allocate< ::data::tree_item >();
 
       //         ptreeitemChild->m_ptree = this;
 
@@ -582,7 +583,7 @@ namespace filemanager
       //      if (!pitemChild)
       //      {
 
-      //         pitemChild = __new(::userfs::item(this));
+      //         pitemChild = __allocate< ::userfs::item >(this);
 
       //         ptreeitemChild->m_pdataitem = pitemChild;
 
@@ -773,7 +774,7 @@ _001SelectItem(pchild);
          if (!pchild)
          {
 
-            auto pitemNew = __new(::userfs::item(this));
+            auto pitemNew = __allocate< ::userfs::item >(this);
 
             pitemNew->set_user_path(path);
 
@@ -866,7 +867,7 @@ _001SelectItem(pchild);
    //            if (ptreeitemChild == nullptr)
    //            {
 
-   //               pitemChild = __new(::userfs::item(this));
+   //               pitemChild = __allocate< ::userfs::item >(this);
 
    //               pitemChild->set_user_path(pathAscendant);
 
@@ -937,7 +938,7 @@ _001SelectItem(pchild);
    //      if (ptreeitemChild.is_null())
    //      {
 
-   //         ptreeitemChild = __new(::data::tree_item);
+   //         ptreeitemChild = __allocate< ::data::tree_item >();
 
    //         ptreeitemChild->m_ptree = this;
 
@@ -962,7 +963,7 @@ _001SelectItem(pchild);
    //      if (!pitemChild)
    //      {
 
-   //         pitemChild = __new(::userfs::item(this));
+   //         pitemChild = __allocate< ::userfs::item >(this);
 
    //         ptreeitemChild->m_pdataitem = pitemChild;
 
@@ -1195,7 +1196,7 @@ _001SelectItem(pchild);
 
       auto puserfsitem = pitem->m_pdataitem.cast < ::userfs::item > ();
 
-      auto pfileitem = __new(::file::item(*puserfsitem));
+      auto pfileitem = __allocate< ::file::item >(*puserfsitem);
 
       filemanager_document()->browse(pfileitem, context);
 

@@ -81,9 +81,9 @@ namespace zip
       if (iBufferLevel >= 2)
       {
 
-         m_pbuffile1 = __new(::file::buffered_file(pfile, 1024 * 32));
+         m_pbuffile1 = __allocate< ::file::buffered_file >(pfile, 1024 * 32);
 
-         m_pbuffile2 = __new(::file::buffered_file(m_pbuffile1, 1024 * 32));
+         m_pbuffile2 = __allocate< ::file::buffered_file >(m_pbuffile1, 1024 * 32);
 
       }
       else if (iBufferLevel == 1)
@@ -91,7 +91,7 @@ namespace zip
 
          m_pbuffile1 = nullptr;
 
-         m_pbuffile2 = __new(::file::buffered_file(pfile, 1024 * 32));
+         m_pbuffile2 = __allocate< ::file::buffered_file >(pfile, 1024 * 32);
 
       }
       else
@@ -155,9 +155,9 @@ namespace zip
    bool file::zip_open(file_pointer pfile)
    {
 
-      m_pbuffile1 = __new(::file::buffered_file(pfile, 1024 * 256));
+      m_pbuffile1 = __allocate< ::file::buffered_file >(pfile, 1024 * 256);
 
-      m_pbuffile2 = __new(::file::buffered_file(m_pbuffile1, 1024 * 256));
+      m_pbuffile2 = __allocate< ::file::buffered_file >(m_pbuffile1, 1024 * 256);
 
       m_pbuffile2->seek_to_begin();
 

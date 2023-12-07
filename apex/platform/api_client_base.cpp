@@ -166,7 +166,7 @@ api_client_base::~api_client_base()
 
    }
 
-   auto papi = pfactory->create < ::api >(m_pparticleContext);
+   auto papi = m_pparticleContext->__create < ::api >(pfactory);
 
    if (!papi)
    {

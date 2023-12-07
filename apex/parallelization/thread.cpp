@@ -9,6 +9,7 @@
 #include "apex/platform/node.h"
 #include "apex/user/user/message.h"
 #include "apex/user/user/primitive.h"
+#include "acme/parallelization/task_message_queue.h"
 #include "acme/parallelization/tools.h"
 #include "acme/parallelization/pool.h"
 #include "apex/message/message.h"
@@ -55,7 +56,7 @@ CLASS_DECL_ACME HANDLE duplicate_handle(HANDLE h);
 #endif
 
 
-CLASS_DECL_ACME message_queue * get_message_queue(itask_t idthread, bool bCreate);
+//CLASS_DECL_ACME message_queue * aaa_get_message_queue(itask_t idthread, bool bCreate);
 
 
 
@@ -204,7 +205,7 @@ thread::thread()
 
    thread_common_construct();
    
-   memory_counter_increment(this);
+   //memory_counter_increment(this);
    
 }
 
@@ -260,7 +261,7 @@ void thread::thread_common_construct()
 thread::~thread()
 {
 
-   memory_counter_decrement(this);
+   //memory_counter_decrement(this);
 
    m_pmutexThreadUiPtra.release();
 
@@ -330,7 +331,7 @@ void thread::term_task()
       //if (papp)
       //{
 
-      //   papp->release_reference(this OBJECT_REFERENCE_COUNT_DEBUG_COMMA_P_FUNCTION_LINE(papp));
+      //   papp->release_reference(this REFERENCING_DEBUGGING_COMMA_P_FUNCTION_LINE(papp));
 
       //}
 
@@ -345,7 +346,7 @@ void thread::term_task()
       //if (pcontextsession)
       //{
 
-      //   pcontextsession->release_reference(this OBJECT_REFERENCE_COUNT_DEBUG_COMMA_P_FUNCTION_LINE(pcontextsession));
+      //   pcontextsession->release_reference(this REFERENCING_DEBUGGING_COMMA_P_FUNCTION_LINE(pcontextsession));
 
       //}
 
@@ -359,7 +360,7 @@ void thread::term_task()
       //if (psystem)
       //{
 
-      //   psystem->release_reference(this OBJECT_REFERENCE_COUNT_DEBUG_COMMA_P_FUNCTION_LINE(pcontextsystem));
+      //   psystem->release_reference(this REFERENCING_DEBUGGING_COMMA_P_FUNCTION_LINE(pcontextsystem));
 
       //}
 
@@ -373,7 +374,7 @@ void thread::term_task()
       //if (pthread)
       //{
 
-      //   pthread->release_reference(this OBJECT_REFERENCE_COUNT_DEBUG_COMMA_P_FUNCTION_LINE(pcontextthread));
+      //   pthread->release_reference(this REFERENCING_DEBUGGING_COMMA_P_FUNCTION_LINE(pcontextthread));
 
       //}
 
@@ -391,7 +392,7 @@ void thread::term_task()
    //if (this)
    //{
 
-     // this->release_reference(this OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS);
+     // this->release_reference(this REFERENCING_DEBUGGING_COMMA_THIS);
 
    //}
 
@@ -406,21 +407,21 @@ void thread::term_task()
    //if (psystem)
    //{
 
-   //   psystem->release_reference(this OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS);
+   //   psystem->release_reference(this REFERENCING_DEBUGGING_COMMA_THIS);
 
    //}
 
    //if (get_context_thread())
    //{
 
-   //   get_context_thread()->release_reference(this OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS);
+   //   get_context_thread()->release_reference(this REFERENCING_DEBUGGING_COMMA_THIS);
 
    //}
 
 
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock _synchronouslock(this->synchronization());
 
       if (m_peventaWait)
       {
@@ -461,7 +462,7 @@ void thread::task_osterm()
 
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock _synchronouslock(this->synchronization());
 
       if (m_pevSleep.is_set())
       {
@@ -1197,7 +1198,7 @@ bool thread::defer_pump_message()
       if(m_message.m_atom == e_message_quit)
       {
 
-         ::informationf("\n\n\nthread::defer_pump_message (1) quitting (wm_quit? {PeekMessage->message : " + ::as_string(m_message.m_atom == e_message_quit ? 1 : 0) + "!}) : " + ::type(this).name() + " (" + ::as_string((u64)::current_itask()) + ")\n\n\n");
+         ::acme::get()->platform()->informationf("\n\n\nthread::defer_pump_message (1) quitting (wm_quit? {PeekMessage->message : " + ::as_string(m_message.m_atom == e_message_quit ? 1 : 0) + "!}) : " + ::type(this).name() + " (" + ::as_string((u64)::current_itask()) + ")\n\n\n");
 
          return false;
 
@@ -1445,7 +1446,7 @@ bool thread::post_quit_message(int nExitCode)
 //      if(strType == "user::shell::thread")
 //      {
 //
-//         ::informationf("user::shell::thread");
+//         ::acme::get()->platform()->informationf("user::shell::thread");
 //
 //      }
 //
@@ -1483,7 +1484,7 @@ bool thread::post_quit_message(int nExitCode)
 //
 //      m_ptaska->add(ptask);
 //
-//      ptask->m_pthreadParent.reset(this OBJECT_REFERENCE_COUNT_DEBUG_COMMA_P_NOTE(ptask, "thread::thread_add"));
+//      ptask->m_pthreadParent.reset(this REFERENCING_DEBUGGING_COMMA_P_NOTE(ptask, "thread::thread_add"));
 //
 //      return true;
 //
@@ -1609,25 +1610,25 @@ void thread::destroy()
       else if (strType == "multimedia::audio_core_audio::out")
       {
 
-         ::informationf("I am audio_core_audio::out xxpost_quit from multimedia::audio_core_audio::out\n");
+         ::acme::get()->platform()->informationf("I am audio_core_audio::out xxpost_quit from multimedia::audio_core_audio::out\n");
 
       }
       else if (strType == "multimedia::audio::out")
       {
 
-         ::informationf("I am audio::out xxpost_quit from multimedia::audio::out\n");
+         ::acme::get()->platform()->informationf("I am audio::out xxpost_quit from multimedia::audio::out\n");
 
       }
       else if (strType == "multimedia::wave::player")
       {
 
-         ::informationf("I am wave::player xxpost_quit from multimedia::wave::player\n");
+         ::acme::get()->platform()->informationf("I am wave::player xxpost_quit from multimedia::wave::player\n");
 
       }
       else
       {
 
-         ::informationf("I am multimedia:: xxpost_quit from multimedia::*\n");
+         ::acme::get()->platform()->informationf("I am multimedia:: xxpost_quit from multimedia::*\n");
 
       }
 
@@ -1635,11 +1636,51 @@ void thread::destroy()
    else if (strType == "::apex::system")
    {
 
-      ::informationf("I am system xxpost_quit from ::apex::system\n");
+      ::acme::get()->platform()->informationf("I am system xxpost_quit from ::apex::system\n");
 
    }
 
+
+   m_messagea.clear();
+
+   m_peventaWait.release();
+
+   m_emessageaGetLast.clear();
+
+   m_pobjectScript.release();
+
+   m_pevent1.release();
+
+   m_ptaskpool.release();
+
+   m_pfileinfo.release();
+
+   m_puserprimitiveActive.release();
+
+   m_puserprimitiveMain.release();
+
+   m_peventFinished.release();
+
+   m_peventReady.release();
+
+   m_peventSync.release();
+
+   m_peventStarted.release();
+
+   m_pmutexThreadUiPtra.release();
+
+   m_puserprimitiveaThread.release();
+
+   m_prequest.release();
+
+   m_pmessagequeue.defer_destroy();
+
+   ::manager::destroy();
+
+   ::task::destroy();
+
    ::channel::destroy();
+
 
    //auto pparticle = this;
 
@@ -1933,9 +1974,9 @@ void thread::main()
    }
 
 
-//#if OBJECT_REFERENCE_COUNT_DEBUG
+//#if REFERENCING_DEBUGGING
 //
-//   //release(OBJECT_REFERENCE_COUNT_DEBUG_P_NOTE(this, nullptr));
+//   //release(REFERENCING_DEBUGGING_P_NOTE(this, nullptr));
 //
 //   //try
 //   //{
@@ -1985,7 +2026,7 @@ void thread::init_task()
    //   try
    //   {
 
-   //      get_app()->add_reference(this OBJECT_REFERENCE_COUNT_DEBUG_COMMA_P_FUNCTION_LINE(get_app()));
+   //      get_app()->add_reference(this REFERENCING_DEBUGGING_COMMA_P_FUNCTION_LINE(get_app()));
 
    //      m_atomContextReference = id_application;
 
@@ -2003,7 +2044,7 @@ void thread::init_task()
    //   try
    //   {
 
-   //      get_session()->add_reference(this OBJECT_REFERENCE_COUNT_DEBUG_COMMA_P_FUNCTION_LINE(get_session()));
+   //      get_session()->add_reference(this REFERENCING_DEBUGGING_COMMA_P_FUNCTION_LINE(get_session()));
 
    //      m_atomContextReference = id_session;
 
@@ -2023,7 +2064,7 @@ void thread::init_task()
    //   try
    //   {
 
-   //      psystem->add_reference(this OBJECT_REFERENCE_COUNT_DEBUG_COMMA_P_FUNCTION_LINE(psystem));
+   //      psystem->add_reference(this REFERENCING_DEBUGGING_COMMA_P_FUNCTION_LINE(psystem));
 
    //      m_atomContextReference = id_system;
 
@@ -2041,7 +2082,7 @@ void thread::init_task()
    //   try
    //   {
 
-   //      get_task()->add_reference(this OBJECT_REFERENCE_COUNT_DEBUG_COMMA_P_FUNCTION_LINE(get_context_thread()));
+   //      get_task()->add_reference(this REFERENCING_DEBUGGING_COMMA_P_FUNCTION_LINE(get_context_thread()));
 
    //      m_atomContextReference = id_thread;
 
@@ -2321,7 +2362,7 @@ size_t engine_symbol(char * sz, int n, DWORD_PTR * pdisplacement, DWORD_PTR dwAd
 //   if (m_pstartup.is_null())
 //   {
 //
-//      m_pstartup = __new(thread_startup);
+//      m_pstartup = __allocate< thread_startup >();
 //
 //   }
 //
@@ -2403,7 +2444,7 @@ size_t engine_symbol(char * sz, int n, DWORD_PTR * pdisplacement, DWORD_PTR dwAd
    //if (::is_set(pparticle) && pparticle != this)
    //{
 
-   //   pparticle->add_composite(this OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_FUNCTION_LINE);
+   //   pparticle->add_composite(this REFERENCING_DEBUGGING_COMMA_THIS_FUNCTION_FILE_LINE);
 
    //}
 
@@ -2419,7 +2460,7 @@ size_t engine_symbol(char * sz, int n, DWORD_PTR * pdisplacement, DWORD_PTR dwAd
 //
 //      }
 //
-//      decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
+//      decrement_reference_count();
 //
 //      throw ::exception(error_resource);
 //
@@ -2779,7 +2820,7 @@ void thread::task_osinit()
       if (::_get_task() != this)
       {
 
-         ::set_task(this OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_FUNCTION_LINE);
+         ::set_task(this);
 
       }
 
@@ -3178,7 +3219,7 @@ void thread::send_message(const ::atom & atom, wparam wparam, lparam lparam, con
 
    //}
 
-   auto pmessage = __new(::send_thread_message(this));
+   auto pmessage = __allocate< ::send_thread_message >(this);
 
    pmessage->m_message.m_atom = atom;
 
@@ -3421,7 +3462,7 @@ message_queue* thread::_get_message_queue()
       
    }
 
-   auto pmq = ::get_message_queue(m_itask, true);
+   auto pmq = ::acme::get()->m_ptaskmessagequeue->get_message_queue(m_itask, true);
 
    if(pmq->m_bQuit)
    {
@@ -3776,7 +3817,7 @@ bool thread::peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin
 //      else
 //      {
 //
-//         ::informationf("!m_bMessageThread");
+//         ::acme::get()->platform()->informationf("!m_bMessageThread");
 //
 //      }
 //
@@ -3863,7 +3904,7 @@ void thread::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin,
 
          auto lasterror = ::GetLastError();
 
-         ::informationf("Last Error : " + ::as_string(lasterror) + "\n");
+         ::acme::get()->platform()->informationf("Last Error : " + ::as_string(lasterror) + "\n");
 
          auto estatus = ::windows::last_error_status(lasterror);
 
@@ -3873,7 +3914,7 @@ void thread::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin,
       else if (iRet == 0)
       {
 
-         ::informationf("GetMessage returned 0");
+         ::acme::get()->platform()->informationf("GetMessage returned 0");
 
          msg.message = WM_QUIT;
 
@@ -3881,13 +3922,13 @@ void thread::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin,
       else if(msg.message == e_message_quit)
       {
 
-         ::informationf("e_message_quit");
+         ::acme::get()->platform()->informationf("e_message_quit");
 
       }
       else if (msg.message == e_message_destroy_window)
       {
 
-         ::informationf("e_message_destroy_window");
+         ::acme::get()->platform()->informationf("e_message_destroy_window");
 
       }
 
@@ -4161,7 +4202,7 @@ bool thread::initialize_message_queue()
    //if(m_spuiptra.is_null())
    //{
 
-   //   m_spuiptra = __new(ref_array < ::user::primitive >);
+   //   m_spuiptra = __allocate< ref_array < ::user::primitive > >();
 
    //}
 
@@ -4682,7 +4723,7 @@ CLASS_DECL_APEX void forking_count_thread_null_end(int iOrder)
    if (m_puserprimitiveaThread == nullptr)
    {
 
-      m_puserprimitiveaThread = memory_new ::user::primitive_array ();
+      m_puserprimitiveaThread = __new< ::user::primitive_array  >();
 
    }
 
@@ -4813,7 +4854,7 @@ bool thread::pump_sleep(const class time & timeWait, ::particle * pparticleSynch
 //
 //      auto pthreadNew = __object(pparticle)->__create_new < ::thread > ();
 //
-//      pthreadNew->increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_P_NOTE(pparticle, nullptr));
+//      pthreadNew->increment_reference_count(REFERENCING_DEBUGGING_P_NOTE(pparticle, nullptr));
 //
 //      pthreadNew->clear_finish_bit();
 //
@@ -4872,7 +4913,7 @@ thread::file_info* thread::get_file_info()
 
    }
 
-   m_pfileinfo = __new(file_info());
+   m_pfileinfo = __allocate< file_info >();
 
    return m_pfileinfo;
 

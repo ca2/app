@@ -9,7 +9,7 @@ DllMain(HINSTANCE hInstance, ::u32 dwReason, LPVOID lpReserved)
 
    if (dwReason == DLL_PROCESS_ATTACH)
    {
-      ::informationf("::ca2:: data.dll :: initializing!\n");
+      ::acme::get()->platform()->informationf("::ca2:: data.dll :: initializing!\n");
 
 #ifndef UNIVERSAL_WINDOWS
       /* initialize client library */
@@ -33,7 +33,7 @@ DllMain(HINSTANCE hInstance, ::u32 dwReason, LPVOID lpReserved)
       }
 #endif
 
-      ::informationf("::ca2:: data.dll :: terminating!\n");
+      ::acme::get()->platform()->informationf("::ca2:: data.dll :: terminating!\n");
    }
    return 1;   // ok
 }

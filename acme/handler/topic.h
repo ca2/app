@@ -40,8 +40,6 @@ public:
    ~topic() override 
    { 
    
-      m_pparticle.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS_FUNCTION_LINE);
-   
    }
 
 

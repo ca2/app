@@ -77,11 +77,11 @@ namespace windowing
       ~simple_ui_display();
 
 
-      virtual i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
+      virtual i64 increment_reference_count();
 
-      virtual i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
+      virtual i64 decrement_reference_count();
 
-      virtual i64 release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
+      virtual i64 release();
 
 
       button * new_button(const ::string & pszLabel, enum_dialog_result edialogresult);

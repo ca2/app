@@ -10,7 +10,7 @@ namespace filehandler
       ::object(pparticle),
       m_pfont(e_create)
    {
-      m_pxmldoc = memory_new xml::document(this);
+      m_pxmldoc = __new< xml::document >(this);
       m_pfont->create_point_font(pnode->font_name(e_font_sans_ex),14.0);
 
    }
@@ -38,7 +38,7 @@ namespace filehandler
    void impact::refresh()
    {
 
-      m_plistWorking = __new(list(this));
+      m_plistWorking = __allocate< list >(this);
 
       m_plistWorking->parse(psystem->filehandler(), ::file::path(m_strName).extension());
 
@@ -100,7 +100,7 @@ namespace filehandler
       {
          item.parse(straApp[i]);
          item.m_iIndex = i;
-         add(__new(class item(item)));
+         add(__allocate< class item >(item));
       }
 
    }

@@ -9,12 +9,12 @@
 
 
 class CLASS_DECL_ACME payload_array :
-   public array < ::payload, const ::payload &, ::allocator::def < ::payload >, e_type_payload_array >
+   public array < ::payload, const ::payload &, ::typed::def < ::payload >, ::heap::typed_memory < ::payload, ::heap::e_memory_array >, e_type_payload_array >
 {
 public:
 
 
-   using BASE_ARRAY = array < ::payload, const ::payload&, ::allocator::def < ::payload >, e_type_payload_array >;
+   using BASE_ARRAY = array < ::payload, const ::payload&, ::typed::def < ::payload >, ::heap::typed_memory < ::payload, ::heap::e_memory_array >, e_type_payload_array >;
 
 
    payload_array();

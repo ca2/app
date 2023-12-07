@@ -4,6 +4,7 @@
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
 #include "acme/constant/user_key.h"
+#include "acme/handler/topic.h"
 #include "acme/parallelization/task_keep.h"
 #include "acme/primitive/primitive/url.h"
 #include "acme/parallelization/synchronous_lock.h"
@@ -97,7 +98,7 @@ namespace html
    //i64 core_data::increment_reference_count()
    //{
 
-   //   return ::object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+   //   return ::object::increment_reference_count();
 
    //}
 
@@ -105,7 +106,7 @@ namespace html
    //i64 core_data::decrement_reference_count()
    //{
 
-   //   return ::object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+   //   return ::object::decrement_reference_count();
 
    //}
 
@@ -200,7 +201,7 @@ namespace html
          if (m_fonta(i) == font)
             return i;
       }
-      auto pfont = __new(class font(font));
+      auto pfont = __allocate< class font >(font);
       pfont->create(this);
       m_fonta.add(pfont);
       pfont->m_iIndex = (i32)m_fonta.get_upper_bound();
@@ -288,9 +289,9 @@ namespace html
       if (m_ptag == nullptr)
       {
 
-         m_ptag = memory_new tag(nullptr);
+         m_ptag = __new< tag >(nullptr);
 
-         class value * pvalue = memory_new class value(m_ptag);
+         class value * pvalue = __new< class value >(m_ptag);
 
          m_ptag->baseptra().add(pvalue);
 
@@ -298,7 +299,7 @@ namespace html
 
       }
 
-      m_pelement = ::pointer_transfer(memory_new ::html::element);
+      m_pelement = __allocate < ::html::element >();
 
       m_pelement->initialize_html_elemental(this);
 

@@ -208,15 +208,15 @@
 //void __node_init_multitasking()
 //{
 //
-//   //s_pmapHthreadHthread = memory_new map < htask_t,htask_t,htask_t,htask_t >();
+//   //s_pmapHthreadHthread = aaa_primitive_new map < htask_t,htask_t,htask_t,htask_t >();
 //
-//   //s_pmapDwordHthread = memory_new map < ::u32,::u32,htask_t,htask_t >();
+//   //s_pmapDwordHthread = aaa_primitive_new map < ::u32,::u32,htask_t,htask_t >();
 //
-//   //s_pmapHthreadDword = memory_new map < htask_t,htask_t,::u32,::u32 >();
+//   //s_pmapHthreadDword = aaa_primitive_new map < htask_t,htask_t,::u32,::u32 >();
 //
-//   //allthreaddata = memory_new map < htask_t,htask_t,ThreadLocalData *,ThreadLocalData * >();
+//   //allthreaddata = aaa_primitive_new map < htask_t,htask_t,ThreadLocalData *,ThreadLocalData * >();
 //
-//   //freeTlsIndices = memory_new raw_array<::u32>();
+//   //freeTlsIndices = aaa_primitive_new raw_array<::u32>();
 //
 //
 //}
@@ -354,7 +354,7 @@
 ////thread * StartThread(LPTHREAD_START_ROUTINE pfn,LPVOID pv,htask_t htask,i32 nPriority,SIZE_T cbStack)
 ////{
 ////
-////   os_thread * pthread = memory_new os_thread(pfn,pv);
+////   os_thread * pthread = aaa_primitive_new os_thread(pfn,pv);
 ////
 ////   pthread->m_htask = htask;
 ////
@@ -402,7 +402,7 @@
 ////   //assert(unusedThreadId == nullptr);
 ////
 ////   // Create a handle that will be signalled when the thread has completed
-////   htask_t threadHandle = memory_new htask();
+////   htask_t threadHandle = aaa_primitive_new htask();
 ////
 ////   if(threadHandle == NULL)
 ////      return NULL;
@@ -457,7 +457,7 @@
 ////         info.lpStartAddress     = lpStartAddress;
 ////         info.lpParameter        = lpParameter;
 ////         info.m_htask    = threadHandle;
-////         info.suspensionEvent    = memory_new event(get_thread_app(),false,true);
+////         info.suspensionEvent    = aaa_primitive_new event(get_thread_app(),false,true);
 ////         info.nPriority = 0;
 ////
 ////         synchronous_lock lock(g_pmutexPendingThreadsLock);
@@ -541,7 +541,7 @@
 ////      return result;
 ////   }
 ////
-////   // Allocate a memory_new TLS slot.
+////   // Allocate a aaa_primitive_new TLS slot.
 ////   return nextTlsIndex++;
 ////}
 ////
@@ -664,7 +664,7 @@
 ////      // First time allocation of TLS data for this thread.
 ////      try
 ////      {
-////         threadData = memory_new ThreadLocalData;
+////         threadData = aaa_primitive_new ThreadLocalData;
 ////
 ////         synchronous_lock lock(g_pmutexTlsData);
 ////
@@ -682,7 +682,7 @@
 ////      }
 ////   }
 ////
-////   // Store the memory_new value for this slot.
+////   // Store the aaa_primitive_new value for this slot.
 ////   threadData->set_at_grow(dwTlsIndex,lpTlsValue);
 ////
 ////   return true;
@@ -700,7 +700,7 @@
 ////      // First time allocation of TLS data for this thread.
 ////      try
 ////      {
-////         threadData = memory_new ThreadLocalData;
+////         threadData = aaa_primitive_new ThreadLocalData;
 ////
 ////         allthreaddata->set_at(htask,threadData);
 ////
@@ -714,7 +714,7 @@
 ////      }
 ////   }
 ////
-////   // Store the memory_new value for this slot.
+////   // Store the aaa_primitive_new value for this slot.
 ////   threadData->set_at_grow(dwTlsIndex,lpTlsValue);
 ////
 ////   return true;
@@ -1066,13 +1066,13 @@
 ////
 ////}
 ////
-////message_queue * get_message_queue(htask_t  h);
+////message_queue * aaa_get_message_queue(htask_t  h);
 ////
 ////
-////message_queue * get_message_queue()
+////message_queue * aaa_get_message_queue()
 ////{
 ////
-////   return get_message_queue(GetCurrentThread());
+////   return aaa_get_message_queue(GetCurrentThread());
 ////
 ////}
 ////
@@ -1081,7 +1081,7 @@
 ////   return GetThreadId(h) != 0;
 ////}
 ////
-////message_queue * get_message_queue(htask_t  h)
+////message_queue * aaa_get_message_queue(htask_t  h)
 ////{
 ////
 ////
@@ -1090,7 +1090,7 @@
 ////   if(pmq != NULL)
 ////      return pmq;
 ////
-////   pmq               = memory_new message_queue();
+////   pmq               = aaa_primitive_new message_queue();
 ////
 ////   pmq->m_htask    = h;
 ////
@@ -1148,7 +1148,7 @@
 ////      return false;
 ////
 ////
-////   message_queue * pmq = get_message_queue(h);
+////   message_queue * pmq = aaa_get_message_queue(h);
 ////
 ////   if(pmq == NULL)
 ////      return false;
@@ -1186,7 +1186,7 @@
 ////      return false;
 ////
 ////
-////   message_queue * pmq = get_message_queue(h);
+////   message_queue * pmq = aaa_get_message_queue(h);
 ////
 ////   if(pmq == NULL)
 ////      return false;

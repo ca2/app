@@ -4,6 +4,7 @@
 #include "acme/constant/user_key.h"
 #include "acme/constant/timer.h"
 #include "acme/graphics/image/image32.h"
+#include "acme/handler/topic.h"
 #include "acme/platform/context.h"
 #include "acme/platform/timer.h"
 #include "acme/platform/keep.h"
@@ -429,7 +430,7 @@ namespace user
 
          auto pbrush = __create < ::draw2d::brush > ();
 
-         auto pmathematics = ::mathematics::mathematics();
+         auto pmathematics = mathematics();
 
          m_dPosition = ::sin((pmathematics->get_pi() / 2.0) * dRate);
 

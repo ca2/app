@@ -12,14 +12,14 @@ public:
    void * alloc(int iSize)
    {
 
-      return memory_allocate(iSize);
+      return ::heap::management::memory(::heap::e_memory_main)->allocate(iSize);
 
    }
 
    void free(void * p)
    {
 
-      ::memory_free(p);
+      ::heap::management::memory(::heap::e_memory_main)->free(p);
 
    }
 
@@ -70,7 +70,7 @@ public:
 
       int iSize = calc_cache_size();
 
-      void * p = memory_allocate(iSize * 2);
+      void * p = ::heap::management::memory(::heap::e_memory_main)->allocate(iSize * 2);
 
       // TODO : better dynamically memory align
 
@@ -98,7 +98,7 @@ public:
 
    static void del_pool(x86_cache_oriented_memory_pool * p)
    {
-      ::memory_free(p->m_p);
+      ::heap::management::memory(::heap::e_memory_main)->free(p->m_p);
    }
 
    void * alloc(::count c)
@@ -113,7 +113,7 @@ public:
       }
       else
       {
-         pb = (::u8 *) memory_allocate(c);
+         pb = (::u8 *) ::heap::management::memory(::heap::e_memory_main)->allocate(c);
 
          // can use string because messed all with cache out hot hit !!/^`}{{ **!
          //::acme::application * papp = get_app();
@@ -136,7 +136,7 @@ public:
       }
       else
       {
-         memory_free(p);
+         ::heap::management::memory(::heap::e_memory_main)->free(p);
       }
    }
 
@@ -240,6 +240,6 @@ CLASS_DECL_ACME void x86_cache_oriented_memory_reset()
 
 }
 
-//#define memory_new ACME_NEW
+
 
 

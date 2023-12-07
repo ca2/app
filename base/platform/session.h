@@ -10,14 +10,23 @@ namespace base
 
 
    class CLASS_DECL_BASE session:
-      virtual public ::axis::session,
-      virtual public ::user::document_manager_container
+      virtual public ::axis::session
    {
    public:
 
 
       session();
-      virtual ~session();
+      ~session() override;
+
+
+
+
+#ifdef _DEBUG
+
+      i64 increment_reference_count() override;
+      i64 decrement_reference_count() override;
+
+#endif
 
 
       virtual void initialize(::particle * pparticle) override;

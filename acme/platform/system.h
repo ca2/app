@@ -13,6 +13,9 @@
 #include "acme/primitive/primitive/factory.h"
 
 
+class manager_room;
+
+
 namespace acme
 {
 
@@ -27,7 +30,7 @@ namespace acme
    public:
 
       //::APPLICATION_FLAGS                      m_applicationflags;
-      ::platform::platform * m_pplatform;
+      //::platform::platform * m_pplatform;
 
 
       ::apex::system* m_papexsystem;
@@ -45,7 +48,7 @@ namespace acme
       bool                                            m_bFinalizeIfNoSessionSetting;
       bool                                            m_bFinalizeIfNoSession;
 
-
+      ::pointer < ::mathematics::mathematics >        m_pmathematics;
       // FROM MAIN (Now APPLICATION_FLAGS : merged on other classes?)
 
       ::i32_sz* m_pintstringLanguageResourceMap;
@@ -84,7 +87,7 @@ namespace acme
 
       ::pointer<::apex::system>                                       m_psystemParent;
 
-
+      ::pointer < ::primitive::primitive >                              m_pprimitive;
       //::pointer < ::mutex >                                           m_pmutexFactory;
       //string_map < ::pointer<::factory::factory >>                  m_mapFactory;
       //string_map < ::pointer<::factory::factory >>                      m_mapFactory;
@@ -100,6 +103,9 @@ namespace acme
       task_map                                                 m_taskmap;
       task_id_map                                              m_taskidmap;
       ::pointer < ::particle >                                 m_pmutexTaskOn;
+
+
+      //::pointer < ::draw2d::draw2d  >                          m_pdraw2d;
       
       
       ::map < itask_t, itask_t >                               m_mapTaskOn;
@@ -159,10 +165,13 @@ namespace acme
       string_array                           m_straHttpExists;
 
 
-
       system();
       ~system() override;
       
+
+
+      void on_set_platform() override;
+
 
       void on_initialize_particle() override;
 
@@ -176,14 +185,17 @@ namespace acme
 #ifdef _DEBUG
 
 
-      i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
+      i64 increment_reference_count() override;
 
 
-      i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
+      i64 decrement_reference_count() override;
 
 
 #endif
 
+      virtual ::mathematics::mathematics * mathematics();
+
+      virtual class ::imaging * imaging();
 
       inline ::pointer<::acme::node> & node() { return m_pnode; }
 
@@ -214,6 +226,15 @@ namespace acme
       virtual ::nano::http * nano_http();
 
       inline ::crypto::crypto * crypto() { return m_pcrypto; }
+
+      virtual class ::manager_room * manager_room();
+
+      ::acme::acme * acme() const { return m_pplatform->m_pacme; }
+
+      ::primitive::primitive * primitive() const { return m_pprimitive; }
+
+      virtual ::draw2d::draw2d * draw2d() const;
+      virtual ::write_text::write_text * write_text() const;
 
 
       virtual string get_system_platform();
@@ -257,7 +278,7 @@ namespace acme
 
          }
 
-         auto p = pfactory->create< BASE_TYPE >(this);
+         auto p = pfactory->__call__create< BASE_TYPE >(this);
 
          if (!p)
          {
@@ -565,8 +586,8 @@ namespace acme
       //}
 
 
-      void new_compress(::compress ** ppcompress, const ::scoped_string & scopedstrImplementation);
-      void new_uncompress(::uncompress ** ppuncompress, const ::scoped_string & scopedstrImplementation);
+      ::pointer < ::compress>    new_compress(const ::scoped_string & scopedstrImplementation);
+      ::pointer < ::uncompress>  new_uncompress(const ::scoped_string & scopedstrImplementation);
 
 
       virtual void compress(const ::payload & payloadTarget, const ::payload & payloadSource, const ::scoped_string & scopedstrImplementation);

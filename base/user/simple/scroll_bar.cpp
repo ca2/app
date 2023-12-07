@@ -1071,12 +1071,12 @@ puiParent->SendMessage(e_message_scroll_y, MAKEWPARAM(e_scroll_command_LINEDOWN,
 void simple_scroll_bar::on_message_create(::message::message * pmessage)
 {
 
-   m_ppenDraw.create(this);
-   m_pbrushDraw.create(this);
-   m_pregionA.create(this); // regiao da primeira seta
-   m_pregionB.create(this); // regiao da segunda seta
+   __construct(m_ppenDraw);
+   __construct(m_pbrushDraw);
+   __construct(m_pregionA); // regiao da primeira seta
+   __construct(m_pregionB); // regiao da segunda seta
 
-   auto pitemScrollbarTrackbar = __new(::item(::item_t{ e_element_scrollbar_trackbar }));
+   auto pitemScrollbarTrackbar = __allocate< ::item >(::item_t{ e_element_scrollbar_trackbar });
 
    tool().add_item(pitemScrollbarTrackbar);
 
@@ -1437,7 +1437,7 @@ public:
    trw()
    {
 
-      //auto pusersystem = __new(::user::system (WS_EX_LAYERED, nullptr, "", WS_VISIBLE));
+      //auto pusersystem = __allocate< ::user::system  >(WS_EX_LAYERED, nullptr, "", WS_VISIBLE);
 
       //if(create_window_ex(pusersystem))
       //if(create_host())
@@ -1560,9 +1560,9 @@ void simple_scroll_bar::_001OnClip(::draw2d::graphics_pointer & pgraphics)
 
    //         screen_to_client(rectangleFocus);
 
-   //         m_pshapeaClip->add_item(__new(rectangle_shape(rectangleFocus)));
+   //         m_pshapeaClip->add_item(__allocate< rectangle_shape >(rectangleFocus));
 
-   //         m_pshapeaClip->add_item(__new(intersect_clip_shape()));
+   //         m_pshapeaClip->add_item(__allocate< intersect_clip_shape >());
 
    //         i++;
 
@@ -2381,7 +2381,7 @@ bool simple_scroll_bar::on_drag_start(::point_i32 & point, ::item * pitem)
 //if (statusrectangleTrack.contains(point))
 //{
 
-//   return __new(::item(::e_element_scrollbar_trackbar));
+//   return __allocate< ::item >(::e_element_scrollbar_trackbar);
 
 //}
 //else
@@ -2394,7 +2394,7 @@ bool simple_scroll_bar::on_drag_start(::point_i32 & point, ::item * pitem)
 //   if (statusrectanglePageA.contains(point))
 //   {
 
-//      return __new(::item(::e_element_scrollbar_pageA));
+//      return __allocate< ::item >(::e_element_scrollbar_pageA);
 
 //   }
 
@@ -2403,25 +2403,25 @@ bool simple_scroll_bar::on_drag_start(::point_i32 & point, ::item * pitem)
 //   if (statusrectanglePageB.contains(point))
 //   {
 
-//      return __new(::item(::e_element_scrollbar_pageB));
+//      return __allocate< ::item >(::e_element_scrollbar_pageB);
 
 //   }
 
    //if (get_buttonA_rectangle(rectangleX, pgraphics).contains(point))
    //{
 
-   //   return __new(::item(::e_element_scrollbar_rectA));
+   //   return __allocate< ::item >(::e_element_scrollbar_rectA);
 
    //}
 
    //if (get_buttonA_rectangle(rectangleX, pgraphics).contains(point))
    //{
 
-   //   return __new(::item(::e_element_scrollbar_rectB));
+   //   return __allocate< ::item >(::e_element_scrollbar_rectB);
 
    //}
 
-//   auto pitemNone = __new(::item(e_element_none));
+//   auto pitemNone = __allocate< ::item >(e_element_none);
 
 //   return pitemNone;
 
@@ -2444,7 +2444,7 @@ bool simple_scroll_bar::on_drag_start(::point_i32 & point, ::item * pitem)
    //if (statusrectangleTrack.contains(point))
    //{
 
-   //   return __new(::item(::e_element_scrollbar_trackbar));
+   //   return __allocate< ::item >(::e_element_scrollbar_trackbar);
 
    //}
    //else
@@ -2457,7 +2457,7 @@ bool simple_scroll_bar::on_drag_start(::point_i32 & point, ::item * pitem)
    //   if (statusrectanglePageA.contains(point))
    //   {
 
-   //      return __new(::item(::e_element_scrollbar_pageA));
+   //      return __allocate< ::item >(::e_element_scrollbar_pageA);
 
    //   }
 
@@ -2466,25 +2466,25 @@ bool simple_scroll_bar::on_drag_start(::point_i32 & point, ::item * pitem)
    //   if (statusrectanglePageB.contains(point))
    //   {
 
-   //      return __new(::item(::e_element_scrollbar_pageB));
+   //      return __allocate< ::item >(::e_element_scrollbar_pageB);
 
    //   }
 
    //   if (get_buttonA_rectangle(rectangleX, pgraphics).contains(point))
    //   {
 
-   //      return __new(::item(::e_element_scrollbar_rectA));
+   //      return __allocate< ::item >(::e_element_scrollbar_rectA);
 
    //   }
 
    //   if (get_buttonA_rectangle(rectangleX, pgraphics).contains(point))
    //   {
 
-   //      return __new(::item(::e_element_scrollbar_rectB));
+   //      return __allocate< ::item >(::e_element_scrollbar_rectB);
 
    //   }
 
-   //   auto pitemNone = __new(::item(e_element_none));
+   //   auto pitemNone = __allocate< ::item >(e_element_none);
 
    //   return pitemNone;
 

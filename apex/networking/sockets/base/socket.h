@@ -588,7 +588,7 @@ namespace sockets
       virtual void OnSSLConnectFailed();
       /** SSL negotiation failed for server accept. */
       virtual void OnSSLAcceptFailed();
-      /** memory_new SSL support */
+      /** new SSL support */
       virtual bool SSLNegotiate();
       /** Check if SSL is Enabled for this tcp_socket.
       \return true if this is a tcp_socket with SSL enabled */
@@ -706,7 +706,7 @@ virtual string GetSocks4Host();
 //      //@}
 //      /** \name Thread Support */
       //@{
-      /** Callback fires when a memory_new base_socket thread has started and this
+      /** Callback fires when a new base_socket thread has started and this
       base_socket is ready for operation again.
       \sa resolv_socket */
       virtual void OnDetached();
@@ -729,7 +729,7 @@ virtual string GetSocks4Host();
       virtual bool prepare_for_detach();
       /** Store the slave sockethandler pointer. */
       virtual void SetSlaveHandler(base_socket_handler *);
-      /** create memory_new thread for this base_socket to run detached in. */
+      /** create new thread for this base_socket to run detached in. */
       //void DetachSocket(socket_map::association * passociation, socket_map * psocketmap);
       ////@}
 

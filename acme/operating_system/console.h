@@ -29,7 +29,7 @@ public:
 //{
 //public:
 //
-//   console_ostream(): ::text_stream(__new(std_out_buffer())){}
+//   console_ostream(): ::text_stream(__allocate< std_out_buffer >()){}
 //   virtual ~console_ostream(){}
 //
 //};

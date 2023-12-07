@@ -28,7 +28,7 @@
 ////   ITEM * m_p;
 ////
 ////
-////   list_iterator(enum_no_initialize) {};
+////   list_iterator(no_initialize_t) {};
 ////   list_iterator(nullptr_t) { m_p = nullptr; }
 ////   list_iterator() { m_p = nullptr; }
 ////   list_iterator(ITEM * p) : m_p(p) {}
@@ -75,7 +75,7 @@
 ////   const ITEM * m_p;
 ////
 ////
-////   const_iterator(enum_no_initialize) {};
+////   const_iterator(no_initialize_t) {};
 ////   const_iterator(nullptr_t) { m_p = nullptr; }
 ////   const_iterator() { m_p = nullptr; }
 ////   const_iterator(const ITEM * p) : m_p(p) {}

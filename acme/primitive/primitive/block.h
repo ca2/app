@@ -307,7 +307,7 @@ namespace acme
 
 
    template < typename T >
-   inline void memory_free(T * & point);
+   inline void memory_free(T * & p);
 
 }
 

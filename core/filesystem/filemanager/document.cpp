@@ -12,6 +12,8 @@
 #include "acme/filesystem/watcher/action.h"
 #include "acme/filesystem/watcher/watcher.h"
 #include "acme/handler/request.h"
+#include "acme/handler/extended_topic.h"
+#include "acme/handler/topic.h"
 #include "acme/platform/keep.h"
 #include "acme/platform/system.h"
 #include "apex/filesystem/fs/set.h"
@@ -388,7 +390,7 @@ namespace filemanager
 
    //   ::file::path pathFinal = pcontext->m_papexcontext->defer_process_path(pathUser);
 
-   //   ::pointer<::file::item>pitem = __new(::file::item(pathUser, pathFinal));
+   //   ::pointer<::file::item>pitem = __allocate< ::file::item >(pathUser, pathFinal);
 
    //   browse(pitem, context);
 
@@ -423,7 +425,7 @@ namespace filemanager
 
          //   auto pcontext = get_context();
 
-         //   m_pitem = __new(::file::item(pcontext->m_papexcontext->defer_process_path(strOldPath), strOldPath));
+         //   m_pitem = __allocate< ::file::item >(pcontext->m_papexcontext->defer_process_path(strOldPath), strOldPath);
 
          //   OnFileManagerBrowse(context + ::e_source_sync);
 
@@ -1623,7 +1625,7 @@ namespace filemanager
    //   //   if (ptemplate.is_null())
    //   //   {
 
-   //   //      m_pfilemanagerdata = __new(data(this));
+   //   //      m_pfilemanagerdata = __allocate< data >(this);
 
    //   //   }
    //   //   else
@@ -1653,7 +1655,7 @@ namespace filemanager
    ::pointer<::filemanager::data>document::create_file_manager_data(::request * prequest)
    {
 
-      ::pointer<::filemanager::data>pfilemanagerdata(__new(data));
+      ::pointer<::filemanager::data>pfilemanagerdata(__allocate< data >());
 
       ::filemanager::callback * pcallback = nullptr;
 

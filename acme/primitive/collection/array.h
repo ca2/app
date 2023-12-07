@@ -6,21 +6,21 @@
 
 
 
-template < class TYPE, class ARG_TYPE, class ALLOCATOR, ::enum_type m_etypeContainer >
-class array :
-   public ::array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >
+template < class TYPE, class ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
+class array_non_particle :
+   public ::array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >
 {
 public:
 
 
-   using THIS_ARRAY = array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >;
+   using THIS_ARRAY = array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >;
 
 
    using BASE_TYPE = TYPE;
    using BASE_ARG_TYPE = ARG_TYPE;
 
 
-   using BASE_ARRAY = ::array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >;
+   using BASE_ARRAY = ::array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >;
 
 
    using iterator = typename BASE_ARRAY::iterator;
@@ -33,24 +33,24 @@ public:
 
    using BASE_ARRAY::BASE_ARRAY;
 
-   array();
-   array(nullptr_t) : array() {}
-   array(std::initializer_list < TYPE > initializer_list) : BASE_ARRAY(initializer_list) {}
-   //array(const_iterator begin, const_iterator end) : BASE_ARRAY(begin, end) {}
-   array(const array & a);
-   array(enum_create_new, ::count n);
-   array(::count n, ARG_TYPE t);
-   array(::range < const_iterator > constrange) : BASE_ARRAY(constrange) {}
+   array_non_particle();
+   array_non_particle(nullptr_t) : array_non_particle() {}
+   array_non_particle(std::initializer_list < TYPE > initializer_list) : BASE_ARRAY(initializer_list) {}
+   //array_non_particle(const_iterator begin, const_iterator end) : BASE_ARRAY(begin, end) {}
+   array_non_particle(const array_non_particle & a);
+   array_non_particle(enum_create_new, ::count n);
+   array_non_particle(::count n, ARG_TYPE t);
+   array_non_particle(::range < const_iterator > constrange) : BASE_ARRAY(constrange) {}
    template < primitive_integral INTEGRAL >
-   array(const_iterator begin, INTEGRAL count) : BASE_ARRAY(begin, count) {}
-   array(const_iterator begin, const_iterator end) : BASE_ARRAY(begin, end) {}
-   array(array && a) noexcept : array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >(::transfer(a)) { }
-   ~array() override;
+   array_non_particle(const_iterator begin, INTEGRAL count) : BASE_ARRAY(begin, count) {}
+   array_non_particle(const_iterator begin, const_iterator end) : BASE_ARRAY(begin, end) {}
+   array_non_particle(array_non_particle && a) noexcept : array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >(::transfer(a)) { }
+   ~array_non_particle() override;
 
 
-   array & operator = (const array & array) { BASE_ARRAY::operator=(array); return *this; }
-   array & operator = (array && array) { BASE_ARRAY::operator=(::transfer(array)); return *this; }
-   array & operator = (std::initializer_list < TYPE > initializer_list)
+   array_non_particle & operator = (const array_non_particle & array_non_particle) { BASE_ARRAY::operator=(array_non_particle); return *this; }
+   array_non_particle & operator = (array_non_particle && array_non_particle) { BASE_ARRAY::operator=(::transfer(array_non_particle)); return *this; }
+   array_non_particle & operator = (std::initializer_list < TYPE > initializer_list)
    {
       this->clear();
       for (auto & item : initializer_list) this->add(item);
@@ -74,7 +74,7 @@ public:
 
 
    inline ::index add(ARG_TYPE newElement);
-   inline ::count append(const array & src);
+   inline ::count append(const array_non_particle & src);
 
 
    template < primitive_container CONTAINER >
@@ -87,14 +87,14 @@ public:
 
 
    template < primitive_container CONTAINER >
-   inline array appended(const CONTAINER & container)
+   inline array_non_particle appended(const CONTAINER & container)
    {
 
-      auto array = *this;
+      auto array_non_particle = *this;
 
-      array.append(container);
+      array_non_particle.append(container);
 
-      return ::transfer(array);
+      return ::transfer(array_non_particle);
 
    }
 
@@ -102,7 +102,7 @@ public:
 
 
 
-   inline void copy(const array & src);
+   inline void copy(const array_non_particle & src);
 
    inline TYPE & add_new(::count c = 1);
 
@@ -110,19 +110,19 @@ public:
    inline TYPE & add_new_at(::index iIndex, ::count count = 1);
 
 
-   inline array & operator << (ARG_TYPE newElement) { add(newElement); return *this; }
+   inline array_non_particle & operator << (ARG_TYPE newElement) { add(newElement); return *this; }
 
 
    //that transfer elements around
   //inline ::index insert_at(::index nIndex, ARG_TYPE newElement, ::count nCount = 1);
   //void _001RemoveIndexes(index_array & ia);
-  //void erase_indexes(const index_array & ia); // erase indexes from ::index array upper bound to ::index array lower bound
-  //void erase_descending_indexes(const index_array & ia); // erase indexes from ::index array lower bound to ::index array upper bound
-  //::index insert_at(::index nStartIndex, array* pNewArray);
+  //void erase_indexes(const index_array & ia); // erase indexes from ::index array_non_particle upper bound to ::index array_non_particle lower bound
+  //void erase_descending_indexes(const index_array & ia); // erase indexes from ::index array_non_particle lower bound to ::index array_non_particle upper bound
+  //::index insert_at(::index nStartIndex, array_non_particle* pNewArray);
 
-   using array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::operator=;
-   //inline array & operator = (const array & src);
-   //inline array & operator = (array && a);
+   using array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::operator=;
+   //inline array_non_particle & operator = (const array_non_particle & src);
+   //inline array_non_particle & operator = (array_non_particle && a);
 
 
 
@@ -177,7 +177,7 @@ public:
    //operator const TYPE *() const {return this->m_begin;}
 
    template < container_type CONTAINER >
-   inline array & operator += (const CONTAINER & container);
+   inline array_non_particle & operator += (const CONTAINER & container);
 
    template < typename... T >
    void fadd(T... a)
@@ -275,7 +275,7 @@ public:
 
 
    template < typename ITERABLE >
-   array_base< TYPE, ARG_TYPE, ALLOCATOR > & copy_iter(const ITERABLE & iterable)
+   array_base_non_particle< TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & copy_iter(const ITERABLE & iterable)
    {
 
       this->set_size(0, maximum(__iterable_count(iterable), 17));
@@ -297,24 +297,63 @@ public:
 
 template < class TYPE, class ARG_TYPE = const TYPE & >
 class nodefctr_array :
-   public array < TYPE, ARG_TYPE, ::constructor::nodef < TYPE > >
+   public array_non_particle < TYPE, ARG_TYPE, ::constructor::nodef < TYPE > >
 {
 public:
 
 
-   nodefctr_array(::count nGrowBy = 32) : array < TYPE, ARG_TYPE, ::constructor::nodef < TYPE > >(nGrowBy) {}
-   nodefctr_array(const array <TYPE, ARG_TYPE> & a) : array < TYPE, ARG_TYPE, ::constructor::nodef < TYPE >  >(a) {}
-   //nodefctr_array(::count n) : array < TYPE, ARG_TYPE, ::constructor::nodef < TYPE > > (n) {}
+   nodefctr_array(::count nGrowBy = 32) : array_non_particle < TYPE, ARG_TYPE, ::constructor::nodef < TYPE > >(nGrowBy) {}
+   nodefctr_array(const array_non_particle <TYPE, ARG_TYPE> & a) : array_non_particle < TYPE, ARG_TYPE, ::constructor::nodef < TYPE >  >(a) {}
+   //nodefctr_array(::count n) : array_non_particle < TYPE, ARG_TYPE, ::constructor::nodef < TYPE > > (n) {}
    virtual ~nodefctr_array() {}
 
 };
 
 
+template < class TYPE, class ARG_TYPE, class TYPED, class MEMORY, ::enum_type t_etypeContainer >
+class array :
+   virtual public ::particle,
+   public array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >
+{
+public:
+
+   using BASE_ARRAY = array_non_particle< TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >;
+
+   //array() : array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >() {}
+   //template < typename ...Args >
+   //array(Args&&... args) :
+   //   array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >(::std::forward < Args >(args)...)
+   //{
+   //}
+   array() {}
+   array(nullptr_t) : BASE_ARRAY() {}
+   array(std::initializer_list < TYPE > initializer_list) : BASE_ARRAY(initializer_list) {}
+   //array_non_particle(const_iterator begin, const_iterator end) : BASE_ARRAY(begin, end) {}
+   array(const BASE_ARRAY & a) : BASE_ARRAY(a) {}
+   array(BASE_ARRAY && a) noexcept : BASE_ARRAY(::transfer(a)) { }
+   array(enum_create_new, ::count n) : BASE_ARRAY(e_create_new, n) {}
+   array(::count n, ARG_TYPE t) : BASE_ARRAY(n, t) {}
+   array(::range < typename BASE_ARRAY::const_iterator > constrange) : BASE_ARRAY(constrange) {}
+   template < primitive_integral INTEGRAL >
+   array(typename BASE_ARRAY::const_iterator begin, INTEGRAL count) : BASE_ARRAY(begin, count) {}
+   array(typename BASE_ARRAY::const_iterator begin, typename BASE_ARRAY::const_iterator end) : BASE_ARRAY(begin, end) {}
 
 
 
-template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
-inline TYPE & array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::get_at(::index nIndex)
+   void destroy() override
+   {
+
+      ::particle::destroy();
+      BASE_ARRAY::destroy();
+
+   }
+
+};
+
+
+
+template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
+inline TYPE & array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::get_at(::index nIndex)
 {
 
    ASSERT(nIndex >= 0 && nIndex < this->size());
@@ -324,8 +363,8 @@ inline TYPE & array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::get_at(::i
 }
 
 
-template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
-inline const TYPE & array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::get_at(::index nIndex) const
+template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
+inline const TYPE & array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::get_at(::index nIndex) const
 {
 
    ASSERT(nIndex >= 0 && nIndex < this->size());
@@ -335,8 +374,8 @@ inline const TYPE & array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::get_
 }
 
 
-template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
-inline void array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::set_at(::index nIndex, ARG_TYPE newElement)
+template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
+inline void array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::set_at(::index nIndex, ARG_TYPE newElement)
 {
 
    ASSERT(nIndex >= 0 && nIndex < this->size());
@@ -347,13 +386,13 @@ inline void array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::set_at(::ind
 
 
 
-template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
-inline ::index array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::add_item(ARG_TYPE newElement)
+template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
+inline ::index array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::add_item(ARG_TYPE newElement)
 {
 
    auto nIndex = this->size();
 
-   this->allocate(nIndex + 1, false, false, &newElement);
+   this->allocate(nIndex + 1, false, false, newElement);
 
    //this->last() = newElement;
 
@@ -362,8 +401,8 @@ inline ::index array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::add_item(
 }
 
 
-template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
-inline ::index array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::add(ARG_TYPE newElement)
+template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
+inline ::index array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::add(ARG_TYPE newElement)
 {
 
    return add_item(newElement);
@@ -371,9 +410,9 @@ inline ::index array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::add(ARG_T
 }
 
 
-//template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+//template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
 //template < container_type CONTAINER >
-//inline ::index array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::add(const CONTAINER & container)
+//inline ::index array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::add(const CONTAINER & container)
 //{
 //
 //   ::index i = -1;
@@ -389,8 +428,8 @@ inline ::index array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::add(ARG_T
 //
 //}
 
-//template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
-//inline ::index array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::append(ARG_TYPE newElement)
+//template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
+//inline ::index array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::append(ARG_TYPE newElement)
 //{
 //   return add(newElement);
 //}
@@ -398,8 +437,8 @@ inline ::index array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::add(ARG_T
 
 
 //
-//template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
-//inline array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >  & array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::operator = (const array & src)
+//template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
+//inline array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >  & array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::operator = (const array_non_particle & src)
 //{
 //
 //   if(&src != this)
@@ -414,25 +453,25 @@ inline ::index array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::add(ARG_T
 //}
 
 
-template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
-array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::array() :
-   BASE_ARRAY::array_base()
+template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
+array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::array_non_particle() :
+   BASE_ARRAY::array_base_non_particle()
 {
 
 
 }
 
 
-template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
-array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::array(const array & a) :
-   BASE_ARRAY::array_base(a)
+template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
+array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::array_non_particle(const array_non_particle & a) :
+   BASE_ARRAY::array_base_non_particle(a)
 {
 
 }
 
 
-//template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
-//inline array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::array(::std::initializer_list < TYPE >  l)
+//template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
+//inline array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::array_non_particle(::std::initializer_list < TYPE >  l)
 //{
 //
 //   for(auto & item : l)
@@ -445,8 +484,8 @@ array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::array(const array & a) :
 //}
 
 
-template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
-array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::array(enum_create_new, ::count n)
+template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
+array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::array_non_particle(enum_create_new, ::count n)
 {
 
    this->set_size(n);
@@ -454,8 +493,8 @@ array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::array(enum_create_new, :
 }
 
 
-template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
-array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::array(::count n, ARG_TYPE t)
+template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
+array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::array_non_particle(::count n, ARG_TYPE t)
 {
 
    while (n > 0)
@@ -470,32 +509,32 @@ array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::array(::count n, ARG_TYP
 }
 
 
-template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
-array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::~array()
+template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
+array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::~array_non_particle()
 {
 
-   this->erase_all(); // on_destruct_element is virtual and won't be available for array_base
+   this->erase_all(); // on_destruct_element is virtual and won't be available for array_base_non_particle
 
 }
 
 
-template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
-inline ::index array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::append(const array & src)
+template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
+inline ::index array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::append(const array_non_particle & src)
 {
 
    auto countOld = this->size();
 
-   this->allocate(countOld + src.size(), false, true, nullptr);
+   this->allocate(countOld + src.size(), false, true);
 
-   ALLOCATOR::copy_construct_count(this->m_begin + countOld, src.size(), src.m_begin);
+   TYPED::copy_construct_count(this->m_begin + countOld, src.size(), src.m_begin);
 
    return countOld;
 
 }
 
 
-template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
-inline void array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::copy(const array & src)
+template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
+inline void array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::copy(const array_non_particle & src)
 {
 
    ASSERT(this != &src);
@@ -520,15 +559,15 @@ inline void array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::copy(const ar
 
 
 
-template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
 template < container_type CONTAINER >
-inline array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::operator += (const CONTAINER & container)
+inline array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::operator += (const CONTAINER & container)
 {
 
    if (&container == this)
    {
 
-      array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > aCopy(container);
+      array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > aCopy(container);
 
       append(aCopy);
 
@@ -545,12 +584,12 @@ inline array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & array < TYPE, ARG
 }
 
 
-//template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+//template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
 //template < container CONTAINER >
-//inline array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >  array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::operator + (const CONTAINER & container) const
+//inline array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >  array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::operator + (const CONTAINER & container) const
 //{
 //
-//   array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >  aNew(*this);
+//   array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >  aNew(*this);
 //
 //   aNew.add(container);
 //
@@ -559,8 +598,8 @@ inline array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & array < TYPE, ARG
 //}
 //
 
-template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
-inline TYPE & array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::add_new(::count c)
+template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
+inline TYPE & array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::add_new(::count c)
 {
 
    if (c <= 0)
@@ -578,8 +617,8 @@ inline TYPE & array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::add_new(::
 
 }
 
-//template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
-//inline TYPE & array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::add_new_at(int iIndex)
+//template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
+//inline TYPE & array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::add_new_at(int iIndex)
 //{
 //
 //   this->make_room_at(iIndex);
@@ -589,13 +628,13 @@ inline TYPE & array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::add_new(::
 //}
 
 
-template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
-inline TYPE & array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::add_new_at(::index i, ::count c)
+template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
+inline TYPE & array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::add_new_at(::index i, ::count c)
 {
 
    this->raw_allocate_at(i, c);
 
-   ALLOCATOR::construct_count(this->m_begin + i, c);
+   TYPED::construct_count(this->m_begin + i, c);
 
    return this->element_at(i);
 
@@ -603,8 +642,8 @@ inline TYPE & array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::add_new_at
 
 
 
-//template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
-//inline array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::transfer(array && a)
+//template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
+//inline array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::transfer(array_non_particle && a)
 //{
 //
 //   if(&a != this)
@@ -628,8 +667,8 @@ inline TYPE & array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::add_new_at
 //}
 
 
-//template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
-//inline array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::operator = (array && a)
+//template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
+//inline array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::operator = (array_non_particle && a)
 //{
 //
 //   transfer(::transfer(a));

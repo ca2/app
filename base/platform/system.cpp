@@ -109,16 +109,25 @@ namespace base
    }
 
 
-   void system::initialize(::particle * pparticle)
+   void system::on_set_platform()
+   {
+
+      axis::system::on_set_platform();
+
+      factory()->add_factory_item< ::base::session, ::acme::session>();
+      factory()->add_factory_item< ::base::user, ::user::user>();
+
+   }
+
+
+   void system::on_initialize_particle()
    {
 
       //auto estatus = 
       
-      ::axis::system::initialize(pparticle);
+      ::axis::system::on_initialize_particle();
 
 
-      factory()->add_factory_item< ::base::session, ::acme::session>();
-      factory()->add_factory_item< ::base::user, ::user::user>();
 
 
       //if (!estatus)

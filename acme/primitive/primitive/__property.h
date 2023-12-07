@@ -12,7 +12,7 @@ class property;
 class action_context;
 
 
-#include "acme/memory/property_memory_allocate.h"
+#include "acme/memory/memory.h"
 
 
 namespace xml
@@ -102,7 +102,7 @@ public:
    void* operator new(size_t size)
    {
 
-      return property_memory_allocate(size);
+      return ::heap::management::memory(::heap::e_memory_property)->allocate(size);
 
    }
 
@@ -110,7 +110,7 @@ public:
    void* operator new(size_t size, const char* /* pszFileName */, int /* nLine */)
    {
 
-      return property_memory_allocate(size);
+      return ::heap::management::memory(::heap::e_memory_property)->allocate(size);
 
    }
 
@@ -118,7 +118,7 @@ public:
    void operator delete(void * p)
    {
 
-      return property_memory_free(p);
+      return ::heap::management::memory(::heap::e_memory_property)->free(p);
 
    }
 
@@ -126,10 +126,9 @@ public:
    void operator delete(void * p, const char* /* pszFileName */, int /* nLine */)
    {
 
-      return property_memory_free(p);
+      return ::heap::management::memory(::heap::e_memory_property)->free(p);
 
    }
-
 
 
    ::atom& element1() { return m_atom; };
@@ -253,7 +252,7 @@ using property_ptra = auto_ptr_array < ::property >;
 //inline ::payload CLASS_DECL_ACME operator * (const ::payload & payload, const property& prop) { return operator * (payload, (const ::payload&)prop); }
 
 
-//#define memory_new ACME_NEW
+
 
 
 //template < typename TYPE_CHAR >

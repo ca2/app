@@ -24,6 +24,12 @@
    }
 
 
+   void os_context::finalize()
+   {
+
+
+   }
+
    string os_context::get_command_line()
    {
 

@@ -3,6 +3,7 @@
 //
 #include "framework.h"
 #include "message_queue.h"
+#include "task_message_queue.h"
 #include "acme/operating_system/message.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/parallelization/mutex.h"
@@ -21,55 +22,11 @@ bool apex_defer_process_x_message(htask_t htask,MESSAGE * pMsg,oswindow oswindow
 #endif
 
 
-::critical_section g_criticalsectionMq;
+//::critical_section g_criticalsectionMq;
 
 
-map < itask_t, ::pointer<message_queue >>* g_pmapMq;
 
 
-message_queue * get_message_queue(itask_t itask, bool bCreate)
-{
-
-   if(itask == 0)
-   {
-
-      ASSERT(false);
-
-      return nullptr;
-
-   }
-
-   critical_section_lock criticalsectionlock(&g_criticalsectionMq);
-
-   auto & pmessagequeue = (*g_pmapMq)[itask];
-
-   if(!pmessagequeue)
-   {
-
-      if(bCreate)
-      {
-
-         pmessagequeue = __new(message_queue);
-
-         pmessagequeue->m_itask = itask;
-
-      }
-
-   }
-
-   return pmessagequeue;
-
-}
-
-
-void clear_message_queue(itask_t idthread)
-{
-
-   critical_section_lock synchronouslock(&g_criticalsectionMq);
-
-   g_pmapMq->erase_item(idthread);
-
-}
 
 
 //CLASS_DECL_ACME int_bool post_ui_message(const MESSAGE & message)
@@ -96,7 +53,7 @@ void clear_message_queue(itask_t idthread)
 ////
 ////   itask_t idthread = pinteraction->m_pthreadUserInteraction->get_os_int();
 ////
-////   auto pmessagequeue = ::get_message_queue(idthread, message.message != e_message_quit);
+////   auto pmessagequeue = ::aaa_get_message_queue(idthread, message.message != e_message_quit);
 ////
 ////   if(pmessagequeue == nullptr)
 ////   {
@@ -153,25 +110,25 @@ void clear_message_queue(itask_t idthread)
 //
 //}
 //
-
-CLASS_DECL_ACME void mq_clear(itask_t idthread)
-{
-
-   auto pmessagequeue = ::get_message_queue(idthread, false);
-
-   if (pmessagequeue == nullptr)
-   {
-
-      return;
-
-   }
-
-   critical_section_lock ml(&g_criticalsectionMq);
-
-   pmessagequeue->m_messagea.erase_all();
-
-}
-
+//
+//CLASS_DECL_ACME void mq_clear(itask_t idthread)
+//{
+//
+//   auto pmessagequeue = ::aaa_get_message_queue(idthread, false);
+//
+//   if (pmessagequeue == nullptr)
+//   {
+//
+//      return;
+//
+//   }
+//
+//   critical_section_lock ml(&g_criticalsectionMq);
+//
+//   pmessagequeue->m_messagea.erase_all();
+//
+//}
+//
 
 void mq_post_thread_message(itask_t idthread, const ::atom & atom, wparam wparam, lparam lparam)
 {
@@ -183,7 +140,7 @@ void mq_post_thread_message(itask_t idthread, const ::atom & atom, wparam wparam
 
    }
 
-   auto pmessagequeue = get_message_queue(idthread, true);
+   auto pmessagequeue = ::acme::get()->m_ptaskmessagequeue->get_message_queue(idthread, true);
 
    if (::is_null(pmessagequeue))
    {
@@ -200,7 +157,7 @@ void mq_post_thread_message(itask_t idthread, const ::atom & atom, wparam wparam
 //CLASS_DECL_ACME int_bool mq_peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, ::u32 wRemoveMsg)
 //{
 //
-//   auto pmessagequeue = ::get_message_queue(::current_itask(), false);
+//   auto pmessagequeue = ::aaa_get_message_queue(::current_itask(), false);
 //
 //   if (pmessagequeue == nullptr)
 //   {
@@ -224,7 +181,7 @@ void mq_post_thread_message(itask_t idthread, const ::atom & atom, wparam wparam
 CLASS_DECL_ACME ::e_status mq_get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax)
 {
 
-   auto pmessagequeue = ::get_message_queue(::current_itask(), true);
+   auto pmessagequeue = acme::get()->m_ptaskmessagequeue->current_task_message_queue(true);
 
    if (pmessagequeue == nullptr)
    {
@@ -238,26 +195,4 @@ CLASS_DECL_ACME ::e_status mq_get_message(MESSAGE * pMsg, oswindow oswindow, ::u
    return estatus;
 
 }
-
-
-void initialize_global_message_queue()
-{
-
-   //g_pmutexMq = memory_new mutex();
-
-   g_pmapMq = memory_new map < itask_t, ::pointer < message_queue > >();
-
-}
-
-
-void finalize_global_message_queue()
-{
-
-   //::acme::del(g_pmutexMq);
-
-   ::acme::del(g_pmapMq);
-
-}
-
-
 

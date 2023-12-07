@@ -117,7 +117,7 @@ public:
    //bool WindowDataLoadWindowRectangle(bool bForceRestore = false, bool bInitialFramePosition = false) override;
 
    using ::experience::frame_window::frame_experience;
-   virtual ::experience::frame * frame_experience();
+   virtual ::pointer < ::experience::frame > frame_experience();
 
    //virtual bool LoadFrame(const ::string & pszMatter, u32 dwDefaultStyle = WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE, ::user::interaction * puiParent = nullptr, ::user::system * pusersystem = nullptr) override;
 

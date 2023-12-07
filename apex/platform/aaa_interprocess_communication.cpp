@@ -119,7 +119,7 @@ void interprocess_intercommunication::start(const ::string & strApp)
    if(pmutex.is_null())
    {
 
-      pmutex = __new(::pointer < ::mutex >());
+      pmutex = __allocate< ::pointer < ::mutex > >();
 
    }
 
@@ -139,11 +139,11 @@ void interprocess_intercommunication::start(const ::string & strApp)
    if(strApp == "app-core/clockverse")
    {
 
-      ::informationf("app-core/clockverse");
+      ::acme::get()->platform()->informationf("app-core/clockverse");
 
    }
 
-   auto plauncher = __new(::apex::app_launcher);
+   auto plauncher = __allocate< ::apex::app_launcher >();
    
    plauncher->initialize_app_launcher(this, process_platform_name(), strApp);
 
@@ -520,7 +520,7 @@ bool interprocess_intercommunication::on_interprocess_receive(::inteprocess::han
 ::pointer<::interprocess::task>interprocess_intercommunication::create_task(::interprocess::call * pcall, const ::atom & idPid)
 {
 
-   auto pobjectTask = __new(::interprocess::task(pcall, idPid, m_iTaskSeed++));
+   auto pobjectTask = __allocate< ::interprocess::task >(pcall, idPid, m_iTaskSeed++);
 
    synchronous_lock synchronouslock(this->synchronization());
 
@@ -546,7 +546,7 @@ bool interprocess_intercommunication::on_interprocess_receive(::inteprocess::han
 ::pointer<::interprocess::call>interprocess_intercommunication::create_call(const ::string & strApp, const ::string & strObject, const ::string & strMember)
 {
 
-   return __new(::interprocess::call(this, strApp, strObject, strMember));
+   return __allocate< ::interprocess::call >(this, strApp, strObject, strMember);
 
 }
 

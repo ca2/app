@@ -1959,7 +1959,7 @@ namespace user
 
       // }
 
-      // m_puserinteraction->interaction_post(__new(call_message_handler_task(m_puserinteraction, atom, wparam, lparam)));
+      // m_puserinteraction->interaction_post(__allocate< call_message_handler_task >(m_puserinteraction, atom, wparam, lparam));
 
       //auto pmessage
 
@@ -2467,7 +2467,7 @@ namespace user
 
       // }
 
-      // m_puserinteraction->interaction_post(__new(call_message_handler_task(m_puserinteraction, atom, wparam, lparam)));
+      // m_puserinteraction->interaction_post(__allocate< call_message_handler_task >(m_puserinteraction, atom, wparam, lparam));
 
       //auto pmessage
 
@@ -2654,7 +2654,7 @@ namespace user
 
       //      m_ptimerarray->destroy();
 
-      //      m_ptimerarray.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS_NOTE(""));
+      //      m_ptimerarray.release(REFERENCING_DEBUGGING_THIS_NOTE(""));
 
       //   }
 
@@ -2688,7 +2688,7 @@ namespace user
       //if (g_p == nullptr)
       //{
 
-      //   g_p = memory_new iptr_map < string >;
+      //   g_p = aaa_memory_new iptr_map < string >;
 
       //}
 

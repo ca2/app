@@ -95,7 +95,7 @@
                    Rudimentary call stack on error
                    Added String Character functions
                    Added shift operators
-   Version 0.29 :  Added memory_new object via functions
+   Version 0.29 :  Added new object via functions
                    Fixed getString() for double on some platforms
    Version 0.30 :  Rlyeh Mario's patch for Math Functions on VC++
    Version 0.31 :  add exec() to TinyJS functions
@@ -128,7 +128,7 @@
 #define CLEAN(x) { CScriptVarLink *__v = x; if (__v && !__v->owned) { delete __v; } }
 /* Create a LINK to point_i32 to VAR and free the old link.
  * BUT this is more clever - it tries to keep the old link if it's not owned to save allocations */
-#define CREATE_LINK(LINK, VAR) { if (!LINK || LINK->owned) LINK = memory_new CScriptVarLink(VAR); else LINK->replaceWith(VAR); }
+#define CREATE_LINK(LINK, VAR) { if (!LINK || LINK->owned) LINK = __new< CScriptVarLink(VAR); else LINK->replaceWith >(VAR); }
 
 
 /*using namespace std;
@@ -136,8 +136,8 @@
 #ifdef _WIN32
 #ifdef __DEBUG
    #ifndef DBG_NEW
-      #define DBG_NEW memory_new ( _NORMAL_BLOCK , __FILE__ , __LINE__ )
-      #define memory_new DBG_NEW
+      #define DBG_NEW __new<  >( _NORMAL_BLOCK , __FILE__ , __LINE__ )
+      #define new DBG_NEW
    #endif
 #endif //__DEBUG
 #endif*/
@@ -432,7 +432,7 @@ string CScriptLex::getTokenStr(i32 token)
    case LEX_R_FALSE : return "false";
    case LEX_R_NULL : return "null";
    case LEX_R_UNDEFINED : return "undefined";
-   case LEX_R_NEW : return "memory_new";
+   case LEX_R_NEW : return "new";
    }
 
    string msg;
@@ -497,7 +497,7 @@ void CScriptLex::getNextToken()
       else if (tokenStr=="false") token = LEX_R_FALSE;
       else if (tokenStr=="null") token = LEX_R_NULL;
       else if (tokenStr=="undefined") token = LEX_R_UNDEFINED;
-      else if (tokenStr=="memory_new") token = LEX_R_NEW;
+      else if (tokenStr=="new") token = LEX_R_NEW;
    }
    else if (isNumeric(currCh))     // Numbers
    {
@@ -744,9 +744,9 @@ CScriptLex *CScriptLex::getSubLex(i32 lastPosition)
 {
    i32 lastCharIdx = tokenLastEnd+1;
    if (lastCharIdx < dataEnd)
-      return memory_new CScriptLex(this, lastPosition, lastCharIdx);
+      return __new< CScriptLex >(this, lastPosition, lastCharIdx);
    else
-      return memory_new CScriptLex(this, lastPosition, dataEnd );
+      return __new< CScriptLex >(this, lastPosition, dataEnd );
 }
 
 string CScriptLex::getPosition(i32 pos)
@@ -819,7 +819,7 @@ void CScriptVarLink::replaceWith(CScriptVarLink *newVar)
    if (newVar)
       replaceWith(newVar->payload);
    else
-      replaceWith(memory_new CScriptVar());
+      replaceWith(__new< CScriptVar >());
 }
 
 i32 CScriptVarLink::getIntName()
@@ -978,7 +978,7 @@ CScriptVarLink *CScriptVar::findChildOrCreate(const string &childName, i32 varFl
 
    }
 
-   return addChild(childName, memory_new CScriptVar(TINYJS_BLANK_DATA, varFlags));
+   return addChild(childName, __new< CScriptVar >(TINYJS_BLANK_DATA, varFlags));
 
 }
 
@@ -1014,11 +1014,11 @@ CScriptVarLink *CScriptVar::addChild(const string &childName, CScriptVar *child)
    if (!child)
    {
 
-      child = memory_new CScriptVar();
+      child = __new< CScriptVar >();
 
    }
 
-   CScriptVarLink *link = memory_new CScriptVarLink(child, childName);
+   CScriptVarLink *link = __new< CScriptVarLink >(child, childName);
 
    link->owned = true;
 
@@ -1053,7 +1053,7 @@ CScriptVarLink *CScriptVar::addChildNoDup(const string &childName, CScriptVar *c
    if (!child)
    {
 
-      child = memory_new CScriptVar();
+      child = __new< CScriptVar >();
 
    }
 
@@ -1136,7 +1136,7 @@ CScriptVar *CScriptVar::getArrayIndex(i32 idx)
    sprintf_s(sIdx, sizeof(sIdx), "%d", idx);
    CScriptVarLink *link = findChild(sIdx);
    if (link) return link->payload;
-   else return memory_new CScriptVar(TINYJS_BLANK_DATA, SCRIPTVAR_NULL); // undefined
+   else return __new< CScriptVar >(TINYJS_BLANK_DATA, SCRIPTVAR_NULL); // undefined
 }
 
 void CScriptVar::setArrayIndex(i32 idx, CScriptVar *value)
@@ -1298,16 +1298,16 @@ CScriptVar *CScriptVar::mathsOp(CScriptVar *b, i32 op)
                   (b->flags & SCRIPTVAR_VARTYPEMASK)) &&
                  a->mathsOp(b, LEX_EQUAL);
       if (op == LEX_TYPEEQUAL)
-         return memory_new CScriptVar(eql);
+         return __new< CScriptVar >(eql);
       else
-         return memory_new CScriptVar(!eql);
+         return __new< CScriptVar >(!eql);
    }
    // do maths...
    if (a->isUndefined() && b->isUndefined())
    {
-      if (op == LEX_EQUAL) return memory_new CScriptVar(true);
-      else if (op == LEX_NEQUAL) return memory_new CScriptVar(false);
-      else return memory_new CScriptVar(); // undefined
+      if (op == LEX_EQUAL) return __new< CScriptVar >(true);
+      else if (op == LEX_NEQUAL) return __new< CScriptVar >(false);
+      else return __new< CScriptVar >(); // undefined
    }
    else if ((a->isNumeric() || a->isUndefined()) &&
             (b->isNumeric() || b->isUndefined()))
@@ -1319,20 +1319,20 @@ CScriptVar *CScriptVar::mathsOp(CScriptVar *b, i32 op)
          i32 db = b->getInt();
          switch (op)
          {
-         case '+': return memory_new CScriptVar(da+db);
-         case '-': return memory_new CScriptVar(da-db);
-         case '*': return memory_new CScriptVar(da*db);
-         case '/': return memory_new CScriptVar(da/db);
-         case '&': return memory_new CScriptVar(da&db);
-         case '|': return memory_new CScriptVar(da|db);
-         case '^': return memory_new CScriptVar(da^db);
-         case '%': return memory_new CScriptVar(da%db);
-         case LEX_EQUAL:     return memory_new CScriptVar(da==db);
-         case LEX_NEQUAL:    return memory_new CScriptVar(da!=db);
-         case '<':     return memory_new CScriptVar(da<db);
-         case LEX_LEQUAL:    return memory_new CScriptVar(da<=db);
-         case '>':     return memory_new CScriptVar(da>db);
-         case LEX_GEQUAL:    return memory_new CScriptVar(da>=db);
+         case '+': return __new< CScriptVar >(da+db);
+         case '-': return __new< CScriptVar >(da-db);
+         case '*': return __new< CScriptVar >(da*db);
+         case '/': return __new< CScriptVar >(da/db);
+         case '&': return __new< CScriptVar >(da&db);
+         case '|': return __new< CScriptVar >(da|db);
+         case '^': return __new< CScriptVar >(da^db);
+         case '%': return __new< CScriptVar >(da%db);
+         case LEX_EQUAL:     return __new< CScriptVar >(da==db);
+         case LEX_NEQUAL:    return __new< CScriptVar >(da!=db);
+         case '<':     return __new< CScriptVar >(da<db);
+         case LEX_LEQUAL:    return __new< CScriptVar >(da<=db);
+         case '>':     return __new< CScriptVar >(da>db);
+         case LEX_GEQUAL:    return __new< CScriptVar >(da>=db);
          default: throw CScriptException("Operation "+CScriptLex::getTokenStr(op)+" not supported on the Int datatype");
          }
       }
@@ -1343,16 +1343,16 @@ CScriptVar *CScriptVar::mathsOp(CScriptVar *b, i32 op)
          double db = b->getDouble();
          switch (op)
          {
-         case '+': return memory_new CScriptVar(da+db);
-         case '-': return memory_new CScriptVar(da-db);
-         case '*': return memory_new CScriptVar(da*db);
-         case '/': return memory_new CScriptVar(da/db);
-         case LEX_EQUAL:     return memory_new CScriptVar(da==db);
-         case LEX_NEQUAL:    return memory_new CScriptVar(da!=db);
-         case '<':     return memory_new CScriptVar(da<db);
-         case LEX_LEQUAL:    return memory_new CScriptVar(da<=db);
-         case '>':     return memory_new CScriptVar(da>db);
-         case LEX_GEQUAL:    return memory_new CScriptVar(da>=db);
+         case '+': return __new< CScriptVar >(da+db);
+         case '-': return __new< CScriptVar >(da-db);
+         case '*': return __new< CScriptVar >(da*db);
+         case '/': return __new< CScriptVar >(da/db);
+         case LEX_EQUAL:     return __new< CScriptVar >(da==db);
+         case LEX_NEQUAL:    return __new< CScriptVar >(da!=db);
+         case '<':     return __new< CScriptVar >(da<db);
+         case LEX_LEQUAL:    return __new< CScriptVar >(da<=db);
+         case '>':     return __new< CScriptVar >(da>db);
+         case LEX_GEQUAL:    return __new< CScriptVar >(da>=db);
          default: throw CScriptException("Operation "+CScriptLex::getTokenStr(op)+" not supported on the Double datatype");
          }
       }
@@ -1362,8 +1362,8 @@ CScriptVar *CScriptVar::mathsOp(CScriptVar *b, i32 op)
       /* Just check pointers */
       switch (op)
       {
-      case LEX_EQUAL: return memory_new CScriptVar(a==b);
-      case LEX_NEQUAL: return memory_new CScriptVar(a!=b);
+      case LEX_EQUAL: return __new< CScriptVar >(a==b);
+      case LEX_NEQUAL: return __new< CScriptVar >(a!=b);
       default: throw CScriptException("Operation "+CScriptLex::getTokenStr(op)+" not supported on the Array datatype");
       }
    }
@@ -1372,8 +1372,8 @@ CScriptVar *CScriptVar::mathsOp(CScriptVar *b, i32 op)
       /* Just check pointers */
       switch (op)
       {
-      case LEX_EQUAL: return memory_new CScriptVar(a==b);
-      case LEX_NEQUAL: return memory_new CScriptVar(a!=b);
+      case LEX_EQUAL: return __new< CScriptVar >(a==b);
+      case LEX_NEQUAL: return __new< CScriptVar >(a!=b);
       default: throw CScriptException("Operation "+CScriptLex::getTokenStr(op)+" not supported on the Object datatype");
       }
    }
@@ -1384,13 +1384,13 @@ CScriptVar *CScriptVar::mathsOp(CScriptVar *b, i32 op)
       // use strings
       switch (op)
       {
-      case '+':           return memory_new CScriptVar(da+db, SCRIPTVAR_STRING);
-      case LEX_EQUAL:     return memory_new CScriptVar(da==db);
-      case LEX_NEQUAL:    return memory_new CScriptVar(da!=db);
-      case '<':     return memory_new CScriptVar(da<db);
-      case LEX_LEQUAL:    return memory_new CScriptVar(da<=db);
-      case '>':     return memory_new CScriptVar(da>db);
-      case LEX_GEQUAL:    return memory_new CScriptVar(da>=db);
+      case '+':           return __new< CScriptVar >(da+db, SCRIPTVAR_STRING);
+      case LEX_EQUAL:     return __new< CScriptVar >(da==db);
+      case LEX_NEQUAL:    return __new< CScriptVar >(da!=db);
+      case '<':     return __new< CScriptVar >(da<db);
+      case LEX_LEQUAL:    return __new< CScriptVar >(da<=db);
+      case '>':     return __new< CScriptVar >(da>db);
+      case LEX_GEQUAL:    return __new< CScriptVar >(da>=db);
       default: throw CScriptException("Operation "+CScriptLex::getTokenStr(op)+" not supported on the string datatype");
       }
    }
@@ -1437,7 +1437,7 @@ void CScriptVar::copyValue(CScriptVar *val)
 
 CScriptVar *CScriptVar::deepCopy()
 {
-   CScriptVar *newVar = memory_new CScriptVar();
+   CScriptVar *newVar = __new< CScriptVar >();
    newVar->copySimpleData(this);
    // copy children
    CScriptVarLink *child = firstChild;
@@ -1468,7 +1468,7 @@ void CScriptVar::trace(string indentStr, const string &name)
               getString().c_str(),
               getFlagsAsString().c_str());
 
-   ::informationf(str);
+   ::acme::get()->platform()->informationf(str);
 
    string indent = indentStr+" ";
 
@@ -1604,11 +1604,11 @@ i32 CScriptVar::getRefs()
 tinyjs::tinyjs()
 {
    l = 0;
-   root = (memory_new CScriptVar(TINYJS_BLANK_DATA, SCRIPTVAR_OBJECT))->ref();
+   root = (__new< CScriptVar(TINYJS_BLANK_DATA, SCRIPTVAR_OBJECT))->ref >();
    // add built-in classes
-   stringClass = (memory_new CScriptVar(TINYJS_BLANK_DATA, SCRIPTVAR_OBJECT))->ref();
-   arrayClass = (memory_new CScriptVar(TINYJS_BLANK_DATA, SCRIPTVAR_OBJECT))->ref();
-   objectClass = (memory_new CScriptVar(TINYJS_BLANK_DATA, SCRIPTVAR_OBJECT))->ref();
+   stringClass = (__new< CScriptVar(TINYJS_BLANK_DATA, SCRIPTVAR_OBJECT))->ref >();
+   arrayClass = (__new< CScriptVar(TINYJS_BLANK_DATA, SCRIPTVAR_OBJECT))->ref >();
+   objectClass = (__new< CScriptVar(TINYJS_BLANK_DATA, SCRIPTVAR_OBJECT))->ref >();
    root->addChild("String", stringClass);
    root->addChild("Array", arrayClass);
    root->addChild("Object", objectClass);
@@ -1637,7 +1637,7 @@ void tinyjs::execute(const string &code)
 {
    CScriptLex *oldLex = l;
    address_array < CScriptVar * > oldScopes = scopes;
-   l = memory_new CScriptLex(code);
+   l = __new< CScriptLex >(code);
 #ifdef TINYJS_callstack
    callstack.clear();
 #endif
@@ -1672,7 +1672,7 @@ CScriptVarLink tinyjs::evaluateComplex(const string &code)
    CScriptLex *oldLex = l;
    address_array < CScriptVar * > oldScopes = scopes;
 
-   l = memory_new CScriptLex(code);
+   l = __new< CScriptLex >(code);
 #ifdef TINYJS_callstack
    callstack.clear();
 #endif
@@ -1715,7 +1715,7 @@ CScriptVarLink tinyjs::evaluateComplex(const string &code)
       return r;
    }
    // return undefined...
-   return CScriptVarLink(memory_new CScriptVar());
+   return CScriptVarLink(__new< CScriptVar >());
 }
 
 string tinyjs::evaluate(const string &code)
@@ -1738,7 +1738,7 @@ void tinyjs::parseFunctionArguments(CScriptVar *funcVar)
 void tinyjs::addNative(const string &funcDesc, JSCallback ptr, void *userdata)
 {
    CScriptLex *oldLex = l;
-   l = memory_new CScriptLex(funcDesc);
+   l = __new< CScriptLex >(funcDesc);
 
    CScriptVar *axis = root;
 
@@ -1751,13 +1751,13 @@ void tinyjs::addNative(const string &funcDesc, JSCallback ptr, void *userdata)
       l->match('.');
       CScriptVarLink *link = axis->findChild(funcName);
       // if it doesn't exist, make an object class
-      if (!link) link = axis->addChild(funcName, memory_new CScriptVar(TINYJS_BLANK_DATA, SCRIPTVAR_OBJECT));
+      if (!link) link = axis->addChild(funcName, __new< CScriptVar >(TINYJS_BLANK_DATA, SCRIPTVAR_OBJECT));
       axis = link->payload;
       funcName = l->tokenStr;
       l->match(LEX_ID);
    }
 
-   CScriptVar *funcVar = memory_new CScriptVar(TINYJS_BLANK_DATA, SCRIPTVAR_FUNCTION | SCRIPTVAR_NATIVE);
+   CScriptVar *funcVar = __new< CScriptVar >(TINYJS_BLANK_DATA, SCRIPTVAR_FUNCTION | SCRIPTVAR_NATIVE);
    funcVar->setCallback(ptr, userdata);
    parseFunctionArguments(funcVar);
    delete l;
@@ -1777,7 +1777,7 @@ CScriptVarLink *tinyjs::parseFunctionDefinition()
       funcName = l->tokenStr;
       l->match(LEX_ID);
    }
-   CScriptVarLink *funcVar = memory_new CScriptVarLink(memory_new CScriptVar(TINYJS_BLANK_DATA, SCRIPTVAR_FUNCTION), funcName);
+   CScriptVarLink *funcVar = __new< CScriptVarLink(new CScriptVar >(TINYJS_BLANK_DATA, SCRIPTVAR_FUNCTION), funcName);
    parseFunctionArguments(funcVar->payload);
    i32 funcBegin = l->tokenStart;
    bool noexecute = false;
@@ -1801,8 +1801,8 @@ CScriptVarLink *tinyjs::functionCall(bool &execute, CScriptVarLink *function, CS
          throw CScriptException(errorMsg.c_str());
       }
       l->match('(');
-      // create a memory_new symbol table entry for execution of this function
-      CScriptVar *functionRoot = memory_new CScriptVar(TINYJS_BLANK_DATA, SCRIPTVAR_FUNCTION);
+      // create a new symbol table entry for execution of this function
+      CScriptVar *functionRoot = __new< CScriptVar >(TINYJS_BLANK_DATA, SCRIPTVAR_FUNCTION);
       if (parent)
          functionRoot->addChildNoDup("this", parent);
       // grab in all parameters
@@ -1853,7 +1853,7 @@ CScriptVarLink *tinyjs::functionCall(bool &execute, CScriptVarLink *function, CS
          ::exception exception;
 
          CScriptLex *oldLex = l;
-         CScriptLex *newLex = memory_new CScriptLex(function->payload->getString());
+         CScriptLex *newLex = __new< CScriptLex(function->payload->getString >());
          l = newLex;
          try
          {
@@ -1881,13 +1881,13 @@ CScriptVarLink *tinyjs::functionCall(bool &execute, CScriptVarLink *function, CS
 #endif
       scopes.pop_back();
       /* get the real return payload before we erase it from our function */
-      returnVar = memory_new CScriptVarLink(returnVarLink->payload);
+      returnVar = __new< CScriptVarLink >(returnVarLink->payload);
       functionRoot->eraseLink(returnVarLink);
       delete functionRoot;
       if (returnVar)
          return returnVar;
       else
-         return memory_new CScriptVarLink(memory_new CScriptVar());
+         return __new< CScriptVarLink(new CScriptVar >());
    }
    else
    {
@@ -1922,26 +1922,26 @@ CScriptVarLink *tinyjs::factor(bool &execute)
    if (l->token==LEX_R_TRUE)
    {
       l->match(LEX_R_TRUE);
-      return memory_new CScriptVarLink(memory_new CScriptVar(1));
+      return __new< CScriptVarLink(new CScriptVar >(1));
    }
    if (l->token==LEX_R_FALSE)
    {
       l->match(LEX_R_FALSE);
-      return memory_new CScriptVarLink(memory_new CScriptVar(0));
+      return __new< CScriptVarLink(new CScriptVar >(0));
    }
    if (l->token==LEX_R_NULL)
    {
       l->match(LEX_R_NULL);
-      return memory_new CScriptVarLink(memory_new CScriptVar(TINYJS_BLANK_DATA,SCRIPTVAR_NULL));
+      return __new< CScriptVarLink(new CScriptVar >(TINYJS_BLANK_DATA,SCRIPTVAR_NULL));
    }
    if (l->token==LEX_R_UNDEFINED)
    {
       l->match(LEX_R_UNDEFINED);
-      return memory_new CScriptVarLink(memory_new CScriptVar(TINYJS_BLANK_DATA,SCRIPTVAR_UNDEFINED));
+      return __new< CScriptVarLink(new CScriptVar >(TINYJS_BLANK_DATA,SCRIPTVAR_UNDEFINED));
    }
    if (l->token==LEX_ID)
    {
-      CScriptVarLink *a = execute ? findInScopes(l->tokenStr) : memory_new CScriptVarLink(memory_new CScriptVar());
+      CScriptVarLink *a = execute ? findInScopes(l->tokenStr) : __new< CScriptVarLink(new CScriptVar >());
       //debug_print("0x%08X for %s at %s\n", (u32)a, l->tokenStr.c_str(), l->getPosition().c_str());
       /* The parent if we're executing a method call */
       CScriptVar *parent = 0;
@@ -1950,7 +1950,7 @@ CScriptVarLink *tinyjs::factor(bool &execute)
       {
          /* Variable doesn't exist! JavaScript says we should create it
           * (we won't add it here. This is done in the assignment operator)*/
-         a = memory_new CScriptVarLink(memory_new CScriptVar(), l->tokenStr);
+         a = __new< CScriptVarLink(new CScriptVar >(), l->tokenStr);
       }
       l->match(LEX_ID);
       while (l->token=='(' || l->token=='.' || l->token=='[')
@@ -1974,12 +1974,12 @@ CScriptVarLink *tinyjs::factor(bool &execute)
                   if (a->payload->isArray() && name == "length")
                   {
                      i32 l = a->payload->getArrayLength();
-                     child = memory_new CScriptVarLink(memory_new CScriptVar(l));
+                     child = __new< CScriptVarLink(new CScriptVar >(l));
                   }
                   else if (a->payload->isString() && name == "length")
                   {
                      i32 l = (i32) a->payload->getString().size();
-                     child = memory_new CScriptVarLink(memory_new CScriptVar(l));
+                     child = __new< CScriptVarLink(new CScriptVar >(l));
                   }
                   else
                   {
@@ -2010,20 +2010,20 @@ CScriptVarLink *tinyjs::factor(bool &execute)
    }
    if (l->token==LEX_INT || l->token==LEX_FLOAT)
    {
-      CScriptVar *a = memory_new CScriptVar(l->tokenStr,
+      CScriptVar *a = __new< CScriptVar >(l->tokenStr,
                                      ((l->token==LEX_INT)?SCRIPTVAR_INTEGER:SCRIPTVAR_DOUBLE));
       l->match(l->token);
-      return memory_new CScriptVarLink(a);
+      return __new< CScriptVarLink >(a);
    }
    if (l->token==LEX_STR)
    {
-      CScriptVar *a = memory_new CScriptVar(l->tokenStr, SCRIPTVAR_STRING);
+      CScriptVar *a = __new< CScriptVar >(l->tokenStr, SCRIPTVAR_STRING);
       l->match(LEX_STR);
-      return memory_new CScriptVarLink(a);
+      return __new< CScriptVarLink >(a);
    }
    if (l->token=='{')
    {
-      CScriptVar *contents = memory_new CScriptVar(TINYJS_BLANK_DATA, SCRIPTVAR_OBJECT);
+      CScriptVar *contents = __new< CScriptVar >(TINYJS_BLANK_DATA, SCRIPTVAR_OBJECT);
       /* JSON-style object definition */
       l->match('{');
       while (l->token != '}')
@@ -2044,11 +2044,11 @@ CScriptVarLink *tinyjs::factor(bool &execute)
       }
 
       l->match('}');
-      return memory_new CScriptVarLink(contents);
+      return __new< CScriptVarLink >(contents);
    }
    if (l->token=='[')
    {
-      CScriptVar *contents = memory_new CScriptVar(TINYJS_BLANK_DATA, SCRIPTVAR_ARRAY);
+      CScriptVar *contents = __new< CScriptVar >(TINYJS_BLANK_DATA, SCRIPTVAR_ARRAY);
       /* JSON-style array */
       l->match('[');
       i32 idx = 0;
@@ -2068,7 +2068,7 @@ CScriptVarLink *tinyjs::factor(bool &execute)
          idx++;
       }
       l->match(']');
-      return memory_new CScriptVarLink(contents);
+      return __new< CScriptVarLink >(contents);
    }
    if (l->token==LEX_R_FUNCTION)
    {
@@ -2079,14 +2079,14 @@ CScriptVarLink *tinyjs::factor(bool &execute)
    }
    if (l->token==LEX_R_NEW)
    {
-      // memory_new -> create a memory_new object
+      // new -> create a new object
       l->match(LEX_R_NEW);
       const string &className = l->tokenStr;
       if(className.case_insensitive_order("array") == 0)
       {
          l->match(LEX_ID);
          i32 idx = 0;
-         CScriptVar *contents = memory_new CScriptVar(TINYJS_BLANK_DATA, SCRIPTVAR_OBJECT);
+         CScriptVar *contents = __new< CScriptVar >(TINYJS_BLANK_DATA, SCRIPTVAR_OBJECT);
          /* JSON-style object definition */
          l->match('(');
          while (l->token != ')')
@@ -2108,7 +2108,7 @@ CScriptVarLink *tinyjs::factor(bool &execute)
          }
 
          l->match(')');
-         return memory_new CScriptVarLink(contents);
+         return __new< CScriptVarLink >(contents);
 
       }
       else
@@ -2119,11 +2119,11 @@ CScriptVarLink *tinyjs::factor(bool &execute)
             if (!objClassOrFunc)
             {
                informationf("%s is not a valid class name", className.c_str());
-               return memory_new CScriptVarLink(memory_new CScriptVar());
+               return __new< CScriptVarLink(new CScriptVar >());
             }
             l->match(LEX_ID);
-            CScriptVar *obj = memory_new CScriptVar(TINYJS_BLANK_DATA, SCRIPTVAR_OBJECT);
-            CScriptVarLink *objLink = memory_new CScriptVarLink(obj);
+            CScriptVar *obj = __new< CScriptVar >(TINYJS_BLANK_DATA, SCRIPTVAR_OBJECT);
+            CScriptVarLink *objLink = __new< CScriptVarLink >(obj);
             if (objClassOrFunc->payload->isFunction())
             {
                CLEAN(functionCall(execute, objClassOrFunc, obj));
@@ -2219,7 +2219,7 @@ CScriptVarLink *tinyjs::expression(bool &execute)
          {
             CScriptVar one(1);
             CScriptVar *res = a->payload->mathsOp(&one, op==LEX_PLUSPLUS ? '+' : '-');
-            CScriptVarLink *oldValue = memory_new CScriptVarLink(a->payload);
+            CScriptVarLink *oldValue = __new< CScriptVarLink >(a->payload);
             // in-place add/subtract
             a->replaceWith(res);
             CLEAN(a);
@@ -2314,8 +2314,8 @@ CScriptVarLink *tinyjs::logic(bool &execute)
       {
          if (boolean)
          {
-            CScriptVar *newa = memory_new CScriptVar(a->payload->getBool());
-            CScriptVar *newb = memory_new CScriptVar(b->payload->getBool());
+            CScriptVar *newa = __new< CScriptVar(a->payload->getBool >());
+            CScriptVar *newb = __new< CScriptVar(b->payload->getBool >());
             CREATE_LINK(a, newa);
             CREATE_LINK(b, newb);
          }

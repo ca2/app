@@ -11,7 +11,7 @@
 #include "acme/primitive/comparison/compare.h"
 
 
-#include "acme/primitive/time/time.h"
+#include "acme/primitive/time/_time.h"
 
 
 #include "acme/operating_system/time.h"

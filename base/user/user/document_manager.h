@@ -2,6 +2,7 @@
 
 
 ////#include "acme/primitive/primitive/object.h"
+#include "acme/primitive/collection/atom_map.h"
 
 
 namespace user
@@ -14,7 +15,9 @@ namespace user
    public:
 
 
-      pointer_array < ::user::impact_system >       m_templateptra;
+      //pointer_array < ::user::impact_system >       m_templateptra;
+
+      atom_map < ::pointer < ::user::impact_system > > m_mapImpactSystem;
 
 
       static const char gen_ShellOpenFmt[];
@@ -43,15 +46,18 @@ namespace user
 
 
       document_manager();
-      virtual ~document_manager();
+      ~document_manager() override;
+
+
+      void destroy() override;
 
 //      // void assert_ok() const override;
 //      // void dump(dump_context & dumpcontext) const override;
-
-      virtual void add_document_template(::user::impact_system * ptemplate);
-      virtual void erase_document_template(::user::impact_system * ptemplate);
-      virtual ::count get_template_count() const;
-      virtual ::user::impact_system * get_template(index index) const;
+      virtual ::pointer < ::user::impact_system > & __impact_system(const ::atom & atom);
+      virtual void on_add_impact_system(const ::atom & atom);
+      virtual void erase_impact_system(const ::atom & atom);
+      virtual ::count get_impact_system_count() const;
+      //virtual ::user::impact_system * get_template(index index) const;
       virtual void RegisterShellFileTypes(bool bCompat);
       void UnregisterShellFileTypes();
       void request(::request * prequest) override; // open named file

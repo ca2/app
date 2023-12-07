@@ -162,10 +162,6 @@ namespace apex
 
       //::apex::initialize();
 
-      factory()->add_factory_item < ::apex::system, ::acme::system >();
-      factory()->add_factory_item < ::apex::session, ::acme::session >();
-      factory()->add_factory_item < ::apex::context, ::acme::context >();
-
       ::parallelization::initialize();
 
 
@@ -218,9 +214,7 @@ namespace apex
 
       m_eexclusiveinstance = e_exclusive_instance_none;
 
-      factory()->add_factory_item < ::networking::application >();
-
-
+      
       //m_pevAppBeg = nullptr;
       //m_pevAppEnd = nullptr;
 
@@ -235,7 +229,7 @@ namespace apex
       //m_pimaging = nullptr;
 
 
-      //m_phandler = __new(::handler(this));
+      //m_phandler = __allocate< ::handler >(this);
 
 
       //m_bAuraProcessInitialize = false;
@@ -276,7 +270,7 @@ namespace apex
 
       //m_timeGcomBackgroundUpdate = 30_s;
 
-      //m_pappimpl = memory_new application_impl;
+      //m_pappimpl = __new< application_impl >();
 
 
    }
@@ -309,7 +303,7 @@ namespace apex
       //}
 
       //m_pappimpl->initialize(this);
-      ///initialize(this OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_FUNCTION_LINE);
+      ///initialize(this REFERENCING_DEBUGGING_COMMA_THIS_FUNCTION_FILE_LINE);
 
       //set_context_app(this);
 
@@ -328,6 +322,21 @@ namespace apex
 
    }
 
+
+   void application::on_set_platform()
+   {
+
+      ::acme::application::on_set_platform();
+
+      factory()->add_factory_item < ::apex::system, ::acme::system >();
+      factory()->add_factory_item < ::apex::session, ::acme::session >();
+      factory()->add_factory_item < ::apex::context, ::acme::context >();
+
+      factory()->add_factory_item < ::networking::application >();
+
+
+
+   }
 
    //void application::on_initialize_application(::main* pmain)
    //{
@@ -406,7 +415,7 @@ namespace apex
    void application::destroy()
    {
 
-      m_puserlanguagemap.release(OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS);
+      m_puserlanguagemap.release();
 
       //auto estatus = 
       ::apex::context::destroy();
@@ -952,7 +961,7 @@ namespace apex
       //   /*        if (m_pfsdata.is_null())
       //           {
 
-      //              __construct(m_pfsdata, __new(::fs::set));
+      //              __construct(m_pfsdata, __allocate< ::fs::set >());
 
       //           }*/
 
@@ -1431,7 +1440,7 @@ namespace apex
    //////
    //////            dappy(::type(this).name() + " : on_run failure : " + as_string(m_iErrorCode));
    //////
-   //////            ::informationf("application::main on_run termination failure\n");
+   //////            ::acme::get()->platform()->informationf("application::main on_run termination failure\n");
    //////
    //////         }
    ////
@@ -1461,37 +1470,7 @@ namespace apex
    void application::init_task()
    {
 
-      try
-      {
-
-         pre_run();
-         //{
-
-         //   return false;
-
-         //}
-
-      }
-      catch (const ::exception & e)
-      {
-
-         handle_exception(e);
-
-         session()->set_finish();
-
-         throw e;
-
-      }
-      catch (...)
-      {
-
-         //      return false;
-
-         throw ::exception(error_exception);
-
-      }
-
-      //return true;
+      acme::application::init_task();
 
    }
 
@@ -1499,22 +1478,7 @@ namespace apex
    void application::term_task()
    {
 
-      information() << "apex::application::term_thread";
-
-      m_timeHeartBeat.Now();
-
-      try
-      {
-
-         pos_run();
-
-      }
-      catch (...)
-      {
-
-      }
-
-      ::thread::term_task();
+      acme::application::term_task();
 
    }
 
@@ -1804,24 +1768,7 @@ namespace apex
    void application::pos_run()
    {
 
-      information() << "apex::application::pos_run";
-
-      try
-      {
-
-         m_timeHeartBeat.Now();
-
-         application_pos_run();
-
-         //xxdebug_box("pre_run 1 ok", "pre_run 1 ok", e_message_box_icon_information);
-
-      }
-      catch (...)
-      {
-
-         information() << "apex::application::pos_run exception.4";
-
-      }
+      acme::application::pos_run();
 
    }
 
@@ -1845,7 +1792,7 @@ namespace apex
 //
 //         __raw_construct_new(m_pinterprocesscommunication);
 //         
-//         //m_pinterprocesscommunication->m_p= create_interprocess_communication(OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_NOTE("::application::init_instance"));
+//         //m_pinterprocesscommunication->m_p= create_interprocess_communication(REFERENCING_DEBUGGING_COMMA_THIS_NOTE("::application::init_instance"));
 //
 //         m_pinterprocesscommunication->initialize_interprocess_communication(this, m_strAppId);
 //
@@ -2284,7 +2231,7 @@ namespace apex
          if(__defer_raw_construct_new(m_pinterprocesscommunication))
          {
             
-            //m_pinterprocesscommunication->m_p= create_interprocess_communication(OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_NOTE("::application::init_instance"));
+            //m_pinterprocesscommunication->m_p= create_interprocess_communication(REFERENCING_DEBUGGING_COMMA_THIS_NOTE("::application::init_instance"));
             
             m_pinterprocesscommunication->initialize_interprocess_communication(this, m_strAppId);
             
@@ -2314,6 +2261,7 @@ namespace apex
    void application::term_instance()
    {
 
+      acme::application::term_instance();
 
    }
 
@@ -2542,58 +2490,7 @@ namespace apex
    void application::application_pos_run()
    {
 
-      try
-      {
-
-         //if (!is_installing() && !is_unstalling())
-         {
-
-            term_instance();
-
-         }
-
-      }
-      catch (...)
-      {
-
-      }
-
-      try
-      {
-
-         term_application();
-
-      }
-      catch (...)
-      {
-
-      }
-
-      m_timeHeartBeat.Now();
-
-      try
-      {
-
-         process_term();
-
-      }
-      catch (...)
-      {
-
-      }
-
-      //try
-      //{
-      //
-      //TermApplication();
-      //
-      //}
-      //catch (...)
-      //{
-      //
-      //}
-
-
+      acme::application::application_pos_run();
 
    }
 
@@ -2617,7 +2514,7 @@ namespace apex
       on_install();
       //{
 
-      //   ::informationf("Failed at on_install : " + m_strAppId + "\n\n");
+      //   ::acme::get()->platform()->informationf("Failed at on_install : " + m_strAppId + "\n\n");
 
       //   psystem->m_result.add(error_failed);
 
@@ -3112,16 +3009,16 @@ namespace apex
 
       }
 
-      try
-      {
+      //try
+      //{
 
-         release_exclusive();
+      //   release_exclusive();
 
-      }
-      catch (...)
-      {
+      //}
+      //catch (...)
+      //{
 
-      }
+      //}
 
       auto psystem = system()->m_papexsystem;
       try
@@ -3154,6 +3051,9 @@ namespace apex
       {
 
       }
+
+
+      acme::application::process_term();
 
    }
 
@@ -3262,7 +3162,7 @@ namespace apex
    //   try
    //   {
 
-   //      return __new(::interprocess::channel());
+   //      return __allocate< ::interprocess::channel >();
 
    //   }
    //   catch (...)
@@ -3293,7 +3193,10 @@ namespace apex
       auto psystem = system()->m_papexsystem;
 
       //estatus = 
-      m_puserlanguagemap = __new(::user::language_map OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_NOTE("::application::init1"));
+      m_puserlanguagemap = __allocate< ::user::language_map >();
+      
+      //REFDBG(m_puserlanguagemap.add_reference_item({ this, __FUNCTION_FILE_LINE__ }));
+
 
       //if (!estatus)
       //{
@@ -3424,6 +3327,8 @@ namespace apex
    void application::term1()
    {
 
+      acme::application::term1();
+
       //try
       //{
 
@@ -3477,6 +3382,7 @@ namespace apex
    void application::term2()
    {
 
+      acme::application::term2();
       //try
       //{
 
@@ -3536,6 +3442,7 @@ namespace apex
    void application::term3()
    {
 
+      acme::application::term3();
       //try
       //{
 
@@ -3591,53 +3498,53 @@ namespace apex
 
          }
 
-         try
-         {
+      //   try
+      //   {
 
-            term();
+      //      term();
 
-         }
-         catch (...)
-         {
-
-
-         }
-
-         try
-         {
-
-            term3();
-
-         }
-         catch (...)
-         {
+      //   }
+      //   catch (...)
+      //   {
 
 
-         }
+      //   }
 
-         try
-         {
+      //   try
+      //   {
 
-            term2();
+      //      term3();
 
-         }
-         catch (...)
-         {
-
-
-         }
-
-         try
-         {
-
-            term1();
-
-         }
-         catch (...)
-         {
+      //   }
+      //   catch (...)
+      //   {
 
 
-         }
+      //   }
+
+      //   try
+      //   {
+
+      //      term2();
+
+      //   }
+      //   catch (...)
+      //   {
+
+
+      //   }
+
+      //   try
+      //   {
+
+      //      term1();
+
+      //   }
+      //   catch (...)
+      //   {
+
+
+      //   }
 
 
       }
@@ -3645,6 +3552,8 @@ namespace apex
       {
 
       }
+
+      acme::application::term_application();
 
    }
 
@@ -3745,7 +3654,7 @@ namespace apex
       if (bGlobalExclusiveFail && m_eexclusiveinstance == e_exclusive_instance_global)
       {
 
-         information() << "A instance of the application:<br><br> - " << m_strAppName << +"<br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine.<br><br>Exiting this memory_new instance.";
+         information() << "A instance of the application:<br><br> - " << m_strAppName << +"<br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine.<br><br>Exiting this new instance.";
 
          try
          {
@@ -3775,7 +3684,7 @@ namespace apex
          if (bGlobalIdExclusiveFail)
          {
 
-            information() << "A instance of the application:<br><br>-" << m_strAppName << "with the atom \"" << get_local_mutex_id() << "\" <br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine with the same atom.<br><br>Exiting this memory_new instance.";
+            information() << "A instance of the application:<br><br>-" << m_strAppName << "with the atom \"" << get_local_mutex_id() << "\" <br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine with the same atom.<br><br>Exiting this new instance.";
 
             try
             {
@@ -3799,7 +3708,7 @@ namespace apex
       if (bLocalExclusiveFail && m_eexclusiveinstance == e_exclusive_instance_local)
       {
 
-         information() << "A instance of the application:<br><br>-" << m_strAppName << "<br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same account.<br><br>Exiting this memory_new instance.";
+         information() << "A instance of the application:<br><br>-" << m_strAppName << "<br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same account.<br><br>Exiting this new instance.";
 
          on_exclusive_instance_conflict(bHandled, e_exclusive_instance_local, "");
 
@@ -3819,7 +3728,7 @@ namespace apex
             {
 
                // Should in some way activate the other instance
-               information() << "A instance of the application:<br><br> - " << m_strAppName << " with the atom \"" << get_local_mutex_id() << "\" <br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same ac::count with the same atom.<br><br>Exiting this memory_new instance.";
+               information() << "A instance of the application:<br><br> - " << m_strAppName << " with the atom \"" << get_local_mutex_id() << "\" <br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same ac::count with the same atom.<br><br>Exiting this new instance.";
 
                on_exclusive_instance_conflict(bHandled, e_exclusive_instance_local_id, get_local_mutex_id());
                //if(!)
@@ -5431,7 +5340,7 @@ namespace apex
 
       //throw ::exception(todo("xml"));
 
-      //auto pdocument = __new(::xml::document);
+      //auto pdocument = __allocate< ::xml::document >();
 
       //if (!pdocument->load(atom) || !*pdocument)
       //{
@@ -5637,7 +5546,7 @@ namespace apex
       //
       //::winrt::Windows::ApplicationModel::Core::CoreApplication::MainImpact->CoreWindow->Dispatcher->RunAsync(
       //::winrt::Windows::UI::Core::CoreDispatcherPriority::Normal,
-      //ref memory_new ::winrt::Windows::UI::Core::DispatchedHandler([this]()
+      //ref __new< ::winrt::Windows::UI::Core::DispatchedHandler([this] >()
       //{
       //::winrt::Windows::UI::ImpactManagement::ApplicationImpact::GetForCurrentImpact()->TryConsolidateAsync();
       //}));
@@ -6243,7 +6152,26 @@ namespace apex
    void application::term()
    {
 
+      try
+      {
 
+         if (m_papplicationmenu)
+         {
+
+            m_papplicationmenu->finalize();
+
+         }
+
+      }
+      catch (...)
+      {
+
+
+      }
+
+      m_papplicationmenu.release();
+
+      acme::application::term();
 
    }
 
@@ -7025,7 +6953,7 @@ namespace apex
    //::html::html * application::create_html()
    //{
 
-   //   return memory_new ::html::html(get_app());
+   //   return __new< ::html::html(get_app >());
 
    //}
 
@@ -8650,7 +8578,7 @@ namespace apex
    if (lResult == ERROR_SUCCESS)
    {
    ASSERT(dwType == REG_BINARY);
-   *ppData = memory_new ::u8[*pBytes];
+   *ppData = __new_array< ::u8 >(*pBytes);
    lResult = RegQueryValueEx(hSecKey, (char *)pszEntry, nullptr, &dwType,
 
    *ppData, &dwCount);
@@ -8678,7 +8606,7 @@ namespace apex
    ASSERT(str.length()%2 == 0);
    iptr nLen = str.length();
    *pBytes = ::u32(nLen)/2;
-   *ppData = memory_new ::u8[*pBytes];
+   *ppData = __new_array< ::u8 >(*pBytes);
    for (i32 i=0;i<nLen;i+=2)
    {
    (*ppData)[i/2] = (::u8)
@@ -8798,7 +8726,7 @@ namespace apex
    }
 
    // convert to string and write out
-   char * psz = memory_new char[nBytes*2+1];
+   char * psz = __new_array< char >(nBytes*2+1);
 
    ::u32 i;
    for (i = 0; i < nBytes; i++)
@@ -9657,26 +9585,10 @@ namespace apex
 
 
 
-
-
    //typedef  void (* PFN_factory)();
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   void application::data_on_after_change(::database::client * pclient, const ::scoped_string & str, const ::payload & payload, ::topic * ptopic)
+   void application::data_on_after_change(::database::client * pclient, const ::scoped_string & str, ::topic * ptopic)
    {
 
 
@@ -9686,7 +9598,7 @@ namespace apex
    //::pointer<::apex::application>application::create_platform(::apex::session* psession)
    //{
    //
-   //   return __new(::apex::session);
+   //   return __allocate< ::apex::session >();
    //
    //}
 

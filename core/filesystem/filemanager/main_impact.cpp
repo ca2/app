@@ -8,6 +8,7 @@
 #include "document.h"
 #include "acme/constant/id.h"
 #include "acme/handler/item.h"
+#include "acme/handler/topic.h"
 #include "base/user/user/frame_window.h"
 
 
@@ -136,7 +137,7 @@ namespace filemanager
       if(m_ppropform == nullptr)
       {
 
-         __construct(m_ppropform, __new(file_properties_form));
+         __construct(m_ppropform, __allocate< file_properties_form >());
 
       }
 

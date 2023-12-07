@@ -14,7 +14,7 @@
    {
 
       ::u8                    m_back;
-      enum_memory_heap        m_ememoryheap;
+      ::heap::enum_memory     m_ememory;
       ::u8                    m_blockuse;
       ::u8                    m_align;
       ::u32                   m_size;
@@ -61,7 +61,7 @@
    }
 
 
-   inline static void * heap_memory_unaligned(void * p, memsize size, i32 blockuse, enum_memory_heap ememoryheap)
+   inline static void * heap_memory_unaligned(void * p, memsize size, i32 blockuse, ::heap::enum_memory ememory)
    {
 
       void * pmemory = (void *)((iptr)p + sizeof(struct heap_memory));
@@ -76,14 +76,14 @@
 
       pheap->m_size = (::u32) size;
 
-      pheap->m_ememoryheap = ememoryheap;
+      pheap->m_ememory = ememory;
 
       return pmemory;
 
    }
 
 
-   inline static void * heap_memory_aligned(void * p, memsize size, i32 blockuse, int iAlignByteCount, enum_memory_heap ememoryheap)
+   inline static void * heap_memory_aligned(void * p, memsize size, i32 blockuse, int iAlignByteCount, ::heap::enum_memory ememory)
    {
 
       void * pmemory = (void *)((((iptr)p) + sizeof(struct heap_memory) + iAlignByteCount - 1) & ((~((iptr)iAlignByteCount - 1))));
@@ -98,7 +98,7 @@
 
       pheap->m_size = (::u32) size;
 
-      pheap->m_ememoryheap = ememoryheap;
+      pheap->m_ememory = ememory;
 
       return pmemory;
 

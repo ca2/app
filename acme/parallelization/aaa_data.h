@@ -50,7 +50,7 @@
 //         if (t_preferencea.operator pointer_array<matter> * () == nullptr)
 //         {
 //
-//            t_preferencea = __new(pointer_array < ::matter >);
+//            t_preferencea = __allocate< pointer_array < ::matter > >();
 //
 //         }
 //
@@ -96,7 +96,7 @@
 ////{
 ////public:
 ////
-////   inline operator T *() { if (get() == nullptr) { set(memory_new T()); } return (T *)get(); }
+////   inline operator T *() { if (get() == nullptr) { set(aaa_primitive_new T()); } return (T *)get(); }
 ////   inline T * operator ->() { return operator T *(); }
 ////
 ////};

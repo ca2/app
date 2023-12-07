@@ -77,6 +77,8 @@ namespace http
 
       void http_system_destruct();
 
+      void finalize() override;
+
 
       DECLARE_MESSAGE_HANDLER(get);
 

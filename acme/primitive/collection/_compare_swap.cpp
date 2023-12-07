@@ -267,7 +267,7 @@ namespace test_compilation_some_strong_ordering_swap_functions
    }
 
 
-   ::std::strong_ordering stringaCompare(void * lpVoidCompareArg, const index i1, const index i2)
+   ::std::strong_ordering stringaCompare(void * lpVoidCompareArg, iptr i1, iptr i2)
    {
       string_array * pstra = (string_array *)lpVoidCompareArg;
       return pstra->element_at(i1) <=> pstra->element_at(i2);

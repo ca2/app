@@ -609,6 +609,7 @@
     <ClCompile Include="email.cpp" />
     <ClCompile Include="exception\assert.cpp" />
     <ClCompile Include="exception\bad_file_format.cpp" />
+    <ClCompile Include="exception\call_stack.cpp" />
     <ClCompile Include="exception\no_memory.cpp" />
     <ClCompile Include="exception\extended_status.cpp" />
     <ClCompile Include="exception\interface_only.cpp" />
@@ -711,6 +712,7 @@
     <ClInclude Include="constant\flag.h" />
     <ClInclude Include="constant\future.h" />
     <ClInclude Include="constant\happening.h" />
+    <ClInclude Include="constant\heap.h" />
     <ClInclude Include="constant\id.h" />
     <ClInclude Include="constant\idpool.h" />
     <ClInclude Include="constant\impact.h" />
@@ -775,7 +777,7 @@
     <ClInclude Include="exception\assert.h" />
     <ClInclude Include="exception\bad_file_format.h" />
     <ClInclude Include="exception\bad_unit_exception.h" />
-    <ClInclude Include="exception\callstack.h" />
+    <ClInclude Include="exception\aaa_callstack.h" />
     <ClInclude Include="exception\call_stack.h" />
     <ClInclude Include="exception\cancel.h" />
     <ClInclude Include="exception\debug.h" />
@@ -841,6 +843,30 @@
     <ClInclude Include="filesystem\_.h" />
     <ClInclude Include="format.h" />
     <ClInclude Include="handler\source.h" />
+    <ClInclude Include="memory\allocator.h" />
+    <ClInclude Include="memory\allocator\malloc.h" />
+    <ClInclude Include="memory\allocator_base.h" />
+    <ClInclude Include="memory\default_heap.h" />
+    <ClInclude Include="memory\heap.h" />
+    <ClInclude Include="memory\c_malloc.h" />
+    <ClInclude Include="memory\plex_heap.h" />
+    <ClInclude Include="memory\plex_heap_alloc_array.h" />
+    <ClInclude Include="memory\typed.h" />
+    <ClInclude Include="memory\typed_memory.h" />
+    <ClInclude Include="memory\_.h" />
+    <ClInclude Include="operating_system\windows\heap_allocator.h" />
+    <ClInclude Include="parallelization\task_message_queue.h" />
+    <ClInclude Include="platform\allocator.h" />
+    <ClInclude Include="platform\c.h" />
+    <ClInclude Include="platform\reference_referer.h" />
+    <ClInclude Include="platform\referencing_debugging.h" />
+    <ClInclude Include="platform\reference_item.h" />
+    <ClInclude Include="platform\simple_array.h" />
+    <ClInclude Include="platform\tracing.h" />
+    <ClInclude Include="platform\_referencing_debugging.h" />
+    <ClInclude Include="primitive\primitive\primitive.h" />
+    <ClInclude Include="primitive\string\c_string.h" />
+    <ClInclude Include="primitive\time\__time.h" />
     <ClInclude Include="user\user\controller.h" />
     <ClInclude Include="user\user\key_state.h" />
     <ClInclude Include="user\_.h" />
@@ -893,7 +919,7 @@
     <ClInclude Include="inline\application.h" />
     <ClInclude Include="inline\_main_hold.h" />
     <ClInclude Include="map.h" />
-    <ClInclude Include="memory\array_memory_allocate.h" />
+    <ClInclude Include="memory\aaa_array_memory_allocate.h" />
     <ClInclude Include="operating_system\posix\time.h" />
     <ClInclude Include="operating_system\shared_posix\c_error_number.h" />
     <ClInclude Include="operating_system\shared_posix\stdio_file.h" />
@@ -910,8 +936,6 @@
     <ClInclude Include="parallelization\retry.h" />
     <ClInclude Include="platform\integration_context.h" />
     <ClInclude Include="platform\nano_http.h" />
-    <ClInclude Include="platform\nano_http_asynchronous_source.h" />
-    <ClInclude Include="platform\nano_http_synchronous_source.h" />
     <ClInclude Include="platform\nano_http_response.h" />
     <ClInclude Include="platform\trace_statement.h" />
     <ClInclude Include="platform\_.h" />
@@ -949,16 +973,47 @@
     </None>
     <ClInclude Include="include\_integer.h" />
     <ClCompile Include="memory\allocate_processor_cache_oriented.cpp" />
-    <ClCompile Include="memory\allocate_system_heap.cpp" />
+    <ClCompile Include="memory\allocator\malloc.cpp" />
+    <ClCompile Include="memory\default_heap.cpp" />
     <ClCompile Include="memory\allocate_x86_cache_oriented.cpp" />
     <ClCompile Include="memory\allocation.cpp" />
-    <ClCompile Include="memory\array_memory_allocate.cpp" />
+    <ClCompile Include="memory\aaa_array_memory_allocate.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="memory\allocator.cpp" />
+    <ClCompile Include="memory\allocator\c.cpp" />
+    <ClCompile Include="memory\allocator\default.cpp" />
+    <ClCompile Include="memory\allocator\memory.cpp" />
     <ClCompile Include="memory\counter.cpp" />
+    <ClCompile Include="memory\heap.cpp" />
+    <ClCompile Include="memory\management.cpp" />
+    <ClCompile Include="memory\heap\bare.cpp" />
+    <ClCompile Include="memory\heap\mcheck.cpp" />
+    <ClCompile Include="memory\heap\mcrtdbg.cpp" />
+    <ClCompile Include="memory\heap\memdleak.cpp" />
+    <ClCompile Include="memory\heap\std.cpp" />
+    <ClCompile Include="memory\heap\vld.cpp" />
+    <ClCompile Include="memory\_.cpp" />
     <ClCompile Include="memory\memory.cpp" />
-    <ClCompile Include="memory\memory_allocate.cpp" />
     <ClCompile Include="memory\memory_management.cpp" />
     <ClCompile Include="memory\os_alloc.cpp" />
-    <ClCompile Include="memory\os_impl\WindowsHeapAlloc.cpp" />
+    <ClCompile Include="memory\os_impl\aaa_WindowsHeapAlloc.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="memory\os_impl\aaa_select.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">true</ExcludedFromBuild>
@@ -970,9 +1025,41 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="memory\paged_win32.cpp" />
-    <ClCompile Include="memory\property_memory_allocate.cpp" />
-    <ClCompile Include="memory\secondary_memory_allocate.cpp" />
-    <ClCompile Include="memory\string_memory_allocate.cpp" />
+    <ClCompile Include="memory\aaa_property_memory_allocate.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="memory\aaa_secondary_memory_allocate.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="memory\aaa_string_memory_allocate.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="memory\plex.cpp" />
+    <ClCompile Include="memory\plex_heap.cpp" />
+    <ClCompile Include="memory\plex_heap_alloc.cpp" />
+    <ClCompile Include="memory\plex_heap_alloc_array.cpp" />
+    <ClCompile Include="memory\plex_heap_alloc_sync.cpp" />
     <ClCompile Include="no_precompiled_header_sample.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">NotUsing</PrecompiledHeader>
@@ -1027,7 +1114,9 @@
     <ClInclude Include="operating_system\aaa_operating_system_summary.h" />
     <ClInclude Include="operating_system\summary.h" />
     <ClInclude Include="operating_system\windows\find_file.h" />
+    <ClCompile Include="operating_system\windows\heap_allocator.cpp" />
     <ClCompile Include="operating_system\windows\library.cpp" />
+    <ClCompile Include="operating_system\windows\memory.cpp" />
     <ClCompile Include="operating_system\windows\message_box.cpp" />
     <ClCompile Include="operating_system\windows\nano\brush.cpp" />
     <ClCompile Include="operating_system\windows\nano\device.cpp" />
@@ -1048,6 +1137,7 @@
     <ClCompile Include="operating_system\windows\thread.cpp" />
     <ClCompile Include="operating_system\windows\user.cpp" />
     <ClCompile Include="operating_system\windows\windows.cpp" />
+    <ClCompile Include="operating_system\windows_common\acme.cpp" />
     <ClCompile Include="operating_system\windows_common\Debug.cpp" />
     <ClCompile Include="operating_system\windows_common\file1.cpp" />
     <ClCompile Include="operating_system\windows_common\find_file.cpp" />
@@ -1088,9 +1178,11 @@
     <ClCompile Include="parallelization\synchronization_array.cpp" />
     <ClCompile Include="parallelization\synchronizer.cpp" />
     <ClCompile Include="parallelization\task.cpp" />
+    <ClCompile Include="parallelization\task_message_queue.cpp" />
     <ClCompile Include="parallelization\tools.cpp" />
     <ClCompile Include="parallelization\_.cpp" />
     <ClCompile Include="platform\acme.cpp" />
+    <ClCompile Include="platform\allocator.cpp" />
     <ClCompile Include="platform\application.cpp" />
     <ClCompile Include="platform\application_array.cpp" />
     <ClCompile Include="platform\application_base.cpp" />
@@ -1098,6 +1190,7 @@
     <ClCompile Include="platform\application_exit.cpp" />
     <ClCompile Include="platform\assert.cpp" />
     <ClCompile Include="platform\build_debug.cpp" />
+    <ClCompile Include="platform\c.cpp" />
     <ClCompile Include="platform\checked.cpp" />
     <ClCompile Include="platform\context.cpp" />
     <ClCompile Include="platform\conversation_message.cpp" />
@@ -1123,13 +1216,16 @@
     <ClCompile Include="platform\nano_http.cpp" />
     <ClCompile Include="platform\nano_http_response.cpp" />
     <ClCompile Include="platform\node.cpp" />
-    <ClCompile Include="platform\object_reference_count_debug.cpp" />
+    <ClCompile Include="platform\reference_item.cpp" />
+    <ClCompile Include="platform\reference_item_array.cpp" />
     <ClCompile Include="platform\object_type_counter.cpp" />
     <ClCompile Include="platform\predicate_holder.cpp" />
     <ClCompile Include="platform\printf.cpp" />
     <ClCompile Include="platform\procedure.cpp" />
     <ClCompile Include="platform\procedure_array.cpp" />
     <ClCompile Include="platform\profiler.cpp" />
+    <ClCompile Include="platform\reference_referer.cpp" />
+    <ClCompile Include="platform\referencing_debugging.cpp" />
     <ClCompile Include="platform\sequence.cpp" />
     <ClCompile Include="platform\serial.cpp" />
     <ClCompile Include="platform\session.cpp" />
@@ -1147,6 +1243,7 @@
     <ClCompile Include="platform\tracer.cpp" />
     <ClCompile Include="platform\trace_category.cpp" />
     <ClCompile Include="platform\trace_statement.cpp" />
+    <ClCompile Include="platform\tracing.cpp" />
     <ClCompile Include="platform\version.cpp" />
     <ClCompile Include="platform\_.cpp" />
     <ClCompile Include="platform\_main_hold_base.cpp" />
@@ -1224,6 +1321,7 @@
     <ClCompile Include="primitive\primitive\object.cpp" />
     <ClCompile Include="primitive\primitive\object_meta.cpp" />
     <ClCompile Include="primitive\primitive\particle.cpp" />
+    <ClCompile Include="primitive\primitive\primitive.cpp" />
     <ClCompile Include="primitive\primitive\property_object.cpp" />
     <ClCompile Include="primitive\primitive\e_status.cpp" />
     <ClCompile Include="primitive\primitive\linked_property.cpp" />
@@ -1320,7 +1418,6 @@
     <ClInclude Include="graphics\draw2d\opacity.h" />
     <ClInclude Include="graphics\draw2d\_.h" />
     <ClInclude Include="graphics\draw2d\_constant.h" />
-    <ClInclude Include="include\_c.h" />
     <ClInclude Include="inline\application_common.h" />
     <ClInclude Include="inline\console.h" />
     <ClInclude Include="inline\console_common.h" />
@@ -1332,21 +1429,21 @@
     <ClInclude Include="memory\chunk.h" />
     <ClInclude Include="memory\del.h" />
     <ClInclude Include="memory\memory_management.h" />
-    <ClInclude Include="memory\property_memory_allocate.h" />
-    <ClInclude Include="memory\secondary_memory_allocate.h" />
+    <ClInclude Include="memory\aaa_property_memory_allocate.h" />
+    <ClInclude Include="memory\aaa_secondary_memory_allocate.h" />
     <ClInclude Include="memory\_config.h" />
-    <ClInclude Include="memory\_heap.h" />
+    <ClInclude Include="memory\memory.h" />
     <ClInclude Include="memory\_memory.h" />
-    <ClInclude Include="memory\__aligned_memory_allocate.h" />
+    <ClInclude Include="memory\aaa__aligned_memory_allocate.h" />
     <ClInclude Include="memory\counter.h" />
-    <ClInclude Include="memory\memory_allocate.h" />
-    <ClInclude Include="memory\string_memory_allocate.h" />
-    <ClInclude Include="memory\os_alloc.h" />
-    <ClInclude Include="memory\string_memory_allocator.h" />
+    <ClInclude Include="memory\memory_allocate1.h" />
+    <ClInclude Include="memory\aaa_string_memory_allocate.h" />
+    <ClInclude Include="memory\aaa_os_alloc.h" />
+    <ClInclude Include="memory\aaa_string_memory_allocator.h" />
     <ClInclude Include="memory\__string.h" />
-    <ClInclude Include="memory\__unaligned_memory_allocate.h" />
+    <ClInclude Include="memory\aaa__unaligned_memory_allocate.h" />
     <ClInclude Include="memory\_impl.h" />
-    <ClInclude Include="memory\__memory_allocate.h" />
+    <ClInclude Include="memory\aaa__memory_allocate.h" />
     <ClInclude Include="memory\_____heap_namespace.h" />
     <ClInclude Include="operating_system\error_code.h" />
     <ClInclude Include="operating_system\exit_status.h" />
@@ -1385,7 +1482,6 @@
     <ClInclude Include="platform\_main_hold_base.h" />
     <ClInclude Include="platform\__string.h" />
     <ClInclude Include="primitive\collection\address_array.h" />
-    <ClInclude Include="primitive\collection\allocator.h" />
     <ClInclude Include="primitive\collection\array.h" />
     <ClInclude Include="primitive\collection\array_base.h" />
     <ClInclude Include="primitive\collection\array_iterator.h" />
@@ -1547,7 +1643,6 @@
     <ClInclude Include="primitive\primitive\unit.h" />
     <ClInclude Include="primitive\primitive\url.h" />
     <ClInclude Include="primitive\primitive\url_domain.h" />
-    <ClInclude Include="primitive\primitive\_c_memory.h" />
     <ClInclude Include="primitive\primitive\_impl_atom.h" />
     <ClInclude Include="primitive\primitive\_property_object_impl.h" />
     <ClInclude Include="primitive\primitive\_text_stream.h" />
@@ -1638,7 +1733,7 @@
     <ClInclude Include="primitive\time\time\_.h" />
     <ClInclude Include="primitive\time\_.h" />
     <ClInclude Include="primitive\time\_binary_stream.h" />
-    <ClInclude Include="primitive\time\time.h" />
+    <ClInclude Include="primitive\time\_time.h" />
     <ClInclude Include="primitive\time\_impl.h" />
     <ClInclude Include="primitive\time\_string.h" />
     <ClInclude Include="primitive\time\_structures.h" />
@@ -1741,7 +1836,6 @@
     <ClInclude Include="platform\department.h" />
     <ClInclude Include="platform\display.h" />
     <ClInclude Include="platform\enum.h" />
-    <ClInclude Include="platform\error.h" />
     <ClInclude Include="platform\exclusive.h" />
     <ClInclude Include="platform\factory.h" />
     <ClInclude Include="platform\filestream.h" />
@@ -1763,11 +1857,10 @@
     <ClInclude Include="platform\nanosecond_timer.h" />
     <ClInclude Include="platform\node.h" />
     <ClInclude Include="platform\number.h" />
-    <ClInclude Include="platform\object_reference_count_debug.h" />
-    <ClInclude Include="platform\object_reference_count_debug_impl.h" />
+    <ClInclude Include="platform\reference_item_array.h" />
+    <ClInclude Include="platform\aaa_object_reference_count_debug_impl.h" />
     <ClInclude Include="platform\object_type_counter.h" />
     <ClInclude Include="platform\options.h" />
-    <ClInclude Include="platform\plane_system.h" />
     <ClInclude Include="platform\predicate_holder.h" />
     <ClInclude Include="platform\predicate_procedure.h" />
     <ClInclude Include="platform\predicate_process.h" />
@@ -1814,18 +1907,18 @@
     <ClInclude Include="memory\allocate.h" />
     <ClInclude Include="memory\allocate_processor_cache_oriented.h" />
     <ClInclude Include="memory\allocation.h" />
-    <ClInclude Include="memory\heap_.h" />
-    <ClInclude Include="memory\heap_c.h" />
+    <ClInclude Include="memory\management.h" />
+    <ClInclude Include="memory\system_heap.h" />
     <ClInclude Include="memory\heap_item.h" />
     <ClInclude Include="memory\heap_item_array.h" />
     <ClInclude Include="memory\heap_memory.h" />
     <ClInclude Include="memory\malloc.h" />
-    <ClInclude Include="memory\memory.h" />
-    <ClInclude Include="memory\memory_allocator.h" />
+    <ClInclude Include="memory\raw_block.h" />
+    <ClInclude Include="memory\aaa_memory_allocator.h" />
     <ClInclude Include="memory\_new.h" />
-    <ClInclude Include="memory\__plex.h" />
-    <ClInclude Include="memory\__plex_heap.h" />
-    <ClInclude Include="memory\__plex_heap_impl.h" />
+    <ClInclude Include="memory\plex.h" />
+    <ClInclude Include="memory\plex_heap_alloc_sync.h" />
+    <ClInclude Include="memory\plex_heap_alloc.h" />
     <ClInclude Include="platform\_global.h" />
     <ClInclude Include="platform\_impl.h" />
     <ClInclude Include="platform\_platform.h" />
@@ -1993,7 +2086,6 @@
     <ClCompile Include="primitive\primitive\interlocked_long.cpp" />
     <ClCompile Include="primitive\primitive\memory.cpp" />
     <ClCompile Include="primitive\primitive\memory_base.cpp" />
-    <ClCompile Include="primitive\primitive\memory_c.cpp" />
     <ClCompile Include="primitive\primitive\memory_container.cpp" />
     <ClCompile Include="primitive\primitive\property.cpp" />
     <ClCompile Include="primitive\primitive\property_set.cpp" />

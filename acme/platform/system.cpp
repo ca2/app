@@ -28,6 +28,8 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/debug.h"
 #include "acme/primitive/datetime/datetime.h"
+#include "acme/primitive/mathematics/mathematics.h"
+#include "acme/primitive/primitive/primitive.h"
 #include "acme/primitive/primitive/url.h"
 #include "acme/regular_expression/context.h"
 //#include "acme/primitive/primitive/payload.h"
@@ -96,11 +98,13 @@ enum_dialog_result message_box_for_console(const ::scoped_string & scopedstr, co
 #include "acme/_operating_system.h"
 
 
-void initialize_nano_http();
+void initialize_nano_http(::factory::factory * pfactory);
 
 
 namespace acme
 {
+
+
    system::system()
    {
 
@@ -131,22 +135,18 @@ namespace acme
    }
 
 
-   void system::on_initialize_particle()
+   void system::on_set_platform()
    {
 
-      ::acme::context::on_initialize_particle();
-
-      //::plane_system::on_initialize_particle();
+      ::acme::context::on_set_platform();
 
    }
 
 
-   void system::initialize_system()
+   void system::on_initialize_particle()
    {
 
-      m_pplatform = ::platform::get();
-
-      m_pplatform->initialize(this);
+      ::acme::context::on_initialize_particle();
 
       ::output_debug_string("Going to create simple log\n");
 
@@ -217,7 +217,7 @@ namespace acme
 
       //m_bOnInitializeWindowObject = false;
 
-      //m_pcleanuptask = __new(::parallelization::cleanup_task);
+      //m_pcleanuptask = __allocate< ::parallelization::cleanup_task >();
 
       //m_pcleanuptask->begin();
       //factory()->add_factory_item<::acme::idpool>();
@@ -225,6 +225,18 @@ namespace acme
       //m_pacme = nullptr;
       //m_pacmedirectory = nullptr;
       //m_pacmepath = nullptr;
+
+      __defer_construct_new(m_pmathematics);
+
+      __defer_construct_new(m_pprimitive);
+
+      //::plane_system::on_initialize_particle();
+
+   }
+
+
+   void system::initialize_system()
+   {
 
       information() << "initialize_system factory()->initialize";
 
@@ -256,7 +268,7 @@ namespace acme
 
       __construct_new(m_pnano);
 
-      //m_psystemimpl = memory_new system_impl;
+      //m_psystemimpl = __new< system_impl >();
 
       //set_os_data(LAYERED_ACME, this);
 
@@ -291,7 +303,7 @@ namespace acme
 
       branch_synchronously();
 
-      // To pair freebsd.h/main platform_create_system memory_new system
+      // To pair freebsd.h/main platform_create_system new system
       // This should be safe here in this node_gtk::node
       // because just above system() has begin_synch()
       // so the running thread is holding references to the system() thread.
@@ -346,6 +358,24 @@ namespace acme
    //      return m_pnode;
    //
    //   }
+
+
+   class ::mathematics::mathematics * system::mathematics()
+   {
+
+      return m_pmathematics;
+
+   }
+
+
+   class ::imaging * system::imaging()
+   {
+
+      throw ::interface_only("imaging requires aura layer or upper layer");
+
+      return nullptr;
+
+   }
 
 
    ::xml::xml * system::_xml()
@@ -457,6 +487,12 @@ namespace acme
 
    void system::process_init()
    {
+
+#if REFERENCING_DEBUGGING
+
+      ::refdbg_top_track toptrack(this);
+
+#endif
 
       //::acme::idpool::init(this);
 
@@ -643,6 +679,12 @@ namespace acme
 
       m_pfactoryFolder.release();
 
+      m_pdirsystem.release();
+      m_pfilesystem.release();
+      m_pacmefile.release();
+      m_pacmedirectory.release();
+      m_pacmepath.release();
+
       //::acme::idpool::term();
 
       m_pnode->user_post_quit();
@@ -806,8 +848,10 @@ namespace acme
    {
 
       synchronous_lock synchronouslock(m_pmutexTask);
-
-      m_taskmap[itask].reset(ptask OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_FUNCTION_LINE);
+#if   REFERENCING_DEBUGGING
+      ::allocator::add_referer({ this, __FUNCTION_FILE_LINE__ });
+#endif
+      m_taskmap[itask] = ptask;
 
       m_taskidmap[ptask] = itask;
 
@@ -818,12 +862,6 @@ namespace acme
    {
 
       synchronous_lock synchronouslock(m_pmutexTask);
-
-#if OBJECT_REFERENCE_COUNT_DEBUG
-
-      m_taskmap[itask].release(OBJECT_REFERENCE_COUNT_DEBUG_THIS_FUNCTION_LINE);
-
-#endif
 
       m_taskmap.erase_item(itask);
 
@@ -862,13 +900,13 @@ namespace acme
    //pointer< ::extended::sequence < ::conversation > > system::message_box(::user::interaction * puserinteraction, const ::string & pszText, const ::string & pszTitle, const ::e_message_box & emessagebox)
    //{
 
-   //   auto psequence = __new(::sequence < ::conversation >);
+   //   auto psequence = __allocate< ::sequence < ::conversation > >();
 
    //   psequence->set_status(error_interface_only);
 
    //   //return presult;
 
-   //   //auto pprocess = __new(status < enum_dialog_result >);
+   //   //auto pprocess = __allocate< status < enum_dialog_result > >();
 
    //   //pprocess->set_result(message_box_for_console(pszText, pszTitle, emessagebox));
 
@@ -1094,7 +1132,7 @@ namespace acme
       if (!m_pnanohttp)
       {
 
-         initialize_nano_http();
+         initialize_nano_http(factory());
 
          __construct(m_pnanohttp);
 
@@ -1267,7 +1305,7 @@ namespace acme
    //   if (!plibrary)
    //   {
 
-   //      plibrary = __new(::acme::library);
+   //      plibrary = __allocate< ::acme::library >();
 
    //      plibrary->initialize_matter(this);
 
@@ -1359,7 +1397,7 @@ namespace acme
    //
    //      }
    //
-   //      plibrary = __new(::acme::library);
+   //      plibrary = __allocate< ::acme::library >();
    //
    //      plibrary->initialize_matter(this);
    //
@@ -1613,7 +1651,11 @@ namespace acme
       ::pointer<::acme::session>psession;
 
       //auto estatus =
-      __construct(psession);
+      __raw_construct(psession);
+
+      psession->set_platform(platform());
+
+      psession->initialize(this);
 
       psession->m_pacmeapplication = m_pacmeapplication;
       psession->m_pacmesystem = this;
@@ -2193,18 +2235,18 @@ namespace acme
 #ifdef _DEBUG
 
 
-   i64 system::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
+   i64 system::increment_reference_count()
    {
 
-      return ::object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      return ::object::increment_reference_count();
 
    }
 
 
-   i64 system::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
+   i64 system::decrement_reference_count()
    {
 
-      return ::object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      return ::object::decrement_reference_count();
 
    }
 
@@ -2372,7 +2414,7 @@ namespace acme
    }
 
 
-   void system::new_compress(::compress ** ppcompress, const ::scoped_string & scopedstrImplementation)
+   ::pointer < ::compress > system::new_compress(const ::scoped_string & scopedstrImplementation)
    {
 
       auto pcompress = create < ::compress >("compress", scopedstrImplementation);
@@ -2384,16 +2426,12 @@ namespace acme
 
       }
 
-      *ppcompress = pcompress;
-
-      pcompress->increment_reference_count();
-
-      //return ::success;
+      return pcompress;
 
    }
 
 
-   void system::new_uncompress(::uncompress ** ppuncompress, const ::scoped_string & scopedstrImplementation)
+   ::pointer < ::uncompress > system::new_uncompress(const ::scoped_string & scopedstrImplementation)
    {
 
       auto puncompress = create < ::uncompress >("compress", scopedstrImplementation);
@@ -2405,20 +2443,20 @@ namespace acme
 
       }
 
-      *ppuncompress = puncompress;
+      /// *ppuncompress = puncompress;
 
-      puncompress->increment_reference_count();
+      //puncompress->increment_reference_count();
 
-      //return puncompress;
+      return puncompress;
 
    }
 
    void system::compress(const ::payload & payloadTarget, const ::payload & payloadSource, const ::scoped_string & scopedstrImplementation)
    {
 
-      ::pointer<::compress>pcompress;
+      ::pointer<::compress>pcompress = new_compress(scopedstrImplementation);
 
-      /*auto estatus =*/ new_compress(&pcompress.m_p, scopedstrImplementation);
+      ///*auto estatus =*/ new_compress(&pcompress.m_p, scopedstrImplementation);
 
       /*  if (!estatus)
        {
@@ -2448,9 +2486,9 @@ namespace acme
    void system::uncompress(const ::payload & payloadTarget, const ::payload & payloadSource, const ::scoped_string & scopedstrImplementation)
    {
 
-      ::pointer<::uncompress>puncompress;
+      ::pointer<::uncompress>puncompress = new_uncompress(scopedstrImplementation);
 
-      /*auto estatus = */ new_uncompress(&puncompress.m_p, scopedstrImplementation);
+      ///*auto estatus = */ new_uncompress(&puncompress.m_p, scopedstrImplementation);
 
       //if (!estatus)
       //{
@@ -2523,7 +2561,7 @@ namespace acme
 
          papp = pelementApp;
 
-         papp.reset(papp.m_p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_FUNCTION_LINE);
+         //papp.reset(papp.m_p REFERENCING_DEBUGGING_COMMA_THIS_FUNCTION_FILE_LINE);
 
          if (papp)
          {
@@ -2559,7 +2597,7 @@ namespace acme
             if (application()->m_bVerbose)
             {
 
-               ::informationf("\n\n::apex::session::get_new_application assembled library path " + strLibrary + "\n\n");
+               ::acme::get()->platform()->informationf("\n\n::apex::session::get_new_application assembled library path " + strLibrary + "\n\n");
 
             }
 
@@ -2587,7 +2625,7 @@ namespace acme
             if (application()->m_bVerbose)
             {
 
-               ::informationf("\n\n::apex::session::get_new_application Found library : " + strLibrary + "\n\n");
+               ::acme::get()->platform()->informationf("\n\n::apex::session::get_new_application Found library : " + strLibrary + "\n\n");
 
             }
 
@@ -2598,7 +2636,7 @@ namespace acme
             //          if (!plibrary->is_opened())
             //          {
             //
-            //             ::informationf("\n\n::apex::session::get_new_application Failed to load library : " + strLibrary + "\n\n");
+            //             ::acme::get()->platform()->informationf("\n\n::apex::session::get_new_application Failed to load library : " + strLibrary + "\n\n");
             //
             //             return nullptr;
             //
@@ -2607,7 +2645,7 @@ namespace acme
             if (application()->m_bVerbose)
             {
 
-               ::informationf("\n\n::apex::session::get_new_application Opened library : " + strLibrary + "\n\n");
+               ::acme::get()->platform()->informationf("\n\n::apex::session::get_new_application Opened library : " + strLibrary + "\n\n");
 
             }
 
@@ -2618,12 +2656,12 @@ namespace acme
             if (pfactory)
             {
 
-               papp = pfactory->create < ::acme::application >(this);
+               papp = __create < ::acme::application >(pfactory);
 
                if (!papp)
                {
 
-                  ::informationf("\n\n::apex::session::get_new_application\n...but this memory_new found library:\n\n   -->  " + strLibrary + "  <--\n\ncannot instantiate application with following AppId:\n\n   -->  " + strAppId + "  <--\n\nIs it missing application factory_item?\n\n\n");
+                  ::acme::get()->platform()->informationf("\n\n::apex::session::get_new_application\n...but this new found library:\n\n   -->  " + strLibrary + "  <--\n\ncannot instantiate application with following AppId:\n\n   -->  " + strAppId + "  <--\n\nIs it missing application factory_item?\n\n\n");
 
                }
 
@@ -2636,11 +2674,11 @@ namespace acme
                //
                //         }
 
-               ::informationf("\n\n\n|(4)----");
-               ::informationf("| app : " + strAppId + "(papp=0x" + ::hex::upper_case_from((uptr)papp.m_p) + ")\n");
-               ::informationf("|\n");
-               ::informationf("|\n");
-               ::informationf("|----");
+               ::acme::get()->platform()->informationf("\n\n\n|(4)----");
+               ::acme::get()->platform()->informationf("| app : " + strAppId + "(papp=0x" + ::hex::upper_case_from((uptr)papp.m_p) + ")\n");
+               ::acme::get()->platform()->informationf("|\n");
+               ::acme::get()->platform()->informationf("|\n");
+               ::acme::get()->platform()->informationf("|----");
 
             }
 
@@ -2672,22 +2710,22 @@ namespace acme
       //   if (is_verbose())
       //   {
       //
-      //      ::informationf("\n\n\n|(3)----");
-      //      ::informationf("| app : " + strAppId + "\n");
-      //      ::informationf("|\n");
-      //      ::informationf("|\n");
-      //      ::informationf("|----");
+      //      ::acme::get()->platform()->informationf("\n\n\n|(3)----");
+      //      ::acme::get()->platform()->informationf("| app : " + strAppId + "\n");
+      //      ::acme::get()->platform()->informationf("|\n");
+      //      ::acme::get()->platform()->informationf("|\n");
+      //      ::acme::get()->platform()->informationf("|----");
       //
       //   }
       //
       //   if (is_verbose())
       //   {
       //
-      //      ::informationf("\n\n\n|(2)----");
-      //      ::informationf("| app : " + strAppId + "\n");
-      //      ::informationf("|\n");
-      //      ::informationf("|\n");
-      //      ::informationf("|----");
+      //      ::acme::get()->platform()->informationf("\n\n\n|(2)----");
+      //      ::acme::get()->platform()->informationf("| app : " + strAppId + "\n");
+      //      ::acme::get()->platform()->informationf("|\n");
+      //      ::acme::get()->platform()->informationf("|\n");
+      //      ::acme::get()->platform()->informationf("|----");
       //
       //   }
       //
@@ -2695,11 +2733,11 @@ namespace acme
       //   if (is_verbose())
       //   {
       //
-      //      ::informationf("\n\n\n|(1)----");
-      //      ::informationf("| app : " + strAppId + "\n");
-      //      ::informationf("|\n");
-      //      ::informationf("|\n");
-      //      ::informationf("|----");
+      //      ::acme::get()->platform()->informationf("\n\n\n|(1)----");
+      //      ::acme::get()->platform()->informationf("| app : " + strAppId + "\n");
+      //      ::acme::get()->platform()->informationf("|\n");
+      //      ::acme::get()->platform()->informationf("|\n");
+      //      ::acme::get()->platform()->informationf("|----");
       //
       //   }
 
@@ -2759,7 +2797,7 @@ namespace acme
 //   void system::windowing_send(const ::procedure & procedure)
 //   {
 //
-//      auto pmanualresetevent = __new(manual_reset_event);
+//      auto pmanualresetevent = __allocate< manual_reset_event >();
 //
 //      windowing_post([pmanualresetevent, procedure]()
 //                     {
@@ -2798,6 +2836,15 @@ namespace acme
       ::acme::context::destroy();
 
       ::task::destroy();
+
+      auto ptask = ::get_task();
+
+      if (ptask == this)
+      {
+
+         ::task_release();
+
+      }
 
    }
 
@@ -2900,6 +2947,7 @@ namespace acme
    }
 
 
+
    string system::get_system_platform()
    {
 
@@ -2922,6 +2970,15 @@ namespace acme
 
    }
 
+   
+   class ::manager_room * system::manager_room()
+   {
+
+      return nullptr;
+
+   }
+
+
 
    ::string system::get_application_server_name()
    {
@@ -2929,6 +2986,23 @@ namespace acme
       return {};
 
    }
+
+
+   ::draw2d::draw2d * system::draw2d() const
+   {
+
+      return nullptr;
+
+   }
+
+
+   ::write_text::write_text * system::write_text() const
+   {
+
+      return nullptr;
+
+   }
+
 
 
 } // namespace acme
@@ -2980,7 +3054,7 @@ namespace acme
 //CLASS_DECL_ACME::acme::system * acme_system_init()
 //{
 //
-//   g_psystem = memory_new ::acme::system();
+//   g_psystem = __new< ::acme::system >();
 //
 //   return g_psystem;
 //
@@ -3076,13 +3150,13 @@ void system_on_open_file(void * pSystem, const char * pszFile)
 //
 //         //   int iDialogResult = pfuture->m_var;
 //
-//         //   ::informationf("result " + as_string(iDialogResult));
+//         //   ::acme::get()->platform()->informationf("result " + as_string(iDialogResult));
 //
 //         //}
 //
 //         //throw ::exception(error_failed, strMessage + "\n\nCould not open required library.");
 //
-//         ::informationf("The application library for appid \"" + strAppId + "\" wasn't loaded.");
+//         ::acme::get()->platform()->informationf("The application library for appid \"" + strAppId + "\" wasn't loaded.");
 //
 //      }
 //

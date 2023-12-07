@@ -70,8 +70,8 @@ namespace windowing
    //    //pmenushared->m_ppszParent = alloc_c_string_array(straParent);
    //    //pmenushared->m_ppszMenu = alloc_c_string_array(straMenu);
    //    //pmenushared->m_ppszId = alloc_c_string_array(straId);
-   //    //pmenushared->m_ositema = memory_new void * [iCount];
-   //    //pmenushared->m_statusa = memory_new int[iCount];
+   //    //pmenushared->m_ositema = __new_array< void *  >(iCount);
+   //    //pmenushared->m_statusa = __new_array< int >(iCount);
 
    //    //memset(pmenushared->m_ositema, 0, sizeof(void *) * iCount);
    //    //memset(pmenushared->m_statusa, 0, sizeof(menu::enum_status) * iCount);

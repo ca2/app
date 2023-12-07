@@ -12,7 +12,7 @@ namespace http
 
 
    request::request() :
-      m_binarystreamOutput(m_pmemfileBody=__new(memory_file))
+      m_binarystreamOutput(m_pmemfileBody=__allocate< memory_file >())
    {
 
    }
@@ -50,7 +50,7 @@ namespace http
       UNREFERENCED_PARAMETER(sz);
       m_pmemfileBody->set_size(0);
       /*if (!m_file.get())
-         m_file = ::pointer<IFile>e>(memory_new MemFile);
+         m_file = ::pointer<IFile>e>(aaa_memory_new MemFile);
       DEBUG_ONLY(   else
          informationf("Body data file already opened");*/
    }

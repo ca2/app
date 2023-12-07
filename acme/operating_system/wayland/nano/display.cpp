@@ -355,12 +355,12 @@ namespace wayland
 //   display * display::get(::particle * pparticle, bool bBranch, ::wl_display * pwldisplay)
 //   {
 //
-//      critical_section_lock lock(::platform::get()->globals_critical_section());
+//      critical_section_lock lock(this->platform()->globals_critical_section());
 //
 //      if (g_p == nullptr)
 //      {
 //
-//         auto p = memory_new display;
+//         auto p = __new< display >();
 //
 //         p->initialize(pparticle);
 //

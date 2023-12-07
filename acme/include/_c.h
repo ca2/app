@@ -1,23 +1,38 @@
-//
-//  _c.h
-//  acme
-//
-//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 24/04/20.
-//
+// From acme/_c.h by camilo on 2022-11-09 02:40 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
-#include "acme/platform/_c.h"
+inline bool is_null(const void* p, memsize s)
+{
+
+   return ((iptr)p <= s);
+
+}
+
+
+inline bool is_null(const void* p) { return ::is_null(p, 65535); }
+
+
+inline int is_set(const void* p) { return !is_null(p); }
+
+
+CLASS_DECL_ACME strsize safe_strlen(void* p, strsize n);
+
+
+inline int_bool address_overlaps(const void* pszDst, const void* pszSrc, strsize srclen);
+
+
+
+
+
+
+CLASS_DECL_ACME void* reverse_memchr(const void* l, int ch, std::size_t l_len);
+CLASS_DECL_ACME void* reverse_memmem(const void* l, std::size_t l_len, const void* s, std::size_t s_len);
+CLASS_DECL_ACME void* reverse_byte_not_in_block(const void* l, std::size_t l_len, const void* s, std::size_t s_len);
 
 
 #include "acme/exception/_c.h"
-
-
 #include "acme/primitive/comparison/_c.h"
-
-
-#include "acme/primitive/primitive/_c_memory.h"
-
 
 
 

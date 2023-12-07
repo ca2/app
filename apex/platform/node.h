@@ -35,10 +35,10 @@ namespace apex
 #ifdef _DEBUG
 
       
-      i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
+      i64 increment_reference_count() override;
       
       
-      i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
+      i64 decrement_reference_count() override;
 
 
 #endif

@@ -971,7 +971,7 @@ void property_set::parse_network_payload(const ::string & strNetworkPayload)
 
 #ifdef LINUX
 
-   uselocale(::platform::get()->m_localeC);
+   uselocale(this->platform()->m_localeC);
 
 #endif
 
@@ -986,7 +986,7 @@ void property_set::parse_network_payload(const ::string & strNetworkPayload)
 //{
 //
 //#ifdef LINUX
-//   uselocale(::platform::get()->m_localeC);
+//   uselocale(this->platform()->m_localeC);
 //#endif
 //
 //   parse_network_payload(pszJson, pszJson + strlen(pszJson) - 1);
@@ -999,7 +999,7 @@ void property_set::parse_network_payload(::ansi_range & range)
 
 
 #ifdef LINUX
-   uselocale(::platform::get()->m_localeC);
+   uselocale(this->platform()->m_localeC);
 #endif
 
    range.consume_spaces(0);
@@ -1553,7 +1553,7 @@ property_set & property_set::append(const property_set & set)
       for (auto & pproperty : propertyptra())
       {
 
-         add_property(memory_new property(*pproperty));
+         add_property(__new< property >(*pproperty));
 
       }
 
@@ -1943,7 +1943,7 @@ string & property_set::get_network_arguments(string & strNetworkArguments) const
 //   if (::is_null(pFind))
 //   {
 //
-//      auto pproperty = __new(property(nullptr));
+//      auto pproperty = __allocate< property >(nullptr);
 //
 //      m_propertyptra.add(pproperty);
 //
@@ -2350,7 +2350,7 @@ property & property_set::get(const ::atom & atom, ::index iStart)
    if (!pproperty)
    {
 
-      pproperty = memory_new property(atom);
+      pproperty = __new< property >(atom);
 
       add_property(pproperty);
 
@@ -2389,7 +2389,7 @@ property & property_set::get(const ::atom & atom, ::index iStart)
 //   while (i >= this->size())
 //   {
 //
-//      auto pproperty = memory_new property(::as_string(this->size()));
+//      auto pproperty = __new< property(::as_string(this->size >()));
 //
 //      add_item(pproperty);
 //
@@ -2433,7 +2433,7 @@ property & property_set::get(const ::atom & atom, ::index iStart)
    if (!pproperty)
    {
 
-      pproperty = memory_new property(atom);
+      pproperty = __new< property >(atom);
 
       add_property(pproperty);
 

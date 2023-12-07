@@ -27,9 +27,9 @@ chldstatus_map * g_pchldstatusmap = nullptr;
 void init_chldstatus_cs()
 {
 
-   g_pcsChldStatus = memory_new critical_section;
+   g_pcsChldStatus = __new< critical_section >();
 
-   g_pchldstatusmap = memory_new iptr_map < chldstatus >;
+   g_pchldstatusmap = __new < iptr_map < chldstatus > >();
 
 }
 

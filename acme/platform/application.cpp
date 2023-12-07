@@ -44,12 +44,12 @@ namespace acme
    application::application()
    {
 
-      if (!::platform::platform::s_pplatform->m_pacmeapplication)
-      {
+      //if (!::platform::platform::s_pplatform->m_pacmeapplication)
+      //{
 
-         ::platform::platform::s_pplatform->m_pacmeapplication = this;
+      //   ::platform::platform::s_pplatform->m_pacmeapplication = this;
 
-      }
+      //}
 
       //m_acme.m_pacmeapplication = this;
       //m_acme.m_pacmeapplication = this;
@@ -63,14 +63,18 @@ namespace acme
       m_pbredapplication = nullptr;
       m_pcoreapplication = nullptr;
 
-      factory()->add_factory_item < ::acme::system >();
-      factory()->add_factory_item < ::acme::session >();
-
    }
 
 
    application::~application()
    {
+      
+      if (m_pplatform->m_pacmeapplication == this)
+      {
+
+         m_pplatform->m_pacmeapplication = nullptr;
+
+      }
 
       /*   if (g_p == this)
          {
@@ -85,6 +89,41 @@ namespace acme
 
          }*/
          //   ::acme::finalize_system();
+
+   }
+
+
+   void application::on_set_platform()
+   {
+
+      ::acme::context::on_set_platform();
+
+      factory()->add_factory_item < ::acme::system >();
+      factory()->add_factory_item < ::acme::session >();
+
+   }
+
+
+   void application::on_initialize_particle()
+   {
+
+      ::acme::context::on_initialize_particle();
+
+      {
+
+#include "deployment/build.h"
+
+         m_strBuild = pszBuild;
+
+      }
+
+      if (m_strBuild.is_empty())
+      {
+
+         m_strBuild = "(unknown build version)";
+
+      }
+
 
    }
 
@@ -107,28 +146,12 @@ namespace acme
    }
 
 
-   void application::initialize(::particle* pparticle)
-   {
+   //void application::initialize(::particle* pparticle)
+   //{
 
-      ::task::initialize(pparticle);
+   //   ::task::initialize(pparticle);
 
-      {
-
-#include "deployment/build.h"
-
-         m_strBuild = pszBuild;
-
-      }
-
-      if (m_strBuild.is_empty())
-      {
-
-         m_strBuild = "(unknown build version)";
-
-      }
-
-
-   }
+   //}
 
 
    void application::start_application(::request* prequest)
@@ -171,30 +194,39 @@ namespace acme
    //::factory::factory_pointer& application::factory()
    //{
 
-   //   return ::platform::get()->factory();
+   //   return this->platform()->factory();
 
    //}
 
 
-   void application::initialize_application()
+   void application::initialize_application(::platform::platform * pplatform)
    {
 
-      ::platform::get()->defer_initialize_platform();
+      set_platform(pplatform);
+
+      if (m_pplatform->m_pacmeapplication == nullptr)
+      {
+
+         m_pplatform->m_pacmeapplication = this;
+
+         m_pplatform->defer_initialize_platform();
+
+      }
 
       if (!m_pacmesystem)
       {
 
-         m_pacmesystem = ::platform::get()->m_psystem;
+         m_pacmesystem = m_pplatform->m_psystem;
 
       }
 
    }
 
 
-   ::i32 application::application_main()
+   ::i32 application::application_main(::platform::platform * pplatform)
    {
 
-      initialize_application();
+      initialize_application(pplatform);
 
       output_debug_string("acme::application implement_application\n");
 
@@ -229,7 +261,7 @@ namespace acme
 
       //main.m_bAudio = main_hold_base::is_audio_enabled();
 
-      //auto pfactoryitem = ::platform::get()->m_pfactory->get_factory_item<::acme::system>();
+      //auto pfactoryitem = this->platform()->m_pfactory->get_factory_item<::acme::system>();
 
       //::pointer<::acme::system> psystem = pfactoryitem->create_particle();
 
@@ -467,7 +499,7 @@ namespace acme
 
 #ifdef WINDOWS_DESKTOP
 
-         m_pathModule = ::get_module_path((HMODULE)::platform::get()->m_hinstanceThis);
+         m_pathModule = ::get_module_path((HMODULE)m_pplatform->m_hinstanceThis);
 
 #elif defined(ANDROID)
 
@@ -728,6 +760,67 @@ namespace acme
    {
 
       acmenode()->add_application_capability(m_eapplicationcapabilitya);
+
+   }
+
+
+   void application::init_task()
+   {
+
+      try
+      {
+
+         pre_run();
+         //{
+
+         //   return false;
+
+         //}
+
+      }
+      catch (const ::exception & e)
+      {
+
+         handle_exception(e);
+
+         session()->set_finish();
+
+         throw e;
+
+      }
+      catch (...)
+      {
+
+         //      return false;
+
+         throw ::exception(error_exception);
+
+      }
+
+      //return true;
+
+   }
+
+
+   void application::term_task()
+   {
+
+      information() << "acme::application::term_task";
+
+      m_timeHeartBeat.Now();
+
+      try
+      {
+
+         pos_run();
+
+      }
+      catch (...)
+      {
+
+      }
+
+      ::task::term_task();
 
    }
 
@@ -1309,7 +1402,7 @@ namespace acme
       {
 
          message_box_synchronous(this, "Application failed to initialize (4). Unknown exception", m_strAppName, e_message_box_ok,
-            exception.m_strMessage + "\n\n" + exception.m_strDetails + "\n\n" + exception.m_strCallstack);
+            exception.m_strMessage + "\n\n" + exception.m_strDetails + "\n\n" + exception.m_strCallStackTrace);
 
          throw exception;
 
@@ -1514,6 +1607,222 @@ namespace acme
       //      m_bAuraInitializeInstanceResult = true;
 
       //return true;
+
+   }
+
+
+   void application::pos_run()
+   {
+
+      information() << "acme::application::pos_run";
+
+      try
+      {
+
+         m_timeHeartBeat.Now();
+
+         application_pos_run();
+
+         //xxdebug_box("pre_run 1 ok", "pre_run 1 ok", e_message_box_icon_information);
+
+      }
+      catch (...)
+      {
+
+         information() << "acme::application::pos_run exception.4";
+
+      }
+
+   }
+
+
+   void application::application_pos_run()
+   {
+
+      try
+      {
+
+         //if (!is_installing() && !is_unstalling())
+         {
+
+            term_instance();
+
+         }
+
+      }
+      catch (...)
+      {
+
+      }
+
+      try
+      {
+
+         term_application();
+
+      }
+      catch (...)
+      {
+
+      }
+
+      m_timeHeartBeat.Now();
+
+      try
+      {
+
+         process_term();
+
+      }
+      catch (...)
+      {
+
+      }
+
+      //try
+      //{
+      //
+      //TermApplication();
+      //
+      //}
+      //catch (...)
+      //{
+      //
+      //}
+
+
+   }
+
+
+   void application::term_instance()
+   {
+
+
+   }
+
+
+   void application::term3()
+   {
+
+
+   }
+
+
+   void application::term2()
+   {
+
+
+   }
+
+
+   void application::term1()
+   {
+
+
+   }
+
+
+   void application::term()
+   {
+
+
+   }
+
+
+
+
+   void application::term_application()
+   {
+
+      //try
+      //{
+
+      //   close(::apex::e_end_app);
+
+      //}
+      //catch (...)
+      //{
+
+      //}
+
+      //release_exclusive();
+
+      try
+      {
+
+         //try
+         //{
+
+         //   m_pinterprocesscommunication.release();
+
+         //}
+         //catch (...)
+         //{
+
+         //}
+
+         try
+         {
+
+            term();
+
+         }
+         catch (...)
+         {
+
+
+         }
+
+         try
+         {
+
+            term3();
+
+         }
+         catch (...)
+         {
+
+
+         }
+
+         try
+         {
+
+            term2();
+
+         }
+         catch (...)
+         {
+
+
+         }
+
+         try
+         {
+
+            term1();
+
+         }
+         catch (...)
+         {
+
+
+         }
+
+
+      }
+      catch (...)
+      {
+
+      }
+
+   }
+
+
+   void application::process_term()
+   {
+
+      finalize_context();
 
    }
 

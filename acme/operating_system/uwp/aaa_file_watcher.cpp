@@ -154,9 +154,9 @@ namespace file
       try
       {
 
-         watch_ref ^ pwatch = ref memory_new watch_ref;
+         watch_ref ^ pwatch = ref aaa_primitive_new watch_ref;
 
-         ::winrt::Windows::Storage::Search::QueryOptions ^ options = ref memory_new ::winrt::Windows::Storage::Search::QueryOptions();
+         ::winrt::Windows::Storage::Search::QueryOptions ^ options = ref aaa_primitive_new ::winrt::Windows::Storage::Search::QueryOptions();
 
          pwatch->m_bRecursive = bRecursive;
 
@@ -191,7 +191,7 @@ namespace file
          if (pwatch->m_queryresult == nullptr)
             return nullptr;
 
-         pwatch->m_evtoken = pwatch->m_queryresult->ContentsChanged += ref memory_new ::winrt::Windows::Foundation::TypedEventHandler < ::winrt::Windows::Storage::Search::IStorageQueryResultBase ^,
+         pwatch->m_evtoken = pwatch->m_queryresult->ContentsChanged += ref aaa_primitive_new ::winrt::Windows::Foundation::TypedEventHandler < ::winrt::Windows::Storage::Search::IStorageQueryResultBase ^,
                  ::Object ^ >(pwatch, &watch_ref::ContentsChanged);
 
          return pwatch;
@@ -283,7 +283,7 @@ namespace file
 
    //   watchref->m_bRecursive     = bRecursive;
 
-   //   auto pwatch = __new(os_watch);
+   //   auto pwatch = __allocate< os_watch >();
 
    //   pwatch->m_atom               = watchid;
 

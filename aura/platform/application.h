@@ -156,6 +156,9 @@ namespace aura
       virtual void initialize(::particle * pparticle) override;
 
 
+      void on_set_platform() override;
+
+
 //      // void assert_ok() const override;
 //      // void dump(dump_context & dumpcontext) const override;
 
@@ -631,19 +634,19 @@ namespace aura
       //virtual string get_mutex_name_gen();
 
       /// return true if this instance might continue execution
-      /// bHandled true if some action was done in response to this memory_new additional instance creation
+      /// bHandled true if some action was done in response to this new additional instance creation
       //virtual void on_exclusive_instance_conflict(bool & bHandled, enum_exclusive_instance eexclusive, string strId) override;
 
       /// return true if this instance might continue execution
-      /// bHandled true if some action was done in response to this memory_new additional instance creation
+      /// bHandled true if some action was done in response to this new additional instance creation
 //      virtual bool on_exclusive_instance_local_conflict(bool & bHandled) override;
 
             /// return true if this instance might continue execution
-      /// bHandled true if some action was done in response to this memory_new additional instance creation
+      /// bHandled true if some action was done in response to this new additional instance creation
       //virtual bool on_exclusive_instance_local_conflict_id(bool & bHandled, string strId) override;
 
       /// return true if the external additional instance might continue execution
-      /// bHandled true if some action was done in response to the external memory_new additional instance creation
+      /// bHandled true if some action was done in response to the external aaa_memory_new additional instance creation
       //virtual void on_additional_local_instance(bool & bHandled, string strModule, int iPid, string strCommandLine) override;
 
       //virtual void on_new_instance(string strModule, const ::atom & idPid) override;
@@ -996,21 +999,13 @@ namespace aura
       void update_app_interest();
       void ensure_app_interest();
 
-
       virtual bool is_system() const override;
       virtual bool is_session() const override;
 
 
-
-
-
-
 //      virtual ::pointer<::apex::application>create_platform(::apex::session* psession) override;
 
-
-
-
-      void data_on_after_change(::database::client* pclient, const ::scoped_string & scopedstr, const ::payload & payload, ::topic * ptopic) override;
+      void data_on_after_change(::database::client* pclient, const ::scoped_string & scopedstr, ::topic * ptopic) override;
 
 
       virtual i32 GetVisibleTopLevelFrameCountExcept(::pointer<::user::interaction>puserinteractionExcept);

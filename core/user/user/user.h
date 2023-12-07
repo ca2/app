@@ -18,11 +18,11 @@ namespace core
 
 
 
-      ::user::impact_system *                      m_ptemplatePlaceHolder;
+      //::user::impact_system *                      m_ptemplatePlaceHolder;
 
 
 
-      ::user::multiple_document_template *         m_ptemplateProgress2;
+      //::user::multiple_document_template *         m_ptemplateProgress2;
 
 
       //map < ::type, ::user::impact_system * >      m_mapTemplate;

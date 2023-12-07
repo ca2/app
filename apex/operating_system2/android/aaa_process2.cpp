@@ -39,9 +39,9 @@ struct chldstatus
 //   if(g_pcsPid2 == nullptr)
 //   {
 //
-//      g_pcsPid2 = memory_new critical_section();
+//      g_pcsPid2 = aaa_primitive_new critical_section();
 //
-//      g_ppid = memory_new chldstatus_map();
+//      g_ppid = aaa_primitive_new chldstatus_map();
 //
 //
 //   }
@@ -356,7 +356,7 @@ struct chldstatus
 //
 //      char *   cmd_line;
 //
-//      cmd_line = (char *) memory_allocate(strlen(pszCmdLine ) + 1 );
+//      cmd_line = (char *) ::heap::management::memory(::heap::e_memory_main)->allocate(strlen(pszCmdLine ) + 1 );
 //
 //      if(cmd_line == nullptr)
 //      {

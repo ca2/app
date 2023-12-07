@@ -3,10 +3,6 @@ project(networking_bsd CXX)
 
 
 list(APPEND library_source
-   bsd/_.cpp
-   bsd/_.h
-   bsd/list_computers.cpp
-   bsd/list_network_interfaces.cpp
    #sockets.cpp
    sockets/_.h
    sockets/_1.h
@@ -132,6 +128,21 @@ if (WIN32 OR UWP)
    )
 
 endif ()
+
+
+if (${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
+
+   list(APPEND library_source
+      bsd/_.cpp
+      bsd/_.h
+      bsd/list_computers.cpp
+      bsd/list_network_interfaces.cpp
+   )
+
+endif()
+
+
+
 
 
 list(APPEND library_references

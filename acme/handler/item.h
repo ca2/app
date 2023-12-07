@@ -190,6 +190,8 @@ public:
    }
 
 
+   ::string get_debug_title() const override;
+
    bool _is_set() const override;
 
    bool is_item_set() const { return m_atom.is_set() || m_item.m_eelement != ::e_element_none; }
@@ -399,7 +401,7 @@ inline bool in_element_range(const ::item * pitem, enum_element eelement, int iC
 inline ::pointer<::item>new_item_with_index(::index iIndex)
 {
 
-   return __new(::item(::e_element_item, iIndex));
+   return __allocate< ::item >(::e_element_item, iIndex);
 
 }
 

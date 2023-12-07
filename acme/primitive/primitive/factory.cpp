@@ -19,6 +19,11 @@ namespace factory
    factory_item_interface::factory_item_interface()
    {
 
+#if REFERENCING_DEBUGGING
+
+      disable_referencing_debugging();
+
+#endif
 
    }
 
@@ -59,6 +64,22 @@ namespace factory
 
 
    }
+
+#if REFERENCING_DEBUGGING
+
+
+
+   factory * factory::__call__add_referer2(const ::reference_referer & referer) const
+   {
+
+      ::allocator::defer_add_referer(referer);
+
+      return (factory *)this;
+
+   }
+
+
+#endif
 
 
    void factory::merge(const ::factory::factory* pfactory)
@@ -220,7 +241,7 @@ CLASS_DECL_ACME bool safe_free_memory(void * ptype)
    try
    {
 
-      memory_free(ptype);
+      ::heap::management::memory(::heap::e_memory_main)->free(ptype);
 
    }
    catch(...)
@@ -385,7 +406,7 @@ CLASS_DECL_ACME bool safe_free_memory(void * ptype)
 //inline ::pointer<TYPE>__create_new()
 //{
 //
-//   auto ptype = __new(TYPE);
+//   auto ptype = __allocate< TYPE >();
 //
 //   if (!ptype)
 //   {
@@ -403,7 +424,7 @@ CLASS_DECL_ACME bool safe_free_memory(void * ptype)
 //inline ::pointer<TYPE>__create_new(const TYPE & t)
 //{
 //
-//   auto ptype = __new(TYPE(t));
+//   auto ptype = __allocate< TYPE >(t);
 //
 //   if (!ptype)
 //   {
@@ -804,7 +825,7 @@ CLASS_DECL_ACME bool safe_free_memory(void * ptype)
 //inline void __construct_new(::pointer<TYPE>& ptype)
 //{
 //
-//   ptype = __new(TYPE());
+//   ptype = __allocate< TYPE >();
 //
 //   if (!ptype)
 //   {
@@ -947,7 +968,7 @@ namespace factory
 {
 
 
-   ::pointer < ::particle > factory::create(const ::string & strType, ::particle * pparticle)
+   ::pointer < ::particle > factory::__call__create(const ::string & strType, ::particle * pparticle)
    {
 
       //auto psystem = system();
@@ -989,7 +1010,7 @@ namespace factory
 
       //}
 
-      return pfactoryinterface->create_particle();
+      return pfactoryinterface->__call__create_particle();
 
    }
 

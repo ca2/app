@@ -56,11 +56,11 @@ namespace user
 
       m_ptab = ptab;
 
-      m_pbrushFill.create(ptab);
-      m_pbrushFillSel.create(ptab);
-      m_pbrushFillHover.create(ptab);
+      __construct(m_pbrushFill);
+      __construct(m_pbrushFillSel);
+      __construct(m_pbrushFillHover);
 
-      m_pitemClose = __new(::item(e_element_close_tab_button));
+      m_pitemClose = __allocate< ::item >(e_element_close_tab_button);
 
       //return estatus;
 

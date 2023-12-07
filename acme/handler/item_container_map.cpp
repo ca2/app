@@ -16,6 +16,17 @@ item_container_map::~item_container_map()
 }
 
 
+void item_container_map::destroy()
+{
+
+
+   m_itemcontainermap.clear();
+
+   ::item::destroy();
+
+}
+
+
 ::pointer < ::item_container > item_container_map::item_container(::index iId)
 {
 

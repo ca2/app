@@ -13,7 +13,7 @@ void prepare_http()
 {
    if(g_MsDownloadBuffer == nullptr)
    {
-      g_MsDownloadBuffer = memory_new char[g_MsDownloadSize];
+      g_MsDownloadBuffer = __new_array< char >(g_MsDownloadSize);
    }
 
 }
@@ -292,7 +292,7 @@ printf( "Error %u in WinHttpQueryDataAvailable.\n",
 get_last_error());
 
 // Allocate space for the buffer.
-pszOutBuffer = memory_new char[dwSize+1];
+pszOutBuffer = __new_array< char >(dwSize+1);
 if (!pszOutBuffer)
 {
 printf("Out of memory\n");

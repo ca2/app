@@ -42,13 +42,13 @@ namespace user
 
       //}
 
-      m_ppen.create(this);
+      __construct(m_ppen);
+      __construct(m_pbrushCloseHover);
+      __construct(m_pbrushCloseSel);
+      __construct(m_pbrushClose);
          //m_pbrushTextHover(e_create),
          //m_pbrushTextSel(e_create),
          //m_pbrushText(e_create),
-         m_pbrushCloseHover.create(this);
-         m_pbrushCloseSel.create(this);
-         m_pbrushClose.create(this);
          //,
          //m_ppenBorder(e_create),
          //m_ppenBorderSel(e_create),

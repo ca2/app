@@ -71,7 +71,7 @@ public:
 
 
 //   point_type() noexcept { this->x() = (UNIT_TYPE)0; this->y() = (UNIT_TYPE)0; }
-//   point_type(enum_no_initialize) noexcept {  }
+//   point_type(no_initialize_t) noexcept {  }
 //   point_type(::std::nullptr_t) noexcept { this->x() = (UNIT_TYPE)0; this->y() = (UNIT_TYPE)0; }
 //   point_type(UNIT_TYPE x, UNIT_TYPE y) noexcept { this->x() = x; this->y() = y; }
 //   ///point_type(const ::lparam& lparam) noexcept : point_type(lparam.x(), lparam.y()) {}

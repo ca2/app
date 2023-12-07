@@ -11,6 +11,7 @@
 #include "acme/constant/user_key.h"
 #include "acme/exception/interface_only.h"
 #include "acme/handler/item.h"
+#include "acme/handler/topic.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/primitive/collection/_range.h"
 #include "acme/primitive/data/listener.h"
@@ -56,8 +57,8 @@ namespace user
       m_sizeMaximumImage.cy() = 16;
       m_dItemHeight = 0.;
       m_plist = nullptr;
-      m_piaFilterIcon = memory_new index_biunique();
-      m_piaFilterMesh = memory_new index_array();
+      m_piaFilterIcon = __new< index_biunique >();
+      m_piaFilterMesh = __new< index_array >();
 
       m_econtroltype = ::user::e_control_type_mesh;
 
@@ -385,7 +386,7 @@ namespace user
          if (!pgroup)
          {
 
-            auto pdrawgroup = __new(draw_mesh_group);
+            auto pdrawgroup = __allocate< draw_mesh_group >();
 
             pdrawgroup->initialize_draw_mesh_group(this);
 
@@ -809,7 +810,7 @@ namespace user
       if (!pitem)
       {
 
-         auto pdrawmeshitem = __new(draw_mesh_item);
+         auto pdrawmeshitem = __allocate< draw_mesh_item >();
 
          pdrawmeshitem->initialize_draw_mesh_item(this);
 
@@ -842,7 +843,7 @@ namespace user
       if (!psubitem)
       {
 
-         psubitem = __new(draw_mesh_subitem);
+         psubitem = __allocate< draw_mesh_subitem >();
 
          psubitem->m_pitem = pitem;
 
@@ -3299,7 +3300,7 @@ namespace user
                   if(m_iClick == 1)
                   {
 
-                     on_click(__new(::item(::e_element_item, iDisplayItemLButtonUp)));
+                     on_click(__allocate< ::item >(::e_element_item, iDisplayItemLButtonUp));
 
                   }
                   else
@@ -3648,8 +3649,8 @@ namespace user
    {
 
 
-      m_ppenFocused.create(this);
-      m_ppenHighlight.create(this);
+      __construct(m_ppenFocused);
+      __construct(m_ppenHighlight);
 
       ::pointer<::message::create>pcreate(pmessage);
 
@@ -3763,7 +3764,7 @@ namespace user
    //   }
    //   if(pcolumn->m_pimagelist == nullptr)
    //   {
-   //      pcolumn->m_pimagelist = memory_new ::image_list(this);
+   //      pcolumn->m_pimagelist = __new< ::image_list >(this);
    //   }
    //   //      ::pointer<::image_list>pil = pcolumn->m_pimagelist;
    //   //   if(pil != nullptr)
@@ -5424,7 +5425,7 @@ namespace user
    //::item_pointer mesh::update_hover(::user::mouse * pmouse, ::user::e_zorder ezorder)
    //{
 
-   //   ::item_pointer pitemHitTest = __new(::item);
+   //   ::item_pointer pitemHitTest = __allocate< ::item >();
    //   
    //   auto pointClient = screen_to_client().get(pmouse->m_point);
 
@@ -5468,7 +5469,7 @@ namespace user
    ::item_pointer mesh::on_hit_test(const ::point_i32& point, e_zorder ezorder)
    {
 
-      ::item_pointer pitemHitTest = __new(::item);
+      ::item_pointer pitemHitTest = __allocate< ::item >();
 
       //auto pointClient = screen_to_client().get(pmouse->m_point);
 
@@ -6235,11 +6236,11 @@ namespace user
 
             auto psystem = m_pitem->m_pmesh->system()->m_paurasystem;
 
-            psystem->imaging().channel_spread_set_color(pimage2->get_graphics(),{}, size, pimage1->get_graphics(),{},0,2,argb(192,192,192,192));
+            psystem->imaging()->channel_spread_set_color(pimage2->get_graphics(),{}, size, pimage1->get_graphics(),{},0,2,argb(192,192,192,192));
             pimage1->clear(::color::transparent);
-            psystem->imaging().channel_alpha_gray_blur(pimage1->get_graphics(),{}, size, pimage2->get_graphics(),{},0,1);
+            psystem->imaging()->channel_alpha_gray_blur(pimage1->get_graphics(),{}, size, pimage2->get_graphics(),{},0,1);
             pimage2->clear(::color::transparent);
-            psystem->imaging().channel_alpha_gray_blur(pimage2->get_graphics(),{}, size, pimage1->get_graphics(),{},0,1);
+            psystem->imaging()->channel_alpha_gray_blur(pimage2->get_graphics(),{}, size, pimage1->get_graphics(),{},0,1);
             pimage2->clear(::color::transparent);
 
             image_source imagesource(pimage2, rectangle_i32(1,1, m_rectangleText.width(), m_rectangleText.height()));
@@ -6386,7 +6387,7 @@ namespace user
    //::pointer<::user::mesh_data>list::create_mesh_data()
    //{
 
-   //   return __new(mesh_data);
+   //   return __allocate< mesh_data >();
 
    //}
 
@@ -6528,7 +6529,7 @@ namespace user
    //void mesh::on_create_draw_item()
    //{
 
-   //   //m_pdrawmeshitem            = memory_new draw_mesh_item(this);
+   //   //m_pdrawmeshitem            = __new< draw_mesh_item >(this);
 
 
    //}

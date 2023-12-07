@@ -13,8 +13,8 @@ typedef void GENERATE_RANDOM_BYTES(void * p, memsize s);
 using PFN_GENERATE_RANDOM_BYTES = GENERATE_RANDOM_BYTES *;
 
 
-CLASS_DECL_ACME void set_generate_random_bytes(PFN_GENERATE_RANDOM_BYTES pfngeneraterandombytes);
-CLASS_DECL_ACME void generate_random_bytes(void * p, memsize s);
+//CLASS_DECL_ACME void set_generate_random_bytes(PFN_GENERATE_RANDOM_BYTES pfngeneraterandombytes);
+//CLASS_DECL_ACME void generate_random_bytes(void * p, memsize s);
 
 
 inline ::std::strong_ordering strong_order(double d1, double d2)
@@ -758,6 +758,16 @@ inline T square_power(T v)
    return v * v;
 
 }
+
+
+namespace mathematics
+{
+
+
+   class mathematics;
+
+
+} // namespace mathematics
 
 
 

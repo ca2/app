@@ -76,7 +76,7 @@
 //#include "_other_initial_concepts.h"
 #include "_template_structures.h"
 #include "_enumeration.h"
-#include "_c.h"
+//#include "_c.h"
 #include "_function_declarations.h"
 #include "_template_function_declarations.h"
 #include "_inline_functions.h"
@@ -87,6 +87,7 @@
 #include "acme/exception/_.h"
 #include "acme/filesystem/_.h"
 #include "acme/graphics/_.h"
+#include "acme/memory/_.h"
 #include "acme/parallelization/_.h"
 #include "acme/platform/_.h"
 #include "acme/primitive/_.h"
@@ -99,14 +100,22 @@
 #include "acme/primitive/time/_structures.h"
 
 
+
+//  _c.h
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 24/04/20.
+//#include "acme/platform/_c.h"
+#include "acme/memory/_memory.h"
+
+
+
 #include "acme/memory/allocation.h"
-#include "acme/platform/object_reference_count_debug.h"
+#include "acme/platform/_referencing_debugging.h"
 #include "acme/platform/object_type_counter.h"
-#include "acme/memory/memory_allocate.h"
-#include "acme/primitive/primitive/_c_memory.h"
-#include "acme/memory/heap_c.h"
+//#include "acme/memory/::heap::management::memory(::heap::e_memory_main)->allocate.h"
+//#include "acme/primitive/primitive/_c_memory.h"
+//#include "acme/memory/heap_c.h"
 #include "acme/memory/allocate_processor_cache_oriented.h"
-#include "acme/memory/_heap.h"
+//#include "acme/memory/_heap.h"
 
 
 #include "acme/constant/parallelization.h"
@@ -144,6 +153,7 @@
 
 
 #include "acme/filesystem/_impl.h"
+#include "acme/platform/_impl.h"
 #include "acme/primitive/datetime/_impl.h"
 #include "acme/primitive/primitive/_impl.h"
 #include "acme/primitive/string/_impl.h"
@@ -164,11 +174,11 @@
 //
 //#include "acme/memory/allocation.h"
 //
-//#include "acme/platform/object_reference_count_debug.h"
+//#include "acme/platform/reference_count_debug.h"
 //
 //#include "acme/platform/object_type_counter.h"
 //
-//#include "acme/memory/memory_allocate.h"
+//#include "acme/memory/::heap::management::memory(::heap::e_memory_main)->allocate.h"
 //
 //#include "acme/primitive/primitive/_c_memory.h"
 //

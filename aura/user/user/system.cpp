@@ -80,6 +80,31 @@ namespace user
    }
 
 
+   void system::destroy()
+   {
+
+      ::object::destroy();
+
+      m_puserprimitiveOwner.release();
+      m_procedureSuccess.m_pbase.release();
+      m_procedureFailure.m_pbase.release();
+      m_puserinteractionimpl.release();
+      m_prequest.release();
+      m_pwindow.release();
+
+      m_pdocumentCurrent.release();
+      m_puserprimitiveNew.release();
+
+      m_ptemplateNewDocument.release();
+
+      m_puserprimitiveLastImpact.release();
+      m_puserprimitiveCurrentFrame.release();
+      m_pimpactdata.release();
+      m_graphicsoutputpurposea.clear();
+
+   }
+
+
    void system::add(::graphics::output_purpose * pgraphicsoutputpurpose)
    {
 

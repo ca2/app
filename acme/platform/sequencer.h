@@ -294,7 +294,7 @@ sequence < SEQUENCE > * sequencer < SEQUENCE > ::then(const class time & timeWai
 
       m_stepa.add(step);
 
-      m_pevent = memory_new manual_reset_event();
+      m_pevent = __new< manual_reset_event >();
 
       lock.unlock();
 
@@ -345,7 +345,7 @@ sequence < SEQUENCE > * sequencer < SEQUENCE > ::topic(const class time & timeWa
    if (m_psequence.m_estatus == error_not_initialized)
    {
 
-      m_pevent = memory_new manual_reset_event();
+      m_pevent = __new< manual_reset_event >();
 
       if (!m_pevent->wait(timeWait))
       {
@@ -379,7 +379,7 @@ template < typename SEQUENCE >
    if (m_psequence.m_estatus == error_not_initialized)
    {
 
-      m_pevent = __new(manual_reset_event);
+      m_pevent = __allocate< manual_reset_event >();
 
       lock.unlock();
 

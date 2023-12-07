@@ -4,101 +4,17 @@
 #pragma once
 
 
-template < typename T >
-inline i64 release(T*& p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
-{
-
-   if (::is_null(p))
-   {
-
-      return -1;
-
-   }
-
-   ::particle* pparticle = p;
-
-   try
-   {
-
-      p = nullptr;
-
-   }
-   catch (...)
-   {
-
-      ::informationf("exception release p = nullptr; \n");
-
-   }
-
-   try
-   {
-
-      return pparticle->release(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
-
-   }
-   catch (...)
-   {
-
-      ::informationf("exception release pparticle->release() \n");
-
-   }
-
-   return -1;
-
-}
-
-
-template < typename T >
-inline i64 global_release(T*& p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
-{
-
-   if (::is_null(p))
-   {
-
-      return -1;
-
-   }
-
-   try
-   {
-
-      auto i = p->release(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
-
-      if (i <= 0)
-      {
-
-         p = nullptr;
-
-      }
-
-      return i;
-
-   }
-   catch (...)
-   {
-
-      ::informationf("exception release pparticle->release() \n");
-
-   }
-
-   return -1;
-
-}
-
-
-
-
 
 
 #if !defined(_DEBUG)
 
 
-inline i64 particle::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+inline i64 particle::increment_reference_count()
 {
 
    auto c = ++m_countReference;
 
-#if OBJECT_REFERENCE_COUNT_DEBUG
+#if REFERENCING_DEBUGGING
 
    add_ref_history(pReferer, pszObjRefDbg);
 
@@ -109,12 +25,12 @@ inline i64 particle::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARA
 }
 
 
-inline i64 particle::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+inline i64 particle::decrement_reference_count()
 {
 
    auto c = --m_countReference;
 
-#if OBJECT_REFERENCE_COUNT_DEBUG
+#if REFERENCING_DEBUGGING
 
    if (c > 0)
    {
@@ -130,10 +46,10 @@ inline i64 particle::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARA
 }
 
 
-inline i64 particle::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+inline i64 particle::release()
 {
 
-   i64 i = decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+   i64 i = decrement_reference_count();
 
    if (i == 0)
    {
@@ -143,6 +59,14 @@ inline i64 particle::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
    }
 
    return i;
+
+}
+
+
+inline i64 particle::replace_reference()
+{
+
+   return m_countReference;
 
 }
 

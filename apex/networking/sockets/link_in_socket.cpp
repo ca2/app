@@ -98,7 +98,9 @@ namespace sockets
    link_in_socket * link_in_socket::from_server(httpd_socket * psocket)
    {
 
-      ::pointer<link_in_socket>pinsocket = __new(link_in_socket);
+      REFDBG_THIS(psocket);
+
+      ::pointer<link_in_socket>pinsocket = __allocate< link_in_socket >();
 
       pinsocket->initialize_socket(psocket->socket_handler());
 

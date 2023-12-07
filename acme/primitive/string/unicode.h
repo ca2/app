@@ -396,17 +396,17 @@ i32 unicode_ref_tables();
 const char * unicode_get_category_name(i32 i);
 
 
-template < typename POINTER >
-inline ::string as_string(const ::acme::memory_allocate < POINTER > & memoryallocpointer)
-{
-
-   string str;
-
-   str.assign(memoryallocpointer.m_p, memoryallocpointer.m_iSize);
-
-   return str;
-
-}
+//template < typename POINTER >
+//inline ::string as_string(const ::acme::heap::management::memory(::heap::e_memory_main)->allocate < POINTER > & memoryallocpointer)
+//{
+//
+//   string str;
+//
+//   str.assign(memoryallocpointer.m_p, memoryallocpointer.m_iSize);
+//
+//   return str;
+//
+//}
 
 
 CLASS_DECL_ACME string demangle(const char * pszMangledName);

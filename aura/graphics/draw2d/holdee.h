@@ -35,6 +35,16 @@ namespace draw2d
       ::draw2d::pen_pointer            m_pena[8];
       ::write_text::font_pointer       m_fonta[8];
 
+      holdee_group()
+      {
+
+      }
+
+         ~holdee_group()
+      {
+
+      }
+
    };
 
 

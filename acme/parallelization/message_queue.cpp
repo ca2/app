@@ -90,7 +90,7 @@ void message_queue::post_message(const MESSAGE & message)
    if (message.m_atom == e_message_quit)
    {
 
-      ::informationf("message_queue::post_message e_message_quit\n");
+      ::acme::get()->platform()->informationf("message_queue::post_message e_message_quit\n");
 
    }
 
@@ -225,7 +225,7 @@ void message_queue::kick_idle()
 
          }
 
-         synchronouslock.lock();
+         synchronouslock._lock();
 
          m_eventNewMessage.ResetEvent();
 

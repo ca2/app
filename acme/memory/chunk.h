@@ -34,7 +34,7 @@ public:
       if (m_p)
       {
 
-         memory_free(m_p);
+         ::heap::management::memory(::heap::e_memory_main)->free(m_p);
 
       }
       m_p = nullptr;
@@ -71,7 +71,7 @@ public:
          destroy();
       }
 
-      m_p = memory_allocate(s);
+      m_p = ::heap::management::memory(::heap::e_memory_main)->allocate(s);
 
       if (::is_set(m_p))
       {

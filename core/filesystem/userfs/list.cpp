@@ -8,6 +8,7 @@
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
 #include "acme/handler/item.h"
+#include "acme/handler/topic.h"
 #include "acme/filesystem/file/item_array.h"
 #include "acme/primitive/data/listener.h"
 #include "apex/filesystem/fs/data.h"
@@ -95,10 +96,10 @@ namespace userfs
 
       pframe->set_frame_title("File Manager");
 
-      if (get_document()->m_pviewTopic == nullptr)
+      if (get_document()->m_pimpactTopic == nullptr)
       {
 
-         get_document()->m_pviewTopic = this;
+         get_document()->m_pimpactTopic = this;
 
       }
 
@@ -670,7 +671,7 @@ namespace userfs
    //                  continue;
    //               iStrict = m_meshlayout.m_iaDisplayToStrict[iItem];
    //            }
-   //            itema.add(__new(::file::item(pdata->item(iStrict))));
+   //            itema.add(__allocate< ::file::item >(pdata->item(iStrict)));
    //         }
    //      }
    //   }

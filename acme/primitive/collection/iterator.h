@@ -62,7 +62,7 @@ public:
    ITEM_POINTER m_p;
 
 
-   iterator_base(enum_no_initialize) {};
+   iterator_base(no_initialize_t) {};
    iterator_base(nullptr_t) { m_p = nullptr; }
    iterator_base() { m_p = nullptr; }
    iterator_base(CONST_ITEM_POINTER p) : m_p((THIS_ITEM_POINTER)p) {}
@@ -123,7 +123,7 @@ public:
    CONST_ITEM_POINTER m_p;
 
 
-   const_iterator_base(enum_no_initialize) {};
+   const_iterator_base(no_initialize_t) {};
    const_iterator_base(nullptr_t) { m_p = nullptr; }
    const_iterator_base() { m_p = nullptr; }
    const_iterator_base(CONST_ITEM_POINTER p) : m_p((THIS_ITEM_POINTER)p) {}

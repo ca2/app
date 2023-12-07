@@ -138,7 +138,7 @@ namespace user
 
       //native_window *                         m_pwindow;
 
-      ::pointer<::graphics::graphics>           m_pgraphics;
+      ::pointer<::graphics::graphics>           m_pgraphicsgraphics;
       ::pointer<::draw2d::graphics>             m_pdraw2dgraphics;
 
       ::pointer < ::mutex >                     m_pmutexDraw;

@@ -75,7 +75,7 @@
 //
 //                            };
 //
-//   auto psystem = ::platform::get()->system();
+//   auto psystem = this->platform()->system();
 //
 //   psystem->windowing_post(predicate);
 //
@@ -126,7 +126,7 @@ void wayland_process_messages();
 void _do_tasks()
 {
 
-   auto psystem = ::platform::get()->system();
+   auto psystem = this->platform()->system();
 
    if(psystem->m_ewindowing == e_windowing_wayland)
    {

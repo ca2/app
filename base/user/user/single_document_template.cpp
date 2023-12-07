@@ -34,6 +34,17 @@ namespace user
 #endif
    }
 
+
+   void single_document_template::destroy()
+   {
+
+      m_pdocument.release();
+
+      ::user::impact_system::destroy();
+
+   }
+
+
    ::count single_document_template::get_document_count() const
    {
       return (m_pdocument == nullptr) ? 0 : 1;
@@ -81,7 +92,7 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
    // single_document_template commands
 
-   // if lpszPathName == nullptr => create memory_new file of this type
+   // if lpszPathName == nullptr => create new file of this type
    void single_document_template::on_request(::request * prequest)
    {
 
@@ -189,7 +200,7 @@ namespace user
       else
       {
          
-         // create a memory_new ::user::document
+         // create a new ::user::document
          pdocument = create_new_document(prequest);
          
          ASSERT(pframe == nullptr);     // will be created below
@@ -282,7 +293,7 @@ namespace user
       if (payloadFile.is_empty() || payloadFile.is_numeric())
       {
 
-         // create a memory_new ::user::document
+         // create a new ::user::document
          set_default_title(pdocument);
 
          // avoid creating temporary compound file when starting up invisible
@@ -441,7 +452,7 @@ namespace user
 //      if (payloadFile.is_empty() || payloadFile.is_numeric())
 //      {
 //
-//         // create a memory_new ::user::document
+//         // create a new ::user::document
 //         set_default_title(pdocument);
 //
 //         // avoid creating temporary compound file when starting up invisible

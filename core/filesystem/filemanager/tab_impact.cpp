@@ -6,6 +6,7 @@
 #include "document.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
+#include "acme/handler/topic.h"
 #include "acme/filesystem/filesystem/dir_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "acme/parallelization/task_flag.h"
@@ -176,7 +177,7 @@ namespace filemanager
                pimpactdata,
                pfilemanagerdata);
 
-//         auto pdocument  = __new(::filemanager::data);
+//         auto pdocument  = __allocate< ::filemanager::data >();
 //
 //         pdocument->m_pcallback = get_document();
 //

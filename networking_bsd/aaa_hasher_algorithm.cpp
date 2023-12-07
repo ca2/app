@@ -89,11 +89,11 @@ namespace crypto_openssl
    //   switch (ehash)
    //   {
    //   case e_hash_md5:
-   //      return memory_new ::cryptopenssl::hasher_algorithm(ehash, EVP_md5());
+   //      return aaa_primitive_new ::cryptopenssl::hasher_algorithm(ehash, EVP_md5());
    //   case e_hash_sha1:
-   //      return memory_new ::openssl::hasher_algorithm(ehash, EVP_sha1());
+   //      return aaa_primitive_new ::openssl::hasher_algorithm(ehash, EVP_sha1());
    //   case e_hash_sha256:
-   //      return memory_new ::openssl::hasher_algorithm(ehash, EVP_sha256());
+   //      return aaa_primitive_new ::openssl::hasher_algorithm(ehash, EVP_sha256());
    //   default:
    //      return nullptr;
    //   }
@@ -104,7 +104,7 @@ namespace crypto_openssl
    ::pointer<::crypto::hasher>hasher_algorithm::create_hasher()
    {
 
-      return __new(::crypto_openssl::hasher(this));
+      return __allocate< ::crypto_openssl::hasher >(this);
 
    }
 

@@ -202,14 +202,14 @@ constexpr auto as_absolute_unsigned(SIGNED i)
 //
 
 
-template < typename TYPE > inline TYPE*& __defer_new(TYPE*& p)
-{
-
-   if (!p) p = memory_new TYPE;
-
-   return p;
-
-}
+//template < typename TYPE > inline TYPE*& __defer_new(TYPE*& p)
+//{
+//
+//   if (!p) p = __new< TYPE >();
+//
+//   return p;
+//
+//}
 
 
 inline const ::particle * context_trace_object() { return general_trace_object(); }
@@ -1057,4 +1057,10 @@ void copy(SIZE_TYPE1 & size1, const SIZE_TYPE2 & size2)
    cast_copy(size1.cy(), size2.cy());
 
 }
+
+
+template < typename CHAR_STRING >
+inline bool is_string_empty(CHAR_STRING p) { return ::is_null(p) || *p == '\0'; }
+
+
 

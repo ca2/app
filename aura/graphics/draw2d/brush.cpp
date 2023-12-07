@@ -5,6 +5,7 @@
 #include "aura/graphics/image/image.h"
 
 
+
 namespace draw2d
 {
 

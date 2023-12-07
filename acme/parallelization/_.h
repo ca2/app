@@ -72,7 +72,6 @@ CLASS_DECL_ACME bool task_sleep(const class time & timeWait);
 
 CLASS_DECL_ACME bool task_get_run();
 
-CLASS_DECL_ACME void task_release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
 
 
 namespace parallelization

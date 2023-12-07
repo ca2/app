@@ -4,6 +4,7 @@
 #include "application.h"
 #include "acme/constant/id.h"
 #include "acme/exception/interface_only.h"
+#include "acme/handler/topic.h"
 #include "acme/primitive/primitive/url.h"
 #include "acme/platform/system_setup.h"
 #include "acme/primitive/text/context.h"
@@ -118,14 +119,10 @@ namespace aura
 {
 
 
-
-
-
    system::system()
    {
 
       m_bAvoidFirstResponder = false;
-
 
       m_bMessageThread = true;
 
@@ -156,7 +153,6 @@ namespace aura
    void system::common_construct()
    {
 
-
       m_paurasystem = this;
 
       m_bSimpleMessageLoop = false;
@@ -174,17 +170,29 @@ namespace aura
    }
 
 
-   void system::initialize(::particle * pparticle)
+   void system::on_set_platform()
    {
 
-      //auto estatus = 
-      
-      ::aqua::system::initialize(pparticle);
+      ::aura::context::on_set_platform();
+
+      ::aqua::system::on_set_platform();
 
       factory()->add_factory_item < ::aura::session, ::apex::session >();
       //factory()->add_factory_item < ::aura::application, ::apex::application >();
       //factory()->add_factory_item < ::aura::idpool, ::acme::idpool >();
       factory()->add_factory_item < ::user::user >();
+
+
+   }
+
+
+   void system::on_initialize_particle()
+   {
+
+      //auto estatus = 
+      
+      ::aqua::system::on_initialize_particle();
+
 
 
       //if (!estatus)
@@ -1159,7 +1167,7 @@ namespace aura
       //if (!estatus)
       //{
 
-      //   information() << "Couldn't construct memory_new draw2d.";
+      //   information() << "Couldn't construct new draw2d.";
 
       //   return false;
 
@@ -2285,11 +2293,11 @@ namespace aura
 //
 //#ifdef UNIVERSAL_WINDOWS
 //
-//         m_spmutexOpenweatherCity = __new(::pointer < ::mutex >());
+//         m_spmutexOpenweatherCity = __allocate< ::pointer < ::mutex > >();
 //
 //#else
 //
-//         m_spmutexOpenweatherCity = __new(::pointer < ::mutex >(e_create_new, false, "Global\\ca2_weather_city"));
+//         m_spmutexOpenweatherCity = __allocate< ::pointer < ::mutex > >(e_create_new, false, "Global\\ca2_weather_city");
 //
 //#endif
 //
@@ -2918,7 +2926,7 @@ namespace aura
 //      return true;
 //#endif
 //
-//      /*      m_spfilehandler(memory_new ::aura::filehandler::handler(this));*/
+//      /*      m_spfilehandler(__new< ::aura::filehandler::handler >(this));*/
 //
 ////      m_mapAppLibrary.erase_all();
 ////
@@ -2928,11 +2936,11 @@ namespace aura
 ////
 ////      ::file::path pathCa2Module = dir()->ca2module();
 ////
-////      ::informationf("\n\n::aura::system::find_applications_to_cache\n\n");
+////      ::acme::get()->platform()->informationf("\n\n::aura::system::find_applications_to_cache\n\n");
 ////
-////      ::informationf("ca2 module folder : " + pathCa2Module);
+////      ::acme::get()->platform()->informationf("ca2 module folder : " + pathCa2Module);
 ////
-////      ::informationf("\n\n\n");
+////      ::acme::get()->platform()->informationf("\n\n\n");
 ////
 ////      straTitle.ls_pattern(pathCa2Module, { "*.*" });
 ////
@@ -2953,7 +2961,7 @@ namespace aura
 ////               continue;
 ////            }
 ////
-////            ::informationf("library("+as_string(i)+") : " + strLibraryId+"\n\n");
+////            ::acme::get()->platform()->informationf("library("+as_string(i)+") : " + strLibraryId+"\n\n");
 ////
 ////            map_application_library(strLibraryId);
 ////
@@ -3019,14 +3027,14 @@ namespace aura
 //
 //      if(!library.open(pszLibrary, true))
 //      {
-//         ::informationf("::system::map_application_library Failed to open library :" + string(pszLibrary) + "\n\n");
+//         ::acme::get()->platform()->informationf("::system::map_application_library Failed to open library :" + string(pszLibrary) + "\n\n");
 //         return false;
 //      }
 //
 //      if(!library.open_ca2_library())
 //      {
 //
-//         ::informationf("::system::map_application_library open_ca2_library(2) Failed :" + string(pszLibrary) + "\n\n");
+//         ::acme::get()->platform()->informationf("::system::map_application_library open_ca2_library(2) Failed :" + string(pszLibrary) + "\n\n");
 //
 //         return false;
 //
@@ -3998,17 +4006,17 @@ namespace aura
 //#if defined(UNIVERSAL_WINDOWS)
 //
 //
-//         string * pstrNew = memory_new string(strUrl);
+//         string * pstrNew = __new< string >(strUrl);
 //
 //         ::winrt::Windows::ApplicationModel::Core::CoreApplication::MainImpact->CoreWindow->Dispatcher->RunAsync(::winrt::Windows::UI::Core::CoreDispatcherPriority::Normal,
-//            ref memory_new ::winrt::Windows::UI::Core::DispatchedHandler([pstrNew]()
+//            ref __new< ::winrt::Windows::UI::Core::DispatchedHandler([pstrNew] >()
 //               {
 //
-//                  ::winrt::Windows::Foundation::Uri ^ uri = ref memory_new ::winrt::Windows::Foundation::Uri(*pstrNew);
+//                  ::winrt::Windows::Foundation::Uri ^ uri = ref __new< ::winrt::Windows::Foundation::Uri >(*pstrNew);
 //
 //                  delete pstrNew;
 //
-//                  LauncherOptions ^ options = ref memory_new LauncherOptions();
+//                  LauncherOptions ^ options = ref __new< LauncherOptions >();
 //
 //                  options->TreatAsUntrusted = false;
 //
@@ -4401,7 +4409,7 @@ namespace aura
 //      if (strUrl.has_char())
 //      {
 //
-//         strParam += " -memory_new-tab \"" + strUrl + "\"";
+//         strParam += " -new-tab \"" + strUrl + "\"";
 //
 //      }
 //
@@ -4522,7 +4530,7 @@ namespace aura
 //
 //      synchronous_lock synchronouslock(m_pmutexTask);
 //
-//      m_threadmap[itask].reset(pthread OBJECT_REFERENCE_COUNT_DEBUG_COMMA_P_NOTE(this, "thread::thread_set"));
+//      m_threadmap[itask].reset(pthread REFERENCING_DEBUGGING_COMMA_P_NOTE(this, "thread::thread_set"));
 //
 //      m_threadidmap[pthread] = itask;
 //
@@ -4550,7 +4558,7 @@ namespace aura
 //
 //      synchronous_lock synchronouslock(m_pmutexTask);
 //
-//#if OBJECT_REFERENCE_COUNT_DEBUG
+//#if REFERENCING_DEBUGGING
 //
 //      m_threadmap[itask].release(this);
 //
@@ -4630,7 +4638,7 @@ namespace aura
    //   if (threadgroupa.is_empty())
    //   {
 
-   //      auto pgroup = __new(::task_group(this, epriority));
+   //      auto pgroup = __allocate< ::task_group >(this, epriority);
 
    //      threadgroupa.add(pgroup);
 
@@ -4651,7 +4659,7 @@ namespace aura
    //   if (threadtoola.is_empty())
    //   {
 
-   //      auto ptool = __new(::task_tool);
+   //      auto ptool = __allocate< ::task_tool >();
 
    //      ptool->m_atom = etool;
 
@@ -4854,7 +4862,7 @@ namespace aura
    //::pointer<::aura::session>system::on_create_session()
    //{
 
-   //   return __new(::axis::session);
+   //   return __allocate< ::axis::session >();
 
    //}
 
@@ -5139,7 +5147,7 @@ namespace aura
 
 #ifdef WINDOWS
 
-//#define memory_new ACME_NEW
+
 #endif
 
 //#ifdef LINUX
@@ -5204,7 +5212,7 @@ namespace aura
   //
   //      //#if defined(UNIVERSAL_WINDOWS) || defined(APPLE_IOS) || defined(ANDROID)
   //      //
-  //      //      m_possystemwindow = memory_new os_system_window();
+  //      //      m_possystemwindow = __new< os_system_window >();
   //      //
   //      //#endif
   //
@@ -5225,10 +5233,10 @@ namespace aura
   //            //m_strInstallToken             = "core_system";
   //
   //      m_phistory = nullptr;
-  //      m_ppatch = memory_new aura::patch();
+  //      m_ppatch = __new< aura::patch >();
   //      g_pszCooperativeLevel = "aura";
   //
-  //      estatus = __construct(m_puserset, __new(::account::user_set(this)));
+  //      estatus = __construct(m_puserset, __allocate< ::account::user_set >(this));
   //
   //      if (!estatus)
   //      {
@@ -5579,7 +5587,7 @@ namespace aura
 //
 //      //m_phtml = create_html();
 //
-//      //m_phtml->increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+//      //m_phtml->increment_reference_count();
 //
 //      //if(m_phtml == nullptr)
 //      //   return false;
@@ -5622,7 +5630,7 @@ namespace aura
 //   void system::init1()
 //   {
 //
-//      m_pfilehandler = __new(::filehandler::handler(this));
+//      m_pfilehandler = __allocate< ::filehandler::handler >(this);
 //
 //      //if (!::aura::application::init1())
 //      //{
@@ -5735,7 +5743,7 @@ namespace aura
 
    //   if(m_phistory == nullptr)
    //   {
-   //      m_phistory = __new(os_history(this));
+   //      m_phistory = __allocate< os_history >(this);
    //   }
 
    //   return true;
@@ -5769,7 +5777,7 @@ namespace aura
 
    //   //}
 
-   //   //m_pbergedgemap = __new(::aura::session::map);
+   //   //m_pbergedgemap = __allocate< ::aura::session::map >();
 
 
    //   return true;
@@ -5850,7 +5858,7 @@ namespace aura
    //::pointer<::aura::session>system::on_create_session()
    //{
 
-   //   return __new(::aura::session);
+   //   return __allocate< ::aura::session >();
 
    //}
 
@@ -6327,7 +6335,7 @@ namespace aura
 //
 //#if defined(UNIVERSAL_WINDOWS) || defined(APPLE_IOS) || defined(ANDROID)
 //
-//      m_possystemwindow = memory_new os_system_window();
+//      m_possystemwindow = __new< os_system_window >();
 //
 //#endif
 //
@@ -6827,6 +6835,8 @@ namespace aura
    void system::TermSystem()
    {
 
+      m_phardwaredevices.defer_destroy();
+
       ::aqua::system::TermSystem();
 
       if (m_pdraw2d)
@@ -6897,6 +6907,30 @@ namespace aura
    {
 
       return m_pnode ? m_pnode->m_pauranode : nullptr;
+
+   }
+
+
+   class ::draw2d::draw2d * system::draw2d() const
+   {
+
+      return m_pdraw2d;
+
+   }
+
+
+   class ::write_text::write_text * system::write_text() const
+   {
+
+      return m_pdraw2d->write_text();
+
+   }
+
+
+   class ::imaging * system::imaging()
+   {
+
+      return draw2d()->imaging();
 
    }
 

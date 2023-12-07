@@ -4,6 +4,7 @@
 #include "font.h"
 #include "acme/constant/id.h"
 #include "acme/exception/interface_only.h"
+#include "acme/handler/topic.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/write_text/fonts.h"
@@ -197,7 +198,7 @@ namespace write_text
 
       ::pointer<::write_text::font_enumeration_item_array>pitema;
 
-      pitema = __new(::write_text::font_enumeration_item_array);
+      pitema = __allocate< ::write_text::font_enumeration_item_array >();
 
       auto psystem = system()->m_paurasystem;
 
@@ -240,7 +241,7 @@ namespace write_text
 
       ::pointer<::write_text::font_enumeration_item_array>pitema;
 
-      pitema = __new(::write_text::font_enumeration_item_array);
+      pitema = __allocate< ::write_text::font_enumeration_item_array >();
 
       auto psystem = system()->m_paurasystem;
 

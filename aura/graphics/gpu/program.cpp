@@ -30,7 +30,11 @@ namespace gpu
       m_strGeometry = strGeometry;
 
       //::e_status estatus = 
-      ::__construct_new(pparticle, m_pshader);
+      /*::__construct_new(*/
+      
+      
+      pparticle->__construct_new(m_pshader);
+
 
       //if (!estatus)
       //{

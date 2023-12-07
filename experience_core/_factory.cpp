@@ -33,25 +33,25 @@
 //         if(string(pszClass) == "experience")
 //         {
 //
-//            return memory_new experience;
+//            return __new< experience >();
 //
 //         }
 //         else if(string(pszClass) == "control_box")
 //         {
 //
-//            return memory_new control_box;
+//            return __new< control_box >();
 //
 //         }
 //         else if(string(pszClass) == "button")
 //         {
 //
-//            return memory_new button;
+//            return __new< button >();
 //
 //         }
 //         else if(string(pszClass) == "user_theme")
 //         {
 //
-//            return memory_new style;
+//            return __new< style >();
 //
 //         }
 //         else

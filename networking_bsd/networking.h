@@ -138,6 +138,9 @@ namespace networking_bsd
       virtual bool gudo_set() override;
 
 
+      virtual bool defer_initialize_operating_system_networking();
+      virtual bool defer_finalize_operating_system_networking();
+
       /*
       * Encode string per RFC1738 URL encoding rules
       * tnx rstaveley

@@ -291,7 +291,7 @@ namespace acme
 critical_section * get_pid_cs()
 {
 
-   critical_section_lock cs(this->platform()->globals_critical_section());
+   critical_section_lock cs(::platform::get()->globals_critical_section());
 
    if(g_pcsPid2 == nullptr)
    {

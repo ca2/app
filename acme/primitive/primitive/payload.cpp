@@ -312,8 +312,10 @@ payload::payload(bool * pb) :
 #ifdef __APPLE__
 #ifdef OS64BIT
 
-payload::payload(long l):
-m_preferer(nullptr)
+payload::payload(long l)
+#if REFERENCING_DEBUGGING
+: m_preferer(nullptr)
+#endif
 {
 
    m_etype = e_type_i64;

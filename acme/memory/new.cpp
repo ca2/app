@@ -189,7 +189,7 @@ void* MEMORY_DECL operator new(size_t nSize, i32 nType, const char * pszFileName
 
 #else
 
-   return memory_allocate_debug(nSize, nType, pszFileName, nLine);
+   return ::heap::management::memory(::heap::e_memory_main)->allocate_debug(nSize, nType, pszFileName, nLine);
 
 #endif
 
@@ -199,7 +199,7 @@ void* MEMORY_DECL operator new(size_t nSize, i32 nType, const char * pszFileName
 void MEMORY_DECL operator delete(void* p, i32 nType, const char * /* pszFileName */, i32 /* nLine */)
 {
 
-   memory_free_debug(p, nType);
+   ::heap::management::memory(::heap::e_memory_main)->free_debug(p, nType);
 
 }
 

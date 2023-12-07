@@ -70,7 +70,7 @@ namespace acme
 //#include "acme/primitive/primitive/payload_array.h"
 
 
-template < class TYPE, class ARG_TYPE = const TYPE&, class TYPED = typed::nodef < TYPE >, typename ALLOCATOR = ::heap::typed_allocator < TYPE, ::heap::e_memory_array >, ::enum_type t_etypeContainer = e_type_element >
+template < class TYPE, class ARG_TYPE = const TYPE &, class TYPED = ::typed::nodef < TYPE >, class MEMORY = ::heap::typed_memory < TYPE, ::heap::e_memory_array >, ::enum_type t_etypeContainer = e_type_element >
 inline auto& __array_object(::array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >& a, ::index i);
 
 

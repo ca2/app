@@ -338,7 +338,7 @@ CLASS_DECL_ACME int  global_memdleak_enabled()
 
 #else
 
-      bMemdleak = ::acmefile()->exists("/archive/ca2/config/system/memdleak.txt");
+      bMemdleak = file_exists("/archive/ca2/config/system/memdleak.txt");
 
 #endif
 

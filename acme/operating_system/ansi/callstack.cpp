@@ -133,14 +133,14 @@ namespace acme
 {
 
 
-   void node::defer_update_callstack()
-   {
+//   void node::defer_update_callstack()
+//   {
+//
+//
+//   }
 
 
-   }
-
-
-   string node::get_callstack(const ::scoped_string & strFormat, i32 iSkip, void *caller_address, int iCount)
+   string node::get_call_stack_trace(const ::scoped_string & strFormat, i32 iSkip, void *caller_address, int iCount)
    {
 
       auto psynchronization = this->platform()->system()->synchronization();

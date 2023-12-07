@@ -3,6 +3,7 @@
 #include "acme/constant/message.h"
 #include "acme/operating_system/message.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/platform/scoped_restore.h"
 //#include "acme/_operating_system.h"
 
 
@@ -97,6 +98,11 @@ void message_queue::post_message(const MESSAGE & message)
 
    m_messagea.add(message);
 
+   if(m_eflagElement & (1ll << 36))
+   {
+      
+      printf("test123");
+   }
    m_eventNewMessage.set_event();
 
    //return true;
@@ -130,6 +136,29 @@ void message_queue::kick_idle()
 
    _synchronous_lock synchronouslock(this->synchronization());
 
+   if(m_eflagElement & (::enum_flag) (1ll <<37))
+   {
+      
+      return error_threading;
+      
+   }
+   
+   m_eflagElement |= (::enum_flag) (1ll <<37);
+
+   at_end_of_scope
+   {
+      
+      if(!synchronouslock.is_locked())
+      {
+       
+         synchronouslock.lock();
+         
+      }
+   
+      m_eflagElement &= (::enum_flag) ~(1ll <<37);
+      
+   };
+ 
    while (true)
    {
 
@@ -160,6 +189,13 @@ void message_queue::kick_idle()
          {
 
             *pmessage = message;
+            
+            if(m_eflagElement & (1ll << 36))
+            {
+             
+               printf("test123");
+               
+            }
 
             m_messagea.erase_at(i);
 
@@ -176,7 +212,12 @@ void message_queue::kick_idle()
          synchronouslock.unlock();
 
          auto bAcquired = m_eventNewMessage.wait(time);
-
+         if(m_eflagElement & (1ll << 36))
+         {
+          
+            printf("test123");
+            
+         }
          if(!bAcquired)
          {
 
@@ -207,6 +248,29 @@ bool message_queue::peek_message(MESSAGE * pMsg, oswindow oswindow,::u32 wMsgFil
 
    _synchronous_lock synchronouslock(this->synchronization());
 
+   if(m_eflagElement & (::enum_flag) (1ll <<37))
+   {
+      
+      throw ::exception(error_threading);
+      
+   }
+   
+   m_eflagElement |= (::enum_flag) (1ll <<37);
+
+   at_end_of_scope
+   {
+      
+      if(!synchronouslock.is_locked())
+      {
+       
+         synchronouslock.lock();
+         
+      }
+   
+      m_eflagElement &= (::enum_flag) ~(1ll <<37);
+      
+   };
+
    ::count count = m_messagea.get_count();
 
    for(i32 i = 0; i < count; i++)
@@ -222,6 +286,12 @@ bool message_queue::peek_message(MESSAGE * pMsg, oswindow oswindow,::u32 wMsgFil
          if(bRemoveMessage)
          {
 
+            if(m_eflagElement & (1ll << 36))
+            {
+             
+               printf("test123");
+               
+            }
             m_messagea.erase_at(i);
 
          }

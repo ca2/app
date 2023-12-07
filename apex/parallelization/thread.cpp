@@ -3450,6 +3450,15 @@ bool thread::peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin
 
    if (m_pmessagequeue)
    {
+      
+      _synchronous_lock synchronouslock(m_pmessagequeue->synchronization());
+      
+      if(m_pmessagequeue->m_eflagElement & (::enum_flag) (1ll <<37))
+      {
+         
+         return false;
+         
+      }
 
       if (m_pmessagequeue->peek_message(pMsg, oswindow, wMsgFilterMin, wMsgFilterMax, bRemoveMessage))
       {
@@ -3889,6 +3898,8 @@ void thread::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin,
 #else
 
    auto pmessagequeue = get_message_queue();
+   
+   
 
    pmessagequeue->get_message(pMsg, oswindow, wMsgFilterMin, wMsgFilterMax);
 

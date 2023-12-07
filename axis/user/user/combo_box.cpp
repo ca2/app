@@ -873,9 +873,9 @@ namespace user
 
             m_plistbox->hide();
 
-            m_plistbox->set_need_redraw();
-
-            m_plistbox->post_redraw();
+//         m_plistbox->set_need_redraw();
+//
+//         m_plistbox->post_redraw();
 
          }
 

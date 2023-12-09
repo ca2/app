@@ -546,13 +546,15 @@ void ftpfs::defer_initialize(::ftp::client_socket ** ppclient, string strPath)
 
       pclient = __allocate< ::ftp::client_socket >();
 
-      pclient->initialize_socket(m_pftpnet->m_psockethandler);
+      //pclient->initialize_socket(m_pftpnet->m_psockethandler);
 
       ::pointer<::ftp::output>& poutput = m_pftpnet->m_mapOutput[plogon->m_strToken];
 
       poutput = __allocate< ::ftp::output >();
 
       pclient->AttachObserver(poutput);
+
+      m_pftpnet->m_psockethandler->add(pclient);
 
    }
 

@@ -21,6 +21,9 @@ namespace core
       void common_construct();
 
 
+      void on_set_platform() override;
+
+
       virtual void initialize(::particle * pparticle) override;
 
 

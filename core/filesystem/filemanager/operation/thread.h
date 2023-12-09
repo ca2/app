@@ -34,7 +34,7 @@ namespace filemanager
 
       double get_progress_rate();
 
-      virtual bool step() override;
+      virtual bool file_operation_thread_step();
 
       virtual void run() override;
 

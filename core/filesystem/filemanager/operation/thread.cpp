@@ -20,7 +20,7 @@ namespace filemanager
    }
 
 
-   bool operation_thread::step()
+   bool operation_thread::file_operation_thread_step()
    {
 
       if (m_bStep)
@@ -60,7 +60,7 @@ namespace filemanager
       case ::filemanager::e_state_step:
       {
 
-         if(m_fileoperationa[m_iOperation]->step())
+         if(m_fileoperationa[m_iOperation]->file_operation_thread_step())
          {
 
             m_estate = ::filemanager::e_state_step;
@@ -258,7 +258,7 @@ namespace filemanager
 
             }
 
-            step();
+            file_operation_thread_step();
 
             i--;
 

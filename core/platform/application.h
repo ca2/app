@@ -25,6 +25,9 @@ namespace core
       void common_construct();
 
 
+      void on_set_platform() override;
+
+
       ::core::session* get_session();
       ::core::system* get_system();
 

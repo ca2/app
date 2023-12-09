@@ -864,7 +864,7 @@ namespace ftp
 
          pbasesocket2 = apSckDataConnection;
 
-         pbasesocket2->initialize_socket(socket_handler());
+         socket_handler()->add(pbasesocket2);
 
          if (!OpenActiveDataConnection(*apSckDataConnection, crDatachannelCmd, strPath, dwByteOffset))
             return false;
@@ -985,7 +985,7 @@ namespace ftp
       //ll.m_strCat = m_strCat;
       //ll.m_strCipherList = m_strCipherList;
 
-      sckDataConnection.set_should_detach(true);
+      sckDataConnection.SetListeningDetach(true);
       //m_strIp = "127.0.0.1";
       //if (m_iPort == 443)
       //{

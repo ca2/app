@@ -51,8 +51,6 @@ namespace core
       ::base::system::initialize(pparticle);
 
 
-      factory()->add_factory_item < ::core::session, ::acme::session >();
-      factory()->add_factory_item < ::core::user, ::user::user >();
 
       //if (!estatus)
       //{
@@ -62,6 +60,18 @@ namespace core
       //}
 
       //return estatus;
+
+   }
+
+
+   void system::on_set_platform()
+   {
+
+      bred::system::on_set_platform();
+
+      factory()->add_factory_item < ::core::session, ::acme::session >();
+      factory()->add_factory_item < ::core::user, ::user::user >();
+
 
    }
 

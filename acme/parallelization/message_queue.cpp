@@ -151,7 +151,7 @@ void message_queue::kick_idle()
       if(!synchronouslock.is_locked())
       {
        
-         synchronouslock.lock();
+         synchronouslock._lock();
          
       }
    
@@ -263,7 +263,7 @@ bool message_queue::peek_message(MESSAGE * pMsg, oswindow oswindow,::u32 wMsgFil
       if(!synchronouslock.is_locked())
       {
        
-         synchronouslock.lock();
+         synchronouslock._lock();
          
       }
    

@@ -413,7 +413,7 @@ namespace filemanager
          OnFileManagerBrowse(context + ::e_source_sync);
 
       }
-      catch (string & str)
+      catch (string & )
       {
 
          //if (str == "uifs:// You have not logged in!")

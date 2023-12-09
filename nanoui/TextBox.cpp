@@ -734,7 +734,7 @@ namespace nanoui
       if (m_bEditable && focused())
       {
 
-         auto psession = screen()->m_puserinteraction->get_session();
+         //auto psession = screen()->m_puserinteraction->get_session();
 
          //if (action == ::e_message_key_down || action == GLFW_REPEAT) {
          if (action == ::e_message_key_down)

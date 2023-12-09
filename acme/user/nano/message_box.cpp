@@ -318,9 +318,17 @@ void nano_message_box::on_create()
 
 
 //CLASS_DECL_ACME ::acme::system * system();
-
+#ifdef WINDOWS_DESKTOP
 CLASS_DECL_ACME int message_box_to_windows_message_box(enum_message_box emessagebox);
 CLASS_DECL_ACME enum_dialog_result windows_message_box_result_to_dialog_result(int iResult);
+#endif
+
+#ifdef MACOS
+
+enum_dialog_result ns_alert_box(const char * pszMessage, const char * pszTitle, enum_message_box emessagebox);
+
+#endif
+
 
 CLASS_DECL_ACME ::atom message_box_synchronous(::particle * pparticle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails)
 {
@@ -339,6 +347,15 @@ CLASS_DECL_ACME ::atom message_box_synchronous(::particle * pparticle, const ::s
 
       return edialogresult;
 
+#elif defined(MACOS)
+      
+      ::string strMessage(scopedstrMessage);
+      ::string strTitle(scopedstrTitle);
+      
+      auto edialogresult = ns_alert_box(strMessage, strTitle, emessagebox);
+      
+      return edialogresult;
+      
 #else
       real_message_box_fallback();
 #endif

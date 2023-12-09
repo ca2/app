@@ -10,11 +10,13 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/primitive/geometry2d/_text_stream.h"
 #include "acme/user/user/content.h"
+#include "acme/parallelization/message_queue.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "acme/platform/timer.h"
 #include "aura/user/user/scroll_state.h"
+#include "aura/user/user/interaction_graphics_thread.h"
 #include "aura/user/user/interaction_impl.h"
 #include "aura/message/user.h"
 #include "aura/user/user/user.h"
@@ -322,6 +324,10 @@ namespace user
             {
 
                m_pcombo->set_current_item(ptopic->m_pitem, ptopic->m_actioncontext);
+               
+               auto p = get_host_user_interaction()->m_pinteractionimpl->m_pgraphicsthread->get_message_queue();
+               
+               p->m_eflagElement |= (::enum_flag)(1ll << 36);
 
                m_pcombo->ShowDropDown(false);
 

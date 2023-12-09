@@ -317,7 +317,7 @@ inline void particle__call__raw_construct2( ::pointer<TYPE> & p, ::factory::fact
 
 #endif
 
-   __call_raw_construct(p, factory);
+   __call_raw_construct(p, pfactory);
 
 }
 

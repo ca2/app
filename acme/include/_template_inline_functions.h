@@ -1058,3 +1058,9 @@ void copy(SIZE_TYPE1 & size1, const SIZE_TYPE2 & size2)
 
 }
 
+
+template < typename CHAR_STRING >
+inline bool is_string_empty(CHAR_STRING p) { return ::is_null(p) || *p == '\0'; }
+
+
+

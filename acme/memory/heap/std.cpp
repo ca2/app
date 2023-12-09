@@ -106,7 +106,7 @@ namespace heap
 
 #if defined(__APPLE__) || defined(LINUX)
 
-         punaligned = aligned_memory_allocate(size);
+         punaligned = aligned_allocate(size, ALIGN_BYTE_COUNT);
 
 #else
 
@@ -212,7 +212,7 @@ namespace heap
 
 #if defined(__APPLE__) || defined(LINUX)
 
-         punaligned = aligned_memory_allocate(size);
+         punaligned = aligned_allocate(size, ALIGN_BYTE_COUNT);
 
 #else
 

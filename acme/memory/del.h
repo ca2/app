@@ -3,6 +3,7 @@
 
 
 #include "management.h"
+#include "memory.h"
 
 
 template<class t>

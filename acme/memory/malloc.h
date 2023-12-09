@@ -191,7 +191,7 @@ namespace acme
          if (m_p != nullptr)
          {
 
-            m_p = (POINTER) ::memory_reallocate(m_p, size);
+            m_p = (POINTER) ::heap::management::memory(::heap::e_memory_main)->reallocate(m_p, size);
 
          }
          else

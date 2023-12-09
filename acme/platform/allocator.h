@@ -3,6 +3,7 @@
 
 
 #include "acme/memory/allocator_base.h"
+#include "acme/platform/acme.h"
 
 
 namespace allocator

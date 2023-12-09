@@ -1181,7 +1181,7 @@ void simple_frame_window::on_message_show_window(::message::message * pmessage)
       if (m_pnotifyicon != nullptr)
       {
 
-         m_pnotifyicon->step();
+         m_pnotifyicon->notify_icon_step();
 
       }
 

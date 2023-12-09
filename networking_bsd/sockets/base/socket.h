@@ -86,9 +86,7 @@ namespace sockets_bsd
       class ::time            m_timeLastWrite;
       class ::time            m_timeConnectionStart; ///< Set by SetTimeout
       class ::time              m_timeConnectionLastActivity; ///< Set by SetTimeout
-      class ::time              m_timeConnectionMaximum; ///< Defined by SetTimeout
       class ::time              m_timeStart; ///< Set by SetTimeout
-      class ::time              m_timeMaximum; ///< Defined by SetTimeout
       bool                    m_bNonBlocking;
       //    unsigned long           m_flags; ///< boolean flags, replacing old 'bool' members
 
@@ -180,7 +178,7 @@ namespace sockets_bsd
       ~base_socket() override;
 
 
-       void initialize_socket(::sockets::base_socket_handler* phandler) override;
+       void SetSocketHandler(::sockets::base_socket_handler* phandler) override;
 
 
       /** base_socket class instantiation method. Used when a "non-standard" constructor
@@ -225,7 +223,7 @@ namespace sockets_bsd
       /** Return file descriptor assigned to this base_socket. */
       //iptr get_socket_id() override;
 
-      virtual SOCKET GetSocketId();
+      socket_id GetSocketId() override;
 
 
       ::networking::port_t get_bind_port() const override;
@@ -731,7 +729,8 @@ namespace sockets_bsd
       /** Store the slave sockethandler pointer. */
       void SetSlaveHandler(::sockets::base_socket_handler *) override;
       /** create new thread for this base_socket to run detached in. */
-      virtual void DetachSocket(socket_map::node * pnode, socket_map * psocketmap);
+      //virtual void DetachSocket(socket_map::node * pnode, socket_map * psocketmap);
+      virtual void DetachSocket();
       //@}
 
 
@@ -759,7 +758,7 @@ namespace sockets_bsd
 
 
       void run() override;
-      bool step() override;
+      //bool step() override;
 
       //virtual void __tracef(object * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstrFormat, ...);
       //virtual void __tracef(object * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, e_log elog, const ::string & strContext, i32 err, const ::string & strMessage);

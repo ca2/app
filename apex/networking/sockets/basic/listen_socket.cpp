@@ -11,6 +11,7 @@ namespace sockets
       //::object(&h),
       //base_socket(h),
       //socket(h),
+      m_bListeningDetach(false),
       m_depth(0)
       //, m_bDetach(false)
    {
@@ -20,6 +21,14 @@ namespace sockets
 
    listen_socket_base::~listen_socket_base()
    {
+
+   }
+
+
+   void listen_socket_base::initialize_listen_socket(const ::type_atom& typeatom)
+   {
+
+      m_typeatom = typeatom;
 
    }
 
@@ -38,20 +47,37 @@ namespace sockets
    }
 
 
-   void listen_socket_base::set_should_detach(bool bSet)
+
+   void listen_socket_base::SetListeningDetach(bool bSet)
    {
 
-      m_pcomposite->set_should_detach(bSet);
+      m_bListeningDetach = true;
 
    }
 
 
-   bool listen_socket_base::should_detach() const
+   bool listen_socket_base::IsListeningDetach()
    {
 
-      return m_pcomposite->should_detach();
+      return m_bListeningDetach;
 
    }
+
+
+   //void listen_socket_base::set_should_detach(bool bSet)
+   //{
+
+   //   m_pcomposite->set_should_detach(bSet);
+
+   //}
+
+
+   //bool listen_socket_base::should_detach() const
+   //{
+
+   //   return m_pcomposite->should_detach();
+
+   //}
 
 
    /** Bind and listen to any interface.
@@ -448,7 +474,7 @@ namespace sockets
    ::pointer<socket>listen_socket_base::create_listen_socket()
    {
 
-      return m_pcomposite->create_listen_socket();
+      return __id_create(m_typeatom);
 
    }
 

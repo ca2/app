@@ -186,7 +186,7 @@ namespace file
       while (task_get_run())
       {
 
-         if (!step())
+         if (!file_watcher_step())
          {
 
             break;
@@ -224,7 +224,7 @@ namespace file
    }
 
 
-   bool watcher::step()
+   bool watcher::file_watcher_step()
    {
 
 restart:
@@ -250,7 +250,7 @@ restart:
 
             }
 
-            pair.element2()->step();
+            pair.element2()->file_watch_step();
             
          }
 

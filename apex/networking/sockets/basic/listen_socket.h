@@ -21,20 +21,23 @@ namespace sockets
    public:
 
 
-      i32              m_depth;
-      base_socket *        m_pbasesocket;
+      i32                                 m_depth;
+      base_socket *                       m_pbasesocket;
 
-      ::pointer<listen_socket_base>      m_pcomposite;
+      ::pointer<listen_socket_base>       m_pcomposite;
       bool                                m_bImpl;
+      bool                                m_bListeningDetach;
+      ::type_atom                         m_typeatom;
+
       /** Constructor.
       \lparam h base_socket_handler object
       \lparam use_creator Optional use of creator (default true) */
       listen_socket_base();
+      ~listen_socket_base() override;
 
+      
+      virtual void initialize_listen_socket(const ::type_atom& typeatom);
 
-
-
-      virtual ~listen_socket_base();
 
       void initialize(::particle * pparticle) override;
 
@@ -49,8 +52,12 @@ namespace sockets
       /** close file descriptor. */
       void close() override;
 
-      virtual void set_should_detach(bool bSet);
-      virtual bool should_detach() const;
+      //virtual void set_should_detach(bool bSet);
+      //virtual bool should_detach() const;
+
+      virtual void SetListeningDetach(bool bSet);
+      virtual bool IsListeningDetach();
+
 
       /** Bind and listen to any interface.
       \lparam port Port (0 is random)

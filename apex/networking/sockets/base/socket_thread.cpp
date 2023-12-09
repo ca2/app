@@ -211,8 +211,22 @@ namespace sockets
       try
       {
 
-         while (task_get_run() && m_psockethandler->get_count())
+         while (true)
          {
+
+            if (!task_get_run())
+            {
+
+               break;
+
+            }
+
+            if (m_psockethandler->get_count() <= 0)
+            {
+
+               break;
+
+            }
 
             try
             {

@@ -61,7 +61,7 @@ namespace sockets
 
       virtual void InitSSLClient() override;
 
-      bool step() override;
+      bool http_request_step() override;
 
       void OnLine(const string &) override;
 

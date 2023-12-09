@@ -53,7 +53,7 @@ namespace sockets
       virtual void request(e_http_method emethod, const string & pszRequest);
 
 
-      bool step() override;
+      virtual bool http_request_step();
 
 
       virtual void OnHeaderComplete() override;

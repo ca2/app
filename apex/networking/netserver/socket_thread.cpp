@@ -42,7 +42,7 @@ namespace netserver
 
       m_plistensocket->set_ssl_cipher_list(m_strCipherList);
 
-      m_plistensocket->set_should_detach(true);
+      m_plistensocket->SetListeningDetach(true);
 
       if (m_strCat.has_char())
       {
@@ -96,9 +96,11 @@ namespace netserver
 
             m_psockethandler->EnablePool();
 
-            m_plistensocket = ::pointer_transfer(new_listen_socket());
+            __construct(m_plistensocket);
 
-            m_plistensocket->initialize(this);
+            m_plistensocket->initialize_listen_socket(m_typeatomSocket);
+
+            //m_plistensocket->initialize(this);
 
             initialize_listen_socket();
 

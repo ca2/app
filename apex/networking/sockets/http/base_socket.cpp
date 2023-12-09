@@ -159,6 +159,7 @@ namespace sockets
 
    }
 
+
    void http_base_socket::OnDataComplete()
    {
 
@@ -261,20 +262,28 @@ namespace sockets
 
    void http_base_socket::OnWriteComplete()
    {
+      
       //Debug deb("http_base_socket::OnTransferLimit");
       //informationf("");
       //informationf("http_base_socket::OnTransferLimit");
       //   char msg[32768];
+      
       OnResponseComplete();
-      //if (!m_b_keepalive)
-      //{
+      
+      if (!m_b_keepalive)
+      {
+
       //   //informationf("SetCloseAndDelete");
-      //   SetCloseAndDelete();
-      //}
-      //else
-      //{
-      //   //informationf("keep-alive");
-      //}
+         SetCloseAndDelete();
+
+      }
+      else
+      {
+
+         //informationf("keep-alive");
+
+      }
+
    }
 
 

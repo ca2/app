@@ -117,10 +117,10 @@ namespace sockets_bsd
 
       //}
 
-      if (::is_set(m_psockethandler))
+      if (::is_set(socket_handler()))
       {
 
-         __Handler(m_psockethandler)->erase_socket(m_socket);
+         __Handler(socket_handler())->erase_socket(m_socket);
 
       }
 
@@ -225,7 +225,7 @@ namespace sockets_bsd
    void socket::set(bool bRead, bool bWrite, bool bException)
    {
       
-      __Handler(m_psockethandler)->set(m_socket, bRead, bWrite, bException);
+      __Handler(socket_handler())->set(m_socket, bRead, bWrite, bException);
 
    }
 

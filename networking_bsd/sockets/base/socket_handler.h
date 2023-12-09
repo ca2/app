@@ -63,7 +63,7 @@ namespace sockets_bsd
       public:
 
          
-         pool_socket(base_socket * src);
+         pool_socket(sockets::base_socket * src);
          ~pool_socket() override;
 
          
@@ -93,9 +93,9 @@ namespace sockets_bsd
       // socket stuff
       // -------------------------------------------------------------------------
       /** add socket instance to socket ::map. Removal is always automatic. */
-      virtual void add(const ::sockets::socket_pointer& psocket) override = 0;
-      virtual void move2(::sockets::socket_pointer && psocket) = 0;
-      virtual void transfer(socket_map::node * pnode, socket_map * psocketmap = nullptr) = 0;
+      virtual void add(::sockets::base_socket * psocket) override = 0;
+      //virtual void move2(::sockets::socket_pointer && psocket) = 0;
+      //virtual void transfer(socket_map::node * pnode, socket_map * psocketmap = nullptr) = 0;
       virtual void restart_socket(SOCKET socket) = 0;
       //virtual socket_map::association* new_association(socket_pointer && psocket) = 0;
    //private:

@@ -75,35 +75,21 @@ namespace sockets_bsd
    }
 
 
-   void socket_thread::transfer(socket_map::node * pnode, socket_map * psocketmap)
+   //void socket_thread::transfer(socket_map::node * pnode, socket_map * psocketmap)
+   void socket_thread::initialize_socket_thread(base_socket * psocket)
    {
 
-      //auto estatus = initialize(passociation->m_psocket);
+      initialize(psocket);
 
-      initialize(pnode->element2());
+      m_psockethandler = __create_new < socket_handler > ();
 
-      //if (!estatus)
-      //{
+      __Socket(psocket)->m_psocketthread = this;
 
-      //   return estatus;
+      m_psockethandler->SetSlave();
 
-      //}
-
-      m_psockethandler = ::transfer(__create_new < socket_handler > ());
-
-      //psocket->m_psockethandler.release();
-
-      __Socket(pnode->element2())->m_psocketthread = this;
-
-      //m_psockethandler->SetSlave();
-
-      //m_psocket->SetSlaveHandler(m_psockethandler);
-
-      m_psockethandler.cast < socket_handler>()->transfer(pnode, psocketmap);
+      m_psockethandler->add(psocket);
 
       branch();
-
-      //return estatus;
 
    }
 

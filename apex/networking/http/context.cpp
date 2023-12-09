@@ -1782,7 +1782,6 @@ namespace http
    }
 
 
-
    bool context::http_get(::pointer<::sockets::http_client_socket>& psocket, const ::scoped_string & scopedstrUrl1, property_set & set)
    {
 
@@ -2035,7 +2034,7 @@ namespace http
 
          psockethandler = __create < ::sockets::socket_handler >();
 
-         psocket->initialize_socket(psockethandler);
+         //psocket->SetSocketHandler(psockethandler);
 
       }
 

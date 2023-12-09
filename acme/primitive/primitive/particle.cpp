@@ -759,32 +759,32 @@ void particle::call_run()
 void particle::run()
 {
 
-   while (true)
-   {
+   //while (true)
+   //{
 
-      /*auto estatus =*/ step();
+   //   /*auto estatus =*/ step();
 
-      //if(!estatus)
-      //{
+   //   //if(!estatus)
+   //   //{
 
-      //   break;
+   //   //   break;
 
-      //}
+   //   //}
 
-   }
+   //}
 
    //return ::success;
 
 }
 
 
-bool particle::step()
-{
-
-   //return ::error_failed;
-   return false;
-
-}
+//bool particle::step()
+//{
+//
+//   //return ::error_failed;
+//   return false;
+//
+//}
 
 
 void particle::on_sequence()
@@ -2379,6 +2379,13 @@ void particle::kick_idle()
 
  ::pointer<particle>particle::__call__id_create(const ::atom & atom, ::factory::factory * pfactory)
 {
+
+    if (::is_null(pfactory))
+    {
+
+       pfactory = platform()->factory();
+
+    }
 
    auto pfactoryitem = pfactory->get_factory_item(atom);
 

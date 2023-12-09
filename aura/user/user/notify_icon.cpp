@@ -69,10 +69,10 @@ namespace user
    }
 
 
-   bool notify_icon::step()
+   bool notify_icon::notify_icon_step()
    {
 
-      //return ::success;
+   //   //return ::success;
 
       return true;
 

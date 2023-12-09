@@ -29,8 +29,10 @@ namespace netserver
       string                                       m_strCipherList;
 
 
-      ::pointer<::netserver::socket_handler>      m_psockethandler;
-      ::pointer<::sockets::listen_socket_base>    m_plistensocket;
+      ::pointer<::netserver::socket_handler>       m_psockethandler;
+      ::pointer<::sockets::listen_socket_base>     m_plistensocket;
+
+      ::type_atom                                  m_typeatomSocket;
 
 
       socket_thread_base();

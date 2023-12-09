@@ -291,8 +291,10 @@ namespace sockets
             //m_request.m_strRequestUri = ::url::decode(strScript) + ::str::has_char(strQuery, "?");
             m_request.m_strRequestUri = strScript + ::str::has_char(strQuery, "?");
             m_request.attr("request_uri") = m_request.m_strRequestUri;
-            m_request.attr("http_version") = pa.getword();
-            m_b_http_1_1 = m_request.attr("http_version").as_string().ends("/1.1");
+            ::string strHttpVersion = pa.getword();
+            m_request.attr("http_version") = strHttpVersion;
+
+            m_b_http_1_1 = strHttpVersion.ends("/1.1");
             m_b_keepalive = m_b_http_1_1;
             m_bRequest = true;
             m_bResponse = false;

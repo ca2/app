@@ -89,7 +89,7 @@ namespace sockets
    }
 
 
-   bool http_put_socket::step()
+   bool http_put_socket::http_request_step()
    {
 
       if(m_file.is_set())

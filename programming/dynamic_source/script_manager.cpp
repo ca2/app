@@ -1545,7 +1545,7 @@ namespace dynamic_source
 
       //psocket->m_phandler = phttpdsocket->m_phandler;
 
-      psocket->initialize_socket(phttpdsocket->socket_handler());
+      psocket->SetSocketHandler(phttpdsocket->socket_handler());
 
       {
 

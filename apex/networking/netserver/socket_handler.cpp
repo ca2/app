@@ -19,7 +19,7 @@ namespace netserver
    }
 
 
-   void socket_handler::add(const ::sockets::socket_pointer & psocket)
+   void socket_handler::add(::sockets::base_socket * psocket)
    {
 
       m_pcomposite->add(psocket);

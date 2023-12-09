@@ -174,6 +174,8 @@ namespace sockets
       
       
       transfer_progress_function    m_transferprogressfunction;
+      class ::time                  m_timeConnectionMaximum; ///< Defined by SetTimeout
+      class ::time                  m_timeMaximum; ///< Defined by SetTimeout
 
       
       /** "Default" constructor */
@@ -182,9 +184,11 @@ namespace sockets
       ~base_socket() override;
 
 
-      virtual void initialize_socket(base_socket_handler* phandler);
+      virtual void SetSocketHandler(base_socket_handler* phandler);
 
-      
+      virtual void DetachSocket();
+
+
       virtual base_socket * base_socket_composite();
       virtual const base_socket * base_socket_composite() const;
 
@@ -574,7 +578,7 @@ namespace sockets
       virtual bool LineProtocol();
 
 
-
+      virtual socket_id GetSocketId();
 
 
 
@@ -760,7 +764,7 @@ virtual string GetSocks4Host();
 
 
       virtual void run() override;
-      virtual bool step() override;
+      //virtual bool step() override;
 
       //virtual void __tracef(object * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstrFormat, ...);
       //virtual void __tracef(object * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, e_log elog, const ::string & strContext, i32 err, const ::string & strMessage);

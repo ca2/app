@@ -52,7 +52,7 @@ namespace sockets_bsd
       //, m_resolv_id(0)
       , m_bEnablePool(false)
       , m_next_trigger_id(0)
-      //, m_slave(false)
+      , m_bSlave(false)
    {
 
       m_p2 = this;
@@ -140,7 +140,7 @@ namespace sockets_bsd
 
                }
 
-               //if (m_slave)
+               if (m_bSlave)
                {
 
                   iterator->element2().release();
@@ -185,63 +185,68 @@ namespace sockets_bsd
 //   }
 
 
-   //void socket_handler::SetSlave(bool x)
-   //{
-
-   //   m_slave = x;
-
-   //}
-
-
-   //bool socket_handler::IsSlave()
-   //{
-
-   //   return m_slave;
-
-   //}
-   
-
-   void socket_handler::add(const ::sockets::socket_pointer & psocket)
+   void socket_handler::SetSlave(bool x)
    {
 
-      auto psocket2 = __Socket(psocket);
-
-      auto iterator = m_socketmapAdd.get_item(psocket2->GetSocketId());
-
-      iterator->m_psocket = psocket2;
-
-      transfer(iterator.get(), &m_socketmapAdd);
-
-   }
-
-   
-   void socket_handler::move2(::sockets::socket_pointer && psocket)
-   {
-
-      auto psocket2 = __Socket(psocket);
-
-      auto iterator = m_socketmapAdd.get_item(psocket2->GetSocketId());
-
-      iterator->m_psocket = psocket2;
-
-      transfer(iterator.get(), &m_socketmapAdd);
+      m_bSlave = x;
 
    }
 
 
-   void socket_handler::transfer(socket_map::node* passociation, socket_map* psocketmap)
+   bool socket_handler::IsSlave()
    {
 
-      auto psocket = passociation->m_psocket.cast < socket >();
+      return m_bSlave;
 
-      //if (psocket->m_psockethandler.is_set())
-      //{
+   }
+   
 
-      //   WARN(psocket, "add", -1, "socket is already being handled by another handler");
+   //void socket_handler::add(::sockets::base_socket * psocket)
+   //{
 
-      //   return;
+   //   auto psocket2 = __Socket(psocket);
 
-      //}
+   //   auto iterator = m_socketmapAdd.get_item(psocket2->GetSocketId());
+
+   //   iterator->m_psocket = psocket2;
+
+   //   psocket2->m_psockethandler = this;
+
+   //   iterator.get();
+
+   //}
+
+   
+   //void socket_handler::move2(::sockets::socket_pointer && psocket)
+   //{
+
+   //   //auto psocket2 = __Socket(psocket);
+
+   //   //auto iterator = m_socketmapAdd.get_item(psocket2->GetSocketId());
+
+   //   //iterator->m_psocket = psocket2;
+
+   //   //transfer(iterator.get(), &m_socketmapAdd);
+
+   //   transfer(psocket, &m_socketmapAdd);
+
+   //}
+
+
+   //void socket_handler::transfer(socket_map::node* passociation, socket_map* psocketmap)
+   void socket_handler::add(::sockets::base_socket * psocket)
+   {
+
+      //::pointer < socket > psocket = pbasesocket;
+
+      if (::is_set(psocket->socket_handler()))
+      {
+
+         warning() << "socket_handler add " << (i32)psocket->GetSocketId() << " socket is already being handled by another handler";
+
+         return;
+
+      }
 
       if (psocket->GetSocketId() == INVALID_SOCKET)
       {
@@ -259,17 +264,17 @@ namespace sockets_bsd
 
       }
 
-      //socket_pointer plookup;
+      socket_pointer plookup;
 
-      //if (m_socketmapAdd.lookup(__Socket(psocket)->GetSocketId(), plookup))
-      //{
+      if (m_socketmapAdd.lookup(__Socket(psocket)->GetSocketId(), plookup))
+      {
 
-      //   INFO(psocket, "add", (i32)__Socket(psocket)->GetSocketId(), "Attempt to add socket already in add queue");
+         information() << "add: Invalid socket " << (i32) __Socket(psocket)->GetSocketId() << " Attempt to add socket already in add queue";
 
-      //   //m_delete.add_tail(psocket);
-      //   return;
+         //m_delete.add_tail(psocket);
+         return;
 
-      //}
+      }
 
       if (psocket->is_connecting())
       {
@@ -301,11 +306,16 @@ namespace sockets_bsd
 
       }
 
-      psocket->m_psockethandler = this;
+      psocket->SetSocketHandler(this);
 
       psocket->m_estatus = ::success;
 
-      m_socketmapAdd.transfer(passociation, psocketmap);
+      auto& a = m_socketmapAdd[psocket->GetSocketId()];
+
+       a= psocket;
+
+
+      auto xxx = m_socketmapAdd[psocket->GetSocketId()];
 
    }
 
@@ -340,7 +350,9 @@ namespace sockets_bsd
 
       passociation->m_psocket->m_estatus = ::success;
 
-      m_socketmapAdd.transfer(passociation, &m_socketmap);
+      m_socketmapAdd[passociation->element1()] = passociation->element2();
+
+      auto xxx = m_socketmapAdd[passociation->element1()];
 
    }
 
@@ -472,8 +484,8 @@ namespace sockets_bsd
    {
 
       if (m_socketlistCallOnConnect.get_size() ||
-            //(!m_slave && m_socketlistDetach.get_size()) ||
-            m_socketlistDetach.get_size() ||
+            (!m_bSlave && m_socketlistDetach.get_size()) ||
+            //m_socketlistDetach.get_size() ||
             m_socketlistTimeout.get_size() ||
             m_socketlistRetryClientConnect.get_size() ||
             m_socketlistClose.get_size() ||
@@ -686,7 +698,7 @@ start_processing_adding:
 
          SOCKET socket = passociationAdd->m_socket;
 
-         auto & psocket = passociationAdd->m_psocket;
+         auto psocket = passociationAdd->m_psocket;
 
          if (m_socketmap.has(socket))
          {
@@ -706,7 +718,7 @@ start_processing_adding:
 
             m_socketlist.add_tail(socket);
 
-            m_socketmap.transfer(passociationAdd, &m_socketmapAdd);
+            m_socketmap[passociationAdd->element1()] = passociationAdd->element2();
 
             socket_id_list_add(socket, e_list_close);
 
@@ -742,20 +754,24 @@ start_processing_adding:
          //  master handler and non-detached socket
          //if (!(m_slave ^ psocket->IsDetach()))
          //if (!(m_slave ^ psocket->IsDetach()))
-         //{
-
-           // m_socketlist.add_tail(socket);
-
-         //}
-
-         m_socketlist.add_tail(socket);
-
-         m_socketmap.transfer(passociationAdd, &m_socketmapAdd);
-
-         if (passociationAdd->m_psocket->IsDetach())
+         if (is_equivalent(m_bSlave, psocket->IsDetach()))
          {
 
-            passociationAdd->m_psocket->OnDetached();
+           // m_socketlist.add_tail(socket);
+            m_socketlist.add_tail(socket);
+
+         }
+
+         //m_socketlist.add_tail(socket);
+
+         m_socketmap[socket] = psocket;
+
+         m_socketmapAdd.erase_item(socket);
+
+         if (m_bSlave && psocket->IsDetach())
+         {
+
+            psocket->OnDetached();
 
          }
 
@@ -1213,55 +1229,49 @@ end_processing_adding:
       bool check_max_fd = false;
 
       // check detach of socket if master handler - EVENT
-      //if (!m_slave && m_socketlistDetach.get_size())
-      if(m_socketlistDetach.has_element())
+      if (!m_bSlave && m_socketlistDetach.get_size())
+      //if(m_socketlistDetach.has_element())
       {
 
-         retry_next_item_in_detach_list:
-
-         auto pos = m_socketlistDetach.begin();
+         auto it = m_socketlistDetach.begin();
 
          SOCKET socket = 0;
 
-         for (; pos != m_socketlistDetach.end(); pos++)
+         while(it != m_socketlistDetach.end())
          {
 
-            socket = *pos;
+            auto socket = *it;
+
+            it++;
             
             auto ppairSocket = m_socketmap.plookup(socket);
 
             if (::is_set(ppairSocket) && ::is_set(ppairSocket->m_psocket))
             {
 
-               if (ppairSocket->m_psocket->IsDetach()
-                  && !ppairSocket->m_psocket->IsDetached())
+               auto psocket = ppairSocket->m_psocket;
+
+               if (psocket->IsDetach() && !psocket->IsDetached())
                {
 
-                  if (socket != INVALID_SOCKET)
+                  erase_socket(socket);
+
+                  // After DetachSocket(), all calls to socket_handler() will return a object
+                  // to the new slave socket_handler running in the new thread.
+                  try
                   {
 
-                     set(socket, false, false, false);
-
-                     // After DetachSocket(), all calls to socket_handler() will return a object
-                     // to the new slave socket_handler running in the new thread.
-                     try
-                     {
-
-                        ppairSocket->m_psocket->DetachSocket(ppairSocket.get(), &m_socketmap);
-
-                     }
-                     catch (...)
-                     {
-
-                     }
-
-                     erase_socket(socket);
-
-                     check_max_fd = true;
-
-                     goto retry_next_item_in_detach_list;
+                     psocket->DetachSocket();
 
                   }
+                  catch (...)
+                  {
+
+                  }
+
+                  m_socketmap.erase_item(socket);
+
+                  check_max_fd = true;
 
                }
 
@@ -1406,7 +1416,7 @@ end_processing_adding:
 
                      }
 
-                     transfer(ppairSocket.get(), &m_socketmap);
+                     m_socketmap[ptcpsocket->GetSocketId()] = ptcpsocket;
 
                      m_socketlistErase.add_tail(nn);
 
@@ -1489,7 +1499,7 @@ end_processing_adding:
                         if (!(ptcpsocket->GetShutdownStatus() & SHUT_WR))
                      {
 
-                        if (ptcpsocket->m_socket != INVALID_SOCKET && shutdown(psocket->m_socket, SHUT_WR) == -1)
+                        if (ptcpsocket->GetSocketId() != INVALID_SOCKET && shutdown(psocket->GetSocketId(), SHUT_WR) == -1)
                         {
 
                            ptcpsocket->error() << "graceful shutdown " << networking_last_error() << bsd_socket_error(networking_last_error());
@@ -1536,7 +1546,7 @@ end_processing_adding:
 
                      ptcpsocket->ResetConnectionRetryCount();
 
-                     transfer(ppairSocket.get(), psocketmap);
+                     psocketmap->set_at(ptcpsocket->GetSocketId(), ptcpsocket);
 
                      m_socketlistErase.add_tail(ptcpsocket->m_socket);
 
@@ -1628,7 +1638,7 @@ end_processing_adding:
          if (::is_set(ppairSocket) && ::is_set(ppairSocket->m_psocket))
          {
 
-            ppairSocket->m_psocket->m_psockethandler.release();
+            ppairSocket->m_psocket->SetSocketHandler(nullptr);
 
             //ppairSocket->m_psocket->m_phandlerSlave.release();
 
@@ -1662,8 +1672,8 @@ end_processing_adding:
 
          psocket->OnDelete();
 
-         //if (psocket->DeleteByHandler() && !(m_slave ^ psocket->IsDetached()))
-         if (psocket->DeleteByHandler() && psocket->IsDetached())
+         if (psocket->DeleteByHandler() && is_equivalent(m_bSlave, psocket->IsDetached()))
+         //if (psocket->DeleteByHandler() && psocket->IsDetached())
          {
 
             psocket->SetErasedByHandler();
@@ -2388,7 +2398,7 @@ end_processing_adding:
       if (m_trigger_src.contains(atom))
       {
 
-         data.SetSource(m_trigger_src[atom]);
+         data.SetSource(dynamic_cast < base_socket * > (m_trigger_src[atom].m_p));
 
          auto & map = m_trigger_dst[atom];
 

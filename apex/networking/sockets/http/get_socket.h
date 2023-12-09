@@ -55,7 +55,7 @@ namespace sockets
       virtual void initialize_http_get_socket(const string & host, ::networking::port_t port, const string & url);
 
 
-      virtual bool step() override;
+      virtual bool http_request_step() override;
 
 
    };

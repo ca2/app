@@ -63,7 +63,7 @@ namespace file
 
       virtual void handle_action(action * paction);
 
-      bool step() override;
+      virtual bool file_watch_step();
 
       void _addAll();
       void _addFile(const char * name, bool imitEvents = true);

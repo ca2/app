@@ -84,7 +84,7 @@ namespace progress
    }
 
 
-   bool real::step()
+   bool real::progress_real_step()
    {
 
       ASSERT(m_iStep + 1 <= m_iStepCount);

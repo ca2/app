@@ -377,7 +377,7 @@ namespace sockets_bsd
 
       }
 
-//      if(__Handler(m_psockethandler)->get_count() >= FD_SETSIZE)
+//      if(__Handler(socket_handler())->get_count() >= FD_SETSIZE)
 //      {
 //
 //
@@ -392,10 +392,10 @@ namespace sockets_bsd
 
       //SetSocks4(false);
 
-//      if(__Handler(m_psockethandler)->PoolEnabled())
+//      if(__Handler(socket_handler())->PoolEnabled())
 //      {
 //
-//         ::pointer<base_socket_handler::pool_socket>ppoolsocket = __Handler(m_psockethandler)->FindConnection(SOCK_STREAM,"tcp",ad);
+//         ::pointer<base_socket_handler::pool_socket>ppoolsocket = __Handler(socket_handler())->FindConnection(SOCK_STREAM,"tcp",ad);
 //
 //         if(ppoolsocket)
 //         {
@@ -515,7 +515,7 @@ namespace sockets_bsd
             attach(s);
             set_connecting(true); // this flag will control fd_set's
          }
-         else if(Socks4() && __Handler(m_psockethandler)->Socks4TryDirect()) // retry
+         else if(Socks4() && __Handler(socket_handler())->Socks4TryDirect()) // retry
          {
             ::closesocket(s);
             return open(paddress,true);
@@ -570,7 +570,7 @@ namespace sockets_bsd
       if (IsIpv6())
       {
 
-         //if(!__Handler(m_psockethandler)->ResolverEnabled() || paddressdepartment->isipv6(host))
+         //if(!__Handler(socket_handler())->ResolverEnabled() || paddressdepartment->isipv6(host))
          //if (!pnetworking2->is_ip6(host))
          //{
 
@@ -597,7 +597,7 @@ namespace sockets_bsd
       {
 
 
-         ////if(!__Handler(m_psockethandler)->ResolverEnabled() || paddressdepartment->isipv4(host))
+         ////if(!__Handler(socket_handler())->ResolverEnabled() || paddressdepartment->isipv4(host))
          //if (!pnetworking2->is_ip4(host))
          //{
 
@@ -648,7 +648,7 @@ namespace sockets_bsd
 
       
 
-      ////if(!__Handler(m_psockethandler)->ResolverEnabled() || paddressdepartment->isipv4(host))
+      ////if(!__Handler(socket_handler())->ResolverEnabled() || paddressdepartment->isipv4(host))
       /////if( paddressdepartment->isipv4(host))
       //{
 
@@ -774,9 +774,9 @@ namespace sockets_bsd
 //            ::networking::address addrLocal;
 //            if(open(a,addrLocal))
 //            {
-//               if(!__Handler(m_psockethandler)->Valid(this))
+//               if(!__Handler(socket_handler())->Valid(this))
 //               {
-//                  __Handler(m_psockethandler)->add(this);
+//                  __Handler(socket_handler())->add(this);
 //               }
 //            }
 //         }
@@ -1228,7 +1228,7 @@ namespace sockets_bsd
          bool br;
          bool bw;
          bool bx;
-         __Handler(m_psockethandler)->get(GetSocketId(),br,bw,bx);
+         __Handler(socket_handler())->get(GetSocketId(),br,bw,bx);
          if(m_obuf.get_size())
             set(br,true);
          else
@@ -1578,7 +1578,7 @@ namespace sockets_bsd
 
       warning() <<"OnSocks4ConnectFailed: connection to socks4 server failed, trying direct connection";
 
-      if(!__Handler(m_psockethandler)->Socks4TryDirect())
+      if(!__Handler(socket_handler())->Socks4TryDirect())
       {
 
          set_connecting(false);
@@ -2887,7 +2887,7 @@ namespace sockets_bsd
       if(is_connecting())
       {
 
-         i32 iError = __Handler(m_psockethandler)->m_iSelectErrno;
+         i32 iError = __Handler(socket_handler())->m_iSelectErrno;
 
          if(iError == ETIMEDOUT)
          {

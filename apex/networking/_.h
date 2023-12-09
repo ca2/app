@@ -61,6 +61,8 @@ namespace netserver
 //
 
 
+using socket_id = ::uptr;
+
 
 #include "http/_.h"
 

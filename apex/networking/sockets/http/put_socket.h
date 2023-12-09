@@ -68,7 +68,7 @@ namespace sockets
       void SetContentType(const string & );
 
       /** http put client implemented in OnConnect */
-      virtual bool step() override;
+      virtual bool http_request_step() override;
 
    };
 

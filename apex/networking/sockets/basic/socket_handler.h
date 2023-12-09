@@ -192,9 +192,9 @@ namespace sockets
       //void Trigger(i32 atom, base_socket::trigger_data & data, bool erase = true) override;
 
       /** Indicates that the handler runs under socket_thread. */
-      //void SetSlave(bool x = true) override;
+      void SetSlave(bool x = true) override;
       /** Indicates that the handler runs under socket_thread. */
-      //bool IsSlave() override;
+      bool IsSlave() override;
 
       /** Sanity check of those accursed lists. */
       void CheckSanity();

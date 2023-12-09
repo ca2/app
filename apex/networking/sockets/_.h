@@ -31,6 +31,7 @@ namespace sockets
       
    //} // namespace sockets
 
+      class listen_socket_base;
 
 } // namespace sockets
 

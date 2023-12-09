@@ -65,7 +65,7 @@ namespace sockets_bsd
       i32                        m_next_trigger_id; ///< Unique trigger atom counter
       socket_map                 m_trigger_src; ///< mapping trigger atom to source base_socket
       socket_socket_flag_map     m_trigger_dst; ///< mapping trigger atom to destination sockets
-      //bool                       m_slave; ///< Indicates that this is a base_socket_handler run in socket_thread
+      bool                       m_bSlave; ///< Indicates that this is a base_socket_handler run in socket_thread
 
 
       //socket_handler(::apex::log * plogger = nullptr);
@@ -90,9 +90,10 @@ namespace sockets_bsd
       /** add base_socket instance to base_socket map. Removal is always automatic. */
       void restart_socket(SOCKET socket) override;
 
-      void add(const ::sockets::socket_pointer & psocket) override;
-      void move2(::sockets::socket_pointer && psocket) override;
-      void transfer(socket_map::node * pnode, socket_map* psocketmap = nullptr) override;
+      //void add(const ::sockets::socket_pointer & psocket) override;
+      void add(::sockets::base_socket * psocket) override;
+      //void move2(::sockets::socket_pointer && psocket) override;
+      //void transfer(socket_map::node * pnode, socket_map* psocketmap = nullptr) override;
       //void _move(socket_map::association* passociation, socket_map* psocketmap) override;
       void erase(const ::sockets::socket_pointer & psocket) override;
 
@@ -204,9 +205,9 @@ namespace sockets_bsd
       void Trigger(i32 atom, base_socket::trigger_data & data, bool erase = true) override;
 
       /** Indicates that the handler runs under socket_thread. */
-      //void SetSlave(bool x = true) override;
+      void SetSlave(bool x = true) override;
       /** Indicates that the handler runs under socket_thread. */
-      //bool IsSlave() override;
+      bool IsSlave() override;
 
       /** Sanity check of those accursed lists. */
       void CheckSanity();

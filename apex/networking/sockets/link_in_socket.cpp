@@ -102,7 +102,7 @@ namespace sockets
 
       ::pointer<link_in_socket>pinsocket = __allocate< link_in_socket >();
 
-      pinsocket->initialize_socket(psocket->socket_handler());
+      pinsocket->SetSocketHandler(psocket->socket_handler());
 
       pinsocket->m_in = psocket;
 

@@ -131,6 +131,9 @@ namespace sockets
       virtual string MyUseragent() override;
 
 
+      bool http_request_step() override;
+
+
    };
 
 

@@ -100,7 +100,7 @@ namespace sockets
    }
 
 
-   bool http_post_socket::step()
+   bool http_post_socket::http_request_step()
    {
 
       if (m_pmultipart != nullptr)

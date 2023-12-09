@@ -2,9 +2,9 @@
 #include "framework.h"
 #include "networking.h"
 #include "acme/exception/parsing.h"
-////#include "acme/exception/exception.h"
 #include "acme/primitive/string/parse.h"
 #include "acme/primitive/string/str.h"
+#include "apex/networking/sockets/basic/listen_socket.h"
 
 
 //#define log_error(...) TRACE_LOG_ERROR(__VA_ARGS__)
@@ -113,6 +113,18 @@ namespace networking
             //    m_mapReverseCache.gudo_set();
 
       return true;
+
+   }
+
+
+   ::sockets::listen_socket_base* networking::new_listen_socket(const ::type_atom& type)
+   {
+
+      auto plistensocket = __create< ::sockets::listen_socket_base >();
+
+      plistensocket->initialize_listen_socket(type);
+
+      return plistensocket;
 
    }
 

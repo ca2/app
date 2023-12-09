@@ -179,20 +179,22 @@ namespace sockets
 //   }
 
 
-   //void socket_handler::SetSlave(bool x)
-   //{
+   void socket_handler::SetSlave(bool x)
+   {
 
+      m_pcomposite->SetSlave(x);
    //   m_slave = x;
 
-   //}
+   }
 
 
-   //bool socket_handler::IsSlave()
-   //{
+   bool socket_handler::IsSlave()
+   {
 
-   //   return m_slave;
+      return m_pcomposite->IsSlave();
+//      return m_slave;
 
-   //}
+   }
    
 
    //void socket_handler::add2(const socket_pointer & psocket)

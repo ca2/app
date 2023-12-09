@@ -769,6 +769,14 @@ namespace sockets
    }
 
 
+   bool http_client_socket::http_request_step()
+   {
+
+      return true;
+
+   }
+
+
    string http_client_socket::MyUseragent()
    {
 

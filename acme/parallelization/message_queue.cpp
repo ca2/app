@@ -151,7 +151,7 @@ void message_queue::kick_idle()
       if(!synchronouslock.is_locked())
       {
        
-         synchronouslock.lock();
+         synchronouslock._lock();
          
       }
    

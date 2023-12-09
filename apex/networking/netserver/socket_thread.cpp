@@ -56,7 +56,7 @@ namespace netserver
    }
 
 
-   ::netserver::socket_handler * socket_thread_base::new_socket_handler()
+   ::pointer <::netserver::socket_handler > socket_thread_base::create_socket_handler()
    {
 
       return __new< netserver::socket_handler >();
@@ -64,10 +64,10 @@ namespace netserver
    }
 
    
-   ::sockets::listen_socket_base * socket_thread_base::new_listen_socket()
+   ::pointer < ::sockets::listen_socket_base > socket_thread_base::create_listen_socket()
    {
 
-      return nullptr;
+      return __id_create(m_typeatomSocket);
 
    }
 
@@ -90,7 +90,7 @@ namespace netserver
          try
          {
 
-            m_psockethandler = ::pointer_transfer(new_socket_handler());
+            m_psockethandler = create_socket_handler();
 
             m_psockethandler->initialize(this);
 

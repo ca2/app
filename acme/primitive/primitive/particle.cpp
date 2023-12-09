@@ -503,6 +503,16 @@ void particle::on_initialize_particle()
 }
 
 
+::primitive::primitive * particle::primitive() const
+{
+
+   auto psystem = system();
+
+   return ::is_set(psystem) ? psystem->primitive() : nullptr;
+
+}
+
+
 class ::imaging * particle::imaging() const
 {
 

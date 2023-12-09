@@ -190,7 +190,7 @@ namespace app_app
 
             auto pmathematics = mathematics();
 
-            double omega = 2.0 * pmathematics->get_pi() * dFrequency;
+            double omega = 2.0 * π * dFrequency;
 
             double angle = omega * time;
 
@@ -220,13 +220,13 @@ namespace app_app
 
                auto pmathematics = mathematics();
 
-               omega = 2.0 * pmathematics->get_pi() * dFrequency;
+               omega = 2.0 * π * dFrequency;
 
                double angleNew = omega * time;
 
                m_dPhaseShift = angle - angleNew;
 
-               m_dPhaseShift = fmod(m_dPhaseShift, 2.0 * pmathematics->get_pi());
+               m_dPhaseShift = fmod(m_dPhaseShift, 2.0 * π);
 
             }
 

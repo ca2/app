@@ -9255,7 +9255,7 @@ void image::gradient_fill(::color::color color1, ::color::color color2, const po
 
          pimage->gradient_vertical_fill(color1, color2, point1.x(), point2.x());
 
-         pimage->rotate(this, radians(pmathematics->get_pi() - angle), 1.0);
+         pimage->rotate(this, radians(π - angle), 1.0);
 
       }
 

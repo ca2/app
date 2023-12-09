@@ -432,7 +432,7 @@ namespace user
 
          auto pmathematics = mathematics();
 
-         m_dPosition = ::sin((pmathematics->get_pi() / 2.0) * dRate);
+         m_dPosition = ::sin((π / 2.0) * dRate);
 
          double dRate = m_dPosition;
 

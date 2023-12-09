@@ -71,7 +71,7 @@ namespace experience_anthill
    }
 
 
-   ::experience::frame * experience::frame_experience(const ::string & pszSchema)
+   ::pointer < ::experience::frame > experience::frame_experience(const ::string & pszSchema)
    {
 
       string strSchema(pszSchema);

@@ -100,6 +100,12 @@ using particle_pointer = ::pointer < ::particle >;
 
 class imaging;
 
+namespace primitive
+{
+
+   class primitive;
+
+} // namespace primitive
 
 struct disable_referencing_debugging_t {};
 
@@ -254,6 +260,8 @@ public:
 
 
    ::mathematics::mathematics * mathematics() const;
+
+   ::primitive::primitive * primitive() const;
 
    class ::imaging * imaging() const;
 

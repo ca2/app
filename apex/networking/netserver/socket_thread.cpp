@@ -7,7 +7,7 @@ namespace netserver
 {
 
 
-   socket_thread_base::socket_thread_base()
+   socket_thread::socket_thread()
    {
 
       m_strIp = "0.0.0.0";
@@ -27,7 +27,7 @@ namespace netserver
    }
 
 
-   socket_thread_base::~socket_thread_base()
+   socket_thread::~socket_thread()
    {
 
    }
@@ -35,7 +35,7 @@ namespace netserver
 
 
 
-   bool socket_thread_base::initialize_listen_socket()
+   bool socket_thread::initialize_listen_socket()
    {
 
       m_plistensocket->set_ssl_catalog(m_strCat);
@@ -56,7 +56,7 @@ namespace netserver
    }
 
 
-   ::pointer <::netserver::socket_handler > socket_thread_base::create_socket_handler()
+   ::pointer <::netserver::socket_handler > socket_thread::create_socket_handler()
    {
 
       return __new< netserver::socket_handler >();
@@ -64,7 +64,7 @@ namespace netserver
    }
 
    
-   ::pointer < ::sockets::listen_socket_base > socket_thread_base::create_listen_socket()
+   ::pointer < ::sockets::listen_socket_base > socket_thread::create_listen_socket()
    {
 
       return __id_create(m_typeatomSocket);
@@ -72,7 +72,7 @@ namespace netserver
    }
 
 
-   void socket_thread_base::run()
+   void socket_thread::run()
    {
 
       if (m_strIp.is_empty() && m_iPortMaximum >= m_iPortMinimum)
@@ -128,7 +128,7 @@ namespace netserver
 
                      }
 
-                     informationf("netserver::socket_thread_base::run Couldn't bind to address %s!!", m_strIp.c_str());
+                     informationf("netserver::socket_thread::run Couldn't bind to address %s!!", m_strIp.c_str());
 
                      break;
 
@@ -167,7 +167,7 @@ namespace netserver
 
       m_plistensocket.release();
 
-      //return ::success;
+      information() << "exiting socket::thread";
 
    }
 

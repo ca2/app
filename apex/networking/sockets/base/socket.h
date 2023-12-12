@@ -219,6 +219,9 @@ namespace sockets
       virtual void get_ssl_session();
 
 
+      virtual ::string_array & debugstra();
+
+
       /** Called by listen_socket after accept but before base_socket is added to handler.
       * CTcpSocket uses this to create its ICrypt member payload.
       * The ICrypt member ::payload is created by a virtual method, therefore

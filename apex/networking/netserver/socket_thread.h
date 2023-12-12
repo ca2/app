@@ -11,7 +11,7 @@ namespace netserver
 {
 
 
-   class CLASS_DECL_APEX socket_thread_base :
+   class CLASS_DECL_APEX socket_thread :
       virtual public ::thread
    {
    public:
@@ -36,11 +36,11 @@ namespace netserver
       ::type_atom                                  m_typeatomSocket;
 
 
-      socket_thread_base();
-      ~socket_thread_base() override;
+      socket_thread();
+      ~socket_thread() override;
 
 
-      virtual void     run() override;
+      void run() override;
 
       virtual ::pointer< ::netserver::socket_handler >create_socket_handler();
       virtual ::pointer<::sockets::listen_socket_base > create_listen_socket();

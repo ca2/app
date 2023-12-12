@@ -745,6 +745,17 @@ namespace dynamic_source
                try
                {
 
+                  pinstance->finalize();
+
+               }
+               catch (...)
+               {
+
+               }
+
+               try
+               {
+
                   pinstance->destroy();
 
                }

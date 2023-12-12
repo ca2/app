@@ -41,12 +41,13 @@ namespace netserver
 
    //}
 
-   //void socket_handler::erase(::sockets::base_socket & pbasesocket)
+   //void socket_handler::erase(::sockets::socket_interface & pbasesocket)
    //{
 
    //   m_pcomposite->erase(pbasesocket);
 
    //}
+
 
    bool socket_handler::contains(::sockets::base_socket * pbasesocket) 
    {

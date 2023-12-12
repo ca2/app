@@ -36,7 +36,7 @@ namespace netserver
 {
 
 
-   class socket_thread_base;
+   class socket_thread;
 
 
 } // namespace netserver

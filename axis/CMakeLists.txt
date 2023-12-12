@@ -266,19 +266,19 @@ list(APPEND library_source
         networking/sockets/bsd/smtp/smtp_socket.h
         networking/sockets/bsd/smtp/smtpd_socket.cpp
         networking/sockets/bsd/smtp/smtpd_socket.h
-        networking/sockets/bsd/timer/_.h
-        networking/sockets/bsd/timer/Event.cpp
-        networking/sockets/bsd/timer/event.h
-        networking/sockets/bsd/timer/event_handler.h
-        networking/sockets/bsd/timer/event_time.h
-        networking/sockets/bsd/timer/EventHandler.cpp
-        networking/sockets/bsd/timer/EventTime.cpp
-        networking/sockets/bsd/timer/ievent_handler.h
-        networking/sockets/bsd/timer/ievent_owner.h
-        networking/sockets/bsd/timer/IEventOwner.cpp
-        networking/sockets/bsd/webserver/ajp13.h
-        networking/sockets/bsd/webserver/ajp13_socket.h
-        networking/sockets/bsd/webserver/ajp_base_socket.h
+#        networking/sockets/bsd/timer/_.h
+#        networking/sockets/bsd/timer/Event.cpp
+#        networking/sockets/bsd/timer/event.h
+#        networking/sockets/bsd/timer/event_handler.h
+#        networking/sockets/bsd/timer/event_time.h
+#        networking/sockets/bsd/timer/EventHandler.cpp
+#        networking/sockets/bsd/timer/EventTime.cpp
+#        networking/sockets/bsd/timer/ievent_handler.h
+#        networking/sockets/bsd/timer/ievent_owner.h
+#        networking/sockets/bsd/timer/IEventOwner.cpp
+#        networking/sockets/bsd/webserver/ajp13.h
+#        networking/sockets/bsd/webserver/ajp13_socket.h
+#        networking/sockets/bsd/webserver/ajp_base_socket.h
         networking/sockets/bsd/_.h
         networking/sockets/bsd/_strconv.h
         networking/sockets/bsd/config.h

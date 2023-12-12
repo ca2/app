@@ -1979,11 +1979,14 @@ if (${WIN32} OR ${UWP})
       operating_system/windows_common/file.cpp
       operating_system/windows_common/file.h
       operating_system/windows_common/file1.cpp
+      operating_system/windows_common/find_file.cpp
+      operating_system/windows_common/find_file.h
       operating_system/windows_common/handle.cpp
       operating_system/windows_common/handle.h
       operating_system/windows_common/idn.cpp
       operating_system/windows_common/library.cpp
       operating_system/windows_common/parallelization.cpp
+      operating_system/windows_common/process.cpp
       operating_system/windows_common/time.cpp
       operating_system/windows_common/unicode.cpp
       operating_system/windows_common/user.cpp
@@ -2566,11 +2569,11 @@ endif ()
 
 set_target_properties(acme PROPERTIES LINKER_LANGUAGE CXX)
 
-message(STATUS "acme LIBRARY_OUTPUT_PATH is ${LIBRARY_OUTPUT_PATH}")
-message(STATUS "some target link options ${PROJECT_NAME} PRIVATE \"/IMPLIB:${LIBRARY_OUTPUT_PATH}/acme.lib\"")
 
 if (MSVC)
 
+   message(STATUS "acme LIBRARY_OUTPUT_PATH is ${LIBRARY_OUTPUT_PATH}")
+   message(STATUS "some target link options ${PROJECT_NAME} PRIVATE \"/IMPLIB:${LIBRARY_OUTPUT_PATH}/acme.lib\"")
 
    target_compile_options(${PROJECT_NAME} PRIVATE "/MD$<$<CONFIG:Debug>:d>")
    target_link_options(${PROJECT_NAME} PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
@@ -2628,9 +2631,9 @@ elseif (MACOS)
 endif ()
 
 
-target_link_directories(acme PRIVATE ${LIBRARY_OUTPUT_PATH})
-target_link_directories(acme PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../operating_system/storage-${OPERATING_SYSTEM_NAME}/library/x64/basis)
-target_link_directories(acme PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../operating_system/storage-${OPERATING_SYSTEM_NAME}/third/library/x64/basis)
+target_link_directories(${PROJECT_NAME}  PRIVATE ${LIBRARY_OUTPUT_PATH})
+target_link_directories(${PROJECT_NAME}  PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../operating_system/storage-${OPERATING_SYSTEM_NAME}/library/x64/basis)
+target_link_directories(${PROJECT_NAME}  PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../operating_system/storage-${OPERATING_SYSTEM_NAME}/third/library/x64/basis)
 
 
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})
@@ -2641,8 +2644,8 @@ target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories
 target_include_directories(static_${PROJECT_NAME} PRIVATE ${library_include_directories})
 
 
-target_compile_definitions(${PROJECT_NAME} PRIVATE _${PROJECT_NAME}_project)
-target_compile_definitions(static_${PROJECT_NAME} PRIVATE _${PROJECT_NAME}_project)
+target_compile_definitions(${PROJECT_NAME} PRIVATE "_${PROJECT_NAME}_project")
+target_compile_definitions(static_${PROJECT_NAME} PRIVATE "_${PROJECT_NAME}_project")
 
 #if(${LINUX})
 #set(third_binaries "${CMAKE_CURRENT_SOURCE_DIR}/../../../operating_system/storage-${OPERATING_SYSTEM_NAME}/third/binary/x64/basis/")

@@ -20,7 +20,7 @@ namespace netserver
       void add(::sockets::base_socket * psocket) override;
       //void move2(::sockets::socket_pointer && psocket) override;
       void erase(const ::sockets::socket_pointer & psocket) override;
-      bool contains(::sockets::base_socket *) override;
+      bool contains(::sockets::base_socket*) override;
 
 
    };

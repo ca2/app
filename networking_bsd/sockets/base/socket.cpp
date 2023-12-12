@@ -2870,6 +2870,18 @@ bool base_socket::SetSoNosigpipe(bool x)
 
    }
 
+
+   ::string_array & base_socket::debugstra()
+   {
+
+      return m_straDebug;
+
+   }
+
+
+   //virtual ::string debug_text();
+
+
    
    void base_socket::write(const void * p, ::memsize s)
    {

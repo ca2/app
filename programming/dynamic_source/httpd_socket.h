@@ -19,7 +19,6 @@ namespace dynamic_source
       string                                       m_strLocale;
 
       ::pointer < script_interface >               m_pscript;
-      //void *                                       m_posdataNetnodeSocket;
 
 
       httpd_socket();
@@ -27,6 +26,9 @@ namespace dynamic_source
 
 
       virtual void Reset();
+
+
+      void finalize() override;
 
 
    };

@@ -850,6 +850,7 @@
     <ClInclude Include="networking\sockets\basic\sctp_socket.h" />
     <ClInclude Include="networking\sockets\basic\socket.h" />
     <ClInclude Include="networking\sockets\basic\socket_handler.h" />
+    <ClInclude Include="networking\sockets\basic\socket_impl.h" />
     <ClInclude Include="networking\sockets\basic\stream_socket.h" />
     <ClInclude Include="networking\sockets\basic\sync_socket_handler.h" />
     <ClInclude Include="networking\sockets\basic\tcp_socket.h" />

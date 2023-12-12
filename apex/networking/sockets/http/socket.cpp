@@ -31,7 +31,8 @@ namespace sockets
            m_b_http_1_1(false),
            m_b_keepalive(false),
            m_chunk_size(0),
-           m_chunk_state(0)
+           m_chunk_state(0),
+      m_iRequestIndex(-1)
    {
 
       //m_bOnlyHeaders = false;
@@ -263,6 +264,8 @@ namespace sockets
          }
          else // request
          {
+
+            m_iRequestIndex++;
 
             str.make_lower();
             //m_request.attr("remote_addr") = GetRemoteAddress().get_display_number();

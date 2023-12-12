@@ -6,7 +6,7 @@ namespace netserver
 {
 
 
-   class socket_thread_base;
+   class socket_thread;
    class socket_handler;
 
 

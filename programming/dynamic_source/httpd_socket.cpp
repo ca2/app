@@ -33,6 +33,14 @@ namespace dynamic_source
    }
 
 
+   void httpd_socket::finalize()
+   {
+
+      m_pscript.release();
+
+   }
+
+
 } // namespace dynamic_source
 
 

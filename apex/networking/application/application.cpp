@@ -54,7 +54,7 @@ namespace networking
 
       factory()->add_factory_item < ::networking::application_socket>();
 
-      m_psocketthread = __create_new< ::netserver::socket_thread_base >();
+      m_psocketthread = __create_new< ::netserver::socket_thread >();
 
       m_psocketthread->m_typeatomSocket = ::type<::networking::application_socket>();
 

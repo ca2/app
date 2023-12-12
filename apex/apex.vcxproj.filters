@@ -977,6 +977,9 @@
     <ClInclude Include="handler\manager_room.h">
       <Filter>Header Files\handler</Filter>
     </ClInclude>
+    <ClInclude Include="networking\sockets\basic\socket_impl.h">
+      <Filter>Header Files\networking\sockets\basic</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="filesystem\file\set.cpp">

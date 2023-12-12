@@ -212,6 +212,22 @@ namespace sockets
    }
 
 
+   //::index base_socket::http_request_index()
+   //{
+
+   //   return base_socket_composite()->http_request_index();
+
+   //}
+
+
+   ::string_array & base_socket::debugstra()
+   {
+
+      return base_socket_composite()->debugstra();
+
+   }
+   
+   
    void base_socket::OnWrite()
    {
 
@@ -3126,6 +3142,8 @@ namespace sockets
       base_socket_composite()->write(p, s);
 
    }
+
+
 
 
 } // namespace sockets

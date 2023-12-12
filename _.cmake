@@ -14,7 +14,7 @@ if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
 
    message(STATUS "GNU Compiler")
 
-   set(CMAKE_CXX_EXTENSIONS OFF)
+
 
    string(APPEND CMAKE_CXX_FLAGS "-fPIC -fexceptions -fnon-call-exceptions -frtti")
 

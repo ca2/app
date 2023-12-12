@@ -127,6 +127,10 @@ namespace sockets_bsd
       ::e_status             m_estatus;
       //class ::time              m_timeStart;
 
+
+      ::string_array          m_straDebug;
+
+
 #if !defined(BSD_STYLE_SOCKETS)
       bool                    m_bErrorWriting;
       bool                    m_bErrorReading;
@@ -204,6 +208,10 @@ namespace sockets_bsd
       void destroy_ssl_session() override;
 
       void get_ssl_session() override;
+
+
+      ::string_array & debugstra() override;
+      //virtual ::string debug_text();
 
 
       /** Called by listen_socket after accept but before base_socket is added to handler.

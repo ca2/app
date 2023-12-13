@@ -2250,7 +2250,7 @@ namespace http
 
       //auto passociation = psockethandler->new_association(psocket);
 
-      psockethandler->add(psocket);
+      psockethandler->add(psocket->base_socket_composite());
 
       i32 iIteration = 1;
 

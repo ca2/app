@@ -11,7 +11,7 @@
 #if !defined(WINDOWS)
 
 
-#include "callstack.h"
+#include "call_stack.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/node.h"
 #include "acme/platform/acme.h"
@@ -133,14 +133,54 @@ namespace acme
 {
 
 
-//   void node::defer_update_callstack()
-//   {
-//
-//
-//   }
+   void node::defer_update_call_stack()
+   {
 
 
-   string node::get_call_stack_trace(const ::scoped_string & strFormat, i32 iSkip, void *caller_address, int iCount)
+   }
+
+
+   void node::get_call_stack_frames(void ** stack, int & frame_count)
+   {
+
+#if defined(FREEBSD)
+      const int iMaximumFramesToCapture = 32;
+#else
+      const int iMaximumFramesToCapture = 96;
+#endif
+      
+      int iFrameCount = minimum(frame_count, iMaximumFramesToCapture);
+
+      auto frames = ::backtrace(stack, iFrameCount);
+      
+      frame_count = frames;
+
+   }
+
+
+   int node::get_call_stack_default_frame_count()
+   {
+      
+   #if defined(FREEBSD)
+         const int iMaximumFramesToCapture = 32;
+   #else
+         const int iMaximumFramesToCapture = 96;
+   #endif
+      
+      return iMaximumFramesToCapture;
+      
+   }
+
+
+   string node::get_call_stack_trace(const ::scoped_string & scopedstrFormat, i32 iSkip, void * caller_address, int iCount)
+   {
+      
+      return _get_call_stack_trace(scopedstrFormat, iSkip, caller_address, iCount);
+      
+   }
+
+
+   string node::get_call_stack_trace(void ** stack, int frame_count, const ::scoped_string & strFormat, i32 iSkip, void *caller_address, int iCount)
    {
 
       auto psynchronization = this->platform()->system()->synchronization();
@@ -153,11 +193,7 @@ namespace acme
       const int iMaximumFramesToCapture = 96;
 #endif
 
-      void * stack[iMaximumFramesToCapture];
-
-      auto frames = ::backtrace(stack, iMaximumFramesToCapture);
-
-      string str = _ansi_stack_trace(stack, minimum_non_negative(iCount, frames), strFormat, maximum( iSkip, 0));
+      string str = _ansi_stack_trace(stack, minimum_non_negative(frame_count, iMaximumFramesToCapture), strFormat, maximum(iSkip, 0));
 
       return str;
 

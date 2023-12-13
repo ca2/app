@@ -102,7 +102,7 @@ public:
    void* operator new(size_t size)
    {
 
-      return ::heap::management::memory(::heap::e_memory_property)->allocate(size);
+      return ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_property)->allocate(size);
 
    }
 
@@ -110,7 +110,7 @@ public:
    void* operator new(size_t size, const char* /* pszFileName */, int /* nLine */)
    {
 
-      return ::heap::management::memory(::heap::e_memory_property)->allocate(size);
+      return ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_property)->allocate(size);
 
    }
 
@@ -118,7 +118,7 @@ public:
    void operator delete(void * p)
    {
 
-      return ::heap::management::memory(::heap::e_memory_property)->free(p);
+      return ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_property)->free(p);
 
    }
 
@@ -126,7 +126,7 @@ public:
    void operator delete(void * p, const char* /* pszFileName */, int /* nLine */)
    {
 
-      return ::heap::management::memory(::heap::e_memory_property)->free(p);
+      return ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_property)->free(p);
 
    }
 

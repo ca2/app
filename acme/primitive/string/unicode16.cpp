@@ -175,7 +175,7 @@ strsize ansi_to_wd16_len_len(const ::ansi_character * psz, strsize srclen)
 //
 //   strsize s = ansi_to_wd16_len_len(input, input_size);
 //
-//   ::wd16_character* v = (::wd16_character*)::heap::management::memory(::heap::e_memory_main)->allocate(sizeof(::wd16_character) * (s + 1));
+//   ::wd16_character* v = (::wd16_character*)::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(sizeof(::wd16_character) * (s + 1));
 //
 //   ansi_to_wd16(v, input, s);
 //
@@ -309,7 +309,7 @@ extern "C"
 #if defined(__APPLE__) || defined(LINUX) || defined(ANDROID)
       wchar_t* p = ansi_to_wd32_dup(str);
       wchar_t* point2 = wcsdup(p);
-      ::heap::management::memory(::heap::e_memory_main)->free(p);
+      ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free(p);
       return point2;
 #else
       return wcsdup(utf8_to_unicode(str));
@@ -334,7 +334,7 @@ extern "C"
 
 //    strsize iLen = iLen1 + iLen2 + 1;
 
-//    char* psz = (char*)::heap::management::memory(::heap::e_memory_main)->allocate(iLen);
+//    char* psz = (char*)::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(iLen);
 
 //    strcpy(psz, "");
 
@@ -343,7 +343,7 @@ extern "C"
 
 //       ansi_concatenate(psz, psz1);
 
-//       ::heap::management::memory(::heap::e_memory_main)->free((void*)psz1);
+//       ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free((void*)psz1);
 
 //    }
 
@@ -355,7 +355,7 @@ extern "C"
 //       if (bFree2)
 //       {
 
-//          ::heap::management::memory(::heap::e_memory_main)->free((void*)psz2);
+//          ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free((void*)psz2);
 
 //       }
 
@@ -491,7 +491,7 @@ extern "C"
 //
 //   strsize s = utf16_to_utf16_len(input, input_size);
 //
-//   ::wd16_character* v = (::wd16_character*)::heap::management::memory(::heap::e_memory_main)->allocate(sizeof(::wd16_character) * (s + 1));
+//   ::wd16_character* v = (::wd16_character*)::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(sizeof(::wd16_character) * (s + 1));
 //
 //   utf16_to_utf16(v, input, s);
 //
@@ -791,7 +791,7 @@ strsize ansi_to_wd16(::wd16_character* pwsz, const ::ansi_character * psz, strsi
 
    strsize s = ansi_to_wd16_len(input, input_size);
 
-   ::wd16_character* v = (::wd16_character*)::heap::management::memory(::heap::e_memory_main)->allocate(sizeof(::wd16_character) * (s + 1));
+   ::wd16_character* v = (::wd16_character*)::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(sizeof(::wd16_character) * (s + 1));
 
    ansi_to_wd16(v, input, s);
 

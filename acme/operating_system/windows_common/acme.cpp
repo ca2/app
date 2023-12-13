@@ -25,7 +25,6 @@ namespace acme
 
    }
 
-
 #endif // defined(UNICODE)
 
 

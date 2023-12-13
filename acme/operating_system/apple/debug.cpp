@@ -92,7 +92,7 @@ void output_debug_string(const ::scoped_string & scopedstrOutputString)
 //
 //   wprintf(L"%S", pusz);
 //
-//   ::heap::management::memory(::heap::e_memory_main)->free(pusz);
+//   ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free(pusz);
 
 }
 

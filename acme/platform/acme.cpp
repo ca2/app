@@ -244,15 +244,7 @@ namespace acme
 {
 
 
-   //static ::acme::acme * g_pacme;
-
-   //
-   //CLASS_DECL_ACME ::acme::acme * get()
-   //{
-
-   //   return g_pacme;
-
-   //}
+   ::acme::acme * acme::s_pacme = nullptr;
 
 
    acme::acme()

@@ -10,7 +10,12 @@
 
 
 CLASS_DECL_ACME ::string get_task_object_name();
+
+#ifdef _DEBUG
+
 CLASS_DECL_ACME ::string get_task_object_debug();
+
+#endif
 
 
 #define __default_array_array_base_non_particle(TYPE) ::array_base_non_particle < TYPE, const TYPE &, ::allocator::def < TYPE > >

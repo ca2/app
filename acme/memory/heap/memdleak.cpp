@@ -1,5 +1,8 @@
 #include "framework.h"
 
+
+
+
 //
 //
 //::count get_mem_info(i32** ppiUse, const char*** ppszFile, const char*** ppszCallStack, u32** ppuiLine, memsize** ppsize);
@@ -150,9 +153,9 @@
 //
 //
 //
-//#undef ::heap::management::memory(::heap::e_memory_main)->allocate
+//#undef ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate
 //
-//void * ::heap::management::memory(::heap::e_memory_main)->allocate(memsize size)
+//void * ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(memsize size)
 //{
 //
 //#if defined(__APPLE__)
@@ -191,7 +194,7 @@
 //void * memory_calloc(memsize size, memsize bytes)
 //{
 //
-//   return ::heap::management::memory(::heap::e_memory_main)->allocate(size * bytes);
+//   return ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(size * bytes);
 //
 //}
 //
@@ -354,7 +357,7 @@
 //}
 //
 //
-//void ::heap::management::memory(::heap::e_memory_main)->free(void * pmemory)
+//void ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free(void * pmemory)
 //{
 //
 //   return memory_free_debug(pmemory, 0);
@@ -426,7 +429,7 @@
 //
 //
 //
-//#undef ::heap::management::memory(::heap::e_memory_main)->allocate
+//#undef ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate
 //
 //
 //void* _memory_allocate(memsize size)
@@ -464,7 +467,7 @@
 //void* _memory_count_allocate(memsize size, memsize bytes)
 //{
 //
-//   return ::heap::management::memory(::heap::e_memory_main)->allocate(size * bytes);
+//   return ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(size * bytes);
 //
 //}
 //
@@ -1021,3 +1024,6 @@
 //#endif // MEMDLEAK
 //
 //
+
+
+

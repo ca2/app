@@ -288,6 +288,12 @@
 		9A754F852B211EA500FFB669 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A754F842B211EA500FFB669 /* _.h */; };
 		9A754F862B211EA500FFB669 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A754F842B211EA500FFB669 /* _.h */; };
 		9A754F872B211EA500FFB669 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A754F842B211EA500FFB669 /* _.h */; };
+		9A75515B2B21809C00FFB669 /* manager_room.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7551592B21809C00FFB669 /* manager_room.cpp */; };
+		9A75515C2B21809C00FFB669 /* manager_room.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7551592B21809C00FFB669 /* manager_room.cpp */; };
+		9A75515D2B21809C00FFB669 /* manager_room.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7551592B21809C00FFB669 /* manager_room.cpp */; };
+		9A75515E2B21809C00FFB669 /* manager_room.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A75515A2B21809C00FFB669 /* manager_room.h */; };
+		9A75515F2B21809C00FFB669 /* manager_room.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A75515A2B21809C00FFB669 /* manager_room.h */; };
+		9A7551602B21809C00FFB669 /* manager_room.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A75515A2B21809C00FFB669 /* manager_room.h */; };
 		9A787D71264C960F003DF8A0 /* _impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A787D55264C960E003DF8A0 /* _impl.h */; };
 		9A787D72264C960F003DF8A0 /* _impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A787D55264C960E003DF8A0 /* _impl.h */; };
 		9A787D73264C960F003DF8A0 /* thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A787D56264C960E003DF8A0 /* thread.cpp */; };
@@ -1238,6 +1244,8 @@
 		9A68BB162511444D008DABD2 /* aaa_want_to_move_xml.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aaa_want_to_move_xml.h; sourceTree = "<group>"; };
 		9A68BB2C2511444D008DABD2 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		9A754F842B211EA500FFB669 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
+		9A7551592B21809C00FFB669 /* manager_room.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = manager_room.cpp; sourceTree = "<group>"; };
+		9A75515A2B21809C00FFB669 /* manager_room.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = manager_room.h; sourceTree = "<group>"; };
 		9A787D55264C960E003DF8A0 /* _impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _impl.h; sourceTree = "<group>"; };
 		9A787D56264C960E003DF8A0 /* thread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = thread.cpp; sourceTree = "<group>"; };
 		9A787D59264C960E003DF8A0 /* service.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = service.h; sourceTree = "<group>"; };
@@ -1924,6 +1932,8 @@
 		9A9230B327EACE7F00B5A78D /* handler */ = {
 			isa = PBXGroup;
 			children = (
+				9A7551592B21809C00FFB669 /* manager_room.cpp */,
+				9A75515A2B21809C00FFB669 /* manager_room.h */,
 				9A9230B727EACE7F00B5A78D /* context.cpp */,
 				9A9230BE27EACE7F00B5A78D /* manager.cpp */,
 				9A9230BF27EACE7F00B5A78D /* signal.cpp */,
@@ -2179,6 +2189,7 @@
 				9A226CFF27CE8FAB0042BAC2 /* app_consumer.h in Headers */,
 				9A68BCBD2511444E008DABD2 /* savings.h in Headers */,
 				9A239DDD26CDF9AF00F98012 /* link_out_socket.h in Headers */,
+				9A75515E2B21809C00FFB669 /* manager_room.h in Headers */,
 				9A68BE0E2511444F008DABD2 /* application_common.h in Headers */,
 				9A68BE042511444F008DABD2 /* console_common.h in Headers */,
 				9A68BD232511444E008DABD2 /* _platform.h in Headers */,
@@ -2465,6 +2476,7 @@
 				9AC97F692A71B39E00B1BCF3 /* promise.h in Headers */,
 				9AC97F6A2A71B39E00B1BCF3 /* httpd_socket.h in Headers */,
 				9AC97F6B2A71B39E00B1BCF3 /* thread_impl.h in Headers */,
+				9A7551602B21809C00FFB669 /* manager_room.h in Headers */,
 				9AC97F6C2A71B39E00B1BCF3 /* _.h in Headers */,
 				9AC97F6D2A71B39E00B1BCF3 /* service_handler.h in Headers */,
 				9ABBB6982AEA11BD007611C5 /* shared.h in Headers */,
@@ -2640,6 +2652,7 @@
 				9AD69361251A754800C0EBD7 /* _console_old.h in Headers */,
 				9AD69364251A754800C0EBD7 /* application.h in Headers */,
 				9AD69365251A754800C0EBD7 /* linux.h in Headers */,
+				9A75515F2B21809C00FFB669 /* manager_room.h in Headers */,
 				9AD69371251A754800C0EBD7 /* key.h in Headers */,
 				9AD69374251A754800C0EBD7 /* change_event.h in Headers */,
 				9AD69378251A754800C0EBD7 /* shell_launcher.h in Headers */,
@@ -2882,6 +2895,7 @@
 				9A97C03828C83B0400A43004 /* socket_handler.cpp in Sources */,
 				9A68BCDC2511444E008DABD2 /* shell_launcher.cpp in Sources */,
 				9AE6DF57296390D4008A1335 /* target.cpp in Sources */,
+				9A75515B2B21809C00FFB669 /* manager_room.cpp in Sources */,
 				9A2898832A652A4E00F46A84 /* message.cpp in Sources */,
 				9A239E6926CDF9AF00F98012 /* transaction.cpp in Sources */,
 				9AE6DF53296390D4008A1335 /* base.cpp in Sources */,
@@ -3026,6 +3040,7 @@
 				9AC9801D2A71B39E00B1BCF3 /* socket_handler.cpp in Sources */,
 				9AC9801E2A71B39E00B1BCF3 /* shell_launcher.cpp in Sources */,
 				9AC9801F2A71B39E00B1BCF3 /* target.cpp in Sources */,
+				9A75515D2B21809C00FFB669 /* manager_room.cpp in Sources */,
 				9AC980202A71B39E00B1BCF3 /* message.cpp in Sources */,
 				9AC980212A71B39E00B1BCF3 /* transaction.cpp in Sources */,
 				9AC980222A71B39E00B1BCF3 /* base.cpp in Sources */,
@@ -3147,6 +3162,7 @@
 				9A787D74264C960F003DF8A0 /* thread.cpp in Sources */,
 				9A28988A2A652A4E00F46A84 /* language.cpp in Sources */,
 				9AD6950D251A754800C0EBD7 /* remote_native_file.cpp in Sources */,
+				9A75515C2B21809C00FFB669 /* manager_room.cpp in Sources */,
 				9AD69512251A754800C0EBD7 /* log.cpp in Sources */,
 				9A1FBB862872A9F00042849A /* socket_handler.cpp in Sources */,
 				9A0F53AF28E8D80900025231 /* socket_handler.cpp in Sources */,
@@ -3310,7 +3326,9 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = framework.h;
-				GCC_PREPROCESSOR_DEFINITIONS = _DEBUG;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;

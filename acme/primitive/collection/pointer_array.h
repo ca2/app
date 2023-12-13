@@ -243,7 +243,7 @@ public:
    void insert_at(::index i, T* p)
    {
 
-      ::index nIndex = this->size();
+      //::index nIndex = this->size();
 
       comparable_array < ::pointer<T >, const T * >::insert_at(i, p);
 

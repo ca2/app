@@ -84,7 +84,7 @@ CLASS_DECL_ACME ::wd16_character * wd16_duplicate(const ::wd16_character * psz)
 
    if (::is_null(psz)) return nullptr;
 
-   auto pszDup = (::wd16_character *)::heap::management::memory(::heap::e_memory_main)->allocate(wd16_len(psz) + 1);
+   auto pszDup = (::wd16_character *)::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(wd16_len(psz) + 1);
 
    wd16_cpy(pszDup, psz);
 
@@ -100,7 +100,7 @@ CLASS_DECL_ACME ::wd16_character * wd16_count_duplicate(const ::wd16_character *
 
    if (len < 0) return nullptr;
 
-   auto pszDup = (::wd16_character *)::heap::management::memory(::heap::e_memory_main)->allocate(len + 1);
+   auto pszDup = (::wd16_character *)::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(len + 1);
 
    wd16_ncpy(pszDup, psz, len);
 
@@ -924,7 +924,7 @@ CLASS_DECL_ACME const ::wd16_character * wd16_concatenate_and_duplicate(const ::
 
    strsize len = len1 + len2 + 1;
 
-   auto * psz = (::wd16_character *)::heap::management::memory(::heap::e_memory_main)->allocate(len);
+   auto * psz = (::wd16_character *)::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(len);
 
    *psz = '\0';
 
@@ -936,7 +936,7 @@ CLASS_DECL_ACME const ::wd16_character * wd16_concatenate_and_duplicate(const ::
       if (iFree1 > 0)
       {
 
-         ::heap::management::memory(::heap::e_memory_main)->free((void *)psz1);
+         ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free((void *)psz1);
 
       }
       else if (iFree1 < 0)
@@ -956,7 +956,7 @@ CLASS_DECL_ACME const ::wd16_character * wd16_concatenate_and_duplicate(const ::
       if (iFree2 > 0)
       {
 
-         ::heap::management::memory(::heap::e_memory_main)->free((void *)psz2);
+         ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free((void *)psz2);
 
       }
       else if (iFree2 < 0)
@@ -982,7 +982,7 @@ CLASS_DECL_ACME const ::wd16_character * wd16_concatenate_and_duplicate(const ::
 //
 //   strsize len = len1 + len2 + 1;
 //
-//   auto * psz = (::wd16_character *)::heap::management::memory(::heap::e_memory_main)->allocate(len);
+//   auto * psz = (::wd16_character *)::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(len);
 //
 //   *psz = '\0';
 //
@@ -998,7 +998,7 @@ CLASS_DECL_ACME const ::wd16_character * wd16_concatenate_and_duplicate(const ::
 //
 //      strcat(psz, psz2);
 //
-//      ::heap::management::memory(::heap::e_memory_main)->free(psz2);
+//      ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free(psz2);
 //
 //   }
 //
@@ -1017,7 +1017,7 @@ CLASS_DECL_ACME const ::wd16_character * wd16_concatenate_and_duplicate(const ::
 //
 //   strsize len = len1 + len2 + 1;
 //
-//   auto * psz = (::wd16_character *)::heap::management::memory(::heap::e_memory_main)->allocate(len);
+//   auto * psz = (::wd16_character *)::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(len);
 //
 //   *psz = '\0';
 //
@@ -1026,7 +1026,7 @@ CLASS_DECL_ACME const ::wd16_character * wd16_concatenate_and_duplicate(const ::
 //
 //      strcat(psz, psz1);
 //
-//      ::heap::management::memory(::heap::e_memory_main)->free(psz1);
+//      ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free(psz1);
 //
 //   }
 //
@@ -1052,7 +1052,7 @@ CLASS_DECL_ACME const ::wd16_character * wd16_concatenate_and_duplicate(const ::
 //
 //   strsize len = len1 + len2 + 1;
 //
-//   auto * psz = (::wd16_character *)::heap::management::memory(::heap::e_memory_main)->allocate(len);
+//   auto * psz = (::wd16_character *)::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(len);
 //
 //   *psz = '\0';
 //
@@ -1061,7 +1061,7 @@ CLASS_DECL_ACME const ::wd16_character * wd16_concatenate_and_duplicate(const ::
 //
 //      strcat(psz, psz1);
 //
-//      ::heap::management::memory(::heap::e_memory_main)->free(psz1);
+//      ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free(psz1);
 //
 //   }
 //
@@ -1070,7 +1070,7 @@ CLASS_DECL_ACME const ::wd16_character * wd16_concatenate_and_duplicate(const ::
 //
 //      strcat(psz, psz2);
 //
-//      ::heap::management::memory(::heap::e_memory_main)->free(psz2);
+//      ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free(psz2);
 //
 //   }
 //

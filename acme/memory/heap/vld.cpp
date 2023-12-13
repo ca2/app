@@ -1,6 +1,8 @@
 #include "framework.h"
 
 
+
+
 //
 //
 //#define AXIS_MEMORY_MANAGEMENT true
@@ -481,9 +483,9 @@
 //
 //#if !defined(MCHECK)
 //
-//#undef ::heap::management::memory(::heap::e_memory_main)->allocate
+//#undef ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate
 //
-//void * ::heap::management::memory(::heap::e_memory_main)->allocate(memsize size)
+//void * ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(memsize size)
 //{
 //
 //#if defined(__APPLE__)
@@ -498,7 +500,7 @@
 //
 //}
 //
-//#undef ::heap::management::memory(::heap::e_memory_main)->allocate
+//#undef ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate
 //
 //#endif
 //
@@ -508,7 +510,7 @@
 //
 //#if defined(MCHECK) || defined(__VLD) || defined(__MCRTDBG)
 //
-//   return ::heap::management::memory(::heap::e_memory_main)->allocate(size);
+//   return ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(size);
 //
 //#else
 //
@@ -532,7 +534,7 @@
 //void * memory_calloc(memsize size, memsize bytes)
 //{
 //
-//   return ::heap::management::memory(::heap::e_memory_main)->allocate(size * bytes);
+//   return ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(size * bytes);
 //
 //}
 //
@@ -540,7 +542,7 @@
 //void * memory_allocate_debug(memsize nSize, i32 nBlockUse, const char * szFileName, i32 nLine)
 //{
 //#ifdef MCHECK
-//   return ::heap::management::memory(::heap::e_memory_main)->allocate(nSize);
+//   return ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(nSize);
 //#else
 //   return unaligned_memory_allocate_debug(nSize, nBlockUse, szFileName, nLine);
 //#endif
@@ -732,7 +734,7 @@
 //
 //#if !defined(MCHECK) && !defined(__VLD) && !defined(__MCRTDBG)
 //
-//void ::heap::management::memory(::heap::e_memory_main)->free(void * pmemory)
+//void ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free(void * pmemory)
 //{
 //
 //   return memory_free_debug(pmemory, 0);
@@ -750,7 +752,7 @@
 //
 //#if defined(__VLD) || defined(MCHECK) || defined(__MCRTDBG)
 //
-//   ::heap::management::memory(::heap::e_memory_main)->free(pmemory);
+//   ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free(pmemory);
 //
 //#elif MEMDLEAK
 //   memdleak_block * pblock = &((memdleak_block *)pmemory)[-1];
@@ -922,7 +924,7 @@
 //
 //
 //
-//void * ::heap::management::memory(::heap::e_memory_main)->allocate(memsize size)
+//void * ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(memsize size)
 //{
 //
 //   return system_heap_alloc(size);
@@ -964,7 +966,7 @@
 //
 //}
 //
-//void ::heap::management::memory(::heap::e_memory_main)->free(void * p)
+//void ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free(void * p)
 //{
 //   return system_heap_free(pvoid);
 //}
@@ -983,7 +985,7 @@
 //void memory_free_debug(void * p, i32 iBlockType)
 //{
 //
-//   ::heap::management::memory(::heap::e_memory_main)->free(pvoid);
+//   ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free(pvoid);
 //
 //}
 //
@@ -1007,3 +1009,6 @@
 //
 //
 //
+
+
+

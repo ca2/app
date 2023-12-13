@@ -64,7 +64,7 @@ namespace nanoui
       set_cursor(editable ? Cursor::IBeam : Cursor::Arrow);
    }
 
-   void TextBox::set_theme(Theme* theme) {
+   void TextBox::set_theme(const ::pointer < Theme > & theme) {
       Widget::set_theme(theme);
       if (m_ptheme)
          m_font_size = m_ptheme->m_iTextBoxFontSize;
@@ -580,7 +580,7 @@ namespace nanoui
             m_iSelectionEnd = m_strValueEdit.length();
 
          }
-         else
+         else if(!m_bCommitted)
          {
 
             ::string strRollback = m_strValue;

@@ -51,13 +51,13 @@ namespace heap
    public:
 
 
-      inline static class memory * s_memorya[::heap::e_memory_count];
+      class memory * m_memorya[::heap::e_memory_count];
 
 
       //inline static class allocator *  s_allocatora[::heap::e_allocator_count];
 
 
-      inline static class allocator * s_pallocator;
+      class allocator * m_pallocator;
       
       
       //inline static class heap * s_heapa[::heap::e_heap_count];
@@ -82,16 +82,16 @@ namespace heap
 
       void dump_particle_counters();
 
-      inline static class memory * memory(enum_memory ememory) { return s_memorya[ememory]; }
+      inline class memory * memory(enum_memory ememory) { return m_memorya[ememory]; }
 
 
 
       //  Created by Camilo Sasuke Thomas Borregaard Soerensen on 28/02/20.
-      inline static class memory * main_memory() { return memory(::heap::e_memory_main); }
-      inline static class memory * secondary_memory() { return memory(::heap::e_memory_secondary); }
-      inline static class memory * array_memory() { return memory(::heap::e_memory_array); }
-      inline static class memory * property_memory() { return memory(::heap::e_memory_property); }
-      inline static class memory * string_memory() { return memory(::heap::e_memory_string); }
+      inline class memory * main_memory() { return memory(::heap::e_memory_main); }
+      inline class memory * secondary_memory() { return memory(::heap::e_memory_secondary); }
+      inline class memory * array_memory() { return memory(::heap::e_memory_array); }
+      inline class memory * property_memory() { return memory(::heap::e_memory_property); }
+      inline class memory * string_memory() { return memory(::heap::e_memory_string); }
 
 
 
@@ -106,10 +106,10 @@ namespace heap
       //   return s_allocatora[eallocator];
 
       //}
-      inline static class allocator * allocator()
+      inline class allocator * allocator()
       {
 
-         return s_pallocator;
+         return m_pallocator;
 
       }
 
@@ -256,7 +256,7 @@ namespace heap
 //         if(m_p == nullptr)
 //         {
 //
-//            m_p = ::heap::management::memory(::heap::e_memory_main)->allocate(uiSize);
+//            m_p = ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(uiSize);
 //
 //         }
 //         else
@@ -284,7 +284,7 @@ namespace heap
 //         if(m_p != nullptr)
 //         {
 //
-//            ::heap::management::memory(::heap::e_memory_main)->free(m_p);
+//            ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free(m_p);
 //
 //            m_p = nullptr;
 //

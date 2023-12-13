@@ -1,7 +1,7 @@
 //Created by camilo on 2021-07-29 18:23 BRT <3ThomasBorregaardSorensen!!
 #include "framework.h"
 //#include "memory_management.h"
-////#include "::heap::management::memory(::heap::e_memory_main)->allocate.h"
+////#include "::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate.h"
 //#include "memory.h"
 ////#include "secondary_memory_allocate.h"
 ////#include "array_memory_allocate.h"

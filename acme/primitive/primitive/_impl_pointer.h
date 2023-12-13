@@ -626,8 +626,10 @@ inline i64 pointer <T>::release()
 
    ::count c = -1;
 
+#if REFERENCING_DEBUGGING
    ::index iSerial = -1;
-
+#endif
+   
    {
 #if REFERENCING_DEBUGGING
 
@@ -1882,9 +1884,6 @@ inline bool pointer < T > ::defer_destroy()
 
 
 /// @brief consumes a releaser (a referer used to decrement reference count)
-/// @tparam T
-/// @param p
-/// @return
 template < typename T >
 inline i64 release(T *& p)
 {
@@ -1930,9 +1929,6 @@ inline i64 release(T *& p)
 
 
 /// @brief consumes a releaser (a referer used to decrement reference count)
-/// @tparam T
-/// @param p
-/// @return
 template < typename T >
 inline i64 global_release(T *& p)
 {

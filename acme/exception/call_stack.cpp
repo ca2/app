@@ -3,13 +3,16 @@
 #include "acme/platform/node.h"
 
 
-CLASS_DECL_ACME::string call_stack_default_format()
+#ifdef WINDOWS_DESKTOP
+CLASS_DECL_ACME ::string call_stack_default_format()
+#else
+::string call_stack_default_format()
+#endif
 {
 
    return "%f(%l) %s\n";
 
 }
-
 
 
 //CLASS_DECL_ACME void get_call_stack_frames(void** stack, int & frame_count)

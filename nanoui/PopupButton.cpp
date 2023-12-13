@@ -27,7 +27,7 @@ namespace nanoui
 
       set_flags(Flags::ToggleButton | Flags::PopupButton);
 
-      m_ppopup = __new< Popup> (screen(), window());
+      m_ppopup = __allocate< Popup> (screen(), window());
 
       m_ppopup->set_size({320, 250 });
 
@@ -35,6 +35,14 @@ namespace nanoui
 
       m_icon_extra_scale = 0.8f; // pwidget override
 
+   }
+
+
+   void PopupButton::on_destroy_window()
+   {
+ 
+      ::nanoui::defer_destroy_window(m_ppopup);
+      
    }
 
 

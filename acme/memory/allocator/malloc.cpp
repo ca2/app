@@ -8,8 +8,6 @@
 #endif
 
 
-
-
 namespace heap
 {
 
@@ -44,7 +42,7 @@ namespace heap
 
 #else
 
-      return malloc(s);
+      return ::malloc(s);
 
 #endif
    }
@@ -58,10 +56,12 @@ namespace heap
 
 #else
 
-      return realloc(p, s);
+      return ::realloc(p, s);
 
 #endif
    }
+
+
    void malloc_allocator::free(void * p)
    {
 
@@ -71,11 +71,13 @@ namespace heap
 
 #else
 
-      free(p);
+      ::free(p);
 
 #endif
 
    }
+
+
    memsize  malloc_allocator::size(void * p)
    {
 
@@ -106,6 +108,8 @@ namespace heap
       return true;
 
    }
+
+
    //
    //
    //void * operating_system_memory_allocate(memsize size)
@@ -175,7 +179,6 @@ namespace heap
 
 
 } // namespace heap
-
 
 
 

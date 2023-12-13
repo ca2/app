@@ -173,7 +173,7 @@ public:
 
    }
 
-   inline static ::heap::memory * memory() { return ::heap::management::memory(t_ememory); }
+   inline static ::heap::memory * memory() { return ::acme::get()->m_pheapmanagement->memory(t_ememory); }
 
    void destroy()
    {

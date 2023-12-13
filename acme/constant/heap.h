@@ -16,6 +16,8 @@ namespace heap
       e_memory_string,
 
       e_memory_count,
+      
+      e_memory_simple,
 
    };
 

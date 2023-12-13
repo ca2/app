@@ -7,7 +7,7 @@
 
    strsize s = wd16_to_wd32_len(input, input_size);
 
-   ::wd32_character* v = (::wd32_character*)::heap::management::memory(::heap::e_memory_main)->allocate(sizeof(::wd32_character) * (s + 1));
+   ::wd32_character* v = (::wd32_character*)::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(sizeof(::wd32_character) * (s + 1));
 
    wd16_to_wd32(v, input, s);
 

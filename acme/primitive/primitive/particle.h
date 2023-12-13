@@ -684,9 +684,6 @@ public:
 
 
    /// @brief consumes a referer
-   /// @tparam T 
-   /// @param pSource 
-   /// @return 
    template < typename T >
    ::pointer < T > create_clone(const T * pSource)
    {
@@ -1168,17 +1165,11 @@ inline bool is_ok(const ::particle * pconstparticle)
 
 
 /// @brief consumes a releaser (a referer used to decrement reference count)
-/// @tparam T 
-/// @param p 
-/// @return 
 template < typename T >
 inline i64 release(T *& p);
 
 
 /// @brief consumes a releaser (a referer used to decrement reference count)
-/// @tparam T 
-/// @param p 
-/// @return 
 template < typename T >
 inline i64 global_release(T *& p);
 

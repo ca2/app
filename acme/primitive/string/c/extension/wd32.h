@@ -23,8 +23,8 @@ CLASS_DECL_ACME ::wd32_character *             wd32_concatenate(::wd32_character
 CLASS_DECL_ACME ::wd32_character *             wd32_copy(::wd32_character * dest, const ::wd32_character * cat);
 CLASS_DECL_ACME ::wd32_character *             wd32_count_copy(::wd32_character * dest, const ::wd32_character * cat, strsize iLen);
 CLASS_DECL_ACME strsize                wd32_length(const ::wd32_character * cat);
-CLASS_DECL_ACME ::wd32_character *             wd32_duplicate(const ::wd32_character * src); // ATTENTION - ::heap::management::memory(::heap::e_memory_main)->allocate
-CLASS_DECL_ACME ::wd32_character *             wd32_count_duplicate(const ::wd32_character * src, strsize srclen); // ATTENTION - ::heap::management::memory(::heap::e_memory_main)->allocate
+CLASS_DECL_ACME ::wd32_character *             wd32_duplicate(const ::wd32_character * src); // ATTENTION - ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate
+CLASS_DECL_ACME ::wd32_character *             wd32_count_duplicate(const ::wd32_character * src, strsize srclen); // ATTENTION - ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate
 CLASS_DECL_ACME const ::wd32_character *       wd32_find_string(const ::wd32_character * src, const ::wd32_character * find);
 CLASS_DECL_ACME const ::wd32_character *       wd32_find_string_case_insensitive(const ::wd32_character * src, const ::wd32_character * find);
 CLASS_DECL_ACME const ::wd32_character *       wd32_count_find_string(const ::wd32_character * src, const ::wd32_character * find, strsize iLen);

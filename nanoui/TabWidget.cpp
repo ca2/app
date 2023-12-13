@@ -459,7 +459,7 @@ namespace nanoui
          m_ppopup->set_anchor_size(8);
          
          if (m_ppopup->layout() == nullptr)
-            m_ppopup->set_layout(__new< GroupLayout >(5, 3));
+            m_ppopup->set_layout(__allocate< GroupLayout >(5, 3));
 
          for (Widget* pwidgetChild : m_ppopup->children()) 
          {

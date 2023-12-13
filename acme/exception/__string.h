@@ -2,9 +2,14 @@
 #pragma once
 
 
+#ifdef WINDOWS_DESKTOP
 CLASS_DECL_ACME ::string call_stack_default_format();
-CLASS_DECL_ACME ::string get_call_stack_trace(void ** stack, int c, const char* pszFormat = nullptr);
+#else
+::string call_stack_default_format();
+#endif
 
+
+//CLASS_DECL_ACME ::string get_call_stack_trace(void ** stack, int c, const char* pszFormat = nullptr);
 
 
 

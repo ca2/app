@@ -2361,6 +2361,7 @@ CLASS_DECL_ACME::string get_task_object_name()
 
 }
 
+#ifdef _DEBUG
 
 CLASS_DECL_ACME::string get_task_object_debug()
 {
@@ -2368,6 +2369,8 @@ CLASS_DECL_ACME::string get_task_object_debug()
    return ::get_task()->m_pszDebug;
 
 }
+
+#endif
 
 
 

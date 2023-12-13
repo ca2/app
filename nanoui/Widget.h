@@ -173,14 +173,14 @@ namespace nanoui
       /// Return the used \::pointer Layout generator
       const Layout* layout() const { return m_playout.get(); }
       /// Set the used \::pointer Layout generator
-      void set_layout(Layout* layout); 
+      void set_layout(const ::pointer < Layout > & playout); 
 
       /// Return the \::pointer Theme used to draw this pwidget
       Theme* theme() { return m_ptheme; }
       /// Return the \::pointer Theme used to draw this pwidget
       const Theme* theme() const { return m_ptheme.get(); }
       /// Set the \::pointer Theme used to draw this pwidget
-      virtual void set_theme(Theme* theme);
+      virtual void set_theme(const ::pointer < Theme > & theme);
 
       /// Return the position relative to the parent pwidget
       const point_i32& position() const { return m_pos; }
@@ -321,8 +321,8 @@ namespace nanoui
 
       /// Variadic shorthand notation to construct and add a pwidgetChild pwidget
       template<typename WidgetClass, typename... Args>
-      WidgetClass* add(const Args&... args) {
-         return __new< WidgetClass >(this, args...);
+      ::pointer < WidgetClass>  add(const Args&... args) {
+         return __allocate< WidgetClass >(this, args...);
       }
 
       /// Walk up the hierarchy and return the parent window
@@ -452,6 +452,29 @@ namespace nanoui
    };
 
 
+   template < typename T >
+   void defer_destroy_window(::pointer < T > & p)
+   {
+      
+      if(p)
+      {
+         
+         try
+         {
+            
+            p->destroy_window();
+            
+         }
+         catch(...)
+         {
+            
+         }
+         
+         p.release();
+         
+      }
+      
+   }
 
 } // namespace nanoui
 

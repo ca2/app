@@ -54,7 +54,7 @@ namespace message
 #include "acme/memory/allocation.h"
 #include "acme/platform/reference_count_debug.h"
 #include "acme/platform/object_type_counter.h"
-#include "acme/memory/::heap::management::memory(::heap::e_memory_main)->allocate.h"
+#include "acme/memory/::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate.h"
 #include "acme/primitive/primitive/_c_memory.h"
 #include "acme/memory/heap_c.h"
 #include "acme/memory/allocate_processor_cache_oriented.h"

@@ -532,10 +532,12 @@ namespace acme
 //#if defined(ANDROID)
 //      virtual string unwind_call_stack(const ::scoped_string & scopedstrFormat = call_stack_default_format(), i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, int iCount = -1);
 //#else
+      virtual int get_call_stack_default_frame_count();
       virtual void get_call_stack_frames(void ** stack, int & frame_count);
       virtual string get_call_stack_trace(const ::scoped_string & scopedstrFormat = call_stack_default_format(), i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr, int iCount = -1);
       virtual string get_call_stack_trace(void ** stack, int frame_count, const ::scoped_string& scopedstrFormat = call_stack_default_format(), i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void* caller_address = nullptr, int iCount = -1);
 //#endif
+      virtual string _get_call_stack_trace(const ::scoped_string & scopedstrFormat = call_stack_default_format(), i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr, int iCount = -1);
 
 
 

@@ -112,7 +112,7 @@ namespace nanoui
       void set_placeholder(const ::scoped_string& placeholder) { m_strPlaceHolder = placeholder; }
 
       /// Set the \::pointer Theme used to draw this pwidget
-      virtual void set_theme(Theme* theme) override;
+      virtual void set_theme(const  ::pointer < Theme > & theme) override;
 
       /// The callback to execute when the value of this TextBox has changed.
       ::function<bool(const ::scoped_string& str)> callback() const { return m_callback; }

@@ -135,8 +135,8 @@ NAMESPACE_END(detail)
          const ::scoped_string & title = "Untitled")
       {
          ASSERT(m_pscreen);
-         m_pwindow = __new< Window >(m_pscreen, title);
-         m_playout = __new< AdvancedGridLayout >({ 10, 0, 10, 0 }, {});
+         m_pwindow = __allocate< Window >(m_pscreen, title);
+         m_playout = __allocate< AdvancedGridLayout >({ 10, 0, 10, 0 }, {});
          m_playout->set_margin(10);
          m_playout->set_col_stretch(2, 1);
          m_pwindow->set_position(pos);
@@ -149,7 +149,7 @@ NAMESPACE_END(detail)
       /// Add a new group that may contain several sub-widgets
       Label * add_group(const ::scoped_string & caption)
       {
-         Label * plabel = __new< Label >(m_pwindow, caption, m_group_font_name, m_group_font_size);
+         Label * plabel = __allocate< Label >(m_pwindow, caption, m_group_font_name, m_group_font_size);
          if (m_playout->row_count() > 0)
             m_playout->append_row(m_pre_group_spacing); /* Spacing */
          m_playout->append_row(0);
@@ -165,8 +165,8 @@ NAMESPACE_END(detail)
             const ::function<Type()> & getter,
                       bool editable = true)
       {
-         Label * plabel_w = __new< Label >(m_pwindow, label, m_label_font_name, m_label_font_size);
-         auto pwidget = __new< detail::FormWidget<Type> >(m_pwindow);
+         Label * plabel_w = __allocate< Label >(m_pwindow, label, m_label_font_name, m_label_font_size);
+         auto pwidget = __allocate< detail::FormWidget<Type> >(m_pwindow);
          auto refresh = [pwidget, getter] {
             Type value = getter(), current = pwidget->value();
             if (value != current)
@@ -201,7 +201,7 @@ NAMESPACE_END(detail)
       /// Add a button with a custom callback
       Button * add_button(const ::scoped_string & label, const ::function<void()> & cb)
       {
-         Button * pbutton = __new< Button >(m_pwindow, label);
+         Button * pbutton = __allocate< Button >(m_pwindow, label);
          pbutton->set_callback(cb);
          pbutton->set_fixed_height(25);
          if (m_playout->row_count() > 0)
@@ -219,7 +219,7 @@ NAMESPACE_END(detail)
             m_playout->set_anchor(pwidget, AdvancedGridLayout::Anchor(1, m_playout->row_count() - 1, 3, 1));
          }
          else {
-            Label * plabel_w = __new< Label >(m_pwindow, label, m_label_font_name, m_label_font_size);
+            Label * plabel_w = __allocate< Label >(m_pwindow, label, m_label_font_name, m_label_font_size);
             m_playout->set_anchor(plabel_w, AdvancedGridLayout::Anchor(1, m_playout->row_count() - 1));
             m_playout->set_anchor(pwidget, AdvancedGridLayout::Anchor(3, m_playout->row_count() - 1));
          }

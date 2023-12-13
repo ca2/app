@@ -17,7 +17,7 @@ void get_os_priority(i32 * piPolicy, sched_param * pparam, ::enum_priority eprio
 //
 //   char *   cmd_line;
 //
-//   cmd_line = (char *) ::heap::management::memory(::heap::e_memory_main)->allocate(strlen(_cmd_line ) + 1 );
+//   cmd_line = (char *) ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(strlen(_cmd_line ) + 1 );
 //
 //   if (cmd_line == nullptr)
 //   {

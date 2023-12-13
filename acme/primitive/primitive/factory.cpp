@@ -241,7 +241,7 @@ CLASS_DECL_ACME bool safe_free_memory(void * ptype)
    try
    {
 
-      ::heap::management::memory(::heap::e_memory_main)->free(ptype);
+      ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free(ptype);
 
    }
    catch(...)

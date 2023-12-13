@@ -289,9 +289,13 @@ namespace allocator
       template < typename T, typename ...Args >
       static ::pointer < T > __memory_allocate(::heap::enum_memory ememory, Args &&... args)
       {
+         
+         auto pheapmanagement = ::acme::get()->m_pheapmanagement;
+         
+         auto & pallocatorbase = pheapmanagement->m_memorya[ememory];
 
          auto p = ::transfer(__allocator_base_allocate< T >(
-            ::acme::get()->m_pheapmanagement->memory(ememory),
+            pallocatorbase,
             ::std::forward<Args>(args)...));
 
          return ::transfer(p);

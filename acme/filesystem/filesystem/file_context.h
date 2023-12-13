@@ -33,7 +33,7 @@ public:
    virtual void term_context();
 
 
-   virtual void finalize();
+   virtual void finalize() override;
 
    //virtual void update_module_path();
 

@@ -61,7 +61,7 @@ HANDLE dup_handle(HANDLE h)
 //   }
 //
 //   /* allocate memory to hold the command line */
-//   WCHAR * commandLineContents = (WCHAR *)::heap::management::memory(::heap::e_memory_main)->allocate(ustrCommandLine.Length + sizeof(WCHAR));
+//   WCHAR * commandLineContents = (WCHAR *)::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(ustrCommandLine.Length + sizeof(WCHAR));
 //   /* read the command line */
 //   if (!ReadProcessMemory(handleProcess, ustrCommandLine.Buffer, commandLineContents, ustrCommandLine.Length, nullptr))
 //   {

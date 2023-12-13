@@ -69,7 +69,7 @@ CLASS_DECL_ACME wstring gen_utf8_to_16(const ::scoped_string & scopedstr);
 //      wstring_data * pdata = (wstring_data *) (((u8 *) pwsz) - sizeof(count) - sizeof(count));
 //      if(pdata->m_iAllocation <= 0)
 //         return;
-//      ::heap::management::memory(::heap::e_memory_main)->free(pdata);
+//      ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free(pdata);
 //
 //   }
 //

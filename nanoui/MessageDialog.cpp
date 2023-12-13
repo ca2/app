@@ -24,12 +24,12 @@ namespace nanoui
       const ::scoped_string& message,
       const ::scoped_string& button_text,
       const ::scoped_string& alt_button_text, bool alt_button, const ::function < void(Widget* p) > functionExtras) : Window(parent, title) {
-      set_layout(__new< BoxLayout >(e_orientation_vertical,
+      set_layout(__allocate< BoxLayout >(e_orientation_vertical,
          e_alignment_middle, 10, 10));
       set_modal(true);
 
-      Widget* panel1 = __new< Widget >(this);
-      panel1->set_layout(__new< BoxLayout >(e_orientation_horizontal,
+      Widget* panel1 = __allocate< Widget >(this);
+      panel1->set_layout(__allocate< BoxLayout >(e_orientation_horizontal,
          e_alignment_middle, 10, 15));
       int icon = 0;
       switch (type) {
@@ -37,10 +37,10 @@ namespace nanoui
       case Type::Question: icon = m_ptheme->m_efontawesomeMessageQuestion; break;
       case Type::Warning: icon = m_ptheme->m_efontawesomeMessageWarning; break;
       }
-      Label* icon_label = __new< Label>(panel1, ::string(get_utf8_character(icon)), "icons");
+      Label* icon_label = __allocate< Label>(panel1, ::string(get_utf8_character(icon)), "icons");
       icon_label->set_font_size(50);
-      Widget* panelB = __new< Widget >(panel1);
-      panelB->set_layout(__new< BoxLayout >(e_orientation_vertical,
+      Widget* panelB = __allocate< Widget >(panel1);
+      panelB->set_layout(__allocate< BoxLayout >(e_orientation_vertical,
          e_alignment_middle, 0, 5));
       if (functionExtras)
       {
@@ -48,16 +48,16 @@ namespace nanoui
          functionExtras(panelB);
 
       }
-      m_message_label = __new< Label >(panelB, message);
+      m_message_label = __allocate< Label >(panelB, message);
       //m_message_label->set_fixed_width(200);
-      Widget* panel2 = __new< Widget >(this);
-      panel2->set_layout(__new< BoxLayout >(e_orientation_horizontal,
+      auto panel2 = __allocate< Widget >(this);
+      panel2->set_layout(__allocate< BoxLayout >(e_orientation_horizontal,
          e_alignment_middle, 0, 15));
 
       if (alt_button) 
       {
 
-         Button* button = __new< Button >(panel2, alt_button_text, m_ptheme->m_efontawesomeMessageAltButton);
+         auto button = __allocate< Button >(panel2, alt_button_text, m_ptheme->m_efontawesomeMessageAltButton);
 
          button->set_callback([&]
             {
@@ -76,8 +76,8 @@ namespace nanoui
             });
 
       }
-      Button* button = __new< Button >(panel2, button_text, m_ptheme->m_efontawesomeMessagePrimaryButton);
-      button->set_callback([this] { 
+      auto button = __allocate< Button >(panel2, button_text, m_ptheme->m_efontawesomeMessagePrimaryButton);
+      button->set_callback([this] {
          auto callback = m_callback;
          dispose();
          if (callback) callback(0);

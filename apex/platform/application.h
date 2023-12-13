@@ -256,10 +256,10 @@ namespace apex
       //virtual bool on_application_menu_action(const ::string & pszCommand);
 
 
-      virtual void term();
+      void term() override;
 
 
-      virtual void term_application();
+      void term_application() override;
 
 
 
@@ -505,7 +505,7 @@ namespace apex
       //virtual ::pointer < ::interprocess::handler > create_interprocess_handler();
 
       //virtual void process_init();
-      virtual void process_term();
+      void process_term() override;
 
       //virtual void impl_process_init();
       //virtual void impl_init1();
@@ -521,9 +521,9 @@ namespace apex
       //virtual void init2();
       //virtual void init3();
 
-      virtual void term1();
-      virtual void term2();
-      virtual void term3();
+      void term1() override;
+      void term2() override;
+      void term3() override;
 
       virtual void init_task() override;
       //virtual void init_application();
@@ -531,7 +531,7 @@ namespace apex
       virtual void term_task() override;
 
       //virtual void init_instance() override;
-      virtual void term_instance();
+      void term_instance() override;
 
       //virtual void init();
       //virtual void term();
@@ -561,8 +561,8 @@ namespace apex
       //virtual void application_pre_run();
 
       virtual void on_pos_run_thread() override;
-      virtual void pos_run();
-      virtual void application_pos_run();
+      virtual void pos_run() override;
+      virtual void application_pos_run() override;
 
 
 

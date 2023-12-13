@@ -23,7 +23,7 @@ namespace acme
    public:
 
 
-      inline static ::acme::acme *           s_pacme;
+      static ::acme::acme *                  s_pacme;
       ::pointer < ::task_message_queue >     m_ptaskmessagequeue;
       ::pointer < ::platform::platform >     m_pplatform;
       ::heap::management *                   m_pheapmanagement;

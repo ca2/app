@@ -15,7 +15,7 @@ namespace heap
    public:
 
       
-      inline ::heap::memory * memory() { return ::heap::management::memory(t_ememory); }
+      inline ::heap::memory * memory() { return ::acme::get()->m_pheapmanagement->memory(t_ememory); }
 
 
       inline TYPE * allocate(::count c, const char * pszFile, int iLine)

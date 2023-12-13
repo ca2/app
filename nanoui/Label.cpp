@@ -26,7 +26,7 @@ Label::Label(Widget * parent, const ::scoped_string & caption, const ::scoped_st
    if (font_size >= 0) m_font_size = font_size;
 }
 
-void Label::set_theme(Theme * theme) {
+void Label::set_theme(const ::pointer < Theme > & theme) {
    Widget::set_theme(theme);
    if (m_ptheme) {
       m_font_size = m_ptheme->m_iStandardFontSize;

@@ -1,18 +1,14 @@
 #include "framework.h"
 
+
+
+
+//
 //
 //#include "acme/memory/heap_memory.h"
 //
 //
-//
-//void * aligned_memory_allocate(memsize size, memsize align)
-//{
-//
-//   return system_heap_alloc(size);
-//
-//}
-//
-//void * unaligned_memory_allocate(memsize size)
+//void * bare_aligned_memory_allocate(memsize size, memsize align)
 //{
 //
 //   return system_heap_alloc(size);
@@ -20,7 +16,7 @@
 //}
 //
 //
-//void * aligned_memory_allocate_debug(memsize size, i32 nBlockUse, const char * szFileName, i32 nLine, memsize align)
+//void * bare_unaligned_memory_allocate(memsize size)
 //{
 //
 //   return system_heap_alloc(size);
@@ -28,17 +24,7 @@
 //}
 //
 //
-//
-//void * aligned_memory_allocate_debug(size_t size, i32 nBlockUse, const char * szFileName, i32 nLine, memsize align)
-//{
-//
-//   throw_todo();
-//
-//   return system_heap_alloc(size);
-//
-//}
-//
-//void * unaligned_memory_allocate_debug(size_t size, i32 nBlockUse, const char * szFileName, i32 nLine)
+//void * bare_aligned_memory_allocate_debug(memsize size, i32 nBlockUse, const char * szFileName, i32 nLine, memsize align)
 //{
 //
 //   return system_heap_alloc(size);
@@ -46,9 +32,7 @@
 //}
 //
 //
-//
-//
-//void * ::heap::management::memory(::heap::e_memory_main)->allocate(memsize size)
+//void * bare_unaligned_memory_allocate_debug(memsize size, i32 nBlockUse, const char * szFileName, i32 nLine)
 //{
 //
 //   return system_heap_alloc(size);
@@ -56,14 +40,23 @@
 //}
 //
 //
-//void * memory_allocate_no_track(size_t size)
+//void * bare_memory_allocate(memsize size)
 //{
 //
 //   return system_heap_alloc(size);
 //
 //}
 //
-//void * memory_calloc(size_t size, size_t bytes)
+//
+//void * bare_memory_allocate_no_track(memsize size)
+//{
+//
+//   return system_heap_alloc(size);
+//
+//}
+//
+//
+//void * bare_memory_calloc(memsize size, memsize bytes)
 //{
 //
 //   return calloc(size, bytes);
@@ -71,7 +64,7 @@
 //}
 //
 //
-//void * memory_allocate_debug(size_t nSize, i32 nBlockUse, const char * szFileName, i32 nLine)
+//void * bare_memory_allocate_debug(memsize nSize, i32 nBlockUse, const char * szFileName, i32 nLine)
 //{
 //
 //   return system_heap_alloc(nSize);
@@ -79,7 +72,7 @@
 //}
 //
 //
-//void * memory_reallocate(void * pvoid, size_t nSize)
+//void * bare_memory_reallocate(void * pvoid, memsize nSize)
 //{
 //
 //   return system_heap_realloc(pvoid, nSize);
@@ -87,18 +80,15 @@
 //}
 //
 //
-//void * memory_reallocate_debug(void * p, size_t size, i32 nBlockUse, const char * szFileName, i32 nLine)
+//void * bare_memory_reallocate_debug(void * p, memsize size, i32 nBlockUse, const char * szFileName, i32 nLine)
 //{
 //
-//
 //   return system_heap_realloc(p, size);
-//
-//
 //
 //}
 //
 //
-//void ::heap::management::memory(::heap::e_memory_main)->free(void * p)
+//void bare_memory_free(void * p)
 //{
 //
 //   return system_heap_free(p);
@@ -106,7 +96,7 @@
 //}
 //
 //
-//memsize memory_size(void * p)
+//memsize bare_memory_size(void * p)
 //{
 //
 //#ifdef WINDOWS
@@ -125,7 +115,7 @@
 //void memory_free_debug(void * p, i32 iBlockType)
 //{
 //
-//   ::heap::management::memory(::heap::e_memory_main)->free(p);
+//   ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free(p);
 //
 //}
 //
@@ -144,12 +134,6 @@
 //#endif
 //
 //}
-//
-//
-//
-//
-//
-//#undef ::heap::management::memory(::heap::e_memory_main)->allocate
 //
 //
 //void * _memory_allocate(memsize size)
@@ -187,7 +171,7 @@
 //void * _memory_count_allocate(memsize size, memsize bytes)
 //{
 //
-//   return ::heap::management::memory(::heap::e_memory_main)->allocate(size * bytes);
+//   return ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(size * bytes);
 //
 //}
 //
@@ -396,3 +380,6 @@
 //
 //
 //
+
+
+

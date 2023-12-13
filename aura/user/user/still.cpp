@@ -668,7 +668,7 @@ namespace user
       if(::is_null(m_ptextouta))
       {
 
-         m_ptextouta = __new< write_text::text_out_array >();
+         m_ptextouta = __allocate< write_text::text_out_array >();
 
       }
 

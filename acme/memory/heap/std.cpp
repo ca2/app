@@ -29,7 +29,7 @@ namespace heap
 
 
 
-      void initialize_heap(::heap::allocator * pallocator, ::heap::enum_memory ememory)
+      void initialize_heap(::heap::allocator * pallocator, ::heap::enum_memory ememory) override
       {
 
          heap::heap::initialize_heap(pallocator, ememory);
@@ -37,7 +37,7 @@ namespace heap
       }
 
 
-      void start_heap()
+      void start_heap() override
       {
 
          m_pallocarray = ::platform::allocator::__allocator_base_new < plex_heap_alloc_array >(m_pallocator, m_pallocator, m_ememory);
@@ -45,7 +45,7 @@ namespace heap
       }
 
 
-      void * aligned_allocate(memsize size, memsize align)
+      void * aligned_allocate(memsize size, memsize align) override
       {
 
          if (size < 0)
@@ -99,7 +99,7 @@ namespace heap
       }
 
 
-      void * unaligned_allocate(memsize size)
+      void * unaligned_allocate(memsize size) override
       {
 
          void * punaligned;
@@ -152,7 +152,7 @@ namespace heap
       }
 
 
-      void * aligned_allocate_debug(memsize size, i32 nBlockUse, const char * szFileName, i32 nLine, memsize align)
+      void * aligned_allocate_debug(memsize size, i32 nBlockUse, const char * szFileName, i32 nLine, memsize align) override
       {
 
          void * paligned;
@@ -205,7 +205,7 @@ namespace heap
       }
 
 
-      void * unaligned_allocate_debug(memsize size, i32 nBlockUse, const char * szFileName, i32 nLine)
+      void * unaligned_allocate_debug(memsize size, i32 nBlockUse, const char * szFileName, i32 nLine) override
       {
 
          void * punaligned;
@@ -257,10 +257,10 @@ namespace heap
       }
 
 
-      //#undef ::heap::management::memory(::heap::e_memory_main)->allocate
+      //#undef ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate
 
 
-      void * allocate(memsize size)
+      void * allocate(memsize size) override
       {
 
          return aligned_allocate(size, ALIGN_BYTE_COUNT);
@@ -284,7 +284,7 @@ namespace heap
       }
 
 
-      void * count_allocate(memsize size, memsize bytes)
+      void * count_allocate(memsize size, memsize bytes) override
       {
 
          return allocate(size * bytes);
@@ -292,7 +292,7 @@ namespace heap
       }
 
 
-      void * allocate_debug(memsize nSize, i32 nBlockUse, const char * szFileName, i32 nLine)
+      void * allocate_debug(memsize nSize, i32 nBlockUse, const char * szFileName, i32 nLine) override
       {
 
          // return unaligned_memory_allocate_debug(nSize, nBlockUse, szFileName, nLine);
@@ -302,7 +302,7 @@ namespace heap
       }
 
 
-      void * reallocate(void * pmemory, memsize nSize)
+      void * reallocate(void * pmemory, memsize nSize) override
       {
 
          return reallocate_debug(pmemory, nSize, 0, nullptr, -1);
@@ -310,7 +310,7 @@ namespace heap
       }
 
 
-      void * reallocate_debug(void * pmemory, memsize size, i32 nBlockUse, const char * szFileName, i32 nLine)
+      void * reallocate_debug(void * pmemory, memsize size, i32 nBlockUse, const char * szFileName, i32 nLine) override
       {
 
          if (pmemory == nullptr)

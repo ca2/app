@@ -57,7 +57,7 @@ namespace file
       streamable() {}
 
 
-      streamable(streamable && streamable) = delete;
+      //streamable(streamable && streamable) = delete;
 
 
       virtual enum_status _open(const ::scoped_string & scopedstrFilePath, const ::file::enum_open & eopen);

@@ -8,7 +8,7 @@
 void* MEMORY_DECL operator new(size_t nSize)
 {
 
-   return ::heap::management::memory(::heap::e_memory_main)->allocate(nSize);
+   return ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(nSize);
 
 }
 
@@ -17,7 +17,7 @@ void* MEMORY_DECL operator new(size_t nSize)
 void* MEMORY_DECL operator new(size_t nSize, const std::nothrow_t&) noexcept
 {
 
-   return ::heap::management::memory(::heap::e_memory_main)->allocate(nSize);
+   return ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(nSize);
 
 }
 
@@ -25,7 +25,7 @@ void* MEMORY_DECL operator new(size_t nSize, const std::nothrow_t&) noexcept
 void MEMORY_DECL operator delete(void* p) del_throw_spec
 {
 
-   ::heap::management::memory(::heap::e_memory_main)->free(p);
+   ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free(p);
 
 }
 
@@ -53,7 +53,7 @@ void* MEMORY_DECL operator new[](size_t nSize) new_throw_spec
 void* MEMORY_DECL operator new[](size_t nSize, const std::nothrow_t&) noexcept
 {
 
-   return ::heap::management::memory(::heap::e_memory_main)->allocate(nSize);
+   return ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(nSize);
 
 }
 
@@ -105,7 +105,7 @@ void MEMORY_DECL operator delete(void* p, void* palloc) del_throw_spec
 //void* MEMORY_DECL operator new (size_t size, const c_class&)
 //{
 //
-//   return ::heap::management::memory(::heap::e_memory_main)->allocate(size);
+//   return ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(size);
 //
 //}
 //
@@ -113,7 +113,7 @@ void MEMORY_DECL operator delete(void* p, void* palloc) del_throw_spec
 //void* MEMORY_DECL operator new[](size_t size, const c_class&)
 //{
 //
-//   return ::heap::management::memory(::heap::e_memory_main)->allocate(size);
+//   return ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(size);
 //
 //}
 //

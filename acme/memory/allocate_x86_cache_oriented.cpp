@@ -12,14 +12,14 @@ public:
    void * alloc(int iSize)
    {
 
-      return ::heap::management::memory(::heap::e_memory_main)->allocate(iSize);
+      return ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(iSize);
 
    }
 
    void free(void * p)
    {
 
-      ::heap::management::memory(::heap::e_memory_main)->free(p);
+      ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free(p);
 
    }
 
@@ -70,7 +70,7 @@ public:
 
       int iSize = calc_cache_size();
 
-      void * p = ::heap::management::memory(::heap::e_memory_main)->allocate(iSize * 2);
+      void * p = ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(iSize * 2);
 
       // TODO : better dynamically memory align
 
@@ -98,7 +98,7 @@ public:
 
    static void del_pool(x86_cache_oriented_memory_pool * p)
    {
-      ::heap::management::memory(::heap::e_memory_main)->free(p->m_p);
+      ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free(p->m_p);
    }
 
    void * alloc(::count c)
@@ -113,7 +113,7 @@ public:
       }
       else
       {
-         pb = (::u8 *) ::heap::management::memory(::heap::e_memory_main)->allocate(c);
+         pb = (::u8 *) ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(c);
 
          // can use string because messed all with cache out hot hit !!/^`}{{ **!
          //::acme::application * papp = get_app();
@@ -136,7 +136,7 @@ public:
       }
       else
       {
-         ::heap::management::memory(::heap::e_memory_main)->free(p);
+         ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free(p);
       }
    }
 

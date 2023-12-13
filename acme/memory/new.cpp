@@ -5,7 +5,7 @@
 //  Created by Camilo Sasuke Thomas Borregaard Soerensen on 26/07/20.
 //
 #include "framework.h"
-
+#include "memory_allocate.h"
 
 #if !defined(UNIVERSAL_WINDOWS) && !defined(ANDROID)
 
@@ -27,7 +27,8 @@ void MEMORY_DECL operator delete(void * p, size_t n) del_throw_spec
 void* MEMORY_DECL operator new(size_t nSize)
 {
 
-   return ::heap::management::memory(::heap::e_memory_main)->allocate(nSize);
+//   return ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(nSize);
+   return memory_allocate(nSize);
 
 }
 
@@ -36,7 +37,7 @@ void* MEMORY_DECL operator new(size_t nSize)
 void* MEMORY_DECL operator new(size_t nSize, const std::nothrow_t&) noexcept
 {
 
-   return ::heap::management::memory(::heap::e_memory_main)->allocate(nSize);
+   return memory_allocate(nSize);
 
 }
 
@@ -44,7 +45,7 @@ void* MEMORY_DECL operator new(size_t nSize, const std::nothrow_t&) noexcept
 void MEMORY_DECL operator delete(void* p) del_throw_spec
 {
 
-   ::heap::management::memory(::heap::e_memory_main)->free(p);
+   memory_free(p);
 
 }
 
@@ -72,7 +73,7 @@ void* MEMORY_DECL operator new[](size_t nSize) new_throw_spec
 void* MEMORY_DECL operator new[](size_t nSize, const std::nothrow_t&) noexcept
 {
 
-   return ::heap::management::memory(::heap::e_memory_main)->allocate(nSize);
+   return ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(nSize);
 
 }
 
@@ -83,10 +84,6 @@ void MEMORY_DECL operator delete[](void* p) del_throw_spec
    ::operator delete(p);
 
 }
-
-
-
-
 
 
 //#if !defined(_UNIVERSAL_WINDOWS)
@@ -124,7 +121,7 @@ void MEMORY_DECL operator delete(void* p, void* palloc) del_throw_spec
 //void* MEMORY_DECL operator new (size_t size, const c_class&)
 //{
 //
-//   return ::heap::management::memory(::heap::e_memory_main)->allocate(size);
+//   return ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(size);
 //
 //}
 //
@@ -132,7 +129,7 @@ void MEMORY_DECL operator delete(void* p, void* palloc) del_throw_spec
 //void* MEMORY_DECL operator new[](size_t size, const c_class&)
 //{
 //
-//   return ::heap::management::memory(::heap::e_memory_main)->allocate(size);
+//   return ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(size);
 //
 //}
 //
@@ -189,7 +186,7 @@ void* MEMORY_DECL operator new(size_t nSize, i32 nType, const char * pszFileName
 
 #else
 
-   return ::heap::management::memory(::heap::e_memory_main)->allocate_debug(nSize, nType, pszFileName, nLine);
+   return memory_allocate_debug(nSize, nType, pszFileName, nLine);
 
 #endif
 
@@ -199,7 +196,7 @@ void* MEMORY_DECL operator new(size_t nSize, i32 nType, const char * pszFileName
 void MEMORY_DECL operator delete(void* p, i32 nType, const char * /* pszFileName */, i32 /* nLine */)
 {
 
-   ::heap::management::memory(::heap::e_memory_main)->free_debug(p, nType);
+   memory_free_debug(p, nType);
 
 }
 

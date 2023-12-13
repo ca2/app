@@ -3347,6 +3347,35 @@ return false;
 #endif
 
 
+   string node::_get_call_stack_trace(const ::scoped_string & scopedstrFormat, i32 iSkip, void * caller_address, int iCount)
+   {
+      
+      int frame_count = get_call_stack_default_frame_count();
+
+      if(frame_count <= 0)
+      {
+         
+         // essentially disabled;
+         
+         return {};
+         
+      }
+      
+      memory memory;
+      
+      memory.set_size(frame_count * sizeof(void *));
+      
+      void ** stack = (void **) memory.data();
+      
+      get_call_stack_frames(stack, frame_count);
+      
+      ::string strCallStack = get_call_stack_trace(stack, frame_count);
+      
+      return strCallStack;
+   
+   }
+
+
 bool node::is_application_running_good_effort(const ::scoped_string & scopedstrRepos, const ::scoped_string & scopedstrApp)
 {
    

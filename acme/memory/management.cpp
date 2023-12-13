@@ -59,7 +59,7 @@ namespace heap
       void * allocate(memsize iSize) override
       {
 
-         return ::heap::management::memory(::heap::e_memory_main)->allocate(iSize);
+         return ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(iSize);
 
       }
 #endif
@@ -68,7 +68,7 @@ namespace heap
        void free(void * p) override
       {
 
-         ::heap::management::memory(::heap::e_memory_main)->free(p);
+         ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free(p);
 
       }
 
@@ -110,7 +110,7 @@ namespace heap
 
       m_pacme = pacme;
 
-      s_pallocator = new_allocator(::heap::e_allocator_system);
+      m_pallocator = new_allocator(::heap::e_allocator_system);
       //s_allocatora[::heap::e_allocator_system] = _new_allocator(::heap::e_allocator_system);
 //      s_allocatora[::heap::e_allocator_default] = _new_allocator(::heap::e_allocator_default);
   //    s_allocatora[::heap::e_allocator_memory] = _new_allocator(::heap::e_allocator_memory);
@@ -124,7 +124,7 @@ namespace heap
       for (::index i = 0; i < ::heap::e_memory_count; i++)
       {
 
-         s_memorya[i] = new_memory((::heap::enum_memory)i);
+         m_memorya[i] = new_memory((::heap::enum_memory)i);
 
       }
 
@@ -134,11 +134,11 @@ namespace heap
       //s_memorya[::heap::e_memory_property] = new_memory(::heap::e_memory_property);
       //s_memorya[::heap::e_memory_string] = new_memory(::heap::e_memory_string);
 
-      //m_pmemoryallocateMain = __allocate < ::heap::management::memory >(::heap::e_memory_main)->allocate);
-      //m_pmemoryallocateSecondary = __allocate < ::heap::management::memory >(::heap::e_memory_main)->allocate);
-      //m_pmemoryallocateArray = __allocate < ::heap::management::memory >(::heap::e_memory_main)->allocate);
-      //m_pmemoryallocateProperty = __allocate < ::heap::management::memory >(::heap::e_memory_main)->allocate);
-      //m_pmemoryallocateString = __allocate < ::heap::management::memory >(::heap::e_memory_main)->allocate);
+      //m_pmemoryallocateMain = __allocate < ::acme::get()->m_pheapmanagement->memory >(::heap::e_memory_main)->allocate);
+      //m_pmemoryallocateSecondary = __allocate < ::acme::get()->m_pheapmanagement->memory >(::heap::e_memory_main)->allocate);
+      //m_pmemoryallocateArray = __allocate < ::acme::get()->m_pheapmanagement->memory >(::heap::e_memory_main)->allocate);
+      //m_pmemoryallocateProperty = __allocate < ::acme::get()->m_pheapmanagement->memory >(::heap::e_memory_main)->allocate);
+      //m_pmemoryallocateString = __allocate < ::acme::get()->m_pheapmanagement->memory >(::heap::e_memory_main)->allocate);
 
    }
 
@@ -149,7 +149,7 @@ namespace heap
       for (::index i = 0; i < ::heap::e_memory_count; i++)
       {
 
-         s_memorya[i]->start_memory();
+         m_memorya[i]->start_memory();
 
       }
 
@@ -211,7 +211,7 @@ namespace heap
    heap * management::_new_heap(::heap::enum_heap eheap, ::heap::enum_memory ememory)
    {
 
-      return new_std_heap(s_pallocator, ememory);
+      return new_std_heap(m_pallocator, ememory);
 
    }
 
@@ -221,7 +221,7 @@ namespace heap
       
       auto p = _new_heap(eheap, ememory);
 
-      p->initialize_heap(s_pallocator, ememory);
+      p->initialize_heap(m_pallocator, ememory);
 
       return p;
 

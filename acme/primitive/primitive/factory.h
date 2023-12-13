@@ -58,7 +58,6 @@ namespace factory
 
 
       /// @brief consumes a referer
-      /// @return 
       virtual ::pointer < ::particle > __call__create_particle() override
       {
 

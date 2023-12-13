@@ -3638,13 +3638,13 @@ void string_array_base < Type, RawType, t_etypeContainer > ::decode_v16(const Ra
    //   {
    //      if(str == nullptr)
    //      {
-   //         str = (char *)::heap::management::memory(::heap::e_memory_main)->allocate(iSize);
+   //         str = (char *)::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(iSize);
    //      }
    //      else if(iSize < (ansi_length(str) + 1))
    //      {
    //         char * strOld = str;
    //         iSize += 1024;
-   //         char * strNew = (char *)::heap::management::memory(::heap::e_memory_main)->allocate(iSize);
+   //         char * strNew = (char *)::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(iSize);
    //         ansi_copy(strNew,strOld);
    //         str = strNew;
    //      }
@@ -3989,7 +3989,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 //}
 
 
-/// expect strings allocated with malloc (sic, not ::heap::management::memory(::heap::e_memory_main)->allocate) or strdup and array allocated with malloc (sic, not ::heap::management::memory(::heap::e_memory_main)->allocate)
+/// expect strings allocated with malloc (sic, not ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate) or strdup and array allocated with malloc (sic, not ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate)
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 void string_array_base < Type, RawType, t_etypeContainer > ::c_add(char ** ppsz, ::count c, bool bMemoryAlloc)
 {
@@ -4006,7 +4006,7 @@ void string_array_base < Type, RawType, t_etypeContainer > ::c_add(char ** ppsz,
       if(bMemoryAlloc)
       {
 
-         ::heap::management::memory(::heap::e_memory_main)->free(psz);
+         ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free(psz);
 
       }
       else
@@ -4024,7 +4024,7 @@ void string_array_base < Type, RawType, t_etypeContainer > ::c_add(char ** ppsz,
       if(bMemoryAlloc)
       {
 
-         ::heap::management::memory(::heap::e_memory_main)->free(ppsz);
+         ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free(ppsz);
 
       }
       else
@@ -4041,7 +4041,7 @@ void string_array_base < Type, RawType, t_etypeContainer > ::c_add(char ** ppsz,
 
 
 
-/// expect strings allocated with malloc (sic, not ::heap::management::memory(::heap::e_memory_main)->allocate) or strdup and array allocated with malloc (sic, not ::heap::management::memory(::heap::e_memory_main)->allocate)
+/// expect strings allocated with malloc (sic, not ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate) or strdup and array allocated with malloc (sic, not ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate)
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 void string_array_base < Type, RawType, t_etypeContainer > ::c_add(char ** ppszParam, bool bMemoryAlloc)
 {
@@ -4060,7 +4060,7 @@ void string_array_base < Type, RawType, t_etypeContainer > ::c_add(char ** ppszP
       if(bMemoryAlloc)
       {
 
-         ::heap::management::memory(::heap::e_memory_array)->free(psz);
+         ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_array)->free(psz);
 
       }
       else
@@ -4076,7 +4076,7 @@ void string_array_base < Type, RawType, t_etypeContainer > ::c_add(char ** ppszP
    if(bMemoryAlloc)
    {
 
-      ::heap::management::memory(::heap::e_memory_main)->free(ppszParam);
+      ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free(ppszParam);
 
    }
    else
@@ -4088,7 +4088,7 @@ void string_array_base < Type, RawType, t_etypeContainer > ::c_add(char ** ppszP
 
 }
 
-/// expect strings allocated with malloc (sic, not ::heap::management::memory(::heap::e_memory_main)->allocate) or wcsdup and array allocated with malloc (sic, not ::heap::management::memory(::heap::e_memory_main)->allocate)
+/// expect strings allocated with malloc (sic, not ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate) or wcsdup and array allocated with malloc (sic, not ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate)
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 void string_array_base < Type, RawType, t_etypeContainer > ::c_add(wchar_t ** ppwsz, ::count c, bool bMemoryAlloc)
 {
@@ -4105,7 +4105,7 @@ void string_array_base < Type, RawType, t_etypeContainer > ::c_add(wchar_t ** pp
       if(bMemoryAlloc)
       {
 
-         ::heap::management::memory(::heap::e_memory_main)->free(pwsz);
+         ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free(pwsz);
 
       }
       else
@@ -4122,7 +4122,7 @@ void string_array_base < Type, RawType, t_etypeContainer > ::c_add(wchar_t ** pp
       if(bMemoryAlloc)
       {
 
-         ::heap::management::memory(::heap::e_memory_main)->free(ppwsz);
+         ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free(ppwsz);
 
       }
       else
@@ -4136,7 +4136,7 @@ void string_array_base < Type, RawType, t_etypeContainer > ::c_add(wchar_t ** pp
 }
 
 
-/// expect strings allocated with malloc (sic, not ::heap::management::memory(::heap::e_memory_main)->allocate) or wcsdup and array allocated with malloc (sic, not ::heap::management::memory(::heap::e_memory_main)->allocate)
+/// expect strings allocated with malloc (sic, not ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate) or wcsdup and array allocated with malloc (sic, not ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate)
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 void string_array_base < Type, RawType, t_etypeContainer > ::c_add(wchar_t ** ppwszParam, bool bMemoryAlloc)
 {
@@ -4155,7 +4155,7 @@ void string_array_base < Type, RawType, t_etypeContainer > ::c_add(wchar_t ** pp
       if(bMemoryAlloc)
       {
 
-         ::heap::management::memory(::heap::e_memory_main)->free(pwsz);
+         ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free(pwsz);
 
       }
       else
@@ -4175,7 +4175,7 @@ void string_array_base < Type, RawType, t_etypeContainer > ::c_add(wchar_t ** pp
       if(bMemoryAlloc)
       {
 
-         ::heap::management::memory(::heap::e_memory_main)->free(ppwsz);
+         ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free(ppwsz);
 
       }
       else

@@ -159,7 +159,7 @@ namespace nanoui
    }
 
 
-   void Widget::set_theme(Theme* theme) 
+   void Widget::set_theme(const ::pointer < Theme > & theme) 
    {
 
       if (m_ptheme.get() == theme)
@@ -669,7 +669,7 @@ namespace nanoui
    }
 
 
-   void Widget:: set_layout(Layout* layout)
+   void Widget:: set_layout(const ::pointer < Layout> & layout)
    {
       
       m_playout = layout; 
@@ -731,15 +731,14 @@ namespace nanoui
    void Widget::destroy_window()
    {
 
-      on_destroy_window();
-   
-      for (auto pwidgetChild : m_children)
+      for (auto & pwidgetChild : m_children)
       {
-
-         pwidgetChild->destroy_window();
+         ::nanoui::defer_destroy_window(pwidgetChild);
 
       }
 
+      on_destroy_window();
+   
       m_children.clear();
    
    }

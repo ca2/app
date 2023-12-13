@@ -402,11 +402,13 @@ namespace user
             return false;
 
          }
-
+         
+         ::i32 iRedrawMessageCount = 0;
+         
          if (m_message.m_atom == e_message_redraw)
          {
 
-            return true;
+            iRedrawMessageCount = 1;
 
          }
 
@@ -415,14 +417,22 @@ namespace user
          while (peek_message(&m_message, nullptr, 0, 0, true))
          {
 
-//            if (m_message.m_atom == e_message_redraw)
-//            {
-//
-//               iRedrawMessageCount++;
-//
-//            }
+            if (m_message.m_atom == e_message_redraw)
+            {
+
+               iRedrawMessageCount++;
+
+            }
 
          }
+
+         if (iRedrawMessageCount > 0)
+         {
+
+            return true;
+
+         }
+
 
 #ifdef EXTRA_PRODEVIAN_ITERATION_LOG
 

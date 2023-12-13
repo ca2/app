@@ -2,9 +2,9 @@
 #include "framework.h"
 #include "networking.h"
 #include "acme/exception/parsing.h"
-////#include "acme/exception/exception.h"
 #include "acme/primitive/string/parse.h"
 #include "acme/primitive/string/str.h"
+#include "apex/networking/sockets/basic/listen_socket.h"
 
 
 //#define log_error(...) TRACE_LOG_ERROR(__VA_ARGS__)
@@ -113,6 +113,18 @@ namespace networking
             //    m_mapReverseCache.gudo_set();
 
       return true;
+
+   }
+
+
+   ::sockets::listen_socket_base* networking::new_listen_socket(const ::type_atom& type)
+   {
+
+      auto plistensocket = __create< ::sockets::listen_socket_base >();
+
+      plistensocket->initialize_listen_socket(type);
+
+      return plistensocket;
 
    }
 
@@ -668,7 +680,7 @@ namespace networking
          {
             struct sockaddr_in *point = (struct sockaddr_in *)sa;
             ::sockets::address_pointer addr;
-            addr(memory_new ::sockets::ipv4_address(get_app(), *point_i32));
+            addr(__new< ::sockets::ipv4_address(get_app >(), *point_i32));
             return addr;
          }
          break;
@@ -677,7 +689,7 @@ namespace networking
          {
             struct sockaddr_in6 *point = (struct sockaddr_in6 *)sa;
             ::sockets::address_pointer addr;
-            addr(memory_new ::sockets::ipv6_address(get_app(), *point_i32));
+            addr(__new< ::sockets::ipv6_address(get_app >(), *point_i32));
             return addr;
          }
          break;
@@ -1027,7 +1039,7 @@ namespace networking
 
       //}
 
-      //pitem = __new(reverse_cache_item);
+      //pitem = __allocate< reverse_cache_item >();
 
       //pitem->m_address = address;
 

@@ -48,9 +48,9 @@ namespace sockets
       m_p2 = nullptr;
       defer_create_synchronization();
       //zero(m_socks4_host);
-      //m_prfds = memory_new fd_set;
-      //m_pwfds = memory_new fd_set;
-      //m_pefds = memory_new fd_set;
+      //m_prfds = __new< fd_set >();
+      //m_pwfds = __new< fd_set >();
+      //m_pefds = __new< fd_set >();
       //FD_ZERO(&m_rfds);
       //FD_ZERO(&m_wfds);
       //FD_ZERO(&m_efds);
@@ -60,7 +60,7 @@ namespace sockets
 
       g_interlockedcountsocket_idHandler++;
 
-      ::informationf("::sockets::socket_handler currently allocated count = " + ::as_string((::iptr) g_interlockedcountsocket_idHandler));
+      ::acme::get()->platform()->informationf("::sockets::socket_handler currently allocated count = " + ::as_string((::iptr) g_interlockedcountsocket_idHandler));
 
    }
 
@@ -76,18 +76,18 @@ namespace sockets
 
 
 
-   i64 socket_handler::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
+   i64 socket_handler::increment_reference_count()
    {
 
-      return ::object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      return ::object::increment_reference_count();
 
    }
 
 
-   i64 socket_handler::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
+   i64 socket_handler::decrement_reference_count()
    {
 
-      return ::object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      return ::object::decrement_reference_count();
 
    }
 
@@ -179,20 +179,22 @@ namespace sockets
 //   }
 
 
-   //void socket_handler::SetSlave(bool x)
-   //{
+   void socket_handler::SetSlave(bool x)
+   {
 
+      m_pcomposite->SetSlave(x);
    //   m_slave = x;
 
-   //}
+   }
 
 
-   //bool socket_handler::IsSlave()
-   //{
+   bool socket_handler::IsSlave()
+   {
 
-   //   return m_slave;
+      return m_pcomposite->IsSlave();
+//      return m_slave;
 
-   //}
+   }
    
 
    //void socket_handler::add2(const socket_pointer & psocket)
@@ -840,7 +842,7 @@ namespace sockets
 //              if (::is_set(ppairsocket_id) && ::is_set(ppairsocket_id->m_psocket)) // found
 //              {
 //
-//                 // memory_new SSL negotiate method
+//                 // new SSL negotiate method
 //                 if (ppairsocket_id->m_psocket->IsSSLNegotiate())
 //                 {
 //                    
@@ -874,7 +876,7 @@ namespace sockets
 //              if (::is_set(ppairsocket_id) && ::is_set(ppairsocket_id->m_psocket)) // found
 //              {
 //
-//                 // memory_new SSL negotiate method
+//                 // new SSL negotiate method
 //                 if (ppairsocket_id->m_psocket->IsSSLNegotiate())
 //                 {
 //
@@ -993,7 +995,7 @@ namespace sockets
 //                    set(socket_id, false, false, false);
 //
 //                    // After Detachsocket_id(), all calls to socket_handler() will return a object
-//                    // to the memory_new slave socket_handler running in the memory_new thread.
+//                    // to the new slave socket_handler running in the new thread.
 //                    try
 //                    {
 //
@@ -1221,7 +1223,7 @@ namespace sockets
 //
 //                 auto ptcpsocket = dynamic_cast <tcp_socket*> (ppairsocket_id->m_psocket.m_p);
 //
-//                 // memory_new graceful ptcpsocket - flush and close timeout 5s
+//                 // new graceful ptcpsocket - flush and close timeout 5s
 //                 if (::is_set(ptcpsocket) && psocket->IsConnected() && ptcpsocket->GetFlushBeforeClose() &&
 //                       !ptcpsocket->IsSSL() && psocket->TimeSinceClose() < 5)
 //                 {
@@ -1263,7 +1265,7 @@ namespace sockets
 //
 //                    //information() << "close() before reconnect\n");
 //
-//                    ptcpsocket->close(); // dispose of old file descriptor (open creates a memory_new)
+//                    ptcpsocket->close(); // dispose of old file descriptor (open creates a new)
 //
 //                    ptcpsocket->OnDisconnect();
 //
@@ -1308,7 +1310,7 @@ namespace sockets
 //
 //                       synchronous_lock synchronouslock(&psystem->sockets().m_pmutexPool);
 //
-//                       auto ppoolsocket_id = __new(pool_socket_id(psocket));
+//                       auto ppoolsocket_id = __allocate< pool_socket_id >(psocket);
 //
 //                       ppoolsocket_id->m_psocket_idhandler = this;
 //
@@ -1562,7 +1564,7 @@ namespace sockets
 //
 //      // check cache
 //
-//      ::pointer<resolv_socket_id>presolvsocket_id = __new(resolv_socket_id(pbasesocket_id, host, port));
+//      ::pointer<resolv_socket_id>presolvsocket_id = __allocate< resolv_socket_id >(pbasesocket_id, host, port);
 //
 //      presolvsocket_id->m_psocket_idhandler = this;
 //
@@ -1599,7 +1601,7 @@ namespace sockets
 //
 //      // check cache
 //
-//      ::pointer<resolv_socket_id>resolv = __new(resolv_socket_id(pbasesocket_id, host, port, true));
+//      ::pointer<resolv_socket_id>resolv = __allocate< resolv_socket_id >(pbasesocket_id, host, port, true);
 //
 //      resolv->m_psocket_idhandler = this;
 //
@@ -1634,7 +1636,7 @@ namespace sockets
 //
 //      // check cache
 //
-//      ::pointer<resolv_socket_id>resolv = __new(resolv_socket_id(pbasesocket_id, a));
+//      ::pointer<resolv_socket_id>resolv = __allocate< resolv_socket_id >(pbasesocket_id, a);
 //
 //      resolv->m_psocket_idhandler = this;
 //
@@ -1669,7 +1671,7 @@ namespace sockets
 //
 //      // check cache
 //
-//      ::pointer<resolv_socket_id>resolv = __new(resolv_socket_id(pbasesocket_id, a));
+//      ::pointer<resolv_socket_id>resolv = __allocate< resolv_socket_id >(pbasesocket_id, a);
 //
 //      resolv->m_psocket_idhandler = this;
 //
@@ -1707,7 +1709,7 @@ namespace sockets
 //
 //         m_resolver_port = port;
 //
-//         auto presolvserver = __new(resolv_server());
+//         auto presolvserver = __allocate< resolv_server >();
 //
 //         m_resolver = presolvserver;
 //

@@ -282,7 +282,7 @@ namespace account
 
       }
 
-      //auto pusersystem = __new(::user::system (0, nullptr, nullptr, 0, rectangleFontopus));
+      //auto pusersystem = __allocate< ::user::system  >(0, nullptr, nullptr, 0, rectangleFontopus);
 
       //create_host(e_parallelization_synchronous);
 

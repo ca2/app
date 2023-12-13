@@ -25,10 +25,10 @@ namespace user
 
       bool                                               m_bCreated;
       string                                             m_strId;
-      ::pointer<::user::interaction>              m_puserinteractionNotify;
-      //::pointer<notify_icon_listener>                m_plistener;
-      pointer_array < ::user::interaction >         m_userinteractionaHidden;
-      ::pointer<::windowing::icon>                m_piconCurrent;
+      ::pointer<::user::interaction>                     m_puserinteractionNotify;
+      //::pointer<notify_icon_listener>                  m_plistener;
+      pointer_array < ::user::interaction >              m_userinteractionaHidden;
+      ::pointer<::windowing::icon>                       m_piconCurrent;
 
 
       notify_icon();
@@ -45,7 +45,7 @@ namespace user
 
       virtual void create_notify_icon(const ::atom & atom, ::user::interaction * puserinteractionNotify, ::windowing::icon * picon);
 
-      bool step() override;
+      virtual bool notify_icon_step();
 
 
       void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;

@@ -23,7 +23,7 @@ public:
    using const_iterator = typename ARRAY_TYPE::const_iterator;
    
 
-   comparable_eq_array(enum_no_initialize):BASE_RANGE(e_no_initialize){}
+   comparable_eq_array(no_initialize_t):BASE_RANGE(no_initialize_t{}){}
    comparable_eq_array(nullptr_t):BASE_RANGE(nullptr){}
    comparable_eq_array():BASE_RANGE(){}
    comparable_eq_array(::std::initializer_list < TYPE > initializer_list) { this->add_initializer_list(initializer_list); }
@@ -72,7 +72,7 @@ public:
 
 
    bool add_unique(ARG_TYPE t);
-   ::count add_unique(const ARRAY_TYPE & a);
+   ::count append_unique(const ARRAY_TYPE & a);
    TYPE & insert_unique(ARG_TYPE t);
 
 
@@ -350,7 +350,7 @@ template <class TYPE, class ARG_TYPE, class ARRAY_TYPE >
 }
 
 template <class TYPE, class ARG_TYPE, class ARRAY_TYPE >
-::count comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::add_unique(const ARRAY_TYPE & a)
+::count comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::append_unique(const ARRAY_TYPE & a)
 {
 
    ::count ca = 0;

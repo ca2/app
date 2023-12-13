@@ -14,6 +14,10 @@
 #include "draw2d.h"
 #include "task_tool.h"
 
+
+bool g_bDraw2dDisableReferencingDebugging = false;
+
+
 //
 //
 //namespace aura
@@ -436,7 +440,7 @@ namespace draw2d
    ::pointer<save_image>draw2d::new_save_image(const ::payload & payloadFile, const ::payload & varOptions)
    {
 
-      auto psaveimage = __new(save_image);
+      auto psaveimage = __allocate< save_image >();
 
       auto psystem = system()->m_paurasystem;
 
@@ -691,7 +695,7 @@ void draw2d::emboss_predicate(
 
       blur.initialize(pimageBlur->size(), iEffectiveBlurRadius);
 
-      psystem->imaging().channel_spread_set_color(pimageBlur->g(), {}, size, pimage->g(), {}, ::color::e_channel_opacity, iEffectiveSpreadRadius, argb(255, 255, 255, 255));
+      imaging()->channel_spread_set_color(pimageBlur->g(), {}, size, pimage->g(), {}, ::color::e_channel_opacity, iEffectiveSpreadRadius, argb(255, 255, 255, 255));
 
       for (iptr i = 0; i < iBlur; i++)
       {
@@ -770,7 +774,7 @@ void draw2d::emboss_predicate(
       else
       {
 
-         filter = __new(memory());
+         filter = __allocate< memory >();
 
          filter->set_size(iFilterArea);
 
@@ -1085,7 +1089,7 @@ void draw2d::emboss_predicate(
       }
       else
       {
-         filter = __new(memory());
+         filter = __allocate< memory >();
          filter->set_size(iFilterArea);
          pFilter = filter->begin();
          for (y = 0; y < iFilterH; y++)
@@ -1386,7 +1390,7 @@ void draw2d::emboss_predicate(
       //if (!estatus)
       //{
 
-      //   information() << "Couldn't construct memory_new write_text.";
+      //   information() << "Couldn't construct aaa_memory_new write_text.";
 
       //   return estatus;
 

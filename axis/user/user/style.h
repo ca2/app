@@ -56,6 +56,9 @@ namespace axis
       style();
       ~style() override;
 
+
+      void destroy() override;
+
       void default_style_construct();
 
       //virtual ::pointer<::user::menu_interaction>create_menu_button(::user::style_pointer & pstyle, menu_item * pitem) override;

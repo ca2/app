@@ -112,7 +112,7 @@ namespace nanoui
       void set_placeholder(const ::scoped_string& placeholder) { m_strPlaceHolder = placeholder; }
 
       /// Set the \::pointer Theme used to draw this pwidget
-      virtual void set_theme(Theme* theme) override;
+      virtual void set_theme(const  ::pointer < Theme > & theme) override;
 
       /// The callback to execute when the value of this TextBox has changed.
       ::function<bool(const ::scoped_string& str)> callback() const { return m_callback; }
@@ -127,6 +127,12 @@ namespace nanoui
       bool focus_event(bool focused) override;
       bool keyboard_event(::user::enum_key ekey, int scancode, int action, const ::user::e_key& ekeyModifiers, const ::string& strText) override;
       bool keyboard_character_event(unsigned int codepoint) override;
+
+      virtual bool on_command(const ::atom& atom);
+      virtual void edit_select_all();
+      virtual void edit_copy();
+      virtual void edit_cut();
+      virtual void edit_paste();
 
       size_i32 preferred_size(::nano2d::context* pcontext, bool bRecalcTextSize = true) override;
       void draw(::nano2d::context* pcontext) override;

@@ -4,10 +4,12 @@
 #include "data.h"
 #include "acme/constant/id.h"
 #include "acme/filesystem/file/item.h"
+#include "acme/handler/topic.h"
 #include "acme/platform/context.h"
 #include "acme/platform/keep.h"
 #include "apex/filesystem/fs/data.h"
 #include "apex/platform/context.h"
+#include "apex/filesystem/fs/set.h"
 
 
 namespace filemanager
@@ -101,7 +103,7 @@ namespace filemanager
    //   //   if (strPreviousPath != strPath)
    //   //   {
 
-   //   //      filemanager_document()->browse(str, context + ::e_source_sync);
+   //   //      filemanager_data()->browse(str, context + ::e_source_sync);
 
    //   //   }
 
@@ -130,7 +132,7 @@ namespace filemanager
 
    //   //            KEEP(m_bVoidSync);
 
-   //   //            filemanager_document()->browse(pathAddress, context + ::e_source_sync);
+   //   //            filemanager_data()->browse(pathAddress, context + ::e_source_sync);
 
    //   //         }
 
@@ -151,7 +153,7 @@ namespace filemanager
 
    //   //}
 
-   //   //filemanager_data()->m_pdocument->m_strTopic = str;
+   //   //get_document()->m_strTopic = str;
 
 
    //}
@@ -194,8 +196,8 @@ namespace filemanager
                      SetDataInterface(&m_datainterface);
                      AddClient(&m_datainterface);
                      string str;
-                     str.formatf("::filemanager::file_list(%d,%d)", filemanager_data()->m_iTemplate, filemanager_data()->m_iDocument);
-                     if(filemanager_data()->m_bTransparentBackground)
+                     str.formatf("::filemanager::file_list(%d,%d)", get_document()->m_iTemplate, get_document()->m_iDocument);
+                     if(get_document()->m_bTransparentBackground)
                      {
                      ::user::list::m_etranslucency = ::user::list::e_translucency_present;
                      }
@@ -238,7 +240,11 @@ namespace filemanager
 
       }
 
-      ::fs::data * pfsdata = pdocument->fs_data();
+      auto pfilemanagerdata = filemanager_data();
+
+      auto pfsdata = pfilemanagerdata->fs_data();
+
+      //::fs::data * pfsdata = pdocument->filemanager_data();
 
       if (pfsdata->is_dir(str))
       {
@@ -273,7 +279,7 @@ namespace filemanager
 
             ::file::path path = pcontext->m_papexcontext->defer_process_path(pathToProcess);
 
-            bIsDir = filemanager_document()->fs_data()->is_dir(path);
+            bIsDir = filemanager_data()->fs_data()->is_dir(path);
 
             if (bIsDir)
             {
@@ -304,7 +310,8 @@ namespace filemanager
 
       }
 
-      filemanager_data()->m_pdocument->m_strTopic = str;
+      //get_document()->m_strTopic = str;
+      get_document()->m_strTopic = str;
 
    }
 

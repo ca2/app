@@ -58,7 +58,7 @@ namespace sockets
 
       void OnLine(const ::string & strParam) override;
 
-      virtual bool step() override;
+      virtual bool http_request_step();
 
       virtual void OnFirst() override;
       virtual void OnHeader(atom idKey, const string &) override;

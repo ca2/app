@@ -1,11 +1,11 @@
 #include "framework.h"
 
 
-
-lparam::lparam(const ::particle * pelement)
+/// posting/sending particle with referencing forking
+lparam::lparam(const ::particle * pparticle)
 {
 
-   if (is_null(pelement))
+   if (is_null(pparticle))
    {
 
       m_lparam = 0;
@@ -14,13 +14,42 @@ lparam::lparam(const ::particle * pelement)
 
    }
 
-   ((particle*)pelement)->increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PTR(&lparam_debug()));
+#if   REFERENCING_DEBUGGING
 
-   m_lparam = (iptr)(void *)pelement;
+   ((particle *)pparticle)->m_prefererTransfer = ::allocator::defer_add_referer({ this, __FUNCTION_FILE_LINE__ });
+#endif
+
+   ((particle *)pparticle)->increment_reference_count();
+
+   m_lparam = (iptr)(void *)pparticle;
 
 }
 
 
+#if REFERENCING_DEBUGGING
+
+
+/// posting/sending particle with referencing transfer
+lparam::lparam(::particle * pparticle, ::reference_referer * preferer)
+{
+
+   if (is_null(pparticle))
+   {
+
+      m_lparam = 0;
+
+      return;
+
+   }
+
+   pparticle->m_prefererTransfer = preferer;
+
+   m_lparam = (iptr)(void *)pparticle;
+
+}
+
+
+#endif
 
 
 

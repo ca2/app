@@ -55,7 +55,7 @@ namespace graphics
          //if (!estatus)
          //{
 
-         //   ::informationf("no memory map for the graphics buffer");
+         //   ::acme::get()->platform()->informationf("no memory map for the graphics buffer");
          //   //return estatus;
 
          //   estatus = ::success;

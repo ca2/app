@@ -237,7 +237,7 @@ namespace dynamic_source
 
          m_pcache->m_pmanager = this;
 
-         m_pcompiler = __new(script_compiler);
+         m_pcompiler = __allocate< script_compiler >();
 
          //estatus = 
 
@@ -271,7 +271,7 @@ namespace dynamic_source
 
       {
 
-         auto pwatcher = __new(clear_include_matches_file_watcher(this));
+         auto pwatcher = __allocate< clear_include_matches_file_watcher >(this);
 
          pwatcher->m_pmanager = this;
 
@@ -295,7 +295,7 @@ namespace dynamic_source
          if (string_begins_ci(path.title(), "net-"))
          {
 
-            auto pwatcher = __new(clear_include_matches_file_watcher(this));
+            auto pwatcher = __allocate< clear_include_matches_file_watcher >(this);
 
             pwatcher->m_pmanager = this;
 
@@ -384,6 +384,10 @@ namespace dynamic_source
 
       pmain->init1();
 
+      pinstance->m_pmain = pmain;
+
+      pdssocket->m_pscript = pinstance;
+
       pinstance->initialize(pmain);
 
       pinstance->run_property(ID_CREATE);
@@ -400,7 +404,7 @@ namespace dynamic_source
          //if (::is_set(pinstance))
          //{
 
-         //   pinstance->set_context_thread(pthread OBJECT_REFERENCE_COUNT_DEBUG_COMMA_P_FUNCTION_LINE(pinstance));
+         //   pinstance->set_context_thread(pthread REFERENCING_DEBUGGING_COMMA_P_FUNCTION_LINE(pinstance));
 
          //}
 
@@ -672,6 +676,8 @@ namespace dynamic_source
 
                   //pimpl->init1();
 
+                  pinstance->m_pmain = pmain;
+
                   pinstance->initialize(pimpl);
 
                   pinstance->m_pinstanceParent2 = pinstanceParent;
@@ -739,6 +745,17 @@ namespace dynamic_source
                try
                {
 
+                  pinstance->finalize();
+
+               }
+               catch (...)
+               {
+
+               }
+
+               try
+               {
+
                   pinstance->destroy();
 
                }
@@ -790,7 +807,7 @@ namespace dynamic_source
    {
       /*char * buf;
       u32 dwSize = GetDllDirectory(nullptr, nullptr);
-      buf = memory_new char[dwSize + 1024];
+      buf = __new_array< char >(dwSize + 1024);
       GetDllDirectory(dwSize + 1024, buf);
       information(buf);
       //SetDllDirectory(buf);
@@ -816,7 +833,7 @@ namespace dynamic_source
       string strNew;
 #ifdef WINDOWS_DESKTOP
       u32 dwSize = GetEnvironmentVariableW(L"PATH", nullptr, 0);
-      LPWSTR lpsz = memory_new wchar_t[dwSize + 1024];
+      LPWSTR lpsz = __new_array< wchar_t >(dwSize + 1024);
       dwSize = GetEnvironmentVariableW(L"PATH", lpsz, dwSize + 1024);
       strNew = lpsz;
       delete lpsz;
@@ -1254,7 +1271,7 @@ namespace dynamic_source
 
 
          ::new(p->element2().m_p) ::dynamic_source::session();
-         //#define memory_new ACME_NEW
+         
 
          p->element2()->initialize_dynamic_source_session(pszId, this);
 
@@ -1262,7 +1279,7 @@ namespace dynamic_source
 
       }
 
-      auto psession = __new(::dynamic_source::session);
+      auto psession = __allocate< ::dynamic_source::session >();
 
       psession->initialize_dynamic_source_session(pszId, this);
 
@@ -1397,7 +1414,7 @@ namespace dynamic_source
       item.m_strScript = strScript;
       item.m_strPlugin = strName;
 
-      m_pluginmapitema.add(memory_new plugin_map_item(item));
+      m_pluginmapitema.add(__new< plugin_map_item >(item));
 
       m_pcache->register_script(strName, pscript);
 
@@ -1535,11 +1552,11 @@ namespace dynamic_source
    ::sockets::link_out_socket* script_manager::create_link_out(const ::string& pszServer, ::sockets::httpd_socket* phttpdsocket)
    {
 
-      ::sockets::link_out_socket* psocket = memory_new sockets::link_out_socket();
+      ::sockets::link_out_socket* psocket = __new< sockets::link_out_socket >();
 
       //psocket->m_phandler = phttpdsocket->m_phandler;
 
-      psocket->initialize_socket(phttpdsocket->socket_handler());
+      psocket->SetSocketHandler(phttpdsocket->socket_handler());
 
       {
 

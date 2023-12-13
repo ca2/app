@@ -1009,7 +1009,7 @@ namespace networking_bsd
                else
                {
 
-                  ::informationf("ws_buffering");
+                  ::acme::get()->platform()->informationf("ws_buffering");
 
                }
 

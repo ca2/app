@@ -53,13 +53,13 @@ namespace hellobase
       impact_base(::particle * pparticle);
       virtual ~impact_base();
 
-      virtual i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
+      virtual i64 increment_reference_count()
       {
-         return ::object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+         return ::object::increment_reference_count();
       }
-      virtual i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
+      virtual i64 decrement_reference_count()
       {
-         return ::object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+         return ::object::decrement_reference_count();
       }
 
 

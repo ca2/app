@@ -3,10 +3,10 @@
 #include "item.h"
 #include "interaction.h"
 #include "item_ptra.h"
-////#include "acme/exception/exception.h"
 #include "acme/constant/id.h"
 #include "acme/constant/timer.h"
 #include "acme/constant/message.h"
+#include "acme/handler/topic.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/sequencer.h"
 #include "acme/platform/timer.h"
@@ -357,7 +357,7 @@ namespace user
          else
          {
 
-            ::informationf("parent has other Topic Submenu");
+            ::acme::get()->platform()->informationf("parent has other Topic Submenu");
 
          }
 
@@ -451,7 +451,7 @@ namespace user
          if (m_pitemClose.is_null())
          {
 
-            m_pitemClose = __new(menu_item);
+            m_pitemClose = __allocate< menu_item >();
 
             m_pitemClose->m_atom = "close_menu";
 
@@ -585,7 +585,7 @@ namespace user
          //}
 
 #else
-         //auto pusersystem = __new(::user::system (iStyleEx, nullptr, nullptr, 0, nullptr, pcreate));
+         //auto pusersystem = __allocate< ::user::system  >(iStyleEx, nullptr, nullptr, 0, nullptr, pcreate);
 
          //if (!create_window_ex(pusersystem, puiParent))
          //if (!create_host())
@@ -1085,7 +1085,7 @@ namespace user
       ////
       ////                           m_pmenuitemSub = pitem;
       ////
-      ////                           m_psubmenu = __new(menu(pitem));
+      ////                           m_psubmenu = __allocate< menu >(pitem);
       ////
       ////                           m_psubmenu->initialize(this);
       ////
@@ -1281,7 +1281,7 @@ namespace user
 
                //m_atomSubMenu = m_atomTimerMenu;
 
-               m_pmenuSubMenu = __initialize(__new(::user::menu(m_pmenuitemClick)));
+               m_pmenuSubMenu = __initialize(__allocate< ::user::menu >(m_pmenuitemClick));
 
                ::rectangle_i32 rectangle;
 
@@ -1304,7 +1304,7 @@ namespace user
 
             //   m_atomSubMenu = m_atomTimerMenu;
 
-            //   m_psubmenu = __new(menu(pmenuitema->find(m_atomTimerMenu)));
+            //   m_psubmenu = __allocate< menu >(pmenuitema->find(m_atomTimerMenu));
 
             //   m_psubmenu->initialize(this);
 

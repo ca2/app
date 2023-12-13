@@ -18,14 +18,17 @@ namespace dynamic_source
 
       string                                       m_strLocale;
 
-      void *                                       m_posdataNetnodeSocket;
+      ::pointer < script_interface >               m_pscript;
 
 
       httpd_socket();
-      virtual ~httpd_socket();
+      ~httpd_socket() override;
 
 
       virtual void Reset();
+
+
+      void finalize() override;
 
 
    };

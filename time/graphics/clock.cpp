@@ -37,15 +37,13 @@ namespace datetime
       void graphics::_001OnDraw(::draw2d::graphics * pgraphics)
       {
 
-         auto psystem = system()->m_papexsystem;
-
-         auto pmathematics = ::mathematics::mathematics();
+         //auto pmathematics = this->mathematics();
 
          ::earth::time timeNow = ::earth::time::now() + m_timespan;
 
          rectangle_i32 rectangle;
          GetRect(&rectangle, e_element_clock);
-         auto ppen = ::__create < ::draw2d::pen >(this);
+         auto ppen = __create < ::draw2d::pen >();
 
          ppen->create_solid(1, argb(255, 0, 0, 0));
          pgraphics->set(ppen);
@@ -53,8 +51,8 @@ namespace datetime
 
          point_i32 pointCenter(rectangle.center());
 
-         auto ppenHour = ::__create < ::draw2d::pen >(this);
-         auto ppenMinute = ::__create < ::draw2d::pen >(this);
+         auto ppenHour = __create < ::draw2d::pen >();
+         auto ppenMinute = __create < ::draw2d::pen >();
 
          ppenHour->create_solid(5, argb(255, 0, 0, 0));
          ppenMinute->create_solid(1, argb(255, 0, 0, 0));
@@ -65,7 +63,7 @@ namespace datetime
 
          for (int32_t i = 0; i < 60; i++)
          {
-            double angle = pmathematics->get_pi() / 2.0 - i * pmathematics->get_pi() * 2.0 / (60.0);
+            double angle = π / 2.0 - i * π * 2.0 / (60.0);
             point_i32 pointInt;
             point_i32 pointExt((::i32)(cos(angle) * dRExt), (::i32)(-sin(angle) * dRExt));
             pointExt.offset(pointCenter);
@@ -90,30 +88,30 @@ namespace datetime
          double dRMinute = rectangle.width() * 15 / 32;
          double dRSecond = rectangle.width() * 16 / 32;
 
-         auto ppenHM = ::__create < ::draw2d::pen >(this);
+         auto ppenHM = __create < ::draw2d::pen >();
          ppenHM->create_solid(2, argb(255, 0, 0, 0));
          pgraphics->set(ppenHM);
 
          pgraphics->set_current_point(pointCenter);
          {
-            double angle = pmathematics->get_pi() / 2.0 - timeNow.hour() * pmathematics->get_pi() * 2.0 / (12.0);
+            double angle = π / 2.0 - timeNow.hour() * π * 2.0 / (12.0);
             point_i32 pointHour((::i32)(cos(angle) * dRHour), (::i32)(-sin(angle) * dRHour));
             pointHour.offset(pointCenter);
             pgraphics->line_to(pointHour);
          }
          pgraphics->set_current_point(pointCenter);
          {
-            double angle = pmathematics->get_pi() / 2.0 - timeNow.minute() * pmathematics->get_pi() * 2.0 / (60.0);
+            double angle = π / 2.0 - timeNow.minute() * π * 2.0 / (60.0);
             point_i32 pointMinute((::i32)(cos(angle) * dRMinute), (::i32)(-sin(angle) * dRMinute));
             pointMinute.offset(pointCenter);
             pgraphics->line_to(pointMinute);
          }
-         auto ppenRed = ::__create < ::draw2d::pen >(this);
+         auto ppenRed = __create < ::draw2d::pen >();
          ppenRed->create_solid(1, argb(255, 200, 0, 0));
          pgraphics->set(ppenRed);
          pgraphics->set_current_point(pointCenter);
          {
-            double angle = pmathematics->get_pi() / 2.0 - timeNow.second() * pmathematics->get_pi() * 2.0 / (60.0);
+            double angle = π / 2.0 - timeNow.second() * π * 2.0 / (60.0);
             point_i32 pointSecond((::i32)(cos(angle) * dRSecond), (::i32)(-sin(angle) * dRSecond));
             pointSecond.offset(pointCenter);
             pgraphics->line_to(pointSecond);

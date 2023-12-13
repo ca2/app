@@ -102,14 +102,16 @@ list(APPEND apex_source
    handler/context.h
    handler/manager.cpp
    handler/manager.h
+   handler/manager_room.cpp
+   handler/manager_room.h
    #handler/process.cpp
    #handler/promise.cpp
    handler/promise.h
    #handler/routine.cpp
    handler/signal.cpp
    handler/signal.h
-   handler/source.cpp
-   handler/source.h
+   #handler/source.cpp
+   #handler/source.h
    #include/_.cpp
    #include/_.h
    include/_c.h
@@ -1395,9 +1397,7 @@ list(APPEND static_library_references ${library_references})
 list(TRANSFORM static_library_references PREPEND static_)
 
 
-add_library(${PROJECT_NAME} SHARED ${apex_source}
-   input/input.cpp
-   input/input.h)
+add_library(${PROJECT_NAME} SHARED ${apex_source})
 add_library(static_${PROJECT_NAME} STATIC ${apex_source})
 
 
@@ -1414,11 +1414,16 @@ set_target_properties(static_${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
 
 
 if (MSVC)
-   target_compile_options(apex PRIVATE "/MD$<$<CONFIG:Debug>:d>")
-   target_link_options(apex PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
-   target_link_options(apex PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/apex.lib")
-   target_link_options(apex PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/apex.def")
-   target_link_libraries(apex PRIVATE acme zlib libcrypto libssl dwrite d2d1 d3d11 dxgi Dxva2 dbghelp imagehlp dwmapi Setupapi Windowscodecs Winmm ws2_32 Crypt32 Normaliz version Secur32 gdiplus Shlwapi Imm32)
+   target_compile_options(${PROJECT_NAME} PRIVATE "/MD$<$<CONFIG:Debug>:d>")
+   target_link_options(${PROJECT_NAME} PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
+   target_link_options(${PROJECT_NAME} PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/apex.lib")
+   #target_link_options(apex PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/apex.def")
+
+   message(STATUS "\${library_references} is ${library_references}")
+
+   target_link_libraries(${PROJECT_NAME} PRIVATE zlib libcrypto libssl dwrite d2d1 d3d11 dxgi Dxva2 dbghelp imagehlp dwmapi Setupapi Windowscodecs Winmm ws2_32 Crypt32 Normaliz version Secur32 gdiplus Shlwapi Imm32 ${library_references})
+
+
 elseif(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
 
    target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
@@ -1461,6 +1466,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories
 target_include_directories(static_${PROJECT_NAME} PRIVATE ${library_include_directories})
 
 
-target_compile_definitions(apex PRIVATE _APEX_LIBRARY)
+target_compile_definitions(${PROJECT_NAME} PRIVATE _${PROJECT_NAME}_project)
+target_compile_definitions(static_${PROJECT_NAME} PRIVATE _${PROJECT_NAME}_project)
 
 

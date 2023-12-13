@@ -21,6 +21,7 @@
 #include "acme/constant/timer.h"
 #include "acme/filesystem/file/memory_file.h"
 #include "acme/handler/item.h"
+#include "acme/handler/topic.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/primitive/string/base64.h"
 #include "acme/primitive/string/international.h"
@@ -32,6 +33,7 @@
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "acme/platform/timer.h"
+#include "acme/user/user/tool.h"
 #include "apex/filesystem/file/edit_file.h"
 #include "aura/windowing/text_editor_interface.h"
 #include "aura/windowing/windowing.h"
@@ -168,9 +170,11 @@ namespace user
 
       m_iInputConnectionBatch = 0;
 
+      m_bNewFocus = false;
+
       m_bEnterKeyOnPaste = false;
 
-      //m_pcontrolstyle = memory_new plain_edit_internal();
+      //m_pcontrolstyle = __new< plain_edit_internal >();
 
       m_ppropertysetsel = nullptr;
 
@@ -453,6 +457,8 @@ namespace user
       pgraphics->fill_rectangle(rectangleBackground, crEditBackground);
 
       bool bComposing = ::is_set(m_pitemComposing);
+
+      bool bShowSelection = bComposing || has_keyboard_focus();
 
       strsize iComposeBeg = -1;
 
@@ -748,17 +754,22 @@ namespace user
 
             }
 
-            if (iCurLineSelEnd > iCurLineSelBeg)
+            if (bShowSelection)
             {
 
-               pgraphics->fill_rectangle(
-                  ::rectangle_f64_dimension((double)((double)left + x1),
-                     (double)y,
-                     (double)minimum(x2 - x1, (double)rectangleX.right() - ((double)left + x1)),
-                     (double)minimum((double)m_dLineHeight, (double)rectangleX.bottom() - y)),
-                  crBkSel);
+               if (iCurLineSelEnd > iCurLineSelBeg)
+               {
 
-               pgraphics->set(pbrushTextSel);
+                  pgraphics->fill_rectangle(
+                     ::rectangle_f64_dimension((double)((double)left + x1),
+                        (double)y,
+                        (double)minimum(x2 - x1, (double)rectangleX.right() - ((double)left + x1)),
+                        (double)minimum((double)m_dLineHeight, (double)rectangleX.bottom() - y)),
+                     crBkSel);
+
+                  pgraphics->set(pbrushTextSel);
+
+               }
 
             }
 
@@ -964,9 +975,9 @@ namespace user
       if (m_ptree == nullptr)
       {
 
-         set_root(__new(::user::plain_text_tree), true);
+         set_root(__allocate< ::user::plain_text_tree >(), true);
 
-         m_ptree->m_pfile = __new(::memory_file);
+         m_ptree->m_pfile = __allocate< ::memory_file >();
 
          m_ptree->m_peditfile->SetFile(m_ptree->m_pfile);
 
@@ -1861,7 +1872,7 @@ namespace user
 
          set_default_mouse_cursor(pcursor);
 
-         if (m_bLMouseDown)
+         if (m_bLMouseDown && !m_bNewFocus)
          {
 
             ::point_i32 point = pmouse->m_pointHost;
@@ -1900,9 +1911,11 @@ namespace user
 
             }
 
-            m_pitemHover = __new(::item(e_element_client));
+            m_pitemHover = tool().item(e_element_client);
 
          }
+
+         pmessage->m_bRet = true;
 
       }
 
@@ -1915,7 +1928,7 @@ namespace user
       if(!m_pitemHover || m_pitemHover->m_item.m_eelement != e_element_none)
       {
 
-         m_pitemHover = __new(::item(e_element_none));
+         m_pitemHover = __allocate< ::item >(e_element_none);
 
          set_need_redraw();
 
@@ -1929,14 +1942,29 @@ namespace user
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
+      m_timeLeftButtonDown.Now();
+
       if (plain_edit_is_enabled())
       {
+
+         if (m_bNewFocus)
+         {
+
+            if (m_timeLeftButtonDown > m_timeNewFocus
+               && (m_timeLeftButtonDown - m_timeNewFocus) > 300_ms)
+            {
+
+               m_bNewFocus = false;
+
+            }
+
+         }
 
          pmouse->previous();
 
          ::point_i32 point = pmouse->m_pointHost;
 
-         screen_to_client()(point);
+         host_to_client()(point);
 
          {
 
@@ -1948,20 +1976,33 @@ namespace user
 
             set_mouse_capture();
 
-            queue_graphics_call([this, point](::draw2d::graphics_pointer & pgraphics)
+            if (!m_bNewFocus)
             {
 
-               auto iSelBeg = plain_edit_char_hit_test(pgraphics, point);
+               queue_graphics_call([this, point](::draw2d::graphics_pointer & pgraphics)
+               {
 
-               auto iSelEnd = iSelBeg;
-               
-               informationf("LeftButtonDown(%d,%d)-queue_graphics_call", iSelBeg, iSelEnd);
+                     ::strsize iBegNew = -1;
+                     ::strsize iEndNew = -1;
 
-               _001SetSel(iSelBeg, iSelEnd);
+                     ::strsize iBegOld = -1;
+                     ::strsize iEndOld = -1;
 
-               m_iColumn = plain_edit_sel_to_column_x(pgraphics, m_ptree->m_iSelEnd, m_iColumnX);
+                     _001GetSel(iBegOld, iEndOld);
 
-            });
+                     iBegNew = plain_edit_char_hit_test(pgraphics, point);
+
+                     iEndNew = iBegNew;
+
+                     informationf("LeftButtonDown(%d,%d)-queue_graphics_call", iBegNew, iEndNew);
+
+                     _001SetSel(iBegNew, iEndNew);
+
+                     m_iColumn = plain_edit_sel_to_column_x(pgraphics, m_ptree->m_iSelEnd, m_iColumnX);
+
+               });
+
+            }
 
 #if defined(WINDOWS_DESKTOP)
 
@@ -1997,7 +2038,7 @@ namespace user
 
       defer_release_mouse_capture();
 
-      if (m_bLMouseDown)
+      if (m_bLMouseDown && !m_bNewFocus)
       {
 
          ::point_i32 point = pmouse->m_pointHost;
@@ -2012,6 +2053,8 @@ namespace user
             });
 
       }
+
+      m_bNewFocus = false;
 
       set_need_redraw();
 
@@ -4808,7 +4851,7 @@ namespace user
 
             MacroBegin();
 
-            MacroRecord(__new(plain_text_file_command()));
+            MacroRecord(__allocate< plain_text_file_command >());
 
             MacroEnd();
 
@@ -4876,7 +4919,7 @@ namespace user
 
             MacroBegin();
 
-            MacroRecord(__new(plain_text_file_command()));
+            MacroRecord(__allocate< plain_text_file_command >());
 
             MacroEnd();
 
@@ -4912,7 +4955,7 @@ namespace user
 
             on_before_change_text();
 
-            auto psetsel = __new(plain_text_set_sel_command);
+            auto psetsel = __allocate< plain_text_set_sel_command >();
 
             psetsel->m_iPreviousSelBeg = m_ptree->m_iSelBeg;
 
@@ -4955,7 +4998,7 @@ namespace user
 
             MacroRecord(psetsel);
 
-            MacroRecord(__new(plain_text_file_command()));
+            MacroRecord(__allocate< plain_text_file_command >());
 
             MacroEnd();
 
@@ -5006,7 +5049,7 @@ namespace user
 
             MacroBegin();
 
-            MacroRecord(__new(plain_text_file_command()));
+            MacroRecord(__allocate< plain_text_file_command >());
 
             MacroEnd();
 
@@ -5078,7 +5121,7 @@ namespace user
 
       on_before_change_text();
 
-      auto psetsel = __new(plain_text_set_sel_command);
+      auto psetsel = __allocate< plain_text_set_sel_command >();
 
       psetsel->m_iPreviousSelBeg = m_ptree->m_iSelBeg;
 
@@ -5117,7 +5160,7 @@ namespace user
 
       MacroRecord(psetsel);
 
-      MacroRecord(__new(plain_text_file_command()));
+      MacroRecord(__allocate< plain_text_file_command >());
 
       MacroEnd();
 
@@ -5183,7 +5226,7 @@ namespace user
 
       on_before_change_text();
 
-      auto psetsel = __new(plain_text_set_sel_command);
+      auto psetsel = __allocate< plain_text_set_sel_command >();
 
       psetsel->m_iPreviousSelBeg = m_ptree->m_iSelBeg;
 
@@ -5235,7 +5278,7 @@ namespace user
 
       MacroRecord(psetsel);
 
-      MacroRecord(__new(plain_text_file_command()));
+      MacroRecord(__allocate< plain_text_file_command >());
 
       MacroEnd();
 
@@ -5721,7 +5764,7 @@ namespace user
 
                         on_before_change_text();
 
-                        auto psetsel = __new(plain_text_set_sel_command);
+                        auto psetsel = __allocate< plain_text_set_sel_command >();
 
                         psetsel->m_iPreviousSelBeg = m_ptree->m_iSelBeg;
 
@@ -5796,7 +5839,7 @@ namespace user
                         psetsel->m_iSelEnd = m_ptree->m_iSelEnd;
                         MacroBegin();
                         MacroRecord(psetsel);
-                        MacroRecord(__new(plain_text_file_command()));
+                        MacroRecord(__allocate< plain_text_file_command >());
                         MacroEnd();
 
                         _001SetSelEnd(m_ptree->m_iSelEnd);
@@ -6454,7 +6497,7 @@ namespace user
 
          _001GetText(strText);
 
-         ::informationf("\nplain_edit::on_text_composition (m_pitemComposing != nullptr) Current Text: " + strText + "\n");
+         ::acme::get()->platform()->informationf("\nplain_edit::on_text_composition (m_pitemComposing != nullptr) Current Text: " + strText + "\n");
 
       }
       else
@@ -6526,7 +6569,7 @@ namespace user
 
          _001GetText(strText);
 
-         ::informationf("Current Text: " + strText + "\n");
+         ::acme::get()->platform()->informationf("Current Text: " + strText + "\n");
 
          m_pitemComposing.release();
 
@@ -6862,7 +6905,7 @@ namespace user
             m_ptree->m_peditfile->MacroEnd();
 
             MacroBegin();
-            MacroRecord(__new(plain_text_file_command()));
+            MacroRecord(__allocate< plain_text_file_command >());
             MacroEnd();
 
          });
@@ -6885,7 +6928,7 @@ namespace user
 
       strsize iAnsiEnd = wd16_to_ansi_len(wstrText, iEnd);
 
-      auto psetsel = __new(plain_text_set_sel_command);
+      auto psetsel = __allocate< plain_text_set_sel_command >();
 
       psetsel->m_iPreviousSelBeg = m_ptree->m_iSelBeg;
 
@@ -7389,7 +7432,7 @@ namespace user
 
    void plain_edit::MacroBegin()
    {
-      ::pointer<::user::plain_text_group_command>pgroupcommand = __new(plain_text_group_command);
+      ::pointer<::user::plain_text_group_command>pgroupcommand = __allocate< plain_text_group_command >();
       pgroupcommand->m_pparent = m_ptree->m_pgroupcommand;
       m_ptree->m_pgroupcommand = pgroupcommand;
    }
@@ -7891,6 +7934,17 @@ namespace user
 
       }
 
+      m_bNewFocus = true;
+
+      m_timeNewFocus.Now();
+
+      strsize iBegAll = 0;
+
+      strsize iEndAll = _001GetTextLength();
+
+      _001SetSel(iBegAll, iEndAll);
+
+
 #ifdef WINDOWS_DESKTOP
 
       on_text_composition_message(TEXT_COMPOSITION_MESSAGE_UPDATE_CARET);
@@ -7972,7 +8026,7 @@ namespace user
    ::pointer<::data::item>plain_edit::on_allocate_item()
    {
 
-      return __new(plain_text_command);
+      return __allocate< plain_text_command >();
 
    }
 
@@ -8297,7 +8351,7 @@ namespace user
    void plain_edit::plain_edit_insert_text(::draw2d::graphics_pointer & pgraphics, string strText, bool bForceNewStep)
    {
 
-      ::informationf("plain_edit::insert_text: \"" + strText.left(64) + "\" \n");
+      ::acme::get()->platform()->informationf("plain_edit::insert_text: \"" + strText.left(64) + "\" \n");
 
       synchronous_lock synchronouslock(this->synchronization());
 
@@ -8366,7 +8420,7 @@ namespace user
       else
       {
 
-         auto psetsel = __new(plain_text_set_sel_command);
+         auto psetsel = __allocate< plain_text_set_sel_command >();
 
          psetsel->m_iPreviousSelBeg = m_ptree->m_iSelBeg;
 
@@ -8430,7 +8484,7 @@ namespace user
 
          MacroBegin();
          MacroRecord(psetsel);
-         MacroRecord(__new(plain_text_file_command()));
+         MacroRecord(__allocate< plain_text_file_command >());
          MacroEnd();
 
       }
@@ -8616,7 +8670,7 @@ namespace user
 //   if (m_psimpleimm.is_null())
 //   {
 //
-//      m_psimpleimm = __new(simple_imm(this));
+//      m_psimpleimm = __allocate< simple_imm >(this);
 //
 //   }
 //

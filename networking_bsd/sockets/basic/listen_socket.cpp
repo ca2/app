@@ -15,12 +15,12 @@ namespace sockets_bsd
 
 
    //listen_socket::listen_socket() :
-   listen_socket::listen_socket() :
+   listen_socket::listen_socket() // :
       //::object(&h),
       //base_socket(h),
       //socket(h),
-      m_depth(0),
-      m_bDetach(false)
+      //m_depth(0),
+      //m_bDetach(false)
    {
 
    }
@@ -72,14 +72,14 @@ namespace sockets_bsd
    {
       if (IsIpv6())
       {
-         auto paddress = __new(::networking_bsd::address);
+         auto paddress = __allocate< ::networking_bsd::address >();
          paddress->set_family(AF_INET6, port);
          //::networking::address ad(AF_INET6, port);
          return Bind(paddress.m_p, depth);
       }
       else
       {
-         auto paddress = __new(::networking_bsd::address);
+         auto paddress = __allocate< ::networking_bsd::address >();
          paddress->set_family(AF_INET, port);
          return Bind(paddress.m_p, depth);
       }
@@ -104,13 +104,13 @@ namespace sockets_bsd
    {
       if (IsIpv6())
       {
-         auto paddress = __new(::networking_bsd::address);
+         auto paddress = __allocate< ::networking_bsd::address >();
          paddress->set_family(AF_INET6, port);
          return Bind(paddress->u.m_addr6.sin6_addr, port, protocol, depth);
       }
       else
       {
-         auto paddress = __new(::networking_bsd::address);
+         auto paddress = __allocate< ::networking_bsd::address >();
          paddress->set_family(AF_INET, port);
          return Bind(paddress->u.m_addr.sin_addr, port, protocol, depth);
       }
@@ -170,7 +170,7 @@ namespace sockets_bsd
    i32 listen_socket::Bind(in_addr a,::networking::port_t port,i32 depth)
    {
 
-      auto paddress = __new(::networking_bsd::address);
+      auto paddress = __allocate< ::networking_bsd::address >();
 
       paddress->set_address(a, port);
 
@@ -193,7 +193,7 @@ namespace sockets_bsd
    i32 listen_socket::Bind(in_addr a,::networking::port_t port,const string & protocol,i32 depth)
    {
 
-      auto paddress = __new(::networking_bsd::address);
+      auto paddress = __allocate< ::networking_bsd::address >();
 
       paddress->set_address(a, port);
 
@@ -208,7 +208,7 @@ namespace sockets_bsd
    i32 listen_socket::Bind(in6_addr a,::networking::port_t port,i32 depth)
    {
 
-      auto paddress = __new(::networking_bsd::address);
+      auto paddress = __allocate< ::networking_bsd::address >();
 
       paddress->set_address(a, port);
 
@@ -232,7 +232,7 @@ namespace sockets_bsd
    i32 listen_socket::Bind(in6_addr a,::networking::port_t port,const string & protocol,i32 depth)
    {
 
-      auto paddress = __new(::networking_bsd::address);
+      auto paddress = __allocate< ::networking_bsd::address >();
 
       paddress->set_address(a, port);
 
@@ -336,20 +336,21 @@ namespace sockets_bsd
       return m_depth;
    }
 
-   void listen_socket::set_should_detach(bool bSet)
-   {
 
-      m_bDetach = bSet;
+   //void listen_socket::SetStartDetach(bool bSet)
+   //{
 
-   }
+   //   m_bStartDetach = bSet;
+
+   //}
 
 
-   bool listen_socket::should_detach() const
-   {
+   //bool listen_socket::IsStartDetach()
+   //{
 
-      return m_bDetach;
+   //   return m_bStartDetach;
 
-   }
+   //}
 
 
    /** OnRead on a listen_socket receives an incoming connection. */
@@ -434,7 +435,7 @@ namespace sockets_bsd
       tmp -> set_parent(this);
       tmp -> attach(socketAccept);
       tmp -> SetNonblocking(true);
-      auto paddressRemote = __new(::networking_bsd::address);
+      auto paddressRemote = __allocate< ::networking_bsd::address >();
       paddressRemote->set_address(sockaddr, sockaddr_len);
       //tmp->SetRemoteHostname(::networking::address(*psa));
       tmp->SetRemoteHostname(paddressRemote);
@@ -459,17 +460,23 @@ namespace sockets_bsd
          tmp -> OnAccept();
       }
       
-      if (m_bDetach)
+      if (m_bListeningDetach)
       {
          
          tmp->prepare_for_detach();
+
+      }
+      else
+      {
+
+         throw "Debug... is it not detached?!?!";
 
       }
 //      auto passociation = m_psockethandler->new_association(tmp);
 
       //socket_handler()->transfer(passociation);
 
-      __Handler(m_psockethandler)->move2(::transfer(tmp));
+      __Handler(m_psockethandler)->add(tmp);
 
    }
 

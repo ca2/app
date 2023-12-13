@@ -11,7 +11,7 @@ void operating_system_initialize_nano(::factory::factory * pfactory);
 bool g_bNanoInitialize = false;
 
 
-CLASS_DECL_ACME void initialize_nano_window()
+CLASS_DECL_ACME void initialize_nano_window(::factory::factory * pfactory)
 {
 
    if(g_bNanoInitialize)
@@ -21,7 +21,7 @@ CLASS_DECL_ACME void initialize_nano_window()
 
    }
 
-   operating_system_initialize_nano(::get_system_factory());
+   operating_system_initialize_nano(pfactory);
 
    g_bNanoInitialize = true;
 

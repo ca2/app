@@ -54,7 +54,7 @@ public:
    constexpr mutable_string_range(const_iterator begin, INTEGRAL count) : BASE_RANGE((this_iterator) begin,
                                                                              (this_iterator) (begin + count)) {}
    
-   mutable_string_range(enum_no_initialize) : ::string_range<ITERATOR_TYPE>(e_no_initialize) {}
+   mutable_string_range(no_initialize_t) : ::string_range<ITERATOR_TYPE>(no_initialize_t{}) {}
    
    mutable_string_range(enum_zero_initialize) : ::string_range<ITERATOR_TYPE>(e_zero_initialize) {}
    

@@ -35,9 +35,9 @@ critical_section * get_pid_cs()
    if(g_pcsPid2 == nullptr)
    {
 
-      g_pcsPid2 = memory_new critical_section();
+      g_pcsPid2 = aaa_primitive_new critical_section();
 
-      g_ppid = memory_new chldstatus_map();
+      g_ppid = aaa_primitive_new chldstatus_map();
 
 
    }
@@ -548,26 +548,26 @@ namespace apple
 
 //      int uid = getuid();
 
-      ::informationf("---\n");
-      ::informationf("---\n");
-      ::informationf("---\n");
-      ::informationf("---\n");
-      ::informationf("---\n");
-      ::informationf("---\n");
-      ::informationf("---\n");
-      ::informationf("---\n");
-      ::informationf("---\n");
-      ::informationf("---\n");
-      ::informationf("---\n");
-      ::informationf("---\n");
-      ::informationf("---\n");
-      ::informationf("---\n");
-      ::informationf("---\n");
-      ::informationf("---\n");
-      ::informationf("---\n");
-      ::informationf("---\n");
-      ::informationf("---\n");
-      ::informationf("---\n");
+      ::acme::get()->platform()->informationf("---\n");
+      ::acme::get()->platform()->informationf("---\n");
+      ::acme::get()->platform()->informationf("---\n");
+      ::acme::get()->platform()->informationf("---\n");
+      ::acme::get()->platform()->informationf("---\n");
+      ::acme::get()->platform()->informationf("---\n");
+      ::acme::get()->platform()->informationf("---\n");
+      ::acme::get()->platform()->informationf("---\n");
+      ::acme::get()->platform()->informationf("---\n");
+      ::acme::get()->platform()->informationf("---\n");
+      ::acme::get()->platform()->informationf("---\n");
+      ::acme::get()->platform()->informationf("---\n");
+      ::acme::get()->platform()->informationf("---\n");
+      ::acme::get()->platform()->informationf("---\n");
+      ::acme::get()->platform()->informationf("---\n");
+      ::acme::get()->platform()->informationf("---\n");
+      ::acme::get()->platform()->informationf("---\n");
+      ::acme::get()->platform()->informationf("---\n");
+      ::acme::get()->platform()->informationf("---\n");
+      ::acme::get()->platform()->informationf("---\n");
 
 //      int i = setuid(0);
 

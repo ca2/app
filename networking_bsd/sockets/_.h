@@ -32,7 +32,7 @@ namespace sockets_bsd
 
    class base_socket;
 
-   using socket_pointer = ::pointer<base_socket>;
+   using socket_pointer = ::pointer<::sockets::base_socket>;
 
 
    //typedef comparable_list < socket_pointer > socket_pointer_list;

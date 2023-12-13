@@ -5,6 +5,7 @@
 #include "acme/constant/message.h"
 #include "acme/constant/user_key.h"
 #include "acme/handler/item.h"
+#include "acme/handler/topic.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/primitive/geometry2d/_text_stream.h"
 #include "acme/user/user/_constant.h"
@@ -545,7 +546,7 @@ namespace user
          if (rectangleElement.contains(point))
          {
 
-            auto pitem = __new(::item(e_element_drop_down));
+            auto pitem = __allocate< ::item >(e_element_drop_down);
 
             auto puseritem = user_item(pitem);
             
@@ -562,7 +563,7 @@ namespace user
       if (rectangleX.contains(point))
       {
 
-         auto pitem = __new(::item(e_element_text));
+         auto pitem = __allocate< ::item >(e_element_text);
 
          auto puseritem = user_item(pitem);
             
@@ -572,7 +573,7 @@ namespace user
 
       }
       
-      auto pitemNone = __new(::item(e_element_none));
+      auto pitemNone = __allocate< ::item >(e_element_none);
       
       return pitemNone;
 
@@ -718,10 +719,12 @@ namespace user
 
          }
 
+         bool bDropDownListBoxShown = false;
+
          if (m_plistbox.is_null() || timeLastVisibilityChangeElapsed > 300_ms)
          {
 
-            _001ToggleDropDown();
+            bDropDownListBoxShown = _001ToggleDropDown();
 
          }
          else if (!m_plistbox->const_layout().sketch().is_screen_visible())
@@ -731,7 +734,14 @@ namespace user
 
          }
 
-         set_keyboard_focus();
+         if (!bDropDownListBoxShown)
+         {
+
+            set_keyboard_focus();
+
+            set_active_window();
+
+         }
 
          set_need_redraw();
 
@@ -794,7 +804,7 @@ namespace user
    }
 
 
-   void combo_box::_001ToggleDropDown()
+   bool combo_box::_001ToggleDropDown()
    {
 
       defer_create_list_box();
@@ -802,22 +812,29 @@ namespace user
       if (m_plistbox.is_set())
       {
 
-         _001ShowDropDown(!m_plistbox->is_window_visible(::user::e_layout_sketch));
+         if (_001ShowDropDown(!m_plistbox->is_window_visible(::user::e_layout_sketch)))
+         {
+
+            return true;
+
+         }
 
       }
+
+      return false;
 
    }
 
 
-   void combo_box::_001ShowDropDown(bool bShow)
+   bool combo_box::_001ShowDropDown(bool bShow)
    {
 
-      if (m_plistbox)
-      {
+      //if (m_plistbox)
+      //{
 
-         m_plistbox->m_bPendingKillFocusHiding = false;
+      //   m_plistbox->m_bPendingKillFocusHiding = false;
 
-      }
+      //}
 
       if(bShow)
       {
@@ -846,6 +863,8 @@ namespace user
 
          m_plistbox->on_drop_down(rectangleWindow, m_sizeFull);
 
+         return true;
+
       }
       else
       {
@@ -855,17 +874,15 @@ namespace user
 
             m_plistbox->hide();
 
-            m_plistbox->set_need_redraw();
-
-            m_plistbox->post_redraw();
+//         m_plistbox->set_need_redraw();
+//
+//         m_plistbox->post_redraw();
 
          }
 
-         set_keyboard_focus();
-
-         set_active_window();
-
       }
+
+      return false;
 
    }
 
@@ -992,7 +1009,7 @@ namespace user
 
          auto itemCurrent = _001FindListText(str);
 
-         set_current_item(__new(::item(e_element_item, itemCurrent)), actioncontext);
+         set_current_item(__allocate< ::item >(e_element_item, itemCurrent), actioncontext);
 
       }
 

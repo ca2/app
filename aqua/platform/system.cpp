@@ -45,15 +45,22 @@ namespace aqua
    }
 
 
-   void system::initialize(::particle * pparticle)
+   void system::on_set_platform()
+   {
+
+      ::apex::system::on_set_platform();
+
+      factory()->add_factory_item < ::aqua::session, ::apex::session >();
+
+   }
+
+
+   void system::on_initialize_particle()
    {
 
       //auto estatus = 
       
-      ::apex::system::initialize(pparticle);
-
-
-      factory()->add_factory_item < ::aqua::session, ::apex::session >();
+      ::apex::system::on_initialize_particle();
 
 
       //if (!estatus)

@@ -3,6 +3,7 @@
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
 #include "acme/constant/user_key.h"
+#include "acme/handler/topic.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/primitive/data/listener.h"
 #include "acme/primitive/datetime/datetime.h"
@@ -27,7 +28,7 @@ html_form::html_form()
    //m_flagNonClient.erase(e_non_client_background);
    m_flagNonClient.erase(e_non_client_focus_rect);
 
-   //m_phtmlform = memory_new html::form();
+   //m_phtmlform = __new< html::form >();
 
 
 

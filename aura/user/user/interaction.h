@@ -205,11 +205,12 @@ namespace user
       bool                                      m_bNeedRedraw;
       boolean                                   m_bNeedPerformLayout;
       bool                                      m_bNeedLayout;
+      //bool                                      m_bNeedCheckChildrenLayout;
       bool                                      m_bReposition;
       bool                                      m_bUpdatingVisual;
       bool                                      m_bOnDraw;
 
-      bool                                      m_bUpdateVisual;
+      //bool                                      m_bUpdateVisual;
       bool                                      m_bMouseMovePending;
       bool                                      m_bNeedLoadFormData;
       bool                                      m_bNeedSaveFormData;
@@ -808,7 +809,7 @@ namespace user
       //void window_move(i32 x, i32 y) override;
 
 
-      //auto fps_interest() { return __new(::fps_interest(this)); }
+      //auto fps_interest() { return __allocate< ::fps_interest >(this); }
 
       virtual bool should_save_window_rectangle();
       
@@ -1049,6 +1050,9 @@ namespace user
 
       virtual void set_current_item(::item * pitem, const ::action_context & action_context);
       virtual ::item_pointer current_item();
+
+
+      virtual ::item_pointer stock_item(::enum_element eelement);
 
 
       //virtual ::item_pointer hover_item();

@@ -30,6 +30,7 @@ namespace acme
    context::context()
    {
 
+      m_pplatform = nullptr;
 
       m_pcontext = this;
 
@@ -42,7 +43,7 @@ namespace acme
       m_pacmesystem = nullptr;
       m_pacmenode = nullptr;
       
-//      m_ptexttranslator = memory_new ::text::translator();
+//      m_ptexttranslator = __new< ::text::translator >();
 //
 //      m_ptexttranslator->m_pcontext = this;
 
@@ -53,6 +54,23 @@ namespace acme
    {
 
       //::release(m_ptexttranslator);
+
+   }
+
+
+   void context::on_set_platform()
+   {
+
+
+   }
+
+
+   void context::set_platform(::platform::platform * pplatform)
+   {
+
+      m_pplatform = pplatform;
+
+      on_set_platform();
 
    }
 
@@ -202,7 +220,7 @@ namespace acme
       //}
 
       //estatus = 
-      m_pfile->init_context();
+      m_pdir->init_context();
 
       //if(!estatus)
       //{
@@ -232,6 +250,70 @@ namespace acme
    void context::initialize_context_1()
    {
 
+
+   }
+
+
+   void context::finalize_context()
+   {
+
+      try
+      {
+         m_pdir->term_context();
+      }
+      catch (...)
+      {
+
+      }
+      try
+      {
+         m_pfile->term_context();
+      }
+      catch (...)
+      {
+
+      }
+      try
+      {
+         m_pdir->term_system();
+      }
+      catch (...)
+      {
+
+      }
+      try
+      {
+         m_pfile->term_system();
+      }
+      catch (...)
+      {
+
+      }
+
+      try
+      {
+         m_pdir->finalize();
+      }
+      catch (...)
+      {
+
+      }
+
+
+      try
+      {
+         m_pfile->finalize();
+      }
+      catch (...)
+      {
+
+      }
+
+      m_pdir.release();
+
+      m_pfile.release();
+
+      m_ptexttranslator.release();
 
    }
 
@@ -317,6 +399,15 @@ namespace acme
    }
 
 
+   //::platform::platform * context::platform() const
+   //{
+
+   //   return ((context*)this)->m_pplatform;
+
+   //}
+
+
+
    ::acme_file* context::acmefile() { return m_pacmesystem->m_pacmefile; }
    ::acme_path* context::acmepath() { return m_pacmesystem->m_pacmepath; }
    ::acme_directory* context::acmedirectory() { return m_pacmesystem->m_pacmedirectory; }
@@ -368,14 +459,14 @@ namespace acme
 
       ::count cScan = maximum(1, minimum(iCount - iStart, iAffinityOrder));
 
-      auto pcounter = __new(::counter(cScan, procedureCompletion));
+      auto pcounter = __allocate< ::parallelization::counter >(cScan, procedureCompletion);
 
       auto ptask = ::get_task();
 
       for (index iOrder = 0; iOrder < cScan; iOrder++)
       {
 
-         auto ppredtask = __new(forking_count_task(this, iOrder, iOrder + iStart, cScan, iCount, function));
+         auto ppredtask = __allocate< forking_count_task >(this, iOrder, iOrder + iStart, cScan, iCount, function);
 
          //if (::is_set(ptask))
          //{

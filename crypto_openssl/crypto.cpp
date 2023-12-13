@@ -906,7 +906,7 @@ namespace crypto_openssl
    //}
 
 
-   //// get a memory_new salt - 8 hexadecimal characters long
+   //// get a new salt - 8 hexadecimal characters long
    //// current PHP installations should not exceed 8 characters
    //// on dechex( mt_rand() )
    //// but we future proof it anyway with substr()
@@ -1086,7 +1086,7 @@ namespace crypto_openssl
 //               ::winrt::Windows::Security::Cryptography::Core::AsymmetricAlgorithmNames::RsaPkcs1);
 //
 //
-//         return __new(::crypto::rsa(get_app(), provider->CreateKeyPair(1024)));
+//         return __allocate< ::crypto::rsa >(get_app(), provider->CreateKeyPair(1024));
 //
 //      }
 //
@@ -1224,7 +1224,7 @@ namespace crypto_openssl
    ::pointer<::crypto::rsa>crypto::create_rsa_key(const ::string& strRsa)
    {
 
-      auto popensslrsa = __new(::crypto_openssl::rsa);
+      auto popensslrsa = __allocate< ::crypto_openssl::rsa >();
 
       throw todo;
 
@@ -1236,7 +1236,7 @@ namespace crypto_openssl
    ::pointer<::crypto::rsa>crypto::generate_rsa_key()
    {
 
-      auto popensslrsa = __new(::crypto_openssl::rsa);
+      auto popensslrsa = __allocate< ::crypto_openssl::rsa >();
 
 #if OPENSSL_VERSION_NUMBER >= 0x30000000
 
@@ -1445,7 +1445,7 @@ namespace crypto_openssl
 
       }
 
-      auto popensslrsa = __new(::crypto_openssl::rsa);
+      auto popensslrsa = __allocate< ::crypto_openssl::rsa >();
 
 #if OPENSSL_VERSION_NUMBER >= 0x30000000
 
@@ -1484,7 +1484,7 @@ namespace crypto_openssl
 
       }
 
-      auto popensslrsa = __new(::crypto_openssl::rsa);
+      auto popensslrsa = __allocate< ::crypto_openssl::rsa >();
 
       throw todo;
 

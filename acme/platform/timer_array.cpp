@@ -42,7 +42,7 @@ namespace acme
 
       delete_timer(uEvent);
 
-      auto ptimer = __new(timer_task);
+      auto ptimer = __allocate< timer_task >();
 
       ptimer->initialize_timer(pparticle, this, uEvent, pfnTimer, pvoidData, synchronization());
 
@@ -50,7 +50,7 @@ namespace acme
 
       m_timera.add(ptimer);
 
-      //m_pcallback->add_composite(ptimer OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_FUNCTION_LINE);
+      //m_pcallback->add_composite(ptimer REFERENCING_DEBUGGING_COMMA_THIS_FUNCTION_FILE_LINE);
 
       bool bOk = true;
 

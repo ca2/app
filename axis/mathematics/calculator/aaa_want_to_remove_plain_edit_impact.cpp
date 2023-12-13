@@ -69,7 +69,7 @@ namespace calculator
 ::user::plain_edit* new_calculator_plain_edit()
 {
 
-   return memory_new ::calculator::plain_edit_impact();
+   return aaa_primitive_new ::calculator::plain_edit_impact();
 
 }
 

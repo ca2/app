@@ -346,26 +346,36 @@ template < typename T >
 using non_extent = typename erase_extent_struct < T >::type;
 
 
+#if REFERENCING_DEBUGGING
 
 
+class reference_referer;
 
 
+namespace allocator
+{
 
 
+   CLASS_DECL_ACME ::reference_referer * defer_add_referer(const ::reference_referer & referer);
+   CLASS_DECL_ACME ::reference_referer * add_referer(const ::reference_referer & referer);
+   CLASS_DECL_ACME ::reference_referer * defer_get_referer(::particle * p, const ::reference_referer & referer);
+   CLASS_DECL_ACME ::reference_referer * get_referer();
+   CLASS_DECL_ACME ::reference_referer * pop_referer();
+   CLASS_DECL_ACME void defer_erase_referer();
+   CLASS_DECL_ACME void erase_referer(::reference_referer * preferer);
 
 
+   CLASS_DECL_ACME void add_releaser(::reference_referer * preferer);
+   CLASS_DECL_ACME ::reference_referer * get_releaser();
+   CLASS_DECL_ACME ::reference_referer * pop_releaser();
+   CLASS_DECL_ACME void defer_erase_releaser();
+   CLASS_DECL_ACME void erase_releaser(::reference_referer * preferer);
 
 
+} // namespace allocator
 
 
-
-
-
-
-
-
-
-
+#endif
 
 
 template<typename T>
@@ -893,7 +903,7 @@ class particle;
 //class element;
 class matter;
 class exception_translator;
-class counter;
+//class counter;
 //class type;
 
 class acme_file;
@@ -908,7 +918,7 @@ namespace platform
    class platform;
 
 
-   inline ::platform::platform * get();
+   //inline ::platform::platform * get();
 
 
 } // namespace platform
@@ -2238,6 +2248,16 @@ struct argument_of_struct < TYPE * >
 
 template < typename ARGUMENT >
 using argument_of = typename argument_of_struct < ARGUMENT >::type;
+
+
+namespace user
+{
+
+   
+   class key_state;
+
+
+} // namespace user
 
 
 

@@ -69,10 +69,10 @@ namespace user
    }
 
 
-   bool notify_icon::step()
+   bool notify_icon::notify_icon_step()
    {
 
-      //return ::success;
+   //   //return ::success;
 
       return true;
 
@@ -136,7 +136,7 @@ namespace user
    bool notify_icon::on_application_menu_action(const ::atom &atom)
    {
 
-      auto pcommand = __new(::message::command(atom));
+      auto pcommand = __allocate< ::message::command >(atom);
 
       route_command(pcommand);
 

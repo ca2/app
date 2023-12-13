@@ -6,14 +6,17 @@
 #include "acme/constant/message.h"
 #include "acme/constant/user_key.h"
 #include "acme/constant/timer.h"
+#include "acme/handler/topic.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/primitive/geometry2d/_text_stream.h"
 #include "acme/user/user/content.h"
+#include "acme/parallelization/message_queue.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "acme/platform/timer.h"
 #include "aura/user/user/scroll_state.h"
+#include "aura/user/user/interaction_graphics_thread.h"
 #include "aura/user/user/interaction_impl.h"
 #include "aura/message/user.h"
 #include "aura/user/user/user.h"
@@ -52,7 +55,9 @@ namespace user
 
       m_bDefaultMouseHoverHandling = true;
 
-      m_bPendingKillFocusHiding = false;
+      m_bDefaultParentMouseMessageHandling = true;
+
+      //m_bPendingKillFocusHiding = false;
 
       m_ewindowflag += e_window_flag_satellite_window;
 
@@ -87,8 +92,8 @@ namespace user
 
       MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &list_box::on_message_create);
       MESSAGE_LINK(MESSAGE_DESTROY, pchannel, this, &list_box::on_message_destroy);
-      MESSAGE_LINK(e_message_set_focus, pchannel, this, &list_box::on_message_set_focus);
-      MESSAGE_LINK(e_message_kill_focus, pchannel, this, &list_box::on_message_kill_focus);
+      //MESSAGE_LINK(e_message_set_focus, pchannel, this, &list_box::on_message_set_focus);
+      //MESSAGE_LINK(e_message_kill_focus, pchannel, this, &list_box::on_message_kill_focus);
       MESSAGE_LINK(MESSAGE_CLOSE, pchannel, this, &list_box::on_message_close);
       MESSAGE_LINK(e_message_mouse_activate, pchannel, this, &list_box::_001OnMouseActivate);
       MESSAGE_LINK(e_message_key_down, pchannel, this, &list_box::on_message_key_down);
@@ -96,7 +101,7 @@ namespace user
       MESSAGE_LINK(e_message_non_client_left_button_down, pchannel, (::user::interaction *)this, &interaction::on_message_left_button_down);
       MESSAGE_LINK(e_message_middle_button_down, pchannel, this, &list_box::on_message_middle_button_down);
       MESSAGE_LINK(e_message_right_button_down, pchannel, this, &list_box::on_message_right_button_down);
-      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &list_box::on_message_mouse_move);
+      //MESSAGE_LINK(e_message_mouse_move, pchannel, this, &list_box::on_message_mouse_move);
       MESSAGE_LINK(e_message_show_window, pchannel, this, &list_box::on_message_show_window);
 
    }
@@ -319,6 +324,10 @@ namespace user
             {
 
                m_pcombo->set_current_item(ptopic->m_pitem, ptopic->m_actioncontext);
+               
+               auto p = get_host_user_interaction()->m_pinteractionimpl->m_pgraphicsthread->get_message_queue();
+               
+               p->m_eflagElement |= (::enum_flag)(1ll << 36);
 
                m_pcombo->ShowDropDown(false);
 
@@ -463,6 +472,8 @@ namespace user
 #endif
 
             estate += ::user::e_state_hover;
+
+            information() << "hover_item : " << iItem;
 
          }
 
@@ -673,25 +684,25 @@ namespace user
    void list_box::_001OnTimer(::timer* ptimer)
    {
    
-      if (ptimer->m_etimer == e_timer_kill_focus)
-      {
+      //if (ptimer->m_etimer == e_timer_kill_focus)
+      //{
 
-         if (m_bPendingKillFocusHiding)
-         {
-            
-            m_bPendingKillFocusHiding = false;
+      //   if (m_bPendingKillFocusHiding)
+      //   {
+      //      
+      //      m_bPendingKillFocusHiding = false;
 
-            hide();
+      //      hide();
 
-            set_need_redraw();
+      //      set_need_redraw();
 
-            post_redraw();
+      //      post_redraw();
 
-         }
+      //   }
 
-         KillTimer(e_timer_kill_focus);
+      //   KillTimer(e_timer_kill_focus);
 
-      }
+      //}
 
       ::user::scroll_base::_001OnTimer(ptimer);
    
@@ -776,8 +787,10 @@ namespace user
    }
 
 
-   void list_box::on_message_kill_focus(::message::message * pmessage)
+   void list_box::on_kill_keyboard_focus()
    {
+
+      m_timeKillFocus.Now();
 
       if (m_pcombo)
       {
@@ -787,11 +800,13 @@ namespace user
          if (!bGoingToShow)
          {
 
-            m_timeKillFocus.Now();
+            hide();
 
-            m_bPendingKillFocusHiding = true;
+            
+            //se
+            //m_bPendingKillFocusHiding = true;
 
-            set_timer(e_timer_kill_focus, 300_ms);
+            //set_timer(e_timer_kill_focus, 300_ms);
 
             //::pointer<::message::kill_focus>pkillfocus(pmessage);
 
@@ -838,7 +853,7 @@ namespace user
    }
 
 
-   void list_box::on_message_set_focus(::message::message * pmessage)
+   void list_box::on_set_keyboard_focus()
    {
 
       if (m_pcombo)
@@ -923,13 +938,13 @@ namespace user
       else if (pkey->m_ekey == ::user::e_key_down)
       {
 
-         m_pcombo->m_pitemHover = __new(::item(e_element_item, minimum(m_pcombo->m_pitemHover->m_item.m_iItem + 1, m_pcombo->_001GetListCount() - 1)));
+         m_pcombo->m_pitemHover = __allocate< ::item >(e_element_item, minimum(m_pcombo->m_pitemHover->m_item.m_iItem + 1, m_pcombo->_001GetListCount() - 1));
 
       }
       else if (pkey->m_ekey == ::user::e_key_up)
       {
 
-         m_pcombo->m_pitemHover = __new(::item(e_element_item, maximum(m_pcombo->m_pitemHover->m_item.m_iItem - 1, 0)));
+         m_pcombo->m_pitemHover = __allocate< ::item >(e_element_item, maximum(m_pcombo->m_pitemHover->m_item.m_iItem - 1, 0));
 
       }
       else if (pkey->m_ekey == ::user::e_key_return)
@@ -1015,28 +1030,28 @@ namespace user
    }
 
 
-   void list_box::on_message_mouse_move(::message::message * pmessage)
-   {
+   //void list_box::on_message_mouse_move(::message::message * pmessage)
+   //{
 
-      UNREFERENCED_PARAMETER(pmessage);
-      //auto pmouse = pmessage->m_union.m_pmouse;
+   //   UNREFERENCED_PARAMETER(pmessage);
+   //   //auto pmouse = pmessage->m_union.m_pmouse;
 
-      //pmessage->m_bRet = true;
+   //   //pmessage->m_bRet = true;
 
-      //auto point = screen_to_client(pmouse->m_point);
+   //   //auto point = screen_to_client(pmouse->m_point);
 
-      //auto itemHover = hit_test(pmouse);
+   //   //auto itemHover = hit_test(pmouse);
 
-      //if (itemHover != m_pcombo->m_pitemHover)
-      //{
+   //   //if (itemHover != m_pcombo->m_pitemHover)
+   //   //{
 
-      //   m_pcombo->m_pitemHover = itemHover.m_iItem;
+   //   //   m_pcombo->m_pitemHover = itemHover.m_iItem;
 
-      //   set_need_redraw();
+   //   //   set_need_redraw();
 
-      //}
+   //   //}
 
-   }
+   //}
 
 
    void list_box::on_message_close(::message::message * pmessage)
@@ -1095,7 +1110,24 @@ namespace user
          if (rectangleItem.contains(point))
          {
 
-            return new_item_with_index(iItem);
+            __defer_construct_new(main_content().m_pitema);
+
+            auto & pitemNew = this->main_content().m_pitema->element_at_grow(iItem);
+
+            if (__defer_construct_new(pitemNew))
+            {
+
+               pitemNew->m_item.m_eelement = e_element_item;
+
+               pitemNew->m_item.m_iItem = iItem;
+
+            }
+
+            auto puseritem = user_item(pitemNew);
+
+            puseritem->m_rectangle2 = rectangleItem;
+
+            return pitemNew;
 
          }
 
@@ -1108,11 +1140,11 @@ namespace user
       if (rectangleItem.contains(point))
       {
 
-         return __new(::item(e_element_search_edit));
+         return __allocate< ::item >(e_element_search_edit);
 
       }
       
-      auto pitemNone = __new(::item(e_element_none));
+      auto pitemNone = __allocate< ::item >(e_element_none);
 
       return pitemNone;
 
@@ -1208,7 +1240,7 @@ namespace user
       if (!::is_set(m_pcombo->m_pitemHover))
       {
 
-         m_pcombo->m_pitemHover = __new(::item(0));
+         m_pcombo->m_pitemHover = __allocate< ::item >(::e_element_item, 0);
 
       }
 
@@ -1313,6 +1345,7 @@ namespace user
 //
 //      }
 
+      set_keyboard_focus();
 
    }
 
@@ -1348,7 +1381,7 @@ namespace user
 
       }
 
-      set_current_item(__new(::item(::e_element_item, iSel)), context);
+      set_current_item(__allocate< ::item >(::e_element_item, iSel), context);
 
    }
 
@@ -1365,7 +1398,7 @@ namespace user
 
       }
 
-      set_current_item(__new(::item(::e_element_item, iSel)), context);
+      set_current_item(__allocate< ::item >(::e_element_item, iSel), context);
 
    }
 
@@ -1379,7 +1412,7 @@ namespace user
 
        }
 
-       set_current_item(__new(::item(::e_element_item, iIndex)), context);
+       set_current_item(__allocate< ::item >(::e_element_item, iIndex), context);
 
     }
 

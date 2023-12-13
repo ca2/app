@@ -11,7 +11,7 @@
 //   {
 //
 //
-//      m_plocaleschema = __new(::text::international::locale_schema);
+//      m_plocaleschema = __allocate< ::text::international::locale_schema >();
 //
 //
 //      m_pstr = nullptr;
@@ -518,7 +518,7 @@
 //      {
 //         if(m_szMerge != nullptr && m_szMerge != m_szAlloca && m_bOwn)
 //         {
-//            memory_free(m_szMerge);
+//            ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free(m_szMerge);
 //         }
 //      }
 //
@@ -571,7 +571,7 @@
 //               {
 //                  if(m_szMerge == m_szAlloca || !m_bOwn)
 //                  {
-//                     m_szMerge = (char *)::memory_allocate(m_iMaxSize);
+//                     m_szMerge = (char *)::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(m_iMaxSize);
 //                     ::memory_copy(m_szMerge,m_szAlloca,oldlen);
 //                  }
 //                  else

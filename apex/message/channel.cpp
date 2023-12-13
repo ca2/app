@@ -173,7 +173,7 @@ void channel::route_message(::message::message * pmessage)
 ::pointer<::message::message>channel::get_message(MESSAGE * pmessage)
 {
 
-   auto pmessagemessage = __new(::message::message);
+   auto pmessagemessage = __allocate< ::message::message >();
 
    pmessagemessage->m_oswindow = pmessage->oswindow;
    pmessagemessage->m_atom = pmessage->m_atom;
@@ -184,7 +184,7 @@ void channel::route_message(::message::message * pmessage)
 
 }
 #define _NEW_MESSAGE(TYPE) \
-   auto pmessage = __new(TYPE); \
+   auto pmessage = __allocate< TYPE >(); \
    pmessageBase = pmessage; \
    pmessage->m_atom = atom; \
    pmessage->m_wparam = wparam; \
@@ -224,7 +224,7 @@ void channel::route_message(::message::message * pmessage)
    }
 
 
-   //auto pmessagemessage = __new(::message::message);
+   //auto pmessagemessage = __allocate< ::message::message >();
 
    //pmessagemessage->m_atom = atom;
    //pmessagemessage->m_wparam = wparam;
@@ -281,20 +281,43 @@ void channel::erase_all_routes()
 
    try
    {
+      ::pointer_array < ::particle >a;
 
-      critical_section_lock synchronouslock(platform()->channel_critical_section());
+      {
 
-      // if(m_bNewChannel)
-      // {
+         critical_section_lock synchronouslock(platform()->channel_critical_section());
 
-      //    m_dispatchermapNew = m_dispatchermap;
+         for (auto & i : m_dispatchermapNormal)
+         {
+            for (auto & j : i.m_element2)
+            {
+               a.add_item(::transfer(j.m_pparticleHandlerTarget));
+            }
+         }
+         for (auto & i : m_dispatchermapProbe)
+         {
+            for (auto & j : i.m_element2)
+            {
+               a.add_item(::transfer(j.m_pparticleHandlerTarget));
+            }
+         }
+         //      m_dispatchermapProbe.erase_all();
 
-      //    m_bNewChannel = false;
+               // if(m_bNewChannel)
+               // {
 
-      // }
+               //    m_dispatchermapNew = m_dispatchermap;
 
-      m_dispatchermapNormal.erase_all();
-      m_dispatchermapProbe.erase_all();
+               //    m_bNewChannel = false;
+
+               // }
+
+         m_dispatchermapNormal.erase_all();
+         m_dispatchermapProbe.erase_all();
+
+      }
+
+      a.clear();
 
 //         for (auto & id_route_array : m_idroute)
 //         {

@@ -9,7 +9,7 @@ namespace sockets
 {
 
    class base_socket_handler;
-   class base_socket;
+   class socket_interface;
 
 }
 

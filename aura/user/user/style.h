@@ -69,6 +69,7 @@ namespace user
 
       void initialize(::particle * pparticle) override;
 
+      void destroy() override;
 
       void default_style_construct();
 

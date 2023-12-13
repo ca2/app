@@ -173,7 +173,7 @@ void * __cdecl operator new(size_t size, std::align_val_t alignment)
 void operator delete(void * ptr, std::align_val_t) noexcept
 {
 
-   memory_free(ptr);
+   ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free(ptr);
 
 }
 
@@ -205,7 +205,7 @@ void heap_memory_check_padding_after(struct heap_memory* pheapmemory)
       if (ppaddingAfter[i] != 0)
       {
 
-         //            ::informationf("*&!@");
+         //            ::acme::get()->platform()->informationf("*&!@");
 
       }
 

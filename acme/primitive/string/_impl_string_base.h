@@ -367,7 +367,7 @@ CLASS_DECL_ACME ::string string_format(const ::ansi_character * pszFormat, ...);
 
 //template < typename ITERATOR_TYPE >
 //inline string_base < ITERATOR_TYPE >::string_base(const SCOPED_STRING & scopedstr) :
-//   string_base(e_no_initialize)
+//   string_base(no_initialize_t{})
 //{
 //
 //   auto lenSource = scopedstr.size();
@@ -481,7 +481,7 @@ inline void string_base < ITERATOR_TYPE >::construct5(const ::range <  const CHA
 template < typename ITERATOR_TYPE >
 template < primitive_character CHARACTER2 >
 inline string_base < ITERATOR_TYPE >::string_base(CHARACTER2 chSrc, strsize repeat) :
-   string_base(e_no_initialize)
+   string_base(no_initialize_t{})
 {
 
    if (repeat > 0)
@@ -3782,7 +3782,7 @@ inline ::count string_base < ITERATOR_TYPE >::replace_with(CHARACTER charNew, CH
 //   {
 //
 //      // if the buffer is too small, just
-//      //   allocate a memory_new buffer (slow but sure)
+//      //   allocate a __new< buffer  >(slow but sure)
 //      strsize nOldLength = size();
 //
 //      strsize nNewLength = nOldLength + (nReplacementLen - nSourceLen) * count;
@@ -3875,7 +3875,7 @@ template < typename ITERATOR_TYPE >
    if (count > 0)
    {
       // if the buffer is too small, just
-      //   allocate a memory_new buffer (slow but sure)
+      //   allocate a __new< buffer  >(slow but sure)
       strsize nOldLength = size();
       strsize nNewLength = nOldLength + (nReplacementLen - nSourceLen) * count;
 
@@ -3956,7 +3956,7 @@ template < typename ITERATOR_TYPE >
    if (count > 0)
    {
       // if the buffer is too small, just
-      //   allocate a memory_new buffer (slow but sure)
+      //   allocate a __new< buffer  >(slow but sure)
       strsize nOldLength = size();
       strsize nNewLength = nOldLength + (nReplacementLen - nSourceLen) * count;
 
@@ -6906,7 +6906,7 @@ inline ::count string_base < ITERATOR_TYPE > ::_replace_with(const SCOPED_STRING
    }
 
    // if the buffer is too small, just
-   //   allocate a memory_new buffer (slow but sure)
+   //   allocate a __new< buffer  >(slow but sure)
 
    strsize nNewLength = this->size() + (nReplacementLen - nReplacedLen) * count;
 

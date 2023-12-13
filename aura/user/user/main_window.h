@@ -41,7 +41,7 @@ namespace user
 
       //virtual void create_main_window_asynchronously();
 
-      virtual void create_main_window();
+      virtual void create_main_window(::request * prequest);
 
 
       bool should_redraw_on_mouse_activate() override;

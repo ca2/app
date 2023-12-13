@@ -7,6 +7,7 @@
 #include "acme/handler/request.h"
 #include "aura/platform/application.h"
 #include "aura/user/user/interaction.h"
+#include "aura/user/user/system.h"
 
 
 namespace user
@@ -72,6 +73,26 @@ namespace user
    }
 
 
+   ::user::document * server::open_data(::data::data * pdata, bool bMakeVisible, ::user::interaction * puiParent, e_window_flag eflag, ::atom atom)
+   {
+
+      auto prequest = pdata->__create_new< ::request>();
+
+      ::payload payloadOptions;
+
+      payloadOptions["visible"] = bMakeVisible;
+
+      prequest->initialize_create(pdata, payloadOptions, puiParent, eflag, atom);
+
+      request(prequest);
+
+      return ::user::__document(prequest);
+
+   }
+
+
+
+
    ::user::document* server::open_document_file(::acme::application * pappOnBehalfOf, ::payload payloadFile, bool bMakeVisible, ::user::interaction* puiParent, e_window_flag eflag, ::atom atom)
    {
 
@@ -90,14 +111,41 @@ namespace user
    }
 
 
-   ::user::document* server::create_subdocument(::user::impact_data* pimpactdata)
+   ::user::document* server::create_subdocument(::user::impact_data* pimpactdata, ::data::data * pdata)
    {
 
-      auto pdocument = open_document_file(
-         pimpactdata->m_pplaceholder->get_app(),
-         ::e_type_null,
-         true,
-         pimpactdata->m_pplaceholder);
+      //auto pdocument = open_document_file(
+      //   pimpactdata->m_pplaceholder->get_app(),
+      //   ::e_type_null,
+      //   true,
+      //   pimpactdata->m_pplaceholder);
+      auto prequest = pimpactdata->m_pplaceholder->get_app()->__create_new< ::request>();
+
+      ::payload payloadOptions;
+
+      payloadOptions["visible"] = true;
+
+      ::payload payloadFile;
+
+      prequest->initialize_create(
+         pimpactdata->m_pplaceholder->get_app()->m_strAppId,
+         payloadFile, 
+         payloadOptions, 
+         pimpactdata->m_pplaceholder,
+         e_window_flag(), 
+         pimpactdata->m_atom);
+
+      ::pointer<::user::system>pusersystem;
+      
+      pimpactdata->m_pplaceholder->get_app()->__construct_new(pusersystem);
+
+      prequest->m_pmatterUserPayload = pusersystem;
+
+      pusersystem->m_pimpactdata = pimpactdata;
+
+      request(prequest);
+
+      auto pdocument = ::user::__document(prequest);
 
       pimpactdata->m_pdocument = pdocument;
 

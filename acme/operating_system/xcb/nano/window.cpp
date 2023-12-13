@@ -708,7 +708,7 @@ nano_child * nano_window::hit_test(::user::mouse * pmouse, ::user::e_zorder ezor
 
             auto pdc = cairo_create(m_psurface);
 
-            m_pnanodevice = __new(::cairo::nano_device(pdc));
+            m_pnanodevice = __allocate< ::cairo::nano_device >(pdc);
 
          }
 
@@ -918,17 +918,17 @@ void nano_window::_update_window()
 
 
 
-//void nano_window::message_loop()
+//void nano_window::aaa_message_loop()
 //{
 //
-//   while(message_loop_step())
+//   while(aaa_message_loop_step())
 //   {
 //
 //      system()->m_pnode->run_posted_routines();
 //
 //   }
 //
-//   informationf("nano_window::message_loop exit");
+//   informationf("nano_window::aaa_message_loop exit");
 //
 //}
 

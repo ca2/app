@@ -55,7 +55,7 @@ protected:
 
 
    bool                                            m_bCheckingChildrenTask;
-   ::object *                                      m_pobjectParentTask;
+   ::pointer < ::object >                          m_pobjectParentTask;
    ::pointer < ::pointer_array < ::particle > >    m_pparticleaChildrenTask;
    //::pointer < ::procedure_map >                   m_pmapPropertyProcedure;
 
@@ -96,17 +96,17 @@ public:
 #ifdef _DEBUG
 
 
-   virtual i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
-   virtual i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
-   virtual i64 release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
+   virtual i64 increment_reference_count() override;
+   virtual i64 decrement_reference_count() override;
+   virtual i64 release() override;
 
 
 #else
 
 
-   virtual i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
-   virtual i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
-   virtual i64 release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
+   virtual i64 increment_reference_count();
+   virtual i64 decrement_reference_count();
+   virtual i64 release();
 
 
 #endif
@@ -130,7 +130,7 @@ public:
    //virtual void process_exit_status(const ::e_status & estatus);
 
    //inline ::object* this const { return this; }
-   //virtual void set_object(::object* pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
+   //virtual void set_object(::object* pparticle) override;
 
    //inline ::application* application() { return m_pacmeapplication; }
 
@@ -306,11 +306,11 @@ public:
    //virtual string get_text(const ::payload& payload, const ::atom& atom) override;
 
    //#ifdef _DEBUG
-   //   virtual void set_context(::context* pcontext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
-   //   virtual void set_context_thread(::thread* pthread OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
-   //   virtual void set_context_app(::apex::application* pappContext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
-   //   virtual void set_context_session(::apex::session* psessionContext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
-   //   //virtual void set_context_system(::apex::system* psystemContext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+   //   virtual void set_context(::context* pcontext);
+   //   virtual void set_context_thread(::thread* pthread);
+   //   virtual void set_context_app(::apex::application* pappContext);
+   //   virtual void set_context_session(::apex::session* psessionContext);
+   //   //virtual void set_context_system(::apex::system* psystemContext);
    //   //virtual void set_context_user(::object * puserContext);
    //#else
    //   inline void set_context(::context* pcontext);
@@ -359,44 +359,44 @@ public:
 
 
    //template < typename BASE_TYPE >
-   //inline void __release(::pointer<BASE_TYPE>& pcomposite OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+   //inline void __release(::pointer<BASE_TYPE>& pcomposite);
 
    //template < typename BASE_TYPE >
-   //inline void __release(::pointer<BASE_TYPE>& preference OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+   //inline void __release(::pointer<BASE_TYPE>& preference);
 
    //template < typename SOURCE >
-   //inline void release_reference(::pointer<SOURCE>& psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+   //inline void release_reference(::pointer<SOURCE>& psource);
 
 
-   //virtual void add_composite(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
-   //virtual void add_reference(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
+   //virtual void add_composite(::particle * pparticle) override;
+   //virtual void add_reference(::particle * pparticle) override;
 
 
-   //virtual void release_composite2(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
-   //virtual void finalize_composite(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
-   //virtual void release_reference(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
+   //virtual void release_composite2(::particle * pparticle) override;
+   //virtual void finalize_composite(::particle * pparticle) override;
+   //virtual void release_reference(::particle * pparticle) override;
 
 
    //template < typename BASE_TYPE >
-   //inline void add_composite(::pointer<BASE_TYPE>& pcomposite OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+   //inline void add_composite(::pointer<BASE_TYPE>& pcomposite);
 
    //template < typename BASE_TYPE, typename SOURCE >
-   //inline void __refer(::pointer<BASE_TYPE>& preference, const SOURCE * psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+   //inline void __refer(::pointer<BASE_TYPE>& preference, const SOURCE * psource);
 
    //template < typename BASE_TYPE, typename SOURCE >
-   //inline void __refer(::pointer<BASE_TYPE>& preference, const ::pointer<SOURCE> psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+   //inline void __refer(::pointer<BASE_TYPE>& preference, const ::pointer<SOURCE> psource);
 
    //template < typename BASE_TYPE, typename SOURCE >
-   //inline void __refer(::pointer<BASE_TYPE>& preference, const ::primitive::member < SOURCE > & psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+   //inline void __refer(::pointer<BASE_TYPE>& preference, const ::primitive::member < SOURCE > & psource);
 
    //template < typename SOURCE >
-   //inline void add_reference(SOURCE* psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+   //inline void add_reference(SOURCE* psource);
 
    //template < typename SOURCE >
-   //inline void add_reference(::pointer<SOURCE> psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+   //inline void add_reference(::pointer<SOURCE> psource);
 
    //template < typename SOURCE >
-   //inline void add_reference(::pointer<SOURCE> psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+   //inline void add_reference(::pointer<SOURCE> psource);
 
    virtual void delete_this() override;
 
@@ -703,17 +703,17 @@ public:
 //#ifdef _DEBUG
 //
 //
-//   virtual i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
-//   virtual i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
-//   virtual i64 release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
+//   virtual i64 increment_reference_count() override;
+//   virtual i64 decrement_reference_count() override;
+//   virtual i64 release() override;
 //
 //
 //#else
 //
 //
-//   virtual i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
-//   virtual i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
-//   virtual i64 release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
+//   virtual i64 increment_reference_count();
+//   virtual i64 decrement_reference_count();
+//   virtual i64 release();
 //
 //
 //#endif
@@ -733,7 +733,7 @@ public:
    //virtual void process_exit_status(const ::e_status & estatus);
 
    //inline ::object* this const { return this; }
-   //virtual void set_object(::object* pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
+   //virtual void set_object(::object* pparticle) override;
 
    //inline ::application* application() { return m_pacmeapplication; }
 
@@ -808,11 +808,11 @@ public:
    //virtual string get_text(const ::payload& payload, const ::atom& atom) override;
 
 //#ifdef _DEBUG
-//   virtual void set_context(::context* pcontext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
-//   virtual void set_context_thread(::thread* pthread OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
-//   virtual void set_context_app(::apex::application* pappContext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
-//   virtual void set_context_session(::apex::session* psessionContext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
-//   //virtual void set_context_system(::apex::system* psystemContext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+//   virtual void set_context(::context* pcontext);
+//   virtual void set_context_thread(::thread* pthread);
+//   virtual void set_context_app(::apex::application* pappContext);
+//   virtual void set_context_session(::apex::session* psessionContext);
+//   //virtual void set_context_system(::apex::system* psystemContext);
 //   //virtual void set_context_user(::object * puserContext);
 //#else
 //   inline void set_context(::context* pcontext);
@@ -863,13 +863,13 @@ public:
    //inline void __construct(::pointer<BASE_TYPE> ptype);
 
    //template < typename BASE_TYPE, typename SOURCE >
-   //inline void __construct(::pointer<BASE_TYPE> ptype, const SOURCE* psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+   //inline void __construct(::pointer<BASE_TYPE> ptype, const SOURCE* psource);
 
    //template < typename BASE_TYPE, typename SOURCE >
-   //inline void __construct(::pointer<BASE_TYPE> ptype, const ::pointer<SOURCE>psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+   //inline void __construct(::pointer<BASE_TYPE> ptype, const ::pointer<SOURCE>psource);
 
    //template < typename BASE_TYPE, typename SOURCE >
-   //inline void __construct(::pointer<BASE_TYPE> ptype, const ptr < SOURCE > & psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+   //inline void __construct(::pointer<BASE_TYPE> ptype, const ptr < SOURCE > & psource);
 
    //template < typename BASE_TYPE >
    //inline void __id_construct(::pointer<BASE_TYPE> ptype, const ::atom& atom);
@@ -913,50 +913,50 @@ public:
    //inline void __construct_new(::pointer<TYPE> ptype);
 
    //template < typename BASE_TYPE >
-   //inline void __release(::pointer<BASE_TYPE> pcomposite OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+   //inline void __release(::pointer<BASE_TYPE> pcomposite);
 
    //template < typename BASE_TYPE >
-   //inline void __release(::pointer<BASE_TYPE> preference OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+   //inline void __release(::pointer<BASE_TYPE> preference);
 
    //template < typename SOURCE >
-   //inline void __release(::pointer<SOURCE> psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+   //inline void __release(::pointer<SOURCE> psource);
 
 
-   //virtual void add_composite(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
-   //virtual void add_reference(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
+   //virtual void add_composite(::particle * pparticle) override;
+   //virtual void add_reference(::particle * pparticle) override;
 
 
-   //virtual void release_composite2(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
-   //virtual void finalize_composite(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
-   //virtual void release_reference(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
+   //virtual void release_composite2(::particle * pparticle) override;
+   //virtual void finalize_composite(::particle * pparticle) override;
+   //virtual void release_reference(::particle * pparticle) override;
 
 
    //template < typename BASE_TYPE >
-   //inline void add_composite(::pointer<BASE_TYPE> pcomposite OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+   //inline void add_composite(::pointer<BASE_TYPE> pcomposite);
 
    //template < typename BASE_TYPE, typename SOURCE >
-   //inline void __refer(::pointer<BASE_TYPE> preference, const SOURCE* psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+   //inline void __refer(::pointer<BASE_TYPE> preference, const SOURCE* psource);
 
    //template < typename BASE_TYPE, typename SOURCE >
-   //inline void __refer(::pointer<BASE_TYPE> preference, const ::pointer<SOURCE>psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+   //inline void __refer(::pointer<BASE_TYPE> preference, const ::pointer<SOURCE>psource);
 
    //template < typename BASE_TYPE, typename SOURCE >
-   //inline void __refer(::pointer<BASE_TYPE> preference, const ::primitive::member < SOURCE >& psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+   //inline void __refer(::pointer<BASE_TYPE> preference, const ::primitive::member < SOURCE >& psource);
 
    //template < typename BASE_TYPE, typename SOURCE >
-   //inline void __defer_refer(::pointer<BASE_TYPE> preference, const SOURCE* psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+   //inline void __defer_refer(::pointer<BASE_TYPE> preference, const SOURCE* psource);
 
    //template < typename BASE_TYPE, typename SOURCE >
-   //inline void __defer_refer(::pointer<BASE_TYPE> preference, const ::pointer<SOURCE>psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+   //inline void __defer_refer(::pointer<BASE_TYPE> preference, const ::pointer<SOURCE>psource);
 
    //template < typename SOURCE >
-   //inline void add_reference(SOURCE* psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+   //inline void add_reference(SOURCE* psource);
 
    //template < typename SOURCE >
-   //inline void add_reference(::pointer<SOURCE> psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+   //inline void add_reference(::pointer<SOURCE> psource);
 
    //template < typename SOURCE >
-   //inline void add_reference(::pointer<SOURCE> psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+   //inline void add_reference(::pointer<SOURCE> psource);
 
    //virtual void delete_this() override;
 
@@ -1312,7 +1312,7 @@ const __ ## xxx ## _properties & xxx ## _properties() const {return *m_p ## xxx 
 inline void create_ ## xxx ## _properties() \
 { \
    if(::is_set(m_p ## xxx ## properties)) return; \
-   m_p ## xxx ## properties = __new(__ ## xxx ## _properties()); \
+   m_p ## xxx ## properties = __allocate<__ ## xxx ## _properties>(); \
    m_ppropertyset = m_p ## xxx ## properties; \
 } \
 ::pointer<__ ## xxx ## _properties> m_p ## xxx ## properties

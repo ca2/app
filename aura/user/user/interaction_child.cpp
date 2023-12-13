@@ -75,7 +75,7 @@ namespace user
 
          }
 
-         //__refer(m_pthreadUserImpl,  m_puserinteraction->m_pthreadUserInteraction  OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_FUNCTION_LINE);
+         //__refer(m_pthreadUserImpl,  m_puserinteraction->m_pthreadUserInteraction  REFERENCING_DEBUGGING_COMMA_THIS_FUNCTION_FILE_LINE);
 
          m_puserinteraction->m_pprimitiveimpl = this;
 
@@ -240,7 +240,7 @@ namespace user
 //   bool interaction_child::create_child(::user::interaction * pinteraction, ::user::primitive * pprimitiveParent)
 //   {
 //
-//      auto pusersystem = __new(::user::system);
+//      auto pusersystem = __allocate< ::user::system >();
 //
 //      ::rectangle_i32 rectangle;
 //
@@ -735,7 +735,7 @@ namespace user
 
       pmessage->previous();
 
-//      __release(m_pthreadUserImpl OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS);
+//      __release(m_pthreadUserImpl REFERENCING_DEBUGGING_COMMA_THIS);
 
 
    }

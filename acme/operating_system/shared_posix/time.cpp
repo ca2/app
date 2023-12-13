@@ -252,6 +252,8 @@ namespace earth
 
       copy(this, &tm);
 
+      m_iNanoSecond = iNanosecond;
+
    }
 
 

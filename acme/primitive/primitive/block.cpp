@@ -42,7 +42,7 @@ block::block(const atom & atom) :
 //::winrt::Windows::Storage::Streams::IBuffer^ block::get_os_buffer(memsize pos, memsize size) const
 //{
 //
-//   ::winrt::Windows::Storage::Streams::DataWriter^ writer = ref memory_new ::winrt::Windows::Storage::Streams::DataWriter();
+//   ::winrt::Windows::Storage::Streams::DataWriter^ writer = ref __new< ::winrt::Windows::Storage::Streams::DataWriter >();
 //
 //   Array < uchar, 1U >^ pbytes = get_os_bytes(pos, size);
 //
@@ -70,7 +70,7 @@ block::block(const atom & atom) :
 //
 //   }
 //
-//   return ref memory_new Array < uchar, 1U >(&((uchar*)data())[pos], size);
+//   return ref __new< Array < uchar, 1U >(&((uchar*)data >())[pos], size);
 //
 //}
 //
@@ -121,7 +121,7 @@ block & block::from_base64(const ::scoped_string & scopedstr) const
 //
 //   m_iSize = (iSize + 1) * 3 / 4;
 //
-//   m_pdata = (::u8 *) memory_allocate(m_iSize);
+//   m_pdata = (::u8 *) ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(m_iSize);
 //
 //   ::base64 base64;
 //

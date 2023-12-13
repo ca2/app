@@ -52,124 +52,128 @@ namespace compare_swap
 
    //}
 
+   //template < typename F1, typename F2, typename A1, typename A2 >
+   //void quick_sort_compare_swap(
+   //   index iSize,
+   //   //const ::array < ::function < ::std::strong_ordering(void *, iptr, iptr) > > & comparefunctiona,
+   //   const F1 & comparefunctiona,
+   //   //const ::array < ::function < void(void *, iptr, iptr) > > & swapfunctiona,
+   //   const F2 & swapfunctiona,
+   //   //const void_ptra & comparearga,
+   //   const A1 & comparearga,
+   //   //const void_ptra & swaparga)
+   //   const A2 & swaparga)
+   //{
 
-   void quick_sort(
-      index iSize,
-      const ::array < ::function < ::std::strong_ordering(void *, iptr, iptr) > > & comparefunctiona,
-      const ::array < ::function < void(void *, iptr, iptr) > > & swapfunctiona,
-      const void_ptra & comparearga,
-      const void_ptra & swaparga)
-   {
+   //   index_array stackLowerBound;
+   //   index_array stackUpperBound;
+   //   index iLowerBound;
+   //   index iUpperBound;
+   //   index iLPos, iUPos, iMPos;
 
-      index_array stackLowerBound;
-      index_array stackUpperBound;
-      index iLowerBound;
-      index iUpperBound;
-      index iLPos, iUPos, iMPos;
+   //   i32 iCmp;
+   //   ::std::strong_ordering iCompare;
 
-      i32 iCmp;
-      ::std::strong_ordering iCompare;
+   //   if (iSize >= 2)
+   //   {
 
-      if (iSize >= 2)
-      {
+   //      stackLowerBound.push(0);
+   //      stackUpperBound.push(iSize - 1);
 
-         stackLowerBound.push(0);
-         stackUpperBound.push(iSize - 1);
+   //      while (true)
+   //      {
 
-         while (true)
-         {
+   //         iLowerBound = stackLowerBound.pop();
+   //         iUpperBound = stackUpperBound.pop();
+   //         iLPos = iLowerBound;
+   //         iMPos = iLowerBound;
+   //         iUPos = iUpperBound;
+   //         while (true)
+   //         {
+   //            while (true)
+   //            {
+   //               if (iMPos == iUPos)
+   //                  break;
+   //               iCmp = 0;
+   //               for (i32 i = 0; i < comparefunctiona.get_size(); i++)
+   //               {
+   //                  auto iCompare = comparefunctiona[i](comparearga[i], iMPos, iUPos);
+   //                  if (iCompare > 0)
+   //                  {
+   //                     iCmp = 1;
+   //                     break;
+   //                  }
+   //                  else if (iCompare < 0)
+   //                  {
+   //                     iCmp = -1;
+   //                     break;
+   //                  }
+   //               }
+   //               if (iCmp <= 0)
+   //                  iUPos--;
+   //               else
+   //               {
+   //                  for (i32 i = 0; i < swapfunctiona.get_size(); i++)
+   //                  {
+   //                     swapfunctiona[i](swaparga[i], iMPos, iUPos);
+   //                  }
+   //                  break;
+   //               }
+   //            }
+   //            if (iMPos == iUPos)
+   //               break;
+   //            iMPos = iUPos;
+   //            while (true)
+   //            {
+   //               if (iMPos == iLPos)
+   //                  break;
+   //               iCmp = 0;
+   //               for (i32 i = 0; i < comparefunctiona.get_size(); i++)
+   //               {
+   //                  iCompare = comparefunctiona[i](comparearga[i], iLPos, iMPos);
+   //                  if (iCompare > 0)
+   //                  {
+   //                     iCmp = 1;
+   //                     break;
+   //                  }
+   //                  else if (iCompare < 0)
+   //                  {
+   //                     iCmp = -1;
+   //                     break;
+   //                  }
+   //               }
+   //               if (iCmp <= 0)
+   //                  iLPos++;
+   //               else
+   //               {
+   //                  for (i32 i = 0; i < swapfunctiona.get_size(); i++)
+   //                  {
+   //                     swapfunctiona[i](swaparga[i], iLPos, iMPos);
+   //                  }
+   //                  break;
+   //               }
+   //            }
+   //            if (iMPos == iLPos)
+   //               break;
+   //            iMPos = iLPos;
+   //         }
+   //         if (iLowerBound < iMPos - 1)
+   //         {
+   //            stackLowerBound.push(iLowerBound);
+   //            stackUpperBound.push(iMPos - 1);
+   //         }
+   //         if (iMPos + 1 < iUpperBound)
+   //         {
+   //            stackLowerBound.push(iMPos + 1);
+   //            stackUpperBound.push(iUpperBound);
+   //         }
+   //         if (stackLowerBound.get_size() == 0)
+   //            break;
+   //      }
 
-            iLowerBound = stackLowerBound.pop();
-            iUpperBound = stackUpperBound.pop();
-            iLPos = iLowerBound;
-            iMPos = iLowerBound;
-            iUPos = iUpperBound;
-            while (true)
-            {
-               while (true)
-               {
-                  if (iMPos == iUPos)
-                     break;
-                  iCmp = 0;
-                  for (i32 i = 0; i < comparefunctiona.get_size(); i++)
-                  {
-                     auto iCompare = comparefunctiona[i](comparearga[i], iMPos, iUPos);
-                     if (iCompare > 0)
-                     {
-                        iCmp = 1;
-                        break;
-                     }
-                     else if (iCompare < 0)
-                     {
-                        iCmp = -1;
-                        break;
-                     }
-                  }
-                  if (iCmp <= 0)
-                     iUPos--;
-                  else
-                  {
-                     for (i32 i = 0; i < swapfunctiona.get_size(); i++)
-                     {
-                        swapfunctiona[i](swaparga[i], iMPos, iUPos);
-                     }
-                     break;
-                  }
-               }
-               if (iMPos == iUPos)
-                  break;
-               iMPos = iUPos;
-               while (true)
-               {
-                  if (iMPos == iLPos)
-                     break;
-                  iCmp = 0;
-                  for (i32 i = 0; i < comparefunctiona.get_size(); i++)
-                  {
-                     iCompare = comparefunctiona[i](comparearga[i], iLPos, iMPos);
-                     if (iCompare > 0)
-                     {
-                        iCmp = 1;
-                        break;
-                     }
-                     else if (iCompare < 0)
-                     {
-                        iCmp = -1;
-                        break;
-                     }
-                  }
-                  if (iCmp <= 0)
-                     iLPos++;
-                  else
-                  {
-                     for (i32 i = 0; i < swapfunctiona.get_size(); i++)
-                     {
-                        swapfunctiona[i](swaparga[i], iLPos, iMPos);
-                     }
-                     break;
-                  }
-               }
-               if (iMPos == iLPos)
-                  break;
-               iMPos = iLPos;
-            }
-            if (iLowerBound < iMPos - 1)
-            {
-               stackLowerBound.push(iLowerBound);
-               stackUpperBound.push(iMPos - 1);
-            }
-            if (iMPos + 1 < iUpperBound)
-            {
-               stackLowerBound.push(iMPos + 1);
-               stackUpperBound.push(iUpperBound);
-            }
-            if (stackLowerBound.get_size() == 0)
-               break;
-         }
+   //   }
 
-      }
-
-   }
+   //}
 
 
 } // namespace compare_swap
@@ -267,7 +271,7 @@ namespace test_compilation_some_strong_ordering_swap_functions
    }
 
 
-   ::std::strong_ordering stringaCompare(void * lpVoidCompareArg, const index i1, const index i2)
+   ::std::strong_ordering stringaCompare(void * lpVoidCompareArg, iptr i1, iptr i2)
    {
       string_array * pstra = (string_array *)lpVoidCompareArg;
       return pstra->element_at(i1) <=> pstra->element_at(i2);
@@ -299,7 +303,7 @@ namespace test_compilation_some_strong_ordering_swap_functions
       swaparga.add(&straPath);
 
 
-      ::compare_swap::quick_sort(straPath.get_size(), comparefna, swapfna, comparearga, swaparga);
+      ::compare_swap::quick_sort_compare_swap(straPath.get_size(), comparefna, swapfna, comparearga, swaparga);
 
    }
 

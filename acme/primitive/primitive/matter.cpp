@@ -9,10 +9,10 @@
 #include "acme/parallelization/synchronous_lock.h"
 
 
-#if OBJECT_REFERENCE_COUNT_DEBUG
+#if REFERENCING_DEBUGGING
 
 
-void defer_delete(object_reference_count_debug* p);
+void defer_delete(reference_count_debug* p);
 
 
 #endif
@@ -21,11 +21,11 @@ void defer_delete(object_reference_count_debug* p);
 matter::~matter()
 {
 
-#if OBJECT_REFERENCE_COUNT_DEBUG
-
-   ::defer_delete(m_pobjrefdbg);
-
-#endif
+//#if REFERENCING_DEBUGGING
+//
+//   ::defer_delete(m_pobjrefdbg);
+//
+//#endif
 //
 //   if (m_eobject & e_object_any_hook && m_pcontext)
 //   {
@@ -585,9 +585,9 @@ void matter::__task_main()
 //
 //   }
 //
-//#if OBJECT_REFERENCE_COUNT_DEBUG
+//#if REFERENCING_DEBUGGING
 //
-//   //release(OBJECT_REFERENCE_COUNT_DEBUG_P_NOTE(this, nullptr));
+//   //release(REFERENCING_DEBUGGING_P_NOTE(this, nullptr));
 //
 //   try
 //   {
@@ -768,7 +768,7 @@ bool matter::handle_call(::payload & payload, const ::string & strObject, const 
 //::topic_pointer matter::create_topic(const ::atom & atom)
 //{
 //
-//   auto ptopic = __new(::topic(atom));
+//   auto ptopic = __allocate< ::topic >(atom);
 //
 //   ptopic->m_pcontext = system();
 //
@@ -780,7 +780,7 @@ bool matter::handle_call(::payload & payload, const ::string & strObject, const 
 bool matter::__get_posted_payload_synchronously(const ::function < void(const ::procedure &) > & functionPost, const ::function < ::payload(void) > & functionReturn, ::payload & payload)
 {
 
-   auto psynchronizer = __new(::parallelization::synchronizer);
+   auto psynchronizer = __allocate< ::parallelization::synchronizer >();
 
    psynchronizer->set_nok();
 
@@ -837,7 +837,7 @@ bool matter::__get_posted_payload_synchronously(const ::function < void(const ::
 void matter::__send_procedure(const ::function < void(const ::procedure &) > & functionPost, const ::procedure & procedure)
 {
 
-   auto psignalization = __new(::parallelization::signalization);
+   auto psignalization = __allocate< ::parallelization::signalization >();
 
    auto function = [procedure, psignalization]()
    {

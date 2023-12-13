@@ -26,6 +26,7 @@ namespace app_message_box
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
       DECLARE_MESSAGE_HANDLER(on_message_close);
+      DECLARE_MESSAGE_HANDLER(on_message_destroy);
 
       //virtual void on_create_user_interaction() override;
 

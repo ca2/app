@@ -66,7 +66,7 @@
 //      }
 //   }
 //
-//   int * pi = memory_new int;
+//   int * pi = aaa_primitive_new int;
 //   *pi = fd;
 //   *pdata = pi;
 //

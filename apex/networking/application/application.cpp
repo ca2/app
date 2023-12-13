@@ -50,7 +50,13 @@ namespace networking
    void application::create_networking_application()
    {
 
-      __construct(m_psocketthread, __new(::netserver::socket_thread < ::networking::application_socket >()));
+      //      auto
+
+      factory()->add_factory_item < ::networking::application_socket>();
+
+      m_psocketthread = __create_new< ::netserver::socket_thread >();
+
+      m_psocketthread->m_typeatomSocket = ::type<::networking::application_socket>();
 
       m_psocketthread->m_strIp = "127.0.0.1";
 

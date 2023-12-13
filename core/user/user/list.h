@@ -245,7 +245,7 @@ namespace user
       virtual void _001OnAddColumn(list_column * pcolumn);
 
       virtual void _001GetGroupRect(draw_list_group * pdrawlistgroup);
-      virtual void index_item_rectangle(draw_list_item * pdrawlistitem);
+      void index_item_rectangle(draw_mesh_item * pdrawmeshitem) override;
       virtual void _001GetSubItemRect(draw_list_subitem * pdrawlistsubitem);
       virtual void index_element_rectangle(draw_list_subitem * pdrawlistsubitem, ::user::mesh::enum_element eelement);
       virtual void _001GetGroupElementRect(draw_list_group * pdrawlistgroup, ::user::mesh::enum_group_element egroupelement);
@@ -385,7 +385,9 @@ namespace user
 
       i32 get_wheel_scroll_delta() override;
 
-      void on_context_offset_layout(::draw2d::graphics_pointer & pgraphics) override;
+      //void on_context_offset_layout(::draw2d::graphics_pointer & pgraphics) override;
+
+      void on_change_context_offset(::user::enum_layout elayout) override;
 
       bool keyboard_focus_is_focusable() override;
 

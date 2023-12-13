@@ -68,6 +68,7 @@ void file_add_contents_raw(const ::file::path & path, const ::scoped_string & sc
 
 }
 
+#if !defined(WINDOWS)
 
 void file_beg_contents_raw(const ::file::path & path, const ::scoped_string & scopedstr)
 {
@@ -132,13 +133,16 @@ void file_beg_contents_raw(const ::file::path & path, const ::scoped_string & sc
    if (lRead != lLen)
    {
 
-      informationf("file_beg_contents_raw: error writing to file.");
+      ::platform::get()->informationf("file_beg_contents_raw: error writing to file.");
 
    }
 
    fclose(f);
 
 }
+
+
+#endif
 
 
 u64 file_length_raw(const ::file::path & path)

@@ -143,7 +143,7 @@ namespace android
    //   if(iNew == -1)
    //      return nullptr;
 
-   //   file* pFile = memory_new file(get_app(), iNew);
+   //   file* pFile = aaa_primitive_new file(get_app(), iNew);
    //   pFile->m_iFile = (::u32)iNew;
    //   ASSERT(pFile->m_iFile != hFileNull);
    //   return pFile;
@@ -320,7 +320,7 @@ namespace android
             {*/
 
 
-            //return __new(::file::exception(::error_os_error_to_exception(dwLastError), dwLastError, m_strFileName, nOpenFlags));
+            //return __allocate< ::file::exception >(::error_os_error_to_exception(dwLastError), dwLastError, m_strFileName, nOpenFlags);
             return ::os_error_to_status(dwLastError);
 
             //}
@@ -359,7 +359,7 @@ namespace android
 
 
             ::u32 dwLastError = ::get_last_error();
-            //return __new(::file::exception(::os_error_to_status(dwLastError), dwLastError, m_strFileName, nOpenFlags));
+            //return __allocate< ::file::exception >(::os_error_to_status(dwLastError), dwLastError, m_strFileName, nOpenFlags);
             return ::os_error_to_status(dwLastError);
 
             //}

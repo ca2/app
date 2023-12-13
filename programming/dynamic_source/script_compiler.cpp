@@ -89,11 +89,11 @@ namespace dynamic_source
    void script_compiler::init1()
    {
 
-      acmenode()->integration_factory();
+      //acmenode()->integration_factory();
 
-      __construct(m_pintegrationcontext);
+      //__construct(m_pintegrationcontext);
 
-      m_pintegrationcontext->m_strPlatform = "x64";
+      //m_pintegrationcontext->m_strPlatform = "x64";
 
       prepare_compile_and_link_environment();
 
@@ -285,7 +285,7 @@ namespace dynamic_source
 #ifdef WINDOWS_DESKTOP
 
       u32 dwSize = GetEnvironmentVariableW(L"PATH", nullptr, 0);
-      LPWSTR lpsz = memory_new wchar_t[dwSize + 1];
+      LPWSTR lpsz = __new_array< wchar_t >(dwSize + 1);
       dwSize = GetEnvironmentVariableW(L"PATH", lpsz, dwSize + 1);
       str += lpsz;
       delete lpsz;
@@ -309,7 +309,7 @@ namespace dynamic_source
       if (strName.case_insensitive_ends("\\auth3.ds"))
       {
 
-         ::informationf("compile auth3.ds");
+         ::acme::get()->platform()->informationf("compile auth3.ds");
 
       }
 
@@ -396,7 +396,7 @@ namespace dynamic_source
 
       //auto pathCa2Root = m_pintegrationcontext->m_pathBuildFolder ;
 
-      auto pathProjectDir = m_pintegrationcontext->m_pathProjectFolder;
+      auto pathProjectDir = m_pintegrationcontext->m_pathBuildFolder;
       
       //string strCompileLogUnique;
 
@@ -409,7 +409,7 @@ namespace dynamic_source
 
          string strCompileLogUnique2 = datetime()->format(INTERNATIONAL_DATE_TIME_FORMAT_FOR_FILE, timeNow);
 
-         ::informationf("Ops");
+         ::acme::get()->platform()->informationf("Ops");
 
       }
 
@@ -444,7 +444,7 @@ namespace dynamic_source
 
       //::file::path pathSourceDVP = strDynamicSourceScriptFolder / strTransformName / m_strSdk1 + ".pdb";
       
-      ::file::path pathSourceNetnodeDSS = pathProjectDir / "time-" OPERATING_SYSTEM_NAME "/intermediate/x64" / m_strDynamicSourceConfiguration / "app-core/netnode_dynamic_source_script";
+      ::file::path pathSourceNetnodeDSS = m_pintegrationcontext->m_pathBuildFolder / "time-" OPERATING_SYSTEM_NAME "/intermediate/x64" / m_strDynamicSourceConfiguration / "app-core/netnode_dynamic_source_script";
 
       ::file::path pathSourceDVP = pathSourceNetnodeDSS / (m_pintegrationcontext->payload("sdk1").as_string() + ".pdb");
 
@@ -797,9 +797,9 @@ namespace dynamic_source
       file()->put_text_utf8(pathCompiler, strCompiler);
 
 #ifdef WINDOWS
-      process->create_child_process(strCompiler,true, m_pintegrationcontext->m_pathProjectFolder / "source/app-core/netnode_dynamic_source_script",::e_priority_highest);
+      process->create_child_process(strCompiler,true, m_pintegrationcontext->m_pathBuildFolder / "source/app-core/netnode_dynamic_source_script",::e_priority_highest);
 #else
-      process->create_child_process(strCompiler,true,m_pintegrationcontext->m_pathProjectFolder,::e_priority_highest);
+      process->create_child_process(strCompiler,true,m_pintegrationcontext->m_pathBuildFolder,::e_priority_highest);
 #endif
 
       //::system(str + " > " + "\"" + strClog + "\"");
@@ -1236,7 +1236,7 @@ namespace dynamic_source
       strDest += "\r\n";
       strDest += "extern \"C\" __declspec(dllexport) dynamic_source::script_instance * __cdecl create_dynamic_source_script_instance ()\r\n";
       strDest += "{\r\n";
-      strDest += "   return memory_new " + m_pmanager->m_strNamespace + "_dynamic_source_script();\r\n";
+      strDest += "   return __new< " + m_pmanager->m_strNamespace + "_dynamic_source_script >();\r\n";
       strDest += "}\r\n";
       strDest += "\r\n";
       strDest += "void " + m_pmanager->m_strNamespace + "_dynamic_source_script::script_run()\r\n";
@@ -1387,7 +1387,7 @@ namespace dynamic_source
          return *p->element2();
       }
 
-      m_mapLib[pszLibrary] = __new(library(this));
+      m_mapLib[pszLibrary] = __allocate< library >(this);
 
       library & l = *m_mapLib[pszLibrary];
 
@@ -2648,11 +2648,15 @@ ch_else:
 
          pmain->m_pmanager2 = m_pmanager;
 
+         pmain->m_pmain = pmain;
+
          pmain->init1();
+
+         pinstance->m_pmain = pmain;
 
          pinstance->initialize(pmain);
 
-         pinstance->init1();
+         //pinstance->init1();
          
          string strError;
          
@@ -2803,7 +2807,7 @@ ch_else:
 
       single_lock slLibrary(m_pmutex, true);
 
-      m_plibraryLib.create(this);
+      __construct(m_plibraryLib);
 
       m_plibraryLib->open(m_strLibraryPath);
       // return;

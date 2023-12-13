@@ -39,7 +39,7 @@ namespace networking
 
 //#ifdef UNIVERSAL_WINDOWS
 //
-//      m_posdata = memory_new os_data();
+//      m_posdata = __new< os_data >();
 //
 //#endif
       
@@ -63,7 +63,7 @@ namespace networking
 //
 ////#ifdef UNIVERSAL_WINDOWS
 ////
-////      m_posdata = memory_new os_data();
+////      m_posdata = __new< os_data >();
 ////
 ////#endif
 //      sync_os_service();
@@ -79,7 +79,7 @@ namespace networking
 //
 ////#ifdef UNIVERSAL_WINDOWS
 ////
-////      m_posdata = memory_new os_data();
+////      m_posdata = __new< os_data >();
 ////
 ////#endif
 //
@@ -268,7 +268,7 @@ namespace networking
 //
 ////#ifdef UNIVERSAL_WINDOWS
 ////
-////      m_posdata = memory_new os_data();
+////      m_posdata = __new< os_data >();
 ////
 ////#endif
 //
@@ -468,7 +468,7 @@ namespace networking
 //
 //      if (u.s.m_family == AF_INET || u.s.m_family == AF_INET6)
 //      {
-//         m_posdata->m_hostname = ref memory_new ::winrt::Windows::Networking::HostName(get_display_number());
+//         m_posdata->m_hostname = ref __new< ::winrt::Windows::Networking::HostName(get_display_number >());
 //      }
 //      else if (m_posdata->m_hostname != nullptr)
 //      {
@@ -567,7 +567,7 @@ namespace networking
 ////
 ////#elif defined(WINRT_SOCKETS)
 ////
-////      m_hostname = ref memory_new ::winrt::Windows::Networking::HostName(strAddress);
+////      m_hostname = ref __new< ::winrt::Windows::Networking::HostName >(strAddress);
 ////
 ////
 ////#endif

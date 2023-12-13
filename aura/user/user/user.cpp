@@ -29,9 +29,9 @@
 #include "aura/platform/node.h"
 
 
-::mutex * g_pmutexUser = nullptr;
-//
-//
+//::pointer< ::mutex > g_pmutexUser = nullptr;
+
+
 //CLASS_DECL_AURA void initialize_user_mutex();
 //CLASS_DECL_AURA void finalize_user_mutex();
 
@@ -72,8 +72,8 @@ namespace user
 
       //finalize_children_mutex();
       //::finalize_user_mutex();
-      g_pmutexUser = nullptr;
-      m_pmutexUser.release();
+      //g_pmutexUser = nullptr;
+      //m_pmutexUser.release();
 
    }
 
@@ -91,7 +91,7 @@ namespace user
 
       m_pmutexUser = acmenode()->create_mutex();
 
-      g_pmutexUser = m_pmutexUser;
+      //g_pmutexUser = m_pmutexUser;
 
 
       //if (!estatus)
@@ -105,7 +105,7 @@ namespace user
 
       printf("base::user::initialize (2)\n");
 
-      create_windowing();
+      //create_windowing();
 
       //if (!estatus)
       //{
@@ -156,18 +156,21 @@ namespace user
 
       //auto estatus = 
       
-      __construct_new(m_puserstyle);
+      if (__defer_construct_new(m_puserstyle))
+      {
 
-      //if (!estatus)
-      //{
+         //if (!estatus)
+         //{
 
-      //   return estatus;
+         //   return estatus;
 
-      //}
+         //}
 
-      system()->m_pnode->fetch_user_color();
+         system()->m_pnode->fetch_user_color();
 
-      m_puserstyle->default_style_construct();
+         m_puserstyle->default_style_construct();
+
+      }
 
       //return estatus;
 
@@ -573,8 +576,80 @@ namespace user
    void user::destroy()
    {
 
+      m_puserstyle.defer_destroy();
+
+
+      for (auto & pstyle : m_mapUserStyle.payloads())
+      {
+
+         try
+         {
+
+            pstyle.defer_destroy();
+
+         }
+         catch (...)
+         {
+
+         }
+
+      }
+      m_mapUserStyle.erase_all();
+
+
+
       //auto estatus =
       ::acme::department::destroy();
+
+      if (m_pdesktopenvironment)
+      {
+
+         m_pdesktopenvironment->destroy();
+
+      }
+
+      m_pdesktopenvironment.release();
+
+      if (m_pshell)
+      {
+
+         m_pshell->destroy();
+
+      }
+
+      m_pshell.release();
+
+      m_listRunnable.clear();
+
+      m_pmutexRunnable.release();
+
+      m_pmutexUser.release();
+
+      if (m_pwindowing)
+      {
+
+         m_pwindowing->finalize_windowing();
+
+      }
+
+      m_pwindowing.defer_destroy();
+
+      m_uiptraToolWindow.clear();
+
+      if (m_phtml)
+      {
+
+         m_phtml.m_pparticle->destroy();
+
+      }
+
+      m_phtml.release();
+
+      m_mapUserStyle.clear();
+
+      m_pmousefocusLButtonDown.release();
+
+      m_pmousefocusRButtonDown.release();
 
       //if (!estatus)
       //{
@@ -641,7 +716,7 @@ namespace user
       if (!m_pshell)
       {
 
-         //estatus = __construct(m_pshell, __new(::windows::shell));
+         //estatus = __construct(m_pshell, __allocate< ::windows::shell >());
          //estatus =
          __construct(m_pshell);
 
@@ -850,7 +925,7 @@ namespace user
    CLASS_DECL_AURA ::pointer<::user::interaction>create_virtual_window(::particle * pparticle, ::user::interaction * pinteractionParent)
    {
 
-      auto pinteraction = __create_new < ::user::interaction >(pparticle);
+      auto pinteraction = pparticle->__create_new < ::user::interaction >();
 
       pinteraction->create_child(pinteractionParent);
 
@@ -1008,7 +1083,7 @@ namespace aura
    //session_docs * create_session_docs()
    //{
 
-   //   return memory_new session_docs();
+   //   return __new< session_docs >();
 
    //}
 
@@ -1539,7 +1614,7 @@ namespace user
    ::pointer<::user::plain_edit>user::create_calculator_edit()
    {
 
-      return __new(::user::plain_edit);
+      return __allocate< ::user::plain_edit >();
 
    }
 
@@ -1548,12 +1623,66 @@ namespace user
 } // namespace user
 
 
-CLASS_DECL_AURA ::particle * user_synchronization()
-{
-
-   return g_pmutexUser;
-
-}
+//CLASS_DECL_AURA ::particle * user_synchronization()
+//{
+//
+//   auto pplatform = platform::get();
+//
+//   if (::is_null(pplatform))
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
+//   auto psystem = pplatform->system();
+//
+//   if (::is_null(psystem))
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
+//   auto psession = psystem->session();
+//
+//   if (::is_null(psession))
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
+//   auto paurasession = psession->m_paurasession;
+//
+//   if (::is_null(paurasession))
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
+//   auto puser = paurasession->user();
+//
+//   if (::is_null(puser))
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
+//   auto pmutexUser = puser->m_pmutexUser;
+//
+//   if (::is_null(pmutexUser))
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
+//   return pmutexUser;
+//
+//}
 
 
 //CLASS_DECL_AURA void initialize_user_mutex()
@@ -1566,7 +1695,7 @@ CLASS_DECL_AURA ::particle * user_synchronization()
 //
 //   }
 //
-//   g_pmutexUser = ::platform::get()->system()->node()->create_mutex();
+//   g_pmutexUser = this->platform()->system()->node()->create_mutex();
 //
 //}
 //

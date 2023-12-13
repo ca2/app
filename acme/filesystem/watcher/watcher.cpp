@@ -67,7 +67,7 @@ namespace file
    //watch_id watcher::watch_folder_with_listener_function(const ::file::path & pathFolder, listener_function function, bool bRecursive)
    //{
 
-   //   return watch_folder_with_listener(pathFolder, __new(listener(function)), bRecursive);
+   //   return watch_folder_with_listener(pathFolder, __allocate< listener >(function), bRecursive);
 
    //}
 
@@ -75,7 +75,7 @@ namespace file
    watch_id watcher::add_watch(const ::file::path& pathFolder, typename listener::base* pbase, bool bRecursive)
    {
 
-      return add_watch_listener(pathFolder, { e_use, pbase }, bRecursive);
+      return add_watch_listener(pathFolder, { use_t{}, pbase }, bRecursive);
 
    }
 
@@ -186,7 +186,7 @@ namespace file
       while (task_get_run())
       {
 
-         if (!step())
+         if (!file_watcher_step())
          {
 
             break;
@@ -224,7 +224,7 @@ namespace file
    }
 
 
-   bool watcher::step()
+   bool watcher::file_watcher_step()
    {
 
 restart:
@@ -250,7 +250,7 @@ restart:
 
             }
 
-            pair.element2()->step();
+            pair.element2()->file_watch_step();
             
          }
 

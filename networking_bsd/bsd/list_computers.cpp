@@ -46,7 +46,7 @@ static int parse_rtattr(struct rtattr *tb[], int max, struct rtattr *rta, int le
 template < typename PREDICATE >
 int kernel_arp(PREDICATE pred) {
    int status;
-   void *p; //just a ptr
+   unsigned char *p; //just a ptr
 
    /* open socket */
    int sd = socket(PF_NETLINK, SOCK_DGRAM, NETLINK_ROUTE);
@@ -68,7 +68,7 @@ int kernel_arp(PREDICATE pred) {
    /* get an answer */
    status = recv(sd, buf, sizeof(buf), 0);
    int buf_size = status; /* recv will return answer size */
-   p = (void *) buf; /* set p to start of an answer */
+   p = (unsigned char *) buf; /* set p to start of an answer */
 
    while (buf_size > 0) { /* loop while buffer size is more than 0 */
       struct nlmsghdr *answer = (struct nlmsghdr *) p; /* netlink header structure */

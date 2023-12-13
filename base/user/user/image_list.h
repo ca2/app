@@ -53,13 +53,13 @@ namespace user
 
 #ifdef _DEBUG
 
-      i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override
+      i64 increment_reference_count() override
       {
-         return ::object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+         return ::object::increment_reference_count();
       }
-      i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override
+      i64 decrement_reference_count() override
       {
-         return ::object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+         return ::object::decrement_reference_count();
       }
 
 #endif
@@ -106,13 +106,13 @@ namespace user
 //      // void dump(dump_context & dumpcontext) const override;
 
 #ifdef _DEBUG
-      i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override
+      i64 increment_reference_count() override
       {
-         return ::object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+         return ::object::increment_reference_count();
       }
-      i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override
+      i64 decrement_reference_count() override
       {
-         return ::object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+         return ::object::decrement_reference_count();
       }
 #endif
 

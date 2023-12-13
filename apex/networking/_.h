@@ -36,7 +36,7 @@ namespace netserver
 {
 
 
-   class socket_thread_base;
+   class socket_thread;
 
 
 } // namespace netserver
@@ -60,6 +60,8 @@ namespace netserver
 //#include "byte_order.h"
 //
 
+
+using socket_id = ::uptr;
 
 
 #include "http/_.h"

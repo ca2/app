@@ -82,7 +82,7 @@ namespace acme
       for (int i = 0; i < srca.get_size(); i++)
       {
          
-         dsta[i] = memory_new TDST(*srca[i]);
+         dsta[i] = __new< TDST >(*srca[i]);
 
       }
 

@@ -54,7 +54,7 @@ namespace apex
       // apex commented
       //::pointer<::user::keyboard>                        m_pkeyboard;
 
-      ::map < ::user::enum_key, bool > *                       m_pmapKeyPressed;
+      ::pointer < ::map < ::user::enum_key, bool > >        m_pmapKeyPressed;
 
       bool                                                  m_bProgrammerMode;
 
@@ -293,7 +293,7 @@ namespace apex
 
       virtual ::user::e_key key_modifiers();
       
-      virtual bool is_key_pressed(::user::enum_key ekey);
+      bool is_key_pressed(::user::enum_key ekey) override;
 
       virtual void set_key_pressed(::user::enum_key ekey, bool bPressed);
 

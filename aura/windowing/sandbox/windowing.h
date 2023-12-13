@@ -89,7 +89,7 @@ namespace sandbox_windowing
 
       //void windowing_post(const ::procedure& procedure) override;
 
-      virtual bool x11_runnable_step();
+      //virtual bool aaa_x11_runnable_step();
 
 
       //::windowing::text_editor_interface* get_text_editor_interface() override;

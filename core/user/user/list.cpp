@@ -12,6 +12,7 @@
 #include "acme/constant/user_key.h"
 #include "acme/exception/interface_only.h"
 #include "acme/handler/item.h"
+#include "acme/handler/topic.h"
 #include "acme/platform/keep.h"
 #include "acme/platform/timer.h"
 #include "acme/parallelization/synchronous_lock.h"
@@ -382,13 +383,13 @@ namespace user
                if (pcolumn->m_pimagelist)
                {
 
-                  slaImageList.add(__new(synchronous_lock(pcolumn->m_pimagelist)));
+                  slaImageList.add(__allocate< now_a_particle < synchronous_lock > >(pcolumn->m_pimagelist));
 
                }
                if (pcolumn->m_pimagelistHover)
                {
 
-                  slaImageList.add(__new(synchronous_lock(pcolumn->m_pimagelist)));
+                  slaImageList.add(__allocate< now_a_particle < synchronous_lock > >(pcolumn->m_pimagelist));
 
                }
 
@@ -497,7 +498,7 @@ namespace user
          if (!pgroup)
          {
 
-            auto pdrawgroup = __new(draw_list_group);
+            auto pdrawgroup = __allocate< draw_list_group >();
 
             pdrawgroup->initialize_draw_list_group(this);
 
@@ -1449,7 +1450,7 @@ namespace user
       if (!pitem)
       {
 
-         auto pdrawlistitem = __new(draw_list_item);
+         auto pdrawlistitem = __allocate< draw_list_item >();
 
          pdrawlistitem->initialize_draw_list_item(this);
 
@@ -1482,7 +1483,7 @@ namespace user
       if (!psubitem)
       {
 
-         auto pdrawlistsubitem = __new(draw_list_subitem);
+         auto pdrawlistsubitem = __allocate< draw_list_subitem >();
 
          pdrawlistsubitem->initialize_draw_list_subitem(*pitem);
 
@@ -1504,7 +1505,7 @@ namespace user
    ::pointer<list_column>list::new_list_column()
    {
 
-      auto pcolumn = __new(list_column());
+      auto pcolumn = __allocate< list_column >();
 
       m_pcolumna->add(pcolumn);
 
@@ -2671,7 +2672,7 @@ namespace user
    }
 
 
-   void list::index_item_rectangle(::user::draw_list_item * pdrawitem)
+   void list::index_item_rectangle(::user::draw_mesh_item * pdrawitem)
    {
 
       if (pdrawitem->m_iDisplayItem < 0)
@@ -5651,7 +5652,7 @@ namespace user
       if (pcolumn->m_pimagelist == nullptr)
       {
 
-         pcolumn->m_pimagelist = __new(::image_list);
+         pcolumn->m_pimagelist = __allocate< ::image_list >();
 
       }
 
@@ -6854,7 +6855,7 @@ namespace user
 
    //void list::on_change_context_offset(::draw2d::graphics_pointer & pgraphics)
    //void list::on_change_context_offset()
-   void list::on_context_offset_layout(::draw2d::graphics_pointer & pgraphics)
+   void list::on_change_context_offset(::user::enum_layout elayout)
    {
 
       synchronous_lock synchronouslock(this->synchronization());
@@ -6927,7 +6928,7 @@ namespace user
 
       update_hover(pmouse, ::user::e_zorder_any);
 
-      ::user::scroll_base::on_context_offset_layout(pgraphics);
+      ::user::scroll_base::on_change_context_offset(elayout);
 
       set_need_redraw();
 
@@ -6970,7 +6971,7 @@ namespace user
    //::item_pointer list::update_hover(::user::mouse* pmouse, ::user::e_zorder ezorder)
    //{
 
-   //   auto pitemHitTest = __new(::item);
+   //   auto pitemHitTest = __allocate< ::item >();
    //   
    //   auto pointClient = screen_to_client().get(pmouse->m_point);
 
@@ -7659,7 +7660,7 @@ namespace user
    //void list::on_create_draw_item()
    //{
 
-   //   m_pdrawlistitem = memory_new draw_list_item(this);
+   //   m_pdrawlistitem = __new< draw_list_item >(this);
 
    //   m_pdrawlistitem->initialize(this);
 

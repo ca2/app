@@ -30,6 +30,9 @@ public:
    void initialize(::particle * pparticle) override;
 
 
+   void finalize() override;
+
+
    inline ::particle* image_synchronization() { return m_pparticleImageSynchronization; }
 
 

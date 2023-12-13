@@ -142,7 +142,7 @@ CLASS_DECL_ACME ::ansi_character * ansi_duplicate(const ::ansi_character * psz)
 
   if (::is_null(psz)) return nullptr;
 
-  auto pszDup = (::ansi_character *) memory_allocate(strlen(psz) + 1);
+  auto pszDup = (::ansi_character *) ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(strlen(psz) + 1);
 
   strcpy(pszDup, psz);
 
@@ -158,7 +158,7 @@ CLASS_DECL_ACME ::ansi_character * ansi_count_duplicate(const ::ansi_character *
 
   if (len < 0) return nullptr;
 
-  auto pszDup = (::ansi_character *)memory_allocate(len + 1);
+  auto pszDup = (::ansi_character *)::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(len + 1);
 
   strncpy(pszDup, psz, len);
 
@@ -879,7 +879,7 @@ CLASS_DECL_ACME i64 ansi_count_to_i64(const ::ansi_character * psz, const ::ansi
 
         }
 
-        memory_free(pszDup);
+        ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free(pszDup);
 
         return i;
 
@@ -921,7 +921,7 @@ CLASS_DECL_ACME i32 ansi_count_to_i32(const ::ansi_character * psz, const ::ansi
 
         }
 
-        memory_free(pszDup);
+        ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free(pszDup);
 
         return i;
 
@@ -1028,7 +1028,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_concatenate_and_duplicate(const ::
 
   strsize len = len1 + len2 + 1;
 
-  auto * psz = (::ansi_character *)memory_allocate(len);
+  auto * psz = (::ansi_character *)::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(len);
 
   *psz = '\0';
 
@@ -1040,7 +1040,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_concatenate_and_duplicate(const ::
      if (iFree1 > 0)
      {
 
-        memory_free((void *) psz1);
+        ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free((void *) psz1);
 
      }
      else if (iFree1 < 0)
@@ -1060,7 +1060,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_concatenate_and_duplicate(const ::
      if (iFree2 > 0)
      {
 
-        memory_free((void *)psz2);
+        ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free((void *)psz2);
 
      }
      else if (iFree2 < 0)
@@ -1086,7 +1086,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_concatenate_and_duplicate(const ::
 //
 //   strsize len = len1 + len2 + 1;
 //
-//   auto * psz = (::ansi_character *)memory_allocate(len);
+//   auto * psz = (::ansi_character *)::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(len);
 //
 //   *psz = '\0';
 //
@@ -1102,7 +1102,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_concatenate_and_duplicate(const ::
 //
 //      strcat(psz, psz2);
 //
-//      memory_free(psz2);
+//      ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free(psz2);
 //
 //   }
 //
@@ -1121,7 +1121,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_concatenate_and_duplicate(const ::
 //
 //   strsize len = len1 + len2 + 1;
 //
-//   auto * psz = (::ansi_character *)memory_allocate(len);
+//   auto * psz = (::ansi_character *)::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(len);
 //
 //   *psz = '\0';
 //
@@ -1130,7 +1130,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_concatenate_and_duplicate(const ::
 //
 //      strcat(psz, psz1);
 //
-//      memory_free(psz1);
+//      ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free(psz1);
 //
 //   }
 //
@@ -1156,7 +1156,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_concatenate_and_duplicate(const ::
 //
 //   strsize len = len1 + len2 + 1;
 //
-//   auto * psz = (::ansi_character *)memory_allocate(len);
+//   auto * psz = (::ansi_character *)::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(len);
 //
 //   *psz = '\0';
 //
@@ -1165,7 +1165,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_concatenate_and_duplicate(const ::
 //
 //      strcat(psz, psz1);
 //
-//      memory_free(psz1);
+//      ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free(psz1);
 //
 //   }
 //
@@ -1174,7 +1174,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_concatenate_and_duplicate(const ::
 //
 //      strcat(psz, psz2);
 //
-//      memory_free(psz2);
+//      ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free(psz2);
 //
 //   }
 //

@@ -82,9 +82,9 @@ namespace user
 
       auto psystem = system()->m_pbasesystem;
 
-      class imaging & imaging = psystem->imaging();
+      class imaging * pimaging = psystem->imaging();
 
-      imaging.change_hue(
+      pimaging->change_hue(
       m_pimagelistHue,
       MenuV033GetImageList(),
       rgb(192, 192, 180),
@@ -95,7 +95,7 @@ namespace user
       rgb(255, 255, 240),
       64);
 
-      imaging.change_hue(
+      pimaging->change_hue(
       m_pimagelistHueLight,
       m_pimagelist,
       rgb(220, 220, 215),
@@ -168,7 +168,7 @@ namespace user
 
       }
 
-      m_pfontMenu.create(this);
+      __construct(m_pfontMenu);
 
       __construct_new(m_pimagelist);
       __construct_new(m_pimagelistHue);

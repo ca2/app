@@ -366,7 +366,7 @@ namespace nanoui
    ::item_pointer TabWidgetBase::hit_test(const point_i32& p, bool test_vertical) const 
    {
 
-      auto pitem = __new(::item);
+      auto pitem = __allocate< ::item >();
 
       int tab_height = (int)font_size() + 2 * m_ptheme->m_iVerticalPaddingTabButton;
 
@@ -459,7 +459,7 @@ namespace nanoui
          m_ppopup->set_anchor_size(8);
          
          if (m_ppopup->layout() == nullptr)
-            m_ppopup->set_layout(memory_new GroupLayout(5, 3));
+            m_ppopup->set_layout(__allocate< GroupLayout >(5, 3));
 
          for (Widget* pwidgetChild : m_ppopup->children()) 
          {

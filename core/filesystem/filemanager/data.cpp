@@ -28,8 +28,8 @@ namespace filemanager
 
       m_bMakeVisible = true;
       m_bTransparentBackground = true;
-      m_puserinteractionParent = nullptr;
-      m_pcallback = nullptr;
+      //m_puserinteractionParent = nullptr;
+      //m_pcallback = nullptr;
 
       m_pfilelistcallback = nullptr;
 
@@ -44,9 +44,9 @@ namespace filemanager
       m_pdocumentTopic           = nullptr;
       m_bSetBergedgeTopicFile    = false;
       m_bTransparentBackground   = true;
-      m_pdocument                = nullptr;
+//      m_pdocument                = nullptr;
 //      m_pfilemanager             = nullptr;
-      m_pcallback                = nullptr;
+//      m_pcallback                = nullptr;
       m_strLevelUp = "levelup";
 
       m_bEnableRecursiveFolderSelectionList = true;
@@ -87,7 +87,7 @@ namespace filemanager
       //   return estatus;
       m_typeatomFileList = ::type < file_list >();
       //}
-      m_pfont.create(this);
+      __construct(m_pfont);
 
       m_pfont->create_font("Verdana", 14_px);
 
@@ -108,6 +108,13 @@ namespace filemanager
    }
 
 
+   //void data::__browse_initial_path(const ::action_context & action_context)
+   //{
+
+
+   //}
+
+
    bool data::is_topic()
    {
 
@@ -116,144 +123,244 @@ namespace filemanager
    }
 
 
-   bool data::do_prompt_file_name(::payload & payloadFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument)
+   //bool data::do_prompt_file_name(::payload & payloadFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument)
+   //{
+
+   //   m_pdocumentTopic = pdocument;
+
+   //   if (m_pdocument == nullptr)
+   //   {
+
+   //      if (!open())
+   //      {
+
+   //         return false;
+
+   //      }
+
+   //   }
+
+   //   return m_pdocument->do_prompt_file_name(payloadFile, nIDSTitle, lFlags, bOpenFileDialog, ptemplate, pdocument);
+
+   //}
+
+
+   void data::save_document(::user::document * pdocument)
    {
 
       m_pdocumentTopic = pdocument;
 
-      if (m_pdocument == nullptr)
-      {
+      m_emode = ::userfs::e_mode_saving;
 
-         if (!open())
-         {
+      //if (m_pdocument == nullptr)
+      //{
 
-            return false;
+      //   if (!open())
+      //   {
 
-         }
+      //      return false;
 
-      }
+      //   }
 
-      return m_pdocument->do_prompt_file_name(payloadFile, nIDSTitle, lFlags, bOpenFileDialog, ptemplate, pdocument);
+      //}
 
-   }
-
-
-   bool data::open(::apex::application * pappOnBehalfOfParam, ::file::path path, const ::action_context & context)
-   {
-
-      ::pointer<::core::application>pappOnBehalfOf = pappOnBehalfOfParam;
-
-      if (::is_null(m_pdocument))
-      {
-
-         ::pointer<::user::interaction>puiParent = m_puserinteractionParent;
-
-         bool bMakeVisible = m_bMakeVisible;
-
-         if (!bMakeVisible && ::is_set(m_prequest) && (m_prequest->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_screen))
-         {
-
-            bMakeVisible = true;
-
-         }
-
-         if (::is_null(puiParent))
-         {
-
-            if (::is_set(m_prequest))
-            {
-
-               puiParent = m_prequest->m_puserelementParent;
-
-            }
-
-         }
-
-         if(::is_null(pappOnBehalfOf))
-         {
-
-            if (::is_set(puiParent))
-            {
-
-               pappOnBehalfOf = puiParent->get_app();
-
-            }
-            else if (::is_set(m_prequest) && ::is_set(m_prequest->create_get_app(get_app())))
-            {
-
-               pappOnBehalfOf = m_prequest->create_get_app(get_app());
-
-            }
-            else if (::is_set(m_pdocumentTopic) && ::is_set(m_pdocumentTopic->get_app()))
-            {
-
-               pappOnBehalfOf = m_pdocumentTopic->get_app();
-
-            }
-
-         }
-
-         if (::is_null(puiParent))
-         {
-
-            if (::is_set(pappOnBehalfOf->m_puiMainContainer))
-            {
-
-               puiParent = pappOnBehalfOf->m_puiMainContainer;
-
-            }
-
-         }
-
-         if (::is_null(m_pcallback))
-         {
-
-            if (::is_set(pappOnBehalfOf))
-            {
-
-               ::pointer<::filemanager::callback>pcallback = pappOnBehalfOf;
-
-               if (::is_set(pcallback))
-               {
-
-                  m_pcallback = pcallback;
-
-               }
-
-            }
-
-         }
-
-         m_pdocument = dynamic_cast < ::filemanager::document * >
-                       (m_pimpactsystem->open_document_file(pappOnBehalfOf, e_type_empty,
-                             bMakeVisible,
-                             puiParent,
-                          e_window_flag(),
-                          m_atom));
-
-      }
-
-      auto pdocument = m_pdocument;
-
-      if (::is_null(pdocument))
-      {
-
-         return false;
-
-      }
-
-      if (path.is_empty())
-      {
-
-         return true;
-
-      }
-
-      pdocument->browse(path, context);
-
-      return true;
+//      return m_pdocument->do_prompt_file_name(payloadFile, nIDSTitle, lFlags, bOpenFileDialog, ptemplate, pdocument);
 
    }
+
+   //bool data::open(::apex::application * pappOnBehalfOfParam, ::file::path path, const ::action_context & context)
+   //{
+
+   //   ::pointer<::core::application>pappOnBehalfOf = pappOnBehalfOfParam;
+
+   //   if (::is_null(m_pdocument))
+   //   {
+
+   //      ::pointer<::user::interaction>puiParent = m_puserinteractionParent;
+
+   //      bool bMakeVisible = m_bMakeVisible;
+
+   //      if (!bMakeVisible && ::is_set(m_prequest) && (m_prequest->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_screen))
+   //      {
+
+   //         bMakeVisible = true;
+
+   //      }
+
+   //      if (::is_null(puiParent))
+   //      {
+
+   //         if (::is_set(m_prequest))
+   //         {
+
+   //            puiParent = m_prequest->m_puserelementParent;
+
+   //         }
+
+   //      }
+
+   //      if(::is_null(pappOnBehalfOf))
+   //      {
+
+   //         if (::is_set(puiParent))
+   //         {
+
+   //            pappOnBehalfOf = puiParent->get_app();
+
+   //         }
+   //         else if (::is_set(m_prequest) && ::is_set(m_prequest->create_get_app(get_app())))
+   //         {
+
+   //            pappOnBehalfOf = m_prequest->create_get_app(get_app());
+
+   //         }
+   //         else if (::is_set(m_pdocumentTopic) && ::is_set(m_pdocumentTopic->get_app()))
+   //         {
+
+   //            pappOnBehalfOf = m_pdocumentTopic->get_app();
+
+   //         }
+
+   //      }
+
+   //      if (::is_null(puiParent))
+   //      {
+
+   //         if (::is_set(pappOnBehalfOf->m_puiMainContainer))
+   //         {
+
+   //            puiParent = pappOnBehalfOf->m_puiMainContainer;
+
+   //         }
+
+   //      }
+
+   //      if (::is_null(m_pcallback))
+   //      {
+
+   //         if (::is_set(pappOnBehalfOf))
+   //         {
+
+   //            ::pointer<::filemanager::callback>pcallback = pappOnBehalfOf;
+
+   //            if (::is_set(pcallback))
+   //            {
+
+   //               m_pcallback = pcallback;
+
+   //            }
+
+   //         }
+
+   //      }
+
+   //      m_pdocument = dynamic_cast < ::filemanager::document * >
+   //                    (m_pimpactsystem->open_document_file(pappOnBehalfOf, e_type_empty,
+   //                          bMakeVisible,
+   //                          puiParent,
+   //                       e_window_flag(),
+   //                       m_atom));
+
+   //   }
+
+   //   auto pdocument = m_pdocument;
+
+   //   if (::is_null(pdocument))
+   //   {
+
+   //      return false;
+
+   //   }
+
+   //   if (path.is_empty())
+   //   {
+
+   //      return true;
+
+   //   }
+
+   //   pdocument->browse(path, context);
+
+   //   return true;
+
+   //}
+
+
+void data::browse_initial_path(const ::action_context & action_context)
+{
+
+
+//      auto pfilemanagerdata = this;
+//
+     auto pathInitialBrowse = get_last_browse_path(this, m_pathDefault);
+//
+browse(pathInitialBrowse, ::e_source_initialize);
+//
+////         if (get_file.datastream()->get({true, "last_browse_folder"}, str))
+////         {
+////
+////            if (str == "machinefs://")
+////            {
+////
+////               atom idMachine;
+////
+////#ifdef LINUX
+////               idMachine = "Linux";
+////#elif defined(WINDOWS_DESKTOP)
+////               idMachine = "WindowsDesktop";
+////#elif defined(WINDOWS)
+////               idMachine = "Metrowin";
+////#elif defined(MACOS)
+////               idMachine = "macOS";
+////#elif defined(__APPLE__)
+////               idMachine = "iOS";
+////#endif
+////
+////               if (papp->datastream()->get({true, "last_browse_folder." + as_string(idMachine)}, str))
+////               {
+////
+////                  browse(str, ::e_source_database);
+////
+////               }
+////               else
+////               {
+////
+////                  browse("", ::e_source_system);
+////
+////               }
+////
+////            }
+////            else
+////            {
+////
+//               //browse(str, ::e_source_database);
+//
+////            }
+//
+//         //}
+//         //else if (pfilemanagerdata->m_pathDefault.has_char())
+//         //{
+//
+//         //   browse(pfilemanagerdata->m_pathDefault, ::e_source_initialize);
+//
+//         //}
+//         //else
+//         //{
+//
+//         //   browse("", ::e_source_system);
+//
+//         //}
+//
+//      //}
+//
+//      browse(pathInitialBrowse, action_context);
+
+      //ptopic->m_atom = ;
+
+      //update_all_impacts(pupdate);
+
+}
+
 
 
 

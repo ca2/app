@@ -23,7 +23,10 @@ namespace user
       ~multiple_document_template() override;
 
 
-      void load_template() override;
+      void destroy() override;
+
+
+      void load_impact_system() override;
       void add_document(::user::document * pDoc) override;
       void erase_document(::user::document * pDoc) override;
       ::count get_document_count() const override;
@@ -34,14 +37,14 @@ namespace user
       // virtual void dump(dump_context &) const override;
       // void assert_ok() const override;
 
-      //virtual i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override
+      //virtual i64 increment_reference_count() override
       //{
-      //   return ::user::impact_system::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      //   return ::user::impact_system::increment_reference_count();
       //}
 
-      //virtual i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override
+      //virtual i64 decrement_reference_count() override
       //{
-      //   return ::user::impact_system::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      //   return ::user::impact_system::decrement_reference_count();
       //}
 
    };

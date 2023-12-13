@@ -58,11 +58,11 @@ namespace experience_anthill
       frame::initialize(pparticle);
 
 
-      m_ppenHollow1.create(this);
-      m_ppenHollow2.create(this);
-      m_ppenHollow3.create(this);
-      m_ppenHollow4.create(this);
-      m_ppenHollow5.create(this);
+      __construct(m_ppenHollow1);
+      __construct(m_ppenHollow2);
+      __construct(m_ppenHollow3);
+      __construct(m_ppenHollow4);
+      __construct(m_ppenHollow5);
 
    }
 

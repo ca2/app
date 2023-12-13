@@ -1,12 +1,14 @@
 #include "framework.h"
 #include "fixed_alloc.h"
 #include "fixed_alloc_impl.h"
+#include "acme/memory/plex.h"
 #include "acme/operating_system/process.h"
-#define HEAP_NAMESPACE_PREFIX main
-#include "acme/memory/_____heap_namespace.h"
+//#define HEAP_NAMESPACE_PREFIX main
+//#include "acme/memory/_____heap_namespace.h"
 
 
-fixed_alloc_no_sync::fixed_alloc_no_sync(::u32 nAllocSize, ::u32 nBlockSize)
+fixed_alloc_no_sync::fixed_alloc_no_sync(::heap::allocator * pallocator, ::u32 nAllocSize, ::u32 nBlockSize) :
+   m_pallocator(pallocator)
 {
    if(nBlockSize <= 1)
       nBlockSize = 4;
@@ -32,7 +34,7 @@ fixed_alloc_no_sync::~fixed_alloc_no_sync()
 
 void fixed_alloc_no_sync::FreeAll()
 {
-   m_pBlocks->FreeDataChain();
+   m_pBlocks->FreeDataChain(m_pallocator);
    m_pBlocks = nullptr;
    m_pnodeFree = nullptr;
 }
@@ -42,7 +44,7 @@ void fixed_alloc_no_sync::NewBlock()
 
    i32 nAllocSize = m_nAllocSize + 32;
    // add another block
-   ::main_memory_allocate_heap::plex* pNewBlock = ::main_memory_allocate_heap::plex::create(m_pBlocks, m_nBlockSize, nAllocSize);
+   auto pNewBlock = ::plex::create(m_pBlocks, m_nBlockSize, nAllocSize, m_pallocator);
 
    // chain them into _free list
    node* pNode = (node*)pNewBlock->data();
@@ -62,7 +64,8 @@ void fixed_alloc_no_sync::NewBlock()
 // fixed_alloc_sync
 //
 
-fixed_alloc_sync::fixed_alloc_sync(::u32 nAllocSize, ::u32 nBlockSize, i32 iShareCount)
+fixed_alloc_sync::fixed_alloc_sync(::heap::allocator * pallocator, ::u32 nAllocSize, ::u32 nBlockSize, i32 iShareCount) :
+   m_pallocator(pallocator)
 {
 
    m_i = 0;
@@ -76,11 +79,12 @@ fixed_alloc_sync::fixed_alloc_sync(::u32 nAllocSize, ::u32 nBlockSize, i32 iShar
    for(i32 i = 0; i < m_allocptra.get_count(); i++)
    {
       
-      m_allocptra[i] = memory_new fixed_alloc_no_sync(nAllocSize + sizeof(i32), nBlockSize);
+      m_allocptra[i] = __new< fixed_alloc_no_sync >(m_pallocator, (::u32) (nAllocSize + sizeof(fixed_alloc_no_sync)), nBlockSize);
       
    }
 
 }
+
 
 fixed_alloc_sync::~fixed_alloc_sync()
 {
@@ -143,7 +147,8 @@ void fixed_alloc_sync::FreeAll()
 // fixed_alloc
 //
 
-fixed_alloc::fixed_alloc(::u32 nAllocSize, ::u32 nBlockSize)
+fixed_alloc::fixed_alloc(::heap::allocator * pallocator,::u32 nAllocSize, ::u32 nBlockSize) :
+   m_pallocator(pallocator)
 {
 
    m_i = 0;
@@ -168,7 +173,7 @@ fixed_alloc::fixed_alloc(::u32 nAllocSize, ::u32 nBlockSize)
    for(i32 i = 0; i < m_allocptra.get_count(); i++)
    {
       
-      m_allocptra[i] = memory_new fixed_alloc_sync(nAllocSize + sizeof(i32), nBlockSize, 12);
+      m_allocptra[i] = __new< fixed_alloc_sync > (m_pallocator, (::u32) (nAllocSize + sizeof(fixed_alloc_sync)), nBlockSize, 12);
       
    }
 
@@ -232,7 +237,8 @@ void fixed_alloc::FreeAll()
 // fixed_alloc_array
 //
 
-fixed_alloc_array::fixed_alloc_array()
+fixed_alloc_array::fixed_alloc_array(::heap::allocator * pallocator) :
+   m_pallocator(pallocator)
 {
 }
 
@@ -255,7 +261,7 @@ void * fixed_alloc_array::_alloc(size_t nAllocSize)
    }
    else
    {
-      return memory_allocate(nAllocSize);
+      return m_pallocator->allocate(nAllocSize);
    }
 }
 
@@ -274,7 +280,7 @@ void fixed_alloc_array::_free(void * p, size_t nAllocSize)
    else
    {
 
-      return ::memory_free(p);
+      return m_pallocator->free(p);
 
    }
 
@@ -304,7 +310,7 @@ void * fixed_alloc_array::_realloc(void * pOld, size_t nOldAllocSize, size_t nNe
    else
    {
 
-      void * pNew = pallocNew == nullptr ? memory_allocate(nNewAllocSize) : pallocNew->Alloc();
+      void * pNew = pallocNew == nullptr ? m_pallocator->allocate(nNewAllocSize) : pallocNew->Alloc();
 
       if(pNew == nullptr)
          return nullptr;
@@ -320,7 +326,7 @@ void * fixed_alloc_array::_realloc(void * pOld, size_t nOldAllocSize, size_t nNe
       else
       {
 
-         ::memory_free(pOld);
+         m_pallocator->free(pOld);
 
       }
 

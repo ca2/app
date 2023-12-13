@@ -23,8 +23,6 @@ namespace aqua
    application::application()
    {
 
-      factory()->add_factory_item< ::aqua::system, ::acme::system >();
-      factory()->add_factory_item < ::aqua::session, ::acme::session >();
       //::aqua::initialize();
 
       m_paquaapplication = this;
@@ -63,6 +61,17 @@ namespace aqua
       //}
 
       //return estatus;
+
+   }
+
+
+   void application::on_set_platform()
+   {
+
+      ::apex::application::on_set_platform();
+
+      factory()->add_factory_item< ::aqua::system, ::acme::system >();
+      factory()->add_factory_item < ::aqua::session, ::acme::session >();
 
    }
 

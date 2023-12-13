@@ -230,6 +230,48 @@ namespace nano2d
 		return &m_params;
 	}
 
+
+	void context::get_maximum_width_and_row_height(float& fMaximumWidth, float& fRowHeight, const string_array& straLines)
+	{
+
+		float bounds[4];
+
+		for (int i = 0; i < straLines.get_size(); i++)
+		{
+
+			string strLabel = straLines[i];
+
+			if (strLabel.has_char())
+			{
+
+				text_bounds(0, 0, strLabel, bounds);
+
+				auto w = bounds[2] - bounds[0];
+
+				if (w > fMaximumWidth)
+				{
+
+					fMaximumWidth = w;
+
+				}
+
+				auto h = bounds[3] - bounds[1];
+
+				if (h > fRowHeight)
+				{
+
+					fRowHeight = h;
+
+				}
+
+			}
+
+
+		}
+
+	}
+
+
 	//
 	//void context::DeleteInternal()
 	//{
@@ -2498,7 +2540,7 @@ void TransformSkewX(float* t, float a)
 	//	//// if next fontImage already have a texture
 	//	//if (fontImages[fontImageIdx + 1] != 0)
 	//	//	context::ImageSize)(ctx, fontImages[fontImageIdx + 1], &iw, &ih);
-	//	//else { // calculate the memory_new font image size and create it.
+	//	//else { // calculate the new font image size and create it.
 	//	//	context::ImageSize)(ctx, fontImages[fontImageIdx], &iw, &ih);
 	//	//	if (iw > ih)
 	//	//		ih *= 2;
@@ -2623,6 +2665,13 @@ void TransformSkewX(float* t, float a)
 
 	void context::text_box(float x, float y, ::nano2d::text_box * ptextbox)
 	{
+
+		if (::is_null(ptextbox))
+		{
+
+			return;
+
+		}
 
 		//text(x, y, string, end);
 		// throw_todo();
@@ -2843,7 +2892,7 @@ void TransformSkewX(float* t, float a)
          if (type == NANO2D_NEWLINE)
          {
             
-            // Always handle memory_new lines.
+            // Always handle new lines.
             auto prow = __create_new <::nano2d::text_row >();
             auto start = rowStart != NULL ? rowStart : range.m_begin;
             auto end = rowEnd != NULL ? rowEnd : range.m_begin;
@@ -2973,7 +3022,7 @@ void TransformSkewX(float* t, float a)
                   else
                   {
                      
-                     // Break the line from the end of the last word, and start new line from the beginning of the memory_new.
+                     // Break the line from the end of the last word, and start new line from the beginning of the new.
                      auto prow = __create_new <::nano2d::text_row >();
                      //prow->start = rowStart;
                      //prow->end = breakEnd;
@@ -3013,7 +3062,7 @@ void TransformSkewX(float* t, float a)
          
       }
 
-      // Break the line from the end of the last word, and start memory_new line from the beginning of the memory_new.
+      // Break the line from the end of the last word, and start new line from the beginning of the new.
       if (rowStart != NULL)
       {
          
@@ -3111,7 +3160,7 @@ void TransformSkewX(float* t, float a)
 		//	}
 
 		//	if (type == NVG_NEWLINE) {
-		//		// Always handle memory_new lines.
+		//		// Always handle new lines.
 		//		prow->start = rowStart != NULL ? rowStart : iter.str;
 		//		prow->end = rowEnd != NULL ? rowEnd : iter.str;
 		//		prow->width = rowWidth * invscale;
@@ -3173,9 +3222,9 @@ void TransformSkewX(float* t, float a)
 		//				wordMinX = q.x0;
 		//			}
 
-		//			// Break to memory_new line when a character is beyond break width.
+		//			// Break to new line when a character is beyond break width.
 		//			if ((type == NVG_CHAR || type == NVG_CJK_CHAR) && nextWidth > breakRowWidth) {
-		//				// The run length is too long, need to break to memory_new line.
+		//				// The run length is too long, need to break to new line.
 		//				if (breakEnd == rowStart) {
 		//					// The current word is longer than the row length, just break it from here.
 		//					prow->start = rowStart;
@@ -3198,7 +3247,7 @@ void TransformSkewX(float* t, float a)
 		//					wordMinX = q.x0 - rowStartX;
 		//				}
 		//				else {
-		//					// Break the line from the end of the last word, and start memory_new line from the beginning of the memory_new.
+		//					// Break the line from the end of the last word, and start new line from the beginning of the new.
 		//					prow->start = rowStart;
 		//					prow->end = breakEnd;
 		//					prow->width = breakWidth * invscale;
@@ -3228,7 +3277,7 @@ void TransformSkewX(float* t, float a)
 		//	typePrevious = type;
 		//}
 
-		//// Break the line from the end of the last word, and start memory_new line from the beginning of the memory_new.
+		//// Break the line from the end of the last word, and start new line from the beginning of the new.
 		//if (rowStart != NULL) {
 		//	prow->start = rowStart;
 		//	prow->end = rowEnd;

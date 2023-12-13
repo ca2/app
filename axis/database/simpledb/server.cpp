@@ -168,7 +168,7 @@ namespace simpledb
 
       //}
 
-      //m_pstorage = __new(storage(this));
+      //m_pstorage = __allocate< storage >(this);
 
       m_bWorking = true;
 
@@ -272,6 +272,12 @@ namespace simpledb
       }
 
       m_pdatabaseLocal.release();
+
+      m_pstorage.release();
+
+      m_pdatabaseUser.release();
+
+      m_psimpledb.release();
 
       //auto estatus = 
       

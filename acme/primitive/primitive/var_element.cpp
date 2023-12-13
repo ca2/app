@@ -102,6 +102,21 @@ enum_type set_element(::payload & payload, ::particle * pelement)
 void payload::_set_element(::particle * pelement)
 {
 
+   auto pelementThis = this->get_particle();
+
+   if (pelementThis == pelement)
+   {
+
+      return;
+
+   }
+
+#if REFERENCING_DEBUGGING
+
+   m_preferer = ::allocator::defer_add_referer({ this, __FUNCTION_FILE_LINE__ });
+
+#endif
+
    ::increment_reference_count(pelement);
 
    logical_release();
@@ -195,21 +210,87 @@ void payload::_set_element(::particle * pelement)
          switch (m_etype)
          {
          case e_type_element:
+         {
+
+#if REFERENCING_DEBUGGING
+
+
+            auto prefererOld = m_preferer;
+            m_preferer = nullptr;
+            ::allocator::add_releaser(prefererOld);
+#endif
             return ::release(m_p);
+         }
          case e_type_string_array:
+         {
+#if REFERENCING_DEBUGGING
+
+            auto prefererOld = m_preferer;
+            m_preferer = nullptr;
+            ::allocator::add_releaser(prefererOld);
+#endif
             return ::release(m_pstra);
+         }
          case e_type_i32_array:
+         {
+#if REFERENCING_DEBUGGING
+
+            auto prefererOld = m_preferer;
+            m_preferer = nullptr;
+            ::allocator::add_releaser(prefererOld);
+#endif
             return ::release(m_pia);
+         }
          case e_type_payload_array:
+         {
+#if REFERENCING_DEBUGGING
+
+            auto prefererOld = m_preferer;
+            m_preferer = nullptr;
+            ::allocator::add_releaser(prefererOld);
+#endif
             return ::release(m_ppayloada);
+         }
          case e_type_property_set:
+         {
+#if REFERENCING_DEBUGGING
+
+            auto prefererOld = m_preferer;
+            m_preferer = nullptr;
+            ::allocator::add_releaser(prefererOld);
+#endif
             return ::release(m_ppropertyset);
+         }
          case e_type_i64_array:
+         {
+#if REFERENCING_DEBUGGING
+
+            auto prefererOld = m_preferer;
+            m_preferer = nullptr;
+            ::allocator::add_releaser(prefererOld);
+#endif
             return ::release(m_pi64a);
+         }
          case e_type_memory:
+         {
+#if REFERENCING_DEBUGGING
+
+            auto prefererOld = m_preferer;
+            m_preferer = nullptr;
+            ::allocator::add_releaser(prefererOld);
+#endif
             return ::release(m_pmemory);
+         }
          case e_type_path:
+         {
+#if REFERENCING_DEBUGGING
+
+            auto prefererOld = m_preferer;
+            m_preferer = nullptr;
+            ::allocator::add_releaser(prefererOld);
+#endif
             return ::release(m_ppath);
+         }
          default:
             return -1;
          };

@@ -6,6 +6,7 @@
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
 #include "acme/handler/request.h"
+#include "acme/platform/scoped_restore.h"
 #include "base/platform/application.h"
 
 
@@ -26,14 +27,6 @@ namespace user
    }
 
 
-   void multiple_document_template::load_template()
-   {
-
-      impact_system::load_template();
-
-   }
-
-
    multiple_document_template::~multiple_document_template()
    {
 
@@ -50,6 +43,42 @@ namespace user
 
    }
 
+
+
+   void multiple_document_template::destroy()
+   {
+
+      for (auto & pdocument : m_docptra)
+      {
+         
+         try
+         {
+
+            pdocument.defer_destroy();
+
+         }
+         catch (...)
+         {
+
+
+         }
+
+      }
+
+      ::user::impact_system::destroy();
+
+   }
+
+
+   void multiple_document_template::load_impact_system()
+   {
+
+      impact_system::load_impact_system();
+
+   }
+
+
+   
 
    ::count multiple_document_template::get_document_count() const
    {
@@ -92,6 +121,38 @@ namespace user
 
    void multiple_document_template::on_request(::request * prequest)
    {
+
+      prequest->m_countStack++;
+
+      at_end_of_scope
+      {
+
+         prequest->m_countStack--;
+
+      if (prequest->m_countStack <= 0)
+      {
+
+         for (auto & procedure : prequest->m_procedureaOnFinishRequest)
+         {
+
+            try
+            {
+
+               procedure();
+
+            }
+            catch (...)
+            {
+
+
+            }
+
+         }
+
+         prequest->m_procedureaOnFinishRequest.clear();
+      };
+
+      };
 
       prequest->m_estatus = error_failed;
 
@@ -150,7 +211,7 @@ namespace user
 
       if(!prequest->has_file())
       {
-         // create a memory_new ::user::document - with default ::user::document name
+         // create a new ::user::document - with default ::user::document name
          set_default_title(pdocument);
 
          // avoid creating temporary compound file when starting up invisible

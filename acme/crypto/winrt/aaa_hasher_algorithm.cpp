@@ -7,7 +7,7 @@ CLASS_DECL_APEX ::crypto::hasher_algorithm * __create_hasher_algorithm(enum_hash
 
    auto pprovider = ::winrt::hasher::get_os_provider(ehash);
 
-   auto palgorithm = memory_new ::winrt::hasher_algorithm(pprovider, ehash);
+   auto palgorithm = aaa_primitive_new ::winrt::hasher_algorithm(pprovider, ehash);
 
    return palgorithm;
 
@@ -45,7 +45,7 @@ namespace winrt
    ::pointer<::crypto::hasher>hasher_algorithm::create_hasher()
    {
 
-      return __new(hasher(m_pprovider->CreateHash(), ehash()));
+      return __allocate< hasher >(m_pprovider->CreateHash(), ehash());
       
    }
 

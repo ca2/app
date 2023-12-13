@@ -174,6 +174,8 @@ namespace sockets
       
       
       transfer_progress_function    m_transferprogressfunction;
+      class ::time                  m_timeConnectionMaximum; ///< Defined by SetTimeout
+      class ::time                  m_timeMaximum; ///< Defined by SetTimeout
 
       
       /** "Default" constructor */
@@ -182,9 +184,11 @@ namespace sockets
       ~base_socket() override;
 
 
-      virtual void initialize_socket(base_socket_handler* phandler);
+      virtual void SetSocketHandler(base_socket_handler* phandler);
 
-      
+      virtual void DetachSocket();
+
+
       virtual base_socket * base_socket_composite();
       virtual const base_socket * base_socket_composite() const;
 
@@ -213,6 +217,9 @@ namespace sockets
       virtual void destroy_ssl_session();
 
       virtual void get_ssl_session();
+
+
+      virtual ::string_array & debugstra();
 
 
       /** Called by listen_socket after accept but before base_socket is added to handler.
@@ -574,7 +581,7 @@ namespace sockets
       virtual bool LineProtocol();
 
 
-
+      virtual socket_id GetSocketId();
 
 
 
@@ -588,7 +595,7 @@ namespace sockets
       virtual void OnSSLConnectFailed();
       /** SSL negotiation failed for server accept. */
       virtual void OnSSLAcceptFailed();
-      /** memory_new SSL support */
+      /** new SSL support */
       virtual bool SSLNegotiate();
       /** Check if SSL is Enabled for this tcp_socket.
       \return true if this is a tcp_socket with SSL enabled */
@@ -706,7 +713,7 @@ virtual string GetSocks4Host();
 //      //@}
 //      /** \name Thread Support */
       //@{
-      /** Callback fires when a memory_new base_socket thread has started and this
+      /** Callback fires when a new base_socket thread has started and this
       base_socket is ready for operation again.
       \sa resolv_socket */
       virtual void OnDetached();
@@ -729,7 +736,7 @@ virtual string GetSocks4Host();
       virtual bool prepare_for_detach();
       /** Store the slave sockethandler pointer. */
       virtual void SetSlaveHandler(base_socket_handler *);
-      /** create memory_new thread for this base_socket to run detached in. */
+      /** create new thread for this base_socket to run detached in. */
       //void DetachSocket(socket_map::association * passociation, socket_map * psocketmap);
       ////@}
 
@@ -760,7 +767,7 @@ virtual string GetSocks4Host();
 
 
       virtual void run() override;
-      virtual bool step() override;
+      //virtual bool step() override;
 
       //virtual void __tracef(object * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstrFormat, ...);
       //virtual void __tracef(object * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, e_log elog, const ::string & strContext, i32 err, const ::string & strMessage);

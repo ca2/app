@@ -166,7 +166,7 @@ void image_list::draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point_
 
    synchronous_lock synchronouslock(this->synchronization());
 
-   if (m_pimage->is_ok())
+   if (m_pimage->nok())
    {
 
       return;

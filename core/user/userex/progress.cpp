@@ -49,10 +49,10 @@ namespace userex
 
 
 #ifdef _DEBUG
-   i64 progress_control::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+   i64 progress_control::decrement_reference_count()
    {
 
-      i64 i = ::progress::real::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      i64 i = ::progress::real::decrement_reference_count();
 
       //if (i == 1 && m_pthread.is_set())
       //{
@@ -73,13 +73,13 @@ namespace userex
       if (m_pdocument == nullptr)
       {
 
-         auto pcontext = m_pcontext;
+         //auto pcontext = m_pcontext;
 
-         auto psession = pcontext->m_pacmesession->m_paurasession;
+         //auto psession = pcontext->m_pacmesession->m_paurasession;
 
-         auto puser = psession->m_puser->m_pcoreuser;
+         //auto puser = psession->m_puser->m_pcoreuser;
 
-         m_pdocument = puser->m_ptemplateProgress2->open_document_file(get_app(), ::e_type_null, __visible(false).is_true());
+         m_pdocument = user()->m_pbaseuser->impact_system("progress_impact")->open_document_file(get_app(), ::e_type_null, __visible(false).is_true());
 
          m_pimpact = m_pdocument->get_typed_impact<::userex::progress_impact>();
 

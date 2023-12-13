@@ -68,22 +68,22 @@ fixed_alloc_sync::fixed_alloc_sync(::u32 nAllocSize, ::u32 nBlockSize, i32 iShar
    m_protectptra.allocate(iShareCount);
    for(i32 i = 0; i < m_allocptra.get_count(); i++)
    {
-      m_allocptra[i] = memory_new fixed_alloc_no_sync(nAllocSize + sizeof(i32), nBlockSize);
+      m_allocptra[i] = aaa_primitive_new fixed_alloc_no_sync(nAllocSize + sizeof(i32), nBlockSize);
    }
    for(i32 i = 0; i < m_protectptra.get_count(); i++)
    {
-      m_protectptra[i] = memory_new critical_section();
+      m_protectptra[i] = aaa_primitive_new critical_section();
    }
 
    m_allocptra.allocate(iShareCount);
    m_protectptra.allocate(iShareCount);
    for(i32 i = 0; i < m_allocptra.get_count(); i++)
    {
-      m_allocptra[i] = memory_new fixed_alloc_no_sync(nAllocSize + sizeof(i32), nBlockSize);
+      m_allocptra[i] = aaa_primitive_new fixed_alloc_no_sync(nAllocSize + sizeof(i32), nBlockSize);
    }
    for(i32 i = 0; i < m_protectptra.get_count(); i++)
    {
-      m_protectptra[i] = memory_new critical_section();
+      m_protectptra[i] = aaa_primitive_new critical_section();
    }
 }
 
@@ -168,7 +168,7 @@ fixed_alloc::fixed_alloc(::u32 nAllocSize, ::u32 nBlockSize)
 
    for(i32 i = 0; i < m_allocptra.get_count(); i++)
    {
-      m_allocptra[i] = memory_new fixed_alloc_sync(nAllocSize + sizeof(i32), nBlockSize, 12);
+      m_allocptra[i] = aaa_primitive_new fixed_alloc_sync(nAllocSize + sizeof(i32), nBlockSize, 12);
    }
 
    m_iShareCount = iShareCount;
@@ -254,7 +254,7 @@ void * fixed_alloc_array::_alloc(size_t nAllocSize)
    }
    else
    {
-      return memory_allocate(nAllocSize);
+      return ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(nAllocSize);
    }
 }
 
@@ -273,7 +273,7 @@ void fixed_alloc_array::_free(void * p, size_t nAllocSize)
    else
    {
 
-      return ::memory_free(p);
+      return ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free(p);
 
    }
 
@@ -303,7 +303,7 @@ void * fixed_alloc_array::_realloc(void * pOld, size_t nOldAllocSize, size_t nNe
    else
    {
 
-      void * pNew = pallocNew == nullptr ? memory_allocate(nNewAllocSize) : pallocNew->Alloc();
+      void * pNew = pallocNew == nullptr ? ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(nNewAllocSize) : pallocNew->Alloc();
 
       if(pNew == nullptr)
          return nullptr;
@@ -319,7 +319,7 @@ void * fixed_alloc_array::_realloc(void * pOld, size_t nOldAllocSize, size_t nNe
       else
       {
 
-         ::memory_free(pOld);
+         ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free(pOld);
 
       }
 

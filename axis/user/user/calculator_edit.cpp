@@ -2,6 +2,7 @@
 #include "calculator_edit.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
+#include "acme/handler/topic.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "axis/mathematics/calculator/parser.h"
 #include "axis/mathematics/calculator/element.h"

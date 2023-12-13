@@ -8,6 +8,7 @@
 #include "acme/handler/item.h"
 #include "acme/platform/node.h"
 #include "acme/user/user/content.h"
+#include "apex/handler/signal.h"
 #include "apex/platform/application.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/write_text/fonts.h"
@@ -441,7 +442,7 @@ namespace write_text
          //if (bCheckHover && rectangle.contains_y(pointCursor.y()))
          //{
 
-         //   //m_puserinteraction->m_pitemHover = __new(::item({ ::e_element_item, i }));
+         //   //m_puserinteraction->m_pitemHover = __allocate< ::item >({ ::e_element_item, i });
 
          //   m_puserinteraction->m_pitemHover = pfontlistitem;
 
@@ -548,7 +549,7 @@ namespace write_text
 
          string str = pitem->m_strName;
 
-         pbox->m_pfont.create(this);
+         __construct(pbox->m_pfont);
 
          if (str.case_insensitive_order("GOUDY STOUT") == 0)
          {
@@ -1022,7 +1023,7 @@ namespace write_text
 
             }
 
-            // Make room for memory_new fonts
+            // Make room for new fonts
 
             for (index iItem = 0; iItem < m_pfontenumerationitema->get_count(); iItem++)
             {
@@ -1132,7 +1133,7 @@ namespace write_text
 
                bNew = true;
 
-               plistitem = __new(font_list_item);
+               plistitem = __allocate< font_list_item >();
 
                plistitem->m_item.m_iItem = iItem;
 
@@ -1619,7 +1620,7 @@ namespace write_text
       if (!pfontlistdata)
       {
 
-         auto pitemNone = __new(::item(::e_element_none));
+         auto pitemNone = __allocate< ::item >(::e_element_none);
 
          return pitemNone;
 
@@ -1654,14 +1655,14 @@ namespace write_text
          if (pfontlistitem->m_box[BOX].m_rectangle.contains(point))
          {
 
-            //return __new(::item(::e_element_item, iItem));
+            //return __allocate< ::item >(::e_element_item, iItem);
             return pfontlistitem;
 
          }
 
       }
 
-      //auto pitemNone = __new(::item(::e_element_none));
+      //auto pitemNone = __allocate< ::item >(::e_element_none);
 
       //return pitemNone;
 
@@ -1680,7 +1681,7 @@ namespace write_text
       if (!pfontlistdata)
       {
 
-         auto pitemNone = __new(::item(::e_element_none));
+         auto pitemNone = __allocate< ::item >(::e_element_none);
 
          return pitemNone;
 
@@ -1711,7 +1712,7 @@ namespace write_text
 
       }
 
-      //auto pitemNone = __new(::item(::e_element_none));
+      //auto pitemNone = __allocate< ::item >(::e_element_none);
 
       // return pitemNone;
 

@@ -78,6 +78,8 @@ public:
    void create() override;
 
    void display() override;
+    
+   void hide() override;
 
    void message_loop() override;
 
@@ -169,7 +171,7 @@ public:
 };
 
 
-CLASS_DECL_ACME void initialize_nano_window();
+CLASS_DECL_ACME void initialize_nano_window(::factory::factory * pfactory);
 
 
 

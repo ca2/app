@@ -82,7 +82,7 @@ public:
   }
 
   RegionDefine *clone() const{
-    RegionDefine *rd = memory_new TextRegion(*this);
+    RegionDefine *rd = __new< TextRegion >(*this);
     return rd;
   }
 

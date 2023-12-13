@@ -45,25 +45,70 @@ CLASS_DECL_ACME ::file::path_array operator / (const ::file::path & pathBase, co
 }
 
 
-CLASS_DECL_ACME ::file::path_array & ascendants_path(const ::file::path & pathBase, ::file::path_array & pathaFolder, ::file::path_array * ppathaRelative)
+template < typename TYPE1, typename TYPE2 >
+constexpr smallest_type<TYPE1, TYPE2> non_null_minimum(const TYPE1 & a, const TYPE2 & b)
+{
+
+   return ::comparison::comparison2<TYPE1, TYPE2>().order(a, b) <= 0 ?
+      (smallest_type<TYPE1, TYPE2>) (!a ? (smallest_type<TYPE1, TYPE2>)b : (smallest_type<TYPE1, TYPE2>)a) :
+      (smallest_type<TYPE1, TYPE2>) (!b ? (smallest_type<TYPE1, TYPE2>)a : (smallest_type<TYPE1, TYPE2>)b);
+
+}
+
+
+
+
+CLASS_DECL_ACME ::file::path_array & ascendants_path(const ::file::path & path, ::file::path_array & pathaFolder, ::file::path_array * ppathaRelative)
 //path_array & path::ascendants_path(path_array & straParam, path_array * ppathaRelative) const
 {
 
-   auto path = pathBase;
+   auto p = path.begin();
 
-   ::file::path pathRelative;
-
-   while (path.has_char())
+   while(p && p < path.end())
    {
 
-      pathaFolder.insert_at(0, path);
-      if (::is_set(ppathaRelative))
+      auto range = ::const_ansi_range(p, path.end());
+
+      auto pProtocol = range.find(":/");
+      auto pProtocol2 = range.find("://");
+      auto pSlash = range.find_first('/');
+      auto pBackSlash = range.find_first('\\');
+
+      p = non_null_minimum(pProtocol, non_null_minimum(pProtocol2, non_null_minimum(pSlash, pBackSlash)));
+
+      if (!p)
       {
 
-         ppathaRelative->add(pathRelative);
+         pathaFolder.add(path);
+
+         break;
+
       }
-      path = path.folder();
-      pathRelative = path.name() / pathRelative;
+      else if (p == pProtocol2)
+      {
+
+         p += 3;
+
+         pathaFolder.add(path(0, p));
+
+      }
+      else if (p == pProtocol)
+      {
+
+         p += 2;
+
+         pathaFolder.add(path(0, p));
+
+      }
+      else if (p == pSlash || p == pBackSlash)
+      {
+
+         pathaFolder.add(path(0, p));
+
+         p = path(p).skip_any_character_in("\\/");
+
+      }
+      
    }
 
 //   if (::is_set(ppathaRelative))

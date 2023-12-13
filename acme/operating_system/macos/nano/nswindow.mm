@@ -12,7 +12,10 @@
 #include "nswindow.h"
 #include "window_bridge.h"
 #include "nsimpact.h"
-#include "app.h"
+#import "app.h"
+
+
+void ns_main_post(dispatch_block_t block);
 
 bool ns_app_is_running();
 void ns_main_async(dispatch_block_t block);
@@ -30,8 +33,10 @@ void ns_main_sync(dispatch_block_t block);
 // and grows bigger from bottom as farther from bottom of screen.
 
 
--(instancetype) init: (NSRect) rectangle
+-(instancetype) init: (NSRect) rectangle with_nano_window_bridge:(nano_window_bridge * )pnanowindowbridge
 {
+   
+   m_pnanowindowbridge = pnanowindowbridge;
    
    self = [ super
       initWithContentRect : rectangle
@@ -50,17 +55,17 @@ void ns_main_sync(dispatch_block_t block);
    
    [ self setBackgroundColor: [ NSColor clearColor ] ];
       
-   [ self setReleasedWhenClosed : NO ];
-   
    [ self setAcceptsMouseMovedEvents : YES ];
    
    [ self setLevel : NSNormalWindowLevel ];
    
+   [ self setReleasedWhenClosed : NO ];
+   
    [ self setIgnoresMouseEvents : NO ];
    
-   macos_app * papp = (macos_app *) [ [ NSApplication sharedApplication ] delegate ];
-   
-   m_pwindowcontroller = [ papp addWindow: self ];
+//   macos_app * papp = (macos_app *) [ [ NSApplication sharedApplication ] delegate ];
+//   
+//   m_pwindowcontroller = [ papp addWindow: self ];
 
    [ [ NSNotificationCenter defaultCenter ] addObserver: self selector: @selector(windowDidMove:) name: NSWindowDidMoveNotification object: self];
 
@@ -72,6 +77,21 @@ void ns_main_sync(dispatch_block_t block);
    
 }
 
+-(void)dealloc
+{
+   
+   m_pnsnanoimpact = nil;
+   
+   [ [ NSNotificationCenter defaultCenter ] removeObserver: self];
+
+}
+//
+//- (BOOL)windowShouldClose:(NSWindow *)sender
+//{
+//   
+//   return TRUE;
+//   
+//}
 
 - (void)windowDidMove:(NSNotification *)notification
 {
@@ -86,7 +106,7 @@ void ns_main_sync(dispatch_block_t block);
    
    int h = rectFrame.size.height;
    
-   m_pwindowbridge->on_layout(x, y, w, h);
+   m_pnanowindowbridge->on_layout(x, y, w, h);
    
 }
 
@@ -105,49 +125,49 @@ void ns_main_sync(dispatch_block_t block);
    
    int h = rectFrame.size.height;
    
-   m_pwindowbridge->on_layout(x, y, w, h);
+   m_pnanowindowbridge->on_layout(x, y, w, h);
    
 }
 
 
-- (BOOL) canBecomeKeyWindow
-{
-   
-   return YES;
-   
-}
-
-
-- (BOOL) canBecomeMainWindow
-{
-   
-   return YES;
-   
-}
-
-
-- (BOOL) acceptsFirstResponder
-{
-   
-   return YES;
-   
-}
-
-
-- (BOOL) becomeFirstResponder
-{
-   
-   return YES;
-   
-}
-
-
-- (BOOL) resignFirstResponder
-{
-   
-   return YES;
-   
-}
+//- (BOOL) canBecomeKeyWindow
+//{
+//   
+//   return YES;
+//   
+//}
+//
+//
+//- (BOOL) canBecomeMainWindow
+//{
+//   
+//   return YES;
+//   
+//}
+//
+//
+//- (BOOL) acceptsFirstResponder
+//{
+//   
+//   return YES;
+//   
+//}
+//
+//
+//- (BOOL) becomeFirstResponder
+//{
+//   
+//   return YES;
+//   
+//}
+//
+//
+//- (BOOL) resignFirstResponder
+//{
+//   
+//   return YES;
+//   
+//}
 
 
 - (void)create_impact
@@ -157,15 +177,15 @@ void ns_main_sync(dispatch_block_t block);
    
    bounds.origin = NSZeroPoint;
 
-   ns_nano_impact * pimpact = [ [ ns_nano_impact alloc ] initWithFrame: bounds andns_nano_window: self ];
+   m_pnsnanoimpact = [ [ ns_nano_impact alloc ] initWithFrame: bounds and_nano_window_bridge: m_pnanowindowbridge ];
    
-   m_pimpactChild = pimpact;
+   //m_pimpactChild = pimpact;
    
-   [ super setContentView: pimpact ];
+   [ super setContentView: m_pnsnanoimpact ];
    
-   [ pimpact setFrame: bounds ];
+   [ m_pnsnanoimpact setFrame: bounds ];
    
-   [ pimpact setAutoresizingMask: 0 ];
+   [ m_pnsnanoimpact setAutoresizingMask: 0 ];
    
 }
 
@@ -185,6 +205,17 @@ nano_window_bridge::nano_window_bridge()
 nano_window_bridge::~nano_window_bridge()
 {
    
+   auto pnanowindow =  (__bridge ns_nano_window *) m_pnsnanowindow;
+   
+   pnanowindow->m_pnsnanoimpact->m_pnanowindowbridge = nullptr;
+   
+   ns_main_post(^{
+   
+      [ pnanowindow close];
+      
+   });;
+
+   
      
 }
 
@@ -195,12 +226,8 @@ void nano_window_bridge::create_ns_nano_window(CGRect cgrect)
    ns_main_sync(^()
    {
    
-      m_pnsnanowindow = (__bridge_retained CFTypeRef) [ [ ns_nano_window alloc ] init: cgrect ];
+      m_pnsnanowindow = (__bridge CFTypeRef) [ [ ns_nano_window alloc ] init: cgrect with_nano_window_bridge: this];
    
-      auto pnsnanowindow = (__bridge ns_nano_window *) m_pnsnanowindow;
-   
-      pnsnanowindow->m_pwindowbridge = this;
-      
    });
    
 }
@@ -248,14 +275,17 @@ void nano_window_bridge::display()
       else if(_is_popup_window())
       {
          
-         [ pnanowindow setLevel: NSModalPanelWindowLevel ];
+         //[ pnanowindow setLevel: NSModalPanelWindowLevel ];
          
       }
 
-      [ pnanowindow display];
-      [ pnanowindow makeKeyAndOrderFront : nil ];
-      [ pnanowindow makeFirstResponder : nil ];
-      [ NSApp activateIgnoringOtherApps : YES ];
+      //[ pnanowindow display];
+      //[ pnanowindow makeKeyAndOrderFront : pnanowindow ];
+      [ pnanowindow makeKeyAndOrderFront:nil ];
+      //[ pnanowindow orderFront: nil ];
+      //[ pnanowindow display ];
+      //[ pnanowindow makeFirstResponder : pnanowindow ];
+      //[ NSApp activateIgnoringOtherApps : YES ];
       //[ [ pnanowindow windowController ] showWindow:nil ];
       //[ NSApp runModalForWindow : pnanowindow ];
    
@@ -265,21 +295,60 @@ void nano_window_bridge::display()
 }
 
 
-void nano_window_bridge::redraw()
+void nano_window_bridge::hide()
 {
    
    auto pnanowindow =  (__bridge ns_nano_window *) m_pnsnanowindow;
 
-   [ pnanowindow->m_pimpactChild setNeedsDisplay:YES];
+   if(!pnanowindow)
+   {
+      
+      return;
+      
+   }
+   
+   ns_main_async(^()
+   {
+      
+      
+      //[ pnanowindow resignKeyWindow];
+      //[ pnanowindow resignMainWindow ];
+      [ pnanowindow orderOut: pnanowindow ];
+   
+   });
+   
+}
+
+
+void nano_window_bridge::redraw()
+{
+   
+   if(m_pnsnanowindow)
+   {
+      
+      auto pnanowindow =  (__bridge ns_nano_window *) m_pnsnanowindow;
+      
+      [ pnanowindow setViewsNeedDisplay:YES];
+      
+   }
    
 }
 
 
 void nano_window_bridge::stop()
 {
-   
-   auto pnanowindow =  (__bridge ns_nano_window *) m_pnsnanowindow;
 
+   auto pnanowindow =  (__bridge ns_nano_window *) m_pnsnanowindow;
+   
+   if(!pnanowindow)
+   {
+      
+      return;
+      
+   }
+   
+   ns_main_post(^{
+      
    if(!ns_app_is_running())
    {
       
@@ -293,17 +362,47 @@ void nano_window_bridge::stop()
       }
       
    }
+      
+
+
 //)
+      
+//      [pnanowindow->m_pwindowcontroller close];
+//      macos_app * papp = (macos_app *) [ [ NSApplication sharedApplication ] delegate ];
+//
+//     [ papp removeWindowController: pnanowindow->m_pwindowcontroller ];
+//
+//      
+//      pnanowindow->m_pwindowcontroller = nil;
    
    //[NSApp stopModal];
-   
-   [ pnanowindow close ];
+//      [ pnanowindow setLevel: NSNormalWindowLevel ];
+//      [ pnanowindow setAnimationBehavior:NSWindowAnimationBehaviorNone];
+//   [ pnanowindow orderOut: pnanowindow ];
+//      //[ pnanowindow setIsVisible: false];
+//      //[ pnanowindow setViewsNeedDisplay:TRUE];
+      //pnanowindow->m_pimpactChild = nil;
+      //[ pnanowindow orderOut:nil];
+      [ pnanowindow orderOut:nil ];
+      
+      //m_pnsnanowindow = nullptr;
+      //CFRelease(m_pnsnanowindow);
+      
+   });
+
    
 }
 
 
 void nano_window_bridge::move_to(int x, int y)
 {
+   
+   if(!m_pnsnanowindow)
+   {
+      
+      return;
+      
+   }
    
    auto pnanowindow =  (__bridge ns_nano_window *) m_pnsnanowindow;
    

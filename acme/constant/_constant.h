@@ -865,22 +865,10 @@ enum enum_extract
 //// very short name ([{c}])ontext (switchers, as it as action_context) enums
 
 
-enum enum_default_initialization
-{
-
-   e_default_initialization
-
-};
+struct default_initialization_t{};
 
 
-enum enum_no_initialize
-{
-
-
-   e_no_initialize,
-
-
-};
+struct no_initialize{};
 
 
 //enum zero_t
@@ -970,7 +958,7 @@ enum enum_create
 };
 
 
-enum enum_defer_new // memory_new - for factoryless_allocation FACTORYLESS_ALLOCATION_ID
+enum enum_defer_new // new - for factoryless_allocation FACTORYLESS_ALLOCATION_ID
 {
 
    e_defer_new

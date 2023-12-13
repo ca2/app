@@ -5,6 +5,7 @@
 #include "acme/parallelization/manual_reset_event.h"
 #include "acme/parallelization/critical_section.h"
 #include "acme/user/user/conversation.h"
+#include "acme/platform/context.h"
 
 
 template < typename SEQUENCE >
@@ -183,17 +184,31 @@ void sequencer < SEQUENCE > ::on_sequence()
 
    }
 
-   while (m_stepa.has_element())
+   if(m_stepa.has_element())
    {
+      
+      ::pointer < sequencer < SEQUENCE > > psequencer(this);
 
       auto step = m_stepa.pop_first();
 
       lock.unlock();
+      
+      m_pcontext->post_procedure(
+                                                 [this, step, psequencer]
+                                                 {
+                                                    
+                                                    step(m_psequence);
 
-      step(m_psequence);
+                                                    psequencer->on_sequence();
+                                                    
+                                                 });
 
-      lock.lock();
-
+   }
+   else
+   {
+      
+      m_psequence.release();
+      
    }
 
 }
@@ -279,7 +294,7 @@ sequence < SEQUENCE > * sequencer < SEQUENCE > ::then(const class time & timeWai
 
       m_stepa.add(step);
 
-      m_pevent = memory_new manual_reset_event();
+      m_pevent = __new< manual_reset_event >();
 
       lock.unlock();
 
@@ -330,7 +345,7 @@ sequence < SEQUENCE > * sequencer < SEQUENCE > ::topic(const class time & timeWa
    if (m_psequence.m_estatus == error_not_initialized)
    {
 
-      m_pevent = memory_new manual_reset_event();
+      m_pevent = __new< manual_reset_event >();
 
       if (!m_pevent->wait(timeWait))
       {
@@ -364,7 +379,7 @@ template < typename SEQUENCE >
    if (m_psequence.m_estatus == error_not_initialized)
    {
 
-      m_pevent = __new(manual_reset_event);
+      m_pevent = __allocate< manual_reset_event >();
 
       lock.unlock();
 

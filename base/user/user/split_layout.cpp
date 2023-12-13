@@ -592,36 +592,43 @@ namespace user
 
          }
 
+         pplaceholder->m_bLockGraphicalUpdate = false;
+
          rectangleClient = rectanglePane;
 
          rectangleClient.deflate(m_cxBorder,m_cyBorder);
 
-         pplaceholder->order(e_zorder_top);
+         //if(rectangleClient != pplaceholder->parent_client_rectangle())
+         //{
 
-         pplaceholder->place(rectangleClient, ::user::e_layout_layout, pgraphics);
+            pplaceholder->place(rectangleClient, ::user::e_layout_layout, pgraphics);
 
-         //pplaceholder->m_rectangleClient = rectangleClient;
+            pplaceholder->order(e_zorder_top);
 
-         //pplaceholder->m_rectangleClient.offset(-pplaceholder->m_rectangleClient.top_left());
+            //pplaceholder->m_rectangleClient = rectangleClient;
 
-         if (pplaceholder->const_layout().sketch().is_visible())
-         {
+            //pplaceholder->m_rectangleClient.offset(-pplaceholder->m_rectangleClient.top_left());
 
-            pplaceholder->display();
+            //if (pplaceholder->const_layout().sketch().is_visible())
+            //{
 
-            pplaceholder->set_need_layout();
+            //   pplaceholder->display();
 
-            pplaceholder->set_need_redraw({ rectangleClient });
+            //   pplaceholder->set_need_layout();
 
-            //puserinteraction->post_redraw();
+            //   pplaceholder->set_need_redraw({ rectangleClient });
 
-         }
-         else
-         {
+            //   //puserinteraction->post_redraw();
 
-            pplaceholder->hide();
+            //}
+            //else
+            //{
 
-         }
+            //   pplaceholder->hide();
+
+            //}
+
+         //}
 
       }
 
@@ -990,13 +997,13 @@ namespace user
       for(i = 0; i < iSplitBarCount; i++)
       {
 
-         m_splitbara.add_new(this);
+         auto & psplitbar = m_splitbara.add_new();
+         
+         __construct(psplitbar);
 
-         ::user::split_bar & splitbar = *m_splitbara.element_at(i);
+         psplitbar->m_iIndex = i;
 
-         splitbar.m_iIndex = i;
-
-         splitbar.create_child(this);
+         psplitbar->create_child(this);
 
          //if (!splitbar.create_child(this))
          //{

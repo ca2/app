@@ -72,7 +72,7 @@ namespace wayland
 
 
       bool message_loop_step() override;
-      //void message_loop();
+      //void aaa_message_loop ();
 
       void init_task() override;
 
@@ -87,13 +87,13 @@ namespace wayland
 
       //bool _on_event(XEvent * pevent) override;
 
-      //virtual bool x11_event(XEvent * pevent);
+      //virtual bool aaa_x11_event(XEvent * pevent);
 
-      //virtual bool x11_posted();
+      //virtual bool aaa_x11_posted();
 
-      //void display_post(const ::procedure & procedure) override;
-      //void display_send(const ::procedure & procedure);
-      //bool display_posted_routine_step();
+      //void aaa_display_post(const ::procedure & procedure) override;
+      //void aaa_display_send(const ::procedure & procedure);
+      //bool aaa_display_posted_routine_step();
 
       ::size_i32 get_main_screen_size() override;
 

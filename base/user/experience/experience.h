@@ -16,13 +16,16 @@ namespace experience
    public:
 
 
-      ::pointer<::factory::factory>      m_pfactory;
+      ::pointer<::factory::factory>       m_pfactory;
       property_set                        m_set;
       string                              m_strExperience;
 
 
       experience();
       ~experience() override;
+
+
+      void destroy() override;
 
 
       ::base::application * get_app();
@@ -35,7 +38,7 @@ namespace experience
 
       virtual void get_frame_list(string_array & stra);
 
-      virtual frame * frame_experience(const ::string & strFrameSchema);
+      virtual ::pointer < frame > frame_experience(const ::string & strFrameSchema);
 
 
    };

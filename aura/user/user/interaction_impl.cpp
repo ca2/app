@@ -188,6 +188,12 @@ namespace user
       if (m_pmutexDraw == nullptr)
       {
 
+#if REFERENCING_DEBUGGING
+
+         refdbg_top_track refdbgtoptrack(this);
+
+#endif
+
          __construct(m_pmutexDraw);
 
       }
@@ -585,16 +591,21 @@ namespace user
 
       ::pointer<::user::system>pusersystem;
 
-      if (m_puserinteraction->m_pusersystem)
+      if (!m_puserinteraction->is_system_message_window())
       {
 
-         pusersystem = m_puserinteraction->m_pusersystem;
+         if (m_puserinteraction->m_pusersystem)
+         {
 
-      }
-      else
-      {
+            pusersystem = m_puserinteraction->m_pusersystem;
 
-         pusersystem = __new(::user::system);
+         }
+         else
+         {
+
+            pusersystem = __allocate< ::user::system >();
+
+         }
 
       }
 
@@ -780,7 +791,7 @@ namespace user
       else
       {
 
-         pusersystem = __new(::user::system);
+         pusersystem = __allocate< ::user::system >();
 
       }
 
@@ -870,7 +881,19 @@ namespace user
 
       m_puserinteraction = puserinteraction;
 
+#if REFERENCING_DEBUGGING
+
+      ::allocator::defer_add_referer({ this, __FUNCTION_FILE_LINE__ });
+
+#endif
+
       m_puserinteraction->m_pprimitiveimpl = this;
+
+#if REFERENCING_DEBUGGING
+
+      ::allocator::defer_add_referer({ this, __FUNCTION_FILE_LINE__ });
+
+#endif
 
       m_puserinteraction->m_pinteractionimpl = this;
 
@@ -957,7 +980,7 @@ namespace user
       //                      pusersystem->m_createstruct.cx(),
       //                      pusersystem->m_createstruct.cy()));
 
-      //auto psynca = __new(synchronization_array);
+      //auto psynca = __allocate< synchronization_array >();
 
       //::pointer<manual_reset_event>peventStartedUser;
 
@@ -985,11 +1008,17 @@ namespace user
 
          m_puserinteraction->m_pthreadUserInteraction = m_puserthread;
 
-         //peventStartedUser = __new(manual_reset_event());
+         //peventStartedUser = __allocate< manual_reset_event >();
 
          //m_puserthread->m_peventStarted = peventStartedUser;
 
       }
+
+#if REFERENCING_DEBUGGING
+
+      ::allocator::defer_add_referer({ this, __FUNCTION_FILE_LINE__ });
+
+#endif
 
       m_puserthread->add_task(m_puserinteraction);
 
@@ -1001,6 +1030,34 @@ namespace user
          pgraphicsthread = __create_new < ::user::graphics_thread >();
 
          m_pgraphicsthread = pgraphicsthread;
+
+         auto pusersystem = m_puserinteraction->m_pusersystem;
+
+         if (pusersystem)
+         {
+
+            auto prequest = pusersystem->m_prequest;
+
+            if (prequest)
+            {
+
+               information() << "pgraphicsthread->m_eventReady.ResetEvent();";
+
+               pgraphicsthread->m_eventReady.ResetEvent();
+
+               prequest->m_procedureaOnFinishRequest.add(
+                  [this, pgraphicsthread]()
+                  {
+
+                     information() << "pgraphicsthread->m_eventReady.SetEvent();";
+
+                     pgraphicsthread->m_eventReady.SetEvent();
+
+                  });
+
+            }
+
+         }
 
          m_pgraphicsthread->initialize_graphics_thread(this);
 
@@ -1153,7 +1210,7 @@ namespace user
 
       //   send_message(e_message_size, 0, MAKELPARAM(pusersystem->m_createstruct.cx(), pusersystem->m_createstruct.cy()));
 
-      //   m_puserinteraction->increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_THIS_FUNCTION_LINE);
+      //   m_puserinteraction->increment_reference_count(REFERENCING_DEBUGGING_THIS_FUNCTION_FILE_LINE);
 
       //   m_puserinteraction->m_ewindowflag |= ::e_window_flag_is_window;
 
@@ -1169,7 +1226,7 @@ namespace user
    ::color::color interaction_impl::screen_pixel(int x, int y) const
    {
 
-      if (::is_null(m_pgraphics))
+      if (::is_null(m_pgraphicsgraphics))
       {
 
          return color::transparent;
@@ -1180,7 +1237,7 @@ namespace user
 
       //information() << "screen_pixel window().origin() : " << origin;
 
-      return m_pgraphics->get_screen_item()->m_pimage2->pixel(x - origin.x(), y - origin.y());
+      return m_pgraphicsgraphics->get_screen_item()->m_pimage2->pixel(x - origin.x(), y - origin.y());
 
    }
 
@@ -1199,7 +1256,7 @@ namespace user
 //      //ASSERT(puiParent != nullptr);
 //      //ASSERT((uStyle & WS_POPUP) == 0);
 //
-//      //auto pusersystem = __new(::user::system);
+//      //auto pusersystem = __allocate< ::user::system >();
 //
 //      //pusersystem->m_createstruct.dwExStyle = 0;
 //
@@ -1379,7 +1436,7 @@ namespace user
       //   if (pmouse->m_atom == e_message_left_button_up)
       //   {
 
-      //      ::informationf("lbutton_up");
+      //      ::acme::get()->platform()->informationf("lbutton_up");
 
       //   }
 
@@ -1447,7 +1504,7 @@ namespace user
       //      if (pmouse->m_atom == e_message_left_button_up)
       //      {
 
-      //         ::informationf("lbutton_up");
+      //         ::acme::get()->platform()->informationf("lbutton_up");
 
       //      }
 
@@ -1482,7 +1539,7 @@ namespace user
       //      if (pmouse->m_atom == e_message_left_button_up)
       //      {
 
-      //         ::informationf("lbutton_up");
+      //         ::acme::get()->platform()->informationf("lbutton_up");
 
       //      }
 
@@ -1575,7 +1632,7 @@ namespace user
 
       }
 
-      auto poutputpurpose = __new(::graphics::output_purpose(pparticleGraphicalOutputPurposeOriginator, epurpose));
+      auto poutputpurpose = __allocate< ::graphics::output_purpose >(pparticleGraphicalOutputPurposeOriginator, epurpose);
 
       bool bHadGraphicalOutputPurpose = m_puserinteraction->has_graphical_output_purpose();
 
@@ -1710,7 +1767,7 @@ namespace user
 
             pinteraction->message_handler(e_message_mouse_leave);
 
-            synchronouslock.lock();
+            synchronouslock._lock();
 
          }
 
@@ -1863,16 +1920,7 @@ namespace user
 
       }
 
-      if (m_pgraphics)
-      {
-
-         m_pgraphics->destroy_buffer();
-
-         m_pgraphics->destroy();
-
-      }
-
-      m_pgraphics.release();
+      m_pgraphicsgraphics.defer_destroy();
 
       UNREFERENCED_PARAMETER(pmessage);
 
@@ -1885,6 +1933,7 @@ namespace user
          m_userinteractionaMouseHover.erase_all();
 
       }
+
 
    }
 
@@ -1916,6 +1965,41 @@ namespace user
          pwindowthread->m_pimpl.release();
 
       }
+
+      m_pwindow.release();
+
+      m_puserinteractionKeyboardFocus.release();
+
+      m_puserinteractionKeyboardFocusRequest.release();
+
+      m_puserinteractionKeyboardGainingFocusIfAny.release();
+
+      m_puserinteractionMouseCapture.release();
+
+      m_puserinteractionToKillKeyboardFocus.release();
+
+      m_puserthread.release();
+
+      m_pgraphicsgraphics.release();
+
+      m_pgraphicsthread.release();
+
+      m_pwindowing.release();
+
+      m_graphicaloutputpurposea.clear();
+
+      if (m_pthreadMouseLeave)
+      {
+         m_pthreadMouseLeave->set_finish();
+
+      }
+      //m_pthreadMouseLeave.release();
+
+      m_messagelist.clear();
+
+      m_pelementSoftwareKeyboard.release();
+
+      m_pdraw2dgraphics.release();
 
    }
 
@@ -2250,7 +2334,7 @@ namespace user
       //         if(iDebugmessage_handlerTime > 20)
       //         {
       //
-      //            ::informationf("interaction_impl::message handler flooded?\n");
+      //            ::acme::get()->platform()->informationf("interaction_impl::message handler flooded?\n");
       //
       //         }
       //         else
@@ -2362,6 +2446,8 @@ namespace user
       {
 
          ::pointer<::message::mouse>pmouse = pmessage;
+
+         //information() << "msghdl pwnd : " << (::iptr) pmouse->m_pwindow.m_p;
 
          on_mouse_message(pmouse);
 
@@ -2641,6 +2727,8 @@ namespace user
 
       pwindowing->set(pmouse, oswindow(), m_pwindow, pmouse->m_atom, pmouse->m_wparam, pmouse->m_lparam);
 
+      //information() << "omousemsg pwnd : " << (::iptr) pmouse->m_pwindow.m_p;
+
       if (pmouse->m_atom == e_message_mouse_move)
       {
 
@@ -2739,9 +2827,11 @@ namespace user
 
          //information() << "on_mouse_message CAPTURED to object of type : " << strType;
 
+         //information() << "omousemsg pwnd (B) : " << (::iptr) pmouse->m_pwindow.m_p;
+
          m_puserinteractionMouseCapture->route_as_parent_mouse_message(pmouse);
 
-         information() << "on_mouse_message (capture): " << pmouse->m_pointAbsolute;
+         //information() << "on_mouse_message (capture): " << pmouse->m_pointAbsolute;
 
          if (!pmouse->m_bRet && m_puserinteractionMouseCapture)
          {
@@ -2758,7 +2848,13 @@ namespace user
 
          //information() << "on_mouse_message type : " << strType;
 
+         //information() << "omousemsg this (F) : " << (::iptr) (::user::message *)pmouse;
+         //information() << "omousemsg pwnd (F) : " << (::iptr) pmouse->m_pwindow.m_p;
+
          m_puserinteraction->on_mouse_message(pmouse);
+
+         //information() << "omousemsg this (Q) : " << (::iptr) (::user::message *)pmouse;
+         //information() << "omousemsg pwnd (Q) : " << (::iptr) pmouse->m_pwindow.m_p;
 
       }
 
@@ -2856,7 +2952,7 @@ namespace user
 //         if (strType.case_insensitive_contains("list_box"))
 //         {
 //
-//            ::informationf("list_box e_message_left_button_down");
+//            ::acme::get()->platform()->informationf("list_box e_message_left_button_down");
 //
 //         }
 //
@@ -2883,7 +2979,7 @@ namespace user
 //         if (strType.case_insensitive_contains("list_box"))
 //         {
 //
-//            ::informationf("list_box e_message_non_client_left_button_down");
+//            ::acme::get()->platform()->informationf("list_box e_message_non_client_left_button_down");
 //
 //         }
 //
@@ -2924,7 +3020,7 @@ namespace user
 //            if (strType.case_insensitive_contains("list_box"))
 //            {
 //
-//               //::informationf("list_box e_message_mouse_move");
+//               //::acme::get()->platform()->informationf("list_box e_message_mouse_move");
 //
 //            }
 //
@@ -4567,7 +4663,7 @@ namespace user
    //}
 
 
-   //void interaction_impl::set_mouse_cursor(enum_cursor ecursor)
+   //void interaction_impl::aaa_set_mouse_cursor(enum_cursor ecursor)
    //{
 
    //   auto psession = get_session();
@@ -5124,7 +5220,7 @@ namespace user
       if (::is_null(m_puserinteraction->m_pinteractionScaler))
       {
 
-         m_puserinteraction->m_pinteractionScaler = __new(::user::interaction_scaler());
+         m_puserinteraction->m_pinteractionScaler = __allocate< ::user::interaction_scaler >();
 
       }
 
@@ -5207,7 +5303,7 @@ namespace user
             if (!m_puserinteraction->m_bMessageWindow)
             {
 
-               m_pcsDisplay = memory_new(critical_section);
+               m_pcsDisplay = __new< critical_section >();
 
                information() << "interaction_impl m_pgraphics alloc : " << strType;
 
@@ -5690,7 +5786,7 @@ information() << "do_graphics(A)";
 #endif
 update_graphics_resources();
 
-if (bDraw && m_pgraphics.is_null())
+if (bDraw && m_pgraphicsgraphics.is_null())
 {
 
    information() << "do_graphics exit(A1)";
@@ -5855,7 +5951,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
       {
 
 
-         _synchronous_lock slGraphics(m_pgraphics->synchronization());
+         _synchronous_lock slGraphics(m_pgraphicsgraphics->synchronization());
 
          //windowing::graphics_lock graphicslock(m_pwindow);
 
@@ -5863,7 +5959,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 
 
 
-         auto pbufferitem = m_pgraphics->on_begin_draw(e_graphics_layout);
+         auto pbufferitem = m_pgraphicsgraphics->on_begin_draw(e_graphics_layout);
          //auto pparticleSynchronization = m_pgraphics->get_buffer_item()->m_pmutex;
 
          if (!pbufferitem)
@@ -5922,7 +6018,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 
             pgraphics->payload("set_transparent") = "";
 
-            pgraphics->m_pgraphicsgraphics = m_pgraphics;
+            pgraphics->m_pgraphicsgraphics = m_pgraphicsgraphics;
 
             pgraphics->m_pgraphicsbufferitem = pbufferitem;
 
@@ -6139,7 +6235,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
       {
 
 
-         _synchronous_lock slGraphics(m_pgraphics->synchronization());
+         _synchronous_lock slGraphics(m_pgraphicsgraphics->synchronization());
 
          //windowing::graphics_lock graphicslock(m_pwindow);
 
@@ -6147,7 +6243,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 
 
 
-         auto pbufferitem = m_pgraphics->on_begin_draw(e_graphics_draw);
+         auto pbufferitem = m_pgraphicsgraphics->on_begin_draw(e_graphics_draw);
          //auto pparticleSynchronization = m_pgraphics->get_buffer_item()->m_pmutex;
 
          if (!pbufferitem)
@@ -6212,7 +6308,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 
             pgraphics->payload("set_transparent") = "";
 
-            pgraphics->m_pgraphicsgraphics = m_pgraphics;
+            pgraphics->m_pgraphicsgraphics = m_pgraphicsgraphics;
 
             pgraphics->m_pgraphicsbufferitem = pbufferitem;
 
@@ -6375,14 +6471,14 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 
                //informationf("PrintBuffer (%d, %d)",  r.right(), r.bottom());
 
-               if (!m_pgraphics)
+               if (!m_pgraphicsgraphics)
                {
 
                   return;
 
                }
 
-               m_pgraphics->m_bNewBuffer = true;
+               m_pgraphicsgraphics->m_bNewBuffer = true;
 
             }
             else
@@ -6408,10 +6504,10 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 
             //}
 
-            if (m_pgraphics)
+            if (m_pgraphicsgraphics)
             {
 
-               m_pgraphics->on_end_draw();
+               m_pgraphicsgraphics->on_end_draw();
 
             }
 
@@ -6679,10 +6775,10 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 
       m_strBitmapSource = strBitmapSource;
 
-      if (m_pgraphics)
+      if (m_pgraphicsgraphics)
       {
 
-         m_pgraphics->set_bitmap_source(strBitmapSource);
+         m_pgraphicsgraphics->set_bitmap_source(strBitmapSource);
 
       }
 
@@ -6696,10 +6792,10 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 
       m_strBitmapSource.empty();
 
-      if (m_pgraphics)
+      if (m_pgraphicsgraphics)
       {
 
-         m_pgraphics->clear_bitmap_source();
+         m_pgraphicsgraphics->clear_bitmap_source();
 
       }
 
@@ -6713,12 +6809,12 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 
       single_lock synchronouslock(this->synchronization());
 
-      if (m_pgraphics.is_null())
+      if (m_pgraphicsgraphics.is_null())
       {
 
          //auto estatus =
 
-         __raw_construct(m_pgraphics);
+         __raw_construct(m_pgraphicsgraphics);
 
          //if (!estatus)
          //{
@@ -6727,10 +6823,10 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 
          //}
 
-         if (m_pgraphics)
+         if (m_pgraphicsgraphics)
          {
 
-            m_pgraphics->initialize_graphics_graphics(this);
+            m_pgraphicsgraphics->initialize_graphics_graphics(this);
 
          }
 
@@ -6846,12 +6942,12 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
       if (!has_destroying_flag())
       {
 
-         if (m_pgraphics)
+         if (m_pgraphicsgraphics)
          {
 
-            _synchronous_lock slGraphics(m_pgraphics->synchronization());
+            _synchronous_lock slGraphics(m_pgraphicsgraphics->synchronization());
 
-            auto pbufferitem = m_pgraphics->get_buffer_item();
+            auto pbufferitem = m_pgraphicsgraphics->get_buffer_item();
 
             _synchronous_lock synchronouslock(pbufferitem->m_pmutex);
 
@@ -7022,7 +7118,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
    ::graphics::graphics * interaction_impl::get_window_graphics()
    {
 
-      return m_pgraphics;
+      return m_pgraphicsgraphics;
 
    }
 
@@ -7042,14 +7138,16 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 
       //      on_final_set_keyboard_focus();
       //
-      //      if (m_puserinteraction->m_ewindowflag & e_window_flag_focus)
-      //      {
+      //if (m_puserinteraction->m_ewindowflag & e_window_flag_focus)
+      //{
+      //   
+      //   return;
       //
-      //         return;
+      //}
       //
-      //      }
-      //
-      //      m_puserinteraction->m_ewindowflag |= e_window_flag_focus;
+      //m_puserinteraction->m_ewindowflag |= e_window_flag_focus;
+
+      on_final_set_keyboard_focus();
 
    }
 
@@ -7141,9 +7239,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
          if (m_puserinteractionKeyboardFocusRequest == m_puserinteractionToKillKeyboardFocus)
          {
 
-            m_puserinteractionKeyboardFocusRequest.release();
-
-            return;
+            m_puserinteractionToKillKeyboardFocus.release();
 
          }
 
@@ -7154,11 +7250,20 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 
             information() << "on_final_set_keyboard_focus : (2)";
 
+            auto puserinteractionKeyboardFocusOld = m_puserinteractionKeyboardFocus;
+
             m_puserinteractionKeyboardFocus = m_puserinteractionKeyboardFocusRequest;
 
             m_puserinteractionKeyboardFocusRequest = nullptr;
 
             auto puserinteractionKeyboardFocus = m_puserinteractionKeyboardFocus;
+
+            if (puserinteractionKeyboardFocusOld)
+            {
+
+               puserinteractionKeyboardFocusOld->on_kill_keyboard_focus();
+
+            }
 
             if (puserinteractionKeyboardFocus)
             {
@@ -7249,14 +7354,14 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 
       ::pointer<::message::kill_keyboard_focus>pkillkeyboardfocus(pmessage);
 
-      if (!(m_puserinteraction->m_ewindowflag & e_window_flag_focus))
-      {
+      //if (!(m_puserinteraction->m_ewindowflag & e_window_flag_focus))
+      //{
 
-         return;
+      //   return;
 
-      }
+      //}
 
-      m_puserinteraction->m_ewindowflag -= e_window_flag_focus;
+      //m_puserinteraction->m_ewindowflag -= e_window_flag_focus;
 
       on_final_kill_keyboard_focus();
 
@@ -7271,32 +7376,18 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 
       information() << "on_final_kill_keyboard_focus";
 
-      if (m_puserinteractionToKillKeyboardFocus)
+      auto puserinteractionKeyboardFocus = m_puserinteractionKeyboardFocus;
+
+      m_puserinteractionKeyboardFocusRequest.release();
+
+      m_puserinteractionKeyboardFocus.release();
+
+      synchronouslock.unlock();
+
+      if(puserinteractionKeyboardFocus)
       {
 
-         if (m_puserinteractionKeyboardFocusRequest == m_puserinteractionToKillKeyboardFocus)
-         {
-
-            m_puserinteractionToKillKeyboardFocus.release();
-
-            return;
-
-         }
-
-         auto pinteraction = m_puserinteractionToKillKeyboardFocus;
-
-         if (m_puserinteractionKeyboardFocus == pinteraction)
-         {
-
-            m_puserinteractionKeyboardFocus.release();
-
-         }
-
-         m_puserinteractionToKillKeyboardFocus = nullptr;
-
-         synchronouslock.unlock();
-
-         pinteraction->on_kill_keyboard_focus();
+         puserinteractionKeyboardFocus->on_kill_keyboard_focus();
 
       }
 
@@ -9144,7 +9235,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
    i64 interaction_impl::opaque_area(const ::rectangle_i32 & rect)
    {
 
-      auto pitem = m_pgraphics->get_screen_item();
+      auto pitem = m_pgraphicsgraphics->get_screen_item();
 
       _synchronous_lock synchronouslock(pitem->m_pmutex);
 
@@ -9166,7 +9257,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 
       m_puserinteraction->screen_to_client()(rectangle);
 
-      return m_pgraphics->_001GetTopLeftWeightedOpaqueArea(rectangle);
+      return m_pgraphicsgraphics->_001GetTopLeftWeightedOpaqueArea(rectangle);
 
    }
 
@@ -9174,7 +9265,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
    i64 interaction_impl::opaque_area()
    {
 
-      auto pitem = m_pgraphics->get_screen_item();
+      auto pitem = m_pgraphicsgraphics->get_screen_item();
 
       _synchronous_lock synchronouslock(pitem->m_pmutex);
 
@@ -9192,7 +9283,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
    i64 interaction_impl::_001GetTopLeftWeightedArea()
    {
 
-      auto pitem = m_pgraphics->get_screen_item();
+      auto pitem = m_pgraphicsgraphics->get_screen_item();
 
       _synchronous_lock synchronouslock(pitem->m_pmutex);
 
@@ -9202,7 +9293,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 
       m_puserinteraction->window_rectangle(rectangle);
 
-      if (::is_null(m_pgraphics))
+      if (::is_null(m_pgraphicsgraphics))
       {
 
          return 0;
@@ -9503,7 +9594,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
    void interaction_impl::android_fill_plasma(const void * pixels, int width, int height, int stride, ::i64 time_ms)
    {
 
-      auto pitem = m_pgraphics->get_screen_item();
+      auto pitem = m_pgraphicsgraphics->get_screen_item();
 
       _synchronous_lock synchronouslock(pitem->m_pmutex);
 

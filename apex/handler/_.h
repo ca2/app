@@ -43,4 +43,8 @@
 //#include "apex/handler/source.h"
 
 
+class manager;
+using signal_map = ::atom_map < ::pointer < class signal > >;
+class manager_room;
+
 

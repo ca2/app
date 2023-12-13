@@ -305,7 +305,7 @@ namespace x11
       if (g_p == nullptr)
       {
 
-         auto p = memory_new display;
+         auto p = __new< display >();
 
          p->initialize(pparticle);
 
@@ -461,6 +461,8 @@ namespace x11
 
       bool bHandled2;
 
+      information() << "x11::nano::display::message_loop";
+
       while (::task_get_run())
       {
 
@@ -585,6 +587,8 @@ namespace x11
    {
 
       ::task_set_name("x11:display:run");
+
+      information() << "x11::display::run";
 
       set_main_user_thread();
 

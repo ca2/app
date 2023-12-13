@@ -63,7 +63,7 @@ message_box_w::message_box_w()
 
 
 #define create_a_button(atom,text) \
-   msg->Commands->Append(ref memory_new UICommand(text,ref memory_new UICommandInvokedHandler(this, &::message_box_w::CommandInvokedHandler),atom));
+   msg->Commands->Append(ref aaa_primitive_new UICommand(text,ref aaa_primitive_new UICommandInvokedHandler(this, &::message_box_w::CommandInvokedHandler),atom));
 
 
 void message_box_w::show(String ^ text,String ^ caption, const ::e_message_box & emessagebox, ::future future)
@@ -78,7 +78,7 @@ void message_box_w::show(String ^ text,String ^ caption, const ::e_message_box &
 
    }
 
-   MessageDialog ^ msg = ref memory_new MessageDialog(text, caption);
+   MessageDialog ^ msg = ref aaa_primitive_new MessageDialog(text, caption);
 
    u32 uiType = emessagebox & MB_TYPEMASK;
 

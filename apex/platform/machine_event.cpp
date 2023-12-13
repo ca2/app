@@ -1,5 +1,5 @@
 #include "framework.h"
-////#include "acme/exception/exception.h"
+#include "acme/filesystem/filesystem/acme_file.h"
 #include "apex/platform/machine_event_data.h"
 #include "apex/platform/machine_event.h"
 #include "apex/platform/machine_event_central.h"
@@ -48,19 +48,22 @@ void machine_event::initialize(::particle * pparticle)
 bool machine_event::read(machine_event_data * pdata)
 {
 
-   FILE * pfile = nullptr;
+   //FILE * pfile = nullptr;
 
    try
    {
 
       //pfile = fopen(acmedirectory()->machine_event_file_path(), "r", _SH_DENYNO);
 
-      pfile = fopen(acmedirectory()->machine_event_file_path(), "r");
+      auto pfile = acmefile()->get_reader(acmedirectory()->machine_event_file_path(), ::file::e_open_no_exception_on_open);
 
-      if (pfile == nullptr)
+      if (pfile.nok())
       {
 
-         memory_set(pdata, 0, sizeof(*pdata));
+         pdata->m_fixed.m_bRequestCloseApplication = false;
+         pdata->m_fixed.m_bSpaUpgrade = false;
+
+         pdata->m_memoryCommand.clear();
 
          return false;
 
@@ -68,15 +71,17 @@ bool machine_event::read(machine_event_data * pdata)
 
       pdata->read(pfile);
 
+      return true;
+
    }
    catch (...)
    {
 
    }
 
-   fclose(pfile);
+   //fclose(pfile);
 
-   return true;
+   return false;
 
 }
 
@@ -84,15 +89,17 @@ bool machine_event::read(machine_event_data * pdata)
 bool machine_event::write(machine_event_data * pdata)
 {
 
-   FILE * pfile = nullptr;
+   //FILE * pfile = nullptr;
 
    try
    {
 
-      acmedirectory()->create(::file_path_folder(acmedirectory()->machine_event_file_path()));
+      //acmedirectory()->create(::file_path_folder(acmedirectory()->machine_event_file_path()));
 
       //pfile = fopen(acmedirectory()->machine_event_file_path(), "w", _SH_DENYWR);
-      pfile = fopen(acmedirectory()->machine_event_file_path(), "w");
+     // pfile = fopen(acmedirectory()->machine_event_file_path(), "w");
+
+      auto pfile = acmefile()->get_writer(acmedirectory()->machine_event_file_path());
 
       if (pfile == nullptr)
       {
@@ -103,15 +110,17 @@ bool machine_event::write(machine_event_data * pdata)
 
       pdata->write(pfile);
 
+      return true;
+
    }
    catch (...)
    {
 
    }
 
-   fclose(pfile);
+   //fclose(pfile);
 
-   return true;
+   return false;
 
 }
 

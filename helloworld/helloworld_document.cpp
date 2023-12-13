@@ -108,14 +108,14 @@ namespace helloworld
    i64 document::increment_reference_count()
    {
 
-      return  ::user::document::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      return  ::user::document::increment_reference_count();
 
    }
 
    i64 document::decrement_reference_count()
    {
 
-      return  ::user::document::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      return  ::user::document::decrement_reference_count();
 
    }
 

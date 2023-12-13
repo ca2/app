@@ -1,51 +1,133 @@
+//
+//  _heap.h
+//  acme
+//
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 28/02/20.
+//
 #pragma once
 
 
-//#include "acme/primitive/primitive/block.h"
+#include "acme/memory/allocator_base.h"
+#include "acme/memory/management.h"
 
 
+class plex_heap_alloc_array;
 
 
-template < typename RAW_BLOCK >
-struct raw_block
+namespace heap
 {
 
-   using raw_RAW_BLOCK = RAW_BLOCK;
 
-   const RAW_BLOCK * data() const { return (const RAW_BLOCK *)this; }
-   RAW_BLOCK * data() { return (RAW_BLOCK *)this; }
-   memsize size() const { return (memsize) sizeof(RAW_BLOCK); }
-
-   RAW_BLOCK & operator = (const block & block)
+   class CLASS_DECL_ACME memory :
+      virtual public ::heap::allocator_base
    {
-
-      if ((const void *) this != (const void *)  & block)
-      {
-
-         memory_copy(this, block.data(), minimum(sizeof(*this), block.size()));
-
-      }
-
-      return (RAW_BLOCK &) *this;
-
-   }
-
-   ::block block() const { return ::block(data(), size()); }
-
-   inline void clear() { ::zero(data(), size()); }
-
-   bool operator == (const RAW_BLOCK & rectangle) const {return memory_order(this, &rectangle, sizeof(RAW_BLOCK)) == 0; }
+   protected:
+      friend class ::c::malloc;
+      memory();
+      ~memory();
+   public:
 
 
-};
+      heap *                        m_pheap;
 
 
 
 
 
-//#define __memory(MEMORY) struct CLASS_DECL_EXPORT MEMORY : public memory_template < MEMORY >
+      virtual void initialize_memory(::heap::heap * pheap);
+
+
+      virtual void start_memory();
+
+
+      //Created by camilo on 2021-07-24 01:06 BRT <3ThomasBorregaardSorensen!!
+//#include "__aligned_memory_allocate.h"
+      virtual void * aligned_allocate(memsize size, memsize align = 0);
+      virtual void * aligned_allocate_debug(memsize nSize, i32 nBlockUse, const char * szFileName, i32 nLine, memsize align = 0);
+
+
+      //Created by camilo on 2021-07-24 01:05 BRT <3ThomasBorregaardSorensen!!
+//#include "__unaligned_memory_allocate.h"
+      virtual void * unaligned_allocate(memsize size);
+      virtual void * unaligned_allocate_debug(memsize nSize, i32 nBlockUse, const char * szFileName, i32 nLine);
+
+      virtual void * count_allocate(::count count, memsize size);
+      //Created by camilo on 2021-07-24 01:05 BRT <3ThomasBorregaardSorensen!!
+      //#include "__memory_allocate.h"
+
+
+#if !defined(MCHECK) && !defined(__VLD) && !defined(__MCRTDBG)
+
+
+      void *    allocate(memsize size) override;
+      void *    reallocate(void * p, memsize nSize) override;
+      void      free(void * p) override;
+      bool      has_size() const override;
+      memsize   size(void * p) override;
+
+
+#endif
+
+
+      virtual void *    allocate_debug(memsize nSize, i32 nBlockUse, const char * szFileName, i32 nLine);
+      virtual void *    reallocate_debug(void * p, memsize nSize, i32 nBlockUse, const char * szFileName, i32 nLine);
+      virtual void      free_debug(void * p, i32 iBlockType);
+      virtual memsize   size_debug(void * p, i32 iBlockType);
+
+   };
 
 
 
+} // namespace heap
 
-
+//
+//namespace secondary_memory_allocate_heap
+//{
+//
+//
+//#include "__aligned_memory_allocate.h"
+//#include "__unaligned_memory_allocate.h"
+//#include "__memory_allocate.h"
+//
+//
+//}
+//
+//
+//namespace array_memory_allocate_heap
+//{
+//
+//
+//#include "__aligned_memory_allocate.h"
+//#include "__unaligned_memory_allocate.h"
+//#include "__memory_allocate.h"
+//
+//
+//}
+//
+//
+//
+//namespace property_memory_allocate_heap
+//{
+//
+//
+//#include "__aligned_memory_allocate.h"
+//#include "__unaligned_memory_allocate.h"
+//#include "__memory_allocate.h"
+//
+//
+//}
+//
+//
+//namespace string_memory_allocate_heap
+//{
+//
+//
+//#include "__aligned_memory_allocate.h"
+//#include "__unaligned_memory_allocate.h"
+//#include "__memory_allocate.h"
+//
+//
+//}
+//
+//
+//

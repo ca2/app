@@ -31,9 +31,17 @@ namespace base
       m_pbaseapplication = this;
 
 
+    
+
+   }
+
+
+   void application::on_set_platform()
+   {
+
+      ::axis::application::on_set_platform();
+
       factory()->add_factory_item< ::base::system, ::acme::system>();
-
-
 
    }
 
@@ -45,6 +53,36 @@ namespace base
 
       ::user::document_manager_container::initialize(pparticle);
 
+
+   }
+
+
+   void application::process_term()
+   {
+
+      m_ptabimpactBase.release();
+
+      axis::application::process_term();
+
+   }
+
+
+   void application::destroy()
+   {
+
+      ::user::document_manager_container::destroy();
+
+      ::axis::application::destroy();
+
+   }
+
+
+   ::pointer < ::data::data > application::create_default_new_document_data()
+   {
+
+      auto pdataNewDocument = __create_new < ::data::data >();
+
+      return pdataNewDocument;
 
    }
 
@@ -230,7 +268,7 @@ namespace base
 
          auto & pfactory = system()->factory(strLibrary);
 
-         auto pformhandler = pfactory->create <::user::form_handler>(this);
+         auto pformhandler = __create<::user::form_handler>(pfactory);
 
          pformhandler->design_form(pparent);
 

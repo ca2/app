@@ -46,9 +46,11 @@ namespace file
 
       }
 
-      bool bJustAfterProtocol = scopedstr.ends("://") || scopedstr.ends(":/");
+      bool bJustAfterProtocol1 = this->ends(":/");
 
-      if (bJustAfterProtocol || m_epath == e_path_url)
+      bool bJustAfterProtocol2 = this->ends("://");
+
+      if (bJustAfterProtocol1 || bJustAfterProtocol2 || m_epath == e_path_url)
       {
 
          ::string str = scopedstr;
@@ -57,7 +59,7 @@ namespace file
 
          str.trim_left("/");
 
-         if (bJustAfterProtocol)
+         if (bJustAfterProtocol2)
          {
 
             return ::file::path(strPath + str, e_path_url);

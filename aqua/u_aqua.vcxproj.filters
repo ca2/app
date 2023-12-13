@@ -156,9 +156,6 @@
     <ClCompile Include="_.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="user\controller.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
     <ClCompile Include="game\estamira.cpp">
       <Filter>Source Files\game</Filter>
     </ClCompile>

@@ -159,7 +159,7 @@ namespace nanoui
    }
 
 
-   void Widget::set_theme(Theme* theme) 
+   void Widget::set_theme(const ::pointer < Theme > & theme) 
    {
 
       if (m_ptheme.get() == theme)
@@ -463,7 +463,7 @@ namespace nanoui
 
       //}
 
-      auto children = m_children;
+      auto & children = m_children;
 
       for (auto i = iStart; i <= iEnd; i++)
       {
@@ -656,13 +656,20 @@ namespace nanoui
 
    void Widget::add_child(Widget * pwidget)
    {
+
+      if (!pwidget->m_pcontext)
+      {
+
+         pwidget->initialize(this);
+
+      }
    
       insert_child_at(child_count(), pwidget);
       
    }
 
 
-   void Widget:: set_layout(Layout* layout)
+   void Widget:: set_layout(const ::pointer < Layout> & layout)
    {
       
       m_playout = layout; 
@@ -724,15 +731,14 @@ namespace nanoui
    void Widget::destroy_window()
    {
 
-      on_destroy_window();
-   
-      for (auto pwidgetChild : m_children)
+      for (auto & pwidgetChild : m_children)
       {
-
-         pwidgetChild->destroy_window();
+         ::nanoui::defer_destroy_window(pwidgetChild);
 
       }
 
+      on_destroy_window();
+   
       m_children.clear();
    
    }

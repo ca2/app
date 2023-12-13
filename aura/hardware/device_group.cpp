@@ -35,7 +35,9 @@ namespace hardware
    void device_group::finalize_device_group()
    {
 
+      m_pdevices->erase_device_group(this);
 
+      m_pdevices.release();
       
    }
 
@@ -53,6 +55,22 @@ namespace hardware
       }
 
    }
+
+
+   void device_group::erase(device_listener * pdevicelistener)
+   {
+
+      device_listener_array::erase(pdevicelistener);
+
+      if (this->is_empty())
+      {
+
+         finalize_device_group();
+
+      }
+
+   }
+
 
    void device_group::on_device_plugged()
    {

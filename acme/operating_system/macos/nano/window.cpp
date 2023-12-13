@@ -55,6 +55,35 @@ namespace macos
    }
 
 
+#ifdef _DEBUG
+
+
+i64 nano_window::increment_reference_count()
+{
+
+return ::property_object::increment_reference_count();
+
+}
+
+
+i64 nano_window::decrement_reference_count()
+{
+
+return ::property_object::decrement_reference_count();
+
+}
+
+
+i64 nano_window::release()
+{
+
+return ::property_object::release();
+
+}
+
+
+#endif
+
    void nano_window::on_initialize_particle()
    {
 
@@ -124,7 +153,7 @@ namespace macos
       
       apple_defer_nano_application_create(system());
       
-      m_pwindowbridge = __new(nano_window_bridge);
+      m_pwindowbridge = __allocate< nano_window_bridge >();
 
       CGRect cgrect;
       
@@ -223,6 +252,14 @@ void nano_window::handle(::topic* ptopic, ::context* pcontext)
    }
 
 
+   void nano_window::hide()
+   {
+
+      m_pwindowbridge->hide();
+
+   }
+
+
    void nano_window::set_active()
    {
 
@@ -255,7 +292,7 @@ void nano_window::handle(::topic* ptopic, ::context* pcontext)
    void nano_window::message_loop()
    {
 
- ///     while(message_loop_step())
+ ///     while(aaa_message_loop_step())
     //  {
 
       //}
@@ -504,7 +541,7 @@ void nano_window_bridge::on_char(int iChar)
 void nano_window_bridge::_on_draw_frame(CGContextRef cg, CGSize sizeFrame)
 {
    
-   ::pointer<quartz2d::nano_device>pnanodevice = __new(quartz2d::nano_device(cg));
+   ::pointer<quartz2d::nano_device>pnanodevice = __allocate< quartz2d::nano_device >(cg);
    
    m_pwindow->_draw(pnanodevice);
    

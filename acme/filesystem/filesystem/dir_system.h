@@ -41,6 +41,10 @@ public:
 
    virtual void init_system();
 
+   virtual void term_system();
+
+   void finalize() override;
+
    virtual ::file::path compute_default_app_data_path();
 
 

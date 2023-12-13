@@ -87,7 +87,7 @@ public:
    constexpr const_string_range(const_iterator begin, INTEGRAL count) : BASE_RANGE((this_iterator)begin,
       (this_iterator)(begin + count)) {}
 
-   const_string_range(enum_no_initialize) : BASE_RANGE(e_no_initialize) {}
+   const_string_range(no_initialize_t) : BASE_RANGE(no_initialize_t{}) {}
 
    const_string_range(enum_zero_initialize) : BASE_RANGE(e_zero_initialize) {}
 

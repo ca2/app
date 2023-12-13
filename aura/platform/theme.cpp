@@ -419,9 +419,9 @@ namespace aura
       auto & blue = m_mapColors["blue"];
       auto & lite = m_mapColors["lite"];
 
-      dark = __new(colors());
-      blue = __new(colors());
-      lite = __new(colors());
+      dark = __allocate< colors >();
+      blue = __allocate< colors >();
+      lite = __allocate< colors >();
       
       m_pcolors = lite;
 

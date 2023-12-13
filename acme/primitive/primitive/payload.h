@@ -8,6 +8,7 @@
 #include "acme/graphics/draw2d/color.h"
 #include "ptr.h"
 #include "acme/memory/memory.h"
+#include "acme/memory/raw_block.h"
 #include "acme/platform/procedure.h"
 #include "acme/primitive/collection/numeric_array.h"
 #include "acme/filesystem/filesystem/path_object.h"
@@ -127,9 +128,9 @@ public:
 
       ::particle * m_p;
       ::string_array * m_pstra;
-      ::i32_array * m_pia;
-      ::payload_array * m_ppayloada;
-      ::property_set * m_ppropertyset;
+      ::i32_array  * m_pia;
+      ::payload_array  * m_ppayloada;
+      ::property_set  * m_ppropertyset;
       ::i64_array * m_pi64a;
       ::memory * m_pmemory;
       ::file::path_object * m_ppath;
@@ -141,8 +142,17 @@ public:
    };
 
 
+#if REFERENCING_DEBUGGING
+
+   
+   ::reference_referer * m_preferer;
+
+
+#endif
+
+
    payload();
-   payload(enum_no_initialize) {}
+   payload(no_initialize_t) {}
    payload(enum_type etype);
    payload(std::nullptr_t);
    payload(const ::payload & payload);
@@ -150,15 +160,15 @@ public:
    template < bool_type BOOL > payload(BOOL b) : m_etype(e_type_bool) {m_b = b;}
    template < char_type CHAR > payload(CHAR c) : m_etype(e_type_i8) {m_i8 = c;}
    template < i8_type I8 > payload(I8 i) : m_etype(e_type_i8) {m_i8 = i;}
-   template < is_type_of < ::u8 > U8 > payload(U8 u) : m_etype(e_type_u8) {m_u8 = u;}
-   template < is_type_of < ::i16 > I16 > payload(I16 i) : m_etype(e_type_i16) {m_i16 = i;}
-   template < is_type_of < ::u16 > U16 > payload(U16 u) : m_etype(e_type_u16) {m_u16 = u;}
-   template < is_type_of < ::i32 > I32 > payload(I32 i) : m_etype(e_type_i32) {m_i32 = i;}
-   template < is_type_of < ::u32 > U32 > payload(U32 u) : m_etype(e_type_u32) {m_u32 = u;}
-   template < is_type_of < ::i64 > I64 > payload(I64 i) : m_etype(e_type_i64) {m_i64 = i;}
-   template < is_type_of < ::u64 > U64 > payload(U64 u) : m_etype(e_type_u64) {m_u64 = u;}
-   template < is_type_of < ::f32 > F32 > payload(F32 f) : m_etype(e_type_f32) {m_f32 = f;}
-   template < is_type_of < ::f64 > F64 > payload(F64 f) : m_etype(e_type_f64) {m_f64 = f;}
+   template < same_as < ::u8 > U8 > payload(U8 u) : m_etype(e_type_u8) {m_u8 = u;}
+   template < same_as < ::i16 > I16 > payload(I16 i) : m_etype(e_type_i16) {m_i16 = i;}
+   template < same_as < ::u16 > U16 > payload(U16 u) : m_etype(e_type_u16) {m_u16 = u;}
+   template < same_as < ::i32 > I32 > payload(I32 i) : m_etype(e_type_i32) {m_i32 = i;}
+   template < same_as < ::u32 > U32 > payload(U32 u) : m_etype(e_type_u32) {m_u32 = u;}
+   template < same_as < ::i64 > I64 > payload(I64 i) : m_etype(e_type_i64) {m_i64 = i;}
+   template < same_as < ::u64 > U64 > payload(U64 u) : m_etype(e_type_u64) {m_u64 = u;}
+   template < same_as < ::f32 > F32 > payload(F32 f) : m_etype(e_type_f32) {m_f32 = f;}
+   template < same_as < ::f64 > F64 > payload(F64 f) : m_etype(e_type_f64) {m_f64 = f;}
 #ifdef __APPLE__
 #ifdef OS64BIT
    payload(long l);
@@ -931,15 +941,15 @@ public:
    template < bool_type BOOL > payload & operator=(BOOL b) { return assign_bool(b); }
    template < char_type CHAR > payload & operator=(CHAR c) { return assign_char(c); }
    template < i8_type I8 > payload & operator=(I8 i) { return assign_i8(i); }
-   template < is_type_of < ::u8 > U8 > payload & operator=(U8 u) { return assign_u8(u); }
-   template < is_type_of < ::i16 > I16 > payload & operator=(I16 i) { return assign_i16(i); }
-   template < is_type_of < ::u16 > U16 > payload & operator=(U16 u) { return assign_u16(u); }
-   template < is_type_of < ::i32 > I32 > payload & operator=(I32 i) { return assign_i32(i); }
-   template < is_type_of < ::u32 > U32 > payload & operator=(U32 u) { return assign_u32(u); }
-   template < is_type_of < ::i64 > I64 > payload & operator=(I64 i) { return assign_i64(i); }
-   template < is_type_of < ::u64 > U64 > payload & operator=(U64 u) { return assign_u64(u); }
-   template < is_type_of < ::f32 > F32 > payload & operator=(F32 f) { return assign_f32(f); }
-   template < is_type_of < ::f64 > F64 > payload & operator=(F64 f) { return assign_f64(f); }
+   template < same_as < ::u8 > U8 > payload & operator=(U8 u) { return assign_u8(u); }
+   template < same_as < ::i16 > I16 > payload & operator=(I16 i) { return assign_i16(i); }
+   template < same_as < ::u16 > U16 > payload & operator=(U16 u) { return assign_u16(u); }
+   template < same_as < ::i32 > I32 > payload & operator=(I32 i) { return assign_i32(i); }
+   template < same_as < ::u32 > U32 > payload & operator=(U32 u) { return assign_u32(u); }
+   template < same_as < ::i64 > I64 > payload & operator=(I64 i) { return assign_i64(i); }
+   template < same_as < ::u64 > U64 > payload & operator=(U64 u) { return assign_u64(u); }
+   template < same_as < ::f32 > F32 > payload & operator=(F32 f) { return assign_f32(f); }
+   template < same_as < ::f64 > F64 > payload & operator=(F64 f) { return assign_f64(f); }
 
 
    payload & operator=(i8 * pi) { return assign_pi8(pi); }
@@ -1089,7 +1099,7 @@ public:
       if (!p)
       {
 
-         p = __new(T);
+         p = __call__allocate< T >();
 
          operator =(p);
 

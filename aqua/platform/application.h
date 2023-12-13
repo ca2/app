@@ -31,6 +31,8 @@ namespace aqua
       void initialize(::particle * pparticle) override;
 
 
+      void on_set_platform() override;
+
       //void on_initialize_application(::main* pmain) override;
 
       //virtual ::pointer<progress_control>show_progress(::user::interaction* puiParent, const ::scoped_string & scopedstrTitle, ::count iProgressCount);

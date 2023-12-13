@@ -40,7 +40,7 @@ void property_object::destroy()
 
    ::matter::destroy();
 
-   m_ppropertyset.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
+   m_ppropertyset.release();
 
 }
 
@@ -169,18 +169,18 @@ CLASS_DECL_ACME void debug_debug_reference()
 
    auto network_payload1 = ref.get_network_payload();
 
-   informationf(network_payload1);
+   ::acme::get()->platform()->informationf(network_payload1);
 
    ref.m_bTest1 = false;
    ref.m_strText1 = ref.get_network_payload();
 
    auto network_payload2 = ref.get_network_payload();
 
-   informationf(network_payload2);
+   ::acme::get()->platform()->informationf(network_payload2);
 
-   informationf("debug_debug_reference end");
+   ::acme::get()->platform()->informationf("debug_debug_reference end");
 
-   informationf("-");
+   ::acme::get()->platform()->informationf("-");
 
 }
 //void property_object::add_trait(::i64 i)
@@ -189,7 +189,7 @@ CLASS_DECL_ACME void debug_debug_reference()
 //   if (!m_ptraits)
 //   {
 //
-//      m_ptraits = __new(traits);
+//      m_ptraits = __allocate< traits >();
 //
 //   }
 //
@@ -485,7 +485,7 @@ atom property_object::translate_property_id(const ::atom & atom)
 //   if (!parray)
 //   {
 //
-//      parray = __new(pointer_array < property_set >());
+//      parray = __allocate< pointer_array < property_set > >();
 //
 //      *pproperty = parray;
 //
@@ -756,6 +756,12 @@ bool property_object::contains(const property_set & set) const
 
 void property_object::defer_propset()
 {
+
+#if REFERENCING_DEBUGGING
+
+   refdbg_top_track refdbgtoptrack(this);
+
+#endif
 
    m_pcontext->__defer_construct_new(m_ppropertyset);
 

@@ -138,6 +138,15 @@ void nano_window::on_create()
 
 void nano_window::destroy()
 {
+    
+   if (m_pimplementation)
+   {
+
+      m_pimplementation->destroy();
+      
+      m_pimplementation.release();
+
+   }
    
    if(m_functionClose)
    {
@@ -151,14 +160,11 @@ void nano_window::destroy()
 
       m_psequencer->on_sequence();
 
-   }
-
-   if (m_pimplementation)
-   {
-
-      m_pimplementation->destroy();
+      m_psequencer.release();
 
    }
+   
+   system()->m_pnano->m_nanowindowa.erase(this);
    
 }
 
@@ -167,6 +173,14 @@ void nano_window::display()
 {
 
    m_pimplementation->display();
+
+}
+
+
+void nano_window::hide()
+{
+
+   m_pimplementation->hide();
 
 }
 
@@ -255,7 +269,13 @@ void nano_window::create_drawing_objects()
    if (!m_pfont)
    {
 
-      __construct(m_pfont);
+#if REFERENCING_DEBUGGING
+
+      ::allocator::add_referer({this, __FUNCTION_FILE_LINE__});
+
+#endif
+
+      __construct(m_pfont, nullptr);
 
       m_pfont->m_iFontSize = m_iFontSize;
 
@@ -381,7 +401,7 @@ void nano_window::add_child(nano_child * pchild)
 void nano_window::add_button(const ::scoped_string & scopedstrText, enum_dialog_result edialogresult, char chLetter)
 {
 
-   auto pbutton = __new(nano_button);
+   auto pbutton = __allocate< nano_button >();
 
    pbutton->m_strText = scopedstrText;
    pbutton->m_atom = edialogresult;

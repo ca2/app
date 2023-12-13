@@ -61,7 +61,7 @@ extern "C"
 void o_debug_string(const ::scoped_string & scopedstr)
 {
 
-   informationf(scopedstr);
+   ::acme::get()->platform()->informationf(scopedstr);
 
 }
 
@@ -150,7 +150,7 @@ CLASS_DECL_ACME void __trace(enum_trace_level elevel, const ::scoped_string & sc
 //      if (g_iMemoryCounters)
 //      {
 //
-//         g_pmutexMemoryCounters = memory_new ::pointer < ::mutex >(e_create_new, nullptr, false, "Global\\ca2_memory_counters");
+//         g_pmutexMemoryCounters = __new< ::pointer < ::mutex > >(e_create_new, nullptr, false, "Global\\ca2_memory_counters");
 //
 //      }
 //
@@ -170,7 +170,7 @@ CLASS_DECL_ACME void __trace(enum_trace_level elevel, const ::scoped_string & sc
 //   if (g_iMemoryCountersStartable && g_pMemoryCounters == nullptr)
 //   {
 //
-//      g_pMemoryCounters = memory_new ::file::path();
+//      g_pMemoryCounters = __new< ::file::path >();
 //
 //#if defined(UNIVERSAL_WINDOWS)
 //
@@ -204,6 +204,14 @@ CLASS_DECL_ACME void __trace(enum_trace_level elevel, const ::scoped_string & sc
 
 simple_log::simple_log()
 {
+
+#if REFERENCING_DEBUGGING
+
+   disable_referencing_debugging();
+
+#endif
+
+   increment_reference_count();
 
    m_bReallySimple = true;
    m_bWithTimePrefix = true;
@@ -287,7 +295,7 @@ void simple_log::print(::trace_statement & tracestatement, bool bFlush)
          if(m_bDisplayRelativeTime)
          {
 
-            auto Δtime = timeNow - ::platform::get()->m_timeStart;
+            auto Δtime = timeNow - platform()->m_timeStart;
 
             ::earth::time_span earthtimepan(Δtime);
 
@@ -462,7 +470,7 @@ CLASS_DECL_ACME void __simple_tracea(::particle * pparticle, enum_trace_level el
 
    strMessage += "\n";
 
-   informationf(strMessage);
+   ::acme::get()->platform()->informationf(strMessage);
 
 }
 

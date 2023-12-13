@@ -73,6 +73,8 @@ namespace user
 
       m_bUpdatingScreen = false;
 
+      m_eventReady.SetEvent();
+
 //#ifdef UNIVERSAL_WINDOWS
 //      m_bExclusiveMode = true;
 //#else
@@ -95,26 +97,26 @@ namespace user
 #ifdef _DEBUG
 
 
-   i64 graphics_thread::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+   i64 graphics_thread::increment_reference_count()
    {
 
-      return ::thread::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      return ::thread::increment_reference_count();
 
    }
 
 
-   i64 graphics_thread::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+   i64 graphics_thread::decrement_reference_count()
    {
 
-      return ::thread::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      return ::thread::decrement_reference_count();
 
    }
 
 
-   i64 graphics_thread::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+   i64 graphics_thread::release()
    {
 
-      return ::thread::release(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      return ::thread::release();
 
    }
 
@@ -273,7 +275,15 @@ namespace user
    void graphics_thread::run()
    {
 
+      string strType = ::type(m_puserinteraction).name();
+
+      ::task_set_name("graphics_thread," + strType);
+
+
+
       //m_pimpl->m_puserinteraction->task_add(this);
+
+      m_eventReady.wait();
 
       m_synchronizationa.add(&m_evUpdateScreen);
 
@@ -289,10 +299,6 @@ namespace user
          m_synchronizationa.add(&get_message_queue()->m_eventNewMessage);
 
       }
-
-      string strType = ::type(m_puserinteraction).name();
-
-      ::task_set_name("graphics_thread," + strType);
 
 //      if (strType.case_insensitive_contains("list_box"))
 //      {
@@ -396,11 +402,13 @@ namespace user
             return false;
 
          }
-
+         
+         ::i32 iRedrawMessageCount = 0;
+         
          if (m_message.m_atom == e_message_redraw)
          {
 
-            return true;
+            iRedrawMessageCount = 1;
 
          }
 
@@ -409,14 +417,22 @@ namespace user
          while (peek_message(&m_message, nullptr, 0, 0, true))
          {
 
-//            if (m_message.m_atom == e_message_redraw)
-//            {
-//
-//               iRedrawMessageCount++;
-//
-//            }
+            if (m_message.m_atom == e_message_redraw)
+            {
+
+               iRedrawMessageCount++;
+
+            }
 
          }
+
+         if (iRedrawMessageCount > 0)
+         {
+
+            return true;
+
+         }
+
 
 #ifdef EXTRA_PRODEVIAN_ITERATION_LOG
 
@@ -641,7 +657,7 @@ namespace user
 //
 //      }
 //
-//      m_procedureUpdateScreen.m_pbase.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
+//      m_procedureUpdateScreen.m_pbase.release();
 
 //      if (m_procedureWindowShow)
 //      {
@@ -650,7 +666,7 @@ namespace user
 //
 //      }
 //
-//      m_procedureWindowShow.m_pbase.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
+//      m_procedureWindowShow.m_pbase.release();
 
    }
 
@@ -660,9 +676,9 @@ namespace user
 
       m_evUpdateScreen.SetEvent();
 
-      m_puserinteraction.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
+      m_puserinteraction.release();
 
-      m_pimpl.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
+      m_pimpl.release();
 
       m_synchronizationa.clear();
 
@@ -760,7 +776,7 @@ namespace user
 
          //i64 i2 = get_nanos();
 
-         // calculates the next/memory_new frame atom
+         // calculates the next/aaa_memory_new frame atom
          //m_iFrameId = (m_timeNow + timeFrame - 1) / (timeFrame);
 
          //m_timeNextFrame = m_iFrameId * timeFrame;
@@ -916,6 +932,13 @@ namespace user
    bool graphics_thread::graphics_thread_iteration()
    {
 
+      if (::type(m_puserinteraction.m_p) == "user::list_box")
+      {
+
+         information() << "user::list_box graphics_thread_iteration user::list_box";
+
+      }
+
       i64 i1 = ::i64_nanosecond();
 
       //m_timeLastFrame = m_timeThisFrame;
@@ -949,6 +972,13 @@ namespace user
       if (!(puserinteractionimpl->m_puserinteraction->m_ewindowflag & e_window_flag_window_created))
       {
 
+         if (::type(puserinteractionimpl->m_puserinteraction.m_p) == "user::list_box")
+         {
+
+            information() << "user::list_box graphics_thread_iteration !e_window_flag_window_created";
+
+         }
+
          information() << "graphics_thread_iteration !e_window_flag_window_created";
          // please, set_need_redraw and post_redraw after window creation...
          
@@ -960,12 +990,21 @@ namespace user
 
       }
 
-      if(m_puserinteraction->has_graphical_output_purpose())
+      if (m_puserinteraction->has_graphical_output_purpose())
       {
+
+         if (::type(m_puserinteraction.m_p) == "user::list_box")
+         {
+
+            information() << "user::list_box graphics_thread_iteration has_graphical_output_purpose";
+
+         }
 
 #ifdef MORE_LOG
          information() << "graphics_thread_iteration has_graphical_output_purpose";
 #endif
+
+         //information() << "graphics_thread_iteration has_graphical_output_purpose";
 
          puserinteractionimpl->do_graphics();
 

@@ -9,6 +9,7 @@
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/pen.h"
+#include "aura/windowing/windowing.h"
 #include "base/user/experience/frame_window.h"
 #include "base/user/experience/size_manager.h"
 
@@ -460,7 +461,7 @@ namespace experience_anthill
       if (eborder & e_border_top || eborder & e_border_left)
       {
 
-         ppen.create(this);
+         __construct(ppen);
 
          ppen->create_solid(1.0, crTopLeft);
 
@@ -489,7 +490,7 @@ namespace experience_anthill
       if ((eborder & e_border_right || eborder & e_border_bottom) && (!ppen || ppen->m_color != crBottomRight))
       {
 
-         ppen.create(this);
+         __construct(ppen);
 
          ppen->create_solid(1.0, crBottomRight);
 
@@ -742,6 +743,14 @@ namespace experience_anthill
          //      m_pframewindow->GetEventWindow()->screen_to_client()(point);
          
       auto rectangleEvent = m_pframewindow->raw_rectangle();
+
+      if (m_pframewindow->windowing()->has_readily_gettable_absolute_coordinates())
+      {
+
+         m_pframewindow->client_to_screen()(rectangleEvent);
+
+      }
+
          ::rectangle_i32 rectangle;
          ::point_i32 pointCenter = rectangleEvent.center();
          enum_grip egrip = m_pframewindow->size_manager()->GetGripMask();

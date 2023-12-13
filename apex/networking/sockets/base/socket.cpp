@@ -122,10 +122,10 @@ namespace sockets
    }
 
 
-   void base_socket::initialize_socket(base_socket_handler* phandler)
+   void base_socket::SetSocketHandler(base_socket_handler* phandler)
    {
 
-      base_socket_composite()->initialize_socket(phandler);
+      base_socket_composite()->SetSocketHandler(phandler);
 
       //::object::initialize(phandler);
 
@@ -138,6 +138,12 @@ namespace sockets
    }
 
 
+   void base_socket::DetachSocket()
+   {
+
+   }
+
+
    base_socket * base_socket::base_socket_composite()
    {
 
@@ -146,10 +152,18 @@ namespace sockets
    }
 
 
+   ::uptr base_socket::GetSocketId()
+   {
+
+      return base_socket_composite()->GetSocketId();
+
+   }
+
+
    const base_socket * base_socket::base_socket_composite() const
    {
 
-      return nullptr;
+      return ((base_socket *) this)->base_socket_composite();
 
    }
 
@@ -198,6 +212,22 @@ namespace sockets
    }
 
 
+   //::index base_socket::http_request_index()
+   //{
+
+   //   return base_socket_composite()->http_request_index();
+
+   //}
+
+
+   ::string_array & base_socket::debugstra()
+   {
+
+      return base_socket_composite()->debugstra();
+
+   }
+   
+   
    void base_socket::OnWrite()
    {
 
@@ -1228,7 +1258,7 @@ namespace sockets
 
    //   SetDetached();
 
-   //   auto psocketthread = __new(socket_thread);
+   //   auto psocketthread = __allocate< socket_thread >();
 
    //   psocketthread->transfer(passociation, psocketmap);
 
@@ -3044,14 +3074,14 @@ namespace sockets
    }
 
 
-   bool base_socket::step()
-   {
+   //bool base_socket::step()
+   //{
 
-      //return ::e_status_no_work;
+   //   //return ::e_status_no_work;
 
-      return base_socket_composite()->step();
+   //   return base_socket_composite()->http_step();
 
-   }
+   //}
 
 
    string base_socket::get_short_description()
@@ -3112,6 +3142,8 @@ namespace sockets
       base_socket_composite()->write(p, s);
 
    }
+
+
 
 
 } // namespace sockets

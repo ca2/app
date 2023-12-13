@@ -39,9 +39,9 @@ namespace userfs
 
 
 #ifdef _DEBUG
-      virtual i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
-      virtual i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
-      virtual i64 release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
+      virtual i64 increment_reference_count() override;
+      virtual i64 decrement_reference_count() override;
+      virtual i64 release() override;
 #endif
 
 
@@ -69,7 +69,7 @@ namespace userfs
       virtual void _001OnItemCollapse(::data::tree_item * pitem, const ::action_context & action_context) override;
 
 
-      virtual void _017OpenFolder(::pointer<::file::item>pitem, const ::action_context & action_context);
+      //virtual void _017OpenFolder(::pointer<::file::item>pitem, const ::action_context & action_context);
 
       virtual ::color::color get_background_color();
 

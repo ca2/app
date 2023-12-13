@@ -24,7 +24,7 @@ class CLASS_DECL_ACME wait :
 public:
 
 
-   wait(enum_no_initialize) {}
+   wait(no_initialize_t) {}
    constexpr wait() {}
    constexpr wait(::i64 iNanosecond) { m_iNanosecond = iNanosecond; }
    constexpr wait(::i64 iSecond, ::i64 iNanosecond): wait(iNanosecond + iSecond * 1'000'000'000) { }

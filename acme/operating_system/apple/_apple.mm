@@ -95,6 +95,13 @@ void ns_main_sync(dispatch_block_t block)
 }
 
 
+void ns_main_post(dispatch_block_t block)
+{
+   
+   dispatch_async(dispatch_get_main_queue(), block);
+   
+}
+
 
 void ns_main_async(dispatch_block_t block)
 {
@@ -113,7 +120,7 @@ void ns_main_async(dispatch_block_t block)
    else
    {
 
-      dispatch_async(dispatch_get_main_queue(), block);
+      ns_main_post(block);
 
    }
 

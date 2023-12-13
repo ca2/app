@@ -582,7 +582,8 @@ namespace user
 
       virtual i32 get_wheel_scroll_delta() override;
 
-      virtual void on_context_offset_layout(::draw2d::graphics_pointer & pgraphics) override;
+      //virtual void on_context_offset_layout(::draw2d::graphics_pointer & pgraphics) override;
+      void on_change_context_offset(::user::enum_layout elayout) override;
 
       bool keyboard_focus_is_focusable() override;
 

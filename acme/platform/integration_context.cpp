@@ -527,7 +527,7 @@ namespace integration
                //write(1, buff, size);
             }
 
-            ::informationf(strPathName + "\n");
+            ::acme::get()->platform()->informationf(strPathName + "\n");
 
          }
          next:

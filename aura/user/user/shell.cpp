@@ -135,7 +135,7 @@ namespace user
       m_iActiveThreadCount = 0;
       m_iMaxThreadCount = 1;
 
-      m_pevNewImageKey = __new(manual_reset_event);
+      m_pevNewImageKey = __allocate< manual_reset_event >();
 
       m_pevNewImageKey->m_eflagElement += e_flag_alertable_wait;
 
@@ -277,7 +277,7 @@ namespace user
 
       synchronous_lock synchronouslock(this->synchronization());
 
-      auto cAddedCount = m_iaSize.add_unique(iaSize);
+      auto cAddedCount = m_iaSize.append_unique(iaSize);
 
       if (cAddedCount > 0)
       {
@@ -511,7 +511,7 @@ namespace user
    shell::_get_file_image_ * shell::new_get_file_image()
    {
 
-      return memory_new _get_file_image_;
+      return __new< _get_file_image_ >();
 
    }
 

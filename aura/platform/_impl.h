@@ -8,7 +8,7 @@ namespace std { enum class align_val_t : std::size_t {}; }
 #endif
 
 
-//#define memory_new ACME_NEW
+
 
 
 inline stream & operator >> (stream & s, ::earth::time & time);

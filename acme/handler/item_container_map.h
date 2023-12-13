@@ -20,6 +20,9 @@ public:
    ~item_container_map() override;
 
 
+   void destroy() override;
+
+
    virtual ::pointer < ::item_container > item_container(::index iId);
 
 

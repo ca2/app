@@ -52,8 +52,8 @@ namespace str
 
          locale_schema & operator = (const locale_schema & ls);
 
-         virtual i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
-         virtual i64 release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
+         virtual i64 increment_reference_count();
+         virtual i64 release();
 
 
       };

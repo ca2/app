@@ -702,7 +702,7 @@
     <ClInclude Include="sockets\base\socket_thread.h" />
     <ClInclude Include="sockets\basic\listen_socket.h" />
     <ClInclude Include="sockets\basic\sctp_socket.h" />
-    <ClInclude Include="sockets\basic\socket.h" />
+    <ClInclude Include="sockets\basic\socket_impl.h" />
     <ClInclude Include="sockets\basic\socket_handler.h" />
     <ClInclude Include="sockets\basic\stream_socket.h" />
     <ClInclude Include="sockets\basic\tcp_socket.h" />

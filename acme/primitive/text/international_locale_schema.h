@@ -59,8 +59,8 @@ namespace text
 
 #ifdef _DEBUG
 
-         virtual i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
-         virtual i64 release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
+         virtual i64 increment_reference_count() override;
+         virtual i64 release() override;
 
 #endif
 

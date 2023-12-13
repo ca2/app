@@ -78,7 +78,7 @@ namespace simple_ui
    void message_box::create_button(pointer_array < tap > & tapa,atom atom, const ::string & pszText)
    {
 
-      auto ptap = __new(::simple_ui::tap);
+      auto ptap = __allocate< ::simple_ui::tap >();
 
       ptap->create_child(this);
 
@@ -165,7 +165,7 @@ namespace simple_ui
 
       rectangleFontopus.bottom() = rectangleFontopus.top() + h;
 
-      //auto pusersystem = __new(::user::system (WS_EX_LAYERED, nullptr, nullptr, 0, rectangleFontopus));
+      //auto pusersystem = __allocate< ::user::system  >(WS_EX_LAYERED, nullptr, nullptr, 0, rectangleFontopus);
 
       if(!create_interaction(puiParent))
       {
@@ -449,7 +449,7 @@ namespace simple_ui
    //i64 message_box::increment_reference_count()
    //{
 
-   //   return simple_ui::top::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+   //   return simple_ui::top::increment_reference_count();
 
    //}
 
@@ -457,7 +457,7 @@ namespace simple_ui
    //i64 message_box::decrement_reference_count()
    //{
 
-   //   return simple_ui::top::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+   //   return simple_ui::top::decrement_reference_count();
 
    //}
 
@@ -535,7 +535,7 @@ namespace simple_ui
 //
 //   {
 //
-//      ::pointer<::simple_ui::message_box>pmessagebox = __new(::simple_ui::message_box(get_app(),pText,lpCaption,uFlags));
+//      ::pointer<::simple_ui::message_box>pmessagebox = __allocate< ::simple_ui::message_box >(get_app(),pText,lpCaption,uFlags);
 //
 //      try
 //      {

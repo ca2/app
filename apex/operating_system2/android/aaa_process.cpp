@@ -11,7 +11,7 @@ i32 create_process(const char * _cmd_line, i32 * pprocessId)
 
    char *   cmd_line;
 
-   cmd_line = (char *) memory_allocate(strlen(_cmd_line ) + 1 );
+   cmd_line = (char *) ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(strlen(_cmd_line ) + 1 );
 
    if (cmd_line == nullptr)
    {
@@ -147,7 +147,7 @@ CLASS_DECL_APEX u32 call_sync(const ::file::path & path, const ::scoped_string &
 CLASS_DECL_APEX bool main_initialize()
 {
 
-//   t_posthread = memory_new os_thread(nullptr,nullptr);
+//   t_posthread = aaa_primitive_new os_thread(nullptr,nullptr);
 
    //t_posthread->m_bRun = true;
 

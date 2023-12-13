@@ -123,7 +123,7 @@ namespace user
       void _001OnRemoveTab(class tab_pane * ptab) override;
 
       virtual void prepare_form(const ::atom & atom, ::form_document * pformdocument);
-
+      void on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics) override;
 
    };
 

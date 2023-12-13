@@ -38,7 +38,7 @@
 //
 //   //using BASE_RANGE::BASE_RANGE;
 //
-//   array_range(enum_no_initialize):BASE_RANGE(e_no_initialize){}
+//   array_range(no_initialize_t):BASE_RANGE(no_initialize_t{}){}
 //   array_range(nullptr_t):BASE_RANGE(nullptr){}
 //   array_range():BASE_RANGE(){}
 //   array_range(const array_range & array_range) : BASE_RANGE(array_range) {}
@@ -52,13 +52,13 @@
 //   constexpr array_range(const_iterator begin, const_iterator end) : BASE_RANGE(begin, end) {}
 //   template < primitive_block BLOCK_TYPE >
 //   array_range(enum_as_block, const BLOCK_TYPE & block) :
-//      BASE_RANGE(e_no_initialize)
+//      BASE_RANGE(no_initialize_t{})
 //   {
 //      assign_block(block);
 //   }
 //   template < typed_block < ITEM > TYPED_BLOCK >
 //   array_range(enum_as_typed_block, const TYPED_BLOCK & block) :
-//      BASE_RANGE(e_no_initialize)
+//      BASE_RANGE(no_initialize_t{})
 //   {
 //      
 //      assign_typed_block(block);

@@ -51,13 +51,13 @@ namespace sockets
       if (m_bDirect)
       {
 
-         step();
+         http_request_step();
 
       }
       else if (m_bOk)
       {
 
-         step();
+         http_request_step();
 
       }
       else if (GetUrlPort() == 80 || GetUrlPort() == 8080)
@@ -72,7 +72,7 @@ namespace sockets
 
          m_bOk = true;
 
-         step();
+         http_request_step();
 
       }
       else
@@ -170,7 +170,7 @@ namespace sockets
             else
             {
 
-               step();
+               http_request_step();
 
             }
 
@@ -181,7 +181,7 @@ namespace sockets
    }
 
 
-   bool http_tunnel::step()
+   bool http_tunnel::http_request_step()
    {
 
       string str;

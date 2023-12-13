@@ -49,7 +49,7 @@ namespace sip
       UNREFERENCED_PARAMETER(sz);
       m_file.Truncate(0);
       /*if (!m_file.get())
-         m_file = ::pointer<IFile>e>(memory_new MemFile);
+         m_file = ::pointer<IFile>e>(aaa_memory_new MemFile);
       DEB(   else
          informationf("Body data file already opened");*/
 

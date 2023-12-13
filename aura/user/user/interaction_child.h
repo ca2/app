@@ -18,12 +18,12 @@ namespace user
       // this rectangle_i32 comes before in importance compared to m_rectangleWindow
       // m_rectangleWindow should be sychronized and recalculated based
       // on m_rectangleParentClient values of the interaction_impl and its ascendants.
-      size_i32                                m_size;
+      size_i32                            m_size;
       bool                                m_bCreate;
-      ::pointer<::user::interaction>     m_puserinteractionMessage;
-      ::pointer<primitive>               m_puserprimitiveOwner;
-      ::pointer < ::mutex >                             m_pmutexLongPtr;
-      //iptr_to_iptr                  m_longptr;
+      ::pointer<::user::interaction>      m_puserinteractionMessage;
+      ::pointer<::user::primitive>        m_puserprimitiveOwner;
+      ::pointer < ::mutex >               m_pmutexLongPtr;
+      //iptr_to_iptr                      m_longptr;
       uptr                                m_uStyle;
       uptr                                m_uExStyle;
 

@@ -1,11 +1,11 @@
 //
-//  memory_new.cpp
+//  aaa_memory_new.cpp
 //  acme
 //
 //  Created by Camilo Sasuke Thomas Borregaard Soerensen on 26/07/20.
 //
 #include "framework.h"
-
+#include "memory_allocate.h"
 
 #if !defined(UNIVERSAL_WINDOWS) && !defined(ANDROID)
 
@@ -27,6 +27,7 @@ void MEMORY_DECL operator delete(void * p, size_t n) del_throw_spec
 void* MEMORY_DECL operator new(size_t nSize)
 {
 
+//   return ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(nSize);
    return memory_allocate(nSize);
 
 }
@@ -72,7 +73,7 @@ void* MEMORY_DECL operator new[](size_t nSize) new_throw_spec
 void* MEMORY_DECL operator new[](size_t nSize, const std::nothrow_t&) noexcept
 {
 
-   return memory_allocate(nSize);
+   return ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(nSize);
 
 }
 
@@ -83,10 +84,6 @@ void MEMORY_DECL operator delete[](void* p) del_throw_spec
    ::operator delete(p);
 
 }
-
-
-
-
 
 
 //#if !defined(_UNIVERSAL_WINDOWS)
@@ -124,7 +121,7 @@ void MEMORY_DECL operator delete(void* p, void* palloc) del_throw_spec
 //void* MEMORY_DECL operator new (size_t size, const c_class&)
 //{
 //
-//   return memory_allocate(size);
+//   return ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(size);
 //
 //}
 //
@@ -132,7 +129,7 @@ void MEMORY_DECL operator delete(void* p, void* palloc) del_throw_spec
 //void* MEMORY_DECL operator new[](size_t size, const c_class&)
 //{
 //
-//   return memory_allocate(size);
+//   return ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(size);
 //
 //}
 //
@@ -142,7 +139,7 @@ void MEMORY_DECL operator delete(void* p, void* palloc) del_throw_spec
 //#endif
 //
 //
-//#define C_NEW memory_new(c_class::s_cclass)
+//#define C_NEW __new<  >(c_class::s_cclass)
 
 
 #if !defined(NO_ACME_MEMORY_MANAGEMENT)

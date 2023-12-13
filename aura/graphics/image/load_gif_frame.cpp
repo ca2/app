@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "frame.h"
 #include "image.h"
+#include "imaging.h"
 #include "acme/graphics/image/image32.h"
 #include "acme/graphics/draw2d/color_array.h"
 
@@ -286,7 +287,7 @@ bool draw2d_gif_draw_frame(::image * pimageCanvas, image_frame_array * pframea, 
 //}
 //
 
-bool draw2d_gif_draw_frame(image * pimageCanvas, image_frame_array * pframea, image_frame * pframe, int uFrameIndex, u8 * ba, int iScan, color_array & colora, int transparentIndex)
+bool imaging::draw2d_gif_draw_frame(image * pimageCanvas, image_frame_array * pframea, image_frame * pframe, int uFrameIndex, u8 * ba, int iScan, color_array & colora, int transparentIndex)
 {
 
    auto pimage32 = pframe->m_pimage->image32();

@@ -105,7 +105,7 @@ void update::notify()
    if(!g_pmap)
    {
 
-      g_pmap = memory_new i64_map < ::pointer<update >>
+      g_pmap = aaa_primitive_new i64_map < ::pointer<update >>
 
    }
 
@@ -227,7 +227,7 @@ void update::_add(::i64 iUpdate, ::matter * pmatter)
    if(!ptask || ptask->is_ending())
    {
 
-      ptask = memory_new update();
+      ptask = aaa_primitive_new update();
 
       ptask->m_iUpdate = iUpdate;
 

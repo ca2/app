@@ -73,6 +73,8 @@
 #pragma once
 
 
+
+
 #undef LAYER_NAMESPACE
 #define LAYER_NAMESPACE apex
 #define SYSTEM_NAMESPACE LAYER_NAMESPACE
@@ -320,7 +322,13 @@ namespace core
 
 
 
+#include "apex/filesystem/_.h"
+
+
 #include "apex/handler/_.h"
+
+
+#include "apex/interprocess/_.h"
 
 
 #include "apex/platform/_critical_section.h"
@@ -329,17 +337,7 @@ namespace core
 //#include "acme/platform/library.h"
 
 
-#include "apex/filesystem/_.h"
-
-
-#include "apex/interprocess/_.h"
-
-
 //#include "apex/platform/apex_main_struct.h"
-
-
-
-
 
 
 //class eimpact;
@@ -1185,7 +1183,7 @@ namespace xml
 //#include "apex/platform/system.h"
 
 
-//#define memory_new ACME_NEW
+
 
 
 //#include "apex/os/chronometer.h"

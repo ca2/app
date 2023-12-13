@@ -112,7 +112,7 @@ namespace account
 
          synchronous_lock synchronouslock(this->synchronization());
 
-         m_map[strAppId] = __new(::account::product);
+         m_map[strAppId] = __allocate< ::account::product >();
 
          pproduct = get_product(strAppId);
 

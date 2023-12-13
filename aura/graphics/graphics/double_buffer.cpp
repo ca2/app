@@ -369,7 +369,7 @@ namespace graphics
       //
       //         ::u8 a = p[3];
       //
-      //         //::informationf("argb " +as_string(r) + "," + as_string(g) + "," +as_string(b) + "," + as_string(a));
+      //         //::acme::get()->platform()->informationf("argb " +as_string(r) + "," + as_string(g) + "," +as_string(b) + "," + as_string(a));
       //
       //      }
 
@@ -398,8 +398,9 @@ namespace graphics
    void double_buffer::destroy_buffer()
    {
 
-      m_bufferitema[0]->m_pimage2.release();
-      m_bufferitema[1]->m_pimage2.release();
+      graphics::graphics::destroy_buffer();
+      //m_bufferitema[0].defer_destroy();
+      //m_bufferitema[1].defer_destroy();
 
    }
 

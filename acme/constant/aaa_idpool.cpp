@@ -206,7 +206,7 @@
 //
 //   html_none = "none";
 //   html_unknown = "unknown";
-//   html_new = "memory_new";
+//   html_new = "aaa_primitive_new";
 //   html_initial = "initial";
 //   html_html = "html";
 //   html_head = "head";
@@ -308,7 +308,7 @@
 //   //void acme::init_id_pool()
 //   //{
 //
-//   //   ::acme::idpool::g_p = memory_new idpool();
+//   //   ::acme::idpool::g_p = aaa_primitive_new idpool();
 //
 //   //}
 //

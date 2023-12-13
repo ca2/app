@@ -123,7 +123,7 @@ namespace file
    }
 
 
-   bool watch::step()
+   bool watch::file_watch_step()
    {
 
       //return ::success;

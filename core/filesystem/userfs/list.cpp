@@ -1,21 +1,26 @@
 #include "framework.h"
+#include "data.h"
 #include "list.h"
 #include "document.h"
 #include "list_data.h"
 #include "list_item_array.h"
 #include "list_item.h"
+#include "acme/constant/id.h"
 #include "acme/constant/message.h"
 #include "acme/handler/item.h"
+#include "acme/handler/topic.h"
 #include "acme/filesystem/file/item_array.h"
 #include "acme/primitive/data/listener.h"
+#include "apex/filesystem/fs/data.h"
 #include "apex/filesystem/fs/set.h"
 #include "aura/graphics/image/list.h"
 #include "aura/user/user/shell.h"
+#include "aura/user/user/interaction_array.h"
+#include "aura/user/user/frame.h"
 #include "core/user/user/list_column.h"
 #include "core/user/user/user.h"
-#include "aura/user/user/frame.h"
 #include "core/platform/session.h"
-#include "aura/user/user/interaction_array.h"
+#include "core/filesystem/userfs/data.h"
 
 
 namespace userfs
@@ -34,7 +39,7 @@ namespace userfs
       m_rectangleMargin.bottom() = 0;
       m_rectangleMargin.right() = 0;
 
-      m_pfsdata = nullptr;
+      //m_pfsdata = nullptr;
 
       //create_int(::user::int_list_item_draw_text_flags, e_align_left_center | DT_SINGLELINE | DT_PATH_ELLIPSIS);
 
@@ -68,7 +73,7 @@ namespace userfs
 
       m_pdocument = dynamic_cast <document *>(pdocument);
 
-      m_pfsdata = m_pdocument->fs_data();
+      //m_pfsdata = m_pdocument->filemanager_data()->fs_data();
 
    }
 
@@ -91,10 +96,10 @@ namespace userfs
 
       pframe->set_frame_title("File Manager");
 
-      if (get_document()->m_pviewTopic == nullptr)
+      if (get_document()->m_pimpactTopic == nullptr)
       {
 
-         get_document()->m_pviewTopic = this;
+         get_document()->m_pimpactTopic = this;
 
       }
 
@@ -184,6 +189,25 @@ namespace userfs
 
    void list::handle(::topic * ptopic, ::context * pcontext)
    {
+
+      if (ptopic->m_atom == id_browse)
+      {
+
+         //auto plistdata = __create_new < list_data>();
+
+         auto plistdata = fs_list();
+
+         auto pfilemanagerdata = m_pdocument->filemanager_data();
+
+         information() << "::userfs::list handle id_browse";
+
+         plistdata->update(pfilemanagerdata);
+
+         m_pmeshdata = plistdata;
+
+         update_impact();
+
+      }
 
 
    }
@@ -409,7 +433,7 @@ namespace userfs
       if (pitem->IsFolder())
       {
 
-         _017OpenFolder(pitem, action_context);
+         m_pdocument->browse(pitem, action_context);
 
       }
       else if (bOpenFile)
@@ -548,14 +572,14 @@ namespace userfs
    }
 
 
-   void list::_017OpenFolder(::pointer<::file::item>item, const ::action_context & context)
-   {
+   //void list::_017OpenFolder(::pointer<::file::item>item, const ::action_context & context)
+   //{
 
-      UNREFERENCED_PARAMETER(item);
-      UNREFERENCED_PARAMETER(context);
-      ASSERT(false);
+   //   UNREFERENCED_PARAMETER(item);
+   //   UNREFERENCED_PARAMETER(context);
+   //   ASSERT(false);
 
-   }
+   //}
 
 
    //void list::_017OpenFolder(const ::userfs::list_item &item, const ::action_context & context)
@@ -647,7 +671,7 @@ namespace userfs
    //                  continue;
    //               iStrict = m_meshlayout.m_iaDisplayToStrict[iItem];
    //            }
-   //            itema.add(__new(::file::item(pdata->item(iStrict))));
+   //            itema.add(__allocate< ::file::item >(pdata->item(iStrict)));
    //         }
    //      }
    //   }
@@ -675,29 +699,29 @@ namespace userfs
    }
 
 
-   void list::add_fs_item(::file::path pathUser, ::file::path pathFinal, string strName)
-   {
+   //void list::add_fs_item(::file::path pathUser, ::file::path pathFinal, string strName)
+   //{
 
-      list_item item;
+   //   list_item item;
 
-      item.set_user_path(pathUser);
+   //   item.set_user_path(pathUser);
 
-      item.set_final_path(pathFinal);
+   //   item.set_final_path(pathFinal);
 
-      item.m_strName = strName;
+   //   item.m_strName = strName;
 
-      if (fs_data()->is_dir(item.final_path()))
-      {
+   //   if (fs_data()->is_dir(item.final_path()))
+   //   {
 
-         item.m_flags.add(::file::e_flag_folder);
+   //      item.m_flags.add(::file::e_flag_folder);
 
-      }
+   //   }
 
-      fs_list()->m_pitema->add_fs_item(item);
+   //   fs_list()->m_pitema->add_fs_item(item);
 
-      update_impact();
+   //   update_impact();
 
-   }
+   //}
 
 
    ::image_list * list::GetActionButtonImageList(index i)
@@ -791,86 +815,86 @@ namespace userfs
    }
 
 
-   bool list::query_drop(index iDisplayDrop, index iDisplayDrag)
-   {
+   //bool list::query_drop(index iDisplayDrop, index iDisplayDrag)
+   //{
 
-      list_data * pdata = fs_list();
+   //   list_data * pdata = fs_list();
 
-      if (iDisplayDrag < 0)
-      {
+   //   if (iDisplayDrag < 0)
+   //   {
 
-         return false;
+   //      return false;
 
-      }
+   //   }
 
-      if (iDisplayDrop < 0)
-      {
+   //   if (iDisplayDrop < 0)
+   //   {
 
-         return false;
+   //      return false;
 
-      }
+   //   }
 
-      if (iDisplayDrag != iDisplayDrop)
-      {
+   //   if (iDisplayDrag != iDisplayDrop)
+   //   {
 
-         index iStrict = display_to_strict(iDisplayDrop);
+   //      index iStrict = display_to_strict(iDisplayDrop);
 
-         if (iStrict <= -1)
-         {
+   //      if (iStrict <= -1)
+   //      {
 
-            return true; // can drop in is_empty place
+   //         return true; // can drop in is_empty place
 
-         }
-         else if (iStrict >= _001GetItemCount())
-         {
+   //      }
+   //      else if (iStrict >= _001GetItemCount())
+   //      {
 
-            return true; // can drop if destination is invalid
+   //         return true; // can drop if destination is invalid
 
-         }
-         else
-         {
+   //      }
+   //      else
+   //      {
 
-            // can drop if destination is folder
-            return pdata->item(iStrict)->IsFolder();
+   //         // can drop if destination is folder
+   //         return pdata->item(iStrict)->IsFolder();
 
-         }
+   //      }
 
-      }
+   //   }
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
 
-   bool list::do_drop(index iDisplayDrop, index iDisplayDrag)
-   {
+   //bool list::do_drop(index iDisplayDrop, index iDisplayDrag)
+   //{
 
-      list_data * pdata = fs_list();
+   //   list_data * pdata = fs_list();
 
-      index iStrictDrop = m_piconlayout->m_iaDisplayToStrict[iDisplayDrop];
+   //   index iStrictDrop = m_piconlayout->m_iaDisplayToStrict[iDisplayDrop];
 
-      index iStrictDrag = m_piconlayout->m_iaDisplayToStrict[iDisplayDrag];
+   //   index iStrictDrag = m_piconlayout->m_iaDisplayToStrict[iDisplayDrag];
 
-      if (iStrictDrop >= 0 && pdata->item(iStrictDrop)->IsFolder())
-      {
+   //   if (iStrictDrop >= 0 && pdata->item(iStrictDrop)->IsFolder())
+   //   {
 
-         ::file::path strPath = pdata->item(iStrictDrag)->final_path();
+   //      ::file::path strPath = pdata->item(iStrictDrag)->final_path();
 
-         string strName = strPath.name();
+   //      string strName = strPath.name();
 
-         fs_data()->file_move(pdata->item(iStrictDrop)->final_path(), strPath);
+   //      fs_data()->file_move(pdata->item(iStrictDrop)->final_path(), strPath);
 
-      }
-      else
-      {
+   //   }
+   //   else
+   //   {
 
-         ::user::list::do_drop(iDisplayDrop, iDisplayDrag);
+   //      ::user::list::do_drop(iDisplayDrop, iDisplayDrag);
 
-      }
+   //   }
 
-      return true;
+   //   return true;
 
-   }
+   //}
 
 
    //::color::color list::get_background_color()
@@ -1000,7 +1024,7 @@ namespace userfs
 
             }
 
-            auto pset = fs_data();
+            auto pset =m_pdocument->filemanager_data()->fs_data();
 
             if (::is_null(pset))
             {

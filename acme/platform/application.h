@@ -94,16 +94,22 @@ namespace acme
       virtual ::string release_time();
 
 
-      virtual void initialize_application();
+      virtual void initialize_application(::platform::platform * pplatform);
 
 
       virtual bool is_console() const;
 
 
-      virtual ::i32 application_main();
+      virtual ::i32 application_main(::platform::platform * pplatform);
+
+      
+      void on_set_platform() override;
 
 
-      void initialize(::particle * pparticle) override;
+      void on_initialize_particle() override;
+
+
+      //void initialize(::particle * pparticle) override;
 
       
       virtual void start_application(::request* prequest);
@@ -159,6 +165,7 @@ namespace acme
 
       virtual int main_loop();
 
+      virtual ::enum_id key_command(::user::enum_key ekey, ::user::key_state * pkeystate);
       
       virtual void on_before_launching();
       virtual void os_native_bergedge_start();
@@ -169,6 +176,11 @@ namespace acme
 
 
       virtual void init();
+      virtual void term();
+
+      virtual void term3();
+      virtual void term2();
+      virtual void term1();
 
 
       virtual void do_install();
@@ -180,6 +192,10 @@ namespace acme
 
 
       virtual void init_instance();
+      virtual void term_instance();
+
+      void init_task() override;
+      void term_task() override;
 
 
       virtual bool has_capability(enum_application_capability eapplicationcapability) const;
@@ -222,11 +238,17 @@ namespace acme
 
 
       virtual void process_init();
+      virtual void process_term();
 
       virtual void pre_run();
       virtual void application_pre_run();
 
+      virtual void pos_run();
+      virtual void application_pos_run();
+
       virtual void init_application();
+
+      virtual void term_application();
 
       virtual ::string_array get_about_box_lines();
 

@@ -4,12 +4,12 @@
 #include "acme/primitive/collection/address_array.h"
 
 
-namespace main_memory_allocate_heap
-{
- 
-   struct plex;
-
-}
+//namespace main_memory_allocate_heap
+//{
+// 
+ struct plex;
+//
+//}
 
 
 class CLASS_DECL_ACME fixed_alloc_no_sync
@@ -22,13 +22,14 @@ public:
       node* pNext;   // only valid when in free list
    };
 
+   ::heap::allocator * m_pallocator;
    ::u32 m_nAllocSize;   // size_i32 of each block from Alloc
    ::u32 m_nBlockSize;   // number of blocks to get at a time
-   ::main_memory_allocate_heap::plex* m_pBlocks;   // linked list of blocks (is nBlocks*nAllocSize)
+   ::plex* m_pBlocks;   // linked list of blocks (is nBlocks*nAllocSize)
    node* m_pnodeFree;   // first free node (nullptr if no free nodes)
 
 
-   fixed_alloc_no_sync(::u32 nAllocSize, ::u32 nBlockSize = 64);
+   fixed_alloc_no_sync(::heap::allocator * pallocator, ::u32 nAllocSize, ::u32 nBlockSize = 64);
    ~fixed_alloc_no_sync();
 
 
@@ -75,13 +76,14 @@ class CLASS_DECL_ACME fixed_alloc_sync
 public:
 
 
+   ::heap::allocator * m_pallocator;
    i32                                       m_i;
    i32                                       m_iShareCount;
    ::array < ::critical_section >            m_criticalsectiona;
    address_array < fixed_alloc_no_sync * >   m_allocptra;
 
 
-   fixed_alloc_sync(::u32 nAllocSize, ::u32 nBlockSize = 64, i32 iShareCount = 2);
+   fixed_alloc_sync(::heap::allocator * pallocator, ::u32 nAllocSize, ::u32 nBlockSize = 64, i32 iShareCount = 2);
    ~fixed_alloc_sync();
 
 
@@ -100,12 +102,13 @@ class CLASS_DECL_ACME fixed_alloc
 public:
 
 
+   ::heap::allocator * m_pallocator;
    i32                                         m_i;
    i32                                         m_iShareCount;
    address_array < fixed_alloc_sync * >            m_allocptra;
 
 
-   fixed_alloc(::u32 nAllocSize, ::u32 nBlockSize = 64);
+   fixed_alloc(::heap::allocator * pallocator, ::u32 nAllocSize, ::u32 nBlockSize = 64);
    ~fixed_alloc();
 
 
@@ -125,7 +128,9 @@ class CLASS_DECL_ACME fixed_alloc_array :
 public:
 
 
-   fixed_alloc_array();
+   ::heap::allocator * m_pallocator;
+
+   fixed_alloc_array(::heap::allocator * pallocator);
    virtual ~fixed_alloc_array();
 
    void * _alloc(size_t nAllocSize);
@@ -157,7 +162,7 @@ fixed_alloc * class_name::s_palloc = nullptr;
 
 
 #define IMPLEMENT_AXIS_FIXED_ALLOC_CONSTRUCTOR(class_name, block_size) \
-class_name::s_palloc = memory_new fixed_alloc(sizeof(class_name), block_size);
+class_name::s_palloc = __new< fixed_alloc(sizeof >(class_name), block_size);
 
 #define IMPLEMENT_AXIS_FIXED_ALLOC_DESTRUCTOR(class_name) \
 if(class_name::s_palloc != nullptr) \

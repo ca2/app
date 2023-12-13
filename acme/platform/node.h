@@ -9,10 +9,9 @@
 // Created by camilo on 2021-03-21 18:11 <3ThomasBS_!!
 #pragma once
 
-
 #include "acme/constant/application_capability.h"
 #include "acme/constant/element.h"
-//#include "acme/filesystem/filesystem/path.h"
+#include "acme/exception/__string.h"
 #include "acme/operating_system/security_attributes.h"
 #include "acme/platform/serial_shared.h"
 //#include "acme/exception/status.h"
@@ -24,7 +23,7 @@
 #include "trace.h"
 
 
-CLASS_DECL_ACME const char * callstack_default_format();
+
 
 using enum_application_capability_array = ::comparable_array < enum_application_capability >;
 
@@ -79,8 +78,8 @@ namespace acme
       //::pointer < ::particle >                              m_pparticleStandardIOSynchronization;
       
 
-      bool                                                  m_bCallstackInitialized;
-      bool                                                  m_bUpdateCallstack;
+      bool                                                  m_bCallStackInitialized;
+      bool                                                  m_bUpdateCallStack;
 
 
       string                                                m_strTheme;
@@ -128,8 +127,8 @@ namespace acme
 
 #ifdef _DEBUG
 
-      i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
-      i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
+      i64 increment_reference_count() override;
+      i64 decrement_reference_count() override;
 
 #endif
       
@@ -143,6 +142,7 @@ namespace acme
       virtual ::process_identifier_array module_list_file_processes_identifiers(const ::scoped_string & scopedstr);
 
 
+      virtual ::enum_id key_command(::user::enum_key ekey, ::user::key_state* pkeystate);
       //idaPid = pnode->(path, false);
 
 
@@ -164,6 +164,11 @@ namespace acme
       ///virtual void implement(::pointer<::acme::node>& pnode, ::pointer<::acme::system> & psystem);
 
       virtual void node_main();
+      virtual void node_implement_main();
+
+      
+      virtual void on_system_main();
+
 
       virtual void start_application(::pointer<::acme::node> & pnode);
 
@@ -512,7 +517,7 @@ namespace acme
       
 
 
-//      virtual ::string get_callstack();
+//      virtual ::string get_call_stack();
 
 
       virtual ::process_identifier current_process_identifier();
@@ -523,12 +528,16 @@ namespace acme
       virtual void flush_stdin();
 
 
-      virtual void defer_update_callstack();
+      virtual void defer_update_call_stack();
 //#if defined(ANDROID)
-//      virtual string unwind_callstack(const ::scoped_string & scopedstrFormat = callstack_default_format(), i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, int iCount = -1);
+//      virtual string unwind_call_stack(const ::scoped_string & scopedstrFormat = call_stack_default_format(), i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, int iCount = -1);
 //#else
-      virtual string get_callstack(const ::scoped_string & scopedstrFormat = callstack_default_format(), i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr, int iCount = -1);
+      virtual int get_call_stack_default_frame_count();
+      virtual void get_call_stack_frames(void ** stack, int & frame_count);
+      virtual string get_call_stack_trace(const ::scoped_string & scopedstrFormat = call_stack_default_format(), i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr, int iCount = -1);
+      virtual string get_call_stack_trace(void ** stack, int frame_count, const ::scoped_string& scopedstrFormat = call_stack_default_format(), i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void* caller_address = nullptr, int iCount = -1);
 //#endif
+      virtual string _get_call_stack_trace(const ::scoped_string & scopedstrFormat = call_stack_default_format(), i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr, int iCount = -1);
 
 
 
@@ -781,7 +790,12 @@ namespace acme
       
 #endif
       
+      virtual bool is_application_running_good_effort(const ::scoped_string & scopedstrRepos, const ::scoped_string & scopedstrApp);
 
+
+      virtual bool are_framework_shared_libraries_busy(const ::scoped_string & scopedstrRepos, const ::scoped_string & scopedstrApp);
+      
+      
    };
 
 

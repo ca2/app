@@ -101,7 +101,7 @@ namespace acme
 ////void message_box_synchronous(const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::future & future)
 ////{
 ////
-////   auto posmessagebox = __new(::acme::message_box_synchronous(pszText, pszTitle, emessagebox));
+////   auto posmessagebox = __allocate< ::acme::message_box_synchronous >(pszText, pszTitle, emessagebox);
 ////
 ////   return __realize(posmessagebox, process);
 ////
@@ -159,7 +159,7 @@ CLASS_DECL_ACME ::atom __cpp_assert_failed_line(const char * pszFileName, int iL
 
    sprintf(szMessage,"Assert failed!\n\nFile: %s\nLine: %d\n\nYou can choose to:\n\n\t - \"Cancel\": cancel debugging.\n\t - \"Try\": try debug break where assertion occurred.\n\t - \"Continue\": continue running", pszFileName,iLineNumber);
 
-   return message_box_synchronous(::get_task(), szMessage, "ASSERT", e_message_box_cancel_try_continue);
+   return message_box_synchronous(::get_task(), szMessage, "ASSERT", e_message_box_cancel_try_continue | e_message_box_icon_error);
 
 }
 

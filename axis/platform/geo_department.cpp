@@ -96,7 +96,7 @@ namespace geo
 
          auto memory = pfile->as_memory(pathFolder / "weather.bin");
 
-         auto pfile = __new(memory_file(memory));
+         auto pfile = __allocate< memory_file >(memory);
 
          binary_stream stream(pfile);
 
@@ -280,7 +280,7 @@ namespace geo
       if (!pcity)
       {
 
-         pcity = memory_new openweather_city;
+         pcity = __new< openweather_city >();
 
          pcity->m_iIndex = openweather_find_city2(
             strQuery,

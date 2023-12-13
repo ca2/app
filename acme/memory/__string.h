@@ -3,4 +3,4 @@
 
 
 template < typename POINTER >
-inline ::string as_string(const ::acme::memory_allocate < POINTER > & memoryallocpointer);
+inline ::string as_string(const ::acme::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate < POINTER > & memoryallocpointer);

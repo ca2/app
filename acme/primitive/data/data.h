@@ -30,6 +30,7 @@ namespace data
       listener_array                m_listenera;
       ::atom                        m_atom;
       bool                          m_bNew;
+      ::pointer < ::user::controller >          m_pusercontroller;
 
 
       data();

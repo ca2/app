@@ -44,7 +44,7 @@ void * __node_library_open(const ::file::path & path, string & strMessage)
 
    }
 
-   //::informationf("\n\nGoing to dlopen : \"" + strPath + "\"");
+   //::acme::get()->platform()->informationf("\n\nGoing to dlopen : \"" + strPath + "\"");
 
    ::file::path path;
 
@@ -130,7 +130,7 @@ finished:
 
    }
 
-   ::informationf("\n"+strMessage+"\n\n");
+   ::acme::get()->platform()->informationf("\n"+strMessage+"\n\n");
 
    return plibrary;
 
@@ -202,7 +202,7 @@ finished:
 
    }
 
-   ::informationf("\n"+strMessage+"\n\n");
+   ::acme::get()->platform()->informationf("\n"+strMessage+"\n\n");
 
    return plibrary;
 

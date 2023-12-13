@@ -27,7 +27,7 @@ namespace userfs
       index                      m_iNameSubItemText;
       index                      m_iIconSubItem;
       document *                 m_pdocument;
-      ::fs::data *               m_pfsdata;
+      //::fs::data *               m_pfsdata;
 
 
       list();
@@ -37,7 +37,7 @@ namespace userfs
       void initialize_impact(::user::document * pdocument) override;
 
 
-      inline ::fs::data * fs_data() { return m_pfsdata; }
+      //inline ::fs::data * fs_data() { return m_pfsdata; }
 
       
       void on_insert_columns() override;
@@ -48,7 +48,7 @@ namespace userfs
 
       virtual list_data * fs_list();
 
-      void add_fs_item(::file::path pathUser, ::file::path pathFinal, string strName);
+      //void add_fs_item(::file::path pathUser, ::file::path pathFinal, string strName);
 
       void install_message_routing(::channel * pchannel) override;
 
@@ -71,7 +71,7 @@ namespace userfs
 
       virtual void _017OpenItem(::pointer<::file::item>pitem, bool bOpenFile, const ::action_context & action_context);
       virtual void _017OpenFile(const ::file::item_array & itema, const ::action_context & action_context);
-      virtual void _017OpenFolder(::pointer<::file::item>pitem, const ::action_context & action_context);
+      //virtual void _017OpenFolder(::pointer<::file::item>pitem, const ::action_context & action_context);
       virtual bool _017OpenSelected(bool bOpenFile, const ::action_context & action_context);
       virtual void _017OpenContextMenuSelected(const ::action_context & action_context);
       virtual void _017OpenContextMenuFolder(::pointer<::file::item> item, const ::action_context & action_context);
@@ -88,8 +88,8 @@ namespace userfs
 
       void _001InitializeFormPreData() override;
 
-      bool query_drop(index iDisplayDrop, index iDisplayDrag) override;
-      bool do_drop(index iDisplayDrop, index iDisplayDrag) override;
+      /*bool query_drop(index iDisplayDrop, index iDisplayDrag) override;
+      bool do_drop(index iDisplayDrop, index iDisplayDrag) override;*/
 
 
       bool on_click(::item * pitem) override;

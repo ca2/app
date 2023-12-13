@@ -726,7 +726,7 @@ CLASS_DECL_APEX const char * c_inet_ntop(i32 af, const void *src, char *dst, i32
 //
 ////#ifdef UNIVERSAL_WINDOWS
 ////
-////   return (ref memory_new ::winrt::Windows::Networking::HostName(string(hostname)))->DisplayName;
+////   return (ref aaa_primitive_new ::winrt::Windows::Networking::HostName(string(hostname)))->DisplayName;
 ////
 ////#else
 //

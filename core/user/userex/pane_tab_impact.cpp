@@ -3,6 +3,7 @@
 #include "font_impact.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
+#include "acme/handler/topic.h"
 #include "acme/platform/keep.h"
 #include "acme/platform/system.h"
 #include "acme/filesystem/filesystem/dir_context.h"
@@ -16,10 +17,12 @@
 #include "base/user/form/impact.h"
 #include "base/user/user/tab_data.h"
 #include "base/user/user/impact_system.h"
+#include "base/user/user/multiple_document_template.h"
 #include "core/user/user/font_list.h"
 #include "core/user/user/user.h"
 #include "core/filesystem/filemanager/document.h"
 #include "core/filesystem/filemanager/data.h"
+#include "core/filesystem/filemanager/filemanager.h"
 #include "core/platform/application.h"
 #include "core/platform/session.h"
 #include "core/user/account/impact.h"
@@ -224,7 +227,7 @@ namespace userex
 
       auto & pfactory = system()->factory(strLibrary);
 
-      auto phandler = pfactory->create <handler>(this);
+      auto phandler = __create <handler>(pfactory);
 
       phandler->initialize(this);
 
@@ -642,9 +645,9 @@ namespace userex
 
          puser->will_use_impact_hint(FONTSEL_IMPACT);
 
-         //auto pcreate = __new(create(this));
+         //auto pcreate = __allocate< create >(this);
 
-         //pcreate->m_pusersystem = __new(user::create);
+         //pcreate->m_pusersystem = __allocate< user::create >();
 
          //pcreate->m_puserinteractionParent = pimpactdata->m_pplaceholder;
 
@@ -654,7 +657,7 @@ namespace userex
 
 //         auto pdocument = puser->m_mapimpactsystem[FONTSEL_IMPACT]->do_request(get_app(), ::e_type_null, false, pimpactdata->m_pplaceholder);
 
-         auto ptemplate = puser->m_mapimpactsystem[FONTSEL_IMPACT];
+         auto ptemplate = puser->impact_system(FONTSEL_IMPACT);
 
          auto pdocument = ptemplate->open_document_file(get_app(), ::e_type_null, __visible(true).is_true(), pimpactdata->m_pplaceholder);
 
@@ -662,9 +665,9 @@ namespace userex
 
          m_pfontimpact->set_need_layout();
 
-         pdocument->m_pviewTopic->set_notify_user_interaction(this);
+         pdocument->m_pimpactTopic->set_notify_user_interaction(this);
 
-         pimpactdata->m_puserinteraction = pdocument->m_pviewTopic;
+         pimpactdata->m_puserinteraction = pdocument->m_pimpactTopic;
          
          m_pfontimpact->m_pimpact->add_handler(this);
 
@@ -691,7 +694,7 @@ namespace userex
 
          puser->will_use_impact_hint(COLORSEL_IMPACT);
 
-         auto pimpactsystem = puser->m_mapimpactsystem[COLORSEL_IMPACT];
+         auto pimpactsystem = puser->impact_system(COLORSEL_IMPACT);
 
          //auto pdocument = pimpactsystem->open_document_file(get_app(), ::e_type_null, __visible(false).is_true(), pimpactdata->m_pplaceholder);
 
@@ -718,59 +721,65 @@ namespace userex
 
          pimpactdata->m_eflag.add(::user::e_flag_tool_impact);
 
-         auto pfilemanagerdata = cast < ::filemanager::data >("data." + pimpactdata->m_atom);
+         //auto pfilemanagerdata = cast < ::filemanager::data >("data." + pimpactdata->m_atom);
 
-         auto pcontext = m_pcontext;
-         
-         auto psession = pcontext->m_pacmesession->m_paurasession;
-         
-         auto puser = psession->m_puser->m_pcoreuser;
+         //auto pcontext = m_pcontext;
+         //
+         //auto psession = pcontext->m_pacmesession->m_paurasession;
+         //
+         //auto puser = psession->m_puser->m_pcoreuser;
 
-         if (pfilemanagerdata.is_null())
-         {
+         //if (pfilemanagerdata.is_null())
+         //{
 
-            pfilemanagerdata = puser->filemanager(pimpactdata->m_atom);
+         //   pfilemanagerdata = puser->filemanager(pimpactdata->m_atom);
 
-         }
+         //}
 
-         if (find_i32("filemanager_icon_size") > 0)
+         auto pfilemanager = application()->m_pcoreapplication->filemanager();
+
+         auto pfilemanagerdata = pfilemanager->create_filemanager_data();
+
+         pfilemanager->impact_system()->create_subdocument(pimpactdata, pfilemanagerdata);
+
+   /*      if (find_i32("filemanager_icon_size") > 0)
          {
 
             pfilemanagerdata->m_iIconSize = find_i32("filemanager_icon_size");
 
-         }
+         }*/
 
-         pfilemanagerdata->m_puserinteractionParent = pimpactdata->m_pplaceholder;
+         //pfilemanagerdata->m_puserinteractionParent = pimpactdata->m_pplaceholder;
 
          //pfilemanagerdata->m_atom = pimpactdata->m_atom;
 
-         if (has_property("filemanager_toolbar")
-               && payload("filemanager_toolbar").m_etype == ::e_type_property_set)
-         {
+         //if (has_property("filemanager_toolbar")
+         //      && payload("filemanager_toolbar").m_etype == ::e_type_property_set)
+         //{
 
-            auto & set = payload("filemanager_toolbar");
+         //   auto & set = payload("filemanager_toolbar");
 
-            if (set[::userfs::e_mode_normal].is_set())
-               pfilemanagerdata->m_setToolbar[::userfs::e_mode_normal] = set[::userfs::e_mode_normal];
-            else
-               pfilemanagerdata->m_setToolbar[::userfs::e_mode_normal] = "filemanager_toolbar.xml";
+         //   if (set[::userfs::e_mode_normal].is_set())
+         //      pfilemanagerdata->m_setToolbar[::userfs::e_mode_normal] = set[::userfs::e_mode_normal];
+         //   else
+         //      pfilemanagerdata->m_setToolbar[::userfs::e_mode_normal] = "filemanager_toolbar.xml";
 
-            if (set[::userfs::e_mode_saving].is_set())
-               pfilemanagerdata->m_setToolbar[::userfs::e_mode_saving] = set[::userfs::e_mode_saving];
-            else
-               pfilemanagerdata->m_setToolbar[::userfs::e_mode_saving] = "filemanager_saving_toolbar.xml";
+         //   if (set[::userfs::e_mode_saving].is_set())
+         //      pfilemanagerdata->m_setToolbar[::userfs::e_mode_saving] = set[::userfs::e_mode_saving];
+         //   else
+         //      pfilemanagerdata->m_setToolbar[::userfs::e_mode_saving] = "filemanager_saving_toolbar.xml";
 
-            if (set[::userfs::e_mode_import].is_set())
-               pfilemanagerdata->m_setToolbar[::userfs::e_mode_import] = set[::userfs::e_mode_import];
-            else
-               pfilemanagerdata->m_setToolbar[::userfs::e_mode_import] = "filemanager_import_toolbar.xml";
+         //   if (set[::userfs::e_mode_import].is_set())
+         //      pfilemanagerdata->m_setToolbar[::userfs::e_mode_import] = set[::userfs::e_mode_import];
+         //   else
+         //      pfilemanagerdata->m_setToolbar[::userfs::e_mode_import] = "filemanager_import_toolbar.xml";
 
-            if (set[::userfs::e_mode_export].is_set())
-               pfilemanagerdata->m_setToolbar[::userfs::e_mode_export] = set[::userfs::e_mode_export];
-            else
-               pfilemanagerdata->m_setToolbar[::userfs::e_mode_export] = "filemanager_export_toolbar.xml";
+         //   if (set[::userfs::e_mode_export].is_set())
+         //      pfilemanagerdata->m_setToolbar[::userfs::e_mode_export] = set[::userfs::e_mode_export];
+         //   else
+         //      pfilemanagerdata->m_setToolbar[::userfs::e_mode_export] = "filemanager_export_toolbar.xml";
 
-         }
+         //}
 //         else
 //         {
 //
@@ -781,41 +790,43 @@ namespace userex
 //
 //         }
 
-         if(pfilemanagerdata->m_prequest.is_null())
-         {
+         //if(pfilemanagerdata->m_prequest.is_null())
+         //{
 
-            pfilemanagerdata->m_prequest = __create_new< ::request>();
+         //   pfilemanagerdata->m_prequest = __create_new< ::request>();
 
-            pfilemanagerdata->m_prequest->finish_initialization();
+         //   pfilemanagerdata->m_prequest->finish_initialization();
 
-         }
+         //}
 
-         pfilemanagerdata->open();
+         //pfilemanagerdata->open();
 
-         ::pointer<::filemanager::document>pdocument = pfilemanagerdata->m_pdocument;
 
-         if(pdocument != nullptr)
-         {
 
-            m_mapFileManager[pimpactdata->m_atom] = pdocument;
+         //::pointer<::filemanager::document>pdocument = pfilemanagerdata->m_pdocument;
 
-            ::pointer<::user::impact>pimpact = pdocument->get_impact();
+         //if(pdocument != nullptr)
+         //{
 
-            if(pimpact != nullptr)
-            {
+         //   m_mapFileManager[pimpactdata->m_atom] = pdocument;
 
-               ::pointer<::user::frame_window>pframe = pimpact->parent_frame();
+         //   ::pointer<::user::impact>pimpact = pdocument->get_impact();
 
-               if(pframe != nullptr)
-               {
+         //   if(pimpact != nullptr)
+         //   {
 
-                  pimpactdata->m_pdocument = pdocument;
+         //      ::pointer<::user::frame_window>pframe = pimpact->parent_frame();
 
-               }
+         //      if(pframe != nullptr)
+         //      {
 
-            }
+         //         pimpactdata->m_pdocument = pdocument;
 
-         }
+         //      }
+
+         //   }
+
+         //}
 
       }
       //else if(pimpactdata->m_atom == "tabbed_file_manager")

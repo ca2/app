@@ -169,6 +169,8 @@ namespace apex
       void initialize(::particle * pparticle) override;
 
 
+      void on_set_platform() override;
+
       //void on_initialize_application(::main* pmain) override;
       //// void assert_ok() const override;
       //// void dump(dump_context & dumpcontext) const override;
@@ -254,14 +256,14 @@ namespace apex
       //virtual bool on_application_menu_action(const ::string & pszCommand);
 
 
-      virtual void term();
+      void term() override;
 
 
-      virtual void term_application();
+      void term_application() override;
 
 
 
-
+      virtual void init_fs_set(::fs::set * pfsset);
       //virtual bool InitApplication();
 
 
@@ -503,7 +505,7 @@ namespace apex
       //virtual ::pointer < ::interprocess::handler > create_interprocess_handler();
 
       //virtual void process_init();
-      virtual void process_term();
+      void process_term() override;
 
       //virtual void impl_process_init();
       //virtual void impl_init1();
@@ -519,9 +521,9 @@ namespace apex
       //virtual void init2();
       //virtual void init3();
 
-      virtual void term1();
-      virtual void term2();
-      virtual void term3();
+      void term1() override;
+      void term2() override;
+      void term3() override;
 
       virtual void init_task() override;
       //virtual void init_application();
@@ -529,7 +531,7 @@ namespace apex
       virtual void term_task() override;
 
       //virtual void init_instance() override;
-      virtual void term_instance();
+      void term_instance() override;
 
       //virtual void init();
       //virtual void term();
@@ -559,8 +561,8 @@ namespace apex
       //virtual void application_pre_run();
 
       virtual void on_pos_run_thread() override;
-      virtual void pos_run();
-      virtual void application_pos_run();
+      virtual void pos_run() override;
+      virtual void application_pos_run() override;
 
 
 
@@ -600,19 +602,19 @@ namespace apex
       //virtual string get_mutex_name_gen();
 
       /// return true if this instance might continue execution
-      /// bHandled true if some action was done in response to this memory_new additional instance creation
+      /// bHandled true if some action was done in response to this new additional instance creation
       virtual void on_exclusive_instance_conflict(bool & bHandled, enum_exclusive_instance eexclusive, string strId);
 
       /// return true if this instance might continue execution
-      /// bHandled true if some action was done in response to this memory_new additional instance creation
+      /// bHandled true if some action was done in response to this new additional instance creation
       virtual void on_exclusive_instance_local_conflict(bool & bHandled);
 
       /// return true if this instance might continue execution
-/// bHandled true if some action was done in response to this memory_new additional instance creation
+/// bHandled true if some action was done in response to this new additional instance creation
       virtual void on_exclusive_instance_local_conflict_id(bool & bHandled, string strId);
 
       /// return true if the external additional instance might continue execution
-      /// bHandled true if some action was done in response to the external memory_new additional instance creation
+      /// bHandled true if some action was done in response to the external aaa_memory_new additional instance creation
       virtual void on_additional_local_instance(bool & bHandled, string strModule, int iPid, string strCommandLine);
 
       virtual void on_new_instance(string strModule, const ::atom & idPid);
@@ -1041,7 +1043,7 @@ namespace apex
       virtual void userfs_process_init();
 
 
-      virtual void data_on_after_change(::database::client * pclient, const ::scoped_string & scopedstr, const ::payload & payload, ::topic * ptopic) override;
+      void data_on_after_change(::database::client * pclient, const ::scoped_string & scopedstr, ::topic * ptopic) override;
 
 
       virtual void report_error(const ::exception & e, int iMessageFlags, const ::string & pszTopic);

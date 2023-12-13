@@ -193,7 +193,7 @@ bool imaging::load_image(::particle * pparticle, ::image * pimage, const ::memor
             if (FAILED(hrExif))
             {
 
-               PropVariantClear(&value); // Clear value for memory_new query.
+               PropVariantClear(&value); // Clear value for aaa_primitive_new query.
 
                PropVariantInit(&value);
 
@@ -208,7 +208,7 @@ bool imaging::load_image(::particle * pparticle, ::image * pimage, const ::memor
 
             }
 
-            PropVariantClear(&value); // Clear value for memory_new query.
+            PropVariantClear(&value); // Clear value for aaa_primitive_new query.
 
          }
 
@@ -371,7 +371,7 @@ bool node_save_image(::file::file * pfile, const ::image * pimage, ::save_image 
 
 #ifdef UNIVERSAL_WINDOWS
 
-   ::winrt::Windows::Storage::Streams::InMemoryRandomAccessStream ^ randomAccessStream = ref memory_new ::winrt::Windows::Storage::Streams::InMemoryRandomAccessStream();
+   ::winrt::Windows::Storage::Streams::InMemoryRandomAccessStream ^ randomAccessStream = ref aaa_primitive_new ::winrt::Windows::Storage::Streams::InMemoryRandomAccessStream();
 
    //::wait(randomAccessStream->WriteAsync(get_os_buffer()));
 

@@ -35,7 +35,7 @@ namespace universal_windows
 
       draw2d_direct2d::direct2d_initialize();
 
-      m_puisettings = ref memory_new ::winrt::Windows::UI::ViewManagement::UISettings;
+      m_puisettings = ref aaa_primitive_new ::winrt::Windows::UI::ViewManagement::UISettings;
          
       add_factory_item < ::universal_windows::buffer, ::graphics::graphics >();
 
@@ -63,7 +63,7 @@ namespace universal_windows
 
 //      psystem->get_session()->m_frameworkview = this;
 
-      m_pdxi = __new(directx_interaction);
+      m_pdxi = __allocate< directx_interaction >();
 
    }
 
@@ -149,11 +149,11 @@ namespace universal_windows
 
       impact::Initialize(applicationView);
 
-      applicationView->Activated += ref memory_new TypedEventHandler<CoreApplicationView^, IActivatedEventArgs^>(this, &directx_framework_impact::OnActivated);
+      applicationView->Activated += ref aaa_primitive_new TypedEventHandler<CoreApplicationView^, IActivatedEventArgs^>(this, &directx_framework_impact::OnActivated);
 
-      CoreApplication::Suspending += ref memory_new EventHandler<SuspendingEventArgs^>(this, &directx_framework_impact::OnSuspending);
+      CoreApplication::Suspending += ref aaa_primitive_new EventHandler<SuspendingEventArgs^>(this, &directx_framework_impact::OnSuspending);
 
-      CoreApplication::Resuming += ref memory_new EventHandler<Object^>(this, &directx_framework_impact::OnResuming);
+      CoreApplication::Resuming += ref aaa_primitive_new EventHandler<Object^>(this, &directx_framework_impact::OnResuming);
 
    }
 
@@ -161,33 +161,33 @@ namespace universal_windows
    void directx_framework_impact::install_directx_application_message_routing()
    {
       
-      m_puisettings->ColorValuesChanged += ref memory_new TypedEventHandler<::winrt::Windows::UI::ViewManagement::UISettings^, Platform::Object^> (this, &directx_framework_impact::OnUISettingsColorValuesChange);
+      m_puisettings->ColorValuesChanged += ref aaa_primitive_new TypedEventHandler<::winrt::Windows::UI::ViewManagement::UISettings^, Platform::Object^> (this, &directx_framework_impact::OnUISettingsColorValuesChange);
 
       CoreWindow ^ window = m_window.Get();
 
-      window->VisibilityChanged += ref memory_new TypedEventHandler<CoreWindow^, VisibilityChangedEventArgs^>(this, &directx_framework_impact::OnWindowVisibilityChanged);
+      window->VisibilityChanged += ref aaa_primitive_new TypedEventHandler<CoreWindow^, VisibilityChangedEventArgs^>(this, &directx_framework_impact::OnWindowVisibilityChanged);
 
-      window->PointerCursor = ref memory_new CoreCursor(CoreCursorType::Arrow, 0);
+      window->PointerCursor = ref aaa_primitive_new CoreCursor(CoreCursorType::Arrow, 0);
 
-      window->SizeChanged += ref memory_new TypedEventHandler<CoreWindow^, WindowSizeChangedEventArgs^>(this, &directx_framework_impact::OnWindowSizeChanged);
+      window->SizeChanged += ref aaa_primitive_new TypedEventHandler<CoreWindow^, WindowSizeChangedEventArgs^>(this, &directx_framework_impact::OnWindowSizeChanged);
 
-      window->PointerMoved += ref memory_new TypedEventHandler < CoreWindow^, PointerEventArgs^>(this, &directx_framework_impact::OnPointerMoved);
+      window->PointerMoved += ref aaa_primitive_new TypedEventHandler < CoreWindow^, PointerEventArgs^>(this, &directx_framework_impact::OnPointerMoved);
 
-      window->CharacterReceived += ref memory_new TypedEventHandler<CoreWindow^, CharacterReceivedEventArgs^>(this, &directx_framework_impact::OnCharacterReceived);
+      window->CharacterReceived += ref aaa_primitive_new TypedEventHandler<CoreWindow^, CharacterReceivedEventArgs^>(this, &directx_framework_impact::OnCharacterReceived);
 
-      window->KeyDown += ref memory_new TypedEventHandler < CoreWindow^, KeyEventArgs^>(this, &directx_framework_impact::OnKeyDown);
+      window->KeyDown += ref aaa_primitive_new TypedEventHandler < CoreWindow^, KeyEventArgs^>(this, &directx_framework_impact::OnKeyDown);
 
-      window->KeyUp += ref memory_new TypedEventHandler < CoreWindow^, KeyEventArgs^>( this, &directx_framework_impact::OnKeyUp);
+      window->KeyUp += ref aaa_primitive_new TypedEventHandler < CoreWindow^, KeyEventArgs^>( this, &directx_framework_impact::OnKeyUp);
 
-      window->PointerPressed += ref memory_new TypedEventHandler<CoreWindow^, PointerEventArgs^>(this, &directx_framework_impact::OnPointerPressed);
+      window->PointerPressed += ref aaa_primitive_new TypedEventHandler<CoreWindow^, PointerEventArgs^>(this, &directx_framework_impact::OnPointerPressed);
 
-      window->PointerReleased += ref memory_new TypedEventHandler<CoreWindow^, PointerEventArgs^>(this, &directx_framework_impact::OnPointerReleased);
+      window->PointerReleased += ref aaa_primitive_new TypedEventHandler<CoreWindow^, PointerEventArgs^>(this, &directx_framework_impact::OnPointerReleased);
 
       ::winrt::Windows::Graphics::Display::DisplayInformation ^ displayinformation = ::winrt::Windows::Graphics::Display::DisplayInformation::GetForCurrentImpact();
 
-      displayinformation->DpiChanged += ref memory_new TypedEventHandler < DisplayInformation ^, Object ^ >(this, &directx_framework_impact::DpiChanged);
+      displayinformation->DpiChanged += ref aaa_primitive_new TypedEventHandler < DisplayInformation ^, Object ^ >(this, &directx_framework_impact::DpiChanged);
 
-      displayinformation->DisplayContentsInvalidated += ref memory_new TypedEventHandler < DisplayInformation ^, Object ^ >(this, &directx_framework_impact::DisplayContentsInvalidated);
+      displayinformation->DisplayContentsInvalidated += ref aaa_primitive_new TypedEventHandler < DisplayInformation ^, Object ^ >(this, &directx_framework_impact::DisplayContentsInvalidated);
 
    }
 
@@ -197,7 +197,7 @@ namespace universal_windows
 
       impact::SetWindow(window);
 
-      m_directx = ref memory_new directx_base();
+      m_directx = ref aaa_primitive_new directx_base();
 
       m_directx->system() = system();
 
@@ -292,7 +292,7 @@ namespace universal_windows
 
             string str = eventArgs->Uri->AbsoluteUri;
 
-            auto pcreate = __new(::create(system()));
+            auto pcreate = __allocate< ::create >(system());
 
             pcreate->m_ecommand = ::command_protocol;
 
@@ -345,7 +345,7 @@ namespace universal_windows
 
       ::pointer<::user::message>spbase;
 
-      auto pkey  = __new(::message::key);
+      auto pkey  = __allocate< ::message::key >();
 
       spbase = pkey;
 
@@ -376,7 +376,7 @@ namespace universal_windows
 
       ::pointer<::user::message>spbase;
 
-      auto pkey  = __new(::message::key);
+      auto pkey  = __allocate< ::message::key >();
 
       spbase = pkey;
 
@@ -425,7 +425,7 @@ namespace universal_windows
 
       ::pointer<::user::message>spbase;
 
-      ::message::key * pkey = memory_new  ::message::key;
+      ::message::key * pkey = aaa_primitive_new  ::message::key;
 
       spbase = pkey;
 
@@ -534,7 +534,7 @@ namespace universal_windows
 
       ::pointer<::user::message>spbase;
 
-      ::message::mouse * pmouse = memory_new ::message::mouse;
+      ::message::mouse * pmouse = aaa_primitive_new ::message::mouse;
 
       spbase = pmouse;
 
@@ -570,7 +570,7 @@ namespace universal_windows
 
       ::pointer<::user::message>spbase;
 
-      ::message::mouse * pmouse = memory_new  ::message::mouse;
+      ::message::mouse * pmouse = aaa_primitive_new  ::message::mouse;
 
       spbase = pmouse;
 
@@ -634,7 +634,7 @@ namespace universal_windows
 
       ::pointer<::user::message>spbase;
 
-      ::message::mouse * pmouse = memory_new  ::message::mouse;
+      ::message::mouse * pmouse = aaa_primitive_new  ::message::mouse;
 
       spbase = pmouse;
 
@@ -700,7 +700,7 @@ namespace universal_windows
    ::winrt::Windows::ApplicationModel::Core::IFrameworkView^ directx_application_source::CreateImpact()
    {
 
-      return ref memory_new directx_framework_impact(system(),m_strId);
+      return ref aaa_primitive_new directx_framework_impact(system(),m_strId);
 
    }
 
@@ -714,7 +714,7 @@ namespace universal_windows
 
       //str += " full_screen";
 
-      return ref memory_new directx_application_source(paurasystem, str);
+      return ref aaa_primitive_new directx_application_source(paurasystem, str);
 
    }
 
@@ -752,7 +752,7 @@ namespace universal_windows
             if(m_window == nullptr)
                return rectangle;
 
-            ::wait(m_window->Dispatcher->RunAsync(::winrt::Windows::UI::Core::CoreDispatcherPriority::Normal, ref memory_new ::winrt::Windows::UI::Core::DispatchedHandler ([=, &rectangle]()
+            ::wait(m_window->Dispatcher->RunAsync(::winrt::Windows::UI::Core::CoreDispatcherPriority::Normal, ref aaa_primitive_new ::winrt::Windows::UI::Core::DispatchedHandler ([=, &rectangle]()
             {
                try
                {
@@ -780,7 +780,7 @@ namespace universal_windows
             if(g_iMouse < 0)
                return p;
 
-            ::wait(m_window->Dispatcher->RunAsync(::winrt::Windows::UI::Core::CoreDispatcherPriority::Normal, ref memory_new ::winrt::Windows::UI::Core::DispatchedHandler ([=, &p]()
+            ::wait(m_window->Dispatcher->RunAsync(::winrt::Windows::UI::Core::CoreDispatcherPriority::Normal, ref aaa_primitive_new ::winrt::Windows::UI::Core::DispatchedHandler ([=, &p]()
             {
                try
                {

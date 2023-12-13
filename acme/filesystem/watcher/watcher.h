@@ -62,9 +62,9 @@ namespace file
 
       virtual void erase_watch(watch_id watch_id, ::function < void () > functionErased = nullptr);
 
-      virtual void run() override;
+      void run() override;
 
-      virtual bool step() override;
+      virtual bool file_watcher_step();
 
 
    };//end file_watcher

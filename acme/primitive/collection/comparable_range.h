@@ -33,7 +33,7 @@
 //   //using BASE_RANGE::BASE_RANGE;
 //
 //
-//   comparable_range(enum_no_initialize) : RANGE_TYPE(e_no_initialize) {}
+//   comparable_range(no_initialize_t) : RANGE_TYPE(no_initialize_t{}) {}
 //   comparable_range(nullptr_t) : RANGE_TYPE(nullptr) {}
 //   comparable_range() {}
 //   template<typed_range<iterator> RANGE>

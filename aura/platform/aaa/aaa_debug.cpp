@@ -18,7 +18,7 @@ void debug_object_event_promisse_predicate()
 
    //::object o;
 
-   //::object * po = memory_new object();
+   //::object * po = aaa_primitive_new object();
 
    //// 2 arguments
    //o.treat(ok, po, [&](auto & result) { informationf("o += ok..."); return success; } };

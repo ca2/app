@@ -879,7 +879,7 @@ run_install:
 
                   LRESULT lresult;
 
-                  ::pointer<user::message>paxis = __new(user::message(get_app(),this,e_message_activate,MAKEWPARAM(WA_INACTIVE,0),0,lresult));
+                  ::pointer<user::message>paxis = __allocate< user::message >(get_app(),this,e_message_activate,MAKEWPARAM(WA_INACTIVE,0),0,lresult);
 
                   m_phost->::hotplugin::host::message_handler(paxis);
 
@@ -896,7 +896,7 @@ run_install:
 
                   LRESULT lresult;
 
-                  ::pointer<user::message>paxis = __new(user::message(get_app(),this,e_message_activate,MAKEWPARAM(WA_ACTIVE,0),0,lresult));
+                  ::pointer<user::message>paxis = __allocate< user::message >(get_app(),this,e_message_activate,MAKEWPARAM(WA_ACTIVE,0),0,lresult);
 
                   m_phost->::hotplugin::host::message_handler(paxis);
 
@@ -914,7 +914,7 @@ run_install:
 
                   LRESULT lresult;
 
-                  ::pointer<user::message>paxis = __new(user::message(get_app(),this,e_message_kill_focus,0,0,lresult));
+                  ::pointer<user::message>paxis = __allocate< user::message >(get_app(),this,e_message_kill_focus,0,0,lresult);
 
                   m_phost->::hotplugin::host::message_handler(paxis);
 
@@ -931,7 +931,7 @@ run_install:
 
                   LRESULT lresult;
 
-                  ::pointer<user::message>paxis = __new(user::message(get_app(),this,e_message_set_focus,0,0,lresult));
+                  ::pointer<user::message>paxis = __allocate< user::message >(get_app(),this,e_message_set_focus,0,0,lresult);
 
                   m_phost->::hotplugin::host::message_handler(paxis);
 
@@ -1020,7 +1020,7 @@ run_install:
 
       if(m_bLogin)
       {
-         //::informationf("m_bLogin");
+         //::acme::get()->platform()->informationf("m_bLogin");
          //get_login().draw(pgraphics);
       }
       else if (psystem->install().is_installing_ca2())
@@ -1060,7 +1060,7 @@ run_install:
       }
       else
       {
-         //::informationf("Neither");
+         //::acme::get()->platform()->informationf("Neither");
       }
 
 #ifdef WINDOWS
@@ -1094,7 +1094,7 @@ run_install:
       else
       {
 
-         //::informationf("m_bLogin || !bInstallingCa2");
+         //::acme::get()->platform()->informationf("m_bLogin || !bInstallingCa2");
       }
 
 
@@ -1669,7 +1669,7 @@ restart:
 
 ::hotplugin::plugin * new_hotplugin(::particle * pparticle)
 {
-   return memory_new ::install::plugin(pparticle);
+   return __new< ::install::plugin >(pparticle);
 }
 
 #endif

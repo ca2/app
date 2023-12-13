@@ -11,7 +11,7 @@ void * PASCAL no_track_object::operator new(size_t nSize, const char *, i32)
 {
    return no_track_object::operator new(nSize);
 }
-#define memory_new DEBUG_NEW
+#define aaa_primitive_new DEBUG_NEW
 void PASCAL no_track_object::operator delete(void * pObject, const char *, i32)
 {
    if (pObject != nullptr)
@@ -27,7 +27,7 @@ void * PASCAL no_track_object::operator new(size_t nSize)
       throw memory_exception(::get_thread_app());
    return p;
 }
-#define memory_new DEBUG_NEW
+#define aaa_primitive_new DEBUG_NEW
 
 void PASCAL no_track_object::operator delete(void * p)
 {
@@ -79,7 +79,7 @@ struct slot_data
 thread_local_storage::thread_local_storage()
 {
 
-   m_pthreadslotdata = memory_new thread_slot_data();
+   m_pthreadslotdata = aaa_primitive_new thread_slot_data();
 
 }
 
@@ -114,7 +114,7 @@ thread_slot_data * thread_local_storage::get_slot_data()
    return m_pthreadslotdata;
 
 }
-#define memory_new DEBUG_NEW
+#define aaa_primitive_new DEBUG_NEW
 
 
 thread_slot_data::thread_slot_data()

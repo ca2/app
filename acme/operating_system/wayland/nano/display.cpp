@@ -355,12 +355,12 @@ namespace wayland
 //   display * display::get(::particle * pparticle, bool bBranch, ::wl_display * pwldisplay)
 //   {
 //
-//      critical_section_lock lock(::platform::get()->globals_critical_section());
+//      critical_section_lock lock(this->platform()->globals_critical_section());
 //
 //      if (g_p == nullptr)
 //      {
 //
-//         auto p = memory_new display;
+//         auto p = __new< display >();
 //
 //         p->initialize(pparticle);
 //
@@ -453,10 +453,10 @@ namespace wayland
 //   }
 
 //
-//   bool display::x11_posted()
+//   bool display::aa_x11_posted()
 //   {
 //
-//      return display_posted_routine_step();
+//      return aaa_display_posted_routine_step();
 //
 //   }
 //
@@ -513,7 +513,7 @@ namespace wayland
 //   }
 //
 //
-//   void display::message_loop()
+//   void display::aaa_message_loop()
 //   {
 //
 //      bool bHandled1;
@@ -534,7 +534,7 @@ namespace wayland
 //
 //         bHandled2 = false;
 //
-//         while(message_loop_step())
+//         while(aaa_message_loop_step())
 //         {
 //
 //            bHandled1 = true;
@@ -544,7 +544,7 @@ namespace wayland
 //         if(!bHandled1)
 //         {
 //
-//            bHandled2 = x11_posted();
+//            bHandled2 = aaa_x11_posted();
 //
 //         }
 //

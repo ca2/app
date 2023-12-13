@@ -9,7 +9,8 @@ namespace windowing
 {
 
 
-   window_base::window_base()
+   window_base::window_base() :
+      m_pointCursor2(I32_MINIMUM)
    {
 
 

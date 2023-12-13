@@ -6,6 +6,7 @@
 #include "acme/constant/id.h"
 #include "acme/constant/user_key.h"
 #include "acme/exception/interface_only.h"
+#include "acme/handler/topic.h"
 #include "acme/parallelization/pool.h"
 #include "acme/constant/message.h"
 #include "aura/graphics/image/icon.h"
@@ -46,14 +47,17 @@ namespace user
 
       ::user::interaction::install_message_routing(pchannel);
 
+
+
+
       add_command_handler("app_exit", { this, &frame::on_message_application_exit });
       
 
-      //MESSAGE_LINK(e_message_set_cursor, pchannel, this, &window::on_message_set_cursor);
+      MESSAGE_LINK(e_message_destroy, pchannel, this, &frame::on_message_destroy);
       MESSAGE_LINK(e_message_application_exit, pchannel, this, &frame::on_message_application_exit);
       MESSAGE_LINK(e_message_key_down, pchannel, this, &frame::on_message_key_down);
 
-      system()->add_signal_handler({ e_use, this }, id_operating_system_user_color_change);
+      system()->add_signal_handler({ use_t{}, this }, id_operating_system_user_color_change);
 //#ifdef WINDOWS_DESKTOP
 //
 //      if (is_frame_window())
@@ -69,6 +73,13 @@ namespace user
    }
 
    
+   void frame::on_message_destroy(::message::message * pmessage)
+   {
+
+      erase_graphical_output_purpose(this);
+
+   }
+
 
    void frame::on_message_application_exit(::message::message* pmessage)
    {
@@ -142,6 +153,15 @@ namespace user
 
    }
 
+
+   void frame::destroy()
+   {
+
+      m_puserstyle.defer_destroy();
+
+      ::user::box::destroy();
+
+   }
 
 //   bool frame::is_os_host() const
 //   {
@@ -548,7 +568,6 @@ namespace user
       return e_window_type_frame;
 
    }
-
 
 
    void frame::handle(::topic * ptopic, ::context * pcontext)

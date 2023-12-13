@@ -17,6 +17,9 @@ namespace user
    public:
 
 
+      bool     m_bAutoCreate;
+
+
       split_impact();
       ~split_impact() override;
 

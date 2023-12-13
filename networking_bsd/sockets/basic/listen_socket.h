@@ -14,7 +14,7 @@ namespace sockets_bsd
 {
 
 
-   /** Binds incoming port number to memory_new socket class X.
+   /** Binds incoming port number to new socket class X.
    \ingroup basic */
    class CLASS_DECL_NETWORKING_BSD listen_socket :
       virtual public ::sockets_bsd::socket,
@@ -23,16 +23,16 @@ namespace sockets_bsd
    public:
 
 
-      i32              m_depth;
-      bool                 m_bDetach;
-      base_socket *        m_pbasesocket;
+      //i32              m_depth;
+      //bool                 m_bStartDetach;
+      //base_socket *        m_pbasesocket;
 
 
       /** Constructor.
       \lparam h base_socket_handler object
       \lparam use_creator Optional use of creator (default true) */
       listen_socket();
-      virtual ~listen_socket();
+      ~listen_socket() override;
 
       void initialize(::particle * pparticle) override;
 
@@ -43,8 +43,6 @@ namespace sockets_bsd
       void set_ssl_cipher_list(const ::string & strCipherList) override;
 
 
-      void set_should_detach(bool bSet) override;
-      bool should_detach() const override;
 
       //virtual ::pointer<::sockets::socket>create_listen_socket();
 

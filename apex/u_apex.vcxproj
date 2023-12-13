@@ -793,7 +793,6 @@
     <ClCompile Include="handler\context.cpp" />
     <ClCompile Include="handler\manager.cpp" />
     <ClCompile Include="handler\signal.cpp" />
-    <ClCompile Include="handler\source.cpp" />
     <ClCompile Include="input\input.cpp" />
     <ClCompile Include="interprocess\base.cpp" />
     <ClCompile Include="interprocess\call.cpp" />

@@ -47,7 +47,7 @@ namespace filemanager
 
       auto psystem = system()->m_pcoresystem;
 
-      psystem->imaging().change_hue(
+      psystem->imaging()->change_hue(
       m_pimagelistNormal,
       m_pimagelistSubItemHover,
       rgb(220, 220, 215),

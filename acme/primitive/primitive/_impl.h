@@ -31,10 +31,17 @@
 
 
 template < typename BASE_TYPE >
-inline ::pointer<BASE_TYPE>particle::__create(::factory::factory* pfactory)
+inline ::pointer<BASE_TYPE>particle::__call__create(::factory::factory* pfactory)
 {
 
-   auto pfactoryitem = pfactory->get_factory_item<BASE_TYPE>();
+   if (::is_null(pfactory))
+   {
+
+      pfactory = this->factory();
+
+   }
+
+   auto & pfactoryitem = pfactory->get_factory_item<BASE_TYPE>();
 
    if (!pfactoryitem)
    {
@@ -43,7 +50,7 @@ inline ::pointer<BASE_TYPE>particle::__create(::factory::factory* pfactory)
 
    }
 
-   auto p = pfactoryitem->create_particle();
+   auto p = pfactoryitem->__call__create_particle();
 
    if (!p)
    {
@@ -72,7 +79,7 @@ inline ::pointer<BASE_TYPE>particle::__create(::factory::factory* pfactory)
 //
 //   }
 //
-//   auto p = pfactoryitem->create_particle();
+//   auto p = pfactoryitem->__call__create_particle();
 //
 //   if (!p)
 //   {
@@ -89,17 +96,69 @@ inline ::pointer<BASE_TYPE>particle::__create(::factory::factory* pfactory)
 
 
 template < typename TYPE >
-inline ::pointer<TYPE>particle::__create_new()
+inline ::pointer<TYPE>particle::__call__create_new()
 {
 
    //ASSERT(::is_set(this));
 
-   return ::__create_new<TYPE>(this);
+   //return __call__create_new<TYPE>(this);
+
+   //if (::is_null(pparticle))
+   //{
+
+   //   throw_exception(error_wrong_state);
+
+   //}
+
+   auto p = __call__allocate< TYPE >();
+
+   if (p)
+   {
+
+      p->initialize(this);
+
+   }
+
+   return ::transfer(p);
+
 
    //return p;
 
 }
 
+
+template < typename TYPE >
+inline ::pointer<TYPE>particle::__call__create_new_clone(TYPE * psrc)
+{
+
+   //ASSERT(::is_set(this));
+
+   //return __call__create_new<TYPE>(this);
+
+   //if (::is_null(pparticle))
+   //{
+
+   //   throw_exception(error_wrong_state);
+
+   //}
+
+   auto p = __call__allocate< TYPE >();
+
+   if (p)
+   {
+
+      p->initialize(this);
+
+   }
+
+   *p = *psrc;
+
+   return ::transfer(p);
+
+
+   //return p;
+
+}
 
 //template < class T >
 //template < typename TEMPLATER >
@@ -115,10 +174,15 @@ inline ::pointer<TYPE>particle::__create_new()
 
 
 template < typename BASE_TYPE >
-inline void particle::__construct(::pointer<BASE_TYPE>& p, ::factory::factory * pfactory)
+inline void particle::__call__construct(::pointer<BASE_TYPE>& p, ::factory::factory * pfactory)
 {
 
-   auto & pfactoryitem = pfactory->get_factory_item < BASE_TYPE >();
+   if (::is_null(pfactory))
+   {
+
+      pfactory = this->factory();
+
+   }
 
    if (!pfactory)
    {
@@ -127,9 +191,18 @@ inline void particle::__construct(::pointer<BASE_TYPE>& p, ::factory::factory * 
 
    }
 
-   auto ptypeNew = pfactoryitem->create_particle();
+   auto & pfactoryitem = pfactory->get_factory_item < BASE_TYPE >();
 
-   p = ptypeNew;
+   if (!pfactoryitem)
+   {
+
+      throw ::exception(::error_no_factory);
+
+   }
+
+   auto ptypeNew = pfactoryitem->__call__create_particle();
+
+   p = ::transfer(ptypeNew);
 
    if (!p)
    {
@@ -320,7 +393,7 @@ inline void particle::__construct(::pointer<BASE_TYPE>& p, ::factory::factory * 
 //inline void matter::__raw_construct_new(::pointer<TYPE>& p)
 //{
 //
-//   auto ptypeNew = __new(TYPE);
+//   auto ptypeNew = __allocate< TYPE >();
 //
 //   if (!ptypeNew)
 //   {
@@ -348,10 +421,16 @@ inline void particle::__construct(::pointer<BASE_TYPE>& p, ::factory::factory * 
 
 
 template < typename TYPE >
-inline void particle::__construct_new(::pointer<TYPE>& p)
+inline void particle::__call__construct_new(::pointer<TYPE>& p)
 {
 
-   auto ptypeNew = __new(TYPE);
+//#if REFERENCING_DEBUGGING
+//
+//   ::allocator::add_referer(REFERENCING_DEBUGGING_ARGUMENTS);
+//
+//#endif
+//
+   auto ptypeNew = __call__allocate< TYPE >();
 
    if (!ptypeNew)
    {
@@ -360,12 +439,45 @@ inline void particle::__construct_new(::pointer<TYPE>& p)
 
    }
 
-   p = ptypeNew;
+   p = ::transfer(ptypeNew);
+
+   //ptypeNew.set_referer();
+
+   //p.reset(ptypeNew);
 
    p->initialize(this);
 
 }
 
+
+//template < typename TYPE >
+//inline void particle::__call__raw_construct( ::pointer<TYPE> & p)
+//{
+//
+//#if REFERENCING_DEBUGGING
+//
+//   ::allocator::add_referer(REFERENCING_DEBUGGING_ARGUMENTS);
+//
+//#endif
+//
+//   auto ptypeNew = __call__allocate< TYPE >();
+//
+//   if (!ptypeNew)
+//   {
+//
+//      throw ::no_memory();
+//
+//   }
+//
+//   p = ::transfer(ptypeNew);
+//
+//   //ptypeNew.set_referer();
+//
+//   //p.reset(ptypeNew);
+//
+//   p->initialize(this);
+//
+//}
 
 //
 //template < typename TYPE >
@@ -437,7 +549,7 @@ inline void particle::__construct_new(::pointer<TYPE>& p)
 //         if (m_pcompositea->erase(pcomposite) >= 0)
 //         {
 //
-//            pcomposite->release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
+//            pcomposite->release();
 //
 //            pcomposite.clear_member();
 //
@@ -467,7 +579,7 @@ inline void particle::__construct_new(::pointer<TYPE>& p)
 //         if (m_preferencea->erase(preference.get()) >= 0)
 //         {
 //
-//            preference->release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
+//            preference->release();
 //
 //            preference.clear_member();
 //
@@ -586,7 +698,7 @@ inline void particle::__construct_new(::pointer<TYPE>& p)
 
 
 template < typename T >
-inline ::pointer < T > pointer_transfer(T* p) { return { e_pointer_transfer, p }; }
+inline ::pointer < T > pointer_transfer(T* p) { return { transfer_t{}, p}; }
 
 
 //template < typename TYPE >
@@ -994,7 +1106,7 @@ inline ::pointer < T > pointer_transfer(T* p) { return { e_pointer_transfer, p }
 //inline void future::pred(PRED pred)
 //{
 //
-//   m_pparticle = __new(predicate_future < PRED > (pred));
+//   m_pparticle = __allocate< predicate_future < PRED >  >(pred);
 //
 //}
 //
@@ -1063,7 +1175,7 @@ inline ::pointer < T > pointer_transfer(T* p) { return { e_pointer_transfer, p }
 //   for (index iOrder = 0; iOrder < iScan; iOrder++)
 //   {
 //
-//      ::pointer<predicate_holder_base>p = __new(forking_count_predicate < PRED > (iOrder, iOrder + iStart, iScan, iCount, pred));
+//      ::pointer<predicate_holder_base>p = __allocate< forking_count_predicate < PRED >  >(iOrder, iOrder + iStart, iScan, iCount, pred);
 //
 //      if (!pgroup->add_predicate(p))
 //      {
@@ -1103,11 +1215,11 @@ inline ::pointer < T > pointer_transfer(T* p) { return { e_pointer_transfer, p }
 
 
 //template < typename PRED >
-//method::method(PRED pred) : function(__new(predicate_method < PRED >(pred))) { }
+//method::method(PRED pred) : function(__allocate< predicate_method < PRED > >(pred)) { }
 //
 //
 //template < typename PRED >
-//future::future(PRED pred) : function(__new(predicate_future < PRED >(pred))) { }
+//future::future(PRED pred) : function(__allocate< predicate_future < PRED > >(pred)) { }
 
 
 
@@ -1121,38 +1233,38 @@ inline ::pointer < T > pointer_transfer(T* p) { return { e_pointer_transfer, p }
 
 
 
-#if OBJECT_REFERENCE_COUNT_DEBUG
+#if REFERENCING_DEBUGGING
 
 
 template < typename TYPE, typename T >
-void object_reference_count_debug_assign(::pointer<TYPE>& ptr, T * p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+void reference_count_debug_assign(::pointer<TYPE>& ptr, T * p)
 {
    
    auto pold = ptr.m_p;
 
    ptr.m_p = p;
 
-   p->increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+   p->increment_reference_count();
 
-   object_reference_count_debug_release(pold OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+   reference_count_debug_release(pold);
 
 }
 
 
 template < typename TYPE >
-void object_reference_count_debug_release(::pointer<TYPE>& ptr OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+void reference_count_debug_release(::pointer<TYPE>& ptr)
 {
    
-   object_reference_count_debug_release(ptr.m_p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+   reference_count_debug_release(ptr.m_p);
 
 }
 
 
 template < typename TYPE >
-void object_reference_count_debug_release(TYPE * & p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+void reference_count_debug_release(TYPE * & p)
 {
 
-   release(p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+   release(p);
 
 }
 
@@ -1229,7 +1341,7 @@ void object_reference_count_debug_release(TYPE * & p OBJECT_REFERENCE_COUNT_DEBU
 
 //
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void object::__construct(::pointer<BASE_TYPE> pcomposite, const SOURCE* psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//inline void object::__construct(::pointer<BASE_TYPE> pcomposite, const SOURCE* psource)
 //{
 //
 //   pcomposite = psource;
@@ -1251,7 +1363,7 @@ void object_reference_count_debug_release(TYPE * & p OBJECT_REFERENCE_COUNT_DEBU
 //
 //   //}
 //
-//    add_composite(pcomposite OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+//    add_composite(pcomposite);
 //
 //   //return m_estatus;
 //
@@ -1278,19 +1390,19 @@ void object_reference_count_debug_release(TYPE * & p OBJECT_REFERENCE_COUNT_DEBU
 //
 //
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void object::__construct(::pointer<BASE_TYPE> p, const ::pointer<SOURCE>psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//inline void object::__construct(::pointer<BASE_TYPE> p, const ::pointer<SOURCE>psource)
 //{
 //
-//   /* return */ __construct(p, psource.get() OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+//   /* return */ __construct(p, psource.get());
 //
 //}
 //
 //
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void object::__construct(::pointer<BASE_TYPE> p, const ptr < SOURCE > & psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//inline void object::__construct(::pointer<BASE_TYPE> p, const ptr < SOURCE > & psource)
 //{
 //
-//   /* return */ __construct(p, psource.get() OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+//   /* return */ __construct(p, psource.get());
 //
 //}
 //
@@ -1362,7 +1474,7 @@ void object_reference_count_debug_release(TYPE * & p OBJECT_REFERENCE_COUNT_DEBU
 //inline void object::__raw_construct_new(::pointer<TYPE> p)
 //{
 //
-//   auto ptypeNew = __new(TYPE);
+//   auto ptypeNew = __allocate< TYPE >();
 //
 //   if (!ptypeNew)
 //   {
@@ -1393,7 +1505,7 @@ void object_reference_count_debug_release(TYPE * & p OBJECT_REFERENCE_COUNT_DEBU
 //inline void object::__construct_new(::pointer<TYPE> p)
 //{
 //
-//   auto ptypeNew = __new(TYPE);
+//   auto ptypeNew = __allocate< TYPE >();
 //
 //   if (!ptypeNew)
 //   {
@@ -1413,7 +1525,7 @@ void object_reference_count_debug_release(TYPE * & p OBJECT_REFERENCE_COUNT_DEBU
 //
 //   p = ptypeNew;
 //
-//   /*estatus = */ add_composite(p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_P_FUNCTION_LINE(this));
+//   /*estatus = */ add_composite(p REFERENCING_DEBUGGING_COMMA_P_FUNCTION_LINE(this));
 //
 //   //if (!estatus)
 //   //{
@@ -1592,7 +1704,7 @@ void object_reference_count_debug_release(TYPE * & p OBJECT_REFERENCE_COUNT_DEBU
 //   if (::is_null(pelement))
 //   {
 //
-//      ::release(pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_P_NOTE(nullptr, "pointer::pointer(LPARAM)"));
+//      ::release(pelement REFERENCING_DEBUGGING_COMMA_P_NOTE(nullptr, "pointer::pointer(LPARAM)"));
 //
 //   }
 //
@@ -1645,31 +1757,34 @@ void object_reference_count_debug_release(TYPE * & p OBJECT_REFERENCE_COUNT_DEBU
 //}
 //
 
+//template < typename TYPE >
+//inline bool particle::__defer_construct(::pointer<TYPE> & p, ::factory::factory * pfactory)
+//{
+//
+//   if (::is_set(p))
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   __construct(p, pfactory);
+//
+//   return true;
+//
+//}
+
+
 template < typename TYPE >
-inline bool particle::__defer_construct(::pointer<TYPE> & p, ::factory::factory * pfactory)
+inline bool particle::__call__defer_construct_new(::pointer<TYPE> & p)
 {
 
    if (::is_set(p))
    {
+#if REFERENCING_DEBUGGING
 
-      return false;
-
-   }
-
-   __construct(p, pfactory);
-
-   return true;
-
-}
-
-
-template < typename TYPE >
-inline bool particle::__defer_construct_new(::pointer<TYPE> & p)
-{
-
-   if (::is_set(p))
-   {
-
+      ::allocator::defer_erase_referer();
+#endif
       return false;
 
    }
@@ -1692,6 +1807,30 @@ constexpr ::e_status e_status::worst(const ::e_status & e) const
 constexpr ::i64 posix_time::minutes() const { return m_iSecond / 60; }
 constexpr ::i64 posix_time::hours() const { return m_iSecond / (60 * 60); }
 constexpr ::i64 posix_time::days() const { return m_iSecond / (24 * 60 * 60); }
+
+
+
+//template < typename T, typename ...Args >
+//inline ::pointer < T > particle::__call__allocate(Args &&... args)
+//{
+//
+//   auto p = ::transfer(
+//      ::platform::allocator::__call__allocate< T >(
+//         ::std::forward<Args>(args)...));
+//
+//   return ::transfer(p);
+//
+//}
+//
+
+//inline ::particle * particle::__call__add_referer(const ::reference_referer & referer) const
+//{
+//
+//   ::allocator::add_referer(referer);
+//
+//   return (::particle *)this;
+//
+//}
 
 
 

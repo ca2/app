@@ -67,9 +67,7 @@ namespace sockets
    socket_thread::socket_thread()
    {
 
-      auto iAllocatedSocketThreadCount = g_iSocketThread++;
-
-      ::information() << "::sockets::socket_thread currently allocated count = " << iAllocatedSocketThreadCount;
+      m_iAllocatedCount = g_iSocketThread++;
 
    }
 
@@ -110,10 +108,19 @@ namespace sockets
    socket_thread::~socket_thread()
    {
 
-      ::informationf("--->>>>>socket_thread::~SOCKET_thread\n");
+      ::acme::get()->platform()->informationf("--->>>>>socket_thread::~SOCKET_thread\n");
 
    }
 
+
+   void socket_thread::on_initialize_particle()
+   {
+
+      ::task::on_initialize_particle();
+
+      information() << "::sockets::socket_thread currently allocated count = " << m_iAllocatedCount;
+
+   }
 
    //void socket_thread::init_thread()
    //{
@@ -142,18 +149,18 @@ namespace sockets
 #ifdef _DEBUG
 
 
-   ::i64 socket_thread::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+   ::i64 socket_thread::increment_reference_count()
    {
 
-      return ::task::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      return ::task::increment_reference_count();
 
    }
 
 
-   ::i64 socket_thread::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+   ::i64 socket_thread::decrement_reference_count()
    {
 
-      return ::task::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      return ::task::decrement_reference_count();
 
    }
 
@@ -162,6 +169,7 @@ namespace sockets
 
    base_socket* socket_thread::get_socket() const
    {
+
       if (::is_null(m_psockethandler))
       {
 
@@ -171,14 +179,14 @@ namespace sockets
 
       return nullptr;
 
-      ////auto passociation = m_psockethandler->m_socketmap.m_passociationHead;
+      //auto passociation = m_psockethandler->m_socketmap.m_passociationHead;
 
-      ////if (::is_null(passociation))
-      ////{
+      //if (::is_null(passociation))
+      //{
 
-      ////   return nullptr;
+      //   return nullptr;
 
-      ////}
+      //}
 
       //return passociation->m_psocket;
 
@@ -190,7 +198,7 @@ namespace sockets
       //if (phandler.get() != m_psocket->m_psockethandler.get())
       //{
 
-      //   //   ::informationf("");
+      //   //   ::acme::get()->platform()->informationf("");
 
       //   //}
       //   //else
@@ -203,8 +211,22 @@ namespace sockets
       try
       {
 
-         while (task_get_run() && m_psockethandler->get_count())
+         while (true)
          {
+
+            if (!task_get_run())
+            {
+
+               break;
+
+            }
+
+            if (m_psockethandler->get_count() <= 0)
+            {
+
+               break;
+
+            }
 
             try
             {

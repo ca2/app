@@ -21,10 +21,10 @@ namespace networking
 
    public:
 
-      ::string m_strHostname;
+      ::string                                        m_strHostname;
 
 
-      ::pointer<::netserver::socket_thread_base>                m_psocketthread;
+      ::pointer<::netserver::socket_thread>           m_psocketthread;
 
 
       application();

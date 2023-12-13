@@ -37,6 +37,7 @@
 }
 
 -(NSWindowController *) addWindow:(NSWindow*)window;
+-(void) removeWindowController:(NSWindowController*)pwindowcontroller;
 -(void)continueInitialization;
 
 @end

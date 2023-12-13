@@ -283,6 +283,8 @@ void nano_window::handle(::topic* ptopic, ::context* pcontext)
    {
 
       m_pwindowbridge->stop();
+      
+      nano_window_on_destroy();
 
    }
 

@@ -504,7 +504,7 @@ void nano_message_box::on_click(const ::atom & atom, ::user::mouse * pmouse)
    if (atom == "details")
    {
 
-      auto psequencer = __new(::sequencer < ::conversation >());
+      auto psequencer = __create_new < ::sequencer < ::conversation > >();
 
       auto pdetailswindow = __create_new < nano_details_window >();
 

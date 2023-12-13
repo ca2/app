@@ -11,6 +11,8 @@
 
 
 
+
+
 #include "acme/primitive/primitive/enumeration.h"
 
 
@@ -147,7 +149,7 @@ struct base_const_c_string
 
 
 
-template<typename Type, typename RawType = Type, ::enum_type m_etypeContainer = e_type_element >
+template<typename Type, typename RawType = Type, ::enum_type t_etypeContainer = e_type_element >
 class string_array_base;
 
 
@@ -190,13 +192,13 @@ using largest_type = typename largest_type_struct<T1, T2>::type;
 
 template < typename T1, typename T2 >
 struct largest_number_struct {
-   using type = if_else < 
+   using type = if_else <
       ((::std::is_floating_point_v < T1 > && sizeof(T1) < sizeof(T2))
       || (::std::is_floating_point_v < T2 > && sizeof(T2) < sizeof(T1))),
       double,
       if_else < ((::std::is_floating_point_v < T1 >
       && ::std::is_floating_point_v < T2 > &&
-      sizeof(T1) > sizeof(T2)) 
+      sizeof(T1) > sizeof(T2))
       || (sizeof(T1) == sizeof(T2) &&
          ::std::is_floating_point_v < T1 >)
       || (sizeof(T1) > sizeof(T2))), T1, T2 > >;
@@ -209,7 +211,7 @@ using largest_number = typename largest_number_struct<T1, T2>::type;
 
 
 template < typename T1, typename T2 >
-struct smallest_type_struct 
+struct smallest_type_struct
 {
    using type = if_else< (sizeof(T1) < sizeof(T2)), T1, T2>;
 };
@@ -233,7 +235,7 @@ using largest_type_of_3 = typename largest_type_of_3_struct < T1, T2, T3 >::type
 template < typename TYPE, std::size_t SIZE >
 using array_reference = TYPE(&)[SIZE];
 
-namespace allocator
+namespace typed
 {
 
 
@@ -243,20 +245,36 @@ namespace allocator
    template < typename TYPE >
    class nodef;
 
-} // namespace allocator
+} // namespace typed
 
 
-template < class TYPE, class ARG_TYPE = const TYPE &, class ALLOCATOR = allocator::nodef < TYPE  >, ::enum_type m_etypeContainer = e_type_element >
+namespace heap
+{
+
+   template < typename TYPE, ::heap::enum_memory t_ememory >
+   class typed_memory;
+
+}
+
+
+template < class TYPE, class ARG_TYPE = const TYPE &, class TYPED = ::typed::nodef < TYPE >, class MEMORY = ::heap::typed_memory < TYPE, ::heap::e_memory_array >, ::enum_type t_etypeContainer = e_type_element >
 class array_base;
+
+template < class TYPE, class ARG_TYPE = const TYPE &, class TYPED = ::typed::nodef < TYPE >, class MEMORY = ::heap::typed_memory < TYPE, ::heap::e_memory_array >, ::enum_type t_etypeContainer = e_type_element >
+class array_base_non_particle;
 
 template < class TYPE, class ARG_TYPE = const TYPE & >
 class row;
 
-template < class TYPE, class ARG_TYPE = const TYPE &, class ALLOCATOR = allocator::nodef < TYPE  >, ::enum_type m_etypeContainer = e_type_element >
+template < class TYPE, class ARG_TYPE = const TYPE &, class TYPED = ::typed::nodef < TYPE  >, class MEMORY = ::heap::typed_memory < TYPE, ::heap::e_memory_array >, ::enum_type t_etypeContainer = e_type_element >
 class array_2d;
 
-template < class TYPE, class ARG_TYPE = const TYPE &, class ALLOCATOR = ::allocator::def < TYPE  >, ::enum_type m_etypeContainer = e_type_element >
+template < class TYPE, class ARG_TYPE = const TYPE &, class TYPED = ::typed::def < TYPE  >, class MEMORY = ::heap::typed_memory < TYPE, ::heap::e_memory_array >, ::enum_type t_etypeContainer = e_type_element >
 class array;
+
+template < class TYPE, class ARG_TYPE = const TYPE &, class TYPED = ::typed::def < TYPE  >, class MEMORY = ::heap::typed_memory < TYPE, ::heap::e_memory_array >, ::enum_type t_etypeContainer = e_type_element >
+class array_non_particle;
+
 
 template < typename FUNCTION >
 class function;
@@ -333,8 +351,16 @@ template < class TYPE, class ARG_TYPE = const TYPE &, class ARRAY_TYPE = array <
 class comparable_eq_array;
 
 
+template < class TYPE, class ARG_TYPE = TYPE const &, class ARRAY_TYPE = array_non_particle < TYPE, ARG_TYPE > >
+using non_particle_comparable_eq_array = comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >;
+
+
 template < class TYPE, class ARG_TYPE = TYPE const &, class ARRAY_TYPE = comparable_eq_array < TYPE, ARG_TYPE > >
 class comparable_array;
+
+
+template < class TYPE, class ARG_TYPE = TYPE const &, class ARRAY_TYPE = non_particle_comparable_eq_array < TYPE, ARG_TYPE > >
+using non_particle_comparable_array = comparable_array < TYPE, ARG_TYPE, ARRAY_TYPE >;
 
 
 namespace allocator
@@ -351,8 +377,13 @@ namespace allocator
 
 } // namespace allocator
 
-template < typename TYPE, typename ARG_TYPE = const TYPE &, typename ALLOCATOR = ::allocator::raw < TYPE >, ::enum_type m_etypeContainer = e_type_element >
+
+template < typename TYPE, typename ARG_TYPE = const TYPE &, class TYPED = ::typed::rawcopy < TYPE  >, class MEMORY = ::heap::typed_memory < TYPE, ::heap::e_memory_array >, ::enum_type t_etypeContainer = e_type_element >
 class raw_array;
+
+
+template < typename TYPE, typename ARG_TYPE = const TYPE &, class TYPED = ::typed::rawcopy < TYPE  >, class MEMORY = ::heap::typed_memory < TYPE, ::heap::e_memory_array >, ::enum_type t_etypeContainer = e_type_element >
+class raw_array_non_particle;
 
 
 template < typename POINTER, class ARRAY_TYPE = comparable_array < POINTER, POINTER, comparable_eq_array < POINTER, POINTER, raw_array < POINTER, POINTER, ::allocator::zero < POINTER > > > > >
@@ -417,7 +448,9 @@ template<typename T>
 inline ::pointer < T > pointer_transfer(T * p);
 
 
-#define __new(...) ::pointer_transfer( memory_new __VA_ARGS__ )
+template < typename T, typename ...Args >
+inline ::pointer < T > __call__allocate(Args &&... args);
+
 
 
 template < typename SEQUENCE >
@@ -452,11 +485,11 @@ using procedure_list = ::list < ::procedure >;
 
 
 
-template < typename TYPE, ::enum_type m_etypeContainer = e_type_element >
+template < typename TYPE, ::enum_type t_etypeContainer = e_type_element >
 class unique_number_sort_array;
 
 
-template < typename TYPE, ::enum_type m_etypeContainer = e_type_element >
+template < typename TYPE, ::enum_type t_etypeContainer = e_type_element >
 class numeric_array;
 
 
@@ -825,7 +858,7 @@ using signal_handler = ::function < void(::topic*, ::context*) >;
 //
 //   //inline void operator()() const;
 //
-//   //void operator()(::topic * ptopic, ::context * pcontext) 
+//   //void operator()(::topic * ptopic, ::context * pcontext)
 //   //{
 //
 //   //   this-(ptopic, pcontext);
@@ -846,7 +879,7 @@ using signal_handler = ::function < void(::topic*, ::context*) >;
 ////::matter_pointer __handle_function(PREDICATE predicate)
 ////{
 ////
-////   return __new(han<PREDICATE>(predicate));
+////   return __allocate< han<PREDICATE> >(predicate);
 ////
 ////}
 
@@ -910,6 +943,21 @@ class inline_string;
 using inline_number_string = inline_string<char, 64>;
 
 
+template < typename T, typename ...Args >
+inline T * __call__new(Args &&... args);
+
+
+template < typename T >
+inline T * __new_array(::count c);
+
+
+#if REFERENCING_DEBUGGING
+
+
+CLASS_DECL_ACME void __on_start_construct(void * p, memsize s);
+
+
+#endif
 
 
 

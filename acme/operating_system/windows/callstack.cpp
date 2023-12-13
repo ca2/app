@@ -82,6 +82,14 @@ namespace acme
 {
 
 
+   int node::get_call_stack_default_frame_count()
+   {
+
+      return 62;
+
+   }
+
+
    void node::defer_update_call_stack()
    {
 

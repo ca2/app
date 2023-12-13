@@ -24,7 +24,7 @@ void * simple_memory_allocate(size_t s)
 }
 
 
-void simple_memory_reallocate(void * p2, size_t s)
+void * simple_memory_reallocate(void * p2, size_t s)
 {
    
    auto pheapmemory = heap_memory_get(p2);
@@ -46,7 +46,7 @@ void simple_memory_reallocate(void * p2, size_t s)
    else
    {
       
-      ::acme::get()->m_pheapmanagement->memory(pheapmemory->m_ememory)->reallocate(p2, s);
+      return ::acme::get()->m_pheapmanagement->memory(pheapmemory->m_ememory)->reallocate(p2, s);
 
    }
    

@@ -333,9 +333,6 @@
     <Filter Include="Source Files\memory\allocator">
       <UniqueIdentifier>{a46f9132-2a14-41f4-a431-77195ea0806a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\memory\NewFilter1">
-      <UniqueIdentifier>{24dbdebf-1c46-43ed-9be9-3195e4d5bee9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\memory\heap">
       <UniqueIdentifier>{15ff6902-fd9d-4427-9c67-e4de5b57c40e}</UniqueIdentifier>
     </Filter>
@@ -3548,6 +3545,12 @@
     <ClInclude Include="memory\allocator_base.h">
       <Filter>Header Files\memory</Filter>
     </ClInclude>
+    <ClInclude Include="memory\memory_allocate.h">
+      <Filter>Header Files\memory</Filter>
+    </ClInclude>
+    <ClInclude Include="memory\simple_memory_allocate.h">
+      <Filter>Header Files\memory</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\bit.cpp">
@@ -4974,6 +4977,12 @@
     </ClCompile>
     <ClCompile Include="platform\reference_referer.cpp">
       <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="memory\memory_allocate.cpp">
+      <Filter>Source Files\memory</Filter>
+    </ClCompile>
+    <ClCompile Include="memory\simple_memory_allocate.cpp">
+      <Filter>Source Files\memory</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

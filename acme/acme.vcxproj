@@ -849,8 +849,10 @@
     <ClInclude Include="memory\default_heap.h" />
     <ClInclude Include="memory\heap.h" />
     <ClInclude Include="memory\c_malloc.h" />
+    <ClInclude Include="memory\memory_allocate.h" />
     <ClInclude Include="memory\plex_heap.h" />
     <ClInclude Include="memory\plex_heap_alloc_array.h" />
+    <ClInclude Include="memory\simple_memory_allocate.h" />
     <ClInclude Include="memory\typed.h" />
     <ClInclude Include="memory\typed_memory.h" />
     <ClInclude Include="memory\_.h" />
@@ -1000,6 +1002,8 @@
     <ClCompile Include="memory\heap\memdleak.cpp" />
     <ClCompile Include="memory\heap\std.cpp" />
     <ClCompile Include="memory\heap\vld.cpp" />
+    <ClCompile Include="memory\memory_allocate.cpp" />
+    <ClCompile Include="memory\simple_memory_allocate.cpp" />
     <ClCompile Include="memory\_.cpp" />
     <ClCompile Include="memory\memory.cpp" />
     <ClCompile Include="memory\memory_management.cpp" />

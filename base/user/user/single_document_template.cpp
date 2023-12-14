@@ -45,6 +45,9 @@ namespace user
    }
 
 
+
+
+
    ::count single_document_template::get_document_count() const
    {
       return (m_pdocument == nullptr) ? 0 : 1;

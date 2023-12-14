@@ -31,6 +31,9 @@ namespace user
    class controller;
 
 
+   class impact_system;
+
+
 } // namespace user
 
 

@@ -45,9 +45,9 @@ public:
    inline lparam(const ptr < T > & p) : lparam((const ::particle *) p.m_p) { }
 
    template < typename T >
-   inline lparam(pointer < T > && p) : lparam(p.m_p, p.m_preferer) { p.m_p = nullptr; p.m_pparticle = nullptr; p.m_preferer = nullptr; }
+   inline lparam(pointer < T > && p) : lparam(p.m_p REFDBG(, p.m_preferer)) { p.m_p = nullptr; p.m_pparticle = nullptr; REFDBG(p.m_preferer = nullptr); }
    template < typename T >
-   inline lparam(ptr < T > && p) : lparam(p.m_p, p.m_preferer) { p.m_p = nullptr; p.m_preferer = nullptr; }
+   inline lparam(ptr < T > && p) : lparam(p.m_p REFDBG(, p.m_preferer)) { p.m_p = nullptr; REFDBG(p.m_preferer = nullptr); }
 
 
    lparam(const lparam & lparam)

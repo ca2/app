@@ -1187,20 +1187,25 @@ namespace user
            // auto pNew = __id_create((const ::atom &)m_pimpactsystem->m_typeatomData);
 
             auto pdata = create_data(0);
+            
+            if (::is_set(pdata))
+            {
 
-            pdata->initialize_data();
+               pdata->initialize_data();
 
-            auto preader = file()->get_reader(payloadFile);
+               auto preader = file()->get_reader(payloadFile);
 
-            ::binary_stream binarystream(preader);
+               ::binary_stream binarystream(preader);
 
-            auto path = payloadFile.as_file_path();
+               auto path = payloadFile.as_file_path();
 
-            pdata->read_data(binarystream, path.all_extensions());
+               pdata->read_data(binarystream, path.all_extensions());
 
-            //set_data(0, pdata);
+               //set_data(0, pdata);
 
-            m_pdataIncoming = pdata;
+               m_pdataIncoming = pdata;
+
+            }
 
          }
 
@@ -1308,6 +1313,15 @@ namespace user
       {
 
          auto & typeatomData = m_pimpactsystem->m_typeatomData;
+
+         if (typeatomData.is_empty())
+         {
+
+            information() << "user::document doesn't a data type";
+
+            return nullptr;
+
+         }
 
          auto pdataNew = __id_create(typeatomData);
 

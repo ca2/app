@@ -6,6 +6,7 @@
 #include "application.h"
 #include "acme.h"
 #include "acme/exception/exit.h"
+#include "acme/exception/interface_only.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/parallelization/synchronous_lock.h"
@@ -1917,6 +1918,24 @@ namespace acme
    
       return false;
    
+   }
+
+
+   void application::add_impact_system(const ::atom & atom, const ::pointer<::user::impact_system> & pimpactsystem)
+   {
+
+      throw interface_only();
+
+   }
+
+   
+   ::pointer<::user::impact_system> application::impact_system(const ::atom & atom)
+   {
+
+      throw interface_only();
+
+      return {};
+
    }
 
 

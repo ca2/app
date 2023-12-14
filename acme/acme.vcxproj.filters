@@ -1010,7 +1010,7 @@
     <ClInclude Include="primitive\mathematics\mkint_c.h">
       <Filter>Header Files\primitive\mathematics</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\mathematics\math_clip.h">
+    <ClInclude Include="primitive\mathematics\clip.h">
       <Filter>Header Files\primitive\mathematics</Filter>
     </ClInclude>
     <ClInclude Include="primitive\mathematics\filestream.h">
@@ -3464,9 +3464,6 @@
     <ClInclude Include="user\user\key_state.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\_.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
     <ClInclude Include="user\user\controller.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
@@ -3550,6 +3547,9 @@
     </ClInclude>
     <ClInclude Include="memory\simple_memory_allocate.h">
       <Filter>Header Files\memory</Filter>
+    </ClInclude>
+    <ClInclude Include="user\_.h">
+      <Filter>Header Files\user</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -125,10 +125,10 @@
 
 //#define ASSERT(X) assert(X)
 /* Frees the given link IF it isn't owned by anything else */
-#define CLEAN(x) { CScriptVarLink *__v = x; if (__v && !__v->owned) { delete __v; } }
+#define CLEAN(x) { CScriptVarLink *__v = x; if (__v && !__v->owned) { __delete(__v); } }
 /* Create a LINK to point_i32 to VAR and free the old link.
  * BUT this is more clever - it tries to keep the old link if it's not owned to save allocations */
-#define CREATE_LINK(LINK, VAR) { if (!LINK || LINK->owned) LINK = __new< CScriptVarLink(VAR); else LINK->replaceWith >(VAR); }
+#define CREATE_LINK(LINK, VAR) { if (!LINK || LINK->owned) LINK = __new< CScriptVarLink>(VAR); else LINK->replaceWith(VAR); }
 
 
 /*using namespace std;
@@ -1604,11 +1604,11 @@ i32 CScriptVar::getRefs()
 tinyjs::tinyjs()
 {
    l = 0;
-   root = (__new< CScriptVar(TINYJS_BLANK_DATA, SCRIPTVAR_OBJECT))->ref >();
+   root = (__new< CScriptVar > (TINYJS_BLANK_DATA, SCRIPTVAR_OBJECT))->ref();
    // add built-in classes
-   stringClass = (__new< CScriptVar(TINYJS_BLANK_DATA, SCRIPTVAR_OBJECT))->ref >();
-   arrayClass = (__new< CScriptVar(TINYJS_BLANK_DATA, SCRIPTVAR_OBJECT))->ref >();
-   objectClass = (__new< CScriptVar(TINYJS_BLANK_DATA, SCRIPTVAR_OBJECT))->ref >();
+   stringClass = (__new< CScriptVar>(TINYJS_BLANK_DATA, SCRIPTVAR_OBJECT))->ref ();
+   arrayClass = (__new< CScriptVar >(TINYJS_BLANK_DATA, SCRIPTVAR_OBJECT))->ref ();
+   objectClass = (__new< CScriptVar >(TINYJS_BLANK_DATA, SCRIPTVAR_OBJECT))->ref ();
    root->addChild("String", stringClass);
    root->addChild("Array", arrayClass);
    root->addChild("Object", objectClass);
@@ -1777,7 +1777,7 @@ CScriptVarLink *tinyjs::parseFunctionDefinition()
       funcName = l->tokenStr;
       l->match(LEX_ID);
    }
-   CScriptVarLink *funcVar = __new< CScriptVarLink(new CScriptVar >(TINYJS_BLANK_DATA, SCRIPTVAR_FUNCTION), funcName);
+   CScriptVarLink *funcVar = __new< CScriptVarLink>(__new <CScriptVar >(TINYJS_BLANK_DATA, SCRIPTVAR_FUNCTION), funcName);
    parseFunctionArguments(funcVar->payload);
    i32 funcBegin = l->tokenStart;
    bool noexecute = false;
@@ -1853,7 +1853,7 @@ CScriptVarLink *tinyjs::functionCall(bool &execute, CScriptVarLink *function, CS
          ::exception exception;
 
          CScriptLex *oldLex = l;
-         CScriptLex *newLex = __new< CScriptLex(function->payload->getString >());
+         CScriptLex *newLex = __new< CScriptLex > (function->payload->getString ());
          l = newLex;
          try
          {
@@ -1887,7 +1887,7 @@ CScriptVarLink *tinyjs::functionCall(bool &execute, CScriptVarLink *function, CS
       if (returnVar)
          return returnVar;
       else
-         return __new< CScriptVarLink(new CScriptVar >());
+         return __new< CScriptVarLink >(__new < CScriptVar >());
    }
    else
    {
@@ -1922,26 +1922,26 @@ CScriptVarLink *tinyjs::factor(bool &execute)
    if (l->token==LEX_R_TRUE)
    {
       l->match(LEX_R_TRUE);
-      return __new< CScriptVarLink(new CScriptVar >(1));
+      return __new< CScriptVarLink> (__new < CScriptVar >(1));
    }
    if (l->token==LEX_R_FALSE)
    {
       l->match(LEX_R_FALSE);
-      return __new< CScriptVarLink(new CScriptVar >(0));
+      return __new< CScriptVarLink>(__new < CScriptVar >(0));
    }
    if (l->token==LEX_R_NULL)
    {
       l->match(LEX_R_NULL);
-      return __new< CScriptVarLink(new CScriptVar >(TINYJS_BLANK_DATA,SCRIPTVAR_NULL));
+      return __new< CScriptVarLink >(__new < CScriptVar >(TINYJS_BLANK_DATA,SCRIPTVAR_NULL));
    }
    if (l->token==LEX_R_UNDEFINED)
    {
       l->match(LEX_R_UNDEFINED);
-      return __new< CScriptVarLink(new CScriptVar >(TINYJS_BLANK_DATA,SCRIPTVAR_UNDEFINED));
+      return __new< CScriptVarLink > (__new < CScriptVar >(TINYJS_BLANK_DATA,SCRIPTVAR_UNDEFINED));
    }
    if (l->token==LEX_ID)
    {
-      CScriptVarLink *a = execute ? findInScopes(l->tokenStr) : __new< CScriptVarLink(new CScriptVar >());
+      CScriptVarLink *a = execute ? findInScopes(l->tokenStr) : __new< CScriptVarLink > (__new < CScriptVar >());
       //debug_print("0x%08X for %s at %s\n", (u32)a, l->tokenStr.c_str(), l->getPosition().c_str());
       /* The parent if we're executing a method call */
       CScriptVar *parent = 0;
@@ -1950,7 +1950,7 @@ CScriptVarLink *tinyjs::factor(bool &execute)
       {
          /* Variable doesn't exist! JavaScript says we should create it
           * (we won't add it here. This is done in the assignment operator)*/
-         a = __new< CScriptVarLink(new CScriptVar >(), l->tokenStr);
+         a = __new< CScriptVarLink>(__new < CScriptVar >(), l->tokenStr);
       }
       l->match(LEX_ID);
       while (l->token=='(' || l->token=='.' || l->token=='[')
@@ -1974,12 +1974,12 @@ CScriptVarLink *tinyjs::factor(bool &execute)
                   if (a->payload->isArray() && name == "length")
                   {
                      i32 l = a->payload->getArrayLength();
-                     child = __new< CScriptVarLink(new CScriptVar >(l));
+                     child = __new< CScriptVarLink > (__new < CScriptVar >(l));
                   }
                   else if (a->payload->isString() && name == "length")
                   {
                      i32 l = (i32) a->payload->getString().size();
-                     child = __new< CScriptVarLink(new CScriptVar >(l));
+                     child = __new< CScriptVarLink > (__new < CScriptVar >(l));
                   }
                   else
                   {
@@ -2119,7 +2119,7 @@ CScriptVarLink *tinyjs::factor(bool &execute)
             if (!objClassOrFunc)
             {
                informationf("%s is not a valid class name", className.c_str());
-               return __new< CScriptVarLink(new CScriptVar >());
+               return __new< CScriptVarLink> (__new < CScriptVar >());
             }
             l->match(LEX_ID);
             CScriptVar *obj = __new< CScriptVar >(TINYJS_BLANK_DATA, SCRIPTVAR_OBJECT);
@@ -2314,8 +2314,8 @@ CScriptVarLink *tinyjs::logic(bool &execute)
       {
          if (boolean)
          {
-            CScriptVar *newa = __new< CScriptVar(a->payload->getBool >());
-            CScriptVar *newb = __new< CScriptVar(b->payload->getBool >());
+            CScriptVar *newa = __new< CScriptVar > (a->payload->getBool());
+            CScriptVar *newb = __new< CScriptVar > (b->payload->getBool());
             CREATE_LINK(a, newa);
             CREATE_LINK(b, newb);
          }

@@ -74,6 +74,13 @@ namespace user
    }
 
 
+   void document_manager_container::add_impact_system(const ::atom & atom, const ::pointer < ::user::impact_system > & pimpactsystem)
+   {
+
+      document_manager()->add_impact_system(atom, pimpactsystem);
+
+   }
+
 
    ::pointer<::user::impact_system> document_manager_container::impact_system(const ::atom & atom)
    {
@@ -99,6 +106,9 @@ namespace user
       return document_manager()->__impact_system(atom);
 
    }
+
+
+   
 
 
 } // namespace user

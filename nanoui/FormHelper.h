@@ -136,7 +136,7 @@ NAMESPACE_END(detail)
       {
          ASSERT(m_pscreen);
          m_pwindow = __allocate< Window >(m_pscreen, title);
-         m_playout = __allocate< AdvancedGridLayout >({ 10, 0, 10, 0 }, {});
+         m_playout = __allocate< AdvancedGridLayout >(i32_array{ 10, 0, 10, 0 }, i32_array{});
          m_playout->set_margin(10);
          m_playout->set_col_stretch(2, 1);
          m_pwindow->set_position(pos);

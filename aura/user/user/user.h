@@ -152,6 +152,9 @@ namespace user
 
       virtual ::pointer<::user::plain_edit>create_calculator_edit();
 
+      virtual void add_impact_system(const ::atom & atom, ::user::impact_system * pimpactsystem);
+
+      virtual ::pointer<::user::impact_system> impact_system(const ::atom & atom);
 
 
    };

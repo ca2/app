@@ -84,7 +84,7 @@ namespace experience_tranquillum
    }
 
 
-   ::experience::frame * experience::frame_experience(const ::string & pszSchema)
+   ::pointer <::experience::frame > experience::frame_experience(const ::string & pszSchema)
    {
 
       string strSchema(pszSchema);

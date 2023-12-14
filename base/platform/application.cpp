@@ -414,6 +414,22 @@ namespace base
    }
 
 
+   void application::add_impact_system(const ::atom & atom, const ::pointer < ::user::impact_system > & pimpactsystem)
+   {
+
+      document_manager_container::add_impact_system(atom, pimpactsystem);
+
+   }
+
+   
+   ::pointer<::user::impact_system> application::impact_system(const ::atom & atom)
+   {
+
+      return document_manager_container::impact_system(atom);
+
+   }
+
+
 } // namespace base
 
 

@@ -12,6 +12,7 @@
 #include "progress.h"
 #include "acme/constant/message.h"
 #include "acme/constant/simple_command.h"
+#include "acme/exception/interface_only.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/acme.h"
 #include "acme/platform/system_setup.h"
@@ -1618,6 +1619,21 @@ namespace user
 
    }
 
+   
+   void user::add_impact_system(const ::atom & atom, ::user::impact_system * pimpactsystem)
+   {
+
+      throw interface_only();
+
+   }
+
+
+   ::pointer<::user::impact_system> user::impact_system(const ::atom & atom)
+   {
+
+      throw interface_only();
+
+   }
 
 
 } // namespace user

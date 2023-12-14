@@ -191,25 +191,6 @@ namespace mathematics
       }
 
 
-      template < typename TMIN, typename TMAX, typename T  >
-      inline T & clip(const TMIN & minimum, const TMAX & maximum, T & t)
-      {
-         if (t < minimum)
-         {
-
-            t = (T)minimum;
-
-         }
-         else if (t > maximum)
-         {
-
-            t = (T)maximum;
-
-         }
-
-         return t;
-
-      }
 
       //CLASS_DECL_ACME void generate_random_bytes(void* p, memsize s);
       void transform_alphanumeric(void * p, memsize s);
@@ -306,7 +287,7 @@ namespace mathematics
 
          ::largest_type < FLOATING1, FLOATING2 > fRange = fMax - fMin;
 
-         ::u64 u;
+         ::u64 u = 0;
 
          random(u);
 

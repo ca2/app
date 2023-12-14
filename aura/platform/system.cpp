@@ -6930,7 +6930,7 @@ namespace aura
    class ::imaging * system::imaging()
    {
 
-      return draw2d()->imaging();
+      return m_pimaging;
 
    }
 

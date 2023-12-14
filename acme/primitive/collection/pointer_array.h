@@ -1819,7 +1819,7 @@ template < typename OBJECT >
 
    ::index i = this->get_size();
 
-   comparable_array < ::pointer<T >>::set_size(nNewSize);
+   BASE_ARRAY::set_size(nNewSize);
 
    ::count c = this->get_size();
 

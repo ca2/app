@@ -51,6 +51,10 @@ namespace user
 
       void destroy() override;
 
+
+      virtual void add_impact_system(const ::atom & atom, const ::pointer<::user::impact_system> & pimpactsystem);
+
+
 //      // void assert_ok() const override;
 //      // void dump(dump_context & dumpcontext) const override;
       virtual ::pointer < ::user::impact_system > & __impact_system(const ::atom & atom);

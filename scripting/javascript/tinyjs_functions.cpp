@@ -159,7 +159,7 @@ void scStringSplit(CScriptVar * ca, void *) {
 
    strsize pos = str.find_index(sep);
    while (pos >= 0) {
-      result->setArrayIndex(length++, __new< CScriptVar(str.substr >(0, pos)));
+      result->setArrayIndex(length++, __new< CScriptVar >(str.substr(0, pos)));
       str = str.substr(pos + 1);
       pos = str.find_index(sep);
    }

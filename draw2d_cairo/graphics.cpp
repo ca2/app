@@ -281,7 +281,7 @@ namespace draw2d_cairo
 
       //auto pnode = psystem->node();
 
-      m_pfont.create(this);
+      __construct(m_pfont);
 
       m_pfont->m_pfontfamily = e_font_sans;
 

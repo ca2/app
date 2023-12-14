@@ -952,6 +952,16 @@ namespace user
    }
 
 
+   void document_manager::add_impact_system(const ::atom & atom, const ::pointer < ::user::impact_system > & pimpactsystem)
+   {
+
+      __impact_system(atom) = pimpactsystem;
+
+      on_add_impact_system(atom);
+
+   }
+
+
 } // namespace user
 
 //

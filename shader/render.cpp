@@ -218,7 +218,7 @@ namespace app_shader
 
          //estatus = 
          
-         ::__construct(this, m_pgpuprogram);
+         __construct(m_pgpuprogram);
 
       }
 
@@ -398,17 +398,17 @@ namespace app_shader
 
             ::draw2d::brush_pointer pbrush;
 
-            pbrush.create(this);
+            __construct(pbrush);
 
             pbrush->create_solid(colorBackground);
 
             ::write_text::font_pointer pfont;
 
-            pfont.create(this);
+            __construct(pfont);
 
             pfont->create_font(e_font_sans_ui, 12_pt);
 
-            m_pimageLabel.defer_create(::particle::m_pcontext);
+            __defer_construct(m_pimageLabel);
 
             if (m_pimageLabel->g() == nullptr)
             {
@@ -523,13 +523,13 @@ namespace app_shader
 
             ::draw2d::brush_pointer pbrush;
 
-            pbrush.create(this);
+            __construct(pbrush);
 
             pbrush->create_solid(colorBackground);
 
             ::write_text::font_pointer pfont;
 
-            pfont.create(this);
+            __construct(pfont);
 
             auto pnode = system()->m_paurasystem->node();
 
@@ -537,7 +537,7 @@ namespace app_shader
 
             pfont->create_font(e_font_sans_ui, 12_pt);
 
-            m_pimageError.defer_create(::particle::m_pcontext);
+            __defer_construct(m_pimageError);
 
             if(m_pimageError->g() == nullptr)
             {

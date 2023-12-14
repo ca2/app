@@ -1910,6 +1910,23 @@ namespace base
 
    }
 
+
+   void user::add_impact_system(const ::atom & atom, ::user::impact_system * pimpactsystem)
+   {
+
+      return document_manager_container::add_impact_system(atom, pimpactsystem);
+
+   }
+
+
+   ::pointer<::user::impact_system> user::impact_system(const ::atom & atom)
+   {
+
+      return document_manager_container::impact_system(atom);
+
+   }
+
+
 } // namespace base
 
 

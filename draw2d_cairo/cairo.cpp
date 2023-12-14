@@ -38,7 +38,7 @@ extern string_to_string *      g_pmapFontPath;
 void init_cairo_mutex()
 {
 
-   __raw_construct(s_pmutex);
+   ::platform::get()->__raw_construct(s_pmutex);
 
 #ifdef LINUX
 

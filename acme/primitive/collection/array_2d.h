@@ -27,7 +27,7 @@ public:
 };
 
 
-template < class TYPE, class ARG_TYPE, class ALLOCATOR, ::enum_type t_etypeContainer >
+template < class TYPE, class ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
 class array_2d :
    virtual public ::array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >
 {

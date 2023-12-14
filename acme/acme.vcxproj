@@ -1967,7 +1967,7 @@
     <ClInclude Include="primitive\mathematics\c_number.h" />
     <ClInclude Include="primitive\mathematics\filestream.h" />
     <ClInclude Include="primitive\mathematics\mathematics.h" />
-    <ClInclude Include="primitive\mathematics\math_clip.h" />
+    <ClInclude Include="primitive\mathematics\clip.h" />
     <ClInclude Include="primitive\mathematics\mkint_c.h" />
     <ClInclude Include="primitive\mathematics\natural.h" />
     <ClInclude Include="primitive\mathematics\number.h" />

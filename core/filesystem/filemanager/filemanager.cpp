@@ -321,14 +321,14 @@ namespace filemanager
    }
 
 
-   ::user::multiple_document_template * filemanager::impact_system()
+   ::user::impact_system * filemanager::impact_system()
    {
 
-      if (!m_pimpactsystemFileManager)
+      if (::is_null(user()->impact_system("filemanager_filemanager")))
       {
 
          //m_pimpactsystemFileManager = 
-         user()->m_pbaseuser->add_impact_system(
+         user()->add_impact_system(
             "filemanager_filemanager",
             __allocate < ::user::multiple_document_template >(
             "filemanager",
@@ -342,7 +342,7 @@ namespace filemanager
 
       }
 
-      return m_pimpactsystemFileManager;
+      return user()->impact_system("filemanager_filemanager");
 
    }
 

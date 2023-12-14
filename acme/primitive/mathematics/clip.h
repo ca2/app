@@ -27,7 +27,28 @@ inline bool clip_convert_divide(T1& t1, const T2& t2);
 
 
 template < typename TMIN, typename TMAX, typename T  >
-inline T& clip(const TMIN& minimum, const TMAX& maximum, T& t);
+inline T& clip(T & t, const TMIN& minimum, const TMAX& maximum);
+
+
+template < typename TMIN, typename TMAX, typename T  >
+inline T & clip(T & t, const TMIN & minimum, const TMAX & maximum)
+{
+   if (t < minimum)
+   {
+
+      t = (T)minimum;
+
+   }
+   else if (t > maximum)
+   {
+
+      t = (T)maximum;
+
+   }
+
+   return t;
+
+}
 
 
 

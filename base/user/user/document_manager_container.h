@@ -33,19 +33,11 @@ namespace user
       void destroy() override;
 
 
-
+      virtual void add_impact_system(const ::atom & atom, const ::pointer<::user::impact_system> & pimpactsystem);
       virtual ::pointer<::user::impact_system> impact_system(const ::atom & atom);
 
 
-      template < typename T >
-      void add_impact_system(const ::atom & atom, ::pointer < T > && t)
-      {
-
-         document_manager()->__impact_system(atom) = ::transfer(t);
-
-         document_manager()->on_add_impact_system(atom);
-
-      }
+      
 
    };
 

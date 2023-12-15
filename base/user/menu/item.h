@@ -61,6 +61,9 @@ namespace user
       virtual bool is_popup() const;
       virtual bool is_separator() const;
 
+
+      virtual void release_children_interaction();
+
       
       virtual menu_item * find(const ::atom & atom);
 

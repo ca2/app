@@ -4,6 +4,7 @@
 #include "menu.h"
 #include "aura/user/user/calc_size.h"
 #include "acme/constant/message.h"
+#include "acme/constant/timer.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/pen.h"
@@ -66,7 +67,8 @@ namespace user
 
       ::user::button::install_message_routing(pchannel);
 
-      MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &menu_button::on_message_create);
+      MESSAGE_LINK(e_message_create, pchannel, this, &menu_button::on_message_create);
+      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &menu_button::on_message_mouse_move);
 
    }
 
@@ -358,6 +360,33 @@ namespace user
 
       pmouse->previous();
 
+      ::user::menu_item * pmenuitemPopup = nullptr;
+
+      if (m_pmenuitem->m_bPopup)
+      {
+
+         pmenuitemPopup = m_pmenuitem;
+
+      }
+
+      if (!m_pmenuitem->m_pmenu->m_pmenuSubMenu
+         || m_pmenuitem->m_pmenu->m_pmenuSubMenu->m_pmenuitem != m_pmenuitem)
+      {
+
+         if (::is_set(pmenuitemPopup))
+         {
+
+            m_pmenuitem->m_pmenu->show_sub_menu_delayed(pmenuitemPopup);
+
+         }
+         else
+         {
+
+            m_pmenuitem->m_pmenu->hide_sub_menu_delayed();
+
+         }
+
+      }
 
    }
 

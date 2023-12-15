@@ -384,6 +384,33 @@ namespace user
    }
 
 
+   void menu_item::release_children_interaction()
+   {
+
+      for (auto & pitem : *m_pmenuitema)
+      {
+
+         if (pitem)
+         {
+
+            if (pitem->m_puserinteraction)
+            {
+
+               pitem->m_puserinteraction->set_finish();
+
+               pitem->m_puserinteraction.release();
+
+            }
+
+            pitem->release_children_interaction();
+
+         }
+
+      }
+
+   }
+
+
    menu_item_ptra::menu_item_ptra(menu_item * pitemParent)
    {
 

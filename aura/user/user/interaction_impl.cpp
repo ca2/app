@@ -5154,6 +5154,8 @@ namespace user
    void interaction_impl::_001OnPrioCreate(::message::message * pmessage)
    {
 
+      m_puserinteraction->on_after_set_parent();
+
       // // https://stackoverflow.com/questions/23367775/pragma-packshow-with-gcc - Morten Jensen
       //       /*
       //    The static_assert macro will generate an error at compile-time, if the predicate is false

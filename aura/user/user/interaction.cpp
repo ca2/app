@@ -3010,7 +3010,16 @@ namespace user
    void interaction::prio_install_message_routing(::channel * pchannel)
    {
 
+      //MESSAGE_LINK(e_message_create, pchannel, this, &interaction::on_message_prio_create);
       MESSAGE_LINK(e_message_left_button_down, pchannel, this, &interaction::on_message_left_button_down);
+
+   }
+
+
+   void interaction::on_message_prio_create(::message::message * pmessage)
+   {
+
+      //on_after_set_parent();
 
    }
 
@@ -11315,9 +11324,12 @@ namespace user
       //
       //   }
 
-      m_pprimitiveimpl->destroy_window();
-      //
-      //   }
+      if(m_pprimitiveimpl)
+      {
+
+         m_pprimitiveimpl->destroy_window();
+      
+      }
 
    }
 

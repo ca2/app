@@ -18,11 +18,14 @@ namespace user
 
 
       ::size_i32                             m_sizeMinimum;
-      ::pointer<menu>                       m_pmenuParent;
-      ::pointer<menu_item>                  m_pmenuitem;
-      ::pointer<menu_item>                  m_pmenuitemClick;
+      ::pointer<menu>                        m_pmenuParent;
+      ::pointer<menu_item>                   m_pmenuitem;
+      //::pointer<menu_item>                 m_pmenuitemClick;
+      ::pointer<menu_item>                   m_pmenuitemShowSubMenu2;
+      bool                                   m_bHideSubMenu2;
       ///::pointer<::user::interaction>        m_puserinteractionParent;
-      ::pointer<::channel>                  m_pchannelNotify;
+      ::pointer<::channel>                   m_pchannelNotify;
+      bool                                   m_bCloseParentOnClose;
 //#ifdef WINDOWS_DESKTOP
 //      HMENU                                  m_hmenu;
 //#endif
@@ -56,6 +59,8 @@ namespace user
 
       //virtual void nextstyle(::user::style_context * pcontext) override;
       ::size_i32 get_window_minimum_size() override;
+
+
 
       //virtual i64 increment_reference_count() override
       //{
@@ -93,6 +98,18 @@ namespace user
       void _001OnTimer(::timer * ptimer) override;
 
       void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+
+
+      virtual void show_sub_menu(::user::menu_item * pmenuitem);
+      virtual void hide_sub_menu();
+
+
+      virtual void show_sub_menu_delayed(::user::menu_item * pmenuitem);
+      virtual void hide_sub_menu_delayed();
+
+
+      virtual void detach_sub_menu();
+
 
       DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
       DECLARE_MESSAGE_HANDLER(on_message_create);

@@ -1756,6 +1756,7 @@ namespace user
       //DECLARE_MESSAGE_HANDLER(on_message_user_post);
       DECLARE_MESSAGE_HANDLER(on_message_size);
       DECLARE_MESSAGE_HANDLER(on_message_move);
+      DECLARE_MESSAGE_HANDLER(on_message_prio_create);
       DECLARE_MESSAGE_HANDLER(on_message_create);
       DECLARE_MESSAGE_HANDLER(on_message_after_create);
       DECLARE_MESSAGE_HANDLER(on_message_non_client_calculate_size);

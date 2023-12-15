@@ -145,6 +145,8 @@ namespace user
 
       virtual void pre_translate_message(::message::message * pmessage) override;
 
+      void on_set_window_text() override;
+
       bool on_perform_layout(::draw2d::graphics_pointer& pgraphics) override;
 
 

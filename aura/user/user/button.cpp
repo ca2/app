@@ -309,32 +309,45 @@ namespace user
    }
 
 
+   void button::on_set_window_text()
+   {
+
+      ::user::interaction::on_set_window_text();
+
+      if (m_bAutoResize)
+      {
+
+         m_bNeedAutoResizePerformLayout = true;
+
+      }
+
+   }
+
+
    bool button::on_perform_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
       auto rectangleX = this->rectangle();
 
-      if (m_bAutoResize)
+      if (m_bNeedAutoResizePerformLayout)
       {
+
+         const char* pszWndTxt = get_window_text().c_str();
+
+         m_bNeedAutoResizePerformLayout = false;
 
          auto sizeControl = get_preferred_size(pgraphics);
 
          //::rectangle_i32 rectangle;
-
          //rectangle.left() = (::i32)(rectangleX.left() + (rectangleX.width() - sizeFitting.cx()) / 2);
-
          //rectangle.top() = (::i32)(rectangleX.top() + (rectangleX.height() - sizeFitting.cy()) / 2);
-
          //rectangle.right() = (::i32)(rectangle.left() + sizeFitting.cx());
-
          //rectangle.bottom() = (::i32)(rectangle.top() + sizeFitting.cy());
-
          //if (rectangle != m_rectangleText)
          //{
-
          //   m_rectangleText = rectangle;
             
-            set_size(::ceil(sizeControl), ::user::e_layout_layout, pgraphics);
+         set_size(::ceil(sizeControl), ::user::e_layout_layout, pgraphics);
 
          return true;
 

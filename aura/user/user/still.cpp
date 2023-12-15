@@ -690,10 +690,29 @@ namespace user
    }
 
 
+   void still::on_set_window_text()
+   {
+
+      ::user::interaction::on_set_window_text();
+
+      if (m_bAutoResize)
+      {
+
+         m_bNeedAutoResizePerformLayout = true;
+
+      }
+
+      set_need_redraw();
+
+      post_redraw();
+
+   }
+
+
    bool still::on_perform_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      if (m_bAutoResize)
+      if (m_bNeedAutoResizePerformLayout)
       {
 
          synchronous_lock synchronouslock(this->synchronization());
@@ -1314,16 +1333,6 @@ namespace user
    {
 
       return m_strLink.has_char();
-
-   }
-
-
-   void still::on_set_window_text()
-   {
-
-      set_need_redraw();
-
-      post_redraw();
 
    }
 

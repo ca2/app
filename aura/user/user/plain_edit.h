@@ -297,6 +297,8 @@ namespace user
 
       void constrain_context_offset(point_f64 & point, ::user::enum_layout elayout = ::user::e_layout_sketch) override;
 
+      virtual void _001OnNcClip(::draw2d::graphics_pointer& pgraphics) override;
+      virtual void _001OnClip(::draw2d::graphics_pointer& pgraphics) override;
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
       //virtual void on_context_offset(::draw2d::graphics_pointer & pgraphics) override;

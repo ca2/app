@@ -432,9 +432,26 @@ namespace user
    }
 
 
+   void plain_edit::_001OnNcClip(::draw2d::graphics_pointer& pgraphics)
+   {
+
+      ::user::scroll_base::_001OnNcClip(pgraphics);
+
+   }
+
+
+   void plain_edit::_001OnClip(::draw2d::graphics_pointer& pgraphics)
+   {
+
+      ::user::scroll_base::_001OnClip(pgraphics);
+
+   }
+
+
    void plain_edit::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
+      //pgraphics->reset_clip();
       m_timeLastDraw = ::time::now();
 
       auto timeStart = ::time::now();

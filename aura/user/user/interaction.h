@@ -313,6 +313,7 @@ namespace user
       ::user::frame *                           m_puserframeTopLevel;
       ::user::frame *                           m_puserframeParent;
       bool                                      m_bAutoResize;
+      bool                                      m_bNeedAutoResizePerformLayout;
 
 
       ::rectangle_f64                           m_rectangleClip;
@@ -878,6 +879,7 @@ namespace user
       virtual void set_reposition(bool bSetThis = true);
       virtual void _set_reposition(bool bSetThis = true);
       virtual void set_need_layout();
+      virtual void set_recalculate_clip_rectangle();
       //void set_need_layout() { m_bNeedLayout = true; }
       void set_need_redraw(const ::rectangle_i32_array& rectangleNeedRedraw = {}, ::draw2d::graphics * pgraphics = nullptr, ::function < void() > function= nullptr, bool bAscendants = true) override;
       virtual bool needs_to_draw(::draw2d::graphics * pgraphics, const ::rectangle_i32& rectangleNeedsToDraw = {});

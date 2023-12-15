@@ -231,6 +231,7 @@ namespace user
 
 
       m_bAutoResize = false;
+      m_bNeedAutoResizePerformLayout = false;
 
       //m_bVisualChanged = false;
 
@@ -1731,6 +1732,33 @@ namespace user
       }
 
       //information() << "set_need_layout : " << acmenode()->get_callstack();
+
+   }
+
+
+   void interaction::set_recalculate_clip_rectangle()
+   {
+
+      m_bClipRectangle = false;
+
+      auto children = synchronized_get_children();
+
+      for (auto puserinteraction : children)
+      {
+
+         try
+         {
+
+            puserinteraction->set_recalculate_clip_rectangle();
+
+         }
+         catch (...)
+         {
+
+         }
+
+
+      }
 
    }
 
@@ -12888,8 +12916,6 @@ namespace user
 
       //}
 
-      m_bClipRectangle = false;
-
       if (pgraphics)
       {
 
@@ -12956,7 +12982,6 @@ namespace user
 
                }
 
-
             }
 
          }
@@ -12989,6 +13014,8 @@ namespace user
       //}
 
       m_bNeedLayout = false;
+
+      set_recalculate_clip_rectangle();
 
       return true;
 
@@ -13677,7 +13704,7 @@ namespace user
 
       bool bNeedOnPerformLayout = false;
 
-      if (!bNeedOnPerformLayout && m_bAutoResize)
+      if (!bNeedOnPerformLayout && m_bNeedAutoResizePerformLayout)
       {
 
          bNeedOnPerformLayout = true;
@@ -15332,11 +15359,9 @@ namespace user
       if (::type(this) == "user::list_box")
       {
 
-         information() << "interaction::layout_layout";
+         information() << "interaction::sketch_to_lading";
 
       }
-
-
 
       _synchronous_lock synchronouslock(this->synchronization());
 
@@ -15977,7 +16002,14 @@ namespace user
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      layout().design().visual_state::operator=(layout().layout());
+      if (!layout().design().visual_state::operator==(layout().layout()))
+      {
+
+         layout().design().visual_state::operator=(layout().layout());
+
+         m_bClipRectangle = false;
+
+      }
 
       if (!layout().design().m_zorder.is_change_request() || layout().layout().m_zorder.is_change_request())
       {

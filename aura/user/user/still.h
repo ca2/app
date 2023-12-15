@@ -114,16 +114,13 @@ namespace user
 
       ::item_pointer on_hit_test(const ::point_i32 & point, e_zorder ezorder) override;
 
-
+      void on_set_window_text() override;
       bool on_perform_layout(::draw2d::graphics_pointer & pgraphics) override;
       void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
 
       void set_stock_icon(enum_stock_icon eicon) override;
       enum_stock_icon get_stock_icon() override;
-
-
-      void on_set_window_text() override;
 
 
    };

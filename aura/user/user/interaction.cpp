@@ -7303,56 +7303,62 @@ namespace user
 //   }
 
 
-//   void interaction::add_fps_interest(::particle * pparticle)
-//   {
-//
-//      auto phostwindow = get_host_user_interaction();
-//
-//      if (phostwindow == nullptr)
-//      {
-//
-//         throw ::exception(error_wrong_state);
-//
-//      }
-//
-//      auto pprimitiveimpl = phostwindow->m_pprimitiveimpl;
-//
-//      return pprimitiveimpl->add_graphical_output_interest(pparticle, ::graphics::e_o);
-//
-//   }
-//
-//
-//   void interaction::erase_fps_interest(::particle * pparticle)
-//   {
-//
-//      if (get_wnd() == nullptr || get_wnd()->m_pprimitiveimpl == nullptr)
-//      {
-//
-//         return;
-//
-//      }
-//
-//      get_wnd()->m_pprimitiveimpl->erase_fps_interest(pparticle);
-//
-//   }
-//
-//
-//   bool interaction::is_fps_interest(const ::particle * pparticle) const
-//   {
-//
-//      auto pwnd = ((interaction *)
-//         this)->get_wnd();
-//
-//      if (pwnd == nullptr || pwnd->m_pprimitiveimpl == nullptr)
-//      {
-//
-//         return false;
-//
-//      }
-//
-//      return pwnd->m_pprimitiveimpl->is_fps_interest(pparticle);
-//
-//   }
+   void interaction::add_fps_interest(::particle * pparticle)
+   {
+
+      auto phostwindow = get_host_user_interaction();
+
+      if (phostwindow == nullptr)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      auto pprimitiveimpl = phostwindow->m_pprimitiveimpl;
+
+      return pprimitiveimpl->add_graphical_output_purpose(pparticle, ::graphics::e_output_purpose_fps);
+
+   }
+
+
+   void interaction::erase_fps_interest(::particle * pparticle)
+   {
+
+      auto phostwindow = get_host_user_interaction();
+
+      if (phostwindow == nullptr)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      auto pprimitiveimpl = phostwindow->m_pprimitiveimpl;
+
+      return pprimitiveimpl->erase_graphical_output_purpose(pparticle);
+
+   }
+
+
+
+   bool interaction::is_fps_interest(const ::particle * pparticle) const
+   {
+
+      auto phostwindow = ((interaction *)this)->get_host_user_interaction();
+
+      if (phostwindow == nullptr)
+      {
+
+         return false;
+
+      }
+
+      auto pprimitiveimpl = phostwindow->m_pprimitiveimpl;
+
+      return pprimitiveimpl->does_particle_has_fps_purpose(pparticle);
+
+   }
 
 
    void interaction::default_message_handler(::message::message * pmessage)

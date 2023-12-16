@@ -751,28 +751,28 @@ namespace user
    //}
 
 
-   void primitive::add_fps_interest(::particle * pparticle)
-   {
+   //void primitive::add_fps_interest(::particle * pparticle)
+   //{
 
-      //return false;
+   //   //return false;
 
-   }
-
-
-   void primitive::erase_fps_interest(::particle * pparticle)
-   {
-
-      //return false;
-
-   }
+   //}
 
 
-   bool primitive::is_fps_interest(const ::particle * pparticle) const
-   {
+   //void primitive::erase_fps_interest(::particle * pparticle)
+   //{
 
-      return false;
+   //   //return false;
 
-   }
+   //}
+
+
+   //bool primitive::is_fps_interest(const ::particle * pparticle) const
+   //{
+
+   //   return false;
+
+   //}
 
 
    string primitive::get_title()

@@ -637,9 +637,9 @@ namespace user
 //      inline bool is_fps_interest() const { return is_fps_interest(this); }
 //
 //
-//      void add_fps_interest(::particle * pparticle) override;
-//      void erase_fps_interest(::particle * pparticle) override;
-//      bool is_fps_interest(const ::particle * pparticle) const override;
+      void add_fps_interest(::particle * pparticle) override;
+      void erase_fps_interest(::particle * pparticle) override;
+      bool is_fps_interest(const ::particle * pparticle) const override;
 //      bool has_fps_interest() const noexcept;
 //
 

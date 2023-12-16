@@ -393,16 +393,34 @@ namespace user
          if (pitem)
          {
 
-            if (pitem->m_puserinteraction)
+            try
             {
 
-               pitem->m_puserinteraction->set_finish();
+               pitem->release_children_interaction();
 
-               pitem->m_puserinteraction.release();
+            }
+            catch (...)
+            {
 
             }
 
-            pitem->release_children_interaction();
+            if (pitem->m_puserinteraction)
+            {
+
+               try
+               {
+
+                  pitem->m_puserinteraction->set_finish();
+
+                  pitem->m_puserinteraction.release();
+
+               }
+               catch (...)
+               {
+
+               }
+
+            }
 
          }
 

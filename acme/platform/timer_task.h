@@ -67,14 +67,14 @@ public:
    void run() override;
 
 
-   void start(const class time & timeWait, bool bPeriodic);
+   virtual void start_timer_task(const class time & timeWait, bool bPeriodic);
 
 
    virtual void on_timer();
 
-   //virtual void destroy() override;
+   virtual void destroy() override;
 
-   void destroy() override;
+   virtual void stop_timer_task();
 
    //bool impl_start();
    //bool impl_restart();

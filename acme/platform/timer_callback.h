@@ -10,7 +10,9 @@ class CLASS_DECL_ACME timer_callback :
 public:
 
 
-   ::pointer_array<::timer>      m_timera;
+   typedef uptr_map < ::pointer<::timer >>MAP;
+
+   MAP                                       m_timermap;
 
 
    timer_callback();

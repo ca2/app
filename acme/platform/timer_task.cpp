@@ -51,26 +51,9 @@ i64 timer_task::release()
 void timer_task::initialize_timer(::particle * pparticle, ::acme::timer_array * ptimera, uptr uiTimer, PFN_TIMER pfnTimer, void* pvoidData, ::particle * pparticleSynchronization)
 {
 
-   /*auto estatus = */ ::task::initialize(pparticle);
-
-   //if(!estatus)
-   //{
-
-
-   //   return estatus;
-
-   //}
+   ::task::initialize(pparticle);
 
    m_bRunning = false;
-
-   //m_ptimera.reset(ptimera REFERENCING_DEBUGGING_COMMA_THIS_FUNCTION_FILE_LINE);
-
-   if (m_ptimera)
-   {
-
-      m_ptimera->m_map[uiTimer] = this;
-
-   }
 
    m_bHandling = false;
 
@@ -80,12 +63,10 @@ void timer_task::initialize_timer(::particle * pparticle, ::acme::timer_array * 
 
    m_pvoidData = pvoidData;
 
-   //return ::success;
-
 }
 
 
-void timer_task::start(const class time & timeWait, bool bPeriodic)
+void timer_task::start_timer_task(const class time & timeWait, bool bPeriodic)
 {
 
    synchronous_lock synchronouslock(this->synchronization());
@@ -105,8 +86,6 @@ void timer_task::start(const class time & timeWait, bool bPeriodic)
 
    //try
    //{
-
-      m_bRunning = true;
 
       m_strDebugNote.formatf("uEvent=%d", m_uEvent);
 
@@ -151,6 +130,8 @@ void timer_task::start(const class time & timeWait, bool bPeriodic)
 
       m_atom = m_strDebugNote;
 
+      m_bRunning = true;
+
       branch();
 
       ///if (!branch())
@@ -165,8 +146,6 @@ void timer_task::start(const class time & timeWait, bool bPeriodic)
    //}
    //catch (...)
    //{
-
-      m_bRunning = false;
 
    //   return false;
 
@@ -229,7 +208,7 @@ void timer_task::run()
 
    const auto intervalTime = 100_ms;
 
-      auto [countDecisecondSleep, remainderDecisecondSleep] = waitSleep.count_and_remainder(intervalTime);
+   auto [countDecisecondSleep, remainderDecisecondSleep] = waitSleep.count_and_remainder(intervalTime);
 
    while (true)
    {
@@ -277,10 +256,34 @@ void timer_task::run()
 
    }
 
-   //return m_estatus;
+   m_bRunning = false;
 
 }
 
+
+void timer_task::stop_timer_task()
+{
+
+   {
+
+      _synchronous_lock _synchronouslock(this->synchronization());
+
+      if (m_bRunning)
+      {
+
+         set_finish();
+
+      }
+      else
+      {
+
+         destroy();
+
+      }
+
+   }
+
+}
 
 
 void timer_task::destroy()
@@ -288,7 +291,7 @@ void timer_task::destroy()
 
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock _synchronouslock(this->synchronization());
 
       try
       {
@@ -296,7 +299,11 @@ void timer_task::destroy()
          if (m_ptimera)
          {
 
+            _synchronouslock.unlock();
+
             m_ptimera->erase_timer(this);
+
+            _synchronouslock._lock();
 
             m_ptimera.release();
 
@@ -313,8 +320,6 @@ void timer_task::destroy()
    ::timer::destroy();
 
    ::task::destroy();
-
-   //return ::success;
 
 }
 

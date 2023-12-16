@@ -18,7 +18,7 @@ timer_event::~timer_event()
 ::e_status timer_event::wait(const class time & timeWait)
 {
 
-   start(timeWait,false);
+   start_timer_task(timeWait,false);
 
    return m_manualresetevent.wait();
 

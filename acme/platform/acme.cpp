@@ -317,6 +317,10 @@ namespace acme
    acme::~acme()
    {
 
+      ::task_release();
+
+      m_pplatform->m_psystem.release();
+
       acme_destruct_platform_dependent();
 
       m_pplatform->platform_finalize();

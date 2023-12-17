@@ -127,6 +127,10 @@ namespace write_text
 
       //pgraphics->reset_clip();
 
+      ::rectangle_f64 rectangleClipBox;
+      
+      pgraphics->get_clip_box(rectangleClipBox);
+
       //return;
 
       //information() << "font_list::_001OnDrawWide 1";
@@ -137,9 +141,7 @@ namespace write_text
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      ::rectangle_i32 rectangle = m_puserinteraction->rectangle();
-
-      //rectangleX += m_puserinteraction->get_context_offset();
+      auto rectangleWindow = m_puserinteraction->rectangle();
 
       auto pfontlistdata = m_pfontlistdata;
 
@@ -243,7 +245,7 @@ namespace write_text
 
          }
 
-         if (!pbox->m_rectangle.intersects(rectangle))
+         if (!pbox->m_rectangle.intersects(rectangleWindow))
          {
 
             if (pbox->m_rectangle.is_empty())
@@ -252,7 +254,7 @@ namespace write_text
                //information() << "!pitem (pbox->m_rectangle.intersects(rectangleX(EMPTY)))";
 
             }
-            else if (rectangle.area() < 10'000)
+            else if (rectangleWindow.area() < 10'000)
             {
 
                //information() << "!pitem (pbox->m_rectangle.intersects(rectangleX(<10'000)))";

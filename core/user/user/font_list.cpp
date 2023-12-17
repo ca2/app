@@ -431,6 +431,8 @@ namespace user
 
             set_context_offset_y((rectangle.top() + rectangle.bottom() - rectangleImpact.height()) / 2);
 
+            on_change_context_offset();
+
          }
 
          m_bEnsureVisible = false;

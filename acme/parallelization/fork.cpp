@@ -115,12 +115,12 @@ void forking_count_task::run()
 
    }
 
-   //if (m_pcounter.is_set())
-   //{
+   if (m_pcounter.is_set())
+   {
 
-   //   (*m_pcounter)++;
+      (*m_pcounter)++;
 
-   //}
+   }
 
    //return ::success;
 

@@ -4,6 +4,7 @@
 
 #include "application_handler.h"
 #include "acme/primitive/collection/string_map.h"
+#include "apex/networking/netserver/incoming_socket_thread.h"
 
 
 namespace networking
@@ -21,10 +22,10 @@ namespace networking
 
    public:
 
-      ::string                                        m_strHostname;
+      ::string                                                 m_strHostname;
 
 
-      ::pointer<::netserver::socket_thread>           m_psocketthread;
+      ::pointer < ::netserver::incoming_socket_thread >        m_psocketthread;
 
 
       application();

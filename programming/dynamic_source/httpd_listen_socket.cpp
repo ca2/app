@@ -26,7 +26,7 @@ namespace dynamic_source
    void httpd_socket::Reset()
    {
 
-      ::sockets::httpd_socket::Reset();
+      ::httpd::socket::Reset();
 
       m_iCa2FetchMode = 0;
 
@@ -37,6 +37,8 @@ namespace dynamic_source
    {
 
       m_pscript.release();
+
+      ::httpd::socket::finalize();
 
    }
 

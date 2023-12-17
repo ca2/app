@@ -2777,6 +2777,16 @@ return true;
    }
 
 
+   void tcp_socket::finalize()
+   {
+
+      ::defer_finalize_and_release(m_ptcpsocketComposite);
+
+      ::sockets::stream_socket::finalize();
+
+   }
+
+
 } // namespace sockets
 
 

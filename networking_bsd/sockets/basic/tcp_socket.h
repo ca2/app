@@ -97,7 +97,7 @@ namespace sockets_bsd
       
       typedef list<::pointer<output >> output_list;
 
-      ::file::circular_file ibuf; ///< Circular input buffer
+      ::file::circular_file m_ibuf; ///< Circular input buffer
       string m_strUrl;
 
       ::pointer< ::mutex >        m_pmutexSslCtx;
@@ -139,7 +139,7 @@ namespace sockets_bsd
       \lparam isize Input buffer size_i32
       \lparam osize Output buffer size_i32 */
       tcp_socket(memsize isize,memsize osize);
-      virtual ~tcp_socket();
+      ~tcp_socket() override;
 
 
       void initialize(::particle * pparticle) override;
@@ -324,6 +324,9 @@ namespace sockets_bsd
       void buffer(const void * buf, int len) override;
 
       void InitializeContextTLSClientMethod() override;
+
+      void finalize() override;
+
 
    };
 

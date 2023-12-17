@@ -133,6 +133,8 @@ namespace sockets
 
       virtual void client_to_server(http_socket * psocket);
 
+      void finalize() override;
+
 
    };
 

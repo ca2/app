@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "sockets.h"
 #include "acme/parallelization/task_flag.h"
+#include "apex/networking/sockets/base/socket_thread.h"
 
 
 #ifdef PARALLELIZATION_PTHREAD
@@ -52,6 +53,8 @@ namespace sockets
 
       object::initialize(pparticle);
 
+
+      factory()->add_factory_item < ::sockets::socket_thread >();
       //if (!estatus)
       //{
 

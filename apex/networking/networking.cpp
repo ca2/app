@@ -117,16 +117,16 @@ namespace networking
    }
 
 
-   ::sockets::listen_socket_base* networking::new_listen_socket(const ::type_atom& type)
-   {
+   //::sockets::listen_socket * networking::new_listen_socket(const ::type_atom& type)
+   //{
 
-      auto plistensocket = __create< ::sockets::listen_socket_base >();
+   //   auto plistensocket = __create< ::sockets::listen_socket >();
 
-      plistensocket->initialize_listen_socket(type);
+   //   plistensocket->initialize_listen_socket(type);
 
-      return plistensocket;
+   //   return plistensocket;
 
-   }
+   //}
 
 
    void networking::destroy()

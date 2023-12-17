@@ -23,7 +23,7 @@ namespace sockets
       /** "Default" constructor */
       socket();
 
-      virtual ~socket();
+      ~socket() override;
 
 
 

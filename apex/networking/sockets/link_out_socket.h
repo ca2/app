@@ -30,7 +30,7 @@ namespace sockets
       void link_write(void * p, memsize size);
 
 
-      void server_to_link_out(httpd_socket * psocket);
+      void server_to_link_out(::httpd::socket * psocket);
 
    };
 

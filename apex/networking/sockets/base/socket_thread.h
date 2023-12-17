@@ -16,23 +16,24 @@ namespace sockets
    public:
 
 
-      ::i64                            m_iAllocatedCount;
-      ::pointer<socket_handler>        m_psockethandler;
-      //::pointer<base_socket>         m_psocket;
+
+      ::pointer < ::factory::factory >             m_pfactorySocketHandler;
+      ::type_atom                                  m_typeSocketHandler;
+      ::pointer < ::sockets::socket_handler >      m_psockethandler;
+      ::i64                                        m_iAllocatedCount;
+      //::type_atom                                m_typeListenSocket;
+      //::pointer < ::factory::factory >    m_pfactory;
 
 
       socket_thread();
       ~socket_thread() override;
 
 
+      virtual void initialize_socket_thread(::sockets::base_socket* psocket);
+
+
       void on_initialize_particle() override;
 
-
-      //virtual void transfer(socket_map::association * passociation, socket_map * psocketmap = nullptr);
-
-      //virtual void init_thread() override;
-
-      //virtual void term_thread() override;
 
       virtual base_socket* get_socket() const;
 
@@ -45,6 +46,13 @@ namespace sockets
       ::i64 decrement_reference_count() override;
 
 #endif
+
+
+      virtual ::pointer < ::sockets::socket_handler > create_socket_handler();
+
+
+      void finalize() override;
+
 
 
    };

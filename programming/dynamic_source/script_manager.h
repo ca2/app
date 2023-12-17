@@ -199,10 +199,10 @@ namespace dynamic_source
 
 
       void wait_link_out(const ::string & pszServer, ::sockets::link_in_socket * pinsocket);
-      bool has_link_out_link(const ::string & pszServer, ::sockets::link_in_socket * pinsocket, ::sockets::httpd_socket * phttpdsocket);
+      bool has_link_out_link(const ::string & pszServer, ::sockets::link_in_socket * pinsocket, ::httpd::socket * phttpdsocket);
       ::sockets::link_in_socket * get_link_in(const ::string & pszServer, ::sockets::link_out_socket * poutsocket);
       bool is_online(const ::string & pszServer);
-      ::sockets::link_out_socket * create_link_out(const ::string & pszServer, ::sockets::httpd_socket * phttpdsocket);
+      ::sockets::link_out_socket * create_link_out(const ::string & pszServer, ::httpd::socket * phttpdsocket);
       ::size_i32 get_image_size(const ::file::path & strFile);
       bool extract_image_size(const ::file::path & strFile,::size_i32 * psize);
 

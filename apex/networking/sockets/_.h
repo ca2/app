@@ -15,7 +15,7 @@ namespace sockets
 
    using socket_pointer = ::pointer<base_socket>;
 
-   class httpd_socket;
+   
    //namespace sockets
    //{
 
@@ -31,10 +31,18 @@ namespace sockets
       
    //} // namespace sockets
 
-      class listen_socket_base;
+      class listen_socket;
 
 } // namespace sockets
 
+
+namespace httpd
+{
+
+   class socket;
+   class incoming_socket;
+
+}
 
 //#include "ssl/_.h"
 

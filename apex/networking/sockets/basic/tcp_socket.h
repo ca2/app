@@ -355,6 +355,8 @@ namespace sockets
 
       virtual void InitializeContextTLSClientMethod();
 
+      void finalize() override;
+
    };
 
    extern "C"

@@ -7,6 +7,7 @@
 #include "acme/filesystem/file/memory_file.h"
 #include "acme/primitive/primitive/url.h"
 #include "acme/platform/system.h"
+#include "apex/networking/sockets/httpd/socket_thread.h"
 
 
 namespace dynamic_source
@@ -20,7 +21,7 @@ namespace dynamic_source
 
       m_pnetnodescriptinterface = nullptr;
 
-      m_iDebug             = 0;
+      m_iDebug = 0;
 
    }
 
@@ -39,11 +40,11 @@ namespace dynamic_source
    }
 
 
-   void script_interface::initialize(::particle * pparticle)
+   void script_interface::initialize(::particle* pparticle)
    {
 
       //auto estatus = 
-      
+
       ::html_file::initialize(pparticle);
 
       //if (!estatus)
@@ -53,7 +54,7 @@ namespace dynamic_source
 
       //}
 
-      auto pinterface = dynamic_cast <script_interface * >(pparticle);
+      auto pinterface = dynamic_cast <script_interface*>(pparticle);
 
       if (pinterface)
       {
@@ -73,11 +74,55 @@ namespace dynamic_source
 
 
    void script_interface::init1()
+      //void script_interface::init1()
    {
 
-      //::e_status estatus = ::success_none;
+      if (!m_pmain)
+      {
 
-      //return estatus;
+         ::pointer < ::httpd::socket_thread > pthread = ::get_task();
+
+         if (pthread)
+         {
+
+            auto psocket = pthread->m_psocket;
+
+            if (psocket)
+            {
+
+               ::pointer < ::dynamic_source::httpd_socket > phttpdsocket = psocket;
+
+               if (phttpdsocket)
+               {
+
+                  auto pscript = phttpdsocket->m_pscript;
+
+                  if (pscript)
+                  {
+
+                     m_pmain = pscript->m_pmain;
+
+                     if (m_pmain)
+                     {
+
+                        m_pmain->m_interfacea.add_unique(this);
+
+                     }
+
+                  }
+
+               }
+
+            }
+
+         }
+
+      }
+
+      //m_pmain = ::dynamic_source::script_interface::m_pmain;
+      //m_pinstanceParent2 = ::dynamic_source::script_interface::m_pinstanceParent2;
+
+      // return estatus;
 
    }
 
@@ -95,19 +140,29 @@ namespace dynamic_source
 
    //}
 
-   void script_interface::destroy()
-   {
 
-      //auto estatus = 
-      
-      ::html_file::destroy();
+   void script_interface::finalize()
+   {
 
       m_pmain.release();
       m_pinstanceParent2.release();
       m_pscript2.release();
 
-      //return estatus;
+      m_varRet.unset();
 
+      ::html_file::finalize();
+
+   }
+
+
+   void script_interface::destroy()
+   {
+
+      m_pmain.release();
+      m_pinstanceParent2.release();
+      m_pscript2.release();
+
+      ::html_file::destroy();
 
    }
 
@@ -138,16 +193,16 @@ namespace dynamic_source
    //}
 
 
-   ::file::file * script_interface::output_file()
+   ::file::file* script_interface::output_file()
    {
 
-      if(m_pmain)
+      if (m_pmain)
       {
 
          return m_pmain->output_file();
 
       }
-      else if(netnodesocket())
+      else if (netnodesocket())
       {
 
          return netnodesocket()->response().file();
@@ -202,20 +257,20 @@ namespace dynamic_source
    //}
 
 
-   void script_interface::set_session_payload(const ::atom & atom, const ::payload &)
+   void script_interface::set_session_payload(const ::atom& atom, const ::payload&)
    {
 
    }
 
 
-   ::payload script_interface::get_session_payload(const ::atom & atom)
+   ::payload script_interface::get_session_payload(const ::atom& atom)
    {
 
       return ::payload(::e_type_new);
 
    }
 
-   ::atom script_interface::session_id(const ::atom & atom)
+   ::atom script_interface::session_id(const ::atom& atom)
    {
 
       return "";
@@ -283,7 +338,7 @@ namespace dynamic_source
          run();
 
       }
-      catch (const ::dynamic_source::exit_exception & e)
+      catch (const ::dynamic_source::exit_exception& e)
       {
 
          destroy();
@@ -323,7 +378,7 @@ namespace dynamic_source
 
 
 
-   void script_interface::dprint(const ::string &)
+   void script_interface::dprint(const ::string&)
    {
 
 
@@ -337,428 +392,428 @@ namespace dynamic_source
    }
 
 
-      property_set& script_interface::inattra()
-      {
+   property_set& script_interface::inattra()
+   {
 
-         throw ::interface_only();
+      throw ::interface_only();
 
-         return *(property_set *)nullptr;
+      return *(property_set*)nullptr;
 
-      }
+   }
 
 
-      httpd_socket* script_interface::netnodesocket()
-      {
+   httpd_socket* script_interface::netnodesocket()
+   {
 
-         return m_pmain->m_psocket2;
+      return m_pmain->m_psocket2;
 
-      }
+   }
 
 
-      script_manager* script_interface::manager()
-      {
+   script_manager* script_interface::manager()
+   {
 
-         return m_pmain->m_pmanager2;
+      return m_pmain->m_pmanager2;
 
-      }
+   }
 
 
-      property_set& script_interface::geta()
-      {
+   property_set& script_interface::geta()
+   {
 
-         throw ::interface_only();
+      throw ::interface_only();
 
-         return *(property_set *)nullptr;
+      return *(property_set*)nullptr;
 
-      }
+   }
 
 
 
-      property_set& script_interface::posta()
-      {
+   property_set& script_interface::posta()
+   {
 
-         throw ::interface_only();
+      throw ::interface_only();
 
-         return *(property_set *)nullptr;
+      return *(property_set*)nullptr;
 
-      }
+   }
 
 
 
-      http::cookies& script_interface::cookies()
-      {
+   http::cookies& script_interface::cookies()
+   {
 
-         throw ::interface_only();
+      throw ::interface_only();
 
-         return *(http::cookies *)nullptr;
+      return *(http::cookies*)nullptr;
 
-      }
+   }
 
 
-      property_set& script_interface::requesta()
-      {
+   property_set& script_interface::requesta()
+   {
 
-         throw ::interface_only();
+      throw ::interface_only();
 
-         return *(property_set *)nullptr;
+      return *(property_set*)nullptr;
 
-      }
+   }
 
 
-      property& script_interface::inheader(atom atom)
-      {
+   property& script_interface::inheader(atom atom)
+   {
 
-         throw ::interface_only();
+      throw ::interface_only();
 
-         return *(property *)nullptr;
+      return *(property*)nullptr;
 
-      }
+   }
 
 
-      property& script_interface::outheader(atom atom)
-      {
+   property& script_interface::outheader(atom atom)
+   {
 
-         throw ::interface_only();
+      throw ::interface_only();
 
-         return *(property *)nullptr;
+      return *(property*)nullptr;
 
-      }
+   }
 
 
-      property& script_interface::inattr(atom atom)
-      {
+   property& script_interface::inattr(atom atom)
+   {
 
-         throw ::interface_only();
+      throw ::interface_only();
 
-         return *(property *)nullptr;
+      return *(property*)nullptr;
 
-      }
+   }
 
 
-      property& script_interface::outattr(atom atom)
-      {
+   property& script_interface::outattr(atom atom)
+   {
 
-         throw ::interface_only();
+      throw ::interface_only();
 
-         return *(property *)nullptr;
+      return *(property*)nullptr;
 
-      }
+   }
 
 
-      string& script_interface::gstr(atom atom)
-      {
+   string& script_interface::gstr(atom atom)
+   {
 
-         throw ::interface_only();
+      throw ::interface_only();
 
-         return *(string *)nullptr;
+      return *(string*)nullptr;
 
-      }
+   }
 
 
-      property& script_interface::gprop(atom atom)
-      {
+   property& script_interface::gprop(atom atom)
+   {
 
-         throw ::interface_only();
+      throw ::interface_only();
 
-         return *(property *)nullptr;
+      return *(property*)nullptr;
 
-      }
+   }
 
 
-      property& script_interface::get(atom idKey)
-      {
+   property& script_interface::get(atom idKey)
+   {
 
-         throw ::interface_only();
+      throw ::interface_only();
 
-         return *(property *)nullptr;
+      return *(property*)nullptr;
 
-      }
+   }
 
 
-      property& script_interface::post(atom idKey)
-      {
+   property& script_interface::post(atom idKey)
+   {
 
-         throw ::interface_only();
+      throw ::interface_only();
 
-         return *(property *)nullptr;
+      return *(property*)nullptr;
 
-      }
+   }
 
 
-      http::cookie& script_interface::get_cookie(atom idKey)
-      {
+   http::cookie& script_interface::get_cookie(atom idKey)
+   {
 
-         throw ::interface_only();
+      throw ::interface_only();
 
-         return *(http::cookie *)nullptr;
+      return *(http::cookie*)nullptr;
 
-      }
+   }
 
 
-      http::cookie& script_interface::set-cookie(atom idKey)
-      {
+   http::cookie& script_interface::set - cookie(atom idKey)
+   {
 
-         throw ::interface_only();
+      throw ::interface_only();
 
-         return *(http::cookie *)nullptr;
+      return *(http::cookie*)nullptr;
 
-      }
+   }
 
 
 
-      void script_interface::uri_set_var(string& strUrl, const ::string & pszUrl, const ::string & pszKey, ::payload payload)
-      {
+   void script_interface::uri_set_var(string& strUrl, const ::string& pszUrl, const ::string& pszKey, ::payload payload)
+   {
 
 
-      }
+   }
 
 
-      void script_interface::uri_set_param(string& strUrl, const ::string & pszUrl, const ::string & pszKey, const string& strParam)
-      {
+   void script_interface::uri_set_param(string& strUrl, const ::string& pszUrl, const ::string& pszKey, const string& strParam)
+   {
 
 
-      }
+   }
 
 
-      string script_interface::query_get_param(const ::string & pszUrl, const ::string & pszKey)
-      {
+   string script_interface::query_get_param(const ::string& pszUrl, const ::string& pszKey)
+   {
 
-         return "";
+      return "";
 
-      }
+   }
 
 
-      ::payload script_interface::query_get_var(const ::string & pszUrl, const ::string & pszKey)
-      {
+   ::payload script_interface::query_get_var(const ::string& pszUrl, const ::string& pszKey)
+   {
 
       return false;
 
-      }
+   }
 
 
 #endif
 
-      void script_interface::dprint_recursive(const ::payload & payload)
+   void script_interface::dprint_recursive(const ::payload& payload)
+   {
+
+      if (m_pmain != nullptr && m_pmain->m_iDebug > 0)
       {
 
-         if (m_pmain != nullptr && m_pmain->m_iDebug > 0)
-         {
-
-            print_r(payload);
-
-         }
+         print_r(payload);
 
       }
 
-      property & script_interface::get(const ::atom & atom)
+   }
+
+   property& script_interface::get(const ::atom& atom)
+   {
+
+      return netnodesocket()->request().form().get()[atom];
+
+   }
+
+
+   property& script_interface::post(const ::atom& atom)
+   {
+
+      return netnodesocket()->request().form().post()[atom];
+
+   }
+
+
+   http::cookie& script_interface::get_cookie(const ::scoped_string& scopedstr)
+   {
+
+      return netnodesocket()->request().cookies().cookie(scopedstr);
+
+   }
+
+
+   http::cookie& script_interface::set_cookie(const ::scoped_string& scopedstr)
+   {
+
+      return netnodesocket()->response().cookies().cookie(scopedstr);
+
+   }
+
+
+   property& script_interface::request(const ::atom& atom)
+   {
+
+      return netnodesocket()->request().form().request()[atom];
+
+   }
+
+
+   property_set& script_interface::geta()
+   {
+
+      return netnodesocket()->request().form().get();
+
+   }
+
+
+   property_set& script_interface::posta()
+   {
+
+      return netnodesocket()->request().form().post();
+
+   }
+
+
+   http::cookies& script_interface::cookies()
+   {
+
+      return netnodesocket()->request().cookies();
+
+   }
+
+
+   property_set& script_interface::requesta()
+   {
+
+      return netnodesocket()->request().form().request();
+
+   }
+
+
+   property_set& script_interface::inattra()
+   {
+
+      return netnodesocket()->inattrs();
+
+   }
+
+
+   property& script_interface::inheader(const ::atom& atom)
+   {
+
+      return netnodesocket()->inheader(atom);
+
+   }
+
+
+   property& script_interface::outheader(const ::atom& atom)
+   {
+
+      return netnodesocket()->outheader(atom);
+
+   }
+
+
+   property& script_interface::inattr(const ::atom& atom)
+   {
+
+      return netnodesocket()->inattr(atom);
+
+   }
+
+
+   property& script_interface::outattr(const ::atom& atom)
+   {
+
+      return netnodesocket()->outattr(atom);
+
+   }
+
+
+
+
+   string& script_interface::gstr(const ::atom& atom)
+   {
+
+      return gprop(atom).string_reference();
+
+   }
+
+
+   void script_interface::uri_set_var(string& strUrl, const ::string& pszUrl, const ::string& pszKey, ::payload payload)
+   {
+
+      auto psystem = system();
+
+      auto purl = psystem->url();
+
+      purl->set_key(strUrl, pszUrl, pszKey, payload);
+
+   }
+
+
+   void script_interface::uri_set_param(string& strUrl, const ::string& pszUrl, const ::string& pszKey, const string& strParam)
+   {
+
+      auto psystem = system();
+
+      auto purl = psystem->url();
+
+      purl->set_param(strUrl, pszUrl, pszKey, strParam);
+
+   }
+
+
+   string script_interface::query_get_param(const ::string& pszUrl, const ::string& pszKey)
+   {
+
+      auto psystem = system();
+
+      auto purl = psystem->url();
+
+      return purl->get_param(pszUrl, pszKey);
+
+   }
+
+
+   ::payload script_interface::query_get_var(const ::string& pszUrl, const ::string& pszKey)
+   {
+
+      auto psystem = system();
+
+      auto purl = psystem->url();
+
+      return purl->get_var(pszUrl, pszKey);
+
+   }
+
+
+   void script_interface::dprint(const ::string& psz)
+   {
+
+      if (m_pmain && m_pmain->m_iDebug > 0)
       {
 
-         return netnodesocket()->request().form().get()[atom];
+         print(psz);
 
       }
 
+   }
 
-      property & script_interface::post(const ::atom & atom)
-      {
 
-         return netnodesocket()->request().form().post()[atom];
 
-      }
+   property& script_interface::gprop(const ::atom& atom)
+   {
 
+      auto& set = m_pmain->get_property_set();
 
-      http::cookie & script_interface::get_cookie(const ::scoped_string & scopedstr)
-      {
+      return set.get(atom);
 
-         return netnodesocket()->request().cookies().cookie(scopedstr);
+   }
 
-      }
 
+   httpd_socket* script_interface::netnodesocket()
+   {
 
-      http::cookie & script_interface::set_cookie(const ::scoped_string & scopedstr)
-      {
 
-         return netnodesocket()->response().cookies().cookie(scopedstr);
+      return m_pmain->m_psocket2;
 
-      }
+   }
 
 
-      property & script_interface::request(const ::atom & atom)
-      {
+   script_manager* script_interface::manager()
+   {
 
-         return netnodesocket()->request().form().request()[atom];
+      return m_pmain->m_pmanager2;
 
-      }
-
-
-      property_set & script_interface::geta()
-      {
-
-         return netnodesocket()->request().form().get();
-
-      }
-
-
-      property_set & script_interface::posta()
-      {
-
-         return netnodesocket()->request().form().post();
-
-      }
-
-
-      http::cookies & script_interface::cookies()
-      {
-
-         return netnodesocket()->request().cookies();
-
-      }
-
-
-      property_set & script_interface::requesta()
-      {
-
-         return netnodesocket()->request().form().request();
-
-      }
-
-
-      property_set & script_interface::inattra()
-      {
-
-         return netnodesocket()->inattrs();
-
-      }
-
-
-      property & script_interface::inheader(const ::atom & atom)
-      {
-
-         return netnodesocket()->inheader(atom);
-
-      }
-
-
-      property & script_interface::outheader(const ::atom & atom)
-      {
-
-         return netnodesocket()->outheader(atom);
-
-      }
-
-
-      property & script_interface::inattr(const ::atom & atom)
-      {
-
-         return netnodesocket()->inattr(atom);
-
-      }
-
-
-      property & script_interface::outattr(const ::atom & atom)
-      {
-
-         return netnodesocket()->outattr(atom);
-
-      }
-
-
-
-
-      string & script_interface::gstr(const ::atom & atom)
-      {
-
-         return gprop(atom).string_reference();
-
-      }
-
-
-      void script_interface::uri_set_var(string & strUrl, const ::string & pszUrl, const ::string & pszKey, ::payload payload)
-      {
-
-         auto psystem = system();
-
-         auto purl = psystem->url();
-
-         purl->set_key(strUrl, pszUrl, pszKey, payload);
-
-      }
-
-
-      void script_interface::uri_set_param(string & strUrl, const ::string & pszUrl, const ::string & pszKey, const string & strParam)
-      {
-
-         auto psystem = system();
-
-         auto purl = psystem->url();
-
-         purl->set_param(strUrl, pszUrl, pszKey, strParam);
-
-      }
-
-
-      string script_interface::query_get_param(const ::string & pszUrl, const ::string & pszKey)
-      {
-
-         auto psystem = system();
-
-         auto purl = psystem->url();
-
-         return purl->get_param(pszUrl, pszKey);
-
-      }
-
-
-      ::payload script_interface::query_get_var(const ::string & pszUrl, const ::string & pszKey)
-      {
-
-         auto psystem = system();
-
-         auto purl = psystem->url();
-
-         return purl->get_var(pszUrl, pszKey);
-
-      }
-
-
-      void script_interface::dprint(const ::string & psz)
-      {
-
-         if (m_pmain && m_pmain->m_iDebug > 0)
-         {
-
-            print(psz);
-
-         }
-
-      }
-
-
-
-      property & script_interface::gprop(const ::atom & atom)
-      {
-
-         auto & set = m_pmain->get_property_set();
-
-         return set.get(atom);
-
-      }
-
-
-      httpd_socket * script_interface::netnodesocket()
-      {
-
-
-         return m_pmain->m_psocket2;
-
-      }
-
-
-      script_manager * script_interface::manager()
-      {
-
-         return m_pmain->m_pmanager2;
-
-      }
+   }
 
 
 

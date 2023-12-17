@@ -1167,4 +1167,106 @@ ptr < TYPE > & ptr < TYPE >::operator =(::pointer < T2 > && p)
 }
 
 
+template < typename TYPE >
+inline void defer_finalize(::pointer < TYPE >& p)
+{
+
+   try
+   {
+
+      if (p)
+      {
+
+         p->finalize();
+
+      }
+
+   }
+   catch (...)
+   {
+
+   }
+
+}
+
+
+template < typename TYPE >
+inline void defer_destroy(::pointer < TYPE >& p)
+{
+
+   try
+   {
+
+      if (p)
+      {
+
+         p->destroy();
+
+      }
+
+   }
+   catch (...)
+   {
+
+   }
+
+}
+
+
+template < typename TYPE >
+inline void defer_finalize_and_release(::pointer < TYPE > & p)
+{
+
+   auto pFinalizeAndRelease = ::transfer(p);
+
+   if (pFinalizeAndRelease)
+   {
+
+      ::defer_finalize(pFinalizeAndRelease);
+
+      pFinalizeAndRelease.release();
+
+   }
+
+}
+
+
+template < typename TYPE >
+inline void defer_finalize__destroy_and_release(::pointer < TYPE >& p)
+{
+
+   auto pFinalize_DestroyAndRelease = ::transfer(p);
+
+   if (pFinalize_DestroyAndRelease)
+   {
+
+      ::defer_finalize(pFinalize_DestroyAndRelease);
+
+      ::defer_destroy(pFinalize_DestroyAndRelease);
+
+      pFinalize_DestroyAndRelease.release();
+
+   }
+
+}
+
+
+template < typename TYPE >
+inline void defer_destroy_and_release(::pointer < TYPE >& p)
+{
+
+   auto pDestroyAndRelease = ::transfer(p);
+
+   if (pDestroyAndRelease)
+   {
+
+      ::defer_destroy(pDestroyAndRelease);
+
+      pDestroyAndRelease.release();
+
+   }
+
+}
+
+
 

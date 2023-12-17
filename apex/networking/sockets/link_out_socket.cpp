@@ -1,7 +1,7 @@
 #include "framework.h" 
 #include "link_out_socket.h"
 #include "link_in_socket.h"
-#include "apex/networking/sockets/webserver/httpd_socket.h"
+#include "apex/networking/sockets/httpd/socket.h"
 #include "apex/networking/sockets/basic/socket_handler.h"
 
 
@@ -48,7 +48,7 @@ namespace sockets
    }
 
 
-   void link_out_socket::server_to_link_out(httpd_socket * psocket)
+   void link_out_socket::server_to_link_out(::httpd::socket * psocket)
    {
       
       //socket_handler * h = dynamic_cast < socket_handler * > (psocket->socket_handler());

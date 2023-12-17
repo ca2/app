@@ -249,7 +249,7 @@ namespace sockets_bsd
       //socket(h),
       //stream_socket(h)
       //,
-      ibuf(TCP_BUFSIZE_READ)
+      m_ibuf(TCP_BUFSIZE_READ)
       ,m_b_input_buffer_disabled(false)
       ,m_bytes_sent(0)
       ,m_bytes_received(0)
@@ -280,7 +280,7 @@ namespace sockets_bsd
   //    base_socket(h),
 //      socket(h),
 //      stream_socket(h),
-      ibuf(isize)
+      m_ibuf(isize)
       ,m_b_input_buffer_disabled(false)
       ,m_bytes_sent(0)
       ,m_bytes_received(0)
@@ -1010,7 +1010,7 @@ namespace sockets_bsd
             {
 
 
-               ibuf.write(buf,n);
+               m_ibuf.write(buf,n);
 
             }
             catch(...)
@@ -1604,17 +1604,17 @@ namespace sockets_bsd
       switch(m_socks4_state)
       {
       case 0:
-         ibuf.read(&m_socks4_vn,1);
+         m_ibuf.read(&m_socks4_vn,1);
          m_socks4_state = 1;
          break;
       case 1:
-         ibuf.read(&m_socks4_cd,1);
+         m_ibuf.read(&m_socks4_cd,1);
          m_socks4_state = 2;
          break;
       case 2:
          if(GetInputLength() > 1)
          {
-            ibuf.read((char *)&m_socks4_dstport,2);
+            m_ibuf.read((char *)&m_socks4_dstport,2);
             m_socks4_state = 3;
          }
          else
@@ -1625,7 +1625,7 @@ namespace sockets_bsd
       case 3:
          if(GetInputLength() > 3)
          {
-            ibuf.read((char *)&m_socks4_dstip,4);
+            m_ibuf.read((char *)&m_socks4_dstip,4);
             SetSocks4(false);
 
             switch(m_socks4_cd)
@@ -2699,7 +2699,7 @@ namespace sockets_bsd
 
    memsize tcp_socket::GetInputLength()
    {
-      return (memsize)ibuf.get_length();
+      return (memsize)m_ibuf.get_length();
    }
 
 
@@ -3231,6 +3231,21 @@ namespace sockets_bsd
       InitializeContext("", TLS_client_method());
 
 #endif
+
+   }
+
+
+   void tcp_socket::finalize()
+   {
+
+      m_ticketkeya.clear();
+      m_ibuf.clear();
+      m_pmutexSslCtx.release();
+      m_obuf_top.release();
+
+      ::sockets_bsd::stream_socket::finalize();
+
+      ::sockets::tcp_socket::finalize();
 
    }
 

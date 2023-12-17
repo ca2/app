@@ -141,9 +141,6 @@
     <Filter Include="Source Files\networking\sockets\dns">
       <UniqueIdentifier>{8ab1c43a-26b8-4bac-a94b-6131dffacb7a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\networking\sockets\webserver">
-      <UniqueIdentifier>{a62b8d99-510e-44fa-8a41-3f09485af14e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\constant">
       <UniqueIdentifier>{d1dc7140-9c26-4249-9bf3-84fc6fbb92d7}</UniqueIdentifier>
     </Filter>
@@ -182,6 +179,12 @@
     </Filter>
     <Filter Include="Header Files\user\menu">
       <UniqueIdentifier>{36634d76-b0ab-4fbe-bd7c-b52fc2e7e46a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\networking\sockets\httpd">
+      <UniqueIdentifier>{533eb231-0128-414f-80a4-28c98fce2e81}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\networking\sockets\httpd">
+      <UniqueIdentifier>{a62b8d99-510e-44fa-8a41-3f09485af14e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -827,13 +830,13 @@
     <ClInclude Include="filesystem\_.h">
       <Filter>Header Files\filesystem</Filter>
     </ClInclude>
-    <ClInclude Include="networking\netserver\socket_thread.h">
+    <ClInclude Include="networking\netserver\incoming_socket_thread.h">
       <Filter>Header Files\networking\netserver</Filter>
     </ClInclude>
     <ClInclude Include="networking\netserver\socket_handler.h">
       <Filter>Header Files\networking\netserver</Filter>
     </ClInclude>
-    <ClInclude Include="networking\netserver\socket.h">
+    <ClInclude Include="networking\netserver\incoming_socket.h">
       <Filter>Header Files\networking\netserver</Filter>
     </ClInclude>
     <ClInclude Include="networking\netserver\_.h">
@@ -979,6 +982,30 @@
     </ClInclude>
     <ClInclude Include="networking\sockets\basic\socket_impl.h">
       <Filter>Header Files\networking\sockets\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\netserver\socket.h">
+      <Filter>Header Files\networking\netserver</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\application\application_incoming_socket.h">
+      <Filter>Header Files\networking\application</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\sockets\httpd\incoming_socket.h">
+      <Filter>Header Files\networking\sockets\httpd</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\sockets\httpd\socket.h">
+      <Filter>Header Files\networking\sockets\httpd</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\sockets\basic\listen_socket_impl.h">
+      <Filter>Header Files\networking\sockets\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\sockets\httpd\incoming_socket_thread.h">
+      <Filter>Header Files\networking\sockets\httpd</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\sockets\httpd\socket_thread.h">
+      <Filter>Header Files\networking\sockets\httpd</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\netserver\socket_thread.h">
+      <Filter>Header Files\networking\netserver</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1249,13 +1276,13 @@
     <ClCompile Include="handler\signal.cpp">
       <Filter>Source Files\handler</Filter>
     </ClCompile>
-    <ClCompile Include="networking\netserver\socket.cpp">
+    <ClCompile Include="networking\netserver\incoming_socket.cpp">
       <Filter>Source Files\networking\netserver</Filter>
     </ClCompile>
     <ClCompile Include="networking\netserver\socket_handler.cpp">
       <Filter>Source Files\networking\netserver</Filter>
     </ClCompile>
-    <ClCompile Include="networking\netserver\socket_thread.cpp">
+    <ClCompile Include="networking\netserver\incoming_socket_thread.cpp">
       <Filter>Source Files\networking\netserver</Filter>
     </ClCompile>
     <ClCompile Include="networking\sockets\basic\listen_socket.cpp">
@@ -1308,9 +1335,6 @@
     </ClCompile>
     <ClCompile Include="networking\sockets\http_batch_buffer.cpp">
       <Filter>Source Files\networking\sockets</Filter>
-    </ClCompile>
-    <ClCompile Include="networking\sockets\webserver\httpd_socket.cpp">
-      <Filter>Source Files\networking\sockets\webserver</Filter>
     </ClCompile>
     <ClCompile Include="networking\sockets\http\tunnel.cpp">
       <Filter>Source Files\networking\sockets\basic</Filter>
@@ -1395,6 +1419,30 @@
     </ClCompile>
     <ClCompile Include="handler\manager_room.cpp">
       <Filter>Source Files\handler</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\netserver\socket.cpp">
+      <Filter>Source Files\networking\netserver</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\application\application_incoming_socket.cpp">
+      <Filter>Source Files\networking\application</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\httpd\socket.cpp">
+      <Filter>Source Files\networking\sockets\httpd</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\httpd\incoming_socket.cpp">
+      <Filter>Source Files\networking\sockets\httpd</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\basic\listen_socket_impl.cpp">
+      <Filter>Source Files\networking\sockets\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\httpd\incoming_socket_thread.cpp">
+      <Filter>Source Files\networking\sockets\httpd</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\httpd\socket_thread.cpp">
+      <Filter>Source Files\networking\sockets\httpd</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\netserver\socket_thread.cpp">
+      <Filter>Source Files\networking\netserver</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

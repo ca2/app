@@ -834,6 +834,20 @@ namespace sockets
    }
 
 
+   void http_socket::finalize()
+   {
+
+      m_request.clear();
+
+      m_response.clear();
+
+      m_plistener.release();
+
+      tcp_socket::finalize();
+
+   }
+
+
 } // namespace sockets
 
 

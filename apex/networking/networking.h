@@ -99,7 +99,9 @@ namespace networking
 
       virtual bool gudo_set();
 
-      virtual ::sockets::listen_socket_base* new_listen_socket(const ::type_atom & type);
+      ///virtual ::sockets::listen_socket * new_listen_socket(const ::type_atom & type);
+
+
       /*
       * Encode string per RFC1738 URL encoding rules
       * tnx rstaveley

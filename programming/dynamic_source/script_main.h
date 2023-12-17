@@ -14,10 +14,14 @@ namespace dynamic_source
    public:
 
 
-      ::netnode::script_main *            m_pnetnodescriptmain;
+      ::netnode::script_main *                                 m_pnetnodescriptmain;
 
-      ::pointer<httpd_socket>            m_psocket2;
-      ::pointer<script_manager>          m_pmanager2;
+      ::pointer<httpd_socket>                                  m_psocket2;
+      ::pointer<script_manager>                                m_pmanager2;
+
+
+      ::pointer_array < ::dynamic_source::script_interface >   m_interfacea;
+
 
 
       script_main();
@@ -34,11 +38,13 @@ namespace dynamic_source
 
       void initialize(::particle * pparticle) override;
 
+      void finalize() override;
 
       void destroy() override;
 
       virtual bool main_initialize();
       virtual bool main_finalize();
+
 
 
    };

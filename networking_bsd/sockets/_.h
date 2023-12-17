@@ -24,7 +24,7 @@ namespace sockets_bsd
 
 
 
-   class socket_thread;
+   //class socket_thread;
 
    class base_socket_handler;
 

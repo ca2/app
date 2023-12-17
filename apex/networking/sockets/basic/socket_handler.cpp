@@ -26,7 +26,7 @@ namespace sockets
 {
 
 
-   ::interlocked_count g_interlockedcountsocket_idHandler;
+   ::interlocked_count g_interlockedcountSocketHandler;
 
 
    //socket_handler::socket_handler(::particle * pparticle, ::apex::log *plogger) :
@@ -58,9 +58,9 @@ namespace sockets
       //m_countW = 0;
       //m_countE = 0;
 
-      g_interlockedcountsocket_idHandler++;
+      auto iSocketHandler = g_interlockedcountSocketHandler++;
 
-      ::acme::get()->platform()->informationf("::sockets::socket_handler currently allocated count = " + ::as_string((::iptr) g_interlockedcountsocket_idHandler));
+      ::acme::get()->platform()->informationf("::sockets::socket_handler currently allocated count = " + ::as_string((::iptr) iSocketHandler));
 
    }
 
@@ -70,7 +70,7 @@ namespace sockets
 
       cleanup_handler();
 
-      g_interlockedcountsocket_idHandler--;
+      g_interlockedcountSocketHandler--;
 
    }
 

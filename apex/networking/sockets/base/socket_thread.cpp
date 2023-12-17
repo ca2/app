@@ -31,6 +31,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "framework.h"
 #include "socket_thread.h"
 #include "apex/networking/sockets/basic/socket_handler.h"
+#include "apex/networking/sockets/basic/listen_socket.h"
 //#ifdef _WIN32
 //#elif defined(LINUX)
 //#include <netdb.h>
@@ -61,7 +62,7 @@ namespace sockets
 {
 
 
-   ::index g_iSocketThread = 0;
+   ::interlocked_count g_iSocketThread = 0;
 
 
    socket_thread::socket_thread()
@@ -72,43 +73,49 @@ namespace sockets
    }
 
 
-   //void socket_thread::transfer(socket_map::association * passociation, socket_map * psocketmap)
-   //{
-
-   //   //auto estatus = initialize(passociation->m_psocket);
-
-   //   initialize(passociation->m_psocket);
-
-   //   //if (!estatus)
-   //   //{
-
-   //   //   return estatus;
-
-   //   //}
-
-   //   m_psockethandler = ::transfer(__create_new < socket_handler > ());
-
-   //   //psocket->m_psockethandler.release();
-
-   //   passociation->m_psocket->m_psocketthread = this;
-
-   //   //m_psockethandler->SetSlave();
-
-   //   //m_psocket->SetSlaveHandler(m_psockethandler);
-
-   //   m_psockethandler->transfer(passociation, psocketmap);
-
-   //   branch();
-
-   //   //return estatus;
-
-   //}
-
-
    socket_thread::~socket_thread()
    {
 
+      g_iSocketThread--;
+
       ::acme::get()->platform()->informationf("--->>>>>socket_thread::~SOCKET_thread\n");
+
+   }
+
+
+   void socket_thread::initialize_socket_thread(base_socket* psocket)
+   {
+
+      initialize(psocket);
+
+      m_psockethandler = create_socket_handler();
+
+      psocket->m_psocketthread = this;
+
+      m_psockethandler->SetSlave();
+
+      m_psockethandler->add(psocket);
+
+      branch();
+
+   }
+
+
+   ::pointer < ::sockets::socket_handler > socket_thread::create_socket_handler()
+   {
+
+      if (m_typeSocketHandler.is_empty())
+      {
+
+         return __create < ::sockets::socket_handler >(m_pfactorySocketHandler);
+
+      }
+      else
+      {
+
+         return __id_create(m_typeSocketHandler, m_pfactorySocketHandler);
+
+      }
 
    }
 
@@ -121,29 +128,6 @@ namespace sockets
       information() << "::sockets::socket_thread currently allocated count = " << m_iAllocatedCount;
 
    }
-
-   //void socket_thread::init_thread()
-   //{
-
-   //   if (!::thread::init_thread())
-   //   {
-
-   //      return false;
-
-   //   }
-
-
-   //   return true;
-
-   //}
-
-
-   //void socket_thread::term_thread()
-   //{
-
-   //   ::thread::term_thread();
-
-   //}
 
 
 #ifdef _DEBUG
@@ -167,6 +151,7 @@ namespace sockets
 
 #endif
 
+
    base_socket* socket_thread::get_socket() const
    {
 
@@ -179,34 +164,11 @@ namespace sockets
 
       return nullptr;
 
-      //auto passociation = m_psockethandler->m_socketmap.m_passociationHead;
-
-      //if (::is_null(passociation))
-      //{
-
-      //   return nullptr;
-
-      //}
-
-      //return passociation->m_psocket;
-
    }
+
 
    void socket_thread::run()
    {
-
-      //if (phandler.get() != m_psocket->m_psockethandler.get())
-      //{
-
-      //   //   ::acme::get()->platform()->informationf("");
-
-      //   //}
-      //   //else
-      //   //{
-
-      //   phandler->add(m_psocket);
-
-      //}
 
       try
       {
@@ -249,15 +211,19 @@ namespace sockets
 
       }
 
-      //m_psocket->m_psocketthread.release();
+      finalize();
 
-      //m_psocket->destroy();
+   }
 
-      m_psockethandler->destroy();
 
-      destroy();
+   void socket_thread::finalize()
+   {
 
-      //return ::success;
+      defer_finalize_and_release(m_psockethandler);
+
+      m_pfactorySocketHandler.release();
+
+      ::task::finalize();
 
    }
 

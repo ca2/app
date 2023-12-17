@@ -39,7 +39,7 @@ namespace dynamic_source
       virtual void initialize(::particle * pparticle) override;
       virtual void init1();
 
-      //void destroy() override;
+      void finalize() override;
 
       void destroy() override;
       virtual void     run() override;

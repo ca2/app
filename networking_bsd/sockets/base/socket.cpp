@@ -29,7 +29,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 #include "framework.h"
 #include "socket.h"
-#include "socket_thread.h"
+//#include "socket_thread.h"
 #include "acme/exception/interface_only.h"
 #include "acme/filesystem/file/memory_file.h"
 #include "acme/parallelization/synchronous_lock.h"
@@ -177,15 +177,30 @@ namespace sockets_bsd
    }
 
 
-   //void base_socket::on_finalize()
-   //{
+   void base_socket::finalize()
+   {
 
-   //   //__release(m_psocketthread);
+      ::defer_finalize_and_release(m_psslcontext);
 
-   //   ::object::on_finalize();
+      m_psockethandler.release();
 
+      m_paddressRemote.release();
 
-   //}
+      m_paddressRemoteClient.release();
+
+      m_pfileTrafficMonitor.release();
+
+      m_pmemfileInput.release();
+
+      m_pcallback.release();
+
+      m_psocketParent.release();
+
+      m_phandlerSlave.release();
+
+      ::sockets::base_socket::finalize();
+
+   }
 
 
    void base_socket::Init()
@@ -1103,16 +1118,16 @@ namespace sockets_bsd
    }
 
 
-   void base_socket::DetachSocket()
-   {
+   //void base_socket::DetachSocket()
+   //{
 
-      SetDetached();
+   //   SetDetached();
 
-      auto psocketthread = __allocate< socket_thread >();
+   //   auto psocketthread = __allocate< socket_thread >();
 
-      psocketthread->initialize_socket_thread(this);
+   //   psocketthread->initialize_socket_thread(this);
 
-   }
+   //}
 
 
    void base_socket::OnDetached()

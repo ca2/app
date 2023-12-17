@@ -71,7 +71,7 @@ namespace sockets_bsd
       bool                       m_bEnd; // should finish by not sending no more writes
       string                     m_strCat;
       string                     m_strCipherList;
-      callback *                 m_pcallback;
+      ::pointer < callback >     m_pcallback;
       ::earth::time              m_timeCreate; ///< time in seconds when this base_socket was created
       bool                       m_bDisableRead; ///< Disable checking for read events
       bool                       m_bConnected; ///< base_socket is connected (tcp/udp)
@@ -81,7 +81,7 @@ namespace sockets_bsd
       int                        m_iBindPort;
       bool                       m_bDelete; ///< Delete by handler flag
       bool                       m_bCloseAndDelete; ///< close and delete flag
-      ::sockets::base_socket *   m_psocketParent; ///< Pointer to listen_socket class, valid for incoming sockets
+      ::pointer < ::sockets::base_socket >  m_psocketParent; ///< Pointer to listen_socket class, valid for incoming sockets
       class ::time               m_timeLastRead;
       class ::time            m_timeLastWrite;
       class ::time            m_timeConnectionStart; ///< Set by SetTimeout
@@ -114,7 +114,6 @@ namespace sockets_bsd
 
       bool                             m_bDetach; ///< base_socket ordered to detach flag
       bool                             m_bDetached; ///< base_socket has been detached
-      ::pointer<::sockets_bsd::socket_thread>        m_psocketthread; ///< detach base_socket thread class pointer
       ::pointer<::sockets::base_socket_handler>  m_phandlerSlave; ///< Actual sockethandler while detached
 
 
@@ -738,7 +737,7 @@ namespace sockets_bsd
       void SetSlaveHandler(::sockets::base_socket_handler *) override;
       /** create new thread for this base_socket to run detached in. */
       //virtual void DetachSocket(socket_map::node * pnode, socket_map * psocketmap);
-      virtual void DetachSocket();
+      //virtual void DetachSocket();
       //@}
 
 
@@ -776,7 +775,7 @@ namespace sockets_bsd
 
       enum_trace_category trace_category() const override;
 
-      //virtual void on_finalize() override;
+      void finalize() override;
 
 
    };

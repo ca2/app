@@ -51,7 +51,9 @@ namespace sockets
       //   trace_log log;
       auto phandler = __create < socket_handler > ();
 
-      auto plistensocket = __create_new < listen_socket<resolv_socket> >();
+      auto plistensocket = __create_new < listen_socket >();
+
+      plistensocket->m_typeAttendSocket = ::type<resolv_socket>();
 
       if (plistensocket->Bind("127.0.0.1", m_port))
       {

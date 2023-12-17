@@ -6,35 +6,38 @@ namespace sockets
 {
 
 
-   //listen_socket_base::listen_socket_base() :
-   listen_socket_base::listen_socket_base() :
+   //listen_socket::listen_socket() :
+   listen_socket::listen_socket() //:
       //::object(&h),
       //base_socket(h),
       //socket(h),
-      m_bListeningDetach(false),
-      m_depth(0)
+      //m_bListeningDetach(false),
+      //m_depth(0)
       //, m_bDetach(false)
    {
       m_bImpl = false;
    }
 
 
-   listen_socket_base::~listen_socket_base()
+   listen_socket::~listen_socket()
    {
 
    }
 
 
-   void listen_socket_base::initialize_listen_socket(const ::type_atom& typeatom)
+
+
+
+   void listen_socket::set_attend_socket_type(const ::type_atom& type)
    {
 
-      m_typeatom = typeatom;
+      m_typeAttendSocket = type;
 
    }
 
 
    /** close file descriptor. */
-   void listen_socket_base::close()
+   void listen_socket::close()
    {
 
       //if (get_socket_id() != INVALID_SOCKET)
@@ -48,7 +51,7 @@ namespace sockets
 
 
 
-   void listen_socket_base::SetListeningDetach(bool bSet)
+   void listen_socket::SetListeningDetach(bool bSet)
    {
 
       m_bListeningDetach = true;
@@ -56,7 +59,7 @@ namespace sockets
    }
 
 
-   bool listen_socket_base::IsListeningDetach()
+   bool listen_socket::IsListeningDetach()
    {
 
       return m_bListeningDetach;
@@ -64,18 +67,18 @@ namespace sockets
    }
 
 
-   //void listen_socket_base::set_should_detach(bool bSet)
+   //void listen_socket::set_should_detach(bool bSet)
    //{
 
-   //   m_pcomposite->set_should_detach(bSet);
+   //   m_plistensocketimpl->set_should_detach(bSet);
 
    //}
 
 
-   //bool listen_socket_base::should_detach() const
+   //bool listen_socket::should_detach() const
    //{
 
-   //   return m_pcomposite->should_detach();
+   //   return m_plistensocketimpl->should_detach();
 
    //}
 
@@ -83,7 +86,7 @@ namespace sockets
    /** Bind and listen to any interface.
    \lparam port Port (0 is random)
    \lparam depth Listen queue depth */
-   i32 listen_socket_base::Bind(::networking::port_t port,i32 depth)
+   i32 listen_socket::Bind(::networking::port_t port,i32 depth)
    {
       //if (IsIpv6())
       //{
@@ -98,7 +101,7 @@ namespace sockets
       return 0;
    }
 
-   i32 listen_socket_base::Bind(::networking::address * ad,i32 depth)
+   i32 listen_socket::Bind(::networking::address * ad,i32 depth)
    {
 #ifdef USE_SCTP
       if (dynamic_cast<SctpSocket *>(m_creator))
@@ -113,7 +116,7 @@ namespace sockets
    \lparam port Port (0 is random)
    \lparam protocol Network protocol
    \lparam depth Listen queue depth */
-   i32 listen_socket_base::Bind(::networking::port_t port,const string & protocol,i32 depth)
+   i32 listen_socket::Bind(::networking::port_t port,const string & protocol,i32 depth)
    {
       /*if (IsIpv6())
       {
@@ -132,10 +135,10 @@ namespace sockets
    \lparam intf Interface hostname
    \lparam port Port (0 is random)
    \lparam depth Listen queue depth */
-   i32 listen_socket_base::Bind(const string & intf,::networking::port_t port,i32 depth)
+   i32 listen_socket::Bind(const string & intf,::networking::port_t port,i32 depth)
    {
       
-      return m_pcomposite->Bind(intf, port, depth);
+      return m_plistensocketimpl->Bind(intf, port, depth);
       //::networking::address address(intf, port);
 
       //if (address.is_valid())
@@ -157,7 +160,7 @@ namespace sockets
    \lparam port Port (0 is random)
    \lparam protocol Network protocol
    \lparam depth Listen queue depth */
-   i32 listen_socket_base::Bind(const string & intf,::networking::port_t port,const string & protocol,i32 depth)
+   i32 listen_socket::Bind(const string & intf,::networking::port_t port,const string & protocol,i32 depth)
    {
       //::networking::address ad(intf, port);
       //if (ad.is_valid())
@@ -176,7 +179,7 @@ namespace sockets
 //   \lparam a Ipv4 interface address
 //   \lparam port Port (0 is random)
 //   \lparam depth Listen queue depth */
-//   i32 listen_socket_base::Bind(in_addr a,::networking::port_t port,i32 depth)
+//   i32 listen_socket::Bind(in_addr a,::networking::port_t port,i32 depth)
 //   {
 //      ::networking::address ad(a, port);
 //#ifdef USE_SCTP
@@ -192,7 +195,7 @@ namespace sockets
 //   \lparam port Port (0 is random)
 //   \lparam protocol Network protocol
 //   \lparam depth Listen queue depth */
-//   i32 listen_socket_base::Bind(in_addr a,::networking::port_t port,const string & protocol,i32 depth)
+//   i32 listen_socket::Bind(in_addr a,::networking::port_t port,const string & protocol,i32 depth)
 //   {
 //      ::networking::address ad(a, port);
 //      return Bind(ad, protocol, depth);
@@ -202,7 +205,7 @@ namespace sockets
 //   \lparam a Ipv6 interface address
 //   \lparam port Port (0 is random)
 //   \lparam depth Listen queue depth */
-//   i32 listen_socket_base::Bind(in6_addr a,::networking::port_t port,i32 depth)
+//   i32 listen_socket::Bind(in6_addr a,::networking::port_t port,i32 depth)
 //   {
 //      ::networking::address ad(a, port);
 //#ifdef USE_SCTP
@@ -218,7 +221,7 @@ namespace sockets
 //   \lparam port Port (0 is random)
 //   \lparam protocol Network protocol
 //   \lparam depth Listen queue depth */
-//   i32 listen_socket_base::Bind(in6_addr a,::networking::port_t port,const string & protocol,i32 depth)
+//   i32 listen_socket::Bind(in6_addr a,::networking::port_t port,const string & protocol,i32 depth)
 //   {
 //      ::networking::address ad(a, port);
 //      return Bind(ad, protocol, depth);
@@ -228,7 +231,7 @@ namespace sockets
    \lparam ad Interface address
    \lparam protocol Network protocol
    \lparam depth Listen queue depth */
-   i32 listen_socket_base::Bind(::networking::address * ad,const string & protocol,i32 depth)
+   i32 listen_socket::Bind(::networking::address * ad,const string & protocol,i32 depth)
    {
 
       //socket_id s;
@@ -312,14 +315,14 @@ namespace sockets
    //   }
 
    /** Return listen queue depth. */
-   i32 listen_socket_base::GetDepth()
+   i32 listen_socket::GetDepth()
    {
       return m_depth;
    }
 
 
-   /** OnRead on a listen_socket_base receives an incoming connection. */
-   void listen_socket_base::OnRead()
+   /** OnRead on a listen_socket receives an incoming connection. */
+   void listen_socket::OnRead()
    {
 //      char sz[sizeof(sockaddr_in6)];
 //      struct sockaddr * psa = (sockaddr *)sz;
@@ -431,65 +434,79 @@ namespace sockets
 
    ///** Please don't use this method.
    //"accept()" is handled automatically in the OnRead() method. */
-   //socket_id listen_socket_base::Accept(socket_id socket, struct sockaddr *saptr, socklen_t *lenptr)
+   //socket_id listen_socket::Accept(socket_id socket, struct sockaddr *saptr, socklen_t *lenptr)
    //{
    //   return accept(socket, saptr, lenptr);
    //}
 
-   bool listen_socket_base:: HasCreator()
+   bool listen_socket:: HasCreator()
    {
       return false;
    }
 
-   //void listen_socket_base::OnOptions(i32,i32,i32,socket_id)
+
+   ::pointer < ::sockets::socket > listen_socket::create_attend_socket()
+   {
+      return __id_create(m_typeAttendSocket, m_pfactory);
+   }
+
+   //void listen_socket::OnOptions(i32,i32,i32,socket_id)
    //{
    //   SetSoReuseaddr(true);
    //}
 
 
-   void listen_socket_base::initialize(::particle * pparticle)
+   void listen_socket::initialize(::particle * pparticle)
    {
 
       socket::initialize(pparticle);
 
-      __construct(m_pcomposite);
+      __construct(m_plistensocketimpl);
 
-      m_p2 = m_pcomposite->m_p2;
+      m_p2 = m_plistensocketimpl->m_p2;
 
-      m_pcomposite->m_pcomposite = this;
+      m_plistensocketimpl->m_plistensocketimpl = this;
 
-      m_pcomposite->m_bImpl = true;
+      m_plistensocketimpl->m_bImpl = true;
       
    }
 
 
-   base_socket * listen_socket_base::base_socket_composite()
+   void listen_socket::Reset()
    {
 
-      return m_pcomposite;
 
    }
 
 
-   ::pointer<socket>listen_socket_base::create_listen_socket()
+   base_socket * listen_socket::base_socket_composite()
    {
 
-      return __id_create(m_typeatom);
+      return m_plistensocketimpl;
 
    }
 
 
-   void listen_socket_base::set_ssl_catalog(const ::string & strCat)
+   ::pointer<listen_socket_impl>listen_socket::create_listen_socket_impl()
    {
 
-      return m_pcomposite->set_ssl_catalog(strCat);
+      return __create < listen_socket_impl >();
 
    }
 
-   void listen_socket_base::set_ssl_cipher_list(const ::string & strCipherList)
+
+   void listen_socket::set_ssl_catalog(const ::string & strCat)
    {
 
-      return m_pcomposite->set_ssl_cipher_list(strCipherList);
+      return m_plistensocketimpl->set_ssl_catalog(strCat);
+
+   }
+
+
+   void listen_socket::set_ssl_cipher_list(const ::string & strCipherList)
+   {
+
+      return m_plistensocketimpl->set_ssl_cipher_list(strCipherList);
 
    }
 

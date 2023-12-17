@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "listen_socket.h"
+#include "listen_socket_impl.h"
 #include "socket_handler.h"
 ////#include "acme/exception/exception.h"
 #include "apex/platform/system.h"
@@ -14,8 +14,8 @@ namespace sockets_bsd
 {
 
 
-   //listen_socket::listen_socket() :
-   listen_socket::listen_socket() // :
+   //listen_socket_impl::listen_socket_impl() :
+   listen_socket_impl::listen_socket_impl() // :
       //::object(&h),
       //base_socket(h),
       //socket(h),
@@ -26,34 +26,34 @@ namespace sockets_bsd
    }
 
 
-   listen_socket::~listen_socket()
+   listen_socket_impl::~listen_socket_impl()
    {
 
    }
 
 
-   void listen_socket::initialize(::particle * pparticle)
+   void listen_socket_impl::initialize(::particle * pparticle)
    {
 
       socket::initialize(pparticle);
 
    }
 
-   void listen_socket::set_ssl_catalog(const ::string & strCat)
+   void listen_socket_impl::set_ssl_catalog(const ::string & strCat)
    {
 
       m_strCat = strCat;
 
    }
 
-   void listen_socket::set_ssl_cipher_list(const ::string & strCipherList)
+   void listen_socket_impl::set_ssl_cipher_list(const ::string & strCipherList)
    {
 
       m_strCipherList = strCipherList;
 
    }
    /** close file descriptor. */
-   void listen_socket::close()
+   void listen_socket_impl::close()
    {
 
       if (GetSocketId() != INVALID_SOCKET)
@@ -68,7 +68,7 @@ namespace sockets_bsd
    /** Bind and listen to any interface.
    \lparam port Port (0 is random)
    \lparam depth Listen queue depth */
-   i32 listen_socket::Bind(::networking::port_t port,i32 depth)
+   i32 listen_socket_impl::Bind(::networking::port_t port,i32 depth)
    {
       if (IsIpv6())
       {
@@ -85,7 +85,7 @@ namespace sockets_bsd
       }
    }
 
-   i32 listen_socket::Bind(::networking::address * ad,i32 depth)
+   i32 listen_socket_impl::Bind(::networking::address * ad,i32 depth)
    {
 #ifdef USE_SCTP
       if (dynamic_cast<SctpSocket *>(m_creator))
@@ -100,7 +100,7 @@ namespace sockets_bsd
    \lparam port Port (0 is random)
    \lparam protocol Network protocol
    \lparam depth Listen queue depth */
-   i32 listen_socket::Bind(::networking::port_t port,const string & protocol,i32 depth)
+   i32 listen_socket_impl::Bind(::networking::port_t port,const string & protocol,i32 depth)
    {
       if (IsIpv6())
       {
@@ -120,7 +120,7 @@ namespace sockets_bsd
    \lparam intf Interface hostname
    \lparam port Port (0 is random)
    \lparam depth Listen queue depth */
-   i32 listen_socket::Bind(const string & intf,::networking::port_t port,i32 depth)
+   i32 listen_socket_impl::Bind(const string & intf,::networking::port_t port,i32 depth)
    {
       
       auto paddress = __SystemNetworking(system())->create_address(intf, port);
@@ -144,7 +144,7 @@ namespace sockets_bsd
    \lparam port Port (0 is random)
    \lparam protocol Network protocol
    \lparam depth Listen queue depth */
-   i32 listen_socket::Bind(const string & intf,::networking::port_t port,const string & protocol,i32 depth)
+   i32 listen_socket_impl::Bind(const string & intf,::networking::port_t port,const string & protocol,i32 depth)
    {
 
       auto paddress = __SystemNetworking(system())->create_address(intf, port);
@@ -167,7 +167,7 @@ namespace sockets_bsd
    \lparam a Ipv4 interface address
    \lparam port Port (0 is random)
    \lparam depth Listen queue depth */
-   i32 listen_socket::Bind(in_addr a,::networking::port_t port,i32 depth)
+   i32 listen_socket_impl::Bind(in_addr a,::networking::port_t port,i32 depth)
    {
 
       auto paddress = __allocate< ::networking_bsd::address >();
@@ -190,7 +190,7 @@ namespace sockets_bsd
    \lparam port Port (0 is random)
    \lparam protocol Network protocol
    \lparam depth Listen queue depth */
-   i32 listen_socket::Bind(in_addr a,::networking::port_t port,const string & protocol,i32 depth)
+   i32 listen_socket_impl::Bind(in_addr a,::networking::port_t port,const string & protocol,i32 depth)
    {
 
       auto paddress = __allocate< ::networking_bsd::address >();
@@ -205,7 +205,7 @@ namespace sockets_bsd
    \lparam a Ipv6 interface address
    \lparam port Port (0 is random)
    \lparam depth Listen queue depth */
-   i32 listen_socket::Bind(in6_addr a,::networking::port_t port,i32 depth)
+   i32 listen_socket_impl::Bind(in6_addr a,::networking::port_t port,i32 depth)
    {
 
       auto paddress = __allocate< ::networking_bsd::address >();
@@ -229,7 +229,7 @@ namespace sockets_bsd
    \lparam port Port (0 is random)
    \lparam protocol Network protocol
    \lparam depth Listen queue depth */
-   i32 listen_socket::Bind(in6_addr a,::networking::port_t port,const string & protocol,i32 depth)
+   i32 listen_socket_impl::Bind(in6_addr a,::networking::port_t port,const string & protocol,i32 depth)
    {
 
       auto paddress = __allocate< ::networking_bsd::address >();
@@ -245,7 +245,7 @@ namespace sockets_bsd
    \lparam ad Interface address
    \lparam protocol Network protocol
    \lparam depth Listen queue depth */
-   i32 listen_socket::Bind(::networking::address * paddress,const string & protocol,i32 depth)
+   i32 listen_socket_impl::Bind(::networking::address * paddress,const string & protocol,i32 depth)
    {
 
       auto paddress2 = __Address(paddress);
@@ -291,7 +291,7 @@ namespace sockets_bsd
 
       auto sockaddr_len = paddress2->sa_len();
 
-      if (bind(s, psockaddr, sockaddr_len) != 0)
+      if (::bind(s, psockaddr, sockaddr_len) != 0)
       {
 
          fatal() <<"bind() failed for port " << ::as_string(paddress2->get_service_number()) << ", " << networking_last_error() << ", " << bsd_socket_error(networking_last_error());
@@ -302,7 +302,7 @@ namespace sockets_bsd
 
       }
 
-      if (listen(s, depth) != 0)
+      if (::listen(s, depth) != 0)
       {
 
          fatal() <<"listen" << networking_last_error() << ", " << bsd_socket_error(networking_last_error());
@@ -331,13 +331,13 @@ namespace sockets_bsd
    //   }
 
    /** Return listen queue depth. */
-   i32 listen_socket::GetDepth()
+   i32 listen_socket_impl::GetDepth()
    {
       return m_depth;
    }
 
 
-   //void listen_socket::SetStartDetach(bool bSet)
+   //void listen_socket_impl::SetStartDetach(bool bSet)
    //{
 
    //   m_bStartDetach = bSet;
@@ -345,7 +345,7 @@ namespace sockets_bsd
    //}
 
 
-   //bool listen_socket::IsStartDetach()
+   //bool listen_socket_impl::IsStartDetach()
    //{
 
    //   return m_bStartDetach;
@@ -353,8 +353,8 @@ namespace sockets_bsd
    //}
 
 
-   /** OnRead on a listen_socket receives an incoming connection. */
-   void listen_socket::OnRead()
+   /** OnRead on a listen_socket_impl receives an incoming connection. */
+   void listen_socket_impl::OnRead()
    {
 
       auto socketid = GetSocketId();
@@ -396,13 +396,13 @@ namespace sockets_bsd
 
       }
 
-      auto tmp1 = ::transfer(create_listen_socket());
+      auto psocketAttend = m_plistensocketimpl->create_attend_socket();
 
-      tmp1->initialize(this);
+      psocketAttend->initialize(this);
 
-      auto tmp = __Socket(tmp1);
+      auto psocket = __Socket(psocketAttend);
 
-      tmp->set_start_time();
+      psocket->set_start_time();
 
       auto psystem = system()->m_papexsystem;
 
@@ -427,23 +427,23 @@ namespace sockets_bsd
 
       //tmp->set_topic_text(strTopicText);
 
-      tmp->m_strCat = m_strCat;
+      psocket->m_strCat = m_strCat;
       
-      tmp->m_strCipherList = m_strCipherList;
-      tmp -> EnableSSL(IsSSL()); // SSL Enabled socket
-      tmp -> SetIpv6( IsIpv6() );
-      tmp -> set_parent(this);
-      tmp -> attach(socketAccept);
-      tmp -> SetNonblocking(true);
+      psocket->m_strCipherList = m_strCipherList;
+      psocket-> EnableSSL(IsSSL()); // SSL Enabled socket
+      psocket-> SetIpv6( IsIpv6() );
+      psocket-> set_parent(this);
+      psocket-> attach(socketAccept);
+      psocket-> SetNonblocking(true);
       auto paddressRemote = __allocate< ::networking_bsd::address >();
       paddressRemote->set_address(sockaddr, sockaddr_len);
       //tmp->SetRemoteHostname(::networking::address(*psa));
-      tmp->SetRemoteHostname(paddressRemote);
-      tmp->m_iBindPort = m_iBindPort;
-      tmp -> SetConnected(true);
-      tmp -> Init();
-      tmp -> SetDeleteByHandler(true);
-      if (tmp -> IsSSL()) // SSL Enabled socket
+      psocket->SetRemoteHostname(paddressRemote);
+      psocket->m_iBindPort = m_iBindPort;
+      psocket-> SetConnected(true);
+      psocket-> Init();
+      psocket-> SetDeleteByHandler(true);
+      if (psocket-> IsSSL()) // SSL Enabled socket
       {
          // %! OnSSLAccept calls SSLNegotiate that can finish in this one call.
          // %! If that happens and negotiation fails, the 'tmp' instance is
@@ -453,17 +453,17 @@ namespace sockets_bsd
          // %! An even better fugbix (see tcp_socket::OnSSLAccept) now avoids
          // %! the add problem altogether, so ignore the above.
          // %! (OnSSLAccept does no longer call SSLNegotiate().)
-         tmp -> OnSSLAccept();
+         psocket-> OnSSLAccept();
       }
       else
       {
-         tmp -> OnAccept();
+         psocket-> OnAccept();
       }
       
-      if (m_bListeningDetach)
+      if (m_plistensocketimpl->m_bListeningDetach)
       {
          
-         tmp->prepare_for_detach();
+         psocket->prepare_for_detach();
 
       }
       else
@@ -476,36 +476,36 @@ namespace sockets_bsd
 
       //socket_handler()->transfer(passociation);
 
-      __Handler(m_psockethandler)->add(tmp);
+      m_psockethandler->add(psocket);
 
    }
 
    /** Please don't use this method.
    "accept()" is handled automatically in the OnRead() method. */
-   SOCKET listen_socket::Accept(SOCKET socket, struct sockaddr *saptr, socklen_t *lenptr)
+   SOCKET listen_socket_impl::Accept(SOCKET socket, struct sockaddr *saptr, socklen_t *lenptr)
    {
       return accept(socket, saptr, lenptr);
    }
 
-   bool listen_socket:: HasCreator()
+   bool listen_socket_impl:: HasCreator()
    {
       return false;
    }
 
-   void listen_socket::OnOptions(i32,i32,i32,SOCKET s)
+   void listen_socket_impl::OnOptions(i32,i32,i32,SOCKET s)
    {
       //_SetSoReuseaddr(s, true);
    }
 
 
-   //void listen_socket::initialize(::particle * pparticle)
+   //void listen_socket_impl::initialize(::particle * pparticle)
    //{
 
 
    //}
 
 
-   //::pointer<::sockets::socket>listen_socket::create_listen_socket()
+   //::pointer<::sockets::socket>listen_socket_impl::create_listen_socket()
    //{
 
    //   return nullptr;

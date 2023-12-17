@@ -28,6 +28,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #pragma once
 
 
+#include "apex/networking/sockets/basic/listen_socket.h"
 #include "apex/networking/sockets/http/base_socket.h"
 
 
@@ -39,47 +40,48 @@ namespace http
 }
 
 
-namespace sockets
+namespace httpd
 {
 
    /** \defgroup webserver Webserver framework */
    /** Web server socket framework.
       \ingroup webserver */
-   class CLASS_DECL_APEX httpd_socket :
-      virtual public http_base_socket
+   class CLASS_DECL_APEX incoming_socket :
+      virtual public ::sockets::listen_socket
    {
    public:
 
 
-      memsize m_received;
-      string m_http_date;
+      //memsize m_received;
+      //string m_http_date;
+      //
+
+      incoming_socket();
+      ~incoming_socket() override;
 
 
+      //void initialize(::particle* pparticle) override;
 
-      httpd_socket();
-      virtual ~httpd_socket();
+      //base_socket* base_socket_composite() override;
 
+      //void close() override;
 
-
+      //void
       //virtual bool read_file(const ::file::path & path,pointer_array < ::i32_array > * prangea = nullptr,const ::scoped_string & scopedstrContentType = nullptr);
 
 
 
-   //protected:
-      //httpd_socket(const httpd_socket& s);
-      /** Decode and send a base64-encoded string.
-         \lparam str64 Base64-encoded string
-         \lparam type Mime type of content (content-type header) */
-      void Send64(const ::string & str64, const string & type);
-      string datetime2httpdate(const string & dt);
-      string GetDate();
-      void Reset();
+   ////protected:
+   //   //httpd_socket(const httpd_socket& s);
+   //   /** Decode and send a base64-encoded string.
+   //      \lparam str64 Base64-encoded string
+   //      \lparam type Mime type of content (content-type header) */
+   //   void Send64(const ::string & str64, const string & type);
+   //   string datetime2httpdate(const string & dt);
+   //   string GetDate();
+   //   void Reset();
 
-      virtual void InitSSLServer();
-
-
-
-      
+   //   virtual void InitSSLServer();
 
 
    };

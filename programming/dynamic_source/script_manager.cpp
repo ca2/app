@@ -27,6 +27,7 @@
 
 
 #include "acme/_operating_system.h"
+#include "programming/dynamic_source/httpd_socket.h"
 
 
 namespace dynamic_source
@@ -571,27 +572,9 @@ namespace dynamic_source
 
       //}
 
-      try
-      {
+      ::defer_finalize__destroy_and_release(pmain);
 
-         pmain->destroy();
-
-      }
-      catch (...)
-      {
-
-      }
-
-      try
-      {
-
-         pinstance->destroy();
-
-      }
-      catch (...)
-      {
-
-      }
+      ::defer_finalize__destroy_and_release(pinstance);
 
       if (::is_set(pthread))
       {
@@ -1442,7 +1425,8 @@ namespace dynamic_source
 
    }
 
-   bool script_manager::has_link_out_link(const ::string& pszServer, ::sockets::link_in_socket* pinsocket, ::sockets::httpd_socket* phttpdsocket)
+
+   bool script_manager::has_link_out_link(const ::string& pszServer, ::sockets::link_in_socket* pinsocket, ::httpd::socket* phttpdsocket)
    {
 
       single_lock synchronouslock(m_pmutexOutLink, true);
@@ -1549,7 +1533,7 @@ namespace dynamic_source
    }
 
 
-   ::sockets::link_out_socket* script_manager::create_link_out(const ::string& pszServer, ::sockets::httpd_socket* phttpdsocket)
+   ::sockets::link_out_socket* script_manager::create_link_out(const ::string& pszServer, ::httpd::socket* phttpdsocket)
    {
 
       ::sockets::link_out_socket* psocket = __new< sockets::link_out_socket >();

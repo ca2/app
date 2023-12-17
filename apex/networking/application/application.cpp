@@ -1,12 +1,13 @@
 // Created by camilo on 2021-11-07 11:35 BRT <3ThomasBorregaardSorensen!!
 #include "framework.h"
+#include "application_incoming_socket.h"
 #include "application_socket.h"
 #include "application.h"
 ////#include "acme/exception/exception.h"
 #include "acme/primitive/primitive/url.h"
 #include "acme/primitive/datetime/datetime.h"
 #include "acme/filesystem/filesystem/file_context.h"
-#include "apex/networking/netserver/socket_thread.h"
+#include "apex/networking/netserver/incoming_socket_thread.h"
 #include "apex/platform/application.h"
 #include "apex/platform/system.h"
 
@@ -53,10 +54,13 @@ namespace networking
       //      auto
 
       factory()->add_factory_item < ::networking::application_socket>();
+      factory()->add_factory_item < ::networking::application_incoming_socket>();
 
-      m_psocketthread = __create_new< ::netserver::socket_thread >();
+      m_psocketthread = __create_new< ::netserver::incoming_socket_thread >();
 
-      m_psocketthread->m_typeatomSocket = ::type<::networking::application_socket>();
+      //m_psocketthread->m_typeIncomingSocket = ::type<::networking::application_socket>();
+
+      m_psocketthread->m_typeIncomingSocket = ::type<::networking::application_incoming_socket>();
 
       m_psocketthread->m_strIp = "127.0.0.1";
 

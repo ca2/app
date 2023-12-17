@@ -19,6 +19,7 @@ namespace dynamic_source
    class script;
    class script_instance;
    class httpd_socket;
+   class httpd_listen_socket;
    class script_main;
 
 

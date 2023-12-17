@@ -28,10 +28,10 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 #include "framework.h"
-////#include "apex/networking/sockets/_sockets.h"
 #include "socket.h"
 #include "socket_handler.h"
 #include "acme/exception/interface_only.h"
+#include "apex/networking/sockets/base/socket_thread.h"
 //#ifdef _WIN32
 //#elif defined(LINUX)
 //#include <netdb.h>
@@ -138,8 +138,22 @@ namespace sockets
    }
 
 
+   ::pointer < ::sockets::socket_thread > base_socket::create_socket_thread()
+   {
+
+      return __create < ::sockets::socket_thread >();
+
+   }
+
+
    void base_socket::DetachSocket()
    {
+
+      SetDetached();
+
+      auto psocketthread = ::transfer(base_socket_composite()->create_socket_thread());
+
+      psocketthread->initialize_socket_thread(this);
 
    }
 
@@ -185,15 +199,16 @@ namespace sockets
    }
 
 
-   //void base_socket::on_finalize()
-   //{
+   void base_socket::finalize()
+   {
 
-   //   //__release(m_psocketthread);
+      m_psocketthread.release();
 
-   //   ::object::on_finalize();
+      m_transferprogressfunction.clear();
 
+      ::object::finalize();
 
-   //}
+   }
 
 
    void base_socket::Init()

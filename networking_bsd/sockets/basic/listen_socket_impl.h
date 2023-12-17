@@ -1,4 +1,4 @@
-/** \file listen_socket.h
+/** \file listen_socket_impl.h
 **   \date  2004-02-13
 **   \author grymse@alhem.net
 **/
@@ -7,7 +7,7 @@
 
 
 #include "networking_bsd/sockets/basic/socket.h"
-#include "apex/networking/sockets/basic/listen_socket.h"
+#include "apex/networking/sockets/basic/listen_socket_impl.h"
 
 
 namespace sockets_bsd
@@ -16,9 +16,9 @@ namespace sockets_bsd
 
    /** Binds incoming port number to new socket class X.
    \ingroup basic */
-   class CLASS_DECL_NETWORKING_BSD listen_socket :
+   class CLASS_DECL_NETWORKING_BSD listen_socket_impl :
       virtual public ::sockets_bsd::socket,
-      virtual public ::sockets::listen_socket_base
+      virtual public ::sockets::listen_socket_impl
    {
    public:
 
@@ -31,8 +31,8 @@ namespace sockets_bsd
       /** Constructor.
       \lparam h base_socket_handler object
       \lparam use_creator Optional use of creator (default true) */
-      listen_socket();
-      ~listen_socket() override;
+      listen_socket_impl();
+      ~listen_socket_impl() override;
 
       void initialize(::particle * pparticle) override;
 

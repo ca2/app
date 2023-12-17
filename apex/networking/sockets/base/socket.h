@@ -172,10 +172,11 @@ namespace sockets
 //      */
 //
       
-      
-      transfer_progress_function    m_transferprogressfunction;
-      class ::time                  m_timeConnectionMaximum; ///< Defined by SetTimeout
-      class ::time                  m_timeMaximum; ///< Defined by SetTimeout
+      ::pointer<::sockets::socket_thread>          m_psocketthread; ///< detach base_socket thread class pointer
+
+      transfer_progress_function                   m_transferprogressfunction;
+      class ::time                                 m_timeConnectionMaximum; ///< Defined by SetTimeout
+      class ::time                                 m_timeMaximum; ///< Defined by SetTimeout
 
       
       /** "Default" constructor */
@@ -186,6 +187,7 @@ namespace sockets
 
       virtual void SetSocketHandler(base_socket_handler* phandler);
 
+      virtual ::pointer < ::sockets::socket_thread > create_socket_thread();
       virtual void DetachSocket();
 
 
@@ -777,7 +779,8 @@ virtual string GetSocks4Host();
 
       virtual enum_trace_category trace_category() const override;
 
-      //virtual void on_finalize() override;
+      
+      virtual void finalize() override;
 
 
    };

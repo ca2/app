@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "apex/networking/netserver/socket.h"
+#include "apex/networking/sockets/httpd/socket.h"
 
 
 namespace dynamic_source
@@ -9,15 +9,13 @@ namespace dynamic_source
 
 
    class CLASS_DECL_APP_PROGRAMMING httpd_socket :
-      virtual public ::netserver::socket
+      virtual public ::httpd::socket
    {
    public:
 
 
       i32                                          m_iCa2FetchMode;
-
       string                                       m_strLocale;
-
       ::pointer < script_interface >               m_pscript;
 
 
@@ -25,7 +23,7 @@ namespace dynamic_source
       ~httpd_socket() override;
 
 
-      virtual void Reset();
+      void Reset() override;
 
 
       void finalize() override;

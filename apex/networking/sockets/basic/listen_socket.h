@@ -4,46 +4,55 @@
 **/
 
 // xxx ref_Anders_Hedstrom_sockets_library.txt
-
 #pragma once
 
-#include "socket.h"
+
+#include "listen_socket_impl.h"
+
 
 namespace sockets
 {
 
 
+
    /** Binds incoming port number to new socket class X.
    \ingroup basic */
-   class CLASS_DECL_APEX listen_socket_base :
-      virtual public socket
+   class CLASS_DECL_APEX listen_socket :
+      virtual public listen_socket_impl
    {
    public:
 
 
-      i32                                 m_depth;
-      base_socket *                       m_pbasesocket;
+      //i32                                 m_depth;
+      //base_socket *                       m_pbasesocket;
 
-      ::pointer<listen_socket_base>       m_pcomposite;
-      bool                                m_bImpl;
-      bool                                m_bListeningDetach;
-      ::type_atom                         m_typeatom;
+      //::pointer < listen_socket_impl >    m_plistensocket;
+      //bool                                m_bImpl;
+      //bool                                m_bListeningDetach;
+      //::type_atom                         m_typeListenSocket;
+
+      ::pointer < ::factory::factory >    m_pfactory;
+      ::type_atom                         m_typeAttendSocket;
 
       /** Constructor.
       \lparam h base_socket_handler object
       \lparam use_creator Optional use of creator (default true) */
-      listen_socket_base();
-      ~listen_socket_base() override;
+      listen_socket();
+      ~listen_socket() override;
 
       
-      virtual void initialize_listen_socket(const ::type_atom& typeatom);
+      virtual void set_attend_socket_type(const ::type_atom& type);
+
+      virtual void Reset();
+
+      ::pointer<listen_socket_impl> create_listen_socket_impl();
 
 
       void initialize(::particle * pparticle) override;
 
       base_socket * base_socket_composite() override;
 
-      virtual ::pointer<socket>create_listen_socket();
+      ::pointer<socket>create_attend_socket() override;
 
       virtual void set_ssl_catalog(const ::string & strCat);
 
@@ -143,115 +152,119 @@ namespace sockets
    };
 
 
-   /** Binds incoming port number to new socket class X.
-   \ingroup basic */
-   template < class LISTENER >
-   class listen_socket :
-      virtual public listen_socket_base
-   {
-   public:
+   ///** Binds incoming port number to new socket class X.
+   //\ingroup basic */
+   ////template < class LISTENER >
+   //class listen_socket :
+   //   virtual public listen_socket_base
+   //{
+   //public:
 
 
-      LISTENER *     m_creator;
-      bool           m_bHasCreate;
-      LISTENER *     m_psocket;
+   //   //LISTENER *     m_creator;
+   //   ::type_atom                               m_typeListenSocket;
+   //   //bool                                      m_bHasCreate;
+   //   ::pointer < ::sockets::base_socket >      m_psocket;
+
+   //   listen_socket()
+   //   {
+
+   //   }
+   //   ///** Constructor.
+   //   //\lparam h base_socket_handler object
+   //   //\lparam use_creator Optional use of creator (default true) */
+   //   //listen_socket(bool use_creator = true) :
+   //   //   m_bHasCreate(false),
+   //   //   m_creator(nullptr)
+   //   //{
+
+   //   //   if (use_creator)
+   //   //   {
+
+   //   //      //m_creator = __new< LISTENER >(h);
+   //   //      m_creator = __new< LISTENER >();
+
+   //   //      base_socket * plistener = m_creator->new_listen_socket();
+
+   //   //      if(plistener != nullptr)
+   //   //      {
+
+   //   //         if(dynamic_cast < LISTENER * >(plistener) != nullptr)
+   //   //         {
+
+   //   //            m_bHasCreate = true;
+
+   //   //         }
+
+   //   //         delete plistener;
+   //   //      }
+
+   //   //   }
+   //   //}
+
+   //   virtual ~listen_socket()
+   //   {
+   //      //if (m_creator)
+   //      //{
+   //      //   delete m_creator;
+   //      //}
+   //   }
 
 
-      /** Constructor.
-      \lparam h base_socket_handler object
-      \lparam use_creator Optional use of creator (default true) */
-      listen_socket(bool use_creator = true) :
-         m_bHasCreate(false),
-         m_creator(nullptr)
-      {
+   //   virtual ::pointer<socket>create_listen_socket()
+   //   {
 
-         if (use_creator)
-         {
+   //      ::pointer<::sockets::base_socket>pbasesocket;
 
-            //m_creator = __new< LISTENER >(h);
-            m_creator = __new< LISTENER >();
+   //      if (HasCreator())
+   //      {
 
-            base_socket * plistener = m_creator->new_listen_socket();
+   //         pbasesocket = m_creator->new_listen_socket();
 
-            if(plistener != nullptr)
-            {
+   //         m_psocket = dynamic_cast < LISTENER * > (pbasesocket.m_p);
 
-               if(dynamic_cast < LISTENER * >(plistener) != nullptr)
-               {
+   //         if (m_psocket == nullptr)
+   //         {
 
-                  m_bHasCreate = true;
+   //            pbasesocket.release();
 
-               }
+   //         }
 
-               delete plistener;
-            }
+   //         m_pbasesocket = pbasesocket;
 
-         }
-      }
+   //      }
+   //      else
+   //      {
 
-      virtual ~listen_socket()
-      {
-         if (m_creator)
-         {
-            delete m_creator;
-         }
-      }
+   //         pbasesocket = __allocate< LISTENER >();
 
+   //         m_psocket = dynamic_cast < LISTENER * >(pbasesocket.m_p);
 
-      virtual ::pointer<socket>create_listen_socket()
-      {
+   //         if (pbasesocket == nullptr)
+   //         {
 
-         ::pointer<::sockets::base_socket>pbasesocket;
+   //            pbasesocket.release();
 
-         if (HasCreator())
-         {
+   //            m_psocket = nullptr;
 
-            pbasesocket = m_creator->new_listen_socket();
+   //         }
 
-            m_psocket = dynamic_cast < LISTENER * > (pbasesocket.m_p);
+   //         m_pbasesocket = pbasesocket;
 
-            if (m_psocket == nullptr)
-            {
+   //      }
 
-               pbasesocket.release();
+   //      return pbasesocket;
 
-            }
-
-            m_pbasesocket = pbasesocket;
-
-         }
-         else
-         {
-
-            pbasesocket = __allocate< LISTENER >();
-
-            m_psocket = dynamic_cast < LISTENER * >(pbasesocket.m_p);
-
-            if (pbasesocket == nullptr)
-            {
-
-               pbasesocket.release();
-
-               m_psocket = nullptr;
-
-            }
-
-            m_pbasesocket = pbasesocket;
-
-         }
-
-         return pbasesocket;
-
-      }
+   //   }
 
 
-      bool HasCreator()
-      {
-         return m_bHasCreate;
-      }
+   //   //bool HasCreator()
+   //   //{
+   //   //   return m_bHasCreate;
+   //   //}
 
 
-   };
+   //};
 
 
 } // namespace sockets

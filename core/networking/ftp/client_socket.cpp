@@ -841,18 +841,22 @@ namespace ftp
       else
       {
 
-         ::pointer<::sockets::listen_socket_base>apSckDataConnection;
+         ::pointer < ::sockets::listen_socket > apSckDataConnection;
 
          if (crDatachannelCmd.IsDatachannelWriteCommand())
          {
 
-            apSckDataConnection = __new< ::sockets::listen_socket < ::sockets::write_socket > >();
+            apSckDataConnection = __new< ::sockets::listen_socket >();
+
+            apSckDataConnection->m_typeAttendSocket = ::type< ::sockets::write_socket >();
 
          }
          else if (crDatachannelCmd.IsDatachannelReadCommand())
          {
 
-            apSckDataConnection = __new< ::sockets::listen_socket < ::sockets::read_socket > >();
+            apSckDataConnection = __new< ::sockets::listen_socket >();
+
+            apSckDataConnection->m_typeAttendSocket = ::type< ::sockets::read_socket >();
 
          }
          else
@@ -979,8 +983,8 @@ namespace ftp
       }
 
 
-      ::sockets::listen_socket_base & sckDataConnection
-         = *(dynamic_cast < ::sockets::listen_socket_base * >(&sckDataConnectionParam));
+      ::sockets::listen_socket & sckDataConnection
+         = *(dynamic_cast < ::sockets::listen_socket * >(&sckDataConnectionParam));
 
       //ll.m_strCat = m_strCat;
       //ll.m_strCipherList = m_strCipherList;

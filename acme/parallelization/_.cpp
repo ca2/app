@@ -699,28 +699,30 @@ CLASS_DECL_ACME ::task * _get_task()
 CLASS_DECL_ACME ::task * get_task()
 {
 
-   if (!t_ptask)
-   {
+   return t_ptask;
 
-      auto pplatform = ::acme::get()->platform();
+   //if (!t_ptask)
+   //{
 
-      if(::is_set(pplatform))
-      {
+   //   auto pplatform = ::acme::get()->platform();
 
-         auto psystem = pplatform->system();
+   //   if(::is_set(pplatform))
+   //   {
 
-         if(::is_set(psystem))
-         {
+   //      auto psystem = pplatform->system();
 
-            t_ptask = { transfer_t{}, new ::task() };
+   //      if(::is_set(psystem))
+   //      {
 
-            t_ptask->initialize(pplatform->system());
+   //         t_ptask = { transfer_t{}, new ::task() };
 
-         }
+   //         t_ptask->initialize(pplatform->system());
 
-      }
+   //      }
 
-   }
+   //   }
+
+   //}
 
    return t_ptask;
 

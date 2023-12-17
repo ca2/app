@@ -1485,6 +1485,22 @@ namespace user
 
       }
 
+      auto powner = get_owner();
+
+      if (powner)
+      {
+
+         auto pframe = powner->top_level_frame();
+
+         if (pframe && pframe->m_puserstyle)
+         {
+
+            return pframe->m_puserstyle;
+
+         }
+
+      }
+
       auto psession = get_session();
 
       auto puser = psession->user();

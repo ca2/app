@@ -384,13 +384,15 @@ namespace user
    void list_box::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::draw2d::save_context savecontext(pgraphics);
+      //pgraphics->reset_clip();
 
-      ::rectangle_f64 rectangleClipBox;
+      //::draw2d::save_context savecontext(pgraphics);
 
-      pgraphics->get_clip_box(rectangleClipBox);
+      //::rectangle_f64 rectangleClipBox;
 
-      pgraphics->reset_clip();
+      //pgraphics->get_clip_box(rectangleClipBox);
+
+      //pgraphics->reset_clip();
 
       _001OnDrawComboList(pgraphics);
 

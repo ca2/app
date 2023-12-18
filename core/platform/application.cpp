@@ -296,6 +296,16 @@ namespace core
    }
 
 
+   void application::term_instance()
+   {
+
+      m_ppaneimpactCore.release();
+
+      ::bred::application::term_instance();
+
+   }
+
+
    void application::create_auto_start_option(::user::interaction * pparent)
    {
 

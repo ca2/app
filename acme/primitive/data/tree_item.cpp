@@ -52,11 +52,11 @@ namespace data
       if (::is_set(pparent))
       {
 
-         pparent->m_childrena.add(this);
+         list_add(pparent, this);
 
       }
 
-      m_pparent->m_childrena.erase(this);
+      list_erase(m_pparent, this);
 
       m_pparent = pparent;
 
@@ -71,7 +71,12 @@ namespace data
       if(m_pparent)
       {
 
-         m_pparent->m_childrena.erase(this);
+         if(list_contains_item(m_pparent, this))
+         {
+
+            list_erase(m_pparent, this);
+
+         }
 
       }
 
@@ -81,9 +86,9 @@ namespace data
    void tree_item::erase_tree_item_descendants()
    {
 
-      m_childrena.predicate_each([](auto p) { p->erase_tree_item(); });
+      list_predicate(this, [](auto p) { p->erase_tree_item(); });
 
-      m_childrena.erase_all();
+      list_erase_all(this);
 
    }
 
@@ -129,7 +134,7 @@ namespace data
 
       }
 
-      if (!pitem->m_pparent->m_childrena.contains(pitem))
+      if (!list_contains_item(pitem->m_pparent, pitem))
       {
 
          // self healing?
@@ -139,9 +144,7 @@ namespace data
 
       }
 
-      //list_erase(pitem->m_pparent, pitem);
-
-      pitem->m_pparent->m_childrena.erase(pitem);
+      list_erase(pitem->m_pparent, pitem);
 
       pitem->m_pparent = nullptr;
 
@@ -158,7 +161,7 @@ namespace data
 
          pitemNew->erase_item_from_parent();
 
-         m_childrena.insert_at(0, pitemNew);
+         list_add_head(this, pitemNew);
 
          pitemNew->m_iLevel = m_iLevel + 1;
 
@@ -172,9 +175,7 @@ namespace data
 
          pitemNew->erase_item_from_parent();
 
-         //list_add(this, pitemNew);
-
-         m_childrena.add(pitemNew);
+         list_add(this, pitemNew);
 
          pitemNew->m_iLevel = m_iLevel + 1;
 
@@ -195,9 +196,7 @@ namespace data
 
          }
 
-         auto iFind = m_pparent->m_childrena.find_first(this);
-
-         if(iFind < 0)
+         if(!list_contains_item(m_pparent, this))
          {
 
             // self-healinng
@@ -207,7 +206,7 @@ namespace data
 
          }
 
-         m_pparent->m_childrena.insert_at(iFind, pitemNew);
+         list_insert_before(m_pparent, this, pitemNew);
 
          pitemNew->m_iLevel = m_iLevel;
 
@@ -226,19 +225,17 @@ namespace data
 
          }
 
-         auto iFind = m_pparent->m_childrena.find_first(this);
-
-         if (iFind < 0)
+         if(!list_contains_item(m_pparent, this))
          {
 
-            // self-healinng
+            // self-healing
             m_pparent = nullptr;
 
             return false;
 
          }
 
-         m_pparent->m_childrena.insert_at(iFind + 1, pitemNew);
+         list_insert_after(m_pparent, this, pitemNew);
 
          pitemNew->m_iLevel = m_iLevel;
 
@@ -250,9 +247,7 @@ namespace data
       else if(erelative == e_relative_last_sibling)
       {
 
-         //list_add(m_pparent, pitemNew);
-
-         m_pparent->m_childrena.insert_at(0, pitemNew);
+         list_add(m_pparent, pitemNew);
 
          pitemNew->m_iLevel = m_iLevel;
 
@@ -264,23 +259,20 @@ namespace data
       else if(erelative == e_relative_replace)
       {
 
-         auto iFind = m_pparent->m_childrena.find_first(this);
-
-         if (iFind < 0)
+         if(!list_contains_item(m_pparent,this))
          {
 
-            // self-healinng
             m_pparent = nullptr;
 
             return false;
 
          }
 
-         m_pparent->m_childrena.set_at(iFind, pitemNew);
+         list_replace_item(m_pparent, this, pitemNew);
 
          m_pparent = nullptr;
 
-         //erase_tree_item();
+         erase_tree_item();
 
          return true;
 
@@ -294,17 +286,12 @@ namespace data
    tree_item * tree_item::get_child_by_user_data(uptr iUserData)
    {
 
-      auto iFind = m_childrena.predicate_find_first([iUserData](auto p)
+      return list_predicateicate_find(this, [iUserData](auto p)
          {
 
             return p->m_dwUser == iUserData;
 
          });
-
-      if (iFind < 0)
-         return nullptr;
-
-      return m_childrena[iFind];
 
    }
 
@@ -312,12 +299,7 @@ namespace data
    void tree_item::get_children(tree_item_ptr_array & ptra)
    {
 
-      for (auto & p : m_childrena)
-      {
-
-         ptra.add(p);
-
-      }
+      list_predicateicate_add(ptra, this);
 
    }
 
@@ -325,7 +307,7 @@ namespace data
    ::count tree_item::get_children_count()
    {
 
-      return m_childrena.count();
+      return list_count(this);
 
    }
 
@@ -343,7 +325,7 @@ namespace data
 
       ::count c = 0;
       
-      m_childrena.predicate_each([&c](auto& p)
+      list_predicate(this, [&c](auto& p)
          {
 
             if (p->get_children_count() > 0)
@@ -365,7 +347,7 @@ namespace data
       
       ::count c = 0;
 
-      auto iFind = m_childrena.predicate_find_first([&c, iIndex](auto& p)
+      return list_predicateicate_find(this, [&c, iIndex](auto& p)
          {
 
             if (p->get_children_count() > 0)
@@ -383,15 +365,6 @@ namespace data
             return false;
 
          });
-
-      if (iFind < 0)
-      {
-
-         return nullptr;
-
-      }
-
-      return m_childrena[iFind];
 
    }
 
@@ -429,12 +402,10 @@ namespace data
    tree_item * tree_item::get_previous_or_parent(index * piLevel)
    {
 
-      auto pprevious = get_previous();
-
-      if(pprevious)
+      if (m_pprevious)
       {
 
-         return pprevious;
+         return m_pprevious;
 
       }
 
@@ -460,24 +431,7 @@ namespace data
    tree_item * tree_item::get_previous()
    {
 
-      if (::is_null(m_pparent))
-      {
-
-         return nullptr;
-
-      }
-
-      auto iFind = m_pparent->m_childrena.find_first(this);
-
-      if (iFind > 0)
-      {
-
-         return m_pparent->m_childrena[iFind - 1];
-
-      }
-
-      return nullptr;
-
+      return m_pprevious;
 
    }
 
@@ -485,23 +439,7 @@ namespace data
    tree_item * tree_item::get_next()
    {
 
-      if (!m_pparent)
-      {
-
-         return nullptr;
-
-      }
-
-      auto iFind = m_pparent->m_childrena.find_first(this);
-
-      if (iFind >= 0 && iFind < m_pparent->m_childrena.get_upper_bound())
-      {
-
-         return m_pparent->m_childrena[iFind + 1];
-
-      }
-
-      return nullptr;
+      return m_pnext;
 
    }
 
@@ -543,7 +481,7 @@ namespace data
 
       }
 
-      return m_pparent->m_childrena.find_first(this);
+      return list_item_index(m_pparent, this);
 
    }
 
@@ -551,12 +489,10 @@ namespace data
    tree_item * tree_item::get_next_or_parent_next(index * piLevel)
    {
 
-      auto pnext = get_next();
-
-      if (pnext)
+      if (m_pnext)
       {
 
-         return pnext;
+         return m_pnext;
 
       }
 
@@ -582,7 +518,7 @@ namespace data
    tree_item * tree_item::get_child_or_next(index * piLevel)
    {
 
-      if (m_childrena.has_element())
+      if (m_phead)
       {
 
          if (piLevel)
@@ -592,11 +528,11 @@ namespace data
 
          }
 
-         return m_childrena.first();
+         return m_phead;
 
       }
 
-      return get_next();
+      return m_pnext;
 
    }
 
@@ -604,7 +540,7 @@ namespace data
    tree_item * tree_item::get_child_next_or_parent(index * piLevel)
    {
 
-      if (m_childrena.has_element())
+      if (m_phead)
       {
 
          if (piLevel)
@@ -614,7 +550,7 @@ namespace data
 
          }
 
-         return m_childrena.first();
+         return m_phead;
 
       }
 
@@ -652,12 +588,12 @@ namespace data
       {
       case e_relative_first_child:
       {
-         return m_childrena.first();
+         return m_phead;
       }
       break;
       case e_relative_last_child:
       {
-         return m_childrena.last();
+         return m_ptail;
       }
       case e_relative_parent:
       {
@@ -666,22 +602,22 @@ namespace data
       break;
       case e_relative_first_sibling:
       {
-         return m_pparent->m_childrena.first();
+         return m_pparent->m_phead;
       }
       break;
       case e_relative_previous_sibling:
       {
-         return get_previous();
+         return m_pprevious;
       }
       break;
       case e_relative_next_sibling:
       {
-         return get_next();
+         return m_pnext;
       }
       break;
       case e_relative_last_sibling:
       {
-         return m_pparent->m_childrena.last();
+         return m_pparent->m_ptail;
       }
       break;
       default:
@@ -696,7 +632,7 @@ namespace data
    tree_item * tree_item::first_child()
    {
 
-      return m_childrena.first();
+      return m_phead;
 
    }
 
@@ -926,7 +862,7 @@ namespace data
 
       }
 
-      m_childrena.predicate_each([](auto& p)
+      list_predicate(this, [](auto& p)
          {
 
             if (p->is_expanded())

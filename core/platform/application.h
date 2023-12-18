@@ -60,6 +60,9 @@ namespace core
       void create_auto_start_option(::user::interaction * pparent) override;
 
 
+      void term_instance() override;
+
+
    };
 
 

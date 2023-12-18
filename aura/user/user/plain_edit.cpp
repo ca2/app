@@ -451,7 +451,7 @@ namespace user
    void plain_edit::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      //pgraphics->reset_clip();
+      pgraphics->reset_clip();
       m_timeLastDraw = ::time::now();
 
       auto timeStart = ::time::now();

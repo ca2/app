@@ -127,9 +127,9 @@ void list_swap(LIST_ITEM* plist, LIST_ITEM* pitemA, LIST_ITEM* pitemB)
       else
       {
 
-         pitemA->m_ppnext = pitemB->m_ppnext;
+         pitemA->m_pnext = pitemB->m_pnext;
 
-         pitemB->m_ppnext = pitem;
+         pitemB->m_pnext = pitem;
 
       }
 
@@ -165,7 +165,7 @@ void list_sort(LIST_ITEM* pitem, PRED pred)
          {
             if (iMPos == iUPos)
                goto break_mid_loop;
-            if (pred(iUPos->m_value, iMPos->m_value))
+            if (pred(iUPos, iMPos))
             {
                list_swap(pitem, iMPos, iUPos);
                break;
@@ -177,7 +177,7 @@ void list_sort(LIST_ITEM* pitem, PRED pred)
          {
             if (iMPos == iLPos)
                goto break_mid_loop;
-            if (pred(iMPos->m_value, iLPos->m_value))
+            if (pred(iMPos, iLPos))
             {
                list_swap(pitem, iLPos, iMPos);
                break;
@@ -233,12 +233,11 @@ namespace data
 
       };
 
-      //::pointer<tree_item>            m_phead; // first child
-      //::pointer<tree_item>            m_ptail; // last child
-      //::pointer<tree_item>            m_pprevious;
-      //::pointer<tree_item>            m_pnext;
+      ::pointer<tree_item>             m_phead; // first child
+      ::pointer<tree_item>             m_ptail; // last child
+      ::pointer<tree_item>             m_pprevious;
+      ::pointer<tree_item>             m_pnext;
       ::pointer<tree_item>             m_pparent;
-      ::pointer_array<tree_item>       m_childrena;
       index                            m_iIndexHint;
       tree *                           m_ptree;
       index                            m_iLevel;
@@ -249,7 +248,7 @@ namespace data
 
 
       tree_item();
-      virtual ~tree_item();
+      ~tree_item() override;
 
 
       virtual i64 increment_reference_count()
@@ -312,7 +311,7 @@ namespace data
       void sort_children(PRED pred)
       {
 
-         m_childrena.predicate_sort(pred);
+         list_sort(this, pred);
 
       }
 

@@ -86,7 +86,7 @@ struct CLASS_DECL_ACME block :
    }
    //block(const ::scoped_string  & scopedstr);
    template < primitive_integral INTEGRAL >
-   block(INTEGRAL i) : block(e_as_little_endian_block, i) {}
+   block(INTEGRAL & i) : block(e_as_little_endian_block, i) {}
    template < typename TYPE >
    block(enum_as_little_endian_block, TYPE & t) : 
       block((void *)&t, sizeof(t))

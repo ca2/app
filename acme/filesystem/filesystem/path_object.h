@@ -17,6 +17,7 @@ namespace file
 
       path_object();
       //path_object(::matter*);
+      path_object(const ::file::path_object & pathobject):path_object((const::file::path & )pathobject){}
       path_object(const ::file::path& path);
       path_object(::file::path&& path);
       ~path_object() override;

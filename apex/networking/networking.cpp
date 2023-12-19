@@ -5,6 +5,7 @@
 #include "acme/primitive/string/parse.h"
 #include "acme/primitive/string/str.h"
 #include "apex/networking/sockets/basic/listen_socket.h"
+#include "apex/networking/sockets/base/socket_thread.h"
 
 
 //#define log_error(...) TRACE_LOG_ERROR(__VA_ARGS__)
@@ -77,6 +78,13 @@ namespace networking
       //auto estatus = ::object::initialize(pparticle);
 
       ::object::initialize(pparticle);
+
+      if (!factory()->has(::type<::sockets::socket_thread>()))
+      {
+
+         factory()->add_factory_item<::sockets::socket_thread>();
+
+      }
 
       //if (!estatus)
       //{

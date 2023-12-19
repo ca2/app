@@ -508,7 +508,7 @@ namespace file
 
       m_pfile = pfile;
 
-      m_size = pfile->size();
+      m_sizeEditFile = pfile->size();
 
       m_pfile->seek_to_begin();
 
@@ -540,7 +540,7 @@ namespace file
 
       memsize uiReadCount = 0;
 
-      if(m_position >= m_size)
+      if(m_position >= m_sizeEditFile)
       {
 
          return uRead;
@@ -553,34 +553,34 @@ namespace file
       //      u32 dwUpperLimit = m_size;
       //      i32 iOffset =0;
 
-      ::pointer<::data::tree_item>ptreeitem;
+      //::pointer<::data::tree_item>ptreeitem;
 
       //      edit_group_item * pitemgroup = nullptr;
 
       ::i32_array ia;
 
-      m_bRootDirection = calc_root_direction();
+      //m_bRootDirection = calc_root_direction();
 
-      ::u32 uReadItem = 0xffffffff;
+      //::u32 uReadItem = 0xffffffff;
 
-      //u64 uiStopSize;
+      ////u64 uiStopSize;
 
-      m_iOffset = 0;
+      //m_iOffset = 0;
 
-      if (m_bRootDirection)
-      {
+      //if (m_bRootDirection)
+      //{
 
-         m_ptreeitemBeg = m_ptreeitemFlush->get_child_next_or_parent();
+      //   m_ptreeitemBeg = m_ptreeitemFlush->get_child_next_or_parent();
 
-         //m_ptreeitemBeg = m_ptreeitemEnd;
+      //   //m_ptreeitemBeg = m_ptreeitemEnd;
 
-      }
-      else
-      {
+      //}
+      //else
+      //{
 
-         m_ptreeitemBeg = m_ptreeitemFlush;
+      //   m_ptreeitemBeg = m_ptreeitemFlush;
 
-      }
+      //}
 
       ::u8 b = 0;
 
@@ -595,7 +595,7 @@ namespace file
 
          m_positionIteration = m_position;
 
-         ptreeitem = m_ptreeitem;
+         auto &ptreeitem = m_ptreeitemIteration;
 
          bRead = false;
 
@@ -668,7 +668,7 @@ namespace file
          m_position++;
 
       }
-      while(nCount > 0 && m_position < m_size);
+      while(nCount > 0 && m_position < m_sizeEditFile);
 
       return uRead;
 
@@ -738,7 +738,7 @@ namespace file
 
       pinsertitem->m_memstorage.assign(str);
 
-      m_size += (str.length() - iOldLen);
+      m_sizeEditFile += (str.length() - iOldLen);
 
    }
 
@@ -750,7 +750,7 @@ namespace file
 
       pinsertitem->m_memstorage.append(str);
 
-      m_size += (str.length());
+      m_sizeEditFile += (str.length());
 
    }
 
@@ -765,7 +765,7 @@ namespace file
 
       TreeInsert(pinsert);
 
-      m_size += nCount;
+      m_sizeEditFile += nCount;
 
       return pinsert;
 
@@ -777,7 +777,7 @@ namespace file
 
       ::pointer<delete_item>pdelete;
 
-      uiCount = minimum(uiCount,(memsize) (get_length() - m_position));
+      uiCount = minimum(uiCount,(memsize) (get_length() - get_position()));
 
       if (uiCount == 0)
       {
@@ -792,7 +792,7 @@ namespace file
       seek((filesize)m_position,::e_seek_set);
       read(pdelete->m_memstorage.data(),uiCount);
       TreeInsert(pdelete);
-      m_size -= uiCount;
+      m_sizeEditFile -= uiCount;
 
       return pdelete;
 
@@ -801,6 +801,13 @@ namespace file
 
    filesize edit_file::get_position() const
    {
+      if (m_ptreeitem == m_ptreeitemFlush)
+      {
+
+         return m_pfile->get_position();
+
+      }
+
       return m_position;
    }
 
@@ -817,6 +824,8 @@ namespace file
       {
 
          m_pfile->translate(offset, eseek);
+
+         m_position = m_pfile->get_position();
 
          return;
 
@@ -874,12 +883,37 @@ namespace file
 
       }
 
-      if (dwNew > m_size)
+      if (dwNew > m_sizeEditFile)
       {
 
-         dwNew = m_size;
+         dwNew = m_sizeEditFile;
 
       }
+
+      m_bRootDirection = calc_root_direction();
+
+      ::u32 uReadItem = 0xffffffff;
+
+      //u64 uiStopSize;
+
+      m_iOffset = 0;
+
+      if (m_bRootDirection)
+      {
+
+         m_ptreeitemBeg = m_ptreeitemFlush->get_child_next_or_parent();
+
+         //m_ptreeitemBeg = m_ptreeitemEnd;
+
+      }
+      else
+      {
+
+         m_ptreeitemBeg = m_ptreeitemFlush;
+
+      }
+
+      m_ptreeitemIteration = m_ptreeitem;
 
       m_position = 0;
 
@@ -904,7 +938,7 @@ namespace file
    filesize edit_file::get_length() const
    {
 
-      return m_size;
+      return m_sizeEditFile;
 
    }
 
@@ -912,7 +946,7 @@ namespace file
    void edit_file::flush()
    {
       
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       auto pfile = create_memory_file();
 
@@ -928,7 +962,7 @@ namespace file
 
       m_pfile->flush();
 
-      m_size = m_pfile->size();
+      m_sizeEditFile = m_pfile->size();
 
       m_ptreeitemFlush = m_ptreeitem;
 
@@ -1029,7 +1063,7 @@ namespace file
 
       }
 
-      m_size -= m_ptreeitem->m_pdataitem.cast < edit_item_base>()->get_delta_length();
+      m_sizeEditFile -= m_ptreeitem->m_pdataitem.cast < edit_item_base>()->get_delta_length();
 
       m_ptreeitem = m_ptreeitem->get_previous_or_parent();
 
@@ -1070,7 +1104,7 @@ namespace file
 
       }
 
-      m_size += ptreeitem->m_pdataitem.cast < edit_item_base > ()->get_delta_length();
+      m_sizeEditFile += ptreeitem->m_pdataitem.cast < edit_item_base > ()->get_delta_length();
 
       m_ptreeitem = ptreeitem;
 

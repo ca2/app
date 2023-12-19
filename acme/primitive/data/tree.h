@@ -23,6 +23,8 @@ namespace data
       index_array                         m_iaLevelNext;
 
 
+
+
       tree();
       ~tree() override;
 
@@ -60,15 +62,16 @@ namespace data
       virtual void erase(item * pitem, index i = 0);
 
 
+      ::data::tree_item * ____previous() override;
+      ::data::tree_item * ____next() override;
+      //template < typename PRED >
+      //void sort_children(PRED pred)
+      //{
 
-      template < typename PRED >
-      void sort_children(PRED pred)
-      {
+      //   tree_sort(this, pred);
 
-         tree_sort(this, pred);
-
-      }
-
+      //}
+      virtual void sort_children(const ::function < bool(const ::data::tree_item * p1, const ::data::tree_item * p2) > & functionLess);
 
       virtual tree_item * _get_proper_item(index iIndex, index * piLevel, index * piCount = nullptr);
       virtual tree_item* get_proper_item(index iIndex, index* piLevel) override;

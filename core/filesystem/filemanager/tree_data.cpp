@@ -23,6 +23,80 @@
 #include "core/user/user/tree.h"
 
 
+template < typename LIST_ITEM >
+void check_list(LIST_ITEM * plist)
+{
+
+#ifdef DEBUG
+
+   if (::is_null(plist->m_ptail))
+   {
+      if (::is_set(plist->m_phead))
+      {
+
+         throw "error";
+
+      }
+
+   }
+   else if (::is_null(plist->m_phead))
+   {
+
+      throw "error";
+
+   }
+
+   auto p = plist->m_phead;
+
+   while(true)
+   {
+
+      if (is_null(p->m_pdataitem))
+      {
+
+         throw "error";
+
+      }
+
+      if (p == plist->m_ptail)
+      {
+
+         break;
+
+      }
+
+      p = p->m_pnext;
+
+   } 
+
+   auto p2 = plist->m_ptail;
+
+   while (true)
+   {
+
+      if (is_null(p->m_pdataitem))
+      {
+
+         throw "error";
+
+      }
+
+      if (p == plist->m_phead)
+      {
+
+         break;
+
+      }
+
+      p = p->m_pprevious;
+
+   }
+
+#endif
+
+
+}
+
 namespace filemanager
 {
 
@@ -758,6 +832,8 @@ _001SelectItem(pchild);
    void tree_data::add_path(const ::file::path & pathAdd, const ::scoped_string & scopedstrName)
    {
 
+      _synchronous_lock _synchronouslock(this->synchronization());
+
       ::file::path_array patha;
 
       ascendants_path(pathAdd, patha);
@@ -813,17 +889,56 @@ _001SelectItem(pchild);
 
          pparent = pchild;
 
-         pparent->sort_children([](auto p1, auto p2)
-            {
-
-               return p1->m_pdataitem.template cast < ::file::item>()->m_strName
-                  .case_insensitive_order(p2->m_pdataitem.template cast < ::file::item>()->m_strName) < 0;
-
-});
-
       }
 
 
+      for (::index i = patha.get_upper_bound(); i >= 0; i--)
+      {
+
+         auto & path = patha[i];
+
+         ::pointer<::data::tree_item>p = find_item_by_user_path(path);
+
+         if (p)
+         {
+
+            p->sort_children([](auto p1, auto p2)
+               {
+
+                     auto pfileitem1 = p1->m_pdataitem.template cast < ::file::item>();
+
+                     auto pfileitem2 = p2->m_pdataitem.template cast < ::file::item>();
+
+                  /*   if (::is_null(pfileitem1))
+                     {
+
+                        if (::is_null(pfileitem2))
+                        {
+
+                           return false;
+
+                        }
+                        else
+                        {
+
+                           return true;
+                        }
+                     }
+                     else if (::is_null(pfileitem2))
+                     {
+
+                        return false;
+
+                     }*/
+
+
+                     return pfileitem1->m_strName
+                        .case_insensitive_order(pfileitem2->m_strName) < 0;
+
+   });
+         }
+
+      }
 
 
    //auto pparticleSynchronization = m_usertreea.has_elements() ? m_usertreea[0]->synchronization() : nullptr;

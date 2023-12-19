@@ -303,8 +303,11 @@ namespace user
 
       //virtual void on_context_offset(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual void _001DeleteSel();
-      virtual bool plain_edit_delete_sel(::draw2d::graphics_pointer& pgraphics, bool & bFullUpdate, index & iLineUpdate);
+
+      virtual void _001EditCut();
+
+      virtual void _001DeleteSel(bool bBackIfSelectionEmpty = false);
+      ///virtual bool plain_edit_delete_sel(::draw2d::graphics_pointer& pgraphics, bool & bFullUpdate, index & iLineUpdate);
 
       virtual void _001ReplaceSel(const ::string & pszText);
       virtual bool _001ReplaceSel(const ::string & pszText, bool & bFullUpdate, index & iLineUpdate);
@@ -436,8 +439,9 @@ namespace user
 
       void _001SetText(const ::string & str, const ::action_context & action_context) override;
       void _001SetSelText(const ::string & psz, const ::action_context & action_context) override;
-      void _001SetSelEnd(strsize iSelEnd) override;
-      void _set_sel_end(::draw2d::graphics_pointer& pgraphics, strsize iSelEnd);
+      void _001SetSelEnd(strsize iSelEnd, const ::action_context & action_context) override;
+      void _set_sel_end(::draw2d::graphics_pointer& pgraphics, strsize iSelEnd, const ::action_context & action_context);
+      void _ensure_selection_visible_x(::draw2d::graphics_pointer & pgraphics);
       void _001SetSel(strsize iSelStart, strsize iSelEnd, const ::action_context & action_context = ::e_source_user) override;
       void _001GetSel(strsize & iSelStart, strsize & iSelEnd) override;
       void _001GetSel(strsize& iSelStart, strsize& iSelEnd, strsize & iComposingStart, strsize & iComposingEnd) override;
@@ -521,7 +525,7 @@ namespace user
 
       virtual void plain_edit_on_delete_surrounding_text(::draw2d::graphics_pointer& pgraphics, strsize beforeLength, strsize afterLength);
 
-      virtual void plain_edit_on_delete(::draw2d::graphics_pointer& pgraphics);
+      virtual void plain_edit_on_delete(::draw2d::graphics_pointer& pgraphics, bool bBackIfSelectionEmtpy);
 
       virtual void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics) override;
 

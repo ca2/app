@@ -2463,14 +2463,14 @@ namespace user
          if (::is_set(pkey))
          {
 
-            information() << "interaction_impl::message_handler key message";
+            information() << "key message";
 
             ::pointer<::user::interaction>puiKeyboardFocus = m_puserinteractionKeyboardFocus;
 
             if (puiKeyboardFocus)
             {
 
-               information() << "interaction_impl::message_handler keyboard focus " << ::string(::type(puiKeyboardFocus.m_p));
+               information() << "key message control with keyboard focus : " << ::string(::type(puiKeyboardFocus.m_p));
 
                puiKeyboardFocus->route_message(pkey);
 

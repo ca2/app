@@ -165,11 +165,11 @@ namespace platform
       m_pmemorycounter = nullptr;
       m_bOutputDebugString = true;
 
-#ifdef WINDOWS
-
-      m_strCommandLine = ::GetCommandLineW();
-
-#endif
+//#ifdef WINDOWS
+//
+//      m_strCommandLine = ::GetCommandLineW();
+//
+//#endif
 
 #if REFERENCING_DEBUGGING
 
@@ -198,11 +198,11 @@ namespace platform
       m_pmemorycounter = nullptr;
       m_bOutputDebugString = true;
 
-#ifdef WINDOWS
-
-      m_strCommandLine = ::GetCommandLineW();
-
-#endif
+//#ifdef WINDOWS
+//
+//      m_strCommandLine = ::GetCommandLineW();
+//
+//#endif
 
 #if REFERENCING_DEBUGGING
 
@@ -239,7 +239,8 @@ namespace platform
 
       m_hinstanceThis = hinstanceThis;
       m_hinstancePrev = hinstancePrev;
-      m_strCommandLine = pCmdLine;
+      //m_strCommandLine = pCmdLine; // pCmdLine lacks the executable file path arg[0]
+      m_strCommandLine = ::GetCommandLineW();
       m_nCmdShow = nCmdShow;
 
    }

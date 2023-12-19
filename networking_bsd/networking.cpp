@@ -126,7 +126,7 @@ namespace networking_bsd
 
       //auto estatus = ::object::initialize(pparticle);
 
-      ::object::initialize(pparticle);
+      ::networking::networking::initialize(pparticle);
 
       //if (!estatus)
       //{

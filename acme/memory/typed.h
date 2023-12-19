@@ -526,13 +526,16 @@ namespace typed
       inline  void copy_construct_count(TYPE * pdst, ::count c, const TYPE & src)
       {
 
-         /*   while (c > 0)
-            {
-               copy(pdst, &src);
-               c--;
-            }*/
+         while (c > 0)
+         {
+            
+            memory_copy(pdst, &src, sizeof(TYPE));
 
-         throw_exception(error_not_supported);
+            pdst++;
+            
+            c--;
+
+         }
 
       }
 
@@ -540,14 +543,7 @@ namespace typed
       inline  void copy_construct_count(TYPE * pdst, ::count c, const TYPE * psrc)
       {
 
-         /*   while (c > 0)
-            {
-               copy(pdst, &src);
-               c--;
-          psrc++;
-            }*/
-
-         throw_exception(error_not_supported);
+         memory_copy(pdst, psrc, sizeof(TYPE) * c);
 
       }
 

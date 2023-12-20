@@ -268,6 +268,11 @@ namespace user
 
 //     void on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics) override;
 
+
+      virtual void _001TabOnDrawSchema01(::draw2d::graphics_pointer & pgraphics);
+      virtual void _001OnTabLayout(::draw2d::graphics_pointer & pgraphics);
+
+
    };
 
 

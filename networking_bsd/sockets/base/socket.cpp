@@ -368,9 +368,11 @@ namespace sockets_bsd
    }
 
 
-   SOCKET base_socket::GetSocketId()
+   socket_id base_socket::GetSocketId()
    {
+
       return m_socket;
+
    }
 
 

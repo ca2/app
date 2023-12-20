@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "bitmap.h"
+#include "draw2d.h"
 #include "acme/exception/interface_only.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/graphics/image/pixmap.h"
@@ -30,7 +31,7 @@ namespace draw2d_cairo
    bool bitmap::CreateBitmap(::draw2d::graphics * pgraphics, i32 cx, i32 cy, ::u32 nPlanes, ::u32 nBitcount, const void * pdata, i32 iStrideParam)
    {
 
-      synchronous_lock ml(cairo_mutex());
+      synchronous_lock ml(::draw2d_cairo::mutex());
 
       cy = abs(cy);
 
@@ -122,7 +123,7 @@ namespace draw2d_cairo
       //try
       //{
 
-         synchronous_lock ml(cairo_mutex());
+         synchronous_lock ml(::draw2d_cairo::mutex());
 
          destroy();
 
@@ -268,7 +269,7 @@ namespace draw2d_cairo
       //try
       //{
 
-      synchronous_lock ml(cairo_mutex());
+      synchronous_lock ml(::draw2d_cairo::mutex());
 
       destroy();
 
@@ -528,7 +529,7 @@ namespace draw2d_cairo
    void get_surface_size (cairo_surface_t * psurface, ::i32 * plongWidth, ::i32 * plongHeight)
    {
 
-      synchronous_lock ml(cairo_mutex());
+      synchronous_lock ml(::draw2d_cairo::mutex());
 
       if(plongWidth != nullptr)
       {
@@ -550,7 +551,7 @@ namespace draw2d_cairo
    void bitmap::attach(void * psurface)
    {
 
-      synchronous_lock ml(cairo_mutex());
+      synchronous_lock ml(::draw2d_cairo::mutex());
 
       destroy();
 
@@ -568,7 +569,7 @@ namespace draw2d_cairo
    void bitmap::destroy_os_data()
    {
 
-      synchronous_lock ml(cairo_mutex());
+      synchronous_lock ml(::draw2d_cairo::mutex());
 
       if (m_psurface == nullptr)
       {

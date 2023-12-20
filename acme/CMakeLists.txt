@@ -273,11 +273,14 @@ list(APPEND library_source
    #memory/array_memory_allocate.cpp
    #memory/array_memory_allocate.h
    memory/counter.cpp
-   memory/memory.cpp
    #memory/memory_allocate.cpp
    #memory/memory_allocate.h
    memory/management.cpp
    memory/management.h
+   memory/memory.cpp
+   memory/memory.h
+   memory/memory_allocate.cpp
+   memory/memory_allocate.h
    memory/memory_management.cpp
    memory/memory_management.h
    #memory/new.cpp
@@ -293,6 +296,8 @@ list(APPEND library_source
 #   memory/property_memory_allocate.h
 #   memory/secondary_memory_allocate.cpp
 #   memory/secondary_memory_allocate.h
+   memory/simple_memory_allocate.cpp
+   memory/simple_memory_allocate.h
 #   memory/string_memory_allocate.cpp
 #   memory/string_memory_allocate.h
 #   memory/string_memory_allocator.h
@@ -309,8 +314,8 @@ list(APPEND library_source
    operating_system/_const_console.h
    operating_system/ansi/_pthread.h
    #operating_system/ansi/base.cpp
-   operating_system/ansi/callstack.cpp
-   operating_system/ansi/callstack.h
+   operating_system/ansi/call_stack.cpp
+   operating_system/ansi/call_stack.h
    operating_system/ansi/datetime.cpp
    operating_system/ansi/file.cpp
    operating_system/ansi/file_raw.cpp
@@ -331,6 +336,8 @@ list(APPEND library_source
    #operating_system/http.cpp
    operating_system/main_window.cpp
    operating_system/main_window.h
+   operating_system/message_box.cpp
+   operating_system/message_box.h
    operating_system/parallelization.cpp
    operating_system/process.h
    operating_system/summary.cpp
@@ -615,13 +622,13 @@ list(APPEND library_source
    primitive/mathematics/cast.h
    primitive/mathematics/cast.inl
    primitive/mathematics/classes.h
+   primitive/mathematics/clip.h
    primitive/mathematics/complex.h
    primitive/mathematics/cvt.cpp
    primitive/mathematics/cvt_g.cpp
    primitive/mathematics/filestream.h
    #primitive/mathematics/index.h
    primitive/mathematics/int_biunique.cpp
-   primitive/mathematics/math_clip.h
    primitive/mathematics/int_biunique.h
    primitive/mathematics/mathematics.cpp
    primitive/mathematics/mathematics.h
@@ -1447,7 +1454,7 @@ list(APPEND library_source
    operating_system/ansi/_c.h
    operating_system/ansi/ansios_file.h
    operating_system/ansi/binreloc.h
-   operating_system/ansi/callstack.h
+   operating_system/ansi/call_stack.h
    operating_system/ansi/datetime_c.h
    operating_system/ansi/file.h
    operating_system/ansi/file_c.h
@@ -2142,6 +2149,22 @@ if (${LINUX})
 endif ()
 
 
+if(${LINUX})
+
+
+   list(APPEND library_source
+   operating_system/motif/message_box.cpp
+operating_system/motif/message_box.h
+operating_system/motif/application.cpp
+operating_system/motif/application.h
+)
+
+   list(APPEND system_libraries Xm)
+
+   list(APPEND extra_pkg_modules xt)
+
+endif()
+
 if (MACOS)
    list(APPEND library_source
       operating_system/cross/universal_windows/cross_metrowin_user.cpp
@@ -2168,6 +2191,8 @@ if (MACOS)
       #operating_system/macos/list_serial_ports.cpp
       #operating_system/macos/lock.cpp
       #operating_system/macos/MessageBoxA.cpp
+      operating_system/macos/message_box.cpp
+      operating_system/macos/message_box.h
       #operating_system/macos/mm.mm
       #operating_system/macos/mm_graphics.mm
       #operating_system/macos/mm_user.mm
@@ -2519,6 +2544,7 @@ if (${LINUX} OR ${FREEBSD} OR ${NETBSD} OR ${OPENBSD} OR ${APPLE} OR ${SOLARIS})
       operating_system/posix/file_lock.h
       operating_system/posix/idn.cpp
       #operating_system/posix/local_memory_map.cpp
+      operating_system/posix/memory.cpp
       operating_system/posix/process.cpp
       operating_system/posix/parallelization.cpp
       operating_system/posix/parallelization_pthread.cpp
@@ -2538,6 +2564,7 @@ if(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
 
    list(APPEND library_source
       operating_system/ansi/binreloc.cpp
+      operating_system/ansi/acme.cpp
    )
 
 
@@ -2555,7 +2582,7 @@ if(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
 endif ()
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source})
+add_library(${PROJECT_NAME} SHARED ${library_source} )
 add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
 

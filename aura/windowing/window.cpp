@@ -347,7 +347,7 @@ namespace windowing
    void window::destroy_window()
    {
 
-      m_pwindowing.release();
+      m_pwindowing->erase_window(this);
 
       m_pwindowParent.release();
 

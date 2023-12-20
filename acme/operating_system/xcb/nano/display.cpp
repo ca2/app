@@ -391,7 +391,7 @@ namespace xcb
       if (g_p == nullptr)
       {
 
-         ::information() << "xcb nano display::get (2)";
+         pparticle->information() << "xcb nano display::get (2)";
 
          auto p = __new< display >();
 
@@ -399,7 +399,7 @@ namespace xcb
 
          p->add_listener(p);
 
-         ::information() << "xcb nano display::get pX11Display " << (iptr) pX11Display;
+         pparticle->information() << "xcb nano display::get pX11Display " << (iptr) pX11Display;
 
          p->m_pX11Display = pX11Display;
 
@@ -408,7 +408,7 @@ namespace xcb
          if (bBranch)
          {
 
-            ::information() << "xcb nano display::get branch_synchronously";
+            pparticle->information() << "xcb nano display::get branch_synchronously";
 
             lock.unlock();
 
@@ -418,7 +418,7 @@ namespace xcb
          else
          {
 
-            ::information() << "xcb nano display::get init_task";
+            pparticle->information() << "xcb nano display::get init_task";
 
             p->init_task();
 
@@ -542,7 +542,7 @@ namespace xcb
    void display::message_loop()
    {
 
-      ::information() << "xcb nano display::message_loop";
+      information() << "xcb nano display::message_loop";
 
       bool bHandled1;
 

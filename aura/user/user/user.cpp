@@ -1639,66 +1639,66 @@ namespace user
 } // namespace user
 
 
-//CLASS_DECL_AURA ::particle * user_synchronization()
-//{
-//
-//   auto pplatform = platform::get();
-//
-//   if (::is_null(pplatform))
-//   {
-//
-//      return nullptr;
-//
-//   }
-//
-//   auto psystem = pplatform->system();
-//
-//   if (::is_null(psystem))
-//   {
-//
-//      return nullptr;
-//
-//   }
-//
-//   auto psession = psystem->session();
-//
-//   if (::is_null(psession))
-//   {
-//
-//      return nullptr;
-//
-//   }
-//
-//   auto paurasession = psession->m_paurasession;
-//
-//   if (::is_null(paurasession))
-//   {
-//
-//      return nullptr;
-//
-//   }
-//
-//   auto puser = paurasession->user();
-//
-//   if (::is_null(puser))
-//   {
-//
-//      return nullptr;
-//
-//   }
-//
-//   auto pmutexUser = puser->m_pmutexUser;
-//
-//   if (::is_null(pmutexUser))
-//   {
-//
-//      return nullptr;
-//
-//   }
-//
-//   return pmutexUser;
-//
-//}
+CLASS_DECL_AURA ::particle * user_synchronization()
+{
+
+   auto pplatform = platform::get();
+
+   if (::is_null(pplatform))
+   {
+
+      return nullptr;
+
+   }
+
+   auto psystem = pplatform->system();
+
+   if (::is_null(psystem))
+   {
+
+      return nullptr;
+
+   }
+
+   auto psession = psystem->session();
+
+   if (::is_null(psession))
+   {
+
+      return nullptr;
+
+   }
+
+   auto paurasession = psession->m_paurasession;
+
+   if (::is_null(paurasession))
+   {
+
+      return nullptr;
+
+   }
+
+   auto puser = paurasession->user();
+
+   if (::is_null(puser))
+   {
+
+      return nullptr;
+
+   }
+
+   auto pmutexUser = puser->m_pmutexUser;
+
+   if (::is_null(pmutexUser))
+   {
+
+      return nullptr;
+
+   }
+
+   return pmutexUser;
+
+}
 
 
 //CLASS_DECL_AURA void initialize_user_mutex()

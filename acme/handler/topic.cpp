@@ -144,3 +144,13 @@ bool topic::is_about(::user::element * pelement) const
    return false;
 
 }
+
+
+bool topic::topic_step()
+{
+
+   return false;
+
+}
+
+

@@ -743,13 +743,6 @@ namespace wayland
    display_base::display_base()
    {
 
-      if(s_pdisplaybase == nullptr)
-      {
-
-         s_pdisplaybase = this;
-
-      }
-
       m_pxkbkeymap = nullptr;
       m_pxkbstate = nullptr;
       m_bOpened = false;
@@ -790,6 +783,13 @@ namespace wayland
 
    display_base::~display_base()
    {
+
+      if(s_pdisplaybase == this)
+      {
+
+         s_pdisplaybase = nullptr;
+
+      }
 
       close();
 
@@ -1010,7 +1010,15 @@ namespace wayland
 ////
 ////      }
 
-                            });
+                   if(s_pdisplaybase == nullptr)
+                   {
+
+                      s_pdisplaybase = this;
+
+                   }
+
+
+                });
 
 
    }

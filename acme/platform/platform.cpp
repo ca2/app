@@ -16,6 +16,12 @@
 #include "acme/_operating_system.h"
 //
 //
+
+//#include "acme/include/_acme.h"
+
+void IDENTIFIER_PREFIX_OPERATING_SYSTEM(_factory)(::factory::factory * pfactory);
+
+
 namespace acme
 {
    extern ::array < matter * > * g_paAura;
@@ -677,6 +683,8 @@ namespace platform
 
 
       //operating_system_initialize_nano();
+
+      IDENTIFIER_PREFIX_OPERATING_SYSTEM(_factory)(factory());
 
 
    }

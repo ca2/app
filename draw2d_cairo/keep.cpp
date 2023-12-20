@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "keep.h"
+#include "draw2d.h"
 #include "acme/parallelization/synchronous_lock.h"
 
 
@@ -52,7 +53,7 @@ void cairo_keep::save()
    if(m_bSave)
       return;
 
-   synchronous_lock synchronouslock(cairo_mutex());
+   synchronous_lock synchronouslock(::draw2d_cairo::mutex());
 
    cairo_save(m_pdc);
 
@@ -64,7 +65,7 @@ void cairo_keep::save()
 void cairo_keep::restore()
 {
 
-   synchronous_lock ml(cairo_mutex());
+   synchronous_lock ml(::draw2d_cairo::mutex());
 
    if(m_pdc == nullptr)
    {
@@ -90,7 +91,7 @@ void cairo_keep::restore()
 void cairo_keep::pulse()
 {
 
-   synchronous_lock ml(cairo_mutex());
+   synchronous_lock ml(::draw2d_cairo::mutex());
 
    restore();
 

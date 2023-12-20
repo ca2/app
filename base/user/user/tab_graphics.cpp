@@ -29,8 +29,6 @@ namespace user
 {
 
 
-
-
    void tab::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
@@ -57,6 +55,14 @@ namespace user
       ::rectangle_f64 rClip;
 
       pgraphics->get_clip_box(rClip);
+
+      _001TabOnDrawSchema01(pgraphics);
+
+   }
+
+
+   void tab::_001TabOnDrawSchema01(::draw2d::graphics_pointer & pgraphics)
+   {
 
       ::pointer<::base::style>pstyle = get_style(pgraphics);
 
@@ -715,6 +721,23 @@ namespace user
 
       auto_hide_calculate_control_visibility();
 
+      _001OnTabLayout(pgraphics);
+
+   }
+
+
+   void tab::_001OnTabLayout(::draw2d::graphics_pointer & pgraphics)
+   {
+
+       auto rectangleX = this->rectangle(e_layout_sketch);
+
+      if (!rectangleX)
+      {
+
+         return;
+
+      }
+
       ::pointer<::base::style>pstyle = get_style(pgraphics);
 
       if (pstyle)
@@ -746,10 +769,10 @@ namespace user
          get_data()->m_rectangleTextMargin.set(3, 0, 1, 0);
 
          get_data()->m_iTabHeight += get_data()->m_rectangleBorder.top() + get_data()->m_rectangleBorder.bottom() +
-            get_data()->m_rectangleMargin.top() + get_data()->m_rectangleMargin.bottom();
+                                     get_data()->m_rectangleMargin.top() + get_data()->m_rectangleMargin.bottom();
 
          get_data()->m_iTabWidth += get_data()->m_rectangleBorder.left() + get_data()->m_rectangleBorder.right() +
-            get_data()->m_rectangleMargin.left() + get_data()->m_rectangleMargin.right();
+                                    get_data()->m_rectangleMargin.left() + get_data()->m_rectangleMargin.right();
 
       }
       else
@@ -762,10 +785,10 @@ namespace user
          get_data()->m_rectangleTextMargin.set(3, 0, 1, 0);
 
          get_data()->m_iTabHeight += get_data()->m_rectangleBorder.top() + get_data()->m_rectangleBorder.bottom() +
-            get_data()->m_rectangleMargin.top() + get_data()->m_rectangleMargin.bottom();
+                                     get_data()->m_rectangleMargin.top() + get_data()->m_rectangleMargin.bottom();
 
          get_data()->m_iTabWidth += get_data()->m_rectangleBorder.left() + get_data()->m_rectangleBorder.right() +
-            get_data()->m_rectangleMargin.left() + get_data()->m_rectangleMargin.right();
+                                    get_data()->m_rectangleMargin.left() + get_data()->m_rectangleMargin.right();
 
       }
 
@@ -852,14 +875,14 @@ namespace user
          }
 
          iTabWidth += get_data()->m_rectangleBorder.left() + get_data()->m_rectangleBorder.right() +
-            get_data()->m_rectangleMargin.left() + get_data()->m_rectangleMargin.right() +
-            get_data()->m_rectangleTextMargin.left() + get_data()->m_rectangleTextMargin.right();
+                      get_data()->m_rectangleMargin.left() + get_data()->m_rectangleMargin.right() +
+                      get_data()->m_rectangleTextMargin.left() + get_data()->m_rectangleTextMargin.right();
 
          get_data()->m_iTabWidth = iTabWidth;
 
          iTabHeight += get_data()->m_rectangleBorder.top() + get_data()->m_rectangleBorder.bottom() +
-            get_data()->m_rectangleMargin.top() + get_data()->m_rectangleMargin.bottom() +
-            get_data()->m_rectangleTextMargin.top() + get_data()->m_rectangleTextMargin.bottom();
+                       get_data()->m_rectangleMargin.top() + get_data()->m_rectangleMargin.bottom() +
+                       get_data()->m_rectangleTextMargin.top() + get_data()->m_rectangleTextMargin.bottom();
 
          get_data()->m_iTabHeight = iTabHeight;
 
@@ -952,9 +975,9 @@ namespace user
             }
 
             ppane->m_size.cx() = (::i32)(size.cx() + ixAdd
-                                 + get_data()->m_rectangleBorder.left() + get_data()->m_rectangleBorder.right()
-                                 + get_data()->m_rectangleMargin.left() + get_data()->m_rectangleMargin.right()
-                                 + get_data()->m_rectangleTextMargin.left() + get_data()->m_rectangleTextMargin.right());
+                                         + get_data()->m_rectangleBorder.left() + get_data()->m_rectangleBorder.right()
+                                         + get_data()->m_rectangleMargin.left() + get_data()->m_rectangleMargin.right()
+                                         + get_data()->m_rectangleTextMargin.left() + get_data()->m_rectangleTextMargin.right());
 
             x += ppane->m_size.cx();
          }
@@ -967,7 +990,7 @@ namespace user
          }
 
          iTabHeight += get_data()->m_rectangleBorder.top() + get_data()->m_rectangleBorder.bottom() +
-            get_data()->m_rectangleMargin.top() + get_data()->m_rectangleMargin.bottom() + get_data()->m_iHeightAddUp;
+                       get_data()->m_rectangleMargin.top() + get_data()->m_rectangleMargin.bottom() + get_data()->m_iHeightAddUp;
 
          get_data()->m_iTabHeight = iTabHeight;
 
@@ -999,10 +1022,9 @@ namespace user
 
          //               ::u32 dwTime2= ::time::now();
 
-               //informationf("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
-               //informationf("usertab::on_layout call time2= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+         //informationf("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+         //informationf("usertab::on_layout call time2= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
       }
-
 
       for (i32 iIndex = 0; iIndex < get_data()->m_tabpanea.get_size(); iIndex++)
       {
@@ -1029,10 +1051,9 @@ namespace user
       {
 
          m_sizeBarDragScroll.cx() = m_pdata->m_tabpanea.last()->m_point.x() +
-            m_pdata->m_tabpanea.last()->m_size.cx();
+                                    m_pdata->m_tabpanea.last()->m_size.cx();
 
       }
-
 
    }
 

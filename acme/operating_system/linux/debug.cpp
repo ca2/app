@@ -23,7 +23,7 @@ class ::time g_timeLastDebuggerAttachedCheck;
 i32 __node_is_debugger_attached()
 {
 
-   critical_section_lock lock(this->platform()->globals_critical_section());
+   critical_section_lock lock(::platform::get()->globals_critical_section());
 
    if(g_timeLastDebuggerAttachedCheck.elapsed() > 300_ms)
    {
@@ -223,7 +223,7 @@ void output_debug_string(const ::scoped_string & scopedstr)
 
    //printf("c.");
 
-   if(this->platform()->m_bOutputDebugString)
+   if(::platform::get()->m_bOutputDebugString)
    {
 
       //printf("2.");
@@ -247,7 +247,7 @@ void output_debug_string(const ::scoped_string & scopedstr)
 void output_debug_string_flush()
 {
 
-   if (this->platform()->m_bOutputDebugString)
+   if (::platform::get()->m_bOutputDebugString)
    {
 
       fflush(stdout);

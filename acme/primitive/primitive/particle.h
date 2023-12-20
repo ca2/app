@@ -337,7 +337,7 @@ public:
 
 
    virtual void run();
-   //virtual bool step();
+   virtual bool particle_step();
    virtual void on_sequence();
 
 

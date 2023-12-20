@@ -89,6 +89,9 @@ public:
    virtual bool is_about(::user::element * pelement) const;
 
 
+   virtual bool topic_step();
+
+
 };
    
 

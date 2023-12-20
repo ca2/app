@@ -303,7 +303,8 @@ namespace user
 
          informationf("menu::on_message_show_window bShow = %d", pshow->m_bShow);
 
-         if (m_puserinteractionParent)
+         //if (m_puserinteractionParent)
+         if(::is_null(get_parent()))
          {
 
             host_post([this]()

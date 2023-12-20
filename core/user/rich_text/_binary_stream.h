@@ -92,7 +92,7 @@
    else
    {
 
-      informationf("corruption... non fatal... partially recoverable...");
+      stream.informationf("corruption... non fatal... partially recoverable...");
 
    }
 

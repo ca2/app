@@ -32,6 +32,7 @@ namespace file
 
       circular_file(memsize size);
       circular_file(const circular_file& buffer);
+      circular_file(circular_file &&) = delete;
       circular_file& operator=(const circular_file& buffer);
       ~circular_file();
 

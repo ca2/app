@@ -13,26 +13,26 @@ namespace acme
 {
 
 
-   //#if defined(WINDOWS)  && defined(UNICODE)
-#if defined(UNICODE)
-
-
-   void acme::initialize(int argc, wchar_t * argv[], wchar_t * envp[])
-   {
-
-      m_pplatform->initialize(argc, argv, envp);
-
-   }
-
-
-   void acme::initialize(hinstance hinstanceThis, hinstance hinstancePrev, wchar_t * pCmdLine, int nCmdShow)
-   {
-
-      m_pplatform->initialize(hinstanceThis, hinstancePrev, pCmdLine, nCmdShow);
-
-   }
-
-#else
+//   //#if defined(WINDOWS)  && defined(UNICODE)
+//#if defined(UNICODE)
+//
+//
+//   void acme::initialize(int argc, wchar_t * argv[], wchar_t * envp[])
+//   {
+//
+//      m_pplatform->initialize(argc, argv, envp);
+//
+//   }
+//
+//
+//   void acme::initialize(hinstance hinstanceThis, hinstance hinstancePrev, wchar_t * pCmdLine, int nCmdShow)
+//   {
+//
+//      m_pplatform->initialize(hinstanceThis, hinstancePrev, pCmdLine, nCmdShow);
+//
+//   }
+//
+//#else
 
 
    void acme::initialize(int argc, char * argv[], char * envp[])
@@ -43,7 +43,7 @@ namespace acme
    }
 
 
-#endif // defined(UNICODE)
+//#endif // defined(UNICODE)
 
 
 } // namespace acme

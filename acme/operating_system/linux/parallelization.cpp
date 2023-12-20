@@ -126,7 +126,7 @@ void wayland_process_messages();
 void _do_tasks()
 {
 
-   auto psystem = this->platform()->system();
+   auto psystem = ::platform::get()->system();
 
    if(psystem->m_ewindowing == e_windowing_wayland)
    {
@@ -146,6 +146,8 @@ void _do_tasks()
       x11_process_messages();
 
    }
+
+   psystem->node()->defer_do_main_tasks();
 
 }
 

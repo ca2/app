@@ -193,6 +193,14 @@ list(APPEND apex_source
    #message/sender.cpp
    message/simple_command.cpp
    message/simple_command.h
+   networking/application/application.cpp
+   networking/application/application.h
+   networking/application/application_handler.cpp
+   networking/application/application_handler.h
+   networking/application/application_socket.cpp
+   networking/application/application_socket.h
+   networking/application/application_incoming_socket.cpp
+   networking/application/application_incoming_socket.h
    #networking/http/_.cpp
    networking/http/_.h
    networking/http/context.cpp
@@ -218,12 +226,16 @@ list(APPEND apex_source
    networking/http/transaction.cpp
    networking/http/transaction.h
    networking/netserver/_.h
+   networking/netserver/incoming_socket.cpp
+   networking/netserver/incoming_socket.h
+   networking/netserver/incoming_socket_thread.cpp
+   networking/netserver/incoming_socket_thread.h
    networking/netserver/socket.cpp
    networking/netserver/socket.h
-   networking/netserver/socket_handler.cpp
-   networking/netserver/socket_handler.h
    networking/netserver/socket_thread.cpp
    networking/netserver/socket_thread.h
+   networking/netserver/socket_handler.cpp
+   networking/netserver/socket_handler.h
    networking/sockets/base/socket.cpp
    networking/sockets/base/socket.h
    networking/sockets/base/socket_handler.cpp
@@ -234,6 +246,8 @@ list(APPEND apex_source
    #networking/sockets/basic/basic_net.cpp
    networking/sockets/basic/listen_socket.cpp
    networking/sockets/basic/listen_socket.h
+   networking/sockets/basic/listen_socket_impl.cpp
+   networking/sockets/basic/listen_socket_impl.h
    #net/sockets/basic/net.cpp
    #net/sockets/basic/net.h
    networking/sockets/basic/sctp_socket.cpp
@@ -267,8 +281,14 @@ list(APPEND apex_source
    #   networking/sockets/ssl/initializer.cpp
    #   networking/sockets/ssl/initializer.h
    #   networking/sockets/ssl/ticket_key.h
-   networking/sockets/webserver/httpd_socket.cpp
-   networking/sockets/webserver/httpd_socket.h
+   networking/sockets/httpd/incoming_socket.cpp
+   networking/sockets/httpd/incoming_socket.h
+   networking/sockets/httpd/incoming_socket_thread.cpp
+   networking/sockets/httpd/incoming_socket_thread.h
+   networking/sockets/httpd/socket.cpp
+   networking/sockets/httpd/socket.h
+   networking/sockets/httpd/socket_thread.cpp
+   networking/sockets/httpd/socket_thread.h
    networking/sockets/_.h
    #networking/sockets/_strconv.cpp
    networking/sockets/_strconv.h
@@ -332,12 +352,6 @@ list(APPEND apex_source
    networking/ip_enum.cpp
    networking/ip_enum.h
    #networking/net.h
-   networking/application/application.cpp
-   networking/application/application.h
-   networking/application/application_handler.cpp
-   networking/application/application_handler.h
-   networking/application/application_socket.cpp
-   networking/application/application_socket.h
    networking/networking.cpp
    networking/networking.h
    networking/open_weather_city.h

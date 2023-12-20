@@ -202,7 +202,7 @@ typedef struct _RTL_TIME_ZONE_INFORMATION
 static i32 init_tz_info(RTL_TIME_ZONE_INFORMATION *tzi);
 
 
-::pointer< ::mutex > g_pmutexTz = nullptr;
+//::pointer< ::mutex > g_pmutexTz = nullptr;
 
 
 #define TICKSPERSEC        10000000

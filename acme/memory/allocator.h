@@ -38,9 +38,6 @@ namespace heap
    protected:
       
       
-      friend class ::heap::allocator;
-
-
       allocator();
       ~allocator();
 

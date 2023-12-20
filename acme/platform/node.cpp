@@ -1278,6 +1278,13 @@ namespace acme
    }
 
 
+   void node::defer_do_main_tasks()
+   {
+
+
+   }
+
+
 //   void node::post_procedure(const ::procedure & procedure)
 //   {
 //

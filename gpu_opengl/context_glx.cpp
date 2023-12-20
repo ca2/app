@@ -11,7 +11,7 @@
 #include "aura_posix/node.h"
 
 
-//::particle * user_synchronization();
+::particle * user_synchronization();
 
 
 namespace opengl

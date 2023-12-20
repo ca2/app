@@ -14,6 +14,7 @@
 #include "acme/platform/node.h"
 #include "acme/platform/sequencer.h"
 #include "acme/platform/system.h"
+#include "acme/operating_system/message_box.h"
 #include "acme/_operating_system.h"
 
 
@@ -336,29 +337,9 @@ CLASS_DECL_ACME ::atom message_box_synchronous(::particle * pparticle, const ::s
    if (::is_null(pparticle))
    {
 
-#ifdef WINDOWS_DESKTOP
-      auto iType = message_box_to_windows_message_box(emessagebox);
-      ::wstring wstrMessage(scopedstrMessage);
-      ::wstring wstrTitle(scopedstrTitle);
+      auto pmessagebox = ::platform::get()->__create < ::operating_system::message_box >();
 
-      auto iRet = ::MessageBoxW(nullptr, wstrMessage, wstrTitle, iType);
-
-      auto edialogresult = windows_message_box_result_to_dialog_result(iRet );
-
-      return edialogresult;
-
-#elif defined(MACOS)
-      
-      ::string strMessage(scopedstrMessage);
-      ::string strTitle(scopedstrTitle);
-      
-      auto edialogresult = ns_alert_box(strMessage, strTitle, emessagebox);
-      
-      return edialogresult;
-      
-#else
-      real_message_box_fallback();
-#endif
+      return pmessagebox->do_modal(scopedstrMessage, scopedstrTitle, emessagebox, scopedstrDetails);
 
    }
 

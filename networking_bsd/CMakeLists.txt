@@ -21,15 +21,15 @@ list(APPEND library_source
    sockets/base/socket.h
    sockets/base/socket_handler.cpp
    sockets/base/socket_handler.h
-   sockets/base/socket_thread.cpp
-   sockets/base/socket_thread.h
+   #sockets/base/socket_thread.cpp
+   #sockets/base/socket_thread.h
    sockets/basic/_.h
    #        sockets/basic/aaa_basic_net.cpp
    #        sockets/basic/aaa_net.h
    #        sockets/basic/aaa_sync_socket_handler.cpp
    #        sockets/basic/aaa_sync_socket_handler.h
-   sockets/basic/listen_socket.cpp
-   sockets/basic/listen_socket.h
+   sockets/basic/listen_socket_impl.cpp
+   sockets/basic/listen_socket_impl.h
    sockets/basic/sctp_socket.cpp
    sockets/basic/sctp_socket.h
    sockets/basic/socket.cpp

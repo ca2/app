@@ -769,32 +769,27 @@ void particle::call_run()
 void particle::run()
 {
 
-   //while (true)
-   //{
+   while (true)
+   {
 
-   //   /*auto estatus =*/ step();
+      if(!particle_step())
+      {
 
-   //   //if(!estatus)
-   //   //{
+         break;
 
-   //   //   break;
+      }
 
-   //   //}
-
-   //}
-
-   //return ::success;
+   }
 
 }
 
 
-//bool particle::step()
-//{
-//
-//   //return ::error_failed;
-//   return false;
-//
-//}
+bool particle::particle_step()
+{
+
+   return false;
+
+}
 
 
 void particle::on_sequence()

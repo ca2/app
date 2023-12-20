@@ -245,6 +245,11 @@ namespace typed
    template < typename TYPE >
    class nodef;
 
+   template < typename TYPE >
+   class rawcopy;
+
+
+
 } // namespace typed
 
 

@@ -85,14 +85,14 @@ namespace axis
 
 
 
-   ::pointer< ::mutex > g_pmutexImage = nullptr;
+   // ::pointer< ::mutex > g_pmutexImage = nullptr;
 
-   ::pointer< ::mutex > get_image_mutex()
-   {
+   // ::pointer< ::mutex > get_image_mutex()
+   // {
 
-      return g_pmutexImage;
+   //    return g_pmutexImage;
 
-   }
+   // }
 
 
    system::system()

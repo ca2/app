@@ -1,35 +1,52 @@
 #include "framework.h"
 #include "draw2d.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/platform/node.h"
 #include "acme/primitive/primitive/memory.h"
 
 
 FT_Library __ftlibrary();
 
 
-namespace aura
-{
 
 
-   extern CLASS_DECL_AURA string_map < int_to_string > * g_pmapFontFaceName;
+// namespace aura
+// {
 
 
-   extern CLASS_DECL_AURA critical_section * g_pcsFont;
+//    extern CLASS_DECL_AURA string_map < int_to_string > * g_pmapFontFaceName;
 
 
-} // namespace aura
+//    extern CLASS_DECL_AURA critical_section * g_pcsFont;
+
+
+// } // namespace aura
 
 
 namespace draw2d_cairo
 {
+::draw2d_cairo::draw2d * g_pdraw2dcairo = nullptr;
+
+::draw2d_cairo::draw2d * get()
+{
+return g_pdraw2dcairo;
+
+}
 
 
+::particle * mutex()
+{
+
+   return get()->m_pmutex;
+
+}
    //double draw2d::g_dEmboss = 2.0;
 
 
    draw2d::draw2d()
    {
 
+      g_pdraw2dcairo = this;
       //defer_create_synchronization();
 
       //m_pmutexFont = __allocate< ::pointer < ::mutex > >();
@@ -61,6 +78,12 @@ namespace draw2d_cairo
       //}
 
       //return estatus;
+
+      m_pmutex = acmenode()->create_mutex();
+      m_pmutexFc = acmenode()->create_mutex();
+      //m_pmutexFont= acmenode()->create_mutex();
+
+      //g_pparticleCairoSynchronization = m_pmutex;
 
    }
 
@@ -1444,7 +1467,7 @@ namespace draw2d_cairo
    cairo_font_face_t * draw2d::private_ftface_from_file(::acme::context * pcontext, const ::payload & payloadFile)
    {
 
-      _synchronous_lock synchronouslock(cairo_mutex());
+      _synchronous_lock synchronouslock(::draw2d_cairo::mutex());
 
       ::file::path pathFile = payloadFile.as_file_path();
 

@@ -11,6 +11,8 @@
 #elif defined(LINUX)
 #include <sys/types.h>
 #include <unistd.h>
+#elif defined(FREEBSD)
+#include <stdio.h>
 #endif
 
 static bool g_bPrintfIfDebuggerIsNotAttached = false;

@@ -41,8 +41,8 @@ public:
 
 
    string_reference_buffer(::string & str);
-   string_reference_buffer(const string_reference_buffer & buffer) = default;
-   string_reference_buffer(string_reference_buffer & buffer) = default;
+   string_reference_buffer(const string_reference_buffer & buffer) = delete;
+   string_reference_buffer(string_reference_buffer & buffer) = delete;
    ~string_reference_buffer() override;
 
    void write(const void * dataToWrite, ::memsize amountToWrite) override;

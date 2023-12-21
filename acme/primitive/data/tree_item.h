@@ -394,19 +394,26 @@ namespace data
       ~tree_item() override;
 
 
-      virtual i64 increment_reference_count()
+      #ifdef _DEBUG
+
+
+      virtual i64 increment_reference_count() override
       {
 
          return ::particle::increment_reference_count();
 
       }
 
-      virtual i64 decrement_reference_count()
+      virtual i64 decrement_reference_count() override
       {
 
          return ::particle::decrement_reference_count();
 
       }
+
+
+      #endif
+
 
       virtual bool      erase_item_from_parent();
 

@@ -101,7 +101,7 @@ void message_queue::post_message(const MESSAGE & message)
    if(m_eflagElement & (1ll << 36))
    {
       
-      printf("test123");
+      //printf("test123");
    }
    m_eventNewMessage.set_event();
 
@@ -193,7 +193,7 @@ void message_queue::kick_idle()
             if(m_eflagElement & (1ll << 36))
             {
              
-               printf("test123");
+               //printf("test123");
                
             }
 
@@ -215,7 +215,7 @@ void message_queue::kick_idle()
          if(m_eflagElement & (1ll << 36))
          {
           
-            printf("test123");
+            //printf("test123");
             
          }
          if(!bAcquired)
@@ -289,7 +289,7 @@ bool message_queue::peek_message(MESSAGE * pMsg, oswindow oswindow,::u32 wMsgFil
             if(m_eflagElement & (1ll << 36))
             {
              
-               printf("test123");
+               //printf("test123");
                
             }
             m_messagea.erase_at(i);

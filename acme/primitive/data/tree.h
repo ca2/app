@@ -48,7 +48,7 @@ namespace data
       virtual tree_item * find(const item * pitem, index * piIndex = nullptr);
       virtual bool contains(const item * pitem);
 
-      virtual bool contains(const tree_item * pitem);
+      bool contains(const tree_item * pitem) override;
 
       virtual void _001OnTreeDataChange();
 
@@ -71,7 +71,7 @@ namespace data
       //   tree_sort(this, pred);
 
       //}
-      virtual void sort_children(const ::function < bool(const ::data::tree_item * p1, const ::data::tree_item * p2) > & functionLess);
+      void sort_children(const ::function < bool(const ::data::tree_item * p1, const ::data::tree_item * p2) > & functionLess) override;
 
       virtual tree_item * _get_proper_item(index iIndex, index * piLevel, index * piCount = nullptr);
       virtual tree_item* get_proper_item(index iIndex, index* piLevel) override;

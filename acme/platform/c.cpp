@@ -1,5 +1,6 @@
 // Created by camilo on 2023-11-25 22:02 <3ThomasBorregaardSorensen!!
 #include "framework.h"
+#include <string.h>
 
 
 namespace c

@@ -23,6 +23,7 @@ namespace motif
 
 
       application();
+      ~application();
 
       void set_exit_flag();
 

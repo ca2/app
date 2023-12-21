@@ -2269,6 +2269,14 @@ namespace windowing
    }
 
 
+//   ::message_queue * window::get_message_queue()
+//   {
+//
+//      return m_pmessagequeue;
+//
+//   }
+
+
 } // namespace windowing
 
 

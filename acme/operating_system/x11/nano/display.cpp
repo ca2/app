@@ -376,6 +376,13 @@ namespace x11
    bool display::message_loop_step()
    {
 
+      if(::is_null(m_pdisplay))
+      {
+
+         return false;
+
+      }
+
       if (!XPending(m_pdisplay))
       {
 

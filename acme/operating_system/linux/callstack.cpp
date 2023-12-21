@@ -6,7 +6,7 @@
 #undef USE_MISC
 
 
-string get_callstack(const ::ansi_character * pszFormat, i32 iSkip, void * caller_address, int iCount)
+string get_callstack(::particle * pparticle, const ::ansi_character * pszFormat, i32 iSkip, void * caller_address, int iCount)
 {
 
    const size_t iMaximumFramesToCapture = 64;

@@ -7,6 +7,7 @@
 
 #if defined(FREEBSD)
 #include <strings.h>
+#include <stdio.h>
 #endif
 
 

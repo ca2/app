@@ -30,7 +30,7 @@ void apple_backtrace_symbol_parse(string & strSymbolName, string & strAddress, c
 
 #elif defined(FREEBSD)
 
-void freebsd_backtrace_symbol_parse(string & strSymbolName, string & strModule, string & strAddress, char * pmessage, void * address);
+void freebsd_backtrace_symbol_parse(::particle * pparticle, string & strSymbolName, string & strModule, string & strAddress, char * pmessage, void * address);
 
 #else
 
@@ -38,7 +38,7 @@ void backtrace_symbol_parse(string &strSymbolName, string &strAddress, char *pme
 
 #endif
 
-string _ansi_stack_trace(void *const *ppui, int frames, const char *pszFormat, int iSkip)
+string _ansi_stack_trace(::particle * pparticle, void *const *ppui, int frames, const char *pszFormat, int iSkip)
 {
 
    ::string strCallstack;
@@ -108,7 +108,7 @@ string _ansi_stack_trace(void *const *ppui, int frames, const char *pszFormat, i
 
       string strModule;
 
-      freebsd_backtrace_symbol_parse(strSymbolName, strModule, strAddress, pmessage, ppui[i]);
+      freebsd_backtrace_symbol_parse(pparticle, strSymbolName, strModule, strAddress, pmessage, ppui[i]);
 
       strLine.formatf("%02d : %s : %s (%s)\n", frames - i - 1, strAddress.c_str(), strSymbolName.c_str(), strModule.c_str());
 
@@ -193,7 +193,7 @@ namespace acme
       const int iMaximumFramesToCapture = 96;
 #endif
 
-      string str = _ansi_stack_trace(stack, minimum_non_negative(frame_count, iMaximumFramesToCapture), strFormat, maximum(iSkip, 0));
+      string str = _ansi_stack_trace(this, stack, minimum_non_negative(frame_count, iMaximumFramesToCapture), strFormat, maximum(iSkip, 0));
 
       return str;
 

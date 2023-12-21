@@ -5,7 +5,7 @@
 #include <cxxabi.h>
 #undef USE_MISC
 
-string get_callstack(const ::scoped_string & scopedstrFormat, i32 iSkip, void * caller_address, int iCount)
+string get_callstack(::particle * pparticle, const ::scoped_string & scopedstrFormat, i32 iSkip, void * caller_address, int iCount)
 {
 
 

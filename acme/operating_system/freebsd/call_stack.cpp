@@ -9,7 +9,7 @@
 #include <cxxabi.h>
 #undef USE_MISC
 
-string get_callstack(const ::scoped_string & scopedstrFormat, i32 iSkip, void * caller_address, int iCount)
+string get_callstack(::particle * pparticle,  const ::scoped_string & scopedstrFormat, i32 iSkip, void * caller_address, int iCount)
 {
 
 
@@ -19,7 +19,7 @@ string get_callstack(const ::scoped_string & scopedstrFormat, i32 iSkip, void * 
 
     auto frames = ::backtrace(stack, iMaximumFramesToCapture);
 
-    return _ansi_stack_trace(stack, frames, scopedstrFormat);
+    return _ansi_stack_trace(pparticle, stack, frames, scopedstrFormat);
 
 //namespace linux
 //{
@@ -67,7 +67,7 @@ string get_callstack(const ::scoped_string & scopedstrFormat, i32 iSkip, void * 
 
 
 
-void freebsd_backtrace_symbol_parse(string & strSymbolName, string & strModule, string & strAddress, char * pmessage, void * address)
+void freebsd_backtrace_symbol_parse(::particle * pparticle, string & strSymbolName, string & strModule, string & strAddress, char * pmessage, void * address)
 {
 
    if(ansi_str(pmessage, "EPT_"))
@@ -129,7 +129,7 @@ void freebsd_backtrace_symbol_parse(string & strSymbolName, string & strModule, 
 
       i32 status = 0;
 
-      auto psynchronization = this->platform()->system()->synchronization();
+      auto psynchronization = pparticle->platform()->system()->synchronization();
 
       synchronous_lock sl(psynchronization);
 

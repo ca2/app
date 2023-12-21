@@ -48,6 +48,8 @@ namespace motif
       XtManageChild(m_pwidgetMsgBox);
       XtPopup(XtParent(m_pwidgetMsgBox), XtGrabNone);
       app_main_loop();
+      XtUnmanageChild(m_pwidgetMsgBox);
+      XtUnrealizeWidget(m_pwidgetTop);
 
       return m_edialogresult;
 

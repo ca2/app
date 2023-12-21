@@ -55,6 +55,13 @@ void * simple_memory_reallocate(void * p2, size_t s)
 
 void simple_memory_free(void * p2)
 {
+
+   if(::is_null(p2))
+   {
+
+      return;
+
+   }
    
    auto pheapmemory = heap_memory_get(p2);
    

@@ -26,6 +26,31 @@ namespace motif
    }
 
 
+   application::~application()
+   {
+
+
+      if(m_pwidgetTop)
+      {
+
+         XtDestroyWidget(m_pwidgetTop);
+
+      }
+
+
+      if(m_pappcontext)
+      {
+
+         XtDestroyApplicationContext(m_pappcontext);
+
+      }
+
+   }
+
+
+
+
+
    void application::set_exit_flag()
    {
 

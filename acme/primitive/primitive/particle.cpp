@@ -1535,6 +1535,8 @@ void particle::_wait()
    while(true)
    {
 
+      ::do_tasks();
+
       auto waitElapsed = waitStart.elapsed();
 
       if (waitElapsed > timeWait)

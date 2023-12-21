@@ -1,14 +1,14 @@
 #include "framework.h"
 
 
-__DECLARE_RELEASE_TIME(app_just_message_box);
+__IMPLEMENT_APPLICATION_RELEASE_TIME(app_just_message_box);
 
 
 namespace app_just_message_box
 {
 
 
-   __IMPLEMENT_APPLICATION_RELEASE_TIME(app_just_message_box);
+   // __IMPLEMENT_APPLICATION_RELEASE_TIME1(app_just_message_box));
 
 
    application::application()

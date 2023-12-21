@@ -1096,6 +1096,7 @@
     <ClCompile Include="operating_system\main_window.cpp" />
     <ClCompile Include="operating_system\memory.cpp" />
     <ClCompile Include="operating_system\message.cpp" />
+    <ClCompile Include="operating_system\message_box.cpp" />
     <ClCompile Include="operating_system\parallelization.cpp" />
     <ClCompile Include="operating_system\pipe.cpp" />
     <ClCompile Include="operating_system\process.cpp" />

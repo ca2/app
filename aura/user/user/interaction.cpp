@@ -1811,7 +1811,7 @@ namespace user
          || !m_pprimitiveimpl)
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization());
 
          m_setneedredrawa.add({ rectangleaNeedRedraw, function, bAscendants });
 
@@ -3547,7 +3547,7 @@ namespace user
 
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization());
 
          if (m_setneedredrawa.has_element() && ::is_screen_visible(layout().sketch().display()))
          {
@@ -3948,7 +3948,7 @@ namespace user
 
          {
 
-            synchronous_lock synchronouslock(psession->synchronization());
+            _synchronous_lock synchronouslock(psession->synchronization());
 
             try
             {
@@ -4085,7 +4085,7 @@ namespace user
    ::pointer_array < ::user::interaction > interaction::synchronized_get_children()
    {
 
-      synchronous_lock synchronouslock(m_pwindow ? m_pwindow->m_pparticleChildrenSynchronization : nullptr);
+      _synchronous_lock synchronouslock(m_pwindow ? m_pwindow->m_pparticleChildrenSynchronization : nullptr);
 
       if (!m_puserinteractionpointeraChild)
       {
@@ -4213,10 +4213,10 @@ namespace user
 
       {
 
-         single_lock slDraw(get_wnd() == nullptr || get_wnd()->m_pprimitiveimpl.is_null()
-                            || get_wnd()->m_pprimitiveimpl.cast<::user::interaction_impl>() == nullptr ? nullptr
-                                                                                                       : get_wnd()->m_pprimitiveimpl.cast<::user::interaction_impl>()->draw_mutex(),
-                            true);
+         //single_lock slDraw(get_wnd() == nullptr || get_wnd()->m_pprimitiveimpl.is_null()
+         //                   || get_wnd()->m_pprimitiveimpl.cast<::user::interaction_impl>() == nullptr ? nullptr
+         //                                                                                              : get_wnd()->m_pprimitiveimpl.cast<::user::interaction_impl>()->draw_mutex(),
+         //                   true);
 
 
          try
@@ -11389,7 +11389,7 @@ namespace user
 
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization());
 
          if (m_puserinteractionpointeraOwned) m_puserinteractionpointeraOwned->destroy();
 
@@ -11397,7 +11397,7 @@ namespace user
 
       {
 
-         synchronous_lock synchronouslock(m_pwindow ? m_pwindow->m_pparticleChildrenSynchronization : nullptr);
+         _synchronous_lock synchronouslock(m_pwindow ? m_pwindow->m_pparticleChildrenSynchronization : nullptr);
 
          if (m_puserinteractionpointeraChild) m_puserinteractionpointeraChild->destroy();
 
@@ -11434,7 +11434,7 @@ namespace user
 
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization());
 
          m_puserinteractionpointeraOwned.release();
 
@@ -11442,7 +11442,7 @@ namespace user
 
       {
 
-         synchronous_lock synchronouslock(m_pwindow ? m_pwindow->m_pparticleChildrenSynchronization : nullptr);
+         _synchronous_lock synchronouslock(m_pwindow ? m_pwindow->m_pparticleChildrenSynchronization : nullptr);
 
          m_puserinteractionpointeraChild.release();
 
@@ -11477,7 +11477,7 @@ namespace user
 
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization());
 
          try
          {
@@ -22099,7 +22099,7 @@ namespace user
       while (has_pending_redraw_flags())
       {
 
-         system()->do_events();
+         system()->do_tasks();
 
          sleep(5_ms);
 

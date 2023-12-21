@@ -347,6 +347,8 @@ namespace acme
 
          node_implement_main();
 
+         return;
+
       }
 
       on_start_system();

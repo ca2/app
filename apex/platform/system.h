@@ -400,10 +400,10 @@ namespace apex
       // void assert_ok() const override;
       //void dump(dump_context& action_context) const override;
 
-      void     main() override;
+      void main() override;
 
 
-      virtual bool do_events() override;
+      bool do_tasks() override;
 
 
       void post_quit_to_all_threads();

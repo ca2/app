@@ -6223,7 +6223,7 @@ namespace apex
    bool application::defer_process_activation_message()
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       if (!m_bAttendedFirstRequest)
       {
@@ -6263,7 +6263,7 @@ namespace apex
 
          pinterprocesscommunication->_handle_uri(strUri);
 
-         synchronouslock.lock();
+         synchronouslock._lock();
 
       } while (m_straActivationMessage.has_element());
 

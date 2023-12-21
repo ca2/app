@@ -140,6 +140,12 @@ thread::thread()
    //m_bBranchHandling = false;
 
    m_bMessageThread = true;
+
+//#ifdef WINDOWS_DESKTOP
+//
+//   m_bCertainlyTheresWindowsMessageQueue = false;
+//
+//#endif
        
    //set_layer(LAYERED_THREAD, this);
 
@@ -844,6 +850,22 @@ int thread::_GetMessage(MESSAGE * pmessage, ::windowing::window * pwindow, ::u32
 bool thread::pump_message()
 {
 
+#ifdef WINDOWS_DESKTOP
+
+   if (m_messageaInitialQueue.has_element())
+   {
+
+      
+      for (auto & m : m_messageaInitialQueue)
+      {
+         PostThreadMessage(m_itask, m.m_atom.as_emessage(), m.wParam, m.lParam);
+
+      }
+
+         m_messageaInitialQueue.clear();
+   }
+
+#endif
    try
    {
 
@@ -1278,6 +1300,14 @@ void thread::kick_idle()
       else
       {
 
+         //if (!m_bCertainlyTheresWindowsMessageQueue)
+         //{
+         //   ASSERT(m_bMessageThread);
+         //   MSG msg = {};
+         //   ::PeekMessageW(&msg, nullptr, 0, 0, PM_NOREMOVE);
+         //   m_bCertainlyTheresWindowsMessageQueue = true;
+         //}
+
          ::PostThreadMessage((DWORD) m_itask, e_message_kick_idle, 0, 0);
 
       }
@@ -1378,7 +1408,7 @@ void thread::post_quit()
    {
 
       /// this is quite dangerous
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       ::pointer<manual_reset_event>pev = m_pevSleep;
 
@@ -2764,9 +2794,11 @@ void thread::task_osinit()
 
       }
 
-      MSG message = {};
+      MSG msg = {};
 
-      ::PeekMessage(&message, NULL, WM_USER, WM_USER, PM_NOREMOVE);
+      ::PeekMessageW(&msg, NULL, WM_USER, WM_USER, PM_NOREMOVE);
+
+      //m_bCertainlyTheresWindowsMessageQueue = true;
 
    }
 
@@ -3123,14 +3155,30 @@ void thread::post_message(const ::atom & atom, wparam wparam, lparam lparam)
 
       }
 
-      int_bool bOk = ::PostThreadMessage((DWORD) m_itask, atom.as_emessage(), wparam, lparam) != false;
+      //if (!m_bCertainlyTheresWindowsMessageQueue)
+      //{
+      //   ASSERT(m_bMessageThread);
+      //   MSG msg = {};
+      //   ::PeekMessageW(&msg, nullptr, 0, 0, PM_NOREMOVE);
+      //   m_bCertainlyTheresWindowsMessageQueue = true;
+      //}
+
+      UINT message = atom.as_emessage();
+
+      int_bool bOk = ::PostThreadMessageW((DWORD) m_itask, message, wparam, lparam) != false;
 
       if (!bOk)
       {
+         MESSAGE message;
+         message.m_atom = atom.as_emessage();
+         message.wParam = wparam;
+         message.lParam = lparam;
+         m_messageaInitialQueue.add(message);
+         return;
 
-         auto estatus = ::get_last_status();
+         //auto estatus = ::get_last_status();
 
-         throw ::exception(estatus);
+         //throw ::exception(estatus);
 
       }
 
@@ -3517,7 +3565,7 @@ bool thread::peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin
       
       MSG msg;
 
-      if (::PeekMessage(&msg, __hwnd(oswindow), wMsgFilterMin, wMsgFilterMax, bRemoveMessage ? PM_REMOVE : PM_NOREMOVE))
+      if (::PeekMessageW(&msg, __hwnd(oswindow), wMsgFilterMin, wMsgFilterMax, bRemoveMessage ? PM_REMOVE : PM_NOREMOVE))
       {
 
          ::copy(*pMsg, msg);
@@ -3897,7 +3945,7 @@ void thread::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin,
 
       }
 
-      iRet = ::GetMessage(&msg, __hwnd(oswindow), wMsgFilterMin, wMsgFilterMax);
+      iRet = ::GetMessageW(&msg, __hwnd(oswindow), wMsgFilterMin, wMsgFilterMax);
 
       if (iRet == -1)
       {
@@ -4101,7 +4149,7 @@ void thread::post(::message::message * pmessage)
 void thread::handle_posted_messages()
 {
 
-   synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization());
 
    while (m_messagea.has_elements())
    {
@@ -4182,7 +4230,7 @@ void thread::handle_posted_messages()
 
       }
 
-      synchronouslock.lock();
+      synchronouslock._lock();
 
       if(pmessage->has_property("flush_similar_messages"))
       {
@@ -4598,7 +4646,7 @@ int thread::get_x_window_count() const
 }
 
 
-bool thread::do_events()
+bool thread::do_tasks()
 {
 
    MESSAGE msg;
@@ -4707,7 +4755,7 @@ CLASS_DECL_APEX void forking_count_thread_null_end(int iOrder)
 
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       if (m_pmutexThreadUiPtra == nullptr)
       {
@@ -4718,7 +4766,7 @@ CLASS_DECL_APEX void forking_count_thread_null_end(int iOrder)
 
    }
 
-   synchronous_lock synchronouslock(m_pmutexThreadUiPtra);
+   _synchronous_lock synchronouslock(m_pmutexThreadUiPtra);
 
    if (m_puserprimitiveaThread == nullptr)
    {
@@ -4879,7 +4927,7 @@ void thread::add_waiting_event(event * pevent)
 
    }
 
-   synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization());
 
    __defer_construct_new(m_peventaWait);
 
@@ -4891,7 +4939,7 @@ void thread::add_waiting_event(event * pevent)
 void thread::erase_waiting_event(event * pevent)
 {
 
-   synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization());
 
    if (m_peventaWait)
    {

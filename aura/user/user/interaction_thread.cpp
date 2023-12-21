@@ -1183,7 +1183,7 @@ namespace user
          information() << "notify_icon";
       }
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       m_pimpl.release();
 

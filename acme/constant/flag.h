@@ -14,6 +14,7 @@ enum enum_flag : u64
    e_flag_factory = 1 << 4,
    e_flag_acquire = 1 << 6,
    e_flag_default = 1 << 7,
+   e_flag_running = 1 << 8,
    e_flag_changed = 1 << 9,
    e_flag_heap_allocated = 1 << 10,
    e_flag_statically_allocated = 1 << 11,

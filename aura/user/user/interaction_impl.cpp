@@ -6733,7 +6733,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 
          {
 
-            synchronous_lock synchronouslock(this->synchronization());
+            _synchronous_lock synchronouslock(this->synchronization());
 
             if (m_messagelist.is_empty())
             {

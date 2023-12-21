@@ -498,7 +498,7 @@ namespace apex
 {
 
 
-   bool system::do_events()
+   bool system::do_tasks()
    {
 
       bool bProcess = false;
@@ -521,13 +521,13 @@ namespace apex
                if (ptask == this)
                {
 
-                  ::acme::system::do_events();
+                  ::acme::system::do_tasks();
 
                }
                else
                {
 
-                  bProcess1 = ptask->do_events();
+                  bProcess1 = ptask->do_tasks();
 
                }
 
@@ -551,7 +551,7 @@ namespace apex
             if (::is_set(psystem) && psystem != this)
             {
 
-               bProcess2 = psystem->do_events();
+               bProcess2 = psystem->do_tasks();
 
                try
                {
@@ -561,7 +561,7 @@ namespace apex
                   if (::is_set(psession))
                   {
 
-                     bProcess3 = psystem->do_events();
+                     bProcess3 = psystem->do_tasks();
 
                   }
 
@@ -595,7 +595,7 @@ namespace apex
    }
 
 
-   //bool do_events(const class time & time)
+   //bool do_tasks(const class time & time)
    //{
    //
    //   ::thread * pthread = ::get_task();
@@ -603,7 +603,7 @@ namespace apex
    //   if(pthread == nullptr)
    //      return;
    //
-   //   pthread->do_events(time);
+   //   pthread->do_tasks(time);
    //
    //}
 

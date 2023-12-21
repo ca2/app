@@ -1456,6 +1456,8 @@ void particle::_wait()
    while (true)
    {
 
+      do_tasks();
+
       auto bOk =  _wait(100_ms);
 
       if(bOk)
@@ -1471,8 +1473,6 @@ void particle::_wait()
          return error_failed;
 
       }
-
-      do_tasks();
 
    }
 

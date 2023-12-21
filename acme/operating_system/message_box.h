@@ -17,7 +17,7 @@ namespace operating_system
 
       //virtual void do_modal(const char * pszMsg, bool bError);
 
-      virtual ::atom do_modal(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails);
+      virtual ::atom do_modal(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails = {});
 
    };
 

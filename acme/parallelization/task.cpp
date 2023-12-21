@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "task.h"
 #include "manual_reset_event.h"
+#include "acme/platform/scoped_restore.h"
 #include "acme/platform/acme.h"
 #include "acme/platform/application.h"
 #include "acme/platform/system.h"
@@ -381,6 +382,15 @@ void task::main()
 void task::run()
 {
 
+   at_end_of_scope
+   {
+
+      m_eflagElement -= e_flag_running;
+
+   };
+
+   m_eflagElement += e_flag_running;
+
    try
    {
 
@@ -746,7 +756,7 @@ void task::send_procedure(const ::procedure & procedure)
 void task::run_posted_procedures()
 {
 
-   synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock _synchronouslock(this->synchronization());
 
    if (m_procedurea.has_element())
    {
@@ -760,11 +770,11 @@ void task::run_posted_procedures()
 
          //information() << "run_posted_procedures reference_count : " << (::iptr) procedure->m_countReference;
 
-         synchronouslock.unlock();
+         _synchronouslock.unlock();
 
          /*auto estatus =*/ procedure();
 
-         synchronouslock.lock();
+         _synchronouslock._lock();
 
       } while (m_procedurea.has_element());
 
@@ -982,13 +992,19 @@ void task::term_task()
 //}
 
 
-bool task::do_events()
+bool task::do_tasks()
 {
    
    //throw ::interface_only("tasks don't have message queue, threads do (1)");
 
    _do_tasks();
 
+   if (platform()->m_bConsole || (m_eflagElement & e_flag_running))
+   {
+
+      run_posted_procedures();
+
+   }
 
    return true;
 
@@ -2339,7 +2355,16 @@ void do_tasks()
    if (ptask)
    {
 
-      ptask->do_events();
+      ptask->do_tasks();
+
+   }
+
+   if (::platform::get()->m_bConsole)
+   {
+
+      ::platform::get()->application()->do_tasks();
+
+      ::platform::get()->system()->do_tasks();
 
    }
 

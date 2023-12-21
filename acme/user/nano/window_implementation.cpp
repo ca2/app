@@ -14,6 +14,9 @@
 #include "acme/platform/system.h"
 
 
+#include <stdio.h>
+
+
 nano_window_implementation::nano_window_implementation()
 {
 

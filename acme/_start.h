@@ -47,19 +47,6 @@
 #endif
 
 
-#if defined(_acme_project)
-#define CLASS_DECL_ACME  CLASS_DECL_EXPORT
-#define LIBIDN_BUILDING
-#else
-#define CLASS_DECL_ACME  CLASS_DECL_IMPORT
-#endif
-
-
-#ifdef UNIVERSAL_WINDOWS
-#define INLINE_CLASS_DECL_ACME CLASS_DECL_ACME
-#else
-#define INLINE_CLASS_DECL_ACME
-#endif
 
 
 // From __setup.h by camilo on 2022-11-25 14:53 <3ThomasBorregaardSorensen!!

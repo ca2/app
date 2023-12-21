@@ -899,10 +899,10 @@ namespace acme
    }
 
 
-   ::string application::release_time()
+   ::release_time_for_project application::release_time()
    {
 
-      return "(not set)";
+      return platform()->as_release_time_for_project("(not set)");
 
    }
 
@@ -1860,7 +1860,7 @@ namespace acme
    ::string_array application::get_about_box_lines()
    {
 
-      ::string strReleaseTime(release_time());
+      auto releasetimeforproject = release_time();
 
       ::string_array stra;
 
@@ -1868,7 +1868,7 @@ namespace acme
 
       stra.add("Application ID: " + m_strAppId);
 
-      stra.add("Release Time: " + strReleaseTime);
+      stra.add("Release Time: " + ::as_string(releasetimeforproject));
 
       return ::transfer(stra);
 

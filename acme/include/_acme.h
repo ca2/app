@@ -1,7 +1,25 @@
-//
+// Created by camilo <3ThomasBorregaardSorensen!!
 //  acme_acme.h
 //
 //
+
+
+#if defined(_acme_project)
+#define CLASS_DECL_ACME  CLASS_DECL_EXPORT
+#define LIBIDN_BUILDING
+#else
+#define CLASS_DECL_ACME  CLASS_DECL_IMPORT
+#endif
+
+#pragma once
+
+
+#ifdef UNIVERSAL_WINDOWS
+#define INLINE_CLASS_DECL_ACME CLASS_DECL_ACME
+#else
+#define INLINE_CLASS_DECL_ACME
+#endif
+
 
 #ifdef __OBJC__
 

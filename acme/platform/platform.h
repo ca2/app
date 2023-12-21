@@ -4,6 +4,7 @@
 
 #include "acme/parallelization/mutex.h"
 #include "acme/platform/library.h"
+#include "acme/platform/release_time_for_project.h"
 #include "acme/primitive/collection/atom_map.h"
 #include "acme/primitive/collection/string_map.h"
 //#include "acme/primitive/primitive/pointer.h"
@@ -400,7 +401,7 @@ namespace platform
 
 
       //platform * __call__add_referer2(const ::reference_referer & referer) const;
-
+      release_time_for_project as_release_time_for_project(const char* pszStatic);
 
 
    };
@@ -431,6 +432,7 @@ namespace platform
 } // namespace platform
 
 
+CLASS_DECL_ACME ::string as_string(const ::release_time_for_project& releasetimeforproject);
 
 
 

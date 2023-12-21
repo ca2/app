@@ -863,6 +863,7 @@
     <ClInclude Include="platform\reference_referer.h" />
     <ClInclude Include="platform\referencing_debugging.h" />
     <ClInclude Include="platform\reference_item.h" />
+    <ClInclude Include="platform\release_time_for_project.h" />
     <ClInclude Include="platform\simple_array.h" />
     <ClInclude Include="platform\tracing.h" />
     <ClInclude Include="platform\_referencing_debugging.h" />

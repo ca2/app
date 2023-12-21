@@ -1119,6 +1119,61 @@ namespace platform
    //}
 
 
+   release_time_for_project platform::as_release_time_for_project(const char* pszStaticText)
+   {
+
+      release_time_for_project releasetimeforproject;
+
+      releasetimeforproject.m_pszStatic = pszStaticText;
+
+      // 0123-56-89-12-45-78
+
+      auto len = ansi_length(pszStaticText);
+
+      if (len >= 10
+         && ::character_isdigit(pszStaticText[0])
+         && ::character_isdigit(pszStaticText[1])
+         && ::character_isdigit(pszStaticText[2])
+         && ::character_isdigit(pszStaticText[3])
+         && !::character_isalnum(pszStaticText[4])
+         && ::character_isdigit(pszStaticText[5])
+         && ::character_isdigit(pszStaticText[6])
+         && !::character_isalnum(pszStaticText[7])
+         && ::character_isdigit(pszStaticText[8])
+         && ::character_isdigit(pszStaticText[9])
+         )
+      {
+
+         releasetimeforproject.m_iYear = ::as_i32(scoped_ansi_string(pszStaticText + 0, 4));
+         releasetimeforproject.m_iMonth = ::as_i32(scoped_ansi_string(pszStaticText + 5, 2));
+         releasetimeforproject.m_iDay = ::as_i32(scoped_ansi_string(pszStaticText + 8, 2));
+
+         if (len >= 19
+            && !::character_isalnum(pszStaticText[10])
+            && ::character_isdigit(pszStaticText[11])
+            && ::character_isdigit(pszStaticText[12])
+            && !::character_isalnum(pszStaticText[13])
+            && ::character_isdigit(pszStaticText[14])
+            && ::character_isdigit(pszStaticText[15])
+            && !::character_isalnum(pszStaticText[16])
+            && ::character_isdigit(pszStaticText[17])
+            && ::character_isdigit(pszStaticText[18])
+            )
+         {
+
+            releasetimeforproject.m_iHour = ::as_i32(scoped_ansi_string(pszStaticText + 11, 2));
+            releasetimeforproject.m_iMinute = ::as_i32(scoped_ansi_string(pszStaticText + 14, 2));
+            releasetimeforproject.m_iSecond = ::as_i32(scoped_ansi_string(pszStaticText + 17, 2));
+
+         }
+
+      }
+
+      return releasetimeforproject;
+
+   }
+
+
 } // namespace platform
 
 
@@ -1142,5 +1197,14 @@ namespace platform
 //   return this->platform()->m_pfactory;
 //
 //}
+
+
+CLASS_DECL_ACME::string as_string(const ::release_time_for_project& releasetimeforproject)
+{
+
+   return releasetimeforproject.m_pszStatic;
+
+}
+
 
 

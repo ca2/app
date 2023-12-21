@@ -91,7 +91,7 @@ namespace acme
       ~application() override;
       
      
-      virtual ::string release_time();
+      virtual ::release_time_for_project release_time();
 
 
       virtual void initialize_application(::platform::platform * pplatform);

@@ -6,12 +6,17 @@
 
 #include "acme/platform/_referencing_debugging.h"
 
+#include "acme/platform/release_time_for_project.h"
+
 
 #define __RELEASE_TIME(library)  library ## _release_time
-#define __DECLARE_RELEASE_TIME(library) extern "C" const char * __RELEASE_TIME(library)()
-#define __DECLARE_APPLICATION_RELEASE_TIME() ::string release_time() override
+#define __DECLARE_RELEASE_TIME(library) extern "C" release_time_for_project __RELEASE_TIME(library)()
+#define __DECLARE_APPLICATION_RELEASE_TIME() release_time_for_project release_time() override
 #define __IMPLEMENT_APPLICATION_RELEASE_TIME(library) \
-::string application::release_time() { return __RELEASE_TIME(library)(); }
+extern "C" release_time_for_project __RELEASE_TIME(library)(); \
+namespace library { \
+release_time_for_project  application::release_time() { return __RELEASE_TIME(library)(); } \
+} // namespace library
 
 
 #define ALOG_CONTEXT context_trace_object()

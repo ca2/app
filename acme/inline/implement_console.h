@@ -85,9 +85,9 @@ int main(int argc, char ** argv, char ** envp)
    }
 #endif
 
-   ::acme::initialize(argc, argv, envp);
+   acme.initialize(argc, argv, envp);
 
-   this->platform()->m_bConsole = true;
+   acme.platform()->m_bConsole = true;
 
    //::acme::acme::g_pacme->m_pacmeapplication->m_bConsole = true;
 
@@ -102,7 +102,7 @@ int main(int argc, char ** argv, char ** envp)
 ////
 ////
    //::acme::acme::g_pacme->m_pacmeapplication->implement_application();
-   int iExitCode = application_main();
+   int iExitCode = application_main(acme.platform());
 
    //return ::acme::acme::g_pacme->m_pacmeapplication->m_iExitCode;
 

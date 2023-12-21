@@ -13,6 +13,11 @@ DO_FACTORY(REFERENCE_FACTORY)
 #include APPLICATION_INCLUDE
 #include <type_traits>
 
+#if defined(FREEBSD)
+#include <stdio.h>
+#endif
+
+
 
 
 //void stage();

@@ -26,9 +26,12 @@ void operating_system_initialize_x11_nano(::factory::factory * pfactory)
 
 void operating_system_initialize_xcb_nano(::factory::factory * pfactory);
 
+#if !defined(FREEBSD)
+
 
 void operating_system_initialize_wayland_nano(::factory::factory * pfactory);
 
+#endif
 
 void operating_system_initialize_nano(::factory::factory * pfactory)
 {
@@ -37,13 +40,18 @@ void operating_system_initialize_nano(::factory::factory * pfactory)
 
    auto psystem = pfactory->system();
 
+#if !defined(FREEBSD)
+
    if(psystem->node()->is_wayland())
    {
 
       psystem->m_ewindowing = e_windowing_wayland;
 
    }
-   else if(edesktop & ::user::e_desktop_kde && psystem->node()->has_xcb())
+   else
+
+#endif
+   if(edesktop & ::user::e_desktop_kde && psystem->node()->has_xcb())
    {
 
       psystem->m_ewindowing = e_windowing_xcb;
@@ -58,13 +66,19 @@ void operating_system_initialize_nano(::factory::factory * pfactory)
 
    }
 
-   if(psystem->m_ewindowing == e_windowing_wayland)
+#if !defined(FREEBSD)
+
+   if(psystem->node()->is_wayland())
    {
 
       operating_system_initialize_wayland_nano(pfactory);
 
    }
-   else if(psystem->m_ewindowing == e_windowing_xcb)
+   else
+
+#endif
+
+   if(psystem->m_ewindowing == e_windowing_xcb)
    {
 
       operating_system_initialize_xcb_nano(pfactory);

@@ -3,6 +3,7 @@
 #include "acme/platform/system.h"
 #include "acme/user/nano/display.h"
 #include "acme/platform/acme.h"
+#include "acme/platform/node.h"
 
 #if defined(FREEBSD)
 #define __XSI_VISIBLE 1
@@ -253,5 +254,62 @@ bool __os_term_thread()
 
 }
 
+
+
+
+
+
+void x11_process_messages();
+void xcb_process_messages();
+//void wayland_process_messages();
+
+
+void _do_tasks()
+{
+
+   auto psystem = ::platform::get()->system();
+
+//   if(psystem->m_ewindowing == e_windowing_wayland)
+//   {
+//
+//      wayland_process_messages();
+//
+//   }
+//   else
+  if(psystem->m_ewindowing == e_windowing_xcb)
+   {
+
+      xcb_process_messages();
+
+   }
+   else
+   {
+
+      x11_process_messages();
+
+   }
+
+   psystem->node()->defer_do_main_tasks();
+
+}
+
+
+
+
+namespace acme
+{
+
+
+   void node::user_post(const ::procedure &procedure)
+   {
+
+      information() << "acme::node::user_post going to display_post";
+
+      ::nano::display::g_p->display_post(procedure);
+
+   }
+
+
+} // namespace acme
 
 

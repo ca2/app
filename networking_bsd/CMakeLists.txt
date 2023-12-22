@@ -144,8 +144,13 @@ if (${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
 endif()
 
 
+if (${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
 
+   list(APPEND library_source
+   bsd/bsd_list_computers.cpp
 
+   )
+endif()
 
 list(APPEND library_references
    acme apex)

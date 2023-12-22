@@ -208,3 +208,21 @@ void output_debug_string(const ::wide_character * pOutputString)
 //   UNREFERENCED_PARAMETER(uiCode);
 //   UNREFERENCED_PARAMETER(ppointers);
 //}
+
+
+
+void output_debug_string_flush()
+{
+
+   if (::platform::get()->m_bOutputDebugString)
+   {
+
+      fflush(stdout);
+
+   }
+
+}
+
+
+
+

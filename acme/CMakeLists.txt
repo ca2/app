@@ -2149,7 +2149,7 @@ if (${LINUX})
 endif ()
 
 
-if(${LINUX})
+if(${LINUX} OR ${FREEBSD})
 
 
    list(APPEND library_source
@@ -2158,6 +2158,8 @@ operating_system/motif/message_box.h
 operating_system/motif/application.cpp
 operating_system/motif/application.h
 )
+/etc/periodic/weekly/310.locate
+
 
    list(APPEND system_libraries Xm)
 
@@ -2643,10 +2645,13 @@ endif()
    target_link_libraries(${PROJECT_NAME} PRIVATE ${system_libraries} ${PKGCONFIG_LIBRARIES})
    target_link_libraries(static_${PROJECT_NAME} PRIVATE ${system_libraries} ${PKGCONFIG_LIBRARIES})
 
+   target_link_directories(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LIBRARY_DIRS})
    target_link_options(${PROJECT_NAME} PRIVATE ${GLOBAL_EXTRA_LINKER_FLAGS} -Wl${GLOBAL_EXTRA_LINK_FLAGS},-z,defs)
    target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
 
    message(STATUS "PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
+
+   message(STATUS "PKGCONFIG_LIBRARY_DIRS is " ${PKGCONFIG_LIBRARY_DIRS})
 
 
 elseif (MACOS)

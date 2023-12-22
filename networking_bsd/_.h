@@ -26,6 +26,11 @@
 
 
 #ifdef HAVE_OPENSSL
+//#ifdef FREEBSD
+//#define OPENSSL_API_COMPAT 101000
+//#enddif
+#define index bsd_index
+#include <openssl/opensslv.h>
 #include <openssl/ssl.h>
 #include <openssl/crypto.h>
 #include <openssl/rand.h>
@@ -41,6 +46,7 @@
 #include <openssl/rand.h>
 #include <openssl/err.h>
 #include <openssl/evp.h>
+#undef index
 #endif
 
 

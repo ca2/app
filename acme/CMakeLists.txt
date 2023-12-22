@@ -2158,8 +2158,8 @@ operating_system/motif/message_box.h
 operating_system/motif/application.cpp
 operating_system/motif/application.h
 )
-/etc/periodic/weekly/310.locate
-
+set_source_files_properties(operating_system/motif/application.cpp PROPERTIES COMPILE_FLAGS -std=c++11)
+set_source_files_properties(operating_system/motif/message_box.cpp PROPERTIES COMPILE_FLAGS -std=c++11)
 
    list(APPEND system_libraries Xm)
 

@@ -2153,13 +2153,11 @@ if(${LINUX} OR ${FREEBSD})
 
 
    list(APPEND library_source
-   operating_system/motif/message_box.cpp
-operating_system/motif/message_box.h
-operating_system/motif/application.cpp
-operating_system/motif/application.h
-)
-set_source_files_properties(operating_system/motif/application.cpp PROPERTIES COMPILE_FLAGS -std=c++11)
-set_source_files_properties(operating_system/motif/message_box.cpp PROPERTIES COMPILE_FLAGS -std=c++11)
+      operating_system/motif/message_box.cpp
+      operating_system/motif/message_box.h
+      operating_system/motif/application.cpp
+      operating_system/motif/application.h
+   )
 
    list(APPEND system_libraries Xm)
 

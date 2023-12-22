@@ -5,8 +5,10 @@
 #pragma once
 
 
+#define register
 #include <Xm/Xm.h>
 #include <X11/Intrinsic.h>
+#undef register
 
 
 namespace motif

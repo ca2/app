@@ -7,10 +7,12 @@
 
 #include "acme/operating_system/message_box.h"
 #include "application.h"
+#define register
 #include <Xm/Xm.h>
 #include <Xm/PushB.h>
 #include <Xm/MessageB.h>
 #include <X11/Intrinsic.h>
+#undef register
 
 
 namespace motif

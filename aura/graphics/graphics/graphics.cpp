@@ -362,7 +362,7 @@ namespace graphics
    i64 graphics::_001GetTopLeftWeightedOpaqueArea(const ::rectangle_i32 & rect)
    {
 
-      _synchronous_lock synchronouslock(get_screen_item()->m_pmutex);
+      synchronous_lock synchronouslock(get_screen_item()->m_pmutex);
 
       return get_screen_item()->m_pimage2->_001GetTopLeftWeightedOpaqueArea(0, rect);
 

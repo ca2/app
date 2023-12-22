@@ -80,7 +80,7 @@ return g_pdraw2dcairo;
       //return estatus;
 
       m_pmutex = acmenode()->create_mutex();
-      m_pmutexFc = acmenode()->create_mutex();
+      //m_pmutexFc = acmenode()->create_mutex();
       //m_pmutexFont= acmenode()->create_mutex();
 
       //g_pparticleCairoSynchronization = m_pmutex;
@@ -1467,7 +1467,7 @@ return g_pdraw2dcairo;
    cairo_font_face_t * draw2d::private_ftface_from_file(::acme::context * pcontext, const ::payload & payloadFile)
    {
 
-      _synchronous_lock synchronouslock(::draw2d_cairo::mutex());
+      synchronous_lock synchronouslock(::draw2d_cairo::mutex());
 
       ::file::path pathFile = payloadFile.as_file_path();
 

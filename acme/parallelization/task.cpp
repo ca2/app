@@ -756,7 +756,7 @@ void task::send_procedure(const ::procedure & procedure)
 void task::run_posted_procedures()
 {
 
-   _synchronous_lock _synchronouslock(this->synchronization());
+   synchronous_lock synchronouslock(this->synchronization());
 
    if (m_procedurea.has_element())
    {
@@ -770,11 +770,11 @@ void task::run_posted_procedures()
 
          //information() << "run_posted_procedures reference_count : " << (::iptr) procedure->m_countReference;
 
-         _synchronouslock.unlock();
+         synchronouslock.unlock();
 
          /*auto estatus =*/ procedure();
 
-         _synchronouslock._lock();
+         synchronouslock.lock();
 
       } while (m_procedurea.has_element());
 
@@ -1390,7 +1390,7 @@ bool task::has_message() const
    if (m_peventInitialization)
    {
 
-      m_peventInitialization->wait();
+      m_peventInitialization->_wait();
 
       ::e_status estatus = m_estatus;
 

@@ -36,7 +36,7 @@ namespace netserver
       void run() override;
 
 
-      virtual ::pointer < ::sockets::socket_handler > create_socket_handler();
+      ::pointer < ::sockets::socket_handler > create_socket_handler() override;
 
 
 

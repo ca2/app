@@ -832,7 +832,7 @@ _001SelectItem(pchild);
    void tree_data::add_path(const ::file::path & pathAdd, const ::scoped_string & scopedstrName)
    {
 
-      _synchronous_lock _synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization());
 
       ::file::path_array patha;
 

@@ -1073,18 +1073,22 @@ namespace apex
    void context::post_request(::request * prequest)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
-
-      if (::is_null(prequest) || contains(prequest))
       {
 
-         throw ::exception(error_bad_argument);
+         synchronous_lock synchronouslock(this->synchronization());
+
+         if (::is_null(prequest) || contains(prequest))
+         {
+
+            throw ::exception(error_bad_argument);
+
+         }
+
+         prequest->m_bNew = true;
+
+         m_requestaPending.add(prequest);
 
       }
-
-      prequest->m_bNew = true;
-
-      m_requestaPending.add(prequest);
 
       kick_idle();
 

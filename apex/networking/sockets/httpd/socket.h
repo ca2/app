@@ -79,14 +79,14 @@ namespace httpd
       void Send64(const ::string& str64, const string& type);
       string datetime2httpdate(const string& dt);
       string GetDate();
-      void Reset();
+      void Reset() override;
 
-      virtual void InitSSLServer();
+      void InitSSLServer() override;
 
 
 
-      virtual void OnExecute();
-      virtual void OnResponseComplete();
+      void OnExecute() override;
+      void OnResponseComplete() override;
 
       virtual void send_response();
 

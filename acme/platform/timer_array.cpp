@@ -37,7 +37,7 @@ namespace acme
       
       {
 
-         _synchronous_lock _synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization());
 
          if (!m_bOk)
          {
@@ -87,7 +87,7 @@ namespace acme
 
       {
 
-         _synchronous_lock _synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization());
 
          auto pair = m_timermap.plookup(uEvent);
 
@@ -114,7 +114,7 @@ namespace acme
    void timer_array::erase_timer(::timer * ptimer)
    {
 
-      _synchronous_lock _synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization());
 
       try
       {
@@ -222,7 +222,7 @@ namespace acme
 
          {
 
-            _synchronous_lock _synchronouslock(this->synchronization());
+            synchronous_lock synchronouslock(this->synchronization());
 
             map = m_timermap;
 
@@ -236,7 +236,7 @@ namespace acme
             try
             {
 
-               _synchronous_lock _synchronouslockTimer(ptimer->synchronization());
+               synchronous_lock _synchronouslockTimer(ptimer->synchronization());
 
                ptimer->clear_flag(e_flag_success);
 
@@ -267,7 +267,7 @@ namespace acme
 
          {
 
-            _synchronous_lock _synchronouslock(this->synchronization());
+            synchronous_lock synchronouslock(this->synchronization());
 
             map = m_timermap;
 

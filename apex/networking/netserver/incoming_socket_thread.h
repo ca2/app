@@ -43,10 +43,10 @@ namespace netserver
 
       void run() override;
 
-      virtual ::pointer < ::sockets::socket_handler > create_socket_handler();
+      ::pointer < ::sockets::socket_handler > create_socket_handler() override;
       //virtual ::pointer < ::sockets::listen_socket > create_listen_socket();
 
-      virtual bool initialize_listen_socket();
+      bool initialize_listen_socket() override;
 
       ::netserver::socket_handler * socket_handler();
 

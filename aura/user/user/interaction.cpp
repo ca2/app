@@ -659,7 +659,7 @@ namespace user
 
       }
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization());
 
       auto & layoutstate = layout().m_statea[elayout];
 
@@ -1811,7 +1811,7 @@ namespace user
          || !m_pprimitiveimpl)
       {
 
-         _synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization());
 
          m_setneedredrawa.add({ rectangleaNeedRedraw, function, bAscendants });
 
@@ -3547,7 +3547,7 @@ namespace user
 
       {
 
-         _synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization());
 
          if (m_setneedredrawa.has_element() && ::is_screen_visible(layout().sketch().display()))
          {
@@ -3948,7 +3948,7 @@ namespace user
 
          {
 
-            _synchronous_lock synchronouslock(psession->synchronization());
+            synchronous_lock synchronouslock(psession->synchronization());
 
             try
             {
@@ -4085,7 +4085,7 @@ namespace user
    ::pointer_array < ::user::interaction > interaction::synchronized_get_children()
    {
 
-      _synchronous_lock synchronouslock(m_pwindow ? m_pwindow->m_pparticleChildrenSynchronization : nullptr);
+      synchronous_lock synchronouslock(m_pwindow ? m_pwindow->m_pparticleChildrenSynchronization : nullptr);
 
       if (!m_puserinteractionpointeraChild)
       {
@@ -4281,7 +4281,7 @@ namespace user
             if (pprimitiveimpl)
             {
 
-               _synchronous_lock synchronouslock(pprimitiveimpl->synchronization());
+               synchronous_lock synchronouslock(pprimitiveimpl->synchronization());
 
                pprimitiveimpl->m_userinteractionaMouseHover.erase(this);
 
@@ -4293,7 +4293,7 @@ namespace user
 
       {
 
-         _synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization());
 
          auto pthread = get_thread();
 
@@ -11389,7 +11389,7 @@ namespace user
 
       {
 
-         _synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization());
 
          if (m_puserinteractionpointeraOwned) m_puserinteractionpointeraOwned->destroy();
 
@@ -11397,7 +11397,7 @@ namespace user
 
       {
 
-         _synchronous_lock synchronouslock(m_pwindow ? m_pwindow->m_pparticleChildrenSynchronization : nullptr);
+         synchronous_lock synchronouslock(m_pwindow ? m_pwindow->m_pparticleChildrenSynchronization : nullptr);
 
          if (m_puserinteractionpointeraChild) m_puserinteractionpointeraChild->destroy();
 
@@ -11434,7 +11434,7 @@ namespace user
 
       {
 
-         _synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization());
 
          m_puserinteractionpointeraOwned.release();
 
@@ -11442,7 +11442,7 @@ namespace user
 
       {
 
-         _synchronous_lock synchronouslock(m_pwindow ? m_pwindow->m_pparticleChildrenSynchronization : nullptr);
+         synchronous_lock synchronouslock(m_pwindow ? m_pwindow->m_pparticleChildrenSynchronization : nullptr);
 
          m_puserinteractionpointeraChild.release();
 
@@ -11477,7 +11477,7 @@ namespace user
 
       {
 
-         _synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization());
 
          try
          {
@@ -15397,7 +15397,7 @@ namespace user
 
       }
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization());
 
       //      if (get_parent() == nullptr)
       //      {
@@ -15550,7 +15550,7 @@ namespace user
    void interaction::lading_to_layout(bool & bUpdateBuffer, bool & bUpdateWindow)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization());
 
       bUpdateBuffer = false;
 
@@ -16034,7 +16034,7 @@ namespace user
    void interaction::layout_to_design()
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (!layout().design().visual_state::operator==(layout().layout()))
       {
@@ -18645,7 +18645,7 @@ namespace user
 
       {
 
-         _synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization());
 
          auto & layoutstate = layout().m_statea[elayout];
 

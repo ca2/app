@@ -427,7 +427,7 @@ void thread::term_task()
 
    {
 
-      _synchronous_lock _synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (m_peventaWait)
       {
@@ -468,7 +468,7 @@ void thread::task_osterm()
 
    {
 
-      _synchronous_lock _synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (m_pevSleep.is_set())
       {
@@ -1408,7 +1408,7 @@ void thread::post_quit()
    {
 
       /// this is quite dangerous
-      _synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization());
 
       ::pointer<manual_reset_event>pev = m_pevSleep;
 
@@ -3540,7 +3540,7 @@ bool thread::peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin
    if (m_pmessagequeue)
    {
       
-      _synchronous_lock synchronouslock(m_pmessagequeue->synchronization());
+      synchronous_lock synchronouslock(m_pmessagequeue->synchronization());
       
       if(m_pmessagequeue->m_eflagElement & (::enum_flag) (1ll <<37))
       {
@@ -4149,7 +4149,7 @@ void thread::post(::message::message * pmessage)
 void thread::handle_posted_messages()
 {
 
-   _synchronous_lock synchronouslock(this->synchronization());
+   synchronous_lock synchronouslock(this->synchronization());
 
    while (m_messagea.has_elements())
    {
@@ -4230,7 +4230,7 @@ void thread::handle_posted_messages()
 
       }
 
-      synchronouslock._lock();
+      synchronouslock.lock();
 
       if(pmessage->has_property("flush_similar_messages"))
       {
@@ -4755,7 +4755,7 @@ CLASS_DECL_APEX void forking_count_thread_null_end(int iOrder)
 
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (m_pmutexThreadUiPtra == nullptr)
       {
@@ -4766,7 +4766,7 @@ CLASS_DECL_APEX void forking_count_thread_null_end(int iOrder)
 
    }
 
-   _synchronous_lock synchronouslock(m_pmutexThreadUiPtra);
+   synchronous_lock synchronouslock(m_pmutexThreadUiPtra);
 
    if (m_puserprimitiveaThread == nullptr)
    {
@@ -4927,7 +4927,7 @@ void thread::add_waiting_event(event * pevent)
 
    }
 
-   _synchronous_lock synchronouslock(this->synchronization());
+   synchronous_lock synchronouslock(this->synchronization());
 
    __defer_construct_new(m_peventaWait);
 
@@ -4939,7 +4939,7 @@ void thread::add_waiting_event(event * pevent)
 void thread::erase_waiting_event(event * pevent)
 {
 
-   _synchronous_lock synchronouslock(this->synchronization());
+   synchronous_lock synchronouslock(this->synchronization());
 
    if (m_peventaWait)
    {

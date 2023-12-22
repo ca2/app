@@ -192,7 +192,7 @@ namespace user
 //
 //            {
 //
-//               _synchronous_lock synchronouslock(pimpl->synchronization());
+//               synchronous_lock synchronouslock(pimpl->synchronization());
 //
 //               if(pimpl->m_redrawitema.has_element())
 //               {

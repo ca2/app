@@ -172,7 +172,7 @@ namespace write_text
 
          }
 
-         _synchronous_lock synchronouslockEnumeration(m_pfontenumeration->synchronization());
+         synchronous_lock synchronouslockEnumeration(m_pfontenumeration->synchronization());
 
          auto pstyle = m_puserinteraction->get_style();
 

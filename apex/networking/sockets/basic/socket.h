@@ -37,14 +37,14 @@ namespace sockets
 
       /** close connection immediately - internal use.
       \sa SetCloseAndDelete */
-      virtual void close();
+      void close() override;
 
       /** add file descriptor to sockethandler fd_set's. */
       void set(bool bRead,bool bWrite,bool bException = true);
 
       /** Returns true when socket file descriptor is valid
       and socket is not about to be closed. */
-      virtual bool Ready();
+      bool Ready() override;
 
       virtual bool is_ok();
 

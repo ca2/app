@@ -2473,7 +2473,7 @@ pacmedirectory->create("/ca2core");
       //retry_single_lock rsl(mutex(),::time(100),::time(100));
       single_lock rsl(synchronization());
 
-      rsl.lock(10_s);
+      rsl.wait(10_s);
 
       //      for(i32 i = 0; i < appptra().get_size(); i++)
       //     {
@@ -2490,7 +2490,7 @@ pacmedirectory->create("/ca2core");
       //retry_single_lock rsl(mutex(),::time(100),::time(100));
       single_lock rsl(synchronization());
 
-      rsl.lock(10_s);
+      rsl.wait(10_s);
 
       //      for(i32 i = 0; i < appptra().get_size(); i++)
             //    {

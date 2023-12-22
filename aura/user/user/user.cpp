@@ -29,6 +29,9 @@
 #include "aura/platform/application.h"
 #include "aura/platform/node.h"
 
+#if defined(FREEBSD)
+#include <stdio.h>
+#endif
 
 //::pointer< ::mutex > g_pmutexUser = nullptr;
 

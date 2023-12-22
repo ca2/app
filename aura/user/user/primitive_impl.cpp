@@ -2504,7 +2504,7 @@ namespace user
 
       {
 
-         _synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization());
 
          try
          {

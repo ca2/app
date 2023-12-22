@@ -39,7 +39,7 @@ namespace draw2d_cairo
 
 //extern CLASS_DECL_AURA array < matter * > * g_paAura;
 
-#ifdef LINUX
+#if defined(LINUX) || defined(FREEBSD)
 
       ::pointer< ::mutex > m_pmutexFc;
 

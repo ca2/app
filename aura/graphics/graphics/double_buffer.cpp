@@ -293,11 +293,11 @@ namespace graphics
 
       }
 
-      _synchronous_lock sl(this->synchronization());
+      synchronous_lock sl(this->synchronization());
 
-      _synchronous_lock slBuffer(get_buffer_item()->m_pmutex);
+      synchronous_lock slBuffer(get_buffer_item()->m_pmutex);
 
-      _synchronous_lock slScreen(get_screen_item()->m_pmutex);
+      synchronous_lock slScreen(get_screen_item()->m_pmutex);
 
       if (m_iCurrentBuffer == 0)
       {

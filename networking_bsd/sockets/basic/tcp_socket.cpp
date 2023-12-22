@@ -11,6 +11,7 @@
 #include "networking_bsd/sockets/ssl/client_context.h"
 #include "networking_bsd/sockets/ssl/client_context_map.h"
 
+#define OPENSSL_VERSION_NUMBER 123
 
 //::std::strong_ordering memory_order(const void * m1, const void * m2, memsize s);
 
@@ -2525,7 +2526,7 @@ namespace sockets_bsd
          }
       }
 
-#if OPENSSL_VERSION_NUMBER >= 0x30000000
+#if OPENSSL_VERSION_NUMBER >= 0x30000000L
 
       SSL_CTX_set_tlsext_ticket_key_evp_cb(m_psslcontext->m_pclientcontext->m_psslcontext, &ssl_tlsext_ticket_key_evp_cb);
 

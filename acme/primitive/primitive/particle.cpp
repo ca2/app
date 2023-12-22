@@ -1792,7 +1792,7 @@ bool particle::is_locked() const
    try
    {
 
-      synchronouslock.lock(0_s);
+      synchronouslock.wait(0_s);
 
    }
    catch (...)
@@ -2529,7 +2529,7 @@ void particle::user_post(const ::procedure & procedure)
 void particle::process_owned_procedure_list(::procedure_list & procedurelist, bool & bHandled)
 {
 
-   _synchronous_lock synchronouslock(this->synchronization());
+   synchronous_lock synchronouslock(this->synchronization());
 
    if(procedurelist.is_empty())
    {
@@ -2551,7 +2551,7 @@ void particle::process_owned_procedure_list(::procedure_list & procedurelist, bo
 
       }
 
-      synchronouslock._lock();
+      synchronouslock.lock();
 
    }
    while(procedurelist.has_element());

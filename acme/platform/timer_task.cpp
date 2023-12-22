@@ -266,7 +266,7 @@ void timer_task::stop_timer_task()
 
    {
 
-      _synchronous_lock _synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (m_bRunning)
       {
@@ -291,7 +291,7 @@ void timer_task::destroy()
 
    {
 
-      _synchronous_lock _synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization());
 
       try
       {
@@ -299,11 +299,11 @@ void timer_task::destroy()
          if (m_ptimera)
          {
 
-            _synchronouslock.unlock();
+            synchronouslock.unlock();
 
             m_ptimera->erase_timer(this);
 
-            _synchronouslock._lock();
+            synchronouslock.lock();
 
             m_ptimera.release();
 

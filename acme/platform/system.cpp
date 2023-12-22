@@ -1494,7 +1494,7 @@ namespace acme
    ::pointer<::regular_expression::context>system::get_regular_expression_context(const ::string & pszStyle)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization());
 
       __defer_construct_new(m_pmapRegularExpressionContext);
 

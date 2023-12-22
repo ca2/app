@@ -27,7 +27,7 @@ namespace xml
       m_pdocument            = this;
 //      m_pparseinfo      = ::is_set(pparseinfo) ? pparseinfo : system()->m_pxml->m_pparseinfoDefault.m_p;
 //      m_pentitiesHash   = ::is_set(pentitiesHash) ? pentitiesHash : system()->m_pxml->m_pentitiesHashDefault.m_p;
-      m_pedit           = nullptr;
+      //m_pedit           = nullptr;
 
    }
 

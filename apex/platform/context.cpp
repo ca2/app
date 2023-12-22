@@ -978,7 +978,7 @@ namespace apex
 
       }
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       return m_requestaPending.predicate_contains([&prequest](auto & p) {return p.get() == prequest; })
          || m_requestaHistory.predicate_contains([&prequest](auto & p) {return p.get() == prequest; })
@@ -1075,7 +1075,7 @@ namespace apex
 
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization());
 
          if (::is_null(prequest) || contains(prequest))
          {

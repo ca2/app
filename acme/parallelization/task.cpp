@@ -716,9 +716,13 @@ void task::post_procedure(const ::procedure & procedure)
 
    }
 
-   synchronous_lock synchronouslock(this->synchronization());
+   {
 
-   m_procedurea.add(procedure);
+      _synchronous_lock synchronouslock(this->synchronization());
+
+      m_procedurea.add(procedure);
+
+   }
 
    kick_idle();
 
@@ -756,7 +760,7 @@ void task::send_procedure(const ::procedure & procedure)
 void task::run_posted_procedures()
 {
 
-   synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization());
 
    if (m_procedurea.has_element())
    {
@@ -774,7 +778,7 @@ void task::run_posted_procedures()
 
          /*auto estatus =*/ procedure();
 
-         synchronouslock.lock();
+         synchronouslock._lock();
 
       } while (m_procedurea.has_element());
 
@@ -791,7 +795,7 @@ void task::run_posted_procedures()
 //void task::add_notify(::particle * pparticle)
 //{
 //
-//   synchronous_lock synchronouslock(this->synchronization());
+//   _synchronous_lock synchronouslock(this->synchronization());
 //
 //   notify_array().add_item(pelement REFERENCING_DEBUGGING_COMMA_THIS_FUNCTION_FILE_LINE);
 //
@@ -801,7 +805,7 @@ void task::run_posted_procedures()
 //void task::erase_notify(::particle * pparticle)
 //{
 //
-//   synchronous_lock synchronouslock(this->synchronization());
+//   _synchronous_lock synchronouslock(this->synchronization());
 //
 //   if (m_pnotifya)
 //   {
@@ -900,7 +904,7 @@ void task::term_task()
 
    //}
 
-   //synchronous_lock synchronouslock(this->synchronization());
+   //_synchronous_lock synchronouslock(this->synchronization());
 
    //if (m_pnotifya)
    //{
@@ -962,7 +966,7 @@ void task::term_task()
 //
 //   //   {
 //
-//   //      synchronous_lock synchronouslock(this->synchronization());
+//   //      _synchronous_lock synchronouslock(this->synchronization());
 //
 //   //      pelement = m_pelement.m_p;
 //
@@ -1739,7 +1743,7 @@ CLASS_DECL_ACME bool __task_sleep(task* ptask, const class time & timeWait)
 
       {
 
-         synchronous_lock synchronouslock(ptask->synchronization());
+         _synchronous_lock synchronouslock(ptask->synchronization());
 
          if (ptask->m_pevSleep.is_null())
          {

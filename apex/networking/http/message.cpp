@@ -10,7 +10,6 @@ namespace http
    message::message() 
    {
 
-      m_pcookies     = nullptr;
       m_estatusRet   = ::success_none;
 
    }

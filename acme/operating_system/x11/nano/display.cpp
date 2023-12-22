@@ -416,7 +416,7 @@ namespace x11
 
       ::index i = 0;
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       for (; i < m_eventlistenera.get_count(); i++)
       {
@@ -452,7 +452,7 @@ namespace x11
 
          }
 
-         synchronouslock.lock();
+         synchronouslock._lock();
 
       }
 

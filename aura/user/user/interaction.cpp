@@ -659,7 +659,7 @@ namespace user
 
       }
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       auto & layoutstate = layout().m_statea[elayout];
 
@@ -1552,9 +1552,9 @@ namespace user
 
       bool bDuplicate = true;
 
-      //synchronous_lock slChildren(::user::pointer < ::mutex >_children());
+      //_synchronous_lock slChildren(::user::pointer < ::mutex >_children());
 
-      synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
+      _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
 
       auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
 
@@ -1702,7 +1702,7 @@ namespace user
    void interaction::set_reposition(bool bSetThis)
    {
 
-      //synchronous_lock synchronouslock(mutex_children());
+      //_synchronous_lock synchronouslock(mutex_children());
 
       _set_reposition(bSetThis);
 
@@ -1811,7 +1811,7 @@ namespace user
          || !m_pprimitiveimpl)
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization());
 
          m_setneedredrawa.add({ rectangleaNeedRedraw, function, bAscendants });
 
@@ -3547,7 +3547,7 @@ namespace user
 
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization());
 
          if (m_setneedredrawa.has_element() && ::is_screen_visible(layout().sketch().display()))
          {
@@ -3724,7 +3724,7 @@ namespace user
          if (!m_pprimitiveimpl->has_destroying_flag())
          {
 
-            //synchronous_lock slChildren(::user::pointer < ::mutex >_children());
+            //_synchronous_lock slChildren(::user::pointer < ::mutex >_children());
 
             auto children = synchronized_get_children();
 
@@ -3948,7 +3948,7 @@ namespace user
 
          {
 
-            synchronous_lock synchronouslock(psession->synchronization());
+            _synchronous_lock synchronouslock(psession->synchronization());
 
             try
             {
@@ -4085,7 +4085,7 @@ namespace user
    ::pointer_array < ::user::interaction > interaction::synchronized_get_children()
    {
 
-      synchronous_lock synchronouslock(m_pwindow ? m_pwindow->m_pparticleChildrenSynchronization : nullptr);
+      _synchronous_lock synchronouslock(m_pwindow ? m_pwindow->m_pparticleChildrenSynchronization : nullptr);
 
       if (!m_puserinteractionpointeraChild)
       {
@@ -4108,7 +4108,7 @@ namespace user
 
       {
 
-         synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
+         _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
 
          if (m_puserinteractionpointeraChild)
          {
@@ -4163,7 +4163,7 @@ namespace user
 
       {
 
-         synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
+         _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
 
          if (!m_puserinteractionpointeraChild)
          {
@@ -4281,7 +4281,7 @@ namespace user
             if (pprimitiveimpl)
             {
 
-               synchronous_lock synchronouslock(pprimitiveimpl->synchronization());
+               _synchronous_lock synchronouslock(pprimitiveimpl->synchronization());
 
                pprimitiveimpl->m_userinteractionaMouseHover.erase(this);
 
@@ -4293,7 +4293,7 @@ namespace user
 
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization());
 
          auto pthread = get_thread();
 
@@ -4319,11 +4319,11 @@ namespace user
          try
          {
 
-            //synchronous_lock slChildren(::user::pointer < ::mutex >_children());
+            //_synchronous_lock slChildren(::user::pointer < ::mutex >_children());
 
             puserinteractionParent->on_erase_child(this);
 
-            //synchronous_lock synchronouslock(puserinteractionParent->synchronization());
+            //_synchronous_lock synchronouslock(puserinteractionParent->synchronization());
 
             //auto puserinteractionpointeraChild = __allocate(
             //   ::user::interaction_array(*puserinteractionParent->m_puserinteractionpointeraChild));
@@ -4415,7 +4415,7 @@ namespace user
       //task_erase_all();
 
 
-      //synchronous_lock synchronouslock(mutex_children());
+      //_synchronous_lock synchronouslock(mutex_children());
       auto children = synchronized_get_children();
 
       //if (m_puserinteractionpointeraChild)
@@ -4504,11 +4504,11 @@ namespace user
       if (this == psession->get_user_interaction_host())
       {
 
-         //synchronous_lock slChildren(::user::pointer < ::mutex >_children());
+         //_synchronous_lock slChildren(::user::pointer < ::mutex >_children());
 
          auto children = synchronized_get_children();
 
-         // synchronous_lock synchronouslock(this->synchronization());
+         // _synchronous_lock synchronouslock(this->synchronization());
 
          // auto puserinteractionpointeraChild = m_puserinteractionpointeraChild.get();
 
@@ -4533,7 +4533,7 @@ namespace user
       if (is_root())
       {
 
-         //synchronous_lock synchronouslock(this->synchronization());
+         //_synchronous_lock synchronouslock(this->synchronization());
 
          auto children = synchronized_get_children();
 
@@ -4976,7 +4976,7 @@ namespace user
 
          {
 
-            //synchronous_lock synchronouslock(this->synchronization());
+            //_synchronous_lock synchronouslock(this->synchronization());
 
             if (pgraphics->m_bDraw)
             {
@@ -5185,7 +5185,7 @@ namespace user
 
 #endif
 
-      //synchronous_lock synchronouslock(this->synchronization());
+      //_synchronous_lock synchronouslock(this->synchronization());
 
       {
 
@@ -5289,7 +5289,7 @@ namespace user
 
          set_context_org(pgraphics);
 
-         synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization());
 
          _008OnDraw(pgraphics);
 
@@ -5418,7 +5418,7 @@ namespace user
 
          auto children = synchronized_get_children();
 
-         //synchronous_lock synchronouslock(this->synchronization());
+         //_synchronous_lock synchronouslock(this->synchronization());
 
          //auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
 
@@ -6224,7 +6224,7 @@ namespace user
 
       auto children = synchronized_get_children();
 
-      // synchronous_lock synchronouslock(this->synchronization());
+      // _synchronous_lock synchronouslock(this->synchronization());
 
       // if (!m_puserinteractionpointeraChild)
       // {
@@ -6454,7 +6454,7 @@ namespace user
    void interaction::queue_graphics_call(const ::function<void(::draw2d::graphics_pointer &)> & function)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       __defer_construct_new(m_pgraphicscalla);
 
@@ -6466,7 +6466,7 @@ namespace user
    void interaction::process_graphics_call_queue(::draw2d::graphics_pointer & pgraphics)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       if (m_pgraphicscalla)
       {
@@ -6489,7 +6489,7 @@ namespace user
 
             }
 
-            synchronouslock.lock();
+            synchronouslock._lock();
 
          }
 
@@ -6828,7 +6828,7 @@ namespace user
                   try
                   {
 
-                     ///synchronous_lock synchronouslock(this->synchronization());
+                     ///_synchronous_lock synchronouslock(this->synchronization());
 
                      //if (m_puserinteractionpointeraChild && m_puserinteractionpointeraChild->has_interaction())
                      {
@@ -7841,7 +7841,7 @@ namespace user
       if (is_top_level_window() && !is_message_only_window())
       {
 
-         //synchronous_lock synchronouslock(this->synchronization());
+         //_synchronous_lock synchronouslock(this->synchronization());
 
          //if (get_app()->get_context_system() != nullptr)
          //{
@@ -9199,7 +9199,7 @@ namespace user
    ::user::interaction * interaction::get_child_by_id(const atom & atom, index iItem, i32 iLevel)
    {
 
-      synchronous_lock synchronouslock(m_pwindow ? m_pwindow->m_pparticleChildrenSynchronization : nullptr);
+      _synchronous_lock synchronouslock(m_pwindow ? m_pwindow->m_pparticleChildrenSynchronization : nullptr);
 
       auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
 
@@ -9311,7 +9311,7 @@ namespace user
 
          puserinteractionParent->parent_to_client()(pointClient);
 
-         synchronous_lock synchronouslock(puserinteractionParent->window()->m_pparticleChildrenSynchronization);
+         _synchronous_lock synchronouslock(puserinteractionParent->window()->m_pparticleChildrenSynchronization);
 
          auto puserinteractionpointeraChild = puserinteractionParent->m_puserinteractionpointeraChild;
 
@@ -9368,7 +9368,7 @@ namespace user
       interaction::_child_from_point(const ::point_i32 & point, const ::user::interaction_array * pinteractionaExclude)
    {
 
-      synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
+      _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
 
       auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
 
@@ -9694,9 +9694,9 @@ namespace user
 
       }
 
-      //synchronous_lock synchronouslock(::user::pointer < ::mutex >_children());
+      //_synchronous_lock synchronouslock(::user::pointer < ::mutex >_children());
 
-      //synchronous_lock synchronouslock(this->synchronization());
+      //_synchronous_lock synchronouslock(this->synchronization());
 
       auto children = synchronized_get_children();
 
@@ -9768,13 +9768,13 @@ namespace user
 
       auto children = synchronized_get_children();
 
-      // synchronous_lock synchronouslock(this->synchronization());
+      // _synchronous_lock synchronouslock(this->synchronization());
 
       // auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
 
       // {
 
-      //    //synchronous_lock slChildren(::user::pointer < ::mutex >_children());
+      //    //_synchronous_lock slChildren(::user::pointer < ::mutex >_children());
 
 
 
@@ -9935,7 +9935,7 @@ namespace user
    //bool interaction::subclass_window(oswindow posdata)
    //{
    //
-   //      synchronous_lock synchronouslock(this->synchronization());
+   //      _synchronous_lock synchronouslock(this->synchronization());
    //
    //      if (is_window())
    //      {
@@ -10376,7 +10376,7 @@ namespace user
 
       //}
 
-      //synchronous_lock synchronouslock(puserinteractionParent == nullptr ? nullptr : puserinteractionParent->synchronization());
+      //_synchronous_lock synchronouslock(puserinteractionParent == nullptr ? nullptr : puserinteractionParent->synchronization());
 
       m_pprimitiveimpl = __create_new<::user::interaction_child>();
 
@@ -10690,7 +10690,7 @@ namespace user
    ::user::interaction * interaction::get_first_child_window()
    {
 
-      synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
+      _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
 
       auto pchildren = m_puserinteractionpointeraChild;
 
@@ -10718,7 +10718,7 @@ namespace user
 
       }
 
-      synchronous_lock synchronouslock(pparent->window()->m_pparticleChildrenSynchronization);
+      _synchronous_lock synchronouslock(pparent->window()->m_pparticleChildrenSynchronization);
 
       auto puserinteractionpointeraChild = pparent->m_puserinteractionpointeraChild;
 
@@ -10741,7 +10741,7 @@ namespace user
 
       {
 
-         synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
+         _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
 
          if (!bIgnoreChildren)
          {
@@ -10784,7 +10784,7 @@ namespace user
 
          }
 
-         synchronous_lock synchronouslockParent(puserinteractionParent->window()->m_pparticleChildrenSynchronization);
+         _synchronous_lock synchronouslockParent(puserinteractionParent->window()->m_pparticleChildrenSynchronization);
 
          auto puserinteractionpointeraChild = puserinteractionParent->m_puserinteractionpointeraChild;
 
@@ -11105,7 +11105,7 @@ namespace user
       else
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization());
 
          return m_strWindowText2;
 
@@ -11151,7 +11151,7 @@ namespace user
    //   strsize interaction::get_window_text_length()
    //   {
    //
-   //      synchronous_lock synchronouslock(this->synchronization());
+   //      _synchronous_lock synchronouslock(this->synchronization());
    //
    //      if (m_pprimitiveimpl == nullptr)
    //      {
@@ -11389,7 +11389,7 @@ namespace user
 
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization());
 
          if (m_puserinteractionpointeraOwned) m_puserinteractionpointeraOwned->destroy();
 
@@ -11397,7 +11397,7 @@ namespace user
 
       {
 
-         synchronous_lock synchronouslock(m_pwindow ? m_pwindow->m_pparticleChildrenSynchronization : nullptr);
+         _synchronous_lock synchronouslock(m_pwindow ? m_pwindow->m_pparticleChildrenSynchronization : nullptr);
 
          if (m_puserinteractionpointeraChild) m_puserinteractionpointeraChild->destroy();
 
@@ -11434,7 +11434,7 @@ namespace user
 
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization());
 
          m_puserinteractionpointeraOwned.release();
 
@@ -11442,7 +11442,7 @@ namespace user
 
       {
 
-         synchronous_lock synchronouslock(m_pwindow ? m_pwindow->m_pparticleChildrenSynchronization : nullptr);
+         _synchronous_lock synchronouslock(m_pwindow ? m_pwindow->m_pparticleChildrenSynchronization : nullptr);
 
          m_puserinteractionpointeraChild.release();
 
@@ -11477,7 +11477,7 @@ namespace user
 
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization());
 
          try
          {
@@ -12187,7 +12187,7 @@ namespace user
    ::index interaction::child_zorder(::user::interaction * puserinteraction)
    {
 
-      synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
+      _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
 
       if (!m_puserinteractionpointeraChild)
       {
@@ -12213,7 +12213,7 @@ namespace user
 
       }
 
-      synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
+      _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
 
       if (m_puserinteractionpointeraChild)
       {
@@ -12231,7 +12231,7 @@ namespace user
                if (strType.case_insensitive_contains("place_holder"))
                {
 
-                  synchronous_lock synchronouslockChild(pchild->window()->m_pparticleChildrenSynchronization);
+                  _synchronous_lock synchronouslockChild(pchild->window()->m_pparticleChildrenSynchronization);
 
                   if (pchild->m_puserinteractionpointeraChild
                      && pchild->m_puserinteractionpointeraChild->has_interaction())
@@ -12668,7 +12668,7 @@ namespace user
 
       //information() << "interaction::layout_children_zorder";
 
-      synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
+      _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
 
       auto puiptraChildNew = __allocate< ::user::interaction_array >(*m_puserinteractionpointeraChild);
 
@@ -12898,7 +12898,7 @@ namespace user
    bool interaction::layout_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       if (!m_pprimitiveimpl || !m_pprimitiveimpl->m_puserinteraction)
       {
@@ -12974,7 +12974,7 @@ namespace user
 
       {
 
-         synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
+         _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
 
          auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
 
@@ -13006,7 +13006,7 @@ namespace user
 
                      pinteraction->set_need_layout();
 
-                     synchronouslock.lock();
+                     synchronouslock._lock();
 
                   }
 
@@ -13624,7 +13624,7 @@ namespace user
    pointer_array<interaction> * interaction::children()
    {
 
-      synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
+      _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
 
       if (::is_null(m_puserinteractionpointeraChild))
       {
@@ -13708,7 +13708,7 @@ namespace user
    void interaction::top_down_prefix()
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       sketch_to_lading();
 
@@ -13803,7 +13803,7 @@ namespace user
 
       bool bNeedPerformLayoutHere = need_on_perform_layout(pgraphics);
 
-      //synchronous_lock synchronouslock(this->synchronization());
+      //_synchronous_lock synchronouslock(this->synchronization());
 
       auto children = synchronized_get_children();
 
@@ -15301,7 +15301,7 @@ namespace user
       information() << "interaction::track_mouse_hover";
 #endif
 
-      //      synchronous_lock synchronouslock(this->synchronization());
+      //      _synchronous_lock synchronouslock(this->synchronization());
 
       //if (m_bTrackMouseLeave)
       //{
@@ -15397,7 +15397,7 @@ namespace user
 
       }
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       //      if (get_parent() == nullptr)
       //      {
@@ -15550,7 +15550,7 @@ namespace user
    void interaction::lading_to_layout(bool & bUpdateBuffer, bool & bUpdateWindow)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       bUpdateBuffer = false;
 
@@ -16034,7 +16034,7 @@ namespace user
    void interaction::layout_to_design()
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       if (!layout().design().visual_state::operator==(layout().layout()))
       {
@@ -16248,7 +16248,7 @@ namespace user
 
       ::pointer<::user::interaction> puiThis = this;
 
-      //synchronous_lock slChildren(::user::pointer < ::mutex >_children());
+      //_synchronous_lock slChildren(::user::pointer < ::mutex >_children());
 
       try
       {
@@ -16265,7 +16265,7 @@ namespace user
             information() << "";
 
 
-            synchronous_lock synchronouslock(m_puserinteractionParent->window()->m_pparticleChildrenSynchronization);
+            _synchronous_lock synchronouslock(m_puserinteractionParent->window()->m_pparticleChildrenSynchronization);
             //auto puiptraChildNew = __allocate(
 //                    ::user::interaction_array(*m_puserinteractionParent->m_puserinteractionpointeraChild));
             m_puserinteractionParent->m_puserinteractionpointeraChild->erase_interaction(this);
@@ -16335,7 +16335,7 @@ namespace user
    {
 
       //information() << "interaction::on_add_child start\n";
-      synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
+      _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
 
       puserinteractionChild->m_pinteractionScaler = m_pinteractionScaler;
 
@@ -16435,7 +16435,7 @@ namespace user
    void interaction::user_mouse_set_cursor(::user::mouse * pmouse, ::windowing::cursor * pcursor)
    {
 
-      pmouse->m_pwindowingcursor = pcursor;
+         pmouse->m_pwindowingcursor = pcursor;
 
       //information() << "user_mouse_set_cursor : " << pcursor->m_ecursor;
 
@@ -16742,7 +16742,7 @@ namespace user
 
       }
 
-      synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
+      _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
 
       auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
 
@@ -17208,7 +17208,7 @@ namespace user
    ::user::interaction * interaction::first_child()
    {
 
-      synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
+      _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
 
       try
       {
@@ -17239,7 +17239,7 @@ namespace user
    ::user::interaction * interaction::last_child()
    {
 
-      synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
+      _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
 
       try
       {
@@ -17279,7 +17279,7 @@ namespace user
    ::user::interaction * interaction::next_sibling()
    {
 
-      synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
+      _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
 
       try
       {
@@ -17326,7 +17326,7 @@ namespace user
    ::user::interaction * interaction::next_sibling(::user::interaction * pinteraction)
    {
 
-      synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
+      _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
 
       try
       {
@@ -17362,7 +17362,7 @@ namespace user
    ::user::interaction * interaction::previous_sibling()
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       try
       {
@@ -17515,7 +17515,7 @@ namespace user
    ::user::interaction * interaction::previous_sibling(::user::interaction * pinteraction)
    {
 
-      synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
+      _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
 
       auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
 
@@ -18017,7 +18017,7 @@ namespace user
          else
          {
 
-            synchronous_lock synchronouslock(this->synchronization());
+            _synchronous_lock synchronouslock(this->synchronization());
 
             auto pthread = payload("transparent_mouse_event_thread").cast<::thread>();
 
@@ -18645,7 +18645,7 @@ namespace user
 
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization());
 
          auto & layoutstate = layout().m_statea[elayout];
 
@@ -19714,7 +19714,7 @@ namespace user
       if (bSet && !is_empty(rectangleNew) && iMatchingMonitor >= 0)
       {
 
-         synchronous_lock slUserMutex(synchronization());
+         _synchronous_lock slUserMutex(synchronization());
 
          order(zorderParam);
 
@@ -19828,7 +19828,7 @@ namespace user
       if (bSet && (!is_empty(rectangle) || iMatchingMonitor >= 0))
       {
 
-         synchronous_lock slUserMutex(synchronization());
+         _synchronous_lock slUserMutex(synchronization());
 
          order(zorderParam);
 
@@ -19976,7 +19976,7 @@ namespace user
       if (bSet && (!::is_empty(rectangleNew) || iMatchingMonitor >= 0))
       {
 
-         synchronous_lock slUserMutex(synchronization());
+         _synchronous_lock slUserMutex(synchronization());
 
          display(e_display_iconic, eactivation);
 
@@ -20644,7 +20644,7 @@ namespace user
       //3
       //The window's owner window is being restored.
 
-      //synchronous_lock synchronouslock(mutex_children());
+      //_synchronous_lock synchronouslock(mutex_children());
 
       //if(m_uiptraChild.has_element())
       //{
@@ -20915,7 +20915,7 @@ namespace user
    bool interaction::get_child(::pointer<::user::interaction> & pinteraction)
    {
 
-      synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
+      _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
 
       auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
 
@@ -20934,7 +20934,7 @@ namespace user
    bool interaction::rget_child(::pointer<::user::interaction> & pinteraction)
    {
 
-      synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
+      _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
 
       auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
 
@@ -21511,7 +21511,7 @@ namespace user
 //      //
 //      //      {
 //      //
-//      //         synchronous_lock synchronouslock(this->synchronization());
+//      //         _synchronous_lock synchronouslock(this->synchronization());
 //      //
 //      //         for (index i = 0; i < m_uiptraChild.get_size(); i++)
 //      //         {
@@ -21586,7 +21586,7 @@ namespace user
 
       }
 
-      synchronous_lock synchronouslock(puiTop->synchronization());
+      _synchronous_lock synchronouslock(puiTop->synchronization());
 
       ::pointer<::user::interaction_impl> pprimitiveimpl = puiTop->m_pprimitiveimpl;
 
@@ -23355,7 +23355,7 @@ namespace user
 
       //{
 
-      //   //synchronous_lock synchronouslock(this->synchronization());
+      //   //_synchronous_lock synchronouslock(this->synchronization());
 
       //   pmouse->m_pcursor = get_mouse_cursor();
 
@@ -24269,7 +24269,7 @@ namespace user
 
       {
 
-         //synchronous_lock synchronouslock(this->synchronization());
+         //_synchronous_lock synchronouslock(this->synchronization());
 
          user_mouse_set_cursor(pmouse, get_mouse_cursor());
 
@@ -25199,7 +25199,7 @@ namespace user
    void interaction::on_message_mouse_leave(::message::message * pmessage)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       ::string strType = ::type(this).name();
 
@@ -25488,7 +25488,7 @@ namespace user
    ::item_pointer interaction::on_items_hit_test(const ::point_i32 & point, e_zorder ezorder, ::index iIdContainer, ::item_array * pitema)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       //auto pointScroll = point + m_pointScroll + m_pointBarDragScroll;
 
@@ -25544,7 +25544,7 @@ namespace user
    void interaction::defer_setup_default_bottom_right_resize_user_item()
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       //information() << "defer_setup_default_bottom_right_resize_user_item";
 
@@ -25630,7 +25630,7 @@ namespace user
       //if (ezorder & e_zorder_back)
       //{
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       auto pitemClient = tool().item(e_element_client);
 
@@ -26350,7 +26350,7 @@ namespace user
    ::user::interaction * interaction::child_at(::index iIndex)
    {
 
-      synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
+      _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
 
       if (::is_null(m_puserinteractionpointeraChild))
       {

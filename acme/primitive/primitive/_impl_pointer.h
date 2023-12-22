@@ -325,27 +325,25 @@ T * __dynamic_cast(const T2 * p)
 
 
 template < class T >
-inline pointer < T >& pointer < T > ::reset(const ::pointer < T > & pNew)
+inline pointer < T >& pointer < T > ::reset(T * p)
 {
 
-   if (pNew.is_null())
+   if (::is_null(p))
    {
 
-      ::release(m_pparticle);
-
-      m_p = nullptr;
+      release();
 
    }
-   else if(m_p != pNew.m_p)
+   else if(m_p != p)
    {
 
       auto pparticleOld = m_pparticle;
 
-      pNew.m_pparticle->increment_reference_count();
+      p->increment_reference_count();
 
-      m_p = pNew.m_p;
+      m_p = p;
 
-      m_pparticle = pNew.m_pparticle;
+      m_pparticle = p;
 
       if (::is_set(pparticleOld))
       {

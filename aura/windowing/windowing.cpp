@@ -125,7 +125,7 @@ namespace windowing
    ::pointer<cursor>windowing::get_cursor(enum_cursor ecursor)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       if (m_pcursormanager.is_null())
       {

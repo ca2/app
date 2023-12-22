@@ -114,7 +114,7 @@ namespace sockets_bsd
       m_pmemfileInput = nullptr;
       m_iBindPort    = -1;
       m_timeStart.Now();
-      m_pcallback    = nullptr;
+      //m_pcallback    = nullptr;
       m_bEnablePool  = true;
 
       m_timeConnectionMaximum = 30_s;

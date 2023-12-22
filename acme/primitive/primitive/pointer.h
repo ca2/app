@@ -365,12 +365,12 @@ public:
    //}
 
 
-   //inline pointer& operator = (T * p)
-   //{
+   inline pointer& operator = (T * p)
+   {
 
-   //   return reset((T *) p);
+      return reset((T *) p);
 
-   //}
+   }
 
 
    //template < typename T2 >
@@ -500,7 +500,9 @@ public:
 
    //}
 
-   inline pointer& reset(const ::pointer < T > & p);
+   inline pointer& reset(const ::pointer < T > & p) { return reset(p.m_p); }
+
+   inline pointer& reset(T * p);
 
    template < typename T2 >
    inline pointer & reset(T2 * ptr);

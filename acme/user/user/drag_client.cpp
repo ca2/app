@@ -2,6 +2,7 @@
 #include "framework.h"
 #include "drag_client.h"
 #include "drag.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "acme/primitive/geometry2d/_text_stream.h"
 #include "acme/user/user/mouse.h"
 #include "acme/user/user/item.h"
@@ -181,6 +182,8 @@ namespace user
    bool drag_client::drag_on_mouse_move(::user::mouse * pmouse)
    {
 
+      _synchronous_lock _synchronouslock(this->synchronization());
+
       if (m_pdragCurrent)
       {
 
@@ -203,18 +206,22 @@ namespace user
             if (!m_pdragCurrent->m_bDrag)
             {
 
-               m_pdragCurrent->m_bDrag = true;
+               auto pdrag = m_pdragCurrent;
 
-               drag_shift(m_pdragCurrent->m_pitem, pmouse);
+               _synchronouslock.unlock();
 
-               if (m_pdragCurrent->m_ecursor != e_cursor_none)
+               pdrag->m_bDrag = true;
+
+               drag_shift(pdrag->m_pitem, pmouse);
+
+               if (pdrag->m_ecursor != e_cursor_none)
                {
 
-                  drag_set_cursor(m_pdragCurrent->m_pitem);
+                     drag_set_cursor(pdrag->m_pitem);
 
                }
 
-               m_pdragCurrent->m_bDrag = false;
+               pdrag->m_bDrag = false;
 
                return true;
 

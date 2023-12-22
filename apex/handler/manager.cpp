@@ -104,7 +104,7 @@ class ::signal * manager::get_signal(const ::atom & atom)
 class ::signal * manager::get_signal(const ::atom & atom, const ::action_context& actioncontext)
 {
 
-   synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization());
 
    if (!m_psignalmap)
    {

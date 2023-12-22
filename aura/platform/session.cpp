@@ -156,7 +156,7 @@ namespace aura
 
       //m_pnode = acmenode();
 
-      m_pimplPendingFocus2             = nullptr;
+      //m_pimplPendingFocus2             = nullptr;
 
       m_pappCurrent                    = nullptr;
 

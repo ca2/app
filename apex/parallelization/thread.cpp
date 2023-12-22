@@ -3480,7 +3480,7 @@ void thread::on_task_init()
 message_queue* thread::_get_message_queue()
 {
 
-   synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization());
 
    if(has_finishing_flag() || m_bThreadClosed)
    {
@@ -3540,7 +3540,7 @@ bool thread::peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin
    if (m_pmessagequeue)
    {
       
-      synchronous_lock synchronouslock(m_pmessagequeue->synchronization());
+      _synchronous_lock synchronouslock(m_pmessagequeue->synchronization());
       
       if(m_pmessagequeue->m_eflagElement & (::enum_flag) (1ll <<37))
       {
@@ -4149,7 +4149,7 @@ void thread::post(::message::message * pmessage)
 void thread::handle_posted_messages()
 {
 
-   synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization());
 
    while (m_messagea.has_elements())
    {
@@ -4230,7 +4230,7 @@ void thread::handle_posted_messages()
 
       }
 
-      synchronouslock.lock();
+      synchronouslock._lock();
 
       if(pmessage->has_property("flush_similar_messages"))
       {

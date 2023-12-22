@@ -53,7 +53,7 @@ void cairo_keep::save()
    if(m_bSave)
       return;
 
-   synchronous_lock synchronouslock(::draw2d_cairo::mutex());
+   _synchronous_lock synchronouslock(::draw2d_cairo::mutex());
 
    cairo_save(m_pdc);
 
@@ -65,7 +65,7 @@ void cairo_keep::save()
 void cairo_keep::restore()
 {
 
-   synchronous_lock ml(::draw2d_cairo::mutex());
+   _synchronous_lock ml(::draw2d_cairo::mutex());
 
    if(m_pdc == nullptr)
    {
@@ -91,7 +91,7 @@ void cairo_keep::restore()
 void cairo_keep::pulse()
 {
 
-   synchronous_lock ml(::draw2d_cairo::mutex());
+   _synchronous_lock ml(::draw2d_cairo::mutex());
 
    restore();
 

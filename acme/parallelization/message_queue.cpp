@@ -94,7 +94,7 @@ void message_queue::post_message(const MESSAGE & message)
 
    }
 
-   synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization());
 
    m_messagea.add(message);
 
@@ -134,7 +134,7 @@ void message_queue::kick_idle()
 
    }
 
-   synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization());
 
    if(m_eflagElement & (::enum_flag) (1ll <<37))
    {
@@ -151,7 +151,7 @@ void message_queue::kick_idle()
       if(!synchronouslock.is_locked())
       {
        
-         synchronouslock.lock();
+         synchronouslock._lock();
          
       }
    
@@ -211,7 +211,7 @@ void message_queue::kick_idle()
 
          synchronouslock.unlock();
 
-         auto bAcquired = m_eventNewMessage.wait(time);
+         auto bAcquired = m_eventNewMessage._wait(time);
          if(m_eflagElement & (1ll << 36))
          {
           
@@ -225,7 +225,7 @@ void message_queue::kick_idle()
 
          }
 
-         synchronouslock.lock();
+         synchronouslock._lock();
 
          m_eventNewMessage.ResetEvent();
 
@@ -246,7 +246,7 @@ bool message_queue::peek_message(MESSAGE * pMsg, oswindow oswindow,::u32 wMsgFil
 
    }
 
-   synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization());
 
    if(m_eflagElement & (::enum_flag) (1ll <<37))
    {
@@ -263,7 +263,7 @@ bool message_queue::peek_message(MESSAGE * pMsg, oswindow oswindow,::u32 wMsgFil
       if(!synchronouslock.is_locked())
       {
        
-         synchronouslock.lock();
+         synchronouslock._lock();
          
       }
    

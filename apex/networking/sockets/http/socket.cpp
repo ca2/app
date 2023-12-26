@@ -512,6 +512,13 @@ namespace sockets
             continue;
 
          }
+         if (strKey.case_insensitive_order("set-cookie") == 0)
+         {
+
+            continue;
+
+         }
+
 
          for (int j = 0; j < straValue.get_count(); j++)
          {
@@ -532,6 +539,8 @@ namespace sockets
       }
 
       msg += "\r\n";
+
+      information() << "Out Headers\n" << msg;
 
       print(msg);
 
@@ -760,13 +769,12 @@ namespace sockets
       {
          informationf("  (request)OnHeader %s: %s\n", (const char *) key, (const char *) value);
       }*/
-      if (key == "cookie")
+      m_request.header(key) = value;
+      if (key.as_string().case_insensitive_equals("cookie"))
       {
          m_request.cookies().parse_header(value);
          //m_response.cookies().parse_header(value);
       }
-      else
-         m_request.header(key) = value;
 
    }
 

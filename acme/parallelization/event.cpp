@@ -468,7 +468,7 @@ void event::_wait ()
    while (true)
    {
 
-      int iResult = ::WaitForSingleObjectEx(hsync(), 300, false);
+      int iResult = ::WaitForSingleObjectEx(m_handle, 300, false);
 
       if(iResult == WAIT_OBJECT_0)
       {
@@ -489,6 +489,8 @@ void event::_wait ()
       }
       else
       {
+
+         auto u = ::GetLastError();
 
          throw ::exception(error_failed);
 

@@ -105,7 +105,7 @@ namespace axis
 
       m_bSystemSynchronizedCursor      = true;
 
-      m_pimplPendingFocus2             = nullptr;
+      //m_pimplPendingFocus2             = nullptr;
 
       auto psystem = system()->m_paurasystem;
 
@@ -122,7 +122,7 @@ namespace axis
 
       m_pmapKeyPressed                 = nullptr;
 
-      m_puiMouseMoveCapture            = nullptr;
+      //m_puiMouseMoveCapture            = nullptr;
 
       m_bZipIsDir2                     = true;
 
@@ -138,7 +138,7 @@ namespace axis
 //m_strBaseSupportId = "base_session";
 //m_strInstallToken = "base_session";
 
-      m_puiMouseMoveCapture = nullptr;
+      //m_puiMouseMoveCapture = nullptr;
 
       //return estatus;
 

@@ -193,6 +193,8 @@ namespace dynamic_source
       fork([this]()
          {
 
+            ::task_set_name("clrses20s");
+
             while (::task_get_run())
             {
 

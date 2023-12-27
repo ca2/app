@@ -2347,7 +2347,7 @@ namespace sockets_bsd
          if (keyfile.case_insensitive_ends(".cat"))
          {
 
-            strCert = file()->as_string(keyfile);
+            strCert = file()->safe_get_string(keyfile);
 
          }
          else

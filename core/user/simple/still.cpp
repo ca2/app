@@ -8,7 +8,7 @@
 simple_still::simple_still()
 {
    
-   m_pimagelist = nullptr;
+   //m_pimagelist = nullptr;
    
    m_bTransparent = false;
    

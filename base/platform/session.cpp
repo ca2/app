@@ -62,13 +62,13 @@ namespace base
 
       m_pmapKeyPressed                 = nullptr;
 
-      m_puiMouseMoveCapture            = nullptr;
+      //m_puiMouseMoveCapture            = nullptr;
 
       m_bShowPlatform                  = false;
 
       m_pappCurrent                    = nullptr;
 
-      m_puiMouseMoveCapture = nullptr;
+      //m_puiMouseMoveCapture = nullptr;
 
       //return estatus;
 

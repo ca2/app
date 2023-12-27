@@ -18,6 +18,7 @@ namespace acme { class acme;  }
 #include "application_flags.h"
 #include "application_menu_callback.h"
 #include "context.h"
+#include "release_time_for_project.h"
 #include "acme/primitive/text/text.h"
 
 

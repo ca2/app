@@ -269,7 +269,6 @@ namespace user
    }
 
 
-
    bool plain_edit::is_plain_edit_modified() const
    {
    
@@ -5015,7 +5014,7 @@ namespace user
    void plain_edit::plain_edit_on_delete(::draw2d::graphics_pointer & pgraphics, bool bBackIfSelectionEmpty)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       bool bFullUpdate = false;
 
@@ -5099,7 +5098,7 @@ namespace user
             else
             {
 
-               if (m_ptree->m_iSelEnd < m_ptree->m_peditfile->get_length())
+               if (m_ptree->m_iSelEnd >= m_ptree->m_peditfile->get_length())
                {
 
                   return;

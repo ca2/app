@@ -946,7 +946,7 @@ namespace file
    void edit_file::flush()
    {
       
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       auto pfile = create_memory_file();
 

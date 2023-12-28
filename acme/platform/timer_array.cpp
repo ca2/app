@@ -222,7 +222,7 @@ namespace acme
 
          {
 
-            synchronous_lock synchronouslock(this->synchronization());
+            _synchronous_lock synchronouslock(this->synchronization());
 
             map = m_timermap;
 

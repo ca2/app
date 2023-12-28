@@ -1317,7 +1317,7 @@ namespace user
          if (typeatomData.is_empty())
          {
 
-            information() << "user::document doesn't a data type";
+            information() << "user::document::create_data impact_system data type is empty";
 
             return nullptr;
 
@@ -2078,7 +2078,7 @@ namespace user
    void document::erase_impact(::user::impact * pimpact)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       ASSERT_VALID(pimpact);
 

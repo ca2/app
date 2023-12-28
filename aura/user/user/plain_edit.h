@@ -488,7 +488,8 @@ namespace user
       void MacroRecord(::pointer<plain_text_command>pcommand);
       virtual void MacroEnd() override;
 
-      bool plain_edit_undo();
+      virtual bool __plain_edit_undo();
+      virtual bool __plain_edit_redo();
 
       virtual bool edit_undo() override;
       virtual bool edit_redo();

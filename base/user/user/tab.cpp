@@ -361,7 +361,7 @@ namespace user
    void tab::erase_tab(::index iIndex, bool bVisible)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       if (iIndex < 0 || iIndex >= get_data()->m_tabpanea.get_size())
       {
@@ -1113,7 +1113,7 @@ namespace user
    void tab::defer_erase_child_pane(::user::interaction * pinteraction)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       index iIndex = find_child_pane(pinteraction);
 

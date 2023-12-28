@@ -106,31 +106,31 @@ namespace user
 
          prequest->m_countStack--;
 
-      if (prequest->m_countStack <= 0)
-      {
-
-         for (auto & procedure : prequest->m_procedureaOnFinishRequest)
+         if (prequest->m_countStack <= 0)
          {
 
-            try
+            for (auto & procedure : prequest->m_procedureaOnFinishRequest)
             {
 
-               procedure();
+               try
+               {
+
+                  procedure();
+
+               }
+               catch (...)
+               {
+
+
+               }
 
             }
-            catch (...)
-            {
 
-
-            }
+            prequest->m_procedureaOnFinishRequest.clear();
 
          }
 
-         prequest->m_procedureaOnFinishRequest.clear();
       };
-
-      };
-
 
       if (prequest->m_atom.is_null())
       {
@@ -275,7 +275,7 @@ namespace user
       //}
 
 
-      information() << "single_document_template::on_request_continuation";
+      //information() << "single_document_template::on_request_continuation";
 
       //      bool bMakeVisible = true;
       //

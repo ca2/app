@@ -858,7 +858,7 @@ namespace user
 
       }
 
-      information() << "on_set_position : " << point;
+      //information() << "on_set_position : " << point;
 
       return true;
 
@@ -923,7 +923,7 @@ namespace user
 
       }
 
-      information() << "on_set_size : " << size;
+      //information() << "on_set_size : " << size;
 
       on_change_scroll_state(elayout);
 
@@ -20536,12 +20536,12 @@ namespace user
           || layout().layout().m_edisplay == e_display_iconic)
       {
 
-         information() << "on_message_show_window (A)";
+         //information() << "on_message_show_window (A)";
 
          if (::type(this).name().contains("main_frame"))
          {
 
-            information() << "on_message_show_window main_frame (A)";
+           // information() << "on_message_show_window main_frame (A)";
 
          }
 
@@ -20582,12 +20582,12 @@ namespace user
       else
       {
 
-         information() << "on_message_show_window (B)";
+         //information() << "on_message_show_window (B)";
 
          if (::type(this).name().contains("main_frame"))
          {
 
-            information() << "on_message_show_window main_frame (B)";
+            //information() << "on_message_show_window main_frame (B)";
 
          }
 

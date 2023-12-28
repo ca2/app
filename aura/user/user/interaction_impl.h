@@ -698,6 +698,7 @@ namespace user
 
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
+      DECLARE_MESSAGE_HANDLER(on_message_pos_create);
       DECLARE_MESSAGE_HANDLER(_001OnPaint);
       DECLARE_MESSAGE_HANDLER(_001OnPrint);
       DECLARE_MESSAGE_HANDLER(_001OnCaptureChanged);

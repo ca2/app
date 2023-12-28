@@ -4649,28 +4649,12 @@ int thread::get_x_window_count() const
 bool thread::do_tasks()
 {
 
-   MESSAGE msg;
-
    bool bProcessed = false;
 
-   while(peek_message(&msg,nullptr,0,0) != false)
+   while(defer_pump_message())
    {
 
-      if (msg.m_atom == e_message_quit) // do not pump, otherwise main loop will not process the message
-      {
-
-         break;
-
-      }
-
       bProcessed = true;
-
-      if (!pump_message())
-      {
-
-         break;
-
-      }
 
    }
 

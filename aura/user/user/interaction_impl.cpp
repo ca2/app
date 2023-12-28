@@ -1031,33 +1031,33 @@ namespace user
 
          m_pgraphicsthread = pgraphicsthread;
 
-         auto pusersystem = m_puserinteraction->m_pusersystem;
+         //auto pusersystem = m_puserinteraction->m_pusersystem;
 
-         if (pusersystem)
-         {
+         //if (pusersystem)
+         //{
 
-            auto prequest = pusersystem->m_prequest;
+         //   auto prequest = pusersystem->m_prequest;
 
-            if (prequest)
-            {
+         //   if (prequest)
+         //   {
 
-               information() << "pgraphicsthread->m_eventReady.ResetEvent();";
+         //      information() << "pgraphicsthread->m_eventReady.ResetEvent();";
 
-               pgraphicsthread->m_eventReady.ResetEvent();
+         //      pgraphicsthread->m_eventReady.ResetEvent();
 
-               prequest->m_procedureaOnFinishRequest.add(
-                  [this, pgraphicsthread]()
-                  {
+         //      prequest->m_procedureaOnFinishRequest.add(
+         //         [this, pgraphicsthread]()
+         //         {
 
-                     information() << "pgraphicsthread->m_eventReady.SetEvent();";
+         //            information() << "pgraphicsthread->m_eventReady.SetEvent();";
 
-                     pgraphicsthread->m_eventReady.SetEvent();
+         //            pgraphicsthread->m_eventReady.SetEvent();
 
-                  });
+         //         });
 
-            }
+         //   }
 
-         }
+         //}
 
          m_pgraphicsthread->initialize_graphics_thread(this);
 
@@ -1301,7 +1301,8 @@ namespace user
    void interaction_impl::last_install_message_routing(::channel * pchannel)
    {
 
-      MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &interaction_impl::on_message_create);
+      MESSAGE_LINK(e_message_create, pchannel, this, &interaction_impl::on_message_create);
+      MESSAGE_LINK(e_message_pos_create, pchannel, this, &interaction_impl::on_message_pos_create);
 
       ::user::primitive_impl::last_install_message_routing(pchannel);
 
@@ -5147,6 +5148,30 @@ namespace user
    void interaction_impl::on_message_create(::message::message * pmessage)
    {
 
+
+   }
+
+
+   void interaction_impl::on_message_pos_create(::message::message * pmessage)
+   {
+
+      if (m_puserinteraction)
+      {
+
+         m_puserinteraction->m_ewindowflag |= e_window_flag_window_created;
+
+      }
+
+      information() << "on_message_pos_create";
+
+      if (m_pgraphicsthread)
+      {
+
+         information() << "m_pgraphicsthread->m_eventReady.SetEvent()";
+       
+         m_pgraphicsthread->m_eventReady.SetEvent();
+
+      }
 
    }
 

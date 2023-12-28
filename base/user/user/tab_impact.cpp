@@ -296,7 +296,7 @@ namespace user
    void tab_impact::_001OnRemoveTab(class tab_pane * ptabpane)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       if (ptabpane->m_pplaceholder.is_set())
       {

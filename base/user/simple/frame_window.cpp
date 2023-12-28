@@ -686,7 +686,7 @@ void simple_frame_window::on_message_destroy(::message::message * pmessage)
 
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      //synchronous_lock synchronouslock(this->synchronization());
 
       try
       {

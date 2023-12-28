@@ -7677,12 +7677,12 @@ namespace user
    }
 
 
-   bool plain_edit::plain_edit_undo()
+   bool plain_edit::__plain_edit_undo()
    {
 
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization());
 
          {
             if (!CanUndo())
@@ -7704,34 +7704,8 @@ namespace user
    }
 
 
-   bool plain_edit::edit_undo()
+   bool plain_edit::__plain_edit_redo()
    {
-
-      plain_edit_undo();
-
-      auto psystem = system()->m_paurasystem;
-
-      auto pdraw2d = psystem->draw2d();
-
-      auto pgraphics = pdraw2d->create_memory_graphics(this);
-
-      plain_edit_create_line_index(pgraphics);
-
-      m_bGetTextNeedUpdate = true;
-
-      plain_edit_on_update(pgraphics, ::e_source_user);
-
-      //plain_edit_on_after_change_text(pgraphics, ::e_source_user);
-
-      return true;
-
-   }
-
-
-   bool plain_edit::edit_redo()
-   {
-
-      ::draw2d::graphics_pointer pgraphics;
 
       {
 
@@ -7780,15 +7754,67 @@ namespace user
 
       }
 
-      plain_edit_create_line_index(pgraphics);
+      return true;
 
-      m_bGetTextNeedUpdate = true;
+   }
+      
+   
+   bool plain_edit::edit_undo()
+   {
 
-      plain_edit_on_update(pgraphics, ::e_source_user);
-      //plain_edit_on_after_change_text(pgraphics, ::e_source_user);
+      if (!__plain_edit_undo())
+      {
+
+         return false;
+
+      }
+
+      queue_graphics_call([this](::draw2d::graphics_pointer & pgraphics)
+      {
+
+         plain_edit_create_line_index(pgraphics);
+
+         m_bGetTextNeedUpdate = true;
+
+         plain_edit_on_update(pgraphics, ::e_source_user);
+
+      });
+
+      set_need_redraw();
+
+      post_redraw();
 
       return true;
+
    }
+
+
+   bool plain_edit::edit_redo()
+   {
+
+      if (!__plain_edit_redo())
+      {
+
+         return false;
+
+      }
+
+      queue_graphics_call([this](::draw2d::graphics_pointer & pgraphics)
+      {
+
+         plain_edit_create_line_index(pgraphics);
+
+         m_bGetTextNeedUpdate = true;
+
+         plain_edit_on_update(pgraphics, ::e_source_user);
+         //plain_edit_on_after_change_text(pgraphics, ::e_source_user);
+
+      });
+
+      return true;
+
+   }
+
 
    bool plain_edit::CanUndo()
    {

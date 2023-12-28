@@ -6180,6 +6180,8 @@ namespace user
 
       pgraphics->m_puserinteraction = m_puserinteraction;
 
+      ::string strType = ::type(this).as_string();
+
       if (pgraphics->m_egraphics & e_graphics_layout)
       {
 
@@ -13657,7 +13659,7 @@ namespace user
       if (sizeThis != sizeParent)
       {
 
-         set_position(sizeParent, ::user::e_layout_layout, pgraphics);
+         set_size(sizeParent, ::user::e_layout_layout, pgraphics);
 
       }
 

@@ -451,6 +451,63 @@ namespace user
    void plain_edit::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
+      auto pparent = get_parent();
+
+      ::string strTypeParent;
+
+      ::string strTypeParentParent;
+
+      ::string strTypeParentParentParent;
+
+      if (::is_set(pparent))
+      {
+
+         strTypeParent = ::type(pparent).as_string();
+
+         ::string str;
+
+         auto r = pparent->rectangle();
+
+         str.formatf("%d,%d,%d,%d : %s", r.left(), r.top(), r.width(), r.height(), strTypeParent.c_str());
+
+         information() << str;
+
+         auto pparentParent = pparent->get_parent();
+
+         if (::is_set(pparentParent))
+         {
+
+            strTypeParentParent = ::type(pparentParent).as_string();
+
+            ::string str2;
+
+            auto r2 = pparentParent->rectangle();
+
+            str2.formatf("%d,%d,%d,%d : %s", r2.left(), r2.top(), r2.width(), r2.height(), strTypeParentParent.c_str());
+
+            information() << str2;
+
+            auto pparentParentParent = pparentParent->get_parent();
+
+            if (::is_set(pparentParentParent))
+            {
+
+               strTypeParentParentParent = ::type(pparentParentParent).as_string();
+
+               ::string str3;
+
+               auto r3 = pparentParentParent->rectangle();
+
+               str3.formatf("%d,%d,%d,%d : %s", r3.left(), r3.top(), r3.width(), r3.height(), strTypeParentParentParent.c_str());
+
+               information() << str3;
+
+            }
+
+         }
+
+      }
+
       //pgraphics->reset_clip();
       m_timeLastDraw = ::time::now();
 

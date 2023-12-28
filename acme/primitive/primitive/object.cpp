@@ -1167,7 +1167,7 @@ bool object::check_tasks_finished()
 
    }
 
-   synchronous_lock lock(synchronization());
+   _synchronous_lock lock(synchronization());
 
    if (m_bCheckingChildrenTask)
    {

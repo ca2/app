@@ -553,34 +553,34 @@ namespace file
       //      u32 dwUpperLimit = m_size;
       //      i32 iOffset =0;
 
-      //::pointer<::data::tree_item>ptreeitem;
+      ::pointer<::data::tree_item>ptreeitem;
 
       //      edit_group_item * pitemgroup = nullptr;
 
       ::i32_array ia;
 
-      //m_bRootDirection = calc_root_direction();
+      m_bRootDirection = calc_root_direction();
 
-      //::u32 uReadItem = 0xffffffff;
+      ::u32 uReadItem = 0xffffffff;
 
-      ////u64 uiStopSize;
+      //u64 uiStopSize;
 
-      //m_iOffset = 0;
+      m_iOffset = 0;
 
-      //if (m_bRootDirection)
-      //{
+      if (m_bRootDirection)
+      {
 
-      //   m_ptreeitemBeg = m_ptreeitemFlush->get_child_next_or_parent();
+         m_ptreeitemBeg = m_ptreeitemFlush->get_child_next_or_parent();
 
-      //   //m_ptreeitemBeg = m_ptreeitemEnd;
+         //m_ptreeitemBeg = m_ptreeitemEnd;
 
-      //}
-      //else
-      //{
+      }
+      else
+      {
 
-      //   m_ptreeitemBeg = m_ptreeitemFlush;
+         m_ptreeitemBeg = m_ptreeitemFlush;
 
-      //}
+      }
 
       ::u8 b = 0;
 
@@ -594,6 +594,8 @@ namespace file
       {
 
          m_positionIteration = m_position;
+
+         m_ptreeitemIteration = m_ptreeitem;
 
          auto &ptreeitem = m_ptreeitemIteration;
 
@@ -890,30 +892,30 @@ namespace file
 
       }
 
-      m_bRootDirection = calc_root_direction();
+      //m_bRootDirection = calc_root_direction();
 
-      ::u32 uReadItem = 0xffffffff;
+      //::u32 uReadItem = 0xffffffff;
 
       //u64 uiStopSize;
 
-      m_iOffset = 0;
+      //m_iOffset = 0;
 
-      if (m_bRootDirection)
-      {
+      //if (m_bRootDirection)
+      //{
 
-         m_ptreeitemBeg = m_ptreeitemFlush->get_child_next_or_parent();
+         //m_ptreeitemBeg = m_ptreeitemFlush->get_child_next_or_parent();
 
-         //m_ptreeitemBeg = m_ptreeitemEnd;
+        // //m_ptreeitemBeg = m_ptreeitemEnd;
 
-      }
-      else
-      {
+      //}
+      //else
+      //{
 
-         m_ptreeitemBeg = m_ptreeitemFlush;
+     //    m_ptreeitemBeg = m_ptreeitemFlush;
 
-      }
+  ///    }
 
-      m_ptreeitemIteration = m_ptreeitem;
+//      m_ptreeitemIteration = m_ptreeitem;
 
       m_position = 0;
 

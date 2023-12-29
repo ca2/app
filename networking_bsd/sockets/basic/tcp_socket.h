@@ -309,6 +309,8 @@ namespace sockets_bsd
       virtual SSL *GetSsl() override;
       /** ssl; still negotiating connection. */
       bool SSLNegotiate() override;
+      virtual bool SSLNegotiate_Client();
+      virtual bool SSLNegotiate_Server();
       /** SSL; get ssl password. */
       string GetPassword() override;
 

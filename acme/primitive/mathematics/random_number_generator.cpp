@@ -40,10 +40,21 @@ namespace mathematics
 
 
 /* generates a random number on [0,0xffffffff]-interval */
+
    u32 random_number_generator::get()
+   {
+      while(m_iAccess < 8)
+      {
+         _get();
+      }
+      return _get();
+   }
+
+   u32 random_number_generator::_get()
    {
       if(m_uinta.get_size() == 0)
          return 0;
+      m_iAccess++;
       u32 val = m_uinta[m_value % m_uinta.get_size()];
       ++m_value;
       if (m_value == TWIST_LEN)

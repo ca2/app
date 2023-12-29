@@ -31,8 +31,10 @@ namespace mathematics
       u32 get();
 
    private:
+      u32 _get();
       i32 m_value;
       u32_array m_uinta;
+      ::i64 m_iAccess = 0;
    };
 
    // http://www.alhem.net/

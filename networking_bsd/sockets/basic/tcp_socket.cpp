@@ -2002,9 +2002,9 @@ m_ibuf(isize)
          }
          SSL_set_app_data2(pssl, this);
          //         SSL_set_mode(pssl, SSL_MODE_AUTO_RETRY);
-         SSL_set_msg_callback(pssl, SSL_trace);
+         //SSL_set_msg_callback(pssl, SSL_trace);
 
-         SSL_set_msg_callback_arg(pssl, BIO_new_fp(stdout, 0));
+         //SSL_set_msg_callback_arg(pssl, BIO_new_fp(stdout, 0));
 
          printf("---------------------------------\n");
          printf("tcp_socket::OnSSLAccept\n");

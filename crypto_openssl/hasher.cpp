@@ -34,10 +34,14 @@
 //#include "_.h"
 
 
+#define boolean openssl_boolean
+
 #include <openssl/ssl.h>
 #include <openssl/md5.h>
 #include <openssl/err.h>
 #include <openssl/whrlpool.h>
+
+#undef boolean
 
 
 //namespace str

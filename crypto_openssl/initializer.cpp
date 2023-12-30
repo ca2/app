@@ -8,6 +8,7 @@
 
 #include "initializer.h"
 
+#define boolean openssl_boolean
 
 #include <openssl/ssl.h>
 #include <openssl/crypto.h>
@@ -17,6 +18,8 @@
 
 
 #include <openssl/conf.h>
+
+#undef boolean
 
 
 #if OPENSSL_VERSION_NUMBER < 0x10100000L

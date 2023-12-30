@@ -503,6 +503,8 @@ namespace user
 
       //}
 
+      m_bNeedPerformLayout = true;
+
    }
 
 
@@ -2329,7 +2331,7 @@ namespace user
 
             information() << "::user::menu::layout_menu place : " << rectangleWindow;
 
-            place(rectangleWindow);
+            place(rectangleWindow, ::user::e_layout_layout, pgraphics);
 
             //display(e_display_normal, e_activation_no_activate);
 
@@ -2338,7 +2340,7 @@ namespace user
          else
          {
 
-            set_size(m_size);
+            set_size(m_size, ::user::e_layout_layout, pgraphics);
 
          }
 

@@ -2541,12 +2541,12 @@ namespace user
       if(pmessage->m_atom == e_message_create)
       {
          
-         if (m_puserinteraction->m_procedureOnAfterCreate)
-         {
+         //if (m_puserinteraction->m_procedureOnAfterCreate)
+         //{
 
-            m_puserinteraction->post_message(e_message_pos_create);
+         //   m_puserinteraction->post_message(e_message_pos_create);
 
-         }
+         //}
 
          if(has_screen_output_purpose())
          {

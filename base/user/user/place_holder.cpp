@@ -40,6 +40,12 @@ namespace user
    void place_holder::on_message_show_window(::message::message * /* pmessage */ )
    {
 
+//      if(!is_this_visible())
+//      {
+//         
+//         m_bLockGraphicalUpdate = true;
+//         
+//      }
 
    }
 
@@ -373,6 +379,8 @@ namespace user
             {
 
                puiChild->place(rectangle);
+               
+               auto &size = puiChild->layout().m_statea[0].m_size;
 
                if (puserinteractionpointeraChild->interaction_count() == 1
                   && !puiChild->is_this_visible())
@@ -410,7 +418,7 @@ namespace user
    ::pointer<place_holder>place_holder::create_shadow_clone()
    {
 
-      ::pointer<place_holder>pholder = __new(place_holder);
+      ::pointer<place_holder>pholder = __allocate< place_holder >();
 
       if(pholder.is_null())
       {

@@ -6,14 +6,17 @@
 #include "acme/constant/message.h"
 #include "acme/constant/user_key.h"
 #include "acme/constant/timer.h"
+#include "acme/handler/topic.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/primitive/geometry2d/_text_stream.h"
 #include "acme/user/user/content.h"
+#include "acme/parallelization/message_queue.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "acme/platform/timer.h"
 #include "aura/user/user/scroll_state.h"
+#include "aura/user/user/interaction_graphics_thread.h"
 #include "aura/user/user/interaction_impl.h"
 #include "aura/message/user.h"
 #include "aura/user/user/user.h"
@@ -321,6 +324,10 @@ namespace user
             {
 
                m_pcombo->set_current_item(ptopic->m_pitem, ptopic->m_actioncontext);
+               
+               auto p = get_host_user_interaction()->m_pinteractionimpl->m_pgraphicsthread->get_message_queue();
+               
+               p->m_eflagElement |= (::enum_flag)(1ll << 36);
 
                m_pcombo->ShowDropDown(false);
 
@@ -377,13 +384,15 @@ namespace user
    void list_box::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::draw2d::save_context savecontext(pgraphics);
+      //pgraphics->reset_clip();
 
-      ::rectangle_f64 rectangleClipBox;
+      //::draw2d::save_context savecontext(pgraphics);
 
-      pgraphics->get_clip_box(rectangleClipBox);
+      //::rectangle_f64 rectangleClipBox;
 
-      pgraphics->reset_clip();
+      //pgraphics->get_clip_box(rectangleClipBox);
+
+      //pgraphics->reset_clip();
 
       _001OnDrawComboList(pgraphics);
 
@@ -931,13 +940,13 @@ namespace user
       else if (pkey->m_ekey == ::user::e_key_down)
       {
 
-         m_pcombo->m_pitemHover = __new(::item(e_element_item, minimum(m_pcombo->m_pitemHover->m_item.m_iItem + 1, m_pcombo->_001GetListCount() - 1)));
+         m_pcombo->m_pitemHover = __allocate< ::item >(e_element_item, minimum(m_pcombo->m_pitemHover->m_item.m_iItem + 1, m_pcombo->_001GetListCount() - 1));
 
       }
       else if (pkey->m_ekey == ::user::e_key_up)
       {
 
-         m_pcombo->m_pitemHover = __new(::item(e_element_item, maximum(m_pcombo->m_pitemHover->m_item.m_iItem - 1, 0)));
+         m_pcombo->m_pitemHover = __allocate< ::item >(e_element_item, maximum(m_pcombo->m_pitemHover->m_item.m_iItem - 1, 0));
 
       }
       else if (pkey->m_ekey == ::user::e_key_return)
@@ -1133,11 +1142,11 @@ namespace user
       if (rectangleItem.contains(point))
       {
 
-         return __new(::item(e_element_search_edit));
+         return __allocate< ::item >(e_element_search_edit);
 
       }
       
-      auto pitemNone = __new(::item(e_element_none));
+      auto pitemNone = __allocate< ::item >(e_element_none);
 
       return pitemNone;
 
@@ -1233,7 +1242,7 @@ namespace user
       if (!::is_set(m_pcombo->m_pitemHover))
       {
 
-         m_pcombo->m_pitemHover = __new(::item(0));
+         m_pcombo->m_pitemHover = __allocate< ::item >(::e_element_item, 0);
 
       }
 
@@ -1374,7 +1383,7 @@ namespace user
 
       }
 
-      set_current_item(__new(::item(::e_element_item, iSel)), context);
+      set_current_item(__allocate< ::item >(::e_element_item, iSel), context);
 
    }
 
@@ -1391,7 +1400,7 @@ namespace user
 
       }
 
-      set_current_item(__new(::item(::e_element_item, iSel)), context);
+      set_current_item(__allocate< ::item >(::e_element_item, iSel), context);
 
    }
 
@@ -1405,7 +1414,7 @@ namespace user
 
        }
 
-       set_current_item(__new(::item(::e_element_item, iIndex)), context);
+       set_current_item(__allocate< ::item >(::e_element_item, iIndex), context);
 
     }
 

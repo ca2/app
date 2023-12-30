@@ -65,8 +65,8 @@ namespace sockets
       ~socket_handler() override;
 
       
-      i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
-      i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
+      i64 increment_reference_count() override;
+      i64 decrement_reference_count() override;
 
 
       void initialize(::particle * pparticle) override;
@@ -133,11 +133,11 @@ namespace sockets
       bool PoolEnabled() override;
 
       // Socks4
-      ///** set socks4 server ip that all memory_new tcp sockets should use. */
+      ///** set socks4 server ip that all new tcp sockets should use. */
       //void SetSocks4Host(in_addr addr) override;
-      ///** set socks4 server hostname that all memory_new tcp sockets should use. */
+      ///** set socks4 server hostname that all new tcp sockets should use. */
       //void SetSocks4Host(const string & ) override;
-      ///** set socks4 server port number that all memory_new tcp sockets should use. */
+      ///** set socks4 server port number that all new tcp sockets should use. */
       //void SetSocks4Port(::networking::port_t) override;
       ///** set optional socks4 userid. */
       //void SetSocks4Userid(const string & ) override;
@@ -192,9 +192,9 @@ namespace sockets
       //void Trigger(i32 atom, base_socket::trigger_data & data, bool erase = true) override;
 
       /** Indicates that the handler runs under socket_thread. */
-      //void SetSlave(bool x = true) override;
+      void SetSlave(bool x = true) override;
       /** Indicates that the handler runs under socket_thread. */
-      //bool IsSlave() override;
+      bool IsSlave() override;
 
       /** Sanity check of those accursed lists. */
       void CheckSanity();

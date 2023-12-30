@@ -35,7 +35,7 @@ namespace userex
 
       m_sizeTabbedFrame.cx() = 800;
       m_sizeTabbedFrame.cy() = 300;
-      m_ptemplateTab = nullptr;
+      //m_ptemplateTab = nullptr;
 
    }
 
@@ -225,25 +225,28 @@ namespace userex
    ::pointer<::userex::pane_tab_impact>impact_host::get_pane_tab_impact()
    {
 
-      if (m_ptemplateTab == nullptr)
+      if (!user()->m_pbaseuser->impact_system("main"))
       {
 
-         m_ptemplateTab = __new(user::single_document_template(
+         //m_ptemplateTab = ;;
+         user()->m_pbaseuser->add_impact_system(
+            "main",
+          __allocate < user::single_document_template >(
             "main",
             ::type < ::user::document >(),
             ::type < simple_child_frame >(),
             ::type < ::userex::pane_tab_impact >()));
 
-         m_ptemplateTab->initialize(this);
+         user()->m_pbaseuser->initialize(this);
 
       }
 
-      ::pointer<::user::document>pdocTab = m_ptemplateTab->get_document();
+      ::pointer<::user::document>pdocTab = user()->m_pbaseuser->impact_system("main")->get_document();
 
       if (pdocTab == nullptr)
       {
 
-         pdocTab = m_ptemplateTab->open_document_file(get_app(), ::e_type_null, __visible(false).is_true(), this);
+         pdocTab = user()->m_pbaseuser->impact_system("main")->open_document_file(get_app(), ::e_type_null, __visible(false).is_true(), this);
 
       }
 
@@ -405,10 +408,10 @@ namespace userex
 
             ::pointer<simple_frame_window>pframewindowTab;
 
-            if (m_ptemplateTab != nullptr)
+            if (user()->m_pbaseuser->impact_system("main") != nullptr)
             {
 
-               ::pointer<::user::document>pdocument = m_ptemplateTab->get_document(0);
+               ::pointer<::user::document>pdocument = user()->m_pbaseuser->impact_system("main")->get_document(0);
 
                if (pdocument.is_set())
                {
@@ -432,12 +435,12 @@ namespace userex
 
                pframewindow->on_frame_position();
 
-               if (m_ptemplateTab != nullptr)
+               if (user()->m_pbaseuser->impact_system("main") != nullptr)
                {
 
                   string strId = pframewindow->m_atom;
 
-                  ::pointer<::user::document>pdocument = m_ptemplateTab->get_document(0);
+                  ::pointer<::user::document>pdocument = user()->m_pbaseuser->impact_system("main")->get_document(0);
 
                   if (pdocument.is_set())
                   {
@@ -479,12 +482,12 @@ namespace userex
    void impact_host::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      if (m_ptemplateTab != nullptr)
+      if (user()->m_pbaseuser->impact_system("main") != nullptr)
       {
 
          ::rectangle_i32 rectangleTab;
 
-         ::pointer<::user::document>pdocument = m_ptemplateTab->get_document();
+         ::pointer<::user::document>pdocument = user()->m_pbaseuser->impact_system("main")->get_document();
 
          if (pdocument != nullptr)
          {
@@ -570,7 +573,7 @@ namespace userex
 
       }
 
-      return pdocument->m_pviewTopic;
+      return pdocument->m_pimpactTopic;
 
    }
 
@@ -657,7 +660,7 @@ namespace userex
       
       auto puser = psession->m_puser->m_pcoreuser;
 
-      ::user::impact_system * pimpactsystem = puser->m_mapimpactsystem[idImpact];
+      ::user::impact_system * pimpactsystem = puser->impact_system(idImpact);
 
       if (pimpactsystem != nullptr)
       {
@@ -696,9 +699,9 @@ namespace userex
 
       m_mapdoc[idImpact] = pdocument;
 
-      ASSERT(pdocument->m_pviewTopic != nullptr);
+      ASSERT(pdocument->m_pimpactTopic != nullptr);
 
-      pdocument->m_pviewTopic->set_notify_user_interaction(this);
+      pdocument->m_pimpactTopic->set_notify_user_interaction(this);
 
       return true;
 

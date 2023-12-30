@@ -62,7 +62,7 @@
 //#endif
 
 
-//#define memory_new ACME_NEW
+
 
 
 //#ifdef WINDOWS_DESKTOP
@@ -127,9 +127,9 @@ namespace core
       printf("core::user::user\n");
 
       m_pcoreuser = this;
-      m_ptemplateForm = nullptr;
-      m_ptemplateChildForm = nullptr;
-      m_ptemplatePlaceHolder = nullptr;
+      //m_ptemplateForm = nullptr;
+      //m_ptemplateChildForm = nullptr;
+      //m_ptemplatePlaceHolder = nullptr;
       //m_ptemplateHtmlChildForm1 = nullptr;
 
    }
@@ -302,52 +302,58 @@ namespace core
 
       auto typeinfo = psystem->get_simple_frame_window_type_info();
 
-      auto ptemplate = __new(::user::multiple_document_template(
+      add_impact_system(
+         "system/form",
+         __allocate < ::user::multiple_document_template >(
          "system/form",
          ::type < form_document >(),
          psystem->get_simple_frame_window_type_info(),
          ::type < ::user::form_impact >()));
 
-      ptemplate->initialize(this);
+      //ptemplate->initialize(this);
 
-      m_ptemplateForm = ptemplate;
+      //m_ptemplateForm = ptemplate;
 
 
-      add_document_template(ptemplate);
-
-      ptemplate = __new(::user::multiple_document_template(
+      //add_document_template(ptemplate);
+      add_impact_system(
+         "system/form_child",
+         __allocate < ::user::multiple_document_template >(
          "system/form",
          ::type < form_document >(),
          get_simple_child_frame_type_info(),
          ::type < ::user::form_impact >()));
 
-      ptemplate->initialize(this);
+      //ptemplate->initialize(this);
 
-      m_ptemplateChildForm = ptemplate;
+     // m_ptemplateChildForm = ptemplate;
 
-      add_document_template(m_ptemplateChildForm);
-
-      ptemplate = __new(::user::multiple_document_template(
+      //add_document_template(m_ptemplateChildForm);
+      add_impact_system(
+         "system/form_placeholder",
+         __allocate < ::user::multiple_document_template >(
          "system/form",
          ::type < ::user::document >(),
          psystem->get_simple_frame_window_type_info(),
          ::type < ::user::place_holder >()));
 
-      ptemplate->initialize(this);
+      //ptemplate->initialize(this);
 
-      m_ptemplatePlaceHolder = ptemplate;
+      //m_ptemplatePlaceHolder = ptemplate;
 
-      add_document_template(ptemplate);
+      //add_document_template(ptemplate);
 
-      auto pmultitemplate = memory_new::user::multiple_document_template(
+      add_impact_system(
+         "progress_impact",
+         __allocate< ::user::multiple_document_template >(
          "main",
          ::type < ::user::document >(),
          ::type < ::userex::dialog_frame >(),
-         ::type < ::userex::progress_impact >());
+         ::type < ::userex::progress_impact >()));
 
-      m_ptemplateProgress2 = pmultitemplate;
+      //m_ptemplateProgress2 = pmultitemplate;
 
-      add_document_template(pmultitemplate);
+      //add_document_template(pmultitemplate);
 
       //auto estatus = 
 
@@ -928,7 +934,7 @@ namespace core
 
       will_use_impact_hint(COLORSEL_IMPACT);
 
-      auto pdocument = m_mapimpactsystem[COLORSEL_IMPACT]->open_document_file(puiOwner->get_app(), ::e_type_null, true);
+      auto pdocument = impact_system(COLORSEL_IMPACT)->open_document_file(puiOwner->get_app(), ::e_type_null, true);
 
       ::pointer<::user::color_selector_impact>pimpact = pdocument->get_typed_impact < ::user::color_selector_impact >();
 
@@ -1153,7 +1159,7 @@ namespace core
 
       prequest->m_bHold = false;
 
-      m_ptemplatePlaceHolder->request(prequest);
+      impact_system("place_holder")->request(prequest);
 
       ::pointer<::form_document>pformdocument = ::user::__document(prequest);
 
@@ -1181,7 +1187,7 @@ namespace core
 
       information() << "default_create_list_header : " << typeListHeader.as_string();
 
-      return ::__id_create < ::user::list_header >(pparticle, typeListHeader);
+      return pparticle->__id_create < ::user::list_header >(typeListHeader);
 
    }
 
@@ -1189,7 +1195,7 @@ namespace core
    ::pointer<::user::mesh_data>user::default_create_mesh_data(::particle * pparticle)
    {
 
-      return ::__id_create < ::user::mesh_data >(pparticle, default_type_list_data());
+      return pparticle->__id_create < ::user::mesh_data >(default_type_list_data());
 
    }
 
@@ -1197,7 +1203,7 @@ namespace core
    ::pointer<::user::list_data>user::default_create_list_data(::particle * pparticle)
    {
 
-      return ::__id_create <::user::list_data >(pparticle, default_type_list_data());
+      return pparticle->__id_create <::user::list_data >(default_type_list_data());
 
    }
 
@@ -1576,7 +1582,7 @@ namespace core
    //::pointer<::user::user>application::create_userex()
    //{
 
-   //   return __new(::user::user);
+   //   return __allocate< ::user::user >();
 
    //}
 
@@ -1584,7 +1590,7 @@ namespace core
    //i32 application::sync_message_box(::user::primitive * puiOwner, const ::string & pszMessage, ::u32 fuStyle)
    //{
 
-   //   ::informationf("\n\napp_message_box: " + string(pszMessage) + "\n\n");
+   //   ::acme::get()->platform()->informationf("\n\napp_message_box: " + string(pszMessage) + "\n\n");
 
    //   if (&Session == nullptr || psession->user() == nullptr)
    //      return ::base::application::sync_message_box(puiOwner, pszMessage, fuStyle);
@@ -1719,7 +1725,7 @@ namespace core
       if (idImpact == FILEMANAGER_IMPACT)
       {
 
-         if (m_mapimpactsystem[FILEMANAGER_IMPACT] != nullptr)
+         if (impact_system(FILEMANAGER_IMPACT) != nullptr)
          {
 
             return;
@@ -1730,7 +1736,7 @@ namespace core
 
          //add_factory_item <::user::color_impact >();
 
-         //user()->m_mapimpactsystem[COLORSEL_IMPACT] = __new(::user::multiple_document_template(
+         //user()->m_mapimpactsystem[COLORSEL_IMPACT] = __allocate < ::user::multiple_document_template >(
          //   get_app(),
          //   "main",
          //   ::type < ::user::document >(),
@@ -1743,7 +1749,7 @@ namespace core
       else if (idImpact == COLORSEL_IMPACT)
       {
 
-         if (m_mapimpactsystem[COLORSEL_IMPACT] != nullptr)
+         if (impact_system(COLORSEL_IMPACT) != nullptr)
          {
 
             return;
@@ -1752,17 +1758,19 @@ namespace core
 
          factory()->add_factory_item <::user::color_selector_impact >();
 
-         auto ptemplate = __new(::user::multiple_document_template(
+         add_impact_system(
+            COLORSEL_IMPACT,
+            __allocate < ::user::multiple_document_template >(
             "main",
             ::type < ::user::document >(),
             ::type < ::simple_frame_window >(),
             ::type < ::user::color_selector_impact >()));
 
-         auto psession = get_session();
+         //auto psession = get_session();
 
-         psession->add_document_template(ptemplate);
+         //psession->add_document_template(ptemplate);
 
-         m_mapimpactsystem[COLORSEL_IMPACT] = ptemplate;
+         //m_mapimpactsystem[COLORSEL_IMPACT] = ptemplate;
 
       }
       else if (idImpact == FONTSEL_IMPACT)
@@ -1781,17 +1789,19 @@ namespace core
          factory()->add_factory_item <::user::font_list_impact >();
          factory()->add_factory_item <::userex::font_impact >();
 
-         auto ptemplate = __new(::user::multiple_document_template(
+         add_impact_system(
+            FONTSEL_IMPACT,
+            __allocate < ::user::multiple_document_template >(
             "main",
             ::type < ::user::document >(),
             ::type < ::simple_frame_window >(),
             ::type < ::userex::font_impact >()));
 
-         auto psession = get_session();
+         //auto psession = get_session();
 
-         psession->add_document_template(ptemplate);
+         //psession->add_document_template(ptemplate);
 
-         m_mapimpactsystem[FONTSEL_IMPACT] = ptemplate;
+         //m_mapimpactsystem[FONTSEL_IMPACT] = ptemplate;
 
          fork([this]()
          {

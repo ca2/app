@@ -178,6 +178,7 @@ list(APPEND library_source
    #graphics/image/header.h
    graphics/image/list.cpp
    graphics/image/list.h
+   graphics/image/load_gif_frame.cpp
    graphics/image/map.cpp
    graphics/image/map.h
    graphics/image/map_ex1.h
@@ -510,6 +511,8 @@ list(APPEND library_source
    windowing/monitor.h
    windowing/placement_log.cpp
    windowing/placement_log.h
+   windowing/text_editor_interface.cpp
+   windowing/text_editor_interface.h
    windowing/window.cpp
    windowing/window.h
    windowing/windowing.cpp
@@ -1396,7 +1399,8 @@ target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories
 target_include_directories(static_${PROJECT_NAME} PRIVATE ${library_include_directories})
 
 
-target_compile_definitions(aura PRIVATE _AURA_LIBRARY)
+target_compile_definitions(${PROJECT_NAME} PRIVATE _${PROJECT_NAME}_project)
+target_compile_definitions(static_${PROJECT_NAME} PRIVATE _${PROJECT_NAME}_project)
 
 
 

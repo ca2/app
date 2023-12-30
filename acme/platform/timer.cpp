@@ -48,7 +48,7 @@ timer::~timer()
 void timer::destroy()
 {
 
-   m_ptimercallback.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
+   m_ptimercallback.release();
 
    /*auto estatus =*/ ::particle::destroy();
 

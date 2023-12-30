@@ -6,6 +6,7 @@
 //
 #include "framework.h"
 #include "session.h"
+#include "acme/exception/interface_only.h"
 
 
 namespace acme
@@ -31,6 +32,16 @@ namespace acme
    session::~session()
    {
 
+
+   }
+
+
+   ::user::user * session::user()
+   {
+
+      throw ::interface_only("imaging requires aura layer or upper layer");
+
+      return nullptr;
 
    }
 

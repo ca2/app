@@ -34,10 +34,10 @@ namespace sockets
       void link_write(void * p, memsize size);
 
 
-      static link_in_socket * from_server(httpd_socket * psocket);
+      static link_in_socket * from_server(::httpd::socket * psocket);
 
 
-      void server_to_link_in(httpd_socket * psocket);
+      void server_to_link_in(::httpd::socket * psocket);
 
 
    };

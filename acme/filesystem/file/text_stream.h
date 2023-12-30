@@ -650,7 +650,7 @@ public:
 ////{
 ////
 ////   //__exchange_load_array(*this, set);
-//////#define memory_new ACME_NEW
+////
 ////
 ////   return *this;
 ////

@@ -5,13 +5,18 @@
 DO_FACTORY(REFERENCE_FACTORY)
 #endif
 
-int application_main();
+::i32 application_main(::platform::platform * pplatform);
 
 #include "_main_hold.h"
 ////#include "acme/exception/exception.h"
 #include "acme/operating_system/process.h"
 #include APPLICATION_INCLUDE
 #include <type_traits>
+
+#if defined(FREEBSD)
+#include <stdio.h>
+#endif
+
 
 
 
@@ -85,9 +90,9 @@ int main(int argc, char ** argv, char ** envp)
    }
 #endif
 
-   ::acme::initialize(argc, argv, envp);
+   acme.initialize(argc, argv, envp);
 
-   ::platform::get()->m_bConsole = true;
+   acme.platform()->m_bConsole = true;
 
    //::acme::acme::g_pacme->m_pacmeapplication->m_bConsole = true;
 
@@ -102,7 +107,7 @@ int main(int argc, char ** argv, char ** envp)
 ////
 ////
    //::acme::acme::g_pacme->m_pacmeapplication->implement_application();
-   int iExitCode = application_main();
+   int iExitCode = application_main(acme.platform());
 
    //return ::acme::acme::g_pacme->m_pacmeapplication->m_iExitCode;
 
@@ -127,7 +132,7 @@ int main(int argc, char ** argv, char ** envp)
 //
 //   //set_argc_argv_envp(argc, argv, envp);
 //
-//   ::pointer<APPLICATION_CLASS>papp(__new(APPLICATION_CLASS));
+//   ::pointer<APPLICATION_CLASS>papp(__allocate< APPLICATION_CLASS >());
 //
 //#ifdef NO_NETWORKING
 //

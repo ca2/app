@@ -248,7 +248,7 @@ inline vector4 Reflect(const vector4 & Incident,const vector4 & Normal)
    return Result;
 
 }
-//#define memory_new ACME_NEW
+
 
 #endif // VECTOR3_SSE
 

@@ -63,7 +63,7 @@
 //   if(::is_set(pFind))
 //      return g_poswindowdataptra->element_at(iFind);
 //
-//   ::oswindow_data * pdata = memory_new ::oswindow_data;
+//   ::oswindow_data * pdata = aaa_primitive_new ::oswindow_data;
 //
 //   pdata->m_nswindow    = window;
 //
@@ -93,7 +93,7 @@
 //
 //   m_nswindow  = nullptr;
 //   m_pimpl       = nullptr;
-//   m_plongmap  = memory_new int_to_int;
+//   m_plongmap  = aaa_primitive_new int_to_int;
 //
 //}
 //
@@ -103,7 +103,7 @@
 //
 //   m_nswindow  = window;
 //   m_pimpl       = nullptr;
-//   m_plongmap  = memory_new int_to_int;
+//   m_plongmap  = aaa_primitive_new int_to_int;
 //
 //}
 //
@@ -557,9 +557,9 @@
 //   
 ////   set_DispatchMessage(&axis_DispatchMessage);
 //   
-//   g_pmutexOsWindowData = memory_new ::pointer < ::mutex >();
+//   g_pmutexOsWindowData = aaa_primitive_new ::pointer < ::mutex >();
 //         
-//   g_poswindowdataptra = memory_new oswindow_dataptra;
+//   g_poswindowdataptra = aaa_primitive_new oswindow_dataptra;
 //   
 //   mm_init_workspace_rect();
 //   

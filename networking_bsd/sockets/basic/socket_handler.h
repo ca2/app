@@ -28,6 +28,7 @@ namespace sockets_bsd
    {
    public:
 
+      ::i32 m_iMaxKeepAliveCount = 0;
       ::pointer<::apex::log>    m_splogger; ///< Registered log class, or nullptr
 
       socket_map                 m_socketmap; ///< Active sockets map
@@ -35,12 +36,15 @@ namespace sockets_bsd
       socket_pointer_list        m_delete; ///< Sockets to be deleted (failed when add)
       bool                       m_b_use_mutex; ///< ::pointer < ::mutex > correctly initialized
       SOCKET                     m_maxsock; ///< Highest file descriptor + 1 in active sockets list
-      ::count                    m_countR;
-      ::count                    m_countW;
-      ::count                    m_countE;
-      fd_set                     m_rfds; ///< file descriptor set monitored for read events
-      fd_set                     m_wfds; ///< file descriptor set monitored for write events
-      fd_set                     m_efds; ///< file descriptor set monitored for exceptions
+      //::count                    m_countR;
+      //::count                    m_countW;
+      //::count                    m_countE;
+      fd_set                     m_rfdsSelect; ///< file descriptor set monitored for read events
+      fd_set                     m_wfdsSelect; ///< file descriptor set monitored for write events
+      fd_set                     m_efdsSelect; ///< file descriptor set monitored for exceptions
+      fd_set                     m_rfdsSelected; ///< file descriptor set monitored for read events
+      fd_set                     m_wfdsSelected; ///< file descriptor set monitored for write events
+      fd_set                     m_efdsSelected; ///< file descriptor set monitored for exceptions
       i32                        m_iPreviousError; ///< debug select() error
       class ::time                       m_timeLastError;
       ::earth::time                 m_tlast; ///< timeout control
@@ -65,7 +69,7 @@ namespace sockets_bsd
       i32                        m_next_trigger_id; ///< Unique trigger atom counter
       socket_map                 m_trigger_src; ///< mapping trigger atom to source base_socket
       socket_socket_flag_map     m_trigger_dst; ///< mapping trigger atom to destination sockets
-      //bool                       m_slave; ///< Indicates that this is a base_socket_handler run in socket_thread
+      bool                       m_bSlave; ///< Indicates that this is a base_socket_handler run in socket_thread
 
 
       //socket_handler(::apex::log * plogger = nullptr);
@@ -73,8 +77,8 @@ namespace sockets_bsd
       ~socket_handler() override;
 
 
-      i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
-      i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
+      i64 increment_reference_count() override;
+      i64 decrement_reference_count() override;
 
       void initialize(::particle * pparticle) override;
 
@@ -90,9 +94,10 @@ namespace sockets_bsd
       /** add base_socket instance to base_socket map. Removal is always automatic. */
       void restart_socket(SOCKET socket) override;
 
-      void add(const ::sockets::socket_pointer & psocket) override;
-      void move2(::sockets::socket_pointer && psocket) override;
-      void transfer(socket_map::node * pnode, socket_map* psocketmap = nullptr) override;
+      //void add(const ::sockets::socket_pointer & psocket) override;
+      void add(::sockets::base_socket * psocket) override;
+      //void move2(::sockets::socket_pointer && psocket) override;
+      //void transfer(socket_map::node * pnode, socket_map* psocketmap = nullptr) override;
       //void _move(socket_map::association* passociation, socket_map* psocketmap) override;
       void erase(const ::sockets::socket_pointer & psocket) override;
 
@@ -103,6 +108,8 @@ namespace sockets_bsd
 
       /** get status of read/write/exception file descriptor set for a base_socket. */
       void get(SOCKET s,bool& r,bool& w,bool& e) override;
+      virtual void _get(SOCKET s, i32& r, i32& w, i32& e);
+      virtual void get(i32& r, i32& w, i32& e);
 
       /** set read/write/exception file descriptor sets (fd_set). */
       void set(SOCKET s,bool bRead,bool bWrite,bool bException = true) override;
@@ -145,11 +152,11 @@ namespace sockets_bsd
       bool PoolEnabled() override;
 
       // Socks4
-      /** set socks4 server ip that all memory_new tcp sockets should use. */
+      /** set socks4 server ip that all new tcp sockets should use. */
       //void SetSocks4Host(in_addr addr) override;
-      /** set socks4 server hostname that all memory_new tcp sockets should use. */
+      /** set socks4 server hostname that all new tcp sockets should use. */
       void SetSocks4Host(const string & ) override;
-      /** set socks4 server port number that all memory_new tcp sockets should use. */
+      /** set socks4 server port number that all new tcp sockets should use. */
       void SetSocks4Port(::networking::port_t) override;
       /** set optional socks4 userid. */
       void SetSocks4Userid(const string & ) override;
@@ -204,9 +211,9 @@ namespace sockets_bsd
       void Trigger(i32 atom, base_socket::trigger_data & data, bool erase = true) override;
 
       /** Indicates that the handler runs under socket_thread. */
-      //void SetSlave(bool x = true) override;
+      void SetSlave(bool x = true) override;
       /** Indicates that the handler runs under socket_thread. */
-      //bool IsSlave() override;
+      bool IsSlave() override;
 
       /** Sanity check of those accursed lists. */
       void CheckSanity();

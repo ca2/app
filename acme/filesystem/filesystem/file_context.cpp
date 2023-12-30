@@ -87,7 +87,10 @@ void file_context::initialize(::particle * pparticle)
 {
 
    /*auto estatus = */ ::object::initialize(pparticle);
+#if REFERENCING_DEBUGGING
 
+   ::allocator::add_referer({ this, __FUNCTION_FILE_LINE__ });
+#endif
    defer_create_synchronization();
 
    //if (!estatus)
@@ -1395,9 +1398,9 @@ void file_context::calculate_main_resource_memory()
 
       }
 
-      auto pmemory = __new(read_only_memory(block));
+      auto pmemory = __allocate< read_only_memory >(block);
 
-      auto pfile = __new(::memory_file(pmemory));
+      auto pfile = __allocate< ::memory_file >(pmemory);
 
       system()->m_pfactoryFolder->__construct(m_pcontext, m_pfolderResource);
 
@@ -1451,7 +1454,7 @@ void file_context::calculate_main_resource_memory()
 
    strPath.replace_with("/", "\\");
 
-   ::informationf(strPath);
+   this->informationf(strPath);
 
    fflush(stdout);
 
@@ -2937,6 +2940,50 @@ void file_context::init_context()
 }
 
 
+
+void file_context::term_context()
+{
+
+   //return ::success;
+
+}
+
+
+void file_context::term_system()
+{
+
+   //   auto psystem = system();
+   //
+   //   auto estatus = psystem->m_pfilesystem->update_module_path();
+   //
+   //   if (!estatus)
+   //   {
+   //
+   //      return estatus;
+   //
+   //   }
+   //
+      //return ::success;
+
+}
+
+
+
+void file_context::finalize()
+{
+
+   if (m_pfolderResource)
+   {
+
+      m_pfolderResource->finalize();
+
+   }
+
+   m_pfolderResource.release();
+
+
+}
+
 //bool file_context::prepare_output(::stream & outputstream, path & pathDownloading, const ::stream & os)
 //{
 
@@ -3124,7 +3171,7 @@ file_pointer file_context::data_get_file(string strData, ::file::e_open eopen)
          if (strEncoding.case_insensitive_order("base64") == 0)
          {
 
-            ::pointer<memory_file>pmemoryfile = __new(memory_file());
+            ::pointer<memory_file>pmemoryfile = __allocate< memory_file >();
 
             auto psystem = system();
 
@@ -3167,7 +3214,7 @@ folder_pointer file_context::get_folder(::file::file *pfile, const ::scoped_stri
 
    }
 
-   auto pfolder = pfactory->create < ::folder >(this);
+   auto pfolder = __create < ::folder >(pfactory);
 
    if (!pfolder)
    {
@@ -3492,7 +3539,7 @@ file_pointer file_context::get_file(const ::payload &payloadFile, ::file::e_open
          if(eopen & ::file::e_open_no_exception_on_open)
          {
 
-            pfile = __new(::file::file);
+            pfile = __allocate< ::file::file >();
 
             pfile->m_estatus = error_not_a_file;
 

@@ -983,7 +983,7 @@ namespace aura
    if(!plibrary)
    {
       
-      plibrary = __new(::acme::library);
+      plibrary = __allocate< ::acme::library >();
 
       plibrary->initialize(::get_task());
 

@@ -13,7 +13,7 @@ bool ios1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const ::
    if(pmutex == nullptr)
    {
 
-      pmutex = memory_new ::pointer < ::mutex >();
+      pmutex = __new< ::pointer < ::mutex > >();
 
    }
 

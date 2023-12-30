@@ -12,6 +12,7 @@
 #include "acme/primitive/datetime/datetime.h"
 #include "acme/primitive/primitive/_text_stream.h"
 #include "acme/filesystem/filesystem/file_context.h"
+#include "apex/handler/signal.h"
 #include "aura/user/user/wait_cursor.h"
 #include "aura/user/user/interaction_array.h"
 #include "base/platform/application.h"
@@ -38,10 +39,6 @@ namespace user
       m_bNew = true;
 
       m_bAutoSaveModified = true;
-
-      m_pviewTopic = (::user::impact *) (iptr)0;
-
-      m_pimpactsystem = nullptr;
 
       m_bEmbedded = false;        // default to file-based document
 
@@ -80,17 +77,26 @@ namespace user
    }
 
 
-//   void document::assert_ok() const
-//   {
-//      ::object::assert_ok();
-//
-//      ::count count = get_impact_count();
-//      for (index index = 0; index < count; index++)
-//      {
-//         ::pointer<::user::impact>pimpact = get_impact(index);
-//         ASSERT_VALID(pimpact);
-//      }
-//   }
+   void document::destroy()
+   {
+
+      m_prequest.release();
+      m_pimpactsystem.release();
+      m_impacta.release();
+      m_pimpactTopic.release();
+
+
+      m_mapRoutine.clear();
+
+      m_pdataIncoming.release();
+
+
+      ::user::controller::destroy();
+      ::channel::destroy();
+      ::manager::destroy();
+      ::data::data_container_base::destroy();
+
+   }
 
 
    ::base::application* document::get_app()
@@ -599,7 +605,7 @@ namespace user
    //   {
    //      ::pointer<::user::impact>pimpact = get_impact(index);
 
-   //      ptask = memory_new update;
+   //      ptask = __new< update >();
    //      ptask->m_pSender = pSender;
    //      ptask->m_lHint = lHint;
    //      ptask->m_pHint = pHint;
@@ -1181,20 +1187,25 @@ namespace user
            // auto pNew = __id_create((const ::atom &)m_pimpactsystem->m_typeatomData);
 
             auto pdata = create_data(0);
+            
+            if (::is_set(pdata))
+            {
 
-            pdata->initialize_data();
+               pdata->initialize_data();
 
-            auto preader = file()->get_reader(payloadFile);
+               auto preader = file()->get_reader(payloadFile);
 
-            ::binary_stream binarystream(preader);
+               ::binary_stream binarystream(preader);
 
-            auto path = payloadFile.as_file_path();
+               auto path = payloadFile.as_file_path();
 
-            pdata->read_data(binarystream, path.all_extensions());
+               pdata->read_data(binarystream, path.all_extensions());
 
-            //set_data(0, pdata);
+               //set_data(0, pdata);
 
-            m_pdataIncoming = pdata;
+               m_pdataIncoming = pdata;
+
+            }
 
          }
 
@@ -1302,6 +1313,15 @@ namespace user
       {
 
          auto & typeatomData = m_pimpactsystem->m_typeatomData;
+
+         if (typeatomData.is_empty())
+         {
+
+            information() << "user::document::create_data impact_system data type is empty";
+
+            return nullptr;
+
+         }
 
          auto pdataNew = __id_create(typeatomData);
 
@@ -1862,7 +1882,7 @@ namespace user
          if (!do_save(::payload(::e_type_empty)))
          {
 
-            warning()(e_trace_category_appmsg) << "Warning: File save with memory_new name failed.\n";
+            warning()(e_trace_category_appmsg) << "Warning: File save with new name failed.\n";
 
             return false;
 
@@ -2058,7 +2078,7 @@ namespace user
    void document::erase_impact(::user::impact * pimpact)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       ASSERT_VALID(pimpact);
 

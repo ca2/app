@@ -71,7 +71,7 @@ namespace sockets_bsd
       bool                       m_bEnd; // should finish by not sending no more writes
       string                     m_strCat;
       string                     m_strCipherList;
-      callback *                 m_pcallback;
+      ::pointer < callback >     m_pcallback;
       ::earth::time              m_timeCreate; ///< time in seconds when this base_socket was created
       bool                       m_bDisableRead; ///< Disable checking for read events
       bool                       m_bConnected; ///< base_socket is connected (tcp/udp)
@@ -81,14 +81,12 @@ namespace sockets_bsd
       int                        m_iBindPort;
       bool                       m_bDelete; ///< Delete by handler flag
       bool                       m_bCloseAndDelete; ///< close and delete flag
-      ::sockets::base_socket *   m_psocketParent; ///< Pointer to listen_socket class, valid for incoming sockets
+      ::pointer < ::sockets::base_socket >  m_psocketParent; ///< Pointer to listen_socket class, valid for incoming sockets
       class ::time               m_timeLastRead;
       class ::time            m_timeLastWrite;
       class ::time            m_timeConnectionStart; ///< Set by SetTimeout
       class ::time              m_timeConnectionLastActivity; ///< Set by SetTimeout
-      class ::time              m_timeConnectionMaximum; ///< Defined by SetTimeout
       class ::time              m_timeStart; ///< Set by SetTimeout
-      class ::time              m_timeMaximum; ///< Defined by SetTimeout
       bool                    m_bNonBlocking;
       //    unsigned long           m_flags; ///< boolean flags, replacing old 'bool' members
 
@@ -116,7 +114,6 @@ namespace sockets_bsd
 
       bool                             m_bDetach; ///< base_socket ordered to detach flag
       bool                             m_bDetached; ///< base_socket has been detached
-      ::pointer<::sockets_bsd::socket_thread>        m_psocketthread; ///< detach base_socket thread class pointer
       ::pointer<::sockets::base_socket_handler>  m_phandlerSlave; ///< Actual sockethandler while detached
 
 
@@ -128,6 +125,10 @@ namespace sockets_bsd
 
       ::e_status             m_estatus;
       //class ::time              m_timeStart;
+
+
+      ::string_array          m_straDebug;
+
 
 #if !defined(BSD_STYLE_SOCKETS)
       bool                    m_bErrorWriting;
@@ -180,7 +181,7 @@ namespace sockets_bsd
       ~base_socket() override;
 
 
-       void initialize_socket(::sockets::base_socket_handler* phandler) override;
+       void SetSocketHandler(::sockets::base_socket_handler* phandler) override;
 
 
       /** base_socket class instantiation method. Used when a "non-standard" constructor
@@ -208,6 +209,10 @@ namespace sockets_bsd
       void get_ssl_session() override;
 
 
+      ::string_array & debugstra() override;
+      //virtual ::string debug_text();
+
+
       /** Called by listen_socket after accept but before base_socket is added to handler.
       * CTcpSocket uses this to create its ICrypt member payload.
       * The ICrypt member ::payload is created by a virtual method, therefore
@@ -225,7 +230,7 @@ namespace sockets_bsd
       /** Return file descriptor assigned to this base_socket. */
       //iptr get_socket_id() override;
 
-      virtual SOCKET GetSocketId();
+      socket_id GetSocketId() override;
 
 
       ::networking::port_t get_bind_port() const override;
@@ -587,7 +592,7 @@ namespace sockets_bsd
       void OnSSLConnectFailed() override;
       /** SSL negotiation failed for server accept. */
       void OnSSLAcceptFailed() override;
-      /** memory_new SSL support */
+      /** new SSL support */
       bool SSLNegotiate() override;
       /** Check if SSL is Enabled for this tcp_socket.
       \return true if this is a tcp_socket with SSL enabled */
@@ -707,7 +712,7 @@ namespace sockets_bsd
       //@}
       /** \name Thread Support */
       //@{
-      /** Callback fires when a memory_new base_socket thread has started and this
+      /** Callback fires when a new base_socket thread has started and this
       base_socket is ready for operation again.
       \sa resolv_socket */
       void OnDetached() override;
@@ -730,8 +735,9 @@ namespace sockets_bsd
       bool prepare_for_detach() override;
       /** Store the slave sockethandler pointer. */
       void SetSlaveHandler(::sockets::base_socket_handler *) override;
-      /** create memory_new thread for this base_socket to run detached in. */
-      virtual void DetachSocket(socket_map::node * pnode, socket_map * psocketmap);
+      /** create new thread for this base_socket to run detached in. */
+      //virtual void DetachSocket(socket_map::node * pnode, socket_map * psocketmap);
+      //virtual void DetachSocket();
       //@}
 
 
@@ -759,7 +765,7 @@ namespace sockets_bsd
 
 
       void run() override;
-      bool step() override;
+      //bool step() override;
 
       //virtual void __tracef(object * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstrFormat, ...);
       //virtual void __tracef(object * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, e_log elog, const ::string & strContext, i32 err, const ::string & strMessage);
@@ -769,7 +775,7 @@ namespace sockets_bsd
 
       enum_trace_category trace_category() const override;
 
-      //virtual void on_finalize() override;
+      void finalize() override;
 
 
    };

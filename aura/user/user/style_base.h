@@ -23,6 +23,15 @@ namespace user
       ~style_base() override;
 
 
+
+#ifdef _DEBUG
+
+      i64 increment_reference_count() override;
+      i64 decrement_reference_count() override;
+
+#endif
+
+
       void on_initialize_particle() override; 
 
 

@@ -373,7 +373,7 @@ namespace filemanager
    }
 
    
-   bool operation::step()
+   bool operation::file_operation_thread_step()
    {
 
       auto pcontext = get_context();

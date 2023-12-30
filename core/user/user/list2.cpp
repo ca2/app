@@ -861,7 +861,7 @@ namespace user
    //                     }
 
    //                     */
-   //         m_useritema.add(__new(Item(item)));
+   //         m_useritema.add(__allocate< Item >(item));
    //         iNode++;
    //      }
    //   }
@@ -885,7 +885,7 @@ namespace user
    //         item.m_iImage = m_iIconSong;
 
 
-   //         m_useritema.add(__new(Item(item)));
+   //         m_useritema.add(__allocate< Item >(item));
    //         iNode++;
    //      }
    //   }
@@ -995,7 +995,7 @@ namespace user
 
    //   post_redraw();
 
-   //   string strUrl = "https://ppp.lab3700.com/list2";
+   //   string strUrl = "https://ppp.reddotlogics.com/list2";
 
    //   string str;
 
@@ -1080,7 +1080,7 @@ namespace user
    //void list2::add_user(const ::scoped_string & scopedstrEmail)
    //{
 
-   //   string strUrl = "https://ppp.lab3700.com/add_user?email=" + scopedstrEmail;
+   //   string strUrl = "https://ppp.reddotlogics.com/add_user?email=" + scopedstrEmail;
 
    //   string str;
 
@@ -1117,7 +1117,7 @@ namespace user
    //void list2::erase_user(const ::scoped_string & scopedstrEmail)
    //{
 
-   //   string strUrl = "https://ppp.lab3700.com/erase_user?email=" + scopedstrEmail;
+   //   string strUrl = "https://ppp.reddotlogics.com/erase_user?email=" + scopedstrEmail;
 
    //   string str;
 

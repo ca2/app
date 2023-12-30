@@ -80,6 +80,8 @@ struct popup_flag_t{};
 
       }
 
+      void finalize() override;
+
    };
 
 

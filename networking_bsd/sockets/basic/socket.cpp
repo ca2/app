@@ -40,7 +40,7 @@ namespace sockets_bsd
 
       m_iBindPort    = -1;
       m_timeStart.Now();
-      m_pcallback    = nullptr;
+      //m_pcallback    = nullptr;
 
    }
 
@@ -117,10 +117,10 @@ namespace sockets_bsd
 
       //}
 
-      if (::is_set(m_psockethandler))
+      if (::is_set(socket_handler()))
       {
 
-         __Handler(m_psockethandler)->erase_socket(m_socket);
+         __Handler(socket_handler())->erase_socket(m_socket);
 
       }
 
@@ -225,7 +225,7 @@ namespace sockets_bsd
    void socket::set(bool bRead, bool bWrite, bool bException)
    {
       
-      __Handler(m_psockethandler)->set(m_socket, bRead, bWrite, bException);
+      __Handler(socket_handler())->set(m_socket, bRead, bWrite, bException);
 
    }
 
@@ -298,7 +298,7 @@ namespace sockets_bsd
       //ASSERT(m_hSocket != INVALID_SOCKET);
 
       // gets the address of the socket at the other end
-      auto paddress = __new(::networking_bsd::address);
+      auto paddress = __allocate< ::networking_bsd::address >();
       socklen_t nLengthAddr = sizeof(sockaddr);
       if (getpeername(GetSocketId(), paddress->sa(), &nLengthAddr) == SOCKET_ERROR)
       {
@@ -318,7 +318,7 @@ namespace sockets_bsd
       //ASSERT(m_hSocket != INVALID_SOCKET);
 
       // gets the address of the socket at this end
-      auto paddress = __new(::networking_bsd::address);
+      auto paddress = __allocate< ::networking_bsd::address >();
       socklen_t nLengthAddr = sizeof(sockaddr);
       if (getsockname(GetSocketId(), paddress->sa(), &nLengthAddr) == SOCKET_ERROR)
       {

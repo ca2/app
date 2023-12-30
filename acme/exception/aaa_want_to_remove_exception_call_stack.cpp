@@ -91,7 +91,7 @@ const char * callstack::xxxstack_trace() const
 }
 
 
-string get_callstack(const ::scoped_string & scopedstrFormat = callstack_default_format(), i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr, int iCount = -1)
+string get_callstack(particle * pparticle, const ::scoped_string & scopedstrFormat = callstack_default_format(), i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr, int iCount = -1)
 {
 
    if (iSkip >= 0)
@@ -101,7 +101,7 @@ string get_callstack(const ::scoped_string & scopedstrFormat = callstack_default
 
    }
 
-   auto pcallstack = __new(callstack(pszFormat, (int)iSkip, caller_address, (int)iCount));
+   auto pcallstack = __allocate< callstack >(pszFormat, (int)iSkip, caller_address, (int)iCount);
 
    return pcallstack;
 

@@ -49,7 +49,7 @@ int WINAPI WinMain( HINSTANCE hInstance,
 
     CoInitialize(NULL);
 
-    pMainWnd = memory_new CTSFMainWnd(hInstance);
+    pMainWnd = __new< CTSFMainWnd >(hInstance);
 
     if(NULL == pMainWnd)
     {

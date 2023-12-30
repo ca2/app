@@ -10,6 +10,7 @@
 #include "acme/platform/system.h"
 #include "acme/primitive/geometry2d/_text_stream.h"
 #include "acme/user/user/_text_stream.h"
+#include "apex/handler/signal.h"
 #include "apex/database/_binary_stream.h"
 #include "apex/database/change_event.h"
 #include "acme/filesystem/filesystem/file_context.h"
@@ -410,7 +411,7 @@ void simple_frame_window::install_message_routing(::channel * pchannel)
 void simple_frame_window::task_save_window_placement()
 {
 
-   ::informationf("_task_save_window_rect start\n");
+   ::acme::get()->platform()->informationf("_task_save_window_rect start\n");
 
    auto ptask = ::get_task();
 
@@ -471,7 +472,7 @@ void simple_frame_window::task_save_window_placement()
 
    }
 
-   ::informationf("_task_save_window_rect end\n");
+   ::acme::get()->platform()->informationf("_task_save_window_rect end\n");
 
 }
 
@@ -685,7 +686,7 @@ void simple_frame_window::on_message_destroy(::message::message * pmessage)
 
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      //synchronous_lock synchronouslock(this->synchronization());
 
       try
       {
@@ -715,7 +716,7 @@ void simple_frame_window::on_message_destroy(::message::message * pmessage)
 }
 
 
-::experience::frame * simple_frame_window::frame_experience()
+::pointer < ::experience::frame > simple_frame_window::frame_experience()
 {
 
    auto psession = get_session();
@@ -806,7 +807,7 @@ void simple_frame_window::initialize_frame_window_experience()
    try
    {
 
-      pexperienceframe = ::pointer_transfer(frame_experience());
+      pexperienceframe = ::transfer(frame_experience());
 
    }
    catch (const ::exception &)
@@ -1180,7 +1181,7 @@ void simple_frame_window::on_message_show_window(::message::message * pmessage)
       if (m_pnotifyicon != nullptr)
       {
 
-         m_pnotifyicon->step();
+         m_pnotifyicon->notify_icon_step();
 
       }
 

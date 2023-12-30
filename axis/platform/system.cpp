@@ -85,25 +85,20 @@ namespace axis
 
 
 
-   ::pointer< ::mutex > g_pmutexImage = nullptr;
+   // ::pointer< ::mutex > g_pmutexImage = nullptr;
 
-   ::pointer< ::mutex > get_image_mutex()
-   {
+   // ::pointer< ::mutex > get_image_mutex()
+   // {
 
-      return g_pmutexImage;
+   //    return g_pmutexImage;
 
-   }
+   // }
 
 
    system::system()
    {
 
-
       common_construct();
-
-      
-
-
 
    }
 
@@ -135,12 +130,24 @@ namespace axis
    }
 
 
-   void system::initialize(::particle * pparticle)
+   void system::on_set_platform()
+   {
+
+      aura::system::on_set_platform();
+
+      factory()->add_factory_item < ::geo::department >();
+      factory()->add_factory_item < ::axis::user, ::user::user >();
+      factory()->add_factory_item < ::axis::session, ::acme::session >();
+
+   }
+
+
+   void system::on_initialize_particle()
    {
 
       //auto estatus = 
       
-      ::aura::system::initialize(pparticle);
+      ::aura::system::on_initialize_particle();
 
       //if (!estatus)
       //{
@@ -163,9 +170,6 @@ namespace axis
       //axis_factory(factory());
 
 
-      factory()->add_factory_item < ::geo::department >();
-      factory()->add_factory_item < ::axis::user, ::user::user > ();
-      factory()->add_factory_item < ::axis::session, ::acme::session >();
 
 
       //return estatus;

@@ -39,8 +39,7 @@ namespace sockets
    public:
 
 
-      i32 m_iContentLength;
-
+      i32      m_iContentLength;
 
       http_base_socket();
       ~http_base_socket();

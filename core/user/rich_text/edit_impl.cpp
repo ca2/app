@@ -10,6 +10,7 @@
 #include "acme/constant/user_key.h"
 #include "acme/filesystem/file/memory_file.h"
 #include "acme/handler/item.h"
+#include "acme/handler/topic.h"
 #include "acme/platform/node.h"
 #include "acme/platform/timer.h"
 #include "acme/primitive/geometry2d/_binary_stream.h"
@@ -231,7 +232,7 @@ namespace user
 
          information() << "on_set_keyboard_focus";
 
-         information() << acmenode()->get_callstack();
+         information() << acmenode()->get_call_stack_trace();
 
          //UNREFERENCED_PARAMETER(pmessage);
 
@@ -669,7 +670,7 @@ namespace user
          if (!r.contains(point))
          {
 
-            auto pitem = __new(::item(e_element_none));
+            auto pitem = __allocate< ::item >(e_element_none);
 
             return pitem;
 
@@ -702,7 +703,7 @@ namespace user
 
          //return prichtextdata->hit_test(point);
 
-         auto pitem = __new(::item(e_element_item));
+         auto pitem = __allocate< ::item >(e_element_item);
 
          auto prichtextdata = get_rich_text_data();
 

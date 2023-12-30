@@ -93,6 +93,14 @@ void set_apex_system_as_thread();
    
 }
 
+//-(void) removeWindowController:(NSWindowController*)pwindowcontroller
+//{
+//   
+//   [ m_windowcontrollera removeObject : pwindowcontroller ];
+//   
+//}
+
+
 //- (void)on_os_menu_item:(id)sender
 //{
 //   

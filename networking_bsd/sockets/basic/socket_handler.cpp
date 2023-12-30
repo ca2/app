@@ -52,21 +52,24 @@ namespace sockets_bsd
       //, m_resolv_id(0)
       , m_bEnablePool(false)
       , m_next_trigger_id(0)
-      //, m_slave(false)
+      , m_bSlave(false)
    {
 
       m_p2 = this;
       defer_create_synchronization();
       zero(m_socks4_host);
-      //m_prfds = memory_new fd_set;
-      //m_pwfds = memory_new fd_set;
-      //m_pefds = memory_new fd_set;
-      FD_ZERO(&m_rfds);
-      FD_ZERO(&m_wfds);
-      FD_ZERO(&m_efds);
-      m_countR = 0;
-      m_countW = 0;
-      m_countE = 0;
+      //m_prfds = __new< fd_set >();
+      //m_pwfds = __new< fd_set >();
+      //m_pefds = __new< fd_set >();
+      FD_ZERO(&m_rfdsSelect);
+      FD_ZERO(&m_wfdsSelect);
+      FD_ZERO(&m_efdsSelect);
+      FD_ZERO(&m_rfdsSelected);
+      FD_ZERO(&m_wfdsSelected);
+      FD_ZERO(&m_efdsSelected);
+      //m_countR = 0;
+      //m_countW = 0;
+      //m_countE = 0;
 
       //g_interlockedcountSocketHandler++;
 
@@ -86,18 +89,18 @@ namespace sockets_bsd
 
 
 
-   i64 socket_handler::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
+   i64 socket_handler::increment_reference_count()
    {
 
-      return ::object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      return ::object::increment_reference_count();
 
    }
 
 
-   i64 socket_handler::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
+   i64 socket_handler::decrement_reference_count()
    {
 
-      return ::object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      return ::object::decrement_reference_count();
 
    }
 
@@ -140,7 +143,7 @@ namespace sockets_bsd
 
                }
 
-               //if (m_slave)
+               if (m_bSlave)
                {
 
                   iterator->element2().release();
@@ -185,63 +188,68 @@ namespace sockets_bsd
 //   }
 
 
-   //void socket_handler::SetSlave(bool x)
-   //{
-
-   //   m_slave = x;
-
-   //}
-
-
-   //bool socket_handler::IsSlave()
-   //{
-
-   //   return m_slave;
-
-   //}
-   
-
-   void socket_handler::add(const ::sockets::socket_pointer & psocket)
+   void socket_handler::SetSlave(bool x)
    {
 
-      auto psocket2 = __Socket(psocket);
-
-      auto iterator = m_socketmapAdd.get_item(psocket2->GetSocketId());
-
-      iterator->m_psocket = psocket2;
-
-      transfer(iterator.get(), &m_socketmapAdd);
-
-   }
-
-   
-   void socket_handler::move2(::sockets::socket_pointer && psocket)
-   {
-
-      auto psocket2 = __Socket(psocket);
-
-      auto iterator = m_socketmapAdd.get_item(psocket2->GetSocketId());
-
-      iterator->m_psocket = psocket2;
-
-      transfer(iterator.get(), &m_socketmapAdd);
+      m_bSlave = x;
 
    }
 
 
-   void socket_handler::transfer(socket_map::node* passociation, socket_map* psocketmap)
+   bool socket_handler::IsSlave()
    {
 
-      auto psocket = passociation->m_psocket.cast < socket >();
+      return m_bSlave;
 
-      //if (psocket->m_psockethandler.is_set())
-      //{
+   }
+   
 
-      //   WARN(psocket, "add", -1, "socket is already being handled by another handler");
+   //void socket_handler::add(::sockets::base_socket * psocket)
+   //{
 
-      //   return;
+   //   auto psocket2 = __Socket(psocket);
 
-      //}
+   //   auto iterator = m_socketmapAdd.get_item(psocket2->GetSocketId());
+
+   //   iterator->m_psocket = psocket2;
+
+   //   psocket2->m_psockethandler = this;
+
+   //   iterator.get();
+
+   //}
+
+   
+   //void socket_handler::move2(::sockets::socket_pointer && psocket)
+   //{
+
+   //   //auto psocket2 = __Socket(psocket);
+
+   //   //auto iterator = m_socketmapAdd.get_item(psocket2->GetSocketId());
+
+   //   //iterator->m_psocket = psocket2;
+
+   //   //transfer(iterator.get(), &m_socketmapAdd);
+
+   //   transfer(psocket, &m_socketmapAdd);
+
+   //}
+
+
+   //void socket_handler::transfer(socket_map::node* passociation, socket_map* psocketmap)
+   void socket_handler::add(::sockets::base_socket * psocket)
+   {
+
+      //::pointer < socket > psocket = pbasesocket;
+
+      if (::is_set(psocket->socket_handler()))
+      {
+
+         warning() << "socket_handler add " << (i32)psocket->GetSocketId() << " socket is already being handled by another handler";
+
+         return;
+
+      }
 
       if (psocket->GetSocketId() == INVALID_SOCKET)
       {
@@ -259,17 +267,17 @@ namespace sockets_bsd
 
       }
 
-      //socket_pointer plookup;
+      socket_pointer plookup;
 
-      //if (m_socketmapAdd.lookup(__Socket(psocket)->GetSocketId(), plookup))
-      //{
+      if (m_socketmapAdd.lookup(__Socket(psocket)->GetSocketId(), plookup))
+      {
 
-      //   INFO(psocket, "add", (i32)__Socket(psocket)->GetSocketId(), "Attempt to add socket already in add queue");
+         information() << "add: Invalid socket " << (i32) __Socket(psocket)->GetSocketId() << " Attempt to add socket already in add queue";
 
-      //   //m_delete.add_tail(psocket);
-      //   return;
+         //m_delete.add_tail(psocket);
+         return;
 
-      //}
+      }
 
       if (psocket->is_connecting())
       {
@@ -301,11 +309,16 @@ namespace sockets_bsd
 
       }
 
-      psocket->m_psockethandler = this;
+      psocket->SetSocketHandler(this);
 
       psocket->m_estatus = ::success;
 
-      m_socketmapAdd.transfer(passociation, psocketmap);
+      auto& a = m_socketmapAdd[psocket->GetSocketId()];
+
+       a= psocket;
+
+
+      auto xxx = m_socketmapAdd[psocket->GetSocketId()];
 
    }
 
@@ -340,7 +353,9 @@ namespace sockets_bsd
 
       passociation->m_psocket->m_estatus = ::success;
 
-      m_socketmapAdd.transfer(passociation, &m_socketmap);
+      m_socketmapAdd[passociation->element1()] = passociation->element2();
+
+      auto xxx = m_socketmapAdd[passociation->element1()];
 
    }
 
@@ -351,11 +366,60 @@ namespace sockets_bsd
       if (s >= 0)
       {
 
-         r = FD_ISSET(s, &m_rfds) ? true : false;
+         r = FD_ISSET(s, &m_rfdsSelect) ? true : false;
 
-         w = FD_ISSET(s, &m_wfds) ? true : false;
+         w = FD_ISSET(s, &m_wfdsSelect) ? true : false;
 
-         e = FD_ISSET(s, &m_efds) ? true : false;
+         e = FD_ISSET(s, &m_efdsSelect) ? true : false;
+
+      }
+
+   }
+
+
+   void socket_handler::_get(SOCKET s, i32& r, i32& w, i32& e)
+   {
+
+      if (s >= 0)
+      {
+
+         if (FD_ISSET(s, &m_rfdsSelect))
+         {
+
+            r++;
+
+         }
+
+         if (FD_ISSET(s, &m_wfdsSelect))
+         {
+
+            w++;
+
+         }
+
+         if (FD_ISSET(s, &m_efdsSelect))
+         {
+
+            e++;
+
+         }
+
+      }
+
+   }
+
+
+   void socket_handler::get(i32& r, i32& w, i32& e)
+   {
+
+      r = 0;
+      w = 0;
+      e = 0;
+
+      for (auto& s : m_socketlist)
+      {
+
+         _get(s, r, w, e);
 
       }
 
@@ -371,12 +435,12 @@ namespace sockets_bsd
          if (bRead)
          {
 
-            if (!FD_ISSET(s, &m_rfds))
+            if (!FD_ISSET(s, &m_rfdsSelect))
             {
 
-               FD_SET(s, &m_rfds);
+               FD_SET(s, &m_rfdsSelect);
 
-               m_countR++;
+               //m_countR++;
 
             }
 
@@ -384,12 +448,12 @@ namespace sockets_bsd
          else
          {
 
-            if (FD_ISSET(s, &m_rfds))
+            if (FD_ISSET(s, &m_rfdsSelect))
             {
 
-               FD_CLR(s, &m_rfds);
+               FD_CLR(s, &m_rfdsSelect);
 
-               m_countR--;
+               //m_countR--;
 
             }
 
@@ -398,12 +462,12 @@ namespace sockets_bsd
          if (bWrite)
          {
 
-            if (!FD_ISSET(s, &m_wfds))
+            if (!FD_ISSET(s, &m_wfdsSelect))
             {
 
-               FD_SET(s, &m_wfds);
+               FD_SET(s, &m_wfdsSelect);
 
-               m_countW++;
+               //m_countW++;
 
             }
 
@@ -411,12 +475,12 @@ namespace sockets_bsd
          else
          {
 
-            if (FD_ISSET(s, &m_wfds))
+            if (FD_ISSET(s, &m_wfdsSelect))
             {
 
-               FD_CLR(s, &m_wfds);
+               FD_CLR(s, &m_wfdsSelect);
 
-               m_countW--;
+               //m_countW--;
 
             }
 
@@ -425,12 +489,12 @@ namespace sockets_bsd
          if (bException)
          {
 
-            if (!FD_ISSET(s, &m_efds))
+            if (!FD_ISSET(s, &m_efdsSelect))
             {
 
-               FD_SET(s, &m_efds);
+               FD_SET(s, &m_efdsSelect);
 
-               m_countE++;
+               //m_countE++;
 
             }
 
@@ -438,12 +502,12 @@ namespace sockets_bsd
          else
          {
 
-            if (FD_ISSET(s, &m_efds))
+            if (FD_ISSET(s, &m_efdsSelect))
             {
 
-               FD_CLR(s, &m_efds);
+               FD_CLR(s, &m_efdsSelect);
 
-               m_countE--;
+               //m_countE--;
 
             }
 
@@ -472,8 +536,8 @@ namespace sockets_bsd
    {
 
       if (m_socketlistCallOnConnect.get_size() ||
-            //(!m_slave && m_socketlistDetach.get_size()) ||
-            m_socketlistDetach.get_size() ||
+            (!m_bSlave && m_socketlistDetach.get_size()) ||
+            //m_socketlistDetach.get_size() ||
             m_socketlistTimeout.get_size() ||
             m_socketlistRetryClientConnect.get_size() ||
             m_socketlistClose.get_size() ||
@@ -686,7 +750,7 @@ start_processing_adding:
 
          SOCKET socket = passociationAdd->m_socket;
 
-         auto & psocket = passociationAdd->m_psocket;
+         auto psocket = passociationAdd->m_psocket;
 
          if (m_socketmap.has(socket))
          {
@@ -706,7 +770,7 @@ start_processing_adding:
 
             m_socketlist.add_tail(socket);
 
-            m_socketmap.transfer(passociationAdd, &m_socketmapAdd);
+            m_socketmap[passociationAdd->element1()] = passociationAdd->element2();
 
             socket_id_list_add(socket, e_list_close);
 
@@ -742,20 +806,24 @@ start_processing_adding:
          //  master handler and non-detached socket
          //if (!(m_slave ^ psocket->IsDetach()))
          //if (!(m_slave ^ psocket->IsDetach()))
-         //{
-
-           // m_socketlist.add_tail(socket);
-
-         //}
-
-         m_socketlist.add_tail(socket);
-
-         m_socketmap.transfer(passociationAdd, &m_socketmapAdd);
-
-         if (passociationAdd->m_psocket->IsDetach())
+         if (is_equivalent(m_bSlave, psocket->IsDetach()))
          {
 
-            passociationAdd->m_psocket->OnDetached();
+           // m_socketlist.add_tail(socket);
+            m_socketlist.add_tail(socket);
+
+         }
+
+         //m_socketlist.add_tail(socket);
+
+         m_socketmap[socket] = psocket;
+
+         m_socketmapAdd.erase_item(socket);
+
+         if (m_bSlave && psocket->IsDetach())
+         {
+
+            psocket->OnDetached();
 
          }
 
@@ -765,17 +833,23 @@ start_processing_adding:
 
 end_processing_adding:
 
-      fd_set rfds;
-      fd_set wfds;
-      fd_set efds;
+      //fd_set rfds;
+      //fd_set wfds;
+      //fd_set efds;
 
-      FD_COPY(&m_rfds, &rfds);
-      FD_COPY(&m_wfds, &wfds);
-      FD_COPY(&m_efds, &efds);
+      i32 countR = 0;
+      i32 countW = 0;
+      i32 countE = 0;
 
-      fd_set * psetR = m_countR > 0 ? &rfds : nullptr;
-      fd_set * psetW = m_countW > 0 ? &wfds : nullptr;
-      fd_set * psetE = m_countE > 0 ? &efds : nullptr;
+      get(countR, countW, countE);
+
+      FD_COPY(&m_rfdsSelect, &m_rfdsSelected);
+      FD_COPY(&m_wfdsSelect, &m_wfdsSelected);
+      FD_COPY(&m_efdsSelect, &m_efdsSelected);
+
+      fd_set * psetR = countR > 0 ? &m_rfdsSelected : nullptr;
+      fd_set * psetW = countW > 0 ? &m_wfdsSelected : nullptr;
+      fd_set * psetE = countE > 0 ? &m_efdsSelected : nullptr;
 
       i32 n = 0;
 
@@ -815,6 +889,13 @@ end_processing_adding:
 
             n = ::select((int)m_maxsock, psetR, psetW, psetE, tsel);
 
+            if (m_iMaxKeepAliveCount > 0)
+            {
+
+               output_debug_string("m_iMaxKeepAliveCount > 0");
+
+            }
+
             m_iSelectErrno = networking_last_error();
 
          }
@@ -834,6 +915,13 @@ end_processing_adding:
             EINVAL n is negative. Or struct timeval contains bad time values (<0).
             ENOMEM select was unable to allocate memory for internal tables.
          */
+
+         if (m_iMaxKeepAliveCount > 0)
+         {
+
+            output_debug_string("m_iMaxKeepAliveCount > 0");
+
+         }
 
          if (m_maxsock > 0 && (m_iSelectErrno != m_iPreviousError || tickNow - m_timeLastError > 5_s))
          {
@@ -860,62 +948,52 @@ end_processing_adding:
 
             }
 
-            // test bad fd
-            for (SOCKET socket = 0; socket < m_maxsock; socket++)
-            {
+            //// test bad fd
+            //for (SOCKET socket = 0; socket < m_maxsock; socket++)
+            //{
 
-               bool bAnySet = false;
+            //   bool bAnySet = false;
 
-               FD_ZERO(&rfds);
-               FD_ZERO(&wfds);
-               FD_ZERO(&efds);
+            //   if (FD_ISSET(socket, &m_rfdsSelected))
+            //   {
 
-               if (FD_ISSET(socket, &m_rfds))
-               {
+            //      bAnySet = true;
 
-                  FD_SET(socket, &rfds);
+            //   }
 
-                  bAnySet = true;
+            //   if (FD_ISSET(socket, &m_wfdsSelected))
+            //   {
 
-               }
+            //      bAnySet = true;
 
-               if (FD_ISSET(socket, &m_wfds))
-               {
+            //   }
 
-                  FD_SET(socket, &wfds);
+            //   if (FD_ISSET(socket, &m_efdsSelected))
+            //   {
 
-                  bAnySet = true;
+            //      bAnySet = true;
 
-               }
+            //   }
 
-               if (FD_ISSET(socket, &m_efds))
-               {
+            //   if (bAnySet)
+            //   {
 
-                  FD_SET(socket, &efds);
+            //      auto ppairSocket = m_socketmap.plookup(socket);
 
-                  bAnySet = true;
+            //      if (::is_set(ppairSocket) && ::is_set(ppairSocket->m_psocket))
+            //      {
 
-               }
+            //         information() << "Bad fd in fd_set: " << socket;
 
-               if (bAnySet)
-               {
+            //         information() << "Deleting and removing socket: " << socket;
 
-                  auto ppairSocket = m_socketmap.plookup(socket);
+            //         ppairSocket->m_psocket->SetCloseAndDelete();
 
-                  if (::is_set(ppairSocket) && ::is_set(ppairSocket->m_psocket))
-                  {
+            //      }
 
-                     information() << "Bad fd in fd_set: " << socket;
+            //   }
 
-                     information() << "Deleting and removing socket: " << socket;
-
-                     ppairSocket->m_psocket->SetCloseAndDelete();
-
-                  }
-
-               }
-
-            }
+            //}
 
          }
 
@@ -923,13 +1001,13 @@ end_processing_adding:
          /// done : http://jbmon.googlecode.com/svn/trunk/networking_bsd/SocketHandler.cpp : rebuild fd_set's from active networking_bsd list (m_socketmap) here
          {
 
-            FD_ZERO(&rfds);
-            FD_ZERO(&wfds);
-            FD_ZERO(&efds);
+            //FD_ZERO(&rfds);
+            //FD_ZERO(&wfds);
+            //FD_ZERO(&efds);
 
-            ::count countR = 0;
-            ::count countW = 0;
-            ::count countE = 0;
+            //::count countR = 0;
+            //::count countW = 0;
+            //::count countE = 0;
 
             auto p = m_socketmap.begin();
 
@@ -971,34 +1049,34 @@ end_processing_adding:
 
                         bool bAnySet = false;
 
-                        if (FD_ISSET(p->m_socket, &m_rfds))
+                        if (FD_ISSET(p->m_socket, &m_rfdsSelect))
                         {
 
-                           FD_SET(p->m_socket, &rfds);
+                           //FD_SET(p->m_socket, &rfds);
 
-                           countR++;
+                           //countR++;
 
                            bAnySet = true;
 
                         }
 
-                        if (FD_ISSET(p->m_socket, &m_wfds))
+                        if (FD_ISSET(p->m_socket, &m_wfdsSelect))
                         {
 
-                           FD_SET(p->m_socket, &wfds);
+                           //FD_SET(p->m_socket, &wfds);
 
-                           countW++;
+                           //countW++;
 
                            bAnySet = true;
 
                         }
 
-                        if (FD_ISSET(p->m_socket, &m_efds))
+                        if (FD_ISSET(p->m_socket, &m_efdsSelect))
                         {
 
-                           FD_SET(p->m_socket, &efds);
+                           //FD_SET(p->m_socket, &efds);
 
-                           countE++;
+                           //countE++;
 
                            bAnySet = true;
 
@@ -1043,13 +1121,13 @@ end_processing_adding:
 
             }
 
-            m_rfds = rfds;
-            m_wfds = wfds;
-            m_efds = efds;
+            //m_rfds = rfds;
+            //m_wfds = wfds;
+            //m_efds = efds;
 
-            m_countR = countR;
-            m_countW = countW;
-            m_countE = countE;
+            //m_countR = countR;
+            //m_countW = countW;
+            //m_countE = countE;
 
          }
 
@@ -1074,15 +1152,36 @@ end_processing_adding:
             
             SOCKET socket = *p;
 
-            if (FD_ISSET(socket, &rfds))
+            if (FD_ISSET(socket, &m_rfdsSelected))
             {
                
                auto ppairSocket = m_socketmap.plookup(socket);
 
+               if (m_iMaxKeepAliveCount > 0)
+               {
+
+                  output_debug_string("m_iMaxKeepAliveCount > 0");
+
+               }
+
                if (::is_set(ppairSocket) && ::is_set(ppairSocket->m_psocket)) // found
                {
 
-                  // memory_new SSL negotiate method
+                  if (ppairSocket->m_psocket->m_iKeepAliveCount > 0)
+                  {
+
+                     output_debug_string("ppairSocket->m_psocket->m_iKeepAliveCount > 0");
+
+                  }
+
+                  if (ppairSocket->m_psocket->base_socket_composite() && ppairSocket->m_psocket->base_socket_composite()->m_iKeepAliveCount > 0)
+                  {
+
+                     output_debug_string("ppairSocket->m_psocket->base_socket_composite()->m_iKeepAliveCount > 0");
+
+                  }
+
+                  // new SSL negotiate method
                   if (ppairSocket->m_psocket->IsSSLNegotiate())
                   {
 
@@ -1100,6 +1199,24 @@ end_processing_adding:
 
                   }
 
+                  if (ppairSocket->m_psocket->m_iKeepAliveCount > 0)
+                  {
+
+                     output_debug_string("ppairSocket->m_psocket->m_iKeepAliveCount > 0");
+
+                     m_iMaxKeepAliveCount = maximum(m_iMaxKeepAliveCount, ppairSocket->m_psocket->m_iKeepAliveCount);
+
+                  }
+
+                  if (ppairSocket->m_psocket->base_socket_composite() && ppairSocket->m_psocket->base_socket_composite()->m_iKeepAliveCount > 0)
+                  {
+
+                     output_debug_string("ppairSocket->m_psocket->base_socket_composite()->m_iKeepAliveCount > 0");
+
+                     m_iMaxKeepAliveCount = maximum(m_iMaxKeepAliveCount, ppairSocket->m_psocket->base_socket_composite()->m_iKeepAliveCount);
+
+                  }
+
                }
                else
                {
@@ -1112,7 +1229,7 @@ end_processing_adding:
 
             }
 
-            if (FD_ISSET(socket, &wfds))
+            if (FD_ISSET(socket, &m_wfdsSelected))
             {
                
                auto ppairSocket = m_socketmap.plookup(socket);
@@ -1120,7 +1237,7 @@ end_processing_adding:
                if (::is_set(ppairSocket) && ::is_set(ppairSocket->m_psocket)) // found
                {
 
-                  // memory_new SSL negotiate method
+                  // new SSL negotiate method
                   if (ppairSocket->m_psocket->IsSSLNegotiate())
                   {
 
@@ -1150,7 +1267,7 @@ end_processing_adding:
 
             }
 
-            if (FD_ISSET(socket, &efds))
+            if (FD_ISSET(socket, &m_efdsSelected))
             {
 
                auto ppairSocket = m_socketmap.plookup(socket);
@@ -1213,55 +1330,49 @@ end_processing_adding:
       bool check_max_fd = false;
 
       // check detach of socket if master handler - EVENT
-      //if (!m_slave && m_socketlistDetach.get_size())
-      if(m_socketlistDetach.has_element())
+      if (!m_bSlave && m_socketlistDetach.get_size())
+      //if(m_socketlistDetach.has_element())
       {
 
-         retry_next_item_in_detach_list:
-
-         auto pos = m_socketlistDetach.begin();
+         auto it = m_socketlistDetach.begin();
 
          SOCKET socket = 0;
 
-         for (; pos != m_socketlistDetach.end(); pos++)
+         while(it != m_socketlistDetach.end())
          {
 
-            socket = *pos;
+            auto socket = *it;
+
+            it++;
             
             auto ppairSocket = m_socketmap.plookup(socket);
 
             if (::is_set(ppairSocket) && ::is_set(ppairSocket->m_psocket))
             {
 
-               if (ppairSocket->m_psocket->IsDetach()
-                  && !ppairSocket->m_psocket->IsDetached())
+               auto psocket = ppairSocket->m_psocket;
+
+               if (psocket->IsDetach() && !psocket->IsDetached())
                {
 
-                  if (socket != INVALID_SOCKET)
+                  erase_socket(socket);
+
+                  // After DetachSocket(), all calls to socket_handler() will return a object
+                  // to the new slave socket_handler running in the new thread.
+                  try
                   {
 
-                     set(socket, false, false, false);
-
-                     // After DetachSocket(), all calls to socket_handler() will return a object
-                     // to the memory_new slave socket_handler running in the memory_new thread.
-                     try
-                     {
-
-                        ppairSocket->m_psocket->DetachSocket(ppairSocket.get(), &m_socketmap);
-
-                     }
-                     catch (...)
-                     {
-
-                     }
-
-                     erase_socket(socket);
-
-                     check_max_fd = true;
-
-                     goto retry_next_item_in_detach_list;
+                     psocket->DetachSocket();
 
                   }
+                  catch (...)
+                  {
+
+                  }
+
+                  m_socketmap.erase_item(socket);
+
+                  check_max_fd = true;
 
                }
 
@@ -1406,7 +1517,7 @@ end_processing_adding:
 
                      }
 
-                     transfer(ppairSocket.get(), &m_socketmap);
+                     m_socketmap[ptcpsocket->GetSocketId()] = ptcpsocket;
 
                      m_socketlistErase.add_tail(nn);
 
@@ -1473,7 +1584,7 @@ end_processing_adding:
 
                   auto ptcpsocket = dynamic_cast <tcp_socket*> (psocket);
 
-                  // memory_new graceful ptcpsocket - flush and close timeout 5s
+                  // new graceful ptcpsocket - flush and close timeout 5s
                   if (::is_set(ptcpsocket) && psocket->IsConnected() && ptcpsocket->GetFlushBeforeClose() &&
                         !ptcpsocket->IsSSL() && psocket->TimeSinceClose().m_iSecond < 5)
                   {
@@ -1489,7 +1600,7 @@ end_processing_adding:
                         if (!(ptcpsocket->GetShutdownStatus() & SHUT_WR))
                      {
 
-                        if (ptcpsocket->m_socket != INVALID_SOCKET && shutdown(psocket->m_socket, SHUT_WR) == -1)
+                        if (ptcpsocket->GetSocketId() != INVALID_SOCKET && shutdown(psocket->GetSocketId(), SHUT_WR) == -1)
                         {
 
                            ptcpsocket->error() << "graceful shutdown " << networking_last_error() << bsd_socket_error(networking_last_error());
@@ -1515,7 +1626,7 @@ end_processing_adding:
 
                      //information() << "close() before reconnect\n");
 
-                     ptcpsocket->close(); // dispose of old file descriptor (open creates a memory_new)
+                     ptcpsocket->close(); // dispose of old file descriptor (open creates a new)
 
                      ptcpsocket->OnDisconnect();
 
@@ -1536,7 +1647,7 @@ end_processing_adding:
 
                      ptcpsocket->ResetConnectionRetryCount();
 
-                     transfer(ppairSocket.get(), psocketmap);
+                     psocketmap->set_at(ptcpsocket->GetSocketId(), ptcpsocket);
 
                      m_socketlistErase.add_tail(ptcpsocket->m_socket);
 
@@ -1560,7 +1671,7 @@ end_processing_adding:
 
                         synchronous_lock synchronouslock(__SystemNetworking(psystem)->m_pmutexPool);
 
-                        auto ppoolsocket = __new(pool_socket(psocket));
+                        auto ppoolsocket = __allocate< pool_socket >(psocket);
 
                         ppoolsocket->m_psockethandler = this;
 
@@ -1628,7 +1739,7 @@ end_processing_adding:
          if (::is_set(ppairSocket) && ::is_set(ppairSocket->m_psocket))
          {
 
-            ppairSocket->m_psocket->m_psockethandler.release();
+            ppairSocket->m_psocket->SetSocketHandler(nullptr);
 
             //ppairSocket->m_psocket->m_phandlerSlave.release();
 
@@ -1662,8 +1773,8 @@ end_processing_adding:
 
          psocket->OnDelete();
 
-         //if (psocket->DeleteByHandler() && !(m_slave ^ psocket->IsDetached()))
-         if (psocket->DeleteByHandler() && psocket->IsDetached())
+         if (psocket->DeleteByHandler() && is_equivalent(m_bSlave, psocket->IsDetached()))
+         //if (psocket->DeleteByHandler() && psocket->IsDetached())
          {
 
             psocket->SetErasedByHandler();
@@ -1816,7 +1927,7 @@ end_processing_adding:
 //
 //      // check cache
 //
-//      ::pointer<resolv_socket>presolvsocket = __new(resolv_socket(pbasesocket, host, port));
+//      ::pointer<resolv_socket>presolvsocket = __allocate< resolv_socket >(pbasesocket, host, port);
 //
 //      presolvsocket->m_psockethandler = this;
 //
@@ -1853,7 +1964,7 @@ end_processing_adding:
 //
 //      // check cache
 //
-//      ::pointer<resolv_socket>resolv = __new(resolv_socket(pbasesocket, host, port, true));
+//      ::pointer<resolv_socket>resolv = __allocate< resolv_socket >(pbasesocket, host, port, true);
 //
 //      resolv->m_psockethandler = this;
 //
@@ -1888,7 +1999,7 @@ end_processing_adding:
 //
 //      // check cache
 //
-//      ::pointer<resolv_socket>resolv = __new(resolv_socket(pbasesocket, a));
+//      ::pointer<resolv_socket>resolv = __allocate< resolv_socket >(pbasesocket, a);
 //
 //      resolv->m_psockethandler = this;
 //
@@ -1923,7 +2034,7 @@ end_processing_adding:
 //
 //      // check cache
 //
-//      ::pointer<resolv_socket>resolv = __new(resolv_socket(pbasesocket, a));
+//      ::pointer<resolv_socket>resolv = __allocate< resolv_socket >(pbasesocket, a);
 //
 //      resolv->m_psockethandler = this;
 //
@@ -1961,7 +2072,7 @@ end_processing_adding:
 //
 //         m_resolver_port = port;
 //
-//         auto presolvserver = __new(resolv_server());
+//         auto presolvserver = __allocate< resolv_server >();
 //
 //         m_resolver = presolvserver;
 //
@@ -2388,7 +2499,7 @@ end_processing_adding:
       if (m_trigger_src.contains(atom))
       {
 
-         data.SetSource(m_trigger_src[atom]);
+         data.SetSource(dynamic_cast < base_socket * > (m_trigger_src[atom].m_p));
 
          auto & map = m_trigger_dst[atom];
 

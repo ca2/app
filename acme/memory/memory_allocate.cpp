@@ -1,136 +1,186 @@
-//Created by camilo on 2021-07-23 23:12 BRT <3ThomasBorregaardSorensen!!
+//
+//  memory_allocate.cpp
+//  acme
+//
+//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 07/12/23.
+//  Copyright © 2023 Camilo Sasuke Tsumanuma. All rights reserved.
+//
 #include "framework.h"
+#include "memory_allocate.h"
+#include "simple_memory_allocate.h"
 
 
-#define HEAP_NAMESPACE_PREFIX main
-#include "_____heap_namespace.h"
-
-
-CLASS_DECL_ACME void* memory_allocate(memsize size)
+CLASS_DECL_ACME void * memory_allocate(memsize size)
 {
-
-   return ::HEAP_NAMESPACE::_memory_allocate(size);
-
-}
-
-
-CLASS_DECL_ACME void* memory_count_allocate(uptr count, memsize size)
-{
-
-   return ::HEAP_NAMESPACE::_memory_allocate(count * size);
-
-}
-
-
-CLASS_DECL_ACME void* memory_reallocate(void* p, memsize size)
-{
-
-   return ::HEAP_NAMESPACE::_memory_reallocate(p, size);
-
-}
-
-
-CLASS_DECL_ACME void memory_free(void* p)
-{
-
-   ::HEAP_NAMESPACE::_memory_free(p);
-
-}
-
-
-CLASS_DECL_ACME memsize memory_size(void* p)
-{
-
-   return ::HEAP_NAMESPACE::_memory_size(p);
-
-}
-
-
-CLASS_DECL_ACME void* memory_allocate_debug(memsize size, i32 nBlockUse, const char* szFileName, i32 nLine)
-{
-
-   return ::HEAP_NAMESPACE::_memory_allocate_debug(size, nBlockUse, szFileName, nLine);
-
-}
-
-
-CLASS_DECL_ACME void* memory_reallocate_debug(void* p, memsize size, i32 nBlockUse, const char* szFileName, i32 nLine)
-{
-
-   return ::HEAP_NAMESPACE::_memory_reallocate_debug(p, size, nBlockUse, szFileName, nLine);
-
-}
-
-
-CLASS_DECL_ACME void memory_free_debug(void* p, i32 nBlockUse)
-{
-
-   ::HEAP_NAMESPACE::_memory_free_debug(p, nBlockUse);
-
-}
-
-
-CLASS_DECL_ACME memsize memory_size_debug(void* p, i32 nBlockUse)
-{
-
-   return ::HEAP_NAMESPACE::_memory_size_debug(p, nBlockUse);
-
-}
-
-namespace HEAP_NAMESPACE
-{
-
-   void alloc_less_than_256()
+   
+   ::heap::memory * pheapmemory;
+   
+   if(::is_set(::acme::get()) && ::is_set(::acme::get()->m_pheapmanagement))
    {
-
-
+      
+      pheapmemory = ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main);
+      
+   }
+   else
+   {
+      
+      pheapmemory = nullptr;
+      
    }
 
-   void alloc_256_or_more()
+   void * p;
+
+   if(::is_set(pheapmemory))
    {
-
-
+   
+      p = pheapmemory->allocate(size);
+   
+   }
+   else
+   {
+   
+      p = simple_memory_allocate(size);
+   
    }
 
+//#if REFERENCING_DEBUGGING
+//
+//   task_on_operator_new(p, nSize);
+//
+//#endif
 
-   void on_plex_new_block(::u32 nAllocSize)
+   return p;
+
+}
+
+
+CLASS_DECL_ACME void * memory_reallocate(void * p, memsize size)
+{
+
+   auto p2 = simple_memory_reallocate(p, size);
+
+//#if REFERENCING_DEBUGGING
+//
+//   task_on_operator_new(p, nSize);
+//
+//#endif
+
+   return p2;
+
+}
+
+
+CLASS_DECL_ACME void memory_free(void * p)
+{
+   
+   simple_memory_free(p);
+   
+}
+
+
+CLASS_DECL_ACME memsize memory_size(void * p)
+{
+   
+   auto s = simple_memory_size(p);
+
+   return s;
+   
+}
+
+
+CLASS_DECL_ACME void * memory_allocate_debug(memsize size, i32 nType, const char* pszFileName, i32 nLine)
+{
+
+   auto pmemoryMain = ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main);
+
+   void * p;
+
+   if(::is_set(pmemoryMain))
    {
-
-
+   
+      p = pmemoryMain->allocate_debug(size, nType, pszFileName, nLine);
+   
+   }
+   else
+   {
+   
+      p = simple_memory_allocate(size);
+   
    }
 
+//#if REFERENCING_DEBUGGING
+//
+//   task_on_operator_new(p, nSize);
+//
+//#endif
 
-   void on_plex_heap_alloc(plex_heap_alloc* palloc)
+   return p;
+
+}
+
+
+CLASS_DECL_ACME void * memory_reallocate_debug(void * p, memsize size, i32 nType, const char* pszFileName, i32 nLine)
+{
+
+   auto pmemoryMain = ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main);
+
+   auto pheapmemory = heap_memory_get(p);
+
+   void * p2;
+   
+   if(::is_set(pmemoryMain) && pheapmemory->m_ememory == ::heap::e_memory_simple)
    {
-
-      int iAllocSize = palloc->m_iAllocSize;
-
-      if (iAllocSize < 256)
-      {
-
-         alloc_less_than_256();
-
-      }
-      else
-      {
-
-         alloc_256_or_more();
-
-      }
-
+   
+      p2 = pmemoryMain->reallocate_debug(p, size, nType, pszFileName, nLine);
+   
    }
-   void on_system_heap_alloc(memsize memsize)
+   else
    {
-
-
+   
+      p2 = simple_memory_reallocate(p, size);
+   
    }
 
+//#if REFERENCING_DEBUGGING
+//
+//   task_on_operator_new(p, nSize);
+//
+//#endif
 
-} // namespace HEAP_NAMESPACE
+   return p2;
+
+}
 
 
-#include "namespace_heap.inl"
-#include "heap_namespace.inl"
+CLASS_DECL_ACME void memory_free_debug(void * p, i32 nType)
+{
+
+   auto pmemoryMain = ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main);
+
+   auto pheapmemory = heap_memory_get(p);
+
+   if(::is_set(pmemoryMain) && pheapmemory->m_ememory == ::heap::e_memory_simple)
+   {
+   
+      pmemoryMain->free_debug(p, nType);
+   
+   }
+   else
+   {
+   
+      simple_memory_free(p);
+   
+   }
+
+//#if REFERENCING_DEBUGGING
+//
+//   task_on_operator_new(p, nSize);
+//
+//#endif
+
+   //return p2;
+
+}
 
 
 

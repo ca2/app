@@ -15,7 +15,7 @@ public:
 
       aura_ref();
 
-      system() = __new(::aura::system());
+      system() = __allocate< ::aura::system >();
 
       system()->console_initialize();
 

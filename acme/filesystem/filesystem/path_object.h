@@ -16,10 +16,10 @@ namespace file
    public:
 
       path_object();
-      path_object(::matter*);
+      //path_object(::matter*);
+      path_object(const ::file::path_object & pathobject):path_object((const::file::path & )pathobject){}
       path_object(const ::file::path& path);
       path_object(::file::path&& path);
-
       ~path_object() override;
 
 
@@ -55,19 +55,19 @@ namespace file
 
       // g_interlockedcountFilePathObject++;
 
-       //::informationf("----::file::path_object (count=" + as_string(g_interlockedcountFilePathObject.operator long long()) + ")\n");
+       //::acme::get()->platform()->informationf("----::file::path_object (count=" + as_string(g_interlockedcountFilePathObject.operator long long()) + ")\n");
 
    }
 
 
-   inline path_object::path_object(::matter*)
-   {
+   //inline path_object::path_object(::matter*)
+   //{
 
-      //g_interlockedcountFilePathObject++;
+   //   //g_interlockedcountFilePathObject++;
 
-      //::informationf("----::file::path_object (count=" + as_string(g_interlockedcountFilePathObject.operator long long()) + ")\n");
+   //   //::acme::get()->platform()->informationf("----::file::path_object (count=" + as_string(g_interlockedcountFilePathObject.operator long long()) + ")\n");
 
-   }
+   //}
 
 
    inline path_object::path_object(const ::file::path& path) :
@@ -76,7 +76,7 @@ namespace file
 
       //g_interlockedcountFilePathObject++;
 
-      //::informationf("----::file::path_object (count=" + as_string(g_interlockedcountFilePathObject.operator long long()) + ")\n");
+      //::acme::get()->platform()->informationf("----::file::path_object (count=" + as_string(g_interlockedcountFilePathObject.operator long long()) + ")\n");
 
    }
 
@@ -87,7 +87,7 @@ namespace file
 
       //g_interlockedcountFilePathObject++;
 
-      //::informationf("----::file::path_object (count=" + as_string(g_interlockedcountFilePathObject.operator long long()) + ")\n");
+      //::acme::get()->platform()->informationf("----::file::path_object (count=" + as_string(g_interlockedcountFilePathObject.operator long long()) + ")\n");
 
    }
 

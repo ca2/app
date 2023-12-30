@@ -5,7 +5,7 @@
 #include "acme/filesystem/file/binary_stream.h"
 #include "acme/parallelization/event.h"
 #include "acme/parallelization/synchronous_lock.h"
-//#include "apex/handler/predicate.h"
+#include "apex/handler/signal.h"
 #include "apex/platform/application.h"
 
 
@@ -544,7 +544,7 @@ namespace database
    }
 
 
-   void client::data_on_after_change(client* pclient, const ::scoped_string & strKey, const ::payload & payload, ::topic * ptopic)
+   void client::data_on_after_change(client* pclient, const ::scoped_string & strKey, ::topic * ptopic)
    {
 
    }

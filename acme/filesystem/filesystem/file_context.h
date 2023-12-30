@@ -29,7 +29,12 @@ public:
    virtual void init_system();
    virtual void init_context();
 
-   
+   virtual void term_system();
+   virtual void term_context();
+
+
+   virtual void finalize() override;
+
    //virtual void update_module_path();
 
    virtual ::string get_configuration_text(const ::scoped_string & scopedConfigurationFile);

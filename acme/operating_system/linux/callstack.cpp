@@ -1,12 +1,12 @@
 #include "framework.h"
-#include "acme/operating_system/ansi/callstack.h"
+#include "acme/operating_system/ansi/call_stack.h"
 //#include "_linux.h"
 
 #include <execinfo.h>
 #undef USE_MISC
 
 
-string get_callstack(const ::ansi_character * pszFormat, i32 iSkip, void * caller_address, int iCount)
+string get_callstack(::particle * pparticle, const ::ansi_character * pszFormat, i32 iSkip, void * caller_address, int iCount)
 {
 
    const size_t iMaximumFramesToCapture = 64;
@@ -15,7 +15,7 @@ string get_callstack(const ::ansi_character * pszFormat, i32 iSkip, void * calle
 
    auto frames = ::backtrace(stack, iMaximumFramesToCapture);
 
-   return _ansi_stack_trace(stack, frames, pszFormat, iSkip);
+   return _ansi_stack_trace(pparticle, stack, frames, pszFormat, iSkip);
 
 }
 

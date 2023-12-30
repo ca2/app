@@ -3,10 +3,12 @@
 #include "list_data.h"
 #include "acme/constant/id.h"
 #include "acme/filesystem/file/item.h"
+#include "acme/filesystem/filesystem/dir_context.h"
+#include "acme/handler/extended_topic.h"
+#include "acme/handler/topic.h"
 #include "acme/parallelization/task_flag.h"
 #include "acme/platform/scoped_restore.h"
 #include "apex/filesystem/fs/set.h"
-#include "acme/filesystem/filesystem/dir_context.h"
 #include "apex/platform/application.h"
 #include "apex/platform/context.h"
 #include "apex/platform/session.h"
@@ -96,7 +98,7 @@ namespace userfs
 
    //   }
 
-   //      m_pitem = __new(::file::item(*pitem));
+   //      m_pitem = __allocate< ::file::item >(*pitem);
 
    //   //   try
    //   //   {
@@ -116,7 +118,7 @@ namespace userfs
 
    //   //      auto pcontext = get_context();
 
-   //   //      m_pitem = __new(::file::item(pcontext->m_papexcontext->defer_process_path(strOldPath), strOldPath));
+   //   //      m_pitem = __allocate< ::file::item >(pcontext->m_papexcontext->defer_process_path(strOldPath), strOldPath);
 
    //   //      OnFileManagerBrowse(context + ::e_source_sync);
 
@@ -280,7 +282,7 @@ namespace userfs
 
       ::file::path pathFinal = pcontext->m_papexcontext->defer_process_path(pathUser);
 
-      ::pointer<::file::item>pitem = __new(::file::item(pathUser, pathFinal));
+      ::pointer<::file::item>pitem = __allocate< ::file::item >(pathUser, pathFinal);
 
       browse(pitem, context);
 

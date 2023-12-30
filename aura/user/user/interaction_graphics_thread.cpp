@@ -97,26 +97,26 @@ namespace user
 #ifdef _DEBUG
 
 
-   i64 graphics_thread::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+   i64 graphics_thread::increment_reference_count()
    {
 
-      return ::thread::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      return ::thread::increment_reference_count();
 
    }
 
 
-   i64 graphics_thread::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+   i64 graphics_thread::decrement_reference_count()
    {
 
-      return ::thread::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      return ::thread::decrement_reference_count();
 
    }
 
 
-   i64 graphics_thread::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+   i64 graphics_thread::release()
    {
 
-      return ::thread::release(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      return ::thread::release();
 
    }
 
@@ -192,7 +192,7 @@ namespace user
 //
 //            {
 //
-//               _synchronous_lock synchronouslock(pimpl->synchronization());
+//               synchronous_lock synchronouslock(pimpl->synchronization());
 //
 //               if(pimpl->m_redrawitema.has_element())
 //               {
@@ -402,11 +402,13 @@ namespace user
             return false;
 
          }
-
+         
+         ::i32 iRedrawMessageCount = 0;
+         
          if (m_message.m_atom == e_message_redraw)
          {
 
-            return true;
+            iRedrawMessageCount = 1;
 
          }
 
@@ -415,14 +417,22 @@ namespace user
          while (peek_message(&m_message, nullptr, 0, 0, true))
          {
 
-//            if (m_message.m_atom == e_message_redraw)
-//            {
-//
-//               iRedrawMessageCount++;
-//
-//            }
+            if (m_message.m_atom == e_message_redraw)
+            {
+
+               iRedrawMessageCount++;
+
+            }
 
          }
+
+         if (iRedrawMessageCount > 0)
+         {
+
+            return true;
+
+         }
+
 
 #ifdef EXTRA_PRODEVIAN_ITERATION_LOG
 
@@ -647,7 +657,7 @@ namespace user
 //
 //      }
 //
-//      m_procedureUpdateScreen.m_pbase.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
+//      m_procedureUpdateScreen.m_pbase.release();
 
 //      if (m_procedureWindowShow)
 //      {
@@ -656,7 +666,7 @@ namespace user
 //
 //      }
 //
-//      m_procedureWindowShow.m_pbase.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
+//      m_procedureWindowShow.m_pbase.release();
 
    }
 
@@ -666,9 +676,9 @@ namespace user
 
       m_evUpdateScreen.SetEvent();
 
-      m_puserinteraction.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
+      m_puserinteraction.release();
 
-      m_pimpl.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
+      m_pimpl.release();
 
       m_synchronizationa.clear();
 
@@ -766,7 +776,7 @@ namespace user
 
          //i64 i2 = get_nanos();
 
-         // calculates the next/memory_new frame atom
+         // calculates the next/aaa_memory_new frame atom
          //m_iFrameId = (m_timeNow + timeFrame - 1) / (timeFrame);
 
          //m_timeNextFrame = m_iFrameId * timeFrame;

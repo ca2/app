@@ -47,7 +47,7 @@ HANDLE dup_handle(HANDLE h)
 //
 //   if (!ReadProcessMemory(handleProcess, (PCHAR)&ppeb->ProcessParameters, &pparam1, sizeof(PRTL_USER_PROCESS_PARAMETERS), nullptr) || pparam1 == nullptr)
 //   {
-//      ::informationf("Could not read the address of ProcessParameters!\n");
+//      ::acme::get()->platform()->informationf("Could not read the address of ProcessParameters!\n");
 //      return "";
 //   }
 //
@@ -56,16 +56,16 @@ HANDLE dup_handle(HANDLE h)
 //
 //   if (!ReadProcessMemory(handleProcess, (PCHAR)&pparam1->CommandLine, &ustrCommandLine, sizeof(ustrCommandLine), nullptr))
 //   {
-//      ::informationf("Could not read CommandLine!\n");
+//      ::acme::get()->platform()->informationf("Could not read CommandLine!\n");
 //      return "";
 //   }
 //
 //   /* allocate memory to hold the command line */
-//   WCHAR * commandLineContents = (WCHAR *)memory_allocate(ustrCommandLine.Length + sizeof(WCHAR));
+//   WCHAR * commandLineContents = (WCHAR *)::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(ustrCommandLine.Length + sizeof(WCHAR));
 //   /* read the command line */
 //   if (!ReadProcessMemory(handleProcess, ustrCommandLine.Buffer, commandLineContents, ustrCommandLine.Length, nullptr))
 //   {
-//      ::informationf("Could not read the command line string!\n");
+//      ::acme::get()->platform()->informationf("Could not read the command line string!\n");
 //      return "";
 //   }
 //   commandLineContents[ustrCommandLine.Length / sizeof(WCHAR)] = L'\0';

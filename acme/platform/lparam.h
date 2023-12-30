@@ -28,9 +28,15 @@ public:
    inline lparam(void * p) { m_lparam = (iptr)p;  }
 
 
-   /// posting/sending particle
+   /// posting/sending particle with referencing forking
    lparam(const ::particle * pelement);
 
+#if REFERENCING_DEBUGGING
+
+   /// posting/sending particle with referencing transfer
+   lparam(::particle * pelement, ::reference_referer * preferer);
+
+#endif
 
    /// posting/sending particle
    template < typename T >
@@ -39,9 +45,9 @@ public:
    inline lparam(const ptr < T > & p) : lparam((const ::particle *) p.m_p) { }
 
    template < typename T >
-   inline lparam(pointer < T > && p) : m_lparam((iptr)(::particle *) p.m_p) { p.m_p = nullptr; p.m_pparticle = nullptr; }
+   inline lparam(pointer < T > && p) : lparam(p.m_p REFDBG(, p.m_preferer)) { p.m_p = nullptr; p.m_pparticle = nullptr; REFDBG(p.m_preferer = nullptr); }
    template < typename T >
-   inline lparam(ptr < T > && p) : m_lparam((iptr)(::particle *) p.m_p) { p.m_p = nullptr; }
+   inline lparam(ptr < T > && p) : lparam(p.m_p REFDBG(, p.m_preferer)) { p.m_p = nullptr; REFDBG(p.m_preferer = nullptr); }
 
 
    lparam(const lparam & lparam)

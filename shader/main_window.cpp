@@ -7,6 +7,7 @@
 #include "acme/constant/message.h"
 #include "acme/constant/user_key.h"
 #include "acme/handler/item.h"
+#include "acme/handler/topic.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/primitive/datetime/datetime.h"
 #include "acme/user/user/tool.h"
@@ -82,7 +83,7 @@ namespace app_shader
 
 //      {
 //
-//         tool().add_item(__new(::item(e_element_close_button, id_close_app)));
+//         tool().add_item(__allocate< ::item >(e_element_close_button, id_close_app));
 //
 ////         auto pitem = user_item(::e_element_close_button);
 ////
@@ -97,7 +98,7 @@ namespace app_shader
 
       {
 
-         tool().add_item(__new(::item(::e_element_switch_button, ::id_switch)));
+         tool().add_item(__allocate< ::item >(::e_element_switch_button, ::id_switch));
 
 //         auto pitem = user_item(::e_element_switch_button);
 //
@@ -107,7 +108,7 @@ namespace app_shader
 
 //      {
 //
-//         tool().add_item(__new(::item(::e_element_maximize_button, ::id_maximize)));
+//         tool().add_item(__allocate< ::item >(::e_element_maximize_button, ::id_maximize));
 //
 //         //auto pitem = user_item(::e_element_maximize_button);
 //
@@ -124,7 +125,7 @@ namespace app_shader
 //      {
 //
 //
-//         tool().add_item(__new(::item(e_element_minimize_button, id_minimize)));
+//         tool().add_item(__allocate< ::item >(e_element_minimize_button, id_minimize));
 //
 ////         auto pitem = user_item(::e_element_minimize_button);
 ////
@@ -230,7 +231,7 @@ namespace app_shader
             fork([this, pimage]()
                  {
 
-                    auto psaveimage = __new(save_image());
+                    auto psaveimage = __allocate< save_image >();
 
                     psaveimage->m_eformat = ::draw2d::e_format_png;
 

@@ -266,19 +266,19 @@ list(APPEND library_source
         networking/sockets/bsd/smtp/smtp_socket.h
         networking/sockets/bsd/smtp/smtpd_socket.cpp
         networking/sockets/bsd/smtp/smtpd_socket.h
-        networking/sockets/bsd/timer/_.h
-        networking/sockets/bsd/timer/Event.cpp
-        networking/sockets/bsd/timer/event.h
-        networking/sockets/bsd/timer/event_handler.h
-        networking/sockets/bsd/timer/event_time.h
-        networking/sockets/bsd/timer/EventHandler.cpp
-        networking/sockets/bsd/timer/EventTime.cpp
-        networking/sockets/bsd/timer/ievent_handler.h
-        networking/sockets/bsd/timer/ievent_owner.h
-        networking/sockets/bsd/timer/IEventOwner.cpp
-        networking/sockets/bsd/webserver/ajp13.h
-        networking/sockets/bsd/webserver/ajp13_socket.h
-        networking/sockets/bsd/webserver/ajp_base_socket.h
+#        networking/sockets/bsd/timer/_.h
+#        networking/sockets/bsd/timer/Event.cpp
+#        networking/sockets/bsd/timer/event.h
+#        networking/sockets/bsd/timer/event_handler.h
+#        networking/sockets/bsd/timer/event_time.h
+#        networking/sockets/bsd/timer/EventHandler.cpp
+#        networking/sockets/bsd/timer/EventTime.cpp
+#        networking/sockets/bsd/timer/ievent_handler.h
+#        networking/sockets/bsd/timer/ievent_owner.h
+#        networking/sockets/bsd/timer/IEventOwner.cpp
+#        networking/sockets/bsd/webserver/ajp13.h
+#        networking/sockets/bsd/webserver/ajp13_socket.h
+#        networking/sockets/bsd/webserver/ajp_base_socket.h
         networking/sockets/bsd/_.h
         networking/sockets/bsd/_strconv.h
         networking/sockets/bsd/config.h
@@ -417,7 +417,7 @@ if (MSVC)
     target_compile_options(axis PRIVATE "/MD$<$<CONFIG:Debug>:d>")
     target_link_options(axis PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
     target_link_options(axis PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/axis.lib")
-    target_link_options(axis PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/axis.def")
+#    target_link_options(axis PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/axis.def")
     #target_link_libraries(axis PRIVATE acme apex aqua aura pcre bzip2 ws2_32 kernel32 user32 gdi32 winspool comdlg32 advapi32 shell32 ole32 oleaut32 uuid odbc32 odbccp32)
     #target_link_libraries(axis PRIVATE acme apex aqua aura bzip2 ws2_32 kernel32 user32 gdi32 winspool comdlg32 advapi32 shell32 ole32 oleaut32 uuid odbc32 odbccp32)
     target_link_libraries(axis PRIVATE ${library_references})

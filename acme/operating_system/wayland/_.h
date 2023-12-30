@@ -44,7 +44,7 @@ void copy(xdg_toplevel_resize_edge * presizeedge, ::experience::enum_frame * pef
 //void __x11_hook_on_idle(Display * pdisplay);
 
 
-CLASS_DECL_ACME ::particle * user_synchronization();
+//CLASS_DECL_ACME ::particle * user_synchronization();
 
 
 //#include "x11_exception.h"

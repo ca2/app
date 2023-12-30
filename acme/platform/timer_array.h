@@ -15,10 +15,7 @@ namespace acme
    public:
 
 
-      typedef uptr_map < ::pointer<::timer >>MAP;
-
-      MAP                                       m_map;
-      ::pointer<::timer_callback>              m_pcallback;
+      ::pointer<::timer_callback>               m_pcallback;
       bool                                      m_bOk;
 
 

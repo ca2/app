@@ -20,6 +20,16 @@ namespace experience
    }
 
 
+   void experience::destroy()
+   {
+
+      m_pfactory.release();
+
+      ::object::destroy();
+
+   }
+
+
    ::base::application * experience::get_app()
    {
 
@@ -74,7 +84,7 @@ namespace experience
    }
 
 
-   ::experience::frame * experience::frame_experience(const ::string & strFrameSchema)
+   ::pointer < ::experience::frame > experience::frame_experience(const ::string & strFrameSchema)
    {
 
       UNREFERENCED_PARAMETER(strFrameSchema);

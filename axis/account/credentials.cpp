@@ -8,6 +8,7 @@
 #include "credentials.h"
 #include "interactive.h"
 #include "user.h"
+#include "acme/primitive/mathematics/mathematics.h"
 ////#include "acme/exception/exception.h"
 //#include "acme/primitive/string/hex.h"
 //#include "acme/primitive/time/integral/operator.h"
@@ -91,7 +92,7 @@ namespace account
       for(i32 i = 0; i < 64; i += 2)
       {
 
-         i64 iDigit = random<char>();
+         char iDigit = mathematics()->random_char();
 
          strFormat = ::hex::lower_case_padded_from<2>(iDigit);
 

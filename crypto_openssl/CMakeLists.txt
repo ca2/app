@@ -5,10 +5,9 @@ project(crypto_openssl CXX)
 list(APPEND library_source
    _.cpp
    _.h
-   ##_library.h
+   _factory.cpp
    crypto.cpp
    crypto.h
-   _factory.cpp
    hasher.cpp
    hasher.h
    hasher_algorithm.cpp

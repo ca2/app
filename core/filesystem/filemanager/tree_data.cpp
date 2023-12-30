@@ -5,6 +5,7 @@
 #include "context_menu.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
+#include "acme/handler/topic.h"
 #include "acme/platform/application.h"
 #include "acme/platform/session.h"
 #include "acme/platform/system.h"
@@ -21,6 +22,80 @@
 #include "core/filesystem/userfs/item.h"
 #include "core/user/user/tree.h"
 
+
+template < typename LIST_ITEM >
+void check_list(LIST_ITEM * plist)
+{
+
+#ifdef DEBUG
+
+   if (::is_null(plist->m_ptail))
+   {
+      if (::is_set(plist->m_phead))
+      {
+
+         throw "error";
+
+      }
+
+   }
+   else if (::is_null(plist->m_phead))
+   {
+
+      throw "error";
+
+   }
+
+   auto p = plist->m_phead;
+
+   while(true)
+   {
+
+      if (is_null(p->m_pdataitem))
+      {
+
+         throw "error";
+
+      }
+
+      if (p == plist->m_ptail)
+      {
+
+         break;
+
+      }
+
+      p = p->m_pnext;
+
+   } 
+
+   auto p2 = plist->m_ptail;
+
+   while (true)
+   {
+
+      if (is_null(p->m_pdataitem))
+      {
+
+         throw "error";
+
+      }
+
+      if (p == plist->m_phead)
+      {
+
+         break;
+
+      }
+
+      p = p->m_pprevious;
+
+   }
+
+#endif
+
+
+}
 
 namespace filemanager
 {
@@ -71,26 +146,26 @@ namespace filemanager
 #ifdef _DEBUG
 
 
-   i64 tree_data::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
+   i64 tree_data::increment_reference_count()
    {
 
-      return ::object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      return ::object::increment_reference_count();
 
    }
 
 
-   i64 tree_data::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
+   i64 tree_data::decrement_reference_count()
    {
 
-      return ::object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      return ::object::decrement_reference_count();
 
    }
 
 
-   i64 tree_data::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
+   i64 tree_data::release()
    {
 
-      return ::object::release(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      return ::object::release();
 
    }
 
@@ -405,7 +480,7 @@ namespace filemanager
       //            if (ptreeitemChild == nullptr)
       //            {
 
-      //               pitemChild = __new(::userfs::item(this));
+      //               pitemChild = __allocate< ::userfs::item >(this);
 
       //               pitemChild->set_user_path(pathAscendant);
 
@@ -476,7 +551,7 @@ namespace filemanager
       //      if (ptreeitemChild.is_null())
       //      {
 
-      //         ptreeitemChild = __new(::data::tree_item);
+      //         ptreeitemChild = __allocate< ::data::tree_item >();
 
       //         ptreeitemChild->m_ptree = this;
 
@@ -501,7 +576,7 @@ namespace filemanager
       //      if (!pitemChild)
       //      {
 
-      //         pitemChild = __new(::userfs::item(this));
+      //         pitemChild = __allocate< ::userfs::item >(this);
 
       //         ptreeitemChild->m_pdataitem = pitemChild;
 
@@ -559,7 +634,7 @@ namespace filemanager
       //      if (ptreeitemChild.is_null())
       //      {
 
-      //         ptreeitemChild = __new(::data::tree_item);
+      //         ptreeitemChild = __allocate< ::data::tree_item >();
 
       //         ptreeitemChild->m_ptree = this;
 
@@ -582,7 +657,7 @@ namespace filemanager
       //      if (!pitemChild)
       //      {
 
-      //         pitemChild = __new(::userfs::item(this));
+      //         pitemChild = __allocate< ::userfs::item >(this);
 
       //         ptreeitemChild->m_pdataitem = pitemChild;
 
@@ -757,6 +832,8 @@ _001SelectItem(pchild);
    void tree_data::add_path(const ::file::path & pathAdd, const ::scoped_string & scopedstrName)
    {
 
+      synchronous_lock synchronouslock(this->synchronization());
+
       ::file::path_array patha;
 
       ascendants_path(pathAdd, patha);
@@ -773,7 +850,7 @@ _001SelectItem(pchild);
          if (!pchild)
          {
 
-            auto pitemNew = __new(::userfs::item(this));
+            auto pitemNew = __allocate< ::userfs::item >(this);
 
             pitemNew->set_user_path(path);
 
@@ -812,17 +889,56 @@ _001SelectItem(pchild);
 
          pparent = pchild;
 
-         pparent->sort_children([](auto p1, auto p2)
-            {
-
-               return p1->m_pdataitem.template cast < ::file::item>()->m_strName
-                  .case_insensitive_order(p2->m_pdataitem.template cast < ::file::item>()->m_strName) < 0;
-
-});
-
       }
 
 
+      for (::index i = patha.get_upper_bound(); i >= 0; i--)
+      {
+
+         auto & path = patha[i];
+
+         ::pointer<::data::tree_item>p = find_item_by_user_path(path);
+
+         if (p)
+         {
+
+            p->sort_children([](auto p1, auto p2)
+               {
+
+                     auto pfileitem1 = p1->m_pdataitem.template cast < ::file::item>();
+
+                     auto pfileitem2 = p2->m_pdataitem.template cast < ::file::item>();
+
+                  /*   if (::is_null(pfileitem1))
+                     {
+
+                        if (::is_null(pfileitem2))
+                        {
+
+                           return false;
+
+                        }
+                        else
+                        {
+
+                           return true;
+                        }
+                     }
+                     else if (::is_null(pfileitem2))
+                     {
+
+                        return false;
+
+                     }*/
+
+
+                     return pfileitem1->m_strName
+                        .case_insensitive_order(pfileitem2->m_strName) < 0;
+
+   });
+         }
+
+      }
 
 
    //auto pparticleSynchronization = m_usertreea.has_elements() ? m_usertreea[0]->synchronization() : nullptr;
@@ -866,7 +982,7 @@ _001SelectItem(pchild);
    //            if (ptreeitemChild == nullptr)
    //            {
 
-   //               pitemChild = __new(::userfs::item(this));
+   //               pitemChild = __allocate< ::userfs::item >(this);
 
    //               pitemChild->set_user_path(pathAscendant);
 
@@ -937,7 +1053,7 @@ _001SelectItem(pchild);
    //      if (ptreeitemChild.is_null())
    //      {
 
-   //         ptreeitemChild = __new(::data::tree_item);
+   //         ptreeitemChild = __allocate< ::data::tree_item >();
 
    //         ptreeitemChild->m_ptree = this;
 
@@ -962,7 +1078,7 @@ _001SelectItem(pchild);
    //      if (!pitemChild)
    //      {
 
-   //         pitemChild = __new(::userfs::item(this));
+   //         pitemChild = __allocate< ::userfs::item >(this);
 
    //         ptreeitemChild->m_pdataitem = pitemChild;
 
@@ -1195,7 +1311,7 @@ _001SelectItem(pchild);
 
       auto puserfsitem = pitem->m_pdataitem.cast < ::userfs::item > ();
 
-      auto pfileitem = __new(::file::item(*puserfsitem));
+      auto pfileitem = __allocate< ::file::item >(*puserfsitem);
 
       filemanager_document()->browse(pfileitem, context);
 

@@ -260,7 +260,7 @@ void output_debug_string_flush()
 //void output_debug_string(const ::wide_character * pOutputString)
 //{
 //
-//   if(::platform::get()->m_bOutputDebugString)
+//   if(this->platform()->m_bOutputDebugString)
 //   {
 //
 //      output_debug_string(string(pOutputString));

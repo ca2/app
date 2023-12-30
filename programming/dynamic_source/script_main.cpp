@@ -11,8 +11,6 @@ namespace dynamic_source
 
       m_pnetnodescriptmain = nullptr;
 
-      tracking_note_assign(m_pmain, this, OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_NOTE("this is annotation"));
-
    }
 
 
@@ -26,18 +24,18 @@ namespace dynamic_source
 #ifdef _DEBUG
 
 
-   ::i64 script_main::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+   ::i64 script_main::increment_reference_count()
    {
 
-      return script_interface::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      return script_interface::increment_reference_count();
 
    }
 
 
-   ::i64 script_main::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+   ::i64 script_main::decrement_reference_count()
    {
 
-      return script_interface::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      return script_interface::decrement_reference_count();
 
    }
 
@@ -48,33 +46,63 @@ namespace dynamic_source
    void script_main::initialize(::particle * pparticle)
    {
 
-      //auto estatus = 
-      
-      ::html_file::initialize(pparticle);
+      ::dynamic_source::script_interface::initialize(pparticle);
 
-      //if (!estatus)
-      //{
+   }
 
-      //   return estatus;
 
-      //}
+   void script_main::finalize()
+   {
 
-      //return estatus;
+      m_psocket2.release();
+
+      m_pmanager2.release();
+
+      ::dynamic_source::script_interface::finalize();
 
    }
 
 
    void script_main::destroy()
    {
-         
-      //auto estatus = 
-      
-      script_interface::destroy();
 
+      try
+      {
+
+         for (auto& pinterface : m_interfacea)
+         {
+
+            try
+            {
+
+               if (pinterface)
+               {
+
+                  pinterface->m_pmain.release();
+
+               }
+
+            }
+            catch (...)
+            {
+
+            }
+
+         }
+
+      }
+      catch (...)
+      {
+
+      }
+
+      m_interfacea.clear();
+         
       m_psocket2.release();
+
       m_pmanager2.release();
 
-      //return estatus;
+      script_interface::destroy();
 
    }
 

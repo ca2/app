@@ -71,38 +71,38 @@ namespace experience_anthill
    }
 
 
-   ::experience::frame * experience::frame_experience(const ::string & pszSchema)
+   ::pointer < ::experience::frame > experience::frame_experience(const ::string & pszSchema)
    {
 
       string strSchema(pszSchema);
 
       if (strSchema == "001")
       {
-         return memory_new ::experience_anthill::frame_001;
+         return __new< ::experience_anthill::frame_001 >();
       }
       else if (strSchema == "002")
       {
-         return memory_new ::experience_anthill::frame_002;
+         return __new< ::experience_anthill::frame_002 >();
       }
       else if (strSchema == "005")
       {
-         return memory_new ::experience_anthill::frame_005;
+         return __new< ::experience_anthill::frame_005 >();
       }
       else if (strSchema == "008")
       {
-         return memory_new ::experience_anthill::frame_008;
+         return __new< ::experience_anthill::frame_008 >();
       }
       else if (strSchema == "011")
       {
-         return memory_new ::experience_anthill::frame_011;
+         return __new< ::experience_anthill::frame_011 >();
       }
       else if (strSchema == "022")
       {
-         return memory_new ::experience_anthill::frame_022;
+         return __new< ::experience_anthill::frame_022 >();
       }
       else if (strSchema == "Minimal001")
       {
-         return memory_new ::experience_anthill::frame_Minimal001;
+         return __new< ::experience_anthill::frame_Minimal001 >();
       }
 
       return nullptr;

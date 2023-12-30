@@ -26,7 +26,7 @@ namespace apple
    void nano_http::s_http_response(long http_status, const void * data, long size, void * userdata)
    {
       
-      ::pointer < ::nano::asynchronous_http_response > passynchronoushttpdata(e_pointer_transfer, (::particle *) userdata);
+      ::pointer < ::nano::asynchronous_http_response > passynchronoushttpdata(transfer_t{}, (::particle *) userdata);
       
       passynchronoushttpdata->m_response.m_memory.assign(data, size);
       
@@ -46,7 +46,7 @@ namespace apple
 //      {                                s_http_response(pasynchronoushttpresponse);
 //      };
       
-      nano_asynchronous_http_memory(scopedstrUrl.c_str(), s_http_response, pasynchronoushttpresponse.detach_particle());
+      nano_asynchronous_http_memory(scopedstrUrl.c_str(), s_http_response, pasynchronoushttpresponse.detach());
      
    }
 

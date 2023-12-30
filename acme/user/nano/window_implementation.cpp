@@ -14,6 +14,9 @@
 #include "acme/platform/system.h"
 
 
+#include <stdio.h>
+
+
 nano_window_implementation::nano_window_implementation()
 {
 
@@ -65,7 +68,7 @@ void nano_window_implementation::nano_window_on_create()
 
    acmenode()->fetch_user_color();
 
-   system()->add_signal_handler({ e_use, this }, id_operating_system_user_color_change);
+   system()->add_signal_handler({ use_t{}, this }, id_operating_system_user_color_change);
    
    create_drawing_objects();
 
@@ -254,7 +257,7 @@ void nano_window_implementation::handle(::topic * ptopic, ::context * pcontext)
 
    message_loop();
 
-   auto pmanualresetevent = __new(manual_reset_event);
+   auto pmanualresetevent = __allocate< manual_reset_event >();
 
    m_pinterface->m_psequencer->then([ pmanualresetevent](auto psequencer)
    {
@@ -263,7 +266,9 @@ void nano_window_implementation::handle(::topic * ptopic, ::context * pcontext)
 
    });
 
-   if(m_pinterface->m_payloadResult.is_new())
+   auto pinterface = m_pinterface;
+
+   if(pinterface->m_payloadResult.is_new())
    {
       
       pmanualresetevent->wait();
@@ -303,7 +308,7 @@ void nano_window_implementation::handle(::topic * ptopic, ::context * pcontext)
    //
    //   return idResult;
 
-   return m_pinterface->m_payloadResult;
+   return pinterface->m_payloadResult;
 
 }
 

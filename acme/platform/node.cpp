@@ -45,8 +45,8 @@ namespace acme
 
       //m_bUserDarkMode = false;
 
-      m_bCallstackInitialized = false;
-      m_bUpdateCallstack = false;
+      m_bCallStackInitialized = false;
+      m_bUpdateCallStack = false;
 
       m_uNodeFlags = 0;
 
@@ -95,18 +95,18 @@ namespace acme
 #ifdef _DEBUG
 
 
-   i64 node::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
+   i64 node::increment_reference_count()
    {
 
-      return ::object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      return ::object::increment_reference_count();
 
    }
 
 
-   i64 node::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
+   i64 node::decrement_reference_count()
    {
 
-      return ::object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      return ::object::decrement_reference_count();
 
    }
 
@@ -346,6 +346,8 @@ namespace acme
       {
 
          node_implement_main();
+
+         return;
 
       }
 
@@ -652,7 +654,7 @@ namespace acme
    }
 
 
-   //__new(::pointer < ::mutex >(this, false, "Local\\ca2-appmatter")
+   //__allocate < ::pointer < ::mutex > >(this, false, "Local\\ca2-appmatter")
 
    ::pointer < ::mutex > node::create_local_named_mutex(::particle * pparticleContext, bool bInitialOwner, const ::string & strName, security_attributes * psecurityattributes)
    {
@@ -693,7 +695,7 @@ namespace acme
 
       return open_global_named_mutex(pparticleContext, strName);
 
-   //__new(::install::pointer < ::mutex >(this, process_platform_name())
+   //__allocate< ::install::pointer < ::mutex > >(this, process_platform_name()
 
    }
 
@@ -1032,13 +1034,13 @@ namespace acme
       if (m_bDarkMode)
       {
 
-         ::informationf("background_color :: Dark\n");
+         ::acme::get()->platform()->informationf("background_color :: Dark\n");
 
       }
       else
       {
 
-         ::informationf("background_color :: Lite\n");
+         ::acme::get()->platform()->informationf("background_color :: Lite\n");
 
       }
 
@@ -1249,7 +1251,7 @@ namespace acme
 //      CLASS_DECL_ACME bool main_synchronous(const class time & time, const ::procedure & function)
 //      {
 
-         auto pevent = __new(manual_reset_event);
+         auto pevent = __allocate< manual_reset_event >();
 
          user_post([ procedure, pevent ]
                            {
@@ -1273,6 +1275,13 @@ namespace acme
          ///return true;
 //
 //      }
+
+
+   }
+
+
+   void node::defer_do_main_tasks()
+   {
 
 
    }
@@ -2269,7 +2278,7 @@ return false;
    ::pointer<::conversation>node::create_new_message_box_conversation()
    {
 
-      initialize_nano_window();
+      initialize_nano_window(factory());
 
       return __create_new < ::nano_message_box >();
 
@@ -2279,7 +2288,7 @@ return false;
    pointer< ::sequencer < ::conversation > > node::create_message_box_sequencer(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
    {
 
-      auto psequencer = __create_new< ::sequencer < ::conversation > >();
+      auto psequencer = __create_new < ::sequencer < ::conversation > >();
 
       auto pmessagebox = create_new_message_box_conversation();
 
@@ -2338,7 +2347,7 @@ return false;
     void node::add_application_capability(const ::enum_application_capability_array& ecapabilitya)
     {
 
-       m_eapplicationcapabilitya.add_unique(ecapabilitya);
+       m_eapplicationcapabilitya.append_unique(ecapabilitya);
 
        on_change_application_capability();
 
@@ -3345,6 +3354,35 @@ return false;
    }
 
 #endif
+
+
+   string node::_get_call_stack_trace(const ::scoped_string & scopedstrFormat, i32 iSkip, void * caller_address, int iCount)
+   {
+      
+      int frame_count = get_call_stack_default_frame_count();
+
+      if(frame_count <= 0)
+      {
+         
+         // essentially disabled;
+         
+         return {};
+         
+      }
+      
+      memory memory;
+      
+      memory.set_size(frame_count * sizeof(void *));
+      
+      void ** stack = (void **) memory.data();
+      
+      get_call_stack_frames(stack, frame_count);
+      
+      ::string strCallStack = get_call_stack_trace(stack, frame_count);
+      
+      return strCallStack;
+   
+   }
 
 
 bool node::is_application_running_good_effort(const ::scoped_string & scopedstrRepos, const ::scoped_string & scopedstrApp)

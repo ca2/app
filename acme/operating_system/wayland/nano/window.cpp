@@ -153,7 +153,7 @@ namespace wayland
 
       auto pcairo = cairo_create(m_pcairosurface);
 
-      m_pnanodevice = __new(::cairo::nano_device(pcairo));
+      m_pnanodevice = __allocate< ::cairo::nano_device >(pcairo);
 
 
    }
@@ -608,7 +608,7 @@ namespace wayland
 //
 //            auto pdc = cairo_create(m_psurface);
 //
-//            m_pnanodevice = __new(::cairo::nano_device(pdc));
+//            m_pnanodevice = __allocate< ::cairo::nano_device >(pdc);
 //
 //         }
 //

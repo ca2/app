@@ -6,81 +6,59 @@
 #include "acme/primitive/geometry2d/matrix.h"
 
 
-static ::pointer< ::mutex > s_pmutex = nullptr;
-
-extern string_map < i32_map < FT_Face > > * g_pmapFontFace;
-
-extern string_to_int * g_pmapFontError ;
-
-extern string_to_int * g_pmapFontError2 ;
-
-extern string_map < cairo_font_face_t * > * g_pmapCairoFontFace;
-
-//extern CLASS_DECL_AURA array < matter * > * g_paAura;
-
-#ifdef LINUX
-
-extern ::pointer< ::mutex > g_pmutexFc;
-
-extern string_to_string *      g_pmapFontPath;
-
-#endif
-
-::particle * cairo_mutex()
-{
-
-   return s_pmutex;
-
-}
+//
+//
 
 
-
-void init_cairo_mutex()
-{
-
-   __raw_construct(s_pmutex);
-
-#ifdef LINUX
-
-   __raw_construct(g_pmutexFc);
-
-   g_pmapFontPath = memory_new string_to_string();
-
-#endif
-
-   g_pmapFontFace = memory_new string_map < i32_map < FT_Face> > ();
-
-   g_pmapCairoFontFace = memory_new string_map < cairo_font_face_t * > ();
-
-   g_pmapFontError = memory_new string_to_int ();
-
-   g_pmapFontError2 = memory_new string_to_int ();
-
-}
-
-
-void term_cairo_mutex()
-{
-
-   ::acme::del(g_pmapFontError2);
-
-   ::acme::del(g_pmapFontError);
-
-   ::acme::del(g_pmapCairoFontFace);
-
-   ::acme::del(g_pmapFontFace);
-
-#ifdef LINUX
-
-   ::acme::del(g_pmapFontPath);
-
-   ::release(g_pmutexFc);
-
-#endif
-
-   ::release(s_pmutex);
-
-}
+//
+//
+//
+//void init_cairo_mutex()
+//{
+//
+//   ::platform::get()->__raw_construct(s_pmutex);
+//
+//#ifdef LINUX
+//
+//   ::platform::get()->__raw_construct(g_pmutexFc);
+//
+//   g_pmapFontPath = __new< string_to_string >();
+//
+//#endif
+//
+//   g_pmapFontFace = __new< string_map < i32_map < FT_Face> >  >();
+//
+//   g_pmapCairoFontFace = __new< string_map < cairo_font_face_t * >  >();
+//
+//   g_pmapFontError = __new< string_to_int  >();
+//
+//   g_pmapFontError2 = __new< string_to_int  >();
+//
+//}
+//
+//
+//void term_cairo_mutex()
+//{
+//
+//   ::acme::del(g_pmapFontError2);
+//
+//   ::acme::del(g_pmapFontError);
+//
+//   ::acme::del(g_pmapCairoFontFace);
+//
+//   ::acme::del(g_pmapFontFace);
+//
+//#ifdef LINUX
+//
+//   ::acme::del(g_pmapFontPath);
+//
+//   ::release(g_pmutexFc);
+//
+//#endif
+//
+//   ::release(s_pmutex);
+//
+//}
 
 
 //#ifdef WINDOWS

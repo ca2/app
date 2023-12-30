@@ -1,7 +1,7 @@
-LIBRARY "crypto_openssl"
+LIBRARY "networking_bsd"
 
 EXPORTS
-crypto_openssl_factory
+networking_bsd_factory
 
 
 

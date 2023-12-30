@@ -708,7 +708,7 @@ nano_child * nano_window::hit_test(::user::mouse * pmouse, ::user::e_zorder ezor
 
             auto pdc = cairo_create(m_psurface);
 
-            m_pnanodevice = __new(::cairo::nano_device(pdc));
+            m_pnanodevice = __allocate< ::cairo::nano_device >(pdc);
 
          }
 

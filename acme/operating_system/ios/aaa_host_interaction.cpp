@@ -84,7 +84,7 @@ namespace ios
    ::user::interaction * create_host_window()
    {
       
-      return memory_new host_interaction();
+      return aaa_primitive_new host_interaction();
       
    }
 

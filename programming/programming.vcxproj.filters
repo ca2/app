@@ -53,7 +53,7 @@
     <ClInclude Include="dynamic_source\exit_exception.h">
       <Filter>Header Files\dynamic_source</Filter>
     </ClInclude>
-    <ClInclude Include="dynamic_source\httpd_socket.h">
+    <ClInclude Include="dynamic_source\httpd_incoming_socket.h">
       <Filter>Header Files\dynamic_source</Filter>
     </ClInclude>
     <ClInclude Include="dynamic_source\script.h">
@@ -101,12 +101,15 @@
     <ClInclude Include="_library.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="dynamic_source\httpd_socket.h">
+      <Filter>Header Files\dynamic_source</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dynamic_source\exit_exception.cpp">
       <Filter>Source Files\dynamic_source</Filter>
     </ClCompile>
-    <ClCompile Include="dynamic_source\httpd_socket.cpp">
+    <ClCompile Include="dynamic_source\httpd_incoming_socket.cpp">
       <Filter>Source Files\dynamic_source</Filter>
     </ClCompile>
     <ClCompile Include="dynamic_source\script.cpp">
@@ -153,6 +156,9 @@
     </ClCompile>
     <ClCompile Include="introjection\library.cpp">
       <Filter>Source Files\introjection</Filter>
+    </ClCompile>
+    <ClCompile Include="dynamic_source\httpd_listen_socket.cpp">
+      <Filter>Source Files\dynamic_source</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

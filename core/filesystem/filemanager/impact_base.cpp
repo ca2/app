@@ -8,6 +8,8 @@
 #include "operation/operation.h"
 #include "acme/constant/id.h"
 #include "acme/filesystem/file/item.h"
+#include "acme/handler/extended_topic.h"
+#include "acme/handler/topic.h"
 #include "acme/platform/application.h"
 #include "acme/platform/session.h"
 #include "acme/platform/system.h"

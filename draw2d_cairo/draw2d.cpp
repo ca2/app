@@ -1,38 +1,55 @@
 #include "framework.h"
 #include "draw2d.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/platform/node.h"
 #include "acme/primitive/primitive/memory.h"
 
 
 FT_Library __ftlibrary();
 
 
-namespace aura
-{
 
 
-   extern CLASS_DECL_AURA string_map < int_to_string > * g_pmapFontFaceName;
+// namespace aura
+// {
 
 
-   extern CLASS_DECL_AURA critical_section * g_pcsFont;
+//    extern CLASS_DECL_AURA string_map < int_to_string > * g_pmapFontFaceName;
 
 
-} // namespace aura
+//    extern CLASS_DECL_AURA critical_section * g_pcsFont;
+
+
+// } // namespace aura
 
 
 namespace draw2d_cairo
 {
+::draw2d_cairo::draw2d * g_pdraw2dcairo = nullptr;
+
+::draw2d_cairo::draw2d * get()
+{
+return g_pdraw2dcairo;
+
+}
 
 
+::particle * mutex()
+{
+
+   return get()->m_pmutex;
+
+}
    //double draw2d::g_dEmboss = 2.0;
 
 
    draw2d::draw2d()
    {
 
+      g_pdraw2dcairo = this;
       //defer_create_synchronization();
 
-      //m_pmutexFont = __new(::pointer < ::mutex >);
+      //m_pmutexFont = __allocate< ::pointer < ::mutex > >();
 
       //add_factory_item < e_cursor_set >();
 
@@ -61,6 +78,12 @@ namespace draw2d_cairo
       //}
 
       //return estatus;
+
+      m_pmutex = acmenode()->create_mutex();
+      //m_pmutexFc = acmenode()->create_mutex();
+      //m_pmutexFont= acmenode()->create_mutex();
+
+      //g_pparticleCairoSynchronization = m_pmutex;
 
    }
 
@@ -348,7 +371,7 @@ namespace draw2d_cairo
 //      else
 //      {
 //
-//         filter = __new(memory());
+//         filter = __allocate< memory >();
 //
 //         filter->set_size(iFilterArea);
 //
@@ -660,7 +683,7 @@ namespace draw2d_cairo
 //      }
 //      else
 //      {
-//         filter = __new(memory());
+//         filter = __allocate< memory >();
 //         filter->set_size(iFilterArea);
 //         pFilter = filter->get_data();
 //         for (y = 0; y < iFilterH; y++)
@@ -984,7 +1007,7 @@ namespace draw2d_cairo
 //
 //                        path /= strFile;
 //
-//                        pitem = __new(::write_text::font_enumeration_item);
+//                        pitem = __allocate< ::write_text::font_enumeration_item >();
 //
 //                        if (::acmefile()->exists(path))
 //                        {
@@ -1030,7 +1053,7 @@ namespace draw2d_cairo
 //            for (auto& path : patha)
 //            {
 //
-//               pitem = __new(::write_text::font_enumeration_item);
+//               pitem = __allocate< ::write_text::font_enumeration_item >();
 //
 //               pitem->m_strFile = path;
 //
@@ -1061,7 +1084,7 @@ namespace draw2d_cairo
 //
 //#ifdef pnode->font_name(e_font_mono)
 //
-//         pitem = __new(::write_text::font_enumeration_item);
+//         pitem = __allocate< ::write_text::font_enumeration_item >();
 //
 //         pitem->m_strFile = pnode->font_name(e_font_mono);
 //
@@ -1074,7 +1097,7 @@ namespace draw2d_cairo
 //
 //#ifdef pnode->font_name(e_font_sans)
 //
-//         pitem = __new(::write_text::font_enumeration_item);
+//         pitem = __allocate< ::write_text::font_enumeration_item >();
 //
 //         pitem->m_strFile = pnode->font_name(e_font_sans);
 //
@@ -1087,7 +1110,7 @@ namespace draw2d_cairo
 //
 //#ifdef pnode->font_name(e_font_serif)
 //
-//         pitem = __new(::write_text::font_enumeration_item);
+//         pitem = __allocate< ::write_text::font_enumeration_item >();
 //
 //         pitem->m_strFile = pnode->font_name(e_font_serif);
 //
@@ -1100,7 +1123,7 @@ namespace draw2d_cairo
 //
 //#ifdef pnode->font_name(e_font_sans_ex)
 //
-//         pitem = __new(::write_text::font_enumeration_item);
+//         pitem = __allocate< ::write_text::font_enumeration_item >();
 //
 //         pitem->m_strFile = pnode->font_name(e_font_sans_ex);
 //
@@ -1113,7 +1136,7 @@ namespace draw2d_cairo
 //
 //#ifdef pnode->font_name(e_font_serif_ex)
 //
-//         pitem = __new(::write_text::font_enumeration_item);
+//         pitem = __allocate< ::write_text::font_enumeration_item >();
 //
 //         pitem->m_strFile = pnode->font_name(e_font_serif_ex);
 //
@@ -1126,7 +1149,7 @@ namespace draw2d_cairo
 //
 //#ifdef pnode->font_name(e_font_sans_fx)
 //
-//         pitem = __new(::write_text::font_enumeration_item);
+//         pitem = __allocate< ::write_text::font_enumeration_item >();
 //
 //         pitem->m_strFile = pnode->font_name(e_font_sans_fx);
 //
@@ -1139,7 +1162,7 @@ namespace draw2d_cairo
 //
 //#ifdef pnode->font_name(e_font_serif_fx)
 //
-//         pitem = __new(::write_text::font_enumeration_item);
+//         pitem = __allocate< ::write_text::font_enumeration_item >();
 //
 //         pitem->m_strFile = pnode->font_name(e_font_serif_fx);
 //
@@ -1152,7 +1175,7 @@ namespace draw2d_cairo
 //
 //#ifdef FONT_SANS_FX2
 //
-//         pitem = __new(::write_text::font_enumeration_item);
+//         pitem = __allocate< ::write_text::font_enumeration_item >();
 //
 //         pitem->m_strFile = FONT_SANS_FX2;
 //
@@ -1210,7 +1233,7 @@ namespace draw2d_cairo
 //      if (!estatus)
 //      {
 //
-//         informationf("Couldn't construct memory_new draw2d.");
+//         informationf("Couldn't construct new draw2d.");
 //
 //         return false;
 //
@@ -1408,7 +1431,7 @@ namespace draw2d_cairo
 
       }
 
-      pprivatefont = __new(private_font);
+      pprivatefont = __allocate< private_font >();
 
       FT_Face ftface{};
 
@@ -1444,7 +1467,7 @@ namespace draw2d_cairo
    cairo_font_face_t * draw2d::private_ftface_from_file(::acme::context * pcontext, const ::payload & payloadFile)
    {
 
-      _synchronous_lock synchronouslock(cairo_mutex());
+      synchronous_lock synchronouslock(::draw2d_cairo::mutex());
 
       ::file::path pathFile = payloadFile.as_file_path();
 

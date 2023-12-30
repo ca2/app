@@ -3,9 +3,9 @@
 ////#include "acme/exception/exception.h"
 #include "acme/handler/extended_topic.h"
 //#include "acme/update.h"
-#if OBJECT_REFERENCE_COUNT_DEBUG
-#include "acme/platform/obj_ref_debug_impl.h"
-#endif
+//#if REFERENCING_DEBUGGING
+//#include "acme/platform/obj_ref_debug_impl.h"
+//#endif
 //#include "acme/constant/idpool.h"
 //#include "acme/primitive/text/_.h"
 #include "acme/primitive/primitive/set_bit.h"
@@ -16,6 +16,7 @@
 #include "acme/parallelization/synchronously_keep_bit.h"
 #include "acme/parallelization/task.h"
 #include "acme/platform/application.h"
+#include "acme/platform/referencing_debugging.h"
 #include "acme/platform/system.h"
 
 
@@ -27,14 +28,14 @@ object::~object()
 }
 
 
-i64 object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+i64 object::increment_reference_count()
 {
 
    auto c = m_countReference++;
 
-#if OBJECT_REFERENCE_COUNT_DEBUG
+#if REFERENCING_DEBUGGING
 
-   add_ref_history(pReferer, pszObjRefDbg);
+   add_reference_item();
 
 #endif
 
@@ -43,17 +44,17 @@ i64 object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DE
 }
 
 
-i64 object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+i64 object::decrement_reference_count()
 {
 
    auto c = --m_countReference;
 
-#if OBJECT_REFERENCE_COUNT_DEBUG
+#if REFERENCING_DEBUGGING
 
    if (c >= 0)
    {
 
-      dec_ref_history(pReferer, pszObjRefDbg);
+      erase_reference_item();
 
    }
 
@@ -64,10 +65,10 @@ i64 object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DE
 }
 
 
-i64 object::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+i64 object::release()
 {
 
-   i64 i = decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+   i64 i = decrement_reference_count();
 
    if (i == 0)
    {
@@ -91,7 +92,7 @@ void object::create_object_meta()
 
    }
 
-   m_pmeta = memory_new object_meta();
+   m_pmeta = __new< object_meta >();
 
 }
 
@@ -104,14 +105,14 @@ string object::as_string() const
 }
 
 
-//void object::add_composite(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//void object::add_composite(::particle * pparticle)
 //{
 //
-//   _synchronous_lock synchronouslock(this->synchronization());
+//   synchronous_lock synchronouslock(this->synchronization());
 //
 //   __defer_construct_new(m_pcompositea);
 //
-//   if (!m_pcompositea->add_unique(pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS))
+//   if (!m_pcompositea->add_unique(pelement))
 //   {
 //
 //      throw ::exception(success_none);
@@ -129,14 +130,14 @@ string object::as_string() const
 //}
 //
 //
-//void object::add_reference(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//void object::add_reference(::particle * pparticle)
 //{
 //
-//   _synchronous_lock synchronouslock(this->synchronization());
+//   synchronous_lock synchronouslock(this->synchronization());
 //
 //   __defer_construct_new(m_preferencea);
 //
-//   m_preferencea->add_unique(pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+//   m_preferencea->add_unique(pelement);
 //
 //   if (m_preferencea->get_upper_bound() == 8)
 //   {
@@ -157,7 +158,7 @@ string object::as_string() const
 //}
 
 
-//void object::release_composite2(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//void object::release_composite2(::particle * pparticle)
 //{
 //
 //   if (::is_null(pelement))
@@ -167,7 +168,7 @@ string object::as_string() const
 //
 //   }
 //
-//   _synchronous_lock synchronouslock(this->synchronization());
+//   synchronous_lock synchronouslock(this->synchronization());
 //
 //   if (m_pcompositea)
 //   {
@@ -186,7 +187,7 @@ string object::as_string() const
 //}
 //
 //
-//void object::finalize_composite(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//void object::finalize_composite(::particle * pparticle)
 //{
 //
 //   if (::is_null(pelement))
@@ -196,7 +197,7 @@ string object::as_string() const
 //
 //   }
 //
-//   _synchronous_lock synchronouslock(this->synchronization());
+//   synchronous_lock synchronouslock(this->synchronization());
 //
 //   if (m_pcompositea)
 //   {
@@ -228,7 +229,7 @@ string object::as_string() const
 //}
 //
 //
-//void object::release_reference(::particle * pparticle  OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//void object::release_reference(::particle * pparticle )
 //{
 //
 //   if (::is_null(pelement))
@@ -238,7 +239,7 @@ string object::as_string() const
 //
 //   }
 //
-//   _synchronous_lock synchronouslock(this->synchronization());
+//   synchronous_lock synchronouslock(this->synchronization());
 //
 //   if (m_preferencea)
 //   {
@@ -290,7 +291,7 @@ string object::as_string() const
 ::extended_topic_pointer object::create_extended_topic(const ::atom & atom)
 {
 
-   auto pextendedtopic = __new(::extended_topic(atom));
+   auto pextendedtopic = __allocate< ::extended_topic >(atom);
 
    pextendedtopic->initialize(this);
 
@@ -367,7 +368,7 @@ void object::dev_log(string strMessage)
 //
 //   {
 //
-//      _synchronous_lock synchronouslock(this->synchronization());
+//      synchronous_lock synchronouslock(this->synchronization());
 //
 //      __defer_construct_new(m_pobjecta);
 //
@@ -377,7 +378,7 @@ void object::dev_log(string strMessage)
 //
 //   {
 //
-//      _synchronous_lock synchronouslock(this->synchronization());
+//      synchronous_lock synchronouslock(this->synchronization());
 //
 //      __defer_construct_new(pparticle->m_pobjecta);
 //
@@ -391,7 +392,7 @@ void object::dev_log(string strMessage)
 //void object::on_delete_object(::object* pparticle)
 //{
 //
-//   _synchronous_lock synchronouslock(this->synchronization());
+//   synchronous_lock synchronouslock(this->synchronization());
 //
 //   if (m_pobjecta)
 //   {
@@ -840,15 +841,15 @@ void object::run()
 //
 //#endif
 //
-//   //m_pcontext.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
+//   //m_pcontext.release();
 //
-//   //m_pthread.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
+//   //m_pthread.release();
 //
-//   //m_papp.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
+//   //m_papp.release();
 //
-//   //m_psession.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
+//   //m_psession.release();
 //
-//   //m_psystemContext.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
+//   //m_psystemContext.release();
 //
 //   //on_finalize();
 //
@@ -870,7 +871,7 @@ void object::run()
 //
 //   //{
 //
-//   //   _synchronous_lock synchronouslock(this->synchronization());
+//   //   synchronous_lock synchronouslock(this->synchronization());
 //
 //   //   if (m_pobjecta)
 //   //   {
@@ -916,7 +917,7 @@ void object::add_task(::object* pobjectTask)
 
    defer_create_synchronization();
 
-   _synchronous_lock synchronouslockParent1(synchronization());
+   synchronous_lock synchronouslockParent1(synchronization());
 
    if(is_ascendant_task(pobjectTask))
    {
@@ -929,9 +930,9 @@ void object::add_task(::object* pobjectTask)
 
    auto ptaskOldParent = pobjectTask->m_pobjectParentTask;
 
-   _synchronous_lock synchronouslockParent2(ptaskOldParent ? ptaskOldParent->synchronization() : nullptr);
+   synchronous_lock synchronouslockParent2(ptaskOldParent ? ptaskOldParent->synchronization() : nullptr);
 
-   _synchronous_lock synchronouslock(pobjectTask->synchronization());
+   synchronous_lock synchronouslock(pobjectTask->synchronization());
 
    if(ptaskOldParent == this
    && m_pparticleaChildrenTask
@@ -949,15 +950,21 @@ void object::add_task(::object* pobjectTask)
    if (strType.contains("prodevian"))
    {
 
-      ::informationf("task added to prodevian\n");
+      ::acme::get()->platform()->informationf("task added to prodevian\n");
 
    }
    else if (strType.contains("user::thread"))
    {
 
-      ::informationf("task added to user::thread\n");
+      ::acme::get()->platform()->informationf("task added to user::thread\n");
 
    }
+
+#if REFERENCING_DEBUGGING
+
+   ::allocator::add_referer({ this, __FUNCTION_FILE_LINE__ });
+
+#endif
 
    m_pparticleaChildrenTask->add(pobjectTask);
 
@@ -981,9 +988,16 @@ void object::add_task(::object* pobjectTask)
 void object::erase_task_and_set_task_new_parent(::object* pobjectTask, ::object * pobjectTaskNewParent)
 {
 
-   _synchronous_lock synchronouslock(this->synchronization());
+   synchronous_lock synchronouslock(this->synchronization());
 
-   _synchronous_lock synchronouslockObject(pobjectTask->synchronization());
+   synchronous_lock synchronouslockObject(pobjectTask->synchronization());
+
+#if REFERENCING_DEBUGGING
+
+   critical_section_lock criticalsectionlock(&::acme::get()->m_preferencingdebugging->m_criticalsection);
+
+#endif
+
 
    if (!m_pparticleaChildrenTask)
    {
@@ -1006,7 +1020,7 @@ void object::erase_task_and_set_task_new_parent(::object* pobjectTask, ::object 
    if (strType.contains("user::thread"))
    {
 
-      ::informationf("task added to user::thread\n");
+      ::acme::get()->platform()->informationf("task added to user::thread\n");
 
    }
 
@@ -1015,7 +1029,7 @@ void object::erase_task_and_set_task_new_parent(::object* pobjectTask, ::object 
    if (m_pparticleaChildrenTask->erase(pobjectTask) <= 0)
    {
 
-      ::informationf("not a child");
+      ::acme::get()->platform()->informationf("not a child");
 
    }
 
@@ -1045,7 +1059,7 @@ void object::transfer_tasks_from(::object* ptask)
 
    defer_create_synchronization();
 
-   _synchronous_lock synchronouslock(this->synchronization());
+   synchronous_lock synchronouslock(this->synchronization());
 
    if(is_ascendant_task(ptask))
    {
@@ -1056,7 +1070,7 @@ void object::transfer_tasks_from(::object* ptask)
 
    }
 
-   _synchronous_lock synchronouslockParent2(ptask->synchronization());
+   synchronous_lock synchronouslockParent2(ptask->synchronization());
 
    if(!ptask->m_pparticleaChildrenTask || ptask->m_pparticleaChildrenTask->is_empty())
    {
@@ -1078,7 +1092,7 @@ void object::transfer_tasks_from(::object* ptask)
    for (auto pobjectTask : objectaChildrenTask)
    {
 
-      _synchronous_lock synchronouslock(pobjectTask->synchronization());
+      synchronous_lock synchronouslock(pobjectTask->synchronization());
 
       try
       {
@@ -1102,7 +1116,7 @@ bool object::is_ascendant_task(::object * ptaskCandidateAscendant) const
    try
    {
 
-      auto p = m_pobjectParentTask;
+      auto p = m_pobjectParentTask.m_p;
 
       while(::is_set(p))
       {
@@ -1223,7 +1237,7 @@ bool object::check_tasks_finished()
       //    else
       //    {
 
-      //       _synchronous_lock synchronouslockChild(ptaskChild->synchronization());
+      //       synchronous_lock synchronouslockChild(ptaskChild->synchronization());
 
       //       string strType = ::type(ptaskChild).name();
 
@@ -1371,7 +1385,7 @@ void object::delete_this()
 //
 //   string strTypeName = ::type(this).name();
 //
-//   _synchronous_lock synchronouslock(this->synchronization());
+//   synchronous_lock synchronouslock(this->synchronization());
 //
 //   if (m_pcompositea)
 //   {
@@ -1403,7 +1417,7 @@ void object::delete_this()
 //
 //   string strTypeName = ::type(this).name();
 //
-//   _synchronous_lock synchronouslock(this->synchronization());
+//   synchronous_lock synchronouslock(this->synchronization());
 //
 //   if (m_preferencea)
 //   {
@@ -1431,7 +1445,7 @@ CLASS_DECL_ACME::pointer < ::mutex >* get_children_mutex();
 //
 //   }
 //
-//   _synchronous_lock synchronouslock(get_children_mutex());
+//   synchronous_lock synchronouslock(get_children_mutex());
 //
 //   if (!m_preferencea)
 //   {
@@ -1491,7 +1505,7 @@ bool object::__is_child_task(::particle * pparticleTask) const
 
    }
 
-   _synchronous_lock lock(synchronization());
+   synchronous_lock lock(synchronization());
 
    if (!m_pparticleaChildrenTask)
    {
@@ -1745,7 +1759,7 @@ void object::branch_each(const ::procedure_array& routinea)
 ::pointer<task>object::branch(enum_parallelization eparallelization, const create_task_attributes & createthreadattributes)
 {
 
-   auto ptask = branch_procedure(this, eparallelization, createthreadattributes);
+   auto ptask = branch_procedure({ use_t{}, this }, eparallelization, createthreadattributes);
 
    return ptask;
 
@@ -1755,7 +1769,7 @@ void object::branch_each(const ::procedure_array& routinea)
 ::pointer<task>object::branch_synchronously(const create_task_attributes & createthreadattributes)
 {
 
-   auto ptask = branch_procedure_synchronously(this, createthreadattributes);
+   auto ptask = branch_procedure_synchronously({ use_t{}, this }, createthreadattributes);
 
    return ptask;
 
@@ -1873,7 +1887,7 @@ void object::process_exception(const ::exception& e)
 //::index object::task_add(::task * ptask)
 //{
 //
-//   _synchronous_lock synchronouslock(this->synchronization());
+//   synchronous_lock synchronouslock(this->synchronization());
 //
 //   return get_meta()->task_add(this, ptask);
 //
@@ -1883,7 +1897,7 @@ void object::process_exception(const ::exception& e)
 void object::task_erase(::task* ptask)
 {
 
-   //_synchronous_lock synchronouslock(this->synchronization());
+   //synchronous_lock synchronouslock(this->synchronization());
 
    //if (m_pmeta)
    //{
@@ -1903,7 +1917,7 @@ void object::task_erase(::task* ptask)
 
       string strThreadChild = ::type(ptask).name();
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (::is_null(ptask))
       {
@@ -1912,7 +1926,7 @@ void object::task_erase(::task* ptask)
 
       }
 
-      //_synchronous_lock slChild(ptask->synchronization());
+      //synchronous_lock slChild(ptask->synchronization());
 
       //if (!m_pcompositea->contains(ptask) && ptask->thread_parent() != this)
       //{
@@ -1979,12 +1993,12 @@ void object::sleep(const class time & time)
 
       {
 
-         _synchronous_lock synchronouslock(ptask->synchronization());
+         synchronous_lock synchronouslock(ptask->synchronization());
 
          if (ptask->m_pevSleep.is_null())
          {
 
-            ptask->m_pevSleep = __new(manual_reset_event());
+            ptask->m_pevSleep = __allocate< manual_reset_event >();
 
             ptask->m_pevSleep->ResetEvent();
 
@@ -2078,7 +2092,7 @@ void object::sleep(const class time & time)
 //void object::task_erase_all()
 //{
 //
-//   /*_synchronous_lock synchronouslock(this->synchronization());
+//   /*synchronous_lock synchronouslock(this->synchronization());
 //
 //   if (m_pmeta)
 //   {
@@ -2092,7 +2106,7 @@ void object::sleep(const class time & time)
 //::task_array * object::task_array_get()
 //{
 //
-//   _synchronous_lock synchronouslock(this->synchronization());
+//   synchronous_lock synchronouslock(this->synchronization());
 //
 //   if (!m_pmeta)
 //   {
@@ -2109,7 +2123,7 @@ void object::sleep(const class time & time)
 //const ::task_array* object::task_array_get() const
 //{
 //
-//   _synchronous_lock synchronouslock(this->synchronization());
+//   synchronous_lock synchronouslock(this->synchronization());
 //
 //   if (!m_pmeta)
 //   {
@@ -2126,7 +2140,7 @@ void object::sleep(const class time & time)
 //bool object::task_is_empty() const
 //{
 //
-//   _synchronous_lock synchronouslock(this->synchronization());
+//   synchronous_lock synchronouslock(this->synchronization());
 //
 //   auto pthreada = task_array_get();
 //
@@ -2304,7 +2318,7 @@ void object::install_message_routing(::channel* pchannel)
 //::pointer<::handle::ini>object::appini()
 //{
 //
-//   return __new(::handle::ini(         auto psystem = system();
+//   return __allocate < ::handle::ini >(         auto psystem = system();
 
 //         auto pacmedirectory = psystem->m_pacmedirectory;
 //
@@ -2346,9 +2360,9 @@ struct context_object_test_struct :
 //void debug_context_object(::object* pparticle)
 //{
 //
-//   auto p1 = __new(struct context_object_test_struct(pparticle));
+//   auto p1 = __allocate< struct context_object_test_struct >(pparticle);
 //
-//   auto p2 = __new(struct context_object_test_struct(pparticle));
+//   auto p2 = __allocate< struct context_object_test_struct >(pparticle);
 //
 //   p2 = p1;
 //
@@ -2510,42 +2524,42 @@ void call_sync(const ::procedure_array& methoda)
 #ifdef _DEBUG
 
 
-//void object::set_context(::context* pcontext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//void object::set_context(::context* pcontext)
 //{
 //
-//   m_pcontext.reset(pcontext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+//   m_pcontext.reset(pcontext);
 //
 //}
 //
 //
-//void object::set_context_thread(::thread* pthread OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//void object::set_context_thread(::thread* pthread)
 //{
 //
-//   m_pthread.reset(pthread OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+//   m_pthread.reset(pthread);
 //
 //}
 //
 //
-//void object::set_context_app(::apex::application* pappContext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//void object::set_context_app(::apex::application* pappContext)
 //{
 //
-//   m_papp.reset(pappContext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+//   m_papp.reset(pappContext);
 //
 //}
 //
 //
-//void object::set_context_session(::apex::session* psessionContext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//void object::set_context_session(::apex::session* psessionContext)
 //{
 //
-//   m_psession.reset(psessionContext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+//   m_psession.reset(psessionContext);
 //
 //}
 //
 //
-////void object::set_context_system(::apex::system* psystemContext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+////void object::set_context_system(::apex::system* psystemContext)
 ////{
 ////
-////   m_psystemContext.reset(psystemContext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+////   m_psystemContext.reset(psystemContext);
 ////
 ////}
 //
@@ -2579,26 +2593,26 @@ void call_sync(const ::procedure_array& methoda)
 //#ifdef _DEBUG
 //
 //
-//i64 object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
+//i64 object::increment_reference_count()
 //{
 //
-//   return property_object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+//   return property_object::increment_reference_count();
 //
 //}
 //
 //
-//i64 object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
+//i64 object::decrement_reference_count()
 //{
 //
-//   return property_object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+//   return property_object::decrement_reference_count();
 //
 //}
 //
 //
-//i64 object::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
+//i64 object::release()
 //{
 //
-//   return property_object::release(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+//   return property_object::release();
 //
 //}
 //
@@ -2606,26 +2620,26 @@ void call_sync(const ::procedure_array& methoda)
 //#else
 //
 //
-//i64 object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
+//i64 object::increment_reference_count()
 //{
 //
-//   return property_object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+//   return property_object::increment_reference_count();
 //
 //}
 //
 //
-//i64 object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
+//i64 object::decrement_reference_count()
 //{
 //
-//   return property_object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+//   return property_object::decrement_reference_count();
 //
 //}
 //
 //
-//i64 object::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
+//i64 object::release()
 //{
 //
-//   return property_object::release(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+//   return property_object::release();
 //
 //}
 //
@@ -2733,7 +2747,7 @@ void object::initialize(::particle * pparticle)
 
 #endif
 
-   //#if OBJECT_REFERENCE_COUNT_DEBUG
+   //#if REFERENCING_DEBUGGING
    //
    //   string strType = ::type(this).name();
    //
@@ -2794,7 +2808,7 @@ void object::initialize(::particle * pparticle)
    //if (!psystem)
    //{
 
-   //   set_context_system(::apex::get_system(pparticle) OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_FUNCTION_LINE);
+   //   set_context_system(::apex::get_system(pparticle) REFERENCING_DEBUGGING_COMMA_THIS_FUNCTION_FILE_LINE);
 
    //}
 
@@ -2922,11 +2936,11 @@ void object::initialize(::particle * pparticle)
 //}
 ////
 //#ifdef _DEBUG
-//    void set_context(::context* pcontext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
-//    void set_context_thread(::thread* pthread OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
-//    void set_context_app(::apex::application* pappContext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
-//    void set_context_session(::apex::session* psessionContext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
-//   // void set_context_system(::apex::system* psystemContext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+//    void set_context(::context* pcontext);
+//    void set_context_thread(::thread* pthread);
+//    void set_context_app(::apex::application* pappContext);
+//    void set_context_session(::apex::session* psessionContext);
+//   // void set_context_system(::apex::system* psystemContext);
 //   // void set_context_user(::object * puserContext);
 //#else
 //   inline void set_context(::context* pcontext);
@@ -3012,10 +3026,10 @@ void object::call_run()
 //inline void __construct(::pointer<BASE_TYPE> pusermessage);
 
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void __construct(::pointer<BASE_TYPE> pusermessage, const SOURCE* psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+//inline void __construct(::pointer<BASE_TYPE> pusermessage, const SOURCE* psource);
 
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void __construct(::pointer<BASE_TYPE> pusermessage, const ::pointer<SOURCE>psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+//inline void __construct(::pointer<BASE_TYPE> pusermessage, const ::pointer<SOURCE>psource);
 
 //template < typename BASE_TYPE >
 //inline void __id_construct(::pointer<BASE_TYPE> pusermessage, const ::atom& atom);
@@ -3063,44 +3077,44 @@ void object::call_run()
 //inline void __construct_new(::pointer<TYPE> pusermessage);
 
 //template < typename BASE_TYPE >
-//inline void __release(::pointer<BASE_TYPE> pcomposite OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+//inline void __release(::pointer<BASE_TYPE> pcomposite);
 
 //template < typename BASE_TYPE >
-//inline void __release(::pointer<BASE_TYPE> preference OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+//inline void __release(::pointer<BASE_TYPE> preference);
 
 //template < typename SOURCE >
-//inline void release_reference(::pointer<SOURCE> psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+//inline void release_reference(::pointer<SOURCE> psource);
 
 
-// void add_composite(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
-// void add_reference(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
+// void add_composite(::particle * pparticle)
+// void add_reference(::particle * pparticle)
 
 
-// void release_composite2(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
-// void finalize_composite(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
-// void release_reference(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
+// void release_composite2(::particle * pparticle)
+// void finalize_composite(::particle * pparticle)
+// void release_reference(::particle * pparticle)
 
 
 //template < typename BASE_TYPE >
-//inline void add_composite(::pointer<BASE_TYPE> pcomposite OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+//inline void add_composite(::pointer<BASE_TYPE> pcomposite);
 
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void __refer(::pointer<BASE_TYPE> preference, const SOURCE* psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+//inline void __refer(::pointer<BASE_TYPE> preference, const SOURCE* psource);
 
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void __refer(::pointer<BASE_TYPE> preference, const ::pointer<SOURCE>psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+//inline void __refer(::pointer<BASE_TYPE> preference, const ::pointer<SOURCE>psource);
 
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void __refer(::pointer<BASE_TYPE> preference, const ::primitive::member < SOURCE >& psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+//inline void __refer(::pointer<BASE_TYPE> preference, const ::primitive::member < SOURCE >& psource);
 
 //template < typename SOURCE >
-//inline void add_reference(SOURCE* psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+//inline void add_reference(SOURCE* psource);
 
 //template < typename SOURCE >
-//inline void add_reference(::pointer<SOURCE> psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+//inline void add_reference(::pointer<SOURCE> psource);
 
 //template < typename SOURCE >
-//inline void add_reference(::pointer<SOURCE> psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+//inline void add_reference(::pointer<SOURCE> psource);
 
 //void object::delete_this()
 //{
@@ -3538,7 +3552,7 @@ bool object::IsSerializable() const
 
    //   auto ptask = ::get_task();
 
-   //   _synchronous_lock synchronouslock(ptask->synchronization());
+   //   synchronous_lock synchronouslock(ptask->synchronization());
 
    //   if (ptask && ptask->m_bIsPredicate)
    //   {
@@ -3693,7 +3707,7 @@ bool object::IsSerializable() const
 //   }
 //
 //
-//    //ptask = __new(predicate_task < PRED >(pparticle, pred));
+//    //ptask = __allocate< predicate_task < PRED > >(pparticle, pred);
 ////
 ////   ptask->branch();
 ////

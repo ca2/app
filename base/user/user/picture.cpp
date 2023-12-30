@@ -158,11 +158,11 @@ namespace user
       if (m_ppictureimpl->m_rectangle.contains(point))
       {
 
-         return __new(::item(e_element_client));
+         return __allocate< ::item >(e_element_client);
 
       }
 
-      auto pitemNone = __new(::item(e_element_none));
+      auto pitemNone = __allocate< ::item >(e_element_none);
 
       return pitemNone;
 

@@ -235,8 +235,8 @@ namespace ftp
 
       virtual void OnBeginReceivingData() {}
       virtual void OnEndReceivingData(long /*lReceivedBytes*/) {}
-      virtual void OnBytesReceived(const memory& /*vBuffer*/, long /*lReceivedBytes*/) {}
-      virtual void OnBytesSent(const memory& /*vBuffer*/, long /*lSentBytes*/) {}
+      virtual void OnBytesReceived(const ::memory& /*vBuffer*/, long /*lReceivedBytes*/) {}
+      virtual void OnBytesSent(const ::memory& /*vBuffer*/, long /*lSentBytes*/) {}
 
       virtual void OnPreReceiveFile(const string& /*strSourceFile*/, const string& /*strTargetFile*/, long /*lFileSize*/) {}
       virtual void OnPreSendFile(const string& /*strSourceFile*/, const string& /*strTargetFile*/, long /*lFileSize*/) {}

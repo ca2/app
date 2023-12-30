@@ -141,7 +141,7 @@ event::event(const ::scoped_string & scopedstrName, bool bInitiallyOwn, bool bMa
 
 #elif defined(ANDROID)
 
-   m_pcond = memory_new pthread_cond_t;
+   m_pcond = __new< pthread_cond_t >();
 
    pthread_cond_init((pthread_cond_t *) m_pcond, nullptr);
 
@@ -155,7 +155,7 @@ event::event(const ::scoped_string & scopedstrName, bool bInitiallyOwn, bool bMa
       pthread_mutexattr_init(&attr);
       pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_RECURSIVE);
       i32 rc;
-      m_pmutex = memory_new pthread_mutex_t;
+      m_pmutex = __new< pthread_mutex_t >();
       if((rc = pthread_mutex_init((pthread_mutex_t *) m_pmutex,&attr)))
       {
          throw ::exception(error_failed, "RC_OBJECT_NOT_CREATED");
@@ -175,9 +175,9 @@ event::event(const ::scoped_string & scopedstrName, bool bInitiallyOwn, bool bMa
    if(bManualReset)
    {
 
-      m_pmutex = memory_new pthread_mutex_t;
+      m_pmutex = __new< pthread_mutex_t >();
 
-      m_pcond = memory_new pthread_cond_t;
+      m_pcond = __new< pthread_cond_t >();
 
       pthread_mutex_init((pthread_mutex_t *) m_pmutex, 0);
 
@@ -401,7 +401,7 @@ bool event::ResetEvent()
       if(m_handle == NULL)
       {
 
-         ::informationf("error reset event (1)");
+         ::acme::get()->platform()->informationf("error reset event (1)");
 
          return false;
 
@@ -413,7 +413,7 @@ bool event::ResetEvent()
    catch(...)
    {
 
-      ::informationf("error reset event (2)");
+      ::acme::get()->platform()->informationf("error reset event (2)");
 
    }
 
@@ -468,7 +468,7 @@ void event::_wait ()
    while (true)
    {
 
-      int iResult = ::WaitForSingleObjectEx(hsync(), 300, false);
+      int iResult = ::WaitForSingleObjectEx(m_handle, 300, false);
 
       if(iResult == WAIT_OBJECT_0)
       {
@@ -489,6 +489,8 @@ void event::_wait ()
       }
       else
       {
+
+         auto u = ::GetLastError();
 
          throw ::exception(error_failed);
 

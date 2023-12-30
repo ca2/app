@@ -2,6 +2,7 @@
 #include "framework.h"
 #include "signal.h"
 #include "manager.h"
+#include "manager_room.h"
 #include "context.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/system.h"
@@ -26,26 +27,26 @@ signal::~signal()
 #ifdef _DEBUG
 
 
-i64 signal::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+i64 signal::increment_reference_count()
 {
 
-   return ::topic::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+   return ::topic::increment_reference_count();
 
 }
 
 
-i64 signal::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+i64 signal::decrement_reference_count()
 {
 
-   return ::topic::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+   return ::topic::decrement_reference_count();
 
 }
 
 
-i64 signal::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+i64 signal::release()
 {
 
-   return ::topic::release(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+   return ::topic::release();
 
 }
 
@@ -103,7 +104,7 @@ void signal::run()
 
          }
 
-         if (::manager::__s_may_run_signal_handling())
+         if (system()->manager_room()->may_run_signal_handling())
          {
 
             break;
@@ -142,7 +143,7 @@ void signal::notify()
       if (!pcontext)
       {
 
-         pcontext = __new(::context);
+         pcontext = __allocate< ::context >();
 
       }
 
@@ -174,7 +175,7 @@ void signal::notify()
    if (!pcontext)
    {
 
-      pcontext = __new(::context);
+      pcontext = __allocate< ::context >();
 
    }
 
@@ -231,7 +232,7 @@ void signal::set_up_to_date(::context * pcontext)
 void signal::add_handler(::matter* pmatter)
 {
 
-   add_signal_handler(::signal_handler({ e_use, pmatter }));
+   add_signal_handler(::signal_handler({ use_t{}, pmatter }));
 
 }
 
@@ -267,7 +268,7 @@ void signal::add_signal_handler(const ::signal_handler& signalhandler)
    if (!pcontext)
    {
 
-      pcontext = __new(::context);
+      pcontext = __allocate< ::context >();
 
    }
 

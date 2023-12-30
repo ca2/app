@@ -346,14 +346,14 @@ namespace experience
 
       auto_hide_on_message_create(pmessage);
 
-      m_pbrushButtonBack.create(this);
-      m_pbrushButtonBackSel.create(this);
-      m_pbrushButtonBackFocus.create(this);
-      m_pbrushButtonBackDisabled.create(this);
-      m_ppenButtonBack.create(this);
-      m_ppenButtonBackSel.create(this);
-      m_ppenButtonBackFocus.create(this);
-      m_ppenButtonBackDisabled.create(this);
+      __construct(m_pbrushButtonBack);
+      __construct(m_pbrushButtonBackSel);
+      __construct(m_pbrushButtonBackFocus);
+      __construct(m_pbrushButtonBackDisabled);
+      __construct(m_ppenButtonBack);
+      __construct(m_ppenButtonBackSel);
+      __construct(m_ppenButtonBackFocus);
+      __construct(m_ppenButtonBackDisabled);
 
 
       pmessage->previous();
@@ -368,7 +368,7 @@ namespace experience
       if (!m_pfontMarlett)
       {
 
-         m_pfontMarlett.create(this);
+         __construct(m_pfontMarlett);
 
          m_pfontMarlett->create_font("Marlett", 16_px);
 
@@ -379,13 +379,33 @@ namespace experience
    }
 
 
+   void control_box::on_message_destroy(::message::message * pmessage)
+   {
+
+      m_pbrushButtonBack.release();
+      m_pbrushButtonBackSel.release();
+      m_pbrushButtonBackFocus.release();
+      m_pbrushButtonBackDisabled.release();
+      m_ppenButtonBack.release();
+      m_ppenButtonBackSel.release();
+      m_ppenButtonBackFocus.release();
+      m_ppenButtonBackDisabled.release();
+
+      m_pfontMarlett.release();
+
+      destroy_buttons();
+
+   }
+
+
    void control_box::install_message_routing(::channel * pframewindow)
    {
 
       ::user::interaction::install_message_routing(pframewindow);
 
       MESSAGE_LINK(e_message_show_window, pframewindow, this, &control_box::on_message_show_window);
-      MESSAGE_LINK(MESSAGE_CREATE, pframewindow, this, &control_box::on_message_create);
+      MESSAGE_LINK(e_message_create, pframewindow, this, &control_box::on_message_create);
+      MESSAGE_LINK(e_message_destroy, pframewindow, this, &control_box::on_message_destroy);
       MESSAGE_LINK(e_message_mouse_move, pframewindow, this, &control_box::on_message_mouse_move);
       MESSAGE_LINK(e_message_mouse_leave, pframewindow, this, &control_box::on_message_mouse_leave);
       MESSAGE_LINK(e_message_left_button_down, pframewindow, this, &control_box::on_message_left_button_down);
@@ -768,6 +788,32 @@ namespace experience
       return true;
 
    }
+
+
+   void control_box::destroy_buttons()
+   {
+
+      for (auto & pcontrolboxitem : m_itemmap.payloads())
+      {
+
+         if (pcontrolboxitem)
+         {
+
+            if (pcontrolboxitem->m_pbutton)
+            {
+
+               pcontrolboxitem->m_pbutton.release();
+
+            }
+
+         }
+
+         pcontrolboxitem.release();
+
+      }
+
+   }
+
 
 
    bool control_box::get_control_box_button_caption(enum_button ebutton, string & strCaption) const
@@ -1203,9 +1249,9 @@ namespace experience
 //
 //               screen_to_client(rectangleFocus);
 //
-//               m_pshapeaClip->add_item(__new(rectangle_shape(rectangleFocus)));
+//               m_pshapeaClip->add_item(__allocate< rectangle_shape >(rectangleFocus));
 //
-//               m_pshapeaClip->add_item(__new(intersect_clip_shape));
+//               m_pshapeaClip->add_item(__allocate< intersect_clip_shape >());
 //
 //               pinteraction = pinteraction->get_parent();
 //

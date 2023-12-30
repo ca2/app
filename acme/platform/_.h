@@ -13,4 +13,24 @@ namespace nano
 } // namespace nano
 
 
+namespace primitive
+{
+
+   
+   class primitive;
+
+
+} // namespace primitive
+
+
+namespace platform
+{
+
+
+   class platform;
+
+
+} // namespace platform
+
+
 

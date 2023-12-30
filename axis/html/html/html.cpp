@@ -42,7 +42,7 @@ namespace html
 
       //}
 
-      //__construct_new(this, m_pentitysolver = memory_new LiteHTMLEntityResolver(pparticle);
+      //__construct_new(this, m_pentitysolver = __new< LiteHTMLEntityResolver >(pparticle);
       __construct_new(m_pentitysolver);
 
       m_clrInvalid = color::white;

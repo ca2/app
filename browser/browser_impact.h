@@ -117,7 +117,7 @@ namespace browser
       void AddRef() const
       {
 
-         ((impact *)this)->increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+         ((impact *)this)->increment_reference_count();
 
       }
 
@@ -177,7 +177,7 @@ namespace browser
 
       //The CefRenderHandler::GetImpactRect() method will be called to retrieve the desired impact rectangle.
       //The CefRenderHandler::OnPaint() method will be called to provide invalid regions and the updated pixel buffer.The cefclient application draws the buffer using OpenGL but your application can use whatever technique you prefer.
-      //To resize the browser call CefBrowserHost::WasResized().This will result in a call to GetImpactRect() to retrieve the memory_new size_i32 followed by a call to OnPaint().
+      //To resize the browser call CefBrowserHost::WasResized().This will result in a call to GetImpactRect() to retrieve the __new< size_i32 followed by a call to OnPaint >().
       //Call the CefBrowserHost::SendXXX() methods to notify the browser of mouse, keyboard and focus events.
       //Call CefBrowserHost::CloseBrowser() to destroy browser.
       ::task_pointer m_pthreadBrowser;
@@ -209,13 +209,13 @@ namespace browser
 //      // void assert_ok() const override;
 //      // void dump(dump_context & dumpcontext) const override;
 
-      virtual i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
+      virtual i64 increment_reference_count()
       {
-         return ::object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+         return ::object::increment_reference_count();
       }
-      virtual i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
+      virtual i64 decrement_reference_count()
       {
-         return ::object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+         return ::object::decrement_reference_count();
       }
 
 

@@ -44,9 +44,9 @@
 #endif
 
 
-::particle * cairo_mutex();
-void init_cairo_mutex();
-void destroy_cairo_mutex();
+//::particle * ::draw2d_cairo::mutex();
+// void init_cairo_mutex();
+// void destroy_cairo_mutex();
 
 
 void destroy_pointer(cairo_surface_t* p);
@@ -97,9 +97,9 @@ FT_Library __ftlibrary();
 
 
 
-::particle * cairo_mutex();
-void init_cairo_mutex();
-void destroy_cairo_mutex();
+//::particle * ::draw2d_cairo::mutex();
+//void init_cairo_mutex();
+//void destroy_cairo_mutex();
 
 
 void destroy_pointer(cairo_surface_t * p);

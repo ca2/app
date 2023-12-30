@@ -54,7 +54,7 @@ namespace apex
       // apex commented
       //::pointer<::user::keyboard>                        m_pkeyboard;
 
-      ::map < ::user::enum_key, bool > *                       m_pmapKeyPressed;
+      ::pointer < ::map < ::user::enum_key, bool > >        m_pmapKeyPressed;
 
       bool                                                  m_bProgrammerMode;
 

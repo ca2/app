@@ -35,7 +35,7 @@ namespace user
       m_puserinteractionHost = nullptr;
       m_bBreak = false;
       m_puserinteraction = nullptr;
-      m_pmenuitema = __new(menu_item_ptra(this));
+      m_pmenuitema = __allocate< menu_item_ptra >(this);
       m_iLevel = 0;
       m_bPopup = false;
       m_item.m_eelement = e_element_item;
@@ -65,7 +65,7 @@ namespace user
       {
          string strCommand = straCommand[i];
          string strCommandTitle = straCommandTitle[i];
-         auto pitemNewChild = __new(menu_item);
+         auto pitemNewChild = __allocate< menu_item >();
          pitemNewChild->m_bPopup = false;
          if (strCommand.is_empty())
          {
@@ -380,6 +380,51 @@ namespace user
    {
 
       return m_atom == id_separator;
+
+   }
+
+
+   void menu_item::release_children_interaction()
+   {
+
+      for (auto & pitem : *m_pmenuitema)
+      {
+
+         if (pitem)
+         {
+
+            try
+            {
+
+               pitem->release_children_interaction();
+
+            }
+            catch (...)
+            {
+
+            }
+
+            if (pitem->m_puserinteraction)
+            {
+
+               try
+               {
+
+                  pitem->m_puserinteraction->set_finish();
+
+                  pitem->m_puserinteraction.release();
+
+               }
+               catch (...)
+               {
+
+               }
+
+            }
+
+         }
+
+      }
 
    }
 

@@ -7,6 +7,99 @@
 class image_list;
 
 
+template < typename LIST_ITEM >
+bool list_item_is_before(const LIST_ITEM * pitem1, const LIST_ITEM * pitem2)
+{
+
+   if (::is_null(pitem2))
+   {
+
+      return false;
+
+   }
+
+   if (pitem1 == pitem2)
+   {
+
+      return false;
+
+   }
+
+   while (::is_set(pitem1))
+   {
+
+      if (pitem1->m_pnext == pitem2)
+      {
+
+         return true;
+
+      }
+
+      pitem1 = pitem1->m_pnext;
+
+   }
+
+   return false;
+
+}
+
+
+template < typename LIST_ITEM >
+const LIST_ITEM * list_item_calculate_head(const LIST_ITEM * pitem)
+{
+
+   if (::is_null(pitem))
+   {
+
+      return nullptr;
+
+   }
+
+   while(true)
+   {
+
+      if (::is_null(pitem->m_pprevious))
+      {
+
+         return pitem;
+
+      }
+
+      pitem = pitem->m_pprevious;
+
+   }
+
+}
+
+
+template < typename LIST_ITEM >
+const LIST_ITEM * list_item_calculate_tail(const LIST_ITEM * pitem)
+{
+
+   if (::is_null(pitem))
+   {
+
+      return nullptr;
+
+   }
+
+   while (true)
+   {
+
+      if (::is_null(pitem->m_pnext))
+      {
+
+         return pitem;
+
+      }
+
+      pitem = pitem->m_pnext;
+
+   }
+
+}
+
+
 template < typename LIST_ITEM, typename ARRAY >
 void list_set_children(LIST_ITEM* plist, const ARRAY& a)
 {
@@ -55,93 +148,115 @@ template < typename LIST_ITEM >
 void list_swap(LIST_ITEM* plist, LIST_ITEM* pitemA, LIST_ITEM* pitemB)
 {
 
-   if (plist->m_phead == pitemA)
+   auto pitemAPrevious = pitemA->m_pprevious;
+
+   auto pitemANext = pitemA->m_pnext;
+
+   auto pitemBPrevious = pitemB->m_pprevious;
+
+   auto pitemBNext = pitemB->m_pnext;
+
+   if (pitemAPrevious == pitemB)
    {
 
-      plist->m_phead = pitemB;
+      if (pitemB->m_pnext != pitemA)
+      {
 
-   }
-   else if (plist->m_phead == pitemB)
-   {
+         throw "error";
 
-      plist->m_phead = pitemA;
+      }
 
-   }
+      pitemANext->m_pprevious = pitemB;
 
-   if (plist->m_ptail == pitemA)
-   {
-
-      plist->m_ptail = pitemB;
-
-   }
-   else if (plist->m_ptail == pitemB)
-   {
-
-      plist->m_ptail = pitemA;
-
-   }
-
-   auto pitem = pitemA->m_pprevious;
-
-   if (pitem == pitemB)
-   {
-
-      // b was immediatelly before a
-
-      // now, make b imediatelly after a
-
-      pitemB->m_pnext = pitemA->m_pnext;
+      pitemBPrevious->m_pnext = pitemA;
 
       pitemA->m_pprevious = pitemB->m_pprevious;
 
-      pitemB->m_pprevious = pitemA;
+      pitemB->m_pnext = pitemA->m_pnext;
 
       pitemA->m_pnext = pitemB;
+
+      pitemB->m_pprevious = pitemA;
+
+   }
+   else if (pitemANext == pitemB)
+   {
+
+      if (pitemB->m_pprevious != pitemA)
+      {
+
+         throw "error";
+
+      }
+
+      pitemAPrevious->m_pnext = pitemB;
+
+      pitemBNext->m_pprevious = pitemA;
+
+      pitemA->m_pnext = pitemB->m_pnext;
+
+      pitemB->m_pprevious = pitemA->m_pprevious;
+
+      pitemA->m_pprevious = pitemB;
+
+      pitemB->m_pnext = pitemA;
 
    }
    else
    {
 
-      pitemA->m_pprevious = pitemB->m_pprevious;
+      pitemA->m_pprevious = pitemBPrevious;
 
-      pitemB->m_pprevious = pitem;
+      pitemA->m_pnext = pitemBNext;
 
-      pitem = pitemA->m_pnext;
+      pitemB->m_pprevious = pitemAPrevious;
 
-      if (pitem == pitemB)
+      pitemB->m_pnext = pitemANext;
+
+      if (::is_set(pitemAPrevious))
       {
 
-         // b was immediatelly after a
-
-         // now, make a imediatelly before a
-
-         pitemB->m_pnext = pitemA->m_pnext;
-
-         pitemA->m_pprevious = pitemB->m_pprevious;
-
-         pitemB->m_pprevious = pitemA;
-
-         pitemA->m_pnext = pitemB;
+         pitemAPrevious->m_pnext = pitemB;
 
       }
-      else
+
+      if (::is_set(pitemANext))
       {
 
-         pitemA->m_ppnext = pitemB->m_ppnext;
+         pitemANext->m_pprevious = pitemB;
 
-         pitemB->m_ppnext = pitem;
+      }
+
+      if (::is_set(pitemBPrevious))
+      {
+
+         pitemBPrevious->m_pnext = pitemA;
+
+      }
+
+      if (::is_set(pitemBNext))
+      {
+
+         pitemBNext->m_pprevious = pitemA;
 
       }
 
    }
 
-
 }
+
 
 
 template < typename LIST_ITEM, typename PRED >
 void list_sort(LIST_ITEM* pitem, PRED pred)
 {
+
+   if (::is_null(pitem->m_phead) || ::is_null(pitem->m_ptail))
+   {
+
+      return;
+
+   }
 
    ::raw_array < LIST_ITEM* > stackLowerBound;
    ::raw_array < LIST_ITEM* > stackUpperBound;
@@ -157,42 +272,68 @@ void list_sort(LIST_ITEM* pitem, PRED pred)
       iLowerBound = stackLowerBound.pop();
       iUpperBound = stackUpperBound.pop();
       iLPos = iLowerBound;
-      iMPos = iLowerBound;
       iUPos = iUpperBound;
+      auto p1 = iLPos;
+      auto p2 = iUPos;
+      iMPos = p1;
+      while (p1 != p2)
+      {
+         p2 = p2->m_pprevious;
+         if (p1 == p2)
+         {
+            iMPos = p1;
+            break;
+         }
+         p1 = p1->m_pnext;
+         if (p1 == p2)
+         {
+            iMPos = p1;
+            break;
+         }
+      }
       while (true)
       {
          while (true)
          {
             if (iMPos == iUPos)
-               goto break_mid_loop;
-            if (pred(iUPos->m_value, iMPos->m_value))
+               break;
+            if (pred(iMPos, iUPos))
+            {
+               iUPos = iUPos->m_pprevious;
+            }
+            else
             {
                list_swap(pitem, iMPos, iUPos);
                break;
             }
-            iUPos = iUPos->m_pprevious;
          }
+         if (iMPos == iUPos)
+            break;
          iMPos = iUPos;
          while (true)
          {
             if (iMPos == iLPos)
-               goto break_mid_loop;
-            if (pred(iMPos->m_value, iLPos->m_value))
+               break;
+            if (pred(iLPos, iMPos))
+            {
+               iLPos = iLPos->m_pnext;
+            }
+            else
             {
                list_swap(pitem, iLPos, iMPos);
                break;
             }
-            iLPos = iLPos->m_pnext;
          }
+         if (iMPos == iLPos)
+            break;
          iMPos = iLPos;
       }
-   break_mid_loop:
-      if (iLowerBound != iMPos->m_pprevious)
+      if (list_item_is_before(iLowerBound, (const LIST_ITEM *) iMPos->m_pprevious))
       {
          stackLowerBound.push(iLowerBound);
          stackUpperBound.push(iMPos->m_pprevious);
       }
-      if (iMPos->m_pnext != iUpperBound)
+      if (list_item_is_before((const LIST_ITEM *)iMPos->m_pnext, iUpperBound))
       {
          stackLowerBound.push(iMPos->m_pnext);
          stackUpperBound.push(iUpperBound);
@@ -200,7 +341,8 @@ void list_sort(LIST_ITEM* pitem, PRED pred)
       if (stackLowerBound.get_size() == 0)
          break;
    }
-
+   pitem->m_phead = list_item_calculate_head((const LIST_ITEM *)pitem->m_phead);
+   pitem->m_ptail = list_item_calculate_tail((const LIST_ITEM *)pitem->m_ptail);
 }
 
 
@@ -233,12 +375,12 @@ namespace data
 
       };
 
-      //::pointer<tree_item>            m_phead; // first child
-      //::pointer<tree_item>            m_ptail; // last child
-      //::pointer<tree_item>            m_pprevious;
-      //::pointer<tree_item>            m_pnext;
+      //::pointer<tree_item>             m_phead; // first child
+      //::pointer<tree_item>             m_ptail; // last child
+      //::pointer<tree_item>             m_pprevious;
+      //::pointer<tree_item>             m_pnext;
+      ::pointer_array < tree_item >    m_treeitema;
       ::pointer<tree_item>             m_pparent;
-      ::pointer_array<tree_item>       m_childrena;
       index                            m_iIndexHint;
       tree *                           m_ptree;
       index                            m_iLevel;
@@ -249,22 +391,29 @@ namespace data
 
 
       tree_item();
-      virtual ~tree_item();
+      ~tree_item() override;
 
 
-      virtual i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
+      #ifdef _DEBUG
+
+
+      virtual i64 increment_reference_count() override
       {
 
-         return ::particle::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+         return ::particle::increment_reference_count();
 
       }
 
-      virtual i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
+      virtual i64 decrement_reference_count() override
       {
 
-         return ::particle::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+         return ::particle::decrement_reference_count();
 
       }
+
+
+      #endif
+
 
       virtual bool      erase_item_from_parent();
 
@@ -282,6 +431,12 @@ namespace data
       index calc_level();
       index get_level() { return m_iLevel >= 0 ? m_iLevel : calc_level(); }
       index _get_index();
+
+
+      virtual ::data::tree_item * ____previous();
+      virtual ::data::tree_item * ____next();
+      virtual ::data::tree_item * ____head();
+      virtual ::data::tree_item * ____tail();
 
 
       tree_item * get_previous_or_parent(index * iLevelOffset = nullptr);
@@ -308,13 +463,7 @@ namespace data
       tree_item * first_child();
 
       // [](const ::data::tree_item * pitem1, const ::data::tree_item * pitem2)
-      template < typename PRED >
-      void sort_children(PRED pred)
-      {
-
-         m_childrena.predicate_sort(pred);
-
-      }
+      virtual void sort_children(const ::function < bool(const ::data::tree_item * p1, const ::data::tree_item * p2) > & functionLess);
 
 
 
@@ -339,6 +488,7 @@ namespace data
       tree_item * get_item(enum_tree_navigation enavigation, index * piLevelOffset = nullptr);
       tree_item * get_item(enum_relative erelative);
 
+      virtual bool contains(const tree_item * ptreeitem);
       virtual tree_item * get_proper_item(index iIndex, index * piLevel);
       virtual index get_proper_item_index(tree_item * pitem, index * piLevel);
       virtual ::count get_proper_item_count();

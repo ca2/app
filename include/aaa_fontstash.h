@@ -625,11 +625,11 @@ static int fons__atlasAddSkylineLevel(FONSatlas * atlas, int idx, int x, int y, 
 {
 	int i;
 
-	// Insert memory_new node
+	// Insert aaa_primitive_new node
 	if (fons__atlasInsertNode(atlas, idx, x, y + h, w) == 0)
 		return 0;
 
-	// Delete skyline segments that fall under the shadow of the memory_new segment.
+	// Delete skyline segments that fall under the shadow of the aaa_primitive_new segment.
 	for (i = idx + 1; i < atlas->nnodes; i++) {
 		if (atlas->nodes[i].x() < atlas->nodes[i - 1].x() + atlas->nodes[i - 1].width) {
 			int shrink = atlas->nodes[i - 1].x() + atlas->nodes[i - 1].width - atlas->nodes[i].x();
@@ -1111,7 +1111,7 @@ static FONSglyph * fons__getGlyph(FONScontext * stash, FONSfont * font, unsigned
 		i = font->glyphs[i].next;
 	}
 
-	// Create a memory_new glyph or rasterize bitmap data for a cached glyph.
+	// Create a aaa_primitive_new glyph or rasterize bitmap data for a cached glyph.
 	g = fons__tt_getGlyphIndex(&font->font, codepoint);
 	// Try to find the glyph in fallback fonts.
 	if (g == 0) {
@@ -1720,7 +1720,7 @@ int fonsExpandAtlas(FONScontext * stash, int width, int height)
 	// Flush pending glyphs.
 	fons__flush(stash);
 
-	// Create memory_new texture
+	// Create aaa_primitive_new texture
 	if (stash->params.renderResize != NULL) {
 		if (stash->params.renderResize(stash->params.userPtr, width, height) == 0)
 			return 0;
@@ -1769,7 +1769,7 @@ int fonsResetAtlas(FONScontext * stash, int width, int height)
 	// Flush pending glyphs.
 	fons__flush(stash);
 
-	// Create memory_new texture
+	// Create aaa_primitive_new texture
 	if (stash->params.renderResize != NULL) {
 		if (stash->params.renderResize(stash->params.userPtr, width, height) == 0)
 			return 0;

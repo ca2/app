@@ -89,7 +89,7 @@ public:
 
    bool attach(memory_base *pstorage);
 
-   memory_base * detach();
+   ::pointer < memory_base > detach();
 
    virtual class memory *          get_primitive_memory();
 #if !defined(UNIVERSAL_WINDOWS)

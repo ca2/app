@@ -30,6 +30,7 @@ namespace text
       friend class translator;
       friend class text;
       friend class ::acme::context;
+      friend class ::allocator::accessor;
 
 
       data(translator * ptranslator);

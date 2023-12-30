@@ -2,6 +2,7 @@
 #include "parallelization_pthread.h"
 #include "acme/operating_system/ansi/_ansi.h"
 #include "acme/parallelization/message_queue.h"
+#include "acme/parallelization/task_message_queue.h"
 #include "acme/operating_system/ansi/_pthread.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/parallelization/task.h"
@@ -27,7 +28,7 @@
 #endif
 
 
-message_queue * get_message_queue(itask_t idthread, bool bCreate);
+//message_queue * aaa_get_message_queue(itask_t idthread, bool bCreate);
 
 
 //CLASS_DECL_ACME void thread_get_os_priority(i32 * piOsPolicy, sched_param * pparam, ::enum_priority epriority);
@@ -51,14 +52,18 @@ message_queue * get_message_queue(itask_t idthread, bool bCreate);
 
    }
 
-   ::pointer<message_queue>pmq;
+//   ::pointer<message_queue>pmq;
+//
+//   if (dwWakeMask > 0)
+//   {
+//
+//      pmq = ::get_message_queue(current_itask(), false);
+//
+//   }
+   
+   itask_t idthread = ::current_itask();
 
-   if (dwWakeMask > 0)
-   {
-
-      pmq = ::get_message_queue(current_itask(), false);
-
-   }
+   message_queue * pmq = ::acme::get()->m_ptaskmessagequeue->get_message_queue(idthread, false);
 
    int_bool bWaitForAll = dwFlags & MWMO_WAITALL;
    //   int_bool bAlertable         = dwFlags & MWMO_ALERTABLE;
@@ -80,7 +85,7 @@ message_queue * get_message_queue(itask_t idthread, bool bCreate);
          for (; comparison::lt(i, dwSize);)
          {
 
-            if (pmq.is_set())
+            if (::is_set(pmq))
             {
 
                synchronous_lock synchronouslock(pmq->synchronization());
@@ -140,7 +145,7 @@ message_queue * get_message_queue(itask_t idthread, bool bCreate);
       while (true)
       {
 
-         if (pmq.is_set())
+         if (::is_set(pmq))
          {
 
             if (pmq->m_eventNewMessage._wait(0_s))

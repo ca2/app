@@ -4,6 +4,7 @@
 #include "top_edit_impact.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
+#include "acme/handler/topic.h"
 #include "aura/graphics/write_text/font_list.h"
 #include "aura/user/user/frame.h"
 #include "aura/user/user/primitive_impl.h"
@@ -102,7 +103,7 @@ namespace userex
 
                m_ptopimpact->m_peditimpact->_001SetText(strText, ::e_source_sync);
 
-               m_ptopimpact->m_peditimpact->m_pfont.defer_create(this);
+               __defer_construct(m_ptopimpact->m_peditimpact->m_pfont);
 
                m_ptopimpact->m_peditimpact->m_pfont->set_family_name(strText);
 
@@ -157,10 +158,10 @@ namespace userex
 
       }
 
-      if(get_document()->m_pviewTopic == nullptr)
+      if(get_document()->m_pimpactTopic == nullptr)
       {
 
-         get_document()->m_pviewTopic = m_pimpact;
+         get_document()->m_pimpactTopic = m_pimpact;
 
       }
 
@@ -193,7 +194,7 @@ namespace userex
 
          m_ptopimpact->m_peditimpact->_001SetText(str, ::e_source_sync);
 
-         m_ptopimpact->m_peditimpact->m_pfont.defer_create(this);
+         __defer_construct(m_ptopimpact->m_peditimpact->m_pfont);
 
          m_ptopimpact->m_peditimpact->m_pfont->set_family_name(str);
 

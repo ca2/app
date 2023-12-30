@@ -9,7 +9,9 @@
 #include "acme/parallelization/mutex.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/keep.h"
+#include "acme/platform/system.h"
 #include "acme/primitive/mathematics/_random.h"
+#include "acme/primitive/primitive/primitive.h"
 #include "acme/platform/library.h"
 #include "acme/crypto/rsa.h"
 #include "acme/filesystem/filesystem/file_context.h"
@@ -67,7 +69,7 @@ namespace dynamic_source
 
       //}
 
-      m_pfileError.create_new(this);
+      __construct_new(m_pfileError);
 
       m_textstreamError.m_pfile = m_pfileError;
 
@@ -207,9 +209,14 @@ namespace dynamic_source
    bool ds_script::HasTimedOutLastBuild()
    {
       synchronous_lock synchronouslock(this->synchronization());
+
+      auto psystem = system();
+
+      auto pprimitive = psystem->primitive();
+
       return (m_timeLastBuildTime.elapsed()) > 
          m_pmanager->m_timeBuildInterval +
-         random(0_s, m_pmanager->m_timeTimeRandomInterval);
+         pprimitive->random(0_s, m_pmanager->m_timeTimeRandomInterval);
    }
 
    bool ds_script::HasCompileOrLinkError()
@@ -365,7 +372,7 @@ namespace dynamic_source
       if (m_plibrary.is_null() || m_plibrary->is_closed())
       {
 
-         m_plibrary.create(this);
+         __construct(m_plibrary);
 
          string strStagePath = m_pmanager->get_full_stage_path(m_strScriptPath);
 
@@ -490,8 +497,6 @@ namespace dynamic_source
 
       }
 
-      pinstance->initialize(this);
-
       pinstance->m_strNote = m_strName;
 
       pinstance->m_pscript2 = this;
@@ -552,7 +557,7 @@ namespace dynamic_source
          if (iRetry > 0)
          {
 
-            preempt((class ::time)random(2._s, 4._s));
+            preempt(system()->primitive()->random(2._s, 4._s));
 
          }
 

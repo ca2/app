@@ -102,6 +102,8 @@ list(APPEND apex_source
    handler/context.h
    handler/manager.cpp
    handler/manager.h
+   handler/manager_room.cpp
+   handler/manager_room.h
    #handler/process.cpp
    #handler/promise.cpp
    handler/promise.h
@@ -191,6 +193,14 @@ list(APPEND apex_source
    #message/sender.cpp
    message/simple_command.cpp
    message/simple_command.h
+   networking/application/application.cpp
+   networking/application/application.h
+   networking/application/application_handler.cpp
+   networking/application/application_handler.h
+   networking/application/application_socket.cpp
+   networking/application/application_socket.h
+   networking/application/application_incoming_socket.cpp
+   networking/application/application_incoming_socket.h
    #networking/http/_.cpp
    networking/http/_.h
    networking/http/context.cpp
@@ -216,12 +226,16 @@ list(APPEND apex_source
    networking/http/transaction.cpp
    networking/http/transaction.h
    networking/netserver/_.h
+   networking/netserver/incoming_socket.cpp
+   networking/netserver/incoming_socket.h
+   networking/netserver/incoming_socket_thread.cpp
+   networking/netserver/incoming_socket_thread.h
    networking/netserver/socket.cpp
    networking/netserver/socket.h
-   networking/netserver/socket_handler.cpp
-   networking/netserver/socket_handler.h
    networking/netserver/socket_thread.cpp
    networking/netserver/socket_thread.h
+   networking/netserver/socket_handler.cpp
+   networking/netserver/socket_handler.h
    networking/sockets/base/socket.cpp
    networking/sockets/base/socket.h
    networking/sockets/base/socket_handler.cpp
@@ -232,6 +246,8 @@ list(APPEND apex_source
    #networking/sockets/basic/basic_net.cpp
    networking/sockets/basic/listen_socket.cpp
    networking/sockets/basic/listen_socket.h
+   networking/sockets/basic/listen_socket_impl.cpp
+   networking/sockets/basic/listen_socket_impl.h
    #net/sockets/basic/net.cpp
    #net/sockets/basic/net.h
    networking/sockets/basic/sctp_socket.cpp
@@ -265,8 +281,14 @@ list(APPEND apex_source
    #   networking/sockets/ssl/initializer.cpp
    #   networking/sockets/ssl/initializer.h
    #   networking/sockets/ssl/ticket_key.h
-   networking/sockets/webserver/httpd_socket.cpp
-   networking/sockets/webserver/httpd_socket.h
+   networking/sockets/httpd/incoming_socket.cpp
+   networking/sockets/httpd/incoming_socket.h
+   networking/sockets/httpd/incoming_socket_thread.cpp
+   networking/sockets/httpd/incoming_socket_thread.h
+   networking/sockets/httpd/socket.cpp
+   networking/sockets/httpd/socket.h
+   networking/sockets/httpd/socket_thread.cpp
+   networking/sockets/httpd/socket_thread.h
    networking/sockets/_.h
    #networking/sockets/_strconv.cpp
    networking/sockets/_strconv.h
@@ -330,12 +352,6 @@ list(APPEND apex_source
    networking/ip_enum.cpp
    networking/ip_enum.h
    #networking/net.h
-   networking/application/application.cpp
-   networking/application/application.h
-   networking/application/application_handler.cpp
-   networking/application/application_handler.h
-   networking/application/application_socket.cpp
-   networking/application/application_socket.h
    networking/networking.cpp
    networking/networking.h
    networking/open_weather_city.h
@@ -1395,9 +1411,7 @@ list(APPEND static_library_references ${library_references})
 list(TRANSFORM static_library_references PREPEND static_)
 
 
-add_library(${PROJECT_NAME} SHARED ${apex_source}
-   input/input.cpp
-   input/input.h)
+add_library(${PROJECT_NAME} SHARED ${apex_source})
 add_library(static_${PROJECT_NAME} STATIC ${apex_source})
 
 
@@ -1414,11 +1428,16 @@ set_target_properties(static_${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
 
 
 if (MSVC)
-   target_compile_options(apex PRIVATE "/MD$<$<CONFIG:Debug>:d>")
-   target_link_options(apex PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
-   target_link_options(apex PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/apex.lib")
-   target_link_options(apex PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/apex.def")
-   target_link_libraries(apex PRIVATE acme zlib libcrypto libssl dwrite d2d1 d3d11 dxgi Dxva2 dbghelp imagehlp dwmapi Setupapi Windowscodecs Winmm ws2_32 Crypt32 Normaliz version Secur32 gdiplus Shlwapi Imm32)
+   target_compile_options(${PROJECT_NAME} PRIVATE "/MD$<$<CONFIG:Debug>:d>")
+   target_link_options(${PROJECT_NAME} PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
+   target_link_options(${PROJECT_NAME} PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/apex.lib")
+   #target_link_options(apex PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/apex.def")
+
+   message(STATUS "\${library_references} is ${library_references}")
+
+   target_link_libraries(${PROJECT_NAME} PRIVATE zlib libcrypto libssl dwrite d2d1 d3d11 dxgi Dxva2 dbghelp imagehlp dwmapi Setupapi Windowscodecs Winmm ws2_32 Crypt32 Normaliz version Secur32 gdiplus Shlwapi Imm32 ${library_references})
+
+
 elseif(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
 
    target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
@@ -1461,6 +1480,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories
 target_include_directories(static_${PROJECT_NAME} PRIVATE ${library_include_directories})
 
 
-target_compile_definitions(apex PRIVATE _APEX_LIBRARY)
+target_compile_definitions(${PROJECT_NAME} PRIVATE _${PROJECT_NAME}_project)
+target_compile_definitions(static_${PROJECT_NAME} PRIVATE _${PROJECT_NAME}_project)
 
 

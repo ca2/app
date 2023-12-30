@@ -106,7 +106,7 @@ namespace database
    bool composite::exec(const ::string & pszQuery)
    {
 
-      return false;
+      return m_pdatabase->exec(pszQuery);
 
    }
 

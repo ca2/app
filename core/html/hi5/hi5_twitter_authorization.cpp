@@ -2,6 +2,7 @@
 #include "hi5_twitter_authorization.h"
 #include "acme/constant/id.h"
 #include "acme/handler/request.h"
+#include "acme/handler/topic.h"
 #include "acme/filesystem/filesystem/dir_context.h"
 #include "apex/networking/http/context.h"
 #include "axis/user/form/data.h"
@@ -67,7 +68,7 @@ namespace hi5
 
          auto psystem = system()->m_pcoresystem;
 
-         m_ptemplatePane = memory_new ::user::single_document_template(
+         m_ptemplatePane = __new< ::user::single_document_template >(
             "system/auth",
             ::type < ::user::document >(),
             ::type < simple_frame_window >(),

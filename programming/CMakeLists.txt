@@ -10,7 +10,9 @@ list(APPEND library_source
     framework.h
    dynamic_source/exit_exception.cpp
    dynamic_source/exit_exception.h
-   dynamic_source/httpd_socket.cpp
+   dynamic_source/httpd_incoming_socket.cpp
+   dynamic_source/httpd_incoming_socket.h
+   dynamic_source/httpd_listen_socket.cpp
    dynamic_source/httpd_socket.h
    dynamic_source/script.cpp
    dynamic_source/script.h

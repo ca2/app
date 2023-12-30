@@ -74,7 +74,7 @@ public:
    }
 
 
-   inline i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
+   inline i64 increment_reference_count()
    {
 
 #ifdef WINDOWS
@@ -94,7 +94,7 @@ public:
    }
 
 
-   inline i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
+   inline i64 decrement_reference_count()
    {
 
 #ifdef WINDOWS
@@ -114,10 +114,10 @@ public:
    }
 
 
-   inline i64 release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
+   inline i64 release()
    {
 
-      i64 i = decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      i64 i = decrement_reference_count();
 
       if(i == 0)
       {

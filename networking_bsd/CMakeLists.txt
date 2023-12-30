@@ -3,10 +3,6 @@ project(networking_bsd CXX)
 
 
 list(APPEND library_source
-   bsd/_.cpp
-   bsd/_.h
-   bsd/list_computers.cpp
-   bsd/list_network_interfaces.cpp
    #sockets.cpp
    sockets/_.h
    sockets/_1.h
@@ -25,15 +21,15 @@ list(APPEND library_source
    sockets/base/socket.h
    sockets/base/socket_handler.cpp
    sockets/base/socket_handler.h
-   sockets/base/socket_thread.cpp
-   sockets/base/socket_thread.h
+   #sockets/base/socket_thread.cpp
+   #sockets/base/socket_thread.h
    sockets/basic/_.h
    #        sockets/basic/aaa_basic_net.cpp
    #        sockets/basic/aaa_net.h
    #        sockets/basic/aaa_sync_socket_handler.cpp
    #        sockets/basic/aaa_sync_socket_handler.h
-   sockets/basic/listen_socket.cpp
-   sockets/basic/listen_socket.h
+   sockets/basic/listen_socket_impl.cpp
+   sockets/basic/listen_socket_impl.h
    sockets/basic/sctp_socket.cpp
    sockets/basic/sctp_socket.h
    sockets/basic/socket.cpp
@@ -129,10 +125,32 @@ if (WIN32 OR UWP)
    list(APPEND library_source
       winsock2/_.cpp
       winsock2/_.h
+      winsock2/list_computers.cpp
+      winsock2/list_network_interfaces.cpp
    )
 
 endif ()
 
+
+if (${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
+
+   list(APPEND library_source
+      bsd/_.cpp
+      bsd/_.h
+      bsd/list_computers.cpp
+      bsd/list_network_interfaces.cpp
+   )
+
+endif()
+
+
+if (${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
+
+   list(APPEND library_source
+   bsd/bsd_list_computers.cpp
+
+   )
+endif()
 
 list(APPEND library_references
    acme apex)
@@ -164,7 +182,7 @@ if (MSVC)
    target_link_options(${PROJECT_NAME} PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
    target_link_options(${PROJECT_NAME} PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/${PROJECT_NAME}.lib")
    target_link_options(${PROJECT_NAME} PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}.def")
-   target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references})
+   target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} Ws2_32)
 elseif(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
 
    target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
@@ -206,4 +224,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories
 target_include_directories(static_${PROJECT_NAME} PRIVATE ${library_include_directories})
 
 
-target_compile_definitions(${PROJECT_NAME} PRIVATE _networking_bsd_project)
+target_compile_definitions(${PROJECT_NAME} PRIVATE _${PROJECT_NAME}_project)
+
+
+

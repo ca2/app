@@ -114,7 +114,7 @@ void dir_system::init_system()
    //if (m_pziputil == nullptr)
    //{
 
-   //   m_pziputil = memory_new ::zip::util();
+   //   m_pziputil = __new< ::zip::util >();
 
    //}
 
@@ -185,6 +185,22 @@ void dir_system::init_system()
    }
    
    information() << "m_pathAppData : " << m_pathAppData;
+
+}
+
+
+void dir_system::term_system()
+{
+
+   m_pfilewatcher.release();
+
+}
+
+
+void dir_system::finalize()
+{
+
+   ::object::finalize();
 
 }
 

@@ -89,7 +89,7 @@ namespace sockets
    }
 
 
-   bool http_put_socket::step()
+   bool http_put_socket::http_request_step()
    {
 
       if(m_file.is_set())
@@ -118,7 +118,7 @@ namespace sockets
       SendRequest();
       if(m_file.is_set())
       {
-         ::informationf("Sending " + ::as_string(m_content_length)+ " bytes");
+         ::acme::get()->platform()->informationf("Sending " + ::as_string(m_content_length)+ " bytes");
          memsize n;
          if(m_transferprogressfunction)
          {

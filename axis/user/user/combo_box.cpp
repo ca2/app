@@ -5,6 +5,7 @@
 #include "acme/constant/message.h"
 #include "acme/constant/user_key.h"
 #include "acme/handler/item.h"
+#include "acme/handler/topic.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/primitive/geometry2d/_text_stream.h"
 #include "acme/user/user/_constant.h"
@@ -545,7 +546,7 @@ namespace user
          if (rectangleElement.contains(point))
          {
 
-            auto pitem = __new(::item(e_element_drop_down));
+            auto pitem = __allocate< ::item >(e_element_drop_down);
 
             auto puseritem = user_item(pitem);
             
@@ -562,7 +563,7 @@ namespace user
       if (rectangleX.contains(point))
       {
 
-         auto pitem = __new(::item(e_element_text));
+         auto pitem = __allocate< ::item >(e_element_text);
 
          auto puseritem = user_item(pitem);
             
@@ -572,7 +573,7 @@ namespace user
 
       }
       
-      auto pitemNone = __new(::item(e_element_none));
+      auto pitemNone = __allocate< ::item >(e_element_none);
       
       return pitemNone;
 
@@ -873,9 +874,9 @@ namespace user
 
             m_plistbox->hide();
 
-            m_plistbox->set_need_redraw();
-
-            m_plistbox->post_redraw();
+//         m_plistbox->set_need_redraw();
+//
+//         m_plistbox->post_redraw();
 
          }
 
@@ -1008,7 +1009,7 @@ namespace user
 
          auto itemCurrent = _001FindListText(str);
 
-         set_current_item(__new(::item(e_element_item, itemCurrent)), actioncontext);
+         set_current_item(__allocate< ::item >(e_element_item, itemCurrent), actioncontext);
 
       }
 

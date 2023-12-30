@@ -13,7 +13,7 @@ timer_callback::timer_callback()
 timer_callback::~timer_callback()
 {
 
-   for(auto & ptimer : m_timera)
+   for(auto & ptimer : m_timermap.payloads())
    {
 
       if(ptimer && ptimer->m_ptimercallback == this)

@@ -126,10 +126,11 @@ namespace user
    }
 
 
-   void text::_001SetSelEnd(strsize iEnd)
+   void text::_001SetSelEnd(strsize iEnd, const ::action_context & actioncontext)
    {
 
       UNREFERENCED_PARAMETER(iEnd);
+      UNREFERENCED_PARAMETER(actioncontext);
 
    }
 

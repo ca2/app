@@ -60,7 +60,7 @@ namespace HEAP_NAMESPACE
 #elif MEMDLEAK
 
 
-#include "heap_memdleak.cpp"
+#include "inline/heap_memdleak.cpp"
 
 
 #else

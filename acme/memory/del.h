@@ -2,6 +2,11 @@
 #pragma once
 
 
+#include "management.h"
+#include "memory.h"
+#include "acme/platform/acme.h"
+
+
 template<class t>
 inline void delptr(t *& p)
 {
@@ -139,7 +144,7 @@ namespace acme
 
             p = nullptr;
 
-            ::memory_free(pdel);
+            ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free(pdel);
 
          }
 
@@ -163,15 +168,15 @@ namespace acme
    }
 
 
-   template<typename T>
-   inline T * reset(T *& p)
-   {
+   //template<typename T>
+   //inline T * reset(T *& p)
+   //{
 
-      ::acme::del(p);
+   //   ::acme::del(p);
 
-      return p = memory_new T;
+   //   return p = __new< T >();
 
-   }
+   //}
 
 
 } // namespace acme

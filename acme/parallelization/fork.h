@@ -3,7 +3,7 @@
 
 #include "task.h"
 
-//#define memory_new ACME_NEW
+
 
 template < typename PRED >
 class predicate_task:
@@ -54,7 +54,7 @@ template < typename PRED >
 inline auto new_predicateicate_task(::particle * pparticle, PRED pred)
 {
 
-   return __new(predicate_task < PRED > (pparticle, pred));
+   return __allocate< predicate_task < PRED >  >(pparticle, pred);
 
 }
 
@@ -192,14 +192,14 @@ CLASS_DECL_ACME ::task * predicate_run(::object * pobjectParent, bool bSync, con
 
 
 
-//#define memory_new ACME_NEW
+
 
 //
 //template < typename PRED >
 //::pointer<task>fork(::particle * pparticle, PRED pred)
 //{
 //
-//   ptask = memory_new predicate_task < PRED >(pparticle, pred);
+//   ptask = __new< predicate_task < PRED > >(pparticle, pred);
 //
 //   ptask->begin();
 //
@@ -214,7 +214,7 @@ CLASS_DECL_ACME ::task * predicate_run(::object * pobjectParent, bool bSync, con
 //::task * fork(::particle * pparticle, PRED pred, const ::scoped_string & scopedstrTag, int iCallStackAddUp = 0, enum_priority epriority = e_priority_normal)
 //{
 //
-//   auto ppredtask = __new(predicate_task < PRED >(pparticle, pred));
+//   auto ppredtask = __allocate< predicate_task < PRED > >(pparticle, pred);
 //
 //   string strTag(pszTag);
 //
@@ -336,7 +336,7 @@ CLASS_DECL_ACME ::task * predicate_run(::object * pobjectParent, bool bSync, con
 //
 //      p = t.m_p;
 //
-//      p->increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_P_NOTE(pobjectParent, "fork_release"));
+//      p->increment_reference_count(REFERENCING_DEBUGGING_P_NOTE(pobjectParent, "fork_release"));
 //
 //      t.release();
 //
@@ -473,7 +473,7 @@ public:
 //   for (index iOrder = 0; iOrder < iScan; iOrder++)
 //   {
 //
-//      auto ppredtask = __new(forking_count_task < PRED >(iOrder, iOrder + iStart, iScan, iCount, pred, pobjectTaskEnd));
+//      auto ppredtask = __allocate< forking_count_task < PRED > >(iOrder, iOrder + iStart, iScan, iCount, pred, pobjectTaskEnd);
 //
 //      ppredtask->begin();
 //
@@ -570,12 +570,12 @@ public:
 //
 //   ::count iScan = maximum(1, minimum(iCount - iStart, iAffinityOrder));
 //
-//   auto pcounter = __new(::counter < ::i32 >(iScan));
+//   auto pcounter = __allocate< ::counter < ::i32 > >(iScan);
 //
 //   for (index iOrder = 0; iOrder < iScan; iOrder++)
 //   {
 //
-//      auto ppredtask = __new(forking_for_task < PRED >(pobjectParent, iOrder, iOrder + iStart, iScan, iCount, pred));
+//      auto ppredtask = __allocate< forking_for_task < PRED > >(pobjectParent, iOrder, iOrder + iStart, iScan, iCount, pred);
 //
 //      ppredtask->m_pcounter = pcounter;
 //
@@ -602,7 +602,7 @@ public:
 //
 //   ::count iScan = maximum(1, minimum(iCount - iStart, iAffinityOrder));
 //
-//   auto pcounter = __new(::counter < ::i32 > (iScan));
+//   auto pcounter = __allocate< ::counter < ::i32 >  >(iScan);
 //
 //   auto pobjectTaskEnd = __runnable(predEnd);
 //
@@ -611,7 +611,7 @@ public:
 //   for (index iOrder = 0; iOrder < iScan; iOrder++)
 //   {
 //
-//      auto ppredtask = __new(forking_for_task < PRED >(pobjectParent, iOrder, iOrder + iStart, iScan, iCount, pred));
+//      auto ppredtask = __allocate< forking_for_task < PRED > >(pobjectParent, iOrder, iOrder + iStart, iScan, iCount, pred);
 //
 //      ppredtask->m_pcounter = pcounter;
 //
@@ -657,7 +657,7 @@ CLASS_DECL_ACME u32 processor_index_generator();
 //   for (index iProcessor = 0; iProcessor < iCount; iProcessor++)
 //   {
 //
-//      auto ppredtask = __new(predicate_task < PRED >(pobjectParent, pred));
+//      auto ppredtask = __allocate< predicate_task < PRED > >(pobjectParent, pred);
 //
 //      ::task * ptask = dynamic_cast < ::task * > (ppredtask);
 //

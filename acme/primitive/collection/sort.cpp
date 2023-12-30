@@ -139,11 +139,11 @@ namespace  sort
 //
 //   sort_pointer_array < ::user::interaction > sorteduia;
 //
-//   auto puiA = __new(::user::interaction);
+//   auto puiA = __allocate< ::user::interaction >();
 //
 //   puiA->set_window_text("01");
 //
-//   auto puiH = __new(::user::interaction);
+//   auto puiH = __allocate< ::user::interaction >();
 //
 //   puiH->set_window_text("10");
 //
@@ -160,7 +160,7 @@ namespace  sort
 //         return str1.case_insensitive_order(str2);
 //      });
 //
-//   auto puiC = __new(::user::interaction);
+//   auto puiC = __allocate< ::user::interaction >();
 //
 //   puiC->set_window_text("03");
 //

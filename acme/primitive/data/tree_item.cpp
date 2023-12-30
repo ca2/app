@@ -4,8 +4,266 @@
 #include "listener.h"
 #include "tree.h"
 
+
+
 #include "acme/template/list.h"
 
+
+//void data_tree_item_list_swap(
+//   const ::pointer < ::data::tree_item > & pitemA, 
+//   const ::pointer < ::data::tree_item > & pitemB)
+//{
+//
+//   auto pitemAPrevious = pitemA->____previous();
+//
+//   auto pitemANext = pitemA->____next();
+//
+//   auto pitemBPrevious = pitemB->____previous();
+//
+//   auto pitemBNext = pitemB->____next();
+//
+//   if (pitemAPrevious == pitemB)
+//   {
+//
+//      if (pitemB->____next() != pitemA)
+//      {
+//
+//         throw "error";
+//
+//      }
+//
+//      if (pitemANext)
+//      {
+//
+//         pitemANext->____previous() = pitemB;
+//
+//      }
+//
+//      if (pitemBPrevious)
+//      {
+//
+//         pitemBPrevious->____next() = pitemA;
+//
+//      }
+//
+//      pitemA->____previous() = pitemB->____previous();
+//
+//      pitemB->____next() = pitemA->____next();
+//
+//      pitemA->____next() = pitemB;
+//
+//      pitemB->____previous() = pitemA;
+//
+//   }
+//   else if (pitemANext == pitemB)
+//   {
+//
+//      if (pitemB->____previous() != pitemA)
+//      {
+//
+//         throw "error";
+//
+//      }
+//
+//      if (pitemAPrevious)
+//      {
+//
+//         pitemAPrevious->____next() = pitemB;
+//
+//      }
+//
+//      if (pitemBNext)
+//      {
+//
+//         pitemBNext->____previous() = pitemA;
+//
+//      }
+//
+//      pitemA->____next() = pitemB->____next();
+//
+//      pitemB->____previous() = pitemA->____previous();
+//
+//      pitemA->____previous() = pitemB;
+//
+//      pitemB->____next() = pitemA;
+//
+//   }
+//   else
+//   {
+//
+//      pitemA->____previous() = pitemBPrevious;
+//
+//      pitemA->____next() = pitemBNext;
+//
+//      pitemB->____previous() = pitemAPrevious;
+//
+//      pitemB->____next() = pitemANext;
+//
+//      if (::is_set(pitemAPrevious))
+//      {
+//
+//         pitemAPrevious->____next() = pitemB;
+//
+//      }
+//
+//      if (::is_set(pitemANext))
+//      {
+//
+//         pitemANext->____previous() = pitemB;
+//
+//      }
+//
+//      if (::is_set(pitemBPrevious))
+//      {
+//
+//         pitemBPrevious->____next() = pitemA;
+//
+//      }
+//
+//      if (::is_set(pitemBNext))
+//      {
+//
+//         pitemBNext->____previous() = pitemA;
+//
+//      }
+//
+//   }
+//
+//}
+//
+//void data_tree_item_list_sort(::data::tree_item * pitem, const ::function < bool(const ::data::tree_item *, const ::data::tree_item *) > & functionLess)
+//{
+//
+//   if (::is_null(pitem->____head()) || ::is_null(pitem->____tail()))
+//   {
+//
+//      return;
+//
+//   }
+//
+//   ::pointer_array < ::data::tree_item > stackLowerBound;
+//   ::pointer_array < ::data::tree_item > stackUpperBound;
+//
+//   ::pointer < ::data::tree_item > iLowerBound;
+//   ::pointer < ::data::tree_item > iUpperBound;
+//   ::pointer < ::data::tree_item > iLPos, iUPos, iMPos;
+//   ::pointer < ::data::tree_item > p1;
+//   ::pointer < ::data::tree_item > p2;
+//
+//   stackLowerBound.push(pitem->____head());
+//   stackUpperBound.push(pitem->____tail());
+//   while (true)
+//   {
+//      iLowerBound = stackLowerBound.pop();
+//      iUpperBound = stackUpperBound.pop();
+//      iLPos = iLowerBound;
+//      iUPos = iUpperBound;
+//      p1 = iLPos;
+//      p2 = iUPos;
+//      iMPos = p1;
+//      while (p1 != p2)
+//      {
+//         p2 = p2->____previous();
+//         if (p1 == p2)
+//         {
+//            iMPos = p1;
+//            break;
+//         }
+//         p1 = p1->____next();
+//         if (p1 == p2)
+//         {
+//            iMPos = p1;
+//            break;
+//         }
+//      }
+//      while (true)
+//      {
+//         while (true)
+//         {
+//            if (iMPos == iUPos)
+//               break;
+//            if (functionLess(iMPos, iUPos))
+//            {
+//               iUPos = iUPos->____previous();
+//            }
+//            else
+//            {
+//               data_tree_item_list_swap(iMPos, iUPos);
+//               swap(iMPos, iUPos);
+//               if (iLowerBound == iMPos)
+//               {
+//                  iLowerBound = iUPos;
+//               }
+//               else if (iLowerBound == iUPos)
+//               {
+//                  iLowerBound = iMPos;
+//               }
+//               if (iUpperBound == iMPos)
+//               {
+//                  iUpperBound = iUPos;
+//               }
+//               else if (iUpperBound == iUPos)
+//               {
+//                  iUpperBound = iMPos;
+//               }
+//               break;
+//            }
+//         }
+//         if (iMPos == iUPos)
+//            break;
+//         iMPos = iUPos;
+//         while (true)
+//         {
+//            if (iMPos == iLPos)
+//               break;
+//            if (functionLess(iLPos, iMPos))
+//            {
+//               iLPos = iLPos->____next();
+//            }
+//            else
+//            {
+//               data_tree_item_list_swap(iLPos, iMPos);
+//               swap(iLPos, iMPos);
+//               if (iLowerBound == iMPos)
+//               {
+//                  iLowerBound = iLPos;
+//               }
+//               else if (iLowerBound == iLPos)
+//               {
+//                  iLowerBound = iMPos;
+//               }
+//               if (iUpperBound == iMPos)
+//               {
+//                  iUpperBound = iLPos;
+//               }
+//               else if (iUpperBound == iLPos)
+//               {
+//                  iUpperBound = iMPos;
+//               }
+//               break;
+//            }
+//         }
+//         if (iMPos == iLPos)
+//            break;
+//         iMPos = iLPos;
+//      }
+//      if (list_item_is_before((const ::data::tree_item *)iLowerBound, (const ::data::tree_item *)iMPos->____previous()))
+//      {
+//         stackLowerBound.push(iLowerBound);
+//         stackUpperBound.push(iMPos->____previous());
+//      }
+//      if (list_item_is_before((const ::data::tree_item *)iMPos->____next(), (const ::data::tree_item *)iUpperBound))
+//      {
+//         stackLowerBound.push(iMPos->____next());
+//         stackUpperBound.push(iUpperBound);
+//      }
+//      if (stackLowerBound.get_size() == 0)
+//         break;
+//   }
+//   pitem->____head() = list_item_calculate_head((const ::data::tree_item *)pitem->____head());
+//   pitem->____tail() = list_item_calculate_tail((const ::data::tree_item *)pitem->____tail());
+//
+//}
 
 namespace data
 {
@@ -52,11 +310,11 @@ namespace data
       if (::is_set(pparent))
       {
 
-         pparent->m_childrena.add(this);
+         pparent->m_treeitema.add_unique(this);
 
       }
 
-      m_pparent->m_childrena.erase(this);
+      m_pparent->m_treeitema.erase(this);
 
       m_pparent = pparent;
 
@@ -71,7 +329,12 @@ namespace data
       if(m_pparent)
       {
 
-         m_pparent->m_childrena.erase(this);
+         if(m_pparent->m_treeitema.contains(this))
+         {
+
+            m_pparent->m_treeitema.erase(this);
+
+         }
 
       }
 
@@ -81,9 +344,18 @@ namespace data
    void tree_item::erase_tree_item_descendants()
    {
 
-      m_childrena.predicate_each([](auto p) { p->erase_tree_item(); });
+      for (auto & p : m_treeitema)
+      {
 
-      m_childrena.erase_all();
+         p->erase_tree_item_descendants();
+
+      }
+
+      //list_predicate(this, [](auto p) { p->erase_tree_item(); });
+
+      //list_erase_all(this);
+
+      m_treeitema.clear();
 
    }
 
@@ -129,7 +401,7 @@ namespace data
 
       }
 
-      if (!pitem->m_pparent->m_childrena.contains(pitem))
+      if (!pitem->m_pparent->m_treeitema.contains(pitem))
       {
 
          // self healing?
@@ -139,9 +411,7 @@ namespace data
 
       }
 
-      //list_erase(pitem->m_pparent, pitem);
-
-      pitem->m_pparent->m_childrena.erase(pitem);
+      pitem->m_pparent->m_treeitema.erase(pitem);
 
       pitem->m_pparent = nullptr;
 
@@ -150,15 +420,49 @@ namespace data
    }
 
 
+   bool tree_item::contains(const tree_item * ptreeitem)
+   {
+
+      if (ptreeitem == this)
+      {
+
+         return true;
+
+      }
+
+      for (auto & p : m_treeitema)
+      {
+
+         if (p->contains(ptreeitem))
+         {
+
+            return true;
+
+         }
+
+      }
+
+      return false;
+
+   }
+
+
    bool tree_item::insert(enum_relative erelative, tree_item * pitemNew)
    {
+
+      if (contains(pitemNew))
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
 
       if (erelative == e_relative_first_child)
       {
 
          pitemNew->erase_item_from_parent();
 
-         m_childrena.insert_at(0, pitemNew);
+         m_treeitema.insert_at(0, pitemNew);
 
          pitemNew->m_iLevel = m_iLevel + 1;
 
@@ -172,9 +476,7 @@ namespace data
 
          pitemNew->erase_item_from_parent();
 
-         //list_add(this, pitemNew);
-
-         m_childrena.add(pitemNew);
+         m_treeitema.add(pitemNew);
 
          pitemNew->m_iLevel = m_iLevel + 1;
 
@@ -195,7 +497,7 @@ namespace data
 
          }
 
-         auto iFind = m_pparent->m_childrena.find_first(this);
+         auto iFind = m_pparent->m_treeitema.find_first(this);
 
          if(iFind < 0)
          {
@@ -207,7 +509,7 @@ namespace data
 
          }
 
-         m_pparent->m_childrena.insert_at(iFind, pitemNew);
+         m_pparent->m_treeitema.insert_at(iFind, pitemNew);
 
          pitemNew->m_iLevel = m_iLevel;
 
@@ -226,19 +528,19 @@ namespace data
 
          }
 
-         auto iFind = m_pparent->m_childrena.find_first(this);
+         auto iFind = m_pparent->m_treeitema.find_first(this);
 
-         if (iFind < 0)
+         if(iFind < 0)
          {
 
-            // self-healinng
+            // self-healing
             m_pparent = nullptr;
 
             return false;
 
          }
 
-         m_pparent->m_childrena.insert_at(iFind + 1, pitemNew);
+         m_pparent->m_treeitema.insert_at(iFind + 1, pitemNew);
 
          pitemNew->m_iLevel = m_iLevel;
 
@@ -250,9 +552,7 @@ namespace data
       else if(erelative == e_relative_last_sibling)
       {
 
-         //list_add(m_pparent, pitemNew);
-
-         m_pparent->m_childrena.insert_at(0, pitemNew);
+         m_pparent->m_treeitema.add(pitemNew);
 
          pitemNew->m_iLevel = m_iLevel;
 
@@ -264,23 +564,22 @@ namespace data
       else if(erelative == e_relative_replace)
       {
 
-         auto iFind = m_pparent->m_childrena.find_first(this);
+         auto iFind = m_pparent->m_treeitema.find_first(this);
 
-         if (iFind < 0)
+         if(iFind < 0)
          {
 
-            // self-healinng
             m_pparent = nullptr;
 
             return false;
 
          }
 
-         m_pparent->m_childrena.set_at(iFind, pitemNew);
+         m_pparent->m_treeitema[iFind] = pitemNew;
 
          m_pparent = nullptr;
 
-         //erase_tree_item();
+         erase_tree_item();
 
          return true;
 
@@ -290,11 +589,20 @@ namespace data
 
    }
 
+
+   void tree_item::sort_children(const ::function < bool(const ::data::tree_item * p1, const ::data::tree_item * p2) > & functionLess)
+   {
+
+      //data_tree_item_list_sort(this, functionLess);
+
+      m_treeitema.predicate_sort(functionLess);
+
+   }
    
    tree_item * tree_item::get_child_by_user_data(uptr iUserData)
    {
 
-      auto iFind = m_childrena.predicate_find_first([iUserData](auto p)
+      auto iFind = m_treeitema.predicate_find_first([iUserData](auto p)
          {
 
             return p->m_dwUser == iUserData;
@@ -302,9 +610,13 @@ namespace data
          });
 
       if (iFind < 0)
+      {
+
          return nullptr;
 
-      return m_childrena[iFind];
+      }
+
+      return m_treeitema[iFind];
 
    }
 
@@ -312,12 +624,7 @@ namespace data
    void tree_item::get_children(tree_item_ptr_array & ptra)
    {
 
-      for (auto & p : m_childrena)
-      {
-
-         ptra.add(p);
-
-      }
+      ptra.append(m_treeitema);
 
    }
 
@@ -325,7 +632,7 @@ namespace data
    ::count tree_item::get_children_count()
    {
 
-      return m_childrena.count();
+      return m_treeitema.get_count();
 
    }
 
@@ -343,17 +650,17 @@ namespace data
 
       ::count c = 0;
       
-      m_childrena.predicate_each([&c](auto& p)
+      for(auto & p : m_treeitema)
+      {
+
+         if (p->get_children_count() > 0)
          {
 
-            if (p->get_children_count() > 0)
-            {
+            c++;
 
-               c++;
+         }
 
-            }
-
-         });
+      }
 
       return c;
 
@@ -365,7 +672,7 @@ namespace data
       
       ::count c = 0;
 
-      auto iFind = m_childrena.predicate_find_first([&c, iIndex](auto& p)
+      auto iFind = m_treeitema.predicate_find_first([&c, iIndex](auto& p)
          {
 
             if (p->get_children_count() > 0)
@@ -391,7 +698,7 @@ namespace data
 
       }
 
-      return m_childrena[iFind];
+      return m_treeitema[iFind];
 
    }
 
@@ -429,30 +736,30 @@ namespace data
    tree_item * tree_item::get_previous_or_parent(index * piLevel)
    {
 
-      auto pprevious = get_previous();
-
-      if(pprevious)
+      if (____previous())
       {
 
-         return pprevious;
+         return ____previous();
 
       }
 
       if (m_pparent)
       {
 
-         if (piLevel)
-         {
+         return m_pparent;
 
-            (*piLevel)--;
+         //if (piLevel)
+         //{
 
-         }
+         //   (*piLevel)--;
 
-         return m_pparent->get_previous_or_parent(piLevel);
+         //}
+
+         //return m_pparent->get_previous_or_parent(piLevel);
 
       }
 
-      return this;
+      return nullptr;
 
    }
 
@@ -460,17 +767,7 @@ namespace data
    tree_item * tree_item::get_previous()
    {
 
-      auto iFind = m_pparent->m_childrena.find_first(this);
-
-      if (iFind > 0)
-      {
-
-         return m_pparent->m_childrena[iFind - 1];
-
-      }
-
-      return nullptr;
-
+      return ____previous();
 
    }
 
@@ -478,23 +775,7 @@ namespace data
    tree_item * tree_item::get_next()
    {
 
-      if (!m_pparent)
-      {
-
-         return nullptr;
-
-      }
-
-      auto iFind = m_pparent->m_childrena.find_first(this);
-
-      if (iFind >= 0 && iFind < m_pparent->m_childrena.get_upper_bound())
-      {
-
-         return m_pparent->m_childrena[iFind + 1];
-
-      }
-
-      return nullptr;
+      return ____next();
 
    }
 
@@ -504,7 +785,6 @@ namespace data
 
       if (m_iLevel < 0)
       {
-
 
          m_iLevel = -1;
 
@@ -526,6 +806,84 @@ namespace data
    }
 
 
+   ::data::tree_item * tree_item::____previous()
+   {
+
+      if (::is_null(m_pparent))
+      {
+
+         return nullptr;
+
+      }
+
+      auto iFind = m_pparent->m_treeitema.find_first(this);
+
+      if (iFind <= 0)
+      {
+
+         return nullptr;
+
+      }
+
+      return m_pparent->m_treeitema[iFind - 1];
+
+   }
+
+
+   ::data::tree_item * tree_item::____next()
+   {
+
+     if (::is_null(m_pparent))
+      {
+
+         return nullptr;
+
+      }
+
+      auto iFind = m_pparent->m_treeitema.find_first(this);
+
+      if (iFind < 0 || iFind >= m_pparent->m_treeitema.get_upper_bound())
+      {
+
+         return nullptr;
+
+      }
+
+      return m_pparent->m_treeitema[iFind + 1];
+
+   }
+
+
+   ::data::tree_item * tree_item::____head()
+   {
+
+      if (m_treeitema.is_empty())
+      {
+
+         return nullptr;
+
+      }
+
+      return m_treeitema.first();
+
+   }
+
+
+   ::data::tree_item * tree_item::____tail()
+   {
+
+      if (m_treeitema.is_empty())
+      {
+
+         return nullptr;
+
+      }
+
+      return m_treeitema.last();
+
+   }
+
+
    index tree_item::_get_index()
    {
 
@@ -536,7 +894,7 @@ namespace data
 
       }
 
-      return m_pparent->m_childrena.find_first(this);
+      return m_pparent->m_treeitema.find_first(this);
 
    }
 
@@ -544,12 +902,10 @@ namespace data
    tree_item * tree_item::get_next_or_parent_next(index * piLevel)
    {
 
-      auto pnext = get_next();
-
-      if (pnext)
+      if (____next())
       {
 
-         return pnext;
+         return ____next();
 
       }
 
@@ -575,7 +931,7 @@ namespace data
    tree_item * tree_item::get_child_or_next(index * piLevel)
    {
 
-      if (m_childrena.has_element())
+      if (____head())
       {
 
          if (piLevel)
@@ -585,11 +941,11 @@ namespace data
 
          }
 
-         return m_childrena.first();
+         return ____head();
 
       }
 
-      return get_next();
+      return ____next();
 
    }
 
@@ -597,7 +953,7 @@ namespace data
    tree_item * tree_item::get_child_next_or_parent(index * piLevel)
    {
 
-      if (m_childrena.has_element())
+      if (____head())
       {
 
          if (piLevel)
@@ -607,7 +963,7 @@ namespace data
 
          }
 
-         return m_childrena.first();
+         return ____head();
 
       }
 
@@ -645,12 +1001,12 @@ namespace data
       {
       case e_relative_first_child:
       {
-         return m_childrena.first();
+         return ____head();
       }
       break;
       case e_relative_last_child:
       {
-         return m_childrena.last();
+         return ____tail();
       }
       case e_relative_parent:
       {
@@ -659,22 +1015,22 @@ namespace data
       break;
       case e_relative_first_sibling:
       {
-         return m_pparent->m_childrena.first();
+         return m_pparent->____head();
       }
       break;
       case e_relative_previous_sibling:
       {
-         return get_previous();
+         return ____previous();
       }
       break;
       case e_relative_next_sibling:
       {
-         return get_next();
+         return ____next();
       }
       break;
       case e_relative_last_sibling:
       {
-         return m_pparent->m_childrena.last();
+         return m_pparent->____tail();
       }
       break;
       default:
@@ -689,7 +1045,7 @@ namespace data
    tree_item * tree_item::first_child()
    {
 
-      return m_childrena.first();
+      return ____head();
 
    }
 
@@ -919,7 +1275,7 @@ namespace data
 
       }
 
-      m_childrena.predicate_each([](auto& p)
+      for(auto & p : m_treeitema)
          {
 
             if (p->is_expanded())
@@ -929,7 +1285,7 @@ namespace data
 
             }
 
-         });
+         };
 
    }
 

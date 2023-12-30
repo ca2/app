@@ -8,9 +8,10 @@
 #include "span.h"
 #include "acme/constant/id.h"
 #include "acme/constant/user_key.h"
-#include "acme/platform/timer.h"
 #include "acme/constant/message.h"
 #include "acme/constant/timer.h"
+#include "acme/handler/topic.h"
+#include "acme/platform/timer.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/path.h"
@@ -454,7 +455,7 @@ namespace user
 
          //bool bFirstParagraph = true;
 
-         auto plinea = __new(pointer_array < line >);
+         auto plinea = __allocate< pointer_array < line > >();
 
          ::pointer<line>pline;
 
@@ -463,7 +464,7 @@ namespace user
    //if (m_spana.first().m_pformat >= m_pformathost.get_count())
    //{
 
-   //   m_pformathost.add(__new(format(this)));
+   //   m_pformathost.add(__allocate< format >(this));
 
    //}
 
@@ -477,7 +478,7 @@ namespace user
          //   if (m_spana.first_pointer()->m_iFormat >= m_pformathost.get_count())
          //   {
 
-         //      m_pformathost.add(__new(format(this)));
+         //      m_pformathost.add(__allocate< format >(this));
 
          //   }
 
@@ -542,7 +543,7 @@ namespace user
 
                __construct_new(pline);
 
-               //pline = __new(line);
+               //pline = __allocate< line >();
 
                x = (int)rectangle.left();
 
@@ -552,7 +553,7 @@ namespace user
 
                x = (int)rectangle.left();
 
-               //pbox = __new(box(pspan));
+               //pbox = __allocate< box >(pspan);
 
                //index iSpan = find_char_span(m_spana, iCharLayout);
 
@@ -643,7 +644,7 @@ namespace user
                   if (pline->is_empty())
                   {
 
-                     auto pbox = __new(box(pspan));
+                     auto pbox = __allocate< box >(pspan);
 
                      pbox->m_iPosBeg = pspan->m_iPosBeg + iSpanChar;
 
@@ -702,7 +703,7 @@ namespace user
                   if (cWords > 0)
                   {
 
-                     auto pbox = __new(box(pspan));
+                     auto pbox = __allocate< box >(pspan);
 
                      pbox->m_iPosBeg = pspan->m_iPosBeg + iSpanChar;
 
@@ -751,7 +752,7 @@ namespace user
 
                      longest_word(strSlice, dPosition, strWord, &pspan->m_daPositionRight[iSpanChar], dPositionLeft, (int)rectangleX.right() - x);
 
-                     auto pbox = __new(box(pspan));
+                     auto pbox = __allocate< box >(pspan);
 
                      pbox->m_iPosBeg = pspan->m_iPosBeg + iSpanChar;
 
@@ -785,7 +786,7 @@ namespace user
                else
                {
 
-                  auto pbox = __new(box(pspan));
+                  auto pbox = __allocate< box >(pspan);
 
                   pbox->m_iPosBeg = pspan->m_iPosBeg + iSpanChar;
 
@@ -1146,7 +1147,7 @@ namespace user
 
             ::image_pointer pimage;
 
-            pimage.create(this);
+            __construct(pimage);
 
             pimage->create(m_ppictureimpl->m_rectangleDrawing.size());
 
@@ -2357,7 +2358,7 @@ namespace user
                //if (pformat.is_null())
                //{
 
-               //   pformat = __new(format(this));
+               //   pformat = __allocate< format >(this);
 
                //}
 

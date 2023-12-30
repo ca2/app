@@ -25,8 +25,10 @@ namespace hardware
       ~devices() override;
 
       virtual void register_device_listener(device_listener* pdevicelistener, enum_device edevice);
+      virtual void unregister_device_listener(device_listener * pdevicelistener, enum_device edevice);
 
 
+      virtual void erase_device_group(device_group * pdevicegroup);
       //virtual void on_register_device_listener(enum_device edevice);
 
 

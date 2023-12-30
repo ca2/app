@@ -51,6 +51,9 @@ namespace user
 
       virtual ::task_pool  * taskpool() override;
 
+
+      void destroy() override;
+
       //virtual bool is_os_host() const override;
 
       using box::get_style;
@@ -132,6 +135,7 @@ namespace user
 
       DECLARE_MESSAGE_HANDLER(on_message_application_exit);
       DECLARE_MESSAGE_HANDLER(on_message_key_down);
+      DECLARE_MESSAGE_HANDLER(on_message_destroy);
       ////DECLARE_MESSAGE_HANDLER(on_message_set_cursor);
 
 #ifdef WINDOWS_DESKTOP

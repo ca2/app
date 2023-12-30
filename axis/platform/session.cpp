@@ -105,7 +105,7 @@ namespace axis
 
       m_bSystemSynchronizedCursor      = true;
 
-      m_pimplPendingFocus2             = nullptr;
+      //m_pimplPendingFocus2             = nullptr;
 
       auto psystem = system()->m_paurasystem;
 
@@ -122,7 +122,7 @@ namespace axis
 
       m_pmapKeyPressed                 = nullptr;
 
-      m_puiMouseMoveCapture            = nullptr;
+      //m_puiMouseMoveCapture            = nullptr;
 
       m_bZipIsDir2                     = true;
 
@@ -138,7 +138,7 @@ namespace axis
 //m_strBaseSupportId = "base_session";
 //m_strInstallToken = "base_session";
 
-      m_puiMouseMoveCapture = nullptr;
+      //m_puiMouseMoveCapture = nullptr;
 
       //return estatus;
 
@@ -364,7 +364,7 @@ namespace axis
 //                  else
 //                  {
 //
-//                     plibrary = __new(::acme::library);
+//                     plibrary = __allocate< ::acme::library >();
 //
 //                     plibrary->initialize_aura_library(pparticle, 0, nullptr);
 //
@@ -379,7 +379,7 @@ namespace axis
 //                     if (is_verbose())
 //                     {
 //
-//                        ::informationf("\n\n::aura::session::get_new_application assembled library path " + strLibrary + "\n\n");
+//                        ::acme::get()->platform()->informationf("\n\n::aura::session::get_new_application assembled library path " + strLibrary + "\n\n");
 //
 //                     }
 //
@@ -399,7 +399,7 @@ namespace axis
 //                     if (is_verbose())
 //                     {
 //
-//                        ::informationf("\n\n::aura::session::get_new_application Found library : " + strLibrary + "\n\n");
+//                        ::acme::get()->platform()->informationf("\n\n::aura::session::get_new_application Found library : " + strLibrary + "\n\n");
 //
 //                     }
 //
@@ -407,7 +407,7 @@ namespace axis
 //   //               if (!plibrary->is_opened())
 //   //               {
 //   //
-//   //                  ::informationf("\n\n::aura::session::get_new_application Failed to load library : " + strLibrary + "\n\n");
+//   //                  ::acme::get()->platform()->informationf("\n\n::aura::session::get_new_application Failed to load library : " + strLibrary + "\n\n");
 //   //
 //   //                  return nullptr;
 //   //
@@ -416,14 +416,14 @@ namespace axis
 //                     if (is_verbose())
 //                     {
 //
-//                        ::informationf("\n\n::aura::session::get_new_application Opened library : " + strLibrary + "\n\n");
+//                        ::acme::get()->platform()->informationf("\n\n::aura::session::get_new_application Opened library : " + strLibrary + "\n\n");
 //
 //                     }
 //
 //                     if (!plibrary->open_ca2_library())
 //                     {
 //
-//                        ::informationf("\n\n::aura::session::get_new_application open_ca2_library failed(2) : " + strLibrary + "\n\n");
+//                        ::acme::get()->platform()->informationf("\n\n::aura::session::get_new_application open_ca2_library failed(2) : " + strLibrary + "\n\n");
 //
 //                        return nullptr;
 //
@@ -432,11 +432,11 @@ namespace axis
 //                     if (is_verbose())
 //                     {
 //
-//                        ::informationf("\n\n\n|(5)----");
-//                        ::informationf("| app : " + strAppId + "\n");
-//                        ::informationf("|\n");
-//                        ::informationf("|\n");
-//                        ::informationf("|----");
+//                        ::acme::get()->platform()->informationf("\n\n\n|(5)----");
+//                        ::acme::get()->platform()->informationf("| app : " + strAppId + "\n");
+//                        ::acme::get()->platform()->informationf("|\n");
+//                        ::acme::get()->platform()->informationf("|\n");
+//                        ::acme::get()->platform()->informationf("|----");
 //
 //                     }
 //
@@ -457,11 +457,11 @@ namespace axis
 //
 //            papp = library.get_new_application(this, strAppId);
 //
-//            ::informationf("\n\n\n|(4)----");
-//            ::informationf("| app : " + strAppId + "(papp=0x" + ::hex::upper_from((uptr)papp.m_p) + ")\n");
-//            ::informationf("|\n");
-//            ::informationf("|\n");
-//            ::informationf("|----");
+//            ::acme::get()->platform()->informationf("\n\n\n|(4)----");
+//            ::acme::get()->platform()->informationf("| app : " + strAppId + "(papp=0x" + ::hex::upper_from((uptr)papp.m_p) + ")\n");
+//            ::acme::get()->platform()->informationf("|\n");
+//            ::acme::get()->platform()->informationf("|\n");
+//            ::acme::get()->platform()->informationf("|----");
 //
 //         }
 //
@@ -489,22 +489,22 @@ namespace axis
 //      if (is_verbose())
 //      {
 //
-//         ::informationf("\n\n\n|(3)----");
-//         ::informationf("| app : " + strAppId + "\n");
-//         ::informationf("|\n");
-//         ::informationf("|\n");
-//         ::informationf("|----");
+//         ::acme::get()->platform()->informationf("\n\n\n|(3)----");
+//         ::acme::get()->platform()->informationf("| app : " + strAppId + "\n");
+//         ::acme::get()->platform()->informationf("|\n");
+//         ::acme::get()->platform()->informationf("|\n");
+//         ::acme::get()->platform()->informationf("|----");
 //
 //      }
 //
 //      if (is_verbose())
 //      {
 //
-//         ::informationf("\n\n\n|(2)----");
-//         ::informationf("| app : " + strAppId + "\n");
-//         ::informationf("|\n");
-//         ::informationf("|\n");
-//         ::informationf("|----");
+//         ::acme::get()->platform()->informationf("\n\n\n|(2)----");
+//         ::acme::get()->platform()->informationf("| app : " + strAppId + "\n");
+//         ::acme::get()->platform()->informationf("|\n");
+//         ::acme::get()->platform()->informationf("|\n");
+//         ::acme::get()->platform()->informationf("|----");
 //
 //      }
 //
@@ -513,8 +513,8 @@ namespace axis
 //      if (!papp->is_serviceable() || papp->is_user_service())
 //      {
 //
-//         psystem->m_spmutexUserAppData = __new(::pointer < ::mutex >(e_create_new, false, "Local\\ca2.UserAppData"));
-//         psystem->m_spmutexSystemAppData = __new(::pointer < ::mutex >(e_create_new, false, "Local\\ca2.SystemAppData"));
+//         psystem->m_spmutexUserAppData = __allocate< ::pointer < ::mutex > >(e_create_new, false, "Local\\ca2.UserAppData");
+//         psystem->m_spmutexSystemAppData = __allocate< ::pointer < ::mutex > >(e_create_new, false, "Local\\ca2.SystemAppData");
 //
 //      }
 //
@@ -523,11 +523,11 @@ namespace axis
 //      if (is_verbose())
 //      {
 //
-//         ::informationf("\n\n\n|(1)----");
-//         ::informationf("| app : " + strAppId + "\n");
-//         ::informationf("|\n");
-//         ::informationf("|\n");
-//         ::informationf("|----");
+//         ::acme::get()->platform()->informationf("\n\n\n|(1)----");
+//         ::acme::get()->platform()->informationf("| app : " + strAppId + "\n");
+//         ::acme::get()->platform()->informationf("|\n");
+//         ::acme::get()->platform()->informationf("|\n");
+//         ::acme::get()->platform()->informationf("|----");
 //
 //      }
 //
@@ -1108,7 +1108,7 @@ namespace axis
    bool session::InitializeLocalDataCentral()
    {
 
-      //m_pdatabase = memory_new nature::database(this);
+      //m_pdatabase = __new< nature::database >(this);
 
       //if(m_pdatabase == nullptr)
       //{

@@ -2,15 +2,16 @@
 
 
 #define __BEGIN_RELEASE_TIME(library) \
-extern "C" const char * library ## _release_time() \
+namespace library { \
+extern "C" release_time_for_project library ## _release_time() \
 { \
-const char * pszReleaseTime = \
+return ::platform::get()->as_release_time_for_project(\
 
 
 #define __END_RELEASE_TIME() \
-; \
-return pszReleaseTime; \
-}
+); \
+} \
+} // namespace ##library
 
 
 

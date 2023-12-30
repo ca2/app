@@ -6,6 +6,16 @@ struct color32_t;
 struct image32_t;
 
 
+namespace draw2d
+{
+
+
+   class draw2d;
+
+
+} // namespace draw2d
+
+
 inline ::u8 clampAndConvert(double v)
 {
 

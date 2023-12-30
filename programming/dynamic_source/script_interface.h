@@ -19,10 +19,9 @@ namespace dynamic_source
 
       string                              m_strNote;
 
-      ::pointer<script_main>             m_pmain;
-      ::pointer<script_interface>        m_pinstanceParent2;
-      ::pointer<script>                  m_pscript2;
-
+      ::pointer<script_main>              m_pmain;
+      ::pointer<script_interface>         m_pinstanceParent2;
+      ::pointer<script>                   m_pscript2;
 
       i32                                 m_iDebug;
 
@@ -40,7 +39,7 @@ namespace dynamic_source
       virtual void initialize(::particle * pparticle) override;
       virtual void init1();
 
-      //void destroy() override;
+      void finalize() override;
 
       void destroy() override;
       virtual void     run() override;

@@ -393,7 +393,7 @@ extern thread_local ::task_pointer t_pthread;
 //
 //      common_construct();
 //
-//      m_pplatform = __new(::sub_system(this));
+//      m_pplatform = __allocate< ::sub_system >(this);
 //
 //   }
 
@@ -907,11 +907,11 @@ extern thread_local ::task_pointer t_pthread;
 
 #endif
 
-      //m_criticalsectionFactory = memory_new critical_section;
+      //m_criticalsectionFactory = aaa_primitive_new critical_section;
 
 //#ifndef WINDOWS
 //
-//      //g_criticalsectionDemangle = memory_new critical_section;
+//      //g_criticalsectionDemangle = aaa_primitive_new critical_section;
 //
 //#endif
 
@@ -946,17 +946,17 @@ extern thread_local ::task_pointer t_pthread;
 
       //xxdebug_box("acme.dll base_static_start (0)", "box", e_message_box_ok);
 
-      //g_pengine = memory_new ::OPERATING_SYSTEM_NAMESPACE::exception_engine();
+      //g_pengine = aaa_primitive_new ::OPERATING_SYSTEM_NAMESPACE::exception_engine();
 
-      //g_criticalsectionGlobals = memory_new ::critical_section();
+      //g_criticalsectionGlobals = aaa_primitive_new ::critical_section();
 
-      //g_criticalsectionChildren = memory_new ::critical_section();
+      //g_criticalsectionChildren = aaa_primitive_new ::critical_section();
 
-      //g_criticalsectionGlobal = memory_new critical_section();
+      //g_criticalsectionGlobal = aaa_primitive_new critical_section();
 
       //::initialize_sequence_critical_section();
 
-      //::update::g_criticalsection = memory_new critical_section();
+      //::update::g_criticalsection = aaa_primitive_new critical_section();
 
 #ifndef __MCRTDBG
 
@@ -970,7 +970,7 @@ extern thread_local ::task_pointer t_pthread;
 
       ::mathematics::initialize_mathematics();
 
-      //::atom_space::s_pidspace = memory_new atom_space();
+      //::atom_space::s_pidspace = aaa_primitive_new atom_space();
 
 //      ::acme::idpool::init();
 
@@ -979,50 +979,50 @@ extern thread_local ::task_pointer t_pthread;
       //
       //#ifdef ANDROID
       //
-      //      g_criticalsectionOutputDebugStringA = memory_new ::critical_section();
+      //      g_criticalsectionOutputDebugStringA = aaa_primitive_new ::critical_section();
       //
       //#endif
 
 #if OBJECT_TYPE_COUNTER
 
-      g_pmapObjTypCtr = memory_new map < const char*, const char*, ::i64, ::i64 >;
+      g_pmapObjTypCtr = aaa_primitive_new map < const char*, const char*, ::i64, ::i64 >;
 
 #endif
 
 
-      //g_criticalsectionTrace = memory_new critical_section;
+      //g_criticalsectionTrace = aaa_primitive_new critical_section;
 
-      //g_psimpletrace = memory_new simple_trace;
+      //g_psimpletrace = aaa_primitive_new simple_trace;
 
       //g_ptrace = g_psimpletrace;
 
 
       // acme commented
-      //g_psimpletrace = memory_new simple_trace;
+      //g_psimpletrace = aaa_primitive_new simple_trace;
 
       //g_ptrace = g_psimpletrace;
 
       //acme commented
 //#ifdef BSD_STYLE_SOCKETS
 //
-//      ::sockets::base_socket::s_criticalsection = memory_new ::critical_section();
+//      ::sockets::base_socket::s_criticalsection = aaa_primitive_new ::critical_section();
 //
 //#endif
 
 
 //#ifdef __APPLE__
 //
-//      g_criticalsectionCvt = memory_new ::critical_section();
+//      g_criticalsectionCvt = aaa_primitive_new ::critical_section();
 //
 //#endif
 
-      //g_criticalsectionThreadWaitClose = memory_new ::critical_section();
+      //g_criticalsectionThreadWaitClose = aaa_primitive_new ::critical_section();
 
-      //g_criticalsectionThreadOn = memory_new ::critical_section();
+      //g_criticalsectionThreadOn = aaa_primitive_new ::critical_section();
 
-      //g_pmapThreadOn = memory_new ::map < itask_t, itask_t, itask_t, itask_t >;
+      //g_pmapThreadOn = aaa_primitive_new ::map < itask_t, itask_t, itask_t, itask_t >;
 
-      //g_criticalsectionSystemHeap = memory_new critical_section();
+      //g_criticalsectionSystemHeap = aaa_primitive_new critical_section();
 
 #if MEMDLEAK
 
@@ -1032,19 +1032,19 @@ extern thread_local ::task_pointer t_pthread;
 
       //factory_init();
 
-      g_paAura = memory_new::array < matter* >;
+      g_paAura = aaa_primitive_new::array < matter* >;
 
-      //g_pmapAura =memory_new ::map < void *,void *,::acme::application *,::acme::application * >;
+      //g_pmapAura =aaa_primitive_new ::map < void *,void *,::acme::application *,::acme::application * >;
 
-      //g_criticalsectionUiDestroyed = memory_new ::critical_section();
+      //g_criticalsectionUiDestroyed = aaa_primitive_new ::critical_section();
 
-      //g_criticalsectionMessageDispatch = memory_new ::critical_section();
+      //g_criticalsectionMessageDispatch = aaa_primitive_new ::critical_section();
 
-      //g_criticalsectionCred = memory_new ::critical_section();
+      //g_criticalsectionCred = aaa_primitive_new ::critical_section();
 
 #if defined(LINUX) || defined(__APPLE__)
 
-      //g_criticalsectionTz = memory_new ::critical_section();
+      //g_criticalsectionTz = aaa_primitive_new ::critical_section();
 
 #endif // defined(LINUX) || defined(__APPLE__)
 
@@ -1080,18 +1080,18 @@ extern thread_local ::task_pointer t_pthread;
 
 #endif
 
-      //g_pacmestrpool = memory_new acme_str_pool();
+      //g_pacmestrpool = aaa_primitive_new acme_str_pool();
 
       //acme commented
       //::user::init_windowing();
 
-      //g_criticalsectionRefDbg = memory_new critical_section();
+      //g_criticalsectionRefDbg = aaa_primitive_new critical_section();
 
       g_bAcme = 1;
 
-      //::thread::g_criticalsection = memory_new mutex();
+      //::thread::g_criticalsection = aaa_primitive_new mutex();
 
-      //::thread::g_pthreadmap = memory_new ::thread_map();
+      //::thread::g_pthreadmap = aaa_primitive_new ::thread_map();
 
       // acme commented
       //add_factory_item < ::context >();
@@ -1114,12 +1114,12 @@ extern thread_local ::task_pointer t_pthread;
 //#ifdef WINDOWS
 //
 //
-//      g_criticalsectionSymDbgHelp = memory_new ::critical_section();
+//      g_criticalsectionSymDbgHelp = aaa_primitive_new ::critical_section();
 //
 //
 //#endif
 
-      //::acme::library::s_criticalsectionLoading = memory_new ::critical_section();
+      //::acme::library::s_criticalsectionLoading = aaa_primitive_new ::critical_section();
 
       //init();
 
@@ -1522,7 +1522,7 @@ extern thread_local ::task_pointer t_pthread;
    //::acme::system * acme_create_system(app_core * pappcore)
    //{
 
-   //   auto psystem = memory_new ::acme::system();
+   //   auto psystem = aaa_primitive_new ::acme::system();
 
    //   psystem->initialize(nullptr);
 
@@ -1688,7 +1688,7 @@ extern thread_local ::task_pointer t_pthread;
 //CLASS_DECL_ACME void init_draw2d_mutex()
 //{
 //
-//   s_criticalsectionDraw2d = memory_new ::critical_section();
+//   s_criticalsectionDraw2d = aaa_primitive_new ::critical_section();
 //
 //}
 
@@ -1775,13 +1775,13 @@ CLASS_DECL_ACME ::e_status get_last_status()
 //         //
 //         //         set_DispatchMessage(&axis_DispatchMessage);
 //         //
-//         //         oswindow_data::s_pdataptra = memory_new oswindow_dataptra;
+//         //         oswindow_data::s_pdataptra = aaa_primitive_new oswindow_dataptra;
 //         //
-//         //         oswindow_data::s_criticalsection = memory_new ::critical_section;
+//         //         oswindow_data::s_criticalsection = aaa_primitive_new ::critical_section;
 //         //
-//         //         osdisplay_data::s_pdataptra = memory_new osdisplay_dataptra;
+//         //         osdisplay_data::s_pdataptra = aaa_primitive_new osdisplay_dataptra;
 //         //
-//         //         osdisplay_data::s_criticalsection = memory_new ::critical_section;
+//         //         osdisplay_data::s_criticalsection = aaa_primitive_new ::critical_section;
 //
 //#endif // defined(LINUX)
 //
@@ -1954,7 +1954,7 @@ void add_release_on_end(::matter * pmatter)
 //   if (::is_null(::acme::g_pelementaddraReleaseOnEnd))
 //   {
 //
-//      ::acme::g_pelementaddraReleaseOnEnd = memory_new element_address_array();
+//      ::acme::g_pelementaddraReleaseOnEnd = aaa_primitive_new element_address_array();
 //
 //   }
 
@@ -1996,7 +1996,7 @@ namespace acme
 ////      if(g_iReference == 1)
 ////      {
 ////
-////         memory_new acme();
+////         aaa_primitive_new acme();
 ////
 ////      }
 ////

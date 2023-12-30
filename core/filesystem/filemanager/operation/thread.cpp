@@ -20,7 +20,7 @@ namespace filemanager
    }
 
 
-   bool operation_thread::step()
+   bool operation_thread::file_operation_thread_step()
    {
 
       if (m_bStep)
@@ -60,7 +60,7 @@ namespace filemanager
       case ::filemanager::e_state_step:
       {
 
-         if(m_fileoperationa[m_iOperation]->step())
+         if(m_fileoperationa[m_iOperation]->file_operation_thread_step())
          {
 
             m_estate = ::filemanager::e_state_step;
@@ -205,7 +205,7 @@ namespace filemanager
    void operation_thread::queue_copy(::file::listing & stra,const ::file::path & pszDstBase,const ::file::path & pszSrcBase,bool bExpand,bool bReplaceAll, bool bDeleteOriginOnSuccessfulCopy, ::pointer<::user::interaction>oswindowCallback,const ::atom & atom,wparam wparamCallback)
    {
 
-      auto poperation  = __new(::filemanager::operation);
+      auto poperation  = __allocate< ::filemanager::operation >();
 
       poperation->m_oswindowCallback = oswindowCallback;
 
@@ -258,7 +258,7 @@ namespace filemanager
 
             }
 
-            step();
+            file_operation_thread_step();
 
             i--;
 

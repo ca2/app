@@ -175,6 +175,52 @@ namespace apex
    }
 
 
+   void context::finalize_context()
+   {
+
+      if (m_poscontext)
+      {
+
+         try
+         {
+
+            m_poscontext->finalize();
+
+         }
+         catch (...)
+         {
+
+
+         }
+
+      }
+
+      if (m_phttp)
+      {
+
+         try
+         {
+
+            m_phttp->finalize();
+
+         }
+         catch (...)
+         {
+
+
+         }
+
+      }
+
+      m_poscontext.release();
+
+      m_phttp.release();
+
+      acme::context::finalize_context();
+
+   }
+
+
    void context::clear_cache()
    {
 
@@ -932,7 +978,7 @@ namespace apex
 
       }
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       return m_requestaPending.predicate_contains([&prequest](auto & p) {return p.get() == prequest; })
          || m_requestaHistory.predicate_contains([&prequest](auto & p) {return p.get() == prequest; })
@@ -965,6 +1011,17 @@ namespace apex
 
    void context::destroy()
    {
+
+      m_requestaPending.clear();
+
+      for (auto & r : m_requestaHistory)
+      {
+
+         r.defer_destroy();
+
+      }
+
+      m_requestaHistory.clear();
 
       ::thread::destroy();
 
@@ -1016,18 +1073,22 @@ namespace apex
    void context::post_request(::request * prequest)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
-
-      if (::is_null(prequest) || contains(prequest))
       {
 
-         throw ::exception(error_bad_argument);
+         _synchronous_lock synchronouslock(this->synchronization());
+
+         if (::is_null(prequest) || contains(prequest))
+         {
+
+            throw ::exception(error_bad_argument);
+
+         }
+
+         prequest->m_bNew = true;
+
+         m_requestaPending.add(prequest);
 
       }
-
-      prequest->m_bNew = true;
-
-      m_requestaPending.add(prequest);
 
       kick_idle();
 

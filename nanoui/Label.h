@@ -63,7 +63,7 @@ namespace nanoui
       void set_color(const ::color::color & color) { m_color = color; }
 
       /// Set the \::pointer Theme used to draw this pwidget
-      virtual void set_theme(Theme * theme) override;
+      virtual void set_theme(const ::pointer < Theme > & theme) override;
 
       /// Compute the size needed to fully display the label
       virtual size_i32 preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;

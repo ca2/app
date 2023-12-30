@@ -113,13 +113,13 @@ LineContribType *
 C2PassScale<FilterClass>::
 AllocContributions (::u32 uLineLength, ::u32 uWindowSize)
 {
-   LineContribType *res = memory_new LineContribType;
+   LineContribType *res = __new< LineContribType >();
    // Init structure header
    res->WindowSize = uWindowSize;
    res->LineLength = uLineLength;
    // Allocate list of contributions
-   res->ContribRow = memory_new ContributionType[uLineLength];
-   res->matrix = memory_new double[uWindowSize * uLineLength];
+   res->ContribRow = __new_array< ContributionType >(uLineLength);
+   res->matrix = __new_array< double >(uWindowSize * uLineLength);
    for (::u32 u = 0 ; u < uLineLength ; u++)
    {
       // Allocate contributions for every pixel
@@ -154,13 +154,13 @@ CalcContributions (::u32 uLineSize, ::u32 uSrcSize, double dScale)
    if (m_dFilterWidth < 0.0)
    {
 
-      pCurFilter = memory_new FilterClass(m_dFilterWidth);
+      pCurFilter = __new< FilterClass >(m_dFilterWidth);
 
    }
    else
    {
 
-      pCurFilter = memory_new FilterClass();
+      pCurFilter = __new< FilterClass >();
 
    }
 
@@ -183,7 +183,7 @@ CalcContributions (::u32 uLineSize, ::u32 uSrcSize, double dScale)
    // Window size_i32 is the number of sampled pixels
    int iWindowSize = 2 * (int)ceil(dWidth) + 1;
 
-   // Allocate a memory_new line contributions strucutre
+   // Allocate a new line contributions strucutre
    LineContribType *res = AllocContributions (uLineSize, iWindowSize);
 
    for (::u32 u = 0; u < uLineSize; u++)
@@ -408,7 +408,7 @@ VertScale (::image32_t*pSrc,
 //{
    // Scale source image horizontally into temporary image
 //   m_bCanceled = false;
-//   ::color::color *pTemp = memory_new ::color::color [uNewWidth * uOrigHeight];
+//   ::color::color *pTemp = __new_array< ::color::color  >(uNewWidth * uOrigHeight);
 //   HorizScale (pOrigImage,
 //               uOrigWidth,
 //               uOrigHeight,
@@ -421,7 +421,7 @@ VertScale (::image32_t*pSrc,
 //      return nullptr;
 //   }
    // Scale temporary image vertically into result image
-//   ::color::color *pRes = memory_new ::color::color [uNewWidth * uNewHeight];
+//   ::color::color *pRes = __new_array< ::color::color  >(uNewWidth * uNewHeight);
 //   VertScale ( pTemp,
 //               uNewWidth,
 //               uOrigHeight,

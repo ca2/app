@@ -53,6 +53,20 @@ void context_image::initialize(::particle * pparticle)
 }
 
 
+void context_image::finalize()
+{
+
+   m_mapIntPath.clear();
+   m_mapPathInt.clear();
+   m_mapPathImage.clear();
+   m_pparticleImageSynchronization.release();
+
+
+   ::object::finalize();
+
+}
+
+
 void context_image::on_destroy()
 {
 
@@ -926,7 +940,7 @@ void context_image::_load_multi_frame_image(image * pimage, memory & memory)
 
    ::image_pointer pimageCompose;
 
-   pimageCompose.create(pimage);
+   pimage->__construct(pimageCompose);
 
    pimageCompose->set_ok_flag();
 

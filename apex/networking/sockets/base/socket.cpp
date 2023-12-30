@@ -28,10 +28,10 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 #include "framework.h"
-////#include "apex/networking/sockets/_sockets.h"
 #include "socket.h"
 #include "socket_handler.h"
 #include "acme/exception/interface_only.h"
+#include "apex/networking/sockets/base/socket_thread.h"
 //#ifdef _WIN32
 //#elif defined(LINUX)
 //#include <netdb.h>
@@ -122,10 +122,10 @@ namespace sockets
    }
 
 
-   void base_socket::initialize_socket(base_socket_handler* phandler)
+   void base_socket::SetSocketHandler(base_socket_handler* phandler)
    {
 
-      base_socket_composite()->initialize_socket(phandler);
+      base_socket_composite()->SetSocketHandler(phandler);
 
       //::object::initialize(phandler);
 
@@ -138,6 +138,26 @@ namespace sockets
    }
 
 
+   ::pointer < ::sockets::socket_thread > base_socket::create_socket_thread()
+   {
+
+      return __create < ::sockets::socket_thread >();
+
+   }
+
+
+   void base_socket::DetachSocket()
+   {
+
+      SetDetached();
+
+      auto psocketthread = ::transfer(base_socket_composite()->create_socket_thread());
+
+      psocketthread->initialize_socket_thread(this);
+
+   }
+
+
    base_socket * base_socket::base_socket_composite()
    {
 
@@ -146,10 +166,18 @@ namespace sockets
    }
 
 
+   ::uptr base_socket::GetSocketId()
+   {
+
+      return base_socket_composite()->GetSocketId();
+
+   }
+
+
    const base_socket * base_socket::base_socket_composite() const
    {
 
-      return nullptr;
+      return ((base_socket *) this)->base_socket_composite();
 
    }
 
@@ -171,15 +199,16 @@ namespace sockets
    }
 
 
-   //void base_socket::on_finalize()
-   //{
+   void base_socket::finalize()
+   {
 
-   //   //__release(m_psocketthread);
+      m_psocketthread.release();
 
-   //   ::object::on_finalize();
+      m_transferprogressfunction.clear();
 
+      ::object::finalize();
 
-   //}
+   }
 
 
    void base_socket::Init()
@@ -198,6 +227,22 @@ namespace sockets
    }
 
 
+   //::index base_socket::http_request_index()
+   //{
+
+   //   return base_socket_composite()->http_request_index();
+
+   //}
+
+
+   ::string_array & base_socket::debugstra()
+   {
+
+      return base_socket_composite()->debugstra();
+
+   }
+   
+   
    void base_socket::OnWrite()
    {
 
@@ -1228,7 +1273,7 @@ namespace sockets
 
    //   SetDetached();
 
-   //   auto psocketthread = __new(socket_thread);
+   //   auto psocketthread = __allocate< socket_thread >();
 
    //   psocketthread->transfer(passociation, psocketmap);
 
@@ -3044,14 +3089,14 @@ namespace sockets
    }
 
 
-   bool base_socket::step()
-   {
+   //bool base_socket::step()
+   //{
 
-      //return ::e_status_no_work;
+   //   //return ::e_status_no_work;
 
-      return base_socket_composite()->step();
+   //   return base_socket_composite()->http_step();
 
-   }
+   //}
 
 
    string base_socket::get_short_description()
@@ -3112,6 +3157,8 @@ namespace sockets
       base_socket_composite()->write(p, s);
 
    }
+
+
 
 
 } // namespace sockets

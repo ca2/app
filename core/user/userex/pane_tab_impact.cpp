@@ -3,6 +3,7 @@
 #include "font_impact.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
+#include "acme/handler/topic.h"
 #include "acme/platform/keep.h"
 #include "acme/platform/system.h"
 #include "acme/filesystem/filesystem/dir_context.h"
@@ -226,7 +227,7 @@ namespace userex
 
       auto & pfactory = system()->factory(strLibrary);
 
-      auto phandler = pfactory->create <handler>(this);
+      auto phandler = __create <handler>(pfactory);
 
       phandler->initialize(this);
 
@@ -644,9 +645,9 @@ namespace userex
 
          puser->will_use_impact_hint(FONTSEL_IMPACT);
 
-         //auto pcreate = __new(create(this));
+         //auto pcreate = __allocate< create >(this);
 
-         //pcreate->m_pusersystem = __new(user::create);
+         //pcreate->m_pusersystem = __allocate< user::create >();
 
          //pcreate->m_puserinteractionParent = pimpactdata->m_pplaceholder;
 
@@ -656,7 +657,7 @@ namespace userex
 
 //         auto pdocument = puser->m_mapimpactsystem[FONTSEL_IMPACT]->do_request(get_app(), ::e_type_null, false, pimpactdata->m_pplaceholder);
 
-         auto ptemplate = puser->m_mapimpactsystem[FONTSEL_IMPACT];
+         auto ptemplate = puser->impact_system(FONTSEL_IMPACT);
 
          auto pdocument = ptemplate->open_document_file(get_app(), ::e_type_null, __visible(true).is_true(), pimpactdata->m_pplaceholder);
 
@@ -664,9 +665,9 @@ namespace userex
 
          m_pfontimpact->set_need_layout();
 
-         pdocument->m_pviewTopic->set_notify_user_interaction(this);
+         pdocument->m_pimpactTopic->set_notify_user_interaction(this);
 
-         pimpactdata->m_puserinteraction = pdocument->m_pviewTopic;
+         pimpactdata->m_puserinteraction = pdocument->m_pimpactTopic;
          
          m_pfontimpact->m_pimpact->add_handler(this);
 
@@ -693,7 +694,7 @@ namespace userex
 
          puser->will_use_impact_hint(COLORSEL_IMPACT);
 
-         auto pimpactsystem = puser->m_mapimpactsystem[COLORSEL_IMPACT];
+         auto pimpactsystem = puser->impact_system(COLORSEL_IMPACT);
 
          //auto pdocument = pimpactsystem->open_document_file(get_app(), ::e_type_null, __visible(false).is_true(), pimpactdata->m_pplaceholder);
 

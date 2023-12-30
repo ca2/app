@@ -18,17 +18,17 @@ namespace experience_anthill
       ~experience() override;
 
 
-      virtual void initialize(::particle * pparticle) override;
+      void initialize(::particle * pparticle) override;
 
 
-      virtual void update() override;
+      void update() override;
 
 
-      virtual void get_frame_list(string_array & stra) override;
+      void get_frame_list(string_array & stra) override;
 
 
 
-      virtual ::experience::frame * frame_experience(const ::string & strFrameSchema) override;
+      ::pointer < ::experience::frame > frame_experience(const ::string & strFrameSchema) override;
 
 
    };

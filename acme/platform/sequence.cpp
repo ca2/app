@@ -20,7 +20,7 @@ critical_section * get_sequence_critical_section()
 //   if (!g_pcriticalsectionSequence)
 //   {
 //
-//      g_pcriticalsectionSequence = memory_new critical_section();
+//      g_pcriticalsectionSequence = __new< critical_section >();
 //
 //   }
 //

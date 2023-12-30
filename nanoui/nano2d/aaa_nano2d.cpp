@@ -2719,7 +2719,7 @@ void TransformSkewX(float* t, float a)
 	//	//// if next fontImage already have a texture
 	//	//if (fontImages[fontImageIdx + 1] != 0)
 	//	//	CONTEXT::ImageSize)(ctx, fontImages[fontImageIdx + 1], &iw, &ih);
-	//	//else { // calculate the memory_new font image size and create it.
+	//	//else { // calculate the aaa_primitive_new font image size and create it.
 	//	//	CONTEXT::ImageSize)(ctx, fontImages[fontImageIdx], &iw, &ih);
 	//	//	if (iw > ih)
 	//	//		ih *= 2;
@@ -3016,7 +3016,7 @@ void TransformSkewX(float* t, float a)
 		//	}
 
 		//	if (type == NVG_NEWLINE) {
-		//		// Always handle memory_new lines.
+		//		// Always handle aaa_primitive_new lines.
 		//		rows[nrows].start = rowStart != NULL ? rowStart : iter.str;
 		//		rows[nrows].end = rowEnd != NULL ? rowEnd : iter.str;
 		//		rows[nrows].width = rowWidth * invscale;
@@ -3078,9 +3078,9 @@ void TransformSkewX(float* t, float a)
 		//				wordMinX = q.x0;
 		//			}
 
-		//			// Break to memory_new line when a character is beyond break width.
+		//			// Break to aaa_primitive_new line when a character is beyond break width.
 		//			if ((type == NVG_CHAR || type == NVG_CJK_CHAR) && nextWidth > breakRowWidth) {
-		//				// The run length is too long, need to break to memory_new line.
+		//				// The run length is too long, need to break to aaa_primitive_new line.
 		//				if (breakEnd == rowStart) {
 		//					// The current word is longer than the row length, just break it from here.
 		//					rows[nrows].start = rowStart;
@@ -3103,7 +3103,7 @@ void TransformSkewX(float* t, float a)
 		//					wordMinX = q.x0 - rowStartX;
 		//				}
 		//				else {
-		//					// Break the line from the end of the last word, and start memory_new line from the beginning of the memory_new.
+		//					// Break the line from the end of the last word, and start aaa_primitive_new line from the beginning of the aaa_primitive_new.
 		//					rows[nrows].start = rowStart;
 		//					rows[nrows].end = breakEnd;
 		//					rows[nrows].width = breakWidth * invscale;
@@ -3133,7 +3133,7 @@ void TransformSkewX(float* t, float a)
 		//	ptype = type;
 		//}
 
-		//// Break the line from the end of the last word, and start memory_new line from the beginning of the memory_new.
+		//// Break the line from the end of the last word, and start aaa_primitive_new line from the beginning of the aaa_primitive_new.
 		//if (rowStart != NULL) {
 		//	rows[nrows].start = rowStart;
 		//	rows[nrows].end = rowEnd;

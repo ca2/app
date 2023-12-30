@@ -15,7 +15,7 @@ namespace filemanager
    protected:
 
 
-      ::pointer<::user::multiple_document_template>      m_pimpactsystemFileManager;
+      ///::pointer<::user::multiple_document_template>      m_pimpactsystemFileManager;
 
    public:
 
@@ -24,8 +24,8 @@ namespace filemanager
 
       bool                                               m_bRestoring;
 
-      ::pointer<::user::multiple_document_template>      m_pimpactsystemForm;
-      ::pointer<::user::multiple_document_template>      m_pimpactsystemOperation;
+      //::pointer<::user::multiple_document_template>      m_pimpactsystemForm;
+      //::pointer<::user::multiple_document_template>      m_pimpactsystemOperation;
 
       //::file::path                                       m_pathFilemanagerProject;
 
@@ -41,7 +41,7 @@ namespace filemanager
 
       virtual void filemanager_finalize();
 
-      virtual ::user::multiple_document_template * impact_system();
+      virtual ::user::impact_system * impact_system();
 
 
 

@@ -461,7 +461,7 @@ namespace experience_anthill
       if (eborder & e_border_top || eborder & e_border_left)
       {
 
-         ppen.create(this);
+         __construct(ppen);
 
          ppen->create_solid(1.0, crTopLeft);
 
@@ -490,7 +490,7 @@ namespace experience_anthill
       if ((eborder & e_border_right || eborder & e_border_bottom) && (!ppen || ppen->m_color != crBottomRight))
       {
 
-         ppen.create(this);
+         __construct(ppen);
 
          ppen->create_solid(1.0, crBottomRight);
 

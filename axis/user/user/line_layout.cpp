@@ -54,7 +54,7 @@ namespace user
       else
       {
 
-         information() << "Hide callstack : " << acmenode()->get_callstack();
+         information() << "Hide callstack : " << acmenode()->get_call_stack_trace();
 
       }
 
@@ -159,7 +159,8 @@ namespace user
             for (auto & puserinteraction : children)
             {
 
-               //synchronouslock.unlock();
+               auto pszType = typeid(*puserinteraction).name();
+               auto pszWndTxt = puserinteraction->get_window_text().c_str();
 
                if (puserinteraction->set_position(point, e_layout_layout, pgraphics))
                {

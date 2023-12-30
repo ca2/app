@@ -7,7 +7,7 @@ namespace sockets_bsd
 {
 
 
-   base_socket_handler::pool_socket::pool_socket(base_socket * src)
+   base_socket_handler::pool_socket::pool_socket(::sockets::base_socket * src)
    {
 
       CopyConnection(src);

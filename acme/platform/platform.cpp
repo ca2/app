@@ -16,16 +16,44 @@
 #include "acme/_operating_system.h"
 //
 //
-//namespace acme
-//{
+
+//#include "acme/include/_acme.h"
+
+void IDENTIFIER_PREFIX_OPERATING_SYSTEM(_factory)(::factory::factory * pfactory);
+
+
+namespace acme
+{
+   extern ::array < matter * > * g_paAura;
 //
 //
 //   CLASS_DECL_ACME extern ::acme::acme * g_p;
 //
 //
-//} // namespace acme
+} // namespace acme
 #ifdef CUBE
 #include "factory_function.h"
+#endif
+
+
+namespace mathematics
+{
+
+
+   void initialize_mathematics();
+
+   void finalize_mathematics();
+
+
+} // namespace mathematics
+
+
+#if REFERENCING_DEBUGGING
+
+
+extern bool g_bDefaultEnableObjectReferenceCountDebug;
+
+
 #endif
 
 
@@ -33,38 +61,20 @@ namespace platform
 {
 
 
-   ::platform::platform * platform::s_pplatform = nullptr;
+   //::platform::platform * platform::s_pplatform = nullptr;
 
 
-   platform::platform()
+   platform::platform(::acme::acme * pacme) :
+      m_pacme(pacme)
    {
 
-      s_pplatform = this;
+#if REFERENCING_DEBUGGING
 
-      m_timeStart.Now();
-
-
-      initialize_memory_counter();
-
-
-      // One of first time to set a main user thread
-
-      set_main_user_thread();
-
-      factory_initialize();
-
-
-
-      m_bConsole = false;
-      //m_pacmeapplication = nullptr;
-      m_pmemorycounter = nullptr;
-      m_bOutputDebugString = true;
-
-#ifdef WINDOWS
-
-      ::platform::get()->m_strCommandLine = ::GetCommandLineW();
+      disable_referencing_debugging();
 
 #endif
+
+      m_timeStart.Now();
 
    }
 
@@ -72,7 +82,17 @@ namespace platform
    platform::~platform()
    {
 
-      m_pacmeapplication.release();
+      //if (::is_set(m_pacmeapplication))
+      //{
+
+      //   if (m_pacmeapplication->m_countReference > 0)
+      //   {
+
+      //      m_pacmeapplication->check
+
+      //   }
+
+      //}
 
       delete_all_release_on_end();
 
@@ -111,40 +131,170 @@ namespace platform
 
       }
 
-      finalize_memory_counter();
-
-      s_pplatform = nullptr;
+      //finalize_memory_counter();
 
    }
 
 
-   void platform::initialize_memory_counter()
+   void platform::platform_initialize()
    {
 
-      if (!m_pmemorycounter)
-      {
+      //initialize_memory_counter();
 
-         m_pmemorycounter = new ::memory_counter();
+      // One of first time to set a main user thread
 
-      }
+      set_main_user_thread();
+
+      factory_initialize();
+
+      ::mathematics::initialize_mathematics();
+
+      ////factory_init();
+
+::acme::g_paAura = __new < ::array < matter* > >();
+
+////::task_on_after_new_particle(g_paAura);
+#if REFERENCING_DEBUGGING
+
+{
+
+   auto p = ::allocator::task_get_top_track();
+
+   ASSERT(p == nullptr);
+
+}
+#endif
+
+      m_bVerboseLog = true;
+      m_bConsole = false;
+      //m_pacmeapplication = nullptr;
+      m_pmemorycounter = nullptr;
+      m_bOutputDebugString = true;
+
+//#ifdef WINDOWS
+//
+//      m_strCommandLine = ::GetCommandLineW();
+//
+//#endif
+
+#if REFERENCING_DEBUGGING
+
+      g_bDefaultEnableObjectReferenceCountDebug = true;
+
+#endif
 
    }
 
 
-   void platform::finalize_memory_counter()
+   void platform::platform_finalize()
    {
 
-      ::acme::del(m_pmemorycounter);
+      //initialize_memory_counter();
+
+      // One of first time to set a main user thread
+      ::mathematics::finalize_mathematics();
+
+      set_main_user_thread();
+
+      factory_initialize();
+
+      m_bVerboseLog = true;
+      m_bConsole = false;
+      //m_pacmeapplication = nullptr;
+      m_pmemorycounter = nullptr;
+      m_bOutputDebugString = true;
+
+//#ifdef WINDOWS
+//
+//      m_strCommandLine = ::GetCommandLineW();
+//
+//#endif
+
+#if REFERENCING_DEBUGGING
+
+      g_bDefaultEnableObjectReferenceCountDebug = true;
+
+#endif
 
    }
 
 
-   ::memory_counter * platform::get_memory_counter()
+   //::platform::platform * platform::platform() const
+   //{
+
+   //   return ((platform *)this);
+
+   //}
+
+
+#if defined(WINDOWS)  && defined(UNICODE)
+
+
+   void platform::initialize(int argc, wchar_t * argv[], wchar_t * envp[])
    {
 
-      return m_pmemorycounter;
+      m_argc = argc;
+      m_wargv = argv;
+      m_wenvp = envp;
 
    }
+
+
+   void platform::initialize(hinstance hinstanceThis, hinstance hinstancePrev, wchar_t * pCmdLine, int nCmdShow)
+   {
+
+      m_hinstanceThis = hinstanceThis;
+      m_hinstancePrev = hinstancePrev;
+      //m_strCommandLine = pCmdLine; // pCmdLine lacks the executable file path arg[0]
+      m_strCommandLine = ::GetCommandLineW();
+      m_nCmdShow = nCmdShow;
+
+   }
+
+
+#else
+
+
+   void platform::initialize(int argc, platform_char ** argv, platform_char ** envp)
+   {
+
+      m_argc = argc;
+      m_argv = argv;
+      m_envp = envp;
+
+   }
+
+
+#endif
+
+
+   //void platform::initialize_memory_counter()
+   //{
+
+   //   if (!m_pmemorycounter)
+   //   {
+
+   //      m_pmemorycounter = new ::memory_counter();
+
+   //   }
+
+   //}
+
+
+   //void platform::finalize_memory_counter()
+   //{
+
+   //   ::acme::del(m_pmemorycounter);
+
+   //}
+
+
+   //::memory_counter * platform::get_memory_counter()
+   //{
+
+   //   return m_pmemorycounter;
+
+   //}
 
 
 
@@ -210,6 +360,14 @@ namespace platform
          }
 
       return "";
+
+   }
+
+
+   bool platform::is_verbose_log() const
+   {
+
+      return m_bVerboseLog;
 
    }
 
@@ -487,11 +645,13 @@ namespace platform
       if (!m_psystem)
       {
 
-         __raw_construct(m_psystem);
+         __raw_construct(m_psystem, factory());
+
+         m_psystem->set_platform(this);
 
          initialize(m_psystem);
 
-         m_psystem->m_pplatform = this;
+         m_psystem->on_initialize_particle();
 
       }
 
@@ -507,11 +667,11 @@ namespace platform
 
       //__raw_construct_new(m_pcomponentfactorymap);
 
-      //m_pfactory = __new(::factory::factory());
+      //m_pfactory = __allocate< ::factory::factory >();
 
       m_pfactory->InitHashTable(16189);
 
-      //::acme::acme::g_pstaticstatic->m_pfactorya = memory_new factory_array();
+      //::acme::acme::g_pstaticstatic->m_pfactorya = __new< factory_array >();
 
 
 
@@ -523,6 +683,8 @@ namespace platform
 
 
       //operating_system_initialize_nano();
+
+      IDENTIFIER_PREFIX_OPERATING_SYSTEM(_factory)(factory());
 
 
    }
@@ -845,6 +1007,8 @@ namespace platform
 
 #else
 
+      //::allocator::add_referer(REFERENCING_DEBUGGING_THIS_FUNCTION_FILE_LINE);
+
       auto plibrary = __create_new < ::acme::library >();
 
       //plibrary->initialize_matter(this);
@@ -945,6 +1109,70 @@ namespace platform
    }
 
 
+   //::particle * platform::__call__add_referer2(const ::reference_referer & referer) const
+   //{
+
+   //   ::allocator::defer_add_referer(referer);
+
+   //   return (::particle *)this;
+
+   //}
+
+
+   release_time_for_project platform::as_release_time_for_project(const char* pszStaticText)
+   {
+
+      release_time_for_project releasetimeforproject;
+
+      releasetimeforproject.m_pszStatic = pszStaticText;
+
+      // 0123-56-89-12-45-78
+
+      auto len = ansi_length(pszStaticText);
+
+      if (len >= 10
+         && ::character_isdigit(pszStaticText[0])
+         && ::character_isdigit(pszStaticText[1])
+         && ::character_isdigit(pszStaticText[2])
+         && ::character_isdigit(pszStaticText[3])
+         && !::character_isalnum(pszStaticText[4])
+         && ::character_isdigit(pszStaticText[5])
+         && ::character_isdigit(pszStaticText[6])
+         && !::character_isalnum(pszStaticText[7])
+         && ::character_isdigit(pszStaticText[8])
+         && ::character_isdigit(pszStaticText[9])
+         )
+      {
+
+         releasetimeforproject.m_iYear = ::as_i32(scoped_ansi_string(pszStaticText + 0, 4));
+         releasetimeforproject.m_iMonth = ::as_i32(scoped_ansi_string(pszStaticText + 5, 2));
+         releasetimeforproject.m_iDay = ::as_i32(scoped_ansi_string(pszStaticText + 8, 2));
+
+         if (len >= 19
+            && !::character_isalnum(pszStaticText[10])
+            && ::character_isdigit(pszStaticText[11])
+            && ::character_isdigit(pszStaticText[12])
+            && !::character_isalnum(pszStaticText[13])
+            && ::character_isdigit(pszStaticText[14])
+            && ::character_isdigit(pszStaticText[15])
+            && !::character_isalnum(pszStaticText[16])
+            && ::character_isdigit(pszStaticText[17])
+            && ::character_isdigit(pszStaticText[18])
+            )
+         {
+
+            releasetimeforproject.m_iHour = ::as_i32(scoped_ansi_string(pszStaticText + 11, 2));
+            releasetimeforproject.m_iMinute = ::as_i32(scoped_ansi_string(pszStaticText + 14, 2));
+            releasetimeforproject.m_iSecond = ::as_i32(scoped_ansi_string(pszStaticText + 17, 2));
+
+         }
+
+      }
+
+      return releasetimeforproject;
+
+   }
+
 
 } // namespace platform
 
@@ -963,10 +1191,18 @@ namespace platform
    //}
 
 
-CLASS_DECL_ACME::factory::factory * get_system_factory()
+//CLASS_DECL_ACME::factory::factory * get_system_factory()
+//{
+//
+//   return this->platform()->m_pfactory;
+//
+//}
+
+
+CLASS_DECL_ACME::string as_string(const ::release_time_for_project& releasetimeforproject)
 {
 
-   return ::platform::get()->m_pfactory;
+   return releasetimeforproject.m_pszStatic;
 
 }
 

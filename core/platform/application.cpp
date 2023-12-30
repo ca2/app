@@ -36,10 +36,6 @@ namespace core
 
       //m_strAppId = "app-complex/drawing";
 
-      factory()->add_factory_item < ::core::system, ::acme::system >();
-      factory()->add_factory_item < ::core::session, ::acme::session >();
-      factory()->add_factory_item < ::core::user, ::user::user >();
-
    }
 
 
@@ -49,12 +45,26 @@ namespace core
    }
 
 
+
    void application::common_construct()
    {
 
 
    }
 
+
+   void application::on_set_platform()
+   {
+
+      ::bred::application::on_set_platform();
+
+      factory()->add_factory_item < ::core::system, ::acme::system >();
+      factory()->add_factory_item < ::core::session, ::acme::session >();
+      factory()->add_factory_item < ::core::user, ::user::user >();
+
+
+
+   }
 
    ::core::session * application::get_session()
    {
@@ -282,6 +292,16 @@ namespace core
       }
 
       return ::bred::application::handle_call(payload, strObject, strMember, propertyset);
+
+   }
+
+
+   void application::term_instance()
+   {
+
+      m_ppaneimpactCore.release();
+
+      ::bred::application::term_instance();
 
    }
 

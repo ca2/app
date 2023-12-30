@@ -25,6 +25,9 @@ namespace core
       void common_construct();
 
 
+      void on_set_platform() override;
+
+
       ::core::session* get_session();
       ::core::system* get_system();
 
@@ -55,6 +58,9 @@ namespace core
 
 
       void create_auto_start_option(::user::interaction * pparent) override;
+
+
+      void term_instance() override;
 
 
    };

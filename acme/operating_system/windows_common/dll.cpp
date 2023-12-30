@@ -212,50 +212,57 @@ int_bool CLASS_DECL_ACME _001DefaultDllMain(hinstance hinstance, ::u32 dwReason,
    if (dwReason == DLL_PROCESS_ATTACH)
    {
 
-      auto ptask = ::get_task();
+      auto p = ::acme::get();
 
-      if (ptask)
+      if (p)
       {
 
-         auto psystem = ::get_task()->system();
+         auto ptask = ::get_task();
 
-         if (psystem)
+         if (ptask)
          {
 
-            auto pnode = psystem->acmenode();
+            auto psystem = ::get_task()->system();
 
-            if (pnode)
+            if (psystem)
             {
 
-               pnode->m_bUpdateCallstack = true;
+               auto pnode = psystem->acmenode();
 
-               //pnode->defer_initialize_callstack();
+               if (pnode)
+               {
+
+                  pnode->m_bUpdateCallStack = true;
+
+                  //pnode->defer_initialize_callstack();
+
+               }
 
             }
 
          }
 
+         //if (iLibMainDebugBox & e_library_main_process_attach)
+         //{
+
+         //   //module_debug_box_w(e_message_box_icon_information, hinstance, L"_001DefaultDllMain process attach");
+
+         //}
+         //else
+         //{
+
+         //   auto millisecond = intDelayMs.m_timeProcessAttach.integral_millisecond();
+
+         //   if (millisecond > 0_ms)
+         //   {
+
+         //      ::preempt(millisecond);
+
+         //   }
+
+         //}
+
       }
-
-      //if (iLibMainDebugBox & e_library_main_process_attach)
-      //{
-
-      //   //module_debug_box_w(e_message_box_icon_information, hinstance, L"_001DefaultDllMain process attach");
-
-      //}
-      //else
-      //{
-
-      //   auto millisecond = intDelayMs.m_timeProcessAttach.integral_millisecond();
-
-      //   if (millisecond > 0_ms)
-      //   {
-
-      //      ::preempt(millisecond);
-
-      //   }
-
-      //}
 
    }
 

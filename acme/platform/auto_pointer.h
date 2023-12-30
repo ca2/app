@@ -37,7 +37,7 @@ public:
    //auto_pointer(e_new_array, ::count c)
    //{
    //   m_bArray = true;
-   //   m_p = memory_new T[(size_t) c];
+   //   m_p = __new< T[ >(size_t) c];
 
    //}
 
@@ -55,7 +55,7 @@ public:
    //   
    //   m_bArray = true;
 
-   //   m_p = memory_new T[(size_t)c];
+   //   m_p = __new< T[ >(size_t)c];
 
    //   for (index i = 0; i < c; i++)
    //   {
@@ -73,7 +73,7 @@ public:
 
    //   m_bArray = true;
 
-   //   m_p = memory_new T[(size_t)c];
+   //   m_p = __new< T[ >(size_t)c];
 
    //   for (index i = 0; i < c; i++)
    //   {
@@ -127,7 +127,7 @@ public:
    //   destroy();
    //   
    //   m_bArray = true;
-   //   m_p = memory_new T[(size_t)c];
+   //   m_p = __new< T[ >(size_t)c];
 
    //}
 

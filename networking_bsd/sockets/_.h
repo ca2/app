@@ -24,7 +24,7 @@ namespace sockets_bsd
 
 
 
-   class socket_thread;
+   //class socket_thread;
 
    class base_socket_handler;
 
@@ -32,7 +32,7 @@ namespace sockets_bsd
 
    class base_socket;
 
-   using socket_pointer = ::pointer<base_socket>;
+   using socket_pointer = ::pointer<::sockets::base_socket>;
 
 
    //typedef comparable_list < socket_pointer > socket_pointer_list;

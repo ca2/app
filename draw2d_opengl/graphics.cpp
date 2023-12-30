@@ -132,18 +132,18 @@ namespace draw2d_opengl
 
 #ifdef __DEBUG
 
-   int64_t graphics::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+   int64_t graphics::increment_reference_count()
    {
 
-      return ::particle::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      return ::particle::increment_reference_count();
 
    }
 
 
-   int64_t graphics::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+   int64_t graphics::decrement_reference_count()
    {
 
-      return ::particle::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      return ::particle::decrement_reference_count();
 
    }
 
@@ -495,7 +495,7 @@ namespace draw2d_opengl
    //      if(m_pbitmap.is_null())
    //         return nullptr;
 
-   //      //(dynamic_cast < ::draw2d_opengl::bitmap * > (m_pbitmap.m_p))->m_pbitmap = memory_new plusplus::Bitmap(hbitmap, nullptr);
+   //      //(dynamic_cast < ::draw2d_opengl::bitmap * > (m_pbitmap.m_p))->m_pbitmap = __new< plusplus::Bitmap >(hbitmap, nullptr);
 
    //      //if(m_pgraphics != nullptr)
    //      //{
@@ -517,7 +517,7 @@ namespace draw2d_opengl
 
    //      //}
 
-   //      //m_pgraphics = memory_new plusplus::Graphics((plusplus::Bitmap *) m_pbitmap->get_os_data());
+   //      //m_pgraphics = __new< plusplus::Graphics((plusplus::Bitmap *) m_pbitmap->get_os_data >());
 
    //      //m_pgraphics->SetPageUnit(plusplus::UnitPixel);
 
@@ -772,7 +772,7 @@ namespace draw2d_opengl
 
       bool bOk1 = false;
 
-      //plusplus::Point * ppoints = memory_new plusplus::Point[nCount];
+      //plusplus::Point * ppoints = __new_array< plusplus::Point >(nCount);
 
       //try
       //{
@@ -806,11 +806,13 @@ namespace draw2d_opengl
    void graphics::arc(double x1,double y1,double x2,double y2,double x3,double y3,double x4,double y4)
    {
 
+      auto pmathematics = mathematics();
+
       double centerx    = (x2 + x1) / 2.0;
       double centery    = (y2 + y1) / 2.0;
 
-      double start      = atan2(y3 - centery,x3 - centerx) * 180.0 / ::mathematics::mathematics()->get_pi();
-      double end        = atan2(y4 - centery,x4 - centerx) * 180.0 / ::mathematics::mathematics()->get_pi();
+      double start      = atan2(y3 - centery,x3 - centerx) * 180.0 / π;
+      double end        = atan2(y4 - centery,x4 - centerx) * 180.0 / π;
       double sweep      = fabs(end - start);
 
       /*if(GetArcDirection() == AD_COUNTERCLOCKWISE)
@@ -830,8 +832,8 @@ namespace draw2d_opengl
    //   double centerx    = (x2 + x1) / 2.0;
    //   double centery    = (y2 + y1) / 2.0;
 
-   //   double start      = atan2(y3 - centery,x3 - centerx) * 180.0 / pmathematics->get_pi();
-   //   double end        = atan2(y4 - centery,x4 - centerx) * 180.0 / pmathematics->get_pi();
+   //   double start      = atan2(y3 - centery,x3 - centerx) * 180.0 / π;
+   //   double end        = atan2(y4 - centery,x4 - centerx) * 180.0 / π;
    //   double sweep      = fabs(end - start);
 
    //   /*if(GetArcDirection() == AD_COUNTERCLOCKWISE)
@@ -1327,7 +1329,7 @@ namespace draw2d_opengl
 
       //   bool bOk1 = false;
 
-      //   plusplus::PointF * ppoints = memory_new plusplus::PointF[nCount];
+      //   plusplus::PointF * ppoints = __new_array< plusplus::PointF >(nCount);
 
       //   try
       //   {
@@ -1374,7 +1376,7 @@ namespace draw2d_opengl
 
    //   //   bool bOk1 = false;
 
-   //   //   plusplus::Point * ppoints = memory_new plusplus::Point[nCount];
+   //   //   plusplus::Point * ppoints = __new_array< plusplus::Point >(nCount);
 
    //   //   try
    //   //   {
@@ -1418,7 +1420,7 @@ namespace draw2d_opengl
 
       //bool bOk1 = false;
 
-      //plusplus::Point * ppoints = memory_new plusplus::Point[nCount];
+      //plusplus::Point * ppoints = __new_array< plusplus::Point >(nCount);
 
       //try
       //{
@@ -1463,7 +1465,7 @@ namespace draw2d_opengl
 
    //   //bool bOk1 = false;
 
-   //   //plusplus::PointF * ppoints = memory_new plusplus::PointF[nCount];
+   //   //plusplus::PointF * ppoints = __new_array< plusplus::PointF >(nCount);
 
    //   //try
    //   //{
@@ -1509,7 +1511,7 @@ namespace draw2d_opengl
 
       //bool bOk2 = false;
 
-      //plusplus::Point * ppoints = memory_new plusplus::Point[nCount];
+      //plusplus::Point * ppoints = __new_array< plusplus::Point >(nCount);
 
       //try
       //{
@@ -1589,7 +1591,7 @@ namespace draw2d_opengl
 
    //   //bool bOk2 = false;
 
-   //   //plusplus::PointF * ppoints = memory_new plusplus::PointF[nCount];
+   //   //plusplus::PointF * ppoints = __new_array< plusplus::PointF >(nCount);
 
    //   //try
    //   //{
@@ -2274,7 +2276,7 @@ namespace draw2d_opengl
 
       //::StartPage(m_hdc);
 
-      //m_pgraphics = memory_new plusplus::Graphics(m_hdc);
+      //m_pgraphics = __new< plusplus::Graphics >(m_hdc);
 
       //m_pgraphics->SetPageUnit(plusplus::UnitPixel);
 
@@ -2552,7 +2554,7 @@ namespace draw2d_opengl
       /*     if(m_ppath != nullptr)
               delete m_ppath;
 
-           m_ppath = memory_new plusplus::GraphicsPath;
+           m_ppath = __new< plusplus::GraphicsPath >();
       */
 //      return m_ppath != nullptr;
 
@@ -2625,7 +2627,7 @@ namespace draw2d_opengl
    float graphics::GetMiterLimit()
    {
       // ASSERT(m_hdc != nullptr);
-      float fMiterLimit;
+      //float fMiterLimit;
       //VERIFY(::GetMiterLimit(m_hdc, &fMiterLimit));
       //::GetMiterLimit(m_hdc, &fMiterLimit);
       //;;; return fMiterLimit;
@@ -2761,7 +2763,7 @@ namespace draw2d_opengl
    {
       Graphics graphics(hdc);
       // Create a Metafile object from an existing disk metafile.
-      Metafile* pMeta = memory_new Metafile(L"SampleMetafile.emf", hdc);
+      Metafile* pMeta = __new< Metafile >(L"SampleMetafile.emf", hdc);
       {
          // Fill a ::rectangle_f64 and an ellipse in pMeta.
          Graphics metaGraphics(pMeta);
@@ -2785,7 +2787,7 @@ namespace draw2d_opengl
 
    //   //plusplus::rectF ::rectangle_f64((plusplus::REAL) rectangleBounds.left(),(plusplus::REAL) rectangleBounds.top(),(plusplus::REAL) width(rectangleBounds),(plusplus::REAL) height(rectangleBounds));
 
-   //   //plusplus::Metafile* pMeta = memory_new plusplus::Metafile(hEnhMF, false);
+   //   //plusplus::Metafile* pMeta = __new< plusplus::Metafile >(hEnhMF, false);
 
    //   ////m_pgraphcis->EnumerateMetafile(pMeta, rectangle, metaCallback, PMETAHEADER);
 
@@ -3287,7 +3289,7 @@ namespace draw2d_opengl
    //         ::draw2d::region rgnLast, rgnUpdate;
    //         if (lpRectLast != nullptr)
    //         {
-   //            // find difference between memory_new region and old region
+   //            // find difference between new region and old region
    //            rgnLast.create_rect(0, 0, 0, 0);
    //            rgnOutside.SetRectRgn(lpRectLast);
    //            rectangle = *lpRectLast;
@@ -3314,7 +3316,7 @@ namespace draw2d_opengl
    //            pBrushOld = nullptr;
    //         }
 
-   //         // draw into the update/memory_new region
+   //         // draw into the update/new region
    //         SelectClipRgn(rgnUpdate.get_os_data() != nullptr ? &rgnUpdate : &rgnNew);
    //         get_clip_box(&rectangle);
    //         pBrushOld = SelectObject(pBrush);
@@ -3412,7 +3414,7 @@ namespace draw2d_opengl
    //   //if(hdc != nullptr)
    //   //{
 
-   //   //   m_pgraphics = memory_new ::plusplus::Graphics((HDC) hdc);
+   //   //   m_pgraphics = __new< ::plusplus::Graphics( >(HDC) hdc);
 
    //   //   m_pgraphics->SetPageUnit(plusplus::UnitPixel);
 
@@ -5949,7 +5951,7 @@ BOOL CALLBACK draw2d_opengl_EnumFamCallBack(LPLOGFONT lplf,LPNEWTEXTMETRIC lpntm
    else if(FontType & TRUETYPE_FONTTYPE)
    {
 
-      pfonts->m_itema.add(__new(::write_text::font_enumeration_item(lplf->lfFaceName)));
+      pfonts->m_itema.add(__allocate< ::write_text::font_enumeration_item >(lplf->lfFaceName));
 
    }
    else

@@ -20,7 +20,7 @@
 
 
 
-//#define memory_new ACME_NEW
+
 
 
 string_array get_c_args_from_string(const ::scoped_string & scopedstr)

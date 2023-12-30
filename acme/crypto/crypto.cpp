@@ -191,12 +191,16 @@ namespace crypto
 
          storage.set_size(16);
 
-         for (memsize i = 0; i < storage.size(); i++)
-         {
+         auto pmathematics = system()->mathematics();
 
-            storage.data()[i] = random<char>() & 0xff;
+         pmathematics->random(storage);
 
-         }
+         //for (memsize i = 0; i < storage.size(); i++)
+         //{
+
+         //   storage.data()[i] = pmathematics->random<char>() & 0xff;
+
+         //}
 
          return (i32)storage.size();
 
@@ -600,7 +604,7 @@ namespace crypto
       }
 
 
-      // get a memory_new salt - 8 hexadecimal characters long
+      // get a new salt - 8 hexadecimal characters long
       // current PHP installations should not exceed 8 characters
       // on dechex( mt_rand() )
       // but we future proof it anyway with substr()
@@ -614,7 +618,7 @@ namespace crypto
          for (i32 i = 0; i < CA4_CRYPT_V5_FINAL_HASH_BYTES - CA4_BASE_HASH_DIGEST_LENGTH; i += 2)
          {
 
-            i64 iDigit = random<char>();
+            i64 iDigit = system()->mathematics()->random<char>();
 
             strFormat.formatf("%02x", iDigit);
 
@@ -736,7 +740,7 @@ namespace crypto
 
          int iLength = 256;
 
-         generate_random_alphanumeric(str.get_buffer(iLength), iLength);
+         str = system()->mathematics()->random_alphanumeric(iLength);
 
          file()->put_memory(strPath, str);
 

@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "document_manager.h"
+
+
 namespace user
 {
 
@@ -18,18 +21,23 @@ namespace user
 
 
       document_manager_container();
-      virtual ~document_manager_container();
+      ~document_manager_container();
 
 
       ::user::document_manager* document_manager();
 
 
 
-      virtual void initialize(::particle * pparticle) override;
+      void initialize(::particle * pparticle) override;
 
-      virtual void add_document_template(::user::impact_system* pimpactsystem);
+      void destroy() override;
 
 
+      virtual void add_impact_system(const ::atom & atom, const ::pointer<::user::impact_system> & pimpactsystem);
+      virtual ::pointer<::user::impact_system> impact_system(const ::atom & atom);
+
+
+      
 
    };
 

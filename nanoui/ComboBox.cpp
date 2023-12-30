@@ -85,19 +85,19 @@ namespace nanoui
 
       if (m_scroll == nullptr && items.size() > 8) 
       {
-         m_scroll = memory_new VScrollPanel(m_ppopup);
+         m_scroll = __allocate< VScrollPanel >(m_ppopup);
          m_scroll->set_fixed_height(300);
-         m_container = memory_new Widget(m_scroll);
-         m_ppopup->set_layout(memory_new BoxLayout(e_orientation_horizontal, e_alignment_middle, { 0 }, 0));
+         m_container = __allocate< Widget >(m_scroll);
+         m_ppopup->set_layout(__allocate< BoxLayout >(e_orientation_horizontal, e_alignment_middle, ::rectangle_i32(0), 0));
       }
 
-      m_container->set_layout(memory_new GroupLayout(10));
+      m_container->set_layout(__allocate< GroupLayout >(10));
 
       ::index iIndex = 0;
       for (const auto& str : items) 
       {
 
-         Button* button = memory_new Button(m_container, str);
+         Button* button = __allocate< Button >(m_container, str);
          
          button->set_flags(Button::RadioButton);
          

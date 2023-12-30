@@ -9,18 +9,18 @@
 
 
 #include "quadruple.h"
-#include "acme/primitive/mathematics/_random.h"
+#include "acme/primitive/mathematics/mathematics.h"
 
 
 template < primitive_number NUMBER >
-inline quadruple_type < NUMBER > minimum_maximum_rand(const quadruple_type < NUMBER > & quadruple1, const quadruple_type < NUMBER > & quadruple2)
+inline quadruple_type < NUMBER > random(::mathematics::mathematics * pmathematics, const quadruple_type < NUMBER > & quadruple1, const quadruple_type < NUMBER > & quadruple2)
 {
 
    return quadruple_type < NUMBER >(
-          minimum_maximum_rand(quadruple1.a(), quadruple2.a()),
-          minimum_maximum_rand(quadruple1.b(), quadruple2.b()),
-          minimum_maximum_rand(quadruple1.c(), quadruple2.c()),
-          minimum_maximum_rand(quadruple1.d(), quadruple2.d()));
+          pmathematics->random(quadruple1.a(), quadruple2.a()),
+          pmathematics->random(quadruple1.b(), quadruple2.b()),
+          pmathematics->random(quadruple1.c(), quadruple2.c()),
+          pmathematics->random(quadruple1.d(), quadruple2.d()));
 
 }
 

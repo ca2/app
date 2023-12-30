@@ -48,6 +48,7 @@ public:
 
    write_text_stream();
    write_text_stream(const ::file_pointer & pfile);
+   write_text_stream(::file_pointer && pfile);
    write_text_stream(const write_text_stream & stream);
    write_text_stream(write_text_stream && stream);
    write_text_stream(const ::file_pointer & pfile, write_text_stream_struct && streamstruct);

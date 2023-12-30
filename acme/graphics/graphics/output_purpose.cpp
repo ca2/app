@@ -52,6 +52,23 @@ namespace graphics
    }
 
 
+   output_purpose::~output_purpose()
+   {
+
+
+   }
+
+
+   void output_purpose::destroy()
+   {
+
+      m_pparticleGraphicalOutputPurposeOriginator.release();
+
+      ::particle::destroy();
+
+   }
+
+
 //   enum_output_purpose output_purpose::_graphical_output_purpose()
 //   {
 //

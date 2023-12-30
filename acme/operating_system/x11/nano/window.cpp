@@ -76,15 +76,6 @@ namespace x11
 
       m_pnanodevice.release();
 
-      if(m_psurface != nullptr)
-      {
-
-         cairo_surface_destroy(m_psurface);
-
-         m_psurface = nullptr;
-
-      }
-
    }
 
 
@@ -486,7 +477,7 @@ namespace x11
 
             auto pdc = cairo_create(m_psurface);
 
-            m_pnanodevice = __new(::cairo::nano_device(pdc));
+            m_pnanodevice = __allocate< ::cairo::nano_device >(pdc);
 
          }
 
@@ -648,22 +639,45 @@ namespace x11
    void nano_window::destroy()
    {
 
-      XUnmapWindow(m_pdisplay->m_pdisplay, m_window);
+      if(m_window)
+      {
 
-      XDestroyWindow(m_pdisplay->m_pdisplay, m_window);
+         XUnmapWindow(m_pdisplay->m_pdisplay, m_window);
+
+         if(::is_set(m_pnanodevice))
+         {
+
+            defer_finalize__destroy_and_release(m_pnanodevice);
+
+         }
+
+         if(m_psurface != nullptr)
+         {
+
+            cairo_surface_destroy(m_psurface);
+
+            m_psurface = nullptr;
+
+         }
+
+         XDestroyWindow(m_pdisplay->m_pdisplay, m_window);
+
+         m_window = 0;
+
+      }
 
       if(m_colormap)
       {
 
          XFreeColormap(m_pdisplay->m_pdisplay, m_colormap);
 
+         m_colormap = 0;
+
       }
 
       m_pdisplay->erase_listener(this);
 
       m_pdisplay->erase_window(this);
-
-      m_window = 0;
 
       //XCloseDisplay(m_pdisplay->m_pdisplay);
 

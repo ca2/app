@@ -60,7 +60,7 @@ void acme_auto_debug_teste()
 
          wstr3 = str3;
 
-         informationf("strstr");
+         ::acme::get()->platform()->informationf("strstr");
 
       }
 
@@ -94,7 +94,7 @@ void acme_auto_debug_teste()
 //      if(true)
 //      {
 //         AUTO(debug_puts("two"));
-//         debug_puts("one"); // compiler knows this doesn't throw ::exception(memory_new
+//         debug_puts("one"); // compiler knows this doesn't throw ::exception(
 //      }
 //      if(true)
 //      {

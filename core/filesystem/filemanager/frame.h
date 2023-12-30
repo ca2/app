@@ -30,7 +30,7 @@ namespace filemanager
       DECLARE_MESSAGE_HANDLER(_001OnSetText);
       DECLARE_MESSAGE_HANDLER(on_message_create);
 
-      ::experience::frame * frame_experience() override;
+      ::pointer < ::experience::frame > frame_experience() override;
 
    };
 

@@ -7,8 +7,8 @@
 #include "impact_data.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
-////#include "acme/exception/exception.h"
 #include "acme/handler/request.h"
+#include "acme/handler/topic.h"
 #include "acme/platform/system.h"
 #include "aura/message/user.h"
 #include "aura/user/user/system.h"
@@ -879,7 +879,7 @@ namespace user
 
       ::pointer<::request>pcreate(e_create, this);
 
-      auto pusersystem = __new(::user::system);
+      auto pusersystem = __allocate< ::user::system >();
 
       m_pusersystem = pusersystem;
 
@@ -899,7 +899,7 @@ namespace user
    ::pointer<::user::interaction>impact::create_impact(const ::type_atom & typeatom, ::user::document * pdocument, ::user::interaction * puserinteractionParent, const ::atom & atom, ::user::interaction * pviewLast, ::user::impact_data * pimpactdata)
    {
 
-      ::pointer<::request>pcreate(e_create_new, this);
+      ::pointer<::request>prequest;
 
       ::pointer < ::user::system > pusersystem = m_pusersystem;
       
@@ -909,8 +909,19 @@ namespace user
          pusersystem = __create_new < ::user::system >();
          
       }
+      if (pusersystem->m_prequest)
+      {
 
-      pcreate->m_pmatterUserPayload = pusersystem;
+         prequest= pusersystem->m_prequest;
+      }
+      else
+      {
+         __construct_new(pusersystem->m_prequest);
+
+         prequest = pusersystem->m_prequest;
+         prequest->m_pmatterUserPayload = pusersystem;
+
+      }
 
       if (::is_set(pimpactdata))
       {
@@ -964,7 +975,7 @@ namespace user
 
       ::pointer<::request>pcreate(e_create_new, pdocument);
 
-      auto pusersystem= __new(::user::system);
+      auto pusersystem= __allocate< ::user::system >();
 
       pusersystem->m_typeatomNewImpact = typeatom;
 

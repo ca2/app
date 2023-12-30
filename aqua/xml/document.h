@@ -14,8 +14,8 @@ namespace xml
 
 
    class CLASS_DECL_AQUA document :
-      virtual public node //,
-      //virtual public ::object
+      virtual public node
+      //, public ::allocator::accessor < ::xml::document >
    {
    public:
 

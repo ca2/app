@@ -8,6 +8,7 @@
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/image/drawing.h"
+#include "acme/handler/topic.h"
 #include "aura/user/user/frame.h"
 #include "aura/message/user.h"
 //#include "aura/operating_system/windows_common/graphics.h"

@@ -34,7 +34,7 @@
 
 class nsSJISProber: public nsCharSetProber {
 public:
-  nsSJISProber(void){mCodingSM = memory_new nsCodingStateMachine(&SJISSMModel);
+  nsSJISProber(void){mCodingSM = __new< nsCodingStateMachine >(&SJISSMModel);
                       Reset();};
   virtual ~nsSJISProber(void){delete mCodingSM;};
   nsProbingState HandleData(const ::string & aBuf, PR::u32 aLen);

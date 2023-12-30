@@ -34,7 +34,7 @@ namespace graphics
 //  (only for inplace frame windows)
 #define WM_SIZECHILD        0x0369  // special notify from COleResizeBar
 // wParam = ID of child interaction_impl
-// lParam = pRectNew (memory_new position/size_i32)
+// lParam = pRectNew (aaa_memory_new position/size_i32)
 
 #define e_message_kick_idle         0x036A  // (params unused) causes idles to kick in
 #define WM_QUERYCENTERWND   0x036B  // lParam = oswindow to use as centering parent

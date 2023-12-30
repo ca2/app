@@ -4,6 +4,7 @@
 #include "acme/constant/message.h"
 #include "acme/constant/user_key.h"
 #include "acme/handler/item.h"
+#include "acme/handler/topic.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/primitive/string/international.h"
 #include "aura/graphics/write_text/text_out.h"
@@ -667,7 +668,7 @@ namespace user
       if(::is_null(m_ptextouta))
       {
 
-         m_ptextouta = memory_new write_text::text_out_array;
+         m_ptextouta = __allocate< write_text::text_out_array >();
 
       }
 
@@ -689,10 +690,29 @@ namespace user
    }
 
 
+   void still::on_set_window_text()
+   {
+
+      ::user::interaction::on_set_window_text();
+
+      if (m_bAutoResize)
+      {
+
+         m_bNeedAutoResizePerformLayout = true;
+
+      }
+
+      set_need_redraw();
+
+      post_redraw();
+
+   }
+
+
    bool still::on_perform_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      if (m_bAutoResize)
+      if (m_bNeedAutoResizePerformLayout)
       {
 
          synchronous_lock synchronouslock(this->synchronization());
@@ -1256,13 +1276,13 @@ namespace user
       if(!m_ptextouta || ::not_found(iItem = m_ptextouta->hit_test(point, ezorder)))
       {
 
-         auto pitemNone = __new(::item(e_element_none));
+         auto pitemNone = __allocate< ::item >(e_element_none);
 
          return pitemNone;
 
       }
 
-      return __new(::item(e_element_client));
+      return __allocate< ::item >(e_element_client);
 
    }
 
@@ -1313,16 +1333,6 @@ namespace user
    {
 
       return m_strLink.has_char();
-
-   }
-
-
-   void still::on_set_window_text()
-   {
-
-      set_need_redraw();
-
-      post_redraw();
 
    }
 

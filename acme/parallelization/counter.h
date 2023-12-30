@@ -4,68 +4,76 @@
 #include "acme/platform/procedure.h"
 
 
-class counter :
-   virtual public ::particle
+namespace parallelization
 {
-protected:
-
-   
-   ::procedure             m_procedureCompleted;
 
 
-public:
-
-
-   interlocked_count       m_interlocked;
-
-
-   counter(::count c, const ::procedure & procedureCompleted) : 
-      m_interlocked(c),
-      m_procedureCompleted(procedureCompleted)
+   class counter :
+      virtual public ::particle
    {
-   
-   
-   }
+   protected:
 
 
-   ::count operator ++()
-   {
+      ::procedure             m_procedureCompleted;
 
-      ::count c = --m_interlocked;
 
-      if (has_completed())
+   public:
+
+
+      interlocked_count       m_interlocked;
+
+
+      counter(::count c, const ::procedure & procedureCompleted) :
+         m_interlocked(c),
+         m_procedureCompleted(procedureCompleted)
       {
 
-         m_procedureCompleted();
 
       }
 
-      return c;
 
-   }
+      ::count operator ++()
+      {
 
+         ::count c = --m_interlocked;
 
-   ::count operator ++(int)
-   {
+         if (has_completed())
+         {
 
-      ::count c = m_interlocked;
+            m_procedureCompleted();
 
-      ++(*this);
+         }
 
-      return c;
+         return c;
 
-   }
-
-
-   bool has_completed() const
-   {
-
-      return m_interlocked <= 0;
-
-   }
+      }
 
 
-};
+      ::count operator ++(int)
+      {
+
+         ::count c = m_interlocked;
+
+         ++(*this);
+
+         return c;
+
+      }
+
+
+      bool has_completed() const
+      {
+
+         return m_interlocked <= 0;
+
+      }
+
+
+   };
+
+
+} // namespace parallelization
+
 
 
 //class counter32 :

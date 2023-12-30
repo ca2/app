@@ -3,8 +3,10 @@
 #include "system.h"
 #include "library.h"
 #include "platform.h"
+#include "acme/memory/c_malloc.h"
 #include "acme/parallelization/mutex.h"
 #include "acme/platform/_synchronization.h"
+#include "acme/platform/referencing_debugging.h"
 #include "acme/primitive/primitive/malloc.h"
 #include "acme/user/user/theme_colors.h"
 
@@ -19,10 +21,45 @@ CLASS_DECL_ACME bool should_output_debug_string();
 CLASS_DECL_ACME bool add_matter(::matter * pmatter);
 
 
+//CLASS_DECL_ACME::particle * task_get_top_track();
+
+
 #include <locale.h>
 #if defined(__APPLE__)
 #include <xlocale.h>
 #endif
+
+
+//namespace main_memory_allocate_heap
+//{
+//   CLASS_DECL_ACME void memdleak_init();
+//   CLASS_DECL_ACME void memdleak_term();
+//   CLASS_DECL_ACME void memdleak_dump();
+//}
+//namespace array_memory_allocate_heap
+//{
+//   CLASS_DECL_ACME void memdleak_init();
+//   CLASS_DECL_ACME void memdleak_term();
+//   CLASS_DECL_ACME void memdleak_dump();
+//}
+//namespace property_memory_allocate_heap
+//{
+//   CLASS_DECL_ACME void memdleak_init();
+//   CLASS_DECL_ACME void memdleak_term();
+//   CLASS_DECL_ACME void memdleak_dump();
+//}
+//namespace secondary_memory_allocate_heap
+//{
+//   CLASS_DECL_ACME void memdleak_init();
+//   CLASS_DECL_ACME void memdleak_term();
+//   CLASS_DECL_ACME void memdleak_dump();
+//}
+//namespace string_memory_allocate_heap
+//{
+//   CLASS_DECL_ACME void memdleak_init();
+//   CLASS_DECL_ACME void memdleak_term();
+//   CLASS_DECL_ACME void memdleak_dump();
+//}
 
 
 #ifdef WINDOWS
@@ -96,14 +133,15 @@ extern locale_t g_localeC;
 #endif
 
 
+
 extern ::nanosecond g_nanosecondFirst;
 
 
 extern int g_iMemoryCountersStartable;
 
 
-void initialize_memory_management();
-void finalize_memory_management();
+//void initialize_memory_management();
+//void finalize_memory_management();
 
 
 #define ThomasBS_Acme this
@@ -116,18 +154,6 @@ LARGE_INTEGER g_largeintegerFrequency;
 
 
 #endif
-
-
-namespace mathematics
-{
-
-
-   void initialize_mathematics();
-
-   void finalize_mathematics();
-
-
-} // namespace mathematics
 
 
 ::array < ::procedure > * g_proutineaOsTerm;
@@ -169,8 +195,8 @@ CLASS_DECL_ACME enum_platform_level get_platform_level()
 CLASS_DECL_ACME void __seed_srand();
 
 
-void initialize_global_message_queue();
-void finalize_global_message_queue();
+//void initialize_global_message_queue();
+//void finalize_global_message_queue();
 
 
 
@@ -202,32 +228,127 @@ void finalize_global_message_queue();
 extern thread_local ::task_pointer t_pthread;
 
 
+//void check_all_pending_releases();
+
+
+#if REFERENCING_DEBUGGING
+
+
+extern bool g_bDefaultEnableObjectReferenceCountDebug;
+
+
+#endif
+
+
 namespace acme
 {
 
 
-   static void acme_construct();
-
-   static void acme_destruct();
+   ::acme::acme * acme::s_pacme = nullptr;
 
 
    acme::acme()
    {
 
+      m_pheapmanagement = nullptr;
+
+      s_pacme = this;
+
       acme_construct();
 
-      ::platform::platform::s_pplatform = memory_new ::platform::platform();
+#if REFERENCING_DEBUGGING
 
+      initialize_referencing_debugging();
+
+      {
+
+         auto p = ::allocator::task_get_top_track();
+
+         ASSERT(p == nullptr);
+
+      }
+
+#endif
+
+      //::allocator::add_referer({ this, __FUNCTION_FILE_LINE__ });
+
+      {
+
+         REFDBG_THIS(this);
+
+         m_pplatform = __allocate< ::platform::platform >(this);
+
+      }
+#if REFERENCING_DEBUGGING
+
+      {
+
+         auto p = ::allocator::task_get_top_track();
+
+         ASSERT(p == nullptr);
+
+      }
+#endif
+      m_pplatform->platform_initialize();
+#if REFERENCING_DEBUGGING
+
+      {
+
+         auto p = ::allocator::task_get_top_track();
+
+         ASSERT(p == nullptr);
+
+      }
+#endif
+      acme_construct_platform_dependent();
+#if REFERENCING_DEBUGGING
+
+      {
+
+         auto p = ::allocator::task_get_top_track();
+
+         ASSERT(p == nullptr);
+
+      }
+#endif
    }
 
 
    acme::~acme()
    {
 
-      ::acme::del(::platform::platform::s_pplatform);
+      ::task_release();
+
+      m_pplatform->m_psystem.release();
+
+      acme_destruct_platform_dependent();
+
+      m_pplatform->platform_finalize();
+
+      m_pplatform.release();
+
+#if REFERENCING_DEBUGGING
+
+      g_bDefaultEnableObjectReferenceCountDebug = false;
+
+      {
+
+         auto preferencingdebugging = ::transfer(m_preferencingdebugging);
+
+         g_bDefaultEnableObjectReferenceCountDebug = false;
+
+         preferencingdebugging->dump_pending_releases();
+
+      }
+
+      //dump_pending_releases();
+
+      //m_preferencingdebugging.release();
+
+#endif
 
       acme_destruct();
-      
+
    }
 
 
@@ -245,40 +366,37 @@ namespace acme
    //}
 
 
-#if defined(WINDOWS)  && defined(UNICODE)
-
-
-   void initialize(int argc, wchar_t* argv[], wchar_t* envp[])
-   {
-
-      ::platform::get()->m_argc = argc;
-      ::platform::get()->m_wargv = argv;
-      ::platform::get()->m_wenvp = envp;
-
-   }
-
-
-   void initialize(HINSTANCE hinstanceThis, HINSTANCE hinstancePrev, CHAR* pCmdLine, int nCmdShow)
-   {
-
-      ::platform::get()->m_hinstanceThis = hinstanceThis;
-      ::platform::get()->m_hinstancePrev = hinstancePrev;
-      ::platform::get()->m_nCmdShow = nCmdShow;
-
-   }
-
-#else
-
-
-   void initialize(int argc, platform_char** argv, platform_char** envp)
-   {
-
-      ::platform::get()->m_argc = argc;
-      ::platform::get()->m_argv = argv;
-      ::platform::get()->m_envp = envp;
-
-   }
-#endif
+//#if defined(WINDOWS)  && defined(UNICODE)
+//
+//
+//   void initialize(int argc, wchar_t* argv[], wchar_t* envp[])
+//   {
+//
+//      m_pplatform->initialize(argc, argv, envp);
+//
+//   }
+//
+//
+//   void initialize(HINSTANCE hinstanceThis, HINSTANCE hinstancePrev, CHAR* pCmdLine, int nCmdShow)
+//   {
+//
+//      m_pplatform->initialize(hinstanceThis, hinstancePrev, nCmdShow);
+//
+//   }
+//
+//
+//#else
+//
+//
+//   void initialize(int argc, platform_char** argv, platform_char** envp)
+//   {
+//
+//      m_pplatform->initialize(argc, argv, envp);
+//
+//   }
+//
+//
+//#endif
 
 
    //acme * acme::g_p = nullptr;
@@ -594,11 +712,20 @@ namespace acme
 //   }
 
 
-   void acme_construct()
+   void acme::acme_construct()
    {
 
       initialize_memory_management();
+#if REFERENCING_DEBUGGING
 
+      {
+
+         auto p = ::allocator::task_get_top_track();
+
+         ASSERT(p == nullptr);
+
+      }
+#endif
       //static natural_meta_data < string_meta_data < ::ansi_character > > s_ansistringNil;
 
       //static natural_meta_data < string_meta_data < ::wd16_character > > s_wd16stringNil;
@@ -788,11 +915,11 @@ namespace acme
 
 #endif
 
-      //m_criticalsectionFactory = memory_new critical_section;
+      //m_criticalsectionFactory = __new< critical_section >();
 
 //#ifndef WINDOWS
 //
-//      //g_criticalsectionDemangle = memory_new critical_section;
+//      //g_criticalsectionDemangle = __new< critical_section >();
 //
 //#endif
 
@@ -827,17 +954,17 @@ namespace acme
 
       //xxdebug_box("acme.dll base_static_start (0)", "box", e_message_box_ok);
 
-      //g_pengine = memory_new ::OPERATING_SYSTEM_NAMESPACE::exception_engine();
+      //g_pengine = __new< ::OPERATING_SYSTEM_NAMESPACE::exception_engine >();
 
-      //g_criticalsectionGlobals = memory_new ::critical_section();
+      //g_criticalsectionGlobals = __new< ::critical_section >();
 
-      //g_criticalsectionChildren = memory_new ::critical_section();
+      //g_criticalsectionChildren = __new< ::critical_section >();
 
-      //g_criticalsectionGlobal = memory_new critical_section();
+      //g_criticalsectionGlobal = __new< critical_section >();
 
       //::initialize_sequence_critical_section();
 
-      //::update::g_criticalsection = memory_new critical_section();
+      //::update::g_criticalsection = __new< critical_section >();
 
 #ifndef __MCRTDBG
 
@@ -849,18 +976,14 @@ namespace acme
 
 #endif
 
-      ::mathematics::initialize_mathematics();
-
-      //::atom_space::s_pidspace = memory_new atom_space();
+      //::atom_space::s_pidspace = __new< atom_space >();
 
 //      ::acme::idpool::init();
-
-      initialize_global_message_queue();
 
       //
       //#ifdef ANDROID
       //
-      //      g_criticalsectionOutputDebugStringA = memory_new ::critical_section();
+      //      g_criticalsectionOutputDebugStringA = __new< ::critical_section >();
       //
       //#endif
 
@@ -868,64 +991,87 @@ namespace acme
 
       g_pmapObjTypCtr = memory_new map < const char*, const char*, ::i64, ::i64 >;
 
+      {
+
+         auto p = ::allocator::task_get_top_track();
+
+         ASSERT(p == nullptr);
+
+      }
+
 #endif
 
 
-      //g_criticalsectionTrace = memory_new critical_section;
+      //g_criticalsectionTrace = __new< critical_section >();
 
-      //g_psimpletrace = memory_new simple_trace;
+      //g_psimpletrace = __new< simple_trace >();
 
       //g_ptrace = g_psimpletrace;
 
 
       // acme commented
-      //g_psimpletrace = memory_new simple_trace;
+      //g_psimpletrace = __new< simple_trace >();
 
       //g_ptrace = g_psimpletrace;
 
       //acme commented
 //#ifdef BSD_STYLE_SOCKETS
 //
-//      ::sockets::base_socket::s_criticalsection = memory_new ::critical_section();
+//      ::sockets::base_socket::s_criticalsection = __new< ::critical_section >();
 //
 //#endif
 
 
 //#ifdef __APPLE__
 //
-//      g_criticalsectionCvt = memory_new ::critical_section();
+//      g_criticalsectionCvt = __new< ::critical_section >();
 //
 //#endif
 
-      //g_criticalsectionThreadWaitClose = memory_new ::critical_section();
+      //g_criticalsectionThreadWaitClose = __new< ::critical_section >();
 
-      //g_criticalsectionThreadOn = memory_new ::critical_section();
+      //g_criticalsectionThreadOn = __new< ::critical_section >();
 
-      //g_pmapThreadOn = memory_new ::map < itask_t, itask_t, itask_t, itask_t >;
+      //g_pmapThreadOn = aaa_memory_new ::map < itask_t, itask_t, itask_t, itask_t >;
 
-      //g_criticalsectionSystemHeap = memory_new critical_section();
+      //g_criticalsectionSystemHeap = __new< critical_section >();
 
 #if MEMDLEAK
 
-      memdleak_init();
+      main_memory_allocate_heap::memdleak_init();
+      array_memory_allocate_heap::memdleak_init();
+      property_memory_allocate_heap::memdleak_init();
+      secondary_memory_allocate_heap::memdleak_init();
+      string_memory_allocate_heap::memdleak_init();
 
 #endif
 
-      //factory_init();
+      ////factory_init();
 
-      g_paAura = memory_new::array < matter* >;
+      //g_paAura = __new < ::array < matter* > >();
 
-      //g_pmapAura =memory_new ::map < void *,void *,::acme::application *,::acme::application * >;
+      ////::task_on_after_new_particle(g_paAura);
 
-      //g_criticalsectionUiDestroyed = memory_new ::critical_section();
+      //{
 
-      //g_criticalsectionMessageDispatch = memory_new ::critical_section();
+      //   auto p = ::allocator::task_get_top_track();
 
-      //g_criticalsectionCred = memory_new ::critical_section();
+      //   ASSERT(p == nullptr);
+
+      //}
+
+
+      //g_pmapAura =aaa_memory_new ::map < void *,void *,::acme::application *,::acme::application * >;
+
+      //g_criticalsectionUiDestroyed = __new< ::critical_section >();
+
+      //g_criticalsectionMessageDispatch = __new< ::critical_section >();
+
+      //g_criticalsectionCred = __new< ::critical_section >();
 
 #if defined(LINUX) || defined(__APPLE__)
 
-      //g_criticalsectionTz = memory_new ::critical_section();
+      //g_criticalsectionTz = __new< ::critical_section >();
 
 #endif // defined(LINUX) || defined(__APPLE__)
 
@@ -961,18 +1107,18 @@ namespace acme
 
 #endif
 
-      //g_pacmestrpool = memory_new acme_str_pool();
+      //g_pacmestrpool = __new< acme_str_pool >();
 
       //acme commented
       //::user::init_windowing();
 
-      //g_criticalsectionRefDbg = memory_new critical_section();
+      //g_criticalsectionRefDbg = __new< critical_section >();
 
       g_bAcme = 1;
 
-      //::thread::g_criticalsection = memory_new mutex();
+      //::thread::g_criticalsection = __new< mutex >();
 
-      //::thread::g_pthreadmap = memory_new ::thread_map();
+      //::thread::g_pthreadmap = __new< ::thread_map >();
 
       // acme commented
       //add_factory_item < ::context >();
@@ -995,12 +1141,12 @@ namespace acme
 //#ifdef WINDOWS
 //
 //
-//      g_criticalsectionSymDbgHelp = memory_new ::critical_section();
+//      g_criticalsectionSymDbgHelp = __new< ::critical_section >();
 //
 //
 //#endif
 
-      //::acme::library::s_criticalsectionLoading = memory_new ::critical_section();
+      //::acme::library::s_criticalsectionLoading = __new< ::critical_section >();
 
       //init();
 
@@ -1008,6 +1154,16 @@ namespace acme
 
       //if (!__node_acme_pre_init())
       __node_acme_pre_init();
+#if REFERENCING_DEBUGGING
+
+      {
+
+         auto p = ::allocator::task_get_top_track();
+
+         ASSERT(p == nullptr);
+
+      }
+#endif
       //{
 
       //   throw ::exception(error_failed);
@@ -1040,11 +1196,50 @@ namespace acme
       //return true;
 
       //factory()->add_factory_item < ::acme::system >();
+#if REFERENCING_DEBUGGING
+
+      {
+
+         auto p = ::allocator::task_get_top_track();
+
+         ASSERT(p == nullptr);
+
+      }
+#endif
+   }
+
+
+   void acme::acme_construct_platform_dependent()
+   {
+
+      initialize_message_queue();
+
+#if REFERENCING_DEBUGGING
+
+      {
+
+         auto p = ::allocator::task_get_top_track();
+
+         ASSERT(p == nullptr);
+
+      }
+
+
+#endif
+
 
    }
 
 
-   void acme_destruct()
+   void acme::acme_destruct_platform_dependent()
+   {
+
+      finalize_message_queue();
+
+   }
+
+
+   void acme::acme_destruct()
    {
 
 
@@ -1263,7 +1458,11 @@ namespace acme
 
 #if MEMDLEAK
 
-      memdleak_term();
+      main_memory_allocate_heap::memdleak_term();
+      array_memory_allocate_heap::memdleak_term();
+      property_memory_allocate_heap::memdleak_term();
+      secondary_memory_allocate_heap::memdleak_term();
+      string_memory_allocate_heap::memdleak_term();
 
 #endif
 
@@ -1307,11 +1506,7 @@ namespace acme
 
       //term_id_pool();
 
-      finalize_global_message_queue();
-
       //::acme::del(::atom_space::s_pidspace);
-
-      ::mathematics::finalize_mathematics();
 
 #if !defined(__MCRTDBG) && !MEMDLEAK
 
@@ -1348,7 +1543,7 @@ namespace acme
 
 #if MEMDLEAK
 
-      ::set_thread(nullptr);
+      ::set_task(nullptr);
 
 #ifdef __USE_BFD
 
@@ -1356,7 +1551,7 @@ namespace acme
 
 #endif
 
-      memdleak_dump();
+      heap()->memdleak_dump();
 
 #endif
 
@@ -1405,7 +1600,7 @@ namespace acme
    //::acme::system * acme_create_system(app_core * pappcore)
    //{
 
-   //   auto psystem = memory_new ::acme::system();
+   //   auto psystem = __new< ::acme::system >();
 
    //   psystem->initialize(nullptr);
 
@@ -1571,7 +1766,7 @@ namespace acme
 //CLASS_DECL_ACME void init_draw2d_mutex()
 //{
 //
-//   s_criticalsectionDraw2d = memory_new ::critical_section();
+//   s_criticalsectionDraw2d = __new< ::critical_section >();
 //
 //}
 
@@ -1614,7 +1809,7 @@ namespace acme
 ////   if (::is_null(::acme::g_pelementaddraReleaseOnEnd))
 ////   {
 ////
-////      ::acme::g_pelementaddraReleaseOnEnd = memory_new element_address_array();
+////      ::acme::g_pelementaddraReleaseOnEnd = __new< element_address_array >();
 ////
 ////   }
 //
@@ -1649,7 +1844,7 @@ namespace acme
 ////      if(g_iReference == 1)
 ////      {
 ////
-////         memory_new acme();
+////         __new< acme >();
 ////
 ////      }
 ////
@@ -1705,6 +1900,55 @@ namespace acme
 //
 //
 //
+
+
+
+void acme::initialize_memory_management()
+{
+
+   if (m_pheapmanagement)
+   {
+
+      return;
+
+   }
+
+   m_pheapmanagement = ::c::malloc::create < ::heap::management >();
+
+   m_pheapmanagement->initialize_memory_management(this);
+
+   m_pheapmanagement->start_management();
+
+   //DO_FOR_ALL_HEAPS(INITIALIZE_MEMORY_MANAGEMENT);
+   //INITIALIZE_MEMORY_MANAGEMENT(main);
+   //INITIALIZE_MEMORY_MANAGEMENT(secondary);
+   //INITIALIZE_MEMORY_MANAGEMENT(array);
+   //INITIALIZE_MEMORY_MANAGEMENT(property);
+   //INITIALIZE_MEMORY_MANAGEMENT(string);
+
+   //DO_FOR_ALL_HEAPS(INITIALIZE_MEMORY_HEAP);
+
+}
+
+
+void acme::finalize_memory_management()
+{
+
+   if (!m_pheapmanagement)
+   {
+
+      return;
+
+   }
+
+   ::c::malloc::destroy(m_pheapmanagement);
+
+   //DO_FOR_ALL_HEAPS(FINALIZE_MEMORY_HEAP);
+
+}
+
+
+
 } // namespace acme
 
 
@@ -1754,17 +1998,6 @@ namespace acme
 //
 //
 //#endif
-
-
-iptr g_iMonitor = 0;
-
-
-CLASS_DECL_ACME void monitor_pointer(void * p)
-{
-
-   g_iMonitor = (iptr)p;
-
-}
 
 
 
@@ -1829,13 +2062,13 @@ CLASS_DECL_ACME::e_status get_last_status()
 //         //
 //         //         set_DispatchMessage(&axis_DispatchMessage);
 //         //
-//         //         oswindow_data::s_pdataptra = memory_new oswindow_dataptra;
+//         //         oswindow_data::s_pdataptra = __new< oswindow_dataptra >();
 //         //
-//         //         oswindow_data::s_criticalsection = memory_new ::critical_section;
+//         //         oswindow_data::s_criticalsection = __new< ::critical_section >();
 //         //
-//         //         osdisplay_data::s_pdataptra = memory_new osdisplay_dataptra;
+//         //         osdisplay_data::s_pdataptra = __new< osdisplay_dataptra >();
 //         //
-//         //         osdisplay_data::s_criticalsection = memory_new ::critical_section;
+//         //         osdisplay_data::s_criticalsection = __new< ::critical_section >();
 //
 //#endif // defined(LINUX)
 //

@@ -288,7 +288,7 @@ namespace fs
       //else
       //{
 
-         pfile.create(this);
+         __construct(pfile);
 
 //      }
 

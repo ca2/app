@@ -76,7 +76,7 @@ namespace nanoui
        * Whether or not this Widget is currently enabled.  Various different kinds
        * of derived types use this to determine whether or not user input will be
        * accepted.  For example, when ``m_enabled == false``, the state of a
-       * CheckBox cannot be changed, or a TextBox will not allow memory_new input.
+       * CheckBox cannot be changed, or a TextBox will not allow new input.
        */
       bool                 m_bEnabled;
       /// bool m_focused;
@@ -131,7 +131,7 @@ namespace nanoui
 
 
 
-   /// Construct a memory_new pwidget with the given parent pwidget
+   /// Construct a new pwidget with the given parent pwidget
       Widget(Widget* parent);
 
       /// Return the parent pwidget
@@ -173,14 +173,14 @@ namespace nanoui
       /// Return the used \::pointer Layout generator
       const Layout* layout() const { return m_playout.get(); }
       /// Set the used \::pointer Layout generator
-      void set_layout(Layout* layout); 
+      void set_layout(const ::pointer < Layout > & playout); 
 
       /// Return the \::pointer Theme used to draw this pwidget
       Theme* theme() { return m_ptheme; }
       /// Return the \::pointer Theme used to draw this pwidget
       const Theme* theme() const { return m_ptheme.get(); }
       /// Set the \::pointer Theme used to draw this pwidget
-      virtual void set_theme(Theme* theme);
+      virtual void set_theme(const ::pointer < Theme > & theme);
 
       /// Return the position relative to the parent pwidget
       const point_i32& position() const { return m_pos; }
@@ -321,8 +321,8 @@ namespace nanoui
 
       /// Variadic shorthand notation to construct and add a pwidgetChild pwidget
       template<typename WidgetClass, typename... Args>
-      WidgetClass* add(const Args&... args) {
-         return memory_new WidgetClass(this, args...);
+      ::pointer < WidgetClass>  add(const Args&... args) {
+         return __allocate< WidgetClass >(this, args...);
       }
 
       /// Walk up the hierarchy and return the parent window
@@ -452,6 +452,29 @@ namespace nanoui
    };
 
 
+   template < typename T >
+   void defer_destroy_window(::pointer < T > & p)
+   {
+      
+      if(p)
+      {
+         
+         try
+         {
+            
+            p->destroy_window();
+            
+         }
+         catch(...)
+         {
+            
+         }
+         
+         p.release();
+         
+      }
+      
+   }
 
 } // namespace nanoui
 

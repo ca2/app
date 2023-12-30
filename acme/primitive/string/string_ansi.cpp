@@ -130,7 +130,7 @@ void fixed_string_log::OnAllocateSpill(strsize nActualChars,strsize nFixedChars,
 ()nFixedChars;
 ()pData;
 //   information(::acme::trace::category_String, 0, _T( "fixed_string_manager::allocate() spilling to heap.  %d chars (fixed size = %d chars)\n" ), nActualChars, nFixedChars );
-::informationf("fixed_string_log::OnAllocateSpill");
+::acme::get()->platform()->informationf("fixed_string_log::OnAllocateSpill");
 }
 
 void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChars,const string_data* pData ) noexcept
@@ -139,7 +139,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 ()nFixedChars;
 ()pData;
 //   information(::acme::trace::category_String, 0, _T( "fixed_string_manager::Reallocate() spilling to heap.  %d chars (fixed size = %d chars)\n" ), nActualChars, nFixedChars );
-::informationf("fixed_string_log::OnReallocateSpill");
+::acme::get()->platform()->informationf("fixed_string_log::OnReallocateSpill");
 }
 
 */
@@ -707,9 +707,9 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //
 //void __cdecl string::Construct(class string * pstring)
 //{
-//   memory_new (pstring) class string;
+//   __new<  >(pstring) class string;
 //}
-////#define memory_new ACME_NEW
+//
 //
 ////string::string(const ::string & strSrc,strsize -1,strsize len) :
 ////   string(strSrc.substr(-1,len),::str::GetDefaultManager())
@@ -1668,7 +1668,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   if(nCount > 0)
 //   {
 //      // if the buffer is too small, just
-//      //   allocate a memory_new buffer (slow but sure)
+//      //   allocate a __new< buffer  >(slow but sure)
 //      strsize nOldLength = get_length();
 //      strsize nNewLength = nOldLength + (nReplacementLen - nSourceLen)*nCount;
 //
@@ -1734,7 +1734,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   if (nCount > 0)
 //   {
 //      // if the buffer is too small, just
-//      //   allocate a memory_new buffer (slow but sure)
+//      //   allocate a __new< buffer  >(slow but sure)
 //      strsize nOldLength = get_length();
 //      strsize nNewLength = nOldLength + (nReplacementLen - nSourceLen)*nCount;
 //

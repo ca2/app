@@ -181,7 +181,7 @@ namespace sockets
    long EventHandler::AddEvent(IEventOwner *from,long sec,long usec)
    {
 
-      Event * peventNew = memory_new Event(from, sec, usec);
+      Event * peventNew = __new< Event >(from, sec, usec);
 
       auto p = m_eventplist.begin();
 
@@ -295,14 +295,14 @@ namespace sockets
    {
       if (!m_ptcpsocket)
       {
-         auto plistensocket = __new(listen_socket<tcp_socket>());
+         auto plistensocket = __allocate< listen_socket<tcp_socket> >();
          plistensocket-> SetDeleteByHandler();
          plistensocket-> Bind("127.0.0.1", 0);
          m_port = plistensocket-> GetPort();
 
          socket_handler::add(plistensocket);
 
-         m_ptcpsocket = __new(tcp_socket());
+         m_ptcpsocket = __allocate< tcp_socket >();
          m_ptcpsocket -> SetDeleteByHandler();
          m_ptcpsocket -> set_maximum_connection_time(5_s);
          m_ptcpsocket -> SetRetryClientConnect(-1);

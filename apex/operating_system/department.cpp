@@ -152,7 +152,7 @@ namespace operating_system
 
       m_strCmdLine = strCmdLine;
       
-      m_pprocess.create(this);
+      __construct(m_pprocess);
 
       m_pstrRead = pstrRead;
 

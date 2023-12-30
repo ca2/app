@@ -175,7 +175,7 @@ CLASS_DECL_APEX DWORD WINAPI MsgWaitForMultipleObjects(DWORD nCount, const HANDL
 //   if (dwWakeMask & MWMO_ALERTABLE)
 //   {
 //
-//      HANDLE* ph = memory_new HANDLE[nCount + 1];
+//      HANDLE* ph = __new_array< HANDLE >(nCount + 1);
 //
 //      ::memory_copy(ph, pHandles, sizeof(HANDLE) * nCount);
 //

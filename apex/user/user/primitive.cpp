@@ -751,28 +751,28 @@ namespace user
    //}
 
 
-   void primitive::add_fps_interest(::particle * pparticle)
-   {
+   //void primitive::add_fps_interest(::particle * pparticle)
+   //{
 
-      //return false;
+   //   //return false;
 
-   }
-
-
-   void primitive::erase_fps_interest(::particle * pparticle)
-   {
-
-      //return false;
-
-   }
+   //}
 
 
-   bool primitive::is_fps_interest(const ::particle * pparticle) const
-   {
+   //void primitive::erase_fps_interest(::particle * pparticle)
+   //{
 
-      return false;
+   //   //return false;
 
-   }
+   //}
+
+
+   //bool primitive::is_fps_interest(const ::particle * pparticle) const
+   //{
+
+   //   return false;
+
+   //}
 
 
    string primitive::get_title()
@@ -1075,7 +1075,7 @@ namespace user
    }
 
 
-   // pmessage object should be allocated with memory_new in
+   // pmessage object should be allocated with new in
    // base or derived object and will be delete after
    // handling
    void primitive::post_message(::message::message * pmessage)
@@ -3766,28 +3766,28 @@ namespace user
 //      case ::message::PrototypeNone:
 //      {
 //
-//         pmessage = __new(::user::message);
+//         pmessage = __allocate< ::user::message >();
 //
 //      }
 //      break;
 //      case ::message::PrototypeCreate:
 //      {
-//         pmessage = __new(::message::create);
+//         pmessage = __allocate< ::message::create >();
 //      }
 //      break;
 //      case ::message::PrototypeEnable:
 //      {
-//         pmessage = __new(::message::enable);
+//         pmessage = __allocate< ::message::enable >();
 //      }
 //      break;
 //      case ::message::PrototypeNcActivate:
 //      {
-//         pmessage = __new(::message::nc_activate);
+//         pmessage = __allocate< ::message::nc_activate >();
 //      }
 //      break;
 //      case ::message::PrototypeKey:
 //      {
-//         pmessage = __new(::message::key);
+//         pmessage = __allocate< ::message::key >();
 //      }
 //      break;
 //      case ::message::PrototypeTimer:
@@ -3795,95 +3795,95 @@ namespace user
 //         
 //         //throw ::exception(::exception("do not use e_message_timer or Windows SetTimer/KillTimer"));
 //         
-//         pmessage = __new(::message::timer);
+//         pmessage = __allocate< ::message::timer >();
 //
 //      }
 //      break;
 //      case ::message::PrototypeShowWindow:
 //      {
-//         pmessage = __new(::message::show_window);
+//         pmessage = __allocate< ::message::show_window >();
 //      }
 //      break;
 //      case ::message::PrototypeSetCursor:
 //      {
-//         pmessage = __new(::message::set_cursor);
+//         pmessage = __allocate< ::message::set_cursor >();
 //      }
 //      break;
 //      case ::message::PrototypeNcHitTest:
 //      {
-//         pmessage = __new(::message::nc_hit_test);
+//         pmessage = __allocate< ::message::nc_hit_test >();
 //      }
 //      break;
 //      case ::message::PrototypeMove:
 //      {
-//         pmessage = __new(::message::transfer);
+//         pmessage = __allocate< ::message::transfer >();
 //      }
 //      break;
 //      case ::message::PrototypeEraseBkgnd:
 //      {
-//         pmessage = __new(::message::erase_bkgnd);
+//         pmessage = __allocate< ::message::erase_bkgnd >();
 //      }
 //      break;
 //      case ::message::PrototypeScroll:
 //      {
-//         pmessage = __new(::message::scroll);
+//         pmessage = __allocate< ::message::scroll >();
 //      }
 //      break;
 //      case ::message::PrototypeSetFocus:
 //      {
-//         pmessage = __new(::message::set_keyboard_focus);
+//         pmessage = __allocate< ::message::set_keyboard_focus >();
 //      }
 //      break;
 //      case ::message::PrototypeKillFocus:
 //      {
-//         pmessage = __new(::message::kill_keyboard_focus);
+//         pmessage = __allocate< ::message::kill_keyboard_focus >();
 //      }
 //      break;
 //#if !defined(UNIVERSAL_WINDOWS) && !defined(LINUX) && !defined(__APPLE__) && !defined(ANDROID)
 //      case ::message::PrototypeWindowPos:
 //      {
-//         pmessage = __new(::message::window_pos);
+//         pmessage = __allocate< ::message::window_pos >();
 //      }
 //      break;
 //      case ::message::PrototypeNcCalcSize:
 //      {
-//         pmessage = __new(::message::nc_calc_size);
+//         pmessage = __allocate< ::message::nc_calc_size >();
 //      }
 //      break;
 //#endif
 //      case ::message::PrototypeMouse:
 //      {
-//         pmessage = __new(::message::mouse);
+//         pmessage = __allocate< ::message::mouse >();
 //      }
 //      break;
 //      case ::message::PrototypeMouseWheel:
 //      {
-//         pmessage = __new(::message::mouse_wheel);
+//         pmessage = __allocate< ::message::mouse_wheel >();
 //      }
 //      break;
 //      case ::message::PrototypeSize:
 //      {
-//         pmessage = __new(::message::size);
+//         pmessage = __allocate< ::message::size >();
 //      }
 //      break;
 //      case ::message::PrototypeActivate:
 //      {
-//         pmessage = __new(::message::activate);
+//         pmessage = __allocate< ::message::activate >();
 //      }
 //      break;
 //      case ::message::PrototypeMouseActivate:
 //      {
-//         pmessage = __new(::message::mouse_activate);
+//         pmessage = __allocate< ::message::mouse_activate >();
 //      }
 //      break;
 //      case ::message::PrototypeSimpleCommand:
 //      {
-//         pmessage = __new(::message::simple_command);
+//         pmessage = __allocate< ::message::simple_command >();
 //      }
 //      break;
 //      default:
 //      {
-//         pmessage = __new(::message::message);
+//         pmessage = __allocate< ::message::message >();
 //      }
 //      break;
 //      }

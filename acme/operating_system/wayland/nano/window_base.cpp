@@ -952,11 +952,16 @@ namespace wayland
    void nano_window_base::__handle_pointer_leave(::wl_pointer * pwlpointer, ::wayland::nano_window_base * pwaylandwindowLeave)
    {
 
-      ::string strType = ::type(get_interface_client_particle()).name();
+      auto pinterfaceclientparticle = get_interface_client_particle();
 
-      information()
+      if(pinterfaceclientparticle)
+      {
 
-         << "__handle_pointer_leave";
+         ::string strType = ::type(pinterfaceclientparticle).name();
+
+         information() << "__handle_pointer_leave : " << strType;
+
+      }
 
       m_pwlpointer = pwlpointer;
 

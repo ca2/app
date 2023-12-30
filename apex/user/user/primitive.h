@@ -68,9 +68,9 @@ namespace user
       enum_control_type get_control_type() const override;
 
 
-      void add_fps_interest(::particle * pparticle) override;
-      void erase_fps_interest(::particle * pparticle) override;
-      bool is_fps_interest(const ::particle * pparticle) const override;
+      //void add_fps_interest(::particle * pparticle) override;
+      //void erase_fps_interest(::particle * pparticle) override;
+      //bool is_fps_interest(const ::particle * pparticle) const override;
 
       void display(::e_display edisplay = e_display_default, ::e_activation eactivation = e_activation_default) override;
 

@@ -64,7 +64,7 @@ namespace nanoui
       set_cursor(editable ? Cursor::IBeam : Cursor::Arrow);
    }
 
-   void TextBox::set_theme(Theme* theme) {
+   void TextBox::set_theme(const ::pointer < Theme > & theme) {
       Widget::set_theme(theme);
       if (m_ptheme)
          m_font_size = m_ptheme->m_iTextBoxFontSize;
@@ -580,7 +580,7 @@ namespace nanoui
             m_iSelectionEnd = m_strValueEdit.length();
 
          }
-         else
+         else if(!m_bCommitted)
          {
 
             ::string strRollback = m_strValue;
@@ -734,7 +734,7 @@ namespace nanoui
       if (m_bEditable && focused())
       {
 
-         auto psession = screen()->m_puserinteraction->get_session();
+         //auto psession = screen()->m_puserinteraction->get_session();
 
          //if (action == ::e_message_key_down || action == GLFW_REPEAT) {
          if (action == ::e_message_key_down)

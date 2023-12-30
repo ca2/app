@@ -12,6 +12,7 @@
 #include "progress.h"
 #include "acme/constant/message.h"
 #include "acme/constant/simple_command.h"
+#include "acme/exception/interface_only.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/acme.h"
 #include "acme/platform/system_setup.h"
@@ -28,6 +29,9 @@
 #include "aura/platform/application.h"
 #include "aura/platform/node.h"
 
+#if defined(FREEBSD)
+#include <stdio.h>
+#endif
 
 //::pointer< ::mutex > g_pmutexUser = nullptr;
 
@@ -156,18 +160,21 @@ namespace user
 
       //auto estatus = 
       
-      __construct_new(m_puserstyle);
+      if (__defer_construct_new(m_puserstyle))
+      {
 
-      //if (!estatus)
-      //{
+         //if (!estatus)
+         //{
 
-      //   return estatus;
+         //   return estatus;
 
-      //}
+         //}
 
-      system()->m_pnode->fetch_user_color();
+         system()->m_pnode->fetch_user_color();
 
-      m_puserstyle->default_style_construct();
+         m_puserstyle->default_style_construct();
+
+      }
 
       //return estatus;
 
@@ -573,8 +580,80 @@ namespace user
    void user::destroy()
    {
 
+      m_puserstyle.defer_destroy();
+
+
+      for (auto & pstyle : m_mapUserStyle.payloads())
+      {
+
+         try
+         {
+
+            pstyle.defer_destroy();
+
+         }
+         catch (...)
+         {
+
+         }
+
+      }
+      m_mapUserStyle.erase_all();
+
+
+
       //auto estatus =
       ::acme::department::destroy();
+
+      if (m_pdesktopenvironment)
+      {
+
+         m_pdesktopenvironment->destroy();
+
+      }
+
+      m_pdesktopenvironment.release();
+
+      if (m_pshell)
+      {
+
+         m_pshell->destroy();
+
+      }
+
+      m_pshell.release();
+
+      m_listRunnable.clear();
+
+      m_pmutexRunnable.release();
+
+      m_pmutexUser.release();
+
+      if (m_pwindowing)
+      {
+
+         m_pwindowing->finalize_windowing();
+
+      }
+
+      m_pwindowing.defer_destroy();
+
+      m_uiptraToolWindow.clear();
+
+      if (m_phtml)
+      {
+
+         m_phtml.m_pparticle->destroy();
+
+      }
+
+      m_phtml.release();
+
+      m_mapUserStyle.clear();
+
+      m_pmousefocusLButtonDown.release();
+
+      m_pmousefocusRButtonDown.release();
 
       //if (!estatus)
       //{
@@ -641,7 +720,7 @@ namespace user
       if (!m_pshell)
       {
 
-         //estatus = __construct(m_pshell, __new(::windows::shell));
+         //estatus = __construct(m_pshell, __allocate< ::windows::shell >());
          //estatus =
          __construct(m_pshell);
 
@@ -850,7 +929,7 @@ namespace user
    CLASS_DECL_AURA ::pointer<::user::interaction>create_virtual_window(::particle * pparticle, ::user::interaction * pinteractionParent)
    {
 
-      auto pinteraction = __create_new < ::user::interaction >(pparticle);
+      auto pinteraction = pparticle->__create_new < ::user::interaction >();
 
       pinteraction->create_child(pinteractionParent);
 
@@ -1008,7 +1087,7 @@ namespace aura
    //session_docs * create_session_docs()
    //{
 
-   //   return memory_new session_docs();
+   //   return __new< session_docs >();
 
    //}
 
@@ -1539,10 +1618,25 @@ namespace user
    ::pointer<::user::plain_edit>user::create_calculator_edit()
    {
 
-      return __new(::user::plain_edit);
+      return __allocate< ::user::plain_edit >();
 
    }
 
+   
+   void user::add_impact_system(const ::atom & atom, ::user::impact_system * pimpactsystem)
+   {
+
+      throw interface_only();
+
+   }
+
+
+   ::pointer<::user::impact_system> user::impact_system(const ::atom & atom)
+   {
+
+      throw interface_only();
+
+   }
 
 
 } // namespace user
@@ -1620,7 +1714,7 @@ CLASS_DECL_AURA ::particle * user_synchronization()
 //
 //   }
 //
-//   g_pmutexUser = ::platform::get()->system()->node()->create_mutex();
+//   g_pmutexUser = this->platform()->system()->node()->create_mutex();
 //
 //}
 //

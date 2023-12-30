@@ -67,7 +67,7 @@ public:
    //using sequence_type < NUMBER, 2 >::sequence_type;
 
    //size_type() noexcept { this->cx() = UNIT_TYPE{}; this->cy() = UNIT_TYPE{}; }
-   //size_type(enum_no_initialize) noexcept {}
+   //size_type(no_initialize_t) noexcept {}
    //size_type(::std::nullptr_t) noexcept { this->cx() = UNIT_TYPE{}; this->cy() = UNIT_TYPE{}; }
    //size_type(UNIT_TYPE cx, UNIT_TYPE cy) noexcept { this->cx() = cx; this->cy() = cy; }
 //   template < primitive_number NUMBER_TYPE >

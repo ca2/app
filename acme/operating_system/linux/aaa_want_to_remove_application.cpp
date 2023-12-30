@@ -87,7 +87,7 @@ namespace acme
 
             if(dwResSize > 0)
             {
-               LPVOID pdata = memory_new ::u8[dwResSize];
+               LPVOID pdata = aaa_primitive_new ::u8[dwResSize];
 
                if(GetFileVersionInfo(
                   pszModuleFilePath,
@@ -409,7 +409,7 @@ namespace acme
          {
             delete[] vmap[::payload];
          }
-         vmap[::payload] = memory_new char[payload.get_length() + 1 + value.get_length() + 1];
+         vmap[::payload] = aaa_primitive_new char[payload.get_length() + 1 + value.get_length() + 1];
          sprintf(vmap[::payload], "%s=%s", payload, value);
          putenv( vmap[::payload] );
       }

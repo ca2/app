@@ -111,6 +111,11 @@ public:
    ::pointer_array < ::message::message >             m_messagea;
    numeric_array < enum_message >                     m_emessageaGetLast;
 
+#ifdef WINDOWS
+   ::raw_array < MESSAGE >                            m_messageaInitialQueue;
+   //bool                                               m_bCertainlyTheresWindowsMessageQueue;
+   //::pointer < ::manual_reset_event >                 m_peventMessageQueueReady;
+#endif
 
 //#ifdef MACOS
 //
@@ -351,7 +356,7 @@ public:
 
    virtual bool pump_sleep(const class time & timeWait, ::particle * pparticleSynchronization = nullptr);
 
-   bool do_events() override;
+   bool do_tasks() override;
    // virtual bool do_events(const time& time);
 
    virtual bool task_get_run() const override;

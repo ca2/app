@@ -39,9 +39,9 @@ string ca2_module_folder_dup();
 //   if(g_pcsPid2 == nullptr)
 //   {
 //
-//      g_pcsPid2 = memory_new critical_section();
+//      g_pcsPid2 = __new< critical_section >();
 //
-//      g_ppid = memory_new chldstatus_map();
+//      g_ppid = __new< chldstatus_map >();
 //
 //
 //   }
@@ -356,7 +356,7 @@ CLASS_DECL_ACME void process_get_os_priority(i32 * piOsPolicy, sched_param * ppa
 //
 //      char *   cmd_line;
 //
-//      cmd_line = (char *) memory_allocate(strlen(pszCmdLine ) + 1 );
+//      cmd_line = (char *) ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(strlen(pszCmdLine ) + 1 );
 //
 //      if(cmd_line == nullptr)
 //      {

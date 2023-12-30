@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/parallelization/task_message_queue.h"
 #include "aura/platform/message_queue.h"
 #include "aura/user/user/interaction_impl.h"
 #include "aura/user/user/interaction_thread.h"
@@ -81,7 +82,7 @@ CLASS_DECL_AURA void mq_erase_window_from_all_queues(::windowing::window * pwind
 
    itask_t idthread = pinteraction->get_app()->get_itask();
 
-   message_queue * pmq = get_message_queue(idthread, false);
+   message_queue * pmq = ::acme::get()->m_ptaskmessagequeue->get_message_queue(idthread, false);
 
    if(pmq == nullptr)
    {

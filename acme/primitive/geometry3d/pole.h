@@ -59,7 +59,7 @@ public:
 
 
    pole_type(nullptr_t = nullptr) : sequence_type<NUMBER, 3>() {  }
-   pole_type(enum_no_initialize) { }
+   pole_type(no_initialize_t) { }
    template < primitive_number X, primitive_number Y, primitive_number Z >
    pole_type(X xP, Y yP, Z zP) { this->x() = xP; this->y() = yP; this->z() = zP; }
 

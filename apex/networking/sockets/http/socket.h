@@ -37,6 +37,7 @@ namespace sockets
       string               m_strLine;
       bool                 m_bRequest;
       bool                 m_bResponse;
+      ::index              m_iRequestIndex;
       //bool               m_bExpectRequest;
       memsize              m_body_size_left;
       memsize              m_body_size_downloaded;
@@ -83,6 +84,9 @@ namespace sockets
 
       bool IsResponse();
 
+      //virtual ::index http_request_index();
+
+
       /** Send response prepared with calls to methods SetHttpVersion, SetStatus, SetStatusText,
       and AddResponseHeader. */
       void SendResponse();
@@ -128,6 +132,8 @@ namespace sockets
       virtual bool http_filter_response_header(string & strKey, string_array & straValue);
 
       virtual void client_to_server(http_socket * psocket);
+
+      void finalize() override;
 
 
    };

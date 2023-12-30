@@ -217,7 +217,7 @@ namespace acme
 
       strMessage = "node_library_open Success opening " + path;
 
-      ::information() << strMessage;
+      information() << strMessage;
 
       return plibrary;
 
@@ -272,7 +272,7 @@ namespace acme
 
       }
 
-      ::informationf("\n\nGoing to touch library (1) " + string(strPath) + "\n");
+      ::acme::get()->platform()->informationf("\n\nGoing to touch library (1) " + string(strPath) + "\n");
 
       ::file::path path;
 
@@ -441,7 +441,7 @@ namespace acme
 
       }
 
-      ::informationf(strMessage + "\n\n");
+      ::acme::get()->platform()->informationf(strMessage + "\n\n");
 
       return plibrary;
 
@@ -456,6 +456,8 @@ namespace acme
 
       bool bOk = false;
       //#ifndef MEMDLEAK
+#if !REFERENCING_DEBUGGING
+
       try
       {
 
@@ -466,6 +468,7 @@ namespace acme
       {
 
       }
+#endif
       //#endif
       return bOk;
 
@@ -493,7 +496,7 @@ namespace acme
 
       }
 
-      ::informationf("\n" + strMessage + "\n\n");
+      ::acme::get()->platform()->informationf("\n" + strMessage + "\n\n");
 
       return p;
 

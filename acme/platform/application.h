@@ -18,6 +18,7 @@ namespace acme { class acme;  }
 #include "application_flags.h"
 #include "application_menu_callback.h"
 #include "context.h"
+#include "release_time_for_project.h"
 #include "acme/primitive/text/text.h"
 
 
@@ -91,19 +92,25 @@ namespace acme
       ~application() override;
       
      
-      virtual ::string release_time();
+      virtual ::release_time_for_project release_time();
 
 
-      virtual void initialize_application();
+      virtual void initialize_application(::platform::platform * pplatform);
 
 
       virtual bool is_console() const;
 
 
-      virtual ::i32 application_main();
+      virtual ::i32 application_main(::platform::platform * pplatform);
+
+      
+      void on_set_platform() override;
 
 
-      void initialize(::particle * pparticle) override;
+      void on_initialize_particle() override;
+
+
+      //void initialize(::particle * pparticle) override;
 
       
       virtual void start_application(::request* prequest);
@@ -170,6 +177,11 @@ namespace acme
 
 
       virtual void init();
+      virtual void term();
+
+      virtual void term3();
+      virtual void term2();
+      virtual void term1();
 
 
       virtual void do_install();
@@ -181,6 +193,10 @@ namespace acme
 
 
       virtual void init_instance();
+      virtual void term_instance();
+
+      void init_task() override;
+      void term_task() override;
 
 
       virtual bool has_capability(enum_application_capability eapplicationcapability) const;
@@ -223,18 +239,28 @@ namespace acme
 
 
       virtual void process_init();
+      virtual void process_term();
 
       virtual void pre_run();
       virtual void application_pre_run();
 
+      virtual void pos_run();
+      virtual void application_pos_run();
+
       virtual void init_application();
+
+      virtual void term_application();
 
       virtual ::string_array get_about_box_lines();
 
       virtual void show_about_box();
 
       bool on_application_menu_action(const ::atom & atom) override;
-      
+
+
+      virtual void add_impact_system(const ::atom & atom, const ::pointer<::user::impact_system> & pimpactsystem);
+      virtual ::pointer<::user::impact_system> impact_system(const ::atom & atom);
+
 
    };
 

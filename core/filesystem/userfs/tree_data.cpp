@@ -4,6 +4,7 @@
 #include "tree_data.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
+#include "acme/handler/topic.h"
 #include "acme/platform/application.h"
 #include "acme/platform/session.h"
 #include "acme/platform/timer.h"
@@ -65,47 +66,48 @@ namespace userfs
 
 #ifdef _DEBUG
 
-   i64 tree_data::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+   i64 tree_data::increment_reference_count()
    {
 
-      auto c = m_countReference++;
-
-#if OBJECT_REFERENCE_COUNT_DEBUG
-
-      add_ref_history(pReferer, pszObjRefDbg);
-
-#endif
-
-      return c;
+      return ::user::tree_data::increment_reference_count();
+//      auto c = m_countReference++;
+//
+//#if REFERENCING_DEBUGGING
+//
+//      add_ref_history(pReferer, pszObjRefDbg);
+//
+//#endif
+//
+//      return c;
 
    }
 
 
-   i64 tree_data::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+   i64 tree_data::decrement_reference_count()
    {
 
-      auto c = m_countReference--;
+//      auto c = m_countReference--;
+//
+//#if REFERENCING_DEBUGGING
+//
+//      if (c > 0)
+//      {
+//
+//         dec_ref_history(pReferer, pszObjRefDbg);
+//
+//      }
+//
+//#endif
 
-#if OBJECT_REFERENCE_COUNT_DEBUG
-
-      if (c > 0)
-      {
-
-         dec_ref_history(pReferer, pszObjRefDbg);
-
-      }
-
-#endif
-
-      return c;
+      return ::user::tree_data::decrement_reference_count();
 
    }
 
 
-   i64 tree_data::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+   i64 tree_data::release()
    {
 
-      i64 i = decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      i64 i = decrement_reference_count();
 
       if (i == 0)
       {
@@ -440,7 +442,7 @@ namespace userfs
    void tree_data::_001OnOpenItem(::data::tree_item * ptreeitem, const ::action_context & context)
    {
 
-      auto pitem = __new(::file::item(*ptreeitem->m_pdataitem.cast < ::userfs::item >()));
+      auto pitem = __allocate< ::file::item >(*ptreeitem->m_pdataitem.cast < ::userfs::item >());
 
       m_puserfsdocument->browse(pitem, context);
 

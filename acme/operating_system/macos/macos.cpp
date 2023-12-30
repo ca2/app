@@ -130,4 +130,15 @@ void apple_defer_nano_application_create(class ::acme::system * psystem)
 //}
 
 
+void macos_message_box_factory(::factory::factory * pfactory);
+
+
+void macos_factory(::factory::factory * pfactory)
+{
+
+   macos_message_box_factory(pfactory);
+
+}
+
+
 

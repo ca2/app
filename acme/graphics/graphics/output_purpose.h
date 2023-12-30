@@ -44,6 +44,12 @@ namespace graphics
       );
 
 
+      ~output_purpose() override;
+
+
+      void destroy() override;
+
+
 //      virtual enum_output_purpose _graphical_output_purpose();
 //
 //      inline enum_output_purpose graphical_output_purpose()

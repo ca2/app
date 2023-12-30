@@ -34,7 +34,7 @@
 
 //#ifdef __DEBUG
 //#	ifdef _MSC_VER
-//#		define memory_new ACME_NEW
+//#		define aaa_memory_new ACME_NEW
 //#	endif
 //#endif //__DEBUG
 

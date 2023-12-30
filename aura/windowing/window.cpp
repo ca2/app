@@ -144,14 +144,14 @@ namespace windowing
          if (pmessagePost->m_atom == e_message_scroll_y)
          {
 
-            ::informationf("e_message_scroll_y");
+            ::acme::get()->platform()->informationf("e_message_scroll_y");
 
 
          } 
          else if (pmessagePost->m_atom == e_message_text_composition)
          {
 
-            ::informationf("message text composition");
+            ::acme::get()->platform()->informationf("message text composition");
 
          }
 
@@ -347,7 +347,14 @@ namespace windowing
    void window::destroy_window()
    {
 
-      throw ::interface_only();
+      if (::is_set(m_pwindowing))
+      {
+
+         m_pwindowing->erase_window(this);
+
+      }
+
+      m_pwindowParent.release();
 
    }
 
@@ -1039,6 +1046,19 @@ namespace windowing
 
    void window::post_non_client_destroy()
    {
+
+      m_pplacementlog.release();
+      m_pparticleChildrenSynchronization.release();
+      m_pcursor.release();
+      m_pcopydesk.release();
+      m_pwindowing.release();
+      m_picon.release();
+      m_pwindowParent.release();
+      m_pmessagequeue.release();
+      m_puserinteractionimpl.release();
+      m_pdisplay.release();
+
+      ::channel::destroy();
 
    }
 
@@ -2247,6 +2267,14 @@ namespace windowing
    {
 
    }
+
+
+//   ::message_queue * window::get_message_queue()
+//   {
+//
+//      return m_pmessagequeue;
+//
+//   }
 
 
 } // namespace windowing

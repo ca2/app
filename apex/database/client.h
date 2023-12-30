@@ -45,7 +45,7 @@ namespace database
 
 
       virtual void data_on_before_change(client* pclient, const ::scoped_string & strKey, ::payload& payload, ::topic * ptopic);
-      virtual void data_on_after_change(client* pclient, const ::scoped_string & strKey, const ::payload & payload, ::topic * ptopic);
+      virtual void data_on_after_change(client* pclient, const ::scoped_string & strKey, ::topic * ptopic);
 
 
       virtual void _data_set(const ::scoped_string & strKey, const ::payload & payload, ::topic * ptopic = nullptr);

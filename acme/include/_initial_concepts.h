@@ -96,12 +96,31 @@ concept typed_range = requires(T t, ITERATOR_TYPE iterator)
 };
 
 
+template < typename FROM, typename TO >
+concept castable_to =
+::std::is_convertible < FROM, TO >::value ||
+::std::is_convertible < FROM, const TO >::value;
+
+template < typename FROM, typename TO >
+concept non_castable_to = !castable_to < FROM, TO >;
+
+
+template < typename FROM, typename TO >
+concept pointer_castable_to =
+::std::is_convertible < ::decay < FROM > *, TO >::value;
+
+
+template < typename FROM, typename TO >
+concept pointer_not_castable_to = !pointer_castable_to < FROM, TO >;
 
 
 template < typename FROM, typename TO_POINTER >
 concept raw_pointer_castable =
 ::std::is_convertible < FROM, TO_POINTER * >::value ||
 ::std::is_convertible < FROM, const TO_POINTER * >::value;
+
+template < typename FROM, typename TO_POINTER >
+concept non_raw_pointer_castable = !raw_pointer_castable < FROM, TO_POINTER >;
 
 
 template < typename T >
@@ -544,13 +563,37 @@ concept primitive_object = !::is_pointer < OBJECT > && !::is_function < OBJECT >
 
 
 template < typename T, typename TYPE >
-concept is_type_of = ::std::is_same < TYPE, erase_const_effemeral < T > >::value;
+concept same_as = ::std::is_same < TYPE, erase_const_effemeral < T > >::value;
+
+
+template < typename T, typename TYPE >
+concept non_same_as = !::std::is_same < TYPE, erase_const_effemeral < T > >::value;
+
+
+template < typename T, typename TYPE >
+concept non_pointer_same_as = same_as < T, TYPE > && !::is_pointer < T >;
+
 
 template < typename T >
-concept bool_type = is_type_of < T, bool >;
+concept bool_type = same_as < T, bool >;
 
 template < typename T >
-concept i8_type = is_type_of < T, ::i8 >;
+concept i8_type = same_as < T, ::i8 >;
 
 template < typename T >
-concept char_type = is_type_of < T, char >;
+concept char_type = same_as < T, char >;
+
+template < typename A_PARTICLE >
+concept a_particle = ::std::derived_from<A_PARTICLE, ::particle>;
+
+template < typename NON_PARTICLE >
+concept non_particle = !a_particle < NON_PARTICLE >;
+
+
+template < typename T, typename ...Args >
+inline T * __call__new(Args &&... args);
+
+
+
+
+

@@ -153,5 +153,5 @@ void CLASS_DECL_APEX __global_free(HGLOBAL hGlobal)
 
 
 /////////////////////////////////////////////////////////////////////////////
-// Special memory_new handler for safety pool on temp maps
+// special new handler for safety pool on temp maps
 

@@ -6,6 +6,7 @@
 //#include "acme/primitive/primitive/function.h"
 //#include "acme/primitive/primitive/object.h"
 //#include "acme/primitive/collection/procedure_array.h"
+#include "counter.h"
 #include "acme/handler/source.h"
 #include "acme/platform/implementable.h"
 
@@ -73,7 +74,7 @@ public:
 #ifdef __DEBUG
    char *                                          m_pszDebug;
 #endif
-   ::pointer<counter>                             m_pcounter;
+   ::pointer < ::parallelization::counter >        m_pcounter;
    ::task_pointer                                  m_ptask;
    ::procedure                                     m_procedureNext;
    ::procedure_array                               m_procedurea;
@@ -150,7 +151,7 @@ public:
    //virtual void do_task() override;
    //virtual void on_task() override;
 
-   virtual bool do_events();
+   virtual bool do_tasks();
    virtual bool defer_pump_message();
 
 
@@ -321,7 +322,7 @@ CLASS_DECL_ACME ::task * get_task();
 
 
 //CLASS_DECL_ACME::task* get_task();
-CLASS_DECL_ACME void set_task(task * ptask OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+CLASS_DECL_ACME void set_task(task * ptask);
 
 CLASS_DECL_ACME string get_task_name(::task * ptask);
 
@@ -372,5 +373,8 @@ inline void while_predicateicate_Sleep(int iTime, PRED pred)
 
 }
 
+
+
+CLASS_DECL_ACME void task_release();
 
 

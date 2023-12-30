@@ -79,7 +79,7 @@ namespace sockets
    }
 
    
-   void base_socket_handler::add(const socket_pointer& psocket)
+   void base_socket_handler::add(::sockets::base_socket * psocket)
    {
       
       

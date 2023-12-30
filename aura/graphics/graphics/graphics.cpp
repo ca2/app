@@ -37,6 +37,22 @@ namespace graphics
    }
 
 
+   void buffer_item::destroy()
+   {
+
+      ::particle::destroy();
+
+      m_pmutex.release();
+
+      m_pimage2.defer_destroy();
+
+      m_pgraphics.release();
+
+      m_pparticleData.release();
+
+   }
+
+
    graphics::graphics()
    {
 
@@ -54,7 +70,7 @@ namespace graphics
 
       //destroy_();
 
-      destroy();
+      //destroy();
 
    }
 
@@ -93,6 +109,10 @@ namespace graphics
 
       object::destroy();
 
+      m_pwindow.release();
+
+      m_pimpl.release();
+
       //return estatus;
 
    }
@@ -100,6 +120,27 @@ namespace graphics
 
    void graphics::destroy_buffer()
    {
+
+      for (auto & i : m_bufferitema)
+      {
+
+         try
+         {
+
+            i.defer_destroy();
+
+         }
+         catch (...)
+         {
+
+
+         }
+
+      }
+
+
+      m_bufferitema.clear();
+
 
    }
 
@@ -321,7 +362,7 @@ namespace graphics
    i64 graphics::_001GetTopLeftWeightedOpaqueArea(const ::rectangle_i32 & rect)
    {
 
-      _synchronous_lock synchronouslock(get_screen_item()->m_pmutex);
+      synchronous_lock synchronouslock(get_screen_item()->m_pmutex);
 
       return get_screen_item()->m_pimage2->_001GetTopLeftWeightedOpaqueArea(0, rect);
 

@@ -38,12 +38,13 @@ namespace nanoui
 
 
       ::write_text::font_pointer       m_pfontIcons;
-      Popup *                          m_ppopup;
+      ::pointer < Popup >              m_ppopup;
       enum_font_awesome                m_efontawesomeChevron;
 
 
       PopupButton(Widget* parent, const ::scoped_string& caption = "Untitled", int button_icon = 0);
 
+      void on_destroy_window() override;
 
       void set_chevron_icon(enum_font_awesome efontawesome) { m_efontawesomeChevron = efontawesome; }
       int chevron_icon() const { return m_efontawesomeChevron; }

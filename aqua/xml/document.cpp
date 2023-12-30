@@ -27,7 +27,7 @@ namespace xml
       m_pdocument            = this;
 //      m_pparseinfo      = ::is_set(pparseinfo) ? pparseinfo : system()->m_pxml->m_pparseinfoDefault.m_p;
 //      m_pentitiesHash   = ::is_set(pentitiesHash) ? pentitiesHash : system()->m_pxml->m_pentitiesHashDefault.m_p;
-      m_pedit           = nullptr;
+      //m_pedit           = nullptr;
 
    }
 
@@ -214,7 +214,7 @@ namespace xml
 
       }
 
-      auto pnode = __new(class node((node *) this));
+      auto pnode = __allocate< class node >((node *) this);
 
       m_nodea.add(pnode);
 
@@ -323,7 +323,7 @@ namespace xml
    //   {
 
    //      // Not found: create one.
-   //      auto pnodeRoot = __new(::xml::node((document *)this));
+   //      auto pnodeRoot = __allocate< ::xml::node >((document *)this);
 
    //      pnodeRoot->set_name("root");
    //      pnodeRoot->m_pnodeParent = (node *)this;

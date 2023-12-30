@@ -72,7 +72,7 @@ namespace filemanager
    }
 
 
-   ::experience::frame * frame::frame_experience()
+   ::pointer < ::experience::frame > frame::frame_experience()
    {
 
       auto pframe = ::simple_frame_window::frame_experience(nullptr, "022", "LightBlue");

@@ -24,7 +24,7 @@ public:
    //__declare_iterator(value_iterator, &(*this->m_pelement)->m_var);
 
 
-   property_set() { }
+   property_set() {}
    property_set(::std::initializer_list < ::payload > list);
    property_set(const property_set & set);
    property_set(property_set && set);

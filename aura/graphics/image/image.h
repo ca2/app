@@ -922,10 +922,10 @@ public:
 //
 //void __construct(::image_pointer & pimage);
 
-inline void __construct(::image_pointer & pimage, ::image * pimageSource);
+inline void __call__construct(::image_pointer & pimage, ::image * pimageSource);
 //
 //
-inline void __construct(::image_pointer & pimage, const ::size_i32 & size, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, int iGoodStride = -1, bool bPreserve = false);
+inline void __call__construct(::image_pointer & pimage, const ::size_i32 & size, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, int iGoodStride = -1, bool bPreserve = false);
 //
 //
 inline void __preserve(::image_pointer & pimage, const ::size_i32 & size, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, int iGoodStride = -1);

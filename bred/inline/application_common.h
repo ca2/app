@@ -71,7 +71,7 @@ public:
 
    virtual ::application* new_application() override
    {
-      auto papp = memory_new APPLICATION;
+      auto papp = __new< APPLICATION >();
 #ifdef NO_IMAGING
       papp->m_bImaging = false;
 #endif

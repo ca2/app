@@ -7,6 +7,8 @@
 #include "acme/parallelization/synchronous_lock.h"
 
 
+//void data_tree_item_list_sort(::data::tree_item * pitem, const ::function < bool(const ::data::tree_item *, const ::data::tree_item *) > & functionLess);
+
 namespace data
 {
 
@@ -18,7 +20,7 @@ namespace data
 
       m_bFill = false;
 
-      //m_proot = __new(tree_item);
+      //m_proot = __allocate< tree_item >();
 
       //if (m_proot == nullptr)
       //{
@@ -33,6 +35,7 @@ namespace data
 
       m_ptree = this;
 
+      m_pparent = __allocate < ::data::tree_item >();
 
    }
 
@@ -112,28 +115,30 @@ namespace data
    bool tree::contains(const tree_item * pitemParam)
    {
 
-      if (pitemParam == this)
-      {
+      return tree_item::contains(pitemParam);
 
-         return true;
+      //if (pitemParam == this)
+      //{
 
-      }
-      
-      ::data::tree_item * pitem = this;
+      //   return true;
 
-      for(; pitem != nullptr; pitem = pitem->get_item(e_tree_navigation_expanded_forward))
-      {
+      //}
+      //
+      //::data::tree_item * pitem = this;
 
-         if (pitem == pitemParam)
-         {
+      //for(; pitem != nullptr; pitem = pitem->get_item(e_tree_navigation_expanded_forward))
+      //{
 
-            return true;
+      //   if (pitem == pitemParam)
+      //   {
 
-         }
+      //      return true;
 
-      }
+      //   }
 
-      return false;
+      //}
+
+      //return false;
 
    }
 
@@ -185,6 +190,14 @@ namespace data
          pitem->erase_tree_item();
 
       }
+
+   }
+
+
+   void tree::sort_children(const ::function < bool(const ::data::tree_item * p1, const ::data::tree_item * p2) > & functionLess)
+   {
+
+      m_treeitema.predicate_sort(functionLess);
 
    }
 
@@ -343,6 +356,22 @@ namespace data
    }
 
 
+   ::data::tree_item * tree::____previous()
+   {
+
+      return nullptr;
+
+   }
+
+
+   ::data::tree_item * tree::____next()
+   {
+
+      return nullptr;
+
+   }
+
+
    ::data::tree_item * tree::insert_item(::data::item * pitemdataNew, enum_relative erelativeNewItem, ::data::tree_item *pitemRelative, bool bVoidTreeDataChangeEvent)
    {
 
@@ -365,7 +394,7 @@ namespace data
 
       }
 
-      ::pointer<::data::tree_item>pitemNew = __new(tree_item);
+      ::pointer<::data::tree_item>pitemNew = __allocate< tree_item >();
 
       if(pitemNew == nullptr)
          return nullptr;

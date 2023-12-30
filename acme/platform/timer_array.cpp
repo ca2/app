@@ -31,55 +31,34 @@ namespace acme
    bool timer_array::create_timer(::particle * pparticle, uptr uEvent, const class ::time& millisEllapse, PFN_TIMER pfnTimer, bool bPeriodic, void * pvoidData)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      delete_timer(uEvent);
 
-      if (!m_bOk)
+      ::pointer < ::timer_task > ptimer;
+      
       {
 
-         return false;
+         synchronous_lock synchronouslock(this->synchronization());
+
+         if (!m_bOk)
+         {
+
+            return false;
+
+         }
+
+         ptimer = __allocate< timer_task >();
+
+         ptimer->m_ptimercallback = this;
+
+         m_timermap[uEvent] = ptimer;
 
       }
 
-      delete_timer(uEvent);
-
-      auto ptimer = __new(timer_task);
-
       ptimer->initialize_timer(pparticle, this, uEvent, pfnTimer, pvoidData, synchronization());
-
-      ptimer->m_ptimercallback = this;
-
-      m_timera.add(ptimer);
-
-      //m_pcallback->add_composite(ptimer OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_FUNCTION_LINE);
 
       bool bOk = true;
 
-      //try
-      //{
-
-         ptimer->start(millisEllapse, bPeriodic);
-
-         //if(!)
-         //{
-
-         //   bOk = false;
-
-         //}
-
-      //}
-      //catch(...)
-      //{
-
-        // bOk = false;
-
-      //}
-
-      //if(!bOk)
-      //{
-
-      //   delete_timer(uEvent);
-
-      //}
+      ptimer->start_timer_task(millisEllapse, bPeriodic);
 
       return bOk;
 
@@ -104,22 +83,28 @@ namespace acme
    bool timer_array::delete_timer(uptr uEvent)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      ::pointer<::timer_task > ptimer;
 
-      auto pair = m_map.plookup(uEvent);
-
-      if (pair.is_null())
       {
 
-         return true;
+         synchronous_lock synchronouslock(this->synchronization());
+
+         auto pair = m_timermap.plookup(uEvent);
+
+         if (pair.is_null())
+         {
+
+            return true;
+
+         }
+
+         ptimer = pair->element2();
+
+         m_timermap.erase_item(uEvent);
 
       }
 
-      auto ptimer = pair->element2();
-
-      m_map.erase_item(uEvent);
-
-      ptimer->destroy();
+      ptimer->stop_timer_task();
 
       return true;
 
@@ -136,7 +121,7 @@ namespace acme
 
          uptr uEvent = ptimer->m_uEvent;
 
-         auto pair = m_map.plookup(uEvent);
+         auto pair = m_timermap.plookup(uEvent);
 
          if (pair.is_null())
          {
@@ -150,7 +135,7 @@ namespace acme
          if(ptimerMapped == ptimer)
          {
 
-            m_map.erase_item(uEvent);
+            m_timermap.erase_item(uEvent);
 
          }
 
@@ -159,8 +144,6 @@ namespace acme
       {
 
       }
-
-      //return true;
 
    }
 
@@ -233,11 +216,17 @@ namespace acme
 
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
-
          KEEP(m_bOk, false);
 
-         auto map = m_map;
+         decltype(m_timermap) map;
+
+         {
+
+            _synchronous_lock synchronouslock(this->synchronization());
+
+            map = m_timermap;
+
+         }
 
          for (auto & pair : map)
          {
@@ -247,12 +236,14 @@ namespace acme
             try
             {
 
-               synchronous_lock synchronouslock(ptimer->synchronization());
+               synchronous_lock _synchronouslockTimer(ptimer->synchronization());
 
                ptimer->clear_flag(e_flag_success);
 
                if(!ptimer->m_bHandling)
                {
+
+                  _synchronouslockTimer.unlock();
 
                   delete_timer(pair.element1());
 
@@ -270,11 +261,17 @@ namespace acme
 
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
-
          KEEP(m_bOk, false);
 
-         auto map = m_map;
+         decltype(m_timermap) map;
+
+         {
+
+            synchronous_lock synchronouslock(this->synchronization());
+
+            map = m_timermap;
+
+         }
 
          for (auto & pair : map)
          {

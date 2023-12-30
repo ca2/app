@@ -67,7 +67,7 @@ namespace nano
    bool display::display_posted_routine_step()
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       if (m_procedureaPost.has_element())
       {

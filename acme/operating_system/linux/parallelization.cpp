@@ -75,7 +75,7 @@
 //
 //                            };
 //
-//   auto psystem = ::platform::get()->system();
+//   auto psystem = this->platform()->system();
 //
 //   psystem->windowing_post(predicate);
 //
@@ -146,6 +146,8 @@ void _do_tasks()
       x11_process_messages();
 
    }
+
+   psystem->node()->defer_do_main_tasks();
 
 }
 

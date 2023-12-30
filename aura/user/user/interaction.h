@@ -313,6 +313,7 @@ namespace user
       ::user::frame *                           m_puserframeTopLevel;
       ::user::frame *                           m_puserframeParent;
       bool                                      m_bAutoResize;
+      bool                                      m_bNeedAutoResizePerformLayout;
 
 
       ::rectangle_f64                           m_rectangleClip;
@@ -636,9 +637,9 @@ namespace user
 //      inline bool is_fps_interest() const { return is_fps_interest(this); }
 //
 //
-//      void add_fps_interest(::particle * pparticle) override;
-//      void erase_fps_interest(::particle * pparticle) override;
-//      bool is_fps_interest(const ::particle * pparticle) const override;
+      void add_fps_interest(::particle * pparticle) override;
+      void erase_fps_interest(::particle * pparticle) override;
+      bool is_fps_interest(const ::particle * pparticle) const override;
 //      bool has_fps_interest() const noexcept;
 //
 
@@ -809,7 +810,7 @@ namespace user
       //void window_move(i32 x, i32 y) override;
 
 
-      //auto fps_interest() { return __new(::fps_interest(this)); }
+      //auto fps_interest() { return __allocate< ::fps_interest >(this); }
 
       virtual bool should_save_window_rectangle();
       
@@ -878,6 +879,7 @@ namespace user
       virtual void set_reposition(bool bSetThis = true);
       virtual void _set_reposition(bool bSetThis = true);
       virtual void set_need_layout();
+      virtual void set_recalculate_clip_rectangle();
       //void set_need_layout() { m_bNeedLayout = true; }
       void set_need_redraw(const ::rectangle_i32_array& rectangleNeedRedraw = {}, ::draw2d::graphics * pgraphics = nullptr, ::function < void() > function= nullptr, bool bAscendants = true) override;
       virtual bool needs_to_draw(::draw2d::graphics * pgraphics, const ::rectangle_i32& rectangleNeedsToDraw = {});
@@ -1050,6 +1052,9 @@ namespace user
 
       virtual void set_current_item(::item * pitem, const ::action_context & action_context);
       virtual ::item_pointer current_item();
+
+
+      virtual ::item_pointer stock_item(::enum_element eelement);
 
 
       //virtual ::item_pointer hover_item();
@@ -1751,6 +1756,7 @@ namespace user
       //DECLARE_MESSAGE_HANDLER(on_message_user_post);
       DECLARE_MESSAGE_HANDLER(on_message_size);
       DECLARE_MESSAGE_HANDLER(on_message_move);
+      DECLARE_MESSAGE_HANDLER(on_message_prio_create);
       DECLARE_MESSAGE_HANDLER(on_message_create);
       DECLARE_MESSAGE_HANDLER(on_message_after_create);
       DECLARE_MESSAGE_HANDLER(on_message_non_client_calculate_size);

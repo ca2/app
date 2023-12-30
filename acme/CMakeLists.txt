@@ -139,6 +139,8 @@ list(APPEND library_source
    #exception/file_open.h
    exception/interface_only.cpp
    exception/io.cpp
+   exception/library_not_loaded.cpp
+   exception/library_not_loaded.h
    exception/no_memory.cpp
    exception/no_memory.h
    exception/not_implemented.cpp
@@ -263,31 +265,42 @@ list(APPEND library_source
    #include/_.cpp
    #include/path.h        #primitive/collection/comparable_array.cpp
    #memory/alloc.cpp
+   memory/_.cpp
    memory/allocate_processor_cache_oriented.cpp
-   memory/allocate_system_heap.cpp
+   #memory/allocate_system_heap.cpp
    memory/allocate_x86_cache_oriented.cpp
    memory/allocation.cpp
-   memory/array_memory_allocate.cpp
-   memory/array_memory_allocate.h
+   #memory/array_memory_allocate.cpp
+   #memory/array_memory_allocate.h
    memory/counter.cpp
+   #memory/memory_allocate.cpp
+   #memory/memory_allocate.h
+   memory/management.cpp
+   memory/management.h
    memory/memory.cpp
+   memory/memory.h
    memory/memory_allocate.cpp
    memory/memory_allocate.h
    memory/memory_management.cpp
    memory/memory_management.h
    #memory/new.cpp
    memory/os_alloc.cpp
-   memory/os_alloc.h
-   memory/os_impl/malloc.cpp
+   #memory/os_alloc.h
+   #memory/os_impl/malloc.cpp
+   memory/heap/std.cpp
+   memory/allocator/default.cpp
+   memory/allocator/malloc.cpp
    memory/paged.h
    memory/paged_large.cpp
-   memory/property_memory_allocate.cpp
-   memory/property_memory_allocate.h
-   memory/secondary_memory_allocate.cpp
-   memory/secondary_memory_allocate.h
-   memory/string_memory_allocate.cpp
-   memory/string_memory_allocate.h
-   memory/string_memory_allocator.h
+#   memory/property_memory_allocate.cpp
+#   memory/property_memory_allocate.h
+#   memory/secondary_memory_allocate.cpp
+#   memory/secondary_memory_allocate.h
+   memory/simple_memory_allocate.cpp
+   memory/simple_memory_allocate.h
+#   memory/string_memory_allocate.cpp
+#   memory/string_memory_allocate.h
+#   memory/string_memory_allocator.h
    #networking/top_level_domain_list.cpp
    #networking/net.cpp
    #networking/net.h
@@ -301,8 +314,8 @@ list(APPEND library_source
    operating_system/_const_console.h
    operating_system/ansi/_pthread.h
    #operating_system/ansi/base.cpp
-   operating_system/ansi/callstack.cpp
-   operating_system/ansi/callstack.h
+   operating_system/ansi/call_stack.cpp
+   operating_system/ansi/call_stack.h
    operating_system/ansi/datetime.cpp
    operating_system/ansi/file.cpp
    operating_system/ansi/file_raw.cpp
@@ -323,6 +336,8 @@ list(APPEND library_source
    #operating_system/http.cpp
    operating_system/main_window.cpp
    operating_system/main_window.h
+   operating_system/message_box.cpp
+   operating_system/message_box.h
    operating_system/parallelization.cpp
    operating_system/process.h
    operating_system/summary.cpp
@@ -357,6 +372,8 @@ list(APPEND library_source
    parallelization/task.cpp
    parallelization/task_flag.h
    parallelization/task_keep.h
+   parallelization/task_message_queue.cpp
+   parallelization/task_message_queue.h
    parallelization/task_payload.h
    #parallelization/thread.cpp
    #parallelization/thread_os.cpp
@@ -367,6 +384,8 @@ list(APPEND library_source
    platform/_synchronization.h
    platform/acme.cpp
    platform/acme.h
+   platform/allocator.cpp
+   platform/allocator.h
    #platform/acme_main_struct.cpp
    #platform/acme_main_struct.h
    #platform/apex_main_data.cpp
@@ -603,13 +622,13 @@ list(APPEND library_source
    primitive/mathematics/cast.h
    primitive/mathematics/cast.inl
    primitive/mathematics/classes.h
+   primitive/mathematics/clip.h
    primitive/mathematics/complex.h
    primitive/mathematics/cvt.cpp
    primitive/mathematics/cvt_g.cpp
    primitive/mathematics/filestream.h
    #primitive/mathematics/index.h
    primitive/mathematics/int_biunique.cpp
-   primitive/mathematics/math_clip.h
    primitive/mathematics/int_biunique.h
    primitive/mathematics/mathematics.cpp
    primitive/mathematics/mathematics.h
@@ -644,7 +663,7 @@ list(APPEND library_source
    primitive/primitive/_.cpp
    primitive/primitive/_.h
    #primitive/primitive/_atom_impl.h
-   primitive/primitive/_c_memory.h
+   #primitive/primitive/_c_memory.h
    primitive/primitive/_defer.h
    #primitive/primitive/_factory_impl.h
    #primitive/primitive/_factory_prefix.h
@@ -715,7 +734,7 @@ list(APPEND library_source
    primitive/primitive/memory.h
    primitive/primitive/memory_base.cpp
    primitive/primitive/memory_base.h
-   primitive/primitive/memory_c.cpp
+   #primitive/primitive/memory_c.cpp
    primitive/primitive/memory_container.cpp
    primitive/primitive/memory_container.h
    #primitive/primitive/natural.h
@@ -732,6 +751,8 @@ list(APPEND library_source
    primitive/primitive/payload2.h
    primitive/primitive/pointer.h
    primitive/primitive/pointer2.h
+   primitive/primitive/primitive.cpp
+   primitive/primitive/primitive.h
    primitive/primitive/property.cpp
    primitive/primitive/property_object.cpp
    primitive/primitive/property_object.cpp
@@ -797,6 +818,7 @@ list(APPEND library_source
    primitive/string/c/encoding_impl.h
    primitive/string/c/_impl.h
    primitive/string/c/ancient/_.h
+   primitive/string/c/ancient/_c.cpp
    primitive/string/c/coupling_impl.cpp
    primitive/string/c/extension/wd16.h
    primitive/string/c/ancient/wd16.h
@@ -885,6 +907,7 @@ list(APPEND library_source
    primitive/string/command_line.cpp
    primitive/string/command_line.h
    primitive/string/composite.h
+   primitive/string/c_string.h
    #primitive/string/dup.cpp
    primitive/string/encoding_exception.cpp
    primitive/string/encoding_exception.h
@@ -974,7 +997,7 @@ list(APPEND library_source
    #primitive/time/_unit.h
    primitive/time/_unit_operator.h
    primitive/time/time.cpp
-   primitive/time/time.h
+   #primitive/time/
    #primitive/time/time_operator.h
    promise.cpp
    regular_expression/_regular_expression.h
@@ -1294,8 +1317,9 @@ list(APPEND library_source
    exception/_.h
    exception/_c.h
    exception/_dump_context.h
+   exception/call_stack.cpp
    exception/call_stack.h
-   exception/callstack.h
+   #exception/callstack.h
    exception/cancel.h
    exception/dump_context.h
    exception/exception.cpp
@@ -1371,7 +1395,7 @@ list(APPEND library_source
    graphics/draw2d/color.h
    #graphics/draw2d/colorref_array.h
    include/_.h
-   include/_c.h
+   #include/_c.h
    include/_c_bridge.h
    include/_include.h
    include/_setup.h
@@ -1390,23 +1414,37 @@ list(APPEND library_source
    inline/console.h
    inline/console_common.h
    ios_aura/ios_aura.h
-   memory/_heap.h
+   #memory/_heap.h
    memory/_new.h
    memory/align_byte_count.h
    memory/allocate.h
    memory/allocate_processor_cache_oriented.h
-   memory/allocate_system_heap.cpp
+   #memory/allocate_system_heap.cpp
+   memory/allocator.cpp
+   memory/allocator.h
    memory/allocation.h
-   memory/heap_.h
-   memory/heap_c.h
+   #memory/heap_.h
+   #memory/heap_c.h
    memory/heap_item.h
    memory/heap_item_array.h
    memory/heap_memory.h
+   memory/heap.cpp
+   memory/heap.h
    memory/malloc.h
    memory/memory.cpp
    memory/memory.h
-   memory/memory_allocator.h
-   memory/os_alloc.h
+   #memory/memory_allocator.h
+   #memory/os_alloc.h
+   memory/plex.cpp
+   memory/plex.h
+   memory/plex_heap.cpp
+   memory/plex_heap.h
+   memory/plex_heap_alloc.cpp
+   memory/plex_heap_alloc.h
+   memory/plex_heap_alloc_array.cpp
+   memory/plex_heap_alloc_array.h
+   memory/plex_heap_alloc_sync.cpp
+   memory/plex_heap_alloc_sync.h
    operating_system/_.h
    operating_system/_api.cpp
    operating_system/_application.h
@@ -1416,7 +1454,7 @@ list(APPEND library_source
    operating_system/ansi/_c.h
    operating_system/ansi/ansios_file.h
    operating_system/ansi/binreloc.h
-   operating_system/ansi/callstack.h
+   operating_system/ansi/call_stack.h
    operating_system/ansi/datetime_c.h
    operating_system/ansi/file.h
    operating_system/ansi/file_c.h
@@ -1436,11 +1474,13 @@ list(APPEND library_source
    operating_system/parallelization.h
    operating_system/pipe.cpp
    operating_system/pipe.h
-   operating_system/posix/callstack.cpp
+   operating_system/posix/call_stack.cpp
    operating_system/posix/file.h
    operating_system/posix/mq_base.h
    operating_system/pthread/pthread_np.cpp
    operating_system/process.cpp
+   operating_system/security_attributes.cpp
+   operating_system/security_attributes.h
    operating_system/shared_posix/c_error_number.cpp
    operating_system/shared_posix/c_error_number.h
    operating_system/shared_posix/earth_time_shift.cpp
@@ -1512,6 +1552,8 @@ list(APPEND library_source
    platform/_platform.h
    platform/auto.h
    platform/auto_pointer.h
+   platform/c.cpp
+   platform/c.h
    platform/class.h
    platform/cmp.h
    platform/cmp2.h
@@ -1539,9 +1581,13 @@ list(APPEND library_source
    platform/muldiv64.cpp
    platform/nanosecond_timer.h
    platform/number.h
-   platform/object_reference_count_debug.cpp
-   platform/object_reference_count_debug.h
-   platform/object_reference_count_debug_impl.h
+   platform/_referencing_debugging.h
+   platform/reference_item.cpp
+   platform/reference_item.h
+   platform/referencing_debugging.cpp
+   platform/referencing_debugging.h
+   platform/reference_item_array.cpp
+   platform/reference_item_array.h
    platform/object_type_counter.cpp
    platform/object_type_counter.h
    platform/printf.h
@@ -1807,6 +1853,18 @@ if (WIN32)
       #operating_system/windows/base/print_job.h
       #operating_system/windows/base/_windows.h
       #operating_system/windows/console.h
+      operating_system/windows/callstack.cpp
+      operating_system/windows/file1.cpp
+      operating_system/windows/heap_allocator.cpp
+      operating_system/windows/heap_allocator.h
+      operating_system/windows/library.cpp
+      operating_system/windows/memory.cpp
+      operating_system/windows/message_box.cpp
+      operating_system/windows/parallelization.cpp
+      operating_system/windows/process.cpp
+      operating_system/windows/thread.cpp
+      operating_system/windows/user.cpp
+      operating_system/windows/windows.cpp
       #operating_system/windows/exception.h
       #operating_system/windows/
       #operating_system/windows/file.h
@@ -1820,16 +1878,33 @@ if (WIN32)
       #operating_system/windows/_operating_system_windows.h
       #operating_system/windows/_operating_system_windows_private.h
       #operating_system/windows/_windows.h
-      operating_system/windows/nano_user/nano_brush.cpp
-      operating_system/windows/nano_user/nano_brush.h
-      operating_system/windows/nano_user/nano_device.cpp
-      operating_system/windows/nano_user/nano_device.h
-      operating_system/windows/nano_user/nano_font.cpp
-      operating_system/windows/nano_user/nano_font.h
-      operating_system/windows/nano_user/nano_object.h
-      operating_system/windows/nano_user/nano_object.cpp
-      operating_system/windows/nano_user/nano_pen.cpp
-      operating_system/windows/nano_user/nano_pen.h
+      operating_system/windows/nano/_nano.cpp
+      operating_system/windows/nano/brush.cpp
+      operating_system/windows/nano/brush.h
+      operating_system/windows/nano/device.cpp
+      operating_system/windows/nano/device.h
+      operating_system/windows/nano/font.cpp
+      operating_system/windows/nano/font.h
+      operating_system/windows/nano/object.h
+      operating_system/windows/nano/object.cpp
+      operating_system/windows/nano/pen.cpp
+      operating_system/windows/nano/pen.h
+      operating_system/windows/nano/window.cpp
+      operating_system/windows/nano/window.h
+      operating_system/windows/nano_http/_nano_http.cpp
+      operating_system/windows/nano_http/_nano_http.h
+      operating_system/windows/nano_http/hinternet.cpp
+      operating_system/windows/nano_http/hinternet.h
+      operating_system/windows/nano_http/http.cpp
+      operating_system/windows/nano_http/http.h
+      operating_system/windows/nano_http/http_connect.cpp
+      operating_system/windows/nano_http/http_connect.h
+      operating_system/windows/nano_http/http_get.cpp
+      operating_system/windows/nano_http/http_get.h
+      operating_system/windows/nano_http/http_request.cpp
+      operating_system/windows/nano_http/http_request.h
+      operating_system/windows/nano_http/http_session.cpp
+      operating_system/windows/nano_http/http_session.h
    )
 else ()
 
@@ -1905,7 +1980,24 @@ if (${WIN32} OR ${UWP})
       #      operating_system/windows_common/base.cpp
       #      operating_system/windows_common/bstring.cpp
       #      operating_system/windows_common/com.cpp
-      #      operating_system/windows_common/debug.cpp
+      operating_system/windows_common/debug.cpp
+      #operating_system/windows_common/desktop.cpp
+      operating_system/windows_common/dll.cpp
+      operating_system/windows_common/file.cpp
+      operating_system/windows_common/file.h
+      operating_system/windows_common/file1.cpp
+      operating_system/windows_common/find_file.cpp
+      operating_system/windows_common/find_file.h
+      operating_system/windows_common/handle.cpp
+      operating_system/windows_common/handle.h
+      operating_system/windows_common/idn.cpp
+      operating_system/windows_common/library.cpp
+      operating_system/windows_common/parallelization.cpp
+      operating_system/windows_common/process.cpp
+      operating_system/windows_common/time.cpp
+      operating_system/windows_common/unicode.cpp
+      operating_system/windows_common/user.cpp
+      operating_system/windows_common/windows_common.cpp
       #      operating_system/windows_common/file.cpp
       #operating_system/windows_common/file_c.cpp
       #operating_system/windows_common/graphics.cpp
@@ -2057,6 +2149,22 @@ if (${LINUX})
 endif ()
 
 
+if(${LINUX} OR ${FREEBSD})
+
+
+   list(APPEND library_source
+      operating_system/motif/message_box.cpp
+      operating_system/motif/message_box.h
+      operating_system/motif/application.cpp
+      operating_system/motif/application.h
+   )
+
+   list(APPEND system_libraries Xm)
+
+   list(APPEND extra_pkg_modules xt)
+
+endif()
+
 if (MACOS)
    list(APPEND library_source
       operating_system/cross/universal_windows/cross_metrowin_user.cpp
@@ -2083,6 +2191,8 @@ if (MACOS)
       #operating_system/macos/list_serial_ports.cpp
       #operating_system/macos/lock.cpp
       #operating_system/macos/MessageBoxA.cpp
+      operating_system/macos/message_box.cpp
+      operating_system/macos/message_box.h
       #operating_system/macos/mm.mm
       #operating_system/macos/mm_graphics.mm
       #operating_system/macos/mm_user.mm
@@ -2367,7 +2477,7 @@ if (${FREEBSD})
       operating_system/freebsd/_freebsd2.h
       operating_system/freebsd/_user.h
       operating_system/freebsd/application.h
-      operating_system/freebsd/callstack.cpp
+      operating_system/freebsd/call_stack.cpp
       operating_system/freebsd/cross_win_file.cpp
       operating_system/freebsd/cross_win_file.h
       operating_system/freebsd/cross_win_gdi.cpp
@@ -2413,8 +2523,16 @@ if (${FREEBSD})
 
 endif ()
 
+if (${LINUX} OR ${FREEBSD} OR ${NETBSD} OR ${OPENBSD})
 
-if (LINUX OR APPLE OR SOLARIS OR FREEBSD)
+   list(APPEND library_source
+      operating_system/posix/calculate_edesktop.cpp
+   )
+
+endif()
+
+
+if (${LINUX} OR ${FREEBSD} OR ${NETBSD} OR ${OPENBSD} OR ${APPLE} OR ${SOLARIS})
 
 
    list(APPEND library_source
@@ -2422,11 +2540,11 @@ if (LINUX OR APPLE OR SOLARIS OR FREEBSD)
       operating_system/posix/_posix.h
       operating_system/posix/file.cpp
       operating_system/posix/chldstatus.cpp
-      operating_system/posix/calculate_edesktop.cpp
       operating_system/posix/file_lock.cpp
       operating_system/posix/file_lock.h
       operating_system/posix/idn.cpp
       #operating_system/posix/local_memory_map.cpp
+      operating_system/posix/memory.cpp
       operating_system/posix/process.cpp
       operating_system/posix/parallelization.cpp
       operating_system/posix/parallelization_pthread.cpp
@@ -2446,6 +2564,7 @@ if(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
 
    list(APPEND library_source
       operating_system/ansi/binreloc.cpp
+      operating_system/ansi/acme.cpp
    )
 
 
@@ -2456,14 +2575,14 @@ if(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
 
 
    list(APPEND library_source
-      operating_system/posix/callstack.cpp
+      operating_system/posix/call_stack.cpp
    )
 
 
 endif ()
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source})
+add_library(${PROJECT_NAME} SHARED ${library_source} )
 add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
 
@@ -2480,12 +2599,14 @@ set_target_properties(acme PROPERTIES LINKER_LANGUAGE CXX)
 
 if (MSVC)
 
+   message(STATUS "acme LIBRARY_OUTPUT_PATH is ${LIBRARY_OUTPUT_PATH}")
+   message(STATUS "some target link options ${PROJECT_NAME} PRIVATE \"/IMPLIB:${LIBRARY_OUTPUT_PATH}/acme.lib\"")
 
-   target_compile_options(acme PRIVATE "/MD$<$<CONFIG:Debug>:d>")
-   target_link_options(acme PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
-   target_link_options(acme PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/acme.lib")
-   target_link_options(acme PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/acme.def")
-   target_link_libraries(acme PRIVATE zlib dbghelp imagehlp dwmapi Setupapi Windowscodecs Winmm ws2_32 Crypt32 Normaliz version Secur32 gdiplus Shlwapi Imm32.lib)
+   target_compile_options(${PROJECT_NAME} PRIVATE "/MD$<$<CONFIG:Debug>:d>")
+   target_link_options(${PROJECT_NAME} PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
+   target_link_options(${PROJECT_NAME} PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/acme.lib")
+   #target_link_options(${PROJECT_NAME} PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/acme.def")
+   target_link_libraries(${PROJECT_NAME} PRIVATE archive zlib dbghelp imagehlp dwmapi Setupapi Windowscodecs Winmm ws2_32 Crypt32 Normaliz version Secur32 gdiplus Shlwapi Imm32.lib)
 
 
 elseif(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
@@ -2522,10 +2643,13 @@ endif()
    target_link_libraries(${PROJECT_NAME} PRIVATE ${system_libraries} ${PKGCONFIG_LIBRARIES})
    target_link_libraries(static_${PROJECT_NAME} PRIVATE ${system_libraries} ${PKGCONFIG_LIBRARIES})
 
+   target_link_directories(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LIBRARY_DIRS})
    target_link_options(${PROJECT_NAME} PRIVATE ${GLOBAL_EXTRA_LINKER_FLAGS} -Wl${GLOBAL_EXTRA_LINK_FLAGS},-z,defs)
    target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
 
    message(STATUS "PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
+
+   message(STATUS "PKGCONFIG_LIBRARY_DIRS is " ${PKGCONFIG_LIBRARY_DIRS})
 
 
 elseif (MACOS)
@@ -2537,9 +2661,9 @@ elseif (MACOS)
 endif ()
 
 
-target_link_directories(acme PRIVATE ${LIBRARY_OUTPUT_PATH})
-target_link_directories(acme PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../operating_system/storage-${OPERATING_SYSTEM_NAME}/library/x64/basis)
-target_link_directories(acme PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../operating_system/storage-${OPERATING_SYSTEM_NAME}/third/library/x64/basis)
+target_link_directories(${PROJECT_NAME}  PRIVATE ${LIBRARY_OUTPUT_PATH})
+target_link_directories(${PROJECT_NAME}  PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../operating_system/storage-${OPERATING_SYSTEM_NAME}/library/x64/basis)
+target_link_directories(${PROJECT_NAME}  PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../operating_system/storage-${OPERATING_SYSTEM_NAME}/third/library/x64/basis)
 
 
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})
@@ -2550,7 +2674,8 @@ target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories
 target_include_directories(static_${PROJECT_NAME} PRIVATE ${library_include_directories})
 
 
-target_compile_definitions(acme PRIVATE _ACME_LIBRARY)
+target_compile_definitions(${PROJECT_NAME} PRIVATE "_${PROJECT_NAME}_project")
+target_compile_definitions(static_${PROJECT_NAME} PRIVATE "_${PROJECT_NAME}_project")
 
 #if(${LINUX})
 #set(third_binaries "${CMAKE_CURRENT_SOURCE_DIR}/../../../operating_system/storage-${OPERATING_SYSTEM_NAME}/third/binary/x64/basis/")

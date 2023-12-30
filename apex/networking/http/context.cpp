@@ -524,6 +524,23 @@ namespace http
    }
 
 
+   void context::finalize()
+   {
+
+
+      m_pmutexPac.release();
+      m_mapPac.clear();
+      m_pmutexProxy.release();
+      m_mapProxy.clear();
+
+
+      http_system_destruct();
+
+      ::object::finalize();
+
+   }
+
+
    i32 context::auto_config_proxy_count()
    {
 
@@ -617,7 +634,7 @@ namespace http
    //{
 
    //   throw ::exception(todo, "scripting");
-   //   //m_pjs = memory_new tinyjs();
+   //   //m_pjs = __new< tinyjs >();
 
    //}
 
@@ -626,7 +643,7 @@ namespace http
    {
 
       throw ::exception(todo, "scripting");
-      //m_pjs = memory_new tinyjs();
+      //m_pjs = __new< tinyjs >();
 
    }
 
@@ -1172,7 +1189,7 @@ namespace http
 
       string strSessId;
 
-      psession = __new(::sockets::http_session(strProtocol, strHost));
+      psession = __allocate< ::sockets::http_session >(strProtocol, strHost);
 
       /*::pointer<::account::user>puser;
 
@@ -1714,7 +1731,7 @@ namespace http
 //            else
 //            {
 //
-//               set["get_memory"] = __new(memory(psession->GetDataPtr(), psession->GetContentLength()));
+//               set["get_memory"] = __allocate< memory >(psession->GetDataPtr(), psession->GetContentLength());
 //
 //            }
 //
@@ -1763,7 +1780,6 @@ namespace http
       return str;
 
    }
-
 
 
    bool context::http_get(::pointer<::sockets::http_client_socket>& psocket, const ::scoped_string & scopedstrUrl1, property_set & set)
@@ -2018,7 +2034,7 @@ namespace http
 
          psockethandler = __create < ::sockets::socket_handler >();
 
-         psocket->initialize_socket(psockethandler);
+         //psocket->SetSocketHandler(psockethandler);
 
       }
 
@@ -2234,7 +2250,7 @@ namespace http
 
       //auto passociation = psockethandler->new_association(psocket);
 
-      psockethandler->add(psocket);
+      psockethandler->add(psocket->base_socket_composite());
 
       i32 iIteration = 1;
 
@@ -2640,7 +2656,7 @@ namespace http
          else
          {
 
-            set["get_memory"] = __new(memory(psocket->GetDataPtr(), psocket->GetContentLength()));
+            set["get_memory"] = __allocate< memory >(psocket->GetDataPtr(), psocket->GetContentLength());
 
          }
 

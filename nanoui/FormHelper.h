@@ -102,12 +102,12 @@ NAMESPACE_END(detail)
  *
  *    // [ ... initialize NanoGUI, construct pscreen ... ]
  *
- *    FormHelper* h = memory_new FormHelper(pscreen);
+ *    FormHelper* h = __new< FormHelper >(pscreen);
  *
- *    // Add a memory_new windows pwidget
+ *    // Add a new windows pwidget
  *    h->add_window(sequence2_i32(10,10),"Menu");
  *
- *    // Start a memory_new group
+ *    // Start a new group
  *    h->add_group("Group 1");
  *
  *    // Expose an integer variable by reference
@@ -119,7 +119,7 @@ NAMESPACE_END(detail)
  *      [&]() { return *a_float; },
  *      "float variable");
  *
- *    // add a memory_new button
+ *    // add a new button
  *    h->add_button("Button", [&]() { std::cout << "Button pressed" << std::endl; });
  *
  * \endrst
@@ -130,13 +130,13 @@ NAMESPACE_END(detail)
       FormHelper(Screen * pscreen) : m_pscreen(pscreen) { }
 
       
-      /// Add a memory_new top-level window
+      /// Add a new top-level window
       Window * add_window(const sequence2_i32 & pos,
          const ::scoped_string & title = "Untitled")
       {
          ASSERT(m_pscreen);
-         m_pwindow = memory_new Window(m_pscreen, title);
-         m_playout = memory_new AdvancedGridLayout({ 10, 0, 10, 0 }, {});
+         m_pwindow = __allocate< Window >(m_pscreen, title);
+         m_playout = __allocate< AdvancedGridLayout >(i32_array{ 10, 0, 10, 0 }, i32_array{});
          m_playout->set_margin(10);
          m_playout->set_col_stretch(2, 1);
          m_pwindow->set_position(pos);
@@ -146,10 +146,10 @@ NAMESPACE_END(detail)
       }
       
 
-      /// Add a memory_new group that may contain several sub-widgets
+      /// Add a new group that may contain several sub-widgets
       Label * add_group(const ::scoped_string & caption)
       {
-         Label * plabel = memory_new Label(m_pwindow, caption, m_group_font_name, m_group_font_size);
+         Label * plabel = __allocate< Label >(m_pwindow, caption, m_group_font_name, m_group_font_size);
          if (m_playout->row_count() > 0)
             m_playout->append_row(m_pre_group_spacing); /* Spacing */
          m_playout->append_row(0);
@@ -158,15 +158,15 @@ NAMESPACE_END(detail)
          return plabel;
       }
 
-      /// Add a memory_new data pwidget controlled using custom getter/setter functions
+      /// Add a new data pwidget controlled using custom getter/setter functions
       template <typename Type> detail::FormWidget<Type> *
          add_variable(const ::scoped_string & label,
                       const ::function<void(const Type &)> & setter,
             const ::function<Type()> & getter,
                       bool editable = true)
       {
-         Label * plabel_w = memory_new Label(m_pwindow, label, m_label_font_name, m_label_font_size);
-         auto pwidget = memory_new detail::FormWidget<Type>(m_pwindow);
+         Label * plabel_w = __allocate< Label >(m_pwindow, label, m_label_font_name, m_label_font_size);
+         auto pwidget = __allocate< detail::FormWidget<Type> >(m_pwindow);
          auto refresh = [pwidget, getter] {
             Type value = getter(), current = pwidget->value();
             if (value != current)
@@ -187,7 +187,7 @@ NAMESPACE_END(detail)
          return pwidget;
       }
 
-      /// Add a memory_new data pwidget that exposes a raw variable in memory
+      /// Add a new data pwidget that exposes a raw variable in memory
       template <typename Type> detail::FormWidget<Type> *
          add_variable(const ::scoped_string & label, Type & value, bool editable = true)
       {
@@ -201,7 +201,7 @@ NAMESPACE_END(detail)
       /// Add a button with a custom callback
       Button * add_button(const ::scoped_string & label, const ::function<void()> & cb)
       {
-         Button * pbutton = memory_new Button(m_pwindow, label);
+         Button * pbutton = __allocate< Button >(m_pwindow, label);
          pbutton->set_callback(cb);
          pbutton->set_fixed_height(25);
          if (m_playout->row_count() > 0)
@@ -219,7 +219,7 @@ NAMESPACE_END(detail)
             m_playout->set_anchor(pwidget, AdvancedGridLayout::Anchor(1, m_playout->row_count() - 1, 3, 1));
          }
          else {
-            Label * plabel_w = memory_new Label(m_pwindow, label, m_label_font_name, m_label_font_size);
+            Label * plabel_w = __allocate< Label >(m_pwindow, label, m_label_font_name, m_label_font_size);
             m_playout->set_anchor(plabel_w, AdvancedGridLayout::Anchor(1, m_playout->row_count() - 1));
             m_playout->set_anchor(pwidget, AdvancedGridLayout::Anchor(3, m_playout->row_count() - 1));
          }
@@ -301,7 +301,7 @@ NAMESPACE_END(detail)
       int m_label_font_size = 16;
       /// The font size for non-group / non-label widgets.
       int m_widget_font_size = 16;
-      /// The spacing used **before** memory_new groups.
+      /// The spacing used **before** new groups.
       int m_pre_group_spacing = 15;
       /// The spacing used **after** each group.
       int m_post_group_spacing = 5;
@@ -317,7 +317,7 @@ NAMESPACE_BEGIN(detail)
  */
    template <> class FormWidget<bool, std::true_type> : public CheckBox {
    public:
-      /// Creates a memory_new FormWidget with underlying type CheckBox.
+      /// Creates a new FormWidget with underlying type CheckBox.
       FormWidget(Widget * p) : CheckBox(p, "") { set_fixed_width(20); }
 
       /// Pass-through function for \::pointer nanoui::CheckBox::set_checked.
@@ -340,7 +340,7 @@ template <typename T> class FormWidget<T, typename std::is_enum<T>::type> :
    public ComboBox
 {
 public:
-   /// Creates a memory_new FormWidget with underlying type ComboBox.
+   /// Creates a new FormWidget with underlying type ComboBox.
    FormWidget(Widget * p) : ComboBox(p) { }
 
    /// Pass-through function for \::pointer nanoui::ComboBox::selected_index.
@@ -374,7 +374,7 @@ public:
  */
 template <typename T> class FormWidget<T, typename std::is_integral<T>::type> : public IntBox<T> {
 public:
-   /// Creates a memory_new FormWidget with underlying type IntBox.
+   /// Creates a new FormWidget with underlying type IntBox.
    FormWidget(Widget * p) : IntBox<T>(p) { this->set_alignment(TextBox::e_alignment_right); }
 };
 
@@ -386,7 +386,7 @@ public:
  */
 template <typename T> class FormWidget<T, typename std::is_floating_point<T>::type> : public FloatBox<T> {
 public:
-   /// Creates a memory_new FormWidget with underlying type FloatBox.
+   /// Creates a new FormWidget with underlying type FloatBox.
    FormWidget(Widget * p) : FloatBox<T>(p) { this->set_alignment(TextBox::e_alignment_right); }
 };
 
@@ -395,7 +395,7 @@ public:
  */
 template <> class FormWidget<::string, std::true_type> : public TextBox {
 public:
-   /// Creates a memory_new FormWidget with underlying type TextBox.
+   /// Creates a new FormWidget with underlying type TextBox.
    FormWidget(Widget * p) : TextBox(p) { set_alignment(TextBox::e_alignment_left); }
 
    /// Pass-through function for \::pointer nanoui::TextBox::set_callback.
@@ -409,7 +409,7 @@ public:
  */
 template <> class FormWidget<::color::color, std::true_type> : public ColorPicker {
 public:
-   /// Creates a memory_new FormWidget with underlying type ColorPicker.
+   /// Creates a new FormWidget with underlying type ColorPicker.
    FormWidget(Widget * p) : ColorPicker(p) { }
 
    /// Pass-through function for \::pointer nanoui::ColorPicker::set_color.

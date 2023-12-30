@@ -84,9 +84,7 @@ public:
 
 using memory_pointer = ::pointer<memory>;
 
-inline memory_pointer create_memory() { return __new(::memory); }
-
-
+inline memory_pointer create_memory() { return __allocate< ::memory >(); }
 
 
 

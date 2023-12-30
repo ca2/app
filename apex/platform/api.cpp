@@ -6,6 +6,7 @@
 #include "acme/crypto/crypto.h"
 #include "acme/filesystem/filesystem/dir_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
+#include "acme/primitive/mathematics/mathematics.h"
 #include "apex/platform/application.h"
 #include "apex/platform/context.h"
 #include "apex/platform/system.h"
@@ -431,7 +432,7 @@ void api::_api_get(::string & strNetworkPayload, const ::scoped_string & scopeds
 
       m.set_size(length);
 
-      generate_random_bytes(m.data(), m.get_length());
+      mathematics()->random(m);
 
       return base64urlencodeNoPadding(m);
 

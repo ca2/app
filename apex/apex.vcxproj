@@ -613,6 +613,7 @@
     </ClCompile>
     <ClCompile Include="handler\context.cpp" />
     <ClCompile Include="handler\manager.cpp" />
+    <ClCompile Include="handler\manager_room.cpp" />
     <ClCompile Include="handler\signal.cpp" />
     <ClCompile Include="input\input.cpp" />
     <ClCompile Include="interprocess\base.cpp" />
@@ -633,8 +634,11 @@
     <ClCompile Include="networking\address.cpp" />
     <ClCompile Include="networking\application\application.cpp" />
     <ClCompile Include="networking\application\application_handler.cpp" />
+    <ClCompile Include="networking\application\application_incoming_socket.cpp" />
     <ClCompile Include="networking\application\application_socket.cpp" />
     <ClCompile Include="networking\http\listener.cpp" />
+    <ClCompile Include="networking\netserver\socket.cpp" />
+    <ClCompile Include="networking\netserver\socket_thread.cpp" />
     <ClCompile Include="networking\networking.cpp" />
     <ClCompile Include="networking\email.cpp" />
     <ClCompile Include="networking\email_address.cpp" />
@@ -648,15 +652,16 @@
     <ClCompile Include="networking\http\status.cpp" />
     <ClCompile Include="networking\http\transaction.cpp" />
     <ClCompile Include="networking\ip_enum.cpp" />
-    <ClCompile Include="networking\netserver\socket.cpp" />
+    <ClCompile Include="networking\netserver\incoming_socket.cpp" />
     <ClCompile Include="networking\netserver\socket_handler.cpp" />
-    <ClCompile Include="networking\netserver\socket_thread.cpp" />
+    <ClCompile Include="networking\netserver\incoming_socket_thread.cpp" />
     <ClCompile Include="networking\port_forward.cpp" />
     <ClCompile Include="networking\sockets.cpp" />
     <ClCompile Include="networking\sockets\base\socket.cpp" />
     <ClCompile Include="networking\sockets\base\socket_handler.cpp" />
     <ClCompile Include="networking\sockets\base\socket_thread.cpp" />
     <ClCompile Include="networking\sockets\basic\listen_socket.cpp" />
+    <ClCompile Include="networking\sockets\basic\listen_socket_impl.cpp" />
     <ClCompile Include="networking\sockets\basic\sctp_socket.cpp" />
     <ClCompile Include="networking\sockets\basic\socket.cpp" />
     <ClCompile Include="networking\sockets\basic\socket_handler.cpp" />
@@ -668,6 +673,10 @@
     <ClCompile Include="networking\sockets\basic\udp_socket.cpp" />
     <ClCompile Include="networking\sockets\dns\resolv_server.cpp" />
     <ClCompile Include="networking\sockets\dns\resolv_socket.cpp" />
+    <ClCompile Include="networking\sockets\httpd\incoming_socket.cpp" />
+    <ClCompile Include="networking\sockets\httpd\incoming_socket_thread.cpp" />
+    <ClCompile Include="networking\sockets\httpd\socket.cpp" />
+    <ClCompile Include="networking\sockets\httpd\socket_thread.cpp" />
     <ClCompile Include="networking\sockets\http\client_socket.cpp" />
     <ClCompile Include="networking\sockets\http\debug_socket.cpp" />
     <ClCompile Include="networking\sockets\http\get_socket.cpp" />
@@ -682,7 +691,6 @@
     <ClCompile Include="networking\sockets\link_out_socket.cpp" />
     <ClCompile Include="networking\sockets\sockets.cpp" />
     <ClCompile Include="networking\sockets\transfer_socket.cpp" />
-    <ClCompile Include="networking\sockets\webserver\httpd_socket.cpp" />
     <ClCompile Include="networking\sockets\websocket_client.cpp" />
     <ClCompile Include="platform\api_client_base.cpp" />
     <ClCompile Include="platform\application_menu.cpp" />
@@ -706,6 +714,7 @@
     <ClInclude Include="handler\context.h" />
     <ClInclude Include="handler\manager.h" />
     <ClInclude Include="handler\aaa_predicate.h" />
+    <ClInclude Include="handler\manager_room.h" />
     <ClInclude Include="handler\promise.h" />
     <ClInclude Include="handler\promise1.h" />
     <ClInclude Include="handler\signal.h" />
@@ -817,6 +826,7 @@
     <ClInclude Include="networking\address.h" />
     <ClInclude Include="networking\application\application.h" />
     <ClInclude Include="networking\application\application_handler.h" />
+    <ClInclude Include="networking\application\application_incoming_socket.h" />
     <ClInclude Include="networking\application\application_socket.h" />
     <ClInclude Include="networking\http\context.h" />
     <ClInclude Include="networking\http\cookie.h" />
@@ -830,8 +840,10 @@
     <ClInclude Include="networking\http\stream.h" />
     <ClInclude Include="networking\http\transaction.h" />
     <ClInclude Include="networking\http\_.h" />
+    <ClInclude Include="networking\netserver\incoming_socket.h" />
     <ClInclude Include="networking\netserver\socket.h" />
     <ClInclude Include="networking\netserver\socket_handler.h" />
+    <ClInclude Include="networking\netserver\incoming_socket_thread.h" />
     <ClInclude Include="networking\netserver\socket_thread.h" />
     <ClInclude Include="networking\netserver\_.h" />
     <ClInclude Include="networking\networking.h" />
@@ -844,10 +856,12 @@
     <ClInclude Include="networking\sockets\base\socket_handler.h" />
     <ClInclude Include="networking\sockets\base\socket_thread.h" />
     <ClInclude Include="networking\sockets\basic\listen_socket.h" />
+    <ClInclude Include="networking\sockets\basic\listen_socket_impl.h" />
     <ClInclude Include="networking\sockets\basic\net.h" />
     <ClInclude Include="networking\sockets\basic\sctp_socket.h" />
     <ClInclude Include="networking\sockets\basic\socket.h" />
     <ClInclude Include="networking\sockets\basic\socket_handler.h" />
+    <ClInclude Include="networking\sockets\basic\socket_impl.h" />
     <ClInclude Include="networking\sockets\basic\stream_socket.h" />
     <ClInclude Include="networking\sockets\basic\sync_socket_handler.h" />
     <ClInclude Include="networking\sockets\basic\tcp_socket.h" />
@@ -856,6 +870,10 @@
     <ClInclude Include="networking\sockets\basic\udp_socket.h" />
     <ClInclude Include="networking\sockets\basic\_.h" />
     <ClInclude Include="networking\sockets\config.h" />
+    <ClInclude Include="networking\sockets\httpd\incoming_socket.h" />
+    <ClInclude Include="networking\sockets\httpd\incoming_socket_thread.h" />
+    <ClInclude Include="networking\sockets\httpd\socket.h" />
+    <ClInclude Include="networking\sockets\httpd\socket_thread.h" />
     <ClInclude Include="networking\sockets\http\client_socket.h" />
     <ClInclude Include="networking\sockets\http\debug_socket.h" />
     <ClInclude Include="networking\sockets\http\get_socket.h" />

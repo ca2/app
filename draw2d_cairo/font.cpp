@@ -121,7 +121,7 @@ namespace draw2d_cairo
    void font::destroy()
    {
 
-      synchronous_lock ml(cairo_mutex());
+      synchronous_lock ml(::draw2d_cairo::mutex());
 //      if(m_pdesc != nullptr)
 //      {
 // // the fonts are stored and managed by "font cache"
@@ -218,7 +218,7 @@ namespace draw2d_cairo
       else
       {
 
-         ::informationf("Warning: No ::user::interaction font scaler!\n");
+         ::acme::get()->platform()->informationf("Warning: No ::user::interaction font scaler!\n");
 
       }
 

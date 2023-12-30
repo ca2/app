@@ -22,15 +22,21 @@ namespace bred
       m_pbredapplication = this;
 
 
-      factory()->add_factory_item < ::bred::system, ::acme::system >();
-
-
-
    }
 
 
    application::~application()
    {
+
+   }
+
+
+   void application::on_set_platform()
+   {
+
+      ::base::application::on_set_platform();
+
+      factory()->add_factory_item < ::bred::system, ::acme::system >();
 
    }
 

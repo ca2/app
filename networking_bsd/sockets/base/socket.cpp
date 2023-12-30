@@ -29,7 +29,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 #include "framework.h"
 #include "socket.h"
-#include "socket_thread.h"
+//#include "socket_thread.h"
 #include "acme/exception/interface_only.h"
 #include "acme/filesystem/file/memory_file.h"
 #include "acme/parallelization/synchronous_lock.h"
@@ -114,7 +114,7 @@ namespace sockets_bsd
       m_pmemfileInput = nullptr;
       m_iBindPort    = -1;
       m_timeStart.Now();
-      m_pcallback    = nullptr;
+      //m_pcallback    = nullptr;
       m_bEnablePool  = true;
 
       m_timeConnectionMaximum = 30_s;
@@ -129,12 +129,38 @@ namespace sockets_bsd
    }
 
 
-   void base_socket::initialize_socket(::sockets::base_socket_handler* phandler)
+   void base_socket::SetSocketHandler(::sockets::base_socket_handler* phandler)
    {
 
       //::object::initialize(phandler);
 
-      m_psockethandler = phandler;
+      if (::is_null(phandler))
+      {
+
+         m_phandlerSlave.release();
+
+         m_psockethandler.release();
+
+      }
+      else if (IsDetached())
+      {
+
+         if (::is_set(phandler) && !phandler->IsSlave())
+         {
+
+            throw exception(error_wrong_state);
+
+         }
+
+         m_phandlerSlave = phandler;
+
+      }
+      else
+      {
+
+         m_psockethandler = phandler;
+
+      }
 
       //m_socks4_host = m_psockethandler->GetSocks4Host();
       //m_socks4_port = m_psockethandler->GetSocks4Port();
@@ -151,15 +177,30 @@ namespace sockets_bsd
    }
 
 
-   //void base_socket::on_finalize()
-   //{
+   void base_socket::finalize()
+   {
 
-   //   //__release(m_psocketthread);
+      ::defer_finalize_and_release(m_psslcontext);
 
-   //   ::object::on_finalize();
+      m_psockethandler.release();
 
+      m_paddressRemote.release();
 
-   //}
+      m_paddressRemoteClient.release();
+
+      m_pfileTrafficMonitor.release();
+
+      m_pmemfileInput.release();
+
+      m_pcallback.release();
+
+      m_psocketParent.release();
+
+      m_phandlerSlave.release();
+
+      ::sockets::base_socket::finalize();
+
+   }
 
 
    void base_socket::Init()
@@ -327,9 +368,11 @@ namespace sockets_bsd
    }
 
 
-   SOCKET base_socket::GetSocketId()
+   socket_id base_socket::GetSocketId()
    {
+
       return m_socket;
+
    }
 
 
@@ -362,7 +405,7 @@ namespace sockets_bsd
          if(socket_handler())
          {
 
-            __Handler(m_psockethandler)->socket_id_list_modify(m_socket, e_list_close, bCloseAndDelete);
+            __Handler(socket_handler())->socket_id_list_modify(m_socket, e_list_close, bCloseAndDelete);
 
          }
 
@@ -407,12 +450,12 @@ namespace sockets_bsd
    ::sockets::base_socket_handler* base_socket::socket_handler() const
    {
 
-      //if (IsDetached())
-      //{
+      if (IsDetached())
+      {
 
-      //   return m_phandlerSlave.m_p;
+         return m_phandlerSlave.m_p;
 
-      //}
+      }
 
       return m_psockethandler;
 
@@ -562,7 +605,7 @@ namespace sockets_bsd
    void base_socket::Set(bool bRead, bool bWrite, bool bException)
    {
       
-      __Handler(m_psockethandler)->set(m_socket, bRead, bWrite, bException);
+      __Handler(socket_handler())->set(m_socket, bRead, bWrite, bException);
 
    }
 
@@ -1041,8 +1084,12 @@ namespace sockets_bsd
    bool base_socket::prepare_for_detach()
    {
 
+      information() << "prepare_for_detach";
+
       if (!DeleteByHandler())
       {
+
+         throw "debug delete by handler";
 
          return false;
 
@@ -1051,12 +1098,16 @@ namespace sockets_bsd
       if (m_psocketthread)
       {
 
+         throw "debug m_psocketthread";
+
          return false;
 
       }
 
       if (m_bDetached)
       {
+
+         throw "debug detach";
 
          return false;
 
@@ -1069,16 +1120,16 @@ namespace sockets_bsd
    }
 
 
-   void base_socket::DetachSocket(socket_map::node * pnode, socket_map * psocketmap)
-   {
+   //void base_socket::DetachSocket()
+   //{
 
-      SetDetached();
+   //   SetDetached();
 
-      auto psocketthread = __new(socket_thread);
+   //   auto psocketthread = __allocate< socket_thread >();
 
-      psocketthread->transfer(pnode, psocketmap);
+   //   psocketthread->initialize_socket_thread(this);
 
-   }
+   //}
 
 
    void base_socket::OnDetached()
@@ -2612,6 +2663,20 @@ bool base_socket::SetSoNosigpipe(bool x)
 
       }
 
+      if (m_iKeepAliveCount > 0)
+      {
+
+         output_debug_string("m_iKeepAliveCount > 0");
+
+      }
+
+      if (base_socket_composite() && base_socket_composite()->m_iKeepAliveCount > 0)
+      {
+
+         output_debug_string("base_socket_composite()->m_iKeepAliveCount > 0");
+
+      }
+
       if (LineProtocol())
       {
          buf[n] = 0;
@@ -2781,14 +2846,14 @@ bool base_socket::SetSoNosigpipe(bool x)
    }
 
 
-   bool base_socket::step()
-   {
+   //bool base_socket::step()
+   //{
 
-      //return ::e_status_no_work;
+   //   //return ::e_status_no_work;
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
 
    string base_socket::get_short_description()
@@ -2835,6 +2900,18 @@ bool base_socket::SetSoNosigpipe(bool x)
 #endif
 
    }
+
+
+   ::string_array & base_socket::debugstra()
+   {
+
+      return m_straDebug;
+
+   }
+
+
+   //virtual ::string debug_text();
+
 
    
    void base_socket::write(const void * p, ::memsize s)

@@ -35,7 +35,7 @@ namespace nanoui
       bool                             m_bPendingCentering;
       float                            m_boundsHeader[4];
       ::string                         m_title;
-      Widget *                         m_button_panel;
+      ::pointer< Widget >              m_button_panel;
       bool                             m_bModal;
       bool                             m_bDrag;
       ::point_i32                      m_pointDragStartCursor;
@@ -88,7 +88,7 @@ namespace nanoui
    /// Internal helper function to maintain nested window position values; overridden in \::pointer Popup
    virtual void refresh_relative_placement();
       
-      
+      void on_destroy_window() override;
    //protected:
 
 

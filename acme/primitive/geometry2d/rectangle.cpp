@@ -1,5 +1,8 @@
 // Created by camilo on 2022-10-23 09:29 <3ThomasBorregaardSorensen!!
 #include "framework.h"
+
+#if 0
+
 #include "rectangle.h"
 #include "acme/platform/uint32_muldiv.h"
 #include "acme/platform/uint64_muldiv.h"
@@ -33,4 +36,6 @@ CLASS_DECL_ACME rectangle_i64 & muldiv(rectangle_i64 & rectangle, ::i64 numerato
 
 
 
+
+#endif
 

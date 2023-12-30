@@ -51,6 +51,9 @@ namespace acme
       ::text::context* text_context() { return m_ptextcontext.get(); }
 
 
+      virtual class ::user::user * user();
+
+
    };
 
 

@@ -17,8 +17,12 @@ namespace base
       system();
       ~system() override;
 
+      
       void common_construct();
-      void initialize(::particle * pparticle) override;
+      void on_set_platform() override;
+      void on_initialize_particle() override;
+
+      
 
       //void on_add_session(::acme::session * papexsession) override;
 

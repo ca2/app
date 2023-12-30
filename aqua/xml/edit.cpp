@@ -106,7 +106,7 @@ namespace xml
 
       }
 
-      edit_item * pitem = m_edititema.add_new(this);
+      auto & pitem = m_edititema.add_construct(this);
 
       pitem->set_name(pnode);
 
@@ -122,7 +122,7 @@ namespace xml
 
       }
 
-      edit_item * pitem = m_edititema.add_new(this);
+      auto & pitem = m_edititema.add_construct(this);
 
       pitem->set_value(pnode);
 
@@ -139,7 +139,7 @@ namespace xml
 
       }
 
-      edit_item * pitem = m_edititema.add_new(this);
+      auto & pitem = m_edititema.add_construct(this);
 
       pitem->set_attribute(pnode, pproperty);
 

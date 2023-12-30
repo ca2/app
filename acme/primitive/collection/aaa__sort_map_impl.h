@@ -8,7 +8,7 @@
 //
 //   if(m_pnode == nullptr)
 //   {
-//      m_pnode = memory_new node(key,newValue);
+//      m_pnode = aaa_primitive_new node(key,newValue);
 //      return;
 //   }
 //
@@ -22,7 +22,7 @@
 //         if(pnode->left() == nullptr)
 //         {
 //
-//            pnode->left() = memory_new node(key,newValue);
+//            pnode->left() = aaa_primitive_new node(key,newValue);
 //
 //            return;
 //
@@ -41,7 +41,7 @@
 //         if(pnode->right() == nullptr)
 //         {
 //
-//            pnode->right() = memory_new node(key, newValue);
+//            pnode->right() = aaa_primitive_new node(key, newValue);
 //
 //            return;
 //
@@ -92,7 +92,7 @@
 //      for(index i = 0; i < attribmap.m_ptra.get_count(); i++)
 //      {
 //
-//         ppair      = memory_new typename type_map::pair(attribmap.m_ptra[i]->element1());
+//         ppair      = aaa_primitive_new typename type_map::pair(attribmap.m_ptra[i]->element1());
 //
 //         ppair->element2()    = attribmap.m_ptra[i]->element2();
 //

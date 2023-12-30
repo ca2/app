@@ -336,18 +336,31 @@ namespace base
    void user::destroy()
    {
 
-      for (auto & style : m_mapUserStyle.payloads())
-      {
 
-         style.release();
+      //m_ptemplateForm.release();
 
-      }
+      //m_ptemplateChildForm.release();
 
-      m_mapUserStyle.erase_all();
+      m_pmousefocusLButtonDown.release();
+
+      m_pmousefocusRButtonDown.release();
+
+      m_pmenucentral.release();
+
+      m_pexperience.release();
 
       //auto estatus = 
 
+
+
+
+      ::user::document_manager_container::destroy();
+
       ::axis::user::destroy();
+
+
+
+
 
       //return estatus;
 
@@ -485,7 +498,7 @@ namespace base
    ::pointer<::user::menu_interaction>user::create_menu_button(::user::style * pstyle, ::user::menu_item * pmenuitem)
    {
 
-      auto pmenubutton = __new(::user::menu_button);
+      auto pmenubutton = __allocate< ::user::menu_button >();
 
       pmenubutton->initialize_menu_interaction(pmenuitem);
 
@@ -539,7 +552,7 @@ namespace base
       UNREFERENCED_PARAMETER(hInstance);
       UNREFERENCED_PARAMETER(pParam);
 
-      auto pinteraction = __new(::user::interaction);
+      auto pinteraction = __allocate< ::user::interaction >();
 
       pinteraction->create_child(puiParent);
 
@@ -714,7 +727,7 @@ namespace base
    //session_docs * create_session_docs()
    //{
 
-   //   return memory_new session_docs();
+   //   return __new< session_docs >();
 
    //}
 
@@ -1456,7 +1469,7 @@ namespace base
 
       pstyle->m_pfactory = pexperience->m_pfactory;
 
-      m_puserstyle = pstyle;
+      //m_puserstyle = pstyle;
 
       if (!pstyle)
       {
@@ -1496,18 +1509,20 @@ namespace base
 
       }
 
-      auto & pimpactsystem = m_mapimpactsystem[typeatom];
+      auto pimpactsystem = application()->m_pbaseapplication->impact_system(typeatom);
 
       if (!pimpactsystem)
       {
 
-         pimpactsystem = __new(::user::multiple_document_template(
-            m_ptemplateForm->m_atom,
-            m_ptemplateForm->m_typeatomDocument,
-            m_ptemplateForm->m_typeatomFrame,
-            typeatom));
+         throw ::exception(todo);
 
-         document_manager()->add_document_template(pimpactsystem);
+         //application()->m_pbaseapplication->add_impact_system(
+         //   m_ptemplateForm->m_atom, 
+         //   __allocate < ::user::multiple_document_template >(
+         //      m_ptemplateForm->m_atom,
+         //      m_ptemplateForm->m_typeatomDocument,
+         //      m_ptemplateForm->m_typeatomFrame,
+         //      typeatom));
 
       }
 
@@ -1567,12 +1582,12 @@ namespace base
    ::pointer<::form_document> user::create_form(::particle * pparticle, ::user::form * pform, ::user::form_callback * pcallback, ::user::element * puserelementParent, const ::payload & payload, const ::payload & payloadArgs)
    {
 
-      if (m_ptemplateForm == nullptr)
-      {
+      //if (m_ptemplateForm == nullptr)
+      //{
 
-         return nullptr;
+      //   return nullptr;
 
-      }
+      //}
 
       ::pointer<::request>prequest(e_create, this);
 
@@ -1602,7 +1617,8 @@ namespace base
 
       }
 
-      m_ptemplateForm->request(prequest);
+      //m_ptemplateForm->request(prequest);
+      impact_system("form")->request(prequest);
 
       ::pointer<::form_document>pformdocument = ::user::__document(prequest);
 
@@ -1630,12 +1646,12 @@ namespace base
    ::pointer<::form_document>user::create_child_form(::particle * pparticle, ::user::form * pform, ::user::form_callback * pcallback, ::user::element * puserelementParent, const ::payload & payload, const ::payload & payloadArgs)
    {
 
-      if (m_ptemplateChildForm == nullptr)
-      {
+      //if (m_ptemplateChildForm == nullptr)
+      //{
 
-         return nullptr;
+      //   return nullptr;
 
-      }
+      //}
 
       auto papp = pparticle->application();
 
@@ -1693,7 +1709,9 @@ namespace base
 
       prequest->finish_initialization();
 
-      m_ptemplateChildForm->request(prequest);
+      //m_ptemplateChildForm->request(prequest);
+
+      impact_system("child_form")->request(prequest);
 
       ::pointer<::form_document>pformdocument = ::user::__document(prequest);
 
@@ -1741,12 +1759,12 @@ namespace base
 
          }
 
-         auto pimpactsystem = m_mapimpactsystem[typeatom];
+         auto pimpactsystem = application()->m_pbaseapplication->impact_system(typeatom);
 
          if (!pimpactsystem)
          {
 
-            auto typeDocument = m_ptemplateChildForm->m_typeatomDocument;
+            auto typeDocument = impact_system("child_form")->m_typeatomDocument;
 
             if (is_html_file(payload.as_file_path()))
             {
@@ -1755,19 +1773,23 @@ namespace base
 
             }
 
-            auto pimpactsystemNew = __new(::user::multiple_document_template(
-               m_ptemplateChildForm->m_atom,
-               typeDocument,
-               m_ptemplateChildForm->m_typeatomFrame,
-               typeatom));
+            throw ::exception(todo);
 
-            pimpactsystemNew->initialize(pparticle);
+            //add_impact_system(
+            //   m_ptemplateChildForm->m_atom,
+            //       __allocate < ::user::multiple_document_template >(
+            //   m_ptemplateChildForm->m_atom,
+            //   typeDocument,
+            //   m_ptemplateChildForm->m_typeatomFrame,
+            //   typeatom));
+
+           /* pimpactsystemNew->initialize(pparticle);
 
             pimpactsystem = pimpactsystemNew;
 
             m_mapimpactsystem[typeatom] = pimpactsystemNew;
 
-            document_manager()->add_document_template(pimpactsystem);
+            document_manager()->add_document_template(pimpactsystem);*/
 
          }
 
@@ -1789,7 +1811,7 @@ namespace base
 
          }
 
-         auto prequest = ::__create_new < ::request >(pparticle);
+         auto prequest = pparticle->__create_new < ::request >();
 
          prequest->m_egraphicsoutputpurpose -= ::graphics::e_output_purpose_screen;
 
@@ -1884,9 +1906,26 @@ namespace base
    ::pointer<::user::plain_edit>user::create_calculator_edit()
    {
 
-      return __new(::user::show < ::calculator::edit >());
+      return __allocate< ::user::show < ::calculator::edit > >();
 
    }
+
+
+   void user::add_impact_system(const ::atom & atom, ::user::impact_system * pimpactsystem)
+   {
+
+      return document_manager_container::add_impact_system(atom, pimpactsystem);
+
+   }
+
+
+   ::pointer<::user::impact_system> user::impact_system(const ::atom & atom)
+   {
+
+      return document_manager_container::impact_system(atom);
+
+   }
+
 
 } // namespace base
 

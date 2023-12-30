@@ -63,17 +63,36 @@ namespace user
 
    }
 
-   void document_manager_container::add_document_template(::user::impact_system* ptemplate)
+
+   void document_manager_container::destroy()
    {
 
-      if (ptemplate == nullptr)
-      {
+      m_pdocmanager.release();
 
-         throw ::exception(error_bad_argument, "impact system template should be valid");
+      ::object::destroy();
 
-         return;
+   }
 
-      }
+
+   void document_manager_container::add_impact_system(const ::atom & atom, const ::pointer < ::user::impact_system > & pimpactsystem)
+   {
+
+      document_manager()->add_impact_system(atom, pimpactsystem);
+
+   }
+
+
+   ::pointer<::user::impact_system> document_manager_container::impact_system(const ::atom & atom)
+   {
+
+      //if (ptemplate == nullptr)
+      //{
+
+      //   throw ::exception(error_bad_argument, "impact system template should be valid");
+
+      //   return;
+
+      //}
 
       if (!m_pdocmanager)
       {
@@ -82,11 +101,14 @@ namespace user
 
       }
 
-      //m_pdocmanager->increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      //m_pdocmanager->increment_reference_count();
 
-      document_manager()->add_document_template(ptemplate);
+      return document_manager()->__impact_system(atom);
 
    }
+
+
+   
 
 
 } // namespace user

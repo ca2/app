@@ -489,7 +489,7 @@ namespace file
       if(pfile.cast < ::memory_file >().is_null() && pfile.cast < ::file::buffered_file >().is_null())
       {
 
-         auto pbufferedfile = __new(::file::buffered_file(pfile));
+         auto pbufferedfile = __allocate< ::file::buffered_file >(pfile);
 
          pfile = pbufferedfile;
 
@@ -508,7 +508,7 @@ namespace file
 
       m_pfile = pfile;
 
-      m_size = pfile->size();
+      m_sizeEditFile = pfile->size();
 
       m_pfile->seek_to_begin();
 
@@ -540,7 +540,7 @@ namespace file
 
       memsize uiReadCount = 0;
 
-      if(m_position >= m_size)
+      if(m_position >= m_sizeEditFile)
       {
 
          return uRead;
@@ -595,7 +595,9 @@ namespace file
 
          m_positionIteration = m_position;
 
-         ptreeitem = m_ptreeitem;
+         m_ptreeitemIteration = m_ptreeitem;
+
+         auto &ptreeitem = m_ptreeitemIteration;
 
          bRead = false;
 
@@ -668,7 +670,7 @@ namespace file
          m_position++;
 
       }
-      while(nCount > 0 && m_position < m_size);
+      while(nCount > 0 && m_position < m_sizeEditFile);
 
       return uRead;
 
@@ -721,7 +723,7 @@ namespace file
 
 
       ::pointer<edit_item>pedit;
-      pedit = __new(edit_item);
+      pedit = __allocate< edit_item >();
       pedit->m_position = m_position;
       pedit->m_memstorage.set_size(nCount);
       ::memory_copy(pedit->m_memstorage.data(),pdata,nCount);
@@ -738,7 +740,7 @@ namespace file
 
       pinsertitem->m_memstorage.assign(str);
 
-      m_size += (str.length() - iOldLen);
+      m_sizeEditFile += (str.length() - iOldLen);
 
    }
 
@@ -750,14 +752,14 @@ namespace file
 
       pinsertitem->m_memstorage.append(str);
 
-      m_size += (str.length());
+      m_sizeEditFile += (str.length());
 
    }
 
    insert_item * edit_file::Insert(const void * pdata,memsize nCount)
    {
 
-      auto pinsert = __new(class insert_item);
+      auto pinsert = __allocate< class insert_item >();
 
       pinsert->m_position = m_position;
 
@@ -765,7 +767,7 @@ namespace file
 
       TreeInsert(pinsert);
 
-      m_size += nCount;
+      m_sizeEditFile += nCount;
 
       return pinsert;
 
@@ -777,7 +779,7 @@ namespace file
 
       ::pointer<delete_item>pdelete;
 
-      uiCount = minimum(uiCount,(memsize) (get_length() - m_position));
+      uiCount = minimum(uiCount,(memsize) (get_length() - get_position()));
 
       if (uiCount == 0)
       {
@@ -786,13 +788,13 @@ namespace file
 
       }
 
-      pdelete = __new(delete_item);
+      pdelete = __allocate< delete_item >();
       pdelete->m_position = m_position;
       pdelete->m_memstorage.set_size(uiCount);
       seek((filesize)m_position,::e_seek_set);
       read(pdelete->m_memstorage.data(),uiCount);
       TreeInsert(pdelete);
-      m_size -= uiCount;
+      m_sizeEditFile -= uiCount;
 
       return pdelete;
 
@@ -801,6 +803,13 @@ namespace file
 
    filesize edit_file::get_position() const
    {
+      if (m_ptreeitem == m_ptreeitemFlush)
+      {
+
+         return m_pfile->get_position();
+
+      }
+
       return m_position;
    }
 
@@ -817,6 +826,8 @@ namespace file
       {
 
          m_pfile->translate(offset, eseek);
+
+         m_position = m_pfile->get_position();
 
          return;
 
@@ -874,12 +885,37 @@ namespace file
 
       }
 
-      if (dwNew > m_size)
+      if (dwNew > m_sizeEditFile)
       {
 
-         dwNew = m_size;
+         dwNew = m_sizeEditFile;
 
       }
+
+      //m_bRootDirection = calc_root_direction();
+
+      //::u32 uReadItem = 0xffffffff;
+
+      //u64 uiStopSize;
+
+      //m_iOffset = 0;
+
+      //if (m_bRootDirection)
+      //{
+
+         //m_ptreeitemBeg = m_ptreeitemFlush->get_child_next_or_parent();
+
+        // //m_ptreeitemBeg = m_ptreeitemEnd;
+
+      //}
+      //else
+      //{
+
+     //    m_ptreeitemBeg = m_ptreeitemFlush;
+
+  ///    }
+
+//      m_ptreeitemIteration = m_ptreeitem;
 
       m_position = 0;
 
@@ -904,7 +940,7 @@ namespace file
    filesize edit_file::get_length() const
    {
 
-      return m_size;
+      return m_sizeEditFile;
 
    }
 
@@ -912,7 +948,7 @@ namespace file
    void edit_file::flush()
    {
       
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       auto pfile = create_memory_file();
 
@@ -928,7 +964,7 @@ namespace file
 
       m_pfile->flush();
 
-      m_size = m_pfile->size();
+      m_sizeEditFile = m_pfile->size();
 
       m_ptreeitemFlush = m_ptreeitem;
 
@@ -1029,7 +1065,7 @@ namespace file
 
       }
 
-      m_size -= m_ptreeitem->m_pdataitem.cast < edit_item_base>()->get_delta_length();
+      m_sizeEditFile -= m_ptreeitem->m_pdataitem.cast < edit_item_base>()->get_delta_length();
 
       m_ptreeitem = m_ptreeitem->get_previous_or_parent();
 
@@ -1070,7 +1106,7 @@ namespace file
 
       }
 
-      m_size += ptreeitem->m_pdataitem.cast < edit_item_base > ()->get_delta_length();
+      m_sizeEditFile += ptreeitem->m_pdataitem.cast < edit_item_base > ()->get_delta_length();
 
       m_ptreeitem = ptreeitem;
 
@@ -1082,7 +1118,7 @@ namespace file
    void edit_file::MacroBegin()
    {
 
-      auto pgroupitem  = __new(edit_group_item);
+      auto pgroupitem  = __allocate< edit_group_item >();
       pgroupitem->m_pgroupitem = m_pgroupitem;
       m_pgroupitem = pgroupitem;
    }

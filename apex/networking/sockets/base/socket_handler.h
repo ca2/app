@@ -92,7 +92,7 @@ namespace sockets
       // socket stuff
       // -------------------------------------------------------------------------
       /** add socket instance to socket ::map. Removal is always automatic. */
-      virtual void add(const socket_pointer& psocket);
+      virtual void add(base_socket * psocket);
       //virtual void move2(socket_pointer && psocket) = 0;
       //virtual void transfer(socket_map::association * passociation, socket_map * psocketmap = nullptr) = 0;
       //virtual void restart_socket(socket_id socket) = 0;
@@ -149,12 +149,12 @@ namespace sockets
       // Socks4
       // -------------------------------------------------------------------------
 //#if defined(BSD_STYLE_SOCKETS)
-//      /** Set socks4 server ip that all memory_new tcp sockets should use. */
+//      /** Set socks4 server ip that all new tcp sockets should use. */
 //      virtual void SetSocks4Host(in_addr) = 0;
-//      /** Set socks4 server hostname that all memory_new tcp sockets should use. */
+//      /** Set socks4 server hostname that all new tcp sockets should use. */
 //      virtual void SetSocks4Host(const string & ) = 0;
 //#endif
-      /** Set socks4 server port number that all memory_new tcp sockets should use. */
+      /** Set socks4 server port number that all new tcp sockets should use. */
       //virtual void SetSocks4Port(::networking::port_t) = 0;
       ///** Set optional socks4 userid. */
       //virtual void SetSocks4Userid(const string & ) = 0;
@@ -208,9 +208,9 @@ namespace sockets
       Leave them in place if 'false' - if a trigger should be called many times */
       //virtual void Trigger(int atom, base_socket::trigger_data & data, bool erase = true) = 0;
       /** Indicates that the handler runs under socket_thread. */
-      //virtual void SetSlave(bool x = true) = 0;
+      virtual void SetSlave(bool x = true) = 0;
       /** Indicates that the handler runs under socket_thread. */
-      //virtual bool IsSlave() = 0;
+      virtual bool IsSlave() = 0;
 
       //virtual void __tracef(e_trace_category ecategory, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, base_socket * psocket, const ::string & strContext, i32 err, const ::string & strMessage);
 

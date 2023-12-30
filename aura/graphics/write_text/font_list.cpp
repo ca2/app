@@ -8,6 +8,7 @@
 #include "acme/handler/item.h"
 #include "acme/platform/node.h"
 #include "acme/user/user/content.h"
+#include "apex/handler/signal.h"
 #include "apex/platform/application.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/write_text/fonts.h"
@@ -126,6 +127,10 @@ namespace write_text
 
       //pgraphics->reset_clip();
 
+      ::rectangle_f64 rectangleClipBox;
+      
+      pgraphics->get_clip_box(rectangleClipBox);
+
       //return;
 
       //information() << "font_list::_001OnDrawWide 1";
@@ -136,9 +141,7 @@ namespace write_text
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      ::rectangle_i32 rectangle = m_puserinteraction->rectangle();
-
-      //rectangleX += m_puserinteraction->get_context_offset();
+      auto rectangleWindow = m_puserinteraction->rectangle();
 
       auto pfontlistdata = m_pfontlistdata;
 
@@ -169,7 +172,7 @@ namespace write_text
 
          }
 
-         _synchronous_lock synchronouslockEnumeration(m_pfontenumeration->synchronization());
+         synchronous_lock synchronouslockEnumeration(m_pfontenumeration->synchronization());
 
          auto pstyle = m_puserinteraction->get_style();
 
@@ -242,7 +245,7 @@ namespace write_text
 
          }
 
-         if (!pbox->m_rectangle.intersects(rectangle))
+         if (!pbox->m_rectangle.intersects(rectangleWindow))
          {
 
             if (pbox->m_rectangle.is_empty())
@@ -251,7 +254,7 @@ namespace write_text
                //information() << "!pitem (pbox->m_rectangle.intersects(rectangleX(EMPTY)))";
 
             }
-            else if (rectangle.area() < 10'000)
+            else if (rectangleWindow.area() < 10'000)
             {
 
                //information() << "!pitem (pbox->m_rectangle.intersects(rectangleX(<10'000)))";
@@ -441,7 +444,7 @@ namespace write_text
          //if (bCheckHover && rectangle.contains_y(pointCursor.y()))
          //{
 
-         //   //m_puserinteraction->m_pitemHover = __new(::item({ ::e_element_item, i }));
+         //   //m_puserinteraction->m_pitemHover = __allocate< ::item >({ ::e_element_item, i });
 
          //   m_puserinteraction->m_pitemHover = pfontlistitem;
 
@@ -548,7 +551,7 @@ namespace write_text
 
          string str = pitem->m_strName;
 
-         pbox->m_pfont.create(this);
+         __construct(pbox->m_pfont);
 
          if (str.case_insensitive_order("GOUDY STOUT") == 0)
          {
@@ -1022,7 +1025,7 @@ namespace write_text
 
             }
 
-            // Make room for memory_new fonts
+            // Make room for new fonts
 
             for (index iItem = 0; iItem < m_pfontenumerationitema->get_count(); iItem++)
             {
@@ -1132,7 +1135,7 @@ namespace write_text
 
                bNew = true;
 
-               plistitem = __new(font_list_item);
+               plistitem = __allocate< font_list_item >();
 
                plistitem->m_item.m_iItem = iItem;
 
@@ -1619,7 +1622,7 @@ namespace write_text
       if (!pfontlistdata)
       {
 
-         auto pitemNone = __new(::item(::e_element_none));
+         auto pitemNone = __allocate< ::item >(::e_element_none);
 
          return pitemNone;
 
@@ -1654,14 +1657,14 @@ namespace write_text
          if (pfontlistitem->m_box[BOX].m_rectangle.contains(point))
          {
 
-            //return __new(::item(::e_element_item, iItem));
+            //return __allocate< ::item >(::e_element_item, iItem);
             return pfontlistitem;
 
          }
 
       }
 
-      //auto pitemNone = __new(::item(::e_element_none));
+      //auto pitemNone = __allocate< ::item >(::e_element_none);
 
       //return pitemNone;
 
@@ -1680,7 +1683,7 @@ namespace write_text
       if (!pfontlistdata)
       {
 
-         auto pitemNone = __new(::item(::e_element_none));
+         auto pitemNone = __allocate< ::item >(::e_element_none);
 
          return pitemNone;
 
@@ -1711,7 +1714,7 @@ namespace write_text
 
       }
 
-      //auto pitemNone = __new(::item(::e_element_none));
+      //auto pitemNone = __allocate< ::item >(::e_element_none);
 
       // return pitemNone;
 

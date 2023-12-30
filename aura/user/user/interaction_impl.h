@@ -138,7 +138,7 @@ namespace user
 
       //native_window *                         m_pwindow;
 
-      ::pointer<::graphics::graphics>           m_pgraphics;
+      ::pointer<::graphics::graphics>           m_pgraphicsgraphics;
       ::pointer<::draw2d::graphics>             m_pdraw2dgraphics;
 
       ::pointer < ::mutex >                     m_pmutexDraw;
@@ -698,6 +698,7 @@ namespace user
 
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
+      DECLARE_MESSAGE_HANDLER(on_message_pos_create);
       DECLARE_MESSAGE_HANDLER(_001OnPaint);
       DECLARE_MESSAGE_HANDLER(_001OnPrint);
       DECLARE_MESSAGE_HANDLER(_001OnCaptureChanged);

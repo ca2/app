@@ -6,14 +6,14 @@
 #include "acme/filesystem/filesystem/dir_context.h"
 
 
-__DECLARE_RELEASE_TIME(app_shader);
+__IMPLEMENT_APPLICATION_RELEASE_TIME(app_shader);
 
 
 namespace app_shader
 {
 
 
-   __IMPLEMENT_APPLICATION_RELEASE_TIME(app_shader);
+   // __IMPLEMENT_APPLICATION_RELEASE_TIME1(app_shader));
 
 
    application::application() 
@@ -91,18 +91,18 @@ namespace app_shader
 #ifdef _DEBUG
 
 
-   int64_t application::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+   int64_t application::increment_reference_count()
    {
 
-      return ::object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      return ::object::increment_reference_count();
 
    }
 
 
-   int64_t application::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+   int64_t application::decrement_reference_count()
    {
 
-      return ::object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      return ::object::decrement_reference_count();
 
    }
 

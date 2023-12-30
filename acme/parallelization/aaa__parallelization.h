@@ -133,7 +133,7 @@ class thread_startup;
 
 class sync_interface;
 class synchronous_lock;
-class _synchronous_lock;
+class synchronous_lock;
 
 
 //class CLASS_DECL_ACME thread_ptra :
@@ -225,8 +225,8 @@ class _synchronous_lock;
 //
 //
 //CLASS_DECL_ACME::task* get_task();
-//CLASS_DECL_ACME void set_task(task * ptask OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
-//CLASS_DECL_ACME void thread_release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
+//CLASS_DECL_ACME void set_task(task * ptask);
+//CLASS_DECL_ACME void thread_release();
 //
 //
 //

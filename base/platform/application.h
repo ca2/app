@@ -13,16 +13,6 @@ namespace base
 {
 
 
-   enum e_end
-   {
-
-      end_close,
-      end_app,
-      end_session,
-      end_system
-
-   };
-
 
    class CLASS_DECL_BASE application :
       virtual public ::axis::application,
@@ -43,9 +33,15 @@ namespace base
       application();
       ~application() override;
       
+      
+      void on_set_platform() override;
 
-      virtual void initialize(::particle * pparticle) override;
+      void initialize(::particle * pparticle) override;
 
+      void destroy() override;
+
+
+      void process_term() override;
       
       virtual ::pointer < ::data::data > create_default_new_document_data();
 
@@ -87,6 +83,10 @@ namespace base
 
 
       void show_about_box() override;
+
+      
+      void add_impact_system(const ::atom & atom, const ::pointer<::user::impact_system> & pimpactsystem) override;
+      virtual ::pointer<::user::impact_system> impact_system(const ::atom & atom);
 
 
    };

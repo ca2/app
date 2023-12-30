@@ -68,7 +68,7 @@ CLASS_DECL_ACME bool __node_aura_pre_init()
 CLASS_DECL_ACME bool __node_pos_init()
 {
 
-   //t_posthread = memory_new os_thread(nullptr, nullptr);
+   //t_posthread = __new< os_thread >(nullptr, nullptr);
 
    //t_posthread->m_bRun = true;
 
@@ -159,7 +159,7 @@ unsigned int sleep(unsigned int seconds)
 CLASS_DECL_ACME bool __node_aura_pos_init()
 {
 
-   //   t_posthread = memory_new os_thread(nullptr, nullptr);
+   //   t_posthread = __new< os_thread >(nullptr, nullptr);
    //
    //   t_posthread->m_bRun = true;
 
@@ -238,7 +238,7 @@ CLASS_DECL_ACME bool __node_aura_pos_term()
 //   ios_aura_init()
 //   {
 //
-//      ace_set_alloc(&memory_allocate, &memory_reallocate, &memory_free, &memory_size);
+//      ace_set_alloc(&::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate, &memory_reallocate, &::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free, &memory_size);
 //
 //   }
 //

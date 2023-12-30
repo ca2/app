@@ -33,7 +33,9 @@ namespace aqua
       void common_construct();
 
 
-      virtual void initialize(::particle * pparticle) override;
+      void on_set_platform() override;
+
+      void on_initialize_particle() override;
 
 
       virtual void on_add_session(::acme::session* papexsession) override;

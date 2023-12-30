@@ -615,3 +615,16 @@ void operating_system_get_main_screen_size(int& cx, int& cy)
 //
 
 
+void windows_message_box_factory(::factory::factory * pfactory);
+
+
+void windows_factory(::factory::factory * pfactory)
+{
+
+   windows_message_box_factory(pfactory);
+
+}
+
+
+
+

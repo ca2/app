@@ -183,7 +183,7 @@ public:
          virtual void create(const ::file::path & path);
          //virtual void _create(const ::file::path & path);
          virtual void _create2(const ::file::path & path);
-         virtual void __create(const ::file::path & path);
+         virtual void _create4(const ::file::path & path);
          virtual void erase(const ::file::path & path);
          virtual void erase_recursively(const ::file::path & path);
 

@@ -148,21 +148,25 @@ namespace file
    class CLASS_DECL_APEX edit_file:
       virtual public ::data::tree
    {
+   protected:
+
+
    public:
 
 
+      filesize                               m_sizeEditFile;
 
 
       ::file_pointer                         m_pfile;
       filesize                               m_position;
       filesize                               m_positionIteration;
       filesize                               m_positionInternal;
-      filesize                               m_size;
       filesize                               m_iCurrent;
       filesize                               m_iOffset;
       filesize                               m_iStartOffset;
 
 
+      ::pointer<::data::tree_item>          m_ptreeitemIteration;
       ::pointer<::data::tree_item>          m_ptreeitem;
       ::pointer<::data::tree_item>          m_ptreeitemFlush;
       ::pointer<::data::tree_item>          m_ptreeitemBeg;

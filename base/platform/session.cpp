@@ -25,6 +25,24 @@ namespace base
 
    }
 
+#ifdef _DEBUG
+
+   i64 session::increment_reference_count()
+   {
+
+      return ::axis::session::increment_reference_count();
+
+   }
+
+
+   i64 session::decrement_reference_count()
+   {
+
+      return ::axis::session::decrement_reference_count();
+
+   }
+
+#endif
 
    void session::initialize(::particle * pparticle)
    {
@@ -44,13 +62,13 @@ namespace base
 
       m_pmapKeyPressed                 = nullptr;
 
-      m_puiMouseMoveCapture            = nullptr;
+      //m_puiMouseMoveCapture            = nullptr;
 
       m_bShowPlatform                  = false;
 
       m_pappCurrent                    = nullptr;
 
-      m_puiMouseMoveCapture = nullptr;
+      //m_puiMouseMoveCapture = nullptr;
 
       //return estatus;
 

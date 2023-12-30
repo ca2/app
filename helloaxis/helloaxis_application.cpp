@@ -105,7 +105,7 @@ namespace helloaxis
 
       informationf("\nfinished helloaxis::on_request");
 
-      m_prender = memory_new ::helloaxis::render(this);
+      m_prender = __new< ::helloaxis::render >(this);
 
       ::helloaura::main_window(m_prender);
 
@@ -132,7 +132,7 @@ extern "C"
 ::acme::library * app_helloaxis_get_new_library(::particle * pparticle)
 {
 
-   return memory_new ::apex::single_application_library < ::helloaxis::application > (pparticle, "app/helloaxis");
+   return __new< ::apex::single_application_library < ::helloaxis::application >  >(pparticle, "app/helloaxis");
 
 }
 

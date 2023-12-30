@@ -1,54 +1,55 @@
 #pragma once
 
 
-
-
-class CLASS_DECL_ACME single_lock :
-   virtual public particle
+class CLASS_DECL_ACME single_lock
 {
 public:
 
 
-   //synchronization_object *                  m_psync;
-   //bool                                      m_bAcquired;
+   ::ptr < ::particle >    m_pparticleSynchronization;
+   bool                    m_bLocked;
 
 
    explicit single_lock(particle * pparticleSynchronization, bool bInitialLock = false);
-   ~single_lock() override;
+   ~single_lock();
 
 
-   void _wait() override;
-   bool _wait(const class ::time& wait) override;
-   ::e_status wait() override;
-   ::e_status wait(const class ::time& wait) override;
-   void unlock() override;
-   void unlock(::i32 lCount, ::i32 * lPrevCount = nullptr) override;
-   bool is_locked() const override;
+   void _wait();
+   bool _wait(const class ::time& wait);
+   ::e_status wait();
+   ::e_status wait(const class ::time& wait = ::time::infinity());
+   void _lock();
+   bool lock(const class ::time & wait = ::time::infinity());
+   void unlock();
+   void unlock(::i32 lCount, ::i32 * lPrevCount = nullptr);
+   bool is_locked() const;
 
 
 };
 
 
 
-class CLASS_DECL_ACME _single_lock :
-   virtual public particle
+class CLASS_DECL_ACME _single_lock
 {
 public:
 
 
+   ::ptr < ::particle >    m_pparticleSynchronization;
    //synchronization *      m_psync;
-   //bool                          m_bAcquired;
+   bool                    m_bLocked;
 
 
    explicit _single_lock(particle * pparticle, bool bInitialLock = false);
    ~_single_lock();
 
 
-   void _wait() override;
-   bool _wait(const class time & timeWait) override;
-   void unlock() override;
-   void unlock(::i32 lCount, ::i32 * lPrevCount = nullptr) override;
-   bool is_locked() const override;
+   void _wait();
+   bool _wait(const class time & timeWait);
+   void _lock();
+//   bool lock();
+   void unlock();
+   void unlock(::i32 lCount, ::i32 * lPrevCount = nullptr);
+   bool is_locked() const;
 
 
 };

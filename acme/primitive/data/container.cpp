@@ -57,6 +57,16 @@ namespace data
    }
 
 
+   void data_container_base::destroy()
+   {
+
+      m_datamap.clear();
+
+      ::object::destroy();
+
+   }
+
+
    bool data_container_base::set_data(const ::atom & atom, ::data::data * pdata)
    {
 

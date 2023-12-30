@@ -35,6 +35,24 @@ namespace hardware
    }
 
 
+   void devices::unregister_device_listener(device_listener * pdevicelistener, enum_device edevice)
+   {
+
+      auto & pdevicegroup = m_mapdevicegroup[edevice];
+
+      if (!pdevicegroup)
+      {
+
+         return;
+
+      }
+
+      pdevicegroup->initialize_device_group(edevice, this);
+
+      pdevicegroup->erase(pdevicelistener);
+
+   }
+
    //void devices::on_register_device_listener(::hardware::enum_device edevice)
    //{
 
@@ -48,6 +66,18 @@ namespace hardware
 
    }
 
+   
+   void devices::erase_device_group(device_group * pdevicegroup)
+   {
+
+      m_mapdevicegroup.erase_item(pdevicegroup->m_edevice);
+
+      if (m_mapdevicegroup.is_empty())
+      {
+
+      }
+
+   }
 
 } // namespace hardware
 

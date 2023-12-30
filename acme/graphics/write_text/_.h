@@ -15,6 +15,8 @@ namespace write_text
 
    class font_weight;
 
+   class write_text;
+
 
 } // namespace write_text
 

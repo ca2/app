@@ -26,6 +26,27 @@ namespace draw2d_cairo
 
       string_map < ::pointer<private_font >>m_mapPrivateFont;
 
+      ::pointer< ::mutex > m_pmutex;
+
+      string_map < i32_map < FT_Face > >  m_mapFontFace;
+
+      string_to_int m_mapFontError;
+
+      string_to_int m_pmapFontError2 ;
+
+      string_map < cairo_font_face_t * > * m_mapCairoFontFace;
+
+
+//extern CLASS_DECL_AURA array < matter * > * g_paAura;
+
+#if defined(LINUX) || defined(FREEBSD)
+
+      ::pointer< ::mutex > m_pmutexFc;
+
+      string_to_string     g_mapFontPath;
+
+#endif
+
       draw2d();
       ~draw2d() override;
 
@@ -42,11 +63,18 @@ namespace draw2d_cairo
       virtual void destroy() override;
 
 
+
+
+
       cairo_font_face_t * private_ftface_from_memory(const ::block & block, const ::string & strName);
       cairo_font_face_t * private_ftface_from_file(::acme::context * pcontext, const ::payload & payloadFile);
 
 
    };
+
+   
+   CLASS_DECL_DRAW2D_CAIRO ::draw2d_cairo::draw2d * get();
+   CLASS_DECL_DRAW2D_CAIRO ::particle * mutex();
 
 
 } // namespace draw2d_cairo

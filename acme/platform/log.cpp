@@ -115,9 +115,9 @@ bool log::get_extended_log()
 //}
 
 
-bool is_verbose_log()
-{
-
-   return ::platform::platform::s_pplatform->m_pacmeapplication->m_bVerbose.is_set_true();
-
-}
+//bool is_verbose_log()
+//{
+//
+//   return ::platform::platform::s_pplatform->m_pacmeapplication->m_bVerbose.is_set_true();
+//
+//}

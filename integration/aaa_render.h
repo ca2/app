@@ -16,7 +16,7 @@
 //
 //#define __END_PROPERTIES2(xxx) }; \
 //xxx ## _properties & properties() {return *m_pobjectproperties;} \
-//inline void create_object_properties() { m_pobjectproperties = m_ppropertyset = __new(xxx ## _properties(this));} \
+//inline void create_object_properties() { m_pobjectproperties = m_ppropertyset = __allocate(xxx ## _properties(this));} \
 //__pointer(xxx ## _properties) m_pobjectproperties
 //
 //
@@ -53,8 +53,8 @@ namespace app_integration
       virtual ~render();
 
 #ifdef _DEBUG
-      virtual int64_t increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
-      virtual int64_t decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
+      virtual int64_t increment_reference_count() override;
+      virtual int64_t decrement_reference_count() override;
 #endif
 
       string get_font();

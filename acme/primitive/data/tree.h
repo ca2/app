@@ -23,19 +23,21 @@ namespace data
       index_array                         m_iaLevelNext;
 
 
+
+
       tree();
       ~tree() override;
 
       virtual void on_insert_tree(tree * ptree);
 
-      virtual i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override
+      virtual i64 increment_reference_count() override
       {
-         return ::matter::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+         return ::matter::increment_reference_count();
       }
 
-      virtual i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override
+      virtual i64 decrement_reference_count() override
       {
-         return ::matter::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+         return ::matter::decrement_reference_count();
       }
 
 
@@ -46,7 +48,7 @@ namespace data
       virtual tree_item * find(const item * pitem, index * piIndex = nullptr);
       virtual bool contains(const item * pitem);
 
-      virtual bool contains(const tree_item * pitem);
+      bool contains(const tree_item * pitem) override;
 
       virtual void _001OnTreeDataChange();
 
@@ -60,15 +62,16 @@ namespace data
       virtual void erase(item * pitem, index i = 0);
 
 
+      ::data::tree_item * ____previous() override;
+      ::data::tree_item * ____next() override;
+      //template < typename PRED >
+      //void sort_children(PRED pred)
+      //{
 
-      template < typename PRED >
-      void sort_children(PRED pred)
-      {
+      //   tree_sort(this, pred);
 
-         tree_sort(this, pred);
-
-      }
-
+      //}
+      void sort_children(const ::function < bool(const ::data::tree_item * p1, const ::data::tree_item * p2) > & functionLess) override;
 
       virtual tree_item * _get_proper_item(index iIndex, index * piLevel, index * piCount = nullptr);
       virtual tree_item* get_proper_item(index iIndex, index* piLevel) override;

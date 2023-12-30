@@ -35,7 +35,7 @@ public:
 
    millis() { m_i = 0; }
    millis(enum enum_now);
-   millis(enum enum_no_initialize) {}
+   millis(enum no_initialize_t) {}
     
    template < primitive_integral INTEGRAL >
    millis(INTEGRAL i) { m_i = i; }

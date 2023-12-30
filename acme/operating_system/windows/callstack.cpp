@@ -82,49 +82,94 @@ namespace acme
 {
 
 
-   void node::defer_update_callstack()
+   int node::get_call_stack_default_frame_count()
+   {
+
+      return 62;
+
+   }
+
+
+   void node::defer_update_call_stack()
    {
 
       critical_section_lock synchronouslock(sym_dbg_help_critical_section());
 
       auto process = GetCurrentProcess();
 
-      if (!m_bCallstackInitialized)
+      if (!m_bCallStackInitialized)
       {
 
-         m_bCallstackInitialized = false;
+         m_bCallStackInitialized = false;
 
          SymSetOptions(SymGetOptions() | SYMOPT_LOAD_LINES);
 
          SymInitialize(process, NULL, TRUE);
 
       }
-      else if(m_bUpdateCallstack)
+      else if(m_bUpdateCallStack)
       {
 
          SymRefreshModuleList(process);
 
       }
 
-      m_bUpdateCallstack = false;
+      m_bUpdateCallStack = false;
 
    }
 
 
-   string node::get_callstack(const ::scoped_string & scopedstrFormat, i32 iSkip, void* caller_address, int iCount)
+   void node::get_call_stack_frames(void** stack, int& frame_count)
    {
 
       critical_section_lock synchronouslock(sym_dbg_help_critical_section());
 
       string strCallstack;
 
-      const size_t iMaximumFramesToCapture = 62; // does not support more then 62 frames of stackbacktrace
+      frame_count = ::minimum(62, frame_count); // does not support more then 62 frames of stackbacktrace
 
-      void* stack[iMaximumFramesToCapture];
+      defer_update_call_stack();
 
-      defer_update_callstack();
+      frame_count = CaptureStackBackTrace(0, frame_count, stack, NULL);
 
-      auto frames = CaptureStackBackTrace(0, iMaximumFramesToCapture, stack, NULL);
+      //return get_call_stack_trace(stack, frame_count, scopedstrFormat, iSkip, caller_address, iCount);
+
+   }
+
+
+
+   string node::get_call_stack_trace(const ::scoped_string& scopedstrFormat, i32 iSkip, void* caller_address, int iCount)
+   {
+
+      critical_section_lock synchronouslock(sym_dbg_help_critical_section());
+
+      const int iMaximumFrameCount = 62; // does not support more then 62 frames of stackbacktrace
+
+      void* stack[iMaximumFrameCount];
+
+      int frame_count = iMaximumFrameCount;
+
+      get_call_stack_frames(stack, frame_count);
+
+      return get_call_stack_trace(stack, frame_count, scopedstrFormat, iSkip, caller_address, iCount);
+
+   }
+
+
+   string node::get_call_stack_trace(void ** stack, int frame_count, const ::scoped_string & scopedstrFormat, i32 iSkip, void* caller_address, int iCount)
+   {
+
+      critical_section_lock synchronouslock(sym_dbg_help_critical_section());
+
+      string strCallstack;
+
+      //const size_t iMaximumFramesToCapture = 62; // does not support more then 62 frames of stackbacktrace
+
+      ///void* stack[iMaximumFramesToCapture];
+
+      //defer_update_call_stack();
+
+      //auto frames = CaptureStackBackTrace(0, iMaximumFramesToCapture, stack, NULL);
 
       int iMaximumNameLength = 1024;
 
@@ -142,7 +187,7 @@ namespace acme
 
       strsize maximum_line_length = 0;
 
-      for (auto i = 0; i < frames; ++i)
+      for (auto i = 0; i < frame_count; ++i)
       {
 
          IMAGEHLP_LINE imagehlp_line{ .SizeOfStruct = sizeof(IMAGEHLP_LINE) };
@@ -166,7 +211,7 @@ namespace acme
 
       }
 
-      for (auto i = 0; i < frames; ++i)
+      for (auto i = 0; i < frame_count; ++i)
       {
 
          SymFromAddr(process, (DWORD64)(stack[i]), 0, psymbolinfo);
@@ -185,7 +230,7 @@ namespace acme
 
          ::string strLine;
 
-         strLine.formatf("%s : %02d : %s\n", strPrefix.c_str(), frames - i - 1, psymbolinfo->Name);
+         strLine.formatf("%s : %02d : %s\n", strPrefix.c_str(), frame_count - i - 1, psymbolinfo->Name);
 
          strCallstack += strLine;
 

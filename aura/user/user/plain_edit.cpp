@@ -21,6 +21,7 @@
 #include "acme/constant/timer.h"
 #include "acme/filesystem/file/memory_file.h"
 #include "acme/handler/item.h"
+#include "acme/handler/topic.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/primitive/string/base64.h"
 #include "acme/primitive/string/international.h"
@@ -173,7 +174,7 @@ namespace user
 
       m_bEnterKeyOnPaste = false;
 
-      //m_pcontrolstyle = memory_new plain_edit_internal();
+      //m_pcontrolstyle = __new< plain_edit_internal >();
 
       m_ppropertysetsel = nullptr;
 
@@ -266,7 +267,6 @@ namespace user
       return m_timeFocusStart.on_off(m_timeCaretPeriod);
 
    }
-
 
 
    bool plain_edit::is_plain_edit_modified() const
@@ -431,9 +431,83 @@ namespace user
    }
 
 
+   void plain_edit::_001OnNcClip(::draw2d::graphics_pointer& pgraphics)
+   {
+
+      ::user::scroll_base::_001OnNcClip(pgraphics);
+
+   }
+
+
+   void plain_edit::_001OnClip(::draw2d::graphics_pointer& pgraphics)
+   {
+
+      ::user::scroll_base::_001OnClip(pgraphics);
+
+   }
+
+
    void plain_edit::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
+      auto pparent = get_parent();
+
+      ::string strTypeParent;
+
+      ::string strTypeParentParent;
+
+      ::string strTypeParentParentParent;
+
+      if (::is_set(pparent))
+      {
+
+         strTypeParent = ::type(pparent).as_string();
+
+         ::string str;
+
+         auto r = pparent->rectangle();
+
+         str.formatf("%d,%d,%d,%d : %s", r.left(), r.top(), r.width(), r.height(), strTypeParent.c_str());
+
+         information() << str;
+
+         auto pparentParent = pparent->get_parent();
+
+         if (::is_set(pparentParent))
+         {
+
+            strTypeParentParent = ::type(pparentParent).as_string();
+
+            ::string str2;
+
+            auto r2 = pparentParent->rectangle();
+
+            str2.formatf("%d,%d,%d,%d : %s", r2.left(), r2.top(), r2.width(), r2.height(), strTypeParentParent.c_str());
+
+            information() << str2;
+
+            auto pparentParentParent = pparentParent->get_parent();
+
+            if (::is_set(pparentParentParent))
+            {
+
+               strTypeParentParentParent = ::type(pparentParentParent).as_string();
+
+               ::string str3;
+
+               auto r3 = pparentParentParent->rectangle();
+
+               str3.formatf("%d,%d,%d,%d : %s", r3.left(), r3.top(), r3.width(), r3.height(), strTypeParentParentParent.c_str());
+
+               information() << str3;
+
+            }
+
+         }
+
+      }
+
+      //pgraphics->reset_clip();
       m_timeLastDraw = ::time::now();
 
       auto timeStart = ::time::now();
@@ -974,11 +1048,13 @@ namespace user
       if (m_ptree == nullptr)
       {
 
-         set_root(__new(::user::plain_text_tree), true);
+         set_root(__allocate< ::user::plain_text_tree >(), true);
 
-         m_ptree->m_pfile = __new(::memory_file);
+         m_ptree->m_pfile = __allocate< ::memory_file >();
 
          m_ptree->m_peditfile->SetFile(m_ptree->m_pfile);
+
+         m_ptree->m_peditfile->defer_create_synchronization();
 
          m_ptree->m_iSelBeg = 0;
 
@@ -1055,8 +1131,6 @@ namespace user
 
          });
 
-
-
       set_need_redraw();
 
       set_keyboard_focus();
@@ -1083,7 +1157,7 @@ namespace user
 
       //{
 
-      //   synchronous_lock synchronouslock(this->synchronization());
+      //   _synchronous_lock synchronouslock(this->synchronization());
 
       //   strsize iSelStart = -1;
 
@@ -1337,7 +1411,7 @@ namespace user
    strsize plain_edit::_001GetTextLength()
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       return _001_get_text_length();
 
@@ -1347,6 +1421,8 @@ namespace user
 
    strsize plain_edit::_001_get_text_length()
    {
+
+      _synchronous_lock synchronouslock(this->synchronization());
 
       auto ptree = m_ptree;
 
@@ -1389,7 +1465,7 @@ namespace user
 
       }
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       filesize iSize = m_ptree->m_peditfile->get_length();
 
@@ -1426,7 +1502,7 @@ namespace user
    void plain_edit::_001GetText(string & str, index iBegParam, index iEndParam)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       ::sort_non_negative(iBegParam, iEndParam);
 
@@ -1504,7 +1580,7 @@ namespace user
 
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization());
 
          m_ptree->m_peditfile->seek(m_ptree->m_iSelBeg, ::e_seek_set);
 
@@ -1528,27 +1604,43 @@ namespace user
    }
 
 
-   void plain_edit::_001SetSelEnd(strsize iSelEnd)
+   void plain_edit::_001SetSelEnd(strsize iSelEnd, const ::action_context & actioncontext)
    {
 
-      queue_graphics_call([this, iSelEnd](::draw2d::graphics_pointer & pgraphics)
+      queue_graphics_call([this, iSelEnd, actioncontext](::draw2d::graphics_pointer & pgraphics)
          {
 
-            _set_sel_end(pgraphics, iSelEnd);
+            _set_sel_end(pgraphics, iSelEnd, actioncontext);
 
          });
 
    }
 
 
-   void plain_edit::_set_sel_end(::draw2d::graphics_pointer & pgraphics, strsize iSelEnd)
+   void plain_edit::_set_sel_end(::draw2d::graphics_pointer & pgraphics, strsize iSelEnd, const ::action_context & actioncontext)
    {
 
-      index iColumn = plain_edit_sel_to_column_x(pgraphics, iSelEnd, m_iColumnX);
+      ::strsize iSelBeg, iSelEndOld;
+
+      _001GetSel(iSelBeg, iSelEndOld);
+
+      _001SetSel(iSelBeg, iSelEnd, actioncontext);
+
+      _ensure_selection_visible_x(pgraphics);
+
+      //_set_sel_end(pgraphics, iSelEnd);
+
+   }
+
+
+   void plain_edit::_ensure_selection_visible_x(::draw2d::graphics_pointer & pgraphics)
+   {
+
+      index iColumn = plain_edit_sel_to_column_x(pgraphics, m_ptree->m_iSelEnd, m_iColumnX);
 
       int x = 0;
 
-      index iLine = plain_edit_sel_to_line_x(pgraphics, iSelEnd, x);
+      index iLine = plain_edit_sel_to_line_x(pgraphics, m_ptree->m_iSelEnd, x);
 
       index xEnd = 0;
 
@@ -1593,15 +1685,12 @@ namespace user
 
       }
 
-
-      if (iSelEnd == m_ptree->m_iSelEnd && iColumn == m_iColumn && xContext == get_context_offset().x())
+      if (iColumn == m_iColumn && xContext == get_context_offset().x())
       {
 
          return;
 
       }
-
-      m_ptree->m_iSelEnd = iSelEnd;
 
       m_iColumn = iColumn;
 
@@ -1612,13 +1701,7 @@ namespace user
 
       }
 
-      _001EnsureVisibleChar(pgraphics, iSelEnd);
-
-#ifndef      SEARCH_SCROLLING_PROFILING
-
-      set_need_redraw();
-
-#endif
+      _001EnsureVisibleChar(pgraphics, m_ptree->m_iSelEnd);
 
    }
 
@@ -1631,12 +1714,6 @@ namespace user
 
          _001EnsureVisibleChar(pgraphics, m_ptree->m_iSelEnd);
 
-#ifndef      SEARCH_SCROLLING_PROFILING
-
-         set_need_redraw();
-
-#endif
-
       }
 
    }
@@ -1645,7 +1722,7 @@ namespace user
    void plain_edit::_001SetSel(strsize iBeg, strsize iEnd, const ::action_context & action_context)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       m_ptree->m_iSelBeg = iBeg;
 
@@ -1884,7 +1961,7 @@ namespace user
                m_pointLastCursor = point;
 
 
-               synchronous_lock synchronouslock(this->synchronization());
+               _synchronous_lock synchronouslock(this->synchronization());
 
                ::rectangle_i32 rectangleWindow;
 
@@ -1900,7 +1977,7 @@ namespace user
                queue_graphics_call([this, point](::draw2d::graphics_pointer & pgraphics)
                   {
 
-                     _set_sel_end(pgraphics, plain_edit_char_hit_test(pgraphics, point));
+                     _set_sel_end(pgraphics, plain_edit_char_hit_test(pgraphics, point), e_source_user);
 
                   });
 
@@ -1927,7 +2004,7 @@ namespace user
       if(!m_pitemHover || m_pitemHover->m_item.m_eelement != e_element_none)
       {
 
-         m_pitemHover = __new(::item(e_element_none));
+         m_pitemHover = __allocate< ::item >(e_element_none);
 
          set_need_redraw();
 
@@ -1967,7 +2044,7 @@ namespace user
 
          {
 
-            synchronous_lock synchronouslock(this->synchronization());
+            _synchronous_lock synchronouslock(this->synchronization());
 
             m_bLMouseDown = true;
 
@@ -2047,7 +2124,7 @@ namespace user
          queue_graphics_call([this, point](::draw2d::graphics_pointer & pgraphics)
             {
 
-               _set_sel_end(pgraphics, plain_edit_char_hit_test(pgraphics, point));
+               _set_sel_end(pgraphics, plain_edit_char_hit_test(pgraphics, point), e_source_sync);
 
             });
 
@@ -2079,7 +2156,7 @@ namespace user
    void plain_edit::plain_edit_on_calc_offset(::draw2d::graphics_pointer & pgraphics, index iOnlyLineToUpdate)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       _plain_edit_update_lines_and_extents(pgraphics, iOnlyLineToUpdate);
 
@@ -2449,7 +2526,7 @@ namespace user
    void plain_edit::plain_edit_on_calc_layout(::draw2d::graphics_pointer & pgraphics, index iOnlyLineToUpdate)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       if (!m_bMultiLine)
       {
@@ -2501,7 +2578,7 @@ namespace user
          if (strTextPrevious != strText)
          {
 
-            synchronous_lock synchronouslock(this->synchronization());
+            _synchronous_lock synchronouslock(this->synchronization());
 
             m_ptree->m_peditfile->seek(0, ::e_seek_set);
             m_ptree->m_peditfile->Delete((memsize)m_ptree->m_peditfile->get_length());
@@ -2946,7 +3023,7 @@ namespace user
    void plain_edit::_plain_edit_update_lines(::draw2d::graphics_pointer & pgraphics, index iOnlyLineToUpdate)
    {
 
-      //synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       ::rectangle_i32 rectangleX;
 
@@ -3312,7 +3389,7 @@ namespace user
    void plain_edit::_plain_edit_update_extents(::draw2d::graphics_pointer & pgraphics, index iOnlyLineToUpdate)
    {
 
-      //synchronous_lock synchronouslock(this->synchronization());
+      //_synchronous_lock synchronouslock(this->synchronization());
 
 //::rectangle_i32 rectangleX;
 
@@ -3683,7 +3760,7 @@ namespace user
    index plain_edit::plain_edit_sel_to_line(::draw2d::graphics_pointer & pgraphics, strsize iSel)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       strsize i1;
 
@@ -3715,7 +3792,7 @@ namespace user
    index plain_edit::plain_edit_char_to_line(::draw2d::graphics_pointer & pgraphics, strsize iChar)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       for (index iLine = 0; iLine < m_iaLineStart.get_size(); iLine++)
       {
@@ -3796,7 +3873,7 @@ namespace user
 
       }
 
-      //synchronous_lock synchronouslock(this->synchronization());
+      //_synchronous_lock synchronouslock(this->synchronization());
 
       if (iLine >= m_iaLineLength.get_size())
       {
@@ -3847,7 +3924,7 @@ namespace user
    index plain_edit::plain_edit_sel_to_line_x(::draw2d::graphics_pointer & pgraphics, strsize iSel, i32 & x)
    {
 
-      //synchronous_lock synchronouslock(this->synchronization());
+      //_synchronous_lock synchronouslock(this->synchronization());
 
       ::rectangle_i32 rectangleX;
 
@@ -3864,7 +3941,7 @@ namespace user
 
          i2 = i1 + m_iaLineLength[iLine];
 
-         if (iSel <= i2)
+         if (iSel < i2)
          {
 
             strsize iRel = iSel - i1;
@@ -3887,7 +3964,7 @@ namespace user
    strsize plain_edit::plain_edit_line_column_to_sel(::draw2d::graphics_pointer & pgraphics, index iLine, index iColumn)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       while (iLine < 0)
       {
@@ -3969,7 +4046,7 @@ namespace user
    strsize plain_edit::plain_edit_line_x_to_sel(::draw2d::graphics_pointer & pgraphics, index iLine, i32 x)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       __defer_construct(pgraphics);
 
@@ -3987,7 +4064,7 @@ namespace user
    index plain_edit::plain_edit_sel_to_column_x(::draw2d::graphics_pointer & pgraphics, strsize iSel, i32 & x)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       ::rectangle_i32 rectangleX;
 
@@ -4032,7 +4109,7 @@ namespace user
    index plain_edit::plain_edit_sel_to_column(::draw2d::graphics_pointer & pgraphics, strsize iSel)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       //string_array & straLines = m_plinea->lines;
 
@@ -4140,7 +4217,7 @@ namespace user
    strsize plain_edit::plain_edit_line_char_hit_test(::draw2d::graphics_pointer & pgraphics, i32 px, index iLine)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       ::rectangle_i32 rectangleX;
 
@@ -4260,7 +4337,7 @@ namespace user
    void plain_edit::_001GetImpactSel(strsize & iSelBeg, strsize & iSelEnd)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       _001_get_impact_sel(iSelBeg, iSelEnd);
 
@@ -4270,6 +4347,8 @@ namespace user
 
    void plain_edit::_001_get_impact_sel(strsize & iSelBeg, strsize & iSelEnd)
    {
+
+      _synchronous_lock synchronouslock(this->synchronization());
 
       if (m_ptree == nullptr)
       {
@@ -4320,7 +4399,7 @@ namespace user
    void plain_edit::_001GetSel(strsize & iBeg, strsize & iEnd)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       iBeg = m_ptree->m_iSelBeg;
 
@@ -4332,7 +4411,7 @@ namespace user
    void plain_edit::_001GetSel(strsize & iSelStart, strsize & iSelEnd, strsize & iComposingStart, strsize & iComposingEnd)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       iSelStart = m_ptree->m_iSelBeg;
 
@@ -4361,7 +4440,7 @@ namespace user
    void plain_edit::FileSave()
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       m_ptree->m_peditfile->flush();
 
@@ -4383,7 +4462,7 @@ namespace user
    void plain_edit::plain_edit_create_line_index(::draw2d::graphics_pointer & pgraphics)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       memory m;
 
@@ -4394,7 +4473,6 @@ namespace user
       memsize uRead;
 
       char * psz;
-
 
       m_ptree->m_peditfile->seek(0, ::e_seek_set);
 
@@ -4549,7 +4627,7 @@ namespace user
    void plain_edit::plain_edit_update_line_index(::draw2d::graphics_pointer & pgraphics, index iLine)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       memory m;
 
@@ -4779,7 +4857,7 @@ namespace user
    void plain_edit::plain_edit_on_delete_surrounding_text(::draw2d::graphics_pointer & pgraphics, strsize beforeLength, strsize afterLength)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       bool bFullUpdate = false;
 
@@ -4850,7 +4928,7 @@ namespace user
 
             MacroBegin();
 
-            MacroRecord(__new(plain_text_file_command()));
+            MacroRecord(__allocate< plain_text_file_command >());
 
             MacroEnd();
 
@@ -4918,7 +4996,7 @@ namespace user
 
             MacroBegin();
 
-            MacroRecord(__new(plain_text_file_command()));
+            MacroRecord(__allocate< plain_text_file_command >());
 
             MacroEnd();
 
@@ -4928,15 +5006,15 @@ namespace user
 
       plain_edit_update(pgraphics, bFullUpdate, iLineUpdate);
 
-      _set_sel_end(pgraphics, m_ptree->m_iSelEnd);
+      _ensure_selection_visible_x(pgraphics);
 
    }
 
 
-   void plain_edit::plain_edit_on_delete(::draw2d::graphics_pointer & pgraphics)
+   void plain_edit::plain_edit_on_delete(::draw2d::graphics_pointer & pgraphics, bool bBackIfSelectionEmpty)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       bool bFullUpdate = false;
 
@@ -4949,18 +5027,25 @@ namespace user
 
          strsize i2 = m_ptree->m_iSelEnd;
 
-         if (i1 != i2)
+         ::pointer < plain_text_set_sel_command > psetsel;
+
+         if (i1 != i2 || bBackIfSelectionEmpty)
          {
 
-            on_before_change_text();
-
-            auto psetsel = __new(plain_text_set_sel_command);
+            psetsel = __allocate< plain_text_set_sel_command >();
 
             psetsel->m_iPreviousSelBeg = m_ptree->m_iSelBeg;
 
             psetsel->m_iPreviousSelEnd = m_ptree->m_iSelEnd;
 
             ::sort_non_negative(i1, i2);
+
+         }
+
+         if (i1 != i2)
+         {
+
+            on_before_change_text();
 
             string strSel;
 
@@ -4991,19 +5076,36 @@ namespace user
 
             psetsel->m_iSelEnd = iSelEnd;
 
-            _001SetSel(iSelBeg, iSelEnd);
+            m_ptree->m_iSelBeg = iSelBeg;
 
-            MacroBegin();
-
-            MacroRecord(psetsel);
-
-            MacroRecord(__new(plain_text_file_command()));
-
-            MacroEnd();
+            m_ptree->m_iSelEnd = iSelEnd;
 
          }
-         else if (m_ptree->m_iSelEnd < m_ptree->m_peditfile->get_length())
+         else
          {
+            
+            if (bBackIfSelectionEmpty)
+            {
+
+               if (m_ptree->m_iSelEnd <= 0)
+               {
+
+                  return;
+
+               }
+
+            }
+            else
+            {
+
+               if (m_ptree->m_iSelEnd >= m_ptree->m_peditfile->get_length())
+               {
+
+                  return;
+
+               }
+
+            }
 
             on_before_change_text();
 
@@ -5011,15 +5113,68 @@ namespace user
 
             memory_set(buf, 0, sizeof(buf));
 
-            m_ptree->m_peditfile->seek(m_ptree->m_iSelEnd, ::e_seek_set);
+            filesize posRead;
 
-            m_ptree->m_peditfile->read(buf, sizeof(buf));
+            filesize amountRead;
 
-            const ::ansi_character * psz = unicode_next(buf);
+            if (bBackIfSelectionEmpty)
+            {
 
-            strsize iMultiByteUtf8DeleteCount = psz - buf;
+               posRead = maximum(0, m_ptree->m_iSelEnd - (::filesize) sizeof(buf));
 
-            index i1 = m_ptree->m_iSelEnd;
+               amountRead = minimum(sizeof(buf), m_ptree->m_iSelEnd);
+
+            }
+            else
+            {
+
+               posRead = m_ptree->m_iSelEnd;
+
+               amountRead = sizeof(buf);
+
+            }
+
+            m_ptree->m_peditfile->seek(posRead, ::e_seek_set);
+
+            m_ptree->m_peditfile->read(buf, amountRead);
+
+            const ::ansi_character * pszBefore;
+
+            const ::ansi_character * pszNext;
+
+            if (bBackIfSelectionEmpty)
+            {
+
+               pszNext = buf + amountRead;
+
+               pszBefore = unicode_prior(pszNext, buf);
+
+            }
+            else
+            {
+
+               pszBefore = buf;
+
+               pszNext = unicode_next(buf);
+
+            }
+
+            strsize iMultiByteUtf8DeleteCount = pszNext - pszBefore;
+
+            index i1;
+
+            if (bBackIfSelectionEmpty)
+            {
+
+               i1 = m_ptree->m_iSelEnd - iMultiByteUtf8DeleteCount;
+
+            }
+            else
+            {
+
+               i1 = m_ptree->m_iSelEnd;
+
+            }
 
             index i2 = i1 + iMultiByteUtf8DeleteCount;
 
@@ -5036,136 +5191,180 @@ namespace user
 
             }
 
-            m_ptree->m_peditfile->seek(m_ptree->m_iSelEnd, ::e_seek_set);
+            m_ptree->m_peditfile->seek(i1, ::e_seek_set);
 
             m_ptree->m_peditfile->Delete((memsize)(iMultiByteUtf8DeleteCount));
 
             m_pinsert = nullptr;
 
-            IndexRegisterDelete(m_ptree->m_iSelEnd, iMultiByteUtf8DeleteCount);
+            IndexRegisterDelete(i1, iMultiByteUtf8DeleteCount);
 
-            m_ptree->m_iSelBeg = m_ptree->m_iSelEnd;
+            if (bBackIfSelectionEmpty)
+            {
 
-            MacroBegin();
+               auto iSelBeg = i1;
 
-            MacroRecord(__new(plain_text_file_command()));
+               auto iSelEnd = i1;
 
-            MacroEnd();
+               psetsel->m_iSelBeg = iSelBeg;
+
+               psetsel->m_iSelEnd = iSelEnd;
+
+               m_ptree->m_iSelBeg = iSelBeg;
+
+               m_ptree->m_iSelEnd = iSelEnd;
+
+            }
 
          }
+
+         MacroBegin();
+
+         if (psetsel)
+         {
+
+            MacroRecord(psetsel);
+
+         }
+
+         MacroRecord(__allocate< plain_text_file_command >());
+
+         MacroEnd();
 
       }
 
       plain_edit_update(pgraphics, bFullUpdate, iLineUpdate);
 
-      _set_sel_end(pgraphics, m_ptree->m_iSelEnd);
+      _ensure_selection_visible_x(pgraphics);
 
    }
 
 
-   void plain_edit::_001DeleteSel()
+   void plain_edit::_001EditCut()
    {
 
-      bool bFullUpdate = true;
+      clipboard_copy();
 
-      index iLineUpdate = -1;
-
-      auto psystem = system()->m_paurasystem;
-
-      auto pdraw2d = psystem->draw2d();
-
-      auto pgraphics = pdraw2d->create_memory_graphics(this);
-
-      if (plain_edit_delete_sel(pgraphics, bFullUpdate, iLineUpdate))
-      {
-
-         plain_edit_update(pgraphics, bFullUpdate, iLineUpdate);
-
-      }
+      _001DeleteSel();
 
    }
 
 
-   bool plain_edit::plain_edit_delete_sel(::draw2d::graphics_pointer & pgraphics, bool & bFullUpdate, index & iLineUpdate)
+   void plain_edit::_001DeleteSel(bool bBackIfSelectionEmpty)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      //bool bFullUpdate = true;
 
-      strsize i1 = m_ptree->m_iSelBeg;
+      //index iLineUpdate = -1;
 
-      strsize i2 = m_ptree->m_iSelEnd;
+      //auto psystem = system()->m_paurasystem;
 
-      ::sort_non_negative(i1, i2);
+      //auto pdraw2d = psystem->draw2d();
 
-      if (i1 < 0 || i1 > _001GetTextLength())
+      //auto pgraphics = pdraw2d->create_memory_graphics(this);
+
+      //if (plain_edit_delete_sel(pgraphics, bFullUpdate, iLineUpdate))
+      //{
+
+      //   plain_edit_update(pgraphics, bFullUpdate, iLineUpdate);
+
+      //}
+
+      queue_graphics_call([this, bBackIfSelectionEmpty](::draw2d::graphics_pointer & pgraphics)
       {
 
-         i1 = _001GetTextLength();
+         plain_edit_on_delete(pgraphics, bBackIfSelectionEmpty);
 
-      }
+      });
 
-      if (i2 < 0 || i2 > _001GetTextLength())
-      {
+      set_need_redraw();
 
-         i2 = _001GetTextLength();
+      post_redraw();
 
-      }
-
-      if (i1 >= i2)
-      {
-
-         return false;
-
-      }
-
-      on_before_change_text();
-
-      auto psetsel = __new(plain_text_set_sel_command);
-
-      psetsel->m_iPreviousSelBeg = m_ptree->m_iSelBeg;
-
-      psetsel->m_iPreviousSelEnd = m_ptree->m_iSelEnd;
-
-      string strSel;
-
-      _001GetText(strSel, i1, i2);
-
-      bFullUpdate = strSel.find_index('\n') >= 0 || strSel.find_index('\r') >= 0;
-
-      if (!bFullUpdate)
-      {
-
-         iLineUpdate = plain_edit_sel_to_line(pgraphics, i1);
-
-      }
-
-      m_ptree->m_peditfile->seek(i1, ::e_seek_set);
-
-      m_ptree->m_peditfile->Delete((memsize)(i2 - i1));
-
-      m_pinsert = nullptr;
-
-      IndexRegisterDelete(i1, i2 - i1);
-
-      m_ptree->m_iSelEnd = i1;
-
-      m_ptree->m_iSelBeg = m_ptree->m_iSelEnd;
-
-      psetsel->m_iSelBeg = m_ptree->m_iSelBeg;
-
-      psetsel->m_iSelEnd = m_ptree->m_iSelEnd;
-
-      MacroBegin();
-
-      MacroRecord(psetsel);
-
-      MacroRecord(__new(plain_text_file_command()));
-
-      MacroEnd();
-
-      return true;
 
    }
+
+
+   //bool plain_edit::plain_edit_delete_sel(::draw2d::graphics_pointer & pgraphics, bool & bFullUpdate, index & iLineUpdate)
+   //{
+
+   //   _synchronous_lock synchronouslock(this->synchronization());
+
+   //   strsize i1 = m_ptree->m_iSelBeg;
+
+   //   strsize i2 = m_ptree->m_iSelEnd;
+
+   //   ::sort_non_negative(i1, i2);
+
+   //   if (i1 < 0 || i1 > _001GetTextLength())
+   //   {
+
+   //      i1 = _001GetTextLength();
+
+   //   }
+
+   //   if (i2 < 0 || i2 > _001GetTextLength())
+   //   {
+
+   //      i2 = _001GetTextLength();
+
+   //   }
+
+   //   if (i1 >= i2)
+   //   {
+
+   //      return false;
+
+   //   }
+
+   //   on_before_change_text();
+
+   //   auto psetsel = __allocate< plain_text_set_sel_command >();
+
+   //   psetsel->m_iPreviousSelBeg = m_ptree->m_iSelBeg;
+
+   //   psetsel->m_iPreviousSelEnd = m_ptree->m_iSelEnd;
+
+   //   string strSel;
+
+   //   _001GetText(strSel, i1, i2);
+
+   //   bFullUpdate = strSel.find_index('\n') >= 0 || strSel.find_index('\r') >= 0;
+
+   //   if (!bFullUpdate)
+   //   {
+
+   //      iLineUpdate = plain_edit_sel_to_line(pgraphics, i1);
+
+   //   }
+
+   //   m_ptree->m_peditfile->seek(i1, ::e_seek_set);
+
+   //   m_ptree->m_peditfile->Delete((memsize)(i2 - i1));
+
+   //   m_pinsert = nullptr;
+
+   //   IndexRegisterDelete(i1, i2 - i1);
+
+   //   m_ptree->m_iSelEnd = i1;
+
+   //   m_ptree->m_iSelBeg = m_ptree->m_iSelEnd;
+
+   //   psetsel->m_iSelBeg = m_ptree->m_iSelBeg;
+
+   //   psetsel->m_iSelEnd = m_ptree->m_iSelEnd;
+
+   //   MacroBegin();
+
+   //   MacroRecord(psetsel);
+
+   //   MacroRecord(__allocate< plain_text_file_command >());
+
+   //   MacroEnd();
+
+   //   return true;
+
+   //}
 
 
    void plain_edit::_001ReplaceSel(const ::string & pszText)
@@ -5194,7 +5393,7 @@ namespace user
    bool plain_edit::_001ReplaceSel(const ::string & pszText, bool & bFullUpdate, index & iLineUpdate)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       strsize i1 = m_ptree->m_iSelBeg;
 
@@ -5225,7 +5424,7 @@ namespace user
 
       on_before_change_text();
 
-      auto psetsel = __new(plain_text_set_sel_command);
+      auto psetsel = __allocate< plain_text_set_sel_command >();
 
       psetsel->m_iPreviousSelBeg = m_ptree->m_iSelBeg;
 
@@ -5277,7 +5476,7 @@ namespace user
 
       MacroRecord(psetsel);
 
-      MacroRecord(__new(plain_text_file_command()));
+      MacroRecord(__allocate< plain_text_file_command >());
 
       MacroEnd();
 
@@ -5515,24 +5714,27 @@ namespace user
 
                pkey->m_bRet = true;
 
-               clipboard_copy();
+               _001EditCut();
 
-               if (is_window_enabled())
-               {
+               //clipboard_copy();
 
+               //if (is_window_enabled())
+               //{
 
-                  queue_graphics_call([this](::draw2d::graphics_pointer & pgraphics)
-                     {
+               //   _001DeleteSel();
 
-                        plain_edit_on_delete(pgraphics);
+               //   //queue_graphics_call([this](::draw2d::graphics_pointer & pgraphics)
+               //   //{
 
-                        set_need_redraw();
+               //   //   plain_edit_on_delete(pgraphics);
 
-                        post_redraw();
+               //   //});
 
-                     });
+               //   //set_need_redraw();
 
-               }
+               //   //post_redraw();
+
+               //}
 
                return;
 
@@ -5621,7 +5823,7 @@ namespace user
 
          {
 
-            synchronous_lock synchronouslock(this->synchronization());
+            _synchronous_lock synchronouslock(this->synchronization());
 
             bool bControl = psession->is_key_pressed(::user::e_key_control);
 
@@ -5748,102 +5950,104 @@ namespace user
                   if (!m_bReadOnly)
                   {
 
-                     strsize i1 = m_ptree->m_iSelBeg;
+                     _001DeleteSel(true);
 
-                     strsize i2 = m_ptree->m_iSelEnd;
+                     //strsize i1 = m_ptree->m_iSelBeg;
 
-                     if (i1 != i2)
-                     {
+                     //strsize i2 = m_ptree->m_iSelEnd;
 
-                        _001DeleteSel();
+                     //if (i1 != i2)
+                     //{
 
-                     }
-                     else if (m_ptree->m_iSelEnd >= 0 && m_ptree->m_peditfile->get_length() > 0)
-                     {
+                     //   _001DeleteSel();
 
-                        on_before_change_text();
+                     //}
+                     //else if (m_ptree->m_iSelEnd >= 0 && m_ptree->m_peditfile->get_length() > 0)
+                     //{
 
-                        auto psetsel = __new(plain_text_set_sel_command);
+                     //   on_before_change_text();
 
-                        psetsel->m_iPreviousSelBeg = m_ptree->m_iSelBeg;
+                     //   auto psetsel = __allocate< plain_text_set_sel_command >();
 
-                        psetsel->m_iPreviousSelEnd = m_ptree->m_iSelEnd;
+                     //   psetsel->m_iPreviousSelBeg = m_ptree->m_iSelBeg;
 
-                        information() << "SelBeg : " << psetsel->m_iPreviousSelBeg;
+                     //   psetsel->m_iPreviousSelEnd = m_ptree->m_iSelEnd;
 
-                        information() << "SelEnd : " << psetsel->m_iPreviousSelEnd;
+                     //   information() << "SelBeg : " << psetsel->m_iPreviousSelBeg;
 
-                        char buf[512];
+                     //   information() << "SelEnd : " << psetsel->m_iPreviousSelEnd;
 
-                        memory_set(buf, 0, sizeof(buf));
+                     //   char buf[512];
 
-                        strsize iProperBegin = maximum(0, m_ptree->m_iSelEnd - 256);
-                        strsize iCur = m_ptree->m_iSelEnd - iProperBegin;
-                        m_ptree->m_peditfile->seek(iProperBegin, ::e_seek_set);
-                        m_ptree->m_peditfile->read(buf, sizeof(buf));
-                        const ::ansi_character * psz;
-                        strsize iMultiByteUtf8DeleteCount;
-                        if (iCur > 1 && buf[iCur - 1] == '\n' && buf[iCur - 2] == '\r')
-                        {
+                     //   memory_set(buf, 0, sizeof(buf));
 
-                           psz = &buf[iCur - 2];
-                           iMultiByteUtf8DeleteCount = 2;
+                     //   strsize iProperBegin = maximum(0, m_ptree->m_iSelEnd - 256);
+                     //   strsize iCur = m_ptree->m_iSelEnd - iProperBegin;
+                     //   m_ptree->m_peditfile->seek(iProperBegin, ::e_seek_set);
+                     //   m_ptree->m_peditfile->read(buf, sizeof(buf));
+                     //   const ::ansi_character * psz;
+                     //   strsize iMultiByteUtf8DeleteCount;
+                     //   if (iCur > 1 && buf[iCur - 1] == '\n' && buf[iCur - 2] == '\r')
+                     //   {
 
-                        }
-                        else
-                        {
+                     //      psz = &buf[iCur - 2];
+                     //      iMultiByteUtf8DeleteCount = 2;
 
-                           psz = unicode_prior(&buf[iCur], buf);
+                     //   }
+                     //   else
+                     //   {
 
-                           if (psz == nullptr)
-                           {
+                     //      psz = unicode_prior(&buf[iCur], buf);
 
-                              psz = maximum((char *)buf, (char *)&buf[iCur - 1]);
+                     //      if (psz == nullptr)
+                     //      {
 
-                           }
+                     //         psz = maximum((char *)buf, (char *)&buf[iCur - 1]);
 
-                           iMultiByteUtf8DeleteCount = &buf[iCur] - psz;
+                     //      }
 
-                           information() << "iMultiByteUtf8DeleteCount : " << iMultiByteUtf8DeleteCount;
+                     //      iMultiByteUtf8DeleteCount = &buf[iCur] - psz;
 
-                        }
+                     //      information() << "iMultiByteUtf8DeleteCount : " << iMultiByteUtf8DeleteCount;
 
-                        index i2 = m_ptree->m_iSelEnd;
-                        index i1 = i2 - iMultiByteUtf8DeleteCount;
+                     //   }
 
-                        string strSel;
+                     //   index i2 = m_ptree->m_iSelEnd;
+                     //   index i1 = i2 - iMultiByteUtf8DeleteCount;
 
-                        _001GetText(strSel, i1, i2);
+                     //   string strSel;
 
-                        information() << "strSel : " << strSel;
+                     //   _001GetText(strSel, i1, i2);
 
-                        bFullUpdate = strSel.find_index('\n') >= 0 || strSel.find_index('\r') >= 0;
+                     //   information() << "strSel : " << strSel;
 
-                        if (!bFullUpdate)
-                        {
+                     //   bFullUpdate = strSel.find_index('\n') >= 0 || strSel.find_index('\r') >= 0;
 
-                           iLineUpdate = plain_edit_sel_to_line(pgraphics, i1);
+                     //   if (!bFullUpdate)
+                     //   {
 
-                        }
+                     //      iLineUpdate = plain_edit_sel_to_line(pgraphics, i1);
 
-                        m_ptree->m_iSelEnd -= iMultiByteUtf8DeleteCount;
-                        m_ptree->m_peditfile->seek(m_ptree->m_iSelEnd, ::e_seek_set);
-                        m_ptree->m_peditfile->Delete((memsize)iMultiByteUtf8DeleteCount);
+                     //   }
 
-                        m_pinsert = nullptr;
+                     //   m_ptree->m_iSelEnd -= iMultiByteUtf8DeleteCount;
+                     //   m_ptree->m_peditfile->seek(m_ptree->m_iSelEnd, ::e_seek_set);
+                     //   m_ptree->m_peditfile->Delete((memsize)iMultiByteUtf8DeleteCount);
 
-                        IndexRegisterDelete(m_ptree->m_iSelEnd, iMultiByteUtf8DeleteCount);
-                        m_ptree->m_iSelBeg = m_ptree->m_iSelEnd;
-                        psetsel->m_iSelBeg = m_ptree->m_iSelBeg;
-                        psetsel->m_iSelEnd = m_ptree->m_iSelEnd;
-                        MacroBegin();
-                        MacroRecord(psetsel);
-                        MacroRecord(__new(plain_text_file_command()));
-                        MacroEnd();
+                     //   m_pinsert = nullptr;
 
-                        _001SetSelEnd(m_ptree->m_iSelEnd);
+                     //   IndexRegisterDelete(m_ptree->m_iSelEnd, iMultiByteUtf8DeleteCount);
+                     //   m_ptree->m_iSelBeg = m_ptree->m_iSelEnd;
+                     //   psetsel->m_iSelBeg = m_ptree->m_iSelBeg;
+                     //   psetsel->m_iSelEnd = m_ptree->m_iSelEnd;
+                     //   MacroBegin();
+                     //   MacroRecord(psetsel);
+                     //   MacroRecord(__allocate< plain_text_file_command >());
+                     //   MacroEnd();
 
-                     }
+                     //   _001SetSelEnd(m_ptree->m_iSelEnd);
+
+                     //}
 
                   }
 
@@ -5863,16 +6067,17 @@ namespace user
                if (is_window_enabled())
                {
 
-                  queue_graphics_call([this](::draw2d::graphics_pointer & pgraphics)
-                     {
+                  _001DeleteSel();
+                  //queue_graphics_call([this](::draw2d::graphics_pointer & pgraphics)
+                  //{
 
-                        plain_edit_on_delete(pgraphics);
+                  //   plain_edit_on_delete(pgraphics);
 
-                     });
+                  //});
 
-                  set_need_redraw();
+                  //set_need_redraw();
 
-                  post_redraw();
+                  //post_redraw();
 
                }
 
@@ -5925,7 +6130,7 @@ namespace user
 
                      _001EnsureVisibleLine(pgraphics, iLine);
 
-                     _set_sel_end(pgraphics, m_ptree->m_iSelEnd);
+                     _ensure_selection_visible_x(pgraphics);
 
                   });
 
@@ -5977,13 +6182,15 @@ namespace user
 
                      _001EnsureVisibleLine(pgraphics, iLine);
 
-                     _set_sel_end(pgraphics, m_ptree->m_iSelEnd);
+                     _ensure_selection_visible_x(pgraphics);
 
                   });
 
             }
             else if (pkey->m_ekey == ::user::e_key_right)
             {
+
+               _synchronous_lock synchronouslock(this->synchronization());
 
                if (is_text_composition_active())
                {
@@ -6017,7 +6224,7 @@ namespace user
                   {
                      m_ptree->m_iSelEnd += unicode_next(buf) - buf;
                   }
-                  _001SetSelEnd(m_ptree->m_iSelEnd);
+                  _001SetSelEnd(m_ptree->m_iSelEnd, e_source_user);
                   if (!bShift)
                   {
                      m_ptree->m_iSelBeg = m_ptree->m_iSelEnd;
@@ -6068,7 +6275,7 @@ namespace user
                   {
                      m_ptree->m_iSelEnd--;
                   }
-                  _001SetSelEnd(m_ptree->m_iSelEnd);
+                  _001SetSelEnd(m_ptree->m_iSelEnd, e_source_user);
                   if (!bShift)
                   {
                      m_ptree->m_iSelBeg = m_ptree->m_iSelEnd;
@@ -6107,7 +6314,7 @@ namespace user
 
                      }
 
-                     _set_sel_end(pgraphics, m_ptree->m_iSelEnd);
+                     _ensure_selection_visible_x(pgraphics);
 
                      if (!bShift)
                      {
@@ -6155,7 +6362,7 @@ namespace user
 
                      }
 
-                     _set_sel_end(pgraphics, m_ptree->m_iSelEnd);
+                     _ensure_selection_visible_x(pgraphics);
 
                      if (!bShift)
                      {
@@ -6496,7 +6703,7 @@ namespace user
 
          _001GetText(strText);
 
-         ::informationf("\nplain_edit::on_text_composition (m_pitemComposing != nullptr) Current Text: " + strText + "\n");
+         ::acme::get()->platform()->informationf("\nplain_edit::on_text_composition (m_pitemComposing != nullptr) Current Text: " + strText + "\n");
 
       }
       else
@@ -6510,7 +6717,6 @@ namespace user
 
          insert_text(strText, true, e_source_user);
 
-
 #endif
 
       }
@@ -6520,6 +6726,8 @@ namespace user
 
    void plain_edit::on_text_commit(string strText)
    {
+
+      _synchronous_lock synchronouslock(this->synchronization());
 
       if (m_pitemComposing
          && !strText.contains('\r')
@@ -6568,7 +6776,7 @@ namespace user
 
          _001GetText(strText);
 
-         ::informationf("Current Text: " + strText + "\n");
+         ::acme::get()->platform()->informationf("Current Text: " + strText + "\n");
 
          m_pitemComposing.release();
 
@@ -6608,7 +6816,7 @@ namespace user
    bool plain_edit::InputConnectionBeginBatchEdit(bool bSuper)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       //MacroBegin();
 
@@ -6622,7 +6830,7 @@ namespace user
    bool plain_edit::InputConnectionEndBatchEdit(bool bSuper)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       //MacroEnd();
 
@@ -6656,11 +6864,11 @@ namespace user
    {
 
       queue_graphics_call([this, iBeforeLength, iAfterLength](::draw2d::graphics_pointer & pgraphics)
-         {
+      {
 
-            plain_edit_on_delete_surrounding_text(pgraphics, iBeforeLength, iAfterLength);
+         plain_edit_on_delete_surrounding_text(pgraphics, iBeforeLength, iAfterLength);
 
-         });
+      });
 
       set_need_redraw();
 
@@ -6848,7 +7056,7 @@ namespace user
 
             }
 
-            _set_sel_end(pgraphics, m_ptree->m_iSelEnd);
+            _ensure_selection_visible_x(pgraphics);
 
          });
 
@@ -6862,6 +7070,8 @@ namespace user
 
       queue_graphics_call([this, iComposingStart, iComposingEnd](::draw2d::graphics_pointer& pgraphics)
          {
+
+            _synchronous_lock synchronouslock(this->synchronization());
 
             strsize iCandidateBeg = iComposingStart;
 
@@ -6904,7 +7114,7 @@ namespace user
             m_ptree->m_peditfile->MacroEnd();
 
             MacroBegin();
-            MacroRecord(__new(plain_text_file_command()));
+            MacroRecord(__allocate< plain_text_file_command >());
             MacroEnd();
 
          });
@@ -6927,7 +7137,7 @@ namespace user
 
       strsize iAnsiEnd = wd16_to_ansi_len(wstrText, iEnd);
 
-      auto psetsel = __new(plain_text_set_sel_command);
+      auto psetsel = __allocate< plain_text_set_sel_command >();
 
       psetsel->m_iPreviousSelBeg = m_ptree->m_iSelBeg;
 
@@ -7015,7 +7225,7 @@ namespace user
    void plain_edit::_001OnSysChar(::message::message * pmessage)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       auto pkey = pmessage->m_union.m_pkey;
 
@@ -7230,7 +7440,7 @@ namespace user
 
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization());
 
          //string str;
          //_001GetText(str);
@@ -7253,9 +7463,9 @@ namespace user
 
          m_dy = -1;
 
-         m_bCalcLayoutHintNoTextChange = false;
+         //m_bCalcLayoutHintNoTextChange = false;
 
-         plain_edit_on_calc_layout(pgraphics);
+         //plain_edit_on_calc_layout(pgraphics);
 
       }
 
@@ -7356,11 +7566,11 @@ namespace user
 
       //printf("xxxxxxxxxx4\n");
 
-      set_need_redraw();
+      //set_need_redraw();
 
       //printf("xxxxxxxxxx4.1\n");
 
-      post_redraw();
+      //post_redraw();
 
       //printf("xxxxxxxxxx5\n");
 
@@ -7372,7 +7582,7 @@ namespace user
 
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization());
 
          //string str;
          //_001GetText(str);
@@ -7424,21 +7634,21 @@ namespace user
 
       }
 
-      set_need_redraw();
+      //set_need_redraw();
 
    }
 
 
    void plain_edit::MacroBegin()
    {
-      ::pointer<::user::plain_text_group_command>pgroupcommand = __new(plain_text_group_command);
+      ::pointer<::user::plain_text_group_command>pgroupcommand = __allocate< plain_text_group_command >();
       pgroupcommand->m_pparent = m_ptree->m_pgroupcommand;
       m_ptree->m_pgroupcommand = pgroupcommand;
    }
 
    void plain_edit::MacroEnd()
    {
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
       if (m_ptree->m_pgroupcommand == nullptr)
       {
          ASSERT(false);
@@ -7454,7 +7664,7 @@ namespace user
 
    void plain_edit::MacroRecord(::pointer<plain_text_command>pcommand)
    {
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
       if (m_ptree->m_pgroupcommand != nullptr && m_ptree->m_pgroupcommand != pcommand)
       {
          m_ptree->m_pgroupcommand->m_commanda.add(pcommand);
@@ -7466,12 +7676,12 @@ namespace user
    }
 
 
-   bool plain_edit::plain_edit_undo()
+   bool plain_edit::__plain_edit_undo()
    {
 
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization());
 
          {
             if (!CanUndo())
@@ -7493,38 +7703,12 @@ namespace user
    }
 
 
-   bool plain_edit::edit_undo()
+   bool plain_edit::__plain_edit_redo()
    {
-
-      plain_edit_undo();
-
-      auto psystem = system()->m_paurasystem;
-
-      auto pdraw2d = psystem->draw2d();
-
-      auto pgraphics = pdraw2d->create_memory_graphics(this);
-
-      plain_edit_create_line_index(pgraphics);
-
-      m_bGetTextNeedUpdate = true;
-
-      plain_edit_on_update(pgraphics, ::e_source_user);
-
-      //plain_edit_on_after_change_text(pgraphics, ::e_source_user);
-
-      return true;
-
-   }
-
-
-   bool plain_edit::edit_redo()
-   {
-
-      ::draw2d::graphics_pointer pgraphics;
 
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization());
 
          if (m_ptreeitem == nullptr)
          {
@@ -7569,32 +7753,84 @@ namespace user
 
       }
 
-      plain_edit_create_line_index(pgraphics);
+      return true;
 
-      m_bGetTextNeedUpdate = true;
+   }
+      
+   
+   bool plain_edit::edit_undo()
+   {
 
-      plain_edit_on_update(pgraphics, ::e_source_user);
-      //plain_edit_on_after_change_text(pgraphics, ::e_source_user);
+      if (!__plain_edit_undo())
+      {
+
+         return false;
+
+      }
+
+      queue_graphics_call([this](::draw2d::graphics_pointer & pgraphics)
+      {
+
+         plain_edit_create_line_index(pgraphics);
+
+         m_bGetTextNeedUpdate = true;
+
+         plain_edit_on_update(pgraphics, ::e_source_user);
+
+      });
+
+      set_need_redraw();
+
+      post_redraw();
 
       return true;
+
    }
+
+
+   bool plain_edit::edit_redo()
+   {
+
+      if (!__plain_edit_redo())
+      {
+
+         return false;
+
+      }
+
+      queue_graphics_call([this](::draw2d::graphics_pointer & pgraphics)
+      {
+
+         plain_edit_create_line_index(pgraphics);
+
+         m_bGetTextNeedUpdate = true;
+
+         plain_edit_on_update(pgraphics, ::e_source_user);
+         //plain_edit_on_after_change_text(pgraphics, ::e_source_user);
+
+      });
+
+      return true;
+
+   }
+
 
    bool plain_edit::CanUndo()
    {
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
       return m_ptreeitem != m_ptree->get_base_item();
    }
 
    bool plain_edit::CanRedo()
    {
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
       return m_ptree->m_iBranch < m_ptreeitem->get_expandable_children_count()
          || m_ptreeitem->get_next() != nullptr;
    }
 
    ::count plain_edit::GetRedoBranchCount()
    {
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       return m_ptreeitem->get_expandable_children_count()
          + (m_ptreeitem->get_next() != nullptr ? 1 : 0)
@@ -7620,7 +7856,7 @@ namespace user
 
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization());
 
          if (m_bParseDataPacks)
          {
@@ -7937,11 +8173,16 @@ namespace user
 
       m_timeNewFocus.Now();
 
-      strsize iBegAll = 0;
+      if (!m_bMultiLine)
+      {
 
-      strsize iEndAll = _001GetTextLength();
+         strsize iBegAll = 0;
 
-      _001SetSel(iBegAll, iEndAll);
+         strsize iEndAll = _001GetTextLength();
+
+         _001SetSel(iBegAll, iEndAll);
+
+      }
 
 
 #ifdef WINDOWS_DESKTOP
@@ -8025,7 +8266,7 @@ namespace user
    ::pointer<::data::item>plain_edit::on_allocate_item()
    {
 
-      return __new(plain_text_command);
+      return __allocate< plain_text_command >();
 
    }
 
@@ -8033,7 +8274,7 @@ namespace user
    void plain_edit::set_root(plain_text_tree * pdata, bool bOwnData)
    {
 
-      synchronous_lock lockRoot(synchronization());
+      _synchronous_lock lockRoot(synchronization());
 
       if (m_ptree != nullptr && m_bOwnData)
       {
@@ -8077,16 +8318,7 @@ namespace user
 
       UNREFERENCED_PARAMETER(pmessage);
 
-      clipboard_copy();
-
-      ::draw2d::graphics_pointer pgraphics;
-
-      if (is_window_enabled())
-      {
-
-         plain_edit_on_delete(pgraphics);
-
-      }
+      _001EditCut();
 
       pmessage->m_bRet = true;
 
@@ -8171,14 +8403,15 @@ namespace user
    bool plain_edit::on_edit_delete(const ::action_context & actioncontext)
    {
 
-      ::draw2d::graphics_pointer pgraphics;
+      _001DeleteSel();
+      //::draw2d::graphics_pointer pgraphics;
 
-      if (is_window_enabled())
-      {
+      //if (is_window_enabled())
+      //{
 
-         plain_edit_on_delete(pgraphics);
+      //   plain_edit_on_delete(pgraphics);
 
-      }
+      //}
 
       return true;
 
@@ -8275,7 +8508,7 @@ namespace user
    string plain_edit::plain_edit_get_line(::draw2d::graphics_pointer & pgraphics, index iLine)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       string strLine;
 
@@ -8350,9 +8583,22 @@ namespace user
    void plain_edit::plain_edit_insert_text(::draw2d::graphics_pointer & pgraphics, string strText, bool bForceNewStep)
    {
 
-      ::informationf("plain_edit::insert_text: \"" + strText.left(64) + "\" \n");
+      _synchronous_lock synchronouslock(this->synchronization());
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock _synchronouslock2(m_ptree->m_peditfile->synchronization());
+
+      ::string strInsertLog = strText.left(64);
+
+      if (strText == "1")
+      {
+
+         information() << "typed \'1\'";
+
+      }
+
+      strInsertLog.find_replace("\n", "\\n");
+
+      informationf("insert_text: \"" + strInsertLog + "\"");
 
       on_before_change_text();
 
@@ -8402,7 +8648,7 @@ namespace user
          // insert character at the last insert operation
          m_pinsert->m_memstorage.append(strText, strText.length());
 
-         m_ptree->m_peditfile->m_size += strText.length();
+         m_ptree->m_peditfile->m_sizeEditFile += strText.length();
 
          if (!bFullUpdate)
          {
@@ -8419,7 +8665,7 @@ namespace user
       else
       {
 
-         auto psetsel = __new(plain_text_set_sel_command);
+         auto psetsel = __allocate< plain_text_set_sel_command >();
 
          psetsel->m_iPreviousSelBeg = m_ptree->m_iSelBeg;
 
@@ -8467,10 +8713,11 @@ namespace user
          m_ptree->m_iSelBeg = m_ptree->m_iSelEnd;
          //m_ptree->m_peditfile->seek(m_ptree->m_iSelBeg, ::e_seek_set);
 
+
          auto iLength = strText.length();
+         auto a = m_ptree->m_iSelBeg;
 
          m_pinsert = m_ptree->m_peditfile->Insert(strText, iLength);
-
          IndexRegisterInsert(m_ptree->m_iSelEnd, strText);
 
          m_ptree->m_peditfile->MacroEnd();
@@ -8483,8 +8730,11 @@ namespace user
 
          MacroBegin();
          MacroRecord(psetsel);
-         MacroRecord(__new(plain_text_file_command()));
+         MacroRecord(__allocate< plain_text_file_command >());
          MacroEnd();
+
+         informationf("insert tree->iSelBeg=%lld,iSelEnd=%lld", m_ptree->m_iSelBeg, m_ptree->m_iSelEnd);
+         informationf("insert edit file size=%lld", m_ptree->m_peditfile->m_sizeEditFile);
 
       }
 
@@ -8528,7 +8778,7 @@ namespace user
 
       }
 
-      _set_sel_end(pgraphics, m_ptree->m_iSelEnd);
+      _ensure_selection_visible_x(pgraphics);
 
    }
 
@@ -8669,7 +8919,7 @@ namespace user
 //   if (m_psimpleimm.is_null())
 //   {
 //
-//      m_psimpleimm = __new(simple_imm(this));
+//      m_psimpleimm = __allocate< simple_imm >(this);
 //
 //   }
 //

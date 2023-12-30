@@ -306,7 +306,7 @@
 //                        will request a read lock, so make sure it can be granted 
 //                        or else this method will fail.
 //                        */
-//                        CTSFPersistentPropertyLoader *pLoader = memory_new CTSFPersistentPropertyLoader(&PropHeader, pStream);
+//                        CTSFPersistentPropertyLoader *pLoader = __new< CTSFPersistentPropertyLoader >(&PropHeader, pStream);
 //                        hr = m_pServices->Unserialize(pProp, &PropHeader, NULL, pLoader);
 //
 //                        pProp->Release();

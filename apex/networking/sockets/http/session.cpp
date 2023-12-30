@@ -77,7 +77,7 @@ namespace sockets
 
       if(m_bRequestComplete)
       {
-         step();
+         http_request_step();
       }
 
       m_bRequestComplete      = false;
@@ -85,7 +85,7 @@ namespace sockets
    }
 
 
-   bool http_session::step()
+   bool http_session::http_request_step()
    {
 
       inheader("connection") = "Keep-Alive";
@@ -96,25 +96,25 @@ namespace sockets
       {
       case http_method_get:
 
-         http_get_socket::step();
+         http_get_socket::http_request_step();
 
          break;
 
       case http_method_post:
 
-         http_post_socket::step();
+         http_post_socket::http_request_step();
 
          break;
 
       case http_method_put:
 
-         http_put_socket::step();
+         http_put_socket::http_request_step();
 
          break;
 
       default:
 
-         http_get_socket::step();
+         http_get_socket::http_request_step();
 
          break;
 

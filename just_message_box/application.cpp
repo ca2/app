@@ -1,14 +1,14 @@
 #include "framework.h"
 
 
-__DECLARE_RELEASE_TIME(app_just_message_box);
+__IMPLEMENT_APPLICATION_RELEASE_TIME(app_just_message_box);
 
 
 namespace app_just_message_box
 {
 
 
-   __IMPLEMENT_APPLICATION_RELEASE_TIME(app_just_message_box);
+   // __IMPLEMENT_APPLICATION_RELEASE_TIME1(app_just_message_box));
 
 
    application::application()
@@ -71,18 +71,18 @@ namespace app_just_message_box
 //#ifdef _DEBUG
 //
 //
-//   int64_t application::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+//   int64_t application::increment_reference_count()
 //   {
 //
-//      return ::object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+//      return ::object::increment_reference_count();
 //
 //   }
 //
 //
-//   int64_t application::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+//   int64_t application::decrement_reference_count()
 //   {
 //
-//      return ::object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+//      return ::object::decrement_reference_count();
 //
 //   }
 //

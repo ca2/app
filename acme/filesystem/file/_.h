@@ -93,7 +93,7 @@ class memory_base;
 
 
 
-//template < typename N, enum_type m_etypeContainer >
+//template < typename N, enum_type t_etypeContainer >
 //class numeric_array;
 
 

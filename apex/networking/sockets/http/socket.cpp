@@ -31,7 +31,8 @@ namespace sockets
            m_b_http_1_1(false),
            m_b_keepalive(false),
            m_chunk_size(0),
-           m_chunk_state(0)
+           m_chunk_state(0),
+      m_iRequestIndex(-1)
    {
 
       //m_bOnlyHeaders = false;
@@ -195,7 +196,7 @@ namespace sockets
                   request is HTTP/1.0 _or_ HTTP/1.1 and not keep-alive
 
                   This means we destroy the connection after the response has been delivered,
-                  hence no need to reset all internal state variables for a memory_new incoming
+                  hence no need to reset all internal state variables for a new incoming
                   request.
                   */
 
@@ -264,6 +265,8 @@ namespace sockets
          else // request
          {
 
+            m_iRequestIndex++;
+
             str.make_lower();
             //m_request.attr("remote_addr") = GetRemoteAddress().get_display_number();
             m_request.m_atomHttpMethod = str;
@@ -291,8 +294,10 @@ namespace sockets
             //m_request.m_strRequestUri = ::url::decode(strScript) + ::str::has_char(strQuery, "?");
             m_request.m_strRequestUri = strScript + ::str::has_char(strQuery, "?");
             m_request.attr("request_uri") = m_request.m_strRequestUri;
-            m_request.attr("http_version") = pa.getword();
-            m_b_http_1_1 = m_request.attr("http_version").as_string().ends("/1.1");
+            ::string strHttpVersion = pa.getword();
+            m_request.attr("http_version") = strHttpVersion;
+
+            m_b_http_1_1 = strHttpVersion.ends("/1.1");
             m_b_keepalive = m_b_http_1_1;
             m_bRequest = true;
             m_bResponse = false;
@@ -507,6 +512,13 @@ namespace sockets
             continue;
 
          }
+         if (strKey.case_insensitive_order("set-cookie") == 0)
+         {
+
+            continue;
+
+         }
+
 
          for (int j = 0; j < straValue.get_count(); j++)
          {
@@ -527,6 +539,8 @@ namespace sockets
       }
 
       msg += "\r\n";
+
+      information() << "Out Headers\n" << msg;
 
       print(msg);
 
@@ -755,13 +769,12 @@ namespace sockets
       {
          informationf("  (request)OnHeader %s: %s\n", (const char *) key, (const char *) value);
       }*/
-      if (key == "cookie")
+      m_request.header(key) = value;
+      if (key.as_string().case_insensitive_equals("cookie"))
       {
          m_request.cookies().parse_header(value);
          //m_response.cookies().parse_header(value);
       }
-      else
-         m_request.header(key) = value;
 
    }
 
@@ -825,6 +838,20 @@ namespace sockets
    void http_socket::OnEndChunk()
    {
 
+
+   }
+
+
+   void http_socket::finalize()
+   {
+
+      m_request.clear();
+
+      m_response.clear();
+
+      m_plistener.release();
+
+      tcp_socket::finalize();
 
    }
 

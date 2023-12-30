@@ -63,7 +63,7 @@ namespace experience_anthill
    void control_box::on_message_create(::message::message * pmessage)
    {
 
-      m_pfontMarlett.create(this);
+      __construct(m_pfontMarlett);
 
       m_pfontMarlett->create_font("Marlett", 32_px);
 

@@ -41,17 +41,17 @@ public:
 using strsize_range_array = ::array < strsize_range >;
 
 
-template < typename Type, typename RawType, ::enum_type m_etypeContainer >
+template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 class string_array_base :
-   public comparable_array < Type, const Type &, comparable_eq_array < Type, const Type &, array < Type, const Type &, ::allocator::def < Type >, m_etypeContainer > > >
+   public comparable_array < Type, const Type &, comparable_eq_array < Type, const Type &, array < Type, const Type &, ::typed::def < Type >, ::heap::typed_memory < Type, ::heap::e_memory_array >, t_etypeContainer > > >
 {
 public:
 
 
-   using BASE_ARRAY = comparable_array < Type, const Type &, comparable_eq_array < Type, const Type &, array < Type, const Type &, ::allocator::def < Type >, m_etypeContainer > > >;
+   using BASE_ARRAY = comparable_array < Type, const Type &, comparable_eq_array < Type, const Type &, array < Type, const Type &, ::typed::def < Type >, ::heap::typed_memory < Type, ::heap::e_memory_array >, t_etypeContainer > > >;
    typedef Type                                                      String;
    typedef RawType                                                   RawString;
-   typedef string_array_base < RawType, RawType, m_etypeContainer >    RawStringArray;
+   typedef string_array_base < RawType, RawType, t_etypeContainer >    RawStringArray;
    using CHARACTER = typename Type::CHARACTER;
    using RANGE = typename RawType::RANGE;
    typedef Type BASE_TYPE;
@@ -231,7 +231,7 @@ public:
 
    }
 
-   void debug_output(::index iStart = 0, ::count c = -1);
+   //void debug_output(::index iStart = 0, ::count c = -1);
 
    operator ::count() const
    {

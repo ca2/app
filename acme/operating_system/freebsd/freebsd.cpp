@@ -31,7 +31,14 @@
 //
 
 
+void motif_factory(::factory::factory * pfactory);
 
+void freebsd_factory(::factory::factory * pfactory)
+{
+
+   motif_factory(pfactory);
+
+}
 
 
 

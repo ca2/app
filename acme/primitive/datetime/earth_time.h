@@ -11,7 +11,7 @@ struct tm;
 
 #endif
 
-
+struct release_time_for_project;
 
 enum _CTIMESPANFORMATSTEP
 {
@@ -47,6 +47,7 @@ namespace earth
 
       time(i32 nYear, i32 nMonth, i32 nDay, i32 nHour, i32 nMin, i32 nSec,
            const class ::time &timeshift = {});
+      time(const release_time_for_project & release_time_for_project);
       explicit time(const ::earth::gregorian_time & gregoriantime,
          const class ::time & timeshift = {});
       explicit time(const file_time & filetime,

@@ -38,7 +38,18 @@ namespace netserver
 
       m_pincomingsocket->set_ssl_catalog(m_strCat);
 
-      m_pincomingsocket->set_ssl_cipher_list(m_strCipherList);
+      if (m_strCipherList.has_char())
+      {
+
+         m_pincomingsocket->set_ssl_cipher_list(m_strCipherList);
+
+      }
+      else
+      {
+
+         m_pincomingsocket->set_ssl_cipher_list("ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES256-SHA:ECDHE-RSA-AES128-SHA:ECDHE-RSA-RC4-SHA:DHE-RSA-AES256-SHA:DHE-RSA-AES128-SHA:RSA:SHA:3DES:!aNULL:!eNULL:!EXP:!LOW:!MD5:@STRENGTH");
+
+      }
 
       m_pincomingsocket->SetListeningDetach(true);
 
@@ -136,7 +147,7 @@ namespace netserver
 
                   m_pincomingsocket->set_maximum_time(0_s);
 
-                  m_psockethandlerIncoming->add(m_pincomingsocket);
+                  m_psockethandlerIncoming->add(m_pincomingsocket->base_socket_composite());
 
                   while (m_psockethandlerIncoming->get_count() > 0 && task_get_run())
                   {

@@ -1077,7 +1077,7 @@ namespace apex
       virtual class ::networking::application * networking_application();
 
 
-      virtual void create_networking_application();
+      virtual void create_networking_application(const ::scoped_string & scopedstrHostName);
 
 
       ::e_status on_html_response(::string & strHtml, const ::string & strUrl, const ::property_set & setPost) override;

@@ -9853,7 +9853,7 @@ namespace apex
       if (!m_pnetworkingapplication)
       {
 
-         create_networking_application();
+         create_networking_application(m_strNetworkingApplicationHostname);
 
       }
 
@@ -9862,7 +9862,7 @@ namespace apex
    }
 
 
-   void application::create_networking_application()
+   void application::create_networking_application(const ::scoped_string & scopedstrHostName)
    {
 
       //auto estatus =
@@ -9877,6 +9877,8 @@ namespace apex
       //}
 
       //estatus =
+
+      m_pnetworkingapplication->m_strHostname = scopedstrHostName;
 
       m_pnetworkingapplication->create_networking_application();
 

@@ -893,7 +893,7 @@ namespace acme
    void context::add_matter_locator(string strApp)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       string strMatterLocator = matter_locator(strApp);
 
@@ -905,7 +905,7 @@ namespace acme
    void context::add_matter_locator(::acme::application* papp)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       string strMatterLocator = matter_locator(papp);
 

@@ -166,7 +166,7 @@ namespace sockets
    }
 
 
-   ::uptr base_socket::GetSocketId()
+   ::socket_id base_socket::GetSocketId()
    {
 
       return base_socket_composite()->GetSocketId();

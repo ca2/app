@@ -80,7 +80,7 @@ bool image_list::create(i32 cx, i32 cy, ::u32 nFlags, i32 nInitial, i32 nGrow)
 
    defer_create_synchronization();
 
-   synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization());
 
    m_iSize = 0;
    m_iGrow = nGrow;
@@ -105,7 +105,7 @@ bool image_list::create(i32 cx, i32 cy, ::u32 nFlags, i32 nInitial, i32 nGrow)
 void image_list::realize(::draw2d::graphics * pgraphics) const
 {
 
-   synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization());
 
    m_pimage->realize(pgraphics);
 
@@ -115,7 +115,7 @@ void image_list::realize(::draw2d::graphics * pgraphics) const
 image_list & image_list::operator=(const image_list & imagelist)
 {
 
-   synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization());
 
    if(this != &imagelist)
    {
@@ -140,7 +140,7 @@ i32 image_list::get_image_count() const
 void image_list::draw(::draw2d::graphics* pgraphics, i32 iImage, const ::point_f64 & point, i32 iFlag)
 {
 
-   synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization());
 
    UNREFERENCED_PARAMETER(iFlag);
 
@@ -164,7 +164,7 @@ void image_list::draw(::draw2d::graphics* pgraphics, i32 iImage, const ::point_f
 void image_list::draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point_f64 & point, i32 iFlag, const class ::opacity & opacity)
 {
 
-   synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization());
 
    if (m_pimage->nok())
    {
@@ -226,7 +226,7 @@ void image_list::draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point_
 
    }
 
-   synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization());
 
    if (iImage >= get_image_count())
    {
@@ -288,7 +288,7 @@ i32 image_list::reserve_image(int iItem)
 
    ::draw2d::lock draw2dlock(this);
 
-   synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization());
 
    if (iItem < 0)
    {
@@ -322,7 +322,7 @@ i32 image_list::reserve_image(int iItem)
 //
 //   }
 //
-//   synchronous_lock synchronouslock(this->synchronization());
+//   _synchronous_lock synchronouslock(this->synchronization());
 //
 //   iItem = reserve_image(iItem);
 //
@@ -364,7 +364,7 @@ i32 image_list::reserve_image(int iItem)
 //
 //   }
 //
-//   synchronous_lock synchronouslock(this->synchronization());
+//   _synchronous_lock synchronouslock(this->synchronization());
 //
 //   iItem = reserve_image(iItem);
 //
@@ -451,7 +451,7 @@ i32 image_list::reserve_image(int iItem)
 //i32 image_list::add_file(::payload payloadFile, int iItem)
 //{
 //
-//   synchronous_lock synchronouslock(this->synchronization());
+//   _synchronous_lock synchronouslock(this->synchronization());
 //
 //   iItem = reserve_image(iItem);
 //
@@ -489,7 +489,7 @@ i32 image_list::set(int iItem, const image_drawing & imagedrawing)
 
    ::draw2d::lock draw2dlock(this);
 
-   synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization());
 
    iItem = reserve_image(iItem);
 
@@ -602,7 +602,7 @@ i32 image_list::set(int iItem, const image_drawing & imagedrawing)
 //i32 image_list::add_image(image_list * pil, int iImage, int iItem)
 //{
 //
-//   synchronous_lock synchronouslock(pil->synchronization());
+//   _synchronous_lock synchronouslock(pil->synchronization());
 //
 //   return add_image(pil->m_pimage, iImage * pil->m_size.cx(), 0, iItem);
 //
@@ -656,7 +656,7 @@ i32 image_list::_get_alloc_count()
 bool image_list::_grow(int iAddUpHint)
 {
 
-   synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization());
 
    i32 cx = m_size.cx();
 

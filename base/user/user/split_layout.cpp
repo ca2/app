@@ -316,7 +316,7 @@ namespace user
          //if((fwKeys & MK_LBUTTON) > 0 && (m_iState == stateDragging) && (iIndex == m_iIndex))
          //{
 
-         //   synchronous_lock synchronouslock(this->synchronization());
+         //   _synchronous_lock synchronouslock(this->synchronization());
          //   //critical_section_lock synchronouslock(m_pmutex);
          //   {
          //      //      informationf("split_layout::RelayChildEvent LOWORD(pMsg->lParam) %d\n", LOWORD(lpMsg->lParam));
@@ -769,7 +769,7 @@ namespace user
 
       }
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       auto puserinteractionpointeraChild = pholder->m_puserinteractionpointeraChild;
 
@@ -980,7 +980,7 @@ namespace user
    bool split_layout::RemovePaneAt(index iIndex)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       ASSERT(iIndex >= 0);
 
@@ -1215,7 +1215,7 @@ namespace user
 //         {
 //            //critical_section_lock lock(m_pmutex);
 //
-//            synchronous_lock synchronouslock(this->synchronization());
+//            _synchronous_lock synchronouslock(this->synchronization());
 //
 //            {
 //               informationf("split_layout::RelayChildEvent LOWORD(lParam) %d\n", LOWORD(lParam));

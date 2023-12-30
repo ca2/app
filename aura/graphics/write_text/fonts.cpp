@@ -51,7 +51,7 @@ namespace write_text
    font_enumeration* fonts::enumeration(const ::scoped_string & scopedstrFontBranch)
    {
 
-      synchronous_lock syncronouslock(synchronization());
+      _synchronous_lock syncronouslock(synchronization());
 
       ::string strFontBranch = scopedstrFontBranch;
 
@@ -83,7 +83,7 @@ namespace write_text
    void fonts::enumerate_fonts(const ::scoped_string & scopedstrFontBranch)
    {
 
-      synchronous_lock syncronouslock(synchronization());
+      _synchronous_lock syncronouslock(synchronization());
 
       ::pointer < ::write_text::font_enumeration > pfontenumeration;
 
@@ -137,7 +137,7 @@ namespace write_text
 
          pfontenumeration->enumerate_fonts();
 
-         synchronous_lock syncronouslock(synchronization());
+         _synchronous_lock syncronouslock(synchronization());
 
          m_mapFontEnumeration[scopedstrFontBranch] = pfontenumeration;
 

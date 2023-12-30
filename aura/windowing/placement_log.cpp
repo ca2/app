@@ -25,7 +25,7 @@ namespace windowing
       item.m_rectangle = rectangle;
       item.m_time.Now();
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       insert_at(0, item);
 

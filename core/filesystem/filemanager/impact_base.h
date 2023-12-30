@@ -107,7 +107,7 @@ public:
 
    }
 
-   ::fs::set * fs_data() { return ::filemanager_impact_base::fs_data(); }
+   ::fs::set * fs_data() override { return ::filemanager_impact_base::fs_data(); }
 
    ::core::application* get_app() { return ::filemanager_impact_base::get_app(); }
 

@@ -609,7 +609,7 @@ namespace user
    void still::defer_update_text_out_array(::draw2d::graphics_pointer & pgraphics)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       ::pointer<::write_text::font>pfont;
 
@@ -715,7 +715,7 @@ namespace user
       if (m_bNeedAutoResizePerformLayout)
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization());
 
          //::pointer<::write_text::font>pfont;
 

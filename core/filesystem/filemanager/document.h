@@ -88,8 +88,8 @@ namespace filemanager
 
       string get_initial_browse_path(const ::string & pszDefault = nullptr);
 
-      virtual void browse(const ::file::path & path, const ::action_context & action_context);
-      virtual bool browse(::pointer<::file::item>pitem, const ::action_context & action_context);
+      virtual void browse(const ::file::path & path, const ::action_context & action_context) override;
+      virtual bool browse(::pointer<::file::item>pitem, const ::action_context & action_context) override;
 
       //virtual void browse(const ::file::path & path, const ::action_context & action_context);
 
@@ -111,7 +111,7 @@ namespace filemanager
 
 
       virtual void FileManagerOneLevelUp(const ::action_context & action_context);
-      virtual void OnFileManagerBrowse(const ::action_context & action_context);
+      virtual void OnFileManagerBrowse(const ::action_context & action_context) override;
       virtual void OpenSelectionProperties();
 
       virtual void GetActiveImpactSelection(::file::item_array & itema);

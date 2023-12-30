@@ -295,7 +295,7 @@ namespace sockets
    {
       if (!m_ptcpsocket)
       {
-         auto plistensocket = __allocate< listen_socket<tcp_socket> >();
+         auto plistensocket = __allocate< listen_socket >();
          plistensocket-> SetDeleteByHandler();
          plistensocket-> Bind("127.0.0.1", 0);
          m_port = plistensocket-> GetPort();

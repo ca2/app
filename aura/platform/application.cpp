@@ -887,7 +887,7 @@ namespace aura
 
    //   }
 
-   //   synchronous_lock synchronouslock(m_pmutexStr);
+   //   _synchronous_lock synchronouslock(m_pmutexStr);
 
    //   if (m_stringtableStd.lookup(strTable, pmap))
    //   {
@@ -2912,7 +2912,7 @@ retry_license:
 //
 //      {
 //
-//         synchronous_lock synchronouslock(this->synchronization());
+//         _synchronous_lock synchronouslock(this->synchronization());
 //
 //         file()->add_contents(dir()->appdata() / (file()->module().name() + "_log_error.txt"), strMessage);
 //
@@ -3093,7 +3093,7 @@ retry_license:
    //void application::install_trace(const ::string & str)
    //{
 
-   //   synchronous_lock synchronouslock(this->synchronization());
+   //   _synchronous_lock synchronouslock(this->synchronization());
 
    //   //::install::trace_file(this, m_strInstallTraceLabel).print(str);
 
@@ -3103,7 +3103,7 @@ retry_license:
    //void application::install_trace(double dRate)
    //{
 
-   //   synchronous_lock synchronouslock(this->synchronization());
+   //   _synchronous_lock synchronouslock(this->synchronization());
 
    //   //::install::trace_file(this, m_strInstallTraceLabel).print(dRate);
 
@@ -3370,9 +3370,9 @@ retry_license:
 
 #endif
 
-      //synchronous_lock synchronouslock(m_pmutexFrame);
+      //_synchronous_lock synchronouslock(m_pmutexFrame);
 
-      //synchronous_lock slChildren(::user::pointer < ::mutex >_children2());
+      //_synchronous_lock slChildren(::user::pointer < ::mutex >_children2());
 
       auto puserinteractionFrame = m_puserinteractionaFrame;
 
@@ -3407,7 +3407,7 @@ retry_license:
 
       }
 
-      synchronous_lock synchronouslock(m_pmutexFrame); // recursive lock (on m_framea.add(puserinteraction)) but m_puiMain is "cared" by m_frame.m_pmutex
+      _synchronous_lock synchronouslock(m_pmutexFrame); // recursive lock (on m_framea.add(puserinteraction)) but m_puiMain is "cared" by m_frame.m_pmutex
 
       if (m_puserinteractiona->add_unique_interaction(puserinteraction))
       {
@@ -3442,7 +3442,7 @@ retry_license:
 
             {
 
-               synchronous_lock synchronouslock(puserinteractionHost->synchronization());
+               _synchronous_lock synchronouslock(puserinteractionHost->synchronization());
 
                puserinteractionHost->m_puserinteractionpointeraChild->add_unique_interaction(puserinteraction);
 
@@ -3464,7 +3464,7 @@ retry_license:
    void application::erase_user_interaction(::user::interaction * puserinteraction)
    {
 
-      synchronous_lock synchronouslock(m_pmutexFrame); // recursive lock (on m_framea.erase(puserinteraction)) but m_puiMain is "cared" by m_frame.m_pmutex
+      _synchronous_lock synchronouslock(m_pmutexFrame); // recursive lock (on m_framea.erase(puserinteraction)) but m_puiMain is "cared" by m_frame.m_pmutex
 
       if (m_puserinteractionMain == puserinteraction)
       {
@@ -3895,7 +3895,7 @@ retry_license:
 ////
 ////      {
 ////
-////         synchronous_lock synchronouslock(this->synchronization());
+////         _synchronous_lock synchronouslock(this->synchronization());
 ////
 ////         ptra = m_particleaddressaEventHook;
 ////
@@ -4058,7 +4058,7 @@ retry_license:
    //void application::record(::create * pcommand)
    //{
 
-   //   synchronous_lock synchronouslock(this->synchronization());
+   //   _synchronous_lock synchronouslock(this->synchronization());
 
    //   get_command()->m_createa.add(pcommand);
 
@@ -4200,7 +4200,7 @@ retry_license:
    //string application::load_string(const ::atom & atom)
    //{
 
-   //   synchronous_lock synchronouslock(m_pmutexStr);
+   //   _synchronous_lock synchronouslock(m_pmutexStr);
 
    //   string str;
 
@@ -4308,7 +4308,7 @@ retry_license:
 
    //   }
 
-   //   synchronous_lock synchronouslock(m_pmutexStr);
+   //   _synchronous_lock synchronouslock(m_pmutexStr);
 
    //   ::pointer<string_to_string>pmap;
 
@@ -7398,7 +7398,7 @@ namespace aura
 //      throw ::exception(todo);
 //      /*#elif defined(LINUX)
 //
-//      //      synchronous_lock synchronouslock(&user_synchronization());
+//      //      _synchronous_lock synchronouslock(&user_synchronization());
 //
 //      xdisplay pdisplay.
 //      pdisplay.open(nullptr) = x11_get_display();

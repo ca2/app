@@ -410,7 +410,7 @@ file_context::time(const ::file::path &psz, i32 iMaxLevel, const string &pszPref
 
    auto psystem = system();
 
-   synchronous_lock lockMachineEvent(psystem->synchronization());
+   _synchronous_lock lockMachineEvent(psystem->synchronization());
 
    ::file::path str;
 
@@ -1369,7 +1369,7 @@ void file_context::calculate_main_resource_memory()
    try
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       auto & pfactory = system()->folder_factory();
 
@@ -1435,7 +1435,7 @@ void file_context::calculate_main_resource_memory()
 
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       pfolder = resource_folder();
 
@@ -1448,7 +1448,7 @@ void file_context::calculate_main_resource_memory()
 
    }
 
-   synchronous_lock synchronouslock(pfolder->synchronization());
+   _synchronous_lock synchronouslock(pfolder->synchronization());
 
    string strPath(path);
 
@@ -1531,7 +1531,7 @@ void file_context::calculate_main_resource_memory()
 
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       pfolder = resource_folder();
 
@@ -1544,7 +1544,7 @@ void file_context::calculate_main_resource_memory()
 
    }
 
-   synchronous_lock synchronouslock(pfolder->synchronization());
+   _synchronous_lock synchronouslock(pfolder->synchronization());
 
    string strPath(path);
 
@@ -3338,7 +3338,7 @@ file_pointer file_context::http_get_file(const ::payload &payloadFile, ::file::e
    while_predicateicate_Sleep(60 * 1000, [&]()
    {
 
-      synchronous_lock synchronouslock(system()->m_pmutexHttpDownload);
+      _synchronous_lock synchronouslock(system()->m_pmutexHttpDownload);
 
       return system()->m_straHttpDownloading.contains(path) || system()->m_straHttpExists.contains(path);
 
@@ -3352,7 +3352,7 @@ file_pointer file_context::http_get_file(const ::payload &payloadFile, ::file::e
 
    {
 
-      synchronous_lock synchronouslock(system()->m_pmutexHttpDownload);
+      _synchronous_lock synchronouslock(system()->m_pmutexHttpDownload);
 
       if (path.flags().is_clear(::file::e_flag_bypass_cache) && acmefile()->exists(pathCache))
       {
@@ -3379,7 +3379,7 @@ file_pointer file_context::http_get_file(const ::payload &payloadFile, ::file::e
    if (bSaveCache)
    {
 
-      synchronous_lock synchronouslock(system()->m_pmutexHttpDownload);
+      _synchronous_lock synchronouslock(system()->m_pmutexHttpDownload);
 
       system()->m_straHttpDownloading.add(path);
 
@@ -3399,7 +3399,7 @@ file_pointer file_context::http_get_file(const ::payload &payloadFile, ::file::e
    if (bSaveCache)
    {
 
-      synchronous_lock synchronouslock(system()->m_pmutexHttpDownload);
+      _synchronous_lock synchronouslock(system()->m_pmutexHttpDownload);
 
       try
       {

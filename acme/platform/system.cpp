@@ -818,7 +818,7 @@ namespace acme
    ::task * system::get_task(itask_t itask)
    {
 
-      synchronous_lock synchronouslock(m_pmutexTask);
+      _synchronous_lock synchronouslock(m_pmutexTask);
 
       return m_taskmap[itask];
 
@@ -828,7 +828,7 @@ namespace acme
    itask_t system::get_task_id(const ::task * ptask)
    {
 
-      synchronous_lock synchronouslock(m_pmutexTask);
+      _synchronous_lock synchronouslock(m_pmutexTask);
 
       itask_t itask = null_itask;
 
@@ -847,7 +847,7 @@ namespace acme
    void system::set_task(itask_t itask, ::task * ptask)
    {
 
-      synchronous_lock synchronouslock(m_pmutexTask);
+      _synchronous_lock synchronouslock(m_pmutexTask);
 #if   REFERENCING_DEBUGGING
       ::allocator::add_referer({ this, __FUNCTION_FILE_LINE__ });
 #endif
@@ -861,7 +861,7 @@ namespace acme
    void system::unset_task(itask_t itask, ::task * ptask)
    {
 
-      synchronous_lock synchronouslock(m_pmutexTask);
+      _synchronous_lock synchronouslock(m_pmutexTask);
 
       m_taskmap.erase_item(itask);
 
@@ -953,7 +953,7 @@ namespace acme
    bool system::is_task_on(itask_t atom)
    {
 
-      synchronous_lock synchronouslock(m_pmutexTaskOn);
+      _synchronous_lock synchronouslock(m_pmutexTaskOn);
 
       return m_mapTaskOn.plookup(atom);
 
@@ -978,7 +978,7 @@ namespace acme
    void system::set_task_on(itask_t atom)
    {
 
-      synchronous_lock synchronouslock(m_pmutexTaskOn);
+      _synchronous_lock synchronouslock(m_pmutexTaskOn);
 
       m_mapTaskOn.set_at(atom, atom);
 
@@ -988,7 +988,7 @@ namespace acme
    void system::set_task_off(itask_t atom)
    {
 
-      synchronous_lock synchronouslock(m_pmutexTaskOn);
+      _synchronous_lock synchronouslock(m_pmutexTaskOn);
 
       m_mapTaskOn.erase_item(atom);
 
@@ -1224,7 +1224,7 @@ namespace acme
 
    //   auto psystem = system();
 
-   //   synchronous_lock synchronouslock(&psystem->m_pmutexLibrary2);
+   //   _synchronous_lock synchronouslock(&psystem->m_pmutexLibrary2);
 
    //   auto & plibrary = psystem->m_mapLibrarySquare[strComponent][strImplementation];
 
@@ -1274,7 +1274,7 @@ namespace acme
 
    //   auto psystem = system();
 
-   //   synchronous_lock synchronouslock(&psystem->m_pmutexContainerizedLibrary);
+   //   _synchronous_lock synchronouslock(&psystem->m_pmutexContainerizedLibrary);
 
    //   ::pointer<::acme::library>plibrary = psystem->m_mapContainerizedLibrary[strComponent][strImplementation];
 
@@ -1374,7 +1374,7 @@ namespace acme
    //
    //#ifdef CUBE
    //
-   //      synchronous_lock synchronouslock(m_pmutexContainerizedLibrary);
+   //      _synchronous_lock synchronouslock(m_pmutexContainerizedLibrary);
    //
    //      auto & plibrary = m_mapContainerizedLibrary[strComponent][strImplementation];
    //
@@ -1494,7 +1494,7 @@ namespace acme
    ::pointer<::regular_expression::context>system::get_regular_expression_context(const ::string & pszStyle)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       __defer_construct_new(m_pmapRegularExpressionContext);
 

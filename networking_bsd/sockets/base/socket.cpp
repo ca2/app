@@ -2663,6 +2663,20 @@ bool base_socket::SetSoNosigpipe(bool x)
 
       }
 
+      if (m_iKeepAliveCount > 0)
+      {
+
+         output_debug_string("m_iKeepAliveCount > 0");
+
+      }
+
+      if (base_socket_composite() && base_socket_composite()->m_iKeepAliveCount > 0)
+      {
+
+         output_debug_string("base_socket_composite()->m_iKeepAliveCount > 0");
+
+      }
+
       if (LineProtocol())
       {
          buf[n] = 0;

@@ -1703,7 +1703,7 @@ m_ibuf(isize)
          bool br;
          bool bw;
          bool bx;
-         __Handler(m_psockethandler)->get(GetSocketId(), br, bw, bx);
+         __Handler(socket_handler())->get(GetSocketId(), br, bw, bx);
          if (m_obuf.get_size())
             set(br, true);
          else

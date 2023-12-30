@@ -61,12 +61,15 @@ namespace sockets_bsd
       //m_prfds = __new< fd_set >();
       //m_pwfds = __new< fd_set >();
       //m_pefds = __new< fd_set >();
-      FD_ZERO(&m_rfds);
-      FD_ZERO(&m_wfds);
-      FD_ZERO(&m_efds);
-      m_countR = 0;
-      m_countW = 0;
-      m_countE = 0;
+      FD_ZERO(&m_rfdsSelect);
+      FD_ZERO(&m_wfdsSelect);
+      FD_ZERO(&m_efdsSelect);
+      FD_ZERO(&m_rfdsSelected);
+      FD_ZERO(&m_wfdsSelected);
+      FD_ZERO(&m_efdsSelected);
+      //m_countR = 0;
+      //m_countW = 0;
+      //m_countE = 0;
 
       //g_interlockedcountSocketHandler++;
 
@@ -363,11 +366,60 @@ namespace sockets_bsd
       if (s >= 0)
       {
 
-         r = FD_ISSET(s, &m_rfds) ? true : false;
+         r = FD_ISSET(s, &m_rfdsSelect) ? true : false;
 
-         w = FD_ISSET(s, &m_wfds) ? true : false;
+         w = FD_ISSET(s, &m_wfdsSelect) ? true : false;
 
-         e = FD_ISSET(s, &m_efds) ? true : false;
+         e = FD_ISSET(s, &m_efdsSelect) ? true : false;
+
+      }
+
+   }
+
+
+   void socket_handler::_get(SOCKET s, i32& r, i32& w, i32& e)
+   {
+
+      if (s >= 0)
+      {
+
+         if (FD_ISSET(s, &m_rfdsSelect))
+         {
+
+            r++;
+
+         }
+
+         if (FD_ISSET(s, &m_wfdsSelect))
+         {
+
+            w++;
+
+         }
+
+         if (FD_ISSET(s, &m_efdsSelect))
+         {
+
+            e++;
+
+         }
+
+      }
+
+   }
+
+
+   void socket_handler::get(i32& r, i32& w, i32& e)
+   {
+
+      r = 0;
+      w = 0;
+      e = 0;
+
+      for (auto& s : m_socketlist)
+      {
+
+         _get(s, r, w, e);
 
       }
 
@@ -383,12 +435,12 @@ namespace sockets_bsd
          if (bRead)
          {
 
-            if (!FD_ISSET(s, &m_rfds))
+            if (!FD_ISSET(s, &m_rfdsSelect))
             {
 
-               FD_SET(s, &m_rfds);
+               FD_SET(s, &m_rfdsSelect);
 
-               m_countR++;
+               //m_countR++;
 
             }
 
@@ -396,12 +448,12 @@ namespace sockets_bsd
          else
          {
 
-            if (FD_ISSET(s, &m_rfds))
+            if (FD_ISSET(s, &m_rfdsSelect))
             {
 
-               FD_CLR(s, &m_rfds);
+               FD_CLR(s, &m_rfdsSelect);
 
-               m_countR--;
+               //m_countR--;
 
             }
 
@@ -410,12 +462,12 @@ namespace sockets_bsd
          if (bWrite)
          {
 
-            if (!FD_ISSET(s, &m_wfds))
+            if (!FD_ISSET(s, &m_wfdsSelect))
             {
 
-               FD_SET(s, &m_wfds);
+               FD_SET(s, &m_wfdsSelect);
 
-               m_countW++;
+               //m_countW++;
 
             }
 
@@ -423,12 +475,12 @@ namespace sockets_bsd
          else
          {
 
-            if (FD_ISSET(s, &m_wfds))
+            if (FD_ISSET(s, &m_wfdsSelect))
             {
 
-               FD_CLR(s, &m_wfds);
+               FD_CLR(s, &m_wfdsSelect);
 
-               m_countW--;
+               //m_countW--;
 
             }
 
@@ -437,12 +489,12 @@ namespace sockets_bsd
          if (bException)
          {
 
-            if (!FD_ISSET(s, &m_efds))
+            if (!FD_ISSET(s, &m_efdsSelect))
             {
 
-               FD_SET(s, &m_efds);
+               FD_SET(s, &m_efdsSelect);
 
-               m_countE++;
+               //m_countE++;
 
             }
 
@@ -450,12 +502,12 @@ namespace sockets_bsd
          else
          {
 
-            if (FD_ISSET(s, &m_efds))
+            if (FD_ISSET(s, &m_efdsSelect))
             {
 
-               FD_CLR(s, &m_efds);
+               FD_CLR(s, &m_efdsSelect);
 
-               m_countE--;
+               //m_countE--;
 
             }
 
@@ -781,17 +833,23 @@ start_processing_adding:
 
 end_processing_adding:
 
-      fd_set rfds;
-      fd_set wfds;
-      fd_set efds;
+      //fd_set rfds;
+      //fd_set wfds;
+      //fd_set efds;
 
-      FD_COPY(&m_rfds, &rfds);
-      FD_COPY(&m_wfds, &wfds);
-      FD_COPY(&m_efds, &efds);
+      i32 countR = 0;
+      i32 countW = 0;
+      i32 countE = 0;
 
-      fd_set * psetR = m_countR > 0 ? &rfds : nullptr;
-      fd_set * psetW = m_countW > 0 ? &wfds : nullptr;
-      fd_set * psetE = m_countE > 0 ? &efds : nullptr;
+      get(countR, countW, countE);
+
+      FD_COPY(&m_rfdsSelect, &m_rfdsSelected);
+      FD_COPY(&m_wfdsSelect, &m_wfdsSelected);
+      FD_COPY(&m_efdsSelect, &m_efdsSelected);
+
+      fd_set * psetR = countR > 0 ? &m_rfdsSelected : nullptr;
+      fd_set * psetW = countW > 0 ? &m_wfdsSelected : nullptr;
+      fd_set * psetE = countE > 0 ? &m_efdsSelected : nullptr;
 
       i32 n = 0;
 
@@ -831,6 +889,13 @@ end_processing_adding:
 
             n = ::select((int)m_maxsock, psetR, psetW, psetE, tsel);
 
+            if (m_iMaxKeepAliveCount > 0)
+            {
+
+               output_debug_string("m_iMaxKeepAliveCount > 0");
+
+            }
+
             m_iSelectErrno = networking_last_error();
 
          }
@@ -850,6 +915,13 @@ end_processing_adding:
             EINVAL n is negative. Or struct timeval contains bad time values (<0).
             ENOMEM select was unable to allocate memory for internal tables.
          */
+
+         if (m_iMaxKeepAliveCount > 0)
+         {
+
+            output_debug_string("m_iMaxKeepAliveCount > 0");
+
+         }
 
          if (m_maxsock > 0 && (m_iSelectErrno != m_iPreviousError || tickNow - m_timeLastError > 5_s))
          {
@@ -876,62 +948,52 @@ end_processing_adding:
 
             }
 
-            // test bad fd
-            for (SOCKET socket = 0; socket < m_maxsock; socket++)
-            {
+            //// test bad fd
+            //for (SOCKET socket = 0; socket < m_maxsock; socket++)
+            //{
 
-               bool bAnySet = false;
+            //   bool bAnySet = false;
 
-               FD_ZERO(&rfds);
-               FD_ZERO(&wfds);
-               FD_ZERO(&efds);
+            //   if (FD_ISSET(socket, &m_rfdsSelected))
+            //   {
 
-               if (FD_ISSET(socket, &m_rfds))
-               {
+            //      bAnySet = true;
 
-                  FD_SET(socket, &rfds);
+            //   }
 
-                  bAnySet = true;
+            //   if (FD_ISSET(socket, &m_wfdsSelected))
+            //   {
 
-               }
+            //      bAnySet = true;
 
-               if (FD_ISSET(socket, &m_wfds))
-               {
+            //   }
 
-                  FD_SET(socket, &wfds);
+            //   if (FD_ISSET(socket, &m_efdsSelected))
+            //   {
 
-                  bAnySet = true;
+            //      bAnySet = true;
 
-               }
+            //   }
 
-               if (FD_ISSET(socket, &m_efds))
-               {
+            //   if (bAnySet)
+            //   {
 
-                  FD_SET(socket, &efds);
+            //      auto ppairSocket = m_socketmap.plookup(socket);
 
-                  bAnySet = true;
+            //      if (::is_set(ppairSocket) && ::is_set(ppairSocket->m_psocket))
+            //      {
 
-               }
+            //         information() << "Bad fd in fd_set: " << socket;
 
-               if (bAnySet)
-               {
+            //         information() << "Deleting and removing socket: " << socket;
 
-                  auto ppairSocket = m_socketmap.plookup(socket);
+            //         ppairSocket->m_psocket->SetCloseAndDelete();
 
-                  if (::is_set(ppairSocket) && ::is_set(ppairSocket->m_psocket))
-                  {
+            //      }
 
-                     information() << "Bad fd in fd_set: " << socket;
+            //   }
 
-                     information() << "Deleting and removing socket: " << socket;
-
-                     ppairSocket->m_psocket->SetCloseAndDelete();
-
-                  }
-
-               }
-
-            }
+            //}
 
          }
 
@@ -939,13 +1001,13 @@ end_processing_adding:
          /// done : http://jbmon.googlecode.com/svn/trunk/networking_bsd/SocketHandler.cpp : rebuild fd_set's from active networking_bsd list (m_socketmap) here
          {
 
-            FD_ZERO(&rfds);
-            FD_ZERO(&wfds);
-            FD_ZERO(&efds);
+            //FD_ZERO(&rfds);
+            //FD_ZERO(&wfds);
+            //FD_ZERO(&efds);
 
-            ::count countR = 0;
-            ::count countW = 0;
-            ::count countE = 0;
+            //::count countR = 0;
+            //::count countW = 0;
+            //::count countE = 0;
 
             auto p = m_socketmap.begin();
 
@@ -987,34 +1049,34 @@ end_processing_adding:
 
                         bool bAnySet = false;
 
-                        if (FD_ISSET(p->m_socket, &m_rfds))
+                        if (FD_ISSET(p->m_socket, &m_rfdsSelect))
                         {
 
-                           FD_SET(p->m_socket, &rfds);
+                           //FD_SET(p->m_socket, &rfds);
 
-                           countR++;
+                           //countR++;
 
                            bAnySet = true;
 
                         }
 
-                        if (FD_ISSET(p->m_socket, &m_wfds))
+                        if (FD_ISSET(p->m_socket, &m_wfdsSelect))
                         {
 
-                           FD_SET(p->m_socket, &wfds);
+                           //FD_SET(p->m_socket, &wfds);
 
-                           countW++;
+                           //countW++;
 
                            bAnySet = true;
 
                         }
 
-                        if (FD_ISSET(p->m_socket, &m_efds))
+                        if (FD_ISSET(p->m_socket, &m_efdsSelect))
                         {
 
-                           FD_SET(p->m_socket, &efds);
+                           //FD_SET(p->m_socket, &efds);
 
-                           countE++;
+                           //countE++;
 
                            bAnySet = true;
 
@@ -1059,13 +1121,13 @@ end_processing_adding:
 
             }
 
-            m_rfds = rfds;
-            m_wfds = wfds;
-            m_efds = efds;
+            //m_rfds = rfds;
+            //m_wfds = wfds;
+            //m_efds = efds;
 
-            m_countR = countR;
-            m_countW = countW;
-            m_countE = countE;
+            //m_countR = countR;
+            //m_countW = countW;
+            //m_countE = countE;
 
          }
 
@@ -1090,13 +1152,34 @@ end_processing_adding:
             
             SOCKET socket = *p;
 
-            if (FD_ISSET(socket, &rfds))
+            if (FD_ISSET(socket, &m_rfdsSelected))
             {
                
                auto ppairSocket = m_socketmap.plookup(socket);
 
+               if (m_iMaxKeepAliveCount > 0)
+               {
+
+                  output_debug_string("m_iMaxKeepAliveCount > 0");
+
+               }
+
                if (::is_set(ppairSocket) && ::is_set(ppairSocket->m_psocket)) // found
                {
+
+                  if (ppairSocket->m_psocket->m_iKeepAliveCount > 0)
+                  {
+
+                     output_debug_string("ppairSocket->m_psocket->m_iKeepAliveCount > 0");
+
+                  }
+
+                  if (ppairSocket->m_psocket->base_socket_composite() && ppairSocket->m_psocket->base_socket_composite()->m_iKeepAliveCount > 0)
+                  {
+
+                     output_debug_string("ppairSocket->m_psocket->base_socket_composite()->m_iKeepAliveCount > 0");
+
+                  }
 
                   // new SSL negotiate method
                   if (ppairSocket->m_psocket->IsSSLNegotiate())
@@ -1116,6 +1199,24 @@ end_processing_adding:
 
                   }
 
+                  if (ppairSocket->m_psocket->m_iKeepAliveCount > 0)
+                  {
+
+                     output_debug_string("ppairSocket->m_psocket->m_iKeepAliveCount > 0");
+
+                     m_iMaxKeepAliveCount = maximum(m_iMaxKeepAliveCount, ppairSocket->m_psocket->m_iKeepAliveCount);
+
+                  }
+
+                  if (ppairSocket->m_psocket->base_socket_composite() && ppairSocket->m_psocket->base_socket_composite()->m_iKeepAliveCount > 0)
+                  {
+
+                     output_debug_string("ppairSocket->m_psocket->base_socket_composite()->m_iKeepAliveCount > 0");
+
+                     m_iMaxKeepAliveCount = maximum(m_iMaxKeepAliveCount, ppairSocket->m_psocket->base_socket_composite()->m_iKeepAliveCount);
+
+                  }
+
                }
                else
                {
@@ -1128,7 +1229,7 @@ end_processing_adding:
 
             }
 
-            if (FD_ISSET(socket, &wfds))
+            if (FD_ISSET(socket, &m_wfdsSelected))
             {
                
                auto ppairSocket = m_socketmap.plookup(socket);
@@ -1166,7 +1267,7 @@ end_processing_adding:
 
             }
 
-            if (FD_ISSET(socket, &efds))
+            if (FD_ISSET(socket, &m_efdsSelected))
             {
 
                auto ppairSocket = m_socketmap.plookup(socket);

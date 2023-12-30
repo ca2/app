@@ -28,6 +28,7 @@ namespace sockets_bsd
    {
    public:
 
+      ::i32 m_iMaxKeepAliveCount = 0;
       ::pointer<::apex::log>    m_splogger; ///< Registered log class, or nullptr
 
       socket_map                 m_socketmap; ///< Active sockets map
@@ -35,12 +36,15 @@ namespace sockets_bsd
       socket_pointer_list        m_delete; ///< Sockets to be deleted (failed when add)
       bool                       m_b_use_mutex; ///< ::pointer < ::mutex > correctly initialized
       SOCKET                     m_maxsock; ///< Highest file descriptor + 1 in active sockets list
-      ::count                    m_countR;
-      ::count                    m_countW;
-      ::count                    m_countE;
-      fd_set                     m_rfds; ///< file descriptor set monitored for read events
-      fd_set                     m_wfds; ///< file descriptor set monitored for write events
-      fd_set                     m_efds; ///< file descriptor set monitored for exceptions
+      //::count                    m_countR;
+      //::count                    m_countW;
+      //::count                    m_countE;
+      fd_set                     m_rfdsSelect; ///< file descriptor set monitored for read events
+      fd_set                     m_wfdsSelect; ///< file descriptor set monitored for write events
+      fd_set                     m_efdsSelect; ///< file descriptor set monitored for exceptions
+      fd_set                     m_rfdsSelected; ///< file descriptor set monitored for read events
+      fd_set                     m_wfdsSelected; ///< file descriptor set monitored for write events
+      fd_set                     m_efdsSelected; ///< file descriptor set monitored for exceptions
       i32                        m_iPreviousError; ///< debug select() error
       class ::time                       m_timeLastError;
       ::earth::time                 m_tlast; ///< timeout control
@@ -104,6 +108,8 @@ namespace sockets_bsd
 
       /** get status of read/write/exception file descriptor set for a base_socket. */
       void get(SOCKET s,bool& r,bool& w,bool& e) override;
+      virtual void _get(SOCKET s, i32& r, i32& w, i32& e);
+      virtual void get(i32& r, i32& w, i32& e);
 
       /** set read/write/exception file descriptor sets (fd_set). */
       void set(SOCKET s,bool bRead,bool bWrite,bool bException = true) override;

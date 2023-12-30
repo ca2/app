@@ -20,6 +20,8 @@ namespace sockets
    public:
 
       void * m_p2;
+      i32      m_iKeepAliveCount = 0;
+
 //      class CLASS_DECL_APEX callback
 //      {
 //      public:

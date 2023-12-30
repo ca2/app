@@ -26,6 +26,7 @@ namespace sockets
       //http_socket(h)
    {
 
+      m_iKeepAliveCount = 0;
 
    }
 
@@ -280,7 +281,9 @@ namespace sockets
       else
       {
 
-         //informationf("keep-alive");
+         m_iKeepAliveCount++;
+
+         information() << "keep-alive : " << m_iKeepAliveCount;
 
       }
 

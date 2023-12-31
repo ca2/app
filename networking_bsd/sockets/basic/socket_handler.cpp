@@ -269,7 +269,7 @@ namespace sockets_bsd
 
       socket_pointer plookup;
 
-      if (m_socketmapAdd.lookup(__Socket(psocket)->GetSocketId(), plookup))
+      if (m_socketmapAdd.lookup((::i32) __Socket(psocket)->GetSocketId(), plookup))
       {
 
          information() << "add: Invalid socket " << (i32) __Socket(psocket)->GetSocketId() << " Attempt to add socket already in add queue";
@@ -313,12 +313,12 @@ namespace sockets_bsd
 
       psocket->m_estatus = ::success;
 
-      auto& a = m_socketmapAdd[psocket->GetSocketId()];
+      auto& a = m_socketmapAdd[(::i32) psocket->GetSocketId()];
 
        a= psocket;
 
 
-      auto xxx = m_socketmapAdd[psocket->GetSocketId()];
+      auto xxx = m_socketmapAdd[(::i32) psocket->GetSocketId()];
 
    }
 
@@ -1336,7 +1336,7 @@ end_processing_adding:
 
          auto it = m_socketlistDetach.begin();
 
-         SOCKET socket = 0;
+         //SOCKET socket = 0;
 
          while(it != m_socketlistDetach.end())
          {

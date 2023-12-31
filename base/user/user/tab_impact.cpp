@@ -632,7 +632,7 @@ namespace user
 
             {
 
-               synchronous_lock synchronouslock(this->synchronization());
+               _synchronous_lock synchronouslock(this->synchronization());
 
                if (pimpactdata->m_strTitle.has_char())
                {
@@ -720,7 +720,7 @@ namespace user
    void tab_impact::on_after_change_cur_sel()
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       auto ptabdata = get_data();
 
@@ -1193,7 +1193,7 @@ namespace user
 
    //         {
 
-   //            synchronous_lock synchronouslock(this->synchronization());
+   //            _synchronous_lock synchronouslock(this->synchronization());
 
    //            if (pimpactdata->m_strCreatorDataTitle.has_char() && ppane->m_atom == pimpactdata->m_atom)
    //            {

@@ -1065,7 +1065,7 @@ namespace apex
 
       }
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       if (!m_pmapKeyPressed)
       {
@@ -1150,7 +1150,7 @@ ret:
    void session::set_key_pressed(::user::enum_key ekey, bool bPressed)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       if (!m_pmapKeyPressed)
       {

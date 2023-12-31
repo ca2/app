@@ -1113,7 +1113,7 @@ namespace apex
    bool context::post_next_pending_request()
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       if (!m_requestaPending.has_element())
       {

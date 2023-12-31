@@ -15,8 +15,8 @@ namespace httpd
       m_iPortMaximum = -1;
 
 
-      m_iPortMinimum = 10000;
-      m_iPortMaximum = 19999;
+      m_iPortMinimum = 443;
+      m_iPortMaximum = 443;
 
 
       m_iCurrentPort = m_iPortMinimum;

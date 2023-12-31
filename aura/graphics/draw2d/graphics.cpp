@@ -4596,7 +4596,7 @@ namespace draw2d
 
       auto pwritetext = pdraw2d->write_text();
 
-      synchronous_lock synchronouslock(pwritetext ? pwritetext->m_pparticleFontTextMapSynchronization : nullptr);
+      _synchronous_lock synchronouslock(pwritetext ? pwritetext->m_pparticleFontTextMapSynchronization : nullptr);
 
       m_pfont->get_os_data(this);
 

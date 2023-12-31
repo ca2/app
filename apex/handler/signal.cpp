@@ -131,7 +131,7 @@ void signal::run()
 void signal::notify()
 {
 
-   synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization());
 
    for (auto & pair : m_signalhandlercontext)
    {
@@ -168,7 +168,7 @@ void signal::notify()
 ::context * signal::listener_context(const ::signal_handler & signalhandler)
 {
 
-   synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization());
 
    auto & pcontext = m_signalhandlercontext[signalhandler];
 
@@ -240,7 +240,7 @@ void signal::add_handler(::matter* pmatter)
 void signal::add_signal_handler(const ::signal_handler& signalhandler)
 {
 
-   synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization());
 
    //bool bShouldFork = false;
 
@@ -282,7 +282,7 @@ void signal::add_signal_handler(const ::signal_handler& signalhandler)
 void signal::erase_signal_handler(const ::signal_handler & signalhandler)
 {
 
-   synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization());
 
    m_signalhandlercontext.erase_item(signalhandler);
 
@@ -292,7 +292,7 @@ void signal::erase_signal_handler(const ::signal_handler & signalhandler)
 //void signal::erase_signal_handlers(::particle * pparticle)
 //{
 //
-//   synchronous_lock synchronouslock(this->synchronization());
+//   _synchronous_lock synchronouslock(this->synchronization());
 //
 //   while(true)
 //   {
@@ -321,7 +321,7 @@ void signal::erase_signal_handler(const ::signal_handler & signalhandler)
 void signal::set_modified()
 {
 
-   synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization());
 
    m_bModified = true;
 
@@ -355,7 +355,7 @@ bool signal::is_modified() const
 void signal::post_destroy_all()
 {
 
-   synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization());
 
    m_signalhandlercontext.erase_all();
 

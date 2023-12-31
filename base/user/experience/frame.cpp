@@ -271,7 +271,7 @@ namespace experience
 
       auto pframewindow = m_pframewindow;
 
-      synchronous_lock synchronouslock(pframewindow->synchronization());
+      _synchronous_lock synchronouslock(pframewindow->synchronization());
 
 //      if (m_pcontrolbox.is_set())
 //      {

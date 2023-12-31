@@ -5,6 +5,7 @@
 #include "framework.h"
 #include "message_box.h"
 
+enum_dialog_result ns_alert_box(const char * pszMessage, const char * pszTitle, enum_message_box emessagebox);
 
 namespace macos
 {
@@ -30,7 +31,7 @@ namespace macos
 } // macos
 
 
-void macos_message_box_factory(::factory::factory * pfactory);
+void macos_message_box_factory(::factory::factory * pfactory)
 {
 
    pfactory->add_factory_item < ::macos::message_box, ::operating_system::message_box >();

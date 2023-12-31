@@ -1688,7 +1688,7 @@ bool dir_context::name_is(const ::file::path& strPath)
 ::file::path dir_context::install()
 {
 
-   synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization());
 
    auto psystem = system();
 
@@ -1700,7 +1700,7 @@ bool dir_context::name_is(const ::file::path& strPath)
 ::file::path dir_context::config()
 {
 
-   synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization());
 
    auto psystem = system();
 
@@ -1712,7 +1712,7 @@ bool dir_context::name_is(const ::file::path& strPath)
 ::file::path dir_context::home()
 {
 
-   synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization());
 
    auto psystem = system();
 
@@ -1726,7 +1726,7 @@ bool dir_context::name_is(const ::file::path& strPath)
 
 //   UNREFERENCED_PARAMETER(pparticle);
 
-//   synchronous_lock synchronouslock(this->synchronization());
+//   _synchronous_lock synchronouslock(this->synchronization());
 
 //   return m_pathUser;
 
@@ -1736,7 +1736,7 @@ bool dir_context::name_is(const ::file::path& strPath)
 ::file::path dir_context::module()
 {
 
-   //synchronous_lock synchronouslock(this->synchronization());
+   //_synchronous_lock synchronouslock(this->synchronization());
 
    auto papplication = application();
 
@@ -1748,7 +1748,7 @@ bool dir_context::name_is(const ::file::path& strPath)
 //::file::path dir_context::ca2module()
 //{
 //
-//   synchronous_lock synchronouslock(this->synchronization());
+//   _synchronous_lock synchronouslock(this->synchronization());
 //
 //   auto psystem = system();
 //
@@ -1825,7 +1825,7 @@ void dir_context::erase(const ::file::path& path, bool bRecursive)
 void dir_context::get_matter_locator(string_array& straMatterLocator, bool bIncludeMain)
 {
 
-   synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization());
 
    straMatterLocator.erase_all();
 
@@ -1866,7 +1866,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
    auto psystem = system();
 
-   synchronous_lock synchronouslock(psystem->m_pmutexMatter);
+   _synchronous_lock synchronouslock(psystem->m_pmutexMatter);
 
    string strDir = matter(path);
 
@@ -2467,7 +2467,7 @@ ret:
    string_array straMatterLocator;
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       straMatterLocator = get_app()->m_straMatterLocator;
 
@@ -2570,7 +2570,7 @@ ret:
 ::file::path dir_context::commonappdata(const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrBuild, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration)
 {
 
-   synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization());
 
    string strAppId(scopedstrAppId);
 
@@ -2610,7 +2610,7 @@ ret:
    const ::scoped_string & scopedstrSchema)
 {
 
-   synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization());
 
    string strLocale(scopedstrLocale);
 
@@ -2892,7 +2892,7 @@ bool dir_context::is_inside(const ::file::path& pszDir, const ::file::path& pszP
 //         if(m_strApiCc.has_char())
 //            return m_strApiCc;
 //
-//         synchronous_lock synchronouslock(m_pmutex);
+//         _synchronous_lock synchronouslock(m_pmutex);
 //
 //
 //

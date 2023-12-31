@@ -1357,11 +1357,11 @@ pacmedirectory->create("/ca2core");
    void system::uncompress(const ::payload & payloadTarget, const ::payload & payloadSource, const ::scoped_string & scopedstrImplementation)
    {
 
-      ::pointer<::uncompress>puncompress;
+      //::pointer<::uncompress>puncompress;
 
       /*auto estatus = */ 
       
-      new_uncompress(scopedstrImplementation);
+      auto puncompress = new_uncompress(scopedstrImplementation);
 
       //if (!estatus)
       //{

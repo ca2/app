@@ -385,6 +385,13 @@ namespace user
    bool graphics_thread::wait_for_redraw_message()
    {
 
+      if (m_pimpl->m_redrawitema.has_element())
+      {
+
+         return true;
+
+      }
+
       while(::task_get_run())
       {
 

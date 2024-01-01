@@ -83,7 +83,7 @@ namespace simpledb
 
       //}
 
-      synchronous_lock synchronouslock(m_pdatabaseLocal->synchronization());
+      _synchronous_lock synchronouslock(m_pdatabaseLocal->synchronization());
 
       //estatus = pdatabase->set_finish(this);
 
@@ -235,7 +235,7 @@ namespace simpledb
       try
       {
 
-         synchronous_lock synchronouslock(pdatabase->synchronization());
+         _synchronous_lock synchronouslock(pdatabase->synchronization());
 
          ::payload item = pdatabase->query_item("select COUNT(*) from sqlite_master where type like 'table' and name like '" + strTable + "'");
 

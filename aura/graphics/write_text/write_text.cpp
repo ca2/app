@@ -56,7 +56,7 @@ namespace write_text
    class fonts * write_text::fonts()
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       if (m_pfonts == nullptr)
       {

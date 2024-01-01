@@ -158,7 +158,7 @@ namespace user
    ::user::interaction_array document::get_top_level_windows()
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       ::user::interaction_array uia;
 
@@ -526,7 +526,7 @@ namespace user
    void document::disconnect_impacts()
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       for (index index = 0; index < m_impacta.get_count(); index++)
       {
@@ -574,7 +574,7 @@ namespace user
    ::pointer<::user::impact>document::get_impact(index index) const
    {
 
-      synchronous_lock synchronouslock(((document *) this)->synchronization());
+      _synchronous_lock synchronouslock(((document *) this)->synchronization());
 
       if (index < 0 || index >= m_impacta.get_count())
       {
@@ -1363,7 +1363,7 @@ namespace user
 
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization());
 
          for (auto & pimpact : m_impacta)
          {
@@ -1396,7 +1396,7 @@ namespace user
 
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization());
 
          m_impacta.erase_all();
 
@@ -1412,7 +1412,7 @@ namespace user
 
       ::pointer<::object>pthis = this;
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       auto viewptra = m_impacta;
 
@@ -1607,7 +1607,7 @@ namespace user
    //  (at least one of our views must be in this frame)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       ASSERT_VALID(pframeParam);
 

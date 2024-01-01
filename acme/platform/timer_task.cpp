@@ -69,7 +69,7 @@ void timer_task::initialize_timer(::particle * pparticle, ::acme::timer_array * 
 void timer_task::start_timer_task(const class time & timeWait, bool bPeriodic)
 {
 
-   synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization());
 
    if (::is_set(m_ptimercallback) && !m_ptimercallback->e_timer_is_ok())
    {
@@ -266,7 +266,7 @@ void timer_task::stop_timer_task()
 
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       if (m_bRunning)
       {
@@ -291,7 +291,7 @@ void timer_task::destroy()
 
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       try
       {
@@ -303,7 +303,7 @@ void timer_task::destroy()
 
             m_ptimera->erase_timer(this);
 
-            synchronouslock.lock();
+            synchronouslock._lock();
 
             m_ptimera.release();
 

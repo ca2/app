@@ -104,11 +104,8 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_show_window);
       DECLARE_MESSAGE_HANDLER(on_message_move);
 
-      /// @brief 
-      /// @param bShow 
-      /// @return true if drop down list box was displayed 
+      /// @return true if drop down list box was displayed
       virtual bool _001ShowDropDown(bool bShow = true);
-      /// @brief 
       /// @return  true if drop down list box was displayed 
       virtual bool _001ToggleDropDown();
 

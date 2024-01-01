@@ -142,7 +142,7 @@ namespace windowing
    void windowing::set_cursor_set_from_matter(::object * pobjectContext, const ::file::path & pathDir)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       if (m_bSettingCursorMatter)
       {

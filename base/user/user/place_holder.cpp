@@ -143,7 +143,7 @@ namespace user
    bool place_holder::can_merge(::user::interaction * pinteraction)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
 
@@ -170,9 +170,9 @@ namespace user
    bool place_holder::merge(::user::interaction * pinteraction)
    {
 
-      //synchronous_lock synchronouslock(mutex_children());
+      //_synchronous_lock synchronouslock(mutex_children());
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       if (!can_merge(pinteraction))
       {
@@ -198,7 +198,7 @@ namespace user
    bool place_holder::is_place_holding(::user::interaction * pinteraction)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
       return puserinteractionpointeraChild->contains_interaction(pinteraction);
@@ -318,7 +318,7 @@ namespace user
    bool place_holder::unplace(::user::interaction * pinteraction)
    {
       
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       if (m_puserinteractionpointeraChild)
       {
@@ -339,7 +339,7 @@ namespace user
    void place_holder::on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
 
@@ -380,7 +380,7 @@ namespace user
 
                puiChild->place(rectangle);
                
-               auto &size = puiChild->layout().m_statea[0].m_size;
+//               auto &size = puiChild->layout().m_statea[0].m_size;
 
                if (puserinteractionpointeraChild->interaction_count() == 1
                   && !puiChild->is_this_visible())
@@ -398,7 +398,7 @@ namespace user
 
             }
 
-            synchronouslock.lock();
+            synchronouslock._lock();
 
          }
 
@@ -444,7 +444,7 @@ namespace user
    interaction * place_holder::get_hold()
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
 

@@ -260,8 +260,8 @@ namespace user
       
       ::string strType = ::type(get_parent());
 
-      auto rectangleParentX = get_parent()->rectangle(e_layout_layout);
-      rectangleX = this->rectangle(e_layout_layout);
+//      auto rectangleParentX = get_parent()->rectangle(e_layout_layout);
+//      rectangleX = this->rectangle(e_layout_layout);
 
       pgraphics->set_font(this, ::e_element_none);
 

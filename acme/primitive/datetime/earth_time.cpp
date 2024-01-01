@@ -44,6 +44,34 @@ namespace earth
    }
 
 
+   ::earth::time time::now(const class ::time& timeshift) noexcept
+   {
+
+      auto now = ::earth::time::now();
+
+      return ::earth::time(now.year(), now.month(), now.day(), now.hour(), now.minute(), now.second(), timeshift);
+
+   }
+
+
+   ::earth::time time::midnight(const class ::time& timeshift) noexcept
+   {
+
+      auto now = ::earth::time::now(timeshift);
+
+      return midnight(now);
+
+   }
+   
+   
+   time time::midnight(const ::earth::time& time, const class ::time& timeshift) noexcept
+   {
+
+      return ::earth::time(time.year(), time.month(), time.day(), 0, 0, 0, timeshift);
+
+   }
+
+
    time::time(i32 nYear, i32 nMonth, i32 nDay, i32 nHour, i32 nMin, i32 nSec, const class ::time & timeshift)
    {
 

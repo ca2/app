@@ -14,7 +14,7 @@
 #include <xkbcommon/xkbcommon.h>
 #include <X11/XKBlib.h>
 #include <X11/Xutil.h>
-#include <cairo-xlib.h>
+#include <cairo/cairo-xlib.h>
 
 
 ::user::enum_desktop get_edesktop();

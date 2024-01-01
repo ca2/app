@@ -13,11 +13,11 @@
 #include "acme/platform/node.h"
 #include "acme/platform/system.h"
 #include <linux/input.h> // for BTN_LEFT
-#include <X11/Xatom.h>
-#include <xkbcommon/xkbcommon.h>
-#include <X11/XKBlib.h>
-#include <X11/Xutil.h>
-#include <cairo-xlib.h>
+//#include <X11/Xatom.h>
+//#include <xkbcommon/xkbcommon.h>
+//#include <X11/XKBlib.h>
+//#include <X11/Xutil.h>
+//#include <cairo/cairo-xlib.h>
 
 
 ::user::enum_desktop get_edesktop();

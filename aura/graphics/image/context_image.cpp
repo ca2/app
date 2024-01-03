@@ -78,7 +78,7 @@ void context_image::on_destroy()
 i32 context_image::image_integer(const ::file::path & path)
 {
 
-   synchronous_lock  synchronouslock(this->synchronization());
+   _synchronous_lock  synchronouslock(this->synchronization());
 
    ::i32 iImage = -1;
    
@@ -123,7 +123,7 @@ i32 context_image::create_image_integer(int w, int h, const image32_t * pimage32
 
    strPath.formatf("image_pointer://%016" PRIxPTR, pimage.m_p);
 
-   synchronous_lock  synchronouslock(this->synchronization());
+   _synchronous_lock  synchronouslock(this->synchronization());
 
    auto iImage = m_iImageSeed;
 
@@ -143,7 +143,7 @@ i32 context_image::create_image_integer(int w, int h, const image32_t * pimage32
 image_pointer context_image::integer_image(i32 iImage)
 {
 
-   synchronous_lock  synchronouslock(this->synchronization());
+   _synchronous_lock  synchronouslock(this->synchronization());
 
    auto strPath = m_mapIntPath[iImage];
 
@@ -157,7 +157,7 @@ image_pointer context_image::integer_image(i32 iImage)
 image_pointer context_image::path_image(const ::file::path & path)
 {
 
-   synchronous_lock  synchronouslock(this->synchronization());
+   _synchronous_lock  synchronouslock(this->synchronization());
 
    auto & pimage = m_mapPathImage[path];
 
@@ -1181,7 +1181,7 @@ void context_image::_os_load_image(::image * pimage, memory & memory)
 
    }
 
-   synchronous_lock synchronouslock(image_synchronization());
+   _synchronous_lock synchronouslock(image_synchronization());
 
    auto & pimage = system()->m_paurasystem->m_mapImage[path];
 

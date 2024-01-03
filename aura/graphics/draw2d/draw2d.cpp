@@ -273,7 +273,7 @@ namespace draw2d
 
       ::acme::department::process_init();
 
-      //synchronous_lock synchronouslock(this->synchronization());
+      //_synchronous_lock synchronouslock(this->synchronization());
 
       //if (!m_papi->open())
       //{
@@ -371,7 +371,7 @@ namespace draw2d
 
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization());
 
          try
          {
@@ -761,7 +761,7 @@ void draw2d::emboss_predicate(
       i32 iRadius2 = iRadius * iRadius;
       i32 r2;
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       auto & filter = m_alpha_spread__24CC_filterMap[iRadius];
 
@@ -1079,7 +1079,7 @@ void draw2d::emboss_predicate(
       image32_t u32SpreadSetColor(colorSpreadSetColor, pimageDst->m_colorindexes);
 
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       auto & filter = m_alpha_spread__32CC_filterMap[iRadius];
 

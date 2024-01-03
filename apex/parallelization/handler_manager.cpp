@@ -128,7 +128,7 @@ void handler_manager::handle_asynchronously(const ::procedure & procedure)
 
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       m_procedurea.add(procedure);
 
@@ -160,7 +160,7 @@ void handler_manager::handle_asynchronously(const ::procedure & procedure)
 ::procedure handler_manager::pick_new_task()
 {
 
-   synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization());
 
    if (m_procedurea.is_empty())
    {
@@ -169,7 +169,7 @@ void handler_manager::handle_asynchronously(const ::procedure & procedure)
 
       m_pevTaskOnQueue->_wait(1_s);
 
-      synchronouslock.lock();
+      synchronouslock._lock();
 
    }
 

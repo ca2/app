@@ -41,13 +41,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		9A2D75AA2AAB780F00DFCE25 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A81F537275010ED003F38EC /* acme.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 9A68A41325114352008DABD2;
-			remoteInfo = acme;
-		};
 		9A81F53C275010ED003F38EC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9A81F537275010ED003F38EC /* acme.xcodeproj */;
@@ -233,7 +226,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				9A2D75A92AAB780F00DFCE25 /* PBXTargetDependency */,
 			);
 			name = static_compress_zlib;
 			productName = compress_zlib;
@@ -355,11 +347,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		9A2D75A92AAB780F00DFCE25 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = acme;
-			targetProxy = 9A2D75AA2AAB780F00DFCE25 /* PBXContainerItemProxy */;
-		};
 		9A81F541275010FB003F38EC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = acme;
@@ -480,9 +467,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = framework.h;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"$(inherited)",
-				);
+				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;

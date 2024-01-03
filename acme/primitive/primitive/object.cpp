@@ -1030,8 +1030,10 @@ void object::erase_task_and_set_task_new_parent(::object* pobjectTask, ::object 
    {
 
       ::acme::get()->platform()->informationf("not a child");
-
+      
    }
+
+   kick_idle();
 
 }
 

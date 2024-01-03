@@ -1394,7 +1394,7 @@ bool task::has_message() const
    if (m_peventInitialization)
    {
 
-      m_peventInitialization->_wait();
+      m_peventInitialization->wait();
 
       ::e_status estatus = m_estatus;
 

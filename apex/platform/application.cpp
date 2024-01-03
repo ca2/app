@@ -1702,7 +1702,7 @@ namespace apex
 
       ::thread::on_pos_run_thread();
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       //try
       //{
@@ -2701,7 +2701,7 @@ namespace apex
 
       auto psystem = system()->m_papexsystem;
 
-      synchronous_lock synchronouslock(psystem->m_pmutexSystemAppData);
+      _synchronous_lock synchronouslock(psystem->m_pmutexSystemAppData);
 
       string strId(pszId);
       string strSystemLocale = psystem->m_strLocale;
@@ -4379,7 +4379,7 @@ namespace apex
 
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization());
 
          file()->add_contents(dir()->appdata() / (file()->module().name() + "_log_error.txt"), strMessage);
 
@@ -4565,7 +4565,7 @@ namespace apex
    void application::install_trace(const ::string & str)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       //::install::trace_file(this, m_strInstallTraceLabel).print(str);
 
@@ -4575,7 +4575,7 @@ namespace apex
    void application::install_trace(double dRate)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       //::install::trace_file(this, m_strInstallTraceLabel).print(dRate);
 
@@ -5026,7 +5026,7 @@ namespace apex
    //
    //      {
    //
-   //         synchronous_lock synchronouslock(this->synchronization());
+   //         _synchronous_lock synchronouslock(this->synchronization());
    //
    //         ptra = m_particleaddressaEventHook;
    //
@@ -5200,7 +5200,7 @@ namespace apex
    //void application::record(::create * pcommand)
    //{
 
-   //   synchronous_lock synchronouslock(this->synchronization());
+   //   _synchronous_lock synchronouslock(this->synchronization());
 
    //   get_command()->m_createa.add(pcommand);
 
@@ -5294,7 +5294,7 @@ namespace apex
    string application::load_string(const ::atom & atom)
    {
 
-      synchronous_lock synchronouslock(m_pmutexStr);
+      _synchronous_lock synchronouslock(m_pmutexStr);
 
       string str;
 
@@ -5400,7 +5400,7 @@ namespace apex
 
    //   }
 
-   //   synchronous_lock synchronouslock(m_pmutexStr);
+   //   _synchronous_lock synchronouslock(m_pmutexStr);
 
    //   ::pointer<string_to_string>pmap;
 
@@ -6199,7 +6199,7 @@ namespace apex
 
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization());
 
          m_straActivationMessage.add(strMessage);
 

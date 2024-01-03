@@ -427,7 +427,7 @@ void thread::term_task()
 
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       if (m_peventaWait)
       {
@@ -468,7 +468,7 @@ void thread::task_osterm()
 
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       if (m_pevSleep.is_set())
       {
@@ -802,7 +802,7 @@ void thread::on_message_branch(::message::message* pmessage)
 //
 //   }
 //
-//   //synchronous_lock synchronouslock(this->synchronization());
+//   //_synchronous_lock synchronouslock(this->synchronization());
 //
 //   //for(auto & pcomposite : *m_pcompositea)
 //   //{
@@ -1387,7 +1387,7 @@ void thread::post_quit()
    // {
 
    //    /// this is quite dangerous
-   //    synchronous_lock synchronouslock(this->synchronization());
+   //    _synchronous_lock synchronouslock(this->synchronization());
 
    //    ::pointer<manual_reset_event>pev = m_pevSync;
 
@@ -1408,7 +1408,7 @@ void thread::post_quit()
    {
 
       /// this is quite dangerous
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       ::pointer<manual_reset_event>pev = m_pevSleep;
 
@@ -1480,7 +1480,7 @@ bool thread::post_quit_message(int nExitCode)
 //
 //      }
 //
-//      synchronous_lock synchronouslock(this->synchronization());
+//      _synchronous_lock synchronouslock(this->synchronization());
 //
 //      if (ptask == this)
 //      {
@@ -1496,7 +1496,7 @@ bool thread::post_quit_message(int nExitCode)
 //
 //      }
 //
-//      synchronous_lock slChild(ptask->synchronization());
+//      _synchronous_lock slChild(ptask->synchronization());
 //
 //      if (::parallelization::is_child(ptask) || ptask->m_pthreadParent)
 //      {
@@ -1539,7 +1539,7 @@ void thread::task_erase(::task * ptask)
 
       string strThreadChild = ::type(ptask).name();
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       if (::is_null(ptask))
       {
@@ -1548,7 +1548,7 @@ void thread::task_erase(::task * ptask)
 
       }
 
-      //synchronous_lock slChild(ptask->synchronization());
+      //_synchronous_lock slChild(ptask->synchronization());
 
       //if (!m_pcompositea->contains(ptask) && ptask->thread_parent() != this)
       //{
@@ -3056,7 +3056,7 @@ namespace apex
 //
 //   }
 //
-//   synchronous_lock synchronouslock(this->synchronization());
+//   _synchronous_lock synchronouslock(this->synchronization());
 //
 //   m_procedurea.add(routine);
 //
@@ -3802,7 +3802,7 @@ bool thread::peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin
 //
 //   ::e_status estatus = ::success;
 //
-//   synchronous_lock synchronouslock(this->synchronization());
+//   _synchronous_lock synchronouslock(this->synchronization());
 //
 //   string strTypeName = ::type(this).name();
 //
@@ -4074,7 +4074,7 @@ void thread::on_task_term()
 
    {
 
-      synchronous_lock synchronouslock(m_pmutexThreadUiPtra);
+      _synchronous_lock synchronouslock(m_pmutexThreadUiPtra);
 
       if (::is_set(m_puserprimitiveaThread))
       {
@@ -4136,7 +4136,7 @@ void thread::post(::message::message * pmessage)
 
    }
 
-   synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization());
 
    m_messagea.add(pmessage);
 
@@ -4739,7 +4739,7 @@ CLASS_DECL_APEX void forking_count_thread_null_end(int iOrder)
 
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       if (m_pmutexThreadUiPtra == nullptr)
       {
@@ -4750,7 +4750,7 @@ CLASS_DECL_APEX void forking_count_thread_null_end(int iOrder)
 
    }
 
-   synchronous_lock synchronouslock(m_pmutexThreadUiPtra);
+   _synchronous_lock synchronouslock(m_pmutexThreadUiPtra);
 
    if (m_puserprimitiveaThread == nullptr)
    {
@@ -4833,9 +4833,9 @@ bool thread::pump_sleep(const class time & timeWait, ::particle * pparticleSynch
       if (::is_set(pparticleSynchronization))
       {
 
-         synchronous_lock synchronouslock(pparticleSynchronization);
+         _synchronous_lock synchronouslock(pparticleSynchronization);
 
-         synchronouslock.wait(waitNow);
+         synchronouslock._wait(waitNow);
 
          //if (synchronouslock.wait(waitNow).succeeded())
          //{
@@ -4892,7 +4892,7 @@ bool thread::pump_sleep(const class time & timeWait, ::particle * pparticleSynch
 //
 //      set_task(pthreadNew);
 //
-//      synchronous_lock synchronouslock(g_pmutexThreadDeferredCreation);
+//      _synchronous_lock synchronouslock(g_pmutexThreadDeferredCreation);
 //
 //      g_pthreadaDeferredCreate->add(pthreadNew);
 //
@@ -4911,7 +4911,7 @@ void thread::add_waiting_event(event * pevent)
 
    }
 
-   synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization());
 
    __defer_construct_new(m_peventaWait);
 
@@ -4923,7 +4923,7 @@ void thread::add_waiting_event(event * pevent)
 void thread::erase_waiting_event(event * pevent)
 {
 
-   synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization());
 
    if (m_peventaWait)
    {

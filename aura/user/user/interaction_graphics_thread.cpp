@@ -73,7 +73,7 @@ namespace user
 
       m_bUpdatingScreen = false;
 
-      m_eventReady.SetEvent();
+      m_eventReady.ResetEvent();
 
 //#ifdef UNIVERSAL_WINDOWS
 //      m_bExclusiveMode = true;

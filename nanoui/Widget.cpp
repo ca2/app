@@ -687,7 +687,7 @@ namespace nanoui
       if (!m_children.erase(pwidget))
       {
 
-         throw ::exception(error_wrong_state, "Widget::erase_child(): pwidget not found!");
+         //throw ::exception(error_wrong_state, "Widget::erase_child(): pwidget not found!");
 
       }
 

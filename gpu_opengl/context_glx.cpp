@@ -101,7 +101,7 @@ namespace opengl
       if (m_pconfig == NULL || iConfigCount <= 0)
       {
 
-         fprintf(stderr, "P-Buffers not supported.");
+         errorf("P-Buffers not supported.");
 
          throw ::exception(error_failed);
 
@@ -114,7 +114,7 @@ namespace opengl
          ( ( glx_major == 1 ) && ( glx_minor < 3 ) ) || ( glx_major < 1 ) )
       {
 
-         printf("Invalid GLX version");
+         errorf("Invalid GLX version");
 
          throw ::exception(error_failed);
 
@@ -136,7 +136,7 @@ namespace opengl
       if (m_pbuffer == None)
       {
 
-         fprintf(stderr, "Failed to create P-Buffer.");
+         errorf("Failed to create P-Buffer.");
 
          throw ::exception(error_failed);
 
@@ -148,7 +148,7 @@ namespace opengl
       if (!m_context)
       {
 
-         fprintf(stderr, "Failed to create graphics context.");
+         errorf("Failed to create graphics context.");
 
          throw ::exception(error_failed);
 
@@ -207,7 +207,7 @@ namespace opengl
       if (!glXMakeContextCurrent(pdisplay, m_pbuffer, m_pbuffer, m_context))
       {
 
-         fprintf(stderr, "Failed to activate graphics context.");
+         errorf("Failed to activate graphics context.");
 
          estatus = ::error_failed;
 

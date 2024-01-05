@@ -457,15 +457,15 @@ public:
       if (i == maximum_length && *psz != '\0')
       {
 
-         memcpy(pszBuffer, pszStart, maximum_length - 3);
+         memory_copy(pszBuffer, pszStart, maximum_length - 3);
 
-         strcpy(pszBuffer + maximum_length - 3, "...");
+         ansi_copy(pszBuffer + maximum_length - 3, "...");
 
       }
       else
       {
 
-         memcpy(pszBuffer, pszStart, i);
+         memory_copy(pszBuffer, pszStart, i);
 
       }
 

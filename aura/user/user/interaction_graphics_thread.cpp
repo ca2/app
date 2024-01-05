@@ -73,7 +73,9 @@ namespace user
 
       m_bUpdatingScreen = false;
 
-      m_eventReady.ResetEvent();
+      m_bGraphicsThreadEnabled = false;
+
+      //m_eventReady.ResetEvent();
 
 //#ifdef UNIVERSAL_WINDOWS
 //      m_bExclusiveMode = true;
@@ -283,7 +285,7 @@ namespace user
 
       //m_pimpl->m_puserinteraction->task_add(this);
 
-      m_eventReady.wait();
+      //m_eventReady.wait();
 
       m_synchronizationa.add(&m_evUpdateScreen);
 
@@ -335,6 +337,15 @@ namespace user
                information() << "graphics_thread::run !task_get_run()";
 
                break;
+
+            }
+
+            if(!m_bGraphicsThreadEnabled)
+            {
+
+               preempt(100_ms);
+
+               continue;
 
             }
 

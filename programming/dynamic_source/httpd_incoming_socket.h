@@ -25,7 +25,7 @@ namespace dynamic_source
       ~httpd_incoming_socket() override;
 
 
-      virtual void Reset();
+      void Reset() override;
 
 
       void finalize() override;

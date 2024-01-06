@@ -97,6 +97,8 @@ namespace user
 
          void _001CallOnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
+         ::point_f64 get_point_transform() override;
+
          void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
          void draw_impl(::draw2d::graphics_pointer & pgraphics) override;

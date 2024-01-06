@@ -960,6 +960,18 @@ namespace user
    }
 
 
+   ::point_f64 picture::get_point_transform()
+   {
+
+      auto pointD = m_ppictureimpl->m_rectangleDrawing.center();
+
+      return pointD;
+
+      //      auto pointD = ::point_f64(m_ppictureimpl->m_rectangleDrawing.size() / 2.0);
+
+   }
+
+
    void picture::draw(::draw2d::graphics_pointer & pgraphics)
    {
 
@@ -1009,7 +1021,7 @@ namespace user
 
       ::geometry2d::matrix mTrans;
 
-      auto pointD = m_ppictureimpl->m_rectangleDrawing.center();
+      auto pointD = get_point_transform();
 
       mG.transform(pointD);
 

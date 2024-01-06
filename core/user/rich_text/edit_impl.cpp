@@ -823,6 +823,18 @@ namespace user
       }
 
 
+      ::point_f64 edit_impl::get_point_transform()
+      {
+
+         // auto pointD = m_ppictureimpl->m_rectangleDrawing.center();
+
+         auto pointD = ::point_f64(m_ppictureimpl->m_rectangleDrawing.size() / 2.0);
+
+         return pointD;
+
+      }
+
+
       void edit_impl::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
       {
 

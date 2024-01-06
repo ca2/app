@@ -30,6 +30,9 @@
 ::user::enum_desktop calculate_edesktop();
 
 
+::string errno_error_message(::i32 iError);
+
+
 CLASS_DECL_ACME void exception_message_box(::particle * pparticle, ::exception& exception, const ::string& strMoreDetails);
 
 
@@ -1758,7 +1761,7 @@ namespace acme
 
       }
 
-#elif defined(LINUX)
+#elif defined(LINUX) || defined(__BSD__)
 
       strName = "_" + strName;
 
@@ -3431,6 +3434,22 @@ bool node::are_framework_shared_libraries_busy(const ::scoped_string & scopedstr
    return false;
 
 }
+
+
+   ::string node::get_error_code_message(const ::error_code & errorcode)
+   {
+
+      if(errorcode.m_etype == e_error_code_type_errno)
+      {
+
+         return errno_error_message(errorcode.m_iOsError);
+
+      }
+
+      return {};
+
+   }
+
 
 } // namespace acme
 

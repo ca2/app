@@ -966,7 +966,7 @@ namespace platform
 
          string strMessage = "Library couldn't be opened : " + exception.m_strMessage;
 
-         string strDetails = exception.get_consolidated_details();
+         string strDetails = exception.get_consolidated_details(this);
 
          auto psequencer = message_box(strMessage, "Library Loading Failure", e_message_box_ok | e_message_box_icon_warning,
             strDetails);

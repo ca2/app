@@ -131,7 +131,7 @@ string exception::get_title() const
 }
 
 
-string exception::get_consolidated_details() const
+string exception::get_consolidated_details(::particle * pparticle) const
 {
  
    string strConsolidatedDetails;
@@ -139,7 +139,18 @@ string exception::get_consolidated_details() const
    strConsolidatedDetails += m_strDetails;
    
    strConsolidatedDetails += "\n";
-   
+
+   for(auto & errorcode : m_errorcodea)
+   {
+
+      strConsolidatedDetails.append_formatf("errorcode: %lld %s", errorcode.m_iOsError, pparticle->acmenode()->get_error_code_message(errorcode).c_str());
+
+      strConsolidatedDetails += "\n";
+
+   }
+
+   strConsolidatedDetails += "\n";
+
    strConsolidatedDetails += m_strCallStackTrace;
 
    return strConsolidatedDetails;

@@ -2536,6 +2536,7 @@ if (${LINUX} OR ${FREEBSD} OR ${NETBSD} OR ${OPENBSD} OR ${APPLE} OR ${SOLARIS})
 
 
    list(APPEND library_source
+      operating_system/posix/_.cpp
       operating_system/posix/_.h
       operating_system/posix/_posix.h
       operating_system/posix/file.cpp

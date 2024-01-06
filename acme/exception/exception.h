@@ -52,7 +52,7 @@ public:
 
    virtual string get_title() const;
    
-   virtual string get_consolidated_details() const;
+   virtual string get_consolidated_details(::particle * pparticle) const;
       
       
    inline ::e_status estatus() const { return m_estatus; }

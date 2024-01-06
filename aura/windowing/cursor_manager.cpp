@@ -136,7 +136,7 @@ namespace windowing
    ::pointer<cursor>cursor_manager::get_cursor(enum_cursor ecursor)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       auto & pcursor = m_cursormap[ecursor];
 
@@ -165,7 +165,7 @@ namespace windowing
 
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization());
 
          pcursor = get_cursor(ecursor);
 
@@ -609,7 +609,7 @@ namespace windowing
    ::pointer<cursor>cursor_manager::set_system_default_cursor(enum_cursor ecursor)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       cursor * pcursor = get_cursor(ecursor);
 

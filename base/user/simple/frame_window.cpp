@@ -531,7 +531,7 @@ void simple_frame_window::task_intensive_save_window_placement()
 void simple_frame_window::defer_save_window_placement()
 {
 
-   synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization());
 
    if (!should_save_window_rectangle())
    {
@@ -686,7 +686,7 @@ void simple_frame_window::on_message_destroy(::message::message * pmessage)
 
    {
 
-      //synchronous_lock synchronouslock(this->synchronization());
+      //_synchronous_lock synchronouslock(this->synchronization());
 
       try
       {
@@ -2588,7 +2588,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
 //
 //   //{
 //
-//   //   synchronous_lock synchronouslock(this->synchronization());
+//   //   _synchronous_lock synchronouslock(this->synchronization());
 //
 //   //   if (m_pprimitiveimpl->m_puserinteraction == nullptr)
 //   //   {
@@ -3593,13 +3593,13 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 
    }
 
-   synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization());
 
    //auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
 
    //{
 
-   //   synchronous_lock synchronouslock(this->synchronization());
+   //   _synchronous_lock synchronouslock(this->synchronization());
 
    //   uia = m_uiptraChild;
 

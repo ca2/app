@@ -72,7 +72,7 @@ namespace user
 
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization());
 
          if (::is_set(pimpactdata->m_pplaceholder)
             && ::is_set(pimpactdata->m_pplaceholder->m_puserinteractionpointeraChild)

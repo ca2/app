@@ -7,7 +7,7 @@
 #include "acme/user/nano/window_implementation.h"
 #include "event_listener.h"
 #include "acme/parallelization/manual_reset_event.h"
-#include <cairo.h>
+#include <cairo/cairo.h>
 
 
 namespace xcb

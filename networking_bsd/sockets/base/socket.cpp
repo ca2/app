@@ -2871,7 +2871,7 @@ bool base_socket::SetSoNosigpipe(bool x)
 
 #ifdef BSD_STYLE_SOCKETS
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       if (m_psslcontext->m_pclientcontext->session() != nullptr)
       {
@@ -2888,7 +2888,7 @@ bool base_socket::SetSoNosigpipe(bool x)
    void base_socket::get_ssl_session()
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
 #ifdef BSD_STYLE_SOCKETS
       if (m_psslcontext->m_pclientcontext->m_psslsession == nullptr)

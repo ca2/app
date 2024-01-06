@@ -837,7 +837,7 @@ bool acme_directory::enumerate(::file::listing & listing)
 bool acme_directory::defer_enumerate_media_library(::file::listing& listing)
 {
 
-   synchronous_lock sl(m_pmutexMediaLibrary);
+   _synchronous_lock sl(m_pmutexMediaLibrary);
 
    for (auto& pair : m_medialibraryitemmap)
    {
@@ -894,7 +894,7 @@ bool acme_directory::defer_enumerate_media_library(::file::listing& listing)
 ::media_library::item* acme_directory::media_library_item(const ::file::path& path)
 {
 
-   synchronous_lock sl(m_pmutexMediaLibrary);
+   _synchronous_lock sl(m_pmutexMediaLibrary);
 
    string strId(path);
 
@@ -1209,7 +1209,7 @@ void acme_directory::change_to_home()
 void acme_directory::add_media_library_item(::media_library::item* pmedialibraryitem)
 {
 
-   synchronous_lock lock(m_pmutexMediaLibrary);
+   _synchronous_lock lock(m_pmutexMediaLibrary);
 
    auto emedialibrary = pmedialibraryitem->media_library_type();
 

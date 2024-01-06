@@ -12,7 +12,7 @@
 #include "acme/platform/system.h"
 #include <xkbcommon/xkbcommon.h>
 #include <X11/XKBlib.h>
-#include <cairo-xcb.h>
+#include <cairo/cairo-xcb.h>
 
 
 //unsigned long xcb_get_long_property(Display *d, Window w, char *property_name);

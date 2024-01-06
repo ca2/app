@@ -333,7 +333,7 @@ namespace data
    //::count tree::get_proper_item_count()
    //{
 
-   //   synchronous_lock synchronouslock(this->synchronization());
+   //   _synchronous_lock synchronouslock(this->synchronization());
 
    //   return get_base_item()->get_proper_item_count();
 
@@ -440,7 +440,7 @@ namespace data
 
       }
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       if (pitemNew == nullptr)
       {
@@ -801,7 +801,7 @@ namespace data
    //void tree::start_fill_children()
    //{
 
-   //   synchronous_lock synchronouslock(this->synchronization());
+   //   _synchronous_lock synchronouslock(this->synchronization());
 
    //   m_bFill = true;
 

@@ -9,6 +9,12 @@
 #include "aura/user/user/frame.h"
 
 
+#ifdef FREEBSD
+#include <stdio.h>
+#endif
+
+
+
 #define _wcsdec(_cpc1, _cpc2) ((_cpc1)>=(_cpc2) ? nullptr : (_cpc2)-1)
 
 #define _wcsinc(_pc)    ((_pc)+1)

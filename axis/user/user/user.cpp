@@ -8,6 +8,11 @@
 #include "aura/user/user/still.h"
 
 
+#ifdef FREEBSD
+#include <stdio.h>
+#endif
+
+
 namespace axis
 {
 

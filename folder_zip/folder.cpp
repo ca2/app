@@ -218,7 +218,7 @@ namespace folder_zip
    bool folder::enumerate(::file::listing& listing)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       unzFile pf = m_unzfile;
 
@@ -310,7 +310,7 @@ namespace folder_zip
    ::file_pointer folder::get_file(const ::file::path& pathFile)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       if (pathFile.has_char())
       {
@@ -554,7 +554,7 @@ namespace folder_zip
    bool folder::locate(const ::function < bool(const char*) >& function)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       unzFile pf = m_unzfile;
 

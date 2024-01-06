@@ -61,6 +61,10 @@ namespace earth
 
 
       static time now() noexcept;
+      static time now(const class ::time& timeshift) noexcept;
+      static time midnight(const class ::time& timeshift = {}) noexcept;
+
+      static time midnight(const ::earth::time & time, const class ::time& timeshift = {}) noexcept;
 
       void Now() { *this = now(); }
       void Null() { *this = posix_time({ posix_time_t{}, 0 }); }

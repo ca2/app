@@ -44,6 +44,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #endif
 
+#ifdef FREEBSD
+#include <stdio.h>
+#endif
+
 #include <time.h>
 //#include <openssl/ssl.h>
 

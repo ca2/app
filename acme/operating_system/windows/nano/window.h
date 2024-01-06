@@ -120,6 +120,8 @@ namespace windows
       void user_post(const ::procedure & procedure) override;
 
 
+      void implementation_message_loop_step() override;
+
    };
 
 

@@ -25,14 +25,3 @@
    throw ::exception(estatus, { errorcode }, scopedstr);
 
 }
-
-
-::string errno_error_message(::i32 iError)
-{
-
-   return strerror(iError);
-
-}
-
-
-

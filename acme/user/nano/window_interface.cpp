@@ -37,6 +37,13 @@ void nano_window_interface::message_loop()
 }
 
 
+void nano_window_interface::implementation_message_loop_step()
+{
+
+
+}
+
+
 void nano_window_interface::draw(nano_device * pnanodevice)
 {
 

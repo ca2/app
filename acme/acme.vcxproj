@@ -1124,6 +1124,7 @@
     <ClCompile Include="operating_system\windows\library.cpp" />
     <ClCompile Include="operating_system\windows\memory.cpp" />
     <ClCompile Include="operating_system\windows\message_box.cpp" />
+    <ClCompile Include="operating_system\windows\message_loop.cpp" />
     <ClCompile Include="operating_system\windows\nano\brush.cpp" />
     <ClCompile Include="operating_system\windows\nano\device.cpp" />
     <ClCompile Include="operating_system\windows\nano\font.cpp" />

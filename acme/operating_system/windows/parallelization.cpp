@@ -117,6 +117,23 @@ void _do_tasks()
 
    }
 
+   if (nano_window_implementation::nanowindowimplementationa().has_element())
+   {
+
+      for (auto & pimplementation : nano_window_implementation::nanowindowimplementationa())
+      {
+
+         if (pimplementation)
+         {
+
+            pimplementation->implementation_message_loop_step();
+
+         }
+
+      }
+
+   }
+
 }
 
 

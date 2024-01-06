@@ -228,7 +228,20 @@ namespace acme
 
       }
 
-      system()->post_procedure(procedure);
+      auto ptask = ::get_task();
+
+      if (::is_set(ptask))
+      {
+
+         ptask->post_procedure(procedure);
+
+      }
+      else
+      {
+
+         system()->post_procedure(procedure);
+
+      }
 
    }
 

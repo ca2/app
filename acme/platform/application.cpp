@@ -493,7 +493,7 @@ namespace acme
    ::file::path application::get_module_path()
    {
 
-      synchronous_lock synchronizationlock(synchronization());
+      _synchronous_lock synchronizationlock(synchronization());
 
       if (!m_bModulePath)
       {
@@ -526,7 +526,7 @@ namespace acme
    ::file::path application::get_module_folder()
    {
 
-      synchronous_lock synchronizationlock(synchronization());
+      _synchronous_lock synchronizationlock(synchronization());
 
       if (!m_bModuleFolder)
       {

@@ -43,11 +43,7 @@ namespace mathematics
 
    u32 random_number_generator::get()
    {
-      while(m_iAccess < 8)
-      {
-         _get();
-      }
-      return _get();
+      return arc4random();
    }
 
    u32 random_number_generator::_get()

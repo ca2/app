@@ -1629,6 +1629,7 @@
 		9A818F522A720E78008F470C /* nano_http_response.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A818F4F2A720E78008F470C /* nano_http_response.cpp */; };
 		9A818F532A720E78008F470C /* nano_http_response.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A818F502A720E78008F470C /* nano_http_response.h */; };
 		9A818F542A720E78008F470C /* nano_http_response.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A818F502A720E78008F470C /* nano_http_response.h */; };
+		9A83756C2B4C83110011D0CB /* libarchive.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A818F5B2A721B89008F470C /* libarchive.dylib */; };
 		9A83A850294D4CC90074C712 /* array_iterator.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A83A84E294D4CC80074C712 /* array_iterator.h */; };
 		9A83A851294D4CC90074C712 /* array_range.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A83A84F294D4CC80074C712 /* array_range.h */; };
 		9A83A854294D4D220074C712 /* raw_array.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A83A852294D4D210074C712 /* raw_array.h */; };
@@ -2799,7 +2800,6 @@
 		9AE466622AB1000300FE0DE4 /* matrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE4665E2AB1000200FE0DE4 /* matrix.cpp */; };
 		9AE466632AB1000300FE0DE4 /* matrix.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE466602AB1000300FE0DE4 /* matrix.h */; };
 		9AE466642AB1000300FE0DE4 /* matrix.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE466602AB1000300FE0DE4 /* matrix.h */; };
-		9AE479C32A723E6100AA37BC /* archive.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A818F5B2A721B89008F470C /* archive.a */; };
 		9AE479C72A723FA100AA37BC /* muldiv64.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE479C62A723FA100AA37BC /* muldiv64.cpp */; };
 		9AE479C82A723FA100AA37BC /* muldiv64.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE479C62A723FA100AA37BC /* muldiv64.cpp */; };
 		9AE47F892A7F434B00AA37BC /* link.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE47F862A7F434A00AA37BC /* link.cpp */; };
@@ -2864,7 +2864,7 @@
 			remoteGlobalIDString = 9AC980CD2A71B4B400B1BCF3;
 			remoteInfo = static_archive;
 		};
-		9A818F602A721BD3008F470C /* PBXContainerItemProxy */ = {
+		9A83756A2B4C83040011D0CB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9A818F552A721B89008F470C /* archive.xcodeproj */;
 			proxyType = 1;
@@ -4474,7 +4474,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9AE479C32A723E6100AA37BC /* archive.a in Frameworks */,
+				9A83756C2B4C83110011D0CB /* libarchive.dylib in Frameworks */,
 				9AD8627329B127900054C9B3 /* libidn.dylib in Frameworks */,
 				9A0B8D8F27AA2AD700760D34 /* AppKit.framework in Frameworks */,
 				9AD199732511BA2400B4C44A /* libz.tbd in Frameworks */,
@@ -6067,7 +6067,7 @@
 		9A818F562A721B89008F470C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9A818F5B2A721B89008F470C /* archive.a */,
+				9A818F5B2A721B89008F470C /* libarchive.dylib */,
 				9A818F5D2A721B89008F470C /* static_archive.a */,
 			);
 			name = Products;
@@ -8543,7 +8543,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				9A818F612A721BD3008F470C /* PBXTargetDependency */,
+				9A83756B2B4C83040011D0CB /* PBXTargetDependency */,
 				9AD8627229B1274F0054C9B3 /* PBXTargetDependency */,
 			);
 			name = acme;
@@ -8614,10 +8614,10 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		9A818F5B2A721B89008F470C /* archive.a */ = {
+		9A818F5B2A721B89008F470C /* libarchive.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = archive.a;
+			path = libarchive.dylib;
 			remoteRef = 9A818F5A2A721B89008F470C /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -9615,10 +9615,10 @@
 			name = static_archive;
 			targetProxy = 9A818F5E2A721BC5008F470C /* PBXContainerItemProxy */;
 		};
-		9A818F612A721BD3008F470C /* PBXTargetDependency */ = {
+		9A83756B2B4C83040011D0CB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = archive;
-			targetProxy = 9A818F602A721BD3008F470C /* PBXContainerItemProxy */;
+			targetProxy = 9A83756A2B4C83040011D0CB /* PBXContainerItemProxy */;
 		};
 		9AD8627229B1274F0054C9B3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

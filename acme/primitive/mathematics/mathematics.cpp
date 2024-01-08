@@ -348,10 +348,10 @@ namespace mathematics
       //      u64 uiHi = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
       //      return uiLo | (uiHi << 32);
       //#else
-      char ch = 0;
-      random({ e_as_block,ch });
-
-      return ch;
+//      char ch = 0;
+//      random({ e_as_block,ch });
+//
+      return random_u8();
       //#endif
       //
    }
@@ -364,10 +364,10 @@ namespace mathematics
       //      u64 uiHi = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
       //      return uiLo | (uiHi << 32);
       //#else
-      u8 u = 0;
-      random({ e_as_block,u });
+      //u8 u = 0;
+      //random({ e_as_block,u });
 
-      return u;
+      return arc4random_uniform(255);
       //#endif
       //
    }
@@ -380,10 +380,10 @@ namespace mathematics
       //      u64 uiHi = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
       //      return uiLo | (uiHi << 32);
       //#else
-      u32 u = 0;
-      random({ e_as_block,u });
+      //u32 u = 0;
+      //random({ e_as_block,u });
 
-      return u;
+      return arc4random();
       //#endif
       //
    }

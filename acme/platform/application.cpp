@@ -45,6 +45,8 @@ namespace acme
    application::application()
    {
 
+      m_bApplicationFirstRequest = true;
+
       //if (!::platform::platform::s_pplatform->m_pacmeapplication)
       //{
 
@@ -1380,17 +1382,6 @@ namespace acme
             }
 
          }
-
-         init_instance();
-
-         //if (!init_instance())
-         //{
-         //
-         ////return false;
-         //
-         //}
-
-         //on_update_matter_locator();
 
       }
       catch (const ::exit_exception & exception)

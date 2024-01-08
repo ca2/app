@@ -20,6 +20,7 @@
 #include "acme/parallelization/install_mutex.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/profiler.h"
+#include "acme/primitive/collection/_array_binary_stream.h"
 #include "acme/primitive/datetime/datetime.h"
 #include "acme/primitive/string/command_line.h"
 #include "acme/primitive/string/str.h"
@@ -842,6 +843,24 @@ namespace apex
    {
 
       m_prequest = prequest;
+
+      if (m_bApplicationFirstRequest)
+      {
+
+         m_bApplicationFirstRequest = false;
+
+         init_instance();
+
+         //if (!init_instance())
+         //{
+         //
+         ////return false;
+         //
+         //}
+
+         //on_update_matter_locator();
+
+      }
 
       prequest->m_countStack++;
 
@@ -1804,7 +1823,7 @@ namespace apex
 
 #if !defined(ANDROID)
 
-      if (!check_exclusive(bHandled))
+      if (!check_exclusive(m_prequest, bHandled))
       {
 
          if (!bHandled &&
@@ -3630,7 +3649,7 @@ namespace apex
    //}
 
 
-   bool application::check_exclusive(bool & bHandled)
+   bool application::check_exclusive(::request * prequest, bool & bHandled)
    {
 
 #ifdef UNIVERSAL_WINDOWS
@@ -3659,7 +3678,7 @@ namespace apex
          try
          {
 
-            on_exclusive_instance_conflict(bHandled, e_exclusive_instance_global, "");
+            on_exclusive_instance_conflict(prequest, bHandled, e_exclusive_instance_global, "");
             //{
 
             //   return false;
@@ -3689,7 +3708,7 @@ namespace apex
             try
             {
 
-               on_exclusive_instance_conflict(bHandled, e_exclusive_instance_global_id, get_global_mutex_id());
+               on_exclusive_instance_conflict(prequest, bHandled, e_exclusive_instance_global_id, get_global_mutex_id());
 
             }
             catch (...)
@@ -3710,7 +3729,7 @@ namespace apex
 
          information() << "A instance of the application:<br><br>-" << m_strAppName << "<br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same account.<br><br>Exiting this new instance.";
 
-         on_exclusive_instance_conflict(bHandled, e_exclusive_instance_local, "");
+         on_exclusive_instance_conflict(prequest, bHandled, e_exclusive_instance_local, "");
 
          return false;
 
@@ -3730,7 +3749,7 @@ namespace apex
                // Should in some way activate the other instance
                information() << "A instance of the application:<br><br> - " << m_strAppName << " with the atom \"" << get_local_mutex_id() << "\" <br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same ac::count with the same atom.<br><br>Exiting this new instance.";
 
-               on_exclusive_instance_conflict(bHandled, e_exclusive_instance_local_id, get_local_mutex_id());
+               on_exclusive_instance_conflict(prequest, bHandled, e_exclusive_instance_local_id, get_local_mutex_id());
                //if(!)
                //{
 
@@ -3912,19 +3931,88 @@ namespace apex
    }
 
 
-   void application::on_exclusive_instance_conflict(bool & bHandled, enum_exclusive_instance eexclusive, string strId)
+   void application::___property_set_test_001()
+   {
+
+#define TEST_DATA_REMOTE 0
+
+#ifdef __DEBUG
+
+         for (index i = 0; i < TEST_DATA_REMOTE; i++)
+         {
+
+            string str1 = "please_help_me";
+
+            property_set set;
+
+            set["oh_my_god"].stra().add(str1);
+            set["oh_my_god2"].i32_array_reference() = ::i32_array({ 1, 2, 3 });
+
+            int a1 = 1;
+            int a2 = 2;
+            int a3 = 3;
+            set["i1"] = a1;
+            set["i2"] = a2;
+            set["i3"] = a3;
+            double d1 = 1.1;
+            double d2 = 5.5;
+            double d3 = 9.9;
+            set["d1"] = d1;
+            set["d2"] = d2;
+            set["d3"] = d3;
+
+            datastream()->set("test", set);
+
+            property_set set2;
+
+            datastream()->get("test", set2);
+
+            string str2 = set2["oh_my_god"].stra()[0];
+
+
+            int i1 = set2["oh_my_god2"].ia()[0];
+            int i2 = set2["oh_my_god2"].array_contains("2") ? (int)set2["oh_my_god2"][1].as_i32() : -1;
+            int i3 = set2["oh_my_god2"][2].as_i32();
+
+            int b1 = set["d1"].as_i32();
+            string b2 = set["d2"];
+            int b3 = set["d3"].as_i32();
+
+            ASSERT(str1 == str2);
+            ASSERT(i1 == 1);
+            ASSERT(i2 == 2);
+            ASSERT(i3 == 3);
+            ASSERT(set["i1"] == a1);
+            ASSERT(set["i2"] == a2);
+            ASSERT(set["i3"] == a3);
+            ASSERT(set["d1"] == b1);
+            ASSERT(set["d2"] == b2);
+            ASSERT(set["d3"] == b3);
+
+         }
+
+#endif
+
+
+
+   }
+
+
+   void application::on_exclusive_instance_conflict(::request * prequest, bool & bHandled, enum_exclusive_instance eexclusive, string strId)
    {
 
       if (eexclusive == e_exclusive_instance_local)
       {
 
-         return on_exclusive_instance_local_conflict(bHandled);
+         //message_box_synchronous(this, "e_exclusive_instance_local");
+
+         return on_exclusive_instance_local_conflict(prequest, bHandled);
 
       }
       else if (eexclusive == e_exclusive_instance_local_id)
       {
 
-         return on_exclusive_instance_local_conflict_id(bHandled, strId);
+         return on_exclusive_instance_local_conflict_id(prequest, bHandled, strId);
 
       }
 
@@ -3933,7 +4021,7 @@ namespace apex
    }
 
 
-   void application::on_exclusive_instance_local_conflict(bool & bHandled)
+   void application::on_exclusive_instance_local_conflict(::request * prequest, bool & bHandled)
    {
 
       bool bContinue = false;
@@ -3941,7 +4029,7 @@ namespace apex
       try
       {
 
-         auto psystem = system()->m_papexsystem;
+         //auto psystem = system()->m_papexsystem;
 
          if (m_pinterprocesscommunication)
          {
@@ -3952,7 +4040,7 @@ namespace apex
 
             (*pcall)["pid"] = m_pcontext->m_papexcontext->os_context()->current_process_identifier();
 
-            (*pcall)["command_line"] = psystem->command_line_text();
+            (*pcall)["command_line"] = prequest->m_strCommandLine;
 
             //string strId;
 
@@ -3994,11 +4082,11 @@ namespace apex
    }
 
 
-   void application::on_exclusive_instance_local_conflict_id(bool & bHandled, string strId)
+   void application::on_exclusive_instance_local_conflict_id(::request * prequest, bool & bHandled, string strId)
    {
 
       //bool bContinue = false;
-      auto psystem = system()->m_papexsystem;
+      //auto psystem = system()->m_papexsystem;
       try
       {
 
@@ -4011,7 +4099,7 @@ namespace apex
 
             (*pcall)["pid"] = m_pcontext->m_papexcontext->os_context()->current_process_identifier();
 
-            (*pcall)["command_line"] = psystem->command_line_text();
+            (*pcall)["command_line"] = prequest->m_strCommandLine;
 
             (*pcall)["id"] = strId;
 

@@ -858,7 +858,7 @@ public:
    ::count erase_all()
    {
 
-      auto size = this->size();
+      //auto size = this->size();
 
       for (::index i = 0; i < this->get_size(); i++)
       {

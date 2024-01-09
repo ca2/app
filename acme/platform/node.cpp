@@ -3442,7 +3442,7 @@ bool node::are_framework_shared_libraries_busy(const ::scoped_string & scopedstr
       if(errorcode.m_etype == e_error_code_type_errno)
       {
 
-         return errno_error_message(errorcode.m_iOsError);
+         return errno_error_message((::i32) errorcode.m_iOsError);
 
       }
 

@@ -210,7 +210,7 @@ namespace mathematics
          while(s > 4)
          {
 
-            *pu = m_randomnumbergenerator.get();
+            *pu = m_randomnumbergenerator.get_u32();
 
             s-=4;
 
@@ -220,16 +220,12 @@ namespace mathematics
 
          char * pc = (char *)pu;
 
-         u32 uSrc = m_randomnumbergenerator.get();
-
-         char * pcSrc = (char *)&uSrc;
-
          while(s > 0)
          {
 
             s--;
 
-            pc[s] = pcSrc[s];
+            pc[s] = m_randomnumbergenerator.get_u8();
 
          }
 
@@ -367,7 +363,7 @@ namespace mathematics
       //u8 u = 0;
       //random({ e_as_block,u });
 
-      return arc4random_uniform(255);
+      return m_posdata->m_randomnumbergenerator.get_u8();
       //#endif
       //
    }
@@ -383,7 +379,7 @@ namespace mathematics
       //u32 u = 0;
       //random({ e_as_block,u });
 
-      return arc4random();
+      return m_posdata->m_randomnumbergenerator.get_u32();
       //#endif
       //
    }

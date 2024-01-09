@@ -2341,7 +2341,9 @@
 		9AAE6E93251920CE00F10692 /* color.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AAE6E8C251920CD00F10692 /* color.cpp */; };
 		9AAE6E94251920CE00F10692 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AAE6E8D251920CD00F10692 /* _.cpp */; };
 		9AAE6E97251920CE00F10692 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AAE6E90251920CD00F10692 /* _.h */; };
-		9AAF90022B4C8DBD00E120B2 /* archive.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A818F5B2A721B89008F470C /* archive.a */; };
+		9AAF90022B4C8DBD00E120B2 /* libarchive.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A818F5B2A721B89008F470C /* libarchive.dylib */; };
+		9AAF921B2B4C9E3700E120B2 /* errno.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AAF92192B4C9E3700E120B2 /* errno.cpp */; };
+		9AAF921C2B4C9E3700E120B2 /* errno.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AAF92192B4C9E3700E120B2 /* errno.cpp */; };
 		9AAFC23D2A8B3920005D10AB /* container.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AAFC23A2A8B3920005D10AB /* container.h */; };
 		9AAFC23E2A8B3920005D10AB /* container.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AAFC23A2A8B3920005D10AB /* container.h */; };
 		9AAFC23F2A8B3920005D10AB /* item.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AAFC23B2A8B3920005D10AB /* item.h */; };
@@ -4363,6 +4365,7 @@
 		9AAE6E8C251920CD00F10692 /* color.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = color.cpp; sourceTree = "<group>"; };
 		9AAE6E8D251920CD00F10692 /* _.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _.cpp; sourceTree = "<group>"; };
 		9AAE6E90251920CD00F10692 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
+		9AAF92192B4C9E3700E120B2 /* errno.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = errno.cpp; sourceTree = "<group>"; };
 		9AAFC23A2A8B3920005D10AB /* container.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = container.h; sourceTree = "<group>"; };
 		9AAFC23B2A8B3920005D10AB /* item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = item.h; sourceTree = "<group>"; };
 		9AAFC23C2A8B3920005D10AB /* container.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = container.cpp; sourceTree = "<group>"; };
@@ -4474,7 +4477,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9AAF90022B4C8DBD00E120B2 /* archive.a in Frameworks */,
+				9AAF90022B4C8DBD00E120B2 /* libarchive.dylib in Frameworks */,
 				9AD8627329B127900054C9B3 /* libidn.dylib in Frameworks */,
 				9A0B8D8F27AA2AD700760D34 /* AppKit.framework in Frameworks */,
 				9AD199732511BA2400B4C44A /* libz.tbd in Frameworks */,
@@ -6040,14 +6043,15 @@
 		9A7993592A57940500261F46 /* shared_posix */ = {
 			isa = PBXGroup;
 			children = (
-				9A809D812A60072900FCA9FD /* time.cpp */,
-				9A809D3E2A5FFF0E00FCA9FD /* earth_time_shift.cpp */,
-				9A809D3B2A5FFEF400FCA9FD /* windows_time.cpp */,
 				9A79935D2A57940500261F46 /* c_error_number.cpp */,
 				9A79935B2A57940500261F46 /* c_error_number.h */,
+				9A809D3E2A5FFF0E00FCA9FD /* earth_time_shift.cpp */,
+				9AAF92192B4C9E3700E120B2 /* errno.cpp */,
 				9A79935A2A57940500261F46 /* stdio_file.cpp */,
 				9A79935C2A57940500261F46 /* stdio_file.h */,
+				9A809D812A60072900FCA9FD /* time.cpp */,
 				9A7993662A5796D800261F46 /* time.h */,
+				9A809D3B2A5FFEF400FCA9FD /* windows_time.cpp */,
 			);
 			path = shared_posix;
 			sourceTree = "<group>";
@@ -6067,7 +6071,7 @@
 		9A818F562A721B89008F470C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9A818F5B2A721B89008F470C /* archive.a */,
+				9A818F5B2A721B89008F470C /* libarchive.dylib */,
 				9AAF8FFD2B4C8D9A00E120B2 /* libstatic_archive.a */,
 			);
 			name = Products;
@@ -8614,10 +8618,10 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		9A818F5B2A721B89008F470C /* archive.a */ = {
+		9A818F5B2A721B89008F470C /* libarchive.dylib */ = {
 			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = archive.a;
+			fileType = "compiled.mach-o.dylib";
+			path = libarchive.dylib;
 			remoteRef = 9A818F5A2A721B89008F470C /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -8976,6 +8980,7 @@
 				9A110F6627CDD2450081BCCD /* acme.cpp in Sources */,
 				9A787CC3264C04CD003DF8A0 /* context.cpp in Sources */,
 				9A68AFCE25114436008DABD2 /* path.cpp in Sources */,
+				9AAF921B2B4C9E3700E120B2 /* errno.cpp in Sources */,
 				9AA8F91727BA7269008FF9AA /* os_colors.cpp in Sources */,
 				9AA8FD7927BA729A008FF9AA /* os.cpp in Sources */,
 				9A8F43922A23022C00097EE1 /* _.cpp in Sources */,
@@ -9336,6 +9341,7 @@
 				9A94DE29282C034800F5C1CA /* linked_property.cpp in Sources */,
 				9A78620D264B90B4003DF8A0 /* number_integer.cpp in Sources */,
 				9A52199A2A00B37500EA2057 /* main_window.cpp in Sources */,
+				9AAF921C2B4C9E3700E120B2 /* errno.cpp in Sources */,
 				9A08443629367B73009F7FF4 /* message.cpp in Sources */,
 				9A787CBC264C04CC003DF8A0 /* text.cpp in Sources */,
 				9AA8FCBC27BA7299008FF9AA /* filesystem.cpp in Sources */,
@@ -9858,6 +9864,7 @@
 		9A68A41E25114352008DABD2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEAD_CODE_STRIPPING = NO;
 				EXECUTABLE_PREFIX = lib;
 				PLATFORM_MODIFIER = macos;
 			};
@@ -9866,6 +9873,7 @@
 		9A68A41F25114352008DABD2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEAD_CODE_STRIPPING = NO;
 				EXECUTABLE_PREFIX = lib;
 				PLATFORM_MODIFIER = macos;
 			};
@@ -9874,6 +9882,7 @@
 		9AD692B4251A753A00C0EBD7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEAD_CODE_STRIPPING = NO;
 				EXECUTABLE_EXTENSION = "$(STATIC_LIBRARY_EXTENSION:default=a)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					CUBE,
@@ -9888,6 +9897,7 @@
 		9AD692B5251A753A00C0EBD7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEAD_CODE_STRIPPING = NO;
 				EXECUTABLE_EXTENSION = "$(STATIC_LIBRARY_EXTENSION:default=a)";
 				GCC_PREPROCESSOR_DEFINITIONS = CUBE;
 				MACH_O_TYPE = staticlib;

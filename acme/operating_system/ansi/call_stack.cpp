@@ -185,7 +185,7 @@ namespace acme
 
       auto psynchronization = this->platform()->system()->synchronization();
 
-      synchronous_lock sl(psynchronization);
+      _synchronous_lock sl(psynchronization);
 
 #if defined(FREEBSD)
       const int iMaximumFramesToCapture = 32;

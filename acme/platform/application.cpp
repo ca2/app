@@ -45,6 +45,8 @@ namespace acme
    application::application()
    {
 
+      m_bApplicationFirstRequest = true;
+
       //if (!::platform::platform::s_pplatform->m_pacmeapplication)
       //{
 
@@ -493,7 +495,7 @@ namespace acme
    ::file::path application::get_module_path()
    {
 
-      synchronous_lock synchronizationlock(synchronization());
+      _synchronous_lock synchronizationlock(synchronization());
 
       if (!m_bModulePath)
       {
@@ -526,7 +528,7 @@ namespace acme
    ::file::path application::get_module_folder()
    {
 
-      synchronous_lock synchronizationlock(synchronization());
+      _synchronous_lock synchronizationlock(synchronization());
 
       if (!m_bModuleFolder)
       {
@@ -1381,17 +1383,6 @@ namespace acme
 
          }
 
-         init_instance();
-
-         //if (!init_instance())
-         //{
-         //
-         ////return false;
-         //
-         //}
-
-         //on_update_matter_locator();
-
       }
       catch (const ::exit_exception & exception)
       {
@@ -1403,7 +1394,7 @@ namespace acme
       {
 
          message_box_synchronous(this, "Application failed to initialize (4). Unknown exception", m_strAppName, e_message_box_ok,
-            exception.m_strMessage + "\n\n" + exception.m_strDetails + "\n\n" + exception.m_strCallStackTrace);
+            exception.m_strMessage + "\n\n" + exception.get_consolidated_details(this));
 
          throw exception;
 

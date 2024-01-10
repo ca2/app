@@ -3,6 +3,11 @@
 #include "acme/operating_system/shared_posix/c_error_number.h"
 
 
+#ifdef FREEBSD
+#include <string.h>
+#endif
+
+
 [[noreturn]] CLASS_DECL_ACME void throw_errno_exception(const ::scoped_string & scopedstr, c_error_number cerrornumber)
 {
 
@@ -20,6 +25,3 @@
    throw ::exception(estatus, { errorcode }, scopedstr);
 
 }
-
-
-

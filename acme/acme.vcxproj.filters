@@ -4990,6 +4990,12 @@
     <ClCompile Include="operating_system\message_box.cpp">
       <Filter>Source Files\operating_system</Filter>
     </ClCompile>
+    <ClCompile Include="operating_system\windows\message_loop.cpp">
+      <Filter>Source Files\operating_system\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\shared_posix\errno.cpp">
+      <Filter>Source Files\operating_system\shared_posix</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="primitive\string\_defer.h">

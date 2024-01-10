@@ -210,7 +210,7 @@ namespace mathematics
          while(s > 4)
          {
 
-            *pu = m_randomnumbergenerator.get();
+            *pu = m_randomnumbergenerator.get_u32();
 
             s-=4;
 
@@ -220,16 +220,12 @@ namespace mathematics
 
          char * pc = (char *)pu;
 
-         u32 uSrc = m_randomnumbergenerator.get();
-
-         char * pcSrc = (char *)&uSrc;
-
          while(s > 0)
          {
 
             s--;
 
-            pc[s] = pcSrc[s];
+            pc[s] = m_randomnumbergenerator.get_u8();
 
          }
 
@@ -348,10 +344,10 @@ namespace mathematics
       //      u64 uiHi = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
       //      return uiLo | (uiHi << 32);
       //#else
-      char ch = 0;
-      random({ e_as_block,ch });
-
-      return ch;
+//      char ch = 0;
+//      random({ e_as_block,ch });
+//
+      return random_u8();
       //#endif
       //
    }
@@ -364,10 +360,10 @@ namespace mathematics
       //      u64 uiHi = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
       //      return uiLo | (uiHi << 32);
       //#else
-      u8 u = 0;
-      random({ e_as_block,u });
+      //u8 u = 0;
+      //random({ e_as_block,u });
 
-      return u;
+      return m_posdata->m_randomnumbergenerator.get_u8();
       //#endif
       //
    }
@@ -380,10 +376,10 @@ namespace mathematics
       //      u64 uiHi = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
       //      return uiLo | (uiHi << 32);
       //#else
-      u32 u = 0;
-      random({ e_as_block,u });
+      //u32 u = 0;
+      //random({ e_as_block,u });
 
-      return u;
+      return m_posdata->m_randomnumbergenerator.get_u32();
       //#endif
       //
    }

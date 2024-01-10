@@ -1127,7 +1127,7 @@ namespace user
    void thread::destroy()
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       if (m_pimpl)
       {
@@ -1183,7 +1183,7 @@ namespace user
          information() << "notify_icon";
       }
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       m_pimpl.release();
 

@@ -871,6 +871,8 @@ namespace user
 
          information() << "show_for_ui place(rectangleRequest) : " << rectangleRequest;
 
+         add_graphical_output_purpose(this, ::graphics::e_output_purpose_screen);
+
          place(rectangleRequest);
 
          enable_window();

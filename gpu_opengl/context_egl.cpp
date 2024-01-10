@@ -391,7 +391,7 @@ namespace opengl
       if (m_display == EGL_NO_DISPLAY)
       {
 
-         fprintf(stderr, "Got no EGL display.\n");
+         errorf("Got no EGL display.");
 
          throw ::exception(::error_failed);
 
@@ -400,7 +400,7 @@ namespace opengl
       if (!eglInitialize(m_display, NULL, NULL))
       {
 
-         fprintf(stderr, "Unable to initialize EGL\n");
+         errorf("Unable to initialize EGL");
 
          throw ::exception(::error_failed);
 
@@ -417,7 +417,7 @@ namespace opengl
 
          const ::scoped_string & scopedstrError = eglQueryString(m_display, iError);
 
-         fprintf(stderr, "Failed to choose config (eglError: %s : 0x%x)\n", ::string(scopedstrError).c_str(), iError);
+         errorf("Failed to choose config (eglError: %s : 0x%x)", ::string(scopedstrError).c_str(), iError);
 
          throw ::exception(::error_failed);
 
@@ -426,7 +426,7 @@ namespace opengl
       if (iConfigCount != 1)
       {
 
-         fprintf(stderr, "Didn't get just one config, but %d\n", iConfigCount);
+         errorf("Didn't get just one config, but %d", iConfigCount);
 
          throw ::exception(::error_failed);
 
@@ -502,7 +502,7 @@ namespace opengl
       if (!bMakeCurrentOk)
       {
 
-         printf("eglMakeCurrent failed!\n");
+         errorf("eglMakeCurrent failed!");
 
          //return ::error_failed;
 

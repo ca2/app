@@ -1,7 +1,7 @@
 #include "framework.h"
 #include <time.h>
 #include "random_number_generator.h"
-
+#include <chrono>
 // defines for the random number generator
 #define TWIST_LEN       (m_uinta.get_count())
 #define TWIST_IA        397
@@ -14,7 +14,11 @@
 
 namespace mathematics
 {
-   random_number_generator::random_number_generator() : m_value( 0 )
+   random_number_generator::random_number_generator() : 
+      m_uSeed((::u32) ::std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::system_clock::now().time_since_epoch()).count()),
+      m_generator(m_uSeed),
+      m_distributionU32(0, U32_MAXIMUM),
+      m_distributionU8(0, U8_MAXIMUM)
    {
       seed(624, 0);
    }
@@ -41,13 +45,14 @@ namespace mathematics
 
 /* generates a random number on [0,0xffffffff]-interval */
 
-   u32 random_number_generator::get()
+   u32 random_number_generator::get_u32()
    {
-      while(m_iAccess < 8)
-      {
-         _get();
-      }
-      return _get();
+      return m_distributionU32(m_generator);
+   }
+
+   u8 random_number_generator::get_u8()
+   {
+      return m_distributionU8(m_generator);
    }
 
    u32 random_number_generator::_get()

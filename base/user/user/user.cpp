@@ -39,6 +39,13 @@
 #include "base/user/form/impact.h"
 
 
+#ifdef FREEBSD
+#include <stdio.h>
+#endif
+
+
+
+
 namespace base
 {
 

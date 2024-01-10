@@ -758,7 +758,7 @@ namespace user
    void user::set_mouse_focus_LButtonDown(::user::primitive * pmousefocus)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       m_pmousefocusLButtonDown = pmousefocus;
 
@@ -768,7 +768,7 @@ namespace user
    void user::defer_erase_mouse_focus_LButtonDown(::user::primitive * pmousefocus)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       if (m_pmousefocusLButtonDown == pmousefocus)
       {
@@ -806,7 +806,7 @@ namespace user
 
          ::pointer<::aura::application>pappAura = papp;
 
-         synchronous_lock synchronouslock(pappAura->m_pmutexFrame);
+         _synchronous_lock synchronouslock(pappAura->m_pmutexFrame);
 
          ::pointer<::user::interaction>pinteraction;
 
@@ -1479,7 +1479,7 @@ namespace user
 
             {
 
-               synchronous_lock synchronouslock(this->synchronization());
+               _synchronous_lock synchronouslock(this->synchronization());
 
                ::generic::container::copy(uiptraToolWindow, m_uiptraToolWindow);
 
@@ -1566,7 +1566,7 @@ namespace user
 
       bool bDoneALotOfThings = false;
 
-      synchronous_lock synchronouslock(m_pmutexRunnable);
+      _synchronous_lock synchronouslock(m_pmutexRunnable);
 
       while (m_listRunnable.has_elements() && ::task_get_run())
       {
@@ -1577,7 +1577,7 @@ namespace user
 
          prunnable->call_run();
 
-         synchronouslock.lock();
+         synchronouslock._lock();
 
          bDoneALotOfThings = true;
 

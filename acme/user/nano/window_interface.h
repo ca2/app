@@ -24,6 +24,8 @@ public:
 
    virtual void message_loop();
 
+   virtual void implementation_message_loop_step();
+
    virtual void draw(nano_device * pnanodevice);
 
    virtual void on_draw(nano_device * pnanodevice);

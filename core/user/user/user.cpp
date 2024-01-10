@@ -62,7 +62,9 @@
 //#endif
 
 
-
+#ifdef FREEBSD
+#include <stdio.h>
+#endif
 
 
 //#ifdef WINDOWS_DESKTOP

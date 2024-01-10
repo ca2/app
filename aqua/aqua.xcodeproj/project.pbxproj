@@ -111,6 +111,12 @@
 		9A601EA1285B62F200151842 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A601E9D285B62F200151842 /* _.h */; };
 		9A601EA3285B631700151842 /* _estamira.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A601EA2285B631700151842 /* _estamira.h */; };
 		9A601EA4285B631700151842 /* _estamira.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A601EA2285B631700151842 /* _estamira.h */; };
+		9A67F1082B4D2ACA00589D0A /* tinyexpr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A67F1062B4D2AC900589D0A /* tinyexpr.cpp */; };
+		9A67F1092B4D2ACA00589D0A /* tinyexpr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A67F1062B4D2AC900589D0A /* tinyexpr.cpp */; };
+		9A67F10A2B4D2ACA00589D0A /* tinyexpr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A67F1062B4D2AC900589D0A /* tinyexpr.cpp */; };
+		9A67F10B2B4D2ACA00589D0A /* tinyexpr.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A67F1072B4D2ACA00589D0A /* tinyexpr.h */; };
+		9A67F10C2B4D2ACA00589D0A /* tinyexpr.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A67F1072B4D2ACA00589D0A /* tinyexpr.h */; };
+		9A67F10D2B4D2ACA00589D0A /* tinyexpr.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A67F1072B4D2ACA00589D0A /* tinyexpr.h */; };
 		9A8189122A71CC42008F470C /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2819A625242523009FA9CB /* _.h */; };
 		9A8189132A71CC42008F470C /* property_exchange.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A28194725242523009FA9CB /* property_exchange.h */; };
 		9A8189142A71CC42008F470C /* disp_option.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A28194A25242523009FA9CB /* disp_option.h */; };
@@ -502,6 +508,8 @@
 		9A601E9C285B62F200151842 /* _audio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _audio.h; sourceTree = "<group>"; };
 		9A601E9D285B62F200151842 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		9A601EA2285B631700151842 /* _estamira.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _estamira.h; sourceTree = "<group>"; };
+		9A67F1062B4D2AC900589D0A /* tinyexpr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyexpr.cpp; sourceTree = "<group>"; };
+		9A67F1072B4D2ACA00589D0A /* tinyexpr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tinyexpr.h; sourceTree = "<group>"; };
 		9A7864982650A3CF0034A0E1 /* libacme.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A81898B2A71CC42008F470C /* libstatic_aqua.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libstatic_aqua.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A865F8E29661498000C82F0 /* exception.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = exception.h; sourceTree = "<group>"; };
@@ -717,6 +725,8 @@
 		9A281A1D25242870009FA9CB /* platform */ = {
 			isa = PBXGroup;
 			children = (
+				9A67F1062B4D2AC900589D0A /* tinyexpr.cpp */,
+				9A67F1072B4D2ACA00589D0A /* tinyexpr.h */,
 				9A281A1E25242870009FA9CB /* application.h */,
 				9A281A1F25242870009FA9CB /* session.h */,
 				9A281A2025242870009FA9CB /* session.cpp */,
@@ -848,6 +858,7 @@
 				9A281A2B25242870009FA9CB /* _platform.h in Headers */,
 				9A94EC3529E46D4700C8C249 /* _c.h in Headers */,
 				9A2273B627CF04470042BAC2 /* _.h in Headers */,
+				9A67F10B2B4D2ACA00589D0A /* tinyexpr.h in Headers */,
 				9A2819E925242523009FA9CB /* console.h in Headers */,
 				9A601EA0285B62F200151842 /* _.h in Headers */,
 				9A281A1925242524009FA9CB /* multimedia.h in Headers */,
@@ -931,6 +942,7 @@
 				9A8189342A71CC42008F470C /* _platform.h in Headers */,
 				9A8189352A71CC42008F470C /* _c.h in Headers */,
 				9A8189362A71CC42008F470C /* _.h in Headers */,
+				9A67F10D2B4D2ACA00589D0A /* tinyexpr.h in Headers */,
 				9A8189372A71CC42008F470C /* console.h in Headers */,
 				9A8189382A71CC42008F470C /* _.h in Headers */,
 				9A8189392A71CC42008F470C /* multimedia.h in Headers */,
@@ -1014,6 +1026,7 @@
 				9A8E9E5A282A3210005FF778 /* _platform.h in Headers */,
 				9A94EC3629E46D4700C8C249 /* _c.h in Headers */,
 				9A8E9E5B282A3210005FF778 /* _.h in Headers */,
+				9A67F10C2B4D2ACA00589D0A /* tinyexpr.h in Headers */,
 				9A8E9E5D282A3210005FF778 /* console.h in Headers */,
 				9A601EA1285B62F200151842 /* _.h in Headers */,
 				9A8E9E5E282A3210005FF778 /* multimedia.h in Headers */,
@@ -1220,6 +1233,7 @@
 				9A2D74522AAB522A00DFCE25 /* sha256.cpp in Sources */,
 				9A2819C025242523009FA9CB /* edit.cpp in Sources */,
 				9A94EC2D29E46D4700C8C249 /* sound_track_player.cpp in Sources */,
+				9A67F1082B4D2ACA00589D0A /* tinyexpr.cpp in Sources */,
 				9A94EC2F29E46D4700C8C249 /* text_to_speech_client.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1266,6 +1280,7 @@
 				9A2D74542AAB522A00DFCE25 /* sha256.cpp in Sources */,
 				9A8189822A71CC42008F470C /* edit.cpp in Sources */,
 				9A8189832A71CC42008F470C /* sound_track_player.cpp in Sources */,
+				9A67F10A2B4D2ACA00589D0A /* tinyexpr.cpp in Sources */,
 				9A8189842A71CC42008F470C /* text_to_speech_client.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1312,6 +1327,7 @@
 				9A2D74532AAB522A00DFCE25 /* sha256.cpp in Sources */,
 				9A8E9EB1282A3210005FF778 /* edit.cpp in Sources */,
 				9A94EC2E29E46D4700C8C249 /* sound_track_player.cpp in Sources */,
+				9A67F1092B4D2ACA00589D0A /* tinyexpr.cpp in Sources */,
 				9A94EC3029E46D4700C8C249 /* text_to_speech_client.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1395,9 +1411,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = framework.h;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"$(inherited)",
-				);
+				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
@@ -1411,7 +1425,6 @@
 				GCC_WARN_UNUSED_VARIABLE = NO;
 				HEADER_SEARCH_PATHS = "";
 				INSTALL_PATH = "@executable_path";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1528,7 +1541,6 @@
 				GCC_WARN_UNUSED_VARIABLE = NO;
 				HEADER_SEARCH_PATHS = "";
 				INSTALL_PATH = "@executable_path";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1580,7 +1592,6 @@
 			buildSettings = {
 				DEAD_CODE_STRIPPING = YES;
 				EXECUTABLE_EXTENSION = dylib;
-				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PLATFORM_MODIFIER = macos;
 				SDKROOT = macosx;
 			};
@@ -1591,7 +1602,6 @@
 			buildSettings = {
 				DEAD_CODE_STRIPPING = YES;
 				EXECUTABLE_EXTENSION = dylib;
-				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PLATFORM_MODIFIER = macos;
 				SDKROOT = macosx;
 			};

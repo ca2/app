@@ -5167,9 +5167,11 @@ namespace user
       if (m_pgraphicsthread)
       {
 
-         information() << "m_pgraphicsthread->m_eventReady.SetEvent()";
+         information() << "m_pgraphicsthread->m_bGraphicsThreadEnabled = true";
        
-         m_pgraphicsthread->m_eventReady.SetEvent();
+         //m_pgraphicsthread->m_eventReady.SetEvent();
+
+         m_pgraphicsthread->m_bGraphicsThreadEnabled = true;
 
       }
 

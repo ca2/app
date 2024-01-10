@@ -601,17 +601,20 @@ namespace apex
 
       //virtual string get_mutex_name_gen();
 
-      /// return true if this instance might continue execution
-      /// bHandled true if some action was done in response to this new additional instance creation
-      virtual void on_exclusive_instance_conflict(bool & bHandled, enum_exclusive_instance eexclusive, string strId);
+
+      void ___property_set_test_001();
 
       /// return true if this instance might continue execution
       /// bHandled true if some action was done in response to this new additional instance creation
-      virtual void on_exclusive_instance_local_conflict(bool & bHandled);
+      virtual void on_exclusive_instance_conflict(::request * prequest, bool & bHandled, enum_exclusive_instance eexclusive, string strId);
+
+      /// return true if this instance might continue execution
+      /// bHandled true if some action was done in response to this new additional instance creation
+      virtual void on_exclusive_instance_local_conflict(::request * prequest, bool & bHandled);
 
       /// return true if this instance might continue execution
 /// bHandled true if some action was done in response to this new additional instance creation
-      virtual void on_exclusive_instance_local_conflict_id(bool & bHandled, string strId);
+      virtual void on_exclusive_instance_local_conflict_id(::request * prequest, bool & bHandled, string strId);
 
       /// return true if the external additional instance might continue execution
       /// bHandled true if some action was done in response to the external aaa_memory_new additional instance creation
@@ -630,7 +633,7 @@ namespace apex
       virtual string get_global_mutex_name();
       virtual string get_global_id_mutex_name();
 
-      virtual bool check_exclusive(bool & bHandled);
+      virtual bool check_exclusive(::request * prequest, bool & bHandled);
       virtual bool erase_exclusive(const ::string & strId);
 
       virtual bool exclusive_fails(const ::string & str, security_attributes * psecurityattributes = nullptr);

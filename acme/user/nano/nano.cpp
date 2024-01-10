@@ -58,7 +58,7 @@ namespace nano
    pointer< ::sequencer < ::conversation > > nano::exception_message_box(const ::exception& exception, const ::string& strMessageParam, const ::string& strTitleParam, const ::e_message_box& emessagebox, const ::string& strDetailsParam)
    {
 
-      string strExceptionDetails = exception.get_consolidated_details();
+      string strExceptionDetails = exception.get_consolidated_details(this);
 
       string strMessage(strMessageParam);
 
@@ -118,7 +118,7 @@ namespace nano
    pointer< ::sequencer < ::conversation > > nano::exception_message_console(const ::exception& exception, const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails)
    {
 
-      string strExceptionDetails = exception.get_consolidated_details();
+      string strExceptionDetails = exception.get_consolidated_details(this);
 
       auto psequencer = acmenode()->create_message_sequencer(strMessage, strTitle, emessagebox, strDetails + "\n" + strExceptionDetails);
 

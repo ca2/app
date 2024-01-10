@@ -11,6 +11,7 @@ namespace user
    {
 
       m_bAutoClose = false;
+      m_bExtendOnParentHostingArea = true;
 
    }
 
@@ -72,9 +73,6 @@ namespace user
       ::user::menu_list_window::post_non_client_destroy();
 
    }
-
-
-
 
 
 } // namespace user

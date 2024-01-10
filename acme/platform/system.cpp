@@ -1854,6 +1854,8 @@ namespace acme
 
          auto strCommandLine = platform()->m_strCommandLine;
 
+         prequest->m_strCommandLine = strCommandLine;
+
          prequest->m_strAppId = application()->m_strAppId;
 
          ::string strApp;

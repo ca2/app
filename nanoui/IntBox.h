@@ -12,6 +12,7 @@
 
 #include "TextBox.h"
 #include "acme/constant/user_key.h"
+#include "aqua/platform/tinyexpr.h"
 
 
 namespace nanoui
@@ -31,7 +32,7 @@ namespace nanoui
 
       IntBox(Widget* parent, Scalar value = (Scalar)0) : TextBox(parent) {
          set_default_value("0");
-         set_format(::std::is_signed<Scalar>::value ? "[-]?[0-9]*" : "[0-9]*");
+         //set_format(::std::is_signed<Scalar>::value ? "[-]?[0-9]*" : "[0-9]*");
          set_value_increment(1);
          set_minimum_maximum_values(::std::numeric_limits<Scalar>::lowest(), ::std::numeric_limits<Scalar>::max());
          set_value(value, e_source_initialize);
@@ -40,8 +41,18 @@ namespace nanoui
 
       Scalar value() const {
          Scalar value = 0;
-         from_string(value, TextBox::value());
+         
+         value = calc_dimension(TextBox::value());
          return value;
+      }
+      
+      Scalar calc_dimension(const ::scoped_string & scopedstr) const
+      {
+         Scalar res = 0;
+         double r = tinyexpr::te_interp(::string(scopedstr), nullptr);
+         if (!std::isnan(r))
+            res = std::max(static_cast<decltype(res)>(r), static_cast<decltype(res)>(0));
+         return res;
       }
 
       void set_value(Scalar value, const ::action_context & actioncontext) {
@@ -55,7 +66,7 @@ namespace nanoui
                Scalar value = 0;
                try
                {
-                  from_string(value, str);
+                  value=calc_dimension(str);
                }
                catch (...)
                {

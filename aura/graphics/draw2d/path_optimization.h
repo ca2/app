@@ -16,6 +16,9 @@ namespace draw2d
 
 
        virtual bool fill(::draw2d::graphics * pgraphics, ::draw2d::brush * pbrush);
+       
+       
+       virtual bool intersect_clip(::draw2d::graphics * pgraphics);
 
 
     };

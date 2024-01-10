@@ -404,7 +404,7 @@ namespace dynamic_source
 
       string strCompileLogUnique = datetime()->format(INTERNATIONAL_DATE_TIME_FORMAT_FOR_FILE, timeNow);
 
-      if (!::isdigit(strCompileLogUnique[0]))
+      if (!::character_isdigit(strCompileLogUnique[0]))
       {
 
          string strCompileLogUnique2 = datetime()->format(INTERNATIONAL_DATE_TIME_FORMAT_FOR_FILE, timeNow);
@@ -2028,7 +2028,7 @@ auto tickStart = ::time::now();
          }
          if(bServer)
          {
-            if(isalpha(ch) || isdigit(ch) || ch == '.' || ch == ',' || ch == '-' || ch == '_')
+            if(::character_isalpha(ch) || ::character_isdigit(ch) || ch == '.' || ch == ',' || ch == '-' || ch == '_')
             {
                if(iServer < 0)
                {
@@ -2147,7 +2147,7 @@ auto tickStart = ::time::now();
             {
                if(bLow)
                {
-                  strResult += (char) tolower(ch);
+                  strResult += (char) ::character_tolower(ch);
                }
                else
                {
@@ -2541,7 +2541,7 @@ ch_else:
                }
                if(bLow)
                {
-                  strResult += (char) tolower(ch);
+                  strResult += (char) ::character_tolower(ch);
                }
                else
                {
@@ -2562,14 +2562,16 @@ ch_else:
          return false;
       if(iIdLen == iLen)
       {
-         if(!strcmp(psz, pszId))
+         if(string_compare(psz, pszId) == 0)
          {
             iIdLenRet = iIdLen;
             return true;
          }
       }
       if(string_begins(psz, pszId)
-            && !isdigit(psz[iIdLen]) && !isalpha(psz[iIdLen]) && psz[iIdLen] != '_')
+            && !::character_isdigit(psz[iIdLen])
+            && !::character_isalpha(psz[iIdLen])
+            && psz[iIdLen] != '_')
       {
          iIdLenRet = iIdLen;
          return true;

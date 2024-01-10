@@ -1104,6 +1104,7 @@
     <ClCompile Include="operating_system\security_attributes.cpp" />
     <ClCompile Include="operating_system\shared_posix\c_error_number.cpp" />
     <ClCompile Include="operating_system\shared_posix\earth_time_shift.cpp" />
+    <ClCompile Include="operating_system\shared_posix\errno.cpp" />
     <ClCompile Include="operating_system\shared_posix\stdio_file.cpp" />
     <ClCompile Include="operating_system\shared_posix\time.cpp" />
     <ClCompile Include="operating_system\shared_posix\windows_time.cpp" />
@@ -1124,6 +1125,7 @@
     <ClCompile Include="operating_system\windows\library.cpp" />
     <ClCompile Include="operating_system\windows\memory.cpp" />
     <ClCompile Include="operating_system\windows\message_box.cpp" />
+    <ClCompile Include="operating_system\windows\message_loop.cpp" />
     <ClCompile Include="operating_system\windows\nano\brush.cpp" />
     <ClCompile Include="operating_system\windows\nano\device.cpp" />
     <ClCompile Include="operating_system\windows\nano\font.cpp" />

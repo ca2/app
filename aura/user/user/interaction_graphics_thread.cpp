@@ -73,7 +73,9 @@ namespace user
 
       m_bUpdatingScreen = false;
 
-      m_eventReady.SetEvent();
+      m_bGraphicsThreadEnabled = false;
+
+      //m_eventReady.ResetEvent();
 
 //#ifdef UNIVERSAL_WINDOWS
 //      m_bExclusiveMode = true;
@@ -192,7 +194,7 @@ namespace user
 //
 //            {
 //
-//               synchronous_lock synchronouslock(pimpl->synchronization());
+//               _synchronous_lock synchronouslock(pimpl->synchronization());
 //
 //               if(pimpl->m_redrawitema.has_element())
 //               {
@@ -254,7 +256,7 @@ namespace user
 //   int graphics_thread::thread_index()
 //   {
 //
-//      synchronous_lock sl(this->synchronization());
+//      _synchronous_lock sl(this->synchronization());
 //
 //      auto iTask = ::current_itask();
 //
@@ -283,7 +285,7 @@ namespace user
 
       //m_pimpl->m_puserinteraction->task_add(this);
 
-      m_eventReady.wait();
+      //m_eventReady.wait();
 
       m_synchronizationa.add(&m_evUpdateScreen);
 
@@ -338,6 +340,15 @@ namespace user
 
             }
 
+            if(!m_bGraphicsThreadEnabled)
+            {
+
+               preempt(100_ms);
+
+               continue;
+
+            }
+
             if(!defer_process_redraw_message())
             {
 
@@ -384,6 +395,13 @@ namespace user
 
    bool graphics_thread::wait_for_redraw_message()
    {
+
+      if (m_pimpl->m_redrawitema.has_element())
+      {
+
+         return true;
+
+      }
 
       while(::task_get_run())
       {
@@ -494,7 +512,7 @@ namespace user
 
       {
 
-         synchronous_lock synchronouslock(m_puserinteraction->synchronization());
+         _synchronous_lock synchronouslock(m_puserinteraction->synchronization());
 
          ASSERT(!(m_puserinteraction->m_ewindowflag & e_window_flag_embedded_graphics_thread_if_child));
 
@@ -1052,7 +1070,7 @@ namespace user
 
       {
 
-         synchronous_lock sl(synchronization());
+         _synchronous_lock sl(synchronization());
 
          auto timeNow = ::time::now();
 
@@ -1201,7 +1219,7 @@ namespace user
 //      try
 //      {
 //
-//         //         synchronous_lock synchronouslock(m_puserinteraction->synchronization());
+//         //         _synchronous_lock synchronouslock(m_puserinteraction->synchronization());
 //         //
 //         //         if(!m_puserinteraction)
 //         //         {
@@ -1315,7 +1333,7 @@ namespace user
 //      try
 //      {
 //
-////         synchronous_lock synchronouslock(m_puserinteraction->synchronization());
+////         _synchronous_lock synchronouslock(m_puserinteraction->synchronization());
 ////
 ////         if(!m_puserinteraction)
 ////         {
@@ -1536,7 +1554,7 @@ namespace user
    void graphics_thread::profiling_on_after_update_screen()
    {
 
-      synchronous_lock sl(synchronization());
+      _synchronous_lock sl(synchronization());
       
       //m_timeLastFrame.Now();
 

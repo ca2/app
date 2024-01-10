@@ -159,7 +159,7 @@ namespace user
             for (auto & puserinteraction : children)
             {
 
-               auto pszType = typeid(*puserinteraction).name();
+               auto strType = ::type(puserinteraction).as_string();
                auto pszWndTxt = puserinteraction->get_window_text().c_str();
 
                if (puserinteraction->set_position(point, e_layout_layout, pgraphics))

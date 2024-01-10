@@ -3,7 +3,7 @@
 
 CLASS_DECL_ACME i32 random_context_entropy(i32 iLevel= 3);
 
-
+#include <random>
 //#include "acme/primitive/collection/numeric_array.h"
 
 
@@ -27,8 +27,15 @@ namespace mathematics
    public:
       random_number_generator();
 
+      ::u32 m_uSeed;
+      std::default_random_engine m_generator;
+      std::uniform_int_distribution<u32> m_distributionU32;
+      std::uniform_int_distribution<u32> m_distributionU8;
+
+
       void seed(i32 iTwistLen, u32 seed);
-      u32 get();
+      u32 get_u32();
+      u8 get_u8();
 
    private:
       u32 _get();

@@ -84,6 +84,9 @@ namespace user
       virtual bool enable_picture(bool bEnable = true);
       virtual bool is_picture_enabled() const;
 
+      
+      virtual ::point_f64 get_point_transform();
+
 
       virtual bool is_picture_hover();
 

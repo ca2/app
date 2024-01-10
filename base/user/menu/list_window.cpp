@@ -154,13 +154,6 @@ namespace user
    }
 
 
-//   void menu_list_window::on_layout(::draw2d::graphics_pointer & pgraphics)
-//   {
-//
-//
-//   }
-
-
    void menu_list_window::layout_buttons(menu_item * pitemParent, i32 iMaxWidth, ::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangleBound)
    {
 
@@ -260,7 +253,7 @@ namespace user
       
       ::string strType = ::type(get_parent());
 
-      auto rectangleParentX = get_parent()->rectangle(e_layout_layout);
+//      auto rectangleParentX = get_parent()->rectangle(e_layout_layout);
       rectangleX = this->rectangle(e_layout_layout);
 
       pgraphics->set_font(this, ::e_element_none);

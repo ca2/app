@@ -2573,7 +2573,7 @@ m_ibuf(isize)
 
       auto strContextMd5 = crypto()->md5(context);
 
-      int iLenMd5 = strContextMd5.length();
+      //int iLenMd5 = strContextMd5.length();
 
       if (context.length())
       {

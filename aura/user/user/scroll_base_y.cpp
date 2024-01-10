@@ -109,7 +109,7 @@ namespace user
       if (m_pscrollbarY != nullptr)
       {
 
-         if (scroll_bar_y_visible())
+         if (scroll_bar_y_visible(elayout))
          {
 
             synthesize_scroll_state_y(m_pscrolllayoutY->m_scrollstatea[elayout], elayout);
@@ -147,9 +147,9 @@ namespace user
 
          }
 
-         m_pscrollbarY->set_need_redraw();
+         set_need_redraw();
 
-         m_pscrollbarY->post_redraw();
+         post_redraw();
 
       }
 

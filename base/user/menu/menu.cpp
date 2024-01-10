@@ -179,7 +179,7 @@ namespace user
 //
 //         {
 //
-//            synchronous_lock synchronouslock(mutex_children());
+//            _synchronous_lock synchronouslock(mutex_children());
 //
 //            m_uiptraChild.erase_all();
 //
@@ -212,11 +212,11 @@ namespace user
 //
       {
 
-         // synchronous_lock synchronouslock(mutex_children());
+         // _synchronous_lock synchronouslock(mutex_children());
 
           // m_uiptraChild.interactiona().erase_all();
 
-         synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization());
 
          m_puserinteractionpointeraChild.release();
 
@@ -502,6 +502,8 @@ namespace user
       //   m_procedureOnAfterInitializeUserMenu();
 
       //}
+
+      m_bNeedPerformLayout = true;
 
    }
 
@@ -1359,7 +1361,7 @@ namespace user
             //   m_atomSubMenu.is_empty();
             //}
 
-            synchronous_lock synchronouslock(this->synchronization());
+            _synchronous_lock synchronouslock(this->synchronization());
 
             if (m_pmenuitemShowSubMenu2)
             {
@@ -1413,7 +1415,7 @@ namespace user
 
             {
 
-               synchronous_lock synchronouslock(this->synchronization());
+               _synchronous_lock synchronouslock(this->synchronization());
 
                update_command(m_pmenuitem);
 
@@ -2329,7 +2331,7 @@ namespace user
 
             information() << "::user::menu::layout_menu place : " << rectangleWindow;
 
-            place(rectangleWindow);
+            place(rectangleWindow, ::user::e_layout_layout, pgraphics);
 
             //display(e_display_normal, e_activation_no_activate);
 
@@ -2338,7 +2340,7 @@ namespace user
          else
          {
 
-            set_size(m_size);
+            set_size(m_size, ::user::e_layout_layout, pgraphics);
 
          }
 

@@ -160,15 +160,15 @@ string_to_string * g_pmapFontPath;
 
 #endif
 
-string_map<i32_map<FT_Face> > * g_pmapFontFace = nullptr;
-
-string_map<cairo_font_face_t *> * g_pmapCairoFontFace = nullptr;
-
-string_to_int * g_pmapFontError = nullptr;
-
-string_to_int * g_pmapFontError2 = nullptr;
-
-extern CLASS_DECL_AURA array<matter *> * g_paAura;
+//string_map<i32_map<FT_Face> > * g_pmapFontFace = nullptr;
+//
+//string_map<cairo_font_face_t *> * g_pmapCairoFontFace = nullptr;
+//
+//string_to_int * g_pmapFontError = nullptr;
+//
+//string_to_int * g_pmapFontError2 = nullptr;
+//
+//extern CLASS_DECL_AURA array<matter *> * g_paAura;
 
 
 namespace draw2d_cairo
@@ -7014,7 +7014,9 @@ namespace draw2d_cairo
 
       _synchronous_lock synchronouslock(::draw2d_cairo::mutex());
 
-      FT_Face ftface = (*g_pmapFontFace)[pszFontName][iWeight * 10 + (bItalic ? 1 : 0)];
+      ::pointer < ::draw2d_cairo::draw2d > pdraw2d = system()->draw2d();
+
+      FT_Face ftface = pdraw2d->m_mapFontFace[pszFontName][iWeight * 10 + (bItalic ? 1 : 0)];
 
       if (ftface)
       {
@@ -7096,7 +7098,7 @@ namespace draw2d_cairo
 
       }
 
-      (*g_pmapFontFace)[pszFontName][iWeight * 10 + (bItalic ? 1 : 0)] = ftface;
+      pdraw2d->m_mapFontFace[pszFontName][iWeight * 10 + (bItalic ? 1 : 0)] = ftface;
 
       return ftface;
 

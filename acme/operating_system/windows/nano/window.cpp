@@ -9,6 +9,7 @@
 #include "acme/user/nano/window.h"
 
 
+bool _c_simple_message_loop_step();
 
 CLASS_DECL_ACME string task_get_name();
 CLASS_DECL_ACME void task_set_name(const char* pszName);
@@ -203,6 +204,7 @@ namespace windows
          return;
       }
 
+      nanowindowimplementationa().add(this);
 
    }
 
@@ -610,6 +612,7 @@ namespace windows
          break;
       case WM_DESTROY:
          //PostQuitMessage(0);
+         nanowindowimplementationa().erase(this);
          break;
       case WM_CREATE:
       {
@@ -877,9 +880,11 @@ namespace windows
    void nano_window::display()
    {
 
-      ShowWindow(m_hwnd, SW_SHOW);
+      ::ShowWindow(m_hwnd, SW_SHOW);
 
       ::UpdateWindow(m_hwnd);
+
+      ::BringWindowToTop(m_hwnd);
 
    }
 
@@ -1107,6 +1112,13 @@ namespace windows
 
    }
 
+
+   void nano_window::implementation_message_loop_step()
+   {
+
+      _c_simple_message_loop_step();
+
+   }
 
 } // namespace windows
 

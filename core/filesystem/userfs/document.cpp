@@ -328,19 +328,19 @@ namespace userfs
 
       //   m_listingFinal2 = listingFinal;
 
-      //   m_listingFolderUser2 = listingFolderUser;
-
-      //   m_listingFolderFinal2 = listingFolderFinal;
-
-      //}
-
-      id_update_all_impacts(id_browse);
-
-      //auto pextendedtopic = create_extended_topic(id_synchronize_path);
-
-      //pextendedtopic->m_pfileitem = pitem;
-
-      //pextendedtopic->m_actioncontext = context + ::e_source_sync;
+//      //   m_listingFolderUser2 = listingFolderUser;
+//
+//      //   m_listingFolderFinal2 = listingFolderFinal;
+//
+//      //}
+//
+//      id_update_all_impacts(id_browse);
+//
+//      //auto pextendedtopic = create_extended_topic(id_synchronize_path);
+//
+//      //pextendedtopic->m_pfileitem = pitem;
+//
+//      //pextendedtopic->m_actioncontext = context + ::e_source_sync;
 
       //update_all_impacts(pextendedtopic);
 

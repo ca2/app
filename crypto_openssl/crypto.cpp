@@ -9,6 +9,7 @@
 #include "acme/crypto/initializer.h"
 #include "apex/platform/context.h"
 
+#define boolean openssl_boolean
 
 #include "acme/_operating_system.h"
 
@@ -17,6 +18,9 @@
 #include <openssl/err.h>
 #include <openssl/whrlpool.h>
 #include <openssl/pem.h>
+
+#undef boolean
+
 #include "acme/filesystem/filesystem/acme_file.h"
 
 

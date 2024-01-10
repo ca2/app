@@ -19,6 +19,8 @@
 
 #include <openssl/conf.h>
 
+#undef boolean
+
 
 #if OPENSSL_VERSION_NUMBER < 0x10100000L
 

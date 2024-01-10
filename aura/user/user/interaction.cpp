@@ -13788,6 +13788,8 @@ namespace user
       if (m_bNeedPerformLayout)
       {
 
+         m_bNeedPerformLayout = false;
+
          try
          {
 
@@ -13798,8 +13800,6 @@ namespace user
          {
 
          }
-
-         m_bNeedPerformLayout = false;
 
       }
 
@@ -17286,18 +17286,18 @@ namespace user
       try
       {
 
-         ::user::interaction * pinteraction = nullptr;
+         ::user::interaction * pinteractionParent = nullptr;
          try
          {
-            pinteraction = get_parent();
+            pinteractionParent = get_parent();
          }
          catch (...)
          {
             return nullptr;
          }
-         if (pinteraction == nullptr)
+         if (pinteractionParent == nullptr)
             return nullptr;
-         auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
+         auto puserinteractionpointeraChild = pinteractionParent->m_puserinteractionpointeraChild;
 
          if (!puserinteractionpointeraChild)
          {
@@ -17369,19 +17369,19 @@ namespace user
       try
       {
 
-         ::user::interaction * pinteraction = nullptr;
+         ::user::interaction * pinteractionParent = nullptr;
          try
          {
-            pinteraction = get_parent();
+            pinteractionParent = get_parent();
          }
          catch (...)
          {
             return nullptr;
          }
-         if (pinteraction == nullptr)
+         if (pinteractionParent == nullptr)
             return nullptr;
 
-         auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
+         auto puserinteractionpointeraChild = pinteractionParent->m_puserinteractionpointeraChild;
 
          if (!puserinteractionpointeraChild)
          {

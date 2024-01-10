@@ -8,6 +8,7 @@
 #include "acme/exception/exit.h"
 #include "acme/exception/interface_only.h"
 #include "acme/exception/translator.h"
+#include "acme/user/nano/window_implementation.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/parallelization/task_message_queue.h"
 
@@ -352,6 +353,18 @@ void task::main()
       m_procedure();
 
       run_posted_procedures();
+
+      while (nano_window_implementation::nanowindowimplementationa().has_element())
+      {
+
+         for (auto & pimplementation : nano_window_implementation::nanowindowimplementationa())
+         {
+
+            pimplementation->implementation_message_loop_step();
+
+         }
+
+      }
 
    }
 
@@ -1394,7 +1407,7 @@ bool task::has_message() const
    if (m_peventInitialization)
    {
 
-      m_peventInitialization->_wait();
+      m_peventInitialization->wait();
 
       ::e_status estatus = m_estatus;
 

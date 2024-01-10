@@ -796,7 +796,10 @@ namespace acme
 
 
       virtual bool are_framework_shared_libraries_busy(const ::scoped_string & scopedstrRepos, const ::scoped_string & scopedstrApp);
-      
+
+
+      virtual ::string get_error_code_message(const ::error_code & errorcode);
+
       
    };
 

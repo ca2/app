@@ -16,6 +16,17 @@
 
 #include <stdio.h>
 
+static thread_local ::pointer_array < nano_window_implementation > t_nanowindowimplementationa;
+
+
+
+::pointer_array < nano_window_implementation > & nano_window_implementation::nanowindowimplementationa()
+{
+
+   return t_nanowindowimplementationa;
+
+}
+
 
 nano_window_implementation::nano_window_implementation()
 {
@@ -27,6 +38,7 @@ nano_window_implementation::nano_window_implementation()
 nano_window_implementation::~nano_window_implementation()
 {
 
+   output_debug_string("nano_window_implementation::~nano_window_implementation()");
 
 }
 
@@ -342,12 +354,14 @@ void nano_window_implementation::handle(::topic * ptopic, ::context * pcontext)
 void nano_window_implementation::do_asynchronously()
 {
 
-   auto procedure = [this]()
+   ::pointer < nano_window_implementation > pnanowindowimplementation = this;
+
+   auto procedure = [pnanowindowimplementation]()
       {
 
-         create();
+         pnanowindowimplementation->create();
 
-         m_pinterface->nano_window::display();
+         pnanowindowimplementation->m_pinterface->nano_window::display();
 
          //if (!is_main_thread())
          //{

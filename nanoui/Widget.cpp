@@ -628,7 +628,7 @@ namespace nanoui
          
       }
 
-      synchronous_lock lock(screen()->m_puserinteraction->synchronization());
+      _synchronous_lock lock(screen()->m_puserinteraction->synchronization());
 
       if(iIndex > child_count())
       {
@@ -680,14 +680,14 @@ namespace nanoui
    void Widget::erase_child(Widget* pwidget)
    {
 
-      synchronous_lock lock(screen()->m_puserinteraction->synchronization());
+      _synchronous_lock lock(screen()->m_puserinteraction->synchronization());
 
       pwidget->destroy_window();
 
       if (!m_children.erase(pwidget))
       {
 
-         throw ::exception(error_wrong_state, "Widget::erase_child(): pwidget not found!");
+         //throw ::exception(error_wrong_state, "Widget::erase_child(): pwidget not found!");
 
       }
 
@@ -697,7 +697,7 @@ namespace nanoui
    void Widget::to_top()
    {
       
-      synchronous_lock lock(screen()->m_puserinteraction->synchronization());
+      _synchronous_lock lock(screen()->m_puserinteraction->synchronization());
       
       if (m_pwidgetParent->m_children.erase(this))
       {

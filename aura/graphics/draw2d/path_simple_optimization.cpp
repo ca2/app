@@ -190,44 +190,44 @@ namespace draw2d
    bool path_simple_optimization::fill(::draw2d::graphics * pgraphics, ::draw2d::brush * pbrush)
    {
 
-   if (m_iTopic == 1 && m_iTopicLines == 0 && ::is_set(m_pitemTopic))
-   {
-
-      auto eitem = m_pitemTopic->type();
-
-      switch (eitem)
+      if (m_iTopic == 1 && m_iTopicLines == 0 && ::is_set(m_pitemTopic))
       {
-      case e_item_arc:
-         break;
-      case e_item_line:
-         break;
-      case e_item_lines:
-         break;
-      case e_item_rectangle:
-         if (::is_set(pbrush))
-         {
-            pgraphics->set(pbrush);
-         }
-         pgraphics->fill_rectangle(m_pitemTopic->cast < ::geometry2d::rectangle_item>()->m_item);
-         return true;
-      case e_item_ellipse:
-         if (::is_set(pbrush))
-         {
-            pgraphics->set(pbrush);
-         }
-         pgraphics->fill_ellipse(m_pitemTopic->cast < ::geometry2d::ellipse_item>()->m_item);
-         return true;
-      case e_item_polygon:
-         break;
-      case e_item_draw_text:
-         break;
-      case e_item_text_out:
-         break;
-      default:
-         break;
-      }
 
-   }
+         auto eitem = m_pitemTopic->type();
+
+         switch (eitem)
+         {
+         case e_item_arc:
+            break;
+         case e_item_line:
+            break;
+         case e_item_lines:
+            break;
+         case e_item_rectangle:
+            if (::is_set(pbrush))
+            {
+               pgraphics->set(pbrush);
+            }
+            pgraphics->fill_rectangle(m_pitemTopic->cast < ::geometry2d::rectangle_item>()->m_item);
+            return true;
+         case e_item_ellipse:
+            if (::is_set(pbrush))
+            {
+               pgraphics->set(pbrush);
+            }
+            pgraphics->fill_ellipse(m_pitemTopic->cast < ::geometry2d::ellipse_item>()->m_item);
+            return true;
+         case e_item_polygon:
+            break;
+         case e_item_draw_text:
+            break;
+         case e_item_text_out:
+            break;
+         default:
+            break;
+         }
+
+      }
    //   else if(m_iTopic <= 0 && m_iTopicLines > 0)
    //   {
    //
@@ -273,16 +273,54 @@ namespace draw2d
    //
    //   }
 
-   return false;
+      return false;
 
    }
 
 
-
-   ::pointer<::draw2d::path_optimization>create_path_simple_optimization(::draw2d::path * ppath)
+   bool path_simple_optimization::intersect_clip(::draw2d::graphics * pgraphics)
    {
 
-   return __allocate< path_simple_optimization >(ppath);
+      if (m_iTopic == 1 && m_iTopicLines == 0 && ::is_set(m_pitemTopic))
+      {
+         
+         auto eitem = m_pitemTopic->type();
+         
+         switch (eitem)
+         {
+            case e_item_arc:
+               break;
+            case e_item_line:
+               break;
+            case e_item_lines:
+               break;
+            case e_item_rectangle:
+               pgraphics->intersect_clip(m_pitemTopic->cast < ::geometry2d::rectangle_item>()->m_item);
+               return true;
+            case e_item_ellipse:
+               pgraphics->intersect_clip(m_pitemTopic->cast < ::geometry2d::ellipse_item>()->m_item);
+               return true;
+            case e_item_polygon:
+               break;
+            case e_item_draw_text:
+               break;
+            case e_item_text_out:
+               break;
+            default:
+               break;
+         }
+         
+      }
+      
+      return false;
+
+   }
+
+
+   ::pointer < ::draw2d::path_optimization > create_path_simple_optimization(::draw2d::path * ppath)
+   {
+
+      return __allocate< path_simple_optimization >(ppath);
 
    }
 

@@ -22,6 +22,9 @@ public:
 
    } m_console;
 
+
+   static ::pointer_array < nano_window_implementation > & nanowindowimplementationa();
+
    ::pointer < ::nano_window >         m_pinterface;
 
 

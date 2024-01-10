@@ -4,6 +4,10 @@
 #include "impact_system.h"
 ////#include "acme/exception/exception.h"
 
+#ifdef FREEBSD
+#include <stdio.h>
+#endif
+
 
 namespace user
 {

@@ -101,7 +101,7 @@ namespace filemanager
 
       
       //bool open(::apex::application * pappOnBehalfOf = nullptr, ::file::path path = "", const ::action_context & action_context = ::e_source_system);
-      void browse_initial_path(const ::action_context & action_context);
+      void browse_initial_path(const ::action_context & action_context) override;
       //virtual void __browse_initial_path(const ::action_context & action_context);
       
       //::filemanager::document * open(::file::path path = "");

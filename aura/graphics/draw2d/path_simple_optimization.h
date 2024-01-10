@@ -37,6 +37,7 @@ namespace draw2d
 
       bool fill(::draw2d::graphics * pgraphics, ::draw2d::brush * pbrush);
 
+      bool intersect_clip(::draw2d::graphics * pgraphics);
 
    };
 

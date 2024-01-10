@@ -283,7 +283,7 @@ namespace windowing
 //
 //#elif defined(LINUX)
 //
-//      synchronous_lock synchronouslock(this->synchronization());
+//      _synchronous_lock synchronouslock(this->synchronization());
 //
 //      return m_rectangleaMonitor.get_count();
 //
@@ -582,7 +582,7 @@ namespace windowing
    monitor * display::get_monitor(index iMonitor)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       if (iMonitor < 0 || iMonitor >= m_monitora.get_count())
       {
@@ -629,7 +629,7 @@ namespace windowing
    monitor * display::monitor_hit_test(const ::point_i32 & point)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       for(auto pmonitor : m_monitora)
       {

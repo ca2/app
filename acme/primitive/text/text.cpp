@@ -88,7 +88,7 @@ namespace text
          if(m_pdata->m_ptranslator)
          {
 
-            synchronous_lock lock(m_pdata->m_ptranslator->synchronization());
+            _synchronous_lock lock(m_pdata->m_ptranslator->synchronization());
 
             m_pdata->m_ptranslator->translate_text_data(m_pdata);
 

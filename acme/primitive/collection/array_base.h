@@ -1472,45 +1472,66 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  :
 void array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::free_extra()
 {
 
-   if(this->size() != m_countAllocation)
+   auto size = this->size();
+
+   if(size != m_countAllocation)
    {
-      // shrink to desired size_i32
+      
+      // shrink to desired size
+
 #ifdef SIZE_T_MAX
-      ASSERT(this->size() <= SIZE_T_MAX / sizeof(TYPE)); // no overflow
+      
+      ASSERT(size <= SIZE_T_MAX / sizeof(TYPE)); // no overflow
+
 #endif
+      
       TYPE* pNewData = nullptr;
-      if(this->size() != 0)
+
+      if(size != 0)
       {
+
          TYPE * pNewData;
+
 #if defined(__MCRTDBG) || MEMDLEAK
+
          #ifdef __MCRTDBG
+
          if (::get_task() != nullptr)
          {
+
             if (::get_task()->m_strFile.has_char())
             {
-               pNewData = MEMORY::allocate(this->size(), ::get_task()->m_strFile, ::get_task()->m_iLine);
+
+               pNewData = MEMORY::allocate(size, ::get_task()->m_strFile, ::get_task()->m_iLine);
+
             }
             else
             {
-               pNewData = MEMORY::allocate(this->size(), __FILE__, __LINE__);
+
+               pNewData = MEMORY::allocate(size, __FILE__, __LINE__);
+
             }
+
          }
          else
          {
-            pNewData = MEMORY::allocate(this->size(), __FILE__, __LINE__);
+
+            pNewData = MEMORY::allocate(size, __FILE__, __LINE__);
+
          }
+
 #else
 
          if (::get_task_object_debug().has_char())
          {
 
-            pNewData = MEMORY::allocate(this->size(), ::get_task_object_debug(), 0);
+            pNewData = MEMORY::allocate(size, ::get_task_object_debug(), 0);
 
          }
          else
          {
 
-            pNewData = MEMORY::allocate(this->size(), __FILE__, __LINE__);
+            pNewData = MEMORY::allocate(size, __FILE__, __LINE__);
 
          }
 
@@ -1518,12 +1539,12 @@ void array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >
 
 #else
 
-         pNewData = MEMORY::allocate(this->size());
+         pNewData = MEMORY::allocate(size);
 
-#endif      // copy new data from old
+#endif
 
          // copy new data from old
-         ::acme::memcpy_s(pNewData, (size_t)this->size() * sizeof(TYPE),this->m_begin, (size_t)this->size() * sizeof(TYPE));
+         ::acme::memcpy_s(pNewData, (size_t)size * sizeof(TYPE),this->m_begin, (size_t)size * sizeof(TYPE));
 
       }
 
@@ -1532,7 +1553,9 @@ void array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >
 
       this->m_begin = pNewData;
 
-      m_countAllocation = this->size();
+      m_countAllocation = size;
+
+      this->m_end = this->m_begin + size;
 
    }
 
@@ -1547,7 +1570,9 @@ void array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >
    if(this->m_begin != nullptr)
    {
 
-      TYPED::destruct_count(this->m_begin, this->size());
+      auto size = this->size();
+
+      TYPED::destruct_count(this->m_begin, size);
 
       MEMORY::free(this->m_begin);
 

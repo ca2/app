@@ -1106,7 +1106,7 @@ pacmedirectory->create("/var/tmp/ca2/intermediate");
       dir()->create(pathOutputFolder);
 
 
-#ifdef LINUX
+#if defined(LINUX) || defined(FREEBSD)
 
       string strTargetPath =  m_pintegrationcontext->m_pathBuildFolder /"time" / m_pintegrationcontext->m_strPlatform / m_strDynamicSourceConfiguration / plibrary->m_pathScript.title();
       strTargetPath.case_insensitive_ends_eat(".cpp");

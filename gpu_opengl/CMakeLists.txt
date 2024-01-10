@@ -112,11 +112,14 @@ elseif(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
 
    target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
 
+   if(${FREEBSD})
+      list(APPEND extra_pkg_modules glm)
+   endif()
 
+    #if (USE_PKGCONFIG)
+        pkg_check_modules(PKGCONFIG glew egl assimp ${extra_pkg_modules})
 
-    if (USE_PKGCONFIG)
-        pkg_check_modules(PKGCONFIG glew egl assimp)
-    endif ()
+    #endif ()
     target_compile_options(${PROJECT_NAME} PRIVATE $<$<COMPILE_LANGUAGE:CXX>:-fpermissive  ${EXTRA_CXX_TARGET_COMPILER_OPTIONS}>)
     target_compile_options(static_${PROJECT_NAME} PRIVATE $<$<COMPILE_LANGUAGE:CXX>:-fpermissive  ${EXTRA_CXX_TARGET_COMPILER_OPTIONS}>)
     target_compile_definitions(static_${PROJECT_NAME} PRIVATE CUBE)

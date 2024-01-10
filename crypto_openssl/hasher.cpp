@@ -33,6 +33,7 @@
 //#include "framework.h"
 //#include "_.h"
 
+#include "acme/_operating_system.h"
 
 #include <openssl/ssl.h>
 #include <openssl/md5.h>

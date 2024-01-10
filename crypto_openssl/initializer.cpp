@@ -8,6 +8,7 @@
 
 #include "initializer.h"
 
+#include "acme/_operating_system.h"
 
 #include <openssl/ssl.h>
 #include <openssl/crypto.h>

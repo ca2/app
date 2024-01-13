@@ -720,6 +720,8 @@
 		9A4EF4AF2AE35AAB0048F22F /* image32_array.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A4EF4A72AE35AAA0048F22F /* image32_array.h */; };
 		9A4F4E0225311C8600733584 /* matter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4F4E0025311C8600733584 /* matter.cpp */; };
 		9A4F4E0325311C8600733584 /* matter.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A4F4E0125311C8600733584 /* matter.h */; };
+		9A50DCBA2B50CB3400DAD9CF /* message_box.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ABBFE7B2B3FF1C10036DF8C /* message_box.cpp */; };
+		9A50DCBC2B50CB6E00DAD9CF /* source.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AF5BA582B01D35B00A33826 /* source.cpp */; };
 		9A5219992A00B37500EA2057 /* main_window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5219952A00B37500EA2057 /* main_window.cpp */; };
 		9A52199A2A00B37500EA2057 /* main_window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5219952A00B37500EA2057 /* main_window.cpp */; };
 		9A52199B2A00B37600EA2057 /* main_window.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A5219962A00B37500EA2057 /* main_window.h */; };
@@ -765,6 +767,7 @@
 		9A5FB450299EBD0900094E43 /* earth_time.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A5FB43C299EBD0500094E43 /* earth_time.h */; };
 		9A5FB451299EBD0900094E43 /* earth_time.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A5FB43C299EBD0500094E43 /* earth_time.h */; };
 		9A64519F2846618B00A94AAB /* function.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A64519E2846618B00A94AAB /* function.h */; };
+		9A67FCF22B50C6460083ED38 /* message_box.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ABBFE772B3FF0370036DF8C /* message_box.cpp */; };
 		9A68AC9925114434008DABD2 /* procedure.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A4552511442E008DABD2 /* procedure.h */; };
 		9A68AC9A25114434008DABD2 /* console.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A4562511442E008DABD2 /* console.h */; };
 		9A68ACBC25114434008DABD2 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A4862511442E008DABD2 /* _.h */; };
@@ -9382,6 +9385,7 @@
 				9A15A6C5264B59EF0080670E /* tools.cpp in Sources */,
 				9A75510D2B214AE500FFB669 /* plex_heap_alloc_array.cpp in Sources */,
 				9A787B91264BB13F003DF8A0 /* timer_callback.cpp in Sources */,
+				9A50DCBC2B50CB6E00DAD9CF /* source.cpp in Sources */,
 				9A809D7E2A60052F00FCA9FD /* unicode_impl.cpp in Sources */,
 				9AA652B32A38F11E0082D8B3 /* color_array.cpp in Sources */,
 				9A72EF0F2A3D5C32009743AD /* mouse.cpp in Sources */,
@@ -9500,6 +9504,7 @@
 				9A79935F2A57940600261F46 /* stdio_file.cpp in Sources */,
 				9A94DE40282C034800F5C1CA /* bit.cpp in Sources */,
 				9AA8FCC427BA7299008FF9AA /* debug.cpp in Sources */,
+				9A50DCBA2B50CB3400DAD9CF /* message_box.cpp in Sources */,
 				9A787B9D264BB13F003DF8A0 /* system.cpp in Sources */,
 				9A787B9B264BB13F003DF8A0 /* timer.cpp in Sources */,
 				9AA44B9C297BEAC200AA2F92 /* _.cpp in Sources */,
@@ -9561,6 +9566,7 @@
 				9AA8FCA627BA7299008FF9AA /* mmcpp.cpp in Sources */,
 				9A0B8D1927AA1F3300760D34 /* serialization.cpp in Sources */,
 				9A94DE27282C034800F5C1CA /* memory_container.cpp in Sources */,
+				9A67FCF22B50C6460083ED38 /* message_box.cpp in Sources */,
 				9A750FF4282B936500C4861B /* data.cpp in Sources */,
 				9A786255264B90B5003DF8A0 /* number.cpp in Sources */,
 				9AA8FCB627BA7299008FF9AA /* ns_exception.cpp in Sources */,
@@ -9675,7 +9681,6 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = NO;
 				COPY_PHASE_STRIP = NO;
-				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_POSTPROCESSING = YES;
 				DEVELOPMENT_TEAM = L8N5V6TZE5;
@@ -9789,7 +9794,6 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = NO;
 				COPY_PHASE_STRIP = NO;
-				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_POSTPROCESSING = YES;
 				DEVELOPMENT_TEAM = L8N5V6TZE5;
@@ -9864,7 +9868,6 @@
 		9A68A41E25114352008DABD2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				DEAD_CODE_STRIPPING = NO;
 				EXECUTABLE_PREFIX = lib;
 				PLATFORM_MODIFIER = macos;
 			};
@@ -9873,7 +9876,6 @@
 		9A68A41F25114352008DABD2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				DEAD_CODE_STRIPPING = NO;
 				EXECUTABLE_PREFIX = lib;
 				PLATFORM_MODIFIER = macos;
 			};

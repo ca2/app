@@ -1866,8 +1866,6 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
    auto psystem = system();
 
-   _synchronous_lock synchronouslock(psystem->m_pmutexMatter);
-
    string strDir = matter(path);
 
    if (psystem->m_pdirsystem->m_bMatterFromHttpCache)
@@ -1898,6 +1896,8 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
          }
 
       }
+      
+      _synchronous_lock synchronouslock(psystem->m_pmutexMatter);
 
       property_set set;
 

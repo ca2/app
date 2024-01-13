@@ -83,16 +83,18 @@ namespace tinyexpr
 #define IS_FUNCTION(TYPE) (((TYPE) & TE_FUNCTION0) != 0)
 #define IS_CLOSURE(TYPE) (((TYPE) & TE_CLOSURE0) != 0)
 #define ARITY(TYPE) ( ((TYPE) & (TE_FUNCTION0 | TE_CLOSURE0)) ? ((TYPE) & 0x00000007) : 0 )
-#define NEW_EXPR(type, ...) new_expr((type), (const te_expr*[]){__VA_ARGS__})
+#define NEW_EXPR(type, ...) new_expr((type), {__VA_ARGS__})
    
-   static te_expr *new_expr(const int type, const te_expr *parameters[]) {
+   static te_expr *new_expr(const int type, const ::raw_array< te_expr * > & parameters) 
+   {
+
       const int arity = ARITY(type);
       const int psize = sizeof(void*) * arity;
       const int size = (sizeof(te_expr) - sizeof(void*)) + psize + (IS_CLOSURE(type) ? sizeof(void*) : 0);
       te_expr *ret = (te_expr *) malloc(size);
       memset(ret, 0, size);
       if (arity && parameters) {
-         memcpy(ret->parameters, parameters, psize);
+         memcpy(ret->parameters, parameters.data(), psize);
       }
       ret->type = type;
       ret->bound = nullptr;
@@ -309,20 +311,20 @@ namespace tinyexpr
       
       switch (TYPE_MASK(s->type)) {
          case TOK_NUMBER:
-            ret = new_expr(TE_CONSTANT, 0);
+            ret = new_expr(TE_CONSTANT, {});
             ret->value = s->value;
             next_token(s);
             break;
             
          case TOK_VARIABLE:
-            ret = new_expr(TE_VARIABLE, 0);
+            ret = new_expr(TE_VARIABLE, {});
             ret->bound = s->bound;
             next_token(s);
             break;
             
          case TE_FUNCTION0:
          case TE_CLOSURE0:
-            ret = new_expr(s->type, 0);
+            ret = new_expr(s->type, {});
             ret->function = s->function;
             if (IS_CLOSURE(s->type)) ret->parameters[0] = s->context;
             next_token(s);
@@ -338,7 +340,7 @@ namespace tinyexpr
             
          case TE_FUNCTION1:
          case TE_CLOSURE1:
-            ret = new_expr(s->type, 0);
+            ret = new_expr(s->type, {});
             ret->function = s->function;
             if (IS_CLOSURE(s->type)) ret->parameters[1] = s->context;
             next_token(s);
@@ -351,7 +353,7 @@ namespace tinyexpr
          case TE_CLOSURE5: case TE_CLOSURE6: case TE_CLOSURE7:
             arity = ARITY(s->type);
             
-            ret = new_expr(s->type, 0);
+            ret = new_expr(s->type, {});
             ret->function = s->function;
             if (IS_CLOSURE(s->type)) ret->parameters[arity] = s->context;
             next_token(s);
@@ -387,7 +389,7 @@ namespace tinyexpr
             break;
             
          default:
-            ret = new_expr(0, 0);
+            ret = new_expr(0, {});
             s->type = TOK_ERROR;
             ret->value = NAN;
             break;

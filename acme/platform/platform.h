@@ -403,6 +403,25 @@ namespace platform
       //platform * __call__add_referer2(const ::reference_referer & referer) const;
       release_time_for_project as_release_time_for_project(const char* pszStatic);
 
+       
+       
+       
+       // [HERE]
+       //  __node_library should be here at acme
+       //
+       //  -- e.g. cannot lie inside a plugin,
+       // because it is used to load a plugin
+       //
+       virtual void* operating_system_library_open(const ::file::path & path, string& strMessage);
+
+ #ifdef FREEBSD
+       virtual string operating_system_library_is_loaded(const ::file::path &path);
+ #endif // FREEBSD
+    virtual void* operating_system_library_touch(const ::file::path & path, string& strMessage);
+       virtual void* operating_system_library_open_ca2(const ::file::path & path, string& strMessage);
+       virtual bool operating_system_library_close(void* plibrary);
+       virtual void* operating_system_library_raw_get(void* plibrary, const ::scoped_string & scopedstrEntryName);
+
 
    };
 

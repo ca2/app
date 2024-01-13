@@ -1486,22 +1486,26 @@ namespace user
 
 
    void tab::set_current_tab_by_index(::index iIndex)
-   {
-
-      information() << "tab::set_current_tab_by_index start : " << iIndex;
-
-      _synchronous_lock lock(get_data()->synchronization());
-
-      get_data()->m_idaSel.erase_all();
-
-      atom idTab = index_id(iIndex);
-
-      if (!idTab.is_empty())
+{
+       
+       information() << "tab::set_current_tab_by_index start : " << iIndex;
+       
       {
 
-         get_data()->m_idaSel.add(idTab);
+         _synchronous_lock lock(get_data()->synchronization());
 
-         information() << "tab::set_current_tab_by_index idTab : " << idTab.as_string();
+         get_data()->m_idaSel.erase_all();
+
+         atom idTab = index_id(iIndex);
+
+         if (!idTab.is_empty())
+         {
+
+            get_data()->m_idaSel.add(idTab);
+
+            information() << "tab::set_current_tab_by_index idTab : " << idTab.as_string();
+
+         }
 
       }
 

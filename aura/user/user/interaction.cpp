@@ -7600,7 +7600,7 @@ namespace user
    void interaction::user_send(const ::procedure & procedure)
    {
 
-#ifdef WINDOWS_DESKTOP
+//#ifdef WINDOWS_DESKTOP
 
       auto pthread = m_pthreadUserInteraction;
 
@@ -7613,13 +7613,22 @@ namespace user
 
       }
 
+      if (pthread == ::get_task())
+      {
+
+         procedure();
+
+         return;
+
+      }
+
       pthread->send_procedure(procedure);
 
-#else
-
-      acmenode()->user_send(procedure);
-
-#endif
+//#else
+//
+//      acmenode()->user_send(procedure);
+//
+//#endif
 
    }
 

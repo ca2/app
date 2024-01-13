@@ -162,7 +162,7 @@ void channel::route_message(::message::message * pmessage)
          break;
 
       }
-
+      
       dispatcher.m_functionHandler(pmessage); if(pmessage->m_bRet) return;
 
    }

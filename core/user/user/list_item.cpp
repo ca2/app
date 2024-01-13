@@ -402,13 +402,6 @@ namespace user
    void draw_list_subitem::update_color(::draw2d::graphics_pointer & pgraphics)
    {
 
-      if (!(m_pitem->m_pmesh->m_ecachehinting & e_cache_hinting_subitem_color_per_theme_and_state))
-      {
-
-         m_pitem->m_pmesh->m_plist->_001GetSubItemColor(this);
-
-      }
-
       auto estate = m_pitem->m_pdrawlistitem->get_user_state();
 
       auto & pdrawlistcolumn = m_pcolumn->m_pdrawlistcolumn;
@@ -437,6 +430,12 @@ namespace user
 
       }
 
+      if (!(m_pitem->m_pmesh->m_ecachehinting & e_cache_hinting_subitem_color_per_theme_and_state))
+      {
+
+         m_pitem->m_pmesh->m_plist->_001GetSubItemColor(this);
+
+      }
 
    }
 

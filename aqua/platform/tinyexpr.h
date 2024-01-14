@@ -111,7 +111,7 @@ double CLASS_DECL_AQUA  te_interp(const char *expression, int *error);
 
 /* Parses the input expression and binds variables. */
 /* Returns NULL on error. */
-te_expr * CLASS_DECL_AQUA te_compile(const char *expression, const te_variable *variables, int var_count, int *error);
+CLASS_DECL_AQUA te_expr * te_compile(const char *expression, const te_variable *variables, int var_count, int *error);
 
 /* Evaluates the expression. */
 double CLASS_DECL_AQUA te_eval(const te_expr *n);

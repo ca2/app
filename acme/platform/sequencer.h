@@ -204,7 +204,7 @@ void sequencer < SEQUENCE > ::on_sequence()
                                                  });
 
    }
-   else
+   else 
    {
       
       m_psequence.release();

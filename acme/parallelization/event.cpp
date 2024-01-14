@@ -750,7 +750,7 @@ bool event::_wait (const class time & timeWait)
 
             if(error == EBUSY || error == ETIMEDOUT)
             {
-
+               
                pthread_mutex_unlock((pthread_mutex_t *) m_pmutex);
 
                return false;

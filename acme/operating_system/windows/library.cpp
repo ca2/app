@@ -8,11 +8,11 @@
 #include "acme/operating_system/windows_common/_string.h"
 
 
-namespace acme
+namespace platform
 {
 
 
-   void* system::operating_system_library_open(const ::file::path & pathParam, string& strMessage)
+   void* platform::operating_system_library_open(const ::file::path & pathParam, string& strMessage)
    {
 
       strMessage.empty();
@@ -224,7 +224,7 @@ namespace acme
    }
 
 
-   void* system::operating_system_library_touch(const ::file::path & pathParam, string& strMessage)
+   void* platform::operating_system_library_touch(const ::file::path & pathParam, string& strMessage)
    {
 
       strMessage.empty();
@@ -448,7 +448,7 @@ namespace acme
    }
 
 
-   bool system::operating_system_library_close(void* plibrary)
+   bool platform::operating_system_library_close(void* plibrary)
    {
 
       if (plibrary == nullptr)
@@ -475,7 +475,7 @@ namespace acme
    }
 
 
-   void* system::operating_system_library_open_ca2(const ::file::path & pathParam, string& strMessage)
+   void* platform::operating_system_library_open_ca2(const ::file::path & pathParam, string& strMessage)
    {
 
       void* p = LoadLibraryW(wstring(pathParam));
@@ -502,7 +502,8 @@ namespace acme
 
    }
 
-   void* system::operating_system_library_raw_get(void* plibrary, const ::scoped_string & scopedstrEntryName)
+
+   void* platform::operating_system_library_raw_get(void* plibrary, const ::scoped_string & scopedstrEntryName)
    {
 
       return ::GetProcAddress((HINSTANCE)plibrary, scopedstrEntryName);

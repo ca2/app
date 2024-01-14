@@ -13,6 +13,9 @@
 		07B65778190F3CA2002DAADE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B65777190F3CA2002DAADE /* UIKit.framework */; };
 		07B6577B190F3CA2002DAADE /* libios_programming.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B65764190F3CA2002DAADE /* libios_programming.dylib */; };
 		9A32568E271F8CE0004A4955 /* libaxis.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A32568B271F89FA004A4955 /* libaxis.dylib */; };
+		9A50E14C2B50D50400DAD9CF /* httpd_incoming_socket.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A50E1492B50D50300DAD9CF /* httpd_incoming_socket.h */; };
+		9A50E14D2B50D50400DAD9CF /* httpd_listen_socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A50E14A2B50D50400DAD9CF /* httpd_listen_socket.cpp */; };
+		9A50E14E2B50D50400DAD9CF /* httpd_incoming_socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A50E14B2B50D50400DAD9CF /* httpd_incoming_socket.cpp */; };
 		9A6B7CAE2757D86900DB33D9 /* library.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A6B7CAC2757D86800DB33D9 /* library.cpp */; };
 		9A6B7CAF2757D86900DB33D9 /* library.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A6B7CAD2757D86800DB33D9 /* library.h */; };
 		9A6B7CB52757D94900DB33D9 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A6B7CB12757D94900DB33D9 /* _.h */; };
@@ -24,7 +27,6 @@
 		9A7EDCCF2670F06500BC7094 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7EDC952670F06500BC7094 /* _.h */; };
 		9A7EDCD02670F06500BC7094 /* script_main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7EDCA02670F06500BC7094 /* script_main.cpp */; };
 		9A7EDCD12670F06500BC7094 /* _impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7EDCA12670F06500BC7094 /* _impl.h */; };
-		9A7EDCD22670F06500BC7094 /* httpd_socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7EDCA22670F06500BC7094 /* httpd_socket.cpp */; };
 		9A7EDCD32670F06500BC7094 /* script.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7EDCA32670F06500BC7094 /* script.h */; };
 		9A7EDCD42670F06500BC7094 /* script_manager.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7EDCA42670F06500BC7094 /* script_manager.h */; };
 		9A7EDCD52670F06500BC7094 /* script_instance.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7EDCA52670F06500BC7094 /* script_instance.h */; };
@@ -110,6 +112,9 @@
 		07B65774190F3CA2002DAADE /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		07B65777190F3CA2002DAADE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		9A325686271F89FA004A4955 /* axis.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axis.xcodeproj; path = ../axis/axis.xcodeproj; sourceTree = "<group>"; };
+		9A50E1492B50D50300DAD9CF /* httpd_incoming_socket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = httpd_incoming_socket.h; sourceTree = "<group>"; };
+		9A50E14A2B50D50400DAD9CF /* httpd_listen_socket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = httpd_listen_socket.cpp; sourceTree = "<group>"; };
+		9A50E14B2B50D50400DAD9CF /* httpd_incoming_socket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = httpd_incoming_socket.cpp; sourceTree = "<group>"; };
 		9A574B9816AAB906000CC4EF /* libprogramming.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libprogramming.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A6B7CAC2757D86800DB33D9 /* library.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = library.cpp; sourceTree = "<group>"; };
 		9A6B7CAD2757D86800DB33D9 /* library.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = library.h; sourceTree = "<group>"; };
@@ -122,7 +127,6 @@
 		9A7EDC952670F06500BC7094 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		9A7EDCA02670F06500BC7094 /* script_main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = script_main.cpp; sourceTree = "<group>"; };
 		9A7EDCA12670F06500BC7094 /* _impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _impl.h; sourceTree = "<group>"; };
-		9A7EDCA22670F06500BC7094 /* httpd_socket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = httpd_socket.cpp; sourceTree = "<group>"; };
 		9A7EDCA32670F06500BC7094 /* script.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = script.h; sourceTree = "<group>"; };
 		9A7EDCA42670F06500BC7094 /* script_manager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = script_manager.h; sourceTree = "<group>"; };
 		9A7EDCA52670F06500BC7094 /* script_instance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = script_instance.h; sourceTree = "<group>"; };
@@ -276,7 +280,9 @@
 				9A979CC328C8073B0013DC54 /* ds_script.h */,
 				9A7EDCAB2670F06500BC7094 /* exit_exception.cpp */,
 				9A7EDCA82670F06500BC7094 /* exit_exception.h */,
-				9A7EDCA22670F06500BC7094 /* httpd_socket.cpp */,
+				9A50E14B2B50D50400DAD9CF /* httpd_incoming_socket.cpp */,
+				9A50E1492B50D50300DAD9CF /* httpd_incoming_socket.h */,
+				9A50E14A2B50D50400DAD9CF /* httpd_listen_socket.cpp */,
 				9A7EDCA92670F06500BC7094 /* httpd_socket.h */,
 				9A979CC428C80D210013DC54 /* library.cpp */,
 				9A979CC528C80D210013DC54 /* library.h */,
@@ -331,6 +337,7 @@
 				9A7EDCE42670F06500BC7094 /* script_main.h in Headers */,
 				9A6B7CAF2757D86900DB33D9 /* library.h in Headers */,
 				9A7EDCF12670F06500BC7094 /* framework.h in Headers */,
+				9A50E14C2B50D50400DAD9CF /* httpd_incoming_socket.h in Headers */,
 				9A7EDCCF2670F06500BC7094 /* _.h in Headers */,
 				9A7EDCD62670F06500BC7094 /* script_cache.h in Headers */,
 				9A7EDCD52670F06500BC7094 /* script_instance.h in Headers */,
@@ -495,9 +502,9 @@
 				9A7EDCE82670F06500BC7094 /* script_cache.cpp in Sources */,
 				9A7EDCD72670F06500BC7094 /* script.cpp in Sources */,
 				9A7EDCDC2670F06500BC7094 /* script_instance.cpp in Sources */,
+				9A50E14D2B50D50400DAD9CF /* httpd_listen_socket.cpp in Sources */,
 				9A6B7CAE2757D86900DB33D9 /* library.cpp in Sources */,
 				9A7EDCDE2670F06500BC7094 /* script_interface.cpp in Sources */,
-				9A7EDCD22670F06500BC7094 /* httpd_socket.cpp in Sources */,
 				9A7EDCDB2670F06500BC7094 /* exit_exception.cpp in Sources */,
 				9A6B7CB62757D94900DB33D9 /* compiler.cpp in Sources */,
 				9A7EDCEA2670F06500BC7094 /* framework.cpp in Sources */,
@@ -506,6 +513,7 @@
 				9A979CC628C80D220013DC54 /* library.cpp in Sources */,
 				9A7EDCDD2670F06500BC7094 /* script_compiler.cpp in Sources */,
 				9A7EDCCE2670F06500BC7094 /* compiler.cpp in Sources */,
+				9A50E14E2B50D50400DAD9CF /* httpd_incoming_socket.cpp in Sources */,
 				9A7EDCD02670F06500BC7094 /* script_main.cpp in Sources */,
 				9A7EDCE32670F06500BC7094 /* script_manager.cpp in Sources */,
 			);
@@ -541,9 +549,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "math_ios/math_ios-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"$(inherited)",
-				);
+				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
@@ -602,9 +608,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "math_ios/math_ios-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"$(inherited)",
-				);
+				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
@@ -693,9 +697,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = framework.h;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"$(inherited)",
-				);
+				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;

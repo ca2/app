@@ -14,13 +14,13 @@
 string apple_app_module_folder();
 ::file::path get_module_folder();
 
-namespace acme
+namespace platform
 {
 
 //void * __node_library_open(const ::file::path & path, string & strMessage);
 
 
-void * system::operating_system_library_touch(const ::file::path & path, string & strMessage)
+void * platform::operating_system_library_touch(const ::file::path & path, string & strMessage)
 {
    
    auto strTitle = path.title();
@@ -57,9 +57,7 @@ found:
 }
 
 
-
-
-void * system::operating_system_library_open(const ::file::path & pathParam, string & strMessage)
+void * platform::operating_system_library_open(const ::file::path & pathParam, string & strMessage)
 {
 
    strMessage.empty();
@@ -184,7 +182,7 @@ finished:
 }
 
 
-bool system::operating_system_library_close(void * plibrary)
+bool platform::operating_system_library_close(void * plibrary)
 {
 
    if(plibrary != nullptr)
@@ -199,7 +197,7 @@ bool system::operating_system_library_close(void * plibrary)
 }
 
 
-void * system::operating_system_library_raw_get(void * plibrary, const ::scoped_string & scopedstrSymbol)
+void * platform::operating_system_library_raw_get(void * plibrary, const ::scoped_string & scopedstrSymbol)
 {
 
    return dlsym(plibrary, scopedstrSymbol);
@@ -207,7 +205,7 @@ void * system::operating_system_library_raw_get(void * plibrary, const ::scoped_
 }
 
 
-void * system::operating_system_library_open_ca2(const ::file::path & pathParam, string & strMessage)
+void * platform::operating_system_library_open_ca2(const ::file::path & pathParam, string & strMessage)
 {
 
    string strPath(pathParam);

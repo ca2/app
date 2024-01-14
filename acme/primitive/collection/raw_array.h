@@ -176,6 +176,7 @@ public:
       raw_array_non_particle< TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >(::std::forward < Args >(args)...)
    {
    }
+   raw_array(std::initializer_list < TYPE > initializer_list) : raw_array_non_particle< TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >(initializer_list) {}
 
 
 };

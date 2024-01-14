@@ -1316,8 +1316,8 @@ namespace user
          //#ifndef LINUX
          MESSAGE_LINK(e_message_reposition, pchannel, this, &interaction_impl::on_message_reposition);
          MESSAGE_LINK(e_message_size, pchannel, this, &interaction_impl::on_message_size);
+         //MESSAGE_LINK(e_message_window_position_changed, pchannel, this, &interaction_impl::on_message_window_position_changed);
          //#endif
-
 
          MESSAGE_LINK(e_message_show_window, pchannel, this, &interaction_impl::on_message_show_window);
          MESSAGE_LINK(e_message_kill_focus, pchannel, this, &interaction_impl::on_message_kill_focus);
@@ -9047,6 +9047,8 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
       }
 
    }
+
+
 
 
    void interaction_impl::_001OnDestroyWindow(::message::message * pmessage)

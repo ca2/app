@@ -2874,28 +2874,37 @@ CLASS_DECL_ACME string url::encode(const ::scoped_string & scopedstr)
 
    string str;
 
-   char sz[256];
+   //char sz[256];
 
    auto psz = scopedstr.m_begin;
 
    auto pszEnd = scopedstr.m_end;
 
+   ::i32 len = 0;
+
    while (psz < pszEnd)
    {
 
-      char uch = *psz;
+      auto iCharacter = ::unicode_index_length(psz, len);
 
-      if (ansi_char_isdigit(uch)
-         || ansi_char_isalpha(uch)
-         || uch == '.'
-         || uch == '-'
-         || uch == '_')
+      if (psz + len > pszEnd)
       {
 
-         str += uch;
+         break;
 
       }
-      else if (uch == ' ')
+
+      if (ansi_char_isdigit(iCharacter)
+         || ansi_char_isalpha(iCharacter)
+         || iCharacter == '.'
+         || iCharacter == '-'
+         || iCharacter == '_')
+      {
+
+         str += (char)iCharacter;
+
+      }
+      else if (iCharacter == ' ')
       {
 
          str += "+";
@@ -2904,36 +2913,46 @@ CLASS_DECL_ACME string url::encode(const ::scoped_string & scopedstr)
       else
       {
 
-         ansi_from_i64(sz, uch, 16);
-
-         ansi_upper(sz);
-
-         if (ansi_length(sz) == 0)
+         for (int i = 0; i < len; i++)
          {
 
-            str += "%00";
+            ::i32 iChar = ((::i32)psz[i]) & 0x000000ff;
+
+            str.append_formatf("%%%02X", iChar);
 
          }
-         else if (ansi_length(sz) == 1)
-         {
+         //psz + len
 
-            str += "%0";
+         //ansi_from_i64(sz, uch, 16);
 
-            str += sz;
+         //ansi_upper(sz);
 
-         }
-         else if (ansi_length(sz) == 2)
-         {
+         //if (ansi_length(sz) == 0)
+         //{
 
-            str += "%";
+         //   str += "%00";
 
-            str += sz;
+         //}
+         //else if (ansi_length(sz) == 1)
+         //{
 
-         }
+         //   str += "%0";
+
+         //   str += sz;
+
+         //}
+         //else if (ansi_length(sz) == 2)
+         //{
+
+         //   str += "%";
+
+         //   str += sz;
+
+         //}
 
       }
 
-      psz++;
+      psz+=len;
 
    }
 

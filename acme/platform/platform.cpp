@@ -125,7 +125,7 @@ namespace platform
          for (auto & poperatingsystemlibrary : operatingsystemlibrarya)
          {
 
-            system()->operating_system_library_close(poperatingsystemlibrary);
+            operating_system_library_close(poperatingsystemlibrary);
 
          }
 

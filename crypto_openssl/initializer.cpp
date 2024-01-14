@@ -8,7 +8,7 @@
 
 #include "initializer.h"
 
-#define boolean openssl_boolean
+#include "acme/_operating_system.h"
 
 #include <openssl/ssl.h>
 #include <openssl/crypto.h>

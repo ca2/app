@@ -376,16 +376,52 @@ namespace experience_tranquillum
             if (eelement == ::e_element_background)
             {
 
-               if (estate & ::user::e_state_selected)
+               if (is_dark_mode())
                {
 
-                  return argb(255, 80, 80, 80);
+
+                  if (estate & ::user::e_state_hover)
+                  {
+
+                     return argb(255, 80, 80, 80);
+
+                  }
+                  else if (estate & ::user::e_state_selected)
+                  {
+
+                     return argb(255, 120, 120, 120);
+
+                  }
+                  else
+                  {
+
+                     return argb(255, 40, 40, 40);
+
+                  }
+
 
                }
                else
                {
+                  
+                  if (estate & ::user::e_state_hover)
+                  {
 
-                  return argb(255, 255, 255, 255);
+                     return argb(255, 160, 160, 160);
+
+                  }
+                  else if (estate & ::user::e_state_selected)
+                  {
+
+                     return argb(255, 80, 80, 80);
+
+                  }
+                  else
+                  {
+
+                     return argb(255, 255, 255, 255);
+
+                  }
 
                }
 
@@ -624,6 +660,7 @@ namespace experience_tranquillum
 
          if (is_dark_mode())
          {
+
             if (estate & ::user::e_state_new_input)
             {
 
@@ -636,12 +673,12 @@ namespace experience_tranquillum
                if (estate & ::user::e_state_selected)
                {
 
-                  return argb(255, 200, 200, 240);
+                  return argb(255, 160, 160, 160);
 
                }
                else
                {
-                  return argb(255, 220, 220, 220);
+                  return argb(255, 120, 120, 120);
 
                }
 
@@ -649,7 +686,7 @@ namespace experience_tranquillum
             else if (estate & ::user::e_state_selected)
             {
 
-               return argb(255, 200, 200, 200);
+               return argb(255, 80, 80, 80);
 
             }
             else
@@ -657,12 +694,12 @@ namespace experience_tranquillum
 
                return argb(255, 40, 40, 40);
 
-
-
             }
+
          }
          else
          {
+
             if (estate & ::user::e_state_new_input)
             {
 
@@ -680,6 +717,7 @@ namespace experience_tranquillum
                }
                else
                {
+
                   return argb(255, 120, 120, 180);
 
                }
@@ -696,9 +734,8 @@ namespace experience_tranquillum
 
                return argb(255, 255, 255, 255);
 
-
-
             }
+
          }
 
       }

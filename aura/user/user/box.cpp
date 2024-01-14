@@ -124,6 +124,8 @@ namespace user
 
       auto & edisplay = layout().design().display();
 
+      m_windowdisplayandlayout.m_edisplay = const_layout().window().display();
+
       //window_rectangle(m_windowdisplayandlayout.m_rectangleWindow, e_layout_design);
 
       m_windowdisplayandlayout.m_rectangleWindow = rectangle;

@@ -178,7 +178,7 @@ namespace acme
 
          //KEEP(s_plibraryLoading, this, nullptr);
 
-         m_plibrary = system()->operating_system_library_open(path, m_strMessage);
+         m_plibrary = ::platform::get()->operating_system_library_open(path, m_strMessage);
 
       //}
             
@@ -519,7 +519,7 @@ namespace acme
 
                   }
 
-                  bOk = system()->operating_system_library_close(m_plibrary);
+                  bOk = ::platform::get()->operating_system_library_close(m_plibrary);
 
                   m_plibrary = nullptr;
 
@@ -912,7 +912,7 @@ namespace acme
 
       critical_section_lock synchronouslock(&psystem->m_pplatform->m_criticalsection);
 
-      return system()->operating_system_library_raw_get(m_plibrary,scopedstrEntryName);
+      return ::platform::get()->operating_system_library_raw_get(m_plibrary,scopedstrEntryName);
 
    }
 

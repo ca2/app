@@ -31,6 +31,7 @@
 		9A8F4DBF2A26D5C800097EE1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9A8F4D922A26D5C600097EE1 /* InfoPlist.strings */; };
 		9A8F4DC02A26D5C800097EE1 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A8F4D942A26D5C600097EE1 /* MainMenu.xib */; };
 		9A8F4DC12A26D5C800097EE1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A8F4D962A26D5C600097EE1 /* Images.xcassets */; };
+		9A90BA2A2B5495F0002BFC9E /* libarchive.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A90BA282B5495F0002BFC9E /* libarchive.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A9A158D2AFC23B900FA9BEB /* libdarwin.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A9A158B2AFC23B800FA9BEB /* libdarwin.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9AB15BD829A8796500DFDF90 /* libacme_darwin.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AB15BD429A8796500DFDF90 /* libacme_darwin.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9AB15BDA29A8796600DFDF90 /* libapex_darwin.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AB15BD529A8796500DFDF90 /* libapex_darwin.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -227,6 +228,7 @@
 				9A46D39A26785B85000B22D0 /* libaura_macos.dylib in Embed Libraries */,
 				9AB15BDA29A8796600DFDF90 /* libapex_darwin.dylib in Embed Libraries */,
 				9A46D38626785B63000B22D0 /* libapex_apple.dylib in Embed Libraries */,
+				9A90BA2A2B5495F0002BFC9E /* libarchive.dylib in Embed Libraries */,
 				9A46D3A426785B85000B22D0 /* libwindowing_macos.dylib in Embed Libraries */,
 				9A46D38A26785B63000B22D0 /* libapex_posix.dylib in Embed Libraries */,
 				9A46D39E26785B85000B22D0 /* libdraw2d_quartz2d.dylib in Embed Libraries */,
@@ -295,6 +297,7 @@
 		9A8F4DB32A26D5C700097EE1 /* application_main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = application_main.cpp; sourceTree = "<group>"; };
 		9A8F4DB42A26D5C700097EE1 /* shared_app_message_box.vcxproj.user */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = shared_app_message_box.vcxproj.user; sourceTree = "<group>"; };
 		9A8F4DBB2A26D5C700097EE1 /* _____debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "_____debug.xcconfig"; path = "../_____debug.xcconfig"; sourceTree = "<group>"; };
+		9A90BA282B5495F0002BFC9E /* libarchive.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libarchive.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A9A158B2AFC23B800FA9BEB /* libdarwin.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libdarwin.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AB15BD429A8796500DFDF90 /* libacme_darwin.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme_darwin.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AB15BD529A8796500DFDF90 /* libapex_darwin.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libapex_darwin.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -519,6 +522,7 @@
 		9ADF1D2922C16DBB00456537 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9A90BA282B5495F0002BFC9E /* libarchive.dylib */,
 				9A9A158B2AFC23B800FA9BEB /* libdarwin.dylib */,
 				9AB15BD429A8796500DFDF90 /* libacme_darwin.dylib */,
 				9AB15BD529A8796500DFDF90 /* libapex_darwin.dylib */,
@@ -939,9 +943,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"$(inherited)",
-				);
+				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -1126,9 +1128,7 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
 				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"$(inherited)",
-				);
+				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				INFOPLIST_FILE = "Hello Multiverse!!Tests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

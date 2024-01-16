@@ -15551,11 +15551,37 @@ namespace user
 
       }
 
+      //scroll_x_sketch_to_lading();
+
+      //scroll_y_sketch_to_lading();
 
    }
 
 
    //static i64 g_i_graphics_thread_update_visual = 0;
+
+   //void interaction::scroll_x_sketch_to_lading()
+   //{
+
+   //}
+
+
+   //void interaction::scroll_x_lading_to_layout()
+   //{
+
+   //}
+
+
+   //void interaction::scroll_y_sketch_to_lading()
+   //{
+
+   //}
+
+
+   //void interaction::scroll_y_lading_to_layout()
+   //{
+
+   //}
 
 
    void interaction::lading_to_layout(bool & bUpdateBuffer, bool & bUpdateWindow)
@@ -16038,6 +16064,10 @@ namespace user
       }
 
       m_bNeedLayout = false;
+
+      //scroll_x_lading_to_layout();
+
+      //scroll_y_lading_to_layout();
 
    }
 
@@ -20246,6 +20276,8 @@ namespace user
       set_reposition();
 
       layout_scroll_bar(elayout);
+
+      m_bContextOffsetLadingToLayout = true;
 
    }
 

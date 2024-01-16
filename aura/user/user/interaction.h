@@ -932,7 +932,6 @@ namespace user
       //virtual void window_apply_visual(const class layout_state& windowstate) override;
 
 
-
       virtual void frame_experience_restore(::e_activation eactivation = ::e_activation_default);
       
       virtual ::user::notify_icon * notify_icon();

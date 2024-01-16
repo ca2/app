@@ -170,7 +170,13 @@ namespace user
 
       m_iInputConnectionBatch = 0;
 
-      m_bNewFocus = false;
+      m_bNewFocusSelectAll = false;
+
+      m_iNewFocusSelectAllSelBeg = -1;
+
+      m_iNewFocusSelectAllSelEnd = -1;
+
+      m_iNewFocusSelectAllColumn = -1;
 
       m_bEnterKeyOnPaste = false;
 
@@ -181,11 +187,11 @@ namespace user
       m_pinsert = nullptr;
 
       m_bColorerTake5 = false;
-      
+
       m_straLines.m_countAddUp = 100;
 
       m_straLines.set_size(10);
-      
+
       m_daExtent.m_countAddUp = 100;
 
       m_daExtent.set_size(10);
@@ -269,11 +275,34 @@ namespace user
    }
 
 
+   bool plain_edit::is_new_focus_select_all() const
+   {
+
+      if (m_bNewFocusSelectAll)
+      {
+
+         auto timeNow = ::time::now();
+
+         if (timeNow > m_timeNewFocusSelectAll
+            && (timeNow - m_timeNewFocusSelectAll) > 300_ms)
+         {
+
+            ((plain_edit*)this)->m_bNewFocusSelectAll = false;
+
+         }
+
+      }
+
+      return m_bNewFocusSelectAll;
+
+   }
+
+
    bool plain_edit::is_plain_edit_modified() const
    {
-   
+
       return m_ptree->is_tree_modified();
-   
+
    }
 
 
@@ -323,8 +352,8 @@ namespace user
       add_command_handler("edit_copy", { this,  &plain_edit::_001OnEditCopy });
       add_command_prober("edit_paste", { this,  &plain_edit::_001OnUpdateEditPaste });
       add_command_handler("edit_paste", { this,  &plain_edit::_001OnEditPaste });
-      add_command_prober("edit_delete", { (interaction*)this, &interaction::_001OnUpdateEditDelete });
-      add_command_handler("edit_delete", { (interaction*)this, &interaction::_001OnEditDelete });
+      add_command_prober("edit_delete", { (interaction *)this, &interaction::_001OnUpdateEditDelete });
+      add_command_handler("edit_delete", { (interaction *)this, &interaction::_001OnEditDelete });
 
 
 #ifdef ENABLE_TEXT_SERVICES_FRAMEWORK
@@ -431,7 +460,7 @@ namespace user
    }
 
 
-   void plain_edit::_001OnNcClip(::draw2d::graphics_pointer& pgraphics)
+   void plain_edit::_001OnNcClip(::draw2d::graphics_pointer & pgraphics)
    {
 
       ::user::scroll_base::_001OnNcClip(pgraphics);
@@ -439,7 +468,7 @@ namespace user
    }
 
 
-   void plain_edit::_001OnClip(::draw2d::graphics_pointer& pgraphics)
+   void plain_edit::_001OnClip(::draw2d::graphics_pointer & pgraphics)
    {
 
       ::user::scroll_base::_001OnClip(pgraphics);
@@ -523,7 +552,7 @@ namespace user
 
       auto rectangleBackground = rectangleX;
 
-      rectangleBackground.offset(get_context_offset());
+      //rectangleBackground.offset(get_context_offset());
 
       auto crEditBackground = get_color(pstyle, e_element_background);
 
@@ -608,7 +637,9 @@ namespace user
 
       //pgraphics->offset_origin(-pointOffset.x(), 0);
 
-      double y = rectangleX.top() + m_iCurrentPageLineStart * m_dLineHeight;
+      //double y = rectangleX.top() + m_iCurrentPageLineStart * m_dLineHeight;
+
+      double y = rectangleX.top();
 
       _001_get_impact_sel(iSelBegOriginal, iSelEndOriginal);
 
@@ -1203,7 +1234,20 @@ namespace user
 
       enum_timer etimer = (enum_timer)ptimer->m_uEvent;
 
-      if (etimer == e_timer_overflow_scrolling)
+      if (etimer == e_timer_overflow_scrolling_start)
+      {
+
+         KillTimer(etimer);
+
+         if (m_bLMouseDown)
+         {
+
+            SetTimer(e_timer_overflow_scrolling, 50_ms);
+
+         }
+
+      }
+      else if (etimer == e_timer_overflow_scrolling)
       {
 
          if (m_bLMouseDown)
@@ -1247,10 +1291,7 @@ namespace user
 
             }
 
-
-
          }
-
 
       }
       else if (ptimer->m_etimer == e_timer_caret_flashing)
@@ -1744,69 +1785,69 @@ namespace user
 
             _001GetText(strText);
 
-      //      //operating_system_driver::get()->m_iInputMethodManagerSelectionStart = ansi_to_wd16_len(strText, iBeg);
+            //      //operating_system_driver::get()->m_iInputMethodManagerSelectionStart = ansi_to_wd16_len(strText, iBeg);
 
-      //      //operating_system_driver::get()->m_iInputMethodManagerSelectionEnd = ansi_to_wd16_len(strText, iEnd);
+            //      //operating_system_driver::get()->m_iInputMethodManagerSelectionEnd = ansi_to_wd16_len(strText, iEnd);
 
-         auto iSelectionStart = ansi_to_wd32_len(strText, iBeg);
+            auto iSelectionStart = ansi_to_wd32_len(strText, iBeg);
 
-         auto iSelectionEnd = ansi_to_wd32_len(strText, iEnd);
+            auto iSelectionEnd = ansi_to_wd32_len(strText, iEnd);
 
-         ptexteditorinterface->set_editor_selection(iSelectionStart, iSelectionEnd);
+            ptexteditorinterface->set_editor_selection(iSelectionStart, iSelectionEnd);
 
-      //      if (m_pitemComposing)
-      //      {
+            //      if (m_pitemComposing)
+            //      {
 
-      //         auto iCandidateStart = ansi_to_wd16_len(strText, m_pitemComposing->m_position);
+            //         auto iCandidateStart = ansi_to_wd16_len(strText, m_pitemComposing->m_position);
 
-      //         auto iCandidateEnd = ansi_to_wd16_len(strText, m_pitemComposing->m_position + m_pitemComposing->get_extent());
+            //         auto iCandidateEnd = ansi_to_wd16_len(strText, m_pitemComposing->m_position + m_pitemComposing->get_extent());
 
-      //         ptexteditorinterface->set_input_method_manager_candidate_position(iCandidateStart, iCandidateEnd);
+            //         ptexteditorinterface->set_input_method_manager_candidate_position(iCandidateStart, iCandidateEnd);
 
-      //      }
-      //      else
-      //      {
+            //      }
+            //      else
+            //      {
 
-      //         ptexteditorinterface->synchronize_input_method_manager_with_selection_end();
+            //         ptexteditorinterface->synchronize_input_method_manager_with_selection_end();
 
-      //      }
+            //      }
 
          }
 
       }
 
-//#ifdef ANDROID
-//
-//      if (action_context.is_user_source())
-//      {
-//
-//         
-//         operating_system_driver::get()->m_iInputMethodManagerSelectionStart = ansi_to_wd16_len(strText, iBeg);
-//
-//         operating_system_driver::get()->m_iInputMethodManagerSelectionEnd = ansi_to_wd16_len(strText, iEnd);
-//
-//         if (m_pitemComposing)
-//         {
-//
-//            operating_system_driver::get()->m_iInputMethodManagerCandidateStart = ansi_to_wd16_len(strText, m_pitemComposing->m_position);
-//
-//            operating_system_driver::get()->m_iInputMethodManagerSelectionEnd = ansi_to_wd16_len(strText, m_pitemComposing->m_position + m_pitemComposing->get_extent());
-//
-//         }
-//         else
-//         {
-//
-//            operating_system_driver::get()->m_iInputMethodManagerCandidateStart = operating_system_driver::get()->m_iInputMethodManagerSelectionEnd;
-//
-//            operating_system_driver::get()->m_iInputMethodManagerCandidateEnd = operating_system_driver::get()->m_iInputMethodManagerSelectionEnd;
-//
-//         }
-//
-//         operating_system_driver::get()->m_bInputMethodManagerUpdateSelection = true;
-//
-//      }
-//
-//#endif
+      //#ifdef ANDROID
+      //
+      //      if (action_context.is_user_source())
+      //      {
+      //
+      //         
+      //         operating_system_driver::get()->m_iInputMethodManagerSelectionStart = ansi_to_wd16_len(strText, iBeg);
+      //
+      //         operating_system_driver::get()->m_iInputMethodManagerSelectionEnd = ansi_to_wd16_len(strText, iEnd);
+      //
+      //         if (m_pitemComposing)
+      //         {
+      //
+      //            operating_system_driver::get()->m_iInputMethodManagerCandidateStart = ansi_to_wd16_len(strText, m_pitemComposing->m_position);
+      //
+      //            operating_system_driver::get()->m_iInputMethodManagerSelectionEnd = ansi_to_wd16_len(strText, m_pitemComposing->m_position + m_pitemComposing->get_extent());
+      //
+      //         }
+      //         else
+      //         {
+      //
+      //            operating_system_driver::get()->m_iInputMethodManagerCandidateStart = operating_system_driver::get()->m_iInputMethodManagerSelectionEnd;
+      //
+      //            operating_system_driver::get()->m_iInputMethodManagerCandidateEnd = operating_system_driver::get()->m_iInputMethodManagerSelectionEnd;
+      //
+      //         }
+      //
+      //         operating_system_driver::get()->m_bInputMethodManagerUpdateSelection = true;
+      //
+      //      }
+      //
+      //#endif
 
    }
 
@@ -1899,7 +1940,7 @@ namespace user
 
       }
 
-      plain_edit_on_calc_offset(pgraphics);
+      plain_edit_on_context_offset_layout(pgraphics);
 
 #ifndef SEARCH_SCROLLING_PROFILING
 
@@ -1916,9 +1957,7 @@ namespace user
 
       scroll_base::on_context_offset_layout(pgraphics);
 
-      plain_edit_on_calc_offset(pgraphics);
-
-      //set_need_redraw();
+      plain_edit_on_context_offset_layout(pgraphics);
 
    }
 
@@ -1948,7 +1987,7 @@ namespace user
 
          set_default_mouse_cursor(pcursor);
 
-         if (m_bLMouseDown && !m_bNewFocus)
+         if (m_bLMouseDown && !is_new_focus_select_all())
          {
 
             ::point_i32 point = pmouse->m_pointHost;
@@ -1959,7 +1998,6 @@ namespace user
             {
 
                m_pointLastCursor = point;
-
 
                _synchronous_lock synchronouslock(this->synchronization());
 
@@ -1976,6 +2014,25 @@ namespace user
 
                queue_graphics_call([this, point](::draw2d::graphics_pointer & pgraphics)
                   {
+
+                     if (m_iNewFocusSelectAllSelBeg >= 0
+                        || m_iNewFocusSelectAllSelEnd >= 0
+                        || m_iNewFocusSelectAllColumn >= 0)
+                     {
+
+                        auto iBegNew = m_iNewFocusSelectAllSelBeg;
+                        auto iEndNew = m_iNewFocusSelectAllSelEnd;
+                        auto iColumn = m_iNewFocusSelectAllColumn;
+                        
+                        m_iNewFocusSelectAllSelBeg = -1;
+                        m_iNewFocusSelectAllSelEnd = -1;
+                        m_iNewFocusSelectAllColumn = -1;
+
+                        _001SetSel(iBegNew, iEndNew);
+
+                        m_iColumn = iColumn;
+
+                     }
 
                      _set_sel_end(pgraphics, plain_edit_char_hit_test(pgraphics, point), e_source_user);
 
@@ -2001,7 +2058,7 @@ namespace user
    void plain_edit::on_message_mouse_leave(::message::message * pmessage)
    {
 
-      if(!m_pitemHover || m_pitemHover->m_item.m_eelement != e_element_none)
+      if (!m_pitemHover || m_pitemHover->m_item.m_eelement != e_element_none)
       {
 
          m_pitemHover = __allocate< ::item >(e_element_none);
@@ -2023,19 +2080,6 @@ namespace user
       if (plain_edit_is_enabled())
       {
 
-         if (m_bNewFocus)
-         {
-
-            if (m_timeLeftButtonDown > m_timeNewFocus
-               && (m_timeLeftButtonDown - m_timeNewFocus) > 300_ms)
-            {
-
-               m_bNewFocus = false;
-
-            }
-
-         }
-
          pmouse->previous();
 
          ::point_i32 point = pmouse->m_pointHost;
@@ -2048,37 +2092,51 @@ namespace user
 
             m_bLMouseDown = true;
 
-            SetTimer(e_timer_overflow_scrolling, 50_ms, nullptr);
+            SetTimer(e_timer_overflow_scrolling_start, 300_ms, nullptr);
 
             set_mouse_capture();
 
-            if (!m_bNewFocus)
+            bool bNewFocusSelectAll = is_new_focus_select_all();
+
+            queue_graphics_call([this, point, bNewFocusSelectAll](::draw2d::graphics_pointer & pgraphics)
             {
 
-               queue_graphics_call([this, point](::draw2d::graphics_pointer & pgraphics)
+               ::strsize iBegNew = -1;
+               ::strsize iEndNew = -1;
+
+               ::strsize iBegOld = -1;
+               ::strsize iEndOld = -1;
+
+               _001GetSel(iBegOld, iEndOld);
+
+               iBegNew = plain_edit_char_hit_test(pgraphics, point);
+
+               iEndNew = iBegNew;
+
+               informationf("LeftButtonDown(%d,%d)-queue_graphics_call", iBegNew, iEndNew);
+
+               auto iColumnNew = plain_edit_sel_to_column_x(pgraphics, m_ptree->m_iSelEnd, m_iColumnX);
+
+               if (bNewFocusSelectAll)
                {
 
-                     ::strsize iBegNew = -1;
-                     ::strsize iEndNew = -1;
+                  m_iNewFocusSelectAllSelBeg = iBegNew;
 
-                     ::strsize iBegOld = -1;
-                     ::strsize iEndOld = -1;
+                  m_iNewFocusSelectAllSelEnd = iEndNew;
 
-                     _001GetSel(iBegOld, iEndOld);
+                  m_iNewFocusSelectAllColumn = iColumnNew;
 
-                     iBegNew = plain_edit_char_hit_test(pgraphics, point);
+               }
+               else
+               {
 
-                     iEndNew = iBegNew;
+                  _001SetSel(iBegNew, iEndNew);
 
-                     informationf("LeftButtonDown(%d,%d)-queue_graphics_call", iBegNew, iEndNew);
+                  m_iColumn = iColumnNew;
 
-                     _001SetSel(iBegNew, iEndNew);
+               }
 
-                     m_iColumn = plain_edit_sel_to_column_x(pgraphics, m_ptree->m_iSelEnd, m_iColumnX);
-
-               });
-
-            }
+            });
 
 #if defined(WINDOWS_DESKTOP)
 
@@ -2114,23 +2172,25 @@ namespace user
 
       defer_release_mouse_capture();
 
-      if (m_bLMouseDown && !m_bNewFocus)
-      {
+      //if (m_bLMouseDown && !m_bNewFocus)
+      //{
 
-         ::point_i32 point = pmouse->m_pointHost;
+      //   ::point_i32 point = pmouse->m_pointHost;
 
-         host_to_client()(point);
+      //   host_to_client()(point);
 
-         queue_graphics_call([this, point](::draw2d::graphics_pointer & pgraphics)
-            {
+      //   queue_graphics_call([this, point](::draw2d::graphics_pointer & pgraphics)
+      //      {
 
-               _set_sel_end(pgraphics, plain_edit_char_hit_test(pgraphics, point), e_source_sync);
+      //         _set_sel_end(pgraphics, plain_edit_char_hit_test(pgraphics, point), e_source_sync);
 
-            });
+      //      });
 
-      }
+      //}
 
-      m_bNewFocus = false;
+      KillTimer(e_timer_overflow_scrolling);
+
+      m_bNewFocusSelectAll = false;
 
       set_need_redraw();
 
@@ -2149,11 +2209,11 @@ namespace user
    {
 
       pmessage->m_bRet = true;
-   
+
    }
 
 
-   void plain_edit::plain_edit_on_calc_offset(::draw2d::graphics_pointer & pgraphics, index iOnlyLineToUpdate)
+   void plain_edit::plain_edit_on_context_offset_layout(::draw2d::graphics_pointer & pgraphics, index iOnlyLineToUpdate)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -3013,21 +3073,9 @@ namespace user
    void plain_edit::_plain_edit_update_lines_and_extents(::draw2d::graphics_pointer & pgraphics, index iOnlyLineToUpdate)
    {
 
-      _plain_edit_update_lines(pgraphics, iOnlyLineToUpdate);
+      //_plain_edit_update_lines(pgraphics, iOnlyLineToUpdate);
 
-      _plain_edit_update_extents(pgraphics, iOnlyLineToUpdate);
-
-   }
-
-
-   void plain_edit::_plain_edit_update_lines(::draw2d::graphics_pointer & pgraphics, index iOnlyLineToUpdate)
-   {
-
-      _synchronous_lock synchronouslock(this->synchronization());
-
-      ::rectangle_i32 rectangleX;
-
-      GetFocusRect(rectangleX);
+      //_plain_edit_update_extents(pgraphics, iOnlyLineToUpdate);
 
       if (m_ptree == nullptr)
       {
@@ -3044,6 +3092,8 @@ namespace user
 
          m_iImpactSize = 0;
 
+         set_total_size({0., 0.});
+
          return;
 
       }
@@ -3052,29 +3102,26 @@ namespace user
 
       ::index iLine;
 
-      if (pgraphics.is_null())
+      pgraphics->set_font(this, ::e_element_none);
+
+      size_f64 sizeUniText;
+
+      if (pgraphics == nullptr)
       {
 
          return;
 
       }
 
-      pgraphics->set_font(this, ::e_element_none);
+      ::rectangle_i32 rectangleX;
 
-      size_f64 sizeUniText;
+      GetFocusRect(rectangleX);
 
       ::write_text::text_metric metric;
 
       pgraphics->get_text_metrics(&metric);
 
       m_dLineHeight = metric.get_line_height();
-
-      if (m_dLineHeight <= 0.0)
-      {
-
-         m_dLineHeight = 18.0;
-
-      }
 
       auto pointOffset = get_context_offset();
 
@@ -3102,6 +3149,42 @@ namespace user
       strsize iLen = m_iaLineLength[m_iCurrentPageLineEnd - 1];
 
       m_iImpactSize = iProperBeg + iLen - m_iImpactOffset;
+
+ //     m_pscrollstateVertical->m_iLine = (::i32)m_dLineHeight;
+
+      if (m_dLineHeight <= 0)
+      {
+
+         m_dLineHeight = 18;
+
+      }
+
+      //auto pointOffset = get_context_offset();
+
+      //m_iCurrentPagePotentialLineCount = (::count)ceil((double)rectangleX.height() / m_dLineHeight);
+
+      //m_iCurrentPageLineOffset = (::index)minimum(maximum(0, pointOffset.y() / m_dLineHeight), m_iaLineStart.get_upper_bound());
+
+      //bool bLoadFullFile = should_load_full_file();
+
+      //m_iCurrentPageLineStart = bLoadFullFile ? 0 : maximum(0, m_iCurrentPageLineOffset);
+
+      //m_iCurrentPageLineEnd = bLoadFullFile ? m_iaLineLength.get_size() : minimum(m_iaLineLength.get_size(), m_iCurrentPagePotentialLineCount + m_iCurrentPageLineStart);
+
+      //if (m_iCurrentPageLineOffset < 0)
+      //{
+
+      //   return;
+
+      //}
+
+      //m_iImpactOffset = m_iaLineStart[m_iCurrentPageLineStart];
+
+      //strsize iProperBeg = m_iaLineStart[m_iCurrentPageLineEnd - 1];
+
+      //strsize iLen = m_iaLineLength[m_iCurrentPageLineEnd - 1];
+
+      //m_iImpactSize = iProperBeg + iLen - m_iImpactOffset;
 
       index iLineStart;
 
@@ -3174,15 +3257,16 @@ namespace user
       strsize iStrLen;
 
       //m_plinea->lines.set_size(m_iCurrentPageLineEnd - m_iCurrentPageLineStart);
-      m_straLines.set_size(m_iCurrentPageLineEnd - m_iCurrentPageLineStart);
+
+      string_array & straLines = m_straLines;
+
+      straLines.set_size(m_iCurrentPageLineEnd - m_iCurrentPageLineStart);
 
       i = 0;
 
       iLine = iLineStart;
 
-      auto iLineLength = m_iaLineLength.get_size();
-
-      m_daExtent.set_size(iLineLength);
+      m_daExtent.set_size(m_iaLineLength.get_size());
 
       for (; iLine < iLineEnd; i++, iLine++)
       {
@@ -3211,12 +3295,13 @@ namespace user
 
          string strLine = string((const char *)&mem.data()[iPos], iStrLen);
 
+         string_array & straLines = m_straLines;
+
          //if (strLine != m_plinea->lines[i])
-         if (strLine != m_straLines[i])
+         if (strLine != straLines[i])
          {
 
-            //m_plinea->lines[i] = strLine;
-            m_straLines[i] = strLine;
+            straLines[i] = strLine;
 
             m_daExtent[i + iLineStart].set_size(0);
 
@@ -3241,397 +3326,30 @@ namespace user
 
       }
 
-      //m_dy = pointOffset.y();
+      m_dy = pointOffset.y();
 
-      ////::colorertake5::base_editor * pcolorer = colorertake5();
+      //::colorertake5::base_editor * pcolorer = colorertake5();
 
-      ////if (pcolorer != nullptr)
-      ////{
-
-      ////   pcolorer->visibleTextEvent(m_iCurrentPageLineStart, m_iLineCount);
-
-      ////}
-
-      ////string_array & straLines = m_plinea->lines;
-
-      //string_array & straLines = m_straLines;
-
-      //if (iLineUpdate < 0)
+      //if (pcolorer != nullptr)
       //{
 
-      //   //m_sizeTotal.cx() = 0;
+      //   pcolorer->visibleTextEvent(m_iCurrentPageLineStart, m_iLineCount);
 
       //}
 
-      //size_f64 size;
+//      string_array & straLines = m_plinea->lines;
+//      string_array & straLines = m_straLines;
 
-      //string strLineGraphics;
+      if (iOnlyLineToUpdate < 0)
+      {
 
-      //strsize_array iaTab;
+         //m_sizeTotal.cx() = 0;
 
-      //strsize iTab;
-
-      //strsize iAddUp;
-
-      //for (i32 i = 0; i < straLines.get_size(); i++)
-      //{
-
-      //   strLine = straLines[i];
-
-      //   iTab = -1;
-
-      //   iaTab.erase_all();
-
-      //   strLineGraphics = strLine;
-
-      //   ::str::replace_tab(0, strLineGraphics, m_iTabWidth, &iaTab);
-
-      //   const ::ansi_character * pszStart = strLine;
-
-      //   const ::ansi_character * psz = pszStart;
-
-      //   strsize iLen = 0;
-
-      //   iAddUp = 0;
-
-      //   iPos = 0;
-
-      //   const ::ansi_character * pszNext = pszStart;
-
-      //   f64_array & daExtent = m_daExtent[m_iCurrentPageLineStart + i];
-
-      //   if (daExtent.get_size() <= 0)
-      //   {
-
-      //      daExtent.set_size(strLine.length() + 1);
-
-      //      while (*pszNext != '\0')
-      //      {
-
-      //         pszNext = unicode_next(psz);
-
-      //         iLen = pszNext - psz;
-
-      //         if (*psz == '\t')
-      //         {
-
-      //            iTab++;
-
-      //            iAddUp += iaTab[iTab] - 1;
-
-      //         }
-
-      //         size = pgraphics->get_text_extent(strLineGraphics, strLineGraphics.length(), pszNext - pszStart + iAddUp);
-
-      //         for (int j = 0; j < iLen; j++)
-      //         {
-
-      //           daExtent [(::index)(psz - pszStart + j)] = size.cx();
-
-      //         }
-
-      //         psz = pszNext;
-
-      //      }
-
-      //      if (strLineGraphics.has_char())
-      //      {
-
-      //         size = pgraphics->get_text_extent(strLineGraphics, strLineGraphics.length());
-
-      //         for (int j = 0; j < iLen; j++)
-      //         {
-
-      //            daExtent[(::index)(psz - pszStart)] = size.cx();
-
-      //         }
-
-      //      }
-
-
-      //      if (size.cx() > m_sizeTotal.cx())
-      //      {
-
-      //         m_sizeTotal.cx() = (i32)size.cx();
-
-      //      }
-
-      //   }
-
-
-      //}
-
-      ////if (iLineUpdate < 0)
-      ////{
-
-      ////   m_sizeTotal.cy() = (((i32)m_iaLineLength.get_count() + (m_bMultiLine ? maximum(5, m_iLineCount) : 0)) * m_iLineHeight);
-
-      ////   const ::size_i32 & sizePage;
-
-      ////   sizePage = rectangleX.size();
-
-      ////   if (m_sizeTotal.cy() < sizePage.cy())
-      ////   {
-
-      ////      sizePage.cy() = m_sizeTotal.cy();
-
-      ////   }
-
-      ////}
-
-      ////on_change_impact_size();
-
-      ////m_bCalcLayoutHintNoTextChange = false;
-
-   }
-
-
-   void plain_edit::_plain_edit_update_extents(::draw2d::graphics_pointer & pgraphics, index iOnlyLineToUpdate)
-   {
-
-      //_synchronous_lock synchronouslock(this->synchronization());
-
-//::rectangle_i32 rectangleX;
-
-//GetFocusRect(rectangleX);
-
-//if (m_ptree == nullptr)
-//{
-
-//   m_iCurrentPagePotentialLineCount = 0;
-
-//   m_iCurrentPageLineOffset = 0;
-
-//   m_iCurrentPageLineStart = 0;
-
-//   m_iCurrentPageLineEnd = 0;
-
-//   m_iImpactOffset = 0;
-
-//   m_iImpactSize = 0;
-
-//   return;
-
-//}
-
-//::index i;
-
-//::index iLine;
-
-//if (pgraphics.is_null())
-//{
-
-//   return;
-
-//}
-
-//pgraphics->set_font(this, ::e_element_none);
-
-//size_f64 sizeUniText;
-
-//::write_text::text_metric metric;
-
-//pgraphics->get_text_metrics(&metric);
-
-//m_dLineHeight = metric.get_line_spacing();
-
-//if (m_dLineHeight <= 0.0)
-//{
-
-//   m_dLineHeight = 18.0;
-
-//}
-
-//auto pointOffset = get_context_offset();
-
-//m_iCurrentPagePotentialLineCount = (::count) ceil((double)rectangleX.height() / m_dLineHeight);
-
-//m_iCurrentPageLineOffset = (::index) minimum(maximum(0, pointOffset.y() / m_dLineHeight), m_iaLineStart.get_upper_bound());
-
-//bool bLoadFullFile = should_load_full_file();
-
-//m_iCurrentPageLineStart = bLoadFullFile ? 0 : maximum(0, m_iCurrentPageLineOffset);
-
-//m_iCurrentPageLineEnd = bLoadFullFile ? m_iaLineLength.get_size() : minimum(m_iaLineLength.get_size(), m_iCurrentPagePotentialLineCount + m_iCurrentPageLineStart);
-
-//if (m_iCurrentPageLineOffset < 0)
-//{
-
-//   return;
-
-//}
-
-//m_iImpactOffset = m_iaLineStart[m_iCurrentPageLineStart];
-
-//strsize iProperBeg = m_iaLineStart[m_iCurrentPageLineEnd - 1];
-
-//strsize iLen = m_iaLineLength[m_iCurrentPageLineEnd - 1];
-
-//m_iImpactSize = iProperBeg + iLen - m_iImpactOffset;
-
-//index iLineStart;
-
-//index iLineEnd;
-
-//index iImpactOffset;
-
-//index iImpactSize;
-
-//if (iLineUpdate < 0)
-//{
-
-//   iLineStart = m_iCurrentPageLineStart;
-
-//   iLineEnd = m_iCurrentPageLineEnd;
-
-//   iImpactOffset = m_iImpactOffset;
-
-//   iImpactSize = m_iImpactSize;
-
-//}
-//else
-//{
-
-//   iLineStart = iLineUpdate;
-
-//   iLineEnd = iLineStart + 1;
-
-//   iImpactOffset = m_iaLineStart[iLineStart];
-
-//   iProperBeg = m_iaLineStart[iLineEnd - 1];
-
-//   iLen = m_iaLineLength[iLineEnd - 1];
-
-//   iImpactSize = iProperBeg + iLen - iImpactOffset;
-
-//}
-
-//string strLine;
-
-//memory mem;
-
-//mem.set_size(iImpactSize + 1);
-
-//strsize iRead;
-
-//{
-
-//   m_ptree->m_peditfile->seek(iImpactOffset, ::e_seek_set);
-
-//   iRead = m_ptree->m_peditfile->read(mem.get_data(), iImpactSize);
-
-//   if (iRead < iImpactSize)
-//   {
-
-//      informationf("ops1");
-
-//      iImpactSize = iRead;
-
-//   }
-
-//   mem.get_data()[iImpactSize] = 0;
-
-//}
-
-//strsize iPos = 0;
-
-////      strsize iLen;
-
-//strsize iStrLen;
-
-////m_plinea->lines.set_size(m_iCurrentPageLineEnd - m_iCurrentPageLineStart);
-//m_straLines.set_size(m_iCurrentPageLineEnd - m_iCurrentPageLineStart);
-
-//i = 0;
-
-//iLine = iLineStart;
-
-//auto iLineLength = m_iaLineLength.get_size();
-
-//m_daExtent.set_size(iLineLength);
-
-//for (; iLine < iLineEnd; i++, iLine++)
-//{
-
-//   iLen = m_iaLineLength[iLine];
-
-//   iStrLen = maximum(0, iLen - (m_iaLineFlags[iLine] & e_line_end_length));
-
-//   if (iPos + iStrLen > m_iImpactSize)
-//   {
-
-//      informationf("ops3");
-
-//      iStrLen = iImpactSize - iPos;
-
-//      if (iStrLen <= 0)
-//      {
-
-//         informationf("ops4");
-
-//         break;
-
-//      }
-
-//   }
-
-//   string strLine = string((const char *)&mem.get_data()[iPos], iStrLen);
-
-//   //if (strLine != m_plinea->lines[i])
-//   if (strLine != m_straLines[i])
-//   {
-
-//      //m_plinea->lines[i] = strLine;
-//      m_straLines[i] = strLine;
-
-//      m_daExtent[i + iLineStart].set_size(0);
-
-//   }
-//   else
-//   {
-
-//      //informationf("optstr");
-
-//   }
-
-//   iPos += iLen;
-
-//   if (iPos > iImpactSize)
-//   {
-
-//      informationf("ops2");
-
-//      break;
-
-//   }
-
-//}
-
-//m_dy = pointOffset.y();
-
-////::colorertake5::base_editor * pcolorer = colorertake5();
-
-////if (pcolorer != nullptr)
-////{
-
-////   pcolorer->visibleTextEvent(m_iCurrentPageLineStart, m_iLineCount);
-
-////}
-
-////string_array & straLines = m_plinea->lines;
-
-//string_array & straLines = m_straLines;
-
-//if (iLineUpdate < 0)
-//{
-
-//   //m_sizeTotal.cx() = 0;
-
-//}
-
-      ::user::enum_layout elayout = ::user::e_layout_design;
+      }
 
       size_f64 size;
+
+      size_f64 sizeTotal;
 
       string strLineGraphics;
 
@@ -3641,10 +3359,10 @@ namespace user
 
       strsize iAddUp;
 
-      for (i32 i = 0; i < m_straLines.get_size(); i++)
+      for (i32 i = 0; i < straLines.get_size(); i++)
       {
 
-         string strLine = m_straLines[i];
+         strLine = straLines[i];
 
          iTab = -1;
 
@@ -3652,7 +3370,14 @@ namespace user
 
          strLineGraphics = strLine;
 
-         replace_tab(0, strLineGraphics, m_iTabWidth, &iaTab);
+         bool bTabs = strLine.find_index('\t') >= 0;
+
+         if (bTabs)
+         {
+
+            ::replace_tab(0, strLineGraphics, m_iTabWidth, &iaTab);
+
+         }
 
          const ::ansi_character * pszStart = strLine;
 
@@ -3662,23 +3387,30 @@ namespace user
 
          iAddUp = 0;
 
-         strsize iPos = 0;
+         iPos = 0;
 
          const ::ansi_character * pszNext = pszStart;
 
-         f64_array & daExtent = m_daExtent[m_iCurrentPageLineStart + i];
+         ::size_i32 sizeLast(0, 0);
 
-         auto sizeTotal = get_total_size(elayout);
+         auto & daExtent = m_daExtent[m_iCurrentPageLineStart + i];
 
          if (daExtent.get_size() <= 0)
          {
 
             daExtent.set_size(strLine.length() + 1);
 
-            while (::has_char(pszNext))
+            while (*pszNext != '\0')
             {
 
                pszNext = unicode_next(psz);
+
+               if (pszNext == nullptr)
+               {
+
+                  break;
+
+               }
 
                iLen = pszNext - psz;
 
@@ -3692,6 +3424,23 @@ namespace user
                }
 
                size = pgraphics->get_text_extent(strLineGraphics, pszNext - pszStart + iAddUp);
+
+               if (size.cx() > rectangleX.width() + 200)
+               {
+
+                  while (*psz != '\0')
+                  {
+
+                     daExtent[(::index)(psz - pszStart)] = -1;
+                     psz++;
+
+                  }
+
+                  break;
+
+               }
+
+               sizeLast.cx() = (::i32)size.cx();
 
                for (int j = 0; j < iLen; j++)
                {
@@ -3709,52 +3458,792 @@ namespace user
 
                size = pgraphics->get_text_extent(strLineGraphics, strLineGraphics.length());
 
-               for (int j = 0; j < iLen; j++)
-               {
-
-                  daExtent[(::index)(psz - pszStart)] = size.cx();
-
-               }
-
-            }
-
-
-            if (size.cx() > sizeTotal.cx())
-            {
-
-               sizeTotal.cx() = size.cx();
+               daExtent[(::index)(psz - pszStart)] = size.cx();
 
             }
 
          }
 
-         set_total_size(sizeTotal, elayout);
+         if (daExtent.has_element())
+         {
+
+            auto sizeX = daExtent.last();
+
+            if (sizeX > sizeTotal.cx())
+            {
+
+               sizeTotal.cx() = sizeX;
+
+            }
+
+         }
 
       }
 
-      //if (iLineUpdate < 0)
-      //{
+      if (iOnlyLineToUpdate < 0)
+      {
 
-      //   m_sizeTotal.cy() = (((i32)m_iaLineLength.get_count() + (m_bMultiLine ? maximum(5, m_iLineCount) : 0)) * m_iLineHeight);
+         sizeTotal.cy() = (::i32)((m_iaLineLength.get_count() + 1) * m_dLineHeight);
 
-      //   const ::size_i32 & sizePage;
+         ::size_f64 sizePage;
 
-      //   sizePage = rectangleX.size();
+         sizePage = rectangleX.size();
 
-      //   if (m_sizeTotal.cy() < sizePage.cy())
-      //   {
+         if (sizeTotal.cy() < sizePage.cy())
+         {
 
-      //      sizePage.cy() = m_sizeTotal.cy();
+            sizePage.cy() = sizeTotal.cy();
 
-      //   }
+         }
 
-      //}
+      }
 
-      //on_change_impact_size();
+      //m_pscrollstateVertical->m_iLine = (int)m_dLineHeight;
 
-      //m_bCalcLayoutHintNoTextChange = false;
+      set_total_size(sizeTotal);
+
+      //on_change_impact_size(pgraphics);
+
+      m_bCalcLayoutHintNoTextChange = false;
 
    }
+
+
+//   void plain_edit::_plain_edit_update_lines(::draw2d::graphics_pointer & pgraphics, index iOnlyLineToUpdate)
+//   {
+//
+//      _synchronous_lock synchronouslock(this->synchronization());
+//
+//      ::rectangle_i32 rectangleX;
+//
+//      GetFocusRect(rectangleX);
+//
+//      if (m_ptree == nullptr)
+//      {
+//
+//         m_iCurrentPagePotentialLineCount = 0;
+//
+//         m_iCurrentPageLineOffset = 0;
+//
+//         m_iCurrentPageLineStart = 0;
+//
+//         m_iCurrentPageLineEnd = 0;
+//
+//         m_iImpactOffset = 0;
+//
+//         m_iImpactSize = 0;
+//
+//         return;
+//
+//      }
+//
+//      ::index i;
+//
+//      ::index iLine;
+//
+//      if (pgraphics.is_null())
+//      {
+//
+//         return;
+//
+//      }
+//
+//      pgraphics->set_font(this, ::e_element_none);
+//
+//      index iLineStart;
+//
+//      index iLineEnd;
+//
+//      index iImpactOffset;
+//
+//      index iImpactSize;
+//
+//      if (iOnlyLineToUpdate < 0)
+//      {
+//
+//         iLineStart = m_iCurrentPageLineStart;
+//
+//         iLineEnd = m_iCurrentPageLineEnd;
+//
+//         iImpactOffset = m_iImpactOffset;
+//
+//         iImpactSize = m_iImpactSize;
+//
+//      }
+//      else
+//      {
+//
+//         iLineStart = iOnlyLineToUpdate;
+//
+//         iLineEnd = iLineStart + 1;
+//
+//         iImpactOffset = m_iaLineStart[iLineStart];
+//
+//         iProperBeg = m_iaLineStart[iLineEnd - 1];
+//
+//         iLen = m_iaLineLength[iLineEnd - 1];
+//
+//         iImpactSize = iProperBeg + iLen - iImpactOffset;
+//
+//      }
+//
+//      string strLine;
+//
+//      memory mem;
+//
+//      mem.set_size(iImpactSize + 1);
+//
+//      strsize iRead;
+//
+//      {
+//
+//         m_ptree->m_peditfile->seek(iImpactOffset, ::e_seek_set);
+//
+//         iRead = m_ptree->m_peditfile->read(mem.data(), iImpactSize);
+//
+//         if (iRead < iImpactSize)
+//         {
+//
+//            informationf("ops1");
+//
+//            iImpactSize = iRead;
+//
+//         }
+//
+//         mem.data()[iImpactSize] = 0;
+//
+//      }
+//
+//      strsize iPos = 0;
+//
+//      //      strsize iLen;
+//
+//      strsize iStrLen;
+//
+//      //m_plinea->lines.set_size(m_iCurrentPageLineEnd - m_iCurrentPageLineStart);
+//      m_straLines.set_size(m_iCurrentPageLineEnd - m_iCurrentPageLineStart);
+//
+//      i = 0;
+//
+//      iLine = iLineStart;
+//
+//      auto iLineLength = m_iaLineLength.get_size();
+//
+//      m_daExtent.set_size(iLineLength);
+//
+//      for (; iLine < iLineEnd; i++, iLine++)
+//      {
+//
+//         iLen = m_iaLineLength[iLine];
+//
+//         iStrLen = maximum(0, iLen - (m_iaLineFlags[iLine] & e_line_end_length));
+//
+//         if (iPos + iStrLen > m_iImpactSize)
+//         {
+//
+//            informationf("ops3");
+//
+//            iStrLen = iImpactSize - iPos;
+//
+//            if (iStrLen <= 0)
+//            {
+//
+//               informationf("ops4");
+//
+//               break;
+//
+//            }
+//
+//         }
+//
+//         string strLine = string((const char *)&mem.data()[iPos], iStrLen);
+//
+//         //if (strLine != m_plinea->lines[i])
+//         if (strLine != m_straLines[i])
+//         {
+//
+//            //m_plinea->lines[i] = strLine;
+//            m_straLines[i] = strLine;
+//
+//            m_daExtent[i + iLineStart].set_size(0);
+//
+//         }
+//         else
+//         {
+//
+//            //informationf("optstr");
+//
+//         }
+//
+//         iPos += iLen;
+//
+//         if (iPos > iImpactSize)
+//         {
+//
+//            informationf("ops2");
+//
+//            break;
+//
+//         }
+//
+//      }
+//
+//      //m_dy = pointOffset.y();
+//
+//      ////::colorertake5::base_editor * pcolorer = colorertake5();
+//
+//      ////if (pcolorer != nullptr)
+//      ////{
+//
+//      ////   pcolorer->visibleTextEvent(m_iCurrentPageLineStart, m_iLineCount);
+//
+//      ////}
+//
+//      ////string_array & straLines = m_plinea->lines;
+//
+//      //string_array & straLines = m_straLines;
+//
+//      //if (iLineUpdate < 0)
+//      //{
+//
+//      //   //m_sizeTotal.cx() = 0;
+//
+//      //}
+//
+//      //size_f64 size;
+//
+//      //string strLineGraphics;
+//
+//      //strsize_array iaTab;
+//
+//      //strsize iTab;
+//
+//      //strsize iAddUp;
+//
+//      //for (i32 i = 0; i < straLines.get_size(); i++)
+//      //{
+//
+//      //   strLine = straLines[i];
+//
+//      //   iTab = -1;
+//
+//      //   iaTab.erase_all();
+//
+//      //   strLineGraphics = strLine;
+//
+//      //   ::str::replace_tab(0, strLineGraphics, m_iTabWidth, &iaTab);
+//
+//      //   const ::ansi_character * pszStart = strLine;
+//
+//      //   const ::ansi_character * psz = pszStart;
+//
+//      //   strsize iLen = 0;
+//
+//      //   iAddUp = 0;
+//
+//      //   iPos = 0;
+//
+//      //   const ::ansi_character * pszNext = pszStart;
+//
+//      //   f64_array & daExtent = m_daExtent[m_iCurrentPageLineStart + i];
+//
+//      //   if (daExtent.get_size() <= 0)
+//      //   {
+//
+//      //      daExtent.set_size(strLine.length() + 1);
+//
+//      //      while (*pszNext != '\0')
+//      //      {
+//
+//      //         pszNext = unicode_next(psz);
+//
+//      //         iLen = pszNext - psz;
+//
+//      //         if (*psz == '\t')
+//      //         {
+//
+//      //            iTab++;
+//
+//      //            iAddUp += iaTab[iTab] - 1;
+//
+//      //         }
+//
+//      //         size = pgraphics->get_text_extent(strLineGraphics, strLineGraphics.length(), pszNext - pszStart + iAddUp);
+//
+//      //         for (int j = 0; j < iLen; j++)
+//      //         {
+//
+//      //           daExtent [(::index)(psz - pszStart + j)] = size.cx();
+//
+//      //         }
+//
+//      //         psz = pszNext;
+//
+//      //      }
+//
+//      //      if (strLineGraphics.has_char())
+//      //      {
+//
+//      //         size = pgraphics->get_text_extent(strLineGraphics, strLineGraphics.length());
+//
+//      //         for (int j = 0; j < iLen; j++)
+//      //         {
+//
+//      //            daExtent[(::index)(psz - pszStart)] = size.cx();
+//
+//      //         }
+//
+//      //      }
+//
+//
+//      //      if (size.cx() > m_sizeTotal.cx())
+//      //      {
+//
+//      //         m_sizeTotal.cx() = (i32)size.cx();
+//
+//      //      }
+//
+//      //   }
+//
+//
+//      //}
+//
+//      ////if (iLineUpdate < 0)
+//      ////{
+//
+//      ////   m_sizeTotal.cy() = (((i32)m_iaLineLength.get_count() + (m_bMultiLine ? maximum(5, m_iLineCount) : 0)) * m_iLineHeight);
+//
+//      ////   const ::size_i32 & sizePage;
+//
+//      ////   sizePage = rectangleX.size();
+//
+//      ////   if (m_sizeTotal.cy() < sizePage.cy())
+//      ////   {
+//
+//      ////      sizePage.cy() = m_sizeTotal.cy();
+//
+//      ////   }
+//
+//      ////}
+//
+//      ////on_change_impact_size();
+//
+//      ////m_bCalcLayoutHintNoTextChange = false;
+//
+//   }
+//
+//
+//   void plain_edit::_plain_edit_update_extents(::draw2d::graphics_pointer & pgraphics, index iOnlyLineToUpdate)
+//   {
+//
+//      //_synchronous_lock synchronouslock(this->synchronization());
+//
+////::rectangle_i32 rectangleX;
+//
+////GetFocusRect(rectangleX);
+//
+////if (m_ptree == nullptr)
+////{
+//
+////   m_iCurrentPagePotentialLineCount = 0;
+//
+////   m_iCurrentPageLineOffset = 0;
+//
+////   m_iCurrentPageLineStart = 0;
+//
+////   m_iCurrentPageLineEnd = 0;
+//
+////   m_iImpactOffset = 0;
+//
+////   m_iImpactSize = 0;
+//
+////   return;
+//
+////}
+//
+////::index i;
+//
+////::index iLine;
+//
+////if (pgraphics.is_null())
+////{
+//
+////   return;
+//
+////}
+//
+////pgraphics->set_font(this, ::e_element_none);
+//
+////size_f64 sizeUniText;
+//
+////::write_text::text_metric metric;
+//
+////pgraphics->get_text_metrics(&metric);
+//
+////m_dLineHeight = metric.get_line_spacing();
+//
+////if (m_dLineHeight <= 0.0)
+////{
+//
+////   m_dLineHeight = 18.0;
+//
+////}
+//
+////auto pointOffset = get_context_offset();
+//
+////m_iCurrentPagePotentialLineCount = (::count) ceil((double)rectangleX.height() / m_dLineHeight);
+//
+////m_iCurrentPageLineOffset = (::index) minimum(maximum(0, pointOffset.y() / m_dLineHeight), m_iaLineStart.get_upper_bound());
+//
+////bool bLoadFullFile = should_load_full_file();
+//
+////m_iCurrentPageLineStart = bLoadFullFile ? 0 : maximum(0, m_iCurrentPageLineOffset);
+//
+////m_iCurrentPageLineEnd = bLoadFullFile ? m_iaLineLength.get_size() : minimum(m_iaLineLength.get_size(), m_iCurrentPagePotentialLineCount + m_iCurrentPageLineStart);
+//
+////if (m_iCurrentPageLineOffset < 0)
+////{
+//
+////   return;
+//
+////}
+//
+////m_iImpactOffset = m_iaLineStart[m_iCurrentPageLineStart];
+//
+////strsize iProperBeg = m_iaLineStart[m_iCurrentPageLineEnd - 1];
+//
+////strsize iLen = m_iaLineLength[m_iCurrentPageLineEnd - 1];
+//
+////m_iImpactSize = iProperBeg + iLen - m_iImpactOffset;
+//
+////index iLineStart;
+//
+////index iLineEnd;
+//
+////index iImpactOffset;
+//
+////index iImpactSize;
+//
+////if (iLineUpdate < 0)
+////{
+//
+////   iLineStart = m_iCurrentPageLineStart;
+//
+////   iLineEnd = m_iCurrentPageLineEnd;
+//
+////   iImpactOffset = m_iImpactOffset;
+//
+////   iImpactSize = m_iImpactSize;
+//
+////}
+////else
+////{
+//
+////   iLineStart = iLineUpdate;
+//
+////   iLineEnd = iLineStart + 1;
+//
+////   iImpactOffset = m_iaLineStart[iLineStart];
+//
+////   iProperBeg = m_iaLineStart[iLineEnd - 1];
+//
+////   iLen = m_iaLineLength[iLineEnd - 1];
+//
+////   iImpactSize = iProperBeg + iLen - iImpactOffset;
+//
+////}
+//
+////string strLine;
+//
+////memory mem;
+//
+////mem.set_size(iImpactSize + 1);
+//
+////strsize iRead;
+//
+////{
+//
+////   m_ptree->m_peditfile->seek(iImpactOffset, ::e_seek_set);
+//
+////   iRead = m_ptree->m_peditfile->read(mem.get_data(), iImpactSize);
+//
+////   if (iRead < iImpactSize)
+////   {
+//
+////      informationf("ops1");
+//
+////      iImpactSize = iRead;
+//
+////   }
+//
+////   mem.get_data()[iImpactSize] = 0;
+//
+////}
+//
+////strsize iPos = 0;
+//
+//////      strsize iLen;
+//
+////strsize iStrLen;
+//
+//////m_plinea->lines.set_size(m_iCurrentPageLineEnd - m_iCurrentPageLineStart);
+////m_straLines.set_size(m_iCurrentPageLineEnd - m_iCurrentPageLineStart);
+//
+////i = 0;
+//
+////iLine = iLineStart;
+//
+////auto iLineLength = m_iaLineLength.get_size();
+//
+////m_daExtent.set_size(iLineLength);
+//
+////for (; iLine < iLineEnd; i++, iLine++)
+////{
+//
+////   iLen = m_iaLineLength[iLine];
+//
+////   iStrLen = maximum(0, iLen - (m_iaLineFlags[iLine] & e_line_end_length));
+//
+////   if (iPos + iStrLen > m_iImpactSize)
+////   {
+//
+////      informationf("ops3");
+//
+////      iStrLen = iImpactSize - iPos;
+//
+////      if (iStrLen <= 0)
+////      {
+//
+////         informationf("ops4");
+//
+////         break;
+//
+////      }
+//
+////   }
+//
+////   string strLine = string((const char *)&mem.get_data()[iPos], iStrLen);
+//
+////   //if (strLine != m_plinea->lines[i])
+////   if (strLine != m_straLines[i])
+////   {
+//
+////      //m_plinea->lines[i] = strLine;
+////      m_straLines[i] = strLine;
+//
+////      m_daExtent[i + iLineStart].set_size(0);
+//
+////   }
+////   else
+////   {
+//
+////      //informationf("optstr");
+//
+////   }
+//
+////   iPos += iLen;
+//
+////   if (iPos > iImpactSize)
+////   {
+//
+////      informationf("ops2");
+//
+////      break;
+//
+////   }
+//
+////}
+//
+////m_dy = pointOffset.y();
+//
+//////::colorertake5::base_editor * pcolorer = colorertake5();
+//
+//////if (pcolorer != nullptr)
+//////{
+//
+//////   pcolorer->visibleTextEvent(m_iCurrentPageLineStart, m_iLineCount);
+//
+//////}
+//
+//////string_array & straLines = m_plinea->lines;
+//
+////string_array & straLines = m_straLines;
+//
+////if (iLineUpdate < 0)
+////{
+//
+////   //m_sizeTotal.cx() = 0;
+//
+////}
+//
+//      size_f64 sizeUniText;
+//
+//      ::write_text::text_metric metric;
+//
+//      pgraphics->get_text_metrics(&metric);
+//
+//      m_dLineHeight = metric.get_line_height();
+//
+//      if (m_dLineHeight <= 0.0)
+//      {
+//
+//         m_dLineHeight = 18.0;
+//
+//      }
+//
+//      auto pointOffset = get_context_offset();
+//
+//      m_iCurrentPagePotentialLineCount = (::count)ceil((double)rectangleX.height() / m_dLineHeight);
+//
+//      m_iCurrentPageLineOffset = (::index)minimum(maximum(0, pointOffset.y() / m_dLineHeight), m_iaLineStart.get_upper_bound());
+//
+//      bool bLoadFullFile = should_load_full_file();
+//
+//      m_iCurrentPageLineStart = bLoadFullFile ? 0 : maximum(0, m_iCurrentPageLineOffset);
+//
+//      m_iCurrentPageLineEnd = bLoadFullFile ? m_iaLineLength.get_size() : minimum(m_iaLineLength.get_size(), m_iCurrentPagePotentialLineCount + m_iCurrentPageLineStart);
+//
+//      if (m_iCurrentPageLineOffset < 0)
+//      {
+//
+//         return;
+//
+//      }
+//
+//      m_iImpactOffset = m_iaLineStart[m_iCurrentPageLineStart];
+//
+//      strsize iProperBeg = m_iaLineStart[m_iCurrentPageLineEnd - 1];
+//
+//      strsize iLen = m_iaLineLength[m_iCurrentPageLineEnd - 1];
+//
+//      m_iImpactSize = iProperBeg + iLen - m_iImpactOffset;
+//
+//      ::user::enum_layout elayout = ::user::e_layout_design;
+//
+//      size_f64 size;
+//
+//      string strLineGraphics;
+//
+//      strsize_array iaTab;
+//
+//      strsize iTab;
+//
+//      strsize iAddUp;
+//
+//      for (i32 i = 0; i < m_straLines.get_size(); i++)
+//      {
+//
+//         string strLine = m_straLines[i];
+//
+//         iTab = -1;
+//
+//         iaTab.erase_all();
+//
+//         strLineGraphics = strLine;
+//
+//         replace_tab(0, strLineGraphics, m_iTabWidth, &iaTab);
+//
+//         const ::ansi_character * pszStart = strLine;
+//
+//         const ::ansi_character * psz = pszStart;
+//
+//         strsize iLen = 0;
+//
+//         iAddUp = 0;
+//
+//         strsize iPos = 0;
+//
+//         const ::ansi_character * pszNext = pszStart;
+//
+//         f64_array & daExtent = m_daExtent[m_iCurrentPageLineStart + i];
+//
+//         auto sizeTotal = get_total_size(elayout);
+//
+//         if (daExtent.get_size() <= 0)
+//         {
+//
+//            daExtent.set_size(strLine.length() + 1);
+//
+//            while (::has_char(pszNext))
+//            {
+//
+//               pszNext = unicode_next(psz);
+//
+//               iLen = pszNext - psz;
+//
+//               if (*psz == '\t')
+//               {
+//
+//                  iTab++;
+//
+//                  iAddUp += iaTab[iTab] - 1;
+//
+//               }
+//
+//               size = pgraphics->get_text_extent(strLineGraphics, pszNext - pszStart + iAddUp);
+//
+//               for (int j = 0; j < iLen; j++)
+//               {
+//
+//                  daExtent[(::index)(psz - pszStart + j)] = size.cx();
+//
+//               }
+//
+//               psz = pszNext;
+//
+//            }
+//
+//            if (strLineGraphics.has_char())
+//            {
+//
+//               size = pgraphics->get_text_extent(strLineGraphics, strLineGraphics.length());
+//
+//               for (int j = 0; j < iLen; j++)
+//               {
+//
+//                  daExtent[(::index)(psz - pszStart)] = size.cx();
+//
+//               }
+//
+//            }
+//
+//
+//            if (size.cx() > sizeTotal.cx())
+//            {
+//
+//               sizeTotal.cx() = size.cx();
+//
+//            }
+//
+//         }
+//
+//         set_total_size(sizeTotal, elayout);
+//
+//      }
+//
+//      //if (iLineUpdate < 0)
+//      //{
+//
+//      //   m_sizeTotal.cy() = (((i32)m_iaLineLength.get_count() + (m_bMultiLine ? maximum(5, m_iLineCount) : 0)) * m_iLineHeight);
+//
+//      //   const ::size_i32 & sizePage;
+//
+//      //   sizePage = rectangleX.size();
+//
+//      //   if (m_sizeTotal.cy() < sizePage.cy())
+//      //   {
+//
+//      //      sizePage.cy() = m_sizeTotal.cy();
+//
+//      //   }
+//
+//      //}
+//
+//      //on_change_impact_size();
+//
+//      //m_bCalcLayoutHintNoTextChange = false;
+//
+//   }
 
 
    index plain_edit::plain_edit_sel_to_line(::draw2d::graphics_pointer & pgraphics, strsize iSel)
@@ -4151,19 +4640,19 @@ namespace user
 
       auto pointOffset = get_context_offset();
 
-      if (m_dLineHeight > 0)
-      {
+      //if (m_dLineHeight > 0)
+      //{
 
-         int iVerticalOffsetModule = (int)fmod(pointOffset.y(), m_dLineHeight);
+      //   int iVerticalOffsetModule = (int)fmod(pointOffset.y(), m_dLineHeight);
 
-         if (iVerticalOffsetModule > 0)
-         {
+      //   if (iVerticalOffsetModule > 0)
+      //   {
 
-            point.y() += iVerticalOffsetModule;
+      //      point.y() += iVerticalOffsetModule;
 
-         }
+      //   }
 
-      }
+      //}
 
       double dLineHeight;
 
@@ -4225,7 +4714,7 @@ namespace user
 
       auto pointOffset = get_context_offset();
 
-      px -= (::i32) (rectangleX.left() - pointOffset.x());
+      px -= (::i32)(rectangleX.left() - pointOffset.x());
 
       if (px <= 0)
       {
@@ -5083,7 +5572,7 @@ namespace user
          }
          else
          {
-            
+
             if (bBackIfSelectionEmpty)
             {
 
@@ -5120,7 +5609,7 @@ namespace user
             if (bBackIfSelectionEmpty)
             {
 
-               posRead = maximum(0, m_ptree->m_iSelEnd - (::filesize) sizeof(buf));
+               posRead = maximum(0, m_ptree->m_iSelEnd - (::filesize)sizeof(buf));
 
                amountRead = minimum(sizeof(buf), m_ptree->m_iSelEnd);
 
@@ -6323,9 +6812,9 @@ namespace user
 
                      }
 
-                  });
+                     });
 
-            }
+                  }
             else if (pkey->m_ekey == ::user::e_key_end)
             {
 
@@ -6381,7 +6870,7 @@ namespace user
             else if (pkey->m_ekey == ::user::e_key_return)
             {
 
-//#ifndef WINDOWS_DESKTOP
+               //#ifndef WINDOWS_DESKTOP
 
                if (m_bMultiLine)
                {
@@ -6390,7 +6879,7 @@ namespace user
 
                }
 
-//#endif
+               //#endif
 
             }
             else if (is_window_enabled())
@@ -6535,9 +7024,9 @@ namespace user
 
             }
 
-         }
+            }
 
-      }
+         }
 
       if (bUpdate)
       {
@@ -6555,7 +7044,7 @@ namespace user
 
       }
 
-   }
+      }
 
 
    void plain_edit::on_message_char(::message::message * pmessage)
@@ -7068,7 +7557,7 @@ namespace user
    bool plain_edit::InputConnectionSetComposingRegion(strsize iComposingStart, strsize iComposingEnd, bool bSuper)
    {
 
-      queue_graphics_call([this, iComposingStart, iComposingEnd](::draw2d::graphics_pointer& pgraphics)
+      queue_graphics_call([this, iComposingStart, iComposingEnd](::draw2d::graphics_pointer & pgraphics)
          {
 
             _synchronous_lock synchronouslock(this->synchronization());
@@ -7165,7 +7654,7 @@ namespace user
    bool plain_edit::InputConnectionFinishComposingText(bool bSuper)
    {
 
-      queue_graphics_call([this](::draw2d::graphics_pointer& pgraphics)
+      queue_graphics_call([this](::draw2d::graphics_pointer & pgraphics)
          {
 
             m_pitemComposing.release();
@@ -7189,7 +7678,7 @@ namespace user
    void plain_edit::queue_selection_synchronization()
    {
 
-      queue_graphics_call([this](::draw2d::graphics_pointer& pgraphics)
+      queue_graphics_call([this](::draw2d::graphics_pointer & pgraphics)
          {
 
             auto pwindowing = windowing();
@@ -7281,36 +7770,36 @@ namespace user
 
             auto bCaretOn = is_caret_on();
 
-//            if (bCaretOn)
-//            {
-//
-//               information() << "CARET ON!!!!";
-//
-//            }
-//            else
-//            {
-//
-//               information() << "CARET OFF!!!!";
-//
-//            }
+            //            if (bCaretOn)
+            //            {
+            //
+            //               information() << "CARET ON!!!!";
+            //
+            //            }
+            //            else
+            //            {
+            //
+            //               information() << "CARET OFF!!!!";
+            //
+            //            }
 
             if (is_different(m_bLastCaret, bCaretOn))
             {
 
                m_bLastCaret = bCaretOn;
 
-//               if (bCaretOn)
-//               {
-//
-//                  information() << "CARET ON!!!!";
-//
-//               }
-//               else
-//               {
-//
-//                  information() << "CARET OFF!!!!";
-//
-//               }
+               //               if (bCaretOn)
+               //               {
+               //
+               //                  information() << "CARET ON!!!!";
+               //
+               //               }
+               //               else
+               //               {
+               //
+               //                  information() << "CARET OFF!!!!";
+               //
+               //               }
 
                set_need_redraw();
 
@@ -7494,42 +7983,42 @@ namespace user
       {
 
       }
-      
-      if(m_bSetTextSelectionUpdatePending)
+
+      if (m_bSetTextSelectionUpdatePending)
       {
-         
+
          m_bSetTextSelectionUpdatePending = false;
-         
+
          bool bSelectionWasAtEnd = m_bLastSelectionWasAtEnd;
-         
-         if(bSelectionWasAtEnd)
+
+         if (bSelectionWasAtEnd)
          {
-            
+
             auto iTextLength = _001GetTextLength();
-            
+
             _001SetSel(iTextLength, iTextLength);
-            
+
          }
          else
          {
-            
+
             ::strsize iSelectionBegin = 0;
-            
+
             ::strsize iSelectionEnd = 0;
-            
+
             iSelectionBegin = plain_edit_line_x_to_sel(pgraphics, m_iLastSelectionBeginLine, m_iLastSelectionBeginX);
-            
+
             iSelectionEnd = plain_edit_line_x_to_sel(pgraphics, m_iLastSelectionEndLine, m_iLastSelectionEndX);
 
             _001SetSel(iSelectionBegin, iSelectionEnd);
-            
+
          }
-         
+
       }
-      
+
       try
       {
-         
+
          //if (context.is_user_source())
          {
 
@@ -7545,13 +8034,13 @@ namespace user
                _001GetText(strText);
 
                ptexteditorinterface->set_editor_text(strText);
-               
+
                ::strsize iBeg = -1;
-               
+
                ::strsize iEnd = -1;
-               
+
                _001GetSel(iBeg, iEnd);
-               
+
                ptexteditorinterface->set_editor_selection(iBeg, iEnd);
 
             }
@@ -7559,9 +8048,9 @@ namespace user
          }
 
       }
-      catch(...)
+      catch (...)
       {
-         
+
       }
 
       //printf("xxxxxxxxxx4\n");
@@ -7756,8 +8245,8 @@ namespace user
       return true;
 
    }
-      
-   
+
+
    bool plain_edit::edit_undo()
    {
 
@@ -7841,17 +8330,17 @@ namespace user
 
    void plain_edit::_001SetText(const ::string & strParam, const ::action_context & action_context)
    {
-      
+
       ::strsize iSelBeg = 0;
-      
+
       ::strsize iSelEnd = 0;
-      
+
       _001GetSel(iSelBeg, iSelEnd);
-      
+
       ::strsize iTextLength = _001GetTextLength();
-      
+
       m_bLastSelectionWasAtEnd = (iSelBeg == iSelEnd) && (iSelEnd == iTextLength);
-      
+
       string str(strParam);
 
       {
@@ -7895,18 +8384,18 @@ namespace user
          }
 
       }
-      
+
       m_bSetTextSelectionUpdatePending = true;
-      
+
       queue_graphics_call([this, action_context](::draw2d::graphics_pointer & pgraphics)
       {
 
          plain_edit_on_update(pgraphics, action_context);
 
       });
-      
+
       set_need_redraw();
-      
+
       post_redraw();
 
    }
@@ -8169,9 +8658,6 @@ namespace user
 
       }
 
-      m_bNewFocus = true;
-
-      m_timeNewFocus.Now();
 
       if (!m_bMultiLine)
       {
@@ -8181,6 +8667,14 @@ namespace user
          strsize iEndAll = _001GetTextLength();
 
          _001SetSel(iBegAll, iEndAll);
+
+         m_bNewFocusSelectAll = true;
+
+         m_timeNewFocusSelectAll.Now();
+
+         m_iNewFocusSelectAllSelBeg = -1;
+         m_iNewFocusSelectAllSelEnd = -1;
+         m_iNewFocusSelectAllColumn = -1;
 
       }
 
@@ -8901,7 +9395,7 @@ namespace user
    }
 
 
-} // namespace aura
+   } // namespace aura
 
 
 
@@ -8910,51 +9404,51 @@ namespace user
 
 
 
-//#ifdef WINDOWS_DESKTOP
+   //#ifdef WINDOWS_DESKTOP
 
 
-//simple_imm & simple_frame_window::imm()
-//{
-//
-//   if (m_psimpleimm.is_null())
-//   {
-//
-//      m_psimpleimm = __allocate< simple_imm >(this);
-//
-//   }
-//
-//   return m_psimpleimm;
-//
-//}
+   //simple_imm & simple_frame_window::imm()
+   //{
+   //
+   //   if (m_psimpleimm.is_null())
+   //   {
+   //
+   //      m_psimpleimm = __allocate< simple_imm >(this);
+   //
+   //   }
+   //
+   //   return m_psimpleimm;
+   //
+   //}
 
 
-//simple_imm::simple_imm(::user::interaction * pinteraction)
-//{
-//
-//
-//
-//}
-//
-//
-//simple_imm::simple_imm(HWND hwnd)
-//{
-//
-//   m_hwnd = hwnd;
-//   m_himc = ImmGetContext(m_hwnd);
-//
-//}
-//
-//#endif
-//
-//simple_imm::~simple_imm()
-//{
-//#ifdef WINDOWS_DESKTOP
-//   ImmReleaseContext(m_hwnd, m_himc);
-//#endif
-//
-//}
-//
-//#ifdef WINDOWS_DESKTOP
-//
-//#endif // WINDOWS
+   //simple_imm::simple_imm(::user::interaction * pinteraction)
+   //{
+   //
+   //
+   //
+   //}
+   //
+   //
+   //simple_imm::simple_imm(HWND hwnd)
+   //{
+   //
+   //   m_hwnd = hwnd;
+   //   m_himc = ImmGetContext(m_hwnd);
+   //
+   //}
+   //
+   //#endif
+   //
+   //simple_imm::~simple_imm()
+   //{
+   //#ifdef WINDOWS_DESKTOP
+   //   ImmReleaseContext(m_hwnd, m_himc);
+   //#endif
+   //
+   //}
+   //
+   //#ifdef WINDOWS_DESKTOP
+   //
+   //#endif // WINDOWS
 

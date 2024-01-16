@@ -33,6 +33,8 @@ namespace user
       virtual void layout_to_design_x();
 
 
+      
+
       scroll_bar* get_scroll_bar_x() override;
       
       scroll_state get_scroll_state_x(::user::enum_layout elayout = ::user::e_layout_sketch) override;

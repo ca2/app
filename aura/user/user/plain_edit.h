@@ -212,8 +212,11 @@ namespace user
       bool                                m_bEnterKeyOnPaste;
       bool                                m_bLMouseDown;
       //bool                                m_bLeftButtonDownIsSelectingAll;
-      bool                                m_bNewFocus;
-      class ::time                        m_timeNewFocus;
+      bool                                m_bNewFocusSelectAll;
+      class ::time                        m_timeNewFocusSelectAll;
+      strsize                             m_iNewFocusSelectAllSelBeg;
+      strsize                             m_iNewFocusSelectAllSelEnd;
+      strsize                             m_iNewFocusSelectAllColumn;
       class ::time                        m_timeLeftButtonDown;
       bool                                m_bRMouseDown;
       point_i32                           m_pointSelStart;
@@ -271,6 +274,7 @@ namespace user
 
 
       virtual bool is_caret_on() const;
+      virtual bool is_new_focus_select_all() const;
 
 
       void get_text_composition_area(::rectangle_i32 & r) override;
@@ -454,11 +458,11 @@ namespace user
 
       bool should_load_full_file();
 
-      void plain_edit_on_calc_offset(::draw2d::graphics_pointer & pgraphics, index iOnlyLineToUpdate = -1);
+      void plain_edit_on_context_offset_layout(::draw2d::graphics_pointer & pgraphics, index iOnlyLineToUpdate = -1);
       void plain_edit_on_calc_layout(::draw2d::graphics_pointer& pgraphics, index iOnlyLineToUpdate = -1);
       void _plain_edit_update_lines_and_extents(::draw2d::graphics_pointer& pgraphics, index iOnlyLineToUpdate = -1);
-      void _plain_edit_update_lines(::draw2d::graphics_pointer& pgraphics, index iOnlyLineToUpdate = -1);
-      void _plain_edit_update_extents(::draw2d::graphics_pointer& pgraphics, index iOnlyLineToUpdate = -1);
+      //void _plain_edit_update_lines(::draw2d::graphics_pointer& pgraphics, index iOnlyLineToUpdate = -1);
+      //void _plain_edit_update_extents(::draw2d::graphics_pointer& pgraphics, index iOnlyLineToUpdate = -1);
       //void _001OnCalcLayoutProc(::user::primitive * pimpact);
 
       void FileSave();

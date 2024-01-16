@@ -75,6 +75,7 @@ NSString * nsstring_from_strdup(char * pszUtf8)
    
 }
 
+void _ns_main_sync(dispatch_block_t block);
 
 void ns_main_sync(dispatch_block_t block)
 {
@@ -87,9 +88,9 @@ void ns_main_sync(dispatch_block_t block)
    }
    else
    {
-
-      dispatch_sync(dispatch_get_main_queue(), block);
-
+      
+      _ns_main_sync(block);
+      
    }
 
 }

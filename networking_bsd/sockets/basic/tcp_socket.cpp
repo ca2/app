@@ -1495,14 +1495,14 @@ m_ibuf(isize)
 #endif // HAVE_OPENSSL
       {
          //         retry:
-#if defined(__APPLE__)
-         int iSocket = GetSocketId();
-         n = (int)(::send(iSocket, buf, len, SO_NOSIGPIPE));
-#elif defined(SOLARIS)
-         n = ::send(GetSocketId(), (const char*)buf, (int)len, 0);
-#else
+//#if defined(__APPLE__)
+//         int iSocket = GetSocketId();
+//         n = (int)(::send(iSocket, buf, len, SO_NOSIGPIPE));
+//#elif defined(SOLARIS)
+//         n = ::send(GetSocketId(), (const char*)buf, (int)len, 0);
+//#else
          n = ::send(GetSocketId(), (const char*)buf, (int)len, MSG_NOSIGNAL);
-#endif
+///#endif
          if (n == -1)
          {
             int iError = networking_last_error();

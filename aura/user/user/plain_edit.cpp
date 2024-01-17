@@ -8496,7 +8496,9 @@ namespace user
 
       _001GetSelText(str);
 
-      str.replace_with("\r\n", "\r");
+      // commenting str.replace_with below fix app-core/plain_text copy and
+      // paste at Windows
+      //str.replace_with("\r\n", "\r");
 
       auto pwindow = window();
 
@@ -8843,6 +8845,7 @@ namespace user
       pmessage->m_bRet = true;
 
    }
+
 
    void plain_edit::_001OnUpdateEditPaste(::message::message * pmessage)
    {

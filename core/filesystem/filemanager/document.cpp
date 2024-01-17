@@ -733,6 +733,8 @@ namespace filemanager
 
       m_pfilemanagerdata = pdata;
 
+      m_pfilemanagerdata->m_pfilemanagerdocument = this;
+
       if (!m_pfilemanagerdata->m_pitem)
       {
 

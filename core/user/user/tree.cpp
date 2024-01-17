@@ -198,7 +198,7 @@ namespace user
             while (pthread->task_get_run())
             {
 
-               m_evOpen.wait(500_ms);
+               m_evOpen._wait(500_ms);
 
                if (m_treeitemaOpen.has_element())
                {

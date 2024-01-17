@@ -981,6 +981,7 @@ namespace user
 
       virtual bool is_frame_window();
       virtual bool is_impact();
+      virtual bool is_menu() const;
       bool is_this_visible(enum_layout elayout = e_layout_design) override;
       //bool is_this_screen_visible() override;
       virtual bool should_draw();

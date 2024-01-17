@@ -60,7 +60,7 @@ namespace user
       //virtual void nextstyle(::user::style_context * pcontext) override;
       ::size_i32 get_window_minimum_size() override;
 
-
+      bool is_menu() const override;
 
       //virtual i64 increment_reference_count() override
       //{

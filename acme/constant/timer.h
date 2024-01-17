@@ -14,6 +14,7 @@ enum enum_timer : ::iptr
 
    e_timer_command_probe,
    e_timer_menu,
+   e_timer_overflow_scrolling_start,
    e_timer_overflow_scrolling,
    e_timer_key_repeat_start,
    e_timer_key_repeat,

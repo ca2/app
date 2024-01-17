@@ -7,6 +7,7 @@
 //
 
 #include "framework.h"
+#include "acme/parallelization/manual_reset_event.h"
 #include "acme/primitive/primitive/memory.h"
 #undef DEBUG
 #if defined(MACOS)
@@ -71,3 +72,22 @@ void set_os_cf_data(memory_base &memory, CFDataRef data, memsize pos, memsize si
 
 #endif
 
+void _ns_main_sync(dispatch_block_t block)
+{
+   
+   auto pevent = __allocate < manual_reset_event >();
+   
+   pevent->ResetEvent();
+   
+   dispatch_async(dispatch_get_main_queue(), ^()
+                  {
+      
+      block();
+      
+      pevent->SetEvent();
+      
+   });
+ 
+   pevent->wait();
+   
+}

@@ -41,6 +41,10 @@ namespace sockets_bsd
       m_iBindPort    = -1;
       m_timeStart.Now();
       //m_pcallback    = nullptr;
+      
+      m_iFamily = -1;
+      m_iSocketType = -1;
+      m_iProtocolType = -1;
 
    }
 
@@ -133,9 +137,11 @@ namespace sockets_bsd
    {
 
       SOCKET s;
+      
+      m_iFamily = af;
 
       m_iSocketType = iType;
-
+      
       m_strSocketProtocol = strProtocol;
 
       i32 protno;
@@ -189,6 +195,8 @@ namespace sockets_bsd
       }
 
 #endif
+      
+      m_iProtocolType = protno;
 
 #ifdef WINDOWS
 

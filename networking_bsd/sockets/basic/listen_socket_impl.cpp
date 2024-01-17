@@ -395,7 +395,7 @@ namespace sockets_bsd
          return;
 
       }
-
+      
       auto psocketAttend = m_plistensocketimpl->create_attend_socket();
 
       psocketAttend->initialize(this);
@@ -434,6 +434,7 @@ namespace sockets_bsd
       psocket-> SetIpv6( IsIpv6() );
       psocket-> set_parent(this);
       psocket-> attach(socketAccept);
+      psocket->OnOptions(m_iFamily, m_iSocketType, m_iProtocolType, socketAccept);
       psocket-> SetNonblocking(true);
       auto paddressRemote = __allocate< ::networking_bsd::address >();
       paddressRemote->set_address(sockaddr, sockaddr_len);

@@ -100,7 +100,9 @@ namespace sockets_bsd
 
       bool                    m_bIpv6; ///< This is an ipv6 base_socket if this one is true
 
+      int                     m_iFamily;
       int                     m_iSocketType; ///< Type of base_socket, from base_socket() call
+      int                     m_iProtocolType;
       string                  m_strSocketProtocol; ///< Protocol, from base_socket() call
       bool                    m_bClient; ///< only client connections are pooled
       bool                    m_bRetain; ///< keep connection on close

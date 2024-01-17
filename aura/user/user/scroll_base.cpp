@@ -290,6 +290,8 @@ namespace user
       rectangle.right() = const_layout().sketch().size().cx();
       rectangle.bottom() = const_layout().sketch().size().cy();
 
+      rectangle += get_accumulated_scroll();
+
       return true;
 
    }

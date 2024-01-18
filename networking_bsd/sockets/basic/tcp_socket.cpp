@@ -76,7 +76,7 @@ void SSL_set_app_data2(SSL* ssl, void* arg)
 
 
 
-static int current_session_key(::sockets_bsd::tcp_socket* c, ssl_ticket_key* key)
+int current_session_key(::sockets_bsd::tcp_socket* c, ssl_ticket_key* key)
 {
    int result = false;
    _synchronous_lock synchronouslock(c->synchronization());
@@ -90,7 +90,7 @@ static int current_session_key(::sockets_bsd::tcp_socket* c, ssl_ticket_key* key
 }
 
 
-static int find_session_key(::sockets_bsd::tcp_socket* c, unsigned char key_name[16], ssl_ticket_key* key, int* is_current_key)
+int find_session_key(::sockets_bsd::tcp_socket* c, unsigned char key_name[16], ssl_ticket_key* key, int* is_current_key)
 {
 
    int result = false;
@@ -1428,7 +1428,7 @@ m_ibuf(isize)
    int tcp_socket::try_write(const void* buf, int len)
    {
 
-      int n = 0;
+      ::iptr n = 0;
 
       const char* psz = (const char*)buf;
 

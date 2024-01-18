@@ -247,6 +247,8 @@ enum enum_id : ::uptr
    id_action,
    id_left_button_down,
    id_left_button_double_click,
+   id_left_button_drag,
+   id_left_button_up,
    id_click,
    id_context_menu,
    //subjectnt_m_button_down,

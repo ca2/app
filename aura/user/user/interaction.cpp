@@ -22814,6 +22814,38 @@ namespace user
 
       }
 
+
+      if (pitemLButtonDown && pitemLButtonDown->m_eitemflag & ::e_item_flag_drag)
+      {
+
+         auto puserinteractionimplHost = get_host_user_interaction_impl();
+
+         puserinteractionimplHost->m_puiLastLButtonDown = this;
+
+         puserinteractionimplHost->m_pitemLButtonDown = pitemLButtonDown;
+
+         auto ptopic = create_topic(::id_left_button_down);
+
+         ptopic->m_puserelement = this;
+
+         ptopic->m_actioncontext.m_pmessage = pmouse;
+
+         ptopic->m_actioncontext.add(e_source_user);
+
+         ptopic->m_pitem = pitemLButtonDown;
+
+         route(ptopic);
+
+         set_mouse_capture();
+
+         track_mouse_leave();
+
+         pmouse->m_bRet = true;
+
+         return;
+
+      }
+
       //if(m_pdragmove && ::is_set(m_pitemLButtonDown) && m_pitemLButtonDown->m_item.m_eelement == e_element_client)
       //{
 
@@ -23865,6 +23897,8 @@ namespace user
 
       }
 
+
+
       if (m_bDefaultClickHandling || m_bDefaultMouseHoverHandling)
       {
 
@@ -23985,6 +24019,42 @@ namespace user
       //   return;
 
       //}
+
+      auto puserinteractionimplHost = get_host_user_interaction_impl();
+
+      if(puserinteractionimplHost->m_puiLastLButtonDown == this)
+      {
+
+         if (puserinteractionimplHost->m_pitemLButtonDown
+                  && puserinteractionimplHost->m_pitemLButtonDown->m_eitemflag & ::e_item_flag_drag)
+         {
+
+            defer_release_mouse_capture();
+
+            auto ptopic = create_topic(::id_left_button_up);
+
+            ptopic->m_puserelement = this;
+
+            ptopic->m_actioncontext.m_pmessage = pmouse;
+
+            ptopic->m_actioncontext.add(e_source_user);
+
+            ptopic->m_pitem = puserinteractionimplHost->m_pitemLButtonDown;
+
+            route(ptopic);
+
+            pmouse->m_bRet = true;
+
+            puserinteractionimplHost->m_puiLastLButtonDown = nullptr;
+
+            puserinteractionimplHost->m_pitemLButtonDown = nullptr;
+
+            return;
+
+         }
+
+      }
+
 
       if (m_bDefaultClickHandling || m_bDefaultMouseHoverHandling)
       {
@@ -24213,6 +24283,34 @@ namespace user
 
       }
 
+      auto puserinteractionimplHost = get_host_user_interaction_impl();
+
+      if (puserinteractionimplHost->m_puiLastLButtonDown == this)
+      {
+
+         if (puserinteractionimplHost->m_pitemLButtonDown
+                  && puserinteractionimplHost->m_pitemLButtonDown->m_eitemflag & ::e_item_flag_drag)
+         {
+
+            auto ptopic = create_topic(::id_left_button_drag);
+
+            ptopic->m_puserelement = this;
+
+            ptopic->m_actioncontext.m_pmessage = pmessage->m_union.m_pmouse;
+
+            ptopic->m_actioncontext.add(e_source_user);
+
+            ptopic->m_pitem = puserinteractionimplHost->m_pitemLButtonDown;
+
+            route(ptopic);
+
+            pmessage->m_bRet = true;
+
+            return;
+
+         }
+
+      }
 
 
       ::string strType;

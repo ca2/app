@@ -21,6 +21,28 @@
 #include "acme/_operating_system.h"
 
 
+::string_array semi_colon_string_array(const ::scoped_string & scopedstr)
+{
+
+   ::string_array stra;
+
+   stra.explode(";", scopedstr, false);
+
+   stra.trim();
+
+   return stra;
+
+}
+
+
+bool semi_colon_separated_contains(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrItem)
+{
+
+   return semi_colon_string_array(scopedstr).case_insensitive_contains(scopedstrItem);
+
+}
+
+
 class user_toolbar_command : public ::message::command        // class private to this file !
 {
 public: // re-implementations only
@@ -2000,6 +2022,13 @@ namespace user
             //auto puseritem = user_item_at(iItem);
 
             ptoolitem->m_str = pchild->get_value();
+
+            if (semi_colon_separated_contains(pchild->attribute("style"),"drag"))
+            {
+
+               ptoolitem->m_eitemflag += ::e_item_flag_drag;
+
+            }
 
             if (pchild->attribute("image").has_char())
             {

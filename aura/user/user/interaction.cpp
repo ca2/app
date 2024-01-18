@@ -4586,6 +4586,14 @@ namespace user
    }
 
 
+   bool interaction::is_menu() const
+   {
+
+      return false;
+
+   }
+
+
    //   void interaction::show_window()
    //   {
    //

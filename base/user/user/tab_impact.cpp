@@ -1503,7 +1503,9 @@ namespace user
    void tab_impact::route_command(::message::command * pcommand, bool bRouteToKeyDescendant)
    {
 
-      if (m_pimpactdata && m_pimpactdata->m_puserinteraction)
+      if (m_pimpactdata 
+         && m_pimpactdata->m_puserinteraction
+         && !m_pimpactdata->m_puserinteraction->is_menu())
       {
 
          m_pimpactdata->m_puserinteraction->route_command(pcommand, true);

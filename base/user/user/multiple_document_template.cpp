@@ -209,7 +209,29 @@ namespace user
 
       ASSERT_VALID(pFrame);
 
-      if(!prequest->has_file())
+      if(prequest->m_pdata)
+      {
+
+         pdocument->m_bNew = true;
+
+         if (!pdocument->open_data(prequest->m_pdata))
+         {
+            // ::account::user has be alerted to what failed in on_new_document
+            warning()(e_trace_category_appmsg) << "::user::document::on_new_document returned false.\n";
+            pFrame->destroy_window();
+            return;
+
+         }
+         pdocument->m_bOpened = true;
+         // it worked, now bump untitled count
+         //m_nUntitledCount++;
+         pdocument->id_update_all_impacts(id_incoming_document);
+
+
+      }
+
+
+      else if(!prequest->has_file())
       {
          // create a new ::user::document - with default ::user::document name
          set_default_title(pdocument);

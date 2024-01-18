@@ -1595,6 +1595,14 @@ namespace user
       }
 
 
+      bool menu::is_menu() const
+      {
+
+         return true;
+
+      }
+
+
       void menu::on_message_non_client_calculate_size(::message::message * pmessage)
       {
 

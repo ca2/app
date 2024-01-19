@@ -72,7 +72,7 @@ public:
 
    string_range(THIS_RANGE && range) : ::const_string_range<ITERATOR_TYPE>(::transfer(range)) {}
 
-   string_range(const_iterator begin, const_iterator end) : ::const_string_range<ITERATOR_TYPE>(begin, end) {}
+   string_range(this_iterator begin, this_iterator end) : ::const_string_range<ITERATOR_TYPE>(begin, end) {}
 
    //explicit string_range(const ::atom & atom);
 

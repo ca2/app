@@ -105,7 +105,7 @@ public:
 
    const_string_range(THIS_RANGE&& range) : BASE_RANGE(::transfer(range)) {}
 
-   const_string_range(const_iterator begin, const_iterator end) : BASE_RANGE(begin, end) {}
+   const_string_range(this_iterator begin, this_iterator end) : BASE_RANGE(begin, end) {}
 
    //explicit const_string_range(const ::atom& atom);
 

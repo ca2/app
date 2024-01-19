@@ -121,6 +121,7 @@ public:
 
    void _001OnImageListAttrib();
    DECLARE_MESSAGE_HANDLER(on_message_create);
+   DECLARE_MESSAGE_HANDLER(on_message_left_button_double_click);
    //DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
    //DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
    void _001OnTimer(::timer * ptimer) override;

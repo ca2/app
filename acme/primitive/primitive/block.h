@@ -99,7 +99,7 @@ struct CLASS_DECL_ACME block :
    block(enum_as_block, TYPE & t) : block((void *)&t, sizeof(t)) {}
    template < typename TYPE >
    block(enum_as_block, const TYPE & t) : block((void *)&t, sizeof(t)) {}
-   block(const void * begin, const void * end) : BLOCK((const ::u8 *)begin, (const ::u8 *)end) {}
+   block(const void * begin, const void * end) : BLOCK((::u8 *)begin, (::u8 *)end) {}
    template < primitive_integral INTEGRAL >
    block(const void * data, INTEGRAL count) : BLOCK((::u8 *) data, count) { }
 

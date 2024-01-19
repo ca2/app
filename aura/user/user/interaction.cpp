@@ -229,7 +229,6 @@ namespace user
       m_bPendingSaveWindowRectangle = false;
       m_bLoadingWindowRectangle = false;
 
-
       m_bAutoResize = false;
       m_bNeedAutoResizePerformLayout = false;
 
@@ -5330,6 +5329,44 @@ namespace user
 
    }
 
+   
+   void interaction::on_context_offset(::draw2d::graphics_pointer & pgraphics)
+   {
+
+      {
+
+         ::point_i32 pointOffset;
+
+         if (m_puserinteractionParent != nullptr)
+         {
+
+            pointOffset = layout().layout().origin();
+
+            if (pointOffset.y() == 31)
+            {
+
+               //information() << "31";
+
+            }
+
+         }
+
+         pgraphics->offset_origin((::i32)pointOffset.x(), (::i32)pointOffset.y());
+
+      }
+
+      {
+
+         auto pointContextOffset = get_context_offset();
+
+         auto offset = -pointContextOffset;
+
+         pgraphics->offset_origin((::i32)offset.x(), (::i32)offset.y());
+
+      }
+
+   }
+
 
    //void interaction::on_context_offset(::draw2d::graphics_pointer & pgraphics)
    //{
@@ -6682,39 +6719,7 @@ namespace user
 
                ::draw2d::save_context savecontext(pgraphics);
 
-               //on_context_offset(pgraphics);
-
-               {
-
-                  ::point_i32 pointOffset;
-
-                  if (m_puserinteractionParent != nullptr)
-                  {
-
-                     pointOffset = layout().layout().origin();
-
-                     if (pointOffset.y() == 31)
-                     {
-
-                        //information() << "31";
-
-                     }
-
-                  }
-
-                  pgraphics->offset_origin((::i32)pointOffset.x(), (::i32)pointOffset.y());
-
-               }
-
-               {
-
-                  auto pointContextOffset = get_context_offset();
-
-                  auto offset = -pointContextOffset;
-
-                  pgraphics->offset_origin((::i32)offset.x(), (::i32)offset.y());
-
-               }
+               on_context_offset(pgraphics);
 
                try
                {
@@ -8917,7 +8922,6 @@ namespace user
          post_redraw();
 
          return true;
-
       }
       else if (pitem->m_item.m_eelement == e_element_resize)
       {
@@ -25650,7 +25654,7 @@ namespace user
 
       }
 
-      for (auto & pitem : *pitema)
+      for (auto & pitem : pitema->rear_payloads())
       {
 
          if (!pitem || pitem->is_hidden())

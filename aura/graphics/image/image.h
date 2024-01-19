@@ -7,6 +7,8 @@
 
 #include "source.h"
 
+#include "acme/handler/item.h"
+
 #include "acme/graphics/image/_configuration.h"
 
 #include "acme/primitive/primitive/memory.h"
@@ -19,7 +21,8 @@ class CLASS_DECL_AURA image :
    virtual public ::image_meta,
    virtual public ::property_object,
    virtual public ::image_drawer,
-   virtual public ::image_source_interface
+   virtual public ::image_source_interface,
+   virtual public ::item
 {
 public:
 
@@ -64,6 +67,7 @@ public:
    virtual ::pointer<::image>get_image(::i32 cx, ::i32 cy);
 
 
+   bool _is_set() const override;
    bool _is_ok() const override;
    inline bool is_ok() const { return ::is_set(this) && _is_ok(); }
    inline bool nok() const { return !is_ok(); }

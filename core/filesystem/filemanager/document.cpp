@@ -1518,6 +1518,8 @@ namespace filemanager
 
          auto pextendedtopic = create_topic(id_create_bars);
 
+         pextendedtopic->payload(id_document) = pfilemanagerdataFilemanager;
+
          pfilemanagerdataFilemanager->update_all_impacts(pextendedtopic);
 
       }
@@ -1675,6 +1677,16 @@ namespace filemanager
       pfilemanagerdata->m_bFileSize = true;
 
       return pfilemanagerdata;
+
+   }
+
+
+   bool document::has_toolbar()
+   {
+
+      auto pfilemanagerdata = filemanager_data();
+
+      return !pfilemanagerdata->m_setToolbar[pfilemanagerdata->m_emode].is_empty();
 
    }
 

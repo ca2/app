@@ -384,6 +384,7 @@ namespace user
 
       }
 
+      prepare_frame(pframe, pdocument, prequest->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_screen);
       //      if(bCreated)
       //      {
       //

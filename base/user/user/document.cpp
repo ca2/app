@@ -742,7 +742,7 @@ namespace user
    }
 
 
-   const ::file::path & document::get_file_path() const
+   ::file::path document::get_file_path() const
    {
 
       ASSERT(::is_set(this));

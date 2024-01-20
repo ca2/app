@@ -4528,10 +4528,7 @@ namespace user
 
       }
 
-      //      string_array & straLines = m_plinea->lines;
-      string_array & straLines = m_straLines;
-
-      if (iLine >= straLines.get_size())
+      if (iLine >= m_iaLineLength.get_size())
       {
 
          return 0;
@@ -4540,10 +4537,21 @@ namespace user
 
       strsize iOffset = 0;
 
+      strsize iLineOffset = -1;
+
       for (i32 i = 0; i < iLine; i++)
       {
 
-         iOffset += m_iaLineLength[i];
+         auto iNext = iOffset + m_iaLineLength[i];
+
+         if (iLineOffset < 0 && iNext > m_iImpactOffset)
+         {
+
+            iLineOffset = i;
+
+         }
+
+         iOffset = iNext;
 
       }
 
@@ -4553,7 +4561,10 @@ namespace user
 
       stra.erase_all();
 
-      stra.add_lines(straLines[iLine], false);
+      //      string_array & straLines = m_plinea->lines;
+      string_array & straLines = m_straLines;
+
+      stra.add_lines(straLines[iLine - iLineOffset], false);
 
       if (stra.get_size() > 0)
       {
@@ -4582,7 +4593,9 @@ namespace user
 
       }
 
-      return m_iImpactOffset + iOffset + iColumn;
+      //return m_iImpactOffset + iOffset + iColumn;
+
+      return iOffset + iColumn;
 
    }
 

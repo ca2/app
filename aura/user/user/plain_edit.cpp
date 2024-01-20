@@ -4593,7 +4593,9 @@ namespace user
 
       }
 
+      //
       //return m_iImpactOffset + iOffset + iColumn;
+      //
 
       return iOffset + iColumn;
 

@@ -6249,7 +6249,7 @@ namespace user
 
             on_context_offset_layout(pgraphics);
 
-            m_bLadingToLayout = false;
+            m_bContextOffsetLadingToLayout = false;
 
          }
 

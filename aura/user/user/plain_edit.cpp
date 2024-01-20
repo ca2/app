@@ -595,6 +595,8 @@ namespace user
       if (m_ptree == nullptr)
       {
 
+         information() << "Exiting _001OnDraw Prematurely m_ptree == nullptr";
+
          return;
 
       }
@@ -687,6 +689,16 @@ namespace user
          }
 
       }
+
+      if (m_iCurrentPageLineStart >= m_iCurrentPageLineEnd)
+      {
+
+         information() << "Exiting _001OnDraw Prematurely m_iCurrentPageLineStart >= m_iCurrentPageLineEnd";
+
+         return;
+
+      }
+
 
       for (index iLine = m_iCurrentPageLineStart; iLine < m_iCurrentPageLineEnd; i++, iLine++)
       {
@@ -2022,13 +2034,13 @@ namespace user
          if (lineTop < currentPageTop)
          {
 
-            set_context_offset_y(lineTop, ::user::e_layout_design);
+            set_context_offset_y(lineTop, ::user::e_layout_layout);
 
          }
          else if (lineBottom >= currentPageBottom)
          {
 
-            set_context_offset_y((lineBottom - rectangleX.height()) + (m_dLineHeight / 4.0), ::user::e_layout_design);
+            set_context_offset_y((lineBottom - rectangleX.height()) + (m_dLineHeight / 4.0), ::user::e_layout_layout);
 
          }
 
@@ -2036,11 +2048,13 @@ namespace user
 
       }
 
+      on_change_context_offset(::user::e_layout_layout);
+
       plain_edit_on_context_offset_layout(pgraphics);
 
 #ifndef SEARCH_SCROLLING_PROFILING
 
-      set_need_redraw();
+      //set_need_redraw();
 
 #endif
 
@@ -6881,7 +6895,7 @@ namespace user
                         _001EnsureVisibleLine(pgraphics, 0);
 
                      }
-
+                     else
                      {
 
                         index iLine = plain_edit_sel_to_line(pgraphics, m_ptree->m_iSelEnd);
@@ -6890,8 +6904,6 @@ namespace user
 
                      }
 
-                     _ensure_selection_visible_x(pgraphics);
-
                      if (!bShift)
                      {
 
@@ -6899,7 +6911,13 @@ namespace user
 
                      }
 
+                     _ensure_selection_visible_x(pgraphics);
+
                      });
+
+               set_need_redraw();
+
+               post_redraw();
 
                   }
             else if (pkey->m_ekey == ::user::e_key_end)

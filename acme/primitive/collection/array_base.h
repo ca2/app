@@ -320,13 +320,7 @@ public:
    inline ::range<rear_iterator> rear_payloads()
    { 
 
-      auto begin = (typename ::range<rear_iterator>::const_iterator) this->rear_begin();
-
-      auto end = (typename ::range<rear_iterator>::const_iterator) this->rear_end();
-      
-      auto range = ::range<rear_iterator>(begin, end);
-
-      return ::transfer(range);
+      return ::range<rear_iterator>(this->rear_begin(), this->rear_end());
    
    }
 
@@ -334,13 +328,7 @@ public:
    inline ::range<const_rear_iterator> rear_payloads() const
    {
 
-      auto begin = (typename ::range<const_rear_iterator>::const_iterator) this->rear_begin();
-
-      auto end = (typename ::range<const_rear_iterator>::const_iterator) this->rear_end();
-
-      auto range = ::range<const_rear_iterator>(begin, end);
-
-      return ::transfer(range);
+      return ::range<const_rear_iterator>(this->rear_begin(), this->rear_end());
 
    }
 

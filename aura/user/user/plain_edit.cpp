@@ -1242,7 +1242,7 @@ namespace user
          if (m_bLMouseDown)
          {
 
-            SetTimer(e_timer_overflow_scrolling, 50_ms);
+            SetTimer(e_timer_overflow_scrolling, 300_ms);
 
          }
 
@@ -1257,39 +1257,53 @@ namespace user
 
             auto pwindow = window();
 
-            auto pointCursor = pwindow->m_pointWindow;
+            auto pointHostCursor = pwindow->m_pointCursor2;
 
-            host_to_client()(pointCursor);
+            auto pointCursor = pointHostCursor;
 
-            ::rectangle_i32 rectangleClient;
+            host_to_raw()(pointCursor);
 
-            rectangleClient = client2_rectangle();
+            ::rectangle_i32 rectangleRaw;
 
-            if (pointCursor.x() < rectangleClient.left())
+            rectangleRaw = raw_rectangle();
+
+            if (pointCursor.x() < rectangleRaw.left())
             {
 
                scroll_left_line();
 
             }
-            else if (pointCursor.x() > rectangleClient.right())
+            else if (pointCursor.x() > rectangleRaw.right())
             {
 
                scroll_right_line();
 
             }
 
-            if (pointCursor.y() < rectangleClient.top())
+            if (pointCursor.y() < rectangleRaw.top())
             {
 
                scroll_up_line();
 
             }
-            else if (pointCursor.y() > rectangleClient.bottom())
+            else if (pointCursor.y() > rectangleRaw.bottom())
             {
 
                scroll_down_line();
 
             }
+
+            _extend_selection_end(pointHostCursor);
+
+            set_need_redraw();
+
+            post_redraw();
+
+         }
+         else
+         {
+
+            KillTimer(etimer);
 
          }
 
@@ -1449,6 +1463,80 @@ namespace user
    //}
 
 
+   void plain_edit::extend_selection_end(const ::point_i32 & pointHost)
+   {
+
+      auto point = pointHost;
+
+      host_to_client()(point);
+
+      if (m_pointLastCursor == point)
+      {
+
+         return;
+
+      }
+
+      _extend_selection_end(pointHost);
+
+   }
+
+
+   void plain_edit::_extend_selection_end(const ::point_i32 & pointHost)
+   {
+
+      auto point = pointHost;
+
+      host_to_client()(point);
+
+      m_pointLastCursor = point;
+
+      _synchronous_lock synchronouslock(this->synchronization());
+
+      ::rectangle_i32 rectangleWindow;
+
+      window_rectangle(rectangleWindow);
+
+      if (pointHost.x() < rectangleWindow.left() - 30)
+      {
+
+         informationf("test06");
+
+      }
+
+      queue_graphics_call([this, point](::draw2d::graphics_pointer & pgraphics)
+         {
+
+            if (m_iNewFocusSelectAllSelBeg >= 0
+               || m_iNewFocusSelectAllSelEnd >= 0
+               || m_iNewFocusSelectAllColumn >= 0)
+            {
+
+               auto iBegNew = m_iNewFocusSelectAllSelBeg;
+               auto iEndNew = m_iNewFocusSelectAllSelEnd;
+               auto iColumn = m_iNewFocusSelectAllColumn;
+
+               m_iNewFocusSelectAllSelBeg = -1;
+               m_iNewFocusSelectAllSelEnd = -1;
+               m_iNewFocusSelectAllColumn = -1;
+
+               _001SetSel(iBegNew, iEndNew);
+
+               m_iColumn = iColumn;
+
+            }
+
+            _set_sel_end(pgraphics, plain_edit_char_hit_test(pgraphics, point), e_source_user);
+
+         });
+
+      set_need_redraw();
+
+      post_redraw();
+
+   }
+
+
    strsize plain_edit::_001GetTextLength()
    {
 
@@ -1484,6 +1572,14 @@ namespace user
       }
 
       return (strsize)peditfile->get_length();
+
+   }
+
+
+   ::count plain_edit::line_count() const
+   {
+
+      return m_iaLineLength.count();
 
    }
 
@@ -1969,6 +2065,7 @@ namespace user
 
    }
 
+
    void plain_edit::on_message_mouse_move(::message::message * pmessage)
    {
 
@@ -1990,59 +2087,9 @@ namespace user
          if (m_bLMouseDown && !is_new_focus_select_all())
          {
 
-            ::point_i32 point = pmouse->m_pointHost;
+            ::point_i32 pointHost = pmouse->m_pointHost;
 
-            host_to_client()(point);
-
-            if (m_pointLastCursor != point)
-            {
-
-               m_pointLastCursor = point;
-
-               _synchronous_lock synchronouslock(this->synchronization());
-
-               ::rectangle_i32 rectangleWindow;
-
-               window_rectangle(rectangleWindow);
-
-               if (pmouse->m_pointHost.x() < rectangleWindow.left() - 30)
-               {
-
-                  informationf("test06");
-
-               }
-
-               queue_graphics_call([this, point](::draw2d::graphics_pointer & pgraphics)
-                  {
-
-                     if (m_iNewFocusSelectAllSelBeg >= 0
-                        || m_iNewFocusSelectAllSelEnd >= 0
-                        || m_iNewFocusSelectAllColumn >= 0)
-                     {
-
-                        auto iBegNew = m_iNewFocusSelectAllSelBeg;
-                        auto iEndNew = m_iNewFocusSelectAllSelEnd;
-                        auto iColumn = m_iNewFocusSelectAllColumn;
-                        
-                        m_iNewFocusSelectAllSelBeg = -1;
-                        m_iNewFocusSelectAllSelEnd = -1;
-                        m_iNewFocusSelectAllColumn = -1;
-
-                        _001SetSel(iBegNew, iEndNew);
-
-                        m_iColumn = iColumn;
-
-                     }
-
-                     _set_sel_end(pgraphics, plain_edit_char_hit_test(pgraphics, point), e_source_user);
-
-                  });
-
-               set_need_redraw();
-
-               post_redraw();
-
-            }
+            extend_selection_end(pointHost);
 
             m_pitemHover = tool().item(e_element_client);
 
@@ -3500,6 +3547,14 @@ namespace user
 
       //m_pscrollstateVertical->m_iLine = (int)m_dLineHeight;
 
+      if (m_pscrolllayoutY)
+      {
+       
+         m_pscrolllayoutY->m_scrollstatea[::user::e_layout_sketch].m_dLine = m_dLineHeight;
+         m_pscrolllayoutY->m_scrollstatea[::user::e_layout_sketch].m_dWheel = 3. * m_dLineHeight;
+
+      }
+
       set_total_size(sizeTotal);
 
       //on_change_impact_size(pgraphics);
@@ -4668,31 +4723,48 @@ namespace user
 
       index iLine;
 
-      for (iLine = m_iCurrentPageLineStart; iLine < m_iCurrentPageLineEnd; iLine++)
+      if (point.y() < 0)
       {
 
-         if (point.y() < Δy + dLineHeight)
+         iLine = maximum(0, m_iCurrentPageLineStart - 1);
+
+      }
+      else if(point.y() > rectangleX.height())
+      {
+
+         iLine = minimum(line_count(), m_iCurrentPageLineEnd + 1);
+
+      }
+      else
+      {
+
+         for (iLine = m_iCurrentPageLineStart; iLine < m_iCurrentPageLineEnd; iLine++)
          {
 
-            bFound = true;
+            if (point.y() < Δy + dLineHeight)
+            {
 
-            break;
+               bFound = true;
+
+               break;
+
+            }
+
+            Δy += dLineHeight;
+
+            //iOffset += m_iaLineLength[iLine];
 
          }
 
-         Δy += dLineHeight;
-
-         //iOffset += m_iaLineLength[iLine];
-
-      }
-
-      if (!bFound)
-      {
-
-         if (iLine > m_iCurrentPageLineStart)
+         if (!bFound)
          {
 
-            iLine--;
+            if (iLine > m_iCurrentPageLineStart)
+            {
+
+               iLine--;
+
+            }
 
          }
 

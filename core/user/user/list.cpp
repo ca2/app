@@ -1971,11 +1971,17 @@ namespace user
 
       auto pointOffset = get_context_offset();
 
+      information() << "_001CalcDisplayTopIndex pointOffset.y() : " << pointOffset.y();
+      information() << "_001CalcDisplayTopIndex m_bHeaderCtrl : " << m_bHeaderCtrl;
+      information() << "_001CalcDisplayTopIndex m_dItemHeight : " << m_dItemHeight;
+
       index iItem;
 
       if (_001DisplayHitTest(point_i32(0,
          pointOffset.y() + (::i32) (m_bHeaderCtrl ? m_dItemHeight : 0.)), iItem))
       {
+
+         information() << "_001CalcDisplayTopIndex iItem : " << iItem;
 
          return (::index) iItem;
 

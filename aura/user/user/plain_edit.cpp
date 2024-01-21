@@ -4569,6 +4569,13 @@ namespace user
 
       }
 
+      if (iLineOffset < 0)
+      {
+
+         iLineOffset = 0;
+
+      }
+
       string_array stra;
 
       string strLine;

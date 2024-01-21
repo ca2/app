@@ -1158,21 +1158,21 @@ namespace user
 
       m_bRMouseDown = true;
 
-      queue_graphics_call([this, point](::draw2d::graphics_pointer & pgraphics)
-         {
+      //queue_graphics_call([this, point](::draw2d::graphics_pointer & pgraphics)
+      //   {
 
-            strsize iHit = plain_edit_char_hit_test(pgraphics, point);
+      //      strsize iHit = plain_edit_char_hit_test(pgraphics, point);
 
-            if (iHit <= m_ptree->m_iSelBeg || iHit >= m_ptree->m_iSelEnd)
-            {
+      //      if (iHit <= m_ptree->m_iSelBeg || iHit >= m_ptree->m_iSelEnd)
+      //      {
 
-               m_ptree->m_iSelBeg = iHit;
+      //         m_ptree->m_iSelBeg = iHit;
 
-               m_ptree->m_iSelEnd = iHit;
+      //         m_ptree->m_iSelEnd = iHit;
 
-            }
+      //      }
 
-         });
+      //   });
 
       set_need_redraw();
 

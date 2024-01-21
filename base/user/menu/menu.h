@@ -42,6 +42,7 @@ namespace user
       ::pointer<menu>                       m_pmenuSubMenu;
       //atom                                     m_atomTimerMenu;
       point_i32                              m_pointTrack;
+      bool                                   m_bUsePositionHint;
       point_i32                              m_pointPositionHint;
       int                                    m_iFlags;
       bool                                   m_bPositionHint;

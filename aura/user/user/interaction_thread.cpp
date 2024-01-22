@@ -247,6 +247,8 @@ namespace user
       }
 
       //__construct(m_pimpl->m_puserinteraction, m_pimpl->m_puserinteraction->m_pthreadUserInteraction);
+      
+      m_eflagElement += e_flag_running;
 
       __keep_flag_on(m_pimpl->m_puserinteraction->layout().m_eflag, ::user::interaction_layout::flag_creating);
 

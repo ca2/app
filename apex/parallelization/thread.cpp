@@ -739,6 +739,8 @@ void thread::run()
 {
 
    ASSERT_VALID(this);
+   
+   m_eflagElement += e_flag_running;
 
    if (m_procedure && m_procedure != this)
    {
@@ -4649,16 +4651,18 @@ int thread::get_x_window_count() const
 bool thread::do_tasks()
 {
 
-   bool bProcessed = false;
+   bool bProcessed1 = false;
 
    while(defer_pump_message())
    {
 
-      bProcessed = true;
+      bProcessed1 = true;
 
    }
+   
+   auto bProcessed2 = ::task::do_tasks();
 
-   return bProcessed;
+   return bProcessed1 || bProcessed2;
 
 }
 

@@ -746,22 +746,20 @@ void particle::init_task()
 void particle::call_run()
 {
 
-   //::e_status estatus;
+   m_eflagElement += e_flag_running;
 
-   //try
-   //{
+   try
+   {
 
-   /*estatus =*/ run();
+      run();
 
-   //}
-   //catch (...)
-   //{
+   }
+   catch (...)
+   {
 
-   //   estatus = ::error_exception;
+   }
 
-   //}
-
-   //return estatus;
+   m_eflagElement -= e_flag_running;
 
 }
 

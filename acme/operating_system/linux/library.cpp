@@ -14,8 +14,11 @@ string m_strPathOut;
 
 };
 
-namespace acme
+
+namespace platform
 {
+
+
    int
    __node_library_is_loaded_callback(struct dl_phdr_info *info, size_t size, void *data)
    {
@@ -63,7 +66,7 @@ namespace acme
    }
 
 
-   void * system::operating_system_library_touch(const ::file::path & path, string &strMessage)
+   void * platform::operating_system_library_touch(const ::file::path & path, string &strMessage)
    {
 
       string strPath = __node_library_is_loaded(path);
@@ -80,7 +83,7 @@ namespace acme
    }
 
 
-   void *system::operating_system_library_open(const ::file::path & path, string &strMessage)
+   void *platform::operating_system_library_open(const ::file::path & path, string &strMessage)
    {
 
       string strPath(path);
@@ -158,7 +161,7 @@ namespace acme
    }
 
 
-   void * system::operating_system_library_open_ca2(const ::file::path & path, string &strMessage)
+   void * platform::operating_system_library_open_ca2(const ::file::path & path, string &strMessage)
    {
 
       string strPath(path);
@@ -211,7 +214,7 @@ namespace acme
    }
 
 
-   bool system::operating_system_library_close(void *plibrary)
+   bool platform::operating_system_library_close(void *plibrary)
    {
 
       if (plibrary == nullptr)
@@ -222,7 +225,7 @@ namespace acme
    }
 
 
-   void *system::operating_system_library_raw_get(void *plibrary, const ::scoped_string & scopedstrEntryName)
+   void *platform::operating_system_library_raw_get(void *plibrary, const ::scoped_string & scopedstrEntryName)
    {
 
       return dlsym(plibrary, scopedstrEntryName.c_str());
@@ -230,7 +233,7 @@ namespace acme
    }
 
 
-} // namespace acme
+} // namespace platform
 
 
 

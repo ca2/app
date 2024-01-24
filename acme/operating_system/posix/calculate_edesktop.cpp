@@ -47,27 +47,37 @@
       return ::user::e_desktop_lxde;
 
    }
-
-   utsname name;
-
-   memory_set(&name, 0, sizeof(utsname));
-
-   uname(&name);
-
-   if(pszDesktop != nullptr)
+   else if(strDesktop.case_insensitive_order("unity") == 0)
    {
 
-      if(strcasecmp(pszDesktop, "Unity") == 0)
-      {
+      printf("calculate_edesktop e_desktop_unity_gnome\n");
 
-         return ::user::e_desktop_unity_gnome;
-
-      }
+      return ::user::e_desktop_unity_gnome;
 
    }
 
-   if(is_directory("/etc/xdg/lubuntu"))
+   // // utsname name;
+
+   // // memory_set(&name, 0, sizeof(utsname));
+
+   // // uname(&name);
+
+   // if(pszDesktop != nullptr)
+   // {
+
+   //    if(strcasecmp(pszDesktop, "Unity") == 0)
+   //    {
+
+   //       return ::user::e_desktop_unity_gnome;
+
+   //    }
+
+   // }
+
+   else if(is_directory("/etc/xdg/lubuntu"))
    {
+
+      printf("calculate_edesktop e_desktop_lxde\n");
 
       return ::user::e_desktop_lxde;
 
@@ -75,11 +85,15 @@
    else if(file_exists("/usr/bin/xfconf-query"))
    {
 
+      printf("calculate_edesktop e_desktop_xfce\n");
+
       return ::user::e_desktop_xfce;
 
    }
    else if(file_exists("/usr/bin/mate-about"))
    {
+
+      printf("calculate_edesktop e_desktop_mate\n");
 
       return ::user::e_desktop_mate;
 
@@ -87,11 +101,15 @@
    else if(file_exists("/usr/bin/unity"))
    {
 
+      printf("calculate_edesktop e_desktop_unity_gnome\n");
+
       return ::user::e_desktop_unity_gnome;
 
    }
    else if(strcasecmp(pszDesktop, "ubuntu:gnome") == 0)
    {
+
+      printf("calculate_edesktop e_desktop_ubuntu_gnome\n");
 
       return ::user::e_desktop_ubuntu_gnome;
 
@@ -99,11 +117,19 @@
    else if(strcasecmp(pszDesktop, "gnome") == 0)
    {
 
+      printf("calculate_edesktop e_desktop_gnome\n");
+
       return ::user::e_desktop_gnome;
 
    }
+   else
+   {
 
-   return ::user::e_desktop_gnome;
+      printf("calculate_edesktop e_desktop_gnome\n");
+
+      return ::user::e_desktop_gnome;
+
+   }
 
 }
 

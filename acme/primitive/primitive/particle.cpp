@@ -701,6 +701,8 @@ class ::write_text::write_text * particle::write_text() const
 ::factory::factory_pointer& particle::factory(const ::string& strComponent, const ::string& strImplementation) const
 {
 
+   printf("particle::factory(\"%s\", \"%d\");\n", strComponent.c_str(), strImplementation.c_str());
+
    return platform()->factory(strComponent, strImplementation);
 
 }

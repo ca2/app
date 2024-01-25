@@ -2160,7 +2160,15 @@ namespace acme
 
       auto pathTraceLevelInformation = pathCa2ConfigSystemFolder / "trace_level_information.txt";
 
-      if(file_exists(pathTraceLevelInformation))
+      if(platform()->has_argument1("--log"))
+      {
+
+         printf("selecting informational trace\n");
+
+         etracelevel = e_trace_level_information;
+
+      }
+      else if(file_exists(pathTraceLevelInformation))
       {
 
          etracelevel = e_trace_level_information;

@@ -23,6 +23,7 @@
 #include "trace.h"
 
 
+namespace windowing { class display; }
 
 
 using enum_application_capability_array = ::comparable_array < enum_application_capability >;
@@ -301,7 +302,7 @@ namespace acme
 
       virtual void os_process_user_icon_theme(string strIconTheme);
 
-      virtual bool set_wallpaper(index iScreen, string strLocalImagePath);
+      virtual bool set_wallpaper(index iScreen, string strLocalImagePath, ::windowing::display * pwindowingdisplay);
 
       virtual string get_wallpaper(index iScreen);
 

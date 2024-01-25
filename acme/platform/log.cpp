@@ -51,6 +51,15 @@ void log::initialize(::particle * pparticle)
       m_bLog = true;
 
    }
+   else if(platform()->has_argument1("--log"))
+   {
+
+      printf("--log argument present\n");
+
+      m_bLog = true;
+
+   }
+
 
    //if (acmefile()->is_true(acmedirectory()->system() / "log.txt"))
    //{

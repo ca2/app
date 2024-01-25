@@ -185,6 +185,17 @@ namespace apex
          m_bLog = true;
 
       }
+      else if(platform()->has_argument1("--log"))
+      {
+
+         printf("--log argument present (2)\n");
+
+         m_bLog = true;
+
+         m_bTrace = true;
+
+      }
+
 
 #ifdef COMPILE_WITH_VALGRIND
 

@@ -165,6 +165,8 @@ public:
 
    virtual ::payload as_network_payload(const ::payload & payloadFile);
    virtual ::payload safe_get_network_payload(const ::payload & payloadFile);
+   virtual ::memory _005SignedMemory(const ::payload & payloadFile);
+   virtual string _005SignedString(const ::payload & payloadFile);
    virtual string as_string(const ::payload & payloadFile);
    virtual string safe_get_string(const ::payload & payloadFile, ::e_status * pestatus = nullptr);
    virtual void as_memory(const ::payload & payloadFile, memory_base & mem);
@@ -191,12 +193,17 @@ public:
    virtual void get_lines(string_array & stra, const ::payload & payloadFile, bool bAddEmpty = true, bool bNoExceptionOnFail = true);
    virtual void put_lines(const ::payload& payloadFile, const string_array& stra, const plain_text_file_options& options = {});
    //virtual void put_lines_utf8(const ::payload & payloadFile, const string_array & stra);
+
+
+   virtual ::memory _005Signature(const ::payload & payloadFile);
    
 
    virtual void put_memory(const ::payload & payloadFile, ::file::file * pfile);
    virtual void put_memory(const ::payload & payloadFile, const ::block & block);
+   virtual void _005PutSignedMemory(const ::payload & payloadFile, const ::block & block);
    virtual void put_text(const ::payload& payloadFile, const ::scoped_string & scopedstr);
    virtual void put_text_utf8(const ::payload & payloadFile, const ::scoped_string & scopedstr);
+   virtual void _005PutSignedText(const ::payload & payloadFile, const ::scoped_string & scopedstr);
 
 
    //virtual void add_contents(const ::payload & payloadFile, const void * pvoidContents, ::count count);

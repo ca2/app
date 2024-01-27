@@ -685,6 +685,40 @@ memory_base & memory_base::erase(memsize pos,memsize len)
 }
 
 
+bool memory_base::begins_eat(const BLOCK & block)
+{
+
+   if(!begins(block))
+   {
+
+      return false;
+
+   }
+
+   erase(0, block.size());
+
+   return true;
+
+}
+
+
+bool memory_base::ends_eat(const BLOCK & block)
+{
+
+   if(!ends(block))
+   {
+
+      return false;
+
+   }
+
+   erase(size() - block.size(), block.size());
+
+   return true;
+
+}
+
+
 string memory_base::as_utf8() const
 {
 

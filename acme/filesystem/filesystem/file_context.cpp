@@ -748,6 +748,74 @@ bool file_context::try_create_file(const ::file::path &path, bool bTryDelete)
 }
 
 
+::memory file_context::_005Signature(const ::payload & payloadFile)
+{
+
+   auto path = payloadFile.as_file_path();
+
+   ::string all_extensions = path.all_extensions();
+
+   if(all_extensions.is_empty())
+   {
+
+      ::string strMessage;
+
+      strMessage = "file_context::_005SignedMemory Cannot open file as _005SignedMemory. It doesn't have file extension.";
+
+      warning() << strMessage;
+
+      throw ::exception(error_failed, strMessage);
+
+   }
+
+   all_extensions.make_lower();
+
+   ::memory signature;
+
+   signature.append("\1\1\1\1\1", 5);
+
+   signature.append(all_extensions);
+
+   signature.append("\1\1\1\1\1", 5);
+
+   return ::transfer(signature);
+
+}
+
+
+::memory file_context::_005SignedMemory(const ::payload & payloadFile)
+{
+
+   auto memory = as_memory(payloadFile);
+
+   auto signature = _005Signature(payloadFile);
+
+   if(!memory.begins_eat(signature))
+   {
+
+      ::string strMessage;
+
+      strMessage.formatf("file_context::_005SignedMemory Cannot open file as _005SignedMemory. Start of file doesn't match the _005Signature for all_extensions : %s", ::string(payloadFile.as_file_path().all_extensions()).c_str());
+
+      throw ::exception(error_failed, strMessage);
+
+   }
+
+   return memory;
+
+}
+
+
+string file_context::_005SignedString(const ::payload & payloadFile)
+{
+
+   auto memory = _005SignedMemory(payloadFile);
+
+   return memory.as_utf8();
+
+}
+
+
 string file_context::as_string(const ::payload & payloadFile)
 {
 
@@ -1188,6 +1256,44 @@ void file_context::put_memory(const ::payload &payloadFile, const block & block)
 }
 
 
+
+void file_context::_005PutSignedMemory(const ::payload & payloadFile, const block & block)
+{
+
+   file_pointer pfile;
+
+   pfile = get_file(payloadFile,
+                    ::file::e_open_binary
+                    | ::file::e_open_write
+                    | ::file::e_open_create
+                    | ::file::e_open_share_deny_write
+                    | ::file::e_open_no_truncate
+                    | ::file::e_open_defer_create_directory);
+
+   if (pfile.nok())
+   {
+
+      throw ::exception(error_io);
+
+   }
+
+   pfile->set_size(0);
+
+   auto signature = _005Signature(payloadFile);
+
+   pfile->write(signature);
+
+   if(block.size() > 0)
+   {
+
+      pfile->write(block);
+
+   }
+
+}
+
+
+
 void file_context::add_contents(const ::payload &payloadFile, const ::scoped_string & scopedstr)
 {
 
@@ -1240,6 +1346,13 @@ void file_context::put_text(const ::payload& payloadFile, const ::scoped_string 
 
 }
 
+
+void file_context::_005PutSignedText(const ::payload& payloadFile, const ::scoped_string & scopedstr)
+{
+
+   return _005PutSignedMemory(payloadFile, scopedstr);
+
+}
 
 //void file_context::add_contents(const ::payload &payloadFile, const ::scoped_string & scopestrContents)
 //{

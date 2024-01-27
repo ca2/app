@@ -294,6 +294,64 @@ struct CLASS_DECL_ACME block :
    }
 
 
+   inline bool begins(const ::block & block) const
+   {
+
+      if(block.is_empty())
+      {
+
+         return true;
+
+      }
+
+      if(this->size() < block.size())
+      {
+
+         return false;
+
+      }
+
+      if(::memory_order(this->data(), block.data(), block.size()) != 0)
+      {
+
+         return false;
+
+      }
+
+      return true;
+
+   }
+
+
+   inline bool ends(const ::block & block) const
+   {
+
+      if(block.is_empty())
+      {
+
+         return true;
+
+      }
+
+      if(this->size() < block.size())
+      {
+
+         return false;
+
+      }
+
+      if(::memory_order(this->end() - block.size(), block.data(), block.size()) != 0)
+      {
+
+         return false;
+
+      }
+
+      return true;
+
+   }
+
+
    ::u8 & first_byte(::index i = 0){return this->m_begin[i];}
    ::u8 first_byte(::index i = 0)const{return this->m_begin[i];}
    ::u8 & last_byte(::index i = -1){return this->m_end[i];}

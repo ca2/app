@@ -1854,29 +1854,71 @@ namespace acme
 
          auto strCommandLine = platform()->m_strCommandLine;
 
-         prequest->m_strCommandLine = strCommandLine;
+         strCommandLine.trim();
 
          prequest->m_strAppId = application()->m_strAppId;
 
          ::string strApp;
 
-         prequest->get_property_set()._008ParseCommandFork(
-                                                           strCommandLine,
-                                                           prequest->m_payloadFile,
-                                                           strApp);
-
-#if !defined(WINDOWS)
-
-         for (::index iArgument = 1; iArgument < m_pplatform->m_argc; iArgument++)
+         if(strCommandLine.has_char())
          {
 
-            ::string strArgument = m_pplatform->m_argv[iArgument];
+            information() << "system::defer_post_initial_request ***strCommandLine*** : ***" << strCommandLine << "***";
 
-            prequest->get_property_set()._008AddArgument(strArgument);
+            prequest->m_strCommandLine = strCommandLine;
+
+            prequest->get_property_set()._008ParseCommandFork(
+               strCommandLine,
+               prequest->m_payloadFile,
+               strApp);
 
          }
+         else
+         {
 
-#endif
+            strApp = m_pplatform->m_argv[0];
+
+            ::string_array straFiles;
+
+            for (::index iArgument = 1; iArgument < m_pplatform->m_argc; iArgument++)
+            {
+
+               ::string strArgument = m_pplatform->m_argv[iArgument];
+
+               if(strArgument.begins("-"))
+               {
+
+                  prequest->get_property_set()._008AddArgument(strArgument);
+
+               }
+               else
+               {
+
+                  straFiles.add(strArgument);
+
+               }
+
+            }
+
+            if(straFiles.has_elements())
+            {
+
+               if(straFiles.size() == 1)
+               {
+
+                  prequest->m_payloadFile = straFiles[0];
+
+               }
+               else
+               {
+
+                  prequest->m_payloadFile.string_array_reference() = straFiles;
+
+               }
+
+            }
+
+         }
 
          payload("command_line_arg0") = strApp;
 

@@ -71,6 +71,10 @@ namespace networking
 
       }
 
+      m_psocketthread->m_iPortMinimum = m_iPortStart;
+
+      m_psocketthread->m_iPortMaximum = m_iPortEnd;
+
       auto pfolder = file()->resource_folder();
 
       m_psocketthread->branch();

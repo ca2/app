@@ -15,8 +15,12 @@ namespace networking
    {
    public:
 
-      application_handler();
 
+      ::i32                            m_iPortStart;
+      ::i32                            m_iPortEnd;
+
+
+      application_handler();
       ~application_handler() override;
 
 

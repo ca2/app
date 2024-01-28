@@ -9935,13 +9935,13 @@ namespace apex
 #endif
 
 
-   class networking::application * application::networking_application()
+   class networking::application * application::networking_application(::networking::application_handler * papplicationhandlerCreateNetworkApplication)
    {
 
       if (!m_pnetworkingapplication)
       {
 
-         create_networking_application(m_strNetworkingApplicationHostname);
+         create_networking_application(m_strNetworkingApplicationHostname, papplicationhandlerCreateNetworkApplication);
 
       }
 
@@ -9950,12 +9950,22 @@ namespace apex
    }
 
 
-   void application::create_networking_application(const ::scoped_string & scopedstrHostName)
+   void application::create_networking_application(const ::scoped_string & scopedstrHostName, ::networking::application_handler * papplicationhandlerCreateNetworkApplication)
    {
 
       //auto estatus =
 
       __defer_construct(m_pnetworkingapplication);
+
+
+      if (::is_set(papplicationhandlerCreateNetworkApplication))
+      {
+
+         m_pnetworkingapplication->m_iPortStart = papplicationhandlerCreateNetworkApplication->m_iPortStart;
+
+         m_pnetworkingapplication->m_iPortEnd = papplicationhandlerCreateNetworkApplication->m_iPortEnd;
+
+      }
 
       //if (!estatus)
       //{

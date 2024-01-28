@@ -19,7 +19,7 @@ namespace userex
 
 
       top_toggle_impact();
-      virtual ~top_toggle_impact();
+      ~top_toggle_impact() override;
 
 
       void install_message_routing(::channel * pchannel) override;

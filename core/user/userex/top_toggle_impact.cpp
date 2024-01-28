@@ -11,6 +11,8 @@ namespace userex
 
       m_ptopimpact = nullptr;
 
+      m_bEmptyAreaIsClientArea = true;
+
    }
 
 

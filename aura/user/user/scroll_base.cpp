@@ -1,9 +1,14 @@
 #include "framework.h"
-#include "acme/exception/interface_only.h"
-#include "aura/graphics/draw2d/graphics.h"
-//#include "scroll_state.h"
 #include "scroll.h"
 #include "scroll_bar.h"
+#include "acme/constant/message.h"
+#include "acme/exception/interface_only.h"
+#include "acme/parallelization/synchronous_lock.h"
+#include "acme/user/user/drag.h"
+#include "acme/user/user/tool.h"
+#include "acme/user/user/mouse.h"
+#include "aura/graphics/draw2d/graphics.h"
+#include "acme/primitive/geometry2d/_text_stream.h"
 
 
 namespace user
@@ -13,11 +18,160 @@ namespace user
    scroll_base::scroll_base()
    {
 
+      m_bUsesDraggingScrolling = false;
+
    }
 
 
    scroll_base::~scroll_base()
    {
+
+   }
+
+
+   void scroll_base::on_initialize_particle()
+   {
+
+      ::user::interaction::on_initialize_particle();
+
+      if (m_bUsesDraggingScrolling)
+      {
+
+         m_bDefaultMouseHoverHandling = true;
+
+         m_bDefaultClickHandling = true;
+
+      }
+
+   }
+
+
+   void scroll_base::install_message_routing(::channel * pchannel)
+   {
+
+      scroll_base_x::install_message_routing(pchannel);
+      scroll_base_y::install_message_routing(pchannel);
+
+      MESSAGE_LINK(::e_message_create, pchannel, this, &scroll_base::on_message_create);
+
+   }
+
+
+   void scroll_base::on_message_create(::message::message * pmessage)
+   {
+
+      pmessage->previous();
+
+      if (m_bUsesDraggingScrolling)
+      {
+
+         auto pitemDragScroll = tool().defer_item(e_element_drag_scroll);
+
+         auto puseritem = user_item(pitemDragScroll);
+
+         puseritem->m_ezorder = e_zorder_front;
+
+         enable_drag(pitemDragScroll, e_zorder_front);
+
+      }
+
+   }
+
+
+   bool scroll_base::on_drag_start(::point_i32 & pointDrag, ::item * pitem)
+   {
+
+      if (pitem->m_item.m_eelement == ::e_element_drag_scroll)
+      {
+
+         pointDrag = get_context_offset();
+
+         return true;
+
+      }
+
+      return ::user::interaction::on_drag_start(pointDrag, pitem);
+
+   }
+
+
+   //::point_i32 scroll_base::drag_mouse_cursor_position(::item * pitem, const ::point_i32 & point)
+   //{
+
+   //   auto p = windowing()->try_absolute_mouse_position(this, point);
+
+   //   return p;
+
+   //}
+
+
+   void scroll_base::set_context_offset(const ::point_f64 & pointOffset, ::user::enum_layout elayout)
+   {
+
+      set_context_offset_x(pointOffset.x(), elayout);
+
+      set_context_offset_y(pointOffset.y(), elayout);
+
+   }
+
+   
+   ::point_i32 scroll_base::drag_point(::item * pitem, ::user::mouse * pmouse)
+   {
+
+      if (pitem->m_item.m_eelement == ::e_element_drag_scroll)
+      {
+
+         auto pdrag = drag(pitem);
+
+         //auto pointLButtonDown2 = drag_mouse_cursor_position(pitem, pdrag->m_pointLButtonDown2);
+
+         auto Δ = pdrag->m_pointLButtonDown2 ;
+
+         auto pointCursor = drag_mouse_cursor_position(pitem, pmouse->m_pointAbsolute);
+
+         auto pointDrag = pointCursor - Δ;
+
+         information() << "drag_client::drag_point";
+         information() << "pointLButtonDown2 : " << pdrag->m_pointLButtonDown2;
+         information() << "pointInitial : " << pdrag->m_pointInitial;
+         information() << "pointAbsolute : " << pmouse->m_pointAbsolute;
+         information() << "pointCursor : " << pointCursor;
+         information() << "pointDrag : " << pointDrag;
+
+         return pointDrag;
+
+      }
+
+      return ::user::interaction::drag_point(pitem, pmouse);
+
+   }
+
+
+   bool scroll_base::drag_shift(::item * pitem, ::user::mouse * pmouse)
+   {
+
+      if (pitem->m_item.m_eelement == ::e_element_drag_scroll)
+      {
+
+         auto pdrag = drag(pitem);
+
+         pdrag->m_ecursor = e_cursor_move;
+
+         auto point = drag_point(pitem, pmouse);
+
+         set_context_offset(pdrag->m_pointInitial -point);
+
+         on_change_context_offset();
+
+         set_need_redraw();
+
+         post_redraw();
+
+         return true;
+
+      }
+
+      return ::user::interaction::drag_shift(pitem, pmouse);
 
    }
 
@@ -32,6 +186,40 @@ namespace user
       scroll_base_y::sketch_to_lading_y();
 
       //m_sizeaTotal[::user::e_layout_lading] = m_sizeaTotal[::user::e_layout_sketch];
+
+   }
+
+
+   void scroll_base::defer_setup_default_client_area_user_item()
+   {
+
+      //{
+
+      //   _synchronous_lock synchronouslock(this->synchronization());
+
+      //   auto pitemDragSrcoll = tool().item(e_element_drag_scroll);
+
+      //   if (pitemDragSrcoll)
+      //   {
+
+      //      auto pdragScroll = drag(pitemDragSrcoll);
+
+      //      if (pdragScroll)
+      //      {
+
+      //         auto rectangleX = this->raw_rectangle();
+
+      //         auto puseritem = user_item(pitemDragSrcoll);
+
+      //         puseritem->m_rectangle2 = rectangleX;
+
+      //      }
+
+      //   }
+
+      //}
+
+      ::user::interaction::defer_setup_default_client_area_user_item();
 
    }
 
@@ -64,13 +252,6 @@ namespace user
    }
 
 
-   void scroll_base::install_message_routing(::channel * pchannel)
-   {
-
-      scroll_base_x::install_message_routing(pchannel);
-      scroll_base_y::install_message_routing(pchannel);
-
-   }
 
 
    //void scroll_base::on_change_context_offset(::draw2d::graphics_pointer & pgraphics)
@@ -147,9 +328,9 @@ namespace user
 
       scrollstatey.m_bHasScroll = false;
 
-      scrollstatex.m_dThickness = (::f64) get_int(pstyle, e_int_scroll_bar_thickness);
+      scrollstatex.m_dThickness = (::f64)get_int(pstyle, e_int_scroll_bar_thickness);
 
-      scrollstatey.m_dThickness = (::f64) get_int(pstyle, e_int_scroll_bar_thickness);
+      scrollstatey.m_dThickness = (::f64)get_int(pstyle, e_int_scroll_bar_thickness);
 
       if (rectangleX.area() <= 0)
       {
@@ -316,9 +497,9 @@ namespace user
 
       auto scrollstatey = get_scroll_state_y(elayout);
 
-      scrollstatex.set_dimension((::i32) size.cx());
+      scrollstatex.set_dimension((::i32)size.cx());
 
-      scrollstatey.set_dimension((::i32) size.cy());
+      scrollstatey.set_dimension((::i32)size.cy());
 
       set_scroll_state_x(scrollstatex, elayout);
 
@@ -382,8 +563,48 @@ namespace user
 
    bool scroll_base::get_element_rectangle(::rectangle_i32 & rectangle, enum_element eelement)
    {
+      
+      if (eelement == e_element_drag_scroll)
+      {
 
-      if (eelement == e_element_client_hit_test)
+         auto sizeTotal = get_total_size();
+
+         auto sizeWindow = raw_rectangle().size();
+
+         //if (sizeTotal.cx() < sizeWindow.cx())
+         {
+
+            rectangle.left() = 0.;
+
+         }
+         //else
+         //{
+
+         //   rectangle.left() = get_context_offset_x();
+
+         //}
+
+         //if (sizeTotal.cy() < sizeWindow.cy())
+         {
+
+            rectangle.top() = 0.;
+
+         }
+         //else
+         //{
+
+         //   rectangle.top() = get_context_offset_y(::user::e_layout_design);
+
+         //}
+
+         //auto size = sizeTotal.maximum(sizeWindow);
+         
+         rectangle.set_size(sizeTotal);
+
+         return true;
+
+      }
+      else if(eelement == e_element_client_hit_test)
       {
 
          //if (!m_bEmptyAreaIsClientArea)
@@ -398,14 +619,14 @@ namespace user
          if (scroll_bar_x_visible())
          {
 
-            rectangle.bottom() -= (::i32) m_pscrollbarX->scroll_bar_thickness();
+            rectangle.bottom() -= (::i32)m_pscrollbarX->scroll_bar_thickness();
 
          }
 
          if (scroll_bar_y_visible())
          {
 
-            rectangle.right() -= (::i32) m_pscrollbarY->scroll_bar_thickness();
+            rectangle.right() -= (::i32)m_pscrollbarY->scroll_bar_thickness();
 
          }
 

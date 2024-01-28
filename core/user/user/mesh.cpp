@@ -975,7 +975,7 @@ namespace user
    void mesh::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       _001CalculateItemHeight(pgraphics);
 
@@ -1126,7 +1126,7 @@ namespace user
    void mesh::on_update_item_count()
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       //UNREFERENCED_PARAMETER(dwFlags);
 
@@ -1148,6 +1148,13 @@ namespace user
       {
 
          m_nItemCount = _001GetItemCount();
+
+         if(m_nItemCount > 0)
+         {
+
+            information() << "m_nItemCount > 0";
+
+         }
 
       }
 
@@ -1430,7 +1437,7 @@ namespace user
 
       return;
 
-//      synchronous_lock synchronouslock(m_pmutexData);
+//      _synchronous_lock synchronouslock(m_pmutexData);
 
 //      index iColumn;
 
@@ -2914,7 +2921,7 @@ namespace user
 
       pmouse->previous(); // give chance to child control
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       auto psession = get_session();
 
@@ -5669,7 +5676,7 @@ namespace user
 
       pmessage->previous();
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       if(m_eview == impact_grid)
       {

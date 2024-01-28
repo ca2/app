@@ -2235,8 +2235,6 @@ struct argument_of_struct < TYPE * >
 };
 
 
-
-
 //template < primitive_function FUNCTION >
 //struct argument_of_struct < FUNCTION >
 //{

@@ -21,6 +21,7 @@ enum enum_item_flag : ::i64
    e_item_flag_none = 0,
    e_item_flag_double_click_as_second_click = 1,
    e_item_flag_eat_double_click = 2,
+   e_item_flag_drag = 4,
 
 };
 

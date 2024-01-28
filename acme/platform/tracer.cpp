@@ -192,6 +192,8 @@ void tracer::flush(trace_statement & tracestatement)
    else
    {
 
+      ::output_debug_string(tracestatement.as_string() + "\n");
+
       ::output_debug_string_flush();
 
    }

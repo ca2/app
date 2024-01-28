@@ -113,6 +113,7 @@ void simple_toolbar::install_message_routing(::channel * pchannel)
    ::user::toolbar::install_message_routing(pchannel);
 
    MESSAGE_LINK(MESSAGE_CREATE       , pchannel, this, &simple_toolbar::on_message_create);
+   MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &simple_toolbar::on_message_left_button_double_click);
    //MESSAGE_LINK(e_message_mouse_move    , pchannel, this, &simple_toolbar::on_message_mouse_move);
    //MESSAGE_LINK(e_message_left_button_down  , pchannel, this, &simple_toolbar::on_message_left_button_down);
    //MESSAGE_LINK(e_message_left_button_up    , pchannel, this, &simple_toolbar::on_message_left_button_up);
@@ -122,6 +123,9 @@ void simple_toolbar::install_message_routing(::channel * pchannel)
    //install_click_default_mouse_handling(pchannel);
    
 }
+
+
+
 
 
 //bool simple_toolbar::create(::user::interaction * puiParent, u32 uStyle, atom nID)
@@ -163,6 +167,27 @@ void simple_toolbar::install_message_routing(::channel * pchannel)
 //
 //}
 
+
+void simple_toolbar::on_message_left_button_double_click(::message::message * pmessage)
+{
+
+   auto pmouse = pmessage->m_union.m_pmouse;
+
+
+   auto pitemLeftButtonDoubleClick = hit_test(pmouse, ::user::e_zorder_front);
+
+   ::pointer < ::user::tool_item > ptoolitem = pitemLeftButtonDoubleClick;
+
+   if (ptoolitem)
+   {
+
+      pmouse->m_bRet = true;
+
+   }
+
+
+
+}
 
 size_i32 simple_toolbar::CalcFixedLayout(::draw2d::graphics_pointer& pgraphics, bool bStretch, bool bHorz)
 {

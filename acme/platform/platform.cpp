@@ -758,7 +758,7 @@ namespace platform
    ::factory::factory_pointer & platform::factory(const ::string & strLibraryRequest)
    {
 
-      critical_section_lock synchronouslock(&m_criticalsection);
+      critical_section_lock criticalsectionlock(&m_criticalsection);
 
       string strLibrary;
 
@@ -821,12 +821,16 @@ namespace platform
    ::factory::factory_pointer & platform::factory(const ::string & strComponent, const ::string & strImplementation)
    {
 
-      critical_section_lock synchronouslock(&m_criticalsection);
+      critical_section_lock criticalsectionlock(&m_criticalsection);
+
+      printf("platform::factory(\"%s\", \"%s\");\n", strComponent.c_str(), strImplementation.c_str());
 
       auto & pfactory = m_componentfactorymap[strComponent][implementation_name(strComponent, strImplementation)];
 
       if (pfactory)
       {
+
+         printf("Returning existing factory \"%s\" - \"%s\".\n", strComponent.c_str(), strImplementation.c_str());
 
          return pfactory;
 
@@ -836,6 +840,8 @@ namespace platform
 
       //strLibrary = library_name(strComponent, strImplementation);
       strLibrary = strComponent + "_" + strImplementation;
+
+      printf("Getting library \"%s\".\n", strLibrary.c_str());
 
       auto & plibrary = library(strLibrary);
 
@@ -859,6 +865,8 @@ namespace platform
 
 #endif
 
+         printf("Library not found : \"%s\".\n", strLibrary.c_str());
+
          //pfactory = (const ::extended::status&)plibrary;
          throw ::exception(error_resource, strComponent + "_" + strImplementation + "_factory not found!!");
 
@@ -874,7 +882,7 @@ namespace platform
    //::factory::factory_pointer& platform::_factory(const ::string& strLibraryRequest)
    ////{
    ////
-   ////   critical_section_lock synchronouslock(&m_criticalsection);
+   ////   critical_section_lock criticalsectionlock(&m_criticalsection);
    ////
    ////   string strLibrary;
    ////
@@ -951,7 +959,7 @@ namespace platform
    ::pointer<::factory::factory> & platform::impact_factory(const ::string & strComponent, const ::string & strImplementation)
    {
 
-      critical_section_lock synchronouslock(&m_criticalsection);
+      critical_section_lock criticalsectionlock(&m_criticalsection);
 
       auto & pfactory = m_componentfactorymap[strComponent][implementation_name(strComponent, strImplementation)];
 
@@ -1015,7 +1023,9 @@ namespace platform
 
       //auto estatus = plibrary->open(strLibrary);
 
-      information() << "system::create_library Going to open library \"" << strLibrary << "\".";
+      printf("platform::create_library Going to open library \"%s\".", strLibrary.c_str());
+
+      information() << "platform::create_library Going to open library \"" << strLibrary << "\".";
 
       plibrary->open(strLibrary);
 
@@ -1049,6 +1059,8 @@ namespace platform
 
       // Ex. "audio" (library)
 
+      printf("platform::library \"%s\".", str.c_str());
+
       if (str.is_empty())
       {
 
@@ -1056,7 +1068,7 @@ namespace platform
 
       }
 
-      critical_section_lock synchronouslock(&m_criticalsection);
+      critical_section_lock criticalsectionlock(&m_criticalsection);
 
       string strLibrary = library_filter(str);
 
@@ -1064,6 +1076,8 @@ namespace platform
 
       if (plibrary)
       {
+
+         printf("platform::library Returning existing library \"%s\".", strLibrary.c_str());
 
          return plibrary;
 

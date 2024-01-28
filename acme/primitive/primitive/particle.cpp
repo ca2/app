@@ -701,6 +701,8 @@ class ::write_text::write_text * particle::write_text() const
 ::factory::factory_pointer& particle::factory(const ::string& strComponent, const ::string& strImplementation) const
 {
 
+   printf("particle::factory(\"%s\", \"%s\");\n", strComponent.c_str(), strImplementation.c_str());
+
    return platform()->factory(strComponent, strImplementation);
 
 }
@@ -746,22 +748,20 @@ void particle::init_task()
 void particle::call_run()
 {
 
-   //::e_status estatus;
+   m_eflagElement += e_flag_running;
 
-   //try
-   //{
+   try
+   {
 
-   /*estatus =*/ run();
+      run();
 
-   //}
-   //catch (...)
-   //{
+   }
+   catch (...)
+   {
 
-   //   estatus = ::error_exception;
+   }
 
-   //}
-
-   //return estatus;
+   m_eflagElement -= e_flag_running;
 
 }
 

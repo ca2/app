@@ -73,11 +73,20 @@ class pointer_rear_iterator
 public:
 
 
+   using ITEM = non_const < TYPE >;
+   using ITEM_POINTER = ITEM *;
+
+   using iterator = ::pointer_rear_iterator < ITEM >;
+   using const_iterator = ::pointer_rear_iterator < const ITEM >;
+
+
    TYPE* m_p;
 
 
    pointer_rear_iterator() { m_p = nullptr; }
-   pointer_rear_iterator(TYPE * p) { m_p = p; }
+   pointer_rear_iterator(const ITEM * p) { m_p = (TYPE *) p; }
+   pointer_rear_iterator(const iterator & i) { m_p = (TYPE *)i.m_p; }
+   pointer_rear_iterator(const const_iterator & i) { m_p = (TYPE *)i.m_p; }
 
 
    auto& operator *() { return *m_p; }
@@ -175,7 +184,7 @@ public:
 
 
    using rear_iterator = ::pointer_rear_iterator<TYPE>;
-   using const_rear_iterator = ::pointer_rear_iterator<const TYPE *>;
+   using const_rear_iterator = ::pointer_rear_iterator<const TYPE>;
 
    //using ARRAY_RANGE = ::array_range < ::range < TYPE * > >;
    using ARRAY_RANGE = ::range < TYPE * >;
@@ -308,7 +317,20 @@ public:
    }
 
 
+   inline ::range<rear_iterator> rear_payloads()
+   { 
 
+      return ::range<rear_iterator>(this->rear_begin(), this->rear_end());
+   
+   }
+
+
+   inline ::range<const_rear_iterator> rear_payloads() const
+   {
+
+      return ::range<const_rear_iterator>(this->rear_begin(), this->rear_end());
+
+   }
 
    //template < typename iterator >
    //struct make_iterator : iterator

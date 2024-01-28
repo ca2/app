@@ -231,19 +231,19 @@ public:
    }
 
    template<primitive_integral INTEGRAL>
-   constexpr range(const_iterator begin, INTEGRAL count) : m_begin(
-      (this_iterator)begin), m_end((this_iterator)(begin + count))
+   constexpr range(this_iterator begin, INTEGRAL count) : 
+      m_begin(begin), m_end(begin + count)
    {
    }
 
-   constexpr range(const_iterator begin, const_iterator end) : m_begin(
-      (this_iterator)begin), m_end((this_iterator)end)
+   constexpr range(this_iterator begin, this_iterator end) : 
+      m_begin(begin), m_end(end)
    {
    }
 
    template<::comparison::equality<ITEM> EQUALITY>
-   constexpr range(const_iterator begin, EQUALITY equality) : 
-      m_begin((this_iterator)begin), 
+   constexpr range(this_iterator begin, EQUALITY equality) : 
+      m_begin(begin), 
       m_end((this_iterator)find_first_null_character(begin, equality)),
       m_erange(e_range_null_terminated)
    {
@@ -453,30 +453,26 @@ public:
    constexpr THIS_RAW_RANGE _start_range(memsize start) const
    {
 
-      return {
-         this->begin() + start, this->end()
-      };
+      return { (ITERATOR_TYPE) (this->begin() + start), (ITERATOR_TYPE)this->end() };
 
    }
+
 
    constexpr THIS_RAW_RANGE _end_range(const_iterator end) const
    {
 
-      return {
-              this->begin(), end
-      };
+      return { (ITERATOR_TYPE) this->begin(), (ITERATOR_TYPE)end };
 
    }
-
 
 
    constexpr THIS_RAW_RANGE _start_count_range(memsize start, memsize count) const
    {
 
       return {
-         this->begin() + start,
-         ((count >= 0) ? ::clipped_add(this->begin(), start + count, this->begin(), this->end()) : ::clipped_add(
-            this->end(), count, this->begin(), this->end())) };
+         (ITERATOR_TYPE) (this->begin() + start),
+         (ITERATOR_TYPE) (((count >= 0) ? ::clipped_add(this->begin(), start + count, this->begin(), this->end()) : ::clipped_add(
+            this->end(), count, this->begin(), this->end()))) };
 
    }
 

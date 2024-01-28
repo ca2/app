@@ -740,7 +740,11 @@ namespace userex
 
          auto pfilemanagerdata = pfilemanager->create_filemanager_data();
 
-         pfilemanager->impact_system()->create_subdocument(pimpactdata, pfilemanagerdata);
+         pfilemanagerdata->m_atom = pimpactdata->m_atom;
+
+         auto pfilemanagerdocument = pfilemanager->impact_system()->create_subdocument(pimpactdata, pfilemanagerdata);
+
+         pfilemanagerdata->m_pfilemanagerdocument = pfilemanagerdocument;
 
    /*      if (find_i32("filemanager_icon_size") > 0)
          {
@@ -750,8 +754,6 @@ namespace userex
          }*/
 
          //pfilemanagerdata->m_puserinteractionParent = pimpactdata->m_pplaceholder;
-
-         //pfilemanagerdata->m_atom = pimpactdata->m_atom;
 
          //if (has_property("filemanager_toolbar")
          //      && payload("filemanager_toolbar").m_etype == ::e_type_property_set)
@@ -801,32 +803,30 @@ namespace userex
 
          //pfilemanagerdata->open();
 
+         ::pointer<::filemanager::document>pdocument = pfilemanagerdata->m_pfilemanagerdocument;
 
+         if(pdocument != nullptr)
+         {
 
-         //::pointer<::filemanager::document>pdocument = pfilemanagerdata->m_pdocument;
+            m_mapFileManager[pimpactdata->m_atom] = pdocument;
 
-         //if(pdocument != nullptr)
-         //{
+            ::pointer<::user::impact>pimpact = pdocument->get_impact();
 
-         //   m_mapFileManager[pimpactdata->m_atom] = pdocument;
+            if(pimpact != nullptr)
+            {
 
-         //   ::pointer<::user::impact>pimpact = pdocument->get_impact();
+               ::pointer<::user::frame_window>pframe = pimpact->parent_frame();
 
-         //   if(pimpact != nullptr)
-         //   {
+               if(pframe != nullptr)
+               {
 
-         //      ::pointer<::user::frame_window>pframe = pimpact->parent_frame();
+                  pimpactdata->m_pdocument = pdocument;
 
-         //      if(pframe != nullptr)
-         //      {
+               }
 
-         //         pimpactdata->m_pdocument = pdocument;
+            }
 
-         //      }
-
-         //   }
-
-         //}
+         }
 
       }
       //else if(pimpactdata->m_atom == "tabbed_file_manager")

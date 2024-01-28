@@ -595,6 +595,8 @@ namespace user
       if (m_ptree == nullptr)
       {
 
+         information() << "Exiting _001OnDraw Prematurely m_ptree == nullptr";
+
          return;
 
       }
@@ -687,6 +689,16 @@ namespace user
          }
 
       }
+
+      if (m_iCurrentPageLineStart >= m_iCurrentPageLineEnd)
+      {
+
+         information() << "Exiting _001OnDraw Prematurely m_iCurrentPageLineStart >= m_iCurrentPageLineEnd";
+
+         return;
+
+      }
+
 
       for (index iLine = m_iCurrentPageLineStart; iLine < m_iCurrentPageLineEnd; i++, iLine++)
       {
@@ -1146,21 +1158,21 @@ namespace user
 
       m_bRMouseDown = true;
 
-      queue_graphics_call([this, point](::draw2d::graphics_pointer & pgraphics)
-         {
+      //queue_graphics_call([this, point](::draw2d::graphics_pointer & pgraphics)
+      //   {
 
-            strsize iHit = plain_edit_char_hit_test(pgraphics, point);
+      //      strsize iHit = plain_edit_char_hit_test(pgraphics, point);
 
-            if (iHit <= m_ptree->m_iSelBeg || iHit >= m_ptree->m_iSelEnd)
-            {
+      //      if (iHit <= m_ptree->m_iSelBeg || iHit >= m_ptree->m_iSelEnd)
+      //      {
 
-               m_ptree->m_iSelBeg = iHit;
+      //         m_ptree->m_iSelBeg = iHit;
 
-               m_ptree->m_iSelEnd = iHit;
+      //         m_ptree->m_iSelEnd = iHit;
 
-            }
+      //      }
 
-         });
+      //   });
 
       set_need_redraw();
 
@@ -1242,7 +1254,7 @@ namespace user
          if (m_bLMouseDown)
          {
 
-            SetTimer(e_timer_overflow_scrolling, 50_ms);
+            SetTimer(e_timer_overflow_scrolling, 300_ms);
 
          }
 
@@ -1257,39 +1269,53 @@ namespace user
 
             auto pwindow = window();
 
-            auto pointCursor = pwindow->m_pointWindow;
+            auto pointHostCursor = pwindow->m_pointCursor2;
 
-            host_to_client()(pointCursor);
+            auto pointCursor = pointHostCursor;
 
-            ::rectangle_i32 rectangleClient;
+            host_to_raw()(pointCursor);
 
-            rectangleClient = client2_rectangle();
+            ::rectangle_i32 rectangleRaw;
 
-            if (pointCursor.x() < rectangleClient.left())
+            rectangleRaw = raw_rectangle();
+
+            if (pointCursor.x() < rectangleRaw.left())
             {
 
                scroll_left_line();
 
             }
-            else if (pointCursor.x() > rectangleClient.right())
+            else if (pointCursor.x() > rectangleRaw.right())
             {
 
                scroll_right_line();
 
             }
 
-            if (pointCursor.y() < rectangleClient.top())
+            if (pointCursor.y() < rectangleRaw.top())
             {
 
                scroll_up_line();
 
             }
-            else if (pointCursor.y() > rectangleClient.bottom())
+            else if (pointCursor.y() > rectangleRaw.bottom())
             {
 
                scroll_down_line();
 
             }
+
+            _extend_selection_end(pointHostCursor);
+
+            set_need_redraw();
+
+            post_redraw();
+
+         }
+         else
+         {
+
+            KillTimer(etimer);
 
          }
 
@@ -1449,6 +1475,80 @@ namespace user
    //}
 
 
+   void plain_edit::extend_selection_end(const ::point_i32 & pointHost)
+   {
+
+      auto point = pointHost;
+
+      host_to_client()(point);
+
+      if (m_pointLastCursor == point)
+      {
+
+         return;
+
+      }
+
+      _extend_selection_end(pointHost);
+
+   }
+
+
+   void plain_edit::_extend_selection_end(const ::point_i32 & pointHost)
+   {
+
+      auto point = pointHost;
+
+      host_to_client()(point);
+
+      m_pointLastCursor = point;
+
+      _synchronous_lock synchronouslock(this->synchronization());
+
+      ::rectangle_i32 rectangleWindow;
+
+      window_rectangle(rectangleWindow);
+
+      if (pointHost.x() < rectangleWindow.left() - 30)
+      {
+
+         informationf("test06");
+
+      }
+
+      queue_graphics_call([this, point](::draw2d::graphics_pointer & pgraphics)
+         {
+
+            if (m_iNewFocusSelectAllSelBeg >= 0
+               || m_iNewFocusSelectAllSelEnd >= 0
+               || m_iNewFocusSelectAllColumn >= 0)
+            {
+
+               auto iBegNew = m_iNewFocusSelectAllSelBeg;
+               auto iEndNew = m_iNewFocusSelectAllSelEnd;
+               auto iColumn = m_iNewFocusSelectAllColumn;
+
+               m_iNewFocusSelectAllSelBeg = -1;
+               m_iNewFocusSelectAllSelEnd = -1;
+               m_iNewFocusSelectAllColumn = -1;
+
+               _001SetSel(iBegNew, iEndNew);
+
+               m_iColumn = iColumn;
+
+            }
+
+            _set_sel_end(pgraphics, plain_edit_char_hit_test(pgraphics, point), e_source_user);
+
+         });
+
+      set_need_redraw();
+
+      post_redraw();
+
+   }
+
+
    strsize plain_edit::_001GetTextLength()
    {
 
@@ -1484,6 +1584,14 @@ namespace user
       }
 
       return (strsize)peditfile->get_length();
+
+   }
+
+
+   ::count plain_edit::line_count() const
+   {
+
+      return m_iaLineLength.count();
 
    }
 
@@ -1926,13 +2034,13 @@ namespace user
          if (lineTop < currentPageTop)
          {
 
-            set_context_offset_y(lineTop, ::user::e_layout_design);
+            set_context_offset_y(lineTop, ::user::e_layout_layout);
 
          }
          else if (lineBottom >= currentPageBottom)
          {
 
-            set_context_offset_y((lineBottom - rectangleX.height()) + (m_dLineHeight / 4.0), ::user::e_layout_design);
+            set_context_offset_y((lineBottom - rectangleX.height()) + (m_dLineHeight / 4.0), ::user::e_layout_layout);
 
          }
 
@@ -1940,11 +2048,13 @@ namespace user
 
       }
 
+      on_change_context_offset(::user::e_layout_layout);
+
       plain_edit_on_context_offset_layout(pgraphics);
 
 #ifndef SEARCH_SCROLLING_PROFILING
 
-      set_need_redraw();
+      //set_need_redraw();
 
 #endif
 
@@ -1969,6 +2079,7 @@ namespace user
 
    }
 
+
    void plain_edit::on_message_mouse_move(::message::message * pmessage)
    {
 
@@ -1990,59 +2101,9 @@ namespace user
          if (m_bLMouseDown && !is_new_focus_select_all())
          {
 
-            ::point_i32 point = pmouse->m_pointHost;
+            ::point_i32 pointHost = pmouse->m_pointHost;
 
-            host_to_client()(point);
-
-            if (m_pointLastCursor != point)
-            {
-
-               m_pointLastCursor = point;
-
-               _synchronous_lock synchronouslock(this->synchronization());
-
-               ::rectangle_i32 rectangleWindow;
-
-               window_rectangle(rectangleWindow);
-
-               if (pmouse->m_pointHost.x() < rectangleWindow.left() - 30)
-               {
-
-                  informationf("test06");
-
-               }
-
-               queue_graphics_call([this, point](::draw2d::graphics_pointer & pgraphics)
-                  {
-
-                     if (m_iNewFocusSelectAllSelBeg >= 0
-                        || m_iNewFocusSelectAllSelEnd >= 0
-                        || m_iNewFocusSelectAllColumn >= 0)
-                     {
-
-                        auto iBegNew = m_iNewFocusSelectAllSelBeg;
-                        auto iEndNew = m_iNewFocusSelectAllSelEnd;
-                        auto iColumn = m_iNewFocusSelectAllColumn;
-                        
-                        m_iNewFocusSelectAllSelBeg = -1;
-                        m_iNewFocusSelectAllSelEnd = -1;
-                        m_iNewFocusSelectAllColumn = -1;
-
-                        _001SetSel(iBegNew, iEndNew);
-
-                        m_iColumn = iColumn;
-
-                     }
-
-                     _set_sel_end(pgraphics, plain_edit_char_hit_test(pgraphics, point), e_source_user);
-
-                  });
-
-               set_need_redraw();
-
-               post_redraw();
-
-            }
+            extend_selection_end(pointHost);
 
             m_pitemHover = tool().item(e_element_client);
 
@@ -3500,6 +3561,14 @@ namespace user
 
       //m_pscrollstateVertical->m_iLine = (int)m_dLineHeight;
 
+      if (m_pscrolllayoutY)
+      {
+       
+         m_pscrolllayoutY->m_scrollstatea[::user::e_layout_sketch].m_dLine = m_dLineHeight;
+         m_pscrolllayoutY->m_scrollstatea[::user::e_layout_sketch].m_dWheel = 3. * m_dLineHeight;
+
+      }
+
       set_total_size(sizeTotal);
 
       //on_change_impact_size(pgraphics);
@@ -4473,10 +4542,7 @@ namespace user
 
       }
 
-      //      string_array & straLines = m_plinea->lines;
-      string_array & straLines = m_straLines;
-
-      if (iLine >= straLines.get_size())
+      if (iLine >= m_iaLineLength.get_size())
       {
 
          return 0;
@@ -4485,10 +4551,28 @@ namespace user
 
       strsize iOffset = 0;
 
+      strsize iLineOffset = -1;
+
       for (i32 i = 0; i < iLine; i++)
       {
 
-         iOffset += m_iaLineLength[i];
+         auto iNext = iOffset + m_iaLineLength[i];
+
+         if (iLineOffset < 0 && iNext > m_iImpactOffset)
+         {
+
+            iLineOffset = i;
+
+         }
+
+         iOffset = iNext;
+
+      }
+
+      if (iLineOffset < 0)
+      {
+
+         iLineOffset = 0;
 
       }
 
@@ -4498,7 +4582,10 @@ namespace user
 
       stra.erase_all();
 
-      stra.add_lines(straLines[iLine], false);
+      //      string_array & straLines = m_plinea->lines;
+      string_array & straLines = m_straLines;
+
+      stra.add_lines(straLines[iLine - iLineOffset], false);
 
       if (stra.get_size() > 0)
       {
@@ -4527,7 +4614,11 @@ namespace user
 
       }
 
-      return m_iImpactOffset + iOffset + iColumn;
+      //
+      //return m_iImpactOffset + iOffset + iColumn;
+      //
+
+      return iOffset + iColumn;
 
    }
 
@@ -4668,31 +4759,48 @@ namespace user
 
       index iLine;
 
-      for (iLine = m_iCurrentPageLineStart; iLine < m_iCurrentPageLineEnd; iLine++)
+      if (point.y() < 0)
       {
 
-         if (point.y() < Δy + dLineHeight)
+         iLine = maximum(0, m_iCurrentPageLineStart - 1);
+
+      }
+      else if(point.y() > rectangleX.height())
+      {
+
+         iLine = minimum(line_count(), m_iCurrentPageLineEnd + 1);
+
+      }
+      else
+      {
+
+         for (iLine = m_iCurrentPageLineStart; iLine < m_iCurrentPageLineEnd; iLine++)
          {
 
-            bFound = true;
+            if (point.y() < Δy + dLineHeight)
+            {
 
-            break;
+               bFound = true;
+
+               break;
+
+            }
+
+            Δy += dLineHeight;
+
+            //iOffset += m_iaLineLength[iLine];
 
          }
 
-         Δy += dLineHeight;
-
-         //iOffset += m_iaLineLength[iLine];
-
-      }
-
-      if (!bFound)
-      {
-
-         if (iLine > m_iCurrentPageLineStart)
+         if (!bFound)
          {
 
-            iLine--;
+            if (iLine > m_iCurrentPageLineStart)
+            {
+
+               iLine--;
+
+            }
 
          }
 
@@ -6794,7 +6902,7 @@ namespace user
                         _001EnsureVisibleLine(pgraphics, 0);
 
                      }
-
+                     else
                      {
 
                         index iLine = plain_edit_sel_to_line(pgraphics, m_ptree->m_iSelEnd);
@@ -6803,8 +6911,6 @@ namespace user
 
                      }
 
-                     _ensure_selection_visible_x(pgraphics);
-
                      if (!bShift)
                      {
 
@@ -6812,7 +6918,13 @@ namespace user
 
                      }
 
+                     _ensure_selection_visible_x(pgraphics);
+
                      });
+
+               set_need_redraw();
+
+               post_redraw();
 
                   }
             else if (pkey->m_ekey == ::user::e_key_end)

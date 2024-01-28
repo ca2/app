@@ -47,6 +47,8 @@ namespace user
 
       m_bCloseParentOnClose = true;
 
+      m_bUsePositionHint = false;
+
       m_iFlags = 0;
       m_bPositionHint = false;
       m_bAutoDelete = true;
@@ -668,28 +670,35 @@ namespace user
       m_procedureOnAfterCreate = [this]()
          {
 
-            //   information() << "m_procedureOnAfterInitializeUserMenu menu::track_popup_menu.";
+            if (m_bUsePositionHint)
+            {
 
-            //   if (!m_bPositionHint)
-            //   {
+               //   information() << "m_procedureOnAfterInitializeUserMenu menu::track_popup_menu.";
 
-            //      auto pointCursor = mouse_cursor_position();
+               if (!m_bPositionHint)
+               {
 
-            //      m_pointPositionHint = pointCursor;
+                     auto pointCursor = mouse_cursor_position();
 
-            //   }
+                     m_pointPositionHint = pointCursor;
 
-            //   auto psystem = system()->m_paurasystem;
+               }
 
-            //   auto pdraw2d = psystem->draw2d();
+               //   auto psystem = system()->m_paurasystem;
 
-            //   auto pgraphics = pdraw2d->create_memory_graphics(this);
+               //   auto pdraw2d = psystem->draw2d();
 
-            //   m_pointTrack = m_pointPositionHint;
+               //   auto pgraphics = pdraw2d->create_memory_graphics(this);
 
-            //   layout_menu(pgraphics);
+               //   m_pointTrack = m_pointPositionHint;
 
-            //   m_bMenuOk = true;
+               //   layout_menu(pgraphics);
+
+               //   m_bMenuOk = true;
+
+               set_position(m_pointPositionHint);
+
+            }
 
             display(e_display_normal, e_activation_set_foreground | e_activation_for_context_menu);
 

@@ -922,7 +922,7 @@ namespace acme
 
       string strName = m_strName;
 
-      //information() << "library::create_factory \""+strName+"\": starting...";
+      information() << "library::create_factory \"" + strName + "\": starting...";
 
       //auto pfactory = factory(strName);
 
@@ -944,8 +944,9 @@ namespace acme
 
          strFactoryFunction = strName + "_factory";
 
-         //information() << "library::create_factory factory function not initialized!!";
-         //information() << "library::create_factory factory function name: \"" << strFactoryFunction << "\"";
+         information() << "library::create_factory factory function not initialized!!";
+
+         information() << "library::create_factory factory function name: \"" << strFactoryFunction << "\"";
 
          auto pfnFactory = get < PFN_factory >(strFactoryFunction);
 
@@ -955,6 +956,7 @@ namespace acme
             warningf("library::create_factory factory function: \"%s\" doesn't exist!!!", strFactoryFunction.c_str());
 
             warningf("Is _factory.cpp included in the project \"%s\"???", strName.c_str());
+
             warningf("Does it contain the implementation of factory function \"%s\"???", strFactoryFunction.c_str());
 
             string strDetails;
@@ -973,9 +975,7 @@ namespace acme
 
       m_pfnFactory(pfactory);
 
-      informationf("%s_factory succeeded!",strName.c_str());
-
-      //return pfactory;
+      informationf("%s_factory succeeded!", strName.c_str());
 
    }
 

@@ -144,15 +144,22 @@ public:
 
    //virtual char * c_str();
 
-   virtual bool begins(const ::scoped_string & scopedstr) const { return ((::const_ansi_range *)this)->begins(scopedstr); }
+   //using MEMORY::begins;
+   //virtual bool begins(const ::scoped_string & scopedstr) const { return this->begins((const BLOCK &) scopedstr); }
    //virtual bool begins(const ::scoped_string & scopedstr, strsize iCount = -1) const;
-   virtual bool case_insensitive_begins(const ::scoped_string & scopedstr, strsize iCount = -1) const{ return ((::const_ansi_range *)this)->case_insensitive_begins(scopedstr); }
+
+   virtual bool begins_eat(const BLOCK & block);
+
+   //virtual bool case_insensitive_begins(const ::scoped_string & scopedstr, strsize iCount = -1) const{ return ((::const_ansi_range *)this)->case_insensitive_begins(scopedstr); }
    //virtual bool begins(const ::string & str, strsize iCount = -1) const;
    //virtual bool case_insensitive_begins(const ::string & str, strsize iCount = -1) const;
 
-   virtual bool ends(const ::scoped_string & scopedstr) const { return ((::const_ansi_range *)this)->ends(scopedstr); }
+   //using MEMORY::ends;
+   //virtual bool ends(const ::scoped_string & scopedstr) const { return this->ends((const BLOCK &) scopedstr); }
    //virtual bool ends(const ::scoped_string & scopedstr, strsize iCount = -1) const;
-   virtual bool case_insensitive_ends(const ::scoped_string & scopedstr) const { return ((::const_ansi_range *)this)->case_insensitive_ends(scopedstr); }
+   //virtual bool case_insensitive_ends(const ::scoped_string & scopedstr) const { return ((::const_ansi_range *)this)->case_insensitive_ends(scopedstr); }
+
+   virtual bool ends_eat(const BLOCK & block);
    //virtual bool ends(const ::string & str, strsize iCount = -1) const;
    //virtual bool case_insensitive_ends(const ::string & str, strsize iCount = -1) const;
 

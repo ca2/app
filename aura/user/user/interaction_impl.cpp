@@ -2925,17 +2925,22 @@ namespace user
 
          auto pwindowimpl = pwindow->m_puserinteractionimpl;
 
-         if (::is_set(pwindowimpl->m_puiLastLButtonDown))
+         if (::is_set(pwindowimpl))
          {
 
-            pwindowimpl->m_puiLastLButtonDown = nullptr;
+            if (::is_set(pwindowimpl->m_puiLastLButtonDown))
+            {
 
-         }
+               pwindowimpl->m_puiLastLButtonDown = nullptr;
 
-         if (::is_set(pwindowimpl->m_pitemLButtonDown))
-         {
+            }
 
-            pwindowimpl->m_pitemLButtonDown = nullptr;
+            if (::is_set(pwindowimpl->m_pitemLButtonDown))
+            {
+
+               pwindowimpl->m_pitemLButtonDown = nullptr;
+
+            }
 
          }
 

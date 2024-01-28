@@ -431,8 +431,13 @@ namespace user
 
       //colorertake5::file_type * colorer_select_type();
 
+      virtual void extend_selection_end(const ::point_i32 & pointHost);
+      virtual void _extend_selection_end(const ::point_i32 & pointHost);
+
+
       virtual strsize _001GetTextLength() override;
       virtual strsize _001_get_text_length();
+      virtual ::count line_count() const;
       virtual void plain_edit_get_text(string & str);
       virtual void _001GetText(string & str) override;
       virtual void _001GetSelText(string & str) override;

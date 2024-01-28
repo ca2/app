@@ -229,7 +229,6 @@ namespace user
       m_bPendingSaveWindowRectangle = false;
       m_bLoadingWindowRectangle = false;
 
-
       m_bAutoResize = false;
       m_bNeedAutoResizePerformLayout = false;
 
@@ -5330,6 +5329,44 @@ namespace user
 
    }
 
+   
+   void interaction::on_context_offset(::draw2d::graphics_pointer & pgraphics)
+   {
+
+      {
+
+         ::point_i32 pointOffset;
+
+         if (m_puserinteractionParent != nullptr)
+         {
+
+            pointOffset = layout().layout().origin();
+
+            if (pointOffset.y() == 31)
+            {
+
+               //information() << "31";
+
+            }
+
+         }
+
+         pgraphics->offset_origin((::i32)pointOffset.x(), (::i32)pointOffset.y());
+
+      }
+
+      {
+
+         auto pointContextOffset = get_context_offset();
+
+         auto offset = -pointContextOffset;
+
+         pgraphics->offset_origin((::i32)offset.x(), (::i32)offset.y());
+
+      }
+
+   }
+
 
    //void interaction::on_context_offset(::draw2d::graphics_pointer & pgraphics)
    //{
@@ -6212,7 +6249,7 @@ namespace user
 
             on_context_offset_layout(pgraphics);
 
-            m_bLadingToLayout = false;
+            m_bContextOffsetLadingToLayout = false;
 
          }
 
@@ -6682,39 +6719,7 @@ namespace user
 
                ::draw2d::save_context savecontext(pgraphics);
 
-               //on_context_offset(pgraphics);
-
-               {
-
-                  ::point_i32 pointOffset;
-
-                  if (m_puserinteractionParent != nullptr)
-                  {
-
-                     pointOffset = layout().layout().origin();
-
-                     if (pointOffset.y() == 31)
-                     {
-
-                        //information() << "31";
-
-                     }
-
-                  }
-
-                  pgraphics->offset_origin((::i32)pointOffset.x(), (::i32)pointOffset.y());
-
-               }
-
-               {
-
-                  auto pointContextOffset = get_context_offset();
-
-                  auto offset = -pointContextOffset;
-
-                  pgraphics->offset_origin((::i32)offset.x(), (::i32)offset.y());
-
-               }
+               on_context_offset(pgraphics);
 
                try
                {
@@ -8917,7 +8922,6 @@ namespace user
          post_redraw();
 
          return true;
-
       }
       else if (pitem->m_item.m_eelement == e_element_resize)
       {
@@ -22814,6 +22818,38 @@ namespace user
 
       }
 
+
+      if (pitemLButtonDown && pitemLButtonDown->m_eitemflag & ::e_item_flag_drag)
+      {
+
+         auto puserinteractionimplHost = get_host_user_interaction_impl();
+
+         puserinteractionimplHost->m_puiLastLButtonDown = this;
+
+         puserinteractionimplHost->m_pitemLButtonDown = pitemLButtonDown;
+
+         auto ptopic = create_topic(::id_left_button_down);
+
+         ptopic->m_puserelement = this;
+
+         ptopic->m_actioncontext.m_pmessage = pmouse;
+
+         ptopic->m_actioncontext.add(e_source_user);
+
+         ptopic->m_pitem = pitemLButtonDown;
+
+         route(ptopic);
+
+         set_mouse_capture();
+
+         track_mouse_leave();
+
+         pmouse->m_bRet = true;
+
+         return;
+
+      }
+
       //if(m_pdragmove && ::is_set(m_pitemLButtonDown) && m_pitemLButtonDown->m_item.m_eelement == e_element_client)
       //{
 
@@ -23865,6 +23901,8 @@ namespace user
 
       }
 
+
+
       if (m_bDefaultClickHandling || m_bDefaultMouseHoverHandling)
       {
 
@@ -23985,6 +24023,42 @@ namespace user
       //   return;
 
       //}
+
+      auto puserinteractionimplHost = get_host_user_interaction_impl();
+
+      if(puserinteractionimplHost->m_puiLastLButtonDown == this)
+      {
+
+         if (puserinteractionimplHost->m_pitemLButtonDown
+                  && puserinteractionimplHost->m_pitemLButtonDown->m_eitemflag & ::e_item_flag_drag)
+         {
+
+            defer_release_mouse_capture();
+
+            auto ptopic = create_topic(::id_left_button_up);
+
+            ptopic->m_puserelement = this;
+
+            ptopic->m_actioncontext.m_pmessage = pmouse;
+
+            ptopic->m_actioncontext.add(e_source_user);
+
+            ptopic->m_pitem = puserinteractionimplHost->m_pitemLButtonDown;
+
+            route(ptopic);
+
+            pmouse->m_bRet = true;
+
+            puserinteractionimplHost->m_puiLastLButtonDown = nullptr;
+
+            puserinteractionimplHost->m_pitemLButtonDown = nullptr;
+
+            return;
+
+         }
+
+      }
+
 
       if (m_bDefaultClickHandling || m_bDefaultMouseHoverHandling)
       {
@@ -24213,6 +24287,34 @@ namespace user
 
       }
 
+      auto puserinteractionimplHost = get_host_user_interaction_impl();
+
+      if (puserinteractionimplHost->m_puiLastLButtonDown == this)
+      {
+
+         if (puserinteractionimplHost->m_pitemLButtonDown
+                  && puserinteractionimplHost->m_pitemLButtonDown->m_eitemflag & ::e_item_flag_drag)
+         {
+
+            auto ptopic = create_topic(::id_left_button_drag);
+
+            ptopic->m_puserelement = this;
+
+            ptopic->m_actioncontext.m_pmessage = pmessage->m_union.m_pmouse;
+
+            ptopic->m_actioncontext.add(e_source_user);
+
+            ptopic->m_pitem = puserinteractionimplHost->m_pitemLButtonDown;
+
+            route(ptopic);
+
+            pmessage->m_bRet = true;
+
+            return;
+
+         }
+
+      }
 
 
       ::string strType;
@@ -25552,7 +25654,7 @@ namespace user
 
       }
 
-      for (auto & pitem : *pitema)
+      for (auto & pitem : pitema->rear_payloads())
       {
 
          if (!pitem || pitem->is_hidden())

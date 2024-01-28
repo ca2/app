@@ -163,7 +163,6 @@ namespace user
 
       enum_keyboard_mode                        m_ekeyboardmode;
       ::size_i32                                m_sizeInitialResizeOffset;
-
       //bool                                      m_bMouseHover;
       bool                                      m_bDefaultClickHandling;
       bool                                      m_bDefaultMouseHoverHandling;
@@ -1743,6 +1742,7 @@ namespace user
       bool on_drag_start(::point_i32 & pointStart, ::item * pitem) override;
       ::point_i32 drag_mouse_cursor_position(::item* pitem, const ::point_i32 & point) override;
       bool drag_shift(::item * pitem, ::user::mouse * pmouse) override;
+      //virtual bool on_drag_shift_element_client(::item * pitem, ::user::mouse * pmouse);
       bool drag_hover(::item * pitem) override;
       void drag_release_capture() override;
       void drag_set_cursor(::item * pitem) override;
@@ -2095,7 +2095,7 @@ namespace user
       //virtual void set_context_offset_y(::draw2d::graphics_pointer & pgraphics, int y);
       //virtual void set_context_offset(::draw2d::graphics_pointer & pgraphics, int x, int y);
       //virtual void on_change_context_offset(::draw2d::graphics_pointer & pgraphics);
-      //virtual void on_context_offset(::draw2d::graphics_pointer & pgraphics);
+      virtual void on_context_offset(::draw2d::graphics_pointer & pgraphics);
       virtual ::size_f64 get_total_size(::user::enum_layout elayout = ::user::e_layout_design);
       virtual ::size_f64 get_page_size(::user::enum_layout elayout = ::user::e_layout_design);
       virtual ::point_f64 get_context_offset(::user::enum_layout elayout = ::user::e_layout_design);

@@ -163,6 +163,8 @@ namespace filemanager
       bool set_filemanager_data(::filemanager::data * pdata);
 
 
+      bool has_toolbar() override;
+
       ::atom get_toolbar_id() override;
       
       //virtual ::user::toolbar * get_toolbar(::user::frame * pframe, bool bCreate) override;

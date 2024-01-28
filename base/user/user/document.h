@@ -85,7 +85,7 @@ namespace user
 
       virtual string get_save_file_extension();
 
-      const ::file::path & get_file_path() const;
+      virtual ::file::path get_file_path() const;
       virtual void set_path_name(::payload payloadFile, bool bAddToMRU = true);
 
       ::user::impact_system * get_document_template() const;

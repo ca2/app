@@ -1038,19 +1038,6 @@ namespace user
 
 //      defer_synch_layered();
 
-      if (m_pimpactsystem)
-      {
-
-         ::pointer < ::user::document > puserdocument;
-
-         puserdocument = m_pusersystem->m_pdocumentCurrent;
-
-         m_pimpactsystem->prepare_frame(
-            this,
-            puserdocument,
-            m_pusersystem->m_prequest->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_screen);
-
-      }
 
    }
 

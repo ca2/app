@@ -87,6 +87,13 @@ else()
 endif()
 
 
+if(NOT ${HAS_SYSTEM_UNAC})
+
+   set(INCLUDE_UNAC TRUE)
+
+endif()
+
+
 add_subdirectory(source/app)
 add_subdirectory(operating_system)
 add_subdirectory(port)

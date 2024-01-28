@@ -334,7 +334,8 @@ namespace filemanager
             "filemanager",
             ::type < document >(),
             ::type < frame >(),
-            ::type < main_impact >()));
+               ::type < impact >()));
+            //::type < main_impact >()));
 
          //auto psession = get_session();
 

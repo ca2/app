@@ -72,7 +72,7 @@ public:
    
    mutable_string_range(THIS_RANGE &&range) : ::string_range<ITERATOR_TYPE>(::transfer(range)) {}
    
-   mutable_string_range(iterator begin, const_iterator end) : ::string_range<ITERATOR_TYPE>(begin, end) {}
+   mutable_string_range(this_iterator begin, this_iterator end) : ::string_range<ITERATOR_TYPE>(begin, end) {}
    
    explicit mutable_string_range(const ::block &block);
    

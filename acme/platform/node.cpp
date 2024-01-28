@@ -1146,7 +1146,7 @@ namespace acme
    }
 
 
-   bool node::set_wallpaper(index iScreen, string strLocalImagePath)
+   bool node::set_wallpaper(index iScreen, string strLocalImagePath, ::windowing::display * pwindowingdisplay)
    {
 
       throw interface_only();

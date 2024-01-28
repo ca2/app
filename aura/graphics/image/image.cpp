@@ -69,6 +69,8 @@ void sort_image_rgb(TYPE& R, TYPE& G, TYPE& B)
 image::image()
 {
    
+   m_item.m_eelement = e_element_image;
+
 }
 
 
@@ -139,6 +141,14 @@ void image::on_initialize_particle()
 {
    
    return get_size(); 
+
+}
+
+
+bool image::_is_set() const
+{
+
+   return m_item.m_eelement != e_element_none || m_item.m_iItem >= 0;
 
 }
 

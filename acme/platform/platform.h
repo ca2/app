@@ -445,7 +445,7 @@ namespace platform
    //{
 
 
-   inline ::platform::platform * get() { return ::acme::get()->platform(); }
+   inline ::platform::platform * get() { return ::acme::get() ? ::acme::get()->platform() : nullptr; }
 
 
 } // namespace platform

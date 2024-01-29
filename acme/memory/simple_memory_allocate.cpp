@@ -10,7 +10,7 @@
 #include "align_byte_count.h"
 
 
-void * simple_memory_allocate(size_t s)
+void * simple_memory_allocate(size_t s, const char * pszAllocation)
 {
    
    auto s2 = heap_memory_aligned_provision_get_size(s, ALIGN_BYTE_COUNT);
@@ -24,7 +24,7 @@ void * simple_memory_allocate(size_t s)
 }
 
 
-void * simple_memory_reallocate(void * p2, size_t s)
+void * simple_memory_reallocate(void * p2, size_t s, const char * pszAllocation)
 {
    
    auto pheapmemory = heap_memory_get(p2);
@@ -38,7 +38,7 @@ void * simple_memory_reallocate(void * p2, size_t s)
       
       auto prealloc = ::realloc(p, s2);
       
-      auto prealloc2 = heap_memory_aligned(prealloc, s, 0, ALIGN_BYTE_COUNT, ::heap::e_memory_simple);
+      auto prealloc2 = heap_memory_aligned(prealloc, s, 0, ALIGN_BYTE_COUNT, ::heap::e_memory_simple, pszAllocation);
       
       return prealloc2;
 
@@ -76,10 +76,45 @@ void simple_memory_free(void * p2)
    else
    {
 
-      ::acme::get()->m_pheapmanagement->memory(pheapmemory->m_ememory)->free(p2);
+      auto pheapmanagement = ::acme::get()->m_pheapmanagement;
+
+      if (pheapmanagement)
+      {
+
+         auto pmemory = pheapmanagement->memory(pheapmemory->m_ememory);
+
+         if(pmemory)
+         {
+
+            pmemory->free(p2);
+
+         }
+         else
+         {
+
+            output_debug_string("simple_memory_free (2) pmemory not set\n");
+
+         }
+
+      }
+      else
+      {
+
+         output_debug_string("simple_memory_free (2) pheapmanagement not set\n");
+
+         if(pheapmemory->m_pszAnnotation)
+         {
+
+            output_debug_string(pheapmemory->m_pszAnnotation);
+
+            output_debug_string("\n");
+
+         }
+
+      }
 
    }
-   
+
 }
 
 

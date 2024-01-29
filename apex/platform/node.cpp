@@ -452,12 +452,17 @@ namespace apex
       bool bEnoughCondition4 = plink && !(plink->m_elink & ::file::e_link_icon);
       bool bEnoughCondition5 = plink && (plink->m_pathIcon.trimmed().is_empty() || !acmefile()->exists(plink->m_pathIcon));
 
+      bool bAtLeastIsPossibleHandlerForPossibleFileAssociations = true; // todo
+
+      bool bEnoughCondition6 = bAtLeastIsPossibleHandlerForPossibleFileAssociations;
+
       //if (!acmefile()->exists(pathCreatedShortcut)
       if (bEnoughCondition1
          || bEnoughCondition2
          || bEnoughCondition3
          || bEnoughCondition4
          || bEnoughCondition5
+         || bEnoughCondition6
          )
       {
 

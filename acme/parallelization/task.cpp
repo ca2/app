@@ -594,16 +594,27 @@ void* task::s_os_task(void* p)
 
       }
 
-      ::acme::get()->m_ptaskmessagequeue->clear_message_queue(ptask->m_itask);
+      auto pacme = ::acme::get();
 
-      ptask->set_flag(e_flag_task_terminated);
+      if(pacme)
+      {
+
+         auto ptaskmessagequeue = pacme->m_ptaskmessagequeue;
+
+         if(ptaskmessagequeue)
+         {
+
+            ptaskmessagequeue->clear_message_queue(ptask->m_itask);
+
+         }
+
+      }
 
       ptask->destroy();
 
       ///ptask->release();
 
       //::task_release(REFERENCING_DEBUGGING_P_FUNCTION_FILE_LINE(ptask));
-
 
 #if REFERENCING_DEBUGGING
 

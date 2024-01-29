@@ -49,23 +49,27 @@ namespace heap
 
 
 #if MEMDLEAK || defined(__MCRTDBG)
-      void * alloc(memsize iSize, const char * pszFile, int iLine) override
+
+      void * alloc(memsize iSize, const char * pszFile, int iLine, const char * pszAnnotation = nullptr) override
       {
 
-         return memory_allocate_debug(iSize, 724, pszFile, iLine);
+         return memory_allocate_debug(iSize, 724, pszFile, iLine, pszAnnotation);
 
       }
+
 #else
-      void * allocate(memsize iSize) override
+
+      void * allocate(memsize iSize, const char * pszAnnotation = nullptr) override
       {
 
-         return ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(iSize);
+         return ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(iSize, pszAnnotation);
 
       }
+
 #endif
 
 
-       void free(void * p) override
+      void free(void * p) override
       {
 
          ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free(p);
@@ -80,6 +84,10 @@ namespace heap
    {
 
       m_pacme = nullptr;
+
+      m_bDestroyIfEmpty = false;
+
+      m_pacmeDestroyOnDestroy = nullptr;
 
       //m_pcounterParticle = nullptr;
 

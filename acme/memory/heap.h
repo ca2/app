@@ -44,16 +44,16 @@ namespace heap
 
       //Created by camilo on 2021-07-24 01:06 BRT <3ThomasBorregaardSorensen!!
 //#include "__aligned_memory_allocate.h"
-      virtual void * aligned_allocate(memsize size, memsize align = 0);
-      virtual void * aligned_allocate_debug(memsize nSize, i32 nBlockUse, const char * szFileName, i32 nLine, memsize align = 0);
+      virtual void * aligned_allocate(memsize size, memsize align = 0, const char * pszAnnotation = nullptr);
+      virtual void * aligned_allocate_debug(memsize nSize, i32 nBlockUse, const char * szFileName, i32 nLine, memsize align = 0, const char * pszAnnotation = nullptr);
 
 
       //Created by camilo on 2021-07-24 01:05 BRT <3ThomasBorregaardSorensen!!
 //#include "__unaligned_memory_allocate.h"
-      virtual void * unaligned_allocate(memsize size);
-      virtual void * unaligned_allocate_debug(memsize nSize, i32 nBlockUse, const char * szFileName, i32 nLine);
+      virtual void * unaligned_allocate(memsize size, const char * pszAnnotation = nullptr);
+      virtual void * unaligned_allocate_debug(memsize nSize, i32 nBlockUse, const char * szFileName, i32 nLine, const char * pszAnnotation = nullptr);
 
-      virtual void * count_allocate(::count count, memsize size);
+      virtual void * count_allocate(::count count, memsize size, const char * pszAnnotation = nullptr);
       //Created by camilo on 2021-07-24 01:05 BRT <3ThomasBorregaardSorensen!!
       //#include "__memory_allocate.h"
 
@@ -61,8 +61,8 @@ namespace heap
 #if !defined(MCHECK) && !defined(__VLD) && !defined(__MCRTDBG)
 
 
-      virtual void * allocate(memsize size);
-      virtual void * reallocate(void * p, memsize nSize);
+      virtual void * allocate(memsize size, const char * pszAnnotation = nullptr);
+      virtual void * reallocate(void * p, memsize nSize, const char * pszAnnotation = nullptr);
       virtual void      free(void * p);
       virtual memsize   size(void * p);
 
@@ -70,8 +70,8 @@ namespace heap
 #endif
 
 
-      virtual void * allocate_debug(memsize nSize, i32 nBlockUse, const char * szFileName, i32 nLine);
-      virtual void * reallocate_debug(void * p, memsize nSize, i32 nBlockUse, const char * szFileName, i32 nLine);
+      virtual void * allocate_debug(memsize nSize, i32 nBlockUse, const char * szFileName, i32 nLine, const char * pszAnnotation = nullptr);
+      virtual void * reallocate_debug(void * p, memsize nSize, i32 nBlockUse, const char * szFileName, i32 nLine, const char * pszAnnotation = nullptr);
       virtual void      free_debug(void * p, i32 iBlockType);
       virtual memsize   size_debug(void * p, i32 iBlockType);
 

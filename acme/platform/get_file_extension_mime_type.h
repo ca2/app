@@ -1,14 +1,20 @@
-//
-// Created by camilo on 1/27/24.
-//
-
-#ifndef MAIN_GET_FILE_EXTENSION_MIME_TYPE_H
-#define MAIN_GET_FILE_EXTENSION_MIME_TYPE_H
+// Created by camilo on 2024-01-27 21:48 <3ThomasBorregaardSorensen!!
+#pragma once
 
 
-class get_file_extension_mime_type {
+#include "acme/primitive/collection/string_array.h"
+
+
+class get_file_extension_mime_type :
+   virtual public particle
+{
+public:
+
+
+   virtual void file_extension_mime_type(string_array & straExtension, string_array & straMimeType);
+
 
 };
 
 
-#endif //MAIN_GET_FILE_EXTENSION_MIME_TYPE_H
+

@@ -28,8 +28,8 @@ namespace heap
 
       void initialize_allocator(::acme::acme * pacme) override;
 
-      void * allocate(memsize s) override;
-      void * reallocate(void * p, memsize s) override;
+      void * allocate(memsize s, const char * pszAnnotation) override;
+      void * reallocate(void * p, memsize s, const char * pszAnnotation) override;
       void free(void * p) override;
       memsize size(void * p) override;
       bool has_size() const override;

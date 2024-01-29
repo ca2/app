@@ -10,36 +10,43 @@
 #include "simple_memory_allocate.h"
 
 
-CLASS_DECL_ACME void * memory_allocate(memsize size)
+CLASS_DECL_ACME void * memory_allocate(memsize size, const char * pszAnnotation)
 {
    
-   ::heap::memory * pheapmemory;
+   ::heap::memory * pmemory;
    
    if(::is_set(::acme::get()) && ::is_set(::acme::get()->m_pheapmanagement))
    {
       
-      pheapmemory = ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main);
+      pmemory = ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main);
       
    }
    else
    {
       
-      pheapmemory = nullptr;
+      pmemory = nullptr;
       
+   }
+
+   if(::is_null(pszAnnotation))
+   {
+
+      printf("%s", "");
+
    }
 
    void * p;
 
-   if(::is_set(pheapmemory))
+   if(::is_set(pmemory))
    {
    
-      p = pheapmemory->allocate(size);
+      p = pmemory->allocate(size);
    
    }
    else
    {
    
-      p = simple_memory_allocate(size);
+      p = simple_memory_allocate(size, pszAnnotation);
    
    }
 
@@ -54,10 +61,10 @@ CLASS_DECL_ACME void * memory_allocate(memsize size)
 }
 
 
-CLASS_DECL_ACME void * memory_reallocate(void * p, memsize size)
+CLASS_DECL_ACME void * memory_reallocate(void * p, memsize size, const char * pszAnnotation)
 {
 
-   auto p2 = simple_memory_reallocate(p, size);
+   auto p2 = simple_memory_reallocate(p, size, pszAnnotation);
 
 //#if REFERENCING_DEBUGGING
 //
@@ -88,23 +95,30 @@ CLASS_DECL_ACME memsize memory_size(void * p)
 }
 
 
-CLASS_DECL_ACME void * memory_allocate_debug(memsize size, i32 nType, const char* pszFileName, i32 nLine)
+CLASS_DECL_ACME void * memory_allocate_debug(memsize size, i32 nType, const char* pszFileName, i32 nLine, const char * pszAnnotation)
 {
 
    auto pmemoryMain = ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main);
 
    void * p;
 
+   if(::is_null(pszAnnotation))
+   {
+
+      printf("%s", "");
+
+   }
+
    if(::is_set(pmemoryMain))
    {
    
-      p = pmemoryMain->allocate_debug(size, nType, pszFileName, nLine);
+      p = pmemoryMain->allocate_debug(size, nType, pszFileName, nLine, pszAnnotation);
    
    }
    else
    {
    
-      p = simple_memory_allocate(size);
+      p = simple_memory_allocate(size, pszAnnotation);
    
    }
 
@@ -119,25 +133,32 @@ CLASS_DECL_ACME void * memory_allocate_debug(memsize size, i32 nType, const char
 }
 
 
-CLASS_DECL_ACME void * memory_reallocate_debug(void * p, memsize size, i32 nType, const char* pszFileName, i32 nLine)
+CLASS_DECL_ACME void * memory_reallocate_debug(void * p, memsize size, i32 nType, const char* pszFileName, i32 nLine, const char * pszAnnotation)
 {
 
    auto pmemoryMain = ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main);
 
    auto pheapmemory = heap_memory_get(p);
 
+   if(::is_null(pszAnnotation))
+   {
+
+      printf("%s", "");
+
+   }
+
    void * p2;
    
-   if(::is_set(pmemoryMain) && pheapmemory->m_ememory == ::heap::e_memory_simple)
+   if(::is_set(pmemoryMain) && pheapmemory->m_ememory == ::heap::e_memory_main)
    {
    
-      p2 = pmemoryMain->reallocate_debug(p, size, nType, pszFileName, nLine);
+      p2 = pmemoryMain->reallocate_debug(p, size, nType, pszFileName, nLine, pszAnnotation);
    
    }
    else
    {
    
-      p2 = simple_memory_reallocate(p, size);
+      p2 = simple_memory_reallocate(p, size, pszAnnotation);
    
    }
 
@@ -159,7 +180,7 @@ CLASS_DECL_ACME void memory_free_debug(void * p, i32 nType)
 
    auto pheapmemory = heap_memory_get(p);
 
-   if(::is_set(pmemoryMain) && pheapmemory->m_ememory == ::heap::e_memory_simple)
+   if(::is_set(pmemoryMain) && pheapmemory->m_ememory == ::heap::e_memory_main)
    {
    
       pmemoryMain->free_debug(p, nType);

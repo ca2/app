@@ -81,7 +81,7 @@ namespace heap
    }
 
 
-   void * heap::allocate_debug(memsize size, int nBlockUse, const char * pszFile, int iLine)
+   void * heap::allocate_debug(memsize size, int nBlockUse, const char * pszFile, int iLine, const char * pszAnnotation)
    {
 
       throw ::interface_only();
@@ -94,7 +94,7 @@ namespace heap
 
    //Created by camilo on 2021-07-24 01:06 BRT <3ThomasBorregaardSorensen!!
 //#include "__aligned_memory_allocate.h"
-   void * heap::aligned_allocate(memsize size, memsize align)
+   void * heap::aligned_allocate(memsize size, memsize align, const char * pszAnnotation)
    {
 
       throw ::interface_only();
@@ -104,7 +104,7 @@ namespace heap
     }
 
 
-   void * heap::aligned_allocate_debug(memsize nSize, i32 nBlockUse, const char * szFileName, i32 nLine, memsize align)
+   void * heap::aligned_allocate_debug(memsize nSize, i32 nBlockUse, const char * szFileName, i32 nLine, memsize align, const char * pszAnnotation)
    {
 
       throw ::interface_only();
@@ -117,7 +117,7 @@ namespace heap
 
    //Created by camilo on 2021-07-24 01:05 BRT <3ThomasBorregaardSorensen!!
 //#include "__unaligned_memory_allocate.h"
-    void * heap::unaligned_allocate(memsize size)
+    void * heap::unaligned_allocate(memsize size, const char * pszAnnotation)
     {
 
        throw ::interface_only();
@@ -129,7 +129,7 @@ namespace heap
 
   
 
-    void * heap::unaligned_allocate_debug(memsize nSize, i32 nBlockUse, const char * szFileName, i32 nLine)
+    void * heap::unaligned_allocate_debug(memsize nSize, i32 nBlockUse, const char * szFileName, i32 nLine, const char * pszAnnotation)
     {
 
        throw ::interface_only();
@@ -139,7 +139,7 @@ namespace heap
 
     }
 
-    void * heap::count_allocate(::count count, memsize size)
+    void * heap::count_allocate(::count count, memsize size, const char * pszAnnotation)
     {
 
        throw ::interface_only();
@@ -155,7 +155,7 @@ namespace heap
 #if !defined(MCHECK) && !defined(__VLD) && !defined(__MCRTDBG)
 
 
-    void * heap::allocate(memsize size)
+    void * heap::allocate(memsize size, const char * pszAnnotation)
     {
 
        throw ::interface_only();
@@ -166,7 +166,7 @@ namespace heap
 
 
 
-    void * heap::reallocate(void * p, memsize nSize)
+    void * heap::reallocate(void * p, memsize nSize, const char * pszAnnotation)
     {
 
        throw ::interface_only();
@@ -210,7 +210,7 @@ namespace heap
     //}
 
 
-    void * heap::reallocate_debug(void * p, memsize nSize, i32 nBlockUse, const char * szFileName, i32 nLine)
+    void * heap::reallocate_debug(void * p, memsize nSize, i32 nBlockUse, const char * szFileName, i32 nLine, const char * pszAnnotation)
     {
 
        throw ::interface_only();
@@ -220,7 +220,7 @@ namespace heap
     }
 
 
-    void      heap::free_debug(void * p, i32 iBlockType)
+    void heap::free_debug(void * p, i32 iBlockType)
     {
 
        throw ::interface_only();

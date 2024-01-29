@@ -223,7 +223,9 @@ void output_debug_string(const ::scoped_string & scopedstr)
 
    //printf("c.");
 
-   if(::platform::get()->m_bOutputDebugString)
+   auto p = ::platform::get();
+
+   if(!p || p->m_bOutputDebugString)
    {
 
       //printf("2.");

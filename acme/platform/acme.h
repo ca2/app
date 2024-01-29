@@ -18,17 +18,20 @@ namespace acme
 {
 
 
+   class singleton_pointer;
+
+
    class CLASS_DECL_ACME acme
    {
    public:
 
 
-      static ::acme::acme *                  s_pacme;
-      ::pointer < ::task_message_queue >     m_ptaskmessagequeue;
+      friend class singleton_pointer;
+
+
       ::pointer < ::platform::platform >     m_pplatform;
+      ::pointer < ::task_message_queue >     m_ptaskmessagequeue;
       ::heap::management *                   m_pheapmanagement;
-
-
 
 
 #if REFERENCING_DEBUGGING 
@@ -64,9 +67,8 @@ namespace acme
 
 
       ::platform::platform * platform() { return m_pplatform; }
-      ::heap::management * heap() { return m_pheapmanagement; }
       ::task_message_queue * task_message_queue() { return m_ptaskmessagequeue; }
-
+      ::heap::management * heap() { return m_pheapmanagement; }
 
 
    protected:
@@ -90,7 +92,27 @@ namespace acme
    };
 
 
-   inline ::acme::acme * get() { return ::acme::acme::s_pacme; }
+   class CLASS_DECL_ACME singleton_pointer
+   {
+   public:
+
+
+      static acme * s_pacme;
+
+
+      singleton_pointer();
+      ~singleton_pointer();
+
+
+      acme * operator ->() { return s_pacme; }
+
+
+   };
+
+
+   inline ::acme::acme * get() { return ::acme::singleton_pointer::s_pacme; }
+
+
 
 } // namespace acme
 

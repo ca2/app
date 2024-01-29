@@ -3,6 +3,7 @@
 #include "acme/filesystem/file/file.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/platform/get_file_extension_mime_type.h"
 #include "acme/platform/system.h"
 #include "acme/filesystem/filesystem/dir_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
@@ -237,7 +238,7 @@ namespace freedesktop
 
       string_array & straLine = m_straLine;
 
-      string strWMClass = get_wm_class();
+      //string strWMClass = get_wm_class();
 
       straLine.add("[Desktop Entry]");
       straLine.add("Version=1.0");
@@ -276,8 +277,7 @@ namespace freedesktop
 
       m_straLine = pcontext->m_papexcontext->file()->lines(path);
 
-      if(m_straLine.is_empty())
-      {
+      if (m_straLine.is_empty()) {
 
          create_default();
 
@@ -321,16 +321,14 @@ namespace freedesktop
 
       //::fflush(stdout);
 
-      if(!acmefile()->exists(pathModuleIcon256))
-      {
+      if (!acmefile()->exists(pathModuleIcon256)) {
 
          auto pfileMainIcon256 = pcontext->m_papexcontext->file()->get_file("matter://main/icon-256.png",
-                                                                           ::file::e_open_read);
+                                                                            ::file::e_open_read);
 
          bool bNok = pfileMainIcon256.nok();
 
-         if(bNok)
-         {
+         if (bNok) {
 
             file_not_ok();
 
@@ -342,63 +340,67 @@ namespace freedesktop
 
       string_array & straLine = m_straLine;
 
-      string strScript;
-
-      //string strScript = "#!/bin/bash\n";
-
-      /*strScript += "\n";
-
-      strScript += "run_app()\n";
-
-      strScript += "{\n";
-
-      strScript += "\n";
-
-      strScript += "   cd " + string(pcontext->m_papexcontext->file()->module().folder()) + "/\n";
-
-      strScript += "\n";
-
-      strScript += "   export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:.:" + string(pcontext->m_papexcontext->file()->module().folder()) + "\n";
-
-      */
-
-      //strScript += "\n";
-
-      //strScript += "   /bin/bash -i -c \"" + string(pcontext->m_papexcontext->file()->module()) + "\" ${@:1:99}\n";
-
-      /*
-
-      strScript += "\n";
-
-      strScript += "}\n";
-
-      strScript += "\n";
-
-      strScript += "run_app ${@:1:99}\n";
-
-      strScript += "\n"; */
-
-      //acmefile()->put_contents(pathLaunch, strScript);
-
-      strScript = "#!/bin/bash\n";
-
-      strScript += "\n";
-
-//      strScript += "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:.:" + string(pcontext->m_papexcontext->file()->module().folder()) + "\n";
+//      {
 //
-//      strScript += "\n";
+//         string strScript;
 //
-
-      //strScript += "/bin/bash -l -c " + string(pcontext->m_papexcontext->file()->module()) + " ${@:1:99}\n";
-
-      strScript += string(pcontext->m_papexcontext->file()->module()) + " ${@:1:99}\n";
-
-      strScript += "\n";
-
-      acmefile()->put_contents(pathUserBin, strScript);
-
-      //chmod(pathLaunch, 0755);
-      chmod(pathUserBin, 0600);
+//         //string strScript = "#!/bin/bash\n";
+//
+//         /*strScript += "\n";
+//
+//         strScript += "run_app()\n";
+//
+//         strScript += "{\n";
+//
+//         strScript += "\n";
+//
+//         strScript += "   cd " + string(pcontext->m_papexcontext->file()->module().folder()) + "/\n";
+//
+//         strScript += "\n";
+//
+//         strScript += "   export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:.:" + string(pcontext->m_papexcontext->file()->module().folder()) + "\n";
+//
+//         */
+//
+//         //strScript += "\n";
+//
+//         //strScript += "   /bin/bash -i -c \"" + string(pcontext->m_papexcontext->file()->module()) + "\" ${@:1:99}\n";
+//
+//         /*
+//
+//         strScript += "\n";
+//
+//         strScript += "}\n";
+//
+//         strScript += "\n";
+//
+//         strScript += "run_app ${@:1:99}\n";
+//
+//         strScript += "\n"; */
+//
+//         //acmefile()->put_contents(pathLaunch, strScript);
+//
+//         strScript = "#!/bin/bash\n";
+//
+//         strScript += "\n";
+//
+//   //      strScript += "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:.:" + string(pcontext->m_papexcontext->file()->module().folder()) + "\n";
+//   //
+//   //      strScript += "\n";
+//   //
+//
+//         //strScript += "/bin/bash -l -c " + string(pcontext->m_papexcontext->file()->module()) + " ${@:1:99}\n";
+//
+//         strScript += string(pcontext->m_papexcontext->file()->module()) + " ${@:1:99}\n";
+//
+//         strScript += "\n";
+//
+//         acmefile()->put_contents(pathUserBin, strScript);
+//
+//         //chmod(pathLaunch, 0755);
+//         chmod(pathUserBin, 0600);
+//
+//      }
 
       string strModule = pcontext->m_papexcontext->file()->module();
 
@@ -425,9 +427,32 @@ namespace freedesktop
 
       }
 
-
       straLine._007SetLine("[Desktop Entry]", "StartupNotify", "true");
-      straLine._007SetLine("[Desktop Entry]", "StartupWMClass", strWMClass);
+//      straLine._007SetLine("[Desktop Entry]", "StartupWMClass", strWMClass);
+//
+//      if(m_pgetfileextensionmimetype)
+//      {
+//
+//         ::string_array straExtension;
+//
+//         ::string_array straMimeType;
+//
+//         m_pgetfileextensionmimetype->file_extension_mime_type(straExtension, straMimeType);
+//
+//         for(auto & strMimeType : straMimeType)
+//         {
+//
+//            strMimeType += ";";
+//
+//         }
+//
+//         ::string strMimeTypes;
+//
+//         strMimeTypes = straMimeType.implode("");
+//
+//         straLine._007SetLine("[Desktop Entry]", "MimeTypes", strMimeTypes);
+//
+//      }
 
       // straLine._007SetLine("[Desktop Entry]", "Actions", "transparent-frame;");
 
@@ -449,12 +474,12 @@ namespace freedesktop
       // //straLine._007SetLine("[Desktop Action transparent-frame]", "Exec", strName + " : post transparent_frame");
       // straLine._007SetLine("[Desktop Action transparent-frame]", "Exec", strModule + " : post transparent_frame");
 
-      if(straLine.last().has_char())
-      {
-
-         straLine.add("");
-
-      }
+//      if(straLine.last().has_char())
+//      {
+//
+//         straLine.add("");
+//
+//      }
 
    }
 
@@ -462,19 +487,31 @@ namespace freedesktop
    void desktop_file::write()
    {
 
-      ::file::path path = get_file_path();
-
       auto pcontext = m_pcontext;
 
-      pcontext->m_papexcontext->file()->put_lines(path, m_straLine);
+      {
 
-      chmod(path, S_IRUSR | S_IWUSR | S_IXUSR);
+         auto path = get_file_path();
 
-      path = get_board_path();
+         information() << "Writing desktop file to : " << path;
 
-      pcontext->m_papexcontext->file()->put_lines(path, m_straLine);
+         pcontext->m_papexcontext->file()->put_lines(path, m_straLine);
 
-      chmod(path, S_IRUSR | S_IWUSR | S_IXUSR);
+         chmod(path, S_IRUSR | S_IWUSR | S_IXUSR);
+
+      }
+
+      {
+
+         auto path = get_board_path();
+
+         information() << "Writing desktop file (2) to : " << path;
+
+         pcontext->m_papexcontext->file()->put_lines(path, m_straLine);
+
+         chmod(path, S_IRUSR | S_IWUSR | S_IXUSR);
+
+      }
 
    }
 
@@ -558,6 +595,12 @@ namespace freedesktop
    }
 
 
+   void desktop_file::set_get_file_extension_mime_type(get_file_extension_mime_type * pgetfileextensionmimetype)
+   {
+
+      m_pgetfileextensionmimetype = pgetfileextensionmimetype;
+
+   }
 
 } // namespace freedesktop
 

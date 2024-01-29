@@ -1319,14 +1319,12 @@ void object::destroy_tasks()
 
    set_finish();
 
-//   while (check_tasks_finished())
-//   {
-//
-//      ::sleep(100_ms);
-//
-//   }
+   while (check_tasks_finished())
+   {
 
-   //return ::success;
+      preempt(100_ms);
+
+   }
 
 }
 

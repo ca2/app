@@ -1582,3 +1582,37 @@ CLASS_DECL_ACME strsize string_safe_length(const ::ansi_character * psz) noexcep
 //
 //
 //
+
+
+
+CLASS_DECL_ACME char * strdup2(const char * psz1, const char * psz2)
+{
+
+   auto len1 = string_safe_length(psz1);
+
+   auto len2 = string_safe_length(psz2);
+
+   auto psz = (char *) ::malloc(len1 + len2 + 1);
+
+   *psz = '\0';
+
+   if(len1 > 0)
+   {
+
+      strcat(psz, psz1);
+
+   }
+
+   if(len2 > 0)
+   {
+
+      strcat(psz, psz2);
+
+   }
+
+   return psz;
+
+}
+
+
+

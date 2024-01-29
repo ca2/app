@@ -784,6 +784,15 @@ CLASS_DECL_ACME void task_release()
 
    nano_window_implementation::nanowindowimplementationa().free_extra();
 
+   auto ptask = t_ptask;
+
+   if(ptask)
+   {
+
+      ptask->set_flag(e_flag_task_terminated);
+
+   }
+
    t_ptask.release();
 
 }

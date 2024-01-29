@@ -772,11 +772,13 @@ bool file_context::try_create_file(const ::file::path &path, bool bTryDelete)
 
    ::memory signature;
 
+   signature.append("\0\0\0\0\0", 5);
    signature.append("\1\1\1\1\1", 5);
 
    signature.append(all_extensions);
 
    signature.append("\1\1\1\1\1", 5);
+   signature.append("\0\0\0\0\0", 5);
 
    return ::transfer(signature);
 
@@ -1203,11 +1205,11 @@ void file_context::get_lines(string_array &stra, const ::payload &payloadFile, b
 
    }
 
-   pfile = create_memory_file_by_reading(pfile);
+   auto pmemoryfile = create_memory_file_by_reading(pfile);
 
    string strLine;
 
-   while (pfile->read_string(strLine))
+   while (pmemoryfile->::file::file::read_string(strLine))
    {
 
       if (bAddEmpty || !strLine.is_empty())

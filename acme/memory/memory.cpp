@@ -53,26 +53,26 @@ namespace heap
    }
 
 
-   void * memory::allocate(memsize size)
+   void * memory::allocate(memsize size, const char * pszAnnotation)
    {
 
-      return m_pheap->allocate(size);
+      return m_pheap->allocate(size, pszAnnotation);
 
    }
 
 
-   void * memory::count_allocate(::count count, memsize size)
+   void * memory::count_allocate(::count count, memsize size, const char * pszAnnotation)
    {
 
-      return m_pheap->count_allocate(count, size);
+      return m_pheap->count_allocate(count, size, pszAnnotation);
 
    }
 
 
-   void * memory::reallocate(void * p, memsize size)
+   void * memory::reallocate(void * p, memsize size, const char * pszAnnotation)
    {
 
-      return m_pheap->reallocate(p, size);
+      return m_pheap->reallocate(p, size, pszAnnotation);
 
    }
 
@@ -131,18 +131,18 @@ namespace heap
    }
 
 
-   void * memory::allocate_debug(memsize size, i32 nBlockUse, const char * szFileName, i32 nLine)
+   void * memory::allocate_debug(memsize size, i32 nBlockUse, const char * szFileName, i32 nLine, const char * pszAnnotation)
    {
 
-      return m_pheap->allocate_debug(size, nBlockUse, szFileName,nLine);
+      return m_pheap->allocate_debug(size, nBlockUse, szFileName, nLine, pszAnnotation);
 
    }
 
 
-   void * memory::reallocate_debug(void * p, memsize size, i32 nBlockUse, const char * szFileName, i32 nLine)
+   void * memory::reallocate_debug(void * p, memsize size, i32 nBlockUse, const char * szFileName, i32 nLine, const char * pszAnnotation)
    {
 
-      return m_pheap->reallocate_debug(p, size, nBlockUse, szFileName, nLine);
+      return m_pheap->reallocate_debug(p, size, nBlockUse, szFileName, nLine, pszAnnotation);
    }
 
 
@@ -163,34 +163,34 @@ namespace heap
    }
 
 
-   void * memory::aligned_allocate(memsize s, memsize align)
+   void * memory::aligned_allocate(memsize s, memsize align, const char * pszAnnotation)
    {
 
-      return m_pheap->aligned_allocate(s, align);
+      return m_pheap->aligned_allocate(s, align, pszAnnotation);
 
    }
 
 
-   void * memory::aligned_allocate_debug(memsize s, i32 nBlockUse, const char * szFileName, i32 nLine, memsize align)
+   void * memory::aligned_allocate_debug(memsize s, i32 nBlockUse, const char * szFileName, i32 nLine, memsize align, const char * pszAnnotation)
    {
 
-      return m_pheap->aligned_allocate_debug(s, nBlockUse, szFileName, nLine, align);
+      return m_pheap->aligned_allocate_debug(s, nBlockUse, szFileName, nLine, align, pszAnnotation);
 
    }
 
 
-   void * memory::unaligned_allocate(memsize s)
+   void * memory::unaligned_allocate(memsize s, const char * pszAnnotation)
    {
 
-      return m_pheap->unaligned_allocate(s);
+      return m_pheap->unaligned_allocate(s, pszAnnotation);
 
    }
 
 
-   void * memory::unaligned_allocate_debug(memsize s, i32 nBlockUse, const char * szFileName, i32 nLine)
+   void * memory::unaligned_allocate_debug(memsize s, i32 nBlockUse, const char * szFileName, i32 nLine, const char * pszAnnotation)
    {
 
-      return m_pheap->aligned_allocate_debug(s, nBlockUse, szFileName, nLine);
+      return m_pheap->aligned_allocate_debug(s, nBlockUse, szFileName, nLine, 0, pszAnnotation);
 
    }
 

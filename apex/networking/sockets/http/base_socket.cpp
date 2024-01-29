@@ -10,6 +10,7 @@
 #include "acme/filesystem/file/memory_file.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "apex/platform/context.h"
+#include "apex/platform/os_context.h"
 
 
 namespace sockets
@@ -434,7 +435,7 @@ namespace sockets
       else
       {
 
-         outheader("content-type") = get_file_extension_mime_type(strExtension);
+         outheader("content-type") = os_context()->get_file_extension_mime_type(strExtension);
 
       }
 

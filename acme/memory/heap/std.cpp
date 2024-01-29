@@ -45,7 +45,7 @@ namespace heap
       }
 
 
-      void * aligned_allocate(memsize size, memsize align) override
+      void * aligned_allocate(memsize size, memsize align, const char * pszAnnotation = nullptr) override
       {
 
          if (size < 0)
@@ -75,7 +75,7 @@ namespace heap
 
             }
 
-            paligned = heap_memory_aligned(p, size, 128, (int)align, m_ememory);
+            paligned = heap_memory_aligned(p, size, 128, (int)align, m_ememory, pszAnnotation);
 
          }
          else
@@ -90,7 +90,7 @@ namespace heap
 
             }
 
-            paligned = heap_memory_aligned(p, size, 0, (int)align, m_ememory);
+            paligned = heap_memory_aligned(p, size, 0, (int)align, m_ememory, pszAnnotation);
 
          }
 
@@ -99,14 +99,14 @@ namespace heap
       }
 
 
-      void * unaligned_allocate(memsize size) override
+      void * unaligned_allocate(memsize size, const char * pszAnnotation = nullptr) override
       {
 
          void * punaligned;
 
 #if defined(__APPLE__) || defined(LINUX)
 
-         punaligned = aligned_allocate(size, ALIGN_BYTE_COUNT);
+         punaligned = aligned_allocate(size, ALIGN_BYTE_COUNT, pszAnnotation);
 
 #else
 
@@ -126,7 +126,7 @@ namespace heap
 
             }
 
-            punaligned = heap_memory_unaligned(p, size, 129, m_ememory);
+            punaligned = heap_memory_unaligned(p, size, 129, m_ememory, pszAnnotation);
 
          }
          else
@@ -141,7 +141,7 @@ namespace heap
 
             }
 
-            punaligned = heap_memory_unaligned(p, size, 1, m_ememory);
+            punaligned = heap_memory_unaligned(p, size, 1, m_ememory, pszAnnotation);
 
          }
 
@@ -152,7 +152,7 @@ namespace heap
       }
 
 
-      void * aligned_allocate_debug(memsize size, i32 nBlockUse, const char * szFileName, i32 nLine, memsize align) override
+      void * aligned_allocate_debug(memsize size, i32 nBlockUse, const char * szFileName, i32 nLine, memsize align, const char * pszAnnotation = nullptr) override
       {
 
          void * paligned;
@@ -170,7 +170,7 @@ namespace heap
          if (m_pallocarray == nullptr)
          {
 
-            void * p = m_pallocator->allocate(sizeProvision);
+            void * p = m_pallocator->allocate(sizeProvision, pszAnnotation);
 
             if (p == nullptr)
             {
@@ -179,7 +179,7 @@ namespace heap
 
             }
 
-            paligned = heap_memory_aligned(p, size, 130, (int)align, m_ememory);
+            paligned = heap_memory_aligned(p, size, 130, (int)align, m_ememory, pszAnnotation);
 
             memory_set(paligned, 0, size);
 
@@ -196,7 +196,7 @@ namespace heap
 
             }
 
-            paligned = heap_memory_aligned(p, size, 2, (int)align, m_ememory);
+            paligned = heap_memory_aligned(p, size, 2, (int)align, m_ememory, pszAnnotation);
 
          }
 
@@ -205,14 +205,14 @@ namespace heap
       }
 
 
-      void * unaligned_allocate_debug(memsize size, i32 nBlockUse, const char * szFileName, i32 nLine) override
+      void * unaligned_allocate_debug(memsize size, i32 nBlockUse, const char * szFileName, i32 nLine, const char * pszAnnotation = nullptr) override
       {
 
          void * punaligned;
 
 #if defined(__APPLE__) || defined(LINUX)
 
-         punaligned = aligned_allocate(size, ALIGN_BYTE_COUNT);
+         punaligned = aligned_allocate(size, ALIGN_BYTE_COUNT, pszAnnotation);
 
 #else
 
@@ -230,7 +230,7 @@ namespace heap
 
             }
 
-            punaligned = heap_memory_unaligned(p, size, 131, m_ememory);
+            punaligned = heap_memory_unaligned(p, size, 131, m_ememory, pszAnnotation);
 
          }
          else
@@ -245,7 +245,7 @@ namespace heap
 
             }
 
-            punaligned = heap_memory_unaligned(p, size, 3, m_ememory);
+            punaligned = heap_memory_unaligned(p, size, 3, m_ememory, pszAnnotation);
 
          }
 
@@ -260,10 +260,10 @@ namespace heap
       //#undef ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate
 
 
-      void * allocate(memsize size) override
+      void * allocate(memsize size, const char * pszAnnotation = nullptr) override
       {
 
-         return aligned_allocate(size, ALIGN_BYTE_COUNT);
+         return aligned_allocate(size, ALIGN_BYTE_COUNT, pszAnnotation);
 
       }
 
@@ -284,39 +284,39 @@ namespace heap
       }
 
 
-      void * count_allocate(memsize size, memsize bytes) override
+      void * count_allocate(memsize size, memsize bytes, const char * pszAnnotation = nullptr) override
       {
 
-         return allocate(size * bytes);
+         return allocate(size * bytes, pszAnnotation);
 
       }
 
 
-      void * allocate_debug(memsize nSize, i32 nBlockUse, const char * szFileName, i32 nLine) override
+      void * allocate_debug(memsize nSize, i32 nBlockUse, const char * szFileName, i32 nLine, const char * pszAnnotation = nullptr) override
       {
 
          // return unaligned_memory_allocate_debug(nSize, nBlockUse, szFileName, nLine);
 
-         return aligned_allocate_debug(nSize, nBlockUse, szFileName, nLine, ALIGN_BYTE_COUNT);
+         return aligned_allocate_debug(nSize, nBlockUse, szFileName, nLine, ALIGN_BYTE_COUNT, pszAnnotation);
 
       }
 
 
-      void * reallocate(void * pmemory, memsize nSize) override
+      void * reallocate(void * pmemory, memsize nSize, const char * pszAnnotation = nullptr) override
       {
 
-         return reallocate_debug(pmemory, nSize, 0, nullptr, -1);
+         return reallocate_debug(pmemory, nSize, 0, nullptr, -1, pszAnnotation);
 
       }
 
 
-      void * reallocate_debug(void * pmemory, memsize size, i32 nBlockUse, const char * szFileName, i32 nLine) override
+      void * reallocate_debug(void * pmemory, memsize size, i32 nBlockUse, const char * szFileName, i32 nLine, const char * pszAnnotation = nullptr) override
       {
 
          if (pmemory == nullptr)
          {
 
-            return allocate_debug(size, nBlockUse, szFileName, nLine);
+            return allocate_debug(size, nBlockUse, szFileName, nLine, pszAnnotation);
 
          }
 

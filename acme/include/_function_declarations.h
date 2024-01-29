@@ -7,6 +7,9 @@
 //
 //CLASS_DECL_ACME void set_last_status(const ::e_status& estatus);
 
+CLASS_DECL_ACME char * strdup2(const char * psz1, const char * psz2);
+
+
 CLASS_DECL_ACME i64 ansi_to_i64(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, i32 iBase);
 
 CLASS_DECL_ACME i64 ansi_to_i64(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, i32 iBase);

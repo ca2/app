@@ -11,6 +11,8 @@ class main_hold_base;
 //} // namespace apex
 class application_menu;
 
+class get_file_extension_mime_type;
+
 namespace acme { class acme;  }
 
 #include "application_base.h"
@@ -260,6 +262,9 @@ namespace acme
 
       virtual void add_impact_system(const ::atom & atom, const ::pointer<::user::impact_system> & pimpactsystem);
       virtual ::pointer<::user::impact_system> impact_system(const ::atom & atom);
+
+
+      virtual get_file_extension_mime_type * get_get_file_extension_mime_type();
 
 
    };

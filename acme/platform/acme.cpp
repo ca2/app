@@ -244,15 +244,15 @@ namespace acme
 {
 
 
-   ::acme::acme * acme::s_pacme = nullptr;
+   ::acme::acme * singleton_pointer::s_pacme = nullptr;
 
 
    acme::acme()
    {
 
-      m_pheapmanagement = nullptr;
+      //m_pheapmanagement = nullptr;
 
-      s_pacme = this;
+//      s_pacme = this;
 
       acme_construct();
 
@@ -317,9 +317,11 @@ namespace acme
    acme::~acme()
    {
 
+      m_ptaskmessagequeue.release();
+
       ::task_release();
 
-      m_pplatform->m_psystem.release();
+      __destroy_and_release(m_pplatform->m_psystem);
 
       acme_destruct_platform_dependent();
 
@@ -348,6 +350,8 @@ namespace acme
 #endif
 
       acme_destruct();
+
+      //s_pacme = nullptr;
 
    }
 
@@ -1903,50 +1907,90 @@ namespace acme
 
 
 
-void acme::initialize_memory_management()
-{
-
-   if (m_pheapmanagement)
+   void acme::initialize_memory_management()
    {
 
-      return;
+      if (m_pheapmanagement)
+      {
+
+         return;
+
+      }
+
+      m_pheapmanagement = ::c::malloc::create < ::heap::management >();
+
+      m_pheapmanagement->initialize_memory_management(this);
+
+      m_pheapmanagement->start_management();
+
+      //DO_FOR_ALL_HEAPS(INITIALIZE_MEMORY_MANAGEMENT);
+      //INITIALIZE_MEMORY_MANAGEMENT(main);
+      //INITIALIZE_MEMORY_MANAGEMENT(secondary);
+      //INITIALIZE_MEMORY_MANAGEMENT(array);
+      //INITIALIZE_MEMORY_MANAGEMENT(property);
+      //INITIALIZE_MEMORY_MANAGEMENT(string);
+
+      //DO_FOR_ALL_HEAPS(INITIALIZE_MEMORY_HEAP);
 
    }
 
-   m_pheapmanagement = ::c::malloc::create < ::heap::management >();
 
-   m_pheapmanagement->initialize_memory_management(this);
-
-   m_pheapmanagement->start_management();
-
-   //DO_FOR_ALL_HEAPS(INITIALIZE_MEMORY_MANAGEMENT);
-   //INITIALIZE_MEMORY_MANAGEMENT(main);
-   //INITIALIZE_MEMORY_MANAGEMENT(secondary);
-   //INITIALIZE_MEMORY_MANAGEMENT(array);
-   //INITIALIZE_MEMORY_MANAGEMENT(property);
-   //INITIALIZE_MEMORY_MANAGEMENT(string);
-
-   //DO_FOR_ALL_HEAPS(INITIALIZE_MEMORY_HEAP);
-
-}
-
-
-void acme::finalize_memory_management()
-{
-
-   if (!m_pheapmanagement)
+   void acme::finalize_memory_management()
    {
 
-      return;
+      if (!m_pheapmanagement)
+      {
+
+         return;
+
+      }
+
+      //::c::malloc::destroy(s_pheapmanagement);
+
+      //::c::malloc::destroy(s_pheapmanagement);
+
+      m_pheapmanagement->m_bDestroyIfEmpty = true;
+
+      //DO_FOR_ALL_HEAPS(FINALIZE_MEMORY_HEAP);
 
    }
 
-   ::c::malloc::destroy(m_pheapmanagement);
 
-   //DO_FOR_ALL_HEAPS(FINALIZE_MEMORY_HEAP);
+   singleton_pointer::singleton_pointer()
+   {
 
-}
+      ::c::malloc::construct(s_pacme);
 
+   }
+
+
+   singleton_pointer::~singleton_pointer()
+   {
+
+      auto pacme = s_pacme;
+
+      if(pacme)
+      {
+
+         auto pheapmanagement = pacme->m_pheapmanagement;
+
+         if(pheapmanagement)
+         {
+
+            pheapmanagement->m_pacmeDestroyOnDestroy = s_pacme;
+
+            s_pacme->acme_destruct();
+
+            return;
+
+         }
+
+
+      }
+
+      ::c::malloc::destroy(s_pacme);
+
+   }
 
 
 } // namespace acme
@@ -2068,7 +2112,6 @@ CLASS_DECL_ACME::e_status get_last_status()
 //         //
 //         //         osdisplay_data::s_pdataptra = __new< osdisplay_dataptra >();
 //         //
-//         //         osdisplay_data::s_criticalsection = __new< ::critical_section >();
 //
 //#endif // defined(LINUX)
 //

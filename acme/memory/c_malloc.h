@@ -28,6 +28,19 @@ namespace c
 
 
       template < typename T >
+      static T * construct(T * & p)
+      {
+
+         p = (T *) ::malloc(sizeof(T));
+
+         ::new(p)T();
+
+         return p;
+
+      }
+
+
+      template < typename T >
       static void destroy(T *& p)
       {
 

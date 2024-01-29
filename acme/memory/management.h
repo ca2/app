@@ -52,6 +52,8 @@ namespace heap
 
 
       class memory * m_memorya[::heap::e_memory_count];
+      bool              m_bDestroyIfEmpty;
+      ::acme::acme *    m_pacmeDestroyOnDestroy;
 
 
       //inline static class allocator *  s_allocatora[::heap::e_allocator_count];

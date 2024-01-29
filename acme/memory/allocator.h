@@ -85,8 +85,8 @@ namespace heap
       virtual void initialize_allocator(::acme::acme * pacme);
 
       // Core functions
-      void * allocate(memsize size) override;
-      void * reallocate(void * p, memsize size) override;
+      void * allocate(memsize size, const char * pszAnnotation = nullptr) override;
+      void * reallocate(void * p, memsize size, const char * pszAnnotation = nullptr) override;
       void free(void * p) override;
       memsize size(void * p) override;
       bool has_size() const override;

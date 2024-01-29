@@ -86,7 +86,7 @@ int main(int argc, char * argv[], char * envp[])
 #endif
 {
 
-   ::acme::acme acme;
+   ::acme::singleton_pointer pacme;
 
    //if (this->platform()->m_pacmeapplication->has_finishing_flag())
    //{
@@ -101,13 +101,13 @@ int main(int argc, char * argv[], char * envp[])
 
 #else
 
-   acme.initialize(argc, argv, envp);
+   pacme->initialize(argc, argv, envp);
 
 #endif
 
 #if defined(LINUX) || defined(FREEBSD) || defined(RASPBERRYPIOS)
 
-   acme.platform()->set_resource_block(_binary__matter_zip_start, _binary__matter_zip_end);
+   pacme->platform()->set_resource_block(_binary__matter_zip_start, _binary__matter_zip_end);
 
 #elif defined(ANDROID)
 
@@ -115,7 +115,7 @@ int main(int argc, char * argv[], char * envp[])
 
 #endif
 
-   auto iExitCode = application_main(acme.platform());
+   auto iExitCode = application_main(pacme->platform());
 
    return iExitCode;
    //::acme::sub_application::g_p->m_pacmeapplicationSub->m_bConsole = true;

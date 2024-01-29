@@ -12,6 +12,8 @@
 //#include "acme/primitive/collection/string_array.h"
 
 
+class get_file_extension_mime_type;
+
 
 namespace freedesktop
 {
@@ -23,9 +25,10 @@ namespace freedesktop
    public:
 
 
-      ::file::path      m_path;
-      string_array      m_straLine;
-      string            m_strAppId;
+      ::file::path                                 m_path;
+      string_array                                 m_straLine;
+      string                                       m_strAppId;
+      ::pointer < get_file_extension_mime_type >   m_pgetfileextensionmimetype;
 
 
       desktop_file();
@@ -48,8 +51,11 @@ namespace freedesktop
 
       virtual ::string get_SessionKeyPayload(const ::scoped_string & scopedstrSession, const ::scoped_string & scopedstrKey);
 
-virtual ::string get_Target(); virtual ::string get_Icon();
+      virtual ::string get_Target();
 
+      virtual ::string get_Icon();
+
+      virtual void set_get_file_extension_mime_type(get_file_extension_mime_type * pgetfileextensionmimetype);
 
       ::file::path get_board_path();
 

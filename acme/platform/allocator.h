@@ -230,7 +230,15 @@ namespace allocator
 
          auto s = sizeof(T);
 
-         auto data = pallocatorbase->allocate(s);
+         char * pszAnnotation = nullptr;
+
+#ifdef _DEBUG
+
+         pszAnnotation = strdup(typeid(T).name());
+
+#endif
+
+         auto data = pallocatorbase->allocate(s, pszAnnotation);
 
          auto p = __on_construct< T >(data, s, ::std::forward < Args >(args)...);
 
@@ -247,7 +255,15 @@ namespace allocator
 
          auto s = sElement * c;
 
-         auto * data = pallocatorbase->allocate(s);
+         char * pszAnnotation = nullptr;
+
+#ifdef _DEBUG
+
+         pszAnnotation = strdup2("array of ", typeid(T).name());
+
+#endif
+
+         auto * data = pallocatorbase->allocate(s, pszAnnotation);
 
          auto p = (::u8*)data;
 
@@ -275,8 +291,9 @@ namespace allocator
 
       }
 
+
       template < typename T >
-      inline static void __allocator_base_delete(::heap::allocator_base* pallocatorbase, T* p, void * pAllocation)
+      inline static void __allocator_base_delete(::heap::allocator_base * pallocatorbase, T* p, void * pAllocation)
       {
 
          __on_destruct(p);
@@ -292,10 +309,10 @@ namespace allocator
          
          auto pheapmanagement = ::acme::get()->m_pheapmanagement;
          
-         auto & pallocatorbase = pheapmanagement->m_memorya[ememory];
+         auto & pmemory = pheapmanagement->m_memorya[ememory];
 
          auto p = ::transfer(__allocator_base_allocate< T >(
-            pallocatorbase,
+            pmemory,
             ::std::forward<Args>(args)...));
 
          return ::transfer(p);
@@ -307,8 +324,12 @@ namespace allocator
       inline static T * __memory_new(::heap::enum_memory ememory, Args &&... args)
       {
 
+         auto pheapmanagement = ::acme::get()->m_pheapmanagement;
+
+         auto & pmemory = pheapmanagement->m_memorya[ememory];
+
          auto p = __allocator_base_new < T >(
-            ::acme::get()->m_pheapmanagement->memory(ememory),
+            pmemory,
             ::std::forward < Args >(args)...);
 
          return p;
@@ -320,8 +341,12 @@ namespace allocator
       inline static T * __memory_new_array(::heap::enum_memory ememory, ::count c)
       {
 
+         auto pheapmanagement = ::acme::get()->m_pheapmanagement;
+
+         auto & pmemory = pheapmanagement->m_memorya[ememory];
+
          auto p = __allocator_base_new_array < T >(
-            ::acme::get()->m_pheapmanagement->memory(ememory),
+            pmemory,
             c);
 
          return p;
@@ -333,18 +358,27 @@ namespace allocator
       static void __memory_delete(::heap::enum_memory ememory, T * p)
       {
 
+         auto pheapmanagement = ::acme::get()->m_pheapmanagement;
+
+         auto & pmemory = pheapmanagement->m_memorya[ememory];
+
          __allocator_base_delete< T >(
-            ::acme::get()->m_pheapmanagement->memory(ememory),
+            pmemory,
             p);
 
       }
+
 
       template < typename T >
       static void __memory_delete(::heap::enum_memory ememory, T* p, void * pAllocation)
       {
 
+         auto pheapmanagement = ::acme::get()->m_pheapmanagement;
+
+         auto & pmemory = pheapmanagement->m_memorya[ememory];
+
          __allocator_base_delete< T >(
-            ::acme::get()->m_pheapmanagement->memory(ememory),
+            pmemory,
             p,
             pAllocation);
 
@@ -378,7 +412,6 @@ namespace allocator
          return (accessor *) this;
 
       }
-
 
 #endif
 

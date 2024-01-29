@@ -2437,32 +2437,32 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  :
    else if(nNewSize <= m_countAllocation)
    {
 
-      if(nNewSize > this->size())
+      if (!bRaw)
       {
-         
-         if(!bRaw)
+
+         if (nNewSize > countOld)
          {
-            
+
             if (::is_null(ptype))
             {
-               
-               TYPED::construct_count(this->end(), nNewSize - this->size());
-               
+
+               TYPED::construct_count(this->m_begin + countOld, nNewSize - countOld);
+
             }
             else
             {
-               
-               TYPED::copy_construct_count(this->end(), nNewSize - this->size(), *ptype);
-               
+
+               TYPED::copy_construct_count(this->m_begin + countOld, nNewSize - countOld, *ptype);
+
             }
-            
+
          }
+         else if (countOld > nNewSize)
+         {
 
-      }
-      else if(this->size() > nNewSize)
-      {
+            TYPED::destruct_count(this->m_begin + nNewSize, countOld - nNewSize);
 
-         TYPED::destruct_count(this->m_begin + nNewSize,this->size() - nNewSize);
+         }
 
       }
 
@@ -2560,27 +2560,27 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  :
 #endif
 
       // copy new data from old
-      ::acme::memcpy_s(pNewData, (size_t)countNewAllocation * sizeof(TYPE), this->m_begin, (size_t) this->size() * sizeof(TYPE));
+      ::acme::memcpy_s(pNewData, (size_t)countNewAllocation * sizeof(TYPE), this->m_begin, (size_t) countOld * sizeof(TYPE));
 
       if(!bRaw)
       {
          
          // construct remaining elements
-         ASSERT(nNewSize > this->size());
+         ASSERT(nNewSize > countOld);
          
-         if (nNewSize > this->size())
+         if (nNewSize > countOld)
          {
             
             if (::is_null(ptype))
             {
                
-               TYPED::construct_count(pNewData + this->size(), nNewSize - this->size());
+               TYPED::construct_count(pNewData + countOld, nNewSize - countOld);
                
             }
             else
             {
                
-               TYPED::copy_construct_count(pNewData + this->size(), nNewSize - this->size(), *ptype);
+               TYPED::copy_construct_count(pNewData + countOld, nNewSize - countOld, *ptype);
                
             }
             

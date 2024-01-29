@@ -19,6 +19,7 @@ public:
    bool                                            m_bTransparentFrameEnable : 1;
    bool                                            m_bCustomFrameBefore : 1;
    bool                                            m_bToolbar : 1;
+   bool                                            m_bHideOnCloseMessage : 1;
    ::pointer<::user::tool_window>                  m_ptoolwindowFont;
    class ::time                                      m_timeLastSaveWindowRect;
    class ::time                                      m_timeLastSaveWindowRectRequest;

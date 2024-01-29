@@ -296,9 +296,9 @@ namespace sockets
 
       http_socket::Reset();
 
-      //m_body_size_left = 0;
+      m_body_size_left = 0;
 
-      //m_body_size_downloaded = 0;
+      m_body_size_downloaded = 0;
 
    }
 

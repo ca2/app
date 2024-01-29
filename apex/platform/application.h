@@ -1077,10 +1077,10 @@ namespace apex
       virtual void create_app_shortcut();
 
 
-      virtual class ::networking::application * networking_application();
+      virtual class ::networking::application * networking_application(::networking::application_handler * papplicationhandlerCreateNetworkApplication = nullptr);
 
 
-      virtual void create_networking_application(const ::scoped_string & scopedstrHostName);
+      virtual void create_networking_application(const ::scoped_string & scopedstrHostName, ::networking::application_handler * papplicationhandlerCreateNetworkApplication = nullptr);
 
 
       ::e_status on_html_response(::string & strHtml, const ::string & strUrl, const ::property_set & setPost) override;

@@ -73,6 +73,8 @@ simple_frame_window::simple_frame_window()
 
    //m_bDefaultMouseHoverHandling = false;
 
+   m_bHideOnCloseMessage = false;
+
    m_bFramePayloadFlags = false;
 
    m_bProdevianFrame = true;
@@ -1817,10 +1819,14 @@ void simple_frame_window::on_message_close(::message::message * pmessage)
 
    }
 
-   if (m_varFrame["hide_on_close"].is_true())
+   if (m_bHideOnCloseMessage)
    {
 
       display(e_display_none);
+
+      set_need_redraw();
+
+      post_redraw();
 
       if (pmessage != nullptr)
       {

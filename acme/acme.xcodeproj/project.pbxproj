@@ -708,6 +708,8 @@
 		9A3BFBC929C83393005DE2BF /* sync_io_error.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A3BFBB829C83392005DE2BF /* sync_io_error.h */; };
 		9A3BFBCA29C83393005DE2BF /* _impl_read_sz_stream.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A3BFBB929C83392005DE2BF /* _impl_read_sz_stream.h */; };
 		9A3BFBCB29C83393005DE2BF /* _impl_read_sz_stream.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A3BFBB929C83392005DE2BF /* _impl_read_sz_stream.h */; };
+		9A420C582B69146700D956E1 /* strdup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A420C572B69146700D956E1 /* strdup.cpp */; };
+		9A420C592B69146700D956E1 /* strdup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A420C572B69146700D956E1 /* strdup.cpp */; };
 		9A4387B9299E499A00D2EE15 /* request.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4387B6299E499800D2EE15 /* request.cpp */; };
 		9A4387BA299E499A00D2EE15 /* request.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A4387B8299E499900D2EE15 /* request.h */; };
 		9A4EF4A82AE35AAB0048F22F /* image32_array.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4EF4A42AE35AA70048F22F /* image32_array.cpp */; };
@@ -3306,6 +3308,8 @@
 		9A3BFBB729C83392005DE2BF /* _impl_write_text_stream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _impl_write_text_stream.h; sourceTree = "<group>"; };
 		9A3BFBB829C83392005DE2BF /* sync_io_error.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sync_io_error.h; sourceTree = "<group>"; };
 		9A3BFBB929C83392005DE2BF /* _impl_read_sz_stream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _impl_read_sz_stream.h; sourceTree = "<group>"; };
+		9A420C552B69137C00D956E1 /* strdup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = strdup.h; sourceTree = "<group>"; };
+		9A420C572B69146700D956E1 /* strdup.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = strdup.cpp; sourceTree = "<group>"; };
 		9A4387B6299E499800D2EE15 /* request.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = request.cpp; sourceTree = "<group>"; };
 		9A4387B8299E499900D2EE15 /* request.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = request.h; sourceTree = "<group>"; };
 		9A4EF4A42AE35AA70048F22F /* image32_array.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = image32_array.cpp; sourceTree = "<group>"; };
@@ -4563,10 +4567,12 @@
 				9A809D7C2A60052F00FCA9FD /* coupling_impl.cpp */,
 				9A809D7B2A60052E00FCA9FD /* unicode_impl.cpp */,
 				9A0841CC2935DD5C009F7FF4 /* encoding.h */,
+				9A420C552B69137C00D956E1 /* strdup.h */,
 				9A0841CE2935DD5C009F7FF4 /* unicode.h */,
 				9A0841D82935DD5C009F7FF4 /* coupling.h */,
 				9A0841D92935DD5C009F7FF4 /* encoding_impl.h */,
 				9A0841DA2935DD5C009F7FF4 /* _.h */,
+				9A420C572B69146700D956E1 /* strdup.cpp */,
 			);
 			path = c;
 			sourceTree = "<group>";
@@ -8583,7 +8589,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastUpgradeCheck = 1500;
+				LastUpgradeCheck = 1520;
 				ORGANIZATIONNAME = "Camilo Sasuke Tsumanuma";
 				TargetAttributes = {
 					9A68A41325114352008DABD2 = {
@@ -8675,6 +8681,7 @@
 				9A95EDA82AFAFE17000F322B /* _c.cpp in Sources */,
 				9A809F722A6021C600FCA9FD /* time.cpp in Sources */,
 				9A809F752A6021E900FCA9FD /* posix_time.cpp in Sources */,
+				9A420C582B69146700D956E1 /* strdup.cpp in Sources */,
 				9A15A6A4264B59EF0080670E /* multiple_lock.cpp in Sources */,
 				9A68ADDB25114434008DABD2 /* array.cpp in Sources */,
 				9A75512E2B214AE500FFB669 /* plex_heap_alloc.cpp in Sources */,
@@ -9469,6 +9476,7 @@
 				9A110F8027CDD4C60081BCCD /* file_time_span.cpp in Sources */,
 				9A809D1B2A5FF1E800FCA9FD /* string_stream.cpp in Sources */,
 				9A809D4F2A60047E00FCA9FD /* ansi.cpp in Sources */,
+				9A420C592B69146700D956E1 /* strdup.cpp in Sources */,
 				9AA8F90427BA7268008FF9AA /* window_implementation.cpp in Sources */,
 				9AD69246251A753A00C0EBD7 /* box.cpp in Sources */,
 				9AD6924D251A753A00C0EBD7 /* text_stream.cpp in Sources */,

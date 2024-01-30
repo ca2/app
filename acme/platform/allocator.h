@@ -4,6 +4,7 @@
 
 #include "acme/memory/allocator_base.h"
 #include "acme/platform/acme.h"
+#include "acme/primitive/string/c/strdup.h"
 
 
 namespace allocator
@@ -234,7 +235,7 @@ namespace allocator
 
 #ifdef _DEBUG
 
-         pszAnnotation = strdup(typeid(T).name());
+         pszAnnotation = ::c::strdup(typeid(T).name());
 
 #endif
 

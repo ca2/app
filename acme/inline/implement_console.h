@@ -67,7 +67,7 @@ int main(int argc, char ** argv, char ** envp)
 #endif
 {
 
-   ::acme::acme acme;
+   ::acme::singleton_pointer pacme;
 
    
 
@@ -90,9 +90,9 @@ int main(int argc, char ** argv, char ** envp)
    }
 #endif
 
-   acme.initialize(argc, argv, envp);
+   pacme->initialize(argc, argv, envp);
 
-   acme.platform()->m_bConsole = true;
+   pacme->platform()->m_bConsole = true;
 
    //::acme::acme::g_pacme->m_pacmeapplication->m_bConsole = true;
 
@@ -107,7 +107,7 @@ int main(int argc, char ** argv, char ** envp)
 ////
 ////
    //::acme::acme::g_pacme->m_pacmeapplication->implement_application();
-   int iExitCode = application_main(acme.platform());
+   int iExitCode = application_main(pacme->platform());
 
    //return ::acme::acme::g_pacme->m_pacmeapplication->m_iExitCode;
 

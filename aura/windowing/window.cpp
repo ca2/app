@@ -417,6 +417,16 @@ namespace windowing
    }
 
 
+   void window::_on_reposition_notify_unlocked(const ::point_i32 & point)
+   {
+
+      m_pointWindow = point;
+
+      m_puserinteractionimpl->m_puserinteraction->_on_reposition_notify_unlocked(point);
+
+   }
+
+
    void window::win_update_graphics()
    {
 

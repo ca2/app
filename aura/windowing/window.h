@@ -223,6 +223,7 @@ namespace windowing
       //virtual void on_visual_applied();
 
       virtual void _on_configure_notify_unlocked(const ::rectangle_i32 & rectangle);
+      virtual void _on_reposition_notify_unlocked(const ::point_i32 & point);
 
 
       virtual void win_update_graphics();

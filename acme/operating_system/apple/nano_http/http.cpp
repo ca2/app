@@ -46,7 +46,7 @@ namespace apple
 //      {                                s_http_response(pasynchronoushttpresponse);
 //      };
       
-      nano_asynchronous_http_memory(scopedstrUrl.c_str(), s_http_response, pasynchronoushttpresponse.detach());
+      nano_asynchronous_http_memory(scopedstrUrl.c_str(), s_http_response, (::particle *) pasynchronoushttpresponse.detach());
      
    }
 

@@ -492,13 +492,13 @@ namespace user
 
          strTypeParent = ::type(pparent).as_string();
 
-         ::string str;
+//         ::string str;
+//
+//         auto r = pparent->rectangle();
 
-         auto r = pparent->rectangle();
-
-         str.formatf("%d,%d,%d,%d : %s", r.left(), r.top(), r.width(), r.height(), strTypeParent.c_str());
-
-         information() << str;
+//         str.formatf("%d,%d,%d,%d : %s", r.left(), r.top(), r.width(), r.height(), strTypeParent.c_str());
+//
+//         information() << str;
 
          auto pparentParent = pparent->get_parent();
 
@@ -507,13 +507,13 @@ namespace user
 
             strTypeParentParent = ::type(pparentParent).as_string();
 
-            ::string str2;
+//            ::string str2;
+//
+//            auto r2 = pparentParent->rectangle();
+//
+//            str2.formatf("%d,%d,%d,%d : %s", r2.left(), r2.top(), r2.width(), r2.height(), strTypeParentParent.c_str());
 
-            auto r2 = pparentParent->rectangle();
-
-            str2.formatf("%d,%d,%d,%d : %s", r2.left(), r2.top(), r2.width(), r2.height(), strTypeParentParent.c_str());
-
-            information() << str2;
+//            information() << str2;
 
             auto pparentParentParent = pparentParent->get_parent();
 
@@ -522,13 +522,13 @@ namespace user
 
                strTypeParentParentParent = ::type(pparentParentParent).as_string();
 
-               ::string str3;
+//               ::string str3;
+//
+//               auto r3 = pparentParentParent->rectangle();
 
-               auto r3 = pparentParentParent->rectangle();
+//               str3.formatf("%d,%d,%d,%d : %s", r3.left(), r3.top(), r3.width(), r3.height(), strTypeParentParentParent.c_str());
 
-               str3.formatf("%d,%d,%d,%d : %s", r3.left(), r3.top(), r3.width(), r3.height(), strTypeParentParentParent.c_str());
-
-               information() << str3;
+//               information() << str3;
 
             }
 

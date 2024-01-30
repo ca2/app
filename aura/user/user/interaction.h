@@ -1363,6 +1363,7 @@ namespace user
       //virtual void _window_request_presentation_unlocked();
       //virtual void on_configure_notifyvisual_applied();
       virtual void _on_configure_notify_unlocked(const ::rectangle_i32 & rectangle);
+      virtual void _on_reposition_notify_unlocked(const ::point_i32 & point);
 
 
       virtual void defer_save_window_placement();

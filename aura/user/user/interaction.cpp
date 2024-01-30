@@ -14137,6 +14137,21 @@ namespace user
    }
 
 
+void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
+{
+
+   //      if (m_bVisualChanged)
+   //      {
+   //
+   //         on_visual_applied();
+   //
+   //         m_bVisualChanged = false;
+   //
+   //      }
+
+}
+
+
    //   void interaction::on_visual_applied()
    //   {
    //

@@ -1076,7 +1076,7 @@ public:
    constexpr bool starts_with_word(const SCOPED_STRING& range, GET_WORD get_word) const
    {
 
-      return get_word(*this) == range;
+      return get_word(*this).order(range) == 0;
 
    }
 

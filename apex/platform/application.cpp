@@ -13,6 +13,7 @@
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/acme_path.h"
 #include "acme/handler/request.h"
+#include "acme/platform/get_file_extension_mime_type.h"
 #include "acme/platform/scoped_restore.h"
 #include "acme/primitive/primitive/url.h"
 #include "acme/operating_system/process.h"
@@ -5339,6 +5340,15 @@ namespace apex
          {
 
             on_create_app_shortcut();
+
+         }
+
+         ::pointer < ::get_file_extension_mime_type > pgetfileextensionmimetype = get_get_file_extension_mime_type();
+
+         if(pgetfileextensionmimetype)
+         {
+
+            os_context()->set_file_extension_mime_type(pgetfileextensionmimetype);
 
          }
 

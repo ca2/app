@@ -247,6 +247,8 @@ public:
    ::count skip_word(::count c);
       
    ::string get_word();
+
+   bool get_word(::string & str);
    
 
 };

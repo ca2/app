@@ -3,6 +3,7 @@
 #include "acme/exception/interface_only.h"
 #include "acme/filesystem/filesystem/link.h"
 #include "acme/platform/node.h"
+#include "acme/platform/get_file_extension_mime_type.h"
 #include "apex/platform/context.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "apex/filesystem/file/set.h"
@@ -777,7 +778,21 @@
    }
 
 
-   void os_context::add_default_program(string_array & straExtension, string_array & straMimeType)
+   void os_context::set_file_extension_mime_type(::get_file_extension_mime_type * pgetfileextensionmimetype)
+   {
+
+      string_array straExtension;
+
+      string_array straMimeType;
+
+      pgetfileextensionmimetype->file_extension_mime_type(straExtension, straMimeType);
+
+      set_file_extension_mime_type(straExtension, straMimeType);
+
+   }
+
+
+   void os_context::set_file_extension_mime_type(string_array & straExtension, string_array & straMimeType)
    {
 
       UNREFERENCED_PARAMETER(straExtension);

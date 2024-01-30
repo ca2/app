@@ -38,6 +38,7 @@ constexpr ::string_range<const CHARACTER*>
 _start_count_string_range(const CHARACTER* psz, memsize start, memsize count);
 
 
+
 template<typename ITERATOR_TYPE>
 class const_string_range :
    //public ::comparable_range < ::comparable_eq_range < ::array_range < ::range < ITERATOR_TYPE > > > >

@@ -30,7 +30,7 @@ memory_container::memory_container(memory_base & memory)
 
    m_pmemory = &memory;
    m_pbyte = m_pmemory->data();
-   m_memsize = m_pmemory->storage_size();
+   m_memsize = m_pmemory->size();
 
 }
 
@@ -40,7 +40,7 @@ memory_container::memory_container(memory_base * pmemory)
 
    m_pmemory = pmemory;
    m_pbyte = m_pmemory->data();
-   m_memsize = m_pmemory->storage_size();
+   m_memsize = m_pmemory->size();
 
 }
 
@@ -78,7 +78,7 @@ void memory_container::set_size(memsize dwNewLength)
 
          m_pmemory->set_size(dwNewLength);
          m_pbyte = m_pmemory->data();
-         m_memsize = m_pmemory->storage_size();
+         m_memsize = m_pmemory->size();
 
       }
 
@@ -90,7 +90,7 @@ void memory_container::set_size(memsize dwNewLength)
 
    m_pmemory->set_size(dwNewLength);
    m_pbyte = m_pmemory->data();
-   m_memsize = m_pmemory->storage_size();
+   m_memsize = m_pmemory->size();
 
 }
 
@@ -108,7 +108,7 @@ void memory_container::create_default_memory()
    }
 
    m_pbyte = m_pmemory->data();
-   m_memsize = m_pmemory->storage_size();
+   m_memsize = m_pmemory->size();
 
 }
 
@@ -121,7 +121,7 @@ void memory_container::allocate_internal(memsize dwNewLength)
    m_pmemory->allocate_internal(dwNewLength);
 
    m_pbyte = m_pmemory->data();
-   m_memsize = m_pmemory->storage_size();
+   m_memsize = m_pmemory->size();
 
 }
 
@@ -175,7 +175,7 @@ void memory_container::read(memory_base * pmemory)
    m_pmemory->copy_from(pmemory);
 
    m_pbyte = m_pmemory->data();
-   m_memsize = m_pmemory->storage_size();
+   m_memsize = m_pmemory->size();
 
 }
 
@@ -207,7 +207,7 @@ void memory_container::copy_this(const memory_container & container)
    m_pmemory->copy_from(container.m_pmemory);
 
    m_pbyte = m_pmemory->data();
-   m_memsize = m_pmemory->storage_size();
+   m_memsize = m_pmemory->size();
 
 }
 
@@ -235,7 +235,7 @@ bool memory_container::attach(memory_base * pstorage)
    m_pmemory = pstorage;
 
    m_pbyte = m_pmemory->data();
-   m_memsize = m_pmemory->storage_size();
+   m_memsize = m_pmemory->size();
 
    return true;
 

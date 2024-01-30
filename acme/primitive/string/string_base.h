@@ -29,6 +29,9 @@ enum enum_canonical
 };
 
 
+template < typename ITERATOR_TYPE >
+inline const_string_range < ITERATOR_TYPE > string_get_word(const scoped_string_base < ITERATOR_TYPE > & scopedstr);
+
 
 template < typename ITERATOR_TYPE >
 class string_base :
@@ -1069,6 +1072,40 @@ public:
    }
 
 
+   template < typename GET_WORD >
+   constexpr bool starts_with_word(const SCOPED_STRING& range, GET_WORD get_word) const
+   {
+
+      return get_word(*this) == range;
+
+   }
+
+
+   template < typename GET_WORD >
+   constexpr bool case_insensitive_starts_with_word(const SCOPED_STRING& range, GET_WORD get_word) const
+   {
+
+      return get_word(*this).case_insensitive_order(range) == 0;
+
+   }
+
+
+   constexpr bool starts_with_word(const SCOPED_STRING& range) const
+   {
+
+      return starts_with_word(range, ::string_get_word < ITERATOR_TYPE >);
+
+   }
+
+
+   constexpr bool case_insensitive_starts_with_word(const SCOPED_STRING& range) const
+   {
+
+      return case_insensitive_starts_with_word(range, ::string_get_word < ITERATOR_TYPE >);
+
+   }
+
+
    //inline bool begins(const CHARACTER * pszPrefix) const;
 
    //inline bool begins(const string_base &strPrefix) const;
@@ -1800,6 +1837,17 @@ format(const std::format_string<Args...> fmt, Args&&... args) noexcept
    va_end(argList);
 
    return ::transfer(str);
+
+}
+
+
+template < typename ITERATOR_TYPE >
+inline const_string_range < ITERATOR_TYPE > string_get_word(const scoped_string_base < ITERATOR_TYPE > & scopedstr)
+{
+
+   auto find = scopedstr.find_first_whitespace();
+
+   return { scopedstr.begin(), find };
 
 }
 

@@ -284,6 +284,8 @@ public:
    ::index _find_first_prefixed_ci(const RawType & strStarting, ::index iFind = 0, ::index iLast = -1) const;
    ::index _find_first_prefixed(const RawType & strStarting, ::index iFind = 0, ::index iLast = -1) const;
 
+   ::index _find_first_with_starting_word(const RawType & strStartingWord, ::index iFind = 0, ::index iLast = -1) const;
+
    ::index find_first_prefixed_ci(const RawType & strStarting, ::index iFind = 0, ::index iLast = -1) const;
    ::index find_first_prefixed(const RawType & strStarting, ::index iFind = 0, ::index iLast = -1) const;
 
@@ -296,6 +298,8 @@ public:
    ::index find_first_begins_ci(const RawType & strStarting, ::index iFind = 0, ::index iLast = -1) const { return find_first_prefixed_ci(strStarting, iFind, iLast); }
    ::index find_first_begins(const RawType & strStarting, ::index iFind = 0, ::index iLast = -1) const { return find_first_prefixed(strStarting, iFind, iLast); }
 
+   ::index find_first_with_starting_word(const RawType & strStartingWord, ::index iFind = 0, ::index iLast = -1) const;
+
    ::index find_first_ends_ci(const RawType & strEnding, ::index iFind = 0, ::index iLast = -1) const { return find_first_suffixed_ci(strEnding, iFind, iLast); }
    ::index find_first_ends(const RawType & strEnding, ::index iFind = 0, ::index iLast = -1) const { return find_first_suffixed(strEnding, iFind, iLast); }
 
@@ -307,6 +311,8 @@ public:
 
    ::index find_first_begins_eat_ci(Type & strFoundAndEaten, const RawType & strStarting, ::index iFind = 0, ::index iLast = -1) const;
    ::index find_first_begins_eat(Type & strFoundAndEaten, const RawType & strStarting, ::index iFind = 0, ::index iLast = -1) const;
+
+   ::index find_first_with_starting_word_eat(Type & strFoundAndEaten, const RawType & strStartingWord, ::index iFind = 0, ::index iLast = -1) const;
 
    ::index find_first_ends_eat_ci(Type & strFoundAndEaten, const RawType & strEnding, ::index iFind = 0, ::index iLast = -1) const;
    ::index find_first_ends_eat(Type & strFoundAndEaten, const RawType & strEnding, ::index iFind = 0, ::index iLast = -1) const;
@@ -499,6 +505,8 @@ public:
    void add_tokens(const RawType & str, const RawType & strSeparator, bool bAddEmpty = true);
 
    void add_smallest_tokens(const RawType & str, const RawStringArray & straSeparator, bool bAddEmpty = true, bool bWithSeparator = false);
+
+   void add_words(const RawType & str);
 
    template < bool bAddEmpty >
    typename Type::const_iterator _____add_lines_rn(const SCOPED_STRING & scopedstr);

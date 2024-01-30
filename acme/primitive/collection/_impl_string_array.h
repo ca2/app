@@ -940,6 +940,24 @@ void string_array_base < Type, RawType, t_etypeContainer > ::add_smallest_tokens
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
+void string_array_base < Type, RawType, t_etypeContainer > ::add_words(const RawType &str)
+{
+
+   ::tokenizer strTokenizer(str);
+
+   Type strWord;
+
+   while(strTokenizer.get_word(strWord))
+   {
+
+      string_array_base::add(strWord);
+
+   }
+
+}
+
+
+template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 template < bool bAddEmpty >
 typename Type::const_iterator string_array_base < Type, RawType, t_etypeContainer > ::_____add_lines_rn(const SCOPED_STRING & scopedstr)
 {
@@ -1647,7 +1665,6 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 }
 
 
-
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 ::index string_array_base < Type, RawType, t_etypeContainer > ::find_first_begins_eat(Type & strFoundAndEaten, const RawType &strSuffix, ::index iFind, ::index iLast) const
 {
@@ -1667,6 +1684,25 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 }
 
+
+template < typename Type, typename RawType, ::enum_type t_etypeContainer >
+::index string_array_base < Type, RawType, t_etypeContainer > ::find_first_with_starting_word_eat(Type & strFoundAndEaten, const RawType &strStartingWord, ::index iFind, ::index iLast) const
+{
+
+   iFind = find_first_with_starting_word(strStartingWord, iFind, iLast);
+
+   if (iFind < 0)
+   {
+
+      return iFind;
+
+   }
+
+   strFoundAndEaten = element_at(iFind).substr(strStartingWord.size());
+
+   return iFind;
+
+}
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
@@ -1801,6 +1837,22 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
+::index string_array_base < Type, RawType, t_etypeContainer > ::find_first_with_starting_word(const RawType &strPrefix,::index iFind,::index iLast) const
+{
+
+   if (this->prepare_first_last(iFind, iLast))
+   {
+
+      return _find_first_with_starting_word(strPrefix, iFind, iLast);
+
+   }
+
+   return -1;
+
+}
+
+
+template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 ::index string_array_base < Type, RawType, t_etypeContainer > ::find_first_prefixed_ci(const RawType &strPrefix, ::index iFind, ::index iLast) const
 {
 
@@ -1824,6 +1876,27 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
    {
 
       if (this->element_at(iFind).begins(strPrefix))
+      {
+
+         return iFind;
+
+      }
+
+   }
+
+   return -1;
+
+}
+
+
+template < typename Type, typename RawType, ::enum_type t_etypeContainer >
+::index string_array_base < Type, RawType, t_etypeContainer > ::_find_first_with_starting_word(const RawType &strStartingWord, ::index iFind, ::index iLast) const
+{
+
+   for (; iFind <= iLast; iFind++)
+   {
+
+      if (this->element_at(iFind).starts_with_word(strStartingWord))
       {
 
          return iFind;

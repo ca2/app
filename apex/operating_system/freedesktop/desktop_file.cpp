@@ -277,6 +277,13 @@ namespace freedesktop
 
       m_straLine = pcontext->m_papexcontext->file()->lines(path);
 
+      //m_straLine.add("Line1\n");
+
+
+      //m_straLine.add("Line2\n");
+
+      //return;
+
       if (m_straLine.is_empty()) {
 
          create_default();
@@ -402,6 +409,8 @@ namespace freedesktop
 //
 //      }
 
+//return;
+
       string strModule = pcontext->m_papexcontext->file()->module();
 
       straLine._007SetLine("[Desktop Entry]", "GenericName", strTitle);
@@ -428,31 +437,31 @@ namespace freedesktop
       }
 
       straLine._007SetLine("[Desktop Entry]", "StartupNotify", "true");
-//      straLine._007SetLine("[Desktop Entry]", "StartupWMClass", strWMClass);
-//
-//      if(m_pgetfileextensionmimetype)
-//      {
-//
-//         ::string_array straExtension;
-//
-//         ::string_array straMimeType;
-//
-//         m_pgetfileextensionmimetype->file_extension_mime_type(straExtension, straMimeType);
-//
-//         for(auto & strMimeType : straMimeType)
-//         {
-//
-//            strMimeType += ";";
-//
-//         }
-//
-//         ::string strMimeTypes;
-//
-//         strMimeTypes = straMimeType.implode("");
-//
-//         straLine._007SetLine("[Desktop Entry]", "MimeTypes", strMimeTypes);
-//
-//      }
+      straLine._007SetLine("[Desktop Entry]", "StartupWMClass", strWMClass);
+
+      if(m_pgetfileextensionmimetype)
+      {
+
+         ::string_array straExtension;
+
+         ::string_array straMimeType;
+
+         m_pgetfileextensionmimetype->file_extension_mime_type(straExtension, straMimeType);
+
+         for(auto & strMimeType : straMimeType)
+         {
+
+            strMimeType += ";";
+
+         }
+
+         ::string strMimeTypes;
+
+         strMimeTypes = straMimeType.implode("");
+
+         straLine._007SetLine("[Desktop Entry]", "MimeTypes", strMimeTypes);
+
+      }
 
       // straLine._007SetLine("[Desktop Entry]", "Actions", "transparent-frame;");
 
@@ -474,12 +483,12 @@ namespace freedesktop
       // //straLine._007SetLine("[Desktop Action transparent-frame]", "Exec", strName + " : post transparent_frame");
       // straLine._007SetLine("[Desktop Action transparent-frame]", "Exec", strModule + " : post transparent_frame");
 
-//      if(straLine.last().has_char())
-//      {
-//
-//         straLine.add("");
-//
-//      }
+      if(straLine.last().has_char())
+      {
+
+         straLine.add("");
+
+      }
 
    }
 

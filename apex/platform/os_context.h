@@ -5,6 +5,9 @@
 //#include "acme/filesystem/filesystem/path.h"
 
 
+class get_file_extension_mime_type;
+
+
 class CLASS_DECL_APEX os_context :
    virtual public object
 {
@@ -107,7 +110,9 @@ public:
 
    virtual void set_default_browser();
 
-   virtual void add_default_program(string_array & straExtension, string_array & straMimeType);
+   virtual void set_file_extension_mime_type(::get_file_extension_mime_type * pgetfileextensionmimetype);
+
+   virtual void set_file_extension_mime_type(string_array & straExtension, string_array & straMimeType);
 
    virtual void register_user_auto_start(const string & strAppId, const ::file::path & pathExecutable, const string & strArguments, bool bRegister);
 

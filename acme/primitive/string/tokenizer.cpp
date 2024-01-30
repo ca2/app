@@ -663,7 +663,15 @@ string tokenizer::get_word()
       
 }
 
-   
+
+bool tokenizer::get_word(::string & strWord)
+{
+
+   return _001GetNextToken(strWord);
+
+}
+
+
 bool tokenizer::_001GetNextToken(string & strToken)
 {
       
@@ -768,7 +776,7 @@ bool tokenizer::get_next_word(string * pstrToken)
          if(::is_set(pstrToken))
          {
                
-            pstrToken->assign(pszStart + 1, psz);
+            pstrToken->assign(pszStart, psz);
                
          }
 

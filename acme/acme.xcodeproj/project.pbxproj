@@ -712,6 +712,7 @@
 		9A40BDC42B6B6A050077053E /* app.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A40BDC32B6B6A050077053E /* app.h */; };
 		9A40BDC72B6B6A760077053E /* notification_callback.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A40BDC52B6B6A760077053E /* notification_callback.h */; };
 		9A40BDC82B6B6A760077053E /* notification_callback.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A40BDC62B6B6A760077053E /* notification_callback.mm */; };
+		9A40BDF32B6B92C10077053E /* file_image.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A40BDF12B6B91C40077053E /* file_image.mm */; };
 		9A420C582B69146700D956E1 /* strdup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A420C572B69146700D956E1 /* strdup.cpp */; };
 		9A420C592B69146700D956E1 /* strdup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A420C572B69146700D956E1 /* strdup.cpp */; };
 		9A4387B9299E499A00D2EE15 /* request.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4387B6299E499800D2EE15 /* request.cpp */; };
@@ -4834,6 +4835,7 @@
 		9A40BDC32B6B6A050077053E /* app.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = app.h; sourceTree = "<group>"; };
 		9A40BDC52B6B6A760077053E /* notification_callback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = notification_callback.h; sourceTree = "<group>"; };
 		9A40BDC62B6B6A760077053E /* notification_callback.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = notification_callback.mm; sourceTree = "<group>"; };
+		9A40BDF12B6B91C40077053E /* file_image.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = file_image.mm; sourceTree = "<group>"; };
 		9A420C552B69137C00D956E1 /* strdup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = strdup.h; sourceTree = "<group>"; };
 		9A420C572B69146700D956E1 /* strdup.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = strdup.cpp; sourceTree = "<group>"; };
 		9A4387B6299E499800D2EE15 /* request.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = request.cpp; sourceTree = "<group>"; };
@@ -8087,6 +8089,7 @@
 				9AA8FAB027BA7296008FF9AA /* acme.cpp */,
 				9AA8FA9F27BA7296008FF9AA /* base_user.cpp */,
 				9AA8FA8F27BA7296008FF9AA /* base.cpp */,
+				9A40BDF12B6B91C40077053E /* file_image.mm */,
 				9AA8FAC127BA7296008FF9AA /* file2.cpp */,
 				9AA8FABA27BA7296008FF9AA /* graphics.cpp */,
 				9AA8FAAD27BA7296008FF9AA /* ios.cpp */,
@@ -12061,6 +12064,7 @@
 				9AC105CE2B6AC9BD0053DB45 /* folder_dialog.cpp in Sources */,
 				9AC105CF2B6AC9BD0053DB45 /* event.cpp in Sources */,
 				9AC105D02B6AC9BD0053DB45 /* acme.cpp in Sources */,
+				9A40BDF32B6B92C10077053E /* file_image.mm in Sources */,
 				9AC105D12B6AC9BD0053DB45 /* context.cpp in Sources */,
 				9AC105D22B6AC9BD0053DB45 /* path.cpp in Sources */,
 				9AC105D32B6AC9BD0053DB45 /* errno.cpp in Sources */,

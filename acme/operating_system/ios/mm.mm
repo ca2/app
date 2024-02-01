@@ -12,7 +12,6 @@
 void ns_main_async(dispatch_block_t block);
 
 
-bool GetImagePixelData(unsigned int * pcr, int cx, int cy, int iScan, CGImageRef inImage);;
 
 int _get_exe_path_len()
 {
@@ -29,73 +28,6 @@ void _get_exe_path(char * pszPath, int size)
 }
 
 
-
-bool apple_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const char * psz)
-{
-   
-   NSString * str = [NSString stringWithUTF8String:psz];
-   
-   if(str == NULL)
-   {
-      
-      return false;
-      
-   }
-   
-   NSURL *URL = [NSURL fileURLWithPath: str];
-   
-   UIDocumentInteractionController *documentInteractionController =[UIDocumentInteractionController interactionControllerWithURL:URL];
-   
-   auto iFind = 0;
-   
-   for(; iFind < [[documentInteractionController icons] count]; iFind++)
-   {
-      
-      UIImage *image = [[documentInteractionController icons] objectAtIndex:iFind];
-      
-      if([image size].width > cx && [image size].height > cy)
-      {
-         
-         if(iFind > 0)
-         {
-            
-            iFind--;
-            
-         }
-         
-         break;
-         
-      }
-      
-   }
-   
-   if(iFind >= [[documentInteractionController icons] count])
-   {
-      
-      return false;
-      
-   }
-   
-   UIImage *image = [[documentInteractionController icons] objectAtIndex:iFind];
-   
-   if(image == NULL)
-   {
-      
-      return false;
-      
-   }
-   
-   CGImageRef i = [image CGImage];
-   
-   bool bOk = GetImagePixelData(pcr, cx, cy, iScan,  i);
-   
-   //CFRelease(i);
-   
-   return bOk;
-   
-   
-   
-}
 
 
 

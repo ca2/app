@@ -2995,7 +2995,7 @@ return false;
    void node::open_terminal_and_run(const ::scoped_string& scopedstr)
    {
 
-      throw interface_only();
+      this->command_system(scopedstr, ::std_inline_log());
 
    }
 

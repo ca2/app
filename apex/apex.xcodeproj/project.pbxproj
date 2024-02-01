@@ -127,6 +127,7 @@
 		9A2898942A652A4E00F46A84 /* notify_icon_bridge.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A28987C2A652A4E00F46A84 /* notify_icon_bridge.h */; };
 		9A2898952A652A4E00F46A84 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A28987D2A652A4E00F46A84 /* _.h */; };
 		9A2898962A652A4E00F46A84 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A28987D2A652A4E00F46A84 /* _.h */; };
+		9A40BDC92B6B708B0077053E /* input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7963482ACD1B9B0056777F /* input.cpp */; };
 		9A615C3728B1BDF700377F68 /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A615C2928B1B7A300377F68 /* libacme.dylib */; };
 		9A68BB3C2511444D008DABD2 /* _impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B40D2511444A008DABD2 /* _impl.h */; };
 		9A68BB3D2511444D008DABD2 /* stringhelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B40E2511444A008DABD2 /* stringhelper.cpp */; };
@@ -3317,6 +3318,7 @@
 				9A751012282B942D00C4861B /* transfer_socket.cpp in Sources */,
 				9AD69537251A754800C0EBD7 /* os_context.cpp in Sources */,
 				9AC88B232B6B50D9008F1C20 /* incoming_socket_thread.cpp in Sources */,
+				9A40BDC92B6B708B0077053E /* input.cpp in Sources */,
 				9A0F53B528E8D8A900025231 /* debug_socket.cpp in Sources */,
 				9A0F53B628E8D8A900025231 /* put_socket.cpp in Sources */,
 				9AD6953C251A754800C0EBD7 /* fs.cpp in Sources */,

@@ -153,6 +153,7 @@
 		9A3CD7F42512E5D600E811FA /* console.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A3CD7F32512E5D600E811FA /* console.h */; };
 		9A3CD7F62512E5E500E811FA /* console_common.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A3CD7F52512E5E500E811FA /* console_common.h */; };
 		9A3CD7F82512E5F000E811FA /* application_common.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A3CD7F72512E5EF00E811FA /* application_common.h */; };
+		9A40BDBB2B6B66130077053E /* path_optimization.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A6D3F032A2E0E660081052F /* path_optimization.cpp */; };
 		9A4AE6FB27F9548B00A4B000 /* control_box_icon.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A4AE6FA27F9548A00A4B000 /* control_box_icon.h */; };
 		9A4AE6FF27F9549A00A4B000 /* control_box_button.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4AE6FC27F9549900A4B000 /* control_box_button.cpp */; };
 		9A4AE70027F9549A00A4B000 /* control_box_button.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A4AE6FD27F9549900A4B000 /* control_box_button.h */; };
@@ -2138,7 +2139,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastUpgradeCheck = 1500;
+				LastUpgradeCheck = 1520;
 				TargetAttributes = {
 					9A20198924772E9000A31CBF = {
 						CreatedOnToolsVersion = 11.5;
@@ -2262,6 +2263,7 @@
 				9AC88B2B2B6B51C2008F1C20 /* render.cpp in Sources */,
 				9A750F5D282B908C00C4861B /* style.cpp in Sources */,
 				9A750F4E282B8FC400C4861B /* text_out.cpp in Sources */,
+				9A40BDBB2B6B66130077053E /* path_optimization.cpp in Sources */,
 				9A750FD7282B929E00C4861B /* dynamic.cpp in Sources */,
 				9A750FB1282B914300C4861B /* key.cpp in Sources */,
 				9AC88B252B6B518F008F1C20 /* placement_log.cpp in Sources */,

@@ -90,11 +90,18 @@
 			remoteGlobalIDString = 9A68A41325114352008DABD2;
 			remoteInfo = acme;
 		};
-		9A8E9EE9282A34A9005FF778 /* PBXContainerItemProxy */ = {
+		9AC88AFF2B6B4AD4008F1C20 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A1F6EAD274DFDB1000B7A22 /* acme.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9AC1067D2B6AC9BD0053DB45;
+			remoteInfo = ios_acme;
+		};
+		9AC88B012B6B4ADA008F1C20 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9A1F6EAD274DFDB1000B7A22 /* acme.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 9AD68E39251A753A00C0EBD7;
+			remoteGlobalIDString = 9AC100A72B6AC9BD0053DB45;
 			remoteInfo = ios_acme;
 		};
 		9AC981B92A71B72700B1BCF3 /* PBXContainerItemProxy */ = {
@@ -181,6 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				9A1F6EB3274DFDB1000B7A22 /* libacme.dylib */,
+				9AC88B002B6B4AD4008F1C20 /* libios_acme.a */,
 				9A1F6EB5274DFDB1000B7A22 /* libstatic_acme.a */,
 			);
 			name = Products;
@@ -299,7 +307,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				9A8E9EEA282A34A9005FF778 /* PBXTargetDependency */,
+				9AC88B022B6B4ADA008F1C20 /* PBXTargetDependency */,
 			);
 			name = ios_folder_zip;
 			productName = folder_zip;
@@ -379,6 +387,13 @@
 			remoteRef = 9A1F6EB4274DFDB1000B7A22 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		9AC88B002B6B4AD4008F1C20 /* libios_acme.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libios_acme.a;
+			remoteRef = 9AC88AFF2B6B4AD4008F1C20 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -438,10 +453,10 @@
 			name = acme;
 			targetProxy = 9A1F6EB6274DFDBF000B7A22 /* PBXContainerItemProxy */;
 		};
-		9A8E9EEA282A34A9005FF778 /* PBXTargetDependency */ = {
+		9AC88B022B6B4ADA008F1C20 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = ios_acme;
-			targetProxy = 9A8E9EE9282A34A9005FF778 /* PBXContainerItemProxy */;
+			targetProxy = 9AC88B012B6B4ADA008F1C20 /* PBXContainerItemProxy */;
 		};
 		9AC981BA2A71B72700B1BCF3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -541,9 +556,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = framework.h;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"$(inherited)",
-				);
+				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;

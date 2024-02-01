@@ -184,22 +184,22 @@ void ns_launch_app_at_url(NSURL * url, const char ** argv, int iFlags)
 
 
 
-void _ns_do_tasks(double dSeconds)
-{
-   
-   NSRunLoop * runLoop = [ NSRunLoop currentRunLoop ];
-   
-   if(runLoop != nil)
-   {
-      
-      [ runLoop runUntilDate:[NSDate dateWithTimeIntervalSinceNow: dSeconds ] ];
-      
-   }
-   else
-   {
-    
-     // NSLog(@"This thread doesn't have Run Loop?!?");
-      
-   }
-   
-}
+//void _ns_do_tasks(double dSeconds)
+//{
+//   
+//   NSRunLoop * runLoop = [ NSRunLoop currentRunLoop ];
+//   
+//   if(runLoop != nil)
+//   {
+//      
+//      [ runLoop runUntilDate:[NSDate dateWithTimeIntervalSinceNow: dSeconds ] ];
+//      
+//   }
+//   else
+//   {
+//    
+//     // NSLog(@"This thread doesn't have Run Loop?!?");
+//      
+//   }
+//   
+//}

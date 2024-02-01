@@ -28,3 +28,19 @@ void CLASS_DECL_ACME __abort()
 
 
 
+
+
+
+void ios_message_box_factory(::factory::factory * pfactory)
+{
+   
+   
+}
+
+
+void ios_factory(::factory::factory * pfactory)
+{
+
+   ios_message_box_factory(pfactory);
+
+}

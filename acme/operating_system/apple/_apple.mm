@@ -145,3 +145,25 @@ char * ns_get_executable_path()
    return __strdup([[NSBundle mainBundle] executablePath]);
    
 }
+
+
+
+void _ns_do_tasks(double dSeconds)
+{
+   
+   NSRunLoop * runLoop = [ NSRunLoop currentRunLoop ];
+   
+   if(runLoop != nil)
+   {
+      
+      [ runLoop runUntilDate:[NSDate dateWithTimeIntervalSinceNow: dSeconds ] ];
+      
+   }
+   else
+   {
+    
+     // NSLog(@"This thread doesn't have Run Loop?!?");
+      
+   }
+   
+}

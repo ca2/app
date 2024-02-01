@@ -40,7 +40,6 @@ CGRect mm_get_screen_cgrect();
 
 void ns_main_async(dispatch_block_t block);
 
-
 void ns_main_sync(dispatch_block_t block);
 
 posix_time _mkgmtime(struct tm * const);

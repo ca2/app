@@ -1,112 +1,82 @@
 #include "framework.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
+#include "acme/platform/system.h"
 #include <dlfcn.h>
 
 
 //CLASS_DECL_ACME ::acme::system * system();
 
-namespace acme
+namespace platform
 {
 //void * __node_library_open(const ::file::path & path, string & strMessage);
 
-void * system::operating_system_library_touch(const ::file::path & path, string & strMessage)
-{
 
-   return operating_system_library_open(pszPath, strMessage);
-
-}
-
-void * system::operating_system_node_library_open(const ::file::path & path, string & strMessage)
-{
-   
-   auto psystem = system();
-
-   string strPath(pszPath);
-
-   strMessage.empty();
-
-   string strError;
-
-   if(strPath == "os")
+   void * platform::operating_system_library_touch(const ::file::path & path, string & strMessage)
    {
 
-      strPath = "ca2os";
-
-   }
-   else if(strPath == "os2")
-   {
-
-      strPath = "ca2os2";
+      return operating_system_library_open(path, strMessage);
 
    }
 
-   if(!ansi_ends(strPath, ".dylib"))
+
+   void * platform::operating_system_library_open(const ::file::path & pathParam, string & strMessage)
    {
+      
+      auto psystem = system();
 
-      strPath += ".dylib";
+      string strPath(pathParam);
 
-   }
+      strMessage.empty();
 
-   if(!string_begins_ci(strPath, "/") && !ansi_begins(strPath, "lib"))
-   {
+      string strError;
 
-      strPath = "lib" + strPath;
+      if(strPath == "os")
+      {
 
-   }
+         strPath = "ca2os";
 
-   //::acme::get()->platform()->informationf("\n\nGoing to dlopen : \"" + strPath + "\"");
+      }
+      else if(strPath == "os2")
+      {
 
-   ::file::path path;
+         strPath = "ca2os2";
 
-   path = ::file::path(::get_exe_path()).folder() / strPath;
+      }
 
-   void * plibrary = dlopen(path, RTLD_LOCAL | RTLD_LAZY);
+      if(!ansi_ends(strPath, ".dylib"))
+      {
 
-   if(plibrary != nullptr)
-   {
+         strPath += ".dylib";
 
-      goto finished;
+      }
 
-   }
+      if(!string_begins_ci(strPath, "/") && !ansi_begins(strPath, "lib"))
+      {
 
-   strError = dlerror();
+         strPath = "lib" + strPath;
 
-   strMessage += "\n(1) node_library_open Failed " + path + " with the error: \""+strError+"\"";
+      }
 
-   path = strPath;
+      //::acme::get()->platform()->informationf("\n\nGoing to dlopen : \"" + strPath + "\"");
 
-   plibrary = dlopen(path, RTLD_LOCAL | RTLD_LAZY);
+      ::file::path path;
 
-   if(plibrary != nullptr)
-   {
+      path = acmedirectory()->module() / strPath;
 
-      goto finished;
+      void * plibrary = dlopen(path, RTLD_LOCAL | RTLD_LAZY);
 
-   }
+      if(plibrary != nullptr)
+      {
 
-   strError = dlerror();
+         goto finished;
 
-   strMessage += "\n(2) node_library_open Failed " + path + " with the error: \""+strError+"\"";
-   
-   path = ::file::path(psystem->m_pacmedirectory->module()).folder() / strPath;
+      }
 
-   plibrary = dlopen(path, RTLD_LOCAL | RTLD_LAZY);
+      strError = dlerror();
 
-   if(plibrary != nullptr)
-   {
+      strMessage += "\n(1) node_library_open Failed " + path + " with the error: \""+strError+"\"";
 
-      goto finished;
-
-   }
-
-   strError = dlerror();
-
-   strMessage += "\n(3) node_library_open Failed " + path + " with the error: \""+strError+"\"";
-
-   if(strPath.find('/') >= 0)
-   {
-
-      path = ::file::path(strPath).name();
+      path = strPath;
 
       plibrary = dlopen(path, RTLD_LOCAL | RTLD_LAZY);
 
@@ -119,102 +89,132 @@ void * system::operating_system_node_library_open(const ::file::path & path, str
 
       strError = dlerror();
 
-      strMessage += "\n(4) node_library_open Failed " + path + " with the error: \""+strError+"\"";
+      strMessage += "\n(2) node_library_open Failed " + path + " with the error: \""+strError+"\"";
+      
+      path = ::file::path(psystem->m_pacmedirectory->module()).folder() / strPath;
+
+      plibrary = dlopen(path, RTLD_LOCAL | RTLD_LAZY);
+
+      if(plibrary != nullptr)
+      {
+
+         goto finished;
+
+      }
+
+      strError = dlerror();
+
+      strMessage += "\n(3) node_library_open Failed " + path + " with the error: \""+strError+"\"";
+
+      if(strPath.find('/') != nullptr)
+      {
+
+         path = ::file::path(strPath).name();
+
+         plibrary = dlopen(path, RTLD_LOCAL | RTLD_LAZY);
+
+         if(plibrary != nullptr)
+         {
+
+            goto finished;
+
+         }
+
+         strError = dlerror();
+
+         strMessage += "\n(4) node_library_open Failed " + path + " with the error: \""+strError+"\"";
+
+      }
+
+   finished:
+
+      if(plibrary != nullptr)
+      {
+
+         strMessage = "node_library_open Succeeded " + path;
+
+      }
+      else
+      {
+
+         strMessage = "node_library_open FAILED " + path + strMessage;
+
+      }
+
+      ::acme::get()->platform()->informationf("\n"+strMessage+"\n\n");
+
+      return plibrary;
 
    }
 
-finished:
 
-   if(plibrary != nullptr)
+   bool platform::operating_system_library_close(void * plibrary)
    {
 
-      strMessage = "node_library_open Succeeded " + path;
+      if(plibrary != nullptr)
+      {
+
+         dlclose(plibrary);
+
+      }
+
+      return true;
 
    }
-   else
+
+
+   void * platform::operating_system_library_raw_get(void * plibrary, const ::scoped_string & scopedstrElement)
    {
 
-      strMessage = "node_library_open FAILED " + path + strMessage;
+      return dlsym(plibrary, scopedstrElement);
 
    }
 
-   ::acme::get()->platform()->informationf("\n"+strMessage+"\n\n");
 
-   return plibrary;
-
-}
-
-
-bool system::operating_system_node_library_close(void * plibrary)
-{
-
-   if(plibrary != nullptr)
+   void * platform::operating_system_library_open_ca2(const ::file::path & pathParam, string & strMessage)
    {
 
-      dlclose(plibrary);
+      strMessage.empty();
+
+      string strError;
+
+      ::file::path path(pathParam);
+
+      void * plibrary = dlopen(path, RTLD_LOCAL | RTLD_LAZY);
+
+      if(plibrary != nullptr)
+      {
+
+         goto finished;
+
+      }
+
+      strError = dlerror();
+
+      strMessage += "\n node_library_open_ca2 Failed " + path + " with the error: \""+strError+"\"";
+
+
+   finished:
+
+      if(plibrary != nullptr)
+      {
+
+         strMessage = "node_library_open_ca2 Succeeded " + path;
+
+      }
+      else
+      {
+
+         strMessage = "node_library_open_ca2 FAILED " + path + strMessage;
+
+      }
+
+      ::acme::get()->platform()->informationf("\n"+strMessage+"\n\n");
+
+      return plibrary;
 
    }
 
-   return true;
-
-}
-
-
-void * system::operating_system_node_library_raw_get(void * plibrary, const ::scoped_string & scopedstrElement)
-{
-
-   return dlsym(plibrary, pszElement);
-
-}
-
-
-
-
-
-
-void * system::operating_system_node_library_open_ca2(const ::file::path & path, string & strMessage)
-{
-
-   strMessage.empty();
-
-   string strError;
-
-   ::file::path path(pszPath);
-
-   void * plibrary = dlopen(path, RTLD_LOCAL | RTLD_LAZY);
-
-   if(plibrary != nullptr)
-   {
-
-      goto finished;
-
-   }
-
-   strError = dlerror();
-
-   strMessage += "\n node_library_open_ca2 Failed " + path + " with the error: \""+strError+"\"";
-
-
-finished:
-
-   if(plibrary != nullptr)
-   {
-
-      strMessage = "node_library_open_ca2 Succeeded " + path;
-
-   }
-   else
-   {
-
-      strMessage = "node_library_open_ca2 FAILED " + path + strMessage;
-
-   }
-
-   ::acme::get()->platform()->informationf("\n"+strMessage+"\n\n");
-
-   return plibrary;
-
-}
 
 } // namespace acme
 

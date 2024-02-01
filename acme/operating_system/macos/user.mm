@@ -2,11 +2,13 @@
 //  user.m
 //  acme
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 06/12/23.
+//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 2023-06-12.
 //  Copyright © 2023 Camilo Sasuke Tsumanuma. All rights reserved.
 //
 
+
 #import <Foundation/Foundation.h>
+
 
 class ns_alert_box
 {

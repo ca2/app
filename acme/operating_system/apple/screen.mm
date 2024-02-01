@@ -24,7 +24,15 @@ CGRect g_rectScreen;
 void mm_on_update_screen()
 {
    
+#ifdef APPLE_IOS
+
+   g_rectScreen = [ [ UIScreen mainScreen ] nativeBounds];
+
+#else
+   
    g_rectScreen = [ [ NSScreen mainScreen ] frame];
+   
+#endif
    
 }
 

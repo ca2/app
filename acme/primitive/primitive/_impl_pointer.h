@@ -359,7 +359,6 @@ inline pointer < T >& pointer < T > ::reset(T * p)
 }
 
 
-
 template < class T >
 template < typename T2 >
 inline pointer < T > & pointer < T > ::reset (T2 * p)

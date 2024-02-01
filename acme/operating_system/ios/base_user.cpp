@@ -7,6 +7,7 @@
 //
 
 #include "framework.h"
+#include "acme/parallelization/manual_reset_event.h"
 //#include "ios_internal.h"
 
 
@@ -22,13 +23,13 @@ CLASS_DECL_ACME string message_box_result_to_string(int iResult);
 void message_box_synchronous(oswindow oswindow, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, const ::function < void(::enum_dialog_result) > & function)
 {
 
-   string strMessage(pszMessage); // string "absorbs" nullptr pointers into ""
+   string strMessage(scopedstrMessage); // string "absorbs" nullptr pointers into ""
 
-   string strHeader(pszTitle); // string "absorbs" nullptr pointers into ""
+   string strHeader(scopedstrTitle); // string "absorbs" nullptr pointers into ""
    
-   string strDetails(pszDetails);
+   string strDetails(scopedstrDetails);
 
-   auto pevent = __allocate< manual_reset_event >();
+   auto pevent = ::platform::get()->__create_new< manual_reset_event >();
    
    auto eresult = (::enum_dialog_result) ui_MessageBoxA(strMessage, strHeader, emessagebox, strDetails, [function, pevent](enum_dialog_result eresult)
                                                         {

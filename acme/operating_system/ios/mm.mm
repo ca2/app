@@ -8,6 +8,10 @@
 #import "_mm.h"
 
 
+
+void ns_main_async(dispatch_block_t block);
+
+
 bool GetImagePixelData(unsigned int * pcr, int cx, int cy, int iScan, CGImageRef inImage);;
 
 int _get_exe_path_len()
@@ -292,6 +296,7 @@ void ui_open_url(const char  *pszUrl)
    });
 
 }
+
 
 
 

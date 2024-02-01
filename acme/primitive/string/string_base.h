@@ -1556,7 +1556,7 @@ public:
 //inline ::string operator +(const ::inline_string < char, m_sizeMaximumLength > & inlinestring, const char(&sz)[c]);
 
 
-CLASS_DECL_ACME::string _(const ::string & str);
+CLASS_DECL_ACME ::string _(const string & str);
 
 
 

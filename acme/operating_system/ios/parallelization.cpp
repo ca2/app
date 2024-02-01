@@ -131,12 +131,12 @@
 //}
 
 
-void process_get_os_priority(i32 * piPolicy, sched_param * pparam, i32 nCa2Priority)
-{
-
-   throw ::exception(error_wrong_state, "not applicable in Mac OS");
-
-}
+//void process_get_os_priority(i32 * piPolicy, sched_param * pparam, i32 nCa2Priority)
+//{
+//
+//   throw ::exception(error_wrong_state, "not applicable in Mac OS");
+//
+//}
 
 //i32 process_get_scheduling_priority(i32 iOsPolicy, const sched_param * pparam)
 //{
@@ -256,3 +256,13 @@ bool __os_term_thread()
 }
 
 
+
+
+void _ns_do_tasks(double dSeconds);
+
+void _do_tasks()
+{
+   
+   _ns_do_tasks(0.005);
+   
+}

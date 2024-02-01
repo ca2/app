@@ -1123,13 +1123,32 @@ bool ns_app_is_running()
    
 }
 
+
+
+void ui_application_main(int argc, char * argv[], const char * pszCommandLine, NSString * strDelegateClass)
+{
+   
+//   NSString * strDelegateClass = [ [ NSString alloc ] initWithUTF8String: pszDelegateClass ];
+   
+   UIApplicationMain(argc, argv, nil, strDelegateClass);
+   //NSStringFromClass([iosWindowApp class])
+}
+
+
+void ns_acme_application_main(int argc, char * argv[], const char * pszCommandLine)
+{
+                              
+   ui_application_main(argc, argv, pszCommandLine, NSStringFromClass([ios_app class]));
+   
+}
 //
-//void ns_app_run()
+//
+//void ns_app_run2()
 //{
 //   
 //   ns_app_set_running(true);
 //   
-//   [ [ NSApplication sharedApplication ] run ];
+//   ui_application_main(, <#char **argv#>, <#const char *pszCommandLine#>)[ [ NSApplication sharedApplication ] run ];
 //   
 //   ns_app_set_running(false);
 //   

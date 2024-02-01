@@ -50,7 +50,7 @@ bool apple_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const c
 }
 
 
-bool mm2_get_file_image_by_type_identifier(unsigned int * pcr, int cx, int cy, int iScan, const char * pszTypeIdentifier)
+bool apple_get_file_image_by_type_identifier(unsigned int * pcr, int cx, int cy, int iScan, const char * pszTypeIdentifier)
 {
    
    NSString * strTypeIdentifier = [NSString stringWithUTF8String:pszTypeIdentifier];
@@ -115,21 +115,21 @@ bool mm2_get_file_image_by_type_identifier(unsigned int * pcr, int cx, int cy, i
    
 }
 
-
-bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const char * psz)
-{
-   
-   return mm2_get_file_image(pcr, cx, cy, iScan, psz);
-   
-}
-
-
-bool mm1_get_file_image_by_type_identifier(unsigned int * pcr, int cx, int cy, int iScan, const char * pszTypeIdentifier)
-{
-   
-   return mm2_get_file_image_by_type_identifier(pcr, cx, cy, iScan, pszTypeIdentifier);
-   
-}
+//
+//bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const char * psz)
+//{
+//   
+//   return mm2_get_file_image(pcr, cx, cy, iScan, psz);
+//   
+//}
+//
+//
+//bool mm1_get_file_image_by_type_identifier(unsigned int * pcr, int cx, int cy, int iScan, const char * pszTypeIdentifier)
+//{
+//   
+//   return mm2_get_file_image_by_type_identifier(pcr, cx, cy, iScan, pszTypeIdentifier);
+//   
+//}
 
 
 

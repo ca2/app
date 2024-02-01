@@ -30,7 +30,7 @@ void _get_exe_path(char * pszPath, int size)
 
 
 
-bool mm2_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const char * psz)
+bool apple_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const char * psz)
 {
    
    NSString * str = [NSString stringWithUTF8String:psz];

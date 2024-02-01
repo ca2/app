@@ -149,7 +149,10 @@ void set_apex_system_as_thread();
 //}
 
 
-- (void)applicationWillFinishLaunching:(NSNotification *)notification
+//- (void)applicationWillFinishLaunching:(NSNotification *)notification
+
+- (BOOL)application:(UIApplication *)application
+willFinishLaunchingWithOptions:(NSDictionary<UIApplicationLaunchOptionsKey, id> *)launchOptions
 {
    
    //ios_calc_dark_mode();

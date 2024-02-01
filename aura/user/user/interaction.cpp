@@ -2002,7 +2002,7 @@ namespace user
 
          }
 
-         bool bNeedsToDraw = pgraphics->user_redraw()->needs_to_draw(rectangle);
+         bool bNeedsToDraw = pgraphics->user_redraw()->needs_to_draw(rectangle) ;
 
          if (!bNeedsToDraw)
          {

@@ -9,6 +9,7 @@
 #include "app.h"
 #include "acme/constant/id.h"
 #include "acme/operating_system/argcargv.h"
+void * get_acme_application();
 
 
 void ns_main_async(dispatch_block_t block);
@@ -156,6 +157,13 @@ willFinishLaunchingWithOptions:(NSDictionary<UIApplicationLaunchOptionsKey, id> 
 {
    
    //ios_calc_dark_mode();
+   
+   if(!m_pApplication)
+   {
+      
+      m_pApplication = get_acme_application();
+      
+   }
    
    m_pnanonotificationcallback = [ [ nano_notification_callback alloc ]  init ];
    

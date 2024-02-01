@@ -247,3 +247,11 @@ CLASS_DECL_ACME bool __node_aura_pos_term()
 //
 //ios_aura_init g_ios_aura_init;
 //
+
+
+void * get_acme_application()
+{
+   
+   return ::platform::get()->application();
+   
+}

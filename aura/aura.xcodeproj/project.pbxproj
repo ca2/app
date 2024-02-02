@@ -158,6 +158,8 @@
 		9A4AE6FF27F9549A00A4B000 /* control_box_button.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4AE6FC27F9549900A4B000 /* control_box_button.cpp */; };
 		9A4AE70027F9549A00A4B000 /* control_box_button.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A4AE6FD27F9549900A4B000 /* control_box_button.h */; };
 		9A4AE70127F9549A00A4B000 /* control_box_icon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4AE6FE27F9549900A4B000 /* control_box_icon.cpp */; };
+		9A50C7582B6C7FAB00FDB101 /* holder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5498652A2C00310052BAB6 /* holder.cpp */; };
+		9A50C7592B6C7FB000FDB101 /* holdee.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5498632A2C00310052BAB6 /* holdee.cpp */; };
 		9A5494812A2AB0070052BAB6 /* _defer_geometry2d_item.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A5494802A2AB0070052BAB6 /* _defer_geometry2d_item.h */; };
 		9A5498662A2C00320052BAB6 /* holdee.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5498632A2C00310052BAB6 /* holdee.cpp */; };
 		9A5498672A2C00320052BAB6 /* holdee.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A5498642A2C00310052BAB6 /* holdee.h */; };
@@ -2323,6 +2325,7 @@
 				9A201AE4247733D900A31CBF /* console.cpp in Sources */,
 				9A750FA6282B910F00C4861B /* copydesk.cpp in Sources */,
 				9A750FF2282B932100C4861B /* application.cpp in Sources */,
+				9A50C7592B6C7FB000FDB101 /* holdee.cpp in Sources */,
 				9A0F53A528E8D6EE00025231 /* scroll_base_y.cpp in Sources */,
 				9A201AE5247733D900A31CBF /* device_context.cpp in Sources */,
 				9A201AE6247733D900A31CBF /* double_buffer.cpp in Sources */,
@@ -2383,6 +2386,7 @@
 				9A750F51282B8FE500C4861B /* true_type_font_utilities.cpp in Sources */,
 				9A750FBB282B916D00C4861B /* plain_edit.cpp in Sources */,
 				9A750FDB282B929E00C4861B /* frame.cpp in Sources */,
+				9A50C7582B6C7FAB00FDB101 /* holder.cpp in Sources */,
 				9A94DE70282C0ADA00F5C1CA /* display.cpp in Sources */,
 				9A750FD5282B929E00C4861B /* nanosvg.cpp in Sources */,
 				9A8FCD852651AFAB00C0D8A1 /* text_box.cpp in Sources */,

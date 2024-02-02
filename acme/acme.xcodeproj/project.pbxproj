@@ -713,6 +713,7 @@
 		9A40BDC72B6B6A760077053E /* notification_callback.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A40BDC52B6B6A760077053E /* notification_callback.h */; };
 		9A40BDC82B6B6A760077053E /* notification_callback.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A40BDC62B6B6A760077053E /* notification_callback.mm */; };
 		9A40BDF32B6B92C10077053E /* file_image.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A40BDF12B6B91C40077053E /* file_image.mm */; };
+		9A40CA3F2B6C63150077053E /* application.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A40BF322B6C63090077053E /* application.h */; };
 		9A420C582B69146700D956E1 /* strdup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A420C572B69146700D956E1 /* strdup.cpp */; };
 		9A420C592B69146700D956E1 /* strdup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A420C572B69146700D956E1 /* strdup.cpp */; };
 		9A4387B9299E499A00D2EE15 /* request.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4387B6299E499800D2EE15 /* request.cpp */; };
@@ -4836,6 +4837,7 @@
 		9A40BDC52B6B6A760077053E /* notification_callback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = notification_callback.h; sourceTree = "<group>"; };
 		9A40BDC62B6B6A760077053E /* notification_callback.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = notification_callback.mm; sourceTree = "<group>"; };
 		9A40BDF12B6B91C40077053E /* file_image.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = file_image.mm; sourceTree = "<group>"; };
+		9A40BF322B6C63090077053E /* application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = application.h; sourceTree = "<group>"; };
 		9A420C552B69137C00D956E1 /* strdup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = strdup.h; sourceTree = "<group>"; };
 		9A420C572B69146700D956E1 /* strdup.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = strdup.cpp; sourceTree = "<group>"; };
 		9A4387B6299E499800D2EE15 /* request.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = request.cpp; sourceTree = "<group>"; };
@@ -6405,6 +6407,7 @@
 				9A68A81425114430008DABD2 /* _.cpp */,
 				9AE6DF2A2962B099008A1335 /* _operating_system.h */,
 				9AD199862511CFB000B4C44A /* _start.h */,
+				9A40BF322B6C63090077053E /* application.h */,
 				9A68A4562511442E008DABD2 /* console.h */,
 				9A68A4E52511442E008DABD2 /* framework.cpp */,
 				9A68AA9525114431008DABD2 /* framework.h */,
@@ -10488,6 +10491,7 @@
 				9A0843A829366D3A009F7FF4 /* _text_stream.h in Headers */,
 				9AD68F1B251A753A00C0EBD7 /* bstr.h in Headers */,
 				9A15A693264B59EE0080670E /* condition.h in Headers */,
+				9A40CA3F2B6C63150077053E /* application.h in Headers */,
 				9A15A6BD264B59EF0080670E /* tools.h in Headers */,
 				9A08427C2935E694009F7FF4 /* aaa_tiny_array_impl.h in Headers */,
 				9A0843CE29366DBB009F7FF4 /* command_line.h in Headers */,

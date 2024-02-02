@@ -19,9 +19,6 @@ DO_FACTORY(REFERENCE_FACTORY)
 #include "_main_hold.h"
 
 
-#if !defined(CUBE)
-#include "acme/memory/_new.inl"
-#endif
 #include "acme/operating_system/acme_initialize.h"
 
 //DECLARE_APPLICATION(APPLICATION);
@@ -36,17 +33,12 @@ DO_FACTORY(REFERENCE_FACTORY)
 
 //__embed_resource(g_app)
 
-#include "acme/memory/_new.inl"
+//#include "acme/memory/_new.inl"
 
 #if !defined(CUBE)
-
-
+#include "acme/memory/_new.inl"
 #include "_new_impl.h"
-
-
 //#include "acme/_library.h"
-
-
 #endif
 
 

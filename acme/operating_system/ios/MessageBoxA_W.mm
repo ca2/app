@@ -12,7 +12,7 @@
 void ns_main_async(dispatch_block_t block);
 
 
-int ui_MessageBoxA(const char * pszMessageParam, const char * pszHeaderParam, unsigned int uType, const char * pszDetails, ::function < void (enum_dialog_result) > function)
+int _ui_MessageBoxA(const char * pszMessageParam, const char * pszHeaderParam, unsigned int uType, const char * pszDetails, ::function < void (enum_dialog_result) > function)
 {
    
    NSString * strMessage = [NSString stringWithUTF8String:pszMessageParam];

@@ -692,9 +692,14 @@ namespace acme
       /// to not use standard I/O redirection.
       virtual int command_system(const ::scoped_string & scopedstr, const class ::time & timeOut = 15_min);
 
+      
+      virtual bool is_executable_in_path(const ::scoped_string & scopedstr);
 
       virtual ::string get_output(const ::scoped_string & scopedstr, const class ::time & timeOut = 15_min);
 
+      virtual ::string get_unix_shell_command_output(const ::scoped_string & scopedstr, const class ::time & timeOut = 15_min);
+
+      virtual ::i32 get_unix_shell_command_output(::string & strOutput, const ::scoped_string & scopedstr, const class ::time & timeOut = 15_min);
 
       virtual void open_terminal_and_run(const ::scoped_string& scopedstr);
 

@@ -2944,6 +2944,16 @@ return false;
    }
 
 
+   bool node::is_executable_in_path(const ::scoped_string &scopedstr)
+   {
+      
+      throw interface_only();
+      
+      return false;
+      
+   }
+
+
    ::string node::get_output(const ::scoped_string & scopedstr, const class ::time & timeOut)
    {
 
@@ -2970,6 +2980,50 @@ return false;
       }
 
       return pstring->m_payload;
+
+   }
+
+
+   ::string node::get_unix_shell_command_output(const ::scoped_string & scopedstr, const class ::time & timeOut)
+   {
+
+      ::string strOutput;
+
+      auto iExitCode = get_unix_shell_command_output(strOutput, scopedstr, timeOut);
+
+      if(iExitCode != 0)
+      {
+
+         throw ::exception(error_failed);
+
+      }
+
+      return strOutput;
+
+   }
+
+
+   ::i32 node::get_unix_shell_command_output(::string & strOutput, const ::scoped_string & scopedstr, const class ::time & timeOut)
+   {
+
+      status_pointer <::string> pstring;
+
+      __construct_new(pstring);
+
+      trace_function tracefunction = [pstring](enum_trace_level eTraceLevel, const scoped_string & str)
+      {
+
+         pstring->m_payload += str + "\n";
+
+      };
+
+      tracefunction.m_timeTimeout  = timeOut;
+
+      auto iExitCode = unix_shell_command(scopedstr, tracefunction);
+
+      strOutput = pstring->m_payload;
+      
+      return iExitCode;
 
    }
 

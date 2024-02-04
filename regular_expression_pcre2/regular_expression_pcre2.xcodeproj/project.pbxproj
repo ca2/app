@@ -65,6 +65,27 @@
 			remoteGlobalIDString = 9A68A41325114352008DABD2;
 			remoteInfo = acme;
 		};
+		9AB732452B6F50CA001C57A7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A6543D42666B1F300F8A254 /* acme.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9AC1067D2B6AC9BD0053DB45;
+			remoteInfo = ios_acme;
+		};
+		9AB732482B6F50D5001C57A7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AD8627429B12AD00054C9B3 /* pcre.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 07D6A8271B4CBB45004FEBC2;
+			remoteInfo = ios_pcre;
+		};
+		9AB7324A2B6F50D5001C57A7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A6543D42666B1F300F8A254 /* acme.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9AC100A72B6AC9BD0053DB45;
+			remoteInfo = ios_acme;
+		};
 		9AD8627929B12AD00054C9B3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9AD8627429B12AD00054C9B3 /* pcre.xcodeproj */;
@@ -85,13 +106,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 9AA5E4C216F7C61B005C45CE;
 			remoteInfo = pcre;
-		};
-		9AE645FD284AE0F60079EBA0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A6543D42666B1F300F8A254 /* acme.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 9AD68E39251A753A00C0EBD7;
-			remoteInfo = ios_acme;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -163,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				9A6543DA2666B1F300F8A254 /* libacme.dylib */,
+				9AB732462B6F50CA001C57A7 /* libios_acme.a */,
 				9A6543DC2666B1F300F8A254 /* libstatic_acme.a */,
 			);
 			name = Products;
@@ -274,7 +289,8 @@
 			buildRules = (
 			);
 			dependencies = (
-				9AE645FE284AE0F60079EBA0 /* PBXTargetDependency */,
+				9AB732492B6F50D5001C57A7 /* PBXTargetDependency */,
+				9AB7324B2B6F50D5001C57A7 /* PBXTargetDependency */,
 			);
 			name = ios_regular_expression_pcre2;
 			productName = regular_expression_pcre2;
@@ -338,6 +354,13 @@
 			remoteRef = 9A6543DB2666B1F300F8A254 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		9AB732462B6F50CA001C57A7 /* libios_acme.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libios_acme.a;
+			remoteRef = 9AB732452B6F50CA001C57A7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		9AD8627A29B12AD00054C9B3 /* libpcre.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
@@ -389,15 +412,20 @@
 			name = acme;
 			targetProxy = 9A6543DD2666B20E00F8A254 /* PBXContainerItemProxy */;
 		};
+		9AB732492B6F50D5001C57A7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ios_pcre;
+			targetProxy = 9AB732482B6F50D5001C57A7 /* PBXContainerItemProxy */;
+		};
+		9AB7324B2B6F50D5001C57A7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ios_acme;
+			targetProxy = 9AB7324A2B6F50D5001C57A7 /* PBXContainerItemProxy */;
+		};
 		9AD8627E29B12AED0054C9B3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = pcre;
 			targetProxy = 9AD8627D29B12AED0054C9B3 /* PBXContainerItemProxy */;
-		};
-		9AE645FE284AE0F60079EBA0 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = ios_acme;
-			targetProxy = 9AE645FD284AE0F60079EBA0 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

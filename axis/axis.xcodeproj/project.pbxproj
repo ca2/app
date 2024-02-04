@@ -620,6 +620,13 @@
 			remoteGlobalIDString = 9AA652672A3345560082D8B3;
 			remoteInfo = unac;
 		};
+		9ABE3CB62B6FDB850019F69B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AA6526F2A33458D0082D8B3 /* unac.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9A50C76C2B6C861900FDB101;
+			remoteInfo = ios_unac;
+		};
 		9AE63EB0252A5BD200BED5B8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9AE63EAA252A5BD200BED5B8 /* aura.xcodeproj */;
@@ -1211,6 +1218,7 @@
 			isa = PBXGroup;
 			children = (
 				9AA652752A33458D0082D8B3 /* libunac.dylib */,
+				9ABE3CB72B6FDB850019F69B /* libios_unac.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2126,6 +2134,13 @@
 			remoteRef = 9AA652742A33458D0082D8B3 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		9ABE3CB72B6FDB850019F69B /* libios_unac.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libios_unac.a;
+			remoteRef = 9ABE3CB62B6FDB850019F69B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		9AE63EB1252A5BD200BED5B8 /* libaura.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
@@ -2481,9 +2496,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = framework.h;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"$(inherited)",
-				);
+				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
@@ -2497,7 +2510,6 @@
 				GCC_WARN_UNUSED_VARIABLE = NO;
 				HEADER_SEARCH_PATHS = "";
 				INSTALL_PATH = "@executable_path";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2604,7 +2616,6 @@
 				GCC_WARN_UNUSED_VARIABLE = NO;
 				HEADER_SEARCH_PATHS = "";
 				INSTALL_PATH = "@executable_path";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

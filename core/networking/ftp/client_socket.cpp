@@ -57,7 +57,7 @@
 #include "apex/networking/sockets/transfer_socket.h"
 #include "apex/networking/sockets/base/socket_handler.h"
 #include "apex/platform/system.h"
-#include <openssl/x509.h>
+//#include <openssl/x509.h>
 
 
 namespace ftp
@@ -261,12 +261,12 @@ namespace ftp
 
       long l = ::sockets::tcp_socket::cert_common_name_check(common_name);
 
-      if (l == X509_V_ERR_DEPTH_ZERO_SELF_SIGNED_CERT)
-      {
-
-         return X509_V_OK;
-
-      }
+//      if (l == X509_V_ERR_DEPTH_ZERO_SELF_SIGNED_CERT)
+//      {
+//
+//         return X509_V_OK;
+//
+//      }
 
       return l;
 

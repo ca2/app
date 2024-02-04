@@ -52,6 +52,10 @@
 		9A4EF4CA2AE361BD0048F22F /* popup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4EF4C72AE361A30048F22F /* popup.cpp */; };
 		9A4EF4CB2AE361CB0048F22F /* format_host.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4EF44D2AE3446F0048F22F /* format_host.cpp */; };
 		9A4EF4CC2AE361D80048F22F /* selection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4EF44E2AE3446F0048F22F /* selection.cpp */; };
+		9A50CE082B6CBDD900FDB101 /* save_as_button_impact.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8CF9ED2A27FC2B0049B167 /* save_as_button_impact.cpp */; };
+		9A50CE092B6CBDDE00FDB101 /* save_as_edit_impact.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8CF9EC2A27FC2B0049B167 /* save_as_edit_impact.cpp */; };
+		9A50CE0A2B6CBDE300FDB101 /* save_as_impact.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8CF9EB2A27FC2A0049B167 /* save_as_impact.cpp */; };
+		9A50CE0B2B6CBE1F00FDB101 /* font_list_impact.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A2D74492AAB4F3E00DFCE25 /* font_list_impact.cpp */; };
 		9A58828528E9331A001543FF /* main_frame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1FB6C4287161910042849A /* main_frame.cpp */; };
 		9A5ECD3028CCC2C20084D354 /* text_format_object.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A5ECD2B28CCC2C00084D354 /* text_format_object.h */; };
 		9A5ECD3128CCC2C20084D354 /* impact.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A5ECD2C28CCC2C00084D354 /* impact.h */; };
@@ -2124,7 +2128,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastUpgradeCheck = 1500;
+				LastUpgradeCheck = 1520;
 				ORGANIZATIONNAME = "Camilo Sasuke Tsumanuma";
 				TargetAttributes = {
 					9AE63303252A5A0300BED5B8 = {
@@ -2370,6 +2374,7 @@
 				9AFC6C2828CBFDEC00E3CA82 /* login.cpp in Sources */,
 				9AE6414F284AA62D0079EBA0 /* tooltip.cpp in Sources */,
 				9AE64153284AA62D0079EBA0 /* file.cpp in Sources */,
+				9A50CE092B6CBDDE00FDB101 /* save_as_edit_impact.cpp in Sources */,
 				9AE64159284AA62D0079EBA0 /* pane_document.cpp in Sources */,
 				9A58828528E9331A001543FF /* main_frame.cpp in Sources */,
 				9AE6415B284AA62D0079EBA0 /* file_list.cpp in Sources */,
@@ -2433,12 +2438,14 @@
 				9AE641A5284AA62D0079EBA0 /* file_list_parser.cpp in Sources */,
 				9AE641A6284AA62D0079EBA0 /* line.cpp in Sources */,
 				9AE641A7284AA62D0079EBA0 /* list_cache.cpp in Sources */,
+				9A50CE0A2B6CBDE300FDB101 /* save_as_impact.cpp in Sources */,
 				9AE641A8284AA62D0079EBA0 /* output.cpp in Sources */,
 				9AE641A9284AA62D0079EBA0 /* xfplayer_impact_line_selection.cpp in Sources */,
 				9AB398CD2B402108005E0874 /* data.cpp in Sources */,
 				9AE641AA284AA62D0079EBA0 /* dialog_frame.cpp in Sources */,
 				9A4EF46B2AE346FA0048F22F /* color_selector_popup.cpp in Sources */,
 				9AE641AB284AA62D0079EBA0 /* item.cpp in Sources */,
+				9A50CE0B2B6CBE1F00FDB101 /* font_list_impact.cpp in Sources */,
 				9AE641AD284AA62D0079EBA0 /* pane_impact.cpp in Sources */,
 				9AE641AF284AA62D0079EBA0 /* property_page.cpp in Sources */,
 				9AE641B0284AA62D0079EBA0 /* pane_tab_impact.cpp in Sources */,
@@ -2454,6 +2461,7 @@
 				9AB3988B2B401893005E0874 /* impact.cpp in Sources */,
 				9A4EF46A2AE346FA0048F22F /* color_selector_combo_box.cpp in Sources */,
 				9AB398902B401893005E0874 /* document.cpp in Sources */,
+				9A50CE082B6CBDD900FDB101 /* save_as_button_impact.cpp in Sources */,
 				9AE641C5284AA62D0079EBA0 /* image_manager.cpp in Sources */,
 				9AE641C6284AA62D0079EBA0 /* menu_frame.cpp in Sources */,
 				9AE641C7284AA62D0079EBA0 /* split_impact.cpp in Sources */,
@@ -2765,6 +2773,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEAD_CODE_STRIPPING = YES;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PLATFORM_MODIFIER = macos;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -2775,6 +2784,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEAD_CODE_STRIPPING = YES;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PLATFORM_MODIFIER = macos;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -2788,6 +2798,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				EXECUTABLE_EXTENSION = a;
 				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PLATFORM_MODIFIER = ios;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -2801,6 +2812,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				EXECUTABLE_EXTENSION = a;
 				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PLATFORM_MODIFIER = ios;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;

@@ -15,6 +15,10 @@
 		9A226D6427CEAE8E0042BAC2 /* libapex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC019E22748A7D4006BEBCC /* libapex.dylib */; };
 		9A366DB628E598B40064C704 /* networking_bsd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A366DB028E597CA0064C704 /* networking_bsd.cpp */; };
 		9A366DB728E598B60064C704 /* networking_bsd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A366DB028E597CA0064C704 /* networking_bsd.cpp */; };
+		9A50CE102B6D1A7000FDB101 /* listen_socket_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ABBFE9A2B3FFC770036DF8C /* listen_socket_impl.cpp */; };
+		9A50CE122B6D204900FDB101 /* list_computers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ABBB6BA2AEB3210007611C5 /* list_computers.cpp */; };
+		9A50CE132B6D204E00FDB101 /* list_network_interfaces.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ABBB6B72AEB31FA007611C5 /* list_network_interfaces.cpp */; };
+		9A50CE142B6D205300FDB101 /* bsd_list_computers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ABBB6BC2AEB456C007611C5 /* bsd_list_computers.cpp */; };
 		9A5882FC28E93B6A001543FF /* networking.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0F8AE128D1166D002601B1 /* networking.cpp */; };
 		9A5882FD28E93B9F001543FF /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0F8AF628D1170B002601B1 /* _.cpp */; };
 		9A818E3B2A71D978008F470C /* socket_handler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0F89D828D1166C002601B1 /* socket_handler.cpp */; };
@@ -628,7 +632,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A50CE122B6D204900FDB101 /* list_computers.cpp in Sources */,
 				9ADB6CC028D1401A00608B22 /* tcp_socket.cpp in Sources */,
+				9A50CE132B6D204E00FDB101 /* list_network_interfaces.cpp in Sources */,
 				9ADB6CC828D140F700608B22 /* socket_handler.cpp in Sources */,
 				9A366DB728E598B60064C704 /* networking_bsd.cpp in Sources */,
 				9ADB6CF128D1481B00608B22 /* _factory.cpp in Sources */,
@@ -638,7 +644,9 @@
 				9ADB6CCA28D1411300608B22 /* stream_socket.cpp in Sources */,
 				9ADB6CD028D1427000608B22 /* _.cpp in Sources */,
 				9ADB6CC228D1402100608B22 /* socket_handler.cpp in Sources */,
+				9A50CE142B6D205300FDB101 /* bsd_list_computers.cpp in Sources */,
 				9ADB6CB428D13FCA00608B22 /* address.cpp in Sources */,
+				9A50CE102B6D1A7000FDB101 /* listen_socket_impl.cpp in Sources */,
 				9ADB6CBA28D13FED00608B22 /* client_context_map.cpp in Sources */,
 				9ADB6CC628D140F100608B22 /* socket.cpp in Sources */,
 				9A5882FD28E93B9F001543FF /* _.cpp in Sources */,

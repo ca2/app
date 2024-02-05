@@ -50,11 +50,20 @@ void ns_main_async(dispatch_block_t block);
 
 -(void)fetch_dark_mode
 {
-   
-   NSString *interfaceStyle = [NSUserDefaults.standardUserDefaults valueForKey:@"AppleInterfaceStyle"];
-   
-   int iDarkMode = [interfaceStyle isEqualToString:@"Dark"];
+//   
+//   NSString *interfaceStyle = [NSUserDefaults.standardUserDefaults valueForKey:@"AppleInterfaceStyle"];
+//   
+//   int iDarkMode = [interfaceStyle isEqualToString:@"Dark"];
 
+   int iDarkMode = 0;
+   if(UIScreen.mainScreen.traitCollection.userInterfaceStyle
+      == UIUserInterfaceStyleDark)
+   {
+      
+      iDarkMode = 1;
+      
+   }
+    
    system_id_update(application_system(m_pApplication), id_set_dark_mode, iDarkMode);
 
 }

@@ -58,6 +58,8 @@ namespace user
       ::pointer<::draw2d::graphics_extension>      m_pgraphicsextension;
       bool                                         m_bDisableSavingRestorableTabs;
       ::item_pointer                               m_pitemClick;
+      ::item_pointer                               m_pitemTabNearScroll;
+      ::item_pointer                               m_pitemTabFarScroll;
       ::write_text::font_pointer                   m_pfontTab;
       ::count                                      m_iRestoredTabCount;
       bool                                         m_bDrawTabAtBackground;
@@ -271,8 +273,17 @@ namespace user
 
       virtual void _001TabOnDrawSchema01(::draw2d::graphics_pointer & pgraphics);
       virtual void _001OnTabLayout(::draw2d::graphics_pointer & pgraphics);
+      
+      
+      bool on_drag_start(::point_i32 & pointDrag, ::item * pitem) override;
 
 
+      void on_drag_scroll_layout(::draw2d::graphics_pointer & pgraphics) override;
+
+      
+      bool drag_shift(::item * pitem, ::user::mouse * pmouse) override;
+
+      
    };
 
 

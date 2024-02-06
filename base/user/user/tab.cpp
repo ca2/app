@@ -15,6 +15,7 @@
 #include "aura/graphics/image/context_image.h"
 #include "acme/primitive/data/listener.h"
 #include "acme/platform/timer.h"
+#include "acme/user/user/drag.h"
 #include "aura/graphics/image/list.h"
 #include "aura/user/user/frame.h"
 #include "aura/user/user/system.h"
@@ -44,6 +45,8 @@ namespace user
       m_bDefaultClickHandling = true;
 
       m_bDefaultMouseHoverHandling = true;
+      
+      //m_bDefaultParentMouseMessageHandling = true;
 
       m_econtroltype = e_control_type_tab;
 
@@ -110,6 +113,8 @@ namespace user
       //}
 
       //return estatus;
+      
+      m_bDefaultParentMouseMessageHandling = true;
 
    }
 
@@ -564,48 +569,48 @@ namespace user
 
       //m_bMouseDown = true;
 
-      if (::is_element(m_pitemClick, e_element_tab_near_scroll))
-      {
-
-         if (m_pointBarDragScroll.x() > 0)
-         {
-
-            m_pointBarDragScroll.x()--;
-
-            set_need_redraw();
-
-            post_redraw();
-
-            pmouse->m_bRet = true;
-
-            set_mouse_capture();
-
-            return;
-
-         }
-
-      }
-      else if (::is_element(m_pitemClick, e_element_tab_far_scroll))
-      {
-
-         if (m_pointBarDragScroll.x() < m_pointBarDragScrollMax.x())
-         {
-
-            m_pointBarDragScroll.x()++;
-
-            set_need_redraw();
-
-            post_redraw();
-
-            pmouse->m_bRet = true;
-
-            set_mouse_capture();
-
-            return;
-
-         }
-
-      }
+//      if (::is_element(m_pitemClick, e_element_tab_near_scroll))
+//      {
+//
+//         if (m_pointBarDragScroll.x() > 0)
+//         {
+//
+//            m_pointBarDragScroll.x()--;
+//
+//            set_need_redraw();
+//
+//            post_redraw();
+//
+//            pmouse->m_bRet = true;
+//
+//            set_mouse_capture();
+//
+//            return;
+//
+//         }
+//
+//      }
+//      else if (::is_element(m_pitemClick, e_element_tab_far_scroll))
+//      {
+//
+//         if (m_pointBarDragScroll.x() < m_pointBarDragScrollMax.x())
+//         {
+//
+//            m_pointBarDragScroll.x()++;
+//
+//            set_need_redraw();
+//
+//            post_redraw();
+//
+//            pmouse->m_bRet = true;
+//
+//            set_mouse_capture();
+//
+//            return;
+//
+//         }
+//
+//      }
 
       if (::is_set(m_pitemClick) && m_pitemClick->m_item.m_iItem >= 0)
       {
@@ -800,7 +805,7 @@ namespace user
 
          float fDensity = 1.0f;
 
-         if (!is_sandboxed())
+         //if (!is_sandboxed())
          {
 
             if (eelement == e_element_tab_near_scroll)
@@ -833,9 +838,9 @@ namespace user
 
                   fDensity = get_density_for_window();
 
-                  rectangle.right() = rectangle.left() + (::i32)(8.0f * fDensity);
+                  rectangle.right() = rectangle.left() + (::i32)(16.0f * fDensity);
 
-                  rectangle.bottom() = rectangle.bottom();
+                  rectangle.bottom() = rectangleTab.bottom();
 
                }
 
@@ -868,7 +873,7 @@ namespace user
 
                   fDensity = get_density_for_window();
 
-                  rectangle.left() = rectangleTab.right() - (::i32)(8.0f * fDensity);
+                  rectangle.left() = rectangleTab.right() - (::i32)(16.0f * fDensity);
 
                   rectangle.top() = rectangleTab.top();
 
@@ -1191,11 +1196,11 @@ namespace user
       if (bScroll)
       {
 
-         if (is_sandboxed())
-         {
-
-         }
-         else
+//         if (is_sandboxed())
+//         {
+//
+//         }
+//         else
          {
 
             if (get_element_rectangle(-1, rectangleScroll, ::e_element_tab_near_scroll))
@@ -1203,8 +1208,8 @@ namespace user
 
                if (rectangleScroll.contains(pointCursor))
                {
-
-                  return __allocate< ::item >(::e_element_tab_near_scroll, -1);
+                  
+                  return m_pitemTabNearScroll;
 
                }
 
@@ -1216,7 +1221,7 @@ namespace user
                if (rectangleScroll.contains(pointCursor))
                {
 
-                  return __allocate< ::item >(::e_element_tab_far_scroll, -1);
+                  return m_pitemTabFarScroll;
 
                }
 
@@ -1308,6 +1313,115 @@ namespace user
       auto pitemNone = __allocate< ::item >(e_element_none);
 
       return pitemNone;
+
+   }
+
+
+   bool tab::on_drag_start(::point_i32 & pointDrag, ::item * pitem)
+   {
+      
+      if(::user::interaction::on_drag_start(pointDrag, pitem))
+      {
+         
+         return true;
+         
+      }
+
+      if (pitem->m_item.m_eelement == e_element_tab_near_scroll
+          || pitem->m_item.m_eelement == e_element_tab_far_scroll)
+      {
+         
+         //::rectangle_i32 r;
+
+         //get_element_rectangle(0, r, pitem->m_item.m_eelement);
+         
+         //pointDrag = r.center();
+         
+         auto pdrag = drag(pitem);
+         
+         pointDrag = pdrag->m_pointInitial;
+
+         return true;
+
+      }
+      
+      return false;
+
+   }
+
+
+   void tab::on_drag_scroll_layout(::draw2d::graphics_pointer & pgraphics)
+   {
+      
+      ::user::interaction::on_drag_scroll_layout(pgraphics);
+      
+      if(m_pointBarDragScrollMax.x() > 0)
+      {
+         
+         if(!m_pitemTabFarScroll)
+         {
+            
+            m_pitemTabFarScroll = __allocate< ::item >(::e_element_tab_far_scroll, -1);
+            
+            enable_drag(m_pitemTabFarScroll, ::user::e_zorder_front);
+            
+            auto puseritemFarScroll = user_item(m_pitemTabFarScroll);
+            
+            puseritemFarScroll->m_euseritemflag += ::user::e_item_flag_rectangle_callback;
+            
+         }
+         
+         if(!m_pitemTabNearScroll)
+         {
+            
+            m_pitemTabNearScroll = __allocate< ::item >(::e_element_tab_near_scroll, -1);
+            
+            enable_drag(m_pitemTabNearScroll, ::user::e_zorder_front);
+            
+            auto puseritemNearScroll = user_item(m_pitemTabNearScroll);
+            
+            puseritemNearScroll->m_euseritemflag += ::user::e_item_flag_rectangle_callback;
+            
+         }
+         
+      }
+      
+   }
+
+   
+   bool tab::drag_shift(::item * pitem, ::user::mouse * pmouse)
+   {
+
+      if (pitem->m_item.m_eelement == e_element_tab_near_scroll
+          || pitem->m_item.m_eelement == e_element_tab_far_scroll)
+      {
+         
+         auto pdrag = drag(pitem);
+
+         pdrag->m_ecursor = e_cursor_move;
+
+         auto point = drag_point(pitem, pmouse);
+
+         auto Δ = minimum_maximum(-point.x(), 0, m_pointBarDragScrollMax.x());
+         
+         m_pointBarDragScroll.x() = Δ;
+         
+         if(Δ > 0)
+         {
+            
+            
+            
+         }
+
+         set_need_redraw();
+
+         post_redraw();
+
+         return true;
+         
+      }
+
+      return ::user::interaction::drag_shift(pitem, pmouse);
 
    }
 

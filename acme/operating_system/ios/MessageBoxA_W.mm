@@ -24,37 +24,43 @@ int _ui_MessageBoxA(const char * pszMessageParam, const char * pszHeaderParam, u
    const char * strButton2 = NULL;
    const char * strButton3 = NULL;
    
-   switch(uType)
+   enum_dialog_result eresult1 = e_dialog_result_cancel;
+   enum_dialog_result eresult2 = e_dialog_result_cancel;
+   enum_dialog_result eresult3 = e_dialog_result_cancel;
+   
+   enum_message_box emessageboxType = (enum_message_box) (uType & e_message_box_type_mask);
+   
+   switch(emessageboxType)
    {
       case e_message_box_ok_cancel:
-         strButton1 = "OK";
-         strButton2 = "Cancel";
+         strButton1 = "OK"; eresult1 = e_dialog_result_ok;
+         strButton2 = "Cancel"; eresult2 = e_dialog_result_cancel;
          break;
       case e_message_box_abort_retry_ignore:
-         strButton1 = "Abort";
-         strButton2 = "Retry";
-         strButton3 = "Ignore";
+         strButton1 = "Abort"; eresult1 = e_dialog_result_abort;
+         strButton2 = "Retry";eresult2 = e_dialog_result_retry;
+         strButton3 = "Ignore";eresult3 = e_dialog_result_ignore;
          break;
       case e_message_box_yes_no_cancel:
-         strButton1 = "Yes";
-         strButton2 = "No";
-         strButton3 = "Cancel";
+         strButton1 = "Yes";eresult1 = e_dialog_result_yes;
+         strButton2 = "No";eresult2 = e_dialog_result_no;
+         strButton3 = "Cancel";eresult3 = e_dialog_result_cancel;
          break;
       case e_message_box_yes_no:
-         strButton1 = "Yes";
-         strButton2 = "No";
+         strButton1 = "Yes"; eresult1 = e_dialog_result_yes;
+         strButton2 = "No";eresult2 = e_dialog_result_no;
          break;
       case e_message_box_retry_cancel:
-         strButton1 = "Retry";
-         strButton2 = "Cancel";
+         strButton1 = "Retry"; eresult1 = e_dialog_result_retry;
+         strButton2 = "Cancel";eresult2 = e_dialog_result_cancel;
          break;
       case e_message_box_cancel_try_continue:
-         strButton1 = "Cancel";
-         strButton2 = "Try";
-         strButton3 = "Continue";
+         strButton1 = "Cancel"; eresult1 = e_dialog_result_cancel;
+         strButton2 = "Try Again";eresult2 = e_dialog_result_try_again;
+         strButton3 = "Continue";eresult3 = e_dialog_result_continue;
          break;
       default:
-         strButton1 = "OK";
+         strButton1 = "OK"; eresult1 = e_dialog_result_ok;
          break;
    }
 
@@ -105,34 +111,34 @@ int _ui_MessageBoxA(const char * pszMessageParam, const char * pszHeaderParam, u
                                   handler:^(UIAlertAction * action)
             {
          
-         b1 = TRUE;
-         enum_dialog_result eresult = e_dialog_result_cancel;
-             switch(uType)
-             {
-                case e_message_box_ok_cancel:
-                       eresult= e_dialog_result_ok;
-                   break;
-                case e_message_box_abort_retry_ignore:
-                       eresult= e_dialog_result_abort;
-                   break;
-                case e_message_box_yes_no_cancel:
-                       eresult= e_dialog_result_yes;
-                   break;
-                case e_message_box_yes_no:
-                       eresult= e_dialog_result_yes;
-                   break;
-                case e_message_box_retry_cancel:
-                       eresult= e_dialog_result_retry;
-                   break;
-                case e_message_box_cancel_try_continue:
-                       eresult= e_dialog_result_cancel;
-                   break;
-                default:
-                       eresult= e_dialog_result_ok;
-                   break;
-             }
+//         b1 = TRUE;
+//         enum_dialog_result eresult = e_dialog_result_cancel;
+//             switch(emessageboxType)
+//             {
+//                case e_message_box_ok_cancel:
+//                       eresult= e_dialog_result_ok;
+//                   break;
+//                case e_message_box_abort_retry_ignore:
+//                       eresult= e_dialog_result_abort;
+//                   break;
+//                case e_message_box_yes_no_cancel:
+//                       eresult= e_dialog_result_yes;
+//                   break;
+//                case e_message_box_yes_no:
+//                       eresult= e_dialog_result_yes;
+//                   break;
+//                case e_message_box_retry_cancel:
+//                       eresult= e_dialog_result_retry;
+//                   break;
+//                case e_message_box_cancel_try_continue:
+//                       eresult= e_dialog_result_cancel;
+//                   break;
+//                default:
+//                       eresult= e_dialog_result_ok;
+//                   break;
+//             }
 
-         function(eresult);
+         function(eresult1);
          
       }];
 
@@ -148,32 +154,32 @@ int _ui_MessageBoxA(const char * pszMessageParam, const char * pszHeaderParam, u
                                   handler:^(UIAlertAction * action) {
          b2 = TRUE;
 
-         enum_dialog_result eresult = e_dialog_result_cancel;
-             switch(uType)
-             {
-                case e_message_box_ok_cancel:
-                       eresult= e_dialog_result_cancel;
-                   break;
-                case e_message_box_abort_retry_ignore:
-                       eresult= e_dialog_result_retry;
-                   break;
-                case e_message_box_yes_no_cancel:
-                       eresult= e_dialog_result_no;
-                   break;
-                case e_message_box_yes_no:
-                       eresult= e_dialog_result_no;
-                   break;
-                case e_message_box_retry_cancel:
-                       eresult= e_dialog_result_cancel;
-                   break;
-                case e_message_box_cancel_try_continue:
-                       eresult= e_dialog_result_try_again;
-                   break;
-                default:
-                   break;
-             }
+//         enum_dialog_result eresult = e_dialog_result_cancel;
+//             switch(emessageboxType)
+//             {
+//                case e_message_box_ok_cancel:
+//                       eresult= e_dialog_result_cancel;
+//                   break;
+//                case e_message_box_abort_retry_ignore:
+//                       eresult= e_dialog_result_retry;
+//                   break;
+//                case e_message_box_yes_no_cancel:
+//                       eresult= e_dialog_result_no;
+//                   break;
+//                case e_message_box_yes_no:
+//                       eresult= e_dialog_result_no;
+//                   break;
+//                case e_message_box_retry_cancel:
+//                       eresult= e_dialog_result_cancel;
+//                   break;
+//                case e_message_box_cancel_try_continue:
+//                       eresult= e_dialog_result_try_again;
+//                   break;
+//                default:
+//                   break;
+//             }
 
-         function(eresult);
+         function(eresult2);
       }];
       
       [alert addAction:a2];
@@ -188,30 +194,30 @@ int _ui_MessageBoxA(const char * pszMessageParam, const char * pszHeaderParam, u
          
          b3 = TRUE;
          
-         enum_dialog_result eresult = e_dialog_result_cancel;
+//         enum_dialog_result eresult = e_dialog_result_cancel;
+//
+//             switch(uType)
+//             {
+//                case e_message_box_ok_cancel:
+//                   break;
+//                case e_message_box_abort_retry_ignore:
+//                       eresult= e_dialog_result_ignore;
+//                   break;
+//                case e_message_box_yes_no_cancel:
+//                       eresult= e_dialog_result_cancel;
+//                   break;
+//                case e_message_box_yes_no:
+//                   break;
+//                case e_message_box_retry_cancel:
+//                   break;
+//                case e_message_box_cancel_try_continue:
+//                       eresult= e_dialog_result_continue;
+//                   break;
+//                default:
+//                   break;
+//             }
 
-             switch(uType)
-             {
-                case e_message_box_ok_cancel:
-                   break;
-                case e_message_box_abort_retry_ignore:
-                       eresult= e_dialog_result_ignore;
-                   break;
-                case e_message_box_yes_no_cancel:
-                       eresult= e_dialog_result_cancel;
-                   break;
-                case e_message_box_yes_no:
-                   break;
-                case e_message_box_retry_cancel:
-                   break;
-                case e_message_box_cancel_try_continue:
-                       eresult= e_dialog_result_continue;
-                   break;
-                default:
-                   break;
-             }
-
-         function(eresult);
+         function(eresult3);
       }];
       
       [alert addAction:a3];

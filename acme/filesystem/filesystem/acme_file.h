@@ -24,6 +24,7 @@ public:
 
    virtual void ensure_exists(const ::file::path & path);
    virtual void touch(const ::file::path & path);
+   virtual void touch_app_cloud(const ::file::path & path, const char * pszContentIdentifier = nullptr);
    virtual void clear_read_only(const ::file::path & path);
 
 
@@ -62,6 +63,11 @@ public:
 
    virtual void find_replace(const ::file::path & path, const ::property_set & set);
 
+   
+   virtual void put_app_cloud_data(const ::file::path & path, const char * pszContentIdentifier, const ::block & block);
+   
+   virtual ::memory get_app_cloud_data(const ::file::path & path, const char * pszContentIdentifier);
+   
 
    //virtual FILE * FILE_open(const ::file::path & path, const scoped_string & attrs, int iShare);
    //virtual i32 FILE_printf(FILE * fp, const scoped_string & s, ...);

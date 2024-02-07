@@ -52,7 +52,7 @@ public:
 
    inline memory_base & memory() { return *get_memory(); }
 
-   memsize size() const { return m_pmemory->size(); }
+   memsize size() const { return ::is_null(m_pmemory) ? 0 : m_pmemory->size(); }
 
    memsize storage_size() const { return m_pmemory->storage_size(); }
 

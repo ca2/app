@@ -30,6 +30,10 @@ namespace fs
 
       // optional if ls_dir is implemented
       bool has_subdir(const ::file::path & pszPath) override;
+
+
+      bool fast_has_subdir(const ::file::path & pszPath) override;
+
       int is_dir(const ::file::path & path) override;
       ::file::listing & root_ones(::file::listing & listing) override;
 

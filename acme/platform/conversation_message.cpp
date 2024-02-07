@@ -8,6 +8,7 @@
 #include "framework.h"
 #include "conversation_message.h"
 #include "acme/platform/node.h"
+#include "acme/platform/sequencer.h"
 //#include "acme/filesystem/file/string_buffer.h"
 //#include "acme/filesystem/file/text_stream.h"
 
@@ -76,9 +77,16 @@ void conversation_message::initialize_conversation(const ::string & strMessage, 
 ::payload conversation_message::do_synchronously(const class time & timeWait)
 {
    
-   do_asynchronously();
+   
+   m_psequencer->m_pevent = __create_new < manual_reset_event >();
 
-   return e_dialog_result_none;
+   do_asynchronously();
+   
+   ::pointer < conversation_message > pconversation = this;
+
+   m_psequencer->m_pevent->wait(1_min);
+
+   return pconversation->m_payloadResult;
    
 }
 

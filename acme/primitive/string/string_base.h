@@ -30,7 +30,11 @@ enum enum_canonical
 
 
 template < typename ITERATOR_TYPE >
-inline const_string_range < ITERATOR_TYPE > string_get_word(const scoped_string_base < ITERATOR_TYPE > & scopedstr);
+inline const_string_range < ITERATOR_TYPE > string_get_word(const scoped_string_base < ITERATOR_TYPE > & scopedstr, ITERATOR_TYPE * ppfound = nullptr);
+
+template < typename ITERATOR_TYPE >
+inline const_string_range < ITERATOR_TYPE > string_get_word(const scoped_string_base < ITERATOR_TYPE > & scopedstr, const scoped_string_base < ITERATOR_TYPE > & scopedstrSeparatorList, ITERATOR_TYPE * ppfound = nullptr);
+
 
 
 template < typename ITERATOR_TYPE >
@@ -1078,6 +1082,14 @@ public:
 
       return get_word(*this).order(range) == 0;
 
+
+   }
+
+   string_base get_word(const SCOPED_STRING& sSep, ITERATOR_TYPE * ppend = nullptr) const
+   {
+
+      return ::string_get_word((const SCOPED_STRING &)*this, sSep, ppend);
+
    }
 
 
@@ -1842,10 +1854,17 @@ format(const std::format_string<Args...> fmt, Args&&... args) noexcept
 
 
 template < typename ITERATOR_TYPE >
-inline const_string_range < ITERATOR_TYPE > string_get_word(const scoped_string_base < ITERATOR_TYPE > & scopedstr)
+inline const_string_range < ITERATOR_TYPE > string_get_word(const scoped_string_base < ITERATOR_TYPE > & scopedstr, ITERATOR_TYPE * pfound)
 {
 
    auto find = scopedstr.find_first_whitespace();
+   
+   if(::is_set(pfound))
+   {
+      
+      *pfound = find;
+      
+   }
 
    return { scopedstr.begin(), find };
 
@@ -1853,3 +1872,33 @@ inline const_string_range < ITERATOR_TYPE > string_get_word(const scoped_string_
 
 
 
+
+template < typename ITERATOR_TYPE >
+inline const_string_range < ITERATOR_TYPE > string_get_word(const scoped_string_base < ITERATOR_TYPE > & scopedstr, const scoped_string_base < ITERATOR_TYPE > & scopedstrSeparatorList, ITERATOR_TYPE * pfound)
+{
+
+   auto find = scopedstr.find_first_character_in(scopedstrSeparatorList);
+
+   if(::is_set(pfound))
+   {
+
+      if(::is_empty(find))
+      {
+         
+         *pfound = find;
+         
+      }
+      else
+      {
+
+         auto findend = scopedstr(find).skip_any_character_in(scopedstrSeparatorList);
+      
+         *pfound = findend;
+
+      }
+      
+   }
+
+   return { scopedstr.begin(), find };
+
+}

@@ -963,6 +963,13 @@ void file_context::safe_get_memory(const ::payload &payloadFile, memory_base &me
 
    try
    {
+      
+      if(!pfile)
+      {
+         
+         return;
+         
+      }
 
       pfile->full_memory(mem);
 
@@ -3780,6 +3787,22 @@ file_pointer file_context::get_file(const ::payload &payloadFile, ::file::e_open
    }
    else
    {
+      
+      auto strProtocol = url()->get_protocol(path);
+      
+      if(strProtocol.has_char())
+      {
+         
+         auto pfile = defer_get_protocol_file(strProtocol, path, eopen, pfileexception);
+         
+         if(pfile)
+         {
+            
+            return pfile;
+            
+         }
+         
+      }
 
       return create_native_file(path, eopen);
 
@@ -3787,6 +3810,14 @@ file_pointer file_context::get_file(const ::payload &payloadFile, ::file::e_open
 
    return pfile;
 
+}
+
+
+::file_pointer file_context::defer_get_protocol_file(const ::scoped_string & scopedstrProtocol, const ::file::path & path, ::file::e_open eopen, ::pointer < ::file::exception > * pfileexception)
+{
+   
+   return nullptr;
+   
 }
 
 

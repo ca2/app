@@ -156,7 +156,7 @@ namespace acme
 
       virtual void initialize(::particle * pparticle) override;
       
-      
+      virtual void node_application_on_status(const char * pszStatus, void * p = nullptr, long long ll = 0);
       //virtual ::pointer < ::particle > create_quit_particle(::pointer<::acme::node>& pnode);
 
       //virtual ::pointer < ::particle > create_quit_particle();

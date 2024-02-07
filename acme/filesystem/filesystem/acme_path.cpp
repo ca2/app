@@ -5,6 +5,7 @@
 #include "acme_file.h"
 #include "acme/exception/interface_only.h"
 #include "acme/filesystem/filesystem/link.h"
+#include "acme/platform/application.h"
 #include "acme/platform/system.h"
 
 #ifdef HAVE_UNISTD_H
@@ -21,6 +22,87 @@ acme_path::~acme_path()
 {
 
 }
+
+
+::string acme_path::app_cloud_container_identifier(const char * pszAppCloudContainerIdentifier)
+{
+   
+   ::string strAppCloudContainerIdentifier(pszAppCloudContainerIdentifier);
+   
+   if(strAppCloudContainerIdentifier.is_empty())
+   {
+
+      strAppCloudContainerIdentifier = application()->m_strAppCloudContainerIdentifier;
+
+
+   }
+
+   return strAppCloudContainerIdentifier;
+   
+}
+
+
+//::string acme_path::app_cloud_container_id_from_app_id(const char * pszAppId)
+//{
+//   
+//   ::string strAppId(pszAppId);
+//   
+//   if(strAppId.is_empty())
+//   {
+//      
+//      
+//      strAppId = application()->m_strAppId;
+//      
+//      
+//   }
+//   
+//   strAppId.find_replace("/", ".");
+//   strAppId.find_replace("_", "-");
+//   
+//   //return "iCloud." + strAppId;
+//   
+//   return strAppId;
+//   
+//}
+
+
+::file::path acme_path::defer_get_app_cloud_path(const ::file::path & path, const char * pszAppId)
+{
+   
+   if(acmedirectory()->is_app_cloud_document(path, pszAppId))
+   {
+      
+      return path;
+      
+   }
+   
+   return acmedirectory()->app_cloud_document(pszAppId) / path;
+   
+}
+
+
+void acme_path::defer_get_app_cloud_path_name(::string & strName, ::string & strAppCloudContainerIdentifier, const ::file::path & path)
+{
+   
+   strAppCloudContainerIdentifier = app_cloud_container_identifier(strAppCloudContainerIdentifier);
+   
+   if(!acmedirectory()->is_app_cloud_document(path, strAppCloudContainerIdentifier))
+   {
+      
+      strName = path;
+      
+      return;
+      
+   }
+   
+   strName = path;
+   
+   strName.begins_eat(acmedirectory()->app_cloud_document(strAppCloudContainerIdentifier));
+
+   strName.trim_left("/");
+   
+}
+
 
 
 string acme_path::from(string str)

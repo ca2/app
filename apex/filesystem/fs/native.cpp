@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "native.h"
 #include "acme/filesystem/file/file.h"
+#include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/listing.h"
 #include "acme/primitive/data/listener.h"
 #include "acme/primitive/string/international.h"
@@ -32,6 +33,14 @@ namespace fs
 
       return dir()->has_subdir(path);
 
+   }
+
+
+   bool native::fast_has_subdir(const ::file::path & path)
+   {
+      
+      return dir()->fast_has_subdir(path);
+      
    }
 
 
@@ -128,7 +137,18 @@ namespace fs
          listing.m_straTitle.insert_at(0, unitext("OneDrive"));
          
       }
+      
+      if(acmedirectory()->has_app_cloud_document())
+      {
+         
+         ::file::path & path = listing.insert_at(0, "icloud://");
 
+         path.m_iDir = 1;
+
+         listing.m_straTitle.insert_at(0, unitext("iCloud"));
+
+      }
+      
       {
 
          ::file::path & path = listing.insert_at(0, "video://");

@@ -878,7 +878,7 @@ _001SelectItem(pchild);
 
             pchild = insert_item(pitemNew, ::data::e_relative_last_child, pparent);
 
-            if (filemanager_data()->fs_data()->has_subdir(pitemNew->final_path()))
+            if (filemanager_data()->fs_data()->fast_has_subdir(pitemNew->final_path()))
             {
 
                pchild->m_dwState |= ::data::e_tree_item_state_expandable;

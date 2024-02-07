@@ -290,6 +290,13 @@ namespace acme
    }
 
 
+   void node::node_application_on_status(const char * pszStatus, void * p, long long ll)
+   {
+      
+      
+   }
+
+
    //::pointer < ::particle > node::create_quit_particle(::pointer<::acme::node> &  pnode, ::pointer<::acme::system> & psystem)
    //{
    //   
@@ -3506,6 +3513,14 @@ bool node::are_framework_shared_libraries_busy(const ::scoped_string & scopedstr
 
 
 } // namespace acme
+
+
+void node_application_send_status(const char * pszStatus, void * p, long long ll)
+{
+   
+   ::platform::get()->acmenode()->node_application_on_status(pszStatus, p, ll);
+   
+}
 
 
 

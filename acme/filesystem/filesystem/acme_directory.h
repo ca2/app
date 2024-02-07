@@ -121,6 +121,9 @@ public:
    virtual ::file::path public_root(); // writable common root (non-bin, non-exe)
    virtual ::file::path bookmark();
    virtual ::file::path home();
+   virtual ::file::path app_cloud_document(const char * pszContentIdentifier = nullptr);
+   virtual bool is_app_cloud_document(const ::file::path & path, const char * pszContentIdentifier = nullptr);
+   virtual bool has_app_cloud_document(const char * pszContentIdentifier = nullptr);
    virtual ::file::path pathfind(const string& pszEnv, const string& pszTopic, const string& pszMode);
    virtual ::file::path program_files_x86();
    virtual ::file::path program_files();
@@ -194,6 +197,8 @@ public:
          //bool _enumerates(::file::listing & listing) override;
          
          bool enumerate(::file::listing & listing) override;
+
+   virtual bool defer_enumerate_protocol(::file::listing& listing);
 
          virtual bool defer_enumerate_media_library(::file::listing& listing);
          virtual ::media_library::item* media_library_item(const ::file::path& path);

@@ -1450,7 +1450,7 @@ inline bool atom::case_insensitive_begins(const ::scoped_string & scopedstrCandi
    else
    {
 
-      throw "Unexpected ::atom m_etype";
+      //throw "Unexpected ::atom m_etype";
 
       return false;
 

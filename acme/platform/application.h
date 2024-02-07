@@ -45,6 +45,19 @@ namespace acme
       mutable ::base::application* m_pbaseapplication;
       mutable ::bred::application* m_pbredapplication;
       mutable ::core::application* m_pcoreapplication;
+      
+      class user_message :
+      virtual public ::particle
+      {
+         
+         public:
+         
+         ::e_status m_estatus;
+         ::pointer < ::particle > m_pparticle;
+         long long m_ll;
+         void * m_p;
+         
+      };
 
       //mutable ::platform::platform *               m_pplatform;
 
@@ -52,7 +65,8 @@ namespace acme
       ::pointer<main_hold_base>                    m_pmainholdbase;
       // FROM ::main (Now main2)
 
-
+      ::pointer_array < user_message >                      m_usermessagea;
+      bool                                            m_bGUIReady = false;
       bool                                            m_bModulePath = false;
       ::file::path                                    m_pathModule;
 
@@ -84,6 +98,7 @@ namespace acme
       ::text::text                                    m_textAppTitle;
       ::text::text                                    m_textAppName;
 
+      ::string                                        m_strAppCloudContainerIdentifier;
 
       ::pointer < ::mutex >                                      m_pmutexMatterLocator;
 
@@ -101,6 +116,12 @@ namespace acme
 
 
       virtual bool is_console() const;
+      
+      
+      virtual void application_on_status(::e_status estatus, ::particle * pparticle = nullptr, long long ll = 0, void * p = nullptr);
+      
+      
+      virtual void on_error_icloud_not_available(::particle * pparticle = nullptr, long long ll = 0, void * p = nullptr);
 
 
       virtual ::i32 application_main(::platform::platform * pplatform);

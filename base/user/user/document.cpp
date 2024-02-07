@@ -1036,16 +1036,22 @@ namespace user
    bool document::on_new_document()
    {
 
-      //if (m_pimpactsystem->m_typeatomData.has_char())
-      //{
+      if (m_pimpactsystem->m_typeatomData.has_char())
+      {
 
-      //   auto pNew = __id_create((const ::atom &) m_pimpactsystem->m_typeatomData);
+         auto pNew = __id_create((const ::atom &) m_pimpactsystem->m_typeatomData);
 
-      //   ::pointer < ::data::data > pdataNew = pNew;
+         ::pointer < ::data::data > pdataNew = pNew;
 
-      //   set_data(0, pdataNew);
+         set_data(0, pdataNew);
 
-      //}
+      }
+//      else
+//      {
+//         
+//         return on_open_document(::payload());
+//         
+//      }
 
       return true;
 

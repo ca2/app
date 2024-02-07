@@ -957,6 +957,8 @@ pacmedirectory->create("/ca2core");
       //   return estatus;
 
       //}
+      
+#if !defined(APPLE_IOS)
 
       auto pid = acmenode()->current_process_identifier();
 
@@ -1043,6 +1045,8 @@ pacmedirectory->create("/ca2core");
          acmefile()->put_contents(pathEnvDumpFile, strEnv);
 
       }
+      
+#endif
 
       //      {
       //

@@ -394,6 +394,52 @@ string acme_directory::system_short_name()
 
 }
 
+
+::file::path acme_directory::app_cloud_document(const char * pszAppCloudContainerIdentifier)
+{
+   
+   ::string strAppCloudContainerIdentifier;
+   
+   strAppCloudContainerIdentifier = acmepath()->app_cloud_container_identifier(pszAppCloudContainerIdentifier);
+   
+   ::file::path pathContainer;
+   
+   pathContainer = ("icloud://" + strAppCloudContainerIdentifier);
+   
+   return pathContainer;
+   
+}
+
+
+bool acme_directory::is_app_cloud_document(const ::file::path & path, const char * pszContentIdentifier)
+{
+   
+   ::file::path pathFolder;
+   
+   pathFolder = app_cloud_document(pszContentIdentifier);
+   
+   if(path.folder() == pathFolder ||
+      path.folder().begins(::string(pathFolder) + "/"))
+   {
+      
+      return true;
+      
+   }
+      
+   return false;
+   
+}
+
+
+bool acme_directory::has_app_cloud_document(const char * pszContentIdentifier)
+{
+   
+   return false;
+   
+}
+
+
+
 //
 //#endif
 
@@ -889,6 +935,16 @@ bool acme_directory::defer_enumerate_media_library(::file::listing& listing)
    return false;
 
 }
+
+
+bool acme_directory::defer_enumerate_protocol(::file::listing& listing)
+{
+   
+   
+   return false;
+   
+}
+
 
 
 ::media_library::item* acme_directory::media_library_item(const ::file::path& path)

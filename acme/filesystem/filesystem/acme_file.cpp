@@ -55,6 +55,17 @@ void acme_file::touch(const ::file::path & path)
 }
 
 
+void acme_file::touch_app_cloud(const ::file::path & path, const char * pszContentIdentifier)
+{
+
+   touch(path);
+
+   //throw ::interface_only();
+
+
+}
+
+
 void acme_file::clear_read_only(const ::file::path & path)
 {
 
@@ -448,6 +459,27 @@ void acme_file::find_replace(const ::file::path & path, const ::property_set & s
    put_contents(path, str);
 
 }
+
+
+void acme_file::put_app_cloud_data(const ::file::path & path, const char * pszContentIdentifier, const ::block & block)
+{
+   
+   auto pathAppCloud = acmepath()->defer_get_app_cloud_path(path, pszContentIdentifier);
+   
+   this->put_contents(pathAppCloud, pszContentIdentifier);
+   
+}
+
+
+::memory acme_file::get_app_cloud_data(const ::file::path & path, const char * pszContentIdentifier)
+{
+   
+   auto pathAppCloud = acmepath()->defer_get_app_cloud_path(path, pszContentIdentifier);
+   
+   return this->as_memory(pathAppCloud);
+   
+}
+
 
 
 bool acme_file::is_true(const ::file::path & path)

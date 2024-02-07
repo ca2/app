@@ -635,10 +635,11 @@ namespace acme
 
       //}
 
+#if !defined(APPLE_IOS)
 
       report_system_instance();
 
-
+#endif
 
 
    }
@@ -3258,6 +3259,4 @@ CLASS_DECL_ACME task_pointer fork(::particle * pparticle, const ::procedure & pr
    return pparticle->system()->fork(procedure);
 
 }
-
-
 

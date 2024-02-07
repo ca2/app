@@ -226,6 +226,50 @@ namespace acme
    }
 
 
+   void application::application_on_status(::e_status estatus, ::particle * pparticle, long long ll, void * p)
+   {
+      
+      if(estatus == error_icloud_not_available)
+      {
+         
+         if(!m_bGUIReady)
+         {
+            
+            auto pusermessage = __create_new < user_message >();
+            
+            pusermessage->m_estatus = estatus;
+            
+            pusermessage->m_pparticle = pparticle;
+            
+            pusermessage->m_ll = ll;
+            
+            pusermessage->m_p = p;
+            
+            m_usermessagea.add_unique(pusermessage);
+            
+         }
+         else
+         {
+            
+            on_error_icloud_not_available(pparticle, ll, p);
+            
+         }
+         
+      }
+      
+   }
+
+
+   void application::on_error_icloud_not_available(::particle * pparticle, long long ll, void * p)
+   {
+      
+      ::function < void(const ::atom& atom) > function;
+      
+      message_box_synchronous(this, "Application needs iCloud and it is not Available", "iCloud is not Available.", e_message_box_ok | e_message_box_icon_exclamation);
+      
+   }
+
+
    ::i32 application::application_main(::platform::platform * pplatform)
    {
 
@@ -1958,3 +2002,14 @@ bool application_get_bool(void* pApplication, const char* pszItem)
    return papp->payload(pszItem).as_bool();
 
 }
+
+
+CLASS_DECL_ACME void application_send_status(::enum_status estatus, ::particle * pparticle, long long ll, void *p)
+{
+   
+   ::platform::get()->application()->application_on_status(estatus, pparticle, ll, p);
+   
+}
+
+
+

@@ -917,6 +917,7 @@ namespace apex
          {
 
             on_request(prequest);
+            
 
          }
          // catch (not_installed * pexception)
@@ -958,6 +959,39 @@ namespace apex
          }
 
          m_bAttendedFirstRequest = true;
+
+         if(!m_bGUIReady)
+         {
+            
+            m_bGUIReady = true;
+          
+            fork([this]()
+                 {
+               
+               while(m_usermessagea.has_element())
+               {
+                  
+                  preempt(5_s);
+                  
+                  auto pop = m_usermessagea.pop_first();
+                  
+                  if(pop)
+                  {
+                     
+                     application_on_status(pop->m_estatus,
+                                           pop->m_pparticle,
+                                           pop->m_ll,
+                                           pop->m_p);
+                     
+                     
+                  }
+                  
+               }
+               
+            });
+            
+         }
+
          //::pointer<::apex::session>pbergedge = pcreate->payload("bergedge_callback").cast < ::apex::session >();
          // todobergedge
          /*if(pbergedge != nullptr)

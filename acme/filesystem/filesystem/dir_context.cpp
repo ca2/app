@@ -474,8 +474,13 @@ bool dir_context::enumerate(::file::listing& listing)
 
 bool dir_context::_enumerate(::file::listing& listing)
 {
+   
+   if(!acmedirectory()->defer_enumerate_protocol(listing))
+   {
+      
+      acmedirectory()->defer_enumerate_media_library(listing);
 
-   acmedirectory()->defer_enumerate_media_library(listing);
+   }
 
    listing.m_pathFinal = m_pcontext->defer_process_path(listing.m_pathUser);
 
@@ -847,6 +852,15 @@ bool dir_context::has_subdir(const ::file::path& pathFolder)
    return listing.has_element();
 
 }
+
+
+bool dir_context::fast_has_subdir(const ::file::path & path)
+{
+ 
+   return has_subdir(path);
+   
+}
+
 
 
 bool dir_context::is_cached(bool& bIs, const ::file::path& path)

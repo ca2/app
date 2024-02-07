@@ -285,3 +285,9 @@ inline void sort_non_negative(T1& t1, T2& t2);
 
 
 
+CLASS_DECL_ACME void application_send_status(::enum_status estatus, ::particle * pparticle = nullptr, long long ll = 0, void * p = nullptr);
+
+
+CLASS_DECL_ACME void node_application_send_status(const char * pszStatus, void * p = nullptr, long long ll = 0);
+
+

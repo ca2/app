@@ -94,8 +94,11 @@
 
       virtual void  erase(const ::file::path & psz, bool bRecursive = true);
 
-      virtual bool has_subdir(const ::file::path & psz);
+      virtual bool has_subdir(const ::file::path & path);
 
+      virtual bool fast_has_subdir(const ::file::path & path);
+
+      
       virtual ::file::path time();
       virtual ::file::path stage();
       virtual ::file::path stageapp();

@@ -15,7 +15,13 @@ public:
 
    acme_path();
    ~acme_path() override;
+   
+   
+   virtual ::string app_cloud_container_identifier(const char * pszAppCloudContainerIdentifier);
+   
+   virtual ::file::path defer_get_app_cloud_path(const ::file::path & path, const char * pszAppCloudContainerIdentifier);
 
+   virtual void defer_get_app_cloud_path_name(::string & strName, ::string & strAppCloudContainerIdentifier, const ::file::path & path);
 
 
    virtual  string from(string str);

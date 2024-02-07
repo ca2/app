@@ -149,6 +149,37 @@ namespace acme
    }
 
 
+   bool application::is_desktop_system() const
+   {
+   
+#if defined(MACOS)
+      return true;
+#elif defined(WINDOWS_DESKTOP)
+      return true;
+#elif defined(LINUX)
+      return true;
+#elif defined(__BSD__)
+      return true;
+#else
+      return false;
+#endif
+   }
+
+
+   bool application::is_sandboxed() const
+   {
+      
+#if defined(APPLE_IOS)
+      return true;
+#elif defined(ANDROID)
+      return true;
+#else
+      return false;
+#endif
+   
+   }
+
+
    //void application::initialize(::particle* pparticle)
    //{
 

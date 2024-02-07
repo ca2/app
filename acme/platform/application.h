@@ -117,6 +117,10 @@ namespace acme
 
       virtual bool is_console() const;
       
+      virtual bool is_desktop_system() const;
+      
+      virtual bool is_sandboxed() const;
+      
       
       virtual void application_on_status(::e_status estatus, ::particle * pparticle = nullptr, long long ll = 0, void * p = nullptr);
       
@@ -280,6 +284,8 @@ namespace acme
 
       bool on_application_menu_action(const ::atom & atom) override;
 
+      
+      
 
       virtual void add_impact_system(const ::atom & atom, const ::pointer<::user::impact_system> & pimpactsystem);
       virtual ::pointer<::user::impact_system> impact_system(const ::atom & atom);

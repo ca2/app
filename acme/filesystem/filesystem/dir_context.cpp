@@ -3011,20 +3011,35 @@ bool dir_context::is_inside(const ::file::path& pszDir, const ::file::path& pszP
 
    if (!file()->exists(pathNetworkPayload))
    {
-
-      auto pathHome = dir()->home();
-
-      auto pathTxt = pathHome / "dropbox.txt";
-
-      string strPath = file()->safe_get_string(pathTxt);
-
-      strPath.trim();
-
-      m_pathDropbox = strPath;
-
-      m_bDropboxCalculated = true;
-
-      return strPath;
+      
+      if(application()->is_desktop_system())
+      {
+         
+         auto pathHome = dir()->home();
+         
+         auto pathTxt = pathHome / "dropbox.txt";
+         
+         string strPath = file()->safe_get_string(pathTxt);
+         
+         strPath.trim();
+         
+         m_pathDropbox = strPath;
+         
+         m_bDropboxCalculated = true;
+         
+         return strPath;
+         
+      }
+      else
+      {
+         
+         m_pathDropbox.empty();
+         
+         m_bDropboxCalculated = true;
+         
+         return {};
+         
+      }
 
    }
 

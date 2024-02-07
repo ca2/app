@@ -1877,28 +1877,39 @@ template < typename ITERATOR_TYPE >
 inline const_string_range < ITERATOR_TYPE > string_get_word(const scoped_string_base < ITERATOR_TYPE > & scopedstr, const scoped_string_base < ITERATOR_TYPE > & scopedstrSeparatorList, ITERATOR_TYPE * pfound)
 {
 
-   auto find = scopedstr.find_first_character_in(scopedstrSeparatorList);
+   auto end = scopedstr.find_first_character_in(scopedstrSeparatorList);
+   
+   auto find = end;
 
-   if(::is_set(pfound))
+   if(::is_empty(end))
    {
-
+      
+      end = scopedstr.end();
+      
+      find = end;
+      
+   }
+   else
+   {
+      
+      find = scopedstr(find).skip_any_character_in(scopedstrSeparatorList);
+   
       if(::is_empty(find))
       {
          
-         *pfound = find;
+         find = scopedstr.end();
          
-      }
-      else
-      {
-
-         auto findend = scopedstr(find).skip_any_character_in(scopedstrSeparatorList);
-      
-         *pfound = findend;
-
       }
       
    }
 
-   return { scopedstr.begin(), find };
+   if(::is_set(pfound))
+   {
+
+      *pfound = find;
+      
+   }
+
+   return { scopedstr.begin(), end };
 
 }

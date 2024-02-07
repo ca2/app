@@ -285,6 +285,8 @@ namespace filemanager
          auto prequest = __create_new <::request>();
 
          prequest->m_payloadFile = itema[0]->user_path();
+         
+         prequest->m_ecommand = ::e_command_file_open;
 
          application()->request(prequest);
 

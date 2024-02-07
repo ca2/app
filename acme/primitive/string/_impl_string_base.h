@@ -4252,10 +4252,10 @@ inline typename const_string_range < ITERATOR_TYPE >::const_iterator const_strin
 
 
 template < typename ITERATOR_TYPE >
-inline typename const_string_range < ITERATOR_TYPE >::const_iterator const_string_range < ITERATOR_TYPE >::find_first(CHARACTER ch) const RELEASENOTHROW
+inline typename const_string_range < ITERATOR_TYPE >::const_iterator const_string_range < ITERATOR_TYPE >::find_first(CHARACTER ch, ::strsize start) const RELEASENOTHROW
 {
    
-   return ::string_find_character(this->begin(), this->end(), ch);
+   return ::string_find_character(this->begin() + start, this->end(), ch);
 
 }
 

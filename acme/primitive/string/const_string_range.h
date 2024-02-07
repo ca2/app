@@ -1562,7 +1562,7 @@ public:
    //const_iterator _find_first_character_in(const SCOPED_STRING & scopedstrCharacters) const RELEASENOTHROW;
    ///strsize _find_first_character_in(const CHARACTER * blockCharacters, strsize iStart = 0) const RELEASENOTHROW;
 
-   const_iterator find_first(CHARACTER chSeparator) const RELEASENOTHROW;
+   const_iterator find_first(CHARACTER chSeparator, ::strsize start = 0) const RELEASENOTHROW;
 
    //strsize find_first_in(const string_base &str) const RELEASENOTHROW;
    //strsize find_first_in(const string_base &str) const RELEASENOTHROW;

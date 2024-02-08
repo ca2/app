@@ -57,33 +57,10 @@ class trace_statement;
 //};
 
 
-#include "acme/primitive/primitive/interlocked_count.h"
 
 
 using hsynchronization = void *;
-
-#include "particle_flags.h"
-#include "ptr.h"
-
-
-
-struct PARTICLE :
-   public PARTICLE_FLAGS
-{
-
-
-   mutable ::acme::context *           m_pcontext;
-   mutable ::ptr < ::particle >        m_pparticleSynchronization;
-
-
-   PARTICLE() : 
-      m_pcontext(nullptr)
-   {}
-
-
-
-
-};
+#include "referenceable.h"
 
 
 #include "acme/platform/trace_statement.h"
@@ -112,19 +89,17 @@ struct disable_referencing_debugging_t {};
 
 // ThomasBorregaardSorensen!! Like handlers : now particle with handle::handlers*
 class CLASS_DECL_ACME particle :
-   virtual public PARTICLE
+   virtual public signal_handler::base
 {
 public:
 
 
-   void *                              m_pAllocation = nullptr;
-   ::interlocked_count                 m_countReference;
 
-#if REFERENCING_DEBUGGING
+//#if REFERENCING_DEBUGGING
    particle();
-#else
-   particle() : m_countReference(1) {}
-#endif
+//#else
+//   particle() : m_countReference(1) {}
+//#endif
    
 //
 //   particle(::particle * pparticleParent);
@@ -138,93 +113,6 @@ public:
 
    virtual void initialize(::particle * pparticle);
    virtual void finalize();
-
-#ifdef _DEBUG
-
-
-   virtual i64 increment_reference_count();
-   virtual i64 decrement_reference_count();
-   virtual i64 replace_reference();
-   virtual i64 release();
-
-
-#else
-
-   
-   inline i64 increment_reference_count();
-   inline i64 decrement_reference_count();
-   inline i64 replace_reference();
-   inline i64 release();
-
-
-#endif
-
-
-
-
-#if REFERENCING_DEBUGGING
-
-
-   ::particle * refdbg_this() const { return (::particle *)this; }
-
-protected:
-   
-   ::particle * m_pparticleTopTrack = nullptr;
-
-public:
-
-   ::reference_referer * m_prefererTransfer = nullptr;
-
-   ::particle * get_top_track() const;
-   void add_top_track(::particle * pparticle);
-   void erase_top_track(::particle * pparticle);
-   bool contains_top_track(::particle * pparticle) const;
-   bool find_top_track(::particle * pparticle, ::particle ** ppparticleParent) const;
-
-
-
-   class reference_item_array *  m_preferenceitema = nullptr;
-   bool                          m_bHeapAllocation = false;
-   void *                        m_pType = nullptr;
-   memsize                       m_sType = sizeof(::particle);
-
-
-   void set_size_type(memsize s) { m_sType = s; }
-
-   bool contains_object_in_address_space(::particle * pparticle) const
-   {
-
-      return 
-         ::is_set(this->m_pType)
-         && this->m_sType >= sizeof(::particle)
-         && ((::u8 *)pparticle >= this->m_pType
-         && (((::u8 *)pparticle) + pparticle->m_sType)
-         <= (((::u8 *)this->m_pType) + this->m_sType));
-
-   }
-
-   class reference_item_array * reference_itema();
-
-   bool is_referencing_debugging_enabled() const
-   {
-      
-      return !m_eflagElement.is(e_flag_no_referencing_debugging);
-
-   }
-
-   void disable_referencing_debugging();
-
-   //void add_initial_reference_item();
-   void add_reference_item();
-   //void _add_reference_item();
-   void erase_reference_item();
-   void check_pending_releases();
-
-#else
-
-   bool is_referencing_debugging_enabled() const { return false; }
-
-#endif
 
 
    virtual void delete_this();
@@ -329,14 +217,12 @@ public:
    virtual void init_task();
 
    //virtual void initialize_matter(::matter * pmatter);
-   virtual void call_run();
 
 
    template < typename TYPE >
    TYPE * cast() { return dynamic_cast <TYPE *>(this); }
 
 
-   virtual void run();
    virtual bool particle_step();
    virtual void on_sequence();
 

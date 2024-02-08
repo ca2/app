@@ -10,7 +10,7 @@
 
 
 class CLASS_DECL_ACME matter :
-   virtual public signal_handler::base
+   virtual public ::particle
 {
 public:
 

@@ -1,7 +1,7 @@
 #pragma once
 
 
-//#include "acme/primitive/primitive/particle.h"
+//#include "acme/primitive/primitive/referenceable.h"
 #include "acme/primitive/primitive/ptr.h"
 #include "acme/platform/reference_referer.h"
 
@@ -15,9 +15,9 @@
 //#if REFERENCING_DEBUGGING
 //
 //
-//CLASS_DECL_ACME::particle * task_get_top_track();
-//CLASS_DECL_ACME void task_on_new_particle(::particle * pparticle);
-//CLASS_DECL_ACME void task_on_after_new_particle(::particle * pparticle);
+//CLASS_DECL_ACME::referenceable * task_get_top_track();
+//CLASS_DECL_ACME void task_on_new_referenceable(::referenceable * preferenceable);
+//CLASS_DECL_ACME void task_on_after_new_referenceable(::referenceable * preferenceable);
 //
 //
 //#endif
@@ -29,7 +29,7 @@
 template < class c_derived >
 inline i64 increment_reference_count(c_derived * pca);
 
-class particle;
+class referenceable;
 
 
 // ::ca::null_class back link to operational system oswindow.h
@@ -50,7 +50,7 @@ public:
    using RAW_POINTER = TYPE *;
 
    T *                  m_p;
-   ::particle *         m_pparticle;
+   ::referenceable *         m_preferenceable;
    ::e_status           m_estatus;
 #if REFERENCING_DEBUGGING
    reference_referer *  m_preferer = nullptr;
@@ -82,32 +82,32 @@ public:
 
    /// consumes a referer
    template < typename PARTICLE >
-   inline pointer(enum_create_new, PARTICLE * pparticle) :
+   inline pointer(enum_create_new, PARTICLE * preferenceable) :
       m_p(nullptr),
-      m_pparticle(nullptr)
+      m_preferenceable(nullptr)
    {
 
       //m_preferer = ::allocator::get_referer();
 
       REFDBG_THIS(this);
 
-      pparticle->__construct_new(*this);
+      preferenceable->__construct_new(*this);
 
    }
 
 
    /// consumes a referer
    template < typename PARTICLE >
-   inline pointer(enum_create, PARTICLE * pparticle, ::factory::factory * pfactory = nullptr) :
+   inline pointer(enum_create, PARTICLE * preferenceable, ::factory::factory * pfactory = nullptr) :
       m_p(nullptr),
-      m_pparticle(nullptr)
+      m_preferenceable(nullptr)
    {
 
       //m_preferer = ::allocator::get_referer();
 
       REFDBG_THIS(this);
 
-      pparticle->__construct(*this, pfactory);
+      preferenceable->__construct(*this, pfactory);
 
    }
 
@@ -127,7 +127,7 @@ public:
 
          m_p = nullptr;
 
-         m_pparticle = nullptr;
+         m_preferenceable = nullptr;
 #if REFERENCING_DEBUGGING
 
          m_preferer = nullptr;
@@ -155,7 +155,7 @@ public:
 
          m_p = pNew;
 
-         m_pparticle = pNew;
+         m_preferenceable = pNew;
 #if REFERENCING_DEBUGGING
 
          m_preferer = prefererNew;
@@ -164,7 +164,7 @@ public:
       else
       {
 
-         m_pparticle = nullptr;
+         m_preferenceable = nullptr;
 
          m_p = nullptr;
 #if REFERENCING_DEBUGGING
@@ -211,7 +211,7 @@ public:
 
    //   m_p = dynamic_cast <T*>(t2.m_p);
 
-   //   m_pparticle = m_p;
+   //   m_preferenceable = m_p;
 
    //   if (::is_set(m_p))
    //   {
@@ -237,7 +237,7 @@ public:
 
             m_p = p;
 
-            m_pparticle = t.m_pparticle;
+            m_preferenceable = t.m_preferenceable;
 
             m_estatus = t.m_estatus;
 
@@ -249,7 +249,7 @@ public:
 
             t.m_p = nullptr;
 
-            t.m_pparticle = nullptr;
+            t.m_preferenceable = nullptr;
 
 #if REFERENCING_DEBUGGING
 
@@ -263,7 +263,7 @@ public:
           
             m_p = nullptr;
 
-            m_pparticle = nullptr;
+            m_preferenceable = nullptr;
 #if REFERENCING_DEBUGGING
 
             m_preferer = nullptr;
@@ -276,7 +276,7 @@ public:
 
          m_p = nullptr;
 
-         m_pparticle = nullptr;
+         m_preferenceable = nullptr;
 #if REFERENCING_DEBUGGING
 
          m_preferer = nullptr;
@@ -347,10 +347,10 @@ public:
 
    //}
 
-   //void on_initialize_particle()
+   //void on_initialize_referenceable()
    //{
 
-   //   m_pparticle->add_reference_item(m_referer);
+   //   m_preferenceable->add_reference_item(m_referer);
 
    //}
 
@@ -360,7 +360,7 @@ public:
 
    //   set_referer();
 
-   //   m_pparticle->add_reference_item();
+   //   m_preferenceable->add_reference_item();
 
    //}
 
@@ -406,7 +406,7 @@ public:
    //inline i64 global_release();
 
    inline ::pointer < T > detach() { return ::transfer(*this); }
-   //inline ::particle * detach_particle();
+   //inline ::referenceable * detach_referenceable();
 
 
    template < class T2 >
@@ -448,36 +448,36 @@ public:
 
 
    //template < typename CONTAINER, typename OBJECT, typename ATTRIBUTE >
-   //pointer & merge(const CONTAINER & pcontainer, const OBJECT & pparticle, const ATTRIBUTE & attribute)
+   //pointer & merge(const CONTAINER & pcontainer, const OBJECT & preferenceable, const ATTRIBUTE & attribute)
    //{
 
    //   auto pModified = __allocate< TYPE >(*m_p);
 
-   //   pModified->apply(pparticle, attribute);
+   //   pModified->apply(preferenceable, attribute);
 
    //   return operator =(pcontainer->get_existing(pModified));
 
    //}
 
    //template < typename OBJECT, typename ATTRIBUTE >
-   //pointer & container_merge(const OBJECT & pparticle, const ATTRIBUTE & attribute)
+   //pointer & container_merge(const OBJECT & preferenceable, const ATTRIBUTE & attribute)
    //{
 
-   //   return merge(m_p->m_pcontainer, pparticle, attribute);
+   //   return merge(m_p->m_pcontainer, preferenceable, attribute);
 
    //}
 
    //template < typename CONTAINER, typename OBJECT >
-   //pointer & copy(const CONTAINER & pcontainer, const OBJECT & pparticle)
+   //pointer & copy(const CONTAINER & pcontainer, const OBJECT & preferenceable)
    //{
 
    //   auto pobjectParent = m_p;
 
    //   auto pOld = m_p;
 
-   //   m_p = __new< TYPE >(*pparticle);
+   //   m_p = __new< TYPE >(*preferenceable);
 
-   //   m_pparticle = m_p;
+   //   m_preferenceable = m_p;
 
    //   pcontainer->erase(pOld);
 
@@ -493,10 +493,10 @@ public:
 
 
    //template < typename OBJECT >
-   //pointer & container_copy(const OBJECT & pparticle)
+   //pointer & container_copy(const OBJECT & preferenceable)
    //{
 
-   //   return copy(m_p->m_pcontainer, pparticle);
+   //   return copy(m_p->m_pcontainer, preferenceable);
 
    //}
 
@@ -536,16 +536,16 @@ public:
    //inline pointer < T > & create_new();
 
    template < typename OBJECT >
-   inline pointer < T > & defer_create_new(OBJECT * pparticle);
+   inline pointer < T > & defer_create_new(OBJECT * preferenceable);
 
    template < typename OBJECT >
-   inline pointer < T > & create_new(OBJECT * pparticle);
+   inline pointer < T > & create_new(OBJECT * preferenceable);
 
    //template < typename OBJECT >
-   //inline pointer < T > & defer_create(OBJECT * pparticle, ::factory::factory * pfactory = nullptr);
+   //inline pointer < T > & defer_create(OBJECT * preferenceable, ::factory::factory * pfactory = nullptr);
 
    //template < typename OBJECT >
-   //inline pointer < T > & create(OBJECT * pparticle, ::factory::factory * pfactory = nullptr);
+   //inline pointer < T > & create(OBJECT * preferenceable, ::factory::factory * pfactory = nullptr);
 
    template < typename T2 >
    inline pointer < T > & clone(T2 * p);
@@ -692,7 +692,7 @@ ptr < TYPE > clone(TYPE * p);
 
 
 //template < typename TYPE >
-//inline ::pointer<TYPE> __call__create_new( ::particle* pparticle);
+//inline ::pointer<TYPE> __call__create_new( ::referenceable* preferenceable);
 
 
 template < typename TARGET, typename SOURCE >
@@ -706,7 +706,7 @@ inline void copy(::pointer < TARGET > & pTarget, const ::pointer < SOURCE > & pS
 //
 //   ::pointer < T > p{ transfer_t{}, ::new T(::std::forward<Args>(args)...) };
 //
-//   task_on_after_new_particle(p);
+//   task_on_after_new_referenceable(p);
 //
 //   return ::transfer(p);
 //
@@ -790,7 +790,7 @@ ptr < TYPE >::ptr(::pointer < TYPE > && p)
       m_preferer = p.m_preferer;
 #endif
       p.m_p = nullptr;
-      p.m_pparticle = nullptr;
+      p.m_preferenceable = nullptr;
       p.m_estatus = error_not_initialized;
 #if REFERENCING_DEBUGGING
       p.m_preferer = nullptr;
@@ -879,7 +879,7 @@ ptr < TYPE >::ptr(::pointer < T2 > && p)
 #endif
       p.m_p = nullptr;
 
-      p.m_pparticle = nullptr;
+      p.m_preferenceable = nullptr;
 
       p.m_estatus = error_not_initialized;
 #if REFERENCING_DEBUGGING
@@ -1004,7 +1004,7 @@ ptr < TYPE > & ptr < TYPE >::operator =(::pointer < TYPE > && p)
       m_preferer = p.m_preferer;
 #endif
       p.m_p = nullptr;
-      p.m_pparticle = nullptr;
+      p.m_preferenceable = nullptr;
       p.m_estatus = error_not_initialized;
 #if REFERENCING_DEBUGGING
 
@@ -1140,7 +1140,7 @@ ptr < TYPE > & ptr < TYPE >::operator =(::pointer < T2 > && p)
       m_preferer = p.m_preferer;
 #endif
       p.m_p = nullptr;
-      p.m_pparticle = nullptr;
+      p.m_preferenceable = nullptr;
       p.m_estatus = error_not_initialized;
 #if REFERENCING_DEBUGGING
 

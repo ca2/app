@@ -868,6 +868,7 @@
     <ClInclude Include="platform\tracing.h" />
     <ClInclude Include="platform\_referencing_debugging.h" />
     <ClInclude Include="primitive\primitive\primitive.h" />
+    <ClInclude Include="primitive\primitive\referenceable.h" />
     <ClInclude Include="primitive\string\c_string.h" />
     <ClInclude Include="primitive\time\__time.h" />
     <ClInclude Include="user\user\controller.h" />
@@ -1337,6 +1338,7 @@
     <ClCompile Include="primitive\primitive\match.cpp" />
     <ClCompile Include="primitive\primitive\payload.cpp" />
     <ClCompile Include="primitive\primitive\read_only_memory.cpp" />
+    <ClCompile Include="primitive\primitive\referenceable.cpp" />
     <ClCompile Include="primitive\primitive\url.cpp" />
     <ClCompile Include="primitive\primitive\url_domain.cpp" />
     <ClCompile Include="primitive\primitive\work.cpp" />

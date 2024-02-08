@@ -3554,6 +3554,9 @@
     <ClInclude Include="platform\release_time_for_project.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
+    <ClInclude Include="primitive\primitive\referenceable.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\bit.cpp">
@@ -4995,6 +4998,9 @@
     </ClCompile>
     <ClCompile Include="operating_system\shared_posix\errno.cpp">
       <Filter>Source Files\operating_system\shared_posix</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive\referenceable.cpp">
+      <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

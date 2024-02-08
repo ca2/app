@@ -6,7 +6,9 @@
 
 #include "acme/primitive/primitive/ptr.h"
 
-#include "acme/primitive/primitive/particle.h"
+#include "acme/primitive/primitive/referenceable.h"
+
+#include "acme/primitive/time/_time.h"
 
 
 enum enum_use
@@ -114,7 +116,7 @@ class function < void() > :
 public:
 
 
-   using base = ::particle;
+   using base = ::referenceable;
 
 
    template < typename ELEMENT >
@@ -142,7 +144,7 @@ public:
       }
 
 
-      virtual void run()
+      void run() override
       {
 
          this->operator()();
@@ -295,11 +297,11 @@ public:
 
    bool operator !() const { return !this->operator bool(); }
 
-   operator ::particle *() const { return ::is_null(this) ? nullptr : m_pbase; }
+   operator ::referenceable *() const { return ::is_null(this) ? nullptr : m_pbase; }
 
-   const ::particle * operator -> () const { return m_pbase; }
+   const ::referenceable * operator -> () const { return m_pbase; }
 
-   ::particle * operator -> () { return m_pbase; }
+   ::referenceable * operator -> () { return m_pbase; }
    
 
 };
@@ -328,7 +330,7 @@ public:
 
 
    class base :
-      virtual public ::particle
+      virtual public ::referenceable
    {
    public:
 
@@ -513,7 +515,7 @@ public:
 
 
    class base :
-      virtual public ::particle
+      virtual public ::referenceable
    {
    public:
 
@@ -699,7 +701,7 @@ public:
 
 
    class base :
-      virtual public ::particle
+      virtual public ::referenceable
    {
    public:
 

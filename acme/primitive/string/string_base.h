@@ -6,6 +6,7 @@
 #include "const_string_range.h"
 #include "string_range.h"
 #include "mutable_string_range.h"
+#include "acme/primitive/primitive/function.h"
 //#include "acme/memory/string_memory_allocator.h"
 
 #include "acme/memory/memory.h"
@@ -34,6 +35,10 @@ inline const_string_range < ITERATOR_TYPE > string_get_word(const scoped_string_
 
 template < typename ITERATOR_TYPE >
 inline const_string_range < ITERATOR_TYPE > string_get_word(const scoped_string_base < ITERATOR_TYPE > & scopedstr, const scoped_string_base < ITERATOR_TYPE > & scopedstrSeparatorList, ITERATOR_TYPE * ppfound = nullptr);
+
+
+template < typename ITERATOR_TYPE >
+using get_word_function = ::function < const_string_range < ITERATOR_TYPE >(const scoped_string_base < ITERATOR_TYPE > &, ITERATOR_TYPE *) >;
 
 
 
@@ -1076,11 +1081,10 @@ public:
    }
 
 
-   template < typename GET_WORD >
-   constexpr bool starts_with_word(const SCOPED_STRING& range, GET_WORD get_word) const
+   constexpr bool starts_with_word(const SCOPED_STRING& range, const ::get_word_function < ITERATOR_TYPE > getwordfunction) const
    {
 
-      return get_word(*this).order(range) == 0;
+      return getwordfunction(*this).order(range) == 0;
 
 
    }
@@ -1093,8 +1097,7 @@ public:
    }
 
 
-   template < typename GET_WORD >
-   constexpr bool case_insensitive_starts_with_word(const SCOPED_STRING& range, GET_WORD get_word) const
+   constexpr bool case_insensitive_starts_with_word(const SCOPED_STRING& range, const get_word_function < ITERATOR_TYPE > & getwordfunction) const
    {
 
       return get_word(*this).case_insensitive_order(range) == 0;
@@ -1105,7 +1108,7 @@ public:
    constexpr bool starts_with_word(const SCOPED_STRING& range) const
    {
 
-      return starts_with_word(range, ::string_get_word < ITERATOR_TYPE >);
+      return this->starts_with_word(range, ::string_get_word < ITERATOR_TYPE >);
 
    }
 

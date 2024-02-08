@@ -1088,7 +1088,7 @@ public:
 
 
    template < class T >
-   ::pointer< T > cast(T * pDefault);
+   ::ptr< T > cast(T * pDefault);
 
    template < class T >
    T & defer_create_type(T * pdefault = nullptr)

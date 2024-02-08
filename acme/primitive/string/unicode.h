@@ -412,13 +412,13 @@ const char * unicode_get_category_name(i32 i);
 CLASS_DECL_ACME string demangle(const char * pszMangledName);
 
 
-CLASS_DECL_ACME void copy(::string & str, const particle & particle);
+CLASS_DECL_ACME void copy(::string & str, const subparticle & subparticle);
 
 
 CLASS_DECL_ACME string string_from_strdup(const ::ansi_character * psz);
 
 
-CLASS_DECL_ACME void copy(::string & str, const particle & particle);
+CLASS_DECL_ACME void copy(::string & str, const subparticle & subparticle);
 
 
 

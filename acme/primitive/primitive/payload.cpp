@@ -3158,7 +3158,7 @@ string payload::as_string(const ::scoped_string & scopedstrOnNull) const
       else if (is_element_set())
       {
          
-         copy(str, *particle());
+         copy(str, *subparticle());
 
       }
 
@@ -9603,7 +9603,7 @@ payload & payload::operator = (::memory * pmemory)
 }
 
 
-::particle * payload::get_particle()
+::subparticle * payload::get_subparticle()
 {
 
 switch (m_etype)

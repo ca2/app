@@ -102,7 +102,7 @@ enum_type set_element(::payload & payload, ::particle * pelement)
 void payload::_set_element(::particle * pelement)
 {
 
-   auto pelementThis = this->get_particle();
+   auto pelementThis = this->get_subparticle();
 
    if (pelementThis == pelement)
    {

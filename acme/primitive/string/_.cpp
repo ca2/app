@@ -94,10 +94,10 @@ CLASS_DECL_ACME inline strsize safe_strlen(void * p, strsize n)
 
 CLASS_DECL_ACME string demangle(const ::scoped_string & scopedstr);
 
-CLASS_DECL_ACME void copy(::string & str, const particle & particle)
+CLASS_DECL_ACME void copy(::string & str, const subparticle & subparticle)
 {
 
-   str = demangle(typeid((::particle &)particle).name());
+   str = demangle(typeid((::subparticle &)subparticle).name());
 
 }
 

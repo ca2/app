@@ -1892,7 +1892,7 @@ inline i64 release(T *& p)
 
    }
 
-   ::particle * pparticle = p;
+   ::subparticle * pparticle = p;
 
    try
    {

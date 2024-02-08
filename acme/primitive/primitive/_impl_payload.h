@@ -467,7 +467,7 @@ inline payload & copy(payload & payload, const class time & time)
 
 
 template < class T >
-inline pointer < T > payload::cast(T * pDefault)
+inline ptr < T > payload::cast(T * pDefault)
 {
 
    if (m_etype == e_type_payload_pointer && m_ppayload != nullptr)

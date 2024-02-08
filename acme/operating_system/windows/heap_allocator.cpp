@@ -57,44 +57,44 @@ namespace windows
    }
 
 
-      void * heap_allocator::allocate(memsize s)
+   void * heap_allocator::allocate(memsize s, const char * pszAnnotation)
+   {
+
+      raw_critical_section_lock criticalsectionlock(&m_criticalsection);
+
+      return ::HeapAlloc(m_handle, 0, s);
+
+   }
+
+
+   void * heap_allocator::reallocate(void * p, memsize s, const char * pszAnnotation)
+   {
+
+      raw_critical_section_lock criticalsectionlock(&m_criticalsection);
+
+      return ::HeapReAlloc(m_handle, 0, p, s);
+
+   }
+
+
+   void heap_allocator::free(void * p)
+   {
+
+      raw_critical_section_lock criticalsectionlock(&m_criticalsection);
+
+      if (!::HeapFree(m_handle, 0, p))
       {
 
-         raw_critical_section_lock criticalsectionlock(&m_criticalsection);
+         DWORD dwError = ::GetLastError();
 
-         return ::HeapAlloc(m_handle, 0, s);
-         
+         ::acme::get()->platform()->informationf("system_heap_free : Failed to free memory");
+
       }
 
+   }
 
-      void * heap_allocator::reallocate(void * p, memsize s)
-      {
-
-         raw_critical_section_lock criticalsectionlock(&m_criticalsection);
-
-         return ::HeapReAlloc(m_handle, 0, p, s);
-
-      }
-
-
-      void heap_allocator::free(void * p)
-      {
-
-         raw_critical_section_lock criticalsectionlock(&m_criticalsection);
-
-         if (!::HeapFree(m_handle, 0, p))
-         {
-
-            DWORD dwError = ::GetLastError();
-
-            ::acme::get()->platform()->informationf("system_heap_free : Failed to free memory");
-
-         }
-
-      }
-
-      memsize heap_allocator::size(void * p)
-      {
+   memsize heap_allocator::size(void * p)
+   {
 
       raw_critical_section_lock criticalsectionlock(&m_criticalsection);
 
@@ -107,15 +107,15 @@ namespace windows
 
       }
 
-         return s;
+      return s;
 
-      }
+   }
 
-      bool heap_allocator::has_size() const 
-      { 
-         return true; 
-      }
-      //inline static void zero(void * p) { ::zero(p, memory_size(p)); }
+   bool heap_allocator::has_size() const
+   {
+      return true;
+   }
+   //inline static void zero(void * p) { ::zero(p, memory_size(p)); }
 
 
 //   };

@@ -8,7 +8,6 @@
 #include "mutable_string_range.h"
 #include "acme/primitive/primitive/function.h"
 //#include "acme/memory/string_memory_allocator.h"
-
 #include "acme/memory/memory.h"
 
 
@@ -31,10 +30,10 @@ enum enum_canonical
 
 
 template < typename ITERATOR_TYPE >
-inline const_string_range < ITERATOR_TYPE > string_get_word(const scoped_string_base < ITERATOR_TYPE > & scopedstr, ITERATOR_TYPE * ppfound = nullptr);
+inline const_string_range < ITERATOR_TYPE > string_get_word_separated_by_spaces(const scoped_string_base < ITERATOR_TYPE > & scopedstr, ITERATOR_TYPE * ppfound = nullptr);
 
 template < typename ITERATOR_TYPE >
-inline const_string_range < ITERATOR_TYPE > string_get_word(const scoped_string_base < ITERATOR_TYPE > & scopedstr, const scoped_string_base < ITERATOR_TYPE > & scopedstrSeparatorList, ITERATOR_TYPE * ppfound = nullptr);
+inline const_string_range < ITERATOR_TYPE > string_get_word_with_separator_list(const scoped_string_base < ITERATOR_TYPE > & scopedstr, const scoped_string_base < ITERATOR_TYPE > & scopedstrSeparatorList, ITERATOR_TYPE * ppfound = nullptr);
 
 
 template < typename ITERATOR_TYPE >
@@ -1081,10 +1080,10 @@ public:
    }
 
 
-   constexpr bool starts_with_word(const SCOPED_STRING& range, const ::get_word_function < ITERATOR_TYPE > getwordfunction) const
+   constexpr bool starts_with_word(const SCOPED_STRING& range, const ::get_word_function < ITERATOR_TYPE > & getwordfunction) const
    {
 
-      return getwordfunction(*this).order(range) == 0;
+      return getwordfunction(*this, nullptr).order(range) == 0;
 
 
    }
@@ -1092,7 +1091,7 @@ public:
    string_base get_word(const SCOPED_STRING& sSep, ITERATOR_TYPE * ppend = nullptr) const
    {
 
-      return ::string_get_word((const SCOPED_STRING &)*this, sSep, ppend);
+      return ::string_get_word_with_separator_list((const SCOPED_STRING &)*this, sSep, ppend);
 
    }
 
@@ -1108,7 +1107,7 @@ public:
    constexpr bool starts_with_word(const SCOPED_STRING& range) const
    {
 
-      return this->starts_with_word(range, ::string_get_word < ITERATOR_TYPE >);
+      return this->starts_with_word(range, ::string_get_word_separated_by_spaces < ITERATOR_TYPE >);
 
    }
 
@@ -1116,7 +1115,7 @@ public:
    constexpr bool case_insensitive_starts_with_word(const SCOPED_STRING& range) const
    {
 
-      return case_insensitive_starts_with_word(range, ::string_get_word < ITERATOR_TYPE >);
+      return case_insensitive_starts_with_word(range, ::string_get_word_separated_by_spaces < ITERATOR_TYPE >);
 
    }
 
@@ -1877,7 +1876,7 @@ inline const_string_range < ITERATOR_TYPE > string_get_word(const scoped_string_
 
 
 template < typename ITERATOR_TYPE >
-inline const_string_range < ITERATOR_TYPE > string_get_word(const scoped_string_base < ITERATOR_TYPE > & scopedstr, const scoped_string_base < ITERATOR_TYPE > & scopedstrSeparatorList, ITERATOR_TYPE * pfound)
+inline const_string_range < ITERATOR_TYPE > string_get_word_with_separator_list(const scoped_string_base < ITERATOR_TYPE > & scopedstr, const scoped_string_base < ITERATOR_TYPE > & scopedstrSeparatorList, ITERATOR_TYPE * pfound)
 {
 
    auto end = scopedstr.find_first_character_in(scopedstrSeparatorList);

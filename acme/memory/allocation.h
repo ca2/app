@@ -66,7 +66,7 @@ inline static memsize heap_memory_unaligned_provision_get_size(memsize size)
 }
 
 
-inline static void * heap_memory_unaligned(void * p, memsize size, i32 blockuse, ::heap::enum_memory ememory)
+inline static void * heap_memory_unaligned(void * p, memsize size, i32 blockuse, ::heap::enum_memory ememory, const char * pszAnnotation)
 {
 
    void * pmemory = (void *)((iptr)p + sizeof(struct heap_memory));

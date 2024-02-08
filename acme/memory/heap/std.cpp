@@ -442,13 +442,13 @@ namespace heap
          if (blockuse == 0 || blockuse == 2 || blockuse == 128 || blockuse == 130) // aligned
          {
 
-            return heap_memory_aligned(p, size, blockuse, align, m_ememory);
+            return heap_memory_aligned(p, size, blockuse, align, m_ememory, pszAnnotation);
 
          }
          else if (blockuse == 1 || blockuse == 3 || blockuse == 129 || blockuse == 131) // unaligned
          {
 
-            return heap_memory_unaligned(p, size, blockuse, m_ememory);
+            return heap_memory_unaligned(p, size, blockuse, m_ememory, pszAnnotation);
 
          }
          else

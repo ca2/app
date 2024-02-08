@@ -89,7 +89,7 @@ int main(int argc, char * argv[], char * envp[])
 
 #if defined(WINDOWS)
 
-   acme.initialize(hinstanceThis, hinstancePrev, pCmdLine, nCmdShow);
+   pacme->initialize(hinstanceThis, hinstancePrev, pCmdLine, nCmdShow);
 
 #else
 

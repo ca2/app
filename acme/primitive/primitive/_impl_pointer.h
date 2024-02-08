@@ -25,7 +25,7 @@ CLASS_DECL_ACME::critical_section * refdbg_cs();
 template < class T >
 inline pointer < T > ::pointer() :
         m_p(nullptr),
-        m_preferenceable(nullptr)
+        m_pparticle(nullptr)
 {
 
 }
@@ -34,7 +34,7 @@ inline pointer < T > ::pointer() :
 template < class T >
 inline pointer < T > ::pointer(std::nullptr_t):
         m_p(nullptr),
-        m_preferenceable(nullptr)
+        m_pparticle(nullptr)
 {
 
 }
@@ -57,7 +57,7 @@ inline pointer < T > ::pointer(transfer_t, T2 * p)
 
          m_p = nullptr;
 
-         m_preferenceable = nullptr;
+         m_pparticle = nullptr;
 
          throw_resource_exception("OBJECT * p is not of type T (pointer < T >).");
 
@@ -67,14 +67,14 @@ inline pointer < T > ::pointer(transfer_t, T2 * p)
 
          m_p = pNew;
 
-         m_preferenceable = m_p;
+         m_pparticle = m_p;
 
 #if REFERENCING_DEBUGGING
 
-         if (m_preferenceable->is_referencing_debugging_enabled())
+         if (m_pparticle->is_referencing_debugging_enabled())
          {
 
-            auto preferenceitem = m_preferenceable->m_preferenceitema->m_itema.first();
+            auto preferenceitem = m_pparticle->m_preferenceitema->m_itema.first();
 
             m_preferer = preferenceitem->m_preferer;
 
@@ -90,7 +90,7 @@ inline pointer < T > ::pointer(transfer_t, T2 * p)
 
       m_p = nullptr;
 
-      m_preferenceable = nullptr;
+      m_pparticle = nullptr;
 
    }
 
@@ -105,13 +105,13 @@ pointer < T >::pointer(allocate_t, Args &&... args)
 
 //#if REFERENCING_DEBUGGING
 //
-//   task_on_after_new_referenceable(p);
+//   task_on_after_new_particle(p);
 //
 //#endif
 
    m_p = dynamic_cast <T *> (p);
 
-   m_preferenceable = m_p;
+   m_pparticle = m_p;
 
    if (::is_null(m_p))
    {
@@ -120,7 +120,7 @@ pointer < T >::pointer(allocate_t, Args &&... args)
 
       m_p = nullptr;
 
-      m_preferenceable = nullptr;
+      m_pparticle = nullptr;
 
       throw_resource_exception("OBJECT * p is not of type T (pointer < T >).");
 
@@ -133,14 +133,14 @@ template < class T >
 inline pointer < T > ::pointer(const pointer & t)
 {
 
-   auto pNew = t.m_preferenceable;
+   auto pNew = t.m_pparticle;
 
    if (::is_null(pNew))
    {
 
       m_p = nullptr;
 
-      m_preferenceable = nullptr;
+      m_pparticle = nullptr;
 #if REFERENCING_DEBUGGING
 
       m_preferer = nullptr;
@@ -161,7 +161,7 @@ inline pointer < T > ::pointer(const pointer & t)
 #endif
       pNew->increment_reference_count();
 
-      m_preferenceable = pNew;
+      m_pparticle = pNew;
 
       m_p = t.m_p;
 #if REFERENCING_DEBUGGING
@@ -176,7 +176,7 @@ inline pointer < T > ::pointer(const pointer & t)
 template < class T >
 inline pointer < T > ::pointer(pointer && t) :
 m_p(t.m_p),
-m_preferenceable(t.m_preferenceable),
+m_pparticle(t.m_pparticle),
 m_estatus(t.m_estatus)
 #if REFERENCING_DEBUGGING
 
@@ -186,7 +186,7 @@ m_estatus(t.m_estatus)
 
 t.m_p = nullptr;
 
-t.m_preferenceable = nullptr;
+t.m_pparticle = nullptr;
 #if REFERENCING_DEBUGGING
 
 t.m_preferer = nullptr;
@@ -199,7 +199,7 @@ t.m_preferer = nullptr;
 //template < typename T2 >
 //inline pointer < T > ::pointer(const T2 * p) :
 //   m_p((T *) p),
-//   m_preferenceable(m_p)
+//   m_pparticle(m_p)
 //{
 //
 //   ::increment_reference_count(m_p);
@@ -293,7 +293,7 @@ template < class T >
 inline bool pointer < T > ::is_null() const
 {
 
-   return ::is_null(this) || ::is_null(m_p) || ::is_null(m_preferenceable);
+   return ::is_null(this) || ::is_null(m_p) || ::is_null(m_pparticle);
 
 }
 
@@ -302,7 +302,7 @@ template < class T >
 inline bool pointer < T > ::is_set() const
 {
 
-   return !is_null() && m_preferenceable->is_set();
+   return !is_null() && m_pparticle->is_set();
 
 }
 
@@ -337,18 +337,18 @@ inline pointer < T >& pointer < T > ::reset(T * p)
    else if(m_p != p)
    {
 
-      auto preferenceableOld = m_preferenceable;
+      auto pparticleOld = m_pparticle;
 
       p->increment_reference_count();
 
       m_p = p;
 
-      m_preferenceable = p;
+      m_pparticle = p;
 
-      if (::is_set(preferenceableOld))
+      if (::is_set(pparticleOld))
       {
 
-         ::release(preferenceableOld);
+         ::release(pparticleOld);
 
       }
 
@@ -407,7 +407,7 @@ inline pointer < T > & pointer < T > ::reset (T2 * p)
 
             m_p = pNew;
 
-            m_preferenceable = pNew;
+            m_pparticle = pNew;
 #if REFERENCING_DEBUGGING
 
             m_preferer = prefererNew;
@@ -418,7 +418,7 @@ inline pointer < T > & pointer < T > ::reset (T2 * p)
 
             m_p = nullptr;
 
-            m_preferenceable = nullptr;
+            m_pparticle = nullptr;
 
 #if REFERENCING_DEBUGGING
             m_preferer = nullptr;
@@ -462,19 +462,19 @@ inline pointer < T > & pointer < T > ::operator = (const pointer & t)
    if (m_p != t.m_p)
    {
 
-      auto pOld = m_preferenceable;
+      auto pOld = m_pparticle;
 #if REFERENCING_DEBUGGING
 
       auto prefererOld = m_preferer;
 #endif
-      auto pNew = t.m_preferenceable;
+      auto pNew = t.m_pparticle;
 
       if (::is_null(pNew))
       {
 
          m_p = nullptr;
 
-         m_preferenceable = nullptr;
+         m_pparticle = nullptr;
 #if REFERENCING_DEBUGGING
 
          m_preferer = nullptr;
@@ -498,7 +498,7 @@ inline pointer < T > & pointer < T > ::operator = (const pointer & t)
 
          m_p = t.m_p;
 
-         m_preferenceable = pNew;
+         m_pparticle = pNew;
 #if REFERENCING_DEBUGGING
 
          m_preferer = prefererNew;
@@ -535,21 +535,21 @@ inline pointer < T > & pointer < T > ::operator = (pointer && t)
    if(m_p != t.m_p)
    {
 
-      auto pOld = m_preferenceable;
+      auto pOld = m_pparticle;
 #if REFERENCING_DEBUGGING
 
       auto prefererOld = m_preferer;
 #endif
       m_p               = t.m_p;
 
-      m_preferenceable       = t.m_preferenceable;
+      m_pparticle       = t.m_pparticle;
 #if REFERENCING_DEBUGGING
 
       m_preferer        = t.m_preferer;
 #endif
       t.m_p             = nullptr;
 
-      t.m_preferenceable     = nullptr;
+      t.m_pparticle     = nullptr;
 #if REFERENCING_DEBUGGING
 
       t.m_preferer      = nullptr;
@@ -584,7 +584,7 @@ inline pointer < T > & pointer < T > ::operator = (pointer && t)
 //
 //   m_p = nullptr;
 //
-//   m_preferenceable = nullptr;
+//   m_pparticle = nullptr;
 //
 //   m_preferer = nullptr;
 //
@@ -594,14 +594,14 @@ inline pointer < T > & pointer < T > ::operator = (pointer && t)
 //
 //
 //template < class T >
-//inline ::referenceable * pointer < T > ::detach_referenceable()
+//inline ::particle * pointer < T > ::detach_particle()
 //{
 //
-//   auto p = m_preferenceable;
+//   auto p = m_pparticle;
 //
 //   m_p = nullptr;
 //
-//   m_preferenceable = nullptr;
+//   m_pparticle = nullptr;
 //
 //   m_preferer = nullptr;
 //
@@ -616,10 +616,10 @@ template < class T >
 inline i64 pointer <T>::release()
 {
 
-   ::referenceable * preferenceable = nullptr;
+   ::particle * pparticle = nullptr;
    //ASSERT(referer == m_referer);
 
-   //return ::release(m_preferenceable);
+   //return ::release(m_pparticle);
 
    ::count c = -1;
 
@@ -633,7 +633,7 @@ inline i64 pointer <T>::release()
 
       critical_section_lock synchronouslock(::refdbg_cs());
 #endif
-      preferenceable = m_preferenceable;
+      pparticle = m_pparticle;
 #if REFERENCING_DEBUGGING
 
       auto preferer = m_preferer;
@@ -647,7 +647,7 @@ inline i64 pointer <T>::release()
 
       m_p = nullptr;
 
-      m_preferenceable = nullptr;
+      m_pparticle = nullptr;
 #if REFERENCING_DEBUGGING
 
       m_preferer = nullptr;
@@ -664,13 +664,13 @@ inline i64 pointer <T>::release()
       try
       {
 
-         c = preferenceable->decrement_reference_count();
+         c = pparticle->decrement_reference_count();
 
       }
       catch (...)
       {
 
-         ::acme::get()->platform()->informationf("exception release preferenceable->release() \n");
+         ::acme::get()->platform()->informationf("exception release pparticle->release() \n");
 
       }
 #if REFERENCING_DEBUGGING
@@ -690,7 +690,7 @@ inline i64 pointer <T>::release()
       try
       {
 
-         preferenceable->delete_this();
+         pparticle->delete_this();
 
       }
       catch (...)
@@ -706,7 +706,7 @@ inline i64 pointer <T>::release()
 
    ////}
 
-   //auto i = ::release(m_preferenceable);
+   //auto i = ::release(m_pparticle);
 
    //if (::allocator::get_releaser() == preferer && preferer)
    //{
@@ -726,9 +726,9 @@ inline i64 pointer <T>::release()
 //
 //   //ASSERT(referer == m_referer);
 //
-//   auto i = ::global_release(m_preferenceable);
+//   auto i = ::global_release(m_pparticle);
 //
-//   if (!m_preferenceable)
+//   if (!m_pparticle)
 //   {
 //
 //      m_p = nullptr;
@@ -974,19 +974,19 @@ template < class T >
 inline pointer < T >::pointer(lparam & lparam)
 {
 
-   m_preferenceable = (::referenceable *)(::iptr)lparam.m_lparam;
+   m_pparticle = (::particle *)(::iptr)lparam.m_lparam;
    
-   m_p = dynamic_cast <T *>(m_preferenceable);
+   m_p = dynamic_cast <T *>(m_pparticle);
 
 #if REFERENCING_DEBUGGING
 
-   m_preferer = m_preferenceable->m_prefererTransfer;
+   m_preferer = m_pparticle->m_prefererTransfer;
 
-   m_preferenceable->m_prefererTransfer = nullptr;
+   m_pparticle->m_prefererTransfer = nullptr;
 
 #endif
    
-   if(::is_null(m_p) && ::is_set(m_preferenceable))
+   if(::is_null(m_p) && ::is_set(m_pparticle))
    {
 
 #if REFERENCING_DEBUGGING
@@ -1001,7 +1001,7 @@ inline pointer < T >::pointer(lparam & lparam)
       }
 #endif
 
-      ::release(m_preferenceable);
+      ::release(m_pparticle);
 
    }
 
@@ -1103,16 +1103,16 @@ inline i64 ref_count(c_derived * pca)
 }
 
 
-//class CLASS_DECL_ACME global_referenceable :
-//   virtual public ::referenceable
+//class CLASS_DECL_ACME global_particle :
+//   virtual public ::particle
 //{
 //public:
 //
 //
-//   global_referenceable * m_pglobalreferenceableNext;
+//   global_particle * m_pglobalparticleNext;
 //
-//   global_referenceable();
-//   ~global_referenceable() override;
+//   global_particle();
+//   ~global_particle() override;
 //
 //
 //};
@@ -1120,7 +1120,7 @@ inline i64 ref_count(c_derived * pca)
 
 //template < typename TYPE >
 //class global_pointer :
-//   public ::global_referenceable,
+//   public ::global_particle,
 //   public pointer <TYPE >
 //{
 //public:
@@ -1166,13 +1166,13 @@ inline pointer < T > & pointer < T >::defer_assign_to(T2 * & p)
 
 template < class T >
 template < typename OBJECT >
-inline pointer < T > & pointer < T >::defer_create_new(OBJECT * preferenceable)
+inline pointer < T > & pointer < T >::defer_create_new(OBJECT * pparticle)
 {
 
    if (is_null())
    {
 
-      create_new < T >(preferenceable);
+      create_new < T >(pparticle);
 
    }
 
@@ -1183,7 +1183,7 @@ inline pointer < T > & pointer < T >::defer_create_new(OBJECT * preferenceable)
 
 template < class T >
 template < typename OBJECT >
-inline pointer < T > & pointer < T >::create_new(OBJECT * preferenceable)
+inline pointer < T > & pointer < T >::create_new(OBJECT * pparticle)
 {
 
    auto p = __call__allocate< T >();
@@ -1193,7 +1193,7 @@ inline pointer < T > & pointer < T >::create_new(OBJECT * preferenceable)
    if (p)
    {
 
-      p->initialize(preferenceable);
+      p->initialize(pparticle);
 
    }
 
@@ -1263,7 +1263,7 @@ inline pointer < T > ::pointer(const ptr < T2 > & t)
 
       m_p = nullptr;
 
-      m_preferenceable = nullptr;
+      m_pparticle = nullptr;
 
 #if REFERENCING_DEBUGGING
 
@@ -1280,7 +1280,7 @@ inline pointer < T > ::pointer(const ptr < T2 > & t)
 
          m_p = nullptr;
 
-         m_preferenceable = nullptr;
+         m_pparticle = nullptr;
 #if REFERENCING_DEBUGGING
 
          m_preferer = nullptr;
@@ -1303,7 +1303,7 @@ inline pointer < T > ::pointer(const ptr < T2 > & t)
 
          m_p = pNew;
 
-         m_preferenceable = pNew;
+         m_pparticle = pNew;
 #if REFERENCING_DEBUGGING
 
          m_preferer = prefererNew;
@@ -1326,7 +1326,7 @@ inline pointer < T > ::pointer(ptr < T2 > && t)
 
       m_p = nullptr;
 
-      m_preferenceable = nullptr;
+      m_pparticle = nullptr;
 #if REFERENCING_DEBUGGING
 
       m_preferer = nullptr;
@@ -1343,7 +1343,7 @@ inline pointer < T > ::pointer(ptr < T2 > && t)
 
          m_p = nullptr;
 
-         m_preferenceable = nullptr;
+         m_pparticle = nullptr;
 #if REFERENCING_DEBUGGING
 
          m_preferer = nullptr;
@@ -1354,7 +1354,7 @@ inline pointer < T > ::pointer(ptr < T2 > && t)
 
          m_p = pNew;
 
-         m_preferenceable = pNew;
+         m_pparticle = pNew;
 #if REFERENCING_DEBUGGING
 
          m_preferer = t.m_preferer;
@@ -1375,7 +1375,7 @@ template < typename T2 >
 inline pointer < T >& pointer < T > ::operator = (const ptr < T2 > & t)
 {
 
-   auto pOld = m_preferenceable;
+   auto pOld = m_pparticle;
 #if REFERENCING_DEBUGGING
 
    auto prefererOld = m_preferer;
@@ -1385,7 +1385,7 @@ inline pointer < T >& pointer < T > ::operator = (const ptr < T2 > & t)
 
       m_p = nullptr;
 
-      m_preferenceable = nullptr;
+      m_pparticle = nullptr;
 #if REFERENCING_DEBUGGING
 
       m_preferer = nullptr;
@@ -1407,7 +1407,7 @@ inline pointer < T >& pointer < T > ::operator = (const ptr < T2 > & t)
 
          m_p = nullptr;
 
-         m_preferenceable = nullptr;
+         m_pparticle = nullptr;
 #if REFERENCING_DEBUGGING
 
          m_preferer = nullptr;
@@ -1430,7 +1430,7 @@ inline pointer < T >& pointer < T > ::operator = (const ptr < T2 > & t)
 
          m_p = pNew;
 
-         m_preferenceable = pNew;
+         m_pparticle = pNew;
 #if REFERENCING_DEBUGGING
 
          m_preferer = prefererNew;
@@ -1467,14 +1467,14 @@ inline pointer < T >& pointer < T > ::operator = (ptr < T2 > && t)
 
    auto prefererOld = m_preferer;
 #endif
-   auto pOld = m_preferenceable;
+   auto pOld = m_pparticle;
 
    if (::is_null(t.m_p))
    {
 
       m_p = nullptr;
 
-      m_preferenceable = nullptr;
+      m_pparticle = nullptr;
 #if REFERENCING_DEBUGGING
 
       m_preferer = nullptr;
@@ -1496,7 +1496,7 @@ inline pointer < T >& pointer < T > ::operator = (ptr < T2 > && t)
 
          m_p = nullptr;
 
-         m_preferenceable = nullptr;
+         m_pparticle = nullptr;
 #if REFERENCING_DEBUGGING
 
          m_preferer = nullptr;
@@ -1505,7 +1505,7 @@ inline pointer < T >& pointer < T > ::operator = (ptr < T2 > && t)
       else
       {
 
-         m_preferenceable = pNew;
+         m_pparticle = pNew;
 
          m_p = pNew;
 #if REFERENCING_DEBUGGING
@@ -1545,9 +1545,9 @@ template < typename T2 >
 inline pointer < T > & pointer < T > ::operator = (const pointer < T2 > & t)
 {
 
-   auto pOld = m_preferenceable;
+   auto pOld = m_pparticle;
 
-   if (pOld == t.m_preferenceable)
+   if (pOld == t.m_pparticle)
    {
 
       return *this;
@@ -1562,7 +1562,7 @@ inline pointer < T > & pointer < T > ::operator = (const pointer < T2 > & t)
 
       m_p = nullptr;
 
-      m_preferenceable = nullptr;
+      m_pparticle = nullptr;
 #if REFERENCING_DEBUGGING
 
       m_preferer = nullptr;
@@ -1584,7 +1584,7 @@ inline pointer < T > & pointer < T > ::operator = (const pointer < T2 > & t)
 
          m_p = nullptr;
 
-         m_preferenceable = nullptr;
+         m_pparticle = nullptr;
 #if REFERENCING_DEBUGGING
 
          m_preferer = nullptr;
@@ -1607,7 +1607,7 @@ inline pointer < T > & pointer < T > ::operator = (const pointer < T2 > & t)
 
          pNew->increment_reference_count();
 
-         m_preferenceable = t.m_preferenceable;
+         m_pparticle = t.m_pparticle;
 
          m_p = pNew;
 #if REFERENCING_DEBUGGING
@@ -1643,9 +1643,9 @@ template < typename T2 >
 inline pointer < T > & pointer < T > ::operator = (pointer < T2 > && t)
 {
 
-   auto pOld = m_preferenceable;
+   auto pOld = m_pparticle;
 
-   if (pOld == t.m_preferenceable)
+   if (pOld == t.m_pparticle)
    {
 
       return *this;
@@ -1660,7 +1660,7 @@ inline pointer < T > & pointer < T > ::operator = (pointer < T2 > && t)
 
       m_p = nullptr;
 
-      m_preferenceable = nullptr;
+      m_pparticle = nullptr;
 #if REFERENCING_DEBUGGING
 
       m_preferer = nullptr;
@@ -1682,7 +1682,7 @@ inline pointer < T > & pointer < T > ::operator = (pointer < T2 > && t)
 
          m_p = nullptr;
 
-         m_preferenceable = nullptr;
+         m_pparticle = nullptr;
 #if REFERENCING_DEBUGGING
 
          m_preferer = nullptr;
@@ -1691,7 +1691,7 @@ inline pointer < T > & pointer < T > ::operator = (pointer < T2 > && t)
       else
       {
 
-         m_preferenceable = t.m_preferenceable;
+         m_pparticle = t.m_pparticle;
 
          m_p = pNew;
 #if REFERENCING_DEBUGGING
@@ -1712,7 +1712,7 @@ inline pointer < T > & pointer < T > ::operator = (pointer < T2 > && t)
 #endif
          t.m_p = nullptr;
 
-         t.m_preferenceable = nullptr;
+         t.m_pparticle = nullptr;
 #if REFERENCING_DEBUGGING
 
          t.m_preferer = nullptr;
@@ -1743,13 +1743,13 @@ inline pointer < T > & pointer < T > ::operator = (pointer < T2 > && t)
 
 //template < typename T >
 //template < typename PARTICLE >
-//inline pointer < T >& pointer<T> ::defer_create(PARTICLE* preferenceable, ::factory::factory* pfactory)
+//inline pointer < T >& pointer<T> ::defer_create(PARTICLE* pparticle, ::factory::factory* pfactory)
 //{
 //
 //   if (is_null())
 //   {
 //
-//      operator=(preferenceable->template __call__create < T >(pfactory));
+//      operator=(pparticle->template __call__create < T >(pfactory));
 //
 //   }
 //
@@ -1760,10 +1760,10 @@ inline pointer < T > & pointer < T > ::operator = (pointer < T2 > && t)
 
 
 //template < typename TYPE >
-//inline ::pointer<TYPE> __call__create_new(::referenceable* preferenceable)
+//inline ::pointer<TYPE> __call__create_new(::particle* pparticle)
 //{
 //
-//   if (::is_null(preferenceable))
+//   if (::is_null(pparticle))
 //   {
 //
 //      throw_exception(error_wrong_state);
@@ -1775,7 +1775,7 @@ inline pointer < T > & pointer < T > ::operator = (pointer < T2 > && t)
 //   if (p)
 //   {
 //
-//      p->initialize(preferenceable);
+//      p->initialize(pparticle);
 //
 //   }
 //
@@ -1785,7 +1785,7 @@ inline pointer < T > & pointer < T > ::operator = (pointer < T2 > && t)
 
 
 //template < typename TYPE >
-//inline void __construct_new(::referenceable* preferenceable, ::pointer<TYPE>& p)
+//inline void __construct_new(::particle* pparticle, ::pointer<TYPE>& p)
 //{
 //
 //   p = __allocate< TYPE >();
@@ -1797,7 +1797,7 @@ inline pointer < T > & pointer < T > ::operator = (pointer < T2 > && t)
 //
 //   }
 //
-//   p->initialize(preferenceable);
+//   p->initialize(pparticle);
 //
 //}
 
@@ -1823,14 +1823,14 @@ inline void copy(::pointer < TARGET > & pTarget, const ::pointer < SOURCE > & pS
 //
 //      m_p = dynamic_cast <T *>(t.m_p);
 //
-//      m_preferenceable = t.m_preferenceable;
+//      m_pparticle = t.m_pparticle;
 //
 //      if (::is_set(m_p))
 //      {
 //
 //         t.m_p = nullptr;
 //
-//         t.m_preferenceable = nullptr;
+//         t.m_pparticle = nullptr;
 //
 //      }
 //
@@ -1840,7 +1840,7 @@ inline void copy(::pointer < TARGET > & pTarget, const ::pointer < SOURCE > & pS
 //
 //      m_p = nullptr;
 //
-//      m_preferenceable = nullptr;
+//      m_pparticle = nullptr;
 //
 //   }
 //
@@ -1855,7 +1855,7 @@ template < typename T >
 inline bool pointer < T > ::ok() const
 {
 
-   return is_set() && m_preferenceable->is_ok();
+   return is_set() && m_pparticle->is_ok();
 
 }
 
@@ -1871,7 +1871,7 @@ inline bool pointer < T > ::defer_destroy()
 
    }
 
-   m_preferenceable->destroy();
+   m_pparticle->destroy();
 
    release();
 
@@ -1892,7 +1892,7 @@ inline i64 release(T *& p)
 
    }
 
-   ::referenceable * preferenceable = p;
+   ::particle * pparticle = p;
 
    try
    {
@@ -1910,13 +1910,13 @@ inline i64 release(T *& p)
    try
    {
 
-      return preferenceable->release();
+      return pparticle->release();
 
    }
    catch (...)
    {
 
-      ::acme::get()->platform()->informationf("exception release preferenceable->release() \n");
+      ::acme::get()->platform()->informationf("exception release pparticle->release() \n");
 
    }
 
@@ -1955,7 +1955,7 @@ inline i64 global_release(T *& p)
    catch (...)
    {
 
-      ::acme::get()->platform()->informationf("exception release preferenceable->release() \n");
+      ::acme::get()->platform()->informationf("exception release pparticle->release() \n");
 
    }
 

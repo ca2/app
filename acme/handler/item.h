@@ -162,7 +162,7 @@ public:
 
 
    item(const item & item) :
-      PARTICLE(item),
+      subparticle(item),
       particle(item),
       m_item(item.m_item),
       m_eitem(item.m_eitem),
@@ -177,7 +177,7 @@ public:
 
 
    item(item && item) :
-      PARTICLE(::transfer(item)),
+      subparticle(::transfer(item)),
       particle(::transfer(item)),
       m_item(::transfer(item.m_item)),
       m_eitem(::transfer(item.m_eitem)),

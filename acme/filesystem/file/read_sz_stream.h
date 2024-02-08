@@ -5,7 +5,7 @@
 
 
 class read_sz_stream :
-        public PARTICLE_FLAGS
+   public SUBPARTICLE_FLAGS
 {
 public:
 

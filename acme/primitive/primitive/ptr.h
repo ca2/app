@@ -109,12 +109,13 @@ public:
    
    
    ///// referer is transferred ?
-   //ptr(transfer_t, TYPE * p)
-   //{
-   //
-   //   m_p = p;
-   //   
-   //}
+   ptr(transfer_t, TYPE * p)
+   {
+
+      m_p = p;
+
+   }
+
 
    ptr(const ::pointer < TYPE > & p);
 
@@ -253,6 +254,42 @@ public:
       return *this;
 
    }
+
+
+   ::ptr < TYPE > & transfer(TYPE * p)
+   {
+
+      auto pOld = m_p;
+
+      if (pOld != p)
+      {
+#if REFERENCING_DEBUGGING
+
+         auto prefererOld = m_preferer;
+
+         auto prefererNew = p.m_preferer;
+#endif
+         m_p = p;
+
+         if (__pointer_is_set(pOld))
+         {
+#if REFERENCING_DEBUGGING
+
+            ::allocator::add_releaser(prefererOld);
+#endif
+            pOld->release();
+
+         }
+#if REFERENCING_DEBUGGING
+
+         m_preferer = prefererNew;
+#endif
+      }
+
+      return *this;
+
+   }
+
 
    ptr & operator = (const ::pointer < TYPE > & p);
 

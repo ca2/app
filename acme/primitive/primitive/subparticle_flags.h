@@ -2,7 +2,7 @@
 #pragma once
 
 
-struct PARTICLE_FLAGS
+struct SUBPARTICLE_FLAGS
 {
 public:
 

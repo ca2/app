@@ -558,7 +558,7 @@ inline pointer < T > payload::cast()
    }
 
 
-   return get_particle();
+   return get_subparticle();
 
 }
 

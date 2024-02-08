@@ -153,7 +153,7 @@ void particle::finalize()
 #ifdef _DEBUG
 
 
-i64 particle::increment_reference_count()
+i64 subparticle::increment_reference_count()
 {
 
 #if REFERENCING_DEBUGGING
@@ -175,7 +175,7 @@ i64 particle::increment_reference_count()
 }
 
 
-i64 particle::decrement_reference_count()
+i64 subparticle::decrement_reference_count()
 {
 
 #if REFERENCING_DEBUGGING
@@ -202,7 +202,7 @@ i64 particle::decrement_reference_count()
 }
 
 
-i64 particle::replace_reference()
+i64 subparticle::replace_reference()
 {
 
    auto c = m_countReference;
@@ -225,7 +225,7 @@ i64 particle::replace_reference()
 }
 
 
-i64 particle::release()
+i64 subparticle::release()
 {
 
    i64 i = decrement_reference_count();
@@ -382,7 +382,7 @@ enum_type particle::get_payload_type() const
 //}
 
 
-void particle::delete_this()
+void subparticle::delete_this()
 {
 
    if (!(m_eflagElement & e_flag_statically_allocated))
@@ -738,14 +738,14 @@ void particle::install_message_routing(::channel * pchannel)
 }
 
 
-void particle::init_task()
+void subparticle::init_task()
 {
 
 
 }
 
 
-void particle::call_run()
+void subparticle::call_run()
 {
 
    m_eflagElement += e_flag_running;
@@ -766,13 +766,13 @@ void particle::call_run()
 }
 
 
-void particle::run()
+void subparticle::run()
 {
 
    while (true)
    {
 
-      if(!particle_step())
+      if(!subparticle_step())
       {
 
          break;
@@ -784,7 +784,7 @@ void particle::run()
 }
 
 
-bool particle::particle_step()
+bool subparticle::subparticle_step()
 {
 
    return false;

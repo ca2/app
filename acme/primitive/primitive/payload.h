@@ -126,7 +126,7 @@ public:
       ::color::hls                           m_hls;
 
 
-      ::particle * m_p;
+      ::subparticle * m_p;
       ::string_array * m_pstra;
       ::i32_array  * m_pia;
       ::payload_array  * m_ppayloada;
@@ -1124,13 +1124,13 @@ public:
    template < class T >
    ::pointer< T > cast();
 
-   ::particle * particle()
+   ::subparticle * subarticle()
    {
       if (m_etype == e_type_element) { return m_p; }
       return cast < ::particle >();
    }
 
-   ::particle * particle() const { return ((payload *)this)->particle(); }
+   ::subparticle * subparticle() const { return ((payload *)this)->subparticle(); }
 
    template < class T >
    T * cast() const
@@ -1139,7 +1139,7 @@ public:
    }
 
 
-   ::particle * get_particle();
+   ::subparticle * get_subparticle();
 
    //   bool strictly_equal(const payload & payload) const;
    //   bool strictly_equal(const ::scoped_string & scopedstr) const;

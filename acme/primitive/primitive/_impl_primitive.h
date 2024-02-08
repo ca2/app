@@ -9,7 +9,7 @@
 #if !defined(_DEBUG)
 
 
-inline i64 particle::increment_reference_count()
+inline i64 subparticle::increment_reference_count()
 {
 
    auto c = ++m_countReference;
@@ -25,7 +25,7 @@ inline i64 particle::increment_reference_count()
 }
 
 
-inline i64 particle::decrement_reference_count()
+inline i64 subparticle::decrement_reference_count()
 {
 
    auto c = --m_countReference;
@@ -46,7 +46,7 @@ inline i64 particle::decrement_reference_count()
 }
 
 
-inline i64 particle::release()
+inline i64 subparticle::release()
 {
 
    i64 i = decrement_reference_count();
@@ -63,7 +63,7 @@ inline i64 particle::release()
 }
 
 
-inline i64 particle::replace_reference()
+inline i64 subparticle::replace_reference()
 {
 
    return m_countReference;

@@ -3,42 +3,47 @@
 
 
 
-#include "particle_flags.h"
+#include "subparticle_flags.h"
 #include "ptr.h"
 #include "acme/primitive/primitive/interlocked_count.h"
 
 
+//
+//struct SUBPARTICLE :
+//   public SUBPARTICLE_FLAGS
+//{
+//
+//
+//   mutable ::acme::context *           m_pcontext;
+//   mutable ::ptr < ::particle >        m_pparticleSynchronization;
+//
+//
+//   SUBPARTICLE() :
+//      m_pcontext(nullptr)
+//   {}
+//
+//
+//};
 
-struct PARTICLE :
-   public PARTICLE_FLAGS
-{
 
 
-   mutable ::acme::context *           m_pcontext;
-   mutable ::ptr < ::particle >        m_pparticleSynchronization;
-
-
-   PARTICLE() :
-      m_pcontext(nullptr)
-   {}
-
-
-};
-
-
-
-class CLASS_DECL_ACME referenceable :
-   virtual public PARTICLE
+class CLASS_DECL_ACME subparticle :
+   virtual public SUBPARTICLE_FLAGS
 {
 public:
+
+
    void * m_pAllocation = nullptr;
+   mutable ::acme::context *           m_pcontext;
+
    ::interlocked_count                 m_countReference;
 
 #if REFERENCING_DEBUGGING
-   referenceable();
+   subparticle();
 #else
-   referenceable() : m_countReference(1) {}
+   subparticle() : m_pcontext(nullptr), m_countReference(1) {}
 #endif
+
 
 
    //referenceable();
@@ -49,6 +54,9 @@ public:
 
 
    virtual void run();
+
+
+   virtual bool subparticle_step();
 
 
 #ifdef _DEBUG
@@ -137,8 +145,11 @@ public:
    bool is_referencing_debugging_enabled() const { return false; }
 
 #endif
+   virtual void init_task();
 
 
+
+   virtual void delete_this();
 
 
 };

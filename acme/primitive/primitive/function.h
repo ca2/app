@@ -6,7 +6,7 @@
 
 #include "acme/primitive/primitive/ptr.h"
 
-#include "acme/primitive/primitive/referenceable.h"
+#include "acme/primitive/primitive/subparticle.h"
 
 #include "acme/primitive/time/_time.h"
 
@@ -116,7 +116,7 @@ class function < void() > :
 public:
 
 
-   using base = ::referenceable;
+   using base = ::subparticle;
 
 
    template < typename ELEMENT >
@@ -165,14 +165,14 @@ public:
    }
 
 
-   function(const ptr < ::particle > & p) :
+   function(const ptr < ::subparticle > & p) :
       m_pbase(p)
    {
 
    }
 
 
-   function(ptr < ::particle > && p) :
+   function(ptr < ::subparticle > && p) :
       m_pbase(p)
    {
       
@@ -181,7 +181,7 @@ public:
 
 
    function(enum_as_lparam, iptr iptr) :
-      m_pbase((::particle *)iptr)
+      m_pbase((::subparticle *)iptr)
    {
 
    }
@@ -203,14 +203,14 @@ public:
 
    //template < typename PREDICATE >
    //function(function_t, PREDICATE predicateParam) :
-   //   m_pbase(transfer_t{}, __allocate< class implementation <PREDICATE > >(predicateParam))
+   //   m_pbase(transfer_t{}, __new< class implementation <PREDICATE > >(predicateParam))
    //{
 
    //}
 
    template < typename PREDICATE >
    function(PREDICATE predicateParam) :
-      m_pbase(__allocate< class implementation <PREDICATE > >(::transfer(predicateParam)))
+      m_pbase(transfer_t{}, __new< class implementation <PREDICATE > >(::transfer(predicateParam)))
    {
 
    }
@@ -297,11 +297,11 @@ public:
 
    bool operator !() const { return !this->operator bool(); }
 
-   operator ::referenceable *() const { return ::is_null(this) ? nullptr : m_pbase; }
+   operator ::subparticle *() const { return ::is_null(this) ? nullptr : m_pbase; }
 
-   const ::referenceable * operator -> () const { return m_pbase; }
+   const ::subparticle * operator -> () const { return m_pbase; }
 
-   ::referenceable * operator -> () { return m_pbase; }
+   ::subparticle * operator -> () { return m_pbase; }
    
 
 };
@@ -330,7 +330,7 @@ public:
 
 
    class base :
-      virtual public ::referenceable
+      virtual public ::subparticle
    {
    public:
 
@@ -390,14 +390,14 @@ public:
 
    //template < typename PREDICATE >
    //function(function_t, PREDICATE predicateParam) :
-   //   m_pbase(transfer_t{}, __allocate< class implementation <PREDICATE > >(predicateParam))
+   //   m_pbase(transfer_t{}, __new< class implementation <PREDICATE > >(predicateParam))
    //{
 
    //}
 
    template < typename PREDICATE >
    function(PREDICATE predicateParam) :
-      m_pbase(__allocate< class implementation <PREDICATE > >(::transfer(predicateParam)))
+      m_pbase(transfer_t{}, __new< class implementation <PREDICATE > >(::transfer(predicateParam)))
    {
 
    }
@@ -438,7 +438,7 @@ public:
    function & operator = (PREDICATE predicateParam)
    {
 
-      m_pbase = ::transfer(__allocate< class implementation <PREDICATE > >(::transfer(predicateParam)));
+      m_pbase = ::transfer(transfer_t{}, __new< class implementation <PREDICATE > >(::transfer(predicateParam)));
 
       return *this;
 
@@ -515,7 +515,7 @@ public:
 
 
    class base :
-      virtual public ::referenceable
+      virtual public ::subparticle
    {
    public:
 
@@ -574,14 +574,14 @@ public:
 
    template < typename FUNCTION >
    function(FUNCTION functionParam) :
-      m_pbase(__allocate< class implementation < FUNCTION > >(::transfer(functionParam)))
+      m_pbase(transfer_t{}, __new< class implementation < FUNCTION > >(::transfer(functionParam)))
    {
 
    }
 
    //template < typename FUNCTION >
    //function(function_t, FUNCTION functionParam) :
-   //   m_pbase(transfer_t{}, __allocate< class implementation < FUNCTION > >(functionParam))
+   //   m_pbase(transfer_t{}, __new< class implementation < FUNCTION > >(functionParam))
    //{
 
    //}
@@ -623,7 +623,7 @@ public:
    function & operator = (FUNCTION functionParam)
    {
 
-      m_pbase = ::transfer( __allocate< class implementation <FUNCTION > >(::transfer(functionParam)));
+      m_pbase.transfer(__new< class implementation <FUNCTION > >(::transfer(functionParam)));
 
       return *this;
 
@@ -701,7 +701,7 @@ public:
 
 
    class base :
-      virtual public ::referenceable
+      virtual public ::subparticle
    {
    public:
 
@@ -760,14 +760,14 @@ public:
 
    //template < typename FUNCTION >
    //function(function_t, FUNCTION functionParam) :
-   //   m_pbase(transfer_t{}, __allocate< class implementation < FUNCTION > >(functionParam))
+   //   m_pbase(transfer_t{}, __new< class implementation < FUNCTION > >(functionParam))
    //{
 
    //}
 
    template < typename FUNCTION >
    function(FUNCTION functionParam) :
-      m_pbase(__allocate< class implementation < FUNCTION > >(::transfer(functionParam)))
+      m_pbase(transfer_t{}, __new< class implementation < FUNCTION > >(::transfer(functionParam)))
    {
 
    }
@@ -809,7 +809,7 @@ public:
    function & operator = (FUNCTION functionParam)
    {
 
-      m_pbase = ::transfer(__allocate< class implementation <FUNCTION > >(::transfer(functionParam)));
+      m_pbase.transfer(__new< class implementation <FUNCTION > >(::transfer(functionParam)));
 
       return *this;
 

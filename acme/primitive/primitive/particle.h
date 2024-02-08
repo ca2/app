@@ -57,10 +57,10 @@ class trace_statement;
 //};
 
 
-
-
 using hsynchronization = void *;
-#include "referenceable.h"
+
+
+#include "subparticle.h"
 
 
 #include "acme/platform/trace_statement.h"
@@ -89,14 +89,15 @@ struct disable_referencing_debugging_t {};
 
 // ThomasBorregaardSorensen!! Like handlers : now particle with handle::handlers*
 class CLASS_DECL_ACME particle :
-   virtual public signal_handler::base
+   virtual public subparticle
 {
 public:
 
 
+   mutable ::ptr < ::particle >        m_pparticleSynchronization;
 
 //#if REFERENCING_DEBUGGING
-   particle();
+   particle() {}
 //#else
 //   particle() : m_countReference(1) {}
 //#endif
@@ -115,7 +116,7 @@ public:
    virtual void finalize();
 
 
-   virtual void delete_this();
+//   virtual void delete_this();
 
    virtual ::string get_debug_title() const;
 
@@ -134,6 +135,7 @@ public:
 
 #endif
 
+   //void operator()(::topic* ptopic, ::context* pcontext) override;
 
    virtual enum_type get_payload_type() const;
 
@@ -214,8 +216,8 @@ public:
    virtual void install_message_routing(::channel * pchannel);
 
 
-   virtual void init_task();
-
+//   virtual void init_task();
+//
    //virtual void initialize_matter(::matter * pmatter);
 
 
@@ -223,7 +225,7 @@ public:
    TYPE * cast() { return dynamic_cast <TYPE *>(this); }
 
 
-   virtual bool particle_step();
+//   virtual bool particle_step();
    virtual void on_sequence();
 
 

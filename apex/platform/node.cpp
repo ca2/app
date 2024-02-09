@@ -5,11 +5,15 @@
 #include "node.h"
 #include "acme/constant/character_set.h"
 #include "acme/constant/id.h"
+#include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/acme_path.h"
+#include "acme/filesystem/filesystem/dir_context.h"
 #include "acme/filesystem/filesystem/link.h"
+#include "acme/filesystem/filesystem/listing.h"
 #include "acme/exception/interface_only.h"
 #include "acme/filesystem/filesystem/file_context.h"
+#include "acme/primitive/string/international.h"
 #include "apex/input/input.h"
 #include "apex/platform/application.h"
 #include "apex/platform/os_context.h"
@@ -563,6 +567,177 @@ namespace apex
       return false;
 
    }
+
+
+   void node::root_ones(::file::listing &listing)
+   {
+      
+      auto & options = application()->m_filesystemoptions;
+      
+      if(options.m_bOperatingSystemRootOnes)
+      {
+         
+         dir()->root_ones(listing);
+         
+      }
+      
+      if(options.m_bDropbox)
+      {
+         
+         ::file::path pathDropbox = m_pcontext->m_papexcontext->defer_process_path("dropbox://");
+         
+         if(pathDropbox.has_char() && dir()->is(pathDropbox))
+         {
+            
+            ::file::path & path = listing.insert_at(0, "dropbox://");
+            
+            path.m_iDir = 1;
+            
+            listing.m_straTitle.insert_at(0, unitext("Dropbox"));
+            
+         }
+         
+         ::file::path pathDropboxApp = m_pcontext->m_papexcontext->defer_process_path("dropbox-app://");
+         
+         if(pathDropboxApp.m_epath == ::e_path_file && dir()->is(pathDropboxApp))
+         {
+            
+            ::file::path & path = listing.insert_at(0, "dropbox-app://");
+            
+            path.m_iDir = 1;
+            
+            listing.m_straTitle.insert_at(0, unitext("Dropbox-App"));
+            
+         }
+         
+      }
+      
+      if(options.m_bOneDrive)
+      {
+         
+         ::file::path pathOneDrive = m_pcontext->m_papexcontext->defer_process_path("onedrive://");
+         
+         if(pathOneDrive.m_epath == ::e_path_file && dir()->is(pathOneDrive))
+         {
+            
+            ::file::path & path = listing.insert_at(0, "onedrive://");
+            
+            path.m_iDir = 1;
+            
+            listing.m_straTitle.insert_at(0, unitext("OneDrive"));
+            
+         }
+         
+      }
+      
+      if(options.m_b_iCloud)
+      {
+         
+         if(acmedirectory()->has_app_cloud_document())
+         {
+            
+            ::file::path & path = listing.insert_at(0, "icloud://");
+            
+            path.m_iDir = 1;
+            
+            listing.m_straTitle.insert_at(0, unitext("iCloud"));
+            
+         }
+         
+      }
+      
+      if(options.m_bVideo)
+      {
+
+         ::file::path & path = listing.insert_at(0, "video://");
+
+         path.m_iDir = 1;
+
+         listing.m_straTitle.insert_at(0, unitext("Video"));
+
+      }
+      
+      if(options.m_bImage)
+      {
+
+         ::file::path & path = listing.insert_at(0, "image://");
+
+         path.m_iDir = 1;
+
+         listing.m_straTitle.insert_at(0, unitext("Image"));
+
+      }
+      
+      if(options.m_bMusic)
+      {
+
+         ::file::path & path = listing.insert_at(0, "music://");
+
+         path.m_iDir = 1;
+
+         listing.m_straTitle.insert_at(0, unitext("Music"));
+
+      }
+
+      if(options.m_bDownload)
+      {
+
+         ::file::path & path = listing.insert_at(0, "download://");
+
+         path.m_iDir = 1;
+
+         listing.m_straTitle.insert_at(0, unitext("Download"));
+
+      }
+
+      if(options.m_bDocument)
+      {
+
+         ::file::path & path = listing.insert_at(0, "document://");
+
+         path.m_iDir = 1;
+
+         listing.m_straTitle.insert_at(0, unitext("Document"));
+
+      }
+
+      if(options.m_bDesktop)
+      {
+
+         ::file::path & path = listing.insert_at(0, "desktop://");
+
+         path.m_iDir = 1;
+
+         listing.m_straTitle.insert_at(0, unitext("Desktop"));
+
+      }
+
+//#ifdef WINDOWS_DESKTOP
+//
+//      ::file::path strDesktopFolder;
+//
+//      ::windows::shell_get_special_folder_path(
+//         nullptr,
+//         strDesktopFolder,
+//         CSIDL_DESKTOP,
+//         false);
+//
+//      ::file::path & path = listing.insert_at(0,strDesktopFolder);
+//      path.m_iDir = 1;
+//      listing.m_straTitle.insert_at(0,unitext("Desktop"));
+//
+//#endif
+
+      
+   }
+
+
+//   bool node::defer_enumerate_protocol(::file::listing& listing)
+//   {
+//      
+//      return false;
+//      
+//   }
 
 
 } // namespace apex

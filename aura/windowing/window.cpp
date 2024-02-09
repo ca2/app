@@ -2285,7 +2285,9 @@ namespace windowing
 //      return m_pmessagequeue;
 //
 //   }
-
+void window::pick_browse()
+{
+}
 
 } // namespace windowing
 

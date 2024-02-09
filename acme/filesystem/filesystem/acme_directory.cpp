@@ -940,8 +940,7 @@ bool acme_directory::defer_enumerate_media_library(::file::listing& listing)
 bool acme_directory::defer_enumerate_protocol(::file::listing& listing)
 {
    
-   
-   return false;
+   return acmenode()->defer_enumerate_protocol(listing);
    
 }
 

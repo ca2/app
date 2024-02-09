@@ -432,6 +432,7 @@ namespace windowing
 
       virtual void defer_show_system_menu(const ::point_i32 & pointAbsolute);
 
+      virtual void pick_browse();
 
    };
 

@@ -23,7 +23,22 @@ namespace acme { class acme;  }
 #include "release_time_for_project.h"
 #include "acme/primitive/text/text.h"
 
-
+class CLASS_DECL_ACME file_system_options
+{
+public:
+   
+   bool m_bOperatingSystemRootOnes;
+   bool m_bImage;
+   bool m_bDocument;
+   bool m_bMusic;
+   bool m_bDownload;
+   bool m_b_iCloud;
+   bool m_bOneDrive;
+   bool m_bDropbox;
+   bool m_bVideo;
+   bool m_bDesktop;
+   file_system_options();
+};
 namespace acme
 {
 
@@ -64,7 +79,7 @@ namespace acme
       //::APPLICATION_FLAGS                      m_applicationflags;
       ::pointer<main_hold_base>                    m_pmainholdbase;
       // FROM ::main (Now main2)
-
+      file_system_options  m_filesystemoptions;
       ::pointer_array < user_message >                      m_usermessagea;
       bool                                            m_bGUIReady = false;
       bool                                            m_bModulePath = false;
@@ -293,6 +308,9 @@ namespace acme
 
       virtual get_file_extension_mime_type * get_get_file_extension_mime_type();
 
+      virtual void pick_browse();
+      virtual void did_pick_document_at_url(const char * pszUrl);
+      
 
    };
 

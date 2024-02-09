@@ -38,12 +38,61 @@ CLASS_DECL_ACME::file::path get_module_path();
 #endif
 
 
+#if defined(MACOS)
+|| defined(WINDOWS_DESKTOP)
+|| defined(LINUX)
+|| defined(__BSD__)
+#define IS_DESKTOP_SYSTEM() (true)
+#else
+#define IS_DESKTOP_SYSTEM() (false)
+#endif
+
+file_system_options::file_system_options()
+{
+   
+   if constexpr(IS_DESKTOP_SYSTEM())
+   {
+      
+      m_bOperatingSystemRootOnes = true;
+      m_bImage = true;
+      m_bDocument = true;
+      m_bMusic = true;
+      m_bDownload = true;
+      m_b_iCloud = true;
+      m_bOneDrive = true;
+      m_bDropbox = true;
+      m_bVideo = true;
+      m_bDesktop = true;
+
+   }
+   else
+   {
+      
+      m_bOperatingSystemRootOnes = false;
+      m_bImage = false;
+      m_bDocument = false;
+      m_bMusic = false;
+      m_bDownload = false;
+      m_b_iCloud = false;
+      m_bOneDrive = false;
+      m_bDropbox = false;
+      m_bVideo = false;
+      m_bDesktop = false;
+
+   }
+   
+}
+
+
 namespace acme
 {
 
 
    application::application()
    {
+      
+
+
 
       m_bApplicationFirstRequest = true;
 
@@ -151,18 +200,9 @@ namespace acme
 
    bool application::is_desktop_system() const
    {
-   
-#if defined(MACOS)
-      return true;
-#elif defined(WINDOWS_DESKTOP)
-      return true;
-#elif defined(LINUX)
-      return true;
-#elif defined(__BSD__)
-      return true;
-#else
-      return false;
-#endif
+
+      return IS_DESKTOP_SYSTEM();
+      
    }
 
 
@@ -1279,7 +1319,6 @@ namespace acme
    void application::process_init()
    {
 
-
       initialize_context();
 
    }
@@ -2010,6 +2049,20 @@ namespace acme
 
       return nullptr;
 
+   }
+
+
+   void application::pick_browse()
+   {
+      
+      
+   }
+
+
+   void application::did_pick_document_at_url(const char * pszUrl)
+   {
+      
+      
    }
 
 

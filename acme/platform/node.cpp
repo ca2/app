@@ -3512,6 +3512,14 @@ bool node::are_framework_shared_libraries_busy(const ::scoped_string & scopedstr
    }
 
 
+   bool node::defer_enumerate_protocol(::file::listing& listing)
+   {
+      
+      return false;
+      
+   }
+
+
 } // namespace acme
 
 

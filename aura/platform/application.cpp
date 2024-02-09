@@ -9071,6 +9071,31 @@ namespace aura
 
    //}
 
+void application::pick_browse()
+{
+   
+   auto puserinteraction = m_puserinteractionMain;
+   
+   if(!puserinteraction)
+   {
+      
+      return;
+      
+   }
+   
+   auto pwindow = puserinteraction->window();
+   
+   if(!pwindow)
+   {
+      
+      return;
+      
+   }
+   
+   pwindow->pick_browse();
+   
+}
+
 } // namespace aura
 
 

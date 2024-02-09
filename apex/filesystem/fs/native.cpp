@@ -8,6 +8,7 @@
 #include "acme/filesystem/filesystem/dir_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "apex/platform/context.h"
+#include "apex/platform/node.h"
 
 
 namespace fs
@@ -96,135 +97,8 @@ namespace fs
 
    ::file::listing & native::root_ones(::file::listing & listing)
    {
-
-      dir()->root_ones(listing);
-
-      ::file::path pathDropbox = m_pcontext->m_papexcontext->defer_process_path("dropbox://");
-
-      if(pathDropbox.has_char() && dir()->is(pathDropbox))
-      {
-
-         ::file::path & path = listing.insert_at(0, "dropbox://");
-
-         path.m_iDir = 1;
-
-         listing.m_straTitle.insert_at(0, unitext("Dropbox"));
-
-      }
-
-      ::file::path pathDropboxApp = m_pcontext->m_papexcontext->defer_process_path("dropbox-app://");
-
-      if(pathDropboxApp.m_epath == ::e_path_file && dir()->is(pathDropboxApp))
-      {
-
-         ::file::path & path = listing.insert_at(0, "dropbox-app://");
-
-         path.m_iDir = 1;
-
-         listing.m_straTitle.insert_at(0, unitext("Dropbox-App"));
-
-      }
-
-      ::file::path pathOneDrive = m_pcontext->m_papexcontext->defer_process_path("onedrive://");
       
-      if(pathOneDrive.m_epath == ::e_path_file && dir()->is(pathOneDrive))
-      {
-         
-         ::file::path & path = listing.insert_at(0, "onedrive://");
-
-         path.m_iDir = 1;
-
-         listing.m_straTitle.insert_at(0, unitext("OneDrive"));
-         
-      }
-      
-      if(acmedirectory()->has_app_cloud_document())
-      {
-         
-         ::file::path & path = listing.insert_at(0, "icloud://");
-
-         path.m_iDir = 1;
-
-         listing.m_straTitle.insert_at(0, unitext("iCloud"));
-
-      }
-      
-      {
-
-         ::file::path & path = listing.insert_at(0, "video://");
-
-         path.m_iDir = 1;
-
-         listing.m_straTitle.insert_at(0, unitext("Video"));
-
-      }
-
-      {
-
-
-         ::file::path & path = listing.insert_at(0, "image://");
-
-         path.m_iDir = 1;
-
-         listing.m_straTitle.insert_at(0, unitext("Image"));
-
-      }
-
-      {
-
-         ::file::path & path = listing.insert_at(0, "music://");
-
-         path.m_iDir = 1;
-
-         listing.m_straTitle.insert_at(0, unitext("Music"));
-
-      }
-
-      {
-
-         ::file::path & path = listing.insert_at(0, "download://");
-
-         path.m_iDir = 1;
-
-         listing.m_straTitle.insert_at(0, unitext("Download"));
-
-      }
-
-      {
-
-         ::file::path & path = listing.insert_at(0, "document://");
-
-         path.m_iDir = 1;
-
-         listing.m_straTitle.insert_at(0, unitext("Document"));
-
-      }
-
-      {
-
-         ::file::path & path = listing.insert_at(0, "desktop://");
-
-         path.m_iDir = 1;
-
-         listing.m_straTitle.insert_at(0, unitext("Desktop"));
-
-      }
-
-//#ifdef WINDOWS_DESKTOP
-//
-//      ::file::path strDesktopFolder;
-//
-//      ::windows::shell_get_special_folder_path(
-//         nullptr,
-//         strDesktopFolder,
-//         CSIDL_DESKTOP,
-//         false);
-//
-//      ::file::path & path = listing.insert_at(0,strDesktopFolder);
-//      path.m_iDir = 1;
-//      listing.m_straTitle.insert_at(0,unitext("Desktop"));
-//
-//#endif
+      acmenode()->m_papexnode->root_ones(listing);
 
       return listing;
 

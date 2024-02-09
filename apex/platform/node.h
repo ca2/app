@@ -136,6 +136,12 @@ namespace apex
       virtual bool is_key_pressed(bool * pbPressed, ::user::enum_key ekey);
 
 
+      virtual void root_ones(::file::listing & listing);
+      
+//      virtual bool defer_enumerate_protocol(::file::listing& listing);
+
+      
+      
    };
 
 

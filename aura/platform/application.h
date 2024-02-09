@@ -1055,7 +1055,7 @@ namespace aura
       ::bred::user * breduser() override;
       ::core::user * coreuser() override;
 
-
+      void pick_browse() override;
    };
 
 

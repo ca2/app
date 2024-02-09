@@ -433,6 +433,7 @@ namespace windowing
       virtual void defer_show_system_menu(const ::point_i32 & pointAbsolute);
 
       virtual void pick_browse();
+      virtual void on_prompt_write_file(::user::controller * pusercontroller);
 
    };
 

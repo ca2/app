@@ -9,6 +9,7 @@
 #include "aura/user/user/check_box.h"
 #include "aura/user/user/still.h"
 #include "axis/user/user/line_layout.h"
+#include "core/filesystem/filemanager/document.h"
 #include "core/filesystem/filemanager/filemanager.h"
 #include "core/user/user/user.h"
 #include "core/user/userex/progress.h"
@@ -340,6 +341,23 @@ namespace core
 
    }
 
+
+   void application::file_manager_save_as(::user::controller *pusercontroller)
+   {
+      
+      ::pointer < ::user::document > puserdocument = pusercontroller;
+      
+      if(m_ppaneimpactCore && puserdocument)
+      {
+         
+         m_ppaneimpactCore->set_current_tab_by_id("file_manager_save");
+         
+         m_ppaneimpactCore->filemanager_document("file_manager_save")->FileManagerSaveAs(puserdocument);
+
+      }
+
+
+   }
 
 
 } // namespace core

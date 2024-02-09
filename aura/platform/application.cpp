@@ -9096,6 +9096,32 @@ void application::pick_browse()
    
 }
 
+void application::on_prompt_write_file(::user::controller *pusercontroller)
+{
+   
+   auto puserinteraction = m_puserinteractionMain;
+   
+   if(!puserinteraction)
+   {
+      
+      return;
+      
+   }
+   
+   auto pwindow = puserinteraction->window();
+   
+   if(!pwindow)
+   {
+      
+      return;
+      
+   }
+   
+   pwindow->on_prompt_write_file(pusercontroller);
+   
+}
+
+
 } // namespace aura
 
 

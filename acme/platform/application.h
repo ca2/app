@@ -310,7 +310,8 @@ namespace acme
 
       virtual void pick_browse();
       virtual void did_pick_document_at_url(const char * pszUrl);
-      
+      virtual void on_prompt_write_file(::user::controller * pusercontroller);
+      virtual void file_manager_save_as(::user::controller * pusercontroller);
 
    };
 

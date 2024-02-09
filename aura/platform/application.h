@@ -1056,6 +1056,11 @@ namespace aura
       ::core::user * coreuser() override;
 
       void pick_browse() override;
+      
+      
+      void on_prompt_write_file(::user::controller * pusercontroller) override;
+      
+      
    };
 
 

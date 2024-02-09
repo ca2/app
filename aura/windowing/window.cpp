@@ -2288,6 +2288,10 @@ namespace windowing
 void window::pick_browse()
 {
 }
+void window::on_prompt_write_file(::user::controller *pusercontroller)
+{
+   
+}
 
 } // namespace windowing
 

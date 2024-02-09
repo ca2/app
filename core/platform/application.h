@@ -61,7 +61,8 @@ namespace core
 
 
       void term_instance() override;
-
+      
+      void file_manager_save_as(::user::controller * pusercontroller) override;
 
    };
 

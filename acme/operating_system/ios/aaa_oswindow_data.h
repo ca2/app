@@ -1,6 +1,6 @@
 #pragma once
 
-#ifdef __MM
+#ifdef __OBJECTIVE_CPP__
 
 typedef void * int_to_int;
 
@@ -56,7 +56,7 @@ public:
 
    }
 
-#ifdef __MM
+#ifdef __OBJECTIVE_CPP__
 
    operator ::nswindow ()
    {

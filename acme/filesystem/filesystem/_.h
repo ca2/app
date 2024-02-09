@@ -3,3 +3,17 @@
 
 
 #include "_2.h"
+
+
+namespace filesystem
+{
+
+
+   class file_system_options;
+
+
+} // namespace filesystem
+
+
+
+

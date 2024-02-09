@@ -8,7 +8,7 @@
 #pragma once
 
 
-#if defined(__MM)
+#if defined(__OBJECTIVE_CPP__)
 
 
 //#include "base/include/_c_bridge.h"
@@ -22,7 +22,7 @@
 #include "core/include/_.h"
 
 
-#elif defined(__M)
+#elif defined(__OBJECTIVE_C__)
 
 
 #include "core/include/_c.h"

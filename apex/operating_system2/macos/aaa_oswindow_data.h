@@ -51,7 +51,7 @@ public:
 
    }
 
-//#ifdef __MM
+//#ifdef __OBJECTIVE_CPP__
 
   // operator ::nswindow ()
    //{

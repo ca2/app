@@ -21,7 +21,7 @@
 #pragma once
 
 
-//#define __M
+//#define __OBJECTIVE_C__
 //
 //
 //#if defined(APPLE_IOS)

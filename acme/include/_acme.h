@@ -30,14 +30,14 @@
 #if defined(__cplusplus)
 
 
-#define __MM
+#define __OBJECTIVE_CPP__
 
 #define __PARTIAL_CPP
 
 #else
 
 
-#define __M
+#define __OBJECTIVE_C__
 
 
 #endif

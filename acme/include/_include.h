@@ -11,7 +11,7 @@
 #include "acme/include/_.h"
 
 
-#elif defined(__MM)
+#elif defined(__OBJECTIVE_CPP__)
 
 
 #include "acme/include/_c.h"
@@ -20,7 +20,7 @@
 #include "acme/include/objcpp.h"
 
 
-#elif defined(__M)
+#elif defined(__OBJECTIVE_C__)
 
 
 #include "acme/include/_c.h"

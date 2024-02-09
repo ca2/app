@@ -20,7 +20,7 @@
 #endif
 
 
-#ifndef __MM
+#ifndef __OBJECTIVE_CPP__
 
 #error "MM?!?!?!!!???"
 

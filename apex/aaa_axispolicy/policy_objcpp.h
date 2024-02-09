@@ -1,7 +1,7 @@
 #pragma once
 
 
-#define __MM
+#define __OBJECTIVE_CPP__
 
 
 #include "axis/os/ios/ios_mm.h"

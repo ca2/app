@@ -9,6 +9,7 @@
 #include "acme/exception/interface_only.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/filesystem/filesystem/file_system_options.h"
 #include "acme/handler/request.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/node.h"
@@ -39,52 +40,6 @@ CLASS_DECL_ACME::file::path get_module_path();
 #endif
 
 
-#if defined(MACOS)
-|| defined(WINDOWS_DESKTOP)
-|| defined(LINUX)
-|| defined(__BSD__)
-#define IS_DESKTOP_SYSTEM() (true)
-#else
-#define IS_DESKTOP_SYSTEM() (false)
-#endif
-
-file_system_options::file_system_options()
-{
-   
-   if constexpr(IS_DESKTOP_SYSTEM())
-   {
-      
-      m_bOperatingSystemRootOnes = true;
-      m_bImage = true;
-      m_bDocument = true;
-      m_bMusic = true;
-      m_bDownload = true;
-      m_b_iCloud = true;
-      m_bOneDrive = true;
-      m_bDropbox = true;
-      m_bVideo = true;
-      m_bDesktop = true;
-
-   }
-   else
-   {
-      
-      m_bOperatingSystemRootOnes = false;
-      m_bImage = false;
-      m_bDocument = false;
-      m_bMusic = false;
-      m_bDownload = false;
-      m_b_iCloud = false;
-      m_bOneDrive = false;
-      m_bDropbox = false;
-      m_bVideo = false;
-      m_bDesktop = false;
-
-   }
-   
-}
-
-
 namespace acme
 {
 
@@ -92,9 +47,8 @@ namespace acme
 application::application()
 {
    
-   
-   
-   
+   m_pfilesystemoptions = __allocate < ::filesystem::file_system_options >();
+      
    m_bApplicationFirstRequest = true;
    
    //if (!::platform::platform::s_pplatform->m_pacmeapplication)
@@ -2087,6 +2041,7 @@ void application::file_manager_save_as(::user::controller *pusercontroller)
    
    
 }
+
 
 
 } // namespace acme

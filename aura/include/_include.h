@@ -4,7 +4,7 @@
 #undef __spin_namespace
 
 
-#if defined(__MM)
+#if defined(__OBJECTIVE_CPP__)
 
 
 #include "acme/_.h"
@@ -20,7 +20,7 @@
 #include "aura/include/_.h"
 
 
-#elif defined(__M)
+#elif defined(__OBJECTIVE_C__)
 
 
 #include "aura/include/_c.h"

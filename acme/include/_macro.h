@@ -398,4 +398,11 @@ __FACTORY_IMPORT void TOKEN_CONCATENATE(name, _factory)(::factory::factory * pfa
 __FACTORY_EXPORT void TOKEN_CONCATENATE(name, _factory)(::factory::factory * pfactory)
 
 
+#if defined(MACOS) || defined(WINDOWS_DESKTOP) || defined(LINUX) || defined(__BSD__)
+#define IS_DESKTOP_SYSTEM() (true)
+#else
+#define IS_DESKTOP_SYSTEM() (false)
+#endif
+
+
 

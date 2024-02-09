@@ -23,7 +23,7 @@
 #pragma once
 
 
-#define __MM
+#define __OBJECTIVE_CPP__
 
 //#ifdef MACOS
 

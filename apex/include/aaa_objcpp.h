@@ -26,7 +26,7 @@
 #include "acme/include/objcpp.h"
 
 
-#define __MM
+#define __OBJECTIVE_CPP__
 
 //#ifdef MACOS
 

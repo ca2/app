@@ -9,10 +9,11 @@
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/acme_path.h"
 #include "acme/filesystem/filesystem/dir_context.h"
+#include "acme/filesystem/filesystem/file_context.h"
+#include "acme/filesystem/filesystem/file_system_options.h"
 #include "acme/filesystem/filesystem/link.h"
 #include "acme/filesystem/filesystem/listing.h"
 #include "acme/exception/interface_only.h"
-#include "acme/filesystem/filesystem/file_context.h"
 #include "acme/primitive/string/international.h"
 #include "apex/input/input.h"
 #include "apex/platform/application.h"
@@ -572,16 +573,16 @@ namespace apex
    void node::root_ones(::file::listing &listing)
    {
       
-      auto & options = application()->m_filesystemoptions;
+      auto pfilesystemoptions = application()->m_pfilesystemoptions;
       
-      if(options.m_bOperatingSystemRootOnes)
+      if(pfilesystemoptions->m_bOperatingSystemRootOnes)
       {
          
          dir()->root_ones(listing);
          
       }
       
-      if(options.m_bDropbox)
+      if(pfilesystemoptions->m_bDropbox)
       {
          
          ::file::path pathDropbox = m_pcontext->m_papexcontext->defer_process_path("dropbox://");
@@ -612,7 +613,7 @@ namespace apex
          
       }
       
-      if(options.m_bOneDrive)
+      if(pfilesystemoptions->m_bOneDrive)
       {
          
          ::file::path pathOneDrive = m_pcontext->m_papexcontext->defer_process_path("onedrive://");
@@ -630,7 +631,7 @@ namespace apex
          
       }
       
-      if(options.m_b_iCloud)
+      if(pfilesystemoptions->m_b_iCloud)
       {
          
          if(acmedirectory()->has_app_cloud_document())
@@ -646,7 +647,7 @@ namespace apex
          
       }
       
-      if(options.m_bVideo)
+      if(pfilesystemoptions->m_bVideo)
       {
 
          ::file::path & path = listing.insert_at(0, "video://");
@@ -657,7 +658,7 @@ namespace apex
 
       }
       
-      if(options.m_bImage)
+      if(pfilesystemoptions->m_bImage)
       {
 
          ::file::path & path = listing.insert_at(0, "image://");
@@ -668,7 +669,7 @@ namespace apex
 
       }
       
-      if(options.m_bMusic)
+      if(pfilesystemoptions->m_bMusic)
       {
 
          ::file::path & path = listing.insert_at(0, "music://");
@@ -679,7 +680,7 @@ namespace apex
 
       }
 
-      if(options.m_bDownload)
+      if(pfilesystemoptions->m_bDownload)
       {
 
          ::file::path & path = listing.insert_at(0, "download://");
@@ -690,7 +691,7 @@ namespace apex
 
       }
 
-      if(options.m_bDocument)
+      if(pfilesystemoptions->m_bDocument)
       {
 
          ::file::path & path = listing.insert_at(0, "document://");
@@ -701,7 +702,7 @@ namespace apex
 
       }
 
-      if(options.m_bDesktop)
+      if(pfilesystemoptions->m_bDesktop)
       {
 
          ::file::path & path = listing.insert_at(0, "desktop://");

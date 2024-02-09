@@ -12,7 +12,7 @@
 #undef __spin_namespace
 
 
-#if defined(__MM)
+#if defined(__OBJECTIVE_CPP__)
 
 
 //#include "aqua/include/_c_bridge.h"
@@ -26,7 +26,7 @@
 #include "aqua/include/_.h"
 
 
-#elif defined(__M)
+#elif defined(__OBJECTIVE_C__)
 
 
 //#include "aqua/include/_c.h"

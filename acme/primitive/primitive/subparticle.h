@@ -34,14 +34,13 @@ public:
 
 
    void * m_pAllocation = nullptr;
-   mutable ::acme::context *           m_pcontext;
 
    ::interlocked_count                 m_countReference;
 
 #if REFERENCING_DEBUGGING
    subparticle();
 #else
-   subparticle() : m_pcontext(nullptr), m_countReference(1) {}
+   subparticle() : m_countReference(1) {}
 #endif
 
 

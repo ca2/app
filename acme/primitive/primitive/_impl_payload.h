@@ -540,7 +540,7 @@ inline T & payload::get_cast(T * pDefault)
 
 
 template < class T >
-inline pointer < T > payload::cast()
+inline ptr < T > payload::cast()
 {
 
    if (m_etype == e_type_payload_pointer && m_ppayload != nullptr)

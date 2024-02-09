@@ -1856,7 +1856,7 @@ format(const std::format_string<Args...> fmt, Args&&... args) noexcept
 
 
 template < typename ITERATOR_TYPE >
-inline const_string_range < ITERATOR_TYPE > string_get_word(const scoped_string_base < ITERATOR_TYPE > & scopedstr, ITERATOR_TYPE * pfound)
+inline const_string_range < ITERATOR_TYPE > string_get_word_separated_by_spaces(const scoped_string_base < ITERATOR_TYPE > & scopedstr, ITERATOR_TYPE * pfound)
 {
 
    auto find = scopedstr.find_first_whitespace();

@@ -860,6 +860,7 @@
     <ClInclude Include="parallelization\task_message_queue.h" />
     <ClInclude Include="platform\allocator.h" />
     <ClInclude Include="platform\c.h" />
+    <ClInclude Include="platform\get_file_extension_mime_type.h" />
     <ClInclude Include="platform\reference_referer.h" />
     <ClInclude Include="platform\referencing_debugging.h" />
     <ClInclude Include="platform\reference_item.h" />
@@ -1211,6 +1212,7 @@
     <ClCompile Include="platform\factory_function.cpp" />
     <ClCompile Include="platform\fixed_alloc.cpp" />
     <ClCompile Include="platform\flags.cpp" />
+    <ClCompile Include="platform\get_file_extension_mime_type.cpp" />
     <ClCompile Include="platform\hyperlink.cpp" />
     <ClCompile Include="platform\implementable.cpp" />
     <ClCompile Include="platform\ini.cpp" />
@@ -1338,7 +1340,7 @@
     <ClCompile Include="primitive\primitive\match.cpp" />
     <ClCompile Include="primitive\primitive\payload.cpp" />
     <ClCompile Include="primitive\primitive\read_only_memory.cpp" />
-    <ClCompile Include="primitive\primitive\referenceable.cpp" />
+    <ClCompile Include="primitive\primitive\subparticle.cpp" />
     <ClCompile Include="primitive\primitive\url.cpp" />
     <ClCompile Include="primitive\primitive\url_domain.cpp" />
     <ClCompile Include="primitive\primitive\work.cpp" />

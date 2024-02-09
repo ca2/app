@@ -5,7 +5,7 @@
 #include "acme/primitive/collection/string_array.h"
 
 
-class get_file_extension_mime_type :
+class CLASS_DECL_ACME get_file_extension_mime_type :
    virtual public particle
 {
 public:

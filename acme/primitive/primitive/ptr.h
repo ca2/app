@@ -62,7 +62,34 @@ public:
       
    }
    
-   
+   /// consumes a referer
+   template < typename TYPE2 >
+   ptr(TYPE2 * p)
+   {
+
+      if (p)
+      {
+
+#if REFERENCING_DEBUGGING
+         m_preferer = ::allocator::defer_get_referer(p, { this, __FUNCTION_FILE_LINE__ });
+#endif
+         p->increment_reference_count();
+
+         m_p = dynamic_cast < TYPE * > (p);
+
+      }
+      else
+      {
+
+         m_p = nullptr;
+
+#if REFERENCING_DEBUGGING
+         m_preferer = nullptr;
+#endif
+      }
+
+   }
+
    /// consumes a referer
    ptr(const ptr & ptr)
    {
@@ -351,6 +378,39 @@ public:
    
 
    operator u32hash() const { return { (::u32)(::uptr)m_p }; }
+
+
+   inline bool is_null() const
+   {
+
+      return ::is_null(this) || ::is_null(m_p);
+
+   }
+
+
+   inline bool is_set() const
+   {
+
+      return !is_null() && m_p->is_set();
+
+   }
+
+
+   inline bool ok() const
+   {
+
+      return is_set() && m_p->is_ok();
+
+   }
+
+
+   inline bool nok() const
+   {
+
+      return !ok();
+
+   }
+
 
 };
 

@@ -5382,7 +5382,16 @@ namespace apex
          if(pgetfileextensionmimetype)
          {
 
-            os_context()->set_file_extension_mime_type(pgetfileextensionmimetype);
+            try
+            {
+
+               os_context()->set_file_extension_mime_type(pgetfileextensionmimetype);
+
+            }
+            catch (...)
+            {
+
+            }
 
          }
 

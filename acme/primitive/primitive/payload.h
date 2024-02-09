@@ -1115,19 +1115,19 @@ public:
 
 
    template < class T >
-   ::pointer< T > cast(T * pDefault) const
+   ::ptr< T > cast(T * pDefault) const
    {
       return ((payload *)this)->cast < T >(pDefault);
    }
 
 
    template < class T >
-   ::pointer< T > cast();
+   ::ptr< T > cast();
 
-   ::subparticle * subarticle()
+   ::subparticle * subparticle()
    {
       if (m_etype == e_type_element) { return m_p; }
-      return cast < ::particle >();
+      return cast < ::subparticle >();
    }
 
    ::subparticle * subparticle() const { return ((payload *)this)->subparticle(); }

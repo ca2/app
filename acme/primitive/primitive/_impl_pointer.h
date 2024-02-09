@@ -1361,7 +1361,7 @@ inline pointer < T > ::pointer(ptr < T2 > && t)
 #endif
          t.m_p = nullptr;
 
-         t.m_preferer = nullptr;
+         //t.m_preferer = nullptr;
 
       }
 
@@ -1514,7 +1514,7 @@ inline pointer < T >& pointer < T > ::operator = (ptr < T2 > && t)
 #endif
          t.m_p = nullptr;
 
-         t.m_preferer = nullptr;
+         //t.m_preferer = nullptr;
 
       }
 

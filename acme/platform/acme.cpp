@@ -250,7 +250,7 @@ namespace acme
    acme::acme()
    {
 
-      //m_pheapmanagement = nullptr;
+      m_pheapmanagement = nullptr;
 
 //      s_pacme = this;
 

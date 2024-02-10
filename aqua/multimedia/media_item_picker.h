@@ -13,7 +13,7 @@ namespace aqua
 
 
       void * m_pPlatformMediaItemPicker;
-      ::media_item_picker_callback * m_ppickercallback;
+      ::pointer < ::aqua::media_item_picker_callback > m_ppickercallback;
 
 
       media_item_picker();
@@ -22,7 +22,7 @@ namespace aqua
 
       virtual void set_windowing_window(::windowing::window * pwindow);
 
-      virtual void set_callback(::media_item_picker_callback * ppickercallback);
+      virtual void set_callback(::aqua::media_item_picker_callback * ppickercallback);
 
 
       virtual void pick_media(const char * pszUTType);

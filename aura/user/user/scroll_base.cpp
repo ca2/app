@@ -574,7 +574,7 @@ namespace user
          //if (sizeTotal.cx() < sizeWindow.cx())
          {
 
-            rectangle.left() = 0.;
+            rectangle.left() = 0;
 
          }
          //else
@@ -587,7 +587,7 @@ namespace user
          //if (sizeTotal.cy() < sizeWindow.cy())
          {
 
-            rectangle.top() = 0.;
+            rectangle.top() = 0;
 
          }
          //else

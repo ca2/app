@@ -51,11 +51,12 @@ class audio;
 class multimedia;
 class media_item;
 class media_item_picker;
+class media_item_picker_callback;
 
 
 }
 
-class media_item_picker_callback;
+//class media_item_picker_callback;
 struct platform_media_item_t;
 // Opaque type for:
 // Apple : MPMediaItem

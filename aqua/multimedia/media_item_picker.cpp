@@ -1,7 +1,10 @@
 // Created by camilo on 2024-02-10 00:31 <3ThomasBorregaardSorensen!!
 #include "framework.h"
+#include "media_item.h"
 #include "media_item_picker.h"
+#include "media_item_picker_callback.h"
 #include "acme/exception/interface_only.h"
+
 
 
 namespace aqua
@@ -11,7 +14,7 @@ namespace aqua
    media_item_picker::media_item_picker()
    {
    
-      m_ppickercallback = nullptr;
+      //m_ppickercallback = nullptr;
    
    }
 
@@ -31,7 +34,7 @@ namespace aqua
    }
    
 
-   void media_item_picker::set_callback(::media_item_picker_callback * ppickercallback)
+   void media_item_picker::set_callback(::aqua::media_item_picker_callback * ppickercallback)
    {
 
       m_ppickercallback = ppickercallback;
@@ -63,7 +66,7 @@ namespace aqua
 
       pmediaitem->attach(pplatformediaitem);
 
-      m_pcallback->did_pick_media_item(pmediaitem);
+      m_ppickercallback->did_pick_media_item(pmediaitem);
 
    }
 

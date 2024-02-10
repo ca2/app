@@ -2328,6 +2328,16 @@ void particle::destroy_os_data()
 }
 
 
+void * particle::new_object(const char * psz)
+{
+   
+   throw interface_only();
+   
+   return nullptr;
+   
+}
+
+
 void particle::write_to_stream(::binary_stream & stream)
 {
 

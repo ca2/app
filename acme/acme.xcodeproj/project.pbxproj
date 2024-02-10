@@ -1295,8 +1295,8 @@
 		9A75514F2B21715100FFB669 /* primitive.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A75513D2B21714F00FFB669 /* primitive.cpp */; };
 		9A7551502B21715100FFB669 /* _SI.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A75513E2B21715000FFB669 /* _SI.h */; };
 		9A7551512B21715100FFB669 /* _SI.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A75513E2B21715000FFB669 /* _SI.h */; };
-		9A7551522B21715100FFB669 /* particle_flags.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A75513F2B21715000FFB669 /* particle_flags.h */; };
-		9A7551532B21715100FFB669 /* particle_flags.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A75513F2B21715000FFB669 /* particle_flags.h */; };
+		9A7551522B21715100FFB669 /* subparticle_flags.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A75513F2B21715000FFB669 /* subparticle_flags.h */; };
+		9A7551532B21715100FFB669 /* subparticle_flags.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A75513F2B21715000FFB669 /* subparticle_flags.h */; };
 		9A7551552B21729100FFB669 /* malloc_memory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7551542B21729100FFB669 /* malloc_memory.cpp */; };
 		9A7551562B21729100FFB669 /* malloc_memory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7551542B21729100FFB669 /* malloc_memory.cpp */; };
 		9A7551572B217F9F00FFB669 /* call_stack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68AC2825114432008DABD2 /* call_stack.cpp */; };
@@ -2450,7 +2450,7 @@
 		9AC100C02B6AC9BD0053DB45 /* adaptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0843AF29366D8D009F7FF4 /* adaptor.h */; };
 		9AC100C12B6AC9BD0053DB45 /* _platform.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A5942511442F008DABD2 /* _platform.h */; };
 		9AC100C22B6AC9BD0053DB45 /* factory_function.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE6DE5B296216B9008A1335 /* factory_function.h */; };
-		9AC100C32B6AC9BD0053DB45 /* particle_flags.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A75513F2B21715000FFB669 /* particle_flags.h */; };
+		9AC100C32B6AC9BD0053DB45 /* subparticle_flags.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A75513F2B21715000FFB669 /* subparticle_flags.h */; };
 		9AC100C42B6AC9BD0053DB45 /* library.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A787B59264BB0FC003DF8A0 /* library.h */; };
 		9AC100C52B6AC9BD0053DB45 /* _impl_write_text_stream.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A3BFBB729C83392005DE2BF /* _impl_write_text_stream.h */; };
 		9AC100C62B6AC9BD0053DB45 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0840E729348AAB009F7FF4 /* _.h */; };
@@ -5326,7 +5326,7 @@
 		9A75513C2B21714F00FFB669 /* transfer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = transfer.h; sourceTree = "<group>"; };
 		9A75513D2B21714F00FFB669 /* primitive.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = primitive.cpp; sourceTree = "<group>"; };
 		9A75513E2B21715000FFB669 /* _SI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _SI.h; sourceTree = "<group>"; };
-		9A75513F2B21715000FFB669 /* particle_flags.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = particle_flags.h; sourceTree = "<group>"; };
+		9A75513F2B21715000FFB669 /* subparticle_flags.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = subparticle_flags.h; sourceTree = "<group>"; };
 		9A7551542B21729100FFB669 /* malloc_memory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = malloc_memory.cpp; sourceTree = "<group>"; };
 		9A7551612B218CF600FFB669 /* acme.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = acme.cpp; sourceTree = "<group>"; };
 		9A7551642B21946000FFB669 /* simple_memory_allocate.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = simple_memory_allocate.cpp; sourceTree = "<group>"; };
@@ -7068,7 +7068,6 @@
 				9A78618C264B9093003DF8A0 /* object.h */,
 				9A68A64D2511442F008DABD2 /* paged_memory.cpp */,
 				9A68A65D2511442F008DABD2 /* paged_memory.h */,
-				9A75513F2B21715000FFB669 /* particle_flags.h */,
 				9A0842CA2935EB39009F7FF4 /* particle.cpp */,
 				9A0842CB2935EB39009F7FF4 /* particle.h */,
 				9A78617A264B908D003DF8A0 /* payload.cpp */,
@@ -7090,8 +7089,9 @@
 				9A0842CD2935EB3E009F7FF4 /* scope_stack.h */,
 				9A1625ED26EFCC34003D9CB9 /* set_bit.h */,
 				9A68A6612511442F008DABD2 /* stick.h */,
-				9A7551362B21714A00FFB669 /* targeted_unit.h */,
+				9A75513F2B21715000FFB669 /* subparticle_flags.h */,
 				9A75513C2B21714F00FFB669 /* transfer.h */,
+				9A7551362B21714A00FFB669 /* targeted_unit.h */,
 				9A0842D12935EB40009F7FF4 /* tuple.h */,
 				9A68A6A32511442F008DABD2 /* type.cpp */,
 				9A68A6342511442F008DABD2 /* type.h */,
@@ -8246,7 +8246,7 @@
 				9A0843B629366D8F009F7FF4 /* adaptor.h in Headers */,
 				9A68AD9E25114434008DABD2 /* _platform.h in Headers */,
 				9AE6DE61296216BA008A1335 /* factory_function.h in Headers */,
-				9A7551522B21715100FFB669 /* particle_flags.h in Headers */,
+				9A7551522B21715100FFB669 /* subparticle_flags.h in Headers */,
 				9AC107662B6AE98D0053DB45 /* nsimpact.h in Headers */,
 				9A787B62264BB0FD003DF8A0 /* library.h in Headers */,
 				9A3BFBC629C83393005DE2BF /* _impl_write_text_stream.h in Headers */,
@@ -9251,7 +9251,7 @@
 				9AC100C02B6AC9BD0053DB45 /* adaptor.h in Headers */,
 				9AC100C12B6AC9BD0053DB45 /* _platform.h in Headers */,
 				9AC100C22B6AC9BD0053DB45 /* factory_function.h in Headers */,
-				9AC100C32B6AC9BD0053DB45 /* particle_flags.h in Headers */,
+				9AC100C32B6AC9BD0053DB45 /* subparticle_flags.h in Headers */,
 				9AC100C42B6AC9BD0053DB45 /* library.h in Headers */,
 				9AC100C52B6AC9BD0053DB45 /* _impl_write_text_stream.h in Headers */,
 				9AC100C62B6AC9BD0053DB45 /* _.h in Headers */,
@@ -11047,7 +11047,7 @@
 				9A75514B2B21715100FFB669 /* _unit.h in Headers */,
 				9AA801E227BA72A6008FF9AA /* aaa_node2.h in Headers */,
 				9A892E0126CD9062008D6412 /* check.h in Headers */,
-				9A7551532B21715100FFB669 /* particle_flags.h in Headers */,
+				9A7551532B21715100FFB669 /* subparticle_flags.h in Headers */,
 				9AD690EB251A753A00C0EBD7 /* _defer.h in Headers */,
 				9A787B95264BB13F003DF8A0 /* timer_item.h in Headers */,
 				9AD690EC251A753A00C0EBD7 /* iterable.h in Headers */,

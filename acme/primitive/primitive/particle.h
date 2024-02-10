@@ -674,6 +674,10 @@ public:
 
 
 #endif
+   
+   
+   virtual void * new_object(const char * psz);
+
 
    //virtual void to_string(string_exchange & str) const;
 

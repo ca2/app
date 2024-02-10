@@ -34,7 +34,7 @@ namespace nano
       ::pointer<nano_font>pfont(e_create, pparticle, nullptr);
 
       pfont->m_iFontSize = iPoint;
-      pfont->m_strFontName = pparticle->acmenode()->font_name(efont);
+      pfont->m_strFontName = pparticle->node()->font_name(efont);
       pfont->m_bBold = bBold;
 
       return pfont;

@@ -18,7 +18,7 @@ wait_cursor::wait_cursor(::particle * pparticle)
 
    //}
 
-   auto pnode = acmenode()->m_pauranode;
+   auto pnode = node()->m_pauranode;
 
    pnode->BeginWaitCursor();
 
@@ -28,7 +28,7 @@ wait_cursor::wait_cursor(::particle * pparticle)
  wait_cursor::~wait_cursor()
 {
 
-    auto pnode = acmenode()->m_pauranode;
+    auto pnode = node()->m_pauranode;
 
     pnode->EndWaitCursor();
 
@@ -38,7 +38,7 @@ wait_cursor::wait_cursor(::particle * pparticle)
 void wait_cursor::restore()
 {
 
-   auto pnode = acmenode()->m_pauranode;
+   auto pnode = node()->m_pauranode;
 
 	pnode->RestoreWaitCursor();
 

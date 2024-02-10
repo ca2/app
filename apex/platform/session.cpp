@@ -1056,7 +1056,7 @@ namespace apex
 
          bool bPressed = false;
 
-         if (acmenode()->m_papexnode->is_key_pressed(&bPressed, ekey))
+         if (node()->m_papexnode->is_key_pressed(&bPressed, ekey))
          {
 
             return bPressed;

@@ -219,7 +219,7 @@ namespace user
 
 //#ifdef WINDOWS_DESKTOP
 //
-//      acmenode()->defer_co_initialize_ex(false);
+//      node()->defer_co_initialize_ex(false);
 //
 //#endif
 

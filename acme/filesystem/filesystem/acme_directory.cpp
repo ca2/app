@@ -366,7 +366,7 @@ string acme_directory::system_short_name()
          strAppId,
          strPlatform,
          strConfiguration) 
-      / "time" / acmenode()->time_binary_platform(strPlatform) / strConfiguration;
+      / "time" / node()->time_binary_platform(strPlatform) / strConfiguration;
 
 }
 
@@ -940,10 +940,9 @@ bool acme_directory::defer_enumerate_media_library(::file::listing& listing)
 bool acme_directory::defer_enumerate_protocol(::file::listing& listing)
 {
    
-   return acmenode()->defer_enumerate_protocol(listing);
+   return node()->defer_enumerate_protocol(listing);
    
 }
-
 
 
 ::media_library::item* acme_directory::media_library_item(const ::file::path& path)

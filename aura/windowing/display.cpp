@@ -1819,7 +1819,7 @@ namespace windowing
    bool display::impl_set_wallpaper(::index iMonitorIndex, string strWallpaper)
    {
 
-      if(acmenode()->set_wallpaper(iMonitorIndex, strWallpaper, this))
+      if(node()->set_wallpaper(iMonitorIndex, strWallpaper, this))
       {
 
          return true;

@@ -279,7 +279,7 @@ void nano_window::create_drawing_objects()
 
       m_pfont->m_iFontSize = m_iFontSize;
 
-      m_pfont->m_strFontName = acmenode()->font_name(m_efont);
+      m_pfont->m_strFontName = node()->font_name(m_efont);
 
    }
 
@@ -755,7 +755,7 @@ void nano_window::display_temporary_file_with_text(const ::string & str)
 
    auto pathDetails = acmefile()->time_put_contents(pathFolder, "details", "txt", str);
 
-   acmenode()->shell_open(pathDetails, "");
+   node()->shell_open(pathDetails, "");
 
 }
 

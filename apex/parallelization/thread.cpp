@@ -4459,7 +4459,7 @@ bool thread::process_message()
       else if(session())
       {
 
-         pmessage = acmenode()->m_papexnode->get_message(&message);
+         pmessage = node()->m_papexnode->get_message(&message);
 
       }
 

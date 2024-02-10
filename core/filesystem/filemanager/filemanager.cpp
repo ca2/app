@@ -565,7 +565,7 @@ namespace filemanager
 
          {
 
-            auto pmutexGlobal = acmenode()->create_global_named_mutex(this, false, "ca2-filemanagers");
+            auto pmutexGlobal = node()->create_global_named_mutex(this, false, "ca2-filemanagers");
 
             synchronous_lock synchronouslock(pmutexGlobal);
 

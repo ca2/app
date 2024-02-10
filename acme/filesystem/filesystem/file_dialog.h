@@ -41,7 +41,7 @@ namespace file
 //      void start()
 //      {
 //         
-//         acmenode()->operating_system_file_dialog(this);
+//         node()->operating_system_file_dialog(this);
 //         
 //      }
       

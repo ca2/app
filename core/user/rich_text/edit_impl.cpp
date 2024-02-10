@@ -232,7 +232,7 @@ namespace user
 
          information() << "on_set_keyboard_focus";
 
-         information() << acmenode()->get_call_stack_trace();
+         information() << node()->get_call_stack_trace();
 
          //UNREFERENCED_PARAMETER(pmessage);
 

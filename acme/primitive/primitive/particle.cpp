@@ -485,10 +485,10 @@ void particle::on_initialize_particle()
 }
 
 
-::acme::node * particle::acmenode() const
+::acme::node * particle::node() const
 {
 
-   return m_pcontext->acmenode();
+   return m_pcontext->node();
 
 }
 
@@ -561,7 +561,7 @@ class ::write_text::write_text * particle::write_text() const
 }
 
 
-::acme::context* particle::acmecontext() const
+::acme::context* particle::context() const
 {
 
    return m_pcontext;
@@ -2486,7 +2486,7 @@ void particle::task_post(const ::procedure & procedure)
 void particle::user_send(const ::procedure & procedure)
 {
 
-   acmenode()->user_send(procedure);
+   node()->user_send(procedure);
 
 }
 
@@ -2494,7 +2494,7 @@ void particle::user_send(const ::procedure & procedure)
 void particle::user_post(const ::procedure & procedure)
 {
 
-   acmenode()->user_post(procedure);
+   node()->user_post(procedure);
 
 }
 

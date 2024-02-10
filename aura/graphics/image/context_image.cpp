@@ -39,7 +39,7 @@ void context_image::initialize(::particle * pparticle)
    ::object::initialize(pparticle);
 
 
-   m_pparticleImageSynchronization = acmenode()->create_mutex();
+   m_pparticleImageSynchronization = node()->create_mutex();
 
    //if (!estatus)
    //{

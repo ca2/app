@@ -11,7 +11,7 @@ namespace write_text
    string font::get_sample_text(enum_character_set echaracterset)
    {
 
-      return acmenode()->get_character_set_default_sample_text(echaracterset);
+      return node()->get_character_set_default_sample_text(echaracterset);
 
    }
 

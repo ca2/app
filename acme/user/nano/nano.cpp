@@ -27,7 +27,7 @@ namespace nano
    //pointer< ::sequencer < ::conversation > > nano::nano()->message_box(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails)
    //{
 
-   //   auto psequencer = acmenode()->nano()->message_box(strMessage, strTitle, emessagebox, strDetails);
+   //   auto psequencer = node()->nano()->message_box(strMessage, strTitle, emessagebox, strDetails);
 
    //   return psequencer;
 
@@ -37,7 +37,7 @@ namespace nano
    //pointer< ::sequencer < ::conversation > > nano::nano()->message_console(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails)
    //{
 
-   //   auto psequencer = acmenode()->nano()->message_console(strMessage, strTitle, emessagebox, strDetails);
+   //   auto psequencer = node()->nano()->message_console(strMessage, strTitle, emessagebox, strDetails);
 
    //   return psequencer;
 
@@ -94,7 +94,7 @@ namespace nano
 
       }
 
-      auto psequencer = acmenode()->create_message_box_sequencer(
+      auto psequencer = node()->create_message_box_sequencer(
          strMessage,
          strTitle,
          emessagebox,
@@ -108,7 +108,7 @@ namespace nano
    pointer< ::sequencer < ::conversation > > nano::message_console(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails)
    {
 
-      auto psequencer = acmenode()->create_message_sequencer(strMessage, strTitle, emessagebox, strDetails);
+      auto psequencer = node()->create_message_sequencer(strMessage, strTitle, emessagebox, strDetails);
 
       return psequencer;
 
@@ -120,7 +120,7 @@ namespace nano
 
       string strExceptionDetails = exception.get_consolidated_details(this);
 
-      auto psequencer = acmenode()->create_message_sequencer(strMessage, strTitle, emessagebox, strDetails + "\n" + strExceptionDetails);
+      auto psequencer = node()->create_message_sequencer(strMessage, strTitle, emessagebox, strDetails + "\n" + strExceptionDetails);
 
       return psequencer;
 

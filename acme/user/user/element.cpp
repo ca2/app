@@ -4659,7 +4659,7 @@ namespace user
    void element::pick_single_file(const ::array < ::file::file_dialog_filter > & filedialogfiltera, const ::function < void(const ::file::path &) > & function, bool bSave)
    {
 
-      auto pfiledialog = acmenode()->node_file_dialog();
+      auto pfiledialog = node()->node_file_dialog();
 
       pfiledialog->m_bSave = bSave;
 
@@ -4693,7 +4693,7 @@ namespace user
    void element::pick_multiple_file(const ::array < ::file::file_dialog_filter > & filedialogfiltera, const ::function < void(const ::file::path_array &) > & function)
    {
 
-      auto pfiledialog = acmenode()->node_file_dialog();
+      auto pfiledialog = node()->node_file_dialog();
 
       pfiledialog->m_function = [function](auto pdialog)
       {
@@ -4723,7 +4723,7 @@ namespace user
    void element::pick_single_folder(const ::function < void(const ::file::path &) > & function)
    {
 
-      auto pfiledialog = acmenode()->node_file_dialog();
+      auto pfiledialog = node()->node_file_dialog();
 
       pfiledialog->m_function = [function](auto pdialog)
       {

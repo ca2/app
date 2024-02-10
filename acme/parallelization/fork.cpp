@@ -77,7 +77,7 @@ forking_count_task::forking_count_task(::particle * pparticle, index iOrder, ind
 void forking_count_task::construct()
 {
 
-   m_uThreadAffinityMask = (::uptr)acmenode()->translate_processor_affinity((int)m_iOrder);
+   m_uThreadAffinityMask = (::uptr)node()->translate_processor_affinity((int)m_iOrder);
 
 }
 

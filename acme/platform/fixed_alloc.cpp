@@ -158,7 +158,7 @@ fixed_alloc::fixed_alloc(::heap::allocator * pallocator,::u32 nAllocSize, ::u32 
 //#if defined(UNIVERSAL_WINDOWS) || defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
 //   i32 iShareCount = 0;
 //#else
-//   i32 iShareCount = system()->acmenode()->get_current_process_maximum_affinity() + 1;
+//   i32 iShareCount = system()->node()->get_current_process_maximum_affinity() + 1;
 //#endif
 
    if(iShareCount <= 0)

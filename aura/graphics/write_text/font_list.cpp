@@ -591,7 +591,7 @@ namespace write_text
                   && pbox->m_pfont->get_character_set(pgraphics) != ::e_character_set_default))
             {
 
-               strText = acmenode()->get_character_set_default_sample_text(pbox->m_pfont->m_echaracterset);
+               strText = node()->get_character_set_default_sample_text(pbox->m_pfont->m_echaracterset);
 
                if (strText.is_empty())
                {

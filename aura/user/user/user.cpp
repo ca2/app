@@ -93,7 +93,7 @@ namespace user
       ::acme::department::initialize(pparticle);
 
 
-      m_pmutexUser = acmenode()->create_mutex();
+      m_pmutexUser = node()->create_mutex();
 
       //g_pmutexUser = m_pmutexUser;
 

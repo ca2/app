@@ -97,19 +97,19 @@ namespace text
       inline auto& operator[](const ::atom& atom)const { return m_map[atom]; }
 
       void set(const ::atom & atom, const ::atom & idLocale, const ::atom & idSchema, const ::scoped_string & scopedstr);
-      string get(const context * pcontext, const ::atom & atom, bool bIdAsDefaultValue = true) const;
-      string get(const context * pcontext,const ::atom & atom,const ::atom & idLocale,const ::atom & idSchema,bool bIdAsDefaultValue = true) const;
-      void get(string_array & stra, const context * pcontext, const ::atom & atom) const;
-      void _get(string_array & stra, const context * pcontext, const ::atom & atom) const ;
+      string get(const ::text::context * pcontext, const ::atom & atom, bool bIdAsDefaultValue = true) const;
+      string get(const ::text::context * pcontext,const ::atom & atom,const ::atom & idLocale,const ::atom & idSchema,bool bIdAsDefaultValue = true) const;
+      void get(string_array & stra, const ::text::context * pcontext, const ::atom & atom) const;
+      void _get(string_array & stra, const ::text::context * pcontext, const ::atom & atom) const ;
 
       bool load(const ::scoped_string & scopedstrBaseDir);
       bool load_uistr_file(const ::atom & idLocale, const ::atom & idSchema, ::file::file * pfile);
 
       string body(const ::scoped_string & scopedstr);
 
-      bool matches(const context * pcontext, const ::atom & atom, const ::scoped_string & scopedstr) const;
-      bool begins(const context * pcontext, const ::string & str, const ::atom & atom) const;
-      bool begins_eat(const context * pcontext, string & str, const ::atom & atom) const;
+      bool matches(const ::text::context * pcontext, const ::atom & atom, const ::scoped_string & scopedstr) const;
+      bool begins(const ::text::context * pcontext, const ::string & str, const ::atom & atom) const;
+      bool begins_eat(const ::text::context * pcontext, string & str, const ::atom & atom) const;
 
 
    };

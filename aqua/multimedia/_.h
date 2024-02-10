@@ -49,9 +49,15 @@ namespace aqua
 
 class audio;
 class multimedia;
+class media_item;
 
 
 }
+
+
+struct platform_media_item_t;
+// Opaque type for:
+// Apple : MPMediaItem
 
 
 namespace multimedia

@@ -21,13 +21,13 @@ namespace regular_expression
    public:
 
 
-      void *                     m_pRegularExpression;
+      void *                                       m_pRegularExpression;
 
-      ::pointer<context>        m_pcontext;
+      ::pointer<::regular_expression::context>     m_pcontext;
 
-      string                     m_str;
+      string                                       m_str;
 
-      int                        m_iRangeCount;
+      int                                          m_iRangeCount;
 
 
       regular_expression();

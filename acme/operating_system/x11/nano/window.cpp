@@ -149,7 +149,7 @@ namespace x11
    bool nano_window::get_dark_mode()
    {
 
-      return acmenode()->dark_mode();
+      return node()->dark_mode();
 
    }
 

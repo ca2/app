@@ -1746,7 +1746,7 @@ namespace user
 
       }
 
-      //information() << "set_need_layout : " << acmenode()->get_callstack();
+      //information() << "set_need_layout : " << node()->get_callstack();
 
    }
 
@@ -1864,7 +1864,7 @@ namespace user
 
       //   }
 
-      // information() << acmenode()->get_callstack();
+      // information() << node()->get_callstack();
 
       //}
 
@@ -3233,7 +3233,7 @@ namespace user
 
       information() << "interaction_layout::display e_display_iconic";
 
-      information() << acmenode()->get_call_stack_trace();
+      information() << node()->get_call_stack_trace();
 
 #endif
 
@@ -7603,7 +7603,7 @@ namespace user
 
 #else
 
-      acmenode()->user_post(procedure);
+      node()->user_post(procedure);
 
 #endif
 
@@ -7639,7 +7639,7 @@ namespace user
 
 //#else
 //
-//      acmenode()->user_send(procedure);
+//      node()->user_send(procedure);
 //
 //#endif
 
@@ -7666,7 +7666,7 @@ namespace user
 
 #else
 
-      acmenode()->user_post(procedure);
+      node()->user_post(procedure);
 
 #endif
 
@@ -28248,7 +28248,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
    //   bool save)
    //{
    //
-   //      acmenode()->pick_single_file(oswindow(),
+   //      node()->pick_single_file(oswindow(),
    //                                   filetypes,
    //                                   function,
    //                                   save);
@@ -28261,7 +28261,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
    //   const ::function < void(const ::file::path_array &) >& function)
    //{
    //
-   //   acmenode()->pick_multiple_file(oswindow(),
+   //   node()->pick_multiple_file(oswindow(),
    //                                filetypes,
    //                                function);
    //
@@ -28274,7 +28274,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
    //                        //,       bool save);
    //{
    //
-   //   acmenode()->pick_single_folder(oswindow(),
+   //   node()->pick_single_folder(oswindow(),
    //                                function);
    //
    //}

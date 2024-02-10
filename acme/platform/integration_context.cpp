@@ -50,7 +50,7 @@ namespace integration
 
       ::particle::initialize(pparticle);
 
-      m_pmutexLines = acmenode()->create_mutex();
+      m_pmutexLines = node()->create_mutex();
 
    }
 
@@ -242,8 +242,8 @@ namespace integration
 //
 //      };
 //
-      //auto iExitCode = acmenode()->command_system(scopedstrCommand, ::std_inline_log());
-      auto iExitCode = acmenode()->command_system(scopedstrCommand, 12_h);
+      //auto iExitCode = node()->command_system(scopedstrCommand, ::std_inline_log());
+      auto iExitCode = node()->command_system(scopedstrCommand, 12_h);
       
       
       if (iExitCode != 0)
@@ -352,7 +352,9 @@ namespace integration
 
             information() << "Downloading \"" << url << "\"...";
 
-            acmecontext()->http_download(pmemoryFileTarGz, url, set);
+            ::particle * pparticle = this;
+
+            pparticle->context()->http_download(pmemoryFileTarGz, url, set);
 
             //auto pathTar = m_pathFolder / m_path / (m_strName + ".tar");
 

@@ -327,6 +327,9 @@
     <ClInclude Include="platform\tinyexpr.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
+    <ClInclude Include="multimedia\media_item.h">
+      <Filter>Header Files\multimedia</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -457,6 +460,9 @@
     </ClCompile>
     <ClCompile Include="platform\tinyexpr.cpp">
       <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="multimedia\media_item.cpp">
+      <Filter>Header Files\multimedia</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

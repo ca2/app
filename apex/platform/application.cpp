@@ -407,7 +407,7 @@ namespace apex
 //
 //#else
 //
-      acmenode()->application_handle(id_application_menu_update, nullptr);
+      node()->application_handle(id_application_menu_update, nullptr);
 //
 //#endif
 
@@ -2268,7 +2268,7 @@ namespace apex
       }
       //return true;
 
-      //acmenode()->m_papexnode->on_start_application(this);
+      //node()->m_papexnode->on_start_application(this);
 
       on_start_application();
 
@@ -2299,7 +2299,7 @@ namespace apex
    void application::on_create_app_shortcut()
    {
 
-      acmenode()->m_papexnode->on_create_app_shortcut(this);
+      node()->m_papexnode->on_create_app_shortcut(this);
 
    }
 
@@ -2307,7 +2307,7 @@ namespace apex
    void application::create_app_shortcut()
    {
 
-      acmenode()->create_app_shortcut(this);
+      node()->create_app_shortcut(this);
 
    }
 
@@ -3620,7 +3620,7 @@ namespace apex
    //   if (!pexclusive)
    //   {
 
-   //      auto pexclusiveNew = acmenode()->get_exclusive(this, strId ADD_PARAM_SEC_ATTRS);
+   //      auto pexclusiveNew = node()->get_exclusive(this, strId ADD_PARAM_SEC_ATTRS);
 
    //      pexclusive = pexclusiveNew;
 
@@ -3812,7 +3812,7 @@ namespace apex
    bool application::erase_exclusive(const ::string & strId)
    {
 
-      auto psecurityattributes = acmenode()->get_application_exclusivity_security_attributes();
+      auto psecurityattributes = node()->get_application_exclusivity_security_attributes();
 
       bool bErased = exclusive_erase(strId);
 
@@ -4643,7 +4643,7 @@ namespace apex
    string application::get_executable_title()
    {
 
-      return acmenode()->executable_title_from_appid(get_executable_appid());
+      return node()->executable_title_from_appid(get_executable_appid());
 
    }
 
@@ -5357,7 +5357,7 @@ namespace apex
 
       system()->m_pacmenode->m_papexnode->set_last_run_application_path(strAppId);
 
-      acmenode()->m_papexnode->on_start_application(this);
+      node()->m_papexnode->on_start_application(this);
 
 //      if (!os_on_start_application())
 //      {
@@ -6478,7 +6478,7 @@ namespace apex
       ::file::path strFile = dir()->install() / strRelative;
       ::file::path strUrl(::e_path_url);
 
-      if (acmenode()->is_debug_build())
+      if (node()->is_debug_build())
       {
          strUrl = "http://basis-server.ca2.software/api/spaignition/download?authnone&configuration=basis&stage=";
       }
@@ -6918,7 +6918,7 @@ namespace apex
 
       {
 
-         auto pmutex = acmenode()->get_install_mutex(this, acmenode()->process_platform_name(), "");
+         auto pmutex = node()->get_install_mutex(this, node()->process_platform_name(), "");
 
          if (pmutex->has_already_exists_flag())
          {
@@ -6956,11 +6956,11 @@ namespace apex
 
          string strPlatformName;
 
-         strPlatformName = acmenode()->process_platform_name();
+         strPlatformName = node()->process_platform_name();
 
          string strConfigurationName;
 
-         strConfigurationName = acmenode()->process_configuration_name();
+         strConfigurationName = node()->process_configuration_name();
 
          pathFolder = acmedirectory()->app_app(strPlatformName, strConfigurationName);
 
@@ -10120,7 +10120,7 @@ namespace apex
    bool application::exclusive_fails(const ::string & strName, security_attributes * psecurityattributes)
    {
 
-      return acmenode()->m_papexnode->exclusive_fails(this, strName, psecurityattributes);
+      return node()->m_papexnode->exclusive_fails(this, strName, psecurityattributes);
 
    }
 
@@ -10128,7 +10128,7 @@ namespace apex
    bool application::exclusive_erase(const ::string & strName)
    {
 
-      return acmenode()->m_papexnode->erase_exclusive(strName);
+      return node()->m_papexnode->erase_exclusive(strName);
 
    }
 
@@ -10136,7 +10136,7 @@ namespace apex
    void application::release_exclusive()
    {
 
-      auto papexnode = acmenode()->m_papexnode;
+      auto papexnode = node()->m_papexnode;
 
       papexnode->release_exclusive();
 

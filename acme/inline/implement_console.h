@@ -196,7 +196,7 @@ int main(int argc, char ** argv, char ** envp)
 //         strReport += "Exception has occurred:\n";
 //         strReport += exception.m_strMessage + ";\n";
 //         //strReport += "Command Line:\n";
-//         //strReport += acmenode()->get_command_line() + ";\n";
+//         //strReport += node()->get_command_line() + ";\n";
 //         strReport += exception.m_strDetails;
 //         strReport += "Callstack:\n";
 //         strReport += exception.m_strCallstack;

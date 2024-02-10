@@ -832,7 +832,7 @@ void application::init()
 void application::init_instance()
 {
    
-   acmenode()->add_application_capability(m_eapplicationcapabilitya);
+   node()->add_application_capability(m_eapplicationcapabilitya);
    
 }
 
@@ -1252,7 +1252,7 @@ void application::fill_locale_schema(::text::international::locale_schema& local
 ::enum_id application::key_command(::user::enum_key ekey, ::user::key_state * pkeystate)
 {
    
-   return acmenode()->key_command(ekey, pkeystate);
+   return node()->key_command(ekey, pkeystate);
    
 }
 

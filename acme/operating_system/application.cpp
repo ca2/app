@@ -110,7 +110,7 @@ void application::open_by_module_path(const ::scoped_string & scopedstr)
    ::file::path application::module_path()
    {
    
-      return acmenode()->process_identifier_module_path(m_processidentifier);
+      return node()->process_identifier_module_path(m_processidentifier);
       
    }
 

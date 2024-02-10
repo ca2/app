@@ -52,7 +52,7 @@ m_errorcodea(errorcodea)
 
 //#ifdef ANDROID
 //      
-//      m_strCallstack = system()->acmenode()->unwind_callstack(callstack_default_format(), iSkip);
+//      m_strCallstack = system()->node()->unwind_callstack(callstack_default_format(), iSkip);
 //
 //#else
 
@@ -63,7 +63,7 @@ m_errorcodea(errorcodea)
       if(psystem)
       {
 
-         auto pnode = psystem->acmenode();
+         auto pnode = psystem->node();
 
          if(pnode)
          {
@@ -143,7 +143,7 @@ string exception::get_consolidated_details(::particle * pparticle) const
    for(auto & errorcode : m_errorcodea)
    {
 
-      strConsolidatedDetails.append_formatf("errorcode: %lld %s", errorcode.m_iOsError, pparticle->acmenode()->get_error_code_message(errorcode).c_str());
+      strConsolidatedDetails.append_formatf("errorcode: %lld %s", errorcode.m_iOsError, pparticle->node()->get_error_code_message(errorcode).c_str());
 
       strConsolidatedDetails += "\n";
 
@@ -447,7 +447,7 @@ CLASS_DECL_ACME void exception_message_box(::particle * pparticle, ::exception &
 
    string strDetails;
 
-   auto pacmenode = pparticle->acmenode();
+   auto pacmenode = pparticle->node();
 
    auto processid = pacmenode->current_process_identifier();
 

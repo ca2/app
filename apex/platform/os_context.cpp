@@ -122,7 +122,7 @@
    ::process_identifier_array os_context::processes_identifiers()
    {
 
-      return acmenode()->processes_identifiers();
+      return node()->processes_identifiers();
 
    }
 
@@ -158,7 +158,7 @@
    void os_context::link_open(const string & strUrl, const string & strProfile)
    {
       
-      acmenode()->open_url(strUrl);
+      node()->open_url(strUrl);
 
 //      file_open(strUrl);
       //{
@@ -706,7 +706,7 @@
 
       //throw ::interface_only();
 
-      acmenode()->set_dark_mode(bDarkMode);
+      node()->set_dark_mode(bDarkMode);
 
    }
 

@@ -235,7 +235,7 @@ namespace app_integration
 
       int iExitCode = 0;
 
-         acmenode()->command_system(*pstraOutput, iExitCode, m_pathIntegration + " " + strName);
+         node()->command_system(*pstraOutput, iExitCode, m_pathIntegration + " " + strName);
 
          if (iExitCode == 0)
          {

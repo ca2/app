@@ -47,7 +47,7 @@ namespace programming
       
       ::object::initialize(pparticle);
 
-      acmenode()->integration_factory();
+      node()->integration_factory();
 
       __construct(m_pintegrationcontext);
 

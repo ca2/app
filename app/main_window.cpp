@@ -98,7 +98,7 @@ namespace app_app
 
       pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_none);
 
-      if (acmenode()->background_color().get_luminance() < 0.5)
+      if (node()->background_color().get_luminance() < 0.5)
       {
 
          pgraphics->fill_rectangle(rectangleX, argb(255, 127, 127, 127));
@@ -136,7 +136,7 @@ namespace app_app
 
       ::color::color colorInset;
 
-      if (acmenode()->background_color().get_luminance() < 0.5)
+      if (node()->background_color().get_luminance() < 0.5)
       {
 
          colorInset = argb(255, 89, 89, 89);

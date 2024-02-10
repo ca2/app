@@ -63,7 +63,7 @@ namespace windows
 
       ::i32 iExitCode = 0;
 
-      acmenode()->command_system(m_straLine, iExitCode, strCommand, e_command_system_inline_log);
+      node()->command_system(m_straLine, iExitCode, strCommand, e_command_system_inline_log);
 
       //bool bTimeout = false;
 

@@ -86,7 +86,7 @@ namespace opengl
 
       auto pwindowing = puser->windowing();
 
-      auto pnode = (::aura_posix::node *) acmenode()->m_pAuraPosix;
+      auto pnode = (::aura_posix::node *) node()->m_pAuraPosix;
 
       auto pdisplay = (Display *) pnode->_get_Display();
 
@@ -197,7 +197,7 @@ namespace opengl
 
       auto pwindowing = puser->windowing();
 
-      auto pnode = (::aura_posix::node *) acmenode()->m_pAuraPosix;
+      auto pnode = (::aura_posix::node *) node()->m_pAuraPosix;
 
       auto pdisplay = (Display *) pnode->_get_Display();
 
@@ -254,7 +254,7 @@ namespace opengl
 
       synchronous_lock synchronouslock(user_synchronization());
 
-      auto pnode = (::aura_posix::node *) acmenode()->m_pAuraPosix;
+      auto pnode = (::aura_posix::node *) node()->m_pAuraPosix;
 
       auto pdisplay = (Display *) pnode->_get_Display();
 

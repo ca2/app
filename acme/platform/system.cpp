@@ -437,7 +437,7 @@ namespace acme
 
       }
 
-      m_pmutexHttpDownload = acmenode()->create_mutex();
+      m_pmutexHttpDownload = node()->create_mutex();
 
 
       //if(!estatus)
@@ -2101,7 +2101,7 @@ namespace acme
 
          string strPid;
 
-         strPid = ::as_string(acmenode()->current_process_identifier());
+         strPid = ::as_string(node()->current_process_identifier());
 
          strModifier = strDate + "_" + strPid;
 
@@ -2127,7 +2127,7 @@ namespace acme
 
          ::file::path pathExecutable = acmefile()->module();
 
-         string strAppTitle = acmenode()->executable_title_from_appid(strAppId);
+         string strAppTitle = node()->executable_title_from_appid(strAppId);
 
          path = pathFolder / (strModifier + "_executable.txt");
 

@@ -65,7 +65,7 @@ namespace interprocess
 
 #else
 
-      m_atomApp = (::i64) acmenode()->current_process_identifier();
+      m_atomApp = (::i64) node()->current_process_identifier();
 
 #endif
 
@@ -348,7 +348,7 @@ namespace interprocess
 
       auto plauncher = __create < ::apex::app_launcher>();
 
-      plauncher->initialize_app_launcher(this, acmenode()->process_platform_name(), strApp);
+      plauncher->initialize_app_launcher(this, node()->process_platform_name(), strApp);
 
       atom idPid = -1;
 

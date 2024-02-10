@@ -1444,7 +1444,7 @@ namespace user
    void graphics_thread::post_redraw()
    {
 
-      //information() << acmenode()->get_callstack();
+      //information() << node()->get_callstack();
 
       post_message(e_message_redraw);
 

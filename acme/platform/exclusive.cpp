@@ -32,7 +32,7 @@ namespace acme
       //try
       //{
 
-      //   m_pmutex = pparticle->acmenode()->create_global_named_mutex(pparticle, false, strId);
+      //   m_pmutex = pparticle->node()->create_global_named_mutex(pparticle, false, strId);
 
       //   //m_pmutex = //__allocate< ::pointer < ::mutex > >(pparticle, false, strId ADD_PARAM_SEC_ATTRS);
 

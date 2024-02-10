@@ -46,6 +46,8 @@ namespace aqua
 
       bool load_cached_string(string& str, const ::atom& atom, bool bLoadStringTable) override;
 
+      virtual void did_pick_media_item(::aqua::media_item * pmediaitem);
+
 
    };
 

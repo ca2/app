@@ -78,7 +78,7 @@ bool nano_window_implementation::is_active()
 void nano_window_implementation::nano_window_on_create()
 {
 
-   acmenode()->fetch_user_color();
+   node()->fetch_user_color();
 
    system()->add_signal_handler({ use_t{}, this }, id_operating_system_user_color_change);
    

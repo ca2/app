@@ -79,7 +79,7 @@ void distro__release_and_desktop_environment::initialize(::particle *pparticle)
       }
 
    }
-   else if (acmenode()->has_unix_shell_command("lsb_release"))
+   else if (node()->has_unix_shell_command("lsb_release"))
    {
 
 //         }
@@ -90,8 +90,8 @@ void distro__release_and_desktop_environment::initialize(::particle *pparticle)
 
 //# linuxbase.org
 
-      strOs = acmenode()->unix_shell_command_string("lsb_release -si");
-      strVer = acmenode()->unix_shell_command_string("lsb_release -sr");
+      strOs = node()->unix_shell_command_string("lsb_release -si");
+      strVer = node()->unix_shell_command_string("lsb_release -sr");
 
       strOs.make_lower();
       strVer.make_lower();
@@ -153,8 +153,8 @@ void distro__release_and_desktop_environment::initialize(::particle *pparticle)
 
 // # Fall back to uname, e.g. "Linux <version>", also works for BSD, etc.
 
-      strOs = acmenode()->unix_shell_command_string("uname -s");
-      strVer = acmenode()->unix_shell_command_string("uname -r");
+      strOs = node()->unix_shell_command_string("uname -s");
+      strVer = node()->unix_shell_command_string("uname -r");
 
    }
 
@@ -217,7 +217,7 @@ void distro__release_and_desktop_environment::initialize(::particle *pparticle)
 
 //# echo "DISTRO_FAMILY is debian, zypper or arch"
 
-         auto strLowerCaseCurrentDesktop = acmenode()->get_environment_variable("XDG_CURRENT_DESKTOP").lowered();
+         auto strLowerCaseCurrentDesktop = node()->get_environment_variable("XDG_CURRENT_DESKTOP").lowered();
 
 //# echo "lower case xdg_current_desktop is $__SYSTEM_LOWER_CASE_CURRENT_DESKTOP"
          if (strLowerCaseCurrentDesktop.equals("gnome"))
@@ -346,15 +346,15 @@ void distro__release_and_desktop_environment::initialize(::particle *pparticle)
 
       m_strUnderscoreOperatingSystem.find_replace("/", "_");
 
-      acmenode()->set_environment_variable("__SYSTEM_DISTRO", m_strDistro);
-      acmenode()->set_environment_variable("__SYSTEM_DISTRO_FAMILY", m_strDistroFamily);
-      acmenode()->set_environment_variable("__SYSTEM_DISTRO_BRANCH", m_strDistroBranch);
-      acmenode()->set_environment_variable("__SYSTEM_DISTRO_RELEASE", m_strDistroRelease);
-      acmenode()->set_environment_variable("__SYSTEM_DESKTOP_ENVIRONMENT", m_strDesktopEnvironment);
-      acmenode()->set_environment_variable("__SYSTEM_SLASHED_OPERATING_SYSTEM", m_strSlashedOperatingSystem);
-      acmenode()->set_environment_variable("__SYSTEM_UNDERSCORE_OPERATING_SYSTEM", m_strUnderscoreOperatingSystem);
-      acmenode()->set_environment_variable("__SYSTEM_SUDO_INSTALL", m_strSudoInstall);
-      acmenode()->set_environment_variable("__SYSTEM_TERMINAL", m_strTerminal);
+      node()->set_environment_variable("__SYSTEM_DISTRO", m_strDistro);
+      node()->set_environment_variable("__SYSTEM_DISTRO_FAMILY", m_strDistroFamily);
+      node()->set_environment_variable("__SYSTEM_DISTRO_BRANCH", m_strDistroBranch);
+      node()->set_environment_variable("__SYSTEM_DISTRO_RELEASE", m_strDistroRelease);
+      node()->set_environment_variable("__SYSTEM_DESKTOP_ENVIRONMENT", m_strDesktopEnvironment);
+      node()->set_environment_variable("__SYSTEM_SLASHED_OPERATING_SYSTEM", m_strSlashedOperatingSystem);
+      node()->set_environment_variable("__SYSTEM_UNDERSCORE_OPERATING_SYSTEM", m_strUnderscoreOperatingSystem);
+      node()->set_environment_variable("__SYSTEM_SUDO_INSTALL", m_strSudoInstall);
+      node()->set_environment_variable("__SYSTEM_TERMINAL", m_strTerminal);
 
    }
 

@@ -4523,7 +4523,7 @@ namespace user
 
       m_redrawitema.add(predrawitem);
 
-      //information() << acmenode()->get_callstack();
+      //information() << node()->get_callstack();
 
    }
 

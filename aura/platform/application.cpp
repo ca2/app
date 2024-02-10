@@ -4799,7 +4799,7 @@ retry_license:
 
       ::file::path strUrl(::e_path_url);
 
-      if (acmenode()->is_debug_build())
+      if (node()->is_debug_build())
       {
          strUrl = "http://basis-server.ca2.software/api/spaignition/download?authnone&configuration=basis&stage=";
       }

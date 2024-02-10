@@ -1430,7 +1430,7 @@ namespace user
          if (is_dark_mode())
          {
 
-            crBk = acmenode()->background_color();
+            crBk = node()->background_color();
 
             //crBk = argb(255, 0x40, 0x40, 0x40);
 
@@ -1438,7 +1438,7 @@ namespace user
          else
          {
 
-            crBk = acmenode()->background_color();
+            crBk = node()->background_color();
             //crBk = argb(255, 255, 255, 255);
 
          }

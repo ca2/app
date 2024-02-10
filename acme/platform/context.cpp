@@ -448,7 +448,7 @@ namespace acme
    void context::fork_count(::count iCount, const ::function < void(index, index, index, index) > & function, const ::procedure & procedureCompletion, index iStart)
    {
 
-      int iAffinityOrder = acmenode()->get_current_process_affinity_order();
+      int iAffinityOrder = node()->get_current_process_affinity_order();
 
       if (::get_task() != nullptr && ::get_task()->m_bAvoidProcedureFork)
       {
@@ -747,7 +747,9 @@ namespace acme
             if (!retry([&]()
                {
 
-                  return acmecontext()->http_download(pfile, path, set);
+                  ::particle * pparticle = this;
+
+                  return pparticle->context()->http_download(pfile, path, set);
 
                }))
             {

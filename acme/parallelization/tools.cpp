@@ -38,7 +38,7 @@ task_group::task_group(::matter * pmatter, ::enum_priority epriority)
    m_cIteration                     = 0;
    m_cSpan                          = 0;
 
-   int cOrder = acmenode()->get_current_process_affinity_order();
+   int cOrder = node()->get_current_process_affinity_order();
 
    auto iPreviousSize = m_taska.get_size();
 
@@ -57,7 +57,7 @@ task_group::task_group(::matter * pmatter, ::enum_priority epriority)
 
       ptooltask->m_iThread = iThread;
 
-      ptooltask->m_uThreadAffinityMask = acmenode()->translate_processor_affinity((int) (ptooltask->m_iThread));
+      ptooltask->m_uThreadAffinityMask = node()->translate_processor_affinity((int) (ptooltask->m_iThread));
 
       if (epriority == ::e_priority_none)
       {

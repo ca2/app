@@ -159,24 +159,24 @@ namespace dynamic_source
       //}
 
 
-      m_pmutexSession = acmenode()->create_mutex();
-      m_pmutexIncludeMatches = acmenode()->create_mutex();
-      m_pmutexIncludeHasScript = acmenode()->create_mutex();
-      m_pmutexShouldBuild = acmenode()->create_mutex();
-      m_pmutexIncludeExpandMd5 = acmenode()->create_mutex();
-      m_pmutexOutLink = acmenode()->create_mutex();
-      m_pmutexInLink = acmenode()->create_mutex();
-      m_pmutexTunnel = acmenode()->create_mutex();
-      m_pmutexImageSize = acmenode()->create_mutex();
-      m_pmutexSimage = acmenode()->create_mutex();
-      m_pmutexSpider = acmenode()->create_mutex();
-      m_pmutexRsa = acmenode()->create_mutex();
-      m_pmutexMusicDbPool = acmenode()->create_mutex();
-      m_pmutexWayDbPool = acmenode()->create_mutex();
-      m_pmutexPersistentStr = acmenode()->create_mutex();
-      m_pmutexUiRedir = acmenode()->create_mutex();
-      m_pmutexTagId = acmenode()->create_mutex();
-      m_pmutexTagName = acmenode()->create_mutex();
+      m_pmutexSession = node()->create_mutex();
+      m_pmutexIncludeMatches = node()->create_mutex();
+      m_pmutexIncludeHasScript = node()->create_mutex();
+      m_pmutexShouldBuild = node()->create_mutex();
+      m_pmutexIncludeExpandMd5 = node()->create_mutex();
+      m_pmutexOutLink = node()->create_mutex();
+      m_pmutexInLink = node()->create_mutex();
+      m_pmutexTunnel = node()->create_mutex();
+      m_pmutexImageSize = node()->create_mutex();
+      m_pmutexSimage = node()->create_mutex();
+      m_pmutexSpider = node()->create_mutex();
+      m_pmutexRsa = node()->create_mutex();
+      m_pmutexMusicDbPool = node()->create_mutex();
+      m_pmutexWayDbPool = node()->create_mutex();
+      m_pmutexPersistentStr = node()->create_mutex();
+      m_pmutexUiRedir = node()->create_mutex();
+      m_pmutexTagId = node()->create_mutex();
+      m_pmutexTagName = node()->create_mutex();
 
       calc_rsa_key();
 
@@ -845,7 +845,7 @@ namespace dynamic_source
 
 #ifdef WINDOWS_DESKTOP
 
-      string strPath = acmenode()->get_environment_variable("PATH");
+      string strPath = node()->get_environment_variable("PATH");
 
 #elif defined(UNIVERSAL_WINDOWS)
 

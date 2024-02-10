@@ -165,6 +165,8 @@ public:
    ::acme::system * system() const;
    ::acme::session * session() const;
    ::acme::application * application() const;
+   ::acme::node * node() const;
+   ::acme::context * context() const;
 
    //::aura::application* auraapplication() const;
 
@@ -174,8 +176,6 @@ public:
    ::acme_file * acmefile() const;
    ::acme_path * acmepath() const;
    ::acme_directory * acmedirectory() const;
-   ::acme::node * acmenode() const;
-   ::acme::context* acmecontext() const;
    ::apex::context* apexcontext() const;
    ::aura::context* auracontext() const;
    ::context_image* context_image() const;

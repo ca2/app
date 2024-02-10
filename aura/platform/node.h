@@ -105,6 +105,9 @@ namespace aura
       virtual bool defer_windowing_post(const ::procedure & procedure);
 
 
+      virtual ::pointer < ::aqua::media_item > create_media_item_from_platform_media_item(platform_media_item_t * pplatformmediaitem);
+
+
    };
 
 

@@ -426,7 +426,7 @@ namespace apex
 
 #if !defined(UNIVERSAL_WINDOWS) && !defined(ANDROID)
 
-      m_pmutexMatter = acmenode()->create_local_named_mutex(this, false, "ca2-appmatter");
+      m_pmutexMatter = node()->create_local_named_mutex(this, false, "ca2-appmatter");
 
 #endif
 
@@ -589,8 +589,8 @@ namespace apex
       if (!application()->is_service() || application()->m_papexapplication->is_user_service())
       {
 
-         m_pmutexUserAppData = acmenode()->create_local_named_mutex(this, false, "ca2.UserAppData");
-         m_pmutexSystemAppData = acmenode()->create_local_named_mutex(this, false, "ca2.SystemAppData");
+         m_pmutexUserAppData = node()->create_local_named_mutex(this, false, "ca2.UserAppData");
+         m_pmutexSystemAppData = node()->create_local_named_mutex(this, false, "ca2.SystemAppData");
 
       }
 
@@ -646,7 +646,7 @@ namespace apex
          //printf("%s", "\n\nApplication Information\n");
          informationf("Application Information");
 
-         auto iPid = acmenode()->current_process_identifier();
+         auto iPid = node()->current_process_identifier();
 
          //printf("%s", ("Process PID: " + ::as_string(iPid) + "\n").c_str());
 
@@ -960,7 +960,7 @@ pacmedirectory->create("/ca2core");
       
 #if !defined(APPLE_IOS)
 
-      auto pid = acmenode()->current_process_identifier();
+      auto pid = node()->current_process_identifier();
 
       string strPid = ::as_string(pid);
 
@@ -2125,7 +2125,7 @@ pacmedirectory->create("/ca2core");
       if (!m_pinput)
       {
 
-         auto pinput = acmenode()->m_papexnode->create_input();
+         auto pinput = node()->m_papexnode->create_input();
 
          m_pinput = pinput;
 
@@ -2513,7 +2513,7 @@ pacmedirectory->create("/ca2core");
       {
 
          //         HANDLE h = ::OpenMutex(SYNCHRONIZE, false, get_global_id_mutex_name(pszAppName, pszId));
-         auto pmutex = acmenode()->open_global_named_mutex(this, m_pnode->get_global_id_mutex_name(pszAppName, pszId));
+         auto pmutex = node()->open_global_named_mutex(this, m_pnode->get_global_id_mutex_name(pszAppName, pszId));
 
          if (pmutex == nullptr)
          {
@@ -2549,7 +2549,7 @@ pacmedirectory->create("/ca2core");
       else
       {
          //HANDLE h = ::OpenMutex(SYNCHRONIZE, false, get_global_mutex_name(pszAppName));
-         auto pmutex = acmenode()->open_global_named_mutex(this, m_pnode->get_global_mutex_name(pszAppName));
+         auto pmutex = node()->open_global_named_mutex(this, m_pnode->get_global_mutex_name(pszAppName));
          if (pmutex == nullptr)
          {
             string strApp = pszAppName;
@@ -2587,7 +2587,7 @@ pacmedirectory->create("/ca2core");
       if (strId.has_char())
       {
          //HANDLE h = ::OpenMutex(SYNCHRONIZE, false, get_local_id_mutex_name(pszAppName, strId));
-         auto pmutex = acmenode()->open_local_named_mutex(this, m_pnode->get_local_id_mutex_name(pszAppName, strId));
+         auto pmutex = node()->open_local_named_mutex(this, m_pnode->get_local_id_mutex_name(pszAppName, strId));
          if (pmutex == nullptr)
          {
             string strApp;
@@ -2621,7 +2621,7 @@ pacmedirectory->create("/ca2core");
       else
       {
          //         HANDLE h = ::OpenMutex(SYNCHRONIZE, false, get_local_mutex_name(pszAppName));
-         auto pmutex = acmenode()->open_local_named_mutex(this, m_pnode->get_local_mutex_name(pszAppName));
+         auto pmutex = node()->open_local_named_mutex(this, m_pnode->get_local_mutex_name(pszAppName));
          if (pmutex == nullptr)
          {
             string strApp;

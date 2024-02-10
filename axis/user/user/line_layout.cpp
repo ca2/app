@@ -54,7 +54,7 @@ namespace user
       else
       {
 
-         information() << "Hide callstack : " << acmenode()->get_call_stack_trace();
+         information() << "Hide callstack : " << node()->get_call_stack_trace();
 
       }
 

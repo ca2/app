@@ -3105,7 +3105,7 @@ return false;
    {
    public:
       
-      void run() override { acmenode()->_node_file_dialog(this); }
+      void run() override { node()->_node_file_dialog(this); }
       
    };
 
@@ -3122,7 +3122,7 @@ return false;
    {
    public:
       
-      void run() override { acmenode()->_node_folder_dialog(this); }
+      void run() override { node()->_node_folder_dialog(this); }
       
    };
 
@@ -3250,7 +3250,7 @@ return false;
 //
 //         strCommand.formatf("\"%s\" -c \"%s\"", strUnixShell.c_str(), strCommandInner.c_str());
 //
-//         auto iExitCode = acmenode()->command_system(strCommand);
+//         auto iExitCode = node()->command_system(strCommand);
 //
 //         return iExitCode;
 //
@@ -3462,10 +3462,10 @@ bool node::are_framework_shared_libraries_busy(const ::scoped_string & scopedstr
 
    string_array stra;
 
-   stra.add(acmenode()->library_file_name("acme"));
-   stra.add(acmenode()->library_file_name("apex"));
-   stra.add(acmenode()->library_file_name("aqua"));
-   stra.add(acmenode()->library_file_name("aura"));
+   stra.add(this->library_file_name("acme"));
+   stra.add(this->library_file_name("apex"));
+   stra.add(this->library_file_name("aqua"));
+   stra.add(this->library_file_name("aura"));
 
    ::file::path_array patha;
 
@@ -3473,7 +3473,7 @@ bool node::are_framework_shared_libraries_busy(const ::scoped_string & scopedstr
 
    patha = pathBin / stra;
 
-   auto pathaSystem = acmenode()->modules_paths();
+   auto pathaSystem = this->modules_paths();
 
    for (auto & pathSystem : pathaSystem)
    {
@@ -3526,7 +3526,7 @@ bool node::are_framework_shared_libraries_busy(const ::scoped_string & scopedstr
 void node_application_send_status(const char * pszStatus, void * p, long long ll)
 {
    
-   ::platform::get()->acmenode()->node_application_on_status(pszStatus, p, ll);
+   ::platform::get()->node()->node_application_on_status(pszStatus, p, ll);
    
 }
 

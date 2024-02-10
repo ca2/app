@@ -248,7 +248,7 @@ namespace write_text
 
       auto echaracterset = get_character_set(pgraphics);
 
-      string strSampleText = acmenode()->get_character_set_default_sample_text(echaracterset);
+      string strSampleText = node()->get_character_set_default_sample_text(echaracterset);
 
       if (strSampleText.has_char())
       {

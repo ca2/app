@@ -127,7 +127,7 @@ void acme_file::overwrite_if_different(const ::file::path & pathTarget, const ::
    if (m_pathExecutable.is_empty())
    {
 
-      auto pnode = acmenode();
+      auto pnode = node();
 
       auto pathModule = pnode->module_path_source();
 

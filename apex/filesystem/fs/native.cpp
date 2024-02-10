@@ -98,7 +98,7 @@ namespace fs
    ::file::listing & native::root_ones(::file::listing & listing)
    {
       
-      acmenode()->m_papexnode->root_ones(listing);
+      node()->m_papexnode->root_ones(listing);
 
       return listing;
 

@@ -89,7 +89,7 @@ namespace dynamic_source
    void script_compiler::init1()
    {
 
-      //acmenode()->integration_factory();
+      //node()->integration_factory();
 
       //__construct(m_pintegrationcontext);
 

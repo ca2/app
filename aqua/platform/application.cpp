@@ -200,6 +200,13 @@ namespace aqua
 
    //}
 
+   void application::did_pick_media_item(::aqua::media_item * pmediaitem)
+   {
+
+
+
+   }
+
 
 } // namespace aqua
 

@@ -70,14 +70,18 @@ namespace acme
       virtual ::text::text __text(const ::atom& atom) override;
 
 
+      inline ::acme::system * system() { return m_pacmesystem; }
+      ::acme::node * node();
+
+
+      inline ::os_context * os_context() { return m_poscontext; }
+
+
       ::acme_file * acmefile();
       ::acme_path * acmepath();
       ::acme_directory * acmedirectory();
-      ::acme::node * acmenode();
-      inline ::acme::system * system() { return m_pacmesystem; }
 
 
-      inline ::os_context* os_context() { return m_poscontext; }
 
 
       virtual ::dir_context* dir();

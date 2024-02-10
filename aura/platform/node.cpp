@@ -218,6 +218,17 @@ namespace aura
    }
 
 
+   ::pointer < ::aqua::media_item > node::create_media_item_from_platform_media_item(platform_media_item_t * pplatformmediaitem)
+   {
+
+      throw ::interface_only();
+
+      return nullptr;
+
+   }
+
+
+
 } // namespace aura
 
 

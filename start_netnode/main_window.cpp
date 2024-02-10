@@ -95,7 +95,7 @@ namespace app_app
 
       ::color::color colorInset;
 
-      if (acmenode()->background_color().get_luminance() < 0.5)
+      if (node()->background_color().get_luminance() < 0.5)
       {
 
          colorInset = ::rgba(255, 89, 89, 89);

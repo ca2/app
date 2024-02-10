@@ -79,9 +79,9 @@ return g_pdraw2dcairo;
 
       //return estatus;
 
-      m_pmutex = acmenode()->create_mutex();
-      //m_pmutexFc = acmenode()->create_mutex();
-      //m_pmutexFont= acmenode()->create_mutex();
+      m_pmutex = node()->create_mutex();
+      //m_pmutexFc = node()->create_mutex();
+      //m_pmutexFont= node()->create_mutex();
 
       //g_pparticleCairoSynchronization = m_pmutex;
 

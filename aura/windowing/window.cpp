@@ -65,7 +65,7 @@ namespace windowing
 
       puser->on_initialize_window_object();
 
-      m_pparticleChildrenSynchronization = acmenode()->create_mutex();
+      m_pparticleChildrenSynchronization = node()->create_mutex();
 
    }
 

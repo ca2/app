@@ -69,7 +69,7 @@ namespace write_text
 
       }
 
-      return pparticle->acmenode()->font_name(m_efont);
+      return pparticle->node()->font_name(m_efont);
 
    }
 

@@ -91,7 +91,7 @@ namespace apex
 
       }
 
-      return acmedirectory()->app_app(m_strPlatform, acmenode()->process_configuration_name());
+      return acmedirectory()->app_app(m_strPlatform, node()->process_configuration_name());
 
    }
 
@@ -225,7 +225,7 @@ namespace apex
 //
 //      auto pnode = psystem->node();
 //
-      acmenode()->shell_launch(m_strApp);
+      node()->shell_launch(m_strApp);
 //
 //      //pnode->call_async(strPath, strParams, strDir, e_display_none, false);
 //

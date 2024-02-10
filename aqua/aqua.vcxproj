@@ -78,6 +78,8 @@
     <ClInclude Include="multimedia\file_application.h" />
     <ClInclude Include="multimedia\information.h" />
     <ClInclude Include="multimedia\media_item.h" />
+    <ClInclude Include="multimedia\media_item_picker.h" />
+    <ClInclude Include="multimedia\media_item_picker_callback.h" />
     <ClInclude Include="multimedia\multimedia.h" />
     <ClInclude Include="multimedia\_.h" />
     <ClInclude Include="multimedia\_c.h" />
@@ -146,6 +148,8 @@
     <ClCompile Include="multimedia\exception.cpp" />
     <ClCompile Include="multimedia\file_application.cpp" />
     <ClCompile Include="multimedia\media_item.cpp" />
+    <ClCompile Include="multimedia\media_item_picker.cpp" />
+    <ClCompile Include="multimedia\media_item_picker_callback.cpp" />
     <ClCompile Include="multimedia\multimedia.cpp" />
     <ClCompile Include="operating_system\windows\audio.cpp" />
     <ClCompile Include="operating_system\windows\system.cpp" />

@@ -330,6 +330,12 @@
     <ClInclude Include="multimedia\media_item.h">
       <Filter>Header Files\multimedia</Filter>
     </ClInclude>
+    <ClInclude Include="multimedia\media_item_picker.h">
+      <Filter>Header Files\multimedia</Filter>
+    </ClInclude>
+    <ClInclude Include="multimedia\media_item_picker_callback.h">
+      <Filter>Header Files\multimedia</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -461,8 +467,14 @@
     <ClCompile Include="platform\tinyexpr.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
+    <ClCompile Include="multimedia\media_item_picker_callback.cpp">
+      <Filter>Source Files\multimedia</Filter>
+    </ClCompile>
+    <ClCompile Include="multimedia\media_item_picker.cpp">
+      <Filter>Source Files\multimedia</Filter>
+    </ClCompile>
     <ClCompile Include="multimedia\media_item.cpp">
-      <Filter>Header Files\multimedia</Filter>
+      <Filter>Source Files\multimedia</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

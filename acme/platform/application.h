@@ -294,6 +294,7 @@ namespace acme
       virtual get_file_extension_mime_type * get_get_file_extension_mime_type();
 
       virtual void pick_browse();
+      virtual void pick_media(const char * pszMediaType);
       virtual void did_pick_document_at_url(const char * pszUrl);
       virtual void on_prompt_write_file(::user::controller * pusercontroller);
       virtual void file_manager_save_as(::user::controller * pusercontroller);

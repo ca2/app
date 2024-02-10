@@ -1057,6 +1057,7 @@ namespace aura
 
       void pick_browse() override;
       
+      void pick_media(const char * pszMediaType) override;
       
       void on_prompt_write_file(::user::controller * pusercontroller) override;
       

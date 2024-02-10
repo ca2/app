@@ -9071,6 +9071,7 @@ namespace aura
 
    //}
 
+
 void application::pick_browse()
 {
    
@@ -9095,6 +9096,33 @@ void application::pick_browse()
    pwindow->pick_browse();
    
 }
+
+
+void application::pick_media(const char *pszMediaType)
+{
+   
+   auto puserinteraction = m_puserinteractionMain;
+   
+   if(!puserinteraction)
+   {
+      
+      return;
+      
+   }
+   
+   auto pwindow = puserinteraction->window();
+   
+   if(!pwindow)
+   {
+      
+      return;
+      
+   }
+   
+   pwindow->pick_media(pszMediaType);
+   
+}
+
 
 void application::on_prompt_write_file(::user::controller *pusercontroller)
 {

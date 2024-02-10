@@ -294,7 +294,7 @@ public:
 
       }
 
-      if (e > m_pmemory->size())
+      if (!m_pmemory || e > m_pmemory->size())
       {
 
          set_size(e);

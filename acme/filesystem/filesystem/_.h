@@ -11,6 +11,8 @@ namespace filesystem
 
    class file_system_options;
 
+   class set;
+
 
 } // namespace filesystem
 

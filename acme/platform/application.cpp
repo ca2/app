@@ -2014,6 +2014,14 @@ void application::pick_browse()
 }
 
 
+void application::pick_media(const char *pszMediaType)
+{
+   
+   UNREFERENCED_PARAMETER(pszMediaType);
+   
+}
+
+
 void application::did_pick_document_at_url(const char * pszUrl)
 {
    

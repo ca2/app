@@ -186,6 +186,7 @@
 		9A40BDBD2B6B67770077053E /* UniformTypeIdentifiers.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UniformTypeIdentifiers.framework; path = System/Library/Frameworks/UniformTypeIdentifiers.framework; sourceTree = SDKROOT; };
 		9A40BDF52B6B9C850077053E /* libios_darwin.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libios_darwin.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A490C322B69D3EC00990DB8 /* application_main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = application_main.cpp; sourceTree = "<group>"; };
+		9A60D0DD2B76B5AA0082B17B /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		9A750E23282B5BC500C4861B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		9A750E29282B5BE900C4861B /* libios_acme.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libios_acme.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A750E2A282B5BE900C4861B /* libios_acme_apple.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libios_acme_apple.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -361,6 +362,7 @@
 		9A8E9D9B282A2DAA005FF778 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9A60D0DD2B76B5AA0082B17B /* MediaPlayer.framework */,
 				9A40BDF52B6B9C850077053E /* libios_darwin.a */,
 				9A40BDBD2B6B67770077053E /* UniformTypeIdentifiers.framework */,
 				9A40BDAE2B6B65510077053E /* libios_acme_darwin.a */,

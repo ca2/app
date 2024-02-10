@@ -162,7 +162,9 @@ void memory_container::set_memory(::pointer<memory_base>pmemory)
 ::pointer<memory_base>memory_container::create_memory(const void * p, memsize s)
 {
 
-   return __allocate< class memory >(this, p, s);
+   m_pmemory = __allocate< class memory >(this, p, s);
+   
+   return m_pmemory;
 
 }
 

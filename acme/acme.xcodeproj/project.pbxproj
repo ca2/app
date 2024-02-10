@@ -718,6 +718,12 @@
 		9A420C592B69146700D956E1 /* strdup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A420C572B69146700D956E1 /* strdup.cpp */; };
 		9A4387B9299E499A00D2EE15 /* request.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4387B6299E499800D2EE15 /* request.cpp */; };
 		9A4387BA299E499A00D2EE15 /* request.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A4387B8299E499900D2EE15 /* request.h */; };
+		9A4DDE1E2B77395700477878 /* subparticle.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A4DDE1C2B77395700477878 /* subparticle.h */; };
+		9A4DDE1F2B77395700477878 /* subparticle.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A4DDE1C2B77395700477878 /* subparticle.h */; };
+		9A4DDE202B77395700477878 /* subparticle.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A4DDE1C2B77395700477878 /* subparticle.h */; };
+		9A4DDE212B77395700477878 /* subparticle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4DDE1D2B77395700477878 /* subparticle.cpp */; };
+		9A4DDE222B77395700477878 /* subparticle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4DDE1D2B77395700477878 /* subparticle.cpp */; };
+		9A4DDE232B77395700477878 /* subparticle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4DDE1D2B77395700477878 /* subparticle.cpp */; };
 		9A4EF4A82AE35AAB0048F22F /* image32_array.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4EF4A42AE35AA70048F22F /* image32_array.cpp */; };
 		9A4EF4A92AE35AAB0048F22F /* image32_array.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4EF4A42AE35AA70048F22F /* image32_array.cpp */; };
 		9A4EF4AA2AE35AAB0048F22F /* image32.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4EF4A52AE35AA90048F22F /* image32.cpp */; };
@@ -4851,6 +4857,8 @@
 		9A420C572B69146700D956E1 /* strdup.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = strdup.cpp; sourceTree = "<group>"; };
 		9A4387B6299E499800D2EE15 /* request.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = request.cpp; sourceTree = "<group>"; };
 		9A4387B8299E499900D2EE15 /* request.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = request.h; sourceTree = "<group>"; };
+		9A4DDE1C2B77395700477878 /* subparticle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = subparticle.h; sourceTree = "<group>"; };
+		9A4DDE1D2B77395700477878 /* subparticle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = subparticle.cpp; sourceTree = "<group>"; };
 		9A4EF4A42AE35AA70048F22F /* image32_array.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = image32_array.cpp; sourceTree = "<group>"; };
 		9A4EF4A52AE35AA90048F22F /* image32.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = image32.cpp; sourceTree = "<group>"; };
 		9A4EF4A62AE35AA90048F22F /* image32.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = image32.h; sourceTree = "<group>"; };
@@ -7090,8 +7098,10 @@
 				9A1625ED26EFCC34003D9CB9 /* set_bit.h */,
 				9A68A6612511442F008DABD2 /* stick.h */,
 				9A75513F2B21715000FFB669 /* subparticle_flags.h */,
-				9A75513C2B21714F00FFB669 /* transfer.h */,
+				9A4DDE1D2B77395700477878 /* subparticle.cpp */,
+				9A4DDE1C2B77395700477878 /* subparticle.h */,
 				9A7551362B21714A00FFB669 /* targeted_unit.h */,
+				9A75513C2B21714F00FFB669 /* transfer.h */,
 				9A0842D12935EB40009F7FF4 /* tuple.h */,
 				9A68A6A32511442F008DABD2 /* type.cpp */,
 				9A68A6342511442F008DABD2 /* type.h */,
@@ -8852,6 +8862,7 @@
 				9A1747572AD38E5D00760D8F /* pixmap.h in Headers */,
 				9A818F3B2A71FC6B008F470C /* _nano_http.h in Headers */,
 				9AA3F7F32A94672D004283CA /* file_context.h in Headers */,
+				9A4DDE1E2B77395700477878 /* subparticle.h in Headers */,
 				9A0842D82935EB40009F7FF4 /* read_only_memory.h in Headers */,
 				9A9814A128E4EA8E001C9855 /* procedure_array.h in Headers */,
 				9A83A851294D4CC90074C712 /* array_range.h in Headers */,
@@ -9857,6 +9868,7 @@
 				9AC1031D2B6AC9BD0053DB45 /* pixmap.h in Headers */,
 				9AC1031E2B6AC9BD0053DB45 /* _nano_http.h in Headers */,
 				9AC1031F2B6AC9BD0053DB45 /* file_context.h in Headers */,
+				9A4DDE1F2B77395700477878 /* subparticle.h in Headers */,
 				9AC103202B6AC9BD0053DB45 /* read_only_memory.h in Headers */,
 				9AC103212B6AC9BD0053DB45 /* procedure_array.h in Headers */,
 				9AC103222B6AC9BD0053DB45 /* array_range.h in Headers */,
@@ -10683,6 +10695,7 @@
 				9A08434529366768009F7FF4 /* platform.h in Headers */,
 				9A0842182935DD6E009F7FF4 /* wd16.h in Headers */,
 				9AA8F92027BA7269008FF9AA /* theme_colors.h in Headers */,
+				9A4DDE202B77395700477878 /* subparticle.h in Headers */,
 				9AA8FD4C27BA729A008FF9AA /* _posix.h in Headers */,
 				9A15A570264B0ECB0080670E /* micro_duration.h in Headers */,
 				9A08419B2935C1FD009F7FF4 /* _macro.h in Headers */,
@@ -11416,6 +11429,7 @@
 				9A68AF5E25114435008DABD2 /* ch.cpp in Sources */,
 				9A787BD2264BB16A003DF8A0 /* serial.cpp in Sources */,
 				9A922FEB27EAC9D400B5A78D /* topic.cpp in Sources */,
+				9A4DDE212B77395700477878 /* subparticle.cpp in Sources */,
 				9A08440E293673C2009F7FF4 /* screen.cpp in Sources */,
 				9A68AFA825114436008DABD2 /* binary_stream.cpp in Sources */,
 				9A68B3BA25114438008DABD2 /* exit.cpp in Sources */,
@@ -11865,6 +11879,7 @@
 				9AC104E72B6AC9BD0053DB45 /* read_only_memory.cpp in Sources */,
 				9AC104E82B6AC9BD0053DB45 /* file_time.cpp in Sources */,
 				9AC104E92B6AC9BD0053DB45 /* string_stream.cpp in Sources */,
+				9A4DDE222B77395700477878 /* subparticle.cpp in Sources */,
 				9AC104EA2B6AC9BD0053DB45 /* time.cpp in Sources */,
 				9AC104EB2B6AC9BD0053DB45 /* windowing.cpp in Sources */,
 				9AC104ED2B6AC9BD0053DB45 /* error_code.cpp in Sources */,
@@ -12433,6 +12448,7 @@
 				9A1CEC0029C7BBA500A32D62 /* file.cpp in Sources */,
 				9A94DE41282C034800F5C1CA /* object.cpp in Sources */,
 				9AE889CA2B69A21500286F89 /* get_file_extension_mime_type.cpp in Sources */,
+				9A4DDE232B77395700477878 /* subparticle.cpp in Sources */,
 				9A0843D229366DBB009F7FF4 /* encoding_exception.cpp in Sources */,
 				9A787BA9264BB13F003DF8A0 /* timer_array.cpp in Sources */,
 				9A750FF5282B936500C4861B /* simple_item.cpp in Sources */,

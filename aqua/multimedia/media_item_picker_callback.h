@@ -6,7 +6,7 @@ namespace aqua
 {
 
 
-   class media_item_picker_callback :
+   class CLASS_DECL_AQUA media_item_picker_callback :
       virtual public ::particle
    {
    public:

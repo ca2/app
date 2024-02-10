@@ -36,13 +36,13 @@ namespace gpu
 //      //unsigned int                  VBO;
 
       approach();
-      virtual ~approach();
+      ~approach() override;
 
 
       virtual void initialize(::particle * pparticle) override;
 
 
-      virtual ::pointer < context > create_context(::particle * pparticle);
+      virtual ::pointer < ::gpu::context > create_context(::particle * pparticle);
 
 
       virtual void defer_init_gpu_library();

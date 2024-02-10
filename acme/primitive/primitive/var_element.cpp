@@ -37,7 +37,7 @@ payload.P = dynamic_cast < TYPE * >(pparticle); \
 if(::is_set(payload.m_pstra)) return ENUM_TYPE;
 
 
-enum_type set_element(::payload & payload, ::particle * pelement)
+enum_type set_element(::payload & payload, ::subparticle * pelement)
 {
 
    if (::is_null(pelement))
@@ -99,7 +99,7 @@ enum_type set_element(::payload & payload, ::particle * pelement)
 //}
 
 
-void payload::_set_element(::particle * pelement)
+void payload::_set_element(::subparticle * pelement)
 {
 
    auto pelementThis = this->get_subparticle();

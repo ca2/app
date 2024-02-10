@@ -2,3 +2,11 @@
 #include "framework.h"
 
 
+
+enum_type subparticle::get_payload_type() const
+{
+
+   return e_type_element;
+
+}
+

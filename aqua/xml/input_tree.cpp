@@ -41,10 +41,10 @@ namespace xml
    }
 
 
-   node * input_tree::import_node(const ::string & strName, importable & importable)
+   ::xml::node * input_tree::import_node(const ::string & strName, importable & importable)
    {
 
-      node * pnodePrev = m_pnode;
+      ::xml::node * pnodePrev = m_pnode;
 
       if(!m_pnode)
       {
@@ -72,7 +72,7 @@ namespace xml
       else
       {
 
-         node * pnode = m_pnode->get_child(strName);
+         ::xml::node * pnode = m_pnode->get_child(strName);
 
          m_pnode = pnode;
 
@@ -89,7 +89,7 @@ namespace xml
    node * input_tree::import_node(const ::string & strName, property_set & set, importable & importable)
    {
 
-      node * pnodePrev = m_pnode;
+      ::xml::node * pnodePrev = m_pnode;
 
       if(!m_pnode)
       {
@@ -110,7 +110,7 @@ namespace xml
          if (!m_pnode->contains(set))
          {
 
-            return ((node *) nullptr);
+            return ((::xml::node *) nullptr);
 
          }
 
@@ -122,7 +122,7 @@ namespace xml
       else
       {
 
-         node * pnode = m_pnode->child_at(m_pnode->find(strName, set));
+         ::xml::node * pnode = m_pnode->child_at(m_pnode->find(strName, set));
 
          m_pnode = pnode;
 
@@ -145,7 +145,7 @@ namespace xml
    }
 
 
-   node * input_tree::import_node(const ::string & strName, ::payload & payload)
+   ::xml::node * input_tree::import_node(const ::string & strName, ::payload & payload)
    {
 
       m_varexchange.m_ppayload = &payload;

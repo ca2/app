@@ -636,6 +636,7 @@
     <ClCompile Include="filesystem\filesystem\file_dialog.cpp" />
     <ClCompile Include="filesystem\filesystem\file_path.cpp" />
     <ClCompile Include="filesystem\filesystem\file_system.cpp" />
+    <ClCompile Include="filesystem\filesystem\file_system_options.cpp" />
     <ClCompile Include="filesystem\filesystem\folder_dialog.cpp" />
     <ClCompile Include="filesystem\filesystem\link.cpp" />
     <ClCompile Include="filesystem\filesystem\path.cpp" />
@@ -818,6 +819,7 @@
     <ClInclude Include="filesystem\filesystem\file_dialog.h" />
     <ClInclude Include="filesystem\filesystem\file_path.h" />
     <ClInclude Include="filesystem\filesystem\file_system.h" />
+    <ClInclude Include="filesystem\filesystem\file_system_options.h" />
     <ClInclude Include="filesystem\filesystem\folder_dialog.h" />
     <ClInclude Include="filesystem\filesystem\link.h" />
     <ClInclude Include="filesystem\filesystem\path_array.h" />
@@ -870,6 +872,8 @@
     <ClInclude Include="platform\_referencing_debugging.h" />
     <ClInclude Include="primitive\primitive\primitive.h" />
     <ClInclude Include="primitive\primitive\referenceable.h" />
+    <ClInclude Include="primitive\primitive\subparticle.h" />
+    <ClInclude Include="primitive\primitive\subparticle_flags.h" />
     <ClInclude Include="primitive\string\c_string.h" />
     <ClInclude Include="primitive\time\__time.h" />
     <ClInclude Include="user\user\controller.h" />

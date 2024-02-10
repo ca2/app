@@ -227,7 +227,7 @@ int_bool CLASS_DECL_ACME _001DefaultDllMain(hinstance hinstance, ::u32 dwReason,
             if (psystem)
             {
 
-               auto pnode = psystem->acmenode();
+               auto pnode = psystem->node();
 
                if (pnode)
                {

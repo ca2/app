@@ -29,7 +29,7 @@ namespace gpu
    }
 
 
-   ::pointer < context > approach::create_context(::particle * pparticle)
+   ::pointer < ::gpu::context > approach::create_context(::particle * pparticle)
    {
 
       return nullptr;

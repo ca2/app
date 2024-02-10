@@ -46,7 +46,7 @@ namespace nano
    pointer< ::sequencer < ::conversation > > nano::message_box(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails)
    {
 
-      auto pnode = acmenode();
+      auto pnode = node();
 
       auto psequencer = pnode->create_message_box_sequencer(strMessage, strTitle, emessagebox, strDetails);
 

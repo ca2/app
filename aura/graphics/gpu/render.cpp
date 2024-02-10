@@ -364,21 +364,21 @@ namespace gpu
    }
 
 
-   void render::on_start_drawing(context * pcontext)
+   void render::on_start_drawing(::gpu::context * pcontext)
    {
 
 
    }
 
 
-   void render::on_global_transform(context * pcontext)
+   void render::on_global_transform(::gpu::context * pcontext)
    {
 
 
    }
 
 
-   void render::on_draw(context * pcontext)
+   void render::on_draw(::gpu::context * pcontext)
    {
 
 

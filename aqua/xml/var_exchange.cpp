@@ -31,7 +31,7 @@ namespace xml
 
       }
 
-      node * pnode = xmlot.m_pnode;
+      ::xml::node * pnode = xmlot.m_pnode;
 
       pnode->set_attribute("type", m_ppayload->get_type());
 
@@ -45,7 +45,7 @@ namespace xml
       ASSERT(m_ppayload != nullptr);
       if(m_ppayload == nullptr)
          return;
-      node * pnode = xmlit.m_pnode;
+      ::xml::node * pnode = xmlit.m_pnode;
       if(pnode == nullptr)
       {
          // property Node not found;

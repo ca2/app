@@ -269,7 +269,7 @@ namespace text
    }
 
 
-   string table::get(const context * pcontext,const ::atom & atom, bool bIdAsDefaultValue) const
+   string table::get(const ::text::context * pcontext,const ::atom & atom, bool bIdAsDefaultValue) const
    {
 
       if (pcontext == nullptr)
@@ -355,7 +355,7 @@ namespace text
    }
 
 
-   string table::get(const context * pcontext,const ::atom & atom,const ::atom & idLocale,const ::atom & idSchema,bool bIdAsDefaultValue) const
+   string table::get(const ::text::context * pcontext,const ::atom & atom,const ::atom & idLocale,const ::atom & idSchema,bool bIdAsDefaultValue) const
    {
 
       if(!idLocale.is_empty())
@@ -389,7 +389,7 @@ namespace text
    }
 
 
-   void table::get(string_array & stra, const context * pcontext, const ::atom & atom) const
+   void table::get(string_array & stra, const ::text::context * pcontext, const ::atom & atom) const
    {
 
       _get(stra, pcontext, atom);
@@ -420,7 +420,7 @@ namespace text
    }
 
 
-   void table::_get(string_array & stra, const context * pcontext, const ::atom & atom) const
+   void table::_get(string_array & stra, const ::text::context * pcontext, const ::atom & atom) const
    {
 
       if (pcontext == nullptr)
@@ -864,7 +864,7 @@ namespace text
    }
 
 
-   bool table::matches(const context * pcontext, const ::atom & atom, const ::scoped_string & scopedstr) const
+   bool table::matches(const ::text::context * pcontext, const ::atom & atom, const ::scoped_string & scopedstr) const
    {
 
       static ::atom idEn("en");
@@ -933,7 +933,7 @@ namespace text
    }
 
 
-   bool table::begins(const context * pcontext, const ::string &strTopic, const ::atom & atom) const
+   bool table::begins(const ::text::context * pcontext, const ::string &strTopic, const ::atom & atom) const
    {
 
       static ::atom idEn("en");
@@ -1002,7 +1002,7 @@ namespace text
    }
 
 
-   bool table::begins_eat(const context * pcontext, string & strTopic, const ::atom & atom) const
+   bool table::begins_eat(const ::text::context * pcontext, string & strTopic, const ::atom & atom) const
    {
 
       static ::atom idEn("en");

@@ -13,15 +13,19 @@ namespace aqua
    {
    public:
 
+
       platform_media_item_t * m_pplatformmediaitem;
+
 
       media_item();
       ~media_item() override;
 
 
+      virtual void on_destroy_platform_media_item();
+
       virtual void attach(platform_media_item_t * pplatformmediaitem);
 
-      virtual void on_attach();
+      virtual void on_attach_platform_media_item();
 
 
    };

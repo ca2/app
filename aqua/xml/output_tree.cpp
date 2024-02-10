@@ -32,7 +32,7 @@ namespace xml
    }
 
 
-   node * output_tree::export_node(const ::string & strName, exportable & exportable)
+   ::xml::node * output_tree::export_node(const ::string & strName, exportable & exportable)
    {
 
       if(m_pnode == nullptr)
@@ -56,9 +56,9 @@ namespace xml
       else
       {
 
-         node * pnodePrev = m_pnode;
+         ::xml::node * pnodePrev = m_pnode;
 
-         node * pnode = m_pnode->add_child(strName);
+         ::xml::node * pnode = m_pnode->add_child(strName);
 
          m_pnode = pnode;
 
@@ -73,7 +73,7 @@ namespace xml
    }
 
 
-   node * output_tree::export_node(exportable & exportable)
+   ::xml::node * output_tree::export_node(exportable & exportable)
    {
 
       return export_node("", exportable);
@@ -81,7 +81,7 @@ namespace xml
    }
 
 
-   node * output_tree::export_node(const ::string & strName, ::payload payload)
+   ::xml::node * output_tree::export_node(const ::string & strName, ::payload payload)
    {
 
       m_varexchange.m_ppayload = &payload;

@@ -144,6 +144,11 @@ public:
    bool is_referencing_debugging_enabled() const { return false; }
 
 #endif
+
+
+   virtual enum_type get_payload_type() const;
+
+
    virtual void init_task();
 
 

@@ -3560,6 +3560,15 @@
     <ClInclude Include="platform\get_file_extension_mime_type.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
+    <ClInclude Include="filesystem\filesystem\file_system_options.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\subparticle.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\subparticle_flags.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\bit.cpp">
@@ -5007,6 +5016,9 @@
     </ClCompile>
     <ClCompile Include="platform\get_file_extension_mime_type.cpp">
       <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filesystem\file_system_options.cpp">
+      <Filter>Source Files\filesystem\filesystem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

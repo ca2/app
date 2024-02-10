@@ -367,12 +367,7 @@ class ::platform::platform * particle::_platform() const
 }
 
 
-enum_type particle::get_payload_type() const
-{
 
-   return e_type_element;
-
-}
 
 
 //void particle::destroy()

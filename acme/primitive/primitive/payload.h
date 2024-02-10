@@ -329,7 +329,7 @@ public:
 
    ::i64 logical_release();
 
-   void _set_element(::particle * pelement);
+   void _set_element(::subparticle * pelement);
 
    bool is_element() const { return m_etype >= e_type_element && m_etype < e_type_last_element; }
 

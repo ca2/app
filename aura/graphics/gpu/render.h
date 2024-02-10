@@ -82,9 +82,9 @@ namespace gpu
       virtual void read_to_cpu_buffer();
       virtual void to_draw2d_graphics(::draw2d::graphics_pointer & pgraphics);
 
-      virtual void on_start_drawing(context * pgpucontext);
-      virtual void on_global_transform(context * pgpucontext);
-      virtual void on_draw(context * pgpucontext);
+      virtual void on_start_drawing(::gpu::context * pgpucontext);
+      virtual void on_global_transform(::gpu::context * pgpucontext);
+      virtual void on_draw(::gpu::context * pgpucontext);
       //virtual void render();
 
       

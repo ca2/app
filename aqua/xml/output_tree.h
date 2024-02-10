@@ -14,13 +14,13 @@ namespace xml
    public:
 
 
-      ::pointer<::xml::document>    m_pdocument;
-      ::pointer<node>               m_pnode;
+      ::pointer<::xml::document>       m_pdocument;
+      ::pointer<::xml::node>           m_pnode;
 
 
       output_tree();
       output_tree(tree_schema * pschema);
-      virtual ~output_tree();
+      ~output_tree() override;
 
 
       void set_attribute(const ::atom & atom, const ::payload & payload);
@@ -33,10 +33,10 @@ namespace xml
 
       void set_value(const ::scoped_string & scopedstrValue);
 
-      virtual node * export_node(exportable & exportable);
-      virtual node * export_node(const ::string & strName, exportable & exportable);
+      virtual ::xml::node * export_node(exportable & exportable);
+      virtual ::xml::node * export_node(const ::string & strName, exportable & exportable);
 
-      virtual node * export_node(const ::string & strName, ::payload payload);
+      virtual ::xml::node * export_node(const ::string & strName, ::payload payload);
 
 
       virtual void set_node_name(const ::string & strName);

@@ -44,7 +44,7 @@ namespace regular_expression_pcre2
 
       PCRE2_SIZE eo;
 
-      auto pcontext = (::regular_expression::context *) m_pcontext->m_pContext;
+      auto pcontext = (::regular_expression_pcre2::context *) m_pcontext->m_pContext;
 
       m_pcode = pcre2_compile((PCRE2_SPTR)(const char *)m_str, m_str.length(), 0, &e, &eo, pcontext->m_pcompilecontext);
 

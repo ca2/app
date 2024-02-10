@@ -138,7 +138,6 @@ public:
 
    //void operator()(::topic* ptopic, ::context* pcontext) override;
 
-   virtual enum_type get_payload_type() const;
 
    //virtual void destroy();
 

@@ -29,11 +29,11 @@ namespace xml
       ~input_tree() override;
 
 
-      virtual node * import_node(const ::string & strName, importable & importable);
+      virtual ::xml::node * import_node(const ::string & strName, importable & importable);
 
-      virtual node * import_node(const ::string & strName, property_set & set, importable & importable);
+      virtual ::xml::node * import_node(const ::string & strName, property_set & set, importable & importable);
 
-      virtual node * import_node(const ::string & strName, ::payload & payload);
+      virtual ::xml::node * import_node(const ::string & strName, ::payload & payload);
 
 
 

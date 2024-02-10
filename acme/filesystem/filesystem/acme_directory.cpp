@@ -541,7 +541,7 @@ void acme_directory::set_path_install_folder(const string & strPath)
    //if(m_pathModuleFolder.is_empty())
    //{
 
-   //   auto pnode = acmenode();
+   //   auto pnode = node();
 
    //   auto pathModule = pnode->module_path_source();
 

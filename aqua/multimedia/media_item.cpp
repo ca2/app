@@ -10,20 +10,22 @@ namespace aqua
    media_item::media_item()
    {
 
-      m_pPlatformObject = nullptr;
+      m_pplatformmediaitem = nullptr;
 
    }
 
 
-   media_item::media_item()
+   media_item::~media_item()
    {
 
-      //if (::is_set(m_pPlatformObject))
-      //{
-      // 
-      //   node()->free_platform_media_item(me)
 
-      //}
+   }
+
+
+   void media_item::on_destroy_platform_media_item()
+   {
+
+
 
    }
 
@@ -31,14 +33,16 @@ namespace aqua
    void media_item::attach(platform_media_item_t * pplatformmediaitem)
    {
 
+      on_destroy_platform_media_item();
+
       m_pplatformmediaitem = pplatformmediaitem;
 
-      on_attach();
+      on_attach_platform_media_item();
 
    }
 
 
-   void media_item::on_attach()
+   void media_item::on_attach_platform_media_item()
    {
 
 

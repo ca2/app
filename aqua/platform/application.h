@@ -50,7 +50,8 @@ namespace aqua
 
       void did_pick_media_item(::aqua::media_item * pmediaitem) override;
 
-
+      virtual ::aqua::media_player * assign_media_player_to_media_item(::aqua::media_item * pmediaitem);
+      
    };
 
 

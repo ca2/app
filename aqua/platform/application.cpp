@@ -2,6 +2,8 @@
 #include "application.h"
 #include "system.h"
 #include "session.h"
+#include "acme/handler/request.h"
+#include "aqua/multimedia/media_item.h"
 #include "aqua/multimedia/multimedia.h"
 #include "aqua/xml/document.h"
 
@@ -202,10 +204,32 @@ namespace aqua
 
    void application::did_pick_media_item(::aqua::media_item * pmediaitem)
    {
-
-
+      
+      auto prequest = __create_new <::request>();
+      
+      prequest->m_payloadFile._set_element(pmediaitem);
+      
+      prequest->m_ecommand = ::e_command_file_open;
+      
+      this->request(prequest);
 
    }
+
+::aqua::media_player * application::assign_media_player_to_media_item(::aqua::media_item * pmediaitem)
+{
+   
+   if(pmediaitem->m_pmediaplayer)
+   {
+      
+      return pmediaitem->m_pmediaplayer;
+      
+   }
+   
+   pmediaitem->assign_media_player();
+   
+   return pmediaitem->m_pmediaplayer;
+   
+}
 
 
 } // namespace aqua

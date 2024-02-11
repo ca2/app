@@ -7,6 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9A0D1C4F2B78575100E4B572 /* media_player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0D1C4D2B78575100E4B572 /* media_player.cpp */; };
+		9A0D1C502B78575100E4B572 /* media_player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0D1C4D2B78575100E4B572 /* media_player.cpp */; };
+		9A0D1C512B78575100E4B572 /* media_player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0D1C4D2B78575100E4B572 /* media_player.cpp */; };
+		9A0D1C522B78575100E4B572 /* media_player.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0D1C4E2B78575100E4B572 /* media_player.h */; };
+		9A0D1C532B78575100E4B572 /* media_player.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0D1C4E2B78575100E4B572 /* media_player.h */; };
+		9A0D1C542B78575100E4B572 /* media_player.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0D1C4E2B78575100E4B572 /* media_player.h */; };
+		9A0D1C6D2B7862F000E4B572 /* media_player_command.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0D1C6B2B7862EF00E4B572 /* media_player_command.h */; };
+		9A0D1C6E2B7862F000E4B572 /* media_player_command.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0D1C6B2B7862EF00E4B572 /* media_player_command.h */; };
+		9A0D1C6F2B7862F000E4B572 /* media_player_command.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0D1C6B2B7862EF00E4B572 /* media_player_command.h */; };
+		9A0D1C702B7862F000E4B572 /* media_player_command.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0D1C6C2B7862EF00E4B572 /* media_player_command.cpp */; };
+		9A0D1C712B7862F000E4B572 /* media_player_command.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0D1C6C2B7862EF00E4B572 /* media_player_command.cpp */; };
+		9A0D1C722B7862F000E4B572 /* media_player_command.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0D1C6C2B7862EF00E4B572 /* media_player_command.cpp */; };
 		9A2273B627CF04470042BAC2 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2273AB27CF04460042BAC2 /* _.h */; };
 		9A2819AD25242523009FA9CB /* console.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A28192825242523009FA9CB /* console.h */; };
 		9A2819AF25242523009FA9CB /* library.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A28192D25242523009FA9CB /* library.h */; };
@@ -433,6 +445,12 @@
 /* Begin PBXFileReference section */
 		9A03B7BC2A25B8F700A0E33E /* _____debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "_____debug.xcconfig"; sourceTree = "<group>"; };
 		9A03B7BD2A25B8F700A0E33E /* _____release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "_____release.xcconfig"; sourceTree = "<group>"; };
+		9A0D1C4D2B78575100E4B572 /* media_player.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = media_player.cpp; sourceTree = "<group>"; };
+		9A0D1C4E2B78575100E4B572 /* media_player.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = media_player.h; sourceTree = "<group>"; };
+		9A0D1C6B2B7862EF00E4B572 /* media_player_command.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = media_player_command.h; sourceTree = "<group>"; };
+		9A0D1C6C2B7862EF00E4B572 /* media_player_command.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = media_player_command.cpp; sourceTree = "<group>"; };
+		9A0D1C732B7869FC00E4B572 /* aaa_player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = aaa_player.cpp; sourceTree = "<group>"; };
+		9A0D1C742B7869FC00E4B572 /* aaa_player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aaa_player.h; sourceTree = "<group>"; };
 		9A2273AB27CF04460042BAC2 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		9A2818FE25242488009FA9CB /* libaqua.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libaqua.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A28192825242523009FA9CB /* console.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = console.h; sourceTree = "<group>"; };
@@ -733,6 +751,8 @@
 		9A28198F25242523009FA9CB /* multimedia */ = {
 			isa = PBXGroup;
 			children = (
+				9A0D1C732B7869FC00E4B572 /* aaa_player.cpp */,
+				9A0D1C742B7869FC00E4B572 /* aaa_player.h */,
 				9A2819A625242523009FA9CB /* _.h */,
 				9A28199525242523009FA9CB /* _c.h */,
 				9A979D9B28C831F00013DC54 /* _constant.h */,
@@ -751,6 +771,10 @@
 				9A4DDE262B77464600477878 /* media_item_picker.h */,
 				9A4DDE242B77464500477878 /* media_item.cpp */,
 				9A4DDE282B77464600477878 /* media_item.h */,
+				9A0D1C4D2B78575100E4B572 /* media_player.cpp */,
+				9A0D1C4E2B78575100E4B572 /* media_player.h */,
+				9A0D1C6C2B7862EF00E4B572 /* media_player_command.cpp */,
+				9A0D1C6B2B7862EF00E4B572 /* media_player_command.h */,
 				9A28199925242523009FA9CB /* multimedia.cpp */,
 				9A2819A525242523009FA9CB /* multimedia.h */,
 			);
@@ -762,6 +786,7 @@
 			children = (
 				9A67F1062B4D2AC900589D0A /* tinyexpr.cpp */,
 				9A67F1072B4D2ACA00589D0A /* tinyexpr.h */,
+				9A281A2325242870009FA9CB /* application.cpp */,
 				9A281A1E25242870009FA9CB /* application.h */,
 				9A281A1F25242870009FA9CB /* session.h */,
 				9A281A2025242870009FA9CB /* session.cpp */,
@@ -769,7 +794,6 @@
 				9A2D744D2AAB522A00DFCE25 /* sha256.h */,
 				9A281A2125242870009FA9CB /* system.cpp */,
 				9A281A2225242870009FA9CB /* system.h */,
-				9A281A2325242870009FA9CB /* application.cpp */,
 				9A281A2425242870009FA9CB /* _platform.h */,
 			);
 			path = platform;
@@ -884,6 +908,7 @@
 				9A4DDE3D2B77464700477878 /* information.h in Headers */,
 				9A2819CE25242523009FA9CB /* tree_schema.h in Headers */,
 				9A2819E825242523009FA9CB /* _.h in Headers */,
+				9A0D1C6D2B7862F000E4B572 /* media_player_command.h in Headers */,
 				9A94EC4129E46D4700C8C249 /* sound_track_player.h in Headers */,
 				9A281A0025242523009FA9CB /* _acid_app_impl.h in Headers */,
 				9A4DDE342B77464700477878 /* media_item_picker_callback.h in Headers */,
@@ -928,6 +953,7 @@
 				9A281A1825242524009FA9CB /* exception.h in Headers */,
 				9A281A1C25242524009FA9CB /* _.h in Headers */,
 				9A2E6256252588430001CC7E /* _component.h in Headers */,
+				9A0D1C522B78575100E4B572 /* media_player.h in Headers */,
 				9A2819F525242523009FA9CB /* application.h in Headers */,
 				9A2819FB25242523009FA9CB /* _new_impl.h in Headers */,
 				9A2819D125242523009FA9CB /* node.h in Headers */,
@@ -972,6 +998,7 @@
 				9A4DDE3F2B77464700477878 /* information.h in Headers */,
 				9A81892A2A71CC42008F470C /* tree_schema.h in Headers */,
 				9A81892B2A71CC42008F470C /* _.h in Headers */,
+				9A0D1C6F2B7862F000E4B572 /* media_player_command.h in Headers */,
 				9A81892C2A71CC42008F470C /* sound_track_player.h in Headers */,
 				9A81892D2A71CC42008F470C /* _acid_app_impl.h in Headers */,
 				9A4DDE362B77464700477878 /* media_item_picker_callback.h in Headers */,
@@ -1016,6 +1043,7 @@
 				9A8189512A71CC42008F470C /* exception.h in Headers */,
 				9A8189522A71CC42008F470C /* _.h in Headers */,
 				9A8189532A71CC42008F470C /* _component.h in Headers */,
+				9A0D1C542B78575100E4B572 /* media_player.h in Headers */,
 				9A8189542A71CC42008F470C /* application.h in Headers */,
 				9A8189552A71CC42008F470C /* _new_impl.h in Headers */,
 				9A8189562A71CC42008F470C /* node.h in Headers */,
@@ -1060,6 +1088,7 @@
 				9A4DDE3E2B77464700477878 /* information.h in Headers */,
 				9A8E9E52282A3210005FF778 /* tree_schema.h in Headers */,
 				9A8E9E53282A3210005FF778 /* _.h in Headers */,
+				9A0D1C6E2B7862F000E4B572 /* media_player_command.h in Headers */,
 				9A94EC4229E46D4700C8C249 /* sound_track_player.h in Headers */,
 				9A8E9E54282A3210005FF778 /* _acid_app_impl.h in Headers */,
 				9A4DDE352B77464700477878 /* media_item_picker_callback.h in Headers */,
@@ -1104,6 +1133,7 @@
 				9A8E9E77282A3210005FF778 /* exception.h in Headers */,
 				9A8E9E78282A3210005FF778 /* _.h in Headers */,
 				9A8E9E7B282A3210005FF778 /* _component.h in Headers */,
+				9A0D1C532B78575100E4B572 /* media_player.h in Headers */,
 				9A8E9E7C282A3210005FF778 /* application.h in Headers */,
 				9A8E9E7E282A3210005FF778 /* _new_impl.h in Headers */,
 				9A8E9E80282A3210005FF778 /* node.h in Headers */,
@@ -1253,6 +1283,7 @@
 				9A2819CB25242523009FA9CB /* input_tree.cpp in Sources */,
 				9A2819D825242523009FA9CB /* var_exchange.cpp in Sources */,
 				9A2E6258252588430001CC7E /* game.cpp in Sources */,
+				9A0D1C702B7862F000E4B572 /* media_player_command.cpp in Sources */,
 				9A94EC4929E46D4700C8C249 /* audio_wave_out.cpp in Sources */,
 				9A2819E225242523009FA9CB /* document.cpp in Sources */,
 				9A4DDE2E2B77464700477878 /* media_item_picker.cpp in Sources */,
@@ -1267,6 +1298,7 @@
 				9A281A0725242524009FA9CB /* exception.cpp in Sources */,
 				9A94EC3929E46D4700C8C249 /* audio_mixer.cpp in Sources */,
 				9A94EC3129E46D4700C8C249 /* speaker.cpp in Sources */,
+				9A0D1C4F2B78575100E4B572 /* media_player.cpp in Sources */,
 				9A2819D725242523009FA9CB /* disp_option.cpp in Sources */,
 				9A281A2A25242870009FA9CB /* application.cpp in Sources */,
 				9A2819C125242523009FA9CB /* parse_info.cpp in Sources */,
@@ -1303,6 +1335,7 @@
 				9A8189662A71CC42008F470C /* input_tree.cpp in Sources */,
 				9A8189672A71CC42008F470C /* var_exchange.cpp in Sources */,
 				9A8189682A71CC42008F470C /* game.cpp in Sources */,
+				9A0D1C722B7862F000E4B572 /* media_player_command.cpp in Sources */,
 				9A8189692A71CC42008F470C /* audio_wave_out.cpp in Sources */,
 				9A81896A2A71CC42008F470C /* document.cpp in Sources */,
 				9A4DDE302B77464700477878 /* media_item_picker.cpp in Sources */,
@@ -1317,6 +1350,7 @@
 				9A8189732A71CC42008F470C /* exception.cpp in Sources */,
 				9A8189742A71CC42008F470C /* audio_mixer.cpp in Sources */,
 				9A8189752A71CC42008F470C /* speaker.cpp in Sources */,
+				9A0D1C512B78575100E4B572 /* media_player.cpp in Sources */,
 				9A8189762A71CC42008F470C /* disp_option.cpp in Sources */,
 				9A8189772A71CC42008F470C /* application.cpp in Sources */,
 				9A8189782A71CC42008F470C /* parse_info.cpp in Sources */,
@@ -1353,6 +1387,7 @@
 				9A8E9E95282A3210005FF778 /* input_tree.cpp in Sources */,
 				9A8E9E97282A3210005FF778 /* var_exchange.cpp in Sources */,
 				9A8E9E98282A3210005FF778 /* game.cpp in Sources */,
+				9A0D1C712B7862F000E4B572 /* media_player_command.cpp in Sources */,
 				9A94EC4A29E46D4700C8C249 /* audio_wave_out.cpp in Sources */,
 				9A8E9E9A282A3210005FF778 /* document.cpp in Sources */,
 				9A4DDE2F2B77464700477878 /* media_item_picker.cpp in Sources */,
@@ -1367,6 +1402,7 @@
 				9A8E9EA3282A3210005FF778 /* exception.cpp in Sources */,
 				9A94EC3A29E46D4700C8C249 /* audio_mixer.cpp in Sources */,
 				9A94EC3229E46D4700C8C249 /* speaker.cpp in Sources */,
+				9A0D1C502B78575100E4B572 /* media_player.cpp in Sources */,
 				9A8E9EA4282A3210005FF778 /* disp_option.cpp in Sources */,
 				9A8E9EA5282A3210005FF778 /* application.cpp in Sources */,
 				9A8E9EA6282A3210005FF778 /* parse_info.cpp in Sources */,

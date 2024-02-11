@@ -50,6 +50,29 @@ namespace aqua
    }
 
 
+   ::string media_item::get_id()
+   {
+   
+      return {};
+      
+   }
+
+
+   ::aqua::enum_media_type media_item::get_media_type()
+   {
+      
+      return ::aqua::e_media_type_unknown;
+      
+   }
+
+
+   void media_item::assign_media_player()
+   {
+      
+      
+   }
+
+
 } // namespace aqua
 
 

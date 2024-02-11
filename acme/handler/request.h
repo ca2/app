@@ -35,6 +35,7 @@ public:
    ::payload                        m_payloadOptions;
    string                           m_strExtra;
    ::e_status                       m_estatus;
+   //::pointer < ::particle >         m_pparticleTopic;
 
    bool                             m_bDocumentAndFrameCreated = false;
    bool                             m_bDocumentWasModified = false;

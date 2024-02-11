@@ -7,7 +7,7 @@
 #include "acme/constant/exclusive_instance.h"
 #include "apex/database/client.h"
 #include "apex/networking/application/application_handler.h"
-#include "acme/parallelization/semaphore.h"
+//#include "acme/parallelization/semaphore.h"
 #include "acme/platform/application.h"
 //#include "acme/primitive/mathematics/scalar.h"
 #include "apex/progress/real.h"
@@ -62,7 +62,7 @@ namespace apex
 #if defined(LINUX) || defined(FREEBSD)
       bool                                         m_bSnLauncheeSetup;
 #endif
-      semaphore                                    m_semCompiler;
+      //semaphore                                    m_semCompiler;
       // former ::application_interface // moved on 2015-05-23 Sammstag while listening to RocketBeansTV (a German channel?) at TwitchTV
       string_array                                 m_straActivationMessage;
 

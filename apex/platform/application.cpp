@@ -1856,49 +1856,50 @@ namespace apex
 
       bool bHandled = false;
 
-#if !defined(ANDROID)
-
-      if (!check_exclusive(m_prequest, bHandled))
+      if (!is_sandboxed())
       {
-
-         if (!bHandled &&
-            (!has_property("install")
-               && !has_property("uninstall")))
+         
+         if (!check_exclusive(m_prequest, bHandled))
          {
-
-            class time timeTimeout;
-
-            //#ifdef __DEBUG
-            //
-            //          timeTimeout = minutes(5);
-            //
-            //#else //__DEBUG
-
-            timeTimeout = 5_s;
-
-            //#endif //!__DEBUG
-
-            string strMessage;
-
-            strMessage = "Another instance of \"" + m_strAppName + "\" is already running (and some exclusivity policy is active).";
-
-            //          payload["prefix_html"] = "<img src=\"matter://system/exclusive.png\" width=80 height=80 style=\"display:block;\"><br/><br/>";
-
-            //message_box(strMessage, m_strAppName, timeTimeout, e_message_box_icon_asterisk);
-
-            //message_box(strMessage, m_strAppName, e_message_box_icon_asterisk);
-
-            informationf(strMessage + m_strAppName);
-
-            information() << "apex::application::init_application exit";
-
-            throw exit_exception(error_exit_application, this, "Another install of the application is running.");
-
+            
+            if (!bHandled &&
+                (!has_property("install")
+                 && !has_property("uninstall")))
+            {
+               
+               class time timeTimeout;
+               
+               //#ifdef __DEBUG
+               //
+               //          timeTimeout = minutes(5);
+               //
+               //#else //__DEBUG
+               
+               timeTimeout = 5_s;
+               
+               //#endif //!__DEBUG
+               
+               string strMessage;
+               
+               strMessage = "Another instance of \"" + m_strAppName + "\" is already running (and some exclusivity policy is active).";
+               
+               //          payload["prefix_html"] = "<img src=\"matter://system/exclusive.png\" width=80 height=80 style=\"display:block;\"><br/><br/>";
+               
+               //message_box(strMessage, m_strAppName, timeTimeout, e_message_box_icon_asterisk);
+               
+               //message_box(strMessage, m_strAppName, e_message_box_icon_asterisk);
+               
+               informationf(strMessage + m_strAppName);
+               
+               information() << "apex::application::init_application exit";
+               
+               throw exit_exception(error_exit_application, this, "Another install of the application is running.");
+               
+            }
+            
          }
-
+         
       }
-
-#endif
 
       information() << "apex::application::init_application .2";
 

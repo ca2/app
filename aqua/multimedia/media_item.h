@@ -13,8 +13,9 @@ namespace aqua
 
 
       platform_media_item_t * m_pplatformmediaitem;
+      ::pointer < ::aqua::media_player > m_pmediaplayer;
 
-
+      
       media_item();
       ~media_item() override;
 
@@ -25,6 +26,12 @@ namespace aqua
 
       virtual void on_attach_platform_media_item();
 
+      virtual ::string get_id();
+      
+      virtual ::aqua::enum_media_type get_media_type();
+      
+      virtual void assign_media_player();
+      
 
    };
 

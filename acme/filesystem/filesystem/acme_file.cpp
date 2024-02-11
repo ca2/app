@@ -464,7 +464,7 @@ void acme_file::find_replace(const ::file::path & path, const ::property_set & s
 void acme_file::put_app_cloud_data(const ::file::path & path, const char * pszContentIdentifier, const ::block & block)
 {
    
-   auto pathAppCloud = acmepath()->defer_get_app_cloud_path(path, pszContentIdentifier);
+   auto pathAppCloud = acmepath()->defer_get_icloud_container_path(path, pszContentIdentifier);
    
    this->put_contents(pathAppCloud, pszContentIdentifier);
    
@@ -474,7 +474,7 @@ void acme_file::put_app_cloud_data(const ::file::path & path, const char * pszCo
 ::memory acme_file::get_app_cloud_data(const ::file::path & path, const char * pszContentIdentifier)
 {
    
-   auto pathAppCloud = acmepath()->defer_get_app_cloud_path(path, pszContentIdentifier);
+   auto pathAppCloud = acmepath()->defer_get_icloud_container_path(path, pszContentIdentifier);
    
    return this->as_memory(pathAppCloud);
    

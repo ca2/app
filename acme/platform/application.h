@@ -98,8 +98,6 @@ namespace acme
       ::text::text                                    m_textAppTitle;
       ::text::text                                    m_textAppName;
 
-      ::string                                        m_strAppCloudContainerIdentifier;
-
       ::pointer < ::mutex >                                      m_pmutexMatterLocator;
 
       ::pointer < ::mutex >                                      m_pmutexStr;

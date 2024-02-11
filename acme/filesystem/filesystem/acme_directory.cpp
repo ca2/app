@@ -395,28 +395,36 @@ string acme_directory::system_short_name()
 }
 
 
-::file::path acme_directory::app_cloud_document(const char * pszAppCloudContainerIdentifier)
+::file::path acme_directory::icloud_container2(const char * psz_iCloudContainerIdentifier)
 {
    
-   ::string strAppCloudContainerIdentifier;
+   ::string str_iCloudContainerIdentifier;
    
-   strAppCloudContainerIdentifier = acmepath()->app_cloud_container_identifier(pszAppCloudContainerIdentifier);
+   str_iCloudContainerIdentifier = acmepath()->icloud_container_identifier(psz_iCloudContainerIdentifier);
    
    ::file::path pathContainer;
    
-   pathContainer = ("icloud://" + strAppCloudContainerIdentifier);
+   pathContainer = ("icloud://" + str_iCloudContainerIdentifier);
    
    return pathContainer;
    
 }
 
 
-bool acme_directory::is_app_cloud_document(const ::file::path & path, const char * pszContentIdentifier)
+::file::path acme_directory::icloud_container_documents(const char * psz_iCloudContainerIdentifier)
+{
+
+   return icloud_container2(psz_iCloudContainerIdentifier) / "Documents";
+   
+}
+
+
+bool acme_directory::is_icloud_container(const ::file::path & path, const char * pszContentIdentifier)
 {
    
    ::file::path pathFolder;
    
-   pathFolder = app_cloud_document(pszContentIdentifier);
+   pathFolder = icloud_container2(pszContentIdentifier);
    
    if(path.folder() == pathFolder ||
       path.folder().begins(::string(pathFolder) + "/"))
@@ -431,7 +439,7 @@ bool acme_directory::is_app_cloud_document(const ::file::path & path, const char
 }
 
 
-bool acme_directory::has_app_cloud_document(const char * pszContentIdentifier)
+bool acme_directory::has_icloud_container(const char * pszContentIdentifier)
 {
    
    return false;

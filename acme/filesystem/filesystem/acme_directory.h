@@ -122,9 +122,10 @@ public:
    virtual ::file::path public_root(); // writable common root (non-bin, non-exe)
    virtual ::file::path bookmark();
    virtual ::file::path home();
-   virtual ::file::path app_cloud_document(const char * pszContentIdentifier = nullptr);
-   virtual bool is_app_cloud_document(const ::file::path & path, const char * pszContentIdentifier = nullptr);
-   virtual bool has_app_cloud_document(const char * pszContentIdentifier = nullptr);
+   virtual ::file::path icloud_container2(const char * pszContentIdentifier = nullptr);
+   virtual ::file::path icloud_container_documents(const char * pszContentIdentifier = nullptr);
+   virtual bool is_icloud_container(const ::file::path & path, const char * pszContentIdentifier = nullptr);
+   virtual bool has_icloud_container(const char * pszContentIdentifier = nullptr);
    virtual ::file::path pathfind(const string& pszEnv, const string& pszTopic, const string& pszMode);
    virtual ::file::path program_files_x86();
    virtual ::file::path program_files();

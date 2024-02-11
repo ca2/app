@@ -30,8 +30,14 @@ namespace filesystem
       bool                 m_bVideo;
       bool                 m_bDesktop;
       
-      ::string_array       m_straUTType;
+      ::string             m_str_iCloudContainerIdentifier;
+      ::string             m_str_iCloudContainerName;
+
       
+      ::string_array       m_straUTType;
+
+      ::string_array       m_straFileSystemExtension;
+
       
       file_system_options();
       ~file_system_options() override;

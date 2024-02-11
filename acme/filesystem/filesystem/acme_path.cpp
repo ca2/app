@@ -4,6 +4,7 @@
 #include "acme_directory.h"
 #include "acme_file.h"
 #include "acme/exception/interface_only.h"
+#include "acme/filesystem/filesystem/file_system_options.h"
 #include "acme/filesystem/filesystem/link.h"
 #include "acme/platform/application.h"
 #include "acme/platform/system.h"
@@ -24,25 +25,24 @@ acme_path::~acme_path()
 }
 
 
-::string acme_path::app_cloud_container_identifier(const char * pszAppCloudContainerIdentifier)
+::string acme_path::icloud_container_identifier(const char * psz_iCloudContainerIdentifier)
 {
    
-   ::string strAppCloudContainerIdentifier(pszAppCloudContainerIdentifier);
+   ::string str_iCloudContainerIdentifier(psz_iCloudContainerIdentifier);
    
-   if(strAppCloudContainerIdentifier.is_empty())
+   if(str_iCloudContainerIdentifier.is_empty())
    {
 
-      strAppCloudContainerIdentifier = application()->m_strAppCloudContainerIdentifier;
-
+      str_iCloudContainerIdentifier = application()->m_pfilesystemoptions->m_str_iCloudContainerIdentifier;
 
    }
 
-   return strAppCloudContainerIdentifier;
+   return str_iCloudContainerIdentifier;
    
 }
 
 
-//::string acme_path::app_cloud_container_id_from_app_id(const char * pszAppId)
+//::string acme_path::icloud_container_id_from_app_id(const char * pszAppId)
 //{
 //   
 //   ::string strAppId(pszAppId);
@@ -66,27 +66,27 @@ acme_path::~acme_path()
 //}
 
 
-::file::path acme_path::defer_get_app_cloud_path(const ::file::path & path, const char * pszAppId)
+::file::path acme_path::defer_get_icloud_container_path(const ::file::path & path, const char * pszAppId)
 {
    
-   if(acmedirectory()->is_app_cloud_document(path, pszAppId))
+   if(acmedirectory()->is_icloud_container(path, pszAppId))
    {
       
       return path;
       
    }
    
-   return acmedirectory()->app_cloud_document(pszAppId) / path;
+   return acmedirectory()->icloud_container2(pszAppId) / path;
    
 }
 
 
-void acme_path::defer_get_app_cloud_path_name(::string & strName, ::string & strAppCloudContainerIdentifier, const ::file::path & path)
+void acme_path::defer_get_icloud_container_path_name(::string & strName, ::string & str_iCloudContainerIdentifier, const ::file::path & path)
 {
    
-   strAppCloudContainerIdentifier = app_cloud_container_identifier(strAppCloudContainerIdentifier);
+   str_iCloudContainerIdentifier = icloud_container_identifier(str_iCloudContainerIdentifier);
    
-   if(!acmedirectory()->is_app_cloud_document(path, strAppCloudContainerIdentifier))
+   if(!acmedirectory()->is_icloud_container(path, str_iCloudContainerIdentifier))
    {
       
       strName = path;
@@ -97,7 +97,7 @@ void acme_path::defer_get_app_cloud_path_name(::string & strName, ::string & str
    
    strName = path;
    
-   strName.begins_eat(acmedirectory()->app_cloud_document(strAppCloudContainerIdentifier));
+   strName.begins_eat(acmedirectory()->icloud_container2(str_iCloudContainerIdentifier));
 
    strName.trim_left("/");
    

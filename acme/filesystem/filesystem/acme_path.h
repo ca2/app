@@ -17,11 +17,11 @@ public:
    ~acme_path() override;
    
    
-   virtual ::string app_cloud_container_identifier(const char * pszAppCloudContainerIdentifier);
+   virtual ::string icloud_container_identifier(const char * psz_iCloudContainerIdentifier);
    
-   virtual ::file::path defer_get_app_cloud_path(const ::file::path & path, const char * pszAppCloudContainerIdentifier);
+   virtual ::file::path defer_get_icloud_container_path(const ::file::path & path, const char * psz_iCloudContainerIdentifier);
 
-   virtual void defer_get_app_cloud_path_name(::string & strName, ::string & strAppCloudContainerIdentifier, const ::file::path & path);
+   virtual void defer_get_icloud_container_path_name(::string & strName, ::string & str_iCloudContainerIdentifier, const ::file::path & path);
 
 
    virtual  string from(string str);

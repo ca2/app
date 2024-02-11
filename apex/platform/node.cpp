@@ -631,17 +631,27 @@ namespace apex
          
       }
       
-      if(pfilesystemoptions->m_b_iCloud)
+      if(pfilesystemoptions->m_b_iCloudContainer)
       {
          
-         if(acmedirectory()->has_app_cloud_document())
+         if(acmedirectory()->has_icloud_container())
          {
             
-            ::file::path & path = listing.insert_at(0, "icloud://");
+            ::string pathContainer;
+            
+            pathContainer = acmedirectory()->icloud_container_documents();
+            
+            ::string strContainerName;
+            
+            strContainerName = application()->m_pfilesystemoptions->m_str_iCloudContainerName;
+            
+            auto iInsert = listing.size();
+            
+            ::file::path & path = listing.insert_at(iInsert, pathContainer);
             
             path.m_iDir = 1;
             
-            listing.m_straTitle.insert_at(0, unitext("iCloud"));
+            listing.m_straTitle.insert_at(iInsert, strContainerName);
             
          }
          

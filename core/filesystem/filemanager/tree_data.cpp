@@ -262,6 +262,8 @@ namespace filemanager
       auto papp = get_app();
 
       auto pcontext = m_pcontext;
+      
+      bool bRoot = false;
 
       if(bOnlyParent && pathUser.has_char())
       {
@@ -271,12 +273,14 @@ namespace filemanager
          auto & path = listing.add_get(pathUser);
 
          path.m_iDir = 1;
-
+         
       }
       else if (pathUser.is_empty())
       {
 
          filemanager_data()->fs_data()->root_ones(listing);
+         
+         bRoot = true;
 
       }
       else
@@ -327,7 +331,7 @@ namespace filemanager
 
             }
 
-            add_path(pathUser, strTitle);
+            add_path(!bRoot, pathUser, strTitle);
 
          }
 
@@ -365,7 +369,6 @@ namespace filemanager
 
       });
 
-
    }
 
 
@@ -399,7 +402,7 @@ namespace filemanager
 
             }
 
-            add_path(item, strTitle);
+            add_path(false, item, strTitle);
 
          }
 
@@ -409,19 +412,9 @@ namespace filemanager
 
       {
 
-         ::file::path_array patha;
-
-         ascendants_path(filemanager_item()->user_path(), patha);
-
-         for (auto & path : patha)
-         {
-
-            add_path(path, "");
-
-         }
+         add_path(true, filemanager_item()->user_path(), "");
 
       }
-
 
       // add sibling folders
 
@@ -432,12 +425,11 @@ namespace filemanager
          for (auto & path : listingUser)
          {
 
-            add_path(path, "");
+            add_path(true, path, "");
 
          }
 
       }
-
 
       //auto pparticleSynchronization = m_usertreea.has_elements() ? m_usertreea[0]->synchronization() : nullptr;
 
@@ -829,14 +821,29 @@ _001SelectItem(pchild);
    }
 
 
-   void tree_data::add_path(const ::file::path & pathAdd, const ::scoped_string & scopedstrName)
+   void tree_data::add_path(bool bExpandAscendants, const ::file::path & pathAdd, const ::scoped_string & scopedstrName)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       ::file::path_array patha;
+      
+      if(bExpandAscendants)
+      {
+         
+         ascendants_path(pathAdd, patha);
+         
+         information() << "tree_data::add_path expanding ascendants of : " << pathAdd;
+         
+      }
+      else
+      {
+         
+         patha.add(pathAdd);
+         
+         information() << "tree_data::add_path gonna try add : " << pathAdd;
 
-      ascendants_path(pathAdd, patha);
+      }
 
       auto pparent = get_base_item();
 
@@ -844,6 +851,23 @@ _001SelectItem(pchild);
       {
 
          auto & path = patha[i];
+         
+         ::file::path pathFinal = m_pcontext->m_papexcontext->defer_process_path(path);
+
+         if(bExpandAscendants && (filemanager_data()->m_listingRoot2.find_first_contains(path) >= 0
+         || filemanager_data()->m_listingRoot2.find_first_contains(pathFinal) >= 0)
+            )
+         {
+          
+            pparent = find_item_by_user_path(path);
+            
+            continue;
+            
+         }
+         
+         information() << "user path : " << path;
+         
+         information() << "final path : " << pathFinal;
 
          ::pointer<::data::tree_item>pchild = find_item_by_user_path(path);
 
@@ -854,7 +878,7 @@ _001SelectItem(pchild);
 
             pitemNew->set_user_path(path);
 
-            pitemNew->set_final_path(m_pcontext->m_papexcontext->defer_process_path(path));
+            pitemNew->set_final_path(pathFinal);
 
             if (filemanager_data()->fs_data()->is_dir(pitemNew->final_path()))
             {

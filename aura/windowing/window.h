@@ -91,8 +91,12 @@ namespace windowing
 
       void install_message_routing(::channel * pchannel) override;
 
+      
+      virtual void call_create_window(::user::interaction_impl * puserinteractionimpl);
 
-      virtual void create_window(::user::interaction_impl * pimpl);
+      //virtual void create_window(::user::interaction_impl * pimpl);
+      
+      virtual void create_window();
 
 
       //virtual void set_cursor_position(const ::point_i32 & pointCursor);

@@ -3520,6 +3520,14 @@ bool node::are_framework_shared_libraries_busy(const ::scoped_string & scopedstr
    }
 
 
+   bool node::defer_process_protocol_path(::file::path & path)
+   {
+   
+      return false;
+      
+   }
+
+
 } // namespace acme
 
 

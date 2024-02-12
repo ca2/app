@@ -118,6 +118,7 @@ namespace apex
       virtual bool defer_process_known_folder_path(::file::path & path);
       virtual ::file::path full_process_path(::file::path path);
 
+      virtual bool defer_process_protocol_path(::file::path & path);
 
       //sclass ::hyperlink hyperlink() { return this; }
 

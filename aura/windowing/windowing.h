@@ -168,7 +168,12 @@ namespace windowing
 
       virtual class window * new_message_window(::user::interaction_impl * pimpl);
 
-      virtual class window * new_window(::user::interaction_impl * pimpl);
+      
+      virtual ::pointer < ::windowing::window > get_new_window(::user::interaction_impl * puserinteractionimpl);
+      
+
+      virtual class window * new_window(::user::interaction_impl * puserinteractionimpl);
+      
 
       virtual void erase_window(::windowing::window * pwindow);
 

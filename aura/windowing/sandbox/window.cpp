@@ -32,28 +32,32 @@ namespace sandbox_windowing
    }
 
 
-   void window::create_window(::user::interaction_impl* pimpl)
+   void window::create_window()
    {
 
       bool bOk = true;
+      
+      auto puserinteractionimpl = m_puserinteractionimpl;
+      
+      auto puserinteraction = puserinteractionimpl->m_puserinteraction;
 
-      auto pusersystem = pimpl->m_puserinteraction->m_pusersystem;
+      auto pusersystem = puserinteraction->m_pusersystem;
 
-      pimpl->m_puserinteraction->m_bMessageWindow = false;
+      puserinteraction->m_bMessageWindow = false;
 
       auto pwindowing = windowing();
 
       auto pwindowingdisplay = pwindowing->display();
 
-      int x = m_puserinteractionimpl->m_puserinteraction->const_layout().sketch().origin().x();
+      int x = puserinteraction->const_layout().sketch().origin().x();
 
-      int y = m_puserinteractionimpl->m_puserinteraction->const_layout().sketch().origin().y();
+      int y = puserinteraction->const_layout().sketch().origin().y();
 
-      int cx = m_puserinteractionimpl->m_puserinteraction->const_layout().sketch().width();
+      int cx = puserinteraction->const_layout().sketch().width();
 
-      int cy = m_puserinteractionimpl->m_puserinteraction->const_layout().sketch().height();
+      int cy = puserinteraction->const_layout().sketch().height();
 
-      bool bVisible = m_puserinteractionimpl->m_puserinteraction->const_layout().sketch().is_screen_visible();
+      bool bVisible = puserinteraction->const_layout().sketch().is_screen_visible();
 
       if (cx <= 0)
       {
@@ -69,19 +73,19 @@ namespace sandbox_windowing
 
       }
 
-      m_puserinteractionimpl = pimpl;
+      //m_puserinteractionimpl = pimpl;
 
-      pimpl->m_pwindow = this;
+      //pimpl->m_pwindow = this;
 
       set_oswindow(this);
 
-      pimpl->m_puserinteraction->m_pinteractionimpl = pimpl;
+      //pimpl->m_puserinteraction->m_pinteractionimpl = pimpl;
 
-      pimpl->m_puserinteraction->increment_reference_count(REFERENCING_DEBUGGING_P_NOTE(this, "native_create_window"));
+      puserinteraction->increment_reference_count(REFERENCING_DEBUGGING_P_NOTE(this, "native_create_window"));
 
       auto papp = get_app();
 
-      if (!(pimpl->m_puserinteraction->m_ewindowflag & e_window_flag_satellite_window))
+      if (!(puserinteraction->m_ewindowflag & e_window_flag_satellite_window))
       {
 
          auto psystem = system()->m_papexsystem;
@@ -199,7 +203,7 @@ namespace sandbox_windowing
             ////if(strName.is_empty())
             ////{
 
-      string strWindowText = pimpl->m_puserinteraction->get_window_text();
+      string strWindowText = puserinteraction->get_window_text();
 
       //if (strWindowText.has_char())
       //{
@@ -278,14 +282,14 @@ namespace sandbox_windowing
                // (Hinting for monitor placement, if no stored information
                // available).
 
-               if (pimpl->m_puserinteraction->const_layout().sketch().display() == e_display_undefined)
+               if (puserinteraction->const_layout().sketch().display() == e_display_undefined)
                {
 
-                  auto pointCursor = pimpl->m_puserinteraction->mouse_cursor_position();
+                  auto pointCursor = puserinteraction->mouse_cursor_position();
 
-                  pimpl->m_puserinteraction->set_position(pointCursor);
+                  puserinteraction->set_position(pointCursor);
 
-                  pimpl->m_puserinteraction->set_size({0, 0});
+                  puserinteraction->set_size({0, 0});
 
                }
 
@@ -305,7 +309,7 @@ namespace sandbox_windowing
 
          //auto lresult = pimpl->m_puserinteraction->send_message(e_message_create, 0, (lparam) &pusersystem->m_createstruct);
 
-         auto lresult = pimpl->m_puserinteraction->send_message(e_message_create, 0, 0);
+         auto lresult = puserinteraction->send_message(e_message_create, 0, 0);
 
          if (lresult == -1)
          {
@@ -314,9 +318,9 @@ namespace sandbox_windowing
 
          }
 
-         pimpl->m_puserinteraction->m_ewindowflag |= e_window_flag_window_created;
+         puserinteraction->m_ewindowflag |= e_window_flag_window_created;
 
-         pimpl->m_puserinteraction->set_flag(e_flag_task_started);
+         puserinteraction->set_flag(e_flag_task_started);
 
       }
 

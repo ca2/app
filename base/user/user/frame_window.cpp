@@ -1314,42 +1314,42 @@ namespace user
 
    }
 
-   if (::is_set(get_parent()))
-   {
-
-      if (pusersystem->m_prequest->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_screen)
-      {
-
-         display();
-
-      }
-
-   }
-   else
-   {
-
-      if (pusersystem->m_prequest->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_screen)
-      {
-
-         initial_frame_display();
-
-         //if(pusersystem->m_prequest->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_screen)
-         {
-
-            if (!const_layout().sketch().is_screen_visible())
-            {
-
-               information() << "LoadFrame sketch !is_screen_visible going to display_normal (1)";
-
-               display_normal(e_display_normal, e_activation_set_foreground);
-
-            }
-
-         }
-
-      }
-
-   }
+//   if (::is_set(get_parent()))
+//   {
+//
+//      if (pusersystem->m_prequest->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_screen)
+//      {
+//
+//         display();
+//
+//      }
+//
+//   }
+//   else
+//   {
+//
+//      if (pusersystem->m_prequest->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_screen)
+//      {
+//
+//         initial_frame_display();
+//
+//         //if(pusersystem->m_prequest->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_screen)
+//         {
+//
+//            if (!const_layout().sketch().is_screen_visible())
+//            {
+//
+//               information() << "LoadFrame sketch !is_screen_visible going to display_normal (1)";
+//
+//               display_normal(e_display_normal, e_activation_set_foreground);
+//
+//            }
+//
+//         }
+//
+//      }
+//
+//   }
 
    m_bNeedPerformLayout = true;
 

@@ -609,22 +609,22 @@ namespace user
 
       }
 
-      //      ENSURE_ARG(pusersystem->m_createstruct.lpszName == nullptr || is_string_ok(pusersystem->m_createstruct.lpszName));
-      //
-      if (!m_puserinteraction->pre_create_window(pusersystem))
-      {
-
-         //return false;
-
-         throw ::exception(error_failed);
-
-      }
+//      //      ENSURE_ARG(pusersystem->m_createstruct.lpszName == nullptr || is_string_ok(pusersystem->m_createstruct.lpszName));
+//      //
+//      if (!m_puserinteraction->pre_create_window(pusersystem))
+//      {
+//
+//         //return false;
+//
+//         throw ::exception(error_failed);
+//
+//      }
 
       //m_puserinteraction->m_pthreadUserInteraction = ::get_task();
 
       //m_pthreadUserImpl = m_puserinteraction->m_pthreadUserInteraction;
 
-      install_message_routing(m_puserinteraction);
+      //install_message_routing(m_puserinteraction);
 
       //bool bOk = true;
 
@@ -903,23 +903,23 @@ namespace user
 
 #endif
 
-      auto pusersystem = puserinteraction->m_pusersystem;
-
-      if(pusersystem)
-      {
-
-         add(pusersystem->m_prequest);
-
-         for(auto & poutputpurpose : pusersystem->m_graphicsoutputpurposea)
-         {
-
-            information() << "adding graphical output_purpose from user::system";
-
-            add(poutputpurpose);
-
-         }
-
-      }
+//      auto pusersystem = puserinteraction->m_pusersystem;
+//
+//      if(pusersystem)
+//      {
+//
+//         add(pusersystem->m_prequest);
+//
+//         for(auto & poutputpurpose : pusersystem->m_graphicsoutputpurposea)
+//         {
+//
+//            information() << "adding graphical output_purpose from user::system";
+//
+//            add(poutputpurpose);
+//
+//         }
+//
+//      }
 
       bool bNewOwnThread = true;
 
@@ -2548,16 +2548,16 @@ namespace user
 
          //}
 
-         if(has_screen_output_purpose())
-         {
-
-            m_puserinteraction->set_need_layout();
-
-            m_puserinteraction->set_need_redraw();
-
-            m_puserinteraction->post_redraw();
-
-         }
+//         if(has_screen_output_purpose())
+//         {
+//
+//            m_puserinteraction->set_need_layout();
+//
+//            m_puserinteraction->set_need_redraw();
+//
+//            m_puserinteraction->post_redraw();
+//
+//         }
 
          //if(m_puserinteraction->m_setneedredrawa.has_element())
          //{
@@ -5177,6 +5177,24 @@ namespace user
          //m_pgraphicsthread->m_eventReady.SetEvent();
 
          m_pgraphicsthread->m_bGraphicsThreadEnabled = true;
+
+      }
+      
+      auto pusersystem = m_puserinteraction->m_pusersystem;
+
+      if(pusersystem)
+      {
+
+         add(pusersystem->m_prequest);
+
+         for(auto & poutputpurpose : pusersystem->m_graphicsoutputpurposea)
+         {
+
+            information() << "adding graphical output_purpose from user::system";
+
+            add(poutputpurpose);
+
+         }
 
       }
 
@@ -9512,54 +9530,54 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
    }
 
 
-   bool interaction_impl::is_this_visible(enum_layout elayout)
-   {
-
-      if (!m_puserinteraction)
-      {
-
-         return false;
-
-      }
-
-//      if (m_bOfflineRender)
-//      {
+//   bool interaction_impl::is_this_visible(enum_layout elayout)
+//   {
 //
-//         return true;
-//
-//      }
-
-      if (!(m_puserinteraction->m_ewindowflag & e_window_flag_is_window))
-      {
-
-         return false;
-
-      }
-
-      if (m_puserinteraction->m_ewindowflag & e_window_flag_not_visible)
-      {
-
-         return false;
-
-      }
-
-      if (!m_puserinteraction->const_layout().state(elayout).is_visible())
-      {
-
-         return false;
-
-      }
-
-//      if(!m_puserinteraction->m_bVisible)
+//      if (!m_puserinteraction)
 //      {
 //
 //         return false;
 //
 //      }
-
-      return true;
-
-   }
+//
+////      if (m_bOfflineRender)
+////      {
+////
+////         return true;
+////
+////      }
+//
+//      if (!(m_puserinteraction->m_ewindowflag & e_window_flag_is_window))
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      if (m_puserinteraction->m_ewindowflag & e_window_flag_not_visible)
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      if (!m_puserinteraction->const_layout().state(elayout).is_visible())
+//      {
+//
+//         return false;
+//
+//      }
+//
+////      if(!m_puserinteraction->m_bVisible)
+////      {
+////
+////         return false;
+////
+////      }
+//
+//      return true;
+//
+//   }
 
 
    //   strsize interaction_impl::get_window_text(char* sz, strsize s)

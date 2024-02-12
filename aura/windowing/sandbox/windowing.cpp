@@ -44,42 +44,65 @@ namespace sandbox_windowing
    }
 
 
-   ::windowing::window* windowing::new_window(::user::interaction_impl* pimpl)
+::pointer < ::windowing::window > windowing::get_new_window(::user::interaction_impl * puserinteractionimpl)
+{
+   
+   ::pointer<::windowing::window>pwindow;
+   
+   if (::is_null(system()->m_paurasystem->m_pwindowMain->m_puserinteractionimpl))
    {
-
-      ::pointer<::sandbox_windowing::window>pwindow;
-
-      if (::is_null(system()->m_paurasystem->m_pwindowMain->m_puserinteractionimpl))
-      {
-
-         pwindow = system()->m_paurasystem->m_pwindowMain;
-
-      }
-      else
-      {
-
-         pwindow = pimpl->__create < ::windowing::window >();
-
-      }
-
-      if (!pwindow)
-      {
-
-         return nullptr;
-
-      }
-
-      pwindow->m_pwindowing = this;
-
-      pwindow->m_puserinteractionimpl = pimpl;
-
-      pimpl->m_pwindow = pwindow;
-
-      pwindow->create_window(pimpl);
-
-      return pwindow;
-
+      
+      pwindow = system()->m_paurasystem->m_pwindowMain;
+      
    }
+   else
+   {
+      
+      pwindow = ::windowing::windowing::get_new_window(puserinteractionimpl);
+      //pimpl->__create < ::windowing::window >();
+      
+   }
+   
+   return pwindow;
+   
+}
+//
+//   ::windowing::window* windowing::new_window(::user::interaction_impl* pimpl)
+//   {
+//
+//      ::pointer<::sandbox_windowing::window>pwindow;
+//
+//      if (::is_null(system()->m_paurasystem->m_pwindowMain->m_puserinteractionimpl))
+//      {
+//
+//         pwindow = system()->m_paurasystem->m_pwindowMain;
+//
+//      }
+//      else
+//      {
+//
+//         pwindow = pimpl->__create < ::windowing::window >();
+//
+//      }
+//
+//      if (!pwindow)
+//      {
+//
+//         return nullptr;
+//
+//      }
+//
+//      pwindow->m_pwindowing = this;
+//
+//      pwindow->m_puserinteractionimpl = pimpl;
+//
+//      pimpl->m_pwindow = pwindow;
+//
+//      pwindow->create_window(pimpl);
+//
+//      return pwindow;
+//
+//   }
 
 
    void windowing::erase_window(::windowing::window* pwindow)

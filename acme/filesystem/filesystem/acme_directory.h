@@ -124,6 +124,7 @@ public:
    virtual ::file::path home();
    virtual ::file::path icloud_container2(const char * pszContentIdentifier = nullptr);
    virtual ::file::path icloud_container_documents(const char * pszContentIdentifier = nullptr);
+   virtual ::file::path icloud_container2_final(const char * pszContentIdentifier = nullptr);
    virtual bool is_icloud_container(const ::file::path & path, const char * pszContentIdentifier = nullptr);
    virtual bool has_icloud_container(const char * pszContentIdentifier = nullptr);
    virtual ::file::path pathfind(const string& pszEnv, const string& pszTopic, const string& pszMode);
@@ -200,7 +201,7 @@ public:
          
          bool enumerate(::file::listing & listing) override;
 
-   virtual bool defer_enumerate_protocol(::file::listing& listing);
+         virtual bool defer_enumerate_protocol(::file::listing& listing);
 
          virtual bool defer_enumerate_media_library(::file::listing& listing);
          virtual ::media_library::item* media_library_item(const ::file::path& path);

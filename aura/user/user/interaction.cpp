@@ -3503,7 +3503,7 @@ namespace user
          layout().sketch() = eactivation;
 
       }
-
+      
       if (bChange)
       {
 
@@ -10064,6 +10064,29 @@ namespace user
          start_destroying_window();
 
       }
+      
+//      if (m_pusersystem
+//          && m_pusersystem->m_prequest
+//          && m_pusersystem->m_prequest->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_screen)
+//      {
+//
+//         if (!const_layout().sketch().is_screen_visible())
+//         {
+//
+//            initial_frame_display();
+//
+//         //if(pusersystem->m_prequest->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_screen)
+////            {
+////
+////               information() << "LoadFrame sketch !is_screen_visible going to display_normal (1)";
+////
+////               display_normal(e_display_normal, e_activation_set_foreground);
+////
+////            }
+//
+//         }
+//
+//      }
 
       information() << "interaction::create_host(2)";
 
@@ -10271,6 +10294,14 @@ namespace user
       //{
 
       m_bUserElementOk = true;
+//      
+//      if(m_pusersystem
+//         && m_pusersystem->m_prequest->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_screen)
+//      {
+//
+//         display();
+//
+//      }
 
       //auto psession = get_session();
 
@@ -14197,14 +14228,51 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
    bool interaction::is_this_visible(enum_layout elayout)
    {
 
-      if (!m_pprimitiveimpl)
+//      if (!m_puserinteraction)
+//      {
+//
+//         return false;
+//
+//      }
+
+//      if (m_bOfflineRender)
+//      {
+//
+//         return true;
+//
+//      }
+
+      if (!(m_ewindowflag & e_window_flag_is_window))
       {
 
          return false;
 
       }
 
-      return m_pprimitiveimpl->is_this_visible(elayout);
+      if (m_ewindowflag & e_window_flag_not_visible)
+      {
+
+         return false;
+
+      }
+
+      if (!const_layout().state(elayout).is_visible())
+      {
+
+         return false;
+
+      }
+
+//      if(!m_puserinteraction->m_bVisible)
+//      {
+//
+//         return false;
+//
+//      }
+
+      return true;
+
+//      return m_pprimitiveimpl->is_this_visible(elayout);
 
    }
 
@@ -19157,7 +19225,8 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
    void interaction::frame_toggle_restore(bool bDisplayPreviousOnRestore)
    {
 
-      bool bWindowVisible = is_window_visible();
+      bool bWindowVisible = is_window_visible()
+      && has_graphical_output_purpose();
 
       double dOccludedOpaqueRate = _001GetTopLeftWeightedOccludedOpaqueRate();
 

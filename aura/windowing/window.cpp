@@ -166,10 +166,117 @@ namespace windowing
    }
 
 
-   void window::create_window(::user::interaction_impl * puserinteractionimpl)
+   void window::call_create_window(::user::interaction_impl *puserinteractionimpl)
+{
+      
+      
+      //if (::is_window(get_handle()))
+      //{
+      
+      //   DestroyWindow();
+      
+      //}
+      
+      //      ASSERT(lpszClassName == nullptr || __is_valid_string(lpszClassName) ||
+      //       __is_valid_atom(lpszClassName));
+      //      ENSURE_ARG(pusersystem->m_createstruct.lpszName == nullptr || __is_valid_string(pusersystem->m_createstruct.lpszName));
+      
+      // allow modification of several common create parameters
+      //::user::system createstruct;
+      //      pusersystem->m_createstruct.hwndParent = hWndParent;
+      //   pusersystem->m_createstruct.hMenu = hWndParent == nullptr ? nullptr : nIDorHMenu;
+      
+      auto puserinteraction = puserinteractionimpl->m_puserinteraction;
+      
+      auto pusersystem = puserinteraction->m_pusersystem;
+      
+      //pusersystem->m_createstruct.hMenu = nullptr;
+      //      pusersystem->m_createstruct.hInstance = ::aura::get_system()->m_hInstance;
+      //pusersystem->m_createstruct.lpCreateParams = lpParam;
+      
+      //hook_window_create(puserinteraction);
+      
+      //CGRect rectangle_i32;
+      
+      //      rectangle_i32 rectParam;
+      
+      //      rectParam.left = m_pusersystem->m_createstruct.x;
+      //      rectParam.top = pusersystem->m_createstruct.y;
+      //      rectParam.right = pusersystem->m_createstruct.x + pusersystem->m_createstruct.cx();
+      //      rectParam.bottom = pusersystem->m_createstruct.y + pusersystem->m_createstruct.cy();
+      
+      //      copy(rectangle, rectParam);
+      //
+      //      if (pusersystem->m_createstruct.hwndParent == MESSAGE_WINDOW_PARENT)
+      //      {
+      //
+      //         return true;
+      //
+      //      }
+      //      else
+      //      {
+      
+      unsigned uStyle = 0;
+      
+//      if(puserinteraction->m_ewindowflag & ::e_window_flag_miniaturizable)
+//      {
+//         
+//#define NSWindowStyleMaskMiniaturizable (1 << 2)
+//         
+//         uStyle |= NSWindowStyleMaskMiniaturizable;
+//         
+//      }
+//      
+//      auto rectangle = puserinteraction-> const_layout().sketch().parent_raw_rectangle();
+//      
+//      CGRect cgrect;
+//      
+//      copy(cgrect, rectangle);
+      
+      //__todo?
+      //windowing()->copy(cgrect, rectangle);
+      //or
+      //display()->copy(cgrect, rectangle);
+      //because rectangle origin is top-left
+      //and because cgrect origin is bottom-left and,
+      //the origin of screen is at bottom.
+      
+      m_puserinteractionimpl = puserinteractionimpl;
+      
+      puserinteraction->m_puserinteractionTopLevel = puserinteraction;
+      
+      puserinteraction->m_pwindow = this;
+      
+      puserinteractionimpl->m_pwindow = this;
+      
+      install_message_routing(puserinteraction);
+      
+      auto psession = m_pcontext->m_pacmesession->m_paurasession;
+      
+      auto puser = psession->user();
+      
+      auto pwindowing = (::windowing::windowing *) puser->windowing();
+//      
+//      m_pmacoswindowing = dynamic_cast < class windowing * >(pwindowing);
+      
+      m_pwindowing = pwindowing;
+      
+      puserinteractionimpl->m_pwindowing = pwindowing;
+      
+      
+      
+      create_window();
+      
+      puserinteraction->post_message(e_message_pos_create);
+      
+   }
+
+
+   //void window::create_window(::user::interaction_impl * puserinteractionimpl)
+   void window::create_window()
    {
 
-      UNREFERENCED_PARAMETER(puserinteractionimpl);
+      //UNREFERENCED_PARAMETER(puserinteractionimpl);
 
       throw ::interface_only();
 

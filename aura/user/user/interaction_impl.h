@@ -829,7 +829,7 @@ namespace user
 
       virtual void on_after_graphical_update() override;
 
-      virtual bool is_this_visible(enum_layout elayout) override;
+      //virtual bool is_this_visible(enum_layout elayout) override;
 
       //void _window_show_change_visibility_unlocked(::e_display edisplay, ::e_activation eactivation) override;
       

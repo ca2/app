@@ -7,6 +7,7 @@
 #include "acme/filesystem/filesystem/file_system_options.h"
 #include "acme/filesystem/filesystem/link.h"
 #include "acme/platform/application.h"
+#include "acme/platform/node.h"
 #include "acme/platform/system.h"
 
 #ifdef HAVE_UNISTD_H
@@ -406,6 +407,15 @@ bool acme_path::has_custom_icon(const ::file::path & path)
    return pathAbsolute;
 
 }
+
+
+bool acme_path::defer_process_protocol_path(::file::path & path)
+{
+   
+   return node()->defer_process_protocol_path(path);
+   
+}
+
 
 
 ::file::path acme_path::get_absolute_path(const ::scoped_string& scopedstr)

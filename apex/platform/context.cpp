@@ -453,11 +453,17 @@ namespace apex
          return path;
 
       }
-      else
+      else if(defer_process_known_folder_path(path))
       {
+          
+         return path;
 
-         defer_process_known_folder_path(path);
-
+      }
+      else if(defer_process_protocol_path(path))
+      {
+         
+         return path;
+         
       }
 
       return path;
@@ -581,6 +587,14 @@ namespace apex
 
       return true;
 
+   }
+
+
+   bool context::defer_process_protocol_path(::file::path & path)
+   {
+      
+      return acmepath()->defer_process_protocol_path(path);
+      
    }
 
 

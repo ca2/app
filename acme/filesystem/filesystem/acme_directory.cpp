@@ -411,6 +411,16 @@ string acme_directory::system_short_name()
 }
 
 
+::file::path acme_directory::icloud_container2_final(const char * psz_iCloudContainerIdentifier)
+{
+   
+   throw ::interface_only();
+   
+   return {};
+   
+}
+
+
 ::file::path acme_directory::icloud_container_documents(const char * psz_iCloudContainerIdentifier)
 {
 

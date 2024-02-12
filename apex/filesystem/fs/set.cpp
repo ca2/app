@@ -72,7 +72,7 @@ namespace fs
    ::file::listing & set::root_ones(::file::listing & listing)
    {
 
-      single_lock synchronouslock(synchronization(), true);
+      _synchronous_lock synchronouslock(synchronization());
 
       m_fsdatamap.erase_all();
 
@@ -89,11 +89,9 @@ namespace fs
 
          pdata->root_ones(listingFsPath);
 
-         synchronouslock.lock();
+         synchronouslock._lock();
 
          listing.add_listing(listingFsPath);
-
-         listing.m_straTitle.append(listingFsPath.m_straTitle);
 
          for(i32 j = 0; j < listing.get_size(); j++)
          {
@@ -112,7 +110,7 @@ namespace fs
    ::pointer<data>set::path_data(const ::file::path & psz)
    {
 
-      single_lock synchronouslock(synchronization(), true);
+      _synchronous_lock synchronouslock(synchronization());
 
       auto p = m_fsdatamap.begin();
 
@@ -138,7 +136,21 @@ namespace fs
                   return pdata;
 
                }
-
+               
+               auto pathRoot = m_pcontext->defer_process_path(strRoot);
+               
+               if(pathRoot.has_char())
+               {
+                  
+                  if (psz.case_insensitive_begins(pathRoot))
+                  {
+                     
+                     return pdata;
+                     
+                  }
+                  
+               }
+               
             }
 
          }

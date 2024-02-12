@@ -110,6 +110,22 @@ CLASS_DECL_ACME ::file::path_array & ascendants_path(const ::file::path & path, 
       }
       
    }
+   
+   if(::is_set(ppathaRelative))
+   {
+      
+      for(auto & pathItem : pathaFolder)
+      {
+         
+         ::file::path pathRelative = path;
+         
+         pathRelative.begins_eat(pathItem);
+       
+         ppathaRelative->add(pathRelative);
+         
+      }
+      
+   }
 
 //   if (::is_set(ppathaRelative))
 //   {

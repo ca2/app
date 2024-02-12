@@ -91,7 +91,7 @@ namespace user
       //virtual iptr get_window_long_ptr(i32 nIndex) const override;
       //virtual void set_window_long_ptr(i32 nIndex, iptr lValue) override;
 
-      virtual bool is_this_visible(enum_layout elayout) override;
+      //virtual bool is_this_visible(enum_layout elayout) override;
 
       //void _window_show_change_visibility_unlocked(::e_display edisplay, ::e_activation eactivation) override;
       //void _window_request_presentation_locked() override;

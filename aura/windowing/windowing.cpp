@@ -519,12 +519,22 @@ namespace windowing
    }
 
 
-   window *windowing::new_window(::user::interaction_impl *pimpl)
+   ::pointer < ::windowing::window > windowing::get_new_window(::user::interaction_impl * puserinteractionimpl)
+   {
+      
+      auto pwindow = puserinteractionimpl->__create < ::windowing::window >();
+
+      return pwindow;
+
+   }
+
+
+   window *windowing::new_window(::user::interaction_impl *puserinteractionimpl)
    {
 
-      auto pwindow = pimpl->__create < ::windowing::window >();
+      auto pwindow = get_new_window(puserinteractionimpl);
 
-      pwindow->create_window(pimpl);
+      pwindow->call_create_window(puserinteractionimpl);
 
       return pwindow;
 

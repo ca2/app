@@ -106,7 +106,11 @@ namespace file
       inline ::index add_listing(const CONTAINER & container)
       {
 
-         return ::file::path_array::append(container);
+         auto iIndex = ::file::path_array::append(container);
+         
+         m_straTitle.append(container.m_straTitle);
+         
+         return iIndex;
 
       }
 

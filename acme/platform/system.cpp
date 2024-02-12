@@ -1881,24 +1881,50 @@ namespace acme
 
             ::string_array straFiles;
 
-            for (::index iArgument = 1; iArgument < m_pplatform->m_argc; iArgument++)
+            for (int iArgument = 1; iArgument < m_pplatform->m_argc; )
             {
+               
+               auto iArgumentBefore = iArgument;
 
+               if(node()->defer_consume_main_arguments(
+                                         m_pplatform->m_argc,
+                                         m_pplatform->m_argv,
+                                         iArgument)
+                  && iArgument > iArgumentBefore)
+               {
+                
+                  continue;
+                  
+               }
+                  
+               if(application()->defer_consume_main_arguments(
+                                            m_pplatform->m_argc,
+                                            m_pplatform->m_argv,
+                                            iArgument)
+                  && iArgument > iArgumentBefore)
+               {
+                
+                  continue;
+                  
+               }
+               
                ::string strArgument = m_pplatform->m_argv[iArgument];
-
+               
                if(strArgument.begins("-"))
                {
-
+                  
                   prequest->get_property_set()._008AddArgument(strArgument);
-
+                  
                }
                else
                {
-
+                  
                   straFiles.add(strArgument);
-
+                  
                }
-
+                  
+               iArgument++;
+                  
             }
 
             if(straFiles.has_elements())

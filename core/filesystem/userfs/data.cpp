@@ -513,8 +513,21 @@ namespace userfs
          auto pathFolderUser = listingUser[i];
 
          auto pathFolderFinal = listingFinal[i];
+         
+         auto i1 = listingFolderUser.size();
 
          listingFolderUser.defer_add(pathFolderUser);
+         
+         auto i2 = listingFolderUser.size();
+         
+         if(i2 == i1 + 1
+            && i < listingUser.m_straTitle.size()
+            && listingUser.m_straTitle[i].has_char())
+         {
+          
+            listingFolderUser.m_straTitle.insert_at(i2, listingUser.m_straTitle[i]);
+            
+         }
 
          listingFolderFinal.defer_add(pathFolderFinal);
 

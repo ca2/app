@@ -808,6 +808,7 @@ bool file_path_is_absolute(const ::scoped_string & scopedstr)
    while (*psz
       && (ansi_char_isalpha(*psz)
       || ansi_char_isdigit(*psz)
+      || *psz == '.'
       || *psz == '-'
       || *psz == '_'))
    {

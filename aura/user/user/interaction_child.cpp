@@ -621,40 +621,40 @@ namespace user
    //}
 
 
-   bool interaction_child::is_this_visible(enum_layout elayout)
-   {
-
-      if (!m_puserinteraction)
-      {
-
-         return false;
-
-      }
-
-      if (!(m_puserinteraction->m_ewindowflag & e_window_flag_is_window))
-      {
-
-         return false;
-
-      }
-
-      //if (!(GetStyle() & WS_VISIBLE))
-      //{
-
-      //   return false;
-
-      //}
-
-      if (!m_puserinteraction->const_layout().state(elayout).is_visible())
-      {
-
-         return false;
-
-      }
-
-      return true;
-
-   }
+//   bool interaction_child::is_this_visible(enum_layout elayout)
+//   {
+//
+//      if (!m_puserinteraction)
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      if (!(m_puserinteraction->m_ewindowflag & e_window_flag_is_window))
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      //if (!(GetStyle() & WS_VISIBLE))
+//      //{
+//
+//      //   return false;
+//
+//      //}
+//
+//      if (!m_puserinteraction->const_layout().state(elayout).is_visible())
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      return true;
+//
+//   }
 
 
 //   bool interaction_child::is_there_graphics_output_interest() const

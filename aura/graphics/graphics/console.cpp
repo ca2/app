@@ -289,7 +289,7 @@ namespace graphics
    void console::update_image()
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       if (m_pimage.nok())
       {
@@ -319,7 +319,7 @@ namespace graphics
    }
 
 
-   bool console::defer_write(char ch, int x, int y, int cx, int cy, int edoscolor)
+   bool console::defer_write(char ch, const ::rectangle_i32 & r, int edoscolor)
    {
 
       return false;
@@ -364,6 +364,39 @@ namespace graphics
    }
 
 
+   ::rectangle_i32 console::_get_position_rectangle(int y, int x)
+   {
+   
+      ::rectangle_i32 r;
+      
+      
+      r.left() = x * m_sizeTile.cx();
+      
+      r.top() = y * m_sizeTile.cy();
+      
+      r.right() = r.left() + m_sizeTile.cx();
+      
+      r.bottom() = r.top() + m_sizeTile.cy();
+      
+      return r;
+      
+   }
+
+
+   ::rectangle_i32 console::get_position_rectangle(int y, int x)
+   {
+
+      ::rectangle_i32 r;
+      
+      r = _get_position_rectangle(y, x);
+      
+      r.offset(m_iBorder, m_iBorder);
+      
+      return r;
+      
+   }
+
+
    void console::draw_write(char ch, int x, int y, enum_dos_color edoscolor)
    {
 
@@ -377,8 +410,10 @@ namespace graphics
       string str;
 
       int i2 = 2;
+      
+      auto r = get_position_rectangle(y, x);
 
-      if (!defer_write(ch, m_iBorder + x * m_sizeTile.cx(), m_iBorder + y * m_sizeTile.cy(), m_sizeTile.cx(), m_sizeTile.cy(), edoscolor))
+      if (!defer_write(ch, r, edoscolor))
       {
 
          m_pimage->g()->set_smooth_mode(::draw2d::e_smooth_mode_none);

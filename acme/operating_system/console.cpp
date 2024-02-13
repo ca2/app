@@ -1,9 +1,9 @@
 #include "framework.h"
-
-
 #include "acme/operating_system/_const_console.h"
 #include "acme/operating_system/console.h"
 #include "acme/primitive/collection/strdup_array.h"
+#include "acme/exception/interface_only.h"
+#include "acme/primitive/geometry2d/rectangle.h"
 #include <stdio.h>
 #ifdef WINDOWS
 #include <conio.h>
@@ -37,6 +37,16 @@ namespace console
    void console::redirect_io()
    {
 
+   }
+
+
+   ::rectangle_i32 console::get_position_rectangle(int y, int x)
+   {
+    
+      throw ::interface_only();
+      
+      return {};
+      
    }
 
 

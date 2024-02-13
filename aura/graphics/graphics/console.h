@@ -68,8 +68,9 @@ namespace graphics
       using ::string_buffer::write;
       void write(const void * p, ::memsize s) override;
 
-
-      virtual bool defer_write(char ch, int x, int y, int cx, int cy, int iColor);
+      ::rectangle_i32 get_position_rectangle(int y, int x) override;
+      virtual ::rectangle_i32 _get_position_rectangle(int y, int x);
+      virtual bool defer_write(char ch, const ::rectangle_i32 & r, int iColor);
 
       static ::color::color console_dos_color(enum_dos_color edoscolor);
 

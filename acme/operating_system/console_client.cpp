@@ -1,6 +1,7 @@
 // from console.cpp by camilo on 2022-09-04 09:07 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "console_client.h"
+#include "acme/primitive/geometry2d/rectangle.h"
 
 
 namespace console
@@ -95,6 +96,13 @@ namespace console
 
    }
 
+
+   ::rectangle_i32 console_client::get_position_rectangle(int y, int x)
+   {
+    
+      return get_console()->get_position_rectangle(y, x);
+      
+   }
 
 } // namespace console
 

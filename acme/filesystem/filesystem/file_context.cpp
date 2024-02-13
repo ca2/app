@@ -3740,6 +3740,22 @@ file_pointer file_context::get_file(const ::payload &payloadFile, ::file::e_open
       return nullptr;
 
    }
+   
+   auto strProtocol = url()->get_protocol(path);
+   
+   if(strProtocol.has_char())
+   {
+      
+      auto pfile = defer_get_protocol_file(strProtocol, path, eopen, pfileexception);
+      
+      if(pfile)
+      {
+         
+         return pfile;
+         
+      }
+      
+   }
 
    path = pathProcessed;
 
@@ -3788,22 +3804,6 @@ file_pointer file_context::get_file(const ::payload &payloadFile, ::file::e_open
    else
    {
       
-      auto strProtocol = url()->get_protocol(path);
-      
-      if(strProtocol.has_char())
-      {
-         
-         auto pfile = defer_get_protocol_file(strProtocol, path, eopen, pfileexception);
-         
-         if(pfile)
-         {
-            
-            return pfile;
-            
-         }
-         
-      }
-
       return create_native_file(path, eopen);
 
    }

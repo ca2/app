@@ -475,14 +475,23 @@ bool dir_context::enumerate(::file::listing& listing)
 bool dir_context::_enumerate(::file::listing& listing)
 {
    
-   if(!acmedirectory()->defer_enumerate_protocol(listing))
+   if(acmedirectory()->defer_enumerate_protocol(listing))
    {
       
-      acmedirectory()->defer_enumerate_media_library(listing);
+      listing.m_pathFinal = m_pcontext->defer_process_path(listing.m_pathUser);
 
+      return true;
+      
    }
 
-   listing.m_pathFinal = m_pcontext->defer_process_path(listing.m_pathUser);
+   if(acmedirectory()->defer_enumerate_media_library(listing))
+   {
+      
+      listing.m_pathFinal = m_pcontext->defer_process_path(listing.m_pathUser);
+
+      return true;
+      
+   }
 
    if (listing.m_pathFinal.case_insensitive_begins("matter://"))
    {

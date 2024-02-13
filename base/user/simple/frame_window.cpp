@@ -1318,6 +1318,18 @@ bool simple_frame_window::pre_create_window(::user::system * pusersystem)
       }
 
    }
+   else if(prequest)
+   {
+      
+      if(prequest->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_screen)
+      {
+         
+         display();
+         
+      }
+
+      
+   }
 
    return true;
 

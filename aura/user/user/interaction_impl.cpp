@@ -5195,6 +5195,10 @@ namespace user
             add(poutputpurpose);
 
          }
+         
+         m_puserinteraction->set_need_redraw();
+         
+         m_puserinteraction->post_redraw();
 
       }
 

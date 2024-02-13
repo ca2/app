@@ -49,7 +49,10 @@ namespace sandbox_windowing
    
    ::pointer<::windowing::window>pwindow;
    
-   if (::is_null(system()->m_paurasystem->m_pwindowMain->m_puserinteractionimpl))
+   if (::is_set(system())
+       && ::is_set(system()->m_paurasystem)
+       && ::is_set(system()->m_paurasystem->m_pwindowMain)
+       && ::is_null(system()->m_paurasystem->m_pwindowMain->m_puserinteractionimpl))
    {
       
       pwindow = system()->m_paurasystem->m_pwindowMain;

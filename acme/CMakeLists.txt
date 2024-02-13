@@ -2615,7 +2615,12 @@ if (MSVC)
 
 elseif(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
 
+    if(NOT ${SUSE})
+
    target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
+
+
+   endif()
 
 
    #//target_compile_options\([A-Za-z0-9_)]+\s+PRIVATE\s+\$\{PKGCONFIG_CFLAGS\}\)

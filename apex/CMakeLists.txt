@@ -1440,7 +1440,9 @@ if (MSVC)
 
 elseif(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
 
+
    target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
+
 
 
    #   if (USE_PKGCONFIG)

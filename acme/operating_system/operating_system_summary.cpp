@@ -280,7 +280,13 @@ void distro__release_and_desktop_environment::initialize(::particle *pparticle)
 
       }
 
-      if (m_strDistro.case_insensitive_equals("ubuntu"))
+      if (m_strDistro.case_insensitive_equals("opensuse-tumbleweed"))
+      {
+
+         m_strSlashedOperatingSystem = m_strDistro + "/" + m_strDistroBranch + "/" + m_strDistroRelease.substr(0, 6);
+
+      }
+      else if (m_strDistro.case_insensitive_equals("ubuntu"))
       {
 
          if (m_strDesktopEnvironment.case_insensitive_equals("kde"))

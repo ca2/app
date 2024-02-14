@@ -208,6 +208,8 @@ list(APPEND library_source
    filesystem/filesystem/dir_system_heap.h
    filesystem/filesystem/file_context.cpp
    filesystem/filesystem/file_context.h
+        filesystem/filesystem/file_system_options.cpp
+        filesystem/filesystem/file_system_options.h
    filesystem/filesystem/file_system.cpp
    filesystem/filesystem/file_system.h
    filesystem/filesystem/link.cpp
@@ -773,6 +775,10 @@ list(APPEND library_source
    #primitive/primitive/simple_object.h
    primitive/primitive/stick.h
    #primitive/primitive/str.h
+
+        primitive/primitive/subparticle_flags.h
+        primitive/primitive/subparticle.cpp
+        primitive/primitive/subparticle.h
    #primitive/primitive/top_level_domain_list.cpp
    #primitive/primitive/tracer.cpp
    #primitive/primitive/tracer.h

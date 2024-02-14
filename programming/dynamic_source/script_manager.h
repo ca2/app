@@ -1,8 +1,8 @@
 #pragma once
 
 
+#include "acme/parallelization/semaphore.h"
 #include "acme/primitive/collection/string_map.h"
-//#include "acme/primitive/geometry2d/_geometry2d.h"
 #include "acme/primitive/geometry2d/size.h"
 #include "apex/message/channel.h"
 #include "acme/filesystem/watcher/listener.h"
@@ -19,7 +19,8 @@ namespace dynamic_source
 
 
       class CLASS_DECL_APP_PROGRAMMING clear_include_matches_file_watcher :
-         virtual public ::file::listener::base
+         virtual public ::file::listener::base,
+         virtual public ::particle
       {
       public:
 
@@ -71,7 +72,7 @@ namespace dynamic_source
 
       pointer_array < plugin_map_item >                     m_pluginmapitema;
 
-
+      ::semaphore                                           m_semCompiler;
       ::pointer < ::mutex >                                 m_pmutexIncludeMatches;
       string_map < bool >                                   m_mapIncludeMatchesFileExists;
       string_map < bool >                                   m_mapIncludeMatchesIsDir;

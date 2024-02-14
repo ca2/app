@@ -52,6 +52,16 @@ list(APPEND library_source
    multimedia/file_application.cpp
    multimedia/file_application.h
    multimedia/information.h
+   multimedia/media_item.cpp
+   multimedia/media_item.h
+   multimedia/media_item_picker.cpp
+   multimedia/media_item_picker.h
+   multimedia/media_item_picker_callback.cpp
+   multimedia/media_item_picker_callback.h
+   multimedia/media_player.cpp
+   multimedia/media_player.h
+   multimedia/media_player_command.cpp
+   multimedia/media_player_command.h
    multimedia/multimedia.cpp
    multimedia/multimedia.h
    operating_system/windows/audio.cpp

@@ -249,7 +249,7 @@ namespace windowing
       
       puserinteractionimpl->m_pwindow = this;
       
-      install_message_routing(puserinteraction);
+      m_puserinteractionimpl->install_message_routing(puserinteraction);
       
       auto psession = m_pcontext->m_pacmesession->m_paurasession;
       

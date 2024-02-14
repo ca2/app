@@ -469,9 +469,7 @@ namespace dynamic_source
    ::pointer<script_instance>ds_script::create_instance()
    {
 
-      ::pointer<::aura::application>papp = get_app();
-
-      synchronous_lock slCompiler(&papp->m_semCompiler);
+      synchronous_lock slCompiler(&m_pmanager->m_semCompiler);
 
       synchronous_lock synchronouslock(this->synchronization());
 

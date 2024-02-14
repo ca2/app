@@ -266,9 +266,9 @@ namespace windowing
       
       
       create_window();
-      
-      puserinteraction->post_message(e_message_pos_create);
-      
+
+      puserinteraction->on_finished_window_creation();
+
    }
 
 

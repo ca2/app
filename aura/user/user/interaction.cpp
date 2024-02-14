@@ -10543,7 +10543,9 @@ namespace user
       {
          
          information() << "on_finished_window_creation of Top Level Window";
-         
+
+         post_message(e_message_pos_create);
+
          if(!defer_post_pending_set_need_redraw())
          {
             
@@ -10568,7 +10570,7 @@ namespace user
             }
 
          }
-         
+
       }
       
    }

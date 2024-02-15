@@ -253,7 +253,7 @@ namespace user
 
       }
 
-      synchronous_lock synchronouslock(m_pmeshdata->synchronization());
+      _synchronous_lock synchronouslock(m_pmeshdata->synchronization());
 
       ::rectangle_i32 rectangleX = this->rectangle();
 
@@ -372,7 +372,7 @@ namespace user
 
       {
 
-         pointer_array < synchronous_lock > slaImageList;
+         pointer_array < _synchronous_lock > slaImageList;
 
          for (auto & pcolumn : *m_pcolumna)
          {
@@ -383,13 +383,13 @@ namespace user
                if (pcolumn->m_pimagelist)
                {
 
-                  slaImageList.add(__allocate< now_a_particle < synchronous_lock > >(pcolumn->m_pimagelist));
+                  slaImageList.add(__allocate< now_a_particle < _synchronous_lock > >(pcolumn->m_pimagelist));
 
                }
                if (pcolumn->m_pimagelistHover)
                {
 
-                  slaImageList.add(__allocate< now_a_particle < synchronous_lock > >(pcolumn->m_pimagelist));
+                  slaImageList.add(__allocate< now_a_particle < _synchronous_lock > >(pcolumn->m_pimagelist));
 
                }
 
@@ -1029,7 +1029,7 @@ namespace user
    void list::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       //m_dItemHeight = m_sizeMaximumItem.cy() + 1;
 
@@ -1182,7 +1182,7 @@ namespace user
 
       //{
 
-      //   synchronous_lock synchronouslock(this->synchronization());
+      //   _synchronous_lock synchronouslock(this->synchronization());
 
       //   //m_nItemCount = nCount;
 
@@ -3419,7 +3419,7 @@ namespace user
    void list::LayoutHeaderCtrl()
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       if (m_plistheader == nullptr)
       {
@@ -3460,7 +3460,7 @@ namespace user
       if (pkey->previous()) // give chance to child
          return;
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       if (pkey->m_ekey == ::user::e_key_down || pkey->m_ekey == ::user::e_key_up ||
             pkey->m_ekey == ::user::e_key_page_down || pkey->m_ekey == ::user::e_key_page_up)
@@ -3573,7 +3573,7 @@ namespace user
 
       host_to_client()(point);
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       if (m_bDrag)
       {
@@ -3766,7 +3766,7 @@ namespace user
 
       host_to_client()(point);
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       auto psession = get_session();
 
@@ -4126,8 +4126,7 @@ namespace user
 
       KillTimer(224455);
 
-      synchronous_lock synchronouslock(this->synchronization());
-
+      _synchronous_lock synchronouslock(this->synchronization());
 
       if (m_bDrag)
       {
@@ -4187,7 +4186,7 @@ namespace user
 
                         strSort += "-" + get_display_tag() + ".icon_list_impact_sort";
 
-                        synchronouslock.lock();
+                        synchronouslock._lock();
 
                         string_array stra;
 
@@ -4335,7 +4334,7 @@ namespace user
 
       host_to_client()(point);
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       if (!has_keyboard_focus())
       {
@@ -5545,7 +5544,7 @@ namespace user
 
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization());
 
          m_pcolumna->erase_all();
 
@@ -5800,7 +5799,7 @@ namespace user
    void list::cache_hint()
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       if (m_pmeshcache.is_set())
       {
@@ -6864,7 +6863,7 @@ namespace user
    void list::on_change_context_offset(::user::enum_layout elayout)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       auto point = get_context_offset();
 
@@ -7833,7 +7832,7 @@ namespace user
 
       }
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       string strSort(m_pmeshdata ? m_pmeshdata->m_strMeshSort.c_str() : "");
 

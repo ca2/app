@@ -385,7 +385,6 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				STRIP_INSTALLED_PRODUCT = NO;
 				SYSTEM_HEADER_SEARCH_PATHS = (
@@ -480,7 +479,6 @@
 				MTL_FAST_MATH = YES;
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				STRIP_INSTALLED_PRODUCT = NO;
 				SYSTEM_HEADER_SEARCH_PATHS = (
@@ -519,7 +517,7 @@
 			buildSettings = {
 				DEAD_CODE_STRIPPING = YES;
 				PLATFORM_MODIFIER = macos;
-				SKIP_INSTALL = YES;
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
@@ -528,7 +526,7 @@
 			buildSettings = {
 				DEAD_CODE_STRIPPING = YES;
 				PLATFORM_MODIFIER = macos;
-				SKIP_INSTALL = YES;
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};

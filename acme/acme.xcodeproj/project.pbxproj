@@ -12842,7 +12842,6 @@
 				DEAD_CODE_STRIPPING = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_POSTPROCESSING = YES;
-				DEVELOPMENT_TEAM = L8N5V6TZE5;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -12954,7 +12953,6 @@
 				DEAD_CODE_STRIPPING = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_POSTPROCESSING = YES;
-				DEVELOPMENT_TEAM = L8N5V6TZE5;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -13026,6 +13024,7 @@
 			buildSettings = {
 				EXECUTABLE_PREFIX = lib;
 				PLATFORM_MODIFIER = macos;
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
@@ -13034,6 +13033,7 @@
 			buildSettings = {
 				EXECUTABLE_PREFIX = lib;
 				PLATFORM_MODIFIER = macos;
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};
@@ -13042,6 +13042,7 @@
 			buildSettings = {
 				DEAD_CODE_STRIPPING = NO;
 				EXECUTABLE_EXTENSION = "$(STATIC_LIBRARY_EXTENSION:default=a)";
+				EXECUTABLE_PREFIX = lib;
 				MACH_O_TYPE = staticlib;
 				PLATFORM_MODIFIER = ios;
 				SDKROOT = iphoneos;
@@ -13053,6 +13054,7 @@
 			buildSettings = {
 				DEAD_CODE_STRIPPING = NO;
 				EXECUTABLE_EXTENSION = "$(STATIC_LIBRARY_EXTENSION:default=a)";
+				EXECUTABLE_PREFIX = lib;
 				MACH_O_TYPE = staticlib;
 				PLATFORM_MODIFIER = ios;
 				SDKROOT = iphoneos;

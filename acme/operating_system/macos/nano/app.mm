@@ -1128,7 +1128,6 @@ void ns_app_run()
    
    ns_app_set_running(false);
    
-   
 }
 
 

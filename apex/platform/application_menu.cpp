@@ -59,6 +59,8 @@ application_menu * application_menu::popup_at(::index & iIndex, const ::scoped_s
 
    this->insert_at(iIndex++, ppopup);
 
+   information() << "application_menu::popup_at : " << ppopup->m_strName;
+
    return ppopup;
 
 }
@@ -82,6 +84,8 @@ application_menu * application_menu::popup(const ::scoped_string & scopedstrName
    }
       
    iIndex = this->count();
+
+   information() << "application_menu::popup : " << scopedstrName;
 
    auto ppopup = popup_at(iIndex, scopedstrName);
 

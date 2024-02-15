@@ -315,7 +315,7 @@
 				9AC2D0B426540F6700CC8096 /* node_macos.xcodeproj */,
 				9A6A481F2661155F004ED97A /* write_text_quartz2d.xcodeproj */,
 				9A6A480C26611372004ED97A /* windowing_macos.xcodeproj */,
-				9A8FCA842651A7FE00C0D8A1 /* macos */,
+				9A8FCA842651A7FE00C0D8A1 /* __implement */,
 				070B8EEB1B6E53F900D26137 /* Products */,
 				9ADF1D2922C16DBB00456537 /* Frameworks */,
 				9A3E0BA12309FBD400B5459B /* Library */,
@@ -392,7 +392,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		9A8FCA842651A7FE00C0D8A1 /* macos */ = {
+		9A8FCA842651A7FE00C0D8A1 /* __implement */ = {
 			isa = PBXGroup;
 			children = (
 				9A865FDD296645F5000C82F0 /* _matter.zip */,
@@ -401,7 +401,7 @@
 				9A8FCA872651A7FE00C0D8A1 /* Images.xcassets */,
 				9A8FCA892651A7FE00C0D8A1 /* Info.plist */,
 			);
-			path = macos;
+			name = __implement;
 			sourceTree = "<group>";
 		};
 		9AC2D07D26540D6B00CC8096 /* Products */ = {

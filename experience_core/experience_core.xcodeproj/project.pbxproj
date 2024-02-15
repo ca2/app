@@ -685,6 +685,7 @@
 		9A93B4F72846E655005ACD11 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEVELOPMENT_TEAM = L8N5V6TZE5;
 				EXECUTABLE_EXTENSION = a;
 				MACH_O_TYPE = staticlib;
 				PLATFORM_MODIFIER = ios;
@@ -695,6 +696,7 @@
 		9A93B4F82846E655005ACD11 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEVELOPMENT_TEAM = L8N5V6TZE5;
 				EXECUTABLE_EXTENSION = a;
 				MACH_O_TYPE = staticlib;
 				PLATFORM_MODIFIER = ios;

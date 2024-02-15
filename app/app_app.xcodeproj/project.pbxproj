@@ -241,7 +241,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastUpgradeCheck = 1420;
+				LastUpgradeCheck = 1520;
 				TargetAttributes = {
 					9AC01A572748C26A006BEBCC = {
 						CreatedOnToolsVersion = 13.1;
@@ -341,7 +341,6 @@
 		9AA14D99282A17A900B1621E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				DEAD_CODE_STRIPPING = NO;
 				EXECUTABLE_EXTENSION = "$(STATIC_LIBRARY_EXTENSION:default=a)";
 				EXECUTABLE_PREFIX = lib;
 				MACH_O_TYPE = staticlib;
@@ -353,7 +352,6 @@
 		9AA14D9A282A17A900B1621E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				DEAD_CODE_STRIPPING = NO;
 				EXECUTABLE_EXTENSION = "$(STATIC_LIBRARY_EXTENSION:default=a)";
 				EXECUTABLE_PREFIX = lib;
 				MACH_O_TYPE = staticlib;
@@ -408,6 +406,7 @@
 				DEPLOYMENT_POSTPROCESSING = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				EXCLUDED_ARCHS = "";
 				GCC_C_LANGUAGE_STANDARD = c11;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -442,7 +441,6 @@
 				RUN_CLANG_STATIC_ANALYZER = NO;
 				SKIP_INSTALL = YES;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
-				STRIP_INSTALLED_PRODUCT = NO;
 				SYSTEM_HEADER_SEARCH_PATHS = (
 					"$(WorkspaceDir)/operating_system",
 					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)",
@@ -522,6 +520,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				EXCLUDED_ARCHS = "";
 				GCC_C_LANGUAGE_STANDARD = c11;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
@@ -553,7 +552,6 @@
 				RUN_CLANG_STATIC_ANALYZER = NO;
 				SKIP_INSTALL = YES;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
-				STRIP_INSTALLED_PRODUCT = NO;
 				SYSTEM_HEADER_SEARCH_PATHS = (
 					"$(WorkspaceDir)/operating_system",
 					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)",

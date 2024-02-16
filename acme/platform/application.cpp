@@ -2036,6 +2036,20 @@ void application::did_pick_document_at_url(const char * pszUrl)
 }
 
 
+void application::did_pick_document_at_urls(const ::string_array & straUrl)
+{
+   
+   auto prequest = __create_new <::request>();
+   
+   prequest->m_payloadFile = straUrl;
+   
+   prequest->m_ecommand = ::e_command_file_open;
+   
+   this->request(prequest);
+   
+}
+
+
 void application::on_prompt_write_file(::user::controller *pusercontroller)
 {
    

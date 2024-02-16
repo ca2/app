@@ -15,7 +15,6 @@
 		9A40BE542B6C5BC10077053E /* libios_apex_darwin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A40BE532B6C5BC10077053E /* libios_apex_darwin.a */; };
 		9A40BE562B6C5BC10077053E /* libios_aura_darwin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A40BE552B6C5BC10077053E /* libios_aura_darwin.a */; };
 		9A40BE582B6C5BC10077053E /* libios_darwin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A40BE572B6C5BC10077053E /* libios_darwin.a */; };
-		9A40BE5A2B6C5CA40077053E /* libios_archive.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A40BE592B6C5CA40077053E /* libios_archive.a */; };
 		9A40BE5C2B6C5CD90077053E /* UniformTypeIdentifiers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A40BE5B2B6C5CD90077053E /* UniformTypeIdentifiers.framework */; };
 		9A4972262001905400B9C9B2 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4972092001905400B9C9B2 /* ImageIO.framework */; };
 		9A4BE107200018A200DED594 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A5752BB16AAE1D2000CC4EF /* Foundation.framework */; };
@@ -265,7 +264,6 @@
 			files = (
 				9A50CDFE2B6CB8C000FDB101 /* libios_archive.a in Frameworks */,
 				9A40BE5C2B6C5CD90077053E /* UniformTypeIdentifiers.framework in Frameworks */,
-				9A40BE5A2B6C5CA40077053E /* libios_archive.a in Frameworks */,
 				9A40BE522B6C5BC10077053E /* libios_acme_darwin.a in Frameworks */,
 				9A40BE542B6C5BC10077053E /* libios_apex_darwin.a in Frameworks */,
 				9A40BE562B6C5BC10077053E /* libios_aura_darwin.a in Frameworks */,

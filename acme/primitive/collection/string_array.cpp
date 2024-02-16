@@ -3,6 +3,7 @@
 //#include "acme/filesystem/filesystem/path.h"
 //#ifdef
 //#include <memory.h>
+#include <stdlib.h>
 
 
 void string_array_array::add_csv(string str)
@@ -212,3 +213,32 @@ CLASS_DECL_ACME void free_c_string_array(char * const * ppszList, int iCount)
 //} // namespace file
 //
 
+
+
+
+CLASS_DECL_ACME string_array string_array_from_strdup_count(const char ** pszaUrl, long lCount)
+{
+   
+   if(::is_null(pszaUrl))
+   {
+    
+      return {};
+      
+   }
+   
+   ::string_array stra;
+   
+   for(long l = 0; l < lCount; l++)
+   {
+      
+      stra.add(pszaUrl[l]);
+      
+      ::free((void *) pszaUrl[l]);
+      
+   }
+   
+   ::free((void *) pszaUrl);
+   
+   return stra;
+   
+}

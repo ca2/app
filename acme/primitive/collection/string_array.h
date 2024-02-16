@@ -688,7 +688,7 @@ public:
 CLASS_DECL_ACME bool next_csv(string & str, const string_array & stra);
 CLASS_DECL_ACME void add_csv(string_array & stra, const ::string & str);
 
-
+CLASS_DECL_ACME string_array string_array_from_strdup_count(const char ** pszaUrl, long lCount);
 
 
 

@@ -81,80 +81,80 @@ namespace acme
 {
 
 
-   void node::defer_update_callstack()
-   {
+   //void node::defer_update_callstack()
+   //{
 
-      //critical_section_lock synchronouslock(sym_dbg_help_critical_section());
+   //   //critical_section_lock synchronouslock(sym_dbg_help_critical_section());
 
-      //auto process = GetCurrentProcess();
+   //   //auto process = GetCurrentProcess();
 
-      //if (!m_bCallstackInitialized)
-      //{
+   //   //if (!m_bCallstackInitialized)
+   //   //{
 
-      //   m_bCallstackInitialized = false;
+   //   //   m_bCallstackInitialized = false;
 
-      //   SymSetOptions(SymGetOptions() | SYMOPT_LOAD_LINES);
+   //   //   SymSetOptions(SymGetOptions() | SYMOPT_LOAD_LINES);
 
-      //   SymInitialize(process, NULL, TRUE);
+   //   //   SymInitialize(process, NULL, TRUE);
 
-      //}
-      //else if (m_bUpdateCallstack)
-      //{
+   //   //}
+   //   //else if (m_bUpdateCallstack)
+   //   //{
 
-      //   SymRefreshModuleList(process);
+   //   //   SymRefreshModuleList(process);
 
-      //}
+   //   //}
 
-      //m_bUpdateCallstack = false;
+   //   //m_bUpdateCallstack = false;
 
-   }
+   //}
 
 
-   string node::get_callstack(const ::scoped_string & scopedstrFormat, i32 iSkip, void * caller_address, int iCount)
-   {
+   //string node::get_callstack(const ::scoped_string & scopedstrFormat, i32 iSkip, void * caller_address, int iCount)
+   //{
 
-      return {};
+   //   return {};
 
-      //critical_section_lock synchronouslock(sym_dbg_help_critical_section());
+   //   //critical_section_lock synchronouslock(sym_dbg_help_critical_section());
 
-      //string strCallstack;
+   //   //string strCallstack;
 
-      //const size_t iMaximumFramesToCapture = 62; // does not support more then 62 frames of stackbacktrace
+   //   //const size_t iMaximumFramesToCapture = 62; // does not support more then 62 frames of stackbacktrace
 
-      //void * stack[iMaximumFramesToCapture];
+   //   //void * stack[iMaximumFramesToCapture];
 
-      //defer_update_callstack();
+   //   //defer_update_callstack();
 
-      //auto frames = CaptureStackBackTrace(0, iMaximumFramesToCapture, stack, NULL);
+   //   //auto frames = CaptureStackBackTrace(0, iMaximumFramesToCapture, stack, NULL);
 
-      //int iMaximumNameLength = 1024;
+   //   //int iMaximumNameLength = 1024;
 
-      //memory memory(sizeof(SYMBOL_INFO) + iMaximumNameLength * sizeof(char));
+   //   //memory memory(sizeof(SYMBOL_INFO) + iMaximumNameLength * sizeof(char));
 
-      //SYMBOL_INFO * psymbolinfo = (SYMBOL_INFO *)memory.data();
+   //   //SYMBOL_INFO * psymbolinfo = (SYMBOL_INFO *)memory.data();
 
-      //psymbolinfo->MaxNameLen = iMaximumNameLength;
+   //   //psymbolinfo->MaxNameLen = iMaximumNameLength;
 
-      //psymbolinfo->SizeOfStruct = sizeof(SYMBOL_INFO);
+   //   //psymbolinfo->SizeOfStruct = sizeof(SYMBOL_INFO);
 
-      //auto process = GetCurrentProcess();
+   //   //auto process = GetCurrentProcess();
 
-      //for (auto i = 0; i < frames; ++i)
-      //{
+   //   //for (auto i = 0; i < frames; ++i)
+   //   //{
 
-      //   SymFromAddr(process, (DWORD64)(stack[i]), 0, psymbolinfo);
+   //   //   SymFromAddr(process, (DWORD64)(stack[i]), 0, psymbolinfo);
 
-      //   string strLine;
+   //   //   string strLine;
 
-      //   strLine.formatf("%02d : %" PRIdPTR " : %s\n", frames - i - 1, psymbolinfo->Address, psymbolinfo->Name);
+   //   //   strLine.formatf("%02d : %" PRIdPTR " : %s\n", frames - i - 1, psymbolinfo->Address, psymbolinfo->Name);
 
-      //   strCallstack += strLine;
+   //   //   strCallstack += strLine;
 
-      //}
+   //   //}
 
-      //return ::transfer(strCallstack);
+   //   //return ::transfer(strCallstack);
 
-   }
+   //}
 
 
 } // namespace acme

@@ -113,7 +113,16 @@ namespace httpd
 
                   int iError = m_pincomingsocket->Bind(m_strIp, (::networking::port_t)m_iCurrentPort);
 
-                  if (iError != 0)
+                  if (iError == 0)
+                  {
+
+                     string strMessage;
+
+                     strMessage.formatf("\n\nBound to address %s!!\n\n", m_strIp.c_str());
+
+                     information(strMessage);
+                  }
+                  else
                   {
 
                      if (m_iCurrentPort < m_iPortMaximum)

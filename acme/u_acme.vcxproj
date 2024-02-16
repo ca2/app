@@ -1427,11 +1427,12 @@
     <ClCompile Include="handler\source.cpp" />
     <ClCompile Include="handler\topic.cpp" />
     <ClCompile Include="memory\allocate_processor_cache_oriented.cpp" />
-    <ClCompile Include="memory\allocate_system_heap.cpp" />
     <ClCompile Include="memory\allocate_x86_cache_oriented.cpp" />
     <ClCompile Include="memory\allocation.cpp" />
-    <ClCompile Include="memory\array_memory_allocate.cpp" />
+    <ClCompile Include="memory\allocator.cpp" />
     <ClCompile Include="memory\counter.cpp" />
+    <ClCompile Include="memory\default_heap.cpp" />
+    <ClCompile Include="memory\heap.cpp" />
     <ClCompile Include="memory\inline\heap_bare.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">true</ExcludedFromBuild>
@@ -1540,6 +1541,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="memory\management.cpp" />
     <ClCompile Include="memory\memory.cpp" />
     <ClCompile Include="memory\memory_allocate.cpp" />
     <ClCompile Include="memory\memory_management.cpp" />
@@ -1599,11 +1601,15 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="memory\os_impl\WindowsHeapAlloc.cpp" />
+    <ClCompile Include="memory\paged_large.cpp" />
     <ClCompile Include="memory\paged_win32.cpp" />
-    <ClCompile Include="memory\property_memory_allocate.cpp" />
-    <ClCompile Include="memory\secondary_memory_allocate.cpp" />
-    <ClCompile Include="memory\string_memory_allocate.cpp" />
+    <ClCompile Include="memory\plex.cpp" />
+    <ClCompile Include="memory\plex_heap.cpp" />
+    <ClCompile Include="memory\plex_heap_alloc.cpp" />
+    <ClCompile Include="memory\plex_heap_alloc_array.cpp" />
+    <ClCompile Include="memory\plex_heap_alloc_sync.cpp" />
+    <ClCompile Include="memory\simple_memory_allocate.cpp" />
+    <ClCompile Include="memory\_.cpp" />
     <ClCompile Include="no_precompiled_header_sample.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
@@ -1753,7 +1759,6 @@
     <ClCompile Include="platform\nano_http.cpp" />
     <ClCompile Include="platform\nano_http_response.cpp" />
     <ClCompile Include="platform\node.cpp" />
-    <ClCompile Include="platform\object_reference_count_debug.cpp" />
     <ClCompile Include="platform\object_type_counter.cpp" />
     <ClCompile Include="platform\predicate_holder.cpp" />
     <ClCompile Include="platform\printf.cpp" />
@@ -1852,7 +1857,6 @@
     <ClCompile Include="primitive\primitive\matter.cpp" />
     <ClCompile Include="primitive\primitive\memory.cpp" />
     <ClCompile Include="primitive\primitive\memory_base.cpp" />
-    <ClCompile Include="primitive\primitive\memory_c.cpp" />
     <ClCompile Include="primitive\primitive\memory_container.cpp" />
     <ClCompile Include="primitive\primitive\object.cpp" />
     <ClCompile Include="primitive\primitive\object_meta.cpp" />

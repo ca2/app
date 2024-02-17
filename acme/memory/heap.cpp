@@ -320,6 +320,10 @@ void set_last_block_file_name(const ::scoped_string & scopedstr)
 #endif
 
 
+#ifndef MEMDLEAK_DEFAULT
+#define MEMDLEAK_DEFAULT 0
+#endif
+
 
 int g_iGlobalMemdleakEnabled;
 

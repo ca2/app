@@ -764,7 +764,8 @@ void node_set < NODE >::erase_all()
 
          pnext = p + 1;
 
-         __delete(p.get());
+         //__delete(p.get());
+         delete p.get();
 
       }
 
@@ -895,7 +896,9 @@ void node_set < NODE >::free_node(iterator iterator)
 
    }
 
-   __delete(iterator.get());
+   //__delete(iterator.get());
+
+   delete iterator.get();
 
    //iterator->m_next = this->m_pnodeFree;
 

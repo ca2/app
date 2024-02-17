@@ -516,19 +516,19 @@ inline T * __new_array(::count c)
 }
 
 
-template < typename T >
-inline void __delete(T * p)
-{
+//template < typename T >
+//inline void __delete(T * p)
+//{
+//
+//   ::platform::allocator::__delete < T >(p);
+//
+//}
 
-   ::platform::allocator::__delete < T >(p);
-
-}
-
-template < typename T >
-inline void __delete(T* p, void * pAllocation)
-{
-
-   ::platform::allocator::__delete < T >(p, pAllocation);
-
-}
+//template < typename T >
+//inline void __delete(T* p, void * pAllocation)
+//{
+//
+//   ::platform::allocator::__delete < T >(p, pAllocation);
+//
+//}
 

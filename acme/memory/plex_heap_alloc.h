@@ -11,6 +11,7 @@ protected:
 
    
    friend class ::allocator::accessor;
+   friend class plex_heap_alloc_array;
 
 
    plex_heap_alloc(::heap::allocator * pallocator, memsize nAllocSize, ::u32 nBlockSize = 64);

@@ -58,7 +58,9 @@ plex_heap_alloc_array::~plex_heap_alloc_array()
    for (index i = this->get_upper_bound(); i >= 0; i--)
    {
 
-      ::platform::allocator::__allocator_base_delete(m_pallocator, this->element_at(i));
+      //::platform::allocator::__allocator_base_delete(m_pallocator, this->element_at(i));
+
+      delete this->element_at(i);
 
    }
 

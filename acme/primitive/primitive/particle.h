@@ -108,9 +108,9 @@ public:
 //#else
    //particle(::particle * pparticleParent);
 //#endif
+   ~particle() override;
 
 
-   virtual ~particle();
 
 
    virtual void initialize(::particle * pparticle);

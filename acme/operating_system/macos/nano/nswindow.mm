@@ -226,7 +226,7 @@ void nano_window_bridge::create_ns_nano_window(CGRect cgrect)
    ns_main_sync(^()
    {
    
-      m_pnsnanowindow = (__bridge CFTypeRef) [ [ ns_nano_window alloc ] init: cgrect with_nano_window_bridge: this];
+      m_pnsnanowindow = (__bridge_retained CFTypeRef) [ [ ns_nano_window alloc ] init: cgrect with_nano_window_bridge: this];
    
    });
    

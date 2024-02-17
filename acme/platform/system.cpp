@@ -2232,7 +2232,7 @@ namespace acme
       if(platform()->has_argument1("--log"))
       {
 
-         printf("selecting informational trace\n");
+         informationf("selecting informational trace\n");
 
          etracelevel = e_trace_level_information;
 

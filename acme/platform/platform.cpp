@@ -823,14 +823,14 @@ namespace platform
 
       critical_section_lock criticalsectionlock(&m_criticalsection);
 
-      printf("platform::factory(\"%s\", \"%s\");\n", strComponent.c_str(), strImplementation.c_str());
+      informationf("platform::factory(\"%s\", \"%s\");\n", strComponent.c_str(), strImplementation.c_str());
 
       auto & pfactory = m_componentfactorymap[strComponent][implementation_name(strComponent, strImplementation)];
 
       if (pfactory)
       {
 
-         printf("Returning existing factory \"%s\" - \"%s\".\n", strComponent.c_str(), strImplementation.c_str());
+         informationf("Returning existing factory \"%s\" - \"%s\".\n", strComponent.c_str(), strImplementation.c_str());
 
          return pfactory;
 
@@ -841,7 +841,7 @@ namespace platform
       //strLibrary = library_name(strComponent, strImplementation);
       strLibrary = strComponent + "_" + strImplementation;
 
-      printf("Getting library \"%s\".\n", strLibrary.c_str());
+      informationf("Getting library \"%s\".\n", strLibrary.c_str());
 
       auto & plibrary = library(strLibrary);
 
@@ -865,7 +865,7 @@ namespace platform
 
 #endif
 
-         printf("Library not found : \"%s\".\n", strLibrary.c_str());
+         informationf("Library not found : \"%s\".\n", strLibrary.c_str());
 
          //pfactory = (const ::extended::status&)plibrary;
          throw ::exception(error_resource, strComponent + "_" + strImplementation + "_factory not found!!");
@@ -1059,7 +1059,7 @@ namespace platform
 
       // Ex. "audio" (library)
 
-      printf("platform::library \"%s\".", str.c_str());
+      informationf("platform::library \"%s\".", str.c_str());
 
       if (str.is_empty())
       {
@@ -1077,7 +1077,7 @@ namespace platform
       if (plibrary)
       {
 
-         printf("platform::library Returning existing library \"%s\".", strLibrary.c_str());
+         informationf("platform::library Returning existing library \"%s\".", strLibrary.c_str());
 
          return plibrary;
 

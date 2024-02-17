@@ -6,11 +6,11 @@
 #include "acme/_operating_system.h"
 
 
-namespace acme
+namespace platform
 {
 
 
-   void * system::operating_system_library_touch(const ::file::path & path, string & strMessage)
+   void * platform::operating_system_library_touch(const ::file::path & path, string & strMessage)
    {
 
       return operating_system_library_open(path, strMessage);
@@ -18,7 +18,7 @@ namespace acme
    }
 
 
-   void * system::operating_system_library_open(const ::file::path & path, string & strMessage)
+   void * platform::operating_system_library_open(const ::file::path & path, string & strMessage)
    {
 
       void * plibrary = nullptr;
@@ -174,7 +174,7 @@ namespace acme
    }
 
 
-   void * system::operating_system_library_open_ca2(const ::file::path & path, ::string & strMessage)
+   void * platform::operating_system_library_open_ca2(const ::file::path & path, ::string & strMessage)
    {
       /*      string str(psz);
       if(str.find("..") >= 0)
@@ -200,7 +200,7 @@ namespace acme
    }
 
 
-   void * system::operating_system_library_raw_get(void * plibrary, const ::scoped_string & scopedstrEntryName)
+   void * platform::operating_system_library_raw_get(void * plibrary, const ::scoped_string & scopedstrEntryName)
    {
 
       return ::GetProcAddress((HINSTANCE)plibrary, scopedstrEntryName);
@@ -209,7 +209,7 @@ namespace acme
 
 
 
-   bool system::operating_system_library_close(void * plibrary)
+   bool platform::operating_system_library_close(void * plibrary)
    {
 
       if (plibrary == nullptr)
@@ -233,7 +233,7 @@ namespace acme
    }
 
 
-} // namespace acme
+} // namespace platform
 
 
 

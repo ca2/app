@@ -447,7 +447,7 @@ bool __node_aura_pre_init()
          if(FAILED(hresult))
          {
 
-            informationf("Failed to ::CoInitializeEx(nullptr, COINIT_APARTMENTTHREADED) at __node_pre_init\n");
+            ::platform::get()->informationf("Failed to ::CoInitializeEx(nullptr, COINIT_APARTMENTTHREADED) at __node_pre_init\n");
 
             return false;
 
@@ -457,7 +457,7 @@ bool __node_aura_pre_init()
       else
       {
 
-         informationf("Failed to ::CoInitializeEx(nullptr, COINIT_MULTITHREADED) at __node_pre_init\n");
+         ::platform::get()->informationf("Failed to ::CoInitializeEx(nullptr, COINIT_MULTITHREADED) at __node_pre_init\n");
 
          return false;
 

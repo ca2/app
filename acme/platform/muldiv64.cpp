@@ -246,7 +246,7 @@ u64 my_multdiv_64(u64 a, u64 b, u64 c)
 
 
 //
-i64 _stdcall muldiv64(i64 number, i64 numerator, i64 denominator)
+i64 muldiv64(i64 number, i64 numerator, i64 denominator)
 {
    return my_multdiv_64(number, numerator, denominator);
 

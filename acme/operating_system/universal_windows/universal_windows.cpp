@@ -322,3 +322,16 @@ found:
 
 
 
+
+
+
+//void windows_message_box_factory(::factory::factory * pfactory);
+
+
+void universal_windows_factory(::factory::factory * pfactory)
+{
+
+   //windows_message_box_factory(pfactory);
+
+}
+

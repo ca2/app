@@ -2,7 +2,7 @@
 #pragma once
 
 
-#ifdef WINDOWS_DESKTOP
+#ifdef WINDOWS
 CLASS_DECL_ACME ::string call_stack_default_format();
 #else
 ::string call_stack_default_format();

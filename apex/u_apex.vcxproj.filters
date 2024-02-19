@@ -151,9 +151,6 @@
     <Filter Include="Source Files\networking\sockets\basic">
       <UniqueIdentifier>{2b5bcf69-223f-46b6-b5e5-4cb7fd997ae6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\networking\sockets\webserver">
-      <UniqueIdentifier>{42fa1359-9d51-4cd3-82c1-6be14a4af8d7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\interprocess">
       <UniqueIdentifier>{7bf8be83-716a-4dd9-a1cb-6b81b5bacf91}</UniqueIdentifier>
     </Filter>
@@ -190,6 +187,9 @@
     <Filter Include="Source Files\Resource Files">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tga;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\networking\sockets\httpd">
+      <UniqueIdentifier>{42fa1359-9d51-4cd3-82c1-6be14a4af8d7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -529,9 +529,6 @@
     <ClCompile Include="networking\sockets\sockets.cpp">
       <Filter>Source Files\networking\sockets</Filter>
     </ClCompile>
-    <ClCompile Include="networking\sockets\webserver\httpd_socket.cpp">
-      <Filter>Source Files\networking\sockets\webserver</Filter>
-    </ClCompile>
     <ClCompile Include="interprocess\call.cpp">
       <Filter>Source Files\interprocess</Filter>
     </ClCompile>
@@ -597,6 +594,33 @@
     </ClCompile>
     <ClCompile Include="platform\application_menu_command.cpp">
       <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\httpd\incoming_socket.cpp">
+      <Filter>Source Files\networking\sockets\httpd</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\httpd\incoming_socket_thread.cpp">
+      <Filter>Source Files\networking\sockets\httpd</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\httpd\socket.cpp">
+      <Filter>Source Files\networking\sockets\httpd</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\httpd\socket_thread.cpp">
+      <Filter>Source Files\networking\sockets\httpd</Filter>
+    </ClCompile>
+    <ClCompile Include="handler\manager_room.cpp">
+      <Filter>Source Files\handler</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\basic\listen_socket_impl.cpp">
+      <Filter>Source Files\networking\sockets\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\netserver\incoming_socket.cpp">
+      <Filter>Source Files\networking\netserver</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\netserver\incoming_socket_thread.cpp">
+      <Filter>Source Files\networking\netserver</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\application\application_incoming_socket.cpp">
+      <Filter>Source Files\networking\application</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

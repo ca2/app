@@ -1606,9 +1606,6 @@
     <ClCompile Include="memory\management.cpp">
       <Filter>Source Files\memory</Filter>
     </ClCompile>
-    <ClCompile Include="memory\paged_large.cpp">
-      <Filter>Source Files\memory</Filter>
-    </ClCompile>
     <ClCompile Include="memory\plex.cpp">
       <Filter>Source Files\memory</Filter>
     </ClCompile>
@@ -1626,57 +1623,6 @@
     </ClCompile>
     <ClCompile Include="memory\simple_memory_allocate.cpp">
       <Filter>Source Files\memory</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\primitive\subparticle.cpp">
-      <Filter>Source Files\primitive\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\call_stack.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\filesystem\file_system_options.cpp">
-      <Filter>Source Files\filesystem\filesystem</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\windows\memory.cpp">
-      <Filter>Source Files\operating_system\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="memory\heap\bare.cpp">
-      <Filter>Source Files\memory\heap</Filter>
-    </ClCompile>
-    <ClCompile Include="memory\heap\mcheck.cpp">
-      <Filter>Source Files\memory\heap</Filter>
-    </ClCompile>
-    <ClCompile Include="memory\heap\mcrtdbg.cpp">
-      <Filter>Source Files\memory\heap</Filter>
-    </ClCompile>
-    <ClCompile Include="memory\heap\memdleak.cpp">
-      <Filter>Source Files\memory\heap</Filter>
-    </ClCompile>
-    <ClCompile Include="memory\heap\std.cpp">
-      <Filter>Source Files\memory\heap</Filter>
-    </ClCompile>
-    <ClCompile Include="memory\heap\vld.cpp">
-      <Filter>Source Files\memory\heap</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\windows\heap_allocator.cpp">
-      <Filter>Source Files\operating_system\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="memory\allocator\malloc.cpp">
-      <Filter>Source Files\memory\allocator</Filter>
-    </ClCompile>
-    <ClCompile Include="parallelization\task_message_queue.cpp">
-      <Filter>Source Files\parallelization</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\shared_posix\errno.cpp">
-      <Filter>Source Files\operating_system\shared_posix</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\primitive\primitive.cpp">
-      <Filter>Source Files\primitive\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\windows_common\acme.cpp">
-      <Filter>Source Files\operating_system\windows_common</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\string\c\strdup.cpp">
-      <Filter>Source Files\primitive\string\c</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

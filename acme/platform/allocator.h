@@ -79,7 +79,7 @@ namespace allocator
 
 #endif
 
-         p->m_pAllocation = data;
+         //p->m_pAllocation = data;
 
          return p;
 
@@ -282,26 +282,26 @@ namespace allocator
       }
 
 
-      template < typename T >
-      inline static void __allocator_base_delete(::heap::allocator_base * pallocatorbase, T * p)
-      {
+      //template < typename T >
+      //inline static void __allocator_base_delete(::heap::allocator_base * pallocatorbase, T * p)
+      //{
 
-         __on_destruct(p);
+      //   __on_destruct(p);
 
-         pallocatorbase->free(p);
+      //   pallocatorbase->free(p);
 
-      }
+      //}
 
 
-      template < typename T >
-      inline static void __allocator_base_delete(::heap::allocator_base * pallocatorbase, T* p, void * pAllocation)
-      {
+      //template < typename T >
+      //inline static void __allocator_base_delete(::heap::allocator_base * pallocatorbase, T* p, void * pAllocation)
+      //{
 
-         __on_destruct(p);
+      //   __on_destruct(p);
 
-         pallocatorbase->free(pAllocation);
+      //   pallocatorbase->free(pAllocation);
 
-      }
+      //}
 
 
       template < typename T, typename ...Args >
@@ -355,35 +355,35 @@ namespace allocator
       }
 
 
-      template < typename T >
-      static void __memory_delete(::heap::enum_memory ememory, T * p)
-      {
+      //template < typename T >
+      //static void __memory_delete(::heap::enum_memory ememory, T * p)
+      //{
 
-         auto pheapmanagement = ::acme::get()->m_pheapmanagement;
+      //   auto pheapmanagement = ::acme::get()->m_pheapmanagement;
 
-         auto & pmemory = pheapmanagement->m_memorya[ememory];
+      //   auto & pmemory = pheapmanagement->m_memorya[ememory];
 
-         __allocator_base_delete< T >(
-            pmemory,
-            p);
+      //   __allocator_base_delete< T >(
+      //      pmemory,
+      //      p);
 
-      }
+      //}
 
 
-      template < typename T >
-      static void __memory_delete(::heap::enum_memory ememory, T* p, void * pAllocation)
-      {
+      //template < typename T >
+      //static void __memory_delete(::heap::enum_memory ememory, T* p, void * pAllocation)
+      //{
 
-         auto pheapmanagement = ::acme::get()->m_pheapmanagement;
+      //   auto pheapmanagement = ::acme::get()->m_pheapmanagement;
 
-         auto & pmemory = pheapmanagement->m_memorya[ememory];
+      //   auto & pmemory = pheapmanagement->m_memorya[ememory];
 
-         __allocator_base_delete< T >(
-            pmemory,
-            p,
-            pAllocation);
+      //   __allocator_base_delete< T >(
+      //      pmemory,
+      //      p,
+      //      pAllocation);
 
-      }
+      //}
 
 
       template < typename T, typename ...Args >
@@ -443,26 +443,26 @@ namespace allocator
       }
 
 
-      template < typename T >
-      static void __delete(T * p)
-      {
+      //template < typename T >
+      //static void __delete(T * p)
+      //{
 
-         __memory_delete< T >(
-            ::heap::e_memory_main,
-            p);
+      //   __memory_delete< T >(
+      //      ::heap::e_memory_main,
+      //      p);
 
-      }
+      //}
 
 
-      template < typename T >
-      static void __delete(T* p, void * pAllocation)
-      {
+      //template < typename T >
+      //static void __delete(T* p, void * pAllocation)
+      //{
 
-         __memory_delete< T >(
-            ::heap::e_memory_main,
-            p, pAllocation);
+      //   __memory_delete< T >(
+      //      ::heap::e_memory_main,
+      //      p, pAllocation);
 
-      }
+      //}
 
    };
 

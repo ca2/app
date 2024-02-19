@@ -150,99 +150,6 @@ void particle::finalize()
 }
 
 
-#ifdef _DEBUG
-
-
-i64 subparticle::increment_reference_count()
-{
-
-#if REFERENCING_DEBUGGING
-
-   critical_section_lock synchronouslock(&::acme::get()->m_preferencingdebugging->m_criticalsection);
-
-#endif
-
-   auto c = ++m_countReference;
-
-#if REFERENCING_DEBUGGING
-
-   add_reference_item();
-
-#endif
-
-   return c;
-
-}
-
-
-i64 subparticle::decrement_reference_count()
-{
-
-#if REFERENCING_DEBUGGING
-   
-   critical_section_lock synchronouslock(&::acme::get()->m_preferencingdebugging->m_criticalsection);
-
-#endif
-
-   auto c = --m_countReference;
-
-#if REFERENCING_DEBUGGING
-
-   if (c >= 0)
-   {
-
-      erase_reference_item();
-
-   }
-
-#endif
-
-   return c;
-
-}
-
-
-i64 subparticle::replace_reference()
-{
-
-   auto c = m_countReference;
-
-#if REFERENCING_DEBUGGING
-
-   if (c > 0)
-   {
-
-      throw ::exception(::error_failed);
-
-      //m_preferenceitema->replace_item();
-
-   }
-
-#endif
-
-   return c;
-
-}
-
-
-i64 subparticle::release()
-{
-
-   i64 i = decrement_reference_count();
-
-   if (i == 0)
-   {
-
-      delete_this();
-
-   }
-
-   return i;
-
-}
-
-
-#endif
 
 
 void particle::set_synchronization(::particle *pparticleSynchronization)
@@ -367,27 +274,12 @@ class ::platform::platform * particle::_platform() const
 }
 
 
-
-
-
 //void particle::destroy()
 //{
 //
 //
 //}
 
-
-void subparticle::delete_this()
-{
-
-   if (!(m_eflagElement & e_flag_statically_allocated))
-   {
-
-      __delete(this, m_pAllocation);
-
-   }
-
-}
 
 
 ::string particle::get_debug_title() const
@@ -696,7 +588,7 @@ class ::write_text::write_text * particle::write_text() const
 ::factory::factory_pointer& particle::factory(const ::string& strComponent, const ::string& strImplementation) const
 {
 
-   printf("particle::factory(\"%s\", \"%s\");\n", strComponent.c_str(), strImplementation.c_str());
+   informationf("particle::factory(\"%s\", \"%s\");\n", strComponent.c_str(), strImplementation.c_str());
 
    return platform()->factory(strComponent, strImplementation);
 

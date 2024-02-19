@@ -33,9 +33,9 @@ DO_FACTORY(REFERENCE_FACTORY)
 
 //__embed_resource(g_app)
 
-//#include "acme/memory/_new.inl"
-
-#if !defined(CUBE)
+#if defined(CUBE)
+#include "acme/memory/_new.inl" // works for Windows Desktop(at CUBE/static builds)
+#else
 #include "acme/memory/_new.inl"
 #include "_new_impl.h"
 //#include "acme/_library.h"

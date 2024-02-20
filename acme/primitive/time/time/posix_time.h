@@ -37,7 +37,7 @@ struct CLASS_DECL_ACME posix_time
 
    constexpr posix_time & operator -=(posix_time posixtime)
    {
-      m_iSecond = posixtime.m_iSecond;
+      m_iSecond -= posixtime.m_iSecond;
       return *this;
    }
 

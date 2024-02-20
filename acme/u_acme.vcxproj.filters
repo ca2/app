@@ -287,6 +287,15 @@
     <Filter Include="Source Files\graphics\graphics">
       <UniqueIdentifier>{f596a5d1-075d-4e91-aa1b-e65906253c34}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\operating_system\windows">
+      <UniqueIdentifier>{f2375515-2fb7-4e79-be8b-9581004af7f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\memory\heap">
+      <UniqueIdentifier>{3504256d-19dc-4b77-b1df-1984594f2efb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\memory\allocator">
+      <UniqueIdentifier>{ea76a24e-cf5e-4d9e-ab1d-e1ffc3841912}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -1595,9 +1604,6 @@
       <Filter>Source Files\memory</Filter>
     </ClCompile>
     <ClCompile Include="memory\management.cpp">
-      <Filter>Source Files\memory</Filter>
-    </ClCompile>
-    <ClCompile Include="memory\paged_large.cpp">
       <Filter>Source Files\memory</Filter>
     </ClCompile>
     <ClCompile Include="memory\plex.cpp">

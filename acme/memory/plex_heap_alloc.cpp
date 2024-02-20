@@ -56,7 +56,8 @@ plex_heap_alloc::~plex_heap_alloc()
    for (i32 i = 0; i < get_count(); i++)
    {
 
-      ::platform::allocator::__allocator_base_delete(m_pallocator, element_at(i));
+      delete this->element_at(i);
+      //::platform::allocator::__allocator_base_delete(m_pallocator, element_at(i));
 
    }
 

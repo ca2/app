@@ -5,7 +5,7 @@
 //#pragma comment(lib, "dbghelp.lib")
 
 
-#ifdef WINDOWS_DESKTOP
+#ifdef WINDOWS_
 
 
 bool g_bInitializeCallstack = false;

@@ -400,7 +400,6 @@ void matter::delete_this()
    try
    {
 
-
       delete this;
 
    }

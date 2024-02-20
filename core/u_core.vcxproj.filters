@@ -157,6 +157,18 @@
     <Filter Include="Header Files\graphics">
       <UniqueIdentifier>{d1636e3f-8cd0-4ee9-937f-c794eb5d3792}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\filesystem\filemanager\folder">
+      <UniqueIdentifier>{432d02c1-bf10-4a63-9dd0-a44f319c02db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\filesystem\filemanager\fs">
+      <UniqueIdentifier>{5bbfa41e-15cf-46f9-9a30-e41e93ca8e64}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\filesystem\filemanager\fs\simple">
+      <UniqueIdentifier>{3a942043-9532-44fc-814f-f5d7380e210b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\filesystem\filemanager\operation">
+      <UniqueIdentifier>{cdda3ee5-96c8-4f0e-b7ef-cd915d9f8277}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="console.h">
@@ -1411,9 +1423,6 @@
     <ClCompile Include="filesystem\filemanager\child_frame.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filemanager\component.cpp">
-      <Filter>Source Files\filesystem\filemanager</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\filemanager\context_menu.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
@@ -1432,18 +1441,6 @@
     <ClCompile Include="filesystem\filemanager\file_properties_form.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filemanager\folder_list.cpp">
-      <Filter>Source Files\filesystem\filemanager</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\filemanager\folder_list_data.cpp">
-      <Filter>Source Files\filesystem\filemanager</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\filemanager\folder_list_impact.cpp">
-      <Filter>Source Files\filesystem\filemanager</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\filemanager\folder_selection_list_impact.cpp">
-      <Filter>Source Files\filesystem\filemanager</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\filemanager\form.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
@@ -1451,15 +1448,6 @@
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\frame.cpp">
-      <Filter>Source Files\filesystem\filemanager</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\filemanager\fs_simple_list_impact.cpp">
-      <Filter>Source Files\filesystem\filemanager</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\filemanager\fs_simple_tree.cpp">
-      <Filter>Source Files\filesystem\filemanager</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\filemanager\fs_simple_impact.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\icon.cpp">
@@ -1477,27 +1465,6 @@
     <ClCompile Include="filesystem\filemanager\main_impact.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filemanager\operation.cpp">
-      <Filter>Source Files\filesystem\filemanager</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\filemanager\operation_child_frame.cpp">
-      <Filter>Source Files\filesystem\filemanager</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\filemanager\operation_document.cpp">
-      <Filter>Source Files\filesystem\filemanager</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\filemanager\operation_info_impact.cpp">
-      <Filter>Source Files\filesystem\filemanager</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\filemanager\operation_list_impact.cpp">
-      <Filter>Source Files\filesystem\filemanager</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\filemanager\operation_thread.cpp">
-      <Filter>Source Files\filesystem\filemanager</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\filemanager\operation_impact.cpp">
-      <Filter>Source Files\filesystem\filemanager</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\filemanager\path_impact.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
@@ -1511,9 +1478,6 @@
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\impact.cpp">
-      <Filter>Source Files\filesystem\filemanager</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\filemanager\_.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\userfs\document.cpp">
@@ -1665,6 +1629,57 @@
     </ClCompile>
     <ClCompile Include="graphics\color_selector.cpp">
       <Filter>Source Files\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\folder\document.cpp">
+      <Filter>Source Files\filesystem\filemanager\folder</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\folder\list.cpp">
+      <Filter>Source Files\filesystem\filemanager\folder</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\folder\list_data.cpp">
+      <Filter>Source Files\filesystem\filemanager\folder</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\folder\list_impact.cpp">
+      <Filter>Source Files\filesystem\filemanager\folder</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\folder\selection_list_impact.cpp">
+      <Filter>Source Files\filesystem\filemanager\folder</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\fs\simple\impact.cpp">
+      <Filter>Source Files\filesystem\filemanager\fs\simple</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\fs\simple\list_impact.cpp">
+      <Filter>Source Files\filesystem\filemanager\fs\simple</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\fs\simple\tree.cpp">
+      <Filter>Source Files\filesystem\filemanager\fs\simple</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\operation\child_frame.cpp">
+      <Filter>Source Files\filesystem\filemanager\operation</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\operation\document.cpp">
+      <Filter>Source Files\filesystem\filemanager\operation</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\operation\impact.cpp">
+      <Filter>Source Files\filesystem\filemanager\operation</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\operation\info_impact.cpp">
+      <Filter>Source Files\filesystem\filemanager\operation</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\operation\list_impact.cpp">
+      <Filter>Source Files\filesystem\filemanager\operation</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\operation\operation.cpp">
+      <Filter>Source Files\filesystem\filemanager\operation</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\operation\thread.cpp">
+      <Filter>Source Files\filesystem\filemanager\operation</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\userfs\data.cpp">
+      <Filter>Source Files\filesystem\userfs</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

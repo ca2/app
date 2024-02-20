@@ -237,6 +237,13 @@ namespace base
    void application::create_options_impact(::user::interaction * pparent)
    {
 
+      if(factory()->has_type(::type < ::user::options_impact_handler >()))
+      {
+
+         __construct(m_poptionsimpacthandler);
+
+      }
+
       auto playout = create_line_layout(pparent, e_orientation_vertical);
 
       create_options_header(playout);
@@ -256,6 +263,12 @@ namespace base
    void application::create_options_body(::user::interaction * pparent)
    {
 
+      if(m_poptionsimpacthandler)
+      {
+
+         m_poptionsimpacthandler->create_options_impact(pparent);
+
+      }
 
    }
 

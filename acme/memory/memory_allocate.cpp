@@ -28,7 +28,7 @@ CLASS_DECL_ACME void * memory_allocate(memsize size, const char * pszAnnotation)
       
    }
 
-   if(::is_null(pszAnnotation))
+   if(::is_set(pszAnnotation))
    {
 
       ::platform::get()->information() << "memory_allocate annotation : " << pszAnnotation;

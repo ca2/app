@@ -19,7 +19,9 @@
 #include "apex/platform/application.h"
 #include "apex/platform/context.h"
 #include "apex/platform/launcher.h"
-#include "apex/platform/os_context.h"
+//#include "apex/platform/node.h"
+//#include "apex/platform/os_context.h"
+
 #include "apex/platform/system.h"
 
 
@@ -82,7 +84,7 @@ namespace interprocess
 
       //}
 
-      ::process_identifier iPid = m_pcontext->m_papexcontext->os_context()->current_process_identifier();
+      ::process_identifier iPid = node()->current_process_identifier();
 
       //defer_add_module(file()->module(), iPid);
 

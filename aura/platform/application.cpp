@@ -22,7 +22,9 @@
 #include "apex/interprocess/communication.h"
 #include "apex/interprocess/target.h"
 #include "apex/networking/http/context.h"
-#include "apex/platform/os_context.h"
+#include "apex/platform/node.h"
+//#include "apex/platform/os_context.h"
+
 #include "apex/user/user/message.h"
 #include "aqua/game/game.h"
 #include "aura/constant/idpool.h"
@@ -8358,7 +8360,7 @@ namespace aura
                      auto pcontext = get_context();
 
                      pcheck->_001SetCheck(
-                        os_context()->is_user_auto_start(get_executable_appid()),
+                        node()->is_user_auto_start(get_executable_appid()),
                         ::e_source_initialize);
 
                      ::pointer < ::user::interaction > puserinteractionCheck = pcheck;
@@ -8397,7 +8399,7 @@ namespace aura
                   if (pcheck.is_set())
                   {
 
-                     os_context()->register_user_auto_start(
+                     node()->register_user_auto_start(
                         get_executable_appid(),
                         get_executable_path(),
                         "--auto_start=1",

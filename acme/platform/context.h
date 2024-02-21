@@ -32,7 +32,7 @@ namespace acme
       ::pointer<::dir_context>                        m_pdir;
       ::pointer<::file_context>                       m_pfile;
 
-      ::pointer < ::os_context >                      m_poscontext;
+      //::pointer < ::os_context >                      m_poscontext;
 
 
       string                              m_strLocale;
@@ -74,8 +74,10 @@ namespace acme
       ::acme::node * node();
 
 
-      inline ::os_context * os_context() { return m_poscontext; }
+      //inline ::os_context * os_context() { return m_poscontext; }
 
+
+      virtual bool os_is_alias(const ::file::path & path);
 
       ::acme_file * acmefile();
       ::acme_path * acmepath();

@@ -101,7 +101,10 @@ namespace apex
 
       virtual void _001InitializeShellOpen();
 
+      using acme::node::set_file_extension_mime_type;
+      void set_file_extension_mime_type(::get_file_extension_mime_type * pgetfileextensionmimetype) override;
 
+      void initialize_wallpaper_fileset(::file::set* pfileset, bool bAddSearch) override;
       //void shell_open(const ::file::path & path, const ::string & strParams = "", const ::file::path & pathFolder = "") override;
 
 

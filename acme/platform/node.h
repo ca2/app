@@ -22,9 +22,9 @@
 //#include "acme/primitive/time/time.h"
 #include "trace.h"
 
-
+namespace file { class set; }
 namespace windowing { class display; }
-
+class get_file_extension_mime_type;
 
 using enum_application_capability_array = ::comparable_array < enum_application_capability >;
 
@@ -38,12 +38,6 @@ namespace acme
    protected:
 
 
-
-#ifdef LINUX
-
-      enum_linux_distribution                            m_elinuxdistribution;
-
-#endif
 
    //::procedure_array            m_routineaPost;
 
@@ -148,11 +142,7 @@ namespace acme
 
 
       virtual ::pointer < ::particle > create_mutex();
-//#ifdef LINUX
-//
-//      virtual enum_linux_distribution get_linux_distribution() const;
-//
-//#endif
+
 
       virtual void initialize(::particle * pparticle) override;
       
@@ -200,13 +190,6 @@ namespace acme
 
 
       virtual void install_crash_dump_reporting(const string& strModuleNameWithTheExeExtension);
-
-
-#ifdef WINDOWS_DESKTOP
-
-      virtual void register_dll(const ::file::path& pathDll);
-
-#endif
 
 
       virtual ::file::path module_path_source();
@@ -371,22 +354,7 @@ namespace acme
 
       virtual ::user::enum_desktop calculate_edesktop();
 
-#ifdef LINUX
 
-      inline enum_linux_distribution get_linux_distribution() const;
-
-      virtual void calculate_linux_distribution();
-
-#endif
-
-
-#ifdef WINDOWS_DESKTOP
-
-      virtual platform_char** _get_envp(wcsdup_array& a);
-
-#endif
-      
-      
       virtual void launch_app(const ::string & psz, const char ** argv, int iFlags);
 
       virtual ::file::path get_executable_path_by_app_id(const ::scoped_string & scopedstrAppId, bool bSingleExecutableVersion);
@@ -407,7 +375,7 @@ namespace acme
 
       virtual ::process_identifier_array module_path_processes_identifiers(const ::string & pszModulePath, bool bModuleNameIsPropertyFormatted);
 
-      virtual string process_identifier_module_path(::process_identifier processidentifier);
+      virtual ::file::path process_identifier_module_path(::process_identifier processidentifier);
 
       virtual string process_identifier_command_line(::process_identifier processidentifier);
 
@@ -428,13 +396,6 @@ namespace acme
       virtual void set_environment_variable(const ::scoped_string & scopedstrEnvironmentVariable, const ::scoped_string& scopedstrValue);
 
       virtual void unset_environment_variable(const ::scoped_string & scopedstrEnvironmentVariable);
-
-#ifndef UNIVERSAL_WINDOWS
-
-      virtual ::array <::serial::port_info> list_serial_ports();
-
-#endif
-
 
       virtual string get_user_language();
 
@@ -460,7 +421,7 @@ namespace acme
 
 
       virtual void shell_open(const ::file::path & path, const string & strParams = "", const ::file::path & pathFolder = {});
-      virtual void open_url(const ::string & strUrl);
+      //virtual void open_url(const ::string & strUrl);
 
 
       virtual void shell_execute_async(const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrParams);
@@ -579,18 +540,18 @@ namespace acme
 
 
 
-
-#if !defined(UNIVERSAL_WINDOWS)
-
-      //virtual i32 call_async(const ::string & pszPath, const ::string & pszParam, const ::string & pszDir, ::e_display edisplay, bool bPrivileged, unsigned int * puiPid = nullptr);
-
-      typedef i32 CALLSYNCONRETRY(i32 iTry, uptr dwParam);
-
-      typedef CALLSYNCONRETRY * PFNCALLSYNCONRETRY;
-
-      //CLASS_DECL_ACME u32 call_sync(const ::string & pszPath, const ::string & pszParam, const ::string & pszDir, ::e_display edisplay, const class time & timeTimeout, ::property_set & set);
-
-#endif
+//
+//#if !defined(UNIVERSAL_WINDOWS)
+//
+//      //virtual i32 call_async(const ::string & pszPath, const ::string & pszParam, const ::string & pszDir, ::e_display edisplay, bool bPrivileged, unsigned int * puiPid = nullptr);
+//
+//      typedef i32 CALLSYNCONRETRY(i32 iTry, uptr dwParam);
+//
+//      typedef CALLSYNCONRETRY * PFNCALLSYNCONRETRY;
+//
+//      //CLASS_DECL_ACME u32 call_sync(const ::string & pszPath, const ::string & pszParam, const ::string & pszDir, ::e_display edisplay, const class time & timeTimeout, ::property_set & set);
+//
+//#endif
 
 
 //#if !defined(UNIVERSAL_WINDOWS) && !defined(LINUX) && !defined(__APPLE__) && !defined(ANDROID)
@@ -627,28 +588,6 @@ namespace acme
 
       virtual ::file::path core_app_path(string strApp);
 
-#if !defined(UNIVERSAL_WINDOWS)
-
-
-      //virtual string module_path_from_pid(::process_identifier processidentifier);
-      //virtual atom_array module_path_get_pid(const ::string & pszModuleName, bool bModuleNameIsPropertyFormatted = true);
-
-
-#ifndef WINDOWS
-
-      virtual string_array cmdline_from_pid(::process_identifier processidentifier);
-      virtual atom_array app_get_pid(const ::string & pszModuleName);
-
-
-#endif
-
-
-#endif
-
-#ifndef UNIVERSAL_WINDOWS
-      //virtual bool process_contains_module(string & strImage, ::process_identifier processidentifier, const ::string & pszLibrary);
-      //virtual void shared_library_process(dword_array & dwa, string_array & straProcesses, const ::string & pszLibrary);
-#endif
 
 
 
@@ -718,13 +657,6 @@ namespace acme
       //virtual bool failed(const ::error_code& errorcode);
 
 
-#ifdef WINDOWS
-
-      virtual error_code defer_co_initialize_ex(bool bMultiThread, bool bDisableOleDDE = false);
-
-#endif
-      
-
       virtual void _node_file_dialog(::file::file_dialog * pdialog);
       virtual void _node_folder_dialog(::file::folder_dialog * pdialog);
 
@@ -746,13 +678,6 @@ namespace acme
 
       virtual ::string get_user_permanent_environment_variable(const ::scoped_string& scopedstr);
       virtual void set_user_permanent_environment_variable(const ::scoped_string& scopedstr, const ::scoped_string& strPayload);
-
-
-#ifdef WINDOWS_DESKTOP
-
-      virtual void _beta_use_unicode_utf8();
-
-#endif
 
 
       virtual void set_user_run_once(const ::scoped_string& scopedstrLabel, const ::scoped_string & scopedstrCommand);
@@ -792,12 +717,7 @@ namespace acme
 
       virtual void application_handle(long long l, void * p);
 
-#if defined(BSD_UNIX)
-      
-      virtual void arp_a(void *p, void(*callback)(void * p, ::u32 uIp, const char * status));
-      
-#endif
-      
+
       virtual bool is_application_running_good_effort(const ::scoped_string & scopedstrRepos, const ::scoped_string & scopedstrApp);
 
 
@@ -811,7 +731,219 @@ namespace acme
 
       virtual bool defer_process_protocol_path(::file::path & path);
 
-      
+
+   void finalize() override;
+
+   //virtual string get_command_line();
+
+   //virtual void reboot();
+   virtual void shutdown(bool bPowerOff);
+
+   virtual void terminate_processes_by_title(const ::string & strName);
+
+//#ifdef WINDOWS
+//      virtual ::file::path get_module_path(HMODULE hmodule);
+//#endif
+
+   virtual ::process_identifier_array module_path_processes_identifiers(const ::scoped_string & scopedstrName);
+   virtual ::process_identifier_array title_processes_identifiers(const ::scoped_string & scopedstrName);
+   //virtual ::process_identifier_array processes_identifiers();
+   //virtual ::file::path process_identifier_module_path(::process_identifier dwPid);
+
+
+   //virtual ::process_identifier current_process_identifier();
+
+   virtual ::payload connection_settings_get_auto_detect();
+   virtual ::payload connection_settings_get_auto_config_url();
+
+   virtual void open_url_link_at_system_browser(const string & strUrl, const string & strProfile = {});
+
+   virtual void local_machine_set_run(const ::string & strKey, const ::file::path & pathExecutable, const ::string& strArguments, bool bSet);
+   virtual void local_machine_set_run_once(const ::string & strKey, const ::file::path & pathExecutable, const ::string& strArguments, bool bSet);
+   virtual void current_user_set_run(const ::string & strKey, const ::file::path & pathExecutable, const ::string & strArguments, bool bSet);
+   virtual void current_user_set_run_once(const ::string & strKey, const ::file::path & pathExecutable, const ::string& strArguments, bool bSet);
+
+   virtual void defer_register_ca2_plugin_for_mozilla();
+
+
+   virtual void file_extension_get_open_with_list_keys(string_array & straKey, const ::string & strExtension);
+   virtual void file_extension_get_open_with_list_commands(string_array & straCommand, const ::string & strExtension);
+
+   virtual void file_association_set_default_icon(const ::string & strExtension, const ::string & strExtensionNamingClass, const ::string & strIconPath);
+   virtual void file_association_set_shell_open_command(const ::string & strExtension, const ::string & strExtensionNamingClass, const ::string & strCommand, const ::string & strParam);
+   virtual void file_association_get_shell_open_command(const ::string & strExtension, string & strExtensionNamingClass, string & strCommand, string & strParam);
+
+   virtual void native_full_web_browser(const ::string & str);
+
+
+   virtual void native_modern_web_browser(const ::string & str);
+
+
+   virtual void enable_service();
+
+   virtual void disable_service();
+
+   virtual void start_service();
+
+   virtual void stop_service();
+
+   virtual void enable_service(const ::string & strServiceName, const ::string & strDisplayName, const ::string & strCommand, const ::string & strUser = "", const ::string & strPass = "");
+
+   virtual void disable_service(const ::string & strServiceName);
+
+   virtual void start_service(const ::string & strServiceName);
+
+   virtual void stop_service(const ::string & strServiceName);
+
+//#ifdef WINDOWS
+//      virtual DECLSPEC_NO_RETURN void raise_exception(u32 dwExceptionCode, u32 dwExceptionFlags = EXCEPTION_NONCONTINUABLE);
+//#endif
+
+   virtual bool is_remote_session();
+
+   virtual void set_file_status(const ::file::path & path, const ::file::file_status& status);
+
+   //virtual void edit_link_target(const ::file::path & path, const ::file::path & pathLink);
+   //virtual void edit_link_folder(const ::file::path & path, const ::file::path & pathLink);
+   //virtual void edit_link_icon(const ::file::path& path, int iIcon, const ::file::path& pathLink);
+//   virtual ::pointer < ::file::link > resolve_link(const ::file::path & path, ::file::e_link elink = ::file::e_link_all);
+   virtual bool has_alias_in_path(const ::scoped_string & scopedstr, bool bNoUI = false, bool bNoMount = false);
+   virtual bool is_alias(const ::file::path & path);
+
+   virtual void initialize_wallpaper_fileset(::file::set* pfileset, bool bAddSearch);
+
+   //virtual void set_dark_mode(bool bDarkMode);
+
+   virtual void file_open(const ::file::path & path, const ::string & strParams = "", const ::file::path & pathFolder = "");
+   virtual void hidden_start(const ::file::path& path, const ::string& strParams = "", const ::file::path& pathFolder = "");
+   virtual void hidden_run(const class time & timeWait, const ::file::path& path, const ::string& strParams = "", const ::file::path& pathFolder = "");
+
+   virtual string get_default_browser();
+
+   virtual void get_default_browser(string & strId, ::file::path & path, string & strParam);
+
+   virtual void set_default_browser();
+
+   virtual void set_file_extension_mime_type(::get_file_extension_mime_type * pgetfileextensionmimetype);
+
+   virtual void set_file_extension_mime_type(string_array & straExtension, string_array & straMimeType);
+
+   virtual void register_user_auto_start(const string & strAppId, const ::file::path & pathExecutable, const string & strArguments, bool bRegister);
+
+   virtual bool is_user_auto_start(const string & strAppId);
+
+   virtual ::file::path get_app_path(const ::string & strApp);
+
+   virtual void on_process_request(::request * prequest);
+
+   /// set["file_filter_specs"] : string array of file extensions (with dot)
+   /// set["file_filter_names"] : string array of the file extensions titles
+   /// set["default_file_extension"] : default file extension (with dot)
+   /// set["folder"] : folder path
+   /// set["file_name"] : in/out file name
+   //virtual void browse_file_open(property_set & set);
+
+   /// set["file_filter_specs"] : string array of extensions (with dot)
+   /// set["file_filter_names"] : string array of the file extensions titles
+   /// set["default_file_extension"] : default file extension (with dot)
+   /// set["folder"] : folder path
+   /// set["file_name"] : in/out file name
+   //virtual void browse_file_save(property_set & set);
+
+   /// set["folder"] : in/out folder path
+   //virtual void browse_folder(property_set & set);
+
+   /// set["folder"] : in/out folder path
+   //virtual void browse_file_or_folder(property_set & set);
+
+
+   virtual void list_process(::file::path_array & patha, ::process_identifier_array& uaPid);
+
+
+   ::file::path_array list_process_path();
+
+   //virtual ::icon_pointer load_icon(const ::payload & payloadFile);
+
+   //virtual void enum_draw2d_fonts(::write_text::font_enumeration_item_array& itema);
+
+   virtual void broadcast_environment_variable_change();
+
+
+   virtual void set_this_application_as_default_for_file_extension(const ::string& strExtension);
+
+
+   string get_file_extension_mime_type(const ::string & strExtension);
+
+
+#ifdef LINUX
+
+      virtual enum_linux_distribution get_linux_distribution() const;
+//#ifdef LINUX
+
+  //    inline enum_linux_distribution get_linux_distribution() const;
+
+      virtual void calculate_linux_distribution();
+
+#endif
+
+#ifndef WINDOWS
+      virtual string_array cmdline_from_pid(::process_identifier processidentifier);
+      virtual atom_array app_get_pid(const ::string & pszModuleName);
+
+#endif
+//#ifdef WINDOWS_DESKTOP
+//
+//#endif
+//
+//
+//#endif
+
+
+#ifdef WINDOWS_DESKTOP
+
+      virtual platform_char** _get_envp(wcsdup_array& a);
+
+      virtual void register_dll(const ::file::path& pathDll);
+      virtual error_code defer_co_initialize_ex(bool bMultiThread, bool bDisableOleDDE = false);
+
+      virtual void _beta_use_unicode_utf8();
+
+
+#endif
+
+#ifndef UNIVERSAL_WINDOWS
+
+      virtual ::array <::serial::port_info> list_serial_ports();
+
+#endif
+
+//#if !defined(UNIVERSAL_WINDOWS)
+//
+//
+//      //virtual string module_path_from_pid(::process_identifier processidentifier);
+//      //virtual atom_array module_path_get_pid(const ::string & pszModuleName, bool bModuleNameIsPropertyFormatted = true);
+//
+//
+//#ifndef WINDOWS
+//
+//
+//
+//#endif
+//
+//
+//#endif
+//
+//#ifndef UNIVERSAL_WINDOWS
+//      //virtual bool process_contains_module(string & strImage, ::process_identifier processidentifier, const ::string & pszLibrary);
+//      //virtual void shared_library_process(dword_array & dwa, string_array & straProcesses, const ::string & pszLibrary);
+//#endif
+#if defined(BSD_UNIX)
+
+      virtual void arp_a(void *p, void(*callback)(void * p, ::u32 uIp, const char * status));
+
+#endif
+
+
    };
 
 

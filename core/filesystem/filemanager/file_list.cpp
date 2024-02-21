@@ -16,7 +16,9 @@
 #include "apex/database/_binary_stream.h"
 #include "apex/filesystem/fs/data.h"
 #include "apex/filesystem/fs/set.h"
-#include "apex/platform/os_context.h"
+#include "apex/platform/node.h"
+//#include "apex/platform/os_context.h"
+
 #include "aura/graphics/image/list.h"
 #include "aura/message/user.h"
 #include "aura/user/user/frame.h"
@@ -679,7 +681,7 @@ namespace filemanager
 
          auto pcontext = get_context();
 
-         os_context()->file_extension_get_open_with_list_keys(stra, strExt);
+         node()->file_extension_get_open_with_list_keys(stra, strExt);
 
          m_straOpenWith = stra;
 
@@ -806,7 +808,7 @@ namespace filemanager
 
          auto pcontext = get_context();
 
-         os_context()->file_open(pathUser);
+         node()->file_open(pathUser);
 
          pcommand->m_bRet = true;
 

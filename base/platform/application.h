@@ -27,13 +27,14 @@ namespace base
 
       //::pointer<::aura::application_menu>      m_pappmenu;
 
-      ::pointer < ::user::tab_impact >          m_ptabimpactBase;
+      ::pointer < ::user::tab_impact >                m_ptabimpactBase;
+      ::pointer < ::user::options_impact_handler >    m_poptionsimpacthandler;
 
 
       application();
       ~application() override;
-      
-      
+
+
       void on_set_platform() override;
 
       void initialize(::particle * pparticle) override;

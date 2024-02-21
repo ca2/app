@@ -485,6 +485,8 @@ list(APPEND apex_source
    #platform/definition.h
    platform/display.h
    #platform/error.h
+   platform/get_file_extension_mime_type.cpp
+   platform/get_file_extension_mime_type.h
    platform/history.cpp
    platform/history.h
    #platform/hyperlink.h
@@ -514,8 +516,8 @@ list(APPEND apex_source
    #platform/net.h
    platform/node.cpp
    platform/node.h
-   platform/os_context.cpp
-   platform/os_context.h
+   #platform/os_context.cpp
+   #platform/os_context.h
    platform/os_history.cpp
    platform/os_history.h
    platform/savings.cpp

@@ -182,7 +182,7 @@ public:
    ::url::url * url() const;
    ::crypto::crypto * crypto() const;
    ::nano::nano* nano() const;
-   ::os_context * os_context() const;
+   //::os_context * os_context() const;
 
 
    ::apex::application * apexapplication()  const;

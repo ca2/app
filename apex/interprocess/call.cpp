@@ -72,7 +72,7 @@ namespace interprocess
 
    }
 
-   //m_pcontext->m_papexcontext->os_context()->get_pid()
+   //node()->get_pid()
 
    void call::exclude_pid(const ::atom & idPid)
    {

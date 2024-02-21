@@ -6,7 +6,9 @@
 #include "acme/filesystem/filesystem/dir_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "apex/platform/application.h"
-#include "apex/platform/os_context.h"
+#include "apex/platform/node.h"
+//#include "apex/platform/os_context.h"
+
 #include "aura/user/user/interaction.h"
 #include "aura/platform/context.h"
 
@@ -431,7 +433,7 @@ namespace filemanager
                   try
                   {
 
-                     os_context()->set_file_status(strDestPath,st);
+                     node()->set_file_status(strDestPath,st);
 
                   }
                   catch(...)

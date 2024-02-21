@@ -2,7 +2,10 @@
 #include "set.h"
 #include "acme/parallelization/event.h"
 #include "apex/platform/context.h"
-#include "apex/platform/os_context.h"
+#include "apex/platform/node.h"
+//#include "apex/platform/node.h"
+//#include "apex/platform/os_context.h"
+
 
 
 namespace file
@@ -241,7 +244,7 @@ namespace file
    void set::initialize_os_wallpaper(bool bAddSearch)
    {
 
-      m_pcontext->m_papexcontext->os_context()->initialize_wallpaper_fileset(this, bAddSearch);
+      node()->initialize_wallpaper_fileset(this, bAddSearch);
       //{
 
       //   return false;
@@ -256,14 +259,14 @@ namespace file
          if (!bAddSearch)
          {
 
-            m_pcontext->m_papexcontext->os_context()->initialize_wallpaper_fileset(this, true);
+            node()->initialize_wallpaper_fileset(this, true);
 
             ::file::set::refresh();
 
             if (m_listing.is_empty())
             {
 
-               m_pcontext->m_papexcontext->os_context()->::os_context::initialize_wallpaper_fileset(this, bAddSearch);
+               node()->::acme::node::initialize_wallpaper_fileset(this, bAddSearch);
 
                ::file::set::refresh();
 

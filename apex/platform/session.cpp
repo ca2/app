@@ -3,7 +3,7 @@
 #include "system.h"
 #include "application.h"
 #include "node.h"
-#include "os_context.h"
+//#include "os_context.h"
 #include "acme/constant/id.h"
 #include "acme/constant/user_key.h"
 #include "acme/constant/message.h"
@@ -1571,7 +1571,7 @@ namespace apex
    {
 
 
-      return m_pcontext->m_papexcontext->os_context()->is_remote_session();
+      return node()->is_remote_session();
 
 
    }

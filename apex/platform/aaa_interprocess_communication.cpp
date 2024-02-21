@@ -61,7 +61,7 @@ void interprocess_intercommunication::initialize_interprocess_communication(::pa
 
    //}
 
-   int iPid = m_pcontext->m_papexcontext->os_context()->get_pid();
+   int iPid = node()->get_pid();
 
    //defer_add_module(file()->module(), iPid);
 

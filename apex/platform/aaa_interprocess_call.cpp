@@ -62,7 +62,7 @@ bool ::interprocess::call::is_auto_launch() const
 
 }
 
-//m_pcontext->m_papexcontext->os_context()->get_pid()
+//node()->get_pid()
 
 void ::interprocess::call::exclude_pid(::i32 iPid)
 {

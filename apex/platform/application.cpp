@@ -1,8 +1,10 @@
 #include "framework.h"
 #include "application.h"
+#include "get_file_extension_mime_type.h"
 #include "session.h"
 #include "system.h"
-#include "os_context.h"
+#include "node.h"
+//#include "os_context.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
 #include "acme/exception/exit.h"
@@ -13,7 +15,7 @@
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/acme_path.h"
 #include "acme/handler/request.h"
-#include "acme/platform/get_file_extension_mime_type.h"
+//#include "acme/platform/get_file_extension_mime_type.h"
 #include "acme/platform/scoped_restore.h"
 #include "acme/primitive/primitive/url.h"
 #include "acme/operating_system/process.h"
@@ -1908,7 +1910,7 @@ namespace apex
 
          auto pathModule = file()->module();
 
-         auto processId = m_pcontext->m_papexcontext->os_context()->current_process_identifier();
+         auto processId = node()->current_process_identifier();
 
          m_pinterprocesscommunication->on_new_instance(pathModule, processId);
 
@@ -4074,7 +4076,7 @@ namespace apex
 
             (*pcall)["module"] = file()->module();
 
-            (*pcall)["pid"] = m_pcontext->m_papexcontext->os_context()->current_process_identifier();
+            (*pcall)["pid"] = node()->current_process_identifier();
 
             (*pcall)["command_line"] = prequest->m_strCommandLine;
 
@@ -4133,7 +4135,7 @@ namespace apex
 
             (*pcall)["module"] = file()->module();
 
-            (*pcall)["pid"] = m_pcontext->m_papexcontext->os_context()->current_process_identifier();
+            (*pcall)["pid"] = node()->current_process_identifier();
 
             (*pcall)["command_line"] = prequest->m_strCommandLine;
 
@@ -4544,7 +4546,7 @@ namespace apex
       if (g_iCount == 1)
       {
 
-         m_pcontext->m_papexcontext->os_context()->file_open(strFile);
+         node()->file_open(strFile);
 
       }
 
@@ -5386,7 +5388,7 @@ namespace apex
             try
             {
 
-               os_context()->set_file_extension_mime_type(pgetfileextensionmimetype);
+               node()->set_file_extension_mime_type(pgetfileextensionmimetype);
 
             }
             catch (...)

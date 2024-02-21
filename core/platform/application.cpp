@@ -4,7 +4,9 @@
 #include "session.h"
 #include "acme/platform/system_setup.h"
 #include "acme/filesystem/filesystem/file_context.h"
-#include "apex/platform/os_context.h"
+#include "apex/platform/node.h"
+//#include "apex/platform/os_context.h"
+
 #include "aura/platform/node.h"
 #include "aura/user/user/check_box.h"
 #include "aura/user/user/still.h"
@@ -318,7 +320,7 @@ namespace core
 
       auto papplication = m_papexapplication;
 
-      bool bUserAutoStart = os_context()->is_user_auto_start(papplication->get_executable_appid());
+      bool bUserAutoStart = node()->is_user_auto_start(papplication->get_executable_appid());
 
       pcheckbox->_001SetCheck(bUserAutoStart, ::e_source_initialize);
 
@@ -329,7 +331,7 @@ namespace core
 
             auto papplication = m_papexapplication;
 
-            os_context()->register_user_auto_start(
+            node()->register_user_auto_start(
                papplication->get_executable_appid(),
                papplication->get_executable_path(),
                "--auto_start=1",

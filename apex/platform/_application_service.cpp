@@ -1,6 +1,6 @@
 // Create by camilo on 2021-08-10 14:06 BRT <3ThomasBorregaardSorensen!!
 #include "framework.h"
-#include "os_context.h"
+#include "node.h"
 #include "acme/handler/request.h"
 #include "apex/parallelization/service.h"
 #include "apex/parallelization/service_handler.h"
@@ -15,9 +15,9 @@ namespace apex
    void application::enable_service()
    {
 
-      //auto estatus = system()->m_papexsystem->os_context()->enable_service();
+      //auto estatus = system()->m_papexsystem->node()->enable_service();
 
-      system()->m_papexsystem->os_context()->enable_service();
+      node()->enable_service();
 
       //if (!estatus)
       //{
@@ -59,7 +59,7 @@ namespace apex
 
       //estatus = 
 
-      os_context()->disable_service();
+      node()->disable_service();
 
       //if (!estatus)
       //{

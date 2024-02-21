@@ -769,7 +769,7 @@ class object;
 class thread;
 
 
-class os_context;
+//class os_context;
 
 
 namespace node_gtk

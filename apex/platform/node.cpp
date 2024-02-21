@@ -2,6 +2,7 @@
 // Created by camilo on 19/01/2021. --<33ThomasBS!!
 //
 #include "framework.h"
+#include "get_file_extension_mime_type.h"
 #include "node.h"
 #include "acme/constant/character_set.h"
 #include "acme/constant/id.h"
@@ -15,9 +16,12 @@
 #include "acme/filesystem/filesystem/listing.h"
 #include "acme/exception/interface_only.h"
 #include "acme/primitive/string/international.h"
+#include "apex/filesystem/file/set.h"
 #include "apex/input/input.h"
 #include "apex/platform/application.h"
-#include "apex/platform/os_context.h"
+#include "apex/platform/node.h"
+//#include "apex/platform/os_context.h"
+
 #include "apex/platform/system.h"
 
 
@@ -192,6 +196,58 @@ namespace apex
       return "";
 
    }
+
+
+   void node::set_file_extension_mime_type(::get_file_extension_mime_type * pgetfileextensionmimetype)
+   {
+
+      string_array straExtension;
+
+      string_array straMimeType;
+
+      pgetfileextensionmimetype->file_extension_mime_type(straExtension, straMimeType);
+
+      set_file_extension_mime_type(straExtension, straMimeType);
+
+   }
+
+
+   void node::initialize_wallpaper_fileset(::file::set* pfileset, bool bAddSearch)
+   {
+
+      ::string_array stra;
+
+      //stra.add("_inheaven_1920x1080_o.JPG");
+      //stra.add("02209_stratosphere_1920x1080_o.JPG");
+      //stra.add("Bamboo Weathered Standard.jpg");
+
+      stra.add("bambu1.jpg");
+      stra.add("bambu2.jpg");
+      stra.add("bambu3.jpg");
+      stra.add("bambu33.png");
+      stra.add("bambu4.jpg");
+
+      ::file::path pathFolder;
+
+      pathFolder = "https://server.ca2.software/image/cc/ca2core/bkimageoftheday/common/";
+
+      pfileset->m_listingAddUp.m_eflag = ::file::e_flag_file;
+
+      for (auto & str : stra)
+      {
+
+         ::file::path path = pathFolder / (str + string("?sessid=noauth"));
+
+         path.m_iDir = 0;
+
+         pfileset->m_listingAddUp.defer_add(path);
+
+      }
+
+      //return true;
+
+   }
+
 
 
 //   void node::defer_create_main_menu(const string_array & straParent, const string_array & straMenu, const string_array & straId)
@@ -375,7 +431,7 @@ namespace apex
    /*void node::shell_open(const ::file::path & path, const ::string & strParams, const ::file::path & pathFolder)
    {
 
-      m_pcontext->m_papexcontext->os_context()->file_open(path, strParams, pathFolder);
+      node()->file_open(path, strParams, pathFolder);
 
    }*/
 

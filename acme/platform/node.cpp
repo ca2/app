@@ -79,12 +79,6 @@ namespace acme
 
       //m_pWindowingWin32Node = nullptr;
 
-#ifdef LINUX
-
-      m_elinuxdistribution = e_linux_distribution_not_initialized;
-
-#endif
-
    }
 
 
@@ -1678,14 +1672,9 @@ namespace acme
    ::enum_linux_distribution node::get_linux_distribution() const
    {
 
-      if (m_elinuxdistribution == e_linux_distribution_not_initialized)
-      {
+      throw ::interface_only();
 
-         ((node *)this)->calculate_linux_distribution();
-
-      }
-
-      return m_elinuxdistribution;
+      return e_linux_distribution_unknown;
 
    }
 
@@ -1913,14 +1902,14 @@ namespace acme
    }
 
 
-   string node::process_identifier_module_path(::process_identifier processidentifier)
+   ::file::path node::process_identifier_module_path(::process_identifier processidentifier)
    {
       
       //throw ::interface_only();
 
       throw ::interface_only();
 
-      return "";
+      return {};
 
    }
 
@@ -2210,10 +2199,10 @@ return false;
    }
 
 
-   void node::open_url(const ::string & strUrl)
+   void node::open_url_link_at_system_browser(const string & strUrl, const string & strProfile)
    {
 
-      throw ::interface_only();
+      //throw ::interface_only();
 
       //::operating_system_open_url(strUrl);
 
@@ -3527,6 +3516,994 @@ bool node::are_framework_shared_libraries_busy(const ::scoped_string & scopedstr
       
    }
 
+
+   void node::finalize()
+   {
+
+
+   }
+
+//   string node::get_command_line()
+//   {
+//
+//      throw ::interface_only("this is an interface");
+//
+//      return "";
+//
+//   }
+
+
+   void node::shutdown(bool bIfPowerOff)
+   {
+
+      UNREFERENCED_PARAMETER(bIfPowerOff);
+
+      throw ::interface_only("this is an interface");
+
+      //return false;
+
+   }
+
+
+//   void node::reboot()
+//   {
+//
+//      throw ::interface_only("this is an interface");
+//
+//      //return false;
+//
+//   }
+
+
+   void node::terminate_processes_by_title(const ::string & lpszName)
+   {
+
+      UNREFERENCED_PARAMETER(lpszName);
+
+      throw ::interface_only("this is an interface");
+
+   }
+
+
+   ::process_identifier_array node::module_path_processes_identifiers(const ::scoped_string & scopedstrName)
+   {
+
+      UNREFERENCED_PARAMETER(scopedstrName);
+
+      throw ::interface_only("this is an interface");
+
+      return {};
+
+   }
+
+
+   ::process_identifier_array node::title_processes_identifiers(const ::scoped_string & scopedstrName)
+   {
+
+      UNREFERENCED_PARAMETER(scopedstrName);
+
+      throw ::interface_only("this is an interface");
+
+      return {};
+
+   }
+
+
+//   ::process_identifier node::current_process_identifier()
+//   {
+//
+//      throw ::interface_only("this is an interface");
+//
+//      return -1;
+//
+//   }
+//
+//
+//   ::file::path node::process_identifier_module_path(::process_identifier dwPid)
+//   {
+//
+//      UNREFERENCED_PARAMETER(dwPid);
+//
+//      throw ::interface_only("this is an interface");
+//
+//      return {};
+//
+//   }
+//
+//
+//   ::process_identifier_array node::processes_identifiers()
+//   {
+//
+//      return node()->processes_identifiers();
+//
+//   }
+
+
+//#ifdef WINDOWS
+//
+//   ::file::path node::get_module_path(HMODULE hmodule)
+//   {
+//      UNREFERENCED_PARAMETER(hmodule);
+//      throw ::interface_only("this is an interface");
+//   }
+//
+//#endif
+
+
+
+   ::payload node::connection_settings_get_auto_detect()
+   {
+
+      return success;
+
+   }
+
+
+   ::payload node::connection_settings_get_auto_config_url()
+   {
+
+      return error_failed;
+
+   }
+
+//
+//   void node::link_open(const string & strUrl, const string & strProfile)
+//   {
+//
+//      node()->open_url(strUrl);
+//
+////      file_open(strUrl);
+//      //{
+//
+//      //   return error_failed;
+//
+//      //}
+//
+//      //return success;
+//
+//   }
+
+
+   void node::local_machine_set_run(const ::string & pszKey, const ::file::path & pathExecutable, const ::string& pszArguments, bool bSet)
+   {
+
+      UNREFERENCED_PARAMETER(pszKey);
+      UNREFERENCED_PARAMETER(pathExecutable);
+
+      //return false;
+
+   }
+
+
+   void node::local_machine_set_run_once(const ::string & pszKey, const ::file::path & pathExecutable, const ::string& pszArguments, bool bSet)
+   {
+
+      UNREFERENCED_PARAMETER(pszKey);
+      UNREFERENCED_PARAMETER(pathExecutable);
+
+      //return false;
+
+   }
+
+
+   void node::current_user_set_run(const ::string & pszKey, const ::file::path & pathExecutable, const ::string& pszArguments, bool bSet)
+   {
+
+      UNREFERENCED_PARAMETER(pszKey);
+      UNREFERENCED_PARAMETER(pathExecutable);
+
+      //return false;
+
+   }
+
+
+   void node::current_user_set_run_once(const ::string & pszKey, const ::file::path & pathExecutable, const ::string& pszArguments, bool bSet)
+   {
+
+      UNREFERENCED_PARAMETER(pszKey);
+      UNREFERENCED_PARAMETER(pathExecutable);
+
+      //return false;
+
+   }
+
+
+   void node::defer_register_ca2_plugin_for_mozilla()
+   {
+
+      //return false;
+
+   }
+
+
+   void node::file_extension_get_open_with_list_keys(string_array & straKey, const ::string & pszExtension)
+   {
+
+      UNREFERENCED_PARAMETER(straKey);
+      UNREFERENCED_PARAMETER(pszExtension);
+
+      //return false;
+
+   }
+
+
+   void node::file_extension_get_open_with_list_commands(string_array & straCommand, const ::string & pszExtension)
+   {
+
+      UNREFERENCED_PARAMETER(straCommand);
+      UNREFERENCED_PARAMETER(pszExtension);
+
+      //return false;
+
+   }
+
+
+   void node::file_association_set_default_icon(const ::string & pszExtension, const ::string & pszExtensionNamingClass, const ::string & pszIconPath)
+   {
+
+      UNREFERENCED_PARAMETER(pszExtension);
+      UNREFERENCED_PARAMETER(pszExtensionNamingClass);
+      UNREFERENCED_PARAMETER(pszIconPath);
+
+      //return false;
+
+   }
+
+
+   void node::file_association_set_shell_open_command(const ::string & pszExtension, const ::string & pszExtensionNamingClass,  const ::string & pszCommand, const ::string & pszParam)
+   {
+
+      UNREFERENCED_PARAMETER(pszExtension);
+      UNREFERENCED_PARAMETER(pszExtensionNamingClass);
+      UNREFERENCED_PARAMETER(pszCommand);
+      UNREFERENCED_PARAMETER(pszParam);
+
+      //return false;
+
+   }
+
+
+   void node::file_association_get_shell_open_command(const ::string & pszExtension, string & strExtensionNamingClass, string & strCommand, string & strParam)
+   {
+
+      UNREFERENCED_PARAMETER(pszExtension);
+      UNREFERENCED_PARAMETER(strExtensionNamingClass);
+      UNREFERENCED_PARAMETER(strCommand);
+      UNREFERENCED_PARAMETER(strParam);
+
+      //return false;
+
+   }
+
+
+   /// Windows (IE), macOS (Safari), Linux (Firefox, oder...)
+   /// Remark: it is not default browser (necessarily)
+   void node::native_full_web_browser(const ::string & pcsz)
+
+   {
+
+      throw ::not_implemented();
+
+      //return false;
+
+   }
+
+   /// Windows (Edge), fallback to native_full_web_browser
+   /// Remark: it is not default browser (necessarily)
+   void node::native_modern_web_browser(const ::string & pcsz)
+
+   {
+
+      native_full_web_browser(pcsz);
+
+
+   }
+
+
+   void node::enable_service()
+   {
+
+
+      throw ::interface_only();
+
+
+      //return false;
+
+
+   }
+
+
+   void node::disable_service()
+   {
+
+
+      throw ::interface_only();
+
+
+      //return false;
+
+
+   }
+
+
+   void node::start_service()
+   {
+
+
+      throw ::interface_only();
+
+
+      //return false;
+
+
+   }
+
+
+   void node::stop_service()
+   {
+
+
+      throw ::interface_only();
+
+
+      //return false;
+
+
+   }
+
+
+   void node::enable_service(const ::string & strServiceName,const ::string & strDisplayName,const ::string & strCommand,const ::string & strUser,const ::string & strPass)
+   {
+
+
+      throw ::interface_only();
+
+
+   }
+
+
+   void node::disable_service(const ::string & strServiceName)
+   {
+
+
+      throw ::interface_only();
+
+
+   }
+
+
+   void node::start_service(const ::string & strServiceName)
+   {
+
+
+      throw ::interface_only();
+
+
+   }
+
+
+   void node::stop_service(const ::string & strServiceName)
+   {
+
+
+      throw ::interface_only();
+
+
+   }
+
+
+//#ifdef WINDOWS
+//
+//   DECLSPEC_NO_RETURN void node::raise_exception(u32 dwExceptionCode, u32 dwExceptionFlags)
+//   {
+//
+//
+//   }
+//
+//#endif
+
+
+   bool node::is_remote_session()
+   {
+
+      return false;
+
+   }
+
+
+   void node::set_file_status(const ::file::path & path, const ::file::file_status& status)
+   {
+
+      throw ::interface_only();
+
+   }
+
+
+   //void node::edit_link_target(const ::file::path & path, const ::file::path & pathLink)
+   //{
+
+   //   throw ::exception(error_interface_only);
+
+   //}
+
+
+   //void node::edit_link_folder(const ::file::path & path, const ::file::path & pathLink)
+   //{
+
+   //   throw ::exception(error_interface_only);
+
+   //}
+
+
+   //void node::edit_link_icon(const ::file::path& path, int iIcon, const ::file::path& pathLink)
+   //{
+
+   //   throw ::exception(error_interface_only);
+
+   //}
+
+
+//   ::pointer < ::file::link > node::resolve_link(const ::file::path & path, ::file::e_link elink)
+//   {
+//
+//      if(path.case_insensitive_ends(".desktop"))
+//      {
+//
+//         auto stra = file()->lines(path);
+//
+//         stra.filter_begins_ci("exec=");
+//
+//         if(stra.get_size() <= 0)
+//         {
+//
+//            return nullptr;
+//
+//         }
+//
+//         auto plink = __create_new < ::file::link >();
+//
+//         string strLink = stra[0];
+//
+//         strLink.case_insensitive_begins_eat("exec=");
+//
+//         while(true)
+//         {
+//
+//            bool bAte = false;
+//
+//            if(strLink.case_insensitive_ends_eat("%u"))
+//            {
+//
+//               bAte = true;
+//
+//            }
+//
+//            if(!bAte)
+//            {
+//
+//               break;
+//
+//            }
+//
+//         }
+//
+//         strLink.trim();
+//
+//         strLink.trim("\"");
+//
+//         strLink.trim("\'");
+//
+//         plink->m_pathFolder = ::file::path(strLink).folder();
+//
+//         plink->m_pathTarget = strLink;
+//
+//         return plink;
+//
+//      }
+//      else
+//      {
+//
+//
+//#ifndef WINDOWS
+//
+//
+//#if 0
+//
+//
+//
+//      if (::is_null(psz))
+//      {
+//
+//         return false;
+//
+//      }
+//
+//
+//
+//
+//      char* pszRealPath = ::realpath(psz, NULL);
+//
+//      if (pszRealPath == NULL)
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      if (strcmp(psz, pszRealPath) == 0)
+//      {
+//
+//         ::free(pszRealPath);
+//
+//         return false;
+//
+//      }
+//
+//      try
+//      {
+//
+//         path = pszRealPath;
+//
+//      }
+//      catch (...)
+//      {
+//
+//      }
+//
+//      ::free(pszRealPath);
+//
+//      return true;
+//
+//   }
+//
+//#else
+//
+//         auto plink = __create_new < ::file::link >();
+//         
+//         string strLink;
+//
+//         char * psz = strLink.get_buffer(4096);
+//
+//         int count = (int) readlink(path, psz, 4096);
+//
+//         if (count < 0)
+//         {
+//
+//            strLink.release_buffer(0);
+//
+//            if (elink & ::file::e_link_target)
+//            {
+//
+//               plink->m_pathTarget = path;
+//
+//            }
+//
+//            if(elink & ::file::e_link_folder)
+//            {
+//
+//               plink->m_pathFolder = ::file::path(strLink).folder();
+//
+//            }
+//
+//            return plink;
+//
+//         }
+//
+//         strLink.release_buffer(count);
+//
+//         if (elink & ::file::e_link_target)
+//         {
+//
+//            plink->m_pathTarget = path;
+//
+//         }
+//
+//         if (elink & ::file::e_link_folder)
+//         {
+//
+//            plink->m_pathFolder = ::file::path(strLink).folder();
+//
+//         }
+//
+//         return plink;
+//
+//#endif
+//
+//#endif
+//
+//      }
+//
+//      return nullptr;
+//
+//   }
+
+
+   bool node::has_alias_in_path(const ::scoped_string & scopedstr, bool bNoUI, bool bNoMount)
+   {
+
+      ::file::path pathSource(scopedstr);
+
+      ::file::path_array patha;
+
+      ///::file::path_array pathaRelative;
+
+      ascendants_path(pathSource, patha, nullptr);
+
+      for (index i = 0; i < patha.get_count(); i++)
+      {
+
+         ::file::path path = patha[i];
+
+         if (is_alias(path))
+         {
+
+            return true;
+
+         }
+
+      }
+
+      return false;
+
+   }
+
+
+   bool node::is_alias(const ::file::path & path)
+   {
+
+      return m_pcontext->os_is_alias(path);
+
+   }
+
+
+   void node::initialize_wallpaper_fileset(::file::set* pfileset, bool bAddSearch)
+   {
+
+
+   }
+
+
+//   void node::set_dark_mode(bool bDarkMode)
+//   {
+//
+//      //throw ::interface_only();
+//
+//      //node()->set_dark_mode(bDarkMode);
+//
+//   }
+
+
+   void node::file_open(const ::file::path & pathTarget, const ::string & strParams, const ::file::path & pathFolder)
+   {
+
+      throw ::interface_only();
+
+   }
+
+
+   void node::hidden_start(const ::file::path& pathTarget, const ::string& strParams, const ::file::path& pathFolder)
+   {
+
+      throw ::interface_only();
+
+   }
+
+
+   void node::hidden_run(const class time & timeWait, const ::file::path& pathTarget, const ::string& strParams, const ::file::path& pathFolder)
+   {
+
+      throw ::interface_only();
+
+   }
+
+
+   string node::get_default_browser()
+   {
+
+      string strId;
+
+      ::file::path path;
+
+      string strParam;
+
+      get_default_browser(strId, path, strParam);
+
+      //if (!)
+      //{
+
+      //   return "";
+
+      //}
+
+      return strId;
+
+   }
+
+
+   void node::get_default_browser(string & strId, ::file::path & path, string & strParam)
+   {
+
+      UNREFERENCED_PARAMETER(strId);
+      UNREFERENCED_PARAMETER(path);
+      UNREFERENCED_PARAMETER(strParam);
+
+      //return false;
+
+   }
+
+
+   void node::set_default_browser()
+   {
+
+      //return false;
+
+   }
+
+
+   void node::set_file_extension_mime_type(::get_file_extension_mime_type * pgetfileextensionmimetype)
+   {
+
+   }
+
+
+   void node::set_file_extension_mime_type(string_array & straExtension, string_array & straMimeType)
+   {
+
+      UNREFERENCED_PARAMETER(straExtension);
+      UNREFERENCED_PARAMETER(straMimeType);
+
+      //return false;
+
+   }
+
+
+   void node::register_user_auto_start(const string & strAppId, const ::file::path & pathExecutable, const string & strArguments, bool bRegister)
+   {
+
+      throw interface_only();
+
+   }
+
+
+   bool node::is_user_auto_start(const string & strAppId)
+   {
+
+      throw interface_only();
+
+      return false;
+
+   }
+
+
+   ::file::path node::get_app_path(const ::string & strApp)
+   {
+
+      return strApp;
+
+   }
+
+
+   void node::on_process_request(::request * prequest)
+   {
+
+      request(prequest);
+
+   }
+
+
+   //void node::browse_file_open(property_set & set)
+   //{
+
+   //   throw ::interface_only();
+
+   //   //return false;
+
+   //}
+
+
+   //void node::browse_file_save(property_set & set)
+   //{
+
+   //   throw ::interface_only();
+
+   //   //return false;
+
+   //}
+
+
+   //void node::browse_folder(property_set & set)
+   //{
+
+   //   throw ::interface_only();
+
+   //   //return false;
+
+   //}
+
+   //
+   //void node::browse_file_or_folder(property_set & set)
+   //{
+
+   //   throw ::interface_only();
+
+   //   //return false;
+
+   //}
+
+
+   void node::list_process(::file::path_array& patha, ::process_identifier_array& uaPid)
+   {
+
+      ASSERT(sizeof(::u32) == sizeof(u32));
+
+      uaPid = this->processes_identifiers();
+
+      patha.set_size(uaPid.get_count());
+
+      for (index i = 0; i < uaPid.get_count(); i++)
+      {
+
+         patha[i] = process_identifier_module_path(uaPid[i]);
+
+      }
+
+   }
+
+
+   ::file::path_array node::list_process_path()
+   {
+
+      ::file::path_array patha;
+
+      ::process_identifier_array uaPid;
+
+      list_process(patha, uaPid);
+
+      return patha;
+
+   }
+
+
+   void node::broadcast_environment_variable_change()
+   {
+
+      //return ::success_none;
+
+   }
+
+
+   void node::set_this_application_as_default_for_file_extension(const ::string& strExtension)
+   {
+
+
+   }
+
+
+   string node::get_file_extension_mime_type(const ::string & strExtension)
+   {
+
+      if (strExtension == "iso")
+      {
+         return "application/octetstream";
+      }
+      else if (strExtension == "mp3")
+      {
+         return "audio/mpeg";
+      }
+      else if (strExtension == "exe")
+      {
+         return "application/x-msdownload";
+      }
+      else if (strExtension == "spa")
+      {
+         return "application/x-spa";
+      }
+      else if (strExtension == "mid")
+      {
+         return "audio/midi";
+      }
+      else if (strExtension == "js")
+      {
+         return "text/javascript";
+      }
+      else if (strExtension == "css")
+      {
+         return "text/css";
+      }
+      else if (strExtension == "xpi")
+      {
+         return "application/x-xpinstall";
+      }
+      else if (strExtension == "ttf")
+      {
+         return "font/ttf";
+      }
+      else if (strExtension == "ogv")
+      {
+         return "video/ogg";
+      }
+      else if (strExtension == "mp4")
+      {
+         return "video/mp4";
+      }
+      else if (strExtension == "webm")
+      {
+         return "video/webm";
+      }
+      else if (strExtension == "zip")
+      {
+         return "application/x-zip-compressed";
+      }
+      else if (strExtension == "crx")
+      {
+         return "application/x-chrome-extension";
+      }
+      else if (strExtension == "swf")
+      {
+         return "application/x-shockwave-flash";
+      }
+      else if (strExtension == "cab")
+      {
+         return "application/vnd.ms-cab-compressed";
+      }
+      else if (strExtension == "jar")
+      {
+         return "application/x-jar";
+      }
+      else if (strExtension == "jpg")
+      {
+         return "image/jpeg";
+      }
+      else if (strExtension == "png")
+      {
+         return "image/png";
+      }
+      else if (strExtension == "gif")
+      {
+         return "image/gif";
+      }
+      else if (strExtension == "svg")
+      {
+         return "image/svg+xml";
+      }
+      else if (strExtension == "ttf")
+      {
+         return "application/x-font-ttf";
+      }
+      else if (strExtension == "otf")
+      {
+         return "application/x-font-opentype";
+      }
+      else if (strExtension == "woff")
+      {
+         return "application/x-font-woff";
+      }
+      else if (strExtension == "eot")
+      {
+         return "application/vnd.ms-fontobject";
+      }
+      else if (strExtension == "md5")
+      {
+         return "text/plain";
+      }
+      else if (strExtension == "html")
+      {
+         return "text/html";
+      }
+      else if (strExtension == "htm")
+      {
+         return "text/html";
+      }
+      else if (strExtension == "rdf")
+      {
+         return "application/rdf+xml";
+      }
+      else
+      {
+         return "";
+      }
+
+   }
 
 } // namespace acme
 

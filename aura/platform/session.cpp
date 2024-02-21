@@ -7,7 +7,9 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/handler/request.h"
 #include "acme/platform/system_setup.h"
-#include "apex/platform/os_context.h"
+#include "apex/platform/node.h"
+//#include "apex/platform/os_context.h"
+
 #include "apex/platform/savings.h"
 #include "aura/windowing/windowing.h"
 #include "aura/windowing/window.h"
@@ -2293,7 +2295,7 @@ namespace aura
 
       auto pcontext = get_context();
 
-      return os_context()->is_remote_session();
+      return node()->is_remote_session();
 
    }
 

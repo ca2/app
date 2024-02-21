@@ -2,7 +2,7 @@
 #include "context.h"
 #include "application.h"
 #include "system.h"
-#include "os_context.h"
+#include "node.h"
 #include "acme/constant/id.h"
 #include "acme/filesystem/file/binary_stream.h"
 #include "acme/filesystem/file/exception.h"
@@ -160,7 +160,7 @@ namespace apex
 
       __construct(m_phttp);
 
-      __construct(m_poscontext);
+      //__construct(m_poscontext);
 
 
 
@@ -178,22 +178,22 @@ namespace apex
    void context::finalize_context()
    {
 
-      if (m_poscontext)
-      {
-
-         try
-         {
-
-            m_poscontext->finalize();
-
-         }
-         catch (...)
-         {
-
-
-         }
-
-      }
+//      if (m_poscontext)
+//      {
+//
+//         try
+//         {
+//
+//            m_poscontext->finalize();
+//
+//         }
+//         catch (...)
+//         {
+//
+//
+//         }
+//
+//      }
 
       if (m_phttp)
       {
@@ -212,7 +212,7 @@ namespace apex
 
       }
 
-      m_poscontext.release();
+      //m_poscontext.release();
 
       m_phttp.release();
 
@@ -703,7 +703,7 @@ namespace apex
    bool context::_os_has_alias_in_path(const ::file::path & path, bool bNoUI, bool bNoMount)
    {
 
-      return os_context()->has_alias_in_path(path);
+      return node()->has_alias_in_path(path);
 
    }
 
@@ -729,7 +729,7 @@ namespace apex
    bool context::os_is_alias(const ::file::path & path)
    {
 
-      return os_context()->is_alias(path);
+      return node()->is_alias(path);
 
       //return string_ends_ci(psz, ".lnk");
 

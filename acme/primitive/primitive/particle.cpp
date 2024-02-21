@@ -504,12 +504,12 @@ class ::write_text::write_text * particle::write_text() const
 }
 
 
-::os_context * particle::os_context() const
-{
-
-   return m_pcontext->os_context();
-
-}
+//::os_context * particle::os_context() const
+//{
+//
+//   return m_pcontext->os_context();
+//
+//}
 
 
 ::nano::nano * particle::nano() const

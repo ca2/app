@@ -5,7 +5,7 @@
 #include "machine_event.h"
 #include "machine_event_central.h"
 #include "shell_launcher.h"
-#include "os_context.h"
+//#include "node.h"
 #include "application.h"
 #include "context.h"
 #include "node.h"
@@ -3551,7 +3551,7 @@ pacmedirectory->create("/ca2core");
    void system::browser(string strUrl, string strBrowser, string strProfile, string strTarget)
    {
 
-      m_pcontext->m_papexcontext->os_context()->link_open(strUrl, strProfile);
+      node()->open_url_link_at_system_browser(strUrl, strProfile);
 
       //return ::success;
 
@@ -3868,7 +3868,7 @@ pacmedirectory->create("/ca2core");
 
 #ifdef UNIVERSAL_WINDOWS
 
-      m_pcontext->m_papexcontext->os_context()->native_full_web_browser(strUrl);
+      node()->native_full_web_browser(strUrl);
 
       return;
 
@@ -4080,7 +4080,7 @@ pacmedirectory->create("/ca2core");
 
 #ifdef UNIVERSAL_WINDOWS
 
-      m_pcontext->m_papexcontext->os_context()->native_full_web_browser(strUrl);
+      node()->native_full_web_browser(strUrl);
 
 #else
 

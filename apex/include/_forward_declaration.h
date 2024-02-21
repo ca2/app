@@ -4,7 +4,7 @@
 #pragma once
 
 
-class os_context;
+//class os_context;
 
 
 namespace user

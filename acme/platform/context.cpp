@@ -129,6 +129,13 @@ namespace acme
    }
 
 
+   bool context::os_is_alias(const ::file::path &path)
+   {
+
+      return false;
+
+   }
+
 
    void context::initialize_context()
    {

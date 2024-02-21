@@ -14,6 +14,7 @@ Makefile
 **/.link_object
 **/VisualGDB
 **/CVS
+**/_____operating_system
 **/xcuserdata
 **/Generated Files
 **/doxygen.directory

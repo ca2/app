@@ -248,9 +248,6 @@
     <Filter Include="Header Files\operating_system\shared_posix">
       <UniqueIdentifier>{26e4ee20-4366-43ee-849d-5ece4d839983}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\operating_system\windows_common\NewFilter1">
-      <UniqueIdentifier>{2f349e86-c350-42ea-8476-853aa210299c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\primitive\time\time">
       <UniqueIdentifier>{5da65cd5-e479-4833-a68d-223b0257d317}</UniqueIdentifier>
     </Filter>
@@ -286,9 +283,6 @@
     </Filter>
     <Filter Include="Source Files\graphics\graphics">
       <UniqueIdentifier>{f596a5d1-075d-4e91-aa1b-e65906253c34}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\operating_system\windows">
-      <UniqueIdentifier>{f2375515-2fb7-4e79-be8b-9581004af7f0}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\memory\heap">
       <UniqueIdentifier>{3504256d-19dc-4b77-b1df-1984594f2efb}</UniqueIdentifier>
@@ -1623,6 +1617,39 @@
     </ClCompile>
     <ClCompile Include="memory\simple_memory_allocate.cpp">
       <Filter>Source Files\memory</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive\subparticle.cpp">
+      <Filter>Source Files\primitive\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\call_stack.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filesystem\file_system_options.cpp">
+      <Filter>Source Files\filesystem\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="parallelization\task_message_queue.cpp">
+      <Filter>Source Files\parallelization</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive\primitive.cpp">
+      <Filter>Source Files\primitive\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\shared_posix\errno.cpp">
+      <Filter>Source Files\operating_system\shared_posix</Filter>
+    </ClCompile>
+    <ClCompile Include="memory\heap\std.cpp">
+      <Filter>Source Files\memory\heap</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows_common\heap_allocator.cpp">
+      <Filter>Source Files\operating_system\windows_common</Filter>
+    </ClCompile>
+    <ClCompile Include="memory\allocator\malloc.cpp">
+      <Filter>Source Files\memory\allocator</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows_common\acme.cpp">
+      <Filter>Source Files\operating_system\windows_common</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\string\c\strdup.cpp">
+      <Filter>Source Files\primitive\string\c</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -3980,6 +4007,9 @@
     </ClInclude>
     <ClInclude Include="user\user\key_state.h">
       <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows_common\heap_allocator.h">
+      <Filter>Header Files\operating_system\windows_common</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

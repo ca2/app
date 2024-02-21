@@ -165,6 +165,11 @@ namespace base
 
 
       void add_impact_system(const ::atom & atom, ::user::impact_system * pimpactsystem) override;
+
+
+      virtual bool create_impact_system(const ::atom & atom);
+
+
       ::pointer<::user::impact_system> impact_system(const ::atom & atom) override;
 
 

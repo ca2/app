@@ -184,12 +184,12 @@
     <Filter Include="Header Files\user\menu">
       <UniqueIdentifier>{eb3f29bb-b76e-4704-8f67-0aa4d6a86a4e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tga;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
     <Filter Include="Source Files\networking\sockets\httpd">
       <UniqueIdentifier>{42fa1359-9d51-4cd3-82c1-6be14a4af8d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tga;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -607,9 +607,6 @@
     <ClCompile Include="networking\sockets\httpd\socket_thread.cpp">
       <Filter>Source Files\networking\sockets\httpd</Filter>
     </ClCompile>
-    <ClCompile Include="handler\manager_room.cpp">
-      <Filter>Source Files\handler</Filter>
-    </ClCompile>
     <ClCompile Include="networking\sockets\basic\listen_socket_impl.cpp">
       <Filter>Source Files\networking\sockets\basic</Filter>
     </ClCompile>
@@ -621,6 +618,9 @@
     </ClCompile>
     <ClCompile Include="networking\application\application_incoming_socket.cpp">
       <Filter>Source Files\networking\application</Filter>
+    </ClCompile>
+    <ClCompile Include="handler\manager_room.cpp">
+      <Filter>Source Files\handler</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

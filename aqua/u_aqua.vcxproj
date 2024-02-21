@@ -544,6 +544,11 @@
     <ClCompile Include="multimedia\decoder_plugin.cpp" />
     <ClCompile Include="multimedia\exception.cpp" />
     <ClCompile Include="multimedia\file_application.cpp" />
+    <ClCompile Include="multimedia\media_item.cpp" />
+    <ClCompile Include="multimedia\media_item_picker.cpp" />
+    <ClCompile Include="multimedia\media_item_picker_callback.cpp" />
+    <ClCompile Include="multimedia\media_player.cpp" />
+    <ClCompile Include="multimedia\media_player_command.cpp" />
     <ClCompile Include="multimedia\multimedia.cpp" />
     <ClCompile Include="platform\application.cpp" />
     <ClCompile Include="platform\session.cpp" />

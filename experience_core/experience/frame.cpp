@@ -804,6 +804,8 @@ namespace experience_core
 
          }
 
+#if !defined(UNIVERSAL_WINDOWS)
+
          ::rectangle_i32 rectangle;
 
          pframewindow->window_rectangle(rectangle);
@@ -842,8 +844,9 @@ namespace experience_core
 
          pgraphics->_DrawText(wstrWindowText, m_rectangleWindowText, { e_align_left, e_align_vertical_center }, e_draw_text_no_prefix);
 
-      }
+#endif
 
+      }
 
    }
 

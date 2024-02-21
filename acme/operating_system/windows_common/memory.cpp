@@ -1,10 +1,34 @@
 #include "framework.h"
-//#include "acme/oe/allocator/operating_system_heap_allocator.h"
-//
-//
-//namespace heap
-//{
-//
-//   ::heap::allocator * heap::_new_allocator(::heap::enum_allocator eallocator)
-//   {
-//      return new ope;
+#include "heap_allocator.h"
+#include "acme/memory/allocator/malloc.h"
+#include "acme/memory/c_malloc.h"
+#include "acme/memory/management.h"
+
+
+namespace heap
+{
+
+
+   ::heap::allocator * management::_new_allocator(::heap::enum_allocator eallocator)
+   {
+
+      if (eallocator == ::heap::e_allocator_malloc)
+      {
+
+         return ::c::malloc::create < ::heap::malloc_allocator >();
+
+      }
+      else
+      {
+
+         return ::c::malloc::create < windows_common::heap_allocator >();
+
+      }
+
+   }
+
+
+} // namespace heap
+
+
+

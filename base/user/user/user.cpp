@@ -26,6 +26,7 @@
 #include "base/user/experience/department.h"
 #include "base/user/experience/experience.h"
 #include "base/user/form/document.h"
+#include "base/user/simple/child_frame.h"
 #include "base/user/simple/impact.h"
 #include "base/user/simple/tab_document.h"
 #include "base/user/simple/scroll_bar.h"
@@ -192,6 +193,10 @@ namespace base
       //   return false;
 
       //}
+
+      factory()->add_factory_item < simple_child_frame  >();
+      factory()->add_factory_item < form_document >();
+
 
       factory()->add_factory_item <::simple_scroll_bar, ::user::scroll_bar>();
 
@@ -1926,10 +1931,53 @@ namespace base
    }
 
 
+   bool user::create_impact_system(const ::atom & atom)
+   {
+
+      if (atom == "child_form")
+      {
+
+         initialize_html();
+
+         add_impact_system(
+            atom,
+            __allocate < ::user::multiple_document_template >(
+               "system/form",
+               ::type < form_document >(),
+               get_simple_child_frame_type_info(),
+               ::type < ::user::form_impact >()));
+
+         return true;
+
+      }
+
+      throw ::exception(error_failed, "Cannot create impact_system with id " + atom.as_string());
+
+      return false;
+
+   }
+
+
    ::pointer<::user::impact_system> user::impact_system(const ::atom & atom)
    {
 
-      return document_manager_container::impact_system(atom);
+      auto pimpactsystem = document_manager_container::impact_system(atom);
+
+      if (atom == "child_form")
+      {
+
+         if (!pimpactsystem)
+         {
+
+            create_impact_system(atom);
+
+         }
+
+         pimpactsystem = document_manager_container::impact_system(atom);
+
+      }
+
+      return pimpactsystem;
 
    }
 

@@ -168,6 +168,8 @@ bool application::is_sandboxed() const
    return true;
 #elif defined(ANDROID)
    return true;
+#elif defined(UNIVERSAL_WINDOWS)
+   return true;
 #else
    return false;
 #endif

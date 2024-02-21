@@ -1556,7 +1556,7 @@ namespace experience
          disable_dock();
 
       }
-      
+
       if(m_pusersystem && m_pusersystem->m_bWindowFrame)
       {
 

@@ -426,6 +426,13 @@ namespace experience
 
       }
 
+      if (application()->is_sandboxed() && m_pframewindow->get_parent() == nullptr)
+      {
+
+         return false;
+
+      }
+
       if (ebutton == e_button_close)
       {
 

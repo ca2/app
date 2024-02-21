@@ -275,8 +275,6 @@ namespace core
 
       factory()->add_factory_item < ::account::impact >();
 
-      factory()->add_factory_item < form_document >();
-      factory()->add_factory_item < simple_child_frame  >();
       factory()->add_factory_item < ::userex::split_impact  >();
 
       factory()->add_factory_item < ::simple_mesh_data  >();
@@ -318,13 +316,13 @@ namespace core
 
 
       //add_document_template(ptemplate);
-      add_impact_system(
-         "system/form_child",
-         __allocate < ::user::multiple_document_template >(
-         "system/form",
-         ::type < form_document >(),
-         get_simple_child_frame_type_info(),
-         ::type < ::user::form_impact >()));
+      //add_impact_system(
+      //   "system/form_child",
+      //   __allocate < ::user::multiple_document_template >(
+      //   "system/form",
+      //   ::type < form_document >(),
+      //   get_simple_child_frame_type_info(),
+      //   ::type < ::user::form_impact >()));
 
       //ptemplate->initialize(this);
 

@@ -5,6 +5,7 @@
 #include "acme/handler/request.h"
 #include "aura/message/user.h"
 #include "aura/user/user/system.h"
+#include "aura/windowing/windowing.h"
 #include "base/platform/application.h"
 #include "base/user/experience/frame.h"
 
@@ -41,6 +42,13 @@ void simple_main_frame::install_message_routing(::channel * pchannel)
 
 void simple_main_frame::on_message_create(::message::message * pmessage)
 {
+
+   if (application()->is_sandboxed())
+   {
+
+      m_bWindowFrame = false;
+
+   }
 
    ::pointer<::message::create>pcreate(pmessage);
 

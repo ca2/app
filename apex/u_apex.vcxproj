@@ -792,6 +792,7 @@
     </ClCompile>
     <ClCompile Include="handler\context.cpp" />
     <ClCompile Include="handler\manager.cpp" />
+    <ClCompile Include="handler\manager_room.cpp" />
     <ClCompile Include="handler\signal.cpp" />
     <ClCompile Include="input\input.cpp" />
     <ClCompile Include="interprocess\base.cpp" />
@@ -812,6 +813,7 @@
     <ClCompile Include="networking\address.cpp" />
     <ClCompile Include="networking\application\application.cpp" />
     <ClCompile Include="networking\application\application_handler.cpp" />
+    <ClCompile Include="networking\application\application_incoming_socket.cpp" />
     <ClCompile Include="networking\application\application_socket.cpp" />
     <ClCompile Include="networking\email.cpp" />
     <ClCompile Include="networking\email_address.cpp" />
@@ -826,6 +828,8 @@
     <ClCompile Include="networking\http\status.cpp" />
     <ClCompile Include="networking\http\transaction.cpp" />
     <ClCompile Include="networking\ip_enum.cpp" />
+    <ClCompile Include="networking\netserver\incoming_socket.cpp" />
+    <ClCompile Include="networking\netserver\incoming_socket_thread.cpp" />
     <ClCompile Include="networking\netserver\socket.cpp" />
     <ClCompile Include="networking\netserver\socket_handler.cpp" />
     <ClCompile Include="networking\netserver\socket_thread.cpp" />
@@ -836,6 +840,7 @@
     <ClCompile Include="networking\sockets\base\socket_handler.cpp" />
     <ClCompile Include="networking\sockets\base\socket_thread.cpp" />
     <ClCompile Include="networking\sockets\basic\listen_socket.cpp" />
+    <ClCompile Include="networking\sockets\basic\listen_socket_impl.cpp" />
     <ClCompile Include="networking\sockets\basic\sctp_socket.cpp" />
     <ClCompile Include="networking\sockets\basic\socket.cpp" />
     <ClCompile Include="networking\sockets\basic\socket_handler.cpp" />
@@ -845,6 +850,10 @@
     <ClCompile Include="networking\sockets\basic\tcp_socket_impl.cpp" />
     <ClCompile Include="networking\sockets\basic\tls_socket.cpp" />
     <ClCompile Include="networking\sockets\basic\udp_socket.cpp" />
+    <ClCompile Include="networking\sockets\httpd\incoming_socket.cpp" />
+    <ClCompile Include="networking\sockets\httpd\incoming_socket_thread.cpp" />
+    <ClCompile Include="networking\sockets\httpd\socket.cpp" />
+    <ClCompile Include="networking\sockets\httpd\socket_thread.cpp" />
     <ClCompile Include="networking\sockets\http\client_socket.cpp" />
     <ClCompile Include="networking\sockets\http\debug_socket.cpp" />
     <ClCompile Include="networking\sockets\http\get_socket.cpp" />
@@ -859,7 +868,6 @@
     <ClCompile Include="networking\sockets\link_out_socket.cpp" />
     <ClCompile Include="networking\sockets\sockets.cpp" />
     <ClCompile Include="networking\sockets\transfer_socket.cpp" />
-    <ClCompile Include="networking\sockets\webserver\httpd_socket.cpp" />
     <ClCompile Include="networking\sockets\websocket_client.cpp" />
     <ClCompile Include="operating_system\department.cpp" />
     <ClCompile Include="parallelization\handler_manager.cpp" />

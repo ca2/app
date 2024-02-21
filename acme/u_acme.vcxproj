@@ -343,9 +343,7 @@
       <AdditionalOptions>
       </AdditionalOptions>
     </ClCompile>
-    <Link>
-      <AdditionalOptions>/EXPORT:WinMain %(AdditionalOptions)</AdditionalOptions>
-    </Link>
+    <Link />
     <PreBuildEvent>
       <Command>
       </Command>
@@ -373,9 +371,7 @@
       <AdditionalOptions>
       </AdditionalOptions>
     </ClCompile>
-    <Link>
-      <AdditionalOptions>/EXPORT:WinMain %(AdditionalOptions)</AdditionalOptions>
-    </Link>
+    <Link />
     <PreBuildEvent>
       <Command>
       </Command>
@@ -404,9 +400,7 @@
       <AdditionalOptions>
       </AdditionalOptions>
     </ClCompile>
-    <Link>
-      <AdditionalOptions>/EXPORT:WinMain %(AdditionalOptions)</AdditionalOptions>
-    </Link>
+    <Link />
     <PreBuildEvent>
       <Command>
       </Command>
@@ -433,9 +427,7 @@
       <AdditionalOptions>
       </AdditionalOptions>
     </ClCompile>
-    <Link>
-      <AdditionalOptions>/EXPORT:WinMain %(AdditionalOptions)</AdditionalOptions>
-    </Link>
+    <Link />
     <PreBuildEvent>
       <Command>
       </Command>
@@ -500,9 +492,7 @@
       <AdditionalOptions>
       </AdditionalOptions>
     </ClCompile>
-    <Link>
-      <AdditionalOptions>/EXPORT:WinMain %(AdditionalOptions)</AdditionalOptions>
-    </Link>
+    <Link />
     <PreBuildEvent>
       <Command>
       </Command>
@@ -742,6 +732,7 @@
     <ClInclude Include="operating_system\windows_common\file.h" />
     <ClInclude Include="operating_system\windows_common\find_file.h" />
     <ClInclude Include="operating_system\windows_common\handle.h" />
+    <ClInclude Include="operating_system\windows_common\heap_allocator.h" />
     <ClInclude Include="operating_system\windows_common\last_error.h" />
     <ClInclude Include="operating_system\windows_common\last_error_exception.h" />
     <ClInclude Include="operating_system\windows_common\parallelization.h" />
@@ -1349,6 +1340,7 @@
     <ClCompile Include="crypto\rsa.cpp" />
     <ClCompile Include="exception\assert.cpp" />
     <ClCompile Include="exception\bad_file_format.cpp" />
+    <ClCompile Include="exception\call_stack.cpp" />
     <ClCompile Include="exception\io.cpp" />
     <ClCompile Include="exception\library_not_loaded.cpp" />
     <ClCompile Include="exception\no_memory.cpp" />
@@ -1375,6 +1367,7 @@
     <ClCompile Include="filesystem\filesystem\file_dialog.cpp" />
     <ClCompile Include="filesystem\filesystem\file_path.cpp" />
     <ClCompile Include="filesystem\filesystem\file_system.cpp" />
+    <ClCompile Include="filesystem\filesystem\file_system_options.cpp" />
     <ClCompile Include="filesystem\filesystem\folder_dialog.cpp" />
     <ClCompile Include="filesystem\filesystem\link.cpp" />
     <ClCompile Include="filesystem\filesystem\listing.cpp" />
@@ -1446,9 +1439,11 @@
     <ClCompile Include="memory\allocate_x86_cache_oriented.cpp" />
     <ClCompile Include="memory\allocation.cpp" />
     <ClCompile Include="memory\allocator.cpp" />
+    <ClCompile Include="memory\allocator\malloc.cpp" />
     <ClCompile Include="memory\counter.cpp" />
     <ClCompile Include="memory\default_heap.cpp" />
     <ClCompile Include="memory\heap.cpp" />
+    <ClCompile Include="memory\heap\std.cpp" />
     <ClCompile Include="memory\inline\heap_bare.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">true</ExcludedFromBuild>
@@ -1679,6 +1674,7 @@
     <ClCompile Include="operating_system\security_attributes.cpp" />
     <ClCompile Include="operating_system\shared_posix\c_error_number.cpp" />
     <ClCompile Include="operating_system\shared_posix\earth_time_shift.cpp" />
+    <ClCompile Include="operating_system\shared_posix\errno.cpp" />
     <ClCompile Include="operating_system\shared_posix\stdio_file.cpp" />
     <ClCompile Include="operating_system\shared_posix\time.cpp" />
     <ClCompile Include="operating_system\shared_posix\windows_time.cpp" />
@@ -1701,6 +1697,7 @@
     <ClCompile Include="operating_system\universal_windows\user.cpp" />
     <ClCompile Include="operating_system\universal_windows\_.cpp" />
     <ClCompile Include="operating_system\windowing.cpp" />
+    <ClCompile Include="operating_system\windows_common\acme.cpp" />
     <ClCompile Include="operating_system\windows_common\callstack.cpp" />
     <ClCompile Include="operating_system\windows_common\Debug.cpp" />
     <ClCompile Include="operating_system\windows_common\dll.cpp" />
@@ -1708,6 +1705,7 @@
     <ClCompile Include="operating_system\windows_common\file1.cpp" />
     <ClCompile Include="operating_system\windows_common\find_file.cpp" />
     <ClCompile Include="operating_system\windows_common\handle.cpp" />
+    <ClCompile Include="operating_system\windows_common\heap_allocator.cpp" />
     <ClCompile Include="operating_system\windows_common\idn.cpp" />
     <ClCompile Include="operating_system\windows_common\last_error_exception.cpp" />
     <ClCompile Include="operating_system\windows_common\library.cpp" />
@@ -1741,6 +1739,7 @@
     <ClCompile Include="parallelization\synchronization_array.cpp" />
     <ClCompile Include="parallelization\synchronizer.cpp" />
     <ClCompile Include="parallelization\task.cpp" />
+    <ClCompile Include="parallelization\task_message_queue.cpp" />
     <ClCompile Include="parallelization\tools.cpp" />
     <ClCompile Include="parallelization\_.cpp" />
     <ClCompile Include="platform\acme.cpp" />
@@ -1877,10 +1876,12 @@
     <ClCompile Include="primitive\primitive\object_meta.cpp" />
     <ClCompile Include="primitive\primitive\particle.cpp" />
     <ClCompile Include="primitive\primitive\payload.cpp" />
+    <ClCompile Include="primitive\primitive\primitive.cpp" />
     <ClCompile Include="primitive\primitive\property.cpp" />
     <ClCompile Include="primitive\primitive\property_object.cpp" />
     <ClCompile Include="primitive\primitive\property_set.cpp" />
     <ClCompile Include="primitive\primitive\read_only_memory.cpp" />
+    <ClCompile Include="primitive\primitive\subparticle.cpp" />
     <ClCompile Include="primitive\primitive\type.cpp" />
     <ClCompile Include="primitive\primitive\url.cpp" />
     <ClCompile Include="primitive\primitive\url_domain.cpp" />
@@ -1901,6 +1902,7 @@
     <ClCompile Include="primitive\string\c\extension\ansi_impl.cpp" />
     <ClCompile Include="primitive\string\c\extension\wd16_impl.cpp" />
     <ClCompile Include="primitive\string\c\extension\wd32_impl.cpp" />
+    <ClCompile Include="primitive\string\c\strdup.cpp" />
     <ClCompile Include="primitive\string\c\unicode_impl.cpp" />
     <ClCompile Include="primitive\string\encoding_exception.cpp" />
     <ClCompile Include="primitive\string\from_integer.cpp" />

@@ -616,6 +616,9 @@ namespace apex
 /// bHandled true if some action was done in response to this new additional instance creation
       virtual void on_exclusive_instance_local_conflict_id(::request * prequest, bool & bHandled, string strId);
 
+
+      virtual void on_exclusive_instance_global_conflict(::request * prequest, bool & bHandled);
+
       /// return true if the external additional instance might continue execution
       /// bHandled true if some action was done in response to the external aaa_memory_new additional instance creation
       virtual void on_additional_local_instance(bool & bHandled, string strModule, int iPid, string strCommandLine);

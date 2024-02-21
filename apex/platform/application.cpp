@@ -1895,7 +1895,7 @@ namespace apex
                
                information() << "apex::application::init_application exit";
                
-               throw exit_exception(error_exit_application, this, "Another install of the application is running.");
+               throw exit_exception(error_exit_system, this, "Another install of the application is running.");
                
             }
             
@@ -3717,19 +3717,14 @@ namespace apex
          {
 
             on_exclusive_instance_conflict(prequest, bHandled, e_exclusive_instance_global, "");
-            //{
-
-            //   return false;
-
-            //}
 
          }
          catch (...)
          {
 
-            return false;
-
          }
+
+         return false;
 
       }
 
@@ -4053,8 +4048,12 @@ namespace apex
          return on_exclusive_instance_local_conflict_id(prequest, bHandled, strId);
 
       }
+      else if (eexclusive == e_exclusive_instance_global)
+      {
 
-      //return false;
+         return on_exclusive_instance_global_conflict(prequest, bHandled);
+
+      }
 
    }
 
@@ -4155,6 +4154,67 @@ namespace apex
                      //bContinue = ptask->m_tristateContinue.is_true();
 
                   //}
+
+               }
+
+            }
+
+         }
+
+      }
+      catch (...)
+      {
+
+      }
+
+      //return bContinue;
+
+   }
+
+
+   void application::on_exclusive_instance_global_conflict(::request * prequest, bool & bHandled)
+   {
+
+      bool bContinue = false;
+
+      try
+      {
+
+         //auto psystem = system()->m_papexsystem;
+
+         if (m_pinterprocesscommunication)
+         {
+
+            auto pcall = m_pinterprocesscommunication->create_call("application", "on_additional_globalinstance");
+
+            (*pcall)["module"] = file()->module();
+
+            (*pcall)["pid"] = node()->current_process_identifier();
+
+            (*pcall)["command_line"] = prequest->m_strCommandLine;
+
+            //string strId;
+
+            //pcall->add_parameter(strId);
+
+            pcall->send_call();
+
+            for (auto & pair : pcall->m_mapTask)
+            {
+
+               auto & pinterprocesstask = pair.element2();
+
+               if (bContinue && pinterprocesstask->m_tristateContinue.is_set())
+               {
+
+                  bContinue = pinterprocesstask->m_tristateContinue.is_set_true();
+
+               }
+
+               if (!bHandled && pinterprocesstask->m_tristateHandled.is_set())
+               {
+
+                  bHandled = pinterprocesstask->m_tristateHandled.is_set_true();
 
                }
 

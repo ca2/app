@@ -1,6 +1,5 @@
 #include "framework.h"
 #include "acme/constant/message.h"
-////#include "acme/exception/exception.h"
 #include "acme/handler/extended_topic.h"
 //#include "acme/update.h"
 //#if REFERENCING_DEBUGGING
@@ -1812,8 +1811,6 @@ void object::handle_exception(const ::exception& e)
       ::message_box_synchronous(this, e.m_strMessage);
 
    }
-
-   //return true;
 
 }
 

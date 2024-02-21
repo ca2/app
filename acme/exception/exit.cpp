@@ -11,6 +11,8 @@ exit_exception::exit_exception(const ::e_status & estatus, ::task * playeredThre
    m_ptaskExit(playeredThreadExit)
 {
 
+   m_estatus = estatus;
+
    //if(m_pthreadExit)
  /*  {
 

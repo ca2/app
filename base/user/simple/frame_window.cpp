@@ -1089,8 +1089,8 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
 
    //#if !defined(UNIVERSAL_WINDOWS) && !defined(ANDROID) && !defined(APPLE_IOS)
 
-   if (!(m_ewindowflag & e_window_flag_window_created))
-   {
+   //if (!(m_ewindowflag & e_window_flag_window_created))
+   //{
 
       if (m_bDefaultNotifyIcon)
       {
@@ -1126,7 +1126,7 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
 
       }
 
-   }
+   //}
 
    //#endif
 

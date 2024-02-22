@@ -886,12 +886,20 @@ namespace acme
 
 #endif
 
-#ifndef WINDOWS
+#if !defined(WINDOWS)
       virtual string_array cmdline_from_pid(::process_identifier processidentifier);
       virtual atom_array app_get_pid(const ::string & pszModuleName);
 
 #endif
-//#ifdef WINDOWS_DESKTOP
+
+
+#if defined(WINDOWS)
+
+      virtual error_code defer_co_initialize_ex(bool bMultiThread, bool bDisableOleDDE = false);
+
+#endif
+      
+      //#ifdef WINDOWS_DESKTOP
 //
 //#endif
 //
@@ -904,7 +912,6 @@ namespace acme
       virtual platform_char** _get_envp(wcsdup_array& a);
 
       virtual void register_dll(const ::file::path& pathDll);
-      virtual error_code defer_co_initialize_ex(bool bMultiThread, bool bDisableOleDDE = false);
 
       virtual void _beta_use_unicode_utf8();
 

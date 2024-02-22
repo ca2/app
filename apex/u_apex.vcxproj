@@ -700,6 +700,7 @@
     <ClInclude Include="platform\display.h" />
     <ClInclude Include="platform\event.h" />
     <ClInclude Include="platform\event_source.h" />
+    <ClInclude Include="platform\get_file_extension_mime_type.h" />
     <ClInclude Include="platform\history.h" />
     <ClInclude Include="platform\launcher.h" />
     <ClInclude Include="platform\log.h" />
@@ -708,7 +709,6 @@
     <ClInclude Include="platform\machine_event_data.h" />
     <ClInclude Include="platform\message_box.h" />
     <ClInclude Include="platform\node.h" />
-    <ClInclude Include="platform\os_context.h" />
     <ClInclude Include="platform\os_history.h" />
     <ClInclude Include="platform\savings.h" />
     <ClInclude Include="platform\session.h" />
@@ -886,6 +886,7 @@
     <ClCompile Include="platform\assert_running_task.cpp" />
     <ClCompile Include="platform\console_application.cpp" />
     <ClCompile Include="platform\context.cpp" />
+    <ClCompile Include="platform\get_file_extension_mime_type.cpp" />
     <ClCompile Include="platform\history.cpp" />
     <ClCompile Include="platform\launcher.cpp" />
     <ClCompile Include="platform\log.cpp" />
@@ -893,7 +894,6 @@
     <ClCompile Include="platform\machine_event_central.cpp" />
     <ClCompile Include="platform\machine_event_data.cpp" />
     <ClCompile Include="platform\node.cpp" />
-    <ClCompile Include="platform\os_context.cpp" />
     <ClCompile Include="platform\os_history.cpp" />
     <ClCompile Include="platform\savings.cpp" />
     <ClCompile Include="platform\session.cpp" />

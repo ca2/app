@@ -367,9 +367,6 @@
     <ClCompile Include="platform\node.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="platform\os_context.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
     <ClCompile Include="platform\os_history.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
@@ -621,6 +618,9 @@
     </ClCompile>
     <ClCompile Include="handler\manager_room.cpp">
       <Filter>Source Files\handler</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\get_file_extension_mime_type.cpp">
+      <Filter>Source Files\platform</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1281,9 +1281,6 @@
     <ClInclude Include="platform\node.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="platform\os_context.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
     <ClInclude Include="platform\os_history.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
@@ -1487,6 +1484,9 @@
     </ClInclude>
     <ClInclude Include="user\menu\command.h">
       <Filter>Header Files\user\menu</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\get_file_extension_mime_type.h">
+      <Filter>Header Files\platform</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

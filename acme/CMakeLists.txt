@@ -2590,7 +2590,8 @@ if(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
 endif ()
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source})
+add_library(${PROJECT_NAME} SHARED ${library_source}
+        primitive/comparison/array.h)
 #   platform/get_file_extension_mime_type.cpp
 #   platform/get_file_extension_mime_type.h)
 add_library(static_${PROJECT_NAME} STATIC ${library_source})

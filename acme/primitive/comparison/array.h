@@ -1,8 +1,47 @@
 //
-// Created by camilo on 2/22/24.
+// Created by camilo on 2/22/2024 <3ThomasBorregaardSorensen!!
 //
+#pragma once
 
-#ifndef _LINUX_OPERATING_SYSTEM_ARRAY_H
-#define _LINUX_OPERATING_SYSTEM_ARRAY_H
 
-#endif //_LINUX_OPERATING_SYSTEM_ARRAY_H
+
+namespace comparison
+{
+
+
+   namespace array
+   {
+
+      template < typename A, primitive_integral I, typename T >
+      bool defer_transfer_to(A & a, I i, const T & t)
+      {
+
+         auto find = a.find_first(t);
+
+         if(find == i)
+         {
+
+            return false;
+
+         }
+
+         a.erase_at(find);
+
+         if(i > find)
+         {
+
+            i--;
+
+         }
+
+         a.insert_at(i, t);
+
+         return true;
+
+      }
+
+
+   } // namespace array
+
+
+} // namespace comparison

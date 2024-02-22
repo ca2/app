@@ -2880,7 +2880,6 @@
 		9AC102692B6AC9BD0053DB45 /* check.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A892DD226CD9061008D6412 /* check.h */; };
 		9AC1026A2B6AC9BD0053DB45 /* plex_heap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7551082B214AE300FFB669 /* plex_heap.h */; };
 		9AC1026B2B6AC9BD0053DB45 /* _template_forward_declaration.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A08417A2935C1FB009F7FF4 /* _template_forward_declaration.h */; };
-		9AC1026C2B6AC9BD0053DB45 /* get_file_extension_mime_type.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE889C82B69A21500286F89 /* get_file_extension_mime_type.h */; };
 		9AC1026D2B6AC9BD0053DB45 /* device.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AA8F89E27BA7267008FF9AA /* device.h */; };
 		9AC1026E2B6AC9BD0053DB45 /* _stream_process_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A7942511442F008DABD2 /* _stream_process_impl.h */; };
 		9AC1026F2B6AC9BD0053DB45 /* application_base.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE6DE4C29621576008A1335 /* application_base.h */; };
@@ -3785,7 +3784,6 @@
 		9AC106062B6AC9BD0053DB45 /* tree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A15A72D264B6F2C0080670E /* tree.cpp */; };
 		9AC106072B6AC9BD0053DB45 /* string_array.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68A5CE2511442F008DABD2 /* string_array.cpp */; };
 		9AC106082B6AC9BD0053DB45 /* message_box.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AA8F89D27BA7267008FF9AA /* message_box.cpp */; };
-		9AC1060A2B6AC9BD0053DB45 /* get_file_extension_mime_type.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE889C62B69A21500286F89 /* get_file_extension_mime_type.cpp */; };
 		9AC1060B2B6AC9BD0053DB45 /* message.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A08441E29367B71009F7FF4 /* message.cpp */; };
 		9AC1060C2B6AC9BD0053DB45 /* context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A787CEF264C0740003DF8A0 /* context.cpp */; };
 		9AC1060D2B6AC9BD0053DB45 /* create_task_attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0842FF2936664D009F7FF4 /* create_task_attributes.cpp */; };
@@ -4344,10 +4342,6 @@
 		9AE6DE66296216BA008A1335 /* session.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE6DE60296216BA008A1335 /* session.h */; };
 		9AE6DE68296218A7008A1335 /* application_flags.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE6DE67296218A6008A1335 /* application_flags.cpp */; };
 		9AE6DF2B2962B09A008A1335 /* _operating_system.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE6DF2A2962B099008A1335 /* _operating_system.h */; };
-		9AE889C92B69A21500286F89 /* get_file_extension_mime_type.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE889C62B69A21500286F89 /* get_file_extension_mime_type.cpp */; };
-		9AE889CA2B69A21500286F89 /* get_file_extension_mime_type.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE889C62B69A21500286F89 /* get_file_extension_mime_type.cpp */; };
-		9AE889CB2B69A21500286F89 /* get_file_extension_mime_type.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE889C82B69A21500286F89 /* get_file_extension_mime_type.h */; };
-		9AE889CC2B69A21500286F89 /* get_file_extension_mime_type.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE889C82B69A21500286F89 /* get_file_extension_mime_type.h */; };
 		9AEA1BAF26794D5B006F4A68 /* _system_color.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEA1BAB26794D59006F4A68 /* _system_color.h */; };
 		9AEA1BB026794D5B006F4A68 /* _system_color.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEA1BAB26794D59006F4A68 /* _system_color.h */; };
 		9AEA1BB126794D5B006F4A68 /* color32.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEA1BAD26794D5A006F4A68 /* color32.h */; };
@@ -6020,8 +6014,6 @@
 		9AE6DE60296216BA008A1335 /* session.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = session.h; sourceTree = "<group>"; };
 		9AE6DE67296218A6008A1335 /* application_flags.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = application_flags.cpp; sourceTree = "<group>"; };
 		9AE6DF2A2962B099008A1335 /* _operating_system.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _operating_system.h; sourceTree = "<group>"; };
-		9AE889C62B69A21500286F89 /* get_file_extension_mime_type.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = get_file_extension_mime_type.cpp; sourceTree = "<group>"; };
-		9AE889C82B69A21500286F89 /* get_file_extension_mime_type.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = get_file_extension_mime_type.h; sourceTree = "<group>"; };
 		9AEA11DF275FE2FD006437A3 /* acme_framework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = acme_framework.h; sourceTree = "<group>"; };
 		9AEA11E0275FE2FD006437A3 /* acme_framework.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = acme_framework.docc; sourceTree = "<group>"; };
 		9AEA11EB275FE2FE006437A3 /* acme_frameworkTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = acme_frameworkTests.m; sourceTree = "<group>"; };
@@ -6629,8 +6621,6 @@
 				9A68A53E2511442E008DABD2 /* fixed_alloc.h */,
 				9A68A5382511442E008DABD2 /* flags.cpp */,
 				9A68A55E2511442F008DABD2 /* flags.h */,
-				9AE889C62B69A21500286F89 /* get_file_extension_mime_type.cpp */,
-				9AE889C82B69A21500286F89 /* get_file_extension_mime_type.h */,
 				9A68A5592511442E008DABD2 /* hyperlink.cpp */,
 				9A68A57A2511442F008DABD2 /* hyperlink.h */,
 				9AC0190027489355006BEBCC /* implementable.cpp */,
@@ -8682,7 +8672,6 @@
 				9A892E0026CD9062008D6412 /* check.h in Headers */,
 				9A75512C2B214AE500FFB669 /* plex_heap.h in Headers */,
 				9A08419C2935C1FD009F7FF4 /* _template_forward_declaration.h in Headers */,
-				9AE889CB2B69A21500286F89 /* get_file_extension_mime_type.h in Headers */,
 				9AA8F8D127BA7268008FF9AA /* device.h in Headers */,
 				9A68AF8825114436008DABD2 /* _stream_process_impl.h in Headers */,
 				9AE6DE5529621577008A1335 /* application_base.h in Headers */,
@@ -9689,7 +9678,6 @@
 				9AC102692B6AC9BD0053DB45 /* check.h in Headers */,
 				9AC1026A2B6AC9BD0053DB45 /* plex_heap.h in Headers */,
 				9AC1026B2B6AC9BD0053DB45 /* _template_forward_declaration.h in Headers */,
-				9AC1026C2B6AC9BD0053DB45 /* get_file_extension_mime_type.h in Headers */,
 				9AC1026D2B6AC9BD0053DB45 /* device.h in Headers */,
 				9AC1026E2B6AC9BD0053DB45 /* _stream_process_impl.h in Headers */,
 				9AC1026F2B6AC9BD0053DB45 /* application_base.h in Headers */,
@@ -10689,7 +10677,6 @@
 				9A892E7826CDD00D008D6412 /* file_path.h in Headers */,
 				9A08429C2935E694009F7FF4 /* aaa__fifo_map_impl.h in Headers */,
 				9A786213264B90B4003DF8A0 /* mkint_c.h in Headers */,
-				9AE889CC2B69A21500286F89 /* get_file_extension_mime_type.h in Headers */,
 				9A786251264B90B5003DF8A0 /* mathematics.h in Headers */,
 				9AD68FBF251A753A00C0EBD7 /* sort_list.h in Headers */,
 				9A08434529366768009F7FF4 /* platform.h in Headers */,
@@ -11678,7 +11665,6 @@
 				9A68ADD625114434008DABD2 /* string_array.cpp in Sources */,
 				9AA8F8CF27BA7268008FF9AA /* message_box.cpp in Sources */,
 				9AA8FDC327BA729B008FF9AA /* parallelization.cpp in Sources */,
-				9AE889C92B69A21500286F89 /* get_file_extension_mime_type.cpp in Sources */,
 				9A08443529367B73009F7FF4 /* message.cpp in Sources */,
 				9A787CF8264C0740003DF8A0 /* context.cpp in Sources */,
 				9A08430529366654009F7FF4 /* create_task_attributes.cpp in Sources */,
@@ -12166,7 +12152,6 @@
 				9AC106072B6AC9BD0053DB45 /* string_array.cpp in Sources */,
 				9AC106082B6AC9BD0053DB45 /* message_box.cpp in Sources */,
 				9AC88AEF2B6B3D4D008F1C20 /* graphics.cpp in Sources */,
-				9AC1060A2B6AC9BD0053DB45 /* get_file_extension_mime_type.cpp in Sources */,
 				9AC1060B2B6AC9BD0053DB45 /* message.cpp in Sources */,
 				9AC1060C2B6AC9BD0053DB45 /* context.cpp in Sources */,
 				9AC1060D2B6AC9BD0053DB45 /* create_task_attributes.cpp in Sources */,
@@ -12447,7 +12432,6 @@
 				9AD691B7251A753A00C0EBD7 /* tokenizer.cpp in Sources */,
 				9A1CEC0029C7BBA500A32D62 /* file.cpp in Sources */,
 				9A94DE41282C034800F5C1CA /* object.cpp in Sources */,
-				9AE889CA2B69A21500286F89 /* get_file_extension_mime_type.cpp in Sources */,
 				9A4DDE232B77395700477878 /* subparticle.cpp in Sources */,
 				9A0843D229366DBB009F7FF4 /* encoding_exception.cpp in Sources */,
 				9A787BA9264BB13F003DF8A0 /* timer_array.cpp in Sources */,

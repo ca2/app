@@ -133,7 +133,7 @@ namespace apex
 
       virtual ::pointer < ::file::link > _os_resolve_alias(const ::file::path& path, bool bNoUI, bool bNoMount);
 
-      virtual bool os_is_alias(const ::file::path & path);
+      virtual bool os_is_alias(const ::file::path & path) override;
 
       virtual ::file::path sys_path(const ::scoped_string & scopedstrPath);
       virtual void sys_set(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrValue);

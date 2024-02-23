@@ -743,7 +743,6 @@
     <ClCompile Include="platform\machine_event_central.cpp" />
     <ClCompile Include="platform\machine_event_data.cpp" />
     <ClCompile Include="platform\node.cpp" />
-    <ClCompile Include="platform\os_context.cpp" />
     <ClCompile Include="platform\os_history.cpp" />
     <ClCompile Include="platform\savings.cpp" />
     <ClCompile Include="platform\session.cpp" />
@@ -944,7 +943,6 @@
     <ClInclude Include="platform\machine_event_central.h" />
     <ClInclude Include="platform\machine_event_data.h" />
     <ClInclude Include="platform\node.h" />
-    <ClInclude Include="platform\os_context.h" />
     <ClInclude Include="platform\os_history.h" />
     <ClInclude Include="platform\savings.h" />
     <ClInclude Include="platform\session.h" />

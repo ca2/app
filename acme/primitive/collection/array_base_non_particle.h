@@ -1808,7 +1808,7 @@ void array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >
       if (c > this->size())
       {
 
-         throw ::exception(::error_wrong_state);
+         throw_exception(error_wrong_state);
 
       }
       else if (c < this->size())

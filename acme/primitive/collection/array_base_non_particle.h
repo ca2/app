@@ -886,8 +886,20 @@ public:
    inline TYPE takeFirst(::index i = 0);
    inline TYPE takeLast(::index i = -1);
 
+
+   template < typename CONTAINER >
+   ::count append_container(const CONTAINER & container);
+   ::count append_initializer_list(const ::std::initializer_list < TYPE > & list);
+   virtual ::count append(const TYPE * p, ::count c);
    virtual ::count append(const array_base_non_particle & src); // return old size_i32
+   template < typename CONTAINER >
+   void copy_container(const CONTAINER & container);
+   void copy_initializer_list(const ::std::initializer_list < TYPE > & list);
+   virtual void copy(const TYPE* p, ::count c);
    virtual void copy(const array_base_non_particle & src);
+
+
+   
 
 
    template < primitive_container CONTAINER >
@@ -1709,18 +1721,45 @@ TYPE * array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer
 //
 //}
 
-
-template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-::count array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::append(const array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & src)
+template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
+template < typename CONTAINER >
+::count array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::append_container(const CONTAINER & container)
 {
 
    ::count nOldSize = this->size();
 
-   ::count nSrcSize = src.size();   // to enable to append to itself
+   for (auto& item : container)
+   {
+
+      add(item);
+
+   }
+
+   return nOldSize;
+
+}
+
+
+template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
+::count array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::append_initializer_list(const ::std::initializer_list < TYPE >& list)
+{
+
+   return append_container(list);
+
+}
+
+
+template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
+::count array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::append(const TYPE * p, ::count c)
+{
+
+   ::count nOldSize = this->size();
+
+   ::count nSrcSize = c;
 
    allocate(nOldSize + nSrcSize, false, true);
 
-   TYPED::copy_construct_count((this->m_begin + nOldSize), nSrcSize, src.m_begin);
+   TYPED::copy_construct_count((this->m_begin + nOldSize), nSrcSize, p);
 
    return nOldSize;
 
@@ -1728,11 +1767,56 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  :
 
 
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-void array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::copy(const array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & src)
+::count array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::append(const array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & src)
 {
 
-   if(this == &src)
+   return append(src.data(), src.size());
+
+}
+
+
+
+template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
+template < typename CONTAINER >
+void array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::copy_container(const CONTAINER & container)
+{
+
+   clear();
+
+   append_initializer_list(container);
+
+}
+
+
+template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
+void array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::copy_initializer_list(const ::std::initializer_list < TYPE >& list)
+{
+
+   copy_container(list);
+
+}
+
+
+
+template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
+void array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::copy(const TYPE * p, ::count c)
+{
+
+   if(this->data() == p)
    {
+
+      if (c > this->size())
+      {
+
+         throw ::exception(::error_wrong_state);
+
+      }
+      else if (c < this->size())
+      {
+
+         set_size(c);
+
+      }
 
       return;
 
@@ -1740,15 +1824,19 @@ void array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >
    
    erase_all();
    
-   append(src);
-
-//   ::count nSrcSize = src.size();
-//
-//   allocate(nSrcSize);
-//
-//   TYPED::copy_count(this->m_begin,src.m_begin, nSrcSize);
+   append(p, c);
 
 }
+
+
+template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
+void array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::copy(const array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >& src)
+{
+
+   copy(src.data(), src.size());
+
+}
+
 
 
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >

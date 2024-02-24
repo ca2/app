@@ -65,6 +65,7 @@ public:
    TYPE get_at_grow(::index nIndex);
    ::index add(ARG_TYPE newElement) { return add_item(newElement); }
    ::index add_item(ARG_TYPE newElement);
+   ::index append(const TYPE * p, ::count c);
    ::index append(const raw_array_non_particle& src);
    virtual TYPE * add_new(::count count);
    virtual TYPE & add_new();
@@ -263,6 +264,15 @@ inline ::index raw_array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeCon
    this->set_at_grow(nIndex, newElement);
 
    return nIndex;
+
+}
+
+
+template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
+inline ::index raw_array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::append(const TYPE * p, ::count c)
+{
+
+   return ARRAY_BASE::append(p, c);
 
 }
 

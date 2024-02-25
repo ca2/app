@@ -2453,7 +2453,10 @@
     <None Include="primitive\datetime\_impl.h" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="deployment.rc" />
+    <ResourceCompile Include="deployment.rc">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|x64'">true</ExcludedFromBuild>
+    </ResourceCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

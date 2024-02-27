@@ -76,6 +76,15 @@ void distro__release_and_desktop_environment::initialize(::particle *pparticle)
          m_strDistroRelease = setArch["DISTRIB_RELEASE"];
          m_strDistroRelease.make_lower();
 
+         auto find = m_strDistroRelease.find_character('.');
+
+         if(find)
+         {
+
+            m_strDistroRelease.truncate(find);
+
+         }
+
       }
 
    }

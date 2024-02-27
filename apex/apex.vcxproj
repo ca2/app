@@ -695,6 +695,7 @@
     <ClCompile Include="platform\api_client_base.cpp" />
     <ClCompile Include="platform\application_menu.cpp" />
     <ClCompile Include="platform\application_menu_command.cpp" />
+    <ClCompile Include="platform\get_file_extension_mime_type.cpp" />
     <ClCompile Include="user\menu\shared.cpp" />
     <ClCompile Include="user\user\language.cpp" />
     <ClCompile Include="user\user\language_map.cpp" />
@@ -936,6 +937,7 @@
     <ClInclude Include="platform\context.h" />
     <ClInclude Include="platform\create.h" />
     <ClInclude Include="platform\display.h" />
+    <ClInclude Include="platform\get_file_extension_mime_type.h" />
     <ClInclude Include="platform\history.h" />
     <ClInclude Include="platform\launcher.h" />
     <ClInclude Include="platform\log.h" />

@@ -1004,6 +1004,9 @@
     <ClInclude Include="networking\netserver\socket_thread.h">
       <Filter>Header Files\networking\netserver</Filter>
     </ClInclude>
+    <ClInclude Include="platform\get_file_extension_mime_type.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="filesystem\file\set.cpp">
@@ -1437,6 +1440,9 @@
     </ClCompile>
     <ClCompile Include="networking\netserver\socket_thread.cpp">
       <Filter>Source Files\networking\netserver</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\get_file_extension_mime_type.cpp">
+      <Filter>Source Files\platform</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

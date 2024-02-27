@@ -12,6 +12,9 @@ namespace networking
    application_handler::application_handler()
    {
 
+      m_iPortStart = 20000;
+      m_iPortEnd = 29999;
+
    }
 
 

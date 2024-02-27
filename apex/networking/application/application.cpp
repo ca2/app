@@ -85,7 +85,9 @@ namespace networking
    i32 application::get_current_port()
    {
 
-      return m_psocketthread->m_iConnectPort;
+      auto iConnectPort = m_psocketthread->m_iConnectPort;
+
+      return iConnectPort;
 
    }
 

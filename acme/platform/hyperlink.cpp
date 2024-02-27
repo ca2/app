@@ -34,11 +34,11 @@ void hyperlink::run()
    if (m_bProfile)
    {
 
-      return ::get_task()->system()->open_profile_link(m_strLink, m_strBrowserAccount, m_strTarget);
+      return system()->open_profile_link(m_strLink, m_strBrowserAccount, m_strTarget);
 
    }
 
-   return ::get_task()->system()->open_link(m_strLink, m_strBrowserAccount, m_strTarget);
+   return system()->open_link(m_strLink, m_strBrowserAccount, m_strTarget);
 
 }
 

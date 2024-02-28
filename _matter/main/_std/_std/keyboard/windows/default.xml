@@ -1,4 +1,4 @@
-﻿<layout>
+<layout>
 	<item scan="16" value="key_q" />
 	<item scan="17" value="key_w" />
 	<item scan="18" value="key_e" />

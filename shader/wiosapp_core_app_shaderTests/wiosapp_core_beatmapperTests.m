@@ -1,4 +1,4 @@
-﻿//
+//
 //  wiossimple_shader_simple_shaderTests.m
 //  wiossimple_shader_simple_shaderTests
 //

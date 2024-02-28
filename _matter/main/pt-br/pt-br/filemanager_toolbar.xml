@@ -1,4 +1,4 @@
-﻿<toolbar>
+<toolbar>
 <button id="levelup" img="levelup.png">Nível Acima</button>
 <button id="add_location">Adicionar Local</button>
 <button id="replace_text_in_file_system">Substituir texto</button>

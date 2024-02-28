@@ -1,4 +1,4 @@
-﻿; unicode is not enabled by default
+; unicode is not enabled by default
 ; unicode installers will not be able to run on Windows 9x!
 Unicode true
 

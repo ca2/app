@@ -1,4 +1,4 @@
-﻿<layout name="Brasil - ABNT">
+<layout name="Brasil - ABNT">
 	<item code="key_return" value="&#10;" />
 	<item code="191" value=";" />
 	<item code="191" shift="1" value=":" />

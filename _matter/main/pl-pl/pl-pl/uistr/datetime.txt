@@ -1,4 +1,4 @@
-﻿"datetimestr_month_short[0]" = "Sty"
+"datetimestr_month_short[0]" = "Sty"
 "datetimestr_month_short[1]" = "Lut"
 "datetimestr_month_short[2]" = "Mar"
 "datetimestr_month_short[3]" = "Kwi"

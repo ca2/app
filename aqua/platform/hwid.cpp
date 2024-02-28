@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #undef USUAL_OPERATING_SYSTEM_SUPPRESSION
 #undef ERROR
 #include "acme/_operating_system.h"

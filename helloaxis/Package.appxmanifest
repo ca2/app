@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest">
   <Identity Name="ca2.app-core.helloAXIS" Publisher="CN=ca2 Desenvolvimento de Software Ltda." Version="1.1.0.0" />
   <Properties>

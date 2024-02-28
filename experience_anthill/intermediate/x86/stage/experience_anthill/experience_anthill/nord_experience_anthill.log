@@ -1,4 +1,4 @@
-﻿  ANDROID_HOME=C:\Microsoft\AndroidSDK\25
+  ANDROID_HOME=C:\Microsoft\AndroidSDK\25
   ANT_HOME=c:\program files\microsoft visual studio\2022\community\Apps\apache-ant-1.9.3
   JAVA_HOME=C:\Program Files\Android\jdk\jdk-8.0.302.8-hotspot\jdk8u302-b08
   NDK_ROOT=C:\archive\android-ndk-r23b

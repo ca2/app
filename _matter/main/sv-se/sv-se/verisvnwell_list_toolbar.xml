@@ -1,4 +1,4 @@
-﻿<toolbar>
+<toolbar>
 <button id="add">Add</button>
 <button id="delete">Delete</button>
 <button id="revert">Revert</button>

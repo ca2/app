@@ -1,4 +1,4 @@
-﻿<layout name="France - France" hkla="0x040c040c;0x040c" cc="br" kl="ABNT2">
+<layout name="France - France" hkla="0x040c040c;0x040c" cc="br" kl="ABNT2">
 	<item code="key_return" value="&#10;" />
 	<item code="key_a" value="q" />
 	<item code="key_b" value="b" />

@@ -1,4 +1,4 @@
-﻿"datetimestr_month_short[0]" = "Янв"
+"datetimestr_month_short[0]" = "Янв"
 "datetimestr_month_short[1]" = "Фев"
 "datetimestr_month_short[2]" = "Мар"
 "datetimestr_month_short[3]" = "Апр"

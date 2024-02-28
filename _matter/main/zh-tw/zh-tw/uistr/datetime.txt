@@ -1,4 +1,4 @@
-﻿"datetimestr_month_short[0]" = "一月"
+"datetimestr_month_short[0]" = "一月"
 "datetimestr_month_short[1]" = "二月"
 "datetimestr_month_short[2]" = "3月"
 "datetimestr_month_short[3]" = "4月"

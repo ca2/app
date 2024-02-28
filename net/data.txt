@@ -1,1 +1,1 @@
-﻿app-core/simple_drawing
+app-core/simple_drawing

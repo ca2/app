@@ -1,4 +1,4 @@
-﻿ Volume in drive C has no label.
+ Volume in drive C has no label.
  Volume serial Number is CC8D-9F90
 
  Directory of C:\nordroid\app-core\simple_drawing

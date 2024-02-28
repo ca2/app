@@ -1,4 +1,4 @@
-﻿<layout name="Brasil - ABNT2" hkla="0xf0100416;0x0416" >
+<layout name="Brasil - ABNT2" hkla="0xf0100416;0x0416" >
 	<item code="24" value="key_q" />
 	<item code="25" value="key_w" />
 	<item code="26" value="key_e" />

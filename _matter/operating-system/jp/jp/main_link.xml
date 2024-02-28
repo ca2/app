@@ -1,4 +1,4 @@
-﻿<links>
+<links>
 <link name="biteditor" src="biteditor.dll" brief="biteditor" />
 <link name="browser" src="veriview.dll" brief="Leia arquivos html interpretados" />
 <link name="devedge" src="devedge.dll" brief="Desenvolva em ca2 com o devedge" />

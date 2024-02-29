@@ -356,14 +356,20 @@ namespace sockets_bsd
    /** OnRead on a listen_socket_impl receives an incoming connection. */
    void listen_socket_impl::OnRead()
    {
+      union sockaddr_union
+      {
+         sockaddr_in a;
+         sockaddr_in6 b;
+         sockaddr c;
+      };
 
       auto socketid = GetSocketId();
 
-      struct sockaddr sockaddr{};
+      sockaddr_union sockaddr{};
 
-      socklen_t sockaddr_len = sizeof(sockaddr);
+      socklen_t sockaddr_len = sizeof(sockaddr_union);
 
-      SOCKET socketAccept = accept(socketid, &sockaddr, &sockaddr_len);
+      SOCKET socketAccept = accept(socketid, &sockaddr.c, &sockaddr_len);
 
       if (socketAccept == INVALID_SOCKET)
       {
@@ -437,7 +443,7 @@ namespace sockets_bsd
       psocket->OnOptions(m_iFamily, m_iSocketType, m_iProtocolType, socketAccept);
       psocket-> SetNonblocking(true);
       auto paddressRemote = __allocate< ::networking_bsd::address >();
-      paddressRemote->set_address(sockaddr, sockaddr_len);
+      paddressRemote->set_address(sockaddr.c, sockaddr_len);
       //tmp->SetRemoteHostname(::networking::address(*psa));
       psocket->SetRemoteHostname(paddressRemote);
       psocket->m_iBindPort = m_iBindPort;

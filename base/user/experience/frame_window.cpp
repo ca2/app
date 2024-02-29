@@ -2627,6 +2627,13 @@ namespace experience
    ::item_pointer frame_window::on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
    {
 
+      if (!m_pframe)
+      {
+
+         return nullptr;
+
+      }
+
        auto eframe = m_pframe->experience_frame_hit_test(point, ezorder);
 
        if (eframe == ::experience::e_frame_title_bar)

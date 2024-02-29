@@ -558,6 +558,41 @@ void acme_file::erase(const ::file::path & pathParam)
 }
 
 
+void acme_file::defer_erase(const ::file::path& path)
+{
+
+   if(exists(path))
+   {
+
+      erase(path);
+
+   }
+
+}
+
+
+bool acme_file::safe_erase(const ::file::path& path)
+{
+
+   try
+   {
+
+      defer_erase(path);
+
+      return true;
+
+   }
+   catch (...)
+   {
+
+
+   }
+
+   return false;
+
+}
+
+
 void replace_char(char * sz, char ch1, char ch2)
 {
 

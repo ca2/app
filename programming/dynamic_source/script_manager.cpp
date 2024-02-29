@@ -663,6 +663,13 @@ namespace dynamic_source
 
                   pinstance->m_pmain = pmain;
 
+                  if (pinstanceParent->m_bOnTopicInclude && !pmain->m_pscriptinterfaceTopic)
+                  {
+
+                     pmain->m_pscriptinterfaceTopic = pinstance;
+
+                  }
+
                   pinstance->initialize(pimpl);
 
                   pinstance->m_pinstanceParent2 = pinstanceParent;

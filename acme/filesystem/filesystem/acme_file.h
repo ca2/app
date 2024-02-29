@@ -172,6 +172,11 @@ public:
 
    virtual void put_block(const ::file::path & path, const block & block);
 
+   virtual void put_now(const ::file::path& path);
+   virtual void put_time(const ::file::path& path, const ::earth::time & time);
+   virtual ::earth::time as_time(const ::file::path& path);
+   virtual ::earth::time safe_time(const ::file::path& path);
+
 
    virtual void as_block(block & block, const ::file::path & path);
 

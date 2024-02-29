@@ -14,6 +14,8 @@ namespace dynamic_source
    public:
 
 
+      bool                                m_bOnTopicInclude;
+
       ::netnode::script_interface *       m_pnetnodescriptinterface;
       ::netnode::script_impl *            m_pnetnodescriptimpl;
 

@@ -13,7 +13,9 @@
 #include "acme/platform/ini.h"
 #include "acme/platform/node.h"
 #include "acme/platform/system.h"
+#include "acme/primitive/datetime/datetime.h"
 #include "acme/primitive/primitive/memory.h"
+#include "acme/platform/session.h"
 //#include "acme/primitive/collection/string_array.h"
 ////#include "acme/primitive/datetime/earth_time.h"
 
@@ -997,6 +999,76 @@ void acme_file::put_block(const ::file::path & path, const block & block)
    //put_contents(path, (const char *) block.data(), block.size());
 
 }
+
+
+void acme_file::put_now(const ::file::path& path)
+{
+
+   auto timeNow = ::earth::time::now();
+
+   put_time(path, timeNow);
+
+}
+
+
+void acme_file::put_time(const ::file::path& path, const ::earth::time& time)
+{
+
+   ::string strTime = datetime()->international().get_date_time(time);
+
+   strTime += " UTC";
+
+   put_block(path, strTime);
+
+}
+
+
+::earth::time acme_file::as_time(const ::file::path& path)
+{
+
+   ::string strTime = as_string(path);
+
+   if (strTime.is_empty())
+   {
+
+      return {};
+
+   }
+
+   int iPath = 0;
+
+   int iPathCount = 0;
+
+   auto time = datetime()->strtotime(session()->text_context(), strTime, iPath, iPathCount);
+
+   return time;
+
+}
+
+
+
+::earth::time acme_file::safe_time(const ::file::path& path)
+{
+
+   ::string strTime = safe_get_string(path);
+
+   if (strTime.is_empty())
+   {
+
+      return {};
+
+   }
+
+   int iPath = 0;
+
+   int iPathCount = 0;
+
+   auto time = datetime()->strtotime(session()->text_context(), strTime, iPath, iPathCount);
+
+   return time;
+
+}
+
 
 
 

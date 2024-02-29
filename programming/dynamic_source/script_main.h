@@ -22,6 +22,7 @@ namespace dynamic_source
 
       ::pointer_array < ::dynamic_source::script_interface >   m_interfacea;
 
+      ::pointer<::dynamic_source::script_interface>            m_pscriptinterfaceTopic;
 
 
       script_main();

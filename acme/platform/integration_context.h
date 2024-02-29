@@ -2,6 +2,9 @@
 #pragma once
 
 
+#include "acme/filesystem/filesystem/listing.h"
+
+
 namespace integration
 {
 
@@ -48,6 +51,9 @@ namespace integration
       ::pointer < ::particle >                  m_pmutexLines;
 
 
+      ::file::listing   m_listingBuild;
+
+
       context();
       ~context() override;
 
@@ -81,6 +87,14 @@ namespace integration
 
 
       virtual ::string prepare_path(const ::file::path & path);
+
+
+      virtual void list_host_builds();
+
+
+      virtual ::file::path base_integration_folder();
+
+      virtual ::file::path host_integration_folder();
 
 
    };

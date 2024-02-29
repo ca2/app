@@ -104,6 +104,8 @@ public:
    virtual void transfer(const ::file::path & pathNewName, const ::file::path & pathOldName);
 
    virtual void erase(const ::file::path & path);
+   virtual void defer_erase(const ::file::path& path);
+   virtual bool safe_erase(const ::file::path& path);
 
    //virtual bool set_line(const ::file::path & path, index iLine, const ::file::path & pathLine);
 

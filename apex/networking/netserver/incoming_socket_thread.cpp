@@ -125,7 +125,6 @@ namespace netserver
 
                   if (iError == 0)
                   {
-                  {
 
                      string strMessage;
 

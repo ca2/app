@@ -6,6 +6,7 @@
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/file_context.h"
+#include "acme/operating_system/summary.h"
 #include "acme/platform/application.h"
 #include "acme/platform/node.h"
 #include "acme/platform/system.h"
@@ -550,6 +551,38 @@ namespace integration
    {
 
       return path;
+
+   }
+
+
+   ::file::path context::base_integration_folder()
+   {
+
+      return {};
+
+   }
+
+
+   ::file::path context::host_integration_folder()
+   {
+
+      return base_integration_folder() / "_____" / node()->operating_system_summary()->m_strSlashedIntegration;
+
+   }
+
+
+   void context::list_host_builds()
+   {
+
+      auto pathHostIntegrationFolder = host_integration_folder();
+
+      ::string_array straPattern;
+
+      straPattern.add("????-??-?? ??-??-??");
+
+      m_listingBuild.set_pattern_folder_listing(pathHostIntegrationFolder, straPattern);
+
+      acmedirectory()->enumerate(m_listingBuild);
 
    }
 

@@ -3221,35 +3221,43 @@ return false;
 
    int node::unix_shell_command(const ::scoped_string& scopedstrCommand, const trace_function & tracefunction)
    {
-//
-//      try
-//      {
-//
-//         ::string strUnixShell;
-//
-//         strUnixShell = "/bin/bash";
-//
-//         ::string strCommand;
-//
-//         ::string strCommandInner;
-//
-//         strCommandInner = scopedstrCommand.c_str();
-//
-//         strCommandInner.find_replace("\"", "\\\"");
-//
-//         strCommand.formatf("\"%s\" -c \"%s\"", strUnixShell.c_str(), strCommandInner.c_str());
-//
-//         auto iExitCode = node()->command_system(strCommand);
-//
-//         return iExitCode;
-//
-//      }
-//      catch (...)
-//      {
-//
-//      }
 
-      return -1;
+      try
+      {
+
+         string strEscaped = scopedstrCommand;
+
+         ::string strCommand;
+
+         printf("Current Directory: %s\n", acmedirectory()->get_current().c_str());
+         printf("%s\n", strEscaped.c_str());
+
+         //if (m_bMsys)
+         //{
+
+         //   strCommand = "\"C:\\msys64\\usr\\bin\\bash.exe\" -c \'" + strEscaped + "\'";
+
+         //}
+         //else
+         {
+
+            strCommand = "\"C:\\Program Files\\Git\\bin\\bash.exe\" -c \'" + strEscaped + "; exit\'";
+
+         }
+
+         //
+
+         auto iExitCode = this->command_system(strCommand, tracefunction);
+
+         ///command_system("cmd.exe -c \"C:\\msys64\\msys2_shell.cmd\" \"" + strEscaped + "\"");
+
+         return iExitCode;
+
+      }
+      catch (...)
+      {
+
+      }
 
    }
 

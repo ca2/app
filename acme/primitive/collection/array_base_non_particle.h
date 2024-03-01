@@ -902,24 +902,24 @@ public:
    
 
 
-   template < primitive_container CONTAINER >
-   ::count append(const CONTAINER & container)
-   {
+   //template < primitive_container CONTAINER >
+   //::count append(const CONTAINER & container)
+   //{
 
-      ::count c = 0;
+   //   ::count c = 0;
 
-      for (auto& item : container)
-      {
+   //   for (auto& item : container)
+   //   {
 
-         add(item);
+   //      add(item);
 
-         c++;
+   //      c++;
 
-      }
+   //   }
 
-      return c;
+   //   return c;
 
-   }
+   //}
 
 
 

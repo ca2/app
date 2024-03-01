@@ -74,25 +74,25 @@ public:
 
 
    inline ::index add(ARG_TYPE newElement);
-   inline ::count append(const array_non_particle & src);
+   ///inline ::count append(const array_non_particle & src);
 
 
-   template < primitive_container CONTAINER >
-   inline ::count append(const CONTAINER & container)
-   {
+   //template < primitive_container CONTAINER >
+   //inline ::count append(const CONTAINER & container)
+   //{
 
-      return BASE_ARRAY::append(container);
+   //   return BASE_ARRAY::append(container);
 
-   }
+   //}*/
 
 
-   template < primitive_container CONTAINER >
-   inline array_non_particle appended(const CONTAINER & container)
+   template < typename CONTAINER >
+   inline array_non_particle appended_container(const CONTAINER & container)
    {
 
       auto array_non_particle = *this;
 
-      array_non_particle.append(container);
+      array_non_particle.append_container(container);
 
       return ::transfer(array_non_particle);
 
@@ -518,19 +518,19 @@ array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::~array_
 }
 
 
-template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
-inline ::index array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::append(const array_non_particle & src)
-{
-
-   auto countOld = this->size();
-
-   this->allocate(countOld + src.size(), false, true);
-
-   TYPED::copy_construct_count(this->m_begin + countOld, src.size(), src.m_begin);
-
-   return countOld;
-
-}
+//template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
+//inline ::index array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::append(const array_non_particle & src)
+//{
+//
+//   auto countOld = this->size();
+//
+//   this->allocate(countOld + src.size(), false, true);
+//
+//   TYPED::copy_construct_count(this->m_begin + countOld, src.size(), src.m_begin);
+//
+//   return countOld;
+//
+//}
 
 
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
@@ -569,13 +569,13 @@ inline array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & 
 
       array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > aCopy(container);
 
-      append(aCopy);
+      this->append_container(aCopy);
 
    }
    else
    {
 
-      append(container);
+      this->append_container(container);
 
    }
 

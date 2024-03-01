@@ -10,6 +10,7 @@
 #include "user.h"
 #include "frame.h"
 #include "form.h"
+#include "still.h"
 #include "size_parent_layout.h"
 #include "acme/constant/user.h"
 #include "acme/constant/user_key.h"
@@ -13765,6 +13766,19 @@ namespace user
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
+
+      ::string strType = ::type(this).name();
+
+      if (strType == "user::still")
+      {
+
+         ::pointer < ::user::still > puserstill = this;
+
+         auto psz2 = puserstill->m_strWindowText2.c_str();
+
+         information() << "user::still top_down_prefix text " << psz2;
+
+      }
 
       sketch_to_lading();
 

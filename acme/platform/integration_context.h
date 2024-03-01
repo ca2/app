@@ -96,6 +96,8 @@ namespace integration
 
       virtual ::file::path host_integration_folder();
 
+      //virtual ::file::path integration_folder();
+
 
    };
 

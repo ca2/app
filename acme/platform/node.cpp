@@ -3259,6 +3259,8 @@ return false;
 
       }
 
+      return -1;
+
    }
 
 

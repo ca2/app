@@ -3329,6 +3329,8 @@ namespace networking_bsd
 
          ::string strDisplay = paddress->get_display_number();
 
+         information() << "networking::create_address display_number : " << strDisplay;
+
          return paddress;
 
       }

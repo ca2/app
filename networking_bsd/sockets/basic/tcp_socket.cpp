@@ -796,7 +796,9 @@ m_ibuf(isize)
 
          //}
 
-         paddress = pnetworking->create_ip4_address(host, port);
+         paddress = pnetworking->create_address(host, port);
+
+         //paddress = pnetworking->create_address(host, port);
 
          //if(!paddressdepartment->convert(a,host))
          if (!paddress)

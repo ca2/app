@@ -923,13 +923,15 @@ namespace networking_bsd
 
          ::from_string(sa, host);
 
+         return true;
+
       }
       catch (const ::exception& e)
       {
 
          informationf(e.m_strMessage);
 
-         return false;
+         //return false;
 
          //if (e.is < parsing_exception >())
          {
@@ -3313,19 +3315,53 @@ namespace networking_bsd
    }
 
 
-   ::pointer<::networking::address>networking::create_ip4_address(const ::string & strAddress, ::networking::port_t port)
+   ::pointer<::networking::address> networking::create_address(const ::string& strAddress, ::networking::port_t port)
    {
 
       auto paddress = __allocate< address >();
 
-      if(convert(paddress->u.m_addr.sin_addr, strAddress))
+      if (convert(paddress->u.m_addr6.sin6_addr, strAddress))
+      {
+
+         paddress->u.s.set_family(AF_INET6);
+
+         paddress->set_service_number(port);
+
+         ::string strDisplay = paddress->get_display_number();
+
+         return paddress;
+
+      }
+      else if (convert(paddress->u.m_addr.sin_addr, strAddress))
       {
 
          paddress->u.s.set_family(AF_INET);
 
          paddress->set_service_number(port);
 
+         return paddress;
+
       }
+
+      return nullptr;
+
+   }
+
+   ::pointer<::networking::address>networking::create_ip4_address(const ::string & strAddress, ::networking::port_t port)
+   {
+
+      auto paddress = __allocate< address >();
+
+      if (!convert(paddress->u.m_addr.sin_addr, strAddress))
+      {
+
+         return nullptr;
+
+      }
+
+      paddress->u.s.set_family(AF_INET);
+
+      paddress->set_service_number(port);
 
       return paddress;
 
@@ -3337,14 +3373,16 @@ namespace networking_bsd
 
       auto paddress2 = __allocate< address >();
 
-      if (convert(paddress2->u.m_addr6.sin6_addr, strAddress))
+      if (!convert(paddress2->u.m_addr6.sin6_addr, strAddress))
       {
 
-         paddress2->u.s.set_family(AF_INET6);
-
-         paddress2->set_service_number(port);
+         return nullptr;
 
       }
+
+      paddress2->u.s.set_family(AF_INET6);
+
+      paddress2->set_service_number(port);
 
       return paddress2;
 

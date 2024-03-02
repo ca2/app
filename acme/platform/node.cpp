@@ -3229,8 +3229,8 @@ return false;
 
          ::string strCommand;
 
-         printf("Current Directory: %s\n", acmedirectory()->get_current().c_str());
-         printf("%s\n", strEscaped.c_str());
+         informationf("Current Directory: %s\n", acmedirectory()->get_current().c_str());
+         informationf("%s\n", strEscaped.c_str());
 
          //if (m_bMsys)
          //{

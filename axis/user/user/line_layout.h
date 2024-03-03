@@ -37,6 +37,7 @@ namespace user
 
       }
 
+      virtual void create_line_layout(::user::interaction* puserinteractionParent, enum_orientation eorientation);
       
       void install_message_routing(::channel * pchannel) override;
 

@@ -68,9 +68,9 @@ CLASS_DECL_NETWORKING_BSD ::string as_string(const sockaddr & addr);
 #endif
 
 
-CLASS_DECL_NETWORKING_BSD void from_string(in6_addr & addr, const ::ansi_character * psz);
+CLASS_DECL_NETWORKING_BSD [[nodiscard]] ::e_status from_string(in6_addr& addr, const ::ansi_character* psz);
 CLASS_DECL_NETWORKING_BSD ::string as_string(const in6_addr & addr);
-CLASS_DECL_NETWORKING_BSD void from_string(in_addr & addr, const ::ansi_character * psz);
+CLASS_DECL_NETWORKING_BSD [[nodiscard]] ::e_status from_string(in_addr & addr, const ::ansi_character * psz);
 CLASS_DECL_NETWORKING_BSD ::string as_string(const in_addr & addr);
 CLASS_DECL_NETWORKING_BSD ::string as_string(const sockaddr_in & addr);
 CLASS_DECL_NETWORKING_BSD ::string as_string(const sockaddr_in6 & addr);

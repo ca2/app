@@ -27,13 +27,7 @@ namespace axis
 
       auto plinelayout = __create_new < ::user::line_layout >();
 
-      plinelayout->m_eorientation = eorientation;
-
-      plinelayout->create_child(puserinteractionParent);
-
-      plinelayout->display();
-
-      plinelayout->set_need_layout();
+      plinelayout->create_line_layout(puserinteractionParent, eorientation);
 
       return plinelayout;
 

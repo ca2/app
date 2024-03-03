@@ -628,7 +628,7 @@ CLASS_DECL_NETWORKING_BSD i32 c_inet_pton(i32 af, const char *src, void *dst)
 //}
 //
 
-CLASS_DECL_NETWORKING_BSD void from_string(in_addr & addr, const char * src)
+CLASS_DECL_NETWORKING_BSD ::e_status from_string(in_addr & addr, const char * src)
 {
 
    int iRet = inet_pton(AF_INET, src, &addr);
@@ -636,20 +636,26 @@ CLASS_DECL_NETWORKING_BSD void from_string(in_addr & addr, const char * src)
    if (iRet == 0)
    {
 
-      throw exception(error_parsing, "Unknown IP4 address format : " + ::string(src));
+      return error_parsing;
+
+      //throw exception(error_parsing, "Unknown IP4 address format : " + ::string(src));
 
    }
    else if(iRet < 0)
    {
 
-      throw exception(error_failed);
+      //throw exception(error_failed);
+
+      return error_failed;
 
    }
+
+   return ::success;
 
 }
 
 
-CLASS_DECL_NETWORKING_BSD void from_string(in6_addr & addr, const char * src)
+CLASS_DECL_NETWORKING_BSD ::e_status from_string(in6_addr & addr, const char * src)
 {
 
    int iRet = inet_pton(AF_INET6, src, &addr);
@@ -657,15 +663,21 @@ CLASS_DECL_NETWORKING_BSD void from_string(in6_addr & addr, const char * src)
    if (iRet == 0)
    {
 
-      throw exception(error_parsing, "Unknown IP4 address format : " + ::string(src));
+      //throw exception(error_parsing, "Unknown IP4 address format : " + ::string(src));
+
+      return error_parsing;
 
    }
    else if(iRet < 0)
    {
 
-      throw exception(error_failed);
+      //throw exception(error_failed);
+
+      return error_failed;
 
    }
+
+   return ::success;
 
 }
 

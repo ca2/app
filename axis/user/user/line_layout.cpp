@@ -28,6 +28,22 @@ namespace user
    }
 
 
+   void line_layout::create_line_layout(::user::interaction* puserinteractionParent, enum_orientation eorientation)
+   {
+
+      m_eorientation = eorientation;
+
+      create_child(puserinteractionParent);
+
+      display();
+
+      set_need_layout();
+
+   }
+
+
+
+
    void line_layout::install_message_routing(::channel * pchannel)
    {
 

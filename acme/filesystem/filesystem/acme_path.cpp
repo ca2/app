@@ -613,4 +613,10 @@ bool acme_path::defer_process_protocol_path(::file::path & path)
 
 
 
+void acme_path::rename(const ::file::path& pathNewName, const ::file::path& pathOldName)
+{
 
+   throw interface_only();
+
+
+}

@@ -3325,7 +3325,33 @@ namespace networking_bsd
 
       auto paddress = __allocate< address >();
 
-      if (convert(paddress->u.m_addr6.sin6_addr, strAddress))
+      if (::from_string(paddress->u.m_addr6.sin6_addr, strAddress) == ::success)
+      {
+
+         paddress->u.s.set_family(AF_INET6);
+
+         paddress->set_service_number(port);
+
+         ::string strDisplay = paddress->get_display_number();
+
+         information() << "networking::create_address display_number : " << strDisplay;
+
+         return paddress;
+      }
+      else if (::from_string(paddress->u.m_addr.sin_addr, strAddress) == ::success)
+      {
+
+         paddress->u.s.set_family(AF_INET);
+
+         paddress->set_service_number(port);
+
+         ::string strDisplay = paddress->get_display_number();
+
+         information() << "networking::create_address display_number : " << strDisplay;
+
+         return paddress;
+      }
+      else if (convert(paddress->u.m_addr6.sin6_addr, strAddress))
       {
 
          paddress->u.s.set_family(AF_INET6);

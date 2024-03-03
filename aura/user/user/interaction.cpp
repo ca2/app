@@ -13769,16 +13769,16 @@ namespace user
 
       ::string strType = ::type(this).name();
 
-      if (strType == "user::still")
-      {
-
-         ::pointer < ::user::still > puserstill = this;
-
-         auto psz2 = puserstill->m_strWindowText2.c_str();
-
-         information() << "user::still top_down_prefix text " << psz2;
-
-      }
+//      if (strType == "user::still")
+//      {
+//
+//         ::pointer < ::user::still > puserstill = this;
+//
+//         auto psz2 = puserstill->m_strWindowText2.c_str();
+//
+//         information() << "user::still top_down_prefix text " << psz2;
+//
+//      }
 
       sketch_to_lading();
 

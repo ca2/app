@@ -586,7 +586,7 @@ namespace integration
 
       ::string_array straPattern;
 
-      straPattern.add("????-??-?? ??-??-??");
+      straPattern.add("\?\?\?\?-\?\?-\?\? \?\?-\?\?-\?\?");
 
       m_listingBuild.set_pattern_folder_listing(pathHostIntegrationFolder, straPattern);
 

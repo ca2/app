@@ -515,11 +515,25 @@ inline atom::atom(ENUM e)
 inline bool atom::operator == (const atom & atom) const
 {
 
-   return ::comparison::tuple
-           (
-                   [&]() { return m_etype == atom.m_etype; },
-                   [&]() { return is_text() ? (m_str == atom.m_str) : (m_iLargest == atom.m_iLargest); }
-           );
+   if (m_etype != atom.m_etype)
+   {
+
+      return false;
+
+   }
+           
+   if (is_text())
+   {
+
+      return m_str == atom.m_str;
+
+   }
+   else
+   {
+    
+      return m_iLargest == atom.m_iLargest;
+
+   }
 
 }
 
@@ -527,11 +541,27 @@ inline bool atom::operator == (const atom & atom) const
 inline ::std::strong_ordering atom::operator <=>(const atom & atom) const
 {
 
-   return ::comparison::tuple
-           (
-                   [&]() { return m_etype <=> atom.m_etype; },
-                   [&]() { return is_text() ? (m_str <=> atom.m_str) : (m_iLargest <=> atom.m_iLargest); }
-           );
+   auto compare = m_etype <=> atom.m_etype;
+
+   if (compare != 0)
+   {
+
+      return compare;
+
+   }
+                   
+   if (is_text())
+   {
+
+      return m_str <=> atom.m_str;
+
+   }
+   else
+   {
+      
+      return m_iLargest <=> atom.m_iLargest;
+
+   }
 
 }
 

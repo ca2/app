@@ -33,10 +33,10 @@ public:
    ~semaphore() override;
 
 
-#if defined(__APPLE__) || defined(LINUX) || defined(ANDROID) || defined(SOLARIS) || defined(FREEBSD)
+//#if defined(__APPLE__) || defined(LINUX) || defined(ANDROID) || defined(SOLARIS) || defined(FREEBSD)
 //   using matter::lock;
    bool _wait(const class time & timeWait) override;
-#endif
+//#endif
 
    void unlock() override;
    void unlock(::i32 lCount, ::i32 * prevCount = nullptr) override;

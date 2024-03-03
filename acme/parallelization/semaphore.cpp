@@ -157,8 +157,18 @@ _semtimedop(int semid, struct sembuf *array, size_t nops, struct
 
 
 #endif
+#if defined(WINDOWS)
 
-#if defined(ANDROID)
+CLASS_DECL_ACME bool _hsynchronization_wait(::hsynchronization h, const class ::time& timeWait);
+
+bool semaphore::_wait(const class time& timeWait)
+{
+
+   return _hsynchronization_wait(m_handleSemaphore, timeWait);
+
+}
+
+#elif defined(ANDROID)
 
 bool semaphore::_wait(const class time & timeWait)
 {

@@ -395,3 +395,62 @@ CLASS_DECL_ACME string task_get_name()
 
 
 
+
+
+
+CLASS_DECL_ACME bool _hsynchronization_wait(::hsynchronization h, const class ::time& timeWait)
+{
+
+   auto handle = (HANDLE) h;
+
+   if (!handle)
+   {
+
+      throw ::exception(error_wrong_state);
+
+   }
+
+#ifdef MUTEX_DEBUG
+
+   //m_strThread = ::get_task_name(::get_task());
+
+   //m_itask = ::current_itask();
+
+#endif
+
+   DWORD dwResult = ::WaitForSingleObjectEx(handle, ::windows::wait(timeWait), false);
+
+   auto estatus = ::windows::wait_result_status(dwResult);
+
+   if (estatus == error_wait_timeout)
+   {
+
+      return false;
+
+   }
+   else if (estatus == signaled_base)
+   {
+
+      return true;
+
+   }
+   else
+   {
+
+      auto dwLastError = ::GetLastError();
+
+      auto estatus = ::windows::last_error_status(dwLastError);
+
+      auto errorcode = ::windows::last_error_error_code(dwLastError);
+
+      throw ::exception(estatus, { errorcode }, "WaitForSingleObjectEx WAIT_FAILED");
+
+      return false;
+
+   }
+
+
+}
+
+
+

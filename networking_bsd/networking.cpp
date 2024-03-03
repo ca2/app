@@ -921,9 +921,14 @@ namespace networking_bsd
       try
       {
 
-         ::from_string(sa, host);
+         auto estatus = ::from_string(sa, host);
 
-         return true;
+         if (estatus.succeeded())
+         {
+
+            return true;
+
+         }
 
       }
       catch (const ::exception& e)

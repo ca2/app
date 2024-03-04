@@ -12860,7 +12860,12 @@ namespace user
 
                //synchronouslock.unlock();
 
-               pinteraction->set_reposition(true);
+               if (pinteraction)
+               {
+
+                  pinteraction->set_reposition(true);
+
+               }
 
                ///synchronouslock.lock();
 

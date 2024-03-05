@@ -78,9 +78,9 @@ elseif (${FREEBSD})
     target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
 
 
-    message(STATUS "PKGCONFIG_CFLAGS is ${PKGCONFIG_CFLAGS}")
-    message(STATUS "PKGCONFIG_LDFLAGS is ${PKGCONFIG_LDFLAGS}")
-    message(STATUS "PKGCONFIG_LIBRARIES is ${PKGCONFIG_LIBRARIES}")
+    message(STATUS "(E) PKGCONFIG_CFLAGS is ${PKGCONFIG_CFLAGS}")
+    message(STATUS "(E) PKGCONFIG_LDFLAGS is ${PKGCONFIG_LDFLAGS}")
+    message(STATUS "(E) PKGCONFIG_LIBRARIES is ${PKGCONFIG_LIBRARIES}")
 
 
 elseif (${LINUX})

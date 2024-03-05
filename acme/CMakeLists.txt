@@ -2639,7 +2639,10 @@ endif()
 
    list(APPEND extra_pkg_modules
       xkbcommon x11 xrender xi xext libstartup-notification-1.0)
-   pkg_check_modules(PKGCONFIG cairo freetype2 libidn ${extra_pkg_modules})
+
+   list(APPEND pkg_config_modules_here cairo freetype2 libidn ${extra_pkg_modules})
+   
+   pkg_check_modules(PKGCONFIG ${pkg_config_modules_here})
    #endif()
    target_compile_options(${PROJECT_NAME} PRIVATE $<$<COMPILE_LANGUAGE:CXX>:-fpermissive  ${EXTRA_CXX_TARGET_COMPILER_OPTIONS}>)
    target_compile_options(static_${PROJECT_NAME} PRIVATE $<$<COMPILE_LANGUAGE:CXX>:-fpermissive  ${EXTRA_CXX_TARGET_COMPILER_OPTIONS}>)
@@ -2662,6 +2665,9 @@ endif()
    target_link_directories(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LIBRARY_DIRS})
    target_link_options(${PROJECT_NAME} PRIVATE ${GLOBAL_EXTRA_LINKER_FLAGS} -Wl${GLOBAL_EXTRA_LINK_FLAGS},-z,defs)
    target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
+
+
+   message(STATUS "(3) pkg_config_modules_here is " ${pkg_config_modules_here})
 
    message(STATUS "(3) PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
 

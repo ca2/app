@@ -1976,7 +1976,6 @@ namespace apex
       //
       //}
 
-
       if (!is_system() && !is_session())
       {
 

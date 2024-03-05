@@ -13,3 +13,4 @@ CLASS_DECL_ACME void replace_tab(strsize iOffset, string & strParam, int iWidth,
 CLASS_DECL_ACME string _002Underscore(string str);
 
 
+CLASS_DECL_ACME void erase_sharp_comment(::string& str);

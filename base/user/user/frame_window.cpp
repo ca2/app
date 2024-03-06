@@ -1938,6 +1938,8 @@ namespace user
 
       // m_bNeedRepositionBars = true;
 
+      m_bNeedPerformLayout = true;
+
       set_need_layout();
 
       set_need_redraw();

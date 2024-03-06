@@ -2080,6 +2080,45 @@ namespace user
    }
 
 
+   void plain_edit::set_edit_file(::file::file * pfile)
+   {
+
+      {
+
+         _synchronous_lock writing(m_ptree->synchronization());
+
+         m_ptree->SetFile(pfile);
+
+      }
+
+      queue_graphics_call([this](::draw2d::graphics_pointer & pgraphics)
+      {
+
+         plain_edit_on_update(pgraphics, ::e_source_system);
+
+      });
+
+      set_need_layout();
+
+      set_need_redraw();
+
+      post_redraw();
+
+      //auto psystem = system()->m_paurasystem;
+
+      //auto pdraw2d = psystem->draw2d();
+
+      //auto pgraphics = pdraw2d->create_memory_graphics(this);
+
+      //plain_edit_on_calc_layout(pgraphics);
+
+      //plain_edit_on_set_text(pgraphics, ::e_source_sync);
+
+      //plain_edit_on_update(pgraphics, ::e_source_sync);
+
+   }
+
+
    void plain_edit::on_message_mouse_move(::message::message * pmessage)
    {
 

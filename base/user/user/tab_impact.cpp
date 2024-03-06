@@ -1555,7 +1555,7 @@ namespace user
 
       auto ptabdata = get_data();
 
-      if (!ptabdata->m_bNoClient)
+      if (!ptabdata->m_bNoClient && m_pimpactdata)
       {
 
          ::rectangle_i32 rectangleHosting = ptabdata->m_rectangleHosting;

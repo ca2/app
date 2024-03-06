@@ -320,6 +320,8 @@ namespace user
 
       virtual bool plain_edit_is_enabled();
 
+      virtual void set_edit_file(::file::file * pfile);
+
 
       void _001OnTimer(::timer * ptimer) override;
 

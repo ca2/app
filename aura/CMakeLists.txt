@@ -1387,7 +1387,7 @@ elseif(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
    target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
 
    message("PKGCONFIG_CFLAGS is " ${PKGCONFIG_CFLAGS})
-   message(STATUS "PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
+   message(STATUS "(7) PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
 
 
 endif ()

@@ -576,9 +576,9 @@ CLASS_DECL_NETWORKING_BSD i32 c_inet_pton(i32 af, const char *src, void *dst)
 
       in_addr & addr = *(in_addr *) dst;
 
-      ::from_string(addr, src);
+      auto estatus = ::from_string(addr, src);
 
-      return 1;
+      return estatus.succeeded();
 
    }
    else if(af == AF_INET6)
@@ -586,9 +586,9 @@ CLASS_DECL_NETWORKING_BSD i32 c_inet_pton(i32 af, const char *src, void *dst)
 
       in6_addr & addr = *(in6_addr *) dst;
 
-      ::from_string(addr, src);
+      auto estatus = ::from_string(addr, src);
 
-      return 1;
+      return estatus.succeeded();
 
    }
    else

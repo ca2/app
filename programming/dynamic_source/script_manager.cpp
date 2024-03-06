@@ -912,7 +912,8 @@ namespace dynamic_source
 
       try
       {
-         single_lock synchronouslock(m_pmutexIncludeMatches, true);
+
+         _synchronous_lock synchronouslock(m_pmutexIncludeMatches);
 
          try
          {
@@ -945,7 +946,7 @@ namespace dynamic_source
       try
       {
 
-         single_lock synchronouslock(m_pmutexIncludeExpandMd5, true);
+         _synchronous_lock synchronouslock(m_pmutexIncludeExpandMd5);
 
          m_mapIncludeExpandMd5.erase_item(path);
 
@@ -963,7 +964,8 @@ namespace dynamic_source
 
       try
       {
-         single_lock synchronouslock(m_pmutexIncludeMatches, true);
+
+         _synchronous_lock synchronouslock(m_pmutexIncludeMatches);
 
          try
          {
@@ -996,7 +998,7 @@ namespace dynamic_source
       try
       {
 
-         single_lock synchronouslock(m_pmutexIncludeExpandMd5, true);
+         _synchronous_lock synchronouslock(m_pmutexIncludeExpandMd5);
 
          m_mapIncludeExpandMd5.erase_all();
 
@@ -1015,7 +1017,7 @@ namespace dynamic_source
 
       auto pcontext = get_context();
 
-      single_lock synchronouslock(m_pmutexIncludeMatches, true);
+      _synchronous_lock synchronouslock(m_pmutexIncludeMatches);
 
       auto p = m_mapIncludeMatchesFileExists.plookup(strPath);
 
@@ -1038,7 +1040,7 @@ namespace dynamic_source
    void script_manager::set_include_matches_file_exists(const ::string& strPath, bool bFileExists)
    {
 
-      single_lock synchronouslock(m_pmutexIncludeMatches, true);
+      _synchronous_lock synchronouslock(m_pmutexIncludeMatches);
 
       m_mapIncludeMatchesFileExists.set_at(strPath, bFileExists);
 
@@ -1048,7 +1050,7 @@ namespace dynamic_source
    bool script_manager::include_matches_is_dir(const ::string& strPath)
    {
 
-      single_lock synchronouslock(m_pmutexIncludeMatches, true);
+      _synchronous_lock synchronouslock(m_pmutexIncludeMatches);
 
       auto p = m_mapIncludeMatchesIsDir.plookup(strPath);
 
@@ -1075,7 +1077,7 @@ namespace dynamic_source
 
       }
 
-      single_lock synchronouslock(m_pmutexIncludeHasScript, true);
+      _synchronous_lock synchronouslock(m_pmutexIncludeHasScript);
 
       auto p = m_mapIncludeHasScript.plookup(strPath);
 
@@ -1103,7 +1105,7 @@ namespace dynamic_source
    string script_manager::include_expand_md5(const ::string& strPath)
    {
       
-      single_lock synchronouslock(m_pmutexIncludeExpandMd5, true);
+      _synchronous_lock synchronouslock(m_pmutexIncludeExpandMd5);
 
       return m_mapIncludeExpandMd5[strPath];
 
@@ -1113,7 +1115,7 @@ namespace dynamic_source
    void script_manager::set_include_expand_md5(const ::string& strPath, const ::string& strMd5)
    {
    
-      single_lock synchronouslock(m_pmutexIncludeExpandMd5, true);
+      _synchronous_lock synchronouslock(m_pmutexIncludeExpandMd5);
 
       m_mapIncludeExpandMd5[strPath] = strMd5;
 
@@ -1173,7 +1175,7 @@ namespace dynamic_source
       try
       {
 
-         synchronous_lock synchronouslock(m_pmanager->m_pmutexShouldBuild);
+         _synchronous_lock synchronouslock(m_pmanager->m_pmutexShouldBuild);
 
          m_pmanager->m_mapShouldBuild[path] = true;
 
@@ -1239,7 +1241,7 @@ namespace dynamic_source
    ::pointer<::dynamic_source::session>script_manager::get_session(const ::string& pszId)
    {
 
-      single_lock synchronouslock(m_pmutexSession, true);
+      _synchronous_lock synchronouslock(m_pmutexSession);
 
       auto p = m_mapSession.plookup(pszId);
 
@@ -1287,7 +1289,7 @@ namespace dynamic_source
    void script_manager::defer_clean_session()
    {
 
-      single_lock synchronouslock(m_pmutexSession, true);
+      _synchronous_lock synchronouslock(m_pmutexSession);
 
       ::earth::time timeNow;
 
@@ -1344,7 +1346,7 @@ namespace dynamic_source
 
       }*/
 
-      single_lock synchronouslock(m_pmutexRsa, true);
+      _synchronous_lock synchronouslock(m_pmutexRsa);
 
       auto psystem = system()->m_paurasystem;
 
@@ -1380,7 +1382,7 @@ namespace dynamic_source
 
       auto prsa = pcrypto->generate_rsa_key();
 
-      single_lock synchronouslock(m_pmutexRsa, true);
+      _synchronous_lock synchronouslock(m_pmutexRsa);
 
       m_rsaptra.add(prsa);
 
@@ -1438,7 +1440,7 @@ namespace dynamic_source
    bool script_manager::has_link_out_link(const ::string& pszServer, ::sockets::link_in_socket* pinsocket, ::httpd::socket* phttpdsocket)
    {
 
-      single_lock synchronouslock(m_pmutexOutLink, true);
+      _synchronous_lock synchronouslock(m_pmutexOutLink);
 
       auto p = m_mapOutLink.plookup(pszServer);
 
@@ -1519,7 +1521,7 @@ namespace dynamic_source
    bool script_manager::is_online(const ::string& pszServer)
    {
 
-      single_lock synchronouslock(m_pmutexTunnel, true);
+      _synchronous_lock synchronouslock(m_pmutexTunnel);
 
       auto p = m_mapTunnel.plookup(pszServer);
 
@@ -1553,7 +1555,7 @@ namespace dynamic_source
 
       {
 
-         single_lock synchronouslock(m_pmutexTunnel, true);
+         _synchronous_lock synchronouslock(m_pmutexTunnel);
 
          tunnel_map_item item;
 
@@ -1566,7 +1568,8 @@ namespace dynamic_source
 
       {
 
-         single_lock synchronouslock(m_pmutexOutLink, true);
+         _synchronous_lock synchronouslock(m_pmutexOutLink);
+
          m_mapOutLink.set_at(pszServer, psocket);
 
       }
@@ -1575,12 +1578,13 @@ namespace dynamic_source
 
    }
 
+
    size_i32 script_manager::get_image_size(const ::file::path& strFile)
    {
 
-      single_lock synchronouslock(m_pmutexImageSize, false);
+      _single_lock synchronouslock(m_pmutexImageSize);
 
-      synchronouslock.lock();
+      synchronouslock._lock();
 
       ::size_i32 size;
 
@@ -1596,7 +1600,7 @@ namespace dynamic_source
       if (extract_image_size(strFile, &size))
       {
 
-         synchronouslock.lock();
+         synchronouslock._lock();
 
          m_mapImageSize.set_at(strFile, size);
 
@@ -1788,7 +1792,7 @@ namespace dynamic_source
    bool script_manager::should_build(const ::file::path& strScriptPath)
    {
 
-      single_lock synchronouslock(m_pmutexShouldBuild, true);
+      _synchronous_lock synchronouslock(m_pmutexShouldBuild);
 
       bool bShouldBuild = false;
 

@@ -102,3 +102,33 @@ CLASS_DECL_ACME void copy(::string & str, const subparticle & subparticle)
 }
 
 
+
+
+
+
+CLASS_DECL_ACME void erase_sharp_comment(::string& str)
+{
+
+   auto sharp = str.find_first('#');
+
+   if (sharp)
+   {
+
+      str.truncate(sharp);
+
+   }
+
+}
+
+
+CLASS_DECL_ACME void erase_sharp_comment(::string_array& stra)
+{
+
+   for (auto& str : stra)
+   {
+
+      erase_sharp_comment(str);
+
+   }
+
+}

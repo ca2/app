@@ -298,6 +298,13 @@ namespace user
       {
 
          auto pitem = m_pmenuitema->element_at(iItem);
+         
+         if (!pitem)
+         {
+
+            continue;
+
+         }
 
          if (pitem->is_separator())
          {

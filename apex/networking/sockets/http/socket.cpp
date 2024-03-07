@@ -60,6 +60,7 @@ namespace sockets
       //}
 
       m_request.attr("http_version") = "HTTP/1.1";
+      m_response.attr("http_version") = "HTTP/1.1";
       SetLineProtocol();
       DisableInputBuffer();
 

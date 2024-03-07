@@ -1047,14 +1047,37 @@ namespace user
 
       }
 
-      if(m_puserinteraction->has_screen_output_purpose())
+      auto puserinteraction = m_puserinteraction;
+
+      if(::is_set(puserinteraction))
       {
 
+         if (puserinteraction->has_screen_output_purpose())
+         {
+
+            auto pinteractionimpl = puserinteraction->m_pinteractionimpl;
+
+            if (::is_set(pinteractionimpl))
+            {
+
+               auto pwindow = pinteractionimpl->m_pwindow;
+
+               if (::is_set(pwindow))
+               {
+
 #ifdef MORE_LOG
-         information() << "graphics_thread_iteration has_screen_output_purpose";
+                  
+                  information() << "graphics_thread_iteration has_screen_output_purpose";
+
 #endif
 
-         m_puserinteraction->m_pinteractionimpl->m_pwindow->window_update_screen();
+                  pwindow->window_update_screen();
+
+               }
+
+            }
+
+         }
 
       }
 

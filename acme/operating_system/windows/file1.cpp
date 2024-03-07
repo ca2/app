@@ -69,6 +69,32 @@ CLASS_DECL_ACME ::file::path get_module_path(HMODULE hmodule)
 }
 
 
+CLASS_DECL_ACME::file::path get_module_path(HANDLE hProcess, HMODULE hmodule)
+{
+
+
+#if defined(UNIVERSAL_WINDOWS)
+
+   return "m_app.exe";
+
+#else
+
+   wstring wstr;
+
+   auto p = wstr.get_buffer(MAX_PATH * 8);
+
+   ::GetModuleFileNameExW(hProcess, hmodule, p, MAX_PATH * 8);
+
+   wstr.release_buffer();
+
+   return solve_relative(string(wstr));
+
+#endif
+
+
+}
+
+
 // bool file_path_is_equal(const ::file::path & pathParam1, const ::file::path & pathParam2)
 // {
 

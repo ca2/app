@@ -1313,7 +1313,34 @@ namespace user
             if (eelement == ::e_element_background)
             {
 
-               return ::color::transparent;
+               if ((estate & (e_state_hover | e_state_selected)) == (e_state_hover | e_state_selected))
+               {
+
+                  auto color = argb(128, 50, 100, 180);
+
+                  color.blend(argb(128, 120, 120, 120), 0.40);
+
+                  return color;
+
+               }
+               else if (estate & e_state_selected)
+               {
+
+                  return argb(128, 50, 100, 180);
+
+               }
+               else if (estate & e_state_hover)
+               {
+
+                  return argb(128, 120, 120, 120);
+
+               }
+               else
+               {
+
+                  return ::color::transparent;
+
+               }
 
             }
 
@@ -1440,6 +1467,54 @@ namespace user
 
             crBk = node()->background_color();
             //crBk = argb(255, 255, 255, 255);
+
+         }
+
+         return crBk;
+
+      }
+      else if (eelement == ::e_element_scrollbar)
+      {
+
+         ::color::color crBk;
+
+         if (is_dark_mode())
+         {
+
+            //crBk = node()->background_color();
+
+            crBk = argb(255, 0x40, 0x40, 0x40);
+
+         }
+         else
+         {
+
+            //crBk = node()->background_color();
+            crBk = argb(255, 255, 255, 255);
+
+         }
+
+         return crBk;
+
+      }
+      else if (eelement == ::e_element_scrollbar_strong)
+      {
+
+         ::color::color crBk;
+
+         if (is_dark_mode())
+         {
+
+            //crBk = node()->background_color();
+
+            crBk = argb(255, 0x80, 0x80, 0x80);
+
+         }
+         else
+         {
+
+            //crBk = node()->background_color();
+            crBk = argb(255, 205, 205, 205);
 
          }
 

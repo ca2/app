@@ -71,13 +71,20 @@ namespace user
 
       m_iPadding = 2;
 
-      m_iBorder = 0;
+      m_iScreenMargin = 24;
 
       //m_iMinListItemCount = 8;
 
       m_iMinListItemCount = 0;
 
       m_bMovingComboBox = false;
+
+      //auto & bX = m_pscrolllayoutX->m_scrollstatea[::user::e_layout_sketch].m_bScrollEnable;
+      auto & bY = m_pscrolllayoutY->m_scrollstatea[::user::e_layout_sketch].m_bScrollEnable;
+
+      //bX = true;
+      bY = true;
+
 
    }
 
@@ -638,7 +645,9 @@ namespace user
 
       psize->cy() = (::i32)(_001GetItemHeight() * (_001GetListCount() + iAddUp));
 
-      psize->cx() += m_iBorder * 2;
+      int iScrollBarWidth = 20;
+
+      psize->cx() += iScrollBarWidth;
 
       //auto rectangleComboClient = this->rectangle();
 
@@ -715,6 +724,9 @@ namespace user
    {
 
       query_full_size(pgraphics, &m_sizeFull);
+
+
+      set_total_size(m_sizeFull, ::user::e_layout_design);
 
       ::user::scroll_base::on_layout(pgraphics);
 
@@ -1173,7 +1185,7 @@ namespace user
       ::rectangle_i32 rectangleList;
 
       rectangleList.left() = rectangleWindow.left();
-      rectangleList.right() = rectangleWindow.left() + maximum(rectangleWindow.width(), sizeFull.cx());
+      rectangleList.right() = rectangleWindow.left() + maximum(rectangleWindow.width(), sizeFull.cx()) + 20;
       rectangleList.top() = rectangleWindow.bottom();
       rectangleList.bottom() = rectangleWindow.bottom() + sizeFull.cy();
 
@@ -1188,41 +1200,58 @@ namespace user
 
       information() << "on_drop_down (2) : " << rectangleList;
 
-      if (rectangleList.bottom() > rectangleMonitor.bottom() - m_iBorder)
+      if (rectangleList.bottom() > rectangleMonitor.bottom() - m_iScreenMargin)
       {
 
-         rectangleList.bottom() = rectangleMonitor.bottom() - m_iBorder;
+         rectangleList.bottom() = rectangleMonitor.bottom() - m_iScreenMargin;
 
-         ::rectangle_i32 rectangleListOver;
-
-         rectangleListOver.left() = rectangleList.left();
-         rectangleListOver.right() = rectangleList.right();
-         rectangleListOver.bottom() = rectangleWindow.top();
-         rectangleListOver.top() = rectangleWindow.top() - sizeFull.cy();
-
-         if (rectangleListOver.top() < rectangleMonitor.top() + m_iBorder)
+         if (rectangleWindow.bottom() > (rectangleMonitor.top() + rectangleMonitor.height() * 2 / 3))
          {
 
-            rectangleListOver.move_to(rectangleListOver.left(), rectangleMonitor.top());
+            rectangleList.left() = rectangleWindow.left();
+            rectangleList.right() = rectangleWindow.left() + maximum(rectangleWindow.width(), sizeFull.cx()) + 20;
+            rectangleList.bottom() = rectangleWindow.top();
+            rectangleList.top() = rectangleList.bottom() - sizeFull.cy();
+
+            if (rectangleList.top() < rectangleMonitor.top() + m_iScreenMargin)
+            {
+
+               rectangleList.top() = rectangleMonitor.top() + m_iScreenMargin;
+
+            }
 
          }
 
+         //::rectangle_i32 rectangleListOver;
 
-         if (rectangleListOver.bottom() > rectangleMonitor.bottom() - m_iBorder)
-         {
+         //rectangleListOver.left() = rectangleList.left();
+         //rectangleListOver.right() = rectangleList.right();
+         //rectangleListOver.bottom() = rectangleWindow.top();
+         //rectangleListOver.top() = rectangleWindow.top() - sizeFull.cy();
 
-            rectangleListOver.bottom() = rectangleMonitor.bottom() - m_iBorder;
+         //if (rectangleListOver.top() < rectangleMonitor.top() + m_iBorder)
+         //{
 
-         }
+         //   rectangleListOver.move_to(rectangleListOver.left(), rectangleMonitor.top());
 
-         rectangleList = rectangleListOver;
+         //}
+
+
+         //if (rectangleListOver.bottom() > rectangleMonitor.bottom() - m_iBorder)
+         //{
+
+         //   rectangleListOver.bottom() = rectangleMonitor.bottom() - m_iBorder;
+
+         //}
+
+         //rectangleList = rectangleListOver;
 
       }
 
-      if (rectangleList.right() > rectangleMonitor.right() - m_iBorder)
+      if (rectangleList.right() > rectangleMonitor.right() - m_iScreenMargin)
       {
 
-         rectangleList.offset(rectangleMonitor.right() - (rectangleList.right() - m_iBorder), 0);
+         rectangleList.offset(rectangleMonitor.right() - (rectangleList.right() - m_iScreenMargin), 0);
 
       }
 
@@ -1264,6 +1293,11 @@ namespace user
       //if (!is_window())
       //{
 
+
+      set_total_size(sizeFull);
+
+      //m_bNeedPerformLayout = true;
+
       m_puserinteractionOwner = m_pcombo;
 
       information() << "on_drop_down (8) : " << rectangleList;
@@ -1282,7 +1316,7 @@ namespace user
 
       set_activation(e_activation_no_activate);
 
-      place(::rectangle_i32(rectangleList).inflate(m_iBorder));
+      place(::rectangle_i32(rectangleList));
 
       information() << "on_drop_down (10) : " << rectangleList;
 

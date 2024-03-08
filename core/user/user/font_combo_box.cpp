@@ -110,12 +110,11 @@ namespace user
 
       }
 
-      synchronous_lock synchronouslock(pfontlist->synchronization());
+      _synchronous_lock synchronouslock(pfontlist->synchronization());
 
       pfontlist->m_pfontlist->m_puserinteractionGraphicsContext = pfontlist;
 
       pfontlist->m_pfontlist->update_extents();
-
 
       auto pfontenumeration = pfontlist->m_pfontlist->m_pfontenumeration;
 

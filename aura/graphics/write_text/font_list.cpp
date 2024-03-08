@@ -392,7 +392,7 @@ namespace write_text
 
       ///pointCursor += m_puserinteraction->get_context_offset();
 
-      bool bCheckHover = true;
+      //bool bCheckHover = true;
 
       bool bIntersected = false;
 
@@ -456,10 +456,12 @@ namespace write_text
 
          bIntersected = true;
 
-         if (pfontlistitem == puserinteraction->main_content().m_pitemCurrent)
+         auto pitemCurrent = puserinteraction->main_content().m_pitemCurrent;
+
+         if (pfontlistitem == pitemCurrent)
          {
 
-            if (!bCheckHover && pfontlistitem == puserinteraction->m_pitemHover)
+            if (pfontlistitem == puserinteraction->m_pitemHover)
             {
 
                pgraphics->fill_rectangle(rectangle, puserinteraction->get_color(pgraphics->m_puserstyle, ::e_element_background, ::user::e_state_selected | ::user::e_state_hover));
@@ -473,7 +475,7 @@ namespace write_text
             }
 
          }
-         else if (!bCheckHover && pfontlistitem == puserinteraction->m_pitemHover)
+         else if (pfontlistitem == puserinteraction->m_pitemHover)
          {
 
             auto color = puserinteraction->get_color(pgraphics->m_puserstyle, ::e_element_background, ::user::e_state_hover);

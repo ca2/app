@@ -104,6 +104,11 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_show_window);
       DECLARE_MESSAGE_HANDLER(on_message_move);
 
+
+      void on_reposition() override;
+
+      virtual void _on_reposition();
+
       /// @return true if drop down list box was displayed
       virtual bool _001ShowDropDown(bool bShow = true);
       /// @return  true if drop down list box was displayed 

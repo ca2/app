@@ -3,6 +3,7 @@
 
 
 #include "acme/filesystem/filesystem/listing.h"
+#include "shell.h"
 
 
 namespace integration
@@ -10,14 +11,13 @@ namespace integration
 
 
    class CLASS_DECL_ACME context :
-      virtual public ::object
+      virtual public ::acme::shell
    {
    public:
 
 
       boolean           m_bOnlyInstall;
       boolean           m_bBuildDependencies;
-      bool              m_bMsys;
 
 
       ::file::path      m_pathProjectFolder;
@@ -74,7 +74,8 @@ namespace integration
       virtual void prepare_compilation_script(::string & str);
       virtual void prepare_linking_script(::string & str);
 
-      virtual ::i32 command_system(const ::scoped_string & scopedstr);
+      using ::acme::shell::command_system;
+      int command_system(const ::scoped_string& scopedstr, const class ::time& timeOut = 12_h) override;
 
       virtual void clean();
 
@@ -97,6 +98,20 @@ namespace integration
       virtual ::file::path host_integration_folder();
 
       //virtual ::file::path integration_folder();
+
+      virtual void defer_nasm();
+
+      virtual void defer_yasm();
+
+      virtual void defer_has_unix_shell_command(const ::scoped_string & scopedstr);
+
+#ifdef WINDOWS_DESKTOP
+
+
+      virtual void set_msys2(bool bSet = true);
+
+
+#endif
 
 
    };

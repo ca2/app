@@ -5,6 +5,8 @@
 DO_FACTORY(REFERENCE_FACTORY)
 #endif
 
+#include "acme/exception/exception.h"
+
 ::i32 application_main(::platform::platform * pplatform);
 
 #include "_main_hold.h"
@@ -107,7 +109,69 @@ int main(int argc, char ** argv, char ** envp)
 ////
 ////
    //::acme::acme::g_pacme->m_pacmeapplication->implement_application();
-   int iExitCode = application_main(pacme->platform());
+
+   int iExitCode = -1;
+
+   try
+   {
+
+      iExitCode = application_main(pacme->platform());
+
+   }
+   catch (const ::exception& exception)
+   {
+
+      if (pacme->platform()->m_bConsole)
+      {
+
+         fprintf(stderr, 
+            "\n"
+            "\n"
+            "\n"
+            "\n"
+            "      Error ---------------------------  ---   --   -    - \n"
+            "                                                        --- --  -    -\n"
+            "                                                                      --  -\n"
+            "      \n"
+            "      %s\n"
+            "      \n"
+            "      \n"
+            "      \n"
+            "      ------------------------------------------------------------------------\n"
+            "\n"
+            "\n"
+            "\n"
+            "\n"
+            , exception.m_strMessage.c_str());
+
+      }
+      else
+      {
+
+         ::message_box_synchronous(pacme->platform(), exception.m_strMessage);
+
+      }
+
+      iExitCode = exception.m_estatus.exit_code();
+
+   }
+   catch (...)
+   {
+
+      if (pacme->platform()->m_bConsole)
+      {
+
+         fprintf(stderr, "%s", "Unhandled Exception");
+
+      }
+      else
+      {
+
+         ::message_box_synchronous(pacme->platform(), "Unhandled Exception");
+
+      }
+
+   }
 
    //return ::acme::acme::g_pacme->m_pacmeapplication->m_iExitCode;
 

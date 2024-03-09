@@ -257,5 +257,7 @@ public:
    virtual void add_media_library_item(::media_library::item* pmedialibraryitem);
 
 
-
 };
+
+
+

@@ -35,6 +35,9 @@ CLASS_DECL_ACME bool process_modules(string_array & stra, u32 processID);
 CLASS_DECL_ACME bool load_modules_diff(string_array & straOld, string_array & straNew, const ::scoped_string & scopedstrExceptDir);
 
 
+//CLASS_DECL_ACME bool check_msys2_at_c_msys64(::particle* pparticle);
+
+
 //namespace windows
 //{
 //

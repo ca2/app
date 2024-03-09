@@ -93,7 +93,6 @@ namespace user
 
       }
 
-
       ::pointer < menu_item > pmenuitem = pitem;
 
       if (pmenuitem->m_atom.is_empty())

@@ -2382,6 +2382,71 @@ namespace url
    }
 
 
+   bool url::case_insensitive_is_protocol(const ::string & strUrl, const ::string & strProtocolCompare)
+   {
+
+      auto strProtocol = get_protocol(strUrl);
+
+      return strProtocol.case_insensitive_equals(strProtocolCompare);
+
+   }
+
+   
+   bool url::is_http(const ::string & strUrl)
+   {
+
+      return case_insensitive_is_protocol(strUrl, "http");
+
+   }
+
+
+   bool url::is_https(const ::string & strUrl)
+   {
+
+      return case_insensitive_is_protocol(strUrl, "https");
+
+   }
+
+
+   bool url::is_http_or_https(const ::string & strUrl)
+   {
+
+      return is_http(strUrl) || is_https(strUrl);
+
+   }
+
+
+   bool url::is_ftp(const ::string & strUrl)
+   {
+
+      return case_insensitive_is_protocol(strUrl, "ftp");
+
+   }
+
+
+   bool url::is_ftps(const ::string & strUrl)
+   {
+
+      return case_insensitive_is_protocol(strUrl, "ftps");
+
+   }
+
+
+   bool url::is_ftp_or_ftps(const ::string & strUrl)
+   {
+
+      return is_ftp(strUrl) || is_ftps(strUrl);
+
+   }
+
+
+   bool url::is_common_internet_protocol(const ::string & strUrl)
+   {
+
+      return is_http_or_https(strUrl) || is_ftp_or_ftps(strUrl);
+
+   }
+
 
 } // namespace urls
 

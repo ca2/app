@@ -1490,14 +1490,7 @@ namespace user
       if (powner)
       {
 
-         auto pframe = powner->top_level_frame();
-
-         if (pframe && pframe->m_puserstyle)
-         {
-
-            return pframe->m_puserstyle;
-
-         }
+         return powner->get_style();
 
       }
 
@@ -25277,11 +25270,16 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
 
                //informationf("user::interaction::update_hover should_redraw_on_hover(pitemOldHover)");
 
-               auto puseritem = user_item(pitemOldHover);
+               //auto puseritem = user_item(pitemOldHover);
 
-               ::rectangle_i32 rectangleBounding = ::bounding_box(puseritem);
+               auto rectangleBounding = item_rectangle(pitemOldHover, e_layout_design);
 
-               rectanglea.add(rectangleBounding);
+               if (rectangleBounding.ok())
+               {
+
+                  rectanglea.add(rectangleBounding);
+
+               }
 
             }
 
@@ -25297,9 +25295,16 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
 
                //informationf("user::interaction::update_hover should_redraw_on_hover(pitemHitTest)");
 
-               ::rectangle_i32 rectangleBounding = ::bounding_box(user_item(pitemHitTest));
+               auto rectangleBounding = item_rectangle(pitemHitTest, e_layout_design);
 
-               rectanglea.add(rectangleBounding);
+               if (rectangleBounding.ok())
+               {
+
+                  //::rectangle_i32 rectangleBounding = ::bounding_box(user_item(pitemHitTest));
+
+                  rectanglea.add(rectangleBounding);
+
+               }
 
             }
 
@@ -25313,7 +25318,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
             for (auto & rectangle : rectanglea)
             {
 
-               //information() << "user::interaction::update_hover set_need_redraw" << rectangle;
+               information() << "user::interaction::update_hover set_need_redraw" << rectangle;
 
             }
 
@@ -25993,96 +25998,96 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
    void interaction::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      auto pparent = get_parent();
+   //   auto pparent = get_parent();
 
-      if (::is_null(pparent))
-      {
+   //   if (::is_null(pparent))
+   //   {
 
-         //::rectangle_i32 rectangleWindow;
+   //      //::rectangle_i32 rectangleWindow;
 
-         //window_rectangle(rectangleWindow, e_layout_design);
+   //      //window_rectangle(rectangleWindow, e_layout_design);
 
-         //::rectangle_i32 rectangle(rectangleWindow);
+   //      //::rectangle_i32 rectangle(rectangleWindow);
 
-         auto rectangle = this->rectangle();
+   //      auto rectangle = this->rectangle();
 
-         //rectangle.offset(-rectangle.top_left());
+   //      //rectangle.offset(-rectangle.top_left());
 
-         auto pstyle = get_style(pgraphics);
+   //      auto pstyle = get_style(pgraphics);
 
-         if (pgraphics->m_pimage->is_ok())
-         {
+   //      if (pgraphics->m_pimage->is_ok())
+   //      {
 
-            pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
+   //         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
-            if (m_pinteractionimpl->is_composite())
-            {
+   //         if (m_pinteractionimpl->is_composite())
+   //         {
 
-               auto & iNcDraw0FillCounter = payload("nc_draw_0_fill_counter").i32_reference();
+   //            auto & iNcDraw0FillCounter = payload("nc_draw_0_fill_counter").i32_reference();
 
-               iNcDraw0FillCounter++;
+   //            iNcDraw0FillCounter++;
 
-               //information() << "interaction::_001OnNcDraw set_transparent";
+   //            //information() << "interaction::_001OnNcDraw set_transparent";
 
-               pgraphics->payload("set_transparent") = "set_transparent";
+   //            pgraphics->payload("set_transparent") = "set_transparent";
 
-               auto prectangleitem = __create_new < ::geometry2d::rectangle_item >();
+   //            auto prectangleitem = __create_new < ::geometry2d::rectangle_item >();
 
-               pgraphics->get_clip_box(prectangleitem->m_item);
+   //            pgraphics->get_clip_box(prectangleitem->m_item);
 
-               pgraphics->payload("set_transparent_clip_box") = "set_transparent";
+   //            pgraphics->payload("set_transparent_clip_box") = "set_transparent";
 
-               pgraphics->fill_rectangle(rectangle, argb(0, 0, 0, 0));
+   //            pgraphics->fill_rectangle(rectangle, argb(0, 0, 0, 0));
 
-               // pgraphics->fill_rectangle(rectangle, ::color::white);
+   //            // pgraphics->fill_rectangle(rectangle, ::color::white);
 
-               //information().set_precision(1);
+   //            //information().set_precision(1);
 
-               //information() << "_001OnNcDraw Fill0Rect " << rectangle;
+   //            //information() << "_001OnNcDraw Fill0Rect " << rectangle;
 
-   //dr               information() << "set_transparent window_rectangle " << rectangle;
+   ////dr               information() << "set_transparent window_rectangle " << rectangle;
 
-   //               information() << "set_transparent clip_box " << prectangleitem->m_item;
+   ////               information() << "set_transparent clip_box " << prectangleitem->m_item;
 
-            }
-            else
-            {
+   //         }
+   //         else
+   //         {
 
-               pgraphics->fill_rectangle(rectangle, argb(255, 192, 192, 192));
+   //            pgraphics->fill_rectangle(rectangle, argb(255, 192, 192, 192));
 
-            }
+   //         }
 
-         }
-         else
-         {
+   //      }
+   //      else
+   //      {
 
-            if (m_pinteractionimpl->is_composite())
-            {
+   //         if (m_pinteractionimpl->is_composite())
+   //         {
 
-               pgraphics->fill_rectangle(rectangle, argb(0, 0, 0, 0));
+   //            pgraphics->fill_rectangle(rectangle, argb(0, 0, 0, 0));
 
-            }
-            else
-            {
+   //         }
+   //         else
+   //         {
 
-               if (pstyle && pstyle->is_dark_mode())
-               {
+   //            if (pstyle && pstyle->is_dark_mode())
+   //            {
 
-                  pgraphics->fill_rectangle(rectangle, argb(255, 25, 25, 25));
+   //               pgraphics->fill_rectangle(rectangle, argb(255, 25, 25, 25));
 
-               }
-               else
-               {
+   //            }
+   //            else
+   //            {
 
-                  pgraphics->fill_rectangle(rectangle, argb(255, 255, 255, 255));
+   //               pgraphics->fill_rectangle(rectangle, argb(255, 255, 255, 255));
 
-               }
+   //            }
 
-            }
+   //         }
 
-         }
+   //      }
 
-      }
+   //   }
 
       if (m_flagNonClient.has(e_non_client_background) && !top_level()->frame_is_transparent())
       {

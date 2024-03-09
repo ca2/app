@@ -2,8 +2,11 @@
 #include "copydesk.h"
 #include "acme/exception/interface_only.h"
 #include "acme/primitive/string/base64.h"
+#include "acme/filesystem/filesystem/acme_directory.h"
+#include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/dir_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
+#include "acme/primitive/primitive/url.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/image/save_image.h"
 #include "aura/graphics/image/frame_array.h"
@@ -86,7 +89,13 @@ namespace user
       for (auto & strPath : stra)
       {
 
-         if (strPath.has_char() && (dir()->is(strPath) || pcontext->m_papexcontext->file()->exists(strPath)))
+         if (strPath.has_char() && 
+            (
+               acmedirectory()->is(strPath)
+            || acmefile()->exists(strPath)
+            || url()->is_common_internet_protocol(strPath)
+            )
+            )
          {
 
             if (ppatha == nullptr)

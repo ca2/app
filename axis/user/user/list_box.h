@@ -20,7 +20,7 @@ namespace user
       bool                                m_bMovingComboBox;
       bool                                m_bComboList;
       ::pointer<combo_box>               m_pcombo;
-      int                                 m_iBorder;
+      int                                 m_iScreenMargin;
       int                                 m_iPadding;
       ::size_i32                          m_sizeFull;
       int                                 m_iMinListItemCount;

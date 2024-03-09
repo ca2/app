@@ -61,8 +61,8 @@ namespace user
       ::user::list_box::install_message_routing(pchannel);
 
       MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &font_list::on_message_create);
-      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &font_list::on_message_left_button_down);
-      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &font_list::on_message_mouse_move);
+      //MESSAGE_LINK(e_message_left_button_down, pchannel, this, &font_list::on_message_left_button_down);
+      //MESSAGE_LINK(e_message_mouse_move, pchannel, this, &font_list::on_message_mouse_move);
       MESSAGE_LINK(MESSAGE_CLOSE, pchannel, this, &font_list::on_message_close);
       MESSAGE_LINK(e_message_show_window, pchannel, this, &font_list::on_message_show_window);
 
@@ -342,7 +342,7 @@ namespace user
 
       }
 
-      synchronous_lock synchronouslock(m_pfontlist->synchronization());
+      _synchronous_lock synchronouslock(m_pfontlist->synchronization());
 
       if (m_bEnsureVisible)
       {
@@ -461,7 +461,7 @@ namespace user
 
       }
 
-      synchronous_lock synchronouslock(m_pfontlist->synchronization());
+      _synchronous_lock synchronouslock(m_pfontlist->synchronization());
 
       auto pstyle = get_style(pgraphics);
 
@@ -498,6 +498,8 @@ namespace user
 
       //on_change_sketch_scroll_state();
 
+      ::user::scroll_base::on_layout(pgraphics);
+
    }
 
 
@@ -520,7 +522,7 @@ namespace user
 
       }
 
-      synchronous_lock synchronouslock(m_pfontlist->synchronization());
+      _synchronous_lock synchronouslock(m_pfontlist->synchronization());
       
       if(!m_pfontlist->m_pfontlistdata)
       {
@@ -562,7 +564,7 @@ namespace user
 
       }
 
-      synchronous_lock synchronouslock(m_pfontlist->synchronization());
+      _synchronous_lock synchronouslock(m_pfontlist->synchronization());
 
       ::pointer < ::write_text::font_list_item > pfontlistitem = m_pfontlist->m_pfontlistdata->item_at(iItemHover);
 
@@ -590,7 +592,7 @@ namespace user
    ::item_pointer font_list::current_item()
    {
 
-      synchronous_lock synchronouslock(m_pfontlist->synchronization());
+      _synchronous_lock synchronouslock(m_pfontlist->synchronization());
 
       if (!::is_item_set(main_content().m_pitemCurrent))
       {
@@ -607,7 +609,7 @@ namespace user
    ::item_pointer font_list::hover_item()
    {
 
-      synchronous_lock synchronouslock(m_pfontlist->synchronization());
+      _synchronous_lock synchronouslock(m_pfontlist->synchronization());
 
       if (!::is_item_set(m_pitemHover))
       {
@@ -617,6 +619,14 @@ namespace user
       }
 
       return m_pitemHover;
+
+   }
+
+
+   status < rectangle_i32 > font_list::item_rectangle(::item * pitem, ::user::enum_layout elayout)
+   {
+
+      return m_pfontlist->item_rectangle(pitem);
 
    }
 
@@ -731,11 +741,33 @@ namespace user
          && iItem < m_pfontlist->m_pfontlistdata->item_count())
       {
 
-         main_content().m_pitemCurrent = m_pfontlist->m_pfontlistdata->item_at(iItem);
+         auto rectangle = this->rectangle();
+
+         //main_content().m_pitemCurrent = m_pfontlist->m_pfontlistdata->item_at(iItem);
 
          ::pointer < ::write_text::font_list_item > pfontlistitem = m_pfontlist->m_pfontlistdata->item_at(iItem);
 
-         set_context_offset_y(pfontlistitem->m_box[0].m_rectangle.top());
+         if (!rectangle.contains(pfontlistitem->m_box[0].m_rectangle))
+         {
+
+            auto y = pfontlistitem->m_box[0].m_rectangle.top() - rectangle.height() / 2;
+
+            if (y > get_total_size().cy() - rectangle.height())
+            {
+
+               y = get_total_size().cy() - rectangle.height();
+
+            }
+            else if (y < 0)
+            {
+
+               y = 0;
+
+            }
+
+            set_context_offset_y(y);
+
+         }
 
       }
       else

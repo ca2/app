@@ -603,6 +603,22 @@ namespace user
    void combo_box::on_message_move(::message::message * pmessage)
    {
 
+      _on_reposition();
+
+   }
+
+
+   void combo_box::on_reposition()
+   {
+
+      _on_reposition();
+
+   }
+
+
+   void combo_box::_on_reposition()
+   {
+
       if (is_drop_down())
       {
 
@@ -794,7 +810,7 @@ namespace user
    void combo_box::on_kill_keyboard_focus()
    {
 
-      if (m_plistbox != nullptr)
+      if (::is_set(m_plistbox) && m_plistbox->is_window())
       {
 
          m_plistbox->post_message(MESSAGE_CLOSE);

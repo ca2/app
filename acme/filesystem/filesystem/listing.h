@@ -103,17 +103,27 @@ namespace file
 
       //listing& operator = (const ::e_status & estatus) { return *this; }
       template < container_type CONTAINER >
-      inline ::index add_listing(const CONTAINER & container)
+      inline ::index add_container(const CONTAINER & container)
       {
 
-         auto iIndex = ::file::path_array::append(container);
-         
-         m_straTitle.append(container.m_straTitle);
+         auto iIndex = ::file::path_array::append_container(container);
          
          return iIndex;
 
       }
 
+
+      template < typename CONTAINER >
+      inline ::index add_listing(const CONTAINER & container)
+      {
+
+         auto iIndex = ::file::path_array::append_container(container);
+
+         m_straTitle.append_container(container.m_straTitle);
+
+         return iIndex;
+
+      }
 
       void operator()(const ::file::path& path)
       {

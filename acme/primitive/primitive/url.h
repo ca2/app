@@ -115,6 +115,16 @@ namespace url
       virtual void defer_raw_http(::property_set & set);
 
 
+      virtual bool case_insensitive_is_protocol(const ::string & strUrl, const ::string & strProtocol);
+      virtual bool is_http(const ::string & strUrl);
+      virtual bool is_https(const ::string & strUrl);
+      virtual bool is_http_or_https(const ::string & strUrl);
+      virtual bool is_ftp(const ::string & strUrl);
+      virtual bool is_ftps(const ::string & strUrl);
+      virtual bool is_ftp_or_ftps(const ::string & strUrl);
+      virtual bool is_common_internet_protocol(const ::string & strUrl);
+
+
    };
 
 

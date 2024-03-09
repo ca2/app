@@ -344,6 +344,14 @@ namespace core
    }
 
 
+   void application::on_prompt_write_file(::user::controller * pusercontroller)
+   {
+
+      file_manager_save_as(pusercontroller);
+
+   }
+
+
    void application::file_manager_save_as(::user::controller *pusercontroller)
    {
       

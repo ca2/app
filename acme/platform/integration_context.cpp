@@ -1,6 +1,7 @@
 // Created by camilo on 2023-01-15 16:16 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "integration_context.h"
+#include "acme/exception/interface_only.h"
 #include "acme/filesystem/file/file.h"
 #include "acme/filesystem/file/memory_file.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
@@ -33,7 +34,6 @@ namespace integration
    context::context()
    {
 
-      m_bMsys = false;
       m_bBuildDependencies = true;
 
    }
@@ -49,7 +49,9 @@ namespace integration
    void context::initialize(::particle* pparticle)
    {
 
-      ::particle::initialize(pparticle);
+      ::acme::shell::initialize(pparticle);
+
+      m_pshellComposite = node();
 
       m_pmutexLines = node()->create_mutex();
 
@@ -233,7 +235,7 @@ namespace integration
    }
 
 
-   int context::command_system(const ::scoped_string & scopedstrCommand)
+   int context::command_system(const ::scoped_string & scopedstrCommand, const class ::time& timeOut)
    {
 
 //      auto functionTrace = [&](auto etracelevel, auto & str)
@@ -246,7 +248,6 @@ namespace integration
       //auto iExitCode = node()->command_system(scopedstrCommand, ::std_inline_log());
       auto iExitCode = node()->command_system(scopedstrCommand, 12_h);
       
-      
       if (iExitCode != 0)
       {
 
@@ -257,7 +258,6 @@ namespace integration
          throw ::exception(error_exception);
 
       }
-
 
       return iExitCode;
 
@@ -394,35 +394,9 @@ namespace integration
    ::i32 context::bash(const ::scoped_string & scopedstr)
    {
 
-      string strEscaped = scopedstr;
+      throw interface_only();
 
-      ::string strCommand;
-
-      printf("Current Directory: %s\n", acmedirectory()->get_current().c_str());
-      printf("%s\n", strEscaped.c_str());
-
-      if (m_bMsys)
-      {
-
-         strCommand = "\"C:\\msys64\\usr\\bin\\bash.exe\" -c \'" + strEscaped + "\'";
-
-      }
-      else
-      {
-
-         strCommand = "\"C:\\Program Files\\Git\\bin\\bash.exe\" -c \'" + strEscaped + "\'";
-
-      }
-
-      //
-
-      auto iExitCode = command_system(strCommand);
-
-      ///command_system("cmd.exe -c \"C:\\msys64\\msys2_shell.cmd\" \"" + strEscaped + "\"");
-
-      
-      return iExitCode;
-      
+      return -1;
 
    }
 
@@ -430,35 +404,9 @@ namespace integration
    ::i32 context::zsh(const ::scoped_string & scopedstr)
    {
 
-      string strEscaped = scopedstr;
+      throw interface_only();
 
-      ::string strCommand;
-
-      printf("Current Directory: %s\n", acmedirectory()->get_current().c_str());
-      printf("%s\n", strEscaped.c_str());
-
-      if (m_bMsys)
-      {
-
-         strCommand = "\"C:\\msys64\\usr\\bin\\bash.exe\" -c \'" + strEscaped + "\'";
-
-      }
-      else
-      {
-
-         strCommand = "\"C:\\Program Files\\Git\\bin\\bash.exe\" -c \'" + strEscaped + "\'";
-
-      }
-
-      //
-
-      auto iExitCode = command_system(strCommand);
-
-      ///command_system("cmd.exe -c \"C:\\msys64\\msys2_shell.cmd\" \"" + strEscaped + "\"");
-
-      
-      return iExitCode;
-      
+      return -1;
 
    }
 
@@ -593,6 +541,61 @@ namespace integration
       acmedirectory()->enumerate(m_listingBuild);
 
    }
+
+
+   void context::defer_nasm()
+   {
+
+      if (!node()->has_command("nasm"))
+      {
+
+         throw ::exception(error_file_not_found, "nasm should be installed.");
+
+      }
+
+   }
+
+
+   void context::defer_yasm()
+   {
+
+      if (!node()->has_command("yasm"))
+      {
+
+         throw ::exception(error_file_not_found, "yasm should be installed.");
+
+      }
+
+   }
+
+
+   void context::defer_has_unix_shell_command(const ::scoped_string& scopedstr)
+   {
+
+      if (!has_unix_shell_command(scopedstr))
+      {
+
+         throw ::exception(error_file_not_found, ::string("\"") + scopedstr + "\" was not found.");
+
+      }
+
+   }
+
+
+#ifdef WINDOWS_DESKTOP
+
+
+   void context::set_msys2(bool bSet)
+   {
+
+      UNREFERENCED_PARAMETER(bSet);
+
+      throw interface_only();
+
+   }
+
+
+#endif
 
 
 } // namespace integration

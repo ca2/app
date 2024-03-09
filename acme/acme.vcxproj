@@ -1028,6 +1028,7 @@
     <ClInclude Include="platform\referencing_debugging.h" />
     <ClInclude Include="platform\reference_item.h" />
     <ClInclude Include="platform\release_time_for_project.h" />
+    <ClInclude Include="platform\shell.h" />
     <ClInclude Include="platform\simple_array.h" />
     <ClInclude Include="platform\tracing.h" />
     <ClInclude Include="platform\_referencing_debugging.h" />
@@ -1419,6 +1420,7 @@
     <ClCompile Include="platform\sequence.cpp" />
     <ClCompile Include="platform\serial.cpp" />
     <ClCompile Include="platform\session.cpp" />
+    <ClCompile Include="platform\shell.cpp" />
     <ClCompile Include="platform\simple_log.cpp" />
     <ClCompile Include="platform\platform.cpp" />
     <ClCompile Include="platform\system.cpp" />

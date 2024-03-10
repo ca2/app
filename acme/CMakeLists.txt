@@ -462,6 +462,8 @@ list(APPEND library_source
    platform/session.h
    platform/platform.cpp
    platform/platform.h
+   platform/shell.cpp
+   platform/shell.h
    platform/system.cpp
    platform/system_setup.cpp
    platform/system_setup.h

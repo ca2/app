@@ -320,10 +320,32 @@ void simple_frame_window::on_update_notify_icon_menu_bottom(::index & iNotifyIco
       && m_pframe->get_control_box()->has_button(::experience::e_button_transparent_frame))
    {
 
-      m_pnotifyicon->menu()->separator_at(iNotifyIconItem);
+//      m_pnotifyicon->menu()->separator_at(iNotifyIconItem);
 
       //m_pnotifyicon->notify_icon_insert_item(iNotifyIconItem, _("Transparent Frame"), "transparent_frame");
-      m_pnotifyicon->menu()->stock_item_at(iNotifyIconItem, "Transparent Frame", "transparent_frame");
+//      m_pnotifyicon->menu()->stock_item_at(iNotifyIconItem, "Transparent Frame", "transparent_frame");
+
+      if (m_bWindowFrame)
+      {
+
+         auto papplicationmenu = application()->application_menu();
+
+         {
+
+            auto pmenu = m_pnotifyicon->menu();
+
+            auto ppopupView = pmenu->popup_at(iNotifyIconItem, "View");
+
+            //ppopupView->add(pmenuView);
+
+            ppopupView->item("Transparent Frame", "transparent_frame", "", "");
+
+         }
+
+         application()->m_papexapplication->application_menu_update();
+
+      }
+
 
    }
 

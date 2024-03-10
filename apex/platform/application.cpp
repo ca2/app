@@ -4036,7 +4036,7 @@ namespace apex
       if (eexclusive == e_exclusive_instance_local)
       {
 
-         message_box_synchronous(this, "e_exclusive_instance_local");
+         //message_box_synchronous(this, "e_exclusive_instance_local");
 
          return on_exclusive_instance_local_conflict(prequest, bHandled);
 

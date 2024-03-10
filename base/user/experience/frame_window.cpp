@@ -1603,24 +1603,24 @@ namespace experience
 
       }
       
-      if(m_bWindowFrame)
-      {
-         
-         auto papplicationmenu = application()->application_menu();
-         
-         {
-            
-            auto ppopupView = papplicationmenu->popup("View");
-            
-            //ppopupView->add(pmenuView);
-            
-            ppopupView->item("Transparent Frame", "transparent_frame", "", "");
-            
-         }
+      //if(m_bWindowFrame)
+      //{
+      //   
+      //   auto papplicationmenu = application()->application_menu();
+      //   
+      //   {
+      //      
+      //      auto ppopupView = papplicationmenu->popup("View");
+      //      
+      //      //ppopupView->add(pmenuView);
+      //      
+      //      ppopupView->item("Transparent Frame", "transparent_frame", "", "");
+      //      
+      //   }
 
-         application()->m_papexapplication->application_menu_update();
-         
-      }
+      //   application()->m_papexapplication->application_menu_update();
+      //   
+      //}
 
    }
 

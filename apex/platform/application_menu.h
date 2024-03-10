@@ -13,6 +13,7 @@
 
 struct popup_flag_t{};
 
+#include "acme/constant/id.h"
 
 //namespace user
 //{
@@ -76,7 +77,7 @@ struct popup_flag_t{};
       bool is_separator() const
       {
 
-         return this->m_atom == "separator";
+         return this->m_atom == id_separator;
 
       }
 

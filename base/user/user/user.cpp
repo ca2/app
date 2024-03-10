@@ -1095,7 +1095,7 @@ namespace base
       {
 
          pmenuitem->m_pmenu = pmenu;
-         pmenuitem->m_atom = "separator";
+         pmenuitem->m_atom = id_separator;
 
       }
       else if (papplicationmenu->is_popup())

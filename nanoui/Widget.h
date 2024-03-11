@@ -222,7 +222,9 @@ namespace nanoui
       void set_height(int height) { m_size.cy() = height; }
 
       ::pointer < TextBox > create_in_place_edit(const ::rectangle_f32& rectangle, const ::scoped_string & scopedstr);
-      virtual void end_in_place_edit();
+
+      // returns true if something changed that needs redrawing
+      virtual bool end_in_place_edit();
 
       virtual bool on_mouse_button_in_place_edit(in_place_edit* pinplacedit, bool bDown);
       virtual void on_before_in_place_edit(in_place_edit* pinplaceedit);

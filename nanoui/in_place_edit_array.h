@@ -22,6 +22,11 @@ namespace nanoui
       ::pointer < in_place_edit > hit_test_label(const ::point_f32& point, in_place_edit_mapper * pmapper) const;
 
 
+      // returns true if something changed that needs redrawing
+      bool on_end_edit_all();
+
+
+
    };
 
 

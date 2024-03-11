@@ -142,7 +142,9 @@ namespace nanoui
 
       
       virtual void start_in_place_edit();
-      void end_in_place_edit() override;
+
+      // returns true if something changed that needs redrawing
+      bool end_in_place_edit() override;
 
 
       size_i32 preferred_size(::nano2d::context* pcontext, bool bRecalcTextSize = true) override;

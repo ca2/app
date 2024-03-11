@@ -20,7 +20,7 @@ namespace nanoui
       int                     m_iClickCount;
       bool                    m_bEdit;
       ::rectangle_f32         m_rectangleInternal;
-      ::pointer < Widget >    m_pwidgetParent;
+      Widget *                m_pwidgetParent;
 
 
       bool is_clicked()
@@ -35,7 +35,8 @@ namespace nanoui
       ~in_place_edit() override;
 
       
-      virtual void on_end_edit();
+      // returns true if something changed that needs redrawing
+      virtual bool on_end_edit();
       virtual void set_need_update();
       virtual void set_edit_payload(const ::payload& payload);
       virtual ::string get_name_for_editing() const;

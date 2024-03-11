@@ -761,14 +761,14 @@ namespace nanoui
    }
 
 
-   void TextBox::end_in_place_edit()
+   bool TextBox::end_in_place_edit()
    {
 
       ::pointer < TextBox > pthis = this;
 
       auto pwidgetParent = m_pwidgetParent;
 
-      Widget::end_in_place_edit();
+      bool bNeedRedraw = Widget::end_in_place_edit();
 
       if (m_callbackEndEdit)
       {
@@ -787,12 +787,12 @@ namespace nanoui
          pwidgetParent->screen()->m_puserinteraction->set_need_layout();
 
          pwidgetParent->screen()->m_puserinteraction->set_need_redraw();
-
          pwidgetParent->screen()->m_puserinteraction->post_redraw();
 
-
-
       }
+
+      return bNeedRedraw;
+
    }
 
 

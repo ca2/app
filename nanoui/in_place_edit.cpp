@@ -13,6 +13,7 @@ namespace nanoui
 
       m_iClickCount = -1;
       m_bEdit = false;
+      m_pwidgetParent = nullptr;
 
    }
 
@@ -23,24 +24,42 @@ namespace nanoui
    }
 
 
-   void in_place_edit::on_end_edit()
+   bool in_place_edit::on_end_edit()
    {
+
+      bool bNeedRedraw = false;
 
       auto pwidgetParent = m_pwidgetParent;
 
-      m_pwidgetParent.release();
-
       auto pwidget = m_pwidget;
 
-      m_pwidget.release();
+      if (m_pwidget.is_set())
+      {
 
-      if (pwidgetParent)
+         m_pwidget.release();
+
+         bNeedRedraw = true;
+
+      }
+
+      if (m_iClickCount >= 0)
+      {
+
+         m_iClickCount = -1;
+
+         bNeedRedraw = true;
+
+      }
+
+      if (::is_set(pwidgetParent))
       {
        
          if (pwidgetParent->m_pinplaceedit == this)
          {
 
             pwidgetParent->m_pinplaceedit.release();
+
+            bNeedRedraw = true;
 
          }
 
@@ -49,9 +68,16 @@ namespace nanoui
       if (pwidget)
       {
 
-         pwidget->end_in_place_edit();
+         if (pwidget->end_in_place_edit())
+         {
+
+            bNeedRedraw = true;
+
+         }
 
       }
+
+      return bNeedRedraw;
 
    }
 

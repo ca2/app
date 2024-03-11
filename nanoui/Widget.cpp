@@ -1437,25 +1437,29 @@ namespace nanoui
    }
 
 
-   void Widget::end_in_place_edit()
+   bool Widget::end_in_place_edit()
    {
 
       auto pwidgetParent = m_pwidgetParent;
 
-      if (pwidgetParent)
+      if (!pwidgetParent)
       {
 
-         if (pwidgetParent->m_pinplaceedit
-            && pwidgetParent->m_pinplaceedit->m_pwidget == this)
-         {
-
-            pwidgetParent->m_pinplaceedit->m_pwidget.release();
-
-         }
-
-         pwidgetParent->erase_child(this);
+         return false;
 
       }
+
+      if (pwidgetParent->m_pinplaceedit
+         && pwidgetParent->m_pinplaceedit->m_pwidget == this)
+      {
+
+         pwidgetParent->m_pinplaceedit->m_pwidget.release();
+
+      }
+
+      pwidgetParent->erase_child(this);
+
+      return true;
 
    }
 
@@ -1465,15 +1469,6 @@ namespace nanoui
 
       if (::is_null(pinplaceedit))
       {
-
-         if (m_pinplaceedit)
-         {
-
-            m_pinplaceedit->m_iClickCount = -1;
-
-            m_pinplaceedit->set_need_update();
-
-         }
 
          return false;
 

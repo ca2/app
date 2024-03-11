@@ -45,6 +45,38 @@ namespace nanoui
    }
 
 
+   bool in_place_edit_array::on_end_edit_all()
+   {
+
+      bool bNeedRedraw = false;
+
+      for (auto& pinplaceedit : *this)
+      {
+
+         try
+         {
+
+            if (pinplaceedit->on_end_edit())
+            {
+
+               bNeedRedraw = true;
+
+            }
+
+         }
+         catch (...)
+         {
+
+
+         }
+
+      }
+
+      return bNeedRedraw;
+
+   }
+
+
 } // namespace RedDotLogics_PixelPerfectPro
 
 

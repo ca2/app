@@ -61,6 +61,8 @@ namespace nanoui
       ::string                                        m_strFormat;
       int                                             m_iUnitImage;
       ::function<bool(const ::scoped_string& str) >   m_callback;
+      ::function<void() >                             m_callbackEndEdit;
+      ::function<void() >                             m_callbackOnEdit;
       bool                                            m_bValidFormat;
       ::string                                        m_strValueEdit;
       ::string                                        m_strPlaceHolder;
@@ -73,8 +75,12 @@ namespace nanoui
       ::user::e_key                                   m_ekeyMouseDownModifier;
       float                                           m_fTextOffset;
       //class ::time m_timeLast;
+      ::color::color                                  m_colorDeepBackground = ::color::transparent;
       ::color::color                                  m_colorBackground = ::color::color(32, 32);
       ::write_text::font_pointer                      m_pfontSpin;
+      bool                                            m_bAutoDeleteOnFinishEditing;
+
+      
 
 
       TextBox(Widget* parent, const ::scoped_string& value = "Untitled");
@@ -133,6 +139,11 @@ namespace nanoui
       virtual void edit_copy();
       virtual void edit_cut();
       virtual void edit_paste();
+
+      
+      virtual void start_in_place_edit();
+      void end_in_place_edit() override;
+
 
       size_i32 preferred_size(::nano2d::context* pcontext, bool bRecalcTextSize = true) override;
       void draw(::nano2d::context* pcontext) override;

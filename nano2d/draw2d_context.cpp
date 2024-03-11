@@ -722,7 +722,7 @@ pstate->m_ppen->m_color = color;
    }
 
 
-   float draw2d_context::text(float x, float y, const ::scoped_string& scopedstr)
+   ::rectangle_f32 draw2d_context::text(float x, float y, const ::scoped_string& scopedstr)
    {
       
       //::string strText(string, end ? end - string : string_safe_length(string));
@@ -765,10 +765,18 @@ pstate->m_ppen->m_color = color;
          offsety = -size.cy() / 2.0;
 
       }
-      
-      m_pgraphics->text_out({ (double)x + offsetx, (double)y + offsety }, scopedstr);
 
-      return (float) (x + offsetx + size.cx());
+      ::rectangle_f32 r;
+
+      r.left() = (double)x + offsetx;
+      r.top() = (double)y + offsety;
+      r.set_size(size);
+
+      auto ealignForDrawText = m_pstate->m_ealignText;
+      
+      m_pgraphics->draw_text(scopedstr, r, ealignForDrawText);
+
+      return r; // it used to return r.right()
 
    }
 
@@ -846,7 +854,7 @@ pstate->m_ppen->m_color = color;
    }
 
 
-   float draw2d_context::text_bounds(float x, float y, const ::scoped_string & scopedstr, float * bounds)
+   float draw2d_context::text_bounds(float x, float y, const ::scoped_string & scopedstr, ::rectangle_f32 * bounds)
    {
 
       //::string strText(string, end ? end - string : string_safe_length(scopedstr));
@@ -888,11 +896,10 @@ pstate->m_ppen->m_color = color;
       if (bounds)
       {
 
-         bounds[0] = (float) (x + offsetx);
-         bounds[1] = (float) (y + offsety);
-         bounds[2] = (float) (x + offsetx + size.cx());
-         bounds[3] = (float) (y + offsety + size.cy());
-
+         bounds->left() = (float) (x + offsetx);
+         bounds->top() = (float)(y + offsety);
+         bounds->set_size(size);
+         
       }
 
       return (float) (x + offsetx + size.cx());

@@ -20,6 +20,7 @@ namespace appearance
       ::pointer<::user::interaction>         m_puserinteraction;
       ::point_i32                            m_pointMouseLast;
       ::point_i32                            m_pointLastCursor;
+      ::message::message*                    m_pmessage;
 
 
       appearance();

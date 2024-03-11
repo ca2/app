@@ -55,6 +55,7 @@ namespace nanoui
       if (m_ptheme) m_font_size = m_ptheme->m_iTextBoxFontSize;
       m_icon_extra_scale = .8f;
       m_bChanged = false;
+      m_bAutoDeleteOnFinishEditing = false;
       //m_bMouseDown = false;
 
    }
@@ -118,6 +119,14 @@ namespace nanoui
    void TextBox::draw(::nano2d::context* pcontext)
    {
 
+      if (m_colorBackground == argb(0.8, 0, 0, 0))
+      {
+
+         information() << "in place edit??";
+
+      }
+
+
       if (!need_to_draw(pcontext))
       {
 
@@ -126,6 +135,19 @@ namespace nanoui
       }
 
       Widget::draw(pcontext);
+
+      if (m_colorDeepBackground.m_u8Opacity > 0)
+      {
+
+         pcontext->begin_path();
+         pcontext->rounded_rectangle(m_pos.x() + 0.5f, m_pos.y() + 0.5f, m_size.cx() - 1.f,
+            m_size.cy() - 1.f, 2.5f);
+         pcontext->close_path();
+         pcontext->fill_color(m_colorDeepBackground);
+         pcontext->fill();
+
+      }
+
 
       ::nano2d::paint bg = pcontext->box_gradient(
          m_pos.x() + 1.f, m_pos.y() + 1.f + 1.0f, m_size.cx() - 2.f, m_size.cy() - 2.f,
@@ -277,8 +299,8 @@ namespace nanoui
          else {
             const int max_glyphs = 1024;
             ::nano2d::glyphPosition glyphs[max_glyphs];
-            float text_bound[4];
-            pcontext->text_bounds(draw_pos.x(), draw_pos.y(), m_strValueEdit, text_bound);
+            ::rectangle_f32 text_bound;
+            pcontext->text_bounds(draw_pos.x(), draw_pos.y(), m_strValueEdit, &text_bound);
             float lineh = text_bound[3] - text_bound[1];
 
             // find cursor positions
@@ -302,7 +324,7 @@ namespace nanoui
 
             // draw text with offset
             pcontext->text(draw_pos.x(), draw_pos.y(), m_strValueEdit);
-            pcontext->text_bounds(draw_pos.x(), draw_pos.y(), m_strValueEdit, text_bound);
+            pcontext->text_bounds(draw_pos.x(), draw_pos.y(), m_strValueEdit, &text_bound);
 
             // recompute cursor positions
             nglyphs = pcontext->text_glyph_positions(draw_pos.x(), draw_pos.y(),
@@ -656,6 +678,18 @@ namespace nanoui
 
       }
 
+      if (!focused)
+      {
+
+         if (m_bAutoDeleteOnFinishEditing)
+         {
+
+            end_in_place_edit();
+
+         }
+
+      }
+
       return true;
 
    }
@@ -696,6 +730,69 @@ namespace nanoui
 
       paste_from_clipboard();
 
+   }
+
+
+   void TextBox::start_in_place_edit()
+   {
+
+      set_need_redraw();
+
+      post_redraw();
+
+      request_focus();
+
+      //if(m_pwidgetParent)
+      //{
+      //
+      //   m_pwidgetParent->set_need_redraw();
+
+      //   m_pwidgetParent->post_redraw();
+      //
+      //}
+
+      screen()->m_puserinteraction->set_need_layout();
+
+      screen()->m_puserinteraction->set_need_redraw();
+
+      screen()->m_puserinteraction->post_redraw();
+
+
+   }
+
+
+   void TextBox::end_in_place_edit()
+   {
+
+      ::pointer < TextBox > pthis = this;
+
+      auto pwidgetParent = m_pwidgetParent;
+
+      Widget::end_in_place_edit();
+
+      if (m_callbackEndEdit)
+      {
+
+         m_callbackEndEdit();
+
+      }
+
+      if (pwidgetParent)
+      {
+
+         pwidgetParent->set_need_redraw();
+
+         pwidgetParent->post_redraw();
+
+         pwidgetParent->screen()->m_puserinteraction->set_need_layout();
+
+         pwidgetParent->screen()->m_puserinteraction->set_need_redraw();
+
+         pwidgetParent->screen()->m_puserinteraction->post_redraw();
+
+
+
+      }
    }
 
 
@@ -863,6 +960,13 @@ namespace nanoui
             set_need_redraw();
 
             post_redraw();
+
+            if (m_callbackOnEdit)
+            {
+
+               m_callbackOnEdit();
+
+            }
 
          }
 

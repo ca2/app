@@ -27,7 +27,7 @@ namespace geo
 {
 
 
-   department::department()
+   geo::geo()
    {
 
       m_bInitialLocalityTimeZoneInit = false;
@@ -45,14 +45,14 @@ namespace geo
    }
 
 
-   department::~department()
+   geo::~geo()
    {
 
 
    }
 
 
-   void department::initialize(::particle * pparticle)
+   void geo::initialize(::particle * pparticle)
    {
 
       ::acme::department::initialize(pparticle);
@@ -64,7 +64,7 @@ namespace geo
    }
    
 
-   void department::defer_check_openweather_city_list()
+   void geo::defer_check_openweather_city_list()
    {
 
       synchronous_lock synchronouslock(get_openweather_city_mutex());
@@ -272,7 +272,7 @@ namespace geo
    }
 
 
-   openweather_city* department::openweather_find_city(string strQuery)
+   openweather_city* geo::openweather_find_city(string strQuery)
    {
 
       auto& pcity = m_mapCity[strQuery];
@@ -296,7 +296,7 @@ namespace geo
    }
 
 
-   index department::openweather_find_city2(string strQuery, string& strCit, i64& iId, double& dLat, double& dLon)
+   index geo::openweather_find_city2(string strQuery, string& strCit, i64& iId, double& dLat, double& dLon)
    {
 
       string_array stra;
@@ -356,7 +356,7 @@ namespace geo
 
 
 
-   index department::openweather_find_city2(string strQ1, string strQ2, string& strCit, i64& iId, double& dLat, double& dLon, bool bPrefix)
+   index geo::openweather_find_city2(string strQ1, string strQ2, string& strCit, i64& iId, double& dLat, double& dLon, bool bPrefix)
    {
 
       string strQueryLo;
@@ -557,7 +557,7 @@ namespace geo
    }
 
 
-   bool department::locality_sunset(openweather_city* pcity, int& iRise, int& iSet)
+   bool geo::locality_sunset(openweather_city* pcity, int& iRise, int& iSet)
    {
 
       if (pcity == nullptr)
@@ -618,7 +618,7 @@ namespace geo
    }
 
 
-   bool  department::locality_sunset(string strCountry, string strLocality, int& iRise, int& iSet)
+   bool  geo::locality_sunset(string strCountry, string strLocality, int& iRise, int& iSet)
    {
 
       auto psystem = system()->m_paxissystem;
@@ -638,7 +638,7 @@ namespace geo
    }
 
 
-   string department::initial_locality_time_zone(openweather_city* pcity, double& dZone)
+   string geo::initial_locality_time_zone(openweather_city* pcity, double& dZone)
    {
 
       ::datetime::time_zone timezone;
@@ -652,7 +652,7 @@ namespace geo
    }
 
 
-   string  department::initial_locality_time_zone(string strCountry, string strLocality, double& dZone)
+   string  geo::initial_locality_time_zone(string strCountry, string strLocality, double& dZone)
    {
 
       string str;
@@ -793,7 +793,7 @@ namespace geo
    }
 
    // remark: initial does mean "official default" is certainly a rough guess
-   string  department::initial_country_time_zone(string strCountry)
+   string  geo::initial_country_time_zone(string strCountry)
    {
 
 
@@ -1044,7 +1044,7 @@ namespace geo
 
 
 
-   string department::utc_offset_string(double dUTCOffset)
+   string geo::utc_offset_string(double dUTCOffset)
    {
 
       if (dUTCOffset == 1000000.0)
@@ -1092,7 +1092,7 @@ namespace geo
    }
 
 
-   double department::time_zone(string str, string strCountryCode)
+   double geo::time_zone(string str, string strCountryCode)
    {
       str.make_lower();
       strCountryCode.make_lower();
@@ -1326,7 +1326,7 @@ namespace geo
    }
 
 
-   ::datetime::time_zone department::get_time_zone(openweather_city* pcity)
+   ::datetime::time_zone geo::get_time_zone(openweather_city* pcity)
    {
 
       if (::is_null(pcity))
@@ -1414,7 +1414,7 @@ namespace geo
    }
 
 
-   ::datetime::time_zone department::_get_time_zone(openweather_city* pcity)
+   ::datetime::time_zone geo::_get_time_zone(openweather_city* pcity)
    {
 
       return get_time_zone(pcity->m_dLat, pcity->m_dLon);
@@ -1422,7 +1422,7 @@ namespace geo
    }
 
 
-   ::datetime::time_zone department::get_time_zone(double dLat, double dLng)
+   ::datetime::time_zone geo::get_time_zone(double dLat, double dLng)
    {
 
       if (!m_bLoadedLocalityTimeZoneFromFile)
@@ -1500,7 +1500,7 @@ namespace geo
    }
 
 
-   ::datetime::time_zone department::_get_time_zone(double dLat, double dLng)
+   ::datetime::time_zone geo::_get_time_zone(double dLat, double dLng)
    {
 
       ::datetime::time_zone timezone;
@@ -1552,7 +1552,7 @@ namespace geo
    }
 
 
-   ::payload department::get_weather(openweather_city* pcity)
+   ::payload geo::get_weather(openweather_city* pcity)
    {
 
       if (!m_bLoadedCityWeatherFromFile)
@@ -1635,7 +1635,7 @@ namespace geo
    }
 
 
-   ::payload department::_get_weather(openweather_city * pcity)
+   ::payload geo::_get_weather(openweather_city * pcity)
    {
 
       property_set set;
@@ -1677,7 +1677,7 @@ namespace geo
    }
 
 
-   void department::set_city_time_zone_modified()
+   void geo::set_city_time_zone_modified()
    {
 
       m_bCityTimeZoneModified = true;
@@ -1731,7 +1731,7 @@ namespace geo
    }
 
 
-   void department::set_locality_time_zone_modified()
+   void geo::set_locality_time_zone_modified()
    {
 
       m_bLocalityTimeZoneModified = true;
@@ -1792,7 +1792,7 @@ namespace geo
    }
 
 
-   void department::set_city_weather_modified()
+   void geo::set_city_weather_modified()
    {
 
       m_bCityWeatherModified = true;
@@ -1846,7 +1846,7 @@ namespace geo
    }
 
 
-   void department::save_city_time_zone()
+   void geo::save_city_time_zone()
    {
       
       ::file::path path = m_pathLocalityTimeZoneFile;
@@ -1876,7 +1876,7 @@ namespace geo
    }
 
 
-   void department::save_locality_time_zone()
+   void geo::save_locality_time_zone()
    {
 
       ::file::path path = m_pathLocalityTimeZoneFile;
@@ -1906,7 +1906,7 @@ namespace geo
    }
 
 
-   void department::save_city_weather()
+   void geo::save_city_weather()
    {
 
       ::file::path path = m_pathCityWeatherFile;

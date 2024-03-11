@@ -19,7 +19,7 @@ namespace axis
       //::pointer<class ::xml::department>              m_pxml;
 
 
-      ::pointer<class ::geo::department>              m_pgeo;
+      ::pointer<class ::geo::geo>                     m_pgeo;
 
 
       ::pointer<::networking::email_department>      m_pemaildepartment;
@@ -75,7 +75,7 @@ namespace axis
 
       //::xml::department &                          xml();
 
-      ::geo::department &                          geo();
+      ::geo::geo &                          geo();
 
       ::pointer<::account::user_set>              userset();
 

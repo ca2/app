@@ -4,7 +4,7 @@
 #include "application.h"
 #include "acme/constant/id.h"
 #include "axis/networking/email_department.h"
-#include "axis/platform/geo_department.h"
+#include "axis/platform/geo.h"
 #include "acme/platform/profiler.h"
 #include "acme/platform/system_setup.h"
 #include "axis/constant/idpool.h"
@@ -135,7 +135,7 @@ namespace axis
 
       aura::system::on_set_platform();
 
-      factory()->add_factory_item < ::geo::department >();
+      factory()->add_factory_item < ::geo::geo >();
       factory()->add_factory_item < ::axis::user, ::user::user >();
       factory()->add_factory_item < ::axis::session, ::acme::session >();
 
@@ -428,7 +428,7 @@ namespace axis
 
 
 
-   ::geo::department& system::geo()
+   ::geo::geo& system::geo()
    {
 
       if (!m_pgeo)

@@ -161,7 +161,7 @@ payload::payload(std::nullptr_t) :
 //}
 
 
-payload::payload(::particle * pelement) :
+payload::payload(::subparticle * pelement) :
    m_etype(e_type_new)
 #if REFERENCING_DEBUGGING
    , m_preferer(nullptr)
@@ -174,12 +174,12 @@ payload::payload(::particle * pelement) :
 
 #endif
 
-   operator = ((::particle *) pelement);
+   operator = ((::subparticle *) pelement);
 
 }
 
 
-payload::payload(const ::particle & particle) :
+payload::payload(const ::subparticle & particle) :
    m_etype(e_type_new)
 #if REFERENCING_DEBUGGING
    , m_preferer(nullptr)
@@ -9065,10 +9065,10 @@ void payload::_001Add(const string_array & straParam)
 }
 
 
-::payload & payload::operator = (const ::particle & o)
+::payload & payload::operator = (const ::subparticle & o)
 {
 
-   _set_element((::particle *) &o);
+   _set_element((::subparticle *) &o);
 
    return *this;
 

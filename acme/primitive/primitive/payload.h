@@ -182,7 +182,7 @@ public:
    payload(::string * pstr);
    payload(::payload * ppayload);
    payload(::property * pproperty);
-   payload(::particle * pparticle);
+   payload(::subparticle * pparticle);
    payload(class ::time * ptime);
    template < character_range CHARACTER_RANGE >
    payload(const CHARACTER_RANGE & range);
@@ -198,7 +198,7 @@ public:
    payload(const ::earth::time & time);
    payload(const ::color::color & color);
    payload(const ::color::hls & hls);
-   payload(const ::particle & particle);
+   payload(const ::subparticle & particle);
    payload(const ::file::path & path);
    payload(const ::string_array & stra);
    payload(const ::i32_array & ia);
@@ -713,7 +713,7 @@ public:
 
    inline payload & operator = (nullptr_t){ set_type(e_type_null, false); return *this; }
 
-   inline payload & operator = (::particle * pelement)
+   inline payload & operator = (::subparticle * pelement)
    {
 
       _set_element(pelement);
@@ -747,7 +747,7 @@ public:
 
 
 
-   payload & operator = (const ::particle & o);
+   payload & operator = (const ::subparticle & o);
 
    payload & operator = (const ::file::path & path);
 

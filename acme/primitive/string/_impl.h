@@ -535,12 +535,10 @@ string_base < ITERATOR_TYPE > const_string_range < ITERATOR_TYPE > ::lowered() c
 
 
 template < typename ITERATOR_TYPE >
-::string_base < ITERATOR_TYPE > string_range < ITERATOR_TYPE > ::consume_quoted_value()
+string_base < ITERATOR_TYPE >  string_range < ITERATOR_TYPE > ::consume_quoted_value()
 {
 
    string_base < ITERATOR_TYPE > str;
-
-   //auto & range = *this;
 
    auto pszStart = this->m_begin;
 
@@ -550,6 +548,34 @@ template < typename ITERATOR_TYPE >
       throw_parsing_exception("Quote character is required here");
 
       return str;
+
+   }
+
+   if (!defer_consume_quoted_value(str))
+   {
+
+      throw_parsing_exception("Quote character is required here, premature end");
+
+   }
+
+   return str;
+
+}
+
+
+
+template < typename ITERATOR_TYPE >
+bool string_range < ITERATOR_TYPE > ::defer_consume_quoted_value(string_base < ITERATOR_TYPE >& str)
+{
+
+   str.empty();
+
+   auto pszStart = this->m_begin;
+
+   if (*pszStart != '\"' && *pszStart != '\'')
+   {
+
+      return false;
 
    }
 
@@ -569,9 +595,7 @@ template < typename ITERATOR_TYPE >
       if (this->is_empty() || *this->m_begin == '\0')
       {
 
-         throw_parsing_exception("Quote character is required here, premature end");
-
-         return str;
+         return false;
 
       }
 
@@ -583,9 +607,7 @@ template < typename ITERATOR_TYPE >
          if (this->is_empty())
          {
 
-            throw_parsing_exception("Quote character is required here, premature end");
-
-            return str;
+            return false;
 
          }
 
@@ -629,7 +651,7 @@ template < typename ITERATOR_TYPE >
 
    str.release_buffer();
 
-   return str;
+   return true;
 
 }
 

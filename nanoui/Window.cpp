@@ -85,13 +85,13 @@ void Window::on_destroy_window()
 
          pcontext->font_size(18.0f);
          pcontext->font_face("sans-bold");
-         pcontext->text_bounds(0, 0, m_title, m_boundsHeader);
+         pcontext->text_bounds(0, 0, m_title, &m_boundsHeader);
 
       }
 
       return size_i32(
-         ::maximum(sizeResult.cx(), (int)(m_boundsHeader[2] - m_boundsHeader[0] + 20)),
-         ::maximum(sizeResult.cy(), (int)(m_boundsHeader[3] - m_boundsHeader[1]))
+         ::maximum(sizeResult.cx(), (int)(m_boundsHeader.width() + 20)),
+         ::maximum(sizeResult.cy(), (int)(m_boundsHeader.height()))
       );
    }
 

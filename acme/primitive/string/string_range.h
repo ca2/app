@@ -1624,6 +1624,8 @@ public:
 
    ::string_base < ITERATOR_TYPE > consume_quoted_value();
 
+   bool defer_consume_quoted_value(string_base < ITERATOR_TYPE > & str);
+
    ::string_base < ITERATOR_TYPE > consume_token_until_any_character_in(const SCOPED_STRING & scopedstrCharacters = 0, bool bReturnSeparator = false, bool bSkipAnyCharactersIn = true);
 
    bool defer_consume(const SCOPED_STRING & range)

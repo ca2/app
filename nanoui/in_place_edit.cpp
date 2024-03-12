@@ -100,17 +100,15 @@ namespace nanoui
    ::rectangle_f32 in_place_edit::get_outer_rectangle(in_place_edit_mapper* pmapper)
    {
 
-      auto top_left = m_rectangleInternal.top_left();
+      return pmapper->inner_to_outer(m_rectangleInternal, this);
 
-      auto bottom_right = m_rectangleInternal.bottom_right();
+   }
 
-      ::rectangle_f32 rectangleOuter;
 
-      rectangleOuter.top_left() = pmapper->inner_to_outer(top_left, this);
+   ::rectangle_f32 in_place_edit::get_edit_rectangle(in_place_edit_mapper* pmapper)
+   {
 
-      rectangleOuter.bottom_right() = pmapper->inner_to_outer(bottom_right, this);
-
-      return rectangleOuter;
+      return get_outer_rectangle(pmapper);
 
    }
 

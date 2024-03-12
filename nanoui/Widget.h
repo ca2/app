@@ -226,6 +226,8 @@ namespace nanoui
       // returns true if something changed that needs redrawing
       virtual bool end_in_place_edit();
 
+      virtual void end_all_in_place_edits();
+
       virtual bool on_mouse_button_in_place_edit(in_place_edit* pinplacedit, bool bDown);
       virtual void on_before_in_place_edit(in_place_edit* pinplaceedit);
 

@@ -1464,11 +1464,20 @@ namespace nanoui
    }
 
 
+   void Widget::end_all_in_place_edits()
+   {
+
+
+   }
+
+
    bool Widget::on_mouse_button_in_place_edit(in_place_edit* pinplaceedit, bool bDown)
    {
 
       if (::is_null(pinplaceedit))
       {
+
+         end_all_in_place_edits();
 
          return false;
 
@@ -1496,6 +1505,8 @@ namespace nanoui
 
          }
 
+         return true;
+
       }
       else
       {
@@ -1503,7 +1514,7 @@ namespace nanoui
          if (pinplaceedit->m_iClickCount == 2)
          {
 
-            auto rectangleEdit = pinplaceedit->get_outer_rectangle(this);
+            auto rectangleEdit = pinplaceedit->get_edit_rectangle(this);
 
             if (rectangleEdit)
             {
@@ -1511,8 +1522,6 @@ namespace nanoui
                //r += layerp_pos;
 
 //                        r += m_xyLayerViewerTranslate;
-
-               rectangleEdit.set_width(rectangleEdit.width() * 3.0);
 
                auto strName = pinplaceedit->get_name_for_editing();
 
@@ -1555,19 +1564,19 @@ namespace nanoui
 
             }
 
+            return false;
+
          }
          else if (pinplaceedit->m_iClickCount > 2)
          {
 
-            pinplaceedit->m_iClickCount = -1;
-
-            pinplaceedit->set_need_update();
+            end_all_in_place_edits();
 
          }
 
-      }
+         return false;
 
-      return true;
+      }
 
    }
 

@@ -42,6 +42,7 @@ namespace nanoui
       virtual ::string get_name_for_editing() const;
 
       virtual ::rectangle_f32 get_outer_rectangle(in_place_edit_mapper* pmapper);
+      virtual ::rectangle_f32 get_edit_rectangle(in_place_edit_mapper* pmapper);
 
 
    };

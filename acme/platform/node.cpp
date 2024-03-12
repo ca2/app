@@ -2916,7 +2916,7 @@ return false;
    }
 
    
-   void node::set_user_permanent_environment_variable(const ::scoped_string& scopedstr, const ::scoped_string& strPayload)
+   void node::set_user_permanent_environment_variable(const ::scoped_string& scopedstr, const ::scoped_string& strPayload, bool bNoSystemNotify)
    {
 
       throw ::interface_only();

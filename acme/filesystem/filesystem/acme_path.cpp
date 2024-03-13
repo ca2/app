@@ -700,9 +700,9 @@ void acme_path::defer_free_name_by_renaming_to_last_in_sequence(const ::file::pa
 
       auto pathNew = get_sequence_path(path, iSequence, iZeroPaddingWidth);
 
-      auto etype = get_type(path);
+      auto etypeNew = get_type(pathNew);
 
-      if (!(etype & ::file::e_type_exists))
+      if (!(etypeNew & ::file::e_type_exists))
       {
 
          rename(pathNew, path);

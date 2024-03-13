@@ -618,5 +618,101 @@ void acme_path::rename(const ::file::path& pathNewName, const ::file::path& path
 
    throw interface_only();
 
+}
+
+
+::file::path acme_path::get_sequence_path(const ::file::path& path, ::index iSequence, int iZeroPaddingWidth)
+{
+
+   if (iSequence <= 0)
+   {
+
+      return path;
+
+   }
+
+   ::string strFormat;
+
+   ::string strFolderPathAndTitle = path.folder() / path.title();
+
+   ::string strAllExtensions = path.all_extensions();
+
+   ::string str;
+
+   if (strAllExtensions.has_char())
+   {
+
+      if (iZeroPaddingWidth <= 1)
+      {
+
+         strFormat = "%s - %d.%s";
+
+      }
+      else
+      {
+
+         strFormat.formatf("%%s - %%0%dd.%%s", iZeroPaddingWidth);
+
+      }
+
+      str.formatf(strFormat, strFolderPathAndTitle.c_str(), iSequence, strAllExtensions.c_str());
+
+   }
+   else
+   {
+
+      if (iZeroPaddingWidth <= 1)
+      {
+
+         strFormat = "%s - %d";
+
+      }
+      else
+      {
+
+         strFormat.formatf("%%s - %%0%dd", iZeroPaddingWidth);
+
+      }
+
+      str.formatf(strFormat, strFolderPathAndTitle.c_str(), iSequence);
+
+   }
+
+   return str;
+
+}
+
+
+void acme_path::defer_free_name_by_renaming_to_last_in_sequence(const ::file::path& path, int iZeroPaddingWidth)
+{
+
+   auto etype = get_type(path);
+
+   if (!(etype & ::file::e_type_exists))
+   {
+
+      return;
+
+   }
+
+   for(::index iSequence = 2; iSequence < ::numeric_info < decltype(iSequence) >::maximum(); iSequence++)
+   {
+
+      auto pathNew = get_sequence_path(path, iSequence, iZeroPaddingWidth);
+
+      auto etype = get_type(path);
+
+      if (!(etype & ::file::e_type_exists))
+      {
+
+         rename(pathNew, path);
+
+         return;
+
+      }
+
+   }
+
+   throw ::exception(error_overflow);
 
 }

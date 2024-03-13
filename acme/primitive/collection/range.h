@@ -1051,7 +1051,7 @@ public:
 
 
    template<::comparison::equality<ITEM> EQUALITY>
-   static constexpr const_iterator
+   static constexpr THIS_RAW_RANGE
       _static_skip_any_character_in(THIS_RAW_RANGE range, const THIS_RAW_RANGE & rangeBlock, EQUALITY equality) noexcept
    {
 
@@ -1083,7 +1083,7 @@ public:
 
                // so p is the end of the skip_any_character_in for matching items...
 
-               return range.begin();
+               return range;
 
             }
 
@@ -1097,7 +1097,7 @@ public:
       // each skip_any_character_inned item matched some item in range...
       // return address immediately after end of skip_any_character_inning...
 
-      return range.begin();
+      return range;
 
    }
 
@@ -1122,7 +1122,7 @@ public:
 
 
    template<::comparison::equality<ITEM> EQUALITY>
-   constexpr const_iterator _skip_any_character_in(const THIS_RAW_RANGE & rangeBlock, EQUALITY equality) const
+   constexpr THIS_RAW_RANGE _skip_any_character_in(const THIS_RAW_RANGE & rangeBlock, EQUALITY equality) const
    {
 
       return _static_skip_any_character_in(*this, rangeBlock, equality);

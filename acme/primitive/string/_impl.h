@@ -676,7 +676,7 @@ template < typename ITERATOR_TYPE >
    if(bSkipAnyCharactersIn)
    {
       
-      auto p2 = (*this)(p1).skip_any_character_in(scopedstrCharacters);
+      auto p2 = (*this)(p1).skip_any_character_in(scopedstrCharacters).begin();
       
       if(bReturnSeparator)
       {

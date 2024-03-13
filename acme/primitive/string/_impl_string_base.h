@@ -5387,7 +5387,7 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::trim_left(const S
 //string_base < ITERATOR_TYPE >& string_base < ITERATOR_TYPE >::trim_left(PCHAR szTargets)
 {
 
-   auto p = this->skip_any_character_in(scopedstrCharacters);
+   auto p = this->skip_any_character_in(scopedstrCharacters).begin();
 
    if (p > this->begin())
    {

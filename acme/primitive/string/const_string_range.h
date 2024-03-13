@@ -747,7 +747,7 @@ public:
 
    using BASE_RANGE::_skip_any_character_in;
 
-   constexpr const_iterator skip_any_character_in(const SCOPED_STRING& range) const {
+   constexpr THIS_RAW_RANGE skip_any_character_in(const SCOPED_STRING& range) const {
 
       return this->_skip_any_character_in(range, ::comparison::comparison<ITEM>());
 
@@ -755,7 +755,7 @@ public:
 
 
    constexpr strsize skip_any_character_in_index(const SCOPED_STRING& range, ::strsize start = 0) const {
-      return this->index_of((*this)(start).skip_any_character_in(range));
+      return this->index_of((*this)(start).skip_any_character_in(range).begin());
    }
 
 
@@ -1371,9 +1371,9 @@ public:
 
    const_iterator find_first_whitespace() const RELEASENOTHROW { return this->find_first_character_in("\t\r\n "); }
 
-   const_iterator skip_whitespace() const RELEASENOTHROW { return this->skip_any_character_in("\t\r\n "); }
+   THIS_RAW_RANGE skip_whitespace() const RELEASENOTHROW { return this->skip_any_character_in("\t\r\n "); }
 
-   ::strsize count_left(const SCOPED_STRING& range = "\t\r\n ") const RELEASENOTHROW { return this->skip_any_character_in(range) - this->begin(); }
+   ::strsize count_left(const SCOPED_STRING& range = "\t\r\n ") const RELEASENOTHROW { return this->skip_any_character_in(range).begin() - this->begin(); }
 
    //    string_range& trim_left(const SCOPED_STRING& range = "\t\r\n ") RELEASENOTHROW { this->m_begin += count_left(range); return *this; }
 

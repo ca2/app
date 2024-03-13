@@ -459,7 +459,7 @@ namespace integration
 
                }
 
-               p = path(p).skip_any_character_in("/\\");
+               p = path(p).skip_any_character_in("/\\").begin();
 
                path = p;
 

@@ -302,8 +302,8 @@ list(APPEND library_source
         platform/checked.cpp
         #platform/cregexp.cpp
         #platform/cregexp_util.cpp
-        platform/geo_department.cpp
-        platform/geo_department.h
+        platform/geo.cpp
+        platform/geo.h
         #platform/muldiv64.cpp
         platform/openweather_city.h
         platform/session.cpp

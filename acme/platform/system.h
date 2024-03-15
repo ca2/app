@@ -55,6 +55,11 @@ namespace acme
       int                              m_iMatterFromHttpCache;
 
       const char* m_pszMain;
+      
+      bool                                                  m_bDarkMode;
+      ::color::color                                        m_colorBackground;
+      double                                                m_dLuminance;
+
 
       // END FROM MAIN (Now APPLICATION_FLAGS)
 
@@ -650,7 +655,21 @@ namespace acme
       virtual ::string get_application_server_name();
 
 
+      virtual ::color::color background_color() const;
 
+      virtual double luminance() const;
+
+      virtual void background_color(const ::color::color & color);
+      
+      
+      virtual bool dark_mode() const;
+      virtual void on_application_dark_mode_change();
+
+//      virtual int get_simple_ui_darkness();
+
+//      virtual void set_simple_ui_darkness(int iWeatherDarkness);
+
+      virtual void set_dark_mode(bool bDark);
    };
 
 

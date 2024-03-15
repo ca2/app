@@ -105,9 +105,6 @@ namespace acme
       //bool                                                m_bUserDarkMode;
 
       //bool                                                m_bDarkModeSystem;
-      bool                                                  m_bDarkMode;
-      ::color::color                                        m_colorBackground;
-      double                                                m_dLuminance;
       //int                                                   m_iWeatherDarkness;
       ::file::path                                          m_pathModule;
 
@@ -258,11 +255,6 @@ namespace acme
 
       virtual bool dark_mode() const;
 
-      virtual ::color::color background_color() const;
-
-      virtual double luminance() const;
-
-      virtual void background_color(const ::color::color & color);
 
 //      virtual int get_simple_ui_darkness();
 

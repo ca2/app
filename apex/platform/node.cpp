@@ -318,10 +318,14 @@ namespace apex
 
    void node::on_operating_system_user_color_change()
    {
+      
+      bool bOperatingSystemDarkMode = this->dark_mode();
 
+      system()->set_dark_mode(bOperatingSystemDarkMode);
       auto psystem = system()->m_papexsystem;
 
       psystem->signal(id_operating_system_user_color_change);
+
 
    }
 

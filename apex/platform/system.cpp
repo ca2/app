@@ -5204,6 +5204,15 @@ namespace apex
    }
 
 
+
+   void system::on_application_dark_mode_change()
+   {
+   
+      this->signal(id_application_dark_mode_change);
+
+   }
+
+
 } // namespace apex
 
 

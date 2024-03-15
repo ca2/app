@@ -438,7 +438,7 @@ namespace apex
 
       ::string fetch_public_internet_domain_extension_list_text() override;
 
-
+      void on_application_dark_mode_change() override;
 
 
    };

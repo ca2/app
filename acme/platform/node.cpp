@@ -990,67 +990,14 @@ namespace acme
    bool node::dark_mode() const 
    { 
       
-      return m_bDarkMode; 
-   
-   }
-
-   
-   ::color::color node::background_color() const 
-   {
+      throw interface_only();
       
-      return m_colorBackground; 
+      return false;
    
    }
 
-
-   double node::luminance() const 
-   { 
-      
-      return m_dLuminance; 
    
-   }
 
-
-   void node::background_color(const ::color::color & color)
-   {
-
-      if (m_colorBackground == color)
-      {
-
-         return;
-
-      }
-
-      m_colorBackground = color;
-
-      m_dLuminance = m_colorBackground.get_luminance();
-
-      set_dark_mode(m_dLuminance < 0.5);
-
-   }
-
-
-   void node::set_dark_mode(bool bDark)
-   {
-
-      m_bDarkMode = bDark;
-
-      if (m_bDarkMode)
-      {
-
-         ::acme::get()->platform()->informationf("background_color :: Dark\n");
-
-      }
-      else
-      {
-
-         ::acme::get()->platform()->informationf("background_color :: Lite\n");
-
-      }
-
-      on_operating_system_user_color_change();
-
-   }
 
 
 //   int node::get_simple_ui_darkness()
@@ -3839,14 +3786,14 @@ bool node::are_framework_shared_libraries_busy(const ::scoped_string & scopedstr
    }
 
 
-//   void node::set_dark_mode(bool bDarkMode)
-//   {
-//
-//      //throw ::interface_only();
-//
-//      //node()->set_dark_mode(bDarkMode);
-//
-//   }
+   void node::set_dark_mode(bool bDarkMode)
+   {
+
+      throw ::interface_only();
+
+      //node()->set_dark_mode(bDarkMode);
+
+   }
 
 
    void node::file_open(const ::file::path & pathTarget, const ::string & strParams, const ::file::path & pathFolder)

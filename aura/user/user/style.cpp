@@ -1457,7 +1457,7 @@ namespace user
          if (is_dark_mode())
          {
 
-            crBk = node()->background_color();
+            crBk = system()->background_color();
 
             //crBk = argb(255, 0x40, 0x40, 0x40);
 
@@ -1465,7 +1465,7 @@ namespace user
          else
          {
 
-            crBk = node()->background_color();
+            crBk = system()->background_color();
             //crBk = argb(255, 255, 255, 255);
 
          }

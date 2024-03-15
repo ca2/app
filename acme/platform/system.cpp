@@ -2341,23 +2341,24 @@ namespace acme
       call((::enum_id)iId, iPayload);
 
    }
+
    void system::handle(::topic * ptopic, ::context * pcontext)
    {
 
 
-      if (ptopic->m_atom == id_set_dark_mode)
+      if (ptopic->m_atom == id_get_operating_system_dark_mode_reply)
       {
 
          if (ptopic->payload("wparam").is_true())
          {
 
-            m_pnode->background_color(::color::black);
+            background_color(::color::black);
 
          }
          else
          {
 
-            m_pnode->background_color(::color::white);
+            background_color(::color::white);
 
          }
 
@@ -3085,6 +3086,76 @@ namespace acme
    }
 
 
+::color::color system::background_color() const
+{
+   
+   return m_colorBackground;
+
+}
+
+
+double system::luminance() const
+{
+   
+   return m_dLuminance;
+
+}
+
+
+void system::background_color(const ::color::color & color)
+{
+
+   if (m_colorBackground == color)
+   {
+
+      return;
+
+   }
+
+   m_colorBackground = color;
+
+   m_dLuminance = m_colorBackground.get_luminance();
+
+   set_dark_mode(m_dLuminance < 0.5);
+
+}
+
+
+void system::set_dark_mode(bool bDark)
+{
+
+   m_bDarkMode = bDark;
+
+   if (m_bDarkMode)
+   {
+
+      ::acme::get()->platform()->informationf("background_color :: Dark\n");
+
+   }
+   else
+   {
+
+      ::acme::get()->platform()->informationf("background_color :: Lite\n");
+
+   }
+
+   on_application_dark_mode_change();
+}
+
+
+bool system::dark_mode() const
+{
+   
+   return m_bDarkMode;
+
+}
+
+
+void system::on_application_dark_mode_change()
+{
+}
+   
+   
 
 } // namespace acme
 

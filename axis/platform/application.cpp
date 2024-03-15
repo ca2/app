@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "application.h"
+#include "geo.h"
 #include "session.h"
 #include "system.h"
 ////#include "acme/exception/exception.h"
@@ -62,6 +63,14 @@ namespace axis
    {
 
       ::aura::application::initialize(pparticle);
+
+   }
+
+
+   ::pointer < ::geo::geo > application::create_geo()
+   {
+
+      return __create_new < ::geo::geo >();;
 
    }
 

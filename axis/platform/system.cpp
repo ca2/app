@@ -434,7 +434,7 @@ namespace axis
       if (!m_pgeo)
       {
 
-         __construct(m_pgeo);
+         m_pgeo = application()->m_paxisapplication->create_geo();
 
       }
 

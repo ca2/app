@@ -20,8 +20,11 @@
 #include "acme/filesystem/filesystem/file_context.h"
 #include "apex/networking/open_weather_city.h"
 #include "apex/networking/http/context.h"
+#include "axis/platform/application.h"
+
 
 #include <unac.h>
+
 
 namespace geo
 {
@@ -1508,7 +1511,7 @@ namespace geo
       property_set set;
 
       string strLat;
-         
+
       strLat.formatf("%0.2f", dLat);
 
       string strLng;
@@ -1527,7 +1530,7 @@ namespace geo
          set["post"]["lng"] = strLng;
 
          //auto estatus = 
-         
+
          auto payload = api_get(strUrl, set);
 
          //if (!estatus)
@@ -1616,7 +1619,7 @@ namespace geo
          if (stringtimeout.m_str.has_char())
          {
 
-            set_locality_time_zone_modified();
+            set_city_weather_modified();
 
          }
 

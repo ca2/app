@@ -623,7 +623,7 @@ namespace geo
 
       auto psystem = system()->m_paxissystem;
 
-      auto pcity = psystem->geo().openweather_find_city(strLocality + ", " + strCountry);
+      auto pcity = psystem->geo()->openweather_find_city(strLocality + ", " + strCountry);
 
       if (pcity == nullptr)
       {
@@ -690,7 +690,7 @@ namespace geo
 
       auto psystem = system()->m_paxissystem;
 
-      auto pcity = psystem->geo().openweather_find_city(strQ);
+      auto pcity = psystem->geo()->openweather_find_city(strQ);
 
       return initial_locality_time_zone(pcity, dZone);
 

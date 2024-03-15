@@ -428,7 +428,7 @@ namespace axis
 
 
 
-   ::geo::geo& system::geo()
+   ::geo::geo * system::geo()
    {
 
       if (!m_pgeo)
@@ -438,7 +438,7 @@ namespace axis
 
       }
 
-      return *m_pgeo;
+      return m_pgeo;
 
    }
 

@@ -75,7 +75,7 @@ namespace axis
 
       //::xml::department &                          xml();
 
-      ::geo::geo &                          geo();
+      ::geo::geo *                          geo();
 
       ::pointer<::account::user_set>              userset();
 

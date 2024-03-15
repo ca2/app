@@ -67,7 +67,7 @@ namespace geo
    void geo::defer_check_openweather_city_list()
    {
 
-      synchronous_lock synchronouslock(get_openweather_city_mutex());
+      _synchronous_lock synchronouslock(get_openweather_city_mutex());
 
       if (m_straCityLo.get_size() == m_straCity.get_size()
          && m_straCity.get_size() == m_iaIds.get_size()
@@ -589,7 +589,7 @@ namespace geo
 
       string str = pcontext->m_papexcontext->http().get(strGetUrl, set);
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       const ::ansi_character * pszJson = str;
 
@@ -1362,7 +1362,7 @@ namespace geo
 
                binary_stream reader(pfile);
 
-               synchronous_lock synchronouslock(m_pmutexCityTimeZone);
+               _synchronous_lock synchronouslock(m_pmutexCityTimeZone);
 
                reader >> m_cityTimeZone;
 
@@ -1379,7 +1379,7 @@ namespace geo
       try
       {
 
-         synchronous_lock synchronouslock(m_pmutexCityTimeZone);
+         _synchronous_lock synchronouslock(m_pmutexCityTimeZone);
 
          auto& timezone = m_cityTimeZone[iOpenweatherCity];
 
@@ -1442,7 +1442,7 @@ namespace geo
 
                binary_stream reader(pfile);
 
-               synchronous_lock synchronouslock(m_pmutexLocalityTimeZone);
+               _synchronous_lock synchronouslock(m_pmutexLocalityTimeZone);
 
                reader >> m_localityTimeZone;
 
@@ -1463,7 +1463,7 @@ namespace geo
       try
       {
 
-         synchronous_lock synchronouslock(m_pmutexCityTimeZone);
+         _synchronous_lock synchronouslock(m_pmutexCityTimeZone);
 
          auto& timezone = m_localityTimeZone[dLat][dLng];
 
@@ -1569,7 +1569,7 @@ namespace geo
 
             binary_stream reader(file);
 
-            synchronous_lock synchronouslock(m_pmutexCityWeather);
+            _synchronous_lock synchronouslock(m_pmutexCityWeather);
 
             reader >> m_cityWeather;
 
@@ -1598,7 +1598,7 @@ namespace geo
       try
       {
 
-         synchronous_lock synchronouslock(m_pmutexCityTimeZone);
+         _synchronous_lock synchronouslock(m_pmutexCityTimeZone);
 
          auto& stringtimeout = m_cityWeather[pcity->m_iId];
 
@@ -1861,7 +1861,7 @@ namespace geo
 
             binary_stream writer(pfile);
 
-            synchronous_lock synchronouslock(m_pmutexCityTimeZone);
+            _synchronous_lock synchronouslock(m_pmutexCityTimeZone);
 
             writer << m_cityTimeZone;
 
@@ -1891,7 +1891,7 @@ namespace geo
 
             binary_stream writer(pfile);
 
-            synchronous_lock synchronouslock(m_pmutexLocalityTimeZone);
+            _synchronous_lock synchronouslock(m_pmutexLocalityTimeZone);
 
             writer << m_localityTimeZone;
 
@@ -1918,7 +1918,7 @@ namespace geo
 
          binary_stream writer(pfile);
 
-         synchronous_lock synchronouslock(m_pmutexCityWeather);
+         _synchronous_lock synchronouslock(m_pmutexCityWeather);
 
          writer << m_cityWeather;
 

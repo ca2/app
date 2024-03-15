@@ -79,6 +79,8 @@ namespace acme
 
       //m_pWindowingWin32Node = nullptr;
 
+      m_bOperatingSystemDarkMode = false;
+
    }
 
 
@@ -990,14 +992,9 @@ namespace acme
    bool node::dark_mode() const 
    { 
       
-      throw interface_only();
-      
-      return false;
+      return m_bOperatingSystemDarkMode;
    
    }
-
-   
-
 
 
 //   int node::get_simple_ui_darkness()

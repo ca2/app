@@ -104,7 +104,7 @@ namespace acme
 
       //bool                                                m_bUserDarkMode;
 
-      //bool                                                m_bDarkModeSystem;
+      bool                                                  m_bOperatingSystemDarkMode;
       //int                                                   m_iWeatherDarkness;
       ::file::path                                          m_pathModule;
 

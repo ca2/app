@@ -772,14 +772,24 @@ class thread;
 //class os_context;
 
 
-namespace node_gtk
+namespace node_gtk3
 {
 
 
    class node;
 
 
-} // namespace node_gtk
+} // namespace node_gtk3
+
+
+namespace node_gtk4
+{
+
+
+   class node;
+
+
+} // namespace node_gtk4
 
 
 namespace node_gnome

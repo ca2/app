@@ -1011,7 +1011,14 @@ namespace acme
    ::os_theme_colors * node::_get_os_theme_colors()
    {
 
-     return m_pthemecolors;
+      if(!m_pthemecolors)
+      {
+
+         _fetch_user_color();
+
+      }
+
+      return m_pthemecolors;
 
    }
 
@@ -1058,17 +1065,21 @@ namespace acme
    }
 
 
-
-
    void node::_fetch_user_color()
    {
 
-      auto pthemecolors = _get_os_theme_colors();
-
-      if(!pthemecolors)
+      if(m_pthemecolors)
       {
 
-         pthemecolors = _new_os_theme_colors();
+         _del_os_theme_colors(m_pthemecolors);
+
+         m_pthemecolors = nullptr;
+
+      }
+
+      {
+
+         auto pthemecolors = _new_os_theme_colors();
 
          _fill_os_theme_colors(pthemecolors);
 

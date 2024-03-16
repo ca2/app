@@ -170,7 +170,7 @@ namespace user
 
          //}
 
-         system()->m_pnode->fetch_user_color();
+         //system()->m_pnode->fetch_user_color();
 
          m_puserstyle->default_style_construct();
 

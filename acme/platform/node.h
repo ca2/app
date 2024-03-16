@@ -22,7 +22,7 @@
 //#include "acme/primitive/time/time.h"
 #include "shell.h"
 
-
+struct os_theme_colors;
 namespace file { class set; }
 namespace windowing { class display; }
 class get_file_extension_mime_type;
@@ -84,6 +84,7 @@ namespace acme
       map < enum_character_set, ::string >                  m_mapCharacterSetDefaultSampleText;
       string_map < enum_character_set >                     m_mapCharacterSetEnum;
 
+      ::os_theme_colors *                                   m_pthemecolors;
 
       //:: IDENTIFIER_PREFIX_OPERATING_SYSTEM(_node)::node *  m_pNode;
 
@@ -255,6 +256,17 @@ namespace acme
 
       virtual bool dark_mode() const;
 
+      virtual ::os_theme_colors * _new_os_theme_colors();
+
+      virtual ::os_theme_colors * _get_os_theme_colors();
+
+      virtual void _fill_os_theme_colors(::os_theme_colors * pthemecolors);
+
+      virtual void _set_os_theme_colors(::os_theme_colors * pthemecolors);
+
+      virtual void _del_os_theme_colors(::os_theme_colors * pthemecolors);
+
+      virtual void _term_os_theme_colors();
 
 //      virtual int get_simple_ui_darkness();
 
@@ -263,6 +275,8 @@ namespace acme
       virtual void set_dark_mode(bool bDark);
 
       virtual void fetch_user_color();
+
+      virtual void _fetch_user_color();
 
       virtual void on_operating_system_user_theme_change();
 

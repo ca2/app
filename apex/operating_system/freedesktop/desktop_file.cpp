@@ -330,7 +330,9 @@ namespace freedesktop
 
       if (!acmefile()->exists(pathModuleIcon256)) {
 
-         auto pfileMainIcon256 = pcontext->m_papexcontext->file()->get_file("matter://main/icon-256.png",
+         auto pfilecontext = pcontext->m_papexcontext->file();
+
+         auto pfileMainIcon256 = pfilecontext->get_file("matter://main/icon-256.png",
                                                                             ::file::e_open_read);
 
          bool bNok = pfileMainIcon256.nok();

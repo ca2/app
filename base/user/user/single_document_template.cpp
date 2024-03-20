@@ -270,7 +270,7 @@ namespace user
       //if (! || !pusersystem->m_prequest)   // send initial update
       //{
 
-      pframe->send_message_to_descendants(e_message_system_update, ID_INITIAL_UPDATE, (lparam)0, true, true);
+      //pframe->send_message_to_descendants(e_message_system_update, ID_INITIAL_UPDATE, (lparam)0, true, true);
 
       //}
 

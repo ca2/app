@@ -129,7 +129,7 @@ void source::route(::topic * ptopic, ::context * pcontext)
          try
          {
 
-            pparticle->handle(ptopic, pcontext);
+            pparticle->call_handle(ptopic, pcontext);
 
          }
          catch (...)

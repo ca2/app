@@ -602,6 +602,30 @@ void particle::handle(::topic * ptopic, ::context * pcontext)
 }
 
 
+void particle::call_handle(::topic* ptopic, ::context* pcontext)
+{
+
+   handle(ptopic, pcontext);
+
+}
+
+
+void particle::call_handle_message(::message::message* pmessage)
+{
+
+   handle_message(pmessage);
+
+}
+
+
+void particle::call_handle_item(::item* pitem)
+{
+
+   handle_item(pitem);
+
+}
+
+
 bool particle::_is_set() const
 {
 
@@ -1843,14 +1867,14 @@ void particle::call(const ::atom & atom, i64 wParam, i64 lParam, ::particle * pp
 //}
 
 
-void particle::handle(::message::message * pmessage)
+void particle::handle_message(::message::message * pmessage)
 {
 
 
 }
 
 
-void particle::handle(::item * pmessage)
+void particle::handle_item(::item * pmessage)
 {
 
 

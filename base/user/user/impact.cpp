@@ -1041,10 +1041,10 @@ namespace user
    }
 
 
-   void impact::on_topic(const ::atom& atom, ::particle* pparticle, ::context* pcontext)
+   void impact::call_handle(::topic* ptopic, ::context* pcontext)
    {
 
-      if (atom == id_initial_update)
+      if (ptopic->m_atom == id_initial_update)
       {
 
          if (!get_document())
@@ -1063,7 +1063,7 @@ namespace user
 
       }
 
-      notify_topic(atom, pparticle, pcontext);
+      ::user::box::call_handle(ptopic, pcontext);
 
    }
 

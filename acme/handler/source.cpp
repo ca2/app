@@ -177,7 +177,7 @@ void source::notify_topic(const ::atom & atom, ::particle * pparticle, ::context
 
    }
 
-   handle(ptopic, pcontext);
+   call_handle(ptopic, pcontext);
 
    route(ptopic, pcontext);
 

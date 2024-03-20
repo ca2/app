@@ -1292,4 +1292,20 @@ void acme_directory::add_media_library_item(::media_library::item* pmedialibrary
 }
 
 
+::file::path acme_directory::windows()
+{
+
+   return {};
+
+}
+
+
+::file::path acme_directory::system_drive()
+{
+
+   return {};
+
+}
+
+
 

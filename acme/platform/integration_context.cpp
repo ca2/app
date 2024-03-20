@@ -506,7 +506,7 @@ namespace integration
    ::file::path context::base_integration_folder()
    {
 
-      return {};
+      return m_pathBaseIntegrationFolder;
 
    }
 
@@ -514,7 +514,7 @@ namespace integration
    ::file::path context::host_integration_folder()
    {
 
-      return base_integration_folder() / "_____" / node()->operating_system_summary()->m_strSlashedIntegration;
+      return m_pathBaseIntegrationFolder / node()->operating_system_summary()->m_strSlashedIntegration;
 
    }
 

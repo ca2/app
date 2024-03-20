@@ -150,7 +150,7 @@ namespace acme
       //virtual ::pointer < ::particle > create_quit_particle(::pointer<::acme::node>& pnode);
 
       //virtual ::pointer < ::particle > create_quit_particle();
-      
+      virtual ::file::path get_default_base_integration_folder();
       
       ///virtual void implement(::pointer<::acme::node>& pnode, ::pointer<::acme::system> & psystem);
 

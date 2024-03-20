@@ -256,9 +256,7 @@ namespace user
 
          //}
 
-
          pinteraction->on_topic(id_initial_update);
-
 
          //      ::pointer<::user::impact>pimpact = pinteraction;
          //

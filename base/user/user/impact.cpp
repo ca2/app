@@ -1041,6 +1041,33 @@ namespace user
    }
 
 
+   void impact::on_topic(const ::atom& atom, ::particle* pparticle, ::context* pcontext)
+   {
+
+      if (atom == id_initial_update)
+      {
+
+         if (!get_document())
+         {
+
+            return;
+
+         }
+
+         if (!get_document()->is_opened())
+         {
+
+            return;
+
+         }
+
+      }
+
+      notify_topic(atom, pparticle, pcontext);
+
+   }
+
+
    ::user::document * impact::get_document() const
    {
 

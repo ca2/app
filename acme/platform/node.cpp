@@ -346,6 +346,14 @@ namespace acme
    }
 
 
+   ::file::path node::get_default_base_integration_folder()
+   {
+
+      return {};
+
+   }
+
+
    void node::node_main()
    {
 

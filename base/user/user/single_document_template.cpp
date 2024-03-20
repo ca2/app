@@ -325,7 +325,7 @@ namespace user
 
          pdocument->m_bOpened = true;
 
-         pdocument->id_update_all_impacts(id_incoming_document);
+         pdocument->id_update_all_impacts(id_initial_update);
 
       }
       else

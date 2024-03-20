@@ -20,6 +20,7 @@ namespace integration
       boolean           m_bBuildDependencies;
 
 
+      ::file::path      m_pathBaseIntegrationFolder;
       ::file::path      m_pathProjectFolder;
       ::file::path      m_pathBuildFolder;
 

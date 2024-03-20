@@ -44,6 +44,9 @@ namespace user
       virtual void set_notify_user_interaction(::user::interaction* puserinteractionNotify);
 
 
+      void on_topic(const ::atom& atom, ::particle* pparticle, ::context* pcontext) override;
+
+     
       bool is_impact() override;
       ::user::document * get_document() const;
 

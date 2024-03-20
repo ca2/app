@@ -257,6 +257,10 @@ public:
    virtual void add_media_library_item(::media_library::item* pmedialibraryitem);
 
 
+   virtual ::file::path windows();
+   virtual ::file::path system_drive();
+
+
 };
 
 

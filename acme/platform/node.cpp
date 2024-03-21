@@ -25,6 +25,7 @@
 //#include "acme/primitive/collection/string_array.h"
 #include "acme/user/nano/button.h"
 #include "acme/user/nano/message_box.h"
+#include "acme/user/user/os_theme_colors.h"
 
 
 ::user::enum_desktop calculate_edesktop();
@@ -78,6 +79,10 @@ namespace acme
 
 
       //m_pWindowingWin32Node = nullptr;
+
+      m_bOperatingSystemDarkMode = false;
+
+      m_pthemecolors = nullptr;
 
    }
 
@@ -337,6 +342,14 @@ namespace acme
       }
 
       psystem->m_pnode.release();
+
+   }
+
+
+   ::file::path node::get_default_base_integration_folder()
+   {
+
+      return {};
 
    }
 
@@ -990,65 +1003,113 @@ namespace acme
    bool node::dark_mode() const 
    { 
       
-      return m_bDarkMode; 
-   
-   }
-
-   
-   ::color::color node::background_color() const 
-   {
-      
-      return m_colorBackground; 
+      return m_bOperatingSystemDarkMode;
    
    }
 
 
-   double node::luminance() const 
-   { 
-      
-      return m_dLuminance; 
-   
-   }
-
-
-   void node::background_color(const ::color::color & color)
+   ::os_theme_colors * node::_new_os_theme_colors()
    {
 
-      if (m_colorBackground == color)
+      return __new< os_theme_colors >();
+
+   }
+
+
+   ::os_theme_colors * node::_get_os_theme_colors()
+   {
+
+      if(!m_pthemecolors)
       {
 
-         return;
+         _fetch_user_color();
 
       }
 
-      m_colorBackground = color;
-
-      m_dLuminance = m_colorBackground.get_luminance();
-
-      set_dark_mode(m_dLuminance < 0.5);
+      return m_pthemecolors;
 
    }
 
 
-   void node::set_dark_mode(bool bDark)
+
+   void node::_fill_os_theme_colors(::os_theme_colors * pthemecolors)
    {
 
-      m_bDarkMode = bDark;
+      pthemecolors->m_colorBack = argb(255, 255, 255, 255);
+      pthemecolors->m_colorFace = argb(255, 128, 128, 128);
+      pthemecolors->m_colorFore = argb(255, 0, 0, 0);
 
-      if (m_bDarkMode)
+   }
+
+
+   void node::_set_os_theme_colors(::os_theme_colors * pthemecolors)
+   {
+
+      m_pthemecolors = pthemecolors;
+
+   }
+
+
+   void node::_del_os_theme_colors(::os_theme_colors * pthemecolors)
+   {
+
+      delete pthemecolors;
+
+   }
+
+
+   void node::_term_os_theme_colors()
+   {
+
+      if(m_pthemecolors)
       {
 
-         ::acme::get()->platform()->informationf("background_color :: Dark\n");
+         _del_os_theme_colors(m_pthemecolors);
+
+         m_pthemecolors = nullptr;
 
       }
-      else
+
+   }
+
+
+   void node::_fetch_user_color()
+   {
+
+      if(m_pthemecolors)
       {
 
-         ::acme::get()->platform()->informationf("background_color :: Lite\n");
+         _del_os_theme_colors(m_pthemecolors);
+
+         m_pthemecolors = nullptr;
 
       }
 
-      on_operating_system_user_color_change();
+      {
+
+         auto pthemecolors = _new_os_theme_colors();
+
+         _fill_os_theme_colors(pthemecolors);
+
+         _set_os_theme_colors(pthemecolors);
+
+      }
+
+   }
+
+
+   void node::fetch_user_color()
+   {
+
+      _fetch_user_color();
+
+      auto pthemecolors = _get_os_theme_colors();
+
+      auto colorBack = pthemecolors->m_colorBack;
+
+      system()->background_color(colorBack);
+
+      m_bOperatingSystemDarkMode = colorBack.get_luminance() < 0.5;
 
    }
 
@@ -1069,10 +1130,10 @@ namespace acme
 //   }
 
 
-   void node::fetch_user_color()
-   {
-
-   }
+//   void node::fetch_user_color()
+//   {
+//
+//   }
 
 
    void node::on_operating_system_user_theme_change()
@@ -2916,7 +2977,7 @@ return false;
    }
 
    
-   void node::set_user_permanent_environment_variable(const ::scoped_string& scopedstr, const ::scoped_string& strPayload)
+   void node::set_user_permanent_environment_variable(const ::scoped_string& scopedstr, const ::scoped_string& strPayload, bool bNoSystemNotify)
    {
 
       throw ::interface_only();
@@ -3839,14 +3900,14 @@ bool node::are_framework_shared_libraries_busy(const ::scoped_string & scopedstr
    }
 
 
-//   void node::set_dark_mode(bool bDarkMode)
-//   {
-//
-//      //throw ::interface_only();
-//
-//      //node()->set_dark_mode(bDarkMode);
-//
-//   }
+   void node::set_dark_mode(bool bDarkMode)
+   {
+
+      throw ::interface_only();
+
+      //node()->set_dark_mode(bDarkMode);
+
+   }
 
 
    void node::file_open(const ::file::path & pathTarget, const ::string & strParams, const ::file::path & pathFolder)

@@ -464,9 +464,13 @@ public:
 
    // ThomasBorregaardSorensen!! Like handlers
    virtual void handle(::topic * ptopic, ::context * pcontext);
-   virtual void handle(::message::message * pmessage);
-   virtual void handle(::item * pitem);
+   virtual void handle_message(::message::message * pmessage);
+   virtual void handle_item(::item * pitem);
 
+   // ThomasBorregaardSorensen!! Like handlers
+   virtual void call_handle(::topic* ptopic, ::context* pcontext);
+   virtual void call_handle_message(::message::message* pmessage);
+   virtual void call_handle_item(::item* pitem);
 
    virtual bool _handle_uri(const ::string & strUri);
    virtual bool _handle_call(::payload & payload, const ::string & strObject, const ::string & strMember, ::property_set & propertyset);

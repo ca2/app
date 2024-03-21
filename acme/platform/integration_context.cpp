@@ -295,7 +295,7 @@ namespace integration
 
                   ::string strCommand = "shopt -s dotglob; rm -Rf " + path + "/*";
 
-                  this->bash(strCommand);
+                  this->bash(strCommand, 5_min);
 
                }
 
@@ -319,7 +319,7 @@ namespace integration
 
                ::string strCommand = "shopt -s dotglob; rm -Rf " + strPath + "/*";
 
-               this->bash(strCommand);
+               this->bash(strCommand, 5_min);
 
             }
 
@@ -386,12 +386,12 @@ namespace integration
       
       information() << "Current Directory: " << acmedirectory()->get_current();
 
-      bash("git clone " + m_pathDownloadURL + " .");
+      bash("git clone " + m_pathDownloadURL + " .", 2_hour);
 
    }
 
 
-   ::i32 context::bash(const ::scoped_string & scopedstr)
+   ::i32 context::bash(const ::scoped_string & scopedstr, const class ::time & timeTimeout)
    {
 
       throw interface_only();
@@ -401,7 +401,7 @@ namespace integration
    }
 
 
-   ::i32 context::zsh(const ::scoped_string & scopedstr)
+   ::i32 context::zsh(const ::scoped_string & scopedstr, const class ::time & timeTimeout)
    {
 
       throw interface_only();
@@ -459,7 +459,7 @@ namespace integration
 
                }
 
-               p = path(p).skip_any_character_in("/\\");
+               p = path(p).skip_any_character_in("/\\").begin();
 
                path = p;
 
@@ -506,7 +506,7 @@ namespace integration
    ::file::path context::base_integration_folder()
    {
 
-      return {};
+      return m_pathBaseIntegrationFolder;
 
    }
 
@@ -514,7 +514,7 @@ namespace integration
    ::file::path context::host_integration_folder()
    {
 
-      return base_integration_folder() / "_____" / node()->operating_system_summary()->m_strSlashedIntegration;
+      return m_pathBaseIntegrationFolder / node()->operating_system_summary()->m_strSlashedIntegration;
 
    }
 

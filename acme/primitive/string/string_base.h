@@ -1894,7 +1894,7 @@ inline const_string_range < ITERATOR_TYPE > string_get_word_with_separator_list(
    else
    {
       
-      find = scopedstr(find).skip_any_character_in(scopedstrSeparatorList);
+      find = scopedstr(find).skip_any_character_in(scopedstrSeparatorList).begin();
    
       if(::is_empty(find))
       {

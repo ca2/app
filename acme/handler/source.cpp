@@ -129,7 +129,7 @@ void source::route(::topic * ptopic, ::context * pcontext)
          try
          {
 
-            pparticle->handle(ptopic, pcontext);
+            pparticle->call_handle(ptopic, pcontext);
 
          }
          catch (...)
@@ -177,7 +177,7 @@ void source::notify_topic(const ::atom & atom, ::particle * pparticle, ::context
 
    }
 
-   handle(ptopic, pcontext);
+   call_handle(ptopic, pcontext);
 
    route(ptopic, pcontext);
 

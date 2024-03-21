@@ -2,6 +2,9 @@
 #pragma once
 
 
+#include <stdarg.h>
+
+
 #define const_ansichar_trigger const ::ansi_character *
 
 

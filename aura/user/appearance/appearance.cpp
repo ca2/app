@@ -13,6 +13,7 @@ namespace appearance
    {
 
       m_bUsePreferredSize = true;
+      m_pmessage = nullptr;
 
    }
 

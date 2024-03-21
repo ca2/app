@@ -14,6 +14,7 @@
 
 #include "Object.h"
 #include "Theme.h"
+#include "in_place_edit_mapper.h"
 ///#include "acme/primitive/geometry2d/_geometry2d.h"
 #include "acme/handler/item.h"
 #include "acme/primitive/geometry2d/size.h"
@@ -26,9 +27,9 @@
 namespace nanoui
 {
 
+   class in_place_edit;
    
    using layout_callback = ::function < void(::nano2d::context*) >;
-
 
    enum class Cursor; // do not put a docstring, this is already documented
 
@@ -43,7 +44,8 @@ namespace nanoui
     */
    class CLASS_DECL_NANOUI Widget :
       public Object,
-      public ::user::acme_container
+      public ::user::acme_container,
+      public in_place_edit_mapper
    {
    public:
 
@@ -126,6 +128,11 @@ namespace nanoui
 
       //::function < void(::nano2d::context *) >    m_callbackSizing;
       layout_callback      m_callbackLayout;
+
+      ::pointer < in_place_edit > m_pinplaceedit;
+
+
+
 
       //virtual void _nanoui_to_user(::user::interaction * puserinteraction);
 
@@ -214,6 +221,15 @@ namespace nanoui
       /// Set the height of the pwidget
       void set_height(int height) { m_size.cy() = height; }
 
+      ::pointer < TextBox > create_in_place_edit(const ::rectangle_f32& rectangle, const ::scoped_string & scopedstr);
+
+      // returns true if something changed that needs redrawing
+      virtual bool end_in_place_edit();
+
+      virtual void end_all_in_place_edits();
+
+      virtual bool on_mouse_button_in_place_edit(in_place_edit* pinplacedit, bool bDown);
+      virtual void on_before_in_place_edit(in_place_edit* pinplaceedit);
 
       /// Whether or not this CheckBox is currently pushed.  See \::pointer nanoui::CheckBox::m_pushed.
       virtual bool is_mouse_down() const;

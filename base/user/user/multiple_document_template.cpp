@@ -225,7 +225,7 @@ namespace user
          pdocument->m_bOpened = true;
          // it worked, now bump untitled count
          //m_nUntitledCount++;
-         pdocument->id_update_all_impacts(id_incoming_document);
+         pdocument->id_update_all_impacts(id_initial_update);
 
 
       }
@@ -257,7 +257,7 @@ namespace user
          pdocument->m_bOpened = true;
          // it worked, now bump untitled count
          m_nUntitledCount++;
-         pdocument->id_update_all_impacts(id_incoming_document);
+         pdocument->id_update_all_impacts(id_initial_update);
 
       }
       else
@@ -280,7 +280,7 @@ namespace user
          pdocument->m_bOpened = true;
          //pdocument->set_path_name(pcreate->m_payloadFile);
 
-         pdocument->id_update_all_impacts(id_incoming_document);
+         pdocument->id_update_all_impacts(id_initial_update);
 
       }
 

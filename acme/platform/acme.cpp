@@ -1294,7 +1294,7 @@ namespace acme
 
       //::acme::del(::acme::library::s_criticalsectionLoading);
 
-      ::user::os_term_theme_colors();
+      //::user::os_term_theme_colors();
 
 #ifdef LINUX
 

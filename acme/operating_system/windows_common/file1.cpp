@@ -46,6 +46,8 @@ namespace windows
 
       auto attributes = ::GetFileAttributesW(windowspath);
 
+      auto dwLastError = ::GetLastError();
+
       return attributes;
 
    }

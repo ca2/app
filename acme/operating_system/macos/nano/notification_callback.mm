@@ -9,6 +9,7 @@
 #include "app.h"
 #include "acme/constant/id.h"
 #include "acme/operating_system/argcargv.h"
+bool ns_get_dark_mode();
 
 void system_id_update(void* pSystem, ::i64 iUpdate, ::i64 iPayload);
 
@@ -55,7 +56,7 @@ void ns_main_async(dispatch_block_t block);
    
    int iDarkMode = [interfaceStyle isEqualToString:@"Dark"];
 
-   system_id_update(application_system(m_pApplication), id_set_dark_mode, iDarkMode);
+   system_id_update(application_system(m_pApplication), id_get_operating_system_dark_mode_reply, iDarkMode);
 
 }
 
@@ -64,3 +65,15 @@ void ns_main_async(dispatch_block_t block);
 
 @end
 
+
+
+bool ns_get_dark_mode()
+{
+  
+   NSAppearance* appearance = NSApp.effectiveAppearance;
+   NSString* name = appearance.name;
+   BOOL dark = [appearance bestMatchFromAppearancesWithNames:@[NSAppearanceNameAqua, NSAppearanceNameDarkAqua]] == NSAppearanceNameDarkAqua;
+   
+   return !!dark;
+   
+}

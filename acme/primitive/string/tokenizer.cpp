@@ -370,7 +370,7 @@ bool tokenizer::get_next_token_ex(string &strToken, const ::scoped_string & scop
       if(bSkipAdjacent)
       {
 
-         m_iterator = (*this)(m_iterator).skip_any_character_in(scopedstrSeparator);
+         m_iterator = (*this)(m_iterator).skip_any_character_in(scopedstrSeparator).begin();
 
       }
 

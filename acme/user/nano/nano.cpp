@@ -130,7 +130,7 @@ namespace nano
    void nano::handle(::topic* ptopic, ::context* pcontext)
    {
       
-      if (ptopic->m_atom == id_set_dark_mode)
+      if (ptopic->m_atom == id_set_application_dark_mode)
       {
          
          for(auto & pnanowindow : m_nanowindowa)

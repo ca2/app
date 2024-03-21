@@ -1,5 +1,7 @@
 #include "framework.h"
 #include "acme/handler/item.h"
+#include "acme/platform/node.h"
+#include "acme/user/user/os_theme_colors.h"
 #include "base/user/simple/scroll_bar.h"
 #include "base/user/user/tab_pane.h"
 #include "aura/graphics/draw2d/pen.h"
@@ -143,7 +145,16 @@ namespace experience_tranquillum
                if (is_dark_mode())
                {
 
-                  return argb(255, 51, 51, 45);
+                  auto pthemecolors = node()->_get_os_theme_colors();
+
+                  if(pthemecolors && pthemecolors->m_colorBack.get_luminance() < 0.5)
+                  {
+
+                     return pthemecolors->m_colorBack;
+
+                  }
+
+                  return argb(255, 51, 51, 51);
 
                }
                else
@@ -159,6 +170,15 @@ namespace experience_tranquillum
 
                if (is_dark_mode())
                {
+
+                  auto pthemecolors = node()->_get_os_theme_colors();
+
+                  if(pthemecolors && pthemecolors->m_colorBack.get_luminance() < 0.5)
+                  {
+
+                     return pthemecolors->m_colorBack;
+
+                  }
 
                   return argb(255, 51, 51, 51);
 
@@ -379,7 +399,6 @@ namespace experience_tranquillum
                if (is_dark_mode())
                {
 
-
                   if (estate & ::user::e_state_hover)
                   {
 
@@ -517,6 +536,15 @@ namespace experience_tranquillum
             }
             else
             {
+
+               auto pthemecolors = node()->_get_os_theme_colors();
+
+               if(pthemecolors && pthemecolors->m_colorBack.get_luminance() < 0.5)
+               {
+
+                  return pthemecolors->m_colorBack;
+
+               }
 
                return argb(255, 51, 51, 51);
 

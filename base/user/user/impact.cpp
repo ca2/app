@@ -1041,6 +1041,33 @@ namespace user
    }
 
 
+   void impact::call_handle(::topic* ptopic, ::context* pcontext)
+   {
+
+      if (ptopic->m_atom == id_initial_update)
+      {
+
+         if (!get_document())
+         {
+
+            return;
+
+         }
+
+         if (!get_document()->is_opened())
+         {
+
+            return;
+
+         }
+
+      }
+
+      ::user::box::call_handle(ptopic, pcontext);
+
+   }
+
+
    ::user::document * impact::get_document() const
    {
 

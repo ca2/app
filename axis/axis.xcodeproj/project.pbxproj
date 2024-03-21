@@ -145,7 +145,7 @@
 		9A93B5BA2846EA94005ACD11 /* system_storage.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE64429252A5BEE00BED5B8 /* system_storage.h */; };
 		9A93B5BB2846EA94005ACD11 /* common.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE64002252A5BEB00BED5B8 /* common.h */; };
 		9A93B5BC2846EA94005ACD11 /* token.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC01DEF2748CC4B006BEBCC /* token.h */; };
-		9A93B5BE2846EA94005ACD11 /* geo_department.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE63FBA252A5BEA00BED5B8 /* geo_department.h */; };
+		9A93B5BE2846EA94005ACD11 /* geo.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE63FBA252A5BEA00BED5B8 /* geo.h */; };
 		9A93B5BF2846EA94005ACD11 /* console_common.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE64058252A5BEB00BED5B8 /* console_common.h */; };
 		9A93B5C02846EA94005ACD11 /* _impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE63EC3252A5BE900BED5B8 /* _impl.h */; };
 		9A93B5C12846EA94005ACD11 /* entity_resolver.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE64004252A5BEB00BED5B8 /* entity_resolver.h */; };
@@ -257,7 +257,7 @@
 		9A93B64F2846EA94005ACD11 /* thread_localdatabase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE63EF6252A5BE900BED5B8 /* thread_localdatabase.cpp */; };
 		9A93B6512846EA94005ACD11 /* simpledb.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE63F00252A5BEA00BED5B8 /* simpledb.cpp */; };
 		9A93B6522846EA94005ACD11 /* attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE64005252A5BEB00BED5B8 /* attributes.cpp */; };
-		9A93B6562846EA94005ACD11 /* geo_department.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE63FC6252A5BEA00BED5B8 /* geo_department.cpp */; };
+		9A93B6562846EA94005ACD11 /* geo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE63FC6252A5BEA00BED5B8 /* geo.cpp */; };
 		9A93B6572846EA94005ACD11 /* session.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE63FB7252A5BEA00BED5B8 /* session.cpp */; };
 		9A93B6582846EA94005ACD11 /* parser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC01DF12748CC4B006BEBCC /* parser.cpp */; };
 		9A93B65A2846EA94005ACD11 /* html.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE6400A252A5BEB00BED5B8 /* html.cpp */; };
@@ -509,10 +509,10 @@
 		9AE6451F252A5BF000BED5B8 /* session.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE63FB5252A5BEA00BED5B8 /* session.h */; };
 		9AE64521252A5BF000BED5B8 /* session.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE63FB7252A5BEA00BED5B8 /* session.cpp */; };
 		9AE64523252A5BF000BED5B8 /* openweather_city.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE63FB9252A5BEA00BED5B8 /* openweather_city.h */; };
-		9AE64524252A5BF000BED5B8 /* geo_department.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE63FBA252A5BEA00BED5B8 /* geo_department.h */; };
+		9AE64524252A5BF000BED5B8 /* geo.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE63FBA252A5BEA00BED5B8 /* geo.h */; };
 		9AE6452A252A5BF000BED5B8 /* system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE63FC1252A5BEA00BED5B8 /* system.cpp */; };
 		9AE6452D252A5BF100BED5B8 /* checked.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE63FC5252A5BEA00BED5B8 /* checked.cpp */; };
-		9AE6452E252A5BF100BED5B8 /* geo_department.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE63FC6252A5BEA00BED5B8 /* geo_department.cpp */; };
+		9AE6452E252A5BF100BED5B8 /* geo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE63FC6252A5BEA00BED5B8 /* geo.cpp */; };
 		9AE64536252A5BF100BED5B8 /* system.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE63FCF252A5BEA00BED5B8 /* system.h */; };
 		9AE6453C252A5BF100BED5B8 /* application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE63FD5252A5BEB00BED5B8 /* application.cpp */; };
 		9AE64549252A5BF100BED5B8 /* _platform.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE63FE3252A5BEB00BED5B8 /* _platform.h */; };
@@ -895,10 +895,10 @@
 		9AE63FB5252A5BEA00BED5B8 /* session.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = session.h; sourceTree = "<group>"; };
 		9AE63FB7252A5BEA00BED5B8 /* session.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = session.cpp; sourceTree = "<group>"; };
 		9AE63FB9252A5BEA00BED5B8 /* openweather_city.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = openweather_city.h; sourceTree = "<group>"; };
-		9AE63FBA252A5BEA00BED5B8 /* geo_department.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = geo_department.h; sourceTree = "<group>"; };
+		9AE63FBA252A5BEA00BED5B8 /* geo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = geo.h; sourceTree = "<group>"; };
 		9AE63FC1252A5BEA00BED5B8 /* system.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = system.cpp; sourceTree = "<group>"; };
 		9AE63FC5252A5BEA00BED5B8 /* checked.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = checked.cpp; sourceTree = "<group>"; };
-		9AE63FC6252A5BEA00BED5B8 /* geo_department.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = geo_department.cpp; sourceTree = "<group>"; };
+		9AE63FC6252A5BEA00BED5B8 /* geo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = geo.cpp; sourceTree = "<group>"; };
 		9AE63FCF252A5BEA00BED5B8 /* system.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = system.h; sourceTree = "<group>"; };
 		9AE63FD5252A5BEB00BED5B8 /* application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = application.cpp; sourceTree = "<group>"; };
 		9AE63FE3252A5BEB00BED5B8 /* _platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _platform.h; sourceTree = "<group>"; };
@@ -1461,8 +1461,8 @@
 				9AE63FD5252A5BEB00BED5B8 /* application.cpp */,
 				9AE63F9B252A5BEA00BED5B8 /* application.h */,
 				9AE63FC5252A5BEA00BED5B8 /* checked.cpp */,
-				9AE63FC6252A5BEA00BED5B8 /* geo_department.cpp */,
-				9AE63FBA252A5BEA00BED5B8 /* geo_department.h */,
+				9AE63FC6252A5BEA00BED5B8 /* geo.cpp */,
+				9AE63FBA252A5BEA00BED5B8 /* geo.h */,
 				9AE63FB9252A5BEA00BED5B8 /* openweather_city.h */,
 				9AE63FB7252A5BEA00BED5B8 /* session.cpp */,
 				9AE63FB5252A5BEA00BED5B8 /* session.h */,
@@ -1723,7 +1723,7 @@
 				9A93B5BB2846EA94005ACD11 /* common.h in Headers */,
 				9A979D3F28C81E430013DC54 /* style_sheet_array.h in Headers */,
 				9A93B5BC2846EA94005ACD11 /* token.h in Headers */,
-				9A93B5BE2846EA94005ACD11 /* geo_department.h in Headers */,
+				9A93B5BE2846EA94005ACD11 /* geo.h in Headers */,
 				9A93B5BF2846EA94005ACD11 /* console_common.h in Headers */,
 				9ADB6C9C28D128D400608B22 /* composite.h in Headers */,
 				9A979D2928C81E430013DC54 /* point.h in Headers */,
@@ -1918,7 +1918,7 @@
 				9AE64560252A5BF100BED5B8 /* common.h in Headers */,
 				9A979D3E28C81E430013DC54 /* style_sheet_array.h in Headers */,
 				9AC01E0F2748CC4C006BEBCC /* token.h in Headers */,
-				9AE64524252A5BF000BED5B8 /* geo_department.h in Headers */,
+				9AE64524252A5BF000BED5B8 /* geo.h in Headers */,
 				9AE645AB252A5BF100BED5B8 /* console_common.h in Headers */,
 				9ADB6C9B28D128D400608B22 /* composite.h in Headers */,
 				9A979D2828C81E430013DC54 /* point.h in Headers */,
@@ -2098,7 +2098,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastUpgradeCheck = 1520;
+				LastUpgradeCheck = 1530;
 				ORGANIZATIONNAME = "Camilo Sasuke Tsumanuma";
 				TargetAttributes = {
 					9AE63E9A252A5B7800BED5B8 = {
@@ -2215,7 +2215,7 @@
 				9A93B6522846EA94005ACD11 /* attributes.cpp in Sources */,
 				9A979D4128C81E430013DC54 /* reader.cpp in Sources */,
 				9A979CF128C81E2F0013DC54 /* form.cpp in Sources */,
-				9A93B6562846EA94005ACD11 /* geo_department.cpp in Sources */,
+				9A93B6562846EA94005ACD11 /* geo.cpp in Sources */,
 				9A979D3328C81E430013DC54 /* font.cpp in Sources */,
 				9A93B6572846EA94005ACD11 /* session.cpp in Sources */,
 				9A93B6582846EA94005ACD11 /* parser.cpp in Sources */,
@@ -2324,7 +2324,7 @@
 				9A979D4028C81E430013DC54 /* reader.cpp in Sources */,
 				9A5ECCE328CCBE040084D354 /* table_elemental.cpp in Sources */,
 				9A979CF028C81E2F0013DC54 /* form.cpp in Sources */,
-				9AE6452E252A5BF100BED5B8 /* geo_department.cpp in Sources */,
+				9AE6452E252A5BF100BED5B8 /* geo.cpp in Sources */,
 				9A979D3228C81E430013DC54 /* font.cpp in Sources */,
 				9AE64521252A5BF000BED5B8 /* session.cpp in Sources */,
 				9AC01E112748CC4C006BEBCC /* parser.cpp in Sources */,

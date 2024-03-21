@@ -328,7 +328,7 @@ void simple_frame_window::on_update_notify_icon_menu_bottom(::index & iNotifyIco
       if (m_bWindowFrame)
       {
 
-         auto papplicationmenu = application()->application_menu();
+//         auto papplicationmenu = application()->application_menu();
 
          {
 

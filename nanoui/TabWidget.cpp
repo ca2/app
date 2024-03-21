@@ -178,11 +178,11 @@ namespace nanoui
 
       m_iaTabOffsets.clear();
       int width = 0;
-      float unused[4];
+      ::rectangle_f32 unused;
       for (auto & label : m_straTabCaptions)
       {
 
-         int label_width = (int)pcontext->text_bounds(0.f, 0.f, label.c_str(), unused);
+         int label_width = (int)pcontext->text_bounds(0.f, 0.f, label.c_str(), &unused);
          m_iaTabOffsets.add(width);
          width += label_width + 2 * m_ptheme->m_iHorizontalPaddingTabButton;
          if (m_bTabsCloseable)
@@ -192,7 +192,7 @@ namespace nanoui
 
       pcontext->font_face("icons");
       m_iCloseButtonWidth = (int)
-         pcontext->text_bounds(0.f, 0.f, get_utf8_character(e_font_awesome_times_circle).data(), unused);
+         pcontext->text_bounds(0.f, 0.f, get_utf8_character(e_font_awesome_times_circle).data(), &unused);
    }
 
 
@@ -204,8 +204,8 @@ namespace nanoui
 
       int width = 0;
       for (auto & label : m_straTabCaptions) {
-         float unused[4];
-         int label_width = (int)pcontext->text_bounds(0, 0, label.c_str(), unused);
+         ::rectangle_f32 unused;
+         int label_width = (int)pcontext->text_bounds(0, 0, label.c_str(), &unused);
          width += label_width + 2 * m_ptheme->m_iHorizontalPaddingTabButton;
          if (m_bTabsCloseable)
             width += m_iCloseButtonWidth;

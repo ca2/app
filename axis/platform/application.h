@@ -39,7 +39,7 @@ namespace axis
 
       void initialize(::particle * pparticle) override;
 
-
+      virtual ::pointer < ::geo::geo > create_geo();
 
 
 //      // void assert_ok() const override;

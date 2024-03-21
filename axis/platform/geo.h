@@ -34,7 +34,7 @@ namespace geo
 {
 
 
-   class CLASS_DECL_AXIS department :
+   class CLASS_DECL_AXIS geo :
       virtual public ::acme::department,
       virtual public ::api_client
    {
@@ -46,7 +46,7 @@ namespace geo
       bool                                                  m_bInitialLocalityTimeZoneInit;
 
       ::pointer < ::mutex >                                               m_pmutexOpenweatherCity;
-      
+
       ::pointer < ::mutex >                                               m_pmutexCityTimeZone;
       index_map < ::datetime::time_zone >                   m_cityTimeZone;
       bool                                                  m_bLoadedCityTimeZoneFromFile;
@@ -80,14 +80,14 @@ namespace geo
       f64_array                                       m_daLon;
       f64_array                                       m_daLat;
 
-      string_map < openweather_city * >                  m_mapCity;
+      string_map < openweather_city* >                  m_mapCity;
 
 
-      department();
-      ~department() override;
+      geo();
+      ~geo() override;
 
 
-      void initialize(::particle * pparticle) override;
+      void initialize(::particle* pparticle) override;
 
 
       virtual void defer_check_openweather_city_list();

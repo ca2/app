@@ -14,6 +14,8 @@
 #include "Screen.h"
 #include "Window.h"
 #include "Button.h"
+#include "in_place_edit.h"
+#include "TextBox.h"
 #include "VScrollPanel.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "nano2d/context.h"
@@ -45,9 +47,9 @@ namespace nanoui
    }
 
 
-   Widget::~Widget() 
+   Widget::~Widget()
    {
-      
+
       //   if (std::uncaught_exceptions() > 0) {
       //      /* If a pwidget constructor throws an exception, it is immediately
       //         dealloated but may still be referenced by a parent. Be conservative
@@ -73,19 +75,19 @@ namespace nanoui
 
    /// Return whether or not the pwidget is currently visible (assuming all parents are visible)
    bool Widget::visible() const
-   { 
-      
-      return m_bVisible; 
-   
+   {
+
+      return m_bVisible;
+
    }
 
 
    /// Set whether or not the pwidget is currently visible (assuming all parents are visible)
    void Widget::set_visible(bool bVisible)
    {
-      
-      m_bVisible = bVisible; 
-   
+
+      m_bVisible = bVisible;
+
    }
 
    //::count Widget::get_child_as_item_count()
@@ -133,10 +135,10 @@ namespace nanoui
 
 
    void Widget::toggle_visible()
-   { 
+   {
 
       auto bVisible = this->visible();
-      
+
       set_visible(!bVisible);
 
    }
@@ -145,26 +147,26 @@ namespace nanoui
    /// Return whether or not this pwidget is currently enabled
    bool Widget::enabled() const
    {
-      
-      return m_bEnabled; 
-   
+
+      return m_bEnabled;
+
    }
 
    /// Set whether or not this pwidget is currently enabled
-   void Widget::set_enabled(bool bEnabled) 
+   void Widget::set_enabled(bool bEnabled)
    {
-      
-      m_bEnabled = bEnabled; 
-   
+
+      m_bEnabled = bEnabled;
+
    }
 
 
-   void Widget::set_theme(const ::pointer < Theme > & theme) 
+   void Widget::set_theme(const ::pointer < Theme >& theme)
    {
 
       if (m_ptheme.get() == theme)
       {
-       
+
          return;
 
       }
@@ -227,7 +229,7 @@ namespace nanoui
 
       if (m_playout)
       {
-       
+
          return m_playout->preferred_size(pcontext, this, bRecalcTextSize);
 
       }
@@ -247,13 +249,13 @@ namespace nanoui
       m_bNeedLayout = true;
 
       m_callbackLayout = [this](::nano2d::context* pcontext)
-      {
+         {
 
-         parent()->perform_layout(pcontext);
-         
-         perform_layout(pcontext);
+            parent()->perform_layout(pcontext);
 
-      };
+            perform_layout(pcontext);
+
+         };
 
       //auto pparent = m_pwidgetParent;
 
@@ -309,7 +311,7 @@ namespace nanoui
             pchild->set_size({
                fix[0] ? fix[0] : pref[0],
                fix[1] ? fix[1] : pref[1]
-            });
+               });
 
             pchild->perform_layout(pcontext);
 
@@ -322,7 +324,7 @@ namespace nanoui
 
    Widget* Widget::find_widget(const point_i32& p)
    {
-      
+
       //auto size = m_children.get_count();
 
       for (auto iIndex = m_children.get_upper_bound(); iIndex >= 0; iIndex--)
@@ -463,7 +465,7 @@ namespace nanoui
 
       //}
 
-      auto & children = m_children;
+      auto& children = m_children;
 
       for (auto i = iStart; i <= iEnd; i++)
       {
@@ -483,14 +485,14 @@ namespace nanoui
 
          auto pointChildClient = p - posChild - offsetScroll;
 
-//         int pointY = pointChildClient[1];
-//
-//         int childTop = pchild->m_pos[1];
-//
-//         int childBottom = childTop + pchild->m_size[1];
+         //         int pointY = pointChildClient[1];
+         //
+         //         int childTop = pchild->m_pos[1];
+         //
+         //         int childBottom = childTop + pchild->m_size[1];
 
          bool bHover = pchild->contains(pointChildClient) && this->m_bHoverCache;
-         
+
          bool bHoverOld = pchild->m_bHoverCache;
 
          if (::is_different(bHover, bHoverOld))
@@ -517,7 +519,7 @@ namespace nanoui
 
    }
 
-   
+
    bool Widget::scroll_event(const point_i32& p, const size_f32& rel)
    {
 
@@ -576,7 +578,7 @@ namespace nanoui
 
    }
 
-   
+
    void Widget::release_mouse_capture()
    {
 
@@ -611,50 +613,50 @@ namespace nanoui
    }
 
 
-   void Widget::insert_child_at(::index iIndex, Widget * pwidget)
+   void Widget::insert_child_at(::index iIndex, Widget* pwidget)
    {
-      
-      if(::is_null(pwidget))
+
+      if (::is_null(pwidget))
       {
-         
+
          throw ::exception(error_bad_argument);
-         
+
       }
 
-      if(iIndex < 0)
+      if (iIndex < 0)
       {
-         
+
          throw ::exception(error_bad_argument);
-         
+
       }
 
       _synchronous_lock lock(screen()->m_puserinteraction->synchronization());
 
-      if(iIndex > child_count())
+      if (iIndex > child_count())
       {
-         
+
          throw ::exception(error_bad_argument);
-         
+
       }
 
       //m_iHoverCandidateChildStart = -1;
-      
+
       //m_iHoverCandidateChildEnd = -1;
-      
+
       //ASSERT(iIndex <= child_count());
-      
+
       m_children.insert_at(iIndex, pwidget);
-      
+
       //pwidget->inc_ref();
-      
+
       pwidget->set_parent(this);
-      
+
       pwidget->set_theme(m_ptheme);
-      
+
    }
 
 
-   void Widget::add_child(Widget * pwidget)
+   void Widget::add_child(Widget* pwidget)
    {
 
       if (!pwidget->m_pcontext)
@@ -663,17 +665,17 @@ namespace nanoui
          pwidget->initialize(this);
 
       }
-   
+
       insert_child_at(child_count(), pwidget);
-      
+
    }
 
 
-   void Widget:: set_layout(const ::pointer < Layout> & layout)
+   void Widget::set_layout(const ::pointer < Layout>& layout)
    {
-      
-      m_playout = layout; 
-   
+
+      m_playout = layout;
+
    }
 
 
@@ -696,9 +698,9 @@ namespace nanoui
 
    void Widget::to_top()
    {
-      
+
       _synchronous_lock lock(screen()->m_puserinteraction->synchronization());
-      
+
       if (m_pwidgetParent->m_children.erase(this))
       {
 
@@ -709,12 +711,12 @@ namespace nanoui
    }
 
 
-   void Widget::erase_child_at(::index iIndex) 
+   void Widget::erase_child_at(::index iIndex)
    {
 
       if (iIndex < 0 || iIndex >= (int)m_children.size())
       {
-      
+
          throw ::exception(error_index_out_of_bounds, "Widget::erase_child_at(): out of bounds!");
 
       }
@@ -731,16 +733,17 @@ namespace nanoui
    void Widget::destroy_window()
    {
 
-      for (auto & pwidgetChild : m_children)
+      for (auto& pwidgetChild : m_children)
       {
+
          ::nanoui::defer_destroy_window(pwidgetChild);
 
       }
 
       on_destroy_window();
-   
+
       m_children.clear();
-   
+
    }
 
 
@@ -759,6 +762,13 @@ namespace nanoui
 
          }
 
+         if (pscreen->m_focus_path.contains(this))
+         {
+
+            pscreen->m_focus_path.clear();
+
+         }
+
       }
 
       m_pwidgetParent.release();
@@ -769,12 +779,12 @@ namespace nanoui
    }
 
 
-   Window* Widget::window() 
+   Window* Widget::window()
    {
 
       Widget* pwidget = this;
 
-      while (true) 
+      while (true)
       {
 
          if (!pwidget)
@@ -800,12 +810,12 @@ namespace nanoui
    }
 
 
-   Screen* Widget::screen() 
+   Screen* Widget::screen()
    {
 
       Widget* pwidget = this;
 
-      while (true) 
+      while (true)
       {
 
          if (!pwidget)
@@ -831,24 +841,24 @@ namespace nanoui
    }
 
 
-   const Screen* Widget::screen() const 
+   const Screen* Widget::screen() const
    {
-      
-      return const_cast<Widget*>(this)->screen(); 
-   
+
+      return const_cast<Widget*>(this)->screen();
+
    }
 
 
-   const Window* Widget::window() const 
+   const Window* Widget::window() const
    {
-      
-      return const_cast<Widget*>(this)->window(); 
-   
+
+      return const_cast<Widget*>(this)->window();
+
    }
 
 
    bool Widget::focused() const
-   { 
+   {
 
       auto pscreen = screen();
 
@@ -859,8 +869,8 @@ namespace nanoui
 
       }
 
-      return pscreen->m_focus_path.contains(this); 
-   
+      return pscreen->m_focus_path.contains(this);
+
    }
 
 
@@ -905,7 +915,7 @@ namespace nanoui
          if (!screen()->m_puserinteraction->needs_to_draw(pdraw2dcontext->m_pgraphics, interactionRectangle))
          {
 
-//            information() << "Opting out from draw pwidget!! " << typeid(*this).name();
+            //            information() << "Opting out from draw pwidget!! " << typeid(*this).name();
 
             return false;
 
@@ -947,62 +957,62 @@ namespace nanoui
    void Widget::draw(::nano2d::context* pcontext)
    {
 
-//#if defined(NANOUI_SHOW_WIDGET_BOUNDS)
-//
-//      pcontext->StrokeWidth(ctx, 1.0f);
-//
-//      pcontext->begin_path(ctx);
-//
-//      pcontext->rectangle(ctx, m_pos.x() - 0.5f, m_pos.y() - 0.5f, m_size.cx() + 1, m_size.cy() + 1);
-//
-//      pcontext->stroke_color(ctx, ::color::RGBA_color(255, 0, 0, 255));
-//
-//      pcontext->stroke(ctx);
-//
-//#endif
+      //#if defined(NANOUI_SHOW_WIDGET_BOUNDS)
+      //
+      //      pcontext->StrokeWidth(ctx, 1.0f);
+      //
+      //      pcontext->begin_path(ctx);
+      //
+      //      pcontext->rectangle(ctx, m_pos.x() - 0.5f, m_pos.y() - 0.5f, m_size.cx() + 1, m_size.cy() + 1);
+      //
+      //      pcontext->stroke_color(ctx, ::color::RGBA_color(255, 0, 0, 255));
+      //
+      //      pcontext->stroke(ctx);
+      //
+      //#endif
 
-      //if (m_children.empty())
-      //{
+            //if (m_children.empty())
+            //{
 
-      //   return;
+            //   return;
 
-      //}
+            //}
 
-      //::rectangle_i32 rectangleThis;
+            //::rectangle_i32 rectangleThis;
 
-      //auto pscrollPanel = dynamic_cast <VScrollPanel*>(parent());
+            //auto pscrollPanel = dynamic_cast <VScrollPanel*>(parent());
 
-      ////float yOffset = 0.f;
+            ////float yOffset = 0.f;
 
-      ////if (pscrollPanel)
-      ////{
+            ////if (pscrollPanel)
+            ////{
 
-      ////   auto pparent = m_pwidgetParent;
+            ////   auto pparent = m_pwidgetParent;
 
-      ////   yOffset = pscrollPanel->get_y_offset();
+            ////   yOffset = pscrollPanel->get_y_offset();
 
-      ////   rectangleThis = ::rectangle_i32_dimension(0, m_pos.y() - yOffset, m_size.cx(), m_size.cy());
+            ////   rectangleThis = ::rectangle_i32_dimension(0, m_pos.y() - yOffset, m_size.cx(), m_size.cy());
 
-      ////}
-      ////else
-      ////{
+            ////}
+            ////else
+            ////{
 
-      //rectangleThis = ::rectangle_i32_dimension(0, 0, m_size.cx(), m_size.cy());
+            //rectangleThis = ::rectangle_i32_dimension(0, 0, m_size.cx(), m_size.cy());
 
-      //}
+            //}
 
-      //::index iStart = 0;
+            //::index iStart = 0;
 
-      //::index iEnd = (::index)m_children.size() - 1;
+            //::index iEnd = (::index)m_children.size() - 1;
 
-      //if (m_iHoverCandidateChildStart >= 0 && m_iHoverCandidateChildEnd >= m_iHoverCandidateChildStart)
-      //{
+            //if (m_iHoverCandidateChildStart >= 0 && m_iHoverCandidateChildEnd >= m_iHoverCandidateChildStart)
+            //{
 
-      //   iStart = m_iHoverCandidateChildStart;
+            //   iStart = m_iHoverCandidateChildStart;
 
-      //   iEnd = m_iHoverCandidateChildEnd;
+            //   iEnd = m_iHoverCandidateChildEnd;
 
-      //}
+            //}
 
       if (m_children.empty())
       {
@@ -1132,7 +1142,7 @@ namespace nanoui
 
    point_i32 Widget::screen_position() const
    {
-   
+
       auto absolutePosition = absolute_position();
 
       auto pointScreenMainWindow = screen()->m_puserinteraction->position();
@@ -1207,7 +1217,7 @@ namespace nanoui
          rectangleInteraction.offset(absolutePosition.x(), absolutePosition.y());
 
       }
-      
+
       auto pparent = m_pwidgetParent;
 
       if (pparent)
@@ -1218,12 +1228,17 @@ namespace nanoui
          rectangleInteraction -= offsetScroll;
 
       }
-      
+
       auto pscreen = screen();
 
-      pscreen->m_bNeedRedraw = true;
+      if (pscreen)
+      {
 
-      pscreen->m_puserinteraction->set_need_redraw({ rectangleInteraction }, nullptr, function);
+         pscreen->m_bNeedRedraw = true;
+
+         pscreen->m_puserinteraction->set_need_redraw({ rectangleInteraction }, nullptr, function);
+
+      }
 
    }
 
@@ -1233,20 +1248,25 @@ namespace nanoui
 
       auto pscreen = screen();
 
-      if (pscreen->m_bPreventRedraw)
+      if (pscreen)
       {
 
-         return;
+         if (pscreen->m_bPreventRedraw)
+         {
+
+            return;
+
+         }
+
+         pscreen->m_bNeedRedraw = false;
+
+         pscreen->m_puserinteraction->post_redraw();
 
       }
 
-      pscreen->m_bNeedRedraw = false;
-
-      screen()->m_puserinteraction->post_redraw();
-
    }
 
-   
+
    void Widget::fixed_placement(const ::rectangle_i32& rectangle)
    {
 
@@ -1271,41 +1291,41 @@ namespace nanoui
       auto sizeNew = rectangle.size();
 
       set_fixed_size(sizeNew);
-      
+
       set_need_layout();
 
-      if(bRedraw)
+      if (bRedraw)
       {
-         
+
          auto rectangleNew = interaction_rectangle();
-         
+
          if (positionOld != positionNew)
          {
-            
+
             set_need_redraw(rectangleOld);
-            
+
             set_need_redraw(rectangleNew);
-            
+
          }
          else
          {
-            
+
             auto rectangleRightDifference = rectangleOld.right_plus_difference(rectangleNew);
-            
+
             auto rectangleBottomDifference = rectangleOld.bottom_difference(rectangleNew);
-            
+
             rectangleRightDifference.normalize();
-            
+
             rectangleBottomDifference.normalize();
-            
+
             set_need_redraw(rectangleRightDifference);
-            
+
             set_need_redraw(rectangleBottomDifference);
-            
+
          }
-         
+
          post_redraw();
-         
+
       }
 
    }
@@ -1343,7 +1363,7 @@ namespace nanoui
    }
 
 
-   bool Widget::contains(const point_i32& p) const 
+   bool Widget::contains(const point_i32& p) const
    {
 
       ::pointer < Button > pbutton = this;
@@ -1375,6 +1395,194 @@ namespace nanoui
 
       //sequence2_i32 d = p - m_pos;
       return p.x() >= 0 && p.y() >= 0 && p.x() < (m_size.cx()) && p.y() < m_size.cy();
+
+   }
+
+
+   ::pointer < TextBox > Widget::create_in_place_edit(const ::rectangle_f32& rectangle, const ::scoped_string& scopedstr)
+   {
+
+      if (::is_null(m_pinplaceedit))
+      {
+
+         throw ::exception(error_wrong_state);
+
+         return {};
+
+      }
+
+      if (m_pinplaceedit->m_pwidget)
+      {
+
+         m_pinplaceedit->m_pwidget->end_in_place_edit();
+
+         m_pinplaceedit->m_pwidget.release();
+
+      }
+
+      auto ptextbox = new TextBox(this, scopedstr);
+
+      ptextbox->m_bAutoDeleteOnFinishEditing = true;
+
+      ptextbox->fixed_placement(rectangle);
+
+      ptextbox->set_visible(true);
+
+      ptextbox->set_editable(true);
+
+      m_pinplaceedit->m_pwidget = ptextbox;
+
+      return ptextbox;
+
+   }
+
+
+   bool Widget::end_in_place_edit()
+   {
+
+      auto pwidgetParent = m_pwidgetParent;
+
+      if (!pwidgetParent)
+      {
+
+         return false;
+
+      }
+
+      if (pwidgetParent->m_pinplaceedit
+         && pwidgetParent->m_pinplaceedit->m_pwidget == this)
+      {
+
+         pwidgetParent->m_pinplaceedit->m_pwidget.release();
+
+      }
+
+      pwidgetParent->erase_child(this);
+
+      return true;
+
+   }
+
+
+   void Widget::end_all_in_place_edits()
+   {
+
+
+   }
+
+
+   bool Widget::on_mouse_button_in_place_edit(in_place_edit* pinplaceedit, bool bDown)
+   {
+
+      if (::is_null(pinplaceedit))
+      {
+
+         end_all_in_place_edits();
+
+         return false;
+
+      }
+
+      if (bDown)
+      {
+
+         //information() << "LeftButtonDown on P connector : " << pconnector->m_iConnector;
+
+         if (!pinplaceedit->is_clicked() || pinplaceedit != m_pinplaceedit)
+         {
+
+            m_pinplaceedit = pinplaceedit;
+
+            pinplaceedit->m_iClickCount = 1;
+
+            pinplaceedit->set_need_update();
+
+         }
+         else
+         {
+
+            pinplaceedit->m_iClickCount++;
+
+         }
+
+         return true;
+
+      }
+      else
+      {
+
+         if (pinplaceedit->m_iClickCount == 2)
+         {
+
+            auto rectangleEdit = pinplaceedit->get_edit_rectangle(this);
+
+            if (rectangleEdit)
+            {
+
+               //r += layerp_pos;
+
+//                        r += m_xyLayerViewerTranslate;
+
+               auto strName = pinplaceedit->get_name_for_editing();
+
+               auto pedit = create_in_place_edit(rectangleEdit, strName);
+
+               on_before_in_place_edit(pinplaceedit);
+
+               pedit->m_callback = [pinplaceedit](auto str)
+                  {
+
+                     pinplaceedit->set_edit_payload(str);
+
+                     pinplaceedit->set_need_update();
+
+                     pinplaceedit->m_pwidget->end_in_place_edit();
+
+                     return true;
+
+                  };
+
+               //pedit->m_callbackEndEdit = [pproject]()
+               //   {
+
+               //      pproject->m_iPEdit = -1;
+               //      pproject->m_iPClick = -1;
+               //      pproject->m_iPClickCount = -1;
+
+               //   };
+
+               pedit->m_callbackOnEdit = [this]()
+                  {
+
+                     screen()->m_puserinteraction->set_need_redraw();
+
+                     screen()->m_puserinteraction->post_redraw();
+
+                  };
+
+               pedit->start_in_place_edit();
+
+            }
+
+            return false;
+
+         }
+         else if (pinplaceedit->m_iClickCount > 2)
+         {
+
+            end_all_in_place_edits();
+
+         }
+
+         return false;
+
+      }
+
+   }
+
+
+   void Widget::on_before_in_place_edit(in_place_edit* pinplaceedit)
+   {
 
    }
 

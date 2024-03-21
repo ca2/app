@@ -68,8 +68,10 @@ public:
    virtual ::pointer < ::file::link > resolve_link(const ::file::path & path, ::file::e_link elink = ::file::e_link_all);
 
 
-   virtual void rename(const ::file::path& pathNewName, const ::file::path& pathOldName);
 
+   virtual void rename(const ::file::path& pathNewName, const ::file::path& pathOldName);
+   virtual ::file::path get_sequence_path(const ::file::path& path, ::index iSequence, int iZeroPaddingWidth = 1);
+   virtual void defer_free_name_by_renaming_to_last_in_sequence(const ::file::path& path, int iZeroPaddingWidth = 1);
 
 
 };

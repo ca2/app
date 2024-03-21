@@ -391,6 +391,12 @@
     <ClInclude Include="database\simpledb\_simpledb.h" />
     <ClInclude Include="database\_.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="geoip\city.h" />
+    <ClInclude Include="geoip\geoip.h" />
+    <ClInclude Include="geoip\global.h" />
+    <ClInclude Include="geoip\internal.h" />
+    <ClInclude Include="geoip\update.h" />
+    <ClInclude Include="geoip\_.h" />
     <ClInclude Include="graphics\render\water_routine.h" />
     <ClInclude Include="html\element\element.h" />
     <ClInclude Include="html\element\_.h" />
@@ -494,10 +500,11 @@
     <ClInclude Include="net\_impl.h" />
     <ClInclude Include="net\_net.h" />
     <ClInclude Include="platform\application.h" />
-    <ClInclude Include="platform\geo_department.h" />
+    <ClInclude Include="platform\geo.h" />
     <ClInclude Include="platform\openweather_city.h" />
     <ClInclude Include="platform\session.h" />
     <ClInclude Include="platform\system.h" />
+    <ClInclude Include="platform\_.h" />
     <ClInclude Include="platform\_binary_stream.h" />
     <ClInclude Include="user\form\control.h" />
     <ClInclude Include="user\form\data.h" />
@@ -561,6 +568,11 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="geoip\city.cpp" />
+    <ClCompile Include="geoip\geoip.cpp" />
+    <ClCompile Include="geoip\region_name.cpp" />
+    <ClCompile Include="geoip\time_zone.cpp" />
+    <ClCompile Include="geoip\update.cpp" />
     <ClCompile Include="graphics\render\water_routine.cpp" />
     <ClCompile Include="html\element\element.cpp" />
     <ClCompile Include="html\graphics\attribute.cpp" />
@@ -610,7 +622,7 @@
     <ClCompile Include="networking\sockets\bsd\smtp\smtpd_socket.cpp" />
     <ClCompile Include="networking\sockets\bsd\smtp\smtp_socket.cpp" />
     <ClCompile Include="platform\application.cpp" />
-    <ClCompile Include="platform\geo_department.cpp" />
+    <ClCompile Include="platform\geo.cpp" />
     <ClCompile Include="platform\session.cpp" />
     <ClCompile Include="platform\system.cpp" />
     <ClCompile Include="user\form\control.cpp" />

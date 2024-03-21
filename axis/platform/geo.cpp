@@ -20,14 +20,17 @@
 #include "acme/filesystem/filesystem/file_context.h"
 #include "apex/networking/open_weather_city.h"
 #include "apex/networking/http/context.h"
+#include "axis/platform/application.h"
+
 
 #include <unac.h>
+
 
 namespace geo
 {
 
 
-   department::department()
+   geo::geo()
    {
 
       m_bInitialLocalityTimeZoneInit = false;
@@ -45,14 +48,14 @@ namespace geo
    }
 
 
-   department::~department()
+   geo::~geo()
    {
 
 
    }
 
 
-   void department::initialize(::particle * pparticle)
+   void geo::initialize(::particle * pparticle)
    {
 
       ::acme::department::initialize(pparticle);
@@ -64,10 +67,10 @@ namespace geo
    }
    
 
-   void department::defer_check_openweather_city_list()
+   void geo::defer_check_openweather_city_list()
    {
 
-      synchronous_lock synchronouslock(get_openweather_city_mutex());
+      _synchronous_lock synchronouslock(get_openweather_city_mutex());
 
       if (m_straCityLo.get_size() == m_straCity.get_size()
          && m_straCity.get_size() == m_iaIds.get_size()
@@ -272,7 +275,7 @@ namespace geo
    }
 
 
-   openweather_city* department::openweather_find_city(string strQuery)
+   openweather_city* geo::openweather_find_city(string strQuery)
    {
 
       auto& pcity = m_mapCity[strQuery];
@@ -296,7 +299,7 @@ namespace geo
    }
 
 
-   index department::openweather_find_city2(string strQuery, string& strCit, i64& iId, double& dLat, double& dLon)
+   index geo::openweather_find_city2(string strQuery, string& strCit, i64& iId, double& dLat, double& dLon)
    {
 
       string_array stra;
@@ -356,7 +359,7 @@ namespace geo
 
 
 
-   index department::openweather_find_city2(string strQ1, string strQ2, string& strCit, i64& iId, double& dLat, double& dLon, bool bPrefix)
+   index geo::openweather_find_city2(string strQ1, string strQ2, string& strCit, i64& iId, double& dLat, double& dLon, bool bPrefix)
    {
 
       string strQueryLo;
@@ -557,7 +560,7 @@ namespace geo
    }
 
 
-   bool department::locality_sunset(openweather_city* pcity, int& iRise, int& iSet)
+   bool geo::locality_sunset(openweather_city* pcity, int& iRise, int& iSet)
    {
 
       if (pcity == nullptr)
@@ -589,7 +592,7 @@ namespace geo
 
       string str = pcontext->m_papexcontext->http().get(strGetUrl, set);
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       const ::ansi_character * pszJson = str;
 
@@ -618,12 +621,12 @@ namespace geo
    }
 
 
-   bool  department::locality_sunset(string strCountry, string strLocality, int& iRise, int& iSet)
+   bool  geo::locality_sunset(string strCountry, string strLocality, int& iRise, int& iSet)
    {
 
       auto psystem = system()->m_paxissystem;
 
-      auto pcity = psystem->geo().openweather_find_city(strLocality + ", " + strCountry);
+      auto pcity = psystem->geo()->openweather_find_city(strLocality + ", " + strCountry);
 
       if (pcity == nullptr)
       {
@@ -638,7 +641,7 @@ namespace geo
    }
 
 
-   string department::initial_locality_time_zone(openweather_city* pcity, double& dZone)
+   string geo::initial_locality_time_zone(openweather_city* pcity, double& dZone)
    {
 
       ::datetime::time_zone timezone;
@@ -652,7 +655,7 @@ namespace geo
    }
 
 
-   string  department::initial_locality_time_zone(string strCountry, string strLocality, double& dZone)
+   string  geo::initial_locality_time_zone(string strCountry, string strLocality, double& dZone)
    {
 
       string str;
@@ -690,7 +693,7 @@ namespace geo
 
       auto psystem = system()->m_paxissystem;
 
-      auto pcity = psystem->geo().openweather_find_city(strQ);
+      auto pcity = psystem->geo()->openweather_find_city(strQ);
 
       return initial_locality_time_zone(pcity, dZone);
 
@@ -793,7 +796,7 @@ namespace geo
    }
 
    // remark: initial does mean "official default" is certainly a rough guess
-   string  department::initial_country_time_zone(string strCountry)
+   string  geo::initial_country_time_zone(string strCountry)
    {
 
 
@@ -1044,7 +1047,7 @@ namespace geo
 
 
 
-   string department::utc_offset_string(double dUTCOffset)
+   string geo::utc_offset_string(double dUTCOffset)
    {
 
       if (dUTCOffset == 1000000.0)
@@ -1092,7 +1095,7 @@ namespace geo
    }
 
 
-   double department::time_zone(string str, string strCountryCode)
+   double geo::time_zone(string str, string strCountryCode)
    {
       str.make_lower();
       strCountryCode.make_lower();
@@ -1326,7 +1329,7 @@ namespace geo
    }
 
 
-   ::datetime::time_zone department::get_time_zone(openweather_city* pcity)
+   ::datetime::time_zone geo::get_time_zone(openweather_city* pcity)
    {
 
       if (::is_null(pcity))
@@ -1362,7 +1365,7 @@ namespace geo
 
                binary_stream reader(pfile);
 
-               synchronous_lock synchronouslock(m_pmutexCityTimeZone);
+               _synchronous_lock synchronouslock(m_pmutexCityTimeZone);
 
                reader >> m_cityTimeZone;
 
@@ -1379,7 +1382,7 @@ namespace geo
       try
       {
 
-         synchronous_lock synchronouslock(m_pmutexCityTimeZone);
+         _synchronous_lock synchronouslock(m_pmutexCityTimeZone);
 
          auto& timezone = m_cityTimeZone[iOpenweatherCity];
 
@@ -1414,7 +1417,7 @@ namespace geo
    }
 
 
-   ::datetime::time_zone department::_get_time_zone(openweather_city* pcity)
+   ::datetime::time_zone geo::_get_time_zone(openweather_city* pcity)
    {
 
       return get_time_zone(pcity->m_dLat, pcity->m_dLon);
@@ -1422,7 +1425,7 @@ namespace geo
    }
 
 
-   ::datetime::time_zone department::get_time_zone(double dLat, double dLng)
+   ::datetime::time_zone geo::get_time_zone(double dLat, double dLng)
    {
 
       if (!m_bLoadedLocalityTimeZoneFromFile)
@@ -1442,7 +1445,7 @@ namespace geo
 
                binary_stream reader(pfile);
 
-               synchronous_lock synchronouslock(m_pmutexLocalityTimeZone);
+               _synchronous_lock synchronouslock(m_pmutexLocalityTimeZone);
 
                reader >> m_localityTimeZone;
 
@@ -1463,7 +1466,7 @@ namespace geo
       try
       {
 
-         synchronous_lock synchronouslock(m_pmutexCityTimeZone);
+         _synchronous_lock synchronouslock(m_pmutexCityTimeZone);
 
          auto& timezone = m_localityTimeZone[dLat][dLng];
 
@@ -1500,7 +1503,7 @@ namespace geo
    }
 
 
-   ::datetime::time_zone department::_get_time_zone(double dLat, double dLng)
+   ::datetime::time_zone geo::_get_time_zone(double dLat, double dLng)
    {
 
       ::datetime::time_zone timezone;
@@ -1508,7 +1511,7 @@ namespace geo
       property_set set;
 
       string strLat;
-         
+
       strLat.formatf("%0.2f", dLat);
 
       string strLng;
@@ -1527,7 +1530,7 @@ namespace geo
          set["post"]["lng"] = strLng;
 
          //auto estatus = 
-         
+
          auto payload = api_get(strUrl, set);
 
          //if (!estatus)
@@ -1552,7 +1555,7 @@ namespace geo
    }
 
 
-   ::payload department::get_weather(openweather_city* pcity)
+   ::payload geo::get_weather(openweather_city* pcity)
    {
 
       if (!m_bLoadedCityWeatherFromFile)
@@ -1569,7 +1572,7 @@ namespace geo
 
             binary_stream reader(file);
 
-            synchronous_lock synchronouslock(m_pmutexCityWeather);
+            _synchronous_lock synchronouslock(m_pmutexCityWeather);
 
             reader >> m_cityWeather;
 
@@ -1598,7 +1601,7 @@ namespace geo
       try
       {
 
-         synchronous_lock synchronouslock(m_pmutexCityTimeZone);
+         _synchronous_lock synchronouslock(m_pmutexCityTimeZone);
 
          auto& stringtimeout = m_cityWeather[pcity->m_iId];
 
@@ -1616,7 +1619,7 @@ namespace geo
          if (stringtimeout.m_str.has_char())
          {
 
-            set_locality_time_zone_modified();
+            set_city_weather_modified();
 
          }
 
@@ -1635,7 +1638,7 @@ namespace geo
    }
 
 
-   ::payload department::_get_weather(openweather_city * pcity)
+   ::payload geo::_get_weather(openweather_city * pcity)
    {
 
       property_set set;
@@ -1677,7 +1680,7 @@ namespace geo
    }
 
 
-   void department::set_city_time_zone_modified()
+   void geo::set_city_time_zone_modified()
    {
 
       m_bCityTimeZoneModified = true;
@@ -1731,7 +1734,7 @@ namespace geo
    }
 
 
-   void department::set_locality_time_zone_modified()
+   void geo::set_locality_time_zone_modified()
    {
 
       m_bLocalityTimeZoneModified = true;
@@ -1792,7 +1795,7 @@ namespace geo
    }
 
 
-   void department::set_city_weather_modified()
+   void geo::set_city_weather_modified()
    {
 
       m_bCityWeatherModified = true;
@@ -1846,7 +1849,7 @@ namespace geo
    }
 
 
-   void department::save_city_time_zone()
+   void geo::save_city_time_zone()
    {
       
       ::file::path path = m_pathLocalityTimeZoneFile;
@@ -1861,7 +1864,7 @@ namespace geo
 
             binary_stream writer(pfile);
 
-            synchronous_lock synchronouslock(m_pmutexCityTimeZone);
+            _synchronous_lock synchronouslock(m_pmutexCityTimeZone);
 
             writer << m_cityTimeZone;
 
@@ -1876,7 +1879,7 @@ namespace geo
    }
 
 
-   void department::save_locality_time_zone()
+   void geo::save_locality_time_zone()
    {
 
       ::file::path path = m_pathLocalityTimeZoneFile;
@@ -1891,7 +1894,7 @@ namespace geo
 
             binary_stream writer(pfile);
 
-            synchronous_lock synchronouslock(m_pmutexLocalityTimeZone);
+            _synchronous_lock synchronouslock(m_pmutexLocalityTimeZone);
 
             writer << m_localityTimeZone;
 
@@ -1906,7 +1909,7 @@ namespace geo
    }
 
 
-   void department::save_city_weather()
+   void geo::save_city_weather()
    {
 
       ::file::path path = m_pathCityWeatherFile;
@@ -1918,7 +1921,7 @@ namespace geo
 
          binary_stream writer(pfile);
 
-         synchronous_lock synchronouslock(m_pmutexCityWeather);
+         _synchronous_lock synchronouslock(m_pmutexCityWeather);
 
          writer << m_cityWeather;
 

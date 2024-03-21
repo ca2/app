@@ -270,7 +270,7 @@ namespace user
       //if (! || !pusersystem->m_prequest)   // send initial update
       //{
 
-      pframe->send_message_to_descendants(e_message_system_update, ID_INITIAL_UPDATE, (lparam)0, true, true);
+      //pframe->send_message_to_descendants(e_message_system_update, ID_INITIAL_UPDATE, (lparam)0, true, true);
 
       //}
 
@@ -325,7 +325,7 @@ namespace user
 
          pdocument->m_bOpened = true;
 
-         pdocument->id_update_all_impacts(id_incoming_document);
+         pdocument->id_update_all_impacts(id_initial_update);
 
       }
       else
@@ -370,7 +370,7 @@ namespace user
          pdocument->m_bOpened = true;
          pdocument->set_path_name(payloadFile);
          pdocument->update_title();
-         pdocument->id_update_all_impacts(ID_INCOMING_DOCUMENT);
+         pdocument->id_update_all_impacts(id_initial_update);
 
 
       }

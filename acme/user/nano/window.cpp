@@ -780,7 +780,7 @@ void nano_window::_run_modal_loop()
 void nano_window::handle(::topic* ptopic, ::context* pcontext)
 {
    
-   if (ptopic->m_atom == id_set_dark_mode)
+   if (ptopic->m_atom == id_set_application_dark_mode)
    {
       
       m_pimplementation->handle(ptopic, pcontext);

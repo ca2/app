@@ -24680,6 +24680,8 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
             else
             {*/
 
+            pappearance->m_pmessage = pmessage;
+
             bRet = pappearance->on_mouse_move(pointClient, bDown, ekeyModifiers);
 
             if (get_wnd()->m_pinteractionimpl)

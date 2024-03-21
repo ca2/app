@@ -28,11 +28,12 @@ struct os_theme_colors
    ::color::color    m_colorBorderPress;
 
 
+   bool is_ok() const;
+
+
 };
 
 
-os_theme_colors * new_os_theme_colors();
-void del_os_theme_colors(os_theme_colors * pthemecolors);
 
 
 

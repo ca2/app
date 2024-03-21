@@ -8,7 +8,7 @@
 #include "acme/primitive/comparison/equals.h"
 #include "acme/primitive/comparison/hash.h"
 #include "acme/primitive/primitive/transfer.h"
-
+#include "acme/primitive/string/string.h"
 
 enum enum_id : ::uptr;
 
@@ -379,7 +379,8 @@ public:
    //atom(const ::lparam & lparam);
    template < primitive_payload PAYLOAD  >
    atom(const PAYLOAD & payload);
-   atom(::atom && atom) 
+   
+   atom(::atom && atom)
    { 
       m_etype = atom.m_etype; 
       if (atom.m_etype & e_type_text)

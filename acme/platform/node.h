@@ -22,7 +22,7 @@
 //#include "acme/primitive/time/time.h"
 #include "shell.h"
 
-
+struct os_theme_colors;
 namespace file { class set; }
 namespace windowing { class display; }
 class get_file_extension_mime_type;
@@ -84,6 +84,7 @@ namespace acme
       map < enum_character_set, ::string >                  m_mapCharacterSetDefaultSampleText;
       string_map < enum_character_set >                     m_mapCharacterSetEnum;
 
+      ::os_theme_colors *                                   m_pthemecolors;
 
       //:: IDENTIFIER_PREFIX_OPERATING_SYSTEM(_node)::node *  m_pNode;
 
@@ -94,7 +95,8 @@ namespace acme
 
       //::windowing_x11::node *                               m_pNodeX11;
       //::windowing_xcb::node *                               m_pNodeXcb;
-      ::node_gtk::node *                                    m_pNodeGtk;
+      ::node_gtk3::node *                                   m_pNodeGtk3;
+      ::node_gtk4::node *                                   m_pNodeGtk4;
       ::node_gnome::node *                                  m_pNodeGnome;
       ::node_kde::node *                                    m_pNodeKDE;
       ::node_xfce::node *                                   m_pNodeXfce;
@@ -104,10 +106,7 @@ namespace acme
 
       //bool                                                m_bUserDarkMode;
 
-      //bool                                                m_bDarkModeSystem;
-      bool                                                  m_bDarkMode;
-      ::color::color                                        m_colorBackground;
-      double                                                m_dLuminance;
+      bool                                                  m_bOperatingSystemDarkMode;
       //int                                                   m_iWeatherDarkness;
       ::file::path                                          m_pathModule;
 
@@ -151,7 +150,7 @@ namespace acme
       //virtual ::pointer < ::particle > create_quit_particle(::pointer<::acme::node>& pnode);
 
       //virtual ::pointer < ::particle > create_quit_particle();
-      
+      virtual ::file::path get_default_base_integration_folder();
       
       ///virtual void implement(::pointer<::acme::node>& pnode, ::pointer<::acme::system> & psystem);
 
@@ -258,11 +257,17 @@ namespace acme
 
       virtual bool dark_mode() const;
 
-      virtual ::color::color background_color() const;
+      virtual ::os_theme_colors * _new_os_theme_colors();
 
-      virtual double luminance() const;
+      virtual ::os_theme_colors * _get_os_theme_colors();
 
-      virtual void background_color(const ::color::color & color);
+      virtual void _fill_os_theme_colors(::os_theme_colors * pthemecolors);
+
+      virtual void _set_os_theme_colors(::os_theme_colors * pthemecolors);
+
+      virtual void _del_os_theme_colors(::os_theme_colors * pthemecolors);
+
+      virtual void _term_os_theme_colors();
 
 //      virtual int get_simple_ui_darkness();
 
@@ -271,6 +276,8 @@ namespace acme
       virtual void set_dark_mode(bool bDark);
 
       virtual void fetch_user_color();
+
+      virtual void _fetch_user_color();
 
       virtual void on_operating_system_user_theme_change();
 
@@ -654,7 +661,7 @@ namespace acme
 
 
       virtual ::string get_user_permanent_environment_variable(const ::scoped_string& scopedstr);
-      virtual void set_user_permanent_environment_variable(const ::scoped_string& scopedstr, const ::scoped_string& strPayload);
+      virtual void set_user_permanent_environment_variable(const ::scoped_string& scopedstr, const ::scoped_string& strPayload, bool bNoSystemNotify = false);
 
 
       virtual void set_user_run_once(const ::scoped_string& scopedstrLabel, const ::scoped_string & scopedstrCommand);

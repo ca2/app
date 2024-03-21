@@ -175,6 +175,12 @@
     <Filter Include="Header Files\user\form">
       <UniqueIdentifier>{fcf38e5d-139e-4beb-8354-d6ec9752fac1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\geoip">
+      <UniqueIdentifier>{560c6acd-0b5a-4c0c-ae51-d67de0443d0b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\geoip">
+      <UniqueIdentifier>{9230e94b-5463-4a25-a906-d7cba74cfeeb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -250,9 +256,6 @@
       <Filter>Header Files\account</Filter>
     </ClInclude>
     <ClInclude Include="platform\application.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\geo_department.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\openweather_city.h">
@@ -714,12 +717,33 @@
     <ClInclude Include="user\user\calculator_edit.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
+    <ClInclude Include="geoip\update.h">
+      <Filter>Header Files\geoip</Filter>
+    </ClInclude>
+    <ClInclude Include="geoip\internal.h">
+      <Filter>Header Files\geoip</Filter>
+    </ClInclude>
+    <ClInclude Include="geoip\global.h">
+      <Filter>Header Files\geoip</Filter>
+    </ClInclude>
+    <ClInclude Include="geoip\city.h">
+      <Filter>Header Files\geoip</Filter>
+    </ClInclude>
+    <ClInclude Include="geoip\_.h">
+      <Filter>Header Files\geoip</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\geo.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="geoip\geoip.h">
+      <Filter>Header Files\geoip</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\_.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="platform\application.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\geo_department.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="platform\session.cpp">
@@ -1009,6 +1033,24 @@
     </ClCompile>
     <ClCompile Include="user\user\calculator_edit.cpp">
       <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="geoip\city.cpp">
+      <Filter>Source Files\geoip</Filter>
+    </ClCompile>
+    <ClCompile Include="geoip\region_name.cpp">
+      <Filter>Source Files\geoip</Filter>
+    </ClCompile>
+    <ClCompile Include="geoip\time_zone.cpp">
+      <Filter>Source Files\geoip</Filter>
+    </ClCompile>
+    <ClCompile Include="geoip\update.cpp">
+      <Filter>Source Files\geoip</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\geo.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="geoip\geoip.cpp">
+      <Filter>Source Files\geoip</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -2218,7 +2218,7 @@ namespace user
          if (!ptopic || pimpact != ptopic->m_psender)
          {
 
-            pimpact->handle(ptopic, nullptr);
+            pimpact->call_handle(ptopic, nullptr);
 
             if(ptopic && ptopic->m_bRet)
             {

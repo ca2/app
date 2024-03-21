@@ -20,6 +20,7 @@ namespace integration
       boolean           m_bBuildDependencies;
 
 
+      ::file::path      m_pathBaseIntegrationFolder;
       ::file::path      m_pathProjectFolder;
       ::file::path      m_pathBuildFolder;
 
@@ -81,8 +82,8 @@ namespace integration
 
       virtual void download_and_uncompress();
       virtual void git_clone();
-      virtual ::i32 bash(const ::scoped_string & scopedstr);
-      virtual ::i32 zsh(const ::scoped_string & scopedstr);
+      virtual ::i32 bash(const ::scoped_string & scopedstr, const class ::time & timeTimeout);
+      virtual ::i32 zsh(const ::scoped_string & scopedstr, const class ::time & timeTimeout);
 
       void untar(const ::file::path & pathFolder, const ::payload & payloadTar, int iStripComponent = 0);
 

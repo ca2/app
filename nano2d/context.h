@@ -479,7 +479,7 @@ namespace nano2d
 		virtual void font_face(const ::scoped_string& font);
 
 		// Draws text string at specified location. If end is specified only the sub-string up to the end is drawn.
-		virtual float text(float x, float y, const ::scoped_string& scopedstr);
+		virtual ::rectangle_f32 text(float x, float y, const ::scoped_string& scopedstr);
 
 		// Draws multi-line text string at specified location wrapped at the specified width. If end is specified only the sub-string up to the end is drawn.
 		// White space is stripped at the beginning of the rows, the text is split at word boundaries or when new-line characters are encountered.
@@ -491,13 +491,13 @@ namespace nano2d
 		// if the bounding box of the text should be returned. The bounds value are [xmin,ymin, xmax,ymax]
 		// Returns the horizontal advance of the measured text (i.e. where the next character should drawn).
 		// Measured values are returned in local coordinate space.
-		virtual float text_bounds(float x, float y, const ::scoped_string& scopedstr, float* bounds);
+		virtual float text_bounds(float x, float y, const ::scoped_string& scopedstr, ::rectangle_f32* prectangle);
 
 		// Measures the specified multi-text string. Parameter bounds should be a pointer to float[4],
 		// if the bounding box of the text should be returned. The bounds value are [xmin,ymin, xmax,ymax]
 		// Measured values are returned in local coordinate space.
 		//virtual void text_box_bounds(float x, float y, float breakRowWidth, const ::scoped_string& scopedstr, float* bounds);
-      virtual void text_box_bounds(float x, float y, ::nano2d::text_box * ptextbox, float* bounds);
+      virtual void text_box_bounds(float x, float y, ::nano2d::text_box * ptextbox, ::rectangle_f32* prectangle);
 
 
 		virtual ::count character_metric(::f64_array& daLeft, ::f64_array& daRight, const ::string& str, strsize iStart = 0, strsize iEnd = -1);

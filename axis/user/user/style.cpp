@@ -27,6 +27,10 @@ namespace axis
    void style::default_style_construct()
    {
 
+
+      ::user::style::default_style_construct();
+
+
       //m_pfont = ::write_text::point_font(pnode->font_name(e_font_sans_ex), 14.0);
       //m_pfontMenu;
       //m_pfontButton;

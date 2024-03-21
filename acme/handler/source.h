@@ -30,11 +30,11 @@ public:
 
    virtual void add_handler(::particle * pmatter, bool bPriority = false);
 
-   void route(::topic * ptopic, ::context * pcontext = nullptr);
+   virtual void route(::topic * ptopic, ::context * pcontext = nullptr);
 
-   void on_topic(const ::atom & atom, ::particle * pparticle = nullptr, ::context * pcontext = nullptr);
+   virtual void on_topic(const ::atom & atom, ::particle * pparticle = nullptr, ::context * pcontext = nullptr);
 
-   void notify_topic(const ::atom & atom, ::particle * pparticle = nullptr, ::context * pcontext = nullptr);
+   virtual void notify_topic(const ::atom & atom, ::particle * pparticle = nullptr, ::context * pcontext = nullptr);
 
    //void signal(::topic * ptopic, ::context * pcontext) override;
 

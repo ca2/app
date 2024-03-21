@@ -18,6 +18,7 @@
 #include "acme/constant/user_key.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "aura/graphics/image/context_image.h"
+#include "aura/message/user.h"
 #include "aura/user/user/interaction.h"
 #include "aura/platform/context.h"
 #include "nano2d/draw2d_context.h"
@@ -757,7 +758,7 @@ namespace nanoui
          if (pwidget && pwidget->tooltip().has_char()) {
             int tooltip_width = 150;
 
-            float bounds[4];
+            ::rectangle_f32 bounds;
             pcontext->font_face("sans");
             pcontext->font_size(15.0f);
             pcontext->text_align(::nano2d::e_align_left | ::nano2d::e_align_top);
@@ -766,7 +767,7 @@ namespace nanoui
                sequence2_i32(pwidget->width() / 2, pwidget->height() + 10);
 
             pcontext->text_bounds((float)pos.x(), (float)pos.y(),
-               pwidget->tooltip(), bounds);
+               pwidget->tooltip(), &bounds);
 
             int h = (int)((bounds[2] - bounds[0]) / 2.f);
             if (h > tooltip_width / 2) {
@@ -774,7 +775,7 @@ namespace nanoui
                pwidget->m_ptextboxTooltip = pcontext->text_box_layout(
                   pwidget->tooltip(),
                   (float)tooltip_width);
-               pcontext->text_box_bounds((float)pos.x(), (float)pos.y(), pwidget->m_ptextboxTooltip, bounds);
+               pcontext->text_box_bounds((float)pos.x(), (float)pos.y(), pwidget->m_ptextboxTooltip, &bounds);
 
                h = (int)((bounds[2] - bounds[0]) / 2.f);
             }
@@ -901,6 +902,7 @@ namespace nanoui
    {
 
       _synchronous_lock lock(this->synchronization());
+      bool ret = false;
 
       //if (point.x() > m_size.cx() - 10 && point.y() > m_size.cy() - 10)
       //{
@@ -937,72 +939,89 @@ namespace nanoui
 
          }
 
-         auto bHandled = m_pwidgetMouseCapture->mouse_motion_event(pointWidgetClient, shift, bDown, ekeyModifiers);
+         ret = m_pwidgetMouseCapture->mouse_motion_event(pointWidgetClient, shift, bDown, ekeyModifiers);
 
-         return bHandled;
-
-      }
-
-      //#if defined(_WIN32) || defined(__linux__) || defined(EMSCRIPTEN)
-      //   p = sequence2_i32(sequence2_f32(p) / m_pixel_ratio);
-      //#endif
-
-      //   m_last_interaction = glfwGetTime();
-      m_last_interaction.Now();
-      //try {
-         //p -= sequence2_i32(1, 2);
-
-      bool ret = false;
-      if (!m_bDragActive || !m_pwidgetDrag) {
-         //Widget * pwidget = find_widget(p);
-         //if (pwidget != nullptr && pwidget->cursor() != m_cursor) {
-           // m_cursor = pwidget->cursor();
-            //glfwSetCursor(m_glfw_window, m_cursors[(int)m_cursor]);
-         //}
       }
       else
       {
 
-         if (!screen()->m_pwidgetLeftButtonDown)
+         //#if defined(_WIN32) || defined(__linux__) || defined(EMSCRIPTEN)
+         //   p = sequence2_i32(sequence2_f32(p) / m_pixel_ratio);
+         //#endif
+
+         //   m_last_interaction = glfwGetTime();
+         m_last_interaction.Now();
+         //try {
+            //p -= sequence2_i32(1, 2);
+
+         if (!m_bDragActive || !m_pwidgetDrag) {
+            Widget* pwidget = find_widget(point);
+            if (pwidget != nullptr && pwidget->cursor() != m_cursor)
+            {
+               m_cursor = pwidget->cursor();
+               //glfwSetCursor(m_glfw_window, m_cursors[(int)m_cursor]);
+            }
+         }
+         else
          {
 
-            auto pointClient = pointCursor - m_pwidgetDrag->absolute_position();
+            if (!screen()->m_pwidgetLeftButtonDown)
+            {
 
-            ret = m_pwidgetDrag->mouse_motion_event(pointClient, shift, bDown, ekeyModifiers);
+               auto pointClient = pointCursor - m_pwidgetDrag->absolute_position();
+
+               ret = m_pwidgetDrag->mouse_motion_event(pointClient, shift, bDown, ekeyModifiers);
+
+            }
 
          }
 
+         if (!ret)
+         {
+
+            auto pointClient = pointCursor;
+
+            ret = Widget::mouse_motion_event(pointClient, shift, bDown, ekeyModifiers);
+
+         }
+
+         //m_redraw |= ret;
+
+         //if (m_redraw)
+         //{
+
+         //   if (m_puserinteraction)
+         //   {
+
+         //      m_puserinteraction->set_need_redraw();
+
+         //      m_puserinteraction->post_redraw();
+
+         //   }
+
+         //}
+      //}
+      //catch()
+      //catch (const std::exception & e) {
+        // std::cerr << "Caught exception in event handler: " << e.what() << std::endl;
+      //}
+
       }
 
-      if (!ret)
+      if (m_cursor == ::nanoui::Cursor::IBeam)
       {
 
-         auto pointClient = pointCursor;
-
-         ret = Widget::mouse_motion_event(pointClient, shift, bDown, ekeyModifiers);
+         m_puserinteraction->user_mouse_set_cursor(m_pmessage->m_union.m_pmouse,
+            m_puserinteraction->get_mouse_cursor(e_cursor_text_select));
 
       }
+      else
+      {
 
-      //m_redraw |= ret;
+         m_puserinteraction->user_mouse_set_cursor(m_pmessage->m_union.m_pmouse,
+            m_puserinteraction->get_mouse_cursor(e_cursor_arrow));
 
-      //if (m_redraw)
-      //{
-
-      //   if (m_puserinteraction)
-      //   {
-
-      //      m_puserinteraction->set_need_redraw();
-
-      //      m_puserinteraction->post_redraw();
-
-      //   }
-
-      //}
-   //}
-   //catch()
-   //catch (const std::exception & e) {
-     // std::cerr << "Caught exception in event handler: " << e.what() << std::endl;
-   //}
+      }
 
       return ret;
 

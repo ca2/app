@@ -41,33 +41,28 @@ namespace user
 
       m_iUpdate = 0;
 
-
    }
 
 
    void style::initialize(::particle * pparticle)
    {
 
-      //auto estatus = 
-      
       style_base::initialize(pparticle);
+
       default_style_construct();
 
+      auto pnode = this->node();
+
+      auto bOperatingSystemDarkMode = pnode->dark_mode();
+
+      system()->set_dark_mode(bOperatingSystemDarkMode);
+
+      pnode->_get_os_theme_colors();
 
       m_puserstyle = this;
 
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
       auto psystem = system()->m_paurasystem;
 
-      auto pnode = psystem->node();
-      
       auto pdraw2d = psystem->draw2d();
       
       auto pwritetext = pdraw2d->write_text();
@@ -1457,7 +1452,7 @@ namespace user
          if (is_dark_mode())
          {
 
-            crBk = node()->background_color();
+            crBk = system()->background_color();
 
             //crBk = argb(255, 0x40, 0x40, 0x40);
 
@@ -1465,7 +1460,7 @@ namespace user
          else
          {
 
-            crBk = node()->background_color();
+            crBk = system()->background_color();
             //crBk = argb(255, 255, 255, 255);
 
          }

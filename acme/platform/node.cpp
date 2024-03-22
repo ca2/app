@@ -4235,6 +4235,10 @@ bool node::are_framework_shared_libraries_busy(const ::scoped_string & scopedstr
       {
          return "application/rdf+xml";
       }
+      else if (strExtension == "raw")
+      {
+         return "application/x-cd-image;application/x-raw-disk-image;";
+      }
       else
       {
          return "";

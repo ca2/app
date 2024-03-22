@@ -3,6 +3,7 @@
 #include "acme/constant/message.h"
 #include "acme/handler/item.h"
 #include "acme/platform/node.h"
+#include "acme/platform/system.h"
 #include "acme/user/user/tool.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/user/control_box_button.h"
@@ -98,7 +99,7 @@ namespace app_app
 
       pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_none);
 
-      if (node()->background_color().get_luminance() < 0.5)
+      if (system()->background_color().get_luminance() < 0.5)
       {
 
          pgraphics->fill_rectangle(rectangleX, argb(255, 127, 127, 127));
@@ -136,7 +137,7 @@ namespace app_app
 
       ::color::color colorInset;
 
-      if (node()->background_color().get_luminance() < 0.5)
+      if (system()->background_color().get_luminance() < 0.5)
       {
 
          colorInset = argb(255, 89, 89, 89);

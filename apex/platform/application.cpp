@@ -10107,7 +10107,7 @@ namespace apex
    }
 
 
-   ::e_status application::on_html_response(string & strHtml, const ::string & strUrl, const ::property_set & setPost)
+   ::e_status application::on_html_response(::networking::application_socket * psocket, string & strHtml, const ::string & strUrl, const ::property_set & setPost)
    {
 
       ::e_status estatus = ::success_none;
@@ -10115,7 +10115,7 @@ namespace apex
       if (m_pnetworkingapplication)
       {
 
-         estatus = networking_application()->on_html_response(strHtml, strUrl, setPost);
+         estatus = networking_application()->on_html_response(psocket, strHtml, strUrl, setPost);
 
       }
 
@@ -10131,7 +10131,7 @@ namespace apex
       
       property_set setPost;
 
-      auto estatus = on_html_response(strHtml, strUri, setPost);
+      auto estatus = on_html_response(nullptr, strHtml, strUri, setPost);
 
       if(estatus != success_none && estatus.succeeded())
       {

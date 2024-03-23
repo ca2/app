@@ -23,7 +23,7 @@ namespace message
       ~predicate_handler() override{}
 
 
-      virtual void handle(::message::message * pmessage) override
+      virtual void handle_message(::message::message * pmessage) override
       {
 
          m_predicate(pmessage);

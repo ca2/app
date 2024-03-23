@@ -47,7 +47,7 @@ namespace networking
       virtual void add_handler(const ::string& strPrefix, ::networking::application_handler* phandler);
 
 
-      ::e_status on_html_response(::string & strHtml, const ::string& strUrl, const ::property_set& setPost) override;
+      ::e_status on_html_response(::networking::application_socket * psocket, ::string & strHtml, const ::string& strUrl, const ::property_set& setPost) override;
 
 
    };

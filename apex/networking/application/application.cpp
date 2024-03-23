@@ -131,7 +131,7 @@ namespace networking
    }
 
 
-   ::e_status application::on_html_response(::string & strHtml, const ::string& strUrl, const ::property_set& setPost)
+   ::e_status application::on_html_response(::networking::application_socket * psocket, ::string & strHtml, const ::string& strUrl, const ::property_set& setPost)
    {
 
       string strRequestScript = system()->url()->get_script(strUrl);
@@ -169,7 +169,7 @@ namespace networking
                || strRequestScript.case_insensitive_begins(strScript + "?"))
             {
 
-               auto estatus = phandler->on_html_response(strHtml, strUrl, setPost);
+               auto estatus = phandler->on_html_response(psocket, strHtml, strUrl, setPost);
 
                if (estatus.succeeded())
                {

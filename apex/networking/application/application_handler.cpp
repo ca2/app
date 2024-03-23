@@ -25,7 +25,7 @@ namespace networking
    }
 
 
-   ::e_status application_handler::on_html_response(string & strHtml, const ::string& strUrl, const ::property_set& setPost)
+   ::e_status application_handler::on_html_response(::networking::application_socket * psocket, string & strHtml, const ::string& strUrl, const ::property_set& setPost)
    {
 
       auto psystem = system();

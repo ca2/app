@@ -8,6 +8,7 @@
 #include "acme/platform/system.h"
 #include "acme/primitive/datetime/datetime.h"
 #include "apex/networking/application/application.h"
+#include "apex/networking/application/application_socket.h"
 #include "apex/networking/http/context.h"
 #include "axis/platform/application.h"
 
@@ -40,6 +41,14 @@ namespace api_ca2
    {
 
       return "ca2";
+
+   }
+
+
+   bool api::user_seems_to_be_on_pre_login_screen() const
+   {
+
+      return m_timeLastNotifyOnPreLoginScreen.elapsed() < 1_min;
 
    }
 
@@ -93,6 +102,8 @@ namespace api_ca2
 
          phyperlink->m_strBrowserAccount = m_strBrowserAccount;
 
+         m_timeLastNotifyOnPreLoginScreen.Now();
+
          phyperlink->run();
 
          m_eventResponse.ResetEvent();
@@ -112,12 +123,26 @@ namespace api_ca2
          //#else
          //
 
-         auto bOk = m_eventResponse.wait(1_min);
-
-         if (!bOk)
+         while (::task_get_run())
          {
 
-            throw ::exception(error_failed);
+            auto bOk = m_eventResponse.wait(2_s);
+
+            if (bOk)
+            {
+
+               break;
+
+            }
+
+            if (!user_seems_to_be_on_pre_login_screen())
+            {
+
+               m_timeLastNotifyOnPreLoginScreen.Now();
+
+               phyperlink->run();
+
+            }
 
          }
 
@@ -182,12 +207,41 @@ namespace api_ca2
    }
 
 
-   ::e_status api::on_html_response(::string & strHtml, const ::string & strUrl, const ::property_set & setPost)
+   ::e_status api::on_html_response(::networking::application_socket * psocket, ::string & strHtml, const ::string & strUrl, const ::property_set & setPost)
    {
 
       //auto psystem = system();
 
       //auto pdatetime = psystem->datetime();
+
+      if (::is_set(psocket))
+      {
+
+         ::string strScript = system()->url()->get_script(strUrl);
+
+         if (strScript == m_strScriptNotifyOnPreLoginScreen)
+         {
+
+            ::string strOrigin = psocket->inheader("origin");
+
+            ::string strOriginHost = system()->url()->get_server(strOrigin);
+
+            if (strOriginHost == "camilothomas.com")
+            {
+
+               m_timeLastNotifyOnPreLoginScreen.Now();
+
+               psocket->outheader("access-control-allow-origin") = strOrigin;
+
+            }
+
+            strHtml = "Waiting for Authentication";
+
+            return ::success;
+
+         }
+
+      }
 
       strHtml += "<html>";
       strHtml += "<head>";
@@ -318,6 +372,10 @@ namespace api_ca2
       string strAppId = papp->m_strAppId;
 
       papp->networking_application()->add_handler(strAppId + "/redirect", this);
+
+      papp->networking_application()->add_handler(strAppId + "/notify_on_pre_login_screen", this);
+
+      m_strScriptNotifyOnPreLoginScreen = "/" + strAppId + "/notify_on_pre_login_screen";
 
       iCurrentPort = papp->networking_application()->wait_get_current_port(1_min);
 

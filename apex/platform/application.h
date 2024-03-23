@@ -1086,7 +1086,7 @@ namespace apex
       virtual void create_networking_application(const ::scoped_string & scopedstrHostName, ::networking::application_handler * papplicationhandlerCreateNetworkApplication = nullptr);
 
 
-      ::e_status on_html_response(::string & strHtml, const ::string & strUrl, const ::property_set & setPost) override;
+      ::e_status on_html_response(::networking::application_socket * psocket, ::string & strHtml, const ::string & strUrl, const ::property_set & setPost) override;
 
 
       bool _handle_uri(const ::string & strUri) override;

@@ -597,6 +597,200 @@ namespace integration
 
 #endif
 
+   
+   ::string context::current_integration()
+   {
+
+      auto pathIntegrationFolder = base_integration_folder();
+
+      auto pathCurrentIntegration = pathIntegrationFolder / "current_integration.txt";
+
+      auto strIntegration = acmefile()->as_string(pathCurrentIntegration);
+
+      return strIntegration;
+
+   }
+
+
+   ::string context::integration_main_status(const ::scoped_string& scopedstrSlashed)
+   {
+
+      auto pathIntegrationFolder = base_integration_folder();
+
+      pathIntegrationFolder /= scopedstrSlashed;
+
+      auto strIntegration = current_integration();
+
+      pathIntegrationFolder /= strIntegration;
+
+      auto pathStartBuild = pathIntegrationFolder / "main_status.txt";
+
+      auto strMainStatus = acmefile()->as_string(pathStartBuild);
+
+      if (strMainStatus.begins("machine_box:"))
+      {
+
+         ::string strChildSlashed = strMainStatus;
+
+         bool bOk1 = strChildSlashed.begins_eat("machine_box:");
+
+         ::string strChildStatus = integration_main_status(strChildSlashed);
+
+         strChildStatus.find_replace("cmake_project ", "");
+
+         if (bOk1)
+         {
+
+            strMainStatus = strChildStatus;
+
+         }
+         else
+         {
+
+            strChildStatus.begins_eat(strChildSlashed);
+
+            strMainStatus += strChildStatus;
+
+         }
+
+      }
+
+      return strMainStatus;
+
+   }
+
+
+   ::string context::integration_main_status()
+   {
+
+      auto strSlashed = node()->operating_system_summary()->m_strSlashedIntegration;
+
+      auto strMainStatus = integration_main_status(strSlashed);
+
+      return strMainStatus;
+
+   }
+
+
+   bool context::integration_is_any_running()
+   {
+
+      ::string strBuildingIntegration = integration_one_that_is_building();
+
+      bool bAnyBuilding = strBuildingIntegration.has_char();
+
+      return bAnyBuilding;
+
+   }
+
+
+   ::string context::integration_can_start(const ::scoped_string& scopedstrIntegration)
+   {
+
+      ::string strResult;
+
+      ::string strBuildingIntegration = integration_one_that_is_building();
+
+      if (strBuildingIntegration.has_char())
+      {
+
+         if (strBuildingIntegration == scopedstrIntegration)
+         {
+
+            strResult = "building...";
+
+         }
+         else
+         {
+
+            strResult = "busy";
+
+         }
+
+      }
+      else
+      {
+
+         strResult = "yes";
+
+      }
+
+      return strResult;
+
+   }
+
+
+   ::string context::integration_one_that_is_building()
+   {
+
+      ::string strResult;
+
+      auto pathIntegrationFolder = host_integration_folder();
+
+      auto pathStartBuild = pathIntegrationFolder / "start_build.txt";
+
+      list_host_builds();
+
+      ::string strError;
+
+      ::string strBuildingIntegration;
+
+      for (auto& path : m_listingBuild)
+      {
+
+         ::string strIntegrationItem = path.name();
+
+         auto pathIntegration = pathIntegrationFolder / strIntegrationItem;
+
+         auto pathBuilt = pathIntegration / "built.txt";
+
+         bool bBuilding = false;
+
+         if (!acmefile()->exists(pathBuilt) && acmefile()->exists(pathStartBuild))
+         {
+
+            auto timeStart = acmefile()->as_time(pathStartBuild);
+
+            auto pathStartedBuilding = pathIntegration / "started_building.txt";
+
+            auto timeStarted = acmefile()->safe_time(pathStartedBuilding);
+
+            if (timeStart > 700_days)
+            {
+
+               if (timeStart.elapsed() < 15_s || timeStarted > timeStart)
+               {
+
+                  bBuilding = true;
+
+                  strBuildingIntegration = strIntegrationItem;
+
+               }
+               else
+               {
+
+                  strError = "Integration application failed to start";
+
+               }
+
+            }
+
+         }
+
+         if (strBuildingIntegration.has_char())
+         {
+
+            break;
+
+         }
+
+      }
+
+      return strBuildingIntegration;
+
+   }
+
+
 
 } // namespace integration
 

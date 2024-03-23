@@ -601,7 +601,7 @@ namespace integration
    ::string context::current_integration()
    {
 
-      auto pathIntegrationFolder = base_integration_folder();
+      auto pathIntegrationFolder = host_integration_folder();
 
       auto pathCurrentIntegration = pathIntegrationFolder / "current_integration.txt";
 

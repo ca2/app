@@ -4246,6 +4246,15 @@ bool node::are_framework_shared_libraries_busy(const ::scoped_string & scopedstr
 
    }
 
+   
+   ::string node::eol()
+   {
+
+      return "\n";
+
+   }
+
+
 } // namespace acme
 
 

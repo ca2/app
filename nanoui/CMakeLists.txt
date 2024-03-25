@@ -40,6 +40,12 @@ list(APPEND library_source
         ImagePanel.h
         ImageImpact.cpp
         ImageImpact.h
+   in_place_edit.cpp
+   in_place_edit.h
+   in_place_edit_array.cpp
+   in_place_edit_array.h
+   in_place_edit_mapper.cpp
+   in_place_edit_mapper.h
         Label.cpp
         Label.h
         Layout.cpp

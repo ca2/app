@@ -133,21 +133,21 @@ namespace account
 
       auto purl = psystem->url();
 
-      if (purl->get_server(pathUrl).lowered() == "server.ca2.software")
+      if (purl->get_server(pathUrl).lowered() == "server.ca2software.com")
       {
 
          return false;
 
       }
 
-      if(::str::case_insensitive_find("/matter.ca2.software/", pathUrl) >= 0)
+      if(::str::case_insensitive_find("/matter.ca2software.com/", pathUrl) >= 0)
       {
 
          return false;
 
       }
 
-      if(::str::case_insensitive_find("-matter.ca2.software/", pathUrl) >= 0)
+      if(::str::case_insensitive_find("-matter.ca2software.com/", pathUrl) >= 0)
       {
 
          return false;
@@ -219,13 +219,13 @@ namespace account
 //
 //      string strGetFontopus;
 //
-//      if(string_ends(strRequestingServer,".ca2.software"))
+//      if(string_ends(strRequestingServer,".ca2software.com"))
 //      {
-//         strGetFontopus = "https://ca2.software/get_account_login";
+//         strGetFontopus = "https://ca2software.com/get_account_login";
 //      }
 //      else
 //      {
-//         strGetFontopus = "https://ca2.software/get_account_login";
+//         strGetFontopus = "https://ca2software.com/get_account_login";
 //      }
 //
 //      //      ::aura::application * papp = get_app();
@@ -239,8 +239,8 @@ namespace account
 //      if(domainFontopus.m_strRadix != "ca2" && domainFontopus.m_strRadix != "account")
 //         return "";
 //
-//      if(strRequestingServer == "ca2.software")
-//         return "ca2.software";
+//      if(strRequestingServer == "ca2software.com")
+//         return "ca2software.com";
 //
 //      ::u32 dwGetFontopusEnd= ::time::now();
 //
@@ -356,7 +356,7 @@ namespace account
    ::file::path department::get_default_url()
    {
 
-      return "https://ca2.software/";
+      return "https://ca2software.com/";
 
    }
 

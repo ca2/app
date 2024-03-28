@@ -788,7 +788,7 @@
 				MACH_O_TYPE = mh_execute;
 				MARKETING_VERSION = 0.1;
 				PLATFORM_MODIFIER = ios;
-				PRODUCT_BUNDLE_IDENTIFIER = "ca2.software.app.message-box";
+				PRODUCT_BUNDLE_IDENTIFIER = "ca2software.com.app.message-box";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -807,7 +807,7 @@
 				MACH_O_TYPE = mh_execute;
 				MARKETING_VERSION = 0.1;
 				PLATFORM_MODIFIER = ios;
-				PRODUCT_BUNDLE_IDENTIFIER = "ca2.software.app.message-box";
+				PRODUCT_BUNDLE_IDENTIFIER = "ca2software.com.app.message-box";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

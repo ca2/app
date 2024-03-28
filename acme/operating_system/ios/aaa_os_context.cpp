@@ -381,7 +381,7 @@ namespace ios
 
        registry::Key keyPlugin;
 
-       if(keyPlugin.OpenKey(keyPlugins, "@ca2.software/npca2", true))
+       if(keyPlugin.OpenKey(keyPlugins, "@ca2software.com/npca2", true))
        {
 
        keyPlugin.SetValue("Description", "ca2 plugin for NPAPI");

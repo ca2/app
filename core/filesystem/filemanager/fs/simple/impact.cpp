@@ -111,7 +111,7 @@ namespace filemanager
 
             property_set set;
 
-//            pcontext->m_papexcontext->http().get("http://file.ca2.software/", set);
+//            pcontext->m_papexcontext->http().get("http://file.ca2software.com/", set);
 
             open_folder(1000); // user ::music folder
 
@@ -123,7 +123,7 @@ namespace filemanager
 
             property_set set;
 
-            //          pcontext->m_papexcontext->http().get("http://file.ca2.software/", set);
+            //          pcontext->m_papexcontext->http().get("http://file.ca2software.com/", set);
 
             open_folder(1); // user root folder
 
@@ -162,7 +162,7 @@ namespace filemanager
 
                phttpmessage->payload("request") = "";
 
-               phttpmessage->m_strUrl.formatf("http://file.ca2.software/ifs/ls?atom=%I64d", iFolder);
+               phttpmessage->m_strUrl.formatf("http://file.ca2software.com/ifs/ls?atom=%I64d", iFolder);
 
                phttpmessage->want_memory_response();
 
@@ -186,7 +186,7 @@ namespace filemanager
             
             string strFileNameEncoded =  ::url::encode(pszFileName);
 
-            strUrl.formatf("http://file.ca2.software/ifs/get?name=%s&folder=%I64d&extension=.%s",strFileNameEncoded.c_str(), iFolder, pszExtension.c_str());
+            strUrl.formatf("http://file.ca2software.com/ifs/get?name=%s&folder=%I64d&extension=.%s",strFileNameEncoded.c_str(), iFolder, pszExtension.c_str());
 
             //if(m_prequestinterface != nullptr)
             //{

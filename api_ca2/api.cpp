@@ -2,6 +2,7 @@
 #include "framework.h"
 #include "api.h"
 #include "acme/filesystem/file/memory_file.h"
+#include "acme/primitive/mathematics/mathematics.h"
 #include "acme/primitive/primitive/memory.h"
 #include "acme/primitive/primitive/url.h"
 #include "acme/platform/hyperlink.h"
@@ -53,101 +54,62 @@ namespace api_ca2
    }
 
 
-   //void api::api_login(const ::string& strConfigParam, const ::string& strProfile)
    void api::api_login()
    {
 
-      //if (m_strToken.is_empty())
+      m_bWaitingResponseFromUser = true;
+
+      string str;
+
+      m_strAppLogin = get_app_login();
+
+      if (m_strAppLogin.is_empty())
       {
 
-         m_bWaitingResponseFromUser = true;
+         throw ::exception(error_failed);
 
-         string str;
+      }
 
-         string strAppLogin;
+      m_strState = system()->mathematics()->random_alphanumeric(64);
 
-         strAppLogin = get_app_login();
+      string strUrl = ::string("http://camilothomas.com/account/?platform=" PLATFORM_STRING);
 
-         if (strAppLogin.is_empty())
+      strUrl += "&applogin=" + ::url::encode(m_strAppLogin);
+
+      strUrl += "&appstate=" + ::url::encode(m_strState);
+
+      auto phyperlink = __create_new <::hyperlink >();
+
+      phyperlink->m_strLink = strUrl;
+
+      phyperlink->m_strBrowserAccount = m_strBrowserAccount;
+
+      m_timeLastNotifyOnPreLoginScreen.Now();
+
+      phyperlink->run();
+
+      m_eventResponse.ResetEvent();
+
+      while (::task_get_run())
+      {
+
+         auto bOk = m_eventResponse.wait(2_s);
+
+         if (bOk)
          {
 
-            throw ::exception(error_failed);
+            break;
 
          }
 
-         m_strState = strAppLogin;
-
-         //#ifdef SANDBOXED_PLATFORM
-         //
-         //         generate_random_alphanumeric(m_strAppState.get_buffer(256), 256);
-         //
-         //         m_strAppState.release_buffer(256);
-         //
-         //      string strUrl = ::string("http://camilothomas.com/account/?platform=" PLATFORM_STRING "&applogin=cloud_database&appstate=") + m_strAppState;
-         //
-         //#else
-         string strUrl = ::string("http://camilothomas.com/account/?platform=" PLATFORM_STRING "&applogin=") + ::url::encode(strAppLogin);
-
-         //#ifdef APPLE_IOS
-         //
-         //         strUrl += "&redirect_uri=" + system()->url()->::url::encode(strAppLogin + "localhost/redirect");
-         //
-         //#endif
-
-         //#endif
-
-         auto phyperlink = __create_new <::hyperlink >();
-
-         phyperlink->m_strLink = strUrl;
-
-         phyperlink->m_strBrowserAccount = m_strBrowserAccount;
-
-         m_timeLastNotifyOnPreLoginScreen.Now();
-
-         phyperlink->run();
-
-         m_eventResponse.ResetEvent();
-         //
-         //#ifdef SANDBOXED_PLATFORM
-         //         property_set set;
-         //         while(!defer_account_token(m_strAppState))
-         //         {
-         //         string strSessid = m_pcontext->http().get("https://camilothomas.com/get_sessid?appstate=" + m_strAppState, set);
-         //            if(strSessid=="(Empty)")
-         //            {
-         //
-         //            }
-         //            preempt(5s);
-         //               }
-         //
-         //#else
-         //
-
-         while (::task_get_run())
+         if (!user_seems_to_be_on_pre_login_screen())
          {
 
-            auto bOk = m_eventResponse.wait(2_s);
+            m_timeLastNotifyOnPreLoginScreen.Now();
 
-            if (bOk)
-            {
-
-               break;
-
-            }
-
-            if (!user_seems_to_be_on_pre_login_screen())
-            {
-
-               m_timeLastNotifyOnPreLoginScreen.Now();
-
-               phyperlink->run();
-
-            }
+            phyperlink->run();
 
          }
-
-
-         //#endif
 
       }
 
@@ -210,10 +172,6 @@ namespace api_ca2
    ::e_status api::on_html_response(::networking::application_socket * psocket, ::string & strHtml, const ::string & strUrl, const ::property_set & setPost)
    {
 
-      //auto psystem = system();
-
-      //auto pdatetime = psystem->datetime();
-
       if (::is_set(psocket))
       {
 
@@ -254,7 +212,9 @@ namespace api_ca2
 
       string strAppState = system()->url()->get_param(strUrl, "appstate");
 
-      if (defer_account_token(strAppState))
+      string strAppCode = system()->url()->get_param(strUrl, "appcode");
+
+      if (defer_account_token(strAppState, strAppCode))
       {
 
          strHtml += "<h1>";
@@ -274,19 +234,9 @@ namespace api_ca2
 
    }
 
-   bool api::defer_account_token(const ::string & strAppState)
+
+   bool api::defer_account_token(const ::string & strAppState, const ::string & strAppCode)
    {
-      //::property_set & setConfig = m_setConfig;
-
-      //::property_set set;
-
-      //code = 4 / P7q7W91a - oMsCeLvIaQm6bTrgtp7 &
-         //client_id = your_client_id &
-         //client_secret = your_client_secret &
-         //redirect_uri = urn % 3Aietf % 3Awg % 3Aoauth % 3A2.0 % 3Aoob % 3Aauto &
-         //grant_type = authorization_code
-
-      //set["headers"]["accept"] = "application/ssml+xml";
 
       string strAppLogin = get_app_login();
 
@@ -301,6 +251,7 @@ namespace api_ca2
       set["headers"]["User-Agent"] = get_app()->m_strAppId;
       set["post"]["applogin"] = strAppLogin;
       set["post"]["appstate"] = strAppState;
+      set["post"]["appcode"] = strAppCode;
 
       set["raw_http"] = true;
       set["disable_common_name_cert_check"] = true;

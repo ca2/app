@@ -349,7 +349,7 @@ namespace acme
    ::file::path node::get_default_base_integration_folder()
    {
 
-      return {};
+      return acmedirectory()->home() / "integration/_____";
 
    }
 
@@ -4245,6 +4245,15 @@ bool node::are_framework_shared_libraries_busy(const ::scoped_string & scopedstr
       }
 
    }
+
+   
+   ::string node::eol()
+   {
+
+      return "\n";
+
+   }
+
 
 } // namespace acme
 

@@ -1003,7 +1003,7 @@ namespace user
 
    //   //auto purl = system()->url();
 
-   //   //strGetUrl = "https://api.ca2.software/account/openweather?request=" + ::url::encode(strUrl);
+   //   //strGetUrl = "https://api.ca2software.com/account/openweather?request=" + ::url::encode(strUrl);
 
    //   //auto pcontext = m_pcontext;
 
@@ -1088,7 +1088,7 @@ namespace user
 
    //   //auto purl = system()->url();
 
-   //   //strGetUrl = "https://api.ca2.software/account/openweather?request=" + ::url::encode(strUrl);
+   //   //strGetUrl = "https://api.ca2software.com/account/openweather?request=" + ::url::encode(strUrl);
 
    //   //auto pcontext = m_pcontext;
 
@@ -1125,7 +1125,7 @@ namespace user
 
    //   //auto purl = system()->url();
 
-   //   //strGetUrl = "https://api.ca2.software/account/openweather?request=" + ::url::encode(strUrl);
+   //   //strGetUrl = "https://api.ca2software.com/account/openweather?request=" + ::url::encode(strUrl);
 
    //   //auto pcontext = m_pcontext;
 

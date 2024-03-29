@@ -58,7 +58,7 @@ namespace account
 
       ::pointer<::axis::application>papp = get_app();
 
-      auto puser = papp->get_user("api.ca2.software", true, bInteractive);
+      auto puser = papp->get_user("api.ca2software.com", true, bInteractive);
 
       if(::is_null(puser) || !puser->is_authenticated())
       {
@@ -85,7 +85,7 @@ namespace account
 
       string strAuthUrl;
 
-      strAuthUrl = "https://api.ca2.software/account/license3?sessid=" + strRequestSessId;
+      strAuthUrl = "https://api.ca2software.com/account/license3?sessid=" + strRequestSessId;
 
 //      throw ::exception(todo("xml->js"));
 //

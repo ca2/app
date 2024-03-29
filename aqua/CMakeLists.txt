@@ -64,8 +64,8 @@ list(APPEND library_source
    multimedia/media_player_command.h
    multimedia/multimedia.cpp
    multimedia/multimedia.h
-   operating_system/windows/audio.cpp
-   operating_system/_.h
+   #operating_system/windows/audio.cpp
+   #operating_system/_.h
    platform/_platform.h
    platform/application.cpp
    platform/application.h

@@ -1,6 +1,0 @@
-app/draw2d_cairo
-app/experience_core
-app/imaging_freeimage
-platform-linux/node_linux
-operating_system-posix/windowing_x11
-operating_system-posix/write_text_pango

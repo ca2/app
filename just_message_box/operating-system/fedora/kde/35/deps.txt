@@ -1,3 +1,0 @@
-draw2d_cairo
-node_linux
-write_text_pango

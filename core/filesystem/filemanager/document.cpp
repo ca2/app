@@ -402,41 +402,6 @@ namespace filemanager
    bool document::browse(::pointer<::file::item>pitem, const ::action_context & context)
    {
 
-      if (!::userfs::document::browse(pitem, context))
-      {
-
-         return false;
-
-      }
-
-      try
-      {
-
-         OnFileManagerBrowse(context + ::e_source_sync);
-
-      }
-      catch (string & )
-      {
-
-         //if (str == "uifs:// You have not logged in!")
-         //{
-
-         //   output_error_message("You have not logged in! Cannot access your User Intelligent File System - uifs://");
-
-         //   // assume can resume at least from this exception one time
-
-         //   auto pcontext = get_context();
-
-         //   m_pitem = __allocate< ::file::item >(pcontext->m_papexcontext->defer_process_path(strOldPath), strOldPath);
-
-         //   OnFileManagerBrowse(context + ::e_source_sync);
-
-         //}
-
-         return false;
-
-      }
-
       if (m_filewatchid >= 0)
       {
 
@@ -446,30 +411,33 @@ namespace filemanager
 
       }
 
-      try
+      if (!::userfs::document::browse(pitem, context))
       {
 
-         auto pcontext = get_context();
-
-         auto pdir = dir();
-
-         auto & watcher = pdir->watcher();
-
-         m_filewatchid = watcher.add_watch(filemanager_data()->m_pitem->final_path(), this, false);
+         return false;
 
       }
-      catch (...)
-      {
 
-         m_filewatchid = -1;
 
-      }
 
       return true;
 
    }
 
 
+   void document::on_update_data(::data::data * pdata, ::topic * ptopic, const ::action_context & context)
+   {
+
+      if (ptopic->m_atom == id_browse)
+      {
+
+         OnFileManagerBrowse(::e_source_sync);
+
+         update_all_impacts(ptopic);
+
+      }
+
+   }
 
 
    //   void document::assert_ok() const
@@ -837,6 +805,27 @@ namespace filemanager
          //}
 
       }
+
+
+      try
+      {
+
+         auto pcontext = get_context();
+
+         auto pdir = dir();
+
+         auto & watcher = pdir->watcher();
+
+         m_filewatchid = watcher.add_watch(filemanager_data()->m_pitem->final_path(), this, false);
+
+      }
+      catch (...)
+      {
+
+         m_filewatchid = -1;
+
+      }
+
 
    }
 

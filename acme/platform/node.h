@@ -928,6 +928,7 @@ namespace acme
 
 #endif
 
+      virtual ::string eol();
 
    };
 

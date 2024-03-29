@@ -84,7 +84,7 @@ namespace user
       {
 
          check::_001SetCheck(echeckEffective, context);
-         
+
          if(has_handler())
          {
 

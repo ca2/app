@@ -147,7 +147,7 @@ namespace hi5
 
          string strUrl;
 
-         strUrl = "http://spaignition.api.server.ca2.software/query?node=install_application&atom=";
+         strUrl = "http://spaignition.api.server.ca2software.com/query?node=install_application&atom=";
 
          string strAppName;
 

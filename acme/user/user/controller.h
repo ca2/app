@@ -38,6 +38,8 @@ namespace user
       //virtual void update_all_impacts(impact * pimpact, const ::atom & atom);
       virtual void update_all_impacts(::topic * ptopic);
 
+      virtual void on_update_data(::data::data * pdata, ::topic * ptopic, const ::action_context & context);
+
 
    };
 

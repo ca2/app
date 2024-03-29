@@ -74,16 +74,16 @@ namespace sockets
       
       strHost = m_request.header("host");
 
-      if (strHost.case_insensitive_ends_eat(".test.ca2.software"))
+      if (strHost.case_insensitive_ends_eat(".test.ca2software.com"))
       {
 
-         m_request.header("host") = strHost + ".ca2.software";
+         m_request.header("host") = strHost + ".ca2software.com";
 
       }
-      else if (strHost == "test.ca2.software")
+      else if (strHost == "test.ca2software.com")
       {
 
-         m_request.header("host") = "ca2.software";
+         m_request.header("host") = "ca2software.com";
 
       }
 
@@ -95,7 +95,7 @@ namespace sockets
 
       string strTest(strHost);
 
-      if (strTest.case_insensitive_ends_eat(".ca2.software"))
+      if (strTest.case_insensitive_ends_eat(".ca2software.com"))
       {
 
          if (strTest.find('.') > 0)
@@ -409,7 +409,7 @@ namespace sockets
 
       string_array straAllowedOrigin;
 
-      straAllowedOrigin.add("ca2.software");
+      straAllowedOrigin.add("ca2software.com");
       straAllowedOrigin.add("camilothomas.com");
 
       bool bAllowedOrigin = false;

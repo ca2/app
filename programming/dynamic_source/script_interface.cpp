@@ -270,10 +270,18 @@ namespace dynamic_source
 
    }
 
-   ::atom script_interface::session_id(const ::atom& atom)
+   
+   ::string script_interface::session_id(bool bForceCreateNew)
    {
 
       return "";
+
+   }
+
+
+   void script_interface::set_session_id(const ::scoped_string& scopedstrSessionId)
+   {
+
 
    }
 

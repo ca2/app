@@ -57,6 +57,13 @@ namespace user
    }
 
 
+   void controller::on_update_data(::data::data * pdata, ::topic * ptopic, const ::action_context & context)
+   {
+
+
+   }
+
+
 //   void controller::dump(dump_context&dumpcontext) const
 //   {
 //
@@ -71,6 +78,7 @@ namespace user
 //      channel::assert_ok();
 //
 //   }
+
 
 
 } // namespace user

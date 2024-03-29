@@ -308,7 +308,7 @@ namespace userfs
 
       {
 
-         synchronous_lock synchronouslock(fs_data()->synchronization());
+         _synchronous_lock synchronouslock(fs_data()->synchronization());
 
          m_pathFolder = pitem->user_path();
 
@@ -327,7 +327,7 @@ namespace userfs
 
          {
 
-            synchronous_lock synchronouslock(fs_data()->synchronization());
+            _synchronous_lock synchronouslock(fs_data()->synchronization());
 
             m_listingRoot2 = listing;
 
@@ -576,7 +576,7 @@ namespace userfs
 
       auto ptopic = create_topic(id_browse);
 
-      m_pusercontroller->update_all_impacts(ptopic);
+      m_pusercontroller->on_update_data(this, ptopic, context);
 
    }
 

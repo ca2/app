@@ -509,9 +509,12 @@ void nano_window::on_left_button_down(::user::mouse * pmouse)
    if (pdragClient && !pchild)
    {
 
-      drag_on_button_down(pitemClient, pmouse);
+      if(drag_on_button_down(pitemClient, pmouse))
+      {
 
-      return;
+         return;
+
+      }
 
    }
 

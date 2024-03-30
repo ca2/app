@@ -7,6 +7,7 @@
 #include "acme/exception/interface_only.h"
 #include "acme/graphics/image/pixmap.h"
 #include "acme/operating_system/wayland/nano/window_base.h"
+#include "acme/parallelization/manual_reset_event.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/parallelization/task.h"
 #include "acme/platform/acme.h"
@@ -1010,14 +1011,6 @@ namespace wayland
 ////
 ////      }
 
-                   if(s_pdisplaybase == nullptr)
-                   {
-
-                      s_pdisplaybase = this;
-
-                   }
-
-
                 });
 
 
@@ -1937,21 +1930,39 @@ namespace wayland
    }
 
 
+   ::pointer < manual_reset_event > g_peventCreatingWaylandDisplay;
+
    display_base * display_base::get(::particle * pparticle, bool bBranch, ::wl_display * pwldisplay)
    {
 
       critical_section_lock lock(pparticle->platform()->globals_critical_section());
 
-      if (s_pdisplaybase == nullptr)
+      if(g_peventCreatingWaylandDisplay)
       {
 
+         auto pevent = g_peventCreatingWaylandDisplay;
+
+         pevent->wait(1_min);
+
+      }
+      else if (s_pdisplaybase == nullptr)
+      {
+
+         g_peventCreatingWaylandDisplay = __allocate < manual_reset_event >();
+
+         g_peventCreatingWaylandDisplay->ResetEvent();
+
          auto p = __new< ::wayland::display >();
+
+         s_pdisplaybase = p;
 
          p->initialize(pparticle);
 
          //p->add_listener(p);
 
          p->m_pwldisplay = pwldisplay;
+
+         lock.unlock();
 
          if(bBranch)
          {
@@ -1965,6 +1976,12 @@ namespace wayland
             p->init_task();
 
          }
+
+         lock.lock();
+
+         g_peventCreatingWaylandDisplay->SetEvent();
+
+         g_peventCreatingWaylandDisplay.release();
 
       }
 

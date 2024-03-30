@@ -66,9 +66,10 @@ void operating_system_initialize_nano(::factory::factory * pfactory)
 
    }
 
-#if !defined(FREEBSD)
+#ifdef HAS_WAYLAND
 
-   if(psystem->node()->is_wayland())
+   //if(psystem->node()->is_wayland())
+   if(::get_display_type() == e_display_type_wayland)
    {
 
       operating_system_initialize_wayland_nano(pfactory);

@@ -130,15 +130,31 @@ bool nano_window_interface::defer_perform_entire_reposition_process()
 }
 
 
-::shift_i32 nano_window_interface::screen_to_client()
+::shift_i32 nano_window_interface::host_to_client()
 {
 
-   return - client_to_screen();
+   return - client_to_host();
 
 }
 
 
-::shift_i32 nano_window_interface::client_to_screen()
+::shift_i32 nano_window_interface::client_to_host()
+{
+
+   return {};
+
+}
+
+
+::shift_i32 nano_window_interface::absolute_to_client()
+{
+
+   return - client_to_host();
+
+}
+
+
+::shift_i32 nano_window_interface::client_to_absolute()
 {
 
    if(system()->m_ewindowing == e_windowing_wayland)
@@ -157,28 +173,12 @@ bool nano_window_interface::defer_perform_entire_reposition_process()
 }
 
 
-::shift_i32 nano_window_interface::absolute_to_client()
-{
-
-   return screen_to_client();
-
-}
-
-
-::shift_i32 nano_window_interface::client_to_absolute()
-{
-
-   return client_to_screen();
-
-}
-
-
 ::point_i32 nano_window_interface::try_absolute_mouse_position(const ::point_i32& point)
 {
 
    auto p = point;
 
-   client_to_screen()(p);
+   client_to_absolute()(p);
    
    return p;
 
@@ -293,9 +293,9 @@ void nano_window_interface::drag_set_cursor(::item * pitem)
 nano_child * nano_window_interface::hit_test(::user::mouse * pmouse, ::user::e_zorder ezorder)
 {
 
-   auto point = pmouse->m_pointAbsolute;
+   auto point = pmouse->m_pointHost;
 
-   screen_to_client()(point);
+   host_to_client()(point);
 
    return on_hit_test(point, ezorder);
 

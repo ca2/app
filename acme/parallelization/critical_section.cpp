@@ -41,7 +41,7 @@ public:
 
 #ifdef PARALLELIZATION_PTHREAD
 
-   pthread_mutex_t m_mutex;
+   pthread_mutex_t m_mutex{};
 
    critical_section_impl()
    {

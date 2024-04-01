@@ -66,7 +66,7 @@ elseif(${LINUX})
     #target_link_options(scripting PRIVATE -Wl,-rpath=$ORIGIN)
     target_link_libraries(scripting PRIVATE ${library_references})
     target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
-    target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
+    # target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
 
 
 

@@ -1444,6 +1444,7 @@ elseif(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
 
 
    target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
+   #set_target_properties(${PROJECT_NAME} PROPERTIES CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 
 
 
@@ -1469,7 +1470,7 @@ elseif(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
 
 
    target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
-   target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
+   # target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
 
    message(STATUS "(4) PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
 endif ()

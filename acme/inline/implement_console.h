@@ -75,7 +75,7 @@ int main(int argc, char ** argv, char ** envp)
 
    //::acme::acme_impl < ::SYSTEM_NAMESPACE::system > acme;
 
-#define DEEP_DEBUG
+//#define DEEP_DEBUG
 #ifdef DEEP_DEBUG
    printf("argc=%d\n", argc);
    for(int i = 0; i < argc; i++)

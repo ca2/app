@@ -350,7 +350,7 @@ public:
 
    //virtual trace_statement trace(enum_trace_level etracelevel);
 
-
+   virtual ::trace_statement debug() const;
    virtual ::trace_statement information() const;
    virtual ::trace_statement warning() const;
    virtual ::trace_statement error() const;
@@ -361,6 +361,7 @@ public:
 
    virtual void formatf_trace(enum_trace_level etracelevel, const ::ansi_character * pszFormat, va_list & arguments) const;
 
+   virtual void debugf(const ::ansi_character * pszFormat, ...) const;
    virtual void informationf(const ::ansi_character * pszFormat, ...) const;
    virtual void warningf(const ::ansi_character * pszFormat, ...) const;
    virtual void errorf(const ::ansi_character * pszFormat, ...) const;

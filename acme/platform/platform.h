@@ -251,11 +251,15 @@ namespace platform
 
       string get_argument1(::index iArgument) const;
 
-      bool has_argument1(const ::scoped_string & scopedArgument) const;
+      bool has_argument(const ::scoped_string & scopedArgument) const;
 
       inline ::count get_argument_count1() const { return _get_argc() - 1; }
 
       string_array get_arguments();
+
+      ::string get_argument_begins_eat(const ::scoped_string & scopedstrPrefix);
+
+      ::string_array get_argument_options(const ::scoped_string & scopedstrArgument);
 
       string get_arg(::index i) const;
       string get_env(const ::scoped_string & scopedstrVariableName) const;

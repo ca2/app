@@ -75,7 +75,7 @@ elseif (${FREEBSD})
 
 
     target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
-    target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
+    # target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
 
 
     message(STATUS "(E) PKGCONFIG_CFLAGS is ${PKGCONFIG_CFLAGS}")
@@ -101,7 +101,7 @@ elseif (${LINUX})
     target_link_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LDFLAGS})
     target_link_libraries(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LIBRARIES} freeimage acme apex aqua aura)
     target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
-    target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
+    # target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
 
 
 

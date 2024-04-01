@@ -11,7 +11,7 @@ class logger :
 public:
 
 
-   enum_trace_level     m_etracelevelMinimum = e_trace_level_information;
+   enum_trace_level     m_etracelevelMinimum = e_trace_level_none;
 
    
    static void t_construct(::acme::context * pcontext);

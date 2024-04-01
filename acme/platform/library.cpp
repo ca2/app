@@ -922,7 +922,7 @@ namespace acme
 
       string strName = m_strName;
 
-      information() << "library::create_factory \"" + strName + "\": starting...";
+      debug() << "library::create_factory \"" + strName + "\": starting...";
 
       //auto pfactory = factory(strName);
 
@@ -944,9 +944,9 @@ namespace acme
 
          strFactoryFunction = strName + "_factory";
 
-         information() << "library::create_factory factory function not initialized!!";
+         warning() << "library::create_factory factory function not initialized!!";
 
-         information() << "library::create_factory factory function name: \"" << strFactoryFunction << "\"";
+         warning() << "library::create_factory factory function name: \"" << strFactoryFunction << "\"";
 
          auto pfnFactory = get < PFN_factory >(strFactoryFunction);
 

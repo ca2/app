@@ -424,6 +424,54 @@ namespace platform
    }
 
 
+   ::string platform::get_argument_begins_eat(const ::scoped_string & scopedstrPrefix)
+   {
+
+      auto stra = this->get_arguments();
+
+      ::string str;
+
+      auto find = stra.find_first_begins_eat(str, scopedstrPrefix);
+
+      if(!find)
+      {
+
+         return {};
+
+      }
+
+      return str;
+
+   }
+
+
+   ::string_array platform::get_argument_options(const ::scoped_string & scopedstrArgument)
+   {
+
+      string strArgument = scopedstrArgument;
+
+      strArgument.trim_right("=");
+
+      strArgument += "=";
+
+      auto strOptions = get_argument_begins_eat(strArgument);
+
+      if(strOptions.is_empty())
+      {
+
+         return {};
+
+      }
+
+      ::string_array straOptions;
+
+      straOptions.explode(",", strOptions);
+
+      return straOptions;
+
+   }
+
+
    string platform::get_argument1(::index iArgument) const
    {
 
@@ -432,7 +480,7 @@ namespace platform
    }
 
 
-   bool platform::has_argument1(const ::scoped_string & scopedArgument) const
+   bool platform::has_argument(const ::scoped_string & scopedArgument) const
    {
 
       bool bHasArgument = false;
@@ -823,7 +871,7 @@ namespace platform
 
       critical_section_lock criticalsectionlock(&m_criticalsection);
 
-      informationf("platform::factory(\"%s\", \"%s\");\n", strComponent.c_str(), strImplementation.c_str());
+      //informationf("platform::factory(\"%s\", \"%s\");\n", strComponent.c_str(), strImplementation.c_str());
 
       auto & pfactory = m_componentfactorymap[strComponent][implementation_name(strComponent, strImplementation)];
 
@@ -841,7 +889,7 @@ namespace platform
       //strLibrary = library_name(strComponent, strImplementation);
       strLibrary = strComponent + "_" + strImplementation;
 
-      informationf("Getting library \"%s\".\n", strLibrary.c_str());
+      //informationf("Getting library \"%s\".", strLibrary.c_str());
 
       auto & plibrary = library(strLibrary);
 
@@ -1059,7 +1107,7 @@ namespace platform
 
       // Ex. "audio" (library)
 
-      informationf("platform::library \"%s\".", str.c_str());
+      //informationf("platform::library \"%s\".", str.c_str());
 
       if (str.is_empty())
       {

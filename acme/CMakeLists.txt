@@ -483,6 +483,7 @@ list(APPEND library_source
    primitive/collection/__payload_array.cpp
    primitive/collection/__property_set.h
    primitive/collection/_generic_array.h
+
    #primitive/collection/2d_array.cpp
    primitive/collection/array.cpp
    primitive/collection/atom_array.h
@@ -507,6 +508,7 @@ list(APPEND library_source
    #primitive/collection/string_to_string_map.cpp
    primitive/collection/string_list.cpp
    primitive/collection/string_list.h
+   primitive/comparison/array.h
    primitive/comparison/var_strict.cpp
    primitive/data/_.h
    #primitive/data/_data.h
@@ -2592,10 +2594,7 @@ if(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
 endif ()
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source}
-        primitive/comparison/array.h)
-#   platform/get_file_extension_mime_type.cpp
-#   platform/get_file_extension_mime_type.h)
+add_library(${PROJECT_NAME} SHARED ${library_source})
 add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
 
@@ -2607,7 +2606,8 @@ if (NOT ${NO_PRECOMPILED_HEADER})
 endif ()
 
 
-set_target_properties(acme PROPERTIES LINKER_LANGUAGE CXX)
+set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
+set_target_properties(static_${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
 
 
 if (MSVC)
@@ -2624,10 +2624,11 @@ if (MSVC)
 
 elseif(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
 
-    if(NOT ${SUSE})
+   if(NOT ${SUSE})
 
-   target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
-
+      target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
+   #set_target_properties(${PROJECT_NAME} PROPERTIES CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
+      target_compile_features(static_${PROJECT_NAME} PRIVATE cxx_std_20)
 
    endif()
 
@@ -2635,9 +2636,9 @@ elseif(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
    #//target_compile_options\([A-Za-z0-9_)]+\s+PRIVATE\s+\$\{PKGCONFIG_CFLAGS\}\)
 
    #if(USE_PKGCONFIG)
-if(${WAYLAND})
-   list(APPEND extra_pkg_modules wayland-client wayland-server wayland-cursor)
-endif()
+   if(${WAYLAND})
+      list(APPEND extra_pkg_modules wayland-client wayland-server wayland-cursor)
+   endif()
 
    list(APPEND extra_pkg_modules
       xkbcommon x11 xrender xi xext libstartup-notification-1.0)
@@ -2652,7 +2653,7 @@ endif()
 
 
    target_compile_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS} ${GLOBAL_EXTRA_COMPILER_FLAGS})
-   target_compile_options(static_${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
+   target_compile_options(static_${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS} ${GLOBAL_EXTRA_COMPILER_FLAGS})
    target_link_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LDFLAGS})
 
    if (${FREEBSD})
@@ -2666,7 +2667,7 @@ endif()
 
    target_link_directories(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LIBRARY_DIRS})
    target_link_options(${PROJECT_NAME} PRIVATE ${GLOBAL_EXTRA_LINKER_FLAGS} -Wl${GLOBAL_EXTRA_LINK_FLAGS},-z,defs)
-   target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
+   # target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
 
 
    message(STATUS "(3) pkg_config_modules_here is " ${pkg_config_modules_here})
@@ -2685,9 +2686,9 @@ elseif (MACOS)
 endif ()
 
 
-target_link_directories(${PROJECT_NAME}  PRIVATE ${LIBRARY_OUTPUT_PATH})
-target_link_directories(${PROJECT_NAME}  PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../operating_system/storage-${OPERATING_SYSTEM_NAME}/library/x64/basis)
-target_link_directories(${PROJECT_NAME}  PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../operating_system/storage-${OPERATING_SYSTEM_NAME}/third/library/x64/basis)
+target_link_directories(${PROJECT_NAME} PRIVATE ${LIBRARY_OUTPUT_PATH})
+target_link_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../operating_system/storage-${OPERATING_SYSTEM_NAME}/library/x64/basis)
+target_link_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../operating_system/storage-${OPERATING_SYSTEM_NAME}/third/library/x64/basis)
 
 
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})

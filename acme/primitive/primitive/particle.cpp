@@ -588,7 +588,7 @@ class ::write_text::write_text * particle::write_text() const
 ::factory::factory_pointer& particle::factory(const ::string& strComponent, const ::string& strImplementation) const
 {
 
-   informationf("particle::factory(\"%s\", \"%s\");\n", strComponent.c_str(), strImplementation.c_str());
+   //informationf("particle::factory(\"%s\", \"%s\");\n", strComponent.c_str(), strImplementation.c_str());
 
    return platform()->factory(strComponent, strImplementation);
 
@@ -960,6 +960,14 @@ class tracer * particle::tracer() const
 }
 
 
+::trace_statement particle::debug() const
+{
+
+   return ::transfer(trace_statement()(e_trace_level_debug));
+
+}
+
+
 ::trace_statement particle::information() const
 {
 
@@ -1024,6 +1032,20 @@ void particle::tracef(enum_trace_level etracelevel, const ::ansi_character * psz
     va_end(arguments);
 
  }
+
+
+void particle::debugf(const ::ansi_character * pszFormat, ...) const
+{
+
+   va_list arguments;
+
+   va_start(arguments, pszFormat);
+
+   formatf_trace(e_trace_level_debug, pszFormat, arguments);
+
+   va_end(arguments);
+
+}
 
 
 void particle::informationf(const ::ansi_character * pszFormat, ...) const

@@ -25,8 +25,6 @@ list(APPEND library_source
 
 if (MSVC)
     set(LIBCXX_TARGETING_MSVC ON)
-else()
-    set(LIBCXX_TARGETING_MSVC OFF)
 endif()
 
 
@@ -47,15 +45,21 @@ if (NOT ${NO_PRECOMPILED_HEADER})
 
 endif ()
 
-set_target_properties(folder_zip PROPERTIES LINKER_LANGUAGE CXX)
+set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
+set_target_properties(static_${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
 
 if (MSVC)
-    target_compile_options(folder_zip PRIVATE "/MD$<$<CONFIG:Debug>:d>")
-    target_link_options(folder_zip PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
-    target_link_options(folder_zip PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/folder_zip.lib")
-    target_link_options(folder_zip PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/folder_zip.def")
-    target_link_libraries(folder_zip PRIVATE acme apex aqua aura Gdiplus sqlite)
-elseif(${LINUX})
+    target_compile_options(${PROJECT_NAME} PRIVATE "/MD$<$<CONFIG:Debug>:d>")
+    target_link_options(${PROJECT_NAME} PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
+    target_link_options(${PROJECT_NAME} PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/folder_zip.lib")
+    target_link_options(${PROJECT_NAME} PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/folder_zip.def")
+    target_link_libraries(${PROJECT_NAME} PRIVATE acme apex aqua aura Gdiplus sqlite)
+elseif (${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
+
+
+    target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
+   #set_target_properties(${PROJECT_NAME} PROPERTIES CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
+    target_compile_features(static_${PROJECT_NAME} PRIVATE cxx_std_20)
 
     #if(USE_PKGCONFIG)
         pkg_check_modules(PKGCONFIG zlib)
@@ -69,8 +73,6 @@ elseif(${LINUX})
 
     target_compile_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
     target_compile_options(static_${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
-    target_compile_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
-    target_compile_options(static_${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
     target_link_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LDFLAGS})
     #target_link_options(folder_zip PRIVATE -Wl,-rpath=$ORIGIN)
 
@@ -80,9 +82,10 @@ elseif(${LINUX})
 
 
     target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
-    target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
+    # target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
 
     message(STATUS "(D) PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
+
 endif()
 
 
@@ -96,3 +99,4 @@ target_include_directories(static_${PROJECT_NAME} PRIVATE ${library_include_dire
 
 
 target_compile_definitions(${PROJECT_NAME} PRIVATE _${PROJECT_NAME}_project)
+target_compile_definitions(static_${PROJECT_NAME} PRIVATE _${PROJECT_NAME}_project)

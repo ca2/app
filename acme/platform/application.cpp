@@ -303,7 +303,7 @@ void application::on_error_icloud_not_available(::particle * pparticle, long lon
    
    initialize_application(pplatform);
    
-   output_debug_string("acme::application implement_application\n");
+   //output_debug_string("acme::application implement_application\n");
    
    set_main_user_thread();
    
@@ -344,11 +344,11 @@ void application::on_error_icloud_not_available(::particle * pparticle, long lon
    
    m_pacmesystem->initialize_system();
    
-   information() << "acme implement_application system_construct";
+   //information() << "acme implement_application system_construct";
    
    m_pacmesystem->system_construct(this);
    
-   information() << "acme implement_application create_os_node";
+   //information() << "acme implement_application create_os_node";
    
    m_pacmesystem->create_os_node();
    
@@ -855,6 +855,8 @@ void application::init_task()
    }
    catch (const ::exception & e)
    {
+
+      informationf("application::init_task exception!!");
       
       handle_exception(e);
       
@@ -1487,7 +1489,7 @@ void application::application_pre_run()
 void application::pre_run()
 {
    
-   information() << "apex::application::pre_run";
+   //information() << "apex::application::pre_run";
    
    try
    {
@@ -1549,13 +1551,15 @@ void application::pre_run()
       
       //}
       
-      information() << "apex::application::pre_run success";
+      //information() << "apex::application::pre_run success";
       
       //return true;
       
    }
    catch (const ::exception& e)
    {
+
+      informationf("application::pre_run exception!!");
       
       handle_exception(e);
       
@@ -1581,7 +1585,7 @@ void application::init_application()
    
    auto psystem = system();
    
-   information() << "apex::application::init_application";
+   //information() << "apex::application::init_application";
    
    m_timeHeartBeat.Now();
    

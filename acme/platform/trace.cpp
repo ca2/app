@@ -48,7 +48,7 @@ trace::~trace()
 trace_category::trace_category()
 {
 
-   m_etracelevelMinimum    = e_trace_level_information;
+   m_etracelevelMinimum    = e_trace_level_none;
    m_etracecategory        = e_trace_category_general;
    m_bEnabled              = true;
 

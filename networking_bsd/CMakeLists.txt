@@ -158,8 +158,6 @@ list(APPEND library_references
 
 if (MSVC)
    set(LIBCXX_TARGETING_MSVC ON)
-else ()
-   set(LIBCXX_TARGETING_MSVC OFF)
 endif ()
 
 

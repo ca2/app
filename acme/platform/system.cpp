@@ -233,7 +233,7 @@ namespace acme
 
       auto pathTraceLevelInformation = pathCa2ConfigSystemFolder / "trace_level_information.txt";
 
-      if(platform()->has_argument1("--log"))
+      if(platform()->has_argument("--log"))
       {
 
          informationf("selecting informational trace\n");

@@ -744,6 +744,15 @@ namespace user
 
          m_layout.m_statea[elayout].m_size = size;
 
+         if (::is_set(pgraphics) && elayout == e_layout_layout)
+         {
+
+            m_layout.m_statea[e_layout_sketch].m_size = size;
+
+            m_layout.m_statea[e_layout_lading].m_size = size;
+
+         }
+
          m_bNeedPerformLayout = true;
 
          set_need_layout();
@@ -765,6 +774,15 @@ namespace user
 
          m_layout.m_statea[elayout].m_size = size;
 
+         if (::is_set(pgraphics) && elayout == e_layout_layout)
+         {
+
+            m_layout.m_statea[e_layout_sketch].m_size = size;
+
+            m_layout.m_statea[e_layout_lading].m_size = size;
+
+         }
+
          m_bNeedPerformLayout = true;
 
          set_need_layout();
@@ -774,7 +792,7 @@ namespace user
    }
 
 
-   void interaction::shift_left(::i32 left, enum_layout elayout)
+   void interaction::shift_left(::i32 left, enum_layout elayout, ::draw2d::graphics* pgraphics)
    {
 
       auto point = this->position(elayout);
@@ -796,6 +814,19 @@ namespace user
 
          m_layout.m_statea[elayout].m_size = size;
 
+         if (::is_set(pgraphics) && elayout == e_layout_layout)
+         {
+
+            m_layout.m_statea[e_layout_sketch].set_visual_state_origin(point);
+
+            m_layout.m_statea[e_layout_sketch].m_size = size;
+
+            m_layout.m_statea[e_layout_lading].set_visual_state_origin(point);
+
+            m_layout.m_statea[e_layout_lading].m_size = size;
+
+         }
+
          m_bNeedPerformLayout = true;
 
          set_need_layout();
@@ -805,7 +836,7 @@ namespace user
    }
 
 
-   void interaction::set_right(::i32 right, enum_layout elayout)
+   void interaction::set_right(::i32 right, enum_layout elayout, ::draw2d::graphics* pgraphics)
    {
 
       auto point = this->position(elayout);
@@ -826,12 +857,21 @@ namespace user
 
          m_layout.m_statea[elayout].set_visual_state_origin(point);
 
+         if (::is_set(pgraphics) && elayout == e_layout_layout)
+         {
+
+            m_layout.m_statea[e_layout_sketch].set_visual_state_origin(point);
+
+            m_layout.m_statea[e_layout_lading].set_visual_state_origin(point);
+
+         }
+
       }
 
    }
 
 
-   void interaction::set_top(const ::i32 top, enum_layout elayout)
+   void interaction::set_top(const ::i32 top, enum_layout elayout, ::draw2d::graphics* pgraphics)
    {
 
       auto point = position(elayout);
@@ -842,6 +882,15 @@ namespace user
       {
 
          m_layout.m_statea[elayout].m_point2 = point;
+
+         if (::is_set(pgraphics) && elayout == e_layout_layout)
+         {
+
+            m_layout.m_statea[e_layout_sketch].m_point2 = point;
+
+            m_layout.m_statea[e_layout_lading].m_point2 = point;
+
+         }
 
       }
 

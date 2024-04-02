@@ -490,16 +490,16 @@ namespace user
       /// @brief shift left position changing size
       /// @param left left position
       /// @param elayout elayout to change
-      virtual void shift_left(::i32 left, enum_layout elayout = e_layout_sketch);
+      virtual void shift_left(::i32 left, enum_layout elayout = e_layout_sketch, ::draw2d::graphics* pgraphics = nullptr);
       /// @brief  sets right position maintaining size
       /// @param right right position
       /// @param elayout elayout to change
-      virtual void set_right(::i32 right, enum_layout elayout = e_layout_sketch);
+      virtual void set_right(::i32 right, enum_layout elayout = e_layout_sketch, ::draw2d::graphics* pgraphics = nullptr);
 
       /// @brief sets top position maintaining size
       /// @param top top position
       /// @param elayout elayout to change
-      virtual void set_top(::i32 top, enum_layout elayout = e_layout_sketch);
+      virtual void set_top(::i32 top, enum_layout elayout = e_layout_sketch, ::draw2d::graphics* pgraphics = nullptr);
       
       virtual bool on_set_position(::point_i32 & point, enum_layout elayout);
       virtual bool on_set_size(::size_i32 & size, enum_layout elayout);

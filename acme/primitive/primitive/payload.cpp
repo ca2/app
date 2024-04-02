@@ -9842,6 +9842,8 @@ f = payload.as_f64();
          return ::is_null(m_ppayloada) ? 0 : m_ppayloada->get_count();
       case e_type_property_set:
          return ::is_null(m_ppropertyset) ? 0 : m_ppropertyset->property_count();
+      case e_type_property:
+         return ::is_null(m_pproperty) ? 0 : m_pproperty->get_count();
       case e_type_empty:
       case e_type_null:
       case e_type_new:

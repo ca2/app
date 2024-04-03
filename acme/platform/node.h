@@ -98,7 +98,8 @@ namespace acme
       ::node_gtk3::node *                                   m_pNodeGtk3;
       ::node_gtk4::node *                                   m_pNodeGtk4;
       ::node_gnome::node *                                  m_pNodeGnome;
-      ::node_kde::node *                                    m_pNodeKDE;
+      ::node_kde5::node *                                   m_pNodeKDE5;
+      ::node_kde6::node *                                   m_pNodeKDE6;
       ::node_xfce::node *                                   m_pNodeXfce;
       ::desktop_environment_gnome::node *                   m_pNodeDesktopEnvironmentGnome;
       ::desktop_environment_kde::node *                     m_pNodeDesktopEnvironmentKDE;

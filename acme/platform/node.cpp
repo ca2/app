@@ -68,9 +68,12 @@ namespace acme
 
       //m_pNodeX11 = nullptr;
       //m_pNodeXcb = nullptr;
+      m_pNodeGtk3 = nullptr;
+      m_pNodeGtk4 = nullptr;
 
       m_pNodeGnome = nullptr;
-      m_pNodeKDE = nullptr;
+      m_pNodeKDE5 = nullptr;
+      m_pNodeKDE6 = nullptr;
       m_pNodeXfce = nullptr;
 
       m_pNodeDesktopEnvironmentGnome = nullptr;

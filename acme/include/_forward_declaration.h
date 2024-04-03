@@ -802,14 +802,24 @@ namespace node_gnome
 } // namespace node_gnome
 
 
-namespace node_kde
+namespace node_kde5
 {
 
 
    class node;
 
 
-} // namespace node_kde
+} // namespace node_kde5
+
+
+namespace node_kde6
+{
+
+
+   class node;
+
+
+} // namespace node_kde6
 
 
 namespace node_xfce

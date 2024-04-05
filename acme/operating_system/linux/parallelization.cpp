@@ -126,6 +126,13 @@ void wayland_process_messages();
 void _do_tasks()
 {
 
+   if(!is_main_thread())
+   {
+
+      return;
+
+   }
+
    auto psystem = ::platform::get()->system();
 
    if(psystem->m_ewindowing == e_windowing_wayland)

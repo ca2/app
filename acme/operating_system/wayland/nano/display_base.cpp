@@ -837,28 +837,30 @@ namespace wayland
       m_bOpened = true;
 
       user_send([this]()
-                            {
+      {
 
-                               if(!m_pwldisplay)
-                               {
+         set_main_user_thread();
 
-                                  m_pwldisplay = __get_wayland_display();
+         if(!m_pwldisplay)
+         {
 
-                               }
+            m_pwldisplay = __get_wayland_display();
 
-                               information() << "windowing_wayland::display::open";
+         }
 
-                               information() << "windowing_wayland::display::open pwldisplay : " << (::iptr) m_pwldisplay;
+         information() << "windowing_wayland::display::open";
 
-                               auto pwlregistry = wl_display_get_registry(m_pwldisplay);
+         information() << "windowing_wayland::display::open pwldisplay : " << (::iptr) m_pwldisplay;
 
-                               wl_registry_add_listener(pwlregistry, &g_wl_registry_listener, this);
+         auto pwlregistry = wl_display_get_registry(m_pwldisplay);
 
-                               wl_display_dispatch(m_pwldisplay);
+         wl_registry_add_listener(pwlregistry, &g_wl_registry_listener, this);
 
-                               wl_display_roundtrip(m_pwldisplay);
+         wl_display_dispatch(m_pwldisplay);
 
-                               m_pwlsurfaceCursor = wl_compositor_create_surface(m_pwlcompositor);
+         wl_display_roundtrip(m_pwldisplay);
+
+         m_pwlsurfaceCursor = wl_compositor_create_surface(m_pwlcompositor);
 
 //      fork([this]()
 //           {
@@ -1848,8 +1850,6 @@ namespace wayland
       ::nano::display::init_task();
 
       ::task_set_name("wayland:display:run");
-
-      set_main_user_thread();
 
       if(!m_pwldisplay)
       {

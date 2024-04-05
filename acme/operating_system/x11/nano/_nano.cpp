@@ -66,10 +66,12 @@ void operating_system_initialize_nano(::factory::factory * pfactory)
 
    }
 
+   auto edisplaytype = ::get_display_type();
+
 #ifdef HAS_WAYLAND
 
    //if(psystem->node()->is_wayland())
-   if(::get_display_type() == e_display_type_wayland)
+   if(edisplaytype == e_display_type_wayland)
    {
 
       operating_system_initialize_wayland_nano(pfactory);

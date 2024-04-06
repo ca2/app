@@ -120,7 +120,7 @@ namespace dynamic_source
 
       m_strSeed = "system/seed";
 
-      m_timeSessionExpiration = 60_s;
+      m_timeSessionExpiration = 10_min;
 
    }
 

@@ -9,8 +9,13 @@ CLASS_DECL_ACME string i64toa_dup(i64 i);
 CLASS_DECL_ACME string ui64toa_dup(i64 i, i32 iBase);
 CLASS_DECL_ACME string ui64toa_dup(i64 i);
 
+template < primitive_integer INTEGER >
+::string string_from(INTEGER i, i32 iBase = 10)
+{
 
+   return i64toa_dup(i, iBase);
 
+}
 
 inline string ansi_string_from_i64(i64 i, int iBase = 10, enum_digit_case edigitcase = e_digit_case_lower);
 inline char * ansi_concatenate_i64(char * psz, i64 i, int iBase = 10, enum_digit_case edigitcase = e_digit_case_lower);

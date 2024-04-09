@@ -14,6 +14,8 @@
 
 #include "acme/primitive/collection/_array.h"
 
+bool operating_system_has_ipv4_internet();
+bool operating_system_has_ipv6_internet();
 
 #undef ERROR
 #define log_error(...) TRACE_LOG_ERROR(__VA_ARGS__)
@@ -3320,7 +3322,102 @@ namespace networking_bsd
    }
 
 
-   ::pointer<::networking::address> networking::create_address(const ::string& strAddress, ::networking::port_t port)
+   bool networking::lookup(::networking_bsd::address * paddress, ::networking::enum_address_type eaddresstypePreferred, const ::string & strAddress)
+   {
+
+      if (eaddresstypePreferred == ::networking::e_address_type_ipv4)
+      {
+
+         if (lookup_ipv4(paddress, strAddress))
+         {
+
+            return true;
+
+         }
+
+         if (lookup_ipv6(paddress, strAddress))
+         {
+
+            return true;
+
+         }
+
+      }
+      else
+      {
+
+         if (lookup_ipv6(paddress, strAddress))
+         {
+
+            return true;
+
+         }
+
+         if (lookup_ipv4(paddress, strAddress))
+         {
+
+            return true;
+
+         }
+
+      }
+
+      return false;
+
+   }
+
+
+   bool networking::lookup_ipv4(::networking_bsd::address * paddress, const ::string & strAddress)
+   {
+
+      if (convert(paddress->u.m_addr.sin_addr, strAddress))
+      {
+
+         paddress->u.s.set_family(AF_INET);
+
+         ::string strDisplay = paddress->get_display_number();
+
+         information() << "networking::create_address display_number : " << strDisplay;
+
+         printf("converted to IPV4 address : " + strDisplay + "\n");
+
+         fflush(stdout);
+
+         return true;
+
+      }
+
+      return false;
+
+   }
+
+
+   bool networking::lookup_ipv6(::networking_bsd::address * paddress, const ::string & strAddress)
+   {
+
+      if (convert(paddress->u.m_addr6.sin6_addr, strAddress))
+      {
+
+         paddress->u.s.set_family(AF_INET6);
+
+         ::string strDisplay = paddress->get_display_number();
+
+         information() << "networking::create_address display_number : " << strDisplay;
+
+         printf("converted to IPV6 address : " + strDisplay + "\n");
+
+         fflush(stdout);
+
+         return true;
+
+      }
+
+      return false;
+
+   }
+
+
+   ::pointer<::networking::address> networking::create_address(const ::string& strAddress, ::networking::enum_address_type eaddresstypePreferred, ::networking::port_t port)
    {
 
       auto paddress = __allocate< address >();
@@ -3336,7 +3433,12 @@ namespace networking_bsd
 
          information() << "networking::create_address display_number : " << strDisplay;
 
+         printf("::networking_bsd::networking::create_address IPV6 numeric address : " + strDisplay + "\n");
+
+         fflush(stdout);
+
          return paddress;
+
       }
       else if (::from_string(paddress->u.m_addr.sin_addr, strAddress) == ::success)
       {
@@ -3349,26 +3451,15 @@ namespace networking_bsd
 
          information() << "networking::create_address display_number : " << strDisplay;
 
-         return paddress;
-      }
-      else if (convert(paddress->u.m_addr6.sin6_addr, strAddress))
-      {
+         printf("::networking_bsd::networking::create_address IPV4 numeric address : " + strDisplay + "\n");
 
-         paddress->u.s.set_family(AF_INET6);
-
-         paddress->set_service_number(port);
-
-         ::string strDisplay = paddress->get_display_number();
-
-         information() << "networking::create_address display_number : " << strDisplay;
+         fflush(stdout);
 
          return paddress;
 
       }
-      else if (convert(paddress->u.m_addr.sin_addr, strAddress))
+      else if (lookup(paddress, eaddresstypePreferred, strAddress))
       {
-
-         paddress->u.s.set_family(AF_INET);
 
          paddress->set_service_number(port);
 
@@ -3379,6 +3470,7 @@ namespace networking_bsd
       return nullptr;
 
    }
+
 
    ::pointer<::networking::address>networking::create_ip4_address(const ::string & strAddress, ::networking::port_t port)
    {
@@ -3534,6 +3626,20 @@ namespace networking_bsd
    //}
 
 
+bool networking::has_ipv4_connectivity()
+{
+
+   return ::operating_system_has_ipv4_internet();
+
+}
+
+
+bool networking::has_ipv6_connectivity()
+{
+
+   return ::operating_system_has_ipv6_internet();
+
+}
 
 } // namespace networking_bsd
 

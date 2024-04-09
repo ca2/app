@@ -759,6 +759,10 @@ m_ibuf(isize)
       if (IsIpv6())
       {
 
+         printf("::networking_bsd::tcp_socket::open IsIpv6() true");
+
+         fflush(stdout);
+
          //if(!__Handler(socket_handler())->ResolverEnabled() || paddressdepartment->isipv6(host))
          //if (!pnetworking2->is_ip6(host))
          //{
@@ -785,6 +789,9 @@ m_ibuf(isize)
       else
       {
 
+         printf("::networking_bsd::tcp_socket::open IsIpv6() false");
+
+         fflush(stdout);
 
          ////if(!__Handler(socket_handler())->ResolverEnabled() || paddressdepartment->isipv4(host))
          //if (!pnetworking2->is_ip4(host))
@@ -796,7 +803,7 @@ m_ibuf(isize)
 
          //}
 
-         paddress = pnetworking->create_address(host, port);
+         paddress = pnetworking->create_address(host, preferred_address_type(), port);
 
          //paddress = pnetworking->create_address(host, port);
 

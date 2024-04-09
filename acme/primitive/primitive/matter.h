@@ -165,7 +165,7 @@ public:
    //virtual ::task * defer_branch(const ::atom & atom, const ::procedure & procedure);
 
 
-   void delete_this() override;
+   //void delete_this() override;
 
 
    //::particle * clone() const override;

@@ -104,8 +104,42 @@ namespace networking
 
       }
 
+      if (has_ipv6_connectivity())
+      {
+
+         m_eaddresstypePreferred = e_address_type_ipv6;
+
+      }
+      else if (has_ipv4_connectivity())
+      {
+
+         m_eaddresstypePreferred = e_address_type_ipv4;
+
+      }
+      else
+      {
+
+         m_eaddresstypePreferred = e_address_type_ipv4;
+
+      }
 
       //return estatus;
+
+   }
+
+
+   bool networking::has_ipv4_connectivity()
+   {
+
+      return true;
+
+   }
+
+
+   bool networking::has_ipv6_connectivity()
+   {
+
+      return true;
 
    }
 
@@ -277,7 +311,7 @@ namespace networking
    }
 
 
-   address_pointer networking::create_address(const ::string & strAddress, port_t port)
+   address_pointer networking::create_address(const ::string & strAddress, enum_address_type eaddresstypePreferred, port_t port)
    {
 
       if (is_ip6(strAddress))

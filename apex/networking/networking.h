@@ -4,6 +4,7 @@
 
 #include "address.h"
 ////#include "acme/primitive/primitive/object.h"
+#include "_constant.h"
 
 
 namespace networking
@@ -22,6 +23,9 @@ namespace networking
 
       
       ::pointer<::sockets::sockets>    m_psockets;
+
+
+      ::networking::enum_address_type       m_eaddresstypePreferred;
 
 
       //string         m_host; ///< local hostname
@@ -95,6 +99,11 @@ namespace networking
       virtual void destroy() override;
 
 
+
+      virtual bool has_ipv4_connectivity();
+      virtual bool has_ipv6_connectivity();
+
+
       virtual ::sockets::sockets * sockets() { return m_psockets; }
 
       virtual bool gudo_set();
@@ -119,7 +128,7 @@ namespace networking
       virtual bool is_ip6(const string& str);
 
 
-      virtual address_pointer create_address(const ::string & strAddress, port_t port = 0);
+      virtual address_pointer create_address(const ::string & strAddress, enum_address_type eaddresstypePreferred = e_address_type_none, port_t port = 0);
       virtual address_pointer create_ip4_address(::i32 iIp, port_t port = 0);
       //virtual bool convert(struct ::in_addr& l, const string& str, i32 ai_flags = 0);
       //virtual bool convert(struct ::in6_addr& l, const string& str, i32 ai_flags = 0);

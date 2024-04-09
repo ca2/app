@@ -1007,6 +1007,9 @@
     <ClInclude Include="platform\get_file_extension_mime_type.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
+    <ClInclude Include="networking\_constant.h">
+      <Filter>Header Files\networking</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="filesystem\file\set.cpp">

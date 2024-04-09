@@ -900,6 +900,7 @@
     <ClInclude Include="networking\sockets\_sockets.h" />
     <ClInclude Include="networking\sockets\_strconv.h" />
     <ClInclude Include="networking\_.h" />
+    <ClInclude Include="networking\_constant.h" />
     <ClInclude Include="parallelization\aaa_pred_procedure.h" />
     <ClInclude Include="parallelization\common.h" />
     <ClInclude Include="parallelization\create_thread.h" />

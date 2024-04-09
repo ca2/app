@@ -271,6 +271,9 @@
     <ClCompile Include="sockets\base\socket.cpp">
       <Filter>Source Files\sockets\base</Filter>
     </ClCompile>
+    <ClCompile Include="connectivity.cpp">
+      <Filter>Source Files\winsock2</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="deployment.rc">

@@ -209,8 +209,8 @@ namespace datetime
       inline string format(const ::scoped_string& strFormat, const class ::time& timeshift = {}) { return format(::time::now(), strFormat, timeshift); }
 
 
-      inline string date_time_text(const ::earth::time& time, string strFormat = INTERNATIONAL_DATE_TIME_FORMAT, const class ::time& timeshift = {}) { return format(::time::now(), strFormat, timeshift); }
-      inline string date_time_text(string strFormat = INTERNATIONAL_DATE_TIME_FORMAT, const class ::time& timeshift = {}) { return date_time_text(::time::now(), strFormat, timeshift); }
+      inline string date_time_text(const ::earth::time& time, const class ::time& timeshift = {}) { return format(time, INTERNATIONAL_DATE_TIME_FORMAT, timeshift); }
+      inline string date_time_text(const class ::time & timeshift = {}) { return date_time_text(::time::now(), timeshift); }
       inline string date_time_text_for_file(const ::earth::time& time, const class ::time& timeshift = {}) { return format(time, INTERNATIONAL_DATE_TIME_FORMAT_FOR_FILE, timeshift); }
       inline string date_time_text_for_file(const class ::time& timeshift = {}) { return date_time_text_for_file(::time::now(), timeshift); }
       inline string date_time_text_for_file_with_no_spaces(const ::earth::time& time, const class ::time& timeshift = {}) { return format(time, INTERNATIONAL_DATE_TIME_FORMAT_FOR_FILE_WITH_NO_SPACES, timeshift); }

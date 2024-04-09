@@ -2213,7 +2213,7 @@ namespace acme
 
          string strDate;
 
-         strDate = datetime()->international().get_date_time_for_file_with_no_spaces();
+         strDate = datetime()->date_time_text_for_file_with_no_spaces();
 
          string strPid;
 

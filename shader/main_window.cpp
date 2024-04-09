@@ -239,7 +239,7 @@ namespace app_shader
 
                     auto pdatetime = psystem->m_pdatetime;
 
-                    string strDate = pdatetime->international().get_date_time(INTERNATIONAL_DATE_TIME_FORMAT_FOR_FILE);
+                    string strDate = pdatetime->date_time_text(INTERNATIONAL_DATE_TIME_FORMAT_FOR_FILE);
 
                     //auto papp = get_app();
 

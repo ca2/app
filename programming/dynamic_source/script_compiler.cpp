@@ -388,7 +388,7 @@ namespace dynamic_source
 
       auto pdatetime = psystem->datetime();
 
-      strRndTitle = "_" + pdatetime->international().get_date_time("%Y-%m-%d_%H-%M-%S") + "_" + strMillis;
+      strRndTitle = "_" + pdatetime->date_time_text("%Y-%m-%d_%H-%M-%S") + "_" + strMillis;
 
       string strTime = m_pathTime;
 

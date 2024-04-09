@@ -139,7 +139,7 @@ namespace datetime
 
          auto pdatetime = psystem->datetime();
 
-         return pdatetime->international().get_date_time(::earth::time((pdatetime->strtotime(pcontext,m_ptoken->m_str,iPath,iPathCount))));
+         return pdatetime->date_time_text(::earth::time((pdatetime->strtotime(pcontext,m_ptoken->m_str,iPath,iPathCount))));
 
       }
       else if(m_ptoken->m_etoken == e_token_identifier)
@@ -149,7 +149,7 @@ namespace datetime
 
          auto pdatetime = psystem->datetime();
 
-         return pdatetime->international().get_date_time(::earth::time((pdatetime->strtotime(pcontext,m_ptoken->m_str,iPath,iPathCount))));
+         return pdatetime->date_time_text(::earth::time((pdatetime->strtotime(pcontext,m_ptoken->m_str,iPath,iPathCount))));
 
       }
       else if(m_ptoken->m_etoken == e_token_addition)

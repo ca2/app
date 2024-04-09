@@ -566,9 +566,9 @@ bool html_form::open_document(const ::payload & payloadFile)
 //
 //         auto pdatetime = psystem->datetime();
 //
-////         path = pdatetime->international().get_date_time() + "." + get_document()->get_document_template()->find_string("default_extension");
+////         path = pdatetime->date_time_text() + "." + get_document()->get_document_template()->find_string("default_extension");
 //
-//         path = pdatetime->international().get_date_time() + ".html";
+//         path = pdatetime->date_time_text() + ".html";
 //
 //      }
 //      else

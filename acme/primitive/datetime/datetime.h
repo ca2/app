@@ -44,56 +44,56 @@ namespace datetime
    public:
 
 
-      class CLASS_DECL_ACME international:
-         virtual public ::object
-      {
-      public:
+      //class CLASS_DECL_ACME international:
+      //   virtual public ::object
+      //{
+      //public:
 
-         
-         international();
-
-
-         virtual void initialize(::particle * pparticle) override;
+      //   
+      //   international();
 
 
-         ::posix_time parse(const string & str);
-
-         void parse_str(const string & str, property_set & set);
-         ::earth::time parse_str(const string & str);
+      //   virtual void initialize(::particle * pparticle) override;
 
 
-         string date_time_text(const ::earth::time & time, string strFormat = INTERNATIONAL_DATE_TIME_FORMAT, const class ::time& timeshift = {});
-         string date_time_text(string strFormat = INTERNATIONAL_DATE_TIME_FORMAT, const class ::time& timeshift = {});
-         string date_time_text_for_file(const class ::time& timeshift = {}, const ::earth::time & time = ::earth::time::now());
+      //   ::posix_time parse(const string & str);
 
-         string date_text(const ::earth::time & time, string strFormat = INTERNATIONAL_DATE_FORMAT, const class ::time & timeshift = {});
-         string date_text(string strFormat = INTERNATIONAL_DATE_FORMAT, const class ::time & timeshift = {});
-         string date_text_for_file(const class ::time & timeshift = {}, const ::earth::time & time = ::earth::time::now());
-         
-
-         //string local_get_date_time(const ::earth::time & time, string strFormat = INTERNATIONAL_DATE_TIME_FORMAT);
-         //string local_get_date_time(string strFormat = INTERNATIONAL_DATE_TIME_FORMAT);
-         //string local_get_date_time_for_file();
+      //   void parse_str(const string & str, property_set & set);
+      //   ::earth::time parse_str(const string & str);
 
 
-         string get_date_time_for_file_with_no_spaces(const class ::time& timeshift = {}, const ::earth::time & time = ::earth::time::now());
-         //string local_get_date_time_for_file_with_no_spaces();
+      //   string date_time_text(const ::earth::time & time, string strFormat = INTERNATIONAL_DATE_TIME_FORMAT, const class ::time& timeshift = {});
+      //   string date_time_text(string strFormat = INTERNATIONAL_DATE_TIME_FORMAT, const class ::time& timeshift = {});
+      //   string date_time_text_for_file(const class ::time& timeshift = {}, const ::earth::time & time = ::earth::time::now());
+
+      //   string date_text(const ::earth::time & time, string strFormat = INTERNATIONAL_DATE_FORMAT, const class ::time & timeshift = {});
+      //   string date_text(string strFormat = INTERNATIONAL_DATE_FORMAT, const class ::time & timeshift = {});
+      //   string date_text_for_file(const class ::time & timeshift = {}, const ::earth::time & time = ::earth::time::now());
+      //   
+
+      //   //string local_get_date_time(const ::earth::time & time, string strFormat = INTERNATIONAL_DATE_TIME_FORMAT);
+      //   //string local_get_date_time(string strFormat = INTERNATIONAL_DATE_TIME_FORMAT);
+      //   //string local_get_date_time_for_file();
 
 
-         inline string format(const ::scoped_string & strFormat = INTERNATIONAL_DATE_TIME_FORMAT, const class ::time& timeshift = {}) { return date_time_text(strFormat, timeshift);  }
-         inline string format(const ::earth::time & time, string strFormat = INTERNATIONAL_DATE_TIME_FORMAT, const class ::time& timeshift = {}) { return date_time_text(time, strFormat, timeshift); }
-         
-         //inline string local_get(string strFormat = INTERNATIONAL_DATE_TIME_FORMAT) { return local_get_date_time(strFormat); }
-         //inline string local_get(const ::earth::time & time, string strFormat = INTERNATIONAL_DATE_TIME_FORMAT) { return local_get_date_time(time, strFormat); }
+      //   string get_date_time_for_file_with_no_spaces(const class ::time& timeshift = {}, const ::earth::time & time = ::earth::time::now());
+      //   //string local_get_date_time_for_file_with_no_spaces();
 
 
-         //inline string utc() { return utc_get(); }
-         //inline string utc(const ::earth::time & time) { return utc_get(time); }
-         //inline string local() { return local_get(); }
-         //inline string local(const ::earth::time & time) { return local_get(time); }
+      //   inline string format(const ::scoped_string & strFormat = INTERNATIONAL_DATE_TIME_FORMAT, const class ::time& timeshift = {}) { return date_time_text(strFormat, timeshift);  }
+      //   inline string format(const ::earth::time & time, string strFormat = INTERNATIONAL_DATE_TIME_FORMAT, const class ::time& timeshift = {}) { return date_time_text(time, strFormat, timeshift); }
+      //   
+      //   //inline string local_get(string strFormat = INTERNATIONAL_DATE_TIME_FORMAT) { return local_get_date_time(strFormat); }
+      //   //inline string local_get(const ::earth::time & time, string strFormat = INTERNATIONAL_DATE_TIME_FORMAT) { return local_get_date_time(time, strFormat); }
 
 
-      };
+      //   //inline string utc() { return utc_get(); }
+      //   //inline string utc(const ::earth::time & time) { return utc_get(time); }
+      //   //inline string local() { return local_get(); }
+      //   //inline string local(const ::earth::time & time) { return local_get(time); }
+
+
+      //};
 
 
 //      class CLASS_DECL_ACME str:
@@ -118,7 +118,7 @@ namespace datetime
 
 
 
-      ::pointer<::datetime::datetime::international>  m_pinternational;
+      //::pointer<::datetime::datetime::international>  m_pinternational;
       //::pointer<::datetime::datetime::str>            m_pstr;
 
 
@@ -157,11 +157,11 @@ namespace datetime
 
       static posix_time s_mktime(i32 iHour,i32 iMinute,i32 iSecond,i32 iMonth,i32 iDay,i32 iYear, const class ::time& timezone = {});
 
-      inline class  international& international() { return *m_pinternational; }
+      //inline class  international& international() { return *m_pinternational; }
       //inline class str& str() { return* m_pstr; }
 
-      string format(const string & str, const ::earth::time & time, const class ::time& timezone = {});
-      string format(const string & str, const class ::time& timezone = {});
+      //string format(const string & str, const ::earth::time & time, const class ::time& timezone = {});
+      //string format(const string & str, const class ::time& timezone = {});
 
       i32 SWN(i32 y,i32 m,i32 d);
       i32 DP(i32 y,i32 m);
@@ -182,6 +182,54 @@ namespace datetime
       string friend_time(const ::text::context * pcontext,::earth::time timeNow,::earth::time time, const class ::time& timeshift = {});
 
       virtual string _001FriendTime(const ::text::context* pcontext, const ::earth::time& timeNow, const ::earth::time& time, const class ::time& timeshift = {});
+
+
+      ::posix_time parse(const string& str);
+
+      void parse_text(const string& str, property_set& set);
+      ::earth::time parse_text(const string& str);
+
+
+      //string date_time_text(const ::earth::time& time, string strFormat = INTERNATIONAL_DATE_TIME_FORMAT, const class ::time& timeshift = {});
+      //string date_time_text(string strFormat = INTERNATIONAL_DATE_TIME_FORMAT, const class ::time& timeshift = {});
+      //string date_time_text_for_file(const class ::time& timeshift = {}, const ::earth::time& time = ::earth::time::now());
+
+
+
+      //string local_get_date_time(const ::earth::time & time, string strFormat = INTERNATIONAL_DATE_TIME_FORMAT);
+      //string local_get_date_time(string strFormat = INTERNATIONAL_DATE_TIME_FORMAT);
+      //string local_get_date_time_for_file();
+
+
+      string get_date_time_for_file_with_no_spaces(const class ::time& timeshift = {}, const ::earth::time& time = ::earth::time::now());
+      //string local_get_date_time_for_file_with_no_spaces();
+
+
+      virtual string format(const ::earth::time& time, const ::scoped_string& strFormat, const class ::time& timeshift = {});
+      inline string format(const ::scoped_string& strFormat, const class ::time& timeshift = {}) { return format(::time::now(), strFormat, timeshift); }
+
+
+      inline string date_time_text(const ::earth::time& time, string strFormat = INTERNATIONAL_DATE_TIME_FORMAT, const class ::time& timeshift = {}) { return format(::time::now(), strFormat, timeshift); }
+      inline string date_time_text(string strFormat = INTERNATIONAL_DATE_TIME_FORMAT, const class ::time& timeshift = {}) { return date_time_text(::time::now(), strFormat, timeshift); }
+      inline string date_time_text_for_file(const ::earth::time& time, const class ::time& timeshift = {}) { return format(time, INTERNATIONAL_DATE_TIME_FORMAT_FOR_FILE, timeshift); }
+      inline string date_time_text_for_file(const class ::time& timeshift = {}) { return date_time_text_for_file(::time::now(), timeshift); }
+      inline string date_time_text_for_file_with_no_spaces(const ::earth::time& time, const class ::time& timeshift = {}) { return format(time, INTERNATIONAL_DATE_TIME_FORMAT_FOR_FILE_WITH_NO_SPACES, timeshift); }
+      inline string date_time_text_for_file_with_no_spaces(const class ::time& timeshift = {}) { return date_time_text_for_file_with_no_spaces(::time::now(), timeshift); }
+
+
+      inline ::string date_text(const ::earth::time& time, string strFormat = INTERNATIONAL_DATE_FORMAT, const class ::time& timeshift = {}) { return format(time, strFormat, timeshift); }
+      inline ::string date_text(string strFormat = INTERNATIONAL_DATE_FORMAT, const class ::time& timeshift = {}) { return format(::time::now(), strFormat, timeshift); }
+      inline ::string date_text_for_file(const class ::time& timeshift = {}, const ::earth::time& time = ::earth::time::now()) { return format(time, INTERNATIONAL_DATE_FORMAT_FOR_FILE, timeshift); }
+
+
+      //inline string local_get(string strFormat = INTERNATIONAL_DATE_TIME_FORMAT) { return local_get_date_time(strFormat); }
+      //inline string local_get(const ::earth::time & time, string strFormat = INTERNATIONAL_DATE_TIME_FORMAT) { return local_get_date_time(time, strFormat); }
+
+
+      //inline string utc() { return utc_get(); }
+      //inline string utc(const ::earth::time & time) { return utc_get(time); }
+      //inline string local() { return local_get(); }
+      //inline string local(const ::earth::time & time) { return local_get(time); }
 
 
    };

@@ -968,7 +968,7 @@ pacmedirectory->create("/ca2core");
 
       auto pdatetime = datetime();
 
-      string strLogTime = pdatetime->international().get_date_time_for_file_with_no_spaces();
+      string strLogTime = pdatetime->date_time_text_for_file_with_no_spaces();
 
       strLogTime.replace_with("/", "-");
 

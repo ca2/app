@@ -4557,7 +4557,7 @@ namespace apex
 
       auto pdatetime = psystem->m_pdatetime;
 
-      strMessage = pdatetime->international().get_date_time();
+      strMessage = pdatetime->date_time_text();
       strMessage += " ";
       strMessage += pszMessage;
       strMessage += "\n";

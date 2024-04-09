@@ -114,7 +114,7 @@ namespace core
 
          auto pdatetime = datetime();
 
-         ftpFileStatus.m_strModificationTime = pdatetime->international().get_date_time(ftpFileStatus.m_timeModification);
+         ftpFileStatus.m_strModificationTime = pdatetime->date_time_text(ftpFileStatus.m_timeModification);
 
       }
 

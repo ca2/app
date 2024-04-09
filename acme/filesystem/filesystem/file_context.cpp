@@ -2591,7 +2591,7 @@ file_pointer file_context::get(const ::file::path &name)
 
       auto pdatetime = psystem->datetime();
 
-      strMessage = pdatetime->international().get_date_time() + " " + strTempFile;
+      strMessage = pdatetime->international().date_time_text() + " " + strTempFile;
 
       acmefile()->append_wait("C:\\ca2\\toomuchuploads.txt", strMessage);
 

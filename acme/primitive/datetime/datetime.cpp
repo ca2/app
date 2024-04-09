@@ -505,7 +505,7 @@ namespace datetime
    }
 
 
-   string datetime::international::get_date_time(const ::earth::time & time, string strFormat, const class ::time& timeshift)
+   string datetime::international::date_time_text(const ::earth::time & time, string strFormat, const class ::time& timeshift)
    {
       
       string str;
@@ -516,27 +516,28 @@ namespace datetime
 
    }
 
-   string datetime::international::get_date_time(string strFormat, const class ::time & timeshift)
+
+   string datetime::international::date_time_text(string strFormat, const class ::time & timeshift)
    {
 
       ::earth::time time;
 
       time = ::earth::time::now();
 
-      return get_date_time(time, strFormat, timeshift);
+      return date_time_text(time, strFormat, timeshift);
 
    }
 
-   string datetime::international::get_date_time_for_file(const class ::time & timeshift, const ::earth::time & time)
+
+   string datetime::international::date_time_text_for_file(const class ::time & timeshift, const ::earth::time & time)
    {
 
-      return get_date_time(time, INTERNATIONAL_DATE_TIME_FORMAT_FOR_FILE, timeshift);
+      return date_time_text(time, INTERNATIONAL_DATE_TIME_FORMAT_FOR_FILE, timeshift);
 
    }
 
 
-
-   string datetime::international::get_date(const ::earth::time & time, string strFormat, const class ::time & timeshift)
+   string datetime::international::date_text(const ::earth::time & time, string strFormat, const class ::time & timeshift)
    {
 
       string str;
@@ -547,21 +548,23 @@ namespace datetime
 
    }
 
-   string datetime::international::get_date(string strFormat, const class ::time & timeshift)
+
+   string datetime::international::date_text(string strFormat, const class ::time & timeshift)
    {
 
       ::earth::time time;
 
       time = ::earth::time::now();
 
-      return get_date(time, strFormat, timeshift);
+      return date_text(time, strFormat, timeshift);
 
    }
 
-   string datetime::international::get_date_for_file(const class ::time & timeshift, const ::earth::time & time)
+
+   string datetime::international::date_text_for_file(const class ::time & timeshift, const ::earth::time & time)
    {
 
-      return get_date(time, INTERNATIONAL_DATE_FORMAT_FOR_FILE, timeshift);
+      return date_text(time, INTERNATIONAL_DATE_FORMAT_FOR_FILE, timeshift);
 
    }
 
@@ -607,7 +610,7 @@ namespace datetime
    string datetime::international::get_date_time_for_file_with_no_spaces(const class ::time& timeshift, const ::earth::time & time)
    {
 
-      string str = get_date_time_for_file(timeshift, time);
+      string str = date_time_text_for_file(timeshift, time);
 
       str.replace_with("_", " ");
 

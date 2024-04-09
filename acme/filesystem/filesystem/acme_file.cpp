@@ -1014,7 +1014,7 @@ void acme_file::put_now(const ::file::path& path)
 void acme_file::put_time(const ::file::path& path, const ::earth::time& time)
 {
 
-   ::string strTime = datetime()->international().get_date_time(time);
+   ::string strTime = datetime()->international().date_time_text(time);
 
    strTime += " UTC";
 
